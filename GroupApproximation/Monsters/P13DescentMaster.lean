@@ -391,6 +391,138 @@ private theorem nu_w23_pos : x 5 1 * x 3 (-1) * x 5 1 = w23⁻¹ := by
 private theorem nu_w23_neg : x 5 (-1) * x 3 1 * x 5 (-1) = w23 :=
   braid23.symm
 
+/-- Reversed-pair emission identity for the pair `(x3, x0)`. -/
+private theorem emR_30 (c cp : ℤ) (hc : c = 1 ∨ c = -1) :
+    x 5 c * x 1 (-(c * cp)) * x 3 (-c) *
+      (x 3 c * x 5 (-c) * x 3 c) = x 3 c * x 0 cp := by
+  have hc2 : -(c * -(c * cp)) = cp := by rcases hc with rfl | rfl <;> ring
+  calc x 5 c * x 1 (-(c * cp)) * x 3 (-c) *
+        (x 3 c * x 5 (-c) * x 3 c)
+      = x 5 c * x 1 (-(c * cp)) * (x 3 (-c) * x 3 c) *
+          (x 5 (-c) * x 3 c) := by group
+    _ = x 5 c * x 1 (-(c * cp)) * (x 5 (-c) * x 3 c) := by
+        rw [x_add, show -c + c = 0 from by ring, x_zero, mul_one]
+    _ = x 5 c * x 1 (-(c * cp)) * x 5 (-c) * x 3 c := by group
+    _ = x 0 (-(c * -(c * cp))) * x 1 (-(c * cp)) * x 3 c := by
+        rw [sand5_conj]
+    _ = x 0 cp * x 1 (-(c * cp)) * x 3 c := by rw [hc2]
+    _ = x 1 (-(c * cp)) * x 0 cp * x 3 c := by
+        rw [(x_commute_12_13 cp (-(c * cp))).eq]
+    _ = x 3 c * x 0 cp * x 3 (-c) * x 3 c := by rw [← sand3_conj]
+    _ = x 3 c * x 0 cp * (x 3 (-c) * x 3 c) := by group
+    _ = x 3 c * x 0 cp := by
+        rw [x_add, show -c + c = 0 from by ring, x_zero, mul_one]
+
+/-- Reversed-pair emission identity for the pair `(x5, x1)`. -/
+private theorem emR_51 (c cp : ℤ) (hc : c = 1 ∨ c = -1) :
+    x 3 c * x 0 (-(c * cp)) * x 5 (-c) *
+      (x 5 c * x 3 (-c) * x 5 c) = x 5 c * x 1 cp := by
+  have hc2 : -(c * -(c * cp)) = cp := by rcases hc with rfl | rfl <;> ring
+  calc x 3 c * x 0 (-(c * cp)) * x 5 (-c) *
+        (x 5 c * x 3 (-c) * x 5 c)
+      = x 3 c * x 0 (-(c * cp)) * (x 5 (-c) * x 5 c) *
+          (x 3 (-c) * x 5 c) := by group
+    _ = x 3 c * x 0 (-(c * cp)) * (x 3 (-c) * x 5 c) := by
+        rw [x_add, show -c + c = 0 from by ring, x_zero, mul_one]
+    _ = x 3 c * x 0 (-(c * cp)) * x 3 (-c) * x 5 c := by group
+    _ = x 1 (-(c * -(c * cp))) * x 0 (-(c * cp)) * x 5 c := by
+        rw [sand3_conj]
+    _ = x 1 cp * x 0 (-(c * cp)) * x 5 c := by rw [hc2]
+    _ = x 0 (-(c * cp)) * x 1 cp * x 5 c := by
+        rw [((x_commute_12_13 (-(c * cp)) cp).symm).eq]
+    _ = x 5 c * x 1 cp * x 5 (-c) * x 5 c := by rw [← sand5_conj]
+    _ = x 5 c * x 1 cp * (x 5 (-c) * x 5 c) := by group
+    _ = x 5 c * x 1 cp := by
+        rw [x_add, show -c + c = 0 from by ring, x_zero, mul_one]
+
+/-- Reversed-pair emission identity for the pair `(x1, x2)`. -/
+private theorem emR_12 (c cp : ℤ) (hc : c = 1 ∨ c = -1) :
+    x 4 c * x 3 (-(c * cp)) * x 1 (-c) *
+      (x 1 c * x 4 (-c) * x 1 c) = x 1 c * x 2 cp := by
+  have hc2 : -(c * -(c * cp)) = cp := by rcases hc with rfl | rfl <;> ring
+  calc x 4 c * x 3 (-(c * cp)) * x 1 (-c) *
+        (x 1 c * x 4 (-c) * x 1 c)
+      = x 4 c * x 3 (-(c * cp)) * (x 1 (-c) * x 1 c) *
+          (x 4 (-c) * x 1 c) := by group
+    _ = x 4 c * x 3 (-(c * cp)) * (x 4 (-c) * x 1 c) := by
+        rw [x_add, show -c + c = 0 from by ring, x_zero, mul_one]
+    _ = x 4 c * x 3 (-(c * cp)) * x 4 (-c) * x 1 c := by group
+    _ = x 2 (-(c * -(c * cp))) * x 3 (-(c * cp)) * x 1 c := by
+        rw [sand4_conj]
+    _ = x 2 cp * x 3 (-(c * cp)) * x 1 c := by rw [hc2]
+    _ = x 3 (-(c * cp)) * x 2 cp * x 1 c := by
+        rw [(x_commute_21_23 cp (-(c * cp))).eq]
+    _ = x 1 c * x 2 cp * x 1 (-c) * x 1 c := by rw [← sand1_conj]
+    _ = x 1 c * x 2 cp * (x 1 (-c) * x 1 c) := by group
+    _ = x 1 c * x 2 cp := by
+        rw [x_add, show -c + c = 0 from by ring, x_zero, mul_one]
+
+/-- Reversed-pair emission identity for the pair `(x4, x3)`. -/
+private theorem emR_43 (c cp : ℤ) (hc : c = 1 ∨ c = -1) :
+    x 1 c * x 2 (-(c * cp)) * x 4 (-c) *
+      (x 4 c * x 1 (-c) * x 4 c) = x 4 c * x 3 cp := by
+  have hc2 : -(c * -(c * cp)) = cp := by rcases hc with rfl | rfl <;> ring
+  calc x 1 c * x 2 (-(c * cp)) * x 4 (-c) *
+        (x 4 c * x 1 (-c) * x 4 c)
+      = x 1 c * x 2 (-(c * cp)) * (x 4 (-c) * x 4 c) *
+          (x 1 (-c) * x 4 c) := by group
+    _ = x 1 c * x 2 (-(c * cp)) * (x 1 (-c) * x 4 c) := by
+        rw [x_add, show -c + c = 0 from by ring, x_zero, mul_one]
+    _ = x 1 c * x 2 (-(c * cp)) * x 1 (-c) * x 4 c := by group
+    _ = x 3 (-(c * -(c * cp))) * x 2 (-(c * cp)) * x 4 c := by
+        rw [sand1_conj]
+    _ = x 3 cp * x 2 (-(c * cp)) * x 4 c := by rw [hc2]
+    _ = x 2 (-(c * cp)) * x 3 cp * x 4 c := by
+        rw [((x_commute_21_23 (-(c * cp)) cp).symm).eq]
+    _ = x 4 c * x 3 cp * x 4 (-c) * x 4 c := by rw [← sand4_conj]
+    _ = x 4 c * x 3 cp * (x 4 (-c) * x 4 c) := by group
+    _ = x 4 c * x 3 cp := by
+        rw [x_add, show -c + c = 0 from by ring, x_zero, mul_one]
+
+/-- Reversed-pair emission identity for the pair `(x0, x4)`. -/
+private theorem emR_04 (c cp : ℤ) (hc : c = 1 ∨ c = -1) :
+    x 2 c * x 5 (-(c * cp)) * x 0 (-c) *
+      (x 0 c * x 2 (-c) * x 0 c) = x 0 c * x 4 cp := by
+  have hc2 : -(c * -(c * cp)) = cp := by rcases hc with rfl | rfl <;> ring
+  calc x 2 c * x 5 (-(c * cp)) * x 0 (-c) *
+        (x 0 c * x 2 (-c) * x 0 c)
+      = x 2 c * x 5 (-(c * cp)) * (x 0 (-c) * x 0 c) *
+          (x 2 (-c) * x 0 c) := by group
+    _ = x 2 c * x 5 (-(c * cp)) * (x 2 (-c) * x 0 c) := by
+        rw [x_add, show -c + c = 0 from by ring, x_zero, mul_one]
+    _ = x 2 c * x 5 (-(c * cp)) * x 2 (-c) * x 0 c := by group
+    _ = x 4 (-(c * -(c * cp))) * x 5 (-(c * cp)) * x 0 c := by
+        rw [sand2_conj]
+    _ = x 4 cp * x 5 (-(c * cp)) * x 0 c := by rw [hc2]
+    _ = x 5 (-(c * cp)) * x 4 cp * x 0 c := by
+        rw [(x_commute_31_32 cp (-(c * cp))).eq]
+    _ = x 0 c * x 4 cp * x 0 (-c) * x 0 c := by rw [← sand0_conj]
+    _ = x 0 c * x 4 cp * (x 0 (-c) * x 0 c) := by group
+    _ = x 0 c * x 4 cp := by
+        rw [x_add, show -c + c = 0 from by ring, x_zero, mul_one]
+
+/-- Reversed-pair emission identity for the pair `(x2, x5)`. -/
+private theorem emR_25 (c cp : ℤ) (hc : c = 1 ∨ c = -1) :
+    x 0 c * x 4 (-(c * cp)) * x 2 (-c) *
+      (x 2 c * x 0 (-c) * x 2 c) = x 2 c * x 5 cp := by
+  have hc2 : -(c * -(c * cp)) = cp := by rcases hc with rfl | rfl <;> ring
+  calc x 0 c * x 4 (-(c * cp)) * x 2 (-c) *
+        (x 2 c * x 0 (-c) * x 2 c)
+      = x 0 c * x 4 (-(c * cp)) * (x 2 (-c) * x 2 c) *
+          (x 0 (-c) * x 2 c) := by group
+    _ = x 0 c * x 4 (-(c * cp)) * (x 0 (-c) * x 2 c) := by
+        rw [x_add, show -c + c = 0 from by ring, x_zero, mul_one]
+    _ = x 0 c * x 4 (-(c * cp)) * x 0 (-c) * x 2 c := by group
+    _ = x 5 (-(c * -(c * cp))) * x 4 (-(c * cp)) * x 2 c := by
+        rw [sand0_conj]
+    _ = x 5 cp * x 4 (-(c * cp)) * x 2 c := by rw [hc2]
+    _ = x 4 (-(c * cp)) * x 5 cp * x 2 c := by
+        rw [((x_commute_31_32 (-(c * cp)) cp).symm).eq]
+    _ = x 2 c * x 5 cp * x 2 (-c) * x 2 c := by rw [← sand2_conj]
+    _ = x 2 c * x 5 cp * (x 2 (-c) * x 2 c) := by group
+    _ = x 2 c * x 5 cp := by
+        rw [x_add, show -c + c = 0 from by ring, x_zero, mul_one]
+
 /-! ## Inverse actions of the signed swaps -/
 
 private theorem act_winv_vec (v : Fin 3 → ℤ) :
@@ -495,6 +627,8 @@ the ν-led braid word, whose transported base is the inverse-signed
 swap action; these variants restate the existence disjunctions with
 the matching bases. -/
 
+set_option maxHeartbeats 1000000 in
+set_option linter.unusedSimpArgs false in
 private theorem exist_st_15' (c cp : ℤ) (hc : c = 1 ∨ c = -1)
     (hcp : cp = 1 ∨ cp = -1) (u : Fin 3 → ℤ)
     (hviol : vnorm (act (toSL3 (x 1 c)) (act (toSL3 (x 5 cp)) u)) <
@@ -516,10 +650,14 @@ private theorem exist_st_15' (c cp : ℤ) (hc : c = 1 ∨ c = -1)
           ![u 0, -(cp * u 2), cp * u 1])) <
         vnorm (act (toSL3 (x 5 cp)) u)) := by
   rcases hc with rfl | rfl <;> rcases hcp with rfl | rfl <;>
-    simp only [act_x0, act_x1, act_x5] at hviol hside ⊢ <;>
-    simp [vnorm] at hviol hside ⊢ <;>
+    simp only [act_x0, act_x1, act_x5, vnorm, one_mul, neg_one_mul, neg_neg,
+      Matrix.cons_val_zero, Matrix.cons_val_one,
+      Matrix.cons_val_two, Matrix.head_cons, Matrix.tail_cons]
+      at hviol hside ⊢ <;>
     omega
 
+set_option maxHeartbeats 1000000 in
+set_option linter.unusedSimpArgs false in
 private theorem exist_st_34' (c cp : ℤ) (hc : c = 1 ∨ c = -1)
     (hcp : cp = 1 ∨ cp = -1) (u : Fin 3 → ℤ)
     (hviol : vnorm (act (toSL3 (x 3 c)) (act (toSL3 (x 4 cp)) u)) <
@@ -541,10 +679,14 @@ private theorem exist_st_34' (c cp : ℤ) (hc : c = 1 ∨ c = -1)
           ![-(cp * u 2), u 1, cp * u 0])) <
         vnorm (act (toSL3 (x 4 cp)) u)) := by
   rcases hc with rfl | rfl <;> rcases hcp with rfl | rfl <;>
-    simp only [act_x2, act_x3, act_x4] at hviol hside ⊢ <;>
-    simp [vnorm] at hviol hside ⊢ <;>
+    simp only [act_x2, act_x3, act_x4, vnorm, one_mul, neg_one_mul, neg_neg,
+      Matrix.cons_val_zero, Matrix.cons_val_one,
+      Matrix.cons_val_two, Matrix.head_cons, Matrix.tail_cons]
+      at hviol hside ⊢ <;>
     omega
 
+set_option maxHeartbeats 1000000 in
+set_option linter.unusedSimpArgs false in
 private theorem exist_st_52' (c cp : ℤ) (hc : c = 1 ∨ c = -1)
     (hcp : cp = 1 ∨ cp = -1) (u : Fin 3 → ℤ)
     (hviol : vnorm (act (toSL3 (x 5 c)) (act (toSL3 (x 2 cp)) u)) <
@@ -566,62 +708,10 @@ private theorem exist_st_52' (c cp : ℤ) (hc : c = 1 ∨ c = -1)
           ![-(cp * u 1), cp * u 0, u 2])) <
         vnorm (act (toSL3 (x 2 cp)) u)) := by
   rcases hc with rfl | rfl <;> rcases hcp with rfl | rfl <;>
-    simp only [act_x2, act_x4, act_x5] at hviol hside ⊢ <;>
-    simp [vnorm] at hviol hside ⊢ <;>
-    omega
-
-private theorem exist_st_12' (c cp : ℤ) (hc : c = 1 ∨ c = -1)
-    (hcp : cp = 1 ∨ cp = -1) (u : Fin 3 → ℤ)
-    (hviol : vnorm (act (toSL3 (x 1 c)) (act (toSL3 (x 2 cp)) u)) <
-      vnorm (act (toSL3 (x 2 cp)) u))
-    (hside : vnorm u ≤ vnorm (act (toSL3 (x 2 cp)) u)) :
-    (vnorm (act (toSL3 (x 1 c)) u) < vnorm (act (toSL3 (x 2 cp)) u) ∧
-      vnorm (act (toSL3 (x 2 cp)) (act (toSL3 (x 1 c)) u)) <
-        vnorm (act (toSL3 (x 2 cp)) u)) ∨
-    (vnorm (act (toSL3 (x 2 (-cp))) ![-(cp * u 1), cp * u 0, u 2]) <
-        vnorm (act (toSL3 (x 2 cp)) u) ∧
-      vnorm (act (toSL3 (x 1 c)) (act (toSL3 (x 2 (-cp)))
-          ![-(cp * u 1), cp * u 0, u 2])) <
-        vnorm (act (toSL3 (x 2 cp)) u)) := by
-  rcases hc with rfl | rfl <;> rcases hcp with rfl | rfl <;>
-    simp only [act_x1, act_x2] at hviol hside ⊢ <;>
-    simp [vnorm] at hviol hside ⊢ <;>
-    omega
-
-private theorem exist_st_04' (c cp : ℤ) (hc : c = 1 ∨ c = -1)
-    (hcp : cp = 1 ∨ cp = -1) (u : Fin 3 → ℤ)
-    (hviol : vnorm (act (toSL3 (x 0 c)) (act (toSL3 (x 4 cp)) u)) <
-      vnorm (act (toSL3 (x 4 cp)) u))
-    (hside : vnorm u ≤ vnorm (act (toSL3 (x 4 cp)) u)) :
-    (vnorm (act (toSL3 (x 0 c)) u) < vnorm (act (toSL3 (x 4 cp)) u) ∧
-      vnorm (act (toSL3 (x 4 cp)) (act (toSL3 (x 0 c)) u)) <
-        vnorm (act (toSL3 (x 4 cp)) u)) ∨
-    (vnorm (act (toSL3 (x 4 (-cp))) ![-(cp * u 2), u 1, cp * u 0]) <
-        vnorm (act (toSL3 (x 4 cp)) u) ∧
-      vnorm (act (toSL3 (x 0 c)) (act (toSL3 (x 4 (-cp)))
-          ![-(cp * u 2), u 1, cp * u 0])) <
-        vnorm (act (toSL3 (x 4 cp)) u)) := by
-  rcases hc with rfl | rfl <;> rcases hcp with rfl | rfl <;>
-    simp only [act_x0, act_x4] at hviol hside ⊢ <;>
-    simp [vnorm] at hviol hside ⊢ <;>
-    omega
-
-private theorem exist_st_25' (c cp : ℤ) (hc : c = 1 ∨ c = -1)
-    (hcp : cp = 1 ∨ cp = -1) (u : Fin 3 → ℤ)
-    (hviol : vnorm (act (toSL3 (x 2 c)) (act (toSL3 (x 5 cp)) u)) <
-      vnorm (act (toSL3 (x 5 cp)) u))
-    (hside : vnorm u ≤ vnorm (act (toSL3 (x 5 cp)) u)) :
-    (vnorm (act (toSL3 (x 2 c)) u) < vnorm (act (toSL3 (x 5 cp)) u) ∧
-      vnorm (act (toSL3 (x 5 cp)) (act (toSL3 (x 2 c)) u)) <
-        vnorm (act (toSL3 (x 5 cp)) u)) ∨
-    (vnorm (act (toSL3 (x 5 (-cp))) ![u 0, -(cp * u 2), cp * u 1]) <
-        vnorm (act (toSL3 (x 5 cp)) u) ∧
-      vnorm (act (toSL3 (x 2 c)) (act (toSL3 (x 5 (-cp)))
-          ![u 0, -(cp * u 2), cp * u 1])) <
-        vnorm (act (toSL3 (x 5 cp)) u)) := by
-  rcases hc with rfl | rfl <;> rcases hcp with rfl | rfl <;>
-    simp only [act_x2, act_x5] at hviol hside ⊢ <;>
-    simp [vnorm] at hviol hside ⊢ <;>
+    simp only [act_x2, act_x4, act_x5, vnorm, one_mul, neg_one_mul, neg_neg,
+      Matrix.cons_val_zero, Matrix.cons_val_one,
+      Matrix.cons_val_two, Matrix.head_cons, Matrix.tail_cons]
+      at hviol hside ⊢ <;>
     omega
 
 /-! ## The step builders -/
@@ -1236,49 +1326,54 @@ theorem descent_step (V : List Letter) (mon : P13)
           w23inv_hf w23ConjInv_sign vnorm_act_w23inv hem
           (lt_of_lt_of_eq h1 hlamC) (lt_of_lt_of_eq h2 hlamC)
   · -- (0, 4): Steinberg pair, reversed
-    rcases exist_st_04' c cp hc hcp _ hviolC hsideC with
+    rcases exist_st_04 c cp hc hcp _ hviolC hsideC with
       ⟨h1, h2⟩ | ⟨h1, h2⟩
     · exact route_triple V mon hmon hU hex A C _ _ hsplit hAlen
         ((5, -(cp * c)) : Letter) ((4, cp) : Letter)
         ((0, c) : Letter)
         (unit_neg (unit_mul hcp hc)) hcp hc ((stB_04 c cp).symm)
         (lt_of_lt_of_eq h1 hlamC) (lt_of_lt_of_eq h2 hlamC)
-    · rcases hcp with rfl | rfl
-      · have hB : (![-(1 * vecOf C (act (toSL3 mon) e3) 2), vecOf C (act (toSL3 mon) e3) 1,
-          1 * vecOf C (act (toSL3 mon) e3) 0] :
-          Fin 3 → ℤ) =
-          act (toSL3 w13⁻¹) (vecOf C (act (toSL3 mon) e3)) := by
-          rw [act_w13inv_vec]
+    · rcases hc with rfl | rfl
+      · have hB : (![vecOf C (act (toSL3 mon) e3) 1,
+            -(vecOf C (act (toSL3 mon) e3) 0),
+            vecOf C (act (toSL3 mon) e3) 2] : Fin 3 → ℤ) =
+            act (toSL3 w) (vecOf C (act (toSL3 mon) e3)) := by
+          rw [act_w]
           refine vec3_ext ?_ ?_ ?_ <;> simp
+        simp only [one_mul] at h1 h2
         rw [hB] at h1 h2
-        have hem : x 1 1 * x 0 c * x 4 (-1) *
-          (x 4 1 * x 1 (-1) * x 4 1) =
-          x 0 c * x 4 1 := em_04 c 1
-        rw [nu_w13_pos] at hem
+        have hem : x 2 1 * x 5 (-cp) * x 0 (-1) * w = x 0 1 * x 4 cp := by
+          have h := emR_04 1 cp (Or.inl rfl)
+          rw [show (-(1 * cp) : ℤ) = -cp from by ring] at h
+          rw [pi_w_pos] at h
+          exact h
         exact route_triple_emit V mon hmon hU hex A C _ _ hsplit hAlen
-          ((1, 1) : Letter) ((0, c) : Letter)
-          ((4, -1) : Letter)
-          (Or.inl rfl) hc (Or.inr rfl)
-          w13⁻¹ (Subgroup.inv_mem _ w13_mem_closure) w13ConjInv
-          w13inv_hf w13ConjInv_sign vnorm_act_w13inv hem
+          ((2, 1) : Letter) ((5, -cp) : Letter)
+          ((0, -1) : Letter)
+          (Or.inl rfl) (unit_neg hcp) (Or.inr rfl)
+          w w_mem_closure wConj w_conj_letter wConj_sign
+          vnorm_act_w hem
           (lt_of_lt_of_eq h1 hlamC) (lt_of_lt_of_eq h2 hlamC)
-      · have hB : (![-(-1 * vecOf C (act (toSL3 mon) e3) 2), vecOf C (act (toSL3 mon) e3) 1,
-          -1 * vecOf C (act (toSL3 mon) e3) 0] :
-          Fin 3 → ℤ) =
-          act (toSL3 w13) (vecOf C (act (toSL3 mon) e3)) := by
-          rw [act_w13]
+      · have hB : (![-(vecOf C (act (toSL3 mon) e3) 1),
+            vecOf C (act (toSL3 mon) e3) 0,
+            vecOf C (act (toSL3 mon) e3) 2] : Fin 3 → ℤ) =
+            act (toSL3 w⁻¹) (vecOf C (act (toSL3 mon) e3)) := by
+          rw [act_winv_vec]
           refine vec3_ext ?_ ?_ ?_ <;> simp
+        simp only [neg_one_mul, neg_neg] at h1 h2
         rw [hB] at h1 h2
-        have hem : x 1 (-1) * x 0 c * x 4 1 *
-          (x 4 (-1) * x 1 1 * x 4 (-1)) =
-          x 0 c * x 4 (-1) := em_04 c (-1)
-        rw [nu_w13_neg] at hem
+        have hem : x 2 (-1) * x 5 cp * x 0 1 * w⁻¹ = x 0 (-1) * x 4 cp := by
+          have h := emR_04 (-1) cp (Or.inr rfl)
+          rw [show (-(-1 * cp) : ℤ) = cp from by ring,
+            show (-(-1) : ℤ) = 1 from by norm_num] at h
+          rw [pi_w_neg] at h
+          exact h
         exact route_triple_emit V mon hmon hU hex A C _ _ hsplit hAlen
-          ((1, -1) : Letter) ((0, c) : Letter)
-          ((4, 1) : Letter)
-          (Or.inr rfl) hc (Or.inl rfl)
-          w13 w13_mem_closure w13Conj w13_conj_letter w13Conj_sign
-          vnorm_act_w13 hem
+          ((2, -1) : Letter) ((5, cp) : Letter)
+          ((0, 1) : Letter)
+          (Or.inr rfl) hcp (Or.inl rfl)
+          w⁻¹ (Subgroup.inv_mem _ w_mem_closure) wConjInv winv_hf wConjInv_sign
+          vnorm_act_winv hem
           (lt_of_lt_of_eq h1 hlamC) (lt_of_lt_of_eq h2 hlamC)
   · -- (0, 5): same read — swap
     have h1 := exist_sr_05 c cp hc hcp _ hviolC hsideC
@@ -1321,49 +1416,54 @@ theorem descent_step (V : List Letter) (mon : P13)
     · exact route_nil V mon hmon hU hex A C _ _ hsplit hAlen (cancel_pair _ (-1))
     · exact (same_aligned_1 (-1) (Or.inr rfl) _ hviolC hsideC).elim
   · -- (1, 2): Steinberg pair, reversed
-    rcases exist_st_12' c cp hc hcp _ hviolC hsideC with
+    rcases exist_st_12 c cp hc hcp _ hviolC hsideC with
       ⟨h1, h2⟩ | ⟨h1, h2⟩
     · exact route_triple V mon hmon hU hex A C _ _ hsplit hAlen
         ((3, -(cp * c)) : Letter) ((2, cp) : Letter)
         ((1, c) : Letter)
         (unit_neg (unit_mul hcp hc)) hcp hc ((stB_12 c cp).symm)
         (lt_of_lt_of_eq h1 hlamC) (lt_of_lt_of_eq h2 hlamC)
-    · rcases hcp with rfl | rfl
-      · have hB : (![-(1 * vecOf C (act (toSL3 mon) e3) 1), 1 * vecOf C (act (toSL3 mon) e3) 0,
-          vecOf C (act (toSL3 mon) e3) 2] :
-          Fin 3 → ℤ) =
-          act (toSL3 w⁻¹) (vecOf C (act (toSL3 mon) e3)) := by
-          rw [act_winv_vec]
+    · rcases hc with rfl | rfl
+      · have hB : (![vecOf C (act (toSL3 mon) e3) 2,
+            vecOf C (act (toSL3 mon) e3) 1,
+            -(vecOf C (act (toSL3 mon) e3) 0)] : Fin 3 → ℤ) =
+            act (toSL3 w13) (vecOf C (act (toSL3 mon) e3)) := by
+          rw [act_w13]
           refine vec3_ext ?_ ?_ ?_ <;> simp
+        simp only [one_mul] at h1 h2
         rw [hB] at h1 h2
-        have hem : x 0 1 * x 1 c * x 2 (-1) *
-          (x 2 1 * x 0 (-1) * x 2 1) =
-          x 1 c * x 2 1 := em_12 c 1
-        rw [nu_w_pos] at hem
+        have hem : x 4 1 * x 3 (-cp) * x 1 (-1) * w13 = x 1 1 * x 2 cp := by
+          have h := emR_12 1 cp (Or.inl rfl)
+          rw [show (-(1 * cp) : ℤ) = -cp from by ring] at h
+          rw [pi_w13_pos] at h
+          exact h
         exact route_triple_emit V mon hmon hU hex A C _ _ hsplit hAlen
-          ((0, 1) : Letter) ((1, c) : Letter)
-          ((2, -1) : Letter)
-          (Or.inl rfl) hc (Or.inr rfl)
-          w⁻¹ (Subgroup.inv_mem _ w_mem_closure) wConjInv winv_hf
-          wConjInv_sign vnorm_act_winv hem
+          ((4, 1) : Letter) ((3, -cp) : Letter)
+          ((1, -1) : Letter)
+          (Or.inl rfl) (unit_neg hcp) (Or.inr rfl)
+          w13 w13_mem_closure w13Conj w13_conj_letter w13Conj_sign
+          vnorm_act_w13 hem
           (lt_of_lt_of_eq h1 hlamC) (lt_of_lt_of_eq h2 hlamC)
-      · have hB : (![-(-1 * vecOf C (act (toSL3 mon) e3) 1), -1 * vecOf C (act (toSL3 mon) e3) 0,
-          vecOf C (act (toSL3 mon) e3) 2] :
-          Fin 3 → ℤ) =
-          act (toSL3 w) (vecOf C (act (toSL3 mon) e3)) := by
-          rw [act_w]
+      · have hB : (![-(vecOf C (act (toSL3 mon) e3) 2),
+            vecOf C (act (toSL3 mon) e3) 1,
+            vecOf C (act (toSL3 mon) e3) 0] : Fin 3 → ℤ) =
+            act (toSL3 w13⁻¹) (vecOf C (act (toSL3 mon) e3)) := by
+          rw [act_w13inv_vec]
           refine vec3_ext ?_ ?_ ?_ <;> simp
+        simp only [neg_one_mul, neg_neg] at h1 h2
         rw [hB] at h1 h2
-        have hem : x 0 (-1) * x 1 c * x 2 1 *
-          (x 2 (-1) * x 0 1 * x 2 (-1)) =
-          x 1 c * x 2 (-1) := em_12 c (-1)
-        rw [nu_w_neg] at hem
+        have hem : x 4 (-1) * x 3 cp * x 1 1 * w13⁻¹ = x 1 (-1) * x 2 cp := by
+          have h := emR_12 (-1) cp (Or.inr rfl)
+          rw [show (-(-1 * cp) : ℤ) = cp from by ring,
+            show (-(-1) : ℤ) = 1 from by norm_num] at h
+          rw [pi_w13_neg] at h
+          exact h
         exact route_triple_emit V mon hmon hU hex A C _ _ hsplit hAlen
-          ((0, -1) : Letter) ((1, c) : Letter)
-          ((2, 1) : Letter)
-          (Or.inr rfl) hc (Or.inl rfl)
-          w w_mem_closure wConj w_conj_letter wConj_sign
-          vnorm_act_w hem
+          ((4, -1) : Letter) ((3, cp) : Letter)
+          ((1, 1) : Letter)
+          (Or.inr rfl) hcp (Or.inl rfl)
+          w13⁻¹ (Subgroup.inv_mem _ w13_mem_closure) w13ConjInv w13inv_hf w13ConjInv_sign
+          vnorm_act_w13inv hem
           (lt_of_lt_of_eq h1 hlamC) (lt_of_lt_of_eq h2 hlamC)
   · -- (1, 3): same read — swap
     have h1 := exist_sr_13 c cp hc hcp _ hviolC hsideC
@@ -1582,49 +1682,54 @@ theorem descent_step (V : List Letter) (mon : P13)
       ((x_commute_21_31 c cp).eq.symm)
       (lt_of_lt_of_eq h1 hlamC)
   · -- (2, 5): Steinberg pair, reversed
-    rcases exist_st_25' c cp hc hcp _ hviolC hsideC with
+    rcases exist_st_25 c cp hc hcp _ hviolC hsideC with
       ⟨h1, h2⟩ | ⟨h1, h2⟩
     · exact route_triple V mon hmon hU hex A C _ _ hsplit hAlen
         ((4, -(cp * c)) : Letter) ((5, cp) : Letter)
         ((2, c) : Letter)
         (unit_neg (unit_mul hcp hc)) hcp hc ((stB_25 c cp).symm)
         (lt_of_lt_of_eq h1 hlamC) (lt_of_lt_of_eq h2 hlamC)
-    · rcases hcp with rfl | rfl
-      · have hB : (![vecOf C (act (toSL3 mon) e3) 0, -(1 * vecOf C (act (toSL3 mon) e3) 2),
-          1 * vecOf C (act (toSL3 mon) e3) 1] :
-          Fin 3 → ℤ) =
-          act (toSL3 w23⁻¹) (vecOf C (act (toSL3 mon) e3)) := by
-          rw [act_w23inv_vec]
+    · rcases hc with rfl | rfl
+      · have hB : (![-(vecOf C (act (toSL3 mon) e3) 1),
+            vecOf C (act (toSL3 mon) e3) 0,
+            vecOf C (act (toSL3 mon) e3) 2] : Fin 3 → ℤ) =
+            act (toSL3 w⁻¹) (vecOf C (act (toSL3 mon) e3)) := by
+          rw [act_winv_vec]
           refine vec3_ext ?_ ?_ ?_ <;> simp
+        simp only [one_mul] at h1 h2
         rw [hB] at h1 h2
-        have hem : x 3 1 * x 2 c * x 5 (-1) *
-          (x 5 1 * x 3 (-1) * x 5 1) =
-          x 2 c * x 5 1 := em_25 c 1
-        rw [nu_w23_pos] at hem
+        have hem : x 0 1 * x 4 (-cp) * x 2 (-1) * w⁻¹ = x 2 1 * x 5 cp := by
+          have h := emR_25 1 cp (Or.inl rfl)
+          rw [show (-(1 * cp) : ℤ) = -cp from by ring] at h
+          rw [nu_w_pos] at h
+          exact h
         exact route_triple_emit V mon hmon hU hex A C _ _ hsplit hAlen
-          ((3, 1) : Letter) ((2, c) : Letter)
-          ((5, -1) : Letter)
-          (Or.inl rfl) hc (Or.inr rfl)
-          w23⁻¹ (Subgroup.inv_mem _ w23_mem_closure) w23ConjInv
-          w23inv_hf w23ConjInv_sign vnorm_act_w23inv hem
+          ((0, 1) : Letter) ((4, -cp) : Letter)
+          ((2, -1) : Letter)
+          (Or.inl rfl) (unit_neg hcp) (Or.inr rfl)
+          w⁻¹ (Subgroup.inv_mem _ w_mem_closure) wConjInv winv_hf wConjInv_sign
+          vnorm_act_winv hem
           (lt_of_lt_of_eq h1 hlamC) (lt_of_lt_of_eq h2 hlamC)
-      · have hB : (![vecOf C (act (toSL3 mon) e3) 0, -(-1 * vecOf C (act (toSL3 mon) e3) 2),
-          -1 * vecOf C (act (toSL3 mon) e3) 1] :
-          Fin 3 → ℤ) =
-          act (toSL3 w23) (vecOf C (act (toSL3 mon) e3)) := by
-          rw [act_w23]
+      · have hB : (![vecOf C (act (toSL3 mon) e3) 1,
+            -(vecOf C (act (toSL3 mon) e3) 0),
+            vecOf C (act (toSL3 mon) e3) 2] : Fin 3 → ℤ) =
+            act (toSL3 w) (vecOf C (act (toSL3 mon) e3)) := by
+          rw [act_w]
           refine vec3_ext ?_ ?_ ?_ <;> simp
+        simp only [neg_one_mul, neg_neg] at h1 h2
         rw [hB] at h1 h2
-        have hem : x 3 (-1) * x 2 c * x 5 1 *
-          (x 5 (-1) * x 3 1 * x 5 (-1)) =
-          x 2 c * x 5 (-1) := em_25 c (-1)
-        rw [nu_w23_neg] at hem
+        have hem : x 0 (-1) * x 4 cp * x 2 1 * w = x 2 (-1) * x 5 cp := by
+          have h := emR_25 (-1) cp (Or.inr rfl)
+          rw [show (-(-1 * cp) : ℤ) = cp from by ring,
+            show (-(-1) : ℤ) = 1 from by norm_num] at h
+          rw [nu_w_neg] at h
+          exact h
         exact route_triple_emit V mon hmon hU hex A C _ _ hsplit hAlen
-          ((3, -1) : Letter) ((2, c) : Letter)
-          ((5, 1) : Letter)
-          (Or.inr rfl) hc (Or.inl rfl)
-          w23 w23_mem_closure w23Conj w23_conj_letter w23Conj_sign
-          vnorm_act_w23 hem
+          ((0, -1) : Letter) ((4, cp) : Letter)
+          ((2, 1) : Letter)
+          (Or.inr rfl) hcp (Or.inl rfl)
+          w w_mem_closure wConj w_conj_letter wConj_sign
+          vnorm_act_w hem
           (lt_of_lt_of_eq h1 hlamC) (lt_of_lt_of_eq h2 hlamC)
   · -- (3, 0): Steinberg pair, reversed
     rcases exist_st_30 c cp hc hcp _ hviolC hsideC with
@@ -1634,42 +1739,47 @@ theorem descent_step (V : List Letter) (mon : P13)
         ((3, c) : Letter)
         (unit_neg (unit_mul hcp hc)) hcp hc ((stB_30 c cp).symm)
         (lt_of_lt_of_eq h1 hlamC) (lt_of_lt_of_eq h2 hlamC)
-    · rcases hcp with rfl | rfl
-      · have hB : (![1 * vecOf C (act (toSL3 mon) e3) 1, -(1 * vecOf C (act (toSL3 mon) e3) 0),
-          vecOf C (act (toSL3 mon) e3) 2] :
-          Fin 3 → ℤ) =
-          act (toSL3 w) (vecOf C (act (toSL3 mon) e3)) := by
-          rw [act_w]
+    · rcases hc with rfl | rfl
+      · have hB : (![vecOf C (act (toSL3 mon) e3) 0,
+            vecOf C (act (toSL3 mon) e3) 2,
+            -(vecOf C (act (toSL3 mon) e3) 1)] : Fin 3 → ℤ) =
+            act (toSL3 w23) (vecOf C (act (toSL3 mon) e3)) := by
+          rw [act_w23]
           refine vec3_ext ?_ ?_ ?_ <;> simp
+        simp only [one_mul] at h1 h2
         rw [hB] at h1 h2
-        have hem : x 2 1 * x 3 c * x 0 (-1) *
-          (x 0 1 * x 2 (-1) * x 0 1) =
-          x 3 c * x 0 1 := em_30 c 1
-        rw [pi_w_pos] at hem
+        have hem : x 5 1 * x 1 (-cp) * x 3 (-1) * w23 = x 3 1 * x 0 cp := by
+          have h := emR_30 1 cp (Or.inl rfl)
+          rw [show (-(1 * cp) : ℤ) = -cp from by ring] at h
+          rw [pi_w23_pos] at h
+          exact h
         exact route_triple_emit V mon hmon hU hex A C _ _ hsplit hAlen
-          ((2, 1) : Letter) ((3, c) : Letter)
-          ((0, -1) : Letter)
-          (Or.inl rfl) hc (Or.inr rfl)
-          w w_mem_closure wConj w_conj_letter wConj_sign
-          vnorm_act_w hem
+          ((5, 1) : Letter) ((1, -cp) : Letter)
+          ((3, -1) : Letter)
+          (Or.inl rfl) (unit_neg hcp) (Or.inr rfl)
+          w23 w23_mem_closure w23Conj w23_conj_letter w23Conj_sign
+          vnorm_act_w23 hem
           (lt_of_lt_of_eq h1 hlamC) (lt_of_lt_of_eq h2 hlamC)
-      · have hB : (![-1 * vecOf C (act (toSL3 mon) e3) 1, -(-1 * vecOf C (act (toSL3 mon) e3) 0),
-          vecOf C (act (toSL3 mon) e3) 2] :
-          Fin 3 → ℤ) =
-          act (toSL3 w⁻¹) (vecOf C (act (toSL3 mon) e3)) := by
-          rw [act_winv_vec]
+      · have hB : (![vecOf C (act (toSL3 mon) e3) 0,
+            -(vecOf C (act (toSL3 mon) e3) 2),
+            vecOf C (act (toSL3 mon) e3) 1] : Fin 3 → ℤ) =
+            act (toSL3 w23⁻¹) (vecOf C (act (toSL3 mon) e3)) := by
+          rw [act_w23inv_vec]
           refine vec3_ext ?_ ?_ ?_ <;> simp
+        simp only [neg_one_mul, neg_neg] at h1 h2
         rw [hB] at h1 h2
-        have hem : x 2 (-1) * x 3 c * x 0 1 *
-          (x 0 (-1) * x 2 1 * x 0 (-1)) =
-          x 3 c * x 0 (-1) := em_30 c (-1)
-        rw [pi_w_neg] at hem
+        have hem : x 5 (-1) * x 1 cp * x 3 1 * w23⁻¹ = x 3 (-1) * x 0 cp := by
+          have h := emR_30 (-1) cp (Or.inr rfl)
+          rw [show (-(-1 * cp) : ℤ) = cp from by ring,
+            show (-(-1) : ℤ) = 1 from by norm_num] at h
+          rw [pi_w23_neg] at h
+          exact h
         exact route_triple_emit V mon hmon hU hex A C _ _ hsplit hAlen
-          ((2, -1) : Letter) ((3, c) : Letter)
-          ((0, 1) : Letter)
-          (Or.inr rfl) hc (Or.inl rfl)
-          w⁻¹ (Subgroup.inv_mem _ w_mem_closure) wConjInv winv_hf
-          wConjInv_sign vnorm_act_winv hem
+          ((5, -1) : Letter) ((1, cp) : Letter)
+          ((3, 1) : Letter)
+          (Or.inr rfl) hcp (Or.inl rfl)
+          w23⁻¹ (Subgroup.inv_mem _ w23_mem_closure) w23ConjInv w23inv_hf w23ConjInv_sign
+          vnorm_act_w23inv hem
           (lt_of_lt_of_eq h1 hlamC) (lt_of_lt_of_eq h2 hlamC)
   · -- (3, 1): same read — swap
     have h1 := exist_sr_31 c cp hc hcp _ hviolC hsideC
@@ -1895,42 +2005,47 @@ theorem descent_step (V : List Letter) (mon : P13)
         ((4, c) : Letter)
         (unit_neg (unit_mul hcp hc)) hcp hc ((stB_43 c cp).symm)
         (lt_of_lt_of_eq h1 hlamC) (lt_of_lt_of_eq h2 hlamC)
-    · rcases hcp with rfl | rfl
-      · have hB : (![vecOf C (act (toSL3 mon) e3) 0, 1 * vecOf C (act (toSL3 mon) e3) 2,
-          -(1 * vecOf C (act (toSL3 mon) e3) 1)] :
-          Fin 3 → ℤ) =
-          act (toSL3 w23) (vecOf C (act (toSL3 mon) e3)) := by
-          rw [act_w23]
+    · rcases hc with rfl | rfl
+      · have hB : (![-(vecOf C (act (toSL3 mon) e3) 2),
+            vecOf C (act (toSL3 mon) e3) 1,
+            vecOf C (act (toSL3 mon) e3) 0] : Fin 3 → ℤ) =
+            act (toSL3 w13⁻¹) (vecOf C (act (toSL3 mon) e3)) := by
+          rw [act_w13inv_vec]
           refine vec3_ext ?_ ?_ ?_ <;> simp
+        simp only [one_mul] at h1 h2
         rw [hB] at h1 h2
-        have hem : x 5 1 * x 4 c * x 3 (-1) *
-          (x 3 1 * x 5 (-1) * x 3 1) =
-          x 4 c * x 3 1 := em_43 c 1
-        rw [pi_w23_pos] at hem
+        have hem : x 1 1 * x 2 (-cp) * x 4 (-1) * w13⁻¹ = x 4 1 * x 3 cp := by
+          have h := emR_43 1 cp (Or.inl rfl)
+          rw [show (-(1 * cp) : ℤ) = -cp from by ring] at h
+          rw [nu_w13_pos] at h
+          exact h
         exact route_triple_emit V mon hmon hU hex A C _ _ hsplit hAlen
-          ((5, 1) : Letter) ((4, c) : Letter)
-          ((3, -1) : Letter)
-          (Or.inl rfl) hc (Or.inr rfl)
-          w23 w23_mem_closure w23Conj w23_conj_letter w23Conj_sign
-          vnorm_act_w23 hem
+          ((1, 1) : Letter) ((2, -cp) : Letter)
+          ((4, -1) : Letter)
+          (Or.inl rfl) (unit_neg hcp) (Or.inr rfl)
+          w13⁻¹ (Subgroup.inv_mem _ w13_mem_closure) w13ConjInv w13inv_hf w13ConjInv_sign
+          vnorm_act_w13inv hem
           (lt_of_lt_of_eq h1 hlamC) (lt_of_lt_of_eq h2 hlamC)
-      · have hB : (![vecOf C (act (toSL3 mon) e3) 0, -1 * vecOf C (act (toSL3 mon) e3) 2,
-          -(-1 * vecOf C (act (toSL3 mon) e3) 1)] :
-          Fin 3 → ℤ) =
-          act (toSL3 w23⁻¹) (vecOf C (act (toSL3 mon) e3)) := by
-          rw [act_w23inv_vec]
+      · have hB : (![vecOf C (act (toSL3 mon) e3) 2,
+            vecOf C (act (toSL3 mon) e3) 1,
+            -(vecOf C (act (toSL3 mon) e3) 0)] : Fin 3 → ℤ) =
+            act (toSL3 w13) (vecOf C (act (toSL3 mon) e3)) := by
+          rw [act_w13]
           refine vec3_ext ?_ ?_ ?_ <;> simp
+        simp only [neg_one_mul, neg_neg] at h1 h2
         rw [hB] at h1 h2
-        have hem : x 5 (-1) * x 4 c * x 3 1 *
-          (x 3 (-1) * x 5 1 * x 3 (-1)) =
-          x 4 c * x 3 (-1) := em_43 c (-1)
-        rw [pi_w23_neg] at hem
+        have hem : x 1 (-1) * x 2 cp * x 4 1 * w13 = x 4 (-1) * x 3 cp := by
+          have h := emR_43 (-1) cp (Or.inr rfl)
+          rw [show (-(-1 * cp) : ℤ) = cp from by ring,
+            show (-(-1) : ℤ) = 1 from by norm_num] at h
+          rw [nu_w13_neg] at h
+          exact h
         exact route_triple_emit V mon hmon hU hex A C _ _ hsplit hAlen
-          ((5, -1) : Letter) ((4, c) : Letter)
-          ((3, 1) : Letter)
-          (Or.inr rfl) hc (Or.inl rfl)
-          w23⁻¹ (Subgroup.inv_mem _ w23_mem_closure) w23ConjInv
-          w23inv_hf w23ConjInv_sign vnorm_act_w23inv hem
+          ((1, -1) : Letter) ((2, cp) : Letter)
+          ((4, 1) : Letter)
+          (Or.inr rfl) hcp (Or.inl rfl)
+          w13 w13_mem_closure w13Conj w13_conj_letter w13Conj_sign
+          vnorm_act_w13 hem
           (lt_of_lt_of_eq h1 hlamC) (lt_of_lt_of_eq h2 hlamC)
   · -- (4, 4): same family
     rcases hc with rfl | rfl <;> rcases hcp with rfl | rfl
@@ -1980,42 +2095,47 @@ theorem descent_step (V : List Letter) (mon : P13)
         ((5, c) : Letter)
         (unit_neg (unit_mul hcp hc)) hcp hc ((stB_51 c cp).symm)
         (lt_of_lt_of_eq h1 hlamC) (lt_of_lt_of_eq h2 hlamC)
-    · rcases hcp with rfl | rfl
-      · have hB : (![1 * vecOf C (act (toSL3 mon) e3) 2, vecOf C (act (toSL3 mon) e3) 1,
-          -(1 * vecOf C (act (toSL3 mon) e3) 0)] :
-          Fin 3 → ℤ) =
-          act (toSL3 w13) (vecOf C (act (toSL3 mon) e3)) := by
-          rw [act_w13]
+    · rcases hc with rfl | rfl
+      · have hB : (![vecOf C (act (toSL3 mon) e3) 0,
+            -(vecOf C (act (toSL3 mon) e3) 2),
+            vecOf C (act (toSL3 mon) e3) 1] : Fin 3 → ℤ) =
+            act (toSL3 w23⁻¹) (vecOf C (act (toSL3 mon) e3)) := by
+          rw [act_w23inv_vec]
           refine vec3_ext ?_ ?_ ?_ <;> simp
+        simp only [one_mul] at h1 h2
         rw [hB] at h1 h2
-        have hem : x 4 1 * x 5 c * x 1 (-1) *
-          (x 1 1 * x 4 (-1) * x 1 1) =
-          x 5 c * x 1 1 := em_51 c 1
-        rw [pi_w13_pos] at hem
+        have hem : x 3 1 * x 0 (-cp) * x 5 (-1) * w23⁻¹ = x 5 1 * x 1 cp := by
+          have h := emR_51 1 cp (Or.inl rfl)
+          rw [show (-(1 * cp) : ℤ) = -cp from by ring] at h
+          rw [nu_w23_pos] at h
+          exact h
         exact route_triple_emit V mon hmon hU hex A C _ _ hsplit hAlen
-          ((4, 1) : Letter) ((5, c) : Letter)
-          ((1, -1) : Letter)
-          (Or.inl rfl) hc (Or.inr rfl)
-          w13 w13_mem_closure w13Conj w13_conj_letter w13Conj_sign
-          vnorm_act_w13 hem
+          ((3, 1) : Letter) ((0, -cp) : Letter)
+          ((5, -1) : Letter)
+          (Or.inl rfl) (unit_neg hcp) (Or.inr rfl)
+          w23⁻¹ (Subgroup.inv_mem _ w23_mem_closure) w23ConjInv w23inv_hf w23ConjInv_sign
+          vnorm_act_w23inv hem
           (lt_of_lt_of_eq h1 hlamC) (lt_of_lt_of_eq h2 hlamC)
-      · have hB : (![-1 * vecOf C (act (toSL3 mon) e3) 2, vecOf C (act (toSL3 mon) e3) 1,
-          -(-1 * vecOf C (act (toSL3 mon) e3) 0)] :
-          Fin 3 → ℤ) =
-          act (toSL3 w13⁻¹) (vecOf C (act (toSL3 mon) e3)) := by
-          rw [act_w13inv_vec]
+      · have hB : (![vecOf C (act (toSL3 mon) e3) 0,
+            vecOf C (act (toSL3 mon) e3) 2,
+            -(vecOf C (act (toSL3 mon) e3) 1)] : Fin 3 → ℤ) =
+            act (toSL3 w23) (vecOf C (act (toSL3 mon) e3)) := by
+          rw [act_w23]
           refine vec3_ext ?_ ?_ ?_ <;> simp
+        simp only [neg_one_mul, neg_neg] at h1 h2
         rw [hB] at h1 h2
-        have hem : x 4 (-1) * x 5 c * x 1 1 *
-          (x 1 (-1) * x 4 1 * x 1 (-1)) =
-          x 5 c * x 1 (-1) := em_51 c (-1)
-        rw [pi_w13_neg] at hem
+        have hem : x 3 (-1) * x 0 cp * x 5 1 * w23 = x 5 (-1) * x 1 cp := by
+          have h := emR_51 (-1) cp (Or.inr rfl)
+          rw [show (-(-1 * cp) : ℤ) = cp from by ring,
+            show (-(-1) : ℤ) = 1 from by norm_num] at h
+          rw [nu_w23_neg] at h
+          exact h
         exact route_triple_emit V mon hmon hU hex A C _ _ hsplit hAlen
-          ((4, -1) : Letter) ((5, c) : Letter)
-          ((1, 1) : Letter)
-          (Or.inr rfl) hc (Or.inl rfl)
-          w13⁻¹ (Subgroup.inv_mem _ w13_mem_closure) w13ConjInv
-          w13inv_hf w13ConjInv_sign vnorm_act_w13inv hem
+          ((3, -1) : Letter) ((0, cp) : Letter)
+          ((5, 1) : Letter)
+          (Or.inr rfl) hcp (Or.inl rfl)
+          w23 w23_mem_closure w23Conj w23_conj_letter w23Conj_sign
+          vnorm_act_w23 hem
           (lt_of_lt_of_eq h1 hlamC) (lt_of_lt_of_eq h2 hlamC)
   · -- (5, 2): Steinberg pair, forward
     rcases exist_st_52' c cp hc hcp _ hviolC hsideC with
