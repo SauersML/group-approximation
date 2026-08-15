@@ -67,6 +67,42 @@ theorem centralInvolution_mem_normMatrixCStarCoronaKernel
   exact C.finiteNormal_le_normMatrixCStarCoronaKernel F hF X hX rho
     (involution_mem_centralInvolutionSubgroup z hz_sq)
 
+/-- The unitary-sequence form of the same annihilation: a central involution
+in the Kazhdan-compression defect is killed by every homomorphism into every
+positive-size unitary-sequence norm-matrix corona. -/
+theorem centralInvolution_mem_normMatrixCoronaKernel
+    [Countable E] (C : KazhdanCompressionCore Γ E) (z : E)
+    (hz_sq : z ^ 2 = 1) (hz_central : ∀ g : E, Commute z g)
+    (hz_defect : z ∈ C.defectNormal)
+    (X : ℕ → FiniteModel) (hX : ∀ n, 0 < Fintype.card (X n))
+    (rho : E →* NormMatrixCoronaUnitary X) :
+    z ∈ rho.ker := by
+  let F : Subgroup E := centralInvolutionSubgroup z hz_sq
+  letI : Finite F := centralInvolutionSubgroup_finite z hz_sq
+  letI : F.Normal := centralInvolutionSubgroup_normal z hz_sq hz_central
+  have hF : F ≤ C.defectNormal :=
+    (centralInvolutionSubgroup_le_iff_mem z hz_sq C.defectNormal).mpr
+      hz_defect
+  exact C.finiteNormal_le_normMatrixCoronaKernel F hF X hX rho
+    (involution_mem_centralInvolutionSubgroup z hz_sq)
+
+/-- The residual form of the same annihilation: a central involution in the
+Kazhdan-compression defect is invisible to every operator-norm matrix
+approximation. -/
+theorem centralInvolution_normMFInvisible
+    [Countable E] (C : KazhdanCompressionCore Γ E) (z : E)
+    (hz_sq : z ^ 2 = 1) (hz_central : ∀ g : E, Commute z g)
+    (hz_defect : z ∈ C.defectNormal) :
+    NormMFInvisible z := by
+  let F : Subgroup E := centralInvolutionSubgroup z hz_sq
+  letI : Finite F := centralInvolutionSubgroup_finite z hz_sq
+  letI : F.Normal := centralInvolutionSubgroup_normal z hz_sq hz_central
+  have hF : F ≤ C.defectNormal :=
+    (centralInvolutionSubgroup_le_iff_mem z hz_sq C.defectNormal).mpr
+      hz_defect
+  exact C.finiteNormal_le_normMFResidual F hF
+    (involution_mem_centralInvolutionSubgroup z hz_sq)
+
 /-- If the square of one pointwise compression defect is a central
 involution, every genuine norm-matrix-corona representation kills it. -/
 theorem defectSquare_centralInvolution_mem_normMatrixCStarCoronaKernel
@@ -83,6 +119,33 @@ theorem defectSquare_centralInvolution_mem_normMatrixCStarCoronaKernel
     exact C.defectNormal.pow_mem (C.defect_mem_defectNormal a) 2
   exact C.centralInvolution_mem_normMatrixCStarCoronaKernel
     z hz_sq hz_central hz_defect X hX
+
+/-- The unitary-sequence form of the defect-square criterion. -/
+theorem defectSquare_centralInvolution_mem_normMatrixCoronaKernel
+    [Countable E] (C : KazhdanCompressionCore Γ E) (a : Γ) (z : E)
+    (hz : z = ⁅C.transported, C.iota a⁆ ^ 2)
+    (hz_sq : z ^ 2 = 1) (hz_central : ∀ g : E, Commute z g)
+    (X : ℕ → FiniteModel) (hX : ∀ n, 0 < Fintype.card (X n))
+    (rho : E →* NormMatrixCoronaUnitary X) :
+    z ∈ rho.ker :=
+  C.centralInvolution_mem_normMatrixCoronaKernel z hz_sq hz_central
+    (by
+      rw [hz]
+      exact C.defectNormal.pow_mem (C.defect_mem_defectNormal a) 2)
+    X hX rho
+
+/-- The residual form of the defect-square criterion: the square of one
+pointwise compression defect, when it is a central involution, is invisible
+in every operator-norm matrix approximation. -/
+theorem defectSquare_centralInvolution_normMFInvisible
+    [Countable E] (C : KazhdanCompressionCore Γ E) (a : Γ) (z : E)
+    (hz : z = ⁅C.transported, C.iota a⁆ ^ 2)
+    (hz_sq : z ^ 2 = 1) (hz_central : ∀ g : E, Commute z g) :
+    NormMFInvisible z :=
+  C.centralInvolution_normMFInvisible z hz_sq hz_central
+    (by
+      rw [hz]
+      exact C.defectNormal.pow_mem (C.defect_mem_defectNormal a) 2)
 
 /-- **Central-sign criterion.**  A nontrivial central involution in the
 Kazhdan-compression defect makes the ambient group non-MF. -/

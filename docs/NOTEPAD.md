@@ -46462,3 +46462,187 @@ This closes the weak-regular Fock lane, including its tracial-ultrapower
 version.  A surviving correspondence must have a non-weakly-regular
 `Gamma`-central sector or create its commutant only extrinsically after a CE
 embedding.
+
+# 2026-08-14: adversarial audit of the Hilbert embeddable length criterion
+
+Audit of `research/hilbert-embeddable-length-hyperlinearity` and its
+`-proof` route.  The core is correct and its constants are **uniform**;
+four defects were found, all repaired below.  Nothing here changes the
+status of the claim.
+
+## 1. The character criterion is exact, and has a one-line proof
+
+Let `K` be finite, `ell` a real conjugation-invariant function with
+`ell(1)=0` and `ell(k)=ell(k^(-1))`, and `M[a,b]=ell(a^(-1)b)`.  Then `M` is
+the matrix of convolution by `ell` on `C[K]`.  Convolution by a class
+function is central in the group algebra, so `M` preserves the constants
+and their orthocomplement `1^perp={c: sum_a c_a=0}`, and acts on the
+`chi_i`-isotypic block of the regular representation by the scalar
+
+```text
+|K| b_i / d_i ,   multiplicity d_i^2,   ell = sum_i b_i chi_i .
+```
+
+Conditional negativity is exactly `M|_(1^perp) <= 0`, hence exactly
+`b_i<=0` for all nontrivial `i`.  This is cleaner than the Wedderburn
+surjectivity argument in the route and gives the same answer.  Two
+by-products: `b_i` is automatically real (from `ell` real and symmetric),
+and `ell>=0` is automatic (test `c=delta_a-delta_1`), so nonnegativity need
+not be assumed.
+
+Checked mechanically on `S_3`, `S_4` and `A_4` (the last has complex
+irreducible characters): 500 random invariant lengths each, the
+character test and the kernel test agree in all 1500 cases, and the
+eigenvalue identity above holds to `1e-7`.
+
+## 2. The comparability constants are uniform, and that is not accidental
+
+The route fixes `t=1` and carries `ell<=1` inside the hypothesis, so the
+two-sided bound
+
+```text
+2 e^(-1) s <= 2(1-e^(-s)) <= 2 s          (0<=s<=1)
+```
+
+has **absolute** constants: no dependence on `|K|`, on the group, or on the
+representation dimension `D`.  The dimension `D` and the character-fitting
+error `epsilon` are chosen per group and are unconstrained, which is
+harmless.  The normalization `ell<=1` is doing real work — it is what
+forbids a family whose lengths shrink, and it is part of the hypothesis
+rather than a lemma.
+
+## 3. Gap: constant separation is not the repo's separation.  Repaired
+
+`Sofic/Hyperlinear.HyperlinearModel` requires
+
+```text
+2-epsilon <= hsDistSq (map g) (map h)   (g != h in F),
+```
+
+the *maximal* separation, whereas the route delivers only
+`||sigma'(g)-1||_2^2 >= 2 e^(-1) c_g - 2 epsilon`, a constant.  For unitary
+models this is not a free convention: `Sofic/HyperlinearAmplification`
+proves that tensor amplification fails (`tensorPow_phase_collapse`: `1` and
+`i.1` are maximally separated but have equal fourth tensor powers) and that
+the conjugate-double repair `exists_conjDouble_separation` needs the
+hypothesis `|tau(A B^*)|^2 <= 1-delta`, which fails exactly on scalars.
+
+The Schoenberg route supplies that hypothesis for free, and this is the
+one place where it beats a generic weak-separation argument.  Its traces
+are approximately the **real positive** numbers `e^(-ell)`:
+
+```text
+|tau(sigma'(g) sigma'(h)^*)| = |tr rho(sigma(g)sigma(h)^(-1))|
+                            <= e^(-ell(sigma(g)sigma(h)^(-1))) + epsilon
+                            <= e^(-c) + epsilon < 1 ,
+```
+
+so `normSq(tau) <= 1-delta` with `delta=1-(e^(-c)+epsilon)^2>0` depending
+only on `c=min c_(gh^(-1))` over the finite set, not on the group.  Then
+`exists_conjDouble_separation` gives a `k=k(delta,epsilon)`, again
+independent of the group, with
+
+```text
+hsDistSq((A ox conj A)^(ox k), (B ox conj B)^(ox k)) = 2-2|tau(A B^*)|^(2k)
+```
+
+at least `2-epsilon`.  The defect survives: if `hsDistSq(A,B)<=eta` then
+`Re tau(A B^*)>=1-eta/2`, so `|tau|^(2k)>=(1-eta/2)^(2k)>=1-k eta`, and the
+amplified defect is at most `2 k eta`.  Choose `k` from `F` and the target
+accuracy first, then `delta` (hence `eta`) afterwards; every constant is
+uniform along the sequence.
+
+## 4. Gap: separation was stated only against the identity.  Repaired
+
+The Lean model, and injectivity in the ultraproduct, need separation for
+all distinct pairs in `F`, not only `ell(sigma(g))>=c_g`.  The step needs
+the triangle inequality, which `ell` does **not** satisfy — but `sqrt(ell)`
+does, since conditional negativity with `ell(1)=0` is exactly the statement
+that `sqrt(ell)` is a bi-invariant metric embeddable in Hilbert space.
+From `sigma(gh^(-1)) = [sigma(gh^(-1))sigma(h)sigma(g)^(-1)] sigma(g)sigma(h)^(-1)`,
+
+```text
+sqrt(ell(sigma(g)sigma(h)^(-1))) >= sqrt(c_(gh^(-1))) - sqrt(delta) ,
+```
+
+so `ell(sigma(g)sigma(h)^(-1)) >= c/2` once `delta<=c/4`.  This requires the
+witness to be run on `F union F F^(-1)`, which is free.
+
+## 5. Uniform character gaps: what actually makes the hypothesis restrictive
+
+Suppose a family of finite groups has a uniform character ratio bound
+`|chi(x)|/chi(1)<=c<1` for all nontrivial irreducible `chi` and all `x!=1`
+(Gluck, for the finite Lie type families of the earlier no-go section).
+Let `ell<=1` be Hilbert embeddable on such a `K`, and write
+`e^(-ell)=sum_i lambda_i chi_i/d_i` with `lambda_i>=0`, `sum lambda_i=1`.
+For every `x`,
+
+```text
+1-e^(-ell(x)) = sum_(i != 1) lambda_i (1 - Re chi_i(x)/d_i) ,
+```
+
+which is at most `2(1-lambda_1)` for all `x` and at least
+`(1-c)(1-lambda_1)` for `x!=1`.  Combined with
+`e^(-1) ell <= 1-e^(-ell) <= ell` on `[0,1]`:
+
+```text
+max_x ell(x) <= (2e/(1-c)) min_(x != 1) ell(x) .
+```
+
+So on any uniform-character-gap family **every** Hilbert embeddable
+invariant length is uniformly bi-Lipschitz to the discrete length, and a
+Hilbert embeddable witness through such groups is a LEF witness up to
+absolute constants.  This subsumes the Gluck no-go recorded above
+("Uniform character gaps forbid hyperlinearizing finite-field rank models
+by exact representations"), and it is the correct evidence that the
+hypothesis of the criterion is asymptotically restrictive.
+
+## 6. Correction: the `GL_2(F_2)` rank calibration proves less than advertised
+
+The claim listed the rank length on `GL_2(F_2)` as evidence that the
+hypothesis is "not automatic".  It is not evidence, because a single finite
+group carries no asymptotic content — and concretely, the snowflakes of the
+rank length **are** Hilbert embeddable.  On `GL_2(F_2)=S_3`,
+
+```text
+b_sgn(rank^s) = (2 * 2^s - 3)/6 <= 0   iff   s <= log_2(3/2) = 0.58496... ,
+```
+
+and the other nontrivial coefficient `b_std(rank^s) = -2^s/3` is always
+negative, so `rank^s` is Hilbert embeddable for every `s<=log_2(3/2)` and
+for no larger `s`.  Confirmed numerically by the kernel test.  The rank
+computation is therefore a statement about **one parametrization** of one
+length, exactly as the route's Scope section already said; the non-vacuity
+of the hypothesis rests on §5, not on it.
+
+## 7. Conditional negativity is parametrization-sensitive
+
+Normalized Hamming on `S_4` is Hilbert embeddable, but its **square** is
+not: the kernel test on `d_H^2` returns a top eigenvalue `+0.75`.  So the
+criterion is not invariant under reparametrizing the witnessing metric, and
+"can Glebsky's witnesses be taken Hilbert embeddable" must name the
+function that carries the defect and separation bookkeeping.  The honest
+and most usable form of the hypothesis is:
+
+> there is a single increasing `f` with `f(0)=0`, continuous at `0`,
+> **independent of the group in the sequence**, such that `f o d_n` is
+> conditionally negative definite and bounded by `1`,
+
+since defect and separation transport through any such `f`.  This is
+strictly weaker than "`d_n` is itself conditionally negative definite" and
+strictly weaker than "`d_n^2` is", and both of those are in play: `d_H` is
+cnd while `d_H^2` is not.
+
+## 8. Wording
+
+Only sufficiency is proved.  Hyperlinearity does not obviously return a
+weak-soficity witness at all — hyperlinear approximations live in `U(n)`,
+not in finite groups — so "upgrades exactly when" and "the gap is exactly
+one property" were both too strong and have been changed to the
+sufficiency statement they support.  A negative answer for Glebsky's
+witnesses would not by itself make `W` non-hyperlinear.
+
+Side note for `hilbert-embeddable-witness-for-kun-thom-wreath`: its "no
+dilution of a single lamp" constraint is stated with `ell(xy)<=ell(x)+ell(y)`,
+which a Hilbert embeddable `ell` need not satisfy.  The constraint survives
+through `sqrt(ell)`, with the constant `c/2` weakened to `c/4`.

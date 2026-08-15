@@ -6,6 +6,7 @@ title: Kazhdan--Clifford construction of finitely presented non-MF groups
 distinct_from:
   scaling-family-non-mf: This is the abstract construction from an arbitrary proper Kazhdan self-embedding; the scaling claim is its concrete affine family.
   torsion-free-finitely-presented-non-mf: This construction produces a nontrivial central involution; the other asks for a torsion-free example beyond the present mechanism.
+  literal-group-not-sofic: This established claim is the operator-norm non-MF construction; the other asks whether one of its outputs, the literal group, additionally fails permutation approximation.
 artifacts:
   - non_mf_groups_exist.tex
   - GroupApproximation/Sofic/KazhdanCliffordConstruction.lean

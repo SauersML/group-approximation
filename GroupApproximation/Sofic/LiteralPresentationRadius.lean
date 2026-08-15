@@ -22,9 +22,6 @@ noncomputable section
 /-- Canonical reduced-word length, stated for the literal generator type. -/
 def wordLength (w : FreeGroup Generator) : ℕ := w.toWord.length
 
-attribute [local instance 10000]
-  LiteralNonMFPresentation.literalDecidableEq
-
 /-- The displayed marked commutator has reduced length at most sixteen. -/
 theorem markedWord_length_le : wordLength markedWord ≤ 16 := by
   decide

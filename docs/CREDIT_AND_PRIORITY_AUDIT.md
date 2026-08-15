@@ -598,3 +598,98 @@ indexes; the publisher-hosted full articles were not openly retrievable in
 this session, so the precise theorem-level statement was cross-validated
 against later primary papers that quote Bekka–Valette Theorem 1.  No
 unverified content from an inaccessible source was used as a proof premise.
+
+## Addendum, 2026-08-14 (evening): Kun–Thom v3 §5 antecedent of the OAI median device
+
+Source: arXiv:1901.03963v3 (revised 2026-08-04, "Added Section 5, changed
+the introduction"), Section 5 read in full from the PDF; details and quotes
+in `notes/scout-2026-08-14.md` §C2.  This addendum records an attribution
+fact about the two *sofic-side* August papers; it does not touch any
+attribution used by the manuscript, and this repository claims nothing in
+that lane.
+
+* The OAI chapter's expander-matching proof (Prop 2.3, current version)
+  normalizes component sizes by `f(z) = M(z)/(M(z)+mu)` with `mu` a median
+  of the Γ-component sizes.  KT v3 §5 contains the same median device:
+  Claim 5.4 ("Let m denote the median size of the Γ-components") proves the
+  proportion of vertices with component size outside `[(1-ε)m, (1+ε)m]`
+  tends to zero, supported by Claims 5.2–5.3 (bad/unbalanced edges are
+  negligible; each boundary edge of a bad configuration makes a length-four
+  commutator walk fail to close).
+* Timing, from the v3 introduction verbatim: the paper "was mostly written
+  in 2018 … We finally finished writing it by mid July 2026" — i.e. §5
+  predates the 2026-08-01 OAI announcement — and the authors "spoke about
+  the results of Section 5 on various occasions over the last years".  The
+  same introduction describes the OAI Prop 2.3 proof as "a creative and
+  effective application of the results and techniques of this paper".
+* Consequence for this audit: the earlier sections of this file credit
+  Kun 2016 / Kun–Thom 2019 for the (T)-rigidity engine and predate v3.
+  The median-normalization step of the OAI argument now also has a
+  documented pre-announcement Kun–Thom antecedent.  No change to the
+  manuscript is required; if the manuscript ever discusses the OAI
+  argument's provenance, cite KT v3 §5 alongside it.
+
+## Addendum, 2026-08-14 (late): Shulman quote discipline and the full/reduced strengthening
+
+Two paper-facing items surfaced during graph work (cairn-archivist
+verification; cairn-quotient-mf artifact
+`docs/COMMUTING_LAMP_QUOTIENT_STRUCTURE_AND_MF_FORK_2026-08-14.md`,
+verbatim source record `research/artifacts/shulman-2603-13564-verified.md`).
+
+* **Quote discipline for the Shulman priority sentence.**  The sentence
+  from Shulman's introduction carries the trailing clause "at least in
+  the case of full group C*-algebras", which one internal relay dropped.
+  Any use must quote the full sentence from the verified artifact file,
+  never from a message.  The defensible phrasing is: "Shulman records in
+  March 2026 that no such example was **known**" — not "existed".
+* **Strengthening available with no extra trust surface**: "neither
+  `C*(E)` nor `C*_r(E)` is MF" follows in one step by contraposing
+  Shulman's own bridge lemma against the repository's
+  `literal-group-fails-mf-conventions`, with no appeal to the
+  repository's reduced-algebra work.  If the manuscript's impact
+  discussion is revised after the freeze lifts, this is the correct
+  citation-economical route to the reduced-algebra statement.
+
+## Addendum, 2026-08-15 (priority-risk check): the Dadarlat "MF ⇒ weakly quasidiagonal" chain
+
+A graph agent (cairn-torsionfree) flagged a chain in Dadarlat,
+arXiv:2007.12655 (Adv. Math. 2021) that, if valid, would be a published
+non-MF criterion predating this repository's mechanism.  Checked directly
+against the arXiv PDF via pdftotext (2026-08-15); verbatim findings:
+
+* The paper's MF definition (its (1),(2)) is exactly the CDE/Shulman
+  notion this manuscript uses: unitary-valued asymptotic homomorphisms,
+  per-pair operator-norm defect → 0, per-element separation limsup > 0.
+  Immediately after, verbatim: "It is an open problem to find examples of
+  discrete countable groups which are not MF."
+* Intro, one page later, verbatim: "It is clear from definitions that MF
+  ⇒ weak quasidiagonality" — where weak quasidiagonality (Def. 3.10)
+  requires *exactly* completely positive definite maps at each n
+  satisfying (1),(2).
+* Prop. 3.19 (attributed Ozawa–Thom; "essentially pointed out by Thom on
+  MathOverflow"): an infinite property (T) weakly quasidiagonal group has
+  an infinite residually finite quotient.  Proof in-paper (Kazhdan
+  projections + Malcev).  Preceding text, verbatim: "It shows that an
+  infinite simple property (T) group G is not weakly quasidiagonal.  As
+  explained in [35, p.93] any lattice in Sp(n,1), n ≥ 2 has uncountably
+  many infinite quotients which are simple (and torsion)"
+  ([35] = de la Harpe–Robertson–Valette).
+* The three bullets together would yield "explicit infinite simple (T)
+  groups are not MF" — contradicting the same paper's own open-problem
+  statement, Shulman (March 2026), and BDL (2026), none of whom draw the
+  conclusion.
+* **Assessment (recorded, not yet refereed):** the chain breaks at the
+  intro's "clear from definitions".  An asymptotically multiplicative
+  unitary-valued map is only *asymptotically* completely positive
+  definite per finite set; weak quasidiagonality demands *exact* complete
+  positive definiteness at every n over all finite sets simultaneously,
+  and no conversion is given.  MF and weak quasidiagonality are different
+  predicates (unitary vs exactly-cpd approximations), so Prop. 3.19 does
+  not transfer to MF.  Consequence for priority: the chain is NOT a
+  citable prior non-MF criterion, and the manuscript's framing is
+  unaffected; in the residual case that a proof of MF ⇒ wQD exists, the
+  affected statement would be the broad existence framing only — the
+  headline (finitely presented; stable-finite Kazhdan pinning) is
+  untouched, since the simple-(T)-quotient route can never reach finite
+  presentation.  A specialist reviewer should see this addendum; it is
+  also potential erratum-level feedback on the cited paper's intro remark.

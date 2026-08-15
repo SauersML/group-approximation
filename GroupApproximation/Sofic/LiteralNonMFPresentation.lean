@@ -2,6 +2,7 @@ import GroupApproximation.Algebra.PresentedGroupEvaluation
 import GroupApproximation.Sofic.CompressionDefectSquare
 import GroupApproximation.Sofic.NormMFResidualDetector
 import Mathlib.GroupTheory.FinitelyPresentedGroup
+import Mathlib.GroupTheory.FreeGroup.Reduce
 import Mathlib.GroupTheory.PresentedGroup
 import Mathlib.Logic.Equiv.Fin.Basic
 import Mathlib.Tactic.Group
@@ -35,6 +36,12 @@ open scoped commutatorElement
 
 noncomputable section
 
+/-- Catch-all decidable equality for alphabets and free groups that have no
+computable instance in scope.  It sits in the discrimination tree's catch-all
+bucket, so any specific instance — `instDecidableEqFin` on the alphabets,
+`FreeGroup.instDecidableEq` on the free groups — takes precedence over it.
+The relator-count section at the end of this file depends on that: kernel
+evaluation of a reduced-word normal form needs the computable instances. -/
 local instance literalDecidableEq {α : Type*} : DecidableEq α :=
   Classical.decEq α
 
@@ -567,6 +574,142 @@ theorem literal_algebraic_package :
   exact ⟨inferInstance, stable_conjugates_base_into_base,
     lamp_commutes_base, mark_sq, mark_central⟩
 
+/-! ## Exact relator counts
+
+The manuscript advertises twenty relators for the six-generator base and
+forty-one relators for the displayed eight-generator presentation.  Both
+numbers are properties of the finite *sets* `baseRelators` and `relators`,
+not of the displayed lists, so they are genuine theorems: the printed words
+have to be pairwise distinct in the relevant free group.
+
+Everything above uses the classical `DecidableEq` instance, under which no
+`Finset` cardinality computes.  The section below therefore switches that
+instance off, re-presents each relator family as an explicit `List`, and
+proves the lists duplicate free by kernel evaluation of the reduced-word
+normal form.  The counts are then transferred through
+`List.toFinset_card_of_nodup`.  Nothing in the statements is
+decidability-sensitive: `List.Nodup` mentions no instance, and the `Finset`
+identities are proved by extensionality, so the classical instance baked
+into `baseRelators` and `relators` is irrelevant to them. -/
+
+section Counting
+
+attribute [-instance] literalDecidableEq
+
+/-- The six base letters `v₁,v₂,v₃,x,y,z` as a list. -/
+def baseGeneratorList : List BaseGenerator := List.finRange 6
+
+@[simp] theorem mem_baseGeneratorList (i : BaseGenerator) :
+    i ∈ baseGeneratorList :=
+  List.mem_finRange i
+
+/-- The eight letters `v₁,v₂,v₃,x,y,z,t,c` as a list. -/
+def generatorList : List Generator :=
+  (List.finRange 6).map Sum.inl ++ (List.finRange 2).map Sum.inr
+
+@[simp] theorem mem_generatorList (i : Generator) : i ∈ generatorList := by
+  obtain (j | j) := i <;> simp [generatorList]
+
+/-- The twenty displayed base relators, in the printed order. -/
+def baseRelatorList : List (FreeGroup BaseGenerator) :=
+  [baseRelXCube, baseRelYCube, baseRelZSq, baseRelXZCube,
+   baseRelYZCube, baseRelXInvZXY, baseRelYInvZYX, baseRelXYSix,
+   baseRelV12, baseRelV13, baseRelV23,
+   baseRelXV1, baseRelXV2, baseRelXV3,
+   baseRelYV1, baseRelYV2, baseRelYV3,
+   baseRelZV1, baseRelZV2, baseRelZV3]
+
+theorem baseRelatorList_length : baseRelatorList.length = 20 := rfl
+
+/-- The twenty displayed base relators are pairwise distinct elements of the
+free group on the six base letters. -/
+theorem baseRelatorList_nodup : baseRelatorList.Nodup :=
+  List.Nodup.of_map FreeGroup.toWord (by decide)
+
+theorem mem_baseRelators_iff_mem_list (r : FreeGroup BaseGenerator) :
+    r ∈ baseRelators ↔ r ∈ baseRelatorList := by
+  simp only [baseRelators, baseRelatorList, List.mem_toFinset]
+
+theorem baseRelators_eq_toFinset :
+    baseRelators = baseRelatorList.toFinset := by
+  ext r
+  rw [List.mem_toFinset]
+  exact mem_baseRelators_iff_mem_list r
+
+/-- **The literal base presentation has exactly twenty relators.** -/
+theorem baseRelators_card : baseRelators.card = 20 := by
+  rw [baseRelators_eq_toFinset,
+    List.toFinset_card_of_nodup baseRelatorList_nodup, baseRelatorList_length]
+
+/-- The twenty transported base relators, as words in the eight letters. -/
+def transportedBaseRelatorList : List (FreeGroup Generator) :=
+  baseRelatorList.map embedBaseWord
+
+/-- The six stable-letter relators. -/
+def stableRelatorList : List (FreeGroup Generator) :=
+  baseGeneratorList.map stableRelator
+
+/-- The seven lamp relators: the involution relation and six commutators. -/
+def lampRelatorList : List (FreeGroup Generator) :=
+  lampWord ^ 2 ::
+    baseGeneratorList.map (fun i ↦ commutatorWord lampWord (vertexLetter i))
+
+/-- The eight centrality relators for the marked word. -/
+def markedRelatorList : List (FreeGroup Generator) :=
+  generatorList.map (fun i ↦ commutatorWord markedWord (FreeGroup.of i))
+
+/-- All forty-one displayed relators, in the printed order. -/
+def relatorList : List (FreeGroup Generator) :=
+  transportedBaseRelatorList ++ stableRelatorList ++ lampRelatorList ++
+    markedRelatorList
+
+theorem relatorList_length : relatorList.length = 41 := rfl
+
+/-- The forty-one displayed relators are pairwise distinct elements of the
+free group on the eight letters. -/
+theorem relatorList_nodup : relatorList.Nodup :=
+  List.Nodup.of_map FreeGroup.toWord (by decide)
+
+theorem mem_transportedBaseRelators_iff (r : FreeGroup Generator) :
+    r ∈ transportedBaseRelators ↔ r ∈ transportedBaseRelatorList := by
+  simp only [transportedBaseRelators, transportedBaseRelatorList,
+    Finset.mem_image, List.mem_map, mem_baseRelators_iff_mem_list]
+
+theorem mem_stableRelators_iff (r : FreeGroup Generator) :
+    r ∈ stableRelators ↔ r ∈ stableRelatorList := by
+  simp only [stableRelators, stableRelatorList, Finset.mem_image,
+    Finset.mem_univ, true_and, List.mem_map, mem_baseGeneratorList]
+
+theorem mem_lampRelators_iff (r : FreeGroup Generator) :
+    r ∈ lampRelators ↔ r ∈ lampRelatorList := by
+  simp only [lampRelators, lampRelatorList, Finset.mem_union,
+    Finset.mem_singleton, Finset.mem_image, Finset.mem_univ, true_and,
+    List.mem_cons, List.mem_map, mem_baseGeneratorList]
+
+theorem mem_markedRelators_iff (r : FreeGroup Generator) :
+    r ∈ markedRelators ↔ r ∈ markedRelatorList := by
+  simp only [markedRelators, markedRelatorList, Finset.mem_image,
+    Finset.mem_univ, true_and, List.mem_map, mem_generatorList]
+
+theorem mem_relators_iff_mem_list (r : FreeGroup Generator) :
+    r ∈ relators ↔ r ∈ relatorList := by
+  simp only [relators, Finset.mem_union, mem_transportedBaseRelators_iff,
+    mem_stableRelators_iff, mem_lampRelators_iff, mem_markedRelators_iff,
+    relatorList, List.mem_append]
+
+theorem relators_eq_toFinset : relators = relatorList.toFinset := by
+  ext r
+  rw [List.mem_toFinset]
+  exact mem_relators_iff_mem_list r
+
+/-- **The literal eight-generator presentation has exactly forty-one
+relators.** -/
+theorem relators_card : relators.card = 41 := by
+  rw [relators_eq_toFinset,
+    List.toFinset_card_of_nodup relatorList_nodup, relatorList_length]
+
+end Counting
+
 /-- The fixed literal object is an eight-generator finitely presented group.
 This compact identity theorem is kept separate from the exact relator package
 and from the mathematical conclusions of Theorem A. -/
@@ -601,6 +744,7 @@ theorem manuscriptLiteralPresentation :
           bz * bv1 * bz⁻¹ * (bv2 * bv3⁻¹)⁻¹,
           bz * bv2 * bz⁻¹ * (bv1 * bv3⁻¹)⁻¹,
           bz * bv3 * bz⁻¹ * (bv3⁻¹)⁻¹].toFinset ∧
+      baseRelators.card = 20 ∧
       transportedBaseRelators = baseRelators.image embedBaseWord ∧
       (compressedBaseWord v1Index = bv1 ^ 2 ∧
         compressedBaseWord v2Index = bv2 ^ 2 ∧
@@ -625,6 +769,7 @@ theorem manuscriptLiteralPresentation :
       relators =
         transportedBaseRelators ∪ stableRelators ∪ lampRelators ∪
           markedRelators ∧
+      relators.card = 41 ∧
       MarkedGroup =
         PresentedGroup ((relators : Finset (FreeGroup Generator)) :
           Set (FreeGroup Generator)) ∧
@@ -633,8 +778,8 @@ theorem manuscriptLiteralPresentation :
       (∀ g : Base, stable * baseMap g * stable⁻¹ ∈ baseMap.range) ∧
       (∀ g : Base, Commute lamp (baseMap g)) := by
   exact ⟨generator_card,
-    ⟨rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl⟩, rfl, rfl,
-    ⟨rfl, rfl, rfl, rfl, rfl, rfl⟩, rfl, rfl, rfl, rfl, rfl, rfl,
+    ⟨rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl⟩, rfl, baseRelators_card, rfl,
+    ⟨rfl, rfl, rfl, rfl, rfl, rfl⟩, rfl, rfl, rfl, rfl, rfl, relators_card, rfl,
     inferInstance,
     ⟨mark_sq, mark_central⟩, stable_conjugates_base_into_base,
     lamp_commutes_base⟩

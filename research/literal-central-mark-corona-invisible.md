@@ -5,7 +5,7 @@ kind: claim
 title: Literal finitely presented group has a universal invisible central mark
 distinct_from:
   literal-group-fails-mf-conventions: This claim isolates the universally killed marked involution used by downstream routes; the other packages its consequences for the full hierarchy of formalized MF conventions.
-  literal-group-sofic: This is the proved operator-norm corona obstruction; the other is the open permutation-approximation question for the source group E.
+  literal-group-sofic: This is the operator-norm corona obstruction; the other is the permutation-approximation property of the source group E, proved separately by the block-tower argument. Neither implies the other, and E satisfies both.
   torsion-free-finitely-presented-non-mf: This claim concerns the concrete group E with a nontrivial central involution; the other asks for a torsion-free example.
 artifacts:
   - non_mf_groups_exist.tex

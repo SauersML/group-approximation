@@ -7,6 +7,7 @@ import GroupApproximation.Sofic.ActualCoronaMFRadical
 import GroupApproximation.Sofic.CentralInvolutionSubgroup
 import GroupApproximation.Sofic.CompressionDefectSquare
 import GroupApproximation.Sofic.FiniteNormalCoronaObstruction
+import GroupApproximation.Sofic.KazhdanSignCriterion
 import GroupApproximation.Sofic.LiteralBaseP13PropertyTBridge
 import GroupApproximation.Sofic.LiteralNonMFLinearWitness
 import GroupApproximation.Sofic.MFRepresentationVariants
@@ -78,6 +79,12 @@ theorem mark_eq_compressionDefect_sq : mark = compressionDefect ^ 2 := by
   have h := inclusionData.word_eq_compressionDefect_sq lamp_sq
   rw [inclusionData_word] at h
   exact h
+
+/-- The same identity in the manuscript's own notation: the mark is the
+square of the commutator of the transported root `d = t c t⁻¹` with `ι(v₁)`. -/
+theorem mark_eq_rootCommutator_sq :
+    mark = ⁅stable * lamp * stable⁻¹, baseMap (PresentedGroup.of v1Index)⁆ ^ 2 :=
+  mark_eq_compressionDefect_sq
 
 /-- The square identity together with the Clifford realization: the square
 of the compression defect is genuinely nontrivial. -/
@@ -183,7 +190,11 @@ theorem literalInvolutionSubgroup_le_normMatrixCoronaKernel
   rw [hkappa, map_one]
 
 /-- Every genuine positive-size norm-matrix C-star-corona representation
-maps the literal mark to the identity. -/
+maps the literal mark to the identity.
+
+This is the central-sign criterion applied to the literal datum: the mark is
+the square of the distinguished pointwise compression defect
+(`mark_eq_compressionDefect_sq`), and it is a central involution. -/
 theorem literal_mark_eq_one_in_normMatrixCStarCorona
     (X : ℕ → FiniteModel) (hX : ∀ n, 0 < Fintype.card (X n)) :
     letI : ∀ n, Nonempty (X n) :=
@@ -194,20 +205,46 @@ theorem literal_mark_eq_one_in_normMatrixCStarCorona
     fun n ↦ Fintype.card_pos_iff.mp (hX n)
   intro rho
   exact MonoidHom.mem_ker.mp
-    (literalInvolutionSubgroup_le_normMatrixCStarCoronaKernel
-      X hX rho mark_mem_literalInvolutionSubgroup)
+    (KazhdanCompressionCore.defectSquare_centralInvolution_mem_normMatrixCStarCoronaKernel
+      inclusionData.toKazhdanCompressionCore inclusionData.a mark
+      mark_eq_compressionDefect_sq mark_sq mark_central X hX rho)
+
+/-! ## The central-sign criterion, applied
+
+The manuscript proves Theorem A by *applying* the central-sign criterion to
+the literal datum.  The next declaration is that application, verbatim: the
+closed proposition `ManuscriptCentralSignCriterion` is instantiated at
+`Γ = Base`, `E = MarkedGroup`, `ι = baseMap`, `t = stable`, `c = lamp`,
+`a = v₁`, and `z = mark`, with `mark = [t c t⁻¹, ι(v₁)]²` supplied by
+`mark_eq_compressionDefect_sq` and `mark ≠ 1` by the Clifford witness.  Both
+mathematical clauses of Theorem A are read off from its conclusion. -/
+
+/-- **The central-sign criterion at the literal datum.** -/
+theorem literal_centralSignCriterion :
+    (∀ (d : ℕ → ℕ) (hd : ∀ n, 0 < d n),
+      letI : ∀ n, Nonempty (naturalFiniteModel (d n)) :=
+        fun n ↦ Fintype.card_pos_iff.mp (by simpa using hd n)
+      ∀ rho : MarkedGroup →* unitary (NormMatrixCStarCorona
+          (fun n ↦ naturalFiniteModel (d n))),
+        rho mark = 1) ∧
+      ¬ IsCDEOperatorMF MarkedGroup :=
+  KazhdanCompressionCore.manuscriptCentralSignCriterion
+    (Γ := Base) (E := MarkedGroup)
+    LiteralBaseP13PropertyTBridge.manuscriptBaseHasKazhdanPropertyT.2
+    baseMap stable lamp inclusionData.compresses lamp_commutes_base
+    (PresentedGroup.of v1Index) mark mark_eq_rootCommutator_sq
+    LiteralNonMFLinearWitness.literal_mark_ne_one mark_sq mark_central
 
 /-- The genuine C-star-corona statement in the manuscript's literal natural
-matrix coordinates. -/
+matrix coordinates.  This is the first clause of the criterion. -/
 theorem literal_mark_eq_one_in_CStarCorona
     (d : ℕ → ℕ) (hd : ∀ n, 0 < d n) :
     letI : ∀ n, Nonempty (naturalFiniteModel (d n)) :=
       fun n ↦ Fintype.card_pos_iff.mp (by simpa using hd n)
     ∀ rho : MarkedGroup →* unitary (NormMatrixCStarCorona
         (fun n ↦ naturalFiniteModel (d n))),
-      rho mark = 1 := by
-  simpa using literal_mark_eq_one_in_normMatrixCStarCorona
-    (fun n ↦ naturalFiniteModel (d n)) (by simpa using hd)
+      rho mark = 1 :=
+  literal_centralSignCriterion.1 d hd
 
 /-- The unitary-sequence-corona clause of the printed theorem, in literal
 natural-number dimensions. -/
@@ -217,9 +254,10 @@ theorem literal_mark_eq_one_in_unitaryCorona
       NormMatrixCoronaUnitary (fun n ↦ naturalFiniteModel (d n))) :
     Theta mark = 1 := by
   exact MonoidHom.mem_ker.mp
-    (literalInvolutionSubgroup_le_normMatrixCoronaKernel
-      (fun n ↦ naturalFiniteModel (d n)) (by simpa using hd) Theta
-      mark_mem_literalInvolutionSubgroup)
+    (KazhdanCompressionCore.defectSquare_centralInvolution_mem_normMatrixCoronaKernel
+      inclusionData.toKazhdanCompressionCore inclusionData.a mark
+      mark_eq_compressionDefect_sq mark_sq mark_central
+      (fun n ↦ naturalFiniteModel (d n)) (by simpa using hd) Theta)
 
 /-- The literal mark belongs to the MF radical exactly as printed, defined
 through genuine natural-dimension C-star coronas. -/
@@ -230,10 +268,9 @@ theorem literal_mark_mem_manuscriptCoronaMFResidual :
 
 /-- The mark also belongs to the basis-free unitary-sequence MF residual. -/
 theorem literal_mark_normMFInvisible : NormMFInvisible mark :=
-  KazhdanCompressionCore.finiteNormal_le_normMFResidual
-    inclusionData.toKazhdanCompressionCore
-    literalInvolutionSubgroup literalInvolutionSubgroup_le_defectNormal
-    mark_mem_literalInvolutionSubgroup
+  KazhdanCompressionCore.defectSquare_centralInvolution_normMFInvisible
+    inclusionData.toKazhdanCompressionCore inclusionData.a mark
+    mark_eq_compressionDefect_sq mark_sq mark_central
 
 /-! ## Premise-free MF and C-star consequences -/
 
@@ -243,22 +280,16 @@ theorem cliffordSign_blackHole :
   ⟨literal_mark_normMFInvisible,
     LiteralNonMFLinearWitness.literal_mark_ne_one⟩
 
-/-- The literal eight-generator group is not operator MF. -/
-theorem literal_not_isOperatorMF : ¬ IsOperatorMF MarkedGroup :=
-  MarkedCompressionInclusionData.not_isOperatorMF_of_mem_finiteNormal
-    inclusionData literalInvolutionSubgroup
-    literalInvolutionSubgroup_le_defectNormal
-    (by
-      rw [inclusionData_word]
-      exact mark_mem_literalInvolutionSubgroup)
-    (by
-      rw [inclusionData_word]
-      exact LiteralNonMFLinearWitness.literal_mark_ne_one)
+/-- The literal eight-generator group fails the manuscript's genuine-corona
+CDE predicate.  This is the second clause of the central-sign criterion at the
+literal datum. -/
+theorem literal_not_isCDEOperatorMF : ¬ IsCDEOperatorMF MarkedGroup :=
+  literal_centralSignCriterion.2
 
-/-- The same conclusion in the manuscript's genuine-corona CDE predicate. -/
-theorem literal_not_isCDEOperatorMF : ¬ IsCDEOperatorMF MarkedGroup := by
-  rw [isCDEOperatorMF_iff_isOperatorMF]
-  exact literal_not_isOperatorMF
+/-- The literal eight-generator group is not operator MF. -/
+theorem literal_not_isOperatorMF : ¬ IsOperatorMF MarkedGroup := by
+  rw [← isCDEOperatorMF_iff_isOperatorMF]
+  exact literal_not_isCDEOperatorMF
 
 /-- Every proposition implying operator MF fails for the literal group. -/
 theorem literal_not_of_implies_isOperatorMF

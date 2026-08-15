@@ -1,0 +1,83 @@
+---
+rg: 2
+id: two-point-orbit-approximation
+kind: claim
+title: The Kun–Thom coset action admits a two-point approximation at the marked pair
+distinct_from:
+  coordinate-action-not-sofic: that refutes the ORBIT approximation, which asks for an injective equivariant chart of every finite window on a density-(1−ε) set of states; this asks only that ONE prescribed pair of points stay distinct, quantified over no other window, and is not known to imply it
+  lamp-character-orbit-separation: that computes what a Hilbert embeddable length does on the lamps once a model is given; this asks whether the underlying site data a model would need can exist at all, and mentions no length, no character and no lamp
+  finite-quotient-blindness: that says every exact finite quotient identifies the two marked cosets; this asks whether an APPROXIMATELY multiplicative model can keep them apart, which is exactly the gap that statement leaves open
+  marked-double-coset-infinite-degree: that computes an exact index in the real group, `[Γ : Γ ∩ hΓh⁻¹] = ∞`, and rules out finite-degree invariant graphs; this asks nothing about the real group's indices and everything about approximate finite models, where an infinite index is no obstruction because the model need not be a quotient
+artifacts:
+  - docs/TRUE_LAMP_CHARACTER_ORBIT_SEPARATION.md
+---
+
+Let `Γ < G` be the Kun–Thom Theorem E pair, `X = G/Γ`, and fix the marked pair
+`p = Γ`, `q = tΓ` with `t` a strict compressor, so `p ≠ q`.
+
+**Definition (two-point approximation at `(p,q)`).** For every finite `F ⊆ G`
+and `ε > 0` there exist a finite set `A`, a unital `(F,ε)`-multiplicative
+`φ : G → Sym(A)` in the normalized Hamming metric, a subset `S ⊆ A` with
+`|S| > (1−ε)|A|`, a finite set `B`, and maps `j_s : {p,q} → B` for `s ∈ S`
+with
+
+```text
+j_s(p) ≠ j_s(q),        and       j_{φ(g)·s}(x) = j_s(g⁻¹·x)
+```
+
+for all `g ∈ F`, `s ∈ S` with `φ(g)·s ∈ S`, and `x ∈ {p,q}` with
+`g⁻¹·x ∈ {p,q}`.
+
+The claim asserts that such approximations exist.
+
+## Why this is not a restatement of the target
+
+The sofic-action definition quantifies the same data over **every** finite
+window `E ⊆ X`, and demands `π_s : E ↪ B` injective and equivariant for all of
+`E`. This asks for `E = {p,q}` only. The equivariance clause is therefore
+vacuous except for the `g ∈ F` that map the pair into itself, and no
+compatibility across different windows is required. `coordinate-action-not-sofic`
+refutes the universally quantified statement; it does not refute this one, and
+nothing in the graph derives one from the other. The claim also names no length,
+no character, no lamp group and no von Neumann algebra, so it is not
+`hilbert-embeddable-witness-for-kun-thom-wreath` in different words: it is a
+statement purely about the `G`-set `G/Γ`.
+
+## Quantifier check against a dumb model
+
+The one-point model — `A = {∗}`, `S = A`, `φ(g) = id`, `B = {0,1}`,
+`j_∗(p) = 0`, `j_∗(q) = 1` — satisfies multiplicativity and distinctness
+trivially. It **fails** the equivariance clause: the action is transitive, so
+some `g ∈ G` has `g⁻¹·p = q`, and then `φ(g)·∗ = ∗ ∈ S` forces
+`j_∗(p) = j_∗(q)`, contradicting distinctness. So the definition is not
+vacuous, and the content sits exactly where it should — in the interaction of
+approximate multiplicativity with the requirement that a compressor-related
+pair not be collapsed.
+
+The neighbouring degenerate reading is also excluded: dropping the density
+condition on `S` would let one take `S = ∅`. The condition `|S| > (1−ε)|A|` is
+what forbids that, and it is the same density condition the sofic-action
+definition uses.
+
+## Why it is the live question
+
+`finite-quotient-blindness` shows every **exact** finite quotient of `G`
+identifies `p` and `q`, because the compression `tΓt⁻¹ ≤ Γ` becomes an equality.
+`lamp-character-orbit-separation` shows that once a model keeps `p` and `q`
+distinct as sites, a generic character orbit separates the mark by an absolute
+constant, with no dilution — so the lamp side costs nothing. What remains
+between the graph and Question 3.4 on this route is precisely whether
+approximate multiplicativity buys what exact multiplicativity provably does not.
+
+A **refutation** of this claim would close the weak-soficity route to
+hyperlinearity of `W` and, by `clifford-ce-implies-bernoulli-ce`, the Clifford
+lane with it.
+
+**On the reachability warning.** `bin/cairn check` reports this claim as open
+but unreachable from a root, and that is correct rather than an oversight: it
+is a **necessary** condition for a witness, not a prerequisite of one. The only
+route touching it, `witness-yields-two-point-approximation`, runs *into* it from
+the witness claim. Nothing requires it, and nothing should until the converse —
+the resolution question of that route's final section — is settled. If the
+converse is proved, this claim becomes a genuine prerequisite and the warning
+resolves itself.

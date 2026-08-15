@@ -93,6 +93,13 @@ theorem mark_eq_compressionDefect_sq (m : ℕ) :
   rw [familyInclusionData_word] at h
   exact h
 
+/-- The same identity in the manuscript's own notation. -/
+theorem mark_eq_rootCommutator_sq (m : ℕ) :
+    mark m =
+      ⁅stable m * lamp m * (stable m)⁻¹,
+        baseMap m (PresentedGroup.of v1Index)⁆ ^ 2 :=
+  mark_eq_compressionDefect_sq m
+
 /-- The square identity together with the Clifford realization. -/
 theorem compressionDefect_sq_ne_one (hm : 2 ≤ m) :
     compressionDefect m ^ 2 ≠ 1 := by
@@ -203,9 +210,11 @@ theorem scaling_mark_eq_one_in_CStarCorona (m : ℕ)
     fun n ↦ Fintype.card_pos_iff.mp (by simpa using hd n)
   intro rho
   exact MonoidHom.mem_ker.mp
-    (familyInvolutionSubgroup_le_normMatrixCStarCoronaKernel m
-      (fun n ↦ naturalFiniteModel (d n)) (by simpa using hd) rho
-      (mark_mem_familyInvolutionSubgroup m))
+    (KazhdanCompressionCore.defectSquare_centralInvolution_mem_normMatrixCStarCoronaKernel
+      (familyInclusionData m).toKazhdanCompressionCore
+      (familyInclusionData m).a (mark m)
+      (mark_eq_compressionDefect_sq m) (mark_sq m) (mark_central m)
+      (fun n ↦ naturalFiniteModel (d n)) (by simpa using hd) rho)
 
 /-- The unitary-sequence-corona clause, in literal natural-number
 dimensions. -/
@@ -215,9 +224,11 @@ theorem scaling_mark_eq_one_in_unitaryCorona (m : ℕ)
       NormMatrixCoronaUnitary (fun n ↦ naturalFiniteModel (d n))) :
     Theta (mark m) = 1 :=
   MonoidHom.mem_ker.mp
-    (familyInvolutionSubgroup_le_normMatrixCoronaKernel m
-      (fun n ↦ naturalFiniteModel (d n)) (by simpa using hd) Theta
-      (mark_mem_familyInvolutionSubgroup m))
+    (KazhdanCompressionCore.defectSquare_centralInvolution_mem_normMatrixCoronaKernel
+      (familyInclusionData m).toKazhdanCompressionCore
+      (familyInclusionData m).a (mark m)
+      (mark_eq_compressionDefect_sq m) (mark_sq m) (mark_central m)
+      (fun n ↦ naturalFiniteModel (d n)) (by simpa using hd) Theta)
 
 /-- The `m`-th mark belongs to the MF radical exactly as printed. -/
 theorem scaling_mark_mem_manuscriptCoronaMFResidual (m : ℕ) :
@@ -227,10 +238,10 @@ theorem scaling_mark_mem_manuscriptCoronaMFResidual (m : ℕ) :
 
 /-- The mark also belongs to the basis-free unitary-sequence MF residual. -/
 theorem scaling_mark_normMFInvisible (m : ℕ) : NormMFInvisible (mark m) :=
-  KazhdanCompressionCore.finiteNormal_le_normMFResidual
+  KazhdanCompressionCore.defectSquare_centralInvolution_normMFInvisible
     (familyInclusionData m).toKazhdanCompressionCore
-    (familyInvolutionSubgroup m) (familyInvolutionSubgroup_le_defectNormal m)
-    (mark_mem_familyInvolutionSubgroup m)
+    (familyInclusionData m).a (mark m)
+    (mark_eq_compressionDefect_sq m) (mark_sq m) (mark_central m)
 
 /-! ## Premise-free MF and C-star consequences -/
 
@@ -240,25 +251,38 @@ theorem cliffordSign_blackHole (hm : 2 ≤ m) :
   ⟨scaling_mark_normMFInvisible m,
     ScalingFamilyLinearWitness.scaling_mark_ne_one hm⟩
 
-/-- **Every member of the scaling family with `m ≥ 2` is not operator MF.** -/
-theorem scalingFamily_not_isOperatorMF (m : ℕ) (hm : 2 ≤ m) :
-    ¬ IsOperatorMF (MarkedGroup m) :=
-  MarkedCompressionInclusionData.not_isOperatorMF_of_mem_finiteNormal
-    (familyInclusionData m) (familyInvolutionSubgroup m)
-    (familyInvolutionSubgroup_le_defectNormal m)
-    (by
-      rw [familyInclusionData_word]
-      exact mark_mem_familyInvolutionSubgroup m)
-    (by
-      rw [familyInclusionData_word]
-      exact ScalingFamilyLinearWitness.scaling_mark_ne_one hm)
+/-- **The central-sign criterion at the `m`-th datum.**  Exactly as for the
+literal group, the manuscript's closed criterion is instantiated at
+`Γ = Base`, `E = MarkedGroup m`, `ι = baseMap m`, `t = stable m`,
+`c = lamp m`, `a = v₁`, and `z = mark m`. -/
+theorem scaling_centralSignCriterion (m : ℕ) (hm : 2 ≤ m) :
+    (∀ (d : ℕ → ℕ) (hd : ∀ n, 0 < d n),
+      letI : ∀ n, Nonempty (naturalFiniteModel (d n)) :=
+        fun n ↦ Fintype.card_pos_iff.mp (by simpa using hd n)
+      ∀ rho : MarkedGroup m →* unitary (NormMatrixCStarCorona
+          (fun n ↦ naturalFiniteModel (d n))),
+        rho (mark m) = 1) ∧
+      ¬ IsCDEOperatorMF (MarkedGroup m) :=
+  KazhdanCompressionCore.manuscriptCentralSignCriterion
+    (Γ := Base) (E := MarkedGroup m)
+    LiteralBaseP13PropertyTBridge.manuscriptBaseHasKazhdanPropertyT.2
+    (baseMap m) (stable m) (lamp m) (familyInclusionData m).compresses
+    (lamp_commutes_base m) (PresentedGroup.of v1Index) (mark m)
+    (mark_eq_rootCommutator_sq m)
+    (ScalingFamilyLinearWitness.scaling_mark_ne_one hm) (mark_sq m)
+    (mark_central m)
 
 /-- **Every member of the scaling family with `m ≥ 2` fails the manuscript's
 genuine-corona CDE predicate.** -/
 theorem scalingFamily_not_isCDEOperatorMF (m : ℕ) (hm : 2 ≤ m) :
-    ¬ IsCDEOperatorMF (MarkedGroup m) := by
-  rw [isCDEOperatorMF_iff_isOperatorMF]
-  exact scalingFamily_not_isOperatorMF m hm
+    ¬ IsCDEOperatorMF (MarkedGroup m) :=
+  (scaling_centralSignCriterion m hm).2
+
+/-- **Every member of the scaling family with `m ≥ 2` is not operator MF.** -/
+theorem scalingFamily_not_isOperatorMF (m : ℕ) (hm : 2 ≤ m) :
+    ¬ IsOperatorMF (MarkedGroup m) := by
+  rw [← isCDEOperatorMF_iff_isOperatorMF]
+  exact scalingFamily_not_isCDEOperatorMF m hm
 
 /-- Every proposition implying operator MF fails for the `m`-th group. -/
 theorem scalingFamily_not_of_implies_isOperatorMF

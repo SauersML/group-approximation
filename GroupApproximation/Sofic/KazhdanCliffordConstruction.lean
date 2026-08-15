@@ -2,6 +2,7 @@ import GroupApproximation.Sofic.CentralInvolutionSubgroup
 import GroupApproximation.Sofic.CompressionDefectSquare
 import GroupApproximation.Sofic.CDEOperatorMF
 import GroupApproximation.Sofic.FiniteNormalCoronaObstruction
+import GroupApproximation.Sofic.KazhdanSignCriterion
 import GroupApproximation.Sofic.MarkedCompressionGroup
 import GroupApproximation.Kazhdan.KazhdanUniverse
 import GroupApproximation.Analysis.NaturalMatrixCoordinateEquiv
@@ -557,25 +558,19 @@ theorem every_cstar_corona_hom_kills_mark
       rho (mark alpha a) = 1 := by
   letI : ∀ n, Nonempty (X n) := fun n ↦ Fintype.card_pos_iff.mp (hX n)
   intro rho
-  let F := centralInvolutionSubgroup (mark alpha a) (mark_sq alpha a)
-  letI : F.Normal := centralInvolutionSubgroup_normal
-    (mark alpha a) (mark_sq alpha a) (mark_central alpha a)
-  have hF : F ≤ (compressionCore alpha a hT).defectNormal :=
-    (centralInvolutionSubgroup_le_iff_mem
-      (mark alpha a) (mark_sq alpha a)
-      (compressionCore alpha a hT).defectNormal).mpr
-      (mark_mem_defectNormal alpha a hT)
   exact MonoidHom.mem_ker.mp
-    ((compressionCore alpha a hT).finiteNormal_le_normMatrixCStarCoronaKernel
-      F hF X hX rho
-      (involution_mem_centralInvolutionSubgroup
-        (mark alpha a) (mark_sq alpha a)))
+    (KazhdanCompressionCore.defectSquare_centralInvolution_mem_normMatrixCStarCoronaKernel
+      (compressionCore alpha a hT) a (mark alpha a)
+      (mark_eq_defect_sq alpha a hT) (mark_sq alpha a) (mark_central alpha a)
+      X hX rho)
 
 include hAlpha hT in
 /-- The Kazhdan--Clifford extension is unconditionally non-MF. -/
 theorem not_isOperatorMF (ha : a ∉ Set.range alpha) :
-    ¬ IsOperatorMF (Extension alpha a) := by
-  simpa using (inclusionData alpha a hT).not_isOperatorMF
+    ¬ IsOperatorMF (Extension alpha a) :=
+  KazhdanCompressionCore.not_isOperatorMF_of_defectSquare_eq_centralInvolution
+    (compressionCore alpha a hT) a (mark alpha a)
+    (mark_eq_defect_sq alpha a hT) (mark_sq alpha a) (mark_central alpha a)
     (mark_ne_one alpha hAlpha a ha)
 
 /-- The general Kazhdan--Clifford construction as one closed proposition.
@@ -611,15 +606,59 @@ theorem kazhdanCliffordConstruction :
   intro Γ₀ _ _ alpha hAlpha a hTTextbook ha
   let hTReal : HasKazhdanPropertyT.{0, 0} Γ₀ :=
     hasKazhdanPropertyT_iff_textbook.mpr hTTextbook
-  refine ⟨inferInstance, iota_injective alpha hAlpha a ha,
+  -- Both analytic clauses are the central-sign criterion, instantiated at the
+  -- constructed datum: `t` is the stable letter, `c` the root involution, and
+  -- the marked word is the square of the pointwise compression defect at `a`.
+  have hcrit := KazhdanCompressionCore.manuscriptCentralSignCriterion
+    (Γ := Γ₀) (E := Extension alpha a) hTTextbook
+    (iota alpha a) (stable alpha a) (lamp alpha a)
+    (fun g ↦ ⟨alpha g, stable_compresses alpha a g⟩)
+    (lamp_commutes alpha a) a (mark alpha a)
+    (by
+      simpa only [KazhdanCompressionCore.transported, compressionCore] using
+        mark_eq_defect_sq alpha a hTReal)
+    (mark_ne_one alpha hAlpha a ha) (mark_sq alpha a) (mark_central alpha a)
+  exact ⟨inferInstance, iota_injective alpha hAlpha a ha,
     mark_ne_one alpha hAlpha a ha, mark_sq alpha a, mark_central alpha a,
-    ?_, ?_⟩
-  · intro d hd
-    exact every_cstar_corona_hom_kills_mark alpha a hTReal
-      (fun n ↦ naturalFiniteModel (d n)) (fun n ↦ by
-        simpa only [Fintype.card_fin] using hd n)
-  · rw [isCDEOperatorMF_iff_isOperatorMF]
-    exact not_isOperatorMF alpha hAlpha a hTReal ha
+    hcrit.1, hcrit.2⟩
+
+/-- The properness form of the construction hypothesis: an injective
+endomorphism which is not surjective.  This is the form used in the
+manuscript's abstract ("a proper injective self-embedding"), where no
+particular element outside the image is named. -/
+def KazhdanCliffordProperConstructionStatement : Prop :=
+  ∀ {Γ₀ : Type} [Group Γ₀] [Group.IsFinitelyPresented Γ₀]
+    (alpha : Γ₀ →* Γ₀) (_hAlpha : Function.Injective alpha)
+    (_hProper : ¬ Function.Surjective alpha)
+    (_hTTextbook : HasKazhdanPropertyTComplex.{0, w} Γ₀),
+    ∃ a : Γ₀, a ∉ Set.range alpha ∧
+      Group.IsFinitelyPresented (Extension alpha a) ∧
+      Function.Injective (iota alpha a) ∧
+      mark alpha a ≠ 1 ∧
+      mark alpha a ^ 2 = 1 ∧
+      (∀ g : Extension alpha a, Commute (mark alpha a) g) ∧
+      (∀ (d : ℕ → ℕ) (hd : ∀ n, 0 < d n),
+        let X : ℕ → FiniteModel := fun n ↦ naturalFiniteModel (d n)
+        letI : ∀ n, Nonempty (X n) :=
+          fun n ↦ Fintype.card_pos_iff.mp (by
+            simpa only [X, Fintype.card_fin] using hd n)
+        ∀ rho : Extension alpha a →*
+            unitary (NormMatrixCStarCorona (fun n ↦ X n)),
+          rho (mark alpha a) = 1) ∧
+      ¬ IsCDEOperatorMF (Extension alpha a)
+
+/-- **Kazhdan--Clifford construction, existence form.**  Every finitely
+presented property-`(T)` group with a proper injective self-embedding
+produces a finitely presented non-MF group: the element outside the image
+is chosen rather than supplied. -/
+theorem kazhdanCliffordConstruction_of_proper :
+    KazhdanCliffordProperConstructionStatement := by
+  intro Γ₀ _ _ alpha hAlpha hProper hTTextbook
+  obtain ⟨a, ha⟩ : ∃ a : Γ₀, a ∉ Set.range alpha := by
+    by_contra hall
+    push Not at hall
+    exact hProper fun b ↦ hall b
+  exact ⟨a, ha, kazhdanCliffordConstruction alpha hAlpha a hTTextbook ha⟩
 
 end
 

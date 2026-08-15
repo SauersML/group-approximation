@@ -17,3 +17,22 @@ Logical caution (docs/OBSTRUCTIONS.md §5): evidence that a candidate is
 is informative about Q3.4 at all. Since every known nonsofic group comes
 from the same (T)-compression mechanism, Q3.4 may be inaccessible until a
 second nonsoficity mechanism exists.
+
+**Status of that caution as of 2026-08-14 (literature scout).** It still
+holds literally: nonsofic groups now exist unconditionally, but every one of
+them — `kun-thom-nonsofic-wreath`, `openai-leavitt-unit-nonsofic`, and
+Fournier-Facio's torsion-free example (arXiv:2608.02025) — is the same
+pattern, namely one-sided compression `t Gamma t^(-1) <= Gamma` plus
+property (T) plus a commuting non-LEF subgroup. Two qualifications:
+
+- A candidate second mechanism now exists in the literature, conditionally:
+  `nonsofic-hyperbolic-group`, via Chapman--Peled (arXiv:2509.21566), whose
+  engine is the local testability of expander codes rather than expander
+  decomposition of sofic approximations. It is conditional on an unproved
+  probabilistic estimate and has produced no group.
+- The separation problem itself is no longer untouched: `weakly-sofic-not-sofic`
+  is now settled, by composing the Kun--Thom wreath with Glebsky's
+  residually-finite-by-weakly-sofic permanence. That is the same shape as
+  Q3.4 with a different approximation class, and it isolates what the
+  hyperlinear side is missing — a permanence theorem with no hypothesis on
+  the coset action.

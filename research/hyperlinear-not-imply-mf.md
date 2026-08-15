@@ -5,6 +5,7 @@ kind: claim
 title: Hyperlinearity does not imply the MF property
 distinct_from:
   mf-implies-hyperlinear: This established separation refutes the direction hyperlinear implies MF; the open claim asks for the converse direction under the weak norm-corona MF convention.
+  weakly-sofic-not-sofic: This separates hyperlinearity from the operator-norm MF property; the other separates weak soficity from soficity. Different pairs of classes, different witnesses, no shared content beyond both being separations.
 artifacts:
   - non_mf_groups_exist.tex
   - GroupApproximation/Endpoint/NonMFImpact.lean

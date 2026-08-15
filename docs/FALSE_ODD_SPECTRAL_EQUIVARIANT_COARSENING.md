@@ -333,11 +333,54 @@ weighted two-point measure on `{r,conjugate(r)}`.  Its distance from every
 scalar stays positive, so the indiscrete partition still has a fixed
 spectral-collapse cost.
 
-This does not contradict flexible reflection--`BS(1,4)` repair.  The
-alternating fifth-root model has a single parity seam on an odd cycle;
-adding or cutting `o(L)` coordinates may repair that seam.  It does prove
-that a repair cannot be obtained merely by choosing an invariant partition
-of the original prime orbit.
+This does not contradict flexible reflection--`BS(1,4)` repair.  In fact,
+the alternating fifth-root model has a single parity seam on an odd cycle,
+and one extra coordinate repairs it explicitly.  Relabel the basis so that
+`C` implements
+
+```text
+c_L(k)=-k mod L.                                      (PEC33a)
+```
+
+Put `N=L+1`, embed the old coordinates by `h(k)=k+1`, and on `Z/N` define
+
+```text
+x_tilde(j)=exp(2 pi i 4^(j-1)/5),
+c_tilde(j)=1-j mod N.                                 (PEC33b)
+```
+
+The exponent in `(PEC33b)` is read modulo `5`, so it is meaningful also at
+`j=0`.  Because `N` is even, `c_tilde` reverses the `N`-cycle and exchanges
+the two parity classes.  Directly,
+
+```text
+c_tilde^2=1,
+x_tilde(c_tilde(j))=x_tilde(j)^4.                     (PEC33c)
+```
+
+Let `X_tilde,C_tilde` be the corresponding diagonal and permutation
+unitaries.  Pad `X` by the scalar `x_tilde(0)` and pad `C` by a fixed vector.
+Under `h`,
+
+```text
+x_tilde(h(k))=r_k,
+c_tilde(h(k))=h(c_L(k))              for k!=0.        (PEC33d)
+```
+
+On the two exceptional coordinates, the padded `C` fixes both whereas
+`C_tilde` swaps them.  Consequently
+
+```text
+||X_tilde-(x_tilde(0) direct-sum X)||_2^2
+   =(L/N)E_L^2,
+||C_tilde-(1 direct-sum C)||_2^2=4/N.                 (PEC33e)
+```
+
+Taking `A_tilde=1` and `B_tilde=C_tilde` gives an exact reflection--
+`BS(1,4)` solution in dimension `L+1` at vanishing flexible distance from
+the example.  Thus the fixed-orbit obstruction is precisely a removable
+one-coordinate seam.  It proves only that repair cannot be obtained by
+choosing an invariant partition of the original prime orbit.
 
 Finally, the first modular order-three word is uniformly wrong.  Since
 `A=1`, it equals
@@ -352,7 +395,71 @@ strengthened example still does not extend to the required exact modular
 vertices.  It isolates the order-three relation, rather than the reflection,
 as the missing rigidity input.
 
-## 7. Corrected endpoint
+## 7. A common invariant abelian algebra is too strong
+
+The modular order-three relations do not rescue the failed strategy by
+making both Weyl elements normalize one common spectral algebra.  That
+conclusion would collapse the full relation set to a degenerate solution.
+
+Let `epsilon in {+1,-1}` and suppose `A,B,X` are unitaries satisfying
+
+```text
+A^2=B^2=epsilon 1,
+(A X^2)^3=(B X)^3=epsilon 1.                          (PEC34)
+```
+
+Let `D` be a unital abelian star-subalgebra which contains `X` and is
+normalized by both `A` and `B`.  Write
+
+```text
+alpha=Ad(A)|_D,             beta=Ad(B)|_D.            (PEC35)
+```
+
+The square relations give `alpha^2=beta^2=1`.  Since `X` belongs to the
+abelian algebra `D`, conjugation by `A X^2` restricts to `alpha` on `D`,
+while conjugation by `B X` restricts to `beta`.  The two cube relations in
+`(PEC34)` therefore give
+
+```text
+alpha^3=beta^3=1.                                    (PEC36)
+```
+
+An automorphism whose order divides both `2` and `3` is the identity.
+Hence `A` and `B` centralize `D`, in particular
+
+```text
+[A,X]=[B,X]=1.                                       (PEC37)
+```
+
+If in addition `C=AB` and the fourth-power relation is exact, then `C`
+also commutes with `X`, so
+
+```text
+C X C^(-1)=X=X^4,
+X^3=1.                                               (PEC38)
+```
+
+Now `(PEC34)` and commutativity give
+
+```text
+(A X^2)^3=epsilon A X^6=epsilon A,
+(B X)^3=epsilon B X^3=epsilon B.                     (PEC39)
+```
+
+Comparing with `(PEC34)` yields `A=B=1`, and then `A^2=epsilon 1` forces
+`epsilon=1`; also `C=1`.  We have proved:
+
+> **Common-normalizer collapse.**  An exact solution of the factorized
+> Iwahori relations for which `A` and `B` normalize one abelian algebra
+> containing `X` must satisfy
+> `epsilon=1`, `A=B=C=1`, and `X^3=1`.
+
+Therefore the positive endpoint cannot be a common-Cartan theorem.  A valid
+repair must retain two spectral algebras and control their relative
+bimodule/flag position.  The modular order-three words constrain that
+coupling, but they do not turn it into one invariant abelian partition.
+
+## 8. Corrected endpoint
 
 The odd spectral shadow remains useful: it removes open fourth-power towers
 and two-adic spectral drift.  The dimension-free one-conjugator flag theorem
@@ -369,5 +476,7 @@ modular relator coupling each Weyl unitary to its unipotent:
 
 Equivalently, in the factorized formulation it must exploit that both
 factors of the approximate `BS(1,4)` stable letter lie on exact modular
-representation varieties.  Prime-cycle spectral dynamics by itself cannot
-control their relative flag permutation.
+representation varieties.  Section 7 shows that the desired conclusion is
+not simultaneous normalization of one abelian algebra.  Prime-cycle
+spectral dynamics by itself cannot control the relative **two-flag
+bimodule** on which the modular words act.
