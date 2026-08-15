@@ -97,11 +97,10 @@ def quasiRegularUnitaryHom :
 
 theorem smul_base_eq_base_iff (g : G) :
     g • ((1 : G) : G ⧸ K) = ((1 : G) : G ⧸ K) ↔ g ∈ K := by
-  have h1 : g • ((1 : G) : G ⧸ K) = ((g : G) : G ⧸ K) := by
-    show g • ((1 : G) : G ⧸ K) = (((g * 1 : G)) : G ⧸ K)
-    rfl
-  rw [h1]
-  exact QuotientGroup.eq_one_iff g
+  have h1 : g • ((1 : G) : G ⧸ K) = ((g * 1 : G) : G ⧸ K) :=
+    MulAction.Quotient.smul_mk K g 1
+  rw [h1, mul_one, QuotientGroup.eq, mul_one]
+  exact inv_mem_iff
 
 section BaseVector
 
