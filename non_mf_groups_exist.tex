@@ -782,6 +782,15 @@ $H$ contained in $N_{\mathrm{comp}}$, and more generally every normal
 property-\textup{(T)} subgroup contained in it, lies in the kernel of
 every corona representation of $H$.
 
+\begin{definition}[Hilbert--Schmidt invisibility]\label{def:invisible}
+An element $g$ of a countable group $H$ is \emph{Hilbert--Schmidt
+invisible} if, for every operator-norm asymptotic representation of
+$H$ and every ultrafilter refining the cofinite filter, the induced
+homomorphism into the tracial ultraproduct of the matrix blocks maps
+$g$ to the identity.
+\leanverified{Sofic/ManuscriptExactWrappers}{GroupApproximation.ManuscriptExactWrappers.ManuscriptHSInvisible}
+\end{definition}
+
 \begin{theorem}[finite-normal obstruction criterion]\label{thm:criterion}
 Let $H$ be a countable group with a Kazhdan conjugation datum
 $(\Lambda,\iota,t,c)$, and let $F\trianglelefteq H$ be a finite
@@ -805,10 +814,11 @@ $\iota(\Lambda)$.  Applying Theorem~\ref{thm:kazhdan-transport} to
 $x_n=U_{c,n}$ puts the lifts of $d=tct^{-1}$ there as well.  Therefore
 $[d,\iota(\lambda)]\in K_2$ for every $\lambda\in\Lambda$; since
 $K_2$ is normal, it contains the normal closure of these commutators:
-$N_{\mathrm{comp}}\subseteq K_2$, and so $F\subseteq K_2$.  We call
-the elements of $K_2$ \emph{Hilbert--Schmidt invisible} in the given
-almost representation; every element of the defect subgroup is thus
-invisible in \emph{every} operator-norm almost representation of $H$.
+$N_{\mathrm{comp}}\subseteq K_2$, and so $F\subseteq K_2$.
+Convergence of the full sequence gives triviality along every
+ultrafilter refining the cofinite filter, so every element of
+$N_{\mathrm{comp}}$ is Hilbert--Schmidt invisible
+(Definition~\ref{def:invisible}).
 
 \emph{The coordinate Reynolds corner.}  Suppose a corona
 representation $\Theta$ is nontrivial on $F$; choose coordinate unitary
@@ -1076,11 +1086,9 @@ every operator-norm almost representation.  The next theorem takes
 that invisibility as its hypothesis.
 
 \begin{theorem}[abstract invisibility obstruction]\label{thm:abstract-nk}
-Let $H$ be a countable group and let $D\le H$ be a subgroup such that
-for every operator-norm almost representation of $H$, the induced
-homomorphism into the tracial ultraproduct of its blocks, along any
-ultrafilter refining the cofinite filter, maps every element of $D$
-to the identity.  Let $K\trianglelefteq H$ be a normal subgroup with
+Let $H$ be a countable group and let $D\le H$ be a subgroup every
+element of which is Hilbert--Schmidt invisible
+(Definition~\ref{def:invisible}).  Let $K\trianglelefteq H$ be a normal subgroup with
 property~\textup{(T)} such that $K\le D$.  Then every corona
 representation $\Theta\colon H\to\U(\mathcal Q)$ satisfies
 $\Theta(k)=1$ for all $k\in K$.
@@ -1476,7 +1484,7 @@ is the analytic counterpart of this principle at infinite dimension.
 
 \begin{remark}[chain conditions suffice]\label{rem:chaincondition}
 The separation property of the size can be dropped, at the price of
-concluding only that the invariant is blind.  An order isomorphism of a
+concluding equality of values rather than of subgroups.  An order isomorphism of a
 poset with no infinite strictly ascending chain fixes every point that
 it moves weakly upward, and dually with descending chains; consequently
 a conjugation-equivariant monotone invariant with chain-condition values
@@ -3027,14 +3035,18 @@ group-theoretic.  A construction along the lines suggested above ---
 strengthening Hull's common-quotient technique so that the target
 elements are chosen inside a given infinite normal subgroup of a
 torsion-free acylindrically hyperbolic group, applied to
-Fournier-Facio's skeleton --- has been carried out and internally
-audited at paper level, and yields the stronger conclusion of a
-torsion-free finitely presented group equal to its own MF radical, so
-that every homomorphism to every norm matrix corona is trivial.  That
-argument rests on the Hull--Osin small-cancellation theory and is
-neither formalized nor part of the present development; until it is
-verified independently we record the question as resolved only modulo
-that construction.  By Theorem~\ref{thm:saturation}, a group whose
+Fournier-Facio's skeleton --- yields a torsion-free finitely
+presented group equal to its own MF radical, so that every
+homomorphism to every norm matrix corona is trivial.  The construction
+uses the Hull--Osin small-cancellation theory and is not proved here;
+the question is resolved modulo it.  The implication from the
+construction's data to the conclusion is proved: given such routing
+data, there is a two-generated, finitely presented, torsion-free
+property-\textup{(T)} group equal to its own MF radical, and every
+nontrivial quotient of such a group also fails to be MF.
+\leanverified{Sofic/FullMFRadicalEndpoint}{GroupApproximation.FullMFRadicalEndpoint.exists_twoGenerated_finitelyPresented_torsionFree_kazhdan_fullMFRadical}
+\leanverified{Sofic/FullMFRadicalEndpoint}{GroupApproximation.FullMFRadicalEndpoint.exists_group_with_every_nontrivial_quotient_not_isCDEOperatorMF}
+By Theorem~\ref{thm:saturation}, a group whose
 collapse or normal-Kazhdan defect saturates admits no nontrivial
 homomorphism to any countable MF group at all.
 \item Is $E$ sofic, or hyperlinear?  The adjoint spectral estimates
@@ -3190,7 +3202,7 @@ equal finite rank, $\opnorm{(1-q)p}\le\varepsilon<1$ implies
 $\opnorm{(1-p)q}\le\varepsilon/\sqrt{1-\varepsilon^2}$ --- reverses the
 containment:
 \[
- \boxed{\opnorm{(1-P_n)\,Q_n}\longrightarrow0.}
+ \opnorm{(1-P_n)\,Q_n}\longrightarrow0.
 \]
 This is the middle implication of the display at the head of
 Section~\ref{sec:transport}, and it is the finite-dimensional

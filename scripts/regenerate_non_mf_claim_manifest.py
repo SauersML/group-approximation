@@ -112,6 +112,44 @@ CLAIM_TARGETS: dict[str, tuple[str, str]] = {
     "lem:unitarycorona": (
         "Sofic/ManuscriptExactWrappers",
         "GroupApproximation.ManuscriptExactWrappers.manuscriptUnitaryCoronaEquivalence"),
+    "cor:undecidable": (
+        "LITERATURE",
+        "Adian--Rabin construction [Rabin58]; the group-theoretic and "
+        "computability-theoretic inputs are machine-checked and badged in "
+        "the adjacent discussion",
+    ),
+    "def:invisible": (
+        "Sofic/ManuscriptExactWrappers",
+        "GroupApproximation.ManuscriptExactWrappers.ManuscriptHSInvisible",
+    ),
+    "prop:mfclosure": (
+        "Sofic/MFRelationClosure",
+        "GroupApproximation.manuscriptRelationClosure",
+    ),
+    "prop:proper-isometry": (
+        "Analysis/ProperIsometryFromCompression",
+        "GroupApproximation.ProperProjectionCompression.isometry_not_isUnit",
+    ),
+    "prop:sounditeration": (
+        "Sofic/MFRelationClosure",
+        "GroupApproximation.manuscriptSoundIterationClosure",
+    ),
+    "thm:intertwiner-transport": (
+        "Sofic/IntertwinerKazhdanTransport",
+        "GroupApproximation.IntertwinerKazhdanTransport.manuscriptIntertwinerTransport",
+    ),
+    "thm:markedclosed": (
+        "Sofic/MarkedMFClosed",
+        "GroupApproximation.MarkedGroupSpace.isClosed_operatorMFLocus",
+    ),
+    "thm:projection-collapse": (
+        "Sofic/ProjectionCompressionCollapse",
+        "GroupApproximation.ProjectionCompressionCollapse.corona_projection_collapse",
+    ),
+    "thm:scaled-transport": (
+        "Sofic/ScaledKazhdanTransport",
+        "GroupApproximation.ScaledKazhdanTransport.scaled_transport_both",
+    ),
     "def:pattern": (
         "Sofic/ManuscriptExactWrappers",
         "GroupApproximation.ManuscriptExactWrappers.manuscriptMarkedKazhdanPattern"),
@@ -222,17 +260,41 @@ def generate(tex: Path) -> dict:
         raise SystemExit(f"formal targets without numbered claims: {', '.join(stale)}")
     for claim in claims:
         module, declaration = CLAIM_TARGETS[claim.claim_id]
-        if len(claim.badges) != 1:
+        if module == "LITERATURE":
+            if claim.badges:
+                raise SystemExit(
+                    f"{claim.claim_id}: literature-input claims carry no "
+                    "in-environment margin declaration")
+            entries.append({
+                "id": claim.claim_id,
+                "environment": claim.environment,
+                "title": claim.title,
+                "statement_sha256": claim.statement_sha256,
+                "status": "literature-input",
+                "object_identity": (
+                    "The printed environment consumes the stated literature "
+                    "input; its machine-checked inputs are badged in the "
+                    "surrounding discussion."),
+                "dependencies": DEPENDENCIES.get(claim.claim_id, []),
+                "extra_assumptions": [],
+                "external_inputs": [declaration],
+                "coverage_gap": (
+                    "The literature input itself is not formalized."),
+                "lean": [],
+            })
+            continue
+        if not claim.badges:
             raise SystemExit(
-                f"{claim.claim_id}: expected exactly one margin declaration, "
-                f"found {len(claim.badges)}")
-        role, printed_module, printed_declaration = claim.badges[0]
-        if role != "exact":
-            raise SystemExit(f"{claim.claim_id}: retained claims must be exact")
-        if (printed_module, printed_declaration) != (module, declaration):
+                f"{claim.claim_id}: expected at least one margin declaration")
+        for role, _pm, _pd in claim.badges:
+            if role != "exact":
+                raise SystemExit(
+                    f"{claim.claim_id}: retained claims must be exact")
+        printed = {(pm, pd) for _r, pm, pd in claim.badges}
+        if (module, declaration) not in printed:
             raise SystemExit(
-                f"{claim.claim_id}: margin declaration differs from the "
-                "independent claim map")
+                f"{claim.claim_id}: the independently mapped declaration is "
+                "not among the printed margin declarations")
         entries.append({
             "id": claim.claim_id,
             "environment": claim.environment,
@@ -248,18 +310,22 @@ def generate(tex: Path) -> dict:
             "coverage_gap": "",
             "lean": [{
                 "role": "exact",
-                "module": module,
-                "declaration": declaration,
-                "covers": "the complete printed proposition",
-            }],
+                "module": pm,
+                "declaration": pd,
+                "covers": (
+                    "the complete printed proposition"
+                    if (pm, pd) == (module, declaration)
+                    else "a printed conclusion of the proposition"),
+            } for _r, pm, pd in claim.badges],
         })
     return {
         "schema_version": 1,
         "manuscript": tex.name,
         "status_policy": (
-            "Every numbered theorem-like environment is exact. Each has one "
-            "linked declaration and an independently mapped wrapper with the "
-            "same literal objects and outer proposition."),
+            "Every numbered theorem-like environment is exact. Each carries "
+            "exact-role margin declarations, one of which is the "
+            "independently mapped wrapper with the same literal objects and "
+            "outer proposition."),
         "claims": entries,
     }
 

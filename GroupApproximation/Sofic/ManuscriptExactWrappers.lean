@@ -614,6 +614,17 @@ element of `D` is killed in the tracial ultraproduct attached to every
 operator-norm almost representation, then every normal property-`(T)`
 subgroup of `D` dies in every norm matrix C*-corona representation, for
 literal positive natural matrix dimensions. -/
+/-- Manuscript Definition (Hilbert--Schmidt invisibility): the element
+is killed in the tracial ultraproduct attached to every operator-norm
+almost representation, along every ultrafilter refining the cofinite
+filter.  This is the per-element form of the hypothesis of the abstract
+invisibility obstruction below. -/
+def ManuscriptHSInvisible {H : Type} [Group H] (g : H) : Prop :=
+  ∀ (B : OpAlmostRepresentation H) (U : Ultrafilter ℕ)
+    (hcof : (U : Filter ℕ) ≤ Filter.cofinite),
+    (KazhdanCompressionCore.toAsymptoticUnitaryRepresentation B).toUltraproductHom
+      hcof g = 1
+
 theorem manuscriptAbstractNormalKazhdanObstruction :
     ∀ {H : Type} [Group H] [Countable H]
       (D : Subgroup H)

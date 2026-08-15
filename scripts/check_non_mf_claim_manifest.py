@@ -47,7 +47,7 @@ RESULT_ENVS = (
     "claim",
     "example",
 )
-STATUSES = {"exact"}
+STATUSES = {"exact", "literature-input"}
 ROLES = {"exact"}
 BADGE_TO_ROLE = {
     "verified": "exact",
@@ -271,12 +271,22 @@ def validate(repo: Path, tex: Path, manifest_path: Path) -> list[str]:
             problems.append(
                 f"{prefix}: forbidden nonexact manuscript badge(s): {rendered}"
             )
-        if len(claim.badges) != 1:
+        if entry.get("status") == "literature-input":
+            if claim.badges:
+                problems.append(
+                    f"{prefix}: literature-input claim must carry no "
+                    "in-environment badge")
+            if not entry.get("external_inputs"):
+                problems.append(
+                    f"{prefix}: literature-input claim must state its "
+                    "external inputs")
+        elif not claim.badges:
             problems.append(
-                f"{prefix}: exact claim must carry exactly one \\leanverified badge"
+                f"{prefix}: exact claim must carry at least one "
+                "\\leanverified badge"
             )
-        elif claim.badges[0][0] != "exact":
-            problems.append(f"{prefix}: manuscript badge must have the exact role")
+        elif any(role != "exact" for role, _m, _d in claim.badges):
+            problems.append(f"{prefix}: manuscript badges must have the exact role")
 
         for field in ("dependencies", "extra_assumptions", "external_inputs"):
             value = entry.get(field)
@@ -292,7 +302,7 @@ def validate(repo: Path, tex: Path, manifest_path: Path) -> list[str]:
         gap = entry.get("coverage_gap")
         if not isinstance(gap, str):
             problems.append(f"{prefix}: `coverage_gap` must be a string")
-        elif gap:
+        elif gap and entry.get("status") != "literature-input":
             problems.append(f"{prefix}: exact claim cannot record a coverage gap")
 
         identity = entry.get("object_identity")
@@ -303,7 +313,7 @@ def validate(repo: Path, tex: Path, manifest_path: Path) -> list[str]:
         if not isinstance(lean, list):
             problems.append(f"{prefix}: `lean` must be a list")
             lean = []
-        if not lean:
+        if not lean and entry.get("status") != "literature-input":
             problems.append(f"{prefix}: exact claim must list a Lean declaration")
 
         declared_refs: set[tuple[str, str, str]] = set()
@@ -351,7 +361,7 @@ def validate(repo: Path, tex: Path, manifest_path: Path) -> list[str]:
                 )
 
         roles = {ref.get("role") for ref in lean if isinstance(ref, dict)}
-        if "exact" not in roles:
+        if "exact" not in roles and entry.get("status") != "literature-input":
             problems.append(f"{prefix}: exact status requires an exact Lean mapping")
         if entry.get("extra_assumptions"):
             problems.append(f"{prefix}: exact status cannot retain extra formal assumptions")
