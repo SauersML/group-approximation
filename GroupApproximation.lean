@@ -48,6 +48,12 @@ import GroupApproximation.Monsters.SL3BlockEmbeddingAll
 import GroupApproximation.Monsters.P13ParabolicKernel
 import GroupApproximation.Monsters.P13ColumnLift
 import GroupApproximation.Monsters.P13KernelFactorization
+import GroupApproximation.Monsters.P13MonomialMachine
+import GroupApproximation.Monsters.P13DescentCore
+import GroupApproximation.Monsters.P13WordDescent
+import GroupApproximation.Monsters.P13DescentCases
+import GroupApproximation.Monsters.P13Completeness
+import GroupApproximation.Monsters.P13DescentMaster
 import GroupApproximation.Monsters.P13LowerUnipotentInjectivity
 import GroupApproximation.Monsters.SL2BraidPresentation
 import GroupApproximation.Monsters.P13SL2Comparison
