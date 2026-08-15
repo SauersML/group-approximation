@@ -25,6 +25,7 @@ namespace GroupApproximation
 namespace SpectralStateWitness
 
 open StateExtension
+open scoped ComplexOrder
 
 noncomputable section
 
