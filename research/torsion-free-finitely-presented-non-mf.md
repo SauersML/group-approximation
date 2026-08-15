@@ -47,15 +47,19 @@ nontrivial normal Kazhdan subgroup.
 
 ## Ideas
 
-The primary route is `torsion-free-non-mf-from-normal-kazhdan-defect`:
-Fournier-Facio's published torsion-free finitely presented Kazhdan group
-(arXiv:2608.02025) already carries the compression core and already has a
-finitely presented simple group inside its compression defect
-(`fournier-facio-torsion-free-skeleton`).  The single gap is
-`defect-normally-generates-torsion-free-quotient` — make the normal closure
-of that simple factor Kazhdan, most cheaply by making it of finite index.
-That gap is pure combinatorial group theory about a small-cancellation
-quotient; no operator algebra remains in it.
+The primary route is `torsion-free-non-mf-from-normal-kazhdan-defect`, and
+it is now **closed** (status updated 2026-08-15): Fournier-Facio's published
+torsion-free finitely presented Kazhdan group (arXiv:2608.02025) carries the
+compression core and a finitely presented simple group inside its
+compression defect (`fournier-facio-torsion-free-skeleton`), and the former
+single gap, `defect-normally-generates-torsion-free-quotient`, is
+ESTABLISHED in the strong form `<<pi(S)>>^G = G` (not the finite-index form
+this section originally proposed — that framing was superseded; see the
+Ideas verdicts in that claim's own file) and passed its adversarial audit
+on 2026-08-15 (`docs/TORSION_FREE_NORMAL_GENERATION_HULL_QUOTIENT.md` §9).
+The route's group theory is a written argument on source-verified Hull/Osin
+statements; nothing in it is formalized — the Lean boundary is
+`DefectRoutingData`.
 
 Two secondary routes are recorded and are worth keeping because they need no
 small-cancellation machinery: `torsion-free-non-mf-from-infinite-order-mark`

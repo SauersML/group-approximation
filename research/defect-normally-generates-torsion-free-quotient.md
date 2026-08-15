@@ -151,3 +151,24 @@ Three developments after the body above was written.
    inequation gives a nonempty clopen set of 2-marked groups all
    simultaneously nonsofic and non-MF.  Written out with proofs in
    `docs/TORSION_FREE_SATURATION_DIRECT_ROUTE_2026-08-14.md` §§5-6.
+
+## Addendum 2026-08-15: adversarial audit CONFIRMED
+
+The audit ordered by `notes/rescue-2026-08-15.md` item 1 (this
+establishment landed at the moment of the session limit and was flagged
+UNVERIFIED) has been carried out by an independent session: a full walk of
+the artifact's §§4–5 and every §6 citation against fresh downloads of
+arXiv:1308.4345v2, arXiv:1304.1246, and arXiv:2608.02025v1, with the two
+named pressure points — Hull's injectivity clause 7.1(b) and finite
+presentability of the quotient — checked against Hull's actual statements
+and proofs (the f.g. case of Corollary 7.4 provably bypasses the
+Corollary 7.3 direct limit and uses exactly two applications of Theorem
+7.1, one relator's normal closure per prescribed element).  Verdict:
+**CONFIRMED**; full record in
+`docs/TORSION_FREE_NORMAL_GENERATION_HULL_QUOTIENT.md` §9.  One erratum
+found and fixed in that artifact (its "convention correction" attributed
+to FF's paper a `J = t_1 pi(S) t_1^{-1}` convention the paper does not
+have; FF's v1 already writes `J = t_1^{-1} pi(S) t_1`).  The
+establishment may now be treated as audited; the claim remains
+unformalized (the Lean boundary is `DefectRoutingData`, per item 2
+above).
