@@ -2116,31 +2116,22 @@ $j\colon M\to\Ucor((d_n))$ is an injective corona representation,
 then $j\circ\varphi$ is a corona representation of $G_1$, so
 $j(\varphi(R))=1$ and, by injectivity of $j$, $\varphi(R)=1$.
 
-(1) and (2).  Work on $Q=G_1/R$ from the outset.  If $1\ne q\in Q$ and
-$g\in G_1$ represents $q$, then $g\notin R$.  Hence some corona
-representation of $G_1$ detects $g$.  Every corona representation kills
-$R$ by definition, so this representation descends to one of $Q$ that
-detects $q$.  Thus the intersection of the kernels of all corona
-representations of the countable group $Q$ is trivial.
-
-Enumerate the nonidentity elements of $Q$ and choose a detecting corona
-representation for each.  Pass to coordinate unitary lifts, so that each
-detector becomes a sequential almost representation with its marked
-element separated from $1$.  Diagonalize at the coordinate level.  At
-stage $k$, select in each of the first $k$ detectors a coordinate at
-which multiplicativity holds within $1/k$ on the first $k$ group
-elements while the marked separation persists.  Take the block sum of
-the $k$ selected matrices.  Operator norms of block sums are maxima, so
-the resulting single sequence is an almost representation detecting
-every nonidentity element.  Its class in the unitary-sequence quotient,
+(1) and (2).  Work on $Q=G_1/R$.  Every corona representation of
+$G_1$ kills $R$, and each $g\notin R$ is detected by one, which
+descends; so every nonidentity element of $Q$ is detected by a corona
+representation of $Q$.  Enumerate the nonidentity elements and their
+detectors, pass to coordinate unitary lifts, and diagonalize: at stage
+$k$, select in each of the first $k$ detectors a coordinate at which
+multiplicativity holds within $1/k$ on the first $k$ group elements
+while the marked separation persists, and take the block sum.  Block
+operator norms are maxima, so the resulting sequence is an almost
+representation detecting every nonidentity element; its class,
 composed with the polar-correction isomorphism of
 Lemma~\ref{lem:unitarycorona}, is a faithful corona representation of
-$Q$.  This
-proves (2).  Composing it with $G_1\twoheadrightarrow Q$ gives a single
-corona representation of $G_1$ with kernel exactly $R$, proving (1).
-For the final equivalence:
-if $G_1$ is MF, an injective corona representation forces
-$R=\{1\}$; if $R=\{1\}$, then (2) says $G_1=G_1/R$ is MF.
+$Q$.  This proves (2), and composing with
+$G_1\twoheadrightarrow Q$ proves (1).  Finally, if $G_1$ is MF then an
+injective corona representation forces $R=\{1\}$; if $R=\{1\}$ then
+(2) says $G_1$ is MF.
 \end{proof}
 
 \begin{corollary}[exact radical from a candidate quotient]\label{cor:exactradical}
@@ -2206,7 +2197,8 @@ $q\colon G_1\to G_1/N$, put
  =q^{-1}\bigl(\operatorname{Rad}_{\mathrm{MF}}(G_1/N)\bigr).
 \]
 An element belongs to $\operatorname{cl}_{\mathrm{MF}}(N)$ exactly when
-every corona representation of $G_1$ that kills $N$ kills it.
+every corona representation of $G_1$ that maps $N$ to the identity maps
+it to the identity.
 \leanverified{Sofic/MFRelationClosure}{GroupApproximation.mem_actualCoronaMFClosure_iff}
 The operation $N\mapsto\operatorname{cl}_{\mathrm{MF}}(N)$ is extensive,
 monotone, and idempotent on normal subgroups;
@@ -2302,17 +2294,12 @@ Every countable residually finite group is MF.
 \end{lemma}
 
 \begin{proof}
-Residual finiteness makes the group LEF.  For each finite test set
-$F$, choose a finite quotient injective on $F$.  Composing with its
-left regular permutation action gives an \emph{exact} finite local
-model: every product of elements of $F$ is represented with zero
-multiplicative defect.  Distinct elements of $F$ map to distinct permutations; at a
-point where the two permutations disagree, the difference of the two
-permutation matrices has a column of norm at least $1$, so the model
-separates distinct elements of $F$ by operator norm at least $1$.  These
-exact permutation models are operator-norm local models with separation
-constant $1$, so the group is MF by the local-to-corona direction of
-Proposition~\ref{prop:mf-equivalences}.
+For a finite test set $F$, a finite quotient injective on $F$,
+composed with its left regular permutation action, is an exact local
+model; distinct permutations differ in some column of a permutation
+matrix, giving operator-norm separation at least $1$.  The
+local-to-corona direction of Proposition~\ref{prop:mf-equivalences}
+concludes.
 \end{proof}
 
 \begin{lemma}[locally finite groups]\label{lem:lfmf}
@@ -2321,14 +2308,10 @@ Every countable locally finite group is MF.
 \end{lemma}
 
 \begin{proof}
-Given a finite test set $F$, local finiteness supplies one
-finite subgroup $K$ containing it.  Choose any map from the group to
-$K$ that restricts to the identity on the test set.  Applying the left
-regular permutation action of $K$ to it gives an exact finite local
-model on $F$, separating distinct elements by operator norm at least
-$1$ exactly as in Lemma~\ref{lem:rfmf}.  Thus the group is LEF, and it
-is MF by the local-to-corona direction of
-Proposition~\ref{prop:mf-equivalences}.
+A finite test set lies in a finite subgroup $K$; the left regular
+permutation action of $K$ is an exact local model separating as in
+Lemma~\ref{lem:rfmf}, and Proposition~\ref{prop:mf-equivalences}
+concludes.
 \end{proof}
 
 \begin{corollary}[quotients]\label{cor:quotclosure}
@@ -2345,6 +2328,49 @@ displayed presentation.  The group \(F_8\) is residually finite, hence MF by
 Lemma~\ref{lem:rfmf}.  Theorem~\ref{thm:A} shows that \(E\) is not MF.
 \end{proof}
 
+
+\subsection{Matricial stability and the radical}\label{subsec:stability}
+
+Call a countable group $G$ \emph{point-norm matricially stable} if for
+every operator-norm almost representation $(V_n)$ of $G$ there are
+genuine finite-dimensional unitary representations $\pi_n$ on the same
+models with $\opnorm{V_n(g)-\pi_n(g)}\to0$ for every $g\in G$.
+Write $\operatorname{Rad}_{\mathrm{fd}}(G)$ for the intersection of
+the kernels of all finite-dimensional unitary representations of $G$.
+
+\begin{proposition}[stability identifies the radicals]\label{prop:stabradical}
+For every countable group,
+$\operatorname{Rad}_{\mathrm{MF}}(G)\le\operatorname{Rad}_{\mathrm{fd}}(G)$.
+If $G$ is point-norm matricially stable, then
+$\operatorname{Rad}_{\mathrm{MF}}(G)=\operatorname{Rad}_{\mathrm{fd}}(G)$;
+in particular a stable group with
+$\operatorname{Rad}_{\mathrm{fd}}(G)\neq1$ is not MF.
+\leanverified{Sofic/MatricialStabilityRadical}{GroupApproximation.MatricialStabilityRadical.actualCoronaMFResidual_le_fdUnitaryResidual}
+\leanverified{Sofic/MatricialStabilityRadical}{GroupApproximation.MatricialStabilityRadical.actualCoronaMFResidual_eq_fdUnitaryResidual}
+\leanverified{Sofic/MatricialStabilityRadical}{GroupApproximation.MatricialStabilityRadical.not_isCDEOperatorMF_of_stable_of_fdResidual_ne_bot}
+\end{proposition}
+
+\begin{proof}
+The first inclusion needs no stability: a finite-dimensional unitary
+representation, repeated as a constant sequence, is a corona
+representation, and a constant sequence is null exactly when its value
+is the identity, so an MF-invisible element dies in every
+finite-dimensional representation.  For the converse inclusion, suppose
+a corona representation fails to kill some
+$x\in\operatorname{Rad}_{\mathrm{fd}}(G)$.  Extraction produces an
+operator-norm almost representation with a uniform separation between
+the images of $x$ and $1$ at every stage.  Stability replaces it,
+pointwise in operator norm, by genuine finite-dimensional
+representations; these kill $x$, and the triangle inequality through
+the genuine representation collapses the separation.
+\end{proof}
+
+For a stable group the corona representation theory is therefore
+computed by finite-dimensional representation theory alone.  Combined
+with the finite-dimensional blindness of Theorem~\ref{thm:B}, this is
+an obstruction axis with no torsion, no marked word, and no
+compression datum: any point-norm matricially stable group with a
+finite-dimensionally invisible element is non-MF.
 
 \subsection{Orbit collapse and defect saturation}\label{subsec:collapse}
 
@@ -2396,116 +2422,89 @@ $s\gamma s^{-1}\in L$ for every $\gamma\in L$.  Then
 \leanverified{Sofic/ManuscriptExactWrappers}{GroupApproximation.ManuscriptExactWrappers.manuscriptInvolutiveCollapse}
 \end{theorem}
 
-Unwinding Definition~\ref{def:radical}: every corona representation
-$\Theta$ of $H$ satisfies $\Theta([\gamma,k])=1$ for every witness $k$
-and every $\gamma\in L$ --- it identifies the entire $L$-conjugation
-orbit of each witness with the witness itself.
-
 \begin{proof}
-Fix a witness $k$ and suppose some corona representation separates a
-collapse commutator: coordinate unitary lifts
-(Lemma~\ref{lem:unitarycorona}) give an operator-norm almost
-representation $(U_{g,n})$ of $H$ on blocks $M_{d_n}(\C)$ and a
-$\gamma_0\in L$ with $\liminf_n\opnorm{U_{[\gamma_0,k],n}-1}>0$.  We
-derive a contradiction.
+Fix a witness $k$ and suppose coordinate unitary lifts
+(Lemma~\ref{lem:unitarycorona}) of some corona representation give an
+operator-norm almost representation $(U_{g,n})$ on blocks
+$M_{d_n}(\C)$ and a $\gamma_0\in L$ with
+$\liminf_n\opnorm{U_{[\gamma_0,k],n}-1}>0$.
 
 \emph{Step 1: exact commuting involution microstates.}  For
-$\gamma\in L$ the elements $v_\gamma=\gamma k\gamma^{-1}$ have
-asymptotically commuting images that asymptotically square to $1$, by
-(W1), (W3), and asymptotic multiplicativity.  Correct them: for a
-unitary $u$, the spectral sign of its Hermitian part is an exact
-self-adjoint involution at operator distance at most
-$\opnorm{u^2-1}$ from $u$.  Block compression along the finite
-commutative corner structure generated by previously corrected
-microstates preserves exact commutation.  Inductively over an
-enumeration of $L$ this produces exact, pairwise-commuting,
-self-adjoint involutions $V_n(\gamma)$ with
-$\opnorm{V_n(\gamma)-U_{v_\gamma,n}}\to0$, covariant in operator
-norm: $\opnorm{U_{g,n}V_n(\gamma)U_{g,n}^{*}-V_n(g\gamma)}\to0$ for
-each fixed $g\in L$, where $g\gamma$ abbreviates the orbit index of
-$g v_\gamma g^{-1}$.
+$\gamma\in L$ put $v_\gamma=\gamma k\gamma^{-1}$; by (W1), (W3), and
+asymptotic multiplicativity their images asymptotically commute and
+square to $1$.  The spectral sign of the Hermitian part of a unitary
+$u$ is an exact self-adjoint involution at operator distance at most
+$\opnorm{u^2-1}$ from $u$, and block compression along the finite
+commutative corner structure of the previously corrected microstates
+preserves exact commutation; induction over an enumeration of $L$
+yields exact pairwise-commuting self-adjoint involutions $V_n(\gamma)$
+with $\opnorm{V_n(\gamma)-U_{v_\gamma,n}}\to0$ and
+$\opnorm{U_{g,n}V_n(\gamma)U_{g,n}^{*}-V_n(g\gamma)}\to0$ for each
+fixed $g\in L$, where $g\gamma$ denotes the orbit index of
+$gv_\gamma g^{-1}$.
 
 \emph{Step 2: the rank displacement metric.}  For commuting exact
-involutions $u,w$ the displacement $T=u-w$ is self-adjoint and
-satisfies $T^3=4T$, so $T^2/4$ is an orthogonal projection and
-\[
-  \operatorname{Tr}\,|u-w|^2\;=\;4\,\operatorname{rank}\bigl((u-w)^2/4\bigr):
-\]
-unnormalized Frobenius mass and rank are the same invariant on this
-locus.  Set $d_n(\gamma,\mu)=\operatorname{rank}(V_n(\gamma)-V_n(\mu))$,
-an integer-valued pseudometric.  Orthogonal projections at operator
-distance less than $1$ have equal rank, so the covariance of Step 1
-makes the displacement eventually translation invariant:
-$d_n(g\gamma,g\mu)=d_n(\gamma,\mu)$ for all large $n$, for each fixed
-triple $(g,\gamma,\mu)$.
+involutions $u,w$ the self-adjoint displacement $T=u-w$ satisfies
+$T^3=4T$, so $T^2/4$ is an orthogonal projection and
+$\operatorname{Tr}|u-w|^2=4\operatorname{rank}((u-w)^2/4)$.  Hence
+$d_n(\gamma,\mu)=\operatorname{rank}(V_n(\gamma)-V_n(\mu))$ is an
+integer-valued pseudometric; projections at operator distance below
+$1$ have equal rank, so the covariance of Step 1 makes it eventually
+translation invariant: $d_n(g\gamma,g\mu)=d_n(\gamma,\mu)$ for all
+large $n$, for each fixed triple.
 
 \emph{Step 3: generator normalization.}  Property~\textup{(T)} makes
-$L$ finitely generated; fix a finite symmetric generating set $S$
-forming a Kazhdan pair $(S,\kappa)$, and put
-$k_n=\sum_{a\in S}d_n(1,a)$.  Translation invariance and the triangle
-inequality for the rank pseudometric give
-$d_n(1,\gamma)\le|\gamma|_S\,k_n$ eventually, where $|\cdot|_S$ is the
-word length.  If $k_n=0$ along a subsequence, all generator
-involutions coincide there.  By invariance the whole orbit then
-collapses to a single exact involution, so
-$\opnorm{U_{[\gamma_0,k],n}-1}\to0$ along that subsequence, against
-the separation.
-Hence $k_n\ge1$ for all large $n$.
+$L$ finitely generated; fix a Kazhdan pair $(S,\kappa)$ with $S$
+finite symmetric and put $k_n=\sum_{a\in S}d_n(1,a)$.  Translation
+invariance and the triangle inequality give
+$d_n(1,\gamma)\le|\gamma|_S\,k_n$ eventually, for the word length
+$|\cdot|_S$.  If $k_n=0$ along a subsequence, the whole orbit
+collapses there to a single exact involution and
+$\opnorm{U_{[\gamma_0,k],n}-1}\to0$, against the separation; so
+$k_n\ge1$ for all large $n$.
 
-\emph{Step 4: the displacement almost-cocycle.}  Flatten each block to
-the Euclidean space of matrices and set
+\emph{Step 4: the displacement almost-cocycle.}  In the Euclidean
+space of matrices set
 $b_n(\gamma)=k_n^{-1/2}\bigl(V_n(\gamma)-V_n(1)\bigr)$.  By Steps 2
-and 3, $\|b_n(\gamma)\|_{\mathrm{F}}^2\le4\,|\gamma|_S$ at every large
-stage, while the generators carry total mass exactly
+and 3, $\|b_n(\gamma)\|_{\mathrm{F}}^2\le4\,|\gamma|_S$ at every
+large stage, with total generator mass
 \begin{equation}\label{eq:generator-mass}
   \sum_{a\in S}\|b_n(a)\|_{\mathrm{F}}^2=4
 \end{equation}
-whenever $k_n\ge1$.  Conjugation
-$x\mapsto U_{g,n}\,x\,U_{g,n}^{*}$ is a Frobenius isometry, and $b_n$
-satisfies the cocycle identity
-$b_n(g\gamma)\approx b_n(g)+U_{g,n}b_n(\gamma)U_{g,n}^{*}$ up to a
-defect that is a sum of three covariance errors, each of rank
-$O(k_n)$ and of vanishing operator norm.  Since
+whenever $k_n\ge1$.  Conjugation by $U_{g,n}$ is a Frobenius isometry
+and $b_n(g\gamma)\approx b_n(g)+U_{g,n}b_n(\gamma)U_{g,n}^{*}$ up to a
+sum of three covariance errors of rank $O(k_n)$ and vanishing operator
+norm; since
 $\operatorname{Tr}|D|^2\le\operatorname{rank}(D)\cdot\opnorm{D}^2$,
-the defect mass vanishes at the scale $k_n$.  Every estimate below
-measures only differences of the involutions, never the involutions
-themselves.
+the defect mass vanishes at the scale $k_n$.  All estimates below
+concern only differences of the involutions.
 
 \emph{Step 5: bounded profile and an approximate primitive.}  The
-limiting profile
-$\gamma\mapsto\limsup_n\|b_n(\gamma)\|_{\mathrm F}^2$ is finite on
-generators by \eqref{eq:generator-mass}.  The Gaussian positive-definite functions
-$e^{-t\|\cdot\|^2}$ of the almost-cocycle are almost invariant under
-the twisted action, and the spectral gap of the Kazhdan pair
-$(S,\kappa)$ bounds the whole profile by its generator values ---
-Delorme's argument run directly at the level of limiting seminorms.
-With the profile bounded, a circumcenter of the displacement orbit,
-taken at the level of bounded sequences, produces one bounded
-sequence $(w_n)$ that is an approximate primitive:
-$b_n(a)\approx w_n-U_{a,n}w_nU_{a,n}^{*}$ in limiting normalized
-mass, simultaneously for any prescribed finite set of movers.
+Gaussians $e^{-t\|\cdot\|^2}$ of the almost-cocycle are almost
+invariant under the twisted action, and the spectral gap of
+$(S,\kappa)$ bounds the limiting profile
+$\gamma\mapsto\limsup_n\|b_n(\gamma)\|_{\mathrm F}^2$ by its
+generator values \eqref{eq:generator-mass} --- Delorme's argument at
+the level of limiting seminorms.  A circumcenter of the displacement
+orbit, taken at the level of bounded sequences, then produces one
+bounded sequence $(w_n)$ with
+$b_n(a)\approx w_n-U_{a,n}w_nU_{a,n}^{*}$ in limiting normalized mass,
+simultaneously for any prescribed finite set of movers.
 
 \emph{Step 6: transport through the compressor.}  By (W2) the
-compressed copy $sLs^{-1}$ centralizes $k$, so the corrected
-microstates are eventually constant along it and the displacement
-vanishes on compressed elements.  Including the compressed generators
-$sas^{-1}$ among the prescribed movers of Step 5 therefore makes the
-primitive almost fixed by them.  The pulled-back sequence
-$u_n=U_{s,n}^{*}w_nU_{s,n}$ is then almost fixed by every generator
-$a\in S$, because microstates of $as^{-1}$ and $s^{-1}(sas^{-1})$
-agree asymptotically.  Now transport forward, exactly as in
-Theorem~\ref{thm:kazhdan-transport}: compress $u_n$ to the
-almost-fixed spectral subspace of the averaged adjoint action of $S$
-and apply the one-sided compression $P\le VPV^{*}$ at the rescaled
-mass.  The sequence $U_{s,n}\,u_n\,U_{s,n}^{*}$ returns $w_n$ up to
-vanishing mass and is again almost fixed by every $a\in S$.  Hence
-$b_n(a)\approx w_n-U_{a,n}w_nU_{a,n}^{*}$ has small mass for every
-$a\in S$ at a common large stage, contradicting
-\eqref{eq:generator-mass}.
-
-Thus no corona representation separates any collapse commutator, and
-the kernel of a corona representation, being normal, contains all of
-$D_{\mathrm{coll}}(L,s)$.
+displacement vanishes on compressed elements, so including the
+compressed generators $sas^{-1}$ among the movers makes the primitive
+almost fixed by them; hence $u_n=U_{s,n}^{*}w_nU_{s,n}$ is almost
+fixed by every $a\in S$, because microstates of $as^{-1}$ and
+$s^{-1}(sas^{-1})$ agree asymptotically.  Transporting forward as in
+Theorem~\ref{thm:kazhdan-transport} --- compression to the
+almost-fixed spectral subspace of the averaged adjoint action of $S$,
+then the one-sided estimate $P\le VPV^{*}$ at the rescaled mass ---
+returns $w_n$ up to vanishing mass, again almost fixed by every
+$a\in S$.  Then $b_n(a)\approx w_n-U_{a,n}w_nU_{a,n}^{*}$ has small
+mass for every $a\in S$ at a common large stage, contradicting
+\eqref{eq:generator-mass}.  Normality of corona kernels extends the
+conclusion from the commutators to all of $D_{\mathrm{coll}}(L,s)$.
 \end{proof}
 
 \begin{remark}[the quantitative form]\label{rem:collapse-finite-stage}
@@ -2520,10 +2519,9 @@ identity of Step 2.  Anticommuting Clifford coordinates have no joint
 spectral labels; their collapse mechanism is the central sign of
 Theorem~\ref{thm:A}.  At the corona level,
 Theorem~\ref{thm:projection-collapse} below removes the restriction to
-involutions: the spectral projections of a finite-order witness satisfy
-its hypotheses, and their collapse forces the collapse of the witness.
-The spectral-projection reduction is elementary functional calculus and
-is outside the formal development.
+involutions, and Theorem~\ref{thm:torsion-collapse} carries the
+collapse to witnesses of every finite order through their discrete
+Fourier idempotents.
 \end{remark}
 
 The witness of Theorem~\ref{thm:collapse} is a group element.  The same
@@ -2561,6 +2559,82 @@ an arbitrary element of the corona.  The relative commutant
 $\Theta(sLs^{-1})'\cap\mathcal Q$ therefore cannot exceed
 $\Theta(L)'\cap\mathcal Q$ by a projection with commuting
 $L$-orbit.
+
+Projections in hand, functional calculus removes the involutivity of
+the witness altogether.
+
+\begin{theorem}[torsion collapse]\label{thm:torsion-collapse}
+Let $H$ be countable, let $L\le H$ have property~\textup{(T)}, let
+$s\in H$ satisfy $s\gamma s^{-1}\in L$ for every $\gamma\in L$, and
+let $k\in H$ have finite order.  If the compressed copy $sLs^{-1}$
+centralizes $k$ and the conjugates $\gamma k\gamma^{-1}$,
+$\gamma\in L$, commute pairwise, then every commutator $[\gamma,k]$,
+$\gamma\in L$, is invisible in every corona representation of $H$; the
+normal closure of all such commutators, over all finite-order witnesses
+for $(L,s)$, lies in $\operatorname{Rad}_{\mathrm{MF}}(H)$, with
+equality whenever the corresponding quotient of $H$ is MF.
+\leanverified{Sofic/TorsionSpectralCollapse}{GroupApproximation.TorsionSpectralCollapse.actualCoronaMFInvisible_of_torsionWitness}
+\leanverified{Sofic/TorsionSpectralCollapse}{GroupApproximation.TorsionSpectralCollapse.torsionCollapseDefect_le_actualCoronaMFResidual_of_kazhdan}
+\leanverified{Sofic/TorsionSpectralCollapse}{GroupApproximation.TorsionSpectralCollapse.actualCoronaMFResidual_eq_torsionCollapseDefect_of_kazhdan}
+\end{theorem}
+
+\begin{proof}
+Let $\Theta$ be a corona representation, $m$ the order of $k$, and
+$u=\Theta(k)$, a unitary with $u^{m}=1$.  Its discrete Fourier
+idempotents
+$p_j=m^{-1}\sum_{t\in\mathbf{Z}/m}\zeta^{-jt}u^{t}$, for
+$\zeta=e^{2\pi i/m}$ and $j\in\mathbf{Z}/m$, are self-adjoint
+idempotents of the corona.  Each $p_j$ is a polynomial in $u$, so
+whatever commutes with $u$ commutes with every $p_j$: the represented
+compressed copy centralizes each $p_j$, and the
+$\Theta(L)$-conjugates of each $p_j$ commute pairwise because the
+conjugated witnesses do.  Theorem~\ref{thm:projection-collapse}
+therefore makes every $p_j$ commute with $\Theta(L)$, and Fourier
+reconstruction expresses $u$ as a $\zeta$-weighted sum of the $p_j$,
+so $u$ commutes with $\Theta(L)$ and
+$\Theta([\gamma,k])=1$ for every $\gamma\in L$.
+\end{proof}
+
+The involutive collapse has a second structural consequence: killing
+the central sign of the Kazhdan--Clifford group of
+Theorem~\ref{thm:A} makes all lamps commute, and the moved root lamp
+becomes an involutive witness outright.
+
+\begin{theorem}[the commuting-lamp quotient]\label{thm:commutinglamp}
+The quotient $W/\langle\zeta\rangle$ of the Kazhdan--Clifford group
+by its central sign is not MF.  More precisely, the image of the
+commutator $[v_1,tct^{-1}]$, the inverse of the marked commutator
+$u$, in $W/\langle\zeta\rangle$ is nontrivial and lies in
+$\operatorname{Rad}_{\mathrm{MF}}(W/\langle\zeta\rangle)$; the
+same holds with $W$ replaced by the ambient affine--Clifford group of
+any injective endomorphism $\alpha$ of a countable
+property-\textup{(T)} group and any base element outside the image of
+$\alpha$.
+\leanverified{Sofic/CommutingLampCollapse}{GroupApproximation.CommutingLampCollapse.commutingLampQuotient_collapse}
+\leanverified{Sofic/CommutingLampCollapse}{GroupApproximation.CommutingLampCollapse.literalCommutingLampQuotient_collapse}
+\leanverified{Sofic/CommutingLampCollapse}{GroupApproximation.CommutingLampCollapse.literalCommutingLampQuotient_not_isCDEOperatorMF}
+\end{theorem}
+
+\begin{proof}
+Write $q\colon W\to W/\langle\zeta\rangle$ and
+$k=q(tct^{-1})$, the moved root lamp.  Since $\zeta$ is killed, any
+two lamps commute in the quotient, so the $q(L)$-conjugation orbit of
+$k$ commutes pairwise, where $L=q(\bar\Gamma)$ is the image of the
+base copy; $k$ remains an involution, and the compressed copy
+$q(t)Lq(t)^{-1}$ centralizes $k$ because the compressed base fixes the
+moved site.  Property~\textup{(T)} passes to the image $L$, so
+Theorem~\ref{thm:collapse} places every commutator $[q(\bar
+v_1),k]$ in the MF radical of the quotient.  Nontriviality survives
+the sign quotient: in the signed finite-support model of the lamp
+kernel, the commutator is the product of the two distinct lamp basis
+elements at $\tau o$ and $j(\bar v_1)\tau o$, whose configuration
+coordinate is nonzero, while every element of
+$\langle\zeta\rangle$ has configuration coordinate zero.
+\end{proof}
+
+Every route to an MF model of $W$ through the commuting-lamp quotient
+is thereby closed: the obstruction of Theorem~\ref{thm:A} does not
+live in the sign alone.
 
 \begin{corollary}[collapse computes the radical]\label{cor:collapsequot}
 In the setting of Theorem~\ref{thm:collapse}, write
@@ -3044,16 +3118,21 @@ construction should produce such a group.
 \begin{enumerate}
 \item Is $E/\langle w\rangle$ MF?  By
 Corollary~\ref{cor:exactradical}, a positive answer would compute
-$\operatorname{Rad}_{\mathrm{MF}}(E)=\{1,w\}$ exactly.  There is a concrete
-intermediate test.  Theorem~\ref{thm:B} sends
-$u=[tct^{-1},v_1]$ to the identity in every finite-dimensional
-representation, whereas the image of $u$ in $W/\langle\zeta\rangle$ is
-nontrivial: it is the product of the two distinct lamp basis elements
-at $\tau o$ and $j(\bar v_1)\tau o$.  Thus proving
-$W/\langle\zeta\rangle$ MF would already
-show $u\notin\operatorname{Rad}_{\mathrm{MF}}(E)$; by
-Theorem~\ref{thm:B}, no such detecting model can factor through
-finite quotients or exact finite-dimensional representations.
+$\operatorname{Rad}_{\mathrm{MF}}(E)=\{1,w\}$ exactly.  The natural
+intermediate test is now closed: by
+Theorem~\ref{thm:commutinglamp}, the commuting-lamp quotient
+$W/\langle\zeta\rangle$ is itself not MF, and the image of $u$
+there is nontrivial inside its MF radical.  So no MF model of
+$W/\langle\zeta\rangle$ exists that could certify
+$u\notin\operatorname{Rad}_{\mathrm{MF}}(E)$: a detecting model
+must separate $u$ from the identity while surviving both the sign
+collapse of Theorem~\ref{thm:A} and the commuting-orbit collapse,
+and by Theorem~\ref{thm:B} it can factor through no finite quotient
+or exact finite-dimensional representation.  The same collapse,
+applied to the level-one block structure of $E/\langle w\rangle$,
+yields a negative answer conditional on an amalgam decomposition of
+the lamp kernel; that decomposition is not part of the formal
+development, and within it the question remains open.
 \item Is there a torsion-free finitely presented non-MF group?  The
 analytic obstruction no longer requires torsion
 (Theorem~\ref{thm:normal-kazhdan}); the remaining input is

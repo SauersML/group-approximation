@@ -273,6 +273,8 @@ import GroupApproximation.Sofic.ProjectionCompressionCollapse
 import GroupApproximation.Sofic.TorsionSpectralCollapse
 import GroupApproximation.Sofic.MatricialStabilityRadical
 import GroupApproximation.Sofic.CommutingLampCollapse
+import GroupApproximation.Monsters.LiteralBaseCompleteness
+import GroupApproximation.Sofic.LEFMarkedCompression
 import GroupApproximation.Sofic.FullMFRadicalEndpoint
 import GroupApproximation.Sofic.HereditaryNonsoficDescent
 import GroupApproximation.Sofic.SmallCancellationRouter

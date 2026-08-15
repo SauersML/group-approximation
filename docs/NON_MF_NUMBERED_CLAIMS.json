@@ -737,7 +737,7 @@
       "id": "prop:mfclosure",
       "environment": "proposition",
       "title": "the MF closure of relations",
-      "statement_sha256": "2e90c058d40129e6054446b2e8fd3448f2232a8f165c90ef6d07c4e16d719572",
+      "statement_sha256": "ba7ad29b7f9bab0d8439bff74be9cd6b3a54f497b70572d48b2bb0eda131cbd6",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [],
@@ -885,6 +885,38 @@
       ]
     },
     {
+      "id": "prop:stabradical",
+      "environment": "proposition",
+      "title": "stability identifies the radicals",
+      "statement_sha256": "781399993a3238e5b9b40ea20c2088e92252aa3510c76c4074f67d5407b8bfde",
+      "status": "exact",
+      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
+      "dependencies": [],
+      "extra_assumptions": [],
+      "external_inputs": [],
+      "coverage_gap": "",
+      "lean": [
+        {
+          "role": "exact",
+          "module": "Sofic/MatricialStabilityRadical",
+          "declaration": "GroupApproximation.MatricialStabilityRadical.actualCoronaMFResidual_le_fdUnitaryResidual",
+          "covers": "a printed conclusion of the proposition"
+        },
+        {
+          "role": "exact",
+          "module": "Sofic/MatricialStabilityRadical",
+          "declaration": "GroupApproximation.MatricialStabilityRadical.actualCoronaMFResidual_eq_fdUnitaryResidual",
+          "covers": "the complete printed proposition"
+        },
+        {
+          "role": "exact",
+          "module": "Sofic/MatricialStabilityRadical",
+          "declaration": "GroupApproximation.MatricialStabilityRadical.not_isCDEOperatorMF_of_stable_of_fdResidual_ne_bot",
+          "covers": "a printed conclusion of the proposition"
+        }
+      ]
+    },
+    {
       "id": "def:invwitness",
       "environment": "definition",
       "title": "involutive compression witness",
@@ -946,6 +978,70 @@
           "module": "Sofic/ProjectionCompressionCollapse",
           "declaration": "GroupApproximation.ProjectionCompressionCollapse.corona_projection_collapse",
           "covers": "the complete printed proposition"
+        }
+      ]
+    },
+    {
+      "id": "thm:torsion-collapse",
+      "environment": "theorem",
+      "title": "torsion collapse",
+      "statement_sha256": "7b1ed3e458039374e9e1772fcdb97d145a1920f8019d67182fe0b2e033c1148e",
+      "status": "exact",
+      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
+      "dependencies": [],
+      "extra_assumptions": [],
+      "external_inputs": [],
+      "coverage_gap": "",
+      "lean": [
+        {
+          "role": "exact",
+          "module": "Sofic/TorsionSpectralCollapse",
+          "declaration": "GroupApproximation.TorsionSpectralCollapse.actualCoronaMFInvisible_of_torsionWitness",
+          "covers": "the complete printed proposition"
+        },
+        {
+          "role": "exact",
+          "module": "Sofic/TorsionSpectralCollapse",
+          "declaration": "GroupApproximation.TorsionSpectralCollapse.torsionCollapseDefect_le_actualCoronaMFResidual_of_kazhdan",
+          "covers": "a printed conclusion of the proposition"
+        },
+        {
+          "role": "exact",
+          "module": "Sofic/TorsionSpectralCollapse",
+          "declaration": "GroupApproximation.TorsionSpectralCollapse.actualCoronaMFResidual_eq_torsionCollapseDefect_of_kazhdan",
+          "covers": "a printed conclusion of the proposition"
+        }
+      ]
+    },
+    {
+      "id": "thm:commutinglamp",
+      "environment": "theorem",
+      "title": "the commuting-lamp quotient",
+      "statement_sha256": "0b1bcdb4d72abf394f1d978ab11c1e181d8e0c634e7a0fdbee8e09636c7a961b",
+      "status": "exact",
+      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
+      "dependencies": [],
+      "extra_assumptions": [],
+      "external_inputs": [],
+      "coverage_gap": "",
+      "lean": [
+        {
+          "role": "exact",
+          "module": "Sofic/CommutingLampCollapse",
+          "declaration": "GroupApproximation.CommutingLampCollapse.commutingLampQuotient_collapse",
+          "covers": "a printed conclusion of the proposition"
+        },
+        {
+          "role": "exact",
+          "module": "Sofic/CommutingLampCollapse",
+          "declaration": "GroupApproximation.CommutingLampCollapse.literalCommutingLampQuotient_collapse",
+          "covers": "the complete printed proposition"
+        },
+        {
+          "role": "exact",
+          "module": "Sofic/CommutingLampCollapse",
+          "declaration": "GroupApproximation.CommutingLampCollapse.literalCommutingLampQuotient_not_isCDEOperatorMF",
+          "covers": "a printed conclusion of the proposition"
         }
       ]
     },
