@@ -28,6 +28,8 @@ computable by finite-dimensional representation theory alone.
 namespace GroupApproximation
 namespace MatricialStabilityRadical
 
+open scoped Matrix.Norms.L2Operator
+
 universe u
 
 variable {G : Type u} [Group G]
@@ -60,7 +62,7 @@ def constCoronaRep (Y : FiniteModel)
     (phi : G →* Matrix.unitaryGroup Y ℂ) :
     G →* NormMatrixCoronaUnitary (fun _ : ℕ ↦ Y) :=
   (QuotientGroup.mk' (nullCofiniteOpSubgroup (fun _ : ℕ ↦ Y))).comp
-    (Pi.monoidHom fun _ : ℕ ↦ phi)
+    (MonoidHom.pi fun _ : ℕ ↦ phi)
 
 /-- **No stability needed**: the MF radical lies in every
 finite-dimensional kernel. -/
@@ -92,7 +94,7 @@ theorem actualCoronaMFResidual_le_fdUnitaryResidual :
       by_contra hne
       have h0 : (0 : ℝ) ≤ opLength Y (phi x) := by
         unfold opLength
-        exact norm_nonneg _
+        apply norm_nonneg
       have hpos : 0 < opLength Y (phi x) := by
         rcases lt_or_eq_of_le h0 with h | h
         · exact h

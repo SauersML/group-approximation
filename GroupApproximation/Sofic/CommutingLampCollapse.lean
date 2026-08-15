@@ -28,22 +28,38 @@ resolves the commuting-lamp fork negatively: the witness quotient
 namespace GroupApproximation
 namespace CommutingLampCollapse
 
-open MarkedCompression CliffordLamp SemidirectProduct
+open MarkedCompression CliffordLamp SemidirectProduct InvolutionCollapseEndpoint
+open scoped commutatorElement
 
 /-! ## Order-two powers -/
 
 theorem zpow_mem_pair {H : Type*} [Group H] {s : H} (hs : s ^ 2 = 1)
     (n : ℤ) : s ^ n = 1 ∨ s ^ n = s := by
-  have h2 : s ^ (2 : ℤ) = 1 := by
-    rw [show (2 : ℤ) = ((2 : ℕ) : ℤ) from rfl, zpow_natCast, hs]
-  have hdecomp : s ^ n = s ^ (n % 2) := by
-    conv_lhs => rw [← Int.emod_add_ediv n 2]
-    rw [zpow_add, zpow_mul, h2, one_zpow, mul_one]
-  rcases Int.emod_two_eq_zero_or_one n with h | h
-  · left
-    rw [hdecomp, h, zpow_zero]
-  · right
-    rw [hdecomp, h, zpow_one]
+  have hss : s * s = 1 := by
+    rw [← pow_two]
+    exact hs
+  have hinv : s⁻¹ = s := inv_eq_of_mul_eq_one_right hss
+  have hnat : ∀ k : ℕ, s ^ k = 1 ∨ s ^ k = s := by
+    intro k
+    induction k with
+    | zero =>
+      left
+      rw [pow_zero]
+    | succ i ih =>
+      rcases ih with h | h
+      · right
+        rw [pow_succ, h, one_mul]
+      · left
+        rw [pow_succ, h, hss]
+  obtain ⟨k, rfl | rfl⟩ := Int.eq_nat_or_neg n
+  · rw [zpow_natCast]
+    exact hnat k
+  · rw [zpow_neg, zpow_natCast]
+    rcases hnat k with h | h
+    · left
+      rw [h, inv_one]
+    · right
+      rw [h, hinv]
 
 /-! ## The lamp-product discriminator -/
 
@@ -58,9 +74,9 @@ theorem lamp_mul_lamp_inv_ne {X : Type*} {x y : X} (h : x ≠ y) :
   have hne0 : (Finsupp.single x (1 : ZMod 2) + Finsupp.single y 1) ≠ 0 := by
     intro hc
     have h1 := congrArg (fun f : X →₀ ZMod 2 ↦ f x) hc
-    simp only [Finsupp.add_apply, Finsupp.single_eq_same,
-      Finsupp.single_eq_of_ne (Ne.symm h), Finsupp.coe_zero,
-      Pi.zero_apply, add_zero] at h1
+    simp only [Finsupp.add_apply, Finsupp.single_eq_same, Finsupp.coe_zero,
+      Pi.zero_apply] at h1
+    rw [Finsupp.single_eq_of_ne (Ne.symm h), add_zero] at h1
     exact one_ne_zero h1
   constructor
   · intro hc
@@ -84,6 +100,13 @@ instance signZpowers_normal {Γ : Type} [Group Γ] {α : Γ →* Γ}
     rw [← hc, mul_assoc, mul_inv_cancel, mul_one]
   rw [h1]
   exact Subgroup.zpow_mem _ (Subgroup.mem_zpowers _) n
+
+/-- Quotients of countable groups are countable; mirrored locally from
+`Sofic.ActualCoronaMFRadical`, where the same instance is `local`. -/
+local instance quotientCountable {E : Type} [Group E] (N : Subgroup E)
+    [hN : N.Normal] [Countable E] : Countable (E ⧸ N) :=
+  Function.Surjective.countable
+    (@QuotientGroup.mk'_surjective E _ N hN)
 
 variable {Γ : Type} [Group Γ] (α : Γ →* Γ) (hα : Function.Injective α)
 
@@ -275,7 +298,7 @@ open LiteralNonMFLinearWitness LiteralBaseAffineQuotient
 presented base's certificate through the affine quotient. -/
 theorem gammaBar_hasKazhdanPropertyT : HasKazhdanPropertyT.{0, 0} gammaBar :=
   HasKazhdanPropertyT.of_surjective affineQuotient affineQuotient_surjective
-    manuscriptBaseHasKazhdanPropertyT.1
+    (manuscriptBaseHasKazhdanPropertyT.{0}).1
 
 instance witnessGroup_countable :
     Countable (Ambient alpha conjD_injective) :=
