@@ -210,3 +210,46 @@ end
 
 end LiteralBaseP13RotationQuotient
 end GroupApproximation
+
+namespace GroupApproximation
+namespace LiteralBaseP13RotationQuotient
+
+open PresentedGroupRelatorReplay LiteralBaseP13RotationReplay
+open LiteralBaseRotationRetract LiteralP13Presentation
+
+noncomputable section
+
+/-! ## Public word forms of the six letter images
+
+The private short-word data above is re-exposed with explicit string
+literals, so that downstream modules can evaluate the images without
+access to the private definitions. -/
+
+theorem p13ToRotation_E12_word :
+    p13ToRotation E12 = rotationWord (word (rotationSignedWord "YxzYX")) :=
+  p13ToRotation_generator 0
+
+theorem p13ToRotation_E13_word :
+    p13ToRotation E13 = rotationWord (word (rotationSignedWord "xzYXY")) :=
+  p13ToRotation_generator 1
+
+theorem p13ToRotation_E21_word :
+    p13ToRotation E21 = rotationWord (word (rotationSignedWord "Yxyxz")) :=
+  p13ToRotation_generator 2
+
+theorem p13ToRotation_E23_word :
+    p13ToRotation E23 = rotationWord (word (rotationSignedWord "XYxzY")) :=
+  p13ToRotation_generator 3
+
+theorem p13ToRotation_E31_word :
+    p13ToRotation E31 = rotationWord (word (rotationSignedWord "xYxzYx")) :=
+  p13ToRotation_generator 4
+
+theorem p13ToRotation_E32_word :
+    p13ToRotation E32 = rotationWord (word (rotationSignedWord "XzYXYX")) :=
+  p13ToRotation_generator 5
+
+end
+
+end LiteralBaseP13RotationQuotient
+end GroupApproximation
