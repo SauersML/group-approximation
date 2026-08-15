@@ -33,6 +33,7 @@ import GroupApproximation.Monsters.LiteralCyclicRelatorCount
 import GroupApproximation.Monsters.LiteralP13MatrixModel
 import GroupApproximation.Monsters.SL3ElementaryGeneration
 import GroupApproximation.Monsters.P13SteinbergCalculus
+import GroupApproximation.Monsters.P13UnipotentInjectivity
 import GroupApproximation.Monsters.CyclicBaseLEFObstruction
 import GroupApproximation.Sofic.ScalingFamilyPresentation
 import GroupApproximation.Sofic.ScalingFamilyRelatorCount
