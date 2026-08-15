@@ -95,19 +95,6 @@ def quasiRegularUnitaryHom :
   map_one' := Subtype.ext (quasiRegularOperator_one G K)
   map_mul' g h := Subtype.ext (quasiRegularOperator_mul G K g h).symm
 
-/-- The point mass at the base coset. -/
-def baseVector : CosetHilbert G K := lp.single 2 ((1 : G) : G ⧸ K) 1
-
-theorem baseVector_apply_base :
-    baseVector G K ((1 : G) : G ⧸ K) = 1 :=
-  lp.single_apply_self 2 _ _
-
-theorem baseVector_ne_zero : baseVector G K ≠ 0 := by
-  intro h
-  have := congrArg (fun f : CosetHilbert G K => f ((1 : G) : G ⧸ K)) h
-  rw [baseVector_apply_base] at this
-  exact one_ne_zero (by simpa using this)
-
 theorem smul_base_eq_base_iff (g : G) :
     g • ((1 : G) : G ⧸ K) = ((1 : G) : G ⧸ K) ↔ g ∈ K := by
   have h1 : g • ((1 : G) : G ⧸ K) = ((g : G) : G ⧸ K) := by
@@ -115,6 +102,32 @@ theorem smul_base_eq_base_iff (g : G) :
     rfl
   rw [h1]
   exact QuotientGroup.eq_one_iff g
+
+section BaseVector
+
+variable [DecidableEq (G ⧸ K)]
+
+/-- The point mass at the base coset. -/
+def baseVector : CosetHilbert G K := lp.single 2 ((1 : G) : G ⧸ K) 1
+
+theorem baseVector_apply_base :
+    baseVector G K ((1 : G) : G ⧸ K) = 1 := by
+  unfold baseVector
+  exact lp.single_apply_self 2 _ _
+
+theorem baseVector_apply_ne {x : G ⧸ K} (hx : x ≠ ((1 : G) : G ⧸ K)) :
+    baseVector G K x = 0 := by
+  unfold baseVector
+  exact lp.single_apply_ne 2 _ _ hx
+
+theorem baseVector_ne_zero : baseVector G K ≠ 0 := by
+  intro h
+  have h1 := congrArg (fun f : CosetHilbert G K => f ((1 : G) : G ⧸ K)) h
+  simp only at h1
+  rw [baseVector_apply_base] at h1
+  have h2 : ((0 : CosetHilbert G K) : (G ⧸ K) → ℂ) ((1 : G) : G ⧸ K) = 0 :=
+    rfl
+  exact one_ne_zero (h1.trans h2)
 
 theorem quasiRegularOperator_baseVector_of_mem {k : G} (hk : k ∈ K) :
     quasiRegularOperator G K k (baseVector G K) = baseVector G K := by
@@ -131,8 +144,7 @@ theorem quasiRegularOperator_baseVector_of_mem {k : G} (hk : k ∈ K) :
       have := congrArg (fun y => k • y) hc
       simp only [smul_smul, mul_inv_cancel, one_smul] at this
       rw [this, (smul_base_eq_base_iff G K k).mpr hk]
-    unfold baseVector
-    rw [lp.single_apply_ne 2 _ _ hne, lp.single_apply_ne 2 _ _ hx]
+    rw [baseVector_apply_ne G K hne, baseVector_apply_ne G K hx]
 
 theorem quasiRegularOperator_baseVector_of_notMem {a : G} (ha : a ∉ K) :
     quasiRegularOperator G K a (baseVector G K) ≠ baseVector G K := by
@@ -143,12 +155,11 @@ theorem quasiRegularOperator_baseVector_of_notMem {a : G} (ha : a ∉ K) :
   rw [quasiRegularOperator_apply] at happ
   have hne : a⁻¹ • ((1 : G) : G ⧸ K) ≠ ((1 : G) : G ⧸ K) := by
     intro hc
-    exact ha ((Subgroup.inv_mem_iff K).mp
-      ((smul_base_eq_base_iff G K a⁻¹).mp hc))
-  rw [show baseVector G K (a⁻¹ • ((1 : G) : G ⧸ K)) = 0 from
-      lp.single_apply_ne 2 _ _ hne,
-    baseVector_apply_base] at happ
-  exact zero_ne_one happ
+    exact ha (inv_mem_iff.mp ((smul_base_eq_base_iff G K a⁻¹).mp hc))
+  have h0 : baseVector G K (a⁻¹ • ((1 : G) : G ⧸ K)) = 0 :=
+    baseVector_apply_ne G K hne
+  have h1 : baseVector G K ((1 : G) : G ⧸ K) = 1 := baseVector_apply_base G K
+  exact zero_ne_one (h0.symm.trans (happ.trans h1))
 
 /-- **The strictness witness**: for any element outside the subgroup, the
 point mass at the base coset is a nonzero vector fixed by the whole
@@ -161,14 +172,15 @@ theorem exists_baseVector_witness {a : G} (ha : a ∉ K) :
     fun _ hk => quasiRegularOperator_baseVector_of_mem G K hk,
     quasiRegularOperator_baseVector_of_notMem G K ha⟩
 
+end BaseVector
+
 instance : Nontrivial (CosetHilbert G K →L[ℂ] CosetHilbert G K) := by
+  letI := Classical.decEq (G ⧸ K)
   refine ⟨1, 0, fun h => ?_⟩
-  have := congrArg
-    (fun T : CosetHilbert G K →L[ℂ] CosetHilbert G K =>
-      T (baseVector G K)) h
-  simp only [ContinuousLinearMap.one_apply,
-    ContinuousLinearMap.zero_apply] at this
-  exact baseVector_ne_zero G K this
+  have h1 : (1 : CosetHilbert G K →L[ℂ] CosetHilbert G K) (baseVector G K)
+      = (0 : CosetHilbert G K →L[ℂ] CosetHilbert G K) (baseVector G K) := by
+    rw [h]
+  exact baseVector_ne_zero G K h1
 
 /-- The quasi-regular representation, as a coordinate of the universal
 representation family of the maximal group C-star algebra. -/
