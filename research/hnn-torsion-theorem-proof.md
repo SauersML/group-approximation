@@ -5,7 +5,7 @@ kind: route
 title: Britton powers of cyclic words, with cyclic reduction as the one interface
 target: hnn-torsion-theorem
 requires:
-  - hnn-cyclic-reduction-existence
+  - hnn-cyclic-reduction-lemma
 artifacts:
   - GroupApproximation/Algebra/HNNTorsionFree.lean
 ---
@@ -33,7 +33,7 @@ Two kernel-checked halves and one named interface.
 
 The single remaining input is the classical cyclic-reduction existence
 lemma (`ExistsCyclicConjugate`, the claim
-[[hnn-cyclic-reduction-existence]]): every element is conjugate into
+[[hnn-cyclic-reduction-lemma]]): every element is conjugate into
 the base or to a cyclic word.  The affine corollaries
 (`isPowerTorsionFree_sourceGroup_of_existsCyclicConjugate` and the
 integer instance) consume it explicitly, so the trust surface of the
