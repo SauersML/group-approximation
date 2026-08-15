@@ -7,7 +7,7 @@
       "id": "prop:mf-equivalences",
       "environment": "proposition",
       "title": "equivalent MF formulations",
-      "statement_sha256": "5c8d5bda0df5ba59057a03aee23eaf34c8b81991b96546ed22248fea0442943b",
+      "statement_sha256": "36cb694b0d398dbb46ce0fcfcbf7cc9851d4585cbe92f770a1539e747367671f",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [
@@ -28,8 +28,8 @@
     {
       "id": "thm:kazhdan-transport",
       "environment": "theorem",
-      "title": "Kazhdan transport of asymptotic commutants",
-      "statement_sha256": "c204794f249ea15628f9e0fc379ee70348c1c85a3c2c7bd0f628acdfcc173b59",
+      "title": "Kazhdan transport of Hilbert--Schmidt asymptotic commutants",
+      "statement_sha256": "eaabff94c9ff703c522bbff3a4948257164e545e2252d5b5938f90168e3cf091",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [],
@@ -71,7 +71,7 @@
       "id": "thm:kazhdan-clifford",
       "environment": "theorem",
       "title": "Kazhdan--Clifford construction",
-      "statement_sha256": "c4c716c1d2041663ed684516eb52debfd4d6273b5e42d73bd1aad466803eb944",
+      "statement_sha256": "08891567db83191ce47122bea5155713407f48cc5bef1d72d09835c59fcd1691",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [
@@ -124,6 +124,28 @@
       ]
     },
     {
+      "id": "cor:uniform",
+      "environment": "corollary",
+      "title": "uniform finite operator-norm obstruction",
+      "statement_sha256": "ed6b1647e5b0070bd9afc8db0bbbe00dd70b8b872145c623976d713ccf7628f5",
+      "status": "exact",
+      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
+      "dependencies": [
+        "thm:A"
+      ],
+      "extra_assumptions": [],
+      "external_inputs": [],
+      "coverage_gap": "",
+      "lean": [
+        {
+          "role": "exact",
+          "module": "Sofic/LiteralUniformObstruction",
+          "declaration": "GroupApproximation.LiteralUniformObstruction.literal_uniform_operatorNorm_obstruction",
+          "covers": "the complete printed proposition"
+        }
+      ]
+    },
+    {
       "id": "cor:scaling-family",
       "environment": "corollary",
       "title": "the scaling family",
@@ -170,7 +192,7 @@
       "id": "thm:C",
       "environment": "mainthm",
       "title": "cyclic-base calibration",
-      "statement_sha256": "4f7eb9ba53bb223d4a16bfc5ff4a8e64f68c81c0624580858e16a2a8d7b9abee",
+      "statement_sha256": "ee29ee959c43ba8b68b65d6fa5839c177680b6df85e0800025e40c06d02dd4ce",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [
@@ -278,30 +300,10 @@
       ]
     },
     {
-      "id": "prop:maximal-cstar",
-      "environment": "proposition",
-      "title": "universe-relative maximal group algebra",
-      "statement_sha256": "e804583acb4798be88ed20146578c7063c54aa35bdefe8418af654e66873fcaf",
-      "status": "exact",
-      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
-      "dependencies": [],
-      "extra_assumptions": [],
-      "external_inputs": [],
-      "coverage_gap": "",
-      "lean": [
-        {
-          "role": "exact",
-          "module": "Analysis/MaximalGroupCStar",
-          "declaration": "GroupApproximation.manuscriptUniverseRelativeMaximalGroupCStar",
-          "covers": "the complete printed proposition"
-        }
-      ]
-    },
-    {
       "id": "def:E",
       "environment": "definition",
       "title": "",
-      "statement_sha256": "449c7645baf82f225644602df5e449b2243590f662c513c7c8e04a0b90b42fe3",
+      "statement_sha256": "a186c73504265820b77e054e4070a935d9bb5fc412edaa9aaf150da3a221885b",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [],
@@ -343,7 +345,7 @@
       "id": "con:clifford",
       "environment": "construction",
       "title": "Clifford lamp groups",
-      "statement_sha256": "8aa1b5da150f399055c8ffb7b342a1e4b253c57ce743f1a47c53a3a6495648be",
+      "statement_sha256": "357782b7788ad2c6b2834f2f0924baca6af5171cc21159112747ac347a0bd6d2",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [],
@@ -451,8 +453,8 @@
     {
       "id": "def:pattern",
       "environment": "definition",
-      "title": "marked Kazhdan pattern",
-      "statement_sha256": "a41a3511594348f1a4f4172fd6b4c4030695ed0f7f4fa4bcc9811a1dc10c4243",
+      "title": "Kazhdan conjugation datum",
+      "statement_sha256": "dae17bad703039a467b5cb7320bb024cf5fa83593eb5aea379a0955a12e6ae12",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [],
@@ -472,7 +474,7 @@
       "id": "thm:criterion",
       "environment": "theorem",
       "title": "finite-normal obstruction criterion",
-      "statement_sha256": "6216ae28058cc33eebb2f558dffeeefa40550748c9a19161019fce019c48931c",
+      "statement_sha256": "44fb8b53f8227c5d5e9b901edee21a2cfda5366b7502f7c12f833cab5fef341b",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [
@@ -494,7 +496,7 @@
     {
       "id": "cor:generaltransport",
       "environment": "corollary",
-      "title": "transport along all compressors",
+      "title": "transport along all one-sided conjugators",
       "statement_sha256": "798d72ef80e4076aa16ae2f663ed8b2ea2fd70f9b3927a09c0c94dfc1596813c",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
@@ -516,7 +518,7 @@
     {
       "id": "thm:compression-radical",
       "environment": "theorem",
-      "title": "compression radical",
+      "title": "MF-invisibility of the intrinsic defect",
       "statement_sha256": "12334b5a1314dbee07650a768a947ede7cbd696af639c0ab27b4f549514aaa3e",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
@@ -672,7 +674,7 @@
     {
       "id": "cor:cylinder",
       "environment": "corollary",
-      "title": "a clopen non-MF cylinder",
+      "title": "a basic clopen set of non-MF marked groups",
       "statement_sha256": "847c38b2b21a9d92e23cd827741a7a8cfe4f121ebf1ad8b874bb755b726b13c4",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
@@ -756,7 +758,7 @@
       "id": "cor:quotclosure",
       "environment": "corollary",
       "title": "quotients",
-      "statement_sha256": "084c7882c0037336aaf924f3c36b48e25a614ff65a2f96b16990fe214cd12ed6",
+      "statement_sha256": "0945a411d7c96988e8015b5f6f078223103f8209772b56379cf73529539e9f86",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [
@@ -791,6 +793,26 @@
           "role": "exact",
           "module": "Sofic/ManuscriptExactWrappers",
           "declaration": "GroupApproximation.ManuscriptExactWrappers.manuscriptFaithfulTraceAndStableFiniteness",
+          "covers": "the complete printed proposition"
+        }
+      ]
+    },
+    {
+      "id": "prop:maximal-cstar",
+      "environment": "proposition",
+      "title": "universe-relative maximal group algebra",
+      "statement_sha256": "e804583acb4798be88ed20146578c7063c54aa35bdefe8418af654e66873fcaf",
+      "status": "exact",
+      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
+      "dependencies": [],
+      "extra_assumptions": [],
+      "external_inputs": [],
+      "coverage_gap": "",
+      "lean": [
+        {
+          "role": "exact",
+          "module": "Analysis/MaximalGroupCStar",
+          "declaration": "GroupApproximation.manuscriptUniverseRelativeMaximalGroupCStar",
           "covers": "the complete printed proposition"
         }
       ]
