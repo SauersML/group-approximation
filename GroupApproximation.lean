@@ -31,6 +31,7 @@ import GroupApproximation.Monsters.CyclicBaseCalibration
 import GroupApproximation.Monsters.LiteralCyclicCalibration
 import GroupApproximation.Monsters.LiteralCyclicRelatorCount
 import GroupApproximation.Monsters.LiteralP13MatrixModel
+import GroupApproximation.Monsters.SL3ElementaryGeneration
 import GroupApproximation.Monsters.CyclicBaseLEFObstruction
 import GroupApproximation.Sofic.ScalingFamilyPresentation
 import GroupApproximation.Sofic.ScalingFamilyRelatorCount
