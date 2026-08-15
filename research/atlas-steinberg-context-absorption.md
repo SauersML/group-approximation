@@ -29,7 +29,12 @@ x_ij(uρv) = [x_ik(u), x_kj(ρv)],      x_kj(ρv) = [x_kl(ρ), x_lj(v)],
 ```
 
 with `i, j, k, l` pairwise distinct, and the inner bracket dies because
-its first entry does.  The defining relations of a presented ring
+its first entry does.  *(Dependency made explicit 2026-08-15, late: for
+`ρ` a sum of monomials the argument first splits `x_kl` over the sum,
+which uses bilinearity of the bracket in a root-subgroup argument —
+`[X, PQ] = [X,P][X,Q]` for `P, Q` in one root subgroup — itself a
+consequence of an emitted (St2) instance; Lemma 2.1 of the completeness
+derivation artifact.)*  The defining relations of a presented ring
 therefore need to be imposed at a single root each — their monomial
 contexts come for free — and the index budget of the nesting is exactly
 four.

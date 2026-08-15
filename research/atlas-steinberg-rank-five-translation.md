@@ -91,21 +91,22 @@ generation, not `U_Q ≅ St₅(L)`.
   construction, and there was none.  Context absorption is now its own
   established claim (`atlas-steinberg-context-absorption`).
 
-  **The remaining gap, as a single lemma (spare-index independence).**
-  In `G₀` presented by the full (St2)/(St3) instantiation on the letter
-  set plus the five context-free Cuntz–Krieger relations, define
-  `Ê_ij(w)` for a monomial `w = a_1⋯a_t` by nesting (St3) through spare
-  indices; the lemma asserts `Ê_ij(w)` is independent of the chain of
-  spare indices.  Then `Ê` extends additively, satisfies (St1)–(St3) by
-  construction, inverts the evident map `G₀ → St₅(L)`, and `T_St` is
-  complete.  Status: `t = 1` trivial; `t = 2` EMITTED (all three spare
-  indices equated to one canonical right-hand side by relations in the
-  family); `t ≥ 3` open — the expected route is induction via Hall–Witt
-  plus (St2).  **Risk note:** enlarging `T_St` is always safe — any
-  additional word verified in `R̄` keeps `⟨⟨T_St⟩⟩ ≤ R̄` and can only
-  help reach `N̄` — so if the lemma needs chain-difference relators at
-  length three or four, they can be emitted and verified the same way;
-  the construction degrades gracefully rather than breaking.
+  **The remaining gap, now two-thirds closed (2026-08-15, night).**  The
+  direct completeness derivation stands as: ring consistency CLOSED
+  (bilinearity + `atlas-steinberg-context-absorption`); split
+  independence REDUCED to spare independence; spare independence given
+  by the proved transfer identity
+  (`atlas-steinberg-transfer-identity`, machine-cross-checked) MODULO
+  its commutation hypotheses — which at length ≥ 3 are exactly the open
+  Lemma X, now its own frontier node:
+  `atlas-steinberg-spare-index-independence` (length 2 proved, five
+  rejected routes recorded, the one-sentence obstruction stated).  With
+  Lemma X, `G₀ ≅ St₅(L)` and `T_St` is complete with no import beyond
+  Kervaire–Steinberg centrality.  **Risk note:** enlarging `T_St` is
+  always safe — any additional word verified in `R̄` keeps
+  `⟨⟨T_St⟩⟩ ≤ R̄` and can only help reach `N̄` — so if Lemma X needs
+  finitely many extra relators as axioms, the construction degrades
+  gracefully rather than breaking.
 - **Amalgam route (dead).**  `atlas-charts-overlap-trivially`: the charts
   meet trivially, so no relative presentation falls out of overlap
   identifications; every relator must be produced as a genuine
