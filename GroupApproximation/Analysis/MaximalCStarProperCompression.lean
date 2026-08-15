@@ -98,7 +98,7 @@ theorem rate_lt_one : rate D < 1 := by
     exact_mod_cast Finset.card_pos.mpr ⟨1, D.one_mem⟩
   have hq : 0 < D.ε ^ 2 / (4 * D.S.card) := by
     apply div_pos (by positivity) (by positivity)
-  rw [rate]
+  unfold rate
   linarith
 
 theorem isSelfAdjoint_avg : IsSelfAdjoint (avg D) :=
@@ -131,14 +131,16 @@ theorem proj_mul_avg : proj D * avg D = proj D :=
     (gap D)
 
 theorem shift_star_mul : star (shift D) * shift D = 1 := by
-  rw [shift, star_maximalGroupCStarGenerator,
+  unfold shift
+  rw [star_maximalGroupCStarGenerator,
     maximalGroupCStarGenerator_mul, inv_mul_cancel]
   exact congrArg
     (fun w : unitary (MaximalGroupCStar E) => (w : MaximalGroupCStar E))
     (map_one (maximalGroupCStarUnitaryHom E))
 
 theorem shift_mul_star : shift D * star (shift D) = 1 := by
-  rw [shift, star_maximalGroupCStarGenerator,
+  unfold shift
+  rw [star_maximalGroupCStarGenerator,
     maximalGroupCStarGenerator_mul, mul_inv_cancel]
   exact congrArg
     (fun w : unitary (MaximalGroupCStar E) => (w : MaximalGroupCStar E))
@@ -159,7 +161,8 @@ theorem rep_mul_proj (γ : Γ) :
 theorem shift_generator_conj (g : E) :
     shift D * maximalGroupCStarGenerator E g * star (shift D)
       = maximalGroupCStarGenerator E (D.t * g * D.t⁻¹) := by
-  rw [shift, star_maximalGroupCStarGenerator,
+  unfold shift
+  rw [star_maximalGroupCStarGenerator,
     maximalGroupCStarGenerator_mul, maximalGroupCStarGenerator_mul]
 
 /-- The conjugated average absorbs the projection on the left. -/
@@ -171,7 +174,8 @@ theorem conjugated_avg_mul_proj :
   have hconj : shift D * avg D * star (shift D)
       = ((D.S.card : ℂ))⁻¹ • ∑ γ ∈ D.S,
           maximalGroupCStarGenerator E (D.t * D.iota γ * D.t⁻¹) := by
-    rw [avg, unitaryAverage, mul_smul_comm, smul_mul_assoc]
+    unfold avg unitaryAverage
+    rw [mul_smul_comm, smul_mul_assoc]
     congr 1
     rw [Finset.mul_sum, Finset.sum_mul]
     refine Finset.sum_congr rfl fun γ _ => ?_
@@ -384,6 +388,24 @@ def toProperProjectionCompression :
   p_mul_conjugate := proj_mul_conjugate D
   conjugate_mul_p := conjugate_mul_proj D
   conjugate_ne := conjugate_ne_proj D
+
+/-- The maximal algebra of a strictly Kazhdan-compressed group is not
+Dedekind finite: it contains a one-sided-invertible non-unit. -/
+theorem maximalCStar_not_isDedekindFiniteMonoid :
+    ¬ IsDedekindFiniteMonoid (MaximalGroupCStar E) :=
+  (toProperProjectionCompression D).not_isDedekindFiniteMonoid
+
+/-- The maximal algebra of a strictly Kazhdan-compressed group is not
+stably finite. -/
+theorem maximalCStar_not_isStablyFiniteRing :
+    ¬ IsStablyFiniteRing (MaximalGroupCStar E) :=
+  (toProperProjectionCompression D).not_isStablyFiniteRing
+
+/-- The maximal algebra of a strictly Kazhdan-compressed group carries no
+faithful tracial state. -/
+theorem maximalCStar_no_faithfulTracialState :
+    ¬ Nonempty (FaithfulTracialState (MaximalGroupCStar E)) :=
+  (toProperProjectionCompression D).no_faithfulTracialState
 
 end StrictKazhdanCompression
 
