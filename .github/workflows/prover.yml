@@ -70,6 +70,7 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       run: ${{ steps.check.outputs.run }}
+      lean: ${{ steps.check.outputs.lean }}
     steps:
       - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
         with:
@@ -82,6 +83,7 @@ jobs:
              [ "${{ github.event_name }}" != "schedule" ]; then
             echo "Event ${{ github.event_name }} runs at its requested SHA."
             echo "run=true" >> "$GITHUB_OUTPUT"
+            echo "lean=true" >> "$GITHUB_OUTPUT"
             exit 0
           fi
 
@@ -92,6 +94,28 @@ jobs:
           target='${{ github.sha }}'
           main=$(git rev-parse refs/remotes/origin/main)
           verified=$(git rev-parse refs/remotes/origin/verified)
+
+          # Lane classifier.  The fresh kernel verdict, the compiled tree,
+          # and every Lean-side gate are functions of the paths below.  A
+          # push that leaves all of them byte-identical to the certified
+          # revision inherits the standing Lean verdict and is certified by
+          # the pure publication-layer job; anything else -- including any
+          # change to control code or to the committed signature and roster
+          # artifacts -- takes the full lane.  Unknown states fail closed.
+          if git diff --quiet "$verified" "$target" -- \
+              GroupApproximation.lean GroupApproximation \
+              lakefile.toml lake-manifest.json lean-toolchain \
+              scripts .github bin \
+              docs/CLAIM_DECLS.txt docs/CLAIM_MAP.md \
+              docs/CLAIM_SIGNATURES.md docs/NON_MF_CLAIM_DECLS.txt \
+              docs/NON_MF_CLAIM_SIGNATURES.md \
+              docs/PROPERTY_TT_CLAIM_MAP.md \
+              docs/PROPERTY_TT_PROVENANCE.md 2>/dev/null; then
+            echo "lean=false" >> "$GITHUB_OUTPUT"
+            echo "Lean-relevant tree identical to verified; publication lane."
+          else
+            echo "lean=true" >> "$GITHUB_OUTPUT"
+          fi
 
           if git merge-base --is-ancestor "$target" "$verified"; then
             echo "Requested proof tree is already contained in verified."
@@ -175,9 +199,7 @@ jobs:
   prove:
     name: Build and audit
     needs: [gate, p13]
-    if: ${{ needs.gate.outputs.run == 'true' }}
-    outputs:
-      fresh: ${{ steps.kernel-scope.outputs.fresh }}
+    if: ${{ needs.gate.outputs.run == 'true' && needs.gate.outputs.lean == 'true' }}
     runs-on: ubuntu-latest
     # A few hundred modules of analysis on top of Mathlib.  A cold first build
     # can run for hours; every run saves whatever it compiled (see the
@@ -446,23 +468,6 @@ jobs:
       # runs above.  A run that changes any Lean-relevant path -- or any
       # verification control code, which the decide gate forces through a
       # full run -- always re-checks freshly.
-      - name: Decide fresh kernel re-check scope
-        id: kernel-scope
-        shell: bash
-        run: |
-          set -euo pipefail
-          git fetch --no-tags origin \
-            '+refs/heads/verified:refs/remotes/origin/verified'
-          if git diff --quiet refs/remotes/origin/verified HEAD -- \
-              GroupApproximation.lean GroupApproximation \
-              lakefile.toml lake-manifest.json lean-toolchain scripts \
-              .github; then
-            echo "Lean-relevant tree identical to verified; the standing fresh kernel verdict applies."
-            echo "fresh=false" >> "$GITHUB_OUTPUT"
-          else
-            echo "fresh=true" >> "$GITHUB_OUTPUT"
-          fi
-
       # The fresh kernel re-check itself now runs in the parallel `kernel`
       # matrix job below, which restores this job's saved build cache and
       # replays disjoint slices of the module tree through fresh kernel
@@ -507,8 +512,8 @@ jobs:
 
   kernel:
     name: Fresh kernel re-check (shard ${{ matrix.shard }})
-    needs: [gate, prove]
-    if: needs.gate.outputs.run == 'true' && needs.prove.outputs.fresh == 'true'
+    needs: [gate, p13]
+    if: needs.gate.outputs.run == 'true' && needs.gate.outputs.lean == 'true'
     runs-on: ubuntu-latest
     timeout-minutes: 120
     strategy:
@@ -550,10 +555,11 @@ jobs:
       - name: Fetch precompiled Mathlib
         run: lake exe cache get
 
-      # The `prove` job saved the fully built tree (its own oleans plus the
-      # P13 artifact contents) before this job started; the run-id-suffixed
-      # primary key guarantees the restore below sees exactly that save
-      # through the prefix fallback.
+      # This job runs concurrently with `prove`: it restores the newest
+      # available compiled tree (typically the previous run's save through
+      # the prefix fallback), rebuilds whatever is stale itself -- Lake's
+      # hashing rebuilds rather than trusts -- and then replays its slice
+      # through a fresh kernel.
       - name: Restore compiled project
         uses: actions/cache/restore@0057852bfaa89a56745cba8c7296529d2fc39830 # v4
         with:
@@ -562,6 +568,18 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-nonsofic-build-${{ hashFiles('lean-toolchain', 'lake-manifest.json', 'lakefile.toml', 'GroupApproximation.lean', 'GroupApproximation/**/*.lean') }}-
             ${{ runner.os }}-nonsofic-build-
+
+      - name: Download the bounded P13 build
+        uses: actions/download-artifact@634f93cb2916e3fdff6788551b99b062d0335ce0 # v5
+        with:
+          pattern: p13-*-${{ github.sha }}
+          path: build/p13-prebuild
+
+      - name: Restore and seal the P13 build
+        run: |
+          python3 scripts/p13_build_shards.py restore-all \
+            --from build/p13-prebuild
+          python3 scripts/p13_build_shards.py seal
 
       # Deterministic 12-way partition of every module in the library, by
       # sorted index modulo the shard count.  A synthetic root importing the
@@ -591,5 +609,67 @@ jobs:
             echo "import GroupApproximation" >> KernelShard.lean
           fi
           wc -l KernelShard.lean
+          # Bring the shard's modules up to date against the restored tree;
+          # on an exact cache hit this is a no-op, otherwise the shard
+          # compiles its own delta.
+          grep '^import ' KernelShard.lean | sed 's/^import //' | \
+            xargs lake build
           lake env lean KernelShard.lean -o .lake/build/lib/lean/KernelShard.olean
           lake env leanchecker --fresh KernelShard
+
+  publight:
+    name: Build and audit (publication layer)
+    needs: gate
+    if: ${{ needs.gate.outputs.run == 'true' && needs.gate.outputs.lean == 'false' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
+
+      # Everything a manuscript or docs change can affect is a pure-Python
+      # gate: the source scan, the research-graph check, the non-MF
+      # counterpart contract, and the manifest/roster consistency checks.
+      # The Lean-side verdicts -- build, kernel audit, signature snapshot,
+      # fresh kernel re-check -- are functions of the Lean-relevant tree,
+      # which the gate verified to be byte-identical to the certified
+      # revision on `verified`; the standing verdicts therefore apply
+      # verbatim.  Any change to those inputs takes the full lane instead.
+      - name: Calibrate the source scan
+        run: |
+          python3 scripts/check.py --self-test
+          python3 scripts/test_claim_map.py
+          python3 scripts/check_non_mf_refs.py --self-test
+          python3 scripts/check_non_mf_claim_manifest.py --self-test
+
+      - name: Source scan
+        run: |
+          python3 scripts/check.py
+          bin/cairn check
+          git diff --exit-code -- research/FRONTIER.md
+
+      - name: Non-MF counterpart contract
+        run: |
+          python3 scripts/check_non_mf_zero_input.py \
+            --tex non_mf_groups_exist.tex
+          python3 scripts/regenerate_non_mf_claim_manifest.py \
+            --output /tmp/NON_MF_NUMBERED_CLAIMS.generated.json
+          diff -u docs/NON_MF_NUMBERED_CLAIMS.json \
+            /tmp/NON_MF_NUMBERED_CLAIMS.generated.json
+          python3 scripts/check_non_mf_refs.py \
+            --tex non_mf_groups_exist.tex \
+            --check-decls \
+            --extra-declarations-from docs/NON_MF_NUMBERED_CLAIMS.json \
+            --require-verified \
+              Sofic/LiteralNonMFEndpoint \
+              GroupApproximation.LiteralNonMFEndpoint.manuscriptTheoremA \
+            --require-verified \
+              Sofic/LiteralNonMFEndpoint \
+              GroupApproximation.LiteralNonMFEndpoint.manuscriptTheoremD \
+            --require-verified \
+              Sofic/LiteralBaseP13PropertyTBridge \
+              GroupApproximation.LiteralBaseP13PropertyTBridge.manuscriptBaseHasKazhdanPropertyT
+          python3 scripts/check_non_mf_claim_manifest.py \
+            --tex non_mf_groups_exist.tex \
+            --manifest docs/NON_MF_NUMBERED_CLAIMS.json \
+            --signature-roster docs/NON_MF_CLAIM_DECLS.txt

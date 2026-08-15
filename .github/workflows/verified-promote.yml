@@ -46,12 +46,20 @@ jobs:
             echo "Refusing an incomplete or unexpectedly large job listing: $total" >&2
             exit 1
           fi
-          named=$(jq '[.jobs[] | select(.name == "Build and audit")] | length' \
+          # A run certifies through exactly one of two mutually exclusive
+          # lanes: the full "Build and audit" job when the Lean-relevant
+          # tree changed, or the pure-Python "Build and audit (publication
+          # layer)" job when it is byte-identical to the certified revision
+          # and the standing Lean verdicts apply.  Exactly one of the two
+          # must have run and succeeded; a lane that ran and failed blocks
+          # promotion regardless of the other (run-level success already
+          # guarantees this, but the check is repeated here fail-closed).
+          passed=$(jq '[.jobs[] | select((.name == "Build and audit" or .name == "Build and audit (publication layer)") and .conclusion == "success")] | length' \
             <<<"$jobs_json")
-          passed=$(jq '[.jobs[] | select(.name == "Build and audit" and .conclusion == "success")] | length' \
+          failed=$(jq '[.jobs[] | select((.name == "Build and audit" or .name == "Build and audit (publication layer)") and (.conclusion != "success" and .conclusion != "skipped" and .conclusion != null))] | length' \
             <<<"$jobs_json")
-          if [ "$named" -ne 1 ] || [ "$passed" -ne 1 ]; then
-            echo "The triggering run has no unique successful Build and audit job." >&2
+          if [ "$passed" -ne 1 ] || [ "$failed" -ne 0 ]; then
+            echo "The triggering run has no unique successful certifying lane." >&2
             jq -r '.jobs[] | [.name, .status, (.conclusion // "")] | @tsv' \
               <<<"$jobs_json" >&2
             exit 1
