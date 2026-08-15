@@ -1,0 +1,357 @@
+import GroupApproximation.Analysis.ProperIsometryFromCompression
+import GroupApproximation.Computability.MarkovMFConsequences
+import GroupApproximation.Sofic.CommutingLampCollapse
+import GroupApproximation.Sofic.FullMFRadicalEndpoint
+import GroupApproximation.Sofic.IntertwinerKazhdanTransport
+import GroupApproximation.Sofic.MFRelationClosure
+import GroupApproximation.Sofic.MarkedMFClosed
+import GroupApproximation.Sofic.MatricialStabilityRadical
+import GroupApproximation.Sofic.ProjectionCompressionCollapse
+import GroupApproximation.Sofic.ScaledKazhdanTransport
+import GroupApproximation.Sofic.TorsionSpectralCollapse
+import GroupApproximation.Sofic.NormTraceGap
+import GroupApproximation.Sofic.WeakMFVectorGNS
+
+/-!
+# Closed forms of the parameterized manuscript badges
+
+Every theorem here is a zero-input restatement: nothing to the left of
+the colon, every hypothesis a quantified antecedent of the printed
+statement.  Manuscript badges point at these forms so that each tag
+certifies a self-contained proposition; the parameterized originals
+remain the working API.  The two full-MF-radical wrappers quantify the
+routing datum visibly, exactly as the manuscript's conditional
+statement does.
+-/
+
+namespace GroupApproximation
+namespace ManuscriptClosedWrappers
+
+open MarkedCompression CommutingLampCollapse
+
+noncomputable section
+
+/-! ## Proper compression in a unital algebra -/
+
+/-- Closed form: the isometry of a proper projection compression is not a
+unit. -/
+theorem manuscriptProperIsometryNotUnit :
+    ∀ {A : Type} [Ring A] [StarRing A]
+      (D : ProperProjectionCompression A),
+      ¬ IsUnit D.isometry := by
+  intro A _ _ D
+  exact D.isometry_not_isUnit
+
+/-- Closed form: a proper projection compression forbids stable
+finiteness. -/
+theorem manuscriptProperCompressionNotStablyFinite :
+    ∀ {A : Type} [Ring A] [StarRing A]
+      (D : ProperProjectionCompression A),
+      ¬ IsStablyFiniteRing A := by
+  intro A _ _ D
+  exact D.not_isStablyFiniteRing
+
+/-- Closed form: a proper projection compression forbids a faithful
+tracial state. -/
+theorem manuscriptProperCompressionTraceless :
+    ∀ {B : Type} [CStarAlgebra B]
+      (D : ProperProjectionCompression B),
+      ¬ Nonempty (FaithfulTracialState B) := by
+  intro B _ D
+  exact D.no_faithfulTracialState
+
+/-! ## Undecidability -/
+
+/-- Closed form: MF recognition is undecidable given any computable
+Adian--Rabin reduction from an undecidable source. -/
+theorem manuscriptMFRecognitionUndecidable :
+    ∀ {Source Code : Type} [Primcodable Source] [Primcodable Code]
+      (sourceProperty : Source → Prop)
+      (semantics : MarkovMFConsequences.FinitePresentationSemantics Code)
+      (_ : MarkovMFConsequences.AdianRabinReduction sourceProperty
+        (MarkovMFConsequences.operatorMFProperty semantics)),
+      ¬ ComputablePred sourceProperty →
+      ¬ ComputablePred (MarkovMFConsequences.operatorMFProperty semantics) := by
+  intro Source Code _ _ sourceProperty semantics reduction hsource
+  exact MarkovMFConsequences.operatorMF_recognition_undecidable semantics
+    reduction hsource
+
+/-- Closed form: operator MF passes to subgroups. -/
+theorem manuscriptSubgroupHereditary :
+    ∀ {G : Type} [Group G], IsOperatorMF G →
+      ∀ H : Subgroup G, IsOperatorMF H := by
+  intro G _ hG H
+  exact MarkovMFConsequences.operatorMF_subgroup_hereditary hG H
+
+/-! ## The commuting-lamp quotient -/
+
+/-- Closed form of the commuting-lamp collapse: killing the central sign
+puts the moved-lamp commutator inside the MF radical of the quotient,
+nontrivially. -/
+theorem manuscriptCommutingLampCollapse :
+    ∀ {Γ : Type} [Group Γ] (α : Γ →* Γ)
+      (hα : Function.Injective α)
+      [Countable (Ambient α hα)],
+      HasKazhdanPropertyT.{0, 0} Γ →
+      ∀ a₀ : Γ, a₀ ∉ Set.range α →
+      (⁅(QuotientGroup.mk' (Subgroup.zpowers (signAmbient α hα)))
+          (iotaAmbient α hα a₀),
+        (QuotientGroup.mk' (Subgroup.zpowers (signAmbient α hα)))
+          (tAmbient α hα * cAmbient α hα * (tAmbient α hα)⁻¹)⁆ ∈
+        actualCoronaMFResidual
+          (Ambient α hα ⧸ Subgroup.zpowers (signAmbient α hα))) ∧
+      ⁅(QuotientGroup.mk' (Subgroup.zpowers (signAmbient α hα)))
+          (iotaAmbient α hα a₀),
+        (QuotientGroup.mk' (Subgroup.zpowers (signAmbient α hα)))
+          (tAmbient α hα * cAmbient α hα * (tAmbient α hα)⁻¹)⁆ ≠ 1 ∧
+      ¬ IsCDEOperatorMF
+        (Ambient α hα ⧸ Subgroup.zpowers (signAmbient α hα)) := by
+  intro Γ _ α hα _ hT a₀ ha₀
+  exact CommutingLampCollapse.commutingLampQuotient_collapse α hα hT ha₀
+
+/-! ## The full-MF-radical endpoints -/
+
+/-- Closed form of the conditional full-radical endpoint: any routing
+datum for a Fournier-Facio defect datum yields a two-generated finitely
+presented torsion-free Kazhdan group with full MF radical.  The routing
+hypothesis is the quantified antecedent, exactly as in the manuscript
+statement. -/
+theorem manuscriptFullMFRadicalFromRouting :
+    ∀ {P E : Type} [Group P] [Group E]
+      (D : FournierFacioDefectData P E),
+      Nonempty (DefectRoutingData.{0} D) →
+      ∃ (Q : Type) (_ : Group Q) (_ : Countable Q),
+        IsTwoGenerated Q ∧
+        Group.IsFinitelyPresented Q ∧
+        IsPowerTorsionFree Q ∧
+        HasKazhdanPropertyT.{0, 0} Q ∧
+        Nontrivial Q ∧
+        cdeMFResidual Q = ⊤ := by
+  intro P E _ _ D h
+  exact FullMFRadicalEndpoint.exists_twoGenerated_finitelyPresented_torsionFree_kazhdan_fullMFRadical
+    h
+
+/-- Closed form of the conditional every-quotient endpoint: any routing
+datum yields a nontrivial group all of whose nontrivial countable
+quotients fail CDE operator MF. -/
+theorem manuscriptEveryQuotientNonMFFromRouting :
+    ∀ {P E : Type} [Group P] [Group E]
+      (D : FournierFacioDefectData P E),
+      Nonempty (DefectRoutingData.{0} D) →
+      ∃ (Q : Type) (_ : Group Q) (_ : Countable Q),
+        IsTwoGenerated Q ∧
+        Group.IsFinitelyPresented Q ∧
+        IsPowerTorsionFree Q ∧
+        HasKazhdanPropertyT.{0, 0} Q ∧
+        Nontrivial Q ∧
+        ∀ (H : Type) (_ : Group H) (_ : Countable H) (_ : Nontrivial H)
+          (f : Q →* H),
+          Function.Surjective f → ¬ IsCDEOperatorMF H := by
+  intro P E _ _ D h
+  exact FullMFRadicalEndpoint.exists_group_with_every_nontrivial_quotient_not_isCDEOperatorMF
+    h
+
+/-! ## Scaled transport -/
+
+/-- Closed form of the two-sided scaled transport. -/
+theorem manuscriptScaledTransportBoth :
+    ∀ {Γ E : Type} [Group Γ] [Group E]
+      (B : OpAlmostRepresentation E) (w : ℕ → ℝ),
+      (∀ n, 0 ≤ w n) →
+      ∀ (C : KazhdanCompressionCore Γ E)
+        (x : ∀ n, Matrix (B.model n) (B.model n) ℂ),
+      ScaledKazhdanTransport.IsScaledAsymptoticCommutant B w C x →
+      ScaledKazhdanTransport.IsScaledMassBounded B w x →
+      ScaledKazhdanTransport.IsScaledAsymptoticCommutant B w C (fun n ↦
+          (B.map n C.t : Matrix (B.model n) (B.model n) ℂ) * x n *
+            (B.map n C.t : Matrix (B.model n) (B.model n) ℂ)ᴴ) ∧
+        ScaledKazhdanTransport.IsScaledAsymptoticCommutant B w C (fun n ↦
+          (B.map n C.t : Matrix (B.model n) (B.model n) ℂ)ᴴ * x n *
+            (B.map n C.t : Matrix (B.model n) (B.model n) ℂ)) := by
+  intro Γ E _ _ B w hw C x hx hbound
+  exact ScaledKazhdanTransport.scaled_transport_both B w hw C x hx hbound
+
+/-- Closed form of the rectangular scaled intertwiner transport. -/
+theorem manuscriptScaledIntertwinerTransport :
+    ∀ {Γ E : Type} [Group Γ] [Group E]
+      (B₁ B₂ : OpAlmostRepresentation E) (w : ℕ → ℝ),
+      (∀ n, 0 ≤ w n) →
+      ∀ (C : KazhdanCompressionCore Γ E)
+        (x : ∀ n, Matrix (B₁.model n) (B₂.model n) ℂ),
+      IntertwinerKazhdanTransport.IsScaledAsymptoticIntertwinerOf
+        B₁ B₂ w C.iota x →
+      IntertwinerKazhdanTransport.IsScaledRectMassBounded B₁ B₂ w x →
+      IntertwinerKazhdanTransport.IsScaledAsymptoticIntertwinerOf
+        B₁ B₂ w C.iota (fun n ↦
+          (B₁.map n C.t : Matrix (B₁.model n) (B₁.model n) ℂ) * x n *
+            (B₂.map n C.t : Matrix (B₂.model n) (B₂.model n) ℂ)ᴴ) := by
+  intro Γ E _ _ B₁ B₂ w hw C x hx hbound
+  exact IntertwinerKazhdanTransport.scaled_intertwiner_transport B₁ B₂ w hw
+    C x hx hbound
+
+/-! ## The relation closure -/
+
+/-- Closed form of the membership characterization of the corona relation
+closure. -/
+theorem manuscriptRelationClosureMembership :
+    ∀ {G : Type} [Group G] (N : Subgroup G) [N.Normal] (x : G),
+      x ∈ actualCoronaMFClosure N ↔
+        ∀ (X : ℕ → FiniteModel), ∀ hX : ∀ n, 0 < Fintype.card (X n),
+          letI : ∀ n, Nonempty (X n) :=
+            fun n ↦ Fintype.card_pos_iff.mp (hX n)
+          ∀ rho : G →* unitary (NormMatrixCStarCorona (fun n ↦ X n)),
+            (∀ y ∈ N, rho y = 1) → rho x = 1 := by
+  intro G _ N _ x
+  exact mem_actualCoronaMFClosure_iff
+
+/-! ## Marked certificates -/
+
+/-- Closed form: a non-MF marked group has a word-ball certificate whose
+cylinder avoids the MF locus. -/
+theorem manuscriptMarkedBallCertificate :
+    ∀ (k : ℕ) (M : MarkedGroupSpace k),
+      ¬ IsOperatorMF M.Quotient →
+      ∃ R : ℕ,
+        MarkedGroupSpace.cylinder M (MarkedGroupSpace.wordBall k R) ⊆
+          (MarkedGroupSpace.operatorMFLocus k)ᶜ := by
+  intro k M hM
+  exact MarkedGroupSpace.exists_wordBall_cylinder_subset_compl_operatorMFLocus
+    M hM
+
+/-! ## Matricial stability -/
+
+/-- Closed form: for point-norm matricially stable groups the corona
+residual is the finite-dimensional unitary residual. -/
+theorem manuscriptStabilityRadicalIdentification :
+    ∀ {G : Type} [Group G] [Countable G],
+      MatricialStabilityRadical.IsPointNormMatriciallyStable G →
+      actualCoronaMFResidual G =
+        MatricialStabilityRadical.fdUnitaryResidual G := by
+  intro G _ _ hstab
+  exact MatricialStabilityRadical.actualCoronaMFResidual_eq_fdUnitaryResidual
+    hstab
+
+/-- Closed form: a stable group with nontrivial finite-dimensional
+residual is not MF. -/
+theorem manuscriptStabilityNonMFCriterion :
+    ∀ {G : Type} [Group G] [Countable G],
+      MatricialStabilityRadical.IsPointNormMatriciallyStable G →
+      MatricialStabilityRadical.fdUnitaryResidual G ≠ ⊥ →
+      ¬ IsCDEOperatorMF G := by
+  intro G _ _ hstab hne
+  exact MatricialStabilityRadical.not_isCDEOperatorMF_of_stable_of_fdResidual_ne_bot
+    hstab hne
+
+/-! ## Projection and torsion collapse -/
+
+/-- Closed form of the corona projection collapse. -/
+theorem manuscriptProjectionCollapse :
+    ∀ {E : Type} [Group E] [Countable E]
+      (L : Subgroup E), HasKazhdanPropertyT.{0, 0} L →
+      ∀ s : E, (∀ γ ∈ L, s * γ * s⁻¹ ∈ L) →
+      ∀ (X : ℕ → FiniteModel) (hX : ∀ n, 0 < Fintype.card (X n)),
+      letI : ∀ n, Nonempty (X n) := fun n ↦ Fintype.card_pos_iff.mp (hX n)
+      ∀ (pi : E →* unitary (NormMatrixCStarCorona (fun n ↦ X n)))
+        (p : NormMatrixCStarCorona (fun n ↦ X n)),
+        star p = p → p * p = p →
+        (∀ γ ∈ L,
+          ((pi (s * γ * s⁻¹) :
+              unitary (NormMatrixCStarCorona (fun n ↦ X n))) :
+              NormMatrixCStarCorona (fun n ↦ X n)) * p =
+            p * ((pi (s * γ * s⁻¹) :
+                unitary (NormMatrixCStarCorona (fun n ↦ X n))) :
+              NormMatrixCStarCorona (fun n ↦ X n))) →
+        (∀ γ₁ ∈ L, ∀ γ₂ ∈ L,
+          Commute
+            (((pi γ₁ : unitary (NormMatrixCStarCorona (fun n ↦ X n))) :
+                NormMatrixCStarCorona (fun n ↦ X n)) * p *
+              star ((pi γ₁ :
+                  unitary (NormMatrixCStarCorona (fun n ↦ X n))) :
+                NormMatrixCStarCorona (fun n ↦ X n)))
+            (((pi γ₂ : unitary (NormMatrixCStarCorona (fun n ↦ X n))) :
+                NormMatrixCStarCorona (fun n ↦ X n)) * p *
+              star ((pi γ₂ :
+                  unitary (NormMatrixCStarCorona (fun n ↦ X n))) :
+                NormMatrixCStarCorona (fun n ↦ X n)))) →
+        ∀ γ ∈ L,
+          ((pi γ : unitary (NormMatrixCStarCorona (fun n ↦ X n))) :
+              NormMatrixCStarCorona (fun n ↦ X n)) * p =
+            p * ((pi γ : unitary (NormMatrixCStarCorona (fun n ↦ X n))) :
+              NormMatrixCStarCorona (fun n ↦ X n)) := by
+  intro E _ _ L hT s hcomp X hX
+  exact ProjectionCompressionCollapse.corona_projection_collapse L hT
+    (s := s) hcomp X hX
+
+/-- Closed form: torsion witnesses have invisible commutators. -/
+theorem manuscriptTorsionWitnessInvisible :
+    ∀ {E : Type} [Group E] [Countable E]
+      (L : Subgroup E), HasKazhdanPropertyT.{0, 0} L →
+      ∀ s : E, (∀ γ ∈ L, s * γ * s⁻¹ ∈ L) →
+      ∀ k : E,
+        TorsionCompressionCollapse.IsTorsionCompressionWitness L s k →
+      ∀ γ ∈ L, ActualCoronaMFInvisible ⁅γ, k⁆ := by
+  intro E _ _ L hT s hcomp k hk γ hγ
+  exact TorsionSpectralCollapse.actualCoronaMFInvisible_of_torsionWitness
+    hT hcomp hk hγ
+
+/-- Closed form: the torsion collapse defect sits inside the corona
+residual. -/
+theorem manuscriptTorsionDefectInRadical :
+    ∀ {E : Type} [Group E] [Countable E]
+      (L : Subgroup E), HasKazhdanPropertyT.{0, 0} L →
+      ∀ s : E, (∀ γ ∈ L, s * γ * s⁻¹ ∈ L) →
+      TorsionCompressionCollapse.torsionCollapseDefect L s ≤
+        actualCoronaMFResidual E := by
+  intro E _ _ L hT s hcomp
+  exact TorsionSpectralCollapse.torsionCollapseDefect_le_actualCoronaMFResidual_of_kazhdan
+    hT hcomp
+
+/-- Closed form: an MF quotient by the torsion collapse defect pins the
+residual exactly. -/
+theorem manuscriptTorsionDefectIsRadical :
+    ∀ {E : Type} [Group E] [Countable E]
+      (L : Subgroup E), HasKazhdanPropertyT.{0, 0} L →
+      ∀ s : E, (∀ γ ∈ L, s * γ * s⁻¹ ∈ L) →
+      IsCDEOperatorMF
+        (E ⧸ TorsionCompressionCollapse.torsionCollapseDefect L s) →
+      actualCoronaMFResidual E =
+        TorsionCompressionCollapse.torsionCollapseDefect L s := by
+  intro E _ _ L hT s hcomp hquot
+  exact TorsionSpectralCollapse.actualCoronaMFResidual_eq_torsionCollapseDefect_of_kazhdan
+    hT hcomp hquot
+
+/-! ## Norm models and the spectral gap -/
+
+/-- Closed form: every norm model pads to one with all pairwise
+Hilbert--Schmidt distances below any prescribed bound. -/
+theorem manuscriptNormModelHSCollapse :
+    ∀ {G : Type} [Group G] (F : Finset G) (δ ε : ℝ)
+      (M : NormModel G F δ ε) (η : ℝ), 0 < η →
+      ∃ M' : NormModel G F δ ε,
+        ∀ g ∈ F, ∀ h ∈ F,
+          hsDistSq M'.carrier (M'.map g) (M'.map h) ≤ η := by
+  intro G _ F δ ε M η hη
+  exact M.exists_hs_collapse hη
+
+/-- Closed form of the robust spectral gap: past a threshold stage no
+eigenvalue of the Hermitian generator average is intermediate. -/
+theorem manuscriptRobustSpectralGap :
+    ∀ {G : Type} [Group G] (Q : Finset G) (ε : ℝ),
+      IsKazhdanPair.{0, 0} G Q ε →
+      ∀ S : Finset G, Q ⊆ S → 1 ∈ S → ε ≤ 1 →
+      (∀ g ∈ S, g⁻¹ ∈ S) →
+      ∀ (A : OpAlmostRepresentation G) (a b : ℝ),
+        1 - ε ^ 2 / (4 * S.card) < a → b < 1 →
+        ∃ N : ℕ, ∀ n ≥ N, ∀ i : A.model n,
+          ¬ (a ≤ Matrix.IsHermitian.eigenvalues
+              (WeakMFVectorGNS.hermitianAverage_conjTranspose A S n) i ∧
+            Matrix.IsHermitian.eigenvalues
+              (WeakMFVectorGNS.hermitianAverage_conjTranspose A S n) i ≤ b) := by
+  intro G _ Q ε hQ S hQS hone hεone hsymm A a b ha hb
+  exact WeakMFVectorGNS.hermitianAverage_eventually_no_intermediate_eigenvalues
+    hQ S hQS hone hεone hsymm A ha hb
+
+end
+
+end ManuscriptClosedWrappers
+end GroupApproximation

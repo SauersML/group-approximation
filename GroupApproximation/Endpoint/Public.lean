@@ -38,6 +38,7 @@ import GroupApproximation.Sofic.LiteralNonMFPresentation
 import GroupApproximation.Sofic.LiteralNonMFEndpoint
 import GroupApproximation.Sofic.KazhdanCliffordConstruction
 import GroupApproximation.Sofic.ManuscriptExactWrappers
+import GroupApproximation.Sofic.ManuscriptClosedWrappers
 import GroupApproximation.Sofic.LiteralMFQuotientControls
 import GroupApproximation.Sofic.LiteralNonMFConsequences
 import GroupApproximation.Sofic.LiteralBaseTranslationLattice
