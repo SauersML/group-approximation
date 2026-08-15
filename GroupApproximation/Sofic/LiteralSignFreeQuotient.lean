@@ -425,6 +425,195 @@ private theorem orb111 :
           (h23.inv_right.symm.eq)]
     _ = v1 * v2 * v3 * (v3⁻¹ * v3⁻¹) := by group
 
+/-! ## The eight commutator reductions -/
+
+private theorem conj_word_transport {r : Base}
+    (hr : Commute dee (baseMap r)) (V : MarkedGroup) :
+    (baseMap r * V * (baseMap r)⁻¹) * dee *
+        (baseMap r * V * (baseMap r)⁻¹)⁻¹ =
+      baseMap r * (V * dee * V⁻¹) * (baseMap r)⁻¹ := by
+  have hd : (baseMap r)⁻¹ * dee * baseMap r = dee := by
+    calc (baseMap r)⁻¹ * dee * baseMap r
+        = (baseMap r)⁻¹ * (dee * baseMap r) := by group
+      _ = (baseMap r)⁻¹ * (baseMap r * dee) := by rw [hr.eq]
+      _ = dee := by group
+  calc (baseMap r * V * (baseMap r)⁻¹) * dee *
+      (baseMap r * V * (baseMap r)⁻¹)⁻¹
+      = baseMap r * V * ((baseMap r)⁻¹ * dee * baseMap r) * V⁻¹ *
+          (baseMap r)⁻¹ := by group
+    _ = baseMap r * V * dee * V⁻¹ * (baseMap r)⁻¹ := by rw [hd]
+    _ = baseMap r * (V * dee * V⁻¹) * (baseMap r)⁻¹ := by group
+
+private theorem mark_conj_mem {g : MarkedGroup} :
+    g * mark * g⁻¹ ∈ markSubgroup := by
+  rw [show g * mark * g⁻¹ = mark from by
+    rw [(mark_central g).eq]; group]
+  exact Subgroup.mem_zpowers _
+
+/-- Reduction of a single parity-conjugate commutator via a centralizing
+rotation word and an orbit identity. -/
+private theorem commutator_via_orbit {r vγ : Base}
+    (hr : Commute dee (baseMap r)) {s : Base} (hs : s ∈ doubledBase)
+    (horb : r * v1 * r⁻¹ = vγ * s) :
+    ⁅dee, baseMap vγ * dee * (baseMap vγ)⁻¹⁆ ∈ markSubgroup := by
+  have habs : baseMap vγ * dee * (baseMap vγ)⁻¹ =
+      baseMap (r * v1 * r⁻¹) * dee * (baseMap (r * v1 * r⁻¹))⁻¹ := by
+    rw [horb]
+    exact (conj_dee_absorb hs).symm
+  have hrw : baseMap (r * v1 * r⁻¹) * dee *
+      (baseMap (r * v1 * r⁻¹))⁻¹ =
+      baseMap r * (baseMap v1 * dee * (baseMap v1)⁻¹) * (baseMap r)⁻¹ := by
+    rw [map_mul, map_mul, map_inv]
+    exact conj_word_transport hr (baseMap v1)
+  rw [habs, hrw, commutator_conj_transport hr, ← mark_eq_dee_commutator]
+  exact mark_conj_mem
+
+set_option maxHeartbeats 1000000 in
+/-- The parity-indexed commutators all lie in the marked subgroup. -/
+theorem commutator_parity {e₁ e₂ e₃ : ℤ}
+    (he₁ : e₁ = 0 ∨ e₁ = 1) (he₂ : e₂ = 0 ∨ e₂ = 1)
+    (he₃ : e₃ = 0 ∨ e₃ = 1) :
+    ⁅dee, baseMap ((v1 : Base) ^ e₁ * v2 ^ e₂ * v3 ^ e₃) * dee *
+      (baseMap ((v1 : Base) ^ e₁ * v2 ^ e₂ * v3 ^ e₃))⁻¹⁆ ∈
+      markSubgroup := by
+  have hxx : Commute dee (baseMap ((x : Base) * x)) := by
+    rw [map_mul]
+    exact dee_commutes_x.mul_right dee_commutes_x
+  have hyz : Commute dee (baseMap ((y : Base) * z)) := by
+    rw [map_mul]
+    exact dee_commutes_y.mul_right dee_commutes_z
+  have hyx : Commute dee (baseMap ((y : Base) * x)) := by
+    rw [map_mul]
+    exact dee_commutes_y.mul_right dee_commutes_x
+  have hyyx : Commute dee (baseMap ((y : Base) * y * x)) := by
+    rw [map_mul, map_mul]
+    exact (dee_commutes_y.mul_right dee_commutes_y).mul_right
+      dee_commutes_x
+  have hone : Commute dee (baseMap (1 : Base)) := by
+    rw [map_one]
+    exact Commute.one_right dee
+  rcases he₁ with rfl | rfl <;> rcases he₂ with rfl | rfl <;>
+    rcases he₃ with rfl | rfl <;>
+    simp only [zpow_zero, zpow_one, one_mul, mul_one]
+  · -- (0,0,0)
+    rw [map_one]
+    simpa using Subgroup.one_mem markSubgroup
+  · -- (0,0,1) : v3 = x v1 x⁻¹
+    exact commutator_via_orbit dee_commutes_x
+      (Subgroup.one_mem doubledBase) (by rw [orb001, mul_one])
+  · -- (0,1,0) : v2 = x² v1 x⁻²
+    exact commutator_via_orbit hxx
+      (Subgroup.one_mem doubledBase) (by rw [orb010, mul_one])
+  · -- (0,1,1) : v2 v3 correction v3⁻²
+    exact commutator_via_orbit dee_commutes_z
+      (Subgroup.inv_mem _ v_sq_mem_doubledBase.2.2)
+      (by rw [orb011]; group)
+  · -- (1,0,0) : the marked word itself
+    rw [← mark_eq_dee_commutator]
+    exact Subgroup.mem_zpowers _
+  · -- (1,0,1) : v1 v3 correction v1⁻²
+    exact commutator_via_orbit hyz
+      (Subgroup.inv_mem _ v_sq_mem_doubledBase.1)
+      (by rw [orb101]; group)
+  · -- (1,1,0) : v1 v2 correction v2⁻²
+    exact commutator_via_orbit hyx
+      (Subgroup.inv_mem _ v_sq_mem_doubledBase.2.1)
+      (by rw [orb110]; group)
+  · -- (1,1,1) : v1 v2 v3 correction v3⁻²
+    exact commutator_via_orbit hyyx
+      (Subgroup.inv_mem _ v_sq_mem_doubledBase.2.2)
+      (by rw [orb111]; group)
+
+/-! ## Arbitrary pairs of conjugates commute in the quotient -/
+
+private theorem vword_difference (e₁ e₂ e₃ d₁ d₂ d₃ : ℤ) :
+    (v1 : Base) ^ d₁ * v2 ^ d₂ * v3 ^ d₃ =
+      ((v1 : Base) ^ e₁ * v2 ^ e₂ * v3 ^ e₃) *
+        ((v1 : Base) ^ (d₁ - e₁) * v2 ^ (d₂ - e₂) * v3 ^ (d₃ - e₃)) := by
+  have h12 : Commute (v1 : Base) v2 :=
+    v1_commutes_translations v2_mem_translations
+  have h13 : Commute (v1 : Base) v3 :=
+    v1_commutes_translations v3_mem_translations
+  have h23 : Commute (v2 : Base) v3 :=
+    v2_commutes_translations v3_mem_translations
+  have hc1 : Commute ((v2 : Base) ^ e₂ * v3 ^ e₃) (v1 ^ (d₁ - e₁)) :=
+    Commute.mul_left (h12.symm.zpow_zpow e₂ (d₁ - e₁))
+      (h13.symm.zpow_zpow e₃ (d₁ - e₁))
+  have hc2 : Commute ((v3 : Base) ^ e₃) (v2 ^ (d₂ - e₂)) :=
+    h23.symm.zpow_zpow e₃ (d₂ - e₂)
+  calc (v1 : Base) ^ d₁ * v2 ^ d₂ * v3 ^ d₃
+      = v1 ^ (e₁ + (d₁ - e₁)) * v2 ^ (e₂ + (d₂ - e₂)) *
+          v3 ^ (e₃ + (d₃ - e₃)) := by
+        congr 1 <;> [skip; ring_nf] <;> congr 1 <;> ring_nf
+    _ = (v1 ^ e₁ * v1 ^ (d₁ - e₁)) * (v2 ^ e₂ * v2 ^ (d₂ - e₂)) *
+          (v3 ^ e₃ * v3 ^ (d₃ - e₃)) := by
+        rw [zpow_add, zpow_add, zpow_add]
+    _ = v1 ^ e₁ * ((v2 ^ e₂ * v3 ^ e₃) * v1 ^ (d₁ - e₁)) *
+          (v2 ^ (d₂ - e₂) * (v3 ^ e₃ * v3 ^ (d₃ - e₃))) := by group
+    _ = v1 ^ e₁ * (v1 ^ (d₁ - e₁) * (v2 ^ e₂ * v3 ^ e₃)) *
+          (v2 ^ (d₂ - e₂) * (v3 ^ e₃ * v3 ^ (d₃ - e₃))) := by
+        rw [hc1.eq]
+    _ = v1 ^ e₁ * v1 ^ (d₁ - e₁) * v2 ^ e₂ *
+          ((v3 ^ e₃ * v2 ^ (d₂ - e₂)) * (v3 ^ e₃ * v3 ^ (d₃ - e₃))) := by
+        group
+    _ = v1 ^ e₁ * v1 ^ (d₁ - e₁) * v2 ^ e₂ *
+          ((v2 ^ (d₂ - e₂) * v3 ^ e₃) * (v3 ^ e₃ * v3 ^ (d₃ - e₃))) := by
+        rw [hc2.eq]
+    _ = ((v1 : Base) ^ e₁ * v2 ^ e₂ * v3 ^ e₃) *
+          ((v1 : Base) ^ (d₁ - e₁) * v2 ^ (d₂ - e₂) *
+            v3 ^ (d₃ - e₃)) := by
+        group
+
+set_option maxHeartbeats 1000000 in
+/-- **Orbit commutation modulo the sign.**  Any two base conjugates of
+the moved lamp commute modulo the marked subgroup. -/
+theorem orbit_commutator_mem (g₁ g₂ : Base) :
+    ⁅baseMap g₁ * dee * (baseMap g₁)⁻¹,
+      baseMap g₂ * dee * (baseMap g₂)⁻¹⁆ ∈ markSubgroup := by
+  obtain ⟨e₁, e₂, e₃, he₁, he₂, he₃, hEc⟩ := conj_dee_parity g₁
+  obtain ⟨d₁, d₂, d₃, hd₁, hd₂, hd₃, hDc⟩ := conj_dee_parity g₂
+  rw [hEc, hDc]
+  rw [vword_difference e₁ e₂ e₃ d₁ d₂ d₃, map_mul]
+  rw [show (baseMap ((v1 : Base) ^ e₁ * v2 ^ e₂ * v3 ^ e₃) *
+      baseMap ((v1 : Base) ^ (d₁ - e₁) * v2 ^ (d₂ - e₂) *
+        v3 ^ (d₃ - e₃))) * dee *
+      (baseMap ((v1 : Base) ^ e₁ * v2 ^ e₂ * v3 ^ e₃) *
+        baseMap ((v1 : Base) ^ (d₁ - e₁) * v2 ^ (d₂ - e₂) *
+          v3 ^ (d₃ - e₃)))⁻¹ =
+      baseMap ((v1 : Base) ^ e₁ * v2 ^ e₂ * v3 ^ e₃) *
+        (baseMap ((v1 : Base) ^ (d₁ - e₁) * v2 ^ (d₂ - e₂) *
+          v3 ^ (d₃ - e₃)) * dee *
+          (baseMap ((v1 : Base) ^ (d₁ - e₁) * v2 ^ (d₂ - e₂) *
+            v3 ^ (d₃ - e₃)))⁻¹) *
+        (baseMap ((v1 : Base) ^ e₁ * v2 ^ e₂ * v3 ^ e₃))⁻¹ from by
+    group]
+  rw [show baseMap ((v1 : Base) ^ e₁ * v2 ^ e₂ * v3 ^ e₃) * dee *
+      (baseMap ((v1 : Base) ^ e₁ * v2 ^ e₂ * v3 ^ e₃))⁻¹ =
+      baseMap ((v1 : Base) ^ e₁ * v2 ^ e₂ * v3 ^ e₃) * dee *
+        (baseMap ((v1 : Base) ^ e₁ * v2 ^ e₂ * v3 ^ e₃))⁻¹ from rfl]
+  rw [show ⁅baseMap ((v1 : Base) ^ e₁ * v2 ^ e₂ * v3 ^ e₃) * dee *
+      (baseMap ((v1 : Base) ^ e₁ * v2 ^ e₂ * v3 ^ e₃))⁻¹,
+      baseMap ((v1 : Base) ^ e₁ * v2 ^ e₂ * v3 ^ e₃) *
+        (baseMap ((v1 : Base) ^ (d₁ - e₁) * v2 ^ (d₂ - e₂) *
+          v3 ^ (d₃ - e₃)) * dee *
+          (baseMap ((v1 : Base) ^ (d₁ - e₁) * v2 ^ (d₂ - e₂) *
+            v3 ^ (d₃ - e₃)))⁻¹) *
+        (baseMap ((v1 : Base) ^ e₁ * v2 ^ e₂ * v3 ^ e₃))⁻¹⁆ =
+      baseMap ((v1 : Base) ^ e₁ * v2 ^ e₂ * v3 ^ e₃) *
+        ⁅dee, baseMap ((v1 : Base) ^ (d₁ - e₁) * v2 ^ (d₂ - e₂) *
+          v3 ^ (d₃ - e₃)) * dee *
+          (baseMap ((v1 : Base) ^ (d₁ - e₁) * v2 ^ (d₂ - e₂) *
+            v3 ^ (d₃ - e₃)))⁻¹⁆ *
+        (baseMap ((v1 : Base) ^ e₁ * v2 ^ e₂ * v3 ^ e₃))⁻¹ from by
+    simp only [commutatorElement_def]
+    group]
+  refine markSubgroup_normal.conj_mem _ ?_ _
+  obtain ⟨sW, hsW, hWsplit⟩ :=
+    vword_parity_decomp (d₁ - e₁) (d₂ - e₂) (d₃ - e₃)
+  rw [hWsplit, conj_dee_absorb hsW]
+  exact commutator_parity (Int.emod_two_eq_zero_or_one _)
+    (Int.emod_two_eq_zero_or_one _) (Int.emod_two_eq_zero_or_one _)
+
 end
 
 end LiteralSignFreeQuotient
