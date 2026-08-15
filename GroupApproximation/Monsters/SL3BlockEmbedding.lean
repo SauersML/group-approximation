@@ -49,7 +49,7 @@ def blockEmbed : SL2 →* SL3 where
       (simp [Matrix.SpecialLinearGroup.coe_mul, Matrix.mul_apply,
         Fin.sum_univ_two, Fin.sum_univ_three]; try ring))
 
-theorem blockEmbed_coe (A : SL2) :
+@[simp] theorem blockEmbed_coe (A : SL2) :
     ((blockEmbed A : SL3) : Matrix (Fin 3) (Fin 3) ℤ) =
       !![(A : Matrix (Fin 2) (Fin 2) ℤ) 0 0,
          (A : Matrix (Fin 2) (Fin 2) ℤ) 0 1, 0;
