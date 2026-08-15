@@ -29,6 +29,8 @@ namespace P13MonomialMachine
 
 open LiteralP13Presentation P13SteinbergCalculus LiteralP13MatrixModel
 open P13WeylCalculus P13Weyl13Calculus P13Weyl23Calculus
+open P13WeylFourthPowers P13UnipotentInjectivity
+open P13LowerUnipotentInjectivity
 open P13ColumnLift P13ParabolicKernel
 
 noncomputable section
@@ -95,6 +97,7 @@ theorem w23_conj_w13 : w23 * w13 * w23⁻¹ = w := by
     show w23 * (x 1 1 * x 4 (-1) * x 1 1) * w23⁻¹ = _
     exact conj_word w23 _ _ _
   rw [h, w23_conj_13, w23_conj_31]
+  rfl
 
 /-- `w13 · w23 · w13⁻¹ = w⁻¹`. -/
 theorem w13_conj_w23 : w13 * w23 * w13⁻¹ = w⁻¹ := by
@@ -110,6 +113,7 @@ theorem w13_conj_w23 : w13 * w23 * w13⁻¹ = w⁻¹ := by
     simp only [x]
     group
   rw [hinv, ← braid]
+  rfl
 
 /-- `w · w13 · w⁻¹ = w23⁻¹`. -/
 theorem w_conj_w13 : w * w13 * w⁻¹ = w23⁻¹ := by
@@ -118,6 +122,7 @@ theorem w_conj_w13 : w * w13 * w⁻¹ = w23⁻¹ := by
     show w * (x 1 1 * x 4 (-1) * x 1 1) * w⁻¹ = _
     exact conj_word w _ _ _
   rw [h, w_conj_13, w_conj_31, w23_inv_word]
+  norm_num
 
 /-! ## Derived straightening identities -/
 
@@ -395,9 +400,7 @@ theorem w23_mul_repw (j : Fin 6) :
 theorem toSL3_w :
     toSL3 w = ⟨!![0, 1, 0; -1, 0, 0; 0, 0, 1], by decide⟩ := by
   show toSL3 (x 0 1 * x 2 (-1) * x 0 1) = _
-  rw [map_mul, map_mul, toSL3_x, toSL3_x,
-    P13UnipotentInjectivity.elem0_zpow,
-    P13LowerUnipotentInjectivity.elem2_zpow]
+  rw [map_mul, map_mul, toSL3_x, toSL3_x, elem0_zpow, elem2_zpow]
   apply Subtype.ext
   decide
 
