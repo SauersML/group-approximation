@@ -214,7 +214,8 @@ theorem one_sub_spectralProjection_eq (m : A) {c : ℝ}
     rw [spectralProjection, ← cfc_sub _ _ m (by fun_prop) hind]
     conv_lhs => rw [hone]
   have h2 : (1 : A) - m = cfc (fun x : ℝ => 1 - x) m := by
-    rw [← cfc_sub _ _ m (by fun_prop) (by fun_prop)]
+    rw [cfc_sub (fun _ : ℝ => (1 : ℝ)) (fun x : ℝ => x) m
+      continuousOn_const (continuousOn_id' _)]
     conv_lhs => rw [hone, hid]
   rw [h1, h2, ← cfc_mul _ _ m hres (by fun_prop)]
   apply cfc_congr
@@ -227,8 +228,8 @@ theorem one_sub_spectralProjection_eq (m : A) {c : ℝ}
       inv_mul_cancel₀ (by linarith : (1 : ℝ) - x ≠ 0)]
   · subst hx1
     rw [gapIndicator_one hc, sub_self]
-    show (0 : ℝ) = gapResolvent c 1 * (1 - 1)
-    rw [sub_self, mul_zero]
+    show (0 : ℝ) = gapResolvent c 1 * 0
+    rw [mul_zero]
 
 /-- **Conjugated absorption**: if the conjugated average absorbs `p` on
 the left, then the conjugated spectral projection absorbs `p`.  No
@@ -250,7 +251,6 @@ theorem conjugated_projection_absorbs {m p u : A} {c : ℝ}
     have ha : u * (((1 : A) - m) * (star u * p)) = 0 := by
       rw [hb, sub_mul, one_mul, hmp, sub_self]
     have hc2 := congrArg (fun z => star u * z) ha
-    simp only [] at hc2
     rw [← mul_assoc, h1, one_mul, mul_zero] at hc2
     exact hc2
   have hfac := one_sub_spectralProjection_eq m hm hc hgap
