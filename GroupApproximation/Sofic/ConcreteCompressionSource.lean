@@ -19,7 +19,7 @@ with the whole base, so the compressed copy centralizes its transport;
 and for any base element outside the image of `α`, the marked commutator
 is a reduced word of length four in the stable letter, so Britton's
 lemma — available in Mathlib as
-`HNNExtension.NormalWord.ReducedWord.toList_eq_nil_of_mem_of_range` — keeps it
+`HNNExtension.ReducedWord.toList_eq_nil_of_mem_of_range` — keeps it
 nontrivial.  No Clifford kernel, no torsion, and no simple subgroup are
 involved; instantiating at the doubling map of `ℤ` gives a completely
 explicit two-relator-flavoured source.
@@ -341,7 +341,7 @@ theorem commutator_tct_ne_one {γ₀ : Γ} (hγ₀ : γ₀ ∉ Set.range α) :
       (HNNExtension.of.range : Subgroup (SourceGroup α hα)) := by
     rw [brittonWord_prod α hα hγ₀, hone]
     exact ⟨1, map_one _⟩
-  have hnil := HNNExtension.NormalWord.ReducedWord.toList_eq_nil_of_mem_of_range
+  have hnil := HNNExtension.ReducedWord.toList_eq_nil_of_mem_of_range
     (φ := sourceEquiv α hα) (brittonWord α hγ₀) hmem
   rw [brittonWord_toList α hγ₀] at hnil
   exact List.cons_ne_nil _ _ hnil
