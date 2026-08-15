@@ -169,8 +169,8 @@ theorem topViol_min {W : List Letter} {b : Fin 3 → ℤ}
     ¬ (Viol W b j ∧ sigma W b (j + 1) = lam W b) :=
   Nat.find_min h hj
 
-/-- The lexicographic termination measure. -/
 open Classical in
+/-- The lexicographic termination measure. -/
 noncomputable def meas (W : List Letter) (b : Fin 3 → ℤ) : ℕ × ℕ :=
   if h : ∃ j, Viol W b j ∧ sigma W b (j + 1) = lam W b then
     (lam W b, W.length - topViol W b h)
