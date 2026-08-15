@@ -550,9 +550,15 @@ quotient, and it equals the collapse defect exactly when the quotient is
 operator-MF. -/
 theorem manuscriptCollapseRadicalReduction :
     ∀ {H : Type} [Group H] [Countable H]
-      {L : Subgroup H} (hT : HasKazhdanPropertyT.{0, 0} ↥L)
-      {s : H} (hcomp : ∀ γ ∈ L, s * γ * s⁻¹ ∈ L),
-    actualCoronaMFResidual H =
+      (L : Subgroup H) (s : H),
+      HasKazhdanPropertyT.{0, 0} ↥L →
+      (∀ γ ∈ L, s * γ * s⁻¹ ∈ L) →
+      letI : Countable
+          (H ⧸ InvolutionCollapseEndpoint.involutiveCollapseDefect L s) :=
+        Function.Surjective.countable
+          (QuotientGroup.mk'_surjective
+            (InvolutionCollapseEndpoint.involutiveCollapseDefect L s))
+      actualCoronaMFResidual H =
         (actualCoronaMFResidual
           (H ⧸ InvolutionCollapseEndpoint.involutiveCollapseDefect L s)).comap
           (QuotientGroup.mk'
@@ -561,7 +567,7 @@ theorem manuscriptCollapseRadicalReduction :
           (H ⧸ InvolutionCollapseEndpoint.involutiveCollapseDefect L s) →
         actualCoronaMFResidual H =
           InvolutionCollapseEndpoint.involutiveCollapseDefect L s) := by
-  intro H _ _ L hT s hcomp
+  intro H _ _ L s hT hcomp
   exact
     ⟨InvolutionCollapseEndpoint.actualCoronaMFResidual_eq_comap_involutive_quotient
         hT hcomp,
@@ -576,8 +582,9 @@ countable operator-MF group, and rules out operator-MF approximation of a
 nontrivial ambient group. -/
 theorem manuscriptDefectSaturation :
     ∀ {H : Type} [Group H] [Countable H]
-      {L : Subgroup H} (hT : HasKazhdanPropertyT.{0, 0} ↥L)
-      {s : H} (hcomp : ∀ γ ∈ L, s * γ * s⁻¹ ∈ L),
+      (L : Subgroup H) (s : H),
+      HasKazhdanPropertyT.{0, 0} ↥L →
+      (∀ γ ∈ L, s * γ * s⁻¹ ∈ L) →
     (∀ {Q : Type} [Group Q] [Countable Q] (f : H →* Q),
         IsCDEOperatorMF Q →
         InvolutionCollapseEndpoint.involutiveCollapseDefect L s ≤ f.ker) ∧
@@ -586,7 +593,7 @@ theorem manuscriptDefectSaturation :
         (∀ {Q : Type} [Group Q] [Countable Q] (f : H →* Q),
           IsCDEOperatorMF Q → ∀ x : H, f x = 1) ∧
         (Nontrivial H → ¬ IsCDEOperatorMF H)) := by
-  intro H _ _ L hT s hcomp
+  intro H _ _ L s hT hcomp
   constructor
   · intro Q _ _ f hQ
     exact DefectSaturation.involutiveCollapseDefect_le_ker_of_isCDEOperatorMF
