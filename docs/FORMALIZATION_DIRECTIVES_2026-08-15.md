@@ -160,3 +160,21 @@ Britton's lemma for HNN extensions of presented groups over Mathlib's
 share a combinatorial program;  (2) is the long lane behind the endorsed
 routing boundary.  Directives 3 and 4 share Britton's lemma — build it
 once.
+
+**Britton survey (2026-08-15, late):** Mathlib's
+`GroupTheory/HNNExtension.lean` (690 lines) already contains the full
+normal-form machinery: `NormalWord d` with `TransversalPair`,
+`HNNExtension.equiv : HNNExtension G A B φ ≃ NormalWord d`,
+`of_injective` (the subgroup-permanence input for directive 4),
+`prod_injective`, `exists_normalWord_prod_eq`, and
+`map_fst_eq_and_of_prod_eq` (Britton's lemma in
+two-reduced-words-with-equal-product form).  Sizing update: the
+2-generator embedding (directive 4) is medium — its one hard brick is
+freeness of the standard shifted family inside a free product, provable
+from `Monoid.CoprodI`'s `Word` normal forms; finite presentability of
+the 2-generated overgroup needs HNN presentation bookkeeping on top.
+Adian--Rabin (directive 3) remains weeks-scale but sits exactly on this
+HNN + `CoprodI` base.  Also sized from the manuscript ledger: the
+tensor-power instantiation of the intertwiner transport needs Kronecker
+operator-norm theory (`‖A ⊗ B‖ = ‖A‖‖B‖`), absent from Mathlib —
+medium, not small.
