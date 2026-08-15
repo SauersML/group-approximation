@@ -1,5 +1,6 @@
 import GroupApproximation.Sofic.ProjectionCompressionCollapse
 import GroupApproximation.Sofic.TorsionCompressionCollapse
+import Mathlib.Analysis.SpecialFunctions.Complex.CircleAddChar
 
 /-!
 # Torsion witnesses collapse at every order
@@ -26,6 +27,8 @@ one-sided compressor.
 -/
 
 namespace GroupApproximation
+
+open scoped commutatorElement
 namespace TorsionSpectralCollapse
 
 open Finset
@@ -51,15 +54,18 @@ theorem val_add_mod {M : ℕ} [NeZero M] (a b : ZMod M) :
 theorem unitary_coe_inv {A : Type*} [Monoid A] [StarMul A]
     (u : unitary A) :
     ((u⁻¹ : unitary A) : A) = star (u : A) := by
-  rw [← unitary.star_eq_inv, unitary.coe_star]
+  have hba : ((u⁻¹ : unitary A) : A) * (u : A) = 1 := by
+    have h0 := congrArg (fun z : unitary A ↦ (z : A)) (inv_mul_cancel u)
+    simpa using h0
+  exact left_inv_eq_right_inv hba u.prop.2
 
 /-! ## The character sum -/
 
 /-- Summing a character of `ZMod M` built from a primitive `M`-th root of
 unity over the whole group gives `M` at the trivial character and zero
 otherwise. -/
-theorem char_sum (M : ℕ) [NeZero M] {ζ : ℂ} (hprim : IsPrimitiveRoot ζ M)
-    (s : ZMod M) :
+theorem char_sum (M : ℕ) [NeZero M] {ζ : ℂ} (hζM : ζ ^ M = 1)
+    (hζne : ∀ i : ℕ, 0 < i → i < M → ζ ^ i ≠ 1) (s : ZMod M) :
     (∑ j : ZMod M, ζ ^ (ZMod.val j * ZMod.val s)) =
       if s = 0 then (M : ℂ) else 0 := by
   classical
@@ -81,10 +87,10 @@ theorem char_sum (M : ℕ) [NeZero M] {ζ : ℂ} (hprim : IsPrimitiveRoot ζ M)
   · rw [if_neg hs]
     have hvpos : ZMod.val s ≠ 0 := fun h ↦ hs ((ZMod.val_eq_zero s).mp h)
     have hx1 : ζ ^ ZMod.val s ≠ 1 :=
-      hprim.pow_ne_one_of_pos_of_lt hvpos (ZMod.val_lt s)
+      hζne _ (Nat.pos_of_ne_zero hvpos) (ZMod.val_lt s)
     rw [geom_sum_eq hx1]
     have hxM : (ζ ^ ZMod.val s) ^ (M' + 1) = 1 := by
-      rw [← pow_mul, Nat.mul_comm, pow_mul, hprim.pow_eq_one, one_pow]
+      rw [← pow_mul, Nat.mul_comm, pow_mul, hζM, one_pow]
     rw [hxM, sub_self, zero_div]
 
 /-! ## Fourier idempotents of a finite-order unitary -/
@@ -106,6 +112,7 @@ theorem fourier_char_mul (hζM : ζ ^ M = 1) (j a b : ZMod M) :
     pow_eq_pow_of_mod_eq hζM (Nat.ModEq.mul_left (ZMod.val j)
       (val_add_mod a b))]
 
+omit [StarRing A] [Algebra ℂ A] [StarModule ℂ A] in
 theorem fourier_pow_mul (hvM : v ^ M = 1) (a b : ZMod M) :
     v ^ ZMod.val a * v ^ ZMod.val b = v ^ ZMod.val (a + b) := by
   rw [← pow_add, pow_eq_pow_of_mod_eq hvM (val_add_mod a b)]
@@ -159,7 +166,7 @@ theorem fourier_term_star (hζM : ζ ^ M = 1) (hζnorm : ‖ζ‖ = 1)
       _ = (star (v ^ ZMod.val t) * v ^ ZMod.val t) * v ^ ZMod.val (-t) := by
           rw [mul_assoc]
       _ = v ^ ZMod.val (-t) := by
-          rw [unitary.star_mul_self_of_mem hmem, one_mul]
+          rw [hmem.1, one_mul]
 
 /-- The Fourier idempotents are self-adjoint. -/
 theorem star_fourierIdem (hζM : ζ ^ M = 1) (hζnorm : ‖ζ‖ = 1)
@@ -195,6 +202,7 @@ theorem fourierIdem_mul_self (hζM : ζ ^ M = 1) (hvM : v ^ M = 1)
   field_simp
 
 /-- Everything commuting with `v` commutes with its Fourier idempotents. -/
+omit [StarRing A] [StarModule ℂ A] in
 theorem commute_fourierIdem {g : A} (hgv : Commute g v) (j : ZMod M) :
     Commute g (fourierIdem ζ M v j) := by
   unfold fourierIdem
@@ -203,6 +211,7 @@ theorem commute_fourierIdem {g : A} (hgv : Commute g v) (j : ZMod M) :
   exact Commute.smul_right (hgv.pow_right _) _
 
 /-- Fourier idempotents of commuting finite-order elements commute. -/
+omit [StarRing A] [StarModule ℂ A] in
 theorem commute_fourierIdem_fourierIdem {v₁ v₂ : A} (h : Commute v₁ v₂)
     (j j' : ZMod M) :
     Commute (fourierIdem ζ M v₁ j) (fourierIdem ζ M v₂ j') := by
@@ -212,6 +221,7 @@ theorem commute_fourierIdem_fourierIdem {v₁ v₂ : A} (h : Commute v₁ v₂)
   refine Commute.sum_right _ _ _ fun u _ ↦ ?_
   exact Commute.smul_right (Commute.smul_left (h.pow_pow _ _) _) _
 
+omit [Algebra ℂ A] [StarModule ℂ A] in
 theorem conj_pow {g v : A} (hg1 : g * star g = 1) (hg2 : star g * g = 1)
     (n : ℕ) : g * v ^ n * star g = (g * v * star g) ^ n := by
   induction n with
@@ -239,12 +249,11 @@ theorem conj_fourierIdem {g : A} (hg1 : g * star g = 1)
 
 /-- Fourier reconstruction: the element is recovered from its
 idempotents. -/
-theorem fourierIdem_reconstruct (hprim : IsPrimitiveRoot ζ M)
-    (hvM : v ^ M = 1) :
+theorem fourierIdem_reconstruct (hζM : ζ ^ M = 1)
+    (hζne : ∀ i : ℕ, 0 < i → i < M → ζ ^ i ≠ 1) (hvM : v ^ M = 1) :
     (∑ j : ZMod M, ζ ^ (ZMod.val j * ZMod.val (-1 : ZMod M)) •
       fourierIdem ζ M v j) = v := by
   classical
-  have hζM : ζ ^ M = 1 := hprim.pow_eq_one
   have hM0 : (M : ℂ) ≠ 0 := Nat.cast_ne_zero.mpr (NeZero.ne M)
   unfold fourierIdem
   have hstep : ∀ j : ZMod M,
@@ -265,7 +274,7 @@ theorem fourierIdem_reconstruct (hprim : IsPrimitiveRoot ζ M)
         ζ ^ (ZMod.val j * ZMod.val (-1 + t)) • v ^ ZMod.val t) =
       (if (-1 + t : ZMod M) = 0 then (M : ℂ) else 0) • v ^ ZMod.val t := by
     intro t
-    rw [← Finset.sum_smul, char_sum M hprim (-1 + t)]
+    rw [← Finset.sum_smul, char_sum M hζM hζne (-1 + t)]
   rw [Finset.sum_congr rfl fun t _ ↦ hinner t]
   rw [Finset.sum_eq_single (1 : ZMod M)]
   · rw [if_pos (by rw [neg_add_cancel]), smul_smul,
@@ -302,8 +311,52 @@ theorem actualCoronaMFInvisible_of_torsionWitness {E : Type} [Group E]
   letI : ∀ n, Nonempty (X n) := fun n ↦ Fintype.card_pos_iff.mp (hX n)
   intro rho
   set ζ : ℂ := Complex.exp (2 * Real.pi * Complex.I / m) with hζdef
-  have hprim : IsPrimitiveRoot ζ m := Complex.isPrimitiveRoot_exp m hm.ne'
-  have hζM : ζ ^ m = 1 := hprim.pow_eq_one
+  have hm0 : (m : ℂ) ≠ 0 := Nat.cast_ne_zero.mpr hm.ne'
+  have hζpow : ∀ i : ℕ, ζ ^ i =
+      Complex.exp (2 * Real.pi * Complex.I * (i : ℂ) / (m : ℂ)) := by
+    intro i
+    rw [hζdef, ← Complex.exp_nat_mul]
+    congr 1
+    ring
+  have hζM : ζ ^ m = 1 := by
+    rw [hζpow m, show 2 * (Real.pi : ℂ) * Complex.I * (m : ℂ) / (m : ℂ) =
+      2 * (Real.pi : ℂ) * Complex.I by field_simp]
+    exact Complex.exp_two_pi_mul_I
+  have hζne : ∀ i : ℕ, 0 < i → i < m → ζ ^ i ≠ 1 := by
+    intro i hi him hc
+    rw [hζpow i, Complex.exp_eq_one_iff] at hc
+    obtain ⟨n, hn⟩ := hc
+    have hpi0 : ((Real.pi : ℂ)) ≠ 0 :=
+      Complex.ofReal_ne_zero.mpr Real.pi_ne_zero
+    have hK : (2 * (Real.pi : ℂ) * Complex.I) ≠ 0 :=
+      mul_ne_zero (mul_ne_zero two_ne_zero hpi0) Complex.I_ne_zero
+    have hcast : (i : ℂ) = (n : ℂ) * (m : ℂ) := by
+      apply mul_left_cancel₀ hK
+      calc (2 * (Real.pi : ℂ) * Complex.I) * (i : ℂ) =
+          2 * (Real.pi : ℂ) * Complex.I * (i : ℂ) / (m : ℂ) * (m : ℂ) :=
+            (div_mul_cancel₀ _ hm0).symm
+        _ = ((n : ℂ) * (2 * (Real.pi : ℂ) * Complex.I)) * (m : ℂ) := by
+            rw [hn]
+        _ = (2 * (Real.pi : ℂ) * Complex.I) * ((n : ℂ) * (m : ℂ)) := by
+            ring
+    have hZ : (i : ℤ) = n * (m : ℤ) := by exact_mod_cast hcast
+    rcases eq_or_ne n 0 with hn0 | hn0
+    · rw [hn0, zero_mul] at hZ
+      exact hi.ne' (by exact_mod_cast hZ)
+    · have habs : 1 ≤ |n| := by
+        rcases hn0.lt_or_lt with h | h
+        · rw [abs_of_neg h]
+          omega
+        · rw [abs_of_pos h]
+          omega
+      have h1 : (m : ℤ) ≤ |n * (m : ℤ)| := by
+        rw [abs_mul, abs_of_nonneg (by positivity : (0 : ℤ) ≤ (m : ℤ))]
+        calc (m : ℤ) = 1 * (m : ℤ) := (one_mul _).symm
+          _ ≤ |n| * (m : ℤ) :=
+              mul_le_mul_of_nonneg_right habs (by positivity)
+      rw [← hZ, abs_of_nonneg (by positivity : (0 : ℤ) ≤ (i : ℤ))] at h1
+      have h3 : (i : ℤ) < (m : ℤ) := by exact_mod_cast him
+      omega
   have hζnorm : ‖ζ‖ = 1 := Complex.norm_eq_one_of_pow_eq_one hζM hm.ne'
   set v : NormMatrixCStarCorona (fun n ↦ X n) :=
     ((rho k : unitary (NormMatrixCStarCorona (fun n ↦ X n))) :
@@ -367,13 +420,13 @@ theorem actualCoronaMFInvisible_of_torsionWitness {E : Type} [Group E]
             star ((rho δ :
                 unitary (NormMatrixCStarCorona (fun n ↦ X n))) :
               NormMatrixCStarCorona (fun n ↦ X n)) = 1 :=
-        fun δ ↦ unitary.mul_star_self_of_mem (rho δ).2
+        fun δ ↦ (rho δ).2.2
       have hg2 : ∀ δ : E,
           star ((rho δ : unitary (NormMatrixCStarCorona (fun n ↦ X n))) :
               NormMatrixCStarCorona (fun n ↦ X n)) *
             ((rho δ : unitary (NormMatrixCStarCorona (fun n ↦ X n))) :
               NormMatrixCStarCorona (fun n ↦ X n)) = 1 :=
-        fun δ ↦ unitary.star_mul_self_of_mem (rho δ).2
+        fun δ ↦ (rho δ).2.1
       rw [conj_fourierIdem (hg1 δ₁) (hg2 δ₁) j,
         conj_fourierIdem (hg1 δ₂) (hg2 δ₂) j,
         hconj_val δ₁, hconj_val δ₂]
@@ -383,7 +436,7 @@ theorem actualCoronaMFInvisible_of_torsionWitness {E : Type} [Group E]
   have hgv : Commute
       ((rho γ : unitary (NormMatrixCStarCorona (fun n ↦ X n))) :
         NormMatrixCStarCorona (fun n ↦ X n)) v := by
-    rw [← fourierIdem_reconstruct hprim hvM]
+    rw [← fourierIdem_reconstruct hζM hζne hvM]
     refine Commute.sum_right _ _ _ fun j _ ↦ ?_
     exact Commute.smul_right (hfix j γ hγ) _
   have hunit : rho γ * rho k = rho k * rho γ := Subtype.ext hgv.eq
@@ -393,6 +446,13 @@ theorem actualCoronaMFInvisible_of_torsionWitness {E : Type} [Group E]
   exact hcommU
 
 /-! ## Unconditional endpoints -/
+
+/-- Quotients of countable groups are countable; mirrored locally from
+`Sofic.ActualCoronaMFRadical`, where the same instance is `local`. -/
+local instance quotientCountable {E : Type} [Group E] (N : Subgroup E)
+    [hN : N.Normal] [Countable E] : Countable (E ⧸ N) :=
+  Function.Surjective.countable
+    (@QuotientGroup.mk'_surjective E _ N hN)
 
 /-- **The full torsion-collapse defect lies in the MF radical**, with no
 analytic hypothesis: the collapse gate of

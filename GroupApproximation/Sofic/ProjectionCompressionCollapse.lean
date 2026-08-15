@@ -27,6 +27,8 @@ CDE-operator-MF-ness outright.
 -/
 
 namespace GroupApproximation
+
+open scoped commutatorElement
 namespace ProjectionCompressionCollapse
 
 open InvolutionCollapseEndpoint
@@ -116,7 +118,7 @@ theorem corona_projection_collapse {E : Type} [Group E] [Countable E]
     rw [hexp, hproj]
     noncomm_ring
   have hwmem : w ∈ unitary (NormMatrixCStarCorona (fun n ↦ X n)) := by
-    refine unitary.mem_iff.mpr ⟨?_, ?_⟩
+    refine ⟨?_, ?_⟩
     · rw [hwstar]
       exact hww
     · rw [hwstar]
@@ -231,11 +233,34 @@ theorem corona_projection_collapse {E : Type} [Group E] [Countable E]
             NormMatrixCStarCorona (fun n ↦ X n)) =
             star (((γ' : unitary (NormMatrixCStarCorona (fun n ↦ X n))) :
               NormMatrixCStarCorona (fun n ↦ X n))) := by
-          rw [show ((γ'⁻¹ : ↥E') :
-              unitary (NormMatrixCStarCorona (fun n ↦ X n))) =
-              ((γ' : unitary (NormMatrixCStarCorona (fun n ↦ X n))))⁻¹
-              from rfl,
-            ← unitary.star_eq_inv, unitary.coe_star]
+          have hba : (((γ'⁻¹ : ↥E') :
+              unitary (NormMatrixCStarCorona (fun n ↦ X n))) :
+              NormMatrixCStarCorona (fun n ↦ X n)) *
+              (((γ' : ↥E') :
+                unitary (NormMatrixCStarCorona (fun n ↦ X n))) :
+                NormMatrixCStarCorona (fun n ↦ X n)) = 1 := by
+            have h0 : ((γ'⁻¹ * γ' : ↥E') :
+                unitary (NormMatrixCStarCorona (fun n ↦ X n))) = 1 := by
+              rw [inv_mul_cancel]
+              rfl
+            calc (((γ'⁻¹ : ↥E') :
+                unitary (NormMatrixCStarCorona (fun n ↦ X n))) :
+                NormMatrixCStarCorona (fun n ↦ X n)) *
+                (((γ' : ↥E') :
+                  unitary (NormMatrixCStarCorona (fun n ↦ X n))) :
+                  NormMatrixCStarCorona (fun n ↦ X n)) =
+                (((γ'⁻¹ * γ' : ↥E') :
+                  unitary (NormMatrixCStarCorona (fun n ↦ X n))) :
+                  NormMatrixCStarCorona (fun n ↦ X n)) := rfl
+              _ = 1 := by rw [h0]; rfl
+          have hac : (((γ' : ↥E') :
+              unitary (NormMatrixCStarCorona (fun n ↦ X n))) :
+              NormMatrixCStarCorona (fun n ↦ X n)) *
+              star (((γ' : ↥E') :
+                unitary (NormMatrixCStarCorona (fun n ↦ X n))) :
+                NormMatrixCStarCorona (fun n ↦ X n)) = 1 :=
+            ((γ' : unitary (NormMatrixCStarCorona (fun n ↦ X n))).prop).2
+          exact left_inv_eq_right_inv hba hac
         have hcoe : (((γ' * kE * γ'⁻¹ : ↥E') :
             unitary (NormMatrixCStarCorona (fun n ↦ X n))) :
             NormMatrixCStarCorona (fun n ↦ X n)) =
@@ -264,7 +289,7 @@ theorem corona_projection_collapse {E : Type} [Group E] [Countable E]
             star ((pi δ :
                 unitary (NormMatrixCStarCorona (fun n ↦ X n))) :
               NormMatrixCStarCorona (fun n ↦ X n)) = 1 :=
-          unitary.mul_star_self_of_mem (pi δ).2
+          ((pi δ).prop).2
         rw [hw_def]
         calc ((pi δ : unitary (NormMatrixCStarCorona (fun n ↦ X n))) :
               NormMatrixCStarCorona (fun n ↦ X n)) * (1 - 2 * p) *
@@ -367,15 +392,22 @@ theorem corona_projection_collapse {E : Type} [Group E] [Countable E]
         NormMatrixCStarCorona (fun n ↦ X n))) := by
     rw [Algebra.smul_def, Algebra.smul_def, map_ofNat]
     exact h2
-  have h5 : (((2 : ℂ)⁻¹ * 2) •
-      (((pi γ : unitary (NormMatrixCStarCorona (fun n ↦ X n))) :
-        NormMatrixCStarCorona (fun n ↦ X n)) * p)) =
-      ((2 : ℂ)⁻¹ * 2) •
-      (p * ((pi γ : unitary (NormMatrixCStarCorona (fun n ↦ X n))) :
-        NormMatrixCStarCorona (fun n ↦ X n))) := by
-    rw [mul_smul, mul_smul, h4]
-  rw [inv_mul_cancel₀ (two_ne_zero (α := ℂ)), one_smul, one_smul] at h5
-  exact h5
+  have hxx := inv_smul_smul₀ (two_ne_zero (α := ℂ))
+    (((pi γ : unitary (NormMatrixCStarCorona (fun n ↦ X n))) :
+      NormMatrixCStarCorona (fun n ↦ X n)) * p)
+  have hyy := inv_smul_smul₀ (two_ne_zero (α := ℂ))
+    (p * ((pi γ : unitary (NormMatrixCStarCorona (fun n ↦ X n))) :
+      NormMatrixCStarCorona (fun n ↦ X n)))
+  calc ((pi γ : unitary (NormMatrixCStarCorona (fun n ↦ X n))) :
+      NormMatrixCStarCorona (fun n ↦ X n)) * p =
+      (2 : ℂ)⁻¹ • ((2 : ℂ) •
+        (((pi γ : unitary (NormMatrixCStarCorona (fun n ↦ X n))) :
+          NormMatrixCStarCorona (fun n ↦ X n)) * p)) := hxx.symm
+    _ = (2 : ℂ)⁻¹ • ((2 : ℂ) •
+        (p * ((pi γ : unitary (NormMatrixCStarCorona (fun n ↦ X n))) :
+          NormMatrixCStarCorona (fun n ↦ X n)))) := by rw [h4]
+    _ = p * ((pi γ : unitary (NormMatrixCStarCorona (fun n ↦ X n))) :
+        NormMatrixCStarCorona (fun n ↦ X n)) := hyy
 
 end ProjectionCompressionCollapse
 end GroupApproximation

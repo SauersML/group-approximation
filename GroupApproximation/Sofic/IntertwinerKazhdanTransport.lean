@@ -193,7 +193,7 @@ theorem l2_opNorm_offDiagBlock_le (Y Z : FiniteModel) (X : Matrix Y Z ℂ) :
 
 /-- The block-diagonal direct sum of two operator-norm almost
 representations. -/
-def blockSumRep (B₁ B₂ : OpAlmostRepresentation E) :
+@[reducible] def blockSumRep (B₁ B₂ : OpAlmostRepresentation E) :
     OpAlmostRepresentation E where
   model n := blockSumModel (B₁.model n) (B₂.model n)
   modelNonempty n := by
@@ -346,7 +346,7 @@ theorem intertwiner_transport (B₁ B₂ : OpAlmostRepresentation E)
         ((B₁.map n C.t : Matrix (B₁.model n) (B₁.model n) ℂ) * x n *
           (B₂.map n C.t : Matrix (B₂.model n) (B₂.model n) ℂ)ᴴ)) := by
     intro γ
-    exact (htrans γ).congr fun n ↦ by rw [hz n]
+    exact (htrans γ).congr fun n ↦ by simp only [hz]
   exact (isAsymptoticCommutantOf_offDiag_iff B₁ B₂ C.iota _).mp hcomm'
 
 /-- **Reverse transport.**  The adjoint compressor acts in the opposite
@@ -381,7 +381,7 @@ theorem intertwiner_transport_star (B₁ B₂ : OpAlmostRepresentation E)
         ((B₁.map n C.t : Matrix (B₁.model n) (B₁.model n) ℂ)ᴴ * x n *
           (B₂.map n C.t : Matrix (B₂.model n) (B₂.model n) ℂ))) := by
     intro γ
-    exact (htrans γ).congr fun n ↦ by rw [hz n]
+    exact (htrans γ).congr fun n ↦ by simp only [hz]
   exact (isAsymptoticCommutantOf_offDiag_iff B₁ B₂ C.iota _).mp hcomm'
 
 /-! ## The scaled versions -/
@@ -490,7 +490,7 @@ theorem scaled_intertwiner_transport (B₁ B₂ : OpAlmostRepresentation E)
         ((B₁.map n C.t : Matrix (B₁.model n) (B₁.model n) ℂ) * x n *
           (B₂.map n C.t : Matrix (B₂.model n) (B₂.model n) ℂ)ᴴ)) := by
     intro γ
-    exact (htrans γ).congr fun n ↦ by rw [hz n]
+    exact (htrans γ).congr fun n ↦ by simp only [hz]
   exact
     (isScaledAsymptoticCommutantOf_offDiag_iff B₁ B₂ w C.iota _).mp hcomm'
 
