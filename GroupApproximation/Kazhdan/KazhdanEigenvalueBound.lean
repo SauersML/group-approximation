@@ -56,7 +56,6 @@ theorem eigenvalue_le_of_ne_one [CompleteSpace E]
     have h1 : U.starProjection p = p :=
       Submodule.starProjection_eq_self_iff.mpr hpmem
     have h2 : U.starProjection (averageOperator S ρ w) = 0 := by
-      symm
       apply Submodule.eq_starProjection_of_mem_of_inner_eq_zero
         (Submodule.zero_mem U)
       intro z hz
@@ -66,7 +65,7 @@ theorem eigenvalue_le_of_ne_one [CompleteSpace E]
   have h3 := hproj
   rw [heig, map_smul, ← hp] at h3
   have h4 : (1 - μ) • p = 0 := by
-    rw [sub_smul, one_smul, ← h3, sub_self]
+    rw [sub_smul, one_smul, h3, sub_self]
   have h5 : (1 - μ) ≠ 0 := sub_ne_zero_of_ne (Ne.symm hμ1)
   have hp0 : p = 0 := (smul_eq_zero.mp h4).resolve_left h5
   have hxmem : x ∈ Uᗮ := by

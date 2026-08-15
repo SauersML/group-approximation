@@ -81,7 +81,8 @@ theorem exists_state_annihilating (m : A) (hm : IsSelfAdjoint m) {μ : ℝ}
       = (m - algebraMap ℝ A μ) * (m - algebraMap ℝ A μ) := by
     have h1 : ((q : B) : A) = m - algebraMap ℝ A μ := by
       show m - algebraMap ℂ A (μ : ℂ) = m - algebraMap ℝ A μ
-      rw [IsScalarTower.algebraMap_apply ℝ ℂ A]
+      rw [show ((μ : ℂ)) = algebraMap ℝ ℂ μ by simp,
+        ← IsScalarTower.algebraMap_apply ℝ ℂ A]
     show ((q : B) : A) * ((q : B) : A) = _
     rw [h1]
   have hχq : χ q = 0 := by
