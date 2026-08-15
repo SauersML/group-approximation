@@ -72,14 +72,17 @@ theorem w23_inv_eq_cube : w23⁻¹ = w23 * (w23 * w23) := by
     _ = w23 * (w23 * w23) := by group
 
 theorem wsq_inv : (w * w)⁻¹ = w * w := by
-  calc (w * w)⁻¹ = (w * w)⁻¹ * (w * (w * (w * w))) := by rw [w4]; group
-    _ = w * w := by group
+  have h : (w * w) * (w * w) = 1 := by
+    calc (w * w) * (w * w) = w * (w * (w * w)) := by group
+      _ = 1 := w4
+  exact inv_eq_of_mul_eq_one_left h
 
 theorem w13sq_inv : (w13 * w13)⁻¹ = w13 * w13 := by
-  calc (w13 * w13)⁻¹
-      = (w13 * w13)⁻¹ * (w13 * (w13 * (w13 * w13))) := by
-        rw [w13four]; group
-    _ = w13 * w13 := by group
+  have h : (w13 * w13) * (w13 * w13) = 1 := by
+    calc (w13 * w13) * (w13 * w13) = w13 * (w13 * (w13 * w13)) := by
+          group
+      _ = 1 := w13four
+  exact inv_eq_of_mul_eq_one_left h
 
 /-- Conjugating a three-letter word letter by letter. -/
 private theorem conj_word (g a b c : P13) :
@@ -168,13 +171,6 @@ theorem w23_mul_winv : w23 * w⁻¹ = w⁻¹ * w13 := by
 /-- `w⁻¹ · w23 = w13⁻¹ · w⁻¹`. -/
 theorem winv_mul_w23 : w⁻¹ * w23 = w13⁻¹ * w⁻¹ := by
   have h := w_conj_w13
-  have h2 : w23 = w * w13⁻¹ * w⁻¹ := by
-    calc w23 = ((w * w13 * w⁻¹)⁻¹)⁻¹ * 1 := by group
-      _ = ((w23⁻¹)⁻¹)⁻¹ * 1 := by rw [h]
-      _ = w23⁻¹⁻¹ := by group
-      _ = w23 := by group
-  -- The detour above only restates `w23 = w23`; derive the identity
-  -- directly from the conjugation instead:
   have h3 : w * w13⁻¹ * w⁻¹ = w23 := by
     calc w * w13⁻¹ * w⁻¹ = (w * w13 * w⁻¹)⁻¹ := by group
       _ = (w23⁻¹)⁻¹ := by rw [h]
@@ -210,9 +206,11 @@ theorem w23_sq : w23 * w23 = (w * w) * (w13 * w13) := by
       _ = (w13 * w13) * (w23 * (w13 * w13)⁻¹ * w23⁻¹) := by group
       _ = (w13 * w13) * (w⁻¹ * w⁻¹) := by rw [hii]
   have hfin : w23 * w23 = (w * w) * (w13 * w13)⁻¹ := by
-    calc w23 * w23 = (w23⁻¹ * w23⁻¹)⁻¹ := by group
+    calc w23 * w23 = (w23⁻¹ * w23⁻¹)⁻¹ := by
+          rw [mul_inv_rev, inv_inv]
       _ = ((w13 * w13) * (w⁻¹ * w⁻¹))⁻¹ := by rw [hcomb]
-      _ = (w * w) * (w13 * w13)⁻¹ := by group
+      _ = (w * w) * (w13 * w13)⁻¹ := by
+          rw [mul_inv_rev, mul_inv_rev, inv_inv]
   rw [hfin, w13sq_inv]
 
 /-- `w²` and `w13²` commute. -/
@@ -283,14 +281,14 @@ theorem wpow_mem_Hpar (k : Fin 4) : wpow k ∈ Hpar := by
 theorem wpow_mul_exists (j k : Fin 4) :
     ∃ l : Fin 4, wpow j * wpow k = wpow l := by
   fin_cases j
-  · exact ⟨k, by simp [wpow]⟩
+  · exact ⟨k, by show (1 : P13) * wpow k = wpow k; exact one_mul _⟩
   · fin_cases k
-    · exact ⟨1, by simp [wpow]⟩
+    · exact ⟨1, by show w * 1 = w; exact mul_one w⟩
     · exact ⟨2, rfl⟩
     · exact ⟨3, rfl⟩
     · exact ⟨0, w4⟩
   · fin_cases k
-    · exact ⟨2, by simp [wpow]⟩
+    · exact ⟨2, by show (w * w) * 1 = w * w; exact mul_one _⟩
     · exact ⟨3, by show (w * w) * w = w * (w * w); group⟩
     · refine ⟨0, ?_⟩
       show (w * w) * (w * w) = 1
@@ -303,7 +301,7 @@ theorem wpow_mul_exists (j k : Fin 4) :
         _ = w * 1 := by rw [w4]
         _ = w := mul_one w
   · fin_cases k
-    · exact ⟨3, by simp [wpow]⟩
+    · exact ⟨3, by show (w * (w * w)) * 1 = w * (w * w); exact mul_one _⟩
     · refine ⟨0, ?_⟩
       show (w * (w * w)) * w = 1
       calc (w * (w * w)) * w = w * (w * (w * w)) := by group
