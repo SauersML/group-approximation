@@ -177,31 +177,49 @@ def run(args):
     optimizer = torch.optim.Adam([param], lr=args.learning_rate)
     history = []
     best = float("inf")
+    n_act, n_ctl = len(active), max(1, len(control))
     for iteration in range(args.iterations + 1):
         optimizer.zero_grad()
-        skew = param - param.conj().T
-        v_small = torch.matrix_exp(skew)
-        act = defect_sq(active, v_small)
-        ctl = defect_sq(control, v_small)
-        loss = act.mean() + args.control_weight * ctl.mean()
-        value = float(loss.detach())
+        # Per-word backward with immediate graph release: the escapee
+        # words run to ~139 syllables, and retaining every intermediate
+        # across 144 words OOMs at tens of GB.  Gradients accumulate in
+        # `param` across the per-word calls; one optimizer step follows.
+        act_vals, ctl_vals = [], []
+        for kind, word_list, vals, weight in (
+                ("active", active, act_vals, 1.0 / n_act),
+                ("control", control, ctl_vals,
+                 args.control_weight / n_ctl)):
+            for _name, word in word_list:
+                skew = param - param.conj().T
+                v_small = torch.matrix_exp(skew)
+                image = model.apply_word(word, probe, v_small)
+                residual = image - probe
+                dsq = torch.sum(residual.conj() * residual).real / norm
+                vals.append(float(dsq.detach()))
+                if iteration != args.iterations:
+                    (weight * dsq).backward()
+        act_t = torch.tensor(act_vals)
+        ctl_t = torch.tensor(ctl_vals)
+        value = float(act_t.mean() + args.control_weight * ctl_t.mean())
         best = min(best, value)
         if iteration % args.report_every == 0 or iteration == args.iterations:
+            with torch.no_grad():
+                v_now = torch.matrix_exp(param - param.conj().T)
+                uerr = float(torch.linalg.norm(
+                    v_now.conj().T @ v_now - eye))
             rec = {
                 "iteration": iteration,
                 "loss": value,
                 "best_loss": best,
-                "active_mean_defect_sq": float(act.detach().mean()),
-                "active_max_defect_sq": float(act.detach().max()),
-                "control_mean_defect_sq": float(ctl.detach().mean()),
-                "unitarity_error": float(torch.linalg.norm(
-                    v_small.detach().conj().T @ v_small.detach() - eye)),
+                "active_mean_defect_sq": float(act_t.mean()),
+                "active_max_defect_sq": float(act_t.max()),
+                "control_mean_defect_sq": float(ctl_t.mean()),
+                "unitarity_error": uerr,
                 "elapsed_s": round(time.time() - started, 1),
             }
             history.append(rec)
-            print(json.dumps(rec))
+            print(json.dumps(rec), flush=True)
         if iteration != args.iterations:
-            loss.backward()
             optimizer.step()
 
     out = {
