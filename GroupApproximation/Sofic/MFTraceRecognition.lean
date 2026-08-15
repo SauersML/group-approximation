@@ -56,11 +56,12 @@ structure RegularCharacterModel (F : Finset G) (ε : ℝ) (B : G → ℝ) where
   multiplicative : ∀ g ∈ F, ∀ h ∈ F, ‖map (g * h) - map g * map h‖ ≤ ε
   /-- Star-compatibility on the test set. -/
   star_compatible : ∀ g ∈ F, ‖map g⁻¹ - (map g)ᴴ‖ ≤ ε
-  /-- Trace-correctness: the normalized trace approximates the regular
-  character. -/
-  trace_correct : ∀ g ∈ F,
-    ‖(Matrix.trace (map g)) / (Fintype.card carrier : ℂ) -
-      (if g = 1 then 1 else 0)‖ ≤ ε
+  /-- Trace-correctness at the identity. -/
+  trace_correct_one : (1 : G) ∈ F →
+    ‖(Matrix.trace (map 1)) / (Fintype.card carrier : ℂ) - 1‖ ≤ ε
+  /-- Trace-correctness away from the identity. -/
+  trace_correct_ne : ∀ g ∈ F, g ≠ 1 →
+    ‖(Matrix.trace (map g)) / (Fintype.card carrier : ℂ)‖ ≤ ε
 
 /-- The regular character of `G` is an MF trace: models exist at every
 finite test set and accuracy, with a pointwise bound independent of the
@@ -78,7 +79,7 @@ hypothesis. -/
 
 theorem abs_signed_sub_le_abs_sq_sub_one' (lambda : ℝ) :
     |(if 0 < lambda then 1 else -1) - lambda| ≤ |lambda ^ 2 - 1| := by
-  rcases lt_or_le 0 lambda with hpos | hneg
+  by_cases hpos : 0 < lambda
   · rw [if_pos hpos]
     have h1 : lambda ^ 2 - 1 = (lambda - 1) * (lambda + 1) := by ring
     rw [h1, abs_mul, abs_sub_comm 1 lambda]
@@ -86,7 +87,8 @@ theorem abs_signed_sub_le_abs_sq_sub_one' (lambda : ℝ) :
       rw [abs_of_pos (by linarith)]
       linarith
     nlinarith [abs_nonneg (lambda - 1)]
-  · rw [if_neg (not_lt.mpr hneg)]
+  · have hneg : lambda ≤ 0 := not_lt.mp hpos
+    rw [if_neg hpos]
     have h1 : lambda ^ 2 - 1 = (lambda - 1) * (lambda + 1) := by ring
     rw [h1, abs_mul,
       show |(-1 : ℝ) - lambda| = |lambda + 1| from by
@@ -187,9 +189,9 @@ theorem hermitianPart_two_smul_sub_one (M1 : Matrix Y Y ℂ) :
     hermitianPart ((2 : ℂ) • M1 - 1) =
       (2 : ℂ) • hermitianPart M1 - 1 := by
   unfold hermitianPart
-  rw [Matrix.conjTranspose_sub, Matrix.conjTranspose_smul,
+  simp only [Matrix.conjTranspose_sub, Matrix.conjTranspose_smul,
     Matrix.conjTranspose_one]
-  rw [show ((2 : ℂ)ᴴ) = (2 : ℂ) from by simp]
+  rw [show (star (2 : ℂ)) = (2 : ℂ) from by norm_num]
   module
 
 theorem roundedInvolution_eq_two_smul_sub_one (M1 : Matrix Y Y ℂ) :
@@ -229,7 +231,7 @@ theorem norm_unitProjection_sub (M1 : Matrix Y Y ℂ) :
             (4 : ℂ) • hermitianPart M1 + 1 := by
         rw [Matrix.sub_mul, Matrix.mul_sub, Matrix.mul_sub,
           Matrix.smul_mul, Matrix.mul_smul, Matrix.mul_one,
-          Matrix.one_mul, Matrix.smul_smul]
+          Matrix.one_mul, smul_smul]
         norm_num
         module
       rw [hcomm]
@@ -295,19 +297,15 @@ theorem inflate_gram (p A : Matrix Y Y ℂ)
     rw [Matrix.conjTranspose_mul, Matrix.conjTranspose_mul, hp]
     noncomm_ring
   have hleft : (p * Aᴴ * p) * (1 - p) = 0 := by
-    rw [Matrix.mul_sub, Matrix.mul_one]
-    rw [show p * Aᴴ * p * p = p * Aᴴ * p from by
-      rw [Matrix.mul_assoc (p * Aᴴ) p p, hp2]]
-    abel
+    rw [Matrix.mul_sub, Matrix.mul_one, Matrix.mul_assoc (p * Aᴴ) p p,
+      hp2, sub_self]
   have hright : (1 - p) * (p * A * p) = 0 := by
-    rw [Matrix.sub_mul, Matrix.one_mul]
-    rw [show p * (p * A * p) = p * A * p from by
-      rw [show p * (p * A * p) = (p * p) * A * p from by noncomm_ring,
-        hp2]]
-    abel
+    rw [Matrix.sub_mul, Matrix.one_mul,
+      show p * (p * A * p) = (p * p) * (A * p) from by noncomm_ring,
+      hp2, show p * (A * p) = p * A * p from by noncomm_ring, sub_self]
   have hcompl : (1 - p) * (1 - p) = 1 - p := by
-    rw [Matrix.sub_mul, Matrix.mul_sub, Matrix.mul_sub, Matrix.one_mul,
-      Matrix.mul_one, hp2]
+    rw [Matrix.sub_mul, Matrix.one_mul, Matrix.mul_sub, Matrix.mul_one,
+      hp2]
     abel
   rw [inflate, Matrix.conjTranspose_add, hcorner_star,
     Matrix.conjTranspose_sub, Matrix.conjTranspose_one, hp]
@@ -356,8 +354,10 @@ theorem corner_gram_bound {p A B₁ : Matrix Y Y ℂ} {C η δ₁ δ₂ : ℝ}
             have := Matrix.l2_opNorm_mul (p - B₁) A
             gcongr
         _ ≤ η * C + δ₁ := by
-            have h0 : (0 : ℝ) ≤ ‖p - B₁‖ := norm_nonneg _
-            nlinarith [norm_nonneg (p - B₁), norm_nonneg A]
+            have hmul : ‖p - B₁‖ * ‖A‖ ≤ η * C :=
+              mul_le_mul hη hA (norm_nonneg A)
+                ((norm_nonneg (p - B₁)).trans hη)
+            linarith
         _ = C * η + δ₁ := by ring
     calc ‖(p * Aᴴ) * ((p - 1) * (A * p))‖
         ≤ ‖p * Aᴴ‖ * ‖(p - 1) * (A * p)‖ := Matrix.l2_opNorm_mul _ _
@@ -377,9 +377,11 @@ theorem corner_gram_bound {p A B₁ : Matrix Y Y ℂ} {C η δ₁ δ₂ : ℝ}
           gcongr
           exact Matrix.l2_opNorm_mul _ _
       _ ≤ (1 * δ₂) * 1 := by
-          have h0 : (0 : ℝ) ≤ ‖Aᴴ * A - B₁‖ := norm_nonneg _
-          have h0' : (0 : ℝ) ≤ ‖p‖ := norm_nonneg _
-          nlinarith
+          have hmul : ‖p‖ * ‖Aᴴ * A - B₁‖ ≤ 1 * δ₂ :=
+            mul_le_mul hpn hδ₂ (norm_nonneg _) zero_le_one
+          have := mul_le_mul hmul hpn (norm_nonneg p)
+            (by positivity : (0 : ℝ) ≤ 1 * δ₂)
+          linarith
       _ = δ₂ := by ring
   have h3 : ‖p * (B₁ - p) * p‖ ≤ η := by
     calc ‖p * (B₁ - p) * p‖
@@ -388,11 +390,14 @@ theorem corner_gram_bound {p A B₁ : Matrix Y Y ℂ} {C η δ₁ δ₂ : ℝ}
           gcongr
           exact Matrix.l2_opNorm_mul _ _
       _ ≤ (1 * η) * 1 := by
-          have hswap : ‖B₁ - p‖ = ‖p - B₁‖ := by
+          have hswap : ‖B₁ - p‖ ≤ η := by
             rw [show B₁ - p = -(p - B₁) from by abel, norm_neg]
-          have h0 : (0 : ℝ) ≤ ‖p‖ := norm_nonneg _
-          have h0' : (0 : ℝ) ≤ ‖B₁ - p‖ := norm_nonneg _
-          nlinarith [hswap ▸ hη]
+            exact hη
+          have hmul : ‖p‖ * ‖B₁ - p‖ ≤ 1 * η :=
+            mul_le_mul hpn hswap (norm_nonneg _) zero_le_one
+          have := mul_le_mul hmul hpn (norm_nonneg p)
+            (by positivity : (0 : ℝ) ≤ 1 * η)
+          linarith
       _ = η := by ring
   calc ‖(p * Aᴴ) * ((p - 1) * (A * p)) +
       ((p * (Aᴴ * A - B₁) * p) + (p * (B₁ - p) * p))‖
