@@ -65,10 +65,23 @@ rank-four threshold (the first: `atlas-steinberg-context-absorption`).
 The induction that *supplies* its hypotheses is a separate matter and
 needs `n ≥ 5`; this node is not a rank-four completeness statement.
 
-**Machine cross-check.**  The identity's conclusion was checked over all
-3,000 ordered index quadruples and coefficient pairs in `Q` (MSI job
-15862151); the corrected form was checked as a bare group identity on
-782 random samples in `S₁₂` meeting `[X,Z] = [U,V] = [V,Z] = 1`, with
-`[X,V] = [U,Z]` holding in every one and no hypothesis on `T`.  A check
-in `Q` cannot prove a statement about the presented group, but a slip in
-the commutator algebra would have surfaced.
+**Machine cross-check.**  The conclusion was verified over all 3,000
+ordered index quadruples and coefficient pairs in `Q` (MSI job
+15862151); both hypothesis sets hold there, so that run is evidence for
+the identity and silent on the hypothesis structure — which is exactly
+where the original statement was wrong.  The corrected hypothesis set
+was then checked **exhaustively** over `S₅` (all 1,728,000 ordered
+triples; `experiments/atlas_relator_i2_route_check.py`, MSI job
+15865413): the conclusion holds in every one of the 24,960 triples
+satisfying all three hypotheses; **each hypothesis is load-bearing**
+(dropping `[X,Z]`, `[U,V]`, `[V,Z]` admits 84,600 / 4,320-of-4,320 /
+8,400 violations respectively); and `[Y,V] = 1` is confirmed
+superfluous by 4,200 direct witnesses satisfying the three hypotheses
+with `[Y,V] ≠ 1` and zero violations.  A group identity cannot be
+proved by testing groups — the proof is the five lines above — but this
+battery would have caught a wrongly stated hypothesis set.  The
+methodological lesson is recorded in the trap ledger: `[Y,V] = 1`
+happens to hold in the atlas configuration (3,000 of 3,000), so no
+test in the intended model could ever have exposed it as unnecessary —
+verification in the target model confirms conclusions; only abstract
+testing, where hypotheses can fail independently, audits hypotheses.
