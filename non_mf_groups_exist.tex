@@ -1796,6 +1796,8 @@ identity.  The hypothesis producing the corner varies:
 
 \begin{definition}[Kazhdan conjugation datum]\label{def:pattern}
 Let $H$ be a countable group.  A \emph{Kazhdan conjugation datum} in $H$
+--- the name is introduced here, for the hypothesis pattern that the
+four theorems of this section share ---
 is a tuple $(\Lambda,\iota,t,c)$, where $\Lambda$ is a countable
 group with property (T), $\iota\colon\Lambda\to H$ is a group
 homomorphism, not assumed injective, and $t,c\in H$,
@@ -1900,7 +1902,7 @@ there:
 \]
 
 \emph{The contradiction.}  The tracial vanishing applies to the corner
-almost representation $(W_{g,n})$ itself: every $f\in F$ satisfies
+asymptotic representation $(W_{g,n})$ itself: every $f\in F$ satisfies
 $\hsnorm{W_{f,n}-1}\to0$.  Since $F$ is finite, the maximum of these
 $|F|$ null sequences is itself null, so
 \[
@@ -2066,7 +2068,8 @@ coordinates, which we retain.
 
 \emph{The tracial deficit on the corner.}  Equip each retained corner
 block $q_nM_{d_n}(\C)q_n$ with its renormalized trace.  By the
-definition of the cut, $q_nh_nq_n\le\theta q_n$, so the average over
+choice of $q_n$ as the spectral projection of $h_n$ for
+$[-1,\theta]$, $q_nh_nq_n\le\theta q_n$, so the average over
 $S$ of the real parts of the renormalized traces of the compressed
 models is at most $\theta$.  Hence at every retained coordinate some
 generator in $S$ has compressed model with real renormalized trace at
@@ -2075,7 +2078,9 @@ least $\sqrt{2(1-\theta)}-o(1)$ from the corner identity after polar
 correction; passing to a subsequence fixes a single such generator
 $s_0$.
 
-\emph{Compression.}  Normality makes the cut asymptotically central.
+\emph{Compression.}  Normality of $\bar K$ makes $q_n$ asymptotically
+commute with the ambient models: $\opnorm{[q_n,V_{g,n}]_{-}}\to0$ for
+every $g$.
 Conjugating by an ambient model $V_{g,n}$ carries $h_n$ to the
 Hermitian average over the conjugate generating set $gSg^{-1}$ of
 $\bar K$, which has the same Kazhdan constant.  The two estimates of
@@ -2094,7 +2099,7 @@ blocks, in which $s_0$ keeps a definite normalized Hilbert--Schmidt
 distance from the identity.
 
 \emph{The contradiction.}  The corner models form an operator-norm
-almost representation of $\bar H$, and $\bar K$ lies in the subgroup $N_{\mathrm{comp}}$ determined by the
+asymptotic representation of $\bar H$, and $\bar K$ lies in the subgroup $N_{\mathrm{comp}}$ determined by the
 image datum, so the tracial vanishing applies to them:
 every element of $\bar K$ --- in particular $s_0$ --- is
 sent to the identity by the corner representation, contradicting the
@@ -2383,7 +2388,8 @@ independent of $m$.
 \subsection{The MF radical}
 
 \begin{definition}\label{def:radical}
-For a countable group $G_1$, the \emph{MF radical} is
+For a countable group $G_1$, the \emph{MF radical} --- the term is
+introduced here --- is
 \[
   \operatorname{Rad}_{\mathrm{MF}}(G_1)
   \;=\;\bigcap\,\bigl\{\ker\Theta:\ \Theta\ \text{a homomorphism }G_1\to\U(\mathcal Q)\bigr\},
@@ -2451,7 +2457,7 @@ and each of the first $k$ marked elements stays separated by its fixed
 positive constant --- possible because each $\Theta_{\bar g}$ separates
 its own element along infinitely many coordinates --- and take the
 block sum.  Block operator norms are maxima, so the resulting sequence
-is an almost representation separating every nonidentity element from
+is an operator-norm asymptotic representation separating every nonidentity element from
 the identity; its class,
 composed with the polar-correction isomorphism of
 Lemma~\ref{lem:unitarycorona}, is a faithful homomorphism $Q\to\U(\mathcal Q)$.  This proves (2), and composing with
@@ -2946,8 +2952,8 @@ with $C$ depending on the Kazhdan pair alone; Step~4 supplies only the
 $\gamma$-dependent bound $2|\gamma|_S^{1/2}$, and uniformity is the
 whole content of \eqref{eq:profile-bounded}.
 
-It is worth being exact about what \eqref{eq:profile-bounded} does and
-does not give at a finite stage, because the tempting reading is false.
+The finite-stage reading of \eqref{eq:profile-bounded} fails, and the
+assembly below does not use it.
 For each fixed $\gamma$ the finite-stage norms $\lVert
 b_n(\gamma)\rVert_{\mathrm F}$ approach $\lVert b(\gamma)\rVert$ along
 $\omega$, so each $\gamma$ has its own $\omega$-large set of good
