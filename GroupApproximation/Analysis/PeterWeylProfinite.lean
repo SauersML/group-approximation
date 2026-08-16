@@ -34,15 +34,24 @@ records the resulting two-sided statement in the form the dossier uses).
 
 What is **not** proved here is the analytic core of Peter--Weyl for a general
 compact group -- that finite-dimensional unitary representations separate the
-points of any compact Hausdorff group.  Mathlib supplies more of the proof than
-this file once claimed: Haar measure on a compact group, and the spectral theorem
-for compact self-adjoint operators together with finite-dimensionality of their
-eigenspaces (`Analysis/InnerProductSpace/Spectrum`).  What is missing is the step
-between them -- that convolution by a continuous function is a compact operator
-on `L²`, which rests on Arzelà--Ascoli and on continuity of translation in `L²`.
-With that step the eigenspaces of a suitable convolution operator are
-finite-dimensional and translation-invariant, and they are the separating
-representations.  It is isolated as the single named hypothesis
+points of any compact Hausdorff group.  An inventory, since an earlier version of
+this file guessed and guessed wrong.
+
+Present in Mathlib: Haar measure on a compact group; the spectral theorem for
+compact self-adjoint operators, with finite-dimensionality of the eigenspaces
+(`Analysis/InnerProductSpace/Spectrum`); Arzelà--Ascoli
+(`Topology/ContinuousMap/Bounded/ArzelaAscoli`).
+
+Absent: continuity of translation in `L²`; convolution on a general compact
+group, `Analysis/Convolution` being written for additive groups and normed
+spaces rather than for Haar convolution on a possibly nonabelian compact group;
+and, resting on those two, compactness of the convolution operator.
+
+That last item is the whole gap.  Given it, convolution by a continuous function
+bump has finite-dimensional eigenspaces by the spectral theorem, those eigenspaces
+are translation-invariant, and they separate the point at hand -- which is
+`SeparatesPoints`.  So the remaining work is one analytic lemma plus the
+convolution API it needs, not a missing theory of compact groups.  It is isolated as the single named hypothesis
 `SeparatesPoints`, and `fdUnitaryResidual_le_bohrResidual_of_separates` derives
 the remaining inclusion from it.  So the Bohr clauses become conditional on one
 precisely stated classical input rather than on a remark, which is the same
