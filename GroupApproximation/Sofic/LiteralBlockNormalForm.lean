@@ -497,7 +497,7 @@ def lampLift {G : Type*} [Group G] (s : G) (c : Site → G)
 /-- The endomorphism of `C(𝒢)` induced by a vertical element. -/
 def lampPermMap (v : Vertical) : LampFactor →* LampFactor :=
   lampLift lampSign (fun ξ ↦ lampAt (v • ξ)) lampSign_sq
-    (fun ξ ↦ lampAt_sq _) (fun ξ ↦ lampSign_commute_lampAt _)
+    (fun _ ↦ lampAt_sq _) (fun _ ↦ lampSign_commute_lampAt _)
     (fun _ _ h ↦ commutator_lampAt (adjacent_smul h v))
 
 @[simp] theorem lampPermMap_sign (v : Vertical) :
@@ -1445,10 +1445,10 @@ theorem top_le_commensurator :
 
 /-- Every conjugate of the vertical base has finite orbits on sites. -/
 theorem finite_conj_site_orbit (g : Vertical) (ξ : Site) :
-    (MulAction.orbit (ConjAct.toConjAct g • baseSubgroup) ξ).Finite :=
+    (MulAction.orbit ↥(ConjAct.toConjAct g • baseSubgroup) ξ).Finite :=
   MappingTelescopeFiniteOrbits.finite_orbit_on_quotient_of_commensurated
     (ConjAct.toConjAct g • baseSubgroup) baseSubgroup
-    (Subgroup.Commensurable.commensurator_mem_iff.mp
+    ((Subgroup.Commensurable.commensurator_mem_iff baseSubgroup g).mp
       (top_le_commensurator (Subgroup.mem_top g)))
     top_le_commensurator ξ
 
@@ -1457,7 +1457,7 @@ def telescopeLevel (n : ℕ) : Subgroup Vertical :=
   ConjAct.toConjAct ((vStable ^ n)⁻¹) • baseSubgroup
 
 theorem finite_telescopeLevel_site_orbit (n : ℕ) (ξ : Site) :
-    (MulAction.orbit (telescopeLevel n) ξ).Finite :=
+    (MulAction.orbit ↥(telescopeLevel n) ξ).Finite :=
   finite_conj_site_orbit _ ξ
 
 /-- **Finite telescope-level orbits on blocks.**  Each level of the mapping
@@ -1465,7 +1465,7 @@ telescope moves any block into only finitely many blocks.  This is the second
 input the soficity tower needs: it is what makes the level-invariant lamp
 sub-amalgams finite. -/
 theorem finite_telescopeLevel_block_orbit (n : ℕ) (b : Block) :
-    (MulAction.orbit (telescopeLevel n) b).Finite := by
+    (MulAction.orbit ↥(telescopeLevel n) b).Finite := by
   obtain ⟨ξ, rfl⟩ := blockOf_surjective b
   have himg : MulAction.orbit (telescopeLevel n) (blockOf ξ) =
       blockOf '' MulAction.orbit (telescopeLevel n) ξ := by
