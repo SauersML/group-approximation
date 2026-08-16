@@ -1,4 +1,5 @@
 import GroupApproximation.Sofic.ProductMultiplicity
+import Mathlib.SetTheory.Cardinal.Continuum
 
 /-!
 # Continuum multiplicity of the non-MF phenomenon
@@ -148,6 +149,96 @@ theorem product_fg_not_isOperatorMF (i : ι) :
   refine IsOperatorMF.comap hMF (MonoidHom.inl MarkedGroup (N i)) ?_
   intro a b hab
   simpa using congrArg Prod.fst hab
+
+/-! ## Continuum many isomorphism types -/
+
+/-- **Continuum multiplicity.**  Given a continuum-sized family of pairwise
+nonisomorphic finitely generated groups -- B. H. Neumann's family is the
+classical source, and it is a hypothesis here, not a theorem -- the
+products with `E` contain a continuum-sized subfamily that is pairwise
+nonisomorphic, and every member is finitely generated and not
+operator-MF.
+
+The subfamily is needed: the products themselves are not obviously
+pairwise nonisomorphic, and the counting step is what recovers a continuum
+of distinct types from fibres that are merely countable. -/
+theorem exists_continuum_pairwise_nonisomorphic
+    (hfam : ∀ i j : ι, Nonempty (N i ≃* N j) → i = j)
+    (hcard : Cardinal.mk ι = Cardinal.continuum) :
+    ∃ J : Set ι, Cardinal.mk J = Cardinal.continuum ∧
+      (∀ i ∈ J, Group.FG (MarkedGroup × N i) ∧
+        ¬ IsOperatorMF (MarkedGroup × N i)) ∧
+      ∀ i ∈ J, ∀ j ∈ J,
+        Nonempty ((MarkedGroup × N i) ≃* (MarkedGroup × N j)) → i = j := by
+  classical
+  haveI : ∀ i : ι, Countable (N i) := fun i ↦ countable_of_fg (N i)
+  -- being isomorphic after multiplying by `E` is an equivalence on indices
+  let s : Setoid ι :=
+    { r := fun i j ↦ Nonempty ((MarkedGroup × N i) ≃* (MarkedGroup × N j))
+      iseqv :=
+        { refl := fun _ ↦ ⟨MulEquiv.refl _⟩
+          symm := fun ⟨e⟩ ↦ ⟨e.symm⟩
+          trans := fun ⟨e⟩ ⟨f⟩ ↦ ⟨e.trans f⟩ } }
+  -- every class is countable, by the counting step
+  have hclass : ∀ q : Quotient s, {i : ι | Quotient.mk s i = q}.Countable := by
+    intro q
+    have hEq : {i : ι | Quotient.mk s i = q} =
+        {i : ι | Nonempty ((MarkedGroup × N q.out) ≃* (MarkedGroup × N i))} := by
+      ext i
+      constructor
+      · intro hi
+        exact Quotient.exact ((Quotient.out_eq q).trans hi.symm)
+      · intro hi
+        exact ((Quotient.sound hi).symm).trans (Quotient.out_eq q)
+    rw [hEq]
+    exact countable_isomorphic_indices N hfam (MarkedGroup × N q.out)
+  haveI hcq : ∀ q : Quotient s, Countable {i : ι | Quotient.mk s i = q} :=
+    fun q ↦ (hclass q).to_subtype
+  -- countable fibres over the quotient bound the index set
+  have huniv : (Set.univ : Set ι) =
+      ⋃ q : Quotient s, {i : ι | Quotient.mk s i = q} := by
+    ext i
+    simp
+  have hle : Cardinal.mk ι ≤ Cardinal.mk (Quotient s) * Cardinal.aleph0 := by
+    have h1 : Cardinal.mk ι =
+        Cardinal.mk (⋃ q : Quotient s, {i : ι | Quotient.mk s i = q}) := by
+      rw [← huniv, Cardinal.mk_univ]
+    rw [h1]
+    refine Cardinal.mk_iUnion_le_sum_mk.trans ?_
+    refine (Cardinal.sum_le_sum _ (fun _ ↦ Cardinal.aleph0) fun q ↦ ?_).trans ?_
+    · exact Cardinal.mk_le_aleph0_iff.mpr (hcq q)
+    · rw [Cardinal.sum_const']
+  -- so the quotient itself is continuum-sized
+  have hQle : Cardinal.mk (Quotient s) ≤ Cardinal.continuum := by
+    rw [← hcard]
+    exact Cardinal.mk_le_of_surjective Quotient.mk_surjective
+  have hQinf : Cardinal.aleph0 < Cardinal.mk (Quotient s) := by
+    by_contra hcon
+    have hcon' : Cardinal.mk (Quotient s) ≤ Cardinal.aleph0 := not_lt.mp hcon
+    have hsmall : Cardinal.mk ι ≤ Cardinal.aleph0 := by
+      refine hle.trans ?_
+      calc Cardinal.mk (Quotient s) * Cardinal.aleph0
+          ≤ Cardinal.aleph0 * Cardinal.aleph0 := by gcongr
+        _ = Cardinal.aleph0 := Cardinal.aleph0_mul_aleph0
+    rw [hcard] at hsmall
+    exact absurd (hsmall.trans_lt Cardinal.aleph0_lt_continuum) (lt_irrefl _)
+  have hQeq : Cardinal.mk (Quotient s) = Cardinal.continuum := by
+    refine le_antisymm hQle ?_
+    have hmax : Cardinal.mk (Quotient s) * Cardinal.aleph0 =
+        Cardinal.mk (Quotient s) := by
+      rw [Cardinal.mul_eq_max hQinf.le le_rfl, max_eq_left hQinf.le]
+    rw [← hcard]
+    exact hle.trans hmax.le
+  -- a transversal of the classes is the family we want
+  refine ⟨Set.range (Quotient.out : Quotient s → ι), ?_, ?_, ?_⟩
+  · rw [Cardinal.mk_range_eq _ Quotient.out_injective]
+    exact hQeq
+  · rintro i -
+    exact product_fg_not_isOperatorMF N i
+  · rintro i ⟨q, rfl⟩ j ⟨p, rfl⟩ he
+    have hq : Quotient.mk s q.out = Quotient.mk s p.out := Quotient.sound he
+    rw [Quotient.out_eq, Quotient.out_eq] at hq
+    rw [hq]
 
 end ContinuumMultiplicity
 end GroupApproximation
