@@ -263,6 +263,14 @@ theorem conjugate_ne_proj :
   letI : DecidableEq (E ⧸ conjLambda D) := Classical.decEq _
   obtain ⟨a, ha⟩ := D.strict
   intro hcontra
+  -- `cmul` and `.sub_apply` are deprecated into a
+  -- different namespace, and `-DwarningAsError=true` makes using them fatal.
+  -- Both statements are `rfl` here: CLM multiplication IS composition and
+  -- subtraction IS pointwise, so state them locally rather than chase names.
+  have cmul : ∀ (f g : CosetHilbert E (conjLambda D) →L[ℂ] CosetHilbert E (conjLambda D)) (x : CosetHilbert E (conjLambda D)), (f * g) x = f (g x) :=
+    fun _ _ _ => rfl
+  have csub : ∀ (f g : CosetHilbert E (conjLambda D) →L[ℂ] CosetHilbert E (conjLambda D)) (x : CosetHilbert E (conjLambda D)), (f - g) x = f x - g x :=
+    fun _ _ _ => rfl
   have hgen : ∀ g : E, evw D (maximalGroupCStarGenerator E g)
       = (((witnessRep D).hom g : unitary (witnessRep D).carrier)
         : (witnessRep D).carrier) :=
@@ -288,7 +296,7 @@ theorem conjugate_ne_proj :
         = quasiRegularOperator E (conjLambda D) D.t⁻¹
             (quasiRegularOperator E (conjLambda D)
               (D.t * D.iota γ * D.t⁻¹) (baseVector E (conjLambda D))) := by
-      rw [← ContinuousLinearMap.mul_apply, quasiRegularOperator_mul]
+      rw [← cmul, quasiRegularOperator_mul]
       congr 2
       group
     rw [h2, h3, h1]
@@ -343,10 +351,10 @@ theorem conjugate_ne_proj :
       star_maximalGroupCStarGenerator E D.t]
     rw [hgen D.t⁻¹]
     rfl
-  have hsubw : ((1 : (witnessRep D).carrier) - evw D (avg D))
+  have hsubw : ((1 : CosetHilbert E (conjLambda D) →L[ℂ] CosetHilbert E (conjLambda D)) - evw D (avg D))
       (quasiRegularOperator E (conjLambda D) D.t⁻¹
         (baseVector E (conjLambda D))) = 0 := by
-    rw [ContinuousLinearMap.sub_apply, hmw]
+    rw [csub, hmw]
     show quasiRegularOperator E (conjLambda D) D.t⁻¹
         (baseVector E (conjLambda D))
       - quasiRegularOperator E (conjLambda D) D.t⁻¹
@@ -355,17 +363,17 @@ theorem conjugate_ne_proj :
   have h0 : evw D ((1 : MaximalGroupCStar E)
       - shift D * proj D * star (shift D))
       (baseVector E (conjLambda D)) = 0 := by
-    rw [hq1, map_mul, map_mul, map_sub, map_one,
-      ContinuousLinearMap.mul_apply, hwv, ContinuousLinearMap.mul_apply,
-      ContinuousLinearMap.mul_apply, hsubw, map_zero, map_zero]
+    rw [hq1, map_mul, map_mul, map_mul, map_sub, map_one,
+      cmul, hwv, cmul,
+      cmul, hsubw, map_zero, map_zero]
   have hqv : evw D (shift D * proj D * star (shift D))
       (baseVector E (conjLambda D)) = baseVector E (conjLambda D) := by
-    have h2 : ((1 : (witnessRep D).carrier)
+    have h2 : ((1 : CosetHilbert E (conjLambda D) →L[ℂ] CosetHilbert E (conjLambda D))
         - evw D (shift D * proj D * star (shift D)))
         (baseVector E (conjLambda D)) = 0 := by
       rw [← map_one (evw D), ← map_sub]
       exact h0
-    rw [ContinuousLinearMap.sub_apply] at h2
+    rw [csub] at h2
     have h3 : baseVector E (conjLambda D)
         - evw D (shift D * proj D * star (shift D))
           (baseVector E (conjLambda D)) = 0 := h2
@@ -379,10 +387,9 @@ theorem conjugate_ne_proj :
     have h4 := congrArg (evw D) hfix
     rw [map_mul] at h4
     have h5 := congrArg
-      (fun T : (witnessRep D).carrier =>
+      (fun T : CosetHilbert E (conjLambda D) →L[ℂ] CosetHilbert E (conjLambda D) =>
         T (baseVector E (conjLambda D))) h4
-    simp only [] at h5
-    rw [ContinuousLinearMap.mul_apply, hpv, hgen (D.iota a)] at h5
+    rw [cmul, hpv, hgen (D.iota a)] at h5
     exact quasiRegularOperator_baseVector_of_notMem E (conjLambda D)
       ha h5
   rw [hcontra] at hqv
