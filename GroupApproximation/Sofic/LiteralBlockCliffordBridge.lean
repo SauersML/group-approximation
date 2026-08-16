@@ -47,6 +47,40 @@ open LiteralBlockNormalForm BlockCliffordLamp
 
 noncomputable section
 
+/-! ## Where `IsCompleteOnBlocks` comes from, and what is still missing
+
+`Sofic/LiteralBlockGeometry.lean` proves the abstract form of the completeness
+hypothesis: `adj_of_blockOf_eq` derives "distinct sites of one block are
+adjacent" from `AlphaCosetTransitive α a₀`, the statement that `α(Γ)` acts
+transitively on the nontrivial cosets of `α(Γ)` in `Γ`.  For the affine
+doubling that hypothesis is also proved, as `alphaCosetTransitive`.
+
+Neither is usable here yet, for two separate reasons, and both are
+identifications rather than mathematics.
+
+*The carrier.*  `alphaCosetTransitive` is proved for
+`Monsters/AffineSL3Doubling.alpha` at `AffineSL3Doubling.Gamma`.  This chain
+runs over `ExplicitLinearModel.gammaBar` with `alpha = conjD`.  Nothing in the
+repository relates the two: there is no `MulEquiv` between the carriers and
+none intertwining the endomorphisms, and the only file that mentions both is a
+warning comment.  What is needed is `AlphaCosetTransitive conjD a₀` over
+`gammaBar` -- the same finite mod-`2` computation, that the reductions of the
+three rotation matrices move `ē₁` onto every nonzero class of `(ℤ/2)³`,
+carried out for the `4 × 4` rational model instead of the semidirect product.
+
+*The site vocabulary.*  `LiteralBlockGeometry` states its conclusion for its
+own `Cosets α hα`, `Adj α hα a₀` and `blockOf α hα`; `LiteralBlockNormalForm`
+states `Adjacent` and `blockOf` for its `Site = Vertical ⧸ baseSubgroup`.  The
+two are the same construction written twice, and a reader can see that, but
+Lean will want the identification spelled out before `adj_of_blockOf_eq`
+discharges `IsCompleteOnBlocks` below.
+
+So the honest status is: soficity of the literal group is one finite
+arithmetic statement plus two bookkeeping identifications away, and
+`IsCompleteOnBlocks` is stated as a hypothesis here rather than derived only
+because those identifications have not been written.
+-/
+
 /-! ## The two graph hypotheses -/
 
 /-- **Each block is a complete graph.**  Distinct sites in a common block are
