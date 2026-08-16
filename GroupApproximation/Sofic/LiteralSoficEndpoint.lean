@@ -283,7 +283,7 @@ theorem markedGroup_soficNonMF_package (hsofic : IsSofic MarkedGroup) :
       ¬ IsCDEOperatorMF MarkedGroup ∧
       ¬ IsOperatorMF MarkedGroup ∧
       ¬ IsMFAlgebra (MaximalGroupCStar MarkedGroup) ∧
-      ¬ IsMFAlgebra (ReducedGroupCStar MarkedGroup) :=
+      ¬ IsMFAlgebra (ReducedGroupCStarTrace.ReducedGroupCStar MarkedGroup) :=
   ⟨markedGroup_finitelyPresented,
     hsofic,
     isHyperlinear_of_isSofic hsofic,
