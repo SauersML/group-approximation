@@ -26,6 +26,7 @@ import GroupApproximation.Computability.CStarRecognitionConsequences
 import GroupApproximation.Computability.PresentationCodes
 import GroupApproximation.Computability.PresentationCodeCompleteness
 import GroupApproximation.Computability.OperatorMFMarkovAtCodes
+import GroupApproximation.Computability.StringRewriting
 import GroupApproximation.Computability.AdianRabinMarkovProperty
 import GroupApproximation.Sofic.AdjointMatrix
 import GroupApproximation.Sofic.ProjectionRankFlip
