@@ -794,10 +794,10 @@ advertised as an existence result.
 **Start at `GroupApproximation.Public`.**  It is the reading path -- the
 declarations a referee needs, each named against the theorem it establishes.
 
-The manuscript for this construction is `nonsofic_groups_exist.tex`, and its
-statement-by-statement correspondence with the library is `docs/CLAIM_MAP.md`,
-generated from the paper's own margin notes and checked on every build.  The
-other two manuscripts here are `property_tt_leavitt.tex`, on coordinate-block
+The statement-by-statement correspondence between this construction and its
+manuscript is `docs/CLAIM_MAP.md`, generated from the paper's own margin notes;
+the manuscript itself is no longer kept in the repository.  The two manuscripts
+here are `property_tt_leavitt.tex`, on coordinate-block
 factorization and `(TT)/T`, and `non_mf_groups_exist.tex`, on operator-norm
 matrix approximation; neither states the nonsofic theorems.
 
