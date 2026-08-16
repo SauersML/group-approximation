@@ -43,6 +43,7 @@ import GroupApproximation.Sofic.MixedCommutatorDihedral
 import GroupApproximation.Sofic.SpectralCapture
 import GroupApproximation.Sofic.NegativeCornerModel
 import GroupApproximation.Sofic.BlockCliffordLamp
+import GroupApproximation.Sofic.BlockingFamilyRadical
 import GroupApproximation.Sofic.CliffordLampGroup
 import GroupApproximation.Monsters.AffineSL3Doubling
 import GroupApproximation.Monsters.CliffordAlgebraLamp

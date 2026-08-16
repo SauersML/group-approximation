@@ -20,6 +20,11 @@ finite, and nothing is assumed about how the killed member varies.
 What survives of the original caution is weaker and different: the argument
 names *a* member of the family lying in the radical, not *which* member.
 
+There is no pigeonhole and no passage to a subsequence anywhere here, so the
+corona-versus-ultraproduct difficulty that §6 of the dossier isolates — that
+vanishing along a subsequence does not give vanishing in the corona — never
+arises.  The quantifier `∀ρ ∃b` is instantiated exactly once.
+
 ## Naming a prescribed member
 
 Fixing the member is a separate, purely algebraic question, and the answer is
@@ -34,13 +39,25 @@ is itself a fully invariant subgroup meeting `B` and omitting `b₀`.  The usefu
 special case is that when endomorphisms act transitively on `B`, *every* member
 is in the radical.
 
-Never compiled.
+Note where the symmetry is applied.  `Sofic/MultiMoverUniversalUpgrade` observes
+that precomposing a *fixed* representation `Θ` by an automorphism `σ` carrying
+one mover to another yields `(Θ ∘ σ)(w i₀) = 1` — information about the
+composite, not about `Θ` — and concludes that a transitive symmetry cannot give
+the upgrade.  That is a correct warning about that route and an incorrect
+verdict on the question.  Full invariance is a property of the radical, which is
+an intersection over *all* representations, so the symmetry is applied after the
+intersection rather than inside it and no representation is moved anywhere.
+`forall_mem_of_endomorphism_transitive` below is the resulting upgrade, and it
+is strictly more general than the inner case that module proves, since it asks
+only for endomorphisms.
 -/
 
 namespace GroupApproximation
 namespace BlockingFamilyRadical
 
-variable {G : Type} [Group G]
+universe u
+
+variable {G : Type u} [Group G]
 
 /-! ## Blocking families -/
 
@@ -63,7 +80,7 @@ theorem exists_mem_actualCoronaMFResidual [Countable G] {B : Set G}
   letI : ∀ n, Nonempty (X n) :=
     fun n ↦ Fintype.card_pos_iff.mp (hX n)
   obtain ⟨b, hbB, hb1⟩ := hB X hX rho
-  exact ⟨b, hbB, hker ▸ (MonoidHom.mem_ker rho).mpr hb1⟩
+  exact ⟨b, hbB, hker ▸ MonoidHom.mem_ker.mpr hb1⟩
 
 /-- The radical of a nontrivial blocking family is itself nontrivial, provided
 the family avoids the identity. -/
@@ -74,6 +91,16 @@ theorem actualCoronaMFResidual_ne_bot [Countable G] {B : Set G}
   intro hbot
   rw [hbot, Subgroup.mem_bot] at hbR
   exact hone (hbR ▸ hbB)
+
+/-- A blocking family avoiding the identity obstructs the CDE embedding
+property outright.  This is the form the multi-mover argument is actually used
+in: the finite family is enough to rule out an injective corona representation,
+without naming which member dies. -/
+theorem not_isCDEOperatorMF [Countable G] {B : Set G}
+    (hB : Blocks B) (hone : (1 : G) ∉ B) :
+    ¬ IsCDEOperatorMF G := by
+  rw [isCDEOperatorMF_iff_actualCoronaMFResidual_eq_bot]
+  exact actualCoronaMFResidual_ne_bot hB hone
 
 /-! ## Full invariance, and naming a member -/
 
@@ -96,6 +123,10 @@ def fullyInvariantClosure (b : G) : Subgroup G :=
 theorem self_mem_fullyInvariantClosure (b : G) :
     b ∈ fullyInvariantClosure b :=
   Subgroup.subset_closure ⟨MonoidHom.id G, rfl⟩
+
+theorem map_mem_fullyInvariantClosure (φ : G →* G) (b : G) :
+    φ b ∈ fullyInvariantClosure b :=
+  Subgroup.subset_closure ⟨φ, rfl⟩
 
 /-- A radical element drags its whole fully invariant closure into the
 radical. -/
@@ -126,6 +157,25 @@ theorem forall_mem_of_endomorphism_transitive [Countable G] {B : Set G}
   obtain ⟨b, hbB, hbR⟩ := exists_mem_actualCoronaMFResidual hB
   obtain ⟨φ, hφ⟩ := htrans b hbB b' hb'
   exact hφ ▸ map_mem_actualCoronaMFResidual φ hbR
+
+/-- The automorphism form, which is how a symmetry of the construction usually
+presents itself.  An automorphism is in particular an endomorphism, so this is
+a special case. -/
+theorem forall_mem_of_mulEquiv_transitive [Countable G] {B : Set G}
+    (hB : Blocks B)
+    (htrans : ∀ b ∈ B, ∀ b' ∈ B, ∃ σ : G ≃* G, σ b = b') :
+    ∀ b' ∈ B, b' ∈ actualCoronaMFResidual G := by
+  refine forall_mem_of_endomorphism_transitive hB fun b hb b' hb' => ?_
+  obtain ⟨σ, hσ⟩ := htrans b hb b' hb'
+  exact ⟨σ.toMonoidHom, hσ⟩
+
+/-- Restated as a containment: under a transitive symmetry the whole blocking
+family sits inside the radical. -/
+theorem subset_actualCoronaMFResidual_of_endomorphism_transitive [Countable G]
+    {B : Set G} (hB : Blocks B)
+    (htrans : ∀ b ∈ B, ∀ b' ∈ B, ∃ φ : G →* G, φ b = b') :
+    B ⊆ (actualCoronaMFResidual G : Set G) :=
+  fun _ hb => forall_mem_of_endomorphism_transitive hB htrans _ hb
 
 end BlockingFamilyRadical
 end GroupApproximation

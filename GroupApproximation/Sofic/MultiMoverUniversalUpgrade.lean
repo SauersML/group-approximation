@@ -29,21 +29,29 @@ at:
   closures coincide, so the intersection contains `w i₀` itself and the
   designated mover is in the radical
   (`mem_actualCoronaMFResidual_of_forall_conj`).
-* **A symmetry permuting the movers -- but only the inner kind.**  It is
-  tempting to expect that any automorphism permuting the family transitively
-  gives the upgrade.  It does not, and the reason is worth stating.  Given a
-  representation `Θ` that kills `w i`, an automorphism `σ` carrying `w i₀` to
-  `w i` yields `(Θ ∘ σ)(w i₀) = 1` -- which says the *composite* kills the
-  designated mover, not that `Θ` does.  Symmetry moves the representation, and
-  the quantifier `∀Θ ∃i` is exactly the statement that one may not move it.
+* **A symmetry permuting the movers.**  Chasing a *fixed* representation `Θ`
+  does not work, and the failure is worth stating because it is the natural
+  first attempt.  Given a `Θ` that kills `w i`, an automorphism `σ` carrying
+  `w i₀` to `w i` yields `(Θ ∘ σ)(w i₀) = 1` -- which says the *composite*
+  kills the designated mover, not that `Θ` does.  Along that route symmetry
+  moves the representation, and the quantifier `∀Θ ∃i` is exactly the statement
+  that one may not move it.
 
-  Conjugation is the case that survives, and it survives because it is inner:
-  conjugate movers have *equal* normal closures, so no transport is needed at
-  all.  What a general symmetry does give is that the intersection above is
-  invariant under it -- the radical is preserved by every automorphism
-  (`map_actualCoronaMFResidual_mulEquiv`), and the intersection is the
-  canonical symmetric object to test.  That is a reason to compute the
-  intersection, not a substitute for it.
+  Conjugation survives that route unaided, because it is inner: conjugate
+  movers have *equal* normal closures, so no transport is needed at all.
+
+  A general symmetry *also* gives the upgrade, but by a different route, and an
+  earlier version of this note wrongly read the failure above as a verdict that
+  it does not.  The fix is to stop fixing a `Θ`.  Apply the symmetry after the
+  intersection over all representations rather than inside it: the radical is
+  fully invariant, so an endomorphism carrying a radical element to `w i` puts
+  `w i` in the radical, with no representation moved anywhere.  Combined with
+  the universal representation -- whose kernel *is* the radical, so `∀Θ ∃i`
+  instantiates once and names a radical member of the family -- this yields
+  *every* member of a transitively permuted family, and for endomorphisms
+  rather than merely automorphisms.  See
+  `Sofic/BlockingFamilyRadical.forall_mem_of_endomorphism_transitive`, which
+  supersedes the negative reading of this bullet.
 
 The negative half is equally clean: when `⨅ i, ⟨⟨w i⟩⟩` is trivial the
 existential statement has no universal consequence beyond `1 ∈ Rad_MF`, so no
@@ -61,10 +69,13 @@ variable {G : Type u} [Group G]
 /-- **The MF radical is preserved by every automorphism.**  Functoriality gives
 one inclusion, and applying it to the inverse gives the other.
 
-This is what a symmetry of a mover family actually buys: the intersection of
-the normal closures is carried to itself, so it is the object a symmetric
-argument may test.  It does not let a symmetry transport a victim between
-representations; see the module docstring. -/
+This is what a symmetry of a mover family buys: the intersection of the normal
+closures is carried to itself, so it is the object a symmetric argument may
+test.  What it does *not* do is transport a victim between representations --
+that route fails, as the module docstring explains.  Applied to the radical
+rather than to any one kernel, this same invariance is what promotes a
+transitively permuted blocking family into the radical member by member
+(`Sofic/BlockingFamilyRadical`). -/
 theorem map_actualCoronaMFResidual_mulEquiv (σ : G ≃* G) :
     (actualCoronaMFResidual G).map σ.toMonoidHom = actualCoronaMFResidual G := by
   refine le_antisymm (map_actualCoronaMFResidual_le _) ?_
