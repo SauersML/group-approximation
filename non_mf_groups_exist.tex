@@ -114,6 +114,12 @@ from the identity.  We construct a finitely presented group $E$, on
 eight generators and forty-one relators, that is not MF\@.  This refutes
 the conjecture that every countable group is MF.
 
+In a finite quotient a proper self-compression
+$t\Gamma t^{-1}\subsetneq\Gamma$ collapses: the two images are
+conjugate, hence of equal cardinality, hence equal.  We promote that
+obstruction to matrix coronas, with finiteness of a norm ultraproduct
+in place of the cardinality count.
+
 Let $\Gamma\le H$ have property~\textup{(T)}, let
 $t\Gamma t^{-1}\subseteq\Gamma$, let $c$ centralize $\Gamma$, and put
 $d=tct^{-1}$ and $u=[d,a]$ for $a\in\Gamma$.  We prove that in every
@@ -265,6 +271,40 @@ The group is written out in Definition~\ref{def:E}; Section~\ref{sec:example}
 proves the theorem.
 
 \subsection*{The mechanism}
+The obstruction is an operator-norm form of an elementary one.  Let
+$\pi$ be a homomorphism to a finite group.  If
+$t\Gamma t^{-1}\subseteq\Gamma$, then $\pi(t\Gamma t^{-1})$ is a
+conjugate of $\pi(\Gamma)$ contained in it, so the two have the same
+cardinality and are equal: a proper self-compression has no image in
+any finite quotient.  Dimension does not replace cardinality at the
+level of subgroups, but it does one level down, on the commutant of
+$\pi(\Gamma)$ in a finite-dimensional representation, which is
+contained in a conjugate copy of the same finite dimension and is
+therefore equal to it (Theorem~\ref{thm:B} and
+Remark~\ref{rem:invariantsize}).  What follows is that second argument
+carried out in a matrix corona: the commutant becomes a
+Hilbert--Schmidt asymptotic commutant, equal dimension becomes
+finiteness of a norm ultraproduct, and property~\textup{(T)} supplies
+the projection to which finiteness is applied.
+
+Two norms do different work.  Operator norm controls the approximate
+algebraic relations; the Hilbert--Schmidt norm carries the
+Hilbert-space geometry on which property~\textup{(T)} acts.  Each
+matrix block is used in both roles: as an operator, whose products are
+controlled in operator norm, and as a vector in its own
+Hilbert--Schmidt space, where the adjoint action of the group is what
+property~\textup{(T)} sees.  Rank enters only as bookkeeping for the
+second norm.  For commuting self-adjoint involutions $e,f$ the
+difference satisfies $(e-f)^3=4(e-f)$, so $(e-f)^2/4$ is a projection
+and
+\[
+ \operatorname{Tr}\lvert e-f\rvert^2
+ =4\operatorname{rank}\bigl((e-f)^2/4\bigr):
+\]
+rank measures the support of a difference, and Hilbert--Schmidt mass is
+support times amplitude squared.  It is not a third approximation
+geometry.
+
 Write $\sim_2$ for convergence in normalized Hilbert--Schmidt norm.
 
 Let $\Gamma$ be a property-\textup{(T)} group with a homomorphism
@@ -317,9 +357,9 @@ if $\varepsilon\ne1$ then $H$ is not MF
 (Theorem~\ref{thm:sign-criterion}).
 
 What remains is $\varepsilon\ne1$, a question about the group alone.
-Adjoin $t$ and $c$ to a finitely presented Kazhdan group $\Gamma$
-along a proper injective endomorphism $\alpha$, and let $a$ lie
-outside $\alpha(\Gamma)$.  In the mapping telescope of $\alpha$ the
+Adjoin $t$ and $c$ to a finitely presented Kazhdan group $\Gamma$ that
+is not co-Hopfian, along a proper injective endomorphism $\alpha$, and
+let $a$ lie outside $\alpha(\Gamma)$.  In the mapping telescope of $\alpha$ the
 cosets $t\Gamma$ and $at\Gamma$ are distinct, because
 $a\notin\alpha(\Gamma)$.  Send those two cosets to anticommuting
 Clifford generators: then $u$ is a product of two anticommuting
@@ -332,6 +372,11 @@ Taking
  \alpha(v,A)=(2v,A),\qquad a=(e_1,I)
 \]
 gives the group $E$ of Theorem~\ref{thm:A}.
+
+Property~\textup{(T)} is required of the compressed subgroup alone.
+The ambient group has none of it: sending $t$ to $1$ and every other
+generator to $0$ maps $E$ onto $\mathbb Z$, because every defining
+relator of \eqref{eq:E} lies in the kernel.
 
 The quotient $E/\langle w\rangle$ is again not MF: the image of $u$ is
 nontrivial there and lies in the kernel of every corona representation,
@@ -2451,8 +2496,7 @@ of $w$ in the finite group.
 
 \begin{remark}[the invariant-size principle]\label{rem:invariantsize}
 The proof of Theorem~\ref{thm:B} used exactly one feature of finite
-dimensionality: a subspace of a finite-dimensional space that contains
-an inclusion $C_1\subseteq C_2$ of subspaces with
+dimensionality: an inclusion $C_1\subseteq C_2$ of subspaces with
 $\dim_kC_1=\dim_kC_2<\infty$ is an equality.  In abstract form: suppose a
 conjugation-invariant size
 $\sigma$ with values in $\mathbb N$ is defined on the subgroups of a
