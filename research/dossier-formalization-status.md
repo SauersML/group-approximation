@@ -66,7 +66,8 @@ formalized in this pass; **TODO** not yet formalized.
 | 36.5-36.8 | radical pullback through a defect quotient; exact radical; defect saturation | DONE-NEW | `Sofic/CoronaRadicalPullback` (`coronaMFResidual_eq_comap`, `coronaMFResidual_eq_of_quotient_isOperatorMF`, `not_isOperatorMF_of_coronaMFResidual_eq_top`) |
 | 41.3 first inclusion | `Rad_MF ≤ Rad_fd` | DONE-PRE | `Sofic/MatricialStabilityRadical.actualCoronaMFResidual_le_fdUnitaryResidual` |
 | 37 union step | increasing forced-defect kernels stay inside the radical | DONE-NEW | `Sofic/MoverGeneration.coronaMFResidual_iSup_le` |
-| 37 | telescope-kernel collapse, exact MF radical | TODO (partial in-repo) | 36.5 supplies the pullback step, 36.7 the exact-radical step; what remains is the concrete pushforward tower |
+| 37.1 | pushforward of finitely supported lamps along a map of sites | DONE-NEW | `Algebra/LampPushforward` (`push`, `pushHom`, `push_lampAut`, `pushWreath`) |
+| 37.2-37.7 | telescope-kernel collapse, exact MF radical | TODO (partial in-repo) | 36.5 supplies the pullback step, 36.7 the exact-radical step, 37.1 the pushforward; what remains is the concrete tower over the height line |
 | 54.2 lamp side | the lamp group is locally finite for finite `K` | DONE-NEW | `Algebra/PermutationalWreath.suppIn_finite` |
 | 39 | concrete affine base, index 8, RF skeleton | DONE-PRE | `Sofic/LiteralBaseDoublingIndex`, `Sofic/CommutingLampCollapse`, `Monsters/ExplicitLinearModel` |
 | 41.3 second inclusion | `Rad_fd ≤ Res_fin` | DONE-NEW | `Sofic/FiniteDimensionalResidual.fdUnitaryResidual_le_finiteResidual`, on the faithful coset permutation representation `permUnitaryHom` |
