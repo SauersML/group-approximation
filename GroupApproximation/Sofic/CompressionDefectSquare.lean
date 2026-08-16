@@ -37,8 +37,14 @@ identity by normalization. -/
 manuscript's first sentence, "so `b² = a₁d²a₁⁻¹ = 1`". -/
 theorem conj_sq_eq_one {G : Type*} [Group G] (d a : G) (hd : d ^ 2 = 1) :
     (a * d * a⁻¹) ^ 2 = 1 := by
-  calc (a * d * a⁻¹) ^ 2 = a * d ^ 2 * a⁻¹ := by group
-    _ = 1 := by rw [hd]; group
+  calc (a * d * a⁻¹) ^ 2
+      = a * d * (a⁻¹ * a) * d * a⁻¹ := by
+        rw [pow_two]
+        simp only [mul_assoc]
+    _ = a * d ^ 2 * a⁻¹ := by
+        rw [inv_mul_cancel, mul_one, pow_two]
+        simp only [mul_assoc]
+    _ = 1 := by rw [hd, mul_one, mul_inv_cancel]
 
 /-- **The printed factorization of the pointwise defect.**  For an involution
 `d`, the commutator `[d,a] = d a d⁻¹ a⁻¹` collapses to `d` times the conjugate
