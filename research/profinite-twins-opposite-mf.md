@@ -8,6 +8,7 @@ distinct_from:
   continuum-nonisomorphic-fg-non-mf: That is a cardinality statement about isomorphism types of non-MF groups, witnessed by direct products `E x N_i`; this is a two-group statement in which one member is MF and the other is not, with matching profinite data.
 artifacts:
   - GroupApproximation/Algebra/VisibleQuotient.lean
+  - GroupApproximation/Sofic/ProfiniteTwins.lean
   - research/artifacts/multi-mover-hnn-dossier-2026-08-15.md
 ---
 
@@ -35,3 +36,12 @@ So MF is not determined by the profinite completion among finitely generated
 groups, and the restricted family of finite, compact, linear, and matricial
 targets is not jointly conservative: it sends a non-injective split
 epimorphism to a bijection on every Hom-set it can see.
+
+The mechanism is machine-checked in `Sofic/ProfiniteTwins`: precomposition with
+the quotient map is a bijection on homomorphisms into every finite group, as
+soon as the collapsed subgroup lies in the finite residual.  `wreath_twins`
+instantiates it on the ascending-HNN wreath product against its first-stage
+quotient ([[stage-one-lamp-difference-radical]]), where the separating subgroup
+is nontrivial and the non-MF side is unconditional.  The perfect-lamp version
+above still needs the telescope radical to be identified with the whole lamp
+base.

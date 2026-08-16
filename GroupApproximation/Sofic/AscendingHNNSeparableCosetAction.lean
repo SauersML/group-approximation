@@ -81,6 +81,56 @@ theorem isSoficAction_vertical_cosets_of_separable_base
     IsSoficAction (Vertical α hα) (Cosets α hα) :=
   isSoficAction_quotient_of_separable (iotaVertical α hα).range hsep
 
+include hα in
+/-- **The hypothesis descends to the base, so the reduction is not one-way.**
+
+If the base copy is separable in `G`, then `α(Γ)` is separable in `Γ`.  This is
+the first level of the tower described above, obtained rather than assumed, and
+it makes the criterion testable: a base for which `α(Γ)` fails to be separable
+cannot have its copy separable in `G`, so this route to soficity is unavailable
+there and no search for a finite-index subgroup of `G` will help.
+
+The proof is the computation behind the tower.  Conjugation by `t⁻¹` is a
+homomorphism `φ : Γ → G` carrying `α(Γ)` into the base copy, since
+`t⁻¹ ι(α y) t = ι(y)`, and carrying `γ` outside it exactly when `γ ∉ α(Γ)`.
+Pulling a finite-index subgroup of `G` back along `φ` therefore produces a
+finite-index subgroup of `Γ` containing `α(Γ)` and missing `γ`. -/
+theorem separable_range_of_separable_base
+    (hsep : ∀ g : Vertical α hα, g ∉ (iotaVertical α hα).range →
+      ∃ K : Subgroup (Vertical α hα),
+        (iotaVertical α hα).range ≤ K ∧ K.FiniteIndex ∧ g ∉ K)
+    (γ : Γ) (hγ : γ ∉ α.range) :
+    ∃ M : Subgroup Γ, α.range ≤ M ∧ M.FiniteIndex ∧ γ ∉ M := by
+  classical
+  -- conjugation by `t⁻¹`, as a homomorphism out of the base
+  let φ : Γ →* Vertical α hα :=
+    { toFun := fun x =>
+        (tVertical α hα)⁻¹ * iotaVertical α hα x * tVertical α hα
+      map_one' := by simp
+      map_mul' := fun x y => by
+        simp only [map_mul]
+        group }
+  have hφ : ∀ x : Γ, φ x
+      = (tVertical α hα)⁻¹ * iotaVertical α hα x * tVertical α hα :=
+    fun _ => rfl
+  have hγset : γ ∉ Set.range α := fun h => hγ (MonoidHom.mem_range.mpr h)
+  have hout : φ γ ∉ (iotaVertical α hα).range := by
+    rw [hφ]
+    exact tVertical_inv_conj_not_mem α hα hγset
+  obtain ⟨K, hKle, hKfi, hKnot⟩ := hsep _ hout
+  refine ⟨K.comap φ, ?_, ?_, ?_⟩
+  · -- `φ` sends `α(Γ)` back to the base copy, which sits inside `K`
+    rintro _ ⟨y, rfl⟩
+    refine Subgroup.mem_comap.mpr (hKle ?_)
+    have hcompress := vertical_compress α hα y
+    refine ⟨y, ?_⟩
+    rw [hφ, ← hcompress]
+    group
+  · refine ⟨?_⟩
+    rw [Subgroup.index_comap]
+    exact (Subgroup.instFiniteIndex_subgroupOf K φ.range).index_ne_zero
+  · exact fun hmem => hKnot (Subgroup.mem_comap.mp hmem)
+
 end MarkedCompression
 
 namespace AscendingHNNWreath

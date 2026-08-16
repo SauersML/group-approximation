@@ -1,4 +1,4 @@
-# Cairn research-graph site.  Rebuilds and republishes the public site
+# Group Approximation research-graph site.  Rebuilds and republishes the public site
 # whenever the research state or the generator changes.  Fast (seconds,
 # no toolchain): the site is compiled from research/*.md by the cairn CLI,
 # which lives in the tools/cairn submodule (github.com/SauersML/Cairn).
@@ -8,7 +8,7 @@
 # branch named `api-docs` exists.  Until docs.yml publishes that branch, a
 # Sunday docs deploy will temporarily replace this site (and the next
 # research push replaces it back).
-name: Cairn site
+name: Group Approximation site
 
 on:
   push:
@@ -21,9 +21,16 @@ on:
       - '.github/workflows/cairn-site.yml'
   workflow_dispatch:
 
+# Never cancel a site run.  `cancel-in-progress: false` only protects a run
+# that is already executing -- GitHub still cancels a *pending* run when a
+# newer one joins the group, so on a busy repo with a backed-up runner queue
+# the site can starve indefinitely: on 2026-08-16 five consecutive runs were
+# cancelled without ever publishing, leaving Pages several commits stale.
+# A per-run group means nothing supersedes anything; the job takes seconds,
+# and the last deploy to finish wins, which is the state we want anyway.
 concurrency:
-  group: cairn-site
-  cancel-in-progress: true
+  group: cairn-site-${{ github.run_id }}
+  cancel-in-progress: false
 
 permissions:
   contents: read
@@ -42,6 +49,20 @@ jobs:
 
       - name: Build the site
         run: bin/cairn site
+
+      - name: Title the site
+        # `bin/cairn` passes the project name to the generator, but generators
+        # older than that hook title their pages after the tool.  Rewrite those.
+        # A no-op once the pinned generator honours CAIRN_SITE_TITLE.
+        run: |
+          python3 - <<'PY'
+          import pathlib
+          for f in pathlib.Path('.cairn/site').glob('*.html'):
+              t = f.read_text(encoding='utf-8')
+              if '<title>Cairn' in t:
+                  f.write_text(t.replace('<title>Cairn', '<title>Group Approximation'),
+                               encoding='utf-8')
+          PY
 
       - name: Fold in the latest API docs, if published
         run: |

@@ -19,11 +19,92 @@
   pdfkeywords={property (TT)/T, quasi-cocycles, elementary groups, Leavitt algebras, bounded generation}
 }
 
+% Allow line breaks with stretch inside declaration names.
+\Urlmuskip=0mu plus 1mu\relax
+\expandafter\def\expandafter\UrlBreaks\expandafter{\UrlBreaks\do\.\do\_%
+  \do/\do-%
+  \do\a\do\b\do\c\do\d\do\e\do\f\do\g\do\h\do\i\do\j\do\k\do\l\do\m\do\n%
+  \do\o\do\p\do\q\do\r\do\s\do\t\do\u\do\v\do\w\do\x\do\y\do\z%
+  \do\A\do\B\do\C\do\D\do\E\do\F\do\G\do\H\do\I\do\J\do\K\do\L\do\M\do\N%
+  \do\O\do\P\do\Q\do\R\do\S\do\T\do\U\do\V\do\W\do\X\do\Y\do\Z%
+  \do\0\do\1\do\2\do\3\do\4\do\5\do\6\do\7\do\8\do\9}
+% Lean certificates are set in the margin beside the line that carries
+% them: a rule marks the certified statement and a tick at its head
+% points back into the text block.  Badges written next to one another
+% coalesce into a single note, so a statement proved by several
+% declarations carries one block rather than a stack of tags.  Printed
+% declaration names are relative to the root namespace of the
+% development.
+\newlength{\leanrulewd}\setlength{\leanrulewd}{0.4pt}
+\newlength{\leanrulesep}\setlength{\leanrulesep}{4.5pt}
+\newlength{\leantickwd}\setlength{\leantickwd}{5pt}
+\newcommand{\leantone}{gray!70!black}
+\makeatletter
+\newtoks\lean@toks
+\newbox\lean@bx
+\newdimen\lean@ht
+\newdimen\lean@dp
+\newif\if@leanfirst
+\let\lean@sep\relax
+\let\lean@stop\relax
+\def\lean@setshort#1{%
+  \def\lean@full{#1}%
+  \lean@nsstrip#1\lean@sep PropertyTTPaper.\lean@sep\lean@stop}
+\def\lean@nsstrip#1PropertyTTPaper.#2\lean@sep#3\lean@stop{%
+  \def\lean@short{#2}%
+  \ifx\lean@short\@empty\let\lean@short\lean@full\fi}
+\protected\def\lean@decl#1#2{%
+  \if@leanfirst\@leanfirstfalse\else\vskip1.7\p@\fi
+  \lean@setshort{#2}%
+  \expandafter\nolinkurl\expandafter{\lean@short}%
+  \par}
+\def\lean@build#1{%
+  \setbox\lean@bx\vtop{%
+    \hsize\dimexpr\marginparwidth-\leanrulesep-\leanrulewd\relax
+    \linewidth\hsize \columnwidth\hsize
+    \parindent\z@ \parskip\z@skip \normalfont \color{\leantone}%
+    #1%
+    {\fontsize{7}{8.4}\selectfont\scshape Lean\par}%
+    \vskip1.9\p@
+    \fontsize{6.6}{7.9}\selectfont
+    \@leanfirsttrue\the\lean@toks}%
+  \lean@ht\ht\lean@bx \lean@dp\dp\lean@bx}
+\def\lean@tick{%
+  \raisebox{\lean@ht}[\z@][\z@]{%
+    \color{\leantone}\rule[-\leanrulewd]{\leantickwd}{\leanrulewd}}}
+\def\lean@bar{%
+  \color{\leantone}%
+  \vrule width\leanrulewd height\lean@ht depth\lean@dp\relax}
+\def\lean@outer{\lean@build{\raggedright}%
+  \hbox{\llap{\lean@tick}\lean@bar\kern\leanrulesep\box\lean@bx}}
+\def\lean@inner{\lean@build{\raggedleft}%
+  \hbox{\box\lean@bx\kern\leanrulesep\lean@bar\rlap{\lean@tick}}}
+\def\lean@flush{%
+  \ifvmode
+    \@latex@error{Lean badge between paragraphs}%
+      {A badge sets a margin note beside the line it certifies, so it must
+       stand inside the paragraph, item or statement it marks -- not after
+       \string\end{...} or before the first word of an environment.}%
+  \fi
+  \marginpar[\lean@inner]{\lean@outer}\global\lean@toks{}}
+\def\lean@flushspace{\lean@flush\space}
+\def\lean@peek{\futurelet\lean@tok\lean@choose}
+\def\lean@choose{%
+  \let\lean@next\lean@flush
+  \ifx\lean@tok\lean@badge\let\lean@next\relax\fi
+  \ifx\lean@tok\@sptoken\let\lean@next\lean@eatspace\fi
+  \lean@next}
+\def\lean@eatspace{\afterassignment\lean@repeek\let\lean@junk= }%
+\def\lean@repeek{\futurelet\lean@tok\lean@choosesp}
+\def\lean@choosesp{%
+  \let\lean@next\lean@flushspace
+  \ifx\lean@tok\lean@badge\let\lean@next\relax\fi
+  \lean@next}
 \newcommand{\leanverified}[2]{%
-  \par\smallskip\noindent
-  {\normalfont\footnotesize\color{gray!70!black}%
-  Formal counterpart:\par\nobreak\noindent
-  \nolinkurl{#2}.}}
+  \global\lean@toks\expandafter{\the\lean@toks\lean@decl{#1}{#2}}%
+  \lean@peek}
+\expandafter\let\expandafter\lean@badge\csname leanverified\endcsname
+\makeatother
 
 \setlist[enumerate]{leftmargin=2.35em}
 \setlist[itemize]{leftmargin=2.1em}
@@ -136,11 +217,11 @@ Let \(R\) be a nontrivial ring satisfying~\eqref{eq:sandwich}, let
 admits a factorization of length at most \(2n+2\) in which every
 factor is either an elementary transvection or belongs to the
 coordinate copy
+\leanverified{PropertyTT/PaperStatements}{PropertyTTPaper.coordinateBlock_factorization}
 \[
   \GL_{n-1}^{(j)}(R)
   =\{B\in\GL_n(R):Be_j=e_j,\ e_j^{\,t}B=e_j^{\,t}\}.
 \]
-\leanverified{PropertyTT/PaperStatements}{PropertyTTPaper.coordinateBlock_factorization}
 \end{mainthm}
 
 Theorem~\ref{thm:A} is a relative bounded-width statement rather
@@ -268,8 +349,9 @@ gives a quantitative proof of the root estimate, and
 Section~\ref{sec:leavitt} verifies the remaining structural
 hypotheses for the binary Leavitt algebra.
 
-Each numbered theorem and lemma proved in the formal companion is
-linked to its public Lean declaration.  Appendix~\ref{app:formal}
+Each numbered theorem and lemma proved in the formal companion carries
+a margin tag naming its public Lean declaration, written relative to
+the root namespace \nolinkurl{PropertyTTPaper}.  Appendix~\ref{app:formal}
 gives a proof-order reading path through the implementation and states
 the definitions and trust surface used there.
 
@@ -571,11 +653,11 @@ the displacement of \(z\) is at most \(B\) under
  \quad x_{ij}(s),\ x_{ji}(s)\quad(s\in X).
 \]
 Then, for every \(g\in H_{ijk}\),
+\leanverified{PropertyTT/PaperStatements}{PropertyTTPaper.freeCharacteristicTwo_localizedPlaneEstimate}
 \[
   \norm{\sigma(g)z-z}
   \le 2(6\abs X+6)B.
 \]
-\leanverified{PropertyTT/PaperStatements}{PropertyTTPaper.freeCharacteristicTwo_localizedPlaneEstimate}
 \end{lemma}
 
 \begin{proof}
@@ -990,11 +1072,11 @@ Thus \(\norm{b(h)}\le L(2C+2D)/\varepsilon\), uniformly in
 \label{lem:rank-equivalence}
 If \(R\) contains a binary Leavitt family, then for all
 \(m,n\ge2\) there is a group isomorphism
+\leanverified{PropertyTT/PaperStatements}{PropertyTTPaper.leavitt_elementaryRankEquivalence}
+\leanverified{PropertyTT/PaperStatements}{PropertyTTPaper.elementaryBlockFlattening}
 \[
   \EL_m(R)\cong\EL_n(R).
 \]
-\leanverified{PropertyTT/PaperStatements}{PropertyTTPaper.leavitt_elementaryRankEquivalence}
-\leanverified{PropertyTT/PaperStatements}{PropertyTTPaper.elementaryBlockFlattening}
 \end{lemma}
 
 \begin{proof}
@@ -1031,10 +1113,10 @@ group isomorphism.
 Assume that \(R\) has a binary Leavitt family, satisfies~\eqref{eq:sandwich},
 and satisfies
 \(\diag(u,1)\in\EL_2(R)\) for every \(u\in R^\times\).  Then
+\leanverified{PropertyTT/PaperStatements}{PropertyTTPaper.elementaryGroup_eq_generalLinear}
 \[
   \EL_n(R)=\GL_n(R)\qquad(n\ge2).
 \]
-\leanverified{PropertyTT/PaperStatements}{PropertyTTPaper.elementaryGroup_eq_generalLinear}
 \end{lemma}
 
 \begin{proof}
@@ -1165,11 +1247,11 @@ uses the following elementary estimate.
 \begin{lemma}[Products of controlled pieces]\label{lem:products}
 Let \(b\) be a quasi-cocycle of defect at most \(D\), and suppose
 \(\norm{b(g_i)}\le C\) for a list \((g_1,\ldots,g_m)\).  Then
+\leanverified{PropertyTT/PaperStatements}{PropertyTTPaper.quasiCocycle_list_product_bound}
 \[
   \norm{b(g_1\cdots g_m)}
   \le mC+(m+1)D.
 \]
-\leanverified{PropertyTT/PaperStatements}{PropertyTTPaper.quasiCocycle_list_product_bound}
 \end{lemma}
 
 \begin{proof}
@@ -1272,12 +1354,12 @@ For every field \(k\), write \(L_k=L_k(1,2)\).  For every
   \diag(u,1)\in\EL_2(L_k).
 \]
 More generally,
-\[
-  \GL_n(L_k)=\EL_n(L_k)\qquad(n\ge2).
-\]
 \leanverified{KOne/PaperStatements}{KOnePaper.diagUnit_mem_elementary}
 \leanverified{KOne/PaperStatements}{KOnePaper.elementaryGroup_two_eq_top}
 \leanverified{KOne/AllRanksElementaryCore}{BinaryLeavitt.elementaryGroup_eq_top}
+\[
+  \GL_n(L_k)=\EL_n(L_k)\qquad(n\ge2).
+\]
 \end{proposition}
 
 \begin{proof}

@@ -493,7 +493,7 @@ theorem machine_isLocal (M : Machine Γ Λ) :
 word `done` is a normal form. -/
 theorem two_le_length_lhsWord (i : RIdx Γ Λ) :
     2 ≤ (lhsWord ruleSp rulePre rulePost i).length := by
-  cases i <;> simp [lhsWord, rulePre, rulePost]
+  cases i <;> simp [lhsWord, rulePre, rulePost] <;> omega
 
 /-- `done` admits no rewrite. -/
 theorem done_normalForm (M : Machine Γ Λ) :

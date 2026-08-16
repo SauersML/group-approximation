@@ -678,10 +678,8 @@ import GroupApproximation.Leavitt.UniversalCompressionSetup
 import GroupApproximation.Leavitt.ThompsonV
 import GroupApproximation.Leavitt.ThompsonVEmbedding
 import GroupApproximation.Leavitt.FamilyVEmbedding
-import GroupApproximation.Leavitt.AtlasProperInfiniteCorner
 import GroupApproximation.Leavitt.ThompsonVWitness
 import GroupApproximation.Leavitt.ThompsonWitness
-import GroupApproximation.Leavitt.TwoChildFiniteObstruction
 import GroupApproximation.Matching.MatchedComponents
 import GroupApproximation.Sofic.SoficTransfer
 import GroupApproximation.Sofic.SoficDirectedUnion
@@ -758,10 +756,8 @@ import GroupApproximation.Sofic.CollapseProfileBound
 import GroupApproximation.Analysis.CStarTensorProductAdjointable
 import GroupApproximation.Analysis.ExactnessPermanence
 import GroupApproximation.Computability.SemigroupWordProblemRewriting
-import GroupApproximation.Computability.StringRewriting
 import GroupApproximation.Monsters.FournierFacioRealization
 import GroupApproximation.Monsters.P13SpectralGap
-import GroupApproximation.Sofic.AlternatingLampLiteralPackage
 import GroupApproximation.Sofic.CollapseProfileBoundNumeric
 import GroupApproximation.Sofic.CollapseTransportDiagonalization
 import GroupApproximation.Sofic.CollapseTransportDiagonalizationCommutant
@@ -844,3 +840,4 @@ import GroupApproximation.Computability.RewriteDeterminism
 import GroupApproximation.Computability.RewriteSimulation
 import GroupApproximation.Analysis.NuclearityAmenability
 import GroupApproximation.Monsters.NeumannContinuum
+import GroupApproximation.Computability.UnaryCounterSimulation
