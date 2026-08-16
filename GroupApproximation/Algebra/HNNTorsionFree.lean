@@ -181,10 +181,10 @@ theorem isPowerTorsionFree_of_existsCyclicConjugate (φ : A ≃* B)
   · have h0 : g * HNNExtension.of b ^ n * g⁻¹ = 1 := by
       rw [← conj_pow_eq]
       exact hx
-    have h2 : HNNExtension.of b ^ n = 1 := by
+    have h2 : (HNNExtension.of b : HNNExtension G A B φ) ^ n = 1 := by
       have h3 := congrArg (fun z => g⁻¹ * z * g) h0
       simpa [mul_assoc] using h3
-    have h1 : (HNNExtension.of (b ^ n) : HNNExtension G A B φ) =
+    have h1 : HNNExtension.of (b ^ n) =
         (1 : HNNExtension G A B φ) := by
       rw [map_pow]
       exact h2
