@@ -21,9 +21,15 @@ on:
       - '.github/workflows/cairn-site.yml'
   workflow_dispatch:
 
+# One deployment at a time, but never cancel one that is already running:
+# a publish that is halfway through is not obsolete work to be superseded,
+# and on 2026-08-16 three consecutive site runs were cancelled mid-deploy by
+# the next push while the runner queue was backed up, leaving Pages serving a
+# stale tree with a github-pages deployment stuck in `error`.  Queued runs
+# still collapse to the newest, which is the behaviour we actually wanted.
 concurrency:
   group: cairn-site
-  cancel-in-progress: true
+  cancel-in-progress: false
 
 permissions:
   contents: read
