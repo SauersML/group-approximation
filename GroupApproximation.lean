@@ -271,6 +271,7 @@ import GroupApproximation.Criterion.CommutantRigidity
 import GroupApproximation.Criterion.CompressionCentralizerDefect
 import GroupApproximation.Sofic.NormMFResidualExactQuotient
 import GroupApproximation.Sofic.IntrinsicCompressionDefect
+import GroupApproximation.Sofic.IntrinsicCompressionFiniteStage
 import GroupApproximation.Sofic.KazhdanAsymptoticCommutant
 import GroupApproximation.Sofic.ScaledKazhdanTransport
 import GroupApproximation.Sofic.IntertwinerKazhdanTransport
