@@ -2882,11 +2882,16 @@ $D_{\mathrm{coll}}(L,s)$.
 \end{proof}
 
 \begin{remark}[the quantitative form]\label{rem:collapse-finite-stage}
-As with the transport theorem, the limits in the sketch above can be
-replaced by explicit tolerances, the circumcenter by an approximate
-circumcenter of a near-optimal covering sequence, and the final
-contradiction assembled at one sufficiently late coordinate; we do not
-print that bookkeeping here.  The commutation hypothesis (W3) is
+The proof above is already quantitative where it matters.  Step~6 fixes
+every tolerance before choosing a stage and derives the contradiction at
+that single stage, so the asymptotic transport theorem is not applied to
+the coboundary of Step~5 --- which is delivered at one prescribed
+tolerance, and so does not satisfy the $o(w_n)$ hypothesis of
+Theorem~\ref{thm:kazhdan-transport}.  The alternative repair, a
+diagonalization producing one coboundary with vanishing defect, is not
+needed and is not carried out.  What remains asymptotic is Step~5's
+circumcenter, which could equally be taken as an approximate
+circumcenter of a near-optimal covering sequence.  The commutation hypothesis (W3) is
 essential: it gives the joint spectral calculus behind the rank
 identity of Step 2.  Anticommuting Clifford coordinates have no joint
 spectral labels; their collapse mechanism is the central sign of
