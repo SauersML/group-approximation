@@ -85,6 +85,9 @@ CLAIM_TARGETS: dict[str, tuple[str, str]] = {
     "thm:E": (
         "Endpoint/NonMFImpact",
         "GroupApproximation.NonMFImpact.witness_sofic_hyperlinear_nonMF"),
+    "thm:Esofic": (
+        "Sofic/LiteralSoficAssembly",
+        "GroupApproximation.LiteralSoficAssembly.markedGroup_finitelyPresented_sofic_nonMF"),
     "prop:maximal-cstar": (
         "Analysis/MaximalGroupCStar",
         "GroupApproximation.manuscriptUniverseRelativeMaximalGroupCStar"),
@@ -248,6 +251,7 @@ DEPENDENCIES: dict[str, list[str]] = {
     "thm:C": ["thm:B", "con:clifford"],
     "thm:D": ["thm:A", "lem:faithfultrace"],
     "thm:E": ["prop:witness", "lem:portable"],
+    "thm:Esofic": ["def:E", "thm:A", "thm:E", "thm:markedclosed"],
     "prop:mf-equivalences": ["lem:unitarycorona"],
     "prop:literal-base-T": ["def:E"],
     "lem:linear": ["def:E"],

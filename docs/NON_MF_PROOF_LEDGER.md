@@ -219,8 +219,8 @@ opening the proof, have held.
 <!-- LEDGER-COUNTS -->
 | Column | EXACT | MISMATCH | MISSING | UNDER-SPECIFIED | total |
 | --- | --- | --- | --- | --- | --- |
-| statement | 389 | 71 | 63 | 0 | 523 |
-| proof | 400 | 47 | 71 | 5 | 523 |
+| statement | 387 | 71 | 63 | 0 | 521 |
+| proof | 398 | 47 | 71 | 5 | 521 |
 <!-- END-LEDGER-COUNTS -->
 
 ## Anchors
@@ -239,104 +239,104 @@ once in the comment-stripped manuscript; the probe is the drift detector.
 | app:finite-stage | sec | app:finite-stage | - |
 | eq:corona | eq | eq:corona | - |
 | eq:unitary-corona | eq | eq:unitary-corona | - |
+| eq:unitary-corona-iso | eq | eq:unitary-corona-iso | - |
 | eq:intrinsicdefect | eq | eq:intrinsicdefect | - |
 | eq:involution-reversal | eq | eq:involution-reversal | - |
 | eq:pinning | eq | eq:pinning | - |
 | eq:sl3presentation | eq | eq:sl3presentation | - |
 | eq:gamma-presentation | eq | eq:gamma-presentation | - |
 | eq:generator-mass | eq | eq:generator-mass | - |
-| eq:corner-reverse | eq | eq:corner-reverse | - |
-| prop:mf-equivalences | env | prop:mf-equivalences | 8fcbf4fc050755b2 |
+| prop:mf-equivalences | env | prop:mf-equivalences | 36cb694b0d398dbb |
 | lem:lift | env | lem:lift | 721a3d635e21456f |
-| lem:unitarycorona | env | lem:unitarycorona | acf85808aae67e89 |
+| lem:unitarycorona | env | lem:unitarycorona | a188e2b9a24399f8 |
 | thm:kazhdan-transport | env | thm:kazhdan-transport | 36a5391cd928c3d3 |
-| rem:finite-stage | env | rem:finite-stage | 19b970dbf291853d |
+| rem:finite-stage | env | rem:finite-stage | f5f15a1021707226 |
 | thm:transport-variants | env | thm:transport-variants | 70528198cea81006 |
-| def:pattern | env | def:pattern | fbd43a8db929ff69 |
-| def:invisible | env | def:invisible | f705f5984fdb3e68 |
-| thm:criterion | env | thm:criterion | 4815ce19ed65a026 |
-| thm:sign-criterion | env | thm:sign-criterion | 27a3e86c5351bfb6 |
-| cor:generaltransport | env | cor:generaltransport | 13cf502a17267ad9 |
-| thm:compression-radical | env | thm:compression-radical | f4e9fb766fe58572 |
-| thm:normal-kazhdan | env | thm:normal-kazhdan | c365c0923105d3d0 |
-| thm:abstract-nk | env | thm:abstract-nk | d93135ce6813697c |
-| cor:intrinsic-nk | env | cor:intrinsic-nk | 74911f7eaffe314f |
-| thm:kazhdan-clifford | env | thm:kazhdan-clifford | 0e8f49d2bd0f95a2 |
+| def:pattern | env | def:pattern | 9fc5d15d6535fd5e |
+| def:invisible | env | def:invisible | 3f2a00bba6f9cb9d |
+| thm:criterion | env | thm:criterion | 44fb8b53f8227c5d |
+| thm:sign-criterion | env | thm:sign-criterion | d83515e0138bd177 |
+| cor:generaltransport | env | cor:generaltransport | 5e9e62c5aab99f9b |
+| thm:compression-radical | env | thm:compression-radical | f67e517df44aeb9b |
+| thm:normal-kazhdan | env | thm:normal-kazhdan | 97e8705b910fc83a |
+| thm:abstract-nk | env | thm:abstract-nk | 24f0bf7b9f7f0e53 |
+| cor:intrinsic-nk | env | cor:intrinsic-nk | a7a3cb91f6620f63 |
+| thm:kazhdan-clifford | env | thm:kazhdan-clifford | b1db1d8edeada441 |
 | rem:ff-realization | env | rem:ff-realization | 7dc2c4c67a341ebb |
-| thm:A | env | thm:A | 10d45674d9b62106 |
+| thm:A | env | thm:A | 709b77bd99cbaf0e |
 | cor:uniform | env | cor:uniform | 043923ba46739c21 |
-| cor:scaling-family | env | cor:scaling-family | 9370bcd0aa550f6e |
-| thm:B | env | thm:B | 0e1ab5f727ba25a6 |
+| cor:scaling-family | env | cor:scaling-family | 0d2d1d84d3c1949c |
+| thm:B | env | thm:B | 1a4fa9647cbcb3e2 |
 | cor:notRFD | env | cor:notRFD | 754e7536fa06cde2 |
-| rem:invariantsize | env | rem:invariantsize | eec0f629bd1457c7 |
-| rem:chaincondition | env | rem:chaincondition | b5926e496a3a4a76 |
-| def:E | env | def:E | 82744070e0aa91e5 |
+| rem:invariantsize | env | rem:invariantsize | 1dbbcd5065bafaa0 |
+| rem:chaincondition | env | rem:chaincondition | e981fb297b644ba8 |
+| def:E | env | def:E | 46c314ad2bcb6bd6 |
 | fig:compression-pattern | env | fig:compression-pattern | f0481ba0527fcf7f |
 | prop:literal-base-T | env | prop:literal-base-T | 4955bce3c162ac27 |
 | thm:p13-complete | env | thm:p13-complete | 32cf3b27267b128d |
 | rem:classical-base | env | rem:classical-base | 3b14e3f10eb77180 |
-| con:clifford | env | con:clifford | bf97977fb1424d50 |
+| con:clifford | env | con:clifford | 357782b7788ad2c6 |
 | lem:linear | env | lem:linear | d64613d28a87f958 |
 | prop:witness | env | prop:witness | 1a168e6eb3a8fb32 |
 | lem:square | env | lem:square | 36940cc67e41844e |
 | thm:C | env | thm:C | ee29ee959c43ba8b |
-| def:radical | env | def:radical | c72c325fa0b06592 |
+| def:radical | env | def:radical | 1d47eebb05d0469d |
 | lem:portable | env | lem:portable | 3cd3c8cd3e2d8419 |
-| prop:univquot | env | prop:univquot | 7821f139d506b59e |
-| cor:exactradical | env | cor:exactradical | cba1a12eca30acd6 |
+| prop:univquot | env | prop:univquot | c8376f92abfc3394 |
+| cor:exactradical | env | cor:exactradical | fe6437a7674699ae |
 | cor:pullback | env | cor:pullback | 8e8da0badc33b150 |
-| prop:mfclosure | env | prop:mfclosure | 0cae9b9c9bafd14e |
+| prop:mfclosure | env | prop:mfclosure | ba7ad29b7f9bab0d |
 | prop:sounditeration | env | prop:sounditeration | 85d7c0d6325a5de3 |
-| cor:nofaithful | env | cor:nofaithful | c7cc4db7be975a5e |
+| cor:nofaithful | env | cor:nofaithful | 6dcfd7d5fa9eacde |
 | lem:permanence | env | lem:permanence | 5ec86a47bd0ca09d |
 | cor:quotclosure | env | cor:quotclosure | 0945a411d7c96988 |
 | prop:stabradical | env | prop:stabradical | 781399993a3238e5 |
 | def:invwitness | env | def:invwitness | dc646fdc588b6664 |
 | thm:collapse | env | thm:collapse | 88224a2caa8373a7 |
-| rem:collapse-finite-stage | env | rem:collapse-finite-stage | 861d1c2ed7a45573 |
-| thm:projection-collapse | env | thm:projection-collapse | f8010458149ae59b |
-| thm:torsion-collapse | env | thm:torsion-collapse | f46ea426294bbea1 |
-| thm:commutinglamp | env | thm:commutinglamp | 789f8f26adab44b9 |
+| rem:collapse-finite-stage | env | rem:collapse-finite-stage | af11fb1a3b8bf702 |
+| thm:projection-collapse | env | thm:projection-collapse | ea8e53439023c72e |
+| thm:torsion-collapse | env | thm:torsion-collapse | 7b1ed3e458039374 |
+| thm:commutinglamp | env | thm:commutinglamp | 9e4b86ef5381d807 |
 | cor:collapsequot | env | cor:collapsequot | bb1a2c2130afbac5 |
 | thm:saturation | env | thm:saturation | 43eab2fa31ed26b9 |
 | thm:D | env | thm:D | 3fbefcf7b1eaf4da |
-| lem:faithfultrace | env | lem:faithfultrace | ed20bbd1df60ef72 |
-| thm:E | env | thm:E | 992134063a084319 |
+| lem:faithfultrace | env | lem:faithfultrace | f052b6478d109bfe |
+| thm:E | env | thm:E | 0b84f58a967cd3a6 |
 | thm:markedclosed | env | thm:markedclosed | f666d6dd719b2ff9 |
 | prop:horn | env | prop:horn | 3e2c6bb45f9627c7 |
 | cor:cylinder | env | cor:cylinder | 847c38b2b21a9d92 |
 | cor:undecidable | env | cor:undecidable | f9931601b5263c4e |
 | prop:maximal-cstar | env | prop:maximal-cstar | e804583acb4798be |
 | prop:proper-isometry | env | prop:proper-isometry | e2a8714db1305b83 |
-| rem:maxinfinite | env | rem:maxinfinite | d7117de503faf52d |
+| rem:maxinfinite | env | rem:maxinfinite | a9437baa2cf68577 |
 | p:abstract-refute | prose | `refutes the conjecture that every countable group is MF` | - |
-| p:abstract-mechanism | prose | `the commutant becomes an asymptotic commutant in normalized Hilbert--Schmidt norm` | - |
-| p:abstract-W | prose | `The Clifford quotient $W$ used to prove $w\ne1$ is itself finitely generated, sofic and not MF, so neith` | - |
+| p:abstract-mechanism | prose | `the commutant becomes a Hilbert--Schmidt asymptotic commutant` | - |
+| p:abstract-W | prose | `is finitely generated, sofic, and not MF, so` | - |
 | p:intro-history | prose | `Residually finite groups satisfy the conjecture through their finite quotients` | - |
 | p:intro-thom | prose | `In his 2018 ICM address, Thom asked for which Schatten` | - |
-| p:intro-nonsofic | prose | `ies in operator norm). The first was answered negatively in 2026: a nonsofic group was constructed by OpenAI \` | - |
+| p:intro-nonsofic | prose | `the first nonsofic group was constructed by OpenAI` | - |
 | p:intro-collapse-pointer | prose | `subsection gives a second application of one-sided compression` | - |
-| p:intro-convention | prose | `Throughout, ``MF'' means this property` | - |
+| p:intro-convention | prose | `Hereafter ``MF'' means this property` | - |
 | p:intro-commutator | prose | `Throughout, $[g,h]=ghg^{-1}h^{-1}$` | - |
 | p:intro-inputs | prose | `below, by an exact rational sum-of-squares certificate` | - |
 | p:intro-slofstra | prose | `Slofstra's hyperlinear-profile construction uses a Clifford group` | - |
 | p:intro-bekka | prose | `passage from operator norm to the Hilbert--Schmidt conjugation` | - |
-| p:intro-slofstra-quotients | prose | `his quotients by the elements sent to the identity` | - |
+| p:intro-slofstra-quotients | prose | `his quotients by the elements invisible` | - |
 | p:intro-dglt | prose | `Central extensions and rigidity of approximate representations also drive` | - |
 | p:intro-cde | prose | `Carri\'on--Dadarlat--Eckhardt, who also give` | - |
-| p:intro-final | prose | `MF for a group $C^*$-algebra therefore leaves open whether the group itself embeds. For $E$ both fail, and` | - |
-| p:prelim-complement | prose | `injective unitary homomorphism $u\mapsto e(u)+(1-e(1))$` | - |
+| p:intro-final | prose | `algebra leaves open whether the group embeds in` | - |
+| p:prelim-complement | prose | `this complement correction is used below` | - |
 | p:prelim-notation | prose | `We use without comment:` | - |
 | p:prelim-defs | prose | `An \emph{operator-norm asymptotic representation} of $H$` | - |
 | p:prelim-unit | prose | `Taking $g=h=1$ gives` | - |
-| p:prelim-cmax | prose | `The maximal group $C^*$-algebra completes the group ring over all` | - |
+| p:prelim-cmax | prose | `constructs the maximal group $C^*$-algebra` | - |
 | p:transport-display | prose | `In the right-hand column, $p\sim q$ is Murray--von Neumann equivalence` | - |
 | p:transport-weights | prose | `The dimension weight $w_n=d_n$ recovers` | - |
 | p:transport-tensors | prose | `Invariant tensors of type $(p,q)$ may be identified with Hilbert--Schmidt intertwiners` | - |
 | p:conj-datum-remark | prose | `Both conditions are relations among generators` | - |
 | p:conj-reynolds-only | prose | `The averaging-corner argument used only one property` | - |
 | p:conj-two-element | prose | `there the averaging operator is` | - |
-| p:conj-intrinsic-def | prose | `the \emph{one-sided conjugators} of $L$` | - |
+| p:conj-intrinsic-def | prose | `the \emph{intrinsic defect} of $L$ in $H$` | - |
 | p:nk-finite-recovers | prose | `Finite groups have property~\textup{(T)}, so $K=F$ recovers` | - |
 | p:nk-join | prose | `The subgroup generated by \emph{all} normal property-` | - |
 | p:constr-tietze | prose | `The endomorphism $\alpha$ is injective because` | - |
@@ -346,24 +346,24 @@ once in the comment-stripped manuscript; the probe is the drift detector.
 | p:B-applied | prose | `Applied to $H=E$, Theorem~\ref{thm:B} sends $w$ to the identity in` | - |
 | p:B-deligne | prose | `In the terminology of \cite[Definition~1.2]{BDL}` | - |
 | p:B-subgroup-valued | prose | `The same calculation proves the final, subgroup-valued assertion` | - |
-| p:B-why-corona | prose | `subgroup images --- that sends the defect to the identity. The argument of Theorem~\ref{thm:A} is the analytic counterpart at infinite dimension. \end{re` | - |
+| p:B-why-corona | prose | `The corona argument of Theorem~\ref{thm:A} is the analytic counterpart at infinite dimension.` | - |
 | p:group-sixgen | prose | `The eight-generator presentation is used because it displays` | - |
 | p:group-tietze32 | prose | `eliminate $v_3=xv_1x^{-1}$` | - |
 | p:group-figure | prose | `they do not constrain the commutators` | - |
 | p:base-p13-aux | prose | `completeness of the thirteen-relator presentation` | - |
 | p:witness-telescope | prose | `Form the direct limit $T=\varinjlim(\bar\Gamma,\bar\alpha)$` | - |
-| p:witness-scope | prose | `h of its elements involves only finitely many Clifford generators, and the remaining data of the targe` | - |
+| p:witness-scope | prose | `involves only finitely many Clifford sites` | - |
 | p:A-marked-radical | prose | `$\operatorname{Rad}_{\mathrm{MF}}(E)$ properly contains $\{1,w\}$` | - |
 | p:A-corner-ranks | prose | `The coordinate averaging corner in the proof of` | - |
 | p:C-sharpness | prose | `The realized Clifford quotient in Theorem~\ref{thm:C} is amenable` | - |
-| p:C-approx | prose | `just constructed is necessarily approximate` | - |
+| p:C-approx | prose | `The corona representation just constructed is necessarily approximate` | - |
 | p:radical-presentation | prose | `For a presentation $G=\langle X\mid R\rangle=F/N$` | - |
 | p:radical-sound-rules | prose | `are sound rules in this sense` | - |
 | p:stability-def | prose | `Call a countable group $G$ \emph{point-norm matricially stable}` | - |
 | p:stability-axis | prose | `For a stable group the two radicals therefore agree` | - |
 | p:collapse-wreath | prose | `In a permutational wreath product` | - |
 | p:collapse-relcomm | prose | `The witness here need not come from a group element` | - |
-| p:collapse-lamp-intro | prose | `by its central involution all lamps commute` | - |
+| p:collapse-lamp-intro | prose | `by its central sign all lamps commute` | - |
 | p:collapse-route-closed | prose | `is sofic and is not MF` | - |
 | p:collapse-universal | prose | `is the universal MF quotient of $H$` | - |
 | p:saturation-remark | prose | `A group as in (2) admits no nontrivial finite-dimensional unitary` | - |
@@ -388,14 +388,14 @@ once in the comment-stripped manuscript; the probe is the drift detector.
 | p:q2 | prose | `Is there a torsion-free finitely presented non-MF group?` | - |
 | p:q3 | prose | `Neither soficity nor hyperlinearity of $E$ is decided by the` | - |
 | p:q4 | prose | `Does MF imply hyperlinearity?` | - |
-| p:appA-localmodel | prose | `An \emph{operator-norm asymptotic representation} of $H$ is a sequence` | - |
-| p:appC-construction | prose | `result is the usual maximal group $C^*$-algebra` | - |
+| p:appA-localmodel | prose | `An \emph{operator-norm local model} for a countable group` | - |
+| p:appC-construction | prose | `constructs the maximal group $C^*$-algebra` | - |
 | p:appC-universal | prose | `For a nontrivial target, projection to its coordinate gives the extension` | - |
 | p:appC-separate | prose | `The maximal and reduced algebras separate already at the level of` | - |
 | thm:signfree | env | thm:signfree | 1aeef33c21dab5e1 |
 | p:signfree-second | prose | `non-MF group. \begin{corollary}[collapse computes the radical]` | - |
 | p:limits-adjointgap | prose | `The failure is exact and dimension-free` | - |
-| p:limits-nogo | prose | `matrix coordinates are replaced by finite faithfully traced unital` | - |
+| p:limits-nogo | prose | `The refuted statement is the` | - |
 <!-- END-LEDGER-ANCHORS -->
 
 ## Steps
@@ -440,7 +440,7 @@ everywhere: the TeX is the specification and does not move).
 | INT.28 | p:intro-final | failure of MF for the group algebra does not by itself prevent a corona embedding; for E the element w dies in every corona representation | `LiteralNonMFEndpoint.literal_mark_mem_manuscriptCoronaMFResidual` | EXACT | EXACT | literal | unconditional | - | NO | - |
 | PRE.01 | eq:corona | definition of the norm matrix corona Q = ∏M_{d_n} / ⊕M_{d_n} | `NormMatrixCStarCorona` | EXACT | EXACT | literal | unconditional | - | NO | bounded ℓ∞ product modulo the c₀ ideal |
 | PRE.02 | eq:unitary-corona | definition of the coordinate model U_cor((d_n)) | `NormMatrixCoronaUnitary` | EXACT | EXACT | literal | unconditional | - | NO | - |
-| PRE.03 | eq:unitary-corona | the denominator is normal, and polar correction gives a canonical isomorphism κ | `normMatrixCoronaUnitaryEquiv` | EXACT | EXACT | literal | unconditional | - | NO | normality is the subgroup construction `nullCofiniteOpSubgroup` |
+| PRE.03 | eq:unitary-corona-iso | the denominator is normal, and polar correction gives a canonical isomorphism κ | `normMatrixCoronaUnitaryEquiv` | EXACT | EXACT | literal | unconditional | - | NO | normality is the subgroup construction `nullCofiniteOpSubgroup` |
 | PRE.04 | prop:mf-equivalences | corona definition ⟺ unitary-sequence definition ⟺ local models with separation 1; arbitrary ⟺ strictly increasing dimensions | `ManuscriptExactWrappers.manuscriptMFDefinitionEquivalences` | EXACT | EXACT | literal | unconditional | - | NO | proof deferred to Appendix A, rows AE.* |
 | PRE.05 | p:prelim-complement | complement correction u ↦ e(u) + (1 − e(1)) is an injective homomorphism U(A) → U(B) | `nonUnitalStarAlgHomUnitaryMap`; `nonUnitalStarAlgHomUnitaryMap_injective` | EXACT | EXACT | literal | unconditional | - | NO | - |
 | PRE.06 | p:prelim-notation | normalized trace, operator norm, normalized HS norm on M_r(ℂ) | `hsNormSq`; `Mathlib:Matrix.l2_opNorm_mul` | EXACT | EXACT | literal | unconditional | - | NO | `hsNormSq` is tr_r(x*x); the manuscript's ‖x‖₂ is its square root |
@@ -529,7 +529,6 @@ everywhere: the TeX is the specification and does not move).
 | FN.16 | thm:criterion | transport of the conclusion from the unitary-sequence corona to U(Q) by the polar-correction isomorphism | `KazhdanCompressionCore.finiteNormal_le_normMatrixCStarCoronaKernel` | EXACT | EXACT | literal | unconditional | - | NO | - |
 | CR.01 | p:conj-reynolds-only | the Reynolds corner uses only HS invisibility of every element of N_comp | `KazhdanCompressionCore.finiteNormal_le_normMFResidual_of_hyperlinear_killed` | EXACT | EXACT | literal | unconditional | - | NO | the abstracted hypothesis is exactly that |
 | CR.02 | p:conj-two-element | for F = {1,ε} the average is ½(1 + V_{ε,n}) and the corner is the negative spectral corner, where ε = −1 exactly | `KazhdanCompressorCorner.false_of_markedOpAlmostRepresentation`; `LiteralNonMFEndpoint.negativeCorner_kazhdanTransport_contradiction` | EXACT | EXACT | literal | unconditional | - | NO | - |
-| CR.10 | eq:corner-reverse | the anchor contradiction closing the corner-reversal estimate | `InvolutionCollapseEndpoint.anchor_contradiction` | EXACT | EXACT | literal | unconditional | - | NO | quantitative step of the printed reversal argument, badged beside the displayed estimate |
 | CS.00 | thm:sign-criterion | Theorem 4.5 (central-sign criterion): ε = u² ≠ 1, ε² = 1, ε central ⇒ every corona representation kills ε and H is not MF | `KazhdanCompressionCore.manuscriptCentralSignCriterion` | MISMATCH | EXACT | literal | unconditional | - | NO | univ0 |
 | CS.01 | thm:sign-criterion | (Γ, ι, t, c) is a Kazhdan conjugation datum in H | `KazhdanCompressionCore` | EXACT | EXACT | literal | unconditional | - | NO | assembled inside the proof |
 | CS.02 | thm:sign-criterion | u = [d, ι(a)] is one of the displayed generators of N_comp, so ε = u² ∈ N_comp | `KazhdanCompressionCore.defect_mem_defectNormal` | EXACT | EXACT | literal | unconditional | - | NO | - |
@@ -931,7 +930,6 @@ everywhere: the TeX is the specification and does not move).
 | MC.07 | rem:maxinfinite | for a group with strict Kazhdan compression the Kazhdan projection exists in the maximal algebra and conjugation by u_t dominates it | `MaximalCStarProperCompression.StrictKazhdanCompression.proj`; `MaximalCStarProperCompression.StrictKazhdanCompression.proj_mul_conjugate` | MISMATCH | MISMATCH | literal | conditional-data | - | NO | stated over a `StrictKazhdanCompression` datum; the badge in the TeX names only `QuasiRegularWitness.baseVector_apply_base`, a trivial fragment |
 | MC.08 | rem:maxinfinite | the domination is strict: at the quasi-regular coordinate ℓ²(G/tΓt⁻¹) the point mass at the base coset is fixed by the compressed subgroup and moved by everything outside it | `QuasiRegularWitness.exists_baseVector_witness`; `QuasiRegularWitness.baseVector_apply_base` | EXACT | EXACT | literal | unconditional | - | NO | the badge certifies only the evaluation; the separation is `exists_baseVector_witness` |
 | MC.09 | rem:maxinfinite | hence the maximal algebra of such a group is not stably finite, carries no faithful trace, and is neither RFD nor MF — with the base of E as the running example | `ChosenMaximalCStarInfinite.chosen_maximalCStar_not_isStablyFiniteRing`; `ChosenMaximalCStarInfinite.chosen_maximalCStar_no_faithfulTracialState` | MISMATCH | MISMATCH | substituted | unconditional | - | NO | instantiated for the *Chosen* presentation, not for the literal eight-generator E of Definition 7.1; and no RFD clause is stated |
-| MX.10 | rem:maxinfinite | the strict-compression remark for the maximal algebra, as printed | `MaximalCStarParagraphEndpoint.manuscriptMaximalCStarStrictCompressionRemark` | EXACT | EXACT | literal | unconditional | - | NO | badged on the remark it states |
 <!-- END-LEDGER-STEPS -->
 
 ## What would close this ledger

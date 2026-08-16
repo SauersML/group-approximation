@@ -353,7 +353,7 @@ can feed this datum.  Nothing in the soficity chain needs the doubling index to
 be exactly `8` -- `MappingTelescopeFiniteOrbits` needs only
 `[conjD.range.FiniteIndex]`, which `LiteralBaseDoublingIndex` provides.
 
-The printed separation is then
+The printed separation is
 
 ```
 theorem markedGroup_finitelyPresented_sofic_nonMF :
@@ -362,9 +362,13 @@ theorem markedGroup_finitelyPresented_sofic_nonMF :
   markedGroup_finitelyPresented_sofic_not_isCDEOperatorMF markedGroup_isSofic
 ```
 
-which is the declaration a numbered manuscript theorem would cite.  Until then
-no declaration in this file asserts soficity of `E` without a premise, and the
-manuscript may not print the unconditional statement.
+and it now exists, premise-free, as
+`LiteralSoficAssembly.markedGroup_finitelyPresented_sofic_nonMF`: that module
+supplies `markedGroup_isSofic` with no hypothesis and no literature input, and
+imports this one to discharge the premise.  It is the declaration a numbered
+manuscript theorem cites.  Nothing *in this file* asserts soficity of `E`
+without a premise, by design -- the premise is what keeps the two routes to
+soficity feeding one endpoint.
 -/
 
 end LiteralSoficEndpoint
