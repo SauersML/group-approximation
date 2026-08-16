@@ -37,6 +37,27 @@ been probed.  The fences below and the branch-balance assessment are
 unchanged by this — what changed is that the attack surface is now
 finite, explicit, and screen-validated.
 
+**Two structural facts about the criterion's minimum, and one more fence
+(2026-08-16).**  Write
+`d_k = min_{U ∈ U(20160k)} max_{s ∈ T_St} ‖π_U(s) − I‖₂`, so that this
+claim's branch is exactly `inf_k d_k = 0`.  By `atlas-defect-gap-limit`,
+`d_k > 0` at every fixed `k` (compactness plus minimal almost
+periodicity) and `k ↦ k d_k²` is subadditive under direct sums, so
+Fekete gives `lim_k d_k² = inf_k d_k²`: **no isolated magic
+multiplicities**.  A witness must decay along all large multiplicities,
+which is what makes a `k`-trend measurement worth anything.  Added to the
+fence list below: `atlas-stabilizer-commutant-no-go` excludes every
+model of the form `U = DJ` with `D` commuting with the first chart's
+index-15 stabilizer copy — at every `k`, with no monomiality or
+complexity hypothesis — because the family forces an exact relation whose
+image in `Q` is nontrivial and `P̄/⟨⟨T_St⟩⟩` is quasisimple.  That fence
+generalizes: *any* structured ansatz that forces a relation surviving to
+`Q` is dead on arrival, so enumerating an ansatz's forced relations and
+evaluating them in the Leavitt normal form is the cheapest screen
+available.  The lane it kills was the campaign's designated first stage
+(`atlas-stabilizer-coset-witness`, invalidated); the unrestricted lane is
+untouched, and none of this is evidence for either branch.
+
 **The "one witness suffices" reduction is this claim, not a decomposition of
 it.**  Because `U` is minimally almost periodic, the only genuine
 finite-dimensional representation is trivial, so instability is *by

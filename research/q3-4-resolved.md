@@ -39,3 +39,21 @@ technique exists, and it is at least as strong as exhibiting a non-hyperlinear
 group. The "no" side is where all current routes in this graph live. This node
 records what counts as success, not a judgment that both directions are
 equally tractable.
+
+**Status as of 2026-08-16 (external full-corpus audit, re-checked against live
+`main`).** Still open, both sides. The audit found nothing in the corpus or
+the literature bridging either gap, and the source of the nonsoficity theorem
+still states in terms that it does not determine hyperlinearity of
+`L_{F₂}(1,2)^×`. Two things moved, both on the Leavitt lane and neither
+selecting a branch: `atlas-stabilizer-commutant-no-go` closes the campaign's
+designated first search stage at every multiplicity, and
+`atlas-defect-gap-limit` shows the criterion's defect minimum converges, so no
+witness can hide at an isolated multiplicity. The audit also confirmed that two
+snapshot-era worries are already discharged on live `main` — the rank-five
+Steinberg completeness gap (`atlas-steinberg-spare-index-independence`) and the
+last Lean `sorry` (closed at `1da7fd1f`; the tree now has none). Details in
+`research/artifacts/hyperlinear-q34-audit-2026-08-16.md`. One logical reminder
+the audit restates correctly: even a proof that the Leavitt candidate is
+*non*hyperlinear — a landmark, since no nonhyperlinear discrete group is known
+— resolves neither side of this goal. It selects `leavitt-steinberg-hs-stable`,
+whose payoff is `non-hyperlinear-group`, a different root.

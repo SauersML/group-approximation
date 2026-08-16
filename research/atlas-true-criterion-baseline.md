@@ -53,3 +53,19 @@ second, `k`-trend last — with the measured cost wall (180,716
 is three to four orders out of reach) is the artifact's §(d).  All of
 this is evidence-and-structure machinery, never proof in either
 direction; monomial drift is a known descent trap, not progress.
+
+**Stage 1 of that plan is now dead (2026-08-16).**  The index-15 coset
+deformation is not merely a cheap first stage that failed to descend — it
+cannot succeed at any multiplicity.  `atlas-stabilizer-commutant-no-go`
+shows the family forces the exact relation `[π₁(m), π₂(b)] = 1` for `m`
+in the stabilizer, which kills a word with nontrivial image in `Q`, and
+quasisimplicity of `P̄/⟨⟨T_St⟩⟩` does the rest;
+`atlas-stabilizer-slice-stationary` shows the first derivative at `J`
+vanishes identically along the slice, so the flat MSI pilot was
+structural rather than an under-optimized run.  The lane is recorded as
+the invalidated route `atlas-stabilizer-coset-witness`.  What survives of
+§(d) is stage 2 (unrestricted `U` on the active set) and stage 3 (the
+`k`-trend, now constrained by `atlas-defect-gap-limit`: no isolated magic
+multiplicities), plus one new cheap screen — evaluate the relations an
+ansatz *forces* in the binary-Leavitt normal form before spending
+anything on optimizing it.
