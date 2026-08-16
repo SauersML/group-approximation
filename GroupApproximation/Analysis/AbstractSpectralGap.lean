@@ -130,7 +130,6 @@ variable {G : Type u} [Group G]
 variable {A : Type v} [CStarAlgebra A] [PartialOrder A] [StarOrderedRing A]
   [NonnegSpectrumClass ℝ A]
 
-set_option maxHeartbeats 1000000 in
 /-- **The abstract spectral gap.** Every real spectral value of the
 unitary average of a Kazhdan representation, other than `1`, is at most
 `1 - ε²/(4|S|)`. -/
