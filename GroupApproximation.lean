@@ -299,6 +299,7 @@ import GroupApproximation.Sofic.WreathChartLamp
 import GroupApproximation.Sofic.GeneralizedWreathSofic
 import GroupApproximation.Sofic.AscendingHNNWreathSofic
 import GroupApproximation.Sofic.SoficActionOrbits
+import GroupApproximation.Sofic.SoficActionApproximationBelow
 import GroupApproximation.Sofic.AscendingHNNFolner
 import GroupApproximation.Sofic.InducedFiniteDimensional
 import GroupApproximation.Kazhdan.IntegerNotKazhdan

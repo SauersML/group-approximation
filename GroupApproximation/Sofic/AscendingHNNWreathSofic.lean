@@ -2,6 +2,8 @@ import GroupApproximation.Sofic.GeneralizedWreathSofic
 import GroupApproximation.Sofic.AscendingHNNCosetActionSofic
 import GroupApproximation.Sofic.SoficTelescope
 import GroupApproximation.Sofic.SoficIntegerExtension
+import GroupApproximation.Sofic.SoficActionApproximationBelow
+import GroupApproximation.Sofic.HyperlinearReduction
 
 /-!
 # Theorem 14.1: the sofic-wreath criterion for finite-index self-embeddings
@@ -42,6 +44,55 @@ theorem isSofic_wreath_cosets [α.range.FiniteIndex] {K : Type} [Group K]
     IsSofic (Wreath K (Vertical α hα) (Cosets α hα)) :=
   GeneralizedWreath.isSofic_wreath hK (isSofic_vertical α hα hΓ)
     (isSoficAction_vertical_cosets α hα)
+
+/-! ## Section 15: LERF bases and arbitrary self-embeddings -/
+
+/-- A group whose finitely generated subgroups are separable is residually
+finite: test the trivial subgroup and pass to the normal core. -/
+theorem residuallyFinite_of_fg_separable
+    (hsep : ∀ K : Subgroup Γ, K.FG → ∀ g : Γ, g ∉ K →
+      ∃ L : Subgroup Γ, K ≤ L ∧ L.FiniteIndex ∧ g ∉ L) :
+    Group.ResiduallyFinite Γ := by
+  classical
+  apply Group.residuallyFinite_of_forall_exists_finite_monoidHom
+  intro w hw
+  have hwbot : w ∉ (⊥ : Subgroup Γ) := by
+    rw [Subgroup.mem_bot]
+    exact hw
+  obtain ⟨L, -, hLfi, hwL⟩ := hsep ⊥ ⟨∅, by simp⟩ w hwbot
+  haveI := hLfi
+  haveI : (L.normalCore).FiniteIndex := inferInstance
+  haveI : Finite (Γ ⧸ L.normalCore) := L.normalCore.finite_quotient_of_finiteIndex
+  refine ⟨Γ ⧸ L.normalCore, inferInstance, inferInstance,
+    QuotientGroup.mk' L.normalCore, ?_⟩
+  intro hcon
+  rw [QuotientGroup.mk'_apply, QuotientGroup.eq_one_iff] at hcon
+  exact hwL (L.normalCore_le hcon)
+
+include hα in
+/-- **Corollary 15.1.**  Over a base whose finitely generated subgroups are all
+separable, the ascending-HNN coset action is sofic for an *arbitrary* injective
+self-embedding: no finite-index hypothesis is needed. -/
+theorem isSoficAction_vertical_cosets_of_fg_separable
+    (hsep : ∀ K : Subgroup Γ, K.FG → ∀ g : Γ, g ∉ K →
+      ∃ L : Subgroup Γ, K ≤ L ∧ L.FiniteIndex ∧ g ∉ L) :
+    IsSoficAction (Vertical α hα) (Cosets α hα) :=
+  isSoficAction_vertical_cosets_of_uas α hα
+    (universallyActionSofic_of_fg_separable hsep)
+
+include hα in
+/-- The wreath product over that coset space is sofic for any sofic lamp, again
+with no finite-index hypothesis: separability already forces the base to be
+residually finite, hence sofic. -/
+theorem isSofic_wreath_cosets_of_fg_separable {K : Type} [Group K]
+    (hsep : ∀ K' : Subgroup Γ, K'.FG → ∀ g : Γ, g ∉ K' →
+      ∃ L : Subgroup Γ, K' ≤ L ∧ L.FiniteIndex ∧ g ∉ L)
+    (hK : IsSofic K) :
+    IsSofic (Wreath K (Vertical α hα) (Cosets α hα)) := by
+  haveI := residuallyFinite_of_fg_separable hsep
+  exact GeneralizedWreath.isSofic_wreath hK
+    (isSofic_vertical α hα (isSofic_of_residuallyFinite))
+    (isSoficAction_vertical_cosets_of_fg_separable α hα hsep)
 
 end AscendingHNNWreath
 
