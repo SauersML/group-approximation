@@ -344,6 +344,7 @@ import GroupApproximation.Algebra.GraphProduct
 import GroupApproximation.Algebra.GraphProductAction
 import GroupApproximation.Analysis.PeterWeylProfinite
 import GroupApproximation.Algebra.TietzeFinitePresentation
+import GroupApproximation.Algebra.FinitePresentationKernel
 import GroupApproximation.Sofic.FiniteIndexRigidity
 import GroupApproximation.Algebra.FreePermutationalPrecursor
 import GroupApproximation.Sofic.UniversalFactorization
@@ -362,6 +363,8 @@ import GroupApproximation.Sofic.TargetEquivalence
 import GroupApproximation.Sofic.InducedFiniteDimensional
 import GroupApproximation.Kazhdan.IntegerNotKazhdan
 import GroupApproximation.Sofic.SoficAction
+import GroupApproximation.Sofic.SoficActionEmbedding
+import GroupApproximation.Sofic.AscendingHNNSoficDescent
 import GroupApproximation.Sofic.SoficActionFiniteOrbits
 import GroupApproximation.Sofic.SoficActionExamples
 import GroupApproximation.Sofic.MaxDisplacement
@@ -801,6 +804,17 @@ import GroupApproximation.Sofic.TorsionFreeFiniteNormalLimit
 -- the orphan set stays out on purpose: some of it is work other sessions have in
 -- flight, and some has gone stale against renames upstream of it.  Wiring either
 -- kind in here breaks the root build for everyone instead of getting it verified.
+--
+-- The four below are in because `Sofic/LiteralSoficAssembly.lean` is now cited by
+-- Theorem `thm:Esofic` in the manuscript, and `check_non_mf_refs.py` rejects a
+-- badge on an unbuilt module in as many words: outside the closure `lake build`
+-- never compiles it, so the badge certifies nothing.  The other three are that
+-- module's own dependencies, listed rather than left implicit so that dropping
+-- one is a visible edit.  Every one of the four is tracked and carries no `sorry`.
+import GroupApproximation.Sofic.BlockCliffordTowerSofic
+import GroupApproximation.Sofic.LiteralSoficAssembly
+import GroupApproximation.Sofic.LiteralSoficEndpoint
+import GroupApproximation.Sofic.LiteralVerticalBridge
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group

@@ -2768,9 +2768,27 @@ $O=\{v_\gamma:\gamma\in L\}$ be the conjugation orbit of $k$; by (W1),
 $O$ asymptotically commute and square to $1$.  The spectral sign of
 the Hermitian part of a unitary $u$ is an exact self-adjoint
 involution at operator distance at most $\opnorm{u^2-1}$ from $u$.
-Enumerate $O$ and correct its $m$th element inside the joint commutant
-corner of the $m-1$ already corrected ones, at a cost linear in $m$;
-the induction yields exact pairwise-commuting self-adjoint involutions
+Enumerate $O$ as $v^{(1)},v^{(2)},\dots$ and correct in that order,
+carrying the induction hypothesis that after stage $m$ the operators
+$V_n(v^{(1)}),\dots,V_n(v^{(m)})$ are exact self-adjoint involutions
+commuting pairwise, \emph{and that no later stage alters them}.  That
+second clause is what makes the induction close, and it is what the
+construction supplies: at stage $m$ the model $U_{v^{(m)},n}$ fails to
+commute with $V_n(v^{(j)})$, $j<m$, by at most
+$\opnorm{[U_{v^{(m)},n},U_{v^{(j)},n}]_{-}}
+ +2\opnorm{V_n(v^{(j)})-U_{v^{(j)},n}}$,
+the first term an asymptotic-commutation error of (W3) and the second
+the error already accumulated, so the total is a sum of $m$ quantities
+each tending to $0$.  The joint commutant of
+$V_n(v^{(1)}),\dots,V_n(v^{(m-1)})$ is a unital $*$-subalgebra --- a
+finite intersection of joint spectral corners of exact commuting
+involutions --- so compressing $U_{v^{(m)},n}$ into it moves it by at
+most that amount, and taking the spectral sign of the Hermitian part
+\emph{inside that subalgebra} yields an exact self-adjoint involution
+commuting exactly with all earlier ones while leaving them untouched.
+The cost is the accumulated sum, linear in $m$; each $m$ is fixed
+before $n$ grows, so the limits displayed next are taken at fixed $m$.
+The induction yields exact pairwise-commuting self-adjoint involutions
 $V_n(v)$, $v\in O$, with
 \[
  \opnorm{V_n(v)-U_{v,n}}\longrightarrow0,\qquad
@@ -2900,10 +2918,11 @@ projection $P$ of $K_\omega$ onto $\operatorname{Fix}\pi(L)$; identifies
 the range of $Q=\pi(s)P\pi(s)^{*}$ with $\operatorname{Fix}\pi(sLs^{-1})$;
 observes $P\le Q$; and concludes $Q=P$ from
 Lemmas~\ref{lem:finitecompare} and~\ref{lem:ultrafinite}, the norm
-ultraproduct being finite.  None of that involves the sequence being
-transported, and none of it is disturbed by the change of inner
-product: the argument applies at the weight $w_n=1$ exactly as at
-$w_n=d_n$, by the proof of Theorem~\ref{thm:transport-variants}(1).
+ultraproduct being finite.  No sequence being transported enters that
+chain, and Lemma~\ref{lem:ultrafinite} is stated for arbitrary
+finite-dimensional Hilbert spaces, so rescaling the inner product on
+each coordinate --- here from $\tr_{d_n}$ to $\operatorname{Tr}$ ---
+changes nothing in it.
 
 Hence $y\in\operatorname{Fix}\pi(L)$, so $b(a)=y-\pi(a)y=0$ for every
 $a\in L$, contradicting \eqref{eq:limit-mass}.  Therefore
@@ -2913,16 +2932,30 @@ $D_{\mathrm{coll}}(L,s)$.
 \end{proof}
 
 \begin{remark}[the quantitative form]\label{rem:collapse-finite-stage}
-Steps~5 and~6 take an ultraproduct, and neither use is forced: the
-contradiction can be assembled at one coordinate, with every tolerance
-fixed in advance.  Property~\textup{(T)} then enters only through a
+Steps~5 and~6 take an ultraproduct, and the transport and the
+contradiction do not need it: both can be assembled at one coordinate,
+with every tolerance fixed in advance.  The one input that is still
+read off the limit is the constant $C$ below.  Property~\textup{(T)} then enters only through a
 bound uniform in $\gamma$,
 \begin{equation}\label{eq:profile-bounded}
  \|b_n(\gamma)\|_{\mathrm F}\le C\qquad(\gamma\in L),
 \end{equation}
 past some stage, with $C$ depending on the Kazhdan pair alone; Step~4
 supplies only the $\gamma$-dependent bound $2|\gamma|_S^{1/2}$, and
-uniformity is the whole content of \eqref{eq:profile-bounded}.  Put
+uniformity is the whole content of \eqref{eq:profile-bounded}.
+Uniformity is what (T) gives, in the quantitative form of the
+Delorme--Guichardet argument \cite[Section~2.12]{BHV}: for a Kazhdan
+pair $(S,\kappa)$ there is a constant $C_0=C_0(S,\kappa)$ such that
+every $1$-cocycle $b$ of every unitary representation of $L$ satisfies
+$\lVert b(\gamma)\rVert\le C_0\max_{a\in S}\lVert b(a)\rVert$ for all
+$\gamma\in L$ --- the fixed vector produced from the Kazhdan projection
+lies within $C_0\max_{a\in S}\lVert b(a)\rVert$ of the origin, and
+$b(\gamma)=y-\pi(\gamma)y$ is at most twice that.  Read on the
+limiting cocycle of Step~5 with \eqref{eq:generator-mass}, this gives
+$C=4C_0$.  That reading is the one place where the present assembly
+still consults the limit rather than a single stage: what is
+ultraproduct-free below is the transport and the contradiction, not the
+provenance of $C$.  Put
 \[
  \rho=\frac1{\sqrt{|S|}+1},\qquad
  q=\frac{\rho}{24(C+1)},\qquad
