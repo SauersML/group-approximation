@@ -5,6 +5,8 @@ kind: claim
 title: Operator MF is a Markov property of finitely presented groups
 distinct_from:
   mf-positive-controls: that records the positive closure facts (subgroups, residually finite, locally finite groups); this assembles two of them plus a negative witness into the specific three-clause package an Adian-Rabin construction consumes, and adds the coding-adequacy clause that turns a statement about groups into a statement about presentation codes.
+  kazhdan-clifford-non-mf-construction: that constructs a non-MF group from compression data and a Clifford sign; this is a metamathematical statement about the *class* of MF groups -- isomorphism invariance, one positive member, one forbidden subgroup -- and it uses the existence of a non-MF finitely presented group as a single opaque input, caring about no property of how it was built.
+  scaling-family-non-mf: that produces infinitely many non-MF groups by rescaling the construction, and its content is that each member fails MF; this produces no groups at all and asserts instead that the failure of MF is inherited along embeddings and that finite presentations can be coded, which is what an undecidability reduction needs and a family of examples does not supply.
   literal-group-fails-mf-conventions: that asserts the chosen finitely presented group fails MF in every equivalent formulation; this uses that failure once, as the forbidden-subgroup witness, and asserts nothing further about the group.
 artifacts:
   - non_mf_groups_exist.tex
