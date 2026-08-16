@@ -7,6 +7,7 @@ distinct_from:
   kazhdan-clifford-non-mf-construction: that is the construction itself, taking a proper self-embedding and a protected element as given; this says where such a pair comes from -- one injection of the direct square supplies both -- and that the resulting group still contains an involution, so the substitution buys nothing for the torsion-free question.
   fournier-facio-torsion-free-skeleton: that records the published torsion-free nonsofic group and the simple subgroup in its compression defect; this is the abstract algebra of the remark that proposes reusing that group as a base, and it assumes nothing about it.
   torsion-free-finitely-presented-non-mf: that root asks for a torsion-free finitely presented non-MF group; this claim's second half is a negative result about one proposed route to it.
+  torsion-free-higman-embedding: that is an embedding theorem -- every recursively presented torsion-free group embeds in a finitely presented one -- and it is literature-plausible but unverified here; this needs no embedding theorem at all, only an injection of a group's own direct square into itself, and it exhibits a group admitting one outright.  The universality statement that would connect them appears here only as the explicit hypothesis of a single implication.
 artifacts:
   - non_mf_groups_exist.tex
   - GroupApproximation/Monsters/FournierFacioRealization.lean
