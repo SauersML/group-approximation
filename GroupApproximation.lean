@@ -850,7 +850,6 @@ import GroupApproximation.Sofic.RepresentationCategoryTwins
 -- un-verified them.
 import GroupApproximation.Computability.ListBlankCanonical
 import GroupApproximation.Computability.PostMachineTM0
-import GroupApproximation.Computability.PostMachineTM0Canonical
 import GroupApproximation.Computability.TM0WordProblem
 import GroupApproximation.Sofic.ActionFormMoverEstimate
 import GroupApproximation.Sofic.FullRadicalClosureProperties

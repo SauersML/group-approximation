@@ -131,29 +131,6 @@ formalized in this pass; **TODO** not yet formalized.
 
 | 46.4, 46.6 | not linear, and not even virtually linear, over any field | DONE-NEW | `Sofic/NotVirtuallyLinear` (`not_injective_of_not_residuallyFinite`, `residuallyFinite_of_injective`, `not_injective_of_finiteIndex`).  Found by auditing the source directory rather than the ledger: 46.6 was the one numbered result of `(4).md` with **no** corresponding declaration anywhere in the corpus.  The virtual strengthening is not cosmetic -- non-linearity says nothing about finite-index subgroups -- and it composes two facts already present: Schreier makes the finite-index subgroup finitely generated so Mal'cev applies to it, and `residuallyFinite_of_finiteIndex` (Lemma 46.5) carries the conclusion back up |
 
-
-### What this ledger does *not* track
-
-Two registers exist and they are repeatedly conflated, so the boundary is
-recorded here with evidence.
-
-This ledger tracks the **dossier**.  The manuscript's conditionality register is
-`docs/NON_MF_UNCONDITIONAL_BASELINE.txt`, and its five rows are about
-`non_mf_groups_exist.tex`, not about `(4).md`.  Those rows are Adian--Rabin as
-reduction data, B. H. Neumann's continuum family, the two `FullMFRadicalEndpoint`
-routing-datum theorems (Hull--Osin), and the Zariski chain condition.
-
-None of them is a numbered result of the dossier.  Grepping `(4).md`:
-`Adian`, `Rabin`, `Hull`, `Markov` and `undecidab` occur **zero** times;
-`Neumann` occurs twice and `Zariski` four times, neither ever in a numbered
-heading.  So closing the manuscript's baseline is not part of covering this
-directory, and the ~6000--11000 lines of Boone--Novikov/Rabin priced in
-`Computability/AdianRabinMarkovProperty` are a different project from this one.
-
-The converse also holds: 54.17 and the general compact case of Peter--Weyl are
-dossier debt and appear nowhere in the manuscript's baseline, because the
-manuscript does not print those claims.
-
 ### Blocked, with the reason
 
 * **Bohr kernel (Section 46.5).**  *No longer blocked, and no longer a
