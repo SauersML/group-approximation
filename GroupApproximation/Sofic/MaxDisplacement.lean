@@ -10,6 +10,10 @@ import Mathlib.Tactic.Ring
 /-!
 # The max-displacement lemma
 
+Replacing a single distinguished mover by a finite mover family, and
+normalizing by their *maximal* displacement, is an observation of Francesco
+Fournier-Facio.
+
 Section 5 of the multi-mover dossier.  A collapse argument normalized by
 displacement uses its generating hypothesis only to bound the displacement of an
 arbitrary group element by a constant multiple of the displacement scale.  This

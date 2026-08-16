@@ -304,6 +304,7 @@ import GroupApproximation.Algebra.PermutationalWreathLinear
 import GroupApproximation.Algebra.AbelianLampPushforward
 import GroupApproximation.Algebra.AbelianLampTelescopeKernel
 import GroupApproximation.Algebra.PermutationalWreathRadicalTame
+import GroupApproximation.Algebra.LampCountable
 import GroupApproximation.Algebra.WreathLampPushforward
 import GroupApproximation.Algebra.IntJacobson
 import GroupApproximation.Algebra.FiniteTypeField

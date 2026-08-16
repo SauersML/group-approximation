@@ -693,3 +693,56 @@ against the arXiv PDF via pdftotext (2026-08-15); verbatim findings:
   untouched, since the simple-(T)-quotient route can never reach finite
   presentation.  A specialist reviewer should see this addendum; it is
   also potential erratum-level feedback on the cited paper's intro remark.
+
+## Attribution: Francesco Fournier-Facio
+
+His observations, and what they do and do not cover.
+
+**His.**
+
+1. **Removing the distinguished-mover hypothesis.**  The circulated criterion
+   assumes `Γ = ⟨H, γ⟩` and uses it in exactly one place, to get
+   `δ_n(g) ≤ C_g k_n`.  Replacing the single `γ` by finitely many `γ_1, …, γ_m`
+   generating `Γ` over `H` and normalizing by `k_n = max_i d_n(x_0, γ_i x_0)`
+   is his.  Lean: `Sofic/MaxDisplacement`, `Sofic/MoverGeneration`.
+2. **The reduction to a non-co-Hopfian property-(T) group** — that once (iii)
+   is gone, a proper injective self-embedding of a Kazhdan group is the whole
+   structural input.
+3. **The ascending HNN extension as the prototypical construction**,
+   `G = ⟨Γ, t | t γ t⁻¹ = α(γ)⟩`.  Lean: `Sofic/AscendingHNNStabilizer`.
+4. **The framing that the ambient group need not have (T)**, in contrast with
+   the ambient-(T) Kun--Thom examples.
+
+**His, with the theorem elsewhere.**
+
+5. **Amenability of `G ↷ G/Γ`** is Monod--Popa (arXiv:math/0301348); he pointed
+   out that it applies here via `N = ⋃ t^{-n} Γ t^n`, `G = N ⋊ ⟨t⟩`.  Lean:
+   `Sofic/AscendingHNNFolner`.
+6. **Soficity of the coset action** is his question.  Wording for what we
+   prove: "answers, under the stated hypotheses, a question of Francesco
+   Fournier-Facio."  Lean: `Sofic/AscendingHNNCosetActionSofic`.
+7. **The role of the three metrics** — the organization
+   `operator norm → rank → Hilbert--Schmidt → (T)` was prompted by his
+   question.  Lean: `Sofic/InvolutionRankMass`.
+
+**Ours.**  The telescope radical and the exact radical computation, the
+five-way residual coincidence, universal factorization, the perfect-lamp and
+`A_5` results, finite-index radical heredity and commensurability invariance,
+profinite twins, the noncommensurable `A_n` family, the split-extension
+counterexample, non-finite-presentability, and the concrete affine model.
+Also the norm-corona implementation of (1): his formulation passes to the
+argmax subsequence, and subsequential vanishing is not vanishing in a
+`c₀`-corona, so the finite-family block amplification replaces that step.
+
+**Draft acknowledgement.**
+
+> We thank Francesco Fournier-Facio for observing that the distinguished-mover
+> hypothesis in the original collapse argument should be unnecessary: one may
+> instead choose finitely many movers generating the Kazhdan subgroup modulo the
+> stabilizer and normalize by their maximal displacement.  He also pointed out
+> that this reduces the basic construction to a non-co-Hopfian property-(T)
+> group via its ascending HNN extension, emphasized the resulting examples in
+> which the ambient group is not property (T), and raised the question whether
+> the associated coset action is sofic when the base group is sofic.  His
+> comments also prompted the conceptual separation of the operator-norm, rank,
+> and Hilbert--Schmidt roles in the proof.

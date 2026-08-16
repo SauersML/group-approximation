@@ -9,6 +9,11 @@ arbitrary weight sequence.  For the analytic collapse argument the weight of
 interest is a *rank* scale, so the mass and the rank of the relevant
 displacements have to be compared exactly, not just up to a dimension factor.
 
+The conceptual separation of the three metrics — operator norm for the
+algebraic and covariance control, rank for the discrete support that survives
+normalization, Hilbert--Schmidt for the energy property `(T)` acts on — was
+prompted by a question of Francesco Fournier-Facio.
+
 This file supplies that comparison for the involution (`m = 2`) case.  For two
 commuting *exact involutions* — self-adjoint matrices squaring to `1` — the
 displacement `T := u - w` is self-adjoint and satisfies `T³ = 4 T`, so

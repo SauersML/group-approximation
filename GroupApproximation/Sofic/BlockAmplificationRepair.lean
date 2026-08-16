@@ -15,6 +15,12 @@ block and therefore its own lower bound *at every stage*.  This is the
 "simultaneous stagewise separation" the corrected removal of condition (iii)
 uses in Theorem 7.2.
 
+Fournier-Facio proposed the finite-mover / max-displacement refinement that
+this repairs for the norm corona.  His formulation passes to the argmax
+subsequence; subsequential vanishing is not vanishing in a `c₀`-corona
+(`Sofic.CoronaSubsequence` has the counterexample), and the block amplification
+here replaces that step.
+
 The block-list API of `Sofic.NormMFUniversalCorona` does the combinatorial work;
 what this file adds is the comparison with the identity block and the choice of
 stages.
