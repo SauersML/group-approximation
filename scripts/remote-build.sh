@@ -90,7 +90,7 @@ rsync -rlptz \
   "$LOCAL/GroupApproximation.lean" \
   "$LOCAL/lean-toolchain" \
   "$LOCAL/lakefile.toml" "$LOCAL/lake-manifest.json" \
-  "$LOCAL/non_mf_groups_exist.tex" "$LOCAL/nonsofic_groups_exist.tex" \
+  "$LOCAL/non_mf_groups_exist.tex" \
   "$LOCAL/README.md" \
   "$USER_MSI@$LOGIN_IP:$REMOTE/" || exit $?
 
