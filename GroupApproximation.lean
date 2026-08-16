@@ -305,6 +305,7 @@ import GroupApproximation.Algebra.AbelianLampTelescopeKernel
 import GroupApproximation.Algebra.PermutationalWreathRadicalTame
 import GroupApproximation.Algebra.LampCountable
 import GroupApproximation.Algebra.WreathLampPushforward
+import GroupApproximation.Algebra.WreathTelescopeUnion
 import GroupApproximation.Algebra.IntJacobson
 import GroupApproximation.Algebra.FiniteTypeField
 import GroupApproximation.Algebra.Malcev
@@ -314,6 +315,7 @@ import GroupApproximation.Algebra.PerfectLamp
 import GroupApproximation.Algebra.ModTwoLampParity
 import GroupApproximation.Sofic.FiniteDimensionalResidual
 import GroupApproximation.Sofic.ThreeRadicalsCoincide
+import GroupApproximation.Sofic.FourRadicalsCoincide
 import GroupApproximation.Sofic.LinearResidual
 import GroupApproximation.Sofic.BlockAmplificationRepair
 import GroupApproximation.Sofic.AmplifiedBlockNorms
