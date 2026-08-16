@@ -33,28 +33,6 @@
       ]
     },
     {
-      "id": "prop:mf-equivalences",
-      "environment": "proposition",
-      "title": "Equivalent formulations of the MF property",
-      "statement_sha256": "8fcbf4fc050755b2c72e7ecfa4d27b70b8c77ace2961ce40cc7ebadcfc3e9781",
-      "status": "exact",
-      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
-      "dependencies": [
-        "lem:unitarycorona"
-      ],
-      "extra_assumptions": [],
-      "external_inputs": [],
-      "coverage_gap": "",
-      "lean": [
-        {
-          "role": "exact",
-          "module": "Sofic/ManuscriptExactWrappers",
-          "declaration": "GroupApproximation.ManuscriptExactWrappers.manuscriptMFDefinitionEquivalences",
-          "covers": "the complete printed proposition"
-        }
-      ]
-    },
-    {
       "id": "lem:lift",
       "environment": "lemma",
       "title": "lifting",
@@ -92,6 +70,28 @@
           "role": "exact",
           "module": "Sofic/ManuscriptExactWrappers",
           "declaration": "GroupApproximation.ManuscriptExactWrappers.manuscriptUnitaryCoronaEquivalence",
+          "covers": "the complete printed proposition"
+        }
+      ]
+    },
+    {
+      "id": "prop:mf-equivalences",
+      "environment": "proposition",
+      "title": "Equivalent formulations of the MF property",
+      "statement_sha256": "8fcbf4fc050755b2c72e7ecfa4d27b70b8c77ace2961ce40cc7ebadcfc3e9781",
+      "status": "exact",
+      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
+      "dependencies": [
+        "lem:unitarycorona"
+      ],
+      "extra_assumptions": [],
+      "external_inputs": [],
+      "coverage_gap": "",
+      "lean": [
+        {
+          "role": "exact",
+          "module": "Sofic/ManuscriptExactWrappers",
+          "declaration": "GroupApproximation.ManuscriptExactWrappers.manuscriptMFDefinitionEquivalences",
           "covers": "the complete printed proposition"
         }
       ]
@@ -540,7 +540,7 @@
       "id": "def:pattern",
       "environment": "definition",
       "title": "Kazhdan conjugation datum",
-      "statement_sha256": "b72022f1ed62662152e7cc966772744013aa7cf37601ed785489e27016d09768",
+      "statement_sha256": "fd8b3b2fc56c2c08ad477cd46d7bccf0f652b8e238f18d55439de9b14447bb16",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [],
@@ -924,7 +924,7 @@
       "id": "prop:sounditeration",
       "environment": "proposition",
       "title": "iterating closure and join",
-      "statement_sha256": "cbaf6d23167672982b5e5c6a4e41c0919eedbd8dc29bed6ad339547a070f8605",
+      "statement_sha256": "3d059f7e96aa593a214256deefc0c2652c3ad6416e32ee5385848c788a989eca",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [],
