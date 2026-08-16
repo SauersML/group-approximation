@@ -216,10 +216,11 @@ theorem exists_cylinder_subset_compl_operatorMFLocus
 
 /-- Strong finite-radius form: failure of MF is already forced by agreement
 on one reduced-word ball. -/
-theorem exists_wordBall_cylinder_subset_compl_operatorMFLocus
-    (M : MarkedGroupSpace k) (hM : ¬ IsOperatorMF M.Quotient) :
-    ∃ R : ℕ,
-      cylinder M (wordBall k R) ⊆ (operatorMFLocus k)ᶜ := by
+theorem exists_wordBall_cylinder_subset_compl_operatorMFLocus :
+    ∀ {k : ℕ} (M : MarkedGroupSpace k) (_hM : ¬ IsOperatorMF M.Quotient),
+      ∃ R : ℕ,
+        cylinder M (wordBall k R) ⊆ (operatorMFLocus k)ᶜ := by
+  intro k M hM
   obtain ⟨F, hF⟩ :=
     exists_cylinder_subset_compl_operatorMFLocus M hM
   obtain ⟨R, hFR⟩ := exists_subset_wordBall F

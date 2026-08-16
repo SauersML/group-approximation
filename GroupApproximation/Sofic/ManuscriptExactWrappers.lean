@@ -614,11 +614,12 @@ is killed in the tracial ultraproduct attached to every operator-norm
 almost representation, along every ultrafilter refining the cofinite
 filter.  This is the per-element form of the hypothesis of the abstract
 invisibility obstruction below. -/
-def ManuscriptHSInvisible {H : Type} [Group H] (g : H) : Prop :=
-  ∀ (B : OpAlmostRepresentation H) (U : Ultrafilter ℕ)
-    (hcof : (U : Filter ℕ) ≤ Filter.cofinite),
-    (KazhdanCompressionCore.toAsymptoticUnitaryRepresentation B).toUltraproductHom
-      hcof g = 1
+def ManuscriptHSInvisible : ∀ {H : Type} [Group H], H → Prop :=
+  fun {H : Type} [Group H] (g : H) ↦
+    ∀ (B : OpAlmostRepresentation H) (U : Ultrafilter ℕ)
+      (hcof : (U : Filter ℕ) ≤ Filter.cofinite),
+      (KazhdanCompressionCore.toAsymptoticUnitaryRepresentation B).toUltraproductHom
+        hcof g = 1
 
 /-- Exact wrapper for the abstract normal-Kazhdan obstruction: if every
 element of `D` is killed in the tracial ultraproduct attached to every

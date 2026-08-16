@@ -563,11 +563,13 @@ norm approximation to hyperlinearity can avoid supplying it separately.
 operator-norm data intact.**  The padded model has the same multiplicative
 defect and the same separation, and all its pairwise Hilbert–Schmidt
 distances are below the prescribed `η`. -/
-theorem NormModel.exists_hs_collapse {G : Type*} [Group G] {F : Finset G}
-    {δ ε : ℝ} (M : NormModel G F δ ε) {η : ℝ} (hη : 0 < η) :
-    ∃ M' : NormModel G F δ ε,
-      ∀ g ∈ F, ∀ h ∈ F,
-        hsDistSq M'.carrier (M'.map g) (M'.map h) ≤ η := by
+theorem NormModel.exists_hs_collapse :
+    ∀ {G : Type*} [Group G] {F : Finset G}
+      {δ ε : ℝ} (_M : NormModel G F δ ε) {η : ℝ} (_hη : 0 < η),
+      ∃ M' : NormModel G F δ ε,
+        ∀ g ∈ F, ∀ h ∈ F,
+          hsDistSq M'.carrier (M'.map g) (M'.map h) ≤ η := by
+  intro G _ F δ ε M η hη
   classical
   obtain ⟨m, hm⟩ := exists_nat_gt (4 * (Fintype.card M.carrier : ℝ) / η)
   refine ⟨{
