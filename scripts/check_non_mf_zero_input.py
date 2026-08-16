@@ -17,15 +17,26 @@ from __future__ import annotations
 
 import argparse
 import re
+import sys
 from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+
+from lean_decls import MODIFIERS
 
 
 LEAN_REF = re.compile(r"\\leanverified\{([^}]+)\}\{([^}]+)\}")
 
+# The keywords a cited manuscript endpoint can be introduced by.  `abbrev` and
+# `instance` are here for the same reason `lean_decls.py` indexes them: a badge
+# may cite one, and a keyword this scanner does not know about is reported as a
+# missing declaration rather than as a checked one.
+KEYWORDS = ("theorem", "lemma", "def", "abbrev", "instance")
+
 
 def declaration_is_zero_input(source: str, short_name: str) -> bool:
     declaration = re.compile(
-        rf"(?m)^\s*(?:theorem|lemma|def)\s+(?:[A-Za-z0-9_'.]+\.)?"
+        rf"(?m)^\s*{MODIFIERS}(?:{'|'.join(KEYWORDS)})\s+(?:[A-Za-z0-9_'.]+\.)?"
         rf"{re.escape(short_name)}\b"
     )
     match = declaration.search(source)

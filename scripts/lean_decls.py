@@ -35,12 +35,15 @@ DECL_KEYWORDS = (
 )
 
 # A declaration line, after any attribute/modifier prefix.  Lean identifiers
-# allow Unicode letters, digits, _, ', !, ?, and dotted components.
-_MODIFIERS = r"(?:@\[[^\]]*\]\s*)*(?:private\s+|protected\s+|noncomputable\s+|partial\s+|unsafe\s+|scoped\s+|local\s+)*"
+# allow Unicode letters, digits, _, ', !, ?, and dotted components.  MODIFIERS
+# is public because every lexical scanner over this corpus needs exactly the
+# same prefix grammar: `check_non_mf_zero_input.py` spelled its own without
+# the modifiers and reported two `noncomputable def` endpoints as missing.
+MODIFIERS = r"(?:@\[[^\]]*\]\s*)*(?:private\s+|protected\s+|noncomputable\s+|partial\s+|unsafe\s+|scoped\s+|local\s+)*"
 _IDENT = r"[^\W\d][\w'!?]*(?:\.[^\W\d][\w'!?]*)*"
 
 DECL_RE = re.compile(
-    rf"^{_MODIFIERS}(?P<kw>{'|'.join(DECL_KEYWORDS)})\s+(?P<name>{_IDENT})",
+    rf"^{MODIFIERS}(?P<kw>{'|'.join(DECL_KEYWORDS)})\s+(?P<name>{_IDENT})",
     re.UNICODE,
 )
 NAMESPACE_RE = re.compile(rf"^namespace\s+(?P<name>{_IDENT})", re.UNICODE)
