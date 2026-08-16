@@ -563,6 +563,106 @@ theorem mk_eq_finalWord_iff_halts {R : RewriteSystem (Letter Γ (HState Λ))}
   rw [mk_eq_finalWord_iff hR]
   exact reach_doneCfg_iff M c
 
+/-! ## The extended rule set, exhibited
+
+As in `PostMachine`, `HPresents` says which rules a system must have without
+building one.  Here it is built, as a list: the machine's rules for the lifted
+machine, then the four cleanup families.  Enumerations are data, for the same
+reason as before --- `Finset.toList` is noncomputable and the point of a list of
+rules is that it is computable. -/
+
+section Finite
+
+variable (M)
+
+/-- The rule that hands over to the cleanup state, present exactly when the
+machine has no transition. -/
+def haltRule (q : Λ) (a : Γ) : Option (Λ × Action Γ) →
+    List (List (Letter Γ (HState Λ)) × List (Letter Γ (HState Λ)))
+  | none => [([Letter.state (.run q), Letter.tape a],
+              [Letter.state .cleanup, Letter.tape a])]
+  | some _ => []
+
+omit [Inhabited Γ] in
+theorem mem_haltRule {q : Λ} {a : Γ} {o : Option (Λ × Action Γ)}
+    {l r : List (Letter Γ (HState Λ))} :
+    (l, r) ∈ haltRule q a o ↔
+      (o = none ∧ l = [Letter.state (.run q), Letter.tape a] ∧
+        r = [Letter.state .cleanup, Letter.tape a]) := by
+  cases o <;> simp [haltRule]
+
+/-- Every cleanup rule, as a finite list. -/
+def cleanupRuleList (states : List Λ) (tapes : List Γ) :
+    List (List (Letter Γ (HState Λ)) × List (Letter Γ (HState Λ))) :=
+  (states.flatMap fun q => tapes.flatMap fun a => haltRule q a (M q a)) ++
+  (tapes.flatMap fun a => tapes.map fun x =>
+      ([Letter.state .cleanup, Letter.tape a, Letter.tape x],
+       [Letter.state .cleanup, Letter.tape x])) ++
+  (tapes.flatMap fun a => tapes.map fun y =>
+      ([Letter.tape y, Letter.state .cleanup, Letter.tape a, Letter.endR],
+       [Letter.state .cleanup, Letter.tape y, Letter.endR])) ++
+  (tapes.map fun a =>
+      ([Letter.endL, Letter.state .cleanup, Letter.tape a, Letter.endR],
+       [Letter.endL, Letter.state .done, Letter.tape default, Letter.endR]))
+
+/-- The extended states, enumerated from the original ones. -/
+def liftStates (states : List Λ) : List (HState Λ) :=
+  HState.cleanup :: HState.done :: states.map .run
+
+omit [Inhabited Γ] in
+theorem mem_liftStates {states : List Λ} (hstates : ∀ q : Λ, q ∈ states) :
+    ∀ s : HState Λ, s ∈ liftStates states := by
+  intro s
+  cases s with
+  | run q => exact List.mem_cons_of_mem _ (List.mem_cons_of_mem _
+      (List.mem_map_of_mem (hstates q)))
+  | cleanup => exact List.mem_cons_self
+  | done => exact List.mem_cons_of_mem _ List.mem_cons_self
+
+/-- The full finite system: machine rules and cleanup rules. -/
+def haltingSystem (states : List Λ) (tapes : List Γ) :
+    RewriteSystem (Letter Γ (HState Λ)) :=
+  ⟨machineRules (liftM M) (liftStates states) tapes ++ cleanupRuleList M states tapes⟩
+
+theorem hpresents_haltingSystem {states : List Λ} {tapes : List Γ}
+    (hstates : ∀ q : Λ, q ∈ states) (htapes : ∀ a : Γ, a ∈ tapes) :
+    HPresents M (haltingSystem M states tapes) := by
+  constructor
+  intro l r
+  have hmach := (presents_machineSystem (liftM M) (mem_liftStates hstates) htapes).mem_iff l r
+  rw [haltingSystem, List.mem_append]
+  rw [show (machineRules (liftM M) (liftStates states) tapes) =
+      (machineSystem (liftM M) (liftStates states) tapes).rules from rfl, hmach]
+  refine or_congr Iff.rfl ?_
+  simp only [cleanupRuleList, List.mem_append, List.mem_flatMap, List.mem_map,
+    mem_haltRule, IsCleanupRule]
+  constructor
+  · rintro (((⟨q, -, a, -, ho, h2, h3⟩ | ⟨a, -, x, -, h⟩) | ⟨a, -, y, -, h⟩) |
+      ⟨a, -, h⟩)
+    · exact Or.inl ⟨q, a, ho, h2, h3⟩
+    · exact Or.inr (Or.inl ⟨a, x, congrArg Prod.fst h.symm, congrArg Prod.snd h.symm⟩)
+    · exact Or.inr (Or.inr (Or.inl
+        ⟨y, a, congrArg Prod.fst h.symm, congrArg Prod.snd h.symm⟩))
+    · exact Or.inr (Or.inr (Or.inr ⟨a, congrArg Prod.fst h.symm, congrArg Prod.snd h.symm⟩))
+  · rintro (⟨q, a, ho, rfl, rfl⟩ | ⟨a, x, rfl, rfl⟩ | ⟨y, a, rfl, rfl⟩ | ⟨a, rfl, rfl⟩)
+    · exact Or.inl (Or.inl (Or.inl ⟨q, hstates q, a, htapes a, ho, rfl, rfl⟩))
+    · exact Or.inl (Or.inl (Or.inr ⟨a, htapes a, x, htapes x, rfl⟩))
+    · exact Or.inl (Or.inr ⟨a, htapes a, y, htapes y, rfl⟩)
+    · exact Or.inr ⟨a, htapes a, rfl⟩
+
+/-- **The finite presentation whose word problem is halting.**  Everything is
+explicit: the rules are a computable list built from enumerations of the state
+set and the tape alphabet, the target word is four letters, and the equivalence
+is with halting of the original machine. -/
+theorem haltingSystem_mk_eq_finalWord_iff {states : List Λ} {tapes : List Γ}
+    (hstates : ∀ q : Λ, q ∈ states) (htapes : ∀ a : Γ, a ∈ tapes) (c : Cfg Γ Λ) :
+    StringRewriting.mk (haltingSystem M states tapes) (encode (liftCfg c)) =
+      StringRewriting.mk (haltingSystem M states tapes) finalWord ↔
+      ∃ e, Reach (step M) c e ∧ step M e = none :=
+  mk_eq_finalWord_iff_halts (hpresents_haltingSystem M hstates htapes) c
+
+end Finite
+
 end PostMachine
 end StringRewriting
 end GroupApproximation
