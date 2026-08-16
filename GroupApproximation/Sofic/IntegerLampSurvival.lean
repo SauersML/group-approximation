@@ -220,7 +220,7 @@ theorem finite_lampWreath_perm (S : Set X) (hSfin : S.Finite) (N : ℕ)
 
 /-- Restriction of an integer lamp configuration to a window, with
 values reduced modulo `N`. -/
-def restrictLamp (S : Set X) (N : ℕ) [NeZero N] (l : X →₀ ℤ) :
+noncomputable def restrictLamp (S : Set X) (N : ℕ) [NeZero N] (l : X →₀ ℤ) :
     Subtype (· ∈ S) →₀ ZMod N :=
   Finsupp.mapRange (Int.cast : ℤ → ZMod N) (Int.cast_zero)
     (Finsupp.subtypeDomain (· ∈ S) l)
@@ -241,7 +241,7 @@ theorem restrictLamp_add (S : Set X) (N : ℕ) [NeZero N] (l l' : X →₀ ℤ) 
 reduce their values modulo `N`, and restrict the permutation part to
 the window.  Everything a pure lamp configuration knows inside the
 window survives into a finite group. -/
-def windowHom {H₀ : Subgroup H} {S : Set X} (hS : IsInvariant ρ H₀ S)
+noncomputable def windowHom {H₀ : Subgroup H} {S : Set X} (hS : IsInvariant ρ H₀ S)
     (N : ℕ) [NeZero N] :
     (windowSubgroup ρ (M := ℤ) H₀ S hS) →*
       LampWreath (ZMod N)
@@ -279,6 +279,7 @@ def windowHom {H₀ : Subgroup H} {S : Set X} (hS : IsInvariant ρ H₀ S)
       rw [restrictLamp_add, Finsupp.add_apply, Finsupp.add_apply,
         Finsupp.equivMapDomain_apply, restrictLamp_apply,
         restrictLamp_apply, restrictLamp_apply, lampAut_apply_toAdd]
+      rfl
     · apply Equiv.ext
       intro x
       apply Subtype.ext
