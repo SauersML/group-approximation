@@ -78,4 +78,3 @@ theorem rabin_finitelyPresented_and_isOperatorMF_of_word_eq_one
 
 end RabinConstruction
 end GroupApproximation
-</content>

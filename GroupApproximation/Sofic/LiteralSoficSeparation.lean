@@ -159,4 +159,3 @@ theorem literal_finitelyPresented_nonMF_nontrivialMFRadical :
 
 end LiteralSoficSeparation
 end GroupApproximation
-</content>
