@@ -1,0 +1,60 @@
+# The cheapest gate in the repository, and the one that would have saved the
+# most time today.
+#
+# A root import naming a module that is not in the tree stops `lake build`
+# before it compiles anything: every Lean Prover CI run fails at "bad imports",
+# no run reaches a verdict, and the `verified` branch cannot advance.  Three
+# such imports landed on main today, each from a session that pushed the import
+# line before the module.  Each cost a seven-minute build to discover.
+#
+# This finds them in about ten seconds, on every push, and names the culprit.
+name: Root imports resolve
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: root-imports-${{ github.ref }}-${{ github.sha }}
+  cancel-in-progress: false
+
+jobs:
+  imports:
+    name: Every root import names a file
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
+
+      - name: Check
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          import pathlib, re, sys
+          root = pathlib.Path("GroupApproximation.lean")
+          src = root.read_text(encoding="utf-8")
+          imports = re.findall(r"^import\s+(GroupApproximation\.\S+)\s*$", src, re.M)
+          missing = []
+          for mod in imports:
+              rel = pathlib.Path(mod.replace(".", "/") + ".lean")
+              if not rel.is_file():
+                  missing.append(mod)
+          # A module that exists but is imported twice also breaks nothing, yet
+          # says two sessions edited the same list without looking; report it.
+          dupes = sorted({m for m in imports if imports.count(m) > 1})
+          for mod in missing:
+              print(f"::error file=GroupApproximation.lean::"
+                    f"root imports {mod}, which is not in the tree; push the "
+                    f"module or drop the import")
+          for mod in dupes:
+              print(f"::warning file=GroupApproximation.lean::"
+                    f"{mod} is imported twice")
+          print(f"{len(imports)} root imports, {len(missing)} missing, "
+                f"{len(dupes)} duplicated")
+          sys.exit(1 if missing else 0)
+          PY
