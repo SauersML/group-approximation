@@ -22,7 +22,36 @@ manuscript's usual layering.  Per repo doctrine (zero literature inputs in
 Lean; manuscript 1:1 with Lean) this theorem cannot enter the manuscript
 until `B ≅ Γ̄` is formalized or replaced.
 
-**Theorem (conditional on `B ≅ Γ̄`, see audit note above).**  The literal
+**Addendum 2026-08-16: the conditional input is discharged; the theorem is
+unconditional, and the blocker is now a different one.**  The audit note
+above is obsolete.  `Monsters/LiteralBaseCompleteness.lean` proves
+`affineQuotient_injective` and `baseAffineEquiv : Base ≃* gammaBar` outright,
+with no `sorry` and no literature premise, and the manuscript already badges
+the equivalence at `rem:classical-base`.  Both places the note identifies —
+the companion's input (I1), and Lemma 3.1's residual finiteness of `Λ ≤ Γ_n`
+— are therefore discharged, the `E_lin` versus `E` distinction this document
+maintains can be dropped, and §§2–8 are unconditional statements about the
+literal `E`.  The trust-surface inversion the note describes no longer holds.
+
+What now blocks the manuscript is not conditionality but formalization: no
+Lean declaration concludes `IsSofic MarkedGroup`, and
+`scripts/check_non_mf_claim_manifest.py` requires every numbered theorem to
+name exactly one.  Drafts toward that endpoint are in
+`GroupApproximation/Sofic/Literal{LampKernelSplit,BlockGeometry,LampKernelAmalgam,TelescopeCoreLEF,SoficEndpoint}.lean`
+(commit `d4d87391`), none of them compiled.  The chain reduces to soficity of
+`lampKernel ⋊ Telescope` at the literal carrier.
+
+Two further corrections to this document, from formalizing §§2--3.  §2 derives
+the retraction `π : Ê → V` from Lemma 2.1 and hence from Bass--Serre theory;
+that is unnecessary.  The retraction is the universal property of the
+presentation (send `c ↦ 1`; all forty-one relators die) and the section is the
+universal property of the ascending HNN extension, so `E = N_E ⋊ V` needs no
+amalgam theory and no normal-form theorem, and input (I4) is not used.  And
+(3.2) defines `ζ` as "the common value" before stating the relations that make
+the conjugates equal; define `ζ` as the image of `w` and let the relations
+assert the equality.
+
+**Theorem (unconditional; see the addendum above).**  The literal
 forty-one-relator group `E` of `def:E` in
 `non_mf_groups_exist.tex` is sofic.  Consequently `E` is an explicit
 **finitely presented sofic — hence hyperlinear — group that is not MF**, and
