@@ -336,7 +336,7 @@ hyperlinearity implies the MF property (Theorem~\ref{thm:E}); the group
 $E$ is sofic as well (Theorem~\ref{thm:Esofic}), so a finitely
 presented group already separates the two properties.  The
 quotient $E/\langle w\rangle$ is also not MF, so $\{1,w\}$ is a proper
-subgroup of the MF radical of $E$ (Theorem~\ref{thm:signfree}).  The
+subgroup of the MF residual of $E$ (Theorem~\ref{thm:signfree}).  The
 non-MF argument implies neither soficity nor nonsoficity, for either
 group (Section~\ref{sec:limits}).
 
@@ -442,7 +442,7 @@ distinguished central involution, a shift, and an HNN doubling map
 the elements sent to the identity by all exact, respectively by all
 approximate, finite-dimensional representations
 \cite[Definitions~2.5--2.7]{SlofstraCorrelations} are the exact and the
-approximate analogues of the MF radical used below.
+approximate analogues of the MF residual used below.
 Negative-eigenspace
 compression appears in Slofstra--Vidick
 \cite[proof of Proposition~2.7]{SlofstraVidick}, and Fritz's marked
@@ -1206,12 +1206,12 @@ Section~\ref{sec:group} is open.
 \section{Consequences of the example}\label{sec:position}
 
 Throughout, $d=tct^{-1}$ and $u=[d,\iota(v_1)]$, so that $w=u^2$.
-Write $\operatorname{Rad}_{\mathrm{MF}}(G)$ for the \emph{MF radical}
+Write $\operatorname{Res}_{\mathrm{MF}}(G)$ for the \emph{MF residual}
 of a countable group $G$: the intersection of the kernels of all its
 homomorphisms to $\U(\mathcal Q)$ (Definition~\ref{def:radical}).  Thus $G$ is MF
-exactly when $\operatorname{Rad}_{\mathrm{MF}}(G)=1$
+exactly when $\operatorname{Res}_{\mathrm{MF}}(G)=1$
 (Proposition~\ref{prop:univquot}), and Theorem~\ref{thm:A} says
-$w\in\operatorname{Rad}_{\mathrm{MF}}(E)$ with $w\ne1$.
+$w\in\operatorname{Res}_{\mathrm{MF}}(E)$ with $w\ne1$.
 
 \subsection*{The quotient by the central involution}
 
@@ -1219,9 +1219,9 @@ $w\in\operatorname{Rad}_{\mathrm{MF}}(E)$ with $w\ne1$.
 The quotient $E/\langle w\rangle$ is not MF\@.  The image of
 $[\iota(v_1),d]$, the inverse of the marked commutator $u$, is
 nontrivial there and lies in
-$\operatorname{Rad}_{\mathrm{MF}}(E/\langle w\rangle)$; consequently
+$\operatorname{Res}_{\mathrm{MF}}(E/\langle w\rangle)$; consequently
 $\{1,w\}$ is a proper subgroup of
-$\operatorname{Rad}_{\mathrm{MF}}(E)$.
+$\operatorname{Res}_{\mathrm{MF}}(E)$.
 \leanverified{Sofic/LiteralSignFreeQuotient}{GroupApproximation.LiteralSignFreeQuotient.signFree_collapse}
 \leanverified{Sofic/LiteralSignFreeQuotient}{GroupApproximation.LiteralSignFreeQuotient.signFreeQuotient_not_isCDEOperatorMF}
 \leanverified{Sofic/LiteralSignFreeQuotient}{GroupApproximation.LiteralSignFreeQuotient.commutator_not_zpow_mark}
@@ -1237,7 +1237,7 @@ $\langle w\rangle$, so in $E/\langle w\rangle$ the element $d$ satisfies
 both hypotheses, and every homomorphism $E/\langle
 w\rangle\to\U(\mathcal Q)$ maps $u$ to the identity.  Thus $E/\langle w\rangle$ is a
 second finitely presented non-MF group, and Theorem~\ref{thm:A} does
-not determine $\operatorname{Rad}_{\mathrm{MF}}(E)$
+not determine $\operatorname{Res}_{\mathrm{MF}}(E)$
 (Section~\ref{sec:limits}).
 
 \subsection*{A stably finite non-MF group algebra}
@@ -1304,9 +1304,9 @@ direct limit has finite orbits on $X$, every finite subset of
 $\Cl(X)\rtimes\Gamma_\infty$ lies in a finite-by-sofic subgroup, and the
 remaining $\Z$-extension is sofic by Elek--Szab\'o \cite{ElekSzabo}.
 The surjection $E\to W$ sends $w$ to the nontrivial Clifford sign
-$\zeta$, and $w\in\operatorname{Rad}_{\mathrm{MF}}(E)$, so functoriality
+$\zeta$, and $w\in\operatorname{Res}_{\mathrm{MF}}(E)$, so functoriality
 (Lemma~\ref{lem:portable}) gives
-$\zeta\in\operatorname{Rad}_{\mathrm{MF}}(W)$ and $W$ is not MF.  This surjection does not
+$\zeta\in\operatorname{Res}_{\mathrm{MF}}(W)$ and $W$ is not MF.  This surjection does not
 witness non-closure of MF under quotients: neither $E$ nor $W$ is MF,
 so it exhibits no MF group with a non-MF quotient.  The witness for
 that is $F_8\twoheadrightarrow E$, recorded in
@@ -1783,7 +1783,7 @@ $g\ne h$ is eventually separated by $1$.  Hence the classes define an
 injective homomorphism into $\prod_n\U(r_n)/\mathcal N$, with no
 condition on the dimension sequence.  In particular every nonidentity
 element is separated by some homomorphism to a matrix quotient, so the
-MF radical of
+MF residual of
 Definition~\ref{def:radical} is trivial, and the block-sum diagonalization
 in the proof of Proposition~\ref{prop:univquot}(2) then assembles the
 separating sequences into a single faithful homomorphism to
@@ -2218,7 +2218,7 @@ elements acting in both directions form a subgroup of $H$, which
 therefore contains $G_{\rm comp}(L)$.
 \end{proof}
 
-\begin{theorem}[the subgroup $\mathfrak D$ and the MF radical]
+\begin{theorem}[the subgroup $\mathfrak D$ and the MF residual]
 \label{thm:compression-radical}
 Let $H$ and $\Gamma$ be countable groups, let $\Gamma$ have
 property~\textup{(T)}, let
@@ -2548,7 +2548,7 @@ element.  Composing with a faithful homomorphism from that quotient to $\U(\math
 with $\Theta(w_{\mathrm{BS}})\ne1$, so property~\textup{(T)} cannot be
 omitted from the central involution obstruction.  In the radical language of
 Section~\ref{sec:consequences},
-$w_{\mathrm{BS}}\notin\operatorname{Rad}_{\mathrm{MF}}(E_{\mathrm{BS}})$.
+$w_{\mathrm{BS}}\notin\operatorname{Res}_{\mathrm{MF}}(E_{\mathrm{BS}})$.
 The affine group $\mathrm{BS}(1,2)\cong\mathbb Z[1/2]\rtimes\mathbb Z$ is
 solvable.  The Clifford group on its coset space is locally finite, so
 their semidirect product is amenable.  That quotient is a subgroup
@@ -2603,13 +2603,13 @@ independent of $m$.
 
 \section{Consequences}\label{sec:consequences}
 
-\subsection{The MF radical}
+\subsection{The MF residual}
 
 \begin{definition}\label{def:radical}
-For a countable group $G_1$, the \emph{MF radical} --- the term is
+For a countable group $G_1$, the \emph{MF residual} --- the term is
 introduced here --- is
 \[
-  \operatorname{Rad}_{\mathrm{MF}}(G_1)
+  \operatorname{Res}_{\mathrm{MF}}(G_1)
   \;=\;\bigcap\,\bigl\{\ker\Theta:\ \Theta\ \text{a homomorphism }G_1\to\U(\mathcal Q)\bigr\},
 \]
 a normal subgroup of $G_1$.  The intersection does not change if the
@@ -2625,28 +2625,28 @@ and of the metric-ultraproduct approximation framework of \cite{NST}.
 For every homomorphism $\varphi\colon G_1\to G_2$ of countable
 groups,
 \[
-  \varphi\bigl(\operatorname{Rad}_{\mathrm{MF}}(G_1)\bigr)
-  \;\subseteq\;\operatorname{Rad}_{\mathrm{MF}}(G_2):
+  \varphi\bigl(\operatorname{Res}_{\mathrm{MF}}(G_1)\bigr)
+  \;\subseteq\;\operatorname{Res}_{\mathrm{MF}}(G_2):
 \]
-the MF radical is functorial.  In particular, if
+the MF residual is functorial.  In particular, if
 $\varphi\colon E\to G_2$ satisfies $\varphi(w)\neq1$, then $G_2$ is
 not MF.
 \leanverified{Sofic/ManuscriptExactWrappers}{GroupApproximation.ManuscriptExactWrappers.manuscriptRadicalPortability}
 \end{lemma}
 
 \begin{proof}
-If $x\in\operatorname{Rad}_{\mathrm{MF}}(G_1)$ and $\Theta$ is a
+If $x\in\operatorname{Res}_{\mathrm{MF}}(G_1)$ and $\Theta$ is a
 homomorphism $G_2\to\U(\mathcal Q)$, then $\Theta\circ\varphi$ is a homomorphism $G_1\to\U(\mathcal Q)$, so $\Theta(\varphi(x))=1$.  For the second
-statement, $w\in\operatorname{Rad}_{\mathrm{MF}}(E)$ by
+statement, $w\in\operatorname{Res}_{\mathrm{MF}}(E)$ by
 Theorem~\ref{thm:A}, so
-$1\neq\varphi(w)\in\operatorname{Rad}_{\mathrm{MF}}(G_2)$, and an
+$1\neq\varphi(w)\in\operatorname{Res}_{\mathrm{MF}}(G_2)$, and an
 injective homomorphism $G_2\to\U(\mathcal Q)$ would map $\varphi(w)$ to $1$, a
 contradiction.
 \end{proof}
 
 \begin{proposition}[the universal MF quotient]\label{prop:univquot}
 Let $G_1$ be a countable group and
-$R=\operatorname{Rad}_{\mathrm{MF}}(G_1)$.
+$R=\operatorname{Res}_{\mathrm{MF}}(G_1)$.
 \begin{enumerate}
 \item $R$ is the kernel of a single homomorphism $G_1\to\U(\mathcal Q)$.
 \item $G_1/R$ is MF.
@@ -2686,11 +2686,11 @@ injective homomorphism to $\U(\mathcal Q)$ gives $R=\{1\}$; if $R=\{1\}$ then
 
 \begin{corollary}[exact radical from a candidate quotient]\label{cor:exactradical}
 Let $N\trianglelefteq G_1$ satisfy
-$N\le\operatorname{Rad}_{\mathrm{MF}}(G_1)$.  Every homomorphism $G_1\to\U(\mathcal Q)$ factors uniquely through $G_1/N$.  If in
+$N\le\operatorname{Res}_{\mathrm{MF}}(G_1)$.  Every homomorphism $G_1\to\U(\mathcal Q)$ factors uniquely through $G_1/N$.  If in
 addition $G_1/N$ is MF, then
 \leanverified{Sofic/ManuscriptExactWrappers}{GroupApproximation.ManuscriptExactWrappers.manuscriptExactRadicalFromCandidateQuotient}
 \[
- \operatorname{Rad}_{\mathrm{MF}}(G_1)=N.
+ \operatorname{Res}_{\mathrm{MF}}(G_1)=N.
 \]
 \end{corollary}
 
@@ -2699,27 +2699,27 @@ The containment $N\le\ker\Theta$ gives the unique quotient
 factorization for every such $\Theta$.  For the
 reverse containment in the displayed equality, compose the quotient
 map $G_1\to G_1/N$ with an injective homomorphism $G_1/N\to\U(\mathcal Q)$:
-its kernel is exactly $N$, while the MF radical lies in the kernel of
+its kernel is exactly $N$, while the MF residual lies in the kernel of
 every homomorphism to $\U(\mathcal Q)$.
 \end{proof}
 
 \begin{corollary}[radical reduction to the quotient]\label{cor:pullback}
 Let $N\trianglelefteq G_1$ satisfy
-$N\le\operatorname{Rad}_{\mathrm{MF}}(G_1)$ and let
+$N\le\operatorname{Res}_{\mathrm{MF}}(G_1)$ and let
 $q\colon G_1\to G_1/N$ be the quotient map.  Then
 \leanverified{Sofic/ManuscriptExactWrappers}{GroupApproximation.ManuscriptExactWrappers.manuscriptRadicalReductionToQuotient}
 \[
- \operatorname{Rad}_{\mathrm{MF}}(G_1)
+ \operatorname{Res}_{\mathrm{MF}}(G_1)
  \;=\;
- q^{-1}\bigl(\operatorname{Rad}_{\mathrm{MF}}(G_1/N)\bigr).
+ q^{-1}\bigl(\operatorname{Res}_{\mathrm{MF}}(G_1/N)\bigr).
 \]
 \end{corollary}
 
 \begin{proof}
 For the forward containment, Lemma~\ref{lem:portable} gives
-$q(\operatorname{Rad}_{\mathrm{MF}}(G_1))
-\subseteq\operatorname{Rad}_{\mathrm{MF}}(G_1/N)$.  Conversely, suppose
-$q(x)\in\operatorname{Rad}_{\mathrm{MF}}(G_1/N)$ and let $\Theta$ be a
+$q(\operatorname{Res}_{\mathrm{MF}}(G_1))
+\subseteq\operatorname{Res}_{\mathrm{MF}}(G_1/N)$.  Conversely, suppose
+$q(x)\in\operatorname{Res}_{\mathrm{MF}}(G_1/N)$ and let $\Theta$ be a
 homomorphism $G_1\to\U(\mathcal Q)$.  Every homomorphism $G_1\to\U(\mathcal Q)$
 maps $N$ to $1$ by hypothesis, so $\Theta$ factors as $\bar\Theta\circ q$
 with $\bar\Theta$ a homomorphism $G_1/N\to\U(\mathcal Q)$; hence
@@ -2735,7 +2735,7 @@ For a countable group $G_1$ and $N\trianglelefteq G_1$ with quotient map
 $q\colon G_1\to G_1/N$, put
 \[
  \operatorname{cl}_{\mathrm{MF}}(N)
- =q^{-1}\bigl(\operatorname{Rad}_{\mathrm{MF}}(G_1/N)\bigr).
+ =q^{-1}\bigl(\operatorname{Res}_{\mathrm{MF}}(G_1/N)\bigr).
 \]
 An element belongs to $\operatorname{cl}_{\mathrm{MF}}(N)$ exactly when
 every homomorphism $G_1\to\U(\mathcal Q)$ that maps $N$ to the identity maps
@@ -2769,9 +2769,9 @@ two operations: from a reached \emph{normal} subgroup $N$, pass to any
 subgroup of $\operatorname{cl}_{\mathrm{MF}}(N)$; and from any family
 of reached subgroups, pass to their join, the subgroup generated by
 their union.  Every subgroup so reached lies in
-$\operatorname{Rad}_{\mathrm{MF}}(G_1)$; a reached \emph{normal}
+$\operatorname{Res}_{\mathrm{MF}}(G_1)$; a reached \emph{normal}
 subgroup with MF
-quotient equals $\operatorname{Rad}_{\mathrm{MF}}(G_1)$; and if the
+quotient equals $\operatorname{Res}_{\mathrm{MF}}(G_1)$; and if the
 whole group is reached, every homomorphism from $G_1$ to a countable MF
 group is trivial.
 \leanverified{Sofic/MFRelationClosure}{GroupApproximation.manuscriptSoundIterationClosure}
@@ -2779,9 +2779,9 @@ group is trivial.
 
 \begin{proof}
 Induct over the two operations.  If a reached normal subgroup $N$
-satisfies $N\le\operatorname{Rad}_{\mathrm{MF}}(G_1)$, then
+satisfies $N\le\operatorname{Res}_{\mathrm{MF}}(G_1)$, then
 Corollary~\ref{cor:pullback} gives
-$\operatorname{cl}_{\mathrm{MF}}(N)=\operatorname{Rad}_{\mathrm{MF}}(G_1)$,
+$\operatorname{cl}_{\mathrm{MF}}(N)=\operatorname{Res}_{\mathrm{MF}}(G_1)$,
 so every subgroup chosen in the first operation is again inside the
 radical --- normal or not.  For the second operation, the radical is
 itself a subgroup, hence an upper bound in the subgroup lattice for any
@@ -2797,8 +2797,7 @@ and~\ref{thm:collapse} supply the memberships this iteration consumes:
 each places a
 subgroup inside the radical of every countable group with its data,
 hence inside the radical of every reached quotient.
-Theorem~\ref{thm:saturation} is the case
-$D_{\mathrm{coll}}(L,s)=H$.  Such a membership can hold at a later stage
+Such a membership can hold at a later stage
 without holding at an earlier one: modulo the earlier stage an element
 may acquire finite order, an orbit may begin to commute, or a subgroup
 may become normal.
@@ -2874,16 +2873,16 @@ Following Dadarlat \cite{Dadarlat}, a countable group $G$ is
 representation $(V_n)$ of $G$ there are genuine finite-dimensional
 unitary representations $\pi_n$, in the same matrix dimensions, with
 $\opnorm{V_n(g)-\pi_n(g)}\to0$ for every $g\in G$.
-Write $\operatorname{Rad}_{\mathrm{fd}}(G)$ for the intersection of
+Write $\operatorname{Res}_{\mathrm{fd}}(G)$ for the intersection of
 the kernels of all finite-dimensional unitary representations of $G$.
 
 \begin{proposition}[stability identifies the radicals]\label{prop:stabradical}
 For every countable group,
-$\operatorname{Rad}_{\mathrm{MF}}(G)\le\operatorname{Rad}_{\mathrm{fd}}(G)$.
+$\operatorname{Res}_{\mathrm{MF}}(G)\le\operatorname{Res}_{\mathrm{fd}}(G)$.
 If $G$ is matricially stable, then
-$\operatorname{Rad}_{\mathrm{MF}}(G)=\operatorname{Rad}_{\mathrm{fd}}(G)$;
+$\operatorname{Res}_{\mathrm{MF}}(G)=\operatorname{Res}_{\mathrm{fd}}(G)$;
 in particular a stable group with
-$\operatorname{Rad}_{\mathrm{fd}}(G)\neq1$ is not MF.
+$\operatorname{Res}_{\mathrm{fd}}(G)\neq1$ is not MF.
 \leanverified{Sofic/MatricialStabilityRadical}{GroupApproximation.MatricialStabilityRadical.actualCoronaMFResidual_le_fdUnitaryResidual}
 \leanverified{Sofic/MatricialStabilityRadical}{GroupApproximation.MatricialStabilityRadical.actualCoronaMFResidual_eq_fdUnitaryResidual}
 \leanverified{Sofic/MatricialStabilityRadical}{GroupApproximation.MatricialStabilityRadical.not_isCDEOperatorMF_of_stable_of_fdResidual_ne_bot}
@@ -2897,11 +2896,11 @@ $(\pi^{\oplus n})_n$ is a homomorphism to $\U(\mathcal Q)$ in the sense of
 \eqref{eq:unitary-corona}.  Since
 $\opnorm{\pi^{\oplus n}(x)-1}=\opnorm{\pi(x)-1}$ for every $n$, that
 sequence is null exactly when $\pi(x)=1$.  Hence an element of
-$\operatorname{Rad}_{\mathrm{MF}}(G)$ is sent to the identity by every finite-dimensional
+$\operatorname{Res}_{\mathrm{MF}}(G)$ is sent to the identity by every finite-dimensional
 representation.
 
 For the converse inclusion, assume $G$ matricially stable,
-let $x\in\operatorname{Rad}_{\mathrm{fd}}(G)$, and suppose toward a
+let $x\in\operatorname{Res}_{\mathrm{fd}}(G)$, and suppose toward a
 contradiction that a homomorphism $\Theta$ to $\U(\mathcal Q)$ has
 $\Theta(x)\ne1$.  Choose unitary coordinate lifts $U_n(g)$ of
 $\Theta(g)$.  Since $\Theta(x)-1\ne0$ in the norm quotient, after
@@ -2910,7 +2909,7 @@ $\opnorm{U_n(x)-1}\ge\delta$ for every $n$.  The lifts form an
 operator-norm asymptotic representation, so stability gives genuine
 representations $\pi_n$ on the same blocks with
 $\opnorm{U_n(g)-\pi_n(g)}\to0$ for each fixed $g$.  But
-$x\in\operatorname{Rad}_{\mathrm{fd}}(G)$ gives $\pi_n(x)=1$ for every
+$x\in\operatorname{Res}_{\mathrm{fd}}(G)$ gives $\pi_n(x)=1$ for every
 $n$, so
 $\opnorm{U_n(x)-1}=\opnorm{U_n(x)-\pi_n(x)}\to0$, against the uniform
 lower bound.
@@ -2918,7 +2917,7 @@ lower bound.
 
 For a stable group the two radicals therefore agree.  With
 Theorem~\ref{thm:B}: every matricially stable group with
-$\operatorname{Rad}_{\mathrm{fd}}(G)\ne1$ is not MF.
+$\operatorname{Res}_{\mathrm{fd}}(G)\ne1$ is not MF.
 
 \subsection{Orbit collapse}\label{subsec:collapse}
 
@@ -2963,7 +2962,7 @@ property~\textup{(T)}, and let $s\in H$ satisfy
 $s\gamma s^{-1}\in L$ for every $\gamma\in L$.  Then
 \leanverified{Sofic/ManuscriptExactWrappers}{GroupApproximation.ManuscriptExactWrappers.manuscriptInvolutiveCollapse}
 \[
-  D_{\mathrm{coll}}(L,s)\;\le\;\operatorname{Rad}_{\mathrm{MF}}(H).
+  D_{\mathrm{coll}}(L,s)\;\le\;\operatorname{Res}_{\mathrm{MF}}(H).
 \]
 \end{theorem}
 
@@ -3347,7 +3346,7 @@ centralizing the compressed copy, and the $\Theta(L)$-conjugates of $\sigma$
 commute because the conjugated projections do.  So $\sigma$ is an involutive
 compression witness in $H'$, and Theorem~\ref{thm:collapse} places
 every commutator $[\Theta(\gamma),\sigma]$, $\gamma\in L$, in
-$\operatorname{Rad}_{\mathrm{MF}}(H')$.  The inclusion
+$\operatorname{Res}_{\mathrm{MF}}(H')$.  The inclusion
 $H'\to\U(\mathcal Q)$ is itself a homomorphism $H'\to\U(\mathcal Q)$, so it
 maps each of these commutators to the identity:
 $[\Theta(\gamma),\sigma]=1$ in $\mathcal Q$, and $\sigma=1-2p$ gives
@@ -3373,7 +3372,7 @@ $\gamma\in L$, commute pairwise, then every homomorphism
 $\Theta\colon H\to\U(\mathcal Q)$ satisfies $\Theta([\gamma,k])=1$ for
 every $\gamma\in L$; the
 normal closure of all such commutators, over all finite-order witnesses
-for $(L,s)$, lies in $\operatorname{Rad}_{\mathrm{MF}}(H)$, with
+for $(L,s)$, lies in $\operatorname{Res}_{\mathrm{MF}}(H)$, with
 equality whenever the corresponding quotient of $H$ is MF.
 \leanverified{Sofic/TorsionSpectralCollapse}{GroupApproximation.TorsionSpectralCollapse.actualCoronaMFInvisible_of_torsionWitness}
 \leanverified{Sofic/TorsionSpectralCollapse}{GroupApproximation.TorsionSpectralCollapse.torsionCollapseDefect_le_actualCoronaMFResidual_of_kazhdan}
@@ -3408,7 +3407,7 @@ by its central involution is sofic and is not MF\@.  More precisely, the
 image of the
 commutator $[v_1,tct^{-1}]$, the inverse of the marked commutator
 $u$, in $W/\langle\zeta\rangle$ is nontrivial and lies in
-$\operatorname{Rad}_{\mathrm{MF}}(W/\langle\zeta\rangle)$; that last
+$\operatorname{Res}_{\mathrm{MF}}(W/\langle\zeta\rangle)$; that last
 conclusion holds with $W$ replaced by the ambient affine--Clifford group of
 any injective endomorphism $\alpha$ of a countable
 property-\textup{(T)} group and any base element outside the image of
@@ -3428,7 +3427,7 @@ base copy; $k$ remains an involution, and the compressed copy
 $q(t)Lq(t)^{-1}$ centralizes $k$ because the compressed base fixes the
 moved point.  Property~\textup{(T)} passes to the image $L$, so
 Theorem~\ref{thm:collapse} places every commutator
-$[q(\bar v_1),k]$ in the MF radical of the quotient.  The commutator
+$[q(\bar v_1),k]$ in the MF residual of the quotient.  The commutator
 remains nontrivial in the sign quotient: in the signed finite-support model of
 $\Cl(X)$, the commutator is the product of the two distinct basis
 elements at $\tau o$ and $j(\bar v_1)\tau o$, whose configuration
@@ -3473,7 +3472,7 @@ and one further conjugation reduces an arbitrary pair of conjugates to
 this case.  Thus $\bar d$ is an involutive compression witness for
 $(\bar L,q(t))$, and Theorem~\ref{thm:collapse} places
 $[q(\iota(v_1)),\bar d]$ in
-$\operatorname{Rad}_{\mathrm{MF}}(E/\langle w\rangle)$.
+$\operatorname{Res}_{\mathrm{MF}}(E/\langle w\rangle)$.
 
 Nontriviality passes through the homomorphism $E\to W$ of
 Proposition~\ref{prop:witness}: it carries $[\iota(v_1),d]$ to the
@@ -3484,8 +3483,8 @@ $[\iota(v_1),d]\notin\langle w\rangle$, its image in
 $E/\langle w\rangle$ is nontrivial, and
 Proposition~\ref{prop:univquot} makes $E/\langle w\rangle$ non-MF\@.
 Corollary~\ref{cor:pullback} identifies
-$\operatorname{Rad}_{\mathrm{MF}}(E)$ with the $q$-preimage of
-$\operatorname{Rad}_{\mathrm{MF}}(E/\langle w\rangle)$, so $u$ belongs
+$\operatorname{Res}_{\mathrm{MF}}(E)$ with the $q$-preimage of
+$\operatorname{Res}_{\mathrm{MF}}(E/\langle w\rangle)$, so $u$ belongs
 to it.
 \end{proof}
 
@@ -3494,13 +3493,13 @@ In the setting of Theorem~\ref{thm:collapse}, write
 $q\colon H\to H/D_{\mathrm{coll}}(L,s)$ for the quotient map.  Then,
 unconditionally,
 \[
-  \operatorname{Rad}_{\mathrm{MF}}(H)
+  \operatorname{Res}_{\mathrm{MF}}(H)
   \;=\;
-  q^{-1}\bigl(\operatorname{Rad}_{\mathrm{MF}}
+  q^{-1}\bigl(\operatorname{Res}_{\mathrm{MF}}
   (H/D_{\mathrm{coll}}(L,s))\bigr),
 \]
 and if $H/D_{\mathrm{coll}}(L,s)$ is MF, then
-$\operatorname{Rad}_{\mathrm{MF}}(H)=D_{\mathrm{coll}}(L,s)$.
+$\operatorname{Res}_{\mathrm{MF}}(H)=D_{\mathrm{coll}}(L,s)$.
 \leanverified{Sofic/ManuscriptExactWrappers}{GroupApproximation.ManuscriptExactWrappers.manuscriptCollapseRadicalReduction}
 \end{corollary}
 
@@ -3518,7 +3517,7 @@ In the setting of Theorem~\ref{thm:collapse}:
 \item Every homomorphism $f$ from $H$ to a countable MF group maps
 every element of $D_{\mathrm{coll}}(L,s)$ to the identity.
 \item If $D_{\mathrm{coll}}(L,s)=H$, then
-$\operatorname{Rad}_{\mathrm{MF}}(H)=H$; every homomorphism from $H$
+$\operatorname{Res}_{\mathrm{MF}}(H)=H$; every homomorphism from $H$
 to a countable MF group is trivial; and if $H$ is nontrivial, then
 $H$ is not MF.
 \leanverified{Sofic/ManuscriptExactWrappers}{GroupApproximation.ManuscriptExactWrappers.manuscriptDefectSaturation}
@@ -3529,8 +3528,8 @@ $H$ is not MF.
 (1)  By Theorem~\ref{thm:collapse} and Lemma~\ref{lem:portable},
 \[
  f(D_{\mathrm{coll}}(L,s))\le
- f(\operatorname{Rad}_{\mathrm{MF}}(H))\le
- \operatorname{Rad}_{\mathrm{MF}}(f(H)).
+ f(\operatorname{Res}_{\mathrm{MF}}(H))\le
+ \operatorname{Res}_{\mathrm{MF}}(f(H)).
 \]
 The subgroup $f(H)$ of the MF target is MF
 (Lemma~\ref{lem:permanence}(1)), so its radical is trivial by
@@ -3642,9 +3641,9 @@ every Clifford generator by transitivity of
 the $\Sigma$-action on $X$.  Since $E$ is generated by
   $v_1,x,y,z,t,c$ (by the Tietze calculation above), their six
 images generate $W$.  The map sends
-$w\in\operatorname{Rad}_{\mathrm{MF}}(E)$ to the
+$w\in\operatorname{Res}_{\mathrm{MF}}(E)$ to the
 nontrivial sign $\zeta$; functoriality (Lemma~\ref{lem:portable}) makes
-$\zeta\in\operatorname{Rad}_{\mathrm{MF}}(W)$.  Hence $W$ is not MF.
+$\zeta\in\operatorname{Res}_{\mathrm{MF}}(W)$.  Hence $W$ is not MF.
 \end{proof}
 \paragraph{Failure of extension permanence.}
 MF groups are not closed under extensions.  More precisely, $W$ fits into
@@ -3699,7 +3698,7 @@ the canonical group unitaries, contradicting that $W$ is not MF\@.
 \paragraph{A simple sofic envelope.}
 There is a countable simple sofic group $S_{\mathrm{simp}}$ with
 \[
- \operatorname{Rad}_{\mathrm{MF}}(S_{\mathrm{simp}})=S_{\mathrm{simp}}.
+ \operatorname{Res}_{\mathrm{MF}}(S_{\mathrm{simp}})=S_{\mathrm{simp}}.
 \]
 Equivalently, every homomorphism from $S_{\mathrm{simp}}$ to an MF group is
 trivial.
@@ -3707,9 +3706,9 @@ trivial.
 \begin{proof}
 By Elek--Szab\'o, every countable sofic group embeds in a countable simple
 sofic group \cite[Theorem~1]{ElekSzaboHyper}.  Embed $W$ in such a group.  Functoriality
-of the MF radical sends $\zeta$ to a nontrivial element of the
-MF radical of the simple group.  That radical is normal, so it is the whole
-group.  Every homomorphism to an MF group maps the MF radical to $1$.
+of the MF residual sends $\zeta$ to a nontrivial element of the
+MF residual of the simple group.  That radical is normal, so it is the whole
+group.  Every homomorphism to an MF group maps the MF residual to $1$.
 \end{proof}
 
 
@@ -3770,7 +3769,7 @@ and has $w\ne1$.
 \begin{proof}
 A tuple satisfying the relators induces a homomorphism $E\to G$ sending
 the marked word of $E$ to $w(x_1,\dots,x_8)$.  If $G$ is MF, that image
-is trivial: $w\in\operatorname{Rad}_{\mathrm{MF}}(E)$ by
+is trivial: $w\in\operatorname{Res}_{\mathrm{MF}}(E)$ by
 Theorem~\ref{thm:A}, and the radical is functorial
 (Lemma~\ref{lem:portable}).
 The canonical tuple of $E$ satisfies $R$ by definition, and its marked
@@ -3961,7 +3960,7 @@ such a group, over the torsion-free finitely presented Kazhdan group
 of \cite{FFF}, which removed the analogous torsion obstacle for
 nonsoficity.
 \begin{enumerate}
-\item What is $\operatorname{Rad}_{\mathrm{MF}}(E)$?  It properly
+\item What is $\operatorname{Res}_{\mathrm{MF}}(E)$?  It properly
 contains $\{1,w\}$ by Theorem~\ref{thm:signfree}.  Write
 $q_1\colon E\to E/\langle w\rangle$, let $D=D_{\mathrm{coll}}(\bar
 L,q_1(t))$ for the witness $\bar d$ of that proof, and let
@@ -3969,9 +3968,9 @@ $q_2\colon E/\langle w\rangle\to(E/\langle w\rangle)/D$.  By
 Corollary~\ref{cor:collapsequot} applied to $E/\langle w\rangle$ and
 then Corollary~\ref{cor:pullback},
 \[
- \operatorname{Rad}_{\mathrm{MF}}(E)
+ \operatorname{Res}_{\mathrm{MF}}(E)
  \;=\;q_1^{-1}q_2^{-1}
-   \bigl(\operatorname{Rad}_{\mathrm{MF}}
+   \bigl(\operatorname{Res}_{\mathrm{MF}}
    ((E/\langle w\rangle)/D)\bigr),
 \]
 so by Corollary~\ref{cor:exactradical} the radical equals
@@ -3998,7 +3997,7 @@ torsion-free finitely presented property-\textup{(T)} group
 $Q$ has property~\textup{(T)}; $Q$ is torsion-free; $Q$ is generated
 by two elements; and $q(N_{\mathrm{comp}})=Q$.  Given such a
 $q$, the group $Q$ is two-generated, finitely presented, torsion-free,
-Kazhdan, and equal to its own MF radical, so every homomorphism from
+Kazhdan, and equal to its own MF residual, so every homomorphism from
 $Q$ to the unitary group of a matrix quotient is trivial, and every
 nontrivial quotient
 of $Q$ likewise fails to be MF\@.
@@ -4028,9 +4027,9 @@ MF representation does not immediately give a hyperlinear model.  This
 question concerns the CDE convention fixed above; for stronger
 trace-controlled MF conventions the implication is built into the definition.
 \item By Proposition~\ref{prop:sounditeration}, every family of
-theorems placing subgroups in the MF radical generates, by iteration
+theorems placing subgroups in the MF residual generates, by iteration
 through quotients, a closure contained in
-$\operatorname{Rad}_{\mathrm{MF}}$.  For which groups do the criteria of
+$\operatorname{Res}_{\mathrm{MF}}$.  For which groups do the criteria of
 Theorems~\ref{thm:criterion}, \ref{thm:normal-kazhdan},
 \ref{thm:collapse}, and~\ref{thm:projection-collapse} compute the
 radical exactly?
