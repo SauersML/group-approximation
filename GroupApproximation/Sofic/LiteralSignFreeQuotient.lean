@@ -237,8 +237,6 @@ private theorem zpow_parity_split (u : Base) (n : ℤ) :
   have h2 : ((u ^ 2 : Base)) ^ (n / 2) = u ^ (2 * (n / 2)) := by
     rw [← zpow_natCast u 2, ← zpow_mul]
     congr 1
-    push_cast
-    ring
   rw [h2, ← zpow_add]
   congr 1
   omega
@@ -305,7 +303,6 @@ theorem parity_factorization (g : Base) :
     Int.emod_two_eq_zero_or_one c,
     Subgroup.mul_mem _ hsdb (rotations_le_doubledBase hr), ?_⟩
   rw [← hprod]
-  dsimp only
   rw [hsplit]
   group
 
@@ -684,7 +681,7 @@ theorem commutator_not_mem_markSubgroup :
         rootCoset alpha conjD_injective ≠
       tVertical alpha conjD_injective •
         rootCoset alpha conjD_injective :=
-    (CommutingLampCollapse.moved_cosets_ne alpha conjD_injective
+    (moved_cosets_ne alpha conjD_injective
       v1G_not_mem_range).symm
   have hlampne := CommutingLampCollapse.lamp_mul_lamp_inv_ne
     (X := Cosets alpha conjD_injective) hx12
@@ -700,7 +697,7 @@ theorem commutator_not_mem_markSubgroup :
             rootCoset alpha conjD_injective))⁻¹) :
         Ambient alpha conjD_injective) = inl 1 := by
       rw [map_one]
-      exact himg
+      exact himg.symm
     exact hlampne.1 (inl_injective h2)
   · have h2 : (inl (lamp (Cosets alpha conjD_injective)
         ((iotaVertical alpha conjD_injective v1G *
@@ -710,7 +707,7 @@ theorem commutator_not_mem_markSubgroup :
           (tVertical alpha conjD_injective •
             rootCoset alpha conjD_injective))⁻¹) :
         Ambient alpha conjD_injective) =
-        inl (sign (Cosets alpha conjD_injective)) := himg
+        inl (sign (Cosets alpha conjD_injective)) := himg.symm
     exact hlampne.2 (inl_injective h2)
 
 theorem collapsed_commutator_ne_one :
