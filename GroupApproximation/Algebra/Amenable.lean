@@ -186,15 +186,24 @@ theorem indexUltrafilter_le :
   (Ultrafilter.exists_le (Filter.atTop : Filter ι)).choose_spec
 
 omit [Nonempty ι] [SemilatticeSup ι] in
-/-- Every bounded family of reals has a limit along an ultrafilter. -/
-theorem exists_ultrafilter_tendsto (u : Ultrafilter ι) (f : ι → ℝ)
-    (hf : ∀ i, f i ∈ Set.Icc (0 : ℝ) 1) :
-    ∃ L ∈ Set.Icc (0 : ℝ) 1, Filter.Tendsto f u (nhds L) := by
-  have hmap : ((u.map f : Ultrafilter ℝ) : Filter ℝ) ≤ Filter.principal (Set.Icc (0:ℝ) 1) := by
+/-- Every family of reals confined to a closed interval has a limit along
+an ultrafilter. -/
+theorem exists_ultrafilter_tendsto_Icc (u : Ultrafilter ι) (f : ι → ℝ)
+    {a b : ℝ} (hf : ∀ i, f i ∈ Set.Icc a b) :
+    ∃ L ∈ Set.Icc a b, Filter.Tendsto f u (nhds L) := by
+  have hmap : ((u.map f : Ultrafilter ℝ) : Filter ℝ) ≤
+      Filter.principal (Set.Icc a b) := by
     rw [Filter.le_principal_iff, Ultrafilter.coe_map, Filter.mem_map]
     exact Filter.Eventually.of_forall hf
   obtain ⟨L, hL, hle⟩ := isCompact_Icc.ultrafilter_le_nhds (u.map f) hmap
   exact ⟨L, hL, hle⟩
+
+omit [Nonempty ι] [SemilatticeSup ι] in
+/-- Every bounded family of reals has a limit along an ultrafilter. -/
+theorem exists_ultrafilter_tendsto (u : Ultrafilter ι) (f : ι → ℝ)
+    (hf : ∀ i, f i ∈ Set.Icc (0 : ℝ) 1) :
+    ∃ L ∈ Set.Icc (0 : ℝ) 1, Filter.Tendsto f u (nhds L) :=
+  exists_ultrafilter_tendsto_Icc u f hf
 
 variable (K : ι → Subgroup G)
 
