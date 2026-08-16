@@ -1196,10 +1196,11 @@ $1\to\ClLamp(X)\to W\to V\to1$, whose kernel is locally finite and
 whose quotient is residually finite, shows that they are not closed
 under extensions either (Section~\ref{sec:consequences}).
 
-The soficity of $E$ itself remains open: $W$ is a proper quotient of
-$E$, with kernel a free group of infinite rank.
-Section~\ref{sec:limits} explains why the operator-norm method decides
-neither soficity nor hyperlinearity for either group.
+This says nothing about $E$ itself: $W$ is a proper quotient of $E$,
+with kernel a free group of infinite rank.  Section~\ref{sec:limits}
+explains why the operator-norm method decides neither soficity nor
+hyperlinearity for either group, and records the separate argument that
+$E$ is sofic.
 
 \clearpage
 \parttitle{Supplementary material}
@@ -2293,9 +2294,8 @@ $k\in K$.
 \leanverified{Sofic/ManuscriptExactWrappers}{GroupApproximation.ManuscriptExactWrappers.manuscriptNormalKazhdanObstruction}
 \end{theorem}
 
-Taking $K=F$ finite recovers Theorem~\ref{thm:criterion}, since finite
-groups have property~\textup{(T)}: the whole group with tolerance $1$
-is a Kazhdan pair, by orbit averaging.
+Finite groups have property~\textup{(T)}, so $K=F$ recovers
+Theorem~\ref{thm:criterion}.
 \leanverified{Sofic/NormalKazhdanMFRadical}{GroupApproximation.hasKazhdanPropertyT_of_finite}
 In Theorem~\ref{thm:normal-kazhdan}, $K$ may be infinite, noncentral,
 and torsion-free.
@@ -2452,23 +2452,16 @@ $\mathfrak D(H,\Gamma)$ to the identity.
 \leanverified{Sofic/ManuscriptExactWrappers}{GroupApproximation.ManuscriptExactWrappers.manuscriptTheoremB}
 \end{theorem}
 
-Applied to $H=E$, Theorem~\ref{thm:B} shows that \emph{every}
-finite-dimensional representation of $E$ over \emph{every} field sends
-$w$ to the identity.  Consequently finite-dimensional linear
-representations do not separate the points of $E$, no finite quotient
-can witness $w\neq 1$, and the infinite Clifford witness of
-Section~\ref{sec:witness} cannot be replaced by a finite-dimensional
-one.  In the terminology of \cite[Definition~1.2]{BDL}, the central
-involution $w$, invisible in every finite quotient, makes $E$ a group
-of \emph{Deligne type}.  Such groups were proposed there as the
-natural candidate counterexamples for all three remaining
-approximation problems, and $E$ realizes that proposal at the
-operator-norm endpoint.
-Property~\textup{(T)} enters the corona argument through the Kazhdan
-fixed-space projection of the adjoint actions --- in quantitative form,
-a finite-stage spectral subspace at each coordinate, where the
-equal-rank reversal estimate of Section~\ref{app:finite-stage} plays
-the role that equal dimension plays in the exact argument below.
+Applied to $H=E$, Theorem~\ref{thm:B} sends $w$ to the identity in
+every finite-dimensional representation of $E$ over every field.  So
+finite-dimensional linear representations do not separate the points of
+$E$, no finite quotient witnesses $w\neq 1$, and the Clifford witness of
+Section~\ref{sec:witness} has to be infinite.  In the terminology of
+\cite[Definition~1.2]{BDL}, the central involution $w$, invisible in
+every finite quotient, makes $E$ a group of \emph{Deligne type}.  Such
+groups were proposed there as the natural candidate counterexamples for
+all three remaining approximation problems, and $E$ realizes that
+proposal for the operator norm.
 
 \begin{proof}[Proof of Theorem~\ref{thm:B}]
 Let $\pi\colon H\to\GL(V)$ be a homomorphism and let
@@ -2606,15 +2599,6 @@ Theorem~\ref{thm:transport-variants}(2)
 is the asymptotic counterpart at fixed tensor type.
 \end{remark}
 
-\paragraph{Why the corona argument is different.}
-An MF model is only asymptotically multiplicative, so its coordinate fixed
-spaces are not literal invariant subspaces.  Operator-norm control keeps
-the coordinate adjoint actions almost multiplicative on the
-Hilbert--Schmidt spaces.  The spectral gap of a Kazhdan pair then
-produces an almost-fixed spectral subspace.  The equal-rank reversal estimate of
-Section~\ref{app:finite-stage} turns its one-sided compression into
-equality.  These are the quantitative counterparts of the exact
-finite-dimensional steps above.
 \section{The cyclic comparison}\label{sec:necessity}
 
 The finite-dimensional calculation of
@@ -3944,9 +3928,9 @@ route strengthens Hull's common-quotient technique so that the target
 elements may be chosen inside a prescribed infinite normal subgroup of
 a torsion-free acylindrically hyperbolic group.  No unconditional
 torsion-free finitely presented non-MF group is proved here.
-By Theorem~\ref{thm:saturation}, a group whose
-collapse or normal-Kazhdan defect saturates admits no nontrivial
-homomorphism to any countable MF group at all.
+By Theorem~\ref{thm:saturation}, a group that equals its own collapse
+defect admits no nontrivial homomorphism to any countable MF group at
+all.
 \item Neither soficity nor hyperlinearity of $E$ is decided by the
 results above: the adjoint spectral estimates require operator-norm
 multiplicative control, which permutation and Hilbert--Schmidt models do
