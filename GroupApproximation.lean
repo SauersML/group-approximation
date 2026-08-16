@@ -382,6 +382,7 @@ import GroupApproximation.Sofic.AscendingHNNWreathWitness
 import GroupApproximation.Sofic.AscendingHNNSplitExtension
 import GroupApproximation.Sofic.AscendingHNNTelescopeRadical
 import GroupApproximation.Sofic.AscendingHNNFullTelescopeRadical
+import GroupApproximation.Sofic.TelescopeLimitKernel
 import GroupApproximation.Sofic.ProfiniteTwins
 import GroupApproximation.Sofic.AlternatingLampLiteralPackage
 import GroupApproximation.Sofic.LiteralDoublingWreathNonMF
@@ -509,6 +510,7 @@ import GroupApproximation.Leavitt.Collision19243
 import GroupApproximation.Leavitt.GeneralScheme
 import GroupApproximation.Leavitt.GeneralCornerTheorem
 import GroupApproximation.Sofic.LEFSofic
+import GroupApproximation.Sofic.NotVirtuallyLinear
 import GroupApproximation.Sofic.FreeGroupResiduallyFinite
 import GroupApproximation.Sofic.FreeProductSignReflection
 import GroupApproximation.Endpoint.QuotientNonclosure
@@ -816,7 +818,6 @@ import GroupApproximation.Sofic.BlockCliffordTowerSofic
 import GroupApproximation.Sofic.LiteralSoficAssembly
 import GroupApproximation.Sofic.LiteralSoficEndpoint
 import GroupApproximation.Sofic.LiteralVerticalBridge
-import GroupApproximation.Computability.ListBlankCanonical
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
