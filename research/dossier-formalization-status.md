@@ -32,13 +32,13 @@ formalized in this pass; **TODO** not yet formalized.
 | 13.1 | consecutive levels have index `D` | DONE-PRE | `Sofic/MappingTelescopeFiniteOrbits.level_succ_relIndex_eq` |
 | 13.2 | every telescope level has finite orbits on `G/Γ` | DONE-PRE | `Sofic/MappingTelescopeFiniteOrbits.finite_verticalLevel_orbit` |
 | 13.3 | finite-orbit actions are sofic, exact models | DONE-NEW | `Sofic/SoficActionFiniteOrbits.isSoficAction_of_finite_orbits` |
-| 13.4 | increasing unions preserve action soficity | DONE-NEW | `Sofic/SoficActionFiniteOrbits.isSoficAction_of_locally_finite_orbits` |
-| 13.5 | finite-index HNN coset action is sofic | TODO | 12.1 is now available; remaining work is plumbing the telescope levels into `isSoficAction_of_locally_finite_orbits` |
+| 13.4 | increasing unions preserve action soficity | DONE-NEW | `Sofic/SoficActionFiniteOrbits.isSoficAction_of_locally_finite_orbits`; general form `Sofic/SoficAction.isSoficAction_of_subgroup_cover` |
+| 13.5 | finite-index HNN coset action is sofic | DONE-NEW | `Sofic/AscendingHNNCosetActionSofic.isSoficAction_vertical_cosets` |
 | 14.1 | sofic wreath criterion | TODO | needs 29.6 |
 | 29 | generalized-wreath soficity from first principles | TODO | |
 | 30.2 | finite-index coset actions are sofic | DONE-NEW | `Sofic/SoficActionExamples.isSoficAction_quotient_of_finiteIndex` |
 | 30.1, 30.3-30.7 | Chabauty closure; LERF / LERA actions | TODO | |
-| 31 | universally action-sofic HNN theorem | TODO | |
+| 31.1-31.2 | universally action-sofic HNN theorem | DONE-NEW | `Sofic/AscendingHNNCosetActionSofic` (`UniversallyActionSofic`, `isSoficAction_vertical_cosets_of_uas`) |
 | 33 | involutive compression collapse theorem | DONE-PRE | `Sofic/InvolutionCollapseEndpoint` |
 | 36.1-36.3 | projection collapse, torsion collapse | DONE-PRE | `Sofic/ProjectionCompressionCollapse`, `Sofic/TorsionSpectralCollapse` |
 | 37 | telescope-kernel collapse, exact MF radical | TODO (partial in-repo) | |

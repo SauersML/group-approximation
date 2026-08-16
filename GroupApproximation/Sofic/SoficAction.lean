@@ -118,4 +118,143 @@ def restrict {F F' : Finset G} {E E' : Finset X} {ε : ℝ}
 end SoficActionModel
 
 
+
+/-! ## Restriction along a homomorphism and subgroup covers -/
+
+section Transfer
+
+universe w
+
+variable {G : Type u} [Group G] {H : Type w} [Group H] {X : Type v}
+
+/-- Soficity of an action restricts along any homomorphism into the acting
+group. -/
+theorem IsSoficAction.compHom [MulAction H X] (f : G →* H)
+    (hH : IsSoficAction H X) :
+    @IsSoficAction G _ X (MulAction.compHom X f) := by
+  classical
+  letI : MulAction G X := MulAction.compHom X f
+  intro F E ε hε
+  obtain ⟨M⟩ := hH (F.image f) E ε hε
+  exact ⟨{
+    Site := M.Site
+    siteFintype := M.siteFintype
+    siteDecEq := M.siteDecEq
+    siteNonempty := M.siteNonempty
+    act := fun g => M.act (f g)
+    act_one := by rw [map_one]; exact M.act_one
+    act_mul := by
+      intro g hg h hh
+      rw [map_mul]
+      exact M.act_mul (f g) (Finset.mem_image_of_mem _ hg) (f h)
+        (Finset.mem_image_of_mem _ hh)
+    good := M.good
+    good_card := M.good_card
+    Chart := M.Chart
+    chartFintype := M.chartFintype
+    chart := M.chart
+    chart_inj := M.chart_inj
+    chart_equivariant := by
+      intro g hg s hs hgs x hx hgx
+      have heq : ((f g)⁻¹ • x : X) = (g⁻¹ • x : X) := by
+        show ((f g)⁻¹ • x : X) = (f g⁻¹ • x : X)
+        rw [map_inv]
+      have hgx' : ((f g)⁻¹ • x : X) ∈ E := by rw [heq]; exact hgx
+      have hres := M.chart_equivariant (f g) (Finset.mem_image_of_mem _ hg) s hs
+        hgs x hx hgx'
+      rw [heq] at hres
+      exact hres }⟩
+
+/-- Soficity of an action transfers along a group isomorphism which implements
+the same action. -/
+theorem IsSoficAction.of_mulEquiv [MulAction G X] [MulAction H X] (e : G ≃* H)
+    (hcompat : ∀ (g : G) (x : X), (e g : H) • x = g • x)
+    (hG : IsSoficAction G X) : IsSoficAction H X := by
+  classical
+  intro F E ε hε
+  obtain ⟨M⟩ := hG (F.image e.symm) E ε hε
+  have hsmul : ∀ (h : H) (x : X), (e.symm h) • x = h • x := by
+    intro h x
+    rw [← hcompat (e.symm h) x, MulEquiv.apply_symm_apply]
+  exact ⟨{
+    Site := M.Site
+    siteFintype := M.siteFintype
+    siteDecEq := M.siteDecEq
+    siteNonempty := M.siteNonempty
+    act := fun h => M.act (e.symm h)
+    act_one := by rw [map_one]; exact M.act_one
+    act_mul := by
+      intro g hg h hh
+      rw [map_mul]
+      exact M.act_mul _ (Finset.mem_image_of_mem _ hg) _
+        (Finset.mem_image_of_mem _ hh)
+    good := M.good
+    good_card := M.good_card
+    Chart := M.Chart
+    chartFintype := M.chartFintype
+    chart := M.chart
+    chart_inj := M.chart_inj
+    chart_equivariant := by
+      intro h hh s hs hgs x hx hgx
+      have heq : ((e.symm h)⁻¹ • x : X) = (h⁻¹ • x : X) := by
+        rw [← map_inv, hsmul]
+      have hgx' : ((e.symm h)⁻¹ • x : X) ∈ E := by rw [heq]; exact hgx
+      have hres := M.chart_equivariant (e.symm h)
+        (Finset.mem_image_of_mem _ hh) s hs hgs x hx hgx'
+      rw [heq] at hres
+      exact hres }⟩
+
+variable [MulAction G X]
+
+/-- **Lemma 13.4 in general form.**  If every finite subset of `G` lies in a
+subgroup whose restricted action is sofic, then the action is sofic.  The model
+for the subgroup serves the ambient group directly: extend the approximating map
+by the identity outside the subgroup, and every condition tested on the finite
+set is unchanged. -/
+theorem isSoficAction_of_subgroup_cover
+    (h : ∀ F : Finset G, ∃ K : Subgroup G, (∀ g ∈ F, g ∈ K) ∧
+      IsSoficAction K X) :
+    IsSoficAction G X := by
+  classical
+  intro F E ε hε
+  obtain ⟨K, hFK, hK⟩ := h F
+  set F' : Finset K := F.attach.image (fun p => (⟨p.1, hFK p.1 p.2⟩ : K)) with hF'
+  obtain ⟨M⟩ := hK F' E ε hε
+  have hmemF' : ∀ g (hg : g ∈ F), (⟨g, hFK g hg⟩ : K) ∈ F' := by
+    intro g hg
+    rw [hF']
+    exact Finset.mem_image_of_mem _ (Finset.mem_attach _ ⟨g, hg⟩)
+  exact ⟨{
+    Site := M.Site
+    siteFintype := M.siteFintype
+    siteDecEq := M.siteDecEq
+    siteNonempty := M.siteNonempty
+    act := fun g => if hg : g ∈ K then M.act ⟨g, hg⟩ else 1
+    act_one := by
+      rw [dif_pos K.one_mem]
+      have hone : (⟨(1 : G), K.one_mem⟩ : K) = 1 := rfl
+      rw [hone]
+      exact M.act_one
+    act_mul := by
+      intro g hg h hh
+      have hgK : g ∈ K := hFK g hg
+      have hhK : h ∈ K := hFK h hh
+      rw [dif_pos hgK, dif_pos hhK, dif_pos (K.mul_mem hgK hhK)]
+      have hsplit : (⟨g * h, K.mul_mem hgK hhK⟩ : K) = ⟨g, hgK⟩ * ⟨h, hhK⟩ := rfl
+      rw [hsplit]
+      exact M.act_mul _ (hmemF' g hg) _ (hmemF' h hh)
+    good := M.good
+    good_card := M.good_card
+    Chart := M.Chart
+    chartFintype := M.chartFintype
+    chart := M.chart
+    chart_inj := M.chart_inj
+    chart_equivariant := by
+      intro g hg s hs hgs x hx hgx
+      have hgK : g ∈ K := hFK g hg
+      rw [dif_pos hgK] at hgs ⊢
+      exact M.chart_equivariant ⟨g, hgK⟩ (hmemF' g hg) s hs hgs x hx hgx }⟩
+
+end Transfer
+
 end GroupApproximation
