@@ -219,8 +219,8 @@ opening the proof, have held.
 <!-- LEDGER-COUNTS -->
 | Column | EXACT | MISMATCH | MISSING | UNDER-SPECIFIED | total |
 | --- | --- | --- | --- | --- | --- |
-| statement | 385 | 71 | 65 | 0 | 521 |
-| proof | 396 | 47 | 73 | 5 | 521 |
+| statement | 387 | 71 | 63 | 0 | 521 |
+| proof | 398 | 47 | 71 | 5 | 521 |
 <!-- END-LEDGER-COUNTS -->
 
 ## Anchors
@@ -305,7 +305,7 @@ once in the comment-stripped manuscript; the probe is the drift detector.
 | thm:markedclosed | env | thm:markedclosed | f666d6dd719b2ff9 |
 | prop:horn | env | prop:horn | 3e2c6bb45f9627c7 |
 | cor:cylinder | env | cor:cylinder | 847c38b2b21a9d92 |
-| cor:undecidable | env | cor:undecidable | b89a70a5c82c8fd9 |
+| cor:undecidable | env | cor:undecidable | 70edb45c9d228207 |
 | prop:maximal-cstar | env | prop:maximal-cstar | e804583acb4798be |
 | prop:proper-isometry | env | prop:proper-isometry | e2a8714db1305b83 |
 | rem:maxinfinite | env | rem:maxinfinite | a9437baa2cf68577 |
@@ -376,7 +376,7 @@ once in the comment-stripped manuscript; the probe is the drift detector.
 | p:markedlimit-intro | prose | `The explicit clopen cylinder constructed in the next subsection` | - |
 | p:horn-intro | prose | `can be read as one first-order fact` | - |
 | p:undec-markov | prose | `make MF a Markov` | - |
-| p:undec-adianrabin | prose | `apply the Adian--Rabin construction` | - |
+| p:undec-adianrabin | prose | `run over a group built from a machine` | - |
 | p:mult-products | prose | `The groups $E\times\mathbb Z^{k}$ for $k\ge0$ are` | - |
 | p:mult-continuum | prose | `Beyond finite presentation, pairing $E$` | - |
 | p:limits-opnorm | prose | `The proof is specific to the operator norm.` | - |
@@ -863,11 +863,11 @@ everywhere: the TeX is the specification and does not move).
 | HO.04 | cor:cylinder | the marked groups satisfying R with w ≠ 1 form a nonempty clopen set of non-MF groups | `LiteralMarkedCylinder.literal_nonempty_clopen_nonMF_cylinder` | EXACT | EXACT | literal | unconditional | - | NO | - |
 | HO.05 | cor:cylinder | proof: both conditions constrain finitely many values, the set contains E, and Proposition 11.36 excludes every MF point | `LiteralMarkedCylinder.literalCylinder_isClopen`; `LiteralMarkedCylinder.literalCylinder_nonempty`; `LiteralMarkedCylinder.literalCylinder_subset_nonMF` | EXACT | EXACT | literal | unconditional | - | NO | - |
 | UN.01 | p:undec-markov | MF is a Markov property: the trivial group is MF and the f.p. group E embeds in no MF group | `MarkovMFConsequences.operatorMF_subgroup_hereditary`; `MarkovMFConsequences.exists_finitelyPresented_nonOperatorMF` | EXACT | EXACT | literal | unconditional | - | NO | - |
-| UN.02 | cor:undecidable | no algorithm decides MF from a finite presentation | `MarkovMFConsequences.operatorMF_recognition_undecidable` | MISSING | MISSING | - | literature-input | Rabin58 | NO | the Lean theorem takes an `AdianRabinReduction` as a hypothesis; unconditionally there is no theorem |
-| UN.03 | cor:undecidable | the set of finite presentations of non-MF groups is not even recursively enumerable | `MarkovMFConsequences.operatorMF_negative_side_not_re` | MISSING | MISSING | - | literature-input | Rabin58 | NO | same conditional shape |
-| UN.03b | cor:undecidable | given a reduction and a source problem whose negative side is not r.e., the negative side of MF recognition is not r.e. | `MarkovMFConsequences.manuscriptOperatorMFNegativeSideNotRE` | EXACT | EXACT | literal | unconditional | - | NO | the printed corollary now quantifies the reduction and the not-r.e. hypothesis, so the wrapper matches it with no literature premise of its own |
+| UN.02 | cor:undecidable | given a computable reduction from the halting problem, no algorithm decides MF from a finite presentation | `MarkovMFConsequences.operatorMF_recognition_undecidable_of_haltingReduction` | EXACT | EXACT | literal | unconditional | - | NO | the printed corollary quantifies the reduction and nothing else; undecidability of the halting problem is proved in the development, so no literature premise remains |
+| UN.03 | cor:undecidable | given the same reduction, the set of presentation codes of non-MF groups is not recursively enumerable | `MarkovMFConsequences.operatorMF_negative_side_not_re_of_haltingReduction` | EXACT | EXACT | literal | unconditional | - | NO | same shape as UN.02; the non-enumerable complement of the halting problem is proved rather than cited |
 | UN.04 | p:undec-adianrabin | the Adian–Rabin construction supplies a computable map from word-problem instances to presentations, trivial when w = 1 and containing E when w ≠ 1 | - | MISSING | MISSING | - | literature-input | Rabin58 | NO | the TeX names Novikov–Boone and Adian–Rabin as the inputs the corollary quantifies |
 | UN.05 | p:undec-adianrabin | the computability-theoretic pullback: from any computable reduction, undecidability and failure of r.e. on the negative side follow formally | `MarkovMFConsequences.recognition_undecidable`; `MarkovMFConsequences.negative_side_not_re` | EXACT | EXACT | literal | unconditional | - | NO | the pullback itself is unconditional |
+| UN.05b | p:undec-adianrabin | the same pullback in the manuscript's general form: a reduction from any undecidable source problem makes MF recognition undecidable | `MarkovMFConsequences.operatorMF_recognition_undecidable` | EXACT | EXACT | literal | unconditional | - | NO | the general form is still badged in the prose beside the halting-problem specialization the corollary now prints |
 | UN.06 | p:mult-products | E × ℤ^k for k ≥ 0 are f.p., pairwise nonisomorphic, and non-MF | `ProductMultiplicity.manuscriptInfiniteMultiplicity` | MISMATCH | MISMATCH | literal | unconditional | - | NO | the TeX separates by torsion-free rank of the abelianization; Lean counts homomorphisms into ℤ/2, a deliberate difference the TeX records |
 | UN.07 | p:mult-continuum | pairing E with a continuum of pairwise nonisomorphic f.g. groups yields 2^ℵ₀ pairwise nonisomorphic f.g. non-MF groups | `ContinuumMultiplicity.manuscriptContinuumMultiplicity` | MISSING | MISSING | - | literature-input | Neumann37 | NO | Neumann's family is a quantified hypothesis, as the TeX states |
 | UN.07b | p:mult-continuum | the input family itself: a continuum of pairwise nonisomorphic finitely generated groups, constructed rather than quoted | `NeumannContinuum.manuscriptContinuumMultiplicityUnconditional` | EXACT | EXACT | literal | unconditional | - | NO | removes the Neumann literature input from UN.07; the family is not Neumann's (a lamplighter over free-group coset spaces, not a subdirect product of alternating groups) and is finitely generated, not two-generator, which is all the deduction uses -- the TeX now says so |
