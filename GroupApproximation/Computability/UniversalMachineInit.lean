@@ -1,4 +1,6 @@
 import Mathlib.Computability.TuringMachine.ToPartrec
+import Mathlib.Computability.TuringMachine.StackTuringMachine
+import Mathlib.Computability.TuringMachine.PostTuringMachine
 
 /-!
 # Starting Mathlib's TM2 model where it needs to start
@@ -42,6 +44,28 @@ theorem tm2_init_eq (c : ToPartrec.Code) (v : List ℕ) :
   congr 1
   funext k
   cases k <;> simp [Function.update, K'.elim]
+
+/-! ## The chain composes
+
+With the initialisation aligned, the three translations compose at the level of
+domains, which is all an undecidability argument needs:
+
+* `PartrecToTM2.tr_eval` --- the TM2 model evaluates the code;
+* `TM2to1.tr_eval_dom` --- already a `Dom ↔ Dom`;
+* `TM1to0.tr_eval` --- an equality of `Part`s, so its domains agree too.
+
+The result is a *single* Post--Turing machine, independent of the code, whose
+halting on the encoded input decides whether the code halts. -/
+
+/-- **A Post--Turing machine that runs `c`.**  Mathlib's three translations,
+composed, with the starting state supplied as the `Inhabited` instance. -/
+theorem tm0_eval_dom_iff (c : ToPartrec.Code) (v : List ℕ) :
+    letI : Inhabited Λ' := ⟨trNormal c Cont'.halt⟩
+    (TM0.eval (TM1to0.tr (TM2to1.tr tr))
+        (TM2to1.trInit K'.main (trList v))).Dom ↔ (ToPartrec.Code.eval c v).Dom := by
+  letI : Inhabited Λ' := ⟨trNormal c Cont'.halt⟩
+  rw [TM1to0.tr_eval, TM2to1.tr_eval_dom, TM2.eval, tm2_init_eq c v, tr_eval]
+  simp
 
 end Computability
 end GroupApproximation
