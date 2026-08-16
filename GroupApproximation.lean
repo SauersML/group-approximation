@@ -292,7 +292,8 @@ import GroupApproximation.Algebra.PermutationalWreathAmenable
 import GroupApproximation.Algebra.PermutationalWreathLinear
 import GroupApproximation.Algebra.PermutationalWreathRadicalTame
 import GroupApproximation.Algebra.WreathLampPushforward
-import GroupApproximation.Algebra.LampTelescopeKernel
+import GroupApproximation.Algebra.AbelianLampPushforward
+import GroupApproximation.Algebra.AbelianLampTelescopeKernel
 import GroupApproximation.Algebra.IntJacobson
 import GroupApproximation.Algebra.FiniteTypeField
 import GroupApproximation.Algebra.Malcev
