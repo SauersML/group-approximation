@@ -703,6 +703,23 @@ theorem derives_iff {R : RewriteSystem (Letter Γ Λ)} (hR : Presents M R)
       ∃ e, Reach (step M) c e ∧ Reach (step M) d e :=
   (simulation hR).derives_iff c d
 
+/-- A run puts its endpoints in the same class, with no halting hypothesis: a
+machine step is a rewriting step, and rewriting steps are equalities. -/
+theorem mk_eq_mk_of_reach {R : RewriteSystem (Letter Γ Λ)} (hR : Presents M R)
+    {c d : Cfg Γ Λ} (h : Reach (step M) c d) :
+    StringRewriting.mk R (encode c) = StringRewriting.mk R (encode d) :=
+  StringRewriting.mk_eq_mk_iff.mpr (((simulation hR).reduces_of_reach h).derives)
+
+/-- **The word problem is the reachability problem.**  Against a halting
+configuration, equality in the presented monoid says exactly that the machine
+run from `c` arrives there --- so an algorithm for this monoid's word problem is
+an algorithm for the machine's reachability problem. -/
+theorem mk_eq_mk_iff_reach_of_halts {R : RewriteSystem (Letter Γ Λ)}
+    (hR : Presents M R) {c d : Cfg Γ Λ} (hd : step M d = none) :
+    StringRewriting.mk R (encode c) = StringRewriting.mk R (encode d) ↔
+      Reach (step M) c d :=
+  (simulation hR).mk_eq_mk_iff_reach_of_halts hd
+
 /-! ## The rule set, exhibited
 
 `Presents` says *which* rules a system must have; it does not build one, so
@@ -820,6 +837,17 @@ theorem machineSystem_mk_eq_mk_iff {states : List Λ} {tapes : List Γ}
     StringRewriting.mk (machineSystem M states tapes) (encode c) =
       StringRewriting.mk (machineSystem M states tapes) (encode d) ↔ c = d :=
   mk_eq_mk_iff_of_halts (presents_machineSystem M hstates htapes) hc hd
+
+/-- **The listed system's word problem is the machine's reachability problem.**
+Everything here is explicit: the rules are a computable list, and equality of the
+two words is exactly "the run from `c` reaches the halt `d`". -/
+theorem machineSystem_mk_eq_mk_iff_reach {states : List Λ} {tapes : List Γ}
+    (hstates : ∀ q : Λ, q ∈ states) (htapes : ∀ a : Γ, a ∈ tapes)
+    {c d : Cfg Γ Λ} (hd : step M d = none) :
+    StringRewriting.mk (machineSystem M states tapes) (encode c) =
+      StringRewriting.mk (machineSystem M states tapes) (encode d) ↔
+      Reach (step M) c d :=
+  mk_eq_mk_iff_reach_of_halts (presents_machineSystem M hstates htapes) hd
 
 /-- Derivability in the listed system is meeting of machine runs. -/
 theorem machineSystem_derives_iff {states : List Λ} {tapes : List Γ}
