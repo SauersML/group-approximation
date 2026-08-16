@@ -506,16 +506,32 @@ end Blocks
 
 The inputs of Theorem 4.1 are bundled as a structure so that the instantiation
 against the split (S1), the block geometry (S2), the level orbits (S3) and the
-sub-amalgam residual finiteness (M) is a single object to build.  Two of the
-fields carry trust surface and are the reason the theorem is conditional:
+sub-amalgam residual finiteness (M) is a single object to build.
 
-* `subAmalgam_residuallyFinite` — statement (M): the finite sub-amalgams `M_J`
-  are residually finite.
-* `level_residuallyFinite` — residual finiteness of the telescope levels.  For
-  the matrix levels this is unconditional; for the *presented* levels it
-  carries the identification of the presented base with the matrix group.
+**No field is a literature input.**  The two that were expected to carry trust
+surface do not:
 
-The remaining fields are structural or geometric and import nothing.
+* `subAmalgam_residuallyFinite` — statement (M).  The amalgam side proves the
+  stronger, hypothesis-free statement that *every finitely generated* subgroup
+  of the lamp kernel is residually finite; `blockSpan_fg` supplies the missing
+  finite-generation hypothesis, so the field is dischargeable from it.  It
+  needs neither the amalgam normal form nor Karrass--Pietrowski--Solitar.
+* `level_residuallyFinite` — residual finiteness of the telescope levels.  The
+  telescope of the literal chain is built over the *matrix* base, so a level is
+  the range of an injective level map out of it and residual finiteness follows
+  from that of the matrix base by transport along the induced isomorphism.  No
+  identification of the presented base with the matrix group is used, and that
+  identification is in any case proved in the repository, so the `B ≅ Γ̄`
+  caveat recorded in the soficity artifact's audit header does not apply here.
+
+The fields are hypotheses for modularity, not because they are unproved.
+
+What the instantiation does still rest on is two facts about the orbital graph
+--- that distinct sites of one block are adjacent, and that no site is adjacent
+to itself --- since the identification of the lamp kernel with the block
+amalgam is stated relative to a block-Clifford presentation, and that
+presentation is discharged only modulo those two.  They are orbit computations,
+not literature inputs and not analysis.
 -/
 
 section Core
@@ -526,7 +542,29 @@ section Core
 the block set of the marked orbital graph.  `level` is the telescope filtration
 `Γ_n`, increasing and exhausting; `block` is the family `P_i` of block
 subgroups, each finite of order `512`; `blockAction` is the permutation action
-of the telescope on the block set. -/
+of the telescope on the block set.
+
+**Design invariant --- do not strengthen a field past it.**  Every finiteness
+or residual-finiteness field below is indexed either by a single level `n`
+(`level_finite_orbits`, `level_residuallyFinite`) or by a finite block set `J`
+(`subAmalgam_residuallyFinite`), and `block_finite` is per-block.  No field
+asserts finiteness quantified over all of `Tel`, and no field mentions the
+vertical group `V = T ⋊ ⟨τ⟩` at all.  That is not tidiness; it is what makes
+the bundle satisfiable.
+
+In every finite quotient of `V` all telescope levels have one image, so `B` is
+not separable in `V` and the site set collapses in every `V`-equivariant finite
+model.  The obvious "simplifications" of this structure are exactly the ones
+that walk into that collapse and are false: replacing `level_finite_orbits` by
+finiteness of the `Tel`-orbit of a block, or asking the restricted action of
+all of `Tel` on `M_J` to have finite range.  What is safe is what is written,
+because the collapse is a `T`-phenomenon invisible inside a single level ---
+`B` has finite index in `Γ_n`, so it *is* separable there, and the block models
+live in one `Γ_n` by construction.
+
+The finite quotients this file actually produces are quotients of a *level* by
+the finite-index kernel of its action on `sites(J)`.  They are never finite
+quotients of `V`, of `T`, or of the core. -/
 structure TelescopeCoreData (Lamp : Type) (Tel : Type u) (Block : Type v)
     [Group Lamp] [Group Tel] where
   /-- (S1) The action of the telescope on the lamp kernel. -/
