@@ -8,6 +8,7 @@ distinct_from:
   mf-not-closed-under-integer-extensions: That shrinks the quotient to `Z` and strengthens the kernel to LEF; this instead shrinks the kernel to elementary abelian while keeping a large linear quotient.
   mf-is-commensurability-invariant: That is the positive permanence statement for finite index; this is the negative statement for split extensions, and the pair delimits which extensions preserve MF.
 artifacts:
+  - GroupApproximation/Sofic/AscendingHNNSplitExtension.lean
   - research/artifacts/multi-mover-hnn-dossier-2026-08-15.md
 ---
 

@@ -6,6 +6,7 @@ title: The collapse criterion needs no distinguished mover
 distinct_from:
   compression-torsion-collapse: That claim is the compression-form collapse (one-sided compressor, centralized witness); this is the action-form criterion over a G-set with a Kazhdan subgroup and finitely many movers, with an EXISTENTIAL conclusion over the mover set.
 artifacts:
+  - GroupApproximation/Sofic/AscendingHNNWreathWitness.lean
   - research/artifacts/unified-mf-compression-external-2026-08-15.md
   - research/artifacts/multi-mover-verification-2026-08-15.md
   - research/artifacts/multi-mover-hnn-dossier-2026-08-15.md
