@@ -13,15 +13,34 @@ import GroupApproximation.Sofic.NormTraceGap
 import GroupApproximation.Sofic.WeakMFVectorGNS
 
 /-!
-# Closed forms of the parameterized manuscript badges
+# Closed forms of the parameterized manuscript badges — SUPERSEDED
 
-Every theorem here is a zero-input restatement: nothing to the left of
-the colon, every hypothesis a quantified antecedent of the printed
-statement.  Manuscript badges point at these forms so that each tag
-certifies a self-contained proposition; the parameterized originals
-remain the working API.  The two full-MF-radical wrappers quantify the
-routing datum visibly, exactly as the manuscript's conditional
-statement does.
+**Do not point a manuscript badge at anything in this file.**
+
+Every theorem here is a zero-input restatement of an endpoint that was
+parameterized when this module was written (38764495).  That premise no
+longer holds: the six "Zero-input badges" commits of 2026-08-16
+rewrote the *originals* into closed `∀`-form in place, keeping their
+universe polymorphism.  Every one of the twenty declarations wrapped
+here is therefore already closed, already cited by the manuscript, and
+already more general than its wrapper.
+
+More general, specifically.  Eleven of the twenty wrappers quantify
+over `Type` where the original quantifies over `Type u` or `Type*`, and
+`manuscriptMFRecognitionUndecidable` collapses two independent
+universes into one.  Each wrapper is proved by `exact <original> …`,
+which certifies only that the wrapper *follows* from the original --- a
+strictly weaker restatement compiles exactly as happily.  So a badge
+moved onto one of these would silently certify less than the sentence
+above it in the manuscript: `manuscriptProperCompressionTraceless`
+covers only `Type 0` C*-algebras, while the printed claim, and
+`no_faithfulTracialState` itself, cover every C*-algebra in every
+universe.
+
+This layer is kept only so the supersession is on the record rather
+than rediscovered.  Nothing cites it.  Retiring it is the clean end
+state; a second hand-maintained copy of twenty propositions has already
+drifted from its originals once.
 -/
 
 namespace GroupApproximation
