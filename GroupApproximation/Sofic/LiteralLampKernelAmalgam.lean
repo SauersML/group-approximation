@@ -1356,6 +1356,56 @@ theorem blockGroupOf_card
       (blockGroupOf blockOf c i) E.toMonoidHom E.injective).toEquiv, himg]
   exact blockCard_eq_512 Block i
 
+/-- **The block subgroups are finite.**  This is the finite-generating-set
+input of the telescope-core lane: the level permutes the finite set
+`⋃ i ∈ J, blockGroupOf blockOf c i`, so a restricted action has finite range. -/
+theorem blockGroupOf_finite
+    (chart : ∀ i : Block, Fin 8 ≃ {s : Site // blockOf s = i})
+    {N : Type} [Group N] {c : Site → N} {ζ : N}
+    (h : IsBlockCliffordPresentation Block Site blockOf N c ζ) (i : Block) :
+    ((blockGroupOf blockOf c i : Subgroup N) : Set N).Finite := by
+  have hpos : 0 < Nat.card (blockGroupOf blockOf c i) := by
+    rw [blockGroupOf_card blockOf chart h i]
+    norm_num
+  haveI : Finite (blockGroupOf blockOf c i) := (Nat.card_pos_iff.mp hpos).2
+  exact Set.toFinite _
+
+/-- **The blocks generate.**  Every lamp lies in the block subgroup of its own
+block, and the central involution is a commutator of two lamps of any single
+block, so the block subgroups generate the whole lamp kernel.  With
+`blockGroupOf_finite` this is the `blockSpan block Set.univ = ⊤` /
+`block_finite` pair the telescope-core lane consumes. -/
+theorem closure_iUnion_blockGroupOf [Nonempty Block]
+    (chart : ∀ i : Block, Fin 8 ≃ {s : Site // blockOf s = i})
+    {N : Type} [Group N] {c : Site → N} {ζ : N}
+    (h : IsBlockCliffordPresentation Block Site blockOf N c ζ) :
+    Subgroup.closure
+        (⋃ i : Block, ((blockGroupOf blockOf c i : Subgroup N) : Set N)) = ⊤ := by
+  have hmem : ∀ s : Site,
+      c s ∈ Subgroup.closure
+        (⋃ i : Block, ((blockGroupOf blockOf c i : Subgroup N) : Set N)) := by
+    intro s
+    refine Subgroup.subset_closure (Set.mem_iUnion.mpr ⟨blockOf s, ?_⟩)
+    exact Subgroup.subset_closure ⟨s, rfl, rfl⟩
+  obtain ⟨i₀⟩ := (inferInstance : Nonempty Block)
+  have hne : siteEquiv blockOf chart ⟨i₀, 0⟩
+      ≠ siteEquiv blockOf chart ⟨i₀, 1⟩ := by
+    intro hc
+    have h01 : (⟨i₀, 0⟩ : (i : Block) × Fin 8) = ⟨i₀, 1⟩ :=
+      (siteEquiv blockOf chart).injective hc
+    exact absurd (sigma_mk_injective h01) (by decide : ¬((0 : Fin 8) = 1))
+  have hζ : ζ ∈ Subgroup.closure
+      (⋃ i : Block, ((blockGroupOf blockOf c i : Subgroup N) : Set N)) := by
+    have hb := h.braid (siteEquiv blockOf chart ⟨i₀, 0⟩)
+      (siteEquiv blockOf chart ⟨i₀, 1⟩)
+      (by rw [blockOf_siteEquiv blockOf chart ⟨i₀, 0⟩,
+        blockOf_siteEquiv blockOf chart ⟨i₀, 1⟩]) hne
+    rw [← hb, commutatorElement_def]
+    exact Subgroup.mul_mem _ (Subgroup.mul_mem _ (Subgroup.mul_mem _
+      (hmem _) (hmem _)) (Subgroup.inv_mem _ (hmem _)))
+      (Subgroup.inv_mem _ (hmem _))
+  exact h.generated _ hζ hmem
+
 end LiteralInterface
 
 /-! ### The literal forty-one-relator group `E` -/

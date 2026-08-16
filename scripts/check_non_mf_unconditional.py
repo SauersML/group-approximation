@@ -519,6 +519,28 @@ class Corpus:
     corpus_props: set[str]
     discharged: set[str]
     by_name: dict[str, Declaration] = field(default_factory=dict)
+    corpus_namespaces: set[str] = field(default_factory=set)
+
+    def resolve(self, head: str) -> str:
+        """`Ns.Foo` written from outside `Ns` is the same name as `Foo`.
+
+        `type_head` reports a premise or conclusion head exactly as written, so
+        one corpus name has two spellings depending on whether the writer was
+        inside its namespace.  Both sides of the discharge fixpoint compare
+        against short names, so the qualified spelling silently dropped out of
+        *both*: a theorem concluding `HNNTorsionFree.ExistsCyclicConjugate`
+        produced nothing, and a premise requiring it needed nothing.  The
+        second half is the dangerous one -- it is a conditional the gate did
+        not report.
+
+        Only a prefix that is really a corpus namespace is stripped.  Matching
+        on the last component alone would collide with Mathlib: the corpus
+        defines `IsComplete`, and so does Mathlib.
+        """
+        prefix, _, last = head.rpartition(".")
+        if prefix and prefix in self.corpus_namespaces and self.is_corpus_name(last):
+            return last
+        return head
 
     def is_corpus_name(self, head: str) -> bool:
         return head in self.corpus_types or head in self.corpus_props
@@ -573,8 +595,24 @@ class Corpus:
 def build_corpus(root: Path) -> Corpus:
     """Index the Lean corpus and compute which corpus-defined names it discharges."""
     modules: dict[Path, dict[str, Declaration]] = {}
+    corpus_namespaces: set[str] = set()
     for path in sorted((root / "GroupApproximation").rglob("*.lean")):
         modules[path] = scan_module(path)
+        # Namespaces the corpus actually opens, so `resolve` can tell a corpus
+        # name wearing its namespace from a Mathlib name that merely ends the
+        # same way.  Both the bare token and the enclosing path are recorded:
+        # `A.B.Foo` may be written against `namespace A.B` or against a
+        # `namespace B` nested inside a `namespace A`.
+        stack: list[str] = []
+        source = _strip_block_comments(path.read_text(encoding="utf-8"))
+        for match in SCOPE_LINE.finditer(source):
+            kind, name = match.group("kind"), match.group("name")
+            if kind == "namespace" and name:
+                stack.append(name)
+                corpus_namespaces.add(name)
+                corpus_namespaces.add(".".join(stack))
+            elif kind == "end" and stack and name == stack[-1]:
+                stack.pop()
 
     corpus_types: set[str] = set()
     corpus_props: set[str] = set()
@@ -587,6 +625,14 @@ def build_corpus(root: Path) -> Corpus:
                     corpus_props.add(declaration.short_name)
 
     corpus_names = corpus_types | corpus_props
+
+    def resolve(head: str) -> str:
+        """`Corpus.resolve`, before the `Corpus` exists to carry it."""
+        prefix, _, last = head.rpartition(".")
+        if prefix and prefix in corpus_namespaces and last in corpus_names:
+            return last
+        return head
+
     # producers[head] = list of premise-head sets, one per declaration producing it
     producers: dict[str, list[set[str]]] = {}
     for declarations in modules.values():
@@ -594,13 +640,13 @@ def build_corpus(root: Path) -> Corpus:
             if declaration.keyword in ("structure", "class", "inductive", "axiom",
                                        "opaque"):
                 continue
-            heads = produced_heads(declaration) & corpus_names
+            heads = {resolve(head) for head in produced_heads(declaration)} & corpus_names
             # A self-requirement is kept, not dropped: a transport
             # `ProperProjectionCompression A → ProperProjectionCompression B`
             # produces nothing until something produces its input.
             needs = {
-                binder.head for binder in declaration.build_premises
-                if binder.head in corpus_names
+                resolve(binder.head) for binder in declaration.build_premises
+                if resolve(binder.head) in corpus_names
             }
             for head in heads:
                 if declaration.short_name == head:
@@ -623,7 +669,8 @@ def build_corpus(root: Path) -> Corpus:
             if any(needs <= discharged for needs in requirement_sets):
                 discharged.add(head)
                 changed = True
-    return Corpus(modules, corpus_types, corpus_props, discharged, by_name)
+    return Corpus(modules, corpus_types, corpus_props, discharged, by_name,
+                  corpus_namespaces)
 
 
 # ---------------------------------------------------------------------------
@@ -874,7 +921,7 @@ def classify(
 
     conclusion = corpus.unfolded_conclusion(declaration)
     for binder, origin in corpus.unfolded_premises(declaration):
-        head = binder.head
+        head = corpus.resolve(binder.head)
         if not head:
             continue
         if head in roster:
@@ -893,7 +940,11 @@ def classify(
         # is `uxu*`" says something whether or not commutants exist.  A premise
         # the conclusion never mentions is doing a different job -- it is
         # buying the conclusion with data the corpus cannot supply.
-        if re.search(rf"(?<![\w'.]){re.escape(head)}(?![\w'])", conclusion):
+        # `head` is resolved, so the conclusion may spell it either way; the
+        # optional prefix keeps the dot-excluding lookbehind from rejecting the
+        # qualified spelling it was written to guard against.
+        if re.search(rf"(?<![\w'.])(?:[^\W\d][\w'!?]*\.)*{re.escape(head)}(?![\w'])",
+                     conclusion):
             continue
         kind = "structure" if head in corpus.corpus_types else "predicate"
         findings.append((

@@ -1,0 +1,178 @@
+import GroupApproximation.Analysis.CStarTensorProductConcrete
+
+/-!
+# The minimal (spatial) tensor product of C⋆-algebras: entry point and roadmap
+
+## The gap this addresses
+
+`non_mf_groups_exist.tex` makes two operator-algebraic assertions that are not
+merely unproved in this development but **unstatable** at the pinned Mathlib
+revision:
+
+* the reduced group C⋆-algebra of the witness group is **exact**
+  (lines 3053--3065), and
+* a certain algebra is **not nuclear** (Lance's theorem).
+
+Both notions are defined through the minimal tensor product `⊗_min`, and
+Mathlib has no C⋆-tensor product of any kind.  The string `nuclear` does not
+occur anywhere in Mathlib at the pinned revision `905b9581`
+(`git grep -i nuclear` returns nothing), and neither does any C⋆-norm on a
+tensor product.
+
+This module is the entry point for the missing foundation.  It imports the
+layers that are complete and records what remains.
+
+## What Mathlib *does* have (verified against the pinned revision)
+
+An earlier survey in this directory understated this substantially, so the
+facts are recorded with file references:
+
+* `Mathlib/Algebra/Star/TensorProduct.lean` --- `Star (A ⊗[R] B)` with
+  `@[simp] star_tmul : star (x ⊗ₜ y) = star x ⊗ₜ star y := rfl`, plus
+  `InvolutiveStar`, `StarAddMonoid`, `StarModule R (A ⊗[R] B)`.
+* `Mathlib/RingTheory/TensorProduct/Basic.lean` --- `Semiring`, `Ring`,
+  `Algebra R (A ⊗[R] B)`, and (lines 743--757) `StarMul` and
+  `StarRing (A ⊗[R] B)`.  **The ⋆-algebra `A ⊙ B` therefore costs nothing.**
+* `Mathlib/RingTheory/TensorProduct/Maps.lean` --- `Algebra.TensorProduct.lift`,
+  the universal property for a pair of algebra maps with commuting ranges.
+* `Mathlib/Analysis/InnerProductSpace/TensorProduct.lean` --- the inner product
+  space structure on the *algebraic* `E ⊗[𝕜] F`, with `inner_tmul`,
+  `norm_tmul : ‖x ⊗ₜ y‖ = ‖x‖ * ‖y‖`, `ContinuousLinearMap.rTensor`/`lTensor`
+  (with `rTensor_mul`, `lTensor_mul`), `TensorProduct.mapL` and
+  `norm_mapL_le : ‖mapL f g‖ ≤ ‖f‖ * ‖g‖`, and the isometry API.  No
+  finite-dimensionality is assumed.
+* `Mathlib/Analysis/InnerProductSpace/Completion.lean` --- `InnerProductSpace 𝕜
+  (Completion E)`, so a genuine Hilbert-space tensor product `H ⊗̂ K` *is*
+  assemblable as `Completion (H ⊗[ℂ] K)`.
+* `Mathlib/Analysis/Normed/Module/Completion.lean` --- `NormedRing
+  (Completion A)` for a seminormed ring `A`.
+* `Mathlib/Analysis/CStarAlgebra/Hom.lean` --- `NonUnitalStarAlgHom.norm_map`:
+  an injective ⋆-homomorphism of C⋆-algebras is isometric.
+
+## What this development adds
+
+* `CStarTensorProductAdjointable.lean` --- the adjointable bounded operators on
+  a complex inner product space, and the **C⋆-identity** `‖T⋆T‖ = ‖T‖²` proved
+  with **no completeness assumption**, together with closure of adjointability
+  under `0, 1, +, -, •, ∘`.
+* `CStarTensorProductSeminorm.lean` --- `IsCStarSeminorm` / `IsCStarNorm`
+  (star-invariance derived, not assumed), `StarRep`, and the theorem that the
+  operator seminorm of a ⋆-representation by adjointable operators is a
+  C⋆-seminorm --- a C⋆-norm when the representation is faithful.
+* `CStarTensorProductSpatial.lean` --- `isAdjoint_mapL` (the adjoint of
+  `S ⊗ T` is `S⋆ ⊗ T⋆`), **`norm_mapL : ‖mapL S T‖ = ‖S‖ * ‖T‖`** (Mathlib
+  has only `≤`), the product representation `π ⊗ ρ` of `A ⊗[ℂ] B` on
+  `H ⊗[ℂ] K` built from `Algebra.TensorProduct.lift`, and hence the **spatial
+  norm relative to a fixed pair of representations, fully proved to be a
+  C⋆-seminorm** and a C⋆-norm when faithful.
+* `CStarTensorProductConcrete.lean` --- `StarRep.ofStarAlgHom` (every
+  ⋆-homomorphism into `B(H)` for Hilbert `H` is a `StarRep`, so the theory is
+  not vacuous and covers the concretely represented algebras of this
+  repository), and the **cross-norm property** `‖a ⊗ₜ b‖ = ‖a‖ * ‖b‖`.
+
+### The design decision that made this reachable
+
+The textbook construction completes `H ⊗ K` to a Hilbert space first.  **That
+completion is not needed to define the norm.**  The C⋆-identity
+`‖T‖² = ‖T⋆T‖` follows from Cauchy--Schwarz and the definition of the operator
+norm alone; completeness, the Riesz representation theorem, and the existence
+of adjoints play no part.  So the entire spatial construction is carried out on
+the *algebraic* tensor product `H ⊗[ℂ] K`, which Mathlib already makes an inner
+product space.  Completion re-enters only at the very last step, to turn the
+C⋆-normed ⋆-algebra `A ⊙ B` into a C⋆-algebra.
+
+Mathlib's `InnerProductSpace 𝕜 (Completion E)` means the completed route is
+*also* available; it was not taken because it is strictly more work for the
+same norm --- one would have to transport every operator through the
+completion --- and because the pre-Hilbert statement is the more general one.
+
+## Roadmap: what is left, in dependency order
+
+Estimates are for a from-scratch Mathlib-quality build, revised against what
+the pinned revision actually contains.
+
+### Stage A --- faithfulness of `π ⊗ ρ` on all of `A ⊙ B`  (medium)
+
+Non-degeneracy is currently proved only on elementary tensors
+(`spatialNorm_tmul_ne_zero`).  For a general `x = ∑ aᵢ ⊗ bᵢ` one needs the
+**slice maps**: for a state `ψ` on `B`, the map `R_ψ : A ⊙ B → A` with
+`R_ψ (a ⊗ b) = ψ(b) • a`, and its continuity for the spatial norm.  Requires
+states on a C⋆-algebra and the fact that they separate points (Mathlib has
+`GelfandNaimarkSegal`; what it provides must be audited).  *~800 lines.*
+
+### Stage B --- completion of a C⋆-normed ⋆-algebra  (medium)
+
+`NormedRing (Completion A)` is already in Mathlib for a seminormed ring, with
+`norm_mul_le` proved by density.  What is missing:
+
+* `Star (Completion A)` --- extend the isometric involution along
+  `Completion.map`, then `star_involutive`, `star_add`, `star_mul` and
+  `norm_star` by density (`Completion.induction_on₂` against a closed
+  predicate, exactly as Mathlib proves `norm_mul_le`);
+* the C⋆-identity on the completion, again by density;
+* `Algebra ℂ (Completion A)` for **non**commutative `A` --- Mathlib's
+  `NormedAlgebra 𝕜 (Completion A)` instance is stated only for
+  `SeminormedCommRing A`, so the noncommutative case needs supplying;
+* assembly of `CStarAlgebra (Completion A)` (`toNormedRing`, `toStarRing`,
+  `toCompleteSpace`, `toCStarRing`, `toNormedAlgebra`, `toStarModule`).
+
+*~600 lines.*  With Stage B, `A ⊗_{π,ρ} B` exists as a genuine C⋆-algebra.
+
+### Stage C --- independence of the representations (Takesaki)  (research scale)
+
+This is the theorem that makes `⊗_min` canonical, and the only reason the
+construction above is still indexed by `(π, ρ)`.  Route: states and GNS
+(C.1); the universal representation as a Hilbert direct sum of GNS
+representations, and its faithfulness (C.2); slice maps from Stage A (C.3);
+the independence theorem itself (C.4).  *~3000--5000 lines.*
+
+Note an alternative that yields a canonical norm without C.4: define the
+minimal norm as a supremum over a *set* of representations manufactured from
+states.  The pointwise supremum of a bounded family of C⋆-seminorms is a
+C⋆-seminorm --- squaring is monotone on `[0, ∞)`, so the C⋆-identity survives
+the supremum --- so this is cheap.  It does not remove the theorem: identifying
+that supremum with the norm computed from *one* faithful pair is still C.4.
+
+### Stage D --- what the manuscript actually cites  (out of reach)
+
+Quotients of C⋆-algebras by closed two-sided ideals (needed even to *state*
+exactness; Mathlib's `Ideal.Quotient.normedCommRing` is commutative-only and
+the quotient C⋆-identity needs an approximate unit, for which Mathlib does
+have `CStarAlgebra/ApproximateUnit.lean`); the definition of exactness;
+nuclearity and the completely positive approximation property; Lance's
+theorem; Kirchberg's `exact ↔ nuclearly embeddable`; Ozawa's
+`property A → Cred(G) exact`; Guentner--Higson--Weinberger for linear groups.
+The last four are research-scale formalizations that no proof assistant
+library has approached.  See `CStarExactness.lean` and
+`ExactnessPermanence.lean` for the accounting of those rows.
+
+## Honest verdict
+
+Revised estimate: Stages A and B together are roughly 1400 lines of ordinary
+formalization, and they would deliver `A ⊗_{π,ρ} B` as an honest C⋆-algebra
+with a faithful cross-norm.  Stage C is a research-scale project on its own,
+and until it is done the minimal tensor product cannot be written `⊗_min`
+without lying about canonicity.  Stage D is out of reach.
+
+Therefore **C⋆-exactness remains out of reach for this development**, and the
+correct form of the manuscript's exactness row is the one it already uses: an
+explicit statement that the formal library has no definition of exact
+C⋆-algebras.  What has changed is the size of the hole: the vocabulary needed
+to *state* a C⋆-tensor norm now exists, is machine-checked, and needs no
+literature input.
+
+## Manuscript status
+
+`EXACT`: none --- no manuscript step is certified by this lane.
+`MISSING`: the exactness assertion of lines 3053--3065, and the nuclearity
+assertion, for the reasons above.
+-/
+
+namespace GroupApproximation
+namespace CStarTensor
+
+/-! This module is an entry point: it re-exports the completed layers and
+carries the roadmap above.  No declarations are made here. -/
+
+end CStarTensor
+end GroupApproximation

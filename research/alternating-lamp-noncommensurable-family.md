@@ -9,6 +9,7 @@ distinct_from:
   profinite-twins-opposite-mf: That is a two-group statement pairing one non-MF group with one MF group; this is an infinite family of mutually non-MF groups, all sharing the single MF quotient of that pair.
   simple-lamp-radical-one-relation: That measures the presentation-theoretic size of a single member's hidden kernel; this compares different members of the family to each other.
 artifacts:
+  - GroupApproximation/Algebra/AlternatingLampNoncommensurable.lean
   - research/artifacts/multi-mover-hnn-dossier-2026-08-15.md
   - GroupApproximation/Algebra/PermutationalWreathSimple.lean
 ---

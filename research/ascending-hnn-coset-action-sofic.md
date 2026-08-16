@@ -59,3 +59,43 @@ not known to imply UAS, and co-amenability of the stabilizer supplies
 Folner sets in the orbit space, not the injective orbit charts the
 definition wants.  Those are different data, which is why the finite-index
 proof is a separate argument rather than a restatement of co-amenability.
+
+Sharpened 2026-08-16.  Both existing sufficient conditions over-assume, and the
+hypothesis can be cut down to a single subgroup.  `Cosets` is by definition
+`Vertical ⧸ (iotaVertical α hα).range`, so the transitive criterion
+`isSoficAction_quotient_of_separable` applies to it directly: the action is
+sofic as soon as **the base copy of Gamma is a separable subgroup of G**.  UAS
+constrains every action of the base and the LERF route constrains every
+finitely generated subgroup of the base; the action has one point stabiliser,
+so only that subgroup can matter.  Machine-checked as
+`MarkedCompression.isSoficAction_vertical_cosets_of_separable_base`
+(`Sofic/AscendingHNNSeparableCosetAction.lean`), with the wreath corollary
+beside it.  This does not answer the question; it relocates it from soficity to
+classical subgroup separability for one explicit subgroup.
+
+What that separability unwinds to, which is the useful part.  Let
+N = ker(G -> Z) = union of the levels Gamma_{-n} = t^{-n} Gamma t^n, let L be
+of finite index in G with Gamma <= L, and set M = L cap N, of finite index m in
+N.  Conjugating level n back to the base, M_n := t^n (M cap Gamma_{-n}) t^{-n}
+is a subgroup of Gamma of index at most m, and the levels fit together as
+M_n = alpha^{-1}(M_{n+1}), equivalently alpha(M_n) <= M_{n+1}, with M_0 = Gamma.
+For gamma' = t^{-1} gamma t in Gamma_{-1} \ Gamma -- that is, gamma in
+Gamma \ alpha(Gamma) -- one has gamma' in M iff gamma in M_1, so excluding
+gamma' from L is exactly: a finite-index M_1 <= Gamma with alpha(Gamma) <= M_1
+and gamma not in M_1.  That is separability of alpha(Gamma) in Gamma.  A
+general gamma' in Gamma_{-k} needs the whole tower: finite-index M_k of
+uniformly bounded index with alpha(M_{k-1}) <= M_k and alpha^{k-1}(gamma) not
+in M_k.  The shortcut M_k = Gamma for large k is not available: then M swallows
+the level containing gamma'.
+
+This says why the two flanks behave as they do.  Over a LERF base the tower is
+free, since every M_k may be taken finitely generated and separability is then
+automatic -- which is the content of the UAS route, now visibly an overkill
+route.  Residual finiteness separates elements from the identity, whereas the
+tower asks to separate elements from the infinite-index subgroups
+alpha^k(Gamma); the two are not comparable, and nothing here suggests RF
+suffices.  A counterexample would be a residually finite Gamma with an
+infinite-index self-embedding for which alpha(Gamma) is not separable -- easy
+to arrange in isolation -- together with a proof that non-separability really
+obstructs the action models rather than merely this route to them.  That
+converse is the remaining gap: separability is proved sufficient, not necessary.

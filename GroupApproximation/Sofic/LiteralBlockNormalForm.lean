@@ -188,8 +188,8 @@ theorem verticalWord_displacedLampWord :
 theorem verticalWord_markedWord : verticalWord markedWord = 1 := by
   show verticalWord (commutatorWord displacedLampWord
     (v1Word * displacedLampWord * v1Word⁻¹)) = 1
-  rw [map_commutatorWord, map_mul, map_mul, map_inv,
-    verticalWord_displacedLampWord, mul_one, mul_inv_cancel]
+  rw [map_commutatorWord, verticalWord_displacedLampWord, map_mul, map_mul,
+    map_inv, verticalWord_displacedLampWord, mul_one, mul_inv_cancel]
   exact commutatorElement_one_left _
 
 /-- Every displayed relator of the literal presentation dies once the lamp
@@ -335,7 +335,8 @@ theorem baseSubgroup_le_blockSubgroup : baseSubgroup ≤ blockSubgroup :=
   le_sup_left
 
 theorem vBeta_mem_blockSubgroup : vBeta ∈ blockSubgroup :=
-  le_sup_right (Subgroup.subset_closure rfl)
+  (le_sup_right : Subgroup.closure {vBeta} ≤ blockSubgroup)
+    (Subgroup.subset_closure rfl)
 
 /-- The block set `I = V/K`. -/
 abbrev Block : Type := Vertical ⧸ blockSubgroup
@@ -709,6 +710,7 @@ theorem toModel_comp_baseMap : toModel.comp baseMap = modelBase := by
 /-- **The marked word is the central sign of the Clifford factor.** -/
 @[simp] theorem toModel_mark :
     toModel mark = SemidirectProduct.inl lampSign := by
+  show realizationHom modelRealization mark = SemidirectProduct.inl lampSign
   rw [realizationHom_mark]
   exact model_marked_eq
 

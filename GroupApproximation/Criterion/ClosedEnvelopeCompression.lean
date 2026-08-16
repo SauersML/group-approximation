@@ -9,19 +9,23 @@ an algebraic group satisfy the descending chain condition, a one-sided
 compression assigns the compressed subgroup and the subgroup the same
 algebraic envelope.
 
-The chain condition for algebraic subgroups is classical and stays
-external.  What is *not* classical, and is proved here, is that the
-deduction needs nothing about algebraic geometry: any conjugation-stable
-notion of "closed" whose closed subgroups satisfy the descending chain
-condition forces the same conclusion.  Conjugation by a fixed element is
-an order isomorphism of that poset, and an order isomorphism moving a
-point down in a poset with no infinite descending chain fixes it --- which
-is `ChainConditionCompression`.
+What is proved here is that the deduction needs nothing about algebraic
+geometry: any conjugation-stable notion of "closed" whose closed subgroups
+satisfy the descending chain condition forces the same conclusion.
+Conjugation by a fixed element is an order isomorphism of that poset, and an
+order isomorphism moving a point down in a poset with no infinite descending
+chain fixes it --- which is `ChainConditionCompression`.
 
-So the external input is isolated to a single instance argument,
+The chain condition itself enters here as a single instance argument,
 `WellFoundedLT {H // Closed H}`, and everything downstream of it is
-machine-checked.  Instantiating `Closed` with Zariski-closedness is then
-the only step a formalization of algebraic groups would have to supply.
+machine-checked.  **That instance is no longer an external input.**
+`Algebra.ZariskiDescendingChain` builds the Zariski topology on `GL n k` for
+an arbitrary field, proves `wellFoundedLT_isZClosedSubgroup` from the Hilbert
+basis theorem, and instantiates the theorems below at it:
+`manuscriptZariskiEnvelopeCompressionBlind` and
+`manuscriptZariskiClosureOfRepresentation` carry no instance binder, and the
+latter is the manuscript's displayed identity in the form it is printed.
+Nothing in the chain is quoted.
 -/
 
 namespace GroupApproximation

@@ -5,11 +5,20 @@ import GroupApproximation.Sofic.ContinuumMultiplicity
 
 `Sofic.ContinuumMultiplicity` proves the manuscript's counting step on top of
 a quantified hypothesis: a continuum-sized family of pairwise nonisomorphic
-finitely generated groups.  That hypothesis is B. H. Neumann's theorem, and it
-is not proved anywhere in this development.
+finitely generated groups.  The manuscript attributed that hypothesis to
+B. H. Neumann and quoted it.
 
-This file does not prove it either.  What it does is make the obligation as
-small and as concrete as it can honestly be made, so that a future
+**It is no longer quoted.**  `Monsters.NeumannContinuum` imports this file and
+discharges the obligation stated below outright, at
+`manuscriptContinuumMultiplicityFromCriterion`, with the lamplighters
+`A₅ ≀_{F₂/markedSubgroup S} F₂` over subsets `S ⊆ ℕ`; the manuscript's
+sentence is then unconditional at
+`manuscriptContinuumMultiplicityUnconditional`.  The family is not Neumann's
+and is finitely generated rather than two-generator, which is all the counting
+step consumes.
+
+What this file contributes is the reduction that made that possible: it makes
+the obligation as small and as concrete as it can honestly be made, so that a
 construction has nothing to supply but the construction:
 
 * `manuscriptContinuumMultiplicity_of_separating` replaces "pairwise
@@ -26,12 +35,12 @@ construction has nothing to supply but the construction:
   recovers the subset.*
 
 Nothing here is deep --- the separating-invariant criterion is a two-line
-consequence of the counting step.  It is recorded because the value is in the
-statement, not the proof: it names, in one closed proposition, exactly what is
-missing, and it certifies that supplying it is sufficient.  The analogue for
-the other open literature input is
+consequence of the counting step.  It is recorded because the value was in the
+statement, not the proof: it named, in one closed proposition, exactly what was
+missing, and it certified that supplying it was sufficient.  The analogue for
+the one remaining open literature input is
 `Computability.MarkovMFConsequences.AdianRabinReduction`, which plays the same
-role for Adian--Rabin.
+role for Adian--Rabin and has not been discharged.
 -/
 
 namespace GroupApproximation

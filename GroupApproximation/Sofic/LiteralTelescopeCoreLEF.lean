@@ -386,7 +386,10 @@ theorem blockOrbitClosure_invariant (σ : G →* Equiv.Perm I) (H : Subgroup G)
   obtain ⟨j, hj, h, hhi⟩ := Set.mem_iUnion₂.mp hi
   refine Set.mem_biUnion hj ⟨g * h, ?_⟩
   show σ ((g * h : H) : G) j = σ (g : G) i
-  rw [Subgroup.coe_mul, map_mul, Equiv.Perm.mul_apply, hhi]
+  -- `hhi` is a beta-redex, so it cannot be used as a rewrite pattern; apply
+  -- the outer permutation to it instead.
+  rw [Subgroup.coe_mul, map_mul, Equiv.Perm.mul_apply]
+  exact congrArg (σ (g : G)) hhi
 
 theorem blockOrbitClosure_invariant' (σ : G →* Equiv.Perm I) (H : Subgroup G)
     (J : Set I) {g : G} (hg : g ∈ H) {i : I}
@@ -413,6 +416,39 @@ theorem finite_orbit_of_map {A B X : Type*} [Group A] [Group B]
   refine h.subset ?_
   rintro _ ⟨a, rfl⟩
   exact ⟨⟨f (a : A), Subgroup.mem_map_of_mem f a.2⟩, rfl⟩
+
+/-- **Block equivariance from generator equivariance.**
+
+`TelescopeCoreData.block_equivariant` asks that the acting group carry each
+block subgroup onto the block subgroup at the moved index.  For the literal
+group that is not proved directly: what is proved is the *site-level*
+statement, that the lamp at a site conjugates to the lamp at the moved site,
+together with the fact that the block index moves by the induced permutation.
+This lemma is the reduction, and it is the whole of it — a closure induction is
+not needed, since a generating set suffices for containment.
+
+`act` is a plain function rather than a `MulAction`, so a caller can restrict an
+action along an inclusion (for the literal group, along `T ↪ V`) at the call
+site without first repackaging it. -/
+theorem block_equivariant_of_generators {Site : Type*}
+    (φ : G →* MulAut N) (σ : G →* Equiv.Perm I) (P : I → Subgroup N)
+    (c : Site → N) (blockOf : Site → I) (act : G → Site → Site)
+    (hP : ∀ i : I, P i = Subgroup.closure (c '' {s : Site | blockOf s = i}))
+    (hc : ∀ (g : G) (s : Site), φ g (c s) = c (act g s))
+    (hblock : ∀ (g : G) (s : Site), blockOf (act g s) = σ g (blockOf s))
+    (g : G) (i : I) : ∀ x ∈ P i, φ g x ∈ P (σ g i) := by
+  intro x hx
+  have hmap : P i ≤ Subgroup.comap (φ g).toMonoidHom (P (σ g i)) := by
+    rw [hP i, Subgroup.closure_le]
+    rintro _ ⟨s, hs, rfl⟩
+    show c s ∈ Subgroup.comap (φ g).toMonoidHom (P (σ g i))
+    rw [Subgroup.mem_comap]
+    show φ g (c s) ∈ P (σ g i)
+    rw [hc g s, hP (σ g i)]
+    refine Subgroup.subset_closure ⟨act g s, ?_, rfl⟩
+    show blockOf (act g s) = σ g i
+    rw [hblock g s, hs]
+  exact Subgroup.mem_comap.mp (hmap hx)
 
 /-- **The window of Theorem 4.1.**  Given a finite subset of `N ⋊[φ] G`,
 there is a level `n` and a finite `Γ_n`-invariant set `J` of blocks whose span
@@ -485,8 +521,7 @@ theorem locallyResiduallyFinite_blockTelescope (φ : G →* MulAut N)
     have hmap : blockSpan P J ≤
         Subgroup.comap (φ h).toMonoidHom (blockSpan P J) := by
       refine blockSpan_le P ?_
-      intro i hi
-      intro y hy
+      intro i hi y hy
       rw [Subgroup.mem_comap]
       exact le_blockSpan P (hJinv h hh i hi) (hequiv h i y hy)
     exact Subgroup.mem_comap.mp (hmap hx)
@@ -506,16 +541,32 @@ end Blocks
 
 The inputs of Theorem 4.1 are bundled as a structure so that the instantiation
 against the split (S1), the block geometry (S2), the level orbits (S3) and the
-sub-amalgam residual finiteness (M) is a single object to build.  Two of the
-fields carry trust surface and are the reason the theorem is conditional:
+sub-amalgam residual finiteness (M) is a single object to build.
 
-* `subAmalgam_residuallyFinite` — statement (M): the finite sub-amalgams `M_J`
-  are residually finite.
-* `level_residuallyFinite` — residual finiteness of the telescope levels.  For
-  the matrix levels this is unconditional; for the *presented* levels it
-  carries the identification of the presented base with the matrix group.
+**No field is a literature input.**  The two that were expected to carry trust
+surface do not:
 
-The remaining fields are structural or geometric and import nothing.
+* `subAmalgam_residuallyFinite` — statement (M).  The amalgam side proves the
+  stronger, hypothesis-free statement that *every finitely generated* subgroup
+  of the lamp kernel is residually finite; `blockSpan_fg` supplies the missing
+  finite-generation hypothesis, so the field is dischargeable from it.  It
+  needs neither the amalgam normal form nor Karrass--Pietrowski--Solitar.
+* `level_residuallyFinite` — residual finiteness of the telescope levels.  The
+  telescope of the literal chain is built over the *matrix* base, so a level is
+  the range of an injective level map out of it and residual finiteness follows
+  from that of the matrix base by transport along the induced isomorphism.  No
+  identification of the presented base with the matrix group is used, and that
+  identification is in any case proved in the repository, so the `B ≅ Γ̄`
+  caveat recorded in the soficity artifact's audit header does not apply here.
+
+The fields are hypotheses for modularity, not because they are unproved.
+
+What the instantiation does still rest on is two facts about the orbital graph
+--- that distinct sites of one block are adjacent, and that no site is adjacent
+to itself --- since the identification of the lamp kernel with the block
+amalgam is stated relative to a block-Clifford presentation, and that
+presentation is discharged only modulo those two.  They are orbit computations,
+not literature inputs and not analysis.
 -/
 
 section Core
@@ -526,7 +577,29 @@ section Core
 the block set of the marked orbital graph.  `level` is the telescope filtration
 `Γ_n`, increasing and exhausting; `block` is the family `P_i` of block
 subgroups, each finite of order `512`; `blockAction` is the permutation action
-of the telescope on the block set. -/
+of the telescope on the block set.
+
+**Design invariant --- do not strengthen a field past it.**  Every finiteness
+or residual-finiteness field below is indexed either by a single level `n`
+(`level_finite_orbits`, `level_residuallyFinite`) or by a finite block set `J`
+(`subAmalgam_residuallyFinite`), and `block_finite` is per-block.  No field
+asserts finiteness quantified over all of `Tel`, and no field mentions the
+vertical group `V = T ⋊ ⟨τ⟩` at all.  That is not tidiness; it is what makes
+the bundle satisfiable.
+
+In every finite quotient of `V` all telescope levels have one image, so `B` is
+not separable in `V` and the site set collapses in every `V`-equivariant finite
+model.  The obvious "simplifications" of this structure are exactly the ones
+that walk into that collapse and are false: replacing `level_finite_orbits` by
+finiteness of the `Tel`-orbit of a block, or asking the restricted action of
+all of `Tel` on `M_J` to have finite range.  What is safe is what is written,
+because the collapse is a `T`-phenomenon invisible inside a single level ---
+`B` has finite index in `Γ_n`, so it *is* separable there, and the block models
+live in one `Γ_n` by construction.
+
+The finite quotients this file actually produces are quotients of a *level* by
+the finite-index kernel of its action on `sites(J)`.  They are never finite
+quotients of `V`, of `T`, or of the core. -/
 structure TelescopeCoreData (Lamp : Type) (Tel : Type u) (Block : Type v)
     [Group Lamp] [Group Tel] where
   /-- (S1) The action of the telescope on the lamp kernel. -/
