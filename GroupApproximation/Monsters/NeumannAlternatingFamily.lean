@@ -124,7 +124,7 @@ abbrev AltLamp : Type := ↥(alternatingGroup (Fin 5))
 /-- The lamp group is nontrivial, because it is simple. -/
 theorem altLamp_nontrivial : Nontrivial AltLamp := by
   haveI : IsSimpleGroup (alternatingGroup (Fin 5)) :=
-    alternatingGroup.isSimpleGroup (by simp [Nat.card_fin])
+    alternatingGroup.isSimpleGroup (by simp)
   infer_instance
 
 /-- The first free generator. -/
@@ -159,16 +159,24 @@ def degHom : Acting →* Multiplicative ℤ :=
 theorem degHom_genA : degHom genA = Multiplicative.ofAdd (1 : ℤ) := by
   simp [degHom]
 
+/-- The degree of a power of the first generator, by induction.  Stated
+separately because `Multiplicative.toAdd_pow` does not exist in this Mathlib. -/
+theorem degHom_genA_pow (m : ℕ) :
+    degHom (genA ^ m) = Multiplicative.ofAdd (m : ℤ) := by
+  induction m with
+  | zero => simp
+  | succ k ih =>
+    rw [pow_succ, map_mul, ih, degHom_genA, ← ofAdd_add]
+    push_cast
+    rfl
+
 /-- Distinct exponents give distinct powers of the first generator. -/
 theorem genA_pow_injective : Function.Injective fun n : ℕ => genA ^ n := by
   intro m n hmn
   have hpow : (genA : Acting) ^ m = genA ^ n := hmn
   have h : degHom (genA ^ m) = degHom (genA ^ n) := congrArg degHom hpow
-  rw [map_pow, map_pow, degHom_genA] at h
-  have h2 : Multiplicative.toAdd ((Multiplicative.ofAdd (1 : ℤ)) ^ m)
-      = Multiplicative.toAdd ((Multiplicative.ofAdd (1 : ℤ)) ^ n) := by rw [h]
-  rw [Multiplicative.toAdd_pow, Multiplicative.toAdd_pow, Multiplicative.toAdd_ofAdd] at h2
-  have h3 : (m : ℤ) = (n : ℤ) := by simpa using h2
+  rw [degHom_genA_pow, degHom_genA_pow] at h
+  have h3 : (m : ℤ) = (n : ℤ) := Multiplicative.ofAdd.injective h
   exact_mod_cast h3
 
 /-- The sites of the lamplighter picture: the translates of the base site by the
@@ -224,7 +232,7 @@ theorem conjGen_notMem_markedSubgroup {S : Set ℕ} {m : ℕ} (hm : m ∉ S) :
       (inl : Lamp AltLamp Acting →* Wreath AltLamp Acting Acting)
       (lampSuppInSet ((fun n : ℕ => ((genA ^ n : Acting) • (1 : Acting))) '' S))
     rw [hΦconj n]
-    exact Subgroup.mem_map_of_mem _ (single_mem_lampSuppInSet ⟨n, hn, rfl⟩ k)
+    exact Subgroup.mem_map_of_mem _ (single_mem_lampSuppInSet (Set.mem_image_of_mem _ hn) k)
   intro hcon
   have hmem : Φ (conjGen m) ∈ Subgroup.map
       (inl : Lamp AltLamp Acting →* Wreath AltLamp Acting Acting)

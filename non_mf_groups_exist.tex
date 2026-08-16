@@ -1125,7 +1125,7 @@ contains an infinite Kazhdan group and is nonamenable, whence
 $\Cred(E)$ is not nuclear \cite{Lance}.  The nuclear form of the
 Blackadar--Kirchberg problem --- whether every stably finite separable
 nuclear $C^*$-algebra is quasidiagonal --- therefore remains open.
-\leanverified{Analysis/NuclearityAmenability}{GroupApproximation.NuclearityAmenability.not_isAmenable_of_base_embeds}
+\leanverified{Analysis/NuclearityAmenability}{GroupApproximation.NuclearityAmenability.manuscriptNotAmenableOfBaseEmbeds}
 
 \subsection*{A sofic example}
 Let $X=G/\Gamma$ be the coset space of the mapping telescope
@@ -1162,9 +1162,9 @@ $1\to\ClLamp(X)\to W\to V\to1$, whose kernel is locally finite and
 whose quotient is residually finite, shows that they are not closed
 under extensions either (Section~\ref{sec:consequences}).
 
-This says nothing about $E$ itself: $W$ is a proper quotient of $E$,
-with kernel a free group of infinite rank.  Section~\ref{sec:limits}
-explains why the operator-norm method decides neither soficity nor
+The kernel of $E\to W$ is a free group of infinite rank, so soficity
+does not pass from $W$ back to $E$.  Section~\ref{sec:limits} explains
+why the operator-norm method decides neither soficity nor
 hyperlinearity for either group, and records the separate argument that
 $E$ is sofic.
 
@@ -2560,7 +2560,7 @@ a one-sided compression leaves the envelope fixed.
 The chain condition itself, for Zariski-closed subgroups of $\GL(V)$ over
 an arbitrary field, is proved here from the Hilbert basis theorem rather
 than quoted, and with it the displayed identity in the form printed above.
-\leanverified{Algebra/ZariskiDescendingChain}{GroupApproximation.ZariskiClosedSubgroup.manuscriptZariskiClosureOfRepresentation}
+\leanverified{Algebra/ZariskiDescendingChain}{GroupApproximation.ZariskiClosedSubgroup.manuscriptZariskiRepresentationEnvelopeClosed}
 Theorem~\ref{thm:transport-variants}(2)
 is the asymptotic counterpart at fixed tensor type.
 \end{remark}
@@ -3586,7 +3586,7 @@ quotient, as in Elek--Szab\'o \cite{ElekSzabo}; that permanence theorem is
 proved here from the invariant-mean definition of amenability, and is not
 quoted.
 \leanverified{Sofic/LEFMarkedCompression}{GroupApproximation.LiteralLEFExtension.literalWitness_LEFKernel_integerExtension_nonMF}
-\leanverified{Sofic/SoficByAmenablePermanence}{GroupApproximation.SoficByAmenablePermanence.isSofic_of_isSofic_ker_of_isAmenable}
+\leanverified{Sofic/SoficByAmenablePermanence}{GroupApproximation.SoficByAmenablePermanence.manuscriptSoficOfSoficKerOfAmenableQuotient}
 
 \paragraph{An exact stably finite non-MF algebra.}
 The same witness gives a concrete separable exact example:
