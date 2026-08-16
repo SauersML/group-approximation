@@ -1501,9 +1501,15 @@ Zariski closure of the image in $\GL(V)$, whose closed subgroups
 satisfy the descending chain condition, gives
 $\overline{\sigma(t\Gamma t^{-1})}^{\,Z}=\overline{\sigma(\Gamma)}^{\,Z}$:
 an exact finite-dimensional representation assigns the compressed
-subgroup and the subgroup the same algebraic envelope.  The chain
-condition for algebraic subgroups is classical and outside the formal
-development.  Theorem~\ref{thm:transport-variants}(2) is the asymptotic
+subgroup and the subgroup the same algebraic envelope.  The deduction is
+formalized, with the descending chain condition as its one hypothesis:
+given a conjugation-stable notion of closed subgroup whose closed
+subgroups are well-founded under $\supseteq$, and a monotone envelope
+landing in them, a one-sided compression leaves the envelope fixed.
+\leanverified{Criterion/ClosedEnvelopeCompression}{GroupApproximation.ClosedEnvelopeCompression.manuscriptEnvelopeCompressionBlind}
+That the closed subgroups of $\GL(V)$ in the Zariski topology satisfy
+the chain condition is classical, and is the input the badge quantifies
+over rather than proves.  Theorem~\ref{thm:transport-variants}(2) is the asymptotic
 counterpart at fixed tensor type.
 \end{remark}
 
