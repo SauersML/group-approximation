@@ -715,31 +715,65 @@ each stage.
 \end{remark}
 
 \subsection*{The finite-dimensional case}
-Let $k$ be a field, let $V$ be a finite-dimensional $k$-vector space, and
-let $\pi\colon H\to\GL_k(V)$ be a representation.  Let
+The exact form of the argument needs no analysis, no
+property~\textup{(T)}, and no hypothesis on the characteristic.
+
+\begin{theorem}[the exact finite-dimensional analogue]\label{thm:B}
+Let $k$ be a field, $V$ a finite-dimensional $k$-vector space, $H$ a
+group, $\Gamma\le H$ a subgroup, and $t,c\in H$, $a\in\Gamma$ elements
+with $t\Gamma t^{-1}\subseteq\Gamma$ and $c\gamma=\gamma c$ for all
+$\gamma\in\Gamma$.  Then every homomorphism $\pi\colon H\to\GL(V)$
+satisfies
+\[
+  \pi\bigl(\bigl[\,tct^{-1},\;a(tct^{-1})a^{-1}\bigr]\bigr)\;=\;1 .
+\]
+More generally, every such $\pi$ sends the entire intrinsic defect
+$\mathfrak D(H,\Gamma)$ of \eqref{eq:intrinsicdefect} to the identity.
+\leanverified{Sofic/ManuscriptExactWrappers}{GroupApproximation.ManuscriptExactWrappers.manuscriptTheoremB}
+\end{theorem}
+
+\begin{proof}
+Let
 \[
  C=\{x\in\End_k(V):\pi(\gamma)x=x\pi(\gamma)\ \text{for all}\
  \gamma\in\Gamma\}
 \]
-be the commutant of $\pi(\Gamma)$.  Write $\Phi(x)=\pi(t)\,x\,\pi(t)^{-1}$
-for conjugation by $\pi(t)$, a linear automorphism of $\End_k(V)$.  The
-one-sided relation $t\Gamma t^{-1}\subseteq\Gamma$ gives
-$C\subseteq\Phi(C)$, and the two subspaces then have the same finite
-dimension, so
+be the commutant of $\pi(\Gamma)$, a linear subspace of $\End_k(V)$, and
+write $\Phi(x)=\pi(t)\,x\,\pi(t)^{-1}$ for conjugation by $\pi(t)$, a
+linear automorphism of $\End_k(V)$.
+
+We claim $C\subseteq\Phi(C)$.  Let $x\in C$ and put
+$y=\pi(t)^{-1}x\,\pi(t)$, so that $x=\Phi(y)$.  For $\gamma\in\Gamma$ we
+have $t\gamma t^{-1}\in\Gamma$, hence $\pi(t\gamma t^{-1})$ commutes
+with $x$, and therefore
 \[
- C\subseteq\Phi(C),\quad \dim_kC=\dim_k\Phi(C)
- \qquad\Longrightarrow\qquad C=\Phi(C).
+  \pi(\gamma)\,y
+  = \pi(t)^{-1}\,\pi(t\gamma t^{-1})\,x\,\pi(t)
+  = \pi(t)^{-1}\,x\,\pi(t\gamma t^{-1})\,\pi(t)
+  = y\,\pi(\gamma).
 \]
-Since $\pi(c)\in C$, the operator $\pi(tct^{-1})=\Phi(\pi(c))$ again
-lies in $C$, so it commutes with $\pi(a)$ for every $a\in\Gamma$ and
+Thus $y\in C$, proving the claim.  Since $\Phi$ is a linear isomorphism,
+$\dim_k\Phi(C)=\dim_kC<\infty$, and the inclusion $C\subseteq\Phi(C)$
+forces
+\begin{equation}\label{eq:pinning}
+  C\;=\;\Phi(C)\;=\;\pi(t)\,C\,\pi(t)^{-1}.
+\end{equation}
+Now $\pi(c)\in C$ because $c$ centralizes $\Gamma$, so
+$\pi(tct^{-1})=\Phi(\pi(c))\in C$ by \eqref{eq:pinning}.  Since
+$a\in\Gamma$, the operator $\pi(tct^{-1})$ commutes with $\pi(a)$, so
+$\pi\bigl(a(tct^{-1})a^{-1}\bigr)=\pi(tct^{-1})$ and
 \[
- \pi\bigl(\bigl[\,tct^{-1},\,a(tct^{-1})a^{-1}\bigr]\bigr)=1 .
+  \pi\bigl(\bigl[\,tct^{-1},\;a(tct^{-1})a^{-1}\bigr]\bigr)
+  =\bigl[\,\pi(tct^{-1}),\;\pi(tct^{-1})\bigr]=1 .
 \]
-This is Theorem~\ref{thm:B}.  The argument is algebraic; it uses no
-property~\textup{(T)} and no hypothesis on the characteristic.  Applied
-to $E$ it shows that every finite-dimensional linear representation
-over every field, and hence every homomorphism to a finite group, sends
-the marked word to the identity (Corollary~\ref{cor:notRFD}).
+Section~\ref{sec:findim} proves the subgroup-valued assertion from the
+same calculation. \qedhere
+\end{proof}
+
+Applied to $E$, Theorem~\ref{thm:B} shows that every finite-dimensional
+linear representation over every field, and hence every homomorphism to
+a finite group, sends the marked word to the identity
+(Corollary~\ref{cor:notRFD}).
 
 Theorem~\ref{thm:kazhdan-transport} is the approximate analogue of
 this argument.  An MF model is only asymptotically multiplicative, so
@@ -982,11 +1016,66 @@ relative to $\Gamma$ the resulting group has the finite presentation
 \]
 where $S_\Gamma$ is a finite generating set of $\Gamma$, $g$ runs over
 the generators, and $w=[\,tct^{-1},\,a\,(tct^{-1})\,a^{-1}]$.
-Expanding a standard presentation of the affine group in the
-generators $v_1,v_2,v_3$ for the translations and $x,y,z$ for the
-linear part turns this into the eight-generator, forty-one-relator
-presentation written out in Definition~\ref{def:E}; a Tietze
-optimization removes two generators and nine relators
+Expanding a standard presentation of the affine group in the generators
+$v_1,v_2,v_3$ for the translations and $x,y,z$ for the linear part turns
+this into the eight-generator, forty-one-relator presentation below.
+First define the \emph{linear presentation}
+\begin{equation}\label{eq:sl3presentation}
+ \mathcal R=\left\langle x,y,z\ \middle|\
+ \begin{gathered}
+ x^3=y^3=z^2=(xz)^3=(yz)^3=1,\\
+ (x^{-1}zxy)^2=(y^{-1}zyx)^2=(xy)^6=1
+ \end{gathered}\right\rangle,
+\end{equation}
+and the \emph{base}
+\begin{equation}\label{eq:gamma-presentation}
+\mathcal B=\left\langle v_1,v_2,v_3,x,y,z\ \middle|\
+\begin{gathered}
+\text{the eight relations in \eqref{eq:sl3presentation}},\\
+[v_1,v_2]=[v_1,v_3]=[v_2,v_3]=1,\\
+xv_1x^{-1}=v_3,\ xv_2x^{-1}=v_1,\
+xv_3x^{-1}=v_2,\\
+yv_1y^{-1}=v_1,\ yv_2y^{-1}=v_2^{-1}v_3,\
+yv_3y^{-1}=v_1v_2^{-1},\\
+zv_1z^{-1}=v_2v_3^{-1},\ zv_2z^{-1}=v_1v_3^{-1},\
+zv_3z^{-1}=v_3^{-1}
+\end{gathered}\right\rangle.
+\end{equation}
+Write $\iota\colon\mathcal B\to E$ for the homomorphism induced by the first
+six generators of the presentation below.  This map is not assumed to be
+injective.
+
+\begin{definition}\label{def:E}
+Use the six base generators and the relations displayed in
+\eqref{eq:gamma-presentation}.  Define
+\begin{equation}\label{eq:E}
+  E=\left\langle v_1,v_2,v_3,x,y,z,t,c\ \middle|\
+  \begin{gathered}
+   \text{all relations in \eqref{eq:gamma-presentation}},\\
+   tv_i t^{-1}=v_i^2\ (1\le i\le3),\\
+   txt^{-1}=x,\quad tyt^{-1}=y,\quad tzt^{-1}=z,\\
+   c^2=1,\\
+   [c,g]=1\quad(g\in\{v_1,v_2,v_3,x,y,z\}),\\
+   [w,g]=1\quad(g\in\{v_1,v_2,v_3,x,y,z,t,c\})
+  \end{gathered}\right\rangle,
+\end{equation}
+where $w$ abbreviates the word
+$\bigl[\,tct^{-1},\,v_1(tct^{-1})v_1^{-1}\bigr]$.
+This is an explicit finite presentation with eight generators and
+forty-one relators: the twenty base relators, six stable-letter
+relators, $c^2$, the six relations making $c$ commute with the base
+generators, and eight centrality relators.  Its defining
+relations make $w$ central, and centrality together with $c^2=1$ implies
+$w^2=1$ by \eqref{eq:involution-reversal}.  The relations on the six base
+generators also give
+\leanverified{Sofic/LiteralNonMFPresentation}{GroupApproximation.LiteralNonMFPresentation.manuscriptLiteralPresentation}
+\[
+ t\iota(\mathcal B)t^{-1}\subseteq\iota(\mathcal B),
+ \qquad [c,\iota(\mathcal B)]=1.
+\]
+\end{definition}
+
+A Tietze optimization removes two generators and nine relators
 (Section~\ref{sec:group}).
 
 \begin{proof}[Proof of Theorem~\ref{thm:A}]
@@ -1278,72 +1367,16 @@ universal-quotient construction --- whose dimension bookkeeping is the
 normalization step above --- not from a separate exhaustion.
 
 \end{proof}
-\section{The explicit presentation and its property-(T) base}\label{sec:group}
+\section{The base, and a smaller presentation}\label{sec:group}
 
-We work throughout with the groups defined by the relators below.  The
-base is the affine group $\mathbb Z^3\rtimes\SL_3(\mathbb Z)$, a
-familiar Kazhdan group (Remark~\ref{rem:classical-base}), and
-property~\textup{(T)} for it is classical
-\cite[Example~1.7.4(i)]{BHV}.  The proof given here works from the
-displayed presentations, in three steps: an exact rational spectral
+The base $\mathcal B$ of \eqref{eq:gamma-presentation} is the affine
+group $\mathbb Z^3\rtimes\SL_3(\mathbb Z)$
+(Remark~\ref{rem:classical-base}), for which property~\textup{(T)} is
+classical \cite[Example~1.7.4(i)]{BHV}.  The proof given here works
+from the displayed relators, in three steps: an exact rational spectral
 certificate for an auxiliary Steinberg-type presentation, an explicit
 surjection onto the linear presentation, and a fixed-point bridge from
 the linear subgroup to the full base.
-First define the \emph{linear presentation}
-\begin{equation}\label{eq:sl3presentation}
- \mathcal R=\left\langle x,y,z\ \middle|\
- \begin{gathered}
- x^3=y^3=z^2=(xz)^3=(yz)^3=1,\\
- (x^{-1}zxy)^2=(y^{-1}zyx)^2=(xy)^6=1
- \end{gathered}\right\rangle,
-\end{equation}
-and the \emph{base}
-\begin{equation}\label{eq:gamma-presentation}
-\mathcal B=\left\langle v_1,v_2,v_3,x,y,z\ \middle|\
-\begin{gathered}
-\text{the eight relations in \eqref{eq:sl3presentation}},\\
-[v_1,v_2]=[v_1,v_3]=[v_2,v_3]=1,\\
-xv_1x^{-1}=v_3,\ xv_2x^{-1}=v_1,\
-xv_3x^{-1}=v_2,\\
-yv_1y^{-1}=v_1,\ yv_2y^{-1}=v_2^{-1}v_3,\
-yv_3y^{-1}=v_1v_2^{-1},\\
-zv_1z^{-1}=v_2v_3^{-1},\ zv_2z^{-1}=v_1v_3^{-1},\
-zv_3z^{-1}=v_3^{-1}
-\end{gathered}\right\rangle.
-\end{equation}
-Write $\iota\colon\mathcal B\to E$ for the homomorphism induced by the first
-six generators of the presentation below.  This map is not assumed to be
-injective.
-
-\begin{definition}\label{def:E}
-Use the six base generators and the relations displayed in
-\eqref{eq:gamma-presentation}.  Define
-\begin{equation}\label{eq:E}
-  E=\left\langle v_1,v_2,v_3,x,y,z,t,c\ \middle|\
-  \begin{gathered}
-   \text{all relations in \eqref{eq:gamma-presentation}},\\
-   tv_i t^{-1}=v_i^2\ (1\le i\le3),\\
-   txt^{-1}=x,\quad tyt^{-1}=y,\quad tzt^{-1}=z,\\
-   c^2=1,\\
-   [c,g]=1\quad(g\in\{v_1,v_2,v_3,x,y,z\}),\\
-   [w,g]=1\quad(g\in\{v_1,v_2,v_3,x,y,z,t,c\})
-  \end{gathered}\right\rangle,
-\end{equation}
-where $w$ abbreviates the word
-$\bigl[\,tct^{-1},\,v_1(tct^{-1})v_1^{-1}\bigr]$.
-This is an explicit finite presentation with eight generators and
-forty-one relators: the twenty base relators, six stable-letter
-relators, $c^2$, the six relations making $c$ commute with the base
-generators, and eight centrality relators.  Its defining
-relations make $w$ central, and centrality together with $c^2=1$ implies
-$w^2=1$ by \eqref{eq:involution-reversal}.  The relations on the six base
-generators also give
-\leanverified{Sofic/LiteralNonMFPresentation}{GroupApproximation.LiteralNonMFPresentation.manuscriptLiteralPresentation}
-\[
- t\iota(\mathcal B)t^{-1}\subseteq\iota(\mathcal B),
- \qquad [c,\iota(\mathcal B)]=1.
-\]
-\end{definition}
 
 \paragraph{Six generators suffice.}
 The eight-generator presentation is used because it displays the
@@ -2286,24 +2319,11 @@ every corona representation.
 \leanverified{Sofic/ManuscriptExactWrappers}{GroupApproximation.ManuscriptExactWrappers.manuscriptIntrinsicNormalKazhdanPart}
 \section{The finite-dimensional obstruction}\label{sec:findim}
 
-The finite-dimensional analogue of the obstruction is elementary: it
+Theorem~\ref{thm:B}, stated and proved in Section~\ref{sec:transport},
 needs finite dimensionality and the one-sided conjugation and
-centralizer relations alone, and its conclusion covers the entire
-intrinsic defect \eqref{eq:intrinsicdefect}:
-
-\begin{theorem}[the exact finite-dimensional analogue]\label{thm:B}
-Let $k$ be a field, $V$ a finite-dimensional $k$-vector space, $H$ a
-group, $\Gamma\le H$ a subgroup, and $t,c\in H$, $a\in\Gamma$ elements
-with $t\Gamma t^{-1}\subseteq\Gamma$ and $c\gamma=\gamma c$ for all
-$\gamma\in\Gamma$.  Then every homomorphism $\pi\colon H\to\GL(V)$
-satisfies
-\[
-  \pi\bigl(\bigl[\,tct^{-1},\;a(tct^{-1})a^{-1}\bigr]\bigr)\;=\;1 .
-\]
-More generally, every such $\pi$ sends the entire subgroup
-$\mathfrak D(H,\Gamma)$ to the identity.
-\leanverified{Sofic/ManuscriptExactWrappers}{GroupApproximation.ManuscriptExactWrappers.manuscriptTheoremB}
-\end{theorem}
+centralizer relations alone.  Its conclusion covers the entire intrinsic
+defect \eqref{eq:intrinsicdefect}, which is what this section proves,
+and it has two consequences for $E$ and one abstract reading.
 
 Applied to $H=E$, Theorem~\ref{thm:B} sends $w$ to the identity in
 every finite-dimensional representation of $E$ over every field.  So
@@ -2315,43 +2335,6 @@ every finite quotient, makes $E$ a group of \emph{Deligne type}.  Such
 groups were proposed there as the natural candidate counterexamples for
 all three remaining approximation problems, and $E$ realizes that
 proposal for the operator norm.
-
-\begin{proof}[Proof of Theorem~\ref{thm:B}]
-Let $\pi\colon H\to\GL(V)$ be a homomorphism and let
-\[
-  C\;=\;\{\,x\in\End_k(V)\;:\;\pi(\gamma)\,x=x\,\pi(\gamma)
-  \text{ for all }\gamma\in\Gamma\,\}
-\]
-be the commutant of $\pi(\Gamma)$, a linear subspace of $\End_k(V)$.
-Let $u=\pi(t)$ and consider the linear automorphism
-$\Phi(x)=uxu^{-1}$ of $\End_k(V)$.
-
-We claim $C\subseteq\Phi(C)$.  Let $x\in C$ and set $y=u^{-1}xu$, so
-that $x=\Phi(y)$.  For $\gamma\in\Gamma$ we have
-$t\gamma t^{-1}\in\Gamma$, hence $\pi(t\gamma t^{-1})$ commutes with
-$x$, and therefore
-\[
-  \pi(\gamma)\,y
-  = u^{-1}\,\pi(t\gamma t^{-1})\,x\,u
-  = u^{-1}\,x\,\pi(t\gamma t^{-1})\,u
-  = y\,\pi(\gamma).
-\]
-Thus $y\in C$, proving the claim.  Since $\Phi$ is a linear
-isomorphism, $\dim_k\Phi(C)=\dim_kC<\infty$, and the inclusion
-$C\subseteq\Phi(C)$ forces
-\begin{equation}\label{eq:pinning}
-  C\;=\;\Phi(C)\;=\;uCu^{-1}.
-\end{equation}
-
-Now $\pi(c)\in C$ because $c$ centralizes $\Gamma$.  By
-\eqref{eq:pinning}, $\pi(tct^{-1})=u\,\pi(c)\,u^{-1}\in C$.  Since
-$a\in\Gamma$, the element $\pi(tct^{-1})$ commutes with $\pi(a)$, so
-$\pi\bigl(a(tct^{-1})a^{-1}\bigr)=\pi(tct^{-1})$, and therefore
-\[
-  \pi\bigl(\bigl[\,tct^{-1},\;a(tct^{-1})a^{-1}\bigr]\bigr)
-  =\bigl[\,\pi(tct^{-1}),\;\pi(tct^{-1})\bigr]=1. \qedhere
-\]
-\end{proof}
 
 The same calculation proves the final, subgroup-valued assertion of
 Theorem~\ref{thm:B}.  The elements of $H$ whose conjugation action

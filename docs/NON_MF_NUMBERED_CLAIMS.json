@@ -117,6 +117,26 @@
       ]
     },
     {
+      "id": "thm:B",
+      "environment": "theorem",
+      "title": "the exact finite-dimensional analogue",
+      "statement_sha256": "1a4fa9647cbcb3e2eb5587682d6f6a6968fd03d4012fad967d5bc6420e6a5a53",
+      "status": "exact",
+      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
+      "dependencies": [],
+      "extra_assumptions": [],
+      "external_inputs": [],
+      "coverage_gap": "",
+      "lean": [
+        {
+          "role": "exact",
+          "module": "Sofic/ManuscriptExactWrappers",
+          "declaration": "GroupApproximation.ManuscriptExactWrappers.manuscriptTheoremB",
+          "covers": "the complete printed proposition"
+        }
+      ]
+    },
+    {
       "id": "thm:sign-criterion",
       "environment": "theorem",
       "title": "central-sign criterion",
@@ -161,6 +181,26 @@
           "role": "exact",
           "module": "Sofic/KazhdanCliffordConstruction",
           "declaration": "GroupApproximation.KazhdanCliffordConstruction.kazhdanCliffordConstruction",
+          "covers": "the complete printed proposition"
+        }
+      ]
+    },
+    {
+      "id": "def:E",
+      "environment": "definition",
+      "title": "",
+      "statement_sha256": "46c314ad2bcb6bd65b730211450d132de0c0c8dba402acfc4bfa653e1d3b119f",
+      "status": "exact",
+      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
+      "dependencies": [],
+      "extra_assumptions": [],
+      "external_inputs": [],
+      "coverage_gap": "",
+      "lean": [
+        {
+          "role": "exact",
+          "module": "Sofic/LiteralNonMFPresentation",
+          "declaration": "GroupApproximation.LiteralNonMFPresentation.manuscriptLiteralPresentation",
           "covers": "the complete printed proposition"
         }
       ]
@@ -269,26 +309,6 @@
           "role": "exact",
           "module": "Endpoint/NonMFImpact",
           "declaration": "GroupApproximation.NonMFImpact.witness_sofic_hyperlinear_nonMF",
-          "covers": "the complete printed proposition"
-        }
-      ]
-    },
-    {
-      "id": "def:E",
-      "environment": "definition",
-      "title": "",
-      "statement_sha256": "46c314ad2bcb6bd65b730211450d132de0c0c8dba402acfc4bfa653e1d3b119f",
-      "status": "exact",
-      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
-      "dependencies": [],
-      "extra_assumptions": [],
-      "external_inputs": [],
-      "coverage_gap": "",
-      "lean": [
-        {
-          "role": "exact",
-          "module": "Sofic/LiteralNonMFPresentation",
-          "declaration": "GroupApproximation.LiteralNonMFPresentation.manuscriptLiteralPresentation",
           "covers": "the complete printed proposition"
         }
       ]
@@ -606,26 +626,6 @@
           "role": "exact",
           "module": "Sofic/ManuscriptExactWrappers",
           "declaration": "GroupApproximation.ManuscriptExactWrappers.manuscriptIntrinsicNormalKazhdanRadical",
-          "covers": "the complete printed proposition"
-        }
-      ]
-    },
-    {
-      "id": "thm:B",
-      "environment": "theorem",
-      "title": "the exact finite-dimensional analogue",
-      "statement_sha256": "d6e18099881e7f184c54b8e2ba67e87679fe85854f0cb52feb9e2edebd590aeb",
-      "status": "exact",
-      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
-      "dependencies": [],
-      "extra_assumptions": [],
-      "external_inputs": [],
-      "coverage_gap": "",
-      "lean": [
-        {
-          "role": "exact",
-          "module": "Sofic/ManuscriptExactWrappers",
-          "declaration": "GroupApproximation.ManuscriptExactWrappers.manuscriptTheoremB",
           "covers": "the complete printed proposition"
         }
       ]

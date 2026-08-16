@@ -266,7 +266,7 @@ once in the comment-stripped manuscript; the probe is the drift detector.
 | thm:A | env | thm:A | 709b77bd99cbaf0e |
 | cor:uniform | env | cor:uniform | 043923ba46739c21 |
 | cor:scaling-family | env | cor:scaling-family | 0d2d1d84d3c1949c |
-| thm:B | env | thm:B | d6e18099881e7f18 |
+| thm:B | env | thm:B | 1a4fa9647cbcb3e2 |
 | cor:notRFD | env | cor:notRFD | 754e7536fa06cde2 |
 | rem:invariantsize | env | rem:invariantsize | 1dbbcd5065bafaa0 |
 | rem:chaincondition | env | rem:chaincondition | e981fb297b644ba8 |
@@ -305,7 +305,7 @@ once in the comment-stripped manuscript; the probe is the drift detector.
 | thm:markedclosed | env | thm:markedclosed | f666d6dd719b2ff9 |
 | prop:horn | env | prop:horn | 3e2c6bb45f9627c7 |
 | cor:cylinder | env | cor:cylinder | 847c38b2b21a9d92 |
-| cor:undecidable | env | cor:undecidable | 70edb45c9d228207 |
+| cor:undecidable | env | cor:undecidable | f9931601b5263c4e |
 | prop:maximal-cstar | env | prop:maximal-cstar | e804583acb4798be |
 | prop:proper-isometry | env | prop:proper-isometry | e2a8714db1305b83 |
 | rem:maxinfinite | env | rem:maxinfinite | a9437baa2cf68577 |
@@ -863,8 +863,8 @@ everywhere: the TeX is the specification and does not move).
 | HO.04 | cor:cylinder | the marked groups satisfying R with w ≠ 1 form a nonempty clopen set of non-MF groups | `LiteralMarkedCylinder.literal_nonempty_clopen_nonMF_cylinder` | EXACT | EXACT | literal | unconditional | - | NO | - |
 | HO.05 | cor:cylinder | proof: both conditions constrain finitely many values, the set contains E, and Proposition 11.36 excludes every MF point | `LiteralMarkedCylinder.literalCylinder_isClopen`; `LiteralMarkedCylinder.literalCylinder_nonempty`; `LiteralMarkedCylinder.literalCylinder_subset_nonMF` | EXACT | EXACT | literal | unconditional | - | NO | - |
 | UN.01 | p:undec-markov | MF is a Markov property: the trivial group is MF and the f.p. group E embeds in no MF group | `MarkovMFConsequences.operatorMF_subgroup_hereditary`; `MarkovMFConsequences.exists_finitelyPresented_nonOperatorMF` | EXACT | EXACT | literal | unconditional | - | NO | - |
-| UN.02 | cor:undecidable | given a computable reduction from the halting problem, no algorithm decides MF from a finite presentation | `MarkovMFConsequences.operatorMF_recognition_undecidable_of_haltingReduction` | EXACT | EXACT | literal | unconditional | - | NO | the printed corollary quantifies the reduction and nothing else; undecidability of the halting problem is proved in the development, so no literature premise remains |
-| UN.03 | cor:undecidable | given the same reduction, the set of presentation codes of non-MF groups is not recursively enumerable | `MarkovMFConsequences.operatorMF_negative_side_not_re_of_haltingReduction` | EXACT | EXACT | literal | unconditional | - | NO | same shape as UN.02; the non-enumerable complement of the halting problem is proved rather than cited |
+| UN.02 | cor:undecidable | given a computable reduction from the halting problem, no algorithm decides MF from a finite presentation | `MarkovMFConsequences.presentationCodes_recognition_undecidable_of_haltingReduction` | EXACT | EXACT | literal | unconditional | - | NO | the printed corollary quantifies the reduction and nothing else; undecidability of the halting problem is proved in the development, so no literature premise remains |
+| UN.03 | cor:undecidable | given the same reduction, the set of presentation codes of non-MF groups is not recursively enumerable | `MarkovMFConsequences.presentationCodes_negative_side_not_re_of_haltingReduction` | EXACT | EXACT | literal | unconditional | - | NO | same shape as UN.02; the non-enumerable complement of the halting problem is proved rather than cited |
 | UN.04 | p:undec-adianrabin | the Adian–Rabin construction supplies a computable map from word-problem instances to presentations, trivial when w = 1 and containing E when w ≠ 1 | - | MISSING | MISSING | - | literature-input | Rabin58 | NO | the TeX names Novikov–Boone and Adian–Rabin as the inputs the corollary quantifies |
 | UN.05 | p:undec-adianrabin | the computability-theoretic pullback: from any computable reduction, undecidability and failure of r.e. on the negative side follow formally | `MarkovMFConsequences.recognition_undecidable`; `MarkovMFConsequences.negative_side_not_re` | EXACT | EXACT | literal | unconditional | - | NO | the pullback itself is unconditional |
 | UN.05b | p:undec-adianrabin | the same pullback in the manuscript's general form: a reduction from any undecidable source problem makes MF recognition undecidable | `MarkovMFConsequences.operatorMF_recognition_undecidable` | EXACT | EXACT | literal | unconditional | - | NO | the general form is still badged in the prose beside the halting-problem specialization the corollary now prints |
