@@ -32,14 +32,88 @@
 \newcommand{\doi}[1]{\href{https://doi.org/#1}{\nolinkurl{doi:#1}}}
 \newcommand{\arxiv}[1]{\href{https://arxiv.org/abs/#1}{\nolinkurl{arXiv:#1}}}
 \newcommand{\coderepository}{https://github.com/SauersML/group-approximation}
-\newcommand{\leanverified}[2]{%
-  \unskip\quad
+% Lean certificates are set in the margin beside the line that carries
+% them: a rule marks the certified statement and a tick at its head
+% points back into the text block.  Badges written next to one another
+% coalesce into a single note, so a statement proved by several
+% declarations carries one block rather than a stack of tags.  Printed
+% declaration names are relative to the root namespace of the
+% development.
+\newlength{\leanrulewd}\setlength{\leanrulewd}{0.4pt}
+\newlength{\leanrulesep}\setlength{\leanrulesep}{4.5pt}
+\newlength{\leantickwd}\setlength{\leantickwd}{5pt}
+\newcommand{\leantone}{gray!72!black}
+\makeatletter
+\newtoks\lean@toks
+\newbox\lean@bx
+\newdimen\lean@ht
+\newdimen\lean@dp
+\newif\if@leanfirst
+\let\lean@sep\relax
+\let\lean@stop\relax
+\def\lean@setshort#1{%
+  \def\lean@full{#1}%
+  \lean@nsstrip#1\lean@sep GroupApproximation.\lean@sep\lean@stop}
+\def\lean@nsstrip#1GroupApproximation.#2\lean@sep#3\lean@stop{%
+  \def\lean@short{#2}%
+  \ifx\lean@short\@empty\let\lean@short\lean@full\fi}
+\protected\def\lean@decl#1#2{%
+  \if@leanfirst\@leanfirstfalse\else\vskip1.7\p@\fi
+  \lean@setshort{#2}%
   \ifanonymous
-    \textcolor{gray!72!black}{\normalfont\scriptsize[\thinspace Lean: \nolinkurl{#2}\thinspace]}%
+    \expandafter\nolinkurl\expandafter{\lean@short}%
   \else
     \href{\coderepository/blob/verified/GroupApproximation/#1.lean}{%
-      \textcolor{gray!72!black}{\normalfont\scriptsize[\thinspace Lean: \nolinkurl{#2}\thinspace]}}%
-  \fi}
+      \expandafter\nolinkurl\expandafter{\lean@short}}%
+  \fi
+  \par}
+\def\lean@build#1{%
+  \setbox\lean@bx\vtop{%
+    \hsize\dimexpr\marginparwidth-\leanrulesep-\leanrulewd\relax
+    \linewidth\hsize \columnwidth\hsize
+    \parindent\z@ \parskip\z@skip \normalfont \color{\leantone}%
+    #1%
+    {\fontsize{7}{8.4}\selectfont\scshape Lean\par}%
+    \vskip1.9\p@
+    \fontsize{6.6}{7.9}\selectfont
+    \@leanfirsttrue\the\lean@toks}%
+  \lean@ht\ht\lean@bx \lean@dp\dp\lean@bx}
+\def\lean@tick{%
+  \raisebox{\lean@ht}[\z@][\z@]{%
+    \color{\leantone}\rule[-\leanrulewd]{\leantickwd}{\leanrulewd}}}
+\def\lean@bar{%
+  \color{\leantone}%
+  \vrule width\leanrulewd height\lean@ht depth\lean@dp\relax}
+\def\lean@outer{\lean@build{\raggedright}%
+  \hbox{\llap{\lean@tick}\lean@bar\kern\leanrulesep\box\lean@bx}}
+\def\lean@inner{\lean@build{\raggedleft}%
+  \hbox{\box\lean@bx\kern\leanrulesep\lean@bar\rlap{\lean@tick}}}
+\def\lean@flush{%
+  \ifvmode
+    \@latex@error{Lean badge between paragraphs}%
+      {A badge sets a margin note beside the line it certifies, so it must
+       stand inside the paragraph, item or statement it marks -- not after
+       \string\end{...} or before the first word of an environment.}%
+  \fi
+  \marginpar[\lean@inner]{\lean@outer}\global\lean@toks{}}
+\def\lean@flushspace{\lean@flush\space}
+\def\lean@peek{\futurelet\lean@tok\lean@choose}
+\def\lean@choose{%
+  \let\lean@next\lean@flush
+  \ifx\lean@tok\lean@badge\let\lean@next\relax\fi
+  \ifx\lean@tok\@sptoken\let\lean@next\lean@eatspace\fi
+  \lean@next}
+\def\lean@eatspace{\afterassignment\lean@repeek\let\lean@junk= }%
+\def\lean@repeek{\futurelet\lean@tok\lean@choosesp}
+\def\lean@choosesp{%
+  \let\lean@next\lean@flushspace
+  \ifx\lean@tok\lean@badge\let\lean@next\relax\fi
+  \lean@next}
+\newcommand{\leanverified}[2]{%
+  \global\lean@toks\expandafter{\the\lean@toks\lean@decl{#1}{#2}}%
+  \lean@peek}
+\expandafter\let\expandafter\lean@badge\csname leanverified\endcsname
+\makeatother
 \setlist[enumerate]{leftmargin=2.35em}
 \setlist[itemize]{leftmargin=2.1em}
 \allowdisplaybreaks
@@ -321,10 +395,12 @@ obstruction.
 The proof of Theorem~\ref{thm:A} is self-contained modulo the
 accompanying exact rational sum-of-squares certificate and the
 machine-checked finite word computations it cites; the repository
-records both.  Each gray Lean tag names a theorem in the accompanying
-Lean~4 development supporting the adjacent claim; for closed results
-the statements coincide, and conditional formal endpoints retain the
-hypotheses stated in the surrounding text.
+records both.  Each margin tag names a theorem of the accompanying
+Lean~4 development supporting the statement its rule marks, with
+declaration names written relative to the root namespace
+\nolinkurl{GroupApproximation}; for closed results the statements
+coincide, and conditional formal endpoints retain the hypotheses stated
+in the surrounding text.
 
 \subsection*{Relation to prior work}
 The closest conceptual analogue is the recent work on nonsofic groups.
@@ -532,12 +608,12 @@ centralizes $\iota(\Gamma)$ in normalized Hilbert--Schmidt norm,
  \qquad(\gamma\in\Gamma),
 \]
 then the conjugated sequence does as well:
+\leanverified{Sofic/ManuscriptKazhdanTransport}{GroupApproximation.KazhdanAsymptoticCommutant.manuscriptKazhdanTransport}
 \[
 \hsnorm{[U_n(s)x_nU_n(s)^*,U_n(\iota(\gamma))]}
 \longrightarrow0
 \qquad(\gamma\in\Gamma).
 \]
-\leanverified{Sofic/ManuscriptKazhdanTransport}{GroupApproximation.KazhdanAsymptoticCommutant.manuscriptKazhdanTransport}
 \end{theorem}
 
 \begin{proof}
@@ -679,10 +755,10 @@ $d^1_n\times d^2_n$ matrices with
 \]
 Then $U^1_n(s)\,x_n\,U^2_n(s)^*$ satisfies the same convergence for
 every $\gamma\in\Gamma$.
-\end{enumerate}
 \leanverified{Sofic/ScaledKazhdanTransport}{GroupApproximation.ScaledKazhdanTransport.scaled_transport_both}
 \leanverified{Sofic/IntertwinerKazhdanTransport}{GroupApproximation.IntertwinerKazhdanTransport.manuscriptIntertwinerTransport}
 \leanverified{Sofic/IntertwinerKazhdanTransport}{GroupApproximation.IntertwinerKazhdanTransport.scaled_intertwiner_transport}
+\end{enumerate}
 \end{theorem}
 
 \begin{proof}
@@ -746,13 +822,13 @@ subject to
 \end{enumerate}
 Write $d:=tct^{-1}$.  The \emph{defect subgroup} of the
 datum is the normal closure
+\leanverified{Sofic/ManuscriptExactWrappers}{GroupApproximation.ManuscriptExactWrappers.manuscriptMarkedKazhdanPattern}
 \[
   N_{\mathrm{comp}}
   \;=\;\bigl\langle\!\bigl\langle\,
   [\,d,\iota(\lambda)\,]\;:\;\lambda\in\Lambda
   \,\bigr\rangle\!\bigr\rangle_H\;\trianglelefteq\;H .
 \]
-\leanverified{Sofic/ManuscriptExactWrappers}{GroupApproximation.ManuscriptExactWrappers.manuscriptMarkedKazhdanPattern}
 \end{definition}
 
 Both conditions are relations among generators, so a datum can be read
@@ -1586,11 +1662,11 @@ generators, and eight centrality relators.  Its defining
 relations make $w$ central, and centrality together with $c^2=1$ implies
 $w^2=1$ by \eqref{eq:involution-reversal}.  The relations on the six base
 generators also give
+\leanverified{Sofic/LiteralNonMFPresentation}{GroupApproximation.LiteralNonMFPresentation.manuscriptLiteralPresentation}
 \[
  t\iota(\mathcal B)t^{-1}\subseteq\iota(\mathcal B),
  \qquad [c,\iota(\mathcal B)]=1.
 \]
-\leanverified{Sofic/LiteralNonMFPresentation}{GroupApproximation.LiteralNonMFPresentation.manuscriptLiteralPresentation}
 \end{definition}
 
 \paragraph{Six generators suffice.}
@@ -1599,9 +1675,9 @@ structure used in the proof: the three commuting translations, the
 linear generators acting on them, the stable letter $t$, and $c$.
 The group $E$ is nevertheless generated by the six elements
 $v_1,x,y,z,t,c$.
-\leanverified{Sofic/LiteralSixGenerator}{GroupApproximation.LiteralSixGenerator.literal_sixGenerated_finitelyPresented_nonMF}
 There is also a Tietze-equivalent presentation on these six generators
 with thirty-two relators.
+\leanverified{Sofic/LiteralSixGenerator}{GroupApproximation.LiteralSixGenerator.literal_sixGenerated_finitelyPresented_nonMF}
 \leanverified{Sofic/LiteralTietzePresentation}{GroupApproximation.LiteralTietzePresentation.manuscriptTietzeSixGeneratorPresentation}
 In \eqref{eq:E}, eliminate $v_3=xv_1x^{-1}$ and $v_2=x^2v_1x^{-2}$ by
 Tietze substitutions and delete the two defining relations; the
@@ -1914,10 +1990,10 @@ separates the two sites; no HNN normal-form theorem is needed.
 
 \begin{lemma}[the marked word is a defect square]\label{lem:square}
 Let $H_1$ be a group and $d,a_1\in H_1$ with $d^2=1$.  Then
+\leanverified{Sofic/CompressionDefectSquare}{GroupApproximation.commutator_conjugate_eq_commutator_sq_of_sq_eq_one}
 \[
   \bigl[\,d,\;a_1\,d\,a_1^{-1}\bigr]\;=\;[\,d,a_1\,]^{\,2} .
 \]
-\leanverified{Sofic/CompressionDefectSquare}{GroupApproximation.commutator_conjugate_eq_commutator_sq_of_sq_eq_one}
 \end{lemma}
 
 \begin{proof}
@@ -2190,10 +2266,10 @@ Let $N\trianglelefteq G_1$ satisfy
 $N\le\operatorname{Rad}_{\mathrm{MF}}(G_1)$.  Every corona
 representation of $G_1$ factors uniquely through $G_1/N$.  If in
 addition $G_1/N$ is MF, then
+\leanverified{Sofic/ManuscriptExactWrappers}{GroupApproximation.ManuscriptExactWrappers.manuscriptExactRadicalFromCandidateQuotient}
 \[
  \operatorname{Rad}_{\mathrm{MF}}(G_1)=N.
 \]
-\leanverified{Sofic/ManuscriptExactWrappers}{GroupApproximation.ManuscriptExactWrappers.manuscriptExactRadicalFromCandidateQuotient}
 \end{corollary}
 
 \begin{proof}
@@ -2212,12 +2288,12 @@ remains is an unconditional reduction.
 Let $N\trianglelefteq G_1$ satisfy
 $N\le\operatorname{Rad}_{\mathrm{MF}}(G_1)$ and let
 $q\colon G_1\to G_1/N$ be the quotient map.  Then
+\leanverified{Sofic/ManuscriptExactWrappers}{GroupApproximation.ManuscriptExactWrappers.manuscriptRadicalReductionToQuotient}
 \[
  \operatorname{Rad}_{\mathrm{MF}}(G_1)
  \;=\;
  q^{-1}\bigl(\operatorname{Rad}_{\mathrm{MF}}(G_1/N)\bigr).
 \]
-\leanverified{Sofic/ManuscriptExactWrappers}{GroupApproximation.ManuscriptExactWrappers.manuscriptRadicalReductionToQuotient}
 \end{corollary}
 
 \begin{proof}
@@ -2250,11 +2326,11 @@ $q\colon G_1\to G_1/N$, put
 An element belongs to $\operatorname{cl}_{\mathrm{MF}}(N)$ exactly when
 every corona representation of $G_1$ that maps $N$ to the identity maps
 it to the identity.
-\leanverified{Sofic/MFRelationClosure}{GroupApproximation.mem_actualCoronaMFClosure_iff}
 The operation $N\mapsto\operatorname{cl}_{\mathrm{MF}}(N)$ is extensive,
 monotone, and idempotent on normal subgroups;
 $G_1/\operatorname{cl}_{\mathrm{MF}}(N)$ is MF; and
 $\operatorname{cl}_{\mathrm{MF}}(N)=N$ exactly when $G_1/N$ is MF.
+\leanverified{Sofic/MFRelationClosure}{GroupApproximation.mem_actualCoronaMFClosure_iff}
 \leanverified{Sofic/MFRelationClosure}{GroupApproximation.manuscriptRelationClosure}
 \end{proposition}
 
@@ -2343,10 +2419,10 @@ Let all groups be countable.
 \item Every subgroup of an MF group is MF.
 \item Every residually finite group is MF.
 \item Every locally finite group is MF.
-\end{enumerate}
 \leanverified{Sofic/OperatorMFPositiveControls}{GroupApproximation.IsOperatorMF.subgroup}
 \leanverified{Sofic/OperatorMFPositiveControls}{GroupApproximation.isOperatorMF_of_residuallyFinite}
 \leanverified{Sofic/LocallyFiniteMF}{GroupApproximation.isOperatorMF_of_locallyFinite}
+\end{enumerate}
 \end{lemma}
 
 \begin{proof}
@@ -2453,6 +2529,7 @@ $k\in H$ is an \emph{involutive compression witness} for $(L,s)$ if
 \end{enumerate}
 The \emph{involutive collapse defect} of the pair $(L,s)$ is the
 normal subgroup
+\leanverified{Sofic/ManuscriptExactWrappers}{GroupApproximation.ManuscriptExactWrappers.manuscriptInvolutiveCollapsePattern}
 \[
   D_{\mathrm{coll}}(L,s)
   \;=\;
@@ -2461,7 +2538,6 @@ normal subgroup
   k\text{ a witness for }(L,s)
   \,\bigr\rangle\!\bigr\rangle_H .
 \]
-\leanverified{Sofic/ManuscriptExactWrappers}{GroupApproximation.ManuscriptExactWrappers.manuscriptInvolutiveCollapsePattern}
 \end{definition}
 
 In a permutational wreath product $K^{(X)}\rtimes G$ with $L\le G$
@@ -2475,10 +2551,10 @@ every corona representation.
 Let $H$ be countable, let $L\le H$ be a subgroup with
 property~\textup{(T)}, and let $s\in H$ satisfy
 $s\gamma s^{-1}\in L$ for every $\gamma\in L$.  Then
+\leanverified{Sofic/ManuscriptExactWrappers}{GroupApproximation.ManuscriptExactWrappers.manuscriptInvolutiveCollapse}
 \[
   D_{\mathrm{coll}}(L,s)\;\le\;\operatorname{Rad}_{\mathrm{MF}}(H).
 \]
-\leanverified{Sofic/ManuscriptExactWrappers}{GroupApproximation.ManuscriptExactWrappers.manuscriptInvolutiveCollapse}
 \end{theorem}
 
 \begin{proof}[Proof sketch]
@@ -2829,8 +2905,8 @@ every element of $D_{\mathrm{coll}}(L,s)$ to the identity.
 $\operatorname{Rad}_{\mathrm{MF}}(H)=H$; every homomorphism from $H$
 to a countable MF group is trivial; and if $H$ is nontrivial, then
 $H$ is not MF.
-\end{enumerate}
 \leanverified{Sofic/ManuscriptExactWrappers}{GroupApproximation.ManuscriptExactWrappers.manuscriptDefectSaturation}
+\end{enumerate}
 \end{theorem}
 
 \begin{proof}
@@ -3086,13 +3162,13 @@ of the free group $F_k$, topologized so that a basic clopen set fixes
 the truth of finitely many equations among words in the generators.
 \begin{enumerate}
 \item The marked groups with MF quotient form a closed set.
-\leanverified{Sofic/MarkedMFClosed}{GroupApproximation.MarkedGroupSpace.isClosed_operatorMFLocus}
 \item Equivalently, the non-MF marked groups form an open set.
-\leanverified{Sofic/MarkedMFClosed}{GroupApproximation.MarkedGroupSpace.isOpen_compl_operatorMFLocus}
 \item Every non-MF $k$-marked group admits a finite-radius
 certificate: there is a radius $R$ such that every $k$-marked group
 whose relations agree with it on the reduced words of length at most
 $R$ is non-MF.
+\leanverified{Sofic/MarkedMFClosed}{GroupApproximation.MarkedGroupSpace.isClosed_operatorMFLocus}
+\leanverified{Sofic/MarkedMFClosed}{GroupApproximation.MarkedGroupSpace.isOpen_compl_operatorMFLocus}
 \leanverified{Sofic/MarkedMFClosed}{GroupApproximation.MarkedGroupSpace.exists_wordBall_cylinder_subset_compl_operatorMFLocus}
 \end{enumerate}
 \end{theorem}
@@ -3195,10 +3271,10 @@ group-theoretic that feeds the construction is machine-checked ---
 subgroup heredity of MF and the finitely presented non-MF group ---
 \leanverified{Computability/MarkovMFConsequences}{GroupApproximation.MarkovMFConsequences.operatorMF_subgroup_hereditary}
 \leanverified{Computability/MarkovMFConsequences}{GroupApproximation.MarkovMFConsequences.exists_finitelyPresented_nonOperatorMF}
+\leanverified{Computability/MarkovMFConsequences}{GroupApproximation.MarkovMFConsequences.operatorMF_recognition_undecidable}
 and so is the computability-theoretic pullback: from any computable
 Adian--Rabin reduction, undecidability and the failure of recursive
 enumerability on the negative side follow formally.
-\leanverified{Computability/MarkovMFConsequences}{GroupApproximation.MarkovMFConsequences.operatorMF_recognition_undecidable}
 Theorem~\ref{thm:markedclosed} certifies single non-MF groups by
 finite balls; the corollary says no algorithm classifies the positive
 and negative cases from presentations.
