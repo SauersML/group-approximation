@@ -669,7 +669,8 @@ def build_corpus(root: Path) -> Corpus:
             if any(needs <= discharged for needs in requirement_sets):
                 discharged.add(head)
                 changed = True
-    return Corpus(modules, corpus_types, corpus_props, discharged, by_name)
+    return Corpus(modules, corpus_types, corpus_props, discharged, by_name,
+                  corpus_namespaces)
 
 
 # ---------------------------------------------------------------------------
@@ -920,7 +921,7 @@ def classify(
 
     conclusion = corpus.unfolded_conclusion(declaration)
     for binder, origin in corpus.unfolded_premises(declaration):
-        head = binder.head
+        head = corpus.resolve(binder.head)
         if not head:
             continue
         if head in roster:
@@ -939,7 +940,11 @@ def classify(
         # is `uxu*`" says something whether or not commutants exist.  A premise
         # the conclusion never mentions is doing a different job -- it is
         # buying the conclusion with data the corpus cannot supply.
-        if re.search(rf"(?<![\w'.]){re.escape(head)}(?![\w'])", conclusion):
+        # `head` is resolved, so the conclusion may spell it either way; the
+        # optional prefix keeps the dot-excluding lookbehind from rejecting the
+        # qualified spelling it was written to guard against.
+        if re.search(rf"(?<![\w'.])(?:[^\W\d][\w'!?]*\.)*{re.escape(head)}(?![\w'])",
+                     conclusion):
             continue
         kind = "structure" if head in corpus.corpus_types else "predicate"
         findings.append((

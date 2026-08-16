@@ -1194,7 +1194,7 @@ theorem exists_lampSpan (n : LampFactor) : ∃ J : Finset Block, n ∈ lampSpan 
 theorem blockSpan_map (J : Finset Block) :
     (blockSpan J).map toModel =
       (lampSpan J).map (SemidirectProduct.inl : LampFactor →* Model) := by
-  rw [blockSpan, lampSpan, Subgroup.map_closure, Subgroup.map_closure]
+  rw [blockSpan, lampSpan, MonoidHom.map_closure, MonoidHom.map_closure]
   congr 1
   ext m
   constructor
@@ -1329,7 +1329,7 @@ theorem doubledBase_map_le_conjStable_range :
         LiteralBaseRelations.z, LiteralBaseRelations.v1 ^ 2,
         LiteralBaseRelations.v2 ^ 2, LiteralBaseRelations.v3 ^ 2} :
           Set Base) := rfl
-  rw [hcl, Subgroup.map_closure, Subgroup.closure_le]
+  rw [hcl, MonoidHom.map_closure, Subgroup.closure_le]
   rintro _ ⟨g, hg, rfl⟩
   simp only [Set.mem_insert_iff, Set.mem_singleton_iff] at hg
   rcases hg with rfl | rfl | rfl | rfl | rfl | rfl
