@@ -287,6 +287,8 @@ import GroupApproximation.Sofic.LEFMarkedCompression
 import GroupApproximation.Algebra.FiniteResidual
 import GroupApproximation.Algebra.PermutationalWreath
 import GroupApproximation.Algebra.PermutationalWreathSimple
+import GroupApproximation.Algebra.WreathSplitQuotient
+import GroupApproximation.Sofic.FiniteDimensionalResidual
 import GroupApproximation.Kazhdan.IntegerNotKazhdan
 import GroupApproximation.Sofic.SoficAction
 import GroupApproximation.Sofic.SoficActionFiniteOrbits
@@ -323,6 +325,7 @@ import GroupApproximation.Algebra.Amenable
 import GroupApproximation.Algebra.AmenableMean
 import GroupApproximation.Algebra.AmenableInt
 import GroupApproximation.Algebra.AmenableLocallyFiniteByInt
+import GroupApproximation.Algebra.AmenableConstructions
 import GroupApproximation.Sofic.ProductMultiplicity
 import GroupApproximation.Sofic.ContinuumMultiplicity
 import GroupApproximation.Sofic.OperatorMFPairAmplification
