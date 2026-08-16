@@ -765,6 +765,8 @@ import GroupApproximation.Sofic.LiteralBlockGeometry
 import GroupApproximation.Sofic.LiteralBlockNormalForm
 import GroupApproximation.Sofic.LiteralLampKernelSplit
 import GroupApproximation.Sofic.LiteralTelescopeCoreLEF
+import GroupApproximation.Sofic.LiteralVerticalBridge
+import GroupApproximation.Sofic.LiteralSoficAssembly
 import GroupApproximation.Sofic.MatricialStabilityInstances
 import GroupApproximation.Sofic.SimpleSoficEnvelope
 import GroupApproximation.Sofic.SoficEnvelopeExistence

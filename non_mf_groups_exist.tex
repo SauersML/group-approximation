@@ -1038,23 +1038,26 @@ Use the six base generators and the relations displayed in
 \begin{equation}\label{eq:E}
   E=\left\langle v_1,v_2,v_3,x,y,z,t,c\ \middle|\
   \begin{gathered}
-   \text{all relations in \eqref{eq:gamma-presentation}},\\
-   tv_i t^{-1}=v_i^2\ (1\le i\le3),\\
-   txt^{-1}=x,\quad tyt^{-1}=y,\quad tzt^{-1}=z,\\
-   c^2=1,\\
-   [c,g]=1\quad(g\in\{v_1,v_2,v_3,x,y,z\}),\\
-   [w,g]=1\quad(g\in\{v_1,v_2,v_3,x,y,z,t,c\})
+   \textup{(B)}\quad\text{all relations in \eqref{eq:gamma-presentation}},\\
+   \textup{(T)}\quad tv_i t^{-1}=v_i^2\ (1\le i\le3),\\
+   \phantom{\textup{(T)}\quad}
+     txt^{-1}=x,\quad tyt^{-1}=y,\quad tzt^{-1}=z,\\
+   \textup{(C)}\quad c^2=1,\qquad
+     [c,g]=1\ \ (g\in\{v_1,v_2,v_3,x,y,z\}),\\
+   \textup{(W)}\quad [w,g]=1\quad(g\in\{v_1,v_2,v_3,x,y,z,t,c\})
   \end{gathered}\right\rangle,
 \end{equation}
 where $w$ abbreviates the word
 $\bigl[\,tct^{-1},\,v_1(tct^{-1})v_1^{-1}\bigr]$.
 This is an explicit finite presentation with eight generators and
-forty-one relators: the twenty base relators, six stable-letter
-relators, $c^2$, the six relations making $c$ commute with the base
-generators, and eight centrality relators.  Its defining
-relations make $w$ central, and centrality together with $c^2=1$ implies
-$w^2=1$ by \eqref{eq:involution-reversal}.  The relations on the six base
-generators also give
+forty-one relators: twenty in family~\textup{(B)}, six in
+family~\textup{(T)}, seven in family~\textup{(C)}, and eight in
+family~\textup{(W)}.  The four families have four distinct jobs:
+\textup{(B)} presents the base, \textup{(T)} compresses it,
+\textup{(C)} centralizes the lamp against it, and \textup{(W)} makes the
+marked word central.  Centrality together with $c^2=1$ implies
+$w^2=1$ by \eqref{eq:involution-reversal}.  Family~\textup{(B)} also
+gives
 \leanverified{Sofic/LiteralNonMFPresentation}{GroupApproximation.LiteralNonMFPresentation.manuscriptLiteralPresentation}
 \[
  t\iota(\mathcal B)t^{-1}\subseteq\iota(\mathcal B),
@@ -1075,9 +1078,9 @@ central-sign criterion (Theorem~\ref{thm:sign-criterion}) with
 $\Gamma=\mathcal B$, the canonical homomorphism $\iota$, the elements
 $t,c\in E$, and $a=v_1$.  Its hypotheses are the displayed relators:
 Proposition~\ref{prop:literal-base-T} gives property~\textup{(T)} of
-$\mathcal B$; the six stable-letter relators give
-$t\iota(\mathcal B)t^{-1}\subseteq\iota(\mathcal B)$; and the six
-$c$-commutation relators give $[c,\iota(\mathcal B)]=1$.  In $E$ we
+$\mathcal B$; family~\textup{(T)} gives
+$t\iota(\mathcal B)t^{-1}\subseteq\iota(\mathcal B)$; and
+family~\textup{(C)} gives $[c,\iota(\mathcal B)]=1$.  In $E$ we
 have $d^2=(tct^{-1})^2=tc^2t^{-1}=1$, so Lemma~\ref{lem:square} with
 $a_1=\iota(v_1)$ gives
 \[
@@ -1495,7 +1498,7 @@ A small relative rank therefore costs nothing in the operator-norm
 setting, while it blocks the same argument in Hilbert--Schmidt metrics
 (Section~\ref{sec:limits}).
 
-\section{The position of the example}\label{sec:position}
+\section{Consequences of the example}\label{sec:position}
 
 Throughout, $d=tct^{-1}$ and $u=[d,\iota(v_1)]$, so that $w=u^2$.
 Write $\operatorname{Rad}_{\mathrm{MF}}(G)$ for the \emph{MF radical}

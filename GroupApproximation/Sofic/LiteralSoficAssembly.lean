@@ -1,96 +1,64 @@
 import GroupApproximation.Sofic.LiteralVerticalBridge
-import GroupApproximation.Sofic.LiteralBlockCliffordBridge
 import GroupApproximation.Sofic.LiteralAffineCosetTransitivity
-import GroupApproximation.Sofic.LiteralBlockGeometry
-import GroupApproximation.Sofic.LiteralSoficEndpoint
+import GroupApproximation.Sofic.BlockCliffordTowerSofic
 
 /-!
 # The literal finitely presented non-MF group is sofic
 
-This file closes the soficity chain for the literal eight-generator,
-forty-one-relator group `E` of `def:E`.  Every input is proved in this
-repository; the conclusion `markedGroup_isSofic : IsSofic MarkedGroup` carries
-no hypothesis, no `sorry`, and no literature axiom.
+`markedGroup_isSofic : IsSofic MarkedGroup`, with no hypothesis, no `sorry`
+and no literature input.
 
-## What was missing, and what supplies it
+## What was missing
 
-`Sofic/BlockCliffordTowerSofic.lean` already proves the general theorem the
-chain needs:
+`Sofic/BlockCliffordTowerSofic.lean` already proves the general theorem:
 
     isSofic_blockClifford_tower :
       residually finite base Γ, injective α, an action of `Vertical α hα` on
       `BlockClifford I B` by site permutations fixing the sign, with finite
       level orbits on sites  ⟹  IsSofic (BlockClifford I B ⋊ Vertical α hα).
 
-`Sofic/LiteralBlockCliffordBridge.lean` already presents `E` in exactly that
-shape — `markedGroupEquivTower` — modulo two facts about the orbital graph,
-and its closing remark records the obstruction to combining them: its
-`Vertical` is `PresentedGroup verticalRelators`, while the tower theorem's is
-`MarkedCompression.Vertical`, and "the two are unrelated types".
+and `Sofic/LiteralBlockNormalForm.lean` already computes `E ≅ C(𝒢) ⋊ Vertical`.
+The two never met because they speak about different vertical groups —
+`PresentedGroup verticalRelators` and `MarkedCompression.Vertical` — which
+`Sofic/LiteralBlockCliffordBridge.lean` records as "unrelated types".
 
-`Sofic/LiteralVerticalBridge.lean` removes that: the two carriers are both
-`E/⟨⟨c⟩⟩` and are identified there, together with their site sets and their
-orbital graphs.  With that identification the two open graph facts become the
-geometry lane's theorems:
+`Sofic/LiteralVerticalBridge.lean` shows they are the same group.  This file
+spends that identification:
 
-* `IsIrreflexive` is `LiteralBlockGeometry.markedSite_ne`, i.e. `v₁ ∉ α(Γ̄)`
-  (`ExplicitLinearModel.v1G_not_mem_range`);
-* `IsCompleteOnBlocks` is `LiteralBlockGeometry.adj_of_blockOf_eq` fed with
-  `LiteralAffineCosetTransitivity.conjD_cosetTransitive`, the CRW-free
-  computation that the three displayed rotations move `ē₁` onto all seven
-  nonzero classes of `(ℤ/2)³`.
+* the two graph facts the tower needs become geometry-lane theorems —
+  irreflexivity is `v₁ ∉ conjD(Γ̄)` and completeness on blocks is
+  `adj_of_blockOf_eq` fed with the CRW-free `conjD_cosetTransitive`;
+* the blocks are finite because the *presented* blocks refine the geometric
+  ones, which are finite by the doubling index.  No exact value of the index
+  is used;
+* the lamp factor `C(𝒢)` and the block-Clifford group of the fibred site set
+  are identified by their two universal properties, `lampLift` one way and
+  `PresentedGroup.toGroup` the other.
 
-## Where the residual finiteness comes from
-
-Not from Karrass--Pietrowski--Solitar.  The tower's window subgroups are
-residually finite by `BlockCliffordLamp.residuallyFinite_blockClifford` and
-`BlockCliffordTowerSofic.residuallyFinite_window`, whose proof is the
-two-quotient separation: kill the central sign and land in a free product of
-finitely many finite sign groups, or keep the sign and land in the finite
-complete Clifford model; the two kernels meet trivially because the only thing
-the first loses is central and the second keeps it.  That is
-`docs/E_SOFICITY_SELF_CONTAINED_2026-08-16.md` §§7--8, and it needs no
-virtual-freeness theorem.
-
-The final `ℤ` step is `SoficIntegerExtension.isSofic_int_semidirectProduct`,
-the cyclic-truncation construction of that document's §11, not a citation of
-Elek--Szabó.
-
-## The blocks here are the presented ones
-
-`LiteralBlockNormalForm.blockSubgroup = ⟨B, β⟩` is only known to be contained
-in the geometric `B₁ = τ⁻¹Bτ`, so the presented blocks a priori *refine* the
-geometric ones.  That is the direction the argument needs, and nothing below
-asserts the reverse: a presented block is finite because it embeds in a
-geometric one, and distinct sites of a presented block are adjacent because
-they lie in a common geometric block.  (The two facts together force the two
-block sets to coincide, but that is a consequence, not an input.)
+Residual finiteness of the windows is `BlockCliffordLamp`'s two-quotient
+separation, so **Karrass--Pietrowski--Solitar is not used**; the final `ℤ`
+step is `SoficIntegerExtension.isSofic_int_semidirectProduct`.  Both are
+`docs/E_SOFICITY_SELF_CONTAINED_2026-08-16.md` §§7--8 and §11.
 -/
 
 namespace GroupApproximation
 namespace LiteralSoficAssembly
 
--- `LiteralBlockCliffordBridge.siteEquiv` (sites over blocks) and
--- `LiteralVerticalBridge.siteEquiv` (the two lanes' site sets) are different
--- maps with the same name; the second is the one used unqualified here.
-open LiteralNonMFPresentation LiteralBlockNormalForm
-open LiteralBlockCliffordBridge hiding siteEquiv
-open LiteralVerticalBridge
-open MarkedCompression
+open LiteralNonMFPresentation LiteralBlockNormalForm LiteralVerticalBridge
+open BlockCliffordLamp
+open scoped commutatorElement
 
 noncomputable section
 
-/-- The doubling endomorphism of the affine base, as the soficity chain uses
-it. -/
+/-- The doubling endomorphism of the affine base. -/
 abbrev alpha : ExplicitLinearModel.gammaBar →* ExplicitLinearModel.gammaBar :=
   LiteralNonMFLinearWitness.alpha
 
-/-- Its injectivity. -/
 theorem halpha : Function.Injective alpha := ExplicitLinearModel.conjD_injective
 
-/-! ## The two graph hypotheses -/
+/-! ## The two graph facts -/
 
-/-- **The two marked sites are distinct.**  Transported from
+/-- **The two marked sites are distinct**, transported from
 `LiteralBlockGeometry.markedSite_ne`, whose input is `v₁ ∉ α(Γ̄)`. -/
 theorem siteA_ne_siteB : (siteA : Site) ≠ siteB := by
   intro h
@@ -100,25 +68,56 @@ theorem siteA_ne_siteB : (siteA : Site) ≠ siteB := by
     ExplicitLinearModel.v1G_not_mem_range hgeom
 
 /-- **No site is adjacent to itself.** -/
-theorem isIrreflexive : IsIrreflexive :=
-  isIrreflexive_of_siteA_ne_siteB siteA_ne_siteB
+theorem not_adjacent_self (ξ : Site) : ¬ Adjacent ξ ξ := by
+  have key : ∀ g : Vertical, g • siteA = ξ → g • siteB = ξ → False := by
+    intro g ha hb
+    refine siteA_ne_siteB ?_
+    have := ha.trans hb.symm
+    have h2 := congrArg (fun z ↦ g⁻¹ • z) this
+    simpa only [inv_smul_smul] using h2
+  rintro (⟨g, ha, hb⟩ | ⟨g, ha, hb⟩)
+  · exact key g ha hb
+  · exact key g ha hb
 
 /-- **Each block is a complete graph.**  Two distinct sites of one presented
 block lie in one geometric block, and the geometry lane's transitivity makes
 distinct sites of a geometric block adjacent. -/
-theorem isCompleteOnBlocks : IsCompleteOnBlocks := by
-  intro ξ η hblock hne
+theorem adjacent_of_blockOf_eq {ξ η : Site} (hblock : blockOf ξ = blockOf η)
+    (hne : ξ ≠ η) : Adjacent ξ η := by
   rw [adjacent_iff]
-  refine LiteralBlockGeometry.adj_of_blockOf_eq alpha halpha
+  exact LiteralBlockGeometry.adj_of_blockOf_eq alpha halpha
     LiteralAffineCosetTransitivity.conjD_cosetTransitive
-    (fun h ↦ hne (siteEquiv.injective h)) ?_
-  exact blockOf_eq_of_blockOf_eq hblock
+    (fun h ↦ hne (siteEquiv.injective h)) (blockOf_eq_of_blockOf_eq hblock)
+
+/-! ## The site set fibred over the blocks -/
+
+/-- The sites of one block. -/
+abbrev BlockSites (b : Block) : Type := {ξ : Site // blockOf ξ = b}
+
+/-- The site carried by a fibred pair. -/
+def siteOf (p : (b : Block) × BlockSites b) : Site := (p.2 : Site)
+
+@[simp] theorem blockOf_siteOf (p : (b : Block) × BlockSites b) :
+    blockOf (siteOf p) = p.1 := p.2.2
+
+/-- The fibred pair carried by a site. -/
+def pairOf (ξ : Site) : (b : Block) × BlockSites b := ⟨blockOf ξ, ⟨ξ, rfl⟩⟩
+
+@[simp] theorem siteOf_pairOf (ξ : Site) : siteOf (pairOf ξ) = ξ := rfl
+
+@[simp] theorem pairOf_siteOf (p : (b : Block) × BlockSites b) :
+    pairOf (siteOf p) = p := by
+  obtain ⟨b, ξ, hξ⟩ := p
+  subst hξ
+  rfl
+
+theorem pairOf_injective : Function.Injective pairOf :=
+  Function.LeftInverse.injective siteOf_pairOf
 
 /-! ## The blocks are finite
 
-A presented block embeds in a geometric one, and the geometric blocks are
-finite because `α` has finite index — `LiteralBaseDoublingIndex` supplies that
-instance, and no exact value of the index is used. -/
+A presented block embeds in a geometric one, and geometric blocks are finite
+because `α` has finite index — no exact value of the index is used. -/
 
 instance finite_blockSites (b : Block) : Finite (BlockSites b) := by
   classical
@@ -148,40 +147,204 @@ instance decEq_blockSites (b : Block) : DecidableEq (BlockSites b) :=
 
 instance decEq_block : DecidableEq Block := Classical.decEq _
 
-/-! ## Transporting a semidirect product along the acting group
+/-- The block-Clifford group of the fibred literal site set. -/
+abbrev LiteralBlockClifford : Type := BlockClifford Block BlockSites
 
-Mathlib has no `SemidirectProduct.congr`; the right-hand congruence is the
-only one needed and it is immediate, because the action of the transported
-group is the composite. -/
+/-! ## The lamp factor is the block-Clifford group
 
-/-- Reindex the acting group of a semidirect product along an isomorphism. -/
-def semidirectCongrRight {N H H' : Type*} [Group N] [Group H] [Group H']
-    (e : H' ≃* H) (φ : H →* MulAut N) :
-    (N ⋊[φ.comp e.toMonoidHom] H') ≃* (N ⋊[φ] H) where
-  toFun p := ⟨p.left, e p.right⟩
-  invFun q := ⟨q.left, e.symm q.right⟩
-  left_inv p := SemidirectProduct.ext rfl (e.symm_apply_apply p.right)
-  right_inv q := SemidirectProduct.ext rfl (e.apply_symm_apply q.right)
-  map_mul' p q := SemidirectProduct.ext rfl (map_mul e p.right q.right)
+Both are presented groups, so the identification is their two universal
+properties; no normal form and no relator-set image is involved. -/
 
-/-! ## The literal tower over the telescope carrier -/
+/-- `C(𝒢) → BlockClifford`, by the universal property of the Clifford graph
+group.  The braiding hypothesis is exactly that adjacent sites are distinct
+sites of a common block. -/
+def toBlock : LampFactor →* LiteralBlockClifford :=
+  lampLift (sign Block BlockSites) (fun ξ ↦ lamp Block BlockSites (pairOf ξ))
+    (sign_sq Block BlockSites)
+    (fun ξ ↦ lamp_sq Block BlockSites _)
+    (fun ξ ↦ sign_commute_lamp Block BlockSites _)
+    (by
+      intro ξ η hadj
+      refine commutator_lamp_lamp' Block BlockSites ?_ ?_
+      · show blockOf ξ = blockOf η
+        exact blockOf_eq_of_adjacent hadj
+      · intro hpq
+        have hξη : ξ = η := by
+          have := congrArg siteOf hpq
+          simpa only [siteOf_pairOf] using this
+        exact not_adjacent_self η (hξη ▸ hadj))
 
-/-- The action of the *telescope* vertical group on the block Clifford group,
-obtained from the presented one along the bridge. -/
+@[simp] theorem toBlock_sign : toBlock lampSign = sign Block BlockSites :=
+  lampLift_sign _ _ _ _ _ _
+
+@[simp] theorem toBlock_at (ξ : Site) :
+    toBlock (lampAt ξ) = lamp Block BlockSites (pairOf ξ) :=
+  lampLift_at _ _ _ _ _ _ ξ
+
+/-- `BlockClifford → C(𝒢)`, by the universal property of the block-Clifford
+presentation.  The braiding hypothesis is exactly completeness on blocks. -/
+def fromBlock : LiteralBlockClifford →* LampFactor := by
+  refine PresentedGroup.toGroup
+    (f := Sum.elim (fun _ ↦ lampSign) fun p ↦ lampAt (siteOf p)) ?_
+  intro w hw
+  change IsRelator Block BlockSites w at hw
+  cases hw with
+  | sign_sq => rw [map_pow, FreeGroup.lift_apply_of]; exact lampSign_sq
+  | lamp_sq p => rw [map_pow, FreeGroup.lift_apply_of]; exact lampAt_sq _
+  | sign_comm p =>
+      rw [map_commutatorElement, FreeGroup.lift_apply_of,
+        FreeGroup.lift_apply_of]
+      exact (lampSign_commute_lampAt _).commutator_eq
+  | @braiding i b b' hne =>
+      rw [map_mul, map_inv, map_commutatorElement, FreeGroup.lift_apply_of,
+        FreeGroup.lift_apply_of, FreeGroup.lift_apply_of]
+      show ⁅lampAt (b : Site), lampAt (b' : Site)⁆ * lampSign⁻¹ = 1
+      rw [commutator_lampAt (adjacent_of_blockOf_eq
+        (by rw [b.2, b'.2])
+        (fun h ↦ hne (Subtype.ext h)))]
+      exact mul_inv_cancel _
+
+@[simp] theorem fromBlock_sign : fromBlock (sign Block BlockSites) = lampSign :=
+  PresentedGroup.toGroup.of _
+
+@[simp] theorem fromBlock_lamp (p : (b : Block) × BlockSites b) :
+    fromBlock (lamp Block BlockSites p) = lampAt (siteOf p) :=
+  PresentedGroup.toGroup.of _
+
+theorem fromBlock_comp_toBlock :
+    fromBlock.comp toBlock = MonoidHom.id LampFactor := by
+  refine PresentedGroup.ext ?_
+  intro j
+  match j with
+  | Sum.inl () =>
+      show fromBlock (toBlock lampSign) = lampSign
+      rw [toBlock_sign, fromBlock_sign]
+  | Sum.inr ξ =>
+      show fromBlock (toBlock (lampAt ξ)) = lampAt ξ
+      rw [toBlock_at, fromBlock_lamp, siteOf_pairOf]
+
+theorem toBlock_comp_fromBlock :
+    toBlock.comp fromBlock = MonoidHom.id LiteralBlockClifford := by
+  refine PresentedGroup.ext ?_
+  intro j
+  match j with
+  | Sum.inl () =>
+      show toBlock (fromBlock (sign Block BlockSites)) = sign Block BlockSites
+      rw [fromBlock_sign, toBlock_sign]
+  | Sum.inr p =>
+      show toBlock (fromBlock (lamp Block BlockSites p))
+        = lamp Block BlockSites p
+      rw [fromBlock_lamp, toBlock_at, pairOf_siteOf]
+
+/-- **The lamp factor of `E` is the block-Clifford group of its site set.** -/
+def lampEquiv : LampFactor ≃* LiteralBlockClifford :=
+  MonoidHom.toMulEquiv toBlock fromBlock fromBlock_comp_toBlock
+    toBlock_comp_fromBlock
+
+@[simp] theorem lampEquiv_apply (n : LampFactor) : lampEquiv n = toBlock n := rfl
+
+@[simp] theorem lampEquiv_symm_apply (n : LiteralBlockClifford) :
+    lampEquiv.symm n = fromBlock n := rfl
+
+/-! ## The vertical action, transported -/
+
+/-- The vertical action on the block-Clifford group. -/
+def blockAutHom : Vertical →* MulAut LiteralBlockClifford where
+  toFun v := lampEquiv.symm.trans ((lampAutHom v).trans lampEquiv)
+  map_one' := by
+    refine MulEquiv.ext fun n ↦ ?_
+    show lampEquiv (lampAutHom 1 (lampEquiv.symm n)) = n
+    rw [map_one]
+    exact lampEquiv.apply_symm_apply n
+  map_mul' v w := by
+    refine MulEquiv.ext fun n ↦ ?_
+    show lampEquiv (lampAutHom (v * w) (lampEquiv.symm n))
+      = lampEquiv (lampAutHom v (lampEquiv.symm
+          (lampEquiv (lampAutHom w (lampEquiv.symm n)))))
+    rw [lampEquiv.symm_apply_apply, map_mul]
+    rfl
+
+@[simp] theorem blockAutHom_apply (v : Vertical) (n : LiteralBlockClifford) :
+    blockAutHom v n = lampEquiv (lampAutHom v (lampEquiv.symm n)) := rfl
+
+theorem blockAutHom_sign (v : Vertical) :
+    blockAutHom v (sign Block BlockSites) = sign Block BlockSites := by
+  rw [blockAutHom_apply, lampEquiv_symm_apply, fromBlock_sign, lampAutHom_sign,
+    lampEquiv_apply, toBlock_sign]
+
+/-- The permutation of the fibred site set induced by a vertical element. -/
+def sitePerm (v : Vertical) : Equiv.Perm ((b : Block) × BlockSites b) where
+  toFun p := pairOf (v • siteOf p)
+  invFun p := pairOf (v⁻¹ • siteOf p)
+  left_inv p := by simp only [siteOf_pairOf, inv_smul_smul, pairOf_siteOf]
+  right_inv p := by simp only [siteOf_pairOf, smul_inv_smul, pairOf_siteOf]
+
+@[simp] theorem sitePerm_apply (v : Vertical)
+    (p : (b : Block) × BlockSites b) : sitePerm v p = pairOf (v • siteOf p) :=
+  rfl
+
+/-- The site permutations, as a homomorphism. -/
+def sitePermHom : Vertical →* Equiv.Perm ((b : Block) × BlockSites b) where
+  toFun := sitePerm
+  map_one' := by
+    refine Equiv.ext fun p ↦ ?_
+    rw [sitePerm_apply, one_smul, pairOf_siteOf]
+    rfl
+  map_mul' v w := by
+    refine Equiv.ext fun p ↦ ?_
+    show pairOf ((v * w) • siteOf p) = sitePerm v (sitePerm w p)
+    rw [sitePerm_apply, sitePerm_apply, siteOf_pairOf, mul_smul]
+
+theorem blockAutHom_lamp (v : Vertical) (p : (b : Block) × BlockSites b) :
+    blockAutHom v (lamp Block BlockSites p)
+      = lamp Block BlockSites (sitePerm v p) := by
+  rw [blockAutHom_apply, lampEquiv_symm_apply, fromBlock_lamp, lampAutHom_at,
+    lampEquiv_apply, toBlock_at, sitePerm_apply]
+
+/-! ## The tower -/
+
+/-- Reindex a semidirect product along isomorphisms of both factors. -/
+def semidirectCongr {N N' H H' : Type*} [Group N] [Group N'] [Group H]
+    [Group H'] (eN : N ≃* N') (eH : H' ≃* H) (φ : H →* MulAut N)
+    (φ' : H' →* MulAut N')
+    (hcompat : ∀ (h : H') (n : N), eN (φ (eH h) n) = φ' h (eN n)) :
+    (N ⋊[φ] H) ≃* (N' ⋊[φ'] H') where
+  toFun p := ⟨eN p.left, eH.symm p.right⟩
+  invFun q := ⟨eN.symm q.left, eH q.right⟩
+  left_inv p :=
+    SemidirectProduct.ext (eN.symm_apply_apply p.left)
+      (eH.apply_symm_apply p.right)
+  right_inv q :=
+    SemidirectProduct.ext (eN.apply_symm_apply q.left)
+      (eH.symm_apply_apply q.right)
+  map_mul' p q := by
+    refine SemidirectProduct.ext ?_ (map_mul eH.symm p.right q.right)
+    show eN (p.left * φ p.right q.left)
+      = eN p.left * φ' (eH.symm p.right) (eN q.left)
+    rw [map_mul]
+    congr 1
+    have := hcompat (eH.symm p.right) q.left
+    rwa [eH.apply_symm_apply] at this
+
+/-- The tower action over the *telescope* vertical group. -/
 def towerAction :
-    MarkedCompression.Vertical alpha halpha →*
-      MulAut (BlockCliffordLamp.BlockClifford Block BlockSites) :=
-  (blockAutHom isCompleteOnBlocks isIrreflexive).comp
-    verticalEquiv.symm.toMonoidHom
+    MarkedCompression.Vertical alpha halpha →* MulAut LiteralBlockClifford :=
+  blockAutHom.comp verticalEquiv.symm.toMonoidHom
+
+@[simp] theorem towerAction_apply (v : MarkedCompression.Vertical alpha halpha)
+    (n : LiteralBlockClifford) :
+    towerAction v n = blockAutHom (verticalEquiv.symm v) n := rfl
 
 /-- **`E` is a block-Clifford tower over the telescope carrier.** -/
 def markedGroupEquivTelescopeTower :
     MarkedGroup ≃*
-      (BlockCliffordLamp.BlockClifford Block BlockSites ⋊[towerAction]
+      (LiteralBlockClifford ⋊[towerAction]
         MarkedCompression.Vertical alpha halpha) :=
-  (markedGroupEquivTower isCompleteOnBlocks isIrreflexive).trans
-    (semidirectCongrRight verticalEquiv.symm
-      (blockAutHom isCompleteOnBlocks isIrreflexive)).symm
+  markedGroupEquivModel.trans
+    (semidirectCongr lampEquiv verticalEquiv.symm lampAutHom towerAction
+      (by
+        intro h n
+        rw [towerAction_apply, blockAutHom_apply, lampEquiv.symm_apply_apply]))
 
 /-- The site permutations induced by the telescope. -/
 def teleSitePerm :
@@ -192,30 +355,17 @@ def teleSitePerm :
       MappingTelescope.Telescope alpha halpha →*
         MarkedCompression.Vertical alpha halpha))
 
-theorem teleSitePerm_apply (t : MappingTelescope.Telescope alpha halpha)
-    (p : (b : Block) × BlockSites b) :
-    teleSitePerm t p =
-      LiteralBlockCliffordBridge.siteEquiv.symm
-        (verticalEquiv.symm (SemidirectProduct.inl t) •
-          LiteralBlockCliffordBridge.siteEquiv p) := rfl
-
-/-- The tower action fixes the sign. -/
 theorem towerAction_sign (v : MarkedCompression.Vertical alpha halpha) :
-    towerAction v (BlockCliffordLamp.sign Block BlockSites) = BlockCliffordLamp.sign Block BlockSites :=
-  blockAutHom_sign isCompleteOnBlocks isIrreflexive _
+    towerAction v (sign Block BlockSites) = sign Block BlockSites :=
+  blockAutHom_sign _
 
-/-- The tower action permutes the lamps along `teleSitePerm`. -/
 theorem towerAction_lamp (t : MappingTelescope.Telescope alpha halpha)
     (p : (b : Block) × BlockSites b) :
-    towerAction (SemidirectProduct.inl t) (BlockCliffordLamp.lamp Block BlockSites p)
-      = BlockCliffordLamp.lamp Block BlockSites (teleSitePerm t p) :=
-  blockAutHom_lamp isCompleteOnBlocks isIrreflexive _ p
+    towerAction (SemidirectProduct.inl t) (lamp Block BlockSites p)
+      = lamp Block BlockSites (teleSitePerm t p) :=
+  blockAutHom_lamp _ p
 
-/-! ## Finite level orbits on sites
-
-`MappingTelescopeFiniteOrbits.finite_verticalLevel_orbit` is the statement over
-the geometric site set; the two site identifications are injections, so it
-transports. -/
+/-! ## Finite level orbits on sites -/
 
 theorem finite_level_site_orbit (n : ℕ) (p : (b : Block) × BlockSites b) :
     (Set.range fun h : ↥(MappingTelescope.level alpha halpha n).range ↦
@@ -225,22 +375,18 @@ theorem finite_level_site_orbit (n : ℕ) (p : (b : Block) × BlockSites b) :
       (Set.range fun h : ↥(MappingTelescopeFiniteOrbits.verticalLevel
           alpha halpha n) ↦
         (h : MarkedCompression.Vertical alpha halpha) •
-          LiteralVerticalBridge.siteEquiv
-            (LiteralBlockCliffordBridge.siteEquiv p)).Finite :=
+          siteEquiv (siteOf p)).Finite :=
     MappingTelescopeFiniteOrbits.finite_verticalLevel_orbit alpha halpha n _
   refine Set.Finite.subset (hgeom.image
-    (fun x ↦ LiteralBlockCliffordBridge.siteEquiv.symm
-      (LiteralVerticalBridge.siteEquiv.symm x))) ?_
+    (fun x ↦ pairOf (siteEquiv.symm x))) ?_
   rintro _ ⟨h, rfl⟩
   obtain ⟨u, hu⟩ := h.2
-  refine ⟨LiteralVerticalBridge.siteEquiv
-      (verticalEquiv.symm (SemidirectProduct.inl
-          (h : MappingTelescope.Telescope alpha halpha)) •
-        LiteralBlockCliffordBridge.siteEquiv p), ?_, ?_⟩
+  refine ⟨siteEquiv (verticalEquiv.symm (SemidirectProduct.inl
+      (h : MappingTelescope.Telescope alpha halpha)) • siteOf p), ?_, ?_⟩
   · refine ⟨⟨SemidirectProduct.inl (h : MappingTelescope.Telescope alpha halpha),
       ⟨u, by rw [MonoidHom.comp_apply, hu]⟩⟩, ?_⟩
     rw [siteEquiv_smul, MulEquiv.apply_symm_apply]
-  · rw [teleSitePerm_apply, Equiv.symm_apply_apply]
+  · exact congrArg pairOf (siteEquiv.symm_apply_apply _)
 
 /-! ## The endpoint -/
 
@@ -252,7 +398,7 @@ residual finiteness of those windows, and the stable letter is the cyclic
 truncation of `SoficIntegerExtension`. -/
 theorem markedGroup_isSofic : IsSofic MarkedGroup := by
   have htower :
-      IsSofic (BlockCliffordLamp.BlockClifford Block BlockSites ⋊[towerAction]
+      IsSofic (LiteralBlockClifford ⋊[towerAction]
         MarkedCompression.Vertical alpha halpha) :=
     BlockCliffordTowerSofic.isSofic_blockClifford_tower Block BlockSites
       ExplicitIntegralLinearModel.gammaBar_residuallyFinite alpha halpha
@@ -263,37 +409,6 @@ theorem markedGroup_isSofic : IsSofic MarkedGroup := by
 /-- **The literal group is hyperlinear.** -/
 theorem markedGroup_isHyperlinear : IsHyperlinear MarkedGroup :=
   isHyperlinear_of_isSofic markedGroup_isSofic
-
-/-- **The printed separation.**  An explicit finitely presented group that is
-sofic and is not MF. -/
-theorem markedGroup_finitelyPresented_sofic_not_isCDEOperatorMF :
-    Group.IsFinitelyPresented MarkedGroup ∧ IsSofic MarkedGroup ∧
-      ¬ IsCDEOperatorMF MarkedGroup :=
-  LiteralSoficEndpoint.markedGroup_finitelyPresented_sofic_not_isCDEOperatorMF
-    markedGroup_isSofic
-
-/-- **The full endpoint package**, with soficity now discharged: finitely
-presented, sofic, hyperlinear, not LEF, not residually finite, and not MF in
-every convention the development formalizes. -/
-theorem markedGroup_soficNonMF_package :
-    Group.IsFinitelyPresented MarkedGroup ∧
-      IsSofic MarkedGroup ∧
-      IsHyperlinear MarkedGroup ∧
-      ¬ IsLEF MarkedGroup ∧
-      ¬ Group.ResiduallyFinite MarkedGroup ∧
-      ¬ IsCDEOperatorMF MarkedGroup ∧
-      ¬ IsOperatorMF MarkedGroup ∧
-      ¬ IsMFAlgebra (MaximalGroupCStar MarkedGroup) ∧
-      ¬ IsMFAlgebra (ReducedGroupCStar MarkedGroup) :=
-  LiteralSoficEndpoint.markedGroup_soficNonMF_package markedGroup_isSofic
-
-/-- **The sofic radical is trivial while the MF radical is not.**  `E` is
-sofic, so it embeds in a sofic group by the identity; the marked involution
-`w` is nontrivial and dies in every corona representation. -/
-theorem markedGroup_sofic_not_isLEF :
-    IsSofic MarkedGroup ∧ ¬ IsLEF MarkedGroup ∧
-      ¬ Group.ResiduallyFinite MarkedGroup :=
-  LiteralSoficEndpoint.markedGroup_sofic_not_isLEF markedGroup_isSofic
 
 end
 

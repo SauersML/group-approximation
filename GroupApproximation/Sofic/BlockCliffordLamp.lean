@@ -515,6 +515,7 @@ theorem residuallyFinite_blockClifford :
 
 /-! ## Block-preserving permutations act on the block Clifford group -/
 
+omit [DecidableEq I] [Fintype I] [∀ i, DecidableEq (B i)] [∀ i, Fintype (B i)] in
 /-- The commutator of two distinct same-block lamps is the sign, in the
 first-component form. -/
 theorem commutator_lamp_lamp' {p q : (i : I) × B i}

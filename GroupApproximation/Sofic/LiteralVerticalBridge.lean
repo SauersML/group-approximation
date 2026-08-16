@@ -1,5 +1,6 @@
 import GroupApproximation.Sofic.LiteralBlockNormalForm
 import GroupApproximation.Sofic.LiteralLampKernelSplit
+import GroupApproximation.Sofic.LiteralBlockGeometry
 
 /-!
 # The two vertical groups of the literal development are the same group
@@ -250,14 +251,14 @@ def siteEquiv :
         ∈ Subgroup.map verticalEquiv.toMonoidHom
             LiteralBlockNormalForm.baseSubgroup :=
       Subgroup.mem_map_of_mem _ h
-    rw [map_baseSubgroup] at hmap
-    simpa only [map_mul, map_inv] using hmap
+    rw [map_baseSubgroup, map_mul, map_inv] at hmap
+    exact hmap
   · intro h
     have hmap : verticalEquiv (a⁻¹ * b)
         ∈ Subgroup.map verticalEquiv.toMonoidHom
             LiteralBlockNormalForm.baseSubgroup := by
-      rw [map_baseSubgroup]
-      simpa only [map_mul, map_inv] using h
+      rw [map_baseSubgroup, map_mul, map_inv]
+      exact h
     obtain ⟨u, hu, hue⟩ := hmap
     rwa [← verticalEquiv.injective hue]
 
@@ -350,12 +351,11 @@ theorem map_blockSubgroup_le :
   constructor
   · rw [map_baseSubgroup]
     exact LiteralBlockGeometry.baseSubgroup_le_blockSubgroup _ _
-  · rw [Subgroup.map_closure]
+  · rw [MonoidHom.map_closure]
     refine (Subgroup.closure_le _).mpr ?_
-    rintro _ ⟨_, rfl⟩
+    rintro _ ⟨y, rfl, rfl⟩
     refine (LiteralBlockGeometry.mem_blockSubgroup_iff _ _ _).mpr
       ⟨ExplicitLinearModel.v1G, ?_⟩
-    rw [LiteralBlockNormalForm.vBeta]
     show _ = toV (LiteralBlockNormalForm.vStable⁻¹ *
       LiteralBlockNormalForm.vV1 * LiteralBlockNormalForm.vStable)
     rw [map_mul, map_mul, map_inv, toV_vStable, toV_vV1]

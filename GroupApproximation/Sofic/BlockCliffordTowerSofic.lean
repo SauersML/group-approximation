@@ -295,7 +295,6 @@ theorem windowFreeLamp_commute (J : Finset I) {i : I} (b b' : B i) :
   · rw [windowFreeLamp_pos I B h, windowFreeLamp_pos I B h]
     exact Commute.map (Commute.all _ _) _
   · rw [windowFreeLamp_neg I B h, windowFreeLamp_neg I B h]
-    exact Commute.one_left _
 
 /-- Generator images of the window free-product map. -/
 def windowFreeGenerator (J : Finset I) :
