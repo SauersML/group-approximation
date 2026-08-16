@@ -85,9 +85,12 @@ theorem range_lift_eq_closure (g : ι → H) :
     | C1 => simp
     | of i => simpa [FreeGroup.lift_apply_of] using
         Subgroup.subset_closure (Set.mem_range_self i)
-    | inv_of i _ => simpa [FreeGroup.lift_apply_of] using
-        Subgroup.inv_mem _ (Subgroup.subset_closure (Set.mem_range_self i))
-    | mul _ _ hx hy => simpa using Subgroup.mul_mem _ hx hy
+    | inv_of i _ =>
+        have hmem : g i ∈ Subgroup.closure (Set.range g) :=
+          Subgroup.subset_closure (Set.mem_range_self i)
+        simpa [FreeGroup.lift_apply_of] using
+          (Subgroup.closure (Set.range g)).inv_mem hmem
+    | mul _ _ hx hy => rw [map_mul]; exact mul_mem hx hy
   · refine (Subgroup.closure_le _).mpr ?_
     rintro _ ⟨i, rfl⟩
     exact ⟨FreeGroup.of i, by simp [FreeGroup.lift_apply_of]⟩

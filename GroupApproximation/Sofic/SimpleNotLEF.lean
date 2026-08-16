@@ -1,5 +1,6 @@
 import GroupApproximation.Sofic.LEF
 import Mathlib.GroupTheory.Finiteness
+import Mathlib.GroupTheory.Subgroup.Simple
 
 /-!
 # An infinite simple group is not residually finite
@@ -37,7 +38,6 @@ Nothing here is about approximation.  In particular this file does **not**
 prove the Vershik--Gordon direction, and says nothing about soficity: it is
 pure group theory, and the analytic content of the route lives elsewhere.
 
-Never compiled.
 -/
 
 namespace GroupApproximation
@@ -61,13 +61,13 @@ theorem eq_one_of_finite_target [IsSimpleGroup S] [Infinite S]
       exact hbot
     exact (Finite.of_injective f hinj).false
   · have : x ∈ f.ker := htop ▸ Subgroup.mem_top x
-    exact (MonoidHom.mem_ker f).mp this
+    exact MonoidHom.mem_ker.mp this
 
 /-- **An infinite simple group is not separated by finite quotients.**  No
 homomorphism to a finite group distinguishes a nonidentity element from the
 identity. -/
 theorem not_separated_by_finite [IsSimpleGroup S] [Infinite S]
-    {x : S} (hx : x ≠ 1) :
+    {x : S} (_hx : x ≠ 1) :
     ¬ ∃ (F : Type) (_ : Group F) (_ : Finite F) (f : S →* F), f x ≠ 1 := by
   rintro ⟨F, _, _, f, hfx⟩
   exact hfx (eq_one_of_finite_target f x)
