@@ -47,13 +47,15 @@ instance actualCoronaMFClosure_normal (N : Subgroup G) [N.Normal] :
 
 /-- Semantic membership: `x` lies in the MF closure of `N` exactly when
 every genuine-corona representation killing `N` kills `x`. -/
-theorem mem_actualCoronaMFClosure_iff {N : Subgroup G} [N.Normal] {x : G} :
-    x ∈ actualCoronaMFClosure N ↔
-      ∀ (X : ℕ → FiniteModel), ∀ hX : ∀ n, 0 < Fintype.card (X n),
-        letI : ∀ n, Nonempty (X n) :=
-          fun n ↦ Fintype.card_pos_iff.mp (hX n)
-        ∀ rho : G →* unitary (NormMatrixCStarCorona (fun n ↦ X n)),
-          (∀ y ∈ N, rho y = 1) → rho x = 1 := by
+theorem mem_actualCoronaMFClosure_iff :
+    ∀ {G : Type u} [Group G] {N : Subgroup G} [N.Normal] {x : G},
+      x ∈ actualCoronaMFClosure N ↔
+        ∀ (X : ℕ → FiniteModel), ∀ hX : ∀ n, 0 < Fintype.card (X n),
+          letI : ∀ n, Nonempty (X n) :=
+            fun n ↦ Fintype.card_pos_iff.mp (hX n)
+          ∀ rho : G →* unitary (NormMatrixCStarCorona (fun n ↦ X n)),
+            (∀ y ∈ N, rho y = 1) → rho x = 1 := by
+  intro G _ N _ x
   constructor
   · intro hx X hX
     letI : ∀ n, Nonempty (X n) := fun n ↦ Fintype.card_pos_iff.mp (hX n)

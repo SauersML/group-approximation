@@ -172,20 +172,23 @@ theorem fdUnitaryResidual_le_coronaMFResidual [Countable G]
   exact absurd hsep (not_le_of_gt hlt)
 
 /-- **Matricial stability identifies the radicals.** -/
-theorem actualCoronaMFResidual_eq_fdUnitaryResidual [Countable G]
-    (hstab : IsPointNormMatriciallyStable G) :
-    actualCoronaMFResidual G = fdUnitaryResidual G := by
+theorem actualCoronaMFResidual_eq_fdUnitaryResidual :
+    ∀ {G : Type u} [Group G] [Countable G]
+      (_hstab : IsPointNormMatriciallyStable G),
+      actualCoronaMFResidual G = fdUnitaryResidual G := by
+  intro G _ _ hstab
   refine le_antisymm actualCoronaMFResidual_le_fdUnitaryResidual ?_
   rw [actualCoronaMFResidual_eq_coronaMFResidual]
   exact fdUnitaryResidual_le_coronaMFResidual hstab
 
 /-- A matricially stable group with nontrivial finite-dimensional
 residual is not MF. -/
-theorem not_isCDEOperatorMF_of_stable_of_fdResidual_ne_bot [Countable G]
-    (hstab : IsPointNormMatriciallyStable G)
-    (hne : fdUnitaryResidual G ≠ ⊥) :
-    ¬ IsCDEOperatorMF G := by
-  intro hMF
+theorem not_isCDEOperatorMF_of_stable_of_fdResidual_ne_bot :
+    ∀ {G : Type u} [Group G] [Countable G]
+      (_hstab : IsPointNormMatriciallyStable G)
+      (_hne : fdUnitaryResidual G ≠ ⊥),
+      ¬ IsCDEOperatorMF G := by
+  intro G _ _ hstab hne hMF
   apply hne
   rw [← actualCoronaMFResidual_eq_fdUnitaryResidual hstab]
   exact isCDEOperatorMF_iff_actualCoronaMFResidual_eq_bot.mp hMF

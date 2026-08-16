@@ -1247,17 +1247,19 @@ theorem stdPart_displacement_eq_eigenvaluePolynomial
 
 /-- No eigenvalue of the Hermitian weak-MF average can persist in a closed
 band strictly between the Kazhdan moving-spectrum bound and `1`. -/
-theorem hermitianAverage_eventually_no_intermediate_eigenvalues
-    {Q : Finset G} {ε : ℝ} (hQ : IsKazhdanPair.{0, 0} G Q ε)
-    (S : Finset G) (hQS : Q ⊆ S) (hone : 1 ∈ S) (hεone : ε ≤ 1)
-    (hsymm : ∀ g ∈ S, g⁻¹ ∈ S)
-    (A : OpAlmostRepresentation G) {a b : ℝ}
-    (ha : 1 - ε ^ 2 / (4 * S.card) < a) (hb : b < 1) :
-    ∃ N : ℕ, ∀ n ≥ N, ∀ i : A.model n,
-      ¬ (a ≤ Matrix.IsHermitian.eigenvalues
-          (hermitianAverage_conjTranspose A S n) i ∧
-        Matrix.IsHermitian.eigenvalues
-          (hermitianAverage_conjTranspose A S n) i ≤ b) := by
+theorem hermitianAverage_eventually_no_intermediate_eigenvalues :
+    ∀ {G : Type} [Group G]
+      {Q : Finset G} {ε : ℝ} (_hQ : IsKazhdanPair.{0, 0} G Q ε)
+      (S : Finset G) (_hQS : Q ⊆ S) (_hone : 1 ∈ S) (_hεone : ε ≤ 1)
+      (_hsymm : ∀ g ∈ S, g⁻¹ ∈ S)
+      (A : OpAlmostRepresentation G) {a b : ℝ}
+      (_ha : 1 - ε ^ 2 / (4 * S.card) < a) (_hb : b < 1),
+      ∃ N : ℕ, ∀ n ≥ N, ∀ i : A.model n,
+        ¬ (a ≤ Matrix.IsHermitian.eigenvalues
+            (hermitianAverage_conjTranspose A S n) i ∧
+          Matrix.IsHermitian.eigenvalues
+            (hermitianAverage_conjTranspose A S n) i ≤ b) := by
+  intro G _ Q ε hQ S hQS hone hεone hsymm A a b ha hb
   classical
   by_contra h
   push Not at h

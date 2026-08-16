@@ -138,9 +138,10 @@ theorem commutator_iota_lampConj (a₀ : Γ) :
 is not MF.**  The two-lamp defect lies in the MF radical of the quotient
 by the central sign, survives there, and obstructs every injective
 corona representation. -/
-theorem commutingLampQuotient_collapse
-    (hT : HasKazhdanPropertyT.{0, 0} Γ) [Countable (Ambient α hα)]
-    {a₀ : Γ} (ha₀ : a₀ ∉ Set.range α) :
+theorem commutingLampQuotient_collapse :
+    ∀ {Γ : Type} [Group Γ] (α : Γ →* Γ) (hα : Function.Injective α)
+      (_hT : HasKazhdanPropertyT.{0, 0} Γ) [Countable (Ambient α hα)]
+      {a₀ : Γ} (_ha₀ : a₀ ∉ Set.range α),
     (⁅(QuotientGroup.mk' (Subgroup.zpowers (signAmbient α hα)))
         (iotaAmbient α hα a₀),
       (QuotientGroup.mk' (Subgroup.zpowers (signAmbient α hα)))
@@ -153,6 +154,7 @@ theorem commutingLampQuotient_collapse
         (tAmbient α hα * cAmbient α hα * (tAmbient α hα)⁻¹)⁆ ≠ 1 ∧
     ¬ IsCDEOperatorMF
       (Ambient α hα ⧸ Subgroup.zpowers (signAmbient α hα)) := by
+  intro Γ _ α hα hT _ a₀ ha₀
   classical
   haveI : Countable (Ambient α hα ⧸ Subgroup.zpowers (signAmbient α hα)) :=
     Function.Surjective.countable
