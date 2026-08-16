@@ -1201,7 +1201,7 @@ homomorphism to $\U(\mathcal Q)$ identifies the entire conjugation orbit
 (Theorem~\ref{thm:collapse}, proved in
 Section~\ref{subsec:collapse}).  In $E$ the pairwise commutators of those conjugates of $d$ lie in
 $\langle w\rangle$, so in $E/\langle w\rangle$ the element $d$ satisfies
-both hypotheses, and every homomorphism $E/\langle
+these hypotheses, and every homomorphism $E/\langle
 w\rangle\to\U(\mathcal Q)$ maps $u$ to the identity.  Thus $E/\langle w\rangle$ is a
 second finitely presented non-MF group, and Theorem~\ref{thm:A} does
 not determine $\operatorname{Res}_{\mathrm{MF}}(E)$
@@ -1773,7 +1773,7 @@ Theorem~\ref{thm:kazhdan-transport} also has a proof at finite stages,
 in which every estimate is an explicit inequality in $\kappa$, $|S|$,
 the uniform bound on $(x_n)$, and the multiplicative defects of $U_n$,
 conditional on the spectral-gap estimate~(i) below.  That estimate is
-the one step not reducible to a threshold on finitely many defects:
+not reducible to a threshold on finitely many defects:
 property~\textup{(T)} constrains exact unitary representations, while
 at a finite stage the matrix models generate only a representation of
 the free group on $S$.  Making it effective as well would need a
@@ -1796,7 +1796,7 @@ average $\frac1{|S|}\sum_{s'\in S}\Ad U_n(\iota(s'))$, fix the threshold
  \theta=\tfrac12\Bigl(\Bigl(1-\tfrac{\kappa^2}{4|S|}\Bigr)+1\Bigr)<1,
 \]
 and let $P_n$ be the spectral projection of $H_n$ for the part of the
-spectrum above $\theta$.  The following two estimates hold.
+spectrum above $\theta$.
 \begin{enumerate}
 \item[(i)] \emph{Displacement.}  For every $\gamma\in\Gamma$,
 $\opnorm{(\Ad U_n(\iota(\gamma))-1)\,P_n}\to0$.  This comes from a
@@ -1866,7 +1866,7 @@ containment:
 
 \emph{Combining the estimates.}  Fix $\gamma$ and $\varepsilon>0$, let $M\ge1$ bound
 $\opnorm{x_n}$, and put $q=\min(1,\varepsilon/(40(M^2+1)))$.  For all
-large $n$ the three estimates hold at tolerance $q$:
+large $n$,
 \[
  \hsnorm{(1-P_n)\xi_n}^2\le q,\qquad
  \opnorm{(1-P_n)Q_n}\le q,\qquad
@@ -1905,8 +1905,8 @@ defects of $U_n$ on the finitely many group elements involved.
 \section{Transport at arbitrary weights}\label{supp:transport-variants}
 
 The transport theorem extends to arbitrary weights $\nu_n$ in place of
-the dimension; the normalization $\nu_n=d_n$ of
-Theorem~\ref{thm:kazhdan-transport} is one special case.
+the dimension; Theorem~\ref{thm:kazhdan-transport} is the case
+$\nu_n=d_n$.
 
 \begin{theorem}[transport at an arbitrary weight, and of intertwiners]
 \label{thm:transport-variants}
@@ -2294,8 +2294,9 @@ every $g$.
 Because the models are only asymptotically multiplicative,
 $V_{g,n}h_nV_{g,n}^{*}$ is not the Hermitian average over the
 conjugate generating set $gSg^{-1}$ of $\bar K$ but converges to it in
-operator norm; that set has the same Kazhdan constant.  The two estimates of
-Section~\ref{app:finite-stage} now apply to either average
+operator norm; that set has the same Kazhdan constant.  The
+displacement and concentration estimates of
+Section~\ref{app:finite-stage} apply to either average
 symmetrically: a vector on which one average has spectrum above
 $\theta$ is almost fixed by each generator of the other set
 (displacement, transported across the finitely many conjugations by
@@ -2444,7 +2445,7 @@ Finiteness of the invariant can be weakened to a chain condition.  A
 conjugation-equivariant monotone invariant whose values satisfy the
 ascending or descending chain condition takes the same value on $\Gamma$
 as on $t\Gamma t^{-1}$, because an order isomorphism of such a poset
-fixes every point it moves weakly upward.  Three instances: the fixed
+fixes every point it moves weakly upward.  The fixed
 subspaces of $\Gamma$ and $t\Gamma t^{-1}$ agree in every
 finite-dimensional representation over every field; the same holds for
 the invariants of the induced representations on
@@ -2765,9 +2766,9 @@ so every subgroup chosen in the first operation is again inside the
 residual --- normal or not.  For the second operation, the residual is
 itself a subgroup, hence an upper bound in the subgroup lattice for any
 family contained in it; so the join $\bigvee_iH_i=\langle\bigcup_iH_i\rangle$
-lies in the residual too.  The final two assertions are
-Corollary~\ref{cor:exactradical} and Proposition~\ref{prop:univquot},
-the second of which needs $N$ normal so that $G_1/N$ is a group.
+lies in the residual too.  The remaining assertions are
+Corollary~\ref{cor:exactradical} and Proposition~\ref{prop:univquot};
+the latter needs $N$ normal so that $G_1/N$ is a group.
 \end{proof}
 
 Each of Theorems~\ref{thm:criterion}, \ref{thm:normal-kazhdan},
@@ -3199,8 +3200,7 @@ projection above $\theta$ of the Hermitian part
    \bigl(\Ad U_{a,n}+(\Ad U_{a,n})^{*}\bigr)
 \]
 --- the \emph{Kazhdan corner} --- and let $\widehat b_n$ be the
-compression into it of the primitive supplied below.  Two estimates
-hold:
+compression into it of the primitive supplied below.
 \begin{align}
  \opnorm{(\Ad U_{a,n}-1)P_n}&\le q\qquad(a\in S),
  \label{eq:corner-fix}\\
@@ -3209,8 +3209,7 @@ hold:
  \label{eq:corner-reverse}
 \end{align}
 The first says the corner is almost fixed, by the Kazhdan gap.  The
-second is the finite-stage form of $P=\pi(s)P\pi(s)^{*}$, and it comes
-in the two moves of Section~\ref{app:finite-stage}.  First the easy
+second is the finite-stage form of $P=\pi(s)P\pi(s)^{*}$.  First the easy
 containment $\opnorm{(1-Q_n)P_n}\le\varepsilon$: for $a\in S$ the
 one-sided relation gives $sas^{-1}=\delta$ for a single $\delta\in L$,
 and
