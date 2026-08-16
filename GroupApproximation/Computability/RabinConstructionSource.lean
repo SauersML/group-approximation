@@ -154,7 +154,7 @@ theorem mk_map_inl_eq_one_iff (rels₁ : Set (FreeGroup α))
       PresentedGroup.mk rels₁ v = 1 := by
   constructor
   · intro h
-    refine Monoid.Coprod.inl_injective ?_
+    refine Monoid.Coprod.inl_injective (N := PresentedGroup rels₂) ?_
     rw [← coprodEquiv_mk_map_inl rels₁ rels₂ v, h, map_one, map_one]
   · intro h
     refine (coprodEquiv rels₁ rels₂).injective ?_
@@ -168,7 +168,7 @@ theorem mk_map_inr_eq_one_iff (rels₁ : Set (FreeGroup α))
       PresentedGroup.mk rels₂ v = 1 := by
   constructor
   · intro h
-    refine Monoid.Coprod.inr_injective ?_
+    refine Monoid.Coprod.inr_injective (M := PresentedGroup rels₁) ?_
     rw [← coprodEquiv_mk_map_inr rels₁ rels₂ v, h, map_one, map_one]
   · intro h
     refine (coprodEquiv rels₁ rels₂).injective ?_
@@ -176,4 +176,3 @@ theorem mk_map_inr_eq_one_iff (rels₁ : Set (FreeGroup α))
 
 end RabinConstructionSource
 end GroupApproximation
-</content>

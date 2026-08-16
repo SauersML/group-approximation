@@ -1,4 +1,5 @@
 import Mathlib.GroupTheory.FinitelyPresentedGroup
+import Mathlib.GroupTheory.FreeGroup.Reduce
 import Mathlib.GroupTheory.PresentedGroup
 import GroupApproximation.Algebra.PresentedGroupEvaluation
 
@@ -725,5 +726,3 @@ end Collapse
 
 end RabinConstruction
 end GroupApproximation
-</content>
-</invoke>

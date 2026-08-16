@@ -96,9 +96,9 @@ apparatus of `GroupTheory/HNNBrittonSpelling` is the intended route. -/
 def BrittonFreeOfRankTwo : Prop :=
   ∀ {G : Type} [Group G] {A B : Subgroup G} (φ : A ≃* B) (z : G),
     (∀ k : ℤ, k ≠ 0 → z ^ k ∉ A ∧ z ^ k ∉ B) →
-    ∃ e : FreeGroup (Fin 2) ≃*
+    Nonempty (FreeGroup (Fin 2) ≃*
       Subgroup.closure ({HNNExtension.t, HNNExtension.of z} :
-        Set (HNNExtension G A B φ)), True
+        Set (HNNExtension G A B φ)))
 
 /-! ## Where the two stages plug in
 
