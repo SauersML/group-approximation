@@ -143,10 +143,21 @@ formalized in this pass; **TODO** not yet formalized.
   coincidence is either done or reduces to the telescope radical.
 * **Graph-product half of 54.3.**  No longer blocked on graph products: the
   mechanism is in `Algebra/PartialCommutationLamp` via a dihedral retraction,
-  and the Tietze bookkeeping is in `Algebra/FinitePresentationTietze`.  What
-  remains is the finite-generating-set presentation of the wreath product,
-  which is bookkeeping about a specific presentation rather than a missing
-  theory.  The height half (infinitely many diagonal orbits) was already done.
+  and the Tietze bookkeeping is in `Algebra/FinitePresentationTietze`.  The
+  height half (infinitely many diagonal orbits) was already done.
+
+  The Tietze step is `isFinitelyNormallyGenerated_ker`, for a *free* source.
+  The application needs a non-free one -- `E` is the free permutational
+  precursor and `W` the wreath product -- so `Algebra/FinitePresentationKernel`
+  adds `ker_isFinitelyNormallyGenerated`: both groups finitely presented and
+  the map surjective gives a finitely normally generated kernel, which is the
+  converse of Mathlib's `Group.IsFinitelyPresented.of_surjective` and is not in
+  Mathlib.  The reduction consumes only the *generating* half of finite
+  presentability of the source; its relators never appear.
+
+  What genuinely remains is the other step: the finite presentation of the free
+  permutational precursor itself, equation 54.17.  That one *is* bookkeeping
+  about a specific presentation.
 
 ## Notes
 
