@@ -313,6 +313,25 @@ theorem blockSpan_univ (P : I → Subgroup N) :
   ext x
   simp
 
+/-- **A finitely supported span of finite blocks is finitely generated**: it
+is the closure of the finite set of all elements of the blocks in play.
+
+This is the bridge to a *local* residual finiteness statement about the lamp
+kernel.  `TelescopeCoreData.subAmalgam_residuallyFinite` asks for residual
+finiteness of each `M_J`; if what the amalgam lane delivers instead is that
+every finitely generated subgroup of the lamp kernel is residually finite,
+this lemma supplies the missing finite-generation hypothesis and the two
+forms become interchangeable. -/
+theorem blockSpan_fg (P : I → Subgroup N) {J : Set I} (hJ : J.Finite)
+    (hPfin : ∀ i : I, (P i : Set N).Finite) : (blockSpan P J).FG := by
+  have hSfin : (⋃ i ∈ J, (P i : Set N)).Finite :=
+    hJ.biUnion fun i _ ↦ hPfin i
+  obtain ⟨t, ht⟩ := hSfin.exists_finset_coe
+  refine ⟨t, ?_⟩
+  show Subgroup.closure (t : Set N)
+      = Subgroup.closure (⋃ i ∈ J, (P i : Set N))
+  rw [ht]
+
 /-- Every element of the kernel is carried by finitely many blocks.  This is
 the step that makes `J₀` finite in the proof of Theorem 4.1: an element of
 `N_E` is a word in finitely many blocks. -/
