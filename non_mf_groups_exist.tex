@@ -63,13 +63,11 @@
 \newcommand{\SL}{\operatorname{SL}}
 \newcommand{\GL}{\operatorname{GL}}
 \newcommand{\U}{\mathcal U}
-\newcommand{\Ucor}{\mathsf U_{\mathrm{cor}}}
 \newcommand{\Fix}{\operatorname{Fix}}
 \newcommand{\tr}{\operatorname{tr}}
 \newcommand{\Ad}{\operatorname{Ad}}
 \newcommand{\End}{\operatorname{End}}
 \newcommand{\Cl}{\operatorname{Cl}}
-\newcommand{\ClLamp}{\mathsf{ClLamp}}
 \newcommand{\Cmax}{C^*_{\mathrm{max}}}
 \newcommand{\Cred}{C^*_{\mathrm{red}}}
 \newcommand{\opnorm}[1]{\left\lVert #1\right\rVert}
@@ -509,11 +507,13 @@ remaining indices.
 \begin{lemma}[unitaries in the quotient]\label{lem:unitarycorona}
 For every sequence $(d_n)$, the map
 \[
- \kappa_{(d_n)}\colon
- \prod_{n}\U(M_{d_n}(\C))\Big/
- \bigl\{(u_n):\opnorm{u_n-1}\to0\bigr\}
- \longrightarrow\U(\mathcal Q),
- \qquad [(u_n)]\longmapsto q((u_n)),
+ \begin{gathered}
+  \kappa_{(d_n)}\colon
+  \prod_{n}\U(M_{d_n}(\C))\Big/
+  \bigl\{(u_n):\opnorm{u_n-1}\to0\bigr\}
+  \longrightarrow\U(\mathcal Q),\\
+  [(u_n)]\longmapsto q((u_n)),
+ \end{gathered}
 \]
 is a canonical group isomorphism.  Thus a homomorphism $H\to\U(\mathcal Q)$
 is the same thing as a sequence of unitaries for each element of $H$,
@@ -523,8 +523,8 @@ sequences converging to $1$.
 \end{lemma}
 
 \begin{proof}
-The kernel consists exactly of the unitary sequences with
-$\opnorm{u_n-1}\to0$, giving injectivity; surjectivity is
+The kernel consists exactly of those unitary sequences $(u_n)$ for
+which $\opnorm{u_n-1}\to0$, which is injectivity, and surjectivity is
 Lemma~\ref{lem:lift}.
 \end{proof}
 
@@ -1038,7 +1038,8 @@ Use the six base generators and the relations displayed in
    \textup{(T)}\quad tv_i t^{-1}=v_i^2\ (1\le i\le3),\\
    \phantom{\textup{(T)}\quad}
      txt^{-1}=x,\quad tyt^{-1}=y,\quad tzt^{-1}=z,\\
-   \textup{(C)}\quad c^2=1,\qquad
+   \textup{(C)}\quad c^2=1,\\
+   \phantom{\textup{(C)}\quad}
      [c,g]=1\ \ (g\in\{v_1,v_2,v_3,x,y,z\}),\\
    \textup{(W)}\quad [w,g]=1\quad(g\in\{v_1,v_2,v_3,x,y,z,t,c\})
   \end{gathered}\right\rangle,
@@ -1311,7 +1312,10 @@ $x,y,z$ of $\mathcal B$ satisfy the relators of $\mathcal R$, so
 $\mathcal R$ maps to the linear subgroup of $\mathcal B$ they generate,
 and Step~2
 gives a finite set $S$ of words in $x,y,z$ and a $\kappa>0$ forming a
-Kazhdan pair for it.  Let $\rho$ be an orthogonal representation of
+Kazhdan pair for it.  Shrinking $\kappa$ costs nothing --- a Kazhdan
+pair stays one when its constant is decreased --- so assume
+$\kappa\le1$; the numerical bookkeeping below uses that normalization
+and nothing else about $\kappa$.  Let $\rho$ be an orthogonal representation of
 $\mathcal B$ with a unit vector $\xi$ displaced by less than $\kappa/64$ by
 every element of the finite control set consisting of $S$ together
 with the translations $v_2,v_3$.  The third basis translation needs no
@@ -1330,8 +1334,10 @@ element is a product of two linear-subgroup conjugates of basis
 translations --- a two-conjugate normal form proved inside the
 presentation.  A conjugate $rvr^{-1}$ with $r$ in the linear subgroup
 displaces the fixed vector $p$ exactly as much as $v$ does.  Each
-control translation displaces $p$ by less than $3/64$, because its
-displacement bound at $\xi$ transfers across $\lVert p-\xi\rVert$.
+control translation displaces $p$ by less than
+$1/64+\kappa/64+1/64=(\kappa+2)/64\le3/64$, its displacement bound at
+$\xi$ transferring across $\lVert p-\xi\rVert$ at both ends; the last
+inequality is where $\kappa\le1$ is used.
 Hence every translation displaces $p$ by at most $1/8$.
 \item The orbit of $p$ under the translation subgroup is bounded, so
 the Hilbert-space circumcenter argument gives a translation-fixed
@@ -1456,7 +1462,7 @@ $\zeta\neq1$, and therefore $w\neq1$ in $E$.
 
 When $X$ is infinite so is $\Cl(X)$, but each of its elements
 involves only finitely many Clifford generators, and the remaining data of
-the target are rational matrices.  The two sites are separated by the
+the target are rational matrices.  The two points are separated by the
 range characterization of Lemma~\ref{lem:linear}: $D^{-1}\bar v_1D$ has
 the entry $1/2$ in position $(1,4)$ and therefore does not lie in
 $\bar\Gamma\le\GL_4(\mathbb Z)$.
@@ -1717,8 +1723,7 @@ subject to
   \item[(M2)] $c\,\iota(\lambda)=\iota(\lambda)\,c$ for every
     $\lambda\in\Lambda$.
 \end{enumerate}
-Write $d:=tct^{-1}$.  The \emph{compression defect} of the
-datum is the normal closure
+Write $d:=tct^{-1}$.  The datum determines the normal closure
 \leanverified{Sofic/ManuscriptExactWrappers}{GroupApproximation.ManuscriptExactWrappers.manuscriptMarkedKazhdanPattern}
 \[
   N_{\mathrm{comp}}
@@ -1730,8 +1735,7 @@ datum is the normal closure
 
 Both conditions are relations among generators, so a datum can be read
 off a presentation.  The relations force $c$ to commute with
-$\iota(\Lambda)$ and force $d$ to commute with the compressed copy
-$t\iota(\Lambda)t^{-1}$, but they do not constrain the commutators
+$\iota(\Lambda)$ and force $d$ to commute with the subgroup $t\iota(\Lambda)t^{-1}$, but they do not constrain the commutators
 $[d,\iota(\lambda)]$; $N_{\mathrm{comp}}$ is
 their normal closure.
 The theorems of this section show that every finite normal subgroup of
@@ -1740,10 +1744,15 @@ property-\textup{(T)} subgroup contained in it, lies in the kernel of
 every homomorphism $H\to\U(\mathcal Q)$.
 
 \begin{definition}[$2$-norm triviality]\label{def:invisible}
-An element $g$ of a countable group $H$ is \emph{$2$-norm trivial} if, for every operator-norm asymptotic representation of
-$H$ and every ultrafilter refining the cofinite filter, the induced
-homomorphism into the tracial ultraproduct of the matrix blocks maps
-$g$ to the identity.
+For an operator-norm asymptotic representation $U=(U_n)$ of a countable
+group $H$, write
+\[
+ K_2(U)\;=\;\bigl\{g\in H:\ \hsnorm{U_n(g)-1}\longrightarrow0\bigr\},
+\]
+a normal subgroup of $H$; it is the kernel of the homomorphism induced by
+$U$ into the tracial ultraproduct of the matrix blocks.  An element $g$
+is \emph{$2$-norm trivial} if $g\in K_2(U)$ for every such $U$ and every
+ultrafilter refining the cofinite filter.
 \leanverified{Sofic/ManuscriptExactWrappers}{GroupApproximation.ManuscriptExactWrappers.manuscriptHSInvisibleCharacterization}
 \end{definition}
 
@@ -2144,7 +2153,7 @@ The proof of Theorem~\ref{thm:B} applies the principle to the commutant
 instead: the inclusion $C\subseteq uCu^{-1}$ between subspaces of equal
 finite dimension is an equality \eqref{eq:pinning}, and it is that
 equality --- not an equality of subgroup images --- that sends the
-defect to the identity.  The corona argument of Theorem~\ref{thm:A} is
+defect to the identity.  The argument of Theorem~\ref{thm:A} is
 the analytic counterpart at infinite dimension.
 \end{remark}
 
@@ -2232,7 +2241,7 @@ representation over every field.
 For nontriviality, use the affine realization of
 \(\mathrm{BS}(1,2)\) and its coset action.  The base point is fixed by the
 cyclic base, while the two points represented by \(t\) and \(\gamma_0t\)
-are distinct.  Attach Clifford generators to these sites and map \(c\) to
+are distinct.  Attach Clifford generators to these points and map \(c\) to
 the generator at the base point.  All seven relators hold, and
 \[
  w_{\mathrm{BS}}\longmapsto
@@ -2268,7 +2277,7 @@ $\langle\gamma_0\rangle$; the generator therefore commutes with the
 required ``halved'' element and the marked word maps to the identity,
 so neither group is residually finite.  The same equations transport
 through any exact local embedding of a finite test set containing the
-defining relators and the marked word, so an exact finite local model
+defining relators and the marked word, so an exact finite-dimensional representation
 would already force the marked word to the identity: neither group is
 LEF.
 \leanverified{Monsters/CyclicBaseLEFObstruction}{GroupApproximation.CyclicBaseLEFObstruction.cyclicBase_exactModel_package}
@@ -2519,8 +2528,7 @@ admits no injective homomorphism into $\U(A)$.
 \end{corollary}
 
 \begin{proof}
-Let $j\colon A\to Q$ be the possibly nonunital inclusion into the ambient
-corona and let $\phi\colon E\to\U(A)$.  Complement correction gives
+Let $j\colon A\to Q$ be the possibly nonunital inclusion into the ambient matrix quotient and let $\phi\colon E\to\U(A)$.  Complement correction gives
 \[
    \widehat j(u)=j(u)+1-j(1_A)\in\U(Q).
 \]
@@ -2548,13 +2556,13 @@ Let all groups be countable.
 \begin{proof}
 (1)  Restrict an injective homomorphism to $\U(\mathcal Q)$.  (2)  For a finite
 test set $F$, a finite quotient injective on $F$, composed with its
-left regular permutation action, is an exact local model; distinct
+left regular permutation action, is an exact finite-dimensional representation; distinct
 permutations differ in some column of a permutation matrix, giving
 operator-norm separation at least $1$, and the local-to-global
 direction of Proposition~\ref{prop:mf-equivalences} concludes.
 (3)  A finite test set lies in a finite subgroup $K$; a map that is
 the identity on all of $K$, composed with the left regular permutation
-action of $K$, is an exact local model on the test set --- products of
+action of $K$, is an exact finite-dimensional representation on the test set --- products of
 test elements stay in $K$ --- separating as in (2).
 \end{proof}
 
@@ -2629,7 +2637,7 @@ $\operatorname{Rad}_{\mathrm{fd}}(G)\ne1$ fails to be MF.
 \subsection{Orbit collapse}\label{subsec:collapse}
 
 The criteria of Section~\ref{sec:conj} bound the radical from below
-by torsion or rigidity already present in the compression defect.  This
+by torsion or rigidity already present in $N_{\mathrm{comp}}$.  This
 subsection gives a second application of one-sided compression, under
 a commuting-orbit hypothesis in place of centrality: every homomorphism to $\U(\mathcal Q)$ identifies an entire conjugation orbit of an involution,
 so a whole family of commutators enters the radical, and by
@@ -2764,8 +2772,7 @@ control alone does not bound rank: two exact involutions at small
 operator distance can differ in full rank.  Combining them in
 $\operatorname{Tr}|D|^2\le\operatorname{rank}(D)\cdot\opnorm{D}^2$
 bounds the normalized defect mass by
-$\bigl(|\gamma|_S+|\mu|_S+|a|_S\bigr)\opnorm{D_n}^2\to0$: the defect
-mass vanishes at the scale $k_n$.  All estimates below concern only
+$\bigl(|\gamma|_S+|\mu|_S+|a|_S\bigr)\opnorm{D_n}^2\to0$: the normalized defect mass vanishes at the scale $k_n$.  All estimates below concern only
 differences of the involutions.
 
 \emph{Step 5: property~\textup{(T)} bounds the profile uniformly.}  Fix a free
@@ -2878,7 +2885,7 @@ a contradiction.
 No limit is taken here and no sequence is diagonalized: $\rho$ is fixed
 before $n$, and the single stage $n$ already fails.  Hence
 $\Theta([\gamma,k])=1$ for every $\gamma\in L$ and every witness $k$,
-and normality of corona kernels extends the conclusion to all of
+and normality of these kernels extends the conclusion to all of
 $D_{\mathrm{coll}}(L,s)$.
 \end{proof}
 
@@ -2896,7 +2903,7 @@ circumcenter of a near-optimal covering sequence.  The commutation hypothesis (W
 essential: it gives the joint spectral calculus behind the rank
 identity of Step 2.  Anticommuting Clifford coordinates have no joint
 spectral labels; their collapse mechanism is the central sign of
-Theorem~\ref{thm:A}.  At the corona level,
+Theorem~\ref{thm:A}.  In $\mathcal Q$,
 Theorem~\ref{thm:projection-collapse} below removes the restriction to
 involutions, and Theorem~\ref{thm:torsion-collapse} extends the
 collapse to witnesses of every finite order through their discrete
@@ -2904,7 +2911,7 @@ Fourier idempotents.
 \end{remark}
 
 The witness of Theorem~\ref{thm:collapse} is a group element.  The same
-collapse holds for arbitrary projections of the corona.
+collapse holds for arbitrary projections of $\mathcal Q$.
 
 \begin{theorem}[projection collapse]\label{thm:projection-collapse}
 Let $H$ be countable, let $L\le H$ have property~\textup{(T)}, let
@@ -2936,12 +2943,12 @@ $[\Theta(\gamma),p]_{-}=0$.
 \end{proof}
 
 The witness here need not come from a group element: the projection is
-an arbitrary element of the corona.  The relative commutant
+an arbitrary element of $\mathcal Q$.  The relative commutant
 $\Theta(sLs^{-1})'\cap\mathcal Q$ therefore cannot exceed
 $\Theta(L)'\cap\mathcal Q$ by a projection with commuting
 $L$-orbit.
 
-Projections in hand, functional calculus removes the involutivity of
+With those projections available, functional calculus removes the involutivity of
 the witness altogether.
 
 \begin{theorem}[torsion collapse]\label{thm:torsion-collapse}
@@ -2965,7 +2972,7 @@ $u=\Theta(k)$, a unitary with $u^{m}=1$.  Its discrete Fourier
 idempotents
 $p_j=m^{-1}\sum_{t\in\mathbf{Z}/m}\zeta^{-jt}u^{t}$, for
 $\zeta=e^{2\pi i/m}$ and $j\in\mathbf{Z}/m$, are self-adjoint
-idempotents of the corona.  Each $p_j$ is a polynomial in $u$, so
+idempotents of $\mathcal Q$.  Each $p_j$ is a polynomial in $u$, so
 whatever commutes with $u$ commutes with every $p_j$: the represented
 compressed copy centralizes each $p_j$, and the
 $\Theta(L)$-conjugates of each $p_j$ commute pairwise because the
@@ -2978,7 +2985,7 @@ $\Theta([\gamma,k])=1$ for every $\gamma\in L$.
 
 In the quotient of the Kazhdan--Clifford group of
 Theorem~\ref{thm:A} by its central involution all lamps commute, and the
-moved root lamp is itself an involutive witness.
+moved base-point generator is itself an involutive witness.
 
 \begin{theorem}[the commuting-generator quotient]\label{thm:commutinglamp}
 The quotient $W/\langle\zeta\rangle$ of the Kazhdan--Clifford group
@@ -2999,12 +3006,12 @@ $\alpha$.
 
 \begin{proof}
 Write $q\colon W\to W/\langle\zeta\rangle$ and
-$k=q(tct^{-1})$, the moved root lamp.  Since $q(\zeta)=1$, any
+$k=q(tct^{-1})$, the moved base-point generator.  Since $q(\zeta)=1$, any
 two lamps commute in the quotient, so the $q(L)$-conjugation orbit of
 $k$ commutes pairwise, where $L=q(\bar\Gamma)$ is the image of the
 base copy; $k$ remains an involution, and the compressed copy
 $q(t)Lq(t)^{-1}$ centralizes $k$ because the compressed base fixes the
-moved site.  Property~\textup{(T)} passes to the image $L$, so
+moved point.  Property~\textup{(T)} passes to the image $L$, so
 Theorem~\ref{thm:collapse} places every commutator
 $[q(\bar v_1),k]$ in the MF radical of the quotient.  The commutator
 remains nontrivial in the sign quotient: in the signed finite-support model of the lamp
@@ -3054,7 +3061,7 @@ $\operatorname{Rad}_{\mathrm{MF}}(E/\langle w\rangle)$.
 
 Nontriviality passes through the homomorphism $E\to W$ of
 Proposition~\ref{prop:witness}: it carries $[\iota(v_1),d]$ to the
-product of the lamp basis elements at the two distinct sites $\tau o$
+product of the Clifford generators at the two distinct points $\tau o$
 and $j(\bar v_1)\tau o$, and carries $\langle w\rangle$ into
 $\langle\zeta\rangle$, whose configuration coordinate is zero.  Hence
 $[\iota(v_1),d]\notin\langle w\rangle$, its image in
@@ -3191,7 +3198,7 @@ $X=V/B$ is finite.
 
 Consider a finite subset of $\Cl(X)\rtimes T$.  Its $T$-coordinates
 lie in one level $\bar\Gamma_n$.  Each of its lamp coordinates has finite
-$\bar\Gamma_n$-orbit: this holds for the central sign and for each site
+$\bar\Gamma_n$-orbit: this holds for the central sign and for each point
 lamp, hence for every Clifford word.  The finitely many resulting orbits
 generate a finite $\bar\Gamma_n$-invariant subgroup $L\le\Cl(X)$,
 because $\Cl(X)$ is locally finite.  Our original finite set therefore
@@ -3523,12 +3530,12 @@ finiteness property --- for an infinite-dimensional
 $\mathrm{II}_1$ factor in standard form it is all bounded operators
 on the trace space.  Constant coordinates $A_n=\Cred(E)$ give a
 counterexample to any such generalization: the left regular representation embeds
-$E$ exactly and injectively into the corresponding corona, the
+$E$ exactly and injectively into the corresponding matrix quotient, the
 element $c$ centralizes the Kazhdan base there, and conjugation by
 $t$ produces $tct^{-1}$, whose commutator with the base is the element
 $u$ with $u^2=w\ne1$ of Theorem~\ref{thm:A}.  A faithfully-traced
 coordinate transport theorem would make that commutator trivial in the
-corona; no such theorem can hold.
+matrix quotient; no such theorem can hold.
 \leanverified{Sofic/FaithfullyTracedCoordinateNoGo}{GroupApproximation.FaithfullyTracedCoordinates.manuscriptFaithfullyTracedCoordinateNoGo}
 Precisely: Theorem~\ref{thm:kazhdan-transport} becomes false when its
 matrix coordinates are replaced by finite faithfully traced unital
@@ -3543,7 +3550,7 @@ By Theorem~\ref{thm:normal-kazhdan}, a normal property-\textup{(T)}
 subgroup of $N_{\mathrm{comp}}$ obstructs homomorphisms to $\U(\mathcal Q)$
 without any torsion.  What
 remains for a torsion-free example is group-theoretic: a torsion-free
-finitely presented group whose compression defect contains a normal
+finitely presented group whose subgroup $N_{\mathrm{comp}}$ contains a normal
 subgroup with property~\textup{(T)}.
 Remark~\ref{rem:ff-realization} records a small-cancellation route to
 such a group, over the torsion-free finitely presented Kazhdan group
@@ -3592,7 +3599,7 @@ adjoining finitely many relators.  Taking $S$ two-generated inside
 $N_{\mathrm{comp}}$ delivers four of the five conditions at once, and
 property~\textup{(T)} descends from a torsion-free Kazhdan lattice
 through a common quotient.  What is not available is the hypothesis:
-a suitable subgroup of the skeleton inside its compression defect, for
+a suitable subgroup of the skeleton inside $N_{\mathrm{comp}}$, for
 which it would be enough to exhibit one infinite-order element of the
 defect generating a hyperbolically embedded cyclic subgroup
 \cite[Lemma 5.8]{Hull}.  The Bass--Serre action of an ascending HNN
@@ -3690,9 +3697,9 @@ $p\,\varepsilon/N_{g,h}\le\varepsilon$.  Finally take the block
 sum of these finitely many pair-specific models.  Operator norms of block
 diagonal matrices are maxima, so every pair in $F$ is separated by at least
 $1$ and every required product has defect at most $\varepsilon$.  This gives
-the normalized local model.
+the normalized approximate representation.
 
-Conversely, local models with separation constant $1$ for all finite
+Conversely, approximate unitary representations with separation constant $1$ for all finite
 sets and tolerances make the group \emph{weakly} MF\@.  Choose models
 along an exhaustion with errors tending to zero.  Then each fixed pair
 $g,h$ is eventually represented multiplicatively, and each fixed pair
@@ -3992,7 +3999,7 @@ and the orbit of $e_3$ is all six of them, with coset representatives
 \]
 carrying $e_3$ to $e_3,e_1,e_2,-e_3,-e_1,-e_2$ respectively.  Twelve
 Schreier relations, one for each generator and coset, have the form
-$\omega_\bullet\,r_j=r_{j'}\,\omega^{k}$: every Schreier element is a
+$\omega_\bullet\,r_j=r_{j'}\,\omega_{12}^{k}$: every Schreier element is a
 power of the block Weyl element $\omega_{12}$; the twelve are listed in
 the accompanying development.  The remaining Schreier relation is
 $\omega_{23}^2=\omega_{12}^2\omega_{13}^2$, the residue of the
