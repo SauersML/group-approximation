@@ -26,6 +26,35 @@
       ]
     },
     {
+      "id": "thm:A",
+      "environment": "mainthm",
+      "title": "explicit Kazhdan--Clifford group",
+      "statement_sha256": "24fa7ec844cf38010ee0811caf62392f5200f6efc31f85cb074453ae9581d968",
+      "status": "exact",
+      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
+      "dependencies": [
+        "def:E",
+        "prop:mf-equivalences",
+        "prop:maximal-cstar",
+        "prop:literal-base-T",
+        "prop:witness",
+        "thm:criterion",
+        "lem:unitarycorona",
+        "lem:square"
+      ],
+      "extra_assumptions": [],
+      "external_inputs": [],
+      "coverage_gap": "",
+      "lean": [
+        {
+          "role": "exact",
+          "module": "Sofic/LiteralNonMFEndpoint",
+          "declaration": "GroupApproximation.LiteralNonMFEndpoint.manuscriptTheoremA",
+          "covers": "the complete printed proposition"
+        }
+      ]
+    },
+    {
       "id": "lem:lift",
       "environment": "lemma",
       "title": "lifting",
@@ -71,7 +100,7 @@
       "id": "thm:kazhdan-transport",
       "environment": "theorem",
       "title": "Kazhdan transport of Hilbert--Schmidt asymptotic commutants",
-      "statement_sha256": "eaabff94c9ff703c522bbff3a4948257164e545e2252d5b5938f90168e3cf091",
+      "statement_sha256": "36a5391cd928c3d3efd79266320a95f8a6ae81a8a7428cd59ff59d0313a4c83a",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [],
@@ -91,7 +120,7 @@
       "id": "thm:sign-criterion",
       "environment": "theorem",
       "title": "central-sign criterion",
-      "statement_sha256": "905b06bff971b19675399a753e992bb4c56e05e697551667fe651410337bea77",
+      "statement_sha256": "50daf8a96c218a8b2f6c63267f877fcb96ee56228f4af6164944dfc1ef8ec4f0",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [
@@ -137,39 +166,10 @@
       ]
     },
     {
-      "id": "thm:A",
-      "environment": "mainthm",
-      "title": "explicit Kazhdan--Clifford group",
-      "statement_sha256": "7ccc9cb5b1d3553d502197ad447327d9fddb8be60d6371ee072bc9ff35830bba",
-      "status": "exact",
-      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
-      "dependencies": [
-        "def:E",
-        "prop:mf-equivalences",
-        "prop:maximal-cstar",
-        "prop:literal-base-T",
-        "prop:witness",
-        "thm:criterion",
-        "lem:unitarycorona",
-        "lem:square"
-      ],
-      "extra_assumptions": [],
-      "external_inputs": [],
-      "coverage_gap": "",
-      "lean": [
-        {
-          "role": "exact",
-          "module": "Sofic/LiteralNonMFEndpoint",
-          "declaration": "GroupApproximation.LiteralNonMFEndpoint.manuscriptTheoremA",
-          "covers": "the complete printed proposition"
-        }
-      ]
-    },
-    {
       "id": "cor:uniform",
       "environment": "corollary",
       "title": "uniform finite operator-norm obstruction",
-      "statement_sha256": "ed6b1647e5b0070bd9afc8db0bbbe00dd70b8b872145c623976d713ccf7628f5",
+      "statement_sha256": "043923ba46739c21aa855f9e9528c5647f18939422a19b845f761a27a355e8ea",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [
@@ -231,7 +231,7 @@
       "id": "thm:D",
       "environment": "mainthm",
       "title": "the reduced group algebra of $E$",
-      "statement_sha256": "39b9906dd0e6be7f724e5abf05cf5486024bda97ee20d33863e62378f5306db8",
+      "statement_sha256": "3fbefcf7b1eaf4da2eaf473eda0e5ff6bd54dfd04e60e709e029ec95907af225",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [
@@ -457,7 +457,7 @@
       "id": "def:pattern",
       "environment": "definition",
       "title": "Kazhdan conjugation datum",
-      "statement_sha256": "8d867cbbd0b8c579b97230221032d4f7bc68ce175b40355cf8aa8bbe17d061c4",
+      "statement_sha256": "9fc5d15d6535fd5ea255f021b53097639ed3e9d641841d24a0ddb1595ae13945",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [],
@@ -1307,7 +1307,7 @@
       "id": "prop:proper-isometry",
       "environment": "proposition",
       "title": "proper compression forbids finiteness",
-      "statement_sha256": "16dda5343c9b2da9b3c450afe7c0030f48dadc4c5eabdf9ea60f39108e37777d",
+      "statement_sha256": "e2a8714db1305b831bda3c60dd918559c1a49ec0e090d96876812d1a383e8663",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [],
