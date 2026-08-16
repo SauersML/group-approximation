@@ -261,6 +261,7 @@ import GroupApproximation.Sofic.ScaledKazhdanTransport
 import GroupApproximation.Sofic.IntertwinerKazhdanTransport
 import GroupApproximation.Sofic.TorsionCompressionCollapse
 import GroupApproximation.Sofic.MFRelationClosure
+import GroupApproximation.Sofic.MFTraceRecognition
 import GroupApproximation.Sofic.InvolutionRankMass
 import GroupApproximation.Sofic.ExactInvolutionLifts
 import GroupApproximation.Kazhdan.ApproximateCircumcenter
