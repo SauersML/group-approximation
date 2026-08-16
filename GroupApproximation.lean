@@ -327,6 +327,17 @@ import GroupApproximation.Sofic.WreathPermLayer
 import GroupApproximation.Sofic.WreathChartLamp
 import GroupApproximation.Sofic.GeneralizedWreathSofic
 import GroupApproximation.Sofic.AscendingHNNWreathSofic
+import GroupApproximation.Sofic.RegularActionSofic
+import GroupApproximation.Algebra.WreathTelescopeTower
+import GroupApproximation.Sofic.FiniteIndexRigidity
+import GroupApproximation.Algebra.FreePermutationalPrecursor
+import GroupApproximation.Sofic.UniversalFactorization
+import GroupApproximation.Sofic.RadicalFunctoriality
+import GroupApproximation.Algebra.SplitExtensionFailure
+import GroupApproximation.Sofic.SplitExtensionEndpoint
+import GroupApproximation.Sofic.CommensurabilityInvariance
+import GroupApproximation.Sofic.FiniteIndexNonMF
+import GroupApproximation.Sofic.DossierAuditAddenda
 import GroupApproximation.Sofic.SoficNonMFAssembly
 import GroupApproximation.Sofic.SoficActionOrbits
 import GroupApproximation.Sofic.SoficActionApproximationBelow
