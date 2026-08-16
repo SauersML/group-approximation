@@ -271,7 +271,6 @@ import GroupApproximation.Criterion.CommutantRigidity
 import GroupApproximation.Criterion.CompressionCentralizerDefect
 import GroupApproximation.Sofic.NormMFResidualExactQuotient
 import GroupApproximation.Sofic.IntrinsicCompressionDefect
-import GroupApproximation.Sofic.IntrinsicCompressionFiniteStage
 import GroupApproximation.Sofic.KazhdanAsymptoticCommutant
 import GroupApproximation.Sofic.ScaledKazhdanTransport
 import GroupApproximation.Sofic.IntertwinerKazhdanTransport
@@ -789,7 +788,6 @@ import GroupApproximation.Computability.RewriteSimulation
 import GroupApproximation.Monsters.NeumannContinuum
 import GroupApproximation.Computability.UnaryCounterSimulation
 import GroupApproximation.Computability.PostMachine
-import GroupApproximation.Computability.MachineRestrict
 import GroupApproximation.Computability.PostMachineHalting
 import GroupApproximation.Computability.HaltingReduction
 import GroupApproximation.Computability.RewriteSimulationOn
@@ -867,7 +865,6 @@ import GroupApproximation.Computability.FreeGroupSquaring
 import GroupApproximation.Computability.SemigroupWordProblemSimulation
 import GroupApproximation.Computability.SemigroupWordProblemPresentation
 import GroupApproximation.Computability.SemigroupWordProblem
-import GroupApproximation.Computability.PostMachineTM0Canonical
 
 -- Added by the 1:1 audit pass: modules that were outside the import closure,
 -- so `lake build` never compiled them and no audit ever saw them.  Appended,
@@ -885,7 +882,6 @@ import GroupApproximation.Criterion.ClosedEnvelopeCompressionCore
 import GroupApproximation.Monsters.RealizationEmbedding
 import GroupApproximation.Monsters.FournierFacioUniversalRealization
 import GroupApproximation.Monsters.P13InvariantProjection
-import GroupApproximation.Monsters.NeumannNormalSubgroups
 import GroupApproximation.Sofic.CompressionUniverseTransfer
 import GroupApproximation.Sofic.SoundIterateInstances
 import GroupApproximation.Sofic.ContinuumMultiplicityCore
@@ -910,6 +906,13 @@ import GroupApproximation.Sofic.LiteralLampKernelAmalgam
 import GroupApproximation.Sofic.DirectSumAmplification
 import GroupApproximation.Sofic.CornerDilutionInvariance
 import GroupApproximation.Sofic.LiteralBaseRotationMatrix
+import GroupApproximation.Sofic.CollapseScaledStepSix
+import GroupApproximation.Sofic.CollapseJointCorner
+import GroupApproximation.Sofic.CollapseWordMetricBridge
+import GroupApproximation.Analysis.MFStablyFinite
+import GroupApproximation.Criterion.StandardRepCommutant
+import GroupApproximation.Monsters.NeumannNormalSubgroups
+import GroupApproximation.Sofic.IntrinsicCompressionFiniteStage
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group

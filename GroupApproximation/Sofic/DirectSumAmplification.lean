@@ -134,7 +134,18 @@ theorem opLength_directSumRep (Y : FiniteModel)
   | zero => rfl
   | succ n ih =>
       unfold opLength at ih ⊢
-      rw [directSumRep_succ_apply, ← blockDiagMatrix_one, blockDiagMatrix_sub,
+      -- `directSumModel Y (n+1)` and `blockSumModel (directSumModel Y n) Y` are
+      -- defeq, but `rw` matches syntactically and the norm carries its index
+      -- type as an implicit argument -- so rewriting the *term* under the norm
+      -- leaves that argument in the old form and every later rewrite misses.
+      -- Restating the goal with `show`, which works up to defeq, moves the
+      -- index type once and the printed chain then applies verbatim.
+      show ‖blockDiagMatrix (directSumModel Y n) Y
+              (directSumRep Y phi n g :
+                Matrix (directSumModel Y n) (directSumModel Y n) ℂ)
+              (phi g : Matrix Y Y ℂ) - 1‖
+            = ‖(phi g : Matrix Y Y ℂ) - 1‖
+      rw [← blockDiagMatrix_one (directSumModel Y n) Y, blockDiagMatrix_sub,
         l2_opNorm_blockDiag, ih, max_self]
 
 /-! ## The amplified corona representation -/
