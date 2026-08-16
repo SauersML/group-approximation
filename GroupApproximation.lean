@@ -330,6 +330,7 @@ import GroupApproximation.Sofic.GeneralizedWreathSofic
 import GroupApproximation.Sofic.AscendingHNNWreathSofic
 import GroupApproximation.Sofic.RegularActionSofic
 import GroupApproximation.Algebra.WreathTelescopeTower
+import GroupApproximation.Algebra.WreathFunctor
 import GroupApproximation.Sofic.FiniteIndexRigidity
 import GroupApproximation.Algebra.FreePermutationalPrecursor
 import GroupApproximation.Sofic.UniversalFactorization
