@@ -319,6 +319,7 @@ import GroupApproximation.Sofic.SoficActionOrbits
 import GroupApproximation.Sofic.SoficActionApproximationBelow
 import GroupApproximation.Sofic.AscendingHNNFolner
 import GroupApproximation.Sofic.AscendingHNNDiagonalOrbits
+import GroupApproximation.Sofic.TargetEquivalence
 import GroupApproximation.Sofic.InducedFiniteDimensional
 import GroupApproximation.Kazhdan.IntegerNotKazhdan
 import GroupApproximation.Sofic.SoficAction
