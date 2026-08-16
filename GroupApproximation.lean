@@ -778,6 +778,12 @@ import GroupApproximation.Analysis.NuclearityAmenability
 import GroupApproximation.Computability.RewriteSimulation
 import GroupApproximation.Monsters.NeumannContinuum
 import GroupApproximation.Computability.UnaryCounterSimulation
+import GroupApproximation.Computability.HaltingReduction
+import GroupApproximation.Computability.RewriteSimulationOn
+import GroupApproximation.Sofic.SimpleLampNormalGeneration
+import GroupApproximation.Sofic.UniversalVisibleQuotient
+import GroupApproximation.Sofic.SimpleFactorRecovery
+import GroupApproximation.Sofic.RadicalFiniteIndexTransfer
 
 -- Modules that until now compiled only in isolation.  Outside the root import
 -- closure nothing in CI ever built them, so their proofs went unverified in every
@@ -845,5 +851,3 @@ dependency closure of the whole namespace and fails on anything beyond `propext`
 `Classical.choice`, and `Quot.sound`; `scripts/check.py` scans the source text
 for what the kernel cannot see, including files that are never compiled.
 -/
-import GroupApproximation.Computability.HaltingReduction
-import GroupApproximation.Computability.RewriteSimulationOn
