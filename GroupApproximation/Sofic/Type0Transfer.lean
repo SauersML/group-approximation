@@ -51,7 +51,7 @@ theorem exists_type0_model (G : Type u) [Group G] [Countable G] :
 /-- The `Type 0` model of a countable group is itself countable, so a theorem
 whose `Type 0` form carries a countability hypothesis still applies to it. -/
 theorem countable_type0_model (G : Type u) [Group G] [Countable G]
-    {G₀ : Type} [Group G₀] (e : G ≃* G₀) : Countable G₀ :=
+    {G₀ : Type} (e : G ≃* G₀) : Countable G₀ :=
   e.symm.injective.countable
 
 /-- **The pattern, written out once.**  A statement of the form "no countable

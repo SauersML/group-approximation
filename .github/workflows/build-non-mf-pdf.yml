@@ -225,11 +225,22 @@ jobs:
           lake build Audit
           lake env lean scripts/Calibrate.lean
 
+      # `pipefail` is the whole point of the shell override: the default
+      # `run:` shell is `bash -e`, under which a pipeline exits with the
+      # status of its LAST command.  Piping the audit into `tee` therefore
+      # reported `tee`'s success and a failing kernel audit could not fail
+      # this job -- the gate that certifies the paper's badges was passing
+      # unconditionally.
       - name: Kernel audit and endpoint axiom closures
-        run: lake env lean scripts/Audit.lean | tee kernel-audit.log
+        shell: bash
+        run: |
+          set -euo pipefail
+          lake env lean scripts/Audit.lean | tee kernel-audit.log
 
       - name: Regenerate and compare exact signatures
+        shell: bash
         run: |
+          set -euo pipefail
           cp docs/CLAIM_SIGNATURES.md /tmp/CLAIM_SIGNATURES.expected.md
           cp docs/NON_MF_CLAIM_SIGNATURES.md /tmp/NON_MF_CLAIM_SIGNATURES.expected.md
           lake env lean scripts/Signatures.lean | tee signatures.log
@@ -241,7 +252,10 @@ jobs:
             docs/NON_MF_CLAIM_SIGNATURES.md
 
       - name: Fresh kernel replay
-        run: lake env leanchecker --fresh GroupApproximation | tee leanchecker.log
+        shell: bash
+        run: |
+          set -euo pipefail
+          lake env leanchecker --fresh GroupApproximation | tee leanchecker.log
 
       - name: Assert the checked manuscript source is unchanged
         run: git diff --exit-code -- "$TEX_FILE"

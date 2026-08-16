@@ -20,23 +20,15 @@ on:
       - 'non_mf_groups_exist.tex'
       - '.github/workflows/refresh-non-mf-pdf.yml'
   workflow_dispatch:
-  # A safety net: if a push ever slips past the path filter, or a run dies, the
-  # committed PDF is still never more than a quarter of an hour behind.
-  schedule:
-    - cron: '*/15 * * * *'
 
 permissions:
   contents: write
 
-# One refresh at a time, and never cancelled.  Cancelling looks right -- why
-# finish a build of a superseded revision? -- but with ten sessions pushing the
-# manuscript, every run was killed by the next push and the PDF was never
-# rebuilt at all.  Runs queue instead, and each one checks out `main` at the
-# moment it starts rather than the commit that triggered it, so a queued run
-# builds the newest source and the duplicates no-op on an unchanged file.
+# One refresh at a time, and the newest source wins: an in-flight build of a
+# superseded revision is worth nothing.
 concurrency:
   group: refresh-non-mf-pdf
-  cancel-in-progress: false
+  cancel-in-progress: true
 
 env:
   TEX_FILE: non_mf_groups_exist.tex
@@ -51,7 +43,6 @@ jobs:
     steps:
       - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
         with:
-          ref: main
           fetch-depth: 0
 
       - name: Build the PDF

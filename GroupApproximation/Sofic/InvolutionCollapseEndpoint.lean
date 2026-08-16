@@ -62,12 +62,14 @@ theorem hyperfilter_eventually_of_exists {P : ℕ → Prop}
 /-- Pure real arithmetic of the transport constants: with the corner
 tolerance and the primitive tolerance chosen from `ρt`, the transported
 mass bound is at most `(ρt / 2)²`. -/
-theorem numeric_transport_bound {Cw ρt θ τ q : ℝ}
-    (hCwpos : 0 < Cw) (hgap : 0 < 1 - θ)
-    (hqdef : q = ρt / (24 * (Cw + 1)))
-    (hτr : τ ≤ (1 - θ) * ρt ^ 2 / (256 * (Cw + 1))) :
-    18 * q ^ 2 * Cw ^ 2 + 16 * ((Cw + 1) * (2 * τ) / (1 - θ)) ≤
-      (ρt / 2) ^ 2 := by
+theorem numeric_transport_bound :
+    ∀ {Cw ρt θ τ q : ℝ}
+      (_hCwpos : 0 < Cw) (_hgap : 0 < 1 - θ)
+      (_hqdef : q = ρt / (24 * (Cw + 1)))
+      (_hτr : τ ≤ (1 - θ) * ρt ^ 2 / (256 * (Cw + 1))),
+      18 * q ^ 2 * Cw ^ 2 + 16 * ((Cw + 1) * (2 * τ) / (1 - θ)) ≤
+        (ρt / 2) ^ 2 := by
+  intro Cw ρt θ τ q hCwpos hgap hqdef hτr
   have hq2 : q ^ 2 = ρt ^ 2 / (576 * (Cw + 1) ^ 2) := by
     rw [hqdef, div_pow]
     congr 1
@@ -410,10 +412,12 @@ theorem stage_generator_bound {H : Type*} [NormedAddCommGroup H]
 
 /-- **The anchor contradiction**: a family of at most `1/(√|S|+1)`-small
 values cannot carry total squared mass four. -/
-theorem anchor_contradiction {Γ : Type} {S : Finset Γ} {g : Γ → ℝ}
-    (hgnn : ∀ a ∈ S, 0 ≤ g a) (hganchor : ∑ a ∈ S, g a ^ 2 = 4)
-    {ρt : ℝ} (hρt : ρt = 1 / (Real.sqrt ((S.card : ℝ)) + 1))
-    (hfin : ∀ a ∈ S, g a ≤ ρt) : False := by
+theorem anchor_contradiction :
+    ∀ {Γ : Type} {S : Finset Γ} {g : Γ → ℝ}
+      (_hgnn : ∀ a ∈ S, 0 ≤ g a) (_hganchor : ∑ a ∈ S, g a ^ 2 = 4)
+      {ρt : ℝ} (_hρt : ρt = 1 / (Real.sqrt ((S.card : ℝ)) + 1))
+      (_hfin : ∀ a ∈ S, g a ≤ ρt), False := by
+  intro Γ S g hgnn hganchor ρt hρt hfin
   have hsn := Real.sqrt_nonneg ((S.card : ℝ))
   have hx1 : (0 : ℝ) < Real.sqrt ((S.card : ℝ)) + 1 := by linarith
   have hρtpos : 0 < ρt := by
@@ -441,27 +445,30 @@ theorem anchor_contradiction {Γ : Type} {S : Finset Γ} {g : Γ → ℝ}
 compressed primitive by the Kazhdan corner, together with the corner
 displacement and reverse-corner estimates, bounds the displacement of
 the primitive itself by each generator. -/
-theorem stage_transport_bound {Γ E : Type} [Group Γ] [Group E]
-    (B : OpAlmostRepresentation E) (C : KazhdanCompressionCore Γ E)
-    (S : Finset Γ) (θ : ℝ) (n₀ : ℕ) (a : Γ)
-    {Us W Xu : Matrix (B.model n₀) (B.model n₀) ℂ}
-    (hUs : Us = (B.map n₀ C.t : Matrix (B.model n₀) (B.model n₀) ℂ))
-    (hUsmem : Us ∈ Matrix.unitaryGroup (B.model n₀) ℂ)
-    (hXu : Xu = Usᴴ * W * Us) {q κ Cw : ℝ}
-    (hfix : ‖(((gammaAdjoint B C).map n₀ a :
-        Matrix (B.adjoint.model n₀) (B.adjoint.model n₀) ℂ) - 1) *
-        cornerProjection B C S θ n₀‖ ≤ q)
-    (hrev : ‖((1 : Matrix (B.adjoint.model n₀)
-        (B.adjoint.model n₀) ℂ) - cornerProjection B C S θ n₀) *
-        movedProjection B C S θ n₀‖ ≤ q)
-    (hcap : MarkedCompressionVectorChain.vecMass
-      ((1 - cornerProjection B C S θ n₀) *ᵥ gammaRowVec B n₀ Xu) ≤ κ)
-    (hXumass : ScaledKazhdanTransport.matMass Xu ≤ Cw ^ 2) :
-    ScaledKazhdanTransport.matMass
-      (W - (B.map n₀ (C.iota a) : Matrix (B.model n₀) (B.model n₀) ℂ) *
-        W * (B.map n₀ (C.iota a) :
-          Matrix (B.model n₀) (B.model n₀) ℂ)ᴴ) ≤
-      18 * q ^ 2 * Cw ^ 2 + 16 * κ := by
+theorem stage_transport_bound :
+    ∀ {Γ E : Type} [Group Γ] [Group E]
+      (B : OpAlmostRepresentation E) (C : KazhdanCompressionCore Γ E)
+      (S : Finset Γ) (θ : ℝ) (n₀ : ℕ) (a : Γ)
+      {Us W Xu : Matrix (B.model n₀) (B.model n₀) ℂ}
+      (_hUs : Us = (B.map n₀ C.t : Matrix (B.model n₀) (B.model n₀) ℂ))
+      (_hUsmem : Us ∈ Matrix.unitaryGroup (B.model n₀) ℂ)
+      (_hXu : Xu = Usᴴ * W * Us) {q κ Cw : ℝ}
+      (_hfix : ‖(((gammaAdjoint B C).map n₀ a :
+          Matrix (B.adjoint.model n₀) (B.adjoint.model n₀) ℂ) - 1) *
+          cornerProjection B C S θ n₀‖ ≤ q)
+      (_hrev : ‖((1 : Matrix (B.adjoint.model n₀)
+          (B.adjoint.model n₀) ℂ) - cornerProjection B C S θ n₀) *
+          movedProjection B C S θ n₀‖ ≤ q)
+      (_hcap : MarkedCompressionVectorChain.vecMass
+        ((1 - cornerProjection B C S θ n₀) *ᵥ gammaRowVec B n₀ Xu) ≤ κ)
+      (_hXumass : ScaledKazhdanTransport.matMass Xu ≤ Cw ^ 2),
+      ScaledKazhdanTransport.matMass
+        (W - (B.map n₀ (C.iota a) : Matrix (B.model n₀) (B.model n₀) ℂ) *
+          W * (B.map n₀ (C.iota a) :
+            Matrix (B.model n₀) (B.model n₀) ℂ)ᴴ) ≤
+        18 * q ^ 2 * Cw ^ 2 + 16 * κ := by
+  intro Γ E _ _ B C S θ n₀ a Us W Xu
+  intro hUs hUsmem hXu q κ Cw hfix hrev hcap hXumass
   have hYcard : 0 < Fintype.card (B.adjoint.model n₀) :=
     B.adjoint.modelNonempty n₀
   have hP := cornerProjection_isOrthogonalProjection B C S θ n₀
@@ -972,58 +979,6 @@ theorem actualCoronaMFResidual_eq_comap_involutive_quotient [Countable E]
     (involutiveCollapseDefect_le_actualCoronaMFResidual hkazhdan hcomp)
 
 end InvolutiveDischarge
-
-/-! ## Closed-header restatements for the manuscript
-
-The manuscript badges the three steps of the one-stage collapse argument.
-The audit gate requires a badged declaration to take no binder before the
-colon, so each is restated here with every hypothesis moved after it.  The
-proofs are the originals; nothing new is claimed. -/
-
-/-- Closed form of the one-stage corner transport of the primitive. -/
-theorem manuscriptStageTransportBound :
-    ∀ {Γ E : Type} [Group Γ] [Group E]
-      (B : OpAlmostRepresentation E) (C : KazhdanCompressionCore Γ E)
-      (S : Finset Γ) (θ : ℝ) (n₀ : ℕ) (a : Γ)
-      (Us W Xu : Matrix (B.model n₀) (B.model n₀) ℂ) (q κ Cw : ℝ),
-      Us = (B.map n₀ C.t : Matrix (B.model n₀) (B.model n₀) ℂ) →
-      Us ∈ Matrix.unitaryGroup (B.model n₀) ℂ →
-      Xu = Usᴴ * W * Us →
-      ‖(((gammaAdjoint B C).map n₀ a :
-          Matrix (B.adjoint.model n₀) (B.adjoint.model n₀) ℂ) - 1) *
-          cornerProjection B C S θ n₀‖ ≤ q →
-      ‖((1 : Matrix (B.adjoint.model n₀) (B.adjoint.model n₀) ℂ) -
-          cornerProjection B C S θ n₀) * movedProjection B C S θ n₀‖ ≤ q →
-      MarkedCompressionVectorChain.vecMass
-        ((1 - cornerProjection B C S θ n₀) *ᵥ gammaRowVec B n₀ Xu) ≤ κ →
-      ScaledKazhdanTransport.matMass Xu ≤ Cw ^ 2 →
-      ScaledKazhdanTransport.matMass
-        (W - (B.map n₀ (C.iota a) : Matrix (B.model n₀) (B.model n₀) ℂ) *
-          W * (B.map n₀ (C.iota a) :
-            Matrix (B.model n₀) (B.model n₀) ℂ)ᴴ) ≤
-        18 * q ^ 2 * Cw ^ 2 + 16 * κ := by
-  intro _ _ _ _ B C S θ n₀ a _ _ _ _ _ _ hUs hUsmem hXu hfix hrev hcap hXumass
-  exact stage_transport_bound B C S θ n₀ a hUs hUsmem hXu hfix hrev hcap hXumass
-
-/-- Closed form of the transport arithmetic: the tolerances chosen from the
-target bound the transported mass by `(ρt / 2)²`. -/
-theorem manuscriptNumericTransportBound :
-    ∀ {Cw ρt θ τ q : ℝ}, 0 < Cw → 0 < 1 - θ →
-      q = ρt / (24 * (Cw + 1)) →
-      τ ≤ (1 - θ) * ρt ^ 2 / (256 * (Cw + 1)) →
-      18 * q ^ 2 * Cw ^ 2 + 16 * ((Cw + 1) * (2 * τ) / (1 - θ)) ≤
-        (ρt / 2) ^ 2 := by
-  intro _ _ _ _ _ hCwpos hgap hqdef hτr
-  exact numeric_transport_bound hCwpos hgap hqdef hτr
-
-/-- Closed form of the anchor contradiction. -/
-theorem manuscriptAnchorContradiction :
-    ∀ {Γ : Type} {S : Finset Γ} {g : Γ → ℝ} {ρt : ℝ},
-      (∀ a ∈ S, 0 ≤ g a) → (∑ a ∈ S, g a ^ 2 = 4) →
-      ρt = 1 / (Real.sqrt ((S.card : ℝ)) + 1) →
-      (∀ a ∈ S, g a ≤ ρt) → False := by
-  intro _ _ _ _ hgnn hganchor hρt hfin
-  exact anchor_contradiction hgnn hganchor hρt hfin
 
 end InvolutionCollapseEndpoint
 end GroupApproximation

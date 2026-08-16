@@ -653,7 +653,14 @@ The exact form of the argument needs no analysis, no
 property~\textup{(T)}, and no hypothesis on the characteristic.  It is
 the simplest case of the mechanism, and we give it first.
 
-\begin{theorem}[the finite-dimensional case]\label{thm:B}
+% LABELS.  `mainthm` numbers by letter in order of appearance, so a label
+% spelled `thm:X` is a promise about position that the source cannot keep.
+% This one is NOT the lettered Theorem B -- it is an ordinary numbered
+% theorem.  Cite it as \ref{thm:exactfd}; `thm:B` is a legacy alias kept only
+% so that references written before the rename still resolve, and it should
+% be deleted once no draft in flight uses it.  Same for `thm:C`, `thm:D`,
+% `thm:E` at their own definitions.
+\begin{theorem}[the finite-dimensional case]\label{thm:exactfd}\label{thm:B}
 Let $k$ be a field, $V$ a finite-dimensional $k$-vector space, $H$ a
 group, $\Gamma\le H$ a subgroup, and $t,c\in H$, $a\in\Gamma$ elements
 with $t\Gamma t^{-1}\subseteq\Gamma$ and $c\gamma=\gamma c$ for all
@@ -1612,7 +1619,9 @@ $\Cred(\SL_3(\mathbb Z))$ and $\Cred(\SL_4(\mathbb Z))$ the MF
 property is undecided; only the stronger PMF property is known to
 fail, for $\SL_4(\mathbb Z)$ \cite{MdlS}.
 
-\begin{mainthm}[the reduced group algebra of $E$]\label{thm:D}
+% This prints as Theorem C, not Theorem D.  Cite \ref{thm:reduced}; `thm:D`
+% is a legacy alias.  See the note at thm:exactfd.
+\begin{mainthm}[the reduced group algebra of $E$]\label{thm:reduced}\label{thm:D}
 $\Cred(E)$ is a unital separable $C^*$-algebra which has a
 faithful tracial state --- and is therefore stably finite --- but is
 not an MF algebra.
@@ -1646,7 +1655,10 @@ homomorphism used in that proof to show $w\ne1$;
 Section~\ref{sec:witness} realizes it over $\mathbb Q$, writing $\Sigma$
 for $G$ in the explicit rational model.
 
-\begin{mainthm}[a sofic non-MF group]\label{thm:E}
+% This prints as Theorem D, not Theorem E.  Cite \ref{thm:witnesssofic};
+% `thm:E` is a legacy alias.  See the note at thm:exactfd.  The lettered
+% Theorem E is thm:Esofic, further down this section.
+\begin{mainthm}[a sofic non-MF group]\label{thm:witnesssofic}\label{thm:E}
 The Clifford quotient $W=\Cl(X)\rtimes\Sigma$ of
 Section~\ref{sec:witness} is a finitely generated sofic group that
 is not MF; since sofic groups are hyperlinear, $W$ is likewise a
@@ -2293,7 +2305,9 @@ The finite-dimensional calculation of
 Section~\ref{sec:findim} does not by itself determine
 whether its marked word is trivial:
 
-\begin{theorem}[the cyclic comparison]\label{thm:C}
+% Not the lettered Theorem C: an ordinary numbered theorem.  Cite
+% \ref{thm:cyclic}; `thm:C` is a legacy alias.  See the note at thm:exactfd.
+\begin{theorem}[the cyclic comparison]\label{thm:cyclic}\label{thm:C}
 Define the marked presentation
 \[
  E_{\mathrm{BS}}=\left\langle\gamma_0,t,c\ \middle|\
