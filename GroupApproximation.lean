@@ -788,6 +788,14 @@ import GroupApproximation.Sofic.UniversalVisibleQuotient
 import GroupApproximation.Sofic.SimpleFactorRecovery
 import GroupApproximation.Sofic.RadicalFiniteIndexTransfer
 import GroupApproximation.Sofic.WreathFinitePresentationObstruction
+import GroupApproximation.Sofic.KazhdanCliffordConstruction
+import GroupApproximation.Sofic.LiteralBaseP13PropertyTBridge
+import GroupApproximation.Sofic.LiteralMFQuotientControls
+import GroupApproximation.Sofic.LiteralNonMFConsequences
+import GroupApproximation.Sofic.LiteralNonMFPresentation
+import GroupApproximation.Sofic.LiteralUniformObstruction
+import GroupApproximation.Sofic.ManuscriptExactWrappers
+import GroupApproximation.Sofic.TorsionFreeFiniteNormalLimit
 
 -- Modules that until now compiled only in isolation.  Outside the root import
 -- closure nothing in CI ever built them, so their proofs went unverified in every
