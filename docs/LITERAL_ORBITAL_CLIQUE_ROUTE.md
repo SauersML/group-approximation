@@ -49,35 +49,49 @@ and that hypothesis is **discharged twice**, on both carriers:
 The second is the one `LiteralBlockCliffordBridge`'s warning comment asks for.
 That comment is now stale; the file it wants exists.
 
-## What is actually still open
+## What is actually still open — one structure instance
 
-**Not the graph theory — the carrier.**  `LiteralBlockCliffordBridge` records
-the defect precisely, and honestly, in its own header: it opens
-`LiteralBlockNormalForm`, so its `Vertical` is `PresentedGroup verticalRelators`,
-while `BlockCliffordTowerSofic.isSofic_blockClifford_tower` wants
-`MarkedCompression.Vertical`, the telescope.  Nothing relates the two carriers,
-so its last two declarations cannot typecheck.  Everything above them — the
-sigma decomposition, the generator dictionary, the relator correspondence,
-`lampEquiv`, `closure_block_equivariant`, `isIrreflexive_of_siteA_ne_siteB` —
-is carrier-honest and survives.
+Traced exhaustively 2026-08-16.  Every other link exists:
 
-The repair named there is a rewrite that stays on the telescope throughout and
-needs no comparison of the two models:
+| Link | Where |
+|---|---|
+| `E ≃* (N_E ⋊ T) ⋊ ℤ`, over the telescope | `LiteralLampKernelSplit.markedGroupEquivCoreByInt` |
+| telescope levels residually finite, and exhausting | `LiteralLampKernelSplit.telescopeLevel_residuallyFinite`, `telescopeLevel_exhausts` |
+| lamp kernel sofic, **fully parameterized** in `Block`, `Site`, `blockOf`, `N`, `c`, `ζ` | `LiteralLampKernelAmalgam.lampKernel_isSofic` |
+| blocks complete, on the coset carrier | `LiteralBlockGeometry.adj_of_blockOf_eq` + `alphaCosetTransitive` |
+| adjacency irreflexive | `LiteralBlockGeometry.adj_irrefl` |
+| the eight-site chart per block | `LiteralBlockGeometry.literalBlockFibreEquivFin` |
+| arbitrary-index block Clifford target | `Sofic/BlockCliffordIndex.lean` |
 
-* `LiteralLampKernelSplit.markedGroupEquivSemidirect` presents the literal
-  group as `lampKernel ⋊ V` over the telescope;
-* `LiteralLampKernelSplit.cosetLamp` indexes lamps by `Cosets α hα`, the site
-  type `LiteralBlockGeometry` already uses;
-* `LiteralLampKernelAmalgam`'s block development is parameterized in `Block`,
-  `Site`, `blockOf` and the ambient group, so it instantiates at
-  `N := lampKernel`, `c := cosetLamp`.
+The single missing input is
 
-`Sofic/BlockCliffordIndex.lean` supplies the arbitrary-index target the
-identification needs, since the literal block set is infinite.
+```text
+IsBlockCliffordPresentation Block Site blockOf ↥lampKernel cosetLamp ζ
+```
+
+over the **coset** carrier.  Of its six fields, three are already available —
+`cosetLamp_sq` gives `c_sq`, and the mark facts give `zeta_sq` and
+`zeta_central`.  The remaining three are the work:
+
+* `braid` — distinct sites of one block anticommute through the mark.  The
+  geometry is proved; what is missing is transporting it onto `cosetLamp`.
+* `generated` — the lamps and the mark generate the lamp kernel.
+* `lift` — the universal property.  This is the substantial one: it is the
+  normal-form content again, now for `cosetLamp` inside `lampKernel` rather
+  than for the presented lamp factor.
+
+`LiteralLampKernelAmalgam.isBlockCliffordPresentation_lampFactor` is the
+analogous instance on the *presented* carrier, and is the model to follow.
+
+Supplying that one instance yields `IsSofic ↥lampKernel` by
+`lampKernel_isSofic`, then `IsSofic TelescopeCore` by the residually-finite
+locality argument over the levels, then `IsSofic (TelescopeCore ⋊ ℤ)` by
+`SoficIntegerExtension.isSofic_int_semidirectProduct`, and finally
+`markedGroup_isSofic` by transport along `markedGroupEquivCoreByInt`.
 
 ## Then, and only then
 
 `markedGroup_isSofic`, and a finitely presented sofic non-MF group,
 strengthening `thm:E` from the finitely generated witness to the source.  Until
-the carrier rewrite lands and the tree compiles, the manuscript's statement
-that soficity of `E` is open stays correct and should not be edited.
+that instance exists and the tree compiles, the manuscript's statement that
+soficity of `E` is open stays correct and should not be edited.
