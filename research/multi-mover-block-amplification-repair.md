@@ -67,6 +67,22 @@ representation.  Pinning a named element still needs condition (iii), a
 symmetry permuting the candidates, or the compression form, which gives
 pointwise radical membership universally over the Kazhdan subgroup.
 
+**Strengthened 2026-08-16, without contradicting the above.**  The blocking
+conclusion is not merely existential per representation: *some* member of the
+family lies in the radical outright.  Feed the blocking hypothesis the
+universal corona representation of
+`ActualCoronaMFRadical.exists_actualCoronaRepresentation_ker_eq_actualCoronaMFResidual`,
+whose kernel is exactly the radical, and the member it kills is in the radical.
+No finiteness of the family is needed.  `Sofic/BlockingFamilyRadical.lean`.
+
+The caution above stands as written: that argument names *a* member, not a
+*predetermined* one, which is what the sentence denies.  The second route it
+lists is also now exact rather than heuristic — the radical is fully invariant,
+so an element inside the fully invariant closure of every member is in the
+radical, and if endomorphisms act transitively on the family then every member
+is.  That criterion is optimal given only full invariance plus meeting the
+family.
+
 The ambient group in the conclusion is the whole lamp-action semidirect
 product, not the lamp subgroup alone — for finite lamps the lamp subgroup is
 locally finite, hence amenable and MF, so a non-MF statement about it would be

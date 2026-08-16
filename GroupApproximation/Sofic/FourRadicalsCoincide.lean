@@ -19,7 +19,10 @@ linear representation cannot see anything invisible to all finite quotients.
 * `four_radicals_eq` — with a residually finite target for the defect quotient
   and the radical containment, all four residuals coincide with its kernel.
 
-The fifth residual of the dossier, the Bohr kernel, is `Sofic/BohrKernel`; the
+The fifth residual of the dossier, the Bohr kernel, has no module in this
+development yet -- by Peter--Weyl it coincides with the finite-dimensional
+unitary residual, since a compact target separates points by finite-dimensional
+unitaries, so the mathematics is immediate and only the module is missing.  The
 inclusion it contributes is unconditional, but the reverse needs Peter--Weyl,
 which the pinned Mathlib does not have.
 -/
