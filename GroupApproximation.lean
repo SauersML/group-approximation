@@ -294,6 +294,7 @@ import GroupApproximation.Algebra.PermutationalWreathSimple
 import GroupApproximation.Algebra.PermutationalWreathAmenable
 import GroupApproximation.Algebra.PermutationalWreathLinear
 import GroupApproximation.Algebra.PermutationalWreathRadicalTame
+import GroupApproximation.Algebra.LampCountable
 import GroupApproximation.Algebra.WreathLampPushforward
 import GroupApproximation.Algebra.AbelianLampPushforward
 import GroupApproximation.Algebra.AbelianLampTelescopeKernel
@@ -319,6 +320,7 @@ import GroupApproximation.Sofic.SoficActionOrbits
 import GroupApproximation.Sofic.SoficActionApproximationBelow
 import GroupApproximation.Sofic.AscendingHNNFolner
 import GroupApproximation.Sofic.AscendingHNNDiagonalOrbits
+import GroupApproximation.Sofic.TargetEquivalence
 import GroupApproximation.Sofic.InducedFiniteDimensional
 import GroupApproximation.Kazhdan.IntegerNotKazhdan
 import GroupApproximation.Sofic.SoficAction
