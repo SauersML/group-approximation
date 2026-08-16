@@ -33,7 +33,11 @@ concurrency:
 env:
   TEX_FILE: non_mf_groups_exist.tex
   PDF_FILE: non_mf_groups_exist.pdf
-  TEXLIVE_IMAGE: ghcr.io/xu-cheng/texlive-alpine@sha256:d9bfb267e3e3f5e0820ca86e867ee59ebb133fc29561bb28677d9b5a1a9e84ff
+  # TeX Live 2025, pinned by digest.  Deliberately NOT the 2026 image the
+  # release pipeline uses: on 2026 this manuscript typesets its contents page
+  # with every section number overprinted on the first letter of its title,
+  # and 2025 is the toolchain the source is actually checked against.
+  TEXLIVE_IMAGE: ghcr.io/xu-cheng/texlive-alpine@sha256:556e2e2caa7d489ce155de0eb3f43e324e6502ed4e9871aa400662b156cf00ad
 
 jobs:
   refresh:
@@ -65,8 +69,7 @@ jobs:
           # sectioning path and typesets the contents with every section number
           # overprinted on the first letter of its title.  Without the
           # declaration the class behaves classically, which is what the draft
-          # wants.  The release build keeps the declaration and its tagging.
-          sed '/\\DocumentMetadata/d' "$TEX_FILE" > "build/${TEX_FILE}"
+          cp "$TEX_FILE" "build/${TEX_FILE}"
           cp -f *.bib build/ 2>/dev/null || true
           docker run --rm \
             -e SOURCE_DATE_EPOCH="$source_epoch" \
