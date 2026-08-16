@@ -252,6 +252,38 @@ D2 belong to (c) and to making (a) expressible; D3 and D4 are (b); D5 is (a).
   derives `q_0 w → q_halt` only if the machine halts" is the expensive half.
   Depends on D1 (for the reduction to be computable), not on D2.
 
+  **DONE (2026-08-16).**  `Computability/MarkovPost.lean`,
+  `PostMachine.exists_undecidable_wordProblem`: finite alphabets and a finite
+  rewriting system over them whose word problem --- equality against one fixed
+  four-letter word --- is undecidable.  No hypothesis and no literature input;
+  `#print axioms` gives `[propext, Classical.choice, Quot.sound]` and the
+  `sorryAx` count is `0`.  The route is the one this entry names, `TMToPartrec`:
+  `UniversalCodeHalting` (a code whose halting is undecidable) →
+  `UniversalMachineInit` (`PartrecToTM2 → TM2to1 → TM1to0` composed, the
+  initialisation aligned by *choosing* the `Inhabited` instance) →
+  `UniversalMachineUndecidable` → `MachineRestrict` (finitely many reachable
+  states become finitely many states) → `FiniteMachineWordProblem` →
+  `MarkovPost`.  The simulation itself is `PostMachine`/`PostMachineHalting`,
+  where the expensive half this entry flags is `hstep_complete` together with
+  `hstep_closed_inv`.
+
+  Two corrections to this entry, in the interest of the ledger being usable:
+  the finiteness of the state set --- which looked like the obstacle --- is
+  already in Mathlib as `TM0.Supports` plus the `tr_supports` chain, and
+  `TM0.Supports M S` unfolds to exactly the hypothesis the reduction needs.  And
+  the dependence on D1 is not what was expected: the *rules* are a computable
+  `flatMap` over enumerations, but the final presentation is noncomputable,
+  because the TM0 state type contains `TM1.Stmt`, which contains function types
+  and so has no decidable equality.  That costs nothing here --- "finitely
+  presented" asks for a finite list of rules, not a computable one --- but a
+  reduction that needs the *map to presentations* to be computable, as D5 does,
+  cannot use this presentation as-is.
+
+  Note also `Computability/SemigroupWordProblem{,Machine,Simulation,Presentation}`,
+  which proves the same simulation independently and states it inside Mathlib's
+  `PresentedMonoid`; it lacks only the universal machine, which is what the
+  chain above supplies.
+
 * **D4. Novikov--Boone: a finitely presented group with undecidable word
   problem.**  The standard modern route is the Boone--Britton group: a tower
   of HNN extensions over a free group whose Britton reductions mirror the
