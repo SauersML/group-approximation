@@ -746,6 +746,27 @@ theorem commutator_not_zpow_mark :
     ⁅baseMap (v1 : Base), dee⁆ ∉ Subgroup.zpowers mark :=
   commutator_not_mem_markSubgroup
 
+/-- **The sign-free quotient has a nontrivial MF radical.**  The subgroup
+every corona representation of `E/⟨w⟩` must kill is not the trivial one:
+the collapsed defect lies in it and is not the identity.  This is the
+radical form of `signFreeQuotient_not_isCDEOperatorMF`, and the formal
+counterpart of the manuscript's assertion that the MF radical of `E`
+properly contains `{1, w}`. -/
+theorem actualCoronaMFResidual_ne_bot :
+    actualCoronaMFResidual SignFreeQuotient ≠ ⊥ := by
+  intro hbot
+  have hmem : ⁅proj (baseMap (v1 : Base)), proj dee⁆ ∈
+      actualCoronaMFResidual SignFreeQuotient :=
+    mem_actualCoronaMFResidual_iff.mpr signFree_collapse.1
+  rw [hbot, Subgroup.mem_bot] at hmem
+  exact signFree_collapse.2 hmem
+
+/-- **The trivial subgroup sits strictly below the radical.**  The order
+form of `actualCoronaMFResidual_ne_bot`. -/
+theorem bot_lt_actualCoronaMFResidual :
+    ⊥ < actualCoronaMFResidual SignFreeQuotient :=
+  lt_of_le_of_ne bot_le (Ne.symm actualCoronaMFResidual_ne_bot)
+
 end
 
 end LiteralSignFreeQuotient

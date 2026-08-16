@@ -1,0 +1,21 @@
+# Findings of `scripts/check_non_mf_unconditional.py` that are known,
+# written up, and not yet discharged.  One line per accepted finding:
+#
+#     <detector> <declaration>  -- why it is accepted
+#
+# This register is not a budget.  A finding not listed here fails the
+# gate, and a line here that matches nothing fails it too -- so a
+# discharged item cannot be left behind to license its own return.
+# Every line must correspond to a row of docs/NON_MF_CONDITIONAL_INVENTORY.md.
+# Regenerate with:
+#
+#     python3 scripts/check_non_mf_unconditional.py --write-baseline
+#
+# and delete a line the moment its mathematics lands.
+
+conditional-data GroupApproximation.FullMFRadicalEndpoint.exists_group_with_every_nontrivial_quotient_not_isCDEOperatorMF  -- inventory row 4: FournierFacioDefectData and DefectRoutingData, neither built anywhere in the corpus; the printed prose already says this answer is not unconditional
+conditional-data GroupApproximation.FullMFRadicalEndpoint.exists_twoGenerated_finitelyPresented_torsionFree_kazhdan_fullMFRadical  -- inventory row 3: same two undischarged packages, same printed caveat
+conditional-data GroupApproximation.MarkovMFConsequences.operatorMF_recognition_undecidable  -- inventory row 1: AdianRabinReduction is Rabin 1958 as quantified data; no inhabitant is constructed or postulated anywhere
+definition-only GroupApproximation.ManuscriptExactWrappers.ManuscriptHSInvisible  -- inventory row 12: the badge on def:invisible cites a definition; delete this line together with the .tex badge move to ManuscriptHSInvisibleCharacterization
+known-conditional GroupApproximation.ClosedEnvelopeCompression.manuscriptEnvelopeCompressionBlind  -- inventory row 5: the Zariski descending chain condition enters as `Closed` plus `WellFoundedLT`, which rem:chaincondition says in print
+known-conditional GroupApproximation.ContinuumMultiplicity.manuscriptContinuumMultiplicity  -- inventory row 2: B. H. Neumann's continuum family enters as quantified premises the corpus never exhibits
