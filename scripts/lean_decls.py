@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 """Index every declaration in the Lean development by fully qualified name.
 
-The index is what `check_lean_refs.py` resolves manuscript `\\lean` margin
-references against.  It is a lexical scan, not a Lean elaboration: it tracks
+The index is what the manuscript reference checkers -- `check_non_mf_refs.py`,
+`check_property_tt_refs.py`, and the claim-map half of `check.py` -- resolve
+visible Lean references against.  It is a lexical scan, not a Lean elaboration: it tracks
 the `namespace`/`section`/`end` stack and records the names introduced by
 declaration keywords.  That is enough to catch the failure this guards
 against -- a margin note in the paper naming a declaration that no longer

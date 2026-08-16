@@ -32,6 +32,16 @@ from lean_decls import build_index
 
 REPO = Path(__file__).resolve().parent.parent
 LIB = "GroupApproximation"
+# Retired: `nonsofic_groups_exist.tex` left the repository on 2026-08-12
+# (`ddb3d4d0`), when `property_tt_leavitt.tex` became the self-contained
+# manuscript for that development.  The name stays because it is what says
+# *which* manuscript the frozen `docs/CLAIM_MAP.md` and `docs/CLAIM_DECLS.txt`
+# came from, and because `check.py --self-test` still exercises every parser
+# below against a synthetic manuscript of this name.  Nothing regenerates
+# those two files while the source is absent; `check.py` reports the detectors
+# that lost their source as NOT RUN and checks the frozen roster instead.
+# The non-MF manuscript has its own, live, layer: `check_non_mf_refs.py`,
+# `check_non_mf_zero_input.py`, and `check_non_mf_claim_manifest.py`.
 TEX_NAME = "nonsofic_groups_exist.tex"
 
 # Environments that state something.  A `remark` is commentary: it carries a

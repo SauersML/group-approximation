@@ -60,15 +60,17 @@ import GroupApproximation.Kazhdan.KazhdanFiniteGeneration
 
 The library is organized by the order the mathematics was discovered, which is
 not the order anyone should read it in.  This module is the reading path: the
-declarations a referee actually needs, each named against the theorem of
-`nonsofic_groups_exist.tex` or `non_mf_groups_exist.tex` it establishes, and
-nothing else.  Follow the imports downward from here.
+declarations a referee actually needs, each named against the theorem it
+establishes, and nothing else.  Follow the imports downward from here.
 
 Nothing is proved in this module.  It re-exports, so that `#check` on any name
 below lands on the real statement and its module.
 
-The full statement-by-statement correspondence is `docs/CLAIM_MAP.md`,
-generated from the manuscript's margin notes; this module is the short list.
+The nonsofic manuscript, `nonsofic_groups_exist.tex`, was retired from the
+repository on 2026-08-12, so its statements survive here rather than in print;
+`non_mf_groups_exist.tex` is the live manuscript for the non-MF results below.
+`docs/CLAIM_MAP.md` holds the retired manuscript's full statement-by-statement
+correspondence, frozen at its last generation.  This module is the short list.
 
 ## The headline
 

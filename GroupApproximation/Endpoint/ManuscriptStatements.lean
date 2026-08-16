@@ -16,6 +16,11 @@ library; nothing new is proved about the mathematics.  What is new is the
 `nonsofic_groups_exist.tex`, so that a referee can `#check` a single name
 against a single displayed theorem instead of reassembling it from several.
 
+That manuscript was retired from the repository on 2026-08-12; the print these
+types were matched against is its last committed version, recoverable with
+`git show ddb3d4d0^:nonsofic_groups_exist.tex`.  Nothing below depends on it:
+the types are the statements.
+
 | printed | here |
 | --- | --- |
 | Theorem A (with its countable-headline clause) | `theoremA_exact` |

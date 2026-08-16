@@ -49,10 +49,16 @@ key introduced in the 2025-06-01 release, and the committed PDF
 accordingly carries no `/MarkInfo` and no `/StructTreeRoot`.  The
 release workflow does assert `Tagged: yes`, so that assertion is a
 requirement the artifact does not currently meet rather than a
-description of it.  Turning tagging on is open work, not a one-line
-change: it needs alternative text or an artifact designation for the
-TikZ figure, and the theorem environments and margin-note machinery
-have to be rerouted through the tagging code path.
+description of it.  Adding the key is mechanically cheap: in a TeX Live
+2025 LuaLaTeX probe build the manuscript still compiles with no errors
+and no overfull boxes, and the PDF does then carry `/MarkInfo` and
+`/StructTreeRoot`.  A structure tree is not yet an accessible document,
+though.  The TikZ figure has neither alternative text nor an artifact
+designation, `tagpdf` reports math tagging running without
+`unicode-math`, and the theorem environments and margin notes stay
+tagged as ordinary paragraphs until they are routed through the tagging
+code path.  Satisfying the gate and earning it are two different pieces
+of work.
 
 The current manuscript draft gives a literal finite presentation on eight
 generators `v₁,v₂,v₃,x,y,z,t,c`. Its six-generator, twenty-relator base is
@@ -277,8 +283,9 @@ Key audit files:
 
 - `scripts/check.py`: source-level checks;
 - `scripts/Audit.lean`: statement pins, axiom closure, and environment scans;
-- `GroupApproximation/Endpoint/LiteralNonMFAudit.lean`: planned focused audit
-  of the literal eight-generator endpoint and its manuscript wrappers;
+- `GroupApproximation/Endpoint/ChosenNonMFAudit.lean`: fast focused axiom audit
+  of the chosen non-MF endpoint, together with the part of the literal
+  eight-generator presentation that is unconditional;
 - `scripts/Signatures.lean` and `docs/CLAIM_SIGNATURES.md`: elaborated public
   signatures;
 - `scripts/check_non_mf_refs.py` and `scripts/check_property_tt_refs.py`:

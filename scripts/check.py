@@ -126,9 +126,16 @@ SCAN_TAGS: tuple[str, ...] = (
 class Findings:
     def __init__(self) -> None:
         self.rows: list[tuple[str, str]] = []
+        # A detector that cannot run on this tree prints why instead of `0`.
+        # Printing `0` for a scan that never executed is the exact failure the
+        # roster above exists to prevent: it reads as "checked and clean".
+        self.skipped: dict[str, str] = {}
 
     def add(self, tag: str, detail: str) -> None:
         self.rows.append((tag, detail))
+
+    def skip(self, tag: str, reason: str) -> None:
+        self.skipped[tag] = reason
 
     def report(self, stream=sys.stdout) -> int:
         counts: dict[str, int] = {}
@@ -137,7 +144,10 @@ class Findings:
         for tag, detail in self.rows:
             print(f"::error::[{tag}] {detail}", file=stream)
         for tag in SCAN_TAGS:
-            print(f"{tag}: {counts.get(tag, 0)}", file=stream)
+            if tag in self.skipped and not counts.get(tag, 0):
+                print(f"{tag}: NOT RUN -- {self.skipped[tag]}", file=stream)
+            else:
+                print(f"{tag}: {counts.get(tag, 0)}", file=stream)
         for tag, count in sorted(counts.items()):
             if tag not in SCAN_TAGS:
                 print(f"{tag}: {count} (tag not on the roster)", file=stream)
@@ -348,6 +358,52 @@ def check_fabricated_citations(root: Path, f: Findings) -> None:
                       f"{path.name}:{line}: {text.splitlines()[line - 1].strip()}")
 
 
+# The detectors that have no source once the manuscript is gone.  `dangling
+# Lean reference` is deliberately absent: the frozen roster still names
+# declarations, so that one keeps running against the roster below.
+_MANUSCRIPT_ONLY_TAGS = (
+    "unmapped result",
+    "dangling Lean reference (wrapped note)",
+    "axiom-report pinning",
+    "stale generated claim map",
+    "status contract",
+)
+
+
+def check_frozen_claim_roster(root: Path, f: Findings) -> None:
+    """A claim map whose manuscript is gone still has to name real declarations.
+
+    `docs/CLAIM_DECLS.txt` is the list `scripts/Signatures.lean` elaborates and
+    pins in `docs/CLAIM_SIGNATURES.md`, so a name that leaves the library must
+    not leave this roster behind -- with no manuscript to regenerate from, the
+    roster cannot be rebuilt, only checked.  Nothing here can tell whether the
+    roster still *covers* what it should; only that what it lists exists.
+    """
+    decls = root / claim_map.GENERATED_DECLS
+    generated = root / claim_map.GENERATED
+    if not decls.is_file() and not generated.is_file():
+        return
+
+    reason = (f"{claim_map.TEX_NAME} is not in the tree; the roster it generated "
+              f"is frozen and cannot be regenerated or diffed")
+    for tag in _MANUSCRIPT_ONLY_TAGS:
+        f.skip(tag, reason)
+    if not decls.is_file():
+        f.add("dangling Lean reference",
+              f"{claim_map.GENERATED} is present but {claim_map.GENERATED_DECLS}, "
+              f"the roster `scripts/Signatures.lean` reads, is not")
+        return
+
+    index = claim_map.build_index(root)
+    for line_number, line in enumerate(
+            decls.read_text(encoding="utf-8").splitlines(), start=1):
+        name = line.strip()
+        if name and name not in index:
+            f.add("dangling Lean reference",
+                  f"{claim_map.GENERATED_DECLS}:{line_number}: `{name}` is pinned "
+                  f"by the frozen claim roster but the library no longer declares it")
+
+
 def check_claim_map(root: Path, f: Findings) -> None:
     """The paper's margin notes must name declarations that exist.
 
@@ -365,9 +421,18 @@ def check_claim_map(root: Path, f: Findings) -> None:
       * the set of cited modules outside the `#print axioms` report drifts from
         the set pinned in `claim_map`, so the paper's audit story quietly stops
         describing the audit that actually runs.
+
+    When the manuscript is not in the tree the manuscript-side detectors cannot
+    run at all.  That is the state of `nonsofic_groups_exist.tex`, retired on
+    2026-08-12 in favour of the self-contained `property_tt_leavitt.tex`; what
+    it left behind is a frozen roster, still read by `scripts/Signatures.lean`.
+    `check_frozen_claim_roster` checks the half of the contract that survives
+    the manuscript -- that every name in the roster still exists -- and the
+    tags that no longer have a source say so rather than printing `0`.
     """
     tex = root / claim_map.TEX_NAME
     if not tex.is_file():
+        check_frozen_claim_roster(root, f)
         return
 
     claims = claim_map.read_claims(tex)
@@ -585,11 +650,41 @@ def self_test() -> int:
             if tag not in tags:
                 failures.append(f"plant {tag!r} was NOT reported (got {sorted(tags)})")
 
+    # Direction 3: the tree this scan actually meets.  Every plant above is
+    # materialized on top of a corpus that contains the manuscript, so none of
+    # them exercises the path taken when the manuscript is gone -- which is the
+    # live path, and the one where a detector that reports nothing would look
+    # exactly like a clean corpus.
+    retired = {rel: text for rel, text in CLEAN_TREE.items() if rel != _TEX}
+    with tempfile.TemporaryDirectory() as d:
+        base = Path(d)
+        _materialize(base, retired)
+        _materialize(base, {str(claim_map.GENERATED_DECLS): "alpha\n"})
+        result = run(base)
+        if result.rows:
+            failures.append(
+                f"retired tree with a resolving roster reported {result.rows}")
+        for tag in _MANUSCRIPT_ONLY_TAGS:
+            if tag not in result.skipped:
+                failures.append(
+                    f"retired tree printed {tag!r} as a count, not as not-run")
+
+    with tempfile.TemporaryDirectory() as d:
+        base = Path(d)
+        _materialize(base, retired)
+        _materialize(base,
+                     {str(claim_map.GENERATED_DECLS): "alpha_renamed_away\n"})
+        tags = {t for t, _ in run(base).rows}
+        if "dangling Lean reference" not in tags:
+            failures.append("a frozen roster naming a departed declaration was "
+                            f"NOT reported (got {sorted(tags)})")
+
     for line in failures:
         print(f"::error::[calibration] {line}")
     if failures:
         return 1
-    print(f"calibration: clean tree silent; {len(PLANTS)} planted defects all reported")
+    print(f"calibration: clean tree silent; {len(PLANTS)} planted defects all "
+          f"reported; retired-manuscript path calibrated both ways")
     return 0
 
 

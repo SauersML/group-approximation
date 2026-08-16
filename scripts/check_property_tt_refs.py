@@ -1,13 +1,14 @@
 #!/usr/bin/env python3
 """Validate every visible Lean counterpart link in the property-(TT)/T manuscript.
 
-The main manuscript uses a richer ``\\leanmod`` syntax.  The property-(TT)/T
-paper uses the smaller
+The retired ``nonsofic_groups_exist.tex`` used a richer ``\\leanmod`` syntax,
+still parsed by ``claim_map``.  The property-(TT)/T paper uses the smaller
 
     \\leanverified{PropertyTT/PaperStatements}{PropertyTTPaper.theorem}
 
-surface for its visible per-result links, so this checker resolves it against the same
-lexical Lean declaration index used by ``check_lean_refs.py``.
+surface for its visible per-result links, so this checker resolves it against
+the same lexical Lean declaration index, ``scripts/lean_decls.py``, that every
+other scanner over this corpus reads.
 """
 
 from __future__ import annotations
