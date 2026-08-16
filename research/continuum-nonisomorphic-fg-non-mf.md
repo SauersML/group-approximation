@@ -11,6 +11,9 @@ distinct_from:
 artifacts:
   - docs/NON_MF_ARCHAEOLOGY.md
   - docs/CREDIT_AND_PRIORITY_AUDIT.md
+  - GroupApproximation/Sofic/ProductMultiplicity.lean
+  - GroupApproximation/Sofic/ProductMultiplicityRank.lean
+  - GroupApproximation/Algebra/TorsionFreeRank.lean
 ---
 
 Two multiplicity statements:
