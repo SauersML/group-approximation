@@ -74,10 +74,7 @@ private theorem isChain_concatN {X : Type*} {R : X → X → Prop} {L : List X}
   induction n with
   | zero =>
     show List.IsChain R []
-    first
-      | exact List.isChain_nil
-      | constructor
-      | trivial
+    exact List.isChain_nil
   | succ m ih =>
     show List.IsChain R (L ++ concatN m L)
     refine List.IsChain.append hchain ih ?_
@@ -187,7 +184,7 @@ theorem isPowerTorsionFree_of_existsCyclicConjugate (φ : A ≃* B)
     have h2 : HNNExtension.of b ^ n = 1 := by
       have h3 := congrArg (fun z => g⁻¹ * z * g) h0
       simpa [mul_assoc] using h3
-    have h1 : HNNExtension.of (b ^ n) =
+    have h1 : (HNNExtension.of (b ^ n) : HNNExtension G A B φ) =
         (1 : HNNExtension G A B φ) := by
       rw [map_pow]
       exact h2

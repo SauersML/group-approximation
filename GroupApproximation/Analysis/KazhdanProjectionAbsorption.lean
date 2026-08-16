@@ -212,7 +212,7 @@ theorem one_sub_spectralProjection_eq (m : A) {c : ℝ}
   have hid : m = cfc (fun x : ℝ => x) m := (cfc_id ℝ m).symm
   have h1 : (1 : A) - spectralProjection m c
       = cfc (fun x => 1 - gapIndicator c x) m := by
-    rw [spectralProjection, ← cfc_sub (fun _ : ℝ => (1 : ℝ))
+    rw [spectralProjection, cfc_sub (fun _ : ℝ => (1 : ℝ))
       (gapIndicator c) m continuousOn_const hind]
     conv_lhs => rw [hone]
   have h2 : (1 : A) - m = cfc (fun x : ℝ => 1 - x) m := by
