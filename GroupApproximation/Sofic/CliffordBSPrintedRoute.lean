@@ -20,7 +20,7 @@ six steps:
 5. hence it is MF, by Tikuisis--White--Winter;
 6. composing the quotient map with a faithful homomorphism of that quotient
    into `U(Q)` gives `Θ : E_BS → U(Q)` with `Θ(w_BS) ≠ 1`, so
-   `w_BS ∉ Rad_MF(E_BS)` and property `(T)` cannot be dropped from the central
+   `w_BS ∉ Res_MF(E_BS)` and property `(T)` cannot be dropped from the central
    involution obstruction.
 
 Steps 1--4 and 6 are elementary and are machine-checked here on the
@@ -209,7 +209,7 @@ theorem mark_not_coronaMFInvisible
   obtain ⟨X, hX, Theta, hTheta⟩ := exists_coronaRepresentation_mark_ne_one tww
   exact hTheta (hinv X hX Theta)
 
-/-- **`w_BS ∉ Rad_MF(E_BS)`**, the paragraph's conclusion in the radical
+/-- **`w_BS ∉ Res_MF(E_BS)`**, the paragraph's conclusion in the radical
 language of `\section{Consequences}`, along the printed route. -/
 theorem mark_notMem_coronaMFResidual
     (tww : ∀ (G : Type) [Group G] [Countable G],

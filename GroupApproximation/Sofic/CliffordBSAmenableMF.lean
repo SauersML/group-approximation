@@ -16,7 +16,7 @@ import GroupApproximation.Monsters.CyclicBaseLEFObstruction
 The paragraph needs exactly one thing:
 
 > some corona representation of `E_BS` separates the marked word from the
-> identity; in the radical language, `w_BS ∉ Rad_MF(E_BS)`.
+> identity; in the radical language, `w_BS ∉ Res_MF(E_BS)`.
 
 The printed route to that conclusion is *amenable `⟹` MF*: the realized
 Clifford quotient is a subgroup of an amenable group, hence amenable, hence MF
@@ -28,7 +28,7 @@ does not prove that amenable groups are MF, that quasidiagonality holds for any
 class of groups, or that the realized Clifford quotient is MF.  It exhibits one
 explicit sequence of finite matrix models of the *seven printed relators* of
 `E_BS` in which the marked word stays at operator-norm distance `2` from the
-identity.  That is all `w_BS ∉ Rad_MF(E_BS)` asks for: the MF radical is an
+identity.  That is all `w_BS ∉ Res_MF(E_BS)` asks for: the MF radical is an
 intersection of kernels, so a single corona representation that fails to kill
 `w_BS` removes it from every one of them, and no injectivity -- hence no MF
 statement about any group -- is involved anywhere.
@@ -262,8 +262,12 @@ theorem monomialMatrix_conjTranspose_eq (Y : FiniteModel) (d e : Y → ℂ)
 theorem conjTranspose_smul_complex {Y : FiniteModel} (c : ℂ)
     (M : Matrix Y Y ℂ) : (c • M)ᴴ = (starRingEnd ℂ) c • Mᴴ := by
   ext i j
+  -- `star` is `Star.star`, not a bundled hom, so `map_mul` has no `⇑f (a * b)`
+  -- to match; `star_mul'` is the lemma, and `starRingEnd_apply` lands the two
+  -- spellings of conjugation on each other syntactically.
   rw [Matrix.conjTranspose_apply, Matrix.smul_apply, Matrix.smul_apply,
-    Matrix.conjTranspose_apply, smul_eq_mul, smul_eq_mul, map_mul]
+    Matrix.conjTranspose_apply, smul_eq_mul, smul_eq_mul, star_mul',
+    starRingEnd_apply]
 
 /-! ## The coordinates -/
 
@@ -417,6 +421,18 @@ spectrum of `γ₀` and the spectrum of `γ₀²`, one `2M`-th root of unity. -/
 noncomputable def defectPhase (m : ℕ) : ℂ :=
   phase m (((m + 1 : ℕ) : ZMod (modulus m)))
 
+/-- The elementary field identity behind `defectPhase_eq`: when `2A = M - 1`,
+`A` copies of `2p/M` fall exactly `p/M` short of `p`.
+
+It is stated for an abstract `p` on purpose.  With `π` and `Complex.I` in
+place the same goal is a complex-cast identity that `field_simp` does not
+close; with them abstracted away it is four rewrites and no `field_simp`. -/
+theorem mul_two_div_eq_sub_div (p M A : ℂ) (hM : M ≠ 0) (hA : A * 2 = M - 1) :
+    A * (2 * p / M) = p + -(p / M) := by
+  have h : A * (2 * p / M) = A * 2 * p / M := by ring
+  rw [h, hA, sub_mul, one_mul, sub_div, mul_div_cancel_left₀ p hM,
+    sub_eq_add_neg]
+
 theorem defectPhase_eq (m : ℕ) :
     defectPhase m
       = -Complex.exp
@@ -428,9 +444,11 @@ theorem defectPhase_eq (m : ℕ) :
       (2 * (Real.pi : ℂ) * Complex.I / ((modulus m : ℕ) : ℂ))
         = (Real.pi : ℂ) * Complex.I
           + -((Real.pi : ℂ) * Complex.I / ((modulus m : ℕ) : ℂ)) := by
-    rw [modulus_cast] at hm0 ⊢
+    -- `2 * π * I` parses as `(2 * π) * I`; the identity below wants `2 * (π * I)`
+    rw [mul_assoc (2 : ℂ) (Real.pi : ℂ) Complex.I]
+    refine mul_two_div_eq_sub_div _ _ _ hm0 ?_
+    rw [modulus_cast]
     push_cast
-    field_simp
     ring
   rw [harg, Complex.exp_add, Complex.exp_pi_mul_I]
   ring
@@ -865,7 +883,10 @@ theorem gamma_conj_lampBase (m : ℕ) :
     have hstep : gammaMatrix m * flipMatrix m
         = monomialMatrix (site m) (gammaDiag m) (flipPerm m) := by
       rw [gammaMatrix, flipMatrix]
-      refine monomialMatrix_mul_eq (site m) _ _ _ _ _ _ (fun p ↦ ?_) (one_mul _)
+      -- `hperm : σ' * σ = τ` with `σ = 1` (the diagonal `γ₀`) and
+      -- `σ' = flipPerm m`, so the identity needed is `flipPerm m * 1`, not
+      -- `1 * flipPerm m`.
+      refine monomialMatrix_mul_eq (site m) _ _ _ _ _ _ (fun p ↦ ?_) (mul_one _)
       show gammaDiag m p * (1 : ℂ) = gammaDiag m p
       rw [mul_one]
     rw [hstep, gammaMatrix_conjTranspose, flipMatrix, monomialMatrix_neg]
@@ -1116,7 +1137,9 @@ theorem marked_value (m : ℕ) :
         Matrix.unitaryGroup (site m) ℂ) : Matrix (site m) (site m) ℂ)
       = (lampBase m * (gammaMatrix m * lampBase m * (gammaMatrix m)ᴴ))
         * (lampBase m * (gammaMatrix m * lampBase m * (gammaMatrix m)ᴴ)) := by
-    simp only [coe_mulU, coe_invU, coe_gammaU, coe_baseU]
+    -- Mathlib's global simp set already pushes the submonoid coercion through
+    -- products and inverses, so `coe_mulU` and friends are redundant here and
+    -- `noncomm_ring` (which runs `simp`) does the whole step.
     noncomm_ring
   rw [hcoe, lampBase_mul_conj, flipSpin_sq, coe_negOneU]
 
@@ -1182,7 +1205,14 @@ theorem opLength_stable_le (m : ℕ) :
       = (stableMatrix m * gammaMatrix m * (stableMatrix m)ᴴ
           - gammaMatrix m * gammaMatrix m)
         * (gammaMatrix m * gammaMatrix m)ᴴ := by
-    simp only [coe_mulU, coe_invU, coe_gammaU, coe_stableU]
+    -- every `coe_*U` lemma of this file is `rfl`, so the coercion can be
+    -- discharged by `show` rather than by a `simp only` whose arguments the
+    -- global coercion lemmas make redundant
+    show stableMatrix m * gammaMatrix m * (stableMatrix m)ᴴ *
+        (gammaMatrix m * gammaMatrix m)ᴴ - 1
+      = (stableMatrix m * gammaMatrix m * (stableMatrix m)ᴴ
+          - gammaMatrix m * gammaMatrix m)
+        * (gammaMatrix m * gammaMatrix m)ᴴ
     rw [Matrix.sub_mul, hGG]
   rw [opLength, hcoe, CStarRing.norm_mul_mem_unitary _ hstar]
   exact norm_conj_sub_sq_le m
@@ -1199,8 +1229,9 @@ theorem opLength_lampGamma_le (m : ℕ) :
   have hlamp : ((lampU m : Matrix.unitaryGroup (site m) ℂ) :
       Matrix (site m) (site m) ℂ)
       = (stableMatrix m)ᴴ * lampBase m * stableMatrix m := by
-    rw [lampU]
-    simp only [coe_mulU, coe_invU, coe_baseU, coe_stableU]
+    -- `lampU` is a product of the model unitaries and every coercion lemma
+    -- above is `rfl`, so this is definitional
+    rfl
   rw [opLength_commutator, hlamp, coe_gammaU]
   -- transport the commutator through `t`
   have hsplit : ((stableMatrix m)ᴴ * lampBase m * stableMatrix m)
@@ -1283,9 +1314,10 @@ theorem two_le_opLength_negOne (m : ℕ) :
   have hentry : Complex.normSq
       ((((negOneU m : Matrix.unitaryGroup (site m) ℂ) :
         Matrix (site m) (site m) ℂ) - 1) i i) = 4 := by
+    -- one `Matrix.one_apply_eq` rewrites both occurrences at once, so a second
+    -- copy has nothing left to match
     rw [coe_negOneU, Matrix.sub_apply, Matrix.neg_apply, Matrix.one_apply_eq,
-      Matrix.one_apply_eq, show (-(1 : ℂ) - 1 = -2) from by ring,
-      Complex.normSq_apply]
+      show (-(1 : ℂ) - 1 = -2) from by ring, Complex.normSq_apply]
     norm_num
   have hle := normSq_entry_le_sq_l2_opNorm (site m)
     (((negOneU m : Matrix.unitaryGroup (site m) ℂ) :
@@ -1543,7 +1575,7 @@ theorem mark_not_coronaMFInvisible :
   fun h ↦ coronaRep_mark_ne_one (h site card_site_pos coronaRep)
 
 /-- The same statement in the radical language of `\section{Consequences}`:
-`w_BS ∉ Rad_MF(E_BS)`. -/
+`w_BS ∉ Res_MF(E_BS)`. -/
 theorem mark_notMem_coronaMFResidual :
     (mark : LiteralGroup) ∉ coronaMFResidual LiteralGroup :=
   fun h ↦ mark_not_coronaMFInvisible h

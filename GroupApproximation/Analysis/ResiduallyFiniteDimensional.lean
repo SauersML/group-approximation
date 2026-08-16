@@ -9,7 +9,7 @@ import Mathlib.LinearAlgebra.Matrix.SemiringInverse
 This file supplies one of the two clauses of the manuscript remark *the
 maximal algebra under proper one-sided conjugation*, which is
 `\begin{remark}...\label{rem:maxinfinite}` inside the appendix
-`\label{app:maxcstar}` of `non_mf_groups_exist.tex` (near line 3964 as of
+`\label{app:maxcstar}` of `non_mf_groups_exist.tex` (navigate by the label as of
 2026-08-16, but that file is under active concurrent edit: navigate by the
 label, or grep the sentence quoted below).  The central sentence reads
 

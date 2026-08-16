@@ -14,7 +14,7 @@ is under concurrent edit, so the stable anchors are the heading
 theorem, cited elsewhere in the same section under the key `ElekSzabo`).
 
 > There is a countable simple sofic group `S_simp` with
-> `Rad_MF(S_simp) = S_simp`.  Equivalently, every homomorphism from `S_simp`
+> `Res_MF(S_simp) = S_simp`.  Equivalently, every homomorphism from `S_simp`
 > to an MF group is trivial.
 >
 > *Proof.* By Elek--Szabó, every countable sofic group embeds in a countable
@@ -79,7 +79,7 @@ theorem normMFResidual_eq_top_of_simple_of_embedding
     normMFResidual S = ⊤ :=
   normMFResidual_eq_top_of_simple (hx.map f) (map_ne_one_of_injective f hf hne)
 
-/-- The same conclusion in the manuscript's own radical: `Rad_MF(S) = S`. -/
+/-- The same conclusion in the manuscript's own radical: `Res_MF(S) = S`. -/
 theorem coronaMFResidual_eq_top_of_simple_of_embedding
     {G : Type u} [Group G] {S : Type v} [Group S] [Countable S] [IsSimpleGroup S]
     (f : G →* S) (hf : Function.Injective f) {x : G}
@@ -119,7 +119,7 @@ theorem coronaMFResidual_eq_top_of_forall_map_eq_one
   simpa using congrArg Subtype.val hone
 
 /-- **The displayed equivalence of the manuscript paragraph.**  For a countable
-group, `Rad_MF(S) = S` holds exactly when every homomorphism from `S` to an MF
+group, `Res_MF(S) = S` holds exactly when every homomorphism from `S` to an MF
 group is trivial. -/
 theorem coronaMFResidual_eq_top_iff_forall_map_eq_one {S : Type} [Group S] [Countable S] :
     coronaMFResidual S = ⊤ ↔
@@ -165,7 +165,7 @@ theorem witness_mark_ne_one_and_normMFInvisible :
 be any countable simple group receiving the concrete witness `W` injectively.
 Then
 
-* `Rad_MF(S) = S` in the manuscript's cofinite-corona radical,
+* `Res_MF(S) = S` in the manuscript's cofinite-corona radical,
 * the same in the ultraproduct residual,
 * every homomorphism from `S` into an MF group is trivial, and
 * `S` is itself not MF.

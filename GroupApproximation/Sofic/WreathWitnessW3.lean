@@ -14,7 +14,7 @@ import Mathlib.LinearAlgebra.Matrix.Notation
 > coordinates have no joint spectral labels; their collapse mechanism is the
 > central sign of `thm:A`.
 
-Read literally, that is not a claim that `D_coll(L,s) ≤ Rad_MF(H)` becomes
+Read literally, that is not a claim that `D_coll(L,s) ≤ Res_MF(H)` becomes
 false without `(W3)`: `D_coll(L,s)` is *defined* by quantifying over witnesses,
 so deleting `(W3)` changes the object rather than the theorem, and the last
 clause says the anticommuting case is handled by a different mechanism — the

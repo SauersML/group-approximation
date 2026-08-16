@@ -148,13 +148,35 @@ answers the manuscript's Question 2 outright rather than formally.
 
 That asymmetry is what the repair turns on, and it is why no toy inhabitant
 of the order-preserving layer can be exhibited short of solving the open
-problem. -/
-theorem orderPreserving_quotient_not_subsingleton
+problem.
+
+This is the working form, with the data in the header; the badged
+`orderPreserving_quotient_not_subsingleton` below is the closed restatement
+required by the zero-input gate. -/
+theorem orderPreserving_quotient_not_subsingleton_of_data
     {P : Type} {E : Type u} [Group P] [Group E]
     {D : FournierFacioDefectData P E}
     (R : OrderPreservingRoutingData.{u} D) : ¬ Subsingleton R.Quotient := by
   intro hsub
   obtain ⟨x, y, hxy⟩ := R.quotientNontrivial.exists_pair_ne
   exact hxy (@Subsingleton.elim _ hsub x y)
+
+/-- **Order preservation excludes the trivial quotient**, closed form.
+
+Every binder is after the colon, so the declaration takes no inputs of its
+own; it delegates to
+`orderPreserving_quotient_not_subsingleton_of_data` and says exactly the same
+thing.  This is the form the manuscript cites for the printed sentence "That
+same order preservation would supply the sixth condition as well: a map
+preserving element orders cannot send the distinguished element, which has
+order greater than one, to the identity."  Applying it to explicit arguments
+is unchanged, so no call site moves. -/
+theorem orderPreserving_quotient_not_subsingleton :
+    ∀ {P : Type} {E : Type u} [Group P] [Group E]
+      {D : FournierFacioDefectData P E}
+      (R : OrderPreservingRoutingData.{u} D),
+      ¬ Subsingleton R.Quotient := by
+  intro P E _ _ D R
+  exact orderPreserving_quotient_not_subsingleton_of_data R
 
 end GroupApproximation

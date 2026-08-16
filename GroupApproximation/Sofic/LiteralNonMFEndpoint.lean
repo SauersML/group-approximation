@@ -252,8 +252,8 @@ theorem literal_mark_eq_one_in_CStarCorona
 /-- The unitary-sequence-corona clause of the printed theorem, in literal
 natural-number dimensions.
 
-This is part (2) of the literal verification of Theorem~`\ref{thm:A}` in
-`\section{...}\label{sec:proofA}`, by its printed argument: "let
+This is part (2) of the literal verification of Theorem~`\ref{thm:A}`, by its
+printed argument: "let
 `Θ : E → 𝒰cor((d_n))` be given and pass to the corona representation
 `κ_{(d_n)} ∘ Θ : E → 𝒰(𝒬)` of Lemma~`\ref{lem:unitarycorona}`.  Apply the
 central-sign criterion (Theorem~`\ref{thm:sign-criterion}`) ... The criterion

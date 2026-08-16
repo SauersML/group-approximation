@@ -73,7 +73,7 @@ theorem actualCoronaMFInvisible_of_isSimpleGroup [Countable G]
   exact hmem
 
 /-- **The canonical MF quotient is trivial.**  Every corona representation of
-such a group factors through `G ⧸ Rad_MF`, and that quotient is a point, so
+such a group factors through `G ⧸ Res_MF`, and that quotient is a point, so
 every corona representation is trivial and there is no nontrivial MF target to
 map to.  This is the "entire group is its MF radical" property in the form the
 dossier's question asks for. -/

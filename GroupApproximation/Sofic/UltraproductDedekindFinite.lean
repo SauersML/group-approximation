@@ -349,36 +349,56 @@ theorem kt_06_polar_correction
 unitary.  Proved exactly as printed, through the polar correction of the
 previous theorem.
 
-**What this does and does not certify.**  `non_mf_groups_exist.tex` badges this
-declaration at the lemma captioned *the norm ultraproduct*
-(`\label{lem:ultrafinite}`), which asserts **three** things about
-`B_ω = ∏_ω B(K_n)` acting on the Hilbert-space ultraproduct `K_ω`: that the
-action is faithful, that `B_ω` is finite, and that for projections
-`ran P ⊆ ran Q` is equivalent to `P ≤ Q`.  Only the **second** is proved here,
-and it is proved for the *cofinite* corona `∏_∞ B(K_n)` rather than for the
-`ω`-indexed one.  Stated plainly, so that no reader takes the badge for more
-than it is:
+**What this certifies, and the two residual differences.**  The lemma this
+declaration is badged at, `\label{lem:ultrafinite}`, asserts exactly one thing:
+that
 
-* *faithfulness* is not proved here, and it is **false** for this algebra
-  acting on an `ω`-ultraproduct.  `UltraproductAdjointAmbient.kt_04_norm_eq_limsup`
-  identifies the corona norm with `limsup_{atTop} ‖a_n‖`, so a class is nonzero
-  as soon as its coordinates are bounded below on an *infinite* set.  Choosing
-  `S ∈ ω` with infinite complement and `A_n = 0` for `n ∈ S`, `A_n = 1`
-  otherwise gives a nonzero corona class annihilating every vector of `K_ω`.
-  Faithfulness needs the genuine `ω`-corona, and a norm on `K_ω`;
-* the *range criterion* is likewise not proved.  What exists,
-  `UltraproductAdjointAmbient.kt_04_absorb_of_range_le` and
-  `kt_04_range_le_of_absorb`, is the purely algebraic dictionary
-  `(1 - q) p = 0 ↔ q p = p ∧ p q = p`, valid in any star ring; the manuscript's
-  clause is about ranges of operators on `K_ω`, and its content is exactly the
-  step that consumes faithfulness.
+    `B_c = ∏_n B(K_n) / ⊕_n B(K_n)`,
 
-Neither omission weakens the transport theorem: the formalized chain never uses
-faithfulness, because it reads `Fix ⊆ V·Fix` back as `P ≤ Q` through the
-algebraic absorption identities `UltraproductKazhdanProjection.kt_09_*` rather
-than through an inclusion of ranges.  That is a genuine divergence from the
-printed proof and is recorded as such in the module docstring of
-`Sofic/UltraproductModelConstructionAssembly.lean`. -/
+the quotient of the bounded family algebra by the `c₀`-sum, is a finite C-star
+algebra.  That is this statement, on this algebra: `NormMatrixCStarCorona X` is
+the quotient of `BoundedMatrixSequence X = ∏_n B(K_n)` by
+`c0MatrixSequenceIdeal X`, whose members are exactly the families whose
+operator norms tend to zero along the cofinite filter, i.e. the `c₀`-sum.  The
+proof is the printed one as well: the Gram defect is eventually at most `1/2`,
+polar correction replaces those coordinates by genuine unitaries
+(`kt_06_polar_correction`), and the class is unchanged.
+
+Two differences remain, both formal and both recorded rather than papered over:
+
+* the printed lemma quantifies over abstract finite-dimensional Hilbert spaces
+  `(K_n)`; this one fixes coordinates, `K_n = ℂ^{Z n}` with `B(K_n)` the matrix
+  algebra.  Every finite-dimensional Hilbert space is isometric to some `ℂ^d`,
+  so nothing is lost mathematically, but the quantifier is over coordinatized
+  spaces;
+* the printed lemma has no nonemptiness hypothesis, while `[∀ n, Nonempty (Z n)]`
+  here demands every `K_n ≠ 0`.  It is not needed for the conclusion --
+  `normMatrixCStarCorona_mul_star_eq_one` above proves the same implication
+  without it -- but that route goes through an abstract one-sided inverse
+  rather than through polar correction, so it is not the printed proof.  The
+  hypothesis enters through `unitarySequenceBounded` in
+  `Analysis/NormMatrixCoronaUnitary.lean`, which bounds a unitary's norm by
+  `CStarRing.norm_of_mem_unitary` and so needs the coordinate algebra to be
+  nontrivial.  Removing it there would make the printed route hypothesis-free.
+
+**Not certified here.**  The manuscript's *unnumbered* discussion following this
+lemma passes to a free ultrafilter `ω`, forms `B_ω = ∏_ω B(K_n)` and the
+Hilbert-space ultraproduct `K_ω`, and asserts that the action of `B_ω` on `K_ω`
+is faithful and that `ran P ⊆ ran Q` is equivalent to `P ≤ Q`.  None of that is
+proved anywhere in this development, and none of it is what this declaration
+says; the printed proof of `\label{thm:kazhdan-transport}` uses it.  Because it
+sits in prose rather than in a numbered environment, no manifest gate sees it.
+The record is in the status section of
+`Sofic/UltraproductKazhdanTransport.lean`, under UF.01--UF.03.
+
+Faithfulness in particular is *false* for this algebra acting on an
+`ω`-ultraproduct: `UltraproductAdjointAmbient.kt_04_norm_eq_limsup` identifies
+the corona norm with `limsup_{atTop} ‖a_n‖`, so choosing `S ∈ ω` with infinite
+complement and `A_n = 0` for `n ∈ S`, `A_n = 1` otherwise gives a nonzero corona
+class annihilating every vector of `K_ω`.  It would need the genuine
+`ω`-indexed corona.  The formalized transport chain never uses it, reading
+`Fix ⊆ V·Fix` back as `P ≤ Q` through the algebraic absorption identities
+`UltraproductKazhdanProjection.kt_09_*` instead. -/
 theorem kt_06_ultraproduct_finite :
     ∀ (Z : ℕ → FiniteModel) [∀ n, Nonempty (Z n)]
       {sigma : NormMatrixCStarCorona (fun n ↦ Z n)}

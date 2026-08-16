@@ -333,7 +333,30 @@ theorem manuscriptNormalKazhdanObstruction :
   exact MonoidHom.mem_ker.mpr (by simpa using hx₀)
 
 /-- Exact coordinate finite-normal-corner conclusion for literal positive
-natural matrix dimensions. -/
+natural matrix dimensions.
+
+**Deliberately left at `Type 0`; do not "fix" this without reading the
+following.**  The universe-scope sweep that widened the rest of this file
+considered this declaration and decided against it, on evidence:
+
+* it is **not badged** -- it occurs zero times in `non_mf_groups_exist.tex` and
+  is absent from `docs/NON_MF_CLAIM_DECLS.txt`, its only references in the
+  repository being the `#print axioms` lines in `GroupApproximation/Endpoint/Audit.lean`;
+* consequently **no ledger row cites it**, and it appears in no cluster of the
+  1:1 audit.
+
+The rule the sweep applied is that a *badged* statement narrower than the
+statement the manuscript *prints* is a defect whether or not an auditor listed
+it.  That rule is about the gap between print and Lean, and here nothing is
+printed, so it has nothing to say.  This is an internal wrapper, not a
+specification boundary.
+
+A descent route does exist, should this ever acquire a badge: take the `Type 0`
+corner for `F.map e`, pull it back along `OpAlmostRepresentation.comap`, and
+reindex the finite sum over `↥F` along `Subgroup.equivMapOfInjective`.  It was
+not taken because it re-enters `Sofic/FiniteNormalAverageCorner.lean`, whose
+migration is the one that had to be reverted, for no gain in the 1:1
+correspondence.  If you badge this declaration, widen it then. -/
 theorem manuscriptCoordinateFiniteNormalCorner :
     ∀ {H : Type} [Group H] [Countable H]
       (F : Subgroup H) [Finite F] [F.Normal]
@@ -714,12 +737,57 @@ is killed in the tracial ultraproduct attached to every operator-norm
 almost representation, along every ultrafilter refining the cofinite
 filter.  This is the per-element form of the hypothesis of the abstract
 invisibility obstruction below. -/
+/-- The asymptotic unitary representation attached to an operator-norm almost
+representation, over a group in **any** universe.
+
+This is `KazhdanCompressionCore.toAsymptoticUnitaryRepresentation` with the
+ambient group unpinned, and it exists as a separate declaration rather than as a
+widening of that one for a concrete reason.  Giving the original its own
+`{E : Type*}` binder — shadowing the `{Γ E : Type}` section variable of
+`Sofic/FiniteNormalCompressionObstruction.lean` — added a universe parameter
+that three `refine` goals in `Sofic/NormalKazhdanHyperlinearKilled.lean` could
+not reconcile, failing with `incorrect number of universe levels` even though no
+call site supplies an explicit `.{…}` anywhere in the tree.  Keeping the two
+apart lets `def:invisible` be stated at the manuscript's quantification while
+the nine consumers of the original keep the arity they were written against.
+
+The body is field for field the original's; both `OpAlmostRepresentation` and
+`AsymptoticUnitaryRepresentation` are already universe-polymorphic, so no step
+of the multiplicativity estimate sees the universe. -/
+noncomputable def asymptoticUnitaryOfOpAlmost {H : Type u} [Group H]
+    (B : OpAlmostRepresentation H) : AsymptoticUnitaryRepresentation H where
+  model := B.model
+  modelNonempty := B.modelNonempty
+  map := B.map
+  asymptoticallyMultiplicative := by
+    intro g h epsilon hepsilon
+    obtain ⟨N, hN⟩ := B.asymptoticallyMultiplicative g h
+      (Real.sqrt epsilon) (Real.sqrt_pos.2 hepsilon)
+    refine ⟨N, fun n hn ↦ ?_⟩
+    let R : Matrix (B.model n) (B.model n) ℂ :=
+      (B.map n (g * h) : Matrix (B.model n) (B.model n) ℂ) -
+        (B.map n g : Matrix (B.model n) (B.model n) ℂ) * B.map n h
+    have hop : ‖R‖ ≤ Real.sqrt epsilon := hN n hn
+    calc
+      hsDistSq (B.model n) (B.map n (g * h))
+          ((B.map n g : Matrix (B.model n) (B.model n) ℂ) * B.map n h) ≤
+        ‖R‖ ^ 2 := hsDistSq_le_sq_l2_opNorm (B.model n) _ _
+      _ ≤ (Real.sqrt epsilon) ^ 2 := by
+        nlinarith [norm_nonneg R, Real.sqrt_nonneg epsilon]
+      _ = epsilon := Real.sq_sqrt hepsilon.le
+
+/-- At `Type 0` the universe-general construction is the one the finite-normal
+machinery uses, field for field. -/
+theorem asymptoticUnitaryOfOpAlmost_typeZero {H : Type} [Group H]
+    (B : OpAlmostRepresentation H) :
+    asymptoticUnitaryOfOpAlmost B =
+      KazhdanCompressionCore.toAsymptoticUnitaryRepresentation B := rfl
+
 def ManuscriptHSInvisible : ∀ {H : Type u} [Group H], H → Prop :=
   fun {H : Type u} [Group H] (g : H) ↦
     ∀ (B : OpAlmostRepresentation H) (U : Ultrafilter ℕ)
       (hcof : (U : Filter ℕ) ≤ Filter.cofinite),
-      (KazhdanCompressionCore.toAsymptoticUnitaryRepresentation B).toUltraproductHom
-        hcof g = 1
+      (asymptoticUnitaryOfOpAlmost B).toUltraproductHom hcof g = 1
 
 /-- **What the invisibility definition certifies.**  A definition asserts
 nothing, so the manuscript's Definition (`def:invisible`) cannot be badged by
@@ -744,14 +812,12 @@ theorem manuscriptHSInvisibleCharacterization :
       (∀ g : H, ManuscriptHSInvisible g ↔
         ∀ (B : OpAlmostRepresentation H) (U : Ultrafilter ℕ)
           (hcof : (U : Filter ℕ) ≤ Filter.cofinite),
-          (KazhdanCompressionCore.toAsymptoticUnitaryRepresentation B).toUltraproductHom
-            hcof g = 1) ∧
+          (asymptoticUnitaryOfOpAlmost B).toUltraproductHom hcof g = 1) ∧
       (∀ D : Subgroup H,
         (∀ x ∈ D, ManuscriptHSInvisible x) ↔
           ∀ (B : OpAlmostRepresentation H) (U : Ultrafilter ℕ)
             (hcof : (U : Filter ℕ) ≤ Filter.cofinite) (x : H), x ∈ D →
-            (KazhdanCompressionCore.toAsymptoticUnitaryRepresentation B).toUltraproductHom
-              hcof x = 1) ∧
+            (asymptoticUnitaryOfOpAlmost B).toUltraproductHom hcof x = 1) ∧
       (ManuscriptHSInvisible (1 : H) ∧
         (∀ g h : H, ManuscriptHSInvisible g → ManuscriptHSInvisible h →
           ManuscriptHSInvisible (g * h)) ∧
@@ -779,8 +845,7 @@ theorem manuscriptAbstractNormalKazhdanObstruction :
       (D : Subgroup H)
       (hDkill : ∀ (B : OpAlmostRepresentation H) (U : Ultrafilter ℕ)
         (hcof : (U : Filter ℕ) ≤ Filter.cofinite) (x : H), x ∈ D →
-        (KazhdanCompressionCore.toAsymptoticUnitaryRepresentation B).toUltraproductHom
-          hcof x = 1)
+        (asymptoticUnitaryOfOpAlmost B).toUltraproductHom hcof x = 1)
       (K : Subgroup H) [K.Normal]
       (hT : HasKazhdanPropertyT.{u, u} K)
       (hK : K ≤ D)
@@ -798,15 +863,29 @@ theorem manuscriptAbstractNormalKazhdanObstruction :
   -- homomorphisms agree.
   --
   -- WARNING to future editors.  That agreement is used here as a *definitional*
-  -- equality, and it holds only because of how `OpAlmostRepresentation.comap`
-  -- is currently spelled: it is an `abbrev` that copies `model` and
-  -- `modelNonempty` unchanged and reindexes `map` alone, so
-  -- `toAsymptoticUnitaryRepresentation (B.comap e)` and
-  -- `toAsymptoticUnitaryRepresentation B` have the same model family, and their
+  -- equality, and it rests on two separate spellings, either of which could be
+  -- refactored away without anyone noticing this proof:
+  --
+  -- 1. `OpAlmostRepresentation.comap` is an `abbrev` that copies `model` and
+  --    `modelNonempty` unchanged and reindexes `map` alone.
+  -- 2. `asymptoticUnitaryOfOpAlmost` (used in `hDkill`, over `H : Type u`) and
+  --    `KazhdanCompressionCore.toAsymptoticUnitaryRepresentation` (used in
+  --    `hDkill₀`, over `H₀ : Type 0`) are field-for-field the same
+  --    construction; `asymptoticUnitaryOfOpAlmost_typeZero` records that.
+  --
+  -- Together these give `asymptoticUnitaryOfOpAlmost (B.comap e)` and
+  -- `toAsymptoticUnitaryRepresentation B` the same model family, so their
   -- `toUltraproductHom`s land in the same quotient and agree at `x` and `e x`.
-  -- If `comap` is ever changed to rebuild the models, or demoted from `abbrev`
-  -- to `def`, the `exact` below stops elaborating and this proof needs a
-  -- two-line bridging lemma instead.  Nothing mathematical would have changed.
+  -- If `comap` is changed to rebuild the models or demoted to a `def`, or if
+  -- the two constructions drift apart, the `exact` below stops elaborating and
+  -- this proof needs a two-line bridging lemma instead.  Nothing mathematical
+  -- would have changed.
+  --
+  -- The two constructions are deliberately separate rather than one widened
+  -- declaration: giving `toAsymptoticUnitaryRepresentation` its own
+  -- `{E : Type*}` binder broke three `refine` goals in
+  -- `Sofic/NormalKazhdanHyperlinearKilled.lean` with `incorrect number of
+  -- universe levels`.  See the docstring on `asymptoticUnitaryOfOpAlmost`.
   obtain ⟨H₀, _groupH₀, ⟨e⟩⟩ := Type0Transfer.exists_type0_model H
   haveI : Countable H₀ := Type0Transfer.countable_type0_model H e
   haveI : (K.map e.toMonoidHom).Normal :=

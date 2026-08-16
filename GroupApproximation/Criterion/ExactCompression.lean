@@ -6,8 +6,9 @@ import Mathlib.LinearAlgebra.FiniteDimensional.Basic
 /-!
 # Exact compressions normalize for free
 
-Theorem `thm:local` spends its length forcing a *two-sided* comparison out of
-the one-sided hypothesis \eqref{eq:gen}: a compressor `t` satisfies only
+The transport theorem of `\ref{sec:transport}` ("One-sided conjugation in
+matrix models") spends its length forcing a *two-sided* comparison out of the
+one-sided hypothesis: a compressor `t` satisfies only
 `tΓt⁻¹ ≤ Γ`, and the median normalization, the co-area inequality and the
 matching argument exist to upgrade that to an almost-equality of component
 sizes.
@@ -27,7 +28,8 @@ with `Γ` generate the ambient group, `Fix(Γ)` is invariant under everything
 
 This is the honest measure of what the approximation-theoretic sections buy.
 The compression--centralizer mechanism is trivial for exact actions; the entire
-difficulty of Theorem `thm:local` is that a sofic approximation is not one, and
+difficulty of the transport theorem is that a sofic approximation is not one,
+and
 the same is true of the unitary analogue, where finite dimension plays the role
 that finiteness of the vertex set plays here.
 -/
@@ -79,7 +81,7 @@ theorem fixedSet_image_eq [Finite Y] (φ : G →* Equiv.Perm Y) (Γ : Subgroup G
 
 /-- The fixed set is invariant under every compressor, hence under everything
 they generate together with `Γ`.  This is the exact-action shadow of the
-matching argument of Theorem `thm:local`. -/
+matching argument of the transport theorem. -/
 theorem fixedSet_smul_eq_of_closure [Finite Y] (φ : G →* Equiv.Perm Y)
     (Γ : Subgroup G) (T : Set G) (hT : ∀ t ∈ T, ∀ γ ∈ Γ, t * γ * t⁻¹ ∈ Γ)
     (hgen : Subgroup.closure ((Γ : Set G) ∪ T) = ⊤) (g : G) :

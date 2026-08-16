@@ -186,8 +186,8 @@ family
 built here: there is a continuum of pairwise nonisomorphic finitely generated
 groups, each of them not operator-MF.
 
-This is the statement the manuscript makes at lines 3300-3320 of
-`non_mf_groups_exist.tex`, with its one literature input -- the existence of
+This is the statement the manuscript makes in the multiplicity paragraph of
+`non_mf_groups_exist.tex` — anchor on "pairing $E$ with a continuum" — with its one literature input -- the existence of
 Neumann's continuum family -- now proved rather than assumed. -/
 theorem manuscriptContinuumMultiplicityUnconditional :
     ∃ J : Set NeumannIndex, Cardinal.mk J = Cardinal.continuum ∧

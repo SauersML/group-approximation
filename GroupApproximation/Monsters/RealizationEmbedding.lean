@@ -7,8 +7,8 @@ import Mathlib.Logic.Equiv.Nat
 # Where the self-embedding of the direct square comes from
 
 Manuscript: `non_mf_groups_exist.tex`, Remark `rem:ff-realization`
-(lines 1229--1243 at commit `8c07ebb6`; locate it by the label, since the
-line number drifts as the surrounding sections are edited).  Companion to
+(locate it by the label; line numbers drift as the surrounding sections are
+edited).  Companion to
 `GroupApproximation.Monsters.FournierFacioRealization`, which proves the
 remark's only deduction from an abstract injection `f : P × P →* P`.
 

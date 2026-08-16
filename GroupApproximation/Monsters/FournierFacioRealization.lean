@@ -41,7 +41,7 @@ import Mathlib.Algebra.Group.Subgroup.Ker
 > reuse it, never to author a replacement and never to delete it.)
 
 Manuscript: `non_mf_groups_exist.tex`, Remark `rem:ff-realization`
-("a small-cancellation realization"), lines 1229--1243 at commit `8c07ebb6`.
+("a small-cancellation realization").
 The remark sits immediately after the proof of
 Theorem `thm:kazhdan-clifford`; locate it by the label rather than by line
 number, which drifts as the surrounding sections are edited.

@@ -127,6 +127,12 @@ CLAIM_TARGETS: dict[str, tuple[str, str]] = {
     "lem:ultrafinite": (
         "Sofic/UltraproductDedekindFinite",
         "GroupApproximation.kt_06_ultraproduct_finite"),
+    "prop:blocknormalform": (
+        "Sofic/LiteralBlockNormalForm",
+        "GroupApproximation.LiteralBlockNormalForm.markedGroupEquivModel"),
+    "lem:window": (
+        "Sofic/BlockCliffordTowerSofic",
+        "GroupApproximation.BlockCliffordTowerSofic.residuallyFinite_window"),
     "cor:undecidable": (
         "Computability/HaltingReduction",
         "GroupApproximation.MarkovMFConsequences."

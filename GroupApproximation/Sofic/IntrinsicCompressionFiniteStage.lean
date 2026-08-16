@@ -201,8 +201,13 @@ theorem one_sub_spectralProjection_mul_conjugate_vanishing
                   ‖spectralProjection B D n‖ := norm_sub_le _ _
             _ ≤ 1 + 1 := add_le_add (by
                   rcases isEmpty_or_nonempty (B.adjoint.model n).carrier with h | h
-                  · simp
-                  · rw [← Matrix.diagonal_one, Matrix.l2_opNorm_diagonal]
+                  · have h0 : (1 : Matrix (B.adjoint.model n).carrier
+                        (B.adjoint.model n).carrier ℂ) = 0 := Subsingleton.elim _ _
+                    rw [h0, norm_zero]
+                    norm_num
+                  · rw [← Matrix.diagonal_one, Matrix.l2_opNorm_diagonal,
+                      pi_norm_le_iff_of_nonneg zero_le_one]
+                    intro i
                     simp) hP
             _ = 2 := by norm_num
         · exact hN n hn

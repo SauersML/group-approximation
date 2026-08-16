@@ -125,9 +125,8 @@ theorem printed_profile_le_num
     (hVconv : ∀ γ, OpNormVanishing B (fun n ↦ V n γ - raw B iota k n γ))
     (hmark : ∃ N, ∀ n ≥ N, 1 ≤ kNorm B V S n)
     {κ : ℝ} (hpair : IsKazhdanPair.{0, 0} Γ S κ) (γ : Γ) :
-    seqNormSq (fun n ↦ CollapseWordMetric.bVec B V S n γ) ≤ 111 / κ ^ 2 := by
-  rw [← seqNormSq_printed_eq B iota k V S hgen hsymm hVinv hVcomm hVconv γ]
-  exact CollapseProfileBound.collapse_profile_le_num B iota k V S hgen hsymm
+    seqNormSq (fun n ↦ CollapseWordMetric.bVec B V S n γ) ≤ 111 / κ ^ 2 :=
+  CollapseProfileBound.collapse_profile_le_num B iota k V S hgen hsymm
     hVinv hVcomm hVconv hmark hpair γ
 
 /-- **The limit-level mass anchor for the printed vector.**  Equation

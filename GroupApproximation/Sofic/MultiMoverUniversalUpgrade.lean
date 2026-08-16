@@ -16,7 +16,7 @@ so a representation that kills `w i` kills the whole normal closure
 kills everything lying in *every* `⟨⟨w i⟩⟩` at once.  So the universal content
 of an existential multi-mover obstruction is precisely
 
-  `⨅ i, ⟨⟨w i⟩⟩ ≤ Rad_MF(G)`,
+  `⨅ i, ⟨⟨w i⟩⟩ ≤ Res_MF(G)`,
 
 and the upgrade is available exactly when that intersection is nontrivial.  No
 hypothesis on the family is needed for the inclusion itself; hypotheses only
@@ -54,7 +54,7 @@ at:
   supersedes the negative reading of this bullet.
 
 The negative half is equally clean: when `⨅ i, ⟨⟨w i⟩⟩` is trivial the
-existential statement has no universal consequence beyond `1 ∈ Rad_MF`, so no
+existential statement has no universal consequence beyond `1 ∈ Res_MF`, so no
 argument that uses only the multi-mover conclusion can place a fixed element in
 the radical.  Anything stronger must use more than the collapse criterion --
 which is what the compression form does.

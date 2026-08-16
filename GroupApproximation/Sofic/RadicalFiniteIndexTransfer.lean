@@ -5,7 +5,7 @@ import GroupApproximation.Sofic.ThreeRadicalsCoincide
 # Finite-index heredity for the MF radical, where it coincides with the finite residual
 
 Section 49 of the ascending-HNN dossier proves
-`Rad_MF(H) = H ∩ Rad_MF(G)` for every finite-index `H ≤ G`, by inducing a
+`Res_MF(H) = H ∩ Res_MF(G)` for every finite-index `H ≤ G`, by inducing a
 corona representation of `H` to a block-monomial corona representation of `G`.
 That induction is the analytic content and is not carried out here.
 
@@ -14,7 +14,7 @@ makes the other half free wherever the radicals are already known to coincide --
 which is exactly the situation in the concrete affine family, by
 `ThreeRadicalsCoincide` and the five-way refinement above it.  `Lemma 49.4` for
 the finite residual is already proved in `Algebra/FiniteResidual`, so once
-`Rad_MF = Res_fin` on both sides the MF statement is a rewrite.
+`Res_MF = Res_fin` on both sides the MF statement is a rewrite.
 
 The consequence recorded at the end is Theorem 49.5: no finite-index subgroup
 repairs the approximation failure.  Every finite-index subgroup of such a group

@@ -12,7 +12,7 @@ unitary representations already lies in every finite-index subgroup.
 Combined with `actualCoronaMFResidual_le_fdUnitaryResidual`, which the
 matricial-stability module already supplies, this closes the chain
 
-`Rad_MF ≤ Rad_fd ≤ Res_fin`
+`Res_MF ≤ Rad_fd ≤ Res_fin`
 
 for every group; in the dossier's concrete family all three coincide.
 

@@ -25,7 +25,7 @@ nothing there exhibits a *rule*.  The manuscript's paragraph after
 Both halves of that paragraph are formalized here.
 
 The first half is mechanical once the right lemma is isolated.  A radical
-membership `M ≤ Rad_MF(G)` is already a sound iterate: apply the closure step
+membership `M ≤ Res_MF(G)` is already a sound iterate: apply the closure step
 over the trivial stage, whose MF closure is the whole radical.  That is
 `isSoundIterate_of_le_actualCoronaMFResidual`, and each named theorem becomes
 an `IsSoundIterate` instance through it.  The clause "hence inside the radical

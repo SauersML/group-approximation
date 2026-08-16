@@ -21,16 +21,16 @@ Suppose each stage kernel lies in the radical *of the group that stage starts
 from*:
 
 ```text
-ker ψₙ ≤ Rad_MF Wₙ .
+ker ψₙ ≤ Res_MF Wₙ .
 ```
 
 That is exactly what a collapse theorem gives, and it is a statement about `Wₙ`,
 not about `W₀`.  The induction converts it into a statement about `W₀`: the
-composite kernel `ker Φₙ` lies in `Rad_MF W₀` for every `n`.
+composite kernel `ker Φₙ` lies in `Res_MF W₀` for every `n`.
 
-The step is the pullback: once `ker Φₙ ≤ Rad_MF W₀`, the radical of `W₀` is the
+The step is the pullback: once `ker Φₙ ≤ Res_MF W₀`, the radical of `W₀` is the
 preimage of the radical of `Wₙ`, so an element killed one stage later has its
-`Φₙ`-image in `ker ψₙ ≤ Rad_MF Wₙ`, hence lies in the preimage.
+`Φₙ`-image in `ker ψₙ ≤ Res_MF Wₙ`, hence lies in the preimage.
 
 ## The limit
 

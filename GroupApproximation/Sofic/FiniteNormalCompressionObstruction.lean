@@ -58,15 +58,17 @@ theorem compressionDefects_hsTrivial {E : Type*} [Group E]
 asymptotic unitary representation for the normalized Hilbert--Schmidt
 metric.
 
-The ambient group is quantified at an arbitrary universe here, shadowing the
-section variable: the construction is a field-for-field transport between two
-structures that are both already universe-polymorphic
-(`OpAlmostRepresentation` and `AsymptoticUnitaryRepresentation`), so nothing in
-it sees the universe.  Keeping it polymorphic is what lets `def:invisible` be
-stated for the manuscript's arbitrary group; every other declaration in this
-file stays at `Type 0`, and specialising here at `Type 0` returns exactly what
-they consume. -/
-noncomputable def toAsymptoticUnitaryRepresentation {E : Type*} [Group E]
+**Deliberately at `Type 0`, via the section variable.**  This was briefly given
+its own `{E : Type*} [Group E]` binder, shadowing the section variable, so that
+`def:invisible` could be stated at the manuscript's quantification.  That is
+reverted: the extra universe parameter made three `refine` goals in
+`Sofic/NormalKazhdanHyperlinearKilled.lean` (lines 259, 275, 303, each the
+`hDkill` hypothesis) fail with `incorrect number of universe levels`, even
+though no call site anywhere supplies an explicit `.{…}`.  The universe-general
+form `ManuscriptExactWrappers.asymptoticUnitaryOfOpAlmost` is a separate
+declaration, so the nine consumers of this one keep the arity they were written
+against. -/
+noncomputable def toAsymptoticUnitaryRepresentation
     (B : OpAlmostRepresentation E) : AsymptoticUnitaryRepresentation E where
   model := B.model
   modelNonempty := B.modelNonempty

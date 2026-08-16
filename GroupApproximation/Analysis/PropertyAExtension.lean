@@ -724,7 +724,35 @@ named proposition, so that the conditionality is visible in the type.
 
 What remains missing even given `E.2` is `E.4`, the crossover from property A
 to exactness of `Cred(W)` (Ozawa, Kirchberg--Wassermann), which is not statable
-against the pinned Mathlib. -/
+against the pinned Mathlib.
+
+**Do not try to apply this to `LiteralBlockNormalForm.Model`.**  That is the
+tempting next step and it does not work, for a reason that is worth spelling
+out because the two groups look interchangeable.
+
+`Model = LampFactor ⋊ Vertical`, where `LampFactor` is the Clifford group
+`C(𝒢)` of the *orbital* graph.  Its braiding relator `IsLampRelator.braiding`
+is gated on `Adjacent ξ η`, so between non-adjacent sites the presentation
+imposes **no** relation and the two involutions generate an infinite dihedral
+group.  `LampFactor` is therefore **not** locally finite (given a non-adjacent
+pair, which is the generic case), and `isLocallyFiniteGroup_of_central_involution`
+does not apply to it --- that lemma wants `⁅a, b⁆ ∈ zpowers z` for *every*
+pair drawn from the generating set.  Structurally `C(𝒢)` is an amalgam
+`∗_{⟨ζ⟩} Pᵢ`, and a nontrivial amalgam of that shape is never locally finite.
+Amenability is no substitute either: with enough pieces such an amalgam
+contains free subgroups.
+
+The manuscript's `Cl(X)` is a *different* group and the hypothesis really does
+hold for it: its braiding (`CliffordLamp.commutator_lamp_lamp`) fires for every
+**distinct** pair with no adjacency side condition, so its graph is complete,
+`W/⟨ζ⟩` is elementary abelian as `Theorem (commuting-generator quotient)`
+prints, and `isLocallyFiniteGroup_cliffordLamp` goes through.  So this
+corollary is sound exactly where the manuscript uses it, and unsound for the
+literal orbital-graph model.
+
+The general lesson: sameness of constructor is not sameness of instance.  Both
+groups are `PresentedGroup` Clifford groups built the same way; the hypothesis
+transfers only because the *relator family* differs. -/
 theorem hasPropertyA_semidirectProduct_of_isLocallyFiniteGroup {N : Type u}
     {H : Type u} [Group N] [Group H] {φ : H →* MulAut N}
     (hN : IsLocallyFiniteGroup N) (hH : HasPropertyA H) :

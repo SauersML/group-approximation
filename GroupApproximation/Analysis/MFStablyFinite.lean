@@ -1,6 +1,8 @@
 import GroupApproximation.Analysis.MFAlgebra
 import GroupApproximation.Sofic.UltraproductDedekindFinite
 import Mathlib.Analysis.CStarAlgebra.CStarMatrix
+import Mathlib.Tactic.Abel
+import Mathlib.Tactic.NoncommRing
 
 /-!
 # Every MF algebra is finite, and what stands between that and stably finite
@@ -10,18 +12,33 @@ algebra* with
 
 > Every MF algebra is stably finite \cite{BK}; the converse fails.
 
-and then immediately routes around it: the next sentence says the canonical
-trace on `Cred(E)` is faithful, "so `Cred(E)` is stably finite
-(Lemma~\ref{lem:faithfultrace}), **independently of the MF question**", and
-the proof of the theorem labelled `thm:reduced`/`thm:D` cites only
-`lem:faithfultrace`.  That lemma is already machine-checked
-(`ManuscriptExactWrappers.manuscriptFaithfulTraceAndStableFiniteness`).  So the
-quoted Blackadar--Kirchberg sentence carries **no formal debt**: nothing
-badged depends on it, and no proof in the manuscript consumes it.  It is
-scene-setting — it says why "stably finite but not MF" is the interesting
-combination — not a premise.
+This file settles what that citation is worth here.  Two facts about it, both
+checked against the printed text rather than assumed:
 
-This file settles how much of it is provable here anyway.
+**It is not used where one would expect.**  The next printed sentence routes
+around it: the canonical trace on `Cred(E)` is faithful, "so `Cred(E)` is
+stably finite (Lemma~\ref{lem:faithfultrace}), *independently of the MF
+question*", and the proof of the theorem labelled `thm:reduced`/`thm:D` cites
+only `lem:faithfultrace` — already machine-checked as
+`ManuscriptExactWrappers.manuscriptFaithfulTraceAndStableFiniteness`.  The
+other four occurrences of "stably finite" in the manuscript are statements or
+history, all supplied by the same faithful trace.
+
+**Its one real use is already machine-checked, by a route that needs no
+literature at all.**  In `rem:maxinfinite` the manuscript writes that
+`Cmax(G)` "is then not stably finite, has no faithful trace, and in particular
+is neither residually finite-dimensional nor MF" — and *that* inference is the
+contrapositive of the Blackadar--Kirchberg sentence.  It is badged, and the
+conjunct `¬ HasMFEmbedding (MaximalGroupCStar E)` of
+`MaximalCStarParagraphEndpoint.manuscriptMaximalCStarStrictCompressionRemark`
+is discharged by `ProperProjectionCompression.not_hasMFEmbedding`, which
+proves it directly: correct the proper isometry's image by the corner
+complement `e s + (1 - e 1)`, use that every isometry of the corona is a
+unitary, and conclude by faithfulness.  No citation is consumed.
+
+So the mathematical content of the `k = 1` half of the quoted sentence was
+already in this repository, inlined at the instance where the manuscript needs
+it.  What was missing is the general statement, which is what this file adds.
 
 ## What is proved
 
@@ -35,11 +52,19 @@ is unconditional and uses only what the repository already has:
   proper projection of `Q` and the argument runs in the corner `PQP`;
 * `normMatrixCStarCorona_isDedekindFiniteMonoid` (KT.06), the corona's
   Dedekind finiteness, proved by the coordinatewise Neumann estimate;
-* `mul_star_eq_of_corner_isometry` below, which is the manuscript's own
-  `σ = v + (1 - P)` computation — the same computation
+* `mul_star_eq_of_corner_isometry` below, the `σ = v + (1 - P)` computation,
+  isolated here as a star-ring lemma.  The same computation appears twice in
+  the repository already — inlined inside
+  `ProperProjectionCompression.not_hasMFEmbedding`, and run for a different
+  purpose in
   `Analysis/FiniteCStarMurrayVonNeumann.eq_of_murrayVonNeumannEquiv_of_absorbs`
-  runs for the comparison lemma, here used to push finiteness from an algebra
-  into a corner of it.
+  — so factoring it out is a simplification as well as a generalization.
+
+`not_hasMFEmbedding_of_isometry_ne_unitary` is the contrapositive: a C-star
+algebra containing a proper isometry is not MF.  That is
+`ProperProjectionCompression.not_hasMFEmbedding` with the compression data
+stripped away, and it is the form the manuscript's `rem:maxinfinite`
+inference actually needs.
 
 ## What is not proved, and exactly why
 
@@ -63,10 +88,13 @@ quantitative *and finite-dimensional* — its coordinate step is
 `Matrix.mul_eq_one_comm` — and the corresponding norm estimate is false in a
 general Banach algebra, as the unilateral shift shows.
 
-So the honest status of the quoted sentence is: **not a live literature input**
-(nothing uses it), and, if one insists on formalizing it, **one C-star lemma
-short**, with the lemma named above — not research-scale, and not comparable to
-the two genuinely open external inputs of this development.
+So the honest status of the quoted sentence is: **not a live literature
+input**.  Its only inferential use in the manuscript is the `k = 1` half, that
+half is proved here unconditionally (and was already proved at the instance
+where the manuscript uses it), and the remaining `k > 1` half is used nowhere.
+Should anyone want the full sentence formalized anyway, it is **one named
+C-star lemma short** — not research-scale, and not comparable to the genuinely
+open external inputs of this development.
 -/
 
 namespace GroupApproximation
@@ -151,7 +179,20 @@ corner cut by `P = e 1` (`mul_star_eq_of_corner_isometry`).
 
 Note that `HasMFEmbedding` is used rather than `IsMFAlgebra`: separability
 plays no role in this direction, so the weaker hypothesis is the honest
-one. -/
+one.
+
+**Unitality is not needed, and is not used.**  `e` is a *non-unital* star
+homomorphism (`→⋆ₙₐ[ℂ]`), so `e 1` is a projection of the corona and need not
+be the corona's unit; nothing below applies `map_one`, and no step asserts
+`e 1 = 1`.  Every use of `e` goes through multiplicativity and
+star-preservation only: `star (e v) * e v = e (star v * v) = e 1`, the two
+absorption identities `e 1 * e v = e v` and `e v * e 1 = e v`, and finally
+`e (v * star v) = e v * star (e v)`.  The unit that appears in
+`mul_star_eq_of_corner_isometry` is the *corona's* unit, used to form
+`1 - e 1`; that is what "running the argument in the corner" means, and it is
+exactly why nonunitality costs nothing here.  The same observation is what
+makes the already-compiling `ProperProjectionCompression.not_hasMFEmbedding`
+work against the same non-unital predicate. -/
 theorem mul_star_eq_one_of_hasMFEmbedding {A : Type u} [CStarAlgebra A]
     (hA : HasMFEmbedding A) {v : A} (hv : star v * v = 1) :
     v * star v = 1 := by
@@ -168,13 +209,31 @@ theorem mul_star_eq_one_of_hasMFEmbedding {A : Type u} [CStarAlgebra A]
     rw [← map_mul, one_mul]
   have hvP : e v * e 1 = e v := by
     rw [← map_mul, mul_one]
+  -- `star` is pushed through `e` by hand, mirroring the already-green
+  -- `ProperProjectionCompression.not_hasMFEmbedding`, which introduces the
+  -- same equation rather than rewriting with `map_star` under a metavariable.
+  have hstarv : star (e v) = e (star v) := (map_star e v).symm
   have hev : star (e v) * e v = e 1 := by
-    rw [← map_star, ← map_mul, hv]
+    rw [hstarv, ← map_mul, hv]
   have hmain : e v * star (e v) = e 1 :=
     mul_star_eq_of_corner_isometry hfinite hP hPv hvP hev
   have hcomp : e (v * star v) = e v * star (e v) := by
-    rw [map_mul, map_star]
-  exact he (by rw [hcomp, hmain, map_one])
+    rw [map_mul, hstarv]
+  exact he (hcomp.trans hmain)
+
+/-- **A proper isometry obstructs MF.**  The contrapositive of
+`mul_star_eq_one_of_hasMFEmbedding`, and the form the manuscript's
+`rem:maxinfinite` inference needs: if `A` contains an isometry that is not a
+unitary, `A` has no MF embedding.
+
+`ProperProjectionCompression.not_hasMFEmbedding` is this statement at the
+compression datum that supplies the proper isometry, proved there by the same
+corner argument written out inline.  Nothing about compression is needed for
+the implication itself. -/
+theorem not_hasMFEmbedding_of_isometry_ne_unitary {A : Type u} [CStarAlgebra A]
+    {s : A} (hs : star s * s = 1) (hns : s * star s ≠ 1) :
+    ¬ HasMFEmbedding A :=
+  fun hA ↦ hns (mul_star_eq_one_of_hasMFEmbedding hA hs)
 
 /-! ## The reduction to matrix amplification -/
 

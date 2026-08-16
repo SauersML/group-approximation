@@ -247,7 +247,7 @@ include hβ in
 /-- **Sections 37 and 47, in full.**  Two sites of equal height differ by an
 element of the telescope, and their lamp difference is invisible to every
 corona representation.  This is the lamp-collapse kernel `ker Φ∞`, and the
-inclusion `R_K ≤ Rad_MF` is unconditional. -/
+inclusion `R_K ≤ Res_MF` is unconditional. -/
 theorem lampDiff_mem_actualCoronaMFResidual_of_rightHom_eq
     [Countable (WreathV (K := K₀) β hβ)]
     (hΓ : HasKazhdanPropertyT.{0, 0} Γ₀) {k₀ : K₀} (hk2 : k₀ * k₀ = 1)
@@ -282,7 +282,7 @@ instance telescopeRadical_normal (k₀ : K₀) :
   Subgroup.normalClosure_normal
 
 include hβ in
-/-- **`R_K ≤ Rad_MF`.**  Unconditionally: property `(T)` of the base and the
+/-- **`R_K ≤ Res_MF`.**  Unconditionally: property `(T)` of the base and the
 HNN relation are the only inputs. -/
 theorem telescopeRadical_le_actualCoronaMFResidual
     [Countable (WreathV (K := K₀) β hβ)]

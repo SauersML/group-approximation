@@ -81,7 +81,7 @@ variable (S : Finset Γ)
 the normalized displacement family is at most `111 / κ ^ 2`, where `κ` is
 the Kazhdan constant of the pair `(S, κ)` — no other data of the
 situation enters. -/
-theorem collapse_profile_le_num
+theorem collapse_profile_le_num_of_data
     (hgen : Subgroup.closure (S : Set Γ) = ⊤)
     (hsymm : ∀ g ∈ S, g⁻¹ ∈ S)
     (hVinv : ∀ n γ, ExactInvolutionLifts.IsExactInvolution (V n γ))
@@ -89,7 +89,7 @@ theorem collapse_profile_le_num
     (hVconv : ∀ γ, OpNormVanishing B (fun n ↦ V n γ - raw B iota k n γ))
     (hmark : ∃ N, ∀ n ≥ N, 1 ≤ kNorm B V S n)
     {κ : ℝ} (hpair : IsKazhdanPair.{0, 0} Γ S κ) (γ : Γ) :
-    seqNormSq (fun n ↦ bVec B V S hgen hsymm n γ) ≤ 111 / κ ^ 2 := by
+    seqNormSq (fun n ↦ CollapseWordMetric.bVec B V S n γ) ≤ 111 / κ ^ 2 := by
   have hκ : (0 : ℝ) < κ := hpair.1
   have hκ2 : (0 : ℝ) < κ ^ 2 := pow_pos hκ 2
   refine le_trans (collapse_profile_le B iota k V S hgen hsymm hVinv
@@ -97,6 +97,28 @@ theorem collapse_profile_le_num
   simp only [div_eq_mul_inv]
   exact mul_le_mul_of_nonneg_right mul_log_two_le_num
     (inv_nonneg.mpr hκ2.le)
+
+/-- **The numerical collapse profile bound, with every input bound after the
+colon.**  The declaration the manuscript badges at `eq:profile-explicit` for
+its second inequality, `111/κ²`.  As with `collapse_profile_le`, the leading
+binders are moved after the colon because a badge on a declaration with
+declaration inputs certifies a parameterized statement rather than the printed
+one; the mathematics is `collapse_profile_le_num_of_data`. -/
+theorem collapse_profile_le_num :
+    ∀ {Γ E : Type} [Group Γ] [Group E]
+      (B : OpAlmostRepresentation E) (iota : Γ →* E) (k : E)
+      (V : ∀ n, Γ → Matrix (B.model n) (B.model n) ℂ) (S : Finset Γ)
+      (_hgen : Subgroup.closure (S : Set Γ) = ⊤)
+      (_hsymm : ∀ g ∈ S, g⁻¹ ∈ S)
+      (_hVinv : ∀ n γ, ExactInvolutionLifts.IsExactInvolution (V n γ))
+      (_hVcomm : ∀ n γ₁ γ₂, V n γ₁ * V n γ₂ = V n γ₂ * V n γ₁)
+      (_hVconv : ∀ γ, OpNormVanishing B (fun n ↦ V n γ - raw B iota k n γ))
+      (_hmark : ∃ N, ∀ n ≥ N, 1 ≤ kNorm B V S n)
+      {κ : ℝ} (_hpair : IsKazhdanPair.{0, 0} Γ S κ) (γ : Γ),
+      seqNormSq (fun n ↦ CollapseWordMetric.bVec B V S n γ) ≤ 111 / κ ^ 2 := by
+  intro Γ E _ _ B iota k V S hgen hsymm hVinv hVcomm hVconv hmark κ hpair γ
+  exact collapse_profile_le_num_of_data B iota k V S hgen hsymm hVinv hVcomm
+    hVconv hmark hpair γ
 
 end Collapse
 

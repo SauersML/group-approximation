@@ -58,6 +58,12 @@ ROOT_NAMESPACE = "GroupApproximation"
 MATHLIB_PREFIX = "Mathlib:"
 
 ANCHOR_KINDS = {"env", "sec", "eq", "prose"}
+# A row may name declarations that exist in the tree but whose module has never
+# had a green build.  Existence is what `lean_decls` checks; it is not evidence.
+# Such a row carries this marker in its note and may not be `EXACT` in either
+# column, so a proposed upgrade cannot be mistaken for a completed one while it
+# waits for the build.  Drop the marker when the build goes green, then grade.
+PENDING_MARKER = "PENDING FIRST GREEN"
 # `UNDER-SPECIFIED` is the project-wide fourth mark, adopted from
 # `docs/P13_STEP_AUDIT.md`: the printed text is a prose route with no
 # determinate step content to bind, and Lean supplies a proof the sentence
@@ -281,6 +287,19 @@ def parse_anchors(text: str, problems: list[str]) -> dict[str, Anchor]:
 def parse_steps(text: str, problems: list[str]) -> list[Step]:
     steps: list[Step] = []
     seen: set[str] = set()
+    begin = text.find("<!-- LEDGER-STEPS -->")
+    finish = text.find("<!-- END-LEDGER-STEPS -->")
+    if begin >= 0 and finish > begin:
+        offset = text.count("\n", 0, begin) + 1
+        for index, raw in enumerate(text[begin:finish].splitlines()):
+            if "\\|" in raw:
+                problems.append(
+                    f"line {offset + index}: escaped `\\|` in a step row.  "
+                    "`split_row` understands it, but every other editor of this "
+                    "file splits on `|` and silently corrupts the row — that has "
+                    "already broken the gate once.  Spell it `card X` for a "
+                    "cardinality, `‖x‖` (U+2016) for a norm, `len_S(x)` for a "
+                    "word length, and `∣` (U+2223) for a presentation bar")
     for line, cells in read_table(text, "<!-- LEDGER-STEPS -->",
                                   "<!-- END-LEDGER-STEPS -->",
                                   STEP_HEADER, problems):
@@ -409,6 +428,11 @@ def check_steps(steps: list[Step], anchors: dict[str, Anchor],
         if step.statement == "MISSING" and step.proof == "EXACT":
             problems.append(
                 f"{where}: a MISSING statement cannot have an EXACT proof")
+        if PENDING_MARKER in step.note and "EXACT" in (step.statement, step.proof):
+            problems.append(
+                f"{where}: a row marked `{PENDING_MARKER}` cannot be EXACT — the "
+                "declarations it names have not been through a green build, so "
+                "nothing about them has been established yet")
         if step.objects == "-" and "EXACT" in (step.statement, step.proof):
             problems.append(
                 f"{where}: an EXACT cell requires a recorded object identity")
@@ -571,6 +595,13 @@ LEDGER_TEMPLATE = """# demo ledger
 
 
 def self_test() -> int:
+    # `split_row` still has to understand `\|`: a ledger written before the
+    # escape was banned must keep parsing, so that the gate can report the ban
+    # rather than a cell-count error nobody can act on.
+    if split_row(r"| a | card \| S \| | b |") != ["a", "card | S |", "b"]:
+        print("self-test: split_row no longer understands an escaped pipe",
+              file=sys.stderr)
+        return 1
     with tempfile.TemporaryDirectory() as directory:
         repo = Path(directory)
         module = repo / "GroupApproximation" / "Demo"
@@ -609,9 +640,9 @@ def self_test() -> int:
             ("unexplained MISSING statement citing Lean",
              good.replace("| EXACT | EXACT | literal", "| MISSING | MISSING | literal"),
              "must record why the declaration does not establish it"),
-            ("escaped pipes survive the split",
+            ("escaped pipes are rejected in a step row",
              good.replace("True holds", r"card \| S \| is positive"),
-             None),
+             "escaped `\\|` in a step row"),
             ("EXACT proof on conditional data",
              good.replace("| unconditional |", "| conditional-data |"),
              "cannot depend on `conditional-data`"),
@@ -636,6 +667,9 @@ def self_test() -> int:
             ("invalid status",
              good.replace("| EXACT | EXACT | literal", "| PARTIAL | EXACT | literal"),
              "invalid Stmt `PARTIAL`"),
+            ("EXACT on a row still waiting for a green build",
+             good.replace("| NO | - |", "| NO | PENDING FIRST GREEN: proposed |"),
+             "cannot be EXACT"),
             ("duplicate step id",
              good.replace(
                  "<!-- END-LEDGER-STEPS -->",

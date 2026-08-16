@@ -47,7 +47,7 @@ defect `D` is recorded as nontrivial (`collapsedCommutator_mem_defect` with
 not the vacuous one through the trivial defect.
 
 The manuscript writes `Res_MF` and says "residual" where earlier drafts wrote
-`Rad_MF` and "radical"; the Lean name `actualCoronaMFResidual` already matched
+`Res_MF` and "radical"; the Lean name `actualCoronaMFResidual` already matched
 the new wording and is unaffected.
 -/
 

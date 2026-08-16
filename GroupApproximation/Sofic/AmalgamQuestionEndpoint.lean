@@ -7,8 +7,13 @@ import GroupApproximation.Sofic.LiteralSignFreeQuotient
 /-!
 # Question 1 of the manuscript: the conditional amalgam deduction
 
-> **SUPERSEDED 2026-08-16 — NOT IN THE BUILD, AND NOT TO BE WIRED IN.**  The
-> manuscript question this module was written against was deleted the same
+> **SUPERSEDED 2026-08-16.**  (An earlier version of this header added "NOT IN
+> THE BUILD, AND NOT TO BE WIRED IN" and called the module "retained on disk,
+> untracked".  Both are false as of the 2026-08-16 orphan sweep: the module is
+> tracked and is imported by `GroupApproximation.lean`.  Whether *that* is
+> right is a live question — see the trust-surface note at the end of this
+> paragraph — but the header must not describe a state the tree is not in.)
+> The manuscript question this module was written against was deleted the same
 > day it was formalized: `\subsection*{Questions}` no longer contains an
 > "Is `E/⟨w⟩` MF?" item (the word "amalgam" now survives in the `.tex` only
 > in the introduction's prior-work survey and the bibliography), and the
@@ -18,20 +23,23 @@ import GroupApproximation.Sofic.LiteralSignFreeQuotient
 > `LiteralSignFreeQuotient.signFreeQuotient_not_isCDEOperatorMF`,
 > `…signFree_collapse`, and `…commutator_not_zpow_mark`.  This module is
 > therefore a conditional theorem whose conclusion is already a theorem, the
-> shape `scripts/Audit.lean` forbids on the trust surface; it is retained on
-> disk, untracked, as a worked starting point should the amalgam route ever
-> be wanted for the *radical* computation that the current Question 1 asks
-> about ("What is `Rad_MF(E)`?").  Read the CRW caveat under check (2) below
+> shape `scripts/Audit.lean` forbids on the trust surface.  It is kept as a
+> worked starting point should the amalgam route ever be wanted for the
+> *residual* computation that the current Question 1 asks about ("What is
+> `Res_MF(E)`?" — the manuscript renamed `Rad` to `Res` on 2026-08-16), and
+> for that reason its presence in the import closure should be reviewed
+> rather than assumed.  Read the CRW caveat under check (2) below
 > before attempting to discharge `LampKernelBlockAmalgam`.  Everything from
 > here down describes the manuscript as it stood before that rewrite.
 
-Manuscript: `non_mf_groups_exist.tex`, `\subsection*{Questions}` (line 3342
-as of 2026-08-16), item 1, lines 3352--3374.  The question printed there is
+Manuscript: `non_mf_groups_exist.tex`, `\subsection*{Questions}`, item 1 —
+navigate by the section string, never by line number, since the file is under
+concurrent edit.  The question printed there *at the time this module was
+written* was
 
 > Is `E/⟨w⟩` MF?
 
-and the manuscript leaves it open, but states one implication on top of it
-(lines 3369--3374):
+and the manuscript left it open, but stated one implication on top of it:
 
 > The same collapse, applied to the level-one block structure of
 > `E/⟨w⟩`, yields a negative answer conditional on an amalgam
@@ -140,8 +148,8 @@ containing the two marked sites `τo` and `v₁ τo`, and the base preserves it.
 | 4 | `q1_04_marked_commutator_eq_block` | the unsquared defect `u⁻¹ = ⁅v₁, d⁆` is the product of the two distinct marked site lamps |
 | 5 | `q1_05_marked_commutator_not_mem_markSubgroup` | the block embeds, so that product is not a power of `w` |
 | 6 | `q1_06_collapsed_commutator_ne_one` | hence `ū` survives in `E/⟨w⟩` |
-| 7 | `q1_07_signFree_collapse` | the involutive collapse puts `ū` in `Rad_MF(E/⟨w⟩)`, where it is nontrivial |
-| 8 | `q1_08_actualCoronaMFResidual_ne_bot` | `Rad_MF(E/⟨w⟩) ≠ 1` |
+| 7 | `q1_07_signFree_collapse` | the involutive collapse puts `ū` in `Res_MF(E/⟨w⟩)`, where it is nontrivial |
+| 8 | `q1_08_actualCoronaMFResidual_ne_bot` | `Res_MF(E/⟨w⟩) ≠ 1` |
 | — | `manuscriptQuestionOne_negative_of_blockAmalgam` | the endpoint: `E/⟨w⟩` is not MF |
 
 Steps 3, 7 and the endpoint consume the unconditional involutive collapse

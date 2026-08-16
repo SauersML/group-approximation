@@ -82,8 +82,13 @@ anything in this file.
   `ω`-null ideal, so `∏_∞ B(K_n) ↠ ∏_ω B(K_n)`; `π` and `P` are lifts of the
   manuscript's objects and the identity `Q = P` proved upstairs descends.  That
   is why the substitution costs the *transport theorem* nothing.  It is not a
-  construction of `∏_ω B(K_n)`, and `\label{lem:ultrafinite}`, which is a
-  standalone assertion about `∏_ω`, is not proved anywhere.
+  construction of `∏_ω B(K_n)`.  Note that `\label{lem:ultrafinite}` no longer
+  asserts anything about `∏_ω`: as printed it is finiteness of the `c₀`-quotient
+  `B_c = ∏_n B(K_n)/⊕_n B(K_n)`, which is exactly
+  `Sofic/UltraproductDedekindFinite.kt_06_ultraproduct_finite`.  The passage to
+  a free ultrafilter now lives in *unnumbered prose* after that lemma, is used
+  by the printed proof below, and is invisible to any gate that reads only
+  numbered environments.
 * **UF.02 -- faithfulness of the action on `K_ω` is neither proved nor used.**
   It is *false* for the corona surrogate: see the docstring of
   `Sofic/UltraproductDedekindFinite.kt_06_ultraproduct_finite` for the explicit

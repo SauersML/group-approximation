@@ -1,7 +1,7 @@
 import Mathlib.LinearAlgebra.Matrix.Permutation
 import Mathlib.LinearAlgebra.FiniteDimensional.Basic
 import Mathlib.GroupTheory.SpecificGroups.Alternating
-import Mathlib.Data.Matrix.Notation
+import Mathlib.LinearAlgebra.Matrix.Notation
 import Mathlib.Tactic.LinearCombination
 import Mathlib.Tactic.FinCases
 
@@ -37,14 +37,38 @@ Two assertions are made there and both are proved below.
 `commutant_does_not_separate` bundles the four statements, and
 `standardRep_commutant_does_not_separate_complex` is the `ℂ` specialization.
 
+## Why this file carries no badge
+
+**The absence of a `\leanverified` citation here is deliberate, not an
+oversight.**  `rem:invariantsize` contains exactly one badge slot, and it
+belongs to the invariant-size principle of the remark's *first* paragraph
+(`manuscriptInvariantSizePrinciple`, ledger rows `FD.18`/`FD.19`).  The
+`A₄ < S₄` sentence is in the second paragraph and has no slot of its own, so
+citing the results below would mean adding a `\leanverified` line to the
+manuscript.  The manuscript is frozen — all repair happens on the Lean side —
+so that edit is not available.  The terminal state of `FD.20` is therefore
+**formalized, unbadgeable without a manuscript edit**: the theorems below prove
+the printed sentence and are in the root import closure, and nothing further
+can be done from this side.  Anyone later given leave to touch the TeX should
+badge `commutant_does_not_separate`.
+
 ## Characteristic
 
-The manuscript writes `k` for an unspecified field.  The claim is **false in
-characteristic 2**: there the all-ones vector lies in the sum-zero subspace, so
-the standard representation of `A₄` acquires a trivial submodule and its
-commutant is strictly larger than `k ∙ 1`.  Everything below therefore carries
-the hypothesis `(2 : k) ≠ 0`, which is exactly what the argument needs and no
-more — characteristic 3 is fine, even though `A₄` has order divisible by 3.
+The manuscript writes `k` for an unspecified field, and everything below
+instead carries the hypothesis `(2 : k) ≠ 0`.  **This is a limitation of the
+construction, not of the statement.**  In characteristic `2` the three columns
+`v₁, v₂, v₃` of `basisMatrix` all collapse to the all-ones vector, so that
+matrix stops being a basis of the sum-zero subspace and `coordMatrix` stops
+being a left inverse of it; the compression below then degenerates and proves
+nothing.  Characteristic `3` is fine, even though `A₄` has order divisible
+by `3`.
+
+The printed claim itself does survive in characteristic `2` — over `𝔽₂` the
+commutant of `A₄` on the sum-zero subspace of `𝔽₂⁴` is still one-dimensional,
+even though that subspace now contains the all-ones vector and the
+representation is no longer semisimple; the three Jordan--Hölder factors are
+pairwise non-isomorphic, which is what keeps the commutant scalar.  That case
+needs a different argument and is **not** formalized here.
 
 ## The construction
 
@@ -52,6 +76,16 @@ more — characteristic 3 is fine, even though `A₄` has order divisible by 3.
 cheap route is *not* to build it directly but to cut it out of the permutation
 representation on `k⁴`, which `Mathlib` does have as
 `Matrix.permMatrixHom : Equiv.Perm n →* Matrix n n k`.
+
+Use `permMatrixHom`, never `Equiv.Perm.permMatrix` directly: the latter is
+**anti**-multiplicative, `(σ * τ).permMatrix = τ.permMatrix * σ.permMatrix`
+(`Matrix.permMatrix_mul`), because `PEquiv.toMatrix` turns composition around.
+`permMatrixHom` is the repaired version, `σ ↦ σ⁻¹.permMatrix`, and it is a
+genuine `MonoidHom`.  That one fact is what makes the whole construction below
+case-free: `std` inherits multiplicativity from `P` instead of having to be
+checked on the 24 elements of `S₄`.  Building the representation by hand and
+verifying `std (g h) = std g · std h` elementwise is the expensive route that
+this avoids.
 
 Let `J` be the all-ones `4×4` matrix (`allOnes`) and let `T` (`basisMatrix`) be
 the `4×3` matrix whose three columns are
@@ -141,6 +175,12 @@ namespace StandardRepCommutant
 
 open Equiv
 
+-- `ᵀ` is *scoped* notation for `Matrix.transpose`
+-- (`Mathlib/LinearAlgebra/Matrix/Defs.lean:157`, `scoped postfix:1024 "ᵀ"`), so it
+-- is a parse error without this line even though every declaration below is
+-- written out with its full `Matrix.` prefix.
+open scoped Matrix
+
 /-! ## Order-reversal, in the generality the manuscript states it -/
 
 /-- **The commutant is order-reversing.**  For any representation of any group
@@ -195,7 +235,7 @@ theorem transpose_basisMatrix_mul_basisMatrix :
     (basisMatrix k)ᵀ * basisMatrix k = (4 : k) • 1 := by
   ext i j
   fin_cases i <;> fin_cases j <;>
-    simp [basisMatrix, Matrix.mul_apply, Fin.sum_univ_four, Matrix.one_apply] <;> ring
+    (simp [basisMatrix, Matrix.mul_apply, Fin.sum_univ_four]; try ring)
 
 /-- `T Tᵀ = 4·1₄ - J`: the complementary statement, saying that
 `(4:k)⁻¹ • T Tᵀ` is the projection onto the standard summand along the
@@ -204,21 +244,20 @@ theorem basisMatrix_mul_transpose_basisMatrix :
     basisMatrix k * (basisMatrix k)ᵀ = (4 : k) • 1 - allOnes k := by
   ext i j
   fin_cases i <;> fin_cases j <;>
-    simp [basisMatrix, allOnes, Matrix.mul_apply, Fin.sum_univ_three,
-      Matrix.one_apply] <;> ring
+    (simp [basisMatrix, allOnes, Matrix.mul_apply, Fin.sum_univ_three]; try ring)
 
 /-- `J T = 0`: the columns of `T` sum to zero, i.e. they lie in the standard
 summand.  This is the identity that makes the compression multiplicative. -/
 theorem allOnes_mul_basisMatrix : allOnes k * basisMatrix k = 0 := by
   ext i j
   fin_cases i <;> fin_cases j <;>
-    simp [basisMatrix, allOnes, Matrix.mul_apply, Fin.sum_univ_four] <;> ring
+    (simp [basisMatrix, allOnes, Matrix.mul_apply, Fin.sum_univ_four]; try ring)
 
 /-- `Tᵀ J = 0`, the transposed form of `allOnes_mul_basisMatrix`. -/
 theorem transpose_basisMatrix_mul_allOnes : (basisMatrix k)ᵀ * allOnes k = 0 := by
   ext i j
   fin_cases i <;> fin_cases j <;>
-    simp [basisMatrix, allOnes, Matrix.mul_apply, Fin.sum_univ_four] <;> ring
+    (simp [basisMatrix, allOnes, Matrix.mul_apply, Fin.sum_univ_four]; try ring)
 
 /-! ### Consequences for `S` -/
 
@@ -354,6 +393,19 @@ theorem stdHom_apply (h2 : (2 : k) ≠ 0) (g : Equiv.Perm (Fin 4)) :
 
 /-! ### Faithfulness -/
 
+/-- A permutation matrix is the identity matrix with its rows relabelled.
+
+This goes through `PEquiv.toMatrix_toPEquiv_mul` rather than the more direct
+`PEquiv.toMatrix_toPEquiv_apply`, because the latter mentions its scalar type
+only in its conclusion, so `k` would have to be recovered from the expected
+type; here the explicit `(1 : Matrix (Fin 4) (Fin 4) k)` argument pins it. -/
+theorem permMatrixHom_eq_submatrix (g : Equiv.Perm (Fin 4)) :
+    (Matrix.permMatrixHom g : Matrix (Fin 4) (Fin 4) k)
+      = (1 : Matrix (Fin 4) (Fin 4) k).submatrix (g⁻¹ : Equiv.Perm (Fin 4)) id := by
+  have h := PEquiv.toMatrix_toPEquiv_mul (g⁻¹ : Equiv.Perm (Fin 4))
+    (1 : Matrix (Fin 4) (Fin 4) k)
+  rwa [Matrix.mul_one] at h
+
 /-- A permutation whose matrix is the identity is the identity. -/
 theorem eq_one_of_permMatrixHom_eq_one {g : Equiv.Perm (Fin 4)}
     (h : (Matrix.permMatrixHom g : Matrix (Fin 4) (Fin 4) k) = 1) : g = 1 := by
@@ -362,11 +414,11 @@ theorem eq_one_of_permMatrixHom_eq_one {g : Equiv.Perm (Fin 4)}
     by_contra hne
     have hone : ((Matrix.permMatrixHom g : Matrix (Fin 4) (Fin 4) k)) i i = 1 := by
       rw [h, Matrix.one_apply_eq]
-    have hentry : ((Matrix.permMatrixHom g : Matrix (Fin 4) (Fin 4) k)) i i
-        = (Pi.single (g⁻¹ i) (1 : k)) i :=
-      congrFun (PEquiv.toMatrix_toPEquiv_apply (g⁻¹ : Equiv.Perm (Fin 4)) i) i
-    rw [hentry, Pi.single_apply, if_neg (Ne.symm hne)] at hone
-    exact zero_ne_one hone
+    rw [permMatrixHom_eq_submatrix k g] at hone
+    -- `submatrix` and `id` both unfold definitionally, so this is a retype.
+    have hzero : (1 : Matrix (Fin 4) (Fin 4) k) (g⁻¹ i) i = 1 := hone
+    rw [Matrix.one_apply_ne hne] at hzero
+    exact zero_ne_one hzero
   have hinv : g⁻¹ = 1 := Equiv.ext key
   exact inv_eq_one.mp hinv
 
@@ -446,8 +498,8 @@ theorem stdFun_gen1 (h2 : (2 : k) ≠ 0) : stdFun k gen1 = d1 k := by
   ext i j
   rw [permMatrixHom_mul_apply, hinv]
   fin_cases i <;> fin_cases j <;>
-    simp [gen1, d1, basisMatrix, Matrix.mul_apply, Fin.sum_univ_three,
-      Equiv.Perm.mul_apply, Equiv.swap_apply_def] <;> ring
+    (simp [gen1, d1, basisMatrix, Matrix.mul_apply, Fin.sum_univ_three,
+      Equiv.Perm.mul_apply, Equiv.swap_apply_def]; try ring)
 
 theorem stdFun_gen2 (h2 : (2 : k) ≠ 0) : stdFun k gen2 = d2 k := by
   refine stdFun_eq_of_intertwines k h2 _ _ ?_
@@ -455,8 +507,8 @@ theorem stdFun_gen2 (h2 : (2 : k) ≠ 0) : stdFun k gen2 = d2 k := by
   ext i j
   rw [permMatrixHom_mul_apply, hinv]
   fin_cases i <;> fin_cases j <;>
-    simp [gen2, d2, basisMatrix, Matrix.mul_apply, Fin.sum_univ_three,
-      Equiv.Perm.mul_apply, Equiv.swap_apply_def] <;> ring
+    (simp [gen2, d2, basisMatrix, Matrix.mul_apply, Fin.sum_univ_three,
+      Equiv.Perm.mul_apply, Equiv.swap_apply_def]; try ring)
 
 theorem stdFun_gen3 (h2 : (2 : k) ≠ 0) : stdFun k gen3 = d3 k := by
   refine stdFun_eq_of_intertwines k h2 _ _ ?_
@@ -465,8 +517,8 @@ theorem stdFun_gen3 (h2 : (2 : k) ≠ 0) : stdFun k gen3 = d3 k := by
   ext i j
   rw [permMatrixHom_mul_apply, hinv]
   fin_cases i <;> fin_cases j <;>
-    simp [d3, basisMatrix, Matrix.mul_apply, Fin.sum_univ_three,
-      Equiv.Perm.mul_apply, Equiv.swap_apply_def] <;> ring
+    (simp [d3, basisMatrix, Matrix.mul_apply, Fin.sum_univ_three,
+      Equiv.Perm.mul_apply, Equiv.swap_apply_def]; try ring)
 
 /-! ## The commutant -/
 
@@ -506,9 +558,16 @@ two Klein involutions and of a three-cycle is a scalar.  The two diagonal
 generators force `M` diagonal — this is the only step that uses
 `(2 : k) ≠ 0` — and the three-cycle then forces the diagonal constant.
 
-The `first | linear_combination ...` alternatives below only pick the sign of
-the linear combination; the mathematical content is fixed and is the entrywise
-computation written out in the module docstring. -/
+The `linear_combination` coefficients below are deliberately **not** uniform,
+and the pattern is worth recording because nothing in the statement shows it.
+Commuting with a diagonal `D` extracts, at entry `(i,j)`, the equation
+`M i j * D j j = D i i * M i j`; whether that reads `-x = x` or `x = -x` depends
+on which side of the diagonal the `-1` falls.  So `h01, h02, h12` take `-e`
+while `h10, h20, h21` take `e`.  In `h22` the raw equation is
+`-M 1 1 = -M 2 2`, which `simp` normalizes through `neg_inj` to `M 1 1 = M 2 2`,
+and that reorientation is exactly why it needs `-e + h11` rather than `e + h11`.
+The mathematical content is fixed and is the entrywise computation written out
+in the module docstring. -/
 theorem eq_smul_one_of_commutes (h2 : (2 : k) ≠ 0)
     {M : Matrix (Fin 3) (Fin 3) k}
     (c1 : M * d1 k = d1 k * M) (c2 : M * d2 k = d2 k * M)
@@ -521,61 +580,43 @@ theorem eq_smul_one_of_commutes (h2 : (2 : k) ≠ 0)
     refine eq_zero_of_two_mul_eq_zero k h2 ?_
     have e := E1 0 1
     simp [d1, Matrix.mul_apply, Fin.sum_univ_three] at e
-    first
-      | linear_combination e | linear_combination -e
-      | linear_combination 2 * e | linear_combination -2 * e
+    linear_combination -e
   have h02 : M 0 2 = 0 := by
     refine eq_zero_of_two_mul_eq_zero k h2 ?_
     have e := E1 0 2
     simp [d1, Matrix.mul_apply, Fin.sum_univ_three] at e
-    first
-      | linear_combination e | linear_combination -e
-      | linear_combination 2 * e | linear_combination -2 * e
+    linear_combination -e
   have h10 : M 1 0 = 0 := by
     refine eq_zero_of_two_mul_eq_zero k h2 ?_
     have e := E1 1 0
     simp [d1, Matrix.mul_apply, Fin.sum_univ_three] at e
-    first
-      | linear_combination e | linear_combination -e
-      | linear_combination 2 * e | linear_combination -2 * e
+    linear_combination e
   have h20 : M 2 0 = 0 := by
     refine eq_zero_of_two_mul_eq_zero k h2 ?_
     have e := E1 2 0
     simp [d1, Matrix.mul_apply, Fin.sum_univ_three] at e
-    first
-      | linear_combination e | linear_combination -e
-      | linear_combination 2 * e | linear_combination -2 * e
+    linear_combination e
   have h12 : M 1 2 = 0 := by
     refine eq_zero_of_two_mul_eq_zero k h2 ?_
     have e := E2 1 2
     simp [d2, Matrix.mul_apply, Fin.sum_univ_three] at e
-    first
-      | linear_combination e | linear_combination -e
-      | linear_combination 2 * e | linear_combination -2 * e
+    linear_combination -e
   have h21 : M 2 1 = 0 := by
     refine eq_zero_of_two_mul_eq_zero k h2 ?_
     have e := E2 2 1
     simp [d2, Matrix.mul_apply, Fin.sum_univ_three] at e
-    first
-      | linear_combination e | linear_combination -e
-      | linear_combination 2 * e | linear_combination -2 * e
+    linear_combination e
   have h11 : M 1 1 = M 0 0 := by
     have e := E3 0 1
-    simp [d3, Matrix.mul_apply, Fin.sum_univ_three, h01, h02, h10, h20, h12,
-      h21] at e
-    first | linear_combination e | linear_combination -e
+    simp [d3, Matrix.mul_apply, Fin.sum_univ_three, h01, h02, h21] at e
+    linear_combination -e
   have h22 : M 2 2 = M 0 0 := by
     have e := E3 1 2
-    simp [d3, Matrix.mul_apply, Fin.sum_univ_three, h01, h02, h10, h20, h12,
-      h21] at e
-    first
-      | linear_combination e | linear_combination -e
-      | linear_combination e + h11 | linear_combination -e + h11
-      | linear_combination e - h11 | linear_combination -e - h11
+    simp [d3, Matrix.mul_apply, Fin.sum_univ_three, h02, h10, h12] at e
+    linear_combination -e + h11
   ext i j
   fin_cases i <;> fin_cases j <;>
-    simp [Matrix.smul_apply, Matrix.one_apply, h01, h02, h10, h20, h12, h21,
-      h11, h22]
+    simp [Matrix.smul_apply, h01, h02, h10, h20, h12, h21, h11, h22]
 
 /-- **`End_{A₄}(V) = k·1`.**  The commutant of the alternating group in the
 standard three-dimensional representation is exactly the scalars. -/

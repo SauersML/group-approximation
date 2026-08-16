@@ -2,6 +2,8 @@ import GroupApproximation.Analysis.CStarTensorProductSeminorm
 import Mathlib.Analysis.InnerProductSpace.TensorProduct
 import Mathlib.RingTheory.TensorProduct.Maps
 import Mathlib.Algebra.Star.TensorProduct
+import Mathlib.LinearAlgebra.Basis.VectorSpace
+import Mathlib.LinearAlgebra.TensorProduct.Basis
 
 /-!
 # The spatial (minimal) C⋆-norm on an algebraic tensor product
@@ -102,8 +104,8 @@ continuity**: the vector functionals already separate points.
 
 **The one linear-algebra fact.**  Step 4's last move is the only step that is
 not bookkeeping, and Mathlib supplies both halves of it:
-`Basis.tensorProduct` makes `b i ⊗ₜ c j` a basis of `A ⊗[ℂ] B`, and
-`Basis.forall_coord_eq_zero_iff` (`LinearAlgebra/Basis/Defs.lean:670`) says a
+`Module.Basis.tensorProduct` makes `b i ⊗ₜ c j` a basis of `A ⊗[ℂ] B`, and
+`Module.Basis.forall_coord_eq_zero_iff` (`LinearAlgebra/Basis/Defs.lean:670`) says a
 vector all of whose coordinates vanish is zero.  What has to be checked is only
 that the `(i, j)` coordinate functional of that basis *is* the composite of the
 two slices (`tensorProduct_coord_apply`), an identity on elementary tensors
@@ -112,15 +114,15 @@ extended by additivity.
 An earlier draft of this analysis routed the same step through
 `TensorProduct.finsuppRight` and a transport along `c.repr`.  That works too,
 but it is strictly more plumbing --- it drags in the `R S M N ι` scalar-tower
-signature of `finsuppRight` --- and the `Basis.tensorProduct` route above needs
+signature of `finsuppRight` --- and the `Module.Basis.tensorProduct` route above needs
 no transport at all.
 
 **Verdict: it was closable at this Mathlib pin, and it is now closed.**  Every
-ingredient was present: `Basis.ofVectorSpace`
-(`LinearAlgebra/Basis/VectorSpace.lean:150`), `Basis.tensorProduct` and
-`Basis.tensorProduct_repr_tmul_apply`
+ingredient was present: `Module.Basis.ofVectorSpace`
+(`LinearAlgebra/Basis/VectorSpace.lean:150`), `Module.Basis.tensorProduct` and
+`Module.Basis.tensorProduct_repr_tmul_apply`
 (`LinearAlgebra/TensorProduct/Basis.lean:38,55`),
-`Basis.forall_coord_eq_zero_iff`, `TensorProduct.lid`/`rid`, and
+`Module.Basis.forall_coord_eq_zero_iff`, `TensorProduct.lid`/`rid`, and
 `TensorProduct.inner_tmul`
 (`Analysis/InnerProductSpace/TensorProduct.lean:69`).  **No literature input
 and no analysis** --- in particular no states, no GNS, and no continuity.
@@ -206,7 +208,12 @@ the cross-norm property of the spatial tensor norm. -/
 theorem norm_mapL (S : H →L[ℂ] H) (T : K →L[ℂ] K) :
     ‖TensorProduct.mapL S T‖ = ‖S‖ * ‖T‖ := by
   refine le_antisymm (TensorProduct.norm_mapL_le S T) ?_
-  have hCnn : (0 : ℝ) ≤ ‖TensorProduct.mapL S T‖ := norm_nonneg _
+  -- `opNorm_nonneg`, not `norm_nonneg`: `H ⊗[ℂ] K →L[ℂ] H ⊗[ℂ] K` carries two
+  -- `Norm` instances (`SeminormedAddGroup.toNorm` and
+  -- `ContinuousLinearMap.hasOpNorm`) and Lean will not unify them, so the
+  -- lemma has to be the one stated at the operator norm.
+  have hCnn : (0 : ℝ) ≤ ‖TensorProduct.mapL S T‖ :=
+    (TensorProduct.mapL S T).opNorm_nonneg
   have hpt : ∀ (ξ : H) (η : K),
       ‖S ξ‖ * ‖T η‖ ≤ ‖TensorProduct.mapL S T‖ * (‖ξ‖ * ‖η‖) := by
     intro ξ η
@@ -222,7 +229,7 @@ theorem norm_mapL (S : H →L[ℂ] H) (T : K →L[ℂ] K) :
         ≤ ‖TensorProduct.mapL S T‖ * (‖ξ‖ * ‖η‖) := hpt ξ η
       _ = ‖TensorProduct.mapL S T‖ * ‖η‖ * ‖ξ‖ := by ring
   have step2 : ‖T‖ * ‖S‖ ≤ ‖TensorProduct.mapL S T‖ := by
-    refine opNorm_mul_le_of_forall T hCnn (norm_nonneg S) ?_
+    refine opNorm_mul_le_of_forall T hCnn S.opNorm_nonneg ?_
     intro η
     calc ‖T η‖ * ‖S‖ = ‖S‖ * ‖T η‖ := mul_comm _ _
       _ ≤ ‖TensorProduct.mapL S T‖ * ‖η‖ := step1 η
@@ -303,6 +310,10 @@ noncomputable def spatialHom (π : StarRep A H) (ρ : StarRep B K) :
     ((lTensorAlgHom H).comp ρ.hom)
     (fun a b => commute_rTensor_lTensor (π.hom a) (ρ.hom b))
 
+omit [StarModule ℂ A] [StarModule ℂ B] in
+/-- The product representation on an elementary tensor is the tensor product of
+the two operators.  (`spatialHom` itself needs no `StarModule`; the ⋆-structure
+enters only in `spatialRep` below, hence the `omit`.) -/
 @[simp] theorem spatialHom_tmul (π : StarRep A H) (ρ : StarRep B K)
     (a : A) (b : B) :
     spatialHom π ρ (a ⊗ₜ[ℂ] b) = TensorProduct.mapL (π.hom a) (ρ.hom b) := rfl
@@ -379,12 +390,16 @@ docstring for why this is much cheaper than the roadmap's Stage A. -/
 
 section Injectivity
 
-/-! ### Vector functionals and slices -/
+/-! ### Vector functionals
 
-variable {A : Type u} {B : Type v} [Ring A] [StarRing A] [Algebra ℂ A]
-  [StarModule ℂ A] [Ring B] [StarRing B] [Algebra ℂ B] [StarModule ℂ B]
-variable {H : Type w} {K : Type x} [NormedAddCommGroup H] [InnerProductSpace ℂ H]
-  [NormedAddCommGroup K] [InnerProductSpace ℂ K]
+These need a ⋆-representation, hence `StarRing`, but no `StarModule`; they are
+given their own minimal variable block rather than inheriting the file's, so
+that no unused section variable is auto-included. -/
+
+section VecFunctional
+
+variable {M : Type u} [Ring M] [StarRing M] [Algebra ℂ M]
+variable {E : Type w} [NormedAddCommGroup E] [InnerProductSpace ℂ E]
 
 /-- The **vector functional** `a ↦ ⟪ξ', π a ξ⟫` of a ⋆-representation.
 
@@ -392,24 +407,24 @@ The inner product is taken with the representation's value in the *second*
 argument, because Mathlib's `inner` is conjugate-linear in the first: written
 the other way round this would be conjugate-linear in `a` and would not be a
 `ℂ`-linear functional at all. -/
-noncomputable def vecFunctional (π : StarRep A H) (ξ ξ' : H) : A →ₗ[ℂ] ℂ where
+noncomputable def vecFunctional (π : StarRep M E) (ξ ξ' : E) : M →ₗ[ℂ] ℂ where
   toFun a := ⟪ξ', π.hom a ξ⟫_ℂ
   map_add' a b := by
-    simp only [map_add, ContinuousLinearMap.add_apply, inner_add_right]
+    simp only [map_add, add_apply, inner_add_right]
   map_smul' r a := by
-    simp only [map_smul, ContinuousLinearMap.smul_apply, inner_smul_right,
+    simp only [map_smul, smul_apply, inner_smul_right,
       RingHom.id_apply, smul_eq_mul]
 
-@[simp] theorem vecFunctional_apply (π : StarRep A H) (ξ ξ' : H) (a : A) :
+@[simp] theorem vecFunctional_apply (π : StarRep M E) (ξ ξ' : E) (a : M) :
     vecFunctional π ξ ξ' a = ⟪ξ', π.hom a ξ⟫_ℂ := rfl
 
 /-- **The vector functionals of a faithful ⋆-representation separate points.**
 If they all vanish at `a` then `π a` kills every vector, so `π a = 0` and
 injectivity gives `a = 0`.  The witness is `ξ' = π a ξ`, where the pairing is
 `‖π a ξ‖²`. -/
-theorem eq_zero_of_forall_vecFunctional_eq_zero (π : StarRep A H)
-    (hπ : Function.Injective π.hom) {a : A}
-    (h : ∀ ξ ξ' : H, vecFunctional π ξ ξ' a = 0) : a = 0 := by
+theorem eq_zero_of_forall_vecFunctional_eq_zero (π : StarRep M E)
+    (hπ : Function.Injective π.hom) {a : M}
+    (h : ∀ ξ ξ' : E, vecFunctional π ξ ξ' a = 0) : a = 0 := by
   have hz : π.hom a = 0 := by
     refine ContinuousLinearMap.ext fun ξ => ?_
     show π.hom a ξ = 0
@@ -417,39 +432,52 @@ theorem eq_zero_of_forall_vecFunctional_eq_zero (π : StarRep A H)
   have hzz : π.hom a = π.hom 0 := by rw [hz, map_zero]
   exact hπ hzz
 
-/-- Slicing `A ⊗ B` in the **first** variable along a linear functional,
-landing in `B`. -/
-noncomputable def sliceRight (φ : A →ₗ[ℂ] ℂ) : (A ⊗[ℂ] B) →ₗ[ℂ] B :=
-  (TensorProduct.lid ℂ B).toLinearMap ∘ₗ TensorProduct.map φ LinearMap.id
+end VecFunctional
 
-@[simp] theorem sliceRight_tmul (φ : A →ₗ[ℂ] ℂ) (a : A) (b : B) :
+/-! ### Slices
+
+Pure linear algebra: no ⋆-structure and no topology anywhere below, so these
+are stated for bare `ℂ`-vector spaces.  They specialise to `A` and `B` because
+`Ring` plus `Algebra ℂ` supplies `AddCommGroup` and `Module ℂ`. -/
+
+section Slices
+
+variable {V : Type u} {W : Type v} [AddCommGroup V] [Module ℂ V]
+  [AddCommGroup W] [Module ℂ W]
+
+/-- Slicing `V ⊗ W` in the **first** variable along a linear functional,
+landing in `W`. -/
+noncomputable def sliceRight (φ : V →ₗ[ℂ] ℂ) : (V ⊗[ℂ] W) →ₗ[ℂ] W :=
+  (TensorProduct.lid ℂ W).toLinearMap ∘ₗ TensorProduct.map φ LinearMap.id
+
+@[simp] theorem sliceRight_tmul (φ : V →ₗ[ℂ] ℂ) (a : V) (b : W) :
     sliceRight φ (a ⊗ₜ[ℂ] b) = φ a • b := by
   simp only [sliceRight, LinearMap.coe_comp, Function.comp_apply,
     TensorProduct.map_tmul, LinearMap.id_coe, id_eq,
     LinearEquiv.coe_coe, TensorProduct.lid_tmul]
 
-/-- Slicing `A ⊗ B` in the **second** variable along a basis coordinate,
-landing in `A`. -/
-noncomputable def coordSlice {κ : Type*} (c : Basis κ ℂ B) (j : κ) :
-    (A ⊗[ℂ] B) →ₗ[ℂ] A :=
-  (TensorProduct.rid ℂ A).toLinearMap ∘ₗ LinearMap.lTensor A (c.coord j)
+/-- Slicing `V ⊗ W` in the **second** variable along a basis coordinate,
+landing in `V`. -/
+noncomputable def coordSlice {κ : Type*} (c : Module.Basis κ ℂ W) (j : κ) :
+    (V ⊗[ℂ] W) →ₗ[ℂ] V :=
+  (TensorProduct.rid ℂ V).toLinearMap ∘ₗ LinearMap.lTensor V (c.coord j)
 
-@[simp] theorem coordSlice_tmul {κ : Type*} (c : Basis κ ℂ B) (j : κ)
-    (a : A) (b : B) : coordSlice c j (a ⊗ₜ[ℂ] b) = c.repr b j • a := by
+@[simp] theorem coordSlice_tmul {κ : Type*} (c : Module.Basis κ ℂ W) (j : κ)
+    (a : V) (b : W) : coordSlice c j (a ⊗ₜ[ℂ] b) = c.repr b j • a := by
   simp only [coordSlice, LinearMap.coe_comp, Function.comp_apply,
     LinearMap.lTensor_tmul, LinearEquiv.coe_coe, TensorProduct.rid_tmul,
-    Basis.coord_apply]
+    Module.Basis.coord_apply]
 
 /-- The two slices commute: taking a basis coordinate of a first-variable slice
 is the same as applying the functional to the corresponding second-variable
 slice.  Both sides are `φ a * c.repr b j` on `a ⊗ₜ b`. -/
-theorem coord_sliceRight {κ : Type*} (c : Basis κ ℂ B) (j : κ)
-    (φ : A →ₗ[ℂ] ℂ) (y : A ⊗[ℂ] B) :
+theorem coord_sliceRight {κ : Type*} (c : Module.Basis κ ℂ W) (j : κ)
+    (φ : V →ₗ[ℂ] ℂ) (y : V ⊗[ℂ] W) :
     c.coord j (sliceRight φ y) = φ (coordSlice c j y) := by
   induction y using TensorProduct.induction_on with
   | zero => simp
   | tmul a b =>
-      simp only [sliceRight_tmul, coordSlice_tmul, map_smul, Basis.coord_apply,
+      simp only [sliceRight_tmul, coordSlice_tmul, map_smul, Module.Basis.coord_apply,
         smul_eq_mul]
       exact mul_comm _ _
   | add y₁ y₂ h₁ h₂ => simp only [map_add, h₁, h₂]
@@ -458,8 +486,8 @@ theorem coord_sliceRight {κ : Type*} (c : Basis κ ℂ B) (j : κ)
 
 Pure linear algebra over a field, and the only step of the faithfulness proof
 that is not bookkeeping.  It is short because Mathlib supplies both halves:
-`Basis.tensorProduct` makes `b i ⊗ₜ c j` a basis of `A ⊗[ℂ] B`, and
-`Basis.forall_coord_eq_zero_iff` says a vector with all coordinates zero is
+`Module.Basis.tensorProduct` makes `b i ⊗ₜ c j` a basis of `V ⊗[ℂ] W`, and
+`Module.Basis.forall_coord_eq_zero_iff` says a vector with all coordinates zero is
 zero.  All that has to be checked is that the `(i, j)` coordinate functional of
 that basis *is* the composite of the two slices, which is an identity on
 elementary tensors extended by additivity. -/
@@ -467,34 +495,49 @@ elementary tensors extended by additivity. -/
 /-- **The `(i, j)` coordinate of the tensor-product basis is the composite of
 the two slices.**  On `a ⊗ₜ β` both sides are `c.repr β j * b.repr a i`; the
 general case is additivity. -/
-theorem tensorProduct_coord_apply {ι κ : Type*} (b : Basis ι ℂ A)
-    (c : Basis κ ℂ B) (i : ι) (j : κ) (y : A ⊗[ℂ] B) :
+theorem tensorProduct_coord_apply {ι κ : Type*} (b : Module.Basis ι ℂ V)
+    (c : Module.Basis κ ℂ W) (i : ι) (j : κ) (y : V ⊗[ℂ] W) :
     (b.tensorProduct c).coord (i, j) y = b.coord i (coordSlice c j y) := by
   induction y using TensorProduct.induction_on with
   | zero => simp
   | tmul a β =>
-      rw [Basis.coord_apply, Basis.tensorProduct_repr_tmul_apply, coordSlice_tmul,
-        map_smul, Basis.coord_apply]
+      rw [Module.Basis.coord_apply, Module.Basis.tensorProduct_repr_tmul_apply, coordSlice_tmul,
+        map_smul, Module.Basis.coord_apply]
   | add y₁ y₂ h₁ h₂ => simp only [map_add, h₁, h₂]
 
 /-- **Coordinate slices along a basis of the right factor detect zero.**  If
-`c` is a basis of `B` and every slice `coordSlice c j` kills `x`, then `x = 0`.
+`c` is a basis of `W` and every slice `coordSlice c j` kills `x`, then `x = 0`.
 
-No topology and no analysis: the basis of `A` is an arbitrary Hamel basis,
-supplied by `Basis.ofVectorSpace`. -/
-theorem eq_zero_of_forall_coordSlice_eq_zero {κ : Type*} (c : Basis κ ℂ B)
-    {x : A ⊗[ℂ] B} (h : ∀ j : κ, coordSlice c j x = 0) : x = 0 := by
+No topology and no analysis: the basis of `V` is an arbitrary Hamel basis,
+supplied by `Module.Basis.ofVectorSpace`. -/
+theorem eq_zero_of_forall_coordSlice_eq_zero {κ : Type*} (c : Module.Basis κ ℂ W)
+    {x : V ⊗[ℂ] W} (h : ∀ j : κ, coordSlice c j x = 0) : x = 0 := by
   classical
-  refine ((Basis.ofVectorSpace ℂ A).tensorProduct c).forall_coord_eq_zero_iff.mp ?_
+  refine ((Module.Basis.ofVectorSpace ℂ V).tensorProduct c).forall_coord_eq_zero_iff.mp ?_
   rintro ⟨i, j⟩
-  rw [tensorProduct_coord_apply (Basis.ofVectorSpace ℂ A) c i j x, h j, map_zero]
+  rw [tensorProduct_coord_apply (Module.Basis.ofVectorSpace ℂ V) c i j x, h j, map_zero]
 
-/-! ### Matrix coefficients of the product representation -/
+end Slices
 
+/-! ### Matrix coefficients of the product representation
+
+From here on the full variable block is needed: these statements mention
+`spatialHom`, and through `spatialRep` the ⋆-structure really is in play. -/
+
+section Faithful
+
+-- No local `variable` block: these statements mention `spatialHom`, so they
+-- want exactly the file-level variables declared at the top of this file.
+-- Re-declaring them here would shadow rather than reuse them.
+
+omit [StarModule ℂ A] [StarModule ℂ B] in
 /-- **The matrix coefficients of `π ⊗ ρ` factor through the slices.**  Pairing
 `(π ⊗ ρ)(x)(ξ ⊗ η)` against `ξ' ⊗ η'` gives the `ρ`-vector functional applied
 to the `π`-slice of `x`.  On `a ⊗ₜ b` this is exactly
-`⟪ξ' ⊗ η', π a ξ ⊗ ρ b η⟫ = ⟪ξ', π a ξ⟫ ⟪η', ρ b η⟫`. -/
+`⟪ξ' ⊗ η', π a ξ ⊗ ρ b η⟫ = ⟪ξ', π a ξ⟫ ⟪η', ρ b η⟫`.
+
+(`spatialHom` needs no `StarModule`; only `spatialRep` does, so those two
+section variables are omitted here as they are on `spatialHom_tmul`.) -/
 theorem inner_spatialHom_apply (π : StarRep A H) (ρ : StarRep B K)
     (ξ ξ' : H) (η η' : K) (x : A ⊗[ℂ] B) :
     ⟪(ξ' ⊗ₜ[ℂ] η' : H ⊗[ℂ] K), spatialHom π ρ x (ξ ⊗ₜ[ℂ] η)⟫_ℂ
@@ -504,14 +547,18 @@ theorem inner_spatialHom_apply (π : StarRep A H) (ρ : StarRep B K)
   | tmul a b =>
       rw [spatialHom_tmul, TensorProduct.mapL_tmul, TensorProduct.inner_tmul,
         sliceRight_tmul]
-      simp only [vecFunctional_apply, map_smul, ContinuousLinearMap.smul_apply,
-        inner_smul_right, smul_eq_mul]
+      -- `smul_apply` and `inner_smul_right` are deliberately absent: the
+      -- linter reports them as never firing, so `map_smul` is already
+      -- reaching the normal form on its own.  Needing a fact and needing a
+      -- `simp only` entry for it are different things.
+      simp only [vecFunctional_apply, map_smul, smul_eq_mul]
   | add x y hx hy =>
-      rw [map_add, ContinuousLinearMap.add_apply, inner_add_right, hx, hy,
+      rw [map_add, add_apply, inner_add_right, hx, hy,
         map_add, map_add]
 
 /-! ### Faithfulness -/
 
+omit [StarModule ℂ A] [StarModule ℂ B] in
 /-- **The product representation of a pair of faithful ⋆-representations is
 faithful.**
 
@@ -537,7 +584,7 @@ theorem spatialHom_injective (π : StarRep A H) (ρ : StarRep B K)
   classical
   rw [injective_iff_map_eq_zero]
   intro x hx
-  set c := Basis.ofVectorSpace ℂ B
+  set c := Module.Basis.ofVectorSpace ℂ B
   -- Steps 1 and 2: every first-variable slice vanishes.
   have hslice : ∀ ξ ξ' : H, sliceRight (vecFunctional π ξ ξ') x = 0 := by
     intro ξ ξ'
@@ -572,6 +619,8 @@ theorem spatialNorm_isCStarNorm (π : StarRep A H) (ρ : StarRep B K)
     (hπ : Function.Injective π.hom) (hρ : Function.Injective ρ.hom) :
     IsCStarNorm (spatialNorm π ρ) :=
   spatialNorm_isCStarNorm_of_injective π ρ (spatialHom_injective π ρ hπ hρ)
+
+end Faithful
 
 end Injectivity
 

@@ -29,7 +29,7 @@ nonidentity element of the radical exactly as the manuscript prints it.  With
 `E` finitely presented and not operator MF, this gives
 
 ```text
-  1 < Rad_MF(E)
+  1 < Res_MF(E)
 ```
 
 on a single finitely presented group, unconditionally.
@@ -39,7 +39,7 @@ on a single finitely presented group, unconditionally.
 The separation the construction is aiming at is
 
 ```text
-  Rad_sof(E) = Rad_hyp(E) = 1 < Rad_MF(E),
+  Rad_sof(E) = Rad_hyp(E) = 1 < Res_MF(E),
 ```
 
 whose left-hand equalities need `IsSofic MarkedGroup`.  That is not proved

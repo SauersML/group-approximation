@@ -10,9 +10,8 @@ import GroupApproximation.Analysis.UniversalKazhdanCStarConsequences
 This file is the paragraph-level endpoint for the manuscript remark *the
 maximal algebra under proper one-sided conjugation*, which is
 `\begin{remark}...\label{rem:maxinfinite}` inside the appendix
-`\label{app:maxcstar}` of `non_mf_groups_exist.tex` (near line 3964 as of
-2026-08-16; that file is under active concurrent edit, so navigate by the
-label rather than by line number).  The remark asserts, for a group
+`\label{app:maxcstar}` of `non_mf_groups_exist.tex` — navigate by the label,
+never by line number, since that file is under active concurrent edit.  The remark asserts, for a group
 carrying a strict Kazhdan compression `t Γ t⁻¹ ⊊ Γ`, that
 
 1. the Kazhdan projection `p_Γ` exists in the maximal algebra;

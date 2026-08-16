@@ -42,7 +42,7 @@ particular not MF itself.
 
 The group produced is a subgroup of a metric ultraproduct of finite symmetric
 groups, and the four conclusions are, in order, the manuscript's
-`Rad_MF(S) = S` in the cofinite-corona radical, the same in the ultraproduct
+`Res_MF(S) = S` in the cofinite-corona radical, the same in the ultraproduct
 residual, the "equivalently" clause, and the sanity check that the statement is
 not vacuous. -/
 theorem manuscript_simpleSoficEnvelope

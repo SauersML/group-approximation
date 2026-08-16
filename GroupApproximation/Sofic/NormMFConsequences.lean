@@ -11,7 +11,7 @@ Consequences section (`non_mf_groups_exist.tex`, Section
 * `IsNormApproximable.comap` / `IsWeakMF.comap` / `IsWeakMF.subgroup` —
   weak-MF approximability pulls back along injective homomorphisms; in
   particular every subgroup of a weak-MF group is weak-MF
-  (manuscript Lemma `lem:subgroupMF`).
+  (manuscript Lemma `lem:permanence`(1)).
 * `not_injective_of_normMFInvisible` — a group with a nontrivial
   MF-invisible element admits no injective homomorphism into any
   operator-norm matrix ultraproduct (the group-level content of
@@ -47,7 +47,7 @@ variable {G : Type u} [Group G]
 
 /-- Operator-norm approximability pulls back along an injective
 homomorphism: finite matrix models restrict, and injectivity preserves the
-separation requirement.  Manuscript Lemma `lem:subgroupMF` in its natural
+separation requirement.  Manuscript Lemma `lem:permanence`(1) in its natural
 generality. -/
 theorem IsNormApproximable.comap {H : Type v} [Group H] {δ : ℝ}
     (hG : IsNormApproximable G δ) (ι : H →* G)
@@ -77,7 +77,7 @@ theorem IsWeakMF.comap {H : Type v} [Group H] (hG : IsWeakMF G)
   exact ⟨δ, hδ, hap.comap ι hι⟩
 
 /-- Every subgroup of a weak-MF group is weak-MF (manuscript Lemma
-`lem:subgroupMF`). -/
+`lem:permanence`(1)). -/
 theorem IsWeakMF.subgroup (hG : IsWeakMF G) (H : Subgroup G) :
     IsWeakMF H :=
   hG.comap H.subtype (fun _ _ hab => Subtype.ext hab)

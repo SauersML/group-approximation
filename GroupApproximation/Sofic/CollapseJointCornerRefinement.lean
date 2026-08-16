@@ -57,7 +57,7 @@ def cornerRefine (A : α → Matrix Y Y ℂ) (P : κ → Matrix Y Y ℂ) (p : α
     Matrix Y Y ℂ :=
   A p.1 * P p.2
 
-omit [Fintype α] [Fintype κ] in
+omit [Fintype α] [Fintype κ] [DecidableEq Y] in
 /-- Each block of the refinement is an orthogonal projection: a product of two
 commuting orthogonal projections. -/
 theorem cornerRefine_isOrthogonalProjectionMatrix (A : α → Matrix Y Y ℂ)
@@ -108,6 +108,7 @@ theorem cornerRefine_sum (A : α → Matrix Y Y ℂ) (P : κ → Matrix Y Y ℂ)
     ∑ p : α × κ, cornerRefine A P p = 1 := by
   have hstep : ∑ p : α × κ, cornerRefine A P p = ∑ a : α, ∑ k : κ, A a * P k := by
     rw [Fintype.sum_prod_type]
+    simp only [cornerRefine]
   rw [hstep]
   calc ∑ a : α, ∑ k : κ, A a * P k = ∑ a : α, A a * ∑ k : κ, P k := by
         refine Finset.sum_congr rfl fun a _ ↦ ?_
@@ -117,6 +118,7 @@ theorem cornerRefine_sum (A : α → Matrix Y Y ℂ) (P : κ → Matrix Y Y ℂ)
         simp only [Matrix.mul_one]
     _ = 1 := hAsum
 
+omit [DecidableEq Y] in
 /-- **Compression along a refinement is a composition of compressions.**  This
 is what licenses reading a composite of two-block compressions as a single
 block compression along the joint corner structure. -/
@@ -137,6 +139,7 @@ theorem cornerCompression_cornerRefine (A : α → Matrix Y Y ℂ)
   have hstep : cornerCompression (cornerRefine A P) x
       = ∑ a : α, ∑ k : κ, (A a * P k) * x * (A a * P k) := by
     rw [cornerCompression, Fintype.sum_prod_type]
+    simp only [cornerRefine]
   rw [hstep, cornerCompression]
   exact Finset.sum_congr rfl fun a _ ↦ hinner a
 

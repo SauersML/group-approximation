@@ -1,9 +1,11 @@
 import GroupApproximation.Analysis.NaturalMatrixCoordinateEquiv
 import GroupApproximation.Kazhdan.KazhdanUniverse
 import GroupApproximation.Sofic.ActualCoronaMFRadical
+import GroupApproximation.Sofic.CompressionUniverseTransfer
 import GroupApproximation.Sofic.IntrinsicCompressionMFRadical
 import GroupApproximation.Sofic.KazhdanAsymptoticCommutant
 import GroupApproximation.Sofic.UltraproductKazhdanTransport
+import GroupApproximation.Sofic.Type0Transfer
 import GroupApproximation.Sofic.UltraproductModelConstructionAssembly
 
 /-!
@@ -54,7 +56,10 @@ namespace KazhdanAsymptoticCommutant
 open Matrix
 open scoped Matrix.Norms.L2Operator
 
-universe w
+-- `w` is the representation-space universe of property `(T)`; `u` is the
+-- universe of the ambient group in `manuscriptCompressionRadical`, whose
+-- printed hypothesis is countability rather than smallness.
+universe u w
 
 variable {H : Type} [Group H]
 
@@ -274,9 +279,17 @@ theorem manuscriptKazhdanTransport :
 For a countable ambient group, every finite normal subgroup of the intrinsic
 compression--centralizer defect of a Kazhdan image lies in the literal
 natural-dimension C-star-corona radical.  The second conjunct spells out the
-equivalent kernel statement for every printed norm-matrix corona. -/
+equivalent kernel statement for every printed norm-matrix corona.
+
+The ambient group is at an arbitrary universe, as the printed hypothesis "let
+`H` and `Γ` be countable groups" requires: countability is what makes a group a
+`Type 0` group up to isomorphism, and the intrinsic radical theorem, which is
+stated at `Type 0`, is reached by transporting along that isomorphism and
+transporting the conclusion back.  The Kazhdan source `Γ` is still fixed at
+`Type 0` by the spelling `HasKazhdanPropertyTComplex.{0, w}`; the printed
+statement asks for it to be countable too, so that restriction remains. -/
 theorem manuscriptCompressionRadical :
-    ∀ {Γ H : Type} [Group Γ] [Group H] [Countable H]
+    ∀ {Γ : Type} {H : Type u} [Group Γ] [Group H] [Countable H]
     (_hT : HasKazhdanPropertyTComplex.{0, w} Γ)
     (iota : Γ →* H)
     (F : Subgroup H) [Finite F] [F.Normal]
@@ -289,13 +302,39 @@ theorem manuscriptCompressionRadical :
             (fun n ↦ naturalFiniteModel (d n))),
           F ≤ rho.ker := by
   intro Γ H _ _ _ hT iota F _ _ hF
-  have hnorm : F ≤ normMFResidual H :=
+  -- the `Type 0` model of the countable ambient group
+  obtain ⟨H₀, _groupH₀, ⟨e⟩⟩ := Type0Transfer.exists_type0_model H
+  haveI : Countable H₀ := Type0Transfer.countable_type0_model H e
+  haveI : Finite (F.map e.toMonoidHom) :=
+    CompressionUniverseTransfer.map_finite e F
+  haveI : (F.map e.toMonoidHom).Normal :=
+    CompressionUniverseTransfer.map_normal e F
+  -- the defect hypothesis transports
+  have hF₀ : F.map e.toMonoidHom ≤
+      compressionCentralizerDefect (e.toMonoidHom.comp iota).range := by
+    rw [MonoidHom.range_comp e.toMonoidHom iota]
+    exact (Subgroup.map_mono hF).trans
+      (CompressionUniverseTransfer.compressionCentralizerDefect_map_le e
+        iota.range)
+  -- the intrinsic radical theorem, at `Type 0`
+  have hnorm₀ : F.map e.toMonoidHom ≤ normMFResidual H₀ :=
     finiteNormal_le_normMFResidual_of_le_compressionCentralizerDefect
-      iota (hasKazhdanPropertyT_iff_textbook.mpr hT) F hF
-  have hres : F ≤ manuscriptCoronaMFResidual H := by
+      (e.toMonoidHom.comp iota) (hasKazhdanPropertyT_iff_textbook.mpr hT)
+      (F.map e.toMonoidHom) hF₀
+  have hres₀ : F.map e.toMonoidHom ≤ manuscriptCoronaMFResidual H₀ := by
     rw [manuscriptCoronaMFResidual_eq_coronaMFResidual,
       coronaMFResidual_eq_normMFResidual]
-    exact hnorm
+    exact hnorm₀
+  -- and the conclusion transports back, by functoriality of the radical
+  have hres : F ≤ manuscriptCoronaMFResidual H := by
+    intro f hf
+    rw [manuscriptCoronaMFResidual_eq_actualCoronaMFResidual]
+    have h₀ : e f ∈ actualCoronaMFResidual H₀ := by
+      have hmem := hres₀ (CompressionUniverseTransfer.mem_map_of_mem e hf)
+      rwa [manuscriptCoronaMFResidual_eq_actualCoronaMFResidual] at hmem
+    have hpull : f ∈ (actualCoronaMFResidual H₀).map e.symm.toMonoidHom :=
+      ⟨e f, h₀, by simp⟩
+    exact map_actualCoronaMFResidual_le e.symm.toMonoidHom hpull
   refine ⟨hres, ?_⟩
   intro d hd
   letI : ∀ n, Nonempty (naturalFiniteModel (d n)) :=

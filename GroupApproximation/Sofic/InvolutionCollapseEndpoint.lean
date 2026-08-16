@@ -1,5 +1,6 @@
 import GroupApproximation.Sofic.CollapsePrintedProfile
 import GroupApproximation.Sofic.CollapseProfileBoundNumeric
+import GroupApproximation.Sofic.CollapseTransportEndpoint
 import GroupApproximation.Sofic.InvolutionCollapseEndpointPrep
 import GroupApproximation.Sofic.TorsionCompressionCollapse
 
@@ -23,9 +24,19 @@ displacement vectors (`InvolutionCollapseMetric`, `…Profile`), the
 bound on the limiting displacement profile *by its generator values*
 (`Sofic.CollapseProfileBound`, over
 `Kazhdan.UltralimitGaussianBoundedness`), one approximate coboundary
-primitive from sequence-level circumcenters (`…Center`), and a one-stage
-Kazhdan corner transport (`…IndexCapture`) that contradicts the
-nonvanishing mass anchor of a marked model.
+primitive from sequence-level circumcenters (`…Center`), and — for Step 6 —
+the weighted Kazhdan transport at the rank weight `w_n = k_n`
+(`Sofic.CollapseTransportEndpoint`, over `ScaledKazhdanTransport`), which
+contradicts the nonvanishing mass anchor of a marked model.
+
+Step 6 travels the rank-weight transport, **not** the Hilbert-space
+ultraproduct argument that `thm:collapse` prints; the divergence, and why this
+development cannot contain the printed route, is recorded in the docstring of
+`Sofic/CollapseScaledStepSix.lean`.  The one-stage corner assembly of
+`rem:collapse-finite-stage` remains in this file as
+`stage_conj_displacement`, `stage_capture`, `stage_transport_bound` and
+`numeric_transport_bound`, which are what the remark's three badges cite; it is
+no longer the route `no_marked_model` takes.
 -/
 
 namespace GroupApproximation
@@ -698,11 +709,9 @@ theorem no_marked_model [Countable Γ]
   obtain ⟨V, hVinv, hVcomm, hVconv⟩ :=
     exists_involutionMicrostates B iota hk2 horb
   -- a symmetric generating Kazhdan pair
-  obtain ⟨S, κ, hone, hsymm, hgen, hκpos, hκ1, hpair⟩ :=
+  obtain ⟨S, κ, _hone, hsymm, hgen, _hκpos, _hκ1, hpair⟩ :=
     KazhdanProjection.HasKazhdanPropertyT.exists_symmetric_generating_pair
       hkazhdan
-  have hcardR : (0 : ℝ) < S.card := by
-    exact_mod_cast Finset.card_pos.mpr ⟨1, hone⟩
   -- the marked separation forces the mass anchor
   have hmark : ∃ N, ∀ n ≥ N, 1 ≤ kNorm B V S n :=
     eventually_one_le_kNorm_of_marked B iota kk V S hgen hsymm hVinv
@@ -723,77 +732,11 @@ theorem no_marked_model [Countable Γ]
     rw [hRdef]
     exact CollapsePrintedProfile.printed_profile_le_num B iota kk V S hgen
       hsymm hVinv hVcomm hVconv hmark hpair γ
-  -- the compression core for the corner machinery
-  set C : KazhdanCompressionCore Γ E :=
-    { iota := iota
-      t := s
-      c := 1
-      kazhdan := hkazhdan
-      compresses := hcomp
-      comm_c := fun γ ↦ Commute.one_left _ } with hC
   -- the compressed conjugates
   set da : Γ → Γ := fun a ↦ Classical.choose (hcomp a) with hdadef
   have hda : ∀ a : Γ, s * iota a * s⁻¹ = iota (da a) :=
     fun a ↦ Classical.choose_spec (hcomp a)
-  -- explicit constants
-  set Cw : ℝ := Real.sqrt R + 2 with hCw
-  have hCwpos : 0 < Cw := by
-    rw [hCw]
-    have := Real.sqrt_nonneg R
-    linarith
-  have hCw1 : (0 : ℝ) < Cw + 1 := by linarith
-  set ρt : ℝ := 1 / (Real.sqrt (S.card : ℝ) + 1) with hρt
-  have hρtpos : 0 < ρt := by
-    rw [hρt]
-    have hx : (0 : ℝ) < Real.sqrt ((S.card : ℝ)) + 1 := by
-      have := Real.sqrt_nonneg ((S.card : ℝ))
-      linarith
-    exact one_div_pos.mpr hx
-  set θ : ℝ := (1 - κ ^ 2 / (4 * (S.card : ℝ)) + 1) / 2 with hθdef
-  have h4c : (0 : ℝ) < 4 * (S.card : ℝ) := by nlinarith [hcardR]
-  have hκ2 : 0 < κ ^ 2 / (4 * (S.card : ℝ)) :=
-    div_pos (pow_pos hκpos 2) h4c
-  have hθ4 : 1 - κ ^ 2 / (4 * (S.card : ℝ)) < θ := by
-    rw [hθdef]
-    linarith
-  have hθ1 : θ < 1 := by
-    rw [hθdef]
-    linarith
-  have hgap : 0 < 1 - θ := by linarith
-  set τ : ℝ := min (ρt / 2)
-    ((1 - θ) * ρt ^ 2 / (256 * (Cw + 1))) with hτdef
-  have hτpos : 0 < τ :=
-    lt_min (half_pos hρtpos)
-      (div_pos (mul_pos hgap (pow_pos hρtpos 2)) (by nlinarith [hCwpos]))
-  have hτle : τ ≤ ρt / 2 := min_le_left _ _
-  have hτr : τ ≤ (1 - θ) * ρt ^ 2 / (256 * (Cw + 1)) := min_le_right _ _
-  set q : ℝ := ρt / (24 * (Cw + 1)) with hqdef
-  have hqpos : 0 < q := div_pos hρtpos (by nlinarith [hCwpos])
-  set d₀ : ℝ := τ ^ 2 / 2 with hd0def
-  have hd0pos : 0 < d₀ := div_pos (pow_pos hτpos 2) two_pos
-  set ε₆ : ℝ := τ / (2 * Cw + 2) with hε6def
-  have hε6pos : 0 < ε₆ := div_pos hτpos (by nlinarith [hCwpos])
-  have hsqrt2d : Real.sqrt (2 * d₀) = τ := by
-    rw [hd0def, show 2 * (τ ^ 2 / 2) = τ ^ 2 by ring]
-    exact Real.sqrt_sq hτpos.le
-  -- the approximate coboundary primitive
-  set T : Finset Γ := S ∪ S.image da with hTdef
-  clear_value da R Cw ρt θ τ q d₀ ε₆ T
-  obtain ⟨w, hwbdd, hwnorm, hwcob⟩ :=
-    exists_approximate_coboundary B iota kk V S hgen hsymm hVinv hVcomm
-      hVconv hmark hR0 hR T hd0pos
-  -- boundedness of the coboundary differences
-  have hydiffbdd : ∀ a : Γ, IsBoundedSeq (fun n ↦
-      w n - adFlat (B.map n (iota a) :
-        Matrix (B.model n) (B.model n) ℂ) (w n)) :=
-    fun a ↦ ydiff_bounded B iota hwbdd a
-  have hxdiffbdd : ∀ a : Γ, IsBoundedSeq (fun n ↦
-      CollapseWordMetric.bVec B V S n a -
-        (w n - adFlat (B.map n (iota a) :
-          Matrix (B.model n) (B.model n) ℂ) (w n))) :=
-    fun a ↦ xdiff_bounded_printed B iota kk V S hgen hsymm hVinv hVcomm
-      hVconv hwbdd a
-  -- the compressed movers have exact primitives in the limit
+  -- (W2) makes the compressed conjugates fix the witness
   have hfixda : ∀ a : Γ, orbitElement iota kk (da a) = kk := by
     intro a
     show iota (da a) * kk * (iota (da a))⁻¹ = kk
@@ -804,149 +747,24 @@ theorem no_marked_model [Countable Γ]
       iota (da a) * kk * (iota (da a))⁻¹ =
           kk * iota (da a) * (iota (da a))⁻¹ := by rw [hx]
       _ = kk := by group
-  have hwda : ∀ a ∈ S, seqNormSq (fun n ↦
-      w n - adFlat (B.map n (iota (da a)) :
-        Matrix (B.model n) (B.model n) ℂ) (w n)) ≤ d₀ := by
-    intro a haS
-    have hmem : da a ∈ T := by
-      rw [hTdef]
-      exact Finset.mem_union_right _ (Finset.mem_image_of_mem da haS)
-    exact compressed_primitive_limit_printed B iota kk V S hgen hsymm hVinv
-      hVcomm hVconv hwbdd (hfixda a) (hwcob (da a) hmem)
-  -- the hyperfilter-large stage set
-  have hE1 : ∀ᶠ n in ↑(Filter.hyperfilter ℕ), ∀ a ∈ S,
-      ‖CollapseWordMetric.bVec B V S n a -
-        (w n - adFlat (B.map n (iota a) :
-          Matrix (B.model n) (B.model n) ℂ) (w n))‖ ≤ τ := by
-    rw [Filter.eventually_all_finset]
-    intro a haS
-    have hcob := hwcob a (by
-      rw [hTdef]
-      exact Finset.mem_union_left _ haS)
-    have h := eventually_norm_le_of_seqNormSq_le (hxdiffbdd a) hcob hd0pos
-    rwa [hsqrt2d] at h
-  have hE2 : ∀ᶠ n in ↑(Filter.hyperfilter ℕ), ∀ a ∈ S,
-      ‖w n - adFlat (B.map n (iota (da a)) :
-        Matrix (B.model n) (B.model n) ℂ) (w n)‖ ≤ τ := by
-    rw [Filter.eventually_all_finset]
-    intro a haS
-    have h := eventually_norm_le_of_seqNormSq_le (hydiffbdd (da a))
-      (hwda a haS) hd0pos
-    rwa [hsqrt2d] at h
-  have hE3 : ∀ᶠ n in ↑(Filter.hyperfilter ℕ), ‖w n‖ ≤ Cw := by
-    have hlt : seqNorm w < Cw := by
-      rw [hCw]
-      linarith [hwnorm]
-    filter_upwards [eventually_norm_lt_of_seqNorm_lt hwbdd hlt] with n hn
-    exact hn.le
-  have hE4 : ∀ᶠ n in ↑(Filter.hyperfilter ℕ), 1 ≤ kNorm B V S n :=
-    hyperfilter_eventually_of_exists hmark
-  have hE5 : ∀ᶠ n in ↑(Filter.hyperfilter ℕ), ∀ a ∈ S,
-      ‖((gammaAdjoint B C).map n a -
-          (1 : Matrix (B.adjoint.model n) (B.adjoint.model n) ℂ)) *
-        cornerProjection B C S θ n‖ ≤ q := by
-    rw [Filter.eventually_all_finset]
-    intro a haS
-    exact hyperfilter_eventually_of_exists
-      (displacement_vanishing B C θ hpair hone hκ1 hsymm hgen hθ4 a
-        q hqpos)
-  have hE6 : ∀ᶠ n in ↑(Filter.hyperfilter ℕ),
-      ‖((1 : Matrix (B.adjoint.model n) (B.adjoint.model n) ℂ) -
-          cornerProjection B C S θ n) * movedProjection B C S θ n‖ ≤ q :=
-    hyperfilter_eventually_of_exists
-      (one_sub_corner_mul_moved_vanishing B C θ hpair hone hκ1 hsymm
-        hgen hθ4 hθ1 q hqpos)
-  have hE7 : ∀ᶠ n in ↑(Filter.hyperfilter ℕ), ∀ a ∈ S,
-      ‖(B.map n (iota a) : Matrix (B.model n) (B.model n) ℂ) *
-          (B.map n s : Matrix (B.model n) (B.model n) ℂ)ᴴ -
-        (B.map n s : Matrix (B.model n) (B.model n) ℂ)ᴴ *
-          B.map n (iota (da a))‖ ≤ ε₆ := by
-    rw [Filter.eventually_all_finset]
-    intro a haS
-    exact hyperfilter_eventually_of_exists
-      (mixed_conj_defect_vanishing B iota s (hda a) ε₆ hε6pos)
-  obtain ⟨n₀, h1, h2, h3, h4, h5, h6, h7⟩ :=
-    (hE1.and (hE2.and (hE3.and (hE4.and (hE5.and (hE6.and hE7)))))).exists
-  -- the stage-n₀ transport
-  set Us : Matrix (B.model n₀) (B.model n₀) ℂ :=
-    (B.map n₀ s : Matrix (B.model n₀) (B.model n₀) ℂ) with hUs
-  set W : Matrix (B.model n₀) (B.model n₀) ℂ := unflatE (w n₀) with hW
-  set Xu : Matrix (B.model n₀) (B.model n₀) ℂ := Usᴴ * W * Us with hXu
-  clear_value Us W Xu
-  have hUsmem : Us ∈ Matrix.unitaryGroup (B.model n₀) ℂ := by
-    rw [hUs]
-    exact (B.map n₀ s).2
-  have hmassWval : ScaledKazhdanTransport.matMass W = ‖w n₀‖ ^ 2 := by
-    rw [← norm_flatE_sq, hW, flatE_unflatE]
-  have hmassW : Real.sqrt (ScaledKazhdanTransport.matMass W) ≤ Cw := by
-    rw [hmassWval, Real.sqrt_sq (norm_nonneg _)]
-    exact h3
-  have hmassXuW : ScaledKazhdanTransport.matMass Xu =
-      ScaledKazhdanTransport.matMass W := by
-    have h := ScaledKazhdanTransport.matMass_unitary_conj
-      (conjTranspose_mem_unitaryGroup hUsmem) W
-    rw [Matrix.conjTranspose_conjTranspose] at h
-    rw [hXu]
-    exact h
-  have hmassXu : Real.sqrt (ScaledKazhdanTransport.matMass Xu) ≤ Cw := by
-    rw [hmassXuW]
-    exact hmassW
-  -- the flat bridge between coboundary differences and matrix masses
-  have hbridge : ∀ (U : Matrix (B.model n₀) (B.model n₀) ℂ),
-      ‖w n₀ - adFlat U (w n₀)‖ ^ 2 =
-        ScaledKazhdanTransport.matMass (W - U * W * Uᴴ) := by
-    intro U
-    have hflat : w n₀ - adFlat U (w n₀) = flatE (W - U * W * Uᴴ) := by
-      rw [flatE_sub, hW, flatE_unflatE]
-      rfl
-    rw [hflat, norm_flatE_sq]
-  -- per-generator displacement of the compressed matrix
-  have hε6Cw : ε₆ * Cw ≤ τ / 2 := by
-    rw [hε6def]
-    rw [div_mul_eq_mul_div, div_le_div_iff₀ (by nlinarith [hCwpos] :
-      (0 : ℝ) < 2 * Cw + 2) (by norm_num : (0 : ℝ) < 2)]
-    nlinarith [hτpos.le, hCwpos]
-  have hXudisp : ∀ a ∈ S,
-      Real.sqrt (ScaledKazhdanTransport.matMass
-        (Xu - (B.map n₀ (iota a) : Matrix (B.model n₀) (B.model n₀) ℂ) *
-          Xu * (B.map n₀ (iota a) :
-            Matrix (B.model n₀) (B.model n₀) ℂ)ᴴ)) ≤ 2 * τ := by
-    intro a haS
-    rw [hXu]
-    exact stage_conj_displacement hUsmem (B.map n₀ (iota a)).2
-      (B.map n₀ (iota (da a))).2 hW hCwpos hτpos hε6pos h3 (h2 a haS)
-      (h7 a haS) hε6Cw
-  -- capture of the compressed matrix by the Kazhdan corner
-  have hcap := stage_capture B C S hone hθ1 n₀ Xu hCwpos hτpos hmassXu
-    hXudisp
-  -- transported displacement of the primitive matrix
-  have hXumass : ScaledKazhdanTransport.matMass Xu ≤ Cw ^ 2 := by
-    rw [hmassXuW, hmassWval]
-    nlinarith [h3, norm_nonneg (w n₀)]
-  have hWdisp : ∀ a ∈ S,
-      ScaledKazhdanTransport.matMass
-        (W - (B.map n₀ (iota a) : Matrix (B.model n₀) (B.model n₀) ℂ) *
-          W * (B.map n₀ (iota a) :
-            Matrix (B.model n₀) (B.model n₀) ℂ)ᴴ) ≤
-        18 * q ^ 2 * Cw ^ 2 +
-          16 * ((Cw + 1) * (2 * τ) / (1 - θ)) := by
-    intro a haS
-    exact stage_transport_bound B C S θ n₀ a hUs hUsmem hXu
-      (h5 a haS) h6 hcap hXumass
-  -- the numeric bound: transported mass is at most `(ρt / 2)²`
-  have hnum0 := numeric_transport_bound hCwpos hgap hqdef hτr
-  -- per-generator stage bound
-  have hfinal : ∀ a ∈ S, ‖CollapseWordMetric.bVec B V S n₀ a‖ ≤ ρt := by
-    intro a haS
-    exact stage_generator_bound (h1 a haS)
-      (hbridge (B.map n₀ (iota a) :
-        Matrix (B.model n₀) (B.model n₀) ℂ))
-      (le_trans (hWdisp a haS) hnum0) hτle hρtpos
+  -- the anchor threshold
+  set ρt : ℝ := 1 / (Real.sqrt (S.card : ℝ) + 1) with hρt
+  have hρtpos : 0 < ρt := by
+    rw [hρt]
+    have hx : (0 : ℝ) < Real.sqrt ((S.card : ℝ)) + 1 := by
+      have := Real.sqrt_nonneg ((S.card : ℝ))
+      linarith
+    exact one_div_pos.mpr hx
+  -- Step 6, through the weighted transport theorem at the rank weight
+  obtain ⟨n₀, hkpos, hfinal⟩ :=
+    CollapseTransportEndpoint.exists_stage_generators_small B iota kk V S hgen
+      hsymm hVinv hVcomm hVconv hmark hR0 hR hkazhdan s hcomp da hda hfixda
+      hρtpos
   -- the anchor contradiction, against `eq:generator-mass` for the printed
   -- displacement vector
-  have hkpos : 0 < kNorm B V S n₀ := lt_of_lt_of_le Nat.zero_lt_one h4
+  have hkpos' : 0 < kNorm B V S n₀ := lt_of_lt_of_le Nat.zero_lt_one hkpos
   have hanchor := CollapseWordMetric.col21_sum_normSq_bVec_eq_four B V S
-    hVinv hVcomm hkpos
+    hVinv hVcomm hkpos'
   exact anchor_contradiction (fun a _ ↦ norm_nonneg _) hanchor hρt
     hfinal
 

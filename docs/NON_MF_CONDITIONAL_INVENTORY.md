@@ -134,23 +134,31 @@ than as closed or as abandoned.
 | # | Declaration | Status | Anchor | Collapse if never discharged | Fix in flight |
 |---|---|---|---|---|---|
 | 1 | `MarkovMFConsequences.operatorMF_recognition_undecidable` | literature-input | § "Undecidability of MF recognition", prose after `\end{corollary}` of `cor:undecidable` | **Total.** The printed corollary is unconditional; its only Lean support is conditional. | `Computability/AdianRabinMarkovProperty.lean` — certifies the *hypotheses* of Adian--Rabin, explicitly not the theorem |
-| 2 | `ContinuumMultiplicity.manuscriptContinuumMultiplicity` | literature-input | § "Undecidability of MF recognition", multiplicity paragraph citing `\cite{Neumann37}` | **Total** for the `2^{ℵ₀}` sentence; the `E × ℤ^k` sentence is unaffected. | `Sofic/ContinuumFamilyCriterion.lean` (already committed) shrinks the obligation to one construction; no new module supplies it |
-| 3 | `FullMFRadicalEndpoint.exists_twoGenerated_finitelyPresented_torsionFree_kazhdan_fullMFRadical` | conditional-data | § "Questions", torsion-free f.p. non-MF group | **Total** for that answer. Printed caveat is now "no unconditional torsion-free finitely presented non-MF group is proved here" (the older wording "neither is an unconditional statement" is no longer in the TeX). | `Monsters/FournierFacioRealization.lean`; scope fixed by `docs/HULL_ROUTING_AUDIT_2026-08-16.md`; interface split by `Sofic/FiveConditionInsufficiency.lean` |
-| 4 | `FullMFRadicalEndpoint.exists_group_with_every_nontrivial_quotient_not_isCDEOperatorMF` | conditional-data | same | as above | same |
+| 2 | ~~`ContinuumMultiplicity.manuscriptContinuumMultiplicity`~~ → **CLOSED 2026-08-16** | § "Undecidability of MF recognition", multiplicity paragraph citing `\cite{Neumann37}` | **None.** The family is constructed: `Monsters/NeumannContinuum`, lamplighters over coset spaces of the free group. | Closed — the badged declaration now exhibits the family as a conjunct; see §2 |
+| 3 | `FullMFRadicalEndpoint.exists_nontrivial_twoGenerated_finitelyPresented_torsionFree_kazhdan_fullMFRadical` | conditional-data | § "Questions", torsion-free f.p. non-MF group | **Total** for that answer. Printed caveat is now "No unconditional torsion-free finitely presented non-MF group is proved here" (the older wording "neither is an unconditional statement" is no longer in the TeX). | `Monsters/FournierFacioRealization.lean`; scope fixed by `docs/HULL_ROUTING_AUDIT_2026-08-16.md`; six-condition split recorded in `Sofic/FiveConditionInsufficiency.lean` |
+| 4 | `FullMFRadicalEndpoint.exists_nontrivial_group_with_every_nontrivial_quotient_not_isCDEOperatorMF` | conditional-data | same | as above | same |
+| 3b | `orderPreserving_quotient_not_subsingleton` | conditional-data | § "Questions", the Hull order-preservation sentence | **None beyond row 3.** The statement is a refutation universally quantified over data, and the printed sentence it certifies is itself conditional ("would supply the sixth condition"). | `Sofic/TorsionFreeFullMFRadical.OrderPreservingRoutingData` — row exists only because the zero-input repair moved the binders after the colon; drop it if the detector reports no finding |
 
-**Rows 3–4, hypothesis change of 2026-08-16.** Both endpoints now take
-`Nonempty (FiveConditionRoutingData D)` — the manuscript's five printed
-conditions and nothing else — rather than `Nonempty (DefectRoutingData D)`,
-because `DefectRoutingData` carries a sixth field (`protected_ne_one`) that the
-printed list does not grant. The five-condition package is *not* undischarged:
-`FiveConditionInsufficiency.trivialQuotient` satisfies all five with the trivial
-group, for every defect datum. The rows stay `conditional-data` because the
-remaining input, `FournierFacioDefectData`, is built nowhere in the corpus —
+**Rows 3–4, the six-condition correction of 2026-08-16.** The manuscript now
+prints **six** conditions, not five: it adds "`q` does not kill the
+distinguished element of the datum, so that `Q ≠ 1`", and states in print that
+this sixth condition does not follow from the other five. That is exactly the
+field `DefectRoutingData.protected_ne_one`, so `DefectRoutingData` is now 1:1
+with the printed hypothesis list, and the endpoints badged at that sentence are
+the `exists_nontrivial_*` pair, which conclude `Nontrivial Q`. Rows 3–4 are
+repointed accordingly; the former declaration names are no longer cited
+anywhere in the TeX.
+
+`FiveConditionRoutingData` did not disappear — it now models "the other five",
+the object of the printed insufficiency paragraph, and
+`FiveConditionInsufficiency.trivialQuotient` inhabits it with the trivial group
+for every defect datum. That is what rows 3a and 3b certify.
+
+The rows stay `conditional-data` because `DefectRoutingData` and
+`FournierFacioDefectData` are built nowhere in the corpus —
 `Sofic/ConcreteCompressionSource.lean` deliberately builds only the weaker
-`CompressionSourceData`, which has no simple subgroup and no property-(T) field.
-The printed sentence "Meeting the five conditions at once is the open part" is
-refuted by `FiveConditionInsufficiency.not_forall_nontrivial_quotient`: what is
-open is meeting them with a *nontrivial* `Q`.
+`CompressionSourceData`, which has no simple subgroup and no property-(T)
+field.
 
 Rows 3–4 were audited against the literature on 2026-08-16
 (`docs/HULL_ROUTING_AUDIT_2026-08-16.md`, read from Hull, *Small cancellation
@@ -168,7 +176,7 @@ skeleton cannot supply it, since that action fixes the end of the telescope and
 an acylindrical action is never quasi-parabolic (Osin, Theorem 1.1); Hull's own
 HNN result (Proposition 6.2) covers extensions over cyclic subgroups, not over
 the whole Kazhdan base.  These rows therefore stay, with that sharper reason.
-| 5 | `ClosedEnvelopeCompression.manuscriptEnvelopeCompressionBlind` | literature-input | `rem:chaincondition`, Zariski-envelope sentence | **Total** for the algebraic-envelope sentence; the tensor-rigidity badge beside it is unaffected. | `Algebra/ZariskiClosedSubgroup.lean`; the `Algebra/ZariskiDescendingChain` it cites **does not exist yet** |
+| 5 | ~~`ClosedEnvelopeCompression.manuscriptEnvelopeCompressionBlind`~~ → **CLOSED 2026-08-16** | `rem:chaincondition`, Zariski-envelope sentence | **None.** The chain condition is proved: `Algebra/ZariskiDescendingChain.wellFoundedLT_isZClosedSubgroup`, from the Hilbert basis theorem. | Closed — the badged declaration now exhibits the `Closed` package as a conjunct; see §5 |
 | 6 | `MatricialStabilityRadical.actualCoronaMFResidual_eq_fdUnitaryResidual` | open-predicate | `prop:stabradical` clause 2 | Clause 2 is *printed* conditional, so no print/Lean mismatch — but the hypothesis is satisfied by no group in the corpus, so the clause is never applied. | none seen |
 | 7 | `MatricialStabilityRadical.not_isCDEOperatorMF_of_stable_of_fdResidual_ne_bot` | open-predicate | `prop:stabradical` clause 3 | as above | none seen |
 | 8 | `MatricialStabilityRadical.actualCoronaMFResidual_le_fdUnitaryResidual` | header-hygiene | `prop:stabradical` clause 1 | None mathematically; the theorem is true and unconditional. | — |
@@ -289,12 +297,29 @@ theorem manuscriptContinuumMultiplicity :
         Cardinal.mk ι = Cardinal.continuum → …
 ```
 
-No corpus-defined name appears here, so the structural rule cannot see it; it
-is pinned by hand in `KNOWN_CONDITIONAL_DECLARATIONS`
-(`scripts/check_non_mf_unconditional.py`). The premises jointly *are* Neumann
-1937, and the corpus never exhibits such a family. The module docstring is
-explicit: "The existence of such a continuum family is B. H. Neumann's, and it
-is not proved here: it enters as a hypothesis."
+**CLOSED 2026-08-16.**  The snippet and description above are the state before
+the construction landed, and are kept only so the closure is legible.
+
+What was said: no corpus-defined name appears, so the structural rule cannot
+see it; the premises jointly *are* Neumann 1937; the corpus never exhibits such
+a family; and the module docstring said so.
+
+What is true now: the corpus builds one.  `Monsters/NeumannAlternatingFamily`
+constructs `A₅ ≀_{F₂/markedSubgroup S} F₂` for every `S ⊆ ℕ`, and
+`Monsters/NeumannContinuum.neumann_continuum_of_finitely_generated_groups`
+extracts a continuum-sized pairwise nonisomorphic transversal by the same
+countable-fibres argument the manuscript uses one level up.  Neumann's sharper
+two-generator form is not needed — the counting step consumes only `Group.FG` —
+so nothing is quoted anywhere in the chain.
+
+`manuscriptContinuumMultiplicity` was restructured to *state* that, rather than
+have a second declaration badged beside it: it is now three conjuncts with no
+premises — the deduction (the half the manuscript says "uses only that the `N`
+are finitely generated"), the existence of the family, and the unconditional
+headline.  The counting step moved one module up to
+`Sofic/ContinuumMultiplicityCore`, under the same namespace, so the badged
+declaration could sit downstream of the construction; callers were unaffected.
+The hand-written `KNOWN_CONDITIONAL_DECLARATIONS` entry was deleted.
 
 What is genuinely proved on top of it is the manuscript's own counting step
 (countable groups have countably many f.g. subgroups, so the fibres are
@@ -352,27 +377,35 @@ theorem manuscriptEnvelopeCompressionBlind :
         ∀ [WellFoundedLT {H : Subgroup G // Closed H}] …
 ```
 
-Same shape as row 2 and invisible to the same rule: every premise is in
-Mathlib vocabulary (`Subgroup … → Prop`, `WellFoundedLT`), so no corpus-defined
-name appears and the structural test has nothing to bite on. It is pinned by
-hand in `KNOWN_CONDITIONAL_DECLARATIONS`.
+**CLOSED 2026-08-16.**  The description above is the state before the Zariski
+machinery landed, and every clause of it is now wrong; it is kept only so the
+closure is legible.
 
-The two premises jointly *are* the classical theorem that Zariski closed
-subgroups of `GL(V)` satisfy the descending chain condition, and the corpus
-exhibits no `Closed` for which the instance holds. `rem:chaincondition` says
-this in as many words — "That the closed subgroups of `GL(V)` in the Zariski
-topology satisfy the chain condition is classical, and is the input the badge
-quantifies over rather than proves" — one line below the badge.
+What was said: the two premises jointly *are* the classical theorem that
+Zariski closed subgroups of `GL(V)` satisfy the descending chain condition, the
+corpus exhibits no `Closed` for which the instance holds, and
+`Algebra/ZariskiDescendingChain` "does not exist at this revision".
 
-What *is* proved is the poset deduction: a conjugation-equivariant monotone
-envelope landing in a well-founded family is fixed by one-sided compression.
-Real content, and correctly badged as `\leanconditional` rather than
-`\leanverified`.
+What is true now:
 
-A peer session is writing `Algebra/ZariskiClosedSubgroup.lean` against exactly
-this gap. Its docstring defers the chain condition itself to
-`Algebra/ZariskiDescendingChain`, which does not exist at this revision, so the
-item is open and in progress.
+* `Algebra/ZariskiDescendingChain` exists, compiles, and proves
+  `wellFoundedLT_isZClosedSubgroup` as an `instance`, from the Hilbert basis
+  theorem through the ideal--variety pair — the ground `rem:chaincondition`
+  names.
+* `Algebra/ZariskiEnvelopeEndpoint.manuscriptZariskiEnvelopeData` exhibits the
+  whole premise tuple at it, so the corpus does exhibit a `Closed`.
+* `manuscriptEnvelopeCompressionBlind` was restructured so that it *states* the
+  discharge rather than leaving it beside: it is now three conjuncts with no
+  premises — the abstract principle, the inhabitation of that principle's
+  premises for `GL n k` over any field, and the displayed identity
+  `closure of σ(tΓt⁻¹) = closure of σ(Γ)` for an arbitrary representation.
+* The hand-written `KNOWN_CONDITIONAL_DECLARATIONS` entry was deleted.
+* The sentence attributed to `rem:chaincondition` above — "is the input the
+  badge quantifies over rather than proves" — **does not occur in the
+  manuscript** and appears to have been transcribed from an early draft.  The
+  remark says only that the chain condition comes "from the Hilbert basis
+  theorem".  The same fabricated quote had been copied into the gate roster and
+  into `ZariskiDescendingChain`'s own docstring; both are corrected.
 
 ### 6--7. Point-norm matricial stability
 

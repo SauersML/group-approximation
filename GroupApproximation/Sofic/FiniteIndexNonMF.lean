@@ -28,7 +28,7 @@ is isomorphic to it but not equal.  Everything here is stated in the first
 presentation, which is the one `IsOperatorMF` is defined in.
 
 That the invisible element lies in the finite residual is the chain of Theorem
-41.3, `Rad_MF ≤ Rad_fd ≤ Res_fin`; it is carried here as a hypothesis rather
+41.3, `Res_MF ≤ Rad_fd ≤ Res_fin`; it is carried here as a hypothesis rather
 than re-derived, because the repository proves that chain for the C*-presentation
 of the radical.
 

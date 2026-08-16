@@ -1,3 +1,4 @@
+import GroupApproximation.Sofic.CollapseWordMetricBridge
 import GroupApproximation.Sofic.InvolutionCollapseCocycle
 
 /-!
@@ -402,7 +403,7 @@ into an absolute constant: the limiting profile of the collapse family
 is at most `160 * log 2 / κ ^ 2` --- a bound depending on nothing but
 the Kazhdan constant of `(S, κ)`.  In particular it is independent of
 `|S|`, of the group, and of the model sequence. -/
-theorem collapse_profile_le
+theorem collapse_profile_le_of_data
     (hgen : Subgroup.closure (S : Set Γ) = ⊤)
     (hsymm : ∀ g ∈ S, g⁻¹ ∈ S)
     (hVinv : ∀ n γ, ExactInvolutionLifts.IsExactInvolution (V n γ))
@@ -420,6 +421,53 @@ theorem collapse_profile_le
   rw [show (32 : ℝ) * Real.log 2 * (4 + 1) = 160 * Real.log 2 from
     by ring] at hgv
   exact hgv
+
+/-- **The explicit collapse profile bound, with every input bound after the
+colon.**  This is the declaration the manuscript badges at
+`eq:profile-explicit`, and the reason it is stated this way rather than over
+section variables is that a badge on a declaration carrying leading binders
+certifies a *parameterized* statement, not the printed one; the zero-input gate
+`check_non_mf_zero_input` enforces exactly that.  The mathematics is
+`collapse_profile_le_of_data`, which is this theorem with the data in leading
+position.
+
+The bound is `160 log 2 / κ²`, the first inequality of `eq:profile-explicit`.
+
+The displacement vector is the **printed** one, `CollapseWordMetric.bVec`: the
+`b(γ)` of `eq:profile-explicit` is the limiting cocycle of the printed `b_n`,
+and the badge should name what the manuscript displays.  Nothing is lost
+crossing over — the capped and printed families agree at all large stages for
+each fixed mover, so their limiting seminorms are equal — but the crossing is
+made here rather than left as an inference for the reader. -/
+theorem collapse_profile_le :
+    ∀ {Γ E : Type} [Group Γ] [Group E]
+      (B : OpAlmostRepresentation E) (iota : Γ →* E) (k : E)
+      (V : ∀ n, Γ → Matrix (B.model n) (B.model n) ℂ) (S : Finset Γ)
+      (_hgen : Subgroup.closure (S : Set Γ) = ⊤)
+      (_hsymm : ∀ g ∈ S, g⁻¹ ∈ S)
+      (_hVinv : ∀ n γ, ExactInvolutionLifts.IsExactInvolution (V n γ))
+      (_hVcomm : ∀ n γ₁ γ₂, V n γ₁ * V n γ₂ = V n γ₂ * V n γ₁)
+      (_hVconv : ∀ γ, OpNormVanishing B (fun n ↦ V n γ - raw B iota k n γ))
+      (_hmark : ∃ N, ∀ n ≥ N, 1 ≤ kNorm B V S n)
+      {κ : ℝ} (_hpair : IsKazhdanPair.{0, 0} Γ S κ) (γ : Γ),
+      seqNormSq (fun n ↦ CollapseWordMetric.bVec B V S n γ) ≤
+        160 * Real.log 2 / κ ^ 2 := by
+  intro Γ E _ _ B iota k V S hgen hsymm hVinv hVcomm hVconv hmark κ hpair γ
+  have hcap : IsBoundedSeq (fun n ↦ bVec B V S hgen hsymm n γ) := by
+    refine ⟨Real.sqrt (4 * (wordLen S hgen hsymm γ : ℝ)), fun n ↦ ?_⟩
+    have hsq := norm_bVec_sq_le B V S hgen hsymm hVinv hVcomm n γ
+    have hnn := norm_nonneg (bVec B V S hgen hsymm n γ)
+    nlinarith [Real.sq_sqrt (by positivity :
+        (0 : ℝ) ≤ 4 * (wordLen S hgen hsymm γ : ℝ)),
+      Real.sqrt_nonneg (4 * (wordLen S hgen hsymm γ : ℝ))]
+  have hprn : IsBoundedSeq (fun n ↦ CollapseWordMetric.bVec B V S n γ) :=
+    CollapseWordMetric.exists_norm_bVec_bound B iota k V S hgen hsymm hVinv
+      hVcomm hVconv γ
+  rw [← seqNormSq_congr_of_eventually_eq hcap hprn
+    (CollapseWordMetricBridge.eventually_profile_bVec_eq B iota k V S hgen
+      hsymm hVinv hVcomm hVconv γ)]
+  exact collapse_profile_le_of_data B iota k V S hgen hsymm hVinv hVcomm
+    hVconv hmark hpair γ
 
 /-- The sharper instance of the same threading.  Each individual
 generator value is at most the total limiting mass `4`, so

@@ -28,8 +28,6 @@ import GroupApproximation.Computability.PresentationCodeCompleteness
 import GroupApproximation.Computability.OperatorMFMarkovAtCodes
 import GroupApproximation.Computability.StringRewriting
 import GroupApproximation.Computability.UniversalCodeHalting
-import GroupApproximation.Computability.UniversalMachineInit
-import GroupApproximation.Computability.UniversalMachineUndecidable
 import GroupApproximation.Computability.UniversalCode
 import GroupApproximation.Computability.RewriteMonoid
 import GroupApproximation.Computability.RewriteInvariants
@@ -855,7 +853,6 @@ import GroupApproximation.Sofic.RepresentationCategoryTwins
 import GroupApproximation.Computability.ListBlankCanonical
 import GroupApproximation.Computability.PostMachineTM0
 import GroupApproximation.Computability.TM0WordProblem
-import GroupApproximation.Computability.FiniteMachineWordProblem
 import GroupApproximation.Sofic.ActionFormMoverEstimate
 import GroupApproximation.Sofic.FullRadicalClosureProperties
 import GroupApproximation.Sofic.WreathFinitePresentationObstruction
@@ -889,7 +886,6 @@ import GroupApproximation.Sofic.CompressionUniverseTransfer
 import GroupApproximation.Sofic.SoundIterateInstances
 import GroupApproximation.Sofic.ContinuumMultiplicityCore
 import GroupApproximation.Sofic.PrintedPreliminaryEstimates
-import GroupApproximation.Sofic.RelativeCornerRank
 import GroupApproximation.Sofic.LiteralSignFreeRadicalReduction
 import GroupApproximation.Sofic.SoficEnvelopeSimplicity
 import GroupApproximation.Sofic.SoficEnvelopeWitness
@@ -915,7 +911,15 @@ import GroupApproximation.Sofic.CollapseWordMetricBridge
 import GroupApproximation.Analysis.MFStablyFinite
 import GroupApproximation.Criterion.StandardRepCommutant
 import GroupApproximation.Monsters.NeumannNormalSubgroups
+import GroupApproximation.Sofic.IntrinsicCompressionFiniteStage
+import GroupApproximation.Computability.UniversalMachineInit
+import GroupApproximation.Sofic.CollapseTransportEndpoint
+import GroupApproximation.Sofic.CollapsePrintedDiagonalization
 import GroupApproximation.Computability.MachineRestrict
+import GroupApproximation.Sofic.CliffordLampGraphLocalFiniteness
+import GroupApproximation.Algebra.FreePrecursorPresentation
+import GroupApproximation.Computability.FiniteMachineWordProblem
+import GroupApproximation.Computability.UniversalMachineUndecidable
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group

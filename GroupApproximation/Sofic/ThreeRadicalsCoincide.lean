@@ -7,7 +7,7 @@ Three radicals are attached to a group: the MF radical (invisible to every
 matrix-corona representation), the finite-dimensional unitary residual
 (invisible to every finite-dimensional unitary representation), and the finite
 residual (invisible to every finite quotient).  In general they only sit in a
-chain, `Rad_MF ≤ Rad_fd ≤ Res_fin`, proved in
+chain, `Res_MF ≤ Rad_fd ≤ Res_fin`, proved in
 `Sofic.FiniteDimensionalResidual`.
 
 This file supplies the mechanism that collapses the chain, in the abstract form
@@ -84,7 +84,7 @@ finite-dimensional unitary residual, the finite residual, and `ker Φ` all
 coincide.
 
 The single assumed inclusion is the exactness computation; the reverse
-inclusions travel around the chain `Rad_MF ≤ Rad_fd ≤ Res_fin ≤ ker Φ`. -/
+inclusions travel around the chain `Res_MF ≤ Rad_fd ≤ Res_fin ≤ ker Φ`. -/
 theorem three_radicals_eq (Φ : G →* P) (hP : IsResiduallyFinite P)
     (hMF : Φ.ker ≤ actualCoronaMFResidual G) :
     actualCoronaMFResidual G = fdUnitaryResidual G ∧

@@ -313,8 +313,7 @@ printed: for a homomorphism `σ : H → GL(V)`, a subgroup `Γ ≤ H` and a
 compressor `t` with `tΓt⁻¹ ≤ Γ`, the Zariski closures of `σ(tΓt⁻¹)` and of
 `σ(Γ)` coincide.  This is
 the displayed `\overline{\sigma(t\Gamma t^{-1})}^{\,Z}=\overline{\sigma(\Gamma)}^{\,Z}`
-of `rem:chaincondition` in `non_mf_groups_exist.tex` (line 2561 as of
-2026-08-16). -/
+of `rem:chaincondition` in `non_mf_groups_exist.tex` (navigate by the label). -/
 theorem manuscriptZariskiClosureOfRepresentation {H : Type*} [Group H]
     (σ : H →* GeneralLinearGroup n k) (Γ : Subgroup H) (t : H)
     (ht : Γ.map (MulAut.conj t).toMonoidHom ≤ Γ) :

@@ -443,7 +443,18 @@ instance cStarAlgebraBundleCoeSort : CoeSort CStarAlgebraBundle.{u} (Type u) :=
 By Kirchberg's theorem this is equivalent, for separable algebras, to
 exactness; and by Gelfand--Naimark it is equivalent to the textbook form in
 which the target is required to be `B(H)`.  Neither equivalence is formalized:
-this is a *definition*, and the name deliberately avoids the word `exact`. -/
+this is a *definition*, and the name deliberately avoids the word `exact`.
+
+**Do not badge the manuscript's exactness sentence with this predicate.**  It
+is the most inviting mistake available in this lane, because unlike `IsExact`
+this predicate *is* definable today, so a future reader will find a statable
+proxy sitting where the unstatable claim should be.  Proving
+`IsNuclearlyEmbeddable (Cred W)` would not establish what the manuscript
+prints: the bridge between the two is Kirchberg's theorem, which is not
+proved here, so a badge pointing at it would certify a true statement that is
+not the printed one --- the exact defect class this development exists to
+catch.  The manuscript's claim needs `IsExact`, and `IsExact` needs `⊗_min`
+and a noncommutative C⋆-quotient; see the standing record above. -/
 def IsNuclearlyEmbeddable (A : Type u) [NonUnitalCStarAlgebra A] : Prop :=
   ∃ (B : CStarAlgebraBundle.{u}) (π : A →⋆ₙₐ[ℂ] B),
     Function.Injective π ∧ IsNuclearMap ((π : A →ₗ[ℂ] B))

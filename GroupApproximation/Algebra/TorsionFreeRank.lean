@@ -19,7 +19,7 @@ import Mathlib.SetTheory.Cardinal.Basic
 # Torsion-free rank of an abelian group, and of an abelianization
 
 The multiplicity paragraph of the manuscript (`non_mf_groups_exist.tex`,
-lines 3244--3253) separates the groups `E × ℤ^k` from one another by the
+anchor on "distinct torsion-free ranks") separates the groups `E × ℤ^k` by the
 invariant it names there: *the torsion-free rank of the abelianization*.
 This file supplies that invariant and the two facts the paragraph uses
 about it --- additivity over direct products, and finiteness on finitely

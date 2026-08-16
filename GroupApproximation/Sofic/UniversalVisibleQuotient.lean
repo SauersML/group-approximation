@@ -89,7 +89,7 @@ theorem actualCoronaMFResidual_le_ker_of_isCDEOperatorMF
     Subgroup.mem_bot] at hin
   exact hin
 
-/-- **§42.5.**  Every countable MF target sees `G` and `G ⧸ Rad_MF(G)` as the
+/-- **§42.5.**  Every countable MF target sees `G` and `G ⧸ Res_MF(G)` as the
 same group, in the sense that their Hom-sets into it correspond canonically. -/
 theorem comp_mk'_bijective_of_isCDEOperatorMF_target
     {P : Type v} [Group P] [Countable P] (hP : IsCDEOperatorMF P) :
