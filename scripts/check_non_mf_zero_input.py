@@ -22,7 +22,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
-from lean_decls import MODIFIERS
+from lean_decls import MODIFIERS, _strip_block_comments
 
 
 LEAN_REF = re.compile(r"\\leanverified\{([^}]+)\}\{([^}]+)\}")
@@ -35,6 +35,14 @@ KEYWORDS = ("theorem", "lemma", "def", "abbrev", "instance")
 
 
 def declaration_is_zero_input(source: str, short_name: str) -> bool:
+    # Comments are stripped before the search.  A module docstring may quote a
+    # declaration it does not contain -- a fenced sketch of a step that is not
+    # yet proved is the common case -- and a scanner reading raw source cannot
+    # tell that quotation from the real thing.  It would then report a badge as
+    # checked whose declaration does not exist at all, which is a worse failure
+    # than the one this gate was written to catch.  `check_non_mf_unconditional`
+    # already strips for the same reason.
+    source = _strip_block_comments(source)
     declaration = re.compile(
         rf"(?m)^\s*{MODIFIERS}(?:{'|'.join(KEYWORDS)})\s+(?:[A-Za-z0-9_'.]+\.)?"
         rf"{re.escape(short_name)}\b"
