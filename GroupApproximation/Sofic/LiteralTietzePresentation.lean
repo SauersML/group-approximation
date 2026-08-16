@@ -626,22 +626,35 @@ def markedEquivTietze : MarkedGroup ≃* TietzeGroup where
 
 /-! ## The relator count -/
 
+/-- The elimination isomorphism sends each of the six letters to the
+generator it names. -/
+theorem markedEquivTietze_symm_of (i : SixGenerator) :
+    markedEquivTietze.symm (PresentedGroup.of i) = sixGenerator i := by
+  show toMarked (tietzeWord (FreeGroup.of i)) = sixGenerator i
+  rw [toMarked_tietzeWord, sixGeneratorHom_of]
+
 /-- **Six generators, thirty-two relators.**  The literal group `E` of the
-manuscript is presented on the six letters `v₁,x,y,z,t,c` by the list of
-relators left after the Tietze elimination, and that list has exactly the
-displayed length.  Presenting over a list rather than a finite set is what
-makes the count exact: a `Finset` would identify any two relators that
-happened to coincide as words, and that is a question about free-group
-words this development deliberately never decides. -/
+manuscript is presented by a list of exactly thirty-two relators on the
+six letters `v₁,x,y,z,t,c` --- and the isomorphism carries each letter to
+the generator it names, which is what makes them *these* six generators
+rather than merely six of them.
+
+Presenting over a list rather than a finite set is what makes the count
+exact: a `Finset` would identify any two relators that happened to
+coincide as words, and that is a question about free-group words this
+development deliberately never decides. -/
 theorem exists_sixGenerator_thirtyTwo_presentation :
     ∃ L : List (FreeGroup SixGenerator), L.length = 32 ∧
-      Nonempty (MarkedGroup ≃* PresentedGroup {r | r ∈ L}) :=
-  ⟨tietzeRelatorList, tietzeRelatorList_length, ⟨markedEquivTietze⟩⟩
+      ∃ e : PresentedGroup {r | r ∈ L} ≃* MarkedGroup,
+        ∀ i : SixGenerator, e (PresentedGroup.of i) = sixGenerator i :=
+  ⟨tietzeRelatorList, tietzeRelatorList_length,
+    markedEquivTietze.symm, markedEquivTietze_symm_of⟩
 
 /-- Closed form of the Tietze statement. -/
 theorem manuscriptTietzeSixGeneratorPresentation :
     ∀ _ : Unit, ∃ L : List (FreeGroup (Fin 6)), L.length = 32 ∧
-      Nonempty (MarkedGroup ≃* PresentedGroup {r | r ∈ L}) :=
+      ∃ e : PresentedGroup {r | r ∈ L} ≃* MarkedGroup,
+        ∀ i : Fin 6, e (PresentedGroup.of i) = sixGenerator i :=
   fun _ ↦ exists_sixGenerator_thirtyTwo_presentation
 
 end
