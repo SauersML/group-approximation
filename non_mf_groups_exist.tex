@@ -80,9 +80,11 @@
 % printed letters.  Verified against the .aux of a full build:
 %
 %     thm:A       -> Theorem A          thm:signfree -> Theorem B
-%     thm:D       -> Theorem C          thm:E        -> Theorem D
+%     thm:reduced -> Theorem C          thm:witnesssofic -> Theorem D
+%       (alias thm:D)                     (alias thm:E)
 %     thm:Esofic  -> Theorem E
-%     thm:B       -> Theorem 3.3        thm:C        -> Theorem 13.1
+%     thm:exactfd -> Theorem 3.3        thm:cyclic   -> Theorem S8.1
+%       (alias thm:B)                     (alias thm:C)
 %
 % so thm:B and thm:C are ordinary section-numbered theorems, not
 % letters.  Every cross-reference goes through \ref, so the printed text
@@ -405,18 +407,10 @@ Section~\ref{sec:necessity} \cite{Fritz,SlofstraVidick}.
 Bachner--Dogon--Lubotzky develop the operator-norm rounding,
 compression, and polar-correction procedures used in
 Section~\ref{sec:conj} \cite[Lemmas~2.2--2.3, Proposition~2.4, and the
-proof of Proposition~1.5]{BDL}; in the proof of their Proposition~1.6
-they treat the finite-central case by a character-isotypic corner and
-reduce the general case of a finite normal subgroup to it through the
-finite-index centralizer.  Theorem~\ref{thm:criterion} below combines
-that corner with the one-sided conjugation of a Kazhdan subgroup: if
-$F\trianglelefteq H$ is finite and $F\subseteq N_{\mathrm{conj}}$, then
-every homomorphism $H\to\U(\mathcal Q)$ maps every element of $F$ to the
-identity.  Central
-extensions and rigidity of approximate representations also drive the
-Frobenius obstruction of De~Chiffre--Glebsky--Lubotzky--Thom
-\cite{DGLT}; finite-target approximation and extension results for weak
-soficity appear in \cite{GR,Gl19}.
+proof of Proposition~1.5]{BDL}, and handle a finite normal subgroup by
+a character-isotypic corner \cite[proof of Proposition~1.6]{BDL};
+Theorem~\ref{thm:criterion} combines that corner with one-sided
+conjugation of a property-\textup{(T)} subgroup.
 
 The passage from operator norm to the Hilbert--Schmidt conjugation
 representation belongs to the $\pi\otimes\bar\pi$ framework of Bekka
@@ -573,30 +567,58 @@ $\sigma^*\sigma=q+(1-q)=1$, so $\sigma$ is an isometry.  Finiteness
 makes $\sigma$ unitary, and $\sigma\sigma^*=p+(1-q)=1$ gives $p=q$.
 \end{proof}
 
-\begin{lemma}[the norm ultraproduct]\label{lem:ultrafinite}
-Let $(K_n)$ be finite-dimensional Hilbert spaces, $\omega$ a free
-ultrafilter on $\N$, $K_\omega$ the Hilbert-space ultraproduct and
-$B_\omega=\prod_\omega B(K_n)$ the norm ultraproduct, acting on
-$K_\omega$ by $[A_n]_\omega[\xi_n]_\omega=[A_n\xi_n]_\omega$.  Then the
-action is faithful, $B_\omega$ is a finite $C^*$-algebra, and for
-projections $P,Q\in B_\omega$ the inclusion
-$\operatorname{ran}P\subseteq\operatorname{ran}Q$ is equivalent to
-$P\le Q$.
+\begin{lemma}[finiteness of a norm quotient of matrix blocks]%
+\label{lem:ultrafinite}
+Let $(K_n)$ be finite-dimensional Hilbert spaces and let
+\[
+ B_{\mathrm c}=\prod_nB(K_n)\Big/\bigoplus_nB(K_n)
+\]
+be the quotient of the bounded family algebra by the $c_0$-sum.  Then
+$B_{\mathrm c}$ is a finite $C^*$-algebra: every $\sigma\in
+B_{\mathrm c}$ with $\sigma^*\sigma=1$ satisfies $\sigma\sigma^*=1$.
 \leanverified{Sofic/UltraproductDedekindFinite}{GroupApproximation.kt_06_ultraproduct_finite}
 \end{lemma}
 
 \begin{proof}
-If $A=[A_n]_\omega\ne0$ then $\lim_\omega\opnorm{A_n}=\delta>0$, and
-unit vectors $\xi_n$ with $\lVert A_n\xi_n\rVert\ge\opnorm{A_n}-1/n$
-give $\lVert A[\xi_n]_\omega\rVert=\delta$, so the action is faithful.
-Consequently $\operatorname{ran}P\subseteq\operatorname{ran}Q$ makes
-$QP$ and $P$ act identically, whence $QP=P$, that is, $P\le Q$.  If
-$\sigma=[\sigma_n]_\omega$ satisfies $\sigma^*\sigma=1$ then
-$\opnorm{\sigma_n^*\sigma_n-1}\to0$ along $\omega$; each $\sigma_n$ acts
-on a finite-dimensional space, so polar correction replaces it by a
-unitary $w_n$ with $\opnorm{\sigma_n-w_n}\to0$, and
-$\sigma=[w_n]_\omega$ is unitary.
+Lift $\sigma$ to a bounded family $(\sigma_n)$.  Then
+$\opnorm{\sigma_n^*\sigma_n-1}\to0$, so for all large $n$ the Gram
+defect is at most $\tfrac12$ and $\sigma_n^*\sigma_n$ is invertible;
+each $\sigma_n$ acts on a finite-dimensional space, so polar correction
+replaces it by a unitary $w_n=\sigma_n(\sigma_n^*\sigma_n)^{-1/2}$ with
+$\opnorm{\sigma_n-w_n}\to0$.  Hence $\sigma$ is the class of $(w_n)$,
+and $w_nw_n^*=1$ at every such $n$ gives $\sigma\sigma^*=1$.
 \end{proof}
+
+\paragraph{The ultraproduct form.}
+The transport proof below works instead in the norm ultraproduct along
+a free ultrafilter $\omega$ on $\N$: the Hilbert-space ultraproduct
+$K_\omega$, and
+$B_\omega=\prod_\omega B(K_n)$ acting on it by
+$[A_n]_\omega[\xi_n]_\omega=[A_n\xi_n]_\omega$.  Three properties are
+used, and all three are elementary.
+\begin{enumerate}
+\item \emph{Finiteness.}  The proof of Lemma~\ref{lem:ultrafinite}
+applies verbatim with ``for all large $n$'' replaced by ``on a set
+belonging to $\omega$'', so $B_\omega$ is finite as well.
+\item \emph{Faithfulness.}  If $A=[A_n]_\omega\ne0$ then
+$\lim_\omega\opnorm{A_n}=\delta>0$, and unit vectors $\xi_n$ with
+$\lVert A_n\xi_n\rVert\ge\opnorm{A_n}-1/n$ give
+$\lVert A[\xi_n]_\omega\rVert=\delta$, so the action of $B_\omega$ on
+$K_\omega$ is faithful.
+\item \emph{Ranges and order.}  Consequently, for projections
+$P,Q\in B_\omega$, the inclusion
+$\operatorname{ran}P\subseteq\operatorname{ran}Q$ makes $QP$ and $P$
+act identically on $K_\omega$, whence $QP=P$, that is, $P\le Q$; the
+converse is immediate.
+\end{enumerate}
+Only the first of the three is stated as a numbered lemma, and it is
+stated for $B_{\mathrm c}$ rather than $B_\omega$, because that is the
+form the accompanying development certifies.  The machine-checked route
+to Theorem~\ref{thm:kazhdan-transport} is the finite-stage proof of
+Section~\ref{app:finite-stage}, which reads an inclusion of ranges back
+as an algebraic absorption identity and never uses faithfulness; so
+(2) and (3), and the ultrafilter form of (1), are printed here with
+their proofs and are not part of the formalization.
 
 \subsection*{The exact case}
 
@@ -717,8 +739,10 @@ $g\mapsto\Ad U_n(g)$ an operator-norm asymptotic representation on
 these Hilbert spaces.
 
 \emph{The ultraproduct.}  Let $K_\omega$ and
-$B_\omega=\prod_\omega B(K_n)$ be as in Lemma~\ref{lem:ultrafinite};
-write $[\,\cdot\,]_\omega$ for classes in either.  By that lemma the
+$B_\omega=\prod_\omega B(K_n)$ be as in the paragraph following
+Lemma~\ref{lem:ultrafinite};
+write $[\,\cdot\,]_\omega$ for classes in either.  By the three
+properties recorded there, the
 action is faithful, $B_\omega$ is finite in
 the sense fixed above --- every isometry in it is a unitary, a
 condition on the algebra and not on its dimension, which is
@@ -761,7 +785,7 @@ $\mathrm{Fix}$ is fixed by each $\pi(s\iota(\gamma)s^{-1})$; and $\eta$
 is fixed by all $\pi(s\iota(\gamma)s^{-1})$ exactly when
 $V^*\eta\in\mathrm{Fix}$.  Hence
 $\operatorname{ran}P=\mathrm{Fix}\subseteq V\,\mathrm{Fix}
-=\operatorname{ran}Q$, so $P\le Q$ by Lemma~\ref{lem:ultrafinite}.  The
+=\operatorname{ran}Q$, so $P\le Q$ by property~(3) above.  The
 element $r=V^*Q$ satisfies $r^*r=Q$ and $rr^*=V^*QV=P$, so $P\sim Q$.
 Since $B_\omega$ is finite, Lemma~\ref{lem:finitecompare} gives $Q=P$.
 
@@ -3110,12 +3134,13 @@ the inclusion supplied by $sLs^{-1}\le L$, namely
 \]
 there $P$ is the projection of $K_\omega$ onto $\operatorname{Fix}\pi(L)$,
 the range of $Q=\pi(s)P\pi(s)^{*}$ is $\operatorname{Fix}\pi(sLs^{-1})$,
-$P\le Q$, and $Q=P$ by Lemmas~\ref{lem:finitecompare}
-and~\ref{lem:ultrafinite}.  That chain is independent of $(x_n)$,
+$P\le Q$, and $Q=P$ by Lemma~\ref{lem:finitecompare} together with the
+finiteness and range properties of $B_\omega$ recorded after
+Lemma~\ref{lem:ultrafinite}.  That chain is independent of $(x_n)$,
 and multiplying each coordinate inner product by a positive scalar ---
 here passing from $\tr_{d_n}$ to $\operatorname{Tr}$ --- changes neither
 the operator norms of the adjoint actions nor the comparison of
-projections, so Lemma~\ref{lem:ultrafinite} applies unchanged.
+projections, so those properties apply unchanged.
 
 Hence $y\in\operatorname{Fix}\pi(L)$, so $b(a)=y-\pi(a)y=0$ for every
 $a\in L$, contradicting \eqref{eq:limit-mass}.  Therefore
@@ -3635,7 +3660,11 @@ an exact sequence
 \]
 whose kernel and quotient are MF, while $W$ is not.
 The Clifford kernel is locally finite, LEF, sofic, and MF, while the
-group $W$ is finitely generated and non-MF.
+group $W$ is finitely generated and non-MF.  Nearby approximation
+properties do have extension permanence of this shape: an extension of
+a residually finite group by a residually finite group is weakly sofic
+\cite{Gl19}, and weak soficity is detected by finite targets
+\cite{GR}.
 \leanverified{Sofic/LiteralWitnessConsequences}{GroupApproximation.LiteralWitnessConsequences.literalWitness_locallyFiniteKernel_nonMF}
 
 \begin{proof}
