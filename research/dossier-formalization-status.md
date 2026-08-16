@@ -28,12 +28,12 @@ formalized in this pass; **TODO** not yet formalized.
 | 9.4 | ascending HNN is not property (T) | DONE-NEW | `Kazhdan/IntegerNotKazhdan.not_hasKazhdanPropertyT_multiplicative_int`, `Sofic/AscendingHNNNotKazhdan.not_hasKazhdanPropertyT_vertical` |
 | 10.1-10.3 | explicit interval Folner sets for `G/Γ` | TODO | |
 | 11.1-11.3 | Γ sofic ⇒ G sofic | DONE-PRE | `Sofic/SoficDirectedUnion`, `Sofic/SoficIntegerExtension`, `Sofic/SoficTelescope` |
-| 12.1 | cyclic extension permanence for sofic actions | PARTIAL | `Sofic/CyclicStack`: permutation layer complete (`twistedShift`, `stackPerm`, exact agreement off the wrap-around boundary, fibrewise average, density estimate). Chart layer and model assembly still TODO |
+| 12.1 | cyclic extension permanence for sofic actions | DONE-NEW | `Sofic/SoficActionCyclicExtension.isSoficAction_semidirect`, on the permutation layer of `Sofic/CyclicStack` |
 | 13.1 | consecutive levels have index `D` | DONE-PRE | `Sofic/MappingTelescopeFiniteOrbits.level_succ_relIndex_eq` |
 | 13.2 | every telescope level has finite orbits on `G/Γ` | DONE-PRE | `Sofic/MappingTelescopeFiniteOrbits.finite_verticalLevel_orbit` |
 | 13.3 | finite-orbit actions are sofic, exact models | DONE-NEW | `Sofic/SoficActionFiniteOrbits.isSoficAction_of_finite_orbits` |
 | 13.4 | increasing unions preserve action soficity | DONE-NEW | `Sofic/SoficActionFiniteOrbits.isSoficAction_of_locally_finite_orbits` |
-| 13.5 | finite-index HNN coset action is sofic | TODO | needs 12.1 |
+| 13.5 | finite-index HNN coset action is sofic | TODO | 12.1 is now available; remaining work is plumbing the telescope levels into `isSoficAction_of_locally_finite_orbits` |
 | 14.1 | sofic wreath criterion | TODO | needs 29.6 |
 | 29 | generalized-wreath soficity from first principles | TODO | |
 | 30.2 | finite-index coset actions are sofic | DONE-NEW | `Sofic/SoficActionExamples.isSoficAction_quotient_of_finiteIndex` |
