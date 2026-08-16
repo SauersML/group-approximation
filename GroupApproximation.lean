@@ -293,6 +293,8 @@ import GroupApproximation.Algebra.PermutationalWreath
 import GroupApproximation.Algebra.PermutationalWreathSimple
 import GroupApproximation.Algebra.PermutationalWreathAmenable
 import GroupApproximation.Algebra.PermutationalWreathLinear
+import GroupApproximation.Algebra.AbelianLampPushforward
+import GroupApproximation.Algebra.AbelianLampTelescopeKernel
 import GroupApproximation.Algebra.PermutationalWreathRadicalTame
 import GroupApproximation.Algebra.WreathLampPushforward
 import GroupApproximation.Algebra.IntJacobson
