@@ -120,7 +120,8 @@ CLAIM_TARGETS: dict[str, tuple[str, str]] = {
     ),
     "def:invisible": (
         "Sofic/ManuscriptExactWrappers",
-        "GroupApproximation.ManuscriptExactWrappers.ManuscriptHSInvisible",
+        "GroupApproximation.ManuscriptExactWrappers."
+        "manuscriptHSInvisibleCharacterization",
     ),
     "prop:mfclosure": (
         "Sofic/MFRelationClosure",

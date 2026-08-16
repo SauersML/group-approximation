@@ -488,7 +488,7 @@
         {
           "role": "exact",
           "module": "Sofic/ManuscriptExactWrappers",
-          "declaration": "GroupApproximation.ManuscriptExactWrappers.ManuscriptHSInvisible",
+          "declaration": "GroupApproximation.ManuscriptExactWrappers.manuscriptHSInvisibleCharacterization",
           "covers": "the complete printed proposition"
         }
       ]
