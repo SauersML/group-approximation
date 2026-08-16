@@ -297,6 +297,8 @@ import GroupApproximation.Sofic.SoficActionCyclicExtension
 import GroupApproximation.Sofic.AscendingHNNNotKazhdan
 import GroupApproximation.Sofic.AscendingHNNCosetActionSofic
 import GroupApproximation.Sofic.SoficActionChabauty
+import GroupApproximation.Sofic.SoficActionSum
+import GroupApproximation.Sofic.AscendingHNNStabilizer
 import GroupApproximation.Sofic.FullMFRadicalEndpoint
 import GroupApproximation.Sofic.HereditaryNonsoficDescent
 import GroupApproximation.Sofic.SmallCancellationRouter
