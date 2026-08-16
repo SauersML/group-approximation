@@ -77,17 +77,17 @@ def basisChangeEquiv {s : Set (FreeGroup α)} {t : Set (FreeGroup β)}
       intro a
       show (PresentedGroup.map g hts) ((PresentedGroup.map f hst)
         (PresentedGroup.of a)) = PresentedGroup.of a
-      have := congrArg (PresentedGroup.mk s) (hgf a)
-      simpa [PresentedGroup.map, PresentedGroup.of, QuotientGroup.map_mk']
-        using this)
+      -- `QuotientGroup.map_mk` is `rfl`, so the two sides are already
+      -- definitionally equal and no simp set is needed.
+      exact congrArg (PresentedGroup.mk s) (hgf a))
     (by
       refine PresentedGroup.ext ?_
       intro b
       show (PresentedGroup.map f hst) ((PresentedGroup.map g hts)
         (PresentedGroup.of b)) = PresentedGroup.of b
-      have := congrArg (PresentedGroup.mk t) (hfg b)
-      simpa [PresentedGroup.map, PresentedGroup.of, QuotientGroup.map_mk']
-        using this)
+      -- `QuotientGroup.map_mk` is `rfl`, so the two sides are already
+      -- definitionally equal and no simp set is needed.
+      exact congrArg (PresentedGroup.mk t) (hfg b))
 
 /-- The forward map of a basis change sends a generator to the substituted
 word. -/
