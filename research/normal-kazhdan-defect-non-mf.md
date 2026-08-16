@@ -13,6 +13,7 @@ artifacts:
   - GroupApproximation/Sofic/NormalKazhdanMFRadical.lean
   - GroupApproximation/Sofic/InternalRadicalGap.lean
   - GroupApproximation/Sofic/KazhdanCompressionCore.lean
+  - GroupApproximation/Sofic/CoronaImageNormalKazhdan.lean
 ---
 
 Let `C : KazhdanCompressionCore Gamma E` with `E` countable — that is,
