@@ -2767,52 +2767,118 @@ $\bigl(|\gamma|_S+|\mu|_S+|a|_S\bigr)\opnorm{D_n}^2\to0$: the defect
 mass vanishes at the scale $k_n$.  All estimates below concern only
 differences of the involutions.
 
-\emph{Step 5: bounded profile and an approximate coboundary.}  The
-Gaussians $e^{-t\|\cdot\|^2}$ of the almost-cocycle are almost
-invariant under the twisted action, and the spectral gap of
-$(S,\kappa)$ bounds the limiting profile
-$\gamma\mapsto\lim_{n\to\omega}\|b_n(\gamma)\|_{\mathrm F}^2$, the limit
-along a fixed free ultrafilter $\omega$ on $\N$, by its
-generator values \eqref{eq:generator-mass} --- Delorme's argument at
-the level of limiting seminorms.  The limit must be taken along an
-ultrafilter and not as a $\limsup$: positive definiteness of the
-Gaussians is transferred from the finite stages by evaluating a finite
-quadratic form with \emph{signed} coefficients, which only a linear
-limit functional respects, and $\limsup$ gives the inequality in the
-wrong direction.  The same linearity is what makes
-\eqref{eq:generator-mass} an identity in the limit rather than an
-inequality.  Since $L$ is countable one could instead pass to a
-subsequence along which all the limits exist.  A circumcenter of the displacement
-orbit, taken at the level of bounded sequences, then produces one
-bounded sequence $(y_n)$ with
-$b_n(a)\approx y_n-U_{a,n}y_nU_{a,n}^{*}$ in limiting normalized mass,
-simultaneously for any prescribed finite subset of $L$.
+\emph{Step 5: property~\textup{(T)} bounds the profile uniformly.}  Fix a free
+ultrafilter $\omega$ on $\N$, give $M_{d_n}(\C)$ the inner product
+$\langle x,y\rangle=\operatorname{Tr}(y^{*}x)$, and let $K_\omega$ be
+the Hilbert-space ultraproduct of these spaces along $\omega$.
+Conjugation is unitary for that inner product, and the dimension-free
+estimate $\opnorm{\Ad u_1-\Ad u_2}\le2\opnorm{u_1-u_2}$ makes
+$g\mapsto\Ad U_{g,n}$ asymptotically multiplicative in the operator
+norm of $B(M_{d_n}(\C))$, so
+\[
+ \pi(g)=[\Ad U_{g,n}]_\omega
+\]
+is a unitary representation of $H$ on $K_\omega$, exactly as in the
+proof of Theorem~\ref{thm:kazhdan-transport}.  The bound
+$\|b_n(\gamma)\|_{\mathrm F}^2\le4|\gamma|_S$ of Step~4 makes
+$b(\gamma)=[b_n(\gamma)]_\omega$ a well-defined vector of $K_\omega$
+for every $\gamma\in L$, and the vanishing of the normalized defect
+mass makes
+\[
+ b(a\mu)=b(a)+\pi(a)\,b(\mu)\qquad(a,\mu\in L),
+\]
+so $b\colon L\to K_\omega$ is a $1$-cocycle for $\pi|_L$.  Since
+$\lim_\omega$ is linear, \eqref{eq:generator-mass} passes to the limit
+as $\sum_{a\in S}\lVert b(a)\rVert^{2}=4$, so $b$ is not identically
+zero; the contradiction in Step~6 is drawn from the finite-stage
+identity \eqref{eq:generator-mass} rather than from this limit.
+By the Delorme--Guichardet theorem \cite[Theorem~2.12.4]{BHV},
+property~\textup{(T)} of $L$ makes every $1$-cocycle of every unitary
+representation \emph{bounded}.  Boundedness is the only consequence of
+(T) that this proof uses, and it is used only through the following
+finite-stage form: there is a constant $C$, depending on the Kazhdan
+pair alone, and a stage past which
+\begin{equation}\label{eq:profile-bounded}
+ \|b_n(\gamma)\|_{\mathrm F}\le C\qquad\text{for every }\gamma\in L .
+\end{equation}
+Uniformity in $\gamma$ is the entire content: Step~4 supplies only the
+$\gamma$-dependent bound $2|\gamma|_S^{1/2}$.
 
-\emph{Step 6: transport by the conjugator $s$.}  By (W2) the
-models of $sas^{-1}$ and of $1$ converge to one another, which is
-an operator-norm statement; Step~4 has just warned that two exact
-involutions at small operator distance can nevertheless differ in full
-rank, so this does not yet bound the displacement.  The commuting
-family of Step~1 is rigid, however: two \emph{commuting} exact
-self-adjoint involutions $e,f$ at operator distance $\opnorm{e-f}<2$
-are equal.  Indeed $T=e-f$ is self-adjoint
-with $T^3=4T$, so $T^2/4$ is an orthogonal projection, whose norm is
-therefore $0$ or $1$; but $\opnorm{T^2/4}=\opnorm{T}^2/4<1$, so
-$T^2=0$ and hence $T=0$.  The displacement therefore vanishes exactly
-on compressed elements, so including the
-compressed generators $sas^{-1}$ among the prescribed elements makes
-the coboundary $(y_n)$
-almost fixed by them; hence $z_n=U_{s,n}^{*}y_nU_{s,n}$ is almost
-fixed by every $a\in S$, because the models of $as^{-1}$ and
-$s^{-1}(sas^{-1})$ agree asymptotically.  Transporting forward as in
-Theorem~\ref{thm:kazhdan-transport} --- compression to the
-almost-fixed spectral subspace of the averaged adjoint action of $S$,
-then the one-sided estimate $P\le VPV^{*}$ at the rescaled mass ---
-returns $y_n$ up to vanishing mass, again almost fixed by every
-$a\in S$.  Then $b_n(a)\approx y_n-U_{a,n}y_nU_{a,n}^{*}$ has small
-mass for every $a\in S$ at a common large stage, contradicting
-\eqref{eq:generator-mass}.  Normality of corona kernels extends the
-conclusion from the commutators to all of $D_{\mathrm{coll}}(L,s)$.
+It is worth recording what is \emph{not} claimed, because the tempting
+next step does not follow.  A bounded cocycle over a group with (T) is
+a coboundary, so there is $y\in K_\omega$ with $b(\gamma)=y-\pi(\gamma)y$,
+and (W2) makes $y$ fixed by $\pi(sLs^{-1})$.  Concluding $b|_L=0$ from
+this would require
+$\operatorname{Fix}\pi(sLs^{-1})\subseteq\operatorname{Fix}\pi(L)$,
+equivalently $P=\pi(s)P\pi(s)^{*}$ for the projection $P$ onto the
+$\pi(L)$-fixed subspace.  That is the reverse of the inclusion which
+$sLs^{-1}\le L$ provides, and it is supplied neither by
+Theorem~\ref{thm:kazhdan-transport} nor by
+Theorem~\ref{thm:transport-variants}: those theorems govern sequences
+whose normalized defect mass vanishes, whereas what Step~4 delivers at
+a prescribed stage is a defect below a prescribed tolerance, and no
+diagonalization converts the second into the first.  The contradiction
+is therefore reached differently below --- at a single stage, and
+quantitatively.
+
+\emph{Step 6: one-stage corner transport.}  Every tolerance is fixed
+before any stage is chosen.  Put
+\[
+ \rho=\frac1{\sqrt{|S|}+1},\qquad
+ q=\frac{\rho}{24(C+1)},\qquad
+ \tau\le\min\Bigl\{\frac\rho2,\;
+   \frac{(1-\theta)\rho^{2}}{256(C+1)}\Bigr\},
+\]
+with $C$ from \eqref{eq:profile-bounded} and $\theta<1$ the spectral
+threshold below.  Now fix a single stage $n$, past the finitely many
+thresholds of Steps~1--5, at which the covariance errors of Step~1 are
+below $\tau$.  Let $P$ be the spectral projection of the averaging
+operator $|S|^{-1}\sum_{a\in S}\Ad U_{a,n}$ above $\theta$ --- the
+\emph{Kazhdan corner} --- and let $W$ be the compression of $b_n$ into
+it.  The gap $\kappa$ of the Kazhdan pair gives two estimates:
+\begin{align}
+ \opnorm{(\Ad U_{a,n}-1)P}&\le q\qquad(a\in S),
+ \label{eq:corner-fix}\\
+ \opnorm{(1-P)\,\Ad U_{s,n}\,P\,\Ad U_{s,n}^{*}}&\le q .
+ \label{eq:corner-reverse}
+\end{align}
+The first says the corner is almost fixed.  The second says the corner
+moved by $s$ lies almost inside the corner, and it is the finite-stage
+replacement for the equality $P=\pi(s)P\pi(s)^{*}$ that Step~5 declined
+to assert.  Unlike that equality, \eqref{eq:corner-reverse} is
+available: because $s$ normalizes $L$, the moved corner is the Kazhdan
+corner of the moved pair $(sSs^{-1},\kappa)$, whose elements lie in
+$L$, so the spectral gap places it inside $P$ up to the operator error
+accumulated in Step~1 --- an inclusion up to $q$, which is all that is
+needed, and which carries no information about fixed subspaces in the
+limit.
+
+Compressing into the corner costs a capture term
+$c=(C+1)\,2\tau/(1-\theta)$, and one stage of transport bounds the
+displacement of $W$ by each generator:
+\[
+ \operatorname{Tr}\bigl|W-U_{a,n}WU_{a,n}^{*}\bigr|^{2}
+ \le 18q^{2}C^{2}+16c
+ \le\Bigl(\frac\rho2\Bigr)^{2},
+\]
+the second inequality being exactly the arithmetic of the choice of $q$
+and $\tau$.
+\leanverified{Sofic/InvolutionCollapseEndpoint}{GroupApproximation.InvolutionCollapseEndpoint.stage_transport_bound}
+\leanverified{Sofic/InvolutionCollapseEndpoint}{GroupApproximation.InvolutionCollapseEndpoint.numeric_transport_bound}
+Since $\|b_n(a)-W\|_{\mathrm F}\le\tau\le\rho/2$, this gives
+$\|b_n(a)\|_{\mathrm F}\le\rho$ for every $a\in S$ at once.  But
+\eqref{eq:generator-mass} reads
+$\sum_{a\in S}\|b_n(a)\|_{\mathrm F}^{2}=4$, whereas
+\[
+ \sum_{a\in S}\rho^{2}=\frac{|S|}{(\sqrt{|S|}+1)^{2}}<1 ,
+\]
+a contradiction.
+\leanverified{Sofic/InvolutionCollapseEndpoint}{GroupApproximation.InvolutionCollapseEndpoint.anchor_contradiction}
+No limit is taken here and no sequence is diagonalized: $\rho$ is fixed
+before $n$, and the single stage $n$ already fails.  Hence
+$\Theta([\gamma,k])=1$ for every $\gamma\in L$ and every witness $k$,
+and normality of corona kernels extends the conclusion to all of
+$D_{\mathrm{coll}}(L,s)$.
 \end{proof}
 
 \begin{remark}[the quantitative form]\label{rem:collapse-finite-stage}
