@@ -790,6 +790,7 @@ import GroupApproximation.Computability.PostMachine
 import GroupApproximation.Computability.ListBlankCanonical
 import GroupApproximation.Computability.PostMachineTM0
 import GroupApproximation.Computability.PostMachineHalting
+import GroupApproximation.Computability.TM0WordProblem
 import GroupApproximation.Computability.HaltingReduction
 import GroupApproximation.Computability.RewriteSimulationOn
 import GroupApproximation.Sofic.SimpleLampNormalGeneration
