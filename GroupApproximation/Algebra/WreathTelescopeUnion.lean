@@ -32,6 +32,7 @@ universe u v w
 
 variable {K : Type u} [CommGroup K] [DecidableEq K] {X : Type v} [DecidableEq X]
 
+omit [DecidableEq K] in
 /-- A stage refinement pushes its fibre differences into the limit's. -/
 theorem fiberDiffs_mono {Y : Type w} {Z : Type w} {q : X → Y} {qinf : X → Z}
     (p : Y → Z) (hp : qinf = p ∘ q) :

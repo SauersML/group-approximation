@@ -1,5 +1,4 @@
 import GroupApproximation.Monsters.P13WordDescent
-import GroupApproximation.Monsters.P13KernelFactorization
 
 /-!
 # Completeness of the thirteen-relator presentation

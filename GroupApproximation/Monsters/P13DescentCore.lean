@@ -1,5 +1,4 @@
 import GroupApproximation.Monsters.P13MonomialMachine
-import GroupApproximation.Monsters.P13KernelFactorization
 
 /-!
 # Core infrastructure for the word descent

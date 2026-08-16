@@ -167,8 +167,14 @@ theorem CyclicWord.elem_pow_ne_one (φ : A ≃* B) (c : CyclicWord G A B)
 
 /-- **The cyclic-reduction interface**: every element of the HNN
 extension is conjugate into the base copy or conjugate to a cyclically
-reduced word.  This is the classical cyclic-reduction existence lemma;
-it is the single unformalized input of the torsion theorem below. -/
+reduced word.  This is the classical cyclic-reduction existence lemma.
+
+It is **proved**, not assumed: `HNNBritton.existsCyclicConjugate` in
+`GroupTheory/HNNBrittonCyclic.lean` supplies it for every `φ`.  The
+predicate survives here only because that file imports this one, so the
+theorems below cannot invoke it without a cycle; they take it as a
+hypothesis and are superseded one for one by the `HNNBritton`
+declarations.  Do not describe it as an unformalized input. -/
 def ExistsCyclicConjugate (φ : A ≃* B) : Prop :=
   ∀ x : HNNExtension G A B φ,
     (∃ (g : HNNExtension G A B φ) (b : G),

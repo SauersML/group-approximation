@@ -4,10 +4,39 @@ import GroupApproximation.Monsters.P13DescentCases
 /-!
 # The descent master induction and the completeness theorem
 
-Work in progress: the step construction is being assembled from the
-class rewrite lemmas; the master induction and the final assembly are
-complete.  Nothing here is imported by the library root until the
-step lands.
+The last file of the completeness programme, and the one carrying the
+badge for Theorem `thm:p13-complete`.  Everything the descent needs is
+already in place — the trajectory measure and the splice principle
+(`P13WordDescent`), the class-by-class rewrite catalog
+(`P13DescentCases`), the corner analysis and the endgame assembly
+(`P13DescentCore`), the parabolic separation (`P13ParabolicKernel`),
+the six-coset Schreier normal form (`P13MonomialMachine`) and the
+kernel assembly (`P13Completeness`) — and this file runs it:
+
+* the bridges at the violation, which read the trajectory norms at the
+  two offending positions off the coordinate action, and the routes
+  that discharge a rewrite once its identity and existence lemmas are
+  supplied;
+* `descent_step`: a word with a violation rewrites, up to a signed-swap
+  element pushed rightward, into a configuration of strictly smaller
+  measure.  The proof splits the word at the topmost worst violation
+  and exhausts all thirty-six ordered pairs of letter families,
+  `(0,0)` through `(5,5)`, with no catch-all branch;
+* `descent_normal_form`: the master induction, a well-founded descent
+  on `Prod.Lex` over the pair `(lam, length − topViol)`, one
+  `descent_step` per round, terminating exactly when no violation
+  remains.  Every word of unit root letters equals a norm-monotone
+  word times an element of the signed-swap subgroup `⟨w13, w23⟩`;
+* `toSL3_injective`, by feeding that normal form to
+  `P13Completeness.toSL3_ker_eq_bot`, and then
+  `p13CompletenessEquiv : P13 ≃* SL₃(ℤ)`, injectivity together with
+  the elementary generation of `SL₃(ℤ)`.
+
+A namespace clash is inherited from the `open` list: `sigma` names both
+the trajectory norm (`P13WordDescent.sigma`, `ℕ`-valued) and the
+transversal cocycle of the unused lift route (`P13ColumnLift.sigma`,
+`P13`-valued).  Proofs here mean the former and say so explicitly
+(`unfold P13WordDescent.sigma`).
 -/
 
 namespace GroupApproximation

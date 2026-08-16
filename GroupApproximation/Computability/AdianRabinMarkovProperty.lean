@@ -74,11 +74,17 @@ premise:
   classical (a recursively presented group has r.e. word problem), but it is
   load-bearing and must not be omitted from the ledger.
 
-None of (a), (b), (c) is within reach today.  What this file supplies is
-everything on either side of them: the group-theoretic premises that let the
-Adian--Rabin theorem be invoked (`operatorMF_isMarkovProperty`) and the
-recursion-theoretic inference performed after the construction is in hand
-(`computablePred_of_re_of_negativeSide_re`).
+(a) and (b) are out of reach today; (c) has its mathematical half proved in
+`AdianRabinWordProblem` and only `Primrec` plumbing left.  What this file
+supplies is everything on either side of them: the group-theoretic premises
+that let the Adian--Rabin theorem be invoked (`operatorMF_isMarkovProperty`)
+and the recursion-theoretic inference the manuscript performs once the
+construction is in hand (`computablePred_of_re_of_negativeSide_re`).
+
+Nothing here, and nothing in `AdianRabinWordProblem`, states a theorem whose
+hypotheses include an undecidability assertion or a reduction-data package.
+The capstone that would need one is deliberately absent; the debt is recorded
+in prose instead.
 
 ## What Mathlib already has
 
@@ -124,15 +130,26 @@ Combinatorial group theory:
 * Amalgamated free products with normal form (`GroupTheory/PushoutI.lean`)
   and free products (`GroupTheory/CoprodI.lean`).
 
-What Mathlib does **not** have, and this repository does not have either:
+What Mathlib does **not** have (this repository has since supplied the first
+two, as noted):
 
-* Any `Encodable`/`Primcodable` instance for `FreeGroup α` or for finite group
-  presentations; there is no notion of a presentation *as a code*.
-* Any definition of the word problem of a presentation, and no proof that it
-  is recursively enumerable.
+* Any `Encodable`/`Primcodable` instance for `FreeGroup α`, and no `Primrec`
+  lemma about free reduction (`FreeGroup.reduce`, `FreeGroup.toWord`).  There
+  is no notion in Mathlib of a presentation *as a code*; `PresentationCodes`
+  supplies one here.
+* Any definition of the word problem of a presentation; `AdianRabinWordProblem`
+  supplies one here, with its certificate characterization.  Neither Mathlib
+  nor this repository proves it recursively enumerable.
 * Semi-Thue systems, Post canonical systems, or the undecidability of the
   word problem for finitely presented semigroups.
 * Novikov--Boone, Higman embedding, or Adian--Rabin in any form.
+
+The `Primrec` API for lists, by contrast, is rich enough for what remains of
+(c) --- verified present at the pinned revision in
+`Mathlib/Computability/Primrec/List.lean`: `list_foldl`, `list_rec`,
+`list_append`, `list_concat`, `list_cons`, `list_length`, `list_take`,
+`list_drop`, `list_takeWhile`, `list_dropWhile`, `list_getElem?`, `list_getD`,
+`list_getI`.  That is exactly the toolkit the deletion-derivation route needs.
 
 ## What this repository already had
 
@@ -184,11 +201,12 @@ no conditionality.  The claim-manifest row stays `literature-input`.
 Two observations about the existing material, both acted on below:
 
 1. `MarkovMFConsequences.negative_side_not_re` takes `¬REPred (¬source)` as a
-   *hypothesis*.  The manuscript does not assume that; it **derives** it from
+   *hypothesis*.  The manuscript does not assume that; it **derives** it, from
    "the positive side is r.e." plus "the problem is undecidable".  The missing
-   inference is supplied here as
-   `computablePred_of_re_of_negativeSide_re`, so the existing pullback
-   can now be fed from the manuscript's actual premises.
+   inference is `computablePred_of_re_of_negativeSide_re` below, stated in the
+   forward direction the manuscript actually argues in, so that no declaration
+   here carries an undecidability premise.  A future capstone contraposes it
+   against (b).
 2. The sentence "MF is a Markov property of finitely presented groups" was
    never stated as a single theorem; only its two halves existed.  It is
    `operatorMF_isMarkovProperty` here.

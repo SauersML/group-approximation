@@ -6,6 +6,33 @@ import Mathlib.Algebra.Group.Subgroup.Ker
 /-!
 # The small-cancellation realization of the Kazhdan--Clifford datum
 
+> **NO MANUSCRIPT CLAIM — NOT IN THE BUILD, AND NOT TO BE WIRED IN.**  On
+> 2026-08-16 every Fournier-Facio mention in `non_mf_groups_exist.tex` was
+> audited and found to carry **no formal debt**.  There are five, not the
+> three a first pass finds: a prior-work citation in the introduction, the
+> `remark` this module is about, a personal-communication credit placed
+> after the proof of `thm:saturation`, and two in `\subsection*{Questions}`.
+> None occurs inside a `theorem`, `mainthm`, `proposition`, `lemma`,
+> `corollary` or `proof` environment — four are body text and one is a
+> `remark` — as determined by bracket-matching those environments over the
+> whole file, not by reading context.  Of the 100 `\leanverified` badges
+> across 55 modules, exactly two live in a Lean file that so much as
+> contains the string "Fournier": the two `Sofic/FullMFRadicalEndpoint`
+> endpoints, which quantify over an abstract `FournierFacioDefectData` with
+> `Nonempty (DefectRoutingData D)` as a declared hypothesis.  Those are a
+> **conditional-Lean debt, not a literature-input debt** — they assume
+> routing data, not a theorem of Fournier-Facio, and the structure is merely
+> *named after* him because his group satisfies it.  Nothing the manuscript
+> proves depends on a Fournier-Facio input, so nothing is owed here.
+>
+> This module is retained on disk, untracked and unimported, only because it
+> records the remark's own deduction in unconditional form.  Its companion
+> `Monsters/RealizationEmbedding` was deleted the same day: its universality
+> hypothesis was a literature-shaped input, and such a hypothesis sitting in
+> the tree is what a future reader picks up and builds on.  Nothing below is
+> conditional.  Everything from here down describes the remark and what is
+> proved about it.
+
 Manuscript: `non_mf_groups_exist.tex`, Remark `rem:ff-realization`
 ("a small-cancellation realization"), lines 1229--1243 at commit `8c07ebb6`.
 The remark sits immediately after the proof of
@@ -45,9 +72,9 @@ theorem.  Composed with `kazhdanCliffordConstruction`, this gives the remark's
 conclusion for every finitely presented property-`(T)` group carrying such an
 `f`, including the remark's closing observation that the resulting group
 contains an involution.  The single point at which the external literature
-input would enter -- the passage from universality of `P` to the existence of
-`f` -- is isolated in `GroupApproximation.Monsters.RealizationEmbedding`,
-and nothing depends on it.
+input would enter is the passage from universality of `P` to the existence of
+`f`; that passage is deliberately absent from this file, and the module that
+once carried it as a hypothesis has been deleted.
 -/
 
 namespace GroupApproximation.Monsters.FournierFacioRealization

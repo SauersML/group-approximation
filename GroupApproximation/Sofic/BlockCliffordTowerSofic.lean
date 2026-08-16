@@ -96,7 +96,8 @@ theorem finite_range_of_factors {A C D : Type*} [Finite C]
   have hcover : Set.range f ⊆ ⋃ c : C, f '' {a | g a = c} := by
     rintro _ ⟨a, rfl⟩
     exact Set.mem_iUnion.mpr ⟨g a, ⟨a, rfl, rfl⟩⟩
-  refine Set.Finite.subset (Set.finite_iUnion fun c ↦ Set.Subsingleton.finite ?_) hcover
+  refine Set.Finite.subset
+    (Set.finite_iUnion fun c ↦ Set.Subsingleton.finite ?_) hcover
   rintro _ ⟨a₁, ha₁, rfl⟩ _ ⟨a₂, ha₂, rfl⟩
   exact h a₁ a₂ (ha₁.trans ha₂.symm)
 
@@ -206,7 +207,9 @@ theorem window_induction (S : Finset ((i : I) × B i))
     (hone : P 1) (hmul : ∀ x y, P x → P y → P (x * y))
     (hinv : ∀ x, P x → P x⁻¹)
     (n : BlockClifford I B) (hn : n ∈ window I B S) : P n := by
-  induction hn using Subgroup.closure_induction with
+  have hn' : n ∈ Subgroup.closure (windowGens I B S) := hn
+  clear hn
+  induction hn' using Subgroup.closure_induction with
   | mem x hx =>
       simp only [windowGens, Set.mem_insert_iff, Set.mem_image, Finset.mem_coe]
         at hx
@@ -559,8 +562,7 @@ def permAut (π : blockPermSubgroup I B) : MulAut (BlockClifford I B) :=
           rw [permMap_sign, permMap_sign]
       | Sum.inr p =>
           show permMap I B π⁻¹ (permMap I B π (lamp I B p)) = lamp I B p
-          rw [permMap_lamp, permMap_lamp, Subgroup.coe_inv,
-            Equiv.Perm.inv_apply_self])
+          simp [permMap_lamp])
     (by
       apply PresentedGroup.ext
       intro j
@@ -570,8 +572,7 @@ def permAut (π : blockPermSubgroup I B) : MulAut (BlockClifford I B) :=
           rw [permMap_sign, permMap_sign]
       | Sum.inr p =>
           show permMap I B π (permMap I B π⁻¹ (lamp I B p)) = lamp I B p
-          rw [permMap_lamp, permMap_lamp, Subgroup.coe_inv,
-            Equiv.Perm.apply_inv_self])
+          simp [permMap_lamp])
 
 @[simp] theorem permAut_apply (π : blockPermSubgroup I B)
     (g : BlockClifford I B) : permAut I B π g = permMap I B π g := rfl

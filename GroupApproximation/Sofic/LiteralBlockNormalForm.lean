@@ -181,13 +181,15 @@ theorem stable_relator_eq_one (i : BaseGenerator) :
 
 theorem verticalWord_displacedLampWord :
     verticalWord displacedLampWord = 1 := by
-  rw [displacedLampWord, map_mul, map_mul, map_inv, verticalWord_lampWord,
-    mul_one, mul_inv_cancel]
+  show verticalWord (stableWord * lampWord * stableWord⁻¹) = 1
+  rw [map_mul, map_mul, map_inv, verticalWord_lampWord, mul_one,
+    mul_inv_cancel]
 
 theorem verticalWord_markedWord : verticalWord markedWord = 1 := by
-  rw [markedWord, map_commutatorWord, map_mul, map_mul, map_inv,
-    verticalWord_displacedLampWord, mul_one, mul_inv_cancel,
-    verticalWord_displacedLampWord]
+  show verticalWord (commutatorWord displacedLampWord
+    (v1Word * displacedLampWord * v1Word⁻¹)) = 1
+  rw [map_commutatorWord, map_mul, map_mul, map_inv,
+    verticalWord_displacedLampWord, mul_one, mul_inv_cancel]
   exact commutatorElement_one_left _
 
 /-- Every displayed relator of the literal presentation dies once the lamp

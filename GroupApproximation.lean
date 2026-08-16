@@ -61,7 +61,6 @@ import GroupApproximation.Monsters.P13SL2ComparisonAll
 import GroupApproximation.Monsters.SL3BlockEmbeddingAll
 import GroupApproximation.Monsters.P13ParabolicKernel
 import GroupApproximation.Monsters.P13ColumnLift
-import GroupApproximation.Monsters.P13KernelFactorization
 import GroupApproximation.Monsters.P13MonomialMachine
 import GroupApproximation.Monsters.P13DescentCore
 import GroupApproximation.Monsters.P13WordDescent
@@ -76,6 +75,9 @@ import GroupApproximation.Monsters.SL3BlockEmbedding
 import GroupApproximation.Monsters.SL2WeylRelations
 import GroupApproximation.Monsters.MoebiusIrrationalAction
 import GroupApproximation.GroupTheory.FiniteCyclicHom
+import GroupApproximation.GroupTheory.HNNBrittonPinch
+import GroupApproximation.GroupTheory.HNNBrittonSpelling
+import GroupApproximation.GroupTheory.HNNBrittonCyclic
 import GroupApproximation.Monsters.SL2PingPong
 import GroupApproximation.Monsters.SL2Completeness
 import GroupApproximation.Monsters.P13BlockSL2
@@ -303,7 +305,6 @@ import GroupApproximation.Algebra.PermutationalWreathLinear
 import GroupApproximation.Algebra.AbelianLampPushforward
 import GroupApproximation.Algebra.AbelianLampTelescopeKernel
 import GroupApproximation.Algebra.PermutationalWreathRadicalTame
-import GroupApproximation.Algebra.LampCountable
 import GroupApproximation.Algebra.WreathLampPushforward
 import GroupApproximation.Algebra.WreathTelescopeUnion
 import GroupApproximation.Algebra.IntJacobson
@@ -315,8 +316,8 @@ import GroupApproximation.Algebra.PerfectLamp
 import GroupApproximation.Algebra.ModTwoLampParity
 import GroupApproximation.Sofic.FiniteDimensionalResidual
 import GroupApproximation.Sofic.ThreeRadicalsCoincide
-import GroupApproximation.Sofic.FourRadicalsCoincide
 import GroupApproximation.Sofic.LinearResidual
+import GroupApproximation.Sofic.FourRadicalsCoincide
 import GroupApproximation.Sofic.BlockAmplificationRepair
 import GroupApproximation.Sofic.AmplifiedBlockNorms
 import GroupApproximation.Sofic.InducedCoronaMF
@@ -376,6 +377,7 @@ import GroupApproximation.Sofic.IntrinsicCompressionMFRadical
 import GroupApproximation.Sofic.UltraproductAdjointAmbient
 import GroupApproximation.Sofic.UltraproductDedekindFinite
 import GroupApproximation.Sofic.UltraproductKazhdanProjection
+import GroupApproximation.Sofic.UltraproductKazhdanTransport
 import GroupApproximation.Sofic.ManuscriptKazhdanTransport
 import GroupApproximation.Sofic.NormalKazhdanCompressionObstruction
 import GroupApproximation.Sofic.KazhdanCompressionFunctorial
@@ -398,6 +400,7 @@ import GroupApproximation.Sofic.ProductMultiplicity
 import GroupApproximation.Sofic.ProductMultiplicityRank
 import GroupApproximation.Sofic.ContinuumMultiplicity
 import GroupApproximation.Sofic.ContinuumFamilyCriterion
+import GroupApproximation.Sofic.ContinuumFromNormalSubgroups
 import GroupApproximation.Sofic.OperatorMFPairAmplification
 import GroupApproximation.Sofic.OperatorMFLocalNormalization
 import GroupApproximation.Sofic.MarkedGroupTopology
