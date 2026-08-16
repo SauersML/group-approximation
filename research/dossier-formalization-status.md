@@ -70,7 +70,7 @@ formalized in this pass; **TODO** not yet formalized.
 | 42.7 | intersection of all finite-index subgroups = finite residual | DONE-NEW | `Algebra/FiniteResidual.finiteResidual_eq_normalFiniteResidual` |
 | 46.5, 49.2B | residual finiteness is a commensurability invariant | DONE-NEW | `Algebra/FiniteResidual` (`IsResiduallyFinite.subgroup`, `isResiduallyFinite_of_finiteIndex_subgroup`) |
 | 46.1-46.4 | Malcev; all-fields linear residual; nonlinearity | TODO | |
-| 49 | finite-index induction of the MF radical | TODO (MF case) | |
+| 49.1, 49.2 | induction from a finite-index subgroup; exact heredity | DONE-NEW (f.d. case) | `Sofic/InducedFiniteDimensional` (`indHom`, `fdUnitaryResidual_subgroupOf`); the whole construction runs on one coefficient function `coeff π a b`, so no dependent case distinction enters a matrix index.  The MF (corona) case still needs the amplification isomorphism of (49.4) |
 | 49.4 | finite-index heredity of the finite residual | DONE-NEW | `Algebra/FiniteResidual.mem_finiteResidual_subgroup_iff` |
 | 50.1 | functoriality / full invariance of the finite residual | DONE-NEW | `Algebra/FiniteResidual.map_finiteResidual_le` |
 | 51.1 | simple lamps: one relation generates the whole lamp subgroup | DONE-NEW | `Algebra/PermutationalWreathSimple.lamp_le_normalClosure_single`, on `Lamp.mem_closure_singles` |
