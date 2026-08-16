@@ -1,3 +1,5 @@
+import GroupApproximation.Sofic.CollapsePrintedProfile
+import GroupApproximation.Sofic.CollapseProfileBoundNumeric
 import GroupApproximation.Sofic.InvolutionCollapseEndpointPrep
 import GroupApproximation.Sofic.TorsionCompressionCollapse
 
@@ -18,8 +20,9 @@ and every analytic step is quantitative.
 The proof runs the full ladder at once: corrected involution microstates
 (`InvolutionOrbitMicrostates`), the rank metric and its normalized
 displacement vectors (`InvolutionCollapseMetric`, `…Profile`), the
-ultralimit Gaussian boundedness of the displacement profile
-(`Kazhdan.UltralimitGaussianBoundedness`), one approximate coboundary
+bound on the limiting displacement profile *by its generator values*
+(`Sofic.CollapseProfileBound`, over
+`Kazhdan.UltralimitGaussianBoundedness`), one approximate coboundary
 primitive from sequence-level circumcenters (`…Center`), and a one-stage
 Kazhdan corner transport (`…IndexCapture`) that contradicts the
 nonvanishing mass anchor of a marked model.
@@ -319,6 +322,56 @@ theorem xdiff_bounded {Γ E : Type} [Group Γ] [Group E]
             Matrix (B.model n) (B.model n) ℂ) (w n)‖ := norm_sub_le _ _
     _ ≤ Ca + Cy := add_le_add (hCa n) (hCy n)
 
+/-- Boundedness of the displacement-minus-coboundary sequence, for the
+**printed** displacement vector of Step 4. -/
+theorem xdiff_bounded_printed {Γ E : Type} [Group Γ] [Group E]
+    (B : OpAlmostRepresentation E) (iota : Γ →* E) (k : E)
+    (V : ∀ n, Γ → Matrix (B.model n) (B.model n) ℂ) (S : Finset Γ)
+    (hgen : Subgroup.closure (S : Set Γ) = ⊤)
+    (hsymm : ∀ g ∈ S, g⁻¹ ∈ S)
+    (hVinv : ∀ n γ, ExactInvolutionLifts.IsExactInvolution (V n γ))
+    (hVcomm : ∀ n γ₁ γ₂, V n γ₁ * V n γ₂ = V n γ₂ * V n γ₁)
+    (hVconv : ∀ γ, OpNormVanishing B (fun n ↦ V n γ - raw B iota k n γ))
+    {w : ∀ n, EuclideanSpace ℂ (B.model n × B.model n)}
+    (hwbdd : IsBoundedSeq w) (a : Γ) :
+    IsBoundedSeq (fun n ↦
+      CollapseWordMetric.bVec B V S n a -
+        (w n - adFlat (B.map n (iota a) :
+          Matrix (B.model n) (B.model n) ℂ) (w n))) :=
+  (CollapsePrintedProfile.isBoundedSeq_printed B iota k V S hgen hsymm hVinv
+    hVcomm hVconv a).sub (ydiff_bounded B iota hwbdd a)
+
+/-- **The coboundary defect is the same for the two displacement vectors.**
+The guarded vector of `InvolutionCollapseProfile` and the printed vector of
+Step 4 agree at all large stages, so their coboundary defects against a fixed
+primitive have the same limiting squared seminorm.  This is what lets the
+circumcenter of Step 5 be run once and read off for the printed object. -/
+theorem seqNormSq_xdiff_printed_eq {Γ E : Type} [Group Γ] [Group E]
+    (B : OpAlmostRepresentation E) (iota : Γ →* E) (k : E)
+    (V : ∀ n, Γ → Matrix (B.model n) (B.model n) ℂ) (S : Finset Γ)
+    (hgen : Subgroup.closure (S : Set Γ) = ⊤)
+    (hsymm : ∀ g ∈ S, g⁻¹ ∈ S)
+    (hVinv : ∀ n γ, ExactInvolutionLifts.IsExactInvolution (V n γ))
+    (hVcomm : ∀ n γ₁ γ₂, V n γ₁ * V n γ₂ = V n γ₂ * V n γ₁)
+    (hVconv : ∀ γ, OpNormVanishing B (fun n ↦ V n γ - raw B iota k n γ))
+    {w : ∀ n, EuclideanSpace ℂ (B.model n × B.model n)}
+    (hwbdd : IsBoundedSeq w) (a : Γ) :
+    seqNormSq (fun n ↦
+        bVec B V S hgen hsymm n a -
+          (w n - adFlat (B.map n (iota a) :
+            Matrix (B.model n) (B.model n) ℂ) (w n))) =
+      seqNormSq (fun n ↦
+        CollapseWordMetric.bVec B V S n a -
+          (w n - adFlat (B.map n (iota a) :
+            Matrix (B.model n) (B.model n) ℂ) (w n))) := by
+  refine seqNormSq_congr_of_eventually_eq
+    (xdiff_bounded B iota V S hgen hsymm hVinv hVcomm hwbdd a)
+    (xdiff_bounded_printed B iota k V S hgen hsymm hVinv hVcomm hVconv
+      hwbdd a) ?_
+  obtain ⟨N, hN⟩ := CollapseWordMetricBridge.eventually_profile_bVec_eq B iota
+    k V S hgen hsymm hVinv hVcomm hVconv a
+  exact ⟨N, fun n hn ↦ by rw [hN n hn]⟩
+
 /-- **The compressed movers have exact primitives in the limit**: for an
 orbit-fixed mover, the coboundary difference inherits the full
 coboundary bound. -/
@@ -467,7 +520,8 @@ theorem stage_transport_bound :
           W * (B.map n₀ (C.iota a) :
             Matrix (B.model n₀) (B.model n₀) ℂ)ᴴ) ≤
         18 * q ^ 2 * Cw ^ 2 + 16 * κ := by
-  intro Γ E _ _ B C S θ n₀ a Us W Xu hUs hUsmem hXu q κ Cw hfix hrev hcap hXumass
+  intro Γ E _ _ B C S θ n₀ a Us W Xu hUs hUsmem hXu q κ Cw hfix hrev hcap
+    hXumass
   have hYcard : 0 < Fintype.card (B.adjoint.model n₀) :=
     B.adjoint.modelNonempty n₀
   have hP := cornerProjection_isOrthogonalProjection B C S θ n₀
@@ -596,18 +650,27 @@ theorem no_marked_model [Countable Γ]
     eventually_one_le_kNorm_of_marked B iota kk V S hgen hsymm hVinv
       hVcomm hVconv (k2 := hk2) (γ₀ := γ₀) M.separation_pos
       M.marked_separated
-  -- the displacement profile is uniformly bounded
-  have hbdd : ∀ g : Γ, ∃ C : ℝ, ∀ n,
-      ‖bVec B V S hgen hsymm n g‖ ^ 2 ≤ C :=
-    fun g ↦ ⟨4 * (wordLen S hgen hsymm g : ℝ),
-      fun n ↦ norm_bVec_sq_le B V S hgen hsymm hVinv hVcomm n g⟩
-  obtain ⟨R₀, hR₀⟩ := UltralimitGaussian.profile_bounded_of_isKazhdanPair
-    hpair hbdd (fun n ↦ bVec_one B V S hgen hsymm n)
-    (profile_halmost B iota kk V S hgen hsymm hVinv hVcomm hVconv hmark)
-  set R : ℝ := max R₀ 0 with hRdef
-  have hR0 : 0 ≤ R := le_max_right _ _
-  have hR : ∀ γ : Γ, seqNormSq (fun n ↦ bVec B V S hgen hsymm n γ) ≤ R :=
-    fun γ ↦ le_trans (hR₀ γ) (le_max_left _ _)
+  -- the limiting displacement profile is bounded **by its generator values**:
+  -- the Delorme estimate of `rem:collapse-finite-stage`, read on the limiting
+  -- cocycle with the mass identity `eq:generator-mass`, gives a bound
+  -- depending on the Kazhdan pair alone
+  set R : ℝ := 111 / κ ^ 2 with hRdef
+  have hR0 : 0 ≤ R := by
+    rw [hRdef]
+    exact div_nonneg (by norm_num) (sq_nonneg κ)
+  -- read on the printed displacement vector of Step 4
+  have hRp : ∀ γ : Γ,
+      seqNormSq (fun n ↦ CollapseWordMetric.bVec B V S n γ) ≤ R := by
+    intro γ
+    rw [hRdef]
+    exact CollapsePrintedProfile.printed_profile_le_num B iota kk V S hgen
+      hsymm hVinv hVcomm hVconv hmark hpair γ
+  -- the same number for the capped family, which the circumcenter consumes
+  have hR : ∀ γ : Γ, seqNormSq (fun n ↦ bVec B V S hgen hsymm n γ) ≤ R := by
+    intro γ
+    rw [CollapsePrintedProfile.seqNormSq_printed_eq B iota kk V S hgen hsymm
+      hVinv hVcomm hVconv γ]
+    exact hRp γ
   -- the compression core for the corner machinery
   set C : KazhdanCompressionCore Γ E :=
     { iota := iota
@@ -665,7 +728,7 @@ theorem no_marked_model [Countable Γ]
   set T : Finset Γ := S ∪ S.image da with hTdef
   clear_value da R Cw ρt θ τ q d₀ ε₆ T
   obtain ⟨w, hwbdd, hwnorm, hwcob⟩ :=
-    exists_approximate_coboundary B iota kk V S hgen hsymm hVinv hVcomm
+    exists_approximate_coboundary_of_data B iota kk V S hgen hsymm hVinv hVcomm
       hVconv hmark hR0 hR T hd0pos
   -- boundedness of the coboundary differences
   have hydiffbdd : ∀ a : Γ, IsBoundedSeq (fun n ↦
@@ -673,10 +736,20 @@ theorem no_marked_model [Countable Γ]
         Matrix (B.model n) (B.model n) ℂ) (w n)) :=
     fun a ↦ ydiff_bounded B iota hwbdd a
   have hxdiffbdd : ∀ a : Γ, IsBoundedSeq (fun n ↦
-      bVec B V S hgen hsymm n a -
+      CollapseWordMetric.bVec B V S n a -
         (w n - adFlat (B.map n (iota a) :
           Matrix (B.model n) (B.model n) ℂ) (w n))) :=
-    fun a ↦ xdiff_bounded B iota V S hgen hsymm hVinv hVcomm hwbdd a
+    fun a ↦ xdiff_bounded_printed B iota kk V S hgen hsymm hVinv hVcomm
+      hVconv hwbdd a
+  -- the circumcenter defect, read on the printed displacement vector
+  have hwcobp : ∀ a ∈ T, seqNormSq (fun n ↦
+      CollapseWordMetric.bVec B V S n a -
+        (w n - adFlat (B.map n (iota a) :
+          Matrix (B.model n) (B.model n) ℂ) (w n))) ≤ d₀ := by
+    intro a ha
+    rw [← seqNormSq_xdiff_printed_eq B iota kk V S hgen hsymm hVinv hVcomm
+      hVconv hwbdd a]
+    exact hwcob a ha
   -- the compressed movers have exact primitives in the limit
   have hfixda : ∀ a : Γ, orbitElement iota kk (da a) = kk := by
     intro a
@@ -699,12 +772,12 @@ theorem no_marked_model [Countable Γ]
       hVcomm hVconv hwbdd (hfixda a) (hwcob (da a) hmem)
   -- the hyperfilter-large stage set
   have hE1 : ∀ᶠ n in ↑(Filter.hyperfilter ℕ), ∀ a ∈ S,
-      ‖bVec B V S hgen hsymm n a -
+      ‖CollapseWordMetric.bVec B V S n a -
         (w n - adFlat (B.map n (iota a) :
           Matrix (B.model n) (B.model n) ℂ) (w n))‖ ≤ τ := by
     rw [Filter.eventually_all_finset]
     intro a haS
-    have hcob := hwcob a (by
+    have hcob := hwcobp a (by
       rw [hTdef]
       exact Finset.mem_union_left _ haS)
     have h := eventually_norm_le_of_seqNormSq_le (hxdiffbdd a) hcob hd0pos
@@ -820,16 +893,17 @@ theorem no_marked_model [Countable Γ]
   -- the numeric bound: transported mass is at most `(ρt / 2)²`
   have hnum0 := numeric_transport_bound hCwpos hgap hqdef hτr
   -- per-generator stage bound
-  have hfinal : ∀ a ∈ S, ‖bVec B V S hgen hsymm n₀ a‖ ≤ ρt := by
+  have hfinal : ∀ a ∈ S, ‖CollapseWordMetric.bVec B V S n₀ a‖ ≤ ρt := by
     intro a haS
     exact stage_generator_bound (h1 a haS)
       (hbridge (B.map n₀ (iota a) :
         Matrix (B.model n₀) (B.model n₀) ℂ))
       (le_trans (hWdisp a haS) hnum0) hτle hρtpos
-  -- the anchor contradiction
+  -- the anchor contradiction, against `eq:generator-mass` for the printed
+  -- displacement vector
   have hkpos : 0 < kNorm B V S n₀ := lt_of_lt_of_le Nat.zero_lt_one h4
-  have hanchor := sum_normSq_bVec_eq_four B V S hgen hsymm hVinv hVcomm
-    hkpos
+  have hanchor := CollapseWordMetric.col21_sum_normSq_bVec_eq_four B V S
+    hVinv hVcomm hkpos
   exact anchor_contradiction (fun a _ ↦ norm_nonneg _) hanchor hρt
     hfinal
 
