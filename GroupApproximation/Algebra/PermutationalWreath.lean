@@ -110,6 +110,14 @@ theorem single_mul (x : X) (k l : K) :
   · subst h; simp
   · simp [single_apply_of_ne h]
 
+/-- Placing a value at a fixed site is a homomorphism. -/
+def singleHom (x : X) : K →* Lamp K X where
+  toFun := single x
+  map_one' := single_one x
+  map_mul' := single_mul x
+
+@[simp] theorem singleHom_apply (x : X) (k : K) : singleHom x k = single x k := rfl
+
 /-- **Lamps at distinct sites commute**, whatever the lamp group.  This is what
 makes a one-site lamp a commuting-orbit witness even when `K` is nonabelian. -/
 theorem single_commute {x y : X} (h : x ≠ y) (k l : K) :
@@ -162,7 +170,8 @@ def lampActionHom : G →* MulAut (Lamp K X) where
     simp [mul_smul]
 
 /-- The permutational wreath product `K^{(X)} ⋊ G`. -/
-abbrev Wreath : Type (max u v w) :=
+abbrev Wreath (K : Type u) [Group K] (G : Type w) [Group G] (X : Type v)
+    [MulAction G X] : Type (max u v w) :=
   Lamp K X ⋊[lampActionHom (K := K) (X := X) (G := G)] G
 
 variable [DecidableEq X]

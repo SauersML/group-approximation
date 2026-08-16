@@ -55,7 +55,7 @@ formalized in this pass; **TODO** not yet formalized.
 | 49 | finite-index induction of the MF radical | TODO (MF case) | |
 | 49.4 | finite-index heredity of the finite residual | DONE-NEW | `Algebra/FiniteResidual.mem_finiteResidual_subgroup_iff` |
 | 50.1 | functoriality / full invariance of the finite residual | DONE-NEW | `Algebra/FiniteResidual.map_finiteResidual_le` |
-| 51 | simple lamps: one relation generates the radical | TODO | |
+| 51.1 | simple lamps: one relation generates the whole lamp subgroup | DONE-NEW | `Algebra/PermutationalWreathSimple.lamp_le_normalClosure_single`, on `Lamp.mem_closure_singles` |
 | 52 | alternating-lamp noncommensurable family | TODO | |
 | 53 | four-dimensional rational envelope | TODO | |
 | 54.2 | MF not closed under split extensions | TODO | |
