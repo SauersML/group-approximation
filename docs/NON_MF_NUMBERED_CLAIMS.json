@@ -6,8 +6,8 @@
     {
       "id": "thm:A",
       "environment": "mainthm",
-      "title": "explicit Kazhdan--Clifford group",
-      "statement_sha256": "10d45674d9b621066d9958fad688f7e3fd3c97b171a07d16df0f76ffd3708a94",
+      "title": "an explicit finitely presented non-MF group",
+      "statement_sha256": "b22f1bb6c3a6afd14c60c30bc7bbd6f6e7055801c8eed75a0ce9cfb5e5652bce",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [
@@ -246,6 +246,26 @@
       ]
     },
     {
+      "id": "lem:square",
+      "environment": "lemma",
+      "title": "the marked word is a square",
+      "statement_sha256": "36940cc67e41844eab6c4b2ff16efdd49d9b4563df60e3d40ed213e9af11aa0f",
+      "status": "exact",
+      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
+      "dependencies": [],
+      "extra_assumptions": [],
+      "external_inputs": [],
+      "coverage_gap": "",
+      "lean": [
+        {
+          "role": "exact",
+          "module": "Sofic/CompressionDefectSquare",
+          "declaration": "GroupApproximation.commutator_conjugate_eq_commutator_sq_of_sq_eq_one",
+          "covers": "the complete printed proposition"
+        }
+      ]
+    },
+    {
       "id": "cor:uniform",
       "environment": "corollary",
       "title": "uniform finite operator-norm obstruction",
@@ -351,26 +371,6 @@
           "role": "exact",
           "module": "Sofic/LiteralNonMFLinearWitness",
           "declaration": "GroupApproximation.LiteralNonMFLinearWitness.literal_mark_ne_one",
-          "covers": "the complete printed proposition"
-        }
-      ]
-    },
-    {
-      "id": "lem:square",
-      "environment": "lemma",
-      "title": "the marked word is a square",
-      "statement_sha256": "36940cc67e41844eab6c4b2ff16efdd49d9b4563df60e3d40ed213e9af11aa0f",
-      "status": "exact",
-      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
-      "dependencies": [],
-      "extra_assumptions": [],
-      "external_inputs": [],
-      "coverage_gap": "",
-      "lean": [
-        {
-          "role": "exact",
-          "module": "Sofic/CompressionDefectSquare",
-          "declaration": "GroupApproximation.commutator_conjugate_eq_commutator_sq_of_sq_eq_one",
           "covers": "the complete printed proposition"
         }
       ]
@@ -1360,8 +1360,8 @@
     {
       "id": "prop:maximal-cstar",
       "environment": "proposition",
-      "title": "universe-relative maximal group algebra",
-      "statement_sha256": "e804583acb4798be88ed20146578c7063c54aa35bdefe8418af654e66873fcaf",
+      "title": "the universal property",
+      "statement_sha256": "9d6deff51f8693233bf4e7d2f04097e69d18973236aa6442a89ed9faa680ed49",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [],
@@ -1381,7 +1381,7 @@
       "id": "prop:proper-isometry",
       "environment": "proposition",
       "title": "proper compression forbids finiteness",
-      "statement_sha256": "e2a8714db1305b831bda3c60dd918559c1a49ec0e090d96876812d1a383e8663",
+      "statement_sha256": "0243b2ca55a4d58457294a57449f99541b4ebb4ea3e64238d7f63b3de175ddb6",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [],
