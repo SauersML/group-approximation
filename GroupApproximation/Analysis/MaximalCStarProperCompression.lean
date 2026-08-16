@@ -225,12 +225,27 @@ theorem conj_mem_conjLambda (γ : Γ) :
   refine ⟨D.iota γ, ⟨γ, rfl⟩, ?_⟩
   rfl
 
-/-- The quasi-regular coordinate used for properness. -/
-def witnessRep : CStarUnitaryRepresentation E :=
+/-- The quasi-regular coordinate used for properness.
+
+`@[reducible]` is load-bearing, not decoration: the proofs below apply
+`evw D a` to a vector, which needs the elaborator to see through
+`(witnessRep D).carrier` to the concrete operator type before it can find
+a `CoeFun`.  Without it every such application fails with "Function
+expected at ... but this term has type `(witnessRep D).carrier`". -/
+@[reducible] def witnessRep : CStarUnitaryRepresentation E :=
   quasiRegularRepresentation E (conjLambda D)
 
-/-- Evaluation at the witness coordinate. -/
-def evw : MaximalGroupCStar E →⋆ₐ[ℂ] (witnessRep D).carrier :=
+/-- Evaluation at the witness coordinate.
+
+The codomain is spelled concretely rather than as `(witnessRep D).carrier`.
+The proofs below apply `evw D a` to a vector, and the elaborator looks for
+a `CoeFun` on the *declared* type: written as a projection it stays
+`(witnessRep D).carrier` and every application fails with "Function
+expected", even though the projection is defeq to the operator algebra.
+Marking `witnessRep`, `quasiRegularRepresentation` and `ofHom` reducible
+does not help -- the type is never unfolded at all. -/
+def evw : MaximalGroupCStar E →⋆ₐ[ℂ]
+    (CosetHilbert E (conjLambda D) →L[ℂ] CosetHilbert E (conjLambda D)) :=
   maximalGroupCStarEval E (witnessRep D)
 
 theorem baseVector_fixed_of_conj (γ : Γ)
@@ -389,18 +404,21 @@ def toProperProjectionCompression :
   conjugate_mul_p := conjugate_mul_proj D
   conjugate_ne := conjugate_ne_proj D
 
+include D in
 /-- The maximal algebra of a strictly Kazhdan-compressed group is not
 Dedekind finite: it contains a one-sided-invertible non-unit. -/
 theorem maximalCStar_not_isDedekindFiniteMonoid :
     ¬ IsDedekindFiniteMonoid (MaximalGroupCStar E) :=
   (toProperProjectionCompression D).not_isDedekindFiniteMonoid
 
+include D in
 /-- The maximal algebra of a strictly Kazhdan-compressed group is not
 stably finite. -/
 theorem maximalCStar_not_isStablyFiniteRing :
     ¬ IsStablyFiniteRing (MaximalGroupCStar E) :=
   (toProperProjectionCompression D).not_isStablyFiniteRing
 
+include D in
 /-- The maximal algebra of a strictly Kazhdan-compressed group carries no
 faithful tracial state. -/
 theorem maximalCStar_no_faithfulTracialState :
