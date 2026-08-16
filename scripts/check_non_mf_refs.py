@@ -44,6 +44,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
+from check import orphan_paths
 from lean_decls import build_index
 
 
@@ -186,9 +187,30 @@ def validate(repo: Path, tex: Path) -> tuple[list[Reference], list[str]]:
         return references, problems
 
     index = build_index(repo)
+    # A badge over an uncompiled module is the worst thing this checker can
+    # miss.  `lake build` reaches only the root's import closure, so a module
+    # outside it is never elaborated, never reaches `#print axioms`, and is
+    # never seen by the kernel audit -- yet its badge renders in the PDF
+    # identically to one over a fully verified endpoint.  That is a claim of
+    # verification for something unverified.  Fail closed: if the closure
+    # cannot be computed, certify nothing rather than everything.
+    try:
+        orphans = orphan_paths(repo)
+    except OSError as error:
+        orphans = None
+        problems.append(
+            f"cannot compute the import closure, so no badge can be certified: {error}"
+        )
     for reference in references:
         module = reference.module
         declaration = reference.declaration
+        if orphans is not None and module in orphans:
+            problems.append(
+                f"line {reference.line}: badge cites GroupApproximation/{module}.lean, "
+                "which is outside the import closure of GroupApproximation.lean; "
+                "`lake build` never compiles it and no audit ever sees "
+                f"{reference.full_name}, so the badge certifies nothing"
+            )
         if "not_isWeakMF" in declaration:
             problems.append(
                 f"line {reference.line}: auxiliary IsWeakMF theorem used as a manuscript "
@@ -302,6 +324,13 @@ def self_test() -> int:
             "end GroupApproximation\n",
             encoding="utf-8",
         )
+        # The root imports only the first module, so `Sofic/Stray` is a genuine
+        # orphan in this corpus -- which is what calibrates the closure gate
+        # below in both directions.
+        (repo / "GroupApproximation.lean").write_text(
+            "import GroupApproximation.Criterion.FiniteDimensionalKill\n",
+            encoding="utf-8",
+        )
         tex = repo / "paper.tex"
         valid = (
             r"\newcommand{\leanverified}[2]{}" "\n"
@@ -390,6 +419,18 @@ def self_test() -> int:
         _references, problems = validate(repo, tex)
         if not any("is in" in problem for problem in problems):
             print("self-test: wrong-module reference was not detected", file=sys.stderr)
+            return 1
+
+        # A badge whose module and declaration agree, but on a module the root
+        # never imports: everything the older gates look at is consistent, and
+        # the cited theorem is still never compiled.
+        tex.write_text(
+            r"\leanverified{Sofic/Stray}{GroupApproximation.strayed}",
+            encoding="utf-8",
+        )
+        _references, problems = validate(repo, tex)
+        if not any("outside the import closure" in problem for problem in problems):
+            print("self-test: badge on an orphan module was accepted", file=sys.stderr)
             return 1
 
         tex.write_text("no links here", encoding="utf-8")

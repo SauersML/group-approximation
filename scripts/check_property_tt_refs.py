@@ -20,6 +20,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
+from check import orphan_paths
 from lean_decls import build_index
 
 
@@ -47,11 +48,30 @@ def validate(repo: Path, tex: Path) -> list[str]:
             problems.append(
                 f"numbered {result.group(1)} at line {line} has no Lean reference"
             )
+    # A badge over a module outside the root's import closure certifies
+    # nothing: `lake build` never compiles it, `#print axioms` never reaches
+    # it, and the kernel audit never sees it, yet the badge renders exactly
+    # like one over a verified endpoint.  Fail closed -- an unavailable
+    # closure certifies nothing rather than everything.
+    try:
+        orphans = orphan_paths(repo)
+    except OSError as error:
+        orphans = None
+        problems.append(
+            f"cannot compute the import closure, so no badge can be certified: {error}"
+        )
     for module, declaration in references:
         expected = repo / "GroupApproximation" / f"{module}.lean"
         full_name = (declaration if declaration.startswith("GroupApproximation.")
                      else f"GroupApproximation.{declaration}")
         actual = index.get(full_name)
+        if orphans is not None and module in orphans:
+            problems.append(
+                f"badge cites GroupApproximation/{module}.lean, which is outside the "
+                "import closure of GroupApproximation.lean; `lake build` never "
+                f"compiles it and no audit ever sees {full_name}, so the badge "
+                "certifies nothing"
+            )
         if not expected.is_file():
             problems.append(f"missing module file GroupApproximation/{module}.lean")
         if actual is None:
@@ -77,6 +97,20 @@ def self_test() -> int:
             "end GroupApproximation\n",
             encoding="utf-8",
         )
+        (module / "Unbuilt.lean").write_text(
+            "namespace GroupApproximation\n"
+            "namespace PropertyTTPaper\n"
+            "theorem unbuilt : True := by trivial\n"
+            "end PropertyTTPaper\n"
+            "end GroupApproximation\n",
+            encoding="utf-8",
+        )
+        # The root imports only `PaperStatements`, so `Unbuilt` is a genuine
+        # orphan here and calibrates the closure gate in both directions.
+        (repo / "GroupApproximation.lean").write_text(
+            "import GroupApproximation.PropertyTT.PaperStatements\n",
+            encoding="utf-8",
+        )
         tex = repo / "paper.tex"
         tex.write_text(
             r"\leanverified{PropertyTT/PaperStatements}{PropertyTTPaper.endpoint}",
@@ -84,6 +118,14 @@ def self_test() -> int:
         )
         if validate(repo, tex):
             print("self-test: valid reference was rejected", file=sys.stderr)
+            return 1
+        tex.write_text(
+            r"\leanverified{PropertyTT/Unbuilt}{PropertyTTPaper.unbuilt}",
+            encoding="utf-8",
+        )
+        if not any("outside the import closure" in problem
+                   for problem in validate(repo, tex)):
+            print("self-test: badge on an orphan module was accepted", file=sys.stderr)
             return 1
         tex.write_text(
             r"\leanverified{PropertyTT/PaperStatements}{PropertyTTPaper.missing}",

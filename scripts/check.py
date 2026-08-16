@@ -190,6 +190,37 @@ def import_closure(modules: dict[str, Path], start: str) -> set[str]:
     return seen
 
 
+def orphan_modules(root: Path) -> set[str]:
+    """Every module outside its library root's import closure, by dotted name.
+
+    Raises rather than returning an empty set when a library root is missing:
+    "no orphans" and "I could not tell" are the same value but opposite facts,
+    and the callers gate publication on the answer.  A badge checker that
+    silently degraded to "no orphans" would certify exactly the modules this
+    is meant to catch.
+    """
+    orphans: set[str] = set()
+    for lib in LIBS:
+        modules = module_files(root, lib)
+        if not modules:
+            continue
+        if lib not in modules:
+            raise FileNotFoundError(f"root module {lib}.lean not found under {root}")
+        reachable = import_closure(modules, lib)
+        orphans.update(name for name in modules if name not in reachable)
+    return orphans
+
+
+def orphan_paths(root: Path) -> set[str]:
+    """`orphan_modules` in the slash-separated form the manuscript badges use.
+
+    A badge names `Sofic/LiteralNonMFEndpoint`, not the dotted module, and both
+    badge checkers need the comparison; translating once here keeps them from
+    each growing their own version of it.
+    """
+    return {"/".join(name.split(".")[1:]) for name in orphan_modules(root)}
+
+
 def check_import_closure(root: Path, f: Findings) -> None:
     """Every library module must be reachable from the root module.
 
@@ -573,14 +604,8 @@ def list_orphans(root: Path) -> int:
     holding the fleet lock.  One closure implementation, printed here, is what
     keeps the build script and this scan from ever disagreeing again.
     """
-    for lib in LIBS:
-        modules = module_files(root, lib)
-        if not modules or lib not in modules:
-            continue
-        reachable = import_closure(modules, lib)
-        for name in sorted(modules):
-            if name not in reachable:
-                print(name)
+    for name in sorted(orphan_modules(root)):
+        print(name)
     return 0
 
 
