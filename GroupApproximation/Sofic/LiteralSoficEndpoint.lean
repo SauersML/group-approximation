@@ -39,10 +39,17 @@ Everything about *non*-MF is unconditional and already in the repository.  What
 this file does **not** prove is soficity of the telescope core `E_T`; that is
 the deliverable of the block, amalgam and LEF lanes, and it is the sole premise
 of every conditional declaration below.
-`docs/LITERAL_GROUP_IS_SOFIC_2026-08-14.md` records the trust-surface inversion
-this creates: "`E` is not MF" is unconditional while "`E` is sofic" carries the
-`B ≅ Γ̄` input that the core argument consumes at (S1) and at Lemma 3.1.  No
-declaration in this file asserts soficity of `E` outright.
+
+`docs/LITERAL_GROUP_IS_SOFIC_2026-08-14.md` flags `B ≅ Γ̄` (completeness of the
+eight-relator presentation of `SL₃(ℤ)`) as the one irreducible literature input,
+entering at its (S1) and at its Lemma 3.1.  That caveat is obsolete for the
+*splitting* half: `Monsters/LiteralBaseCompleteness.lean` proves
+`baseAffineEquiv : Base ≃* gammaBar` outright, so the split normal form
+`E = N_E ⋊ V` is premise-free inside this repository.  What remains open is the
+residual finiteness feeding Lemma 3.1 -- the finite sub-amalgams `M_J` and the
+telescope levels `Γ_n` -- which is where the trust surface now sits.  No
+declaration in this file asserts soficity of `E` outright, and the manuscript
+inherits whatever premises the core's soficity proof carries.
 
 ## Interface
 
@@ -290,33 +297,45 @@ theorem markedGroup_soficNonMF_package (hsofic : IsSofic MarkedGroup) :
 /-!
 ## Integration target
 
-When the block, amalgam, LEF and split lanes land, exactly one of the two
-premises below becomes available, and the unconditional endpoint is a purely
-additive two-line edit to this file -- no existing declaration changes shape.
-
-*Retraction shape.*  With `LiteralLampKernelSplit.retraction` and its section,
-and `LiteralTelescopeCoreLEF.telescopeCore_isSofic`:
+The splitting lane delivers the *tower* shape, so that is the entry point the
+integration uses.  `LiteralLampKernelSplit` supplies
 
 ```
-theorem markedGroup_hasSoficTelescopeCore : HasSoficTelescopeCore :=
-  ⟨LiteralLampKernelSplit.retraction, LiteralLampKernelSplit.stableSection,
-    LiteralLampKernelSplit.retraction_stableSection,
-    LiteralTelescopeCoreLEF.telescopeCore_isSofic⟩
-
-theorem markedGroup_isSofic : IsSofic MarkedGroup :=
-  markedGroup_isSofic_of_soficCore markedGroup_hasSoficTelescopeCore
+markedGroupEquivSemidirect : (lampKernel ⋊[lampKernelAction] V) ≃* MarkedGroup
 ```
 
-*Tower shape.*  With `LiteralLampKernelSplit.markedGroup_split` delivering
-`MarkedGroup ≃* (N ⋊[f] (T ⋊[g] Multiplicative ℤ))`:
+with `V = MarkedCompression.Vertical alpha conjD_injective`, and `Vertical` is
+an `abbrev` for `Telescope alpha conjD_injective ⋊[shiftHom alpha
+conjD_injective] Multiplicative ℤ`.  That is exactly the shape of
+`markedGroup_isSofic_of_towerEquiv`, with `A := lampKernel`,
+`B := Telescope alpha conjD_injective` and `g := shiftHom alpha
+conjD_injective`.  Note the direction: the lane's equivalence points *at*
+`MarkedGroup`, so the integration applies `.symm`.
 
 ```
-theorem markedGroup_isSofic : IsSofic MarkedGroup :=
-  markedGroup_isSofic_of_towerEquiv _ _ LiteralLampKernelSplit.markedGroup_split
-    LiteralTelescopeCoreLEF.telescopeCore_isSofic
+theorem markedGroup_isSofic
+    (hcore : IsSofic (LiteralLampKernelSplit.lampKernel ⋊[
+      SemidirectAssoc.baseAction
+        (MarkedCompression.shiftHom alpha conjD_injective)
+        LiteralLampKernelSplit.lampKernelAction]
+      MarkedCompression.Telescope alpha conjD_injective)) :
+    IsSofic MarkedGroup :=
+  markedGroup_isSofic_of_towerEquiv _ _
+    LiteralLampKernelSplit.markedGroupEquivSemidirect.symm hcore
 ```
 
-Either way the printed separation is then
+The remaining premise `hcore` is exactly `LiteralTelescopeCoreLEF`'s
+`telescopeCore_isSofic D`, since `telescopeCore D` is the `abbrev`
+`Lamp ⋊[D.action] Tel`: it discharges as soon as a
+`TelescopeCoreData (lampKernel) (Telescope alpha conjD_injective) Block` is
+built whose `action` field is `SemidirectAssoc.baseAction (shiftHom alpha
+conjD_injective) lampKernelAction` -- a `rfl` identification, the same one
+`Sofic/SoficMarkedCompression.lean` makes at `level_action_eq_baseAction`.
+Building that datum is the block/amalgam/LEF lanes' business; its
+`subAmalgam_residuallyFinite` and `level_residuallyFinite` fields are the whole
+of the endpoint's trust surface.
+
+The printed separation is then
 
 ```
 theorem markedGroup_finitelyPresented_sofic_nonMF :
