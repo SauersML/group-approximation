@@ -457,7 +457,7 @@ def self_test() -> int:
             bad = json.loads(json.dumps(base))
             bad["claims"][0]["statement_sha256"] = bad_claim.statement_sha256
             manifest.write_text(json.dumps(bad), encoding="utf-8")
-            if not any("exactly one \\leanverified badge" in p
+            if not any("at least one \\leanverified badge" in p
                        for p in validate(repo, tex, manifest)):
                 print(f"self-test accepted badge {forbidden_badge}", file=sys.stderr)
                 return 1
