@@ -294,6 +294,8 @@ import GroupApproximation.Sofic.SoficPiProduct
 import GroupApproximation.Sofic.AmenableActionSofic
 import GroupApproximation.Sofic.CoAmenableActionSofic
 import GroupApproximation.Sofic.WreathPermLayer
+import GroupApproximation.Sofic.WreathChartLamp
+import GroupApproximation.Sofic.GeneralizedWreathSofic
 import GroupApproximation.Kazhdan.IntegerNotKazhdan
 import GroupApproximation.Sofic.SoficAction
 import GroupApproximation.Sofic.SoficActionFiniteOrbits

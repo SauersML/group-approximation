@@ -3,11 +3,13 @@ import GroupApproximation.Sofic.Sofic
 /-!
 # The permutation layer of a wreath model
 
-Section 29.4 of the dossier: a lamp labelling `L : A → J` together with a base
-permutation `σ` of `A` acts on `D × A`, where `D` carries an approximate action
-`θ` of the lamp group `J`, by
+Section 29.4 of the dossier: a family of fibre permutations `Θ : A → Sym(D)`
+together with a base permutation `σ` of `A` acts on `D × A` by
 
-`(d, a) ↦ (θ (L (σ a)) d, σ a)`.
+`(d, a) ↦ (Θ (σ a) d, σ a)`.
+
+In the wreath model `Θ a` is the approximate lamp permutation labelled by the
+base point `a`; taking `Θ` constant recovers the product of two models.
 
 Everything the wreath soficity proof needs about this layer follows from one
 exact formula: the normalized Hamming distance between two such permutations is
@@ -22,8 +24,6 @@ namespace WreathLayer
 
 universe u
 
-variable {J : Type u}
-
 /-- The product of two finite models. -/
 @[reducible] def prodModel (D A : FiniteModel) : FiniteModel where
   carrier := D.carrier × A.carrier
@@ -32,59 +32,61 @@ variable {J : Type u}
 
 variable {D A : FiniteModel}
 
-/-- The imprimitive permutation attached to a lamp labelling and a base
-permutation. -/
-def wreathPerm (θ : J → Equiv.Perm D) (L : A → J) (σ : Equiv.Perm A) :
+/-- The permutation of `D × A` that moves the base point by `σ` and acts in the
+fibre by the permutation labelling the *target* base point. -/
+def fiberPerm (Θ : A → Equiv.Perm D) (σ : Equiv.Perm A) :
     Equiv.Perm (prodModel D A) where
-  toFun p := (θ (L (σ p.2)) p.1, σ p.2)
-  invFun p := ((θ (L p.2))⁻¹ p.1, σ⁻¹ p.2)
+  toFun p := (Θ (σ p.2) p.1, σ p.2)
+  invFun p := ((Θ p.2)⁻¹ p.1, σ⁻¹ p.2)
   left_inv := fun p => Prod.ext (by simp) (by simp)
   right_inv := fun p => Prod.ext (by simp) (by simp)
 
-@[simp] theorem wreathPerm_apply (θ : J → Equiv.Perm D) (L : A → J)
-    (σ : Equiv.Perm A) (p : prodModel D A) :
-    wreathPerm θ L σ p = (θ (L (σ p.2)) p.1, σ p.2) := rfl
+@[simp] theorem fiberPerm_apply (Θ : A → Equiv.Perm D) (σ : Equiv.Perm A)
+    (p : prodModel D A) : fiberPerm Θ σ p = (Θ (σ p.2) p.1, σ p.2) := rfl
 
-/-- The layer is multiplicative exactly when the approximate lamp action is:
-the labelling of a product is the pointwise product of the labellings, read at
-the shifted base point. -/
-theorem wreathPerm_mul [Group J] (θ : J → Equiv.Perm D) (L₁ L₂ : A → J)
-    (σ₁ σ₂ : Equiv.Perm A) (hθ : ∀ j k : J, θ (j * k) = θ j * θ k) :
-    wreathPerm θ L₁ σ₁ * wreathPerm θ L₂ σ₂
-      = wreathPerm θ (fun a => L₁ a * L₂ (σ₁⁻¹ a)) (σ₁ * σ₂) := by
+/-- Composition of two such permutations is again one, with the fibre labels
+multiplied at the intermediate base point.  No hypothesis is needed: this is an
+identity of permutations, not an approximation. -/
+theorem fiberPerm_mul (Θ₁ Θ₂ : A → Equiv.Perm D) (σ₁ σ₂ : Equiv.Perm A) :
+    fiberPerm Θ₁ σ₁ * fiberPerm Θ₂ σ₂
+      = fiberPerm (fun a => Θ₁ a * Θ₂ (σ₁⁻¹ a)) (σ₁ * σ₂) := by
   refine Equiv.ext fun p => ?_
   refine Prod.ext ?_ ?_
-  · show θ (L₁ (σ₁ (σ₂ p.2))) (θ (L₂ (σ₂ p.2)) p.1)
-      = θ (L₁ ((σ₁ * σ₂) p.2) * L₂ (σ₁⁻¹ ((σ₁ * σ₂) p.2))) p.1
+  · show Θ₁ (σ₁ (σ₂ p.2)) (Θ₂ (σ₂ p.2) p.1)
+      = (Θ₁ ((σ₁ * σ₂) p.2) * Θ₂ (σ₁⁻¹ ((σ₁ * σ₂) p.2))) p.1
     have hbase : (σ₁ * σ₂) p.2 = σ₁ (σ₂ p.2) := rfl
-    rw [hbase, hθ]
+    rw [hbase]
     simp
   · rfl
+
+/-- A product of permutations is the constant-label case. -/
+theorem fiberPerm_const (p : Equiv.Perm D) (σ : Equiv.Perm A)
+    (q : prodModel D A) : fiberPerm (fun _ => p) σ q = (p q.1, σ q.2) := rfl
 
 /-! ## The fibrewise distance formula -/
 
 /-- **The exact fibre average.**  Base points whose images differ contribute a
 whole fibre; the others contribute their lamp distance. -/
-theorem hammingDistance_wreathPerm (θ : J → Equiv.Perm D) (L₁ L₂ : A → J)
+theorem hammingDistance_fiberPerm (Θ₁ Θ₂ : A → Equiv.Perm D)
     (σ₁ σ₂ : Equiv.Perm A) (hD : 0 < Fintype.card D) :
-    hammingDistance (prodModel D A) (wreathPerm θ L₁ σ₁) (wreathPerm θ L₂ σ₂)
+    hammingDistance (prodModel D A) (fiberPerm Θ₁ σ₁) (fiberPerm Θ₂ σ₂)
       = (∑ a : A, (if σ₁ a = σ₂ a then
-            hammingDistance D (θ (L₁ (σ₁ a))) (θ (L₂ (σ₂ a))) else 1))
+            hammingDistance D (Θ₁ (σ₁ a)) (Θ₂ (σ₂ a)) else 1))
         / Fintype.card A := by
   classical
   have hDR : (0 : ℝ) < Fintype.card D := by exact_mod_cast hD
   have hinj : ∀ a : A, Function.Injective (fun d : D => ((d, a) : prodModel D A)) := by
     intro a d d' hdd'
     simpa using congrArg Prod.fst hdd'
-  have hval : ∀ (L : A → J) (σ : Equiv.Perm A) (d : D) (b : A),
-      wreathPerm θ L σ ((d, b) : prodModel D A) = (θ (L (σ b)) d, σ b) :=
+  have hval : ∀ (Θ : A → Equiv.Perm D) (σ : Equiv.Perm A) (d : D) (b : A),
+      fiberPerm Θ σ ((d, b) : prodModel D A) = (Θ (σ b) d, σ b) :=
     fun _ _ _ _ => rfl
   -- each fibre of the disagreement set, computed exactly
   have hset : ∀ a : A,
-      ((hammingDisagreement (wreathPerm θ L₁ σ₁) (wreathPerm θ L₂ σ₂)).filter
+      ((hammingDisagreement (fiberPerm Θ₁ σ₁) (fiberPerm Θ₂ σ₂)).filter
         fun p : prodModel D A => p.2 = a)
       = ((Finset.univ.filter fun d : D =>
-          ¬ ((θ (L₁ (σ₁ a)) d = θ (L₂ (σ₂ a)) d) ∧ σ₁ a = σ₂ a)).image
+          ¬ ((Θ₁ (σ₁ a) d = Θ₂ (σ₂ a) d) ∧ σ₁ a = σ₂ a)).image
             (fun d => ((d, a) : prodModel D A))) := by
     intro a
     ext p
@@ -96,10 +98,10 @@ theorem hammingDistance_wreathPerm (θ : J → Equiv.Perm D) (L₁ L₂ : A → 
       exact ⟨d, hne, rfl, rfl⟩
     · rintro ⟨d', hd', rfl, rfl⟩
       exact ⟨hd', rfl⟩
-  have hfiber : (hammingDisagreement (wreathPerm θ L₁ σ₁)
-      (wreathPerm θ L₂ σ₂)).card
+  have hfiber : (hammingDisagreement (fiberPerm Θ₁ σ₁)
+      (fiberPerm Θ₂ σ₂)).card
       = ∑ a : A, (if σ₁ a = σ₂ a then
-          (hammingDisagreement (θ (L₁ (σ₁ a))) (θ (L₂ (σ₂ a)))).card
+          (hammingDisagreement (Θ₁ (σ₁ a)) (Θ₂ (σ₂ a))).card
           else Fintype.card D) := by
     rw [Finset.card_eq_sum_card_fiberwise
       (f := fun p : prodModel D A => p.2) (t := Finset.univ)
@@ -114,7 +116,7 @@ theorem hammingDistance_wreathPerm (θ : J → Equiv.Perm D) (L₁ L₂ : A → 
         mem_hammingDisagreement, ne_eq]
     · rw [if_neg hcase]
       have huniv : (Finset.univ.filter fun d : D =>
-          ¬ ((θ (L₁ (σ₁ a)) d = θ (L₂ (σ₂ a)) d) ∧ σ₁ a = σ₂ a))
+          ¬ ((Θ₁ (σ₁ a) d = Θ₂ (σ₂ a) d) ∧ σ₁ a = σ₂ a))
           = (Finset.univ : Finset D) := by
         ext d
         simp only [Finset.mem_filter, Finset.mem_univ, true_and, hcase,
@@ -124,10 +126,10 @@ theorem hammingDistance_wreathPerm (θ : J → Equiv.Perm D) (L₁ L₂ : A → 
       = Fintype.card D * Fintype.card A := Fintype.card_prod _ _
   have hcast : ∀ a : A,
       (((if σ₁ a = σ₂ a then
-          (hammingDisagreement (θ (L₁ (σ₁ a))) (θ (L₂ (σ₂ a)))).card
+          (hammingDisagreement (Θ₁ (σ₁ a)) (Θ₂ (σ₂ a))).card
           else Fintype.card D) : ℕ) : ℝ) / (Fintype.card D : ℝ)
       = (if σ₁ a = σ₂ a then
-          hammingDistance D (θ (L₁ (σ₁ a))) (θ (L₂ (σ₂ a))) else 1) := by
+          hammingDistance D (Θ₁ (σ₁ a)) (Θ₂ (σ₂ a)) else 1) := by
     intro a
     by_cases hcase : σ₁ a = σ₂ a
     · rw [if_pos hcase, if_pos hcase, hammingDistance]
@@ -143,25 +145,25 @@ theorem hammingDistance_wreathPerm (θ : J → Equiv.Perm D) (L₁ L₂ : A → 
 /-- **Multiplicativity estimate.**  Outside a small set of base points the
 labellings agree to within `η`, and the whole distance is then within `η` of the
 proportion of bad base points. -/
-theorem hammingDistance_wreathPerm_le (θ : J → Equiv.Perm D) (L₁ L₂ : A → J)
+theorem hammingDistance_fiberPerm_le (Θ₁ Θ₂ : A → Equiv.Perm D)
     (σ₁ σ₂ : Equiv.Perm A) (hD : 0 < Fintype.card D) (hA : 0 < Fintype.card A)
     (bad : Finset A) {η : ℝ} (hη : 0 ≤ η)
     (hgood : ∀ a ∉ bad, σ₁ a = σ₂ a ∧
-      hammingDistance D (θ (L₁ (σ₁ a))) (θ (L₂ (σ₂ a))) ≤ η) :
-    hammingDistance (prodModel D A) (wreathPerm θ L₁ σ₁) (wreathPerm θ L₂ σ₂)
+      hammingDistance D (Θ₁ (σ₁ a)) (Θ₂ (σ₂ a)) ≤ η) :
+    hammingDistance (prodModel D A) (fiberPerm Θ₁ σ₁) (fiberPerm Θ₂ σ₂)
       ≤ (bad.card : ℝ) / Fintype.card A + η := by
   classical
   have hAR : (0 : ℝ) < Fintype.card A := by exact_mod_cast hA
-  rw [hammingDistance_wreathPerm θ L₁ L₂ σ₁ σ₂ hD]
+  rw [hammingDistance_fiberPerm Θ₁ Θ₂ σ₁ σ₂ hD]
   have hterm : ∀ a : A, (if σ₁ a = σ₂ a then
-      hammingDistance D (θ (L₁ (σ₁ a))) (θ (L₂ (σ₂ a))) else 1)
+      hammingDistance D (Θ₁ (σ₁ a)) (Θ₂ (σ₂ a)) else 1)
       ≤ (if a ∈ bad then (1 : ℝ) else 0) + η := by
     intro a
     by_cases hb : a ∈ bad
     · rw [if_pos hb]
       by_cases hc : σ₁ a = σ₂ a
       · rw [if_pos hc]
-        have := hammingDistance_le_one D (θ (L₁ (σ₁ a))) (θ (L₂ (σ₂ a)))
+        have := hammingDistance_le_one D (Θ₁ (σ₁ a)) (Θ₂ (σ₂ a))
         linarith
       · rw [if_neg hc]
         linarith
@@ -175,12 +177,12 @@ theorem hammingDistance_wreathPerm_le (θ : J → Equiv.Perm D) (L₁ L₂ : A �
       Finset.sum_const, Finset.sum_const, Finset.card_univ]
     simp [mul_comm]
   have hbound : ∑ a : A, (if σ₁ a = σ₂ a then
-      hammingDistance D (θ (L₁ (σ₁ a))) (θ (L₂ (σ₂ a))) else 1)
+      hammingDistance D (Θ₁ (σ₁ a)) (Θ₂ (σ₂ a)) else 1)
       ≤ (bad.card : ℝ) + (Fintype.card A : ℝ) * η :=
     le_trans (Finset.sum_le_sum fun a _ => hterm a) (le_of_eq hsum)
   rw [div_le_iff₀ hAR]
   calc ∑ a : A, (if σ₁ a = σ₂ a then
-        hammingDistance D (θ (L₁ (σ₁ a))) (θ (L₂ (σ₂ a))) else 1)
+        hammingDistance D (Θ₁ (σ₁ a)) (Θ₂ (σ₂ a)) else 1)
       ≤ (bad.card : ℝ) + (Fintype.card A : ℝ) * η := hbound
     _ = ((bad.card : ℝ) / Fintype.card A + η) * Fintype.card A := by
         field_simp
@@ -188,20 +190,20 @@ theorem hammingDistance_wreathPerm_le (θ : J → Equiv.Perm D) (L₁ L₂ : A �
 /-- **Separation estimate.**  If outside a small set of base points every fibre
 contributes at least `c`, the whole distance is at least `c` times the good
 proportion. -/
-theorem hammingDistance_wreathPerm_ge (θ : J → Equiv.Perm D) (L₁ L₂ : A → J)
+theorem hammingDistance_fiberPerm_ge (Θ₁ Θ₂ : A → Equiv.Perm D)
     (σ₁ σ₂ : Equiv.Perm A) (hD : 0 < Fintype.card D) (hA : 0 < Fintype.card A)
     (bad : Finset A) {c : ℝ}
     (hgood : ∀ a ∉ bad, c ≤ (if σ₁ a = σ₂ a then
-      hammingDistance D (θ (L₁ (σ₁ a))) (θ (L₂ (σ₂ a))) else 1)) :
+      hammingDistance D (Θ₁ (σ₁ a)) (Θ₂ (σ₂ a)) else 1)) :
     c * (1 - (bad.card : ℝ) / Fintype.card A)
-      ≤ hammingDistance (prodModel D A) (wreathPerm θ L₁ σ₁)
-          (wreathPerm θ L₂ σ₂) := by
+      ≤ hammingDistance (prodModel D A) (fiberPerm Θ₁ σ₁)
+          (fiberPerm Θ₂ σ₂) := by
   classical
   have hAR : (0 : ℝ) < Fintype.card A := by exact_mod_cast hA
-  rw [hammingDistance_wreathPerm θ L₁ L₂ σ₁ σ₂ hD, le_div_iff₀ hAR]
+  rw [hammingDistance_fiberPerm Θ₁ Θ₂ σ₁ σ₂ hD, le_div_iff₀ hAR]
   have hterm : ∀ a : A, (if a ∈ bad then (0 : ℝ) else c)
       ≤ (if σ₁ a = σ₂ a then
-          hammingDistance D (θ (L₁ (σ₁ a))) (θ (L₂ (σ₂ a))) else 1) := by
+          hammingDistance D (Θ₁ (σ₁ a)) (Θ₂ (σ₂ a)) else 1) := by
     intro a
     by_cases hb : a ∈ bad
     · rw [if_pos hb]
@@ -226,7 +228,7 @@ theorem hammingDistance_wreathPerm_ge (θ : J → Equiv.Perm D) (L₁ L₂ : A �
       = (Fintype.card A : ℝ) * c - (bad.card : ℝ) * c := by field_simp
     _ = ∑ _a : A, (if _a ∈ bad then (0 : ℝ) else c) := hsum.symm
     _ ≤ ∑ a : A, (if σ₁ a = σ₂ a then
-          hammingDistance D (θ (L₁ (σ₁ a))) (θ (L₂ (σ₂ a))) else 1) :=
+          hammingDistance D (Θ₁ (σ₁ a)) (Θ₂ (σ₂ a)) else 1) :=
         Finset.sum_le_sum fun a _ => hterm a
 
 end WreathLayer
