@@ -367,6 +367,7 @@ import GroupApproximation.Sofic.AscendingHNNDoubleCosets
 import GroupApproximation.Sofic.AscendingHNNWreathWitness
 import GroupApproximation.Sofic.AscendingHNNSplitExtension
 import GroupApproximation.Sofic.AscendingHNNTelescopeRadical
+import GroupApproximation.Sofic.AscendingHNNFullTelescopeRadical
 import GroupApproximation.Sofic.ProfiniteTwins
 import GroupApproximation.Sofic.AlternatingLampLiteralPackage
 import GroupApproximation.Sofic.LiteralDoublingWreathNonMF
