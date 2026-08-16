@@ -2922,8 +2922,7 @@ $\operatorname{Rad}_{\mathrm{fd}}(G)\ne1$ is not MF.
 
 \subsection{Orbit collapse}\label{subsec:collapse}
 
-The criteria of Section~\ref{sec:conj} bound the radical from below
-by torsion or rigidity already present in $N_{\mathrm{comp}}$.  Under a
+Under a
 commuting-orbit hypothesis in place of centrality, every homomorphism
 to $\U(\mathcal Q)$ identifies an entire conjugation orbit of an
 involution; a whole family of commutators therefore enters the radical,
@@ -2987,10 +2986,8 @@ involution at operator distance at most $\opnorm{u^2-1}$ from $u$.
 Enumerate $O$ as $v^{(1)},v^{(2)},\dots$ and correct in that order,
 carrying the induction hypothesis that after stage $m$ the operators
 $V_n(v^{(1)}),\dots,V_n(v^{(m)})$ are exact self-adjoint involutions
-commuting pairwise, \emph{and that no later stage alters them}.  That
-second clause is what makes the induction close, and it is what the
-construction supplies: at stage $m$ the model $U_{v^{(m)},n}$ fails to
-commute with $V_n(v^{(j)})$, $j<m$, by at most
+commuting pairwise, \emph{and that no later stage alters them}.  At
+stage $m$ the model $U_{v^{(m)},n}$ fails to commute with $V_n(v^{(j)})$, $j<m$, by at most
 $\opnorm{[U_{v^{(m)},n},U_{v^{(j)},n}]_{-}}
  +2\opnorm{V_n(v^{(j)})-U_{v^{(j)},n}}$,
 the first term an asymptotic-commutation error of (W3) and the second
@@ -3002,8 +2999,10 @@ involutions --- so compressing $U_{v^{(m)},n}$ into it moves it by at
 most that amount, and taking the spectral sign of the Hermitian part
 \emph{inside that subalgebra} yields an exact self-adjoint involution
 commuting exactly with all earlier ones while leaving them untouched.
-The cost is the accumulated sum, linear in $m$; each $m$ is fixed
-before $n$ grows, so the limits displayed next are taken at fixed $m$.
+The resulting perturbation is bounded by the sum of the preceding $m$
+commutation and correction errors, hence tends to $0$ for fixed $m$;
+each $m$ is fixed before $n$ grows, so the limits displayed next are
+taken at fixed $m$.
 The induction yields exact pairwise-commuting self-adjoint involutions
 $V_n(v)$, $v\in O$, with
 \[
@@ -3018,12 +3017,10 @@ involutions $e,f$ the self-adjoint displacement $T=e-f$ satisfies
 $T^3=4T$, so its eigenvalues lie in $\{0,\pm2\}$, the operator $T^2/4$
 is the orthogonal projection onto $\operatorname{ran}T$, and
 \begin{equation}\label{eq:rank-support}
- \operatorname{Tr}|e-f|^2=4\operatorname{rank}(e-f):
+ \operatorname{Tr}|e-f|^2=4\operatorname{rank}(e-f).
 \end{equation}
-rank is an exact support count for the Hilbert--Schmidt displacement
-here.  Hence $r_n(\gamma,\mu)=\operatorname{rank}(V_n(\gamma)-V_n(\mu))$
-is an integer-valued pseudometric --- written $r_n$, not $d_n$, because
-$d_n$ is the matrix dimension throughout.  It is eventually translation
+Hence $r_n(\gamma,\mu)=\operatorname{rank}(V_n(\gamma)-V_n(\mu))$
+is an integer-valued pseudometric.  It is eventually translation
 invariant, $r_n(g\gamma,g\mu)=r_n(\gamma,\mu)$ for all large $n$ and
 each fixed triple: the comparison is made between the projections
 $T^2/4$, whose ranks agree once they lie at operator distance below
@@ -3087,8 +3084,7 @@ operator distance can differ in full rank.  Combining them in
 $\operatorname{Tr}|D|^2\le\operatorname{rank}(D)\cdot\opnorm{D}^2$
 bounds the normalized defect mass by
 $\bigl(|\gamma|_S+|\mu|_S+|a|_S\bigr)\opnorm{D_n}^2\to0$: the defect
-mass vanishes at the scale $k_n$.  Only differences of the involutions
-enter what follows.
+mass vanishes at the scale $k_n$.
 
 \emph{Step 5: the limiting cocycle is a coboundary.}  Fix a free
 ultrafilter $\omega$ on $\N$, give $M_{d_n}(\C)$ the inner product
@@ -3101,8 +3097,7 @@ norm of $B(M_{d_n}(\C))$, so
 \[
  \pi(g)=[\Ad U_{g,n}]_\omega
 \]
-is a unitary representation of $H$ on $K_\omega$, exactly as in the
-proof of Theorem~\ref{thm:kazhdan-transport}.  The bound
+is a unitary representation of $H$ on $K_\omega$.  The bound
 $\|b_n(\gamma)\|_{\mathrm F}^2\le4|\gamma|_S$ of Step~4 makes
 $b(\gamma)=[b_n(\gamma)]_\omega$ a well-defined vector of $K_\omega$
 for every $\gamma\in L$, and the vanishing of the normalized defect
@@ -3130,22 +3125,19 @@ $V_n(sas^{-1})=V_n(1)$ at every stage, and hence $b(sas^{-1})=0$.
 Therefore $y=\pi(sas^{-1})y$ for every $a\in L$: the vector $y$ is
 fixed by $\pi(sLs^{-1})$.
 
-What is needed is the reverse of the inclusion that $sLs^{-1}\le L$
-supplies, namely
+The proof of Theorem~\ref{thm:kazhdan-transport} gives the reverse of
+the inclusion supplied by $sLs^{-1}\le L$, namely
 \[
- \operatorname{Fix}\pi(sLs^{-1})\;\subseteq\;\operatorname{Fix}\pi(L),
+ \operatorname{Fix}\pi(sLs^{-1})\;\subseteq\;\operatorname{Fix}\pi(L):
 \]
-and it is what the proof of Theorem~\ref{thm:kazhdan-transport}
-establishes.  That proof builds, from the Kazhdan gap alone, the
-projection $P$ of $K_\omega$ onto $\operatorname{Fix}\pi(L)$; identifies
-the range of $Q=\pi(s)P\pi(s)^{*}$ with $\operatorname{Fix}\pi(sLs^{-1})$;
-observes $P\le Q$; and concludes $Q=P$ from
-Lemmas~\ref{lem:finitecompare} and~\ref{lem:ultrafinite}, the norm
-ultraproduct being finite.  No sequence being transported enters that
-chain, and Lemma~\ref{lem:ultrafinite} is stated for arbitrary
-finite-dimensional Hilbert spaces, so rescaling the inner product on
-each coordinate --- here from $\tr_{d_n}$ to $\operatorname{Tr}$ ---
-changes nothing in it.
+there $P$ is the projection of $K_\omega$ onto $\operatorname{Fix}\pi(L)$,
+the range of $Q=\pi(s)P\pi(s)^{*}$ is $\operatorname{Fix}\pi(sLs^{-1})$,
+$P\le Q$, and $Q=P$ by Lemmas~\ref{lem:finitecompare}
+and~\ref{lem:ultrafinite}.  No transported sequence enters that chain,
+and multiplying each coordinate inner product by a positive scalar ---
+here passing from $\tr_{d_n}$ to $\operatorname{Tr}$ --- changes neither
+the operator norms of the adjoint actions nor the comparison of
+projections, so Lemma~\ref{lem:ultrafinite} applies unchanged.
 
 Hence $y\in\operatorname{Fix}\pi(L)$, so $b(a)=y-\pi(a)y=0$ for every
 $a\in L$, contradicting \eqref{eq:limit-mass}.  Therefore
@@ -3347,9 +3339,7 @@ Then $p$ commutes with $\Theta(L)$.
 \end{theorem}
 
 \begin{proof}
-The symmetry $\sigma=1-2p$ is a self-adjoint unitary of $\mathcal Q$;
-it is written $\sigma$ because $w$ denotes the marked word of $E$
-throughout.  The
+The symmetry $\sigma=1-2p$ is a self-adjoint unitary of $\mathcal Q$.  The
 subgroup $H'\le\U(\mathcal Q)$ generated by $\Theta(H)$ and $\sigma$ is
 countable.  Inside $H'$, the image $\Theta(L)$ has
 property~\textup{(T)}, $\Theta(s)$ compresses it, $\sigma$ is an involution
@@ -3364,13 +3354,15 @@ $[\Theta(\gamma),\sigma]=1$ in $\mathcal Q$, and $\sigma=1-2p$ gives
 $[\Theta(\gamma),p]_{-}=0$.
 \end{proof}
 
-The witness here need not come from a group element: the projection is
-an arbitrary element of $\mathcal Q$.  The relative commutant
-$\Theta(sLs^{-1})'\cap\mathcal Q$ therefore cannot exceed
-$\Theta(L)'\cap\mathcal Q$ by a projection with commuting
-$L$-orbit.
+Theorem~\ref{thm:projection-collapse} applies to an arbitrary projection
+of $\mathcal Q$, not only to one arising from a group element.  Hence
+the relative commutant $\Theta(sLs^{-1})'\cap\mathcal Q$ cannot exceed
+$\Theta(L)'\cap\mathcal Q$ by a projection with commuting $L$-orbit.
 
-Functional calculus now removes the involutivity of the witness.
+If $k$ has finite order $m$, applying
+Theorem~\ref{thm:projection-collapse} to the Fourier spectral
+projections of $\Theta(k)$ removes the assumption that $k$ is an
+involution.
 
 \begin{theorem}[torsion collapse]\label{thm:torsion-collapse}
 Let $H$ be countable, let $L\le H$ have property~\textup{(T)}, let
@@ -3448,12 +3440,12 @@ $\Cl(X)/\langle\zeta\rangle$ is the elementary abelian group
 $\bigoplus_X\Z/2$ under the same $\Sigma$-action, so
 $W/\langle\zeta\rangle\cong\bigl(\bigoplus_X\Z/2\bigr)\rtimes\Sigma$.
 That kernel is again locally finite with finite level orbits, so the
-argument of Theorem~\ref{thm:E} gives soficity unchanged.
+finite-by-sofic exhaustion in the proof of Theorem~\ref{thm:E} proves
+soficity.
 \end{proof}
 
-Thus $W/\langle\zeta\rangle$ is a second finitely generated sofic group
-that is not MF\@.  The same argument applies to the finitely presented
-group $E/\langle w\rangle$.
+The same argument applies to the finitely presented group
+$E/\langle w\rangle$.
 
 \begin{proof}[Proof of Theorem~\ref{thm:signfree}]
 Write $q\colon E\to E/\langle w\rangle$, $\bar d=q(d)$, and
@@ -3497,7 +3489,6 @@ $\operatorname{Rad}_{\mathrm{MF}}(E/\langle w\rangle)$, so $u$ belongs
 to it.
 \end{proof}
 
-Thus $E/\langle w\rangle$ is a second finitely presented non-MF group.
 \begin{corollary}[collapse computes the radical]\label{cor:collapsequot}
 In the setting of Theorem~\ref{thm:collapse}, write
 $q\colon H\to H/D_{\mathrm{coll}}(L,s)$ for the quotient map.  Then,
@@ -3907,10 +3898,10 @@ needed.
 The proof is specific to the operator norm.  If multiplication
 is controlled only in normalized Hilbert--Schmidt norm, the induced adjoint
 operators on the Hilbert--Schmidt spaces need not be close in operator norm.
-Both transport proofs require exactly that operator-norm control: the
-ultraproduct proof needs it to obtain a genuine representation on the
-ultraproduct, and the finite-stage proof of
-Section~\ref{app:finite-stage} needs it for the spectral estimates.
+Both proofs of Theorem~\ref{thm:kazhdan-transport} use that operator-norm
+control: without it the classes $[\Ad U_n(g)]_\omega$ need not be
+multiplicative, and the spectral estimates of
+Section~\ref{app:finite-stage} are unavailable.
 The failure is exact and dimension-free: against
 the operator-norm estimate $\opnorm{\Ad(U)-\Ad(V)}\le2\opnorm{U-V}$,
 there are unitaries of arbitrarily small normalized Hilbert--Schmidt
@@ -3929,9 +3920,9 @@ smaller than the bound.
 \leanverified{Sofic/NormTraceGap}{GroupApproximation.NormModel.exists_hs_collapse}
 $2$-norm triviality of an element alone therefore can never
 prove a group non-MF: an obstruction must produce an invariant
-substructure with its own scale, renormalized on its own range so that
-the normalization is unchanged by amplification, rather than reading a
-normalized trace off the ambient blocks.  The relative rank of that
+corner carrying its own normalized trace, so that the normalization is
+unchanged by amplification, rather than reading a normalized trace off
+the ambient blocks.  The relative rank of that
 substructure is unconstrained: padding
 leaves the averaging corner $q_nM_{d_n}(\C)q_n$ untouched while $d_n$
 grows, so $r_n/d_n$ may tend to zero while the
@@ -3940,12 +3931,15 @@ projection $q_n$ of Theorem~\ref{thm:normal-kazhdan} is normalized on
 its own range in the same way, and the collapse argument of
 Theorem~\ref{thm:collapse} normalizes by the rank $k_n$.
 
-This is a limitation of the method, not a tracial nonapproximation
-theorem for $E$.  Alekseev--Thom ask whether commutants arising in sofic
-approximations of Kazhdan groups can be recovered from finite-dimensional
-coordinate subalgebras \cite[Open Problem~6.2]{AlekseevThom}.  Such a
-coordinate description is separate from the operator-norm theorem proved
-here.
+Nothing above shows that $E$ is non-hyperlinear.  Alekseev--Thom ask
+whether commutants arising in sofic approximations of Kazhdan groups
+can be recovered from finite-dimensional coordinate subalgebras
+\cite[Open Problem~6.2]{AlekseevThom}; that question is independent of
+Theorem~\ref{thm:kazhdan-transport}.  The adjoint spectral estimates
+used here need operator-norm multiplicative control, which permutation
+and Hilbert--Schmidt models do not supply, so they settle neither
+soficity nor hyperlinearity of $E$ or of $W$; soficity of both is
+proved instead in Theorems~\ref{thm:E} and~\ref{thm:Esofic}.
 
 Finite dimensionality of the coordinates cannot be replaced by stable
 finiteness of the coordinate algebras together with faithful traces.
@@ -3956,18 +3950,23 @@ and the von Neumann algebra these two actions generate can fail every
 finiteness property --- for an infinite-dimensional
 $\mathrm{II}_1$ factor in standard form it is all bounded operators
 on the trace space.  Constant coordinates $A_n=\Cred(E)$ give a
-counterexample to any such generalization: the left regular representation embeds
-$E$ exactly and injectively into the corresponding matrix quotient, the
-element $c$ centralizes the Kazhdan base there, and conjugation by
+counterexample to any such generalization: the left regular
+representation embeds $E$ exactly and injectively into the norm
+quotient
+\[
+ \textstyle\prod_nA_n\big/\bigoplus_nA_n ,
+\]
+the element $c$ centralizes the Kazhdan base there, and conjugation by
 $t$ produces $tct^{-1}$, whose commutator with the base is the element
-$u$ with $u^2=w\ne1$ of Theorem~\ref{thm:A}.  A faithfully-traced
-coordinate transport theorem would make that commutator trivial in the
-matrix quotient; no such theorem can hold.
+$u$ with $u^2=w\ne1$ of Theorem~\ref{thm:A}.  A version of
+Theorem~\ref{thm:kazhdan-transport} for faithfully traced coordinates
+would make that commutator trivial there; no such theorem can hold.
 \leanverified{Sofic/FaithfullyTracedCoordinateNoGo}{GroupApproximation.FaithfullyTracedCoordinates.manuscriptFaithfullyTracedCoordinateNoGo}
 Precisely: Theorem~\ref{thm:kazhdan-transport} becomes false when its
-matrix coordinates are replaced by finite faithfully traced unital
-$C^*$-coordinates and its normalized Hilbert--Schmidt norm by the
-trace $2$-norm, with all its remaining hypotheses unchanged.
+matrix coordinates are replaced by stably finite unital $C^*$-algebras
+carrying faithful tracial states and its normalized Hilbert--Schmidt
+norm by the trace $2$-norm, with all its remaining hypotheses
+unchanged.
 
 \subsection*{Questions}
 Every finite subgroup of a torsion-free group is trivial, so
@@ -3985,16 +3984,24 @@ of \cite{FFF}, which removed the analogous torsion obstacle for
 nonsoficity.
 \begin{enumerate}
 \item What is $\operatorname{Rad}_{\mathrm{MF}}(E)$?  It properly
-contains $\{1,w\}$ by Theorem~\ref{thm:signfree}, and two reductions
-apply: Corollary~\ref{cor:collapsequot}, applied to $E/\langle w\rangle$
-with the witness of that proof, reduces the computation to the quotient
-by the resulting subgroup $D_{\mathrm{coll}}$, and
-Corollary~\ref{cor:exactradical} then identifies the radical with the
-preimage of $D_{\mathrm{coll}}$ as soon as that quotient is MF\@.  Whether it is MF is
-open, and neither collapse theorem settles it.  Both have already been
-spent: $w$ was killed in passing to $E/\langle w\rangle$, and the
-commutators generating $D_{\mathrm{coll}}$ were killed in passing to
-the second quotient.  Theorem~\ref{thm:B} places
+contains $\{1,w\}$ by Theorem~\ref{thm:signfree}.  Write
+$q_1\colon E\to E/\langle w\rangle$, let $D=D_{\mathrm{coll}}(\bar
+L,q_1(t))$ for the witness $\bar d$ of that proof, and let
+$q_2\colon E/\langle w\rangle\to(E/\langle w\rangle)/D$.  By
+Corollary~\ref{cor:collapsequot} applied to $E/\langle w\rangle$ and
+then Corollary~\ref{cor:pullback},
+\[
+ \operatorname{Rad}_{\mathrm{MF}}(E)
+ \;=\;q_1^{-1}q_2^{-1}
+   \bigl(\operatorname{Rad}_{\mathrm{MF}}
+   ((E/\langle w\rangle)/D)\bigr),
+\]
+so by Corollary~\ref{cor:exactradical} the radical equals
+$q_1^{-1}(D)$ exactly when $(E/\langle w\rangle)/D$ is MF\@.  Whether
+it is, is open, and neither collapse theorem applies to it: $w$ is
+already trivial in $E/\langle w\rangle$, and the commutators
+generating $D$ are already trivial in the second quotient.
+Theorem~\ref{thm:B} places
 $\mathfrak D(E,\iota(\mathcal B))$ in the kernel of every
 finite-dimensional linear representation, and hence of every
 homomorphism to a finite group; but after both quotients that
@@ -4004,8 +4011,8 @@ such element is exhibited here.  Deciding the question by this route
 therefore requires first producing one.
 \item Is there a torsion-free finitely presented non-MF group?  The
 analytic obstruction no longer requires torsion
-(Theorem~\ref{thm:normal-kazhdan}); the remaining input is
-group-theoretic, and it suffices to construct a quotient
+(Theorem~\ref{thm:normal-kazhdan}); what remains is to construct a
+quotient
 $q\colon E'\twoheadrightarrow Q$ of the ascending HNN extension $E'$
 formed as in Theorem~\ref{thm:kazhdan-clifford} over Fournier-Facio's
 torsion-free finitely presented property-\textup{(T)} group
@@ -4024,7 +4031,7 @@ defect admits no nontrivial homomorphism to any countable MF group at
 all.  Meeting the five conditions at once is the open part; no
 unconditional torsion-free finitely presented non-MF group is proved
 here.  Hull's small-cancellation theorem for acylindrically hyperbolic
-groups \cite[Theorem 1.5]{Hull} would deliver four of the five from a
+groups \cite[Theorem 1.5]{Hull} would give four of these five from a
 two-generated \emph{suitable} subgroup $S$ of $N_{\mathrm{comp}}$ ---
 one whose induced action is non-elementary and which normalizes no
 finite subgroup --- since the quotient it returns is obtained by
@@ -4037,10 +4044,6 @@ it \cite[Lemma 5.8]{Hull}, but the Bass--Serre action of an ascending
 HNN extension fixes an end of its Bass--Serre tree, and an acylindrical action
 is never quasi-parabolic \cite[Theorem~1.1]{OsinAH}, so that action does
 not certify it.
-\item The adjoint spectral estimates of the operator-norm method
-require operator-norm multiplicative control, which permutation and
-Hilbert--Schmidt models do not supply; soficity and hyperlinearity of
-$E$ are settled instead by Theorem~\ref{thm:Esofic}.
 \item Does MF imply hyperlinearity?  A faithful embedding into a matrix
 quotient need not make any coordinate trace faithful, so the defining
 MF representation does not immediately give a hyperlinear model.  This
@@ -4049,7 +4052,7 @@ trace-controlled MF conventions the implication is built into the definition.
 \item By Proposition~\ref{prop:sounditeration}, every family of
 theorems placing subgroups in the MF radical generates, by iteration
 through quotients, a closure contained in
-$\operatorname{Rad}_{\mathrm{MF}}$.  For which groups do the rules of
+$\operatorname{Rad}_{\mathrm{MF}}$.  For which groups do the criteria of
 Theorems~\ref{thm:criterion}, \ref{thm:normal-kazhdan},
 \ref{thm:collapse}, and~\ref{thm:projection-collapse} compute the
 radical exactly?
