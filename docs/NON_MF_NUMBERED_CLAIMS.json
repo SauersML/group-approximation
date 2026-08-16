@@ -1053,7 +1053,7 @@
       "id": "def:invwitness",
       "environment": "definition",
       "title": "involutive compression witness",
-      "statement_sha256": "dc646fdc588b66646757bcc04f032fafcb387f507f53ecc21a5c79f1d87c280e",
+      "statement_sha256": "df90cf17c28226108919a5b27171a064e939c4587101b450bc8b91982a32db49",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [],
