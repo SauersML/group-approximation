@@ -34,9 +34,15 @@ records the resulting two-sided statement in the form the dossier uses).
 
 What is **not** proved here is the analytic core of Peter--Weyl for a general
 compact group -- that finite-dimensional unitary representations separate the
-points of any compact Hausdorff group.  That needs Haar measure on `L²(C)`,
-compactness of convolution operators and the spectral theorem, none of which is
-in Mathlib for this purpose.  It is isolated as the single named hypothesis
+points of any compact Hausdorff group.  Mathlib supplies more of the proof than
+this file once claimed: Haar measure on a compact group, and the spectral theorem
+for compact self-adjoint operators together with finite-dimensionality of their
+eigenspaces (`Analysis/InnerProductSpace/Spectrum`).  What is missing is the step
+between them -- that convolution by a continuous function is a compact operator
+on `L²`, which rests on Arzelà--Ascoli and on continuity of translation in `L²`.
+With that step the eigenspaces of a suitable convolution operator are
+finite-dimensional and translation-invariant, and they are the separating
+representations.  It is isolated as the single named hypothesis
 `SeparatesPoints`, and `fdUnitaryResidual_le_bohrResidual_of_separates` derives
 the remaining inclusion from it.  So the Bohr clauses become conditional on one
 precisely stated classical input rather than on a remark, which is the same
@@ -197,8 +203,9 @@ finite-dimensional unitary representations separate the points of every compact
 Hausdorff group, phrased so that it can be discharged for a class of targets
 without touching the rest of the development.  For profinite targets it is
 `exists_normal_finiteIndex_not_mem` above; in general it is the classical
-theorem, whose proof needs Haar measure on `L²`, compactness of convolution
-operators and the spectral theorem. -/
+theorem.  Mathlib has Haar measure and the spectral theorem for compact
+self-adjoint operators; the missing step is compactness of convolution
+operators. -/
 def SeparatesPoints : Prop :=
   ∀ (C : CompactTarget.{u}) (c : C.carrier), c ≠ 1 →
     ∃ (d : ℕ) (ρ : C.carrier →* Matrix (Fin d) (Fin d) ℂ), ρ c ≠ 1

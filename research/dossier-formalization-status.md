@@ -141,8 +141,13 @@ formalized in this pass; **TODO** not yet formalized.
   profinite targets by van Dantzig, and proves the easy inclusion with no
   analysis; `Sofic/FiveRadicalsCoincide` then closes the five-way coincidence,
   conditionally in general and unconditionally over profinite targets.  What
-  the pinned Mathlib still lacks is the general compact case: Haar measure on
-  `L²`, compactness of convolution operators, the spectral theorem.
+  the pinned Mathlib still lacks is one step of the general compact case.  Haar
+  measure is there, and so is the spectral theorem for compact self-adjoint
+  operators with finite-dimensional eigenspaces
+  (`Analysis/InnerProductSpace/Spectrum`); an earlier version of this row listed
+  both as missing, which was wrong.  What is absent is compactness of convolution
+  by a continuous function on `L²`, which needs Arzelà--Ascoli and continuity of
+  translation.
   exactly Peter--Weyl for compact groups.  Everything else in the five-radical
   coincidence is either done or reduces to the telescope radical.
 * **Graph-product half of 54.3.**  No longer blocked on graph products: the
