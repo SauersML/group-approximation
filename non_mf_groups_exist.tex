@@ -1766,8 +1766,18 @@ the same argument in Hilbert--Schmidt metrics
 \section{The finite-stage transport proof}\label{app:finite-stage}
 
 This appendix proves Theorem~\ref{thm:kazhdan-transport} a second
-time, quantitatively at each single coordinate $n$ and with no
-ultrafilter.  Corollary~\ref{cor:generaltransport} and
+time, quantitatively at each single coordinate $n$: every estimate
+below is an explicit inequality in $\kappa$, $|S|$, the uniform bound
+on $(x_n)$, and the multiplicative defects of $U_n$, once the robust
+spectral-gap input of~(i) is granted at each stage.  That input is the
+one place where a limit still enters, as
+Remark~\ref{rem:finite-stage} says: property~\textup{(T)} constrains
+exact unitary representations, while at a finite stage the microstates
+only generate a representation of the free group on $S$, so no
+threshold in $\kappa$, $|S|$ and the defects on a fixed finite set can
+supply it.  Making that step effective as well would need a
+sum-of-squares certificate for property~\textup{(T)} in the sense of
+\cite{Ozawa}.  Corollary~\ref{cor:generaltransport} and
 Section~\ref{sec:limits} refer to this proof.
 
 \begin{proof}[Finite-stage proof of Theorem~\ref{thm:kazhdan-transport}]
@@ -1792,7 +1802,8 @@ spectrum above $\theta$.  Two spectral estimates tie $P_n$ to the group.
 $\opnorm{(\Ad U_n(\iota(\gamma))-1)\,P_n}\to0$.  The mechanism is a
 robust spectral gap: for every pair $a,b$ with
 $1-\kappa^2/(4|S|)<a$ and $b<1$, once the multiplicative defects of
-$U_n$ on $S$ are small enough, no eigenvalue of $H_n$ lies in $[a,b]$
+$U_n$ on the finitely many group elements involved are small enough,
+no eigenvalue of $H_n$ lies in $[a,b]$
 --- an eigenvector with intermediate eigenvalue would be a unit vector
 that the Kazhdan pair forbids: too fixed to be moved by
 $\kappa$, too moved to be fixed.
