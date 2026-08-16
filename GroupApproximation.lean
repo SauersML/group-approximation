@@ -842,6 +842,10 @@ import GroupApproximation.Computability.RabinFreeLetterOrder
 import GroupApproximation.Computability.SemigroupWordProblemMachine
 import GroupApproximation.Sofic.LiteralSoficSeparation
 import GroupApproximation.Sofic.SimpleNotLEF
+import GroupApproximation.Sofic.TelescopeRadicalInduction
+import GroupApproximation.Sofic.BlockCliffordIndex
+import GroupApproximation.Sofic.LiteralCosetBraid
+import GroupApproximation.Computability.FreeGroupSquaring
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
