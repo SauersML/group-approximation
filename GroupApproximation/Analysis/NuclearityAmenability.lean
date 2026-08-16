@@ -214,14 +214,17 @@ theorem base_not_isAmenable : ¬ IsAmenable LiteralNonMFPresentation.Base := by
     LiteralBaseP13PropertyTBridge.base_hasKazhdanPropertyT
 
 /-- The same in the invariant-mean form, which is the notion Lance's theorem
-consumes.  It also follows from `base_not_isAmenable` through
-`Amenability.isAmenable_of_hasInvariantMean`; the proof recorded here is the
-independent Reiter/Day route. -/
+consumes.
+
+This went through `PropertyTNonamenable.infinite_kazhdan_not_hasInvariantMean`,
+described as an independent Reiter/Day route.  No such declaration exists, in
+this revision or any earlier one, so the route was never available and the
+module has never compiled; being outside the root import closure, nothing in CI
+ever noticed.  The derivation from `base_not_isAmenable` that the old docstring
+offered as the alternative is the proof. -/
 theorem base_not_hasInvariantMean :
-    ¬ HasInvariantMean LiteralNonMFPresentation.Base := by
-  haveI := infinite_base
-  exact PropertyTNonamenable.infinite_kazhdan_not_hasInvariantMean
-    LiteralBaseP13PropertyTBridge.base_hasKazhdanPropertyT
+    ¬ HasInvariantMean LiteralNonMFPresentation.Base :=
+  fun h => base_not_isAmenable (isAmenable_of_hasInvariantMean h)
 
 /-- **Every group containing an isomorphic copy of the literal base is
 nonamenable.**  This is the shape in which the manuscript uses the clause:
@@ -235,12 +238,22 @@ theorem not_isAmenable_of_base_embeds {G : Type} [Group G]
   exact PropertyTNonamenable.not_isAmenable_of_infinite_kazhdan_subgroup
     LiteralBaseP13PropertyTBridge.base_hasKazhdanPropertyT f hf
 
-/-- The invariant-mean form of the same transport. -/
-theorem not_hasInvariantMean_of_base_embeds {G : Type*} [Group G]
+/-- The invariant-mean form of the same transport.
+
+This called `PropertyTNonamenable.not_hasInvariantMean_of_injective`, which does
+not exist; as with `base_not_hasInvariantMean`, the route was never available
+and nothing built the module.  It is derived instead from the amenability form
+beside it.
+
+The universe is `Type`, not `Type*` as originally written.  The transport runs
+through `not_isAmenable_of_infinite_kazhdan_subgroup`, which places the
+subgroup and the ambient group in the *same* universe, and the base lives in
+`Type`.  The `Type*` statement was therefore not provable by this route, and
+stating it would have promised generality the proof does not deliver. -/
+theorem not_hasInvariantMean_of_base_embeds {G : Type} [Group G]
     (f : LiteralNonMFPresentation.Base →* G) (hf : Function.Injective f) :
     ¬ HasInvariantMean G :=
-  PropertyTNonamenable.not_hasInvariantMean_of_injective f hf
-    base_not_hasInvariantMean
+  fun h => not_isAmenable_of_base_embeds f hf (isAmenable_of_hasInvariantMean h)
 
 end NuclearityAmenability
 end GroupApproximation

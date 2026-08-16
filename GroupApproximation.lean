@@ -838,3 +838,4 @@ dependency closure of the whole namespace and fails on anything beyond `propext`
 for what the kernel cannot see, including files that are never compiled.
 -/
 import GroupApproximation.Computability.RewriteDeterminism
+import GroupApproximation.Analysis.NuclearityAmenability
