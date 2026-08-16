@@ -1791,6 +1791,30 @@ tensors of any fixed type, at any weight.
 
 \section{Obstructions from a one-sided conjugation datum}\label{sec:conj}
 
+This section proves one theorem four times, at increasing generality,
+and the reader should see it as one argument.  In each case a subgroup
+of $H$ is shown to lie in the kernel of every homomorphism
+$H\to\U(\mathcal Q)$, by producing a corner on which the subgroup would
+have to be both $2$-norm trivial and $2$-norm large.  What changes is
+only the hypothesis that produces the corner:
+\begin{itemize}
+\item Theorem~\ref{thm:criterion}: a \emph{finite} normal subgroup of
+ $N_{\mathrm{comp}}$, whose averaging operator supplies the corner ---
+ the case used for the central involution of Section~\ref{sec:sign};
+\item Theorem~\ref{thm:normal-kazhdan}: a normal
+ property-\textup{(T)} subgroup of $N_{\mathrm{comp}}$, where a spectral
+ projection of a Kazhdan average replaces the average of a finite group,
+ and neither finiteness, centrality nor torsion is assumed;
+\item Theorem~\ref{thm:abstract-nk}: the same statement with the
+ conjugation datum discarded and its only consequence, $2$-norm
+ triviality, taken as the hypothesis;
+\item Corollary~\ref{cor:intrinsic-nk}: that statement applied to the
+ subgroup $\mathfrak D(H,L)$ of \eqref{eq:intrinsicdefect}, which
+ depends on $L$ alone and not on a choice of $t$ and $c$.
+\end{itemize}
+The first two carry the analytic work; the last two are short deductions
+from the second.
+
 \begin{definition}[Kazhdan conjugation datum]\label{def:pattern}
 Let $H$ be a countable group.  A \emph{Kazhdan conjugation datum} in $H$
 is a tuple $(\Lambda,\iota,t,c)$, where $\Lambda$ is a countable
