@@ -66,11 +66,11 @@ establishes, and nothing else.  Follow the imports downward from here.
 Nothing is proved in this module.  It re-exports, so that `#check` on any name
 below lands on the real statement and its module.
 
-The nonsofic manuscript, `nonsofic_groups_exist.tex`, was retired from the
-repository on 2026-08-12, so its statements survive here rather than in print;
-`non_mf_groups_exist.tex` is the live manuscript for the non-MF results below.
-`docs/CLAIM_MAP.md` holds the retired manuscript's full statement-by-statement
-correspondence, frozen at its last generation.  This module is the short list.
+The full statement-by-statement correspondence with `nonsofic_groups_exist.tex`
+is `docs/CLAIM_MAP.md`, generated from that manuscript's margin notes;
+`non_mf_groups_exist.tex` is the manuscript for the non-MF results below, and
+`scripts/check_non_mf_refs.py` is its counterpart gate.  This module is the
+short list.
 
 ## The headline
 

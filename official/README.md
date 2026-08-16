@@ -10,7 +10,8 @@ construction. They are kept here for reference only:
 
 Nothing in this directory is imported by the Lean library or used by any
 proof, audit, or CI gate, and these files are distinct from the repository's
-own manuscripts, `non_mf_groups_exist.tex` and `property_tt_leavitt.tex`.
+own manuscripts, `nonsofic_groups_exist.tex`, `non_mf_groups_exist.tex`, and
+`property_tt_leavitt.tex`.
 
 https://openai.com/index/ten-advances-in-mathematics/
 https://cdn.openai.com/pdf/ten-proofs-oai.pdf

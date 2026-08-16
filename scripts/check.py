@@ -23,6 +23,7 @@ is the failure mode this whole directory exists to avoid.
 from __future__ import annotations
 
 import argparse
+import os
 import re
 import sys
 import tempfile
@@ -176,11 +177,20 @@ def all_module_files(root: Path) -> dict[str, Path]:
 
 
 def lean_source_files(root: Path) -> list[Path]:
-    """Every Lean source physically present under ``root`` and subject to the scan."""
-    return sorted(
-        path for path in root.rglob("*.lean")
-        if ".lake" not in path.parts and ".git" not in path.parts
-    )
+    """Every Lean source physically present under ``root`` and subject to the scan.
+
+    The excluded directories are pruned during the walk, not filtered after it.
+    `rglob` descends into `.lake` -- the whole of Mathlib -- to discard every
+    file it finds there, and a `lake build` running concurrently deletes lock
+    directories underneath it, which crashed this scan with `FileNotFoundError`
+    instead of reporting anything.
+    """
+    out: list[Path] = []
+    for dirpath, dirnames, filenames in os.walk(root):
+        dirnames[:] = [d for d in dirnames if d not in (".lake", ".git")]
+        out.extend(Path(dirpath) / name for name in filenames
+                   if name.endswith(".lean"))
+    return sorted(out)
 
 
 def import_closure(modules: dict[str, Path], start: str) -> set[str]:
@@ -371,13 +381,14 @@ _MANUSCRIPT_ONLY_TAGS = (
 
 
 def check_frozen_claim_roster(root: Path, f: Findings) -> None:
-    """A claim map whose manuscript is gone still has to name real declarations.
+    """A claim map whose manuscript is missing still has to name real declarations.
 
     `docs/CLAIM_DECLS.txt` is the list `scripts/Signatures.lean` elaborates and
     pins in `docs/CLAIM_SIGNATURES.md`, so a name that leaves the library must
-    not leave this roster behind -- with no manuscript to regenerate from, the
-    roster cannot be rebuilt, only checked.  Nothing here can tell whether the
-    roster still *covers* what it should; only that what it lists exists.
+    not leave this roster behind -- and with no manuscript to regenerate from,
+    the roster can only be checked, not rebuilt.  Nothing here can tell whether
+    the roster still *covers* what it should; only that what it lists exists.
+    This is the degraded mode: it exists so that losing the manuscript is loud.
     """
     decls = root / claim_map.GENERATED_DECLS
     generated = root / claim_map.GENERATED
@@ -422,13 +433,13 @@ def check_claim_map(root: Path, f: Findings) -> None:
         the set pinned in `claim_map`, so the paper's audit story quietly stops
         describing the audit that actually runs.
 
-    When the manuscript is not in the tree the manuscript-side detectors cannot
-    run at all.  That is the state of `nonsofic_groups_exist.tex`, retired on
-    2026-08-12 in favour of the self-contained `property_tt_leavitt.tex`; what
-    it left behind is a frozen roster, still read by `scripts/Signatures.lean`.
-    `check_frozen_claim_roster` checks the half of the contract that survives
-    the manuscript -- that every name in the roster still exists -- and the
-    tags that no longer have a source say so rather than printing `0`.
+    When the manuscript is not in the tree none of that can run.  This scan
+    used to return early there, silently: `nonsofic_groups_exist.tex` was
+    deleted on 2026-08-12 by a commit whose message never mentioned it, and for
+    four days five detectors printed `0` while executing nothing.  A missing
+    manuscript is now reported as such, and `check_frozen_claim_roster` checks
+    the half of the contract that survives it -- that every name in the roster
+    `scripts/Signatures.lean` elaborates still exists.
     """
     tex = root / claim_map.TEX_NAME
     if not tex.is_file():

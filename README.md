@@ -43,22 +43,17 @@ corona
 Building this manuscript requires LaTeX2e dated 2025-06-01 or newer, and
 the release workflow uses a digest-pinned TeX Live 2026 image.
 
-Tagging is **not yet enabled**.  The source sets
-`\DocumentMetadata{lang=en-US,pdfversion=2.0}` without the `tagging=on`
-key introduced in the 2025-06-01 release, and the committed PDF
-accordingly carries no `/MarkInfo` and no `/StructTreeRoot`.  The
-release workflow does assert `Tagged: yes`, so that assertion is a
-requirement the artifact does not currently meet rather than a
-description of it.  Adding the key is mechanically cheap: in a TeX Live
-2025 LuaLaTeX probe build the manuscript still compiles with no errors
-and no overfull boxes, and the PDF does then carry `/MarkInfo` and
-`/StructTreeRoot`.  A structure tree is not yet an accessible document,
-though.  The TikZ figure has neither alternative text nor an artifact
-designation, `tagpdf` reports math tagging running without
-`unicode-math`, and the theorem environments and margin notes stay
-tagged as ordinary paragraphs until they are routed through the tagging
-code path.  Satisfying the gate and earning it are two different pieces
-of work.
+Tagging is **enabled**: the source sets
+`\DocumentMetadata{lang=en-US,pdfversion=2.0,tagging=on}`, and the TikZ
+figure carries alternative text inside a `Figure` structure element, so
+a LuaLaTeX build produces `/MarkInfo`, `/StructTreeRoot`, and an `/Alt`
+entry for the figure — what the release workflow's `Tagged: yes`
+assertion requires.  Two limits are worth naming.  `tagpdf` reports that
+math tagging is running without `unicode-math`, which this manuscript
+does not load, and the theorem environments and margin notes are tagged
+as ordinary paragraphs, so the structure tree is coarser than the
+document's logical structure.  The committed PDF predates the change and
+stays untagged until the next release build.
 
 The current manuscript draft gives a literal finite presentation on eight
 generators `v₁,v₂,v₃,x,y,z,t,c`. Its six-generator, twenty-relator base is
@@ -218,6 +213,22 @@ The paper uses the published K-theoretic proof of `K₁ = 0` and `GLₙ = Eₙ`
 for the binary Leavitt algebra. Lean reaches the same endpoint independently
 through the constructive prefix-code pencil reduction in `KOne/`; external
 results are not imported as axioms.
+
+## Nonsofic groups exist
+
+[`nonsofic_groups_exist.tex`](nonsofic_groups_exist.tex) is the manuscript for
+the construction the library is named after: `EL₄(L_{𝔽₂}(1,2))`, the rank-four
+elementary group over the universal binary Leavitt algebra, is countable,
+infinite, finitely generated, has property `(T)`, and is not sofic. Its
+endpoints are in `Endpoint/MainResults.lean` — `nonsofic_groups_exist`,
+`countable_nonsofic_groups_exist`, `exists_finitelyPresented_nonsofic_group`,
+and `countable_group_without_essentiallyFreeNearAction_exists`, the negative
+answer to Pestov's Question 5.3 — and each printed statement has one endpoint
+of its own in `Endpoint/ManuscriptStatements.lean`. The statement-by-statement
+correspondence is [`docs/CLAIM_MAP.md`](docs/CLAIM_MAP.md), generated from the
+manuscript's margin notes and checked by `scripts/check.py`.
+
+No release workflow builds this manuscript; there is no committed PDF for it.
 
 ## Library scope
 
