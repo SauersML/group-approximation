@@ -442,7 +442,7 @@
       "id": "thm:E",
       "environment": "mainthm",
       "title": "a sofic non-MF group",
-      "statement_sha256": "992134063a084319fae460f3163ec84fd0fabe66de670f15185aa616d8123320",
+      "statement_sha256": "f0ae6bd739d62093a1d66edb93e3fcd0032cfa0a70335d19de9a910868f342fa",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [
