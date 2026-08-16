@@ -1,3 +1,4 @@
+import Mathlib.Tactic.Group
 import GroupApproximation.Sofic.AscendingHNNCosetActionSofic
 import GroupApproximation.Sofic.AscendingHNNWreathSofic
 import GroupApproximation.Sofic.SoficActionChabauty
@@ -55,6 +56,15 @@ Residual finiteness says nothing about it: it separates elements from `1`, and
 the tower asks to separate elements from infinite-index subgroups.  Nothing
 here suggests residual finiteness suffices, and this file does not claim it
 does; it isolates precisely the statement that would have to be proved.
+
+The first level of that tower is not merely described but derived:
+`separable_range_of_separable_base` proves that separability of the base copy
+in `G` *implies* separability of `α(Γ)` in `Γ`.  So the criterion is testable
+from below.  A base for which `α(Γ)` is known not to be separable cannot have
+its copy separable in `G`, and this route is closed for it -- no search among
+finite-index subgroups of `G` can succeed.  What is still missing is the
+converse, which is why the question is relocated and not resolved: the
+criterion is proved sufficient for soficity and necessary for nothing.
 -/
 
 namespace GroupApproximation
@@ -81,6 +91,20 @@ theorem isSoficAction_vertical_cosets_of_separable_base
     IsSoficAction (Vertical α hα) (Cosets α hα) :=
   isSoficAction_quotient_of_separable (iotaVertical α hα).range hsep
 
+/-- Conjugation by the inverse stable letter, as a homomorphism out of the
+base copy.  It carries `α(Γ)` back onto the base and moves everything else off
+it, which is what turns a finite-index subgroup of `G` into one of `Γ`. -/
+def conjBase : Γ →* Vertical α hα where
+  toFun x := (tVertical α hα)⁻¹ * iotaVertical α hα x * tVertical α hα
+  map_one' := by simp
+  map_mul' x y := by
+    simp only [map_mul]
+    group
+
+@[simp] theorem conjBase_apply (x : Γ) :
+    conjBase α hα x
+      = (tVertical α hα)⁻¹ * iotaVertical α hα x * tVertical α hα := rfl
+
 include hα in
 /-- **The hypothesis descends to the base, so the reduction is not one-way.**
 
@@ -102,33 +126,21 @@ theorem separable_range_of_separable_base
     (γ : Γ) (hγ : γ ∉ α.range) :
     ∃ M : Subgroup Γ, α.range ≤ M ∧ M.FiniteIndex ∧ γ ∉ M := by
   classical
-  -- conjugation by `t⁻¹`, as a homomorphism out of the base
-  let φ : Γ →* Vertical α hα :=
-    { toFun := fun x =>
-        (tVertical α hα)⁻¹ * iotaVertical α hα x * tVertical α hα
-      map_one' := by simp
-      map_mul' := fun x y => by
-        simp only [map_mul]
-        group }
-  have hφ : ∀ x : Γ, φ x
-      = (tVertical α hα)⁻¹ * iotaVertical α hα x * tVertical α hα :=
-    fun _ => rfl
   have hγset : γ ∉ Set.range α := fun h => hγ (MonoidHom.mem_range.mpr h)
-  have hout : φ γ ∉ (iotaVertical α hα).range := by
-    rw [hφ]
+  have hout : conjBase α hα γ ∉ (iotaVertical α hα).range := by
+    rw [conjBase_apply]
     exact tVertical_inv_conj_not_mem α hα hγset
   obtain ⟨K, hKle, hKfi, hKnot⟩ := hsep _ hout
-  refine ⟨K.comap φ, ?_, ?_, ?_⟩
-  · -- `φ` sends `α(Γ)` back to the base copy, which sits inside `K`
+  haveI := hKfi
+  refine ⟨K.comap (conjBase α hα), ?_, ?_, ?_⟩
+  · -- `conjBase` sends `α(Γ)` back to the base copy, which sits inside `K`
     rintro _ ⟨y, rfl⟩
-    refine Subgroup.mem_comap.mpr (hKle ?_)
-    have hcompress := vertical_compress α hα y
-    refine ⟨y, ?_⟩
-    rw [hφ, ← hcompress]
+    refine Subgroup.mem_comap.mpr (hKle ⟨y, ?_⟩)
+    rw [conjBase_apply, ← vertical_compress α hα y]
     group
   · refine ⟨?_⟩
     rw [Subgroup.index_comap]
-    exact (Subgroup.instFiniteIndex_subgroupOf K φ.range).index_ne_zero
+    exact (Subgroup.instFiniteIndex_subgroupOf K (conjBase α hα).range).index_ne_zero
   · exact fun hmem => hKnot (Subgroup.mem_comap.mp hmem)
 
 end MarkedCompression
