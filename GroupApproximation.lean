@@ -856,6 +856,11 @@ import GroupApproximation.Sofic.FullRadicalClosureProperties
 import GroupApproximation.Sofic.WreathFinitePresentationObstruction
 import GroupApproximation.Sofic.TelescopeLimitUnion
 
+import GroupApproximation.Sofic.TelescopeRadicalInduction
+import GroupApproximation.Sofic.BlockCliffordIndex
+import GroupApproximation.Sofic.LiteralCosetBraid
+import GroupApproximation.Computability.FreeGroupSquaring
+
 /-!
 # An unconditional construction of a finitely presented nonsofic group
 
