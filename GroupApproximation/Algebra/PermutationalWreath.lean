@@ -118,6 +118,15 @@ def singleHom (x : X) : K →* Lamp K X where
 
 @[simp] theorem singleHom_apply (x : X) (k : K) : singleHom x k = single x k := rfl
 
+/-- Conjugating a one-site lamp by an arbitrary configuration keeps it at the
+same site.  In particular each coordinate copy is normal. -/
+theorem conj_single (f : Lamp K X) (x : X) (k : K) :
+    f * single x k * f⁻¹ = single x (f.toFun x * k * (f.toFun x)⁻¹) := by
+  refine ext fun y => ?_
+  by_cases h : y = x
+  · subst h; simp
+  · simp [single_apply_of_ne h]
+
 /-- **Lamps at distinct sites commute**, whatever the lamp group.  This is what
 makes a one-site lamp a commuting-orbit witness even when `K` is nonabelian. -/
 theorem single_commute {x y : X} (h : x ≠ y) (k l : K) :
