@@ -747,13 +747,6 @@ import GroupApproximation.Sofic.ManuscriptCentralSignCriterion
 import GroupApproximation.Sofic.CollapseUniverseScopeDefs
 import GroupApproximation.Sofic.CollapseUniverseScope
 import GroupApproximation.Sofic.CollapseProfileBound
-
--- Modules that until now compiled only in isolation.  Outside the root import
--- closure nothing in CI ever built them, so their proofs went unverified in every
--- run that mattered; `scripts/check.py --list-orphans` is the scan.  The rest of
--- the orphan set stays out on purpose: some of it is work other sessions have in
--- flight, and some has gone stale against renames upstream of it.  Wiring either
--- kind in here breaks the root build for everyone instead of getting it verified.
 import GroupApproximation.Analysis.CStarTensorProductAdjointable
 import GroupApproximation.Analysis.ExactnessPermanence
 import GroupApproximation.Computability.SemigroupWordProblemRewriting
@@ -777,6 +770,18 @@ import GroupApproximation.Sofic.UltraproductScaledTransport
 import GroupApproximation.Sofic.MultiMoverUniversalUpgrade
 import GroupApproximation.Sofic.AscendingHNNSeparableCosetAction
 import GroupApproximation.Sofic.SimpleFullMFRadical
+import GroupApproximation.Computability.RewriteDeterminism
+import GroupApproximation.Analysis.NuclearityAmenability
+import GroupApproximation.Computability.RewriteSimulation
+import GroupApproximation.Monsters.NeumannContinuum
+import GroupApproximation.Computability.UnaryCounterSimulation
+
+-- Modules that until now compiled only in isolation.  Outside the root import
+-- closure nothing in CI ever built them, so their proofs went unverified in every
+-- run that mattered; `scripts/check.py --list-orphans` is the scan.  The rest of
+-- the orphan set stays out on purpose: some of it is work other sessions have in
+-- flight, and some has gone stale against renames upstream of it.  Wiring either
+-- kind in here breaks the root build for everyone instead of getting it verified.
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
@@ -837,9 +842,3 @@ dependency closure of the whole namespace and fails on anything beyond `propext`
 `Classical.choice`, and `Quot.sound`; `scripts/check.py` scans the source text
 for what the kernel cannot see, including files that are never compiled.
 -/
-import GroupApproximation.Computability.RewriteDeterminism
-import GroupApproximation.Analysis.NuclearityAmenability
-import GroupApproximation.Computability.RewriteSimulation
-import GroupApproximation.Analysis.NuclearityAmenability
-import GroupApproximation.Monsters.NeumannContinuum
-import GroupApproximation.Computability.UnaryCounterSimulation
