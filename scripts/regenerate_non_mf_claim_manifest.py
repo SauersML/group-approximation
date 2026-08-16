@@ -120,7 +120,8 @@ CLAIM_TARGETS: dict[str, tuple[str, str]] = {
     ),
     "def:invisible": (
         "Sofic/ManuscriptExactWrappers",
-        "GroupApproximation.ManuscriptExactWrappers.ManuscriptHSInvisible",
+        "GroupApproximation.ManuscriptExactWrappers."
+        "manuscriptHSInvisibleCharacterization",
     ),
     "prop:mfclosure": (
         "Sofic/MFRelationClosure",
@@ -139,8 +140,13 @@ CLAIM_TARGETS: dict[str, tuple[str, str]] = {
         "GroupApproximation.MatricialStabilityRadical.actualCoronaMFResidual_eq_fdUnitaryResidual",
     ),
     "thm:commutinglamp": (
-        "Sofic/CommutingLampCollapse",
-        "GroupApproximation.CommutingLampCollapse.literalCommutingLampQuotient_collapse",
+        "Sofic/CommutingLampQuotientSofic",
+        "GroupApproximation.CommutingLampQuotientSofic."
+        "literalSignFreeQuotient_isSofic_and_not_isCDEOperatorMF",
+    ),
+    "thm:signfree": (
+        "Sofic/LiteralSignFreeQuotient",
+        "GroupApproximation.LiteralSignFreeQuotient.signFreeQuotient_not_isCDEOperatorMF",
     ),
     "thm:signfree": (
         "Sofic/LiteralSignFreeQuotient",

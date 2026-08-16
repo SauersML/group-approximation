@@ -360,16 +360,13 @@ def ruleRhs (M : Machine Γ Λ) : RIdx Γ Λ → List (Letter Γ Λ)
 @[simp] theorem weight_machRhsOf (blank : Γ) (a c : Option Γ)
     (t : Option (Λ × Γ × Bool)) :
     weight Letter.wt (machRhsOf blank a c t : List (Letter Γ Λ)) = 1 := by
-  -- `Letter.wt` has to be unfolded for the constructor letters, but unfolding
-  -- it first turns `Letter.wt (optL a)` into a raw match that `wt_optL` can no
-  -- longer rewrite; casing the options lets that match reduce on its own.
   cases t with
-  | none => cases a <;> cases c <;> simp [machRhsOf, Letter.wt]
+  | none => simp [machRhsOf, Letter.wt]
   | some t =>
       obtain ⟨q, b, d⟩ := t
       cases d with
-      | true => cases a <;> cases c <;> simp [machRhsOf, Letter.wt]
-      | false => cases a <;> cases c <;> simp [machRhsOf, Letter.wt]
+      | true => simp [machRhsOf, Letter.wt]
+      | false => simp [machRhsOf, Letter.wt]
 
 /-- **The rewriting system attached to a machine is local.**  This is the
 hypothesis of every determinism and Church--Rosser statement in
@@ -493,7 +490,7 @@ theorem machine_isLocal (M : Machine Γ Λ) :
 word `done` is a normal form. -/
 theorem two_le_length_lhsWord (i : RIdx Γ Λ) :
     2 ≤ (lhsWord ruleSp rulePre rulePost i).length := by
-  cases i <;> simp [lhsWord, rulePre, rulePost]
+  cases i <;> simp [lhsWord, rulePre, rulePost] <;> omega
 
 /-- `done` admits no rewrite. -/
 theorem done_normalForm (M : Machine Γ Λ) :

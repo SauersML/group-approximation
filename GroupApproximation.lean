@@ -758,10 +758,8 @@ import GroupApproximation.Sofic.CollapseProfileBound
 import GroupApproximation.Analysis.CStarTensorProductAdjointable
 import GroupApproximation.Analysis.ExactnessPermanence
 import GroupApproximation.Computability.SemigroupWordProblemRewriting
-import GroupApproximation.Computability.StringRewriting
 import GroupApproximation.Monsters.FournierFacioRealization
 import GroupApproximation.Monsters.P13SpectralGap
-import GroupApproximation.Sofic.AlternatingLampLiteralPackage
 import GroupApproximation.Sofic.CollapseProfileBoundNumeric
 import GroupApproximation.Sofic.CollapseTransportDiagonalization
 import GroupApproximation.Sofic.CollapseTransportDiagonalizationCommutant
@@ -841,4 +839,5 @@ dependency closure of the whole namespace and fails on anything beyond `propext`
 for what the kernel cannot see, including files that are never compiled.
 -/
 import GroupApproximation.Computability.RewriteDeterminism
+import GroupApproximation.Analysis.NuclearityAmenability
 import GroupApproximation.Computability.RewriteSimulation

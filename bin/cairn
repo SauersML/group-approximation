@@ -8,4 +8,6 @@ if [ ! -f "$tool" ]; then
   exit 1
 fi
 # Pin the cairn root to this repo so behavior stays cwd-independent.
-CAIRN_ROOT="$root" exec python3 "$tool" "$@"
+# The graph is about this project, so the site carries this project's name.
+CAIRN_ROOT="$root" CAIRN_SITE_TITLE="${CAIRN_SITE_TITLE:-Group Approximation}" \
+  exec python3 "$tool" "$@"
