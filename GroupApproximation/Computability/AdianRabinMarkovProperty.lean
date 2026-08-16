@@ -78,7 +78,7 @@ None of (a), (b), (c) is within reach today.  What this file supplies is
 everything on either side of them: the group-theoretic premises that let the
 Adian--Rabin theorem be invoked (`operatorMF_isMarkovProperty`) and the
 recursion-theoretic inference performed after the construction is in hand
-(`negativeSide_not_re_of_re_of_not_computablePred`).
+(`computablePred_of_re_of_negativeSide_re`).
 
 ## What Mathlib already has
 
@@ -187,7 +187,7 @@ Two observations about the existing material, both acted on below:
    *hypothesis*.  The manuscript does not assume that; it **derives** it from
    "the positive side is r.e." plus "the problem is undecidable".  The missing
    inference is supplied here as
-   `negativeSide_not_re_of_re_of_not_computablePred`, so the existing pullback
+   `computablePred_of_re_of_negativeSide_re`, so the existing pullback
    can now be fed from the manuscript's actual premises.
 2. The sentence "MF is a Markov property of finitely presented groups" was
    never stated as a single theorem; only its two halves existed.  It is
@@ -257,7 +257,7 @@ D2 belong to (c) and to making (a) expressible; D3 and D4 are (b); D5 is (a).
 * **D6. Assembly.**  Feed D5 into `MarkovMFConsequences.AdianRabinReduction`
   over `PresentationCodes.semantics`, discharge `¬ComputablePred
   sourceProperty` from D4, and discharge `¬REPred (¬source)` from D2 and D4
-  via `negativeSide_not_re_of_re_of_not_computablePred` below.  **~100--200
+  via `computablePred_of_re_of_negativeSide_re` below.  **~100--200
   lines.**  Mechanical once D1--D5 exist; the interfaces already fit.
 
 Total: on the order of **6000--11000 new lines**, i.e. a multi-month
@@ -325,7 +325,7 @@ now complete and unconditional is: the Markov-property premise
 (`operatorMF_isMarkovProperty`), the subgroup-heredity step in the abstract
 form the premise needs (`operatorMF_hereditary`, `forbidden_of_hereditary`),
 the recursion-theoretic inference the manuscript performs after the
-construction (`negativeSide_not_re_of_re_of_not_computablePred`), and the
+construction (`computablePred_of_re_of_negativeSide_re`), and the
 mathematical half of the r.e.-ness premise (`AdianRabinWordProblem`).  What is
 missing is (a) and (b) in full, and the `Primrec` half of (c).
 
@@ -372,7 +372,7 @@ structure IsMarkovProperty (P : GroupProperty) : Prop where
       Group.IsFinitelyPresented G ∧ P G instG
   /-- Some finitely presented group embeds in no finitely presented group
   having the property. -/
-  forbidden : ∃ (E : Type) (instE : Group E),
+  forbidden : ∃ (E : Type) (_instE : Group E),
       Group.IsFinitelyPresented E ∧
         ∀ (H : Type) [instH : Group H], Group.IsFinitelyPresented H →
           P H instH → ∀ f : E →* H, ¬ Function.Injective f
@@ -438,38 +438,39 @@ theorem operatorMF_isMarkovProperty : IsMarkovProperty operatorMFGroupProperty w
 
 /-! ## The recursion-theoretic step of `cor:undecidable`
 
-The manuscript does not assume that the negative side of the source problem
-fails to be recursively enumerable; it derives that from the positive side
-being recursively enumerable together with undecidability.  The existing
-`MarkovMFConsequences.negative_side_not_re` takes the derived statement as a
-hypothesis, so this lemma is the missing link between the manuscript's actual
-premises and that pullback. -/
+The manuscript's final inference is stated forwards: *"An enumeration of the
+non-MF presentations would enumerate that set, making the word problem
+decidable."*  That is the direction proved below, and it carries no
+undecidability hypothesis --- both premises are positive recursive-enumerability
+facts.  The manuscript's preceding half-sentence ("hence the instances with
+`w ≠ 1` form a set that is not recursively enumerable") is this implication
+contraposed against undecidability of the word problem, which is
+Novikov--Boone and is *not* stated anywhere in this repository, as a theorem or
+as a hypothesis.
 
-/-- **Manuscript step** (`cor:undecidable` discussion, the sentence "the
-instances with $w=1$ form a recursively enumerable set which, the word problem
-being undecidable, is not recursive; hence the instances with $w\ne1$ form a
-set that is *not* recursively enumerable"): a decision problem whose positive
-side is recursively enumerable and which is undecidable has a negative side
-that is not recursively enumerable.
+`MarkovMFConsequences.negative_side_not_re` takes the contraposed statement as
+a hypothesis.  The lemma below is what lets a future capstone reach that
+hypothesis from the manuscript's actual premises, without anything in the
+present corpus assuming undecidability. -/
 
-This is the contrapositive of Post's theorem
-(`ComputablePred.computable_iff_re_compl_re'`), and it is unconditional: no
-reduction data and no group theory enter.  Applied to the word problem, whose
-positive side is r.e. and which is undecidable by Novikov--Boone, it yields
-the manuscript's "hence the instances with `w ≠ 1` form a set that is *not*
-recursively enumerable"; the last sentence of the manuscript's discussion --
-an enumeration of the non-MF presentations would make the word problem
-decidable -- is the same implication read forwards. -/
-theorem negativeSide_not_re_of_re_of_not_computablePred
+/-- **Manuscript step** (`cor:undecidable` discussion, the sentence "An
+enumeration of the non-MF presentations would enumerate that set, making the
+word problem decidable"): a decision problem both of whose sides are
+recursively enumerable is decidable.
+
+Post's theorem, specialized to the direction the manuscript argues in.  Both
+hypotheses are positive facts about an arbitrary predicate; no undecidability
+premise, no reduction data, and no group theory enter. -/
+theorem computablePred_of_re_of_negativeSide_re
     {α : Type u} [Primcodable α] {p : α → Prop}
-    (hre : REPred p) (hundec : ¬ ComputablePred p) :
-    ¬ REPred (fun a ↦ ¬ p a) :=
+    (hre : REPred p) (hnegre : REPred (fun a ↦ ¬ p a)) :
+    ComputablePred p :=
   -- MATHLIB-UNVERIFIED: `ComputablePred.computable_iff_re_compl_re'` is the
   -- only Mathlib name in this file that does not already occur in the
   -- corpus.  It was read from Mathlib source at the pinned revision
   -- (`Mathlib/Computability/RE.lean`, Post's theorem, the primed form taking
   -- no `DecidablePred`), so the flag is procedural, not a doubt.
-  fun hneg ↦ hundec (ComputablePred.computable_iff_re_compl_re'.2 ⟨hre, hneg⟩)
+  ComputablePred.computable_iff_re_compl_re'.2 ⟨hre, hnegre⟩
 
 end AdianRabinMarkovProperty
 end GroupApproximation

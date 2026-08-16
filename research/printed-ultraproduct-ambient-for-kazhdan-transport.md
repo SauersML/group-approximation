@@ -11,7 +11,6 @@ artifacts:
   - GroupApproximation/Sofic/UltraproductAdjointAmbient.lean
   - GroupApproximation/Sofic/UltraproductDedekindFinite.lean
   - GroupApproximation/Sofic/UltraproductKazhdanProjection.lean
-  - GroupApproximation/Sofic/UltraproductKazhdanTransport.lean
 ---
 
 OPEN.  Fix a countable group `H`, an element `s`, dimensions `d_n`, and
@@ -30,13 +29,18 @@ that it does:
   faithful enough that an inclusion of ranges of projections can be read back
   as the algebraic absorption `Q P = P`, `P Q = P`.
 
-In Lean this is exactly a term of
-`Sofic/UltraproductKazhdanTransport.UltraproductAdjointModel` for every
-`omega` refining the cofinite filter.  That structure is currently a
-*hypothesis* of `ultraproductKazhdanTransport` and of
-`KazhdanAsymptoticCommutant.manuscriptKazhdanTransport_ultraproduct`; nothing
-in the repository constructs one, so the printed road to the transport theorem
-is open at precisely this point and nowhere else.
+In Lean this is exactly a term of the `UltraproductAdjointModel` structure for
+every `omega` refining the cofinite filter.  That structure is a *hypothesis* of
+`ultraproductKazhdanTransport`; nothing in the repository constructs one, so the
+printed road to the transport theorem is open at precisely this point and
+nowhere else.
+
+Where that structure lives is in flux: `Sofic/UltraproductKazhdanTransport` was
+carrying it and the KT.10/KT.11 endgame, and as of 2026-08-16 that module does
+not elaborate (unknown projections on the bundle, an unsolved goal in the
+descent, and a field-notation failure on `kt_11_descend`), so it is out of the
+root build and out of this node's `artifacts:` until it lands.  The three
+modules cited above do elaborate and carry everything listed below.
 
 ## What is already machine-checked
 
@@ -64,11 +68,12 @@ The rest of the printed ambient is in place, and unconditionally:
   `sp(h) subset [-1, 1 - kappa^2/(2|S|)] cup {1}`, and the one-sided
   compression identities `Q P = P`, `P Q = P`
   (`UltraproductKazhdanProjection`, KT.07--KT.09);
-- the endgame: `KT.10` (`sigma = r + (1 - Q)` is an isometry, finiteness makes
-  it unitary, `sigma sigma* = P + (1 - Q)` forces `Q = P`) and `KT.11` (a fixed
-  class descends to the asserted Hilbert--Schmidt vanishing along `omega`),
-  with the manuscript's by-contradiction skeleton run in full
-  (`UltraproductKazhdanTransport`).
+The endgame — `KT.10` (`sigma = r + (1 - Q)` is an isometry, finiteness makes it
+unitary, `sigma sigma* = P + (1 - Q)` forces `Q = P`) and `KT.11` (a fixed class
+descends to the asserted Hilbert--Schmidt vanishing along `omega`), plus the
+manuscript's by-contradiction skeleton — is written but is the part that does not
+currently elaborate, as noted above.  KT.10's calculation itself is not new: it
+lives in `Analysis/ProperIsometryFromCompression`, which is in the build.
 
 So the missing datum is a single construction, not an argument: a Hilbert-space
 ultraproduct of finite-dimensional inner-product spaces with a faithful action

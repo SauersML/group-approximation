@@ -99,6 +99,7 @@ def HasPermutationNormModels (G : Type u) [Group G] : Prop :=
         ‖(u x).permMatrix ℂ * (u y).permMatrix ℂ -
           (u (x * y)).permMatrix ℂ‖ < 1
 
+omit [Group G] in
 /-- **The separation clause above is the honest one.**  For permutation
 models, operator-norm separation of the matrices is *equivalent* to
 injectivity of the underlying permutations: distinct permutations are
@@ -155,7 +156,7 @@ theorem isLEF_of_hasPermutationNormModels (h : HasPermutationNormModels G) :
     have hstep : u y * u x = u (x * y) :=
       perm_mul_eq_of_permutationNormModel hmul hx hy
     have hgoal : (u (x * y))⁻¹ = (u x)⁻¹ * (u y)⁻¹ := by
-      rw [← hstep, mul_inv_rev]
+      rw [← hstep, _root_.mul_inv_rev]
     exact hgoal
 
 /-- **The converse.**  Every LEF group has permutation operator-norm models,
@@ -169,7 +170,7 @@ theorem hasPermutationNormModels_of_isLEF (h : IsLEF G) :
     exact hinj hx hy (inv_injective hxy)
   · intro x hx y hy
     have hperm : ((f y)⁻¹ * (f x)⁻¹ : Equiv.Perm (Fin n)) = (f (x * y))⁻¹ := by
-      rw [hlm.map_mul x hx y hy, mul_inv_rev]
+      rw [hlm.map_mul x hx y hy, _root_.mul_inv_rev]
     have hmat :
         ((f x)⁻¹ : Equiv.Perm (Fin n)).permMatrix ℂ *
               ((f y)⁻¹ : Equiv.Perm (Fin n)).permMatrix ℂ

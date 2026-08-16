@@ -211,7 +211,7 @@ theorem hammingDisagreement_one_swap (Y : FiniteModel) {a b : Y} (hab : a ≠ b)
   constructor
   · intro hy
     by_contra hcon
-    push_neg at hcon
+    push Not at hcon
     exact hy (Equiv.swap_apply_of_ne_of_ne hcon.1 hcon.2).symm
   · rintro (rfl | rfl)
     · rw [Equiv.swap_apply_left]
