@@ -3617,19 +3617,18 @@ nothing to do with groups.  Pinning the coding removes that reading ---
 the group is read syntactically off the code, and the only way to
 supply the hypothesis is to build presentations from machines.
 
-No undecidability is assumed.  The corollary reduces from the halting
-problem, whose undecidability and whose non-enumerable complement are
-themselves machine-checked, so the classical fact that some finitely
-presented group has unsolvable word problem is not needed and is not
-cited: the reduction interface asks for a computable map and a
-correctness equivalence, and does not care that its source is a word
-problem.  What remains hypothetical is exactly one object, the map
-itself; constructing it is the Adian--Rabin argument \cite{Rabin58}
-run over a group built from a machine, and that construction is the
-single thing in this paper that is not formalized.  Classically it is
-obtained by taking the word problem of a finitely presented group with
-unsolvable word problem and applying Adian--Rabin to the Markov
-property ``is MF''; the construction gives a computable map taking
+The corollary reduces from the halting problem, whose undecidability
+and whose non-enumerable complement are proved in the accompanying
+formalization, so the classical fact that some finitely presented group
+has unsolvable word problem is not needed: the reduction interface asks
+for a computable map and a correctness equivalence, and does not
+require its source to be a word problem.  One object remains
+hypothetical, the map itself, and the corollary quantifies it rather
+than citing it.  Constructing it is the Adian--Rabin argument
+\cite{Rabin58} run over a group built from a machine; classically one
+takes the word problem of a finitely presented group with unsolvable
+word problem and applies Adian--Rabin to the Markov property ``is
+MF''.  That construction gives a computable map taking
 an instance $(P,w)$ of the word problem of a fixed finitely presented
 group with undecidable word problem to a finite presentation whose
 group is trivial --- hence MF --- when $w=1$, and contains $E$ ---
