@@ -1,3 +1,6 @@
+import Mathlib.Data.Finite.Sum
+import Mathlib.Data.Fintype.Option
+import Mathlib.Data.Finite.Prod
 import GroupApproximation.Computability.SemigroupWordProblemRewriting
 
 /-!
@@ -364,12 +367,12 @@ def ruleRhs (M : Machine Γ Λ) : RIdx Γ Λ → List (Letter Γ Λ)
   -- it first turns `Letter.wt (optL a)` into a raw match that `wt_optL` can no
   -- longer rewrite; casing the options lets that match reduce on its own.
   cases t with
-  | none => cases a <;> cases c <;> simp [machRhsOf, Letter.wt]
+  | none => cases a <;> cases c <;> simp [machRhsOf, Letter.wt, optL, optR]
   | some t =>
       obtain ⟨q, b, d⟩ := t
       cases d with
-      | true => cases a <;> cases c <;> simp [machRhsOf, Letter.wt]
-      | false => cases a <;> cases c <;> simp [machRhsOf, Letter.wt]
+      | true => cases a <;> cases c <;> simp [machRhsOf, Letter.wt, optL]
+      | false => cases a <;> cases c <;> simp [machRhsOf, Letter.wt, optR]
 
 /-- **The rewriting system attached to a machine is local.**  This is the
 hypothesis of every determinism and Church--Rosser statement in
@@ -381,10 +384,23 @@ theorem machine_isLocal (M : Machine Γ Λ) :
     cases i <;> simp [ruleSp, Letter.wt]
   pre_weight := by
     intro i
-    cases i <;> simp [rulePre, Letter.wt]
+    -- Same trap as in `weight_machRhsOf`: unfolding `Letter.wt` first turns
+    -- `Letter.wt (optL a)` into a raw match on `a`, which no rewrite can touch
+    -- while `a` is a variable.  Casing the option lets the match reduce.
+    cases i with
+    | mach a q b c => cases a <;> simp [rulePre, Letter.wt, optL]
+    | eatTapeR d => simp [rulePre]
+    | eatEndR => simp [rulePre]
+    | eatTapeL d => simp [rulePre, Letter.wt]
+    | eatEndL => simp [rulePre, Letter.wt]
   post_weight := by
     intro i
-    cases i <;> simp [rulePost, Letter.wt]
+    cases i with
+    | mach a q b c => cases c <;> simp [rulePost, Letter.wt, optR]
+    | eatTapeR d => simp [rulePost, Letter.wt]
+    | eatEndR => simp [rulePost, Letter.wt]
+    | eatTapeL d => simp [rulePost]
+    | eatEndL => simp [rulePost]
   rhs_weight := by
     intro i
     cases i <;> simp [ruleRhs, Letter.wt]
@@ -418,82 +434,82 @@ theorem machine_isLocal (M : Machine Γ Λ) :
             rw [ha, hq, hb, hc]
         | eatTapeR d =>
             have h : (Letter.state q : Letter Γ Λ) = Letter.eraseR := hsp
-            exact Letter.noConfusion h
+            simp at h
         | eatEndR =>
             have h : (Letter.state q : Letter Γ Λ) = Letter.eraseR := hsp
-            exact Letter.noConfusion h
+            simp at h
         | eatTapeL d =>
             have h : (Letter.state q : Letter Γ Λ) = Letter.eraseL := hsp
-            exact Letter.noConfusion h
+            simp at h
         | eatEndL =>
             have h : (Letter.state q : Letter Γ Λ) = Letter.eraseL := hsp
-            exact Letter.noConfusion h
+            simp at h
     | eatTapeR d =>
         cases j with
         | mach a' q' b' c' =>
             have h : (Letter.eraseR : Letter Γ Λ) = Letter.state q' := hsp
-            exact Letter.noConfusion h
+            simp at h
         | eatTapeR d' => rfl
         | eatEndR =>
             have h : ([Letter.tape d] : List (Letter Γ Λ)) = [Letter.endR] := hpost
-            exact Letter.noConfusion (List.cons.inj h).1
+            simp at h
         | eatTapeL d' =>
             have h : (Letter.eraseR : Letter Γ Λ) = Letter.eraseL := hsp
-            exact Letter.noConfusion h
+            simp at h
         | eatEndL =>
             have h : (Letter.eraseR : Letter Γ Λ) = Letter.eraseL := hsp
-            exact Letter.noConfusion h
+            simp at h
     | eatEndR =>
         cases j with
         | mach a' q' b' c' =>
             have h : (Letter.eraseR : Letter Γ Λ) = Letter.state q' := hsp
-            exact Letter.noConfusion h
+            simp at h
         | eatTapeR d' =>
             have h : ([Letter.endR] : List (Letter Γ Λ)) = [Letter.tape d'] := hpost
-            exact Letter.noConfusion (List.cons.inj h).1
+            simp at h
         | eatEndR => rfl
         | eatTapeL d' =>
             have h : (Letter.eraseR : Letter Γ Λ) = Letter.eraseL := hsp
-            exact Letter.noConfusion h
+            simp at h
         | eatEndL =>
             have h : (Letter.eraseR : Letter Γ Λ) = Letter.eraseL := hsp
-            exact Letter.noConfusion h
+            simp at h
     | eatTapeL d =>
         cases j with
         | mach a' q' b' c' =>
             have h : (Letter.eraseL : Letter Γ Λ) = Letter.state q' := hsp
-            exact Letter.noConfusion h
+            simp at h
         | eatTapeR d' =>
             have h : (Letter.eraseL : Letter Γ Λ) = Letter.eraseR := hsp
-            exact Letter.noConfusion h
+            simp at h
         | eatEndR =>
             have h : (Letter.eraseL : Letter Γ Λ) = Letter.eraseR := hsp
-            exact Letter.noConfusion h
+            simp at h
         | eatTapeL d' => rfl
         | eatEndL =>
             have h : ([Letter.tape d] : List (Letter Γ Λ)) = [Letter.endL] := hpre
-            exact Letter.noConfusion (List.cons.inj h).1
+            simp at h
     | eatEndL =>
         cases j with
         | mach a' q' b' c' =>
             have h : (Letter.eraseL : Letter Γ Λ) = Letter.state q' := hsp
-            exact Letter.noConfusion h
+            simp at h
         | eatTapeR d' =>
             have h : (Letter.eraseL : Letter Γ Λ) = Letter.eraseR := hsp
-            exact Letter.noConfusion h
+            simp at h
         | eatEndR =>
             have h : (Letter.eraseL : Letter Γ Λ) = Letter.eraseR := hsp
-            exact Letter.noConfusion h
+            simp at h
         | eatTapeL d' =>
             have h : ([Letter.endL] : List (Letter Γ Λ)) = [Letter.tape d'] := hpre
-            exact Letter.noConfusion (List.cons.inj h).1
+            simp at h
         | eatEndL => rfl
 
 /-- Every left-hand word has at least two letters; in particular the one-letter
 word `done` is a normal form. -/
 theorem two_le_length_lhsWord (i : RIdx Γ Λ) :
     2 ≤ (lhsWord ruleSp rulePre rulePost i).length := by
-  cases i <;> simp [lhsWord, rulePre, rulePost] <;> omega
+  cases i <;> simp [lhsWord, rulePre, rulePost]
 
 /-- `done` admits no rewrite. -/
 theorem done_normalForm (M : Machine Γ Λ) :

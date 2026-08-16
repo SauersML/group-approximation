@@ -27,6 +27,7 @@ import GroupApproximation.Computability.PresentationCodes
 import GroupApproximation.Computability.PresentationCodeCompleteness
 import GroupApproximation.Computability.OperatorMFMarkovAtCodes
 import GroupApproximation.Computability.StringRewriting
+import GroupApproximation.Computability.UniversalCode
 import GroupApproximation.Computability.RewriteMonoid
 import GroupApproximation.Computability.RewriteInvariants
 import GroupApproximation.Computability.RewriteConfluence
@@ -765,8 +766,6 @@ import GroupApproximation.Sofic.LiteralBlockGeometry
 import GroupApproximation.Sofic.LiteralBlockNormalForm
 import GroupApproximation.Sofic.LiteralLampKernelSplit
 import GroupApproximation.Sofic.LiteralTelescopeCoreLEF
-import GroupApproximation.Sofic.LiteralVerticalBridge
-import GroupApproximation.Sofic.LiteralSoficAssembly
 import GroupApproximation.Sofic.MatricialStabilityInstances
 import GroupApproximation.Sofic.SimpleSoficEnvelope
 import GroupApproximation.Sofic.SoficEnvelopeExistence
@@ -787,7 +786,6 @@ import GroupApproximation.Sofic.SimpleLampNormalGeneration
 import GroupApproximation.Sofic.UniversalVisibleQuotient
 import GroupApproximation.Sofic.SimpleFactorRecovery
 import GroupApproximation.Sofic.RadicalFiniteIndexTransfer
-import GroupApproximation.Sofic.WreathFinitePresentationObstruction
 import GroupApproximation.Sofic.KazhdanCliffordConstruction
 import GroupApproximation.Sofic.LiteralBaseP13PropertyTBridge
 import GroupApproximation.Sofic.LiteralMFQuotientControls

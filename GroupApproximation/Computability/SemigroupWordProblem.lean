@@ -95,14 +95,17 @@ read from Mathlib source at the revision this project pins
 So the remaining work is glue, in this order.  Sizes are new Lean lines,
 assuming the above are reused and counting no re-proof of Mathlib.
 
-* **U1. A fixed universal code.**  Turn `eval_part` into a single
-  `c_U : Turing.ToPartrec.Code` whose evaluation is the universal partial
-  function.  The mathematics is nil; the work is the plumbing between `ℕ →. ℕ`,
-  `List.Vector ℕ n →. ℕ` (`Nat.Partrec'`, which is what `ToPartrec.exists_code`
-  consumes) and `List ℕ →. List ℕ` (which is what `Code.eval` produces), plus
-  the pairing/encoding bookkeeping.  **~150--250 lines.**  Low risk, high
-  tedium.
-* **U2. The machine for `c_U`.**  Immediate from `tr_eval`.  **~0--30 lines.**
+* **U1. A fixed universal code.  DONE**, in `Computability.UniversalCode`:
+  `universalCode` is one `Turing.ToPartrec.Code` with `universalCode.eval
+  [a, n] = pure <$> Nat.Partrec.Code.eval (ofNat _ a) n`, and
+  `universalCode_halting_undecidable` says its halting problem is undecidable.
+  The plumbing was as expected -- `Nat.Partrec'.part_iff₂` is stated for
+  `ℕ → ℕ →. ℕ`, so the universal function has to carry a *numeral* index and
+  the code index is decoded by `Denumerable.ofNat`; the halting problem is then
+  transported off `Nat.Partrec.Code` along `Encodable.encode`.
+* **U2. The machine for `c_U`.  DONE**, same module:
+  `universalMachine_halting_undecidable`.  Immediate from `tr_eval`, as
+  predicted.
 * **U3. Cut the machine down to a finite one.**  `tr` has an infinite label
   type; restrict it along `codeSupp c_U Cont'.halt` (using `tr_supports`) to a
   machine with a `Fintype` of labels, and transport the evaluation statement.
