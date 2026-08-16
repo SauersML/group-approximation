@@ -3116,7 +3116,11 @@ $d_n(\gamma,\mu)=\operatorname{rank}(V_n(\gamma)-V_n(\mu))$ is an
 integer-valued pseudometric; projections at operator distance below
 $1$ have equal rank, so the covariance of Step 1 makes it eventually
 translation invariant: $d_n(g\gamma,g\mu)=d_n(\gamma,\mu)$ for all
-large $n$, for each fixed triple.
+large $n$, for each fixed triple.  The rank comparison is applied to
+the projections $T^2/4$, not to the involutions themselves, and that
+is where the threshold is consumed: the displacements have norm at
+most $2$, so a covariance error below $1/8$ moves the associated
+projections by at most $1/4<1$.
 
 \emph{Step 3: generator normalization.}  Property~\textup{(T)} makes
 $L$ finitely generated; fix a Kazhdan pair $(S,\kappa)$ with $S$
@@ -3173,16 +3177,31 @@ differences of the involutions.
 Gaussians $e^{-t\|\cdot\|^2}$ of the almost-cocycle are almost
 invariant under the twisted action, and the spectral gap of
 $(S,\kappa)$ bounds the limiting profile
-$\gamma\mapsto\limsup_n\|b_n(\gamma)\|_{\mathrm F}^2$ by its
+$\gamma\mapsto\lim_{n\to\omega}\|b_n(\gamma)\|_{\mathrm F}^2$, the limit
+along a fixed free ultrafilter $\omega$ on $\N$, by its
 generator values \eqref{eq:generator-mass} --- Delorme's argument at
-the level of limiting seminorms.  A circumcenter of the displacement
+the level of limiting seminorms.  The limit must be taken along an
+ultrafilter and not as a $\limsup$: Delorme's argument needs the
+profile to satisfy the displacement identity of Step~4 \emph{as an
+identity}, which is what makes the Gaussians positive definite, and
+$\limsup$ is only subadditive.  A circumcenter of the displacement
 orbit, taken at the level of bounded sequences, then produces one
 bounded sequence $(w_n)$ with
 $b_n(a)\approx w_n-U_{a,n}w_nU_{a,n}^{*}$ in limiting normalized mass,
 simultaneously for any prescribed finite set of movers.
 
 \emph{Step 6: transport through the compressor.}  By (W2) the
-displacement vanishes on compressed elements, so including the
+microstates of $sas^{-1}$ and of $1$ converge to one another, which is
+an operator-norm statement; Step~4 has just warned that two exact
+involutions at small operator distance can nevertheless differ in full
+rank, so this does not yet bound the displacement.  What closes the gap
+is a rigidity property of the commuting family of Step~1: two
+\emph{commuting} exact self-adjoint involutions $u,w$ at operator
+distance $\opnorm{u-w}<2$ are equal.  Indeed $T=u-w$ is self-adjoint
+with $T^3=4T$, so $T^2/4$ is an orthogonal projection, whose norm is
+therefore $0$ or $1$; but $\opnorm{T^2/4}=\opnorm{T}^2/4<1$, so
+$T^2=0$ and hence $T=0$.  The displacement therefore vanishes exactly
+on compressed elements, so including the
 compressed generators $sas^{-1}$ among the movers makes the primitive
 almost fixed by them; hence $u_n=U_{s,n}^{*}w_nU_{s,n}$ is almost
 fixed by every $a\in S$, because microstates of $as^{-1}$ and
