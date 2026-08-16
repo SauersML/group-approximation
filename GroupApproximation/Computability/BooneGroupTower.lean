@@ -1,6 +1,7 @@
 import GroupApproximation.Computability.BooneGroupPresentation
 import GroupApproximation.Computability.BooneGroupModularMachine
 import Mathlib.GroupTheory.HNNExtension
+import Mathlib.Tactic.Group
 
 /-!
 # S3: the HNN tower
@@ -163,6 +164,38 @@ theorem map_of_le_liftedSubgroup_inf (A : Subgroup G) :
   rintro _ ⟨a, ha, rfl⟩
   refine ⟨Subgroup.subset_closure ?_, ⟨a, rfl⟩⟩
   exact Or.inl ⟨a, ha, rfl⟩
+
+/-! ### Goodness, and the pinch it licenses
+
+Simpson's Definition 2 asks that `φ` carry `A ⊓ Asub` onto `A ⊓ Bsub`.  Its
+purpose is a single algebraic step: conjugating `of a` by the stable letter,
+for `a` in `A ⊓ Asub`, stays inside the image of `A`.  That step is what lets
+the induction in the hard half of S4 pinch a word without leaving `A`, and it
+is provable now, independently of any word machinery. -/
+
+/-- **Simpson's Definition 2.**  `φ` matches `A ⊓ Asub` with `A ⊓ Bsub`. -/
+def Good (A : Subgroup G) (φ : Asub ≃* Bsub) : Prop :=
+  (∀ a : Asub, (a : G) ∈ A → ((φ a : Bsub) : G) ∈ A) ∧
+    (∀ b : Bsub, (b : G) ∈ A → ((φ.symm b : Asub) : G) ∈ A)
+
+/-- **The pinch.**  For a good `A`, conjugating by the stable letter carries the
+image of `A ⊓ Asub` into the image of `A`. -/
+theorem good_pinch {A : Subgroup G} (hA : Good A φ) (a : Asub) (ha : (a : G) ∈ A) :
+    HNNExtension.t * HNNExtension.of (a : G) * HNNExtension.t⁻¹
+      ∈ A.map (HNNExtension.of : G →* HNNExtension G Asub Bsub φ) := by
+  rw [← HNNExtension.equiv_eq_conj]
+  exact ⟨((φ a : Bsub) : G), hA.1 a ha, rfl⟩
+
+/-- The pinch in the other direction. -/
+theorem good_pinch_inv {A : Subgroup G} (hA : Good A φ) (b : Bsub)
+    (hb : (b : G) ∈ A) :
+    HNNExtension.t⁻¹ * HNNExtension.of (b : G) * HNNExtension.t
+      ∈ A.map (HNNExtension.of : G →* HNNExtension G Asub Bsub φ) := by
+  refine ⟨((φ.symm b : Asub) : G), hA.2 b hb, ?_⟩
+  have h := HNNExtension.equiv_eq_conj (φ := φ) (φ.symm b)
+  rw [MulEquiv.apply_symm_apply] at h
+  rw [h]
+  group
 
 end BooneGroup
 end GroupApproximation
