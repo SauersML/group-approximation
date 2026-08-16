@@ -311,6 +311,7 @@ import GroupApproximation.Algebra.Malcev
 import GroupApproximation.Algebra.MalcevLinear
 import GroupApproximation.Algebra.WreathSplitQuotient
 import GroupApproximation.Algebra.PerfectLamp
+import GroupApproximation.Algebra.ModTwoLampParity
 import GroupApproximation.Sofic.FiniteDimensionalResidual
 import GroupApproximation.Sofic.ThreeRadicalsCoincide
 import GroupApproximation.Sofic.LinearResidual
