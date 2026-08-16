@@ -708,6 +708,19 @@ import GroupApproximation.Sofic.LocalCentralQuotientLifting
 import GroupApproximation.Steinberg.KervaireSteinberg
 import GroupApproximation.Criterion.FiniteDimensionalKill
 import GroupApproximation.Sofic.KazhdanCliffordEpsilon
+import GroupApproximation.Algebra.ZariskiClosedSubgroup
+import GroupApproximation.Algebra.ZariskiDescendingChain
+import GroupApproximation.Algebra.DyadicRationals
+import GroupApproximation.Algebra.WordMetric
+import GroupApproximation.Monsters.LiteralDyadicCalibration
+import GroupApproximation.Sofic.SoficByAmenablePermanence
+import GroupApproximation.Analysis.PropertyTNonamenable
+import GroupApproximation.Analysis.ResiduallyFiniteDimensional
+import GroupApproximation.Analysis.MaximalCStarParagraphEndpoint
+import GroupApproximation.Sofic.ManuscriptCentralSignCriterion
+import GroupApproximation.Sofic.CollapseUniverseScopeDefs
+import GroupApproximation.Sofic.CollapseUniverseScope
+import GroupApproximation.Sofic.CollapseProfileBound
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
