@@ -1,5 +1,5 @@
 import GroupApproximation.Algebra.ZariskiClosedSubgroup
-import GroupApproximation.Criterion.ClosedEnvelopeCompression
+import GroupApproximation.Criterion.ClosedEnvelopeCompressionCore
 import Mathlib.Order.Monotone.Basic
 import Mathlib.Order.WellFounded
 import Mathlib.RingTheory.Polynomial.Basic
@@ -10,16 +10,25 @@ import Mathlib.RingTheory.SimpleModule.Basic
 
 `non_mf_groups_exist.tex`, in `\begin{remark}[chain conditions
 suffice]\label{rem:chaincondition}` of `\section{The finite-dimensional
-obstruction}\label{sec:findim}` — lines 2558--2573 as of 2026-08-16, but the
-file is under concurrent edit, so navigate by the labels — says of the
-algebraic envelope:
+obstruction}\label{sec:findim}` — navigate by the labels, the file is under
+concurrent edit — says of the algebraic envelope:
 
-> That the closed subgroups of `GL(V)` in the Zariski topology satisfy the
-> chain condition is classical, and is the input the badge quantifies over
-> rather than proves.
+> the Zariski closures of `σ(Γ)` and `σ(tΓt⁻¹)` coincide, the descending chain
+> condition for Zariski-closed subgroups of `GL(V)` coming from the Hilbert
+> basis theorem.
 
-This file removes that literature input.  The chain condition is *proved*, and
-the abstract deduction badged on `Criterion/ClosedEnvelopeCompression` is
+That is the whole of what the manuscript says about the chain condition here:
+it names the Hilbert basis theorem as its ground and asserts the conclusion
+without hypothesis.  (An earlier version of this docstring quoted the
+manuscript as adding that the chain condition "is the input the badge
+quantifies over rather than proves".  No such sentence occurs in
+`non_mf_groups_exist.tex`; it appears to have come from an early draft, and it
+had also been copied into the gate's own roster in
+`scripts/check_non_mf_unconditional.py`, where it is likewise now removed.)
+
+This file supplies the ground the manuscript names.  The chain condition is
+*proved*, and
+the abstract deduction of `Criterion/ClosedEnvelopeCompressionCore` is
 instantiated at the Zariski notion of closedness, so that
 
   `zariskiEnvelope (t Γ t⁻¹) = zariskiEnvelope Γ`
@@ -272,7 +281,7 @@ theorem zEnvelope_eq_zClosure (H : Subgroup (GeneralLinearGroup n k)) :
 /-! ### The manuscript's envelope conclusion, unconditionally -/
 
 /-- **Compression does not move the algebraic envelope.**  This is
-`Criterion/ClosedEnvelopeCompression.envelope_conj_eq` with its one hypothesis
+`Criterion/ClosedEnvelopeCompressionCore.envelope_conj_eq` with its one hypothesis
 — the descending chain condition for closed subgroups — discharged by
 `wellFoundedLT_isZClosedSubgroup`, and its abstract notion of closedness
 instantiated at Zariski closedness.  By `zEnvelope_eq_zClosure` the envelope is

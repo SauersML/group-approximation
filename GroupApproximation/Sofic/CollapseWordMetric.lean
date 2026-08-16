@@ -47,8 +47,6 @@ threshold and each contributes a single finite value
 (`exists_bound_of_eventually_bounded`).
 -/
 
-set_option linter.unusedSectionVars false
-
 namespace GroupApproximation
 namespace CollapseWordMetric
 
@@ -170,6 +168,7 @@ theorem col17_eventually_dV_one_le_wordNorm_mul_kNorm
 
 /-! ## The mass identity -/
 
+omit [Group Γ] in
 /-- The Frobenius mass of a displacement is four times its rank
 (COL.11, restated here so this module is independent of the guarded
 development). -/

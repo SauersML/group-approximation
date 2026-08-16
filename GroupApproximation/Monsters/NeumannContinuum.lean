@@ -1,5 +1,5 @@
 import GroupApproximation.Monsters.NeumannAlternatingFamily
-import GroupApproximation.Sofic.ContinuumMultiplicity
+import GroupApproximation.Sofic.ContinuumMultiplicityCore
 import GroupApproximation.Sofic.ContinuumFamilyCriterion
 import GroupApproximation.Sofic.ContinuumFromNormalSubgroups
 
@@ -7,10 +7,10 @@ import GroupApproximation.Sofic.ContinuumFromNormalSubgroups
 # B. H. Neumann's continuum, unconditionally
 
 `non_mf_groups_exist.tex`, the multiplicity paragraph beginning *"Beyond finite
-presentation, pairing $E$ with the continuum of pairwise nonisomorphic
-two-generator groups of B.~H.~Neumann"* (anchor on the phrase; line numbers
+presentation, pairing $E$ with a continuum of pairwise nonisomorphic finitely
+generated groups"* (anchor on the phrase; line numbers
 drift).  It concludes that there are `2^{\aleph_0}` pairwise nonisomorphic
-finitely generated non-MF groups.  `Sofic/ContinuumMultiplicity` formalizes the
+finitely generated non-MF groups.  `Sofic/ContinuumMultiplicityCore` formalizes the
 manuscript's own counting step, with Neumann's family entering as a visibly
 quantified hypothesis, and `Sofic/ContinuumFamilyCriterion` reduces that
 hypothesis to its smallest form: a family of finitely generated groups indexed
@@ -31,7 +31,8 @@ countable fibres to isomorphism types has `2^{\aleph_0}` types in its image, and
 a transversal of the isomorphism classes is the required family.
 
 There are two endpoints.  `manuscriptContinuumMultiplicityUnconditional` is
-`ContinuumMultiplicity.manuscriptContinuumMultiplicity` applied to that family:
+`ContinuumMultiplicity.exists_continuum_pairwise_nonisomorphic` applied to that
+family:
 a continuum of pairwise nonisomorphic finitely generated groups, each of which
 is not operator-MF.  `manuscriptContinuumMultiplicityFromCriterion` discharges
 the criterion instead: the transversal is transported along a bijection with the
@@ -180,7 +181,8 @@ theorem manuscriptContinuumMultiplicityFromCriterion :
 /-! ## The manuscript's continuum multiplicity, with the hypothesis discharged -/
 
 /-- **Continuum multiplicity, unconditionally.**  The manuscript's counting step
-`ContinuumMultiplicity.manuscriptContinuumMultiplicity` applied to the family
+`ContinuumMultiplicity.exists_continuum_pairwise_nonisomorphic` applied to the
+family
 built here: there is a continuum of pairwise nonisomorphic finitely generated
 groups, each of them not operator-MF.
 
@@ -194,7 +196,7 @@ theorem manuscriptContinuumMultiplicityUnconditional :
       ∀ i ∈ J, ∀ j ∈ J,
         Nonempty ((MarkedGroup × NeumannFamilyGroup i) ≃*
           (MarkedGroup × NeumannFamilyGroup j)) → i = j :=
-  ContinuumMultiplicity.manuscriptContinuumMultiplicity NeumannFamilyGroup
+  ContinuumMultiplicity.exists_continuum_pairwise_nonisomorphic NeumannFamilyGroup
     neumannFamily_pairwise mk_neumannIndex
 
 end NeumannContinuum

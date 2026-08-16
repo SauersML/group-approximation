@@ -4,19 +4,21 @@ import GroupApproximation.Sofic.ProductMultiplicity
 /-!
 # Infinite multiplicity, separated by torsion-free rank
 
-The manuscript's multiplicity paragraph (`non_mf_groups_exist.tex`, lines
-3244--3253) reads:
+The manuscript's multiplicity paragraph (`non_mf_groups_exist.tex`; navigate by the
+sentence, the line numbers drift) reads:
 
 > The groups `E × ℤ^k` for `k ≥ 0` are finitely presented, pairwise
-> nonisomorphic --- their abelianizations have distinct torsion-free
-> ranks --- and non-MF, each containing `E`.
+> nonisomorphic, and non-MF, each containing `E`.  They are pairwise
+> nonisomorphic because their abelianizations have distinct torsion-free
+> ranks; the number of homomorphisms to `ℤ/2` separates them as well.
 
-`Sofic.ProductMultiplicity` proves that paragraph with a substitute
-invariant: it counts homomorphisms into `ℤ/2`, a count the manuscript
-describes as the same invariant read modulo `2`.  The count separates the
-same groups, but it is not the invariant the manuscript prints.  This
-file runs the printed argument instead, through
-`Algebra.TorsionFreeRank`:
+The badge on that paragraph sits on
+`ProductMultiplicity.manuscriptInfiniteMultiplicity`, which now states both
+of the invariants the manuscript names — the torsion-free rank first, the
+`ℤ/2` count second — and so needs the rank specialization for the chosen
+witness in that file.  This file is the general development the specialization
+is an instance of: it runs the printed argument for an arbitrary finitely
+generated first factor, through `Algebra.TorsionFreeRank`:
 
 * `(E × ℤ^k)^{ab} ≅ E^{ab} × ℤ^k`, because abelianization commutes with
   binary products;
@@ -31,6 +33,15 @@ The finite presentation and the failure of MF are unchanged from
 `Sofic.ProductMultiplicity` and are reused from there; only the
 separation argument is redone.  The counting proof stays in place as an
 independent second route to the same conclusion.
+
+The rank lemmas below are stated for a general first factor and are the ones
+to reuse.  Their short `MarkedGroup`-only counterparts live in
+`Sofic.ProductMultiplicity` under different names
+(`torsionFreeRank_intPow`, `torsionFreeRank_family`,
+`chosenFamily_torsionFreeRank_ne`) because that file is imported by this one
+and the badge declaration is there; the duplication is one short induction
+and is deliberate, since reversing the import would move the badged
+declaration out of the module the manuscript cites.
 -/
 
 namespace GroupApproximation

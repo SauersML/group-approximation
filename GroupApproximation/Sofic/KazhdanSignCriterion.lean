@@ -1,6 +1,7 @@
 import GroupApproximation.Sofic.CentralInvolutionSubgroup
 import GroupApproximation.Sofic.CDEOperatorMF
 import GroupApproximation.Sofic.FiniteNormalCoronaObstruction
+import GroupApproximation.Sofic.Type0Transfer
 import GroupApproximation.Kazhdan.KazhdanUniverse
 
 /-!
@@ -19,15 +20,25 @@ namespace KazhdanCompressionCore
 
 open scoped commutatorElement
 
-universe w
+universe u w
+
+/-! The auxiliary theorems below stay at `Type 0`, because the finite-normal
+corner machinery they call is written there.  The closed proposition and the
+advertised theorem do not: `thm:sign-criterion` says "let `H` be a countable
+group", with no universe, so the ambient group is quantified at `Type u` and the
+theorem is proved by descending to a `Type 0` model
+(`Sofic.Type0Transfer.exists_type0_model`).  Nothing analytic is redone and no
+hypothesis is added: countability is already printed, and it is exactly what the
+descent consumes. -/
 
 variable {Γ E : Type} [Group Γ] [Group E]
 
 /-- The manuscript's central-sign criterion as one closed proposition.  All
 groups, structure, and hypotheses are quantified inside the sentence, leaving
-the advertised theorem with an empty declaration telescope. -/
+the advertised theorem with an empty declaration telescope.  The ambient group
+ranges over every universe, as the manuscript's "countable group" does. -/
 def ManuscriptCentralSignCriterion : Prop :=
-  ∀ {Γ E : Type} [Group Γ] [Group E] [Countable E]
+  ∀ {Γ : Type} {E : Type u} [Group Γ] [Group E] [Countable E]
     (hT : HasKazhdanPropertyTComplex.{0, w} Γ)
     (iota : Γ →* E) (t c : E)
     (hcompresses : ∀ γ : Γ, ∃ δ : Γ,
@@ -188,28 +199,60 @@ MF in the literal CDE sense. -/
 theorem manuscriptCentralSignCriterion :
     ManuscriptCentralSignCriterion := by
   intro Γ E _ _ _ hT iota t c hcompresses hcomm a z hz hz_ne hz_sq hz_central
-  let C : KazhdanCompressionCore Γ E := {
-    iota := iota
-    t := t
-    c := c
+  -- Step 0.  The printed countability hypothesis is exactly what puts the
+  -- ambient group in `Type 0` up to isomorphism, so no hypothesis is added and
+  -- no generality is lost.
+  obtain ⟨E₀, _groupE₀, ⟨e⟩⟩ := Type0Transfer.exists_type0_model E
+  haveI : Countable E₀ := Type0Transfer.countable_type0_model E e
+  -- Step 1.  Carry the conjugation datum across the isomorphism.  Every field
+  -- is a group-theoretic equation, so each is the image of the original.
+  have hcompresses₀ : ∀ γ : Γ, ∃ δ : Γ,
+      e t * (e.toMonoidHom.comp iota) γ * (e t)⁻¹ =
+        (e.toMonoidHom.comp iota) δ := by
+    intro γ
+    obtain ⟨δ, hδ⟩ := hcompresses γ
+    refine ⟨δ, ?_⟩
+    have h : e (t * iota γ * t⁻¹) = e (iota δ) := by rw [hδ]
+    simpa using h
+  have hcomm₀ : ∀ γ : Γ, Commute (e c) ((e.toMonoidHom.comp iota) γ) := by
+    intro γ
+    simpa using (hcomm γ).map e
+  let C₀ : KazhdanCompressionCore Γ E₀ := {
+    iota := e.toMonoidHom.comp iota
+    t := e t
+    c := e c
     kazhdan := hasKazhdanPropertyT_iff_textbook.mpr hT
-    compresses := hcompresses
-    comm_c := hcomm
+    compresses := hcompresses₀
+    comm_c := hcomm₀
   }
-  have hzC : z = ⁅C.transported, C.iota a⁆ ^ 2 := by
-    simpa [C, KazhdanCompressionCore.transported] using hz
+  have hzC : e z = ⁅C₀.transported, C₀.iota a⁆ ^ 2 := by
+    have h : e z = e (⁅t * c * t⁻¹, iota a⁆ ^ 2) := by rw [hz]
+    simpa [C₀, KazhdanCompressionCore.transported, map_commutatorElement]
+      using h
+  have hz_sq₀ : (e z) ^ 2 = 1 := by rw [← map_pow, hz_sq, map_one]
+  have hz_central₀ : ∀ g : E₀, Commute (e z) g := by
+    intro g
+    simpa using (hz_central (e.symm g)).map e
+  have hz_ne₀ : e z ≠ 1 := fun h ↦
+    hz_ne (e.injective (h.trans (map_one e).symm))
+  -- Step 2.  Run the `Type 0` criterion on the model and pull both printed
+  -- clauses back along the isomorphism.
   constructor
   · intro d hd
     letI : ∀ n, Nonempty (naturalFiniteModel (d n)) :=
       fun n ↦ Fintype.card_pos_iff.mp (by simpa using hd n)
     intro rho
-    exact MonoidHom.mem_ker.mp
-      (C.defectSquare_centralInvolution_mem_normMatrixCStarCoronaKernel
-        a z hzC hz_sq hz_central
-        (fun n ↦ naturalFiniteModel (d n)) (by simpa using hd) rho)
+    have h₀ := MonoidHom.mem_ker.mp
+      (C₀.defectSquare_centralInvolution_mem_normMatrixCStarCoronaKernel
+        a (e z) hzC hz_sq₀ hz_central₀
+        (fun n ↦ naturalFiniteModel (d n)) (by simpa using hd)
+        (rho.comp e.symm.toMonoidHom))
+    simpa using h₀
   · rw [isCDEOperatorMF_iff_isOperatorMF]
-    exact C.not_isOperatorMF_of_defectSquare_eq_centralInvolution
-      a z hzC hz_sq hz_central hz_ne
+    intro hMF
+    exact C₀.not_isOperatorMF_of_defectSquare_eq_centralInvolution
+      a (e z) hzC hz_sq₀ hz_central₀ hz_ne₀
+      (CommensurabilityInvariance.isOperatorMF_of_mulEquiv e hMF)
 
 end KazhdanCompressionCore
 end GroupApproximation

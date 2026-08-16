@@ -8,10 +8,13 @@ The manuscript's first open question (`\subsection*{Questions}`, item 1) does
 not merely cite the two reduction corollaries; it *applies* them to a named
 group with a named witness:
 
-> Corollary `\ref{cor:collapsequot}`, applied to `E/⟨w⟩` with the witness of
-> that proof, reduces the computation to the quotient by the resulting
-> collapse defect `D`, and Corollary `\ref{cor:exactradical}` then identifies
-> the radical with the preimage of `D` as soon as that quotient is MF.
+> Write `q₁ : E → E/⟨w⟩`, let `D = D_coll(L̄, q₁(t))` for the witness `d̄` of
+> that proof, and let `q₂ : E/⟨w⟩ → (E/⟨w⟩)/D`.  By
+> Corollary `\ref{cor:collapsequot}` applied to `E/⟨w⟩` and then
+> Corollary `\ref{cor:pullback}`,
+> `Res_MF(E) = q₁⁻¹ q₂⁻¹ (Res_MF((E/⟨w⟩)/D))`,
+> so by Corollary `\ref{cor:exactradical}` the residual equals `q₁⁻¹(D)`
+> **exactly when** `(E/⟨w⟩)/D` is MF.
 
 `Sofic/ManuscriptExactWrappers` carries both corollaries in their general
 form, and `Sofic/LiteralSignFreeQuotient` carries the literal quotient
@@ -21,24 +24,31 @@ involutive witness `witness_dee`.  What was missing is the application: the
 instantiation of the general theorems at that group and that witness, so that
 the printed sentence has a declaration that says it.
 
-Three things are stated here, in the order the manuscript states them.
+Three things are stated here, matching the three the manuscript states.
 
-1. **The collapse reduction, unconditionally.**  `Rad_MF(E/⟨w⟩)` is the full
-   preimage of `Rad_MF((E/⟨w⟩)/D)`, where `D` is the involutive collapse
-   defect of the witness of Theorem B's proof.
-2. **The transfer up to `E`.**  `Rad_MF(E)` is the preimage of
-   `Rad_MF(E/⟨w⟩)`, because `⟨w⟩` lies in `Rad_MF(E)` (Theorem A) and the
-   radical of a group is the preimage of the radical of any quotient by a
-   subgroup of it.  Composing with 1, the computation of `Rad_MF(E)` is
-   reduced to `(E/⟨w⟩)/D` exactly as printed.
-3. **The exact form.**  As soon as `(E/⟨w⟩)/D` is MF, both radicals are
-   pinned: `Rad_MF(E/⟨w⟩) = D` and `Rad_MF(E)` is the preimage of `D`.
+1. **The collapse reduction at `E/⟨w⟩`, unconditionally.**  `Res_MF(E/⟨w⟩)` is
+   the full preimage under `q₂` of `Res_MF((E/⟨w⟩)/D)`, where `D` is the
+   involutive collapse defect of the witness of Theorem B's proof.  This is
+   Corollary `cor:collapsequot` at that group.
+2. **The displayed identity.**  `Res_MF(E) = q₁⁻¹ q₂⁻¹ (Res_MF((E/⟨w⟩)/D))`,
+   obtained by composing 1 with Corollary `cor:pullback` at `N = ⟨w⟩`, which
+   applies because `⟨w⟩ ≤ Res_MF(E)` by Theorem A.
+3. **The exactness clause, as an iff.**  the residual `Res_MF(E)` equals
+   `q₁⁻¹(D)` *exactly when*
+   `(E/⟨w⟩)/D` is MF.  The manuscript prints "exactly when", so both
+   directions are proved: forwards from Corollary `cor:exactradical`, and
+   backwards because `q₁` and `q₂` are surjective — equal preimages force
+   equal subgroups, so `Res_MF((E/⟨w⟩)/D)` collapses to the trivial subgroup,
+   which is the MF property.
 
-Whether `(E/⟨w⟩)/D` is MF is the open question; nothing here decides it, and
-the conditional clause is printed as a conditional.  The defect `D` is
-recorded as nontrivial (`collapsedCommutator_mem_defect` together with
+Whether `(E/⟨w⟩)/D` is MF is the open question; nothing here decides it.  The
+defect `D` is recorded as nontrivial (`collapsedCommutator_mem_defect` with
 `LiteralSignFreeQuotient.collapsed_commutator_ne_one`), so the reduction is
 not the vacuous one through the trivial defect.
+
+The manuscript writes `Res_MF` and says "residual" where earlier drafts wrote
+`Rad_MF` and "radical"; the Lean name `actualCoronaMFResidual` already matched
+the new wording and is unaffected.
 -/
 
 namespace GroupApproximation
@@ -119,16 +129,22 @@ theorem actualCoronaMFResidual_markedGroup_eq_comap :
 reductions, applied to the literal `E/⟨w⟩` with the witness of the proof of
 Theorem B:
 
-* the collapse reduction sends `Rad_MF(E/⟨w⟩)` to the full preimage of
-  `Rad_MF((E/⟨w⟩)/D)`;
-* the same computation for `Rad_MF(E)` follows, `⟨w⟩` being inside
-  `Rad_MF(E)`;
-* and if `(E/⟨w⟩)/D` is MF, then `Rad_MF(E/⟨w⟩) = D` and `Rad_MF(E)` is the
-  preimage of `D` — which is the sentence "identifies the radical with the
-  preimage of `D` as soon as that quotient is MF".
+* the collapse reduction sends `Res_MF(E/⟨w⟩)` to the full preimage under `q₂`
+  of `Res_MF((E/⟨w⟩)/D)`;
+* hence the displayed identity
+  `Res_MF(E) = q₁⁻¹ q₂⁻¹ (Res_MF((E/⟨w⟩)/D))`, `⟨w⟩` being inside
+  `Res_MF(E)`;
+* and the residual `Res_MF(E)` equals `q₁⁻¹(D)` **exactly when**
+  `(E/⟨w⟩)/D` is MF.
 
-The MF-ness of `(E/⟨w⟩)/D` is not proved here and is not proved anywhere: it
-is the open question the manuscript asks. -/
+The third clause is an `Iff` because the manuscript prints "exactly when".
+The forward direction is Corollary `cor:exactradical`; the reverse holds
+because `q₁` and `q₂` are surjective, so equal preimages force equal
+subgroups, and `Res_MF((E/⟨w⟩)/D) = ⊥` is the MF property.
+
+Whether `(E/⟨w⟩)/D` is MF is not decided here and is not decided anywhere: it
+is the open question the manuscript asks, and the `Iff` says precisely that
+computing `Res_MF(E)` is the same question. -/
 theorem manuscriptSignFreeRadicalReduction :
     actualCoronaMFResidual SignFreeQuotient =
         (actualCoronaMFResidual
@@ -138,18 +154,41 @@ theorem manuscriptSignFreeRadicalReduction :
         ((actualCoronaMFResidual
           (SignFreeQuotient ⧸ signFreeCollapseDefect)).comap
           (QuotientGroup.mk' signFreeCollapseDefect)).comap proj ∧
-      (IsCDEOperatorMF (SignFreeQuotient ⧸ signFreeCollapseDefect) →
-        actualCoronaMFResidual SignFreeQuotient = signFreeCollapseDefect ∧
-          actualCoronaMFResidual MarkedGroup =
-            signFreeCollapseDefect.comap proj) := by
+      (actualCoronaMFResidual MarkedGroup = signFreeCollapseDefect.comap proj ↔
+        IsCDEOperatorMF (SignFreeQuotient ⧸ signFreeCollapseDefect)) := by
   obtain ⟨hcomap, hexact⟩ :=
     ManuscriptExactWrappers.manuscriptCollapseRadicalReduction
       Lbar (proj stable) Lbar_hasKazhdanPropertyT Lbar_compressed
-  refine ⟨hcomap, ?_, ?_⟩
+  refine ⟨hcomap, ?_, ?_, ?_⟩
   · rw [actualCoronaMFResidual_markedGroup_eq_comap, hcomap]
   · intro hMF
     have hquot := hexact hMF
-    exact ⟨hquot, by rw [actualCoronaMFResidual_markedGroup_eq_comap, hquot]⟩
+    rw [actualCoronaMFResidual_markedGroup_eq_comap, hquot]
+  · intro hEq
+    -- `proj` is surjective, so the two preimages agree only if the two
+    -- subgroups do: this is the reverse direction the manuscript's
+    -- "exactly when" asserts.
+    have hsign : actualCoronaMFResidual SignFreeQuotient
+        = signFreeCollapseDefect := by
+      have hpre := actualCoronaMFResidual_markedGroup_eq_comap.symm.trans hEq
+      exact Subgroup.comap_injective (QuotientGroup.mk'_surjective markSubgroup)
+        hpre
+    -- and then the collapse reduction turns that into triviality of the
+    -- radical of the second quotient, which is the MF property.
+    have hbot : actualCoronaMFResidual
+        (SignFreeQuotient ⧸ signFreeCollapseDefect) = ⊥ := by
+      have h1 : (actualCoronaMFResidual
+          (SignFreeQuotient ⧸ signFreeCollapseDefect)).comap
+            (QuotientGroup.mk' signFreeCollapseDefect)
+          = signFreeCollapseDefect := hcomap.symm.trans hsign
+      have h2 : (⊥ : Subgroup (SignFreeQuotient ⧸ signFreeCollapseDefect)).comap
+            (QuotientGroup.mk' signFreeCollapseDefect)
+          = signFreeCollapseDefect := by
+        rw [Subgroup.comap_bot, QuotientGroup.ker_mk']
+      exact Subgroup.comap_injective
+        (QuotientGroup.mk'_surjective signFreeCollapseDefect)
+        (h1.trans h2.symm)
+    exact isCDEOperatorMF_iff_actualCoronaMFResidual_eq_bot.mpr hbot
 
 end
 

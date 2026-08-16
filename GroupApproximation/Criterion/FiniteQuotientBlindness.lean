@@ -187,6 +187,43 @@ theorem compressedImage_eq' [Finite Q] (φ : H →* Q) (Γ : Subgroup H) {t : H}
   · intro K L hle hcard
     exact Subgroup.eq_of_le_of_card_ge hle hcard
 
+/-- **"Cardinality on the subgroups of a finite group qualifies."**  The
+manuscript's remark `rem:invariantsize` states the abstract invariant-size
+principle and then names its instance in one clause; this is that clause, with
+every quantifier inside the proposition.
+
+The three conjuncts are the two hypotheses of the principle and its conclusion:
+cardinality of a subgroup is unchanged by conjugation, an inclusion of
+subgroups of a finite group with no gain in cardinality is an equality, and
+therefore no strict one-sided compression survives in a finite group — which
+is the finite-quotient argument of the introduction.
+
+`compressedImage_eq'` above is the same instance in the form the rest of the
+development consumes, through a homomorphism `φ : H → Q`; this states it for
+the target group alone, which is what the remark's clause says. -/
+theorem manuscriptCardinalityInvariantSize :
+    ∀ {Q : Type} [Group Q] [Finite Q],
+      (∀ (g : Q) (K : Subgroup Q),
+          Nat.card (K.map (MulAut.conj g).toMonoidHom) = Nat.card K) ∧
+        (∀ K L : Subgroup Q, K ≤ L → Nat.card L ≤ Nat.card K → K = L) ∧
+        ∀ (K : Subgroup Q) (g : Q),
+          K.map (MulAut.conj g).toMonoidHom ≤ K →
+          K.map (MulAut.conj g).toMonoidHom = K := by
+  intro Q _ _
+  have hconj : ∀ (g : Q) (K : Subgroup Q),
+      Nat.card (K.map (MulAut.conj g).toMonoidHom) = Nat.card K := by
+    intro g K
+    exact Nat.card_congr
+      (Subgroup.equivMapOfInjective K (MulAut.conj g).toMonoidHom
+        (MulAut.conj g).injective).symm.toEquiv
+  have hsep : ∀ K L : Subgroup Q, K ≤ L → Nat.card L ≤ Nat.card K → K = L := by
+    intro K L hle hcard
+    exact Subgroup.eq_of_le_of_card_ge hle hcard
+  refine ⟨hconj, hsep, ?_⟩
+  intro K g hcomp
+  exact no_strict_compression_of_invariantSize
+    (fun K : Subgroup Q ↦ Nat.card K) hconj hsep K g hcomp
+
 /-! ## Centralized subgroups survive every compression
 
 A compressor `t` that *centralizes* a subgroup `F ≤ Γ` cannot compress it away:

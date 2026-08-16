@@ -1,4 +1,5 @@
 import GroupApproximation.Sofic.ActualCoronaMFRadical
+import GroupApproximation.Sofic.DirectSumAmplification
 
 /-!
 # Matricial stability identifies the MF radical with the
@@ -11,9 +12,16 @@ a group the two natural residuals coincide: the literal genuine-corona MF
 radical equals the intersection of the kernels of all finite-dimensional
 unitary representations.
 
-One inclusion needs no stability: a finite-dimensional representation
-amplifies to a constant corona representation, so the MF radical lies in
-every finite-dimensional kernel.  For the other, a corona representation
+One inclusion needs no stability: a finite-dimensional representation `π`
+on `ℂ^d` amplifies to the direct sums `π^{⊕n}` on `ℂ^{nd}`, whose dimensions
+strictly increase and whose operator-norm displacement from the identity is
+that of `π` itself, so the amplified sequence is null exactly when `π(x) = 1`
+and the MF radical lies in every finite-dimensional kernel.  That is the
+manuscript's own route, and `Sofic.DirectSumAmplification` carries it; the
+constant-sequence representation `constCoronaRep` below is kept because it is
+the same construction with the amplification suppressed, and it records what
+the printed proof would look like without the increasing dimensions.  For the
+other inclusion, a corona representation
 that detects an element of the finite-dimensional residual extracts a
 marked operator-norm almost representation with a uniform gap at that
 element; stability replaces it pointwise by genuine representations,
@@ -67,6 +75,15 @@ def constCoronaRep (Y : FiniteModel)
 /-- **No stability needed**: the MF radical lies in every
 finite-dimensional kernel.
 
+The proof is the manuscript's.  Amplify `phi` to the direct sums
+`phi^{⊕(n+1)}` of `Sofic.DirectSumAmplification`: the dimensions
+`(n+1)·d` strictly increase, so the amplified sequence is a homomorphism into
+a corona built on increasing dimensions, and the operator-norm displacement of
+`phi^{⊕(n+1)}(x)` from the identity equals that of `phi(x)` at every
+coordinate.  An element of the radical is killed by that homomorphism, so the
+amplified sequence is null; since every coordinate carries the same number,
+that number is zero and `phi(x) = 1`.
+
 The group is quantified inside the proposition, not carried in from the
 section `variable` above: a manuscript endpoint must state on its own face
 what a caller has to supply, and here that is nothing. -/
@@ -84,34 +101,19 @@ theorem actualCoronaMFResidual_le_fdUnitaryResidual :
     exact isEmptyElim i
   · have hx' : CoronaMFInvisible x :=
       actualCoronaMFInvisible_iff_coronaMFInvisible.mp hx
-    have h1 := hx' (fun _ : ℕ ↦ Y) (fun _ ↦ hY) (constCoronaRep Y phi)
-    -- the constant sequence is null exactly when the value is the identity
-    have hnull : (fun _ : ℕ ↦ phi x) ∈
-        nullCofiniteOpSubgroup (fun _ : ℕ ↦ Y) := by
-      have h2 : (QuotientGroup.mk' (nullCofiniteOpSubgroup (fun _ : ℕ ↦ Y)))
-          (fun _ : ℕ ↦ phi x) = 1 := h1
+    -- the printed amplification: `π^{⊕(n+1)}` on strictly increasing dimensions
+    have h1 := hx' (DirectSumAmplification.directSumModel Y)
+      (DirectSumAmplification.card_directSumModel_pos Y hY)
+      (DirectSumAmplification.directSumCoronaRep Y phi)
+    have hnull :
+        (fun n ↦ DirectSumAmplification.directSumRep Y phi n x) ∈
+          nullCofiniteOpSubgroup (DirectSumAmplification.directSumModel Y) := by
+      have h2 : (QuotientGroup.mk'
+          (nullCofiniteOpSubgroup (DirectSumAmplification.directSumModel Y)))
+          (fun n ↦ DirectSumAmplification.directSumRep Y phi n x) = 1 := h1
       exact (QuotientGroup.eq_one_iff _).mp h2
-    have hlen : ∀ ε : ℝ, 0 < ε → opLength Y (phi x) < ε := by
-      intro ε hε
-      obtain ⟨n, hn⟩ := (hnull ε hε).exists
-      exact hn
-    have hzero : opLength Y (phi x) = 0 := by
-      by_contra hne
-      have h0 : (0 : ℝ) ≤ opLength Y (phi x) := by
-        unfold opLength
-        apply norm_nonneg
-      have hpos : 0 < opLength Y (phi x) := by
-        rcases lt_or_eq_of_le h0 with h | h
-        · exact h
-        · exact absurd h.symm hne
-      exact absurd (hlen _ hpos) (lt_irrefl _)
     apply Subtype.ext
-    have : ((phi x : Matrix Y Y ℂ) - 1) = 0 := by
-      have := hzero
-      unfold opLength at this
-      exact norm_eq_zero.mp this
-    have hcoe : (phi x : Matrix Y Y ℂ) = 1 := sub_eq_zero.mp this
-    exact hcoe
+    exact DirectSumAmplification.opLength_eq_zero_of_null Y phi x hnull
 
 /-- **Stability converts finite-dimensional blindness into MF
 blindness.** -/

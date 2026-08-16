@@ -6,10 +6,10 @@ Spec document: `non_mf_groups_exist.tex`.  Formal development: `GroupApproximati
 
 | | |
 | --- | --- |
-| commit | `cf35b5f8c0e3bd535e3667ed70683b49f37c9ab5` |
-| `git hash-object non_mf_groups_exist.tex` | `87fd1834f81b2a00adc582822e389efef8a6444a` |
-| sha256 of the file | `8fffbcf1bcf0aea2805c4e9c87ea17ba2778817f9f91ef94acd10a3a169ab067` |
-| `wc -l` | 4512 |
+| commit | `e29682952a22c83e56058038fcffd910a6007224` |
+| `git hash-object non_mf_groups_exist.tex` | `774ad7010dd4530a34de4e145fa2a966d5b3aced` |
+| sha256 of the file | `f70a73d1a6f39919f988be8073e06e8b029aedfd699590981eacc5e9f3e8360f` |
+| `wc -l` | 4567 |
 
 The blob above is the **working-tree** blob at re-pin time: a peer session had the
 file dirty, so it is not yet reachable from any commit.  `git hash-object` of the file
@@ -62,6 +62,12 @@ mathematics rather than the name, the row itself was re-read and says so.
 | the central sign `ε` | the central involution `w` |
 | point-norm matricially stable | matricially stable |
 | the commuting-lamp quotient | the commuting-generator quotient |
+| the MF radical, `Rad_MF(G)` | the MF residual, `Res_MF(G)` (and `Rad_fd` → `Res_fd`) |
+| `N_comp` | `N_conj` |
+| `G_comp(L)` | `G^{+}(L)` |
+| the compressed copy of `L` | the conjugate copy of `L` |
+| involutive compression witness | involutive orbit witness |
+| the capture term `c` | `c_cap` |
 
 The manuscript was under active revision throughout this audit: it grew from
 3854 to 4262 lines, Theorem `thm:signfree` (`E/⟨w⟩` is not MF) was added, the
@@ -293,8 +299,8 @@ opening the proof, have held.
 <!-- LEDGER-COUNTS -->
 | Column | EXACT | MISMATCH | MISSING | UNDER-SPECIFIED | total |
 | --- | --- | --- | --- | --- | --- |
-| statement | 397 | 76 | 63 | 1 | 537 |
-| proof | 409 | 50 | 72 | 6 | 537 |
+| statement | 400 | 82 | 52 | 1 | 535 |
+| proof | 411 | 56 | 62 | 6 | 535 |
 <!-- END-LEDGER-COUNTS -->
 
 ## Digest provenance
@@ -355,6 +361,46 @@ Four further anchors — `thm:exactfd`, `thm:cyclic`, `thm:reduced`, `thm:witnes
 were renamed from the letter spellings `thm:B`, `thm:C`, `thm:D`, `thm:E` when the
 manuscript made the descriptive labels primary.  See "The alias-label blindspot".
 
+### Second wave, later on 2026-08-16: a rename pass
+
+Twenty-five more anchors moved a few hours later, and the diffs were read the same
+way.  **All twenty-five are one terminology pass; no step content changed**, so no row
+was regraded on their account:
+
+| The manuscript renamed | to |
+| --- | --- |
+| the MF radical, `Rad_MF(G)`, `Rad_fd(G)` | the MF residual, `Res_MF(G)`, `Res_fd(G)` |
+| `N_comp` | `N_conj` |
+| `G_comp(L)` | `G^{+}(L)` |
+| the compressed copy of `L` | the conjugate copy of `L` |
+| involutive compression witness | involutive orbit witness |
+| the capture term `c` | `c_cap` |
+
+Three of the twenty-five also gained or tightened prose, and each was checked against
+its rows: `def:radical` added the sentence justifying "residual" (it is the smallest
+normal subgroup with MF quotient) — a new claim, but one RA.01 and the functoriality
+rows already cover; `rem:collapse-finite-stage` was tightened without losing a step,
+and CO.16's claim follows the `c_cap` rename; `cor:undecidable` restated its reduction
+with an explicit computable map `e`, which is the same hypothesis spelled out.
+
+### Prose probes: what survives an editing pass, and what does not
+
+Sixteen probes went to zero occurrences across the day, in three waves.  The lesson is
+worth encoding, because the first repair guessed wrong.
+
+*Wrong guess:* prefer notation-heavy fragments, on the theory that prose passes rewrite
+English and leave mathematics alone.  That held for the vocabulary pass and then failed
+completely for the rename pass, which renamed the notation itself — `Rad_MF` and
+`N_comp` were exactly the tokens the probes had been anchored on.
+
+*What actually survived every pass:* cross-references (`\ref{thm:signfree}`),
+numerals and named constants, and ordinary connective prose containing no
+project-specific noun.  A probe should be the part of a sentence that would read the
+same under any renaming of the objects it is about — "identifies the entire
+conjugation orbit", "supply the memberships this iteration consumes", "For a stable
+group the two".  Short is better than distinctive: every extra noun is another chance
+to be renamed.
+
 ## The alias-label blindspot
 
 When the manuscript made `\label{thm:exactfd}` primary and kept `\label{thm:B}` beside
@@ -409,32 +455,32 @@ once in the comment-stripped manuscript; the probe is the drift detector.
 | eq:generator-mass | eq | eq:generator-mass | - |
 | prop:mf-equivalences | env | prop:mf-equivalences | 8fcbf4fc050755b2 |
 | lem:lift | env | lem:lift | 721a3d635e21456f |
-| lem:unitarycorona | env | lem:unitarycorona | acf85808aae67e89 |
+| lem:unitarycorona | env | lem:unitarycorona | 1b476b8632de4a94 |
 | lem:finitecompare | env | lem:finitecompare | fc2a55b505fb0455 |
 | lem:ultrafinite | env | lem:ultrafinite | 2bb52124d79d67fb |
 | thm:kazhdan-transport | env | thm:kazhdan-transport | 36a5391cd928c3d3 |
-| rem:finite-stage | env | rem:finite-stage | cd027f4ae664e215 |
+| rem:finite-stage | env | rem:finite-stage | 274be4f17f6597c9 |
 | thm:transport-variants | env | thm:transport-variants | 97f0d64b8d1325da |
-| def:pattern | env | def:pattern | 1cac6d81368f19fd |
-| def:invisible | env | def:invisible | f705f5984fdb3e68 |
-| thm:criterion | env | thm:criterion | 4815ce19ed65a026 |
+| def:pattern | env | def:pattern | b72022f1ed626621 |
+| def:invisible | env | def:invisible | 1b074b45598fa760 |
+| thm:criterion | env | thm:criterion | 4153ff9fb688e0de |
 | thm:sign-criterion | env | thm:sign-criterion | 27a3e86c5351bfb6 |
-| cor:generaltransport | env | cor:generaltransport | 13cf502a17267ad9 |
+| cor:generaltransport | env | cor:generaltransport | c808cecbd21732fb |
 | thm:compression-radical | env | thm:compression-radical | f4e9fb766fe58572 |
-| thm:normal-kazhdan | env | thm:normal-kazhdan | c365c0923105d3d0 |
+| thm:normal-kazhdan | env | thm:normal-kazhdan | 0dcfb82167b7e591 |
 | thm:abstract-nk | env | thm:abstract-nk | d93135ce6813697c |
 | cor:intrinsic-nk | env | cor:intrinsic-nk | 74911f7eaffe314f |
 | thm:kazhdan-clifford | env | thm:kazhdan-clifford | 0e8f49d2bd0f95a2 |
-| rem:ff-realization | env | rem:ff-realization | 7dc2c4c67a341ebb |
+| rem:ff-realization | env | rem:ff-realization | 8abb6ef0f8e210a8 |
 | thm:A | env | thm:A | f2d0efe22831a791 |
 | cor:uniform | env | cor:uniform | 043923ba46739c21 |
 | cor:scaling-family | env | cor:scaling-family | 9370bcd0aa550f6e |
 | thm:exactfd | env | thm:exactfd | 0e1ab5f727ba25a6 |
 | cor:notRFD | env | cor:notRFD | 754e7536fa06cde2 |
-| rem:invariantsize | env | rem:invariantsize | bc46259ece155fc4 |
-| rem:chaincondition | env | rem:chaincondition | 1353d0d0ae9d8202 |
+| rem:invariantsize | env | rem:invariantsize | 5b662c1d7c81ad8d |
+| rem:chaincondition | env | rem:chaincondition | b45193ec146ad1fa |
 | def:E | env | def:E | fec9598f435e5d18 |
-| fig:compression-pattern | env | fig:compression-pattern | e075f8a755247f85 |
+| fig:compression-pattern | env | fig:compression-pattern | 3ff5b415d05b034f |
 | prop:literal-base-T | env | prop:literal-base-T | 4955bce3c162ac27 |
 | thm:p13-complete | env | thm:p13-complete | 32cf3b27267b128d |
 | rem:classical-base | env | rem:classical-base | 3b14e3f10eb77180 |
@@ -443,25 +489,25 @@ once in the comment-stripped manuscript; the probe is the drift detector.
 | prop:witness | env | prop:witness | 1a168e6eb3a8fb32 |
 | lem:square | env | lem:square | 36940cc67e41844e |
 | thm:cyclic | env | thm:cyclic | ee29ee959c43ba8b |
-| def:radical | env | def:radical | a4a33316c1d89004 |
-| lem:portable | env | lem:portable | 3cd3c8cd3e2d8419 |
-| prop:univquot | env | prop:univquot | 7821f139d506b59e |
-| cor:exactradical | env | cor:exactradical | cba1a12eca30acd6 |
-| cor:pullback | env | cor:pullback | 8e8da0badc33b150 |
-| prop:mfclosure | env | prop:mfclosure | 0cae9b9c9bafd14e |
-| prop:sounditeration | env | prop:sounditeration | 85d7c0d6325a5de3 |
+| def:radical | env | def:radical | dfd6fe10e75e339c |
+| lem:portable | env | lem:portable | 7b68777de4a531be |
+| prop:univquot | env | prop:univquot | bf0e863dc76ab01d |
+| cor:exactradical | env | cor:exactradical | 3534e895b8bf93de |
+| cor:pullback | env | cor:pullback | a198d2414f61bde0 |
+| prop:mfclosure | env | prop:mfclosure | 2a8cf8615326c256 |
+| prop:sounditeration | env | prop:sounditeration | cbaf6d2316767298 |
 | cor:nofaithful | env | cor:nofaithful | c7cc4db7be975a5e |
 | lem:permanence | env | lem:permanence | 5ec86a47bd0ca09d |
 | cor:quotclosure | env | cor:quotclosure | 0945a411d7c96988 |
-| prop:stabradical | env | prop:stabradical | 8143f23d621fe254 |
-| def:invwitness | env | def:invwitness | df90cf17c2822610 |
-| thm:collapse | env | thm:collapse | 88224a2caa8373a7 |
-| rem:collapse-finite-stage | env | rem:collapse-finite-stage | a30af1f7734e14fc |
+| prop:stabradical | env | prop:stabradical | 422a62ed9f0a82cb |
+| def:invwitness | env | def:invwitness | 19f64aedeec57699 |
+| thm:collapse | env | thm:collapse | 978ac3e37662c007 |
+| rem:collapse-finite-stage | env | rem:collapse-finite-stage | f90d793cd843d0b9 |
 | thm:projection-collapse | env | thm:projection-collapse | f8010458149ae59b |
-| thm:torsion-collapse | env | thm:torsion-collapse | f46ea426294bbea1 |
-| thm:commutinglamp | env | thm:commutinglamp | 789f8f26adab44b9 |
-| cor:collapsequot | env | cor:collapsequot | bb1a2c2130afbac5 |
-| thm:saturation | env | thm:saturation | 43eab2fa31ed26b9 |
+| thm:torsion-collapse | env | thm:torsion-collapse | 702b6f8894246819 |
+| thm:commutinglamp | env | thm:commutinglamp | 984549a7e76ba634 |
+| cor:collapsequot | env | cor:collapsequot | 72075e72ddb62db9 |
+| thm:saturation | env | thm:saturation | 0c140613786aa527 |
 | thm:reduced | env | thm:reduced | 3fbefcf7b1eaf4da |
 | lem:faithfultrace | env | lem:faithfultrace | ed20bbd1df60ef72 |
 | thm:witnesssofic | env | thm:witnesssofic | f0ae6bd739d62093 |
@@ -469,17 +515,17 @@ once in the comment-stripped manuscript; the probe is the drift detector.
 | thm:markedclosed | env | thm:markedclosed | f666d6dd719b2ff9 |
 | prop:horn | env | prop:horn | 3e2c6bb45f9627c7 |
 | cor:cylinder | env | cor:cylinder | 847c38b2b21a9d92 |
-| cor:undecidable | env | cor:undecidable | f9931601b5263c4e |
-| prop:maximal-cstar | env | prop:maximal-cstar | 9d6deff51f869323 |
+| cor:undecidable | env | cor:undecidable | e6bbb11192c5e3f9 |
+| prop:maximal-cstar | env | prop:maximal-cstar | ea236f6967fee398 |
 | prop:proper-isometry | env | prop:proper-isometry | 0243b2ca55a4d584 |
-| rem:maxinfinite | env | rem:maxinfinite | d7117de503faf52d |
+| rem:maxinfinite | env | rem:maxinfinite | 03a46742997d18a3 |
 | p:abstract-refute | prose | `refutes the conjecture that every countable group is MF` | - |
-| p:abstract-mechanism | prose | `the commutant becomes an asymptotic commutant in normalized Hilbert--Schmidt norm` | - |
+| p:abstract-mechanism | prose | `hence $\hsnorm{U_n(u)-1}\to0$` | - |
 | p:abstract-W | prose | `is itself finitely generated, sofic and not MF, so neither soficity nor` | - |
 | p:intro-history | prose | `Residually finite groups satisfy the conjecture through their finite quotients` | - |
 | p:intro-thom | prose | `In his 2018 ICM address, Thom asked for which Schatten` | - |
 | p:intro-nonsofic | prose | `The first was answered negatively in 2026: a nonsofic group was constructed` | - |
-| p:intro-collapse-pointer | prose | `One-sided compression has a second consequence: if an involution is centralized` | - |
+| p:intro-collapse-pointer | prose | `identifies the entire conjugation orbit` | - |
 | p:intro-convention | prose | `Throughout, ``MF'' means this property, in the operator-norm sense` | - |
 | p:intro-commutator | prose | `Throughout, $[g,h]=ghg^{-1}h^{-1}$` | - |
 | p:intro-inputs | prose | `below, by an exact rational sum-of-squares certificate` | - |
@@ -495,12 +541,12 @@ once in the comment-stripped manuscript; the probe is the drift detector.
 | p:prelim-unit | prose | `Taking $g=h=1$ gives` | - |
 | p:prelim-cmax | prose | `the maximal group $C^*$-algebra $\Cmax(H)$ is` | - |
 | p:transport-display | prose | `In the right-hand column, $p\sim q$ is Murray--von Neumann equivalence` | - |
-| p:transport-weights | prose | `uses a rank weight, which normalizes a defect at its own scale` | - |
+| p:transport-weights | prose | `Taking $\nu_n=k_n$, the rank of` | - |
 | p:transport-tensors | prose | `Invariant tensors of type $(p,q)$ may be identified with Hilbert--Schmidt intertwiners` | - |
-| p:conj-datum-remark | prose | `Both conditions are relations among generators` | - |
-| p:conj-reynolds-only | prose | `The averaging-corner argument used only one property` | - |
-| p:conj-two-element | prose | `there the averaging operator is` | - |
-| p:conj-intrinsic-def | prose | `applies to every one-sided conjugator of a subgroup, not only to the element` | - |
+| p:conj-datum-remark | prose | `conditions (M1)--(M2) are imposed by` | - |
+| p:conj-reynolds-only | prose | `The proof used only that every element of` | - |
+| p:conj-two-element | prose | `is the case $F=\{1,w\}$, where` | - |
+| p:conj-intrinsic-def | prose | `which depends only on the pair $(H,L)$, not on a choice of datum` | - |
 | p:nk-finite-recovers | prose | `Finite groups have property~\textup{(T)}, so $K=F$ recovers` | - |
 | p:nk-join | prose | `The subgroup generated by \emph{all} normal property-` | - |
 | p:constr-tietze | prose | `The endomorphism $\alpha$ is injective because` | - |
@@ -522,11 +568,11 @@ once in the comment-stripped manuscript; the probe is the drift detector.
 | p:C-sharpness | prose | `The Clifford group on its coset space is locally finite` | - |
 | p:C-approx | prose | `In every finite group the doubling relation makes the image of` | - |
 | p:radical-presentation | prose | `For a presentation $G=\langle X\mid R\rangle=F/N$` | - |
-| p:radical-sound-rules | prose | `supply the memberships this iteration consumes: each places a subgroup inside the radical` | - |
+| p:radical-sound-rules | prose | `supply the memberships this iteration consumes` | - |
 | p:stability-def | prose | `there are genuine finite-dimensional unitary representations` | - |
-| p:stability-axis | prose | `For a stable group the two radicals therefore agree` | - |
+| p:stability-axis | prose | `For a stable group the two` | - |
 | p:collapse-wreath | prose | `In a permutational wreath product` | - |
-| p:collapse-relcomm | prose | `The witness here need not come from a group element` | - |
+| p:collapse-relcomm | prose | `the relative commutant $\Theta(sLs^{-1})'\cap\mathcal Q$ cannot exceed` | - |
 | p:collapse-lamp-intro | prose | `the Clifford generators commute, and the moved base-point generator is itself an involutive witness` | - |
 | p:collapse-route-closed | prose | `is sofic and is not MF` | - |
 | p:collapse-universal | prose | `is the universal MF quotient of $H$` | - |
@@ -535,7 +581,7 @@ once in the comment-stripped manuscript; the probe is the drift detector.
 | p:D-base-injective | prose | `$\mathcal B\to E$ is injective` | - |
 | p:E-extension | prose | `MF groups are not closed under extensions.` | - |
 | p:E-zext | prose | `canonical projections gives a surjection $W\to\Z$` | - |
-| p:E-exact | prose | `The same witness gives a concrete separable exact example` | - |
+| p:E-exact | prose | `The algebra $\Cred(W)$ is separable, exact, stably finite, and not` | - |
 | p:E-simple | prose | `There is a countable simple sofic group` | - |
 | p:markedlimit-intro | prose | `At every fixed number of marked generators the MF property is closed` | - |
 | p:horn-intro | prose | `Every MF group satisfies a single finite quasi-identity` | - |
@@ -545,21 +591,20 @@ once in the comment-stripped manuscript; the probe is the drift detector.
 | p:mult-continuum | prose | `Beyond finite presentation, pairing $E$` | - |
 | p:limits-opnorm | prose | `The proof is specific to the operator norm.` | - |
 | p:limits-dilution | prose | `amplification by an identity block separates the two` | - |
-| p:limits-alekseev | prose | `This is a limitation of the method, not a tracial nonapproximation` | - |
+| p:limits-alekseev | prose | `that question is independent of` | - |
 | p:limits-trace | prose | `Finite dimensionality of the coordinates cannot be replaced by stable finiteness` | - |
 | p:questions-torsion | prose | `Every finite subgroup of a torsion-free group is trivial` | - |
-| p:q1 | prose | `What is $\operatorname{Rad}_{\mathrm{MF}}(E)$?` | - |
+| p:q1 | prose | `contains $\{1,w\}$ by Theorem~\ref{thm:signfree}` | - |
 | p:q2 | prose | `Is there a torsion-free finitely presented non-MF group?` | - |
-| p:q3 | prose | `require operator-norm multiplicative control, which permutation and Hilbert--Schmidt models do not supply` | - |
+| p:q3 | prose | `which permutation and Hilbert--Schmidt models do not supply` | - |
 | p:q4 | prose | `Does MF imply hyperlinearity?` | - |
 | p:appA-localmodel | prose | `An \emph{approximate unitary representation} for a countable group` | - |
 | p:appC-construction | prose | `is the completion of the group ring` | - |
 | p:appC-universal | prose | `Injectivity comes from the left regular representation, uniqueness from` | - |
-| p:appC-separate | prose | `The maximal and reduced algebras separate already at the level of` | - |
-| thm:signfree | env | thm:signfree | 1aeef33c21dab5e1 |
-| p:signfree-second | prose | `non-MF group. \begin{corollary}[collapse computes the radical]` | - |
+| p:appC-separate | prose | `while the reduced algebra of $E$ is` | - |
+| thm:signfree | env | thm:signfree | 7060a1746d5fd5ae |
 | p:limits-adjointgap | prose | `The failure is exact and dimension-free` | - |
-| p:limits-nogo | prose | `matrix coordinates are replaced by finite faithfully traced unital` | - |
+| p:limits-nogo | prose | `matrix coordinates are replaced by stably finite unital` | - |
 <!-- END-LEDGER-ANCHORS -->
 
 ## Steps
@@ -623,18 +668,18 @@ everywhere: the TeX is the specification and does not move).
 | PRE.19 | p:prelim-cmax | C*_max(H) is the completion of ℂ[H] in the supremum of the norms of its unitary representations, and only its universal property is used | `manuscriptUniverseRelativeMaximalGroupCStar` | MISMATCH | MISMATCH | substituted | unconditional | - | NO | the Lean object is universe-relative, as the TeX itself says; the printed "the maximal group C*-algebra" is the class-sized one.  RE-READ 2026-08-16: the Section 2 forward reference this anchor was named for was deleted, and the probe now sits on Appendix C's own definition, so the anchor name no longer describes its location.  The name is left alone because renaming it would move a row for no gain; MC.02 audits the universal property itself and records the universe of the target |
 | TRA.01 | p:transport-display | the finite-set implication: a subset of a finite set of equal cardinality is the whole set | `Mathlib:Finset.eq_of_subset_of_card_le` | EXACT | EXACT | literal | unconditional | - | NO | not separately restated in the development |
 | TRA.02 | p:transport-display | the finite-dimensional implication: V ⊆ W with dim V = dim W forces V = W | `fixedSubmodule_conjugate_eq` | EXACT | EXACT | literal | unconditional | - | NO | used exactly as the middle column of the display, in Theorem B |
-| TRA.03 | p:transport-display | the C*-implication: p ≤ q with p ∼ q in a finite algebra forces p = q | - | MISSING | MISSING | - | unconditional | - | NO | no Murray–von Neumann comparison anywhere in the development |
+| TRA.03 | p:transport-display | the C*-implication: p ≤ q with p ∼ q in a finite algebra forces p = q | `kt_10_finiteness_reverses` | MISMATCH | MISSING | substituted | unconditional | - | NO | SWEPT 2026-08-16 (empty-Lean-cell sweep): the old note, "no Murray--von Neumann comparison anywhere in the development", is stale — `kt_10_finiteness_reverses` is this implication for a *unitary conjugate* `q = VpV*`.  Murray--von Neumann equivalence itself is still absent, so the printed hypothesis is not the Lean one; see FC.01, which audits the same lemma at `lem:finitecompare` |
 | KT.00 | thm:kazhdan-transport | Theorem 3.1 as printed: forward transport of the HS asymptotic commutant along a one-sided conjugator | `KazhdanAsymptoticCommutant.manuscriptKazhdanTransport` | MISMATCH | MISMATCH | literal | unconditional | - | NO | univ0 (Γ, H : Type); the conclusion is proved, but by the Appendix B route |
 | KT.01 | thm:kazhdan-transport | suppose the conclusion fails: fix γ₀, δ > 0 and an infinite I ⊆ ℕ with the commutator ≥ δ on I | - | MISSING | MISSING | - | unconditional | - | NO | the Lean proof is direct, not by contradiction along a subsequence |
 | KT.02 | thm:kazhdan-transport | fix a free ultrafilter ω on ℕ with I ∈ ω | - | MISSING | MISSING | - | unconditional | - | NO | - |
 | KT.03 | thm:kazhdan-transport | the adjoint model: regard M_{d_n}(ℂ) as K_n = L²(M_{d_n}, tr) with Ad U_n(g)ξ = U_n(g)ξU_n(g)* | `OpAlmostRepresentation.adjoint`; `conjDouble`; `KazhdanCompressorCorner.gammaRowVec` | EXACT | EXACT | literal | unconditional | - | NO | `conjDouble_mulVec_rowVec` is the printed identification |
 | KT.04 | thm:kazhdan-transport | operator-norm almost multiplicativity makes g ↦ Ad U_n(g) an operator-norm asymptotic representation (finite-stage π⊗π̄) | `OpAlmostRepresentation.adjoint`; `KazhdanAsymptoticCommutant.adjointSequence_mul_hs` | EXACT | EXACT | literal | unconditional | BekkaValette | NO | - |
-| KT.05 | thm:kazhdan-transport | form the Hilbert-space ultraproduct K_ω of the K_n along ω | - | MISSING | MISSING | - | unconditional | - | NO | - |
-| KT.06 | thm:kazhdan-transport | form the norm ultraproduct B_ω = ∏_ω B(K_n) acting on K_ω | - | MISSING | MISSING | - | unconditional | - | NO | no C*-ultraproduct of bounded operators exists in the tree |
-| KT.07 | thm:kazhdan-transport | the action of B_ω on K_ω is faithful (unit vectors nearly attaining the norm) | - | MISSING | MISSING | - | unconditional | - | NO | - |
-| KT.08 | thm:kazhdan-transport | consequence: ran P ⊆ ran Q for projections of B_ω gives QP = P, i.e. P ≤ Q | - | MISSING | MISSING | - | unconditional | - | NO | - |
+| KT.05 | thm:kazhdan-transport | form the Hilbert-space ultraproduct K_ω of the K_n along ω | `UltraproductModelConstruction.Vec` | MISMATCH | MISMATCH | substituted | unconditional | - | NO | SWEPT 2026-08-16 (empty-Lean-cell sweep): `K_ω` is now built, as the module `Vec` — the quotient of the mass-bounded families by the `ω`-null ones.  Its inner product and Hilbert-space structure are, in that module's own words, "deliberately not built", so the printed object is a Hilbert space and the Lean object is not |
+| KT.06 | thm:kazhdan-transport | form the norm ultraproduct B_ω = ∏_ω B(K_n) acting on K_ω | `adjointNormCorona` | MISMATCH | MISMATCH | substituted | unconditional | - | NO | SWEPT 2026-08-16 (empty-Lean-cell sweep): the old note, "no C*-ultraproduct of bounded operators exists in the tree", is stale — `adjointNormCorona` is `B_ω` as the repo builds it.  It is the `ℓ∞/c₀` corona along the *cofinite* filter, not the ultraproduct along a free `ω`, which is the same substitution UF.01 records |
+| KT.07 | thm:kazhdan-transport | the action of B_ω on K_ω is faithful (unit vectors nearly attaining the norm) | - | MISSING | MISSING | - | unconditional | - | NO | SWEPT 2026-08-16: still genuinely MISSING, and the sharpest gap in the printed ultraproduct proof.  `Sofic/UltraproductAdjointAmbient.lean` states only the two consequences of faithfulness that the rest of the chain consumes (`kt_04_norm_eq_limsup`, `kt_04_absorb_of_range_le`), under a heading that says so; faithfulness itself is nowhere.  Duplicated at UF.02, where the manuscript factored the lemma out |
+| KT.08 | thm:kazhdan-transport | consequence: ran P ⊆ ran Q for projections of B_ω gives QP = P, i.e. P ≤ Q | `kt_04_absorb_of_range_le` | MISMATCH | MISMATCH | substituted | unconditional | - | NO | SWEPT 2026-08-16 (empty-Lean-cell sweep): the algebraic surrogate is proved: `(1-q)p = 0` gives `qp = p` and `pq = p`.  What is not proved is that a range inclusion in `K_ω` is that identity, which is what the printed step deduces from faithfulness (KT.07); see UF.03 |
 | KT.09 | thm:kazhdan-transport | π(g) = [Ad U_n(g)]_ω is a homomorphism H → U(B_ω) | - | MISSING | MISSING | - | unconditional | - | NO | - |
-| KT.10 | thm:kazhdan-transport | B_ω is finite: σ*σ = 1 gives ‖σ_n*σ_n − 1‖ → 0 along ω, polar correction gives unitaries w_n, σ = [w_n]_ω is unitary | - | MISSING | MISSING | - | unconditional | - | NO | this is the load-bearing finiteness step of the printed proof; nothing corresponds to it |
+| KT.10 | thm:kazhdan-transport | B_ω is finite: σ*σ = 1 gives ‖σ_n*σ_n − 1‖ → 0 along ω, polar correction gives unitaries w_n, σ = [w_n]_ω is unitary | `kt_06_ultraproduct_finite` | MISMATCH | MISMATCH | substituted | unconditional | - | NO | SWEPT 2026-08-16 (empty-Lean-cell sweep): the old note, "this is the load-bearing finiteness step of the printed proof; nothing corresponds to it", is stale: `kt_06_ultraproduct_finite` is exactly this step, proved by the printed polar-correction argument, for the cofinite corona rather than the `ω`-ultraproduct.  UF.01 at `lem:ultrafinite` audits the same declaration where the manuscript factored it out |
 | UF.01 | lem:ultrafinite | `B_ω = ∏_ω B(K_n)` is a finite `C*`-algebra: an isometry of it is a unitary | `kt_06_ultraproduct_finite` | MISMATCH | MISMATCH | substituted | unconditional | - | NO | RE-READ 2026-08-16, downgraded from EXACT/EXACT/literal.  The printed object is the ultraproduct along a free ultrafilter `ω`; the Lean object is `NormMatrixCStarCorona`, the `ℓ∞/c₀` corona, and the module docstring says so ("the manuscript's `ω` is realized as the cofinite filter").  The substitution is sound where the manuscript *uses* the lemma -- the contradiction first passes to an infinite set and only then chooses `ω` -- but the lemma as printed quantifies over every free `ω`, and no `ω`-ultraproduct of `B(K_n)` is constructed.  `normMatrixCStarCorona_isDedekindFiniteMonoid` is the instance form |
 | UF.02 | lem:ultrafinite | the action `[A_n]_ω[ξ_n]_ω = [A_nξ_n]_ω` of `B_ω` on the Hilbert-space ultraproduct `K_ω` is faithful | - | MISSING | MISSING | - | unconditional | - | NO | NEW 2026-08-16.  Faithfulness is not stated anywhere.  `Sofic/UltraproductAdjointAmbient.lean` records only its two consequences -- `kt_04_norm_eq_limsup` (the corona norm is the limsup of the coordinate norms) and `kt_04_absorb_of_range_le` (the algebraic reading of a range inclusion) -- under the heading "what faithfulness is used for".  `Sofic/UltraproductModelConstruction.lean` builds `K_ω` only as a module (`Vec`) and says the inner product and the Hilbert-space structure are "deliberately not built", so the printed sentence has no object to be about |
 | UF.03 | lem:ultrafinite | for projections `P,Q ∈ B_ω`, `ran P ⊆ ran Q` is equivalent to `P ≤ Q` | `kt_04_absorb_of_range_le` | MISMATCH | MISMATCH | substituted | unconditional | - | NO | NEW 2026-08-16.  Lean does not interpret `ran` on `K_ω`: it takes the algebraic surrogate `(1-q)p = 0` as the hypothesis and derives the absorption pair `qp = p`, `pq = p`.  That is one implication between two algebraic identities, not the printed equivalence between a range inclusion in `K_ω` and an order relation |
@@ -649,8 +694,8 @@ everywhere: the TeX is the specification and does not move).
 | KT.18 | thm:kazhdan-transport | the spectral projection P of h at the isolated point 1 lies in B_ω by CFC and projects onto Fix | `KazhdanCompressorCorner.cornerProjection` | MISMATCH | MISMATCH | substituted | unconditional | - | NO | Lean uses `spectralAbove(hermitianAverage …) θ` at each stage |
 | KT.19 | thm:kazhdan-transport | V = π(s), Q = VPV*; every vector of Fix is fixed by each π(sι(γ)s⁻¹) | `KazhdanCompressorCorner.one_sub_map_mul_rotated_vanishing` | MISMATCH | MISMATCH | substituted | unconditional | - | NO | the finite-stage rotated-corner statement |
 | KT.20 | thm:kazhdan-transport | η is fixed by all π(sι(γ)s⁻¹) exactly when V*η ∈ Fix, so ran P = Fix ⊆ V·Fix = ran Q, i.e. P ≤ Q | `KazhdanCompressorCorner.one_sub_corner_mul_moved_vanishing` | MISMATCH | MISMATCH | substituted | unconditional | - | NO | finite-stage leakage bound in place of the exact inequality |
-| KT.21 | thm:kazhdan-transport | r = V*Q satisfies r*r = Q, rr* = P; r = rQ and r = Qr | - | MISSING | MISSING | - | unconditional | - | NO | - |
-| KT.22 | thm:kazhdan-transport | σ = r + (1 − Q) has σ*σ = 1: σ is an isometry | - | MISSING | MISSING | - | unconditional | - | NO | - |
+| KT.21 | thm:kazhdan-transport | r = V*Q satisfies r*r = Q, rr* = P; r = rQ and r = Qr | `kt_10_isometry_identities` | MISMATCH | MISMATCH | substituted | unconditional | - | NO | SWEPT 2026-08-16 (empty-Lean-cell sweep): the bundle sets `r = V*Q` and proves the two σ-identities from it; `r*r = Q` and `rr* = P` are not stated on their own, and the ambient is an abstract star ring rather than `B_ω` |
+| KT.22 | thm:kazhdan-transport | σ = r + (1 − Q) has σ*σ = 1: σ is an isometry | `kt_10_isometry_identities` | MISMATCH | MISMATCH | substituted | unconditional | - | NO | SWEPT 2026-08-16 (empty-Lean-cell sweep): `σ*σ = 1` is proved verbatim, together with `σ = V*Q + (1-Q)` and `σσ* = P + (1-Q)`.  It is `MISMATCH` only on the ambient: the declaration is over an arbitrary Dedekind-finite star ring, and the printed `B_ω` — an ultraproduct along a free `ω` — is not constructed, so the printed instance cannot be formed |
 | KT.23 | thm:kazhdan-transport | finiteness of B_ω makes σ unitary, and σσ* = P + (1 − Q) forces Q = P | `KazhdanCornerMatrices.norm_one_sub_mul_flip` | MISMATCH | MISMATCH | substituted | unconditional | - | NO | the substitute is the equal-rank flip ‖(1−p)q‖ ≤ ε/√(1−ε²), an approximate statement about finite-rank projections |
 | KT.24 | thm:kazhdan-transport | ξ = [ξ_n]_ω is well defined by the uniform operator-norm bound | - | MISSING | MISSING | - | unconditional | - | NO | - |
 | KT.25 | thm:kazhdan-transport | by unitary invariance the commutator hypothesis says each π(ι(γ)) fixes ξ, so ξ ∈ Fix | `KazhdanAsymptoticCommutant.capture_vanishing` | MISMATCH | MISMATCH | substituted | unconditional | - | NO | finite-stage spectral capture instead of exact membership |
@@ -669,8 +714,7 @@ everywhere: the TeX is the specification and does not move).
 | TV.06 | thm:transport-variants | proof (2): W_n = U¹_n ⊕ U²_n is an operator-norm asymptotic representation, block norms being maxima | `IntertwinerKazhdanTransport.blockSumRep` | EXACT | EXACT | literal | unconditional | - | NO | - |
 | TV.07 | thm:transport-variants | proof (2): the off-diagonal embedding has operator norm ‖x_n‖ and its commutator is the embedded intertwining defect | `IntertwinerKazhdanTransport.offDiagBlock`; `IntertwinerKazhdanTransport.isScaledAsymptoticCommutantOf_offDiag_iff` | EXACT | EXACT | literal | unconditional | - | NO | - |
 | TV.08 | thm:transport-variants | proof (2): conjugation by W_n(s) acts on the embedded corner by x ↦ U¹_n(s) x U²_n(s)* | `IntertwinerKazhdanTransport.blockDiag_conj_offDiag` | EXACT | EXACT | literal | unconditional | - | NO | - |
-| TV.09 | p:transport-weights | w_n = d_n recovers Theorem 3.1 with the bound relaxed to mass boundedness | - | MISSING | MISSING | - | unconditional | - | NO | no declaration derives thm:kazhdan-transport from the scaled form at w_n = d_n |
-| TV.10 | p:transport-weights | the collapse proof uses a rank weight; the adjoint sector is the diagonal case of (2) | - | MISSING | MISSING | - | unconditional | - | NO | the collapse proof uses its own scale k_n; the identification is not stated |
+| TV.09 | p:transport-weights | taking ν_n = d_n gives thm:kazhdan-transport with the uniform operator-norm bound relaxed to a uniform bound on Tr(x_n\*x_n)/d_n | - | MISSING | MISSING | - | unconditional | - | NO | RE-READ 2026-08-16: the printed weight is now ν_n, not w_n, and the relaxed bound is spelled out.  Still no declaration derives `thm:kazhdan-transport` from the scaled form at ν_n = d_n |
 | TV.11 | p:transport-tensors | tensor powers of unitaries are exactly multiplicative and satisfy ‖A^⊗p − B^⊗p‖ ≤ p‖A − B‖ | `opTensorPow`; `OperatorNormAmplification.exists_tensorPower_pair_far` | EXACT | EXACT | literal | unconditional | - | NO | - |
 | TV.12 | p:transport-tensors | hence tensor powers of an asymptotic representation are asymptotic representations, and TV.02 applies to every pair: no asymptotic invariant tensors of any fixed type at any weight | `TensorPowerTransport.manuscriptFixedTensorTransport` | MISMATCH | EXACT | literal | unconditional | - | NO | univ0 |
 | CD.01 | def:pattern | definition of a Kazhdan conjugation datum (Λ, ι, t, c) with (M1) and (M2) | `ManuscriptExactWrappers.manuscriptMarkedKazhdanPattern` | MISMATCH | EXACT | literal | unconditional | - | NO | univ0 on Gamma; H is polymorphic |
@@ -791,7 +835,7 @@ everywhere: the TeX is the specification and does not move).
 | FD.16 | p:B-applied | consequently finite-dimensional representations do not separate points of E, no finite quotient witnesses w ≠ 1, and the infinite Clifford witness cannot be replaced by a finite-dimensional one | `LiteralFiniteDimensionalObstruction.manuscriptFiniteDimensionalConsequences`; `LiteralNonMFLinearWitness.literal_mark_ne_one` | EXACT | EXACT | literal | unconditional | - | NO | - |
 | FD.17 | p:B-deligne | w makes E a group of Deligne type in the sense of BDL, realizing their proposal at the operator-norm endpoint | - | MISSING | MISSING | - | literature-input | BDL | NO | terminology import; no formal content |
 | FD.18 | rem:invariantsize | the abstract invariant-size principle: a conjugation-invariant ℕ-valued size separating nested subgroups admits no strict one-sided compression | `ManuscriptExactWrappers.manuscriptInvariantSizePrinciple` | EXACT | EXACT | literal | unconditional | - | NO | universe-polymorphic |
-| FD.19 | rem:invariantsize | cardinality on subgroups of a finite group qualifies, so no finite quotient detects strict one-sided compression | - | MISSING | MISSING | - | unconditional | - | NO | the instantiation at cardinality is not stated |
+| FD.19 | rem:invariantsize | cardinality on the subgroups of a finite group qualifies, which is the finite-quotient argument of the introduction | `manuscriptCardinalityInvariantSize` | MISMATCH | EXACT | literal | unconditional | - | NO | RE-READ 2026-08-16, upgraded from MISSING/MISSING.  The old note, "the instantiation at cardinality is not stated", was carried forward rather than re-verified: `compressedImage_eq'` had long been the instance *through a homomorphism*, and `manuscriptCardinalityInvariantSize` now states it for the target group alone, which is the form the remark's clause uses.  Its three conjuncts are the principle's two hypotheses at `Nat.card` and its conclusion.  `univ0`: the Lean statement fixes `{Q : Type}` |
 | FD.20 | rem:invariantsize | the finite-dimensional case is not the same principle: dim End_H(V) is order-reversing and does not separate, e.g. A₄ < S₄ have the same commutant k·1 | - | MISSING | MISSING | - | unconditional | - | NO | the A₄ < S₄ counterexample is not formalized |
 | FD.21 | rem:invariantsize | what the proof of Theorem B uses is the principle one level down, on the commutant | `map_marked_commutator_eq_one` | EXACT | EXACT | literal | unconditional | - | NO | - |
 | FD.22 | rem:chaincondition | an order isomorphism of a poset with no infinite strictly ascending chain fixes every weakly upward-moved point, and dually | `manuscriptChainConditionRigidity` | EXACT | EXACT | literal | unconditional | - | NO | both directions, universe-polymorphic |
@@ -886,9 +930,9 @@ everywhere: the TeX is the specification and does not move).
 | CY.07 | thm:cyclic | nontriviality: use the affine realization of BS(1,2) and its coset action; the root site is fixed by the cyclic base and the sites of t and γ₀t are distinct | `LiteralCyclicCalibration.realization` | EXACT | EXACT | literal | unconditional | - | NO | - |
 | CY.08 | thm:cyclic | attach Clifford generators and map c to the root lamp; all seven relators hold and w_BS ↦ −1 | `LiteralCyclicCalibration.quotientMap_mark_val`; `LiteralCyclicCalibration.mark_ne_one` | EXACT | EXACT | literal | unconditional | - | NO | - |
 | CY.09 | thm:cyclic | restricting the target to the subgroup generated by the three images gives the asserted surjective realized quotient | `LiteralCyclicCalibration.quotientMap_surjective` | EXACT | EXACT | literal | unconditional | - | NO | - |
-| CY.10 | p:C-sharpness | the realized Clifford quotient is amenable, hence MF, and detects w_BS; so (T) cannot be omitted from the central-sign criterion | - | MISSING | MISSING | - | literature-input | TWW | NO | amenable ⇒ MF is quoted; no Lean amenability predicate is applied here |
-| CY.11 | p:C-sharpness | BS(1,2) ≅ ℤ[1/2] ⋊ ℤ is solvable; the Clifford lamp group on its coset space is locally finite; the semidirect product is amenable | `CliffordLamp.isLocallyFiniteGroup_cliffordLamp` | MISMATCH | MISSING | literal | literature-input | - | NO | only local finiteness of the lamp is formal; solvability and amenability of the product are not |
-| CY.12 | p:C-sharpness | the realized quotient, a subgroup of an amenable group, is amenable hence MF | - | MISSING | MISSING | - | literature-input | TWW | NO | - |
+| CY.10 | p:C-sharpness | the realized Clifford quotient is amenable, hence MF, and detects w_BS; so (T) cannot be omitted from the central-sign criterion | `CliffordBSPrintedRoute.manuscriptSharpnessPrintedRoute`; `CliffordBSPrintedRoute.isOperatorMF_realizedQuotient` | MISMATCH | MISSING | literal | literature-input | TWW | NO | RE-READ 2026-08-16.  The old note, "no Lean amenability predicate is applied here", was stale: amenability of the quotient is proved (CY.11, CY.12).  What is still quoted is amenable ⇒ MF, and the printed route now carries it as an *explicit hypothesis* `tww : ∀ G, IsAmenable G → IsOperatorMF G` rather than assuming it silently — so the trust surface is visible in the statement.  `Analysis.AmenableQuasidiagonal` records why it cannot be discharged here: permutation operator-norm models certify exactly LEF, and the quotient is not LEF |
+| CY.11 | p:C-sharpness | BS(1,2) ≅ ℤ[1/2] ⋊ ℤ is solvable; the Clifford lamp group on its coset space is locally finite; the semidirect product is amenable | `LiteralDyadicCalibration.affine_isSolvable`; `CliffordLamp.isLocallyFiniteGroup_cliffordLamp`; `CyclicBaseCalibration.hasInvariantMean_CliffordBS` | EXACT | EXACT | literal | unconditional | - | NO | RE-READ 2026-08-16, upgraded from MISMATCH/MISSING.  The old note said solvability and amenability of the product "are not" formal; all three clauses now are, and none of them needs a literature input — `hasInvariantMean_CliffordBS` is `hasInvariantMean_semidirectProduct` applied to the locally finite lamp and the solvable base.  The declaration is in `Sofic/CliffordBSAmenable.lean` but its namespace is `CyclicBaseCalibration`, not `CliffordBSAmenable` |
+| CY.12 | p:C-sharpness | the realized quotient, being a subgroup of that amenable group, is amenable | `CyclicBaseCalibration.isAmenable_subgroup_CliffordBS`; `LiteralDyadicCalibration.isAmenable_dyadicRealizedQuotient`; `CliffordBSPrintedRoute.ambient_and_realizedQuotient_isAmenable` | EXACT | EXACT | literal | unconditional | - | NO | RE-READ 2026-08-16, upgraded from MISSING/MISSING and narrowed to the amenability half, which is unconditional; the "hence MF" half is TWW and stays on CY.10.  The literal dyadic group `ℤ[1/2] ⋊ ℤ` the paragraph names, not only the rational overgroup, is covered by `isAmenable_dyadicRealizedQuotient` |
 | CY.13 | p:C-sharpness | in radical language, w_BS ∉ Rad_MF(E_BS) | - | MISSING | MISSING | - | literature-input | TWW | NO | depends on CY.12 |
 | CY.14 | p:C-approx | in every finite group the doubling relation identifies the images of ⟨γ₀²⟩ and ⟨γ₀⟩, so the marked word dies and neither group is residually finite | `CyclicBaseLEFObstruction.cyclicBase_exactModel_package` | EXACT | EXACT | literal | unconditional | - | NO | includes `¬ Group.ResiduallyFinite RealizedQuotient` |
 | CY.15 | p:C-approx | the same equations transport through any exact local embedding, so neither group is LEF | `CyclicBaseLEFObstruction.cyclicBase_exactModel_package` | EXACT | EXACT | literal | unconditional | - | NO | both `¬ IsLEF` clauses |
@@ -949,13 +993,13 @@ everywhere: the TeX is the specification and does not move).
 | CO.13 | thm:collapse | Step 6: by (W2) the displacement vanishes on compressed elements, so the primitive is almost fixed by them and u_n = U_{s,n}*w_nU_{s,n} is almost fixed by every a ∈ S | `InvolutionCollapseIndexCapture.index_capture` | EXACT | EXACT | literal | unconditional | - | NO | - |
 | CO.14 | thm:collapse | Step 6: transporting forward as in Theorem 3.1 (compression to the almost-fixed spectral subspace, then P ≤ VPV* at the rescaled mass) returns w_n almost fixed by every a ∈ S | `InvolutionCollapseEndpoint.stage_transport_bound`; `InvolutionCollapseIndexCapture.matMass_reverse_displacement` | MISMATCH | MISMATCH | literal | unconditional | - | NO | CORRECTED against docs/COLLAPSE_STEP_AUDIT.md COL.33: the compression to the almost-fixed spectral subspace is re-derived, not obtained from the cited transport theorem |
 | CO.14b | thm:collapse | Step 6: transporting forward returns w_n up to vanishing mass, again almost fixed by every a ∈ S | `InvolutionCollapseEndpoint.stage_transport_bound` | MISMATCH | MISMATCH | literal | unconditional | - | NO | CORRECTED against docs/COLLAPSE_STEP_AUDIT.md COL.35: a quantitative one-stage substitute stands where the manuscript asserts a limit |
-| CO.14c | thm:collapse | Step 6 is an instance of the transport theorem at the rank weight w_n = k_n | `InvolutionCollapseEndpoint.stage_capture`; `InvolutionCollapseEndpoint.stage_transport_bound` | MISMATCH | MISMATCH | literal | unconditional | - | NO | CORRECTED against docs/COLLAPSE_STEP_AUDIT.md R1: the rank weight is genuinely carried and no dimension-normalized substitute occurs, but neither `manuscriptKazhdanTransport` nor `scaled_transport_both` is ever invoked — Step 6 is re-derived inline, so the manuscript's deduction from a previously proved theorem is not the Lean deduction |
+| CO.14c | p:transport-weights | taking ν_n = k_n, the rank of Step 3 in the proof of thm:collapse, gives the normalization used there | `InvolutionCollapseEndpoint.stage_capture`; `InvolutionCollapseEndpoint.stage_transport_bound` | MISMATCH | MISMATCH | literal | unconditional | - | NO | RE-ANCHORED 2026-08-16, from `thm:collapse` to `p:transport-weights`.  The row said Step 6 *is* the transport theorem at rank weight; the current Step 6 does not say that — it deduces the fixed-point inclusion inside the Hilbert-space ultraproduct — and the rank-weight identification now survives only in this sentence after `thm:transport-variants`.  The finding is unchanged and is the reason the row stays MISMATCH/MISMATCH: CORRECTED against docs/COLLAPSE_STEP_AUDIT.md R1, the rank weight is genuinely carried and no dimension-normalized substitute occurs, but neither `manuscriptKazhdanTransport` nor `scaled_transport_both` is ever invoked — the collapse re-derives the bound inline, so the printed deduction from a previously proved theorem is not the Lean deduction.  It also absorbs retired row TV.10, whose sentence was this one |
 | CO.15 | thm:collapse | Step 6: contradiction with the generator mass; normality of corona kernels extends the conclusion to all of D_coll(L,s) | `InvolutionCollapseEndpoint.no_marked_model`; `InvolutionCollapseEndpoint.involutiveCollapseDefect_le_actualCoronaMFResidual` | EXACT | EXACT | literal | unconditional | - | NO | - |
 | CO.15b | rem:collapse-finite-stage | (T) enters through a bound on the limiting cocycle, uniform in γ, with the Kazhdan constant the only datum: ‖b(γ)‖² ≤ 160·log 2/κ² | `CollapseProfileBound.collapse_profile_le`; `CollapseProfileBound.collapse_profile_le_generator_values` | EXACT | MISMATCH | literal | unconditional | BHV | NO | NEW 2026-08-16, for the uniformity paragraph the remark grew this revision; STATEMENT PROMOTED TO EXACT 2026-08-16 when the TeX stopped printing the existential C = 4C₀ and printed Lean's own constant instead, on the limiting cocycle rather than past a stage — both earlier deviations are gone.  The citation \cite[Section~2.12]{BHV} is **not** a trust surface: the repo proves the bound itself from Delorme's Gaussian positive-definiteness through the GNS argument of `Kazhdan/DelormeFixedPoint.lean`.  The proof column stays MISMATCH because the one-line mechanism the TeX gestures at is the Kazhdan-projection fixed vector, and Lean's is Delorme's Gaussian route |
 | CO.15c | rem:collapse-finite-stage | the numerical refinement the remark prints beside it: 160·log 2/κ² ≤ 111/κ², so C = √111/κ serves, with neither \| S \| nor the group entering | `CollapseProfileBound.collapse_profile_le_num` | EXACT | EXACT | literal | unconditional | - | NO | NEW 2026-08-16, when the remark replaced the existential constant with the explicit one.  The `Real.log_two_lt_d9` step is the whole content of the numeric module |
 | CO.15d | rem:collapse-finite-stage | the easy containment ‖(1−Q_n)P_n‖ ≤ ε: for a ∈ S the one-sided relation gives sas⁻¹ = δ ∈ L, and each δ is a word in S, so this is one further threshold per generator, \| S \| of them, all fixed before the stage is chosen | `KazhdanCompressorCorner.one_sub_moved_mul_corner_vanishing` | EXACT | EXACT | literal | unconditional | - | NO | NEW 2026-08-16 for the per-generator threshold sentence added this revision.  ID.06 records the same estimate inside `cor:generaltransport` |
 | CO.15e | rem:collapse-finite-stage | the reversal is finiteness, not a norm trick: the leakage bound makes the compression ran P_n → ran Q_n injective, and equal rank promotes an injective endomorphism of a finite-dimensional space to a surjective one | `KazhdanCornerMatrices.norm_one_sub_mul_flip` | EXACT | EXACT | literal | unconditional | - | NO | NEW 2026-08-16 for the sentence added this revision, and the Lean proof is literally it: it builds `f : range p.mulVecLin →ₗ range q.mulVecLin`, proves `hf_inj` from the leakage bound and then `hf_surj` by `LinearMap.injective_iff_surjective_of_finrank_eq_finrank` at equal rank |
-| CO.16 | rem:collapse-finite-stage | with ρ = 1/(√\| S \|+1), q = ρ/(24(C+1)) and τ ≤ (1−θ)ρ²/(256(C+1)), one stage of transport gives Tr\|W − U_aWU_a\*\|² ≤ 18q²C² + 16c ≤ (ρ/2)², where c = (C+1)2τ/(1−θ) | `InvolutionCollapseEndpoint.stage_transport_bound`; `InvolutionCollapseEndpoint.numeric_transport_bound` | EXACT | EXACT | literal | unconditional | - | NO | RE-READ 2026-08-16, claim rewritten: the old claim said the bookkeeping "is not printed", and this revision printed all of it, so the row now audits the displayed constants.  `stage_transport_bound` gives the 18q²C² + 16κ transport bound and `numeric_transport_bound` the arithmetic (ρ/2)².  Badge placement to watch: the `stage_transport_bound` badge sits at the end of the paragraph that *derives* \eqref{eq:corner-reverse}, and that estimate is a hypothesis (`_hrev`) of the declaration, not a conclusion of it; the derivation is CO.15c and CO.15d |
+| CO.16 | rem:collapse-finite-stage | with ρ = 1/(√\| S \|+1), q = ρ/(24(C+1)) and τ ≤ (1−θ)ρ²/(256(C+1)), one stage of transport gives Tr\|W − U_aWU_a\*\|² ≤ 18q²C² + 16c_cap ≤ (ρ/2)², where c_cap = (C+1)2τ/(1−θ) | `InvolutionCollapseEndpoint.stage_transport_bound`; `InvolutionCollapseEndpoint.numeric_transport_bound` | EXACT | EXACT | literal | unconditional | - | NO | RE-READ 2026-08-16, claim rewritten: the old claim said the bookkeeping "is not printed", and this revision printed all of it, so the row now audits the displayed constants.  `stage_transport_bound` gives the 18q²C² + 16κ transport bound and `numeric_transport_bound` the arithmetic (ρ/2)².  Badge placement to watch: the `stage_transport_bound` badge sits at the end of the paragraph that *derives* \eqref{eq:corner-reverse}, and that estimate is a hypothesis (`_hrev`) of the declaration, not a conclusion of it; the derivation is CO.15c and CO.15d |
 | CO.16b | rem:collapse-finite-stage | the single stage already fails: a family of at most ρ-small values cannot carry total squared mass four | `InvolutionCollapseEndpoint.anchor_contradiction` | EXACT | EXACT | literal | unconditional | - | NO | the arithmetic closing the one-coordinate assembly, against `eq:generator-mass`; header closed 2026-08-16 |
 | CO.17 | rem:collapse-finite-stage | (W3) is essential: it supplies the joint spectral calculus behind the rank identity; anticommuting Clifford coordinates have no joint spectral labels | `InvolutionCollapseMetric.dV` | MISMATCH | MISSING | literal | unconditional | - | NO | (W3) is used, but the necessity claim about anticommuting coordinates is not formalized |
 | CO.18 | thm:projection-collapse | Theorem 11.24: an arbitrary corona projection with commuting L-orbit, centralized by the compressed copy, commutes with Θ(L) | `ProjectionCompressionCollapse.corona_projection_collapse` | MISMATCH | EXACT | literal | unconditional | - | NO | univ0 |
@@ -987,11 +1031,10 @@ everywhere: the TeX is the specification and does not move).
 | SF.09 | thm:signfree | so d̄ is an involutive compression witness and Theorem 11.22 places [q(ι(v₁)), d̄] in Rad_MF(E/⟨w⟩) | `LiteralSignFreeQuotient.signFree_collapse` | EXACT | EXACT | literal | unconditional | - | NO | - |
 | SF.10 | thm:signfree | nontriviality passes through E → W: the commutator goes to the product of the two distinct lamp basis elements while ⟨w⟩ goes into ⟨ζ⟩, whose configuration coordinate is zero | `LiteralSignFreeQuotient.commutator_not_zpow_mark` | EXACT | EXACT | literal | unconditional | - | NO | - |
 | SF.11 | thm:signfree | hence the image is nontrivial and Proposition 11.6 makes E/⟨w⟩ non-MF; Corollary 11.9 identifies Rad_MF(E) with the q-preimage, so u belongs to it | `LiteralSignFreeQuotient.signFreeQuotient_not_isCDEOperatorMF`; `ManuscriptExactWrappers.manuscriptRadicalReductionToQuotient` | EXACT | EXACT | literal | unconditional | - | NO | - |
-| SF.12 | p:signfree-second | the Clifford sign certifies an obstruction that survives its removal, and E/⟨w⟩ is a second finitely presented non-MF group | `LiteralSignFreeQuotient.signFreeQuotient_not_isCDEOperatorMF` | EXACT | EXACT | literal | unconditional | - | NO | - |
 | CO.33 | cor:collapsequot | unconditional radical reduction along the collapse quotient, with equality when the quotient is MF | `ManuscriptExactWrappers.manuscriptCollapseRadicalReduction` | MISMATCH | EXACT | literal | unconditional | - | NO | univ0 |
 | CO.34 | p:collapse-universal | in the second case the quotient is the universal MF quotient | `ManuscriptExactWrappers.manuscriptUniversalMFQuotient` | EXACT | EXACT | literal | unconditional | - | NO | - |
-| CO.35 | thm:saturation | (1) every homomorphism to a countable MF group kills D_coll(L,s) | `ManuscriptExactWrappers.manuscriptDefectSaturation` | MISMATCH | EXACT | literal | unconditional | - | NO | univ0 |
-| CO.36 | thm:saturation | (2) if D_coll(L,s) = H then Rad_MF(H) = H, every homomorphism to a countable MF group is trivial, and a nontrivial H is not MF | `ManuscriptExactWrappers.manuscriptDefectSaturation` | MISMATCH | EXACT | literal | unconditional | - | NO | univ0 |
+| CO.35 | thm:saturation | (1) every homomorphism to a countable MF group kills D_coll(L,s) | `ManuscriptExactWrappers.manuscriptDefectSaturation` | EXACT | EXACT | literal | unconditional | - | NO | RE-READ 2026-08-16, upgraded from MISMATCH.  The `univ0` note was stale: the statement reads `∀ {H : Type u} [Group H] [Countable H] … HasKazhdanPropertyT.{u,u} ↥L …` with the target `{Q : Type v}` at an independent universe, so both the ambient group and the MF target are polymorphic and nothing is fixed at `Type 0` |
+| CO.36 | thm:saturation | (2) if D_coll(L,s) = H then Rad_MF(H) = H, every homomorphism to a countable MF group is trivial, and a nontrivial H is not MF | `ManuscriptExactWrappers.manuscriptDefectSaturation` | EXACT | EXACT | literal | unconditional | - | NO | RE-READ 2026-08-16, upgraded from MISMATCH, same reason as CO.35; the three conjuncts of clause (2) are the three conjuncts of the second component |
 | CO.37 | thm:saturation | proof: functoriality plus subgroup permanence makes the radical of f(H) trivial | `DefectSaturation.involutiveCollapseDefect_le_ker_of_isCDEOperatorMF` | EXACT | EXACT | literal | unconditional | - | NO | - |
 | CO.38 | p:saturation-remark | such a group admits no nontrivial finite-dimensional unitary representation, MF quotient, or homomorphism to a countable residually finite or amenable group | `DefectSaturation.map_eq_one_of_saturated` | MISMATCH | MISMATCH | literal | literature-input | TWW | NO | the MF-quotient and residually-finite cases follow; the amenable case needs amenable ⇒ MF, which is not formal |
 | CO.39 | p:saturation-remark | whether a small-cancellation construction produces a f.p. group with saturated collapse or normal-Kazhdan defect is open | - | MISSING | MISSING | - | open | FFF | NO | stated open |

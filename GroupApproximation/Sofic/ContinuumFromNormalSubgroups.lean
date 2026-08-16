@@ -11,7 +11,7 @@ minimal normal subgroups, and establishing it needs the two-generation of
 `Aₙ` by a 3-cycle and an n-cycle together with a support-separation argument.
 
 This file removes that half.  The observation is a counting one, in the same
-spirit as the counting step already in `Sofic.ContinuumMultiplicity`:
+spirit as the counting step already in `Sofic.ContinuumMultiplicityCore`:
 
 > A normal subgroup of `Γ` with a *prescribed* quotient is the kernel of an
 > epimorphism out of `Γ`.  An epimorphism out of a finitely generated group is
@@ -115,7 +115,7 @@ theorem countable_iso_class {Γ : Type} [Group Γ] [Group.FG Γ]
 
 /-- **A continuum-sized index whose isomorphism classes are countable carries
 a continuum-sized pairwise nonisomorphic transversal.**  This is the counting
-argument of `Sofic.ContinuumMultiplicity`, stated for an arbitrary family
+argument of `Sofic.ContinuumMultiplicityCore`, stated for an arbitrary family
 rather than for the products with `E`. -/
 theorem exists_continuum_transversal {ι : Type} (M : ι → Type) [∀ i, Group (M i)]
     (hclass : ∀ i : ι, {j : ι | Nonempty (M i ≃* M j)}.Countable)
@@ -205,7 +205,8 @@ theorem exists_continuum_pairwise_nonisomorphic_quotients
   exact countable_iso_class (Quot N)
 
 /-- The family produced above is exactly what
-`ContinuumMultiplicity.manuscriptContinuumMultiplicity` consumes: index by the
+`ContinuumMultiplicity.exists_continuum_pairwise_nonisomorphic` consumes: index by
+the
 transversal `J`, take `fun i : J ↦ Quot ↑i`, and its two hypotheses are
 `hJiso` and `hJcard`.  That composition is left to the caller so that this
 file states only the reduction. -/

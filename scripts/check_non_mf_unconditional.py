@@ -146,23 +146,32 @@ SPINE_STOPPERS = ("let ", "letI ", "let_fun ", "haveI ", "have ", "show ",
 # `Audit.literatureInputNames` does: the corpus must not be able to untag its
 # own citations.  An entry that is no longer cited is reported as stale, so the
 # roster cannot quietly outlive the problem it records.
-KNOWN_CONDITIONAL_DECLARATIONS: dict[str, str] = {
-    "GroupApproximation.ContinuumMultiplicity.manuscriptContinuumMultiplicity":
-        "the continuum family of pairwise nonisomorphic finitely generated "
-        "groups is B. H. Neumann's theorem, supplied here as the quantified "
-        "premises `(N : ι → Type)`, pairwise nonisomorphism and "
-        "`Cardinal.mk ι = Cardinal.continuum`; the corpus never exhibits one, "
-        "so the printed unconditional continuum statement is not what is proved",
-    "GroupApproximation.ClosedEnvelopeCompression."
-    "manuscriptEnvelopeCompressionBlind":
-        "the descending chain condition for Zariski closed subgroups of GL(V) "
-        "is classical and unproved here, supplied as the quantified premises "
-        "`(Closed : Subgroup G → Prop)` and "
-        "`[WellFoundedLT {H : Subgroup G // Closed H}]`; the manuscript's own "
-        "prose says so -- \"is the input the badge quantifies over rather than "
-        "proves\" -- and the corpus exhibits no `Closed` for which the "
-        "instance holds",
-}
+#
+# The roster is empty.  Two entries lived here until 2026-08-16 and were
+# removed because the corpus discharged them, not because anyone tired of
+# them; both removals are recorded here so that re-adding either without
+# re-establishing its premise is a visible regression.
+#
+# * `ContinuumMultiplicity.manuscriptContinuumMultiplicity` was listed on the
+#   grounds that "the corpus never exhibits one".  It now does:
+#   `Monsters/NeumannContinuum.neumann_continuum_of_finitely_generated_groups`
+#   builds a continuum of pairwise nonisomorphic finitely generated groups
+#   outright, as a lamplighter over coset spaces of the free group, and the
+#   badged declaration exhibits it as a conjunct rather than quantifying over
+#   it.
+# * `ClosedEnvelopeCompression.manuscriptEnvelopeCompressionBlind` was listed
+#   on the grounds that "the corpus exhibits no `Closed` for which the
+#   instance holds".  It now does:
+#   `Algebra/ZariskiDescendingChain.wellFoundedLT_isZClosedSubgroup` is an
+#   `instance`, proved from the Hilbert basis theorem through the
+#   ideal--variety pair, and `Algebra/ZariskiEnvelopeEndpoint` packages the
+#   whole premise tuple at it.  That entry additionally quoted the manuscript
+#   as saying the chain condition "is the input the badge quantifies over
+#   rather than proves"; that sentence does not occur in
+#   `non_mf_groups_exist.tex` and appears to have been transcribed from an
+#   early draft.
+#
+KNOWN_CONDITIONAL_DECLARATIONS: dict[str, str] = {}
 
 
 # ---------------------------------------------------------------------------

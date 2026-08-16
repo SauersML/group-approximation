@@ -53,7 +53,7 @@ namespace RabinFreeLetterOrder
 
 open RabinConstructionSource PresentedGroupBasisChange
 
-variable {α : Type} (rels : Set (FreeGroup α))
+variable {α : Type*} (rels : Set (FreeGroup α))
 
 /-! ## The retraction onto the free letter -/
 
@@ -75,7 +75,7 @@ theorem freeLetterGen_kills :
         = (1 : FreeGroup α →* Multiplicative ℤ) := by
       refine FreeGroup.ext_hom _ _ ?_
       intro a
-      simp [FreeGroup.map.of, FreeGroup.lift_apply_of, freeLetterGen]
+      simp [FreeGroup.map, freeLetterGen]
     exact DFunLike.congr_fun h v
   · exact absurd hv (Set.notMem_empty v)
 

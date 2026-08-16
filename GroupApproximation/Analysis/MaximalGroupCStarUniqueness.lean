@@ -87,8 +87,11 @@ theorem starAlgEquiv_of_universalProperty
     ∃ e : A₁ ≃⋆ₐ[ℂ] A₂, ∀ g : G, e (iota₁ g : A₁) = (iota₂ g : A₂) := by
   obtain ⟨f, hf, -⟩ := h₁ A₂ iota₂
   obtain ⟨g, hg, -⟩ := h₂ A₁ iota₁
-  obtain ⟨-, -, huniq₁⟩ := h₁ A₁ iota₁
-  obtain ⟨-, -, huniq₂⟩ := h₂ A₂ iota₂
+  -- The uniqueness half is a statement *about* the witness, so the witness has
+  -- to be kept rather than cleared: `⟨-, -, huniq⟩` would discard the very
+  -- thing `huniq`'s type mentions.
+  obtain ⟨w₁, -, huniq₁⟩ := h₁ A₁ iota₁
+  obtain ⟨w₂, -, huniq₂⟩ := h₂ A₂ iota₂
   have hgf : g.comp f = StarAlgHom.id ℂ A₁ := by
     have hcomp : ∀ x : G, (g.comp f) (iota₁ x : A₁) = (iota₁ x : A₁) := by
       intro x

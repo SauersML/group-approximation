@@ -7,15 +7,15 @@ import Mathlib.LinearAlgebra.Matrix.SemiringInverse
 # Residual finite-dimensionality, and its failure under proper compression
 
 This file supplies one of the two clauses of the manuscript remark *the
-maximal algebra under strict Kazhdan compression*, which is
+maximal algebra under proper one-sided conjugation*, which is
 `\begin{remark}...\label{rem:maxinfinite}` inside the appendix
 `\label{app:maxcstar}` of `non_mf_groups_exist.tex` (near line 3964 as of
 2026-08-16, but that file is under active concurrent edit: navigate by the
 label, or grep the sentence quoted below).  The central sentence reads
 
-> By Proposition~\ref{prop:proper-isometry} the maximal algebra of such a
-> group is then not stably finite, carries no faithful trace, and in
-> particular is neither residually finite-dimensional nor MF.
+> By Proposition~\ref{prop:proper-isometry}, `C*_max(G)` is then not stably
+> finite, has no faithful trace, and in particular is neither residually
+> finite-dimensional nor MF.
 
 The failure of stable finiteness and the absence of a faithful trace are
 already machine checked in `Analysis/ProperIsometryFromCompression` and

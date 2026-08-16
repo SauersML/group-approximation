@@ -112,11 +112,10 @@ def baseVector : CosetHilbert G K := lp.single 2 ((1 : G) : G ⧸ K) 1
 /-- **The witness is a point mass.**  The base coordinate of the base vector
 is `1`.
 
-The group, the subgroup and the decidability of the coset space are quantified
-inside the proposition.  They are the section variables of this file, and a
-cited endpoint that inherits them silently has a leading input its printed
-header does not show. -/
-theorem baseVector_apply_base :
+This is the coordinate computation the separation statement is assembled
+from; the statement the manuscript prints is `baseVector_apply_base`, at the
+end of this section. -/
+theorem baseVector_self_coeff :
     ∀ (G : Type u) [Group G] (K : Subgroup G) [DecidableEq (G ⧸ K)],
       baseVector G K ((1 : G) : G ⧸ K) = 1 := by
   intro G _ K _
@@ -132,7 +131,7 @@ theorem baseVector_ne_zero : baseVector G K ≠ 0 := by
   intro h
   have h1 := congrArg (fun f : CosetHilbert G K => f ((1 : G) : G ⧸ K)) h
   simp only at h1
-  rw [baseVector_apply_base G K] at h1
+  rw [baseVector_self_coeff G K] at h1
   have h2 : ((0 : CosetHilbert G K) : (G ⧸ K) → ℂ) ((1 : G) : G ⧸ K) = 0 :=
     rfl
   exact one_ne_zero (h1.trans h2)
@@ -166,8 +165,43 @@ theorem quasiRegularOperator_baseVector_of_notMem {a : G} (ha : a ∉ K) :
     exact ha (inv_mem_iff.mp ((smul_base_eq_base_iff G K a⁻¹).mp hc))
   have h0 : baseVector G K (a⁻¹ • ((1 : G) : G ⧸ K)) = 0 :=
     baseVector_apply_ne G K hne
-  have h1 : baseVector G K ((1 : G) : G ⧸ K) = 1 := baseVector_apply_base G K
+  have h1 : baseVector G K ((1 : G) : G ⧸ K) = 1 := baseVector_self_coeff G K
   exact zero_ne_one (h0.symm.trans (happ.trans h1))
+
+/-- **The quasi-regular coordinate separates a subgroup from anything outside
+it.**  This is the sentence the manuscript prints in the remark *the maximal
+algebra under proper one-sided conjugation*: at the quasi-regular coordinate
+`ℓ²(G/K)` the point mass at the base coset is fixed by `K` and moved by every
+element outside `K` — which is what makes the two projections differ there.
+
+All four printed clauses are stated: the witness really is the point mass at
+the base coset (its base coordinate is `1`), it is a nonzero vector, the whole
+subgroup fixes it, and *every* element outside the subgroup moves it.  Only
+the first of these is a coordinate computation; the separation is the last
+two, and a badge on the coordinate computation alone would certify a true
+statement that is not the printed one.
+
+One deliberate strengthening.  The manuscript, taking `K = tΓt⁻¹`, says the
+point mass is "moved by every element of `Γ` outside it"; the last clause here
+quantifies over every element of the ambient group outside `K`, which implies
+the printed claim and needs no `Γ`.  Nothing about the compression is used —
+only that `K` is a subgroup and the coordinate is `ℓ²(G/K)`.
+
+The group, the subgroup and the decidability of the coset space are quantified
+inside the proposition.  They are the section variables of this file, and a
+cited endpoint that inherits them silently has a leading input its printed
+header does not show. -/
+theorem baseVector_apply_base :
+    ∀ (G : Type u) [Group G] (K : Subgroup G) [DecidableEq (G ⧸ K)],
+      baseVector G K ((1 : G) : G ⧸ K) = 1 ∧
+        baseVector G K ≠ 0 ∧
+        (∀ k ∈ K, quasiRegularOperator G K k (baseVector G K) = baseVector G K) ∧
+        (∀ a ∉ K,
+          quasiRegularOperator G K a (baseVector G K) ≠ baseVector G K) := by
+  intro G _ K _
+  exact ⟨baseVector_self_coeff G K, baseVector_ne_zero G K,
+    fun _ hk => quasiRegularOperator_baseVector_of_mem G K hk,
+    fun _ ha => quasiRegularOperator_baseVector_of_notMem G K ha⟩
 
 /-- **The strictness witness**: for any element outside the subgroup, the
 point mass at the base coset is a nonzero vector fixed by the whole

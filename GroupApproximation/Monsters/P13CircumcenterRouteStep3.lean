@@ -6,17 +6,18 @@ import GroupApproximation.Sofic.LiteralBaseRotationRetract
 # Step 3 of `prop:literal-base-T`, through the printed objects
 
 Manuscript target: Step 3 of the proof of Proposition `prop:literal-base-T`,
-`non_mf_groups_exist.tex` lines 1532–1568 (the proposition itself occupies
-lines 1470–1573).
+`non_mf_groups_exist.tex` lines 1404–1449 (the proposition itself occupies
+lines 1322–1450).  The stable anchor is the label `prop:literal-base-T`,
+Step 3.
 
-This module gives Lean counterparts to the four Step-3 clauses that the
+This module gives Lean counterparts to the Step-3 clauses that the
 step-for-step audit (`docs/P13_STEP_AUDIT.md`, §3) recorded as `MISMATCH` or
 `MISSING`, using the objects the manuscript names rather than the
 equally-valid substitutes the existing development uses.
 
 * **T3.11** *"The orbit of `p` under the translation subgroup is bounded, so
   the Hilbert-space circumcenter argument gives a translation-fixed vector `q`
-  with `‖q-p‖ ≤ 1/8`"* (lines 1559–1561).  Routed through the genuine
+  with `‖q-p‖ ≤ 1/8`"* (lines 1436–1438).  Routed through the genuine
   circumcenter — the centre of the smallest enclosing ball — of
   `Kazhdan/HilbertCircumcenter.lean`, via
   `P13CircumcenterRoute.exists_near_fixedSubspace_circumcenter`, instead of the
@@ -24,11 +25,16 @@ equally-valid substitutes the existing development uses.
 * **T3.04** *"The third basis translation needs no separate control:
   `v₁ = x v₂ x⁻¹` by the displayed `x`-action, and conjugation by the fixed
   unitary of `x` preserves displacements of vectors fixed by the linear
-  subgroup"* (lines 1540–1543).  Both halves are proved here.  (The existing
+  subgroup"* (lines 1415–1418).  Both halves are proved here.  (The existing
   development omits `v₁` for a different, also correct, reason: the
   two-conjugate normal form of item 2 already covers it.)
+* **T3.02** *"every lattice element is a product of two linear-subgroup
+  conjugates of basis translations … Hence every translation displaces `p` by
+  at most `1/8`"* (lines 1424–1435).  Stated with a displacement hypothesis on
+  all three *basis* translations, which is what the printed item 2 assumes, so
+  that T3.04 is a genuine input to it rather than an unused aside.
 * **T3.01** *"the generators `x,y,z` of `B` satisfy the relators of `R`, so
-  `R` maps to the linear subgroup of `B` they generate"* (lines 1532–1534).
+  `R` maps to the linear subgroup of `B` they generate"* (lines 1404–1407).
   Property `(T)` is transported along that **surjection** onto the linear
   subgroup, by the quotient permanence the manuscript already invokes in
   Step 2 — not along the isomorphism `Rotation ≃* rotations`, which is a
@@ -37,8 +43,11 @@ equally-valid substitutes the existing development uses.
   `3/64` depends.  Here it is *derived* from Step 2's Kazhdan pair rather than
   assumed, so nothing beyond the printed `κ > 0` is required as input.
 
-Nothing in the existing convex-hull development is modified; this module is
-the manuscript-facing route and leaves that one in place as the alternate.
+`Sofic/LiteralBasePropertyTBridge.lean` — the module on the badged path from
+`prop:literal-base-T` — invokes T3.01, T3.02, T3.03 and T3.11 from here, so the
+badged declaration travels the printed route.  Nothing in the convex-hull
+development of `Kazhdan/HilbertConvexFixedPoint.lean` is modified; it remains
+available as the alternate fixed-point engine.
 -/
 
 namespace GroupApproximation
@@ -118,6 +127,55 @@ theorem t3_04_norm_v1_displacement_lt
   rw [t3_04_norm_v1_displacement_eq rho p hfixed]
   exact hv2
 
+/-- **T3.04, packaged for item 2.**  The printed item 2 needs a displacement
+bound at `p` for *each* of the three basis translations, and the printed control
+set supplies only `v₂` and `v₃`.  This lemma closes that gap the way the
+manuscript does: `v₁`'s bound is not an extra hypothesis, it is derived from
+`v₁ = x v₂ x⁻¹` and the invariance of displacements under conjugation by the
+linear subgroup.
+
+This is the form in which `Sofic/LiteralBasePropertyTBridge.lean` consumes
+T3.04, so the printed justification for omitting `v₁` from the control set is
+now load-bearing rather than decorative. -/
+theorem t3_04_basis_displacement_lt
+    (rho : Base →* (E ≃ₗᵢ[ℝ] E)) (p : E)
+    (hfixed : ∀ r : rotations, rho (r : Base) p = p) {c : ℝ}
+    (hv2 : ‖rho LiteralBaseRelations.v2 p - p‖ < c)
+    (hv3 : ‖rho LiteralBaseRelations.v3 p - p‖ < c) :
+    ∀ v ∈ ({LiteralBaseRelations.v1, LiteralBaseRelations.v2,
+        LiteralBaseRelations.v3} : Set Base), ‖rho v p - p‖ < c := by
+  rintro v (rfl | rfl | rfl)
+  · exact t3_04_norm_v1_displacement_lt rho p hfixed hv2
+  · exact hv2
+  · exact hv3
+
+/-! ## T3.02 — from the basis translations to the whole lattice -/
+
+/-- **Step 3, item 2, endpoint.**  *"Consequently every lattice element is a
+product of two linear-subgroup conjugates of basis translations … Hence every
+translation displaces `p` by at most `1/8`."*
+
+The hypothesis is the printed one: a common displacement bound `c` at `p` for
+each of the three *basis* translations `v₁, v₂, v₃`.  The two-conjugate normal
+form of `LiteralTranslationOrbit` then doubles it, giving `2c` for every element
+of the translation subgroup; with the printed `c = 3/64` this is the printed
+`3/32 ≤ 1/8`.
+
+Quantifying over all three basis translations, rather than over the two that the
+repo's normal form happens to use, is what makes T3.04 an input to this step, as
+printed. -/
+theorem t3_02_norm_translation_displacement_le
+    (rho : Base →* (E ≃ₗᵢ[ℝ] E)) (p : E)
+    (hfixed : ∀ r : rotations, rho (r : Base) p = p) {c : ℝ}
+    (hbasis : ∀ v ∈ ({LiteralBaseRelations.v1, LiteralBaseRelations.v2,
+        LiteralBaseRelations.v3} : Set Base), ‖rho v p - p‖ < c)
+    (t : translations) :
+    ‖rho t.1 p - p‖ ≤ 2 * c := by
+  have h := norm_translation_displacement_le_of_rotations_fixed rho p hfixed t.2
+  have h2 := hbasis LiteralBaseRelations.v2 (by simp)
+  have h3 := hbasis LiteralBaseRelations.v3 (by simp)
+  linarith
+
 /-! ## T3.11 — the circumcenter of the bounded translation orbit -/
 
 /-- **T3.11, first clause.**  *"The orbit of `p` under the translation subgroup
@@ -148,9 +206,10 @@ theorem t3_11_exists_translation_fixed_circumcenter [CompleteSpace E]
     hbound
 
 /-- **T3.11, in the shape the bridge consumes.**  Signature-identical to
-`HilbertConvexFixedPoint.exists_near_fixedSubspace rho translations p`, so it is
-a drop-in replacement at the single call site in
-`Sofic/LiteralBasePropertyTBridge.lean`. -/
+`HilbertConvexFixedPoint.exists_near_fixedSubspace rho translations p`, and it
+is what `Sofic/LiteralBasePropertyTBridge.lean` now calls, so the badged
+property-`(T)` endpoint obtains its translation-fixed vector from the printed
+circumcenter. -/
 theorem t3_11_exists_near_translationFixedSubspace [CompleteSpace E]
     (rho : Base →* (E ≃ₗᵢ[ℝ] E)) (p : E)
     (hbound : ∀ t : translations, ‖rho t.1 p - p‖ ≤ 1 / 8) :

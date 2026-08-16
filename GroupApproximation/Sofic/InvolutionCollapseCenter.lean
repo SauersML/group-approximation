@@ -1,3 +1,4 @@
+import GroupApproximation.Sofic.CollapseWordMetricBridge
 import GroupApproximation.Sofic.InvolutionCollapseCocycle
 
 /-!
@@ -98,8 +99,13 @@ theorem seqNormSq_neg {H : ℕ → Type*} [∀ n, NormedAddCommGroup (H n)]
 /-- **Approximate coboundary primitives exist.**  If the limiting squared
 seminorm of the displacement family is uniformly bounded, there is one
 bounded sequence `w` that is a `δ`-approximate primitive for the
-displacement cocycle along every mover in any prescribed finite set. -/
-theorem exists_approximate_coboundary
+displacement cocycle along every mover in any prescribed finite set.
+
+This is the working form, with the data taken as section variables and
+leading binders.  The manuscript-facing statement is
+`exists_approximate_coboundary` below, which binds all of it after the
+colon; the two are the same theorem. -/
+theorem exists_approximate_coboundary_of_data
     (hgen : Subgroup.closure (S : Set Γ) = ⊤)
     (hsymm : ∀ g ∈ S, g⁻¹ ∈ S)
     (hVinv : ∀ n γ, ExactInvolutionLifts.IsExactInvolution (V n γ))
@@ -306,6 +312,103 @@ theorem exists_approximate_coboundary
       rw [show (4 : ℝ) * (δ / (4 * (2 * D + 1))) * (2 * D + 1) =
         δ * ((4 * (2 * D + 1)) / (4 * (2 * D + 1))) by ring,
         div_self hne, mul_one]
+
+/-- **Approximate coboundary primitives exist**, with every input bound after
+the colon.
+
+This is the statement the manuscript prints where it says that the
+Delorme--Guichardet bound on the limiting cocycle produces, at each tolerance,
+a bounded primitive `w` with `‖w‖ ≤ C+1` satisfying
+`‖b_{n_0}(a) - (w_{n_0} - U_{a,n_0} w_{n_0} U_{a,n_0}^{*})‖_{\mathrm F} ≤ τ`
+for the finitely many generators.  It takes no declaration input: the group,
+the model, the lift family and the mover set are all quantified here rather
+than supplied by the section, so the badge on it certifies a closed statement.
+
+**The displacement vector here is the printed one.**  The `b_n` of the display
+this badge sits under is `k_n^{-1/2}(V_n(\gamma) - V_n(1))` with no guard, which
+is `CollapseWordMetric.bVec`; the working form
+`exists_approximate_coboundary_of_data` runs on
+`InvolutionCollapseProfile.bVec`, the same vector capped to zero at the stages
+before the Step-3 threshold.  Stating this theorem over the capped vector would
+badge a different object from the display above it — the defect recorded at
+`CO.09` for Step 4, one file over.  The two agree at all large stages for each
+fixed mover (`CollapseWordMetricBridge.eventually_profile_bVec_eq`), and both
+the hypothesis and the conclusion are limiting squared seminorms, so
+`InvolutionCollapseCocycle.seqNormSq_congr_of_eventually_eq` carries the
+statement across without reproving anything analytic.
+
+`exists_approximate_coboundary_of_data` is deliberately left as it stands: it
+is the working form the endpoint and the diagonalization consume. -/
+theorem exists_approximate_coboundary :
+    ∀ {Γ E : Type} [Group Γ] [Group E]
+      (B : OpAlmostRepresentation E) (iota : Γ →* E) (k : E)
+      (V : ∀ n, Γ → Matrix (B.model n) (B.model n) ℂ) (S : Finset Γ)
+      (_hgen : Subgroup.closure (S : Set Γ) = ⊤)
+      (_hsymm : ∀ g ∈ S, g⁻¹ ∈ S)
+      (_hVinv : ∀ n γ, ExactInvolutionLifts.IsExactInvolution (V n γ))
+      (_hVcomm : ∀ n γ₁ γ₂, V n γ₁ * V n γ₂ = V n γ₂ * V n γ₁)
+      (_hVconv : ∀ γ, OpNormVanishing B (fun n ↦ V n γ - raw B iota k n γ))
+      (_hmark : ∃ N, ∀ n ≥ N, 1 ≤ kNorm B V S n)
+      {R : ℝ} (_hR0 : 0 ≤ R)
+      (_hR : ∀ γ : Γ,
+        seqNormSq (fun n ↦ CollapseWordMetric.bVec B V S n γ) ≤ R)
+      (T : Finset Γ) {δ : ℝ} (_hδ : 0 < δ),
+      ∃ w : ∀ n, EuclideanSpace ℂ (B.model n × B.model n),
+        IsBoundedSeq w ∧ seqNorm w ≤ Real.sqrt R + 1 ∧
+        ∀ a ∈ T, seqNormSq (fun n ↦
+          CollapseWordMetric.bVec B V S n a -
+            (w n - adFlat (B.map n (iota a) :
+              Matrix (B.model n) (B.model n) ℂ) (w n))) ≤ δ := by
+  intro Γ E _ _ B iota k V S hgen hsymm hVinv hVcomm hVconv hmark R hR0 hR T δ hδ
+  -- the printed vectors are bounded sequences
+  have hbdp : ∀ γ : Γ,
+      IsBoundedSeq (fun n ↦ CollapseWordMetric.bVec B V S n γ) :=
+    fun γ ↦ CollapseWordMetric.exists_norm_bVec_bound B iota k V S hgen hsymm
+      hVinv hVcomm hVconv γ
+  -- the capped and the printed vector have the same limiting profile
+  have hcap : ∀ γ : Γ,
+      seqNormSq (fun n ↦ bVec B V S hgen hsymm n γ) =
+        seqNormSq (fun n ↦ CollapseWordMetric.bVec B V S n γ) :=
+    fun γ ↦ seqNormSq_congr_of_eventually_eq
+      (isBoundedSeq_bVec B V S hgen hsymm hVinv hVcomm γ) (hbdp γ)
+      (CollapseWordMetricBridge.eventually_profile_bVec_eq B iota k V S hgen
+        hsymm hVinv hVcomm hVconv γ)
+  have hRcap : ∀ γ : Γ,
+      seqNormSq (fun n ↦ bVec B V S hgen hsymm n γ) ≤ R := by
+    intro γ
+    rw [hcap γ]
+    exact hR γ
+  obtain ⟨w, hwbdd, hwnorm, hwcob⟩ :=
+    exists_approximate_coboundary_of_data B iota k V S hgen hsymm hVinv
+      hVcomm hVconv hmark hR0 hRcap T hδ
+  refine ⟨w, hwbdd, hwnorm, fun a ha ↦ ?_⟩
+  -- the coboundary difference of a bounded primitive is bounded
+  have hy : IsBoundedSeq (fun n ↦
+      w n - adFlat (B.map n (iota a) :
+        Matrix (B.model n) (B.model n) ℂ) (w n)) := by
+    obtain ⟨Cb, hCb⟩ := id hwbdd
+    refine ⟨Cb + Cb, fun n ↦ ?_⟩
+    have h3 : ‖adFlat (B.map n (iota a) :
+        Matrix (B.model n) (B.model n) ℂ) (w n)‖ = ‖w n‖ := by
+      rw [norm_adFlat (B.map n (iota a)).2]
+    calc
+      ‖w n - adFlat (B.map n (iota a) :
+          Matrix (B.model n) (B.model n) ℂ) (w n)‖ ≤
+          ‖w n‖ + ‖adFlat (B.map n (iota a) :
+            Matrix (B.model n) (B.model n) ℂ) (w n)‖ := norm_sub_le _ _
+      _ ≤ Cb + Cb := by
+        rw [h3]
+        exact add_le_add (hCb n) (hCb n)
+  -- and the two coboundary differences have the same limit
+  have hdiff := seqNormSq_congr_of_eventually_eq
+    ((isBoundedSeq_bVec B V S hgen hsymm hVinv hVcomm a).sub hy)
+    ((hbdp a).sub hy)
+    (by
+      obtain ⟨N, hN⟩ := CollapseWordMetricBridge.eventually_profile_bVec_eq B
+        iota k V S hgen hsymm hVinv hVcomm hVconv a
+      exact ⟨N, fun n hn ↦ by rw [hN n hn]⟩)
+  rw [← hdiff]
+  exact hwcob a ha
 
 end InvolutionCollapseCenter
 end GroupApproximation

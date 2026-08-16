@@ -21,6 +21,43 @@ places are reported separately, in §5, as findings **about the manuscript**.
 below is from reading the proof body, not the statement. Nothing was compiled
 (hard rule); no `.lean` or `.tex` file was touched.
 
+> **Status re-check, 2026-08-16 (against `non_mf_groups_exist.tex` at 4526
+> lines).** Findings **S2** and **S3** below are **closed by the current
+> manuscript** and should not be re-raised; they are kept for the record. This
+> note exists because the audit was read as current and its S2 was re-reported
+> as a live gap in the printed proof.
+>
+> - **S3 closed.** Step 5 now opens "Fix a free ultrafilter $\omega$ on $\N$"
+>   and works in the Hilbert-space ultraproduct $K_\omega$. It is an ultralimit,
+>   not a `limsup`.
+> - **S2 closed.** The Step 5 → Step 6 interface no longer runs through a
+>   primitive at a prescribed tolerance, so the quantifier gap S2 describes
+>   ($\forall\delta\,\exists y^\delta$ does not give one $y$ with $o(k_n)$
+>   defect) has nothing to attach to. Step 5 gets an **exact** coboundary
+>   $b(\gamma)=y-\pi(\gamma)y$ from Delorme–Guichardet applied to a genuine
+>   1-cocycle in $K_\omega$ — the cocycle identity being licensed by Step 4's
+>   *vanishing* defect mass at scale $k_n$, not by a fixed tolerance. Step 6
+>   then transports the **fixed vector** $y$, and it does so with the projection
+>   chain only: build $P$ onto $\operatorname{Fix}\pi(L)$ from the Kazhdan gap,
+>   set $Q=VPV^{*}$, get $P\le Q$ from the range inclusion, get $P\sim Q$ from
+>   $r=V^{*}Q$, conclude $Q=P$ by finiteness of the norm ultraproduct. That
+>   chain is present in the proof of `thm:kazhdan-transport` (checked), and no
+>   transported sequence enters it — the sequence $x_n$ appears only in that
+>   proof's final "Conclusion" paragraph, which Step 6 does not use. So neither
+>   of S2's two suggested repairs is needed; the printed proof takes a third
+>   route that avoids the hypothesis.
+> - The word "circumcenter" does not occur in the proof of `thm:collapse`; the
+>   circumcenter argument is in the property-(T) verification for $\mathcal B$,
+>   a different place. Confusing the two is the likely source of the re-report.
+> - Also re-checked while here: the $\kappa\le1$ normalization behind the
+>   $3/64$ estimate **is** stated ("Shrinking $\kappa$ costs nothing … so assume
+>   $\kappa\le1$"), and its single use is flagged in situ ("the last inequality
+>   is where $\kappa\le1$ is used"). The joint-corner correction in Step 1 is
+>   stated, with the commutant identified as a finite intersection of joint
+>   spectral corners.
+>
+> Findings S1, S4, S5 and the Lean-side findings are **not** re-checked here.
+
 **Chain hygiene (checked).** `sorry` = 0, `axiom` = 0, `native_decide` = 0
 across the whole collapse chain. Property (T) is consumed through the in-repo
 Delorme theorem (`Kazhdan/DelormeFixedPoint.lean`,
@@ -500,7 +537,11 @@ involutions at operator distance `< 2` are *equal*
 states this rigidity. It should: without it Step 6's first sentence contradicts
 Step 4's warning.
 
-**S2 (severe). The Step 5 → Step 6 interface is unspecified.** The circumcenter
+**S2 (severe) — CLOSED 2026-08-16, see the status note at the top of this file.
+The current Step 5 gets an exact coboundary in the ultraproduct and Step 6
+transports a fixed vector by the projection argument, so the interface below no
+longer exists. Kept for the record.**
+**The Step 5 → Step 6 interface is unspecified.** The circumcenter
 delivers a primitive at a *prescribed* tolerance, not one with vanishing defect;
 `thm:kazhdan-transport` and `thm:transport-variants`(1) both require the
 displacement to tend to zero. The manuscript never says which of the two
@@ -510,7 +551,9 @@ the sketch above can be replaced by explicit tolerances") but does not connect
 it to the transport theorem being cited. This is the single place where the
 printed Step 6 cannot be executed as written.
 
-**S3 (moderate). "limsup" should be an ultralimit.** Step 5 defines the limiting
+**S3 (moderate) — CLOSED 2026-08-16: Step 5 now fixes a free ultrafilter and
+works in the Hilbert-space ultraproduct. Kept for the record.**
+**"limsup" should be an ultralimit.** Step 5 defines the limiting
 profile as `γ ↦ limsup_n ‖b_n(γ)‖²_F`. Delorme's argument needs the profile to
 satisfy the displacement identity `ψ(g⁻¹h) = ψ'(‖b(h) − b(g)‖²)` as an
 *identity*, so that the Gaussians are positive definite; `limsup` is not a

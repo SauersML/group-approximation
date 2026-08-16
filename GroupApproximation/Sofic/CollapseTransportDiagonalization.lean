@@ -286,7 +286,7 @@ theorem exists_vanishing_coboundary_primitive
               Matrix (B.model n) (B.model n) ℂ) (u n))) ≤
           1 / ((j : ℝ) + 1) := by
     intro j
-    exact exists_approximate_coboundary B iota k V S hgen hsymm hVinv
+    exact exists_approximate_coboundary_of_data B iota k V S hgen hsymm hVinv
       hVcomm hVconv hmark hR0 hR T (by positivity)
   choose u hub hun huc using hfam
   -- the stage predicate at level `j`

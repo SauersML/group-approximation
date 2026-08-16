@@ -37,7 +37,8 @@ namespace KazhdanCompressionCore
 
 /-- Hilbert--Schmidt triviality of every pointwise compression defect in an
 operator-norm almost representation. -/
-def CompressionDefectsHSTrivial (C : KazhdanCompressionCore Γ E)
+def CompressionDefectsHSTrivial {E : Type*} [Group E]
+    (C : KazhdanCompressionCore Γ E)
     (B : OpAlmostRepresentation E) : Prop :=
   ∀ γ : Γ, ∀ epsilon : ℝ, 0 < epsilon → ∃ N, ∀ n ≥ N,
     hsDistSq (B.model n)
@@ -45,7 +46,7 @@ def CompressionDefectsHSTrivial (C : KazhdanCompressionCore Γ E)
 
 /-- **Marker-free Kazhdan compression collapse.**  Root capture applies
 directly to the compression core; no distinguished word is introduced. -/
-theorem compressionDefects_hsTrivial
+theorem compressionDefects_hsTrivial {E : Type*} [Group E]
     (C : KazhdanCompressionCore Γ E) (B : OpAlmostRepresentation E) :
     CompressionDefectsHSTrivial C B := by
   intro gamma epsilon hepsilon
@@ -55,8 +56,17 @@ theorem compressionDefects_hsTrivial
 
 /-- Every operator-norm almost representation canonically gives an
 asymptotic unitary representation for the normalized Hilbert--Schmidt
-metric. -/
-noncomputable def toAsymptoticUnitaryRepresentation
+metric.
+
+The ambient group is quantified at an arbitrary universe here, shadowing the
+section variable: the construction is a field-for-field transport between two
+structures that are both already universe-polymorphic
+(`OpAlmostRepresentation` and `AsymptoticUnitaryRepresentation`), so nothing in
+it sees the universe.  Keeping it polymorphic is what lets `def:invisible` be
+stated for the manuscript's arbitrary group; every other declaration in this
+file stays at `Type 0`, and specialising here at `Type 0` returns exactly what
+they consume. -/
+noncomputable def toAsymptoticUnitaryRepresentation {E : Type*} [Group E]
     (B : OpAlmostRepresentation E) : AsymptoticUnitaryRepresentation E where
   model := B.model
   modelNonempty := B.modelNonempty

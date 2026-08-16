@@ -86,16 +86,33 @@ attempted here.
   main theorem of `GHW`; the proof runs through actions on products of affine
   buildings over the locally compact completions of a finitely generated field.
   Nothing in that toolkit exists in Mathlib.
-* **`E.3` --- MISSING, and the technical reason is specific.**  Property A for
-  extensions is combinatorial, not analytic, so it is the one cited link that is
-  a large-but-ordinary formalization rather than a research project.  The naive
-  fibre-wise proof does *not* work: a set-theoretic section `σ : G/N → G` has
-  `σ(q)σ(q')⁻¹` unbounded, so fibre base points cannot be compared uniformly.
-  The real proof is coarse-geometric --- word metrics on `G`, a quasi-isometric
-  section, and transport along fibres of `G → G/N`.  The word metric itself now
-  exists (`Algebra/WordMetric.lean`), so the first of those three is no longer
-  a gap; the quasi-isometric section is, and that is precisely the piece that
-  repairs the unbounded-`σ(q)σ(q')⁻¹` failure.  See G1 below for what remains.
+* **`E.3` --- CLOSED**, in `Analysis/PropertyAExtension.lean`
+  (`hasPropertyA_of_ker_of_quotient`), together with the semidirect-product form
+  the manuscript actually uses
+  (`hasPropertyA_semidirectProduct_of_isLocallyFiniteGroup`).
+
+  This corrects an assessment that stood here previously, and the correction is
+  worth stating because the earlier reasoning was specific and wrong.  It ran:
+  the naive fibre-wise proof fails, because a set-theoretic section
+  `σ : G/N → G` has `σ(q)σ(q')⁻¹` unbounded, so fibre base points cannot be
+  compared uniformly; hence coarse geometry --- word metrics and a
+  quasi-isometric section --- is needed.
+
+  The unboundedness is real but is never invoked, because base points are only
+  ever compared **within a single fibre**, and there the section value cancels.
+  With base point `n(g,q) = σ(q)⁻¹ g σ(π(g)⁻¹q)` one has
+
+  ```
+      n(g,q)⁻¹ n(h,q) = σ(π(g)⁻¹q)⁻¹ (g⁻¹h) σ(π(h)⁻¹q) ,
+  ```
+
+  in which `σ(q)` has disappeared; the surviving section values are taken at
+  arguments running over the *finite* template of the quotient witness, so only
+  finitely many of them are ever compared.  No metric enters, and the
+  prerequisite G1 below is not needed for `E.3` after all.  (The corresponding
+  statement for general bounded-geometry metric spaces is subtler; what makes
+  the group case go through is that the support constraint in
+  `PropertyAWitness` is `g`-relative.)
 * **`E.4` --- MISSING, and not statable today.**  The obstruction is precise:
   Mathlib has no C⋆-norm on a tensor product, so `A ⊗_min ·` does not exist and
   exactness cannot be written down.  Owned by the peer C⋆-tensor modules.
@@ -172,9 +189,11 @@ revision, which has none of the following.
   `Finset` reindexings, and this session cannot compile, so landing it would put
   the finished `E.1` result in this file at risk for a lemma that is not itself
   on the `E.1`--`E.3` chain.
-* **G4. `E.3`: property A is closed under extensions.**  Needs G1.  *~2000
-  lines.*  This is the single highest-value remaining item on the chain: it is
-  ordinary formalization work, not research.
+* **G4. DONE**, in `Analysis/PropertyAExtension.lean`, and without G1: `~450`
+  lines rather than the `~2000` estimated here, because the fibre-wise proof
+  does work (see the corrected `E.3` entry above).  The reusable by-products
+  are `PropertyAWitness.sum_le_one`, `PropertyAWitness.sum_abs_sub_le` and
+  `HasPropertyA.of_mulEquiv`.
 * **G5. `E.2`: linear groups have property A.**  Research-scale; not
   recommended.
 
@@ -228,10 +247,12 @@ two lanes agree on the verdict.
   Research-scale.
 
 A1--A5 are what it takes to make the *statement* of the manuscript's claim
-expressible at all; A6, A7, G4, G5 are what it takes to *prove* it.  The
-realistic verdict is that the exactness row is out of reach for this
-development; the reachable increments, in order of value, are G3, then G1
-followed by G4, then the residue of G2.
+expressible at all; A6, A7 and G5 are what it takes to *prove* it (G4 is now
+done).  The realistic verdict is unchanged --- the exactness row is out of
+reach for this development, because `E.4` is not statable and `E.2` is
+research-scale --- but the group side of the chain is now complete except for
+`E.2`.  The remaining reachable increments, in order of value, are G3, then G1,
+then the residue of G2; none of them is on the `E.1`--`E.4` chain.
 -/
 
 namespace GroupApproximation

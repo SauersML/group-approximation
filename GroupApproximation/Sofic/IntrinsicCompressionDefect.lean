@@ -16,7 +16,14 @@ namespace GroupApproximation
 
 open scoped commutatorElement
 
-variable {Γ E : Type} [Group Γ] [Group E]
+universe u
+
+/-! The ambient group is quantified at an arbitrary universe: the intrinsic
+defect `𝔇(H,L)` of the manuscript is defined for an arbitrary group `H`, and
+everything here is group theory.  The Kazhdan source `Γ` stays in `Type 0`
+because `KazhdanCompressionCore` spells property `(T)` as
+`HasKazhdanPropertyT.{0, 0}`. -/
+variable {Γ : Type} {E : Type u} [Group Γ] [Group E]
 
 namespace KazhdanCompressionCore
 

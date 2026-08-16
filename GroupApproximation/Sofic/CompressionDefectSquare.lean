@@ -24,19 +24,62 @@ open scoped commutatorElement
 
 universe u
 
+/-! ## The three steps of the printed proof
+
+The manuscript proves `lem:square` by naming a factorization: it puts
+`b = a₁ d a₁⁻¹`, observes `b² = a₁d²a₁⁻¹ = 1`, rewrites the pointwise defect
+as `[d,a₁] = d(a₁da₁⁻¹) = db`, and then reads `(db)² = dbd⁻¹b⁻¹ = [d,b]` off
+the two involutions.  Each of those three sentences is a lemma below, and the
+cited declaration composes them in that order rather than discharging the
+identity by normalization. -/
+
+/-- `b = a d a⁻¹` is again an involution: `b² = a d² a⁻¹`.  This is the
+manuscript's first sentence, "so `b² = a₁d²a₁⁻¹ = 1`". -/
+theorem conj_sq_eq_one {G : Type*} [Group G] (d a : G) (hd : d ^ 2 = 1) :
+    (a * d * a⁻¹) ^ 2 = 1 := by
+  calc (a * d * a⁻¹) ^ 2 = a * d ^ 2 * a⁻¹ := by group
+    _ = 1 := by rw [hd]; group
+
+/-- **The printed factorization of the pointwise defect.**  For an involution
+`d`, the commutator `[d,a] = d a d⁻¹ a⁻¹` collapses to `d` times the conjugate
+`a d a⁻¹`: the manuscript's `[d,a₁] = d(a₁da₁⁻¹) = db`. -/
+theorem commutator_eq_mul_conj {G : Type*} [Group G] (d a : G)
+    (hd : d ^ 2 = 1) : ⁅d, a⁆ = d * (a * d * a⁻¹) := by
+  have hd_inv : d⁻¹ = d := by
+    apply inv_eq_of_mul_eq_one_left
+    simpa [pow_two] using hd
+  rw [commutatorElement_def, hd_inv]
+  group
+
+/-- **The printed reading of the square.**  A product of two involutions
+squares to their commutator: `(db)² = dbdb = dbd⁻¹b⁻¹ = [d,b]`. -/
+theorem sq_mul_eq_commutator {G : Type*} [Group G] (d b : G)
+    (hd : d ^ 2 = 1) (hb : b ^ 2 = 1) : (d * b) ^ 2 = ⁅d, b⁆ := by
+  have hd_inv : d⁻¹ = d := by
+    apply inv_eq_of_mul_eq_one_left
+    simpa [pow_two] using hd
+  have hb_inv : b⁻¹ = b := by
+    apply inv_eq_of_mul_eq_one_left
+    simpa [pow_two] using hb
+  rw [commutatorElement_def, hd_inv, hb_inv, pow_two]
+  group
+
 /-- If `d` is an involution, its commutator with its `a`-conjugate is the
 square of the pointwise defect `[d,a]`.  This is the group identity used by
-the manuscript's `lem:square`. -/
+the manuscript's `lem:square`.
+
+The proof is the printed one and travels the printed road: put
+`b = a d a⁻¹`, which is an involution by `conj_sq_eq_one`; the square of the
+pointwise defect is `(db)²` by `commutator_eq_mul_conj`; and `(db)²` is
+`[d,b]` by `sq_mul_eq_commutator`. -/
 theorem commutator_conjugate_eq_commutator_sq_of_sq_eq_one :
     ∀ {G : Type*} [Group G] (d a : G), d ^ 2 = 1 →
     ⁅d, a * d * a⁻¹⁆ = ⁅d, a⁆ ^ 2 := by
   intro G _ d a hd
-  have hd_inv : d⁻¹ = d := by
-    apply inv_eq_of_mul_eq_one_left
-    simpa [pow_two] using hd
-  simp only [commutatorElement_def, _root_.mul_inv_rev, inv_inv, hd_inv,
-    pow_two]
-  group
+  have hb : (a * d * a⁻¹) ^ 2 = 1 := conj_sq_eq_one d a hd
+  calc ⁅d, a * d * a⁻¹⁆ = (d * (a * d * a⁻¹)) ^ 2 :=
+        (sq_mul_eq_commutator d (a * d * a⁻¹) hd hb).symm
+    _ = ⁅d, a⁆ ^ 2 := by rw [← commutator_eq_mul_conj d a hd]
 
 /-- If `d` is an involution, then centrality of
 `[d, a d a⁻¹]` already forces that commutator to be an involution.  Thus the

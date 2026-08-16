@@ -110,7 +110,7 @@ theorem matMass_rowMat_mulVec_le
   have hR : matMass xi = ∑ p : Z × Z, Complex.normSq (rowVec xi p) :=
     (sum_normSq_rowVec (Y := (Z : Type)) xi).symm
   rw [hR]
-  exact sum_normSq_mulVec_le_general A (rowVec xi)
+  exact KazhdanCornerMatrices.sum_normSq_mulVec_le_general A (rowVec xi)
 
 /-- In row-major coordinates the operator `conjDouble V` is the adjoint
 action `ξ ↦ V ξ V*`.  This is manuscript step KT.01, in the form the action
@@ -324,8 +324,13 @@ each `Y n` is nonempty. -/
 
 section Action
 
-variable (Y : ℕ → FiniteModel) [∀ n, Nonempty (Y n)] (w : ℕ → ℝ)
-  (ω : Ultrafilter ℕ)
+-- Nonemptiness of the coordinate models is *not* introduced here: everything
+-- from `applyFam` to `actQ_eq_zero_of_isC0` works with bounded operator
+-- sequences and never forms the corona, so carrying the instance through that
+-- block would leave it unused in every one of those declarations.  It is
+-- introduced below, immediately before `coronaLift`, which is the first
+-- declaration that names `AdjointCorona Y`.
+variable (Y : ℕ → FiniteModel) (w : ℕ → ℝ) (ω : Ultrafilter ℕ)
 
 /-- The doubled finite models `Y n × Y n`. -/
 abbrev DblFam (Y : ℕ → FiniteModel) : ℕ → FiniteModel :=
@@ -646,6 +651,10 @@ than through `Ideal.Quotient.lift`, because the corona is exposed behind an
 opaque type synonym and every property below is then available without
 unfolding it. -/
 
+-- From here on the corona is formed, so the coordinate models must be
+-- nonempty; see the note at the head of this section.
+variable [∀ n, Nonempty (Y n)]
+
 /-- A chosen bounded-sequence representative of a corona class. -/
 def coronaLift (x : AdjointCorona Y) : BoundedMatrixSequence (DblIdx Y) :=
   Classical.choose (normMatrixCStarCoronaMk_surjective (DblIdx Y) x)
@@ -691,6 +700,10 @@ theorem coronaMk_smul (c : ℂ) (a : BoundedMatrixSequence (DblIdx Y)) :
 section ActLaws
 
 variable (hw : ∀ n, 0 ≤ w n) (hω : (ω : Filter ℕ) ≤ Filter.cofinite)
+
+-- Every theorem of this section reaches for `hw` and `hω` only inside its
+-- proof, through `act_mk`, so neither is auto-included by the elaborator.
+include hw hω
 
 theorem act_one : act Y w ω 1 = LinearMap.id := by
   have h1 : (1 : AdjointCorona Y) = normMatrixCStarCoronaMk (DblIdx Y) 1 :=

@@ -6,7 +6,11 @@ import Mathlib.Algebra.Group.Subgroup.Ker
 /-!
 # The small-cancellation realization of the Kazhdan--Clifford datum
 
-> **NO MANUSCRIPT CLAIM — NOT IN THE BUILD, AND NOT TO BE WIRED IN.**  On
+> **NO MANUSCRIPT CLAIM, AND NO LITERATURE INPUT IS TO BE ADDED HERE.**  (An
+> earlier version of this header also said "not in the build"; the module is
+> now root-imported, which is fine — everything in it is unconditional.  What
+> must not change is the second half: no hypothesis naming a theorem *about*
+> Fournier-Facio's group may be introduced.)  On
 > 2026-08-16 every Fournier-Facio mention in `non_mf_groups_exist.tex` was
 > audited and found to carry **no formal debt**.  There are five, not the
 > three a first pass finds: a prior-work citation in the introduction, the
@@ -19,19 +23,22 @@ import Mathlib.Algebra.Group.Subgroup.Ker
 > across 55 modules, exactly two live in a Lean file that so much as
 > contains the string "Fournier": the two `Sofic/FullMFRadicalEndpoint`
 > endpoints, which quantify over an abstract `FournierFacioDefectData` with
-> `Nonempty (DefectRoutingData D)` as a declared hypothesis.  Those are a
+> `Nonempty (FiveConditionRoutingData D)` — the manuscript's five printed
+> conditions — as a declared hypothesis.  Those are a
 > **conditional-Lean debt, not a literature-input debt** — they assume
 > routing data, not a theorem of Fournier-Facio, and the structure is merely
 > *named after* him because his group satisfies it.  Nothing the manuscript
 > proves depends on a Fournier-Facio input, so nothing is owed here.
 >
-> This module is retained on disk, untracked and unimported, only because it
-> records the remark's own deduction in unconditional form.  Its companion
-> `Monsters/RealizationEmbedding` was deleted the same day: its universality
-> hypothesis was a literature-shaped input, and such a hypothesis sitting in
-> the tree is what a future reader picks up and builds on.  Nothing below is
-> conditional.  Everything from here down describes the remark and what is
-> proved about it.
+> This module records the remark's own deduction in unconditional form.
+> Nothing below is conditional.  Everything from here down describes the
+> remark and what is proved about it.
+>
+> (An earlier version of this header asserted that the companion module
+> `Monsters/RealizationEmbedding` "was deleted the same day".  That is not
+> true: the file is present and tracked, and it is the right treatment of the
+> universality clause — see below.  The standing instruction is to read and
+> reuse it, never to author a replacement and never to delete it.)
 
 Manuscript: `non_mf_groups_exist.tex`, Remark `rem:ff-realization`
 ("a small-cancellation realization"), lines 1229--1243 at commit `8c07ebb6`.
@@ -75,6 +82,44 @@ contains an involution.  The single point at which the external literature
 input would enter is the passage from universality of `P` to the existence of
 `f`; that passage is deliberately absent from this file, and the module that
 once carried it as a hypothesis has been deleted.
+
+## Where the universality sentence is handled, and why not here
+
+The remark's first sentence — *"His finitely presented torsion-free
+property-`(T)` group `P` contains a copy of every finitely presented
+torsion-free group, in particular a direct product `P₁ × P₂` with `Pᵢ ≅ P`"* —
+is a theorem of the cited paper and is not proved anywhere in this
+development.  It is handled in the companion module
+`Monsters/RealizationEmbedding`, and handled correctly: universality appears
+there as the explicit hypothesis `huniv` of the *single* implication
+`rem_ff_realization_selfSquareEmbedding_of_universal`, whose proved content is
+the closure step (`P × P` is again finitely presented and again torsion-free,
+so a universal `P` receives an injection from its own square).  The same file
+also exhibits, unconditionally, a group that embeds its own direct square, so
+the algebraic hypothesis this module consumes is visibly not vacuous.
+
+That is the right shape, and it should not be replaced by a structure tagged
+as a literature input in the manner of
+`Computability.MarkovMFConsequences.AdianRabinReduction`:
+
+* the sentence is load-bearing for nothing.  It appears in a `remark`, the
+  remark carries no `\leanverified` badge, and no numbered result in the
+  manuscript cites it.  A tagged input exists to keep an *owed* citation
+  visible; there is no debt here to keep visible.  The corpus's literature
+  roster is empty in both places it lives (`scripts/Audit.lean`'s
+  `literatureInputNames` and `docs/NON_MF_LITERATURE_INPUTS.txt`), and this
+  would be the first entry ever;
+* a structure would be a corpus-defined premise that nothing in the corpus
+  ever discharges, which is exactly the shape
+  `scripts/check_non_mf_unconditional.py` reports as a finding.  A plain
+  `∀`-hypothesis in Mathlib vocabulary, which is what `huniv` is, carries the
+  same information without inviting anyone to build on an undischarged
+  package.
+
+What the deduction below actually consumes is the self-embedding
+`f : P × P →* P`, which is *data*.  Every theorem here quantifies over it, so
+a reader who does supply Fournier-Facio's group together with its embedding
+gets the remark's conclusion with nothing assumed on their behalf.
 -/
 
 namespace GroupApproximation.Monsters.FournierFacioRealization
@@ -233,6 +278,32 @@ theorem rem_ff_realization_base_injective
   (kazhdanCliffordConstruction (selfEmbeddingEndomorphism f)
       (rem_ff_realization_alpha_injective f hf) (secondFactorElement f b) hT
       (rem_ff_realization_a_notMem_range f hf hb)).2.1
+
+/-- **Remark `rem:ff-realization`, closing sentence, at the generality it is
+printed in: "The group `E(P, α, a)` contains involutions *whatever the
+base*."**
+
+`rem_ff_realization_contains_involution` proves this for the bases the remark
+constructs — the ones carrying a self-embedding of the direct square — which
+is weaker than what the sentence says.  The sentence quantifies over every
+base the Kazhdan--Clifford construction accepts, and that is what is stated
+here: for *any* finitely presented group with an injective self-map and an
+element outside its image, the distinguished mark of the extension is a
+nontrivial central involution.
+
+Property `(T)` is not needed and is not assumed: nontriviality of the mark is
+the Clifford-model computation `mark_ne_one`, which uses only injectivity of
+`α` and `a ∉ α(Γ₀)`.  That is the point of the sentence — the torsion is
+structural, so replacing the affine base by a small-cancellation one cannot
+buy a torsion-free example. -/
+theorem rem_ff_realization_contains_involution_any_base
+    {Γ₀ : Type} [Group Γ₀] [Group.IsFinitelyPresented Γ₀]
+    (alpha : Γ₀ →* Γ₀) (hAlpha : Function.Injective alpha) (a : Γ₀)
+    (ha : a ∉ Set.range alpha) :
+    ∃ x : Extension alpha a, x ≠ 1 ∧ x ^ 2 = 1 ∧
+      ∀ g : Extension alpha a, Commute x g :=
+  ⟨mark alpha a, mark_ne_one alpha hAlpha a ha, mark_sq alpha a,
+    mark_central alpha a⟩
 
 /-- The realized extension is finitely presented. -/
 theorem rem_ff_realization_finitelyPresented

@@ -427,6 +427,64 @@ theorem compressed_primitive_limit {Γ E : Type} [Group Γ] [Group E]
         (xdiff_bounded B iota V S hgen hsymm hVinv hVcomm hwbdd δa) heq
     _ ≤ d₀ := hcob
 
+/-- **The compressed movers have exact primitives in the limit**, for the
+**printed** displacement vector of Step 4: at an orbit-fixed mover the
+coboundary difference inherits the full coboundary bound, because the printed
+vector vanishes there at all large stages. -/
+theorem compressed_primitive_limit_printed {Γ E : Type} [Group Γ] [Group E]
+    (B : OpAlmostRepresentation E) (iota : Γ →* E) (k : E)
+    (V : ∀ n, Γ → Matrix (B.model n) (B.model n) ℂ) (S : Finset Γ)
+    (hgen : Subgroup.closure (S : Set Γ) = ⊤)
+    (hsymm : ∀ g ∈ S, g⁻¹ ∈ S)
+    (hVinv : ∀ n γ, ExactInvolutionLifts.IsExactInvolution (V n γ))
+    (hVcomm : ∀ n γ₁ γ₂, V n γ₁ * V n γ₂ = V n γ₂ * V n γ₁)
+    (hVconv : ∀ γ, OpNormVanishing B (fun n ↦ V n γ - raw B iota k n γ))
+    {w : ∀ n, EuclideanSpace ℂ (B.model n × B.model n)}
+    (hwbdd : IsBoundedSeq w)
+    {δa : Γ} (hfixed : orbitElement iota k δa = k) {d₀ : ℝ}
+    (hcob : seqNormSq (fun n ↦
+      CollapseWordMetric.bVec B V S n δa -
+        (w n - adFlat (B.map n (iota δa) :
+          Matrix (B.model n) (B.model n) ℂ) (w n))) ≤ d₀) :
+    seqNormSq (fun n ↦
+      w n - adFlat (B.map n (iota δa) :
+        Matrix (B.model n) (B.model n) ℂ) (w n)) ≤ d₀ := by
+  obtain ⟨N, hN⟩ :=
+    CollapsePrintedProfile.eventually_printed_bVec_eq_zero_of_orbit_fixed B
+      iota k V S hgen hsymm hVinv hVcomm hVconv hfixed
+  have hbndy := ydiff_bounded B iota hwbdd δa
+  have hbndny : IsBoundedSeq (fun n ↦
+      -(w n - adFlat (B.map n (iota δa) :
+        Matrix (B.model n) (B.model n) ℂ) (w n))) := by
+    obtain ⟨Cy, hCy⟩ := id hbndy
+    exact ⟨Cy, fun n ↦ by
+      rw [norm_neg]
+      exact hCy n⟩
+  have heq : ∃ N, ∀ n ≥ N,
+      -(w n - adFlat (B.map n (iota δa) :
+        Matrix (B.model n) (B.model n) ℂ) (w n)) =
+        CollapseWordMetric.bVec B V S n δa -
+          (w n - adFlat (B.map n (iota δa) :
+            Matrix (B.model n) (B.model n) ℂ) (w n)) := by
+    refine ⟨N, fun n hn ↦ ?_⟩
+    rw [hN n hn, zero_sub]
+  calc
+    seqNormSq (fun n ↦
+        w n - adFlat (B.map n (iota δa) :
+          Matrix (B.model n) (B.model n) ℂ) (w n)) =
+        seqNormSq (fun n ↦
+          -(w n - adFlat (B.map n (iota δa) :
+            Matrix (B.model n) (B.model n) ℂ) (w n))) :=
+      (seqNormSq_neg _).symm
+    _ = seqNormSq (fun n ↦
+        CollapseWordMetric.bVec B V S n δa -
+          (w n - adFlat (B.map n (iota δa) :
+            Matrix (B.model n) (B.model n) ℂ) (w n))) :=
+      seqNormSq_congr_of_eventually_eq hbndny
+        (xdiff_bounded_printed B iota k V S hgen hsymm hVinv hVcomm hVconv
+          hwbdd δa) heq
+    _ ≤ d₀ := hcob
+
 /-- **Corner capture of the compressed primitive**, assembled from the
 residual bound and the vector capture inequality. -/
 theorem stage_capture {Γ E : Type} [Group Γ] [Group E]
@@ -659,18 +717,12 @@ theorem no_marked_model [Countable Γ]
     rw [hRdef]
     exact div_nonneg (by norm_num) (sq_nonneg κ)
   -- read on the printed displacement vector of Step 4
-  have hRp : ∀ γ : Γ,
+  have hR : ∀ γ : Γ,
       seqNormSq (fun n ↦ CollapseWordMetric.bVec B V S n γ) ≤ R := by
     intro γ
     rw [hRdef]
     exact CollapsePrintedProfile.printed_profile_le_num B iota kk V S hgen
       hsymm hVinv hVcomm hVconv hmark hpair γ
-  -- the same number for the capped family, which the circumcenter consumes
-  have hR : ∀ γ : Γ, seqNormSq (fun n ↦ bVec B V S hgen hsymm n γ) ≤ R := by
-    intro γ
-    rw [CollapsePrintedProfile.seqNormSq_printed_eq B iota kk V S hgen hsymm
-      hVinv hVcomm hVconv γ]
-    exact hRp γ
   -- the compression core for the corner machinery
   set C : KazhdanCompressionCore Γ E :=
     { iota := iota
@@ -728,7 +780,7 @@ theorem no_marked_model [Countable Γ]
   set T : Finset Γ := S ∪ S.image da with hTdef
   clear_value da R Cw ρt θ τ q d₀ ε₆ T
   obtain ⟨w, hwbdd, hwnorm, hwcob⟩ :=
-    exists_approximate_coboundary_of_data B iota kk V S hgen hsymm hVinv hVcomm
+    exists_approximate_coboundary B iota kk V S hgen hsymm hVinv hVcomm
       hVconv hmark hR0 hR T hd0pos
   -- boundedness of the coboundary differences
   have hydiffbdd : ∀ a : Γ, IsBoundedSeq (fun n ↦
@@ -741,15 +793,6 @@ theorem no_marked_model [Countable Γ]
           Matrix (B.model n) (B.model n) ℂ) (w n))) :=
     fun a ↦ xdiff_bounded_printed B iota kk V S hgen hsymm hVinv hVcomm
       hVconv hwbdd a
-  -- the circumcenter defect, read on the printed displacement vector
-  have hwcobp : ∀ a ∈ T, seqNormSq (fun n ↦
-      CollapseWordMetric.bVec B V S n a -
-        (w n - adFlat (B.map n (iota a) :
-          Matrix (B.model n) (B.model n) ℂ) (w n))) ≤ d₀ := by
-    intro a ha
-    rw [← seqNormSq_xdiff_printed_eq B iota kk V S hgen hsymm hVinv hVcomm
-      hVconv hwbdd a]
-    exact hwcob a ha
   -- the compressed movers have exact primitives in the limit
   have hfixda : ∀ a : Γ, orbitElement iota kk (da a) = kk := by
     intro a
@@ -768,7 +811,7 @@ theorem no_marked_model [Countable Γ]
     have hmem : da a ∈ T := by
       rw [hTdef]
       exact Finset.mem_union_right _ (Finset.mem_image_of_mem da haS)
-    exact compressed_primitive_limit B iota kk V S hgen hsymm hVinv
+    exact compressed_primitive_limit_printed B iota kk V S hgen hsymm hVinv
       hVcomm hVconv hwbdd (hfixda a) (hwcob (da a) hmem)
   -- the hyperfilter-large stage set
   have hE1 : ∀ᶠ n in ↑(Filter.hyperfilter ℕ), ∀ a ∈ S,
@@ -777,7 +820,7 @@ theorem no_marked_model [Countable Γ]
           Matrix (B.model n) (B.model n) ℂ) (w n))‖ ≤ τ := by
     rw [Filter.eventually_all_finset]
     intro a haS
-    have hcob := hwcobp a (by
+    have hcob := hwcob a (by
       rw [hTdef]
       exact Finset.mem_union_left _ haS)
     have h := eventually_norm_le_of_seqNormSq_le (hxdiffbdd a) hcob hd0pos

@@ -39,7 +39,23 @@ of four external theorems, numbered `E.1`--`E.4` throughout this development:
 exactness *of groups*, which is Yu's property A and is purely combinatorial;
 only `E.4` crosses over to the C⋆-algebra and therefore only `E.4` needs the
 tensor-product theory that Mathlib does not have.  The group side is developed
-in `ExactnessPermanence.lean`; this file is the C⋆ side.
+in `ExactnessPermanence.lean` and `PropertyAExtension.lean`; this file is the
+C⋆ side.
+
+**Where the group side now stands.**  `E.1` is proved on the manuscript's own
+lamp group (`ExactnessPermanence.hasPropertyA_cliffordLamp_viaAmenability`:
+locally finite `⟹` amenable `⟹` property A).  `E.3` is proved in full
+(`PropertyAExtension.hasPropertyA_of_ker_of_quotient`), together with the
+semidirect-product form the manuscript actually uses
+(`PropertyAExtension.hasPropertyA_semidirectProduct_of_isLocallyFiniteGroup`).
+So of the two group-side links that were open, one is closed outright and the
+other, `E.2`, is Guentner--Higson--Weinberger's theorem, which this repository
+does not prove and does not transcribe: the semidirect-product corollary takes
+property A of the quotient as an explicit hypothesis, so the conditionality is
+visible in its type.
+
+That leaves `E.4` as the sole *structural* obstruction, and it is the one this
+file is about.
 
 ## What Mathlib has, and what it does not
 
@@ -130,6 +146,127 @@ definition below is a genuine definition with genuine content: dropping the
 finite-dimensionality of the approximant `D` would make every completely
 positive map nuclear (take `D = A`, `α = id`, `β = φ`), so the
 finite-dimensionality hypothesis is what carries the mathematics.
+
+**Exactly what is missing, as of the group side being closed.**  Two things,
+and they are of different kinds.
+
+1. `E.2`, property A for finitely generated linear groups.  A *theorem*, not a
+   vocabulary gap: it is statable today, and stating it is what
+   `PropertyAExtension.hasPropertyA_semidirectProduct_of_isLocallyFiniteGroup`
+   does by taking it as a hypothesis.  Proving it means formalizing
+   Guentner--Higson--Weinberger --- actions on products of affine buildings over
+   the completions of a finitely generated field --- and is research-scale.
+2. `E.4`, the crossover.  A *vocabulary* gap, and the shortfall is now
+   itemised rather than global, because the peer C⋆-tensor lane has moved.
+   What that lane has built is the spatial C⋆-norm **relative to a fixed pair
+   of faithful representations** (`CStarTensorProductSpatial.lean`,
+   `CStarTensorProductConcrete.lean`, including the cross-norm property).  What
+   is still absent, at the pinned Mathlib revision and in this repository:
+   * canonicity of that norm --- Takesaki's independence-of-representation
+     theorem --- without which there is no `⊗_min`, only `⊗_{π,ρ}`;
+   * the completion of a C⋆-normed ⋆-algebra to a C⋆-algebra (Stage B of the
+     tensor lane's roadmap), so `A ⊗_{π,ρ} B` is not yet an algebra;
+   * a C⋆-algebra structure on a quotient `B ⧸ J` by a closed two-sided ideal
+     --- Mathlib's `Ideal.Quotient.semiNormedCommRing` is commutative only, and
+     nothing in this repository supplies the noncommutative case;
+   * consequently, no predicate `IsExact` for C⋆-algebras anywhere;
+   * and, for the group-to-algebra passage itself, no crossed products and no
+     uniform Roe algebra, which is what Ozawa's proof of
+     `property A ⟹ Cred(G) exact` runs through.
+
+So the shape of the residual obligation is now sharp: supply `⊗_min` and the
+C⋆-quotient, define `IsExact`, and the manuscript's sentence becomes a
+statement; supply Ozawa and `E.2`, and it becomes a theorem.  Neither is
+attempted here, and no declaration in this file or in `PropertyAExtension.lean`
+asserts, assumes, or names any of them.
+
+## The exactness row: the standing record of what would close it
+
+This section is the durable statement of the gap.  It is written so that a
+later reader need consult no report, no commit message and no other module.
+
+**What the Lean chain actually is, against what the manuscript prints.**  The
+manuscript's chain is
+
+```
+    amenable ⟹ exact  →  linear ⟹ exact  →  extension of exacts is exact
+        ⟹ Cred(W) exact .
+```
+
+What this repository contains is
+
+```
+    locally finite ⟹ amenable ⟹ property A  →  (hypothesis: property A of Σ)
+        →  extension of property-A groups has property A .
+```
+
+The second chain is complete and machine-checked at its own level
+(`ExactnessPermanence.lean`, `PropertyAExtension.lean`).  It does **not** reach
+the first, and the two are joined by exactly two unformalized theorems.
+
+**Missing theorem 1 --- Ozawa / Higson--Roe.**  For a countable discrete group,
+`property A ⟺ Cred(G) is exact`.  This is the identification that lets the
+combinatorial chain stand in for the printed one.  It is **neither proved nor
+assumed** here: no declaration anywhere in this repository converts a
+`HasPropertyA` conclusion into an exactness conclusion, and none could, because
+there is no exactness predicate to convert into.  Property A is therefore a
+*substitute notion*, and the substitution is unjustified in the formal
+development --- deliberately, and visibly.
+
+**Missing theorem 2 --- Guentner--Higson--Weinberger.**  A finitely generated
+linear group has property A, applied to `Σ ≤ GL₄(ℚ)`.  Statable today; entered
+as the explicit hypothesis `HasPropertyA H` of
+`PropertyAExtension.hasPropertyA_semidirectProduct_of_isLocallyFiniteGroup`,
+never as a named transcription (the `LITERATURE_INPUT` roster in
+`scripts/Audit.lean` is deliberately empty and this development adds nothing to
+it).
+
+**Missing Mathlib objects.**  Even granting both theorems, the conclusion is
+not *statable*.  Three objects are absent at the pinned revision:
+
+1. **A canonical minimal tensor product `⊗_min`.**  The repository's
+   `Analysis/CStarTensorProduct*` lane builds the spatial C⋆-seminorm relative
+   to a *chosen* pair of faithful representations, and proves the cross-norm
+   property.  What is missing is Takesaki's independence-of-representation
+   theorem; without it the norm is `‖·‖_{π,ρ}` and cannot honestly be written
+   `‖·‖_min`.  That theorem genuinely needs states, GNS and continuous slice
+   maps.
+2. **A C⋆-algebra structure on a quotient `B ⧸ J` by a closed two-sided
+   ideal.**  Mathlib's `Ideal.Quotient.semiNormedCommRing` and `normedCommRing`
+   (`Analysis/Normed/Group/Quotient.lean:495,512`) are **commutative only**, so
+   even the seminormed quotient *ring* must be redone noncommutatively before
+   the C⋆-identity on the quotient can be approached.
+3. **Consequently no predicate `IsExact` for C⋆-algebras**, anywhere --- since
+   exactness is defined by `A ⊗_min ·` carrying short exact sequences to short
+   exact sequences, and (1) and (2) are both prerequisites for writing that
+   down.  `grep -rli nuclear` over Mathlib at this revision returns nothing at
+   all.
+
+For Ozawa's route in particular, crossed products and the uniform Roe algebra
+are also absent, and Mathlib has no crossed products of any kind.
+
+**Where the tensor lane's formerly-undischarged hypothesis sits in this.**
+`CStarTensorProductSpatial.spatialNorm_isCStarNorm_of_injective` assumed
+`Function.Injective (spatialHom π ρ)`.  That hypothesis is **now proved**
+(`CStarTensorProductSpatial.spatialHom_injective`), by a purely algebraic
+argument --- the vector functionals separate points, plus a Hamel basis on one
+factor --- with no states, no GNS and no continuity.  The unconditional
+consequence is `spatialNorm_isCStarNorm`.
+
+**This must not be mistaken for progress on this row, and the temptation is
+real, so it is worth saying flatly.**  What was upgraded is a *conditional*
+C⋆-norm to an unconditional one **for a fixed pair `(π, ρ)`**.  It says nothing
+about canonicity.  Item (1) above --- Takesaki's independence theorem, which is
+what would let the norm be written `‖·‖_min` at all --- stands entirely
+untouched, and item (2), the noncommutative C⋆-quotient, is untouched as well.
+`IsExact` therefore remains unstatable, and the exactness row is exactly as
+missing as it was before.
+
+**Therefore the manuscript's exactness row is MISSING**, and the manuscript's
+own sentence --- *"the present formal library has no definition of exact
+C⋆-algebras"* --- is the accurate description.  No `\leanverified` badge points
+at any declaration in this file, in `ExactnessPermanence.lean`, in
+`PropertyAExtension.lean`, or in the `CStarTensorProduct*` lane.
 
 ## Contents
 

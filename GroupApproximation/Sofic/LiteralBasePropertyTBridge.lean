@@ -1,6 +1,7 @@
 import GroupApproximation.Sofic.LiteralTranslationOrbit
 import GroupApproximation.Sofic.LiteralBaseRotationRetract
 import GroupApproximation.Kazhdan.HilbertConvexFixedPoint
+import GroupApproximation.Monsters.P13CircumcenterRouteStep3
 
 /-!
 # Property (T) transfer from the literal rotation group to the affine base
@@ -17,6 +18,24 @@ moves it by a uniformly bounded amount: the two-conjugate normal form from
 The bounded-orbit fixed-point theorem then projects once more to a vector fixed
 by both subgroups.  The exact P13 certificate and checked quotient in the
 endpoint modules supply property `(T)` of the rotation presentation.
+
+This file is Step 3 of the proof of Proposition `prop:literal-base-T`, and it is
+on the badged path from that proposition, so each of its four steps is taken
+from `Monsters/P13CircumcenterRouteStep3.lean`, where they are stated with the
+objects the manuscript names:
+
+* the transfer of property `(T)` to the linear subgroup is along the printed
+  **surjection** `R ↠ ⟨x,y,z⟩` (`t3_01_rotations_hasKazhdanPropertyT`), not
+  along the stronger isomorphism `Rotation ≃* rotations`;
+* the normalized Kazhdan pair `κ ∈ (0,1]` is *derived* from Step 2
+  (`t3_03_exists_normalized_pair`);
+* the displacement bound for the translation subgroup is deduced from a bound
+  on all three **basis** translations (`t3_02_norm_translation_displacement_le`),
+  `v₁`'s case coming from the printed `v₁ = x v₂ x⁻¹`
+  (`t3_04_basis_displacement_lt`);
+* the translation-fixed vector is the printed **circumcenter** of the bounded
+  orbit (`t3_11_exists_near_translationFixedSubspace`), not the minimal-norm
+  point of its closed convex hull.
 -/
 
 namespace GroupApproximation
@@ -148,14 +167,16 @@ private theorem exists_global_fixed_near
     have h := norm_displacement_at_near rho LiteralBaseRelations.v3 x p
     rw [hpx] at h
     nlinarith
+  have hbasis := P13CircumcenterRouteStep3.t3_04_basis_displacement_lt
+    rho p hpFixed hv2p hv3p
   have htranslation : ∀ t : translations, ‖rho t.1 p - p‖ ≤ 1 / 8 := by
     intro t
-    have h := norm_translation_displacement_le_of_rotations_fixed
-      rho p hpFixed t.2
-    nlinarith
+    have h := P13CircumcenterRouteStep3.t3_02_norm_translation_displacement_le
+      rho p hpFixed hbasis t
+    linarith
   obtain ⟨z, hzTrans, hzp⟩ :=
-    HilbertConvexFixedPoint.exists_near_fixedSubspace
-      rho translations p htranslation
+    P13CircumcenterRouteStep3.t3_11_exists_near_translationFixedSubspace
+      rho p htranslation
   let y : E := KazhdanFixedSpace.fixedProjection rho translations p
   have hyTrans : y ∈ KazhdanFixedSpace.fixedSubspace rho translations :=
     (KazhdanFixedSpace.fixedProjection rho translations p).property
@@ -208,9 +229,9 @@ theorem base_hasKazhdanPropertyT_of_rotation
     (hRotation : HasKazhdanPropertyT.{0, 0} Rotation) :
     HasKazhdanPropertyT.{0, 0} Base := by
   have hRotations : HasKazhdanPropertyT.{0, 0} rotations :=
-    HasKazhdanPropertyT.of_mulEquiv rotationEquivRotations.symm hRotation
-  obtain ⟨S, kappa, -, hkappa, hkappaOne, hS⟩ :=
-    hRotations.exists_identity_pair
+    P13CircumcenterRouteStep3.t3_01_rotations_hasKazhdanPropertyT hRotation
+  obtain ⟨S, kappa, hkappa, hkappaOne, hS⟩ :=
+    P13CircumcenterRouteStep3.t3_03_exists_normalized_pair hRotations
   refine ⟨baseControlSet S, kappa / 64, by positivity, ?_⟩
   intro E _ _ _ rho x hx hnear
   obtain ⟨y, hyFixed, hyNear⟩ :=

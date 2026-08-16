@@ -1,4 +1,5 @@
 import GroupApproximation.Algebra.ProductFinitePresentation
+import GroupApproximation.Algebra.TorsionFreeRank
 import GroupApproximation.Sofic.ChosenNonMFTheorem
 import GroupApproximation.Sofic.OperatorMFPositiveControls
 import Mathlib.Data.Int.Cast.Lemmas
@@ -17,13 +18,25 @@ and all three are proved here.
   presented by induction on the coordinate split.
 * Non-MF is heredity: the first factor embeds, and operator-MF passes to
   subgroups, so a non-MF factor obstructs the product.
-* Pairwise nonisomorphism is counted rather than ranked.  The manuscript
-  separates the members by the torsion-free rank of the abelianization;
-  the count of homomorphisms into the two-element group is the same
-  invariant read mod `2`, and it needs no structure theory: homomorphisms
-  out of a product into an abelian group split, `ℤ^k` contributes exactly
-  `2^k` of them, and the factor contributed by `E` is finite and nonzero
-  because `E` is finitely generated.  So `m · 2^k` determines `k`.
+* Pairwise nonisomorphism is proved twice, because the manuscript names two
+  invariants: "their abelianizations have distinct torsion-free ranks; the
+  number of homomorphisms to `ℤ/2` separates them as well".  Both are stated
+  in the endpoint `manuscriptInfiniteMultiplicity`, in that order.
+  - The torsion-free rank is the printed primary route, through
+    `Algebra.TorsionFreeRank`: abelianization commutes with binary products,
+    the rank is additive, `ℤ^k` contributes exactly `k`, and `rk E^{ab}` is
+    finite because `E` is finitely generated -- which is what makes
+    `rk E^{ab} + k` determine `k`.
+  - The count of homomorphisms into the two-element group is the same
+    invariant read mod `2`, and it needs no structure theory: homomorphisms
+    out of a product into an abelian group split, `ℤ^k` contributes exactly
+    `2^k` of them, and the factor contributed by `E` is finite and nonzero
+    because `E` is finitely generated.  So `m · 2^k` determines `k`.
+
+  `Sofic.ProductMultiplicityRank` develops the rank route on its own, under
+  its own names and for an arbitrary finitely generated first factor; the
+  short specialization needed for the endpoint here is redone rather than
+  imported, because that file imports this one.
 
 The second multiplicity sense of the manuscript --- pairing `E` with the
 continuum of two-generator groups of B. H. Neumann --- is not formalized
@@ -185,17 +198,96 @@ theorem chosenFamily_eq_of_mulEquiv {k l : ℕ}
     fg_of_isFinitelyPresented MarkedGroup
   exact eq_of_family_mulEquiv e
 
-/-- Closed form: there is an infinite family of pairwise nonisomorphic
-finitely presented groups, none of them operator-MF. -/
+/-! ## The printed invariant: the torsion-free rank of the abelianization -/
+
+/-- `ℤ^k` has abelianization of torsion-free rank `k`.  The induction splits
+off one coordinate at a time, exactly as the finite-presentation and counting
+arguments above do: the rank is additive over products, and one infinite
+cyclic coordinate contributes `1`. -/
+theorem torsionFreeRank_intPow :
+    ∀ k : ℕ, TorsionFreeRank.abelianizationRank (IntPow k) = (k : Cardinal)
+  | 0 => by
+      have h0 : TorsionFreeRank.abelianizationRank (IntPow 0) = 0 :=
+        TorsionFreeRank.abelianizationRank_eq_zero_of_subsingleton (IntPow 0)
+      simpa using h0
+  | k + 1 => by
+      rw [TorsionFreeRank.abelianizationRank_congr (intPowSucc k),
+        TorsionFreeRank.abelianizationRank_prod,
+        TorsionFreeRank.abelianizationRank_multiplicativeInt,
+        torsionFreeRank_intPow k]
+      push_cast
+      ring
+
+/-- **The manuscript's invariant of `G × ℤ^k`**: its abelianization has
+torsion-free rank `rk G^{ab} + k`. -/
+theorem torsionFreeRank_family (G : Type) [Group G] (k : ℕ) :
+    TorsionFreeRank.abelianizationRank (Family G k)
+      = TorsionFreeRank.abelianizationRank G + (k : Cardinal) := by
+  calc TorsionFreeRank.abelianizationRank (Family G k)
+      = TorsionFreeRank.abelianizationRank G
+          + TorsionFreeRank.abelianizationRank (IntPow k) :=
+        TorsionFreeRank.abelianizationRank_prod G (IntPow k)
+    _ = TorsionFreeRank.abelianizationRank G + (k : Cardinal) := by
+        rw [torsionFreeRank_intPow]
+
+/-- **Distinct `k` give distinct torsion-free ranks.**  Finite generation of
+`E` makes `rk E^{ab}` a natural number, and cancellation in `ℕ` finishes; this
+is the step that would fail for an infinite rank, which is why the finite
+presentation of `E` is used and not merely its existence. -/
+theorem chosenFamily_torsionFreeRank_ne {k l : ℕ} (h : k ≠ l) :
+    TorsionFreeRank.abelianizationRank (Family MarkedGroup k) ≠
+      TorsionFreeRank.abelianizationRank (Family MarkedGroup l) := by
+  haveI : Group.FG MarkedGroup := fg_of_isFinitelyPresented MarkedGroup
+  intro hEq
+  rw [torsionFreeRank_family, torsionFreeRank_family] at hEq
+  obtain ⟨n, hn⟩ := Cardinal.lt_aleph0.mp
+    (TorsionFreeRank.abelianizationRank_lt_aleph0 MarkedGroup)
+  rw [hn, ← Nat.cast_add, ← Nat.cast_add] at hEq
+  exact h (Nat.add_left_cancel (Nat.cast_injective hEq))
+
+/-- **The secondary printed invariant separates the family too**: the count of
+homomorphisms into the two-element group is `m · 2^k` with `m` finite and
+nonzero, so distinct `k` give distinct counts. -/
+theorem chosenFamily_card_hom_ne {k l : ℕ} (h : k ≠ l) :
+    Nat.card (Family MarkedGroup k →* TwoGroup) ≠
+      Nat.card (Family MarkedGroup l →* TwoGroup) := by
+  haveI : Group.FG MarkedGroup := fg_of_isFinitelyPresented MarkedGroup
+  haveI : Finite (MarkedGroup →* TwoGroup) :=
+    finite_hom_of_fg MarkedGroup TwoGroup
+  haveI : Nonempty (MarkedGroup →* TwoGroup) := ⟨1⟩
+  have hpos : 0 < Nat.card (MarkedGroup →* TwoGroup) := Nat.card_pos
+  intro hEq
+  rw [card_hom_family, card_hom_family] at hEq
+  exact h (Nat.pow_right_injective (le_refl 2)
+    (Nat.eq_of_mul_eq_mul_left hpos hEq))
+
+/-- **The manuscript's multiplicity paragraph, in the form it is printed.**
+There is an infinite family of finitely presented groups, none of them
+operator-MF, which are pairwise nonisomorphic — *"because their
+abelianizations have distinct torsion-free ranks; the number of homomorphisms
+to `ℤ/2` separates them as well"*.
+
+Both named invariants are in the statement, in the printed order, followed by
+the nonisomorphism they establish.  The endpoint would be true with neither of
+them, since the last clause is the mathematical content; but the sentence
+names them, and a badge that certified only the last clause would certify a
+true statement that is not the printed one. -/
 theorem manuscriptInfiniteMultiplicity :
     ∃ F : ℕ → Type,
       ∃ _ : ∀ k, Group (F k),
         (∀ k, Group.IsFinitelyPresented (F k)) ∧
           (∀ k, ¬ IsOperatorMF (F k)) ∧
+          (∀ k l, k ≠ l →
+            TorsionFreeRank.abelianizationRank (F k) ≠
+              TorsionFreeRank.abelianizationRank (F l)) ∧
+          (∀ k l, k ≠ l →
+            Nat.card (F k →* TwoGroup) ≠ Nat.card (F l →* TwoGroup)) ∧
           (∀ k l, Nonempty (F k ≃* F l) → k = l) := by
   refine ⟨fun k ↦ Family MarkedGroup k, fun _ ↦ inferInstance,
     fun k ↦ (chosenFamily_finitelyPresented_not_isOperatorMF k).1,
-    fun k ↦ (chosenFamily_finitelyPresented_not_isOperatorMF k).2, ?_⟩
+    fun k ↦ (chosenFamily_finitelyPresented_not_isOperatorMF k).2,
+    fun _ _ h ↦ chosenFamily_torsionFreeRank_ne h,
+    fun _ _ h ↦ chosenFamily_card_hom_ne h, ?_⟩
   rintro k l ⟨e⟩
   exact chosenFamily_eq_of_mulEquiv e
 

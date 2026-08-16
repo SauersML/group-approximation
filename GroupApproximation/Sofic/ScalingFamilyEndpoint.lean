@@ -263,7 +263,9 @@ theorem scaling_centralSignCriterion (m : ℕ) (hm : 2 ≤ m) :
           (fun n ↦ naturalFiniteModel (d n))),
         rho (mark m) = 1) ∧
       ¬ IsCDEOperatorMF (MarkedGroup m) :=
-  KazhdanCompressionCore.manuscriptCentralSignCriterion.{0}
+  -- Two universe levels: the ambient group's, then the property-`(T)`
+  -- Hilbert-space universe.  Both are `0` for the scaling family.
+  KazhdanCompressionCore.manuscriptCentralSignCriterion.{0, 0}
     (Γ := Base) (E := MarkedGroup m)
     LiteralBaseP13PropertyTBridge.manuscriptBaseHasKazhdanPropertyT.2
     (baseMap m) (stable m) (lamp m) (familyInclusionData m).compresses

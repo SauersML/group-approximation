@@ -40,26 +40,14 @@ re-derived from the presentation in
 split-`Z` step directly rather than citing Elek--Szabó (the same construction
 as Lean `SoficIntegerExtension.isSofic_int_semidirectProduct`).
 
-**MACHINE-CHECKED since 2026-08-16.**
-`LiteralSoficAssembly.markedGroup_isSofic : IsSofic MarkedGroup` compiles,
-takes no hypothesis, and `#print axioms` returns exactly `propext`,
-`Classical.choice`, `Quot.sound` — no `sorryAx`, no repo axiom, no literature
-premise.  The module is in the root import closure and the whole root target
-builds green.
-
-What unblocked it was not new mathematics.  `BlockCliffordTowerSofic.isSofic_blockClifford_tower`
-was already the finished theorem and `LiteralBlockNormalForm` already computed
-`E = C(G) semidirect Vertical`; the two could not be composed because the two
-vertical groups were recorded as "unrelated types".  They are the same group —
-see `literal-vertical-bridge` in `Sofic/LiteralVerticalBridge.lean`, where
-`lampKernel_agree` is `rfl`.  Two facts kept the chain cheap: only
-`blockSubgroup <= B_1` is needed (presented blocks may refine geometric ones),
-and no step needs the doubling index to be exactly eight.
-
-Still open on the manuscript side: whether to strengthen the printed
-Theorem E from the finitely generated witness `W` to the finitely presented
-source `E`.  That now has a declaration to cite, so it is an editorial call,
-not a formalization gap.
+Two things that are NOT settled by any of this.  No Lean declaration concludes
+`IsSofic` for the literal carrier — the endpoint drafts
+(`Sofic/Literal{LampKernelSplit,BlockGeometry,LampKernelAmalgam,TelescopeCoreLEF,SoficEndpoint}.lean`)
+do not compile into one closed theorem, so under the
+formalized-or-not-in-manuscript doctrine this cannot enter the manuscript yet.
+And `non_mf_groups_exist.tex` still says, at the line introducing the
+open-questions list, that "whether `E` itself is sofic is open" — the graph and
+the manuscript disagree, and the manuscript is the stale one.
 
 Consequences and dead ends recorded here so they are not retried:
 

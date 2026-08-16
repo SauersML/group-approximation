@@ -39,7 +39,13 @@ open Matrix KazhdanCornerMatrices KazhdanCompressorCorner
 open KazhdanAsymptoticCommutant
 open scoped Matrix.Norms.L2Operator
 
-variable {Γ E : Type} [Group Γ] [Group E]
+universe u
+
+/-! The ambient group is quantified at an arbitrary universe, matching the
+manuscript, which fixes no universe for the group `H` carrying the almost
+representation.  See `Sofic.KazhdanAsymptoticCommutant` for why the Kazhdan
+source `Γ` stays in `Type 0`. -/
+variable {Γ : Type} {E : Type u} [Group Γ] [Group E]
 
 /-! ## Unnormalized Frobenius mass -/
 
@@ -1073,7 +1079,7 @@ theorem scaled_transport_star
 /-- A one-sided compressor acts as a two-sided symmetry of the mass-bounded
 scaled asymptotic commutant, at every nonnegative weight. -/
 theorem scaled_transport_both :
-    ∀ {Γ E : Type} [Group Γ] [Group E]
+    ∀ {Γ : Type} {E : Type u} [Group Γ] [Group E]
       (B : OpAlmostRepresentation E) (w : ℕ → ℝ) (_hw : ∀ n, 0 ≤ w n)
       (C : KazhdanCompressionCore Γ E)
       (x : ∀ n, Matrix (B.model n) (B.model n) ℂ)
@@ -1088,6 +1094,85 @@ theorem scaled_transport_both :
   intro Γ E _ _ B w hw C x hx hbound
   exact ⟨scaled_transport B w hw C x hx hbound,
     scaled_transport_star B w hw C x hx hbound⟩
+
+/-! ## The dimension weight
+
+The manuscript records, immediately after the transport-variants theorem, that
+the dimension weight `w n = d n` recovers the unscaled transport theorem with
+the uniform operator-norm bound relaxed to mass boundedness.  The two halves of
+that sentence are proved here: at the dimension weight the scaled commutant
+*is* the normalized Hilbert--Schmidt commutant, and uniform operator-norm
+boundedness is a strictly special case of mass boundedness at that weight
+(`IsUniformlyBounded.isScaledMassBounded_card` above). -/
+
+/-- At the dimension weight the scaled asymptotic commutant is literally the
+normalized Hilbert--Schmidt asymptotic commutant of
+`Sofic.KazhdanAsymptoticCommutant`: no estimate is involved, only the identity
+`matMass = d n · hsNormSq`. -/
+theorem isScaledAsymptoticCommutantOf_card_iff
+    {B : OpAlmostRepresentation E} {iota : Γ →* E}
+    {x : ∀ n, Matrix (B.model n) (B.model n) ℂ} :
+    IsScaledAsymptoticCommutantOf B
+        (fun n ↦ (Fintype.card (B.model n) : ℝ)) iota x ↔
+      IsAsymptoticCommutantOf B iota x :=
+  ⟨fun h γ ↦ scaledMassVanishing_card_iff_hsSqVanishing.mp (h γ),
+    fun h γ ↦ scaledMassVanishing_card_iff_hsSqVanishing.mpr (h γ)⟩
+
+/-- **The dimension weight recovers the transport theorem, with the bound
+relaxed.**  Specializing the scaled theorem at `w n = d n` returns exactly the
+conclusion of `KazhdanAsymptoticCommutant.transport_both` — the printed
+Theorem 3.1 — but from Frobenius mass boundedness rather than from a uniform
+operator-norm bound.  Together with `IsUniformlyBounded.isScaledMassBounded_card`
+this is the manuscript's claim that the dimension weight is a special case of
+the scaled theorem, and a strictly stronger one. -/
+theorem transport_both_of_card_massBounded
+    (B : OpAlmostRepresentation E) (C : KazhdanCompressionCore Γ E)
+    (x : ∀ n, Matrix (B.model n) (B.model n) ℂ)
+    (hx : IsAsymptoticCommutant B C x)
+    (hbound : IsScaledMassBounded B
+      (fun n ↦ (Fintype.card (B.model n) : ℝ)) x) :
+    IsAsymptoticCommutant B C (fun n ↦
+        (B.map n C.t : Matrix (B.model n) (B.model n) ℂ) * x n *
+          (B.map n C.t : Matrix (B.model n) (B.model n) ℂ)ᴴ) ∧
+      IsAsymptoticCommutant B C (fun n ↦
+        (B.map n C.t : Matrix (B.model n) (B.model n) ℂ)ᴴ * x n *
+          (B.map n C.t : Matrix (B.model n) (B.model n) ℂ)) := by
+  have hw : ∀ n, (0 : ℝ) ≤ (Fintype.card (B.model n) : ℝ) := fun n ↦
+    Nat.cast_nonneg _
+  obtain ⟨hfwd, hrev⟩ :=
+    scaled_transport_both B (fun n ↦ (Fintype.card (B.model n) : ℝ)) hw C x
+      (isScaledAsymptoticCommutantOf_card_iff.mpr hx) hbound
+  exact ⟨isScaledAsymptoticCommutantOf_card_iff.mp hfwd,
+    isScaledAsymptoticCommutantOf_card_iff.mp hrev⟩
+
+/-- **The scaled theorem at `w n = d n` is Theorem 3.1.**  Closed form of the
+manuscript's remark: for every ambient group, every operator-norm almost
+representation and every compression datum, the dimension weight identifies the
+scaled asymptotic commutant with the normalized Hilbert--Schmidt one, uniform
+operator-norm boundedness implies mass boundedness at that weight, and the
+scaled transport theorem therefore yields the two-sided conclusion of
+Theorem 3.1 from the weaker bound. -/
+theorem manuscriptDimensionWeightRecovery :
+    ∀ {Γ : Type} {E : Type u} [Group Γ] [Group E]
+      (B : OpAlmostRepresentation E) (C : KazhdanCompressionCore Γ E)
+      (x : ∀ n, Matrix (B.model n) (B.model n) ℂ),
+      (IsScaledAsymptoticCommutant B
+          (fun n ↦ (Fintype.card (B.model n) : ℝ)) C x ↔
+        IsAsymptoticCommutant B C x) ∧
+      (IsUniformlyBounded B x →
+        IsScaledMassBounded B (fun n ↦ (Fintype.card (B.model n) : ℝ)) x) ∧
+      (IsAsymptoticCommutant B C x →
+        IsScaledMassBounded B (fun n ↦ (Fintype.card (B.model n) : ℝ)) x →
+        IsAsymptoticCommutant B C (fun n ↦
+            (B.map n C.t : Matrix (B.model n) (B.model n) ℂ) * x n *
+              (B.map n C.t : Matrix (B.model n) (B.model n) ℂ)ᴴ) ∧
+          IsAsymptoticCommutant B C (fun n ↦
+            (B.map n C.t : Matrix (B.model n) (B.model n) ℂ)ᴴ * x n *
+              (B.map n C.t : Matrix (B.model n) (B.model n) ℂ))) := by
+  intro Γ E _ _ B C x
+  exact ⟨isScaledAsymptoticCommutantOf_card_iff,
+    fun hb ↦ IsUniformlyBounded.isScaledMassBounded_card hb,
+    fun hx hbound ↦ transport_both_of_card_massBounded B C x hx hbound⟩
 
 /-! ## All compressors -/
 
@@ -1141,7 +1226,7 @@ theorem compressionGroup_le_scaledCommutantStabilizer
 
 /-- Pointwise form of the all-compressors scaled transport theorem. -/
 theorem compressionGroup_scaled_transport_both
-    {Γ₀ E₀ : Type} [Group Γ₀] [Group E₀]
+    {Γ₀ : Type} {E₀ : Type u} [Group Γ₀] [Group E₀]
     (B : OpAlmostRepresentation E₀) (w : ℕ → ℝ) (hw : ∀ n, 0 ≤ w n)
     (iota : Γ₀ →* E₀) (hkazhdan : HasKazhdanPropertyT.{0, 0} Γ₀)
     {g : E₀} (hg : g ∈ compressionGroup iota.range)

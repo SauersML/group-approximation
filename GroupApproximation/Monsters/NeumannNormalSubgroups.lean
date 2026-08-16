@@ -76,7 +76,7 @@ Neumann's own groups are two-generator.  Nothing here is two-generator: the
 marker set has sixty-two elements and no attempt is made to compute a minimal
 generating set for anything.  The manuscript's deduction never uses
 two-generation, and the Lean statement it consumes,
-`ContinuumMultiplicity.manuscriptContinuumMultiplicity`, takes `Group.FG`.
+`ContinuumMultiplicity.exists_continuum_pairwise_nonisomorphic`, takes `Group.FG`.
 -/
 
 namespace GroupApproximation
@@ -349,7 +349,8 @@ theorem neumann_continuum_through_normal_subgroups :
   ⟨mk_quotientIndex, fun _ => inferInstance, quotientFamily_pairwise⟩
 
 /-- **Continuum multiplicity, unconditionally, through normal subgroups.**  The
-manuscript's counting step `ContinuumMultiplicity.manuscriptContinuumMultiplicity`
+manuscript's counting step
+`ContinuumMultiplicity.exists_continuum_pairwise_nonisomorphic`
 applied to the family built here: a continuum of pairwise nonisomorphic finitely
 generated groups, each of them not operator-MF after multiplying by `E`.
 
@@ -363,7 +364,7 @@ theorem manuscriptContinuumMultiplicityViaNormalSubgroups :
       ∀ i ∈ J, ∀ j ∈ J,
         Nonempty ((MarkedGroup × QuotientFamily i) ≃*
           (MarkedGroup × QuotientFamily j)) → i = j :=
-  ContinuumMultiplicity.manuscriptContinuumMultiplicity QuotientFamily
+  ContinuumMultiplicity.exists_continuum_pairwise_nonisomorphic QuotientFamily
     quotientFamily_pairwise mk_quotientIndex
 
 end NeumannNormalSubgroups

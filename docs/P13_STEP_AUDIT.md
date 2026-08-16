@@ -901,13 +901,28 @@ the recombined word `mon · (conjugated monotone part)`.
 **X2 (real, minor).** Step 3's constant `3/64` in item 2 requires `κ ≤ 1`, which
 is nowhere stated. Add "we may assume `κ ≤ 1`" to Step 2 or Step 3.
 
-**X3 (minor).** Step 1's *"The kernel of `Δ` is exactly the space of invariant
+**X3 (minor).** ~~Step 1's *"The kernel of `Δ` is exactly the space of invariant
 vectors"* asserts an equality where only one inclusion is used; harmless, but
-the equality is not what gets proved.
+the equality is not what gets proved.~~ **Withdrawn, 2026-08-16.** Both halves
+of this are now false. The equality *is* proved
+(`P13SpectralGap.t1_05_p13_ker_eq_invariants`, see the T1.05 retraction), and
+both inclusions are now used: the forward one inside the Kazhdan argument, and
+the converse — the one this finding called unused — by
+`P13InvariantProjection.generatorLaplacian_eq_zero_of_invariant`, which is what
+lets the distance estimate of T1.06 discard the invariant part of `v`. No TeX
+edit is called for.
 
-**X4 (minor).** Step 3's justification for omitting `v₁` from the control set
+**X4 (minor).** ~~Step 3's justification for omitting `v₁` from the control set
 (T3.04) is a correct but *superfluous* argument — the two-conjugate normal form
-of item 2 already covers `v₁`. As printed it is a step with no role.
+of item 2 already covers `v₁`. As printed it is a step with no role.~~
+**Withdrawn, 2026-08-16.** The superfluity was an artifact of the Lean side, not
+of the manuscript. The printed item 2 assumes a displacement bound on the three
+*basis* translations and derives `v₁`'s from `v₁ = xv₂x⁻¹`; the repo's
+`translation_eq_two_rotation_conjugates` happens to produce a stronger normal
+form using only `v₃, v₂`, which is what made the printed step look idle.
+`t3_02_norm_translation_displacement_le` now takes the printed hypothesis, so
+the caller must discharge `v₁` and does so by the printed argument. No TeX edit
+is called for.
 
 **X5 (scholarship).** The clause *"whose elements the matrix model separates by
 their semidirect normal form"* silently requires completeness of the rank-two
@@ -919,6 +934,48 @@ half-sentence ("the rank-two block is faithful, by the classical
 ---
 
 ## 7. Summary table
+
+### Reconciliation, 2026-08-16
+
+**This table was stale against its own document.** It carried `T1.04` as
+`MISSING` and `T1.05` as `MISMATCH` while the Revision note (lines 36–50) and
+§3 had already retracted both to `EXACT` — the Revision note even ends *"The
+recommended TeX edit is cancelled."*  The body was right and the table was not
+updated with it.  That mattered outside this file: the stale row was relayed
+onwards as a live finding, "the printed spectral localization of Step 1 is
+absent, a Neumann/Richardson iteration with a weaker constant stands in its
+place."  It is not absent.  `Monsters/P13SpectralGap.lean` is root-imported and
+compiles, so `t1_04_p13_spectrum_subset` and `t1_05_p13_ker_eq_invariants` are
+real.
+
+Rows are rewritten as `OLD → NEW` rather than overwritten, so the history stays
+legible.  Two kinds of change appear below.
+
+* **Retractions by this document's own body** (`T1.04`, `T1.05`).  Nothing in
+  the corpus changed; the audit corrected itself and the table lagged.
+* **Rows closed by new work** (`T1.06`, `T3.01`, `T3.04`, `T3.11`), marked
+  `→ EXACT pending compilation`.  That qualifier is load-bearing and is not a
+  synonym for `EXACT`: the printed object now has a named Lean counterpart that
+  the badged declaration actually invokes, **but the modules holding those
+  counterparts have never been built.**  `Monsters/P13CircumcenterRoute.lean`,
+  `Monsters/P13CircumcenterRouteStep3.lean` and `Monsters/P13SpectralGapNorm.lean`
+  are imported by nothing and are absent from `GroupApproximation.lean`, so
+  `lake` has never seen them; `Monsters/P13InvariantProjection.lean` is new.  A
+  first probe returned `EXIT=1` for all three orphans.  Each such row reverts to
+  its original mark if the build does not come back green.  Recording a verdict
+  that was never checked is the error this reconciliation exists to correct, and
+  it would be self-defeating to repeat it here.
+
+One deliberate non-closure, recorded so it is not mistaken for an oversight: the
+Step-1 chain that now reaches the badged declaration does **not** cite
+`t1_04_p13_spectrum_subset`.  It runs through the sharp lower bound
+`P13SpectralGapNorm.p13_norm_lower_bound`, derived from the certificate's
+quadratic gap directly.  The localization theorem is proved and sits beside the
+chain rather than in it — which is what the manuscript does too: Step 1 states
+the localization, observes that it "makes `0` an isolated point of the spectrum
+but does not by itself exclude it", and then switches to the lower bound.  The
+Lean is mirroring the printed structure, not diverging from it, and no
+dependency was manufactured to make this table read better.
 
 | Step | Mark |
 |---|---|
@@ -939,22 +996,22 @@ half-sentence ("the rank-two block is faithful, by the classical
 | T1.01 relator display pinned | EXACT |
 | T1.02 SOS certificate, gap `1/500` | EXACT |
 | T1.03 quadratic gap on coboundaries | EXACT |
-| **T1.04 spectrum in `{0}∪[1/500,∞)`** | **MISSING** (Neumann/Richardson substitute, weaker constant) |
-| T1.05 `ker Δ` = invariants | MISMATCH (one inclusion only) |
-| **T1.06 almost-fixed ⇒ close to an invariant vector** | **MISMATCH** (no-invariant-vector dual used instead) |
-| T1.07 Kazhdan pair for `P13` | EXACT |
+| **T1.04 spectrum in `{0}∪[1/500,∞)`** | **MISSING → EXACT** — retracted by this document's Revision note (lines 36–50) and §3; `P13SpectralGap.t1_04_p13_spectrum_subset`. The table, not the corpus, was wrong |
+| T1.05 `ker Δ` = invariants | **MISMATCH → EXACT** — retracted in §3; `P13SpectralGap.t1_05_p13_ker_eq_invariants` proves the printed *equality*. Both inclusions are now consumed: `Δx=0 ⇒ invariant` inside the Kazhdan argument, and the converse by `P13InvariantProjection.generatorLaplacian_eq_zero_of_invariant` in T1.06 |
+| **T1.06 almost-fixed ⇒ close to an invariant vector** | **MISMATCH → EXACT pending compilation** — `P13InvariantProjection.t1_06_norm_sub_fixedProjection_le`: `‖v − Pv‖ ≤ 1000·∑ᵢ‖ρ(sᵢ)v−v‖` with `P` the projection onto the invariants (= `ker Δ`), the printed constant `1000 = 2·500`. Energy half: `t1_06_energy_eq` / `t1_06_energy_le` |
+| T1.07 Kazhdan pair for `P13` | EXACT; **route changed** — the badged path now runs through `P13InvariantProjection.t1_07_p13_isKazhdanPair`, which reads the pair off the projection estimate at tolerance `1/12000`, rather than through the Richardson constant of `Certificate.isKazhdanPair`. `LiteralP13HodgeCertificate.p13_hasKazhdanPropertyT` is unchanged and remains the alternate route |
 | T2.01–T2.06 the six words, replay, `z`/`xy`, generation, surjectivity, quotient | EXACT |
-| **T3.01 `R` maps to the linear subgroup** | **MISMATCH (strengthening: isomorphism via a retraction)** |
+| **T3.01 `R` maps to the linear subgroup** | **MISMATCH → EXACT pending compilation** — `P13CircumcenterRouteStep3.t3_01_rotations_hasKazhdanPropertyT` transports along the printed **surjection**, replacing `of_mulEquiv rotationEquivRotations.symm` at `LiteralBasePropertyTBridge.lean`. No retraction, no injectivity |
 | T3.02 Kazhdan pair `(S,κ)` | EXACT |
-| T3.03 control set `S ∪ {v₂,v₃}`, tolerance `κ/64` | EXACT (unstated `κ ≤ 1`) |
-| **T3.04 `v₁` needs no control because `v₁ = xv₂x⁻¹`** | **MISSING** (Lean omits `v₁` for a different reason) |
+| T3.03 control set `S ∪ {v₂,v₃}`, tolerance `κ/64` | EXACT (unstated `κ ≤ 1`; the TeX finding X2 stands). Lean side no longer *assumes* it: `t3_03_exists_normalized_pair` derives `κ ∈ (0,1]` from Step 2 |
+| **T3.04 `v₁` needs no control because `v₁ = xv₂x⁻¹`** | **MISSING → EXACT pending compilation** — `t3_04_basis_displacement_lt`. Made load-bearing rather than decorative: T3.10's hypothesis now quantifies over all three *basis* translations, as the printed item 2 does, so the caller must discharge `v₁` and does so by the printed conjugation argument. See X4 |
 | T3.05 moving projection, `‖p−ξ‖ < 1/64` | EXACT |
 | T3.06 three transvection words | EXACT |
 | T3.07 two-conjugate normal form | EXACT |
 | T3.08 conjugate displaces `p` equally | EXACT |
 | T3.09 control translations move `p` by `< 3/64` | EXACT |
-| T3.10 every translation moves `p` by `≤ 1/8` | EXACT |
-| **T3.11 Hilbert-space circumcenter** | **MISMATCH (method: minimal-norm point of the closed convex hull)** |
+| T3.10 every translation moves `p` by `≤ 1/8` | EXACT; now via `t3_02_norm_translation_displacement_le`, whose hypothesis is the printed one (a common bound on `v₁,v₂,v₃`) rather than the two the repo's normal form happens to use |
+| **T3.11 Hilbert-space circumcenter** | **MISMATCH → EXACT pending compilation** — `t3_11_exists_near_translationFixedSubspace`, the centre of the smallest enclosing ball via `Circumcenter.existsUnique_center`, replacing `HilbertConvexFixedPoint.exists_near_fixedSubspace` at the single call site. The convex-hull development is untouched and remains the alternate engine |
 | T3.12 orthogonal projection is nearest | EXACT |
 | T3.13 normalizes and fixes ⇒ `η` fixed | EXACT |
 | T3.14 generation ⇒ `B`-invariant | EXACT |
@@ -963,11 +1020,27 @@ half-sentence ("the rank-two block is faithful, by the classical
 | T3.17 complex-unitary | EXACT |
 | Generated/replay layer | **NOT a bypass** — certifies only relator-proved equalities; distinctness never needed |
 
-**Count:** 34 EXACT, 5 MISMATCH, 2 MISSING, 2 UNDER-SPECIFIED, 3 documentation
-defects, 5 TeX findings.
+**Count as first issued:** 34 EXACT, 5 MISMATCH, 2 MISSING, 2 UNDER-SPECIFIED,
+3 documentation defects, 5 TeX findings.
+
+**Count after the 2026-08-16 reconciliation:** 36 EXACT, 1 MISMATCH, 0 MISSING,
+4 EXACT-pending-compilation, 2 UNDER-SPECIFIED, 3 documentation defects, 5 TeX
+findings. The arithmetic: `+2 EXACT` from the two self-retractions (`T1.04`,
+`T1.05`); the five MISMATCH rows were `P13.ORDER, T1.05, T1.06, T3.01, T3.11`,
+of which `T1.05` became EXACT and three moved to pending, leaving `P13.ORDER`
+alone; both MISSING rows (`T1.04`, `T3.04`) cleared. `34+5+2 = 41 = 36+1+0+4`.
+
+If the four pending rows fail to compile they revert — `T1.06`, `T3.01`, `T3.11`
+back to MISMATCH and `T3.04` back to MISSING, joining `P13.ORDER` — and the
+count becomes 36 EXACT, 4 MISMATCH, 1 MISSING (`36+4+1 = 41`). The two
+self-retractions are unaffected either way: they are corrections to this audit,
+not to the corpus, and `Monsters/P13SpectralGap.lean` already compiles.
 
 The retracted verdict was too generous in exactly one place — Step 1 of
-`prop:literal-base-T`, where the spectral localization and the
-almost-fixed-vector formulation are both replaced by different arguments — and
-in three smaller places in Step 3. It was *correct* about the completeness proof
-and about the replay layer, and adversarial re-checking did not dislodge either.
+`prop:literal-base-T`, where the ~~spectral localization and the~~
+almost-fixed-vector formulation ~~are both~~ *is* replaced by a different
+argument — and in three smaller places in Step 3. *(2026-08-16: the spectral
+localization half of that sentence was withdrawn by the Revision note; only the
+almost-fixed-vector half was ever a real gap, and it is `T1.06`.)* It was
+*correct* about the completeness proof and about the replay layer, and
+adversarial re-checking did not dislodge either.

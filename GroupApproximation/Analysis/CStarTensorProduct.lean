@@ -91,14 +91,29 @@ completion --- and because the pre-Hilbert statement is the more general one.
 Estimates are for a from-scratch Mathlib-quality build, revised against what
 the pinned revision actually contains.
 
-### Stage A --- faithfulness of `π ⊗ ρ` on all of `A ⊙ B`  (medium)
+### Stage A --- faithfulness of `π ⊗ ρ` on all of `A ⊙ B`  --- **DONE**
 
-Non-degeneracy is currently proved only on elementary tensors
-(`spatialNorm_tmul_ne_zero`).  For a general `x = ∑ aᵢ ⊗ bᵢ` one needs the
-**slice maps**: for a state `ψ` on `B`, the map `R_ψ : A ⊙ B → A` with
-`R_ψ (a ⊗ b) = ψ(b) • a`, and its continuity for the spatial norm.  Requires
-states on a C⋆-algebra and the fact that they separate points (Mathlib has
-`GelfandNaimarkSegal`; what it provides must be audited).  *~800 lines.*
+`CStarTensorProductSpatial.spatialHom_injective`, with the unconditional
+corollary `spatialNorm_isCStarNorm`.
+
+**This stage was mis-costed here, and the mis-costing is instructive.**  The
+estimate above read: "one needs the **slice maps**: for a state `ψ` on `B`, the
+map `R_ψ : A ⊙ B → A` with `R_ψ (a ⊗ b) = ψ(b) • a`, and its *continuity* for
+the spatial norm.  Requires states on a C⋆-algebra and the fact that they
+separate points ... *~800 lines*."
+
+Continuity of slice maps, and hence states and GNS, is what **Takesaki's
+theorem** needs --- Stage C.  Mere injectivity of `π ⊗ ρ` on the *algebraic*
+tensor product needs none of it.  The vector functionals `a ↦ ⟪ξ', π a ξ⟫`
+already separate the points of `A` as soon as `π.hom` is injective (take
+`ξ' = π a ξ`; the pairing is `‖π a ξ‖²`), and separation plus a Hamel basis on
+one factor suffices.  The whole thing is algebra: no states, no GNS, no
+continuity, no completeness.  It came to roughly a third of the estimate.
+
+The lesson generalises: an estimate inherited from the textbook route can cost
+the wrong thing entirely.  Before budgeting a stage here, check what the step
+actually needs rather than what the standard proof of the *neighbouring* step
+needs.
 
 ### Stage B --- completion of a C⋆-normed ⋆-algebra  (medium)
 
@@ -158,14 +173,29 @@ Therefore **C⋆-exactness remains out of reach for this development**, and the
 correct form of the manuscript's exactness row is the one it already uses: an
 explicit statement that the formal library has no definition of exact
 C⋆-algebras.  What has changed is the size of the hole: the vocabulary needed
-to *state* a C⋆-tensor norm now exists, is machine-checked, and needs no
-literature input.
+to *state* a C⋆-tensor norm now exists and needs no literature input.
+
+**Do not read "exists" as "checked."**  An earlier version of this paragraph
+claimed the vocabulary "is machine-checked".  That was false when written:
+`CStarTensorProductSeminorm`, `Spatial`, `Concrete` and this module were not in
+the import closure of `GroupApproximation.lean`, so `lake build` had never
+elaborated them and no audit had ever seen them.  Only
+`CStarTensorProductAdjointable.lean` --- the base layer, carrying `IsAdjoint`
+and the C⋆-identity --- was root-imported and hence genuinely verified.  A
+declaration written in an orphan module is a claim, not a theorem.  Whether the
+rest of this lane is checked is decided by one thing only: whether these module
+names appear in `GroupApproximation.lean`.  Check there before relying on
+anything below.
 
 ## Manuscript status
 
 `EXACT`: none --- no manuscript step is certified by this lane.
-`MISSING`: the exactness assertion of lines 3053--3065, and the nuclearity
-assertion, for the reasons above.
+`MISSING`: the exactness assertion of the paragraph opened by
+`\paragraph{An exact stably finite non-MF algebra.}`, and the nuclearity
+assertion, for the reasons above.  (Located by that string: an earlier version
+of this block cited "lines 3053--3065", which had already drifted --- the
+paragraph now begins near line 3419.  Cite manuscript passages by their opening
+string, never by line number.)
 -/
 
 namespace GroupApproximation

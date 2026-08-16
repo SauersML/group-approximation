@@ -97,7 +97,6 @@ import GroupApproximation.Sofic.LiteralNonMFLinearWitness
 import GroupApproximation.Sofic.WitnessVerticalResiduallyFinite
 import GroupApproximation.Sofic.LiteralNonMFEndpoint
 import GroupApproximation.Sofic.LiteralBaseTranslationLattice
-import GroupApproximation.Sofic.LiteralBaseRotationMatrix
 import GroupApproximation.Sofic.LiteralBaseDoublingIndex
 import GroupApproximation.Sofic.LiteralBaseP13Replay
 import GroupApproximation.Sofic.LiteralBasePropertyTBridge
@@ -356,7 +355,6 @@ import GroupApproximation.Algebra.SplitExtensionFailure
 import GroupApproximation.Sofic.SplitExtensionEndpoint
 import GroupApproximation.Sofic.CommensurabilityInvariance
 import GroupApproximation.Sofic.Type0Transfer
-import GroupApproximation.Sofic.Type0Corollaries
 import GroupApproximation.Sofic.FiniteIndexNonMF
 import GroupApproximation.Sofic.DossierAuditAddenda
 import GroupApproximation.Sofic.SoficNonMFAssembly
@@ -867,6 +865,47 @@ import GroupApproximation.Computability.FreeGroupSquaring
 import GroupApproximation.Computability.SemigroupWordProblemSimulation
 import GroupApproximation.Computability.SemigroupWordProblemPresentation
 import GroupApproximation.Computability.SemigroupWordProblem
+
+-- Added by the 1:1 audit pass: modules that were outside the import closure,
+-- so `lake build` never compiled them and no audit ever saw them.  Appended,
+-- never regenerated -- a regenerated block has twice silently dropped modules.
+import GroupApproximation.Analysis.FiniteCStarMurrayVonNeumann
+import GroupApproximation.Analysis.MaximalCStarLiteralBase
+import GroupApproximation.Analysis.MaximalGroupCStarUniqueness
+import GroupApproximation.Analysis.PropertyAExtension
+import GroupApproximation.Analysis.CStarTensorProductSeminorm
+import GroupApproximation.Analysis.CStarTensorProductSpatial
+import GroupApproximation.Analysis.CStarTensorProductConcrete
+import GroupApproximation.Analysis.CStarTensorProduct
+import GroupApproximation.Algebra.ZariskiEnvelopeEndpoint
+import GroupApproximation.Criterion.ClosedEnvelopeCompressionCore
+import GroupApproximation.Monsters.RealizationEmbedding
+import GroupApproximation.Monsters.FournierFacioUniversalRealization
+import GroupApproximation.Monsters.P13InvariantProjection
+import GroupApproximation.Sofic.CompressionUniverseTransfer
+import GroupApproximation.Sofic.SoundIterateInstances
+import GroupApproximation.Sofic.ContinuumMultiplicityCore
+import GroupApproximation.Sofic.PrintedPreliminaryEstimates
+import GroupApproximation.Sofic.RelativeCornerRank
+import GroupApproximation.Sofic.LiteralSignFreeRadicalReduction
+import GroupApproximation.Sofic.SoficEnvelopeSimplicity
+import GroupApproximation.Sofic.SoficEnvelopeWitness
+import GroupApproximation.Sofic.CollapsePrintedProfile
+import GroupApproximation.Sofic.CliffordBSSixRelator
+import GroupApproximation.Sofic.CliffordBSPrintedRoute
+import GroupApproximation.Sofic.WreathWitnessGeneric
+import GroupApproximation.Sofic.WreathWitnessW3
+import GroupApproximation.Sofic.FiveConditionInsufficiency
+import GroupApproximation.Sofic.Type0Corollaries
+import GroupApproximation.Sofic.WreathWitnessSignFree
+import GroupApproximation.Sofic.WeightedUltraproductModelConstruction
+import GroupApproximation.Sofic.CollapseJointCornerRefinement
+import GroupApproximation.Sofic.AmalgamQuestionEndpoint
+import GroupApproximation.Sofic.LiteralBlockCliffordBridge
+import GroupApproximation.Sofic.LiteralLampKernelAmalgam
+import GroupApproximation.Sofic.DirectSumAmplification
+import GroupApproximation.Sofic.CornerDilutionInvariance
+import GroupApproximation.Sofic.LiteralBaseRotationMatrix
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group

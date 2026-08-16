@@ -1,13 +1,14 @@
+import GroupApproximation.Analysis.MaximalCStarLiteralBase
 import GroupApproximation.Analysis.MaximalCStarProperCompression
 import GroupApproximation.Analysis.NormMatrixCoronaUnitary
 import GroupApproximation.Analysis.ResiduallyFiniteDimensional
 import GroupApproximation.Analysis.UniversalKazhdanCStarConsequences
 
 /-!
-# The maximal algebra under strict Kazhdan compression: the printed paragraph
+# The maximal algebra under proper one-sided conjugation: the printed paragraph
 
 This file is the paragraph-level endpoint for the manuscript remark *the
-maximal algebra under strict Kazhdan compression*, which is
+maximal algebra under proper one-sided conjugation*, which is
 `\begin{remark}...\label{rem:maxinfinite}` inside the appendix
 `\label{app:maxcstar}` of `non_mf_groups_exist.tex` (near line 3964 as of
 2026-08-16; that file is under active concurrent edit, so navigate by the
@@ -48,7 +49,18 @@ corner-complement correction `e s + (1 - e 1)`, the same device as
 ## The badge declaration
 
 `manuscriptMaximalCStarStrictCompressionRemark` collects all of the above
-into a single statement about arbitrary strict Kazhdan compression data.
+into a single statement about arbitrary strict Kazhdan compression data, and
+then instantiates it at the remark's own example.
+
+The remark names its instance in an aside the badge has to cover: *"the base of
+`E` is such a pair"*.  That `E` is the literal eight-generator group of
+Definition `def:E`, not the chosen presentation, and
+`Sofic/ChosenMaximalCStarInfinite` instantiates the wrong one for this purpose
+(a different group) and omits the residually finite-dimensional clause.  So the
+second conjunct here exhibits `StrictKazhdanCompression Base MarkedGroup` for
+the literal group --- built in `Analysis/MaximalCStarLiteralBase` --- and reads
+off all seven printed conclusions at it, the RFD clause included, together with
+the reduced-algebra contrast the remark closes on.
 -/
 
 namespace GroupApproximation
@@ -214,7 +226,10 @@ namespace MaximalCStarParagraphEndpoint
 
 open MaximalCStarProperCompression
 
-variable {Γ : Type w} {E : Type u} [Group Γ] [Group E]
+-- No section variables here.  The badged declaration quantifies over its group
+-- arguments inside the proposition, and an in-scope `variable` of the same name
+-- would make `scripts/check_non_mf_unconditional.py` read the elaborated type as
+-- carrying a leading input the printed header does not show.
 
 /-- **The printed remark, in full.**
 
@@ -236,10 +251,22 @@ strict Kazhdan compression data over `E`:
   carries a faithful canonical trace and admits no proper compression at
   all, so its failure of MF is not a failure of finiteness.
 
+The second conjunct is the remark's own aside — as of 2026-08-16 the remark
+reads *"Let `G` contain a property-(T) subgroup `Γ` and an element `t` with
+`t Γ t⁻¹ ⊊ Γ`; the base of `E` is such a pair"* — which is a claim about the
+literal eight-generator group of Definition `def:E` and not about the chosen
+presentation.  It is stated here
+rather than left to a downstream file because the manuscript's badge is on this
+declaration: a reader of the first conjunct alone learns what follows *from* a
+strict Kazhdan compression, but not that the paper's own group has one.
+`Analysis/MaximalCStarLiteralBase` builds the datum; every conclusion of the
+first conjunct is then read off at it, including the residually
+finite-dimensional clause.
+
 This is the paragraph-level counterpart of the remark labelled
 `rem:maxinfinite` in `non_mf_groups_exist.tex`. -/
 theorem manuscriptMaximalCStarStrictCompressionRemark :
-    ∀ {Γ : Type w} {E : Type u} [Group Γ] [Group E]
+    (∀ {Γ : Type w} {E : Type u} [Group Γ] [Group E]
       (D : StrictKazhdanCompression Γ E),
     IsSelfAdjoint D.proj ∧
       D.proj * D.proj = D.proj ∧
@@ -257,20 +284,51 @@ theorem manuscriptMaximalCStarStrictCompressionRemark :
       Nonempty (FaithfulTracialState
         (ReducedGroupCStarTrace.ReducedGroupCStar E)) ∧
       IsEmpty (ProperProjectionCompression
-        (ReducedGroupCStarTrace.ReducedGroupCStar E)) := by
-  intro Γ E _ _ D
-  exact
-  ⟨D.isSelfAdjoint_proj, D.proj_mul_proj,
-    D.conjugate_mul_proj, D.proj_mul_conjugate, D.conjugate_ne_proj,
-    D.maximalCStar_not_isDedekindFiniteMonoid,
-    D.maximalCStar_not_isStablyFiniteRing,
-    D.maximalCStar_no_faithfulTracialState,
-    D.toProperProjectionCompression.not_isResiduallyFiniteDimensional,
-    D.toProperProjectionCompression.not_hasMFEmbedding,
-    D.toProperProjectionCompression.not_isMFAlgebra,
-    D.gap, D.avg_mul_proj,
-    ⟨ReducedGroupCStarTrace.canonicalFaithfulTracialState E⟩,
-    ReducedGroupCStarTrace.reduced_no_properProjectionCompression E⟩
+        (ReducedGroupCStarTrace.ReducedGroupCStar E))) ∧
+    (Nonempty (StrictKazhdanCompression LiteralNonMFPresentation.Base
+        LiteralNonMFPresentation.MarkedGroup) ∧
+      ¬ IsDedekindFiniteMonoid
+        (MaximalGroupCStar LiteralNonMFPresentation.MarkedGroup) ∧
+      ¬ IsStablyFiniteRing
+        (MaximalGroupCStar LiteralNonMFPresentation.MarkedGroup) ∧
+      ¬ Nonempty (FaithfulTracialState
+        (MaximalGroupCStar LiteralNonMFPresentation.MarkedGroup)) ∧
+      ¬ IsResiduallyFiniteDimensional
+        (MaximalGroupCStar LiteralNonMFPresentation.MarkedGroup) ∧
+      ¬ HasMFEmbedding
+        (MaximalGroupCStar LiteralNonMFPresentation.MarkedGroup) ∧
+      ¬ IsMFAlgebra
+        (MaximalGroupCStar LiteralNonMFPresentation.MarkedGroup) ∧
+      Nonempty (FaithfulTracialState (ReducedGroupCStarTrace.ReducedGroupCStar
+        LiteralNonMFPresentation.MarkedGroup)) ∧
+      IsEmpty (ProperProjectionCompression
+        (ReducedGroupCStarTrace.ReducedGroupCStar
+          LiteralNonMFPresentation.MarkedGroup))) := by
+  constructor
+  · intro Γ E _ _ D
+    exact
+    ⟨D.isSelfAdjoint_proj, D.proj_mul_proj,
+      D.conjugate_mul_proj, D.proj_mul_conjugate, D.conjugate_ne_proj,
+      D.maximalCStar_not_isDedekindFiniteMonoid,
+      D.maximalCStar_not_isStablyFiniteRing,
+      D.maximalCStar_no_faithfulTracialState,
+      D.toProperProjectionCompression.not_isResiduallyFiniteDimensional,
+      D.toProperProjectionCompression.not_hasMFEmbedding,
+      D.toProperProjectionCompression.not_isMFAlgebra,
+      D.gap, D.avg_mul_proj,
+      ⟨ReducedGroupCStarTrace.canonicalFaithfulTracialState E⟩,
+      ReducedGroupCStarTrace.reduced_no_properProjectionCompression E⟩
+  · obtain ⟨D⟩ := MaximalCStarLiteralBase.nonempty_strictCompression
+    exact
+    ⟨⟨D⟩,
+      D.maximalCStar_not_isDedekindFiniteMonoid,
+      D.maximalCStar_not_isStablyFiniteRing,
+      D.maximalCStar_no_faithfulTracialState,
+      D.toProperProjectionCompression.not_isResiduallyFiniteDimensional,
+      D.toProperProjectionCompression.not_hasMFEmbedding,
+      D.toProperProjectionCompression.not_isMFAlgebra,
+      ⟨ReducedGroupCStarTrace.canonicalFaithfulTracialState _⟩,
+      ReducedGroupCStarTrace.reduced_no_properProjectionCompression _⟩
 
 end MaximalCStarParagraphEndpoint
 

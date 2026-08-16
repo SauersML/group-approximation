@@ -3,8 +3,8 @@ import GroupApproximation.Algebra.ZariskiDescendingChain
 /-!
 # The Zariski envelope endpoint, with nothing to the left of the colon
 
-`Criterion/ClosedEnvelopeCompression.manuscriptEnvelopeCompressionBlind` is the
-abstract half of `rem:chaincondition` in `non_mf_groups_exist.tex`: an order
+`Criterion/ClosedEnvelopeCompressionCore.abstractEnvelopeCompressionBlind` is
+the abstract half of `rem:chaincondition` in `non_mf_groups_exist.tex`: an order
 isomorphism of a well-founded poset that moves a point weakly downward fixes it,
 so a conjugation-equivariant monotone envelope with chain-condition values is
 compression-blind.  It carries two premises that stand in for the geometry --- a
@@ -25,8 +25,10 @@ Five closed-header endpoints, in increasing distance from the abstract theorem.
 * `manuscriptZariskiChainCondition` --- the classical input itself, as a
   sentence about descending chains of Zariski closed subgroups of `GL n k`.
   This is the input `rem:chaincondition` names; it is a theorem, not a premise.
-* `manuscriptZariskiEnvelopeData` --- the premises of
-  `manuscriptEnvelopeCompressionBlind` are *inhabited*: there is a predicate
+* `manuscriptZariskiEnvelopeData` --- the premises of the abstract theorem are
+  *inhabited*, and this is the conjunct
+  `ClosedEnvelopeCompression.manuscriptEnvelopeCompressionBlind` cites to make
+  the badged statement unconditional: there is a predicate
   `Closed`, conjugation stable and well founded, together with a monotone
   conjugation-equivariant `envelope` landing in it, whose value on a subgroup is
   the Zariski closure of that subgroup.  A single existential statement,
@@ -52,8 +54,9 @@ surface already does.
 ## What is not here
 
 No new mathematics.  Each proof is one application of a theorem in
-`Algebra/ZariskiDescendingChain` or in `Criterion/ClosedEnvelopeCompression`,
-after `intro`.  The content of this file is the shape of the statements.
+`Algebra/ZariskiDescendingChain` or in
+`Criterion/ClosedEnvelopeCompressionCore`, after `intro`.  The content of this
+file is the shape of the statements.
 
 The dimension is presented as a `Fintype`-indexed matrix group, `GL n k` for
 `k` a field; `ZariskiDescendingChain.wellFoundedLT_isZClosedSubgroupOfBasis`
@@ -131,9 +134,9 @@ theorem manuscriptZariskiEnvelopeData :
 
 /-! ## The abstract theorem, applied -/
 
-/-- **Compression does not move the algebraic envelope.**  The badged abstract
-theorem `ClosedEnvelopeCompression.manuscriptEnvelopeCompressionBlind`, applied
-to the Zariski notion of closedness with its two premises discharged.
+/-- **Compression does not move the algebraic envelope.**  The abstract theorem
+`ClosedEnvelopeCompression.abstractEnvelopeCompressionBlind`, applied to the
+Zariski notion of closedness with its two premises discharged.
 
 This is the first sentence of the envelope paragraph of `rem:chaincondition`,
 with no literature input left: the descending chain condition it quotes is
@@ -144,7 +147,7 @@ theorem manuscriptZariskiEnvelopeCompression :
       Γ.map (MulAut.conj t).toMonoidHom ≤ Γ →
       zEnvelope (Γ.map (MulAut.conj t).toMonoidHom) = zEnvelope Γ := by
   intro n _ _ k _ Γ t ht
-  exact ClosedEnvelopeCompression.manuscriptEnvelopeCompressionBlind
+  exact ClosedEnvelopeCompression.abstractEnvelopeCompressionBlind
     IsZClosedSubgroup (fun g _ hH => isZClosedSubgroup_map_conj hH g)
     zEnvelope isZClosedSubgroup_zEnvelope (fun _ _ h => zEnvelope_mono h)
     zEnvelope_map_conj Γ t ht

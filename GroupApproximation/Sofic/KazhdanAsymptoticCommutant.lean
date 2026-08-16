@@ -17,7 +17,17 @@ namespace KazhdanAsymptoticCommutant
 open Matrix KazhdanCornerMatrices KazhdanCompressorCorner
 open scoped Matrix.Norms.L2Operator
 
-variable {Γ E : Type} [Group Γ] [Group E]
+universe u
+
+/-! The manuscript's transport theorem quantifies over an arbitrary ambient
+group, so the ambient group is taken in an arbitrary universe here.  Nothing in
+the analytic chain constrains it: `OpAlmostRepresentation`,
+`KazhdanCompressionCore`, `KazhdanCompressorCorner` and
+`MarkedCompressionRootCapture` are all already stated for `E : Type u`.  The
+Kazhdan source `Γ` stays in `Type 0` because `KazhdanCompressionCore` spells
+property `(T)` as `HasKazhdanPropertyT.{0, 0}`, whose group argument is pinned
+to the smallest universe by that notation. -/
+variable {Γ : Type} {E : Type u} [Group Γ] [Group E]
 
 /-- Squared normalized Hilbert--Schmidt convergence to zero. -/
 def HSSqVanishing (B : OpAlmostRepresentation E)
@@ -893,9 +903,10 @@ theorem compressionGroup_le_asymptoticCommutantStabilizer
   rw [compressionGroup, Subgroup.closure_le]
   exact compressionSet_subset_asymptoticCommutantStabilizer B iota hkazhdan
 
-/-- Pointwise form of the all-compressors transport theorem. -/
+/-- Pointwise form of the all-compressors transport theorem.  The ambient
+group is arbitrary, as in the manuscript's Corollary 4.6. -/
 theorem compressionGroup_transport_both :
-    ∀ {Γ₀ E₀ : Type} [Group Γ₀] [Group E₀]
+    ∀ {Γ₀ : Type} {E₀ : Type u} [Group Γ₀] [Group E₀]
     (B : OpAlmostRepresentation E₀) (iota : Γ₀ →* E₀)
     (_hkazhdan : HasKazhdanPropertyT.{0, 0} Γ₀)
     {g : E₀} (_hg : g ∈ compressionGroup iota.range)

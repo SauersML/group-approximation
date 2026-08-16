@@ -20,7 +20,10 @@ separate things have to be proved about that recipe:
 This file settles (1) **in complete generality**, once and for all: the
 operator seminorm attached to *any* representation of a complex ⋆-algebra by
 adjointable operators on an inner product space is a C⋆-seminorm, and is a
-C⋆-norm exactly when the representation is injective.  When the product
+C⋆-norm as soon as the representation is injective.  (Only that direction is
+proved.  The converse --- definiteness forces injectivity --- is immediate from
+`seminorm_eq_zero_iff` but is not stated, so "exactly when", as an earlier
+version of this paragraph put it, overstates what is here.)  When the product
 representation of `A ⊙ B` on `H ⊗ K` is eventually constructed, its C⋆-property
 is then immediate from `StarRep.isCStarSeminorm` below; nothing about tensor
 products has to be re-proved.
@@ -143,8 +146,12 @@ namespace StarRep
 variable {A : Type u} {V : Type v} [Ring A] [StarRing A] [Algebra ℂ A]
   [NormedAddCommGroup V] [InnerProductSpace ℂ V]
 
-/-- The operator seminorm attached to a ⋆-representation. -/
-def seminorm (π : StarRep A V) : A → ℝ := fun a ↦ ‖π.hom a‖
+/-- The operator seminorm attached to a ⋆-representation.
+
+`noncomputable` because the operator norm on `V →L[ℂ] V` is
+(`ContinuousLinearMap.hasOpNorm` is a `noncomputable` instance); nothing here
+is meant to be evaluated. -/
+noncomputable def seminorm (π : StarRep A V) : A → ℝ := fun a ↦ ‖π.hom a‖
 
 @[simp] theorem seminorm_apply (π : StarRep A V) (a : A) :
     π.seminorm a = ‖π.hom a‖ := rfl

@@ -134,7 +134,10 @@ namespace TensorPowerTransport
 
 open IntertwinerKazhdanTransport
 
-variable {Γ E : Type} [Group Γ] [Group E]
+/-! The ambient group is quantified at an arbitrary universe, as in the
+manuscript.  See `Sofic.KazhdanAsymptoticCommutant` for why the Kazhdan source
+`Γ` stays in `Type 0`. -/
+variable {Γ : Type} {E : Type u} [Group Γ] [Group E]
 
 /-- **Fixed tensors of type `(p, q)` transport.**  A fixed tensor of type
 `(p, q)` is a Hilbert--Schmidt intertwiner from the `q`-th to the `p`-th
@@ -186,7 +189,8 @@ theorem tensorPow_intertwiner_transport
 left of the colon, every hypothesis a quantified antecedent of the printed
 sentence. -/
 theorem manuscriptFixedTensorTransport :
-    ∀ {Γ E : Type} [Group Γ] [Group E] (A : OpAlmostRepresentation E)
+    ∀ {Γ : Type} {E : Type u} [Group Γ] [Group E]
+      (A : OpAlmostRepresentation E)
       (p q : ℕ) (w : ℕ → ℝ), (∀ n, 0 ≤ w n) →
       ∀ (C : KazhdanCompressionCore Γ E)
         (x : ∀ n, Matrix ((A.tensorPow p).model n)

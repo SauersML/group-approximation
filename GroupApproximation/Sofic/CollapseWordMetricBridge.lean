@@ -31,6 +31,7 @@ namespace CollapseWordMetricBridge
 
 open Matrix InvolutionOrbitMicrostates InvolutionRankMass
 open InvolutionCollapseMetric InvolutionMicrostateTools
+open KazhdanCornerMatrices KazhdanCompressorCorner
 open scoped Matrix.Norms.L2Operator
 
 variable {Γ E : Type} [Group Γ] [Group E]

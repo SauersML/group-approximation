@@ -78,7 +78,7 @@
       "id": "lem:unitarycorona",
       "environment": "lemma",
       "title": "unitaries in the quotient",
-      "statement_sha256": "1b476b8632de4a941305d35ed9d851de38fe5dec0066de6147c6a8145156a730",
+      "statement_sha256": "acf85808aae67e89fda0b4a932d51d23d5ae0b9e186e27c949b0dcd903d69bc7",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [
@@ -1334,8 +1334,8 @@
     {
       "id": "cor:undecidable",
       "environment": "corollary",
-      "title": "undecidability, given a halting reduction",
-      "statement_sha256": "e6bbb11192c5e3f9b74ab673cfe48982318445617fd25f1dc48c40d15fdfb2ad",
+      "title": "undecidability, conditional on the reduction",
+      "statement_sha256": "f9931601b5263c4e0e634c9482c8a29d503eb282ca810f3a6258e74a3119d87b",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [],
@@ -1361,7 +1361,7 @@
       "id": "prop:maximal-cstar",
       "environment": "proposition",
       "title": "the universal property",
-      "statement_sha256": "ea236f6967fee3987b70ae76e196472088c3a2f54bc9733207293436233b2257",
+      "statement_sha256": "9d6deff51f8693233bf4e7d2f04097e69d18973236aa6442a89ed9faa680ed49",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [],

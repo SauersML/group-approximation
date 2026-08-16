@@ -28,34 +28,6 @@ open scoped Matrix.Norms.L2Operator
 
 variable {Γ E : Type} [Group Γ] [Group E]
 
-/-- Limiting squared seminorms depend only on the eventual values of
-bounded sequences. -/
-theorem seqNormSq_congr_of_eventually_eq {H : ℕ → Type*}
-    [∀ n, NormedAddCommGroup (H n)] {x y : ∀ n, H n}
-    (hx : IsBoundedSeq x) (hy : IsBoundedSeq y)
-    (heq : ∃ N, ∀ n ≥ N, x n = y n) :
-    seqNormSq x = seqNormSq y := by
-  obtain ⟨Cx, hCx⟩ := id hx
-  obtain ⟨Cy, hCy⟩ := id hy
-  obtain ⟨N₀, hN₀⟩ := heq
-  have hCxnn : 0 ≤ Cx := le_trans (norm_nonneg (x 0)) (hCx 0)
-  have hCynn : 0 ≤ Cy := le_trans (norm_nonneg (y 0)) (hCy 0)
-  rw [seqNormSq_def, seqNormSq_def]
-  refine stdPart_ofSeq_eq_of_vanishing
-    (C := Cx ^ 2 + Cy ^ 2) ?_ ?_ ?_
-  · intro n
-    rw [abs_of_nonneg (sq_nonneg _)]
-    have := hCx n
-    nlinarith [norm_nonneg (x n), sq_nonneg Cy]
-  · intro n
-    rw [abs_of_nonneg (sq_nonneg _)]
-    have := hCy n
-    nlinarith [norm_nonneg (y n), sq_nonneg Cx]
-  · intro ε hε
-    exact ⟨N₀, fun n hn ↦ by
-      rw [hN₀ n hn, sub_self, abs_zero]
-      exact hε.le⟩
-
 /-- Microstates of an orbit-fixed mover eventually vanish exactly. -/
 theorem eventually_bVec_eq_zero_of_orbit_fixed
     (B : OpAlmostRepresentation E) (iota : Γ →* E) (k : E)

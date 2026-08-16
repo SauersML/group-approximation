@@ -1,3 +1,4 @@
+import GroupApproximation.Analysis.FiniteCStarMurrayVonNeumann
 import GroupApproximation.Analysis.NaturalMatrixCoordinateEquiv
 import GroupApproximation.Analysis.ProperIsometryFromCompression
 import GroupApproximation.Sofic.LeavittTraceFloor
@@ -47,27 +48,60 @@ KT.11  ξ = [ξ_n]_ω  is fixed by every π(ι γ); Q = P puts V ξ in Fix, whic
 
 Steps KT.01--KT.09 build the ambient; they are supplied here as the bundled
 interface `UltraproductAdjointModel`, one field per manuscript sentence.
-Steps **KT.10** (`kt_10_finiteness_reverses`, together with the isometry
-identities `kt_10_isometry_identities`) and **KT.11**
+Steps **KT.10** (`kt_10_finiteness_reverses_conjugate`, together with the
+isometry identities `kt_10_isometry_identities`) and **KT.11**
 (`UltraproductAdjointModel.kt_11_descend`) are proved in full, and
 `ultraproductKazhdanTransport` runs the manuscript's contradiction:
 the conclusion fails on an infinite set `I`, a free ultrafilter `ω` with
 `I ∈ ω` is fixed, KT.11 makes the commutators vanish along `ω`, and `I ∈ ω`
 is contradicted.
 
-**Status, stated plainly.**  At the time of writing nothing in this
-repository constructs an `UltraproductAdjointModel`.  Everything below that
-consumes one -- `kt_11_descend` and `ultraproductKazhdanTransport` -- is
-therefore conditional on an interface with no instance, so **the manuscript's
-printed proof of `thm:kazhdan-transport` is not yet formalized**, and nothing
-in this file may be badged as certifying it.  The theorem's unconditional
-certificate remains
-`KazhdanAsymptoticCommutant.manuscriptKazhdanTransport`, proved by the
-finite-stage route of `\label{app:finite-stage}`.  Unconditional here, with no
-interface at all: all the Hilbert--Schmidt lemmas, both KT.10 theorems on the
-real objects (`kt_10_shift_conjugate_proj`,
-`kt_10_corona_shift_conjugate_proj`), and the ultrafilter skeleton
-`tendsto_along_free_ultrafilters`.
+**Status, stated plainly.**  `UltraproductAdjointModel` now has a constructor:
+`Sofic/UltraproductModelConstructionAssembly.lean` builds one at every free
+ultrafilter from the hypotheses of `thm:kazhdan-transport` itself, assembling
+the vector ultraproduct and the action of
+`Sofic/UltraproductModelConstruction.lean`, the finiteness of
+`Sofic/UltraproductDedekindFinite.lean`, and the Kazhdan projection of
+`Sofic/UltraproductKazhdanProjection.lean`.  Everything below that consumes the
+interface -- `kt_11_descend` and `ultraproductKazhdanTransport` -- is therefore
+a statement about an ambient that exists, and
+`KazhdanAsymptoticCommutant.manuscriptKazhdanTransport` is derived through this
+chain.  Unconditional here with no interface at all, as before: all the
+Hilbert--Schmidt lemmas, both KT.10 theorems on the real objects
+(`kt_10_shift_conjugate_proj`, `kt_10_corona_shift_conjugate_proj`), and the
+ultrafilter skeleton `tendsto_along_free_ultrafilters`.
+
+**What is still *not* the printed argument.**  This is the canonical record;
+`docs/NON_MF_PROOF_LEDGER.md` tracks the same three items as UF.01, UF.02 and
+UF.03.  Each is a deviation, not a closure, and none of them is repaired by
+anything in this file.
+
+* **UF.01, UF.03 -- no ultraproduct along a genuine free `ω`.**  The algebra
+  realizing `B_ω` is the *cofinite* norm corona `∏_∞ B(K_n)`, not the printed
+  `∏_ω B(K_n)`.  Because `ω ≤ cofinite` the cofinite-null ideal sits inside the
+  `ω`-null ideal, so `∏_∞ B(K_n) ↠ ∏_ω B(K_n)`; `π` and `P` are lifts of the
+  manuscript's objects and the identity `Q = P` proved upstairs descends.  That
+  is why the substitution costs the *transport theorem* nothing.  It is not a
+  construction of `∏_ω B(K_n)`, and `\label{lem:ultrafinite}`, which is a
+  standalone assertion about `∏_ω`, is not proved anywhere.
+* **UF.02 -- faithfulness of the action on `K_ω` is neither proved nor used.**
+  It is *false* for the corona surrogate: see the docstring of
+  `Sofic/UltraproductDedekindFinite.kt_06_ultraproduct_finite` for the explicit
+  counterexample.  The chain survives because it never needs it -- `Fix ⊆ V·Fix`
+  is read back as `P ≤ Q` through the algebraic absorption identities
+  `UltraproductKazhdanProjection.kt_09_*` rather than through an inclusion of
+  ranges.  A hypothesis the printed proof requires and the formal proof does not
+  is a genuine divergence and is recorded as one.
+* **`K_ω` carries no inner product.**  `UltraproductModelConstruction.Vec` is
+  the underlying complex vector space of the Hilbert-space ultraproduct --
+  mass-bounded families modulo `ω`-null families -- and nothing below asks for
+  more, which is precisely why the printed route could be formalized without
+  the Hilbert structure.  No declaration in this development calls `Vec` a
+  Hilbert space.
+
+`\label{lem:finitecompare}`, the third item the earlier audit recorded as a
+mismatch, *is* closed: `kt_10_finiteness_reverses` below is now the printed
+generic comparison lemma, not the unitary-conjugation special case.
 
 KT.10 additionally lands on the real objects, with nothing assumed:
 `kt_10_shift_conjugate_proj` closes it for the KT.07--KT.09 bundle
@@ -75,6 +109,14 @@ KT.10 additionally lands on the real objects, with nothing assumed:
 `kt_10_corona_shift_conjugate_proj` specializes that to
 `B_ω = NormMatrixCStarCorona X`, where finiteness is the instance
 `normMatrixCStarCorona_isDedekindFiniteMonoid` rather than a hypothesis.
+
+`kt_10_finiteness_reverses` is the *generic* comparison lemma the manuscript
+factors out as `\label{lem:finitecompare}` -- finite unital C-star algebra,
+projections `p ≤ q` with `p ∼ q` in the Murray--von Neumann sense, conclusion
+`p = q` -- and it is proved by the printed `σ = r + (1 - q)` calculation in
+`Analysis/FiniteCStarMurrayVonNeumann.lean`.  It is deliberately *not* stated
+with `q = V p V*`: unitary conjugacy is strictly stronger than Murray--von
+Neumann equivalence, so that form would certify less than the printed sentence.
 
 KT.10 is *not* reproved here: `Analysis/ProperIsometryFromCompression.lean`
 already contains the whole calculation, with `r = V*Q = P V*` the first
@@ -220,23 +262,61 @@ theorem kt_10_isometry_identities
   · rw [D.isometry_mul_star_isometry]
     abel
 
-/-- **KT.10.**  Let `P` be a projection and `V` a unitary of a Dedekind-finite
-star ring, and put `Q = V P V*`.  If `P ≤ Q`, in the ring-theoretic form
-`P Q = P` and `Q P = P`, then `Q = P`.
+/-- **`\label{lem:finitecompare}`, the manuscript's comparison lemma.**  Let `A`
+be a finite unital C-star algebra and let `p, q ∈ A` be projections with
+`p ≤ q` and `p ∼ q`.  Then `p = q`.
 
-Mathematically: `σ = V*Q + (1 - Q)` satisfies `σ*σ = 1`, so finiteness of the
-ambient makes `σ` unitary, and then `σσ* = P + (1 - Q) = 1` forces `Q = P`.
-The proof is `ProperProjectionCompression.unitary_conjugate_eq_of_absorbs`,
-which runs exactly that argument in contrapositive form. -/
+Both printed conventions are taken literally, from the display of the three
+"manifestations of one finiteness principle" just above the lemma: `p ∼ q` is
+Murray--von Neumann equivalence, `MurrayVonNeumannEquiv`, so the implementer is
+an arbitrary partial isometry and not a unitary conjugation; and *finite* is
+"every isometry in it is unitary", the hypothesis `hfinite`, rather than the
+formally stronger `IsDedekindFiniteMonoid`.  `p ≤ q` is the genuine C-star
+order, whose two side instances `PartialOrder` and `StarOrderedRing` are the
+standard Mathlib inputs needed to write `≤` at all, installed for a concrete
+algebra by `CStarAlgebra.spectralOrder` and `CStarAlgebra.spectralOrderedRing`.
+
+The proof is the printed one --- `r = rq`, `r = pr`, `r = qr`, the vanishing
+cross terms, `σ = r + (1 - q)` with `σ*σ = 1`, and finiteness turning
+`σσ* = p + (1 - q)` into `1` --- executed in
+`Analysis/FiniteCStarMurrayVonNeumann.lean`.
+
+The earlier, strictly weaker form of this declaration fixed `q = V p V*` for a
+*unitary* `V`.  That special case is not lost: it is
+`ProperProjectionCompression.unitary_conjugate_eq_of_absorbs`, which the two
+theorems below now call directly, and which is genuinely incomparable with the
+statement here --- it holds in a bare star ring, where the printed derivation of
+`r = rq` and `r = pr` is unavailable, while this one needs only one of the two
+isometry identities. -/
 theorem kt_10_finiteness_reverses :
-    ∀ {A : Type u} [Ring A] [StarRing A] [IsDedekindFiniteMonoid A] {P V : A}
-      (_hP_star : star P = P) (_hP_idem : P * P = P)
-      (_hV_star_mul : star V * V = 1) (_hV_mul_star : V * star V = 1)
-      (_hPQ : P * (V * P * star V) = P) (_hQP : (V * P * star V) * P = P),
-      V * P * star V = P := by
-  intro A _ _ _ P V hP_star hP_idem hV_star_mul hV_mul_star hPQ hQP
-  exact ProperProjectionCompression.unitary_conjugate_eq_of_absorbs
-    hP_star hP_idem hV_star_mul hV_mul_star hPQ hQP
+    ∀ {A : Type u} [CStarAlgebra A] [PartialOrder A] [StarOrderedRing A]
+      (_hfinite : ∀ x : A, star x * x = 1 → x * star x = 1)
+      {p q : A} (_hp : IsStarProjection p) (_hq : IsStarProjection q)
+      (_hle : p ≤ q) (_hmvn : MurrayVonNeumannEquiv p q),
+      p = q := by
+  intro A _ _ _ hfinite p q hp hq hle hmvn
+  exact finiteCStar_eq_of_le_of_murrayVonNeumannEquiv hfinite hp hq hle hmvn
+
+/-- **KT.10 through the Murray--von Neumann step.**  The instance of
+`kt_10_finiteness_reverses` that the transport proof consumes: in a
+Dedekind-finite unital C-star algebra a projection absorbed by an isometry
+conjugate of itself equals that conjugate.
+
+This is the manuscript's sentence "the inclusion `s ι(Γ) s⁻¹ ⊆ ι(Γ)` implies
+`P ≤ V P V*`, the two projections are Murray--von Neumann equivalent, and the
+ultraproduct is finite, so `P = V P V*`", and it travels that route: the
+equivalence is `MurrayVonNeumannEquiv.of_isometry_conjugate` and the comparison
+is the lemma above.  Dedekind finiteness is what discharges the manuscript's
+`hfinite`, since it is the class the repository's only finiteness witness
+`normMatrixCStarCorona_isDedekindFiniteMonoid` lives in. -/
+theorem kt_10_finiteness_reverses_conjugate {A : Type u} [CStarAlgebra A]
+    [IsDedekindFiniteMonoid A] {p u : A}
+    (hp_star : star p = p) (hp_idem : p * p = p)
+    (hu_star_mul : star u * u = 1)
+    (hqp : (u * p * star u) * p = p) :
+    u * p * star u = p :=
+  dedekindFiniteCStar_isometry_conjugate_eq_of_absorbs
+    ⟨hp_idem, hp_star⟩ hu_star_mul hqp
 
 /-! ### KT.10 on the manuscript's own objects
 
@@ -254,22 +334,23 @@ open UltraproductKazhdanProjection
 /-- **KT.10 on the Kazhdan compression bundle.**  In a Dedekind-finite unital
 C-star algebra, the conjugated Kazhdan projection `Q = V P V*` equals `P`.
 
-The six inputs are exactly the manuscript's: `P` is a projection
-(`kt_08_isSelfAdjoint_proj`, `kt_08_proj_mul_proj`), `V = π(s)` is unitary
-(`shift_star_mul`, `shift_mul_star`), and `P ≤ Q`
-(`kt_09_proj_mul_conjugate`, `kt_09_conjugate_mul_proj`).  Finiteness does the
-rest through `kt_10_finiteness_reverses`. -/
+The inputs are exactly the manuscript's: `P` is a projection
+(`kt_08_isSelfAdjoint_proj`, `kt_08_proj_mul_proj`), `V = π(s)` is an isometry
+(`shift_star_mul`), and `P ≤ Q` (`kt_09_conjugate_mul_proj`).  Finiteness does
+the rest, through the Murray--von Neumann step of
+`kt_10_finiteness_reverses`.  The second unitary identity `shift_mul_star` and
+the mirrored absorption `kt_09_proj_mul_conjugate` are not consumed: the first
+because the comparison lemma needs only one isometry identity, the second
+because it is the star of the first. -/
 theorem kt_10_shift_conjugate_proj
     {Γ : Type*} {H : Type*} {B : Type*}
     [Group Γ] [Group H] [CStarAlgebra B] [IsDedekindFiniteMonoid B]
     (D : KazhdanCompressionRep Γ H B) :
     D.shift * D.proj * star D.shift = D.proj :=
-  kt_10_finiteness_reverses
+  kt_10_finiteness_reverses_conjugate
     D.kt_08_isSelfAdjoint_proj.star_eq
     D.kt_08_proj_mul_proj
     D.shift_star_mul
-    D.shift_mul_star
-    D.kt_09_proj_mul_conjugate
     D.kt_09_conjugate_mul_proj
 
 /-- **KT.10 in the norm ultraproduct `B_ω` itself.**  Specializing the
@@ -405,12 +486,9 @@ Each field is one sentence of the printed proof:
   `P ≤ Q` for `Q = V P V*`, `V = π s` (KT.04, KT.09).
 
 Every field is an intermediate object of the manuscript's own proof; none is a
-hypothesis about the *theorem*.  **But a bundling structure earns its keep
-only once something constructs an instance, and at the time of writing nothing
-in this repository does.**  Until a constructor exists, every result below
-that takes an `UltraproductAdjointModel` is conditional, and the manuscript's
-printed proof is *not* formalized.  See the caveat on
-`ultraproductKazhdanTransport`. -/
+hypothesis about the *theorem*, and each is discharged by
+`UltraproductModelConstruction.ultraproductAdjointModel` from the hypotheses of
+`thm:kazhdan-transport` alone. -/
 structure UltraproductAdjointModel
     {Γ H : Type} [Group Γ] [Group H]
     (iota : Γ →* H) (s : H) (d : ℕ → ℕ)
@@ -512,9 +590,21 @@ theorem pi_mul_star_pi (g : H) : D.pi g * star (D.pi g) = 1 := by
 
 /-- **KT.10 in the ultraproduct.**  With `V = π s` and `Q = V P V*`, the
 one-sided containment `P ≤ Q` of KT.09 and finiteness of `B_ω` force
-`Q = P`. -/
+`Q = P`.
+
+This site cannot route through the manuscript's comparison lemma
+`kt_10_finiteness_reverses`: the interface exposes `Alg` as a Dedekind-finite
+star ring, and the printed derivation of `r = rq` and `r = pr` from
+Murray--von Neumann equivalence needs the C-star input `x*x = 0 → x = 0`.  It
+therefore uses `ProperProjectionCompression.unitary_conjugate_eq_of_absorbs`,
+which runs the same `σ = r + (1 - q)` calculation with the implementer given by
+an explicit formula, so that the two range identities are read off rather than
+derived.  On the real ambient `NormMatrixCStarCorona X` the two agree; see
+`kt_10_shift_conjugate_proj`, which is the same step with the Murray--von
+Neumann equivalence named. -/
 theorem kt_10_conjugate_eq : D.pi s * D.P * star (D.pi s) = D.P :=
-  kt_10_finiteness_reverses D.P_star D.P_mul_P
+  ProperProjectionCompression.unitary_conjugate_eq_of_absorbs
+    D.P_star D.P_mul_P
     (D.star_pi_mul_pi s) (D.pi_mul_star_pi s)
     D.P_mul_conjugate D.conjugate_mul_P
 
@@ -643,17 +733,14 @@ The uniform **operator-norm** bound on `(x_n)` is used exactly where the
 manuscript uses it -- to make the class `ξ = [ξ_n]_ω` well defined -- via
 `hsNormSq_le_mul_self_l2_opNorm`.
 
-**This theorem is conditional and, at the time of writing, vacuous.**  Nothing
-in this repository yet constructs an `UltraproductAdjointModel`, so `ambient`
-is an assumption no term discharges.  It therefore does **not** certify the
-manuscript's printed proof of `thm:kazhdan-transport`, and must not be given a
-`\leanverified` badge.  What is unconditional here is KT.10
-(`kt_10_finiteness_reverses`, `kt_10_shift_conjugate_proj`,
-`kt_10_corona_shift_conjugate_proj`) and the ultrafilter skeleton
-(`tendsto_along_free_ultrafilters`); KT.11 is fully proved, but *relative to*
-the interface.  The badged, unconditional statement of the theorem remains
-`KazhdanAsymptoticCommutant.manuscriptKazhdanTransport`, which is proved by
-the finite-stage route of Appendix `\label{app:finite-stage}`. -/
+`ambient` is discharged by
+`UltraproductModelConstruction.ultraproductAdjointModel`, which builds the
+KT.01--KT.09 bundle at every free ultrafilter out of property `(T)`, the
+compression, positive dimensions and asymptotic multiplicativity -- that is,
+out of the hypotheses of `thm:kazhdan-transport` and nothing else.  The badged
+statement of the theorem,
+`KazhdanAsymptoticCommutant.manuscriptKazhdanTransport`, is proved through this
+declaration, so the printed proof is the one its badge certifies. -/
 theorem ultraproductKazhdanTransport
     {Γ H : Type} [Group Γ] [Group H]
     (iota : Γ →* H) (s : H) (d : ℕ → ℕ) (hd : ∀ n, 0 < d n)

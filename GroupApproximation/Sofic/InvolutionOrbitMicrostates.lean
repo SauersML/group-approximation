@@ -1,3 +1,4 @@
+import GroupApproximation.Sofic.CollapseJointCorner
 import GroupApproximation.Sofic.ExactInvolutionLifts
 import GroupApproximation.Sofic.InvolutionMicrostateTools
 
@@ -11,8 +12,21 @@ almost-involutions; this file corrects them, window by window and stage by
 stage, into a **globally defined, exactly commuting family of exact
 involutions** converging to the raw microstates in operator norm.
 
-The correction engine is `ExactInvolutionLifts.exists_isExactInvolution_comm_of_unitary`;
-the windows exhaust the countable group, the tolerances shrink with the
+The correction engine is
+`CollapseJointCorner.exists_isExactInvolution_comm_of_unitary_joint'`, which
+is Step 1 of `thm:collapse` as the manuscript prints it: at stage `m` the
+already-corrected involutions span a joint commutant — a finite intersection
+of joint spectral corners — the microstate is compressed into that commutant
+in **one** step, and the spectral sign of its Hermitian part is taken **once**,
+inside the commutant, so that the earlier involutions are left untouched.  The
+cost is therefore linear in the size of the window, `5(m+1)ε`, and there is no
+smallness side condition.  (The iterated two-block route
+`ExactInvolutionLifts.exists_isExactInvolution_comm_of_unitary` proves the same
+statement at cost `3·15^m·ε` under `15^m·3ε ≤ 1`, and needs the separate
+commutant-preservation lemma `involutionStep_commutant`, which the manuscript
+does not print; it remains available but is no longer on this path.)
+
+The windows exhaust the countable group, the tolerances shrink with the
 window, and a `Nat.findGreatest` diagonal produces one family per stage
 with the trivial involution as the off-window default.  The output
 interface is the single existence theorem `exists_involutionMicrostates`;
@@ -187,10 +201,15 @@ theorem exists_family_on (B : OpAlmostRepresentation E) (iota : Γ →* E)
         fun γ hγ ↦ absurd hγ (Finset.notMem_empty γ), fun _ _ ↦ rfl⟩⟩
   | @insert γ₀ F hγ₀ ih =>
       intro ε hε
-      have hpow : (0 : ℝ) < 15 ^ F.card := by positivity
-      set ε₀ : ℝ := min (ε / (3 * 15 ^ F.card)) (1 / (3 * 15 ^ F.card))
-        with hε₀def
-      have hε₀ : 0 < ε₀ := lt_min (by positivity) (by positivity)
+      have hden : (0 : ℝ) < 5 * ((F.card : ℝ) + 1) := by positivity
+      have hden' : (5 : ℝ) * ((F.card : ℝ) + 1) ≠ 0 := ne_of_gt hden
+      set ε₀ : ℝ := ε / (5 * ((F.card : ℝ) + 1)) with hε₀def
+      have hε₀ : 0 < ε₀ := by
+        rw [hε₀def]
+        exact div_pos hε hden
+      have hε₀mul : 5 * ((F.card : ℝ) + 1) * ε₀ = ε := by
+        rw [hε₀def]
+        exact mul_div_cancel₀ ε hden'
       set ε₁ : ℝ := min ε (ε₀ / 8) with hε₁def
       have hε₁ : 0 < ε₁ := lt_min hε (by positivity)
       obtain ⟨N₁, hN₁⟩ := ih (ε := ε₁) hε₁
@@ -219,16 +238,9 @@ theorem exists_family_on (B : OpAlmostRepresentation E) (iota : Γ →* E)
           (hVclose μ hμ).trans (min_le_right _ _)
         have h := norm_comm_swap hu hbase hclose
         linarith
-      have hε₀small : (15 : ℝ) ^ F.card * (3 * ε₀) ≤ 1 := by
-        have hle : ε₀ ≤ 1 / (3 * 15 ^ F.card) := min_le_right _ _
-        calc
-          (15 : ℝ) ^ F.card * (3 * ε₀) ≤
-              (15 : ℝ) ^ F.card * (3 * (1 / (3 * 15 ^ F.card))) := by
-            gcongr
-          _ = 1 := by field_simp
       obtain ⟨W, hWinv, hWcomm, hWclose⟩ :=
-        exists_isExactInvolution_comm_of_unitary V hVinv
-          (fun i j ↦ hVcomm i j) F hu hε₀.le hε₀small hinv hcomm
+        CollapseJointCorner.exists_isExactInvolution_comm_of_unitary_joint'
+          V hVinv (fun i j ↦ hVcomm i j) F hu hε₀.le hinv hcomm
       refine ⟨fun γ ↦ if γ = γ₀ then W else V γ, ?_, ?_, ?_, ?_⟩
       · intro γ
         dsimp only
@@ -255,13 +267,9 @@ theorem exists_family_on (B : OpAlmostRepresentation E) (iota : Γ →* E)
         dsimp only
         rcases Finset.mem_insert.mp hγ with rfl | hγF
         · rw [if_pos rfl]
-          have hεbound : ε₀ ≤ ε / (3 * 15 ^ F.card) := min_le_left _ _
           calc
-            ‖W - raw B iota k n γ‖ ≤ 3 * ((15 : ℝ) ^ F.card * ε₀) :=
-              hWclose
-            _ ≤ 3 * ((15 : ℝ) ^ F.card * (ε / (3 * 15 ^ F.card))) := by
-              gcongr
-            _ = ε := by field_simp
+            ‖W - raw B iota k n γ‖ ≤ 5 * ((F.card : ℝ) + 1) * ε₀ := hWclose
+            _ = ε := hε₀mul
         · have hne : γ ≠ γ₀ := by
             intro h
             rw [h] at hγF

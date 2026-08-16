@@ -1,5 +1,4 @@
-import GroupApproximation.Sofic.ChosenNonMFTheorem
-import GroupApproximation.Sofic.OperatorMFPositiveControls
+import GroupApproximation.Computability.PresentationCodes
 import Mathlib.Computability.RE
 
 /-!
@@ -10,6 +9,22 @@ Adian--Rabin construction from the construction itself.  In particular, no
 Adian--Rabin theorem is asserted as an axiom.  A user of this file must supply
 an explicit computable transformation of presentation codes together with
 its correctness equivalence.
+
+The vocabulary those consequences are phrased in --- `MarkovWitness`,
+`FinitePresentationSemantics`, `operatorMFProperty`, `AdianRabinReduction` and
+the two pullback lemmas --- lives one file upstream, in
+`Computability.MarkovReductionInterface`, under this same namespace.  The
+reason is the coding: the manuscript's undecidability corollary is printed *in
+the recursive coding of finite presentations*, and the paragraph following it
+says why an arbitrary semantics would not do --- a semantics need only attach a
+finitely presented group to each code, not do so effectively, and an ineffective
+choice would make the statement true for reasons having nothing to do with
+groups.  So the consequence drawn here is drawn at `PresentationCodes.semantics`,
+which forces this file to sit downstream of the coding.
+
+What stays generic is the *source* problem, exactly as the manuscript says: the
+reduction interface asks for a computable map and a correctness equivalence, and
+does not require its source to be a word problem.
 -/
 
 namespace GroupApproximation
@@ -17,107 +32,24 @@ namespace MarkovMFConsequences
 
 universe u v
 
-/-- A property of finite-presentation codes.  The syntax and semantics of
-codes are deliberately parameters: different exact encodings can share the
-same reduction theorem. -/
-abbrev PresentationProperty (Code : Type u) := Code → Prop
+/-- **Specialized undecidability statement for operator-MF recognition**, at the
+recursive coding and under an explicitly supplied Adian--Rabin reduction from an
+undecidable source problem.
 
-/-- The minimal nontriviality data attached to a Markov property on
-presentation codes.  These witnesses are metadata for an Adian--Rabin
-construction; by themselves they imply no undecidability theorem. -/
-structure MarkovWitness {Code : Type u}
-    (property : PresentationProperty Code) where
-  positiveCode : Code
-  positive : property positiveCode
-  negativeCode : Code
-  negative : ¬property negativeCode
-
-/-- Semantics for a recursive finite-presentation coding.  This structure
-only interprets codes; computability of syntactic operations belongs in a
-specific coding implementation. -/
-structure FinitePresentationSemantics (Code : Type u) where
-  Carrier : Code → Type v
-  group : ∀ code, Group (Carrier code)
-  finitelyPresented : ∀ code,
-    @Group.IsFinitelyPresented (Carrier code) (group code)
-
-/-- The operator-MF recognition predicate associated to presentation-code
-semantics. -/
-def operatorMFProperty {Code : Type u}
-    (semantics : FinitePresentationSemantics Code) :
-    PresentationProperty Code :=
-  fun code ↦ @IsOperatorMF (semantics.Carrier code) (semantics.group code)
-
-/-- Explicit input expected from an Adian--Rabin construction.  It contains
-the computable code transformation, its pointwise correctness theorem, and
-the Markov witnesses used in constructing it.  No inhabitant is postulated
-in this file. -/
-structure AdianRabinReduction
-    {Source : Type u} {Code : Type v} [Primcodable Source] [Primcodable Code]
-    (sourceProperty : Source → Prop)
-    (targetProperty : PresentationProperty Code) where
-  markov : MarkovWitness targetProperty
-  transform : Source → Code
-  transform_computable : Computable transform
-  correct : ∀ source,
-    targetProperty (transform source) ↔ sourceProperty source
-
-/-- Computable predicates pull back along computable functions. -/
-theorem computablePred_comp
-    {Source : Type u} {Code : Type v} [Primcodable Source] [Primcodable Code]
-    {property : Code → Prop} (hproperty : ComputablePred property)
-    {transform : Source → Code} (htransform : Computable transform) :
-    ComputablePred (fun source ↦ property (transform source)) := by
-  obtain ⟨decidableProperty, hdecide⟩ := hproperty
-  letI : DecidablePred property := decidableProperty
-  exact ⟨inferInstance, hdecide.comp htransform⟩
-
-/-- Recursively enumerable predicates pull back along computable functions. -/
-theorem rePred_comp
-    {Source : Type u} {Code : Type v} [Primcodable Source] [Primcodable Code]
-    {property : Code → Prop} (hproperty : REPred property)
-    {transform : Source → Code} (htransform : Computable transform) :
-    REPred (fun source ↦ property (transform source)) := by
-  exact hproperty.comp htransform
-
-/-- An Adian--Rabin reduction from a noncomputable source predicate makes the
-target presentation property undecidable. -/
-theorem recognition_undecidable
-    {Source : Type u} {Code : Type v} [Primcodable Source] [Primcodable Code]
-    {sourceProperty : Source → Prop} {targetProperty : Code → Prop}
-    (reduction : AdianRabinReduction sourceProperty targetProperty)
-    (source_undecidable : ¬ComputablePred sourceProperty) :
-    ¬ComputablePred targetProperty := by
-  intro htarget
-  have hpullback := computablePred_comp htarget reduction.transform_computable
-  exact source_undecidable <|
-    hpullback.of_eq fun source ↦ reduction.correct source
-
-/-- If the negative side of the source problem is not recursively
-enumerable, neither is the negative side of the target presentation
-property. -/
-theorem negative_side_not_re
-    {Source : Type u} {Code : Type v} [Primcodable Source] [Primcodable Code]
-    {sourceProperty : Source → Prop} {targetProperty : Code → Prop}
-    (reduction : AdianRabinReduction sourceProperty targetProperty)
-    (source_negative_not_re : ¬REPred (fun source ↦ ¬sourceProperty source)) :
-    ¬REPred (fun code ↦ ¬targetProperty code) := by
-  intro htarget
-  have hpullback := rePred_comp htarget reduction.transform_computable
-  apply source_negative_not_re
-  exact hpullback.of_eq fun source ↦ not_congr (reduction.correct source)
-
-/-- Specialized undecidability statement for operator-MF recognition under
-an explicitly supplied presentation semantics and Adian--Rabin reduction. -/
+The source problem is arbitrary --- that is the point of the interface, and what
+lets `Computability.HaltingReduction` reduce from the halting problem rather
+than from a word problem.  The coding is not arbitrary: it is
+`PresentationCodes.semantics`, where the group is read syntactically off the
+code, so the conclusion is about deciding MF-ness from a presentation and cannot
+be met by an ineffective choice of semantics. -/
 theorem operatorMF_recognition_undecidable :
-    ∀ {Source : Type u} {Code : Type v} [Primcodable Source] [Primcodable Code]
+    ∀ {Source : Type u} [Primcodable Source]
       {sourceProperty : Source → Prop}
-      (semantics : FinitePresentationSemantics Code)
       (_reduction : AdianRabinReduction sourceProperty
-        (operatorMFProperty semantics))
+        (operatorMFProperty PresentationCodes.semantics))
       (_source_undecidable : ¬ComputablePred sourceProperty),
-      ¬ComputablePred (operatorMFProperty semantics) := by
-  intro Source Code _ _ sourceProperty semantics reduction source_undecidable
+      ¬ComputablePred (operatorMFProperty PresentationCodes.semantics) := by
+  intro Source _ sourceProperty reduction source_undecidable
   exact recognition_undecidable reduction source_undecidable
 
 /-- Specialized non-r.e. statement for negative operator-MF instances. -/

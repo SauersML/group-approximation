@@ -29,10 +29,21 @@ strengthening is stated or accepted as a premise.
 
 namespace GroupApproximation
 
-variable {G : Type} {k V : Type*} [Group G] [Field k] [AddCommGroup V]
-  [Module k V]
+/-! ## The commutant stabilizer
 
-/-! ## The commutant stabilizer -/
+Nothing in this section mentions the free-lamp amalgam, and nothing in it
+constrains the universe of the ambient group: the adjoint action, the
+stabilizer subgroup and the no-growth transfer are the same statements for a
+group in any universe.  The section is therefore stated at `Type*`, so that the
+compression machinery downstream — `Criterion.CompressionCentralizerDefect` and
+everything built on `compressionGroup` — can quantify over the manuscript's
+arbitrary ambient group rather than over `Type 0` alone.  The collapse section
+below reverts to `Type 0`, because `FreeLamp` is built from `PushoutI` on
+`Type`. -/
+
+section CommutantStabilizer
+
+variable {G k V : Type*} [Group G] [Field k] [AddCommGroup V] [Module k V]
 
 /-- Composition law for the adjoint action, in applied form. -/
 theorem adjointRep_mul_apply (ρ : G →* (V ≃ₗ[k] V)) (a b : G)
@@ -125,7 +136,14 @@ theorem commutantStabilizer_eq_top [FiniteDimensional k V]
   have hmem := inv_compressor_mem_commutantStabilizer ρ Γ (hS s hsS)
   simpa using (commutantStabilizer ρ Γ).inv_mem hmem
 
+end CommutantStabilizer
+
 /-! ## The collapse -/
+
+section FreeLampCollapse
+
+variable {G : Type} {k V : Type*} [Group G] [Field k] [AddCommGroup V]
+  [Module k V]
 
 variable (G) (Γ' : Subgroup G) (K : Type) [Group K]
 
@@ -197,5 +215,7 @@ theorem freeLampRep_not_injective [FiniteDimensional k V]
   intro hinj
   refine lampWitness_ne_one G Γ' K hesc hk (hinj ?_)
   rw [freeLampRep_kills_witness G Γ' K S hS hgen π t γ hγ k', map_one]
+
+end FreeLampCollapse
 
 end GroupApproximation

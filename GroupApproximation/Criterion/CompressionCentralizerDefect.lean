@@ -24,7 +24,13 @@ namespace GroupApproximation
 
 open scoped commutatorElement
 
-variable {H : Type} {k V : Type*} [Group H] [Field k] [AddCommGroup V] [Module k V]
+/-! The ambient group is quantified at an arbitrary universe.  The manuscript
+states the compression--centralizer defect for an arbitrary group `H`, and
+nothing below — neither the group-theoretic definitions nor the
+finite-dimensional sterility argument — uses the size of the universe `H` lives
+in.  Keeping `H : Type*` is what lets the transport and obstruction theorems
+built on `compressionGroup` be stated at the manuscript's quantification. -/
+variable {H k V : Type*} [Group H] [Field k] [AddCommGroup V] [Module k V]
 
 /-- The set of one-sided compressors of a subgroup `L ≤ H`. -/
 def compressionSet (L : Subgroup H) : Set H :=

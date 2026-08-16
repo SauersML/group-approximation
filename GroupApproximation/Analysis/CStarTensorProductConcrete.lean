@@ -31,12 +31,25 @@ raises two obligations which this file discharges:
 
 ## What is still missing
 
-Faithfulness of `π ⊗ ρ` on *all* of `A ⊗[ℂ] B` (not just on elementary
-tensors) and independence of the norm from the pair `(π, ρ)` are both the
-slice-map/Takesaki circle of ideas, and neither is proved here.  Until then
-the spatial norm is a fully constructed C⋆-norm attached to a chosen pair of
-faithful representations, not yet a canonical `⊗_min`.  See the roadmap in
-`CStarTensorProduct.lean`.
+An earlier version of this paragraph grouped two things together and was wrong
+to: it said faithfulness of `π ⊗ ρ` on *all* of `A ⊗[ℂ] B` and independence of
+the norm from `(π, ρ)` "are both the slice-map/Takesaki circle of ideas, and
+neither is proved here".  They are not the same circle of ideas.
+
+* **Faithfulness on all of `A ⊗[ℂ] B` is now proved**, as
+  `CStarTensorProductSpatial.spatialHom_injective`.  It needs no states, no
+  GNS and no continuity --- only that the vector functionals separate points,
+  plus a Hamel basis on one factor.  So `spatialNorm_tmul_ne_zero` below,
+  which sees only elementary tensors, is no longer the best available
+  non-degeneracy statement; `CStarTensorProductSpatial.spatialNorm_isCStarNorm`
+  is.
+* **Independence of the norm from `(π, ρ)` is still missing**, and *that* is
+  the Takesaki theorem, which genuinely does need states, GNS and continuous
+  slice maps.
+
+Until independence is proved the spatial norm is a fully constructed C⋆-norm
+attached to a chosen pair of faithful representations, not a canonical
+`⊗_min`.  See the roadmap in `CStarTensorProduct.lean`.
 
 ## Manuscript status
 

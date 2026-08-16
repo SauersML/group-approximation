@@ -10,12 +10,13 @@ import Mathlib.Data.Set.Finite.Range
 
 `non_mf_groups_exist.tex`, the second multiplicity paragraph of
 `\subsection{Undecidability of MF recognition}` -- the one beginning *"Beyond
-finite presentation, pairing $E$ with the continuum of pairwise nonisomorphic
-two-generator groups of B.~H.~Neumann"* and ending in the `\leanverified` badge
-for `ContinuumMultiplicity.manuscriptContinuumMultiplicity`.  (Anchor on those
+finite presentation, pairing $E$ with a continuum of pairwise nonisomorphic
+finitely generated groups"* and ending in the `\leanverified` badge for
+`ContinuumMultiplicity.manuscriptContinuumMultiplicity`.  (Anchor on those
 phrases: the file's line numbers drift.)  It concludes that there are
 `2^{\aleph_0}` pairwise nonisomorphic **finitely generated** non-MF groups.  The
-counting step on top of Neumann's family is `Sofic/ContinuumMultiplicity`, with
+counting step on top of Neumann's family is `Sofic/ContinuumMultiplicityCore`,
+with
 Neumann's family a quantified hypothesis there, reduced to its smallest form in
 `Sofic/ContinuumFamilyCriterion`.  This file and `Monsters/NeumannContinuum`
 discharge that hypothesis by constructing such a family and proving its
@@ -65,7 +66,8 @@ Neumann's groups are two-generator; the groups here are finitely generated (the
 displayed generating set has sixty-two elements) and no attempt is made to
 compute the minimal number of generators.  Two-generation is never used in the
 manuscript's deduction, whose conclusion is about finitely generated groups and
-whose Lean form `ContinuumMultiplicity.manuscriptContinuumMultiplicity` consumes
+whose Lean form `ContinuumMultiplicity.exists_continuum_pairwise_nonisomorphic`
+consumes
 `Group.FG` only.
 -/
 

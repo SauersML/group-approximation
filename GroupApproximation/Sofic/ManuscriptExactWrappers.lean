@@ -10,6 +10,8 @@ import GroupApproximation.Kazhdan.KazhdanUniverse
 import GroupApproximation.Monsters.CliffordAlgebraLamp
 import GroupApproximation.Sofic.CDEOperatorMF
 import GroupApproximation.Sofic.ActualCoronaMFRadical
+import GroupApproximation.Sofic.CollapseUniverseScope
+import GroupApproximation.Sofic.CompressionUniverseTransfer
 import GroupApproximation.Sofic.DefectSaturation
 import GroupApproximation.Sofic.FiniteNormalAverageCorner
 import GroupApproximation.Sofic.FiniteNormalCompressionObstruction
@@ -68,7 +70,7 @@ theorem manuscriptTheoremB :
       (∀ γ ∈ Γ, t * γ * t⁻¹ ∈ Γ) →
       (∀ γ ∈ Γ, c * γ = γ * c) →
       π ⁅t * c * t⁻¹, a * (t * c * t⁻¹) * a⁻¹⁆ = 1) ∧
-      (∀ (k : Type u) (V : Type v) (H : Type)
+      (∀ (k : Type u) (V : Type v) (H : Type w)
         [Field k] [AddCommGroup V] [Module k V]
         [FiniteDimensional k V] [Group H]
         (π : H →* (Module.End k V)ˣ) (Γ : Subgroup H),
@@ -249,7 +251,7 @@ theorem manuscriptMarkedKazhdanPattern :
 every homomorphism into the unitary group of the genuine norm-matrix C-star
 corona maps the specified finite normal subgroup to the identity. -/
 theorem manuscriptFiniteNormalObstructionCriterion :
-    ∀ {Gamma H : Type} [Group Gamma] [Group H]
+    ∀ {Gamma : Type} {H : Type u} [Group Gamma] [Group H]
       [_countableGamma : Countable Gamma] [Countable H]
       (C : KazhdanCompressionCore Gamma H)
       (F : Subgroup H) [Finite F] [F.Normal]
@@ -262,20 +264,39 @@ theorem manuscriptFiniteNormalObstructionCriterion :
     ∀ Theta : H →* unitary (NormMatrixCStarCorona (fun n ↦ X n)),
       F ≤ Theta.ker := by
   intro Gamma H _ _ _ _ C F _ _ hF d hd
-  exact C.finiteNormal_le_normMatrixCStarCoronaKernel F hF
-    (fun n ↦ naturalFiniteModel (d n)) (fun n ↦ by
-      simpa using hd n)
+  -- `thm:criterion` prints "countable", which is exactly what puts the ambient
+  -- group in `Type 0` up to isomorphism; the datum and the finite normal
+  -- subgroup travel along the isomorphism, and the `Type 0` theorem runs there.
+  obtain ⟨H₀, _groupH₀, ⟨e⟩⟩ := Type0Transfer.exists_type0_model H
+  haveI : Countable H₀ := Type0Transfer.countable_type0_model H e
+  haveI : Finite (F.map e.toMonoidHom) :=
+    CompressionUniverseTransfer.map_finite e F
+  haveI : (F.map e.toMonoidHom).Normal :=
+    CompressionUniverseTransfer.map_normal e F
+  have h₀ :=
+    (CompressionUniverseTransfer.mapCore C e).finiteNormal_le_normMatrixCStarCoronaKernel
+      (F.map e.toMonoidHom)
+      (CompressionUniverseTransfer.map_le_defectNormal_mapCore C e hF)
+      (fun n ↦ naturalFiniteModel (d n)) (fun n ↦ by simpa using hd n)
+  letI : ∀ n, Nonempty (naturalFiniteModel (d n)) :=
+    fun n ↦ Fintype.card_pos_iff.mp (by simpa using hd n)
+  intro Theta
+  intro x hx
+  have hx₀ := MonoidHom.mem_ker.mp
+    (h₀ (Theta.comp e.symm.toMonoidHom)
+      (CompressionUniverseTransfer.mem_map_of_mem e hx))
+  exact MonoidHom.mem_ker.mpr (by simpa using hx₀)
 
 /-- Exact natural-dimension form of the normal-Kazhdan obstruction: every
 homomorphism into the unitary group of the genuine norm-matrix C-star
 corona maps a normal property-`(T)` subgroup of the compression defect to
 the identity.  No finiteness, centrality, or torsion hypothesis appears. -/
 theorem manuscriptNormalKazhdanObstruction :
-    ∀ {Gamma H : Type} [Group Gamma] [Group H]
+    ∀ {Gamma : Type} {H : Type u} [Group Gamma] [Group H]
       [_countableGamma : Countable Gamma] [Countable H]
       (C : KazhdanCompressionCore Gamma H)
       (K : Subgroup H) [K.Normal]
-      (hT : HasKazhdanPropertyT.{0, 0} K)
+      (hT : HasKazhdanPropertyT.{u, u} K)
       (hK : K ≤ C.defectNormal)
       (d : ℕ → ℕ) (hd : ∀ n, 0 < d n),
     let X : ℕ → FiniteModel := fun n ↦ naturalFiniteModel (d n)
@@ -285,9 +306,31 @@ theorem manuscriptNormalKazhdanObstruction :
     ∀ Theta : H →* unitary (NormMatrixCStarCorona (fun n ↦ X n)),
       K ≤ Theta.ker := by
   intro Gamma H _ _ _ _ C K _ hT hK d hd
-  exact C.normalKazhdan_le_normMatrixCStarCoronaKernel K hT hK
-    (fun n ↦ naturalFiniteModel (d n)) (fun n ↦ by
-      simpa using hd n)
+  -- As for `thm:criterion`: descend the countable ambient group, carry the
+  -- datum and `K` along, run the `Type 0` theorem.  Property `(T)` descends in
+  -- two moves -- `liftUniverse` on the representation universe, then
+  -- `of_surjective` onto the image subgroup -- exactly as in `thm:collapse`.
+  obtain ⟨H₀, _groupH₀, ⟨e⟩⟩ := Type0Transfer.exists_type0_model H
+  haveI : Countable H₀ := Type0Transfer.countable_type0_model H e
+  haveI : (K.map e.toMonoidHom).Normal :=
+    CompressionUniverseTransfer.map_normal e K
+  have hlift : HasKazhdanPropertyT.{u, 0} K :=
+    HasKazhdanPropertyT.liftUniverse hT
+  have hT₀ : HasKazhdanPropertyT.{0, 0} (K.map e.toMonoidHom) :=
+    HasKazhdanPropertyT.of_mulEquiv (e.subgroupMap K).symm hlift
+  have h₀ :=
+    (CompressionUniverseTransfer.mapCore C e).normalKazhdan_le_normMatrixCStarCoronaKernel
+      (K.map e.toMonoidHom) hT₀
+      (CompressionUniverseTransfer.map_le_defectNormal_mapCore C e hK)
+      (fun n ↦ naturalFiniteModel (d n)) (fun n ↦ by simpa using hd n)
+  letI : ∀ n, Nonempty (naturalFiniteModel (d n)) :=
+    fun n ↦ Fintype.card_pos_iff.mp (by simpa using hd n)
+  intro Theta
+  intro x hx
+  have hx₀ := MonoidHom.mem_ker.mp
+    (h₀ (Theta.comp e.symm.toMonoidHom)
+      (CompressionUniverseTransfer.mem_map_of_mem e hx))
+  exact MonoidHom.mem_ker.mpr (by simpa using hx₀)
 
 /-- Exact coordinate finite-normal-corner conclusion for literal positive
 natural matrix dimensions. -/
@@ -317,7 +360,7 @@ theorem manuscriptCoordinateFiniteNormalCorner :
 the squared normalized Hilbert--Schmidt distance tends to zero, which is
 equivalent to convergence of the normalized Hilbert--Schmidt norm itself. -/
 theorem manuscriptCompressionDefectsCollapse :
-    ∀ {Gamma H : Type} [Group Gamma] [Group H]
+    ∀ {Gamma : Type} {H : Type u} [Group Gamma] [Group H]
       (C : KazhdanCompressionCore Gamma H)
       (B : OpAlmostRepresentation H),
     ∀ gamma : Gamma, ∀ epsilon : ℝ, 0 < epsilon →
@@ -476,15 +519,22 @@ theorem manuscriptInvariantSizePrinciple :
 
 /-- Closed form of the involutive collapse theorem: the involutive
 collapse defect of a Kazhdan subgroup with a one-sided compressor lies
-in the literal MF radical. -/
+in the literal MF radical.
+
+`thm:collapse` reads "let `H` be countable", quantifying over every countable
+group, so the statement is taken at an arbitrary universe.  The proof is the
+descent of `Sofic/CollapseUniverseScope.lean`: a countable group in `Type u` is
+isomorphic to one in `Type 0`, property `(T)` follows through
+`HasKazhdanPropertyT.liftUniverse` and `HasKazhdanPropertyT.of_mulEquiv`, the
+collapse data transports, and the radical is functorial across universes. -/
 theorem manuscriptInvolutiveCollapse :
-    ∀ {H : Type} [Group H] [Countable H]
-      (L : Subgroup H), HasKazhdanPropertyT.{0, 0} ↥L →
+    ∀ {H : Type u} [Group H] [Countable H]
+      (L : Subgroup H), HasKazhdanPropertyT.{u, u} ↥L →
       ∀ (s : H), (∀ γ ∈ L, s * γ * s⁻¹ ∈ L) →
-      InvolutionCollapseEndpoint.involutiveCollapseDefect L s ≤
+      CollapseUniverseScope.involutiveCollapseDefect L s ≤
         actualCoronaMFResidual H := by
   intro H _ _ L hT s hcomp
-  exact InvolutionCollapseEndpoint.involutiveCollapseDefect_le_actualCoronaMFResidual
+  exact CollapseUniverseScope.involutiveCollapseDefect_le_actualCoronaMFResidual
     hT hcomp
 
 /-- Closed form of the unconditional radical reduction: the literal MF
@@ -498,8 +548,10 @@ theorem manuscriptRadicalReductionToQuotient :
   intro G _ N _ hN
   exact TorsionCompressionCollapse.actualCoronaMFResidual_eq_comap_quotient N hN
 
-/-- Closed form of the intrinsic normal-Kazhdan radical theorem. -/
-theorem manuscriptIntrinsicNormalKazhdanRadical :
+/-- The `Type 0` case of `cor:intrinsic-nk`, which the descent below runs on
+the model.  This is the statement the intrinsic-defect machinery of
+`Sofic/IntrinsicCompressionMFRadical.lean` proves directly. -/
+theorem manuscriptIntrinsicNormalKazhdanRadicalType0 :
     ∀ {Gamma H : Type} [Group Gamma] [Group H] [Countable H]
       (iota : Gamma →* H),
       HasKazhdanPropertyT.{0, 0} Gamma →
@@ -511,16 +563,64 @@ theorem manuscriptIntrinsicNormalKazhdanRadical :
   exact KazhdanAsymptoticCommutant.normalKazhdan_le_actualCoronaMFResidual_of_le_compressionCentralizerDefect
     iota hkazhdan K hT hK
 
-/-- Closed form of the normal Kazhdan part of the intrinsic defect. -/
+/-- Closed form of the intrinsic normal-Kazhdan radical theorem. -/
+theorem manuscriptIntrinsicNormalKazhdanRadical :
+    ∀ {Gamma : Type} {H : Type u} [Group Gamma] [Group H] [Countable H]
+      (iota : Gamma →* H),
+      HasKazhdanPropertyT.{0, 0} Gamma →
+      ∀ (K : Subgroup H) [K.Normal],
+        HasKazhdanPropertyT.{u, u} K →
+        K ≤ compressionCentralizerDefect iota.range →
+        K ≤ actualCoronaMFResidual H := by
+  intro Gamma H _ _ _ iota hkazhdan K _ hT hK
+  -- `cor:intrinsic-nk` reads "countable group", so the ambient group is taken
+  -- at an arbitrary universe and the proof descends to a `Type 0` model.  The
+  -- `.{u, u}` spelling of property `(T)` for `K` is forced: `↥K` lives in
+  -- `Type u`, so `.{0, 0}` is ill-typed, and at `u = 0` the two coincide.
+  obtain ⟨H₀, _groupH₀, ⟨e⟩⟩ := Type0Transfer.exists_type0_model H
+  haveI : Countable H₀ := Type0Transfer.countable_type0_model H e
+  haveI : (K.map e.toMonoidHom).Normal :=
+    CompressionUniverseTransfer.map_normal e K
+  have hlift : HasKazhdanPropertyT.{u, 0} K :=
+    HasKazhdanPropertyT.liftUniverse hT
+  have hT₀ : HasKazhdanPropertyT.{0, 0} (K.map e.toMonoidHom) :=
+    HasKazhdanPropertyT.of_mulEquiv (e.subgroupMap K).symm hlift
+  have hrange : ((e.toMonoidHom.comp iota)).range = iota.range.map e.toMonoidHom :=
+    MonoidHom.range_comp _ _
+  have hK₀ : K.map e.toMonoidHom ≤
+      compressionCentralizerDefect ((e.toMonoidHom.comp iota)).range := by
+    rw [hrange]
+    exact (Subgroup.map_mono hK).trans
+      (CompressionUniverseTransfer.compressionCentralizerDefect_map_le e iota.range)
+  have h₀ : K.map e.toMonoidHom ≤ actualCoronaMFResidual H₀ :=
+    manuscriptIntrinsicNormalKazhdanRadicalType0
+      (e.toMonoidHom.comp iota) hkazhdan (K.map e.toMonoidHom) hT₀ hK₀
+  intro x hx
+  have hmem : e x ∈ actualCoronaMFResidual H₀ :=
+    h₀ (Subgroup.mem_map_of_mem _ hx)
+  have hpush : (e.symm : H₀ →* H) (e x) ∈ actualCoronaMFResidual H :=
+    map_actualCoronaMFResidual_le (e.symm : H₀ →* H) ⟨e x, hmem, rfl⟩
+  simpa using hpush
+
+/-- Closed form of the normal Kazhdan part of the intrinsic defect.
+
+`p:nk-join` says the subgroup generated by *all* normal property-`(T)`
+subgroups of the defect is killed, over an arbitrary countable group.  No
+separate descent is needed here: the join is a supremum, so it suffices that
+each member is killed, which is `manuscriptIntrinsicNormalKazhdanRadical` at the
+same universe. -/
 theorem manuscriptIntrinsicNormalKazhdanPart :
-    ∀ {Gamma H : Type} [Group Gamma] [Group H] [Countable H]
+    ∀ {Gamma : Type} {H : Type u} [Group Gamma] [Group H] [Countable H]
       (iota : Gamma →* H),
       HasKazhdanPropertyT.{0, 0} Gamma →
       normalKazhdanPart (compressionCentralizerDefect iota.range) ≤
         actualCoronaMFResidual H := by
   intro Gamma H _ _ _ iota hkazhdan
-  exact KazhdanAsymptoticCommutant.normalKazhdanPart_compressionCentralizerDefect_le_actualCoronaMFResidual
-    iota hkazhdan
+  rw [normalKazhdanPart]
+  refine sSup_le ?_
+  rintro K ⟨hnorm, hT, hKD⟩
+  haveI := hnorm
+  exact manuscriptIntrinsicNormalKazhdanRadical iota hkazhdan K hT hKD
 
 /-! ## The involutive collapse and defect saturation -/
 
@@ -529,50 +629,50 @@ is literally the displayed three conditions, and the involutive collapse
 defect is literally the normal closure of the displayed commutator set,
 normal in the ambient group. -/
 theorem manuscriptInvolutiveCollapsePattern :
-    ∀ {H : Type} [Group H] (L : Subgroup H) (s : H),
+    ∀ {H : Type u} [Group H] (L : Subgroup H) (s : H),
     (∀ k : H,
-      InvolutionCollapseEndpoint.IsInvolutiveCompressionWitness L s k ↔
+      CollapseUniverseScope.IsInvolutiveCompressionWitness L s k ↔
         (k * k = 1 ∧ (∀ γ ∈ L, Commute (s * γ * s⁻¹) k) ∧
           (∀ γ₁ ∈ L, ∀ γ₂ ∈ L,
             Commute (γ₁ * k * γ₁⁻¹) (γ₂ * k * γ₂⁻¹)))) ∧
-      InvolutionCollapseEndpoint.involutiveCollapseDefect L s =
+      CollapseUniverseScope.involutiveCollapseDefect L s =
         Subgroup.normalClosure
           {x | ∃ k : H,
-            InvolutionCollapseEndpoint.IsInvolutiveCompressionWitness L s k ∧
+            CollapseUniverseScope.IsInvolutiveCompressionWitness L s k ∧
             ∃ γ ∈ L, x = ⁅γ, k⁆} ∧
-      (InvolutionCollapseEndpoint.involutiveCollapseDefect L s).Normal := by
+      (CollapseUniverseScope.involutiveCollapseDefect L s).Normal := by
   intro H _ L s
-  exact ⟨fun k ↦ Iff.rfl, rfl, inferInstance⟩
+  exact ⟨fun _ ↦ Iff.rfl, rfl, inferInstance⟩
 
 /-- Exact wrapper for the collapse radical reduction: unconditionally the
 literal MF radical is the full preimage of the radical of the collapse
 quotient, and it equals the collapse defect exactly when the quotient is
 operator-MF. -/
 theorem manuscriptCollapseRadicalReduction :
-    ∀ {H : Type} [Group H] [Countable H]
+    ∀ {H : Type u} [Group H] [Countable H]
       (L : Subgroup H) (s : H),
-      HasKazhdanPropertyT.{0, 0} ↥L →
+      HasKazhdanPropertyT.{u, u} ↥L →
       (∀ γ ∈ L, s * γ * s⁻¹ ∈ L) →
       letI : Countable
-          (H ⧸ InvolutionCollapseEndpoint.involutiveCollapseDefect L s) :=
+          (H ⧸ CollapseUniverseScope.involutiveCollapseDefect L s) :=
         Function.Surjective.countable
           (QuotientGroup.mk'_surjective
-            (InvolutionCollapseEndpoint.involutiveCollapseDefect L s))
+            (CollapseUniverseScope.involutiveCollapseDefect L s))
       actualCoronaMFResidual H =
         (actualCoronaMFResidual
-          (H ⧸ InvolutionCollapseEndpoint.involutiveCollapseDefect L s)).comap
+          (H ⧸ CollapseUniverseScope.involutiveCollapseDefect L s)).comap
           (QuotientGroup.mk'
-            (InvolutionCollapseEndpoint.involutiveCollapseDefect L s)) ∧
+            (CollapseUniverseScope.involutiveCollapseDefect L s)) ∧
       (IsCDEOperatorMF
-          (H ⧸ InvolutionCollapseEndpoint.involutiveCollapseDefect L s) →
+          (H ⧸ CollapseUniverseScope.involutiveCollapseDefect L s) →
         actualCoronaMFResidual H =
-          InvolutionCollapseEndpoint.involutiveCollapseDefect L s) := by
+          CollapseUniverseScope.involutiveCollapseDefect L s) := by
   intro H _ _ L s hT hcomp
   exact
-    ⟨InvolutionCollapseEndpoint.actualCoronaMFResidual_eq_comap_involutive_quotient
+    ⟨CollapseUniverseScope.actualCoronaMFResidual_eq_comap_involutive_quotient
         hT hcomp,
       fun hquot ↦
-        InvolutionCollapseEndpoint.actualCoronaMFResidual_eq_involutiveCollapseDefect
+        CollapseUniverseScope.actualCoronaMFResidual_eq_involutiveCollapseDefect
           hT hcomp hquot⟩
 
 /-- Exact wrapper for defect saturation: the collapse defect dies in every
@@ -581,31 +681,31 @@ forces the full literal MF radical, trivializes every homomorphism to a
 countable operator-MF group, and rules out operator-MF approximation of a
 nontrivial ambient group. -/
 theorem manuscriptDefectSaturation :
-    ∀ {H : Type} [Group H] [Countable H]
+    ∀ {H : Type u} [Group H] [Countable H]
       (L : Subgroup H) (s : H),
-      HasKazhdanPropertyT.{0, 0} ↥L →
+      HasKazhdanPropertyT.{u, u} ↥L →
       (∀ γ ∈ L, s * γ * s⁻¹ ∈ L) →
-    (∀ {Q : Type} [Group Q] [Countable Q] (f : H →* Q),
+    (∀ {Q : Type v} [Group Q] [Countable Q] (f : H →* Q),
         IsCDEOperatorMF Q →
-        InvolutionCollapseEndpoint.involutiveCollapseDefect L s ≤ f.ker) ∧
-      (InvolutionCollapseEndpoint.involutiveCollapseDefect L s = ⊤ →
+        CollapseUniverseScope.involutiveCollapseDefect L s ≤ f.ker) ∧
+      (CollapseUniverseScope.involutiveCollapseDefect L s = ⊤ →
         actualCoronaMFResidual H = ⊤ ∧
-        (∀ {Q : Type} [Group Q] [Countable Q] (f : H →* Q),
+        (∀ {Q : Type v} [Group Q] [Countable Q] (f : H →* Q),
           IsCDEOperatorMF Q → ∀ x : H, f x = 1) ∧
         (Nontrivial H → ¬ IsCDEOperatorMF H)) := by
   intro H _ _ L s hT hcomp
   constructor
   · intro Q _ _ f hQ
-    exact DefectSaturation.involutiveCollapseDefect_le_ker_of_isCDEOperatorMF
+    exact CollapseUniverseScope.involutiveCollapseDefect_le_ker_of_isCDEOperatorMF
       hT hcomp f hQ
   · intro hsat
-    refine ⟨DefectSaturation.actualCoronaMFResidual_eq_top_of_saturated
+    refine ⟨CollapseUniverseScope.actualCoronaMFResidual_eq_top_of_saturated
         hT hcomp hsat, ?_, ?_⟩
     · intro Q _ _ f hQ x
-      exact DefectSaturation.map_eq_one_of_saturated hT hcomp hsat f hQ x
+      exact CollapseUniverseScope.map_eq_one_of_saturated hT hcomp hsat f hQ x
     · intro hNontrivial
       letI := hNontrivial
-      exact DefectSaturation.not_isCDEOperatorMF_of_saturated hT hcomp hsat
+      exact CollapseUniverseScope.not_isCDEOperatorMF_of_saturated hT hcomp hsat
 
 /-! ## The abstract obstruction over an invisible subgroup -/
 
@@ -614,8 +714,8 @@ is killed in the tracial ultraproduct attached to every operator-norm
 almost representation, along every ultrafilter refining the cofinite
 filter.  This is the per-element form of the hypothesis of the abstract
 invisibility obstruction below. -/
-def ManuscriptHSInvisible : ∀ {H : Type} [Group H], H → Prop :=
-  fun {H : Type} [Group H] (g : H) ↦
+def ManuscriptHSInvisible : ∀ {H : Type u} [Group H], H → Prop :=
+  fun {H : Type u} [Group H] (g : H) ↦
     ∀ (B : OpAlmostRepresentation H) (U : Ultrafilter ℕ)
       (hcof : (U : Filter ℕ) ≤ Filter.cofinite),
       (KazhdanCompressionCore.toAsymptoticUnitaryRepresentation B).toUltraproductHom
@@ -640,7 +740,7 @@ that definition actually needs, is stated here in three parts.
    homomorphism.  So `def:invisible` cuts out a subgroup, which is what makes
    the quantified form in part 2 the right one. -/
 theorem manuscriptHSInvisibleCharacterization :
-    ∀ {H : Type} [Group H],
+    ∀ {H : Type u} [Group H],
       (∀ g : H, ManuscriptHSInvisible g ↔
         ∀ (B : OpAlmostRepresentation H) (U : Ultrafilter ℕ)
           (hcof : (U : Filter ℕ) ≤ Filter.cofinite),
@@ -675,14 +775,14 @@ operator-norm almost representation, then every normal property-`(T)`
 subgroup of `D` dies in every norm matrix C*-corona representation, for
 literal positive natural matrix dimensions. -/
 theorem manuscriptAbstractNormalKazhdanObstruction :
-    ∀ {H : Type} [Group H] [Countable H]
+    ∀ {H : Type u} [Group H] [Countable H]
       (D : Subgroup H)
       (hDkill : ∀ (B : OpAlmostRepresentation H) (U : Ultrafilter ℕ)
         (hcof : (U : Filter ℕ) ≤ Filter.cofinite) (x : H), x ∈ D →
         (KazhdanCompressionCore.toAsymptoticUnitaryRepresentation B).toUltraproductHom
           hcof x = 1)
       (K : Subgroup H) [K.Normal]
-      (hT : HasKazhdanPropertyT.{0, 0} K)
+      (hT : HasKazhdanPropertyT.{u, u} K)
       (hK : K ≤ D)
       (d : ℕ → ℕ) (hd : ∀ n, 0 < d n),
     let X : ℕ → FiniteModel := fun n ↦ naturalFiniteModel (d n)
@@ -692,10 +792,49 @@ theorem manuscriptAbstractNormalKazhdanObstruction :
     ∀ Theta : H →* unitary (NormMatrixCStarCorona (fun n ↦ X n)),
       K ≤ Theta.ker := by
   intro H _ _ D hDkill K _ hT hK d hd
-  exact KazhdanCompressionCore.normalKazhdan_le_normMatrixCStarCoronaKernel_of_hyperlinear_killed
-    D hDkill K hT hK
-    (fun n ↦ naturalFiniteModel (d n)) (fun n ↦ by
-      simpa using hd n)
+  -- `thm:abstract-nk` reads "countable group".  The invisibility hypothesis is
+  -- the only new thing to carry: an almost representation of the `Type 0` model
+  -- pulls back along `e` to one of `H`, and the two tracial ultraproduct
+  -- homomorphisms agree.
+  --
+  -- WARNING to future editors.  That agreement is used here as a *definitional*
+  -- equality, and it holds only because of how `OpAlmostRepresentation.comap`
+  -- is currently spelled: it is an `abbrev` that copies `model` and
+  -- `modelNonempty` unchanged and reindexes `map` alone, so
+  -- `toAsymptoticUnitaryRepresentation (B.comap e)` and
+  -- `toAsymptoticUnitaryRepresentation B` have the same model family, and their
+  -- `toUltraproductHom`s land in the same quotient and agree at `x` and `e x`.
+  -- If `comap` is ever changed to rebuild the models, or demoted from `abbrev`
+  -- to `def`, the `exact` below stops elaborating and this proof needs a
+  -- two-line bridging lemma instead.  Nothing mathematical would have changed.
+  obtain ⟨H₀, _groupH₀, ⟨e⟩⟩ := Type0Transfer.exists_type0_model H
+  haveI : Countable H₀ := Type0Transfer.countable_type0_model H e
+  haveI : (K.map e.toMonoidHom).Normal :=
+    CompressionUniverseTransfer.map_normal e K
+  have hlift : HasKazhdanPropertyT.{u, 0} K :=
+    HasKazhdanPropertyT.liftUniverse hT
+  have hT₀ : HasKazhdanPropertyT.{0, 0} (K.map e.toMonoidHom) :=
+    HasKazhdanPropertyT.of_mulEquiv (e.subgroupMap K).symm hlift
+  have hDkill₀ : ∀ (B : OpAlmostRepresentation H₀) (U : Ultrafilter ℕ)
+      (hcof : (U : Filter ℕ) ≤ Filter.cofinite) (y : H₀),
+      y ∈ D.map e.toMonoidHom →
+      (KazhdanCompressionCore.toAsymptoticUnitaryRepresentation B).toUltraproductHom
+        hcof y = 1 := by
+    rintro B U hcof _ ⟨x, hx, rfl⟩
+    exact hDkill (B.comap e.toMonoidHom) U hcof x hx
+  have h₀ :=
+    KazhdanCompressionCore.normalKazhdan_le_normMatrixCStarCoronaKernel_of_hyperlinear_killed
+      (D.map e.toMonoidHom) hDkill₀ (K.map e.toMonoidHom) hT₀
+      (Subgroup.map_mono hK)
+      (fun n ↦ naturalFiniteModel (d n)) (fun n ↦ by simpa using hd n)
+  letI : ∀ n, Nonempty (naturalFiniteModel (d n)) :=
+    fun n ↦ Fintype.card_pos_iff.mp (by simpa using hd n)
+  intro Theta
+  intro x hx
+  have hx₀ := MonoidHom.mem_ker.mp
+    (h₀ (Theta.comp e.symm.toMonoidHom)
+      (CompressionUniverseTransfer.mem_map_of_mem e hx))
+  exact MonoidHom.mem_ker.mpr (by simpa using hx₀)
 
 end
 

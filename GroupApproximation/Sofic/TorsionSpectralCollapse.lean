@@ -33,6 +33,8 @@ namespace TorsionSpectralCollapse
 
 open Finset
 
+universe u
+
 /-! ## Modular power bookkeeping -/
 
 theorem pow_mod_of_pow_eq_one {A : Type*} [Monoid A] {v : A} {m : ℕ}
@@ -306,10 +308,15 @@ ambient group, a Kazhdan subgroup with a one-sided compressor, and a
 finite-order witness with commuting orbit, every collapse commutator is
 invisible in every corona representation.  This discharges the collapse
 gate of `Sofic/TorsionCompressionCollapse` at every order, extending the
-involutive endpoint from order two. -/
+involutive endpoint from order two.
+
+The ambient group is countable but otherwise arbitrary, in any universe, as the
+manuscript quantifies it; the universe descent is carried entirely by
+`ProjectionCompressionCollapse.corona_projection_collapse`, which applies the
+`Type 0` collapse endpoint inside the corona unitary group. -/
 theorem actualCoronaMFInvisible_of_torsionWitness :
-    ∀ {E : Type} [Group E]
-      [Countable E] {L : Subgroup E} (_hT : HasKazhdanPropertyT.{0, 0} ↥L)
+    ∀ {E : Type u} [Group E]
+      [Countable E] {L : Subgroup E} (_hT : HasKazhdanPropertyT.{u, u} ↥L)
       {s : E} (_hcomp : ∀ γ ∈ L, s * γ * s⁻¹ ∈ L) {k : E}
       (_hk : TorsionCompressionCollapse.IsTorsionCompressionWitness L s k)
       {γ : E} (_hγ : γ ∈ L),
@@ -460,7 +467,7 @@ theorem actualCoronaMFInvisible_of_torsionWitness :
 
 /-- Quotients of countable groups are countable; mirrored locally from
 `Sofic.ActualCoronaMFRadical`, where the same instance is `local`. -/
-local instance quotientCountable {E : Type} [Group E] (N : Subgroup E)
+local instance quotientCountable {E : Type u} [Group E] (N : Subgroup E)
     [hN : N.Normal] [Countable E] : Countable (E ⧸ N) :=
   Function.Surjective.countable
     (@QuotientGroup.mk'_surjective E _ N hN)
@@ -469,8 +476,8 @@ local instance quotientCountable {E : Type} [Group E] (N : Subgroup E)
 analytic hypothesis: the collapse gate of
 `Sofic/TorsionCompressionCollapse` is discharged at every order. -/
 theorem torsionCollapseDefect_le_actualCoronaMFResidual_of_kazhdan :
-    ∀ {E : Type} [Group E] [Countable E] {L : Subgroup E}
-      (_hT : HasKazhdanPropertyT.{0, 0} ↥L) {s : E}
+    ∀ {E : Type u} [Group E] [Countable E] {L : Subgroup E}
+      (_hT : HasKazhdanPropertyT.{u, u} ↥L) {s : E}
       (_hcomp : ∀ γ ∈ L, s * γ * s⁻¹ ∈ L),
       TorsionCompressionCollapse.torsionCollapseDefect L s ≤
         actualCoronaMFResidual E := by
@@ -484,8 +491,8 @@ theorem torsionCollapseDefect_le_actualCoronaMFResidual_of_kazhdan :
 quotient is MF, the torsion-collapse defect is exactly the literal MF
 radical. -/
 theorem actualCoronaMFResidual_eq_torsionCollapseDefect_of_kazhdan :
-    ∀ {E : Type} [Group E] [Countable E] {L : Subgroup E}
-      (_hT : HasKazhdanPropertyT.{0, 0} ↥L) {s : E}
+    ∀ {E : Type u} [Group E] [Countable E] {L : Subgroup E}
+      (_hT : HasKazhdanPropertyT.{u, u} ↥L) {s : E}
       (_hcomp : ∀ γ ∈ L, s * γ * s⁻¹ ∈ L)
       (_hquot : IsCDEOperatorMF
         (E ⧸ TorsionCompressionCollapse.torsionCollapseDefect L s)),

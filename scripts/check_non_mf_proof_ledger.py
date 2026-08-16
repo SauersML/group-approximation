@@ -129,7 +129,19 @@ def statement_digest(block: str, env: str) -> str:
 
 
 def environment_digests(source: str) -> dict[str, str]:
-    """Map the first label of every labelled environment to its digest."""
+    """Map *every* label of every labelled environment to its digest.
+
+    Not only the first.  An environment may carry several labels -- the
+    manuscript keeps `\\label{thm:B}` beside `\\label{thm:exactfd}` as a legacy
+    alias so that references written before a rename still resolve -- and a
+    ledger anchor keyed on the second one used to fall off the map entirely.
+    The symptom was misleading and unfixable at once: `check_anchors` reported
+    "is not inside a labelled environment" about a label that plainly was, and
+    `repin` looked the same label up in the same map, found nothing, and
+    silently skipped the row, so `--repin-digests` reported success while
+    leaving the anchor broken.  All labels of one environment share its digest,
+    which is what the aliasing means.
+    """
     digests: dict[str, str] = {}
     cursor = 0
     while match := BEGIN_RE.search(source, cursor):
@@ -143,9 +155,36 @@ def environment_digests(source: str) -> dict[str, str]:
         block = source[match.start():stop]
         labels = LABEL_RE.findall(block)
         if labels:
-            digests.setdefault(labels[0], statement_digest(block, env))
+            digest = statement_digest(block, env)
+            for label in labels:
+                digests.setdefault(label, digest)
         cursor = stop
     return digests
+
+
+def environment_aliases(source: str) -> dict[str, str]:
+    """Map each non-first label of a labelled environment to that env's first.
+
+    The first label is the one the claim manifest and the dependency map key
+    on, so it is the name a ledger row should quote.  A row keyed on an alias
+    still pins correctly, but it is a row waiting to break: the aliases exist
+    to be deleted once no draft in flight uses them.
+    """
+    aliases: dict[str, str] = {}
+    cursor = 0
+    while match := BEGIN_RE.search(source, cursor):
+        env = match.group("env")
+        end_token = f"\\end{{{env}}}"
+        end = source.find(end_token, match.end())
+        if end < 0:
+            cursor = match.end()
+            continue
+        stop = end + len(end_token)
+        labels = LABEL_RE.findall(source[match.start():stop])
+        for label in labels[1:]:
+            aliases.setdefault(label, labels[0])
+        cursor = stop
+    return aliases
 
 
 CELL_SPLIT_RE = re.compile(r"(?<!\\)\|")
@@ -287,6 +326,7 @@ def check_anchors(anchors: dict[str, Anchor], tex_source: str,
                   problems: list[str]) -> None:
     labels = set(LABEL_RE.findall(tex_source))
     digests = environment_digests(tex_source)
+    aliases = environment_aliases(tex_source)
     normalized = re.sub(r"\s+", " ", tex_source)
     for anchor in anchors.values():
         where = f"line {anchor.row}: anchor `{anchor.name}`"
@@ -296,6 +336,12 @@ def check_anchors(anchors: dict[str, Anchor], tex_source: str,
                     f"{where}: no \\label{{{anchor.locator}}} in the manuscript")
                 continue
         if anchor.kind == "env":
+            if anchor.locator in aliases:
+                problems.append(
+                    f"{where}: \\label{{{anchor.locator}}} is a legacy alias of "
+                    f"\\label{{{aliases[anchor.locator]}}} on the same "
+                    "environment; key the anchor on the primary label, which is "
+                    "what the claim manifest and the dependency map use")
             actual = digests.get(anchor.locator)
             if actual is None:
                 problems.append(
@@ -632,6 +678,34 @@ def self_test() -> int:
         found = validate(repo, tex, ledger)
         if not any("prose probe occurs 2 times" in problem for problem in found):
             print(f"self-test missed prose drift: {found}", file=sys.stderr)
+            return 1
+
+        # A second label on the same environment is an alias: it digests to the
+        # same statement, so the anchor still pins and `repin` can still move
+        # it, but keying a row on it is reported so that deleting the alias
+        # cannot quietly orphan the row.
+        tex.write_text(
+            "\\begin{theorem}[Demo]\\label{thm:demo}\\label{thm:alias}\nTrue.\n"
+            "\\leanverified{Demo/Exact}{GroupApproximation.demo_exact}\n"
+            "\\end{theorem}\n", encoding="utf-8")
+        source = strip_comments(tex.read_text(encoding="utf-8"))
+        table = environment_digests(source)
+        if table.get("thm:alias") != table.get("thm:demo"):
+            print("self-test: an alias label did not inherit its statement "
+                  f"digest: {table}", file=sys.stderr)
+            return 1
+        digest = table["thm:alias"][:DIGEST_WIDTH]
+        aliased = LEDGER_TEMPLATE.format(digest=digest).replace(
+            "| thm:demo | env | thm:demo |", "| thm:demo | env | thm:alias |")
+        ledger.write_text(aliased, encoding="utf-8")
+        found = validate(repo, tex, ledger)
+        if not any("is a legacy alias of" in problem for problem in found):
+            print(f"self-test missed an aliased anchor: {found}", file=sys.stderr)
+            return 1
+        if any("not inside a labelled environment" in problem
+               or "printed statement changed" in problem for problem in found):
+            print("self-test: an aliased anchor was reported as unpinned rather "
+                  f"than as an alias: {found}", file=sys.stderr)
             return 1
     print("non-MF proof ledger: self-test passed")
     return 0

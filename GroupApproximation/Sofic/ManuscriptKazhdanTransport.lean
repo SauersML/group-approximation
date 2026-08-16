@@ -4,6 +4,7 @@ import GroupApproximation.Sofic.ActualCoronaMFRadical
 import GroupApproximation.Sofic.IntrinsicCompressionMFRadical
 import GroupApproximation.Sofic.KazhdanAsymptoticCommutant
 import GroupApproximation.Sofic.UltraproductKazhdanTransport
+import GroupApproximation.Sofic.UltraproductModelConstructionAssembly
 
 /-!
 # Exact manuscript form of Kazhdan transport
@@ -14,28 +15,33 @@ operator-norm almost representations, and normalized Hilbert--Schmidt
 commutators.
 
 `non_mf_groups_exist.tex` proves `\label{thm:kazhdan-transport}` **twice**,
-and the remark `\label{rem:finite-stage}` advertises both proofs.  Exactly one
-of the two is certified here:
+and the remark `\label{rem:finite-stage}` advertises both proofs.  Both are
+certified here:
 
-* `finiteStageKazhdanTransport` -- **certified.**  The quantitative proof of
+* `manuscriptKazhdanTransport_ultraproduct` -- the *printed* proof, the one set
+  under the theorem in `\section{One-sided Kazhdan transport}`
+  (`\label{sec:transport}`): the adjoint model, the norm ultraproduct `B_ω`,
+  the Kazhdan projection, one-sided compression, and finiteness of `B_ω`.  Its
+  machinery lives in `Sofic/UltraproductKazhdanTransport.lean`, and the ambient
+  it consumes is now built, from the theorem's own hypotheses and nothing else,
+  by
+  `Sofic/UltraproductModelConstructionAssembly.lean`
+  (`UltraproductModelConstruction.ultraproductAdjointModel`).
+* `finiteStageKazhdanTransport` -- the quantitative proof of
   `\section{The finite-stage transport proof}` (`\label{app:finite-stage}`),
   run at each single coordinate with an almost-fixed spectral subspace in
   place of the Kazhdan projection and the equal-rank reversal estimate in
   place of finiteness of `B_ω`.  This is the reusable
-  `KazhdanAsymptoticCommutant.transport` in manuscript coordinates.
-* `manuscriptKazhdanTransport_ultraproduct` -- **not certified.**  It replays
-  the *printed* proof, the one set under the theorem in
-  `\section{One-sided Kazhdan transport}` (`\label{sec:transport}`): the
-  adjoint model, the norm ultraproduct `B_ω`, the Kazhdan projection,
-  one-sided compression, and finiteness of `B_ω`.  But it is conditional on an
-  `UltraproductAdjointModel`, and nothing in this repository constructs one,
-  so it proves nothing about any actual ultraproduct yet.  Its machinery lives
-  in `Sofic/UltraproductKazhdanTransport.lean`.
+  `KazhdanAsymptoticCommutant.transport` in manuscript coordinates.  Unlike the
+  first, it gives an explicit rate.
 
-`manuscriptKazhdanTransport` is the theorem statement itself.  It is
-unconditional, and it is established by the finite-stage route alone; the
-printed ultraproduct proof remains unformalized until the interface acquires a
-constructor.
+`manuscriptKazhdanTransport` is the theorem statement itself, and it is the
+declaration the manuscript badges.  It is unconditional and it is derived by
+the **printed** route: its proof is one application of
+`manuscriptKazhdanTransport_ultraproduct` with the ambient supplied by the
+constructor.  The finite-stage route remains available, and reverting the
+badged theorem to it is the single line
+`exact finiteStageKazhdanTransport hT iota s hs d hd U hU x hbound hx`.
 
 TeX references here are by `\label` and sectioning command, never by line
 number: the manuscript is under concurrent edit and offsets go stale within
@@ -64,17 +70,18 @@ def NaturalHSCommutatorVanishing
     Real.sqrt (hsNormSq (naturalFiniteModel (d n))
       (x n * U n g - U n g * x n)) ≤ ε
 
-/-- **The ultraproduct route to Kazhdan transport -- NOT YET CLOSED.**
+/-- **The ultraproduct route to Kazhdan transport.**
 
 This replays the proof set under `\label{thm:kazhdan-transport}` in
-`non_mf_groups_exist.tex`, in the exact manuscript coordinates, but it is
-**conditional on `ambient`, and nothing in this repository yet constructs an
-`UltraproductAdjointModel`.**  So this declaration does *not* certify the
-manuscript's printed proof, it must not carry a `\leanverified` badge, and it
-must not be described as formalizing the ultraproduct argument.  It becomes a
-certificate the moment a constructor for the interface exists; until then the
-manuscript's printed proof is unformalized, and the theorem's unconditional
-certificate is `manuscriptKazhdanTransport` below, by the finite-stage route.
+`non_mf_groups_exist.tex`, in the exact manuscript coordinates.  It is stated
+relative to `ambient`, the bundle of manuscript steps KT.01--KT.09, because
+that is how the printed proof is organized: the ambient is an intermediate
+*object* of the proof, not a hypothesis about the theorem.  The bundle is
+constructed, from the theorem's own hypotheses and nothing else, by
+`UltraproductModelConstruction.ultraproductAdjointModel`, and
+`manuscriptKazhdanTransport` below discharges `ambient` with it.  So the
+printed proof is formalized, and this declaration is what carries the theorem's
+`\leanverified` badge through.
 
 The proof is by contradiction: the conclusion fails on an infinite set `I`, a
 free ultrafilter `ω` containing `I` is fixed, and the ambient of manuscript
@@ -227,8 +234,15 @@ are formalized.  The printed proof is `manuscriptKazhdanTransport_ultraproduct`
 (the norm ultraproduct `B_ω`, the Kazhdan projection, one-sided compression,
 and finiteness); the quantitative proof of `\label{app:finite-stage}`, which
 the remark `\label{rem:finite-stage}` announces as the second proof, is
-`finiteStageKazhdanTransport`.  The closed derivation below is the
-finite-stage one, which needs no ultraproduct ambient. -/
+`finiteStageKazhdanTransport`.
+
+The derivation below is the **printed** one.  The ambient of steps
+KT.01--KT.09 that it consumes is built at every free ultrafilter by
+`UltraproductModelConstruction.ultraproductAdjointModel`, whose inputs are
+exactly the hypotheses displayed above: property `(T)` for `Γ`, the compression
+`s ι(Γ) s⁻¹ ⊆ ι(Γ)`, positivity of the dimensions, and operator-norm asymptotic
+multiplicativity of `U`.  Nothing further is assumed, so the theorem is
+unconditional. -/
 theorem manuscriptKazhdanTransport :
     ∀ {Γ H : Type} [Group Γ] [Group H]
     (_hT : HasKazhdanPropertyTComplex.{0, w} Γ)
@@ -252,7 +266,9 @@ theorem manuscriptKazhdanTransport :
         (U n s : Matrix (naturalFiniteModel (d n))
           (naturalFiniteModel (d n)) ℂ)ᴴ) (iota γ) := by
   intro Γ H _ _ hT iota s hs d hd U hU x hbound hx
-  exact finiteStageKazhdanTransport hT iota s hs d hd U hU x hbound hx
+  exact manuscriptKazhdanTransport_ultraproduct hT iota s hs d hd U hU x hbound
+    hx (fun ω hω ↦ UltraproductModelConstruction.ultraproductAdjointModel
+      (hasKazhdanPropertyT_iff_textbook.mpr hT) iota s hs d hd U hU ω hω)
 
 /-- **The intrinsic compression radical in the exact manuscript corona.**
 For a countable ambient group, every finite normal subgroup of the intrinsic

@@ -100,8 +100,7 @@ theorem manuscriptMFRecognitionUndecidable :
       ¬ ComputablePred sourceProperty →
       ¬ ComputablePred (MarkovMFConsequences.operatorMFProperty semantics) := by
   intro Source Code _ _ sourceProperty semantics reduction hsource
-  exact MarkovMFConsequences.operatorMF_recognition_undecidable semantics
-    reduction hsource
+  exact MarkovMFConsequences.recognition_undecidable reduction hsource
 
 /-- Closed form: operator MF passes to subgroups. -/
 theorem manuscriptSubgroupHereditary :
@@ -141,8 +140,13 @@ theorem manuscriptCommutingLampCollapse :
 /-- Closed form of the conditional full-radical endpoint: any routing
 datum for a Fournier-Facio defect datum yields a two-generated finitely
 presented torsion-free Kazhdan group with full MF radical.  The routing
-hypothesis is the quantified antecedent, exactly as in the manuscript
-statement. -/
+hypothesis is the quantified antecedent.
+
+This wrapper asserts `Nontrivial Q`, so it consumes the strictly stronger
+`DefectRoutingData` layer rather than the five printed conditions; the
+endpoint the manuscript cites is
+`FullMFRadicalEndpoint.exists_twoGenerated_finitelyPresented_torsionFree_kazhdan_fullMFRadical`,
+which drops that conjunct because the printed five do not supply it. -/
 theorem manuscriptFullMFRadicalFromRouting :
     ∀ {P E : Type} [Group P] [Group E]
       (D : FournierFacioDefectData P E),
@@ -155,12 +159,15 @@ theorem manuscriptFullMFRadicalFromRouting :
         Nontrivial Q ∧
         cdeMFResidual Q = ⊤ := by
   intro P E _ _ D h
-  exact FullMFRadicalEndpoint.exists_twoGenerated_finitelyPresented_torsionFree_kazhdan_fullMFRadical
+  exact FullMFRadicalEndpoint.exists_nontrivial_twoGenerated_finitelyPresented_torsionFree_kazhdan_fullMFRadical
     h
 
 /-- Closed form of the conditional every-quotient endpoint: any routing
 datum yields a nontrivial group all of whose nontrivial countable
-quotients fail CDE operator MF. -/
+quotients fail CDE operator MF.
+
+As above, the `Nontrivial Q` conjunct is why this consumes routing data
+rather than the five printed conditions. -/
 theorem manuscriptEveryQuotientNonMFFromRouting :
     ∀ {P E : Type} [Group P] [Group E]
       (D : FournierFacioDefectData P E),
@@ -175,8 +182,10 @@ theorem manuscriptEveryQuotientNonMFFromRouting :
           (f : Q →* H),
           Function.Surjective f → ¬ IsCDEOperatorMF H := by
   intro P E _ _ D h
-  exact FullMFRadicalEndpoint.exists_group_with_every_nontrivial_quotient_not_isCDEOperatorMF
-    h
+  obtain ⟨Q, hgroup, hcount, htwo, hfp, htf, hT, hnt, -, hher⟩ :=
+    FullMFRadicalEndpoint.exists_nontrivial_group_with_every_nontrivial_quotient_not_isCDEOperatorMF
+      h
+  exact ⟨Q, hgroup, hcount, htwo, hfp, htf, hT, hnt, hher⟩
 
 /-! ## Scaled transport -/
 

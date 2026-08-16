@@ -57,6 +57,7 @@ def cornerRefine (A : α → Matrix Y Y ℂ) (P : κ → Matrix Y Y ℂ) (p : α
     Matrix Y Y ℂ :=
   A p.1 * P p.2
 
+omit [Fintype α] [Fintype κ] in
 /-- Each block of the refinement is an orthogonal projection: a product of two
 commuting orthogonal projections. -/
 theorem cornerRefine_isOrthogonalProjectionMatrix (A : α → Matrix Y Y ℂ)
@@ -75,6 +76,7 @@ theorem cornerRefine_isOrthogonalProjectionMatrix (A : α → Matrix Y Y ℂ)
       _ = (A p.1 * A p.1) * (P p.2 * P p.2) := by noncomm_ring
       _ = A p.1 * P p.2 := by rw [(hA p.1).2, (hP p.2).2]
 
+omit [Fintype α] [Fintype κ] in
 /-- Distinct blocks of the refinement are orthogonal: they differ in at least
 one coordinate, and the corresponding factors annihilate each other. -/
 theorem cornerRefine_orthogonal (A : α → Matrix Y Y ℂ) (P : κ → Matrix Y Y ℂ)

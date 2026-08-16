@@ -2,6 +2,7 @@ import GroupApproximation.Algebra.PermutationalWreathSimple
 import GroupApproximation.Sofic.AscendingHNNStabilizer
 import GroupApproximation.Sofic.TorsionCompressionCollapse
 import GroupApproximation.Sofic.ProjectionCompressionCollapse
+import GroupApproximation.Sofic.WreathWitnessGeneric
 
 /-!
 # The ascending-HNN lamp is a torsion compression witness
@@ -20,10 +21,14 @@ Inside the permutational wreath product `Wreath K V X`, put
 
 Then `k` is a torsion compression witness for `(L, s)` as soon as `k₀` has
 finite order, and every `γ ∉ α(Γ)` gives a *nontrivial* collapse commutator.
-The three conditions come out of three facts already proved elsewhere: the
-compressed copy fixes the witness site (`iotaVertical_range_smul_tSite`),
-one-site lamps at distinct sites commute (`conj_single_commute`), and
-properness moves the site (`smul_tSite_eq_iff`).
+
+The three witness conditions are **not** proved here.  They are the general
+permutational-wreath sentence of the manuscript --- any lamp group, any site
+set, any acting group, any compressed subgroup --- and they live in
+`Sofic.WreathWitnessGeneric`.  This file supplies only the ascending-HNN input
+those conditions consume: that the compressed copy fixes the witness site
+(`iotaVertical_range_smul_tSite`).  What remains specific to the construction
+is nontriviality, which uses properness through `smul_tSite_eq_iff`.
 
 Specializing the collapse criterion this way — so that a non-co-Hopfian
 Kazhdan group is the only structural input — was suggested by Francesco
@@ -74,20 +79,31 @@ theorem conj_witnessLamp (γ : Γ) (k₀ : K) :
       = inl (Lamp.single (iotaVertical α hα γ • tSite α hα) k₀) :=
   conj_inl_single K (Vertical α hα) (Cosets α hα) _ _ _
 
-/-- **The witness is torsion** as soon as its value is. -/
+/-- **The witness is torsion** as soon as its value is.  The witness lamp *is*
+the generic one-site lamp `WreathWitness.siteLamp` at the witness site, so this
+is that module's general statement read here. -/
 theorem witnessLamp_pow (k₀ : K) (m : ℕ) (hk : k₀ ^ m = 1) :
-    witnessLamp α hα k₀ ^ m = 1 := by
-  have hsingle : Lamp.single (tSite α hα) k₀ ^ m = 1 := by
-    have h1 : (Lamp.singleHom (K := K) (tSite α hα)) (k₀ ^ m)
-        = Lamp.single (tSite α hα) k₀ ^ m := by
-      rw [map_pow, Lamp.singleHom_apply]
-    rw [hk, map_one] at h1
-    exact h1.symm
-  rw [witnessLamp, ← map_pow, hsingle, map_one]
+    witnessLamp α hα k₀ ^ m = 1 :=
+  WreathWitness.siteLamp_pow (G := Vertical α hα) (tSite α hα) k₀ m hk
 
-/-- **The compressed copy centralises the witness.**  This is the centrality
-condition, and it is exactly the statement that `α(Γ)` fixes the witness
-site. -/
+omit [DecidableEq (Cosets α hα)] in
+/-- **The ascending-HNN input to the wreath sentence.**  Every element of the
+base copy is an `inr` of the acting group, and its `t`-conjugate fixes the
+witness site: that is exactly the manuscript's "`x₀ ∈ X` a point fixed by
+`s L s⁻¹`" for this `L` and this `s`. -/
+theorem baseSub_compressed_fixes_tSite :
+    ∀ w ∈ baseSub (K := K) α hα, ∃ g : Vertical α hα,
+      (inr g : WreathV (K := K) α hα) = w ∧
+        (tVertical α hα * g * (tVertical α hα)⁻¹) • tSite α hα = tSite α hα := by
+  intro w hw
+  obtain ⟨γ, rfl⟩ := (mem_baseSub_iff α hα).mp hw
+  refine ⟨iotaVertical α hα γ, rfl, ?_⟩
+  rw [vertical_compress]
+  exact iotaVertical_range_smul_tSite α hα γ
+
+/-- **The compressed copy centralises the witness.**  The centrality condition
+`(W2)`, read off the general wreath sentence: the compressed copy fixes the
+witness site. -/
 theorem commute_compressed_witnessLamp (k₀ : K) {w : WreathV (K := K) α hα}
     (hw : w ∈ baseSub α hα) :
     Commute (wreathT α hα * w * (wreathT α hα)⁻¹) (witnessLamp α hα k₀) := by
@@ -97,14 +113,11 @@ theorem commute_compressed_witnessLamp (k₀ : K) {w : WreathV (K := K) α hα}
       = inr (iotaVertical α hα (α γ)) := by
     rw [wreathT, ← map_inv, ← map_mul, ← map_mul, vertical_compress]
   rw [hconj]
-  have hfix : (inr (iotaVertical α hα (α γ)) : WreathV (K := K) α hα) *
-      witnessLamp α hα k₀ * (inr (iotaVertical α hα (α γ)))⁻¹
-      = witnessLamp α hα k₀ := by
-    rw [conj_witnessLamp, iotaVertical_range_smul_tSite]
-    rfl
-  exact mul_inv_eq_iff_eq_mul.mp hfix
+  exact WreathWitness.commute_inr_siteLamp (iotaVertical α hα (α γ))
+    (tSite α hα) k₀ (iotaVertical_range_smul_tSite α hα γ)
 
-/-- **The conjugation orbit of the witness commutes.**  One-site lamps at
+/-- **The conjugation orbit of the witness commutes.**  The commuting-orbit
+condition `(W3)`, read off the general wreath sentence: one-site lamps at
 distinct sites commute, and conjugation only moves the site. -/
 theorem commute_orbit_witnessLamp (k₀ : K) {w₁ w₂ : WreathV (K := K) α hα}
     (hw₁ : w₁ ∈ baseSub α hα) (hw₂ : w₂ ∈ baseSub α hα) :
@@ -112,12 +125,8 @@ theorem commute_orbit_witnessLamp (k₀ : K) {w₁ w₂ : WreathV (K := K) α h�
       (w₂ * witnessLamp α hα k₀ * w₂⁻¹) := by
   obtain ⟨γ₁, rfl⟩ := (mem_baseSub_iff α hα).mp hw₁
   obtain ⟨γ₂, rfl⟩ := (mem_baseSub_iff α hα).mp hw₂
-  rw [conj_witnessLamp, conj_witnessLamp]
-  have hbase := conj_single_commute (K := K) (iotaVertical α hα γ₁)
+  exact WreathWitness.commute_conj_siteLamp (iotaVertical α hα γ₁)
     (iotaVertical α hα γ₂) (tSite α hα) k₀
-  rw [lampAut_single, lampAut_single] at hbase
-  exact (show Commute _ _ from hbase).map
-    (inl : Lamp K (Cosets α hα) →* WreathV (K := K) α hα)
 
 /-- **Sections 34.2--34.3.**  The one-site lamp at the witness site is a
 torsion compression witness for the base copy and the stable letter. -/
@@ -184,19 +193,16 @@ theorem wreathT_compress {w : WreathV (K := K₀) β hβ}
   exact (mem_baseSub_iff β hβ).mpr ⟨β γ, rfl⟩
 
 include hβ in
-/-- An involutive lamp value gives an involutive compression witness. -/
+/-- An involutive lamp value gives an involutive compression witness.  This is
+the general permutational-wreath sentence of `Sofic.WreathWitnessGeneric`,
+instantiated at the ascending-HNN site data; nothing is reproved here. -/
 theorem isInvolutiveCompressionWitness_witnessLamp {k₀ : K₀}
     (hk2 : k₀ * k₀ = 1) :
     InvolutionCollapseEndpoint.IsInvolutiveCompressionWitness
-      (baseSub β hβ) (wreathT β hβ) (witnessLamp β hβ k₀) := by
-  refine ⟨?_, fun _ hw => commute_compressed_witnessLamp β hβ k₀ hw,
-    fun _ h₁ _ h₂ => commute_orbit_witnessLamp β hβ k₀ h₁ h₂⟩
-  have hsingle : Lamp.single (tSite β hβ) k₀ * Lamp.single (tSite β hβ) k₀
-      = 1 := by
-    have h1 := map_mul (Lamp.singleHom (K := K₀) (tSite β hβ)) k₀ k₀
-    rw [hk2, map_one] at h1
-    simpa using h1.symm
-  rw [witnessLamp, ← map_mul, hsingle, map_one]
+      (baseSub β hβ) (wreathT β hβ) (witnessLamp β hβ k₀) :=
+  WreathWitness.isInvolutiveCompressionWitness_siteLamp_zero
+    (tVertical β hβ) (tSite β hβ) hk2
+    (baseSub_compressed_fixes_tSite (K := K₀) β hβ)
 
 include hβ in
 /-- **The ascending-HNN endpoint, unconditional for involutive lamps.**  A

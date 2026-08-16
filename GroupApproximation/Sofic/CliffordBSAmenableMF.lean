@@ -101,6 +101,25 @@ does not over-read either of them.
 * The other use of amenable `⟹` MF, in `\section{Consequences}` (grep
   `"homomorphism to any countable"`), quantifies over *all* countable amenable
   groups.  Nothing here touches it; it still needs the general theorem.
+
+## Relation to `Sofic.CliffordBSPrintedRoute`
+
+The route this file takes is **not** the route the manuscript prints, and the
+two must not be conflated.  `Sofic.CliffordBSPrintedRoute` formalizes the
+printed chain instead --- solvable base, locally finite lamps, amenable
+extension, amenable subgroup, `⟹` MF, compose with a faithful representation of
+the quotient --- with the fifth link carried by the explicit hypothesis
+`CyclicBaseCalibration.AmenableImpliesMF` and appearing exactly once.  That is
+the 1:1 formalization of the paragraph as written; what is here is a *different*
+argument reaching the same endpoint with no hypothesis.
+
+Consequently nothing in this file may be cited as certifying the printed
+sentence "the realized quotient ... is therefore amenable, hence MF": that
+sentence's subject is MF-ness of the realized Clifford quotient, which is
+`CliffordBSPrintedRoute.isOperatorMF_realizedQuotient` and carries the
+hypothesis.  No `\leanverified` badge in the manuscript points here, and this
+module is deliberately absent from the root import list, so no gate and no
+badged declaration depends on it.
 -/
 
 namespace GroupApproximation
@@ -218,13 +237,18 @@ theorem monomialMatrix_conjTranspose (Y : FiniteModel) (d : Y → ℂ)
   · have h' : σ j = i := by
       rw [← h]
       exact Equiv.apply_symm_apply σ i
-    rw [if_pos h', if_pos h, h]
+    -- `rw` closes with a `with_reducible` `rfl`, which does not see through
+    -- `starRingEnd ℂ` to `star`; `starRingEnd_apply` lands that step
+    -- syntactically.
+    rw [if_pos h', if_pos h, h, starRingEnd_apply]
   · have h' : ¬ σ j = i := by
       intro hc
       apply h
       rw [← hc]
       exact Equiv.symm_apply_apply σ j
-    rw [if_neg h', if_neg h, map_zero]
+    -- `star` is `Star.star`, not a bundled hom application, so `map_zero`
+    -- has no `⇑f 0` to match; `star_zero` is the lemma for it.
+    rw [if_neg h', if_neg h, star_zero]
 
 /-- The adjoint rule in the form used below. -/
 theorem monomialMatrix_conjTranspose_eq (Y : FiniteModel) (d e : Y → ℂ)

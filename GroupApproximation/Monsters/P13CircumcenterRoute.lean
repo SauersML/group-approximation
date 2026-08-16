@@ -11,8 +11,8 @@ Proposition `prop:literal-base-T` actually names:
 > Hilbert-space circumcenter argument gives a translation-fixed vector `q`
 > with `‖q-p‖ ≤ 1/8`."*
 
-(`non_mf_groups_exist.tex`, lines 1559–1561, inside the proof of
-`prop:literal-base-T` at lines 1470–1573.)
+(`non_mf_groups_exist.tex`, lines 1436–1438, inside the proof of
+`prop:literal-base-T` at lines 1322–1450.)
 
 The *circumcenter* of a bounded set is the centre of its smallest enclosing
 ball — the unique minimizer of the covering radius.  That object, together
@@ -46,6 +46,7 @@ variable {E : Type v} [NormedAddCommGroup E] [InnerProductSpace ℝ E]
 
 /-! ## Circumcenters of bounded sets, quantitatively -/
 
+omit [InnerProductSpace ℝ E] in
 /-- A point of a bounded set lies within any radius that already covers the
 set from a member of it — in particular the circumcenter of a bounded set
 containing `x` is within `delta` of `x` as soon as the set lies in the closed

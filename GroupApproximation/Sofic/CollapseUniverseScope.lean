@@ -49,7 +49,7 @@ namespace CollapseUniverseScope
 
 open scoped commutatorElement
 
-universe u
+universe u v
 
 /-- Quotients of countable groups are countable; mirrored locally from
 `Sofic.ActualCoronaMFRadical`, where the same instance is `local`. -/
@@ -199,6 +199,88 @@ theorem actualCoronaMFResidual_eq_involutiveCollapseDefect {E : Type u}
     (involutiveCollapseDefect L s)
     (involutiveCollapseDefect_le_actualCoronaMFResidual hkazhdan hcomp)
     hquot
+
+/-! ## Step 5: defect saturation at the manuscript's scope
+
+`thm:saturation` and `cor:collapsequot` are both stated "in the setting of
+Theorem `thm:collapse`", so they inherit its quantification over all countable
+groups.  `Sofic/DefectSaturation.lean` proves them for `E : Type` against
+`HasKazhdanPropertyT.{0, 0}`; the four theorems below are those statements at
+`Type u`, with the target group of a homomorphism allowed its own universe as
+the printed "countable MF group" does.  Each proof is the `Type 0` proof
+verbatim: nothing here needs the descent of Step 3, because the only inputs are
+`involutiveCollapseDefect_le_actualCoronaMFResidual` (which already carries it)
+and the two radical facts `map_actualCoronaMFResidual_le` and
+`isCDEOperatorMF_iff_actualCoronaMFResidual_eq_bot`, both of which are
+universe-polymorphic already. -/
+
+/-- **Every homomorphism to a countable operator-MF group kills the collapse
+defect**, for a countable ambient group in any universe and a target group in
+any universe. -/
+theorem involutiveCollapseDefect_le_ker_of_isCDEOperatorMF {E : Type u}
+    [Group E] [Countable E] {L : Subgroup E}
+    (hkazhdan : HasKazhdanPropertyT.{u, u} ↥L)
+    {s : E} (hcomp : ∀ γ ∈ L, s * γ * s⁻¹ ∈ L)
+    {Q : Type v} [Group Q] [Countable Q]
+    (f : E →* Q) (hQ : IsCDEOperatorMF Q) :
+    involutiveCollapseDefect L s ≤ f.ker := by
+  refine le_trans
+    (involutiveCollapseDefect_le_actualCoronaMFResidual hkazhdan hcomp) ?_
+  intro x hx
+  have hfx : f x ∈ actualCoronaMFResidual Q :=
+    map_actualCoronaMFResidual_le f ⟨x, hx, rfl⟩
+  have hbot : actualCoronaMFResidual Q = ⊥ :=
+    isCDEOperatorMF_iff_actualCoronaMFResidual_eq_bot.mp hQ
+  rw [hbot] at hfx
+  exact Subgroup.mem_bot.mp hfx
+
+/-- **Saturation gives the full MF radical**, at any universe: a collapse
+defect equal to the whole group forces the literal MF radical to be the whole
+group. -/
+theorem actualCoronaMFResidual_eq_top_of_saturated {E : Type u} [Group E]
+    [Countable E] {L : Subgroup E}
+    (hkazhdan : HasKazhdanPropertyT.{u, u} ↥L)
+    {s : E} (hcomp : ∀ γ ∈ L, s * γ * s⁻¹ ∈ L)
+    (hsat : involutiveCollapseDefect L s = ⊤) :
+    actualCoronaMFResidual E = ⊤ := by
+  refine top_unique ?_
+  rw [← hsat]
+  exact involutiveCollapseDefect_le_actualCoronaMFResidual hkazhdan hcomp
+
+/-- **The approximation black hole**, at any universe: with a saturated defect
+every homomorphism to a countable operator-MF group is trivial. -/
+theorem map_eq_one_of_saturated {E : Type u} [Group E] [Countable E]
+    {L : Subgroup E} (hkazhdan : HasKazhdanPropertyT.{u, u} ↥L)
+    {s : E} (hcomp : ∀ γ ∈ L, s * γ * s⁻¹ ∈ L)
+    (hsat : involutiveCollapseDefect L s = ⊤)
+    {Q : Type v} [Group Q] [Countable Q]
+    (f : E →* Q) (hQ : IsCDEOperatorMF Q) (x : E) : f x = 1 := by
+  have hker := involutiveCollapseDefect_le_ker_of_isCDEOperatorMF
+    hkazhdan hcomp f hQ
+  have hx : x ∈ involutiveCollapseDefect L s := by
+    rw [hsat]
+    trivial
+  exact hker hx
+
+/-- A nontrivial countable group in any universe with a saturated involutive
+collapse defect is not operator-MF. -/
+theorem not_isCDEOperatorMF_of_saturated {E : Type u} [Group E] [Countable E]
+    [Nontrivial E] {L : Subgroup E}
+    (hkazhdan : HasKazhdanPropertyT.{u, u} ↥L)
+    {s : E} (hcomp : ∀ γ ∈ L, s * γ * s⁻¹ ∈ L)
+    (hsat : involutiveCollapseDefect L s = ⊤) :
+    ¬ IsCDEOperatorMF E := by
+  intro hMF
+  have hbot : actualCoronaMFResidual E = ⊥ :=
+    isCDEOperatorMF_iff_actualCoronaMFResidual_eq_bot.mp hMF
+  have htop := actualCoronaMFResidual_eq_top_of_saturated hkazhdan hcomp
+    hsat
+  rw [htop] at hbot
+  obtain ⟨x, y, hxy⟩ := exists_pair_ne E
+  apply hxy
+  have hx : x * y⁻¹ ∈ (⊤ : Subgroup E) := trivial
+  rw [hbot] at hx
+  exact mul_inv_eq_one.mp (Subgroup.mem_bot.mp hx)
 
 /-! ## Closed manuscript forms
 

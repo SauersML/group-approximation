@@ -179,10 +179,23 @@ theorem norm_lower_bound_of_quadratic_gap [CompleteSpace E]
     rcases eq_or_lt_of_le (norm_nonneg w) with hw0 | hwpos
     · rw [← hw0, mul_zero]
       exact norm_nonneg _
-    · have hw2 : (0 : ℝ) < ‖w‖ ^ 2 := by
-        linarith [mul_pos hwpos hwpos]
-      have hsq : (c * ‖w‖) ^ 2 ≤ ‖A w‖ ^ 2 := by
-        nlinarith [mul_le_mul_of_nonneg_left hquartic (sq_nonneg c), hprod, hw2]
+    · -- `pow_pos` rather than `linarith [mul_pos hwpos hwpos]`: the latter
+      -- leaves `linarith` to identify the monomial `‖w‖ * ‖w‖` with `‖w‖ ^ 2`,
+      -- which is exactly the kind of step to keep syntactic.
+      have hw2 : (0 : ℝ) < ‖w‖ ^ 2 := pow_pos hwpos 2
+      -- The cancellation `c²‖w‖⁴ ≤ ‖Aw‖²‖w‖²  ⟹  c²‖w‖² ≤ ‖Aw‖²` is done by
+      -- `le_of_mul_le_mul_right` against `hw2`, rather than left to `nlinarith`
+      -- to discover as a product of the negated goal with `hw2`.
+      have hchain : (c * ‖w‖) ^ 2 * ‖w‖ ^ 2 ≤ ‖A w‖ ^ 2 * ‖w‖ ^ 2 := by
+        calc (c * ‖w‖) ^ 2 * ‖w‖ ^ 2 = c ^ 2 * (‖w‖ ^ 2) ^ 2 := by ring
+          _ ≤ c ^ 2 * (PositiveOperatorGap.energy A w *
+                PositiveOperatorGap.energy A z) :=
+              mul_le_mul_of_nonneg_left hquartic (sq_nonneg c)
+          _ = (c * PositiveOperatorGap.energy A w) *
+                (c * PositiveOperatorGap.energy A z) := by ring
+          _ ≤ ‖A w‖ ^ 2 * ‖w‖ ^ 2 := hprod
+      have hsq : (c * ‖w‖) ^ 2 ≤ ‖A w‖ ^ 2 :=
+        le_of_mul_le_mul_right hchain hw2
       exact (sq_le_sq₀ (mul_nonneg hc.le (norm_nonneg w))
         (norm_nonneg _)).mp hsq
 

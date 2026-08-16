@@ -1,10 +1,10 @@
 import GroupApproximation.Algebra.ProductFinitePresentation
-import GroupApproximation.Computability.MarkovMFConsequences
+import GroupApproximation.Computability.MarkovReductionInterface
 
 /-!
 # A recursive coding of finite presentations
 
-`Computability.MarkovMFConsequences` deliberately leaves the syntax and
+`Computability.MarkovReductionInterface` deliberately leaves the syntax and
 semantics of presentation codes as parameters, and says so:
 
 > The syntax and semantics of codes are deliberately parameters: different

@@ -38,8 +38,10 @@ The standard argument has three moves.
 
 2. **Simplicity of the ambient group.**  When the model cardinalities diverge
    along `𝒰`, the metric ultraproduct is a simple group.  This is the
-   combinatorial heart of Elek--Szabó and it is **not proved here**; see the
-   section *What is missing* below.
+   combinatorial heart of Elek--Szabó.  It is **not proved here**; it is
+   developed in `GroupApproximation.Sofic.SoficEnvelopeSimplicity`, down to one
+   finite statement about symmetric groups which that module carries as an
+   explicit premise.  See the section *What is missing* below.
 
 3. **Descent to a countable subgroup.**  Inside a simple group, a countable
    subset can be enlarged to a countable *simple* subgroup, by closing up
@@ -56,36 +58,66 @@ only half that is delicate to state: the enlargement has to be performed
 `ω` many times, because each round introduces new pairs of elements that must
 themselves be joined by conjugators.
 
-## What is missing
+## What is missing — the closure record
 
-Composing 1 and 3 would give the cited theorem outright, and the composition
-is mechanical, so the entire remaining debt is exactly move 2:
+This section is the standing record of what the Elek--Szabó citation still
+costs.  It is meant to be readable without any accompanying report.
 
-> for `𝒰` an ultrafilter on `ι`, `X : ι → FiniteModel` with
-> `∀ M, ∀ᶠ i in 𝒰, M ≤ Fintype.card (X i)`, the group
-> `UniversalSofic 𝒰 X` is simple.
+Move 2 is carried out in `GroupApproximation.Sofic.SoficEnvelopeSimplicity`,
+which also composes moves 1--3 into the cited theorem.  **Everything in move 2
+is proved there** from divergence of the model cardinalities alone -- that every
+class has an *even* representative, that the ultraproduct is nontrivial, that
+the density criterion below survives divergence, and that a normal subgroup
+containing the class of `σ` contains the class of any sequence whose coordinates
+are products of a *uniformly* bounded number of conjugates of `(σ i)^{±1}` --
+**except for exactly one statement**, the bounded normal generation of finite
+alternating groups:
 
-This is *not* assumed anywhere in this file: there is no declaration here
+> for every `δ > 0` there are `K` and `M` such that whenever `Ω` is a finite set
+> with `|Ω| ≥ M` and `s` is an **even** permutation of `Ω` with
+> `|supp s| ≥ δ|Ω|`, every even permutation of `Ω` is a product of at most `K`
+> conjugates of `s` and `s⁻¹`.
+
+That statement is a theorem of the literature -- it is what the Liebeck--Shalev
+covering bounds for `Aₙ` supply, and it is the input Elek--Szabó use -- and this
+repository does not prove it.  It is not tagged, aliased, or packaged: it is
+written out in full as an explicit premise `hBNG` on exactly the three
+declarations that consume it, and on nothing else anywhere in the corpus:
+
+* `GroupApproximation.SoficEnvelopeSimplicity.isSimpleGroup_universalSofic`
+* `GroupApproximation.SoficEnvelopeSimplicity.exists_countable_simple_sofic_envelope`
+* `GroupApproximation.SoficEnvelopeWitness.manuscript_simpleSoficEnvelope`
+
+**Print and Lean agree in strength.**  The manuscript paragraph *A simple sofic
+envelope* does not claim this as its own; it prints
+`\cite[Theorem~1]{ElekSzaboHyper}` for precisely the sentence "every countable
+sofic group embeds in a countable simple sofic group".  The paragraph carries no
+`\leanverified` badge, and none of the three declarations above may ever be
+given one.
+
+Two things about that premise are worth keeping on the record.  First, the
+bound `K` must depend only on `δ` and not on `Ω` or on the index, which is what
+makes the statement hard and what makes it the real content of the citation: an
+unbounded product of conjugates has no image in the metric ultraproduct, and the
+approximate form of the statement therefore does *not* suffice -- see the
+"What cannot be weakened" section of `SoficEnvelopeSimplicity`, which records
+why the natural iteration argument fails.  Second, the threshold `M` is not
+cosmetic: on four points a product of two disjoint transpositions has full
+support and normally generates only the Klein four-group.  Divergence of the
+model cardinalities makes a threshold free.
+
+None of that is assumed anywhere in *this* file: there is no declaration here
 whose hypotheses include the simplicity of a universal sofic group, and no
 predicate standing in for it.  Divergence of the model cardinalities is
-genuinely needed: for a principal ultrafilter over a constant model of size
-`n` the null subgroup is trivial and the ultraproduct is `Sym n`, which for
-`n ≥ 3` is not simple.  Divergence is available from any sofic approximation
-(`card_eventually_ge`).
+genuinely needed for move 2: for a principal ultrafilter over a constant model
+of size `n` the null subgroup is trivial and the ultraproduct is `Sym n`, which
+for `n ≥ 3` is not simple.  Divergence is available from any sofic
+approximation (`card_eventually_ge`).
 
-Unwinding simplicity of the ultraproduct through the null subgroup reduces it
-to a purely finite statement about symmetric groups, and the reduction step is
-recorded here: a class in `UniversalSofic 𝒰 X` is nontrivial exactly when the
-supports of its representatives occupy a positive fraction of the model on a
-`𝒰`-large set (`exists_pos_support_density_of_mk_ne_one`).  What remains,
-therefore, is the *bounded normal generation* of finite symmetric groups:
-
-> for every `δ > 0` there is a `K` such that whenever `σ` is a permutation of
-> a finite set `Ω` with `|supp σ| ≥ δ|Ω|`, every even permutation of `Ω` is a
-> product of at most `K` conjugates of `σ` and `σ⁻¹`.
-
-The bound must not depend on `Ω`, which is what makes the statement hard: an
-unbounded product of conjugates does not survive into the ultraproduct.
+The density half of the reduction of move 2 is recorded here: a class in
+`UniversalSofic 𝒰 X` is nontrivial exactly when the supports of its
+representatives occupy a positive fraction of the model on a `𝒰`-large set
+(`exists_pos_support_density_of_mk_ne_one`).
 -/
 
 namespace GroupApproximation

@@ -76,10 +76,9 @@ theorem hnn_relator (a : A) :
 /-- The same relator in the form a relator set carries it: as an equation
 between the two conjugates. -/
 theorem hnn_conj_eq (a : A) :
-    (HNNExtension.t : HNNExtension G A B φ) * HNNExtension.of (a : G)
-        * HNNExtension.t⁻¹
+    HNNExtension.t * HNNExtension.of (a : G) * HNNExtension.t⁻¹
       = HNNExtension.of (φ a : G) :=
-  (HNNExtension.equiv_eq_conj a).symm
+  (HNNExtension.equiv_eq_conj φ a).symm
 
 /-! ## The amalgamation forward map -/
 

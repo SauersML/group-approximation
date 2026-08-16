@@ -25,7 +25,7 @@ fixed mover the guarded and the printed vector are **equal** at all large
 stages.  Since every quantity the argument reads off the family is either a
 limiting seminorm along the hyperfilter or a value at a single late stage,
 eventual equality is all that is needed, and
-`InvolutionCollapseEndpointPrep.seqNormSq_congr_of_eventually_eq` converts it.
+`InvolutionCollapseCocycle.seqNormSq_congr_of_eventually_eq` converts it.
 
 Contents, in the order the endpoint consumes them:
 

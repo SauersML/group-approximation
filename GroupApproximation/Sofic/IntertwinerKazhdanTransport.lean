@@ -32,7 +32,13 @@ open Matrix KazhdanCornerMatrices KazhdanAsymptoticCommutant
 open ScaledKazhdanTransport
 open scoped Matrix.Norms.L2Operator
 
-variable {Γ E : Type} [Group Γ] [Group E]
+universe u
+
+/-! The ambient group carrying the two almost representations is quantified at
+an arbitrary universe, as in the manuscript.  See
+`Sofic.KazhdanAsymptoticCommutant` for why the Kazhdan source `Γ` stays in
+`Type 0`. -/
+variable {Γ : Type} {E : Type u} [Group Γ] [Group E]
 
 /-! ## Rectangular mass and the off-diagonal block embedding -/
 
@@ -460,7 +466,8 @@ theorem isScaledMassBounded_offDiag (B₁ B₂ : OpAlmostRepresentation E)
 transport of intertwiners holds at every nonnegative weight: the block
 reduction is weight-blind. -/
 theorem scaled_intertwiner_transport :
-    ∀ {Γ E : Type} [Group Γ] [Group E] (B₁ B₂ : OpAlmostRepresentation E)
+    ∀ {Γ : Type} {E : Type u} [Group Γ] [Group E]
+      (B₁ B₂ : OpAlmostRepresentation E)
       (w : ℕ → ℝ) (_hw : ∀ n, 0 ≤ w n) (C : KazhdanCompressionCore Γ E)
       (x : ∀ n, Matrix (B₁.model n) (B₂.model n) ℂ)
       (_hx : IsScaledAsymptoticIntertwinerOf B₁ B₂ w C.iota x)
@@ -502,7 +509,7 @@ universe uK
 
 /-- Block-normalized Hilbert--Schmidt vanishing of the rectangular
 invariance defect, in natural coordinates. -/
-def NaturalHSIntertwinerVanishing {H : Type} [Group H] (d₁ d₂ : ℕ → ℕ)
+def NaturalHSIntertwinerVanishing {H : Type*} [Group H] (d₁ d₂ : ℕ → ℕ)
     (U₁ : ∀ n, H → Matrix.unitaryGroup (naturalFiniteModel (d₁ n)) ℂ)
     (U₂ : ∀ n, H → Matrix.unitaryGroup (naturalFiniteModel (d₂ n)) ℂ)
     (x : ∀ n, Matrix (naturalFiniteModel (d₁ n))
@@ -520,7 +527,7 @@ manuscript coordinates.**  No root datum is an input: the proof applies
 the block reduction and the general transport with the harmless root
 `1`. -/
 theorem manuscriptIntertwinerTransport :
-    ∀ {Γ H : Type} [Group Γ] [Group H]
+    ∀ {Γ : Type} {H : Type u} [Group Γ] [Group H]
     (_hT : HasKazhdanPropertyTComplex.{0, uK} Γ)
     (iota : Γ →* H) (s : H)
     (_hs : ∀ γ : Γ, ∃ δ : Γ, s * iota γ * s⁻¹ = iota δ)

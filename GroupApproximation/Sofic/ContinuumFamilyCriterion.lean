@@ -1,9 +1,9 @@
-import GroupApproximation.Sofic.ContinuumMultiplicity
+import GroupApproximation.Sofic.ContinuumMultiplicityCore
 
 /-!
 # The remaining obligation behind continuum multiplicity
 
-`Sofic.ContinuumMultiplicity` proves the manuscript's counting step on top of
+`Sofic.ContinuumMultiplicityCore` proves the manuscript's counting step on top of
 a quantified hypothesis: a continuum-sized family of pairwise nonisomorphic
 finitely generated groups.  The manuscript attributed that hypothesis to
 B. H. Neumann and quoted it.
@@ -69,7 +69,7 @@ theorem manuscriptContinuumMultiplicity_of_separating :
         ∀ i ∈ J, ∀ j ∈ J,
           Nonempty ((MarkedGroup × N i) ≃* (MarkedGroup × N j)) → i = j := by
   intro ι N _ _ β inv hinv hinj hcard
-  refine ContinuumMultiplicity.manuscriptContinuumMultiplicity N ?_ hcard
+  refine ContinuumMultiplicity.exists_continuum_pairwise_nonisomorphic N ?_ hcard
   intro i j hij
   exact hinj (hinv i j hij)
 

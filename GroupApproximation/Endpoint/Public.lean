@@ -239,10 +239,12 @@ literature premise from a caller.
   portability and uniform killing of the obstruction.
 * `existsUnique_quotient_factorization_to_normMatrixCorona` -- exact quotient
   factorization in the cofinite-corona language.
-* `MarkovMFConsequences.operatorMF_recognition_undecidable` -- the generic
-  computability reduction, conditional on an explicitly supplied computable
-  Adian--Rabin transformation and its correctness proof; no such external
-  transformation is postulated by the library.
+* `MarkovMFConsequences.operatorMF_recognition_undecidable` -- the computability
+  reduction at the recursive presentation coding, generic in the source problem
+  and conditional on an explicitly supplied computable Adian--Rabin
+  transformation and its correctness proof; no such external transformation is
+  postulated by the library.  `MarkovMFConsequences.recognition_undecidable` is
+  the same pullback with the coding left open.
 * `ProperProjectionCompression` -- the one-sided compression API, including
   an explicit left-invertible nonunit, failure of direct and stable finiteness,
   and obstruction to a faithful tracial state.
