@@ -114,8 +114,8 @@ theorem isReduced_invRev_iff {w : List (α × Bool)} :
   · intro h
     refine h.imp fun a b hab => ?_
     intro h1
-    have h2 := hab (congrArg Prod.fst h1.symm ▸ rfl)
-    · exact Bool.not_inj h2.symm
+    have h2 := hab h1.symm
+    exact Bool.not_inj h2.symm
   · intro h
     refine h.imp fun a b hab => ?_
     intro h1
@@ -141,7 +141,7 @@ theorem isCyclicallyReduced_rotate {w : List (α × Bool)}
     (h : FreeGroup.IsCyclicallyReduced w) (n : ℕ) :
     FreeGroup.IsCyclicallyReduced (w.rotate n) := by
   rcases eq_or_ne w [] with rfl | hw
-  · simpa [List.rotate_nil] using h
+  · simp [List.rotate_nil]
   have hlen : 0 < w.length := List.length_pos_iff.mpr hw
   rw [← List.rotate_mod]
   set m := n % w.length with hm
@@ -169,7 +169,7 @@ theorem isCyclicallyReduced_rotate {w : List (α × Bool)}
       injection hb with hb'
       exact hb'.symm
     have ha' : a = w[m - 1] := by
-      rcases ha with ⟨ha1, -⟩ | ⟨ha1, -⟩
+      rcases ha with ha1 | ⟨ha1, -⟩
       · injection ha1 with ha1'
         exact ha1'.symm
       · exact absurd ha1 (by simp)
@@ -178,8 +178,7 @@ theorem isCyclicallyReduced_rotate {w : List (α × Bool)}
     have hchain := List.isChain_iff_getElem.mp h.1 (m - 1)
       (by omega)
     have hmm : m - 1 + 1 = m := by omega
-    rw [hmm] at hchain
-    exact hchain
+    simpa only [hmm] using hchain
 
 /-! ## Symmetrization closure -/
 
@@ -224,23 +223,33 @@ theorem invRev_mem_symmetrization {R : Set (List (α × Bool))}
     {w : List (α × Bool)} (hw : w ∈ symmetrization R) :
     FreeGroup.invRev w ∈ symmetrization R := by
   obtain ⟨r, hr, k, h | h⟩ := hw
-  · refine ⟨r, hr, r.length - k % r.length, Or.inr ?_⟩
-    rw [h, ← List.rotate_mod,
-      invRev_rotate r (Nat.le_of_lt_succ ?_)]
-    · rcases eq_or_ne r [] with rfl | hr0
-      · simp
-      · exact Nat.lt_succ_of_lt
-          (Nat.mod_lt _ (List.length_pos_iff.mpr hr0))
-  · refine ⟨r, hr,
-      (FreeGroup.invRev r).length - k % (FreeGroup.invRev r).length,
-      Or.inl ?_⟩
-    rw [h, ← List.rotate_mod,
-      invRev_rotate (FreeGroup.invRev r) (Nat.le_of_lt_succ ?_),
-      FreeGroup.invRev_invRev]
-    · rcases eq_or_ne (FreeGroup.invRev r) [] with hr0 | hr0
-      · simp [hr0]
-      · exact Nat.lt_succ_of_lt
-          (Nat.mod_lt _ (List.length_pos_iff.mpr hr0))
+  · -- The empty relator has to be dispatched structurally, BEFORE the
+    -- modular bound: `k % [].length = k % 0 = k`, so the side goal of
+    -- `invRev_rotate` would read `k ≤ 0`, which is false for every
+    -- `k ≥ 1`.  When `r = []` every list in sight is `[]` and there is
+    -- nothing to bound.
+    rcases eq_or_ne r [] with rfl | hr0
+    · refine ⟨[], hr, 0, Or.inr ?_⟩
+      rw [h]
+      simp [FreeGroup.invRev]
+    · refine ⟨r, hr, r.length - k % r.length, Or.inr ?_⟩
+      rw [h, ← List.rotate_mod,
+        invRev_rotate r (Nat.mod_lt _ (List.length_pos_iff.mpr hr0)).le]
+  · rcases eq_or_ne (FreeGroup.invRev r) [] with hr0 | hr0
+    · have hrnil : r = [] := by
+        have h2 := congrArg FreeGroup.invRev hr0
+        rw [FreeGroup.invRev_invRev] at h2
+        simpa [FreeGroup.invRev] using h2
+      refine ⟨r, hr, 0, Or.inl ?_⟩
+      rw [h, hr0, hrnil]
+      simp [FreeGroup.invRev]
+    · refine ⟨r, hr,
+        (FreeGroup.invRev r).length - k % (FreeGroup.invRev r).length,
+        Or.inl ?_⟩
+      rw [h, ← List.rotate_mod,
+        invRev_rotate (FreeGroup.invRev r)
+          (Nat.mod_lt _ (List.length_pos_iff.mpr hr0)).le,
+        FreeGroup.invRev_invRev]
 
 end SmallCancellationRouter
 end GroupApproximation
