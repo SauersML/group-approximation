@@ -299,6 +299,7 @@ import GroupApproximation.Sofic.TensorPowerAmplification
 import GroupApproximation.Sofic.TensorPowerTransport
 import GroupApproximation.Algebra.ProductFinitePresentation
 import GroupApproximation.Sofic.ProductMultiplicity
+import GroupApproximation.Sofic.ContinuumMultiplicity
 import GroupApproximation.Sofic.OperatorMFPairAmplification
 import GroupApproximation.Sofic.OperatorMFLocalNormalization
 import GroupApproximation.Sofic.MarkedGroupTopology
