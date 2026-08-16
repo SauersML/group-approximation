@@ -1,6 +1,7 @@
 import GroupApproximation.Monsters.NeumannAlternatingFamily
 import GroupApproximation.Sofic.ContinuumMultiplicity
 import GroupApproximation.Sofic.ContinuumFamilyCriterion
+import GroupApproximation.Sofic.ContinuumFromNormalSubgroups
 
 /-!
 # B. H. Neumann's continuum, unconditionally
@@ -84,72 +85,14 @@ the required index set. -/
 theorem exists_continuum_transversal :
     ∃ J : Set (Set ℕ), Cardinal.mk J = Cardinal.continuum ∧
       ∀ S ∈ J, ∀ T ∈ J, Nonempty (NeumannGroup S ≃* NeumannGroup T) → S = T := by
-  classical
-  -- being isomorphic is an equivalence relation on the index set
-  let s : Setoid (Set ℕ) :=
-    { r := fun S T => Nonempty (NeumannGroup S ≃* NeumannGroup T)
-      iseqv :=
-        { refl := fun _ => ⟨MulEquiv.refl _⟩
-          symm := fun ⟨e⟩ => ⟨e.symm⟩
-          trans := fun ⟨e⟩ ⟨f⟩ => ⟨e.trans f⟩ } }
-  -- every class is countable
-  have hclass : ∀ q : Quotient s, {S : Set ℕ | Quotient.mk s S = q}.Countable := by
-    intro q
-    have hEq : {S : Set ℕ | Quotient.mk s S = q}
-        = {S : Set ℕ | Nonempty (NeumannGroup S ≃* NeumannGroup q.out)} := by
-      ext S
-      constructor
-      · intro hS
-        exact Quotient.exact (hS.trans (Quotient.out_eq q).symm)
-      · intro hS
-        exact (Quotient.sound hS).trans (Quotient.out_eq q)
-    rw [hEq]
-    exact countable_isomorphic_sets q.out
-  haveI hcq : ∀ q : Quotient s, Countable {S : Set ℕ | Quotient.mk s S = q} :=
-    fun q => (hclass q).to_subtype
-  have huniv : (Set.univ : Set (Set ℕ))
-      = ⋃ q : Quotient s, {S : Set ℕ | Quotient.mk s S = q} := by
-    ext S
-    simp
-  have hmkset : Cardinal.mk (Set ℕ) = Cardinal.continuum :=
-    ContinuumFamilyCriterion.mk_set_nat
-  -- countable classes bound the index set
-  have hle : Cardinal.mk (Set ℕ) ≤ Cardinal.mk (Quotient s) * Cardinal.aleph0 := by
-    have h1 : Cardinal.mk (Set ℕ)
-        = Cardinal.mk (⋃ q : Quotient s, {S : Set ℕ | Quotient.mk s S = q}) := by
-      rw [← huniv, Cardinal.mk_univ]
-    rw [h1]
-    refine Cardinal.mk_iUnion_le_sum_mk.trans ?_
-    refine (Cardinal.sum_le_sum _ (fun _ => Cardinal.aleph0) fun q => ?_).trans ?_
-    · exact Cardinal.mk_le_aleph0_iff.mpr (hcq q)
-    · rw [Cardinal.sum_const']
-  have hQle : Cardinal.mk (Quotient s) ≤ Cardinal.continuum := by
-    rw [← hmkset]
-    exact Cardinal.mk_le_of_surjective Quotient.mk_surjective
-  have hQinf : Cardinal.aleph0 < Cardinal.mk (Quotient s) := by
-    by_contra hcon
-    have hcon' : Cardinal.mk (Quotient s) ≤ Cardinal.aleph0 := not_lt.mp hcon
-    have hsmall : Cardinal.mk (Set ℕ) ≤ Cardinal.aleph0 := by
-      refine hle.trans ?_
-      calc Cardinal.mk (Quotient s) * Cardinal.aleph0
-          ≤ Cardinal.aleph0 * Cardinal.aleph0 := by gcongr
-        _ = Cardinal.aleph0 := Cardinal.aleph0_mul_aleph0
-    rw [hmkset] at hsmall
-    exact absurd (hsmall.trans_lt Cardinal.aleph0_lt_continuum) (lt_irrefl _)
-  have hQeq : Cardinal.mk (Quotient s) = Cardinal.continuum := by
-    refine le_antisymm hQle ?_
-    have hmax : Cardinal.mk (Quotient s) * Cardinal.aleph0 = Cardinal.mk (Quotient s) := by
-      rw [Cardinal.mul_eq_max hQinf.le le_rfl, max_eq_left hQinf.le]
-    rw [← hmkset]
-    exact hle.trans hmax.le
-  -- a transversal of the classes is the family we want
-  refine ⟨Set.range (Quotient.out : Quotient s → Set ℕ), ?_, ?_⟩
-  · rw [Cardinal.mk_range_eq _ Quotient.out_injective]
-    exact hQeq
-  · rintro S ⟨q, rfl⟩ T ⟨p, rfl⟩ he
-    have hq : Quotient.mk s q.out = Quotient.mk s p.out := Quotient.sound he
-    rw [Quotient.out_eq, Quotient.out_eq] at hq
-    rw [hq]
+  refine ContinuumFromNormalSubgroups.exists_continuum_transversal NeumannGroup
+    (fun S ↦ ?_) ContinuumFamilyCriterion.mk_set_nat
+  have hsymm : {T : Set ℕ | Nonempty (NeumannGroup S ≃* NeumannGroup T)}
+      = {T : Set ℕ | Nonempty (NeumannGroup T ≃* NeumannGroup S)} := by
+    ext T
+    exact ⟨fun ⟨e⟩ ↦ ⟨e.symm⟩, fun ⟨e⟩ ↦ ⟨e.symm⟩⟩
+  rw [hsymm]
+  exact countable_isomorphic_sets S
 
 /-! ## The family, packaged for the manuscript's counting step -/
 
