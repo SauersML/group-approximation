@@ -866,6 +866,7 @@ import GroupApproximation.Computability.FreeGroupSquaring
 import GroupApproximation.Computability.SemigroupWordProblemSimulation
 import GroupApproximation.Computability.SemigroupWordProblemPresentation
 import GroupApproximation.Computability.SemigroupWordProblem
+import GroupApproximation.Computability.PostMachineTM0Canonical
 
 -- Added by the 1:1 audit pass: modules that were outside the import closure,
 -- so `lake build` never compiled them and no audit ever saw them.  Appended,
@@ -883,6 +884,7 @@ import GroupApproximation.Criterion.ClosedEnvelopeCompressionCore
 import GroupApproximation.Monsters.RealizationEmbedding
 import GroupApproximation.Monsters.FournierFacioUniversalRealization
 import GroupApproximation.Monsters.P13InvariantProjection
+import GroupApproximation.Monsters.NeumannNormalSubgroups
 import GroupApproximation.Sofic.CompressionUniverseTransfer
 import GroupApproximation.Sofic.SoundIterateInstances
 import GroupApproximation.Sofic.ContinuumMultiplicityCore
