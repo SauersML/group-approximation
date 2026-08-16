@@ -149,10 +149,16 @@ dimension, finite groups have order, compact groups have Haar measure.  A
 hence blind to it, which is exactly why the compression question stays open
 there.
 
-`no_strict_compression_of_invariantSize` isolates the argument.  Every collapse
-proved in this development is an instance: `compressedImage_eq` takes
-`size = Nat.card`, `ExactCompression.fixedSet_image_eq` takes cardinality of a
-fixed set, `fixedSubmodule_map_eq` takes `finrank`. -/
+`no_strict_compression_of_invariantSize` isolates the argument.  It is indexed
+by `Subgroup Q → ℕ`, so `compressedImage_eq` (`size = Nat.card`) is a literal
+instance, while `ExactCompression.fixedSet_image_eq` (cardinality on sets) and
+`fixedSubmodule_map_eq` (`finrank` on submodules) run the same argument on a
+different lattice one level down.  The distinction is not pedantry: on the
+submodule lattice `finrank` of the commutant increases under proper inclusion,
+whereas the map `H ↦ finrank (End_H V)` on the *subgroup* lattice is
+order-reversing and separates nothing -- `A₄ < S₄` in the standard
+three-dimensional representation share the commutant.  Only the submodule form
+pins the compression. -/
 
 /-- **No strict compression against an invariant size.**  If subgroups of `Q`
 carry a size that conjugation preserves and that distinguishes proper
