@@ -25,7 +25,7 @@ formalized in this pass; **TODO** not yet formalized.
 | 7.1-7.2 | finite block amplification; corrected (iii) removal | TODO | |
 | 2.4 | GKEP sofic action (Definition 2.1) | DONE-NEW | `Sofic/SoficAction.SoficActionModel`, `IsSoficAction` |
 | 9.1-9.3 | ascending normal form, `N = ker χ`, `G = N ⋊ ℤ` | DONE-PRE | `Algebra/MappingTelescope`, `Sofic/MarkedCompressionGroup.Vertical` |
-| 9.4 | ascending HNN is not property (T) | TODO | |
+| 9.4 | ascending HNN is not property (T) | DONE-NEW | `Kazhdan/IntegerNotKazhdan.not_hasKazhdanPropertyT_multiplicative_int`, `Sofic/AscendingHNNNotKazhdan.not_hasKazhdanPropertyT_vertical` |
 | 10.1-10.3 | explicit interval Folner sets for `G/Γ` | TODO | |
 | 11.1-11.3 | Γ sofic ⇒ G sofic | DONE-PRE | `Sofic/SoficDirectedUnion`, `Sofic/SoficIntegerExtension`, `Sofic/SoficTelescope` |
 | 12.1 | cyclic extension permanence for sofic actions | TODO | (hardest remaining piece of the headline chain) |
@@ -45,7 +45,8 @@ formalized in this pass; **TODO** not yet formalized.
 | 39 | concrete affine base, index 8, RF skeleton | DONE-PRE | `Sofic/LiteralBaseDoublingIndex`, `Sofic/CommutingLampCollapse`, `Monsters/ExplicitLinearModel` |
 | 41-43 | equality of MF / f.d. / finite residuals | TODO | |
 | 42.7 | intersection of all finite-index subgroups = finite residual | DONE-NEW | `Algebra/FiniteResidual.finiteResidual_eq_normalFiniteResidual` |
-| 46 | Malcev; all-fields linear residual; nonlinearity | TODO | |
+| 46.5, 49.2B | residual finiteness is a commensurability invariant | DONE-NEW | `Algebra/FiniteResidual` (`IsResiduallyFinite.subgroup`, `isResiduallyFinite_of_finiteIndex_subgroup`) |
+| 46.1-46.4 | Malcev; all-fields linear residual; nonlinearity | TODO | |
 | 49 | finite-index induction of the MF radical | TODO (MF case) | |
 | 49.4 | finite-index heredity of the finite residual | DONE-NEW | `Algebra/FiniteResidual.mem_finiteResidual_subgroup_iff` |
 | 50.1 | functoriality / full invariance of the finite residual | DONE-NEW | `Algebra/FiniteResidual.map_finiteResidual_le` |

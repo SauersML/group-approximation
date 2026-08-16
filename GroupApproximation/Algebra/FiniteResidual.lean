@@ -97,18 +97,23 @@ theorem map_finiteResidual_le (f : G →* H) :
   rw [Subgroup.mem_comap] at hmem
   exact L.normalCore_le hmem
 
+/-- One half of Lemma 49.4, valid for an **arbitrary** subgroup: the finite
+residual of a subgroup lands inside the ambient finite residual. -/
+theorem coe_mem_finiteResidual_of_mem {K : Subgroup G} (x : K)
+    (hx : x ∈ finiteResidual K) : (x : G) ∈ finiteResidual G := by
+  rw [mem_finiteResidual_iff]
+  intro L hL
+  haveI := hL
+  haveI : (L.subgroupOf K).FiniteIndex := Subgroup.instFiniteIndex_subgroupOf L K
+  have := mem_finiteResidual_iff.mp hx (L.subgroupOf K) inferInstance
+  simpa [Subgroup.mem_subgroupOf] using this
+
 /-- **Lemma 49.4.**  For a finite-index subgroup the finite residual is exactly
 the trace of the ambient finite residual. -/
 theorem mem_finiteResidual_subgroup_iff {K : Subgroup G} [K.FiniteIndex]
     (x : K) : x ∈ finiteResidual K ↔ (x : G) ∈ finiteResidual G := by
   constructor
-  · intro hx
-    rw [mem_finiteResidual_iff]
-    intro L hL
-    haveI := hL
-    haveI : (L.subgroupOf K).FiniteIndex := Subgroup.instFiniteIndex_subgroupOf L K
-    have := mem_finiteResidual_iff.mp hx (L.subgroupOf K) inferInstance
-    simpa [Subgroup.mem_subgroupOf] using this
+  · exact coe_mem_finiteResidual_of_mem x
   · intro hx
     rw [mem_finiteResidual_iff]
     intro M hM
@@ -133,5 +138,56 @@ theorem mem_finiteResidual_subgroup_iff {K : Subgroup G} [K.FiniteIndex]
     have hxL : (x : G) ∈ L := mem_finiteResidual_iff.mp hx L inferInstance
     rw [← hsub]
     simpa [Subgroup.mem_subgroupOf] using hxL
+
+/-! ## Residual finiteness -/
+
+/-- A group is residually finite exactly when its finite residual is trivial. -/
+def IsResiduallyFinite (G : Type u) [Group G] : Prop := finiteResidual G = ⊥
+
+theorem isResiduallyFinite_iff :
+    IsResiduallyFinite G ↔
+      ∀ x : G, x ≠ 1 → ∃ L : Subgroup G, L.FiniteIndex ∧ x ∉ L := by
+  constructor
+  · intro h x hx
+    by_contra hcon
+    push Not at hcon
+    have : x ∈ finiteResidual G :=
+      mem_finiteResidual_iff.mpr fun L hL => hcon L hL
+    rw [h, Subgroup.mem_bot] at this
+    exact hx this
+  · intro h
+    refine le_antisymm ?_ bot_le
+    rw [SetLike.le_def]
+    intro x hx
+    rw [Subgroup.mem_bot]
+    by_contra hx1
+    obtain ⟨L, hL, hnot⟩ := h x hx1
+    exact hnot (mem_finiteResidual_iff.mp hx L hL)
+
+/-- Residual finiteness passes to every subgroup. -/
+theorem IsResiduallyFinite.subgroup (h : IsResiduallyFinite G) (K : Subgroup G) :
+    IsResiduallyFinite K := by
+  refine le_antisymm ?_ bot_le
+  rw [SetLike.le_def]
+  intro x hx
+  rw [Subgroup.mem_bot]
+  have hcoe : (x : G) ∈ finiteResidual G := coe_mem_finiteResidual_of_mem x hx
+  rw [h, Subgroup.mem_bot] at hcoe
+  exact Subtype.ext hcoe
+
+/-- **Lemma 46.5.**  A group with a residually finite subgroup of finite index
+is residually finite.  Together with the previous lemma, residual finiteness is
+an abstract-commensurability invariant. -/
+theorem isResiduallyFinite_of_finiteIndex_subgroup {K : Subgroup G}
+    [K.FiniteIndex] (h : IsResiduallyFinite K) : IsResiduallyFinite G := by
+  refine le_antisymm ?_ bot_le
+  rw [SetLike.le_def]
+  intro x hx
+  rw [Subgroup.mem_bot]
+  have hxK : x ∈ K := mem_finiteResidual_iff.mp hx K inferInstance
+  have : (⟨x, hxK⟩ : K) ∈ finiteResidual K :=
+    (mem_finiteResidual_subgroup_iff (⟨x, hxK⟩ : K)).mpr hx
+  rw [h, Subgroup.mem_bot] at this
+  exact congrArg Subtype.val this
 
 end GroupApproximation
