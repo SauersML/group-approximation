@@ -201,8 +201,8 @@ theorem genHom_actingEmb (H : Subgroup Acting) [DecidableEq (Acting ⧸ H)] (g :
       = (inr : Acting →* Wreath AltLamp Acting (Acting ⧸ H)) := by
     refine FreeGroup.ext_hom _ _ fun i => ?_
     show genHom H (actingEmb (FreeGroup.of i)) = inr (FreeGroup.of i)
-    rw [actingEmb_of]
-    exact genHom_of H (Sum.inl i)
+    exact (congrArg (fun x : FixedFree => genHom H x) (actingEmb_of i)).trans
+      (genHom_of H (Sum.inl i))
   exact DFunLike.congr_fun h g
 
 /-- The image of a lamp marker under a marker homomorphism is the one-site lamp
@@ -287,7 +287,7 @@ theorem continuum_normalSubgroups :
       _ ≤ 2 ^ Cardinal.aleph0 :=
           Cardinal.power_le_power_left two_ne_zero Cardinal.mk_le_aleph0
       _ = Cardinal.continuum := Cardinal.two_power_aleph0
-  · rw [← ContinuumFamilyCriterion.mk_set_nat]
+  · rw [← Cardinal.mk_set_nat]
     exact Cardinal.mk_le_of_injective markedKernel_injective
 
 /-- **The reduction of `Sofic/ContinuumFromNormalSubgroups`, instantiated.**

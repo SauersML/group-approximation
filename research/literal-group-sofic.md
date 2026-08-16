@@ -13,6 +13,7 @@ distinct_from:
 artifacts:
   - non_mf_groups_exist.tex
   - docs/NON_MF_FINAL_REVIEW_AND_RESOLUTION_2026-08-14.md
+  - docs/E_SOFICITY_SELF_CONTAINED_2026-08-16.md
 ---
 
 The literal finitely presented group `E` is sofic.
@@ -25,6 +26,28 @@ sub-amalgam: a finite window of `E_T = N_E semidirect T` lies in one telescope
 level and finitely many blocks, level orbits on blocks are finite, and the
 resulting `M_J semidirect Gamma_n` is residually finite; then `E = E_T x| Z`
 is sofic by sofic-kernel/amenable-quotient permanence.
+
+**UNCONDITIONAL, and with no literature input, since 2026-08-16.**  Two
+outside dependencies of the 2026-08-14 argument are gone.  The conditional
+input `B ~= Gammabar` that the 2026-08-15 adversarial audit found — it made
+soficity of `E` conditional while failure of MF was not, inverting the usual
+trust surface — is now the theorem `literal-base-presentation-complete`.  And
+the Karrass--Pietrowski--Solitar virtual-freeness step is replaced by
+`clifford-block-amalgam-residually-finite`.  The route that consumes both is
+`literal-telescope-core-lef-via-central-embedding`, and the whole chain is
+re-derived from the presentation in
+`docs/E_SOFICITY_SELF_CONTAINED_2026-08-16.md`, which also proves the final
+split-`Z` step directly rather than citing Elek--Szabó (the same construction
+as Lean `SoficIntegerExtension.isSofic_int_semidirectProduct`).
+
+Two things that are NOT settled by any of this.  No Lean declaration concludes
+`IsSofic` for the literal carrier — the endpoint drafts
+(`Sofic/Literal{LampKernelSplit,BlockGeometry,LampKernelAmalgam,TelescopeCoreLEF,SoficEndpoint}.lean`)
+do not compile into one closed theorem, so under the
+formalized-or-not-in-manuscript doctrine this cannot enter the manuscript yet.
+And `non_mf_groups_exist.tex` still says, at the line introducing the
+open-questions list, that "whether `E` itself is sofic is open" — the graph and
+the manuscript disagree, and the manuscript is the stale one.
 
 Consequences and dead ends recorded here so they are not retried:
 
