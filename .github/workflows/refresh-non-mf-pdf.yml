@@ -53,13 +53,21 @@ jobs:
           # Pin the timestamp to the source commit so an unchanged manuscript
           # rebuilds to an unchanged file and produces no commit.
           source_epoch="$(git log -1 --format=%ct -- "$TEX_FILE")"
+          # Build the draft with PDF tagging OFF.  Tagging is a release
+          # property and belongs to the attested pipeline; here it is only a
+          # source of fatal, content-dependent failures -- twice today the
+          # tagging code aborted at \tableofcontents on a manuscript that
+          # compiles cleanly without it, and each abort left the committed PDF
+          # stale, which is the one thing this workflow exists to prevent.
+          sed 's/tagging=on/tagging=off/' "$TEX_FILE" > "build/${TEX_FILE}"
+          cp -f *.bib build/ 2>/dev/null || true
           docker run --rm \
             -e SOURCE_DATE_EPOCH="$source_epoch" \
             -e FORCE_SOURCE_DATE=1 -e TZ=UTC \
             -v "$GITHUB_WORKSPACE:/work" -w /work \
             "$TEXLIVE_IMAGE" \
             bash -euo pipefail -c '
-              latexmk -lualatex -outdir=build -interaction=nonstopmode \
+              cd build && latexmk -lualatex -interaction=nonstopmode \
                 -halt-on-error -file-line-error "$1"
             ' _ "$TEX_FILE"
           test -s "build/${PDF_FILE}"
