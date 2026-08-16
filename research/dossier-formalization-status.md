@@ -131,49 +131,6 @@ formalized in this pass; **TODO** not yet formalized.
 
 | 46.4, 46.6 | not linear, and not even virtually linear, over any field | DONE-NEW | `Sofic/NotVirtuallyLinear` (`not_injective_of_not_residuallyFinite`, `residuallyFinite_of_injective`, `not_injective_of_finiteIndex`).  Found by auditing the source directory rather than the ledger: 46.6 was the one numbered result of `(4).md` with **no** corresponding declaration anywhere in the corpus.  The virtual strengthening is not cosmetic -- non-linearity says nothing about finite-index subgroups -- and it composes two facts already present: Schreier makes the finite-index subgroup finitely generated so Mal'cev applies to it, and `residuallyFinite_of_finiteIndex` (Lemma 46.5) carries the conclusion back up |
 
-| 48.8 | the twins have the same representation *category*: intertwiner spaces agree, not just Hom-sets | DONE-NEW | `Sofic/RepresentationCategoryTwins` (`intertwines_iff`, `precompLinear_bijective`, `representation_category_equiv`).  `ProfiniteTwins.precomp_bijective` was objects only; this adds the morphisms, which is the difference between "same representations" and "same representation theory".  Full faithfulness needs only surjectivity -- the two families of intertwining equations are indexed by the same set -- and the kernel hypothesis is used only for essential surjectivity on objects |
-
-
-## Appendix: coverage audit against the source directory (2026-08-16)
-
-Until this pass the ledger was audited against itself.  It is now audited
-against `/Users/user/Downloads/formalize`, which holds **four** files, not one.
-
-**The directory reduces to one file.**  Extracting every numbered result from
-each and diffing: `(1)`, `(2)` and `(3)` are strict subsets of `(4)` -- the
-difference is empty in each case.  So formalizing `(4)` covers the directory.
-This had been assumed, never checked.
-
-**`(4).md` contains 128 distinct numbered results.**  Of these, 106 are cited
-directly by a row above.  The remaining 22 were unc­ited; each was checked
-individually against the corpus, and the result is below.  Two were genuine
-gaps and are now closed; the other twenty are formalized under different
-numbering, which is why a ledger-only audit missed them.
-
-| Result | Where it actually lives |
-|---|---|
-| 3.6 | GKEP's imported wreath theorem; reproved as 29.6, `Sofic/GeneralizedWreathSofic.isSofic_wreath` |
-| 14.2 | the sofic + non-MF route; subsumed by the 34.5 / 34.6 rows |
-| 28.1 | the involutive compression theorem; `Sofic/ManuscriptExactWrappers`, `Sofic/InvolutionCollapseEndpoint` |
-| 31.3, 31.4 | LERA / UAS corollaries of 31.2; subsumed by the 15.1 and 31.2 rows |
-| 33.2 | `Sofic/ExactInvolutionLifts` (finite commuting-involution correction) |
-| 33.7 | `Kazhdan/GaussianPositiveDefinite` (the Gaussian kernel is positive definite) |
-| 33.8 | the circumcenter lemma; the `Circumcenter` modules |
-| 33.10, 33.11, 33.12 | `Sofic/KazhdanCompressorCorner`, `Sofic/ManuscriptKazhdanTransport` (spectral gap, corner inclusion, equal-rank reversal) |
-| 33.13 | `Sofic/ScaledKazhdanTransport` |
-| 39.9 | the concrete family; subsumed by the 39.x rows |
-| 40.1 | the Kun--Thom comparison; the `KunThom/` modules |
-| 45.1, 47.1, 54.1 | consolidation theorems -- restatements of rows already above, carrying no content of their own |
-| 46.6 | **was a genuine gap.**  `Sofic/NotVirtuallyLinear` |
-| 46.7 | the Bohr corollary; `Sofic/FiveRadicalsCoincide` |
-| 48.6, 48.7 | `Sofic/ProfiniteTwins` (`profinite_twins`, `wreath_twins`) -- same finite quotients, opposite MF behaviour, which is exactly 48.7 |
-| 48.8 | **was a genuine gap.**  `Sofic/RepresentationCategoryTwins` |
-
-**Method note.**  The first pass of this audit reported "21 of 22 are covered
-under different numbering" on the strength of keyword greps.  That was inference,
-not verification, and it was wrong by one: 48.8 also had no declaration.  The
-table above is per-result and was checked against named declarations.
-
 ### Blocked, with the reason
 
 * **Bohr kernel (Section 46.5).**  *No longer blocked, and no longer a

@@ -627,8 +627,6 @@ Exact edits, if the rename is adopted:
 | 79-80 | `f"line {line_number}: {declaration} has declaration inputs; move every binder after the colon"` | unchanged (accurate as written) |
 | 84 | `print(f"check-non-mf-zero-input: {len(problems)} problem(s):")` | `check-non-mf-source-closed:` |
 | 89 | `print(f"check-non-mf-zero-input: {checked} cited declarations are closed")` | `check-non-mf-source-closed: {checked} cited declarations are source-closed` — the key line, since this is the string being read as an unconditionality claim |
-| 20 | ~~`MaximalCStarParagraphEndpoint.manuscriptMaximalCStarStrictCompressionRemark`~~ | ~~header-hygiene, open-variable~~ → **CLOSED** | `rem:maxinfinite` | **None.** The declaration was reshaped so its binders sit after the colon; the gate no longer reports it. | — |
-| 21 | ~~`kt_06_ultraproduct_finite`, `kt_10_finiteness_reverses`~~ | ~~header-hygiene~~ → **CLOSED** | `lem:ultrafinite`, `lem:finitecompare` | **None.** Both headers were reshaped so their binders sit after the colon; the gate no longer reports either, and row 19 records the same closure. | — |
 
 **Call sites** (path only changes if the file is renamed; the log strings above
 change regardless):

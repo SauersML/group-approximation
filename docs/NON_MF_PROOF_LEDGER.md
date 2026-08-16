@@ -288,8 +288,8 @@ opening the proof, have held.
 <!-- LEDGER-COUNTS -->
 | Column | EXACT | MISMATCH | MISSING | UNDER-SPECIFIED | total |
 | --- | --- | --- | --- | --- | --- |
-| statement | 396 | 77 | 63 | 1 | 537 |
-| proof | 408 | 51 | 72 | 6 | 537 |
+| statement | 394 | 75 | 63 | 1 | 533 |
+| proof | 405 | 50 | 72 | 6 | 533 |
 <!-- END-LEDGER-COUNTS -->
 
 ## Anchors

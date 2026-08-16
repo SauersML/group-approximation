@@ -45,14 +45,6 @@ inductive Reach (step : C → Option C) : C → C → Prop where
   | refl (c : C) : Reach step c c
   | tail {c d e : C} : Reach step c d → step d = some e → Reach step c e
 
-/-- Prepending a step.  `Reach` is built from the tail, so this needs its own
-induction. -/
-theorem Reach.head {step : C → Option C} {c d e : C} (h : step c = some d)
-    (hde : Reach step d e) : Reach step c e := by
-  induction hde with
-  | refl => exact Reach.tail (Reach.refl c) h
-  | tail _ hx ih => exact ih.tail hx
-
 /-- A run is either empty or begins with a step.  `Reach` is built from the
 tail, so head analysis needs its own induction. -/
 theorem Reach.cases_head {step : C → Option C} {c d : C} (h : Reach step c d) :
