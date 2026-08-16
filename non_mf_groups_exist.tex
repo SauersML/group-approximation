@@ -2514,34 +2514,38 @@ large stage, with total generator mass
 \begin{equation}\label{eq:generator-mass}
   \sum_{a\in S}\|b_n(a)\|_{\mathrm{F}}^2=4
 \end{equation}
-whenever $k_n\ge1$.  Conjugation by $U_{g,n}$ is a Frobenius isometry,
-and the total cocycle defect
+whenever $k_n\ge1$.  Conjugation by $U_{a,n}$ is a Frobenius isometry.
+Fix $a,\gamma\in L$, put $\mu=a^{-1}\gamma$, and let $k_n^{-1/2}D_n$ be
+the defect in the cocycle identity, so that
 \[
-  D_n(g,\gamma)\;=\;k_n^{1/2}\bigl(b_n(g\gamma)-b_n(g)
-  -U_{g,n}b_n(\gamma)U_{g,n}^{*}\bigr)
+  D_n=\bigl(V_n(\gamma)-V_n(1)\bigr)
+  -U_{a,n}\bigl(V_n(\mu)-V_n(1)\bigr)U_{a,n}^{*}
+  -\bigl(V_n(a)-V_n(1)\bigr).
 \]
-admits two different groupings, each controlling one factor of the
-Hilbert--Schmidt estimate.  Cancelling $V_n(1)$ gives
+Two groupings of this one expression control the two factors of the
+Hilbert--Schmidt estimate, and neither yields the other.  As written,
+$D_n$ is a sum of three displacements of the commuting family of
+Step~1, one of them conjugated; rank is subadditive and invariant
+under unitary conjugation, so Step~2 with the bound of Step~3 gives
 \[
-  D_n(g,\gamma)=\bigl(V_n(g\gamma)-V_n(g)\bigr)
-  -U_{g,n}\bigl(V_n(\gamma)-V_n(1)\bigr)U_{g,n}^{*},
+  \operatorname{rank}D_n\le d_n(\gamma,1)+d_n(\mu,1)+d_n(a,1)
+  \le\bigl(|\gamma|_S+|\mu|_S+|a|_S\bigr)k_n
 \]
-a difference of two displacements of the commuting family of Step~1;
-by Step~2 and translation invariance each has rank $d_n(\gamma,1)$, so
-$\operatorname{rank}D_n(g,\gamma)\le2\,|\gamma|_S\,k_n$.  Regrouping
-the same expression as
+eventually.  Regrouped as
 \[
-  D_n(g,\gamma)=\bigl(V_n(g\gamma)-U_{g,n}V_n(\gamma)U_{g,n}^{*}\bigr)
-  -\bigl(V_n(g)-U_{g,n}V_n(1)U_{g,n}^{*}\bigr)
+  D_n=\bigl(V_n(\gamma)-U_{a,n}V_n(\mu)U_{a,n}^{*}\bigr)
+  +\bigl(U_{a,n}V_n(1)U_{a,n}^{*}-V_n(a)\bigr),
 \]
-exhibits it as a difference of two covariance errors of Step~1, so
-$\opnorm{D_n(g,\gamma)}\to0$.  The rank bound comes from the first
-grouping and the operator-norm bound from the second; neither implies
-the other, since a difference of two exact involutions at small
-operator distance may have full rank.  Feeding both into
+the same $D_n$ is a sum of two covariance errors of Step~1, so
+$\opnorm{D_n}\to0$.  The rank bound comes from the first grouping and
+the operator-norm bound from the second.  The norm bound alone would
+not give the rank bound: two exact involutions at small operator
+distance can differ in full rank.  Feeding both into
 $\operatorname{Tr}|D|^2\le\operatorname{rank}(D)\cdot\opnorm{D}^2$
-makes the defect mass vanish at the scale $k_n$.  All estimates below
-concern only differences of the involutions.
+bounds the normalized defect mass by
+$\bigl(|\gamma|_S+|\mu|_S+|a|_S\bigr)\opnorm{D_n}^2\to0$: the defect
+mass vanishes at the scale $k_n$.  All estimates below concern only
+differences of the involutions.
 
 \emph{Step 5: bounded profile and an approximate primitive.}  The
 Gaussians $e^{-t\|\cdot\|^2}$ of the almost-cocycle are almost

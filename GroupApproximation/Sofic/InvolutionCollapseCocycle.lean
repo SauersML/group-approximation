@@ -220,8 +220,15 @@ variable (S : Finset Γ)
 
 /-- **The coboundary defect vanishes stagewise.**  The normalized
 displacement vectors satisfy the cocycle identity along the flattened
-adjoint action up to a defect that is a sum of three rank-controlled
-covariance errors; its norm dies at the rank scale. -/
+adjoint action up to a defect `D`, and the two factors of
+`matMass D ≤ D.rank * ‖D‖ ^ 2` come from two different groupings of
+that one defect.  Grouped as three displacements of the commuting
+family --- at `γ`, at `μ = a⁻¹ * γ` conjugated, and at `a` --- rank
+subadditivity bounds `D.rank` by `Cn * kNorm`.  Grouped as two
+covariance errors it has vanishing operator norm.  Neither grouping
+implies the other: two exact involutions at small operator distance
+can differ in full rank, so the covariance errors are *not* themselves
+rank-controlled. -/
 theorem eventually_coboundary_defect_small
     (hgen : Subgroup.closure (S : Set Γ) = ⊤)
     (hsymm : ∀ g ∈ S, g⁻¹ ∈ S)
