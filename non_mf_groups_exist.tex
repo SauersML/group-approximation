@@ -722,6 +722,7 @@ operator-norm asymptotic representations, and
 Theorem~\ref{thm:transport-variants}(2) applies to every pair of them:
 one-sided compression of a Kazhdan image creates no asymptotic invariant
 tensors of any fixed type, at any weight.
+\leanverified{Sofic/TensorPowerTransport}{GroupApproximation.TensorPowerTransport.manuscriptFixedTensorTransport}
 
 \section{The compression defect and its obstruction theorems}\label{sec:conj}
 
@@ -3118,7 +3119,13 @@ The phenomenon also has infinite multiplicity, in two senses that need
 no new analysis.  The groups $E\times\mathbb Z^{k}$ for $k\ge0$ are
 finitely presented, pairwise nonisomorphic --- their abelianizations
 have distinct torsion-free ranks --- and non-MF, each containing $E$
-(Lemma~\ref{lem:permanence}(1)).  Beyond finite presentation, pairing $E$
+(Lemma~\ref{lem:permanence}(1)).  That paragraph is machine-checked,
+with one deliberate difference: the formalization separates the members
+by counting homomorphisms into $\mathbb Z/2$, a count that determines
+$k$, rather than by torsion-free rank.  The two read the same
+invariant, but the argument below the badge is the counting one.
+\leanverified{Sofic/ProductMultiplicity}{GroupApproximation.ProductMultiplicity.manuscriptInfiniteMultiplicity}
+Beyond finite presentation, pairing $E$
 with the continuum of pairwise nonisomorphic two-generator groups of
 B.~H.~Neumann \cite{Neumann37} yields $2^{\aleph_0}$ pairwise
 nonisomorphic finitely generated non-MF groups: each product
@@ -3128,9 +3135,10 @@ isomorphism types $N$ --- each such $N$ embeds in $X$ as a finitely
 generated subgroup, a countable group has only countably many finitely
 generated subgroups, and the types $N$ are pairwise nonisomorphic.  A
 map with countable fibres from a continuum-sized family has
-continuum-sized image.  These two paragraphs are elementary group theory on top
-of the machine-checked heredity lemma and are not separately
-formalized.
+continuum-sized image.  This second paragraph is elementary group
+theory on top of the machine-checked heredity lemma, and is not
+separately formalized; the Neumann family and the counting argument
+over it are prose.
 
 \section{Limitations of the operator-norm method}\label{sec:limits}
 
