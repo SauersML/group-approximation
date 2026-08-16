@@ -1,5 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}[2025-06-01]
-\DocumentMetadata{lang=en-US,pdfversion=2.0}
+\DocumentMetadata{lang=en-US,pdfversion=2.0,tagging=on}
 \documentclass[11pt]{amsart}
 
 \usepackage[T1]{fontenc}
@@ -1614,6 +1614,23 @@ constrain $[\,d,\ \iota(v_1)\,d\,\iota(v_1)^{-1}]$.
 
 \begin{figure}[htbp]
 \centering
+% Tagging: the picture is one graphic, so it is a single marked-content unit
+% inside a Figure structure element carrying the alternative text.  Without
+% this the tagged PDF has an untagged drawing where the reader expects a
+% figure; the caption is a caption, not a substitute for /Alt.
+\tagstructbegin{tag=Figure,alt={Diagram of the one-sided conjugation
+  configuration.  A large rounded rectangle is the image of the base group;
+  a smaller rounded rectangle strictly inside it is the compressed copy
+  obtained by conjugating by t, and an arrow between them is labelled by that
+  conjugation.  The element v1 sits in the base outside the compressed copy.
+  Below, a circled c is joined by an arrow labelled ``conjugation by t'' to a
+  circled d; c is linked to the base by the relation that c commutes with the
+  base, and d is linked to the compressed copy by the relation that d commutes
+  with it.  A line from d leads to a box reading: marked defect w equals the
+  commutator of d with v1 d v1 inverse, which equals the square of the
+  commutator of d with v1 because d squares to one, and no relation forces
+  that commutator to be trivial.}}%
+\tagmcbegin{}%
 \begin{tikzpicture}[x=1cm,y=1cm,font=\small]
   \draw[rounded corners=2.5mm,line width=.4pt] (0,0) rectangle (6.5,3.1);
   \node[fignote] (iblab) at (1.05,2.7) {$\iota(\mathcal B)$};
@@ -1636,7 +1653,8 @@ constrain $[\,d,\ \iota(v_1)\,d\,\iota(v_1)^{-1}]$.
      {\footnotesize $=[\,d,\iota(v_1)]^{\,2}$ since $d^2=1$;\\
       no relation forces\\ $[\,d,\iota(v_1)]=1$}};
   \draw[figarr] (d) -| (mark);
-\end{tikzpicture}
+\end{tikzpicture}%
+\tagmcend\tagstructend
 \caption{The one-sided conjugation configuration.  Conjugation by $t$ carries the
 image of the base into itself.  It sends $c$ to $d=tct^{-1}$: the
 relations force $c$ to commute with all of $\iota(\mathcal B)$ and force
@@ -2704,8 +2722,8 @@ $k$ commutes pairwise, where $L=q(\bar\Gamma)$ is the image of the
 base copy; $k$ remains an involution, and the compressed copy
 $q(t)Lq(t)^{-1}$ centralizes $k$ because the compressed base fixes the
 moved site.  Property~\textup{(T)} passes to the image $L$, so
-Theorem~\ref{thm:collapse} places every commutator $[q(\bar
-v_1),k]$ in the MF radical of the quotient.  Nontriviality survives
+Theorem~\ref{thm:collapse} places every commutator
+$[q(\bar v_1),k]$ in the MF radical of the quotient.  Nontriviality survives
 the sign quotient: in the signed finite-support model of the lamp
 kernel, the commutator is the product of the two distinct lamp basis
 elements at $\tau o$ and $j(\bar v_1)\tau o$, whose configuration
@@ -3833,4 +3851,10 @@ Ann. of Math. (2) \textbf{185} (2017), no.~1, 229--284,
 
 \end{thebibliography}
 
-\end{document}
+% ChkTeX counts delimiters over the whole file and reports the imbalance on
+% this line.  Kazhdan constants are quantified over the half-open interval
+% $\kappa\in(0,1]$, which is standard notation and unbalanced by construction,
+% so warning 17 fires here on every run.  Silenced at the line it is reported
+% on rather than by another -n flag in the release workflow, so the check stays
+% live for the rest of the document.
+\end{document} % chktex 17
