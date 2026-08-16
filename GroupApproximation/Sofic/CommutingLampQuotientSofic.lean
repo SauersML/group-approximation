@@ -194,7 +194,7 @@ theorem finite_orbit_of_finite_site_orbits_modTwo {H : Type*} [Group H]
       Multiplicative.ofAdd (Finsupp.single y (1 : ZMod 2))).subset ?_
     rintro _ ⟨h, rfl⟩
     refine ⟨ρ h x, ⟨⟨h, rfl⟩, ?_⟩⟩
-    rw [finsuppActionHom_apply_single]
+    simp only [finsuppActionHom_apply_single]
   have hn : n ∈ P := by
     have := hmem (Multiplicative.toAdd n)
     exact this
@@ -261,13 +261,14 @@ noncomputable def toModTwo : CliffordLamp X →* ModTwoLamp X :=
 
 @[simp] theorem toModTwo_sign : toModTwo (sign X) = 1 := by
   show toModTwo (PresentedGroup.of (Sum.inl ())) = 1
-  rw [PresentedGroup.toGroup.of]
+  rfl
 
 @[simp] theorem toModTwo_lamp (x : X) :
     toModTwo (lamp X x) =
       Multiplicative.ofAdd (Finsupp.single x (1 : ZMod 2)) := by
-  show toModTwo (PresentedGroup.of (Sum.inr x)) = _
-  rw [PresentedGroup.toGroup.of]
+  show toModTwo (PresentedGroup.of (Sum.inr x)) =
+    Multiplicative.ofAdd (Finsupp.single x (1 : ZMod 2))
+  exact PresentedGroup.toGroup.of _
 
 /-- Two homomorphisms out of the Clifford lamp group agreeing on the sign
 and on every lamp are equal. -/
@@ -347,7 +348,7 @@ theorem commute_mk_lamp (w : CliffordLamp X) (y : X) :
       show QuotientGroup.mk' (Subgroup.zpowers (sign X)) (lamp X y) *
           QuotientGroup.mk' (Subgroup.zpowers (sign X)) (lamp X x) *
           (QuotientGroup.mk' (Subgroup.zpowers (sign X)) (lamp X y))⁻¹ = _
-      rw [← hcomm.eq, mul_assoc, mul_inv_cancel, mul_one]
+      rw [hcomm.eq, mul_assoc, mul_inv_cancel, mul_one]
   have := DFunLike.congr_fun hhom w
   show _ = _
   have hconj : QuotientGroup.mk' (Subgroup.zpowers (sign X)) (lamp X y) *
@@ -380,7 +381,7 @@ instance : CommGroup (SignQuot X) :=
             show QuotientGroup.mk' (Subgroup.zpowers (sign X)) w *
                 QuotientGroup.mk' (Subgroup.zpowers (sign X)) (lamp X x) *
                 (QuotientGroup.mk' (Subgroup.zpowers (sign X)) w)⁻¹ = _
-            rw [← hc.eq, mul_assoc, mul_inv_cancel, mul_one]
+            rw [hc.eq, mul_assoc, mul_inv_cancel, mul_one]
         have := DFunLike.congr_fun hhom u
         have hconj : QuotientGroup.mk' (Subgroup.zpowers (sign X)) w *
             QuotientGroup.mk' (Subgroup.zpowers (sign X)) u *
@@ -411,7 +412,7 @@ def pointHom (x : X) : ZMod 2 →+ Additive (SignQuot X) where
           m • Additive.ofMul (lampBar x) := by
       intro m
       conv_rhs => rw [← Nat.mod_add_div m 2]
-      rw [add_nsmul, mul_comm, mul_nsmul, h2, smul_zero, add_zero]
+      rw [add_nsmul, mul_nsmul, h2, smul_zero, add_zero]
     rw [ZMod.val_add, hmod, add_nsmul]
 
 /-- The additive section of the abelianization. -/
@@ -531,7 +532,7 @@ noncomputable def Phi : Ambient α hα →*
           show (inr v : ModTwoLamp (Cosets α hα) ⋊[actF α hα]
               Vertical α hα) * inl (toModTwo (lamp (Cosets α hα) x)) *
               (inr v)⁻¹ = _
-          rw [inl_aut]
+          rw [inl_aut, map_inv]
         rw [hconj]
         have := DFunLike.congr_fun (toModTwo_equivariant α hα v)
           (lamp (Cosets α hα) x)
@@ -541,7 +542,8 @@ theorem Phi_apply (p : Ambient α hα) :
     Phi α hα p = ⟨toModTwo p.left, p.right⟩ := by
   have hp : p = inl p.left * inr p.right :=
     (inl_left_mul_inr_right p).symm
-  rw [hp, map_mul]
+  conv_lhs => rw [hp]
+  rw [map_mul]
   have h1 : Phi α hα (inl p.left) = inl (toModTwo p.left) := by
     show SemidirectProduct.lift _ _ _ (inl p.left) = _
     rw [SemidirectProduct.lift_inl]
@@ -550,7 +552,9 @@ theorem Phi_apply (p : Ambient α hα) :
     show SemidirectProduct.lift _ _ _ (inr p.right) = _
     rw [SemidirectProduct.lift_inr]
   rw [h1, h2]
-  exact inl_left_mul_inr_right _
+  exact inl_left_mul_inr_right
+    (⟨toModTwo p.left, p.right⟩ :
+      ModTwoLamp (Cosets α hα) ⋊[actF α hα] Vertical α hα)
 
 theorem Phi_surjective : Function.Surjective (Phi α hα) := by
   intro q
@@ -664,6 +668,13 @@ end Ambient
 section Literal
 
 open LiteralNonMFLinearWitness ExplicitLinearModel
+
+/-- Quotients of countable groups are countable; mirrored locally from
+`Sofic.ActualCoronaMFRadical`, where the same instance is `local`. -/
+local instance quotientCountable {E : Type} [Group E] (N : Subgroup E)
+    [hN : N.Normal] [Countable E] : Countable (E ⧸ N) :=
+  Function.Surjective.countable
+    (@QuotientGroup.mk'_surjective E _ N hN)
 
 /-- **The literal commuting-lamp quotient is sofic.** -/
 theorem literalSignFreeQuotient_isSofic :
