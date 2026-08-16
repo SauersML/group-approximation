@@ -1452,7 +1452,7 @@ formulation.
 Section~\ref{app:p13} identifies $P_{13}$ with $\SL_3(\mathbb Z)$, and the
 base $\mathcal B$ with the affine group.
 
-\section{The witness: \texorpdfstring{$w\neq 1$}{w is nontrivial}}\label{sec:witness}
+\section{Nontriviality of \texorpdfstring{$w$}{w}}\label{sec:witness}
 
 Clifford signs, shifts, and HNN doubling have appeared together before in
 approximate-representation theory, notably in Slofstra's hyperlinear-profile
@@ -2747,8 +2747,7 @@ $k\in H$ is an \emph{involutive compression witness} for $(L,s)$ if
 \item[(W3)] the conjugates $\gamma_1k\gamma_1^{-1}$ and
   $\gamma_2k\gamma_2^{-1}$ commute for all $\gamma_1,\gamma_2\in L$.
 \end{enumerate}
-The \emph{involutive collapse defect} of the pair $(L,s)$ is the
-normal subgroup
+The pair $(L,s)$ determines the normal subgroup
 \leanverified{Sofic/ManuscriptExactWrappers}{GroupApproximation.ManuscriptExactWrappers.manuscriptInvolutiveCollapsePattern}
 \[
   D_{\mathrm{coll}}(L,s)
@@ -2925,7 +2924,7 @@ representation a coboundary, so there is $y\in K_\omega$ with
 
 \emph{Step 6: transport by the conjugator $s$.}  By (W2) the element
 $sas^{-1}$ commutes with $k$ for every $a\in L$, so
-$v_{sas^{-1}}=k=v_1$; the orbit indexing of Step~1 then gives
+$v_{sas^{-1}}=k=v_1$; the assignment $\gamma\mapsto v_\gamma$ of Step~1 then gives
 $V_n(sas^{-1})=V_n(1)$ at every stage, and hence $b(sas^{-1})=0$.
 Therefore $y=\pi(sas^{-1})y$ for every $a\in L$: the vector $y$ is
 fixed by $\pi(sLs^{-1})$.
@@ -3002,10 +3001,14 @@ The first says the corner is almost fixed, by the Kazhdan gap.  The
 second is the finite-stage form of $P=\pi(s)P\pi(s)^{*}$, and it comes
 in the two moves of Section~\ref{app:finite-stage}.  First the easy
 containment $\opnorm{(1-Q_n)P_n}\le\varepsilon$: for $a\in S$ the
-element $sas^{-1}$ lies in $L=\langle S\rangle$, so it is a word in $S$
-of some fixed length, and a vector almost fixed by $S$ is therefore
-almost fixed by each $sas^{-1}$, which places the corner almost inside
-its image under $s$.  Then the equal-rank reversal estimate of
+one-sided relation gives $sas^{-1}=\delta$ for a single $\delta\in L$,
+and
+\[
+ (1-\Ad U_{a,n})\,\Ad U_{s,n}^{*}P_n
+ =\Ad U_{s,n}^{*}\,(1-\Ad U_{\delta,n})\,P_n ,
+\]
+whose norm the Kazhdan gap makes small; so the corner lies almost
+inside its image under $s$.  Then the equal-rank reversal estimate of
 Section~\ref{app:finite-stage} turns that containment around: $Q_n$ is
 a unitary conjugate of $P_n$ and so has the same rank, and for two
 projections of equal finite rank a containment within $\varepsilon<1$
@@ -3650,10 +3653,10 @@ normalized trace off the ambient blocks.  What such a substructure
 needs is its own normalization, not a large relative rank.  Padding
 leaves the averaging corner $q_nM_{d_n}(\C)q_n$ untouched while $d_n$
 grows, so its relative rank $r_n/d_n$ may tend to zero while the
-argument runs on the corner's own normalized trace; the spectral
+argument uses the corner's own normalized trace; the spectral
 projection $q_n$ of Theorem~\ref{thm:normal-kazhdan} is normalized on
 its own range in the same way, and the collapse argument of
-Theorem~\ref{thm:collapse} on the displacement scale $k_n$.
+Theorem~\ref{thm:collapse} normalizes by the rank $k_n$.
 
 This is a limitation of the method, not a tracial nonapproximation
 theorem for $E$.  Alekseev--Thom ask whether commutants arising in sofic

@@ -649,7 +649,10 @@ why, because each is an easy mistake to make twice.
    (`InvolutionCollapseEndpoint.lean:444`) *takes* `hrev` as a hypothesis, and
    it is discharged by `KazhdanCompressorCorner.one_sub_corner_mul_moved_vanishing`,
    which chains `one_sub_moved_mul_corner_vanishing` (the easy containment, via
-   `rotated_laplacian_vanishing`: `sas⁻¹ ∈ L = ⟨S⟩` is a bounded word in `S`)
+   `rotated_laplacian_vanishing`, which opens `C.compresses s` to get a single
+   `δ` with `t ι(s) t⁻¹ = ι(δ)` and rewrites the displacement of the rotated
+   corner at `s` as the rotation of its displacement at `δ` — the one-sided
+   relation used exactly once, and used as an equation, not as a normalizer)
    with `norm_one_sub_mul_flip` at `movedProjection_rank = cornerProjection_rank`.
    Equal rank is the finite-dimensional stand-in for the absent proper isometry.
 
