@@ -89,8 +89,8 @@ theorem defectNormal_map_le (C : KazhdanCompressionCore Γ H) (e : H ≃* H₀) 
   rw [Subgroup.map_le_iff_le_comap, KazhdanCompressionCore.defectNormal]
   refine Subgroup.normalClosure_le_normal ?_
   rintro _ ⟨γ, rfl⟩
-  simp only [SetLike.mem_coe, Subgroup.mem_comap, MonoidHom.coe_coe]
-  exact Subgroup.subset_normalClosure ⟨γ, (mapCore_defect C e γ).symm⟩
+  simp only [SetLike.mem_coe, Subgroup.mem_comap]
+  exact Subgroup.subset_normalClosure ⟨γ, mapCore_defect C e γ⟩
 
 /-- A subgroup inside the compression defect is carried into the compression
 defect of the transported datum. -/
@@ -125,7 +125,7 @@ theorem image_compressionSet_subset (e : H ≃* H₀) (L : Subgroup H) :
 theorem compressionGroup_map_le (e : H ≃* H₀) (L : Subgroup H) :
     (compressionGroup L).map e.toMonoidHom ≤
       compressionGroup (L.map e.toMonoidHom) := by
-  rw [compressionGroup, Subgroup.map_closure]
+  rw [compressionGroup, MonoidHom.map_closure]
   exact Subgroup.closure_mono (image_compressionSet_subset e L)
 
 /-- Each displayed intrinsic-defect generator maps to a displayed intrinsic
@@ -151,7 +151,7 @@ theorem compressionCentralizerDefect_map_le (e : H ≃* H₀) (L : Subgroup H) :
   rw [Subgroup.map_le_iff_le_comap, compressionCentralizerDefect]
   refine Subgroup.normalClosure_le_normal ?_
   intro x hx
-  simp only [SetLike.mem_coe, Subgroup.mem_comap, MonoidHom.coe_coe]
+  simp only [SetLike.mem_coe, Subgroup.mem_comap]
   exact Subgroup.subset_normalClosure
     (image_compressionCentralizerDefectSet_subset e L ⟨x, hx, rfl⟩)
 
