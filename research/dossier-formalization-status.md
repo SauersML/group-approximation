@@ -127,6 +127,7 @@ formalized in this pass; **TODO** not yet formalized.
 | 43, 51, 52 at `A₅` | the `A₅`-lamp group over the concrete doubling base | DONE-NEW | `Sofic/AlternatingLampLiteralPackage` (`c5`, `a5`, `not_isCDEOperatorMF_WA`, `alternatingPackage`, `alternatingTwins`).  The double transposition `(0 1)(2 3)` supplies the involution the unconditional endpoint needs; simplicity gives the one-relation kernel, finiteness its tameness, and `Sofic/ProfiniteTwins` the twin clause |
 | 37.5, 47 in full | every pair of sites of equal height has invisible lamp difference: `R_K = ker Φ∞ ≤ Rad_MF`, and equality when the visible quotient is MF | DONE-NEW | `Sofic/AscendingHNNFullTelescopeRadical` (`levelSub`, `levelSub_hasKazhdanPropertyT`, `wreathT_pow_compress`, `isInvolutiveCompressionWitness_rootLamp`, `lampDiff_mem_actualCoronaMFResidual_of_rightHom_eq`, `telescopeRadical_le_actualCoronaMFResidual`, `actualCoronaMFResidual_eq_telescopeRadical`).  **No iteration is needed**: the level-`n` copy is a conjugate of the base, hence Kazhdan, and `tⁿ` compresses it onto the base, which fixes the *root* coset -- so the criterion applies levelwise with one witness, and the telescope is exhausted because every telescope element is a level element.  The induction on quotients that the dossier's presentation suggests is an artifact of fixing the witness site at `tΓ` |
 | 46.5 fifth clause | the Bohr kernel joins the chain: all five residuals coincide | DONE-NEW | `Sofic/FiveRadicalsCoincide` (`bohrResidual_eq_finiteResidual`, `five_radicals_eq`, `five_radicals_eq_profinite`), on `Analysis/PeterWeylProfinite`.  Two forms: with the isolated separation core of Peter--Weyl the Bohr residual of a finitely generated group *equals* the finite residual, so all five are one kernel; with no hypothesis at all the same holds for profinite targets, by van Dantzig |
+| 54.3 graph-product half | the non-finite-presentability mechanism, without graph products | DONE-NEW (mechanism) | `Algebra/FinitePresentationTietze` (`exists_finite_subset_mem_normalClosure`, `isFinitelyNormallyGenerated_ker`, `exists_finite_subpresentation`, `exists_finite_subfamily`) and `Algebra/PartialCommutationLamp` (`commutator_ne_one_of_notMem`, `not_isFinitelyPresented_of_violable`).  Cornulier's necessity direction needs a group where prescribed pairs commute and one pair does not; for **involutive** lamps an explicit retraction onto the infinite dihedral group replaces the graph product, and the Tietze step -- every surjection from a finite-rank free group onto a finitely presented group has finitely normally generated kernel -- supplies the finite subfamily to violate.  **What is still missing** is the presentation of `K^{(X)} ⋊ G` on a finite generating set: the criterion needs finitely many generators, and the lamp generators indexed by `X` must first be traded for one lamp conjugated by group words |
 
 ### Blocked, with the reason
 
@@ -140,9 +141,12 @@ formalized in this pass; **TODO** not yet formalized.
   `L²`, compactness of convolution operators, the spectral theorem.
   exactly Peter--Weyl for compact groups.  Everything else in the five-radical
   coincidence is either done or reduces to the telescope radical.
-* **Graph-product half of 54.3.**  Mathlib has no graph products, so the
-  necessity direction of Cornulier's criterion would have to be built from
-  scratch; the height half (infinitely many diagonal orbits) is done.
+* **Graph-product half of 54.3.**  No longer blocked on graph products: the
+  mechanism is in `Algebra/PartialCommutationLamp` via a dihedral retraction,
+  and the Tietze bookkeeping is in `Algebra/FinitePresentationTietze`.  What
+  remains is the finite-generating-set presentation of the wreath product,
+  which is bookkeeping about a specific presentation rather than a missing
+  theory.  The height half (infinitely many diagonal orbits) was already done.
 
 ## Notes
 
