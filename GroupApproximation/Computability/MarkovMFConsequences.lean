@@ -131,6 +131,22 @@ theorem operatorMF_negative_side_not_re
     ¬REPred (fun code ↦ ¬operatorMFProperty semantics code) :=
   negative_side_not_re reduction source_negative_not_re
 
+/-- Closed form of the non-r.e. statement: every binder after the colon, so the
+manuscript can cite it as a complete printed proposition.  Its hypotheses --- a
+presentation coding, an Adian--Rabin reduction, and a source whose negative side
+is not recursively enumerable --- are visible antecedents, not citations. -/
+theorem manuscriptOperatorMFNegativeSideNotRE :
+    ∀ {Source : Type u} {Code : Type v} [Primcodable Source] [Primcodable Code]
+      {sourceProperty : Source → Prop}
+      (semantics : FinitePresentationSemantics Code)
+      (_reduction : AdianRabinReduction sourceProperty
+        (operatorMFProperty semantics))
+      (_source_negative_not_re :
+        ¬REPred (fun source ↦ ¬sourceProperty source)),
+      ¬REPred (fun code ↦ ¬operatorMFProperty semantics code) := by
+  intro Source Code _ _ sourceProperty semantics reduction hnre
+  exact operatorMF_negative_side_not_re semantics reduction hnre
+
 /-! The two group-theoretic inputs normally used to build the MF Markov
 witness are already unconditional theorems in this repository.  They are
 recorded here without claiming that the syntactic Adian--Rabin transformation
