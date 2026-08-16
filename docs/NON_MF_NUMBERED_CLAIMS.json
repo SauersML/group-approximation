@@ -7,7 +7,7 @@
       "id": "thm:A",
       "environment": "mainthm",
       "title": "explicit Kazhdan--Clifford group",
-      "statement_sha256": "709b77bd99cbaf0e7b476dbe5ec127ea4da7f09df5bda1bb7d64fede26cb2638",
+      "statement_sha256": "10d45674d9b621066d9958fad688f7e3fd3c97b171a07d16df0f76ffd3708a94",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [
@@ -35,8 +35,8 @@
     {
       "id": "prop:mf-equivalences",
       "environment": "proposition",
-      "title": "equivalent MF formulations",
-      "statement_sha256": "36cb694b0d398dbb46ce0fcfcbf7cc9851d4585cbe92f770a1539e747367671f",
+      "title": "Equivalent formulations of the MF property",
+      "statement_sha256": "8fcbf4fc050755b2c72e7ecfa4d27b70b8c77ace2961ce40cc7ebadcfc3e9781",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [
@@ -78,7 +78,7 @@
       "id": "lem:unitarycorona",
       "environment": "lemma",
       "title": "unitaries in the quotient",
-      "statement_sha256": "a188e2b9a24399f8d205962acae97b0be91608e61458565c5046e2d0e4adf253",
+      "statement_sha256": "a6a9954376d7765e4acacfa274922d5feb847e94f862d8cface3cf0ddc825ae5",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [
@@ -100,7 +100,7 @@
       "id": "thm:B",
       "environment": "theorem",
       "title": "the exact finite-dimensional analogue",
-      "statement_sha256": "1a4fa9647cbcb3e2eb5587682d6f6a6968fd03d4012fad967d5bc6420e6a5a53",
+      "statement_sha256": "0e1ab5f727ba25a609bafdbde8422dc2abf66e1391e043c89860d4f074ed1afa",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [],
@@ -119,7 +119,7 @@
     {
       "id": "thm:kazhdan-transport",
       "environment": "theorem",
-      "title": "Kazhdan transport of Hilbert--Schmidt asymptotic commutants",
+      "title": "one-sided conjugation preserves asymptotic commutants",
       "statement_sha256": "36a5391cd928c3d3efd79266320a95f8a6ae81a8a7428cd59ff59d0313a4c83a",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
@@ -139,8 +139,8 @@
     {
       "id": "thm:sign-criterion",
       "environment": "theorem",
-      "title": "central-sign criterion",
-      "statement_sha256": "d83515e0138bd177cc88853006de691c3311ea833f961208868c0700e9afa974",
+      "title": "central involution obstruction",
+      "statement_sha256": "27a3e86c5351bfb66bd6489125a3a16c581622bb442ee8da947e5d780412b8b3",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [
@@ -162,7 +162,7 @@
       "id": "thm:kazhdan-clifford",
       "environment": "theorem",
       "title": "Kazhdan--Clifford construction",
-      "statement_sha256": "b1db1d8edeada44123cece85c618c2ceed910e9bb3c501ac674dad6bdb47633e",
+      "statement_sha256": "0e8f49d2bd0f95a2ef00ea32b8a9dc3c7372f5d893a3fe4e8c65ce2bfeb7444d",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [
@@ -189,7 +189,7 @@
       "id": "def:E",
       "environment": "definition",
       "title": "",
-      "statement_sha256": "11fc0b453cd5bedf82f33ca55366e704395534a535ce813441331910d41c62ca",
+      "statement_sha256": "4260b0dfee98c8d9bd7a75526758de822c0b52e3dbf4505e7589f2e14df096bc",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [],
@@ -252,8 +252,8 @@
     {
       "id": "con:clifford",
       "environment": "construction",
-      "title": "Clifford lamp groups",
-      "statement_sha256": "357782b7788ad2c6b2834f2f0924baca6af5171cc21159112747ac347a0bd6d2",
+      "title": "Clifford groups",
+      "statement_sha256": "bf97977fb1424d509a6b75bd9bfd9dbff296c8f4a5531b0b91d7a72b43386bc5",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [],
@@ -402,7 +402,7 @@
       "id": "thm:E",
       "environment": "mainthm",
       "title": "a sofic non-MF group",
-      "statement_sha256": "0b84f58a967cd3a615f3986074c5af266dc405fb9812f2a6939770ea7a206c66",
+      "statement_sha256": "992134063a084319fae460f3163ec84fd0fabe66de670f15185aa616d8123320",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [
@@ -476,8 +476,8 @@
     {
       "id": "def:invisible",
       "environment": "definition",
-      "title": "Hilbert--Schmidt invisibility",
-      "statement_sha256": "3f2a00bba6f9cb9d4ffc3727b4a54f0c076fcb73ebf617a5b212ccb60943dea5",
+      "title": "$2$-norm triviality",
+      "statement_sha256": "8343f8c8e8a7b17580e502dcc339c5a8ccf230bf410da6c064ea805354b11c9a",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [],
@@ -497,7 +497,7 @@
       "id": "thm:criterion",
       "environment": "theorem",
       "title": "finite-normal obstruction criterion",
-      "statement_sha256": "44fb8b53f8227c5d5e9b901edee21a2cfda5366b7502f7c12f833cab5fef341b",
+      "statement_sha256": "4815ce19ed65a0266b50a05868580d788f49d63c32b74f0c1dd4c5c71daf053e",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [
@@ -520,7 +520,7 @@
       "id": "cor:generaltransport",
       "environment": "corollary",
       "title": "transport along all one-sided conjugators",
-      "statement_sha256": "5e9e62c5aab99f9b949e6f2820d41ff50cacd924f5e9bd6c20ad627d548b7e90",
+      "statement_sha256": "13cf502a17267ad9a7cdef36033f8407f4c08ad28ed9fcb5846ba05313536d56",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [
@@ -541,8 +541,8 @@
     {
       "id": "thm:compression-radical",
       "environment": "theorem",
-      "title": "the intrinsic defect and the MF radical",
-      "statement_sha256": "f67e517df44aeb9b7881e5e74735d318bb937a23794e81ed069d8b7ebec476ac",
+      "title": "the subgroup $\\mathfrak D$ and the MF radical",
+      "statement_sha256": "f4e9fb766fe58572bf69082c812f5d44e2122d99c35688db96a8306e5da35f92",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [
@@ -564,7 +564,7 @@
       "id": "thm:normal-kazhdan",
       "environment": "theorem",
       "title": "normal-Kazhdan obstruction",
-      "statement_sha256": "97e8705b910fc83a4fcae4df5bf68e5863846eadeadc796b081768a945f38b78",
+      "statement_sha256": "c365c0923105d3d03c5465cdbdc02e9463f251ffae5c2c576aef89b9cf9ec1aa",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [
@@ -588,7 +588,7 @@
       "id": "thm:abstract-nk",
       "environment": "theorem",
       "title": "abstract invisibility obstruction",
-      "statement_sha256": "24f0bf7b9f7f0e5351436786ac08695589429935963c96c14459a2754da0a1e3",
+      "statement_sha256": "d93135ce6813697c3808c8a0baee2c65d73085c4c397533a3c68ad1a1a699e3d",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [
@@ -611,7 +611,7 @@
       "id": "cor:intrinsic-nk",
       "environment": "corollary",
       "title": "normal-Kazhdan form of the intrinsic radical",
-      "statement_sha256": "a7a3cb91f6620f631004686a8d626efc159c2073ff0cd415e2225c4714c85620",
+      "statement_sha256": "74911f7eaffe314fb57dd8d2232fc783d0ee285553aee596d217d66bfa0fd63b",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [
@@ -680,7 +680,7 @@
       "id": "cor:scaling-family",
       "environment": "corollary",
       "title": "the scaling family",
-      "statement_sha256": "0d2d1d84d3c1949c593ec031cccfc2f849bc34b605035184fdf900dffad46580",
+      "statement_sha256": "9370bcd0aa550f6e6aa6c5667ee86da70b64c70e804ee7ce2f347f926ca51147",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [
@@ -703,7 +703,7 @@
       "id": "def:radical",
       "environment": "definition",
       "title": "",
-      "statement_sha256": "1d47eebb05d0469d2cc420c15673671763f5380b2daa4b2fddaf8772a2078735",
+      "statement_sha256": "c72c325fa0b06592581482d7b204a03f451e9a9fe4492f9e895be2375e192a58",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [],
@@ -746,7 +746,7 @@
       "id": "prop:univquot",
       "environment": "proposition",
       "title": "the universal MF quotient",
-      "statement_sha256": "c8376f92abfc33945e70b3a2808fb94b22fa423a5f589099a355360c4af42eca",
+      "statement_sha256": "7821f139d506b59e69117a5c4fd63dfa80037efc2ab8aadcf462fd6b2fda438c",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [
@@ -770,7 +770,7 @@
       "id": "cor:exactradical",
       "environment": "corollary",
       "title": "exact radical from a candidate quotient",
-      "statement_sha256": "fe6437a7674699aeb1e97aa0a0bd2c808c92aff8d2dfcf4012bfd50a308b9151",
+      "statement_sha256": "cba1a12eca30acd64213498be603056ad83ce2780c0179e5218125265005d954",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [
@@ -815,7 +815,7 @@
       "id": "prop:mfclosure",
       "environment": "proposition",
       "title": "the MF closure of relations",
-      "statement_sha256": "ba7ad29b7f9bab0d8439bff74be9cd6b3a54f497b70572d48b2bb0eda131cbd6",
+      "statement_sha256": "0cae9b9c9bafd14e2c8e8f5fca6e9953f22bbf8747e1f294c0e20d573a5f4e4b",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [],
@@ -861,7 +861,7 @@
       "id": "cor:nofaithful",
       "environment": "corollary",
       "title": "",
-      "statement_sha256": "6dcfd7d5fa9eacde41f8ff7d24af1e2e62063141c6a835ae9ef13062026ae7d6",
+      "statement_sha256": "c7cc4db7be975a5e78f28bddf14899977690886e4db4aa95304669d0cfe1add9",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [
@@ -1015,7 +1015,7 @@
       "id": "thm:projection-collapse",
       "environment": "theorem",
       "title": "projection collapse",
-      "statement_sha256": "ea8e53439023c72e957ce1c8796515f82db9817f1f7e3114ff5e9f4b96eafa80",
+      "statement_sha256": "f8010458149ae59b274a279ed754d1cb8ed12611ade9c90c774d6bd162f78c55",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [],
@@ -1035,7 +1035,7 @@
       "id": "thm:torsion-collapse",
       "environment": "theorem",
       "title": "torsion collapse",
-      "statement_sha256": "7b1ed3e458039374e9e1772fcdb97d145a1920f8019d67182fe0b2e033c1148e",
+      "statement_sha256": "f46ea426294bbea155ac61ab68bb5b7380743918842483f0ce86119381a8518b",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [],
@@ -1066,8 +1066,8 @@
     {
       "id": "thm:commutinglamp",
       "environment": "theorem",
-      "title": "the commuting-lamp quotient",
-      "statement_sha256": "9e4b86ef5381d80753c7204e368cbac25ad0b7aa47fd7120e7c18b09ca573b8d",
+      "title": "the commuting-generator quotient",
+      "statement_sha256": "789f8f26adab44b9badef6f3398e686c9bb92cba3ed5ca2c72ee588e1a9eda80",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [],
