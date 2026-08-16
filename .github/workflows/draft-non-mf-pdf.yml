@@ -42,7 +42,10 @@ permissions:
 env:
   TEX_FILE: non_mf_groups_exist.tex
   PDF_FILE: non_mf_groups_exist.pdf
-  TEXLIVE_IMAGE: ghcr.io/xu-cheng/texlive-alpine@sha256:d9bfb267e3e3f5e0820ca86e867ee59ebb133fc29561bb28677d9b5a1a9e84ff
+  # TeX Live 2025, pinned by digest.  See the note in refresh-non-mf-pdf.yml:
+  # the 2026 image's tagpdf aborts at \tableofcontents on this source, and
+  # also garbles the contents page.  Keep the two workflows on the same pin.
+  TEXLIVE_IMAGE: ghcr.io/xu-cheng/texlive-alpine@sha256:556e2e2caa7d489ce155de0eb3f43e324e6502ed4e9871aa400662b156cf00ad
 
 jobs:
   draft:

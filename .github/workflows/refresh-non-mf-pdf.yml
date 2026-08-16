@@ -33,7 +33,20 @@ concurrency:
 env:
   TEX_FILE: non_mf_groups_exist.tex
   PDF_FILE: non_mf_groups_exist.pdf
-  TEXLIVE_IMAGE: ghcr.io/xu-cheng/texlive-alpine@sha256:d9bfb267e3e3f5e0820ca86e867ee59ebb133fc29561bb28677d9b5a1a9e84ff
+  # TeX Live 2025, pinned by digest, and deliberately NOT the 2026 image the
+  # attested release uses.  Two independent reasons, both measured:
+  #   1. On 2026, tagpdf aborts at \tableofcontents with
+  #      "tag \l__tag_name_sec/10000_tl is not known", then feeds that
+  #      unexpanded name into \directlua and dies on "invalid escape sequence
+  #      near ''\l'".  Fatal, no output PDF.  The same source compiles clean
+  #      on 2025 with tagging on.
+  #   2. Rendering page two of three builds: 2025 with tagging on is clean;
+  #      2026 prints every section number on top of the first letter of its
+  #      title.
+  # Do not "unify" this with the release image without re-rendering the
+  # contents page.  This pin has now been reverted twice by whole-tree
+  # commits, and each revert left the committed PDF stale for hours.
+  TEXLIVE_IMAGE: ghcr.io/xu-cheng/texlive-alpine@sha256:556e2e2caa7d489ce155de0eb3f43e324e6502ed4e9871aa400662b156cf00ad
 
 jobs:
   refresh:
