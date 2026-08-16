@@ -95,80 +95,99 @@ def retainedBaseList : List (FreeGroup BaseGenerator) :=
    baseRelYV1, baseRelYV2, baseRelYV3,
    baseRelZV1, baseRelZV2, baseRelZV3]
 
-def retainedBaseRelators : Finset (FreeGroup BaseGenerator) :=
-  retainedBaseList.toFinset
-
-/-- Membership is always established structurally.  Deciding equality of
-free-group words unfolds the quotient and blows the whnf budget, so no
-proof here may go through `decide` or `simp` on a word literal. -/
-theorem mem_retainedBaseRelators {r : FreeGroup BaseGenerator}
-    (h : r ∈ retainedBaseList) : r ∈ retainedBaseRelators :=
-  List.mem_toFinset.mpr h
-
 /-- The four base letters that survive as letters. -/
-def retainedIndices : Finset BaseGenerator := {v1Index, xIndex, yIndex, zIndex}
+def retainedIndices : List BaseGenerator := [v1Index, xIndex, yIndex, zIndex]
 
-/-- The six generators of the eliminated alphabet, as letters of the
-original one. -/
-def retainedLetters : Finset Generator :=
-  insert Generator.stable
-    (insert Generator.lamp (retainedIndices.image Generator.base))
+/-- The six letters of the eliminated alphabet, inside the original one. -/
+def retainedLetters : List Generator :=
+  [Generator.base v1Index, Generator.base xIndex, Generator.base yIndex,
+   Generator.base zIndex, Generator.stable, Generator.lamp]
 
 /-- The thirty-two relators of the eliminated presentation, before
-substitution. -/
-def retainedRelators : Finset (FreeGroup Generator) :=
-  retainedBaseRelators.image embedBaseWord ∪
-    retainedIndices.image stableRelator ∪
-    (insert (lampWord ^ 2)
-      (retainedIndices.image fun i ↦ commutatorWord lampWord (vertexLetter i))) ∪
-    retainedLetters.image fun g ↦ commutatorWord markedWord (FreeGroup.of g)
+substitution: seventeen base relators, four stable-letter relations, the
+lamp square together with its four commutations, and six centrality
+relations.  This is a list rather than a `Finset` precisely so that the
+count is the displayed one: a `Finset` would silently identify any two
+relators that happened to coincide, and settling whether two free-group
+words coincide is exactly the decision this file cannot afford. -/
+def retainedList : List (FreeGroup Generator) :=
+  (retainedBaseList.map embedBaseWord) ++
+    ((retainedIndices.map stableRelator) ++
+      (((lampWord ^ 2) :: retainedIndices.map fun i ↦
+          commutatorWord lampWord (vertexLetter i)) ++
+        (retainedLetters.map fun g ↦
+          commutatorWord markedWord (FreeGroup.of g))))
 
 /-- The thirty-two relators of the eliminated presentation. -/
-def tietzeRelators : Finset (FreeGroup SixGenerator) :=
-  retainedRelators.image substHom
+def tietzeRelatorList : List (FreeGroup SixGenerator) :=
+  retainedList.map substHom
+
+/-- **Thirty-two relators**, exactly as displayed. -/
+theorem tietzeRelatorList_length : tietzeRelatorList.length = 32 := rfl
 
 /-- The group presented on six letters by the thirty-two relators. -/
-abbrev TietzeGroup : Type :=
-  PresentedGroup ((tietzeRelators : Finset (FreeGroup SixGenerator)) :
-    Set (FreeGroup SixGenerator))
+abbrev TietzeGroup : Type := PresentedGroup {r | r ∈ tietzeRelatorList}
 
 /-- The quotient map onto the eliminated presentation. -/
 abbrev tietzeWord : FreeGroup SixGenerator →* TietzeGroup :=
-  PresentedGroup.mk ((tietzeRelators : Finset (FreeGroup SixGenerator)) :
-    Set (FreeGroup SixGenerator))
+  PresentedGroup.mk {r | r ∈ tietzeRelatorList}
 
 /-- Every retained relator dies in the eliminated presentation. -/
 theorem tietzeWord_substHom_retained {r : FreeGroup Generator}
-    (hr : r ∈ retainedRelators) : tietzeWord (substHom r) = 1 :=
-  PresentedGroup.one_of_mem
-    (Finset.mem_coe.mpr (Finset.mem_image_of_mem _ hr))
+    (hr : r ∈ retainedList) : tietzeWord (substHom r) = 1 :=
+  PresentedGroup.one_of_mem (List.mem_map_of_mem hr)
 
 /-! ## Membership of the retained relators -/
 
-theorem mem_retainedIndices_v1 : v1Index ∈ retainedIndices := by decide
-theorem mem_retainedIndices_x : xIndex ∈ retainedIndices := by decide
-theorem mem_retainedIndices_y : yIndex ∈ retainedIndices := by decide
-theorem mem_retainedIndices_z : zIndex ∈ retainedIndices := by decide
+theorem mem_retainedIndices_v1 : v1Index ∈ retainedIndices :=
+  List.Mem.head _
+theorem mem_retainedIndices_x : xIndex ∈ retainedIndices :=
+  List.Mem.tail _ (List.Mem.head _)
+theorem mem_retainedIndices_y : yIndex ∈ retainedIndices :=
+  List.Mem.tail _ (List.Mem.tail _ (List.Mem.head _))
+theorem mem_retainedIndices_z : zIndex ∈ retainedIndices :=
+  List.Mem.tail _ (List.Mem.tail _ (List.Mem.tail _ (List.Mem.head _)))
+
+theorem mem_retainedLetters_v1 : Generator.base v1Index ∈ retainedLetters :=
+  List.Mem.head _
+theorem mem_retainedLetters_x : Generator.base xIndex ∈ retainedLetters :=
+  List.Mem.tail _ (List.Mem.head _)
+theorem mem_retainedLetters_y : Generator.base yIndex ∈ retainedLetters :=
+  List.Mem.tail _ (List.Mem.tail _ (List.Mem.head _))
+theorem mem_retainedLetters_z : Generator.base zIndex ∈ retainedLetters :=
+  List.Mem.tail _ (List.Mem.tail _ (List.Mem.tail _ (List.Mem.head _)))
+theorem mem_retainedLetters_stable : Generator.stable ∈ retainedLetters :=
+  List.Mem.tail _ (List.Mem.tail _ (List.Mem.tail _
+    (List.Mem.tail _ (List.Mem.head _))))
+theorem mem_retainedLetters_lamp : Generator.lamp ∈ retainedLetters :=
+  List.Mem.tail _ (List.Mem.tail _ (List.Mem.tail _
+    (List.Mem.tail _ (List.Mem.tail _ (List.Mem.head _)))))
 
 theorem embed_mem_retained {r : FreeGroup BaseGenerator}
-    (hr : r ∈ retainedBaseRelators) : embedBaseWord r ∈ retainedRelators := by
-  simp only [retainedRelators, Finset.mem_union]
-  exact Or.inl (Or.inl (Or.inl (Finset.mem_image_of_mem _ hr)))
+    (hr : r ∈ retainedBaseList) : embedBaseWord r ∈ retainedList :=
+  List.mem_append_left _ (List.mem_map_of_mem hr)
 
 theorem stable_mem_retained {i : BaseGenerator} (hi : i ∈ retainedIndices) :
-    stableRelator i ∈ retainedRelators := by
-  simp only [retainedRelators, Finset.mem_union]
-  exact Or.inl (Or.inl (Or.inr (Finset.mem_image_of_mem _ hi)))
+    stableRelator i ∈ retainedList :=
+  List.mem_append_right _ (List.mem_append_left _ (List.mem_map_of_mem hi))
+
+theorem lampSq_mem_retainedList : lampWord ^ 2 ∈ retainedList :=
+  List.mem_append_right _ (List.mem_append_right _
+    (List.mem_append_left _ (List.Mem.head _)))
 
 theorem lampComm_mem_retained {i : BaseGenerator} (hi : i ∈ retainedIndices) :
-    commutatorWord lampWord (vertexLetter i) ∈ retainedRelators := by
-  simp only [retainedRelators, Finset.mem_union]
-  exact Or.inl (Or.inr (Finset.mem_insert_of_mem (Finset.mem_image_of_mem _ hi)))
+    commutatorWord lampWord (vertexLetter i) ∈ retainedList :=
+  List.mem_append_right _ (List.mem_append_right _
+    (List.mem_append_left _ (List.Mem.tail _
+      (List.mem_map_of_mem (f := fun i ↦ commutatorWord lampWord (vertexLetter i))
+        hi))))
 
 theorem markedComm_mem_retained {g : Generator} (hg : g ∈ retainedLetters) :
-    commutatorWord markedWord (FreeGroup.of g) ∈ retainedRelators := by
-  simp only [retainedRelators, Finset.mem_union]
-  exact Or.inr (Finset.mem_image_of_mem _ hg)
+    commutatorWord markedWord (FreeGroup.of g) ∈ retainedList :=
+  List.mem_append_right _ (List.mem_append_right _
+    (List.mem_append_right _
+      (List.mem_map_of_mem (f := fun g ↦ commutatorWord markedWord (FreeGroup.of g))
+        hg)))
 
 /-! ## Commutator bookkeeping -/
 
@@ -243,30 +262,43 @@ theorem qc_commute_qx : Commute qc qx := by
 
 theorem qmark_commute_qv1 : Commute qmark qv1 := by
   have h := tietzeWord_substHom_retained
-    (markedComm_mem_retained (g := Generator.base v1Index) (by decide))
+    (markedComm_mem_retained mem_retainedLetters_v1)
   rw [substHom_commutatorWord, map_commutatorWord'] at h
   simp only [substHom_of, subst_base, substBase_v1] at h
   exact commute_of_commutatorWord_eq_one h
 
 theorem qmark_commute_qx : Commute qmark qx := by
   have h := tietzeWord_substHom_retained
-    (markedComm_mem_retained (g := Generator.base xIndex) (by decide))
+    (markedComm_mem_retained mem_retainedLetters_x)
   rw [substHom_commutatorWord, map_commutatorWord'] at h
   simp only [substHom_of, subst_base, substBase_x] at h
   exact commute_of_commutatorWord_eq_one h
 
-theorem lampSq_mem_retained : lampWord ^ 2 ∈ retainedRelators := by
-  simp only [retainedRelators, Finset.mem_union]
-  exact Or.inl (Or.inr (Finset.mem_insert_self _ _))
-
-theorem mem_retainedIndices_of_ne :
-    ∀ i : BaseGenerator, i ≠ v2Index → i ≠ v3Index → i ∈ retainedIndices := by
+theorem baseIndex_cases :
+    ∀ i : BaseGenerator, i ≠ v2Index → i ≠ v3Index →
+      i = v1Index ∨ i = xIndex ∨ i = yIndex ∨ i = zIndex := by
   decide
 
-theorem mem_retainedLetters_of_ne :
-    ∀ g : Generator, g ≠ Generator.base v2Index →
-      g ≠ Generator.base v3Index → g ∈ retainedLetters := by
+theorem letter_cases :
+    ∀ g : Generator, g ≠ Generator.base v2Index → g ≠ Generator.base v3Index →
+      g = Generator.base v1Index ∨ g = Generator.base xIndex ∨
+        g = Generator.base yIndex ∨ g = Generator.base zIndex ∨
+        g = Generator.stable ∨ g = Generator.lamp := by
   decide
+
+theorem mem_retainedIndices_of_ne (i : BaseGenerator) (h2 : i ≠ v2Index)
+    (h3 : i ≠ v3Index) : i ∈ retainedIndices := by
+  rcases baseIndex_cases i h2 h3 with rfl | rfl | rfl | rfl
+  exacts [mem_retainedIndices_v1, mem_retainedIndices_x,
+    mem_retainedIndices_y, mem_retainedIndices_z]
+
+theorem mem_retainedLetters_of_ne (g : Generator)
+    (h2 : g ≠ Generator.base v2Index) (h3 : g ≠ Generator.base v3Index) :
+    g ∈ retainedLetters := by
+  rcases letter_cases g h2 h3 with rfl | rfl | rfl | rfl | rfl | rfl
+  exacts [mem_retainedLetters_v1, mem_retainedLetters_x,
+    mem_retainedLetters_y, mem_retainedLetters_z,
+    mem_retainedLetters_stable, mem_retainedLetters_lamp]
 
 /-! ## The eliminated letters behave -/
 
@@ -321,7 +353,7 @@ syntax "retainedBase" : tactic
 macro_rules
   | `(tactic| retainedBase) =>
       `(tactic| exact tietzeWord_substHom_retained
-          (embed_mem_retained (mem_retainedBaseRelators (by mem_list_search))))
+          (embed_mem_retained (by mem_list_search)))
 
 /-! ## Every original relator dies after substitution -/
 
@@ -405,7 +437,7 @@ theorem tietzeWord_substHom_relator {r : FreeGroup Generator}
           (stable_mem_retained (mem_retainedIndices_of_ne i h2 h3))
   · rcases Finset.mem_union.mp hlamp with hsq | himg
     · rw [Finset.mem_singleton.mp hsq]
-      exact tietzeWord_substHom_retained lampSq_mem_retained
+      exact tietzeWord_substHom_retained lampSq_mem_retainedList
     · obtain ⟨i, -, rfl⟩ := Finset.mem_image.mp himg
       by_cases h2 : i = v2Index
       · subst h2
@@ -491,32 +523,27 @@ theorem sixGeneratorHom_substHom (w : FreeGroup Generator) :
 
 /-! ## The retained relators are original relators -/
 
-theorem retainedBase_subset : retainedBaseRelators ⊆ baseRelators := by
-  intro r hr
+theorem retainedBase_subset {r : FreeGroup BaseGenerator}
+    (hr : r ∈ retainedBaseList) : r ∈ baseRelators := by
   rw [mem_baseRelators_iff]
-  have h : r ∈ retainedBaseList := List.mem_toFinset.mp hr
-  simp only [retainedBaseList, List.mem_cons, List.not_mem_nil, or_false] at h
+  simp only [retainedBaseList, List.mem_cons, List.not_mem_nil, or_false] at hr
   tauto
 
-theorem retained_subset_relators : retainedRelators ⊆ relators := by
-  intro r hr
-  simp only [retainedRelators, Finset.mem_union] at hr
+theorem retained_subset_relators {r : FreeGroup Generator}
+    (hr : r ∈ retainedList) : r ∈ relators := by
+  simp only [retainedList, List.mem_append, List.mem_map, List.mem_cons] at hr
   simp only [relators, Finset.mem_union]
-  rcases hr with ((hbase | hstable) | hlamp) | hmarked
-  · obtain ⟨r₀, hr₀, rfl⟩ := Finset.mem_image.mp hbase
-    exact Or.inl (Or.inl (Or.inl
+  rcases hr with ⟨r₀, hr₀, rfl⟩ | ⟨i, hi, rfl⟩ | (rfl | ⟨i, -, rfl⟩) |
+    ⟨g, -, rfl⟩
+  · exact Or.inl (Or.inl (Or.inl
       (Finset.mem_image_of_mem _ (retainedBase_subset hr₀))))
-  · obtain ⟨i, -, rfl⟩ := Finset.mem_image.mp hstable
-    exact Or.inl (Or.inl (Or.inr
+  · exact Or.inl (Or.inl (Or.inr
       (Finset.mem_image_of_mem _ (Finset.mem_univ i))))
-  · rcases Finset.mem_insert.mp hlamp with rfl | himg
-    · exact Or.inl (Or.inr (Finset.mem_union_left _
-        (Finset.mem_singleton_self _)))
-    · obtain ⟨i, -, rfl⟩ := Finset.mem_image.mp himg
-      exact Or.inl (Or.inr (Finset.mem_union_right _
-        (Finset.mem_image_of_mem _ (Finset.mem_univ i))))
-  · obtain ⟨g, -, rfl⟩ := Finset.mem_image.mp hmarked
-    exact Or.inr (Finset.mem_image_of_mem _ (Finset.mem_univ g))
+  · exact Or.inl (Or.inr (Finset.mem_union_left _
+      (Finset.mem_singleton_self _)))
+  · exact Or.inl (Or.inr (Finset.mem_union_right _
+      (Finset.mem_image_of_mem _ (Finset.mem_univ i))))
+  · exact Or.inr (Finset.mem_image_of_mem _ (Finset.mem_univ g))
 
 /-! ## The two homomorphisms -/
 
@@ -524,7 +551,7 @@ theorem retained_subset_relators : retainedRelators ⊆ relators := by
 def toMarked : TietzeGroup →* MarkedGroup := by
   apply PresentedGroup.toGroup (f := sixGenerator)
   intro r hr
-  obtain ⟨r₀, hr₀, rfl⟩ := Finset.mem_image.mp (Finset.mem_coe.mp hr)
+  obtain ⟨r₀, hr₀, rfl⟩ := List.mem_map.mp hr
   change sixGeneratorHom (substHom r₀) = 1
   rw [sixGeneratorHom_substHom]
   exact PresentedGroup.one_of_mem
@@ -599,68 +626,22 @@ def markedEquivTietze : MarkedGroup ≃* TietzeGroup where
 
 /-! ## The relator count -/
 
-theorem retainedIndices_card : retainedIndices.card = 4 := by decide
-
-theorem retainedLetters_card : retainedLetters.card = 6 := by decide
-
-/-- The elimination leaves at most thirty-two relators: seventeen base
-relators, four stable-letter relations, the lamp square with four
-commutations, and six centrality relations.  The bound is stated as an
-inequality because the exact count needs the thirty-two words to be
-pairwise distinct, and deciding equality of free-group words unfolds the
-quotient far past the elaborator's budget. -/
-theorem retainedRelators_card_le : retainedRelators.card ≤ 32 := by
-  have hbase : (retainedBaseRelators.image embedBaseWord).card ≤ 17 := by
-    refine Finset.card_image_le.trans ?_
-    exact (List.toFinset_card_le retainedBaseList).trans_eq rfl
-  have hstable : (retainedIndices.image stableRelator).card ≤ 4 :=
-    Finset.card_image_le.trans retainedIndices_card.le
-  have hlamp :
-      (insert (lampWord ^ 2)
-        (retainedIndices.image fun i ↦
-          commutatorWord lampWord (vertexLetter i))).card ≤ 5 := by
-    refine (Finset.card_insert_le _ _).trans ?_
-    have h1 := Finset.card_image_le
-      (f := fun i ↦ commutatorWord lampWord (vertexLetter i))
-      (s := retainedIndices)
-    have h2 := retainedIndices_card
-    omega
-  have hmarked :
-      (retainedLetters.image fun g ↦
-        commutatorWord markedWord (FreeGroup.of g)).card ≤ 6 :=
-    Finset.card_image_le.trans retainedLetters_card.le
-  refine (Finset.card_union_le _ _).trans ?_
-  have h123 :
-      (retainedBaseRelators.image embedBaseWord ∪
-        retainedIndices.image stableRelator ∪
-        insert (lampWord ^ 2)
-          (retainedIndices.image fun i ↦
-            commutatorWord lampWord (vertexLetter i))).card ≤ 26 := by
-    refine (Finset.card_union_le _ _).trans ?_
-    have h12 :
-        (retainedBaseRelators.image embedBaseWord ∪
-          retainedIndices.image stableRelator).card ≤ 21 :=
-      (Finset.card_union_le _ _).trans (by omega)
-    omega
-  omega
-
-theorem tietzeRelators_card_le : tietzeRelators.card ≤ 32 :=
-  Finset.card_image_le.trans retainedRelators_card_le
-
 /-- **Six generators, thirty-two relators.**  The literal group `E` of the
-manuscript is presented on the six letters `v₁,x,y,z,t,c` by the relators
-left after the Tietze elimination. -/
+manuscript is presented on the six letters `v₁,x,y,z,t,c` by the list of
+relators left after the Tietze elimination, and that list has exactly the
+displayed length.  Presenting over a list rather than a finite set is what
+makes the count exact: a `Finset` would identify any two relators that
+happened to coincide as words, and that is a question about free-group
+words this development deliberately never decides. -/
 theorem exists_sixGenerator_thirtyTwo_presentation :
-    ∃ R : Finset (FreeGroup SixGenerator), R.card ≤ 32 ∧
-      Nonempty (MarkedGroup ≃*
-        PresentedGroup (R : Set (FreeGroup SixGenerator))) :=
-  ⟨tietzeRelators, tietzeRelators_card_le, ⟨markedEquivTietze⟩⟩
+    ∃ L : List (FreeGroup SixGenerator), L.length = 32 ∧
+      Nonempty (MarkedGroup ≃* PresentedGroup {r | r ∈ L}) :=
+  ⟨tietzeRelatorList, tietzeRelatorList_length, ⟨markedEquivTietze⟩⟩
 
 /-- Closed form of the Tietze statement. -/
 theorem manuscriptTietzeSixGeneratorPresentation :
-    ∀ _ : Unit, ∃ R : Finset (FreeGroup (Fin 6)), R.card ≤ 32 ∧
-      Nonempty (MarkedGroup ≃*
-        PresentedGroup (R : Set (FreeGroup (Fin 6)))) :=
+    ∀ _ : Unit, ∃ L : List (FreeGroup (Fin 6)), L.length = 32 ∧
+      Nonempty (MarkedGroup ≃* PresentedGroup {r | r ∈ L}) :=
   fun _ ↦ exists_sixGenerator_thirtyTwo_presentation
 
 end
