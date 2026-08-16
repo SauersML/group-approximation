@@ -126,13 +126,18 @@ formalized in this pass; **TODO** not yet formalized.
 | 33 Fourier, 43.3 count | the Fourier partition of unity for a torsion element, and the wreath generator count | DONE-NEW | `Sofic/DossierAuditAddenda` (`char_mul_left`, `fourierIdem_mul_of_ne`, `sum_fourierIdem`, `exists_generating_finset_card_le`): two statements the rest of the development does not need and therefore never proved |
 | 43, 51, 52 at `A₅` | the `A₅`-lamp group over the concrete doubling base | DONE-NEW | `Sofic/AlternatingLampLiteralPackage` (`c5`, `a5`, `not_isCDEOperatorMF_WA`, `alternatingPackage`, `alternatingTwins`).  The double transposition `(0 1)(2 3)` supplies the involution the unconditional endpoint needs; simplicity gives the one-relation kernel, finiteness its tameness, and `Sofic/ProfiniteTwins` the twin clause |
 | 37.5, 47 in full | every pair of sites of equal height has invisible lamp difference: `R_K = ker Φ∞ ≤ Rad_MF`, and equality when the visible quotient is MF | DONE-NEW | `Sofic/AscendingHNNFullTelescopeRadical` (`levelSub`, `levelSub_hasKazhdanPropertyT`, `wreathT_pow_compress`, `isInvolutiveCompressionWitness_rootLamp`, `lampDiff_mem_actualCoronaMFResidual_of_rightHom_eq`, `telescopeRadical_le_actualCoronaMFResidual`, `actualCoronaMFResidual_eq_telescopeRadical`).  **No iteration is needed**: the level-`n` copy is a conjugate of the base, hence Kazhdan, and `tⁿ` compresses it onto the base, which fixes the *root* coset -- so the criterion applies levelwise with one witness, and the telescope is exhausted because every telescope element is a level element.  The induction on quotients that the dossier's presentation suggests is an artifact of fixing the witness site at `tΓ` |
+| 46.5 fifth clause | the Bohr kernel joins the chain: all five residuals coincide | DONE-NEW | `Sofic/FiveRadicalsCoincide` (`bohrResidual_eq_finiteResidual`, `five_radicals_eq`, `five_radicals_eq_profinite`), on `Analysis/PeterWeylProfinite`.  Two forms: with the isolated separation core of Peter--Weyl the Bohr residual of a finitely generated group *equals* the finite residual, so all five are one kernel; with no hypothesis at all the same holds for profinite targets, by van Dantzig |
 
 ### Blocked, with the reason
 
-* **Bohr kernel (Section 46.5).**  Not formalizable against the pinned Mathlib:
-  there is no Peter--Weyl theorem in it, and the clause `Rad_Bohr = Rad_fd` is
-  exactly Peter--Weyl for compact groups.  The other four now coincide
-  outright: `Sofic/FourRadicalsCoincide.four_radicals_eq`.
+* **Bohr kernel (Section 46.5).**  *No longer blocked, and no longer a
+  remark.*  `Analysis/PeterWeylProfinite` isolates the analytic core of
+  Peter--Weyl as the named hypothesis `SeparatesPoints`, proves it outright for
+  profinite targets by van Dantzig, and proves the easy inclusion with no
+  analysis; `Sofic/FiveRadicalsCoincide` then closes the five-way coincidence,
+  conditionally in general and unconditionally over profinite targets.  What
+  the pinned Mathlib still lacks is the general compact case: Haar measure on
+  `L²`, compactness of convolution operators, the spectral theorem.
   exactly Peter--Weyl for compact groups.  Everything else in the five-radical
   coincidence is either done or reduces to the telescope radical.
 * **Graph-product half of 54.3.**  Mathlib has no graph products, so the

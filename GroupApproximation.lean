@@ -322,6 +322,7 @@ import GroupApproximation.Sofic.FiniteDimensionalResidual
 import GroupApproximation.Sofic.ThreeRadicalsCoincide
 import GroupApproximation.Sofic.LinearResidual
 import GroupApproximation.Sofic.FourRadicalsCoincide
+import GroupApproximation.Sofic.FiveRadicalsCoincide
 import GroupApproximation.Sofic.BlockAmplificationRepair
 import GroupApproximation.Sofic.AmplifiedBlockNorms
 import GroupApproximation.Sofic.InducedCoronaMF
@@ -837,6 +838,7 @@ dependency closure of the whole namespace and fails on anything beyond `propext`
 for what the kernel cannot see, including files that are never compiled.
 -/
 import GroupApproximation.Computability.RewriteDeterminism
+import GroupApproximation.Analysis.NuclearityAmenability
 import GroupApproximation.Computability.RewriteSimulation
 import GroupApproximation.Analysis.NuclearityAmenability
 import GroupApproximation.Monsters.NeumannContinuum
