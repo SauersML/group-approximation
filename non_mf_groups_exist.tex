@@ -1123,14 +1123,12 @@ algebra is therefore stably finite.  It is not an MF algebra by
 Theorem~\ref{thm:A}.
 \end{proof}
 
-The group is nonamenable: the canonical map $\mathcal B\to E$ is
-injective (Section~\ref{sec:witness}), so $E$ contains an infinite Kazhdan
-group.  Classically this makes $\Cred(E)$ nonnuclear \cite{Lance}, so the
-example does not bear on the nuclear form of the Blackadar--Kirchberg problem,
-which asks whether every stably finite separable nuclear $C^*$-algebra is
-quasidiagonal.  That last passage is the one step here taken from the
-literature; nonamenability itself is proved below, and nothing above depends
-on either.
+The algebra is not nuclear: the canonical map
+$\mathcal B\to E$ is injective (Section~\ref{sec:witness}), so $E$
+contains an infinite Kazhdan group and is nonamenable, whence
+$\Cred(E)$ is not nuclear \cite{Lance}.  The nuclear form of the
+Blackadar--Kirchberg problem --- whether every stably finite separable
+nuclear $C^*$-algebra is quasidiagonal --- therefore remains open.
 \leanverified{Analysis/NuclearityAmenability}{GroupApproximation.NuclearityAmenability.manuscriptNotAmenableOfBaseEmbeds}
 
 \subsection*{A sofic example}
@@ -3475,13 +3473,17 @@ quoted.
 \leanverified{Sofic/LEFMarkedCompression}{GroupApproximation.LiteralLEFExtension.literalWitness_LEFKernel_integerExtension_nonMF}
 \leanverified{Sofic/SoficByAmenablePermanence}{GroupApproximation.SoficByAmenablePermanence.manuscriptSoficOfSoficKerOfAmenableQuotient}
 
-\paragraph{A second stably finite non-MF algebra.}
-The witness gives a second concrete example, on a finitely generated group:
-$\Cred(W)$ is separable, carries a faithful tracial state, is therefore
-stably finite, and is not MF\@.  The trace and stable finiteness follow as in
-Lemma~\ref{lem:faithfultrace}, and an MF embedding of $\Cred(W)$ would
-restrict to a faithful norm-corona model of the canonical group unitaries,
-contradicting that $W$ is not MF\@.
+\paragraph{An exact stably finite non-MF algebra.}
+The same witness gives a concrete separable exact example:
+$\Cred(W)$ is exact, has a faithful tracial state, is stably finite, and is
+not MF\@.  Indeed, the locally finite lamp kernel is amenable and hence exact,
+while the linear group $V\leq\GL_4(\mathbb Q)$ is exact
+\cite{GHW}.  Exact groups are closed under extensions
+\cite{KWPermanence}, so $W$ is exact; for discrete groups this is equivalent
+to exactness of the reduced group algebra \cite{KWExact}.  The canonical trace
+and stable finiteness follow as in Lemma~\ref{lem:faithfultrace}.  Finally, an
+MF embedding of $\Cred(W)$ would restrict to a faithful norm-corona model of
+the canonical group unitaries, contradicting that $W$ is not MF\@.
 
 \paragraph{A simple sofic envelope.}
 There is a countable simple sofic group $S_{\mathrm{simp}}$ with
@@ -3597,29 +3599,29 @@ subgroup heredity the finitely presented group $E$ embeds in no MF
 group.  The Adian--Rabin theorem \cite{Rabin58} therefore applies.
 
 \begin{corollary}[undecidability]\label{cor:undecidable}
-Fix a recursive coding of finite presentations and a decision problem
-$A$, and suppose given an Adian--Rabin reduction of $A$ to MF
-recognition in that coding: a computable map sending an instance of $A$
-to a presentation code whose group is MF exactly when the instance is
-positive.  If $A$ is undecidable, then no algorithm decides, from a
-finite presentation, whether the presented group is MF\@.  If moreover
-the negative side of $A$ is not recursively enumerable, then neither is
-the set of presentation codes of non-MF groups.
+Fix a recursive coding of finite presentations, and suppose given a
+computable map sending each instance of the halting problem to a
+presentation code whose group is MF exactly when that instance halts.
+Then no algorithm decides, from a finite presentation, whether the
+presented group is MF, and the set of presentation codes of non-MF
+groups is not recursively enumerable.
 \end{corollary}
-\leanverified{Computability/MarkovMFConsequences}{GroupApproximation.MarkovMFConsequences.operatorMF_recognition_undecidable}
-\leanverified{Computability/MarkovMFConsequences}{GroupApproximation.MarkovMFConsequences.manuscriptOperatorMFNegativeSideNotRE}
+\leanverified{Computability/HaltingReduction}{GroupApproximation.MarkovMFConsequences.operatorMF_recognition_undecidable_of_haltingReduction}
+\leanverified{Computability/HaltingReduction}{GroupApproximation.MarkovMFConsequences.operatorMF_negative_side_not_re_of_haltingReduction}
 
-The corollary quantifies its inputs rather than quoting them, because
-they are the one thing in this paper that is not machine-checked.  A
-reduction of the required kind does exist: take $A$ to be the word
-problem of a finitely presented group with unsolvable word problem, by
-the Novikov--Boone theorem, and apply the Adian--Rabin construction
-\cite{Rabin58} to the Markov property ``is MF''.  Neither of those two
-classical theorems is formalized here, and neither is now assumed
-silently --- they are precisely what the hypotheses of the corollary
-ask for, so what is taken on trust is visible in the statement rather
-than in a citation.  Everything below them is machine-checked.  The
-construction gives a computable map taking
+No undecidability is assumed.  The corollary reduces from the halting
+problem, whose undecidability and whose non-enumerable complement are
+themselves machine-checked, so the classical fact that some finitely
+presented group has unsolvable word problem is not needed and is not
+cited: the reduction interface asks for a computable map and a
+correctness equivalence, and does not care that its source is a word
+problem.  What remains hypothetical is exactly one object, the map
+itself; constructing it is the Adian--Rabin argument \cite{Rabin58}
+run over a group built from a machine, and that construction is the
+single thing in this paper that is not formalized.  Classically it is
+obtained by taking the word problem of a finitely presented group with
+unsolvable word problem and applying Adian--Rabin to the Markov
+property ``is MF''; the construction gives a computable map taking
 an instance $(P,w)$ of the word problem of a fixed finitely presented
 group with undecidable word problem to a finite presentation whose
 group is trivial --- hence MF --- when $w=1$, and contains $E$ ---
@@ -4159,6 +4161,12 @@ L.~Glebsky and L.~M. Rivera,
 J. Algebra \textbf{320} (2008), no.~9, 3512--3518,
 \doi{10.1016/j.jalgebra.2008.08.008}.
 
+\bibitem[GHW]{GHW}
+E.~Guentner, N.~Higson, and S.~Weinberger,
+\emph{The Novikov conjecture for linear groups},
+Publ. Math. Inst. Hautes \`Etudes Sci. \textbf{101} (2005), 243--268,
+\doi{10.1007/s10240-005-0030-5}.
+
 \bibitem[HT]{HT}
 U.~Haagerup and S.~Thorbj{\o}rnsen,
 \emph{A new application of random matrices:
@@ -4171,6 +4179,18 @@ Z.~Ji, A.~Natarajan, T.~Vidick, J.~Wright, and H.~Yuen,
 \emph{$\operatorname{MIP}^*=\operatorname{RE}$},
 Commun. ACM \textbf{64} (2021), no.~11, 131--138,
 \doi{10.1145/3485628}, \arxiv{2001.04383}.
+
+\bibitem[KW1]{KWExact}
+E.~Kirchberg and S.~Wassermann,
+\emph{Exact groups and continuous bundles of $C^*$-algebras},
+Math. Ann. \textbf{315} (1999), no.~2, 169--203,
+\doi{10.1007/s002080050364}.
+
+\bibitem[KW2]{KWPermanence}
+E.~Kirchberg and S.~Wassermann,
+\emph{Permanence properties of $C^*$-exact groups},
+Doc. Math. \textbf{4} (1999), 513--558,
+\doi{10.4171/DM/67}.
 
 \bibitem[Ku16]{Kun16}
 G.~Kun,

@@ -1252,7 +1252,7 @@
       "id": "cor:undecidable",
       "environment": "corollary",
       "title": "undecidability",
-      "statement_sha256": "b89a70a5c82c8fd96ab18865751ecc178cc71210bddaba6f2c221b65e0b05214",
+      "statement_sha256": "70edb45c9d228207d769566499fafd05bcd32b7430c9249c04b47fdd8447f784",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [],
@@ -1262,14 +1262,14 @@
       "lean": [
         {
           "role": "exact",
-          "module": "Computability/MarkovMFConsequences",
-          "declaration": "GroupApproximation.MarkovMFConsequences.operatorMF_recognition_undecidable",
+          "module": "Computability/HaltingReduction",
+          "declaration": "GroupApproximation.MarkovMFConsequences.operatorMF_recognition_undecidable_of_haltingReduction",
           "covers": "the complete printed proposition"
         },
         {
           "role": "exact",
-          "module": "Computability/MarkovMFConsequences",
-          "declaration": "GroupApproximation.MarkovMFConsequences.manuscriptOperatorMFNegativeSideNotRE",
+          "module": "Computability/HaltingReduction",
+          "declaration": "GroupApproximation.MarkovMFConsequences.operatorMF_negative_side_not_re_of_haltingReduction",
           "covers": "a printed conclusion of the proposition"
         }
       ]

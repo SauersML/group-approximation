@@ -113,8 +113,9 @@ CLAIM_TARGETS: dict[str, tuple[str, str]] = {
         "Sofic/ManuscriptExactWrappers",
         "GroupApproximation.ManuscriptExactWrappers.manuscriptUnitaryCoronaEquivalence"),
     "cor:undecidable": (
-        "Computability/MarkovMFConsequences",
-        "GroupApproximation.MarkovMFConsequences.operatorMF_recognition_undecidable"),
+        "Computability/HaltingReduction",
+        "GroupApproximation.MarkovMFConsequences."
+        "operatorMF_recognition_undecidable_of_haltingReduction"),
     "def:invisible": (
         "Sofic/ManuscriptExactWrappers",
         "GroupApproximation.ManuscriptExactWrappers."
