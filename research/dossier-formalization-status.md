@@ -28,7 +28,7 @@ formalized in this pass; **TODO** not yet formalized.
 | 9.4 | ascending HNN is not property (T) | DONE-NEW | `Kazhdan/IntegerNotKazhdan.not_hasKazhdanPropertyT_multiplicative_int`, `Sofic/AscendingHNNNotKazhdan.not_hasKazhdanPropertyT_vertical` |
 | 10.1-10.3 | explicit interval Folner sets for `G/Γ` | TODO | |
 | 11.1-11.3 | Γ sofic ⇒ G sofic | DONE-PRE | `Sofic/SoficDirectedUnion`, `Sofic/SoficIntegerExtension`, `Sofic/SoficTelescope` |
-| 12.1 | cyclic extension permanence for sofic actions | TODO | (hardest remaining piece of the headline chain) |
+| 12.1 | cyclic extension permanence for sofic actions | PARTIAL | `Sofic/CyclicStack`: permutation layer complete (`twistedShift`, `stackPerm`, exact agreement off the wrap-around boundary, fibrewise average, density estimate). Chart layer and model assembly still TODO |
 | 13.1 | consecutive levels have index `D` | DONE-PRE | `Sofic/MappingTelescopeFiniteOrbits.level_succ_relIndex_eq` |
 | 13.2 | every telescope level has finite orbits on `G/Γ` | DONE-PRE | `Sofic/MappingTelescopeFiniteOrbits.finite_verticalLevel_orbit` |
 | 13.3 | finite-orbit actions are sofic, exact models | DONE-NEW | `Sofic/SoficActionFiniteOrbits.isSoficAction_of_finite_orbits` |
