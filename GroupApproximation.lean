@@ -842,3 +842,5 @@ for what the kernel cannot see, including files that are never compiled.
 -/
 import GroupApproximation.Computability.RewriteDeterminism
 import GroupApproximation.Computability.RewriteSimulation
+import GroupApproximation.Analysis.NuclearityAmenability
+import GroupApproximation.Monsters.NeumannContinuum

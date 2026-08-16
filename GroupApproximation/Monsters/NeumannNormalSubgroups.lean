@@ -109,7 +109,8 @@ of `F₂` on `F₂/H` is transitive.
 def genMap (H : Subgroup Acting) [DecidableEq (Acting ⧸ H)] :
     Marker → Wreath AltLamp Acting (Acting ⧸ H) :=
   Sum.elim (fun i : Fin 2 => (inr (FreeGroup.of i) : Wreath AltLamp Acting (Acting ⧸ H)))
-    fun l : AltLamp => (inl (Lamp.single (baseSite H) l) : Wreath AltLamp Acting (Acting ⧸ H))
+    (fun l : AltLamp =>
+      (inl (Lamp.single (baseSite H) l) : Wreath AltLamp Acting (Acting ⧸ H)))
 
 /-- The homomorphism out of `FixedFree` determined by the markers. -/
 def genHom (H : Subgroup Acting) [DecidableEq (Acting ⧸ H)] :
@@ -182,11 +183,9 @@ theorem continuum_normalSubgroups :
   refine le_antisymm ?_ ?_
   · calc Cardinal.mk (ContinuumFromNormalSubgroups.NormalSubgroups FixedFree)
         ≤ Cardinal.mk (Subgroup FixedFree) :=
-          Cardinal.mk_subtype_le fun N : Subgroup FixedFree => N.Normal
+          Cardinal.mk_subtype_le (fun N : Subgroup FixedFree => N.Normal)
       _ ≤ Cardinal.mk (Set FixedFree) :=
-          Cardinal.mk_le_of_injective
-            (SetLike.coe_injective :
-              Function.Injective ((↑) : Subgroup FixedFree → Set FixedFree))
+          Cardinal.mk_le_of_injective SetLike.coe_injective
       _ = 2 ^ Cardinal.mk FixedFree := Cardinal.mk_set
       _ ≤ 2 ^ Cardinal.aleph0 :=
           Cardinal.power_le_power_left two_ne_zero Cardinal.mk_le_aleph0
