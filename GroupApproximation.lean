@@ -355,6 +355,7 @@ import GroupApproximation.Algebra.SplitExtensionFailure
 import GroupApproximation.Sofic.SplitExtensionEndpoint
 import GroupApproximation.Sofic.CommensurabilityInvariance
 import GroupApproximation.Sofic.Type0Transfer
+import GroupApproximation.Sofic.Type0Corollaries
 import GroupApproximation.Sofic.FiniteIndexNonMF
 import GroupApproximation.Sofic.DossierAuditAddenda
 import GroupApproximation.Sofic.SoficNonMFAssembly
