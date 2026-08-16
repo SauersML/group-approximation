@@ -537,10 +537,10 @@ For every sequence $(d_n)$, with $\mathcal N$ as in
  \prod_{n}\U(d_n)\big/\mathcal N\longrightarrow\U(\mathcal Q),
  \qquad [(u_n)]\longmapsto q((u_n)),
 \]
-is a canonical group isomorphism.  Thus a homomorphism $H\to\U(\mathcal Q)$
-is the same thing as a sequence of unitaries for each element of $H$,
-multiplicative up to operator-norm errors tending to $0$, taken modulo
-sequences converging to $1$.
+is a canonical group isomorphism.  A homomorphism $H\to\U(\mathcal Q)$
+is therefore equivalent to the following data: a sequence of unitaries
+for each element of $H$, multiplicative up to operator-norm errors
+tending to $0$, taken modulo sequences converging to $1$.
 \leanverified{Sofic/ManuscriptExactWrappers}{GroupApproximation.ManuscriptExactWrappers.manuscriptUnitaryCoronaEquivalence}
 \end{lemma}
 
@@ -2314,9 +2314,10 @@ $s_0$.
 \emph{Compression.}  Normality of $\bar K$ makes $q_n$ asymptotically
 commute with the ambient models: $\opnorm{[q_n,V_{g,n}]_{-}}\to0$ for
 every $g$.
-Conjugating by an ambient model $V_{g,n}$ carries $h_n$ to the
-Hermitian average over the conjugate generating set $gSg^{-1}$ of
-$\bar K$, which has the same Kazhdan constant.  The two estimates of
+Because the models are only asymptotically multiplicative,
+$V_{g,n}h_nV_{g,n}^{*}$ is not the Hermitian average over the
+conjugate generating set $gSg^{-1}$ of $\bar K$ but converges to it in
+operator norm; that set has the same Kazhdan constant.  The two estimates of
 Section~\ref{app:finite-stage} now apply to either average
 symmetrically: a vector on which one average has spectrum above
 $\theta$ is almost fixed by each generator of the other set
@@ -2556,18 +2557,21 @@ their semidirect product is amenable.  That quotient is a subgroup
 of this amenable group and is therefore amenable, hence MF by \cite{TWW}.
 Its marked word is the nontrivial Clifford sign by the calculation above.
 
-The homomorphism to $\U(\mathcal Q)$ just constructed is necessarily approximate:
-neither the group $E_{\mathrm{BS}}$ nor its Clifford quotient
-is LEF, and the latter is not residually finite.  In every finite
+The homomorphism to $\U(\mathcal Q)$ just constructed cannot be
+assembled from exact finite-dimensional representations: it is an
+exact homomorphism, but any coordinate lifts of it are asymptotically
+multiplicative without being multiplicative.  Indeed, neither
+$E_{\mathrm{BS}}$ nor its Clifford quotient is LEF, and the latter is
+not residually finite.  In every finite
 group the doubling relation makes the image of
 $\langle\gamma_0^2\rangle$ equal to the image of
 $\langle\gamma_0\rangle$; the generator therefore commutes with the
 required ``halved'' element and the marked word maps to the identity,
-so neither group is residually finite.  The same equations transport
-through any exact local embedding of a finite test set containing the
-defining relators and the marked word, so an exact finite-dimensional representation
-would already send the marked word to the identity: neither group is
-LEF.
+so neither group is residually finite.  Any exact local embedding of a
+finite set containing the defining relators and the marked word
+satisfies the same equations, so an exact finite-dimensional
+representation would already send the marked word to the identity:
+neither group is LEF.
 \leanverified{Monsters/CyclicBaseLEFObstruction}{GroupApproximation.CyclicBaseLEFObstruction.cyclicBase_exactModel_package}
 
 \clearpage
@@ -3596,9 +3600,6 @@ $y=y^*y$, faithfulness gives $y=0$, i.e.\ $vv^*=1$.
 
 \subsection{A sofic non-MF group}
 
-The same quotient that proves $w\ne1$ also provides the sofic non-MF group of
-Theorem~\ref{thm:E}.
-
 
 \begin{proof}[Proof of Theorem~\ref{thm:E}]
 Write $T=\varinjlim(\bar\Gamma,\bar\alpha)$, so
@@ -3626,7 +3627,7 @@ Reassociating the semidirect products gives
  W=\Cl(X)\rtimes(T\rtimes\mathbb Z)
    \cong (\Cl(X)\rtimes T)\rtimes\mathbb Z.
 \]
-The final group is sofic because a split extension of a sofic group by
+Thus $W$ is sofic, because a split extension of a sofic group by
 $\Z$ is sofic.  Truncate the integer levels to $\Z/N$ and let the
 shift act cyclically.  Induce the kernel's sofic approximations over
 this finite level set.  The cocycle identity that makes the
@@ -3658,7 +3659,7 @@ an exact sequence
 \]
 whose kernel and quotient are MF, while $W$ is not.
 The Clifford kernel is locally finite, LEF, sofic, and MF, while the
-total witness is finitely generated and non-MF.
+group $W$ is finitely generated and non-MF.
 \leanverified{Sofic/LiteralWitnessConsequences}{GroupApproximation.LiteralWitnessConsequences.literalWitness_locallyFiniteKernel_nonMF}
 
 \begin{proof}
@@ -3684,16 +3685,13 @@ $L\le\Cl(X)$ and one level, and that group is residually
 finite because the level acts on the finite group $L$ through a finite
 quotient.  Thus $W$ is an extension of an LEF group by $\Z$ and is not
 MF, while soficity is preserved by every extension with amenable
-quotient, as in Elek--Szab\'o \cite{ElekSzabo}.  Only the
-$\mathbb Z$-quotient case is used above, and it is proved in the proof
-of Theorem~\ref{thm:E}.
+quotient, as in Elek--Szab\'o \cite{ElekSzabo}.
 \leanverified{Sofic/LEFMarkedCompression}{GroupApproximation.LiteralLEFExtension.literalWitness_LEFKernel_integerExtension_nonMF}
 \leanverified{Sofic/SoficByAmenablePermanence}{GroupApproximation.SoficByAmenablePermanence.manuscriptSoficOfSoficKerOfAmenableQuotient}
 
 \paragraph{An exact stably finite non-MF algebra.}
-The same witness gives a concrete separable exact example:
-$\Cred(W)$ is exact, has a faithful tracial state, is stably finite, and is
-not MF\@.  Indeed, the locally finite Clifford kernel is amenable and hence exact,
+The algebra $\Cred(W)$ is separable, exact, stably finite, and not
+MF\@.  Indeed, the locally finite Clifford kernel is amenable and hence exact,
 while the linear group $\Sigma\leq\GL_4(\mathbb Q)$ is exact
 \cite{GHW}.  Exact groups are closed under extensions
 \cite{KWPermanence}, so $W$ is exact; for discrete groups this is equivalent
@@ -3753,9 +3751,6 @@ so an entire basic clopen neighborhood fails MF\@.  Enclosing the
 constraint words in a reduced-word ball gives the radius form.
 \end{proof}
 
-Thus failure of MF is always certified by one finite ball of the
-marked Cayley diagram.
-
 \subsection{A finite universal Horn obstruction}
 
 Every MF group satisfies a single finite quasi-identity: a universal
@@ -3808,17 +3803,21 @@ Lemma~\ref{lem:permanence}(1) and Theorem~\ref{thm:A} make MF a Markov
 property of finitely presented groups: the trivial group is MF, and by
 subgroup heredity the finitely presented group $E$ embeds in no MF
 group.  The Adian--Rabin theorem \cite{Rabin58} therefore applies, and
-classically MF recognition is undecidable.  That classical conclusion
-is not what the corollary below displays.  What is displayed is the
-reduction step alone: the computable map from halting instances to
-presentations is carried as a hypothesis rather than constructed, its
-construction being the Adian--Rabin argument.
+classically MF recognition is undecidable.
 
-\begin{corollary}[undecidability, conditional on the reduction]%
+Fix an effective coding of finite presentations by natural numbers,
+under which a code determines computably its number of generators and
+its finite list of relator words, and write $G_e$ for the group
+presented by the code $e$.  The corollary below states the reduction
+step alone: the computable map from halting instances to presentation
+codes is a hypothesis of the statement rather than something
+constructed here, its construction being the Adian--Rabin argument.
+
+\begin{corollary}[undecidability, given a halting reduction]%
 \label{cor:undecidable}
-In the recursive coding of finite presentations fixed above, suppose
-given a computable map sending each instance of the halting problem to
-a presentation code whose group is MF exactly when that instance halts.
+Suppose given a computable map $e$ sending each instance $i$ of the
+halting problem to a presentation code $e(i)$ such that $G_{e(i)}$ is
+MF exactly when $i$ halts.
 Then no algorithm decides, from a finite presentation, whether the
 presented group is MF, and the set of presentation codes of non-MF
 groups is not recursively enumerable.
@@ -3826,22 +3825,17 @@ groups is not recursively enumerable.
 \leanverified{Computability/HaltingReduction}{GroupApproximation.MarkovMFConsequences.presentationCodes_recognition_undecidable_of_haltingReduction}
 \leanverified{Computability/HaltingReduction}{GroupApproximation.MarkovMFConsequences.presentationCodes_negative_side_not_re_of_haltingReduction}
 
-The coding is the fixed recursive one, not an arbitrary
-semantics, and that matters: a semantics is only required to attach a
-finitely presented group to each code, not to do so effectively, so an
-ineffective choice would make the statement true for reasons having
-nothing to do with groups.  Pinning the coding removes that reading ---
-the group is read syntactically off the code, and the only way to
-supply the hypothesis is to build presentations from machines.
+Effectiveness of the coding is necessary: a map attaching a finitely
+presented group to each code need not be computable, and an
+uncomputable choice would make the statement true for reasons having
+nothing to do with groups.
 
 The corollary reduces from the halting problem, whose undecidability
-and whose non-enumerable complement are proved in the accompanying
-formalization, so the classical fact that some finitely presented group
-has unsolvable word problem is not needed: the reduction interface asks
-for a computable map and a correctness equivalence, and does not
-require its source to be a word problem.  One object remains
-hypothetical, the map itself, and the corollary quantifies it rather
-than citing it.  Constructing it is the Adian--Rabin argument
+and non-recursively-enumerable complement are classical, so the fact
+that some finitely presented group has unsolvable word problem is not
+needed: the reduction asks only for a computable map and a correctness
+equivalence, and does not require its source to be a word problem.
+Constructing such a map is the Adian--Rabin argument
 \cite{Rabin58} run over a group built from a machine; classically one
 takes the word problem of a finitely presented group with unsolvable
 word problem and applies Adian--Rabin to the Markov property ``is
@@ -3855,16 +3849,10 @@ representing $1$ form a recursively enumerable set which, the word problem
 of $P_0$ being undecidable, is not recursive; hence the words with $w\ne1$
 form a set that is \emph{not} recursively enumerable.  An enumeration
 of the non-MF presentations would enumerate that set, making the word
-problem decidable.  The argument uses undecidability of the word
-problem and takes the preimage of a set that is not recursively
-enumerable under the computable Adian--Rabin reduction.
+problem decidable.
 \leanverified{Computability/MarkovMFConsequences}{GroupApproximation.MarkovMFConsequences.operatorMF_subgroup_hereditary}
 \leanverified{Computability/MarkovMFConsequences}{GroupApproximation.MarkovMFConsequences.exists_finitelyPresented_nonOperatorMF}
 \leanverified{Computability/MarkovMFConsequences}{GroupApproximation.MarkovMFConsequences.operatorMF_recognition_undecidable}
-A single non-MF group is certified by one finite ball
-(Theorem~\ref{thm:markedclosed}), while no algorithm classifies the
-positive and negative cases from presentations.
-
 Finitely presented non-MF groups occur in infinite multiplicity, and
 finitely generated ones in continuum multiplicity.
 The groups $E\times\mathbb Z^{k}$ for $k\ge0$ are
@@ -3884,12 +3872,11 @@ generated subgroup, a countable group has only countably many finitely
 generated subgroups, and the types $N$ are pairwise nonisomorphic.  A
 map with countable fibres from a continuum-sized family has
 continuum-sized image.  Products of pairwise nonisomorphic groups with
-a fixed factor can still be isomorphic, which is why the isomorphism
-types of the products are counted rather than read off the factors.
-The deduction uses only that the $N$ are finitely generated, and such a
-continuum is constructed as a lamplighter over coset spaces of the free
-group; Neumann's sharper two-generator form \cite{Neumann37} is not
-needed.
+a fixed factor can still be isomorphic, so it is the isomorphism types
+of the products that are counted.  The deduction uses only that the $N$
+are finitely generated; a continuum of pairwise nonisomorphic finitely
+generated groups is given by the lamplighters over coset spaces of the
+free group, or by Neumann's two-generator groups \cite{Neumann37}.
 \leanverified{Sofic/ContinuumMultiplicity}{GroupApproximation.ContinuumMultiplicity.manuscriptContinuumMultiplicity}
 \leanverified{Monsters/NeumannContinuum}{GroupApproximation.NeumannContinuum.manuscriptContinuumMultiplicityUnconditional}
 
@@ -3943,13 +3930,10 @@ proved instead in Theorems~\ref{thm:E} and~\ref{thm:Esofic}.
 
 Finite dimensionality of the coordinates cannot be replaced by stable
 finiteness of the coordinate algebras together with faithful traces.
-In a general
-faithfully traced unital $C^*$-algebra the transport argument would
-act on the trace Hilbert space by the left and right regular actions,
-and the von Neumann algebra these two actions generate can fail every
-finiteness property --- for an infinite-dimensional
-$\mathrm{II}_1$ factor in standard form it is all bounded operators
-on the trace space.  Constant coordinates $A_n=\Cred(E)$ give a
+For faithfully traced unital $C^*$-coordinates $A$, the left and right
+actions on $L^2(A,\tau)$ generate a von Neumann algebra that need not be
+finite: for an infinite-dimensional $\mathrm{II}_1$ factor in standard
+form it is all of $B(L^2(A,\tau))$.  Constant coordinates $A_n=\Cred(E)$ give a
 counterexample to any such generalization: the left regular
 representation embeds $E$ exactly and injectively into the norm
 quotient
@@ -3958,9 +3942,7 @@ quotient
 \]
 the element $c$ centralizes the Kazhdan base there, and conjugation by
 $t$ produces $tct^{-1}$, whose commutator with the base is the element
-$u$ with $u^2=w\ne1$ of Theorem~\ref{thm:A}.  A version of
-Theorem~\ref{thm:kazhdan-transport} for faithfully traced coordinates
-would make that commutator trivial there; no such theorem can hold.
+$u$ with $u^2=w\ne1$ of Theorem~\ref{thm:A}.
 \leanverified{Sofic/FaithfullyTracedCoordinateNoGo}{GroupApproximation.FaithfullyTracedCoordinates.manuscriptFaithfullyTracedCoordinateNoGo}
 Precisely: Theorem~\ref{thm:kazhdan-transport} becomes false when its
 matrix coordinates are replaced by stably finite unital $C^*$-algebras
@@ -4007,8 +3989,8 @@ finite-dimensional linear representation, and hence of every
 homomorphism to a finite group; but after both quotients that
 conclusion has no content unless some element of
 $\mathfrak D(E,\iota(\mathcal B))$ has a nontrivial image there, and no
-such element is exhibited here.  Deciding the question by this route
-therefore requires first producing one.
+such element is exhibited here.  Deciding the question this way
+therefore requires producing one.
 \item Is there a torsion-free finitely presented non-MF group?  The
 analytic obstruction no longer requires torsion
 (Theorem~\ref{thm:normal-kazhdan}); what remains is to construct a
@@ -4085,8 +4067,9 @@ representations'' a set rather than a proper class; it costs nothing,
 since every target used in this paper is small, and it is the form the
 accompanying development quantifies over.
 
-The maximal and reduced algebras separate already at the level of
-finiteness:
+Under a proper one-sided conjugation the maximal algebra contains an
+isometry that is not unitary, while the reduced algebra of $E$ is
+stably finite.
 
 \begin{proposition}[a strictly dominated projection gives a proper isometry]\label{prop:proper-isometry}
 Let $A$ be a unital $C^*$-algebra
@@ -4125,14 +4108,11 @@ failure of finiteness.
 
 Property~\textup{(T)} of $\mathbb Z^3\rtimes\SL_3(\mathbb Z)$ is
 classical \cite[Example~1.7.4(i)]{BHV}, and the presentations go back to
-\cite[Theorem~2]{CRW}.  Theorem~\ref{thm:A} is a statement about one
-explicitly displayed finite presentation, and
-Proposition~\ref{prop:literal-base-T} accordingly derives
+\cite[Theorem~2]{CRW}.  Proposition~\ref{prop:literal-base-T} derives
 property~\textup{(T)} for the twenty relators of
 \eqref{eq:gamma-presentation} through the thirteen-relator presentation
-$P_{13}$, rather than from an identification of the group those
-relators present.  That derivation uses the isomorphism
-$P_{13}\cong\SL_3(\mathbb Z)$ proved here.
+$P_{13}$, using the isomorphism $P_{13}\cong\SL_3(\mathbb Z)$ proved
+here.
 
 \begin{theorem}[completeness of the thirteen-relator presentation]
 \label{thm:p13-complete}
