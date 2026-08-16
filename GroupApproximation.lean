@@ -920,6 +920,7 @@ import GroupApproximation.Computability.MachineRestrict
 import GroupApproximation.Sofic.CliffordLampGraphLocalFiniteness
 import GroupApproximation.Algebra.FreePrecursorPresentation
 import GroupApproximation.Computability.FiniteMachineWordProblem
+import GroupApproximation.Computability.MarkovPost
 import GroupApproximation.Computability.UniversalMachineUndecidable
 
 /-!
