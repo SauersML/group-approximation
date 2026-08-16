@@ -778,6 +778,7 @@ import GroupApproximation.Analysis.NuclearityAmenability
 import GroupApproximation.Computability.RewriteSimulation
 import GroupApproximation.Monsters.NeumannContinuum
 import GroupApproximation.Computability.UnaryCounterSimulation
+import GroupApproximation.Computability.PostMachine
 import GroupApproximation.Computability.HaltingReduction
 import GroupApproximation.Computability.RewriteSimulationOn
 import GroupApproximation.Sofic.SimpleLampNormalGeneration
