@@ -35,6 +35,8 @@ this file removes is that the transfer did not exist to be applied.
 namespace GroupApproximation
 namespace Type0Transfer
 
+open CommensurabilityInvariance
+
 universe u
 
 /-- **Countable groups are `Type 0` groups up to isomorphism.**  An injection
@@ -50,7 +52,7 @@ theorem exists_type0_model (G : Type u) [Group G] [Countable G] :
 whose `Type 0` form carries a countability hypothesis still applies to it. -/
 theorem countable_type0_model (G : Type u) [Group G] [Countable G]
     {G₀ : Type} (e : G ≃* G₀) : Countable G₀ :=
-  Function.Surjective.countable e.surjective
+  e.symm.injective.countable
 
 /-- **The pattern, written out once.**  A statement of the form "no countable
 group in `Type 0` with such-and-such structure is MF" extends to every universe:

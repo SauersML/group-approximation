@@ -344,7 +344,6 @@ import GroupApproximation.Algebra.GraphProduct
 import GroupApproximation.Algebra.GraphProductAction
 import GroupApproximation.Analysis.PeterWeylProfinite
 import GroupApproximation.Algebra.TietzeFinitePresentation
-import GroupApproximation.Algebra.FinitePresentationKernel
 import GroupApproximation.Sofic.FiniteIndexRigidity
 import GroupApproximation.Algebra.FreePermutationalPrecursor
 import GroupApproximation.Sofic.UniversalFactorization
