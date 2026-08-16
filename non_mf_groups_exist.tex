@@ -287,37 +287,43 @@ proves the theorem.
 \subsection*{The mechanism}
 The obstruction is an operator-norm form of an elementary one.  Let
 $\pi$ be a homomorphism to a finite group.  If
-$t\Gamma t^{-1}\subseteq\Gamma$, then $\pi(t\Gamma t^{-1})$ is a
-conjugate of $\pi(\Gamma)$ contained in it, so the two have the same
-cardinality and are equal: a proper self-compression has no image in
-any finite quotient.  Dimension does not replace cardinality at the
-level of subgroups, but it does one level down, on the commutant of
-$\pi(\Gamma)$ in a finite-dimensional representation, which is
-contained in a conjugate copy of the same finite dimension and is
-therefore equal to it (Theorem~\ref{thm:B} and
-Remark~\ref{rem:invariantsize}).  What follows is that second argument
-carried out in a matrix corona: the commutant becomes a
-Hilbert--Schmidt asymptotic commutant, equal dimension becomes
-finiteness of a norm ultraproduct, and property~\textup{(T)} supplies
-the projection to which finiteness is applied.
-
-Two norms do different work.  Operator norm controls the approximate
-algebraic relations; the Hilbert--Schmidt norm carries the
-Hilbert-space geometry on which property~\textup{(T)} acts.  Each
-matrix block is used in both roles: as an operator, whose products are
-controlled in operator norm, and as a vector in its own
-Hilbert--Schmidt space, where the adjoint action of the group is what
-property~\textup{(T)} sees.  Rank enters only as bookkeeping for the
-second norm.  For commuting self-adjoint involutions $e,f$ the
-difference satisfies $(e-f)^3=4(e-f)$, so $(e-f)^2/4$ is a projection
-and
+$t\Gamma t^{-1}\subseteq\Gamma$, the inclusion becomes an equality
+after taking images: $\pi(t\Gamma t^{-1})$ is a conjugate of
+$\pi(\Gamma)$ contained in it, and the two are finite of the same
+cardinality.  A properly compressed subgroup is therefore not properly
+compressed in any finite quotient.  Cardinality has no replacement at
+the level of subgroups, but the argument survives one level down.  For
+a finite-dimensional representation $\pi$ over a field $k$, let $C$ be
+the commutant of $\pi(\Gamma)$ in $\End_k(V)$; one-sided conjugation
+gives
 \[
- \operatorname{Tr}\lvert e-f\rvert^2
- =4\operatorname{rank}\bigl((e-f)^2/4\bigr).
+ C\subseteq\pi(t)\,C\,\pi(t)^{-1},
 \]
-Rank measures the support of a difference, and Hilbert--Schmidt mass is
-support times amplitude squared; rank is not a third approximation
-geometry.
+the two sides have equal finite dimension, and so they are equal
+(Theorem~\ref{thm:B} and Remark~\ref{rem:invariantsize}).  What follows
+is that commutant argument carried out in a matrix corona: the
+commutant becomes a Hilbert--Schmidt asymptotic commutant, equal
+dimension becomes finiteness of a norm ultraproduct, and
+property~\textup{(T)} supplies the projection to which finiteness is
+applied.
+
+Two norms appear, with different roles.  The operator norm is the
+approximation norm: it controls the relations and defines the corona.
+The normalized Hilbert--Schmidt norm is auxiliary; it makes each matrix
+algebra the Hilbert space $L^2(M_d(\C),\tr_d)$, on which the adjoint
+action is unitary and property~\textup{(T)} can be applied.  The
+passage from the first norm to the second is dimension-free: for
+unitaries $u_1,u_2$,
+\[
+ \bigl\lVert\Ad u_1-\Ad u_2\bigr\rVert_{B(L^2(M_d(\C),\tr_d))}
+ \;\le\;2\,\opnorm{u_1-u_2},
+\]
+so operator-norm almost multiplicativity gives an almost representation
+on the Hilbert--Schmidt spaces.  The Hilbert--Schmidt norm is never
+used to define the matrix models or to separate group elements, and
+rank is not a further approximation norm; it appears only in the
+supplementary arguments, as a support count for Hilbert--Schmidt
+displacements between commuting involutions.
 
 Write $\sim_2$ for convergence in normalized Hilbert--Schmidt norm.
 
@@ -759,13 +765,19 @@ corona representation with $\Theta(\varepsilon)\ne1$.  Then
 $\Theta(\varepsilon)$ is a self-adjoint unitary commuting with
 $\Theta(H)$, the projection $\tfrac12(1-\Theta(\varepsilon))$ is
 nonzero, and compressing to it gives a matrix model of $H$ in which
-$\varepsilon$ equals $-1$ and each block has its own normalized
-trace.  That renormalization is what makes the conclusion of transport
-usable: transport alone bounds a commutator in normalized
-Hilbert--Schmidt norm, and padding a matrix model with an identity
-block leaves every operator-norm quantity unchanged while sending all
-normalized Hilbert--Schmidt distances to zero
-(Section~\ref{sec:limits}).
+$\varepsilon$ equals $-1$ and each block has its own normalized trace.
+
+That renormalization is what makes the conclusion of transport usable.
+Transport alone bounds a commutator in normalized Hilbert--Schmidt
+norm, and padding a matrix model with an identity block leaves every
+operator-norm quantity unchanged while sending all normalized
+Hilbert--Schmidt distances to zero (Section~\ref{sec:limits}).
+Compressing to the corner changes the Hilbert--Schmidt scale and not
+the approximation norm: the operator norm on $q_nM_{d_n}(\C)q_n$ is the
+restriction of the operator norm, while the trace is renormalized on
+the corner, so the scalars $1$ and $-1$ stay at normalized
+Hilbert--Schmidt distance $2$ there however small the ratio $r_n/d_n$
+becomes.
 
 \begin{theorem}[central-sign criterion]\label{thm:sign-criterion}
 Let $H$ and $\Gamma$ be countable groups, let $\Gamma$ have
@@ -3111,9 +3123,10 @@ fixed $g\in L$, where $g\gamma$ denotes the orbit index of
 $gv_\gamma g^{-1}$.
 
 \emph{Step 2: a rank pseudometric on the orbit.}  For commuting exact
-involutions $u,w$ the self-adjoint displacement $T=u-w$ satisfies
+involutions $e,f$ the self-adjoint displacement $T=e-f$ satisfies
 $T^3=4T$, so $T^2/4$ is an orthogonal projection and
-$\operatorname{Tr}|u-w|^2=4\operatorname{rank}((u-w)^2/4)$.  Hence
+$\operatorname{Tr}|e-f|^2=4\operatorname{rank}((e-f)^2/4)$: rank is an
+exact support count for the Hilbert--Schmidt displacement here.  Hence
 $d_n(\gamma,\mu)=\operatorname{rank}(V_n(\gamma)-V_n(\mu))$ is an
 integer-valued pseudometric; projections at operator distance below
 $1$ have equal rank, so the covariance of Step 1 makes it eventually
