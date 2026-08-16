@@ -131,6 +131,8 @@ formalized in this pass; **TODO** not yet formalized.
 
 | 46.4, 46.6 | not linear, and not even virtually linear, over any field | DONE-NEW | `Sofic/NotVirtuallyLinear` (`not_injective_of_not_residuallyFinite`, `residuallyFinite_of_injective`, `not_injective_of_finiteIndex`).  Found by auditing the source directory rather than the ledger: 46.6 was the one numbered result of `(4).md` with **no** corresponding declaration anywhere in the corpus.  The virtual strengthening is not cosmetic -- non-linearity says nothing about finite-index subgroups -- and it composes two facts already present: Schreier makes the finite-index subgroup finitely generated so Mal'cev applies to it, and `residuallyFinite_of_finiteIndex` (Lemma 46.5) carries the conclusion back up |
 
+| 48.8 | the twins have the same representation *category*: intertwiner spaces agree, not just Hom-sets | DONE-NEW | `Sofic/RepresentationCategoryTwins` (`intertwines_iff`, `precompLinear_bijective`, `representation_category_equiv`).  `ProfiniteTwins.precomp_bijective` was objects only; this adds the morphisms, which is the difference between "same representations" and "same representation theory".  Full faithfulness needs only surjectivity -- the two families of intertwining equations are indexed by the same set -- and the kernel hypothesis is used only for essential surjectivity on objects |
+
 ### Blocked, with the reason
 
 * **Bohr kernel (Section 46.5).**  *No longer blocked, and no longer a
