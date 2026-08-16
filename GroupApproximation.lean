@@ -102,6 +102,10 @@ import GroupApproximation.Sofic.LiteralSixGenerator
 import GroupApproximation.Sofic.LiteralSignFreeQuotient
 import GroupApproximation.Sofic.LiteralTietzePresentation
 import GroupApproximation.Sofic.LiteralWitnessConsequences
+import GroupApproximation.Sofic.LiteralBlockModel
+import GroupApproximation.Sofic.LiteralBlockNormalForm
+import GroupApproximation.Sofic.BlockCliffordTowerSofic
+import GroupApproximation.Sofic.LiteralSoficEndpoint
 import GroupApproximation.Sofic.MarkedCompressionInclusionData
 import GroupApproximation.Sofic.CompressionDefectSquare
 import GroupApproximation.Sofic.MarkedCompressionGroup
@@ -309,6 +313,7 @@ import GroupApproximation.Algebra.FiniteTypeField
 import GroupApproximation.Algebra.Malcev
 import GroupApproximation.Algebra.MalcevLinear
 import GroupApproximation.Algebra.WreathSplitQuotient
+import GroupApproximation.Algebra.PerfectLamp
 import GroupApproximation.Sofic.FiniteDimensionalResidual
 import GroupApproximation.Sofic.ThreeRadicalsCoincide
 import GroupApproximation.Sofic.LinearResidual
