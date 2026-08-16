@@ -7,6 +7,9 @@ target: continuum-nonisomorphic-fg-non-mf
 requires: [mf-positive-controls, literal-group-fails-mf-conventions]
 artifacts:
   - docs/CREDIT_AND_PRIORITY_AUDIT.md
+  - GroupApproximation/Sofic/ProductMultiplicity.lean
+  - GroupApproximation/Sofic/ProductMultiplicityRank.lean
+  - GroupApproximation/Algebra/TorsionFreeRank.lean
 ---
 
 # Subgroup heredity plus abelianization rank, then Neumann's continuum family
@@ -85,3 +88,35 @@ dropping to finitely generated, because Neumann's family is not a family of
 finitely presented groups — there are only countably many finite presentations.
 No argument in the corpus produces continuum many finitely presented non-MF
 groups, and none can: that cardinality is an absolute bound.
+
+## Lean status of the two parts
+
+**Part (1) is machine-checked twice, and the second time with the invariant the
+manuscript actually printed.**
+
+* `Sofic/ProductMultiplicity` proves it with a *substitute* invariant: it counts
+  homomorphisms into `Z/2`, which is the torsion-free rank read modulo `2`.  The
+  count separates the same groups, so the conclusion is right, but the printed
+  argument does not go that way.
+* `Sofic/ProductMultiplicityRank.manuscriptInfiniteMultiplicityRank` runs the
+  printed argument, through `Algebra/TorsionFreeRank`: the torsion-free rank of
+  an abelian group is `dim_Q (Q ⊗_Z A)` — tensoring with `Q` is what kills the
+  torsion, and this is checked rather than assumed
+  (`torsionFreeRank_eq_zero_of_forall_zsmul_eq_zero`); rank is additive over
+  products (`torsionFreeRank_prod`) and `rk Z = 1`; abelianization commutes with
+  binary products, which Mathlib lacks and `abelianizationProd` supplies, giving
+  `(E x Z^k)^ab ≅ E^ab x Z^k`; `E` finitely presented makes `rk E^ab` *finite*
+  (`torsionFreeRank_lt_aleph0`), which is what makes `rk E^ab + k` determine
+  `k`; and equal invariants on isomorphic groups finish.  The counting proof
+  stays in place as an independent second route.
+
+**Part (2) is not formalized**, and the reason is not neglect: it needs
+Neumann's continuum family, whose citation is source-verified above but whose
+construction is not in the development.
+
+This is also the answer to the remark in the claim body about
+`scaling-family-pairwise-nonisomorphic`: the abelianization-rank invariant is
+now not merely "cheap to compute" but *available as a Lean API*
+(`abelianizationRank`, with congruence, additivity and finiteness), so trying it
+on the `E_m` is a matter of computing one abelianization, not of building
+machinery.
