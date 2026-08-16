@@ -291,6 +291,8 @@ import GroupApproximation.Algebra.WreathSplitQuotient
 import GroupApproximation.Sofic.FiniteDimensionalResidual
 import GroupApproximation.Sofic.ThreeRadicalsCoincide
 import GroupApproximation.Sofic.SoficPiProduct
+import GroupApproximation.Sofic.AmenableActionSofic
+import GroupApproximation.Sofic.CoAmenableActionSofic
 import GroupApproximation.Kazhdan.IntegerNotKazhdan
 import GroupApproximation.Sofic.SoficAction
 import GroupApproximation.Sofic.SoficActionFiniteOrbits
