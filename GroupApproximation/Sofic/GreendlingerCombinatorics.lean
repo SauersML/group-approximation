@@ -76,7 +76,7 @@ theorem head?_invRev (w : List (α × Bool)) :
       rw [← ht, List.head?_append, ih]
       have hne : t ≠ [] := by rw [ht]; exact List.cons_ne_nil _ _
       have h1 : t.getLast? = some (t.getLast hne) :=
-        List.getLast?_eq_getLast t hne
+        List.getLast?_eq_some_getLast hne
       rw [List.getLast?_cons_of_ne_nil hne, h1]
       rfl
 
