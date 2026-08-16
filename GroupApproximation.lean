@@ -21,6 +21,7 @@ import GroupApproximation.Analysis.TorsionFreeFullMFCStarConsequences
 import GroupApproximation.Computability.MarkovMFConsequences
 import GroupApproximation.Computability.OperatorMFMarkovWitness
 import GroupApproximation.Computability.CStarRecognitionConsequences
+import GroupApproximation.Computability.PresentationCodes
 import GroupApproximation.Sofic.AdjointMatrix
 import GroupApproximation.Sofic.ProjectionRankFlip
 import GroupApproximation.Sofic.ExactInvolutionCut
@@ -286,6 +287,7 @@ import GroupApproximation.Monsters.LiteralBaseCompleteness
 import GroupApproximation.Sofic.LEFMarkedCompression
 import GroupApproximation.Algebra.FiniteResidual
 import GroupApproximation.Algebra.VisibleQuotient
+import GroupApproximation.Algebra.FiniteResidualCommensurability
 import GroupApproximation.Algebra.PermutationalWreath
 import GroupApproximation.Algebra.PermutationalWreathSimple
 import GroupApproximation.Algebra.PermutationalWreathAmenable
@@ -296,7 +298,6 @@ import GroupApproximation.Algebra.IntJacobson
 import GroupApproximation.Algebra.FiniteTypeField
 import GroupApproximation.Algebra.Malcev
 import GroupApproximation.Algebra.MalcevLinear
-import GroupApproximation.Algebra.LampPushforward
 import GroupApproximation.Algebra.WreathSplitQuotient
 import GroupApproximation.Sofic.FiniteDimensionalResidual
 import GroupApproximation.Sofic.ThreeRadicalsCoincide
