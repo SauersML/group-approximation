@@ -459,14 +459,16 @@ theorem isScaledMassBounded_offDiag (B₁ B₂ : OpAlmostRepresentation E)
 /-- **Scaled Kazhdan transport of asymptotic intertwiners.**  The
 transport of intertwiners holds at every nonnegative weight: the block
 reduction is weight-blind. -/
-theorem scaled_intertwiner_transport (B₁ B₂ : OpAlmostRepresentation E)
-    (w : ℕ → ℝ) (hw : ∀ n, 0 ≤ w n) (C : KazhdanCompressionCore Γ E)
-    (x : ∀ n, Matrix (B₁.model n) (B₂.model n) ℂ)
-    (hx : IsScaledAsymptoticIntertwinerOf B₁ B₂ w C.iota x)
-    (hbound : IsScaledRectMassBounded B₁ B₂ w x) :
-    IsScaledAsymptoticIntertwinerOf B₁ B₂ w C.iota (fun n ↦
-      (B₁.map n C.t : Matrix (B₁.model n) (B₁.model n) ℂ) * x n *
-        (B₂.map n C.t : Matrix (B₂.model n) (B₂.model n) ℂ)ᴴ) := by
+theorem scaled_intertwiner_transport :
+    ∀ {Γ E : Type} [Group Γ] [Group E] (B₁ B₂ : OpAlmostRepresentation E)
+      (w : ℕ → ℝ) (_hw : ∀ n, 0 ≤ w n) (C : KazhdanCompressionCore Γ E)
+      (x : ∀ n, Matrix (B₁.model n) (B₂.model n) ℂ)
+      (_hx : IsScaledAsymptoticIntertwinerOf B₁ B₂ w C.iota x)
+      (_hbound : IsScaledRectMassBounded B₁ B₂ w x),
+      IsScaledAsymptoticIntertwinerOf B₁ B₂ w C.iota (fun n ↦
+        (B₁.map n C.t : Matrix (B₁.model n) (B₁.model n) ℂ) * x n *
+          (B₂.map n C.t : Matrix (B₂.model n) (B₂.model n) ℂ)ᴴ) := by
+  intro Γ E _ _ B₁ B₂ w hw C x hx hbound
   have hcomm :=
     (isScaledAsymptoticCommutantOf_offDiag_iff B₁ B₂ w C.iota x).mpr hx
   have htrans := scaled_transport (blockSumRep B₁ B₂) w hw C

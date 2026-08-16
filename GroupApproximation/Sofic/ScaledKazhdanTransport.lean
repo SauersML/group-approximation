@@ -1072,19 +1072,21 @@ theorem scaled_transport_star
 
 /-- A one-sided compressor acts as a two-sided symmetry of the mass-bounded
 scaled asymptotic commutant, at every nonnegative weight. -/
-theorem scaled_transport_both
-    (B : OpAlmostRepresentation E) (w : ℕ → ℝ) (hw : ∀ n, 0 ≤ w n)
-    (C : KazhdanCompressionCore Γ E)
-    (x : ∀ n, Matrix (B.model n) (B.model n) ℂ)
-    (hx : IsScaledAsymptoticCommutant B w C x)
-    (hbound : IsScaledMassBounded B w x) :
-    IsScaledAsymptoticCommutant B w C (fun n ↦
-        (B.map n C.t : Matrix (B.model n) (B.model n) ℂ) * x n *
-          (B.map n C.t : Matrix (B.model n) (B.model n) ℂ)ᴴ) ∧
+theorem scaled_transport_both :
+    ∀ {Γ E : Type} [Group Γ] [Group E]
+      (B : OpAlmostRepresentation E) (w : ℕ → ℝ) (_hw : ∀ n, 0 ≤ w n)
+      (C : KazhdanCompressionCore Γ E)
+      (x : ∀ n, Matrix (B.model n) (B.model n) ℂ)
+      (_hx : IsScaledAsymptoticCommutant B w C x)
+      (_hbound : IsScaledMassBounded B w x),
       IsScaledAsymptoticCommutant B w C (fun n ↦
-        (B.map n C.t : Matrix (B.model n) (B.model n) ℂ)ᴴ * x n *
-          (B.map n C.t : Matrix (B.model n) (B.model n) ℂ)) :=
-  ⟨scaled_transport B w hw C x hx hbound,
+          (B.map n C.t : Matrix (B.model n) (B.model n) ℂ) * x n *
+            (B.map n C.t : Matrix (B.model n) (B.model n) ℂ)ᴴ) ∧
+        IsScaledAsymptoticCommutant B w C (fun n ↦
+          (B.map n C.t : Matrix (B.model n) (B.model n) ℂ)ᴴ * x n *
+            (B.map n C.t : Matrix (B.model n) (B.model n) ℂ)) := by
+  intro Γ E _ _ B w hw C x hx hbound
+  exact ⟨scaled_transport B w hw C x hx hbound,
     scaled_transport_star B w hw C x hx hbound⟩
 
 /-! ## All compressors -/
