@@ -73,8 +73,7 @@ what a caller has to supply, and here that is nothing. -/
 theorem actualCoronaMFResidual_le_fdUnitaryResidual :
     ∀ {G : Type u} [Group G],
       actualCoronaMFResidual G ≤ fdUnitaryResidual G := by
-  intro G _
-  intro x hx
+  intro G _ x hx
   rw [mem_fdUnitaryResidual_iff]
   intro Y phi
   rcases Nat.eq_zero_or_pos (Fintype.card Y) with hY | hY
