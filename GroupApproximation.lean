@@ -295,6 +295,8 @@ import GroupApproximation.Sofic.TorsionFreeFullMFRadical
 import GroupApproximation.Sofic.TorsionFreeFullMFConsequences
 import GroupApproximation.Sofic.TensorPowerAmplification
 import GroupApproximation.Sofic.TensorPowerTransport
+import GroupApproximation.Algebra.ProductFinitePresentation
+import GroupApproximation.Sofic.ProductMultiplicity
 import GroupApproximation.Sofic.OperatorMFPairAmplification
 import GroupApproximation.Sofic.OperatorMFLocalNormalization
 import GroupApproximation.Sofic.MarkedGroupTopology
