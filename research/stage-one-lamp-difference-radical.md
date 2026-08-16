@@ -34,8 +34,8 @@ of the self-embedding:
 - When the first-stage quotient is MF, the inclusion is an equality, so the MF
   radical of `W` is computed outright.
 
-The first stage does **not** reach the whole telescope.  A base move shifts a
-coset by the level `-1` copy `t^-1 iota(Gamma) t` only; the union
-`U_n t^-n iota(Gamma) t^n` is reached by iterating the collapse on the
-quotient, and that induction is not formalized.  The union step it would
-consume is `Algebra/WreathTelescopeUnion` / `Algebra/WreathTelescopeTower`.
+The first stage does **not** reach the whole telescope: a base move shifts a
+coset by the level `-1` copy `t^-1 iota(Gamma) t` only.  That turns out not to
+matter, because the collapse applies to each level on its own rather than by
+iteration -- see [[full-telescope-radical-in-mf-radical]], which proves the
+inclusion for every pair of sites of equal height.

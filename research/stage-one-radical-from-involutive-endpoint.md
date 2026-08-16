@@ -38,7 +38,8 @@ quotient" into "the MF radical is exactly that subgroup".
 
 ## What this route does not do
 
-It stops at one stage.  The site pairs it reaches are exactly those differing
-by the level `-1` copy of the base, and the telescope needs all levels.  The
-remaining step is to re-run the collapse on the quotient and take the union;
-the union machinery exists, the induction does not.
+It stops at one stage: the site pairs it reaches are exactly those differing by
+the level `-1` copy of the base.  The remaining levels are **not** obtained by
+iterating it -- they are obtained by running the same criterion on the
+level-`n` Kazhdan copy with compressor `t^n`, which is
+[[level-copies-are-kazhdan-and-compressed]].
