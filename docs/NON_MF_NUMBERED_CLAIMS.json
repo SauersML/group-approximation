@@ -88,101 +88,6 @@
       ]
     },
     {
-      "id": "thm:transport-variants",
-      "environment": "theorem",
-      "title": "transport at every scale, and of intertwiners",
-      "statement_sha256": "70528198cea81006c553da5364dd9c0c5aa3b0c2ef229bdd87863810bae7e543",
-      "status": "exact",
-      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
-      "dependencies": [],
-      "extra_assumptions": [],
-      "external_inputs": [],
-      "coverage_gap": "",
-      "lean": [
-        {
-          "role": "exact",
-          "module": "Sofic/ScaledKazhdanTransport",
-          "declaration": "GroupApproximation.ScaledKazhdanTransport.scaled_transport_both",
-          "covers": "the complete printed proposition"
-        },
-        {
-          "role": "exact",
-          "module": "Sofic/IntertwinerKazhdanTransport",
-          "declaration": "GroupApproximation.IntertwinerKazhdanTransport.manuscriptIntertwinerTransport",
-          "covers": "a printed conclusion of the proposition"
-        },
-        {
-          "role": "exact",
-          "module": "Sofic/IntertwinerKazhdanTransport",
-          "declaration": "GroupApproximation.IntertwinerKazhdanTransport.scaled_intertwiner_transport",
-          "covers": "a printed conclusion of the proposition"
-        }
-      ]
-    },
-    {
-      "id": "def:pattern",
-      "environment": "definition",
-      "title": "Kazhdan conjugation datum",
-      "statement_sha256": "8d867cbbd0b8c579b97230221032d4f7bc68ce175b40355cf8aa8bbe17d061c4",
-      "status": "exact",
-      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
-      "dependencies": [],
-      "extra_assumptions": [],
-      "external_inputs": [],
-      "coverage_gap": "",
-      "lean": [
-        {
-          "role": "exact",
-          "module": "Sofic/ManuscriptExactWrappers",
-          "declaration": "GroupApproximation.ManuscriptExactWrappers.manuscriptMarkedKazhdanPattern",
-          "covers": "the complete printed proposition"
-        }
-      ]
-    },
-    {
-      "id": "def:invisible",
-      "environment": "definition",
-      "title": "Hilbert--Schmidt invisibility",
-      "statement_sha256": "3f2a00bba6f9cb9d4ffc3727b4a54f0c076fcb73ebf617a5b212ccb60943dea5",
-      "status": "exact",
-      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
-      "dependencies": [],
-      "extra_assumptions": [],
-      "external_inputs": [],
-      "coverage_gap": "",
-      "lean": [
-        {
-          "role": "exact",
-          "module": "Sofic/ManuscriptExactWrappers",
-          "declaration": "GroupApproximation.ManuscriptExactWrappers.ManuscriptHSInvisible",
-          "covers": "the complete printed proposition"
-        }
-      ]
-    },
-    {
-      "id": "thm:criterion",
-      "environment": "theorem",
-      "title": "finite-normal obstruction criterion",
-      "statement_sha256": "44fb8b53f8227c5d5e9b901edee21a2cfda5366b7502f7c12f833cab5fef341b",
-      "status": "exact",
-      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
-      "dependencies": [
-        "def:pattern",
-        "thm:kazhdan-transport"
-      ],
-      "extra_assumptions": [],
-      "external_inputs": [],
-      "coverage_gap": "",
-      "lean": [
-        {
-          "role": "exact",
-          "module": "Sofic/ManuscriptExactWrappers",
-          "declaration": "GroupApproximation.ManuscriptExactWrappers.manuscriptFiniteNormalObstructionCriterion",
-          "covers": "the complete printed proposition"
-        }
-      ]
-    },
-    {
       "id": "thm:sign-criterion",
       "environment": "theorem",
       "title": "central-sign criterion",
@@ -200,120 +105,6 @@
           "role": "exact",
           "module": "Sofic/KazhdanSignCriterion",
           "declaration": "GroupApproximation.KazhdanCompressionCore.manuscriptCentralSignCriterion",
-          "covers": "the complete printed proposition"
-        }
-      ]
-    },
-    {
-      "id": "cor:generaltransport",
-      "environment": "corollary",
-      "title": "transport along all one-sided conjugators",
-      "statement_sha256": "5e9e62c5aab99f9b949e6f2820d41ff50cacd924f5e9bd6c20ad627d548b7e90",
-      "status": "exact",
-      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
-      "dependencies": [
-        "thm:kazhdan-transport"
-      ],
-      "extra_assumptions": [],
-      "external_inputs": [],
-      "coverage_gap": "",
-      "lean": [
-        {
-          "role": "exact",
-          "module": "Sofic/KazhdanAsymptoticCommutant",
-          "declaration": "GroupApproximation.KazhdanAsymptoticCommutant.compressionGroup_transport_both",
-          "covers": "the complete printed proposition"
-        }
-      ]
-    },
-    {
-      "id": "thm:compression-radical",
-      "environment": "theorem",
-      "title": "the intrinsic defect and the MF radical",
-      "statement_sha256": "f67e517df44aeb9b7881e5e74735d318bb937a23794e81ed069d8b7ebec476ac",
-      "status": "exact",
-      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
-      "dependencies": [
-        "thm:kazhdan-transport"
-      ],
-      "extra_assumptions": [],
-      "external_inputs": [],
-      "coverage_gap": "",
-      "lean": [
-        {
-          "role": "exact",
-          "module": "Sofic/ManuscriptKazhdanTransport",
-          "declaration": "GroupApproximation.KazhdanAsymptoticCommutant.manuscriptCompressionRadical",
-          "covers": "the complete printed proposition"
-        }
-      ]
-    },
-    {
-      "id": "thm:normal-kazhdan",
-      "environment": "theorem",
-      "title": "normal-Kazhdan obstruction",
-      "statement_sha256": "97e8705b910fc83a4fcae4df5bf68e5863846eadeadc796b081768a945f38b78",
-      "status": "exact",
-      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
-      "dependencies": [
-        "def:pattern",
-        "thm:kazhdan-transport",
-        "prop:mf-equivalences"
-      ],
-      "extra_assumptions": [],
-      "external_inputs": [],
-      "coverage_gap": "",
-      "lean": [
-        {
-          "role": "exact",
-          "module": "Sofic/ManuscriptExactWrappers",
-          "declaration": "GroupApproximation.ManuscriptExactWrappers.manuscriptNormalKazhdanObstruction",
-          "covers": "the complete printed proposition"
-        }
-      ]
-    },
-    {
-      "id": "thm:abstract-nk",
-      "environment": "theorem",
-      "title": "abstract invisibility obstruction",
-      "statement_sha256": "24f0bf7b9f7f0e5351436786ac08695589429935963c96c14459a2754da0a1e3",
-      "status": "exact",
-      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
-      "dependencies": [
-        "thm:normal-kazhdan",
-        "prop:mf-equivalences"
-      ],
-      "extra_assumptions": [],
-      "external_inputs": [],
-      "coverage_gap": "",
-      "lean": [
-        {
-          "role": "exact",
-          "module": "Sofic/ManuscriptExactWrappers",
-          "declaration": "GroupApproximation.ManuscriptExactWrappers.manuscriptAbstractNormalKazhdanObstruction",
-          "covers": "the complete printed proposition"
-        }
-      ]
-    },
-    {
-      "id": "cor:intrinsic-nk",
-      "environment": "corollary",
-      "title": "normal-Kazhdan form of the intrinsic radical",
-      "statement_sha256": "a7a3cb91f6620f631004686a8d626efc159c2073ff0cd415e2225c4714c85620",
-      "status": "exact",
-      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
-      "dependencies": [
-        "thm:abstract-nk",
-        "thm:compression-radical"
-      ],
-      "extra_assumptions": [],
-      "external_inputs": [],
-      "coverage_gap": "",
-      "lean": [
-        {
-          "role": "exact",
-          "module": "Sofic/ManuscriptExactWrappers",
-          "declaration": "GroupApproximation.ManuscriptExactWrappers.manuscriptIntrinsicNormalKazhdanRadical",
           "covers": "the complete printed proposition"
         }
       ]
@@ -397,14 +188,19 @@
       ]
     },
     {
-      "id": "cor:scaling-family",
-      "environment": "corollary",
-      "title": "the scaling family",
-      "statement_sha256": "0d2d1d84d3c1949c593ec031cccfc2f849bc34b605035184fdf900dffad46580",
+      "id": "thm:signfree",
+      "environment": "mainthm",
+      "title": "the sign-free quotient of $E$",
+      "statement_sha256": "1aeef33c21dab5e1a9025d55e3f41537d0ee591a20e775dee4fe01b54efacc52",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [
-        "thm:A",
+        "def:E",
+        "def:invwitness",
+        "thm:collapse",
+        "cor:pullback",
+        "prop:witness",
+        "prop:univquot",
         "thm:kazhdan-clifford"
       ],
       "extra_assumptions": [],
@@ -413,42 +209,34 @@
       "lean": [
         {
           "role": "exact",
-          "module": "Sofic/ScalingFamilyEndpoint",
-          "declaration": "GroupApproximation.ScalingFamilyEndpoint.manuscriptTheoremFamily",
-          "covers": "the complete printed proposition"
-        }
-      ]
-    },
-    {
-      "id": "thm:B",
-      "environment": "mainthm",
-      "title": "the exact finite-dimensional analogue",
-      "statement_sha256": "d6e18099881e7f184c54b8e2ba67e87679fe85854f0cb52feb9e2edebd590aeb",
-      "status": "exact",
-      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
-      "dependencies": [],
-      "extra_assumptions": [],
-      "external_inputs": [],
-      "coverage_gap": "",
-      "lean": [
+          "module": "Sofic/LiteralSignFreeQuotient",
+          "declaration": "GroupApproximation.LiteralSignFreeQuotient.signFree_collapse",
+          "covers": "a printed conclusion of the proposition"
+        },
         {
           "role": "exact",
-          "module": "Sofic/ManuscriptExactWrappers",
-          "declaration": "GroupApproximation.ManuscriptExactWrappers.manuscriptTheoremB",
+          "module": "Sofic/LiteralSignFreeQuotient",
+          "declaration": "GroupApproximation.LiteralSignFreeQuotient.signFreeQuotient_not_isCDEOperatorMF",
           "covers": "the complete printed proposition"
+        },
+        {
+          "role": "exact",
+          "module": "Sofic/LiteralSignFreeQuotient",
+          "declaration": "GroupApproximation.LiteralSignFreeQuotient.commutator_not_zpow_mark",
+          "covers": "a printed conclusion of the proposition"
         }
       ]
     },
     {
-      "id": "cor:notRFD",
-      "environment": "corollary",
-      "title": "",
-      "statement_sha256": "754e7536fa06cde28e2b63372445243f01999ad37673ef6751988dc19390f17c",
+      "id": "thm:D",
+      "environment": "mainthm",
+      "title": "the reduced group algebra of $E$",
+      "statement_sha256": "39b9906dd0e6be7f724e5abf05cf5486024bda97ee20d33863e62378f5306db8",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [
-        "thm:B",
-        "prop:witness"
+        "thm:A",
+        "lem:faithfultrace"
       ],
       "extra_assumptions": [],
       "external_inputs": [],
@@ -456,8 +244,31 @@
       "lean": [
         {
           "role": "exact",
-          "module": "Sofic/LiteralFiniteDimensionalObstruction",
-          "declaration": "GroupApproximation.LiteralFiniteDimensionalObstruction.manuscriptFiniteDimensionalConsequences",
+          "module": "Sofic/LiteralNonMFEndpoint",
+          "declaration": "GroupApproximation.LiteralNonMFEndpoint.manuscriptTheoremD",
+          "covers": "the complete printed proposition"
+        }
+      ]
+    },
+    {
+      "id": "thm:E",
+      "environment": "mainthm",
+      "title": "a sofic non-MF group",
+      "statement_sha256": "0b84f58a967cd3a615f3986074c5af266dc405fb9812f2a6939770ea7a206c66",
+      "status": "exact",
+      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
+      "dependencies": [
+        "prop:witness",
+        "lem:portable"
+      ],
+      "extra_assumptions": [],
+      "external_inputs": [],
+      "coverage_gap": "",
+      "lean": [
+        {
+          "role": "exact",
+          "module": "Endpoint/NonMFImpact",
+          "declaration": "GroupApproximation.NonMFImpact.witness_sofic_hyperlinear_nonMF",
           "covers": "the complete printed proposition"
         }
       ]
@@ -611,8 +422,260 @@
       ]
     },
     {
+      "id": "thm:transport-variants",
+      "environment": "theorem",
+      "title": "transport at every scale, and of intertwiners",
+      "statement_sha256": "70528198cea81006c553da5364dd9c0c5aa3b0c2ef229bdd87863810bae7e543",
+      "status": "exact",
+      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
+      "dependencies": [],
+      "extra_assumptions": [],
+      "external_inputs": [],
+      "coverage_gap": "",
+      "lean": [
+        {
+          "role": "exact",
+          "module": "Sofic/ScaledKazhdanTransport",
+          "declaration": "GroupApproximation.ScaledKazhdanTransport.scaled_transport_both",
+          "covers": "the complete printed proposition"
+        },
+        {
+          "role": "exact",
+          "module": "Sofic/IntertwinerKazhdanTransport",
+          "declaration": "GroupApproximation.IntertwinerKazhdanTransport.manuscriptIntertwinerTransport",
+          "covers": "a printed conclusion of the proposition"
+        },
+        {
+          "role": "exact",
+          "module": "Sofic/IntertwinerKazhdanTransport",
+          "declaration": "GroupApproximation.IntertwinerKazhdanTransport.scaled_intertwiner_transport",
+          "covers": "a printed conclusion of the proposition"
+        }
+      ]
+    },
+    {
+      "id": "def:pattern",
+      "environment": "definition",
+      "title": "Kazhdan conjugation datum",
+      "statement_sha256": "8d867cbbd0b8c579b97230221032d4f7bc68ce175b40355cf8aa8bbe17d061c4",
+      "status": "exact",
+      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
+      "dependencies": [],
+      "extra_assumptions": [],
+      "external_inputs": [],
+      "coverage_gap": "",
+      "lean": [
+        {
+          "role": "exact",
+          "module": "Sofic/ManuscriptExactWrappers",
+          "declaration": "GroupApproximation.ManuscriptExactWrappers.manuscriptMarkedKazhdanPattern",
+          "covers": "the complete printed proposition"
+        }
+      ]
+    },
+    {
+      "id": "def:invisible",
+      "environment": "definition",
+      "title": "Hilbert--Schmidt invisibility",
+      "statement_sha256": "3f2a00bba6f9cb9d4ffc3727b4a54f0c076fcb73ebf617a5b212ccb60943dea5",
+      "status": "exact",
+      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
+      "dependencies": [],
+      "extra_assumptions": [],
+      "external_inputs": [],
+      "coverage_gap": "",
+      "lean": [
+        {
+          "role": "exact",
+          "module": "Sofic/ManuscriptExactWrappers",
+          "declaration": "GroupApproximation.ManuscriptExactWrappers.ManuscriptHSInvisible",
+          "covers": "the complete printed proposition"
+        }
+      ]
+    },
+    {
+      "id": "thm:criterion",
+      "environment": "theorem",
+      "title": "finite-normal obstruction criterion",
+      "statement_sha256": "44fb8b53f8227c5d5e9b901edee21a2cfda5366b7502f7c12f833cab5fef341b",
+      "status": "exact",
+      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
+      "dependencies": [
+        "def:pattern",
+        "thm:kazhdan-transport"
+      ],
+      "extra_assumptions": [],
+      "external_inputs": [],
+      "coverage_gap": "",
+      "lean": [
+        {
+          "role": "exact",
+          "module": "Sofic/ManuscriptExactWrappers",
+          "declaration": "GroupApproximation.ManuscriptExactWrappers.manuscriptFiniteNormalObstructionCriterion",
+          "covers": "the complete printed proposition"
+        }
+      ]
+    },
+    {
+      "id": "cor:generaltransport",
+      "environment": "corollary",
+      "title": "transport along all one-sided conjugators",
+      "statement_sha256": "5e9e62c5aab99f9b949e6f2820d41ff50cacd924f5e9bd6c20ad627d548b7e90",
+      "status": "exact",
+      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
+      "dependencies": [
+        "thm:kazhdan-transport"
+      ],
+      "extra_assumptions": [],
+      "external_inputs": [],
+      "coverage_gap": "",
+      "lean": [
+        {
+          "role": "exact",
+          "module": "Sofic/KazhdanAsymptoticCommutant",
+          "declaration": "GroupApproximation.KazhdanAsymptoticCommutant.compressionGroup_transport_both",
+          "covers": "the complete printed proposition"
+        }
+      ]
+    },
+    {
+      "id": "thm:compression-radical",
+      "environment": "theorem",
+      "title": "the intrinsic defect and the MF radical",
+      "statement_sha256": "f67e517df44aeb9b7881e5e74735d318bb937a23794e81ed069d8b7ebec476ac",
+      "status": "exact",
+      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
+      "dependencies": [
+        "thm:kazhdan-transport"
+      ],
+      "extra_assumptions": [],
+      "external_inputs": [],
+      "coverage_gap": "",
+      "lean": [
+        {
+          "role": "exact",
+          "module": "Sofic/ManuscriptKazhdanTransport",
+          "declaration": "GroupApproximation.KazhdanAsymptoticCommutant.manuscriptCompressionRadical",
+          "covers": "the complete printed proposition"
+        }
+      ]
+    },
+    {
+      "id": "thm:normal-kazhdan",
+      "environment": "theorem",
+      "title": "normal-Kazhdan obstruction",
+      "statement_sha256": "97e8705b910fc83a4fcae4df5bf68e5863846eadeadc796b081768a945f38b78",
+      "status": "exact",
+      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
+      "dependencies": [
+        "def:pattern",
+        "thm:kazhdan-transport",
+        "prop:mf-equivalences"
+      ],
+      "extra_assumptions": [],
+      "external_inputs": [],
+      "coverage_gap": "",
+      "lean": [
+        {
+          "role": "exact",
+          "module": "Sofic/ManuscriptExactWrappers",
+          "declaration": "GroupApproximation.ManuscriptExactWrappers.manuscriptNormalKazhdanObstruction",
+          "covers": "the complete printed proposition"
+        }
+      ]
+    },
+    {
+      "id": "thm:abstract-nk",
+      "environment": "theorem",
+      "title": "abstract invisibility obstruction",
+      "statement_sha256": "24f0bf7b9f7f0e5351436786ac08695589429935963c96c14459a2754da0a1e3",
+      "status": "exact",
+      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
+      "dependencies": [
+        "thm:normal-kazhdan",
+        "prop:mf-equivalences"
+      ],
+      "extra_assumptions": [],
+      "external_inputs": [],
+      "coverage_gap": "",
+      "lean": [
+        {
+          "role": "exact",
+          "module": "Sofic/ManuscriptExactWrappers",
+          "declaration": "GroupApproximation.ManuscriptExactWrappers.manuscriptAbstractNormalKazhdanObstruction",
+          "covers": "the complete printed proposition"
+        }
+      ]
+    },
+    {
+      "id": "cor:intrinsic-nk",
+      "environment": "corollary",
+      "title": "normal-Kazhdan form of the intrinsic radical",
+      "statement_sha256": "a7a3cb91f6620f631004686a8d626efc159c2073ff0cd415e2225c4714c85620",
+      "status": "exact",
+      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
+      "dependencies": [
+        "thm:abstract-nk",
+        "thm:compression-radical"
+      ],
+      "extra_assumptions": [],
+      "external_inputs": [],
+      "coverage_gap": "",
+      "lean": [
+        {
+          "role": "exact",
+          "module": "Sofic/ManuscriptExactWrappers",
+          "declaration": "GroupApproximation.ManuscriptExactWrappers.manuscriptIntrinsicNormalKazhdanRadical",
+          "covers": "the complete printed proposition"
+        }
+      ]
+    },
+    {
+      "id": "thm:B",
+      "environment": "theorem",
+      "title": "the exact finite-dimensional analogue",
+      "statement_sha256": "d6e18099881e7f184c54b8e2ba67e87679fe85854f0cb52feb9e2edebd590aeb",
+      "status": "exact",
+      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
+      "dependencies": [],
+      "extra_assumptions": [],
+      "external_inputs": [],
+      "coverage_gap": "",
+      "lean": [
+        {
+          "role": "exact",
+          "module": "Sofic/ManuscriptExactWrappers",
+          "declaration": "GroupApproximation.ManuscriptExactWrappers.manuscriptTheoremB",
+          "covers": "the complete printed proposition"
+        }
+      ]
+    },
+    {
+      "id": "cor:notRFD",
+      "environment": "corollary",
+      "title": "",
+      "statement_sha256": "754e7536fa06cde28e2b63372445243f01999ad37673ef6751988dc19390f17c",
+      "status": "exact",
+      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
+      "dependencies": [
+        "thm:B",
+        "prop:witness"
+      ],
+      "extra_assumptions": [],
+      "external_inputs": [],
+      "coverage_gap": "",
+      "lean": [
+        {
+          "role": "exact",
+          "module": "Sofic/LiteralFiniteDimensionalObstruction",
+          "declaration": "GroupApproximation.LiteralFiniteDimensionalObstruction.manuscriptFiniteDimensionalConsequences",
+          "covers": "the complete printed proposition"
+        }
+      ]
+    },
+    {
       "id": "thm:C",
-      "environment": "mainthm",
+      "environment": "theorem",
       "title": "the cyclic comparison",
       "statement_sha256": "ee29ee959c43ba8b68b65d6fa5839c177680b6df85e0800025e40c06d02dd4ce",
       "status": "exact",
@@ -629,6 +692,29 @@
           "role": "exact",
           "module": "Monsters/LiteralCyclicCalibration",
           "declaration": "GroupApproximation.LiteralCyclicCalibration.manuscriptCyclicCalibration",
+          "covers": "the complete printed proposition"
+        }
+      ]
+    },
+    {
+      "id": "cor:scaling-family",
+      "environment": "corollary",
+      "title": "the scaling family",
+      "statement_sha256": "0d2d1d84d3c1949c593ec031cccfc2f849bc34b605035184fdf900dffad46580",
+      "status": "exact",
+      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
+      "dependencies": [
+        "thm:A",
+        "thm:kazhdan-clifford"
+      ],
+      "extra_assumptions": [],
+      "external_inputs": [],
+      "coverage_gap": "",
+      "lean": [
+        {
+          "role": "exact",
+          "module": "Sofic/ScalingFamilyEndpoint",
+          "declaration": "GroupApproximation.ScalingFamilyEndpoint.manuscriptTheoremFamily",
           "covers": "the complete printed proposition"
         }
       ]
@@ -1001,7 +1087,7 @@
       "id": "thm:commutinglamp",
       "environment": "theorem",
       "title": "the commuting-lamp quotient",
-      "statement_sha256": "f149e7ed315da9b1607fefc07b1bf58222fa8f6e0d207f85c63a6c6f887111ff",
+      "statement_sha256": "9e4b86ef5381d80753c7204e368cbac25ad0b7aa47fd7120e7c18b09ca573b8d",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [],
@@ -1009,6 +1095,12 @@
       "external_inputs": [],
       "coverage_gap": "",
       "lean": [
+        {
+          "role": "exact",
+          "module": "Sofic/CommutingLampQuotientSofic",
+          "declaration": "GroupApproximation.CommutingLampQuotientSofic.literalSignFreeQuotient_isSofic_and_not_isCDEOperatorMF",
+          "covers": "a printed conclusion of the proposition"
+        },
         {
           "role": "exact",
           "module": "Sofic/CommutingLampCollapse",
@@ -1025,69 +1117,6 @@
           "role": "exact",
           "module": "Sofic/CommutingLampCollapse",
           "declaration": "GroupApproximation.CommutingLampCollapse.literalCommutingLampQuotient_not_isCDEOperatorMF",
-          "covers": "a printed conclusion of the proposition"
-        }
-      ]
-    },
-    {
-      "id": "cor:signfreesofic",
-      "environment": "corollary",
-      "title": "a sign-free sofic non-MF group",
-      "statement_sha256": "1b5b74b48236ee531601c8fda4e4e69eeeb58a0070af5d1fc6e47f5327e0964f",
-      "status": "exact",
-      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
-      "dependencies": [
-        "thm:commutinglamp",
-        "thm:E"
-      ],
-      "extra_assumptions": [],
-      "external_inputs": [],
-      "coverage_gap": "",
-      "lean": [
-        {
-          "role": "exact",
-          "module": "Sofic/CommutingLampQuotientSofic",
-          "declaration": "GroupApproximation.CommutingLampQuotientSofic.literalSignFreeQuotient_isSofic_and_not_isCDEOperatorMF",
-          "covers": "the complete printed proposition"
-        }
-      ]
-    },
-    {
-      "id": "thm:signfree",
-      "environment": "theorem",
-      "title": "the sign-free quotient of $E$",
-      "statement_sha256": "1aeef33c21dab5e1a9025d55e3f41537d0ee591a20e775dee4fe01b54efacc52",
-      "status": "exact",
-      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
-      "dependencies": [
-        "def:E",
-        "def:invwitness",
-        "thm:collapse",
-        "cor:pullback",
-        "prop:witness",
-        "prop:univquot",
-        "thm:kazhdan-clifford"
-      ],
-      "extra_assumptions": [],
-      "external_inputs": [],
-      "coverage_gap": "",
-      "lean": [
-        {
-          "role": "exact",
-          "module": "Sofic/LiteralSignFreeQuotient",
-          "declaration": "GroupApproximation.LiteralSignFreeQuotient.signFree_collapse",
-          "covers": "a printed conclusion of the proposition"
-        },
-        {
-          "role": "exact",
-          "module": "Sofic/LiteralSignFreeQuotient",
-          "declaration": "GroupApproximation.LiteralSignFreeQuotient.signFreeQuotient_not_isCDEOperatorMF",
-          "covers": "the complete printed proposition"
-        },
-        {
-          "role": "exact",
-          "module": "Sofic/LiteralSignFreeQuotient",
-          "declaration": "GroupApproximation.LiteralSignFreeQuotient.commutator_not_zpow_mark",
           "covers": "a printed conclusion of the proposition"
         }
       ]
@@ -1142,29 +1171,6 @@
       ]
     },
     {
-      "id": "thm:D",
-      "environment": "mainthm",
-      "title": "the reduced group algebra of $E$",
-      "statement_sha256": "39b9906dd0e6be7f724e5abf05cf5486024bda97ee20d33863e62378f5306db8",
-      "status": "exact",
-      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
-      "dependencies": [
-        "thm:A",
-        "lem:faithfultrace"
-      ],
-      "extra_assumptions": [],
-      "external_inputs": [],
-      "coverage_gap": "",
-      "lean": [
-        {
-          "role": "exact",
-          "module": "Sofic/LiteralNonMFEndpoint",
-          "declaration": "GroupApproximation.LiteralNonMFEndpoint.manuscriptTheoremD",
-          "covers": "the complete printed proposition"
-        }
-      ]
-    },
-    {
       "id": "lem:faithfultrace",
       "environment": "lemma",
       "title": "",
@@ -1180,29 +1186,6 @@
           "role": "exact",
           "module": "Sofic/ManuscriptExactWrappers",
           "declaration": "GroupApproximation.ManuscriptExactWrappers.manuscriptFaithfulTraceAndStableFiniteness",
-          "covers": "the complete printed proposition"
-        }
-      ]
-    },
-    {
-      "id": "thm:E",
-      "environment": "mainthm",
-      "title": "a sofic non-MF group",
-      "statement_sha256": "40a494a4e7acc0041e2cd2e9704f184d4394bf1e344ac3238aeb6429e9d62e53",
-      "status": "exact",
-      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
-      "dependencies": [
-        "prop:witness",
-        "lem:portable"
-      ],
-      "extra_assumptions": [],
-      "external_inputs": [],
-      "coverage_gap": "",
-      "lean": [
-        {
-          "role": "exact",
-          "module": "Endpoint/NonMFImpact",
-          "declaration": "GroupApproximation.NonMFImpact.witness_sofic_hyperlinear_nonMF",
           "covers": "the complete printed proposition"
         }
       ]

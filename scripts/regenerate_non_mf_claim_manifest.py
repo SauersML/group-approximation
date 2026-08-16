@@ -142,11 +142,6 @@ CLAIM_TARGETS: dict[str, tuple[str, str]] = {
         "Sofic/CommutingLampCollapse",
         "GroupApproximation.CommutingLampCollapse.literalCommutingLampQuotient_collapse",
     ),
-    "cor:signfreesofic": (
-        "Sofic/CommutingLampQuotientSofic",
-        "GroupApproximation.CommutingLampQuotientSofic."
-        "literalSignFreeQuotient_isSofic_and_not_isCDEOperatorMF",
-    ),
     "thm:signfree": (
         "Sofic/LiteralSignFreeQuotient",
         "GroupApproximation.LiteralSignFreeQuotient.signFreeQuotient_not_isCDEOperatorMF",
@@ -260,7 +255,6 @@ DEPENDENCIES: dict[str, list[str]] = {
                      "thm:kazhdan-transport"],
     "cor:collapsequot": ["thm:collapse", "cor:pullback",
                          "cor:exactradical"],
-    "cor:signfreesofic": ["thm:commutinglamp", "thm:E"],
     "thm:signfree": ["def:E", "def:invwitness", "thm:collapse",
                      "cor:pullback", "prop:witness", "prop:univquot",
                      "thm:kazhdan-clifford"],
