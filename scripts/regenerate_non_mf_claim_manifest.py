@@ -142,6 +142,10 @@ CLAIM_TARGETS: dict[str, tuple[str, str]] = {
         "Sofic/CommutingLampCollapse",
         "GroupApproximation.CommutingLampCollapse.literalCommutingLampQuotient_collapse",
     ),
+    "thm:signfree": (
+        "Sofic/LiteralSignFreeQuotient",
+        "GroupApproximation.LiteralSignFreeQuotient.signFreeQuotient_not_isCDEOperatorMF",
+    ),
     "thm:torsion-collapse": (
         "Sofic/TorsionSpectralCollapse",
         "GroupApproximation.TorsionSpectralCollapse.actualCoronaMFInvisible_of_torsionWitness",
