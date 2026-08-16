@@ -780,6 +780,17 @@ theorem isSofic_of_isSofic_ker_of_isAmenable {G Q : Type*} [Group G] [Group Q]
   isSofic_of_isSofic_of_isAmenable_quotient f.ker hker
     (isAmenable_of_mulEquiv (QuotientGroup.quotientKerEquivOfSurjective f hf) hQ)
 
+/-- **Closed-header form.**  Both groups, the surjection and its two
+hypotheses are quantified inside the proposition, so the printed header states
+on its own face what a caller supplies.  The manuscript cites this form. -/
+theorem manuscriptSoficOfSoficKerOfAmenableQuotient :
+    ∀ {G Q : Type} [Group G] [Group Q] (f : G →* Q),
+      Function.Surjective f → IsSofic f.ker →
+      Amenability.IsAmenable Q → IsSofic G := by
+  intro G Q _ _ f hf hker hQ
+  exact isSofic_of_isSofic_ker_of_isAmenable f hf hker hQ
+
+
 /-- **Elek--Szabó permanence, split form.**  A semidirect product of a sofic
 group by an amenable group is sofic.  This is the generality that the
 manuscript's sentence "a split extension of a sofic group by `$\Z$` is sofic"

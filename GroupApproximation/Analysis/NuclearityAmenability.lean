@@ -238,6 +238,17 @@ theorem not_isAmenable_of_base_embeds {G : Type} [Group G]
   exact PropertyTNonamenable.not_isAmenable_of_infinite_kazhdan_subgroup
     LiteralBaseP13PropertyTBridge.base_hasKazhdanPropertyT f hf
 
+/-- **Closed-header form.**  The group and the embedding are quantified inside
+the proposition rather than carried in the header, so a badge on this statement
+advertises correctly what a caller must supply: nothing.  The manuscript cites
+this form. -/
+theorem manuscriptNotAmenableOfBaseEmbeds :
+    ∀ {G : Type} [Group G] (f : LiteralNonMFPresentation.Base →* G),
+      Function.Injective f → ¬ IsAmenable G := by
+  intro G _ f hf
+  exact not_isAmenable_of_base_embeds f hf
+
+
 /-- The invariant-mean form of the same transport.
 
 This called `PropertyTNonamenable.not_hasInvariantMean_of_injective`, which does
