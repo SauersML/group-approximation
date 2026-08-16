@@ -581,7 +581,8 @@ $\sigma_n$ acts on a finite-dimensional space.  Polar correction
 therefore replaces $\sigma_n$ by a unitary $w_n$ with
 $\opnorm{\sigma_n-w_n}\to0$.  Hence $\sigma=[w_n]_\omega$ is unitary.
 
-\emph{The Kazhdan projection.}  Property~\textup{(T)} provides a finite
+\emph{The projection onto the fixed subspace.}
+Property~\textup{(T)} provides a finite
 symmetric generating set $S\subseteq\Gamma$ with $1\in S$ and a Kazhdan
 constant $\kappa\in(0,1]$ for the pair $(S,\kappa)$.  Let $h$ be the
 Hermitian part of $\frac1{|S|}\sum_{s'\in S}\pi(\iota(s'))$ and let
@@ -643,7 +644,7 @@ arbitrary, the full sequence converges.
 The ultrafilter gives no rate.  Section~\ref{app:finite-stage}
 proves the theorem a second time, quantitatively at each single
 coordinate $n$.  There, an explicit almost-fixed spectral subspace of
-the averaged adjoint action replaces the Kazhdan projection, and the
+the averaged adjoint action replaces the projection $P$, and the
 equal-rank reversal estimate replaces finiteness of $B_\omega$.  That
 proof makes the error bookkeeping explicit in terms of $\kappa$,
 $|S|$, the uniform bound on $(x_n)$, and the multiplicative defects of
@@ -678,8 +679,8 @@ to $E$ it shows that every finite-dimensional linear representation
 over every field, and hence every homomorphism to a finite group, sends
 the marked word to the identity (Corollary~\ref{cor:notRFD}).
 
-Theorem~\ref{thm:kazhdan-transport} is the same principle one level of
-approximation up.  An MF model is only asymptotically multiplicative,
+Theorem~\ref{thm:kazhdan-transport} is the approximate analogue of
+this argument.  An MF model is only asymptotically multiplicative,
 so its coordinate fixed spaces are not invariant subspaces;
 operator-norm control keeps the adjoint actions almost multiplicative
 on the Hilbert--Schmidt spaces, an almost-fixed spectral subspace of a
@@ -1509,7 +1510,8 @@ root families fall into four classes --- cancelling, commuting,
 Steinberg, and braid --- each closed by one of the displayed relators,
 and each strictly decreasing the pair.
 
-\emph{Injectivity: a kernel word is squeezed.}  Suppose $\pi(W)=1$.
+\emph{Injectivity: a kernel word has constant trajectory.}
+Suppose $\pi(W)=1$.
 The subgroup $\langle w_{13},w_{23}\rangle$ maps into the signed
 permutation matrices, so $b=\pi(m)e_3$ is a signed basis column and
 $\lVert b\rVert_1=1$.  The trajectory of $G$ over $b$ starts at $b$ and
@@ -1527,7 +1529,7 @@ $\pi(m)^{-1}b=e_3$.  The root letters whose matrices fix $e_3$ are
 exactly $e_{12}^{\pm1},e_{21}^{\pm1},e_{31}^{\pm1},e_{32}^{\pm1}$, so
 $m^{-1}Gm\in H_{\mathrm{par}}$.
 
-\emph{Injectivity: the signed-swap tail.}  The group
+\emph{Injectivity: the subgroup $\langle w_{13},w_{23}\rangle$.}  The group
 $\langle w_{13},w_{23}\rangle$ acts on the six signed basis columns,
 and the orbit of $e_3$ is all six of them, with coset representatives
 \[
@@ -1750,8 +1752,8 @@ on $(x_n)$, and the multiplicative defects of $U_n$, once the robust
 spectral-gap input of~(i) is granted at each stage.  That input is the
 one place where a limit still enters, as
 Remark~\ref{rem:finite-stage} says: property~\textup{(T)} constrains
-exact unitary representations, while at a finite stage the microstates
-only generate a representation of the free group on $S$, so no
+exact unitary representations, while at a finite stage the matrix
+models only generate a representation of the free group on $S$, so no
 threshold in $\kappa$, $|S|$ and the defects on a fixed finite set can
 supply it.  Making that step effective as well would need a
 sum-of-squares certificate for property~\textup{(T)} in the sense of
@@ -1794,7 +1796,7 @@ each generator satisfies
 $\tfrac1{2}\hsnorm{(\Ad U_n(\iota(s'))-1)\eta}^2\le|S|\,\delta$, and a word
 in $S$ of length $\ell$ moves $\eta$ by at most $\ell\sqrt{2|S|\delta}$
 plus the accumulated multiplicative defects.  The projection $P_n$ is
-the finite-stage substitute for the Kazhdan projection.
+the finite-stage substitute for the projection onto the fixed subspace.
 \item[(ii)] \emph{Spectral concentration.}  Write $\xi_n\in L^2(M_{d_n}(\C),\tr_{d_n})$
 for the vector $x_n$.  The commutator hypothesis says each
 $\Ad U_n(\iota(s'))$ almost fixes $\xi_n$, so the residual
