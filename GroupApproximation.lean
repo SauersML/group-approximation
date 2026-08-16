@@ -842,6 +842,19 @@ import GroupApproximation.Computability.RabinFreeLetterOrder
 import GroupApproximation.Computability.SemigroupWordProblemMachine
 import GroupApproximation.Sofic.LiteralSoficSeparation
 import GroupApproximation.Sofic.SimpleNotLEF
+import GroupApproximation.Sofic.RationalEnvelope
+import GroupApproximation.Sofic.RepresentationCategoryTwins
+
+-- Restored 2026-08-16: a root-file sweep dropped these while wiring in others.
+-- Each compiles and each was in the closure before, so the removal silently
+-- un-verified them.
+import GroupApproximation.Computability.ListBlankCanonical
+import GroupApproximation.Computability.PostMachineTM0
+import GroupApproximation.Computability.TM0WordProblem
+import GroupApproximation.Sofic.ActionFormMoverEstimate
+import GroupApproximation.Sofic.FullRadicalClosureProperties
+import GroupApproximation.Sofic.WreathFinitePresentationObstruction
+import GroupApproximation.Sofic.TelescopeLimitUnion
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
