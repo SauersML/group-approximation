@@ -26,7 +26,7 @@ formalized in this pass; **TODO** not yet formalized.
 | 2.4 | GKEP sofic action (Definition 2.1) | DONE-NEW | `Sofic/SoficAction.SoficActionModel`, `IsSoficAction` |
 | 9.1-9.3 | ascending normal form, `N = ker χ`, `G = N ⋊ ℤ` | DONE-PRE | `Algebra/MappingTelescope`, `Sofic/MarkedCompressionGroup.Vertical` |
 | 9.4 | ascending HNN is not property (T) | DONE-NEW | `Kazhdan/IntegerNotKazhdan.not_hasKazhdanPropertyT_multiplicative_int`, `Sofic/AscendingHNNNotKazhdan.not_hasKazhdanPropertyT_vertical` |
-| 10.1-10.3 | explicit interval Folner sets for `G/Γ` | TODO | |
+| 10.1-10.3 | explicit interval Følner sets for `G/Γ` | DONE-NEW | `Sofic/AscendingHNNFolner` (`ray`, `smul_ray_eq`, `exists_folner_interval`); the ray is indexed by `ℤ`, which removes the near-end case analysis |
 | 11.1-11.3 | Γ sofic ⇒ G sofic | DONE-PRE | `Sofic/SoficDirectedUnion`, `Sofic/SoficIntegerExtension`, `Sofic/SoficTelescope` |
 | 12.1 | cyclic extension permanence for sofic actions | DONE-NEW | `Sofic/SoficActionCyclicExtension.isSoficAction_semidirect`, on the permutation layer of `Sofic/CyclicStack` |
 | 13.1 | consecutive levels have index `D` | DONE-PRE | `Sofic/MappingTelescopeFiniteOrbits.level_succ_relIndex_eq` |
