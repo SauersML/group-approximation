@@ -285,6 +285,7 @@ import GroupApproximation.Sofic.IntegerLampSurvival
 import GroupApproximation.Monsters.LiteralBaseCompleteness
 import GroupApproximation.Sofic.LEFMarkedCompression
 import GroupApproximation.Algebra.FiniteResidual
+import GroupApproximation.Algebra.VisibleQuotient
 import GroupApproximation.Algebra.PermutationalWreath
 import GroupApproximation.Algebra.PermutationalWreathSimple
 import GroupApproximation.Algebra.PermutationalWreathAmenable
@@ -292,6 +293,7 @@ import GroupApproximation.Algebra.PermutationalWreathLinear
 import GroupApproximation.Algebra.IntJacobson
 import GroupApproximation.Algebra.FiniteTypeField
 import GroupApproximation.Algebra.Malcev
+import GroupApproximation.Algebra.MalcevLinear
 import GroupApproximation.Algebra.WreathSplitQuotient
 import GroupApproximation.Sofic.FiniteDimensionalResidual
 import GroupApproximation.Sofic.ThreeRadicalsCoincide
@@ -559,6 +561,7 @@ import GroupApproximation.Sofic.CoordinateTransfer
 import GroupApproximation.Sofic.DivisibleInvisible
 import GroupApproximation.Sofic.HyperlinearUltraproduct
 import GroupApproximation.Sofic.NormTraceGap
+import GroupApproximation.Sofic.FaithfullyTracedCoordinateNoGo
 import GroupApproximation.Sofic.WeakMFUltraproduct
 import GroupApproximation.Sofic.OpAlmostRepresentation
 import GroupApproximation.Sofic.NormMFResidualDetector
@@ -681,10 +684,18 @@ standing in for a construction, and neither is a parameterized implication
 advertised as an existence result.
 
 **Start at `GroupApproximation.Public`.**  It is the reading path -- the
-declarations a referee needs, each named against the theorem of
-`nonsofic_groups_exist.tex` it establishes.  The statement-by-statement
-correspondence with the manuscript is `docs/CLAIM_MAP.md`, generated from the
-paper's own margin notes and checked on every build.
+declarations a referee needs, each named against the theorem it establishes.
+
+The manuscript that accompanied this construction, `nonsofic_groups_exist.tex`,
+was retired from the repository on 2026-08-12; the manuscripts here now are
+`property_tt_leavitt.tex`, on coordinate-block factorization and `(TT)/T`, and
+`non_mf_groups_exist.tex`, on operator-norm matrix approximation.  Neither
+states the nonsofic theorems, so for those the Lean statements themselves --
+`Endpoint/MainResults.lean` and `Endpoint/ManuscriptStatements.lean` -- are the
+only text in the repository that says what is proved.  `docs/CLAIM_MAP.md`
+records the retired manuscript's statement-by-statement correspondence, frozen
+at its last generation; what `scripts/check.py` still enforces is that the
+declarations it named continue to exist.
 
 ## What is proved here rather than assumed
 
