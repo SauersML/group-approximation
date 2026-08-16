@@ -8,6 +8,8 @@ distinct_from:
 artifacts:
   - research/artifacts/unified-mf-compression-external-2026-08-15.md
   - research/artifacts/multi-mover-verification-2026-08-15.md
+  - research/artifacts/multi-mover-hnn-dossier-2026-08-15.md
+  - GroupApproximation/Sofic/BlockAmplificationRepair.lean
 ---
 
 In the action-form collapse criterion (working-group Theorem 4.1: G
@@ -23,9 +25,12 @@ constant.  The word-length estimate delta_n(g) <= C_g k_n only ever
 used "every letter's displacement is at most k_n", which the max
 guarantees by definition, and the argmax mover has normalized mass
 exactly 1 at the top scale, which is what the spectral-gap
-contradiction consumes.  Conclusion: a_{gamma_{i*} x_0} a_{x_0} dies —
-existential over the finite mover set, subsequence-dependent, which
-suffices for non-MF-ness whenever all these products are nontrivial.
+contradiction consumes.  Conclusion: no injective corona representation
+survives the finite mover family — existential over that family, and
+sufficient for non-MF-ness whenever all these products are nontrivial.
+The naive reading, "the argmax defect dies along the argmax
+subsequence", is FALSE in a c_0-corona and is replaced by finite block
+amplification; see the route.
 
 Consequence (the co-Hopf reduction): a non-MF group needs only a
 property (T) group that is not co-Hopfian — form the ascending HNN
@@ -42,8 +47,14 @@ finitely generated but NOT finitely presented; the finitely presented
 headline still needs presentation engineering or the routing program
 ([[bespoke-routing-lemma]]).
 
-Provenance: Francesco Fournier-Facio's review (email, 2026-08-15) of
-the working-group criterion note; verified here independently.
+Attribution.  The refinement is Francesco Fournier-Facio's: replacing the
+distinguished mover by a finite mover family and normalizing by their
+maximal displacement, and the consequent reduction of the construction to
+a non-co-Hopfian property-(T) group.  The norm-corona implementation is
+ours — his formulation passes to the argmax subsequence, which does not
+vanish in a c_0-corona, and finite-family block amplification replaces
+that step.  Full split in `docs/CREDIT_AND_PRIORITY_AUDIT.md`.  Verified
+here independently.
 Formalization surface: differs from the compression-form core only in
 the estimate layer (max-displacement bookkeeping + pigeonhole), a
 natural next Lean target.
@@ -56,19 +67,32 @@ argument is CORRECT as sketched.  The modification touches only the
 normalization and the word-length estimate; H-letters displace exactly
 zero by the wreath relation, gamma-letters displace at most the max by
 definition, and the argmax mover carries normalized mass exactly one,
-so both sides of the estimate survive with the same constants.  In the
-corona formulation the ultrafilter performs the pigeonhole (the argmax
-takes finitely many values, exactly one is U-large) — no subsequence
-extraction is even needed.  Two substantive deltas recorded: H must be
+so both sides of the estimate survive with the same constants.
+
+CORRECTED 2026-08-16.  The sentence previously here — "in the corona
+formulation the ultrafilter performs the pigeonhole, so no subsequence
+extraction is needed" — conflated the norm matrix corona
+`prod M_{d_n} / sum M_{d_n}` with a norm *ultraproduct*.  In an
+ultraproduct the finite pigeonhole does select a mover on a large set;
+in the corona, vanishing along a subsequence is not vanishing (take
+`x_n = 0` for even `n` and `1` for odd `n`), so the argmax step does not
+by itself kill anything.  The repair is finite block amplification, and
+it is what the route now records.  Two substantive deltas remain: H must be
 the full stabilizer (generators fixing the basepoint must fold into
 H), and the conclusion is existential per morphism — sufficient for
 non-MF-ness since the finite blocking set is fixed in advance, but NOT
 a radical-membership statement; pinning an element of Rad_MF still
-requires (iii), a permuting symmetry, or the compression form.  NO
-Lean module written, deliberately: the kernel-checked compression-form
-endpoint (`actualCoronaMFInvisible_commutator`) is universal over the
-whole Kazhdan subgroup with no mover bookkeeping — a compressor buys
-universality, movers buy only existence — so the finite-family corona
-statement is vacuous on our side, and a faithful formalization of the
-action form is the rank-cocycle analytic core held behind the
-`TorsionCompressionCollapse` assembly gate, a separate project.
+requires (iii), a permuting symmetry, or the compression form.
+
+Lean, 2026-08-16: the block repair itself is now checked, as
+`Sofic/BlockAmplificationRepair.exists_stagewise_separated` and
+`not_isOperatorMF_of_no_multiMarked`, the latter taking the analytic
+core as its only hypothesis.  The rest of the earlier note still
+stands: the kernel-checked compression-form endpoint
+(`actualCoronaMFInvisible_commutator`) is universal over the whole
+Kazhdan subgroup with no mover bookkeeping — a compressor buys
+universality, movers buy only existence — so for our own witnesses the
+finite-family corona statement is not the one being used, and a
+faithful formalization of the full action form is still the rank-cocycle
+analytic core held behind the `TorsionCompressionCollapse` assembly
+gate, a separate project.

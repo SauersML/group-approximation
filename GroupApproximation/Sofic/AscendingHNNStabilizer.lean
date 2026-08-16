@@ -11,6 +11,13 @@ Consequently properness of the self-embedding is precisely what supplies a mover
 every `γ ∉ α(Γ)` moves the site, so the corresponding lamp defect is nontrivial,
 while every `γ ∈ α(Γ)` fixes it, which is the centrality hypothesis of the
 collapse theorem.
+
+Specializing the collapse criterion to the ascending HNN extension of a
+property-`(T)` group along a proper injective self-embedding — so that a
+non-co-Hopfian Kazhdan group is the only structural input needed — was
+suggested by Francesco Fournier-Facio, as was the observation that the ambient
+group then need not have `(T)` at all, in contrast with the Kun--Thom
+examples.
 -/
 
 namespace GroupApproximation

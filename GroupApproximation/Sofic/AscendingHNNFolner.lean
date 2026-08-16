@@ -14,6 +14,10 @@ amount, so the symmetric difference is bounded while the interval grows.
 
 The ray is indexed by `ℤ`, which costs nothing and removes the case analysis at
 the near end.
+
+The co-amenability theorem is Monod--Popa's; that it applies naturally to this
+ascending-HNN instance, through the directed union `N = ⋃ t^{-n} Γ t^n` with
+`G = N ⋊ ⟨t⟩`, was pointed out by Fournier-Facio.
 -/
 
 namespace GroupApproximation

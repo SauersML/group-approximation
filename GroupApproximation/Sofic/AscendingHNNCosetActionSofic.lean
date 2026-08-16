@@ -11,6 +11,12 @@ finite-index image, then the coset action of the ascending HNN extension on
 finite index alone makes every telescope level act with finite orbits, and
 action soficity does not require the acting group to admit a free finite model.
 
+Whether this action is sofic when the base is sofic or residually finite is a
+question of Francesco Fournier-Facio.  The theorem below answers it for
+finite-index image, and `isSoficAction_vertical_cosets_of_uas` answers it for
+arbitrary self-embeddings over a universally action-sofic base; the general
+residually finite case is open.
+
 The proof is the two permanence lemmas applied in turn.
 
 * Each telescope level is commensurable with the base, hence has finite orbits

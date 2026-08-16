@@ -34,8 +34,7 @@ Candidate route: lane-5 telescope-window machinery transplanted —
 finite-index windows in each t^{-n} Gamma t^n give finite quotient
 actions of HNN truncations; Monod--Popa's Folner structure patches
 the windows equivariantly.  Should be EASIER than the E-soficity lane
-(no Clifford kernel to carry).  Raised by Fournier-Facio (email,
-2026-08-15).
+(no Clifford kernel to carry).  Raised by Fournier-Facio.
 
 ## Attempts
 
@@ -46,3 +45,17 @@ the sofic-and-non-MF headline does not wait on this card.  This card
 remains open for the LEAN skeleton (no lamps in the group, soficity of
 the coset action itself in the Gao--Kunnawalkam Elayavalli--Patchell
 sense); the lane-5 window route above is the recorded attack.
+
+Narrowed 2026-08-16.  Two flanking cases are now closed, so what is left
+here is exactly the gap between them.  Finite-index image is settled by
+the finite-orbit telescope ([[finite-telescope-level-coset-orbits]]).
+An arbitrary self-embedding is settled whenever the base is universally
+action-sofic ([[uas-base-gives-sofic-hnn-coset-action]]), which covers
+LERF and the strictly larger LERA class.  The open residue is therefore
+sharply stated: does residual finiteness — or soficity — of the base
+imply that this one action is sofic, for an infinite-index
+self-embedding?  Nothing here suggests it does; residual finiteness is
+not known to imply UAS, and co-amenability of the stabilizer supplies
+Folner sets in the orbit space, not the injective orbit charts the
+definition wants.  Those are different data, which is why the finite-index
+proof is a separate argument rather than a restatement of co-amenability.
