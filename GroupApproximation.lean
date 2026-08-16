@@ -914,6 +914,7 @@ import GroupApproximation.Sofic.CollapseWordMetricBridge
 import GroupApproximation.Analysis.MFStablyFinite
 import GroupApproximation.Criterion.StandardRepCommutant
 import GroupApproximation.Monsters.NeumannNormalSubgroups
+import GroupApproximation.Computability.MachineRestrict
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group

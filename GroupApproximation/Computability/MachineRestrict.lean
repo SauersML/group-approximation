@@ -60,6 +60,7 @@ theorem restrict_eq_some {M : Machine Γ Λ} {S : Finset Λ} {q : {q // q ∈ S}
 def unrestrictCfg {S : Finset Λ} (c : Cfg Γ {q // q ∈ S}) : Cfg Γ Λ :=
   ⟨c.q.1, c.left, c.head, c.right⟩
 
+omit [DecidableEq Λ] in
 theorem unrestrictCfg_injective {S : Finset Λ} :
     Function.Injective (unrestrictCfg : Cfg Γ {q // q ∈ S} → Cfg Γ Λ) := by
   rintro ⟨q₁, l₁, h₁, r₁⟩ ⟨q₂, l₂, h₂, r₂⟩ h
@@ -110,9 +111,10 @@ theorem reach_unrestrict {M : Machine Γ Λ} {S : Finset Λ} (hS : Closed M S)
     simp
 
 /-- **Runs correspond in both directions.**  A run of the original machine out
-of a restricted configuration is the image of a run of the restricted one; no
-surjectivity is needed, only that `unrestrictCfg` is injective and that the
-steps agree. -/
+of a restricted configuration is the image of a run of the restricted one.  No
+surjectivity is needed, and no injectivity either: the commuting square hands
+back the configuration upstairs together with its step, which is exactly the
+existential.  Injectivity is what upgrades this to `reach_iff_reach` below. -/
 theorem reach_iff {M : Machine Γ Λ} {S : Finset Λ} (hS : Closed M S)
     {c : Cfg Γ {q // q ∈ S}} {X : Cfg Γ Λ} :
     Reach (step M) (unrestrictCfg c) X ↔
@@ -129,6 +131,22 @@ theorem reach_iff {M : Machine Γ Λ} {S : Finset Λ} (hS : Closed M S)
   · rintro ⟨d, hcd, rfl⟩
     exact reach_unrestrict hS hcd
 
+/-- **The same, with a named endpoint.**  Here injectivity of `unrestrictCfg` is
+what does the work: it identifies the configuration `reach_iff` produces with
+the one that was asked about.  This is the form to use when both ends of the run
+are already restricted configurations. -/
+theorem reach_iff_reach {M : Machine Γ Λ} {S : Finset Λ} (hS : Closed M S)
+    (c d : Cfg Γ {q // q ∈ S}) :
+    Reach (step M) (unrestrictCfg c) (unrestrictCfg d) ↔
+      Reach (step (restrict M S)) c d := by
+  rw [reach_iff hS]
+  constructor
+  · rintro ⟨e, hce, he⟩
+    obtain rfl := unrestrictCfg_injective he
+    exact hce
+  · intro h
+    exact ⟨d, h, rfl⟩
+
 /-! ## The payoff
 
 The restricted state type is a `Fintype`, so the enumeration `machineRules`
@@ -140,6 +158,18 @@ omit [DecidableEq Λ] in
 theorem exists_states_enumeration (S : Finset Λ) :
     ∃ l : List {q // q ∈ S}, ∀ q : {q // q ∈ S}, q ∈ l :=
   ⟨S.attach.toList, fun q => by simp⟩
+
+/-- **The restricted machine is presented by a finite rewriting system.**  This
+is what the whole file is for, and it is the step the unrestricted machine
+cannot take: `presents_machineSystem` needs an enumeration of the states, the
+original has none, and the restriction does.  The tape alphabet still has to be
+enumerated by the caller, since nothing here makes `Γ` finite. -/
+theorem exists_presents_machineSystem_restrict (M : Machine Γ Λ) (S : Finset Λ)
+    {tapes : List Γ} (htapes : ∀ a : Γ, a ∈ tapes) :
+    ∃ states : List {q // q ∈ S},
+      Presents (restrict M S) (machineSystem (restrict M S) states tapes) := by
+  obtain ⟨states, hstates⟩ := exists_states_enumeration S
+  exact ⟨states, presents_machineSystem (restrict M S) hstates htapes⟩
 
 end PostMachine
 end StringRewriting
