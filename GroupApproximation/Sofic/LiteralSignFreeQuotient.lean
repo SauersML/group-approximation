@@ -470,7 +470,6 @@ private theorem commutator_via_orbit {r vγ : Base}
   rw [habs, hrw, commutator_conj_transport hr, ← mark_eq_dee_commutator]
   exact mark_conj_mem
 
-set_option maxHeartbeats 1000000 in
 /-- The parity-indexed commutators all lie in the marked subgroup. -/
 theorem commutator_parity {e₁ e₂ e₃ : ℤ}
     (he₁ : e₁ = 0 ∨ e₁ = 1) (he₂ : e₂ = 0 ∨ e₂ = 1)
@@ -557,7 +556,6 @@ private theorem vword_difference (e₁ e₂ e₃ d₁ d₂ d₃ : ℤ) :
           ((v1 : Base) ^ (d₁ - e₁) * v2 ^ (d₂ - e₂) *
             v3 ^ (d₃ - e₃)) :=
         (c2.mul_left c3).mul_mul_mul_comm _ _
-set_option maxHeartbeats 1000000 in
 /-- **Orbit commutation modulo the sign.**  Any two base conjugates of
 the moved lamp commute modulo the marked subgroup. -/
 theorem orbit_commutator_mem (g₁ g₂ : Base) :
@@ -584,10 +582,6 @@ theorem orbit_commutator_mem (g₁ g₂ : Base) :
             v3 ^ (d₃ - e₃)))⁻¹) *
         (baseMap ((v1 : Base) ^ e₁ * v2 ^ e₂ * v3 ^ e₃))⁻¹ from by
     group]
-  rw [show baseMap ((v1 : Base) ^ e₁ * v2 ^ e₂ * v3 ^ e₃) * dee *
-      (baseMap ((v1 : Base) ^ e₁ * v2 ^ e₂ * v3 ^ e₃))⁻¹ =
-      baseMap ((v1 : Base) ^ e₁ * v2 ^ e₂ * v3 ^ e₃) * dee *
-        (baseMap ((v1 : Base) ^ e₁ * v2 ^ e₂ * v3 ^ e₃))⁻¹ from rfl]
   rw [show ⁅baseMap ((v1 : Base) ^ e₁ * v2 ^ e₂ * v3 ^ e₃) * dee *
       (baseMap ((v1 : Base) ^ e₁ * v2 ^ e₂ * v3 ^ e₃))⁻¹,
       baseMap ((v1 : Base) ^ e₁ * v2 ^ e₂ * v3 ^ e₃) *
