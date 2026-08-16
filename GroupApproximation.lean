@@ -27,6 +27,7 @@ import GroupApproximation.Computability.PresentationCodes
 import GroupApproximation.Computability.PresentationCodeCompleteness
 import GroupApproximation.Computability.OperatorMFMarkovAtCodes
 import GroupApproximation.Computability.StringRewriting
+import GroupApproximation.Computability.UniversalCodeHalting
 import GroupApproximation.Computability.UniversalCode
 import GroupApproximation.Computability.RewriteMonoid
 import GroupApproximation.Computability.RewriteInvariants
