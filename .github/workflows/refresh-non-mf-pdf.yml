@@ -87,11 +87,9 @@ jobs:
           git config user.name  "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add "${PDF_FILE}"
-          git commit -m "build: refresh non-MF PDF (draft; unattested)
-
-Rebuilt from ${GITHUB_SHA} by the refresh workflow, so the committed PDF
-matches the committed source.  No gates and no attestation ran: the signed
-artifact still comes from the attested release pipeline."
+          git commit \
+            -m "build: refresh non-MF PDF (draft; unattested)" \
+            -m "Rebuilt from ${GITHUB_SHA} by the refresh workflow, so the committed PDF matches the committed source.  No gates and no attestation ran: the signed artifact still comes from the attested release pipeline."
           # Another session may have pushed while we built.  Rebase onto it and
           # retry rather than forcing; the PDF is a derived file and the newest
           # source always wins.
