@@ -246,72 +246,72 @@ once in the comment-stripped manuscript; the probe is the drift detector.
 | eq:sl3presentation | eq | eq:sl3presentation | - |
 | eq:gamma-presentation | eq | eq:gamma-presentation | - |
 | eq:generator-mass | eq | eq:generator-mass | - |
-| prop:mf-equivalences | env | prop:mf-equivalences | 36cb694b0d398dbb |
+| prop:mf-equivalences | env | prop:mf-equivalences | 8fcbf4fc050755b2 |
 | lem:lift | env | lem:lift | 721a3d635e21456f |
-| lem:unitarycorona | env | lem:unitarycorona | a188e2b9a24399f8 |
-| lem:finitecompare | env | lem:finitecompare | 0000000000000000 |
-| lem:ultrafinite | env | lem:ultrafinite | 0000000000000000 |
+| lem:unitarycorona | env | lem:unitarycorona | acf85808aae67e89 |
+| lem:finitecompare | env | lem:finitecompare | fc2a55b505fb0455 |
+| lem:ultrafinite | env | lem:ultrafinite | 2bb52124d79d67fb |
 | thm:kazhdan-transport | env | thm:kazhdan-transport | 36a5391cd928c3d3 |
-| rem:finite-stage | env | rem:finite-stage | f5f15a1021707226 |
+| rem:finite-stage | env | rem:finite-stage | 34f3ec75670bdc39 |
 | thm:transport-variants | env | thm:transport-variants | 70528198cea81006 |
-| def:pattern | env | def:pattern | 9fc5d15d6535fd5e |
-| def:invisible | env | def:invisible | 3f2a00bba6f9cb9d |
-| thm:criterion | env | thm:criterion | 44fb8b53f8227c5d |
-| thm:sign-criterion | env | thm:sign-criterion | d83515e0138bd177 |
-| cor:generaltransport | env | cor:generaltransport | 5e9e62c5aab99f9b |
-| thm:compression-radical | env | thm:compression-radical | f67e517df44aeb9b |
-| thm:normal-kazhdan | env | thm:normal-kazhdan | 97e8705b910fc83a |
-| thm:abstract-nk | env | thm:abstract-nk | 24f0bf7b9f7f0e53 |
-| cor:intrinsic-nk | env | cor:intrinsic-nk | a7a3cb91f6620f63 |
-| thm:kazhdan-clifford | env | thm:kazhdan-clifford | b1db1d8edeada441 |
+| def:pattern | env | def:pattern | fbd43a8db929ff69 |
+| def:invisible | env | def:invisible | f705f5984fdb3e68 |
+| thm:criterion | env | thm:criterion | 4815ce19ed65a026 |
+| thm:sign-criterion | env | thm:sign-criterion | 27a3e86c5351bfb6 |
+| cor:generaltransport | env | cor:generaltransport | 13cf502a17267ad9 |
+| thm:compression-radical | env | thm:compression-radical | f4e9fb766fe58572 |
+| thm:normal-kazhdan | env | thm:normal-kazhdan | c365c0923105d3d0 |
+| thm:abstract-nk | env | thm:abstract-nk | d93135ce6813697c |
+| cor:intrinsic-nk | env | cor:intrinsic-nk | 74911f7eaffe314f |
+| thm:kazhdan-clifford | env | thm:kazhdan-clifford | 0e8f49d2bd0f95a2 |
 | rem:ff-realization | env | rem:ff-realization | 7dc2c4c67a341ebb |
-| thm:A | env | thm:A | 709b77bd99cbaf0e |
+| thm:A | env | thm:A | b22f1bb6c3a6afd1 |
 | cor:uniform | env | cor:uniform | 043923ba46739c21 |
-| cor:scaling-family | env | cor:scaling-family | 0d2d1d84d3c1949c |
+| cor:scaling-family | env | cor:scaling-family | 9370bcd0aa550f6e |
 | thm:B | env | thm:B | 1a4fa9647cbcb3e2 |
 | cor:notRFD | env | cor:notRFD | 754e7536fa06cde2 |
-| rem:invariantsize | env | rem:invariantsize | 1dbbcd5065bafaa0 |
-| rem:chaincondition | env | rem:chaincondition | e981fb297b644ba8 |
-| def:E | env | def:E | 46c314ad2bcb6bd6 |
+| rem:invariantsize | env | rem:invariantsize | aaae6ba6be6c706c |
+| rem:chaincondition | env | rem:chaincondition | 1353d0d0ae9d8202 |
+| def:E | env | def:E | 82744070e0aa91e5 |
 | fig:compression-pattern | env | fig:compression-pattern | f0481ba0527fcf7f |
 | prop:literal-base-T | env | prop:literal-base-T | 4955bce3c162ac27 |
 | thm:p13-complete | env | thm:p13-complete | 32cf3b27267b128d |
 | rem:classical-base | env | rem:classical-base | 3b14e3f10eb77180 |
-| con:clifford | env | con:clifford | 357782b7788ad2c6 |
+| con:clifford | env | con:clifford | 9113a55c13a6227d |
 | lem:linear | env | lem:linear | d64613d28a87f958 |
 | prop:witness | env | prop:witness | 1a168e6eb3a8fb32 |
 | lem:square | env | lem:square | 36940cc67e41844e |
 | thm:C | env | thm:C | ee29ee959c43ba8b |
-| def:radical | env | def:radical | 1d47eebb05d0469d |
+| def:radical | env | def:radical | c72c325fa0b06592 |
 | lem:portable | env | lem:portable | 3cd3c8cd3e2d8419 |
-| prop:univquot | env | prop:univquot | c8376f92abfc3394 |
-| cor:exactradical | env | cor:exactradical | fe6437a7674699ae |
+| prop:univquot | env | prop:univquot | 7821f139d506b59e |
+| cor:exactradical | env | cor:exactradical | cba1a12eca30acd6 |
 | cor:pullback | env | cor:pullback | 8e8da0badc33b150 |
-| prop:mfclosure | env | prop:mfclosure | ba7ad29b7f9bab0d |
+| prop:mfclosure | env | prop:mfclosure | 0cae9b9c9bafd14e |
 | prop:sounditeration | env | prop:sounditeration | 85d7c0d6325a5de3 |
-| cor:nofaithful | env | cor:nofaithful | 6dcfd7d5fa9eacde |
+| cor:nofaithful | env | cor:nofaithful | c7cc4db7be975a5e |
 | lem:permanence | env | lem:permanence | 5ec86a47bd0ca09d |
 | cor:quotclosure | env | cor:quotclosure | 0945a411d7c96988 |
-| prop:stabradical | env | prop:stabradical | 781399993a3238e5 |
-| def:invwitness | env | def:invwitness | dc646fdc588b6664 |
+| prop:stabradical | env | prop:stabradical | 8143f23d621fe254 |
+| def:invwitness | env | def:invwitness | df90cf17c2822610 |
 | thm:collapse | env | thm:collapse | 88224a2caa8373a7 |
-| rem:collapse-finite-stage | env | rem:collapse-finite-stage | af11fb1a3b8bf702 |
-| thm:projection-collapse | env | thm:projection-collapse | ea8e53439023c72e |
-| thm:torsion-collapse | env | thm:torsion-collapse | 7b1ed3e458039374 |
-| thm:commutinglamp | env | thm:commutinglamp | 9e4b86ef5381d807 |
+| rem:collapse-finite-stage | env | rem:collapse-finite-stage | a82d36046165c6dd |
+| thm:projection-collapse | env | thm:projection-collapse | f8010458149ae59b |
+| thm:torsion-collapse | env | thm:torsion-collapse | f46ea426294bbea1 |
+| thm:commutinglamp | env | thm:commutinglamp | 789f8f26adab44b9 |
 | cor:collapsequot | env | cor:collapsequot | bb1a2c2130afbac5 |
 | thm:saturation | env | thm:saturation | 43eab2fa31ed26b9 |
 | thm:D | env | thm:D | 3fbefcf7b1eaf4da |
-| lem:faithfultrace | env | lem:faithfultrace | f052b6478d109bfe |
+| lem:faithfultrace | env | lem:faithfultrace | ed20bbd1df60ef72 |
 | thm:E | env | thm:E | 0b84f58a967cd3a6 |
-| thm:Esofic | env | thm:Esofic | 0000000000000000 |
+| thm:Esofic | env | thm:Esofic | 917c4fa5ef0893d9 |
 | thm:markedclosed | env | thm:markedclosed | f666d6dd719b2ff9 |
 | prop:horn | env | prop:horn | 3e2c6bb45f9627c7 |
 | cor:cylinder | env | cor:cylinder | 847c38b2b21a9d92 |
 | cor:undecidable | env | cor:undecidable | f9931601b5263c4e |
-| prop:maximal-cstar | env | prop:maximal-cstar | e804583acb4798be |
-| prop:proper-isometry | env | prop:proper-isometry | e2a8714db1305b83 |
-| rem:maxinfinite | env | rem:maxinfinite | a9437baa2cf68577 |
+| prop:maximal-cstar | env | prop:maximal-cstar | 9d6deff51f869323 |
+| prop:proper-isometry | env | prop:proper-isometry | 0243b2ca55a4d584 |
+| rem:maxinfinite | env | rem:maxinfinite | d7117de503faf52d |
 | p:abstract-refute | prose | `refutes the conjecture that every countable group is MF` | - |
 | p:abstract-mechanism | prose | `the commutant becomes an asymptotic commutant in normalized Hilbert--Schmidt norm` | - |
 | p:abstract-W | prose | `is itself finitely generated, sofic and not MF, so neither soficity nor` | - |
@@ -332,7 +332,7 @@ once in the comment-stripped manuscript; the probe is the drift detector.
 | p:prelim-notation | prose | `We use without comment:` | - |
 | p:prelim-defs | prose | `An \emph{operator-norm asymptotic representation} of $H$` | - |
 | p:prelim-unit | prose | `Taking $g=h=1$ gives` | - |
-| p:prelim-cmax | prose | `constructs the maximal group $C^*$-algebra` | - |
+| p:prelim-cmax | prose | `the maximal group $C^*$-algebra $\Cmax(H)$ is` | - |
 | p:transport-display | prose | `In the right-hand column, $p\sim q$ is Murray--von Neumann equivalence` | - |
 | p:transport-weights | prose | `The dimension weight $w_n=d_n$ recovers` | - |
 | p:transport-tensors | prose | `Invariant tensors of type $(p,q)$ may be identified with Hilbert--Schmidt intertwiners` | - |
@@ -345,7 +345,7 @@ once in the comment-stripped manuscript; the probe is the drift detector.
 | p:constr-tietze | prose | `The endomorphism $\alpha$ is injective because` | - |
 | p:constr-role-of-a | prose | `$e_1\notin2\mathbb Z^3$, and $a\notin\alpha(\Gamma)$ for the same` | - |
 | p:A-defect-square | prose | `Let $H_1$ be a group and $d,a_1\in H_1$ with $d^2=1$` | - |
-| p:A-consequences | prose | `Kazhdan conjugation datum: every finite normal subgroup of` | - |
+| p:A-consequences | prose | `The theorems of this section show that every finite normal subgroup of` | - |
 | p:B-applied | prose | `Applied to $H=E$, Theorem~\ref{thm:B} sends $w$ to the identity in` | - |
 | p:B-deligne | prose | `In the terminology of \cite[Definition~1.2]{BDL}` | - |
 | p:B-subgroup-valued | prose | `The same calculation proves the final, subgroup-valued assertion` | - |
@@ -356,8 +356,8 @@ once in the comment-stripped manuscript; the probe is the drift detector.
 | p:base-p13-aux | prose | `completeness of the thirteen-relator presentation` | - |
 | p:witness-telescope | prose | `Form the direct limit $T=\varinjlim(\bar\Gamma,\bar\alpha)$` | - |
 | p:witness-scope | prose | `each of its elements involves only finitely many Clifford generators` | - |
-| p:A-marked-radical | prose | `$\operatorname{Rad}_{\mathrm{MF}}(E)$ properly contains $\{1,w\}$` | - |
-| p:A-corner-ranks | prose | `The coordinate averaging corner in the proof of` | - |
+| p:A-marked-radical | prose | `consequently $\{1,w\}$ is a proper subgroup of` | - |
+| p:A-corner-ranks | prose | `The coordinate averaging corner of` | - |
 | p:C-sharpness | prose | `The realized Clifford quotient in Theorem~\ref{thm:C} is amenable` | - |
 | p:C-approx | prose | `In every finite group the doubling relation makes the image of` | - |
 | p:radical-presentation | prose | `For a presentation $G=\langle X\mid R\rangle=F/N$` | - |
