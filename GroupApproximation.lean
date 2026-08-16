@@ -249,6 +249,7 @@ import GroupApproximation.Kun.KunUniformDecompositionStep
 import GroupApproximation.Criterion.CompressionSetup
 import GroupApproximation.Criterion.ExactCompression
 import GroupApproximation.Criterion.ChainConditionCompression
+import GroupApproximation.Criterion.TensorInvariantRigidity
 import GroupApproximation.Criterion.CommutantRigidity
 import GroupApproximation.Criterion.CompressionCentralizerDefect
 import GroupApproximation.Sofic.NormMFResidualExactQuotient
