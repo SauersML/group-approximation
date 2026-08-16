@@ -1534,139 +1534,9 @@ realification and complexification identify it with the complex-unitary
 formulation.
 \end{proof}
 
-The presentation $P_{13}$ used in Step~1 is a presentation of
-$\SL_3(\mathbb Z)$.
+Section~\ref{app:p13} identifies $P_{13}$ with $\SL_3(\mathbb Z)$, and the
+base $\mathcal B$ with the affine group.
 
-\begin{theorem}[completeness of the thirteen-relator presentation]
-\label{thm:p13-complete}
-The canonical homomorphism $P_{13}\to\SL_3(\mathbb Z)$, sending each
-generator $e_{ij}$ to the corresponding elementary matrix, is an
-isomorphism.
-\leanverified{Monsters/P13DescentMaster}{GroupApproximation.P13DescentMaster.p13CompletenessEquiv}
-\end{theorem}
-
-\begin{proof}
-Write $\pi\colon P_{13}\to\SL_3(\mathbb Z)$ for the map in question, and
-\[
- w_{12}=e_{12}e_{21}^{-1}e_{12},\qquad
- w_{13}=e_{13}e_{31}^{-1}e_{13},\qquad
- w_{23}=e_{23}e_{32}^{-1}e_{23}
-\]
-for the three signed swaps; $w_{12}$ is the Weyl element of the
-upper-left $2\times2$ block, and the thirteenth relator is
-$w_{12}^4=1$.  The letter $w$ is reserved for the marked word of
-\eqref{eq:E} and is not used in this proof.  Let $e_3$ be
-the third basis column of $\mathbb Z^3$, let
-$\lVert\cdot\rVert_1$ be the $\ell^1$ norm on $\mathbb Z^3$, and put
-\[
- H_{\mathrm{par}}=\langle e_{12},e_{21},e_{31},e_{32}\rangle\le P_{13},
-\]
-the subgroup on the four root letters whose matrices fix $e_3$.
-
-\emph{Surjectivity.}  This is Euclidean elimination.  Division with
-remainder in the first column of $A\in\SL_3(\mathbb Z)$ is a product of
-integer powers of elementary matrices, and iterating it on columns and
-then on rows reduces $A$ to a diagonal sign matrix.  Each such sign
-matrix is the square of a signed swap, and each signed swap is the
-displayed three-transvection word.
-
-\emph{Injectivity: a normal form.}  Write an element of $P_{13}$ as a
-word $W=\ell_k\cdots\ell_1$ in the letters $e_i^{\pm1}$.  Given a
-column $b\in\mathbb Z^3$, the \emph{trajectory} of $W$ over $b$ is the
-sequence $b,\ \pi(\ell_1)b,\ \pi(\ell_2\ell_1)b,\ \dots,\ \pi(W)b$, and
-$W$ is \emph{norm-monotone} over $b$ when the $\ell^1$ norms along that
-sequence do not decrease.  Using only the thirteen relators, every $W$
-can be rewritten as
-\[
- W=G\,m,\qquad m\in\langle w_{13},w_{23}\rangle,\qquad
- G\ \text{norm-monotone over}\ b:=\pi(m)e_3 .
-\]
-The rewriting is a descent, in the lexicographic order on
-$\mathbb N\times\mathbb N$, of the pair consisting of the largest
-height at which monotonicity fails and the position of the topmost such
-failure.  One step splits $W$ at that position and rewrites the
-offending pair of adjacent letters; the thirty-six ordered pairs of
-root families fall into four classes --- cancelling, commuting,
-Steinberg, and braid --- each closed by one of the displayed relators,
-and each strictly decreasing the pair.
-
-\emph{Injectivity: a kernel word has constant trajectory.}
-Suppose $\pi(W)=1$.
-The subgroup $\langle w_{13},w_{23}\rangle$ maps into the signed
-permutation matrices, so $b=\pi(m)e_3$ is a signed basis column and
-$\lVert b\rVert_1=1$.  The trajectory of $G$ over $b$ starts at $b$ and
-ends at $\pi(G)b=\pi(m)^{-1}b=e_3$, again of norm one, and it is
-nondecreasing; hence it is constant.  A root letter that preserves the
-$\ell^1$ norm of a signed basis column fixes that column, so every
-letter of $G$ fixes $b$ --- and, taking the whole word,
-$\pi(m)e_3=\pi(G)b=e_3$, so $\pi(m)$ fixes $e_3$.
-
-\emph{Injectivity: into the parabolic.}  Conjugation by $w_{13}$ and by
-$w_{23}$ permutes the twelve letters $e_i^{\pm1}$, by two explicit
-tables derived from the relators.  Applying them letter by letter turns
-$m^{-1}Gm$ into a word in root letters, each of which fixes
-$\pi(m)^{-1}b=e_3$.  The root letters whose matrices fix $e_3$ are
-exactly $e_{12}^{\pm1},e_{21}^{\pm1},e_{31}^{\pm1},e_{32}^{\pm1}$, so
-$m^{-1}Gm\in H_{\mathrm{par}}$.
-
-\emph{Injectivity: the subgroup $\langle w_{13},w_{23}\rangle$.}  The group
-$\langle w_{13},w_{23}\rangle$ acts on the six signed basis columns,
-and the orbit of $e_3$ is all six of them, with coset representatives
-\[
- 1,\quad w_{13},\quad w_{23},\quad w_{13}^2,\quad w_{13}^3,\quad
- w_{23}w_{13}^2
-\]
-carrying $e_3$ to $e_3,e_1,e_2,-e_3,-e_1,-e_2$ respectively.  Twelve
-Schreier relations, one for each generator and coset, have the form
-$w_\bullet\,r_j=r_{j'}\,w^{k}$: every Schreier element is a power of
-the block Weyl element $w_{12}$.  The identity that closes the table is
-$w_{23}^2=w_{12}^2w_{13}^2$, the residue of the classical computation
-$\{-1,-1\}=w_{12}^4$ in $K_2(3,\mathbb Z)$, and it is available exactly
-because the thirteenth relator gives $w_{12}^4=1$.  Hence every element
-of $\langle w_{13},w_{23}\rangle$ is $r_jw_{12}^k$; if in addition its
-matrix fixes $e_3$, then $r_je_3=e_3$ forces $j=0$, leaving
-$m=w_{12}^k\in
-H_{\mathrm{par}}$.  With the previous step,
-\[
- W=m\cdot\bigl(m^{-1}Gm\bigr)\in H_{\mathrm{par}} .
-\]
-
-\emph{Injectivity: separation inside the parabolic.}  Let
-$N=\langle e_{31},e_{32}\rangle$ and $\Lambda=\langle
-e_{12},e_{21}\rangle$.  The Steinberg relations make $N$ abelian and
-normalized by $\Lambda$, and every element of $H_{\mathrm{par}}$ is
-$e_{31}^{a}e_{32}^{b}\gamma$ with $\gamma\in\Lambda$.  On $\Lambda$ the
-displayed relators reduce to the braid presentation
-$\langle p,q\mid pqp=qpq,\ (pqp)^4=1\rangle$, which maps isomorphically
-onto $\SL_2(\mathbb Z)$: it surjects onto
-$\mathbb Z/2\ast\mathbb Z/3$, that quotient embeds by the M\"obius
-ping-pong argument, and the residual central element is trivial by
-$(pqp)^4=1$.  So $\pi$ is injective on $\Lambda$.  Now let
-$W=e_{31}^{a}e_{32}^{b}\gamma\in H_{\mathrm{par}}$ have $\pi(W)=1$.
-The upper-left $2\times2$ block of $\pi(W)$ is the matrix of $\gamma$,
-so $\gamma=1$; the bottom row of $\pi(W)$ is then $(a,b,1)$, so
-$a=b=0$.  Hence $W=1$, and $\ker\pi$ is trivial.
-\end{proof}
-
-The separation step is applied only after the factor $m$ has itself
-been placed in $H_{\mathrm{par}}$ and the two factors recombined:
-applied directly to $m^{-1}Gm$ it would meet $\pi(m^{-1}Gm)=\pi(m)^{-1}$
-rather than $1$.
-
-\begin{remark}[the classical identification]\label{rem:classical-base}
-The eight relations \eqref{eq:sl3presentation} present
-$\SL_3(\mathbb Z)$: Theorem~\ref{thm:p13-complete} composed with the
-surjection of Step 2 identifies $\mathcal R$ with $\SL_3(\mathbb Z)$,
-and the base $\mathcal B$ is then the affine group
-$\mathbb Z^3\rtimes\SL_3(\mathbb Z)$ --- the surjection
-$\mathcal B\to\bar\Gamma$ of Lemma~\ref{lem:linear} onto the matrix
-realization is an isomorphism.
-\leanverified{Monsters/LiteralBaseCompleteness}{GroupApproximation.LiteralBaseCompleteness.baseAffineEquiv}
-The presentations go back to \cite[Theorem~2]{CRW}, with the
-matrix-labelled generators also recorded in \cite{CLV}, and
-property~\textup{(T)} of the affine group is classical
-\cite[Example~1.7.4(i)]{BHV}.
-\end{remark}
 \section{The witness: \texorpdfstring{$w\neq 1$}{w is nontrivial}}\label{sec:witness}
 
 Clifford signs, shifts, and HNN doubling have appeared together before in
@@ -1776,9 +1646,9 @@ the target are rational matrices.  The two sites are separated by the
 range characterization of Lemma~\ref{lem:linear}: $D^{-1}\bar v_1D$ has
 the entry $1/2$ in position $(1,4)$ and therefore does not lie in
 $\bar\Gamma\le\GL_4(\mathbb Z)$.
-\section{The defect square}\label{sec:proofA}
+\section{The marked word is a square}\label{sec:proofA}
 
-\begin{lemma}[the marked word is a defect square]\label{lem:square}
+\begin{lemma}[the marked word is a square]\label{lem:square}
 Let $H_1$ be a group and $d,a_1\in H_1$ with $d^2=1$.  Then
 \leanverified{Sofic/CompressionDefectSquare}{GroupApproximation.commutator_conjugate_eq_commutator_sq_of_sq_eq_one}
 \[
@@ -3034,7 +2904,7 @@ see.  With Theorem~\ref{thm:B} this gives a second route to non-MF
 groups: every point-norm matricially stable group with
 $\operatorname{Rad}_{\mathrm{fd}}(G)\ne1$ fails to be MF.
 
-\subsection{Orbit collapse and defect saturation}\label{subsec:collapse}
+\subsection{Orbit collapse}\label{subsec:collapse}
 
 The criteria of Section~\ref{sec:conj} bound the radical from below
 by torsion or rigidity already present in the compression defect.  This
@@ -3149,11 +3019,10 @@ the defect in the cocycle identity, so that
   -U_{a,n}\bigl(V_n(\mu)-V_n(1)\bigr)U_{a,n}^{*}
   -\bigl(V_n(a)-V_n(1)\bigr).
 \]
-Two groupings of this one expression control the two factors of the
-Hilbert--Schmidt estimate, and neither yields the other.  As written,
-$D_n$ is a sum of three displacements of the commuting family of
-Step~1, one of them conjugated; rank is subadditive and invariant
-under unitary conjugation, so Step~2 with the bound of Step~3 gives
+As written, $D_n$ is a sum of three displacements of the commuting
+family of Step~1, one of them conjugated; rank is subadditive and
+invariant under unitary conjugation, so Step~2 with the bound of
+Step~3 gives
 \[
   \operatorname{rank}D_n\le d_n(\gamma,1)+d_n(\mu,1)+d_n(a,1)
   \le\bigl(|\gamma|_S+|\mu|_S+|a|_S\bigr)k_n
@@ -3164,10 +3033,9 @@ eventually.  Regrouped as
   +\bigl(U_{a,n}V_n(1)U_{a,n}^{*}-V_n(a)\bigr),
 \]
 the same $D_n$ is a sum of two covariance errors of Step~1, so
-$\opnorm{D_n}\to0$.  The rank bound comes from the first grouping and
-the operator-norm bound from the second.  The norm bound alone would
-not give the rank bound: two exact involutions at small operator
-distance can differ in full rank.  Combining the two bounds in
+$\opnorm{D_n}\to0$.  The operator-norm bound alone would not give the
+rank bound: two exact involutions at small operator distance can differ
+in full rank.  Combining the two bounds in
 $\operatorname{Tr}|D|^2\le\operatorname{rank}(D)\cdot\opnorm{D}^2$
 bounds the normalized defect mass by
 $\bigl(|\gamma|_S+|\mu|_S+|a|_S\bigr)\opnorm{D_n}^2\to0$: the defect
@@ -3199,10 +3067,10 @@ simultaneously for any prescribed finite subset of $L$.
 models of $sas^{-1}$ and of $1$ converge to one another, which is
 an operator-norm statement; Step~4 has just warned that two exact
 involutions at small operator distance can nevertheless differ in full
-rank, so this does not yet bound the displacement.  What closes the gap
-is a rigidity property of the commuting family of Step~1: two
-\emph{commuting} exact self-adjoint involutions $e,f$ at operator
-distance $\opnorm{e-f}<2$ are equal.  Indeed $T=e-f$ is self-adjoint
+rank, so this does not yet bound the displacement.  The commuting
+family of Step~1 is rigid, however: two \emph{commuting} exact
+self-adjoint involutions $e,f$ at operator distance $\opnorm{e-f}<2$
+are equal.  Indeed $T=e-f$ is self-adjoint
 with $T^3=4T$, so $T^2/4$ is an orthogonal projection, whose norm is
 therefore $0$ or $1$; but $\opnorm{T^2/4}=\opnorm{T}^2/4<1$, so
 $T^2=0$ and hence $T=0$.  The displacement therefore vanishes exactly
@@ -3426,7 +3294,7 @@ In the second case $H/D_{\mathrm{coll}}(L,s)$ is the universal MF
 quotient of $H$ (Proposition~\ref{prop:univquot}): every corona
 representation of $H$ factors through it, and it is MF.
 
-\begin{theorem}[defect saturation]\label{thm:saturation}
+\begin{theorem}[a collapse defect equal to the group]\label{thm:saturation}
 In the setting of Theorem~\ref{thm:collapse}:
 \begin{enumerate}
 \item Every homomorphism $f$ from $H$ to a countable MF group maps
@@ -3804,7 +3672,7 @@ needed here.
 \leanverified{Monsters/NeumannContinuum}{GroupApproximation.NeumannContinuum.manuscriptContinuumMultiplicityUnconditional}
 
 \clearpage
-\parttitle{Part IV.\ \ Limits of the method, and the maximal algebra}
+\parttitle{Part IV.\ \ Limits of the method, and further apparatus}
 
 \section{Limitations of the operator-norm method}\label{sec:limits}
 
@@ -4027,6 +3895,139 @@ a failure of finiteness; for the maximal algebra, infiniteness is
 forced by the strict compression before any MF considerations arise.
 \end{remark}
 
+\section{The thirteen-relator presentation of \texorpdfstring{$\SL_3(\mathbb Z)$}{SL3(Z)}}\label{app:p13}
+
+
+\begin{theorem}[completeness of the thirteen-relator presentation]
+\label{thm:p13-complete}
+The canonical homomorphism $P_{13}\to\SL_3(\mathbb Z)$, sending each
+generator $e_{ij}$ to the corresponding elementary matrix, is an
+isomorphism.
+\leanverified{Monsters/P13DescentMaster}{GroupApproximation.P13DescentMaster.p13CompletenessEquiv}
+\end{theorem}
+
+\begin{proof}
+Write $\pi\colon P_{13}\to\SL_3(\mathbb Z)$ for the map in question, and
+\[
+ w_{12}=e_{12}e_{21}^{-1}e_{12},\qquad
+ w_{13}=e_{13}e_{31}^{-1}e_{13},\qquad
+ w_{23}=e_{23}e_{32}^{-1}e_{23}
+\]
+for the three signed swaps; $w_{12}$ is the Weyl element of the
+upper-left $2\times2$ block, and the thirteenth relator is
+$w_{12}^4=1$.  The letter $w$ is reserved for the marked word of
+\eqref{eq:E} and is not used in this proof.  Let $e_3$ be
+the third basis column of $\mathbb Z^3$, let
+$\lVert\cdot\rVert_1$ be the $\ell^1$ norm on $\mathbb Z^3$, and put
+\[
+ H_{\mathrm{par}}=\langle e_{12},e_{21},e_{31},e_{32}\rangle\le P_{13},
+\]
+the subgroup on the four root letters whose matrices fix $e_3$.
+
+\emph{Surjectivity.}  This is Euclidean elimination.  Division with
+remainder in the first column of $A\in\SL_3(\mathbb Z)$ is a product of
+integer powers of elementary matrices, and iterating it on columns and
+then on rows reduces $A$ to a diagonal sign matrix.  Each such sign
+matrix is the square of a signed swap, and each signed swap is the
+displayed three-transvection word.
+
+\emph{Injectivity: a normal form.}  Write an element of $P_{13}$ as a
+word $W=\ell_k\cdots\ell_1$ in the letters $e_i^{\pm1}$.  Given a
+column $b\in\mathbb Z^3$, the \emph{trajectory} of $W$ over $b$ is the
+sequence $b,\ \pi(\ell_1)b,\ \pi(\ell_2\ell_1)b,\ \dots,\ \pi(W)b$, and
+$W$ is \emph{norm-monotone} over $b$ when the $\ell^1$ norms along that
+sequence do not decrease.  Using only the thirteen relators, every $W$
+can be rewritten as
+\[
+ W=G\,m,\qquad m\in\langle w_{13},w_{23}\rangle,\qquad
+ G\ \text{norm-monotone over}\ b:=\pi(m)e_3 .
+\]
+The rewriting is a descent, in the lexicographic order on
+$\mathbb N\times\mathbb N$, of the pair consisting of the largest
+height at which monotonicity fails and the position of the topmost such
+failure.  One step splits $W$ at that position and rewrites the
+offending pair of adjacent letters; the thirty-six ordered pairs of
+root families fall into four classes --- cancelling, commuting,
+Steinberg, and braid --- each closed by one of the displayed relators,
+and each strictly decreasing the pair.
+
+\emph{Injectivity: a kernel word has constant trajectory.}
+Suppose $\pi(W)=1$.
+The subgroup $\langle w_{13},w_{23}\rangle$ maps into the signed
+permutation matrices, so $b=\pi(m)e_3$ is a signed basis column and
+$\lVert b\rVert_1=1$.  The trajectory of $G$ over $b$ starts at $b$ and
+ends at $\pi(G)b=\pi(m)^{-1}b=e_3$, again of norm one, and it is
+nondecreasing; hence it is constant.  A root letter that preserves the
+$\ell^1$ norm of a signed basis column fixes that column, so every
+letter of $G$ fixes $b$ --- and, taking the whole word,
+$\pi(m)e_3=\pi(G)b=e_3$, so $\pi(m)$ fixes $e_3$.
+
+\emph{Injectivity: into the parabolic.}  Conjugation by $w_{13}$ and by
+$w_{23}$ permutes the twelve letters $e_i^{\pm1}$, by two explicit
+tables derived from the relators.  Applying them letter by letter turns
+$m^{-1}Gm$ into a word in root letters, each of which fixes
+$\pi(m)^{-1}b=e_3$.  The root letters whose matrices fix $e_3$ are
+exactly $e_{12}^{\pm1},e_{21}^{\pm1},e_{31}^{\pm1},e_{32}^{\pm1}$, so
+$m^{-1}Gm\in H_{\mathrm{par}}$.
+
+\emph{Injectivity: the subgroup $\langle w_{13},w_{23}\rangle$.}  The group
+$\langle w_{13},w_{23}\rangle$ acts on the six signed basis columns,
+and the orbit of $e_3$ is all six of them, with coset representatives
+\[
+ 1,\quad w_{13},\quad w_{23},\quad w_{13}^2,\quad w_{13}^3,\quad
+ w_{23}w_{13}^2
+\]
+carrying $e_3$ to $e_3,e_1,e_2,-e_3,-e_1,-e_2$ respectively.  Twelve
+Schreier relations, one for each generator and coset, have the form
+$w_\bullet\,r_j=r_{j'}\,w^{k}$: every Schreier element is a power of
+the block Weyl element $w_{12}$.  The identity that closes the table is
+$w_{23}^2=w_{12}^2w_{13}^2$, the residue of the classical computation
+$\{-1,-1\}=w_{12}^4$ in $K_2(3,\mathbb Z)$, and it is available exactly
+because the thirteenth relator gives $w_{12}^4=1$.  Hence every element
+of $\langle w_{13},w_{23}\rangle$ is $r_jw_{12}^k$; if in addition its
+matrix fixes $e_3$, then $r_je_3=e_3$ forces $j=0$, leaving
+$m=w_{12}^k\in
+H_{\mathrm{par}}$.  With the previous step,
+\[
+ W=m\cdot\bigl(m^{-1}Gm\bigr)\in H_{\mathrm{par}} .
+\]
+
+\emph{Injectivity: separation inside the parabolic.}  Let
+$N=\langle e_{31},e_{32}\rangle$ and $\Lambda=\langle
+e_{12},e_{21}\rangle$.  The Steinberg relations make $N$ abelian and
+normalized by $\Lambda$, and every element of $H_{\mathrm{par}}$ is
+$e_{31}^{a}e_{32}^{b}\gamma$ with $\gamma\in\Lambda$.  On $\Lambda$ the
+displayed relators reduce to the braid presentation
+$\langle p,q\mid pqp=qpq,\ (pqp)^4=1\rangle$, which maps isomorphically
+onto $\SL_2(\mathbb Z)$: it surjects onto
+$\mathbb Z/2\ast\mathbb Z/3$, that quotient embeds by the M\"obius
+ping-pong argument, and the residual central element is trivial by
+$(pqp)^4=1$.  So $\pi$ is injective on $\Lambda$.  Now let
+$W=e_{31}^{a}e_{32}^{b}\gamma\in H_{\mathrm{par}}$ have $\pi(W)=1$.
+The upper-left $2\times2$ block of $\pi(W)$ is the matrix of $\gamma$,
+so $\gamma=1$; the bottom row of $\pi(W)$ is then $(a,b,1)$, so
+$a=b=0$.  Hence $W=1$, and $\ker\pi$ is trivial.
+\end{proof}
+
+The separation step is applied only after the factor $m$ has itself
+been placed in $H_{\mathrm{par}}$ and the two factors recombined:
+applied directly to $m^{-1}Gm$ it would meet $\pi(m^{-1}Gm)=\pi(m)^{-1}$
+rather than $1$.
+
+\begin{remark}[the classical identification]\label{rem:classical-base}
+The eight relations \eqref{eq:sl3presentation} present
+$\SL_3(\mathbb Z)$: Theorem~\ref{thm:p13-complete} composed with the
+surjection of Step 2 identifies $\mathcal R$ with $\SL_3(\mathbb Z)$,
+and the base $\mathcal B$ is then the affine group
+$\mathbb Z^3\rtimes\SL_3(\mathbb Z)$ --- the surjection
+$\mathcal B\to\bar\Gamma$ of Lemma~\ref{lem:linear} onto the matrix
+realization is an isomorphism.
+\leanverified{Monsters/LiteralBaseCompleteness}{GroupApproximation.LiteralBaseCompleteness.baseAffineEquiv}
+The presentations go back to \cite[Theorem~2]{CRW}, with the
+matrix-labelled generators also recorded in \cite{CLV}, and
+property~\textup{(T)} of the affine group is classical
+\cite[Example~1.7.4(i)]{BHV}.
+\end{remark}
 \section*{Acknowledgements}
 We thank Caleb Eckhardt for the reading of the argument that organizes
 Section~\ref{sec:intro}: that it is the matrix-corona form of the

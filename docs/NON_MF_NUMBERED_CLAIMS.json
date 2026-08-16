@@ -316,26 +316,6 @@
       ]
     },
     {
-      "id": "thm:p13-complete",
-      "environment": "theorem",
-      "title": "completeness of the thirteen-relator presentation",
-      "statement_sha256": "32cf3b27267b128d3d24a79fe0b2150596fb9cc7247c17dc994d3521f544641d",
-      "status": "exact",
-      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
-      "dependencies": [],
-      "extra_assumptions": [],
-      "external_inputs": [],
-      "coverage_gap": "",
-      "lean": [
-        {
-          "role": "exact",
-          "module": "Monsters/P13DescentMaster",
-          "declaration": "GroupApproximation.P13DescentMaster.p13CompletenessEquiv",
-          "covers": "the complete printed proposition"
-        }
-      ]
-    },
-    {
       "id": "con:clifford",
       "environment": "construction",
       "title": "Clifford lamp groups",
@@ -404,7 +384,7 @@
     {
       "id": "lem:square",
       "environment": "lemma",
-      "title": "the marked word is a defect square",
+      "title": "the marked word is a square",
       "statement_sha256": "36940cc67e41844eab6c4b2ff16efdd49d9b4563df60e3d40ed213e9af11aa0f",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
@@ -1148,7 +1128,7 @@
     {
       "id": "thm:saturation",
       "environment": "theorem",
-      "title": "defect saturation",
+      "title": "a collapse defect equal to the group",
       "statement_sha256": "43eab2fa31ed26b914c761ab6f90df6970901cdefd177808e177faef89733d3f",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
@@ -1343,6 +1323,26 @@
           "module": "Analysis/ProperIsometryFromCompression",
           "declaration": "GroupApproximation.ProperProjectionCompression.no_faithfulTracialState",
           "covers": "a printed conclusion of the proposition"
+        }
+      ]
+    },
+    {
+      "id": "thm:p13-complete",
+      "environment": "theorem",
+      "title": "completeness of the thirteen-relator presentation",
+      "statement_sha256": "32cf3b27267b128d3d24a79fe0b2150596fb9cc7247c17dc994d3521f544641d",
+      "status": "exact",
+      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
+      "dependencies": [],
+      "extra_assumptions": [],
+      "external_inputs": [],
+      "coverage_gap": "",
+      "lean": [
+        {
+          "role": "exact",
+          "module": "Monsters/P13DescentMaster",
+          "declaration": "GroupApproximation.P13DescentMaster.p13CompletenessEquiv",
+          "covers": "the complete printed proposition"
         }
       ]
     }
