@@ -26,6 +26,7 @@ import GroupApproximation.Computability.CStarRecognitionConsequences
 import GroupApproximation.Computability.PresentationCodes
 import GroupApproximation.Computability.PresentationCodeCompleteness
 import GroupApproximation.Computability.OperatorMFMarkovAtCodes
+import GroupApproximation.Computability.StringRewriting
 import GroupApproximation.Computability.AdianRabinMarkovProperty
 import GroupApproximation.Sofic.AdjointMatrix
 import GroupApproximation.Sofic.ProjectionRankFlip
@@ -330,6 +331,7 @@ import GroupApproximation.Sofic.GeneralizedWreathSofic
 import GroupApproximation.Sofic.AscendingHNNWreathSofic
 import GroupApproximation.Sofic.RegularActionSofic
 import GroupApproximation.Algebra.WreathTelescopeTower
+import GroupApproximation.Algebra.WreathFunctor
 import GroupApproximation.Sofic.FiniteIndexRigidity
 import GroupApproximation.Algebra.FreePermutationalPrecursor
 import GroupApproximation.Sofic.UniversalFactorization
