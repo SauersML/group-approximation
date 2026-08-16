@@ -742,7 +742,18 @@ private theorem sl_smul_aVector (A : Linear) (i : Fin 3) :
 /-- **Transitivity on nonzero parity classes.**  If a lattice vector is not
 even then some element of `SL₃(ℤ)` has a first column congruent to it mod
 `2`.  Seven explicit matrices; the eighth case is excluded by hypothesis. -/
-private theorem exists_sl_column {w : Lattice} (hw : ¬ ∃ u : Lattice, w = 2 • u) :
+/-- **The mod-`2` content of the transitivity hypothesis, and the only part of
+it that is about matrices rather than about a particular carrier.**
+
+Every integer vector that is not twice another one is, modulo `2`, the first
+column of a matrix of `SL₃(ℤ)`; equivalently the reduction
+`SL₃(ℤ) → GL₃(𝔽₂)` moves `ē₁` onto every nonzero class.  `alphaCosetTransitive`
+below packages this for `AffineSL3Doubling.Gamma`, but the statement mentions
+only `Lattice` and `Linear`, so the same lemma serves any model of the affine
+group — in particular the `4 × 4` rational `gammaBar`, over which the
+soficity chain actually runs and where the packaging is still missing.  It is
+public for that reason. -/
+theorem exists_sl_column {w : Lattice} (hw : ¬ ∃ u : Lattice, w = 2 • u) :
     ∃ (A : Linear) (v : Lattice),
       ∀ i, (A : Matrix (Fin 3) (Fin 3) ℤ) i 0 = w i + 2 * v i := by
   rcases Int.even_or_odd (w 0) with ⟨k0, h0⟩ | ⟨k0, h0⟩ <;>
