@@ -103,9 +103,6 @@ import GroupApproximation.Sofic.LiteralSignFreeQuotient
 import GroupApproximation.Sofic.LiteralTietzePresentation
 import GroupApproximation.Sofic.LiteralWitnessConsequences
 import GroupApproximation.Sofic.LiteralBlockModel
-import GroupApproximation.Sofic.LiteralBlockNormalForm
-import GroupApproximation.Sofic.BlockCliffordTowerSofic
-import GroupApproximation.Sofic.LiteralSoficEndpoint
 import GroupApproximation.Sofic.MarkedCompressionInclusionData
 import GroupApproximation.Sofic.CompressionDefectSquare
 import GroupApproximation.Sofic.MarkedCompressionGroup
