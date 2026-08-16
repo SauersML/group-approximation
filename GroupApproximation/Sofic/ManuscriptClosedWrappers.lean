@@ -27,9 +27,17 @@ statement does.
 namespace GroupApproximation
 namespace ManuscriptClosedWrappers
 
-open MarkedCompression CommutingLampCollapse
+open MarkedCompression CommutingLampCollapse Matrix
+open scoped commutatorElement
 
 noncomputable section
+
+/-- Quotients of countable groups are countable; mirrored locally from
+`Sofic.TorsionSpectralCollapse`, where the same instance is `local`. -/
+local instance quotientCountable {E : Type} [Group E] (N : Subgroup E)
+    [hN : N.Normal] [Countable E] : Countable (E ⧸ N) :=
+  Function.Surjective.countable
+    (@QuotientGroup.mk'_surjective E _ N hN)
 
 /-! ## Proper compression in a unital algebra -/
 
@@ -46,7 +54,7 @@ theorem manuscriptProperIsometryNotUnit :
 finiteness. -/
 theorem manuscriptProperCompressionNotStablyFinite :
     ∀ {A : Type} [Ring A] [StarRing A]
-      (D : ProperProjectionCompression A),
+      (_D : ProperProjectionCompression A),
       ¬ IsStablyFiniteRing A := by
   intro A _ _ D
   exact D.not_isStablyFiniteRing
@@ -55,7 +63,7 @@ theorem manuscriptProperCompressionNotStablyFinite :
 tracial state. -/
 theorem manuscriptProperCompressionTraceless :
     ∀ {B : Type} [CStarAlgebra B]
-      (D : ProperProjectionCompression B),
+      (_D : ProperProjectionCompression B),
       ¬ Nonempty (FaithfulTracialState B) := by
   intro B _ D
   exact D.no_faithfulTracialState
@@ -326,7 +334,7 @@ theorem manuscriptTorsionDefectIsRadical :
 Hilbert--Schmidt distances below any prescribed bound. -/
 theorem manuscriptNormModelHSCollapse :
     ∀ {G : Type} [Group G] (F : Finset G) (δ ε : ℝ)
-      (M : NormModel G F δ ε) (η : ℝ), 0 < η →
+      (_M : NormModel G F δ ε) (η : ℝ), 0 < η →
       ∃ M' : NormModel G F δ ε,
         ∀ g ∈ F, ∀ h ∈ F,
           hsDistSq M'.carrier (M'.map g) (M'.map h) ≤ η := by
@@ -344,9 +352,9 @@ theorem manuscriptRobustSpectralGap :
         1 - ε ^ 2 / (4 * S.card) < a → b < 1 →
         ∃ N : ℕ, ∀ n ≥ N, ∀ i : A.model n,
           ¬ (a ≤ Matrix.IsHermitian.eigenvalues
-              (WeakMFVectorGNS.hermitianAverage_conjTranspose A S n) i ∧
+              (KazhdanCornerMatrices.hermitianAverage_conjTranspose A S n) i ∧
             Matrix.IsHermitian.eigenvalues
-              (WeakMFVectorGNS.hermitianAverage_conjTranspose A S n) i ≤ b) := by
+              (KazhdanCornerMatrices.hermitianAverage_conjTranspose A S n) i ≤ b) := by
   intro G _ Q ε hQ S hQS hone hεone hsymm A a b ha hb
   exact WeakMFVectorGNS.hermitianAverage_eventually_no_intermediate_eigenvalues
     hQ S hQS hone hεone hsymm A ha hb
