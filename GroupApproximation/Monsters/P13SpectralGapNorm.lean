@@ -58,7 +58,8 @@ theorem discriminant_nonneg {a b d : ℝ} (hd : 0 < d)
   have hd0 : d ≠ 0 := ne_of_gt hd
   have hat := h (-b / d)
   have hkey : d * (a + 2 * (-b / d) * b + (-b / d) ^ 2 * d) = a * d - b ^ 2 := by
-    field_simp <;> ring
+    field_simp
+    ring
   have hmul : 0 ≤ d * (a + 2 * (-b / d) * b + (-b / d) ^ 2 * d) :=
     mul_nonneg hd.le hat
   rw [hkey] at hmul
@@ -91,7 +92,8 @@ theorem inner_sq_le_energy_mul_energy (A : E →L[ℝ] E)
         = inner ℝ u (A u) + 2 * t * inner ℝ (A u) v
           + t ^ 2 * inner ℝ v (A v) := by
       simp only [hAv, inner_add_left, inner_add_right, real_inner_smul_left,
-        real_inner_smul_right, hs1, hs2] <;> ring
+        real_inner_smul_right, hs1, hs2]
+      ring
     rw [hexp] at hpos
     exact hpos
   exact discriminant_nonneg hv' hquad

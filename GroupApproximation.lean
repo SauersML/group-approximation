@@ -786,7 +786,6 @@ import GroupApproximation.Computability.RewriteSimulation
 import GroupApproximation.Monsters.NeumannContinuum
 import GroupApproximation.Computability.UnaryCounterSimulation
 import GroupApproximation.Computability.PostMachine
-import GroupApproximation.Computability.UniversalCodeHalting
 import GroupApproximation.Computability.PostMachineHalting
 import GroupApproximation.Computability.HaltingReduction
 import GroupApproximation.Computability.RewriteSimulationOn
