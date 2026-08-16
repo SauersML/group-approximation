@@ -1832,7 +1832,7 @@ AsymptoticScale → (ℕ → FiniteMultiGraph) → Prop
 ## `GroupApproximation.NormModel.exists_hs_collapse`
 
 ```lean
-∀ {G : Type u_1} [inst : Group G] {F : Finset G} {δ ε : ℝ} (M : NormModel G F δ ε) {η : ℝ},
+∀ {G : Type u_1} [inst : Group G] {F : Finset G} {δ ε : ℝ} (_M : NormModel G F δ ε) {η : ℝ},
   0 < η → ∃ M', ∀ g ∈ F, ∀ h ∈ F, hsDistSq M'.carrier (M'.map g) (M'.map h) ≤ η
 ```
 

@@ -4,6 +4,148 @@
 
 One entry per declaration named by a manuscript margin note, in the order of `docs/NON_MF_CLAIM_DECLS.txt`.  The types are printed by Lean from the elaborated environment, so this file records what each mapped declaration actually states -- the layer of the correspondence that name resolution alone cannot check.
 
+## `GroupApproximation.ClosedEnvelopeCompression.manuscriptEnvelopeCompressionBlind`
+
+```lean
+∀ {G : Type} [inst : Group G] (Closed : Subgroup G → Prop),
+  (∀ (g : G) (H : Subgroup G),
+      Closed H → Closed (Subgroup.map (MulEquiv.toMonoidHom (MulAut.conj g)) H)) →
+    ∀ [WellFoundedLT { H // Closed H }] (envelope : Subgroup G → Subgroup G),
+      (∀ (H : Subgroup G), Closed (envelope H)) →
+        Monotone envelope →
+          (∀ (g : G) (H : Subgroup G),
+              envelope (Subgroup.map (MulEquiv.toMonoidHom (MulAut.conj g)) H) =
+                Subgroup.map (MulEquiv.toMonoidHom (MulAut.conj g)) (envelope H)) →
+            ∀ (Γ : Subgroup G) (t : G),
+              Subgroup.map (MulEquiv.toMonoidHom (MulAut.conj t)) Γ ≤ Γ →
+                envelope (Subgroup.map (MulEquiv.toMonoidHom (MulAut.conj t)) Γ) = envelope Γ
+```
+
+## `GroupApproximation.CommutingLampCollapse.commutingLampQuotient_collapse`
+
+```lean
+∀ {Γ : Type} [inst : Group Γ] (α : Γ →* Γ) (hα : Function.Injective ⇑α),
+  HasKazhdanPropertyT Γ →
+    ∀ [inst_1 : Countable (MarkedCompression.Ambient α hα)] {a₀ : Γ},
+      a₀ ∉ Set.range ⇑α →
+        ⁅(QuotientGroup.mk' (Subgroup.zpowers (MarkedCompression.signAmbient α hα)))
+                ((MarkedCompression.iotaAmbient α hα) a₀),
+              (QuotientGroup.mk' (Subgroup.zpowers (MarkedCompression.signAmbient α hα)))
+                (MarkedCompression.tAmbient α hα * MarkedCompression.cAmbient α hα *
+                  (MarkedCompression.tAmbient α hα)⁻¹)⁆ ∈
+            actualCoronaMFResidual
+              (MarkedCompression.Ambient α hα ⧸
+                Subgroup.zpowers (MarkedCompression.signAmbient α hα)) ∧
+          ⁅(QuotientGroup.mk' (Subgroup.zpowers (MarkedCompression.signAmbient α hα)))
+                  ((MarkedCompression.iotaAmbient α hα) a₀),
+                (QuotientGroup.mk' (Subgroup.zpowers (MarkedCompression.signAmbient α hα)))
+                  (MarkedCompression.tAmbient α hα * MarkedCompression.cAmbient α hα *
+                    (MarkedCompression.tAmbient α hα)⁻¹)⁆ ≠
+              1 ∧
+            ¬IsCDEOperatorMF
+                (MarkedCompression.Ambient α hα ⧸
+                  Subgroup.zpowers (MarkedCompression.signAmbient α hα))
+```
+
+## `GroupApproximation.CommutingLampCollapse.literalCommutingLampQuotient_collapse`
+
+```lean
+⁅(QuotientGroup.mk'
+          (Subgroup.zpowers
+            (MarkedCompression.signAmbient LiteralNonMFLinearWitness.alpha
+              ExplicitLinearModel.conjD_injective)))
+        ((MarkedCompression.iotaAmbient LiteralNonMFLinearWitness.alpha
+            ExplicitLinearModel.conjD_injective)
+          ExplicitLinearModel.v1G),
+      (QuotientGroup.mk'
+          (Subgroup.zpowers
+            (MarkedCompression.signAmbient LiteralNonMFLinearWitness.alpha
+              ExplicitLinearModel.conjD_injective)))
+        (MarkedCompression.tAmbient LiteralNonMFLinearWitness.alpha
+              ExplicitLinearModel.conjD_injective *
+            MarkedCompression.cAmbient LiteralNonMFLinearWitness.alpha
+              ExplicitLinearModel.conjD_injective *
+          (MarkedCompression.tAmbient LiteralNonMFLinearWitness.alpha
+              ExplicitLinearModel.conjD_injective)⁻¹)⁆ ∈
+    actualCoronaMFResidual
+      (MarkedCompression.Ambient LiteralNonMFLinearWitness.alpha
+          ExplicitLinearModel.conjD_injective ⧸
+        Subgroup.zpowers
+          (MarkedCompression.signAmbient LiteralNonMFLinearWitness.alpha
+            ExplicitLinearModel.conjD_injective)) ∧
+  ⁅(QuotientGroup.mk'
+            (Subgroup.zpowers
+              (MarkedCompression.signAmbient LiteralNonMFLinearWitness.alpha
+                ExplicitLinearModel.conjD_injective)))
+          ((MarkedCompression.iotaAmbient LiteralNonMFLinearWitness.alpha
+              ExplicitLinearModel.conjD_injective)
+            ExplicitLinearModel.v1G),
+        (QuotientGroup.mk'
+            (Subgroup.zpowers
+              (MarkedCompression.signAmbient LiteralNonMFLinearWitness.alpha
+                ExplicitLinearModel.conjD_injective)))
+          (MarkedCompression.tAmbient LiteralNonMFLinearWitness.alpha
+                ExplicitLinearModel.conjD_injective *
+              MarkedCompression.cAmbient LiteralNonMFLinearWitness.alpha
+                ExplicitLinearModel.conjD_injective *
+            (MarkedCompression.tAmbient LiteralNonMFLinearWitness.alpha
+                ExplicitLinearModel.conjD_injective)⁻¹)⁆ ≠
+      1 ∧
+    ¬IsCDEOperatorMF
+        (MarkedCompression.Ambient LiteralNonMFLinearWitness.alpha
+            ExplicitLinearModel.conjD_injective ⧸
+          Subgroup.zpowers
+            (MarkedCompression.signAmbient LiteralNonMFLinearWitness.alpha
+              ExplicitLinearModel.conjD_injective))
+```
+
+## `GroupApproximation.CommutingLampCollapse.literalCommutingLampQuotient_not_isCDEOperatorMF`
+
+```lean
+¬IsCDEOperatorMF
+    (MarkedCompression.Ambient LiteralNonMFLinearWitness.alpha
+        ExplicitLinearModel.conjD_injective ⧸
+      Subgroup.zpowers
+        (MarkedCompression.signAmbient LiteralNonMFLinearWitness.alpha
+          ExplicitLinearModel.conjD_injective))
+```
+
+## `GroupApproximation.CommutingLampQuotientSofic.literalSignFreeQuotient_isSofic_and_not_isCDEOperatorMF`
+
+```lean
+IsSofic
+    (MarkedCompression.Ambient LiteralNonMFLinearWitness.alpha
+        ExplicitLinearModel.conjD_injective ⧸
+      Subgroup.zpowers
+        (MarkedCompression.signAmbient LiteralNonMFLinearWitness.alpha
+          ExplicitLinearModel.conjD_injective)) ∧
+  ¬IsCDEOperatorMF
+      (MarkedCompression.Ambient LiteralNonMFLinearWitness.alpha
+          ExplicitLinearModel.conjD_injective ⧸
+        Subgroup.zpowers
+          (MarkedCompression.signAmbient LiteralNonMFLinearWitness.alpha
+            ExplicitLinearModel.conjD_injective))
+```
+
+## `GroupApproximation.ContinuumMultiplicity.manuscriptContinuumMultiplicity`
+
+```lean
+∀ {ι : Type} (N : ι → Type) [inst : (i : ι) → Group (N i)] [∀ (i : ι), Group.FG (N i)],
+  (∀ (i j : ι), Nonempty (N i ≃* N j) → i = j) →
+    Cardinal.mk ι = Cardinal.continuum →
+      ∃ J,
+        Cardinal.mk ↑J = Cardinal.continuum ∧
+          (∀ i ∈ J,
+              Group.FG (ChosenMarkedPresentation.MarkedGroup × N i) ∧
+                ¬IsOperatorMF (ChosenMarkedPresentation.MarkedGroup × N i)) ∧
+            ∀ i ∈ J,
+              ∀ j ∈ J,
+                Nonempty
+                    (ChosenMarkedPresentation.MarkedGroup × N i ≃*
+                      ChosenMarkedPresentation.MarkedGroup × N j) →
+                  i = j
+```
+
 ## `GroupApproximation.CyclicBaseLEFObstruction.cyclicBase_exactModel_package`
 
 ```lean
@@ -13,6 +155,98 @@ LiteralCyclicCalibration.quotientMap LiteralCyclicCalibration.mark ≠ 1 ∧
     ¬IsLEF LiteralCyclicCalibration.LiteralGroup ∧
       ¬IsLEF LiteralCyclicCalibration.RealizedQuotient ∧
         ¬Group.ResiduallyFinite LiteralCyclicCalibration.RealizedQuotient
+```
+
+## `GroupApproximation.FaithfullyTracedCoordinates.manuscriptFaithfullyTracedCoordinateNoGo`
+
+```lean
+¬FaithfullyTracedCoordinates.FaithfullyTracedCoordinateTransport
+```
+
+## `GroupApproximation.FullMFRadicalEndpoint.exists_group_with_every_nontrivial_quotient_not_isCDEOperatorMF`
+
+```lean
+∀ {P : Type} {E : Type u} [inst : Group P] [inst_1 : Group E] {D : FournierFacioDefectData P E},
+  Nonempty (DefectRoutingData D) →
+    ∃ Q x,
+      ∃ (_ : Countable Q),
+        IsTwoGenerated Q ∧
+          Group.IsFinitelyPresented Q ∧
+            IsPowerTorsionFree Q ∧
+              HasKazhdanPropertyT Q ∧
+                Nontrivial Q ∧
+                  ∀ (H : Type) (x_2 : Group H) (x_3 : Countable H),
+                    Nontrivial H → ∀ (f : Q →* H), Function.Surjective ⇑f → ¬IsCDEOperatorMF H
+```
+
+## `GroupApproximation.FullMFRadicalEndpoint.exists_twoGenerated_finitelyPresented_torsionFree_kazhdan_fullMFRadical`
+
+```lean
+∀ {P : Type} {E : Type u} [inst : Group P] [inst_1 : Group E] {D : FournierFacioDefectData P E},
+  Nonempty (DefectRoutingData D) →
+    ∃ Q x,
+      ∃ (x_1 : Countable Q),
+        IsTwoGenerated Q ∧
+          Group.IsFinitelyPresented Q ∧
+            IsPowerTorsionFree Q ∧ HasKazhdanPropertyT Q ∧ Nontrivial Q ∧ cdeMFResidual Q = ⊤
+```
+
+## `GroupApproximation.HilbertSchmidtAdjointGap.exists_hsClose_adjointFar`
+
+```lean
+∀ (ε : ℝ),
+  0 < ε →
+    ∃ Y U V,
+      U ∈ Matrix.unitaryGroup Y.carrier ℂ ∧
+        V ∈ Matrix.unitaryGroup Y.carrier ℂ ∧
+          √(hsNormSq Y (U - V)) ≤ ε ∧ 2 ≤ ‖conjDouble U - conjDouble V‖
+```
+
+## `GroupApproximation.IntertwinerKazhdanTransport.manuscriptIntertwinerTransport`
+
+```lean
+∀ {Γ H : Type} [inst : Group Γ] [inst_1 : Group H],
+  HasKazhdanPropertyTComplex Γ →
+    ∀ (iota : Γ →* H) (s : H),
+      (∀ (γ : Γ), ∃ δ, s * iota γ * s⁻¹ = iota δ) →
+        ∀ (d₁ d₂ : ℕ → ℕ),
+          (∀ (n : ℕ), 0 < d₁ n) →
+            (∀ (n : ℕ), 0 < d₂ n) →
+              ∀
+                (U₁ :
+                  (n : ℕ) → H → ↥(Matrix.unitaryGroup (naturalFiniteModel (d₁ n)).carrier ℂ))
+                (U₂ :
+                  (n : ℕ) → H → ↥(Matrix.unitaryGroup (naturalFiniteModel (d₂ n)).carrier ℂ)),
+                (∀ (g h : H) (ε : ℝ),
+                    0 < ε → ∃ N, ∀ n ≥ N, ‖↑(U₁ n (g * h)) - ↑(U₁ n g) * ↑(U₁ n h)‖ ≤ ε) →
+                  (∀ (g h : H) (ε : ℝ),
+                      0 < ε → ∃ N, ∀ n ≥ N, ‖↑(U₂ n (g * h)) - ↑(U₂ n g) * ↑(U₂ n h)‖ ≤ ε) →
+                    ∀
+                      (x :
+                        (n : ℕ) →
+                          Matrix (naturalFiniteModel (d₁ n)).carrier
+                            (naturalFiniteModel (d₂ n)).carrier ℂ),
+                      (∃ M, 0 ≤ M ∧ ∀ (n : ℕ), ‖x n‖ ≤ M) →
+                        (∀ (γ : Γ),
+                            IntertwinerKazhdanTransport.NaturalHSIntertwinerVanishing d₁ d₂ U₁
+                              U₂ x (iota γ)) →
+                          ∀ (γ : Γ),
+                            IntertwinerKazhdanTransport.NaturalHSIntertwinerVanishing d₁ d₂ U₁
+                              U₂ (fun n => ↑(U₁ n s) * x n * (↑(U₂ n s)).conjTranspose) (iota γ)
+```
+
+## `GroupApproximation.IntertwinerKazhdanTransport.scaled_intertwiner_transport`
+
+```lean
+∀ {Γ E : Type} [inst : Group Γ] [inst_1 : Group E] (B₁ B₂ : OpAlmostRepresentation E)
+  (w : ℕ → ℝ),
+  (∀ (n : ℕ), 0 ≤ w n) →
+    ∀ (C : KazhdanCompressionCore Γ E)
+      (x : (n : ℕ) → Matrix (B₁.model n).carrier (B₂.model n).carrier ℂ),
+      IntertwinerKazhdanTransport.IsScaledAsymptoticIntertwinerOf B₁ B₂ w C.iota x →
+        IntertwinerKazhdanTransport.IsScaledRectMassBounded B₁ B₂ w x →
+          IntertwinerKazhdanTransport.IsScaledAsymptoticIntertwinerOf B₁ B₂ w C.iota fun n =>
+            ↑(B₁.map n C.t) * x n * (↑(B₂.map n C.t)).conjTranspose
 ```
 
 ## `GroupApproximation.IsOperatorMF.subgroup`
@@ -89,6 +323,12 @@ KazhdanCliffordConstruction.KazhdanCliffordConstructionStatement
 
 ```lean
 KazhdanCompressionCore.ManuscriptCentralSignCriterion
+```
+
+## `GroupApproximation.LiteralBaseCompleteness.baseAffineEquiv`
+
+```lean
+GroupApproximation.LiteralBaseCompleteness.Base✝ ≃* ↥ExplicitLinearModel.gammaBar
 ```
 
 ## `GroupApproximation.LiteralBaseP13PropertyTBridge.manuscriptBaseHasKazhdanPropertyT`
@@ -179,6 +419,17 @@ Fintype.card LiteralCyclicCalibration.Generator = 3 ∧
       π LiteralNonMFPresentation.mark = 1) ∧
     ∀ {Q : Type u_1} [inst : Group Q] [Finite Q]
       (φ : LiteralNonMFPresentation.MarkedGroup →* Q), φ LiteralNonMFPresentation.mark = 1
+```
+
+## `GroupApproximation.LiteralLEFExtension.literalWitness_LEFKernel_integerExtension_nonMF`
+
+```lean
+Function.Surjective ⇑LiteralLEFExtension.zShiftProjection ∧
+  IsLEF ↥LiteralLEFExtension.zShiftProjection.ker ∧
+    IsOperatorMF ↥LiteralLEFExtension.zShiftProjection.ker ∧
+      IsOperatorMF (Multiplicative ℤ) ∧
+        Group.FG LiteralNonMFLinearWitness.WitnessGroup ∧
+          ¬IsOperatorMF LiteralNonMFLinearWitness.WitnessGroup
 ```
 
 ## `GroupApproximation.LiteralMFQuotientControls.manuscriptQuotientNonclosure`
@@ -398,12 +649,48 @@ Fintype.card LiteralNonMFPresentation.Generator = 8 ∧
                                     (LiteralNonMFPresentation.baseMap g)
 ```
 
+## `GroupApproximation.LiteralSignFreeQuotient.commutator_not_zpow_mark`
+
+```lean
+⁅LiteralNonMFPresentation.baseMap GroupApproximation.LiteralSignFreeQuotient.v1✝,
+    LiteralSignFreeQuotient.dee⁆ ∉
+  Subgroup.zpowers LiteralNonMFPresentation.mark
+```
+
+## `GroupApproximation.LiteralSignFreeQuotient.signFreeQuotient_not_isCDEOperatorMF`
+
+```lean
+¬IsCDEOperatorMF LiteralSignFreeQuotient.SignFreeQuotient
+```
+
+## `GroupApproximation.LiteralSignFreeQuotient.signFree_collapse`
+
+```lean
+ActualCoronaMFInvisible
+    ⁅LiteralSignFreeQuotient.proj
+        (LiteralNonMFPresentation.baseMap GroupApproximation.LiteralSignFreeQuotient.v1✝),
+      LiteralSignFreeQuotient.proj LiteralSignFreeQuotient.dee⁆ ∧
+  ⁅LiteralSignFreeQuotient.proj
+        (LiteralNonMFPresentation.baseMap GroupApproximation.LiteralSignFreeQuotient.v1✝),
+      LiteralSignFreeQuotient.proj LiteralSignFreeQuotient.dee⁆ ≠
+    1
+```
+
 ## `GroupApproximation.LiteralSixGenerator.literal_sixGenerated_finitelyPresented_nonMF`
 
 ```lean
 Group.rank LiteralNonMFPresentation.MarkedGroup ≤ 6 ∧
   Group.IsFinitelyPresented LiteralNonMFPresentation.MarkedGroup ∧
     ¬IsOperatorMF LiteralNonMFPresentation.MarkedGroup
+```
+
+## `GroupApproximation.LiteralTietzePresentation.manuscriptTietzeSixGeneratorPresentation`
+
+```lean
+∀ (x : Unit),
+  ∃ L,
+    L.length = 32 ∧
+      ∃ e, ∀ (i : Fin 6), e (PresentedGroup.of i) = LiteralSixGenerator.sixGenerator i
 ```
 
 ## `GroupApproximation.LiteralUniformObstruction.literal_uniform_operatorNorm_obstruction`
@@ -446,6 +733,24 @@ IsLocallyFiniteGroup LiteralWitnessConsequences.WitnessLampGroup ∧
             ¬IsOperatorMF LiteralNonMFLinearWitness.WitnessGroup
 ```
 
+## `GroupApproximation.ManuscriptExactWrappers.manuscriptAbstractNormalKazhdanObstruction`
+
+```lean
+∀ {H : Type} [inst : Group H] [Countable H] (D : Subgroup H),
+  (∀ (B : OpAlmostRepresentation H) (U : Ultrafilter ℕ) (hcof : ↑U ≤ Filter.cofinite),
+      ∀ x ∈ D,
+        ((KazhdanCompressionCore.toAsymptoticUnitaryRepresentation B).toUltraproductHom hcof)
+            x =
+          1) →
+    ∀ (K : Subgroup H) [K.Normal],
+      HasKazhdanPropertyT ↥K →
+        K ≤ D →
+          ∀ (d : ℕ → ℕ) (hd : ∀ (n : ℕ), 0 < d n),
+            let X := fun n => naturalFiniteModel (d n);
+            ∀ (Theta : H →* ↥(unitary (NormMatrixCStarCorona fun n => (X n).carrier))),
+              K ≤ Theta.ker
+```
+
 ## `GroupApproximation.ManuscriptExactWrappers.manuscriptCliffordConstruction`
 
 ```lean
@@ -478,6 +783,36 @@ IsLocallyFiniteGroup LiteralWitnessConsequences.WitnessLampGroup ∧
       ∀ (σ : Equiv.Perm X),
         ((CliffordAlgebraLamp.permHom X) σ) (CliffordAlgebraLamp.zGen X) =
           CliffordAlgebraLamp.zGen X
+```
+
+## `GroupApproximation.ManuscriptExactWrappers.manuscriptCollapseRadicalReduction`
+
+```lean
+∀ {H : Type} [inst : Group H] [inst_1 : Countable H] (L : Subgroup H) (s : H),
+  HasKazhdanPropertyT ↥L →
+    (∀ γ ∈ L, s * γ * s⁻¹ ∈ L) →
+      actualCoronaMFResidual H =
+          Subgroup.comap
+            (QuotientGroup.mk' (InvolutionCollapseEndpoint.involutiveCollapseDefect L s))
+            (actualCoronaMFResidual
+              (H ⧸ InvolutionCollapseEndpoint.involutiveCollapseDefect L s)) ∧
+        (IsCDEOperatorMF (H ⧸ InvolutionCollapseEndpoint.involutiveCollapseDefect L s) →
+          actualCoronaMFResidual H = InvolutionCollapseEndpoint.involutiveCollapseDefect L s)
+```
+
+## `GroupApproximation.ManuscriptExactWrappers.manuscriptDefectSaturation`
+
+```lean
+∀ {H : Type} [inst : Group H] [inst_1 : Countable H] (L : Subgroup H) (s : H),
+  HasKazhdanPropertyT ↥L →
+    (∀ γ ∈ L, s * γ * s⁻¹ ∈ L) →
+      (∀ {Q : Type} [inst_2 : Group Q] [inst_3 : Countable Q] (f : H →* Q),
+          IsCDEOperatorMF Q → InvolutionCollapseEndpoint.involutiveCollapseDefect L s ≤ f.ker) ∧
+        (InvolutionCollapseEndpoint.involutiveCollapseDefect L s = ⊤ →
+          actualCoronaMFResidual H = ⊤ ∧
+            (∀ {Q : Type} [inst_2 : Group Q] [inst_3 : Countable Q] (f : H →* Q),
+                IsCDEOperatorMF Q → ∀ (x : H), f x = 1) ∧
+              (Nontrivial H → ¬IsCDEOperatorMF H))
 ```
 
 ## `GroupApproximation.ManuscriptExactWrappers.manuscriptExactRadicalFromCandidateQuotient`
@@ -515,6 +850,92 @@ IsLocallyFiniteGroup LiteralWitnessConsequences.WitnessLampGroup ∧
     ∀ (d : ℕ → ℕ) (hd : ∀ (n : ℕ), 0 < d n),
       let X := fun n => naturalFiniteModel (d n);
       ∀ (Theta : H →* ↥(unitary (NormMatrixCStarCorona fun n => (X n).carrier))), F ≤ Theta.ker
+```
+
+## `GroupApproximation.ManuscriptExactWrappers.manuscriptHSInvisibleCharacterization`
+
+```lean
+∀ {H : Type} [inst : Group H],
+  (∀ (g : H),
+      ManuscriptExactWrappers.ManuscriptHSInvisible g ↔
+        ∀ (B : OpAlmostRepresentation H) (U : Ultrafilter ℕ) (hcof : ↑U ≤ Filter.cofinite),
+          ((KazhdanCompressionCore.toAsymptoticUnitaryRepresentation B).toUltraproductHom hcof)
+              g =
+            1) ∧
+    (∀ (D : Subgroup H),
+        (∀ x ∈ D, ManuscriptExactWrappers.ManuscriptHSInvisible x) ↔
+          ∀ (B : OpAlmostRepresentation H) (U : Ultrafilter ℕ) (hcof : ↑U ≤ Filter.cofinite),
+            ∀ x ∈ D,
+              ((KazhdanCompressionCore.toAsymptoticUnitaryRepresentation B).toUltraproductHom
+                    hcof)
+                  x =
+                1) ∧
+      ManuscriptExactWrappers.ManuscriptHSInvisible 1 ∧
+        (∀ (g h : H),
+            ManuscriptExactWrappers.ManuscriptHSInvisible g →
+              ManuscriptExactWrappers.ManuscriptHSInvisible h →
+                ManuscriptExactWrappers.ManuscriptHSInvisible (g * h)) ∧
+          ∀ (g : H),
+            ManuscriptExactWrappers.ManuscriptHSInvisible g →
+              ManuscriptExactWrappers.ManuscriptHSInvisible g⁻¹
+```
+
+## `GroupApproximation.ManuscriptExactWrappers.manuscriptIntrinsicNormalKazhdanPart`
+
+```lean
+∀ {Gamma H : Type} [inst : Group Gamma] [inst_1 : Group H] [Countable H] (iota : Gamma →* H),
+  HasKazhdanPropertyT Gamma →
+    normalKazhdanPart (compressionCentralizerDefect iota.range) ≤ actualCoronaMFResidual H
+```
+
+## `GroupApproximation.ManuscriptExactWrappers.manuscriptIntrinsicNormalKazhdanRadical`
+
+```lean
+∀ {Gamma H : Type} [inst : Group Gamma] [inst_1 : Group H] [Countable H] (iota : Gamma →* H),
+  HasKazhdanPropertyT Gamma →
+    ∀ (K : Subgroup H) [K.Normal],
+      HasKazhdanPropertyT ↥K →
+        K ≤ compressionCentralizerDefect iota.range → K ≤ actualCoronaMFResidual H
+```
+
+## `GroupApproximation.ManuscriptExactWrappers.manuscriptInvariantSizePrinciple`
+
+```lean
+∀ {Q : Type u} [inst : Group Q] (size : Subgroup Q → ℕ),
+  (∀ (g : Q) (K : Subgroup Q),
+      size (Subgroup.map (MulEquiv.toMonoidHom (MulAut.conj g)) K) = size K) →
+    (∀ (K L : Subgroup Q), K ≤ L → size L ≤ size K → K = L) →
+      ∀ (K : Subgroup Q) (g : Q),
+        Subgroup.map (MulEquiv.toMonoidHom (MulAut.conj g)) K ≤ K →
+          Subgroup.map (MulEquiv.toMonoidHom (MulAut.conj g)) K = K
+```
+
+## `GroupApproximation.ManuscriptExactWrappers.manuscriptInvolutiveCollapse`
+
+```lean
+∀ {H : Type} [inst : Group H] [Countable H] (L : Subgroup H),
+  HasKazhdanPropertyT ↥L →
+    ∀ (s : H),
+      (∀ γ ∈ L, s * γ * s⁻¹ ∈ L) →
+        InvolutionCollapseEndpoint.involutiveCollapseDefect L s ≤ actualCoronaMFResidual H
+```
+
+## `GroupApproximation.ManuscriptExactWrappers.manuscriptInvolutiveCollapsePattern`
+
+```lean
+∀ {H : Type} [inst : Group H] (L : Subgroup H) (s : H),
+  (∀ (k : H),
+      InvolutionCollapseEndpoint.IsInvolutiveCompressionWitness L s k ↔
+        k * k = 1 ∧
+          (∀ γ ∈ L, Commute (s * γ * s⁻¹) k) ∧
+            ∀ γ₁ ∈ L, ∀ γ₂ ∈ L, Commute (γ₁ * k * γ₁⁻¹) (γ₂ * k * γ₂⁻¹)) ∧
+    InvolutionCollapseEndpoint.involutiveCollapseDefect L s =
+        Subgroup.normalClosure
+          {x |
+            ∃ k,
+              InvolutionCollapseEndpoint.IsInvolutiveCompressionWitness L s k ∧
+                ∃ γ ∈ L, x = ⁅γ, k⁆} ∧
+      (InvolutionCollapseEndpoint.involutiveCollapseDefect L s).Normal
 ```
 
 ## `GroupApproximation.ManuscriptExactWrappers.manuscriptLinearModel`
@@ -620,6 +1041,15 @@ IsLocallyFiniteGroup LiteralWitnessConsequences.WitnessLampGroup ∧
       phi LiteralNonMFPresentation.mark ≠ 1 → ¬IsCDEOperatorMF G2
 ```
 
+## `GroupApproximation.ManuscriptExactWrappers.manuscriptRadicalReductionToQuotient`
+
+```lean
+∀ {G : Type u} [inst : Group G] (N : Subgroup G) [inst_1 : N.Normal],
+  N ≤ actualCoronaMFResidual G →
+    actualCoronaMFResidual G =
+      Subgroup.comap (QuotientGroup.mk' N) (actualCoronaMFResidual (G ⧸ N))
+```
+
 ## `GroupApproximation.ManuscriptExactWrappers.manuscriptTheoremB`
 
 ```lean
@@ -664,6 +1094,92 @@ IsLocallyFiniteGroup LiteralWitnessConsequences.WitnessLampGroup ∧
         (IsCDEOperatorMF G ↔ manuscriptCoronaMFResidual G = ⊥)
 ```
 
+## `GroupApproximation.MarkedGroupSpace.exists_wordBall_cylinder_subset_compl_operatorMFLocus`
+
+```lean
+∀ {k : ℕ} (M : MarkedGroupSpace k),
+  ¬IsOperatorMF M.Quotient →
+    ∃ R, M.cylinder (MarkedGroupSpace.wordBall k R) ⊆ (MarkedGroupSpace.operatorMFLocus k)ᶜ
+```
+
+## `GroupApproximation.MarkedGroupSpace.isClosed_operatorMFLocus`
+
+```lean
+∀ {k : ℕ}, IsClosed (MarkedGroupSpace.operatorMFLocus k)
+```
+
+## `GroupApproximation.MarkedGroupSpace.isOpen_compl_operatorMFLocus`
+
+```lean
+∀ {k : ℕ}, IsOpen (MarkedGroupSpace.operatorMFLocus k)ᶜ
+```
+
+## `GroupApproximation.MarkovMFConsequences.exists_finitelyPresented_nonOperatorMF`
+
+```lean
+∃ G x, Group.IsFinitelyPresented G ∧ ¬IsOperatorMF G
+```
+
+## `GroupApproximation.MarkovMFConsequences.operatorMF_recognition_undecidable`
+
+```lean
+∀ {Source : Type u} {Code : Type v} [inst : Primcodable Source] [inst_1 : Primcodable Code]
+  {sourceProperty : Source → Prop}
+  (semantics : MarkovMFConsequences.FinitePresentationSemantics Code)
+  (_reduction :
+    MarkovMFConsequences.AdianRabinReduction sourceProperty
+      (MarkovMFConsequences.operatorMFProperty semantics)),
+  ¬ComputablePred sourceProperty →
+    ¬ComputablePred (MarkovMFConsequences.operatorMFProperty semantics)
+```
+
+## `GroupApproximation.MarkovMFConsequences.operatorMF_subgroup_hereditary`
+
+```lean
+∀ {G : Type u} [inst : Group G], IsOperatorMF G → ∀ (H : Subgroup G), IsOperatorMF ↥H
+```
+
+## `GroupApproximation.MatricialStabilityRadical.actualCoronaMFResidual_eq_fdUnitaryResidual`
+
+```lean
+∀ {G : Type u} [inst : Group G] [Countable G],
+  MatricialStabilityRadical.IsPointNormMatriciallyStable G →
+    actualCoronaMFResidual G = MatricialStabilityRadical.fdUnitaryResidual G
+```
+
+## `GroupApproximation.MatricialStabilityRadical.actualCoronaMFResidual_le_fdUnitaryResidual`
+
+```lean
+∀ {G : Type u} [inst : Group G],
+  actualCoronaMFResidual G ≤ MatricialStabilityRadical.fdUnitaryResidual G
+```
+
+## `GroupApproximation.MatricialStabilityRadical.not_isCDEOperatorMF_of_stable_of_fdResidual_ne_bot`
+
+```lean
+∀ {G : Type u} [inst : Group G] [inst_1 : Countable G],
+  MatricialStabilityRadical.IsPointNormMatriciallyStable G →
+    MatricialStabilityRadical.fdUnitaryResidual G ≠ ⊥ → ¬IsCDEOperatorMF G
+```
+
+## `GroupApproximation.NeumannContinuum.manuscriptContinuumMultiplicityUnconditional`
+
+```lean
+∃ J,
+  Cardinal.mk ↑J = Cardinal.continuum ∧
+    (∀ i ∈ J,
+        Group.FG
+            (ChosenMarkedPresentation.MarkedGroup × NeumannContinuum.NeumannFamilyGroup i) ∧
+          ¬IsOperatorMF
+              (ChosenMarkedPresentation.MarkedGroup × NeumannContinuum.NeumannFamilyGroup i)) ∧
+      ∀ i ∈ J,
+        ∀ j ∈ J,
+          Nonempty
+              (ChosenMarkedPresentation.MarkedGroup × NeumannContinuum.NeumannFamilyGroup i ≃*
+                ChosenMarkedPresentation.MarkedGroup × NeumannContinuum.NeumannFamilyGroup j) →
+            i = j
+```
+
 ## `GroupApproximation.NonMFImpact.witness_sofic_hyperlinear_nonMF`
 
 ```lean
@@ -671,6 +1187,96 @@ Group.FG LiteralNonMFLinearWitness.WitnessGroup ∧
   IsSofic LiteralNonMFLinearWitness.WitnessGroup ∧
     IsHyperlinear LiteralNonMFLinearWitness.WitnessGroup ∧
       ¬IsOperatorMF LiteralNonMFLinearWitness.WitnessGroup
+```
+
+## `GroupApproximation.NormModel.exists_hs_collapse`
+
+```lean
+∀ {G : Type u_1} [inst : Group G] {F : Finset G} {δ ε : ℝ} (_M : NormModel G F δ ε) {η : ℝ},
+  0 < η → ∃ M', ∀ g ∈ F, ∀ h ∈ F, hsDistSq M'.carrier (M'.map g) (M'.map h) ≤ η
+```
+
+## `GroupApproximation.NuclearityAmenability.manuscriptNotAmenableOfBaseEmbeds`
+
+```lean
+∀ {G : Type} [inst : Group G] (f : LiteralNonMFPresentation.Base →* G),
+  Function.Injective ⇑f → ¬Amenability.IsAmenable G
+```
+
+## `GroupApproximation.P13DescentMaster.p13CompletenessEquiv`
+
+```lean
+LiteralP13Presentation.P13 ≃* LiteralP13MatrixModel.SL3
+```
+
+## `GroupApproximation.ProductMultiplicity.manuscriptInfiniteMultiplicity`
+
+```lean
+∃ F x,
+  (∀ (k : ℕ), Group.IsFinitelyPresented (F k)) ∧
+    (∀ (k : ℕ), ¬IsOperatorMF (F k)) ∧ ∀ (k l : ℕ), Nonempty (F k ≃* F l) → k = l
+```
+
+## `GroupApproximation.ProjectionCompressionCollapse.corona_projection_collapse`
+
+```lean
+∀ {E : Type} [inst : Group E] [Countable E] (L : Subgroup E),
+  HasKazhdanPropertyT ↥L →
+    ∀ {s : E},
+      (∀ γ ∈ L, s * γ * s⁻¹ ∈ L) →
+        ∀ (X : ℕ → FiniteModel) (hX : ∀ (n : ℕ), 0 < Fintype.card (X n).carrier)
+          (pi : E →* ↥(unitary (NormMatrixCStarCorona fun n => (X n).carrier)))
+          (p : NormMatrixCStarCorona fun n => (X n).carrier),
+          star p = p →
+            p * p = p →
+              (∀ γ ∈ L, ↑(pi (s * γ * s⁻¹)) * p = p * ↑(pi (s * γ * s⁻¹))) →
+                (∀ γ₁ ∈ L,
+                    ∀ γ₂ ∈ L,
+                      Commute (↑(pi γ₁) * p * star ↑(pi γ₁)) (↑(pi γ₂) * p * star ↑(pi γ₂))) →
+                  ∀ γ ∈ L, ↑(pi γ) * p = p * ↑(pi γ)
+```
+
+## `GroupApproximation.ProperProjectionCompression.isometry_not_isUnit`
+
+```lean
+∀ {A : Type u} [inst : Ring A] [inst_1 : StarRing A] (D : ProperProjectionCompression A),
+  ¬IsUnit D.isometry
+```
+
+## `GroupApproximation.ProperProjectionCompression.no_faithfulTracialState`
+
+```lean
+∀ {B : Type u_1} [inst : CStarAlgebra B] (_D : ProperProjectionCompression B),
+  ¬Nonempty (FaithfulTracialState B)
+```
+
+## `GroupApproximation.ProperProjectionCompression.not_isStablyFiniteRing`
+
+```lean
+∀ {A : Type u} [inst : Ring A] [inst_1 : StarRing A] (_D : ProperProjectionCompression A),
+  ¬IsStablyFiniteRing A
+```
+
+## `GroupApproximation.QuasiRegularWitness.baseVector_apply_base`
+
+```lean
+∀ (G : Type u) [inst : Group G] (K : Subgroup G) [inst_1 : DecidableEq (G ⧸ K)],
+  ↑(QuasiRegularWitness.baseVector G K) ↑1 = 1
+```
+
+## `GroupApproximation.ScaledKazhdanTransport.scaled_transport_both`
+
+```lean
+∀ {Γ E : Type} [inst : Group Γ] [inst_1 : Group E] (B : OpAlmostRepresentation E) (w : ℕ → ℝ),
+  (∀ (n : ℕ), 0 ≤ w n) →
+    ∀ (C : KazhdanCompressionCore Γ E)
+      (x : (n : ℕ) → Matrix (B.model n).carrier (B.model n).carrier ℂ),
+      ScaledKazhdanTransport.IsScaledAsymptoticCommutant B w C x →
+        ScaledKazhdanTransport.IsScaledMassBounded B w x →
+          (ScaledKazhdanTransport.IsScaledAsymptoticCommutant B w C fun n =>
+              ↑(B.map n C.t) * x n * (↑(B.map n C.t)).conjTranspose) ∧
+            ScaledKazhdanTransport.IsScaledAsymptoticCommutant B w C fun n =>
+              (↑(B.map n C.t)).conjTranspose * x n * ↑(B.map n C.t)
 ```
 
 ## `GroupApproximation.ScalingFamilyEndpoint.manuscriptTheoremFamily`
@@ -695,6 +1301,117 @@ Group.FG LiteralNonMFLinearWitness.WitnessGroup ∧
               ¬IsMFAlgebra
                   ↥(ReducedGroupCStarTrace.ReducedGroupCStar
                       (ScalingFamilyPresentation.MarkedGroup m))
+```
+
+## `GroupApproximation.SoficByAmenablePermanence.manuscriptSoficOfSoficKerOfAmenableQuotient`
+
+```lean
+∀ {G Q : Type} [inst : Group G] [inst_1 : Group Q] (f : G →* Q),
+  Function.Surjective ⇑f → IsSofic ↥f.ker → Amenability.IsAmenable Q → IsSofic G
+```
+
+## `GroupApproximation.TensorInvariantRigidity.manuscriptTensorInvariantRigidity`
+
+```lean
+∀ {G : Type u} [inst : Group G] {k V W : Type v} [inst_1 : Field k] [inst_2 : AddCommGroup V]
+  [inst_3 : _root_.Module k V] [inst_4 : AddCommGroup W] [inst_5 : _root_.Module k W]
+  [FiniteDimensional k V] [FiniteDimensional k W] (σ : G →* V ≃ₗ[k] V) (τ : G →* W ≃ₗ[k] W)
+  (Γ : Subgroup G) (t : G),
+  (∀ γ ∈ Γ, t * γ * t⁻¹ ∈ Γ) →
+    fixedSubmodule (TensorInvariantRigidity.tensorRep σ τ)
+          (Subgroup.map (MulEquiv.toMonoidHom (MulAut.conj t)) Γ) =
+        fixedSubmodule (TensorInvariantRigidity.tensorRep σ τ) Γ ∧
+      fixedSubmodule (TensorInvariantRigidity.dualRep σ)
+            (Subgroup.map (MulEquiv.toMonoidHom (MulAut.conj t)) Γ) =
+          fixedSubmodule (TensorInvariantRigidity.dualRep σ) Γ ∧
+        fixedSubmodule (TensorInvariantRigidity.homRep σ τ)
+              (Subgroup.map (MulEquiv.toMonoidHom (MulAut.conj t)) Γ) =
+            fixedSubmodule (TensorInvariantRigidity.homRep σ τ) Γ ∧
+          fixedSubmodule (TensorInvariantRigidity.prodRep σ τ)
+              (Subgroup.map (MulEquiv.toMonoidHom (MulAut.conj t)) Γ) =
+            fixedSubmodule (TensorInvariantRigidity.prodRep σ τ) Γ
+```
+
+## `GroupApproximation.TensorPowerTransport.manuscriptFixedTensorTransport`
+
+```lean
+∀ {Γ E : Type} [inst : Group Γ] [inst_1 : Group E] (A : OpAlmostRepresentation E) (p q : ℕ)
+  (w : ℕ → ℝ),
+  (∀ (n : ℕ), 0 ≤ w n) →
+    ∀ (C : KazhdanCompressionCore Γ E)
+      (x :
+        (n : ℕ) → Matrix ((A.tensorPow p).model n).carrier ((A.tensorPow q).model n).carrier ℂ),
+      IntertwinerKazhdanTransport.IsScaledAsymptoticIntertwinerOf (A.tensorPow p)
+          (A.tensorPow q) w C.iota x →
+        IntertwinerKazhdanTransport.IsScaledRectMassBounded (A.tensorPow p) (A.tensorPow q) w
+            x →
+          IntertwinerKazhdanTransport.IsScaledAsymptoticIntertwinerOf (A.tensorPow p)
+            (A.tensorPow q) w C.iota fun n =>
+            ↑((A.tensorPow p).map n C.t) * x n * (↑((A.tensorPow q).map n C.t)).conjTranspose
+```
+
+## `GroupApproximation.TorsionSpectralCollapse.actualCoronaMFInvisible_of_torsionWitness`
+
+```lean
+∀ {E : Type} [inst : Group E] [Countable E] {L : Subgroup E},
+  HasKazhdanPropertyT ↥L →
+    ∀ {s : E},
+      (∀ γ ∈ L, s * γ * s⁻¹ ∈ L) →
+        ∀ {k : E},
+          TorsionCompressionCollapse.IsTorsionCompressionWitness L s k →
+            ∀ {γ : E}, γ ∈ L → ActualCoronaMFInvisible ⁅γ, k⁆
+```
+
+## `GroupApproximation.TorsionSpectralCollapse.actualCoronaMFResidual_eq_torsionCollapseDefect_of_kazhdan`
+
+```lean
+∀ {E : Type} [inst : Group E] [inst_1 : Countable E] {L : Subgroup E},
+  HasKazhdanPropertyT ↥L →
+    ∀ {s : E},
+      (∀ γ ∈ L, s * γ * s⁻¹ ∈ L) →
+        IsCDEOperatorMF (E ⧸ TorsionCompressionCollapse.torsionCollapseDefect L s) →
+          actualCoronaMFResidual E = TorsionCompressionCollapse.torsionCollapseDefect L s
+```
+
+## `GroupApproximation.TorsionSpectralCollapse.torsionCollapseDefect_le_actualCoronaMFResidual_of_kazhdan`
+
+```lean
+∀ {E : Type} [inst : Group E] [Countable E] {L : Subgroup E},
+  HasKazhdanPropertyT ↥L →
+    ∀ {s : E},
+      (∀ γ ∈ L, s * γ * s⁻¹ ∈ L) →
+        TorsionCompressionCollapse.torsionCollapseDefect L s ≤ actualCoronaMFResidual E
+```
+
+## `GroupApproximation.WeakMFVectorGNS.hermitianAverage_eventually_no_intermediate_eigenvalues`
+
+```lean
+∀ {G : Type} [inst : Group G] {Q : Finset G} {ε : ℝ},
+  IsKazhdanPair G Q ε →
+    ∀ (S : Finset G),
+      Q ⊆ S →
+        1 ∈ S →
+          ε ≤ 1 →
+            (∀ g ∈ S, g⁻¹ ∈ S) →
+              ∀ (A : OpAlmostRepresentation G) {a b : ℝ},
+                1 - ε ^ 2 / (4 * ↑S.card) < a →
+                  b < 1 →
+                    ∃ N,
+                      ∀ n ≥ N,
+                        ∀ (i : (A.model n).carrier),
+                          ¬(a ≤ Matrix.IsHermitian.eigenvalues ⋯ i ∧
+                              Matrix.IsHermitian.eigenvalues ⋯ i ≤ b)
+```
+
+## `GroupApproximation.ZariskiClosedSubgroup.manuscriptZariskiRepresentationEnvelopeClosed`
+
+```lean
+∀ {n : Type u_3} [inst : Fintype n] [inst_1 : DecidableEq n] {k : Type u_4} [inst_2 : Field k]
+  {H : Type u_5} [inst_3 : Group H] (σ : H →* GL n k) (Γ : Subgroup H) (t : H),
+  Subgroup.map (MulEquiv.toMonoidHom (MulAut.conj t)) Γ ≤ Γ →
+    ZariskiClosedSubgroup.zClosure
+        ↑(Subgroup.map σ (Subgroup.map (MulEquiv.toMonoidHom (MulAut.conj t)) Γ)) =
+      ZariskiClosedSubgroup.zClosure ↑(Subgroup.map σ Γ)
 ```
 
 ## `GroupApproximation.commutator_conjugate_eq_commutator_sq_of_sq_eq_one`
@@ -727,6 +1444,44 @@ Group.FG LiteralNonMFLinearWitness.WitnessGroup ∧
 ∀ {K : Type u} [inst : Group K] [Countable K] [Group.ResiduallyFinite K], IsOperatorMF K
 ```
 
+## `GroupApproximation.manuscriptChainConditionRigidity`
+
+```lean
+(∀ (P : Type u) [inst : PartialOrder P] [WellFoundedGT P] (e : P ≃o P), ∀ a ≤ e a, e a = a) ∧
+  (∀ (P : Type u) [inst : PartialOrder P] [WellFoundedLT P] (e : P ≃o P) (a : P),
+      e a ≤ a → e a = a) ∧
+    ∀ (G : Type u) [inst : Group G] (k V : Type v) [inst_1 : Field k] [inst_2 : AddCommGroup V]
+      [inst_3 : _root_.Module k V] [FiniteDimensional k V] (σ : G →* V ≃ₗ[k] V) (Γ : Subgroup G)
+      (t : G),
+      (∀ γ ∈ Γ, t * γ * t⁻¹ ∈ Γ) →
+        fixedSubmodule σ (Subgroup.map (MulEquiv.toMonoidHom (MulAut.conj t)) Γ) =
+          fixedSubmodule σ Γ
+```
+
+## `GroupApproximation.manuscriptRelationClosure`
+
+```lean
+∀ (G : Type u) [inst : Group G] [inst_1 : Countable G] (N : Subgroup G) [inst_2 : N.Normal],
+  N ≤ actualCoronaMFClosure N ∧
+    actualCoronaMFClosure N =
+        Subgroup.comap (QuotientGroup.mk' N) (manuscriptCoronaMFResidual (G ⧸ N)) ∧
+      (∀ (M : Subgroup G) [inst_3 : M.Normal],
+          N ≤ M → actualCoronaMFClosure N ≤ actualCoronaMFClosure M) ∧
+        actualCoronaMFClosure (actualCoronaMFClosure N) = actualCoronaMFClosure N ∧
+          (actualCoronaMFClosure N = N ↔ IsCDEOperatorMF (G ⧸ N)) ∧
+            IsCDEOperatorMF (G ⧸ actualCoronaMFClosure N)
+```
+
+## `GroupApproximation.manuscriptSoundIterationClosure`
+
+```lean
+∀ (G : Type u) [inst : Group G] [inst_1 : Countable G],
+  (∀ (N : Subgroup G), IsSoundIterate N → N ≤ manuscriptCoronaMFResidual G) ∧
+    (∀ (N : Subgroup G) [inst_2 : N.Normal],
+        IsSoundIterate N → IsCDEOperatorMF (G ⧸ N) → manuscriptCoronaMFResidual G = N) ∧
+      (IsSoundIterate ⊤ → manuscriptCoronaMFResidual G = ⊤)
+```
+
 ## `GroupApproximation.manuscriptUniverseRelativeMaximalGroupCStar`
 
 ```lean
@@ -734,4 +1489,14 @@ Group.FG LiteralNonMFLinearWitness.WitnessGroup ∧
   Function.Injective ⇑(maximalGroupCStarUnitaryHom G) ∧
     ∀ (B : Type u) [inst_1 : CStarAlgebra B] (rho : G →* ↥(unitary B)),
       ∃! f, ∀ (g : G), f (maximalGroupCStarGenerator G g) = ↑(rho g)
+```
+
+## `GroupApproximation.mem_actualCoronaMFClosure_iff`
+
+```lean
+∀ {G : Type u} [inst : Group G] {N : Subgroup G} [inst_1 : N.Normal] {x : G},
+  x ∈ actualCoronaMFClosure N ↔
+    ∀ (X : ℕ → FiniteModel) (hX : ∀ (n : ℕ), 0 < Fintype.card (X n).carrier)
+      (rho : G →* ↥(unitary (NormMatrixCStarCorona fun n => (X n).carrier))),
+      (∀ y ∈ N, rho y = 1) → rho x = 1
 ```
