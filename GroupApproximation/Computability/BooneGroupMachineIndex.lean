@@ -1,5 +1,11 @@
 import GroupApproximation.Computability.BooneGroupModularMachine
 import GroupApproximation.Computability.BooneGroupBase
+import Mathlib.Tactic.Abel
+import Mathlib.Tactic.Group
+import Mathlib.Tactic.Linarith
+import Mathlib.Tactic.Module
+import Mathlib.Tactic.NormNum
+import Mathlib.Tactic.Ring
 
 /-!
 # Where the machine meets the group: the halting set as a good index set

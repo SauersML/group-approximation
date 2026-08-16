@@ -1,5 +1,11 @@
 import GroupApproximation.Computability.BooneGroupFreeBasis
 import Mathlib.GroupTheory.SemidirectProduct
+import Mathlib.Tactic.Abel
+import Mathlib.Tactic.Group
+import Mathlib.Tactic.Linarith
+import Mathlib.Tactic.Module
+import Mathlib.Tactic.NormNum
+import Mathlib.Tactic.Ring
 
 /-!
 # The base group of the Aanderaa--Cohen construction, and Simpson's Lemma 5

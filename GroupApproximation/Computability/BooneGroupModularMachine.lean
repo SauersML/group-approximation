@@ -1,5 +1,11 @@
 import Mathlib.Computability.RE
 import Mathlib.Logic.Relation
+import Mathlib.Tactic.Linarith
+import Mathlib.Tactic.Abel
+import Mathlib.Tactic.Group
+import Mathlib.Tactic.Module
+import Mathlib.Tactic.NormNum
+import Mathlib.Tactic.Ring
 
 /-!
 # Modular machines: the computational input to Novikov--Boone
@@ -207,7 +213,7 @@ theorem halts_iff_of_step {p q : ℕ × ℕ} (h : M.step p = some q) :
   · intro hp
     rcases Relation.ReflTransGen.cases_head hp with heq | ⟨r, hr, hrest⟩
     · rw [heq, M.step_zero_zero] at h
-      exact Option.noConfusion h
+      simp at h
     · have hrq : r = q := Option.some.inj (hr.symm.trans h)
       rw [hrq] at hrest
       exact hrest

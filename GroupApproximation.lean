@@ -922,6 +922,10 @@ import GroupApproximation.Sofic.CliffordLampGraphLocalFiniteness
 import GroupApproximation.Algebra.FreePrecursorPresentation
 import GroupApproximation.Computability.FiniteMachineWordProblem
 import GroupApproximation.Computability.MarkovPost
+import GroupApproximation.Computability.BooneGroupFreeBasis
+import GroupApproximation.Computability.BooneGroupModularMachine
+import GroupApproximation.Computability.BooneGroupBase
+import GroupApproximation.Computability.BooneGroupMachineIndex
 import GroupApproximation.Computability.UniversalMachineUndecidable
 
 /-!

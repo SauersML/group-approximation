@@ -2,6 +2,12 @@ import Mathlib.GroupTheory.FreeGroup.Basic
 import Mathlib.Algebra.Group.Subgroup.Basic
 import Mathlib.Algebra.Group.Subgroup.Lattice
 import Mathlib.Algebra.Group.Subgroup.Map
+import Mathlib.Tactic.Abel
+import Mathlib.Tactic.Group
+import Mathlib.Tactic.Linarith
+import Mathlib.Tactic.Module
+import Mathlib.Tactic.NormNum
+import Mathlib.Tactic.Ring
 
 /-!
 # Sub-basis subgroups of a free group
@@ -70,10 +76,10 @@ theorem of_ne_one (a : ι) : (FreeGroup.of a : FreeGroup ι) ≠ 1 := by
           (FreeGroup.of a)
         = (FreeGroup.lift fun _ : ι => Multiplicative.ofAdd (1 : ℤ)) 1 :=
     congrArg _ h
-  rw [FreeGroup.lift_apply_of, map_one] at hmap
-  have hz : (1 : ℤ) = 0 :=
-    congrArg (fun z : Multiplicative ℤ => z.toAdd) hmap
-  exact one_ne_zero hz
+  -- `rw [map_one]` would match `Multiplicative.ofAdd 1` first, and `ofAdd` is an
+  -- `Equiv`, not a monoid hom; let `simp` handle both sides instead.
+  rw [FreeGroup.lift_apply_of] at hmap
+  simp at hmap
 
 /-! ## The retraction onto a sub-basis -/
 
