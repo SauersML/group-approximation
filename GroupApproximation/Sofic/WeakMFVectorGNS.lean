@@ -1,5 +1,6 @@
 import GroupApproximation.Kazhdan.KazhdanGNS
 import GroupApproximation.Sofic.KazhdanCornerMatrices
+import GroupApproximation.Sofic.FiniteStageRobustGap
 
 /-!
 # Vector-state compactness for weak-MF microstates
@@ -8,6 +9,42 @@ This file transfers arbitrary unit-vector matrix coefficients of a weak-MF
 approximation to an exact real orthogonal representation.  It is the
 compactness engine used to rule out spurious finite-stage spectrum between
 the moving Kazhdan spectrum and the invariant eigenvalue `1`.
+
+## The ultrafilter locus
+
+`non_mf_groups_exist.tex`, section `\label{app:finite-stage}` ("The
+finite-stage transport proof"; 1822-1937 at the time of writing, but the
+manuscript is under concurrent edit -- navigate by label) advertises a proof of
+the Kazhdan transport theorem "quantitatively at each single coordinate `n` and
+with no ultrafilter", and its estimate (i) carries a `\leanverified` badge
+pointing at `hermitianAverage_eventually_no_intermediate_eigenvalues` below.
+That proof *does* use an ultrafilter: a `Hyperreal` standard part is a limit
+along the hyperfilter on `ℕ`.  The contaminated declarations of this file are
+exactly
+
+* `correlationHyperreal`, `gramCorrelationHyperreal`, `limitingCorrelation`,
+  `limitingPositiveDefiniteFunction` and every result about them;
+* `combinationNormSqHyperreal` and the `stdPart_*` results;
+* `HermitianEigenpairSequence.valueHyperreal`,
+  `stdPart_displacement_eq_eigenvaluePolynomial`;
+* `finiteAveragingDisplacementNormSq_eventually_lt` and
+  `hermitianAverage_eventually_no_intermediate_eigenvalues`.
+
+The limit is not removable by refactoring.  The statement being proved is
+about an *almost* representation, whereas property `(T)` is a statement about
+exact unitary representations; the passage from one to the other either takes
+a limit (as here, producing a non-effective `∃ N`) or uses a sum-of-squares
+certificate for `(T)` in the group algebra, which is not formalized in this
+corpus.  Compare the module docstring of
+`GroupApproximation/Sofic/KazhdanCornerCompression.lean`, which records the
+same phenomenon for the operator-norm almost-spectral-gap theorem of Bader
+(Dogon--Vigdorovich, Theorem 7.10), whose proof uses exactly that certificate.
+
+Everything downstream of the `∃ N` *is* explicit, and lives in the
+ultrafilter-free module `GroupApproximation/Sofic/FiniteStageRobustGap.lean`.
+`hermitianAverage_eventually_eigenvector_displacement_le` at the end of this
+file is the composition: one non-effective `N`, and after it a printed
+constant.
 -/
 
 namespace GroupApproximation
@@ -1331,6 +1368,62 @@ theorem hermitianAverage_eventually_no_intermediate_eigenvalues :
     nlinarith
   nlinarith
 
+/-! ## The explicit estimate downstream of the one non-effective step
+
+The `∃ N` above is the only non-effective ingredient of the manuscript's
+finite-stage proof.  Past it, the appendix's displacement estimate holds at
+each single coordinate with the printed constant `√(2|S|δ)`, by the
+ultrafilter-free argument of
+`GroupApproximation/Sofic/FiniteStageRobustGap.lean`. -/
+
+/-- **The appendix's estimate (i), assembled.**  Beyond a single
+(non-effective) stage `N`, every unit eigenvector of the Hermitian average
+whose eigenvalue is retained by the threshold `θ` is displaced by each
+generator by at most the explicit amount `√(2|S|δ)`; the eigenvalue band
+comes from `hermitianAverage_eventually_no_intermediate_eigenvalues` and the
+constant from `FiniteStageRobustGap.norm_act_sub_sq_le_of_eigenvector`. -/
+theorem hermitianAverage_eventually_eigenvector_displacement_le
+    {Q : Finset G} {ε : ℝ} (hQ : IsKazhdanPair.{0, 0} G Q ε)
+    (S : Finset G) (hQS : Q ⊆ S) (hone : 1 ∈ S) (hεone : ε ≤ 1)
+    (hsymm : ∀ g ∈ S, g⁻¹ ∈ S) (A : OpAlmostRepresentation G) {θ δ : ℝ}
+    (hθ : 1 - ε ^ 2 / (4 * S.card) < θ) (hδ : 0 < δ) :
+    ∃ N : ℕ, ∀ n ≥ N, ∀ i : A.model n,
+      θ ≤ Matrix.IsHermitian.eigenvalues
+          (hermitianAverage_conjTranspose A S n) i →
+        ∀ g ∈ S,
+          ‖FiniteStageRobustGap.act A n g
+              (Matrix.IsHermitian.eigenvectorBasis
+                (hermitianAverage_conjTranspose A S n) i) -
+            Matrix.IsHermitian.eigenvectorBasis
+              (hermitianAverage_conjTranspose A S n) i‖ ≤
+            Real.sqrt (2 * (S.card : ℝ) * δ) := by
+  have hS : S.Nonempty := ⟨1, hone⟩
+  obtain ⟨N, hN⟩ :=
+    hermitianAverage_eventually_no_intermediate_eigenvalues hQ S hQS hone
+      hεone hsymm A hθ (show 1 - δ < 1 by linarith)
+  refine ⟨N, fun n hn i hi g hg ↦ ?_⟩
+  have hHerm : (hermitianAverage A S n).IsHermitian :=
+    hermitianAverage_conjTranspose A S n
+  have hv : ‖hHerm.eigenvectorBasis i‖ = 1 :=
+    hHerm.eigenvectorBasis.orthonormal.1 i
+  have heig : FiniteStageRobustGap.applyMat (hermitianAverage A S n)
+      (hHerm.eigenvectorBasis i) =
+      ((hHerm.eigenvalues i : ℝ) : ℂ) • hHerm.eigenvectorBasis i := by
+    apply PiLp.ext
+    intro j
+    exact congrFun (hHerm.mulVec_eigenvectorBasis i) j
+  have hband : 1 - δ < hHerm.eigenvalues i := by
+    by_contra hcon
+    push Not at hcon
+    exact hN n hn i ⟨hi, hcon⟩
+  have hsq := FiniteStageRobustGap.norm_act_sub_sq_le_of_eigenvector
+    A S n hS hv heig hg
+  have hcard : (0 : ℝ) ≤ 2 * (S.card : ℝ) := by positivity
+  have hstep : 2 * (S.card : ℝ) * (1 - hHerm.eigenvalues i) ≤
+      2 * (S.card : ℝ) * δ :=
+    mul_le_mul_of_nonneg_left (by linarith) hcard
+  have hroot := Real.sqrt_le_sqrt (hsq.trans hstep)
+  rwa [Real.sqrt_sq (norm_nonneg _)] at hroot
 
 end WeakMFVectorGNS
 end GroupApproximation

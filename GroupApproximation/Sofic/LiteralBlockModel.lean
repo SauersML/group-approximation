@@ -95,10 +95,8 @@ theorem mem_verticalRelators_of_stable {r : FreeGroup Generator}
     Set.mem_singleton_iff]
   exact Or.inl (Or.inr h)
 
-theorem lampWord_mem_verticalRelators : lampWord ∈ verticalRelators := by
-  simp only [verticalRelators, Set.mem_union, Finset.mem_coe,
-    Set.mem_singleton_iff]
-  exact Or.inr rfl
+theorem lampWord_mem_verticalRelators : lampWord ∈ verticalRelators :=
+  Set.mem_union_right _ rfl
 
 /-- The vertical group `V`, the literal presentation with the lamp killed. -/
 abbrev Vertical : Type := PresentedGroup verticalRelators
@@ -557,7 +555,7 @@ theorem signModel_ne_one : signModel ≠ 1 := by
 
 /-- The root lamp is centralised by the base copy, which fixes the root
 site. -/
-theorem lampModel_root_commute_base {v : Vertical} (hv : v ∈ baseSubgroup) :
+theorem lampModel_root_commute_base (v : Vertical) (hv : v ∈ baseSubgroup) :
     Commute (lampModel rootSite) (SemidirectProduct.inr v : Model) := by
   have h : (SemidirectProduct.inr v : Model) * lampModel rootSite *
       (SemidirectProduct.inr v)⁻¹ = lampModel rootSite := by
@@ -597,6 +595,8 @@ theorem lift_baseModel (q : FreeGroup BaseGenerator) :
       (FreeGroup.lift baseLetter)) q
   apply freeGroup_hom_eq_on_generators
   intro i
+  show FreeGroup.lift baseModel (FreeGroup.of i) =
+    SemidirectProduct.inr (FreeGroup.lift baseLetter (FreeGroup.of i))
   simp [baseModel]
 
 /-- The model realizes every one of the forty-one displayed relators. -/
@@ -616,7 +616,8 @@ def modelRealization : Realization Model where
     rw [← map_inv, ← map_mul, ← map_mul, stableLetter_conj]
   lamp_sq := lampModel_sq rootSite
   lamp_centralizes_base i :=
-    lampModel_root_commute_base ⟨PresentedGroup.of i, baseMapV_generator i⟩
+    lampModel_root_commute_base (baseLetter i)
+      ⟨PresentedGroup.of i, baseMapV_generator i⟩
   marked_central g := by
     rw [marked_word_eq_signModel]
     exact signModel_central g
@@ -637,14 +638,15 @@ theorem modelRealization_marked_word :
   rw [toModel, realizationHom_mark, modelRealization_marked_word]
 
 @[simp] theorem toModel_stable : toModel stable = tModel := by
-  rw [toModel, realizationHom_stable]
+  simp [toModel, modelRealization]
 
 @[simp] theorem toModel_lamp : toModel lamp = lampModel rootSite := by
-  rw [toModel, realizationHom_lamp]
+  simp [toModel, modelRealization]
 
 theorem toModel_base_generator (i : BaseGenerator) :
     toModel (baseMap (PresentedGroup.of i)) = baseModel i := by
   rw [toModel, realizationHom_base_generator]
+  rfl
 
 theorem toModel_comp_baseMap :
     toModel.comp baseMap =
@@ -654,6 +656,7 @@ theorem toModel_comp_baseMap :
   show toModel (baseMap (PresentedGroup.of i)) =
     SemidirectProduct.inr (baseMapV (PresentedGroup.of i))
   rw [toModel_base_generator, baseMapV_generator]
+  rfl
 
 @[simp] theorem toModel_baseMap (g : Base) :
     toModel (baseMap g) = SemidirectProduct.inr (baseMapV g) :=
@@ -664,22 +667,20 @@ theorem toModel_comp_baseMap :
 theorem inr_mem_toModel_range (v : Vertical) :
     (SemidirectProduct.inr v : Model) ∈ toModel.range := by
   have hcases : ∀ k : Fin 2, k = 0 ∨ k = 1 := by decide
-  have hgen : ∀ j : Generator,
-      (PresentedGroup.of j : Vertical) ∈
-        toModel.range.comap (SemidirectProduct.inr : Vertical →* Model) := by
-    intro j
-    match j with
-    | Sum.inl i => exact ⟨baseMap (PresentedGroup.of i),
-        toModel_base_generator i⟩
-    | Sum.inr k =>
-        rcases hcases k with rfl | rfl
-        · exact ⟨stable, toModel_stable⟩
-        · refine ⟨1, ?_⟩
-          rw [map_one]
-          show (1 : Model) = SemidirectProduct.inr lampLetter
-          rw [lampLetter_eq_one, map_one]
-  exact PresentedGroup.generated_by verticalRelators
-    (toModel.range.comap (SemidirectProduct.inr : Vertical →* Model)) hgen v
+  apply PresentedGroup.generated_by verticalRelators
+    (toModel.range.comap (SemidirectProduct.inr : Vertical →* Model))
+  intro j
+  rw [Subgroup.mem_comap]
+  match j with
+  | Sum.inl i =>
+      exact ⟨baseMap (PresentedGroup.of i), toModel_base_generator i⟩
+  | Sum.inr k =>
+      rcases hcases k with rfl | rfl
+      · exact ⟨stable, toModel_stable⟩
+      · have h1 : (PresentedGroup.of (Sum.inr 1) : Vertical) = 1 :=
+          lampLetter_eq_one
+        rw [h1, map_one]
+        exact Subgroup.one_mem _
 
 theorem lampModel_mem_toModel_range (s : Site) :
     lampModel s ∈ toModel.range := by
