@@ -21,14 +21,15 @@ on:
       - '.github/workflows/cairn-site.yml'
   workflow_dispatch:
 
-# One deployment at a time, but never cancel one that is already running:
-# a publish that is halfway through is not obsolete work to be superseded,
-# and on 2026-08-16 three consecutive site runs were cancelled mid-deploy by
-# the next push while the runner queue was backed up, leaving Pages serving a
-# stale tree with a github-pages deployment stuck in `error`.  Queued runs
-# still collapse to the newest, which is the behaviour we actually wanted.
+# Never cancel a site run.  `cancel-in-progress: false` only protects a run
+# that is already executing -- GitHub still cancels a *pending* run when a
+# newer one joins the group, so on a busy repo with a backed-up runner queue
+# the site can starve indefinitely: on 2026-08-16 five consecutive runs were
+# cancelled without ever publishing, leaving Pages several commits stale.
+# A per-run group means nothing supersedes anything; the job takes seconds,
+# and the last deploy to finish wins, which is the state we want anyway.
 concurrency:
-  group: cairn-site
+  group: cairn-site-${{ github.run_id }}
   cancel-in-progress: false
 
 permissions:
