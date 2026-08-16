@@ -80,7 +80,8 @@ formalized in this pass; **TODO** not yet formalized.
 | 52.1 | `Aₙ` is simple for `n ≥ 5` | DONE-PRE | Mathlib `alternatingGroup.isSimpleGroup` (available for `5 ≤ Nat.card α`, not only `A₅`) |
 | 52.3 | the alternating lamps are pairwise non-isomorphic, so the hidden simple type is an invariant | DONE-NEW | `Algebra/PermutationalWreathSimple` (`nonempty_mulEquiv_of_lamp_mulEquiv`, `alternating_lamp_not_mulEquiv`) |
 | 53 | wreath split quotient: `ker(rightHom) = ` lamp subgroup | DONE-NEW | `Algebra/WreathSplitQuotient` (`ker_rightHom_eq_lampRange`, `ker_comp_rightHom_eq_lampRange`) |
-| 54.2 | MF not closed under split extensions | TODO | |
+| 54.2 kernel clauses | the mod-two lamp group is locally finite, residually finite, amenable, and linear over a field | DONE-NEW | `Algebra/PermutationalWreath.suppIn_finite`, `lamp_isResiduallyFinite`, `Algebra/PermutationalWreathAmenable.lamp_isAmenable`, `Algebra/PermutationalWreathLinear.exists_faithful_linear_representation` |
+| 54.2 endpoint | MF not closed under split extensions | TODO | needs the concrete non-MF wreath witness |
 | 54.3 | wreath examples are not finitely presented | TODO | |
 
 ## Notes
