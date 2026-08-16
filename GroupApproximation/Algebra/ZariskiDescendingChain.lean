@@ -326,6 +326,23 @@ theorem manuscriptZariskiClosureOfRepresentation {H : Type*} [Group H]
   rw [← hmap]
   exact Subgroup.map_mono ht
 
+/-- **Closed-header form.**  The coordinate data, the group, the
+representation, the subgroup and the compressing element are all quantified
+inside the proposition, so the printed header states on its own face what a
+caller must supply.  The manuscript cites this form; the version above keeps
+its section variables and is the one the proof is written against. -/
+theorem manuscriptZariskiRepresentationEnvelopeClosed :
+    ∀ {n : Type*} [Fintype n] [DecidableEq n] {k : Type*} [Field k]
+      {H : Type*} [Group H] (σ : H →* GeneralLinearGroup n k)
+      (Γ : Subgroup H) (t : H),
+      Γ.map (MulAut.conj t).toMonoidHom ≤ Γ →
+      zClosure ((((Γ.map (MulAut.conj t).toMonoidHom).map σ) :
+          Subgroup (GeneralLinearGroup n k)) : Set (GeneralLinearGroup n k))
+        = zClosure ((Γ.map σ : Subgroup (GeneralLinearGroup n k)) :
+          Set (GeneralLinearGroup n k)) := by
+  intro n _ _ k _ H _ σ Γ t ht
+  exact manuscriptZariskiClosureOfRepresentation σ Γ t ht
+
 end
 
 /-! ### Transport to `GL(V)` for an arbitrary finite-dimensional `V`
