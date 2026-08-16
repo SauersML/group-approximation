@@ -69,6 +69,7 @@ def finsuppWindow (s : Finset X) : Subgroup (ModTwoLamp X) where
     rw [Finsupp.support_zero]
     exact Finset.empty_subset s
   mul_mem' := by
+    classical
     intro a b ha hb
     show (Multiplicative.toAdd a + Multiplicative.toAdd b).support ⊆ s
     refine Finsupp.support_add.trans ?_
@@ -94,8 +95,8 @@ theorem finite_finsuppWindow (s : Finset X) : Finite (finsuppWindow s) := by
         fun hmem ↦ hx (p.2 hmem)
       have hq : x ∉ (Multiplicative.toAdd (q : ModTwoLamp X)).support :=
         fun hmem ↦ hx (q.2 hmem)
-      rw [Finsupp.not_mem_support_iff.mp hp,
-        Finsupp.not_mem_support_iff.mp hq]
+      rw [Finsupp.notMem_support_iff.mp hp,
+        Finsupp.notMem_support_iff.mp hq]
   exact Finite.of_injective _ hinj
 
 /-- The mod-two lamp group is locally finite. -/
@@ -113,7 +114,8 @@ theorem isLocallyFiniteGroup_modTwoLamp :
     exact this
 
 /-- A permutation of the sites acts on mod-two lamps by relabeling. -/
-def permMulEquiv (σ : Equiv.Perm X) : ModTwoLamp X ≃* ModTwoLamp X :=
+noncomputable def permMulEquiv (σ : Equiv.Perm X) :
+    ModTwoLamp X ≃* ModTwoLamp X :=
   AddEquiv.toMultiplicative (Finsupp.domCongr σ)
 
 @[simp] theorem permMulEquiv_apply_toAdd (σ : Equiv.Perm X)
@@ -125,7 +127,7 @@ def permMulEquiv (σ : Equiv.Perm X) : ModTwoLamp X ≃* ModTwoLamp X :=
   rw [Finsupp.equivMapDomain_apply]
 
 /-- The relabeling action, as a homomorphism to the automorphisms. -/
-def permHomModTwo : Equiv.Perm X →* MulAut (ModTwoLamp X) where
+noncomputable def permHomModTwo : Equiv.Perm X →* MulAut (ModTwoLamp X) where
   toFun := permMulEquiv
   map_one' := by
     apply MulEquiv.ext
@@ -160,7 +162,8 @@ def permHomModTwo : Equiv.Perm X →* MulAut (ModTwoLamp X) where
   rw [Finsupp.equivMapDomain_single]
 
 /-- An action on sites induces the relabeling action on mod-two lamps. -/
-def finsuppActionHom {H : Type*} [Group H] (ρ : H →* Equiv.Perm X) :
+noncomputable def finsuppActionHom {H : Type*} [Group H]
+    (ρ : H →* Equiv.Perm X) :
     H →* MulAut (ModTwoLamp X) :=
   permHomModTwo.comp ρ
 
@@ -215,7 +218,7 @@ theorem exists_finite_invariant_modTwo_subgroup {H : Type*} [Group H]
 /-- The mod-two abelianization of the Clifford lamp group, through the
 universal property of the presentation: the sign dies, each lamp becomes
 the corresponding single-site flip. -/
-def toModTwo : CliffordLamp X →* ModTwoLamp X :=
+noncomputable def toModTwo : CliffordLamp X →* ModTwoLamp X :=
   PresentedGroup.toGroup (f := Sum.elim
       (fun _ : Unit ↦ (1 : ModTwoLamp X))
       (fun x : X ↦ Multiplicative.ofAdd (Finsupp.single x 1)))
@@ -239,10 +242,10 @@ def toModTwo : CliffordLamp X →* ModTwoLamp X :=
             Finsupp.single x (1 : ZMod 2)) = 1
         rw [h2]
         rfl
-      | sign_lamp x =>
+      | sign_comm x =>
         rw [map_commutatorElement]
         exact commutatorElement_eq_one_iff_commute.mpr (Commute.all _ _)
-      | lamp_lamp x y _ =>
+      | @braiding x y _ =>
         rw [map_mul, map_inv, map_commutatorElement,
           FreeGroup.lift_apply_of, FreeGroup.lift_apply_of,
           FreeGroup.lift_apply_of]
@@ -412,11 +415,11 @@ def pointHom (x : X) : ZMod 2 →+ Additive (SignQuot X) where
     rw [ZMod.val_add, hmod, add_nsmul]
 
 /-- The additive section of the abelianization. -/
-def psiAdd : (X →₀ ZMod 2) →+ Additive (SignQuot X) :=
+noncomputable def psiAdd : (X →₀ ZMod 2) →+ Additive (SignQuot X) :=
   Finsupp.liftAddHom fun x ↦ pointHom x
 
 /-- The multiplicative section of the abelianization. -/
-def psiHom : ModTwoLamp X →* SignQuot X :=
+noncomputable def psiHom : ModTwoLamp X →* SignQuot X :=
   MonoidHom.mk'
     (fun f ↦ Additive.toMul (psiAdd (Multiplicative.toAdd f)))
     (fun a b ↦ by
@@ -479,7 +482,7 @@ section Ambient
 variable {Γ : Type} [Group Γ] (α : Γ →* Γ) (hα : Function.Injective α)
 
 /-- The vertical action on mod-two lamps over the coset sites. -/
-def actF : Vertical α hα →* MulAut (ModTwoLamp (Cosets α hα)) :=
+noncomputable def actF : Vertical α hα →* MulAut (ModTwoLamp (Cosets α hα)) :=
   finsuppActionHom
     (MulAction.toPermHom (Vertical α hα) (Cosets α hα))
 
@@ -504,7 +507,7 @@ theorem toModTwo_equivariant (v : Vertical α hα) :
     rfl
 
 /-- The abelianization of the whole ambient group. -/
-def Phi : Ambient α hα →*
+noncomputable def Phi : Ambient α hα →*
     (ModTwoLamp (Cosets α hα) ⋊[actF α hα] Vertical α hα) :=
   SemidirectProduct.lift
     ((inl : ModTwoLamp (Cosets α hα) →*
