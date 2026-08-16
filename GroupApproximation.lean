@@ -294,6 +294,7 @@ import GroupApproximation.Sofic.NormalKazhdanHyperlinearKilled
 import GroupApproximation.Sofic.TorsionFreeFullMFRadical
 import GroupApproximation.Sofic.TorsionFreeFullMFConsequences
 import GroupApproximation.Sofic.TensorPowerAmplification
+import GroupApproximation.Sofic.TensorPowerTransport
 import GroupApproximation.Sofic.OperatorMFPairAmplification
 import GroupApproximation.Sofic.OperatorMFLocalNormalization
 import GroupApproximation.Sofic.MarkedGroupTopology
