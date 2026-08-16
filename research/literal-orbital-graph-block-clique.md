@@ -4,38 +4,43 @@ id: literal-orbital-graph-block-clique
 kind: claim
 title: Each block of the literal orbital graph is a complete subgraph
 distinct_from:
-  literal-lamp-kernel-clifford-block-amalgam: That claim is the full amalgam decomposition of the lamp kernel, including the free-product structure over the blocks; this is the single graph-theoretic input it rests on, isolated because it is the only part still unproved and because it is what identifies the two presentations.
+  literal-lamp-kernel-clifford-block-amalgam: That claim is the full amalgam decomposition of the lamp kernel, including the free-product structure over the blocks; this is the graph-theoretic input it rests on, isolated because it is what identifies the two presentations.
   literal-telescope-split-normal-form: That identifies the vertical quotient and the splitting; this says nothing about the vertical group and everything about the edge relation on sites.
 artifacts:
   - docs/LITERAL_ORBITAL_CLIQUE_ROUTE.md
-  - GroupApproximation/Sofic/LiteralBlockNormalForm.lean
+  - GroupApproximation/Sofic/LiteralBlockGeometry.lean
+  - GroupApproximation/Sofic/LiteralAffineCosetTransitivity.lean
 ---
 
-For the literal group's orbital graph on sites `X = V/B`,
+For the literal group's orbital graph on the coset sites,
 
 ```text
-Adjacent xi eta  <->  blockOf xi = blockOf eta  and  xi <> eta .
+Adj xi eta  <->  blockOf xi = blockOf eta  and  xi <> eta .
 ```
 
-**Half proved, 2026-08-16.**  The forward direction is
-`LiteralBlockNormalForm.blockOf_eq_of_adjacent`: an edge never leaves a block,
-because the marked pair shares a block and the edge relation is a translate
-while `blockOf` is equivariant.  With it,
-`not_adjacent_of_blockOf_ne` — lamps at sites of different blocks commute
-outright rather than through the sign.
+**Both directions are written, 2026-08-16.**  Forward:
+`LiteralBlockNormalForm.blockOf_eq_of_adjacent` — an edge never leaves a block,
+since the marked pair shares a block and the edge relation is a translate while
+`blockOf` is equivariant.  Converse:
+`LiteralBlockGeometry.adj_of_blockOf_eq` — blocks are complete — from the
+explicit hypothesis `AlphaCosetTransitive`, which is discharged on both
+carriers, by `LiteralBlockGeometry.alphaCosetTransitive` for `alpha` and by
+`LiteralAffineCosetTransitivity.conjD_cosetTransitive` for `conjD` over the
+four-by-four rational model.  The second is the finite mod-2 computation that
+the reductions of the three rotation matrices move the first basis class onto
+every nonzero class of `(Z/2)^3`.
 
-**The converse is open.**  It says the block subgroup acts two-transitively on
-the eight sites of a block, which factors as simple transitivity of the
-translations on the parity group `(Z/2)^3` together with transitivity of the
-rotations on the seven nonzero parities.  The second input already exists in
-another guise — it is the `x, x^2, z, yz, yx, y^2x` fact that
-`Sofic/LiteralSignFreeQuotient.lean` uses to reduce every parity commutator to
-a conjugate of the mark.  What is missing is the parity apparatus at the level
-of sites rather than of the base; `docs/LITERAL_ORBITAL_CLIQUE_ROUTE.md` names
-the three definitions required.
+**Correction.**  This node previously recorded the converse as open.  It was
+not; it had been proved in modules the author of that revision had not read.
+The error is noted rather than erased, because "declared open without grepping
+the tree" is the same staleness defect this graph exists to prevent.
 
-**Why it is isolated here.**  It is the last graph-theoretic input between the
-normal form and the soficity tower, and it was repeatedly mistaken for a
-formalization task.  It is a theorem nobody has proved, in Lean or on paper.
-An attempt on 2026-08-16 produced a module whose proofs referenced six lemmas
-that do not exist; it was deleted rather than committed.
+**What remains is a carrier mismatch, not mathematics.**
+`LiteralBlockCliffordBridge` states it in its own header: it works over the
+presented `Vertical`, while the soficity tower wants the telescope, and nothing
+relates the two.  Its last two declarations cannot typecheck; everything above
+them survives.  The repair stays on the telescope throughout, via
+`LiteralLampKernelSplit` and `LiteralLampKernelAmalgam`, and needs no
+comparison of the models.
+
+Nothing in this lane has been compiled.

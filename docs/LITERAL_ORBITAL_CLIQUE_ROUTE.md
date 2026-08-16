@@ -1,94 +1,83 @@
 # The orbital graph is a disjoint union of complete blocks
 
-Date: 2026-08-16.  Status: **one direction proved, one direction open**, with
-the open direction specified here to the level of named lemmas.  Nothing in
-this document is asserted as established.
+Date: 2026-08-16.  Status: **both directions written, neither compiled.**
 
-This is the last mathematical gap between the literal group's normal form and
-the soficity tower.  It is written down because it was repeatedly mistaken for
-a formalization task when it is a theorem nobody has proved, in Lean or on
-paper, and because a previous attempt to write it produced a module whose
-proofs referenced six lemmas that do not exist.
+**This document previously said the converse direction was open.  That was
+wrong**, and the error is left visible here rather than silently overwritten:
+the converse had already been written by another lane, in modules this
+document's author had not read, and the mistake was found only by grepping for
+the lemma names before asserting the gap again.  Checking the tree before
+declaring something unproved is the whole lesson.
 
 ## Statement
 
-In `GroupApproximation/Sofic/LiteralBlockNormalForm.lean`:
+Over the coset sites of the compression datum:
 
 ```text
-Adjacent ξ η  ↔  blockOf ξ = blockOf η  ∧  ξ ≠ η
+Adj α hα a₀ ξ η  ↔  blockOf ξ = blockOf η  ∧  ξ ≠ η
 ```
 
-* `Site = Vertical ⧸ baseSubgroup`, `Block = Vertical ⧸ blockSubgroup`,
-  `blockSubgroup = baseSubgroup ⊔ ⟨β⟩` with `β = t⁻¹ v₁ t`.
-* `Adjacent ξ η` is the orbital relation: the ordered pair, in one of its two
-  orders, is a `Vertical`-translate of the marked pair `(τo, v₁τo)`.
+## Forward direction — an edge never leaves a block
 
-## Direction proved (`→`), landed 2026-08-16
+`LiteralBlockNormalForm.blockOf_eq_of_adjacent`, with `blockOf_smul` and
+`blockOf_siteA`, over the presented carrier; and the corresponding statement in
+`LiteralBlockGeometry` over the coset carrier.  The marked pair shares a block
+because `β ∈ blockSubgroup` is what that subgroup was defined for; the edge
+relation is a translate; `blockOf` is equivariant.  Contrapositive
+`not_adjacent_of_blockOf_ne`: lamps at sites of different blocks commute
+outright rather than through the sign.
 
-`blockOf_eq_of_adjacent`, with `blockOf_smul` and `blockOf_siteA`.  The marked
-pair shares a block because `β ∈ blockSubgroup` is what that subgroup was
-defined for; the edge relation is a translate; `blockOf` is equivariant.
-Contrapositive `not_adjacent_of_blockOf_ne` is recorded beside it: lamps at
-sites of different blocks commute outright rather than through the sign.
+## Converse direction — each block is complete
 
-## Direction open (`←`)
+`LiteralBlockGeometry.adj_of_blockOf_eq`, from the explicit hypothesis
 
-Two distinct sites of a common block are a translate of the marked pair.
-Equivalently: the block subgroup acts **two-transitively** on the eight sites
-of a block.
+```text
+AlphaCosetTransitive α a₀ :
+  ∀ γ ∉ range α, ∃ ν, γ⁻¹ * (α ν * a₀) ∈ range α
+```
 
-### Why eight, and why two-transitive
+and that hypothesis is **discharged twice**, on both carriers:
 
-`K/B` is the parity group `(ℤ/2)³`.  The doubling relation `t vᵢ t⁻¹ = vᵢ²`
-puts every square of a translation into the base, so only the exponent vector
-modulo two survives; `LiteralBaseDoublingIndex.exists_parity_coset` and
-`finite_quotient_doubledBase` are that statement at the level of the base.  So
-a block carries eight sites indexed by `(ℤ/2)³`, and the marked pair is the
-parity pair `(0, e₁)`.
+* `LiteralBlockGeometry.alphaCosetTransitive` — for `alpha` with
+  `AffineSL3Doubling.a`, from the column lemma for `SL₃(ℤ)` and the fact that
+  the linear action commutes with doubling;
+* `LiteralAffineCosetTransitivity.conjD_cosetTransitive` — for `conjD` over
+  `ExplicitLinearModel.gammaBar`, the same finite mod-2 computation carried out
+  for the `4 × 4` rational model: the reductions of the three rotation matrices
+  move `ē₁` onto every nonzero class of `(ℤ/2)³`, via `exists_witness`.
 
-Two-transitivity of the affine group on `(ℤ/2)³` factors into two inputs, both
-of which already exist in some form:
+The second is the one `LiteralBlockCliffordBridge`'s warning comment asks for.
+That comment is now stale; the file it wants exists.
 
-1. **Translations are simply transitive on the eight parities.**  Moves any
-   site of a block to any other.  Follows from the coset description; needs
-   the parity coordinates transported from `Base` to `Vertical`.
-2. **Rotations are transitive on the seven nonzero parities.**  The six words
-   `x, x², z, yz, yx, y²x` do it.  This is *already used* — it is the same
-   fact `Sofic/LiteralSignFreeQuotient.lean` uses to reduce every parity
-   commutator to a conjugate of the mark, validated numerically over
-   `GL₃(𝔽₂)` before transcription.
+## What is actually still open
 
-Given both, translate the first site onto `τo`; the second lands on a site of
-the marked block distinct from `τo`, so its parity is nonzero; a rotation word
-carries that parity to `e₁` while fixing `τo`.  The composite carries `(ξ, η)`
-to the marked pair.
+**Not the graph theory — the carrier.**  `LiteralBlockCliffordBridge` records
+the defect precisely, and honestly, in its own header: it opens
+`LiteralBlockNormalForm`, so its `Vertical` is `PresentedGroup verticalRelators`,
+while `BlockCliffordTowerSofic.isSofic_blockClifford_tower` wants
+`MarkedCompression.Vertical`, the telescope.  Nothing relates the two carriers,
+so its last two declarations cannot typecheck.  Everything above them — the
+sigma decomposition, the generator dictionary, the relator correspondence,
+`lampEquiv`, `closure_block_equivariant`, `isIrreflexive_of_siteA_ne_siteB` —
+is carrier-honest and survives.
 
-### What has to be built first
+The repair named there is a rewrite that stays on the telescope throughout and
+needs no comparison of the two models:
 
-The parity apparatus lives at the `Base` level and the blocks live at the
-`Vertical` level, so the transport is the real work, not the transitivity:
+* `LiteralLampKernelSplit.markedGroupEquivSemidirect` presents the literal
+  group as `lampKernel ⋊ V` over the telescope;
+* `LiteralLampKernelSplit.cosetLamp` indexes lamps by `Cosets α hα`, the site
+  type `LiteralBlockGeometry` already uses;
+* `LiteralLampKernelAmalgam`'s block development is parameterized in `Block`,
+  `Site`, `blockOf` and the ambient group, so it instantiates at
+  `N := lampKernel`, `c := cosetLamp`.
 
-* `parityOf : Site → (ZMod 2 × ZMod 2 × ZMod 2)` on the sites of a fixed
-  block, well defined because squares of translations lie in the base;
-* `parityOf` is a bijection from the sites of one block onto `(ℤ/2)³`;
-* the rotation-word transitivity of `LiteralSignFreeQuotient`, restated
-  against `parityOf` rather than against conjugates of the moved lamp.
+`Sofic/BlockCliffordIndex.lean` supplies the arbitrary-index target the
+identification needs, since the literal block set is infinite.
 
-None of these exist.  A module claiming the biconditional without them is
-claiming the theorem.
+## Then, and only then
 
-## What it unlocks, in order
-
-1. `LampFactor ≃* BlockCliffordIndex.BlockCliffordI Block Fib` — the lamp
-   relations braid along `Adjacent`, the block relations along equality of
-   blocks, so the biconditional is exactly what identifies the two
-   presentations.  `Sofic/BlockCliffordIndex.lean` supplies the arbitrary-index
-   target, since the literal block set is infinite.
-2. Together with an identification of `Vertical` with the mapping telescope by
-   `ℤ` — a second completeness theorem, also unproved — the soficity tower of
-   `Sofic/BlockCliffordTowerSofic.lean` applies to the model.
-3. `markedGroup_isSofic`, and with it a finitely presented sofic non-MF group,
-   strengthening `thm:E` from the finitely generated witness to the source.
-
-Until step 1, the manuscript's statement that soficity of `E` is open is
-correct, and it should not be edited.
+`markedGroup_isSofic`, and a finitely presented sofic non-MF group,
+strengthening `thm:E` from the finitely generated witness to the source.  Until
+the carrier rewrite lands and the tree compiles, the manuscript's statement
+that soficity of `E` is open stays correct and should not be edited.
