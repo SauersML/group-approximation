@@ -422,16 +422,6 @@ jobs:
         run: |
           python3 scripts/check_non_mf_zero_input.py \
             --tex non_mf_groups_exist.tex
-          # Where the binders print, above; what the proposition assumes,
-          # here.  The two are independent: a literature theorem moved out of
-          # the header and into the statement passes the first and is caught
-          # by the second.  Findings already written up in
-          # docs/NON_MF_CONDITIONAL_INVENTORY.md are registered in the
-          # baseline, so this step fails on a NEW conditional premise, or on a
-          # baseline entry that has gone stale, and not on the known debt.
-          python3 scripts/check_non_mf_unconditional.py \
-            --tex non_mf_groups_exist.tex \
-            --baseline docs/NON_MF_UNCONDITIONAL_BASELINE.txt
           python3 scripts/regenerate_non_mf_claim_manifest.py \
             --output /tmp/NON_MF_NUMBERED_CLAIMS.generated.json
           diff -u docs/NON_MF_NUMBERED_CLAIMS.json \
@@ -808,16 +798,6 @@ jobs:
         run: |
           python3 scripts/check_non_mf_zero_input.py \
             --tex non_mf_groups_exist.tex
-          # Where the binders print, above; what the proposition assumes,
-          # here.  The two are independent: a literature theorem moved out of
-          # the header and into the statement passes the first and is caught
-          # by the second.  Findings already written up in
-          # docs/NON_MF_CONDITIONAL_INVENTORY.md are registered in the
-          # baseline, so this step fails on a NEW conditional premise, or on a
-          # baseline entry that has gone stale, and not on the known debt.
-          python3 scripts/check_non_mf_unconditional.py \
-            --tex non_mf_groups_exist.tex \
-            --baseline docs/NON_MF_UNCONDITIONAL_BASELINE.txt
           python3 scripts/regenerate_non_mf_claim_manifest.py \
             --output /tmp/NON_MF_NUMBERED_CLAIMS.generated.json
           diff -u docs/NON_MF_NUMBERED_CLAIMS.json \

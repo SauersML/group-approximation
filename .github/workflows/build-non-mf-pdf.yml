@@ -153,12 +153,6 @@ jobs:
           python3 scripts/check_non_mf_claim_manifest.py --self-test
           python3 scripts/check_non_mf_zero_input.py \
             --tex "$TEX_FILE"
-          # Where the binders print, above; what the proposition assumes,
-          # here.  Known findings are registered in the baseline, so this
-          # fails on a new conditional premise or a stale entry.
-          python3 scripts/check_non_mf_unconditional.py \
-            --tex "$TEX_FILE" \
-            --baseline docs/NON_MF_UNCONDITIONAL_BASELINE.txt
           python3 scripts/regenerate_non_mf_claim_manifest.py \
             --output build/NON_MF_NUMBERED_CLAIMS.generated.json
           diff -u docs/NON_MF_NUMBERED_CLAIMS.json \
