@@ -135,8 +135,25 @@ than as closed or as abandoned.
 |---|---|---|---|---|---|
 | 1 | `MarkovMFConsequences.operatorMF_recognition_undecidable` | literature-input | § "Undecidability of MF recognition", prose after `\end{corollary}` of `cor:undecidable` | **Total.** The printed corollary is unconditional; its only Lean support is conditional. | `Computability/AdianRabinMarkovProperty.lean` — certifies the *hypotheses* of Adian--Rabin, explicitly not the theorem |
 | 2 | `ContinuumMultiplicity.manuscriptContinuumMultiplicity` | literature-input | § "Undecidability of MF recognition", multiplicity paragraph citing `\cite{Neumann37}` | **Total** for the `2^{ℵ₀}` sentence; the `E × ℤ^k` sentence is unaffected. | `Sofic/ContinuumFamilyCriterion.lean` (already committed) shrinks the obligation to one construction; no new module supplies it |
-| 3 | `FullMFRadicalEndpoint.exists_twoGenerated_finitelyPresented_torsionFree_kazhdan_fullMFRadical` | conditional-data | § "Questions", torsion-free f.p. non-MF group | **Total** for that answer. Prose already says "neither is an unconditional statement". | `Monsters/FournierFacioRealization.lean`, `Monsters/RealizationEmbedding.lean` |
+| 3 | `FullMFRadicalEndpoint.exists_twoGenerated_finitelyPresented_torsionFree_kazhdan_fullMFRadical` | conditional-data | § "Questions", torsion-free f.p. non-MF group | **Total** for that answer. Prose already says "neither is an unconditional statement". | `Monsters/FournierFacioRealization.lean`, `Monsters/RealizationEmbedding.lean`; scope now fixed by `docs/HULL_ROUTING_AUDIT_2026-08-16.md` |
 | 4 | `FullMFRadicalEndpoint.exists_group_with_every_nontrivial_quotient_not_isCDEOperatorMF` | conditional-data | same | as above | same |
+
+Rows 3–4 were audited against the literature on 2026-08-16
+(`docs/HULL_ROUTING_AUDIT_2026-08-16.md`, read from Hull, *Small cancellation
+in acylindrically hyperbolic groups*, Groups Geom. Dyn. 10 (2016) 1077–1119,
+and Osin, *Acylindrically hyperbolic groups*, Trans. AMS 368 (2016) 851–888).
+Six of the seven fields of `DefectRoutingData` are supplied by Hull's Theorem
+7.1 as published — including finite presentation, since that theorem adjoins the
+cyclic shifts of one word per prescribed element, and including two-generation
+and defect surjectivity, which are the same clause once the suitable subgroup is
+chosen two-generated inside the defect.  The undischarged input is a single
+certificate: one infinite-order element of the compression defect generating a
+hyperbolically embedded cyclic subgroup (Hull, Lemma 5.8), equivalently a
+suitable subgroup inside the defect.  The Bass–Serre action of the ascending HNN
+skeleton cannot supply it, since that action fixes the end of the telescope and
+an acylindrical action is never quasi-parabolic (Osin, Theorem 1.1); Hull's own
+HNN result (Proposition 6.2) covers extensions over cyclic subgroups, not over
+the whole Kazhdan base.  These rows therefore stay, with that sharper reason.
 | 5 | `ClosedEnvelopeCompression.manuscriptEnvelopeCompressionBlind` | literature-input | `rem:chaincondition`, Zariski-envelope sentence | **Total** for the algebraic-envelope sentence; the tensor-rigidity badge beside it is unaffected. | `Algebra/ZariskiClosedSubgroup.lean`; the `Algebra/ZariskiDescendingChain` it cites **does not exist yet** |
 | 6 | `MatricialStabilityRadical.actualCoronaMFResidual_eq_fdUnitaryResidual` | open-predicate | `prop:stabradical` clause 2 | Clause 2 is *printed* conditional, so no print/Lean mismatch — but the hypothesis is satisfied by no group in the corpus, so the clause is never applied. | none seen |
 | 7 | `MatricialStabilityRadical.not_isCDEOperatorMF_of_stable_of_fdResidual_ne_bot` | open-predicate | `prop:stabradical` clause 3 | as above | none seen |

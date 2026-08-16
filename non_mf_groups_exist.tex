@@ -3515,11 +3515,27 @@ five conditions are hypotheses, so neither conclusion is
 unconditional.
 \leanverified{Sofic/FullMFRadicalEndpoint}{GroupApproximation.FullMFRadicalEndpoint.exists_twoGenerated_finitelyPresented_torsionFree_kazhdan_fullMFRadical}
 \leanverified{Sofic/FullMFRadicalEndpoint}{GroupApproximation.FullMFRadicalEndpoint.exists_group_with_every_nontrivial_quotient_not_isCDEOperatorMF}
-Meeting the five conditions at once is the open part: the intended
-route strengthens Hull's common-quotient technique so that the target
-elements may be chosen inside a prescribed infinite normal subgroup of
-a torsion-free acylindrically hyperbolic group.  No unconditional
-torsion-free finitely presented non-MF group is proved here.
+Meeting the five conditions at once is the open part, and Hull's
+small-cancellation theorem for acylindrically hyperbolic groups
+\cite[Theorem 1.5]{Hull} reduces it to one certificate.  That theorem
+takes any \emph{suitable} subgroup $S$ of an acylindrically hyperbolic
+$G$ --- one whose induced action is non-elementary and which normalizes
+no finite subgroup --- and, when $G$ is finitely generated and the
+prescribed elements are a generating set, returns a quotient
+$\gamma\colon G\to\bar G$ with $\gamma(S)=\bar G$, injective on any
+prescribed finite set, preserving element orders, and obtained by
+adjoining finitely many relators.  Taking $S$ two-generated inside
+$N_{\mathrm{comp}}$ delivers four of the five conditions at once, and
+property~\textup{(T)} descends from a torsion-free Kazhdan lattice
+through a common quotient.  What is not available is the hypothesis:
+a suitable subgroup of the skeleton inside its compression defect, for
+which it would be enough to exhibit one infinite-order element of the
+defect generating a hyperbolically embedded cyclic subgroup
+\cite[Lemma 5.8]{Hull}.  The Bass--Serre action of an ascending HNN
+extension fixes the end of its telescope, and an acylindrical action is
+never quasi-parabolic \cite[Theorem~1.1]{OsinAH}, so that action does
+not certify the hypothesis.  No unconditional torsion-free finitely presented
+non-MF group is proved here.
 By Theorem~\ref{thm:saturation}, a group that equals its own collapse
 defect admits no nontrivial homomorphism to any countable MF group at
 all.
@@ -4114,6 +4130,12 @@ $\operatorname{Ext}(C^*_{\mathrm{red}}(F_2))$ is not a group},
 Ann. of Math. (2) \textbf{162} (2005), no.~2, 711--775,
 \doi{10.4007/annals.2005.162.711}, \arxiv{math/0212265}.
 
+\bibitem[Hu]{Hull}
+M.~Hull,
+\emph{Small cancellation in acylindrically hyperbolic groups},
+Groups Geom. Dyn. \textbf{10} (2016), 1077--1119,
+\doi{10.4171/GGD/377}, \arxiv{1308.4345}.
+
 \bibitem[JNVWY]{MIPRE}
 Z.~Ji, A.~Natarajan, T.~Vidick, J.~Wright, and H.~Yuen,
 \emph{$\operatorname{MIP}^*=\operatorname{RE}$},
@@ -4204,6 +4226,12 @@ The chapter appeared under the title \emph{A counterexample to the
 soficity conjecture}, Chapter~3, 77--93, in the original version of the
 document, now at
 \url{https://cdn.openai.com/pdf/ten-proofs-oai-original.pdf}.
+
+\bibitem[Os]{OsinAH}
+D.~Osin,
+\emph{Acylindrically hyperbolic groups},
+Trans. Amer. Math. Soc. \textbf{368} (2016), no.~2, 851--888,
+\arxiv{1304.1246}.
 
 \bibitem[Oz]{Ozawa}
 N.~Ozawa,
