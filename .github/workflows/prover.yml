@@ -422,6 +422,16 @@ jobs:
         run: |
           python3 scripts/check_non_mf_zero_input.py \
             --tex non_mf_groups_exist.tex
+          # Where the binders print, above; what the proposition assumes,
+          # here.  The two are independent: a literature theorem moved out of
+          # the header and into the statement passes the first and is caught
+          # by the second.  Findings already written up in
+          # docs/NON_MF_CONDITIONAL_INVENTORY.md are registered in the
+          # baseline, so this step fails on a NEW conditional premise, or on a
+          # baseline entry that has gone stale, and not on the known debt.
+          python3 scripts/check_non_mf_unconditional.py \
+            --tex non_mf_groups_exist.tex \
+            --baseline docs/NON_MF_UNCONDITIONAL_BASELINE.txt
           python3 scripts/regenerate_non_mf_claim_manifest.py \
             --output /tmp/NON_MF_NUMBERED_CLAIMS.generated.json
           diff -u docs/NON_MF_NUMBERED_CLAIMS.json \
@@ -443,6 +453,45 @@ jobs:
             --tex non_mf_groups_exist.tex \
             --manifest docs/NON_MF_NUMBERED_CLAIMS.json \
             --signature-roster docs/NON_MF_CLAIM_DECLS.txt
+
+      # The contract above certifies that every badge resolves and that every
+      # cited declaration is SOURCE-CLOSED: its printed header ends at the
+      # colon.  That is a fact about where the binders are typed, not about
+      # what the proposition assumes, and it is being read as the latter.  This
+      # step reads the proposition: a premise whose type is a corpus-defined
+      # name the corpus never discharges is a conditional badge, however the
+      # header is punctuated.
+      #
+      # It fails on any finding absent from docs/NON_MF_UNCONDITIONAL_BASELINE.txt,
+      # and on any baseline entry whose finding has gone -- so the register can
+      # only shrink, and a discharged row cannot leave its exemption behind to
+      # license a regression.  There is no count in the mechanism.
+      #
+      # REPORT-ONLY, deliberately and temporarily.  The register was written by
+      # hand from docs/NON_MF_CONDITIONAL_INVENTORY.md because it could not be
+      # generated locally, so its first contact with the real corpus must not
+      # be able to fail a certificate run.  TO ARM, after one run whose log
+      # shows this step green:
+      #
+      #   1. move the `--self-test` line into "Calibrate the source scan"
+      #      above, where every other calibration lives;
+      #   2. delete the `continue-on-error: true` line below;
+      #   3. add a clause to "Zero-tolerance verdict" reading this step's
+      #      outcome, in the same four-line shape as the three already there:
+      #      bind `unc` to the steps.non-mf-unconditional.outcome expression,
+      #      and set `failed=1` unless it is `success`.
+      #
+      # If the first run is red here, the message names the exact line of the
+      # register to add or delete; it is a transcription fix, not mathematics,
+      # and it blocks nobody's lane.
+      - name: Non-MF unconditionality (report-only until the register is confirmed)
+        id: non-mf-unconditional
+        continue-on-error: true
+        run: |
+          python3 scripts/check_non_mf_unconditional.py --self-test
+          python3 scripts/check_non_mf_unconditional.py \
+            --tex non_mf_groups_exist.tex \
+            --baseline docs/NON_MF_UNCONDITIONAL_BASELINE.txt
 
       # The build itself.  `lakefile.toml` sets `-DwarningAsError=true` for the
       # library, so an unused variable or a deprecated lemma is a failure here.
@@ -735,10 +784,40 @@ jobs:
           # and mtime-derived sections that are time-dependent by design.
           bin/cairn check
 
+      # The unconditionality gate, exactly as in the `prove` job above: badge
+      # source-closure is a property of the printed header, and this reads the
+      # proposition instead.  A manuscript-only change is precisely the change
+      # that can move a badge onto a conditional declaration, so this lane
+      # needs the gate as much as the full one does.
+      #
+      # REPORT-ONLY for the same reason and with the same exit: the register
+      # was written by hand from the inventory and has not yet met the real
+      # corpus.  TO ARM, after one run whose log shows this step green, move
+      # the `--self-test` line into "Calibrate the source scan" above and
+      # delete `continue-on-error: true`.  This job has no deferred verdict, so
+      # that one deletion is the whole arming diff.
+      - name: Non-MF unconditionality (report-only until the register is confirmed)
+        continue-on-error: true
+        run: |
+          python3 scripts/check_non_mf_unconditional.py --self-test
+          python3 scripts/check_non_mf_unconditional.py \
+            --tex non_mf_groups_exist.tex \
+            --baseline docs/NON_MF_UNCONDITIONAL_BASELINE.txt
+
       - name: Non-MF counterpart contract
         run: |
           python3 scripts/check_non_mf_zero_input.py \
             --tex non_mf_groups_exist.tex
+          # Where the binders print, above; what the proposition assumes,
+          # here.  The two are independent: a literature theorem moved out of
+          # the header and into the statement passes the first and is caught
+          # by the second.  Findings already written up in
+          # docs/NON_MF_CONDITIONAL_INVENTORY.md are registered in the
+          # baseline, so this step fails on a NEW conditional premise, or on a
+          # baseline entry that has gone stale, and not on the known debt.
+          python3 scripts/check_non_mf_unconditional.py \
+            --tex non_mf_groups_exist.tex \
+            --baseline docs/NON_MF_UNCONDITIONAL_BASELINE.txt
           python3 scripts/regenerate_non_mf_claim_manifest.py \
             --output /tmp/NON_MF_NUMBERED_CLAIMS.generated.json
           diff -u docs/NON_MF_NUMBERED_CLAIMS.json \

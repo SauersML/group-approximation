@@ -153,6 +153,12 @@ jobs:
           python3 scripts/check_non_mf_claim_manifest.py --self-test
           python3 scripts/check_non_mf_zero_input.py \
             --tex "$TEX_FILE"
+          # Where the binders print, above; what the proposition assumes,
+          # here.  Known findings are registered in the baseline, so this
+          # fails on a new conditional premise or a stale entry.
+          python3 scripts/check_non_mf_unconditional.py \
+            --tex "$TEX_FILE" \
+            --baseline docs/NON_MF_UNCONDITIONAL_BASELINE.txt
           python3 scripts/regenerate_non_mf_claim_manifest.py \
             --output build/NON_MF_NUMBERED_CLAIMS.generated.json
           diff -u docs/NON_MF_NUMBERED_CLAIMS.json \
@@ -174,6 +180,33 @@ jobs:
             --tex "$TEX_FILE" \
             --manifest docs/NON_MF_NUMBERED_CLAIMS.json \
             --signature-roster docs/NON_MF_CLAIM_DECLS.txt
+
+      # The step above certifies that every cited declaration is SOURCE-CLOSED:
+      # its printed header ends at the colon.  That is a fact about where the
+      # binders are typed, not about what the proposition assumes -- and this
+      # is the workflow that renders the badges into the published PDF, so it
+      # is the last place the difference can be caught.  This step reads the
+      # proposition: a premise whose type is a corpus-defined name the corpus
+      # never discharges is a conditional badge, however the header is
+      # punctuated.
+      #
+      # It fails on any finding absent from docs/NON_MF_UNCONDITIONAL_BASELINE.txt
+      # and on any baseline entry whose finding has gone, so the register can
+      # only shrink.  There is no count in the mechanism.
+      #
+      # REPORT-ONLY, deliberately and temporarily: the register was written by
+      # hand from docs/NON_MF_CONDITIONAL_INVENTORY.md and has not yet met the
+      # real corpus, so its first contact must not be able to fail a PDF build.
+      # TO ARM, after one run whose log shows this step green, move the
+      # `--self-test` line into "Calibrate and check exact declaration links"
+      # above and delete `continue-on-error: true`.
+      - name: Non-MF unconditionality (report-only until the register is confirmed)
+        continue-on-error: true
+        run: |
+          python3 scripts/check_non_mf_unconditional.py --self-test
+          python3 scripts/check_non_mf_unconditional.py \
+            --tex "$TEX_FILE" \
+            --baseline docs/NON_MF_UNCONDITIONAL_BASELINE.txt
 
       - name: Install the pinned P13 generator runtime
         run: python3 -m pip install --disable-pip-version-check --no-deps numpy==2.3.2
