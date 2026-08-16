@@ -107,7 +107,6 @@
 \newcommand{\Ad}{\operatorname{Ad}}
 \newcommand{\End}{\operatorname{End}}
 \newcommand{\Cl}{\operatorname{Cl}}
-\newcommand{\Res}{\operatorname{Res}}
 \newcommand{\Cmax}{C^*_{\mathrm{max}}}
 \newcommand{\Cred}{C^*_{\mathrm r}}
 \newcommand{\opnorm}[1]{\left\lVert #1\right\rVert}
@@ -2371,7 +2370,7 @@ Applied to the intrinsic defect, Theorem~\ref{thm:abstract-nk} gives
 the companion of Theorem~\ref{thm:compression-radical} for a normal
 property-\textup{(T)} subgroup:
 
-\begin{corollary}[normal-Kazhdan form of the intrinsic radical]\label{cor:intrinsic-nk}
+\begin{corollary}[normal-Kazhdan form of the intrinsic residual]\label{cor:intrinsic-nk}
 Let $H$ and $\Gamma$ be countable groups, let $\Gamma$ have
 property~\textup{(T)}, let $\iota\colon\Gamma\to H$ be a homomorphism,
 and put $L=\iota(\Gamma)$.  If $K\trianglelefteq H$ is a normal
@@ -2546,7 +2545,7 @@ The Clifford quotient in Theorem~\ref{thm:C} is amenable,
 hence MF, and its quotient map sends $w_{\mathrm{BS}}$ to a nontrivial
 element.  Composing with a faithful homomorphism from that quotient to $\U(\mathcal Q)$ gives a homomorphism $\Theta\colon E_{\mathrm{BS}}\to\U(\mathcal Q)$
 with $\Theta(w_{\mathrm{BS}})\ne1$, so property~\textup{(T)} cannot be
-omitted from the central involution obstruction.  In the radical language of
+omitted from the central involution obstruction.  In the residual language of
 Section~\ref{sec:consequences},
 $w_{\mathrm{BS}}\notin\operatorname{Res}_{\mathrm{MF}}(E_{\mathrm{BS}})$.
 The affine group $\mathrm{BS}(1,2)\cong\mathbb Z[1/2]\rtimes\mathbb Z$ is
@@ -2606,13 +2605,18 @@ independent of $m$.
 \subsection{The MF residual}
 
 \begin{definition}\label{def:radical}
-For a countable group $G_1$, the \emph{MF residual} --- the term is
-introduced here --- is
+For a countable group $G_1$, the \emph{MF residual} is
 \[
   \operatorname{Res}_{\mathrm{MF}}(G_1)
   \;=\;\bigcap\,\bigl\{\ker\Theta:\ \Theta\ \text{a homomorphism }G_1\to\U(\mathcal Q)\bigr\},
 \]
-a normal subgroup of $G_1$.  The intersection does not change if the
+a normal subgroup of $G_1$.  If $G_1/N$ is MF then composing
+$G_1\to G_1/N$ with an injective homomorphism $G_1/N\to\U(\mathcal Q)$
+gives a homomorphism with kernel $N$, so
+$\operatorname{Res}_{\mathrm{MF}}(G_1)\le N$: it is the smallest normal
+subgroup with MF quotient, which is the sense in which \emph{residual}
+is used here and for the nilpotent and finite residuals.  The
+intersection does not change if the
 dimension sequences are allowed to be arbitrary positive rather than
 strictly increasing (Proposition~\ref{prop:mf-equivalences}).  This is the
 operator-norm analogue of
@@ -2684,7 +2688,7 @@ injective homomorphism to $\U(\mathcal Q)$ gives $R=\{1\}$; if $R=\{1\}$ then
 (2) says $G_1$ is MF.
 \end{proof}
 
-\begin{corollary}[exact radical from a candidate quotient]\label{cor:exactradical}
+\begin{corollary}[exact residual from a candidate quotient]\label{cor:exactradical}
 Let $N\trianglelefteq G_1$ satisfy
 $N\le\operatorname{Res}_{\mathrm{MF}}(G_1)$.  Every homomorphism $G_1\to\U(\mathcal Q)$ factors uniquely through $G_1/N$.  If in
 addition $G_1/N$ is MF, then
@@ -2727,7 +2731,7 @@ $\Theta(x)=\bar\Theta(q(x))=1$.
 \end{proof}
 
 By Corollary~\ref{cor:pullback}, the passage from $N$ to the full
-preimage of the quotient radical is a closure operation on the normal
+preimage of the quotient residual is a closure operation on the normal
 subgroups of a fixed group.
 
 \begin{proposition}[the MF closure of relations]\label{prop:mfclosure}
@@ -2783,10 +2787,10 @@ satisfies $N\le\operatorname{Res}_{\mathrm{MF}}(G_1)$, then
 Corollary~\ref{cor:pullback} gives
 $\operatorname{cl}_{\mathrm{MF}}(N)=\operatorname{Res}_{\mathrm{MF}}(G_1)$,
 so every subgroup chosen in the first operation is again inside the
-radical --- normal or not.  For the second operation, the radical is
+residual --- normal or not.  For the second operation, the residual is
 itself a subgroup, hence an upper bound in the subgroup lattice for any
 family contained in it; so the join $\bigvee_iH_i=\langle\bigcup_iH_i\rangle$
-lies in the radical too.  The final two assertions are
+lies in the residual too.  The final two assertions are
 Corollary~\ref{cor:exactradical} and Proposition~\ref{prop:univquot};
 the second of them needs $N$ normal, which is where the quotient
 $G_1/N$ is formed.
@@ -2795,8 +2799,8 @@ $G_1/N$ is formed.
 Theorems~\ref{thm:criterion}, \ref{thm:normal-kazhdan},
 and~\ref{thm:collapse} supply the memberships this iteration consumes:
 each places a
-subgroup inside the radical of every countable group with its data,
-hence inside the radical of every reached quotient.
+subgroup inside the residual of every countable group with its data,
+hence inside the residual of every reached quotient.
 Such a membership can hold at a later stage
 without holding at an earlier one: modulo the earlier stage an element
 may acquire finite order, an orbit may begin to commute, or a subgroup
@@ -2866,7 +2870,7 @@ Lemma~\ref{lem:permanence}(2), while \(E\) is not MF by Theorem~\ref{thm:A}.
 \end{proof}
 
 
-\subsection{Matricial stability and the radical}\label{subsec:stability}
+\subsection{Matricial stability and the residual}\label{subsec:stability}
 
 Following Dadarlat \cite{Dadarlat}, a countable group $G$ is
 \emph{matricially stable} if for every operator-norm asymptotic
@@ -2876,7 +2880,7 @@ $\opnorm{V_n(g)-\pi_n(g)}\to0$ for every $g\in G$.
 Write $\operatorname{Res}_{\mathrm{fd}}(G)$ for the intersection of
 the kernels of all finite-dimensional unitary representations of $G$.
 
-\begin{proposition}[stability identifies the radicals]\label{prop:stabradical}
+\begin{proposition}[stability identifies the residuals]\label{prop:stabradical}
 For every countable group,
 $\operatorname{Res}_{\mathrm{MF}}(G)\le\operatorname{Res}_{\mathrm{fd}}(G)$.
 If $G$ is matricially stable, then
@@ -2915,7 +2919,7 @@ $\opnorm{U_n(x)-1}=\opnorm{U_n(x)-\pi_n(x)}\to0$, against the uniform
 lower bound.
 \end{proof}
 
-For a stable group the two radicals therefore agree.  With
+For a stable group the two residuals therefore agree.  With
 Theorem~\ref{thm:B}: every matricially stable group with
 $\operatorname{Res}_{\mathrm{fd}}(G)\ne1$ is not MF.
 
@@ -2924,8 +2928,8 @@ $\operatorname{Res}_{\mathrm{fd}}(G)\ne1$ is not MF.
 Under a
 commuting-orbit hypothesis in place of centrality, every homomorphism
 to $\U(\mathcal Q)$ identifies an entire conjugation orbit of an
-involution; a whole family of commutators therefore enters the radical,
-and by Corollary~\ref{cor:pullback} the radical computation reduces to
+involution; a whole family of commutators therefore enters the residual,
+and by Corollary~\ref{cor:pullback} the residual computation reduces to
 the quotient by that family.
 
 \begin{definition}[involutive compression witness]\label{def:invwitness}
@@ -3488,7 +3492,7 @@ $\operatorname{Res}_{\mathrm{MF}}(E/\langle w\rangle)$, so $u$ belongs
 to it.
 \end{proof}
 
-\begin{corollary}[collapse computes the radical]\label{cor:collapsequot}
+\begin{corollary}[collapse computes the residual]\label{cor:collapsequot}
 In the setting of Theorem~\ref{thm:collapse}, write
 $q\colon H\to H/D_{\mathrm{coll}}(L,s)$ for the quotient map.  Then,
 unconditionally,
@@ -3532,11 +3536,11 @@ $H$ is not MF.
  \operatorname{Res}_{\mathrm{MF}}(f(H)).
 \]
 The subgroup $f(H)$ of the MF target is MF
-(Lemma~\ref{lem:permanence}(1)), so its radical is trivial by
+(Lemma~\ref{lem:permanence}(1)), so its residual is trivial by
 Proposition~\ref{prop:univquot}.
-(2)  The radical statement is Theorem~\ref{thm:collapse} with
+(2)  The residual statement is Theorem~\ref{thm:collapse} with
 $D_{\mathrm{coll}}(L,s)=H$; triviality of every homomorphism follows
-from (1); and a nontrivial group with full radical is not MF by
+from (1); and a nontrivial group with full residual is not MF by
 Proposition~\ref{prop:univquot}.
 \end{proof}
 
@@ -3707,7 +3711,7 @@ trivial.
 By Elek--Szab\'o, every countable sofic group embeds in a countable simple
 sofic group \cite[Theorem~1]{ElekSzaboHyper}.  Embed $W$ in such a group.  Functoriality
 of the MF residual sends $\zeta$ to a nontrivial element of the
-MF residual of the simple group.  That radical is normal, so it is the whole
+MF residual of the simple group.  That residual is normal, so it is the whole
 group.  Every homomorphism to an MF group maps the MF residual to $1$.
 \end{proof}
 
@@ -3770,7 +3774,7 @@ and has $w\ne1$.
 A tuple satisfying the relators induces a homomorphism $E\to G$ sending
 the marked word of $E$ to $w(x_1,\dots,x_8)$.  If $G$ is MF, that image
 is trivial: $w\in\operatorname{Res}_{\mathrm{MF}}(E)$ by
-Theorem~\ref{thm:A}, and the radical is functorial
+Theorem~\ref{thm:A}, and the residual is functorial
 (Lemma~\ref{lem:portable}).
 The canonical tuple of $E$ satisfies $R$ by definition, and its marked
 word is nontrivial by Theorem~\ref{thm:A}.
@@ -3973,7 +3977,7 @@ then Corollary~\ref{cor:pullback},
    \bigl(\operatorname{Res}_{\mathrm{MF}}
    ((E/\langle w\rangle)/D)\bigr),
 \]
-so by Corollary~\ref{cor:exactradical} the radical equals
+so by Corollary~\ref{cor:exactradical} the residual equals
 $q_1^{-1}(D)$ exactly when $(E/\langle w\rangle)/D$ is MF\@.  Whether
 it is, is open, and neither collapse theorem applies to it: $w$ is
 already trivial in $E/\langle w\rangle$, and the commutators
@@ -4032,7 +4036,7 @@ through quotients, a closure contained in
 $\operatorname{Res}_{\mathrm{MF}}$.  For which groups do the criteria of
 Theorems~\ref{thm:criterion}, \ref{thm:normal-kazhdan},
 \ref{thm:collapse}, and~\ref{thm:projection-collapse} compute the
-radical exactly?
+residual exactly?
 \end{enumerate}
 
 \section{The maximal group \texorpdfstring{$C^*$}{C*}-algebra}\label{app:maxcstar}
