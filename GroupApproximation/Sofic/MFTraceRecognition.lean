@@ -198,13 +198,7 @@ theorem hermitianPart_two_smul_sub_one (M1 : Matrix Y Y ℂ) :
 theorem roundedInvolution_eq_two_smul_sub_one (M1 : Matrix Y Y ℂ) :
     roundedInvolution ((2 : ℂ) • M1 - 1) =
       (2 : ℂ) • unitProjection M1 - 1 := by
-  have hsum := positiveProjection_add_negativeProjection
-    ((2 : ℂ) • M1 - 1)
-  rw [roundedInvolution, unitProjection]
-  try rw [show negativeProjection ((2 : ℂ) • M1 - 1) =
-      1 - positiveProjection ((2 : ℂ) • M1 - 1) from by
-    rw [← hsum]; try abel]
-  try module
+  rfl
 
 /-- The rounded projection is within twice the hermitian idempotent
 defect plus half the star defect of the model unit. -/
@@ -356,7 +350,7 @@ theorem corner_gram_bound {p A B₁ : Matrix Y Y ℂ} {C η δ₁ δ₂ : ℝ}
         _ ≤ ‖p - B₁‖ * ‖A‖ * 1 + δ₁ * 1 := by
             have := Matrix.l2_opNorm_mul (p - B₁) A
             have hδ₁0 : (0 : ℝ) ≤ δ₁ := (norm_nonneg _).trans hδ₁
-            gcongr <;> assumption
+            gcongr
         _ ≤ η * C + δ₁ := by
             have hmul : ‖p - B₁‖ * ‖A‖ ≤ η * C :=
               mul_le_mul hη hA (norm_nonneg A)
@@ -416,10 +410,10 @@ theorem corner_gram_bound {p A B₁ : Matrix Y Y ℂ} {C η δ₁ δ₂ : ℝ}
         gcongr
     _ = C * (C * η + δ₁) + δ₂ + η := by ring
 
+open KazhdanCornerMatrices in
 /-- **Exact unitary near the inflation.**  When the corner Gram defect is
 at most `1/2`, polar correction turns the inflated corner into an exact
 unitary at distance at most four times the defect. -/
-open KazhdanCornerMatrices in
 theorem exists_unitary_near_inflate (p A : Matrix Y Y ℂ) {δ : ℝ}
     (hp : pᴴ = p) (hp2 : p * p = p) (hδ0 : 0 ≤ δ) (hδhalf : δ ≤ 1 / 2)
     (hδ : ‖(p * A * p)ᴴ * (p * A * p) - p‖ ≤ δ) :
@@ -484,7 +478,7 @@ theorem norm_normTrace_le (Y : FiniteModel) (hY : 0 < Fintype.card Y)
       _ = (Fintype.card Y : ℝ) * ‖M‖ := by
           rw [Finset.sum_const, Finset.card_univ, nsmul_eq_mul]
   have hc : (0 : ℝ) < (Fintype.card Y : ℝ) := by exact_mod_cast hY
-  rw [normTrace, norm_div, Complex.norm_natCast, div_le_iff hc]
+  rw [normTrace, norm_div, Complex.norm_natCast, div_le_iff₀ hc]
   exact htr.trans_eq (mul_comm _ _)
 
 /-- **Antipodal separation from a small normalized trace.**  Two
@@ -526,7 +520,6 @@ theorem norm_trace_mul_proj_le (Y : FiniteModel)
       refine Finset.sum_congr rfl fun j _ => ?_
       rw [Matrix.conjTranspose_apply]
       simp [Complex.mul_re, Complex.normSq_apply]
-      ring
     calc ∑ i : Y, s i = ∑ i : Y, ((qᴴ * q) i i).re :=
           Finset.sum_congr rfl fun i _ => hdiag i
       _ = (Matrix.trace (qᴴ * q)).re := by
@@ -545,12 +538,10 @@ theorem norm_trace_mul_proj_le (Y : FiniteModel)
         rfl
       rw [hqij]
       congr 1
-      rw [Matrix.mul_apply, Matrix.mulVec]
-      rfl
     have hb := sum_normSq_mulVec_le Y X v
     have hva : ∑ j : Y, Complex.normSq (v j) = s i := rfl
     have hS : ∑ j : Y, ‖v j‖ * ‖(X.mulVec v) j‖ ≤ ‖X‖ * s i := by
-      have hcs := Finset.inner_mul_le_norm_mul_norm (𝕜 := ℝ)
+      have hcs := Finset.sum_mul_sq_le_sq_mul_sq (R := ℝ)
         Finset.univ (fun j => ‖v j‖) (fun j => ‖(X.mulVec v) j‖)
       have hsq : (∑ j : Y, ‖v j‖ * ‖(X.mulVec v) j‖) ^ 2 ≤
           (∑ j : Y, Complex.normSq (v j)) *
@@ -612,15 +603,13 @@ theorem norm_normTrace_inflate_sub (Y : FiniteModel)
     have h := norm_trace_mul_proj_le Y hqherm hqidem 1
     rw [Matrix.one_mul] at h
     by_contra hneg
-    push_neg at hneg
+    push Not at hneg
     have habs : |(Matrix.trace q).re| ≤ ‖Matrix.trace q‖ :=
       Complex.abs_re_le_norm _
-    have hXn : ‖(1 : Matrix Y Y ℂ)‖ ≤ 1 :=
-      norm_proj_le_one Matrix.conjTranspose_one (one_mul 1)
-    have : ‖Matrix.trace q‖ ≤ 1 * (Matrix.trace q).re :=
-      h.trans (by nlinarith [norm_nonneg (1 : Matrix Y Y ℂ)])
     rw [abs_of_neg hneg] at habs
-    linarith
+    -- a nonnegative multiple of a negative number is nonpositive, so the
+    -- norm is squeezed to zero and the real part cannot be negative
+    nlinarith [norm_nonneg (1 : Matrix Y Y ℂ), norm_nonneg (Matrix.trace q)]
   have hdecomp : p * X * p + q - X = q - (q * X + X * q - q * X * q) := by
     have hpq : p = 1 - q := by rw [hqdef]; abel
     rw [hpq]
@@ -633,7 +622,6 @@ theorem norm_normTrace_inflate_sub (Y : FiniteModel)
   have htr_qXq : ‖Matrix.trace (q * X * q)‖ ≤
       ‖X‖ * (Matrix.trace q).re := by
     rw [Matrix.mul_assoc, Matrix.trace_mul_comm, Matrix.mul_assoc, hqidem]
-    rw [Matrix.trace_mul_comm]
     exact htr_Xq
   have hnum : ‖Matrix.trace (p * X * p + q) - Matrix.trace X‖ ≤
       (1 + 3 * ‖X‖) * (Matrix.trace q).re := by
@@ -643,8 +631,6 @@ theorem norm_normTrace_inflate_sub (Y : FiniteModel)
       rw [← Matrix.trace_sub, ← Matrix.trace_add, ← Matrix.trace_sub,
         ← Matrix.trace_sub]
       congr 1
-      rw [← hdecomp]
-      abel
     rw [h1]
     have htrq : ‖Matrix.trace q‖ ≤ (Matrix.trace q).re := by
       have h := norm_trace_mul_proj_le Y hqherm hqidem 1
@@ -671,13 +657,80 @@ theorem norm_normTrace_inflate_sub (Y : FiniteModel)
     simp
   · have hcpos : (0 : ℝ) < (Fintype.card Y : ℝ) := by exact_mod_cast hpos
     rw [normTrace, normTrace, div_sub_div_same, ← Matrix.trace_sub]
-    rw [show Matrix.trace (p * X * p + q) - Matrix.trace X =
-      Matrix.trace (p * X * p + q - X) from (Matrix.trace_sub _ _).symm]
     rw [norm_div, Complex.norm_natCast, div_le_div_iff_of_pos_right hcpos]
     rw [Matrix.trace_sub]
     exact hnum
 
 end TraceSeparation
+
+/-! ## Assembly helpers
+
+The inflation is a monoid map through the corner and commutes with the
+adjoint; both are exact algebraic identities, and they are what turn the
+corner estimates into statements about the corrected unitaries. -/
+
+section Assembly
+
+variable {Y : Type*} [Fintype Y] [DecidableEq Y]
+
+/-- **Inflation is multiplicative through the corner**: the product of two
+inflations is the inflation of the corner-mediated product. -/
+theorem inflate_mul (p A B : Matrix Y Y ℂ) (hp2 : p * p = p) :
+    inflate p A * inflate p B = inflate p (A * p * B) := by
+  unfold inflate
+  have e1 : p * A * p * (p * B * p) = p * (A * p * B) * p := by
+    calc p * A * p * (p * B * p) = p * A * (p * p) * (B * p) := by
+          noncomm_ring
+      _ = p * A * p * (B * p) := by rw [hp2]
+      _ = p * (A * p * B) * p := by noncomm_ring
+  have e2 : p * A * p * (1 - p) = 0 := by
+    rw [Matrix.mul_sub, Matrix.mul_one, Matrix.mul_assoc (p * A) p p, hp2,
+      sub_self]
+  have e3 : (1 - p) * (p * B * p) = 0 := by
+    rw [Matrix.sub_mul, Matrix.one_mul,
+      show p * (p * B * p) = (p * p) * (B * p) from by noncomm_ring, hp2,
+      show p * (B * p) = p * B * p from by noncomm_ring, sub_self]
+  have e4 : (1 - p) * (1 - p) = 1 - p := by
+    rw [Matrix.sub_mul, Matrix.one_mul, Matrix.mul_sub, Matrix.mul_one, hp2]
+    abel
+  rw [Matrix.add_mul, Matrix.mul_add, Matrix.mul_add, e1, e2, e3, e4]
+  abel
+
+/-- **Inflation commutes with the adjoint.** -/
+theorem inflate_conjTranspose (p A : Matrix Y Y ℂ) (hp : pᴴ = p) :
+    (inflate p A)ᴴ = inflate p Aᴴ := by
+  unfold inflate
+  rw [Matrix.conjTranspose_add, Matrix.conjTranspose_mul,
+    Matrix.conjTranspose_mul, hp, Matrix.conjTranspose_sub,
+    Matrix.conjTranspose_one, hp]
+  noncomm_ring
+
+/-- The inflation of a bounded element is bounded by that bound plus one. -/
+theorem norm_inflate_le {p A : Matrix Y Y ℂ} {C : ℝ}
+    (hp : pᴴ = p) (hp2 : p * p = p) (hA : ‖A‖ ≤ C) (hC : 0 ≤ C) :
+    ‖inflate p A‖ ≤ C + 1 := by
+  have hpn : ‖p‖ ≤ 1 := norm_proj_le_one hp hp2
+  have hcompl : ‖(1 : Matrix Y Y ℂ) - p‖ ≤ 1 := by
+    refine norm_proj_le_one ?_ ?_
+    · rw [Matrix.conjTranspose_sub, Matrix.conjTranspose_one, hp]
+    · rw [Matrix.sub_mul, Matrix.one_mul, Matrix.mul_sub, Matrix.mul_one, hp2]
+      abel
+  refine (norm_add_le _ _).trans ?_
+  gcongr
+  calc ‖p * A * p‖ ≤ ‖p * A‖ * ‖p‖ := Matrix.l2_opNorm_mul _ _
+    _ ≤ (‖p‖ * ‖A‖) * ‖p‖ := by gcongr; exact Matrix.l2_opNorm_mul _ _
+    _ ≤ (1 * C) * 1 := by
+        refine mul_le_mul (mul_le_mul hpn hA (norm_nonneg _) zero_le_one)
+          hpn (norm_nonneg _) (by linarith)
+    _ = C := by ring
+
+end Assembly
+
+/-- The normalized trace is additive on differences. -/
+theorem normTrace_sub' (Y : FiniteModel) (A B : Matrix Y Y ℂ) :
+    normTrace Y (A - B) = normTrace Y A - normTrace Y B := by
+  unfold normTrace
+  rw [Matrix.trace_sub, sub_div]
 
 /-- **MF-trace recognition.**  If the regular character of a group is an
 MF trace, the group is operator MF: the corner-and-polar correction of
