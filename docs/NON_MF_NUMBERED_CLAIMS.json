@@ -1021,7 +1021,7 @@
       "id": "prop:stabradical",
       "environment": "proposition",
       "title": "stability identifies the radicals",
-      "statement_sha256": "781399993a3238e5b9b40ea20c2088e92252aa3510c76c4074f67d5407b8bfde",
+      "statement_sha256": "8143f23d621fe25477584f54dccdfd025a60919e2d72cc5845d67f7409a8ab4c",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [],

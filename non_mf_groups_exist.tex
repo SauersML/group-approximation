@@ -2208,68 +2208,50 @@ of $w$ in the finite group.
 \end{proof}
 
 \begin{remark}[the invariant-size principle]\label{rem:invariantsize}
-The proof of Theorem~\ref{thm:B} used exactly one feature of finite
+The proof of Theorem~\ref{thm:B} used one feature of finite
 dimensionality: if $V\subseteq W$ and $\dim V=\dim W<\infty$, then
-$V=W$.  In abstract form: suppose a
-conjugation-invariant size
-$\sigma$ with values in $\mathbb N$ is defined on the subgroups of a
-group $Q$ and satisfies the separation property that $K\le L$ with
-$\sigma(L)\le\sigma(K)$ forces $K=L$.  If $gKg^{-1}\subseteq K$, then
-$gKg^{-1}$ and $K$ have equal size, so the inclusion is an equality:
-such a target admits no strict one-sided compression.
+$V=W$.  Abstractly, let a conjugation-invariant size $\sigma$ with
+values in $\mathbb N$ be defined on the subgroups of a group $Q$, and
+suppose $K\le L$ with $\sigma(L)\le\sigma(K)$ implies $K=L$.  If
+$gKg^{-1}\subseteq K$ then the two have equal size, so the inclusion is
+an equality: such a target admits no strict one-sided compression.
 \leanverified{Sofic/ManuscriptExactWrappers}{GroupApproximation.ManuscriptExactWrappers.manuscriptInvariantSizePrinciple}
-Cardinality on the subgroups of a finite group qualifies: in a finite
-group $gKg^{-1}\subseteq K$ already gives $gKg^{-1}=K$, so a strict
-one-sided compression has no image in any finite quotient.  The
-finite-dimensional case is not the same principle applied to
-subgroups.  The natural
-candidate size there, the dimension of the fixed space of the adjoint
-action, is $\dim_k\End_H(V)$, the dimension of the commutant; it is
-order-reversing rather than order-preserving in $H$, and it does not
-separate nested subgroups --- $A_4<S_4$ in the standard
-three-dimensional representation have the same commutant $k\cdot1$.
-The proof of Theorem~\ref{thm:B} applies the principle to the commutant
-instead: the inclusion $C\subseteq uCu^{-1}$ between subspaces of equal
-finite dimension is an equality \eqref{eq:pinning}, and it is that
-equality --- not an equality of subgroup images --- that sends the
-defect to the identity.  The argument of Theorem~\ref{thm:A} is
-the analytic counterpart at infinite dimension.
+Cardinality on the subgroups of a finite group qualifies, which is the
+finite-quotient argument of Section~\ref{sec:intro}.
+
+It is worth being clear that the finite-dimensional case is \emph{not}
+that principle applied to subgroups.  The natural candidate size, the
+dimension $\dim_k\End_H(V)$ of the commutant, is order-reversing rather
+than order-preserving, and it does not separate nested subgroups: $A_4<S_4$
+in the standard three-dimensional representation have the same commutant
+$k\cdot1$.  Theorem~\ref{thm:B} applies the principle to the commutant
+instead, where the inclusion $C\subseteq uCu^{-1}$ between subspaces of
+equal finite dimension is an equality \eqref{eq:pinning}; it is that
+equality, and not an equality of subgroup images, that sends the defect
+to the identity.  Theorem~\ref{thm:A} is the analytic counterpart at
+infinite dimension.
 \end{remark}
 
 \begin{remark}[chain conditions suffice]\label{rem:chaincondition}
-The separation property of the size can be dropped, at the price of
-concluding equality of values rather than of subgroups.  An order isomorphism of a
-poset with no infinite strictly ascending chain fixes every point that
-it moves weakly upward, and dually with descending chains; consequently
-a conjugation-equivariant monotone invariant with chain-condition values
-takes the same value on $\Gamma$ and on $t\Gamma t^{-1}$.  In
-particular, for every finite-dimensional representation $\sigma$ of $H$
-over every field, the fixed subspaces of the subgroup and of its
-one-sided conjugate coincide.
+Finiteness of the invariant can be weakened to a chain condition.  A
+conjugation-equivariant monotone invariant whose values satisfy the
+ascending or descending chain condition takes the same value on $\Gamma$
+as on $t\Gamma t^{-1}$, because an order isomorphism of such a poset
+fixes every point it moves weakly upward.  Three instances: the fixed
+subspaces of $\Gamma$ and $t\Gamma t^{-1}$ agree in every
+finite-dimensional representation over every field; the same holds for
+the invariants of the induced representations on
+$V^{\otimes p}\otimes(V^{*})^{\otimes q}$, of which the commutant
+identity \eqref{eq:pinning} is the case $\End(V)\cong V\otimes V^{*}$;
+and the Zariski closures of $\sigma(\Gamma)$ and $\sigma(t\Gamma t^{-1})$
+coincide, the descending chain condition for Zariski-closed subgroups of
+$\GL(V)$ coming from the Hilbert basis theorem.
 \leanverified{Criterion/ChainConditionCompression}{GroupApproximation.manuscriptChainConditionRigidity}
-Applied to the representations induced on tensor constructions ---
-$V^{\otimes p}\otimes(V^{*})^{\otimes q}$ with the contragredient
-action, finite direct sums, $\operatorname{Hom}$-spaces ---
-compression creates no invariant tensors of any finite type; the
-commutant identity \eqref{eq:pinning} is the case
-$\End(V)\cong V\otimes V^{*}$.
 \leanverified{Criterion/TensorInvariantRigidity}{GroupApproximation.TensorInvariantRigidity.manuscriptTensorInvariantRigidity}
-Taking the invariant to be the
-Zariski closure of the image in $\GL(V)$, whose closed subgroups
-satisfy the descending chain condition, gives
-$\overline{\sigma(t\Gamma t^{-1})}^{\,Z}=\overline{\sigma(\Gamma)}^{\,Z}$:
-an exact finite-dimensional representation assigns the compressed
-subgroup and the subgroup the same algebraic envelope.  Only the chain
-condition is used: whenever the closed subgroups are well-founded
-under $\supseteq$ and the envelope is monotone and conjugation-stable,
-a one-sided compression leaves the envelope fixed.
 \leanverified{Criterion/ClosedEnvelopeCompression}{GroupApproximation.ClosedEnvelopeCompression.manuscriptEnvelopeCompressionBlind}
-The chain condition itself, for Zariski-closed subgroups of $\GL(V)$ over
-an arbitrary field, follows from the Hilbert basis theorem, and with it
-the displayed identity in the form printed above.
 \leanverified{Algebra/ZariskiDescendingChain}{GroupApproximation.ZariskiClosedSubgroup.manuscriptZariskiRepresentationEnvelopeClosed}
-Theorem~\ref{thm:transport-variants}(2)
-is the asymptotic counterpart at fixed tensor type.
+Theorem~\ref{thm:transport-variants}(2) is the asymptotic counterpart at
+fixed tensor type.
 \end{remark}
 
 \section{The cyclic comparison}\label{sec:necessity}
@@ -2662,17 +2644,18 @@ Lemma~\ref{lem:permanence}(2).  Theorem~\ref{thm:A} shows that \(E\) is not MF.
 
 \subsection{Matricial stability and the radical}\label{subsec:stability}
 
-Call a countable group $G$ \emph{point-norm matricially stable} if for
-every operator-norm almost representation $(V_n)$ of $G$ there are
-genuine finite-dimensional unitary representations $\pi_n$ on the same
-models with $\opnorm{V_n(g)-\pi_n(g)}\to0$ for every $g\in G$.
+Following Dadarlat \cite{Dadarlat}, a countable group $G$ is
+\emph{matricially stable} if for every operator-norm asymptotic
+representation $(V_n)$ of $G$ there are genuine finite-dimensional
+unitary representations $\pi_n$, in the same matrix dimensions, with
+$\opnorm{V_n(g)-\pi_n(g)}\to0$ for every $g\in G$.
 Write $\operatorname{Rad}_{\mathrm{fd}}(G)$ for the intersection of
 the kernels of all finite-dimensional unitary representations of $G$.
 
 \begin{proposition}[stability identifies the radicals]\label{prop:stabradical}
 For every countable group,
 $\operatorname{Rad}_{\mathrm{MF}}(G)\le\operatorname{Rad}_{\mathrm{fd}}(G)$.
-If $G$ is point-norm matricially stable, then
+If $G$ is matricially stable, then
 $\operatorname{Rad}_{\mathrm{MF}}(G)=\operatorname{Rad}_{\mathrm{fd}}(G)$;
 in particular a stable group with
 $\operatorname{Rad}_{\mathrm{fd}}(G)\neq1$ is not MF.
@@ -2692,7 +2675,7 @@ sequence is null exactly when $\pi(x)=1$.  Hence an MF-invisible
 element is sent to the identity by every finite-dimensional
 representation.
 
-For the converse inclusion, assume $G$ point-norm matricially stable,
+For the converse inclusion, assume $G$ matricially stable,
 let $x\in\operatorname{Rad}_{\mathrm{fd}}(G)$, and suppose toward a
 contradiction that a homomorphism $\Theta$ to $\U(\mathcal Q)$ has
 $\Theta(x)\ne1$.  Choose unitary coordinate lifts $U_n(g)$ of
@@ -2710,7 +2693,7 @@ lower bound.
 
 For a stable group the two radicals therefore agree, so the homomorphisms to $\U(\mathcal Q)$ see exactly what the finite-dimensional representations
 see.  With Theorem~\ref{thm:B} this gives a second route to non-MF
-groups: every point-norm matricially stable group with
+groups: every matricially stable group with
 $\operatorname{Rad}_{\mathrm{fd}}(G)\ne1$ fails to be MF.
 
 \subsection{Orbit collapse}\label{subsec:collapse}
@@ -4029,6 +4012,20 @@ strict compression before any MF considerations arise.
 
 \section{The thirteen-relator presentation of \texorpdfstring{$\SL_3(\mathbb Z)$}{SL3(Z)}}\label{app:p13}
 
+A reader willing to take property~\textup{(T)} of
+$\mathbb Z^3\rtimes\SL_3(\mathbb Z)$ from the literature
+\cite[Example~1.7.4(i)]{BHV} may skip this appendix: nothing in the main
+line depends on it beyond that property, and the presentations
+themselves go back to \cite[Theorem~2]{CRW}.  It is included because
+Theorem~\ref{thm:A} is a statement about one explicitly displayed finite
+presentation, and we want every hypothesis of the obstruction verified
+from those relators rather than from an identification of the group they
+present.  Proposition~\ref{prop:literal-base-T} derives
+property~\textup{(T)} for the twenty relators of
+\eqref{eq:gamma-presentation} through the thirteen-relator presentation
+$P_{13}$ below, so the completeness of $P_{13}$ is what closes that
+route.  The argument is elementary and self-contained, and the
+formalization follows it step for step.
 
 \begin{theorem}[completeness of the thirteen-relator presentation]
 \label{thm:p13-complete}
