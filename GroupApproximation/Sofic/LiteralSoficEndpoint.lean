@@ -297,43 +297,61 @@ theorem markedGroup_soficNonMF_package (hsofic : IsSofic MarkedGroup) :
 /-!
 ## Integration target
 
-The splitting lane delivers the *tower* shape, so that is the entry point the
-integration uses.  `LiteralLampKernelSplit` supplies
+The splitting lane pre-composes the re-association itself, so the integration
+uses the plainest entry point of the three.  `LiteralLampKernelSplit` supplies
 
 ```
-markedGroupEquivSemidirect : (lampKernel ⋊[lampKernelAction] V) ≃* MarkedGroup
+abbrev Telescope      := MappingTelescope.Telescope alpha conjD_injective
+abbrev telescopeAction := SemidirectAssoc.baseAction
+                            (shiftHom alpha conjD_injective) lampKernelAction
+abbrev TelescopeCore  := lampKernel ⋊[telescopeAction] Telescope
+abbrev stableAction   := SemidirectAssoc.outerAction
+                            (shiftHom alpha conjD_injective) lampKernelAction
+
+markedGroupEquivCoreByInt :
+  MarkedGroup ≃* (TelescopeCore ⋊[stableAction] Multiplicative ℤ)
 ```
 
-with `V = MarkedCompression.Vertical alpha conjD_injective`, and `Vertical` is
-an `abbrev` for `Telescope alpha conjD_injective ⋊[shiftHom alpha
-conjD_injective] Multiplicative ℤ`.  That is exactly the shape of
-`markedGroup_isSofic_of_towerEquiv`, with `A := lampKernel`,
-`B := Telescope alpha conjD_injective` and `g := shiftHom alpha
-conjD_injective`.  Note the direction: the lane's equivalence points *at*
-`MarkedGroup`, so the integration applies `.symm`.
+which is literally `isSofic_of_intSemidirectEquiv`'s hypothesis, so:
 
 ```
 theorem markedGroup_isSofic
-    (hcore : IsSofic (LiteralLampKernelSplit.lampKernel ⋊[
-      SemidirectAssoc.baseAction
-        (MarkedCompression.shiftHom alpha conjD_injective)
-        LiteralLampKernelSplit.lampKernelAction]
-      MarkedCompression.Telescope alpha conjD_injective)) :
+    (hcore : IsSofic LiteralLampKernelSplit.TelescopeCore) :
     IsSofic MarkedGroup :=
-  markedGroup_isSofic_of_towerEquiv _ _
-    LiteralLampKernelSplit.markedGroupEquivSemidirect.symm hcore
+  isSofic_of_intSemidirectEquiv
+    LiteralLampKernelSplit.markedGroupEquivCoreByInt hcore
 ```
 
-The remaining premise `hcore` is exactly `LiteralTelescopeCoreLEF`'s
-`telescopeCore_isSofic D`, since `telescopeCore D` is the `abbrev`
-`Lamp ⋊[D.action] Tel`: it discharges as soon as a
-`TelescopeCoreData (lampKernel) (Telescope alpha conjD_injective) Block` is
-built whose `action` field is `SemidirectAssoc.baseAction (shiftHom alpha
-conjD_injective) lampKernelAction` -- a `rfl` identification, the same one
-`Sofic/SoficMarkedCompression.lean` makes at `level_action_eq_baseAction`.
-Building that datum is the block/amalgam/LEF lanes' business; its
+`markedGroup_isSofic_of_towerEquiv` remains available for a splitting that
+does *not* pre-compose the re-association; it performs the same
+`SemidirectAssoc.assocEquiv` step internally.
+
+The remaining premise `hcore` is `LiteralTelescopeCoreLEF.telescopeCore_isSofic
+D`, since `telescopeCore D` is the `abbrev` `Lamp ⋊[D.action] Tel`.  It
+discharges as soon as a `TelescopeCoreData` is built with
+
+```
+Lamp := LiteralLampKernelSplit.lampKernel
+Tel  := LiteralLampKernelSplit.Telescope
+D.action := LiteralLampKernelSplit.telescopeAction
+```
+
+the last being a `rfl` identification with `SemidirectAssoc.baseAction` -- the
+same one `Sofic/SoficMarkedCompression.lean` makes at
+`level_action_eq_baseAction`, whose comment records that `rw` cannot see
+through the `MulAut` coercion, so it must be closed by defeq.  Building that
+datum is the block, amalgam and LEF lanes' business; its
 `subAmalgam_residuallyFinite` and `level_residuallyFinite` fields are the whole
 of the endpoint's trust surface.
+
+Note the base: this chain runs over `ExplicitLinearModel.gammaBar` with
+`alpha = conjD`.  A block-geometry result instantiated instead at
+`Monsters/AffineSL3Doubling.Gamma` is stated over a *different* carrier, and no
+`MulEquiv` intertwining `conjD` with `AffineSL3Doubling.alpha` exists in the
+repository; such results must be re-instantiated over `gammaBar` before they
+can feed this datum.  Nothing in the soficity chain needs the doubling index to
+be exactly `8` -- `MappingTelescopeFiniteOrbits` needs only
+`[conjD.range.FiniteIndex]`, which `LiteralBaseDoublingIndex` provides.
 
 The printed separation is then
 
