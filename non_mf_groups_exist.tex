@@ -3330,9 +3330,10 @@ $[\Theta(\gamma),p]_{-}=0$.
 \end{proof}
 
 Theorem~\ref{thm:projection-collapse} applies to an arbitrary projection
-of $\mathcal Q$, not only to one arising from a group element.  Hence
-the relative commutant $\Theta(sLs^{-1})'\cap\mathcal Q$ cannot exceed
-$\Theta(L)'\cap\mathcal Q$ by a projection with commuting $L$-orbit.
+of $\mathcal Q$, not only to one arising from a group element.  So
+every projection $p\in\Theta(sLs^{-1})'\cap\mathcal Q$ whose
+$\Theta(L)$-conjugates commute pairwise already lies in
+$\Theta(L)'\cap\mathcal Q$.
 
 If $k$ has finite order $m$, applying
 Theorem~\ref{thm:projection-collapse} to the Fourier spectral
@@ -3517,9 +3518,9 @@ from (1); and a nontrivial group with full residual is not MF by
 Proposition~\ref{prop:univquot}.
 \end{proof}
 
-A group as in (2) admits no nontrivial finite-dimensional unitary
-representation, no nontrivial MF quotient, and no nontrivial
-homomorphism to any countable residually finite group.
+For a group as in (2), every finite-dimensional unitary
+representation is trivial, every MF quotient is trivial, and every
+homomorphism to a countable residually finite group is trivial.
 Whether a
 small-cancellation construction produces a finitely presented group
 with $D_{\mathrm{coll}}(L,s)=H$, or with a normal-Kazhdan defect equal
@@ -3883,7 +3884,7 @@ below any prescribed bound, every approximate unitary representation can be
 replaced by one all of whose pairwise Hilbert--Schmidt distances are
 smaller than the bound.
 \leanverified{Sofic/NormTraceGap}{GroupApproximation.NormModel.exists_hs_collapse}
-$2$-norm triviality of an element alone therefore can never
+$2$-norm triviality of an element therefore does not by itself
 prove a group non-MF: an obstruction must produce an invariant
 corner carrying its own normalized trace, so that the normalization is
 unchanged by amplification, rather than reading a normalized trace off
