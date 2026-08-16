@@ -384,6 +384,7 @@ import GroupApproximation.Sofic.AscendingHNNTelescopeRadical
 import GroupApproximation.Sofic.AscendingHNNFullTelescopeRadical
 import GroupApproximation.Sofic.TelescopeLimitKernel
 import GroupApproximation.Sofic.ProfiniteTwins
+import GroupApproximation.Sofic.RepresentationCategoryTwins
 import GroupApproximation.Sofic.AlternatingLampLiteralPackage
 import GroupApproximation.Sofic.LiteralDoublingWreathNonMF
 import GroupApproximation.Sofic.CoronaRadicalPullback
