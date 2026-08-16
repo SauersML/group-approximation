@@ -181,13 +181,15 @@ theorem stable_relator_eq_one (i : BaseGenerator) :
 
 theorem verticalWord_displacedLampWord :
     verticalWord displacedLampWord = 1 := by
-  rw [displacedLampWord, map_mul, map_mul, map_inv, verticalWord_lampWord,
-    mul_one, mul_inv_cancel]
+  show verticalWord (stableWord * lampWord * stableWord⁻¹) = 1
+  rw [map_mul, map_mul, map_inv, verticalWord_lampWord, mul_one,
+    mul_inv_cancel]
 
 theorem verticalWord_markedWord : verticalWord markedWord = 1 := by
-  rw [markedWord, map_commutatorWord, map_mul, map_mul, map_inv,
-    verticalWord_displacedLampWord, mul_one, mul_inv_cancel,
-    verticalWord_displacedLampWord]
+  show verticalWord (commutatorWord displacedLampWord
+    (v1Word * displacedLampWord * v1Word⁻¹)) = 1
+  rw [map_commutatorWord, map_mul, map_mul, map_inv,
+    verticalWord_displacedLampWord, mul_one, mul_inv_cancel]
   exact commutatorElement_one_left _
 
 /-- Every displayed relator of the literal presentation dies once the lamp
@@ -495,7 +497,7 @@ def lampLift {G : Type*} [Group G] (s : G) (c : Site → G)
 /-- The endomorphism of `C(𝒢)` induced by a vertical element. -/
 def lampPermMap (v : Vertical) : LampFactor →* LampFactor :=
   lampLift lampSign (fun ξ ↦ lampAt (v • ξ)) lampSign_sq
-    (fun ξ ↦ lampAt_sq _) (fun ξ ↦ lampSign_commute_lampAt _)
+    (fun _ ↦ lampAt_sq _) (fun _ ↦ lampSign_commute_lampAt _)
     (fun _ _ h ↦ commutator_lampAt (adjacent_smul h v))
 
 @[simp] theorem lampPermMap_sign (v : Vertical) :
@@ -1192,7 +1194,7 @@ theorem exists_lampSpan (n : LampFactor) : ∃ J : Finset Block, n ∈ lampSpan 
 theorem blockSpan_map (J : Finset Block) :
     (blockSpan J).map toModel =
       (lampSpan J).map (SemidirectProduct.inl : LampFactor →* Model) := by
-  rw [blockSpan, lampSpan, Subgroup.map_closure, Subgroup.map_closure]
+  rw [blockSpan, lampSpan, MonoidHom.map_closure, MonoidHom.map_closure]
   congr 1
   ext m
   constructor
@@ -1327,7 +1329,7 @@ theorem doubledBase_map_le_conjStable_range :
         LiteralBaseRelations.z, LiteralBaseRelations.v1 ^ 2,
         LiteralBaseRelations.v2 ^ 2, LiteralBaseRelations.v3 ^ 2} :
           Set Base) := rfl
-  rw [hcl, Subgroup.map_closure, Subgroup.closure_le]
+  rw [hcl, MonoidHom.map_closure, Subgroup.closure_le]
   rintro _ ⟨g, hg, rfl⟩
   simp only [Set.mem_insert_iff, Set.mem_singleton_iff] at hg
   rcases hg with rfl | rfl | rfl | rfl | rfl | rfl
@@ -1443,10 +1445,10 @@ theorem top_le_commensurator :
 
 /-- Every conjugate of the vertical base has finite orbits on sites. -/
 theorem finite_conj_site_orbit (g : Vertical) (ξ : Site) :
-    (MulAction.orbit (ConjAct.toConjAct g • baseSubgroup) ξ).Finite :=
+    (MulAction.orbit ↥(ConjAct.toConjAct g • baseSubgroup) ξ).Finite :=
   MappingTelescopeFiniteOrbits.finite_orbit_on_quotient_of_commensurated
     (ConjAct.toConjAct g • baseSubgroup) baseSubgroup
-    (Subgroup.Commensurable.commensurator_mem_iff.mp
+    ((Subgroup.Commensurable.commensurator_mem_iff baseSubgroup g).mp
       (top_le_commensurator (Subgroup.mem_top g)))
     top_le_commensurator ξ
 
@@ -1455,7 +1457,7 @@ def telescopeLevel (n : ℕ) : Subgroup Vertical :=
   ConjAct.toConjAct ((vStable ^ n)⁻¹) • baseSubgroup
 
 theorem finite_telescopeLevel_site_orbit (n : ℕ) (ξ : Site) :
-    (MulAction.orbit (telescopeLevel n) ξ).Finite :=
+    (MulAction.orbit ↥(telescopeLevel n) ξ).Finite :=
   finite_conj_site_orbit _ ξ
 
 /-- **Finite telescope-level orbits on blocks.**  Each level of the mapping
@@ -1463,7 +1465,7 @@ telescope moves any block into only finitely many blocks.  This is the second
 input the soficity tower needs: it is what makes the level-invariant lamp
 sub-amalgams finite. -/
 theorem finite_telescopeLevel_block_orbit (n : ℕ) (b : Block) :
-    (MulAction.orbit (telescopeLevel n) b).Finite := by
+    (MulAction.orbit ↥(telescopeLevel n) b).Finite := by
   obtain ⟨ξ, rfl⟩ := blockOf_surjective b
   have himg : MulAction.orbit (telescopeLevel n) (blockOf ξ) =
       blockOf '' MulAction.orbit (telescopeLevel n) ξ := by

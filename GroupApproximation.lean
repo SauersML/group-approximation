@@ -75,6 +75,9 @@ import GroupApproximation.Monsters.SL3BlockEmbedding
 import GroupApproximation.Monsters.SL2WeylRelations
 import GroupApproximation.Monsters.MoebiusIrrationalAction
 import GroupApproximation.GroupTheory.FiniteCyclicHom
+import GroupApproximation.GroupTheory.HNNBrittonPinch
+import GroupApproximation.GroupTheory.HNNBrittonSpelling
+import GroupApproximation.GroupTheory.HNNBrittonCyclic
 import GroupApproximation.Monsters.SL2PingPong
 import GroupApproximation.Monsters.SL2Completeness
 import GroupApproximation.Monsters.P13BlockSL2
@@ -100,7 +103,6 @@ import GroupApproximation.Sofic.LiteralSixGenerator
 import GroupApproximation.Sofic.LiteralSignFreeQuotient
 import GroupApproximation.Sofic.LiteralTietzePresentation
 import GroupApproximation.Sofic.LiteralWitnessConsequences
-import GroupApproximation.Sofic.LiteralBlockModel
 import GroupApproximation.Sofic.MarkedCompressionInclusionData
 import GroupApproximation.Sofic.CompressionDefectSquare
 import GroupApproximation.Sofic.MarkedCompressionGroup
@@ -304,6 +306,7 @@ import GroupApproximation.Algebra.AbelianLampPushforward
 import GroupApproximation.Algebra.AbelianLampTelescopeKernel
 import GroupApproximation.Algebra.PermutationalWreathRadicalTame
 import GroupApproximation.Algebra.WreathLampPushforward
+import GroupApproximation.Algebra.WreathTelescopeUnion
 import GroupApproximation.Algebra.IntJacobson
 import GroupApproximation.Algebra.FiniteTypeField
 import GroupApproximation.Algebra.Malcev
@@ -314,6 +317,7 @@ import GroupApproximation.Algebra.ModTwoLampParity
 import GroupApproximation.Sofic.FiniteDimensionalResidual
 import GroupApproximation.Sofic.ThreeRadicalsCoincide
 import GroupApproximation.Sofic.LinearResidual
+import GroupApproximation.Sofic.FourRadicalsCoincide
 import GroupApproximation.Sofic.BlockAmplificationRepair
 import GroupApproximation.Sofic.AmplifiedBlockNorms
 import GroupApproximation.Sofic.InducedCoronaMF
@@ -324,6 +328,17 @@ import GroupApproximation.Sofic.WreathPermLayer
 import GroupApproximation.Sofic.WreathChartLamp
 import GroupApproximation.Sofic.GeneralizedWreathSofic
 import GroupApproximation.Sofic.AscendingHNNWreathSofic
+import GroupApproximation.Sofic.RegularActionSofic
+import GroupApproximation.Algebra.WreathTelescopeTower
+import GroupApproximation.Sofic.FiniteIndexRigidity
+import GroupApproximation.Algebra.FreePermutationalPrecursor
+import GroupApproximation.Sofic.UniversalFactorization
+import GroupApproximation.Sofic.RadicalFunctoriality
+import GroupApproximation.Algebra.SplitExtensionFailure
+import GroupApproximation.Sofic.SplitExtensionEndpoint
+import GroupApproximation.Sofic.CommensurabilityInvariance
+import GroupApproximation.Sofic.FiniteIndexNonMF
+import GroupApproximation.Sofic.DossierAuditAddenda
 import GroupApproximation.Sofic.SoficNonMFAssembly
 import GroupApproximation.Sofic.SoficActionOrbits
 import GroupApproximation.Sofic.SoficActionApproximationBelow
@@ -347,6 +362,8 @@ import GroupApproximation.Sofic.AscendingHNNStabilizer
 import GroupApproximation.Sofic.AscendingHNNDoubleCosets
 import GroupApproximation.Sofic.AscendingHNNWreathWitness
 import GroupApproximation.Sofic.AscendingHNNSplitExtension
+import GroupApproximation.Sofic.AscendingHNNTelescopeRadical
+import GroupApproximation.Sofic.ProfiniteTwins
 import GroupApproximation.Sofic.LiteralDoublingWreathNonMF
 import GroupApproximation.Sofic.CoronaRadicalPullback
 import GroupApproximation.Sofic.MoverGeneration
@@ -706,6 +723,20 @@ import GroupApproximation.Leavitt.ShiftEndomorphism
 import GroupApproximation.Sofic.LocalCentralQuotientLifting
 import GroupApproximation.Steinberg.KervaireSteinberg
 import GroupApproximation.Criterion.FiniteDimensionalKill
+import GroupApproximation.Sofic.KazhdanCliffordEpsilon
+import GroupApproximation.Algebra.ZariskiClosedSubgroup
+import GroupApproximation.Algebra.ZariskiDescendingChain
+import GroupApproximation.Algebra.DyadicRationals
+import GroupApproximation.Algebra.WordMetric
+import GroupApproximation.Monsters.LiteralDyadicCalibration
+import GroupApproximation.Sofic.SoficByAmenablePermanence
+import GroupApproximation.Analysis.PropertyTNonamenable
+import GroupApproximation.Analysis.ResiduallyFiniteDimensional
+import GroupApproximation.Analysis.MaximalCStarParagraphEndpoint
+import GroupApproximation.Sofic.ManuscriptCentralSignCriterion
+import GroupApproximation.Sofic.CollapseUniverseScopeDefs
+import GroupApproximation.Sofic.CollapseUniverseScope
+import GroupApproximation.Sofic.CollapseProfileBound
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
