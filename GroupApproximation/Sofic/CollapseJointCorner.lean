@@ -131,6 +131,7 @@ theorem norm_blockAverage_sub_self {R : Matrix Y Y ℂ} (hR : IsExactInvolution 
   rw [hstep, norm_smul, hscalar]
   linarith
 
+omit [DecidableEq Y] in
 /-- The block average of a self-adjoint matrix along a self-adjoint involution
 is self-adjoint. -/
 theorem blockAverage_conjTranspose {R x : Matrix Y Y ℂ} (hR : Rᴴ = R) (hx : xᴴ = x) :
@@ -193,10 +194,12 @@ noncomputable def jointCompression (R : ι → Matrix Y Y ℂ) (l : List ι)
     (x : Matrix Y Y ℂ) : Matrix Y Y ℂ :=
   l.foldr (fun i y ↦ blockAverage (R i) y) x
 
+omit [DecidableEq Y] in
 @[simp]
 theorem jointCompression_nil (R : ι → Matrix Y Y ℂ) (x : Matrix Y Y ℂ) :
     jointCompression R [] x = x := rfl
 
+omit [DecidableEq Y] in
 @[simp]
 theorem jointCompression_cons (R : ι → Matrix Y Y ℂ) (i : ι) (l : List ι)
     (x : Matrix Y Y ℂ) :
@@ -290,6 +293,7 @@ theorem jointCompression_conjTranspose {R : ι → Matrix Y Y ℂ}
 
 One spectral rounding, applied once to the compressed matrix. -/
 
+omit [Fintype Y] [DecidableEq Y] in
 /-- The Hermitian part of a self-adjoint matrix is the matrix itself. -/
 theorem hermitianPart_of_selfAdjoint {x : Matrix Y Y ℂ} (hx : xᴴ = x) :
     ApproxInvolutionCorner.hermitianPart x = x := by
