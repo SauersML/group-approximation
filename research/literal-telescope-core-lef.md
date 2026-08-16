@@ -55,3 +55,13 @@ blocks it touches generate a finitely generated, level-invariant sub-amalgam
 virtually free, and the level acts on it through a finite permutation group of
 the `8|J|` sites, so `M_J semidirect Gamma_n` contains `M_J x Lambda` with
 finite index for a finite-index `Lambda <= Gamma_n` acting trivially.
+
+**Virtual freeness is not needed.**  The route
+`literal-telescope-core-lef-via-central-embedding` runs the identical window
+argument but gets residual finiteness of `M_J` from
+`clifford-block-amalgam-residually-finite` — a two-quotient embedding into
+`C(sites(J)) x (*_{i in J} (Z/2)^8)` — instead of from
+Karrass--Pietrowski--Solitar, and residual finiteness of `Gamma_n` from
+congruence quotients instead of from Mal'cev plus the identification of the
+presented base.  That is the version with no literature input; see
+`docs/E_SOFICITY_SELF_CONTAINED_2026-08-16.md` §§7-10.
