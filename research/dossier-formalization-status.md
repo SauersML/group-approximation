@@ -42,7 +42,9 @@ formalized in this pass; **TODO** not yet formalized.
 | 30.3 | Chabauty closure of transitive sofic actions | DONE-NEW | `Sofic/SoficActionChabauty.isSoficAction_quotient_of_approximable` |
 | 30.5 | separable stabiliser ⇒ transitive coset action sofic (the LERF mechanism) | DONE-NEW | `Sofic/SoficActionChabauty.isSoficAction_quotient_of_separable` |
 | 30.4 | orbit gluing: sofic actions are closed under disjoint unions | DONE-NEW | `Sofic/SoficActionSum.isSoficAction_sum`, on `permDist_prodCongr_le` |
-| 30.6, 30.7 | amenable and LERA actions | TODO | |
+| 30.6 | every action of an amenable group is sofic | DONE-NEW | `Sofic/AmenableActionSofic` (`isSoficAction_of_amenable_surjHom`, `isSoficAction_of_isAmenable`), Følner sets via `exists_folner` |
+| 30.6 co-amenable | strongly co-amenable subgroups have sofic coset actions | DONE-NEW | `Sofic/CoAmenableActionSofic` (`StronglyCoAmenable`, `isSoficAction_quotient_of_stronglyCoAmenable`, `normalCore_inf`) |
+| 30.7 | LERA groups: transitive actions are sofic | DONE-NEW | `Sofic/CoAmenableActionSofic.isSoficAction_quotient_of_isLERA`; the non-transitive case still needs arbitrary-orbit gluing (the repository has only binary sums) |
 | 34.1 | the witness site `tΓ` has stabiliser exactly `α(Γ)` in `Γ` | DONE-NEW | `Sofic/AscendingHNNStabilizer.smul_tSite_eq_iff` |
 | 43.3 | generation bound for the wreath product | DONE-NEW | `Algebra/PermutationalWreathSimple.wreath_eq_closure` |
 | 52.2 | simple quotients of a lamp group come from one coordinate | DONE-NEW | `Algebra/PermutationalWreathSimple.exists_site_bijective_of_simple_quotient` |
