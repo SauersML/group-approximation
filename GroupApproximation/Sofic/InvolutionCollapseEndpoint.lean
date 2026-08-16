@@ -467,8 +467,7 @@ theorem stage_transport_bound :
           W * (B.map n₀ (C.iota a) :
             Matrix (B.model n₀) (B.model n₀) ℂ)ᴴ) ≤
         18 * q ^ 2 * Cw ^ 2 + 16 * κ := by
-  intro Γ E _ _ B C S θ n₀ a Us W Xu
-  intro hUs hUsmem hXu q κ Cw hfix hrev hcap hXumass
+  intro Γ E _ _ B C S θ n₀ a Us W Xu hUs hUsmem hXu q κ Cw hfix hrev hcap hXumass
   have hYcard : 0 < Fintype.card (B.adjoint.model n₀) :=
     B.adjoint.modelNonempty n₀
   have hP := cornerProjection_isOrthogonalProjection B C S θ n₀
