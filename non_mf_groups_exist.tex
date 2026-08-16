@@ -1863,17 +1863,24 @@ concentrated in $\operatorname{ran}P_n$.
 
 \emph{Reversing the one-sided projection estimate.}  Put
 $T_n=\Ad U_n(s)$ and $Q_n=T_nP_nT_n^*$, a projection of the same rank as
-$P_n$.  The conjugation relation enters exactly once: for
-$\gamma\in\Gamma$ the element $s^{-1}$ pulls the almost-fixedness of a
-vector of $\operatorname{ran}P_n$ under
-$\iota(\Gamma)\supseteq s\iota(\Gamma)s^{-1}$ back to
-almost-fixedness under each $\iota(s')$, $s'\in S$.  By the
-concentration estimate, the pulled-back vector is again almost in the
-subspace.  Thus
-$\operatorname{ran}P_n$ is almost contained in its conjugate,
-$\opnorm{(1-Q_n)P_n}\to0$ --- the finite-stage form of the one-sided
+$P_n$.  Since $\opnorm{(1-Q_n)P_n}=\opnorm{(1-P_n)T_n^{*}P_n}$, it is
+enough to bound the latter.  Let $\eta\in\operatorname{ran}P_n$ be a
+unit vector and let $s'\in S$.  The hypothesis
+$s\iota(\Gamma)s^{-1}\subseteq\iota(\Gamma)$ supplies a single
+$\delta_{s'}\in\Gamma$ with $s\iota(s')s^{-1}=\iota(\delta_{s'})$, and
+\[
+ \bigl(\Ad U_n(\iota(s'))-1\bigr)T_n^{*}\eta
+ \;=\;T_n^{*}\bigl(\Ad U_n(\iota(\delta_{s'}))-1\bigr)\eta
+ \;+\;R_{n,s'},
+\]
+where $\opnorm{R_{n,s'}}$ is bounded by the multiplicative defects of
+$U_n$ on $\{s,\iota(s'),s^{-1}\}$ and therefore tends to $0$.  By~(i)
+so does the first term, so $T_n^{*}\eta$ is asymptotically fixed by
+every generator, and~(ii) places it asymptotically in
+$\operatorname{ran}P_n$.  Hence
+$\opnorm{(1-Q_n)P_n}\to0$, the finite-stage form of the one-sided
 inclusion $P\le VPV^*$.  Since $\operatorname{rank}P_n=
-\operatorname{rank}Q_n$, the equal-rank reversal estimate --- for projections $p,q$ of
+\operatorname{rank}Q_n$, the equal-rank projection lemma --- for projections $p,q$ of
 equal finite rank, $\opnorm{(1-q)p}\le\varepsilon<1$ implies
 $\opnorm{(1-p)q}\le\varepsilon/\sqrt{1-\varepsilon^2}$ --- reverses the
 containment:
@@ -4074,7 +4081,10 @@ for every $h\in H$.
 \end{proposition}
 
 Injectivity comes from the left regular representation, uniqueness from
-density of $\C[H]$.
+density of $\C[H]$.  The restriction on $B$ is what keeps ``all
+representations'' a set rather than a proper class; it costs nothing,
+since every target used in this paper is small, and it is the form the
+accompanying development quantifies over.
 
 The maximal and reduced algebras separate already at the level of
 finiteness:
