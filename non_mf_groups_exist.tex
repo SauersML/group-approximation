@@ -1682,7 +1682,7 @@ block-tower analysis, and its locally finite kernel and residually
 finite quotient give the permanence counterexamples of
 Section~\ref{sec:consequences}, which $E$ does not.
 
-\section{Transport at every scale}\label{supp:transport-variants}
+\section{Transport at arbitrary weights}\label{supp:transport-variants}
 
 The transport theorem extends to arbitrary weights $\nu_n$ in place of
 the dimension; the normalization $\nu_n=d_n$ of
@@ -1690,7 +1690,7 @@ Theorem~\ref{thm:kazhdan-transport} is one special case.  The weights
 are written $\nu_n$ rather than $w_n$ because $w$ is the marked word
 of $E$ throughout.
 
-\begin{theorem}[transport at every scale, and of intertwiners]
+\begin{theorem}[transport at an arbitrary weight, and of intertwiners]
 \label{thm:transport-variants}
 Let $\Gamma$, $H$, $\iota$, and $s$ be as in
 Theorem~\ref{thm:kazhdan-transport}.
@@ -2964,15 +2964,25 @@ The assembly below never needs one.  It uses the bound at finitely many
 places only --- on the generators $a\in S$ and on the primitive --- and
 there the intersection is finite.
 Property~\textup{(T)} supplies that uniformity, in the quantitative
-form of the Delorme--Guichardet argument \cite[Section~2.12]{BHV}: for a Kazhdan
-pair $(S,\kappa)$ there is a constant $C_0=C_0(S,\kappa)$ such that
-every $1$-cocycle $b$ of every unitary representation of $L$ satisfies
-$\lVert b(\gamma)\rVert\le C_0\max_{a\in S}\lVert b(a)\rVert$ for all
-$\gamma\in L$ --- the fixed vector produced from the Kazhdan projection
-lies within $C_0\max_{a\in S}\lVert b(a)\rVert$ of the origin, and
-$b(\gamma)=y-\pi(\gamma)y$ is at most twice that.  Read on the
-limiting cocycle of Step~5 with \eqref{eq:generator-mass}, this gives
-$C=4C_0$.  That reading is the one place where the present assembly
+form of the Delorme--Guichardet argument \cite[Section~2.12]{BHV}: for
+a Kazhdan pair $(S,\kappa)$, every $1$-cocycle of every unitary
+representation of $L$ is bounded by its generator values, the fixed
+vector produced from the Kazhdan projection lying within a multiple of
+$\max_{a\in S}\lVert b(a)\rVert$ of the origin and
+$b(\gamma)=y-\pi(\gamma)y$ being at most twice that.  Read on the
+limiting cocycle of Step~5, where \eqref{eq:generator-mass} pins the
+generator values, it gives the explicit
+\begin{equation}\label{eq:profile-explicit}
+ \lVert b(\gamma)\rVert^{2}\;\le\;\frac{160\log2}{\kappa^{2}}
+ \;\le\;\frac{111}{\kappa^{2}}\qquad(\gamma\in L),
+\end{equation}
+so $C=\sqrt{111}/\kappa$ serves.  The Kazhdan constant is the only
+datum that enters: neither $|S|$ nor the group appears, which is more
+than uniformity in $\gamma$ and more than
+\eqref{eq:profile-bounded} asks for.
+\leanverified{Sofic/CollapseProfileBound}{GroupApproximation.CollapseProfileBound.collapse_profile_le}
+\leanverified{Sofic/CollapseProfileBoundNumeric}{GroupApproximation.CollapseProfileBound.collapse_profile_le_num}
+That reading is the one place where the present assembly
 still consults the limit rather than a single stage: what is
 ultraproduct-free below is the transport and the contradiction, not the
 provenance of $C$.  Put
