@@ -705,6 +705,7 @@ import GroupApproximation.Leavitt.ShiftEndomorphism
 import GroupApproximation.Sofic.LocalCentralQuotientLifting
 import GroupApproximation.Steinberg.KervaireSteinberg
 import GroupApproximation.Criterion.FiniteDimensionalKill
+import GroupApproximation.Sofic.KazhdanCliffordEpsilon
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
