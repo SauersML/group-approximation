@@ -34,7 +34,7 @@ the largest layer on which the survival statement is a locality fact.
 namespace GroupApproximation
 namespace IntegerLampSurvival
 
-universe u
+universe u v
 
 /-! ## Coefficient-generic lamp groups and their permutation action -/
 
@@ -44,7 +44,7 @@ variable {X : Type u} {M : Type*} [AddCommGroup M]
 
 /-- The restricted lamp group with coefficient group `M`, written
 multiplicatively so that it can feed a semidirect product. -/
-abbrev Lamps (X : Type u) (M : Type*) [AddCommGroup M] : Type u :=
+abbrev Lamps (X : Type u) (M : Type v) [AddCommGroup M] : Type (max u v) :=
   Multiplicative (X →₀ M)
 
 /-- The automorphism of the lamp group induced by one site permutation:
@@ -104,8 +104,8 @@ def lampAut (ρ : H →* Equiv.Perm X) : H →* MulAut (Lamps X M) where
       Multiplicative.toAdd l ((ρ h).symm x) := rfl
 
 /-- The restricted permutational lamp wreath. -/
-abbrev LampWreath (M : Type*) [AddCommGroup M] {X H : Type u} [Group H]
-    (ρ : H →* Equiv.Perm X) : Type u :=
+abbrev LampWreath (M : Type v) [AddCommGroup M] {X H : Type u} [Group H]
+    (ρ : H →* Equiv.Perm X) : Type (max u v) :=
   Lamps X M ⋊[lampAut ρ] H
 
 end Lamps
