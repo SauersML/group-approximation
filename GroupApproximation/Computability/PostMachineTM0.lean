@@ -124,6 +124,50 @@ theorem tm0_step_eq_none {M : TM0.Machine Γ Λ} {c : Cfg Γ Λ}
   rw [← toTM0_step, hc]
   rfl
 
+/-! ## Inputs
+
+Mathlib phrases computation in terms of an input list, not a configuration, so
+the correspondence has to reach that far to be usable. -/
+
+/-- The starting configuration for an input list: head on the first symbol, rest
+of the input to the right, nothing to the left. -/
+def ofInput (l : List Γ) : Cfg Γ Λ := ⟨default, [], l.headI, l.tail⟩
+
+@[simp] theorem toTM0_ofInput (l : List Γ) :
+    toTM0 (ofInput l : Cfg Γ Λ) = TM0.init l := by
+  simp [toTM0, ofInput, TM0.init, Tape.mk₁, Tape.mk₂, Tape.mk']
+
+theorem step_eq_none_iff_tm0 (M : TM0.Machine Γ Λ) (c : Cfg Γ Λ) :
+    step (ofTM0 M) c = none ↔ TM0.step M (toTM0 c) = none := by
+  rw [← toTM0_step]
+  simp
+
+/-- **Halting agrees, on inputs.**  Mathlib's `TM0.eval` is defined on an input
+list and terminates exactly when the machine here, started from that input,
+reaches a configuration with no next step.  This is what carries an
+undecidability theorem about `TM0.eval` over to the monoid. -/
+theorem eval_dom_iff (M : TM0.Machine Γ Λ) (l : List Γ) :
+    (TM0.eval M l).Dom ↔
+      ∃ e, Reach (step (ofTM0 M)) (ofInput l) e ∧ step (ofTM0 M) e = none := by
+  constructor
+  · intro h
+    obtain ⟨b, hb⟩ := Part.dom_iff_mem.mp h
+    rw [TM0.eval, Part.mem_map_iff] at hb
+    obtain ⟨X, hX, -⟩ := hb
+    rw [StateTransition.mem_eval] at hX
+    obtain ⟨hreach, hnone⟩ := hX
+    rw [← toTM0_ofInput (Λ := Λ)] at hreach
+    obtain ⟨e, hce, rfl⟩ := reaches_iff.mp hreach
+    exact ⟨e, hce, (step_eq_none_iff_tm0 M e).mpr hnone⟩
+  · rintro ⟨e, hce, hnone⟩
+    have hX : toTM0 e ∈ StateTransition.eval (TM0.step M) (TM0.init l) := by
+      rw [StateTransition.mem_eval]
+      refine ⟨?_, (step_eq_none_iff_tm0 M e).mp hnone⟩
+      rw [← toTM0_ofInput (Λ := Λ)]
+      exact reaches_toTM0 hce
+    rw [TM0.eval]
+    exact Part.dom_iff_mem.mpr ⟨_, Part.mem_map _ hX⟩
+
 /-! ## The word problem of the presented monoid, for a Post--Turing machine -/
 
 /-- **Word equality gives a TM0 run.**  Against a halting configuration `d`,
