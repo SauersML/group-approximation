@@ -627,8 +627,110 @@ the ν-led braid word, whose transported base is the inverse-signed
 swap action; these variants restate the existence disjunctions with
 the matching bases. -/
 
-set_option maxHeartbeats 1000000 in
 set_option linter.unusedSimpArgs false in
+private theorem exist_st_15_pp' (u : Fin 3 → ℤ)
+    (hviol : vnorm (act (toSL3 (x 1 1)) (act (toSL3 (x 5 1)) u)) <
+      vnorm (act (toSL3 (x 5 1)) u))
+    (hside : vnorm u ≤ vnorm (act (toSL3 (x 5 1)) u)) :
+    (vnorm (act (toSL3 (x 1 1)) u) < vnorm (act (toSL3 (x 5 1)) u) ∧
+      vnorm (act (toSL3 (x 5 1)) (act (toSL3 (x 1 1)) u)) <
+        vnorm (act (toSL3 (x 5 1)) u)) ∨
+    (vnorm (act (toSL3 (x 1 1)) u) < vnorm (act (toSL3 (x 5 1)) u) ∧
+      vnorm (act (toSL3 (x 0 (1 * 1))) (act (toSL3 (x 1 1)) u)) <
+        vnorm (act (toSL3 (x 5 1)) u)) ∨
+    (vnorm (act (toSL3 (x 0 (1 * 1))) u) <
+        vnorm (act (toSL3 (x 5 1)) u) ∧
+      vnorm (act (toSL3 (x 1 1)) (act (toSL3 (x 0 (1 * 1))) u)) <
+        vnorm (act (toSL3 (x 5 1)) u)) ∨
+    (vnorm (act (toSL3 (x 5 (-1))) ![u 0, -(1 * u 2), 1 * u 1]) <
+        vnorm (act (toSL3 (x 5 1)) u) ∧
+      vnorm (act (toSL3 (x 1 1)) (act (toSL3 (x 5 (-1)))
+          ![u 0, -(1 * u 2), 1 * u 1])) <
+        vnorm (act (toSL3 (x 5 1)) u)) := by
+  simp only [act_x0, act_x1, act_x5, vnorm, one_mul, neg_one_mul, neg_neg,
+      Matrix.cons_val_zero, Matrix.cons_val_one,
+      Matrix.cons_val_two, Matrix.head_cons, Matrix.tail_cons]
+      at hviol hside ⊢
+  omega
+
+set_option linter.unusedSimpArgs false in
+private theorem exist_st_15_pm' (u : Fin 3 → ℤ)
+    (hviol : vnorm (act (toSL3 (x 1 1)) (act (toSL3 (x 5 (-1))) u)) <
+      vnorm (act (toSL3 (x 5 (-1))) u))
+    (hside : vnorm u ≤ vnorm (act (toSL3 (x 5 (-1))) u)) :
+    (vnorm (act (toSL3 (x 1 1)) u) < vnorm (act (toSL3 (x 5 (-1))) u) ∧
+      vnorm (act (toSL3 (x 5 (-1))) (act (toSL3 (x 1 1)) u)) <
+        vnorm (act (toSL3 (x 5 (-1))) u)) ∨
+    (vnorm (act (toSL3 (x 1 1)) u) < vnorm (act (toSL3 (x 5 (-1))) u) ∧
+      vnorm (act (toSL3 (x 0 (1 * (-1)))) (act (toSL3 (x 1 1)) u)) <
+        vnorm (act (toSL3 (x 5 (-1))) u)) ∨
+    (vnorm (act (toSL3 (x 0 (1 * (-1)))) u) <
+        vnorm (act (toSL3 (x 5 (-1))) u) ∧
+      vnorm (act (toSL3 (x 1 1)) (act (toSL3 (x 0 (1 * (-1)))) u)) <
+        vnorm (act (toSL3 (x 5 (-1))) u)) ∨
+    (vnorm (act (toSL3 (x 5 (-(-1)))) ![u 0, -((-1) * u 2), (-1) * u 1]) <
+        vnorm (act (toSL3 (x 5 (-1))) u) ∧
+      vnorm (act (toSL3 (x 1 1)) (act (toSL3 (x 5 (-(-1))))
+          ![u 0, -((-1) * u 2), (-1) * u 1])) <
+        vnorm (act (toSL3 (x 5 (-1))) u)) := by
+  simp only [act_x0, act_x1, act_x5, vnorm, one_mul, neg_one_mul, neg_neg,
+      Matrix.cons_val_zero, Matrix.cons_val_one,
+      Matrix.cons_val_two, Matrix.head_cons, Matrix.tail_cons]
+      at hviol hside ⊢
+  omega
+
+set_option linter.unusedSimpArgs false in
+private theorem exist_st_15_mp' (u : Fin 3 → ℤ)
+    (hviol : vnorm (act (toSL3 (x 1 (-1))) (act (toSL3 (x 5 1)) u)) <
+      vnorm (act (toSL3 (x 5 1)) u))
+    (hside : vnorm u ≤ vnorm (act (toSL3 (x 5 1)) u)) :
+    (vnorm (act (toSL3 (x 1 (-1))) u) < vnorm (act (toSL3 (x 5 1)) u) ∧
+      vnorm (act (toSL3 (x 5 1)) (act (toSL3 (x 1 (-1))) u)) <
+        vnorm (act (toSL3 (x 5 1)) u)) ∨
+    (vnorm (act (toSL3 (x 1 (-1))) u) < vnorm (act (toSL3 (x 5 1)) u) ∧
+      vnorm (act (toSL3 (x 0 ((-1) * 1))) (act (toSL3 (x 1 (-1))) u)) <
+        vnorm (act (toSL3 (x 5 1)) u)) ∨
+    (vnorm (act (toSL3 (x 0 ((-1) * 1))) u) <
+        vnorm (act (toSL3 (x 5 1)) u) ∧
+      vnorm (act (toSL3 (x 1 (-1))) (act (toSL3 (x 0 ((-1) * 1))) u)) <
+        vnorm (act (toSL3 (x 5 1)) u)) ∨
+    (vnorm (act (toSL3 (x 5 (-1))) ![u 0, -(1 * u 2), 1 * u 1]) <
+        vnorm (act (toSL3 (x 5 1)) u) ∧
+      vnorm (act (toSL3 (x 1 (-1))) (act (toSL3 (x 5 (-1)))
+          ![u 0, -(1 * u 2), 1 * u 1])) <
+        vnorm (act (toSL3 (x 5 1)) u)) := by
+  simp only [act_x0, act_x1, act_x5, vnorm, one_mul, neg_one_mul, neg_neg,
+      Matrix.cons_val_zero, Matrix.cons_val_one,
+      Matrix.cons_val_two, Matrix.head_cons, Matrix.tail_cons]
+      at hviol hside ⊢
+  omega
+
+set_option linter.unusedSimpArgs false in
+private theorem exist_st_15_mm' (u : Fin 3 → ℤ)
+    (hviol : vnorm (act (toSL3 (x 1 (-1))) (act (toSL3 (x 5 (-1))) u)) <
+      vnorm (act (toSL3 (x 5 (-1))) u))
+    (hside : vnorm u ≤ vnorm (act (toSL3 (x 5 (-1))) u)) :
+    (vnorm (act (toSL3 (x 1 (-1))) u) < vnorm (act (toSL3 (x 5 (-1))) u) ∧
+      vnorm (act (toSL3 (x 5 (-1))) (act (toSL3 (x 1 (-1))) u)) <
+        vnorm (act (toSL3 (x 5 (-1))) u)) ∨
+    (vnorm (act (toSL3 (x 1 (-1))) u) < vnorm (act (toSL3 (x 5 (-1))) u) ∧
+      vnorm (act (toSL3 (x 0 ((-1) * (-1)))) (act (toSL3 (x 1 (-1))) u)) <
+        vnorm (act (toSL3 (x 5 (-1))) u)) ∨
+    (vnorm (act (toSL3 (x 0 ((-1) * (-1)))) u) <
+        vnorm (act (toSL3 (x 5 (-1))) u) ∧
+      vnorm (act (toSL3 (x 1 (-1))) (act (toSL3 (x 0 ((-1) * (-1)))) u)) <
+        vnorm (act (toSL3 (x 5 (-1))) u)) ∨
+    (vnorm (act (toSL3 (x 5 (-(-1)))) ![u 0, -((-1) * u 2), (-1) * u 1]) <
+        vnorm (act (toSL3 (x 5 (-1))) u) ∧
+      vnorm (act (toSL3 (x 1 (-1))) (act (toSL3 (x 5 (-(-1))))
+          ![u 0, -((-1) * u 2), (-1) * u 1])) <
+        vnorm (act (toSL3 (x 5 (-1))) u)) := by
+  simp only [act_x0, act_x1, act_x5, vnorm, one_mul, neg_one_mul, neg_neg,
+      Matrix.cons_val_zero, Matrix.cons_val_one,
+      Matrix.cons_val_two, Matrix.head_cons, Matrix.tail_cons]
+      at hviol hside ⊢
+  omega
+
 private theorem exist_st_15' (c cp : ℤ) (hc : c = 1 ∨ c = -1)
     (hcp : cp = 1 ∨ cp = -1) (u : Fin 3 → ℤ)
     (hviol : vnorm (act (toSL3 (x 1 c)) (act (toSL3 (x 5 cp)) u)) <
@@ -649,15 +751,114 @@ private theorem exist_st_15' (c cp : ℤ) (hc : c = 1 ∨ c = -1)
       vnorm (act (toSL3 (x 1 c)) (act (toSL3 (x 5 (-cp)))
           ![u 0, -(cp * u 2), cp * u 1])) <
         vnorm (act (toSL3 (x 5 cp)) u)) := by
-  rcases hc with rfl | rfl <;> rcases hcp with rfl | rfl <;>
-    simp only [act_x0, act_x1, act_x5, vnorm, one_mul, neg_one_mul, neg_neg,
+  rcases hc with rfl | rfl <;> rcases hcp with rfl | rfl
+  exacts [exist_st_15_pp' u hviol hside, exist_st_15_pm' u hviol hside,
+    exist_st_15_mp' u hviol hside, exist_st_15_mm' u hviol hside]
+
+set_option linter.unusedSimpArgs false in
+private theorem exist_st_34_pp' (u : Fin 3 → ℤ)
+    (hviol : vnorm (act (toSL3 (x 3 1)) (act (toSL3 (x 4 1)) u)) <
+      vnorm (act (toSL3 (x 4 1)) u))
+    (hside : vnorm u ≤ vnorm (act (toSL3 (x 4 1)) u)) :
+    (vnorm (act (toSL3 (x 3 1)) u) < vnorm (act (toSL3 (x 4 1)) u) ∧
+      vnorm (act (toSL3 (x 4 1)) (act (toSL3 (x 3 1)) u)) <
+        vnorm (act (toSL3 (x 4 1)) u)) ∨
+    (vnorm (act (toSL3 (x 3 1)) u) < vnorm (act (toSL3 (x 4 1)) u) ∧
+      vnorm (act (toSL3 (x 2 (1 * 1))) (act (toSL3 (x 3 1)) u)) <
+        vnorm (act (toSL3 (x 4 1)) u)) ∨
+    (vnorm (act (toSL3 (x 2 (1 * 1))) u) <
+        vnorm (act (toSL3 (x 4 1)) u) ∧
+      vnorm (act (toSL3 (x 3 1)) (act (toSL3 (x 2 (1 * 1))) u)) <
+        vnorm (act (toSL3 (x 4 1)) u)) ∨
+    (vnorm (act (toSL3 (x 4 (-1))) ![-(1 * u 2), u 1, 1 * u 0]) <
+        vnorm (act (toSL3 (x 4 1)) u) ∧
+      vnorm (act (toSL3 (x 3 1)) (act (toSL3 (x 4 (-1)))
+          ![-(1 * u 2), u 1, 1 * u 0])) <
+        vnorm (act (toSL3 (x 4 1)) u)) := by
+  simp only [act_x2, act_x3, act_x4, vnorm, one_mul, neg_one_mul, neg_neg,
       Matrix.cons_val_zero, Matrix.cons_val_one,
       Matrix.cons_val_two, Matrix.head_cons, Matrix.tail_cons]
-      at hviol hside ⊢ <;>
-    omega
+      at hviol hside ⊢
+  omega
 
-set_option maxHeartbeats 1000000 in
 set_option linter.unusedSimpArgs false in
+private theorem exist_st_34_pm' (u : Fin 3 → ℤ)
+    (hviol : vnorm (act (toSL3 (x 3 1)) (act (toSL3 (x 4 (-1))) u)) <
+      vnorm (act (toSL3 (x 4 (-1))) u))
+    (hside : vnorm u ≤ vnorm (act (toSL3 (x 4 (-1))) u)) :
+    (vnorm (act (toSL3 (x 3 1)) u) < vnorm (act (toSL3 (x 4 (-1))) u) ∧
+      vnorm (act (toSL3 (x 4 (-1))) (act (toSL3 (x 3 1)) u)) <
+        vnorm (act (toSL3 (x 4 (-1))) u)) ∨
+    (vnorm (act (toSL3 (x 3 1)) u) < vnorm (act (toSL3 (x 4 (-1))) u) ∧
+      vnorm (act (toSL3 (x 2 (1 * (-1)))) (act (toSL3 (x 3 1)) u)) <
+        vnorm (act (toSL3 (x 4 (-1))) u)) ∨
+    (vnorm (act (toSL3 (x 2 (1 * (-1)))) u) <
+        vnorm (act (toSL3 (x 4 (-1))) u) ∧
+      vnorm (act (toSL3 (x 3 1)) (act (toSL3 (x 2 (1 * (-1)))) u)) <
+        vnorm (act (toSL3 (x 4 (-1))) u)) ∨
+    (vnorm (act (toSL3 (x 4 (-(-1)))) ![-((-1) * u 2), u 1, (-1) * u 0]) <
+        vnorm (act (toSL3 (x 4 (-1))) u) ∧
+      vnorm (act (toSL3 (x 3 1)) (act (toSL3 (x 4 (-(-1))))
+          ![-((-1) * u 2), u 1, (-1) * u 0])) <
+        vnorm (act (toSL3 (x 4 (-1))) u)) := by
+  simp only [act_x2, act_x3, act_x4, vnorm, one_mul, neg_one_mul, neg_neg,
+      Matrix.cons_val_zero, Matrix.cons_val_one,
+      Matrix.cons_val_two, Matrix.head_cons, Matrix.tail_cons]
+      at hviol hside ⊢
+  omega
+
+set_option linter.unusedSimpArgs false in
+private theorem exist_st_34_mp' (u : Fin 3 → ℤ)
+    (hviol : vnorm (act (toSL3 (x 3 (-1))) (act (toSL3 (x 4 1)) u)) <
+      vnorm (act (toSL3 (x 4 1)) u))
+    (hside : vnorm u ≤ vnorm (act (toSL3 (x 4 1)) u)) :
+    (vnorm (act (toSL3 (x 3 (-1))) u) < vnorm (act (toSL3 (x 4 1)) u) ∧
+      vnorm (act (toSL3 (x 4 1)) (act (toSL3 (x 3 (-1))) u)) <
+        vnorm (act (toSL3 (x 4 1)) u)) ∨
+    (vnorm (act (toSL3 (x 3 (-1))) u) < vnorm (act (toSL3 (x 4 1)) u) ∧
+      vnorm (act (toSL3 (x 2 ((-1) * 1))) (act (toSL3 (x 3 (-1))) u)) <
+        vnorm (act (toSL3 (x 4 1)) u)) ∨
+    (vnorm (act (toSL3 (x 2 ((-1) * 1))) u) <
+        vnorm (act (toSL3 (x 4 1)) u) ∧
+      vnorm (act (toSL3 (x 3 (-1))) (act (toSL3 (x 2 ((-1) * 1))) u)) <
+        vnorm (act (toSL3 (x 4 1)) u)) ∨
+    (vnorm (act (toSL3 (x 4 (-1))) ![-(1 * u 2), u 1, 1 * u 0]) <
+        vnorm (act (toSL3 (x 4 1)) u) ∧
+      vnorm (act (toSL3 (x 3 (-1))) (act (toSL3 (x 4 (-1)))
+          ![-(1 * u 2), u 1, 1 * u 0])) <
+        vnorm (act (toSL3 (x 4 1)) u)) := by
+  simp only [act_x2, act_x3, act_x4, vnorm, one_mul, neg_one_mul, neg_neg,
+      Matrix.cons_val_zero, Matrix.cons_val_one,
+      Matrix.cons_val_two, Matrix.head_cons, Matrix.tail_cons]
+      at hviol hside ⊢
+  omega
+
+set_option linter.unusedSimpArgs false in
+private theorem exist_st_34_mm' (u : Fin 3 → ℤ)
+    (hviol : vnorm (act (toSL3 (x 3 (-1))) (act (toSL3 (x 4 (-1))) u)) <
+      vnorm (act (toSL3 (x 4 (-1))) u))
+    (hside : vnorm u ≤ vnorm (act (toSL3 (x 4 (-1))) u)) :
+    (vnorm (act (toSL3 (x 3 (-1))) u) < vnorm (act (toSL3 (x 4 (-1))) u) ∧
+      vnorm (act (toSL3 (x 4 (-1))) (act (toSL3 (x 3 (-1))) u)) <
+        vnorm (act (toSL3 (x 4 (-1))) u)) ∨
+    (vnorm (act (toSL3 (x 3 (-1))) u) < vnorm (act (toSL3 (x 4 (-1))) u) ∧
+      vnorm (act (toSL3 (x 2 ((-1) * (-1)))) (act (toSL3 (x 3 (-1))) u)) <
+        vnorm (act (toSL3 (x 4 (-1))) u)) ∨
+    (vnorm (act (toSL3 (x 2 ((-1) * (-1)))) u) <
+        vnorm (act (toSL3 (x 4 (-1))) u) ∧
+      vnorm (act (toSL3 (x 3 (-1))) (act (toSL3 (x 2 ((-1) * (-1)))) u)) <
+        vnorm (act (toSL3 (x 4 (-1))) u)) ∨
+    (vnorm (act (toSL3 (x 4 (-(-1)))) ![-((-1) * u 2), u 1, (-1) * u 0]) <
+        vnorm (act (toSL3 (x 4 (-1))) u) ∧
+      vnorm (act (toSL3 (x 3 (-1))) (act (toSL3 (x 4 (-(-1))))
+          ![-((-1) * u 2), u 1, (-1) * u 0])) <
+        vnorm (act (toSL3 (x 4 (-1))) u)) := by
+  simp only [act_x2, act_x3, act_x4, vnorm, one_mul, neg_one_mul, neg_neg,
+      Matrix.cons_val_zero, Matrix.cons_val_one,
+      Matrix.cons_val_two, Matrix.head_cons, Matrix.tail_cons]
+      at hviol hside ⊢
+  omega
+
 private theorem exist_st_34' (c cp : ℤ) (hc : c = 1 ∨ c = -1)
     (hcp : cp = 1 ∨ cp = -1) (u : Fin 3 → ℤ)
     (hviol : vnorm (act (toSL3 (x 3 c)) (act (toSL3 (x 4 cp)) u)) <
@@ -678,15 +879,114 @@ private theorem exist_st_34' (c cp : ℤ) (hc : c = 1 ∨ c = -1)
       vnorm (act (toSL3 (x 3 c)) (act (toSL3 (x 4 (-cp)))
           ![-(cp * u 2), u 1, cp * u 0])) <
         vnorm (act (toSL3 (x 4 cp)) u)) := by
-  rcases hc with rfl | rfl <;> rcases hcp with rfl | rfl <;>
-    simp only [act_x2, act_x3, act_x4, vnorm, one_mul, neg_one_mul, neg_neg,
+  rcases hc with rfl | rfl <;> rcases hcp with rfl | rfl
+  exacts [exist_st_34_pp' u hviol hside, exist_st_34_pm' u hviol hside,
+    exist_st_34_mp' u hviol hside, exist_st_34_mm' u hviol hside]
+
+set_option linter.unusedSimpArgs false in
+private theorem exist_st_52_pp' (u : Fin 3 → ℤ)
+    (hviol : vnorm (act (toSL3 (x 5 1)) (act (toSL3 (x 2 1)) u)) <
+      vnorm (act (toSL3 (x 2 1)) u))
+    (hside : vnorm u ≤ vnorm (act (toSL3 (x 2 1)) u)) :
+    (vnorm (act (toSL3 (x 5 1)) u) < vnorm (act (toSL3 (x 2 1)) u) ∧
+      vnorm (act (toSL3 (x 2 1)) (act (toSL3 (x 5 1)) u)) <
+        vnorm (act (toSL3 (x 2 1)) u)) ∨
+    (vnorm (act (toSL3 (x 5 1)) u) < vnorm (act (toSL3 (x 2 1)) u) ∧
+      vnorm (act (toSL3 (x 4 (1 * 1))) (act (toSL3 (x 5 1)) u)) <
+        vnorm (act (toSL3 (x 2 1)) u)) ∨
+    (vnorm (act (toSL3 (x 4 (1 * 1))) u) <
+        vnorm (act (toSL3 (x 2 1)) u) ∧
+      vnorm (act (toSL3 (x 5 1)) (act (toSL3 (x 4 (1 * 1))) u)) <
+        vnorm (act (toSL3 (x 2 1)) u)) ∨
+    (vnorm (act (toSL3 (x 2 (-1))) ![-(1 * u 1), 1 * u 0, u 2]) <
+        vnorm (act (toSL3 (x 2 1)) u) ∧
+      vnorm (act (toSL3 (x 5 1)) (act (toSL3 (x 2 (-1)))
+          ![-(1 * u 1), 1 * u 0, u 2])) <
+        vnorm (act (toSL3 (x 2 1)) u)) := by
+  simp only [act_x2, act_x4, act_x5, vnorm, one_mul, neg_one_mul, neg_neg,
       Matrix.cons_val_zero, Matrix.cons_val_one,
       Matrix.cons_val_two, Matrix.head_cons, Matrix.tail_cons]
-      at hviol hside ⊢ <;>
-    omega
+      at hviol hside ⊢
+  omega
 
-set_option maxHeartbeats 1000000 in
 set_option linter.unusedSimpArgs false in
+private theorem exist_st_52_pm' (u : Fin 3 → ℤ)
+    (hviol : vnorm (act (toSL3 (x 5 1)) (act (toSL3 (x 2 (-1))) u)) <
+      vnorm (act (toSL3 (x 2 (-1))) u))
+    (hside : vnorm u ≤ vnorm (act (toSL3 (x 2 (-1))) u)) :
+    (vnorm (act (toSL3 (x 5 1)) u) < vnorm (act (toSL3 (x 2 (-1))) u) ∧
+      vnorm (act (toSL3 (x 2 (-1))) (act (toSL3 (x 5 1)) u)) <
+        vnorm (act (toSL3 (x 2 (-1))) u)) ∨
+    (vnorm (act (toSL3 (x 5 1)) u) < vnorm (act (toSL3 (x 2 (-1))) u) ∧
+      vnorm (act (toSL3 (x 4 (1 * (-1)))) (act (toSL3 (x 5 1)) u)) <
+        vnorm (act (toSL3 (x 2 (-1))) u)) ∨
+    (vnorm (act (toSL3 (x 4 (1 * (-1)))) u) <
+        vnorm (act (toSL3 (x 2 (-1))) u) ∧
+      vnorm (act (toSL3 (x 5 1)) (act (toSL3 (x 4 (1 * (-1)))) u)) <
+        vnorm (act (toSL3 (x 2 (-1))) u)) ∨
+    (vnorm (act (toSL3 (x 2 (-(-1)))) ![-((-1) * u 1), (-1) * u 0, u 2]) <
+        vnorm (act (toSL3 (x 2 (-1))) u) ∧
+      vnorm (act (toSL3 (x 5 1)) (act (toSL3 (x 2 (-(-1))))
+          ![-((-1) * u 1), (-1) * u 0, u 2])) <
+        vnorm (act (toSL3 (x 2 (-1))) u)) := by
+  simp only [act_x2, act_x4, act_x5, vnorm, one_mul, neg_one_mul, neg_neg,
+      Matrix.cons_val_zero, Matrix.cons_val_one,
+      Matrix.cons_val_two, Matrix.head_cons, Matrix.tail_cons]
+      at hviol hside ⊢
+  omega
+
+set_option linter.unusedSimpArgs false in
+private theorem exist_st_52_mp' (u : Fin 3 → ℤ)
+    (hviol : vnorm (act (toSL3 (x 5 (-1))) (act (toSL3 (x 2 1)) u)) <
+      vnorm (act (toSL3 (x 2 1)) u))
+    (hside : vnorm u ≤ vnorm (act (toSL3 (x 2 1)) u)) :
+    (vnorm (act (toSL3 (x 5 (-1))) u) < vnorm (act (toSL3 (x 2 1)) u) ∧
+      vnorm (act (toSL3 (x 2 1)) (act (toSL3 (x 5 (-1))) u)) <
+        vnorm (act (toSL3 (x 2 1)) u)) ∨
+    (vnorm (act (toSL3 (x 5 (-1))) u) < vnorm (act (toSL3 (x 2 1)) u) ∧
+      vnorm (act (toSL3 (x 4 ((-1) * 1))) (act (toSL3 (x 5 (-1))) u)) <
+        vnorm (act (toSL3 (x 2 1)) u)) ∨
+    (vnorm (act (toSL3 (x 4 ((-1) * 1))) u) <
+        vnorm (act (toSL3 (x 2 1)) u) ∧
+      vnorm (act (toSL3 (x 5 (-1))) (act (toSL3 (x 4 ((-1) * 1))) u)) <
+        vnorm (act (toSL3 (x 2 1)) u)) ∨
+    (vnorm (act (toSL3 (x 2 (-1))) ![-(1 * u 1), 1 * u 0, u 2]) <
+        vnorm (act (toSL3 (x 2 1)) u) ∧
+      vnorm (act (toSL3 (x 5 (-1))) (act (toSL3 (x 2 (-1)))
+          ![-(1 * u 1), 1 * u 0, u 2])) <
+        vnorm (act (toSL3 (x 2 1)) u)) := by
+  simp only [act_x2, act_x4, act_x5, vnorm, one_mul, neg_one_mul, neg_neg,
+      Matrix.cons_val_zero, Matrix.cons_val_one,
+      Matrix.cons_val_two, Matrix.head_cons, Matrix.tail_cons]
+      at hviol hside ⊢
+  omega
+
+set_option linter.unusedSimpArgs false in
+private theorem exist_st_52_mm' (u : Fin 3 → ℤ)
+    (hviol : vnorm (act (toSL3 (x 5 (-1))) (act (toSL3 (x 2 (-1))) u)) <
+      vnorm (act (toSL3 (x 2 (-1))) u))
+    (hside : vnorm u ≤ vnorm (act (toSL3 (x 2 (-1))) u)) :
+    (vnorm (act (toSL3 (x 5 (-1))) u) < vnorm (act (toSL3 (x 2 (-1))) u) ∧
+      vnorm (act (toSL3 (x 2 (-1))) (act (toSL3 (x 5 (-1))) u)) <
+        vnorm (act (toSL3 (x 2 (-1))) u)) ∨
+    (vnorm (act (toSL3 (x 5 (-1))) u) < vnorm (act (toSL3 (x 2 (-1))) u) ∧
+      vnorm (act (toSL3 (x 4 ((-1) * (-1)))) (act (toSL3 (x 5 (-1))) u)) <
+        vnorm (act (toSL3 (x 2 (-1))) u)) ∨
+    (vnorm (act (toSL3 (x 4 ((-1) * (-1)))) u) <
+        vnorm (act (toSL3 (x 2 (-1))) u) ∧
+      vnorm (act (toSL3 (x 5 (-1))) (act (toSL3 (x 4 ((-1) * (-1)))) u)) <
+        vnorm (act (toSL3 (x 2 (-1))) u)) ∨
+    (vnorm (act (toSL3 (x 2 (-(-1)))) ![-((-1) * u 1), (-1) * u 0, u 2]) <
+        vnorm (act (toSL3 (x 2 (-1))) u) ∧
+      vnorm (act (toSL3 (x 5 (-1))) (act (toSL3 (x 2 (-(-1))))
+          ![-((-1) * u 1), (-1) * u 0, u 2])) <
+        vnorm (act (toSL3 (x 2 (-1))) u)) := by
+  simp only [act_x2, act_x4, act_x5, vnorm, one_mul, neg_one_mul, neg_neg,
+      Matrix.cons_val_zero, Matrix.cons_val_one,
+      Matrix.cons_val_two, Matrix.head_cons, Matrix.tail_cons]
+      at hviol hside ⊢
+  omega
+
 private theorem exist_st_52' (c cp : ℤ) (hc : c = 1 ∨ c = -1)
     (hcp : cp = 1 ∨ cp = -1) (u : Fin 3 → ℤ)
     (hviol : vnorm (act (toSL3 (x 5 c)) (act (toSL3 (x 2 cp)) u)) <
@@ -707,12 +1007,9 @@ private theorem exist_st_52' (c cp : ℤ) (hc : c = 1 ∨ c = -1)
       vnorm (act (toSL3 (x 5 c)) (act (toSL3 (x 2 (-cp)))
           ![-(cp * u 1), cp * u 0, u 2])) <
         vnorm (act (toSL3 (x 2 cp)) u)) := by
-  rcases hc with rfl | rfl <;> rcases hcp with rfl | rfl <;>
-    simp only [act_x2, act_x4, act_x5, vnorm, one_mul, neg_one_mul, neg_neg,
-      Matrix.cons_val_zero, Matrix.cons_val_one,
-      Matrix.cons_val_two, Matrix.head_cons, Matrix.tail_cons]
-      at hviol hside ⊢ <;>
-    omega
+  rcases hc with rfl | rfl <;> rcases hcp with rfl | rfl
+  exacts [exist_st_52_pp' u hviol hside, exist_st_52_pm' u hviol hside,
+    exist_st_52_mp' u hviol hside, exist_st_52_mm' u hviol hside]
 
 /-! ## The step builders -/
 
