@@ -296,6 +296,7 @@ import GroupApproximation.Sofic.GreendlingerCombinatorics
 import GroupApproximation.Sofic.IntegerLampSurvival
 import GroupApproximation.Monsters.LiteralBaseCompleteness
 import GroupApproximation.Sofic.LEFMarkedCompression
+import GroupApproximation.Algebra.FinitePresentationTietze
 import GroupApproximation.Algebra.FiniteResidual
 import GroupApproximation.Algebra.VisibleQuotient
 import GroupApproximation.Algebra.FiniteResidualCommensurability
