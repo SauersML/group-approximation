@@ -109,13 +109,17 @@ formalized in this pass; **TODO** not yet formalized.
 | 53.5 (1)-(3) | finite-index twin tower: a subgroup containing the kernel is the full preimage of its image, the indices agree, and each node inherits the `Hom`-bijection | DONE-NEW | `Sofic/TargetEquivalence` (`eq_comap_map_of_ker_le`, `index_map_eq_index_of_ker_le`, `subgroupMap_surjective`, `ker_subgroupMap_eq`, `precomp_subgroupMap_bijective`); items (4)-(6) are the concrete perfect-lamp family |
 | 53.1, 53.2 (envelope) | one four-dimensional rational representation realizes the whole hidden kernel | NOT-TRACKED | concrete-family dependent: needs the §39.7 faithful `ρ_* : G_* ↪ GL₄(ℤ[1/2])` |
 | 54.2A | the invisible radical is intrinsically tame | DONE-NEW | `Algebra/PermutationalWreathRadicalTame` (`lampSub_tame`: every subgroup of the lamp base is locally finite, amenable, residually finite and operator-MF), on the general bridge `isAmenable_of_isLocallyFiniteGroup` |
+| 46.2, 46.3 closing half | Mal'cev's direction: the finite residual is killed by every representation over every field, so the linear residual joins the chain | DONE-NEW | `Sofic/FourRadicalsCoincide` (`range_fg`, `finiteResidual_le_linearResidual`, `four_radicals_eq`).  The image of a matrix representation of a finitely generated group is a finitely generated linear group, `Algebra/MalcevLinear.residuallyFinite_of_fg` makes it residually finite, and all four residuals then coincide with the kernel of any defect quotient onto a residually finite group.  The fifth, Bohr, is blocked below |
+| 37.5 union step, supremum form | the limit kernel is the supremum of the stage kernels, given factorization and finite separation | DONE-NEW | `Algebra/WreathTelescopeUnion` (`fiberDiffs_mono`, `ker_pushHom_eq_iSup`, `ker_pushHom_le_of_stages`).  Overlaps `Algebra/WreathTelescopeTower`, which states the same limit in union form; this is the `⨆` form the radical argument consumes, with the stage refinement as an explicit factorization hypothesis |
+| 37, 47 inclusion | the collapse commutator **is** a lamp difference, and every base-move difference lies in the MF radical | DONE-NEW | `Sofic/AscendingHNNTelescopeRadical` (`lampDiff`, `commutator_eq_lampDiff`, `conj_lampDiff`, `lampDiff_mem_defect`, `stageRadical`, `stageRadical_le_actualCoronaMFResidual`, `stageRadical_ne_bot`, `actualCoronaMFResidual_eq_stageRadical`).  Unconditional: property (T) of the base and the HNN relation are the only inputs, the analytic side coming from the involutive endpoint.  **Still missing** is the induction from one stage to the telescope -- a base move shifts a coset by the level `-1` copy only, and reaching `⋃ₙ t⁻ⁿ ι(Γ) tⁿ` means iterating the collapse on the quotient |
+| 48 twins | a group and its quotient by an invisible normal subgroup have the same finite quotients, with opposite MF status | DONE-NEW | `Sofic/ProfiniteTwins` (`precomp_bijective`, `finiteHomEquiv`, `profinite_twins`; concrete `stageRadical_le_finiteResidual`, `wreath_twins`).  The concrete twins are the ascending-HNN wreath product and its first-stage quotient, separated by a nontrivial normal subgroup, with the non-MF side unconditional |
 
 ### Blocked, with the reason
 
 * **Bohr kernel (Section 46.5).**  Not formalizable against the pinned Mathlib:
   there is no Peter--Weyl theorem in it, and the clause `Rad_Bohr = Rad_fd` is
-  exactly Peter--Weyl for compact groups.  Everything else in the five-radical
-  coincidence is either done or reduces to the telescope radical.
+  exactly Peter--Weyl for compact groups.  The other four now coincide
+  outright: `Sofic/FourRadicalsCoincide.four_radicals_eq`.
 * **Graph-product half of 54.3.**  Mathlib has no graph products, so the
   necessity direction of Cornulier's criterion would have to be built from
   scratch; the height half (infinitely many diagonal orbits) is done.
