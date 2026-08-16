@@ -97,6 +97,7 @@ import GroupApproximation.Sofic.LiteralNonMFLinearWitness
 import GroupApproximation.Sofic.WitnessVerticalResiduallyFinite
 import GroupApproximation.Sofic.LiteralNonMFEndpoint
 import GroupApproximation.Sofic.LiteralBaseTranslationLattice
+import GroupApproximation.Sofic.LiteralBaseRotationMatrix
 import GroupApproximation.Sofic.LiteralBaseDoublingIndex
 import GroupApproximation.Sofic.LiteralBaseP13Replay
 import GroupApproximation.Sofic.LiteralBasePropertyTBridge
