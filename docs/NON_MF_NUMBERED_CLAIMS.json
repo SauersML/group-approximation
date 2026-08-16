@@ -117,26 +117,6 @@
       ]
     },
     {
-      "id": "thm:B",
-      "environment": "theorem",
-      "title": "the exact finite-dimensional analogue",
-      "statement_sha256": "1a4fa9647cbcb3e2eb5587682d6f6a6968fd03d4012fad967d5bc6420e6a5a53",
-      "status": "exact",
-      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
-      "dependencies": [],
-      "extra_assumptions": [],
-      "external_inputs": [],
-      "coverage_gap": "",
-      "lean": [
-        {
-          "role": "exact",
-          "module": "Sofic/ManuscriptExactWrappers",
-          "declaration": "GroupApproximation.ManuscriptExactWrappers.manuscriptTheoremB",
-          "covers": "the complete printed proposition"
-        }
-      ]
-    },
-    {
       "id": "thm:sign-criterion",
       "environment": "theorem",
       "title": "central-sign criterion",
@@ -186,26 +166,6 @@
       ]
     },
     {
-      "id": "def:E",
-      "environment": "definition",
-      "title": "",
-      "statement_sha256": "46c314ad2bcb6bd65b730211450d132de0c0c8dba402acfc4bfa653e1d3b119f",
-      "status": "exact",
-      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
-      "dependencies": [],
-      "extra_assumptions": [],
-      "external_inputs": [],
-      "coverage_gap": "",
-      "lean": [
-        {
-          "role": "exact",
-          "module": "Sofic/LiteralNonMFPresentation",
-          "declaration": "GroupApproximation.LiteralNonMFPresentation.manuscriptLiteralPresentation",
-          "covers": "the complete printed proposition"
-        }
-      ]
-    },
-    {
       "id": "cor:uniform",
       "environment": "corollary",
       "title": "uniform finite operator-norm obstruction",
@@ -228,87 +188,21 @@
       ]
     },
     {
-      "id": "thm:signfree",
-      "environment": "mainthm",
-      "title": "the sign-free quotient of $E$",
-      "statement_sha256": "1aeef33c21dab5e1a9025d55e3f41537d0ee591a20e775dee4fe01b54efacc52",
+      "id": "def:E",
+      "environment": "definition",
+      "title": "",
+      "statement_sha256": "46c314ad2bcb6bd65b730211450d132de0c0c8dba402acfc4bfa653e1d3b119f",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
-      "dependencies": [
-        "def:E",
-        "def:invwitness",
-        "thm:collapse",
-        "cor:pullback",
-        "prop:witness",
-        "prop:univquot",
-        "thm:kazhdan-clifford"
-      ],
+      "dependencies": [],
       "extra_assumptions": [],
       "external_inputs": [],
       "coverage_gap": "",
       "lean": [
         {
           "role": "exact",
-          "module": "Sofic/LiteralSignFreeQuotient",
-          "declaration": "GroupApproximation.LiteralSignFreeQuotient.signFree_collapse",
-          "covers": "a printed conclusion of the proposition"
-        },
-        {
-          "role": "exact",
-          "module": "Sofic/LiteralSignFreeQuotient",
-          "declaration": "GroupApproximation.LiteralSignFreeQuotient.signFreeQuotient_not_isCDEOperatorMF",
-          "covers": "the complete printed proposition"
-        },
-        {
-          "role": "exact",
-          "module": "Sofic/LiteralSignFreeQuotient",
-          "declaration": "GroupApproximation.LiteralSignFreeQuotient.commutator_not_zpow_mark",
-          "covers": "a printed conclusion of the proposition"
-        }
-      ]
-    },
-    {
-      "id": "thm:D",
-      "environment": "mainthm",
-      "title": "the reduced group algebra of $E$",
-      "statement_sha256": "3fbefcf7b1eaf4da2eaf473eda0e5ff6bd54dfd04e60e709e029ec95907af225",
-      "status": "exact",
-      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
-      "dependencies": [
-        "thm:A",
-        "lem:faithfultrace"
-      ],
-      "extra_assumptions": [],
-      "external_inputs": [],
-      "coverage_gap": "",
-      "lean": [
-        {
-          "role": "exact",
-          "module": "Sofic/LiteralNonMFEndpoint",
-          "declaration": "GroupApproximation.LiteralNonMFEndpoint.manuscriptTheoremD",
-          "covers": "the complete printed proposition"
-        }
-      ]
-    },
-    {
-      "id": "thm:E",
-      "environment": "mainthm",
-      "title": "a sofic non-MF group",
-      "statement_sha256": "0b84f58a967cd3a615f3986074c5af266dc405fb9812f2a6939770ea7a206c66",
-      "status": "exact",
-      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
-      "dependencies": [
-        "prop:witness",
-        "lem:portable"
-      ],
-      "extra_assumptions": [],
-      "external_inputs": [],
-      "coverage_gap": "",
-      "lean": [
-        {
-          "role": "exact",
-          "module": "Endpoint/NonMFImpact",
-          "declaration": "GroupApproximation.NonMFImpact.witness_sofic_hyperlinear_nonMF",
+          "module": "Sofic/LiteralNonMFPresentation",
+          "declaration": "GroupApproximation.LiteralNonMFPresentation.manuscriptLiteralPresentation",
           "covers": "the complete printed proposition"
         }
       ]
@@ -417,6 +311,92 @@
           "role": "exact",
           "module": "Sofic/CompressionDefectSquare",
           "declaration": "GroupApproximation.commutator_conjugate_eq_commutator_sq_of_sq_eq_one",
+          "covers": "the complete printed proposition"
+        }
+      ]
+    },
+    {
+      "id": "thm:signfree",
+      "environment": "mainthm",
+      "title": "the sign-free quotient of $E$",
+      "statement_sha256": "1aeef33c21dab5e1a9025d55e3f41537d0ee591a20e775dee4fe01b54efacc52",
+      "status": "exact",
+      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
+      "dependencies": [
+        "def:E",
+        "def:invwitness",
+        "thm:collapse",
+        "cor:pullback",
+        "prop:witness",
+        "prop:univquot",
+        "thm:kazhdan-clifford"
+      ],
+      "extra_assumptions": [],
+      "external_inputs": [],
+      "coverage_gap": "",
+      "lean": [
+        {
+          "role": "exact",
+          "module": "Sofic/LiteralSignFreeQuotient",
+          "declaration": "GroupApproximation.LiteralSignFreeQuotient.signFree_collapse",
+          "covers": "a printed conclusion of the proposition"
+        },
+        {
+          "role": "exact",
+          "module": "Sofic/LiteralSignFreeQuotient",
+          "declaration": "GroupApproximation.LiteralSignFreeQuotient.signFreeQuotient_not_isCDEOperatorMF",
+          "covers": "the complete printed proposition"
+        },
+        {
+          "role": "exact",
+          "module": "Sofic/LiteralSignFreeQuotient",
+          "declaration": "GroupApproximation.LiteralSignFreeQuotient.commutator_not_zpow_mark",
+          "covers": "a printed conclusion of the proposition"
+        }
+      ]
+    },
+    {
+      "id": "thm:D",
+      "environment": "mainthm",
+      "title": "the reduced group algebra of $E$",
+      "statement_sha256": "3fbefcf7b1eaf4da2eaf473eda0e5ff6bd54dfd04e60e709e029ec95907af225",
+      "status": "exact",
+      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
+      "dependencies": [
+        "thm:A",
+        "lem:faithfultrace"
+      ],
+      "extra_assumptions": [],
+      "external_inputs": [],
+      "coverage_gap": "",
+      "lean": [
+        {
+          "role": "exact",
+          "module": "Sofic/LiteralNonMFEndpoint",
+          "declaration": "GroupApproximation.LiteralNonMFEndpoint.manuscriptTheoremD",
+          "covers": "the complete printed proposition"
+        }
+      ]
+    },
+    {
+      "id": "thm:E",
+      "environment": "mainthm",
+      "title": "a sofic non-MF group",
+      "statement_sha256": "0b84f58a967cd3a615f3986074c5af266dc405fb9812f2a6939770ea7a206c66",
+      "status": "exact",
+      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
+      "dependencies": [
+        "prop:witness",
+        "lem:portable"
+      ],
+      "extra_assumptions": [],
+      "external_inputs": [],
+      "coverage_gap": "",
+      "lean": [
+        {
+          "role": "exact",
+          "module": "Endpoint/NonMFImpact",
+          "declaration": "GroupApproximation.NonMFImpact.witness_sofic_hyperlinear_nonMF",
           "covers": "the complete printed proposition"
         }
       ]
@@ -626,6 +606,26 @@
           "role": "exact",
           "module": "Sofic/ManuscriptExactWrappers",
           "declaration": "GroupApproximation.ManuscriptExactWrappers.manuscriptIntrinsicNormalKazhdanRadical",
+          "covers": "the complete printed proposition"
+        }
+      ]
+    },
+    {
+      "id": "thm:B",
+      "environment": "theorem",
+      "title": "the exact finite-dimensional analogue",
+      "statement_sha256": "d6e18099881e7f184c54b8e2ba67e87679fe85854f0cb52feb9e2edebd590aeb",
+      "status": "exact",
+      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
+      "dependencies": [],
+      "extra_assumptions": [],
+      "external_inputs": [],
+      "coverage_gap": "",
+      "lean": [
+        {
+          "role": "exact",
+          "module": "Sofic/ManuscriptExactWrappers",
+          "declaration": "GroupApproximation.ManuscriptExactWrappers.manuscriptTheoremB",
           "covers": "the complete printed proposition"
         }
       ]

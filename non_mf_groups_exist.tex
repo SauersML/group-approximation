@@ -45,27 +45,6 @@
 \raggedbottom
 \emergencystretch=1.5em
 
-% amsart provides no \@spart, so the nameref patch loaded by hyperref makes
-% \part* expand to an undefined control sequence.  The part headings of the
-% supplement are therefore set directly rather than through \part, and they
-% reach the table of contents through their own entry type.
-\makeatletter
-\providecommand*{\l@part}[2]{%
-  \smallskip
-  {\leftskip\z@ \noindent\bfseries #1\hfill #2\par}%
-  \nobreak\smallskip}
-\providecommand{\theHpart}{part.\arabic{section}}
-\makeatother
-\newcommand{\parttitle}[1]{%
-  \phantomsection
-  \addcontentsline{toc}{part}{#1}%
-  \begingroup
-    \centering\normalfont\bfseries\Large
-    #1\par
-  \endgroup
-  \nopagebreak
-  \vskip\bigskipamount}
-
 \newtheorem{theorem}{Theorem}[section]
 \newtheorem{proposition}[theorem]{Proposition}
 \newtheorem{lemma}[theorem]{Lemma}
@@ -150,7 +129,7 @@ faithful tracial state, hence is stably finite, but is not MF\@.
 
 \maketitle
 
-\setcounter{tocdepth}{2}
+\setcounter{tocdepth}{1}
 \tableofcontents
 
 \section{Introduction}\label{sec:intro}
@@ -1149,224 +1128,6 @@ determining an effective modulus from the rational spectral
 certificate of Section~\ref{sec:group} remains open.
 \end{proof}
 
-\section{The position of the example}\label{sec:position}
-
-Throughout, $d=tct^{-1}$ and $u=[d,\iota(v_1)]$, so that $w=u^2$.
-Write $\operatorname{Rad}_{\mathrm{MF}}(G)$ for the \emph{MF radical}
-of a countable group $G$: the intersection of the kernels of all its
-corona representations (Definition~\ref{def:radical}).  Thus $G$ is MF
-exactly when $\operatorname{Rad}_{\mathrm{MF}}(G)=1$
-(Proposition~\ref{prop:univquot}), and Theorem~\ref{thm:A} says
-$w\in\operatorname{Rad}_{\mathrm{MF}}(E)$ with $w\ne1$.
-
-\subsection*{The quotient by the sign}
-Passing to the quotient by $\langle w\rangle$ does not restore the MF
-property.
-
-\begin{mainthm}[the sign-free quotient of $E$]\label{thm:signfree}
-The quotient $E/\langle w\rangle$ is not MF\@.  The image of
-$[\iota(v_1),d]$, the inverse of the marked commutator $u$, is
-nontrivial there and lies in
-$\operatorname{Rad}_{\mathrm{MF}}(E/\langle w\rangle)$; consequently
-$\{1,w\}$ is a proper subgroup of
-$\operatorname{Rad}_{\mathrm{MF}}(E)$.
-\leanverified{Sofic/LiteralSignFreeQuotient}{GroupApproximation.LiteralSignFreeQuotient.signFree_collapse}
-\leanverified{Sofic/LiteralSignFreeQuotient}{GroupApproximation.LiteralSignFreeQuotient.signFreeQuotient_not_isCDEOperatorMF}
-\leanverified{Sofic/LiteralSignFreeQuotient}{GroupApproximation.LiteralSignFreeQuotient.commutator_not_zpow_mark}
-\end{mainthm}
-
-The proof is in Section~\ref{subsec:collapse}.  It uses a second
-consequence of one-sided compression, proved there: if an involution
-is centralized by the compressed copy of a Kazhdan subgroup, and its
-conjugates under that subgroup commute with one another, then every
-corona representation identifies the entire conjugation orbit
-(Theorem~\ref{thm:collapse}).  In $E$ those conjugates of $d$ commute
-only up to $w$, so in $E/\langle w\rangle$ the element $d$ satisfies
-both hypotheses, and every corona representation of $E/\langle
-w\rangle$ maps $u$ to the identity.  Thus $E/\langle w\rangle$ is a
-second finitely presented non-MF group, and Theorem~\ref{thm:A} does
-not determine $\operatorname{Rad}_{\mathrm{MF}}(E)$
-(Section~\ref{sec:limits}).
-
-\subsection*{A stably finite non-MF group algebra}
-Every MF algebra is stably finite \cite{BK}; the converse fails.  Here
-stable finiteness comes from the faithful canonical trace
-(Lemma~\ref{lem:faithfultrace}), independently of the MF question.
-Abstract examples follow from the failure of the Connes embedding
-problem \cite{FGH}; this one is explicit.  For
-$\Cred(\SL_3(\mathbb Z))$ and $\Cred(\SL_4(\mathbb Z))$ the MF
-property is undecided; only the stronger PMF property is known to
-fail, for $\SL_4(\mathbb Z)$ \cite{MdlS}.
-
-\begin{mainthm}[the reduced group algebra of $E$]\label{thm:D}
-$\Cred(E)$ is a unital separable $C^*$-algebra which has a
-faithful tracial state --- and is therefore stably finite --- but is
-not an MF algebra.
-\leanverified{Sofic/LiteralNonMFEndpoint}{GroupApproximation.LiteralNonMFEndpoint.manuscriptTheoremD}
-\end{mainthm}
-
-\begin{proof}
-$\Cred(E)$ is unital and separable because $E$ is countable, and by
-Lemma~\ref{lem:faithfultrace} the canonical trace is faithful and the
-algebra is therefore stably finite.  It is not an MF algebra by
-Theorem~\ref{thm:A}.
-\end{proof}
-
-The algebra is not nuclear: the canonical map
-$\mathcal B\to E$ is injective (Section~\ref{sec:witness}), so $E$
-contains an infinite Kazhdan group and is nonamenable, whence
-$\Cred(E)$ is not nuclear \cite{Lance}.  The nuclear form of the
-Blackadar--Kirchberg problem --- whether every stably finite separable
-nuclear $C^*$-algebra is quasidiagonal --- therefore remains open.
-\leanverified{Analysis/NuclearityAmenability}{GroupApproximation.NuclearityAmenability.manuscriptNotAmenableOfBaseEmbeds}
-
-\subsection*{A sofic example}
-Let $X=G/\Gamma$ be the coset space of the mapping telescope
-$G=\Gamma_\infty\rtimes\Z$ used in the proof of
-Theorem~\ref{thm:kazhdan-clifford}, at the affine data
-\eqref{eq:affine-data}, and let
-\[
- W=\ClLamp(X)\rtimes G
-\]
-be the Clifford lamp group over it.  This is the target of the
-homomorphism used in that proof to show $w\ne1$;
-Section~\ref{sec:witness} realizes it over $\mathbb Q$, writing $V$
-for $G$ in the explicit rational model.
-
-\begin{mainthm}[a sofic non-MF group]\label{thm:E}
-The Clifford witness $W=\ClLamp(X)\rtimes V$ of
-Section~\ref{sec:witness} is a finitely generated sofic group that
-is not MF; since sofic groups are hyperlinear, $W$ is likewise a
-hyperlinear group that is not MF\@.  In particular, neither soficity nor
-hyperlinearity implies the MF property.
-\leanverified{Endpoint/NonMFImpact}{GroupApproximation.NonMFImpact.witness_sofic_hyperlinear_nonMF}
-\end{mainthm}
-
-The proof is in Section~\ref{sec:consequences}.  Soficity comes from
-the finite-index image of the doubling map: every telescope level then
-has finite orbits on $X$, so every finite subset of
-$\ClLamp(X)\rtimes\Gamma_\infty$ lies in a finite-by-sofic subgroup,
-and the remaining $\Z$-extension is sofic by Elek--Szab\'o
-\cite{ElekSzabo}.  Failure of MF follows from functoriality of the
-radical, since the surjection $E\to W$ sends $w$ to the nontrivial
-Clifford sign (Lemma~\ref{lem:portable}).  The same surjection shows that MF groups
-are not closed under quotients, and the extension
-$1\to\ClLamp(X)\to W\to V\to1$, whose kernel is locally finite and
-whose quotient is residually finite, shows that they are not closed
-under extensions either (Section~\ref{sec:consequences}).
-
-The kernel of $E\to W$ is a free group of infinite rank, so soficity
-does not pass from $W$ back to $E$.  Section~\ref{sec:limits} explains
-why the operator-norm method decides neither soficity nor
-hyperlinearity for either group, and records the separate argument that
-$E$ is sofic.
-
-\clearpage
-\parttitle{Supplementary material}
-\setcounter{section}{0}
-\renewcommand{\thesection}{S\arabic{section}}
-\providecommand{\theHsection}{}
-\renewcommand{\theHsection}{supp.\arabic{section}}
-\renewcommand{\thepage}{S\arabic{page}}
-\setcounter{page}{1}
-
-\bigskip
-
-\noindent
-This part belongs to the same paper and uses the same bibliography.  It has
-three purposes.  Sections~\ref{app:equivalences}--\ref{app:finite-stage}
-provide a detailed verification of Theorem~\ref{thm:A}: they prove the
-equivalence of the MF formulations, write out the literal presentation and its
-optimization, certify property~\textup{(T)} for the base by exact rational
-arithmetic, construct the explicit Clifford witness over $\mathbb Q$, verify
-the theorem directly from the forty-one relators, and reprove the transport
-theorem quantitatively at each single matrix dimension.
-Sections~\ref{supp:transport-variants}--\ref{sec:necessity} develop the
-mechanism in greater generality.
-Sections~\ref{supp:scaling}--\ref{app:maxcstar} develop the consequences and
-the limits of the method.
-
-\parttitle{Part I.\ \ The explicit group}
-
-\section{The MF equivalences}\label{app:equivalences}
-
-An \emph{operator-norm local model} for a countable group $G$, a finite
-set $F\subseteq G$, a separation constant $\delta>0$, and a tolerance
-$\varepsilon>0$ is a map $V\colon G\to\U(r)$, for some positive
-dimension $r$, such that
-\begin{gather*}
- \opnorm{V(g)V(h)-V(gh)}\le\varepsilon\quad(g,h\in F),\\
- \opnorm{V(g)-V(h)}\ge\delta\quad(g\ne h\in F).
-\end{gather*}
-The local formulation in Proposition~\ref{prop:mf-equivalences} asks for
-such a model with $\delta=1$ for every finite $F$ and every
-$\varepsilon>0$.
-
-\begin{proof}[Proof of Proposition~\ref{prop:mf-equivalences}]
-Lemma~\ref{lem:unitarycorona} identifies the unitary-sequence quotient with
-the unitary group of the $C^*$-quotient.  Replacing an arbitrary
-finite coordinate set by a standard set of the same cardinality merely
-conjugates that coordinate by a permutation unitary.  This proves the first
-equivalence once the dimension convention is normalized.
-
-\emph{Dimension normalization.}  Given positive dimensions $d_n$,
-replace the $n$th coordinate model by
-\[
- \widetilde V_n(g)=I_{X_0}\oplus\cdots\oplus I_{X_{n-1}}\oplus V_n(g)
-\]
-on $X_0\oplus\cdots\oplus X_n$, of strictly increasing dimension
-$D_n=d_0+\cdots+d_n$.  Products, multiplicative defects, and pairwise
-operator-norm distances are unchanged, because block-diagonal operator
-norms are maxima and every earlier block is the same identity for all
-group elements.  The construction therefore preserves and reflects
-the quotient relation and injectivity, and forgetting strict increase
-proves the converse.  The universal-quotient construction of
-Proposition~\ref{prop:univquot} uses exactly this step to meet the
-strictly-increasing dimension convention; nothing below depends on
-that proposition.
-
-Suppose first that
-$\rho\colon G\to\Ucor((d_n))$ is injective, and choose unitary lifts
-$u_n(g)$ of $\rho(g)$.  Fix a finite set $F\subseteq G$ and $\varepsilon>0$.
-For each ordered pair $g\ne h$ in $F$, injectivity says that
-$(u_n(g)^{-1}u_n(h))_n$ does not converge to the identity in operator norm.
-Hence there are $\delta_{g,h}>0$ and arbitrarily large coordinates at which
-\[
- \lVert u_n(g)-u_n(h)\rVert\ge\delta_{g,h}.
-\]
-Choose an integer $N_{g,h}$ with $8<N_{g,h}\,\delta_{g,h}^2$.  An explicit
-tensor-power estimate then applies: whenever two unitaries are
-$\delta_{g,h}$-separated, some tensor power of exponent $p\le N_{g,h}$
-separates them by more than $1$ --- amplifying a spectral gap of the
-relative unitary until it crosses the unit circle takes at most
-$N_{g,h}$ steps once $8<N_{g,h}\delta_{g,h}^2$.
-The quotient homomorphism law makes all multiplicative defects for pairs in
-$F$ arbitrarily small at every sufficiently large coordinate.  Choose, for
-each $g\ne h$, a coordinate with the displayed separation and with every
-required defect at most $\varepsilon/N_{g,h}$.  Then the $p$th tensor
-power separates the designated pair by more than $1$, while the
-tensor-product telescoping identity bounds each new defect by
-$p\,\varepsilon/N_{g,h}\le\varepsilon$.  Finally take the block
-sum of these finitely many pair-specific models.  Operator norms of block
-diagonal matrices are maxima, so every pair in $F$ is separated by at least
-$1$ and every required product has defect at most $\varepsilon$.  This gives
-the normalized local model.
-
-Conversely, local models with separation constant $1$ for all finite
-sets and tolerances make the group \emph{weakly} MF\@.  Choose models
-along an exhaustion with errors tending to zero.  Then each fixed pair
-$g,h$ is eventually represented multiplicatively, and each fixed pair
-$g\ne h$ is eventually separated by $1$.  Hence the classes define an
-injective homomorphism into the unitary-sequence quotient, with no
-condition on the dimension sequence.  Weak MF in turn makes the norm-MF radical of
-Definition~\ref{def:radical} trivial, and the block-sum diagonalization
-in the proof of Proposition~\ref{prop:univquot}(2) then assembles the
-separating sequences into a single faithful corona representation.  This
-weak-to-corona implication is thus obtained from the
-universal-quotient construction --- whose dimension bookkeeping is the
-normalization step above --- not from a separate exhaustion.
-
-\end{proof}
 \section{The base, and a smaller presentation}\label{sec:group}
 
 The base $\mathcal B$ of \eqref{eq:gamma-presentation} is the affine
@@ -1679,6 +1440,7 @@ the target are rational matrices.  The two sites are separated by the
 range characterization of Lemma~\ref{lem:linear}: $D^{-1}\bar v_1D$ has
 the entry $1/2$ in position $(1,4)$ and therefore does not lie in
 $\bar\Gamma\le\GL_4(\mathbb Z)$.
+
 \section{The marked word is a square}\label{sec:proofA}
 
 \begin{lemma}[the marked word is a square]\label{lem:square}
@@ -1724,150 +1486,118 @@ to $r_n=\operatorname{rank}q_n$ and independent of the ratio $r_n/d_n$.
 A small relative rank therefore costs nothing in the operator-norm
 setting, while it blocks the same argument in Hilbert--Schmidt metrics
 (Section~\ref{sec:limits}).
-\section{The finite-stage transport proof}\label{app:finite-stage}
 
-This appendix proves Theorem~\ref{thm:kazhdan-transport} a second
-time, quantitatively at each single coordinate $n$: every estimate
-below is an explicit inequality in $\kappa$, $|S|$, the uniform bound
-on $(x_n)$, and the multiplicative defects of $U_n$, once the robust
-spectral-gap input of~(i) is granted at each stage.  That input is the
-one place where a limit still enters, as
-Remark~\ref{rem:finite-stage} says: property~\textup{(T)} constrains
-exact unitary representations, while at a finite stage the matrix
-models only generate a representation of the free group on $S$, so no
-threshold in $\kappa$, $|S|$ and the defects on a fixed finite set can
-supply it.  Making that step effective as well would need a
-sum-of-squares certificate for property~\textup{(T)} in the sense of
-\cite{Ozawa}.  Corollary~\ref{cor:generaltransport} and
-Section~\ref{sec:limits} refer to this proof.
+\section{The position of the example}\label{sec:position}
 
-\begin{proof}[Finite-stage proof of Theorem~\ref{thm:kazhdan-transport}]
-Property~\textup{(T)} provides a finite symmetric generating set
-$S\subseteq\Gamma$ with $1\in S$ and a Kazhdan constant
-$\kappa\in(0,1]$ for the pair $(S,\kappa)$.  The adjoint model is that
-of the printed proof: each group element acts by conjugation,
-$\Ad U_n(g)\,\xi=U_n(g)\,\xi\,U_n(g)^*$, on
-$L^2(M_{d_n}(\C),\tr_{d_n})$, and operator-norm almost multiplicativity
-of $U_n$ makes $g\mapsto\Ad U_n(g)$ an operator-norm asymptotic
-representation on these Hilbert spaces.
+Throughout, $d=tct^{-1}$ and $u=[d,\iota(v_1)]$, so that $w=u^2$.
+Write $\operatorname{Rad}_{\mathrm{MF}}(G)$ for the \emph{MF radical}
+of a countable group $G$: the intersection of the kernels of all its
+corona representations (Definition~\ref{def:radical}).  Thus $G$ is MF
+exactly when $\operatorname{Rad}_{\mathrm{MF}}(G)=1$
+(Proposition~\ref{prop:univquot}), and Theorem~\ref{thm:A} says
+$w\in\operatorname{Rad}_{\mathrm{MF}}(E)$ with $w\ne1$.
 
-\emph{The almost-fixed spectral subspace.}  Let $H_n$ be the Hermitian part of the
-average $\frac1{|S|}\sum_{s'\in S}\Ad U_n(\iota(s'))$, fix the threshold
-\[
- \theta=\tfrac12\Bigl(\Bigl(1-\tfrac{\kappa^2}{4|S|}\Bigr)+1\Bigr)<1,
-\]
-and let $P_n$ be the spectral projection of $H_n$ for the part of the
-spectrum above $\theta$.  Two spectral estimates tie $P_n$ to the group.
-\begin{enumerate}
-\item[(i)] \emph{Displacement.}  For every $\gamma\in\Gamma$,
-$\opnorm{(\Ad U_n(\iota(\gamma))-1)\,P_n}\to0$.  The mechanism is a
-robust spectral gap: for every pair $a,b$ with
-$1-\kappa^2/(4|S|)<a$ and $b<1$, once the multiplicative defects of
-$U_n$ on the finitely many group elements involved are small enough,
-no eigenvalue of $H_n$ lies in $[a,b]$
---- an eigenvector with intermediate eigenvalue would be a unit vector
-that the Kazhdan pair forbids: too fixed to be moved by
-$\kappa$, too moved to be fixed.
-\leanverified{Sofic/WeakMFVectorGNS}{GroupApproximation.WeakMFVectorGNS.hermitianAverage_eventually_no_intermediate_eigenvalues}
-Hence the spectrum of $H_n$ above $\theta$ is eventually within any
-prescribed $\delta$ of $1$, so a unit vector $\eta\in\operatorname{ran}P_n$
-has $\langle(1-H_n)\eta,\eta\rangle\le\delta$; since $1-H_n$ is the
-average of the positive operators $1-\operatorname{Re}\Ad U_n(\iota(s'))$,
-each generator satisfies
-$\tfrac1{2}\hsnorm{(\Ad U_n(\iota(s'))-1)\eta}^2\le|S|\,\delta$, and a word
-in $S$ of length $\ell$ moves $\eta$ by at most $\ell\sqrt{2|S|\delta}$
-plus the accumulated multiplicative defects.  The projection $P_n$ is
-the finite-stage substitute for the fixed-subspace projection.
-\item[(ii)] \emph{Spectral concentration.}  Write $\xi_n\in L^2(M_{d_n}(\C),\tr_{d_n})$
-for the vector $x_n$.  The commutator hypothesis says each
-$\Ad U_n(\iota(s'))$ almost fixes $\xi_n$, so the residual
-$(1-H_n)\xi_n$ is Hilbert--Schmidt null.  On
-$\operatorname{ran}(1-P_n)$ the operator $1-H_n$ is bounded below by
-$1-\theta$, and it commutes with $P_n$, so every vector $\eta$
-satisfies
-\[
- \hsnorm{(1-P_n)\eta}\;\le\;(1-\theta)^{-1}\,\hsnorm{(1-H_n)\eta}.
-\]
-Applied to $\eta=\xi_n$, this shows $\xi_n$ is asymptotically
-concentrated in $\operatorname{ran}P_n$.
-\end{enumerate}
+\subsection*{The quotient by the sign}
+Passing to the quotient by $\langle w\rangle$ does not restore the MF
+property.
 
-\emph{Reversing the one-sided projection estimate.}  Put
-$T_n=\Ad U_n(s)$ and $Q_n=T_nP_nT_n^*$, a projection of the same rank as
-$P_n$.  The conjugation relation enters exactly once: for
-$\gamma\in\Gamma$ the element $s^{-1}$ pulls the almost-fixedness of a
-vector of $\operatorname{ran}P_n$ under
-$\iota(\Gamma)\supseteq s\iota(\Gamma)s^{-1}$ back to
-almost-fixedness under each $\iota(s')$, $s'\in S$.  By the
-concentration estimate, the pulled-back vector is again almost in the
-subspace.  Thus
-$\operatorname{ran}P_n$ is almost contained in its conjugate,
-$\opnorm{(1-Q_n)P_n}\to0$ --- the finite-stage form of the one-sided
-inclusion $P\le VPV^*$.  Since $\operatorname{rank}P_n=
-\operatorname{rank}Q_n$, the equal-rank reversal estimate --- for projections $p,q$ of
-equal finite rank, $\opnorm{(1-q)p}\le\varepsilon<1$ implies
-$\opnorm{(1-p)q}\le\varepsilon/\sqrt{1-\varepsilon^2}$ --- reverses the
-containment:
-\[
- \opnorm{(1-P_n)\,Q_n}\longrightarrow0.
-\]
-This is the middle implication of the display at the head of
-Section~\ref{sec:transport}, and it is the finite-dimensional
-substitute for finiteness of a norm ultraproduct: a one-sided
-compression cannot enlarge the subspace.
+\begin{mainthm}[the sign-free quotient of $E$]\label{thm:signfree}
+The quotient $E/\langle w\rangle$ is not MF\@.  The image of
+$[\iota(v_1),d]$, the inverse of the marked commutator $u$, is
+nontrivial there and lies in
+$\operatorname{Rad}_{\mathrm{MF}}(E/\langle w\rangle)$; consequently
+$\{1,w\}$ is a proper subgroup of
+$\operatorname{Rad}_{\mathrm{MF}}(E)$.
+\leanverified{Sofic/LiteralSignFreeQuotient}{GroupApproximation.LiteralSignFreeQuotient.signFree_collapse}
+\leanverified{Sofic/LiteralSignFreeQuotient}{GroupApproximation.LiteralSignFreeQuotient.signFreeQuotient_not_isCDEOperatorMF}
+\leanverified{Sofic/LiteralSignFreeQuotient}{GroupApproximation.LiteralSignFreeQuotient.commutator_not_zpow_mark}
+\end{mainthm}
 
-\emph{Combining the estimates.}  Fix $\gamma$ and $\varepsilon>0$, let $M\ge1$ bound
-$\opnorm{x_n}$, and put $q=\min(1,\varepsilon/(40(M^2+1)))$.  For all
-large $n$ the three estimates hold at tolerance $q$:
-\[
- \hsnorm{(1-P_n)\xi_n}^2\le q,\qquad
- \opnorm{(1-P_n)Q_n}\le q,\qquad
- \opnorm{(A_n-1)P_n}\le q,
-\]
-where $A_n=\Ad U_n(\iota(\gamma))$.  Decompose the transported vector
-along $P_n$ and $Q_n$:
-\[
- T_n\xi_n\;=\;P_nQ_n\,T_n\xi_n\;+\;(1-P_n)Q_n\,T_n\xi_n
- \;+\;(1-Q_n)\,T_n\xi_n.
-\]
-Since $Q_n=T_nP_nT_n^*$ and $T_n$ is conjugation by a unitary,
-\[
- \hsnorm{(1-Q_n)T_n\xi_n}=\hsnorm{T_n(1-P_n)\xi_n}
- =\hsnorm{(1-P_n)\xi_n}\le q^{1/2};
-\]
-the middle term obeys
-$\hsnorm{(1-P_n)Q_n\,T_n\xi_n}\le\opnorm{(1-P_n)Q_n}\hsnorm{\xi_n}
-\le qM$, and the displacement estimate moves the first term by at most
-$q\hsnorm{\xi_n}\le qM$.  Applying $A_n-1$, whose operator norm is at
-most $2$, to the last two terms and using the displacement bound on
-the first gives
-\[
- \hsnorm{(A_n-1)\,T_n\xi_n}^2
- \;\le\;\bigl(qM+2qM+2q^{1/2}\bigr)^2
- \;\le\;18q^2M^2+16q\;\le\;\varepsilon.
-\]
-Since $T_n\xi_n$ is the vector of $U_n(s)x_nU_n(s)^*$, this proves the
-asserted convergence --- with an explicit rate in terms of $\kappa$,
-$|S|$, $M$, and the multiplicative defects of $U_n$ on the finitely many
-group elements involved.
+The proof is in Section~\ref{subsec:collapse}.  It uses a second
+consequence of one-sided compression, proved there: if an involution
+is centralized by the compressed copy of a Kazhdan subgroup, and its
+conjugates under that subgroup commute with one another, then every
+corona representation identifies the entire conjugation orbit
+(Theorem~\ref{thm:collapse}).  In $E$ those conjugates of $d$ commute
+only up to $w$, so in $E/\langle w\rangle$ the element $d$ satisfies
+both hypotheses, and every corona representation of $E/\langle
+w\rangle$ maps $u$ to the identity.  Thus $E/\langle w\rangle$ is a
+second finitely presented non-MF group, and Theorem~\ref{thm:A} does
+not determine $\operatorname{Rad}_{\mathrm{MF}}(E)$
+(Section~\ref{sec:limits}).
+
+\subsection*{A stably finite non-MF group algebra}
+Every MF algebra is stably finite \cite{BK}; the converse fails.  Here
+stable finiteness comes from the faithful canonical trace
+(Lemma~\ref{lem:faithfultrace}), independently of the MF question.
+Abstract examples follow from the failure of the Connes embedding
+problem \cite{FGH}; this one is explicit.  For
+$\Cred(\SL_3(\mathbb Z))$ and $\Cred(\SL_4(\mathbb Z))$ the MF
+property is undecided; only the stronger PMF property is known to
+fail, for $\SL_4(\mathbb Z)$ \cite{MdlS}.
+
+\begin{mainthm}[the reduced group algebra of $E$]\label{thm:D}
+$\Cred(E)$ is a unital separable $C^*$-algebra which has a
+faithful tracial state --- and is therefore stably finite --- but is
+not an MF algebra.
+\leanverified{Sofic/LiteralNonMFEndpoint}{GroupApproximation.LiteralNonMFEndpoint.manuscriptTheoremD}
+\end{mainthm}
+
+\begin{proof}
+$\Cred(E)$ is unital and separable because $E$ is countable, and by
+Lemma~\ref{lem:faithfultrace} the canonical trace is faithful and the
+algebra is therefore stably finite.  It is not an MF algebra by
+Theorem~\ref{thm:A}.
 \end{proof}
 
-\clearpage
-\parttitle{Part II.\ \ The mechanism in general}
+The algebra is not nuclear: the canonical map
+$\mathcal B\to E$ is injective (Section~\ref{sec:witness}), so $E$
+contains an infinite Kazhdan group and is nonamenable, whence
+$\Cred(E)$ is not nuclear \cite{Lance}.  The nuclear form of the
+Blackadar--Kirchberg problem --- whether every stably finite separable
+nuclear $C^*$-algebra is quasidiagonal --- therefore remains open.
+\leanverified{Analysis/NuclearityAmenability}{GroupApproximation.NuclearityAmenability.manuscriptNotAmenableOfBaseEmbeds}
 
-\noindent
-The main text used one transport theorem, one corner, and one finite
-central subgroup; each is a special case.  Transport holds at every
-weight and for intertwiners between two different models
-(Theorem~\ref{thm:transport-variants}).  The corner argument holds for
-every finite normal subgroup of the compression defect
-(Theorem~\ref{thm:criterion}), and then for every normal
-property-\textup{(T)} subgroup of it, which may be infinite,
-noncentral and torsion-free (Theorem~\ref{thm:normal-kazhdan}).  The
-same configuration has a purely algebraic finite-dimensional analogue
-(Theorem~\ref{thm:B}).  The cyclic comparison of
-Section~\ref{sec:necessity} shows that property~\textup{(T)} cannot be
-dropped.
+\subsection*{A sofic example}
+Let $X=G/\Gamma$ be the coset space of the mapping telescope
+$G=\Gamma_\infty\rtimes\Z$ used in the proof of
+Theorem~\ref{thm:kazhdan-clifford}, at the affine data
+\eqref{eq:affine-data}, and let
+\[
+ W=\ClLamp(X)\rtimes G
+\]
+be the Clifford lamp group over it.  This is the target of the
+homomorphism used in that proof to show $w\ne1$;
+Section~\ref{sec:witness} realizes it over $\mathbb Q$, writing $V$
+for $G$ in the explicit rational model.
+
+\begin{mainthm}[a sofic non-MF group]\label{thm:E}
+The Clifford witness $W=\ClLamp(X)\rtimes V$ of
+Section~\ref{sec:witness} is a finitely generated sofic group that
+is not MF; since sofic groups are hyperlinear, $W$ is likewise a
+hyperlinear group that is not MF\@.  In particular, neither soficity nor
+hyperlinearity implies the MF property.
+\leanverified{Endpoint/NonMFImpact}{GroupApproximation.NonMFImpact.witness_sofic_hyperlinear_nonMF}
+\end{mainthm}
+
+The proof is in Section~\ref{sec:consequences}.  Soficity comes from
+the finite-index image of the doubling map: every telescope level then
+has finite orbits on $X$, so every finite subset of
+$\ClLamp(X)\rtimes\Gamma_\infty$ lies in a finite-by-sofic subgroup,
+and the remaining $\Z$-extension is sofic by Elek--Szab\'o
+\cite{ElekSzabo}.  Failure of MF follows from functoriality of the
+radical, since the surjection $E\to W$ sends $w$ to the nontrivial
+Clifford sign (Lemma~\ref{lem:portable}).  The same surjection shows that MF groups
+are not closed under quotients, and the extension
+$1\to\ClLamp(X)\to W\to V\to1$, whose kernel is locally finite and
+whose quotient is residually finite, shows that they are not closed
+under extensions either (Section~\ref{sec:consequences}).
+
+The kernel of $E\to W$ is a free group of infinite rank, so soficity
+does not pass from $W$ back to $E$.  Section~\ref{sec:limits} explains
+why the operator-norm method decides neither soficity nor
+hyperlinearity for either group, and records the separate argument that
+$E$ is sofic.
 
 \section{Transport at every scale}\label{supp:transport-variants}
 
@@ -1948,6 +1678,7 @@ Theorem~\ref{thm:transport-variants}(2) applies to every pair of them:
 one-sided compression of a Kazhdan image creates no asymptotic invariant
 tensors of any fixed type, at any weight.
 \leanverified{Sofic/TensorPowerTransport}{GroupApproximation.TensorPowerTransport.manuscriptFixedTensorTransport}
+
 \section{The compression defect and its obstruction theorems}\label{sec:conj}
 
 \begin{definition}[Kazhdan conjugation datum]\label{def:pattern}
@@ -2317,6 +2048,7 @@ The subgroup generated by \emph{all} normal property-\textup{(T)}
 subgroups of $\mathfrak D(H,L)$ therefore also lies in the kernel of
 every corona representation.
 \leanverified{Sofic/ManuscriptExactWrappers}{GroupApproximation.ManuscriptExactWrappers.manuscriptIntrinsicNormalKazhdanPart}
+
 \section{The finite-dimensional obstruction}\label{sec:findim}
 
 Theorem~\ref{thm:B}, stated and proved in Section~\ref{sec:transport},
@@ -2527,7 +2259,6 @@ LEF.
 \leanverified{Monsters/CyclicBaseLEFObstruction}{GroupApproximation.CyclicBaseLEFObstruction.cyclicBase_exactModel_package}
 
 \clearpage
-\parttitle{Part III.\ \ Further results}
 
 \section{The scaling family}\label{supp:scaling}
 
@@ -3661,9 +3392,6 @@ needed here.
 \leanverified{Sofic/ContinuumMultiplicity}{GroupApproximation.ContinuumMultiplicity.manuscriptContinuumMultiplicity}
 \leanverified{Monsters/NeumannContinuum}{GroupApproximation.NeumannContinuum.manuscriptContinuumMultiplicityUnconditional}
 
-\clearpage
-\parttitle{Part IV.\ \ Limits of the method, and further apparatus}
-
 \section{Limitations of the operator-norm method}\label{sec:limits}
 
 The proof is specific to the operator norm.  If multiplication
@@ -3814,6 +3542,219 @@ Theorems~\ref{thm:criterion}, \ref{thm:normal-kazhdan},
 \ref{thm:collapse}, and~\ref{thm:projection-collapse} compute the
 radical exactly?
 \end{enumerate}
+
+\appendix
+
+\section{The MF equivalences}\label{app:equivalences}
+
+An \emph{operator-norm local model} for a countable group $G$, a finite
+set $F\subseteq G$, a separation constant $\delta>0$, and a tolerance
+$\varepsilon>0$ is a map $V\colon G\to\U(r)$, for some positive
+dimension $r$, such that
+\begin{gather*}
+ \opnorm{V(g)V(h)-V(gh)}\le\varepsilon\quad(g,h\in F),\\
+ \opnorm{V(g)-V(h)}\ge\delta\quad(g\ne h\in F).
+\end{gather*}
+The local formulation in Proposition~\ref{prop:mf-equivalences} asks for
+such a model with $\delta=1$ for every finite $F$ and every
+$\varepsilon>0$.
+
+\begin{proof}[Proof of Proposition~\ref{prop:mf-equivalences}]
+Lemma~\ref{lem:unitarycorona} identifies the unitary-sequence quotient with
+the unitary group of the $C^*$-quotient.  Replacing an arbitrary
+finite coordinate set by a standard set of the same cardinality merely
+conjugates that coordinate by a permutation unitary.  This proves the first
+equivalence once the dimension convention is normalized.
+
+\emph{Dimension normalization.}  Given positive dimensions $d_n$,
+replace the $n$th coordinate model by
+\[
+ \widetilde V_n(g)=I_{X_0}\oplus\cdots\oplus I_{X_{n-1}}\oplus V_n(g)
+\]
+on $X_0\oplus\cdots\oplus X_n$, of strictly increasing dimension
+$D_n=d_0+\cdots+d_n$.  Products, multiplicative defects, and pairwise
+operator-norm distances are unchanged, because block-diagonal operator
+norms are maxima and every earlier block is the same identity for all
+group elements.  The construction therefore preserves and reflects
+the quotient relation and injectivity, and forgetting strict increase
+proves the converse.  The universal-quotient construction of
+Proposition~\ref{prop:univquot} uses exactly this step to meet the
+strictly-increasing dimension convention; nothing below depends on
+that proposition.
+
+Suppose first that
+$\rho\colon G\to\Ucor((d_n))$ is injective, and choose unitary lifts
+$u_n(g)$ of $\rho(g)$.  Fix a finite set $F\subseteq G$ and $\varepsilon>0$.
+For each ordered pair $g\ne h$ in $F$, injectivity says that
+$(u_n(g)^{-1}u_n(h))_n$ does not converge to the identity in operator norm.
+Hence there are $\delta_{g,h}>0$ and arbitrarily large coordinates at which
+\[
+ \lVert u_n(g)-u_n(h)\rVert\ge\delta_{g,h}.
+\]
+Choose an integer $N_{g,h}$ with $8<N_{g,h}\,\delta_{g,h}^2$.  An explicit
+tensor-power estimate then applies: whenever two unitaries are
+$\delta_{g,h}$-separated, some tensor power of exponent $p\le N_{g,h}$
+separates them by more than $1$ --- amplifying a spectral gap of the
+relative unitary until it crosses the unit circle takes at most
+$N_{g,h}$ steps once $8<N_{g,h}\delta_{g,h}^2$.
+The quotient homomorphism law makes all multiplicative defects for pairs in
+$F$ arbitrarily small at every sufficiently large coordinate.  Choose, for
+each $g\ne h$, a coordinate with the displayed separation and with every
+required defect at most $\varepsilon/N_{g,h}$.  Then the $p$th tensor
+power separates the designated pair by more than $1$, while the
+tensor-product telescoping identity bounds each new defect by
+$p\,\varepsilon/N_{g,h}\le\varepsilon$.  Finally take the block
+sum of these finitely many pair-specific models.  Operator norms of block
+diagonal matrices are maxima, so every pair in $F$ is separated by at least
+$1$ and every required product has defect at most $\varepsilon$.  This gives
+the normalized local model.
+
+Conversely, local models with separation constant $1$ for all finite
+sets and tolerances make the group \emph{weakly} MF\@.  Choose models
+along an exhaustion with errors tending to zero.  Then each fixed pair
+$g,h$ is eventually represented multiplicatively, and each fixed pair
+$g\ne h$ is eventually separated by $1$.  Hence the classes define an
+injective homomorphism into the unitary-sequence quotient, with no
+condition on the dimension sequence.  Weak MF in turn makes the norm-MF radical of
+Definition~\ref{def:radical} trivial, and the block-sum diagonalization
+in the proof of Proposition~\ref{prop:univquot}(2) then assembles the
+separating sequences into a single faithful corona representation.  This
+weak-to-corona implication is thus obtained from the
+universal-quotient construction --- whose dimension bookkeeping is the
+normalization step above --- not from a separate exhaustion.
+
+\end{proof}
+
+\section{The finite-stage transport proof}\label{app:finite-stage}
+
+This appendix proves Theorem~\ref{thm:kazhdan-transport} a second
+time, quantitatively at each single coordinate $n$: every estimate
+below is an explicit inequality in $\kappa$, $|S|$, the uniform bound
+on $(x_n)$, and the multiplicative defects of $U_n$, once the robust
+spectral-gap input of~(i) is granted at each stage.  That input is the
+one place where a limit still enters, as
+Remark~\ref{rem:finite-stage} says: property~\textup{(T)} constrains
+exact unitary representations, while at a finite stage the matrix
+models only generate a representation of the free group on $S$, so no
+threshold in $\kappa$, $|S|$ and the defects on a fixed finite set can
+supply it.  Making that step effective as well would need a
+sum-of-squares certificate for property~\textup{(T)} in the sense of
+\cite{Ozawa}.  Corollary~\ref{cor:generaltransport} and
+Section~\ref{sec:limits} refer to this proof.
+
+\begin{proof}[Finite-stage proof of Theorem~\ref{thm:kazhdan-transport}]
+Property~\textup{(T)} provides a finite symmetric generating set
+$S\subseteq\Gamma$ with $1\in S$ and a Kazhdan constant
+$\kappa\in(0,1]$ for the pair $(S,\kappa)$.  The adjoint model is that
+of the printed proof: each group element acts by conjugation,
+$\Ad U_n(g)\,\xi=U_n(g)\,\xi\,U_n(g)^*$, on
+$L^2(M_{d_n}(\C),\tr_{d_n})$, and operator-norm almost multiplicativity
+of $U_n$ makes $g\mapsto\Ad U_n(g)$ an operator-norm asymptotic
+representation on these Hilbert spaces.
+
+\emph{The almost-fixed spectral subspace.}  Let $H_n$ be the Hermitian part of the
+average $\frac1{|S|}\sum_{s'\in S}\Ad U_n(\iota(s'))$, fix the threshold
+\[
+ \theta=\tfrac12\Bigl(\Bigl(1-\tfrac{\kappa^2}{4|S|}\Bigr)+1\Bigr)<1,
+\]
+and let $P_n$ be the spectral projection of $H_n$ for the part of the
+spectrum above $\theta$.  Two spectral estimates tie $P_n$ to the group.
+\begin{enumerate}
+\item[(i)] \emph{Displacement.}  For every $\gamma\in\Gamma$,
+$\opnorm{(\Ad U_n(\iota(\gamma))-1)\,P_n}\to0$.  The mechanism is a
+robust spectral gap: for every pair $a,b$ with
+$1-\kappa^2/(4|S|)<a$ and $b<1$, once the multiplicative defects of
+$U_n$ on the finitely many group elements involved are small enough,
+no eigenvalue of $H_n$ lies in $[a,b]$
+--- an eigenvector with intermediate eigenvalue would be a unit vector
+that the Kazhdan pair forbids: too fixed to be moved by
+$\kappa$, too moved to be fixed.
+\leanverified{Sofic/WeakMFVectorGNS}{GroupApproximation.WeakMFVectorGNS.hermitianAverage_eventually_no_intermediate_eigenvalues}
+Hence the spectrum of $H_n$ above $\theta$ is eventually within any
+prescribed $\delta$ of $1$, so a unit vector $\eta\in\operatorname{ran}P_n$
+has $\langle(1-H_n)\eta,\eta\rangle\le\delta$; since $1-H_n$ is the
+average of the positive operators $1-\operatorname{Re}\Ad U_n(\iota(s'))$,
+each generator satisfies
+$\tfrac1{2}\hsnorm{(\Ad U_n(\iota(s'))-1)\eta}^2\le|S|\,\delta$, and a word
+in $S$ of length $\ell$ moves $\eta$ by at most $\ell\sqrt{2|S|\delta}$
+plus the accumulated multiplicative defects.  The projection $P_n$ is
+the finite-stage substitute for the fixed-subspace projection.
+\item[(ii)] \emph{Spectral concentration.}  Write $\xi_n\in L^2(M_{d_n}(\C),\tr_{d_n})$
+for the vector $x_n$.  The commutator hypothesis says each
+$\Ad U_n(\iota(s'))$ almost fixes $\xi_n$, so the residual
+$(1-H_n)\xi_n$ is Hilbert--Schmidt null.  On
+$\operatorname{ran}(1-P_n)$ the operator $1-H_n$ is bounded below by
+$1-\theta$, and it commutes with $P_n$, so every vector $\eta$
+satisfies
+\[
+ \hsnorm{(1-P_n)\eta}\;\le\;(1-\theta)^{-1}\,\hsnorm{(1-H_n)\eta}.
+\]
+Applied to $\eta=\xi_n$, this shows $\xi_n$ is asymptotically
+concentrated in $\operatorname{ran}P_n$.
+\end{enumerate}
+
+\emph{Reversing the one-sided projection estimate.}  Put
+$T_n=\Ad U_n(s)$ and $Q_n=T_nP_nT_n^*$, a projection of the same rank as
+$P_n$.  The conjugation relation enters exactly once: for
+$\gamma\in\Gamma$ the element $s^{-1}$ pulls the almost-fixedness of a
+vector of $\operatorname{ran}P_n$ under
+$\iota(\Gamma)\supseteq s\iota(\Gamma)s^{-1}$ back to
+almost-fixedness under each $\iota(s')$, $s'\in S$.  By the
+concentration estimate, the pulled-back vector is again almost in the
+subspace.  Thus
+$\operatorname{ran}P_n$ is almost contained in its conjugate,
+$\opnorm{(1-Q_n)P_n}\to0$ --- the finite-stage form of the one-sided
+inclusion $P\le VPV^*$.  Since $\operatorname{rank}P_n=
+\operatorname{rank}Q_n$, the equal-rank reversal estimate --- for projections $p,q$ of
+equal finite rank, $\opnorm{(1-q)p}\le\varepsilon<1$ implies
+$\opnorm{(1-p)q}\le\varepsilon/\sqrt{1-\varepsilon^2}$ --- reverses the
+containment:
+\[
+ \opnorm{(1-P_n)\,Q_n}\longrightarrow0.
+\]
+This is the middle implication of the display at the head of
+Section~\ref{sec:transport}, and it is the finite-dimensional
+substitute for finiteness of a norm ultraproduct: a one-sided
+compression cannot enlarge the subspace.
+
+\emph{Combining the estimates.}  Fix $\gamma$ and $\varepsilon>0$, let $M\ge1$ bound
+$\opnorm{x_n}$, and put $q=\min(1,\varepsilon/(40(M^2+1)))$.  For all
+large $n$ the three estimates hold at tolerance $q$:
+\[
+ \hsnorm{(1-P_n)\xi_n}^2\le q,\qquad
+ \opnorm{(1-P_n)Q_n}\le q,\qquad
+ \opnorm{(A_n-1)P_n}\le q,
+\]
+where $A_n=\Ad U_n(\iota(\gamma))$.  Decompose the transported vector
+along $P_n$ and $Q_n$:
+\[
+ T_n\xi_n\;=\;P_nQ_n\,T_n\xi_n\;+\;(1-P_n)Q_n\,T_n\xi_n
+ \;+\;(1-Q_n)\,T_n\xi_n.
+\]
+Since $Q_n=T_nP_nT_n^*$ and $T_n$ is conjugation by a unitary,
+\[
+ \hsnorm{(1-Q_n)T_n\xi_n}=\hsnorm{T_n(1-P_n)\xi_n}
+ =\hsnorm{(1-P_n)\xi_n}\le q^{1/2};
+\]
+the middle term obeys
+$\hsnorm{(1-P_n)Q_n\,T_n\xi_n}\le\opnorm{(1-P_n)Q_n}\hsnorm{\xi_n}
+\le qM$, and the displacement estimate moves the first term by at most
+$q\hsnorm{\xi_n}\le qM$.  Applying $A_n-1$, whose operator norm is at
+most $2$, to the last two terms and using the displacement bound on
+the first gives
+\[
+ \hsnorm{(A_n-1)\,T_n\xi_n}^2
+ \;\le\;\bigl(qM+2qM+2q^{1/2}\bigr)^2
+ \;\le\;18q^2M^2+16q\;\le\;\varepsilon.
+\]
+Since $T_n\xi_n$ is the vector of $U_n(s)x_nU_n(s)^*$, this proves the
+asserted convergence --- with an explicit rate in terms of $\kappa$,
+$|S|$, $M$, and the multiplicative defects of $U_n$ on the finitely many
+group elements involved.
+\end{proof}
+
+\clearpage
+
 \section{The maximal group \texorpdfstring{$C^*$}{C*}-algebra}\label{app:maxcstar}
 
 The maximal group $C^*$-algebra completes the group ring over all
@@ -4018,6 +3959,7 @@ matrix-labelled generators also recorded in \cite{CLV}, and
 property~\textup{(T)} of the affine group is classical
 \cite[Example~1.7.4(i)]{BHV}.
 \end{remark}
+
 \section*{Acknowledgements}
 We thank Caleb Eckhardt for the reading of the argument that organizes
 Section~\ref{sec:intro}: that it is the matrix-corona form of the
