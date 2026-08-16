@@ -128,9 +128,11 @@ faithful tracial state, hence is stably finite, but is not MF\@.
 \end{abstract}
 
 \maketitle
+\newpage
 
 \setcounter{tocdepth}{1}
 \tableofcontents
+\par\clearpage
 
 \section{Introduction}\label{sec:intro}
 
@@ -146,91 +148,6 @@ the conjecture through their finite quotients, as do LEF groups \cite{CDE} and, 
 quasidiagonality \cite{TWW}, all amenable groups.  Recent work
 establishes it for many amalgamated free products
 \cite{Schafhauser,Shulman,GKEMP}.
-The corresponding $C^*$-algebra question is older.  Blackadar and
-Kirchberg, who introduced MF algebras, remarked that no stably finite
-separable $C^*$-algebra was known not to be MF \cite{BK,CDE}.  Their
-natural candidate was $\Cred(F_2)$, which Haagerup and
-Thorbj{\o}rnsen later proved to be MF \cite{HT}.  The negative solution of the Connes embedding
-problem subsequently supplied abstract stably finite non-MF algebras
-\cite{MIPRE,FGH}.  No countable group was known whose reduced or maximal group
-$C^*$-algebra fails to be MF \cite{Shulman}.
-
-In his 2018 ICM address, Thom asked for which Schatten
-$p$-norms there exist non-approximable groups \cite[Question~3.11]{Th}.
-The case $p=2$ was settled by De~Chiffre--Glebsky--Lubotzky--Thom
-\cite{DGLT}, the cases $1<p<\infty$ by Lubotzky--Oppenheim \cite{LuO},
-and the case $p=1$ by Bachner--Dogon--Lubotzky \cite{BDL}.  That left
-the Hamming metric (soficity), the Hilbert--Schmidt norm
-(hyperlinearity), and the operator norm (MF)\@.  The Hamming case was disproved in 2026:
-the first nonsofic group was constructed by OpenAI \cite{OAI},
-Fournier-Facio then gave a torsion-free example \cite{FFF}, and
-Kun--Thom developed further wreath-product examples \cite{KT}.
-Our construction begins, as those arguments do, with a relation
-$t\Gamma t^{-1}\subseteq\Gamma$ for a property-\textup{(T)} subgroup
-$\Gamma$.  Soficity concerns permutations in the Hamming metric and MF
-concerns unitaries in operator norm, so the rigidity input is a
-different one: we prove that conjugation by $t$ preserves the
-Hilbert--Schmidt asymptotic commutant of $\Gamma$ in every
-operator-norm matrix model.  Of the three problems, only hyperlinearity
-remains open.
-In the language of approximate representations, a countable discrete
-group $G$ is \emph{MF} if, for every finite subset $F\subseteq G$ and
-every $\varepsilon>0$, there is a unitary matrix model
-$V\colon G\to\U(r)$ that is multiplicative within $\varepsilon$ in
-operator norm on $F$ and separates distinct elements of $F$ by
-operator-norm distance at least $1$.  There is an equivalent corona
-formulation, in which the notion was introduced by
-Carri\'on--Dadarlat--Eckhardt and is used by Shulman and
-Bachner--Dogon--Lubotzky \cite{CDE,Shulman,BDL}.  Let $(d_n)_{n\in\N}$
-be a strictly increasing sequence of positive integers and let
-\begin{equation}\label{eq:corona}
-  \mathcal Q\;=\;\prod_{n} M_{d_n}(\C)\Big/\bigoplus_{n} M_{d_n}(\C)
-\end{equation}
-be the associated matrix quotient: bounded sequences of matrices
-modulo sequences converging to $0$ in operator norm.  We call any such
-corona algebra a \emph{norm matrix corona}.  Following
-Blackadar--Kirchberg \cite{BK}, a separable $C^*$-algebra is \emph{MF}
-if it embeds into some algebra of the form \eqref{eq:corona}; the group
-$G$ is MF if there is an injective homomorphism
-$G\to\U(\mathcal Q)$.
-The two formulations are equivalent
-(Proposition~\ref{prop:mf-equivalences}).
-We shall use the equivalent coordinate model
-\begin{equation}\label{eq:unitary-corona}
- \Ucor((d_n))
- :=\prod_n\U(M_{d_n}(\C))\Big/
- \bigl\{(u_n):\opnorm{u_n-1}\longrightarrow0\bigr\}.
-\end{equation}
-The denominator is normal, and polar correction gives a canonical
-isomorphism
-\begin{equation}\label{eq:unitary-corona-iso}
- \kappa_{(d_n)}\colon \Ucor((d_n))\ \xrightarrow{\ \cong\ }\
- \U(\mathcal Q),
-\end{equation}
-proved in Lemma~\ref{lem:unitarycorona}.  Thus one may equivalently embed
-$G$ into $\Ucor((d_n))$.
-\begin{proposition}[equivalent MF formulations]
-\label{prop:mf-equivalences}
-For every countable group, the $C^*$-corona definition above is
-equivalent to the unitary-sequence definition.  The latter is equivalent to
-operator-norm local models with separation constant $1$, and allowing
-arbitrary positive dimensions is equivalent to requiring the dimensions to
-be strictly increasing.
-\leanverified{Sofic/ManuscriptExactWrappers}{GroupApproximation.ManuscriptExactWrappers.manuscriptMFDefinitionEquivalences}
-\end{proposition}
-
-Section~\ref{app:equivalences} defines the operator-norm local models
-and proves the proposition.
-
-Hereafter ``MF'' means this property: the operator-norm notion of
-Carri\'on--Dadarlat--Eckhardt, in the form used by Shulman.  Stronger
-conventions exist.
-In \cite{GKEMP} the approximating maps must also recover the canonical
-trace and the left-regular norm on every group-ring element.  The
-purely matricial field (PMF) convention of \cite[Definition~1.2]{MdlS}
-requires finite-dimensional representations whose group-ring norms
-converge to the regular norms.
-
 Throughout, $[g,h]=ghg^{-1}h^{-1}$ denotes the commutator of two group
 elements.  The additive commutator of two operators is written
 $[x,y]_{-}=xy-yx$, so that the two brackets are never confused where a
@@ -262,6 +179,11 @@ The group is written out in Definition~\ref{def:E};
 Section~\ref{sec:example} proves the theorem.
 
 \subsection*{The mechanism}
+
+Operator norm is the approximation norm throughout.  The normalized
+Hilbert--Schmidt norm enters only as the Hilbert-space norm on which
+property~\textup{(T)} acts, and the passage back from it to the operator
+norm is what the central sign performs.
 Let $\pi$ be a homomorphism to a finite group and let
 $t\Gamma t^{-1}\subseteq\Gamma$.  Then
 $\pi(t\Gamma t^{-1})=\pi(\Gamma)$: the left side is a conjugate of the
@@ -394,6 +316,92 @@ transport theorem; the repository metadata records which declaration
 corresponds to each numbered statement.
 
 \subsection*{Relation to prior work}
+
+The corresponding $C^*$-algebra question is older.  Blackadar and
+Kirchberg, who introduced MF algebras, remarked that no stably finite
+separable $C^*$-algebra was known not to be MF \cite{BK,CDE}.  Their
+natural candidate was $\Cred(F_2)$, which Haagerup and
+Thorbj{\o}rnsen later proved to be MF \cite{HT}.  The negative solution of the Connes embedding
+problem subsequently supplied abstract stably finite non-MF algebras
+\cite{MIPRE,FGH}.  No countable group was known whose reduced or maximal group
+$C^*$-algebra fails to be MF \cite{Shulman}.
+
+In his 2018 ICM address, Thom asked for which Schatten
+$p$-norms there exist non-approximable groups \cite[Question~3.11]{Th}.
+The case $p=2$ was settled by De~Chiffre--Glebsky--Lubotzky--Thom
+\cite{DGLT}, the cases $1<p<\infty$ by Lubotzky--Oppenheim \cite{LuO},
+and the case $p=1$ by Bachner--Dogon--Lubotzky \cite{BDL}.  That left
+the Hamming metric (soficity), the Hilbert--Schmidt norm
+(hyperlinearity), and the operator norm (MF)\@.  The Hamming case was disproved in 2026:
+the first nonsofic group was constructed by OpenAI \cite{OAI},
+Fournier-Facio then gave a torsion-free example \cite{FFF}, and
+Kun--Thom developed further wreath-product examples \cite{KT}.
+Our construction begins, as those arguments do, with a relation
+$t\Gamma t^{-1}\subseteq\Gamma$ for a property-\textup{(T)} subgroup
+$\Gamma$.  Soficity concerns permutations in the Hamming metric and MF
+concerns unitaries in operator norm, so the rigidity input is a
+different one: we prove that conjugation by $t$ preserves the
+Hilbert--Schmidt asymptotic commutant of $\Gamma$ in every
+operator-norm matrix model.  Of the three problems, only hyperlinearity
+remains open.
+In the language of approximate representations, a countable discrete
+group $G$ is \emph{MF} if, for every finite subset $F\subseteq G$ and
+every $\varepsilon>0$, there is a unitary matrix model
+$V\colon G\to\U(r)$ that is multiplicative within $\varepsilon$ in
+operator norm on $F$ and separates distinct elements of $F$ by
+operator-norm distance at least $1$.  There is an equivalent corona
+formulation, in which the notion was introduced by
+Carri\'on--Dadarlat--Eckhardt and is used by Shulman and
+Bachner--Dogon--Lubotzky \cite{CDE,Shulman,BDL}.  Let $(d_n)_{n\in\N}$
+be a strictly increasing sequence of positive integers and let
+\begin{equation}\label{eq:corona}
+  \mathcal Q\;=\;\prod_{n} M_{d_n}(\C)\Big/\bigoplus_{n} M_{d_n}(\C)
+\end{equation}
+be the associated matrix quotient: bounded sequences of matrices
+modulo sequences converging to $0$ in operator norm.  We call any such
+corona algebra a \emph{norm matrix corona}.  Following
+Blackadar--Kirchberg \cite{BK}, a separable $C^*$-algebra is \emph{MF}
+if it embeds into some algebra of the form \eqref{eq:corona}; the group
+$G$ is MF if there is an injective homomorphism
+$G\to\U(\mathcal Q)$.
+The two formulations are equivalent
+(Proposition~\ref{prop:mf-equivalences}).
+We shall use the equivalent coordinate model
+\begin{equation}\label{eq:unitary-corona}
+ \Ucor((d_n))
+ :=\prod_n\U(M_{d_n}(\C))\Big/
+ \bigl\{(u_n):\opnorm{u_n-1}\longrightarrow0\bigr\}.
+\end{equation}
+The denominator is normal, and polar correction gives a canonical
+isomorphism
+\begin{equation}\label{eq:unitary-corona-iso}
+ \kappa_{(d_n)}\colon \Ucor((d_n))\ \xrightarrow{\ \cong\ }\
+ \U(\mathcal Q),
+\end{equation}
+proved in Lemma~\ref{lem:unitarycorona}.  Thus one may equivalently embed
+$G$ into $\Ucor((d_n))$.
+\begin{proposition}[equivalent MF formulations]
+\label{prop:mf-equivalences}
+For every countable group, the $C^*$-corona definition above is
+equivalent to the unitary-sequence definition.  The latter is equivalent to
+operator-norm local models with separation constant $1$, and allowing
+arbitrary positive dimensions is equivalent to requiring the dimensions to
+be strictly increasing.
+\leanverified{Sofic/ManuscriptExactWrappers}{GroupApproximation.ManuscriptExactWrappers.manuscriptMFDefinitionEquivalences}
+\end{proposition}
+
+Section~\ref{app:equivalences} defines the operator-norm local models
+and proves the proposition.
+
+Hereafter ``MF'' means this property: the operator-norm notion of
+Carri\'on--Dadarlat--Eckhardt, in the form used by Shulman.  Stronger
+conventions exist.
+In \cite{GKEMP} the approximating maps must also recover the canonical
+trace and the left-regular norm on every group-ring element.  The
+purely matricial field (PMF) convention of \cite[Definition~1.2]{MdlS}
+requires finite-dimensional representations whose group-ring norms
+converge to the regular norms.
+
 The closest analogue is the recent work on nonsofic groups.  One-sided
 conjugation of a property-\textup{(T)} subgroup, with propagation from
 its centralizer, appears in \cite{OAI,KT}, building on rigidity results
@@ -558,6 +566,80 @@ conjugation gives $P\le VPV^*$, the two projections are Murray--von
 Neumann equivalent, and the ultraproduct has no proper isometry, so
 $P=VPV^*$.
 
+\subsection*{The exact case}
+The exact form of the argument needs no analysis, no
+property~\textup{(T)}, and no hypothesis on the characteristic.
+
+\begin{theorem}[the exact finite-dimensional analogue]\label{thm:B}
+Let $k$ be a field, $V$ a finite-dimensional $k$-vector space, $H$ a
+group, $\Gamma\le H$ a subgroup, and $t,c\in H$, $a\in\Gamma$ elements
+with $t\Gamma t^{-1}\subseteq\Gamma$ and $c\gamma=\gamma c$ for all
+$\gamma\in\Gamma$.  Then every homomorphism $\pi\colon H\to\GL(V)$
+satisfies
+\[
+  \pi\bigl(\bigl[\,tct^{-1},\;a(tct^{-1})a^{-1}\bigr]\bigr)\;=\;1 .
+\]
+More generally, every such $\pi$ sends the entire intrinsic defect
+$\mathfrak D(H,\Gamma)$ of \eqref{eq:intrinsicdefect} to the identity.
+\leanverified{Sofic/ManuscriptExactWrappers}{GroupApproximation.ManuscriptExactWrappers.manuscriptTheoremB}
+\end{theorem}
+
+\begin{proof}
+Let
+\[
+ C=\{x\in\End_k(V):\pi(\gamma)x=x\pi(\gamma)\ \text{for all}\
+ \gamma\in\Gamma\}
+\]
+be the commutant of $\pi(\Gamma)$, a linear subspace of $\End_k(V)$, and
+write $\Phi(x)=\pi(t)\,x\,\pi(t)^{-1}$ for conjugation by $\pi(t)$, a
+linear automorphism of $\End_k(V)$.
+
+We claim $C\subseteq\Phi(C)$.  Let $x\in C$ and put
+$y=\pi(t)^{-1}x\,\pi(t)$, so that $x=\Phi(y)$.  For $\gamma\in\Gamma$ we
+have $t\gamma t^{-1}\in\Gamma$, hence $\pi(t\gamma t^{-1})$ commutes
+with $x$, and therefore
+\[
+  \pi(\gamma)\,y
+  = \pi(t)^{-1}\,\pi(t\gamma t^{-1})\,x\,\pi(t)
+  = \pi(t)^{-1}\,x\,\pi(t\gamma t^{-1})\,\pi(t)
+  = y\,\pi(\gamma).
+\]
+Thus $y\in C$, proving the claim.  Since $\Phi$ is a linear isomorphism,
+$\dim_k\Phi(C)=\dim_kC<\infty$, and the inclusion $C\subseteq\Phi(C)$
+forces
+\begin{equation}\label{eq:pinning}
+  C\;=\;\Phi(C)\;=\;\pi(t)\,C\,\pi(t)^{-1}.
+\end{equation}
+Now $\pi(c)\in C$ because $c$ centralizes $\Gamma$, so
+$\pi(tct^{-1})=\Phi(\pi(c))\in C$ by \eqref{eq:pinning}.  Since
+$a\in\Gamma$, the operator $\pi(tct^{-1})$ commutes with $\pi(a)$, so
+$\pi\bigl(a(tct^{-1})a^{-1}\bigr)=\pi(tct^{-1})$ and
+\[
+  \pi\bigl(\bigl[\,tct^{-1},\;a(tct^{-1})a^{-1}\bigr]\bigr)
+  =\bigl[\,\pi(tct^{-1}),\;\pi(tct^{-1})\bigr]=1 .
+\]
+Section~\ref{sec:findim} proves the subgroup-valued assertion from the
+same calculation. \qedhere
+\end{proof}
+
+Applied to $E$, Theorem~\ref{thm:B} shows that every finite-dimensional
+linear representation over every field, and hence every homomorphism to
+a finite group, sends the marked word to the identity
+(Corollary~\ref{cor:notRFD}).
+
+Theorem~\ref{thm:kazhdan-transport} is the approximate analogue of
+this argument.  An MF model is only asymptotically multiplicative, so
+its coordinate fixed spaces are not invariant subspaces; operator-norm
+control keeps the adjoint actions almost multiplicative on the
+Hilbert--Schmidt spaces, an almost-fixed spectral subspace of a Kazhdan
+average takes the place of $C$, and the equal-rank reversal estimate of
+Section~\ref{app:finite-stage} takes the place of equal dimension.
+Property~\textup{(T)} is what extends the conclusion from exact
+finite-dimensional representations to approximate operator-norm models.
+The cyclic comparison of Section~\ref{sec:necessity} shows that it is
+needed: there is a marked group whose word is trivial in every
+finite-dimensional representation and nontrivial in an MF model.
+
 \begin{theorem}[Kazhdan transport of Hilbert--Schmidt asymptotic commutants]
 \label{thm:kazhdan-transport}
 Let $\Gamma$ and $H$ be groups, let $\Gamma$ have
@@ -692,80 +774,6 @@ $|S|$, the uniform bound on $(x_n)$, and the multiplicative defects of
 $U_n$, once the robust spectral-gap input stated there is granted at
 each stage.
 \end{remark}
-
-\subsection*{The finite-dimensional case}
-The exact form of the argument needs no analysis, no
-property~\textup{(T)}, and no hypothesis on the characteristic.
-
-\begin{theorem}[the exact finite-dimensional analogue]\label{thm:B}
-Let $k$ be a field, $V$ a finite-dimensional $k$-vector space, $H$ a
-group, $\Gamma\le H$ a subgroup, and $t,c\in H$, $a\in\Gamma$ elements
-with $t\Gamma t^{-1}\subseteq\Gamma$ and $c\gamma=\gamma c$ for all
-$\gamma\in\Gamma$.  Then every homomorphism $\pi\colon H\to\GL(V)$
-satisfies
-\[
-  \pi\bigl(\bigl[\,tct^{-1},\;a(tct^{-1})a^{-1}\bigr]\bigr)\;=\;1 .
-\]
-More generally, every such $\pi$ sends the entire intrinsic defect
-$\mathfrak D(H,\Gamma)$ of \eqref{eq:intrinsicdefect} to the identity.
-\leanverified{Sofic/ManuscriptExactWrappers}{GroupApproximation.ManuscriptExactWrappers.manuscriptTheoremB}
-\end{theorem}
-
-\begin{proof}
-Let
-\[
- C=\{x\in\End_k(V):\pi(\gamma)x=x\pi(\gamma)\ \text{for all}\
- \gamma\in\Gamma\}
-\]
-be the commutant of $\pi(\Gamma)$, a linear subspace of $\End_k(V)$, and
-write $\Phi(x)=\pi(t)\,x\,\pi(t)^{-1}$ for conjugation by $\pi(t)$, a
-linear automorphism of $\End_k(V)$.
-
-We claim $C\subseteq\Phi(C)$.  Let $x\in C$ and put
-$y=\pi(t)^{-1}x\,\pi(t)$, so that $x=\Phi(y)$.  For $\gamma\in\Gamma$ we
-have $t\gamma t^{-1}\in\Gamma$, hence $\pi(t\gamma t^{-1})$ commutes
-with $x$, and therefore
-\[
-  \pi(\gamma)\,y
-  = \pi(t)^{-1}\,\pi(t\gamma t^{-1})\,x\,\pi(t)
-  = \pi(t)^{-1}\,x\,\pi(t\gamma t^{-1})\,\pi(t)
-  = y\,\pi(\gamma).
-\]
-Thus $y\in C$, proving the claim.  Since $\Phi$ is a linear isomorphism,
-$\dim_k\Phi(C)=\dim_kC<\infty$, and the inclusion $C\subseteq\Phi(C)$
-forces
-\begin{equation}\label{eq:pinning}
-  C\;=\;\Phi(C)\;=\;\pi(t)\,C\,\pi(t)^{-1}.
-\end{equation}
-Now $\pi(c)\in C$ because $c$ centralizes $\Gamma$, so
-$\pi(tct^{-1})=\Phi(\pi(c))\in C$ by \eqref{eq:pinning}.  Since
-$a\in\Gamma$, the operator $\pi(tct^{-1})$ commutes with $\pi(a)$, so
-$\pi\bigl(a(tct^{-1})a^{-1}\bigr)=\pi(tct^{-1})$ and
-\[
-  \pi\bigl(\bigl[\,tct^{-1},\;a(tct^{-1})a^{-1}\bigr]\bigr)
-  =\bigl[\,\pi(tct^{-1}),\;\pi(tct^{-1})\bigr]=1 .
-\]
-Section~\ref{sec:findim} proves the subgroup-valued assertion from the
-same calculation. \qedhere
-\end{proof}
-
-Applied to $E$, Theorem~\ref{thm:B} shows that every finite-dimensional
-linear representation over every field, and hence every homomorphism to
-a finite group, sends the marked word to the identity
-(Corollary~\ref{cor:notRFD}).
-
-Theorem~\ref{thm:kazhdan-transport} is the approximate analogue of
-this argument.  An MF model is only asymptotically multiplicative, so
-its coordinate fixed spaces are not invariant subspaces; operator-norm
-control keeps the adjoint actions almost multiplicative on the
-Hilbert--Schmidt spaces, an almost-fixed spectral subspace of a Kazhdan
-average takes the place of $C$, and the equal-rank reversal estimate of
-Section~\ref{app:finite-stage} takes the place of equal dimension.
-Property~\textup{(T)} is what extends the conclusion from exact
-finite-dimensional representations to approximate operator-norm models.
-The cyclic comparison of Section~\ref{sec:necessity} shows that it is
-needed: there is a marked group whose word is trivial in every
-finite-dimensional representation and nontrivial in an MF model.
 
 \section{The central-sign obstruction}\label{sec:sign}
 
