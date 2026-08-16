@@ -102,7 +102,6 @@ import GroupApproximation.Sofic.LiteralSixGenerator
 import GroupApproximation.Sofic.LiteralSignFreeQuotient
 import GroupApproximation.Sofic.LiteralTietzePresentation
 import GroupApproximation.Sofic.LiteralWitnessConsequences
-import GroupApproximation.Sofic.LiteralBlockModel
 import GroupApproximation.Sofic.MarkedCompressionInclusionData
 import GroupApproximation.Sofic.CompressionDefectSquare
 import GroupApproximation.Sofic.MarkedCompressionGroup
@@ -346,7 +345,6 @@ import GroupApproximation.Sofic.SoficActionSum
 import GroupApproximation.Sofic.AscendingHNNStabilizer
 import GroupApproximation.Sofic.AscendingHNNDoubleCosets
 import GroupApproximation.Sofic.AscendingHNNWreathWitness
-import GroupApproximation.Sofic.AscendingHNNSplitExtension
 import GroupApproximation.Sofic.CoronaRadicalPullback
 import GroupApproximation.Sofic.MoverGeneration
 import GroupApproximation.Sofic.FullMFRadicalEndpoint
