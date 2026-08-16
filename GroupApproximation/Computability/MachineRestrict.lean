@@ -61,6 +61,7 @@ def unrestrictCfg {S : Finset Λ} (c : Cfg Γ {q // q ∈ S}) : Cfg Γ Λ :=
   ⟨c.q.1, c.left, c.head, c.right⟩
 
 omit [DecidableEq Λ] in
+omit [DecidableEq Λ] in
 theorem unrestrictCfg_injective {S : Finset Λ} :
     Function.Injective (unrestrictCfg : Cfg Γ {q // q ∈ S} → Cfg Γ Λ) := by
   rintro ⟨q₁, l₁, h₁, r₁⟩ ⟨q₂, l₂, h₂, r₂⟩ h

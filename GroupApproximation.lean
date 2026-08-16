@@ -855,6 +855,7 @@ import GroupApproximation.Sofic.RepresentationCategoryTwins
 import GroupApproximation.Computability.ListBlankCanonical
 import GroupApproximation.Computability.PostMachineTM0
 import GroupApproximation.Computability.TM0WordProblem
+import GroupApproximation.Computability.FiniteMachineWordProblem
 import GroupApproximation.Sofic.ActionFormMoverEstimate
 import GroupApproximation.Sofic.FullRadicalClosureProperties
 import GroupApproximation.Sofic.WreathFinitePresentationObstruction
