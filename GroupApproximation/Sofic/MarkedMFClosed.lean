@@ -227,14 +227,22 @@ theorem exists_wordBall_cylinder_subset_compl_operatorMFLocus :
   exact ⟨R, (cylinder_wordBall_subset_cylinder M F R hFR).trans hF⟩
 
 /-- **Marked-limit closure of MF.**  Operator-MF marked groups form a closed
-subset of the space of `k`-marked groups. -/
-theorem isClosed_operatorMFLocus : IsClosed (operatorMFLocus k) := by
+subset of the space of `k`-marked groups.
+
+The rank is quantified inside the proposition rather than inherited from the
+section `variable`: this is a cited manuscript endpoint, and its printed
+header is what a reader is invited to check it against. -/
+theorem isClosed_operatorMFLocus :
+    ∀ {k : ℕ}, IsClosed (operatorMFLocus k) := by
+  intro k
   rw [operatorMFLocus_eq_normApproximableOneLocus]
   exact isClosed_normApproximableOneLocus
 
 /-- Equivalently, non-MF marked groups form an open subset. -/
-theorem isOpen_compl_operatorMFLocus : IsOpen (operatorMFLocus k)ᶜ :=
-  isClosed_operatorMFLocus.isOpen_compl
+theorem isOpen_compl_operatorMFLocus :
+    ∀ {k : ℕ}, IsOpen (operatorMFLocus k)ᶜ := by
+  intro k
+  exact (isClosed_operatorMFLocus (k := k)).isOpen_compl
 
 /-- Filter form of marked-limit closure. -/
 theorem isOperatorMF_of_tendsto
@@ -244,7 +252,7 @@ theorem isOperatorMF_of_tendsto
     (hMF : ∀ᶠ i in l, IsOperatorMF (f i).Quotient) :
     IsOperatorMF M.Quotient := by
   letI : NeBot l := hl
-  exact isClosed_operatorMFLocus.mem_of_tendsto hf hMF
+  exact (isClosed_operatorMFLocus (k := k)).mem_of_tendsto hf hMF
 
 end MarkedGroupSpace
 

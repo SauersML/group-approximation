@@ -621,6 +621,54 @@ def ManuscriptHSInvisible : ∀ {H : Type} [Group H], H → Prop :=
       (KazhdanCompressionCore.toAsymptoticUnitaryRepresentation B).toUltraproductHom
         hcof g = 1
 
+/-- **What the invisibility definition certifies.**  A definition asserts
+nothing, so the manuscript's Definition (`def:invisible`) cannot be badged by
+citing `ManuscriptHSInvisible` itself.  What is checkable, and what a reader of
+that definition actually needs, is stated here in three parts.
+
+1. **Fidelity.**  The formal predicate is literally the printed condition:
+   the element is sent to the identity by the induced homomorphism into the
+   tracial ultraproduct, for every operator-norm almost representation and
+   every ultrafilter refining the cofinite filter.
+2. **It is the premise the obstruction consumes.**  A subgroup all of whose
+   elements are invisible is exactly a subgroup satisfying the hypothesis
+   `hDkill` of `manuscriptAbstractNormalKazhdanObstruction` below.  The
+   definition is not a decorative name; it is the input of the theorem it
+   precedes.
+3. **It is a subgroup condition.**  Invisibility holds at the identity and is
+   closed under products and inverses, because each ultraproduct map is a
+   homomorphism.  So `def:invisible` cuts out a subgroup, which is what makes
+   the quantified form in part 2 the right one. -/
+theorem manuscriptHSInvisibleCharacterization :
+    ∀ {H : Type} [Group H],
+      (∀ g : H, ManuscriptHSInvisible g ↔
+        ∀ (B : OpAlmostRepresentation H) (U : Ultrafilter ℕ)
+          (hcof : (U : Filter ℕ) ≤ Filter.cofinite),
+          (KazhdanCompressionCore.toAsymptoticUnitaryRepresentation B).toUltraproductHom
+            hcof g = 1) ∧
+      (∀ D : Subgroup H,
+        (∀ x ∈ D, ManuscriptHSInvisible x) ↔
+          ∀ (B : OpAlmostRepresentation H) (U : Ultrafilter ℕ)
+            (hcof : (U : Filter ℕ) ≤ Filter.cofinite) (x : H), x ∈ D →
+            (KazhdanCompressionCore.toAsymptoticUnitaryRepresentation B).toUltraproductHom
+              hcof x = 1) ∧
+      (ManuscriptHSInvisible (1 : H) ∧
+        (∀ g h : H, ManuscriptHSInvisible g → ManuscriptHSInvisible h →
+          ManuscriptHSInvisible (g * h)) ∧
+        (∀ g : H, ManuscriptHSInvisible g → ManuscriptHSInvisible g⁻¹)) := by
+  intro H _
+  refine ⟨fun _ ↦ Iff.rfl, fun D ↦ ⟨?_, ?_⟩, ?_, ?_, ?_⟩
+  · intro hD B U hcof x hx
+    exact hD x hx B U hcof
+  · intro hD x hx B U hcof
+    exact hD B U hcof x hx
+  · intro B U hcof
+    exact map_one _
+  · intro g h hg hh B U hcof
+    rw [map_mul, hg B U hcof, hh B U hcof, one_mul]
+  · intro g hg B U hcof
+    rw [map_inv, hg B U hcof, inv_one]
+
 /-- Exact wrapper for the abstract normal-Kazhdan obstruction: if every
 element of `D` is killed in the tracial ultraproduct attached to every
 operator-norm almost representation, then every normal property-`(T)`
