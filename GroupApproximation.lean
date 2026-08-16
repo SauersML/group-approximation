@@ -775,6 +775,7 @@ import GroupApproximation.Sofic.UltraproductIntertwinerTransport
 import GroupApproximation.Sofic.UltraproductScaledTransport
 import GroupApproximation.Sofic.MultiMoverUniversalUpgrade
 import GroupApproximation.Sofic.AscendingHNNSeparableCosetAction
+import GroupApproximation.Sofic.SimpleFullMFRadical
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
@@ -835,3 +836,4 @@ dependency closure of the whole namespace and fails on anything beyond `propext`
 `Classical.choice`, and `Quot.sound`; `scripts/check.py` scans the source text
 for what the kernel cannot see, including files that are never compiled.
 -/
+import GroupApproximation.Computability.RewriteDeterminism
