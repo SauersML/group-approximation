@@ -67,5 +67,38 @@ theorem isAmenable_closure_CliffordBS (S : Set CliffordBS) :
     IsAmenable (Subgroup.closure S) :=
   isAmenable_subgroup_CliffordBS _
 
+/-! ## The remaining literature input, made explicit
+
+The manuscript's sentence concludes "hence MF", and that step is
+Tikuisis--White--Winter.  It is not proved here and cannot be: the theorem
+is formalized in no proof assistant.  Rather than leave it as prose, it is
+recorded as an explicit hypothesis with no inhabitant postulated --- the
+same discipline `Computability.MarkovMFConsequences` applies to the
+Adian--Rabin construction.  A reader can then see exactly what the
+manuscript's sharpness paragraph rests on: this structure, and nothing
+else. -/
+
+/-- The Tikuisis--White--Winter input: every countable amenable group is
+operator-MF.  **No inhabitant of this structure is constructed anywhere in
+this repository**, and none can be without formalizing that theorem. -/
+structure AmenableImpliesMF : Prop where
+  /-- Amenable countable groups are operator-MF. -/
+  mf : ∀ (G : Type) [Group G] [Countable G], IsAmenable G → IsOperatorMF G
+
+/-- **The manuscript's sharpness conclusion, as a conditional theorem.**
+Every subgroup of the Clifford--`BS(1,2)` extension is MF, given
+Tikuisis--White--Winter and nothing further.  The amenability half is
+fully machine-checked above; this states precisely where the citation
+enters. -/
+theorem isOperatorMF_subgroup_CliffordBS (tww : AmenableImpliesMF)
+    (H : Subgroup CliffordBS) [Countable H] : IsOperatorMF H :=
+  tww.mf _ (isAmenable_subgroup_CliffordBS H)
+
+/-- The realized quotient of Theorem C is MF, given Tikuisis--White--Winter. -/
+theorem isOperatorMF_closure_CliffordBS (tww : AmenableImpliesMF)
+    (S : Set CliffordBS) [Countable (Subgroup.closure S)] :
+    IsOperatorMF (Subgroup.closure S) :=
+  isOperatorMF_subgroup_CliffordBS tww _
+
 end CyclicBaseCalibration
 end GroupApproximation
