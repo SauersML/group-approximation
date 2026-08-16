@@ -574,10 +574,7 @@ the right-hand implication, applied to the projection $P$ onto the
 Kazhdan fixed space inside a norm ultraproduct: the one-sided
 conjugation gives $P\le VPV^*$, the two projections are Murray--von
 Neumann equivalent, and the ultraproduct has no proper isometry, so
-$P=VPV^*$.  Section~\ref{app:finite-stage} runs the same argument
-quantitatively at each single coordinate, with an almost-fixed spectral
-subspace in place of $P$ and an equal-rank reversal estimate in place
-of finiteness.
+$P=VPV^*$.
 
 \begin{theorem}[Kazhdan transport of Hilbert--Schmidt asymptotic commutants]
 \label{thm:kazhdan-transport}
@@ -703,12 +700,12 @@ arbitrary, the full sequence converges.
 \end{proof}
 
 \begin{remark}[the finite-stage proof]\label{rem:finite-stage}
-The ultrafilter gives no rate.  Section~\ref{app:finite-stage}
-proves the theorem a second time, quantitatively at each single
-coordinate $n$.  There, an explicit almost-fixed spectral subspace of
-the averaged adjoint action replaces the projection $P$, and the
-equal-rank reversal estimate replaces finiteness of $B_\omega$.  That
-proof makes the error bookkeeping explicit in terms of $\kappa$,
+The proof above is qualitative, since it passes to an ultrafilter.
+Section~\ref{app:finite-stage} proves the theorem a second time,
+quantitatively at each single coordinate $n$: an explicit almost-fixed
+spectral subspace of the averaged adjoint action replaces the
+projection $P$, and the equal-rank reversal estimate replaces
+finiteness of $B_\omega$.  The rate there is explicit in $\kappa$,
 $|S|$, the uniform bound on $(x_n)$, and the multiplicative defects of
 $U_n$, once the robust spectral-gap input stated there is granted at
 each stage.
@@ -742,18 +739,17 @@ over every field, and hence every homomorphism to a finite group, sends
 the marked word to the identity (Corollary~\ref{cor:notRFD}).
 
 Theorem~\ref{thm:kazhdan-transport} is the approximate analogue of
-this argument.  An MF model is only asymptotically multiplicative,
-so its coordinate fixed spaces are not invariant subspaces;
-operator-norm control keeps the adjoint actions almost multiplicative
-on the Hilbert--Schmidt spaces, an almost-fixed spectral subspace of a
-Kazhdan average takes the place of $C$, and the equal-rank reversal
-estimate of Section~\ref{app:finite-stage} takes the place of equal
-dimension.  Property~\textup{(T)} is what extends the conclusion from
-exact finite-dimensional representations to approximate operator-norm
-models, and it cannot be dropped: the cyclic comparison of
-Section~\ref{sec:necessity} gives a marked group whose word is trivial
-in every finite-dimensional representation and nontrivial in an MF
-model.
+this argument.  An MF model is only asymptotically multiplicative, so
+its coordinate fixed spaces are not invariant subspaces; operator-norm
+control keeps the adjoint actions almost multiplicative on the
+Hilbert--Schmidt spaces, an almost-fixed spectral subspace of a Kazhdan
+average takes the place of $C$, and the equal-rank reversal estimate of
+Section~\ref{app:finite-stage} takes the place of equal dimension.
+Property~\textup{(T)} is what extends the conclusion from exact
+finite-dimensional representations to approximate operator-norm models.
+The cyclic comparison of Section~\ref{sec:necessity} shows that it is
+needed: there is a marked group whose word is trivial in every
+finite-dimensional representation and nontrivial in an MF model.
 
 \section{The central-sign obstruction}\label{sec:sign}
 
@@ -764,17 +760,17 @@ $\Theta(H)$, the projection $\tfrac12(1-\Theta(\varepsilon))$ is
 nonzero, and compressing to it gives a matrix model of $H$ in which
 $\varepsilon$ equals $-1$ and each block has its own normalized trace.
 
-That renormalization is what makes the conclusion of transport usable.
-Transport alone bounds a commutator in normalized Hilbert--Schmidt
-norm, and padding a matrix model with an identity block leaves every
-operator-norm quantity unchanged while sending all normalized
-Hilbert--Schmidt distances to zero (Section~\ref{sec:limits}).
-Compressing to the corner changes the Hilbert--Schmidt scale and not
-the approximation norm: the operator norm on $q_nM_{d_n}(\C)q_n$ is the
-restriction of the operator norm, while the trace is renormalized on
-the corner, so the scalars $1$ and $-1$ stay at normalized
-Hilbert--Schmidt distance $2$ there however small the ratio $r_n/d_n$
-becomes.
+The corner is what turns the conclusion of
+Theorem~\ref{thm:kazhdan-transport} into an obstruction.  That theorem
+bounds a commutator in normalized Hilbert--Schmidt norm, and padding a
+matrix model with an identity block leaves every operator-norm quantity
+unchanged while sending all normalized Hilbert--Schmidt distances to
+zero (Section~\ref{sec:limits}).  Compressing to the corner changes the
+Hilbert--Schmidt scale and not the approximation norm: the operator norm
+on $q_nM_{d_n}(\C)q_n$ is the restriction of the operator norm, while
+the trace is renormalized on the corner, so
+$\hsnorm{1-(-1)}=2$ there for the corner's own normalized trace,
+however small the ratio $r_n/d_n$ becomes.
 
 \begin{theorem}[central-sign criterion]\label{thm:sign-criterion}
 Let $H$ and $\Gamma$ be countable groups, let $\Gamma$ have
@@ -844,17 +840,16 @@ operator $p_n$.  Section~\ref{sec:conj} proves the same conclusion for an
 arbitrary finite normal subgroup of the compression defect
 (Theorem~\ref{thm:criterion}), and then for an arbitrary normal
 property-\textup{(T)} subgroup of it (Theorem~\ref{thm:normal-kazhdan}),
-where the negative corner becomes a moving spectral subspace.
+where a spectral projection of a Kazhdan average takes the place of the
+negative corner.
 
 \section{The Kazhdan--Clifford construction}\label{sec:construction}
 
-Three pieces of data --- a finitely presented Kazhdan group $\Gamma$, a
-proper injective endomorphism $\alpha$ of it, and an element
-$a\in\Gamma\setminus\alpha(\Gamma)$ --- produce both the configuration
-of Theorem~\ref{thm:sign-criterion} and a nontrivial sign.  The element
-$a$ enters twice: transport applies to $[d,\iota(a)]$ because
-$a\in\Gamma$, and the two Clifford sites below are distinct because
-$a\notin\alpha(\Gamma)$.
+Let $\Gamma$ be a finitely presented Kazhdan group, let $\alpha$ be a
+proper injective endomorphism of it, and let
+$a\in\Gamma\setminus\alpha(\Gamma)$.  These data give both the
+configuration of Theorem~\ref{thm:sign-criterion} and a nontrivial
+sign.
 
 With $d=tct^{-1}$ and $u=[d,a]$, put
 \[
@@ -993,9 +988,9 @@ optimization removes two generators and nine relators
 (Section~\ref{sec:group}).
 
 \begin{proof}[Proof of Theorem~\ref{thm:A}]
-Part (1) is Proposition~\ref{prop:witness}.
+That $w\ne1$ is Proposition~\ref{prop:witness}.
 
-For part (2), let $\Theta\colon E\to\Ucor((d_n))$ be given and pass to
+Let $\Theta\colon E\to\Ucor((d_n))$ be given and pass to
 the corona representation $\kappa_{(d_n)}\circ\Theta\colon
 E\to\U(\mathcal Q)$ of Lemma~\ref{lem:unitarycorona}.  Apply the
 central-sign criterion (Theorem~\ref{thm:sign-criterion}) with
@@ -1013,7 +1008,7 @@ $a_1=\iota(v_1)$ gives
   \qquad u=[\,d,\iota(v_1)\,].
 \]
 Centrality of $w$ is a defining relator; with $c^2=1$ it gives $w^2=1$
-by \eqref{eq:involution-reversal}; and $w\ne1$ by part (1).  Hence
+by \eqref{eq:involution-reversal}; and $w\ne1$ as above.  Hence
 $(\kappa_{(d_n)}\circ\Theta)(w)=1$, and $\Theta(w)=1$ because
 $\kappa_{(d_n)}$ is injective.
 \leanverified{Sofic/LiteralNonMFEndpoint}{GroupApproximation.LiteralNonMFEndpoint.negativeCorner_kazhdanTransport_contradiction}
@@ -1033,11 +1028,9 @@ $\lambda_g$, so an MF embedding of $\Cmax(E)$ produces an injective
 corona representation of $E$ after the same conversion.
 \end{proof}
 
-Sections~\ref{sec:group}--\ref{sec:witness} supply the two ingredients
-of this proof --- property~\textup{(T)} of $\mathcal B$ and the
-Clifford model witnessing $w\ne1$ --- from the displayed relators
-alone, without using the identification of $\mathcal B$ with the affine
-group.
+The two inputs of this proof are proved from the displayed relators:
+property~\textup{(T)} of $\mathcal B$ in Section~\ref{sec:group}, and
+the Clifford model witnessing $w\ne1$ in Section~\ref{sec:witness}.
 
 The obstruction already appears at a finite tolerance, on a finite set
 of group elements, in every dimension.
@@ -1168,10 +1161,10 @@ $1\to\ClLamp(X)\to W\to V\to1$, whose kernel is locally finite and
 whose quotient is residually finite, shows that they are not closed
 under extensions either (Section~\ref{sec:consequences}).
 
-This says nothing about $E$ itself, since $W$ is a proper quotient of
-$E$ with kernel a free group of infinite rank.  Section~\ref{sec:limits}
-explains why the operator-norm method decides neither soficity nor
-hyperlinearity for either group.
+The soficity of $E$ itself remains open: $W$ is a proper quotient of
+$E$, with kernel a free group of infinite rank.
+Section~\ref{sec:limits} explains why the operator-norm method decides
+neither soficity nor hyperlinearity for either group.
 
 \clearpage
 \parttitle{Supplementary material}
@@ -1183,9 +1176,6 @@ hyperlinearity for either group.
 \setcounter{page}{1}
 
 \bigskip
-\noindent
-This part belongs to the same paper and uses the same bibliography.
-
 
 \parttitle{Part I.\ \ The explicit group}
 
@@ -1270,15 +1260,15 @@ normalization step above --- not from a separate exhaustion.
 \end{proof}
 \section{The explicit presentation and its property-(T) base}\label{sec:group}
 
-We work throughout with the groups defined by the relators below.
-Classically the base is the affine group
-$\mathbb Z^3\rtimes\SL_3(\mathbb Z)$, a familiar Kazhdan group
-(Remark~\ref{rem:classical-base}).  The proof of
-property~\textup{(T)} given here nevertheless uses only the
-displayed presentations and is independent of the identification: an
-exact rational spectral certificate for an auxiliary Steinberg-type
-presentation, an explicit surjection onto the linear presentation, and
-a fixed-point bridge from the linear subgroup to the full base.
+We work throughout with the groups defined by the relators below.  The
+base is the affine group $\mathbb Z^3\rtimes\SL_3(\mathbb Z)$, a
+familiar Kazhdan group (Remark~\ref{rem:classical-base}), and
+property~\textup{(T)} for it is classical
+\cite[Example~1.7.4(i)]{BHV}.  The proof given here works from the
+displayed presentations, in three steps: an exact rational spectral
+certificate for an auxiliary Steinberg-type presentation, an explicit
+surjection onto the linear presentation, and a fixed-point bridge from
+the linear subgroup to the full base.
 First define the \emph{linear presentation}
 \begin{equation}\label{eq:sl3presentation}
  \mathcal R=\left\langle x,y,z\ \middle|\
@@ -1638,11 +1628,10 @@ so $\gamma=1$; the bottom row of $\pi(W)$ is then $(a,b,1)$, so
 $a=b=0$.  Hence $W=1$, and $\ker\pi$ is trivial.
 \end{proof}
 
-The order of the last three steps is forced.  Applying the separation
-step immediately after the passage into the parabolic would apply it to
-$m^{-1}Gm$, and $\pi(m^{-1}Gm)=\pi(m)^{-1}$ rather than $1$; the
-separation becomes available only once the factor $m$ has itself been
-placed in $H_{\mathrm{par}}$ and the two factors recombined.
+The separation step is applied only after the factor $m$ has itself
+been placed in $H_{\mathrm{par}}$ and the two factors recombined:
+applied directly to $m^{-1}Gm$ it would meet $\pi(m^{-1}Gm)=\pi(m)^{-1}$
+rather than $1$.
 
 \begin{remark}[the classical identification]\label{rem:classical-base}
 The eight relations \eqref{eq:sl3presentation} present
@@ -1656,15 +1645,15 @@ realization is an isomorphism.
 The presentations go back to \cite[Theorem~2]{CRW}, with the
 matrix-labelled generators also recorded in \cite{CLV}, and
 property~\textup{(T)} of the affine group is classical
-\cite[Example~1.7.4(i)]{BHV}; the proofs here are independent of
-these sources, and so is the identification.
+\cite[Example~1.7.4(i)]{BHV}.
 \end{remark}
 \section{The witness: \texorpdfstring{$w\neq 1$}{w is nontrivial}}\label{sec:witness}
 
 Clifford signs, shifts, and HNN doubling have appeared together before in
 approximate-representation theory, notably in Slofstra's hyperlinear-profile
-construction \cite[Section~2]{SlofstraProfile}.  The construction below uses
-the Clifford lamp as an explicit algebraic witness.
+construction \cite[Section~2]{SlofstraProfile}.  Below we define a
+homomorphism from $E$ to a Clifford lamp group under which
+$w\mapsto-1$.
 
 \begin{construction}[Clifford lamp groups]\label{con:clifford}
 For a set $X$, use the real Clifford-algebra convention generated by
@@ -1787,12 +1776,10 @@ and
 \end{proof}
 
 \paragraph{The marked radical element.}
-The element $w$ lies in the kernel of \emph{every} corona
-representation of $E$, not merely in the kernel of each one
-separately, so every corona representation factors through
-$E/\langle w\rangle$; here $\langle w\rangle=\{1,w\}$ is central, hence
-normal.  In the language of approximation radicals, $w$ is a
-nontrivial element of the MF radical of $E$.  The terminology follows
+Since every corona representation of $E$ maps $w$ to the identity, each
+one factors through $E/\langle w\rangle$, where
+$\langle w\rangle=\{1,w\}$ is central and hence normal; that is, $w$ is
+a nontrivial element of the MF radical of $E$.  The terminology follows
 Slofstra's quotients $G^{\mathrm{fin}}$ and $G^{\mathrm{fa}}$, obtained
 by quotienting out the elements invisible to exact and to approximate
 finite-dimensional representations
@@ -1810,10 +1797,10 @@ The coordinate averaging corner in the proof of
 Theorem~\ref{thm:criterion} discards the zero-rank coordinates and
 equips each retained corner block $q_nM_{d_n}(\C)q_n$ with its own
 normalized trace, so every Hilbert--Schmidt estimate there is relative
-to $r_n=\operatorname{rank}q_n$ and independent of the ratio
-$r_n/d_n$.  Small relative ranks therefore cost nothing in the
-operator-norm setting, whereas they block the same argument in
-Hilbert--Schmidt metrics (Section~\ref{sec:limits}).
+to $r_n=\operatorname{rank}q_n$ and independent of the ratio $r_n/d_n$.
+A small relative rank therefore costs nothing in the operator-norm
+setting, while it blocks the same argument in Hilbert--Schmidt metrics
+(Section~\ref{sec:limits}).
 \section{The finite-stage transport proof}\label{app:finite-stage}
 
 This appendix proves Theorem~\ref{thm:kazhdan-transport} a second
