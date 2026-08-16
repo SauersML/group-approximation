@@ -1,4 +1,4 @@
-# Cairn research-graph site.  Rebuilds and republishes the public site
+# Group Approximation research-graph site.  Rebuilds and republishes the public site
 # whenever the research state or the generator changes.  Fast (seconds,
 # no toolchain): the site is compiled from research/*.md by the cairn CLI,
 # which lives in the tools/cairn submodule (github.com/SauersML/Cairn).
@@ -8,7 +8,7 @@
 # branch named `api-docs` exists.  Until docs.yml publishes that branch, a
 # Sunday docs deploy will temporarily replace this site (and the next
 # research push replaces it back).
-name: Cairn site
+name: Group Approximation site
 
 on:
   push:
@@ -49,6 +49,20 @@ jobs:
 
       - name: Build the site
         run: bin/cairn site
+
+      - name: Title the site
+        # `bin/cairn` passes the project name to the generator, but generators
+        # older than that hook title their pages after the tool.  Rewrite those.
+        # A no-op once the pinned generator honours CAIRN_SITE_TITLE.
+        run: |
+          python3 - <<'PY'
+          import pathlib
+          for f in pathlib.Path('.cairn/site').glob('*.html'):
+              t = f.read_text(encoding='utf-8')
+              if '<title>Cairn' in t:
+                  f.write_text(t.replace('<title>Cairn', '<title>Group Approximation'),
+                               encoding='utf-8')
+          PY
 
       - name: Fold in the latest API docs, if published
         run: |
