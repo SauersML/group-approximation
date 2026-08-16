@@ -348,9 +348,11 @@ theorem kt_06_polar_correction
 /-- **KT.06.**  `B_ω` is finite: an isometry of the norm ultraproduct is a
 unitary.  Proved exactly as printed, through the polar correction of the
 previous theorem. -/
-theorem kt_06_ultraproduct_finite
-    {sigma : NormMatrixCStarCorona (fun n ↦ Z n)}
-    (hsigma : star sigma * sigma = 1) : sigma * star sigma = 1 := by
+theorem kt_06_ultraproduct_finite :
+    ∀ (Z : ℕ → FiniteModel) [∀ n, Nonempty (Z n)]
+      {sigma : NormMatrixCStarCorona (fun n ↦ Z n)}
+      (_hsigma : star sigma * sigma = 1), sigma * star sigma = 1 := by
+  intro Z _ sigma hsigma
   obtain ⟨w, rfl⟩ := kt_06_polar_correction Z hsigma
   have hww : unitarySequenceBounded Z w * star (unitarySequenceBounded Z w)
       = 1 := by

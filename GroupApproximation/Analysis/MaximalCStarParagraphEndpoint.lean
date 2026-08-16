@@ -238,8 +238,9 @@ strict Kazhdan compression data over `E`:
 
 This is the paragraph-level counterpart of the remark labelled
 `rem:maxinfinite` in `non_mf_groups_exist.tex`. -/
-theorem manuscriptMaximalCStarStrictCompressionRemark
-    (D : StrictKazhdanCompression Γ E) :
+theorem manuscriptMaximalCStarStrictCompressionRemark :
+    ∀ {Γ : Type w} {E : Type u} [Group Γ] [Group E]
+      (D : StrictKazhdanCompression Γ E),
     IsSelfAdjoint D.proj ∧
       D.proj * D.proj = D.proj ∧
       (D.shift * D.proj * star D.shift) * D.proj = D.proj ∧
@@ -256,7 +257,9 @@ theorem manuscriptMaximalCStarStrictCompressionRemark
       Nonempty (FaithfulTracialState
         (ReducedGroupCStarTrace.ReducedGroupCStar E)) ∧
       IsEmpty (ProperProjectionCompression
-        (ReducedGroupCStarTrace.ReducedGroupCStar E)) :=
+        (ReducedGroupCStarTrace.ReducedGroupCStar E)) := by
+  intro Γ E _ _ D
+  exact
   ⟨D.isSelfAdjoint_proj, D.proj_mul_proj,
     D.conjugate_mul_proj, D.proj_mul_conjugate, D.conjugate_ne_proj,
     D.maximalCStar_not_isDedekindFiniteMonoid,

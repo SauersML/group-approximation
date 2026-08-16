@@ -228,13 +228,14 @@ Mathematically: `σ = V*Q + (1 - Q)` satisfies `σ*σ = 1`, so finiteness of the
 ambient makes `σ` unitary, and then `σσ* = P + (1 - Q) = 1` forces `Q = P`.
 The proof is `ProperProjectionCompression.unitary_conjugate_eq_of_absorbs`,
 which runs exactly that argument in contrapositive form. -/
-theorem kt_10_finiteness_reverses
-    {A : Type u} [Ring A] [StarRing A] [IsDedekindFiniteMonoid A] {P V : A}
-    (hP_star : star P = P) (hP_idem : P * P = P)
-    (hV_star_mul : star V * V = 1) (hV_mul_star : V * star V = 1)
-    (hPQ : P * (V * P * star V) = P) (hQP : (V * P * star V) * P = P) :
-    V * P * star V = P :=
-  ProperProjectionCompression.unitary_conjugate_eq_of_absorbs
+theorem kt_10_finiteness_reverses :
+    ∀ {A : Type u} [Ring A] [StarRing A] [IsDedekindFiniteMonoid A] {P V : A}
+      (_hP_star : star P = P) (_hP_idem : P * P = P)
+      (_hV_star_mul : star V * V = 1) (_hV_mul_star : V * star V = 1)
+      (_hPQ : P * (V * P * star V) = P) (_hQP : (V * P * star V) * P = P),
+      V * P * star V = P := by
+  intro A _ _ _ P V hP_star hP_idem hV_star_mul hV_mul_star hPQ hQP
+  exact ProperProjectionCompression.unitary_conjugate_eq_of_absorbs
     hP_star hP_idem hV_star_mul hV_mul_star hPQ hQP
 
 /-! ### KT.10 on the manuscript's own objects
