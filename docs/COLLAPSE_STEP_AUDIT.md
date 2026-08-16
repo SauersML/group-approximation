@@ -609,3 +609,53 @@ what should be reconsidered: S1–S3 in particular are places where the
   `exists_near_center`, `seqNormSq_sub_le_of_near_center`), which is precisely
   the manuscript's "circumcenter … taken at the level of bounded sequences".
   That is the right primitive.
+
+---
+
+## 8. Resolution, 2026-08-16: S1–S3 and S5 are closed, and one repair was itself wrong
+
+`thm:collapse` no longer prints a sketch.  Steps 5 and 6 now run in the
+Hilbert-space ultraproduct of the `(M_{d_n}, Tr)`: the `b_n` assemble into an
+exact 1-cocycle, Delorme–Guichardet (BHV Thm 2.12.4) makes it a coboundary,
+`(W2)` gives `b(sas⁻¹) = 0` exactly because Step 1's family is indexed by the
+orbit, and the transport theorem's own `Q = P` puts the primitive in
+`Fix π(L)`.  That closes S1 (no operator-distance rigidity lemma is needed),
+S2 (the coboundary is exact, so there is no tolerance to diagonalize), S3
+(the limit is `lim_ω`, never a `limsup`) and S5 (the generator mass is used
+as an exact identity, not as a bound).  S4 is closed by the correction lemma
+with the explicit `3·15^m·ε` bound now printed in Step 1.
+
+**A note for anyone re-auditing this section.**  Between those two states the
+manuscript briefly carried a different repair (commit `e9563a3d`), which
+replaced Step 6 with a one-stage argument on the grounds that the equality
+`Fix π(sLs⁻¹) = Fix π(L)` "is supplied neither by Theorem 3.1 nor by
+Theorem 6.1", and justified its own crux, the reverse-corner bound, "precisely
+because `s` normalizes `L`".  Both halves are wrong, and it is worth recording
+why, because each is an easy mistake to make twice.
+
+1. **`s` does not normalize `L`.**  The construction turns on `tΓt⁻¹ ⊊ Γ`
+   being strict; a normalizer would leave nothing to compress.  The Lean does
+   not assume it: `KazhdanCompressionCore` carries the one-sided relation.
+2. **The equality is supplied** — by the *proof* of the transport theorem, not
+   by its statement.  The statement quantifies over a sequence `(x_n)`; the
+   paragraph that derives `Q = P` does not mention one.  It builds `P` from the
+   Kazhdan gap, identifies `ran π(s)Pπ(s)*` with `Fix π(sLs⁻¹)`, gets `P ≤ Q`
+   from the one-sided inclusion, and closes with finiteness of the norm
+   ultraproduct (now `lem:finitecompare` + `lem:ultrafinite`).  Reading a
+   theorem's hypotheses as if they governed every step inside its proof is the
+   trap here.
+3. **What actually discharges the finite-stage `hrev`** is not a normalizer but
+   the equal-rank reversal estimate: `stage_transport_bound`
+   (`InvolutionCollapseEndpoint.lean:444`) *takes* `hrev` as a hypothesis, and
+   it is discharged by `KazhdanCompressorCorner.one_sub_corner_mul_moved_vanishing`,
+   which chains `one_sub_moved_mul_corner_vanishing` (the easy containment, via
+   `rotated_laplacian_vanishing`: `sas⁻¹ ∈ L = ⟨S⟩` is a bounded word in `S`)
+   with `norm_one_sub_mul_flip` at `movedProjection_rank = cornerProjection_rank`.
+   Equal rank is the finite-dimensional stand-in for the absent proper isometry.
+
+The one-stage argument was kept: it is the content of
+`rem:collapse-finite-stage`, with its constants, both corner estimates and all
+three `InvolutionCollapseEndpoint` badges, and with the crux justified as in
+(3).  Ledger consequence: those three badges now sit under
+`rem:collapse-finite-stage` rather than `thm:collapse`, so `CO.11`–`CO.15`
+need re-anchoring.
