@@ -814,11 +814,34 @@ import GroupApproximation.Sofic.TorsionFreeFiniteNormalLimit
 -- badge on an unbuilt module in as many words: outside the closure `lake build`
 -- never compiles it, so the badge certifies nothing.  The other three are that
 -- module's own dependencies, listed rather than left implicit so that dropping
--- one is a visible edit.  Every one of the four is tracked and carries no `sorry`.
+-- one is a visible edit.  Every one of the four is tracked and fully proved.
 import GroupApproximation.Sofic.BlockCliffordTowerSofic
 import GroupApproximation.Sofic.LiteralSoficAssembly
 import GroupApproximation.Sofic.LiteralSoficEndpoint
 import GroupApproximation.Sofic.LiteralVerticalBridge
+
+-- The modules below were kept out under the rule above, on the presumption that
+-- they did not compile.  Each has now been compiled against the warm cache with
+-- the pinned toolchain -- exit 0, no messages, olean emitted -- so the reason for
+-- keeping them out no longer applies, and leaving them out would keep CI blind to
+-- proofs that are in fact finished.  Several needed only a one-line repair to get
+-- there: a missing `Mathlib.GroupTheory.FreeGroup.Reduce` import, a universe
+-- declared `Type*` against a `Type` dependency, and two files that ended in
+-- leaked tool markup.
+--
+-- The remaining orphans stay out for the original reason: they are either in
+-- flight in another session or genuinely broken.
+import GroupApproximation.Computability.FreeByRetraction
+import GroupApproximation.Computability.HNNPresentedForward
+import GroupApproximation.Computability.PresentedGroupBasisChange
+import GroupApproximation.Computability.RabinBrittonFreeness
+import GroupApproximation.Computability.RabinConstruction
+import GroupApproximation.Computability.RabinConstructionMF
+import GroupApproximation.Computability.RabinConstructionSource
+import GroupApproximation.Computability.RabinFreeLetterOrder
+import GroupApproximation.Computability.SemigroupWordProblemMachine
+import GroupApproximation.Sofic.LiteralSoficSeparation
+import GroupApproximation.Sofic.SimpleNotLEF
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group

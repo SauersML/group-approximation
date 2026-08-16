@@ -6,7 +6,7 @@ import GroupApproximation.Sofic.LiteralSoficEndpoint
 /-!
 # The literal finitely presented non-MF group is sofic
 
-`markedGroup_isSofic : IsSofic MarkedGroup`, with no hypothesis, no `sorry`
+`markedGroup_isSofic : IsSofic MarkedGroup`, with no hypothesis, no admitted step
 and no literature input.
 
 ## What was missing
