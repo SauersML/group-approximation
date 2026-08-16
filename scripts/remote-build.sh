@@ -183,6 +183,15 @@ TAG="${MSI_BUILD_TAG:-$$}"
 # "failed to create thread".  Two fixes: LEAN_NUM_THREADS caps each process,
 # and an atomic mkdir mutex serializes builds across the whole fleet (stale
 # locks older than 90 min are broken; waiters give up after 60 min).
+#
+# The waiter prints on EVERY pass, not every fifteenth.  It used to announce
+# itself once and then sit silent for five minutes at a time, and the wrapper's
+# ssh carries no ServerAliveInterval -- so a waiting build did not wait, it got
+# its connection dropped and came back as exit 255 with a single "waiting on
+# fleet build lock (1/180)" above it.  That reads like an ssh fault and is
+# really "another lane holds the lock", which is the one thing the message was
+# supposed to tell you.  A line every 20s keeps the channel warm; 180 lines is
+# the worst case and only if you really do wait an hour.
 LOCK=$REMOTE/.lake/fleet-build.lock
 echo "==> building${TARGET:+ $TARGET} on the compute node (log tag: $TAG)"
 exec "$MSI" "export PATH=\$HOME/.elan/bin:\$PATH LEAN_NUM_THREADS=8 && cd $REMOTE && \
@@ -191,7 +200,7 @@ exec "$MSI" "export PATH=\$HOME/.elan/bin:\$PATH LEAN_NUM_THREADS=8 && cd $REMOT
     if [ \$age -gt 5400 ]; then rmdir \"$LOCK\" 2>/dev/null; continue; fi; \
     tries=\$((tries+1)); \
     if [ \$tries -gt 180 ]; then echo 'fleet build lock: timed out after 60m'; exit 75; fi; \
-    [ \$((tries % 15)) -eq 1 ] && echo \"waiting on fleet build lock (\$tries/180)\"; \
+    echo \"waiting on fleet build lock (\$tries/180)\"; \
     sleep 20; \
   done; \
   trap 'rmdir \"$LOCK\" 2>/dev/null' EXIT INT TERM; \
