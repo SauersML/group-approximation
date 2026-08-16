@@ -47,8 +47,18 @@
 
 % amsart provides no \@spart, so the nameref patch loaded by hyperref makes
 % \part* expand to an undefined control sequence.  The part headings of the
-% supplement are therefore set directly rather than through \part.
+% supplement are therefore set directly rather than through \part, and they
+% reach the table of contents through their own entry type.
+\makeatletter
+\providecommand*{\l@part}[2]{%
+  \smallskip
+  {\leftskip\z@ \noindent\bfseries #1\hfill #2\par}%
+  \nobreak\smallskip}
+\providecommand{\theHpart}{part.\arabic{section}}
+\makeatother
 \newcommand{\parttitle}[1]{%
+  \phantomsection
+  \addcontentsline{toc}{part}{#1}%
   \begingroup
     \centering\normalfont\bfseries\Large
     #1\par
@@ -141,6 +151,10 @@ hence hyperlinear --- group that is not MF.
 \end{abstract}
 
 \maketitle
+
+\setcounter{tocdepth}{2}
+\tableofcontents
+
 \section{Introduction}\label{sec:intro}
 
 
@@ -3980,6 +3994,21 @@ faithful and the algebra is stably finite, so its failure of MF is not
 a failure of finiteness; for the maximal algebra, infiniteness is
 forced by the strict compression before any MF considerations arise.
 \end{remark}
+
+\section*{Acknowledgements}
+We thank Caleb Eckhardt for the reading of the argument that organizes
+Section~\ref{sec:intro}: that it promotes to matrix coronas the
+elementary obstruction by which a proper self-compression has no image
+in a finite quotient.  We thank Francesco Fournier-Facio for the
+formulation of the group-theoretic input as a Kazhdan group that is not
+co-Hopfian, together with its ascending HNN extension, for the
+small-cancellation construction recorded in
+Remark~\ref{rem:ff-realization} and in Section~\ref{sec:limits}, and
+for asking us to separate the roles played by the operator norm and by
+the Hilbert--Schmidt norm.  We thank Alon Lubotzky for pointing out
+that the interaction between those two norms also occurs in the earlier
+approach of Bachner--Dogon--Lubotzky \cite{BDL}.
+
 \begin{thebibliography}{GKEMP}
 
 \bibitem[AT]{AlekseevThom}
