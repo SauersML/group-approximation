@@ -499,7 +499,10 @@ theorem lampKernel_inf_sectRange : lampKernel ⊓ sect.range = ⊥ := by
 theorem exists_unique_sect_factor (g : MarkedGroup) :
     ∃! v : V, g * (sect v)⁻¹ ∈ lampKernel := by
   refine ⟨retraction g, ?_, ?_⟩
-  · rw [mem_lampKernel_iff, map_mul, map_inv, retraction_sect, mul_inv_cancel]
+  -- `refine` leaves the first goal as a beta-redex, which `rw` cannot see
+  -- through; `show` reduces it before the rewrite chain starts.
+  · show g * (sect (retraction g))⁻¹ ∈ lampKernel
+    rw [mem_lampKernel_iff, map_mul, map_inv, retraction_sect, mul_inv_cancel]
   · intro v hv
     rw [mem_lampKernel_iff, map_mul, map_inv, retraction_sect,
       mul_inv_eq_one] at hv
