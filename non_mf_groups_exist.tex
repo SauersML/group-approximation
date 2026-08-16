@@ -3731,14 +3731,29 @@ subgroup heredity the finitely presented group $E$ embeds in no MF
 group.  The Adian--Rabin theorem \cite{Rabin58} therefore applies.
 
 \begin{corollary}[undecidability]\label{cor:undecidable}
-There is no algorithm that decides, from a finite presentation,
-whether the presented group is MF\@.  By the effective form of the
-Adian--Rabin construction \cite{Rabin58}, the set of finite
-presentations of non-MF groups is not even recursively enumerable.
+Fix a recursive coding of finite presentations and a decision problem
+$A$, and suppose given an Adian--Rabin reduction of $A$ to MF
+recognition in that coding: a computable map sending an instance of $A$
+to a presentation code whose group is MF exactly when the instance is
+positive.  If $A$ is undecidable, then no algorithm decides, from a
+finite presentation, whether the presented group is MF\@.  If moreover
+the negative side of $A$ is not recursively enumerable, then neither is
+the set of presentation codes of non-MF groups.
 \end{corollary}
+\leanverified{Computability/MarkovMFConsequences}{GroupApproximation.MarkovMFConsequences.operatorMF_recognition_undecidable}
+\leanverified{Computability/MarkovMFConsequences}{GroupApproximation.MarkovMFConsequences.manuscriptOperatorMFNegativeSideNotRE}
 
-The Adian--Rabin construction \cite{Rabin58} is quoted here and used
-nowhere else.  It gives a computable map taking
+The corollary quantifies its inputs rather than quoting them, because
+they are the one thing in this paper that is not machine-checked.  A
+reduction of the required kind does exist: take $A$ to be the word
+problem of a finitely presented group with unsolvable word problem, by
+the Novikov--Boone theorem, and apply the Adian--Rabin construction
+\cite{Rabin58} to the Markov property ``is MF''.  Neither of those two
+classical theorems is formalized here, and neither is now assumed
+silently --- they are precisely what the hypotheses of the corollary
+ask for, so what is taken on trust is visible in the statement rather
+than in a citation.  Everything below them is machine-checked.  The
+construction gives a computable map taking
 an instance $(P,w)$ of the word problem of a fixed finitely presented
 group with undecidable word problem to a finite presentation whose
 group is trivial --- hence MF --- when $w=1$, and contains $E$ ---

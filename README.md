@@ -216,8 +216,7 @@ results are not imported as axioms.
 
 ## Nonsofic groups exist
 
-[`nonsofic_groups_exist.tex`](nonsofic_groups_exist.tex) is the manuscript for
-the construction the library is named after: `EL₄(L_{𝔽₂}(1,2))`, the rank-four
+The construction the library is named after is `EL₄(L_{𝔽₂}(1,2))`: the rank-four
 elementary group over the universal binary Leavitt algebra, is countable,
 infinite, finitely generated, has property `(T)`, and is not sofic. Its
 endpoints are in `Endpoint/MainResults.lean` — `nonsofic_groups_exist`,
@@ -226,9 +225,11 @@ and `countable_group_without_essentiallyFreeNearAction_exists`, the negative
 answer to Pestov's Question 5.3 — and each printed statement has one endpoint
 of its own in `Endpoint/ManuscriptStatements.lean`. The statement-by-statement
 correspondence is [`docs/CLAIM_MAP.md`](docs/CLAIM_MAP.md), generated from the
-manuscript's margin notes and checked by `scripts/check.py`.
+margin notes of the manuscript and checked by `scripts/check.py`.
 
-No release workflow builds this manuscript; there is no committed PDF for it.
+The manuscript itself is no longer kept in the repository; the Lean endpoints
+above are the primary record, and `scripts/check.py` reports the absence rather
+than passing silently over it.
 
 ## Library scope
 
