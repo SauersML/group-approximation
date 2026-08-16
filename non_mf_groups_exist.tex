@@ -102,7 +102,7 @@ nontrivial element from the identity; equivalently, if it embeds in the
 unitary group of a quotient
 $\prod_nM_{d_n}(\mathbb C)/\bigoplus_nM_{d_n}(\mathbb C)$.  We construct
 an explicit finitely presented group $E$ that is not MF, refuting the
-conjecture that every countable group is MF.  The reduced group
+conjecture that every countable group is MF\@.  The reduced group
 $C^*$-algebra of $E$ is a separable, stably finite $C^*$-algebra that is
 not MF.
 
@@ -119,7 +119,7 @@ $E$ is the instance built on $\mathbb Z^3\rtimes\SL_3(\mathbb Z)$.
 
 The homomorphism proving $w\ne1$ maps $E$ onto a second group $W$,
 a Clifford extension of a linear group.  We prove that $W$ is finitely
-generated, sofic, and not MF.  Since sofic groups are hyperlinear,
+generated, sofic, and not MF\@.  Since sofic groups are hyperlinear,
 neither soficity nor hyperlinearity implies the MF property.  The
 reduced group $C^*$-algebra of $W$ is in addition exact.
 \end{abstract}
@@ -134,7 +134,7 @@ vanish along a sequence of finite dimensions?  Shulman calls the positive
 assertion the \emph{MF conjecture} \cite{Shulman}, and no group was known
 to fail it \cite{Schafhauser,Shulman}.  We prove that the answer is no:
 there is an explicit finitely presented group, on eight generators and
-forty-one relators, that is not MF.  Residually finite groups satisfy
+forty-one relators, that is not MF\@.  Residually finite groups satisfy
 the conjecture through their finite quotients, as do LEF groups \cite{CDE} and, by
 quasidiagonality \cite{TWW}, all amenable groups.  Recent work
 establishes it for many amalgamated free products
@@ -155,7 +155,7 @@ The case $p=2$ was settled by De~Chiffre--Glebsky--Lubotzky--Thom
 \cite{DGLT}, the cases $1<p<\infty$ by Lubotzky--Oppenheim \cite{LuO},
 and the case $p=1$ by Bachner--Dogon--Lubotzky \cite{BDL}.  That left
 the Hamming metric (soficity), the Hilbert--Schmidt norm
-(hyperlinearity), and the operator norm (MF).  The Hamming case was disproved in 2026:
+(hyperlinearity), and the operator norm (MF)\@.  The Hamming case was disproved in 2026:
 the first nonsofic group was constructed by OpenAI \cite{OAI},
 Fournier-Facio then gave a torsion-free example \cite{FFF}, and
 Kun--Thom developed further wreath-product examples \cite{KT}.
@@ -169,7 +169,7 @@ spaces of the adjoint actions; Appendix~\ref{app:finite-stage} gives a
 quantitative finite-stage version.  This paper settles the
 operator-norm case by one explicit finitely presented group; it also
 proves that soficity does not imply MF and produces an explicit reduced
-group $C^*$-algebra that is stably finite but not MF.  Of the three
+group $C^*$-algebra that is stably finite but not MF\@.  Of the three
 problems, only hyperlinearity remains open.
 
 In the language of approximate representations, a countable discrete
@@ -304,7 +304,7 @@ and we do not determine whether $E$ itself is sofic or hyperlinear
 (Section~\ref{sec:limits}).  The homomorphism proving $w\ne1$ maps $E$
 onto a second, finitely generated group $W$, a Clifford extension of a
 linear group, and Theorem~\ref{thm:E} proves that $W$ is sofic --- hence
-hyperlinear --- and not MF.  On the algebra side, the reduced group $C^*$-algebra of $E$ is the
+hyperlinear --- and not MF\@.  On the algebra side, the reduced group $C^*$-algebra of $E$ is the
 stably finite non-MF example (Theorem~\ref{thm:D}); the reduced algebra
 of $W$ is in addition exact.
 
@@ -554,7 +554,17 @@ $\pi\otimes\bar\pi$ construction.
 \emph{The ultraproduct.}  Let $K_\omega$ be the Hilbert-space
 ultraproduct of the $K_n$ along $\omega$ and let
 $B_\omega=\prod_\omega B(K_n)$ be the norm ultraproduct, acting on
-$K_\omega$; write $[\,\cdot\,]_\omega$ for classes in either.
+$K_\omega$ by $[A_n]_\omega[\xi_n]_\omega=[A_n\xi_n]_\omega$; write
+$[\,\cdot\,]_\omega$ for classes in either.  This action is faithful:
+if $A=[A_n]_\omega\neq0$ then $\lim_\omega\opnorm{A_n}=\delta>0$, and
+unit vectors $\xi_n$ with
+$\lVert A_n\xi_n\rVert\ge\opnorm{A_n}-\tfrac1n$ give
+$\lVert A[\xi_n]_\omega\rVert=\lim_\omega\lVert A_n\xi_n\rVert=\delta$.
+An inclusion of ranges in $K_\omega$ may therefore be read back as an
+inequality of projections in $B_\omega$: if
+$\operatorname{ran}P\subseteq\operatorname{ran}Q$ for projections
+$P,Q\in B_\omega$, then $QP$ and $P$ act identically on $K_\omega$,
+so $QP=P$, that is, $P\le Q$.
 Asymptotic multiplicativity makes
 \[
  \pi\colon H\longrightarrow\U(B_\omega),\qquad
@@ -1451,11 +1461,19 @@ $\sigma(L)\le\sigma(K)$ forces $K=L$.  If $gKg^{-1}\subseteq K$, then
 $gKg^{-1}$ and $K$ have equal size, so the inclusion is an equality:
 such a target admits no strict one-sided compression.
 \leanverified{Sofic/ManuscriptExactWrappers}{GroupApproximation.ManuscriptExactWrappers.manuscriptInvariantSizePrinciple}
-Cardinality on the subgroups of a finite group and the dimension of
-the fixed space of the adjoint action in a finite-dimensional
-representation both qualify: finite quotients and finite-dimensional
-linear representations cannot detect strict one-sided compression, for
-one and the same reason.  The corona argument of Theorem~\ref{thm:A}
+Cardinality on the subgroups of a finite group qualifies, so no finite
+quotient detects strict one-sided compression.  The finite-dimensional
+case is not the same principle applied to subgroups.  The natural
+candidate size there, the dimension of the fixed space of the adjoint
+action, is $\dim_k\End_H(V)$, the dimension of the commutant; it is
+order-reversing rather than order-preserving in $H$, and it does not
+separate nested subgroups --- $A_4<S_4$ in the standard
+three-dimensional representation have the same commutant $k\cdot1$.
+What the proof of Theorem~\ref{thm:B} uses is the principle one level
+down, on the commutant itself: the inclusion $C\subseteq uCu^{-1}$
+between subspaces of equal finite dimension is an equality
+\eqref{eq:pinning}.  Pinning the commutant, not the subgroup, is what
+kills the defect.  The corona argument of Theorem~\ref{thm:A}
 is the analytic counterpart of this principle at infinite dimension.
 \end{remark}
 
@@ -2257,8 +2275,11 @@ group is trivial.
 For $N\le\operatorname{Rad}_{\mathrm{MF}}(G_1)$,
 Corollary~\ref{cor:pullback} gives
 $\operatorname{cl}_{\mathrm{MF}}(N)=\operatorname{Rad}_{\mathrm{MF}}(G_1)$,
-so the first operation stays inside the radical, and unions of
-subgroups of the radical lie in the radical.  The final two assertions
+so the first operation stays inside the radical.  The second operation
+stays inside it as well: $\operatorname{Rad}_{\mathrm{MF}}(G_1)$ is a
+subgroup, so the supremum of a family of subgroups of the radical ---
+the subgroup generated by their union, not the union itself, which need
+not be a subgroup --- again lies in the radical.  The final two assertions
 are Corollary~\ref{cor:exactradical} and
 Proposition~\ref{prop:univquot}.
 \end{proof}
@@ -2357,11 +2378,14 @@ $\operatorname{Rad}_{\mathrm{fd}}(G)\neq1$ is not MF.
 \end{proposition}
 
 \begin{proof}
-The first inclusion needs no stability: a finite-dimensional unitary
-representation, repeated as a constant sequence, is a corona
-representation, and a constant sequence is null exactly when its value
-is the identity, so an MF-invisible element dies in every
-finite-dimensional representation.  For the converse inclusion, suppose
+The first inclusion needs no stability.  A finite-dimensional unitary
+representation $\pi$ on $\C^{d}$ amplifies to $\pi^{\oplus n}$ on
+$\C^{nd}$; the dimensions $nd$ are strictly increasing, so
+$(\pi^{\oplus n})_n$ is a corona representation in the sense of
+\eqref{eq:unitary-corona}.  Since
+$\opnorm{\pi^{\oplus n}(x)-1}=\opnorm{\pi(x)-1}$ for every $n$, that
+sequence is null exactly when $\pi(x)=1$.  Hence an MF-invisible
+element dies in every finite-dimensional representation.  For the converse inclusion, suppose
 a corona representation fails to kill some
 $x\in\operatorname{Rad}_{\mathrm{fd}}(G)$.  Extraction produces an
 operator-norm almost representation with a uniform separation between
@@ -2477,12 +2501,33 @@ large stage, with total generator mass
 \begin{equation}\label{eq:generator-mass}
   \sum_{a\in S}\|b_n(a)\|_{\mathrm{F}}^2=4
 \end{equation}
-whenever $k_n\ge1$.  Conjugation by $U_{g,n}$ is a Frobenius isometry
-and $b_n(g\gamma)\approx b_n(g)+U_{g,n}b_n(\gamma)U_{g,n}^{*}$ up to a
-sum of three covariance errors of rank $O(k_n)$ and vanishing operator
-norm; since
-$\operatorname{Tr}|D|^2\le\operatorname{rank}(D)\cdot\opnorm{D}^2$,
-the defect mass vanishes at the scale $k_n$.  All estimates below
+whenever $k_n\ge1$.  Conjugation by $U_{g,n}$ is a Frobenius isometry,
+and the total cocycle defect
+\[
+  D_n(g,\gamma)\;=\;k_n^{1/2}\bigl(b_n(g\gamma)-b_n(g)
+  -U_{g,n}b_n(\gamma)U_{g,n}^{*}\bigr)
+\]
+admits two different groupings, each controlling one factor of the
+Hilbert--Schmidt estimate.  Cancelling $V_n(1)$ gives
+\[
+  D_n(g,\gamma)=\bigl(V_n(g\gamma)-V_n(g)\bigr)
+  -U_{g,n}\bigl(V_n(\gamma)-V_n(1)\bigr)U_{g,n}^{*},
+\]
+a difference of two displacements of the commuting family of Step~1;
+by Step~2 and translation invariance each has rank $d_n(\gamma,1)$, so
+$\operatorname{rank}D_n(g,\gamma)\le2\,|\gamma|_S\,k_n$.  Regrouping
+the same expression as
+\[
+  D_n(g,\gamma)=\bigl(V_n(g\gamma)-U_{g,n}V_n(\gamma)U_{g,n}^{*}\bigr)
+  -\bigl(V_n(g)-U_{g,n}V_n(1)U_{g,n}^{*}\bigr)
+\]
+exhibits it as a difference of two covariance errors of Step~1, so
+$\opnorm{D_n(g,\gamma)}\to0$.  The rank bound comes from the first
+grouping and the operator-norm bound from the second; neither implies
+the other, since a difference of two exact involutions at small
+operator distance may have full rank.  Feeding both into
+$\operatorname{Tr}|D|^2\le\operatorname{rank}(D)\cdot\opnorm{D}^2$
+makes the defect mass vanish at the scale $k_n$.  All estimates below
 concern only differences of the involutions.
 
 \emph{Step 5: bounded profile and an approximate primitive.}  The
@@ -2607,7 +2652,7 @@ becomes an involutive witness outright.
 
 \begin{theorem}[the commuting-lamp quotient]\label{thm:commutinglamp}
 The quotient $W/\langle\zeta\rangle$ of the Kazhdan--Clifford group
-by its central sign is not MF.  More precisely, the image of the
+by its central sign is not MF\@.  More precisely, the image of the
 commutator $[v_1,tct^{-1}]$, the inverse of the marked commutator
 $u$, in $W/\langle\zeta\rangle$ is nontrivial and lies in
 $\operatorname{Rad}_{\mathrm{MF}}(W/\langle\zeta\rangle)$; the
@@ -2706,9 +2751,11 @@ with saturated collapse or normal-Kazhdan defect is open.
 
 \subsection{The reduced group algebra of \texorpdfstring{$E$}{E}}
 
-Every MF algebra is stably finite
-\cite{BK}, so Theorem~\ref{thm:D} exhibits a separable stably finite
-$C^*$-algebra that is not MF.  Abstract examples follow from the failure
+Every MF algebra is stably finite \cite{BK}; the converse fails, and
+Theorem~\ref{thm:D} exhibits the failure concretely.  Stable finiteness
+there is not inferred from the absence of MF structure --- that
+inference would be invalid --- but supplied directly by the faithful
+canonical trace through Lemma~\ref{lem:faithfultrace}.  Abstract examples follow from the failure
 of the Connes embedding problem \cite{FGH}; the point here is
 concreteness: the algebra is the reduced group $C^*$-algebra of an
 explicit finitely presented group.  Even for
@@ -2794,7 +2841,7 @@ group:
 The Clifford witness $W=\ClLamp(X)\rtimes V$ of
 Proposition~\ref{prop:witness} is a finitely generated sofic group that
 is not MF; since sofic groups are hyperlinear, $W$ is likewise a
-hyperlinear group that is not MF.  In particular, neither soficity nor
+hyperlinear group that is not MF\@.  In particular, neither soficity nor
 hyperlinearity implies the MF property.
 \leanverified{Endpoint/NonMFImpact}{GroupApproximation.NonMFImpact.witness_sofic_hyperlinear_nonMF}
 \end{mainthm}
@@ -2888,14 +2935,14 @@ quotient \cite{ElekSzabo}.
 \paragraph{An exact stably finite non-MF algebra.}
 The same witness gives a concrete separable exact example:
 $\Cred(W)$ is exact, has a faithful tracial state, is stably finite, and is
-not MF.  Indeed, the locally finite lamp kernel is amenable and hence exact,
+not MF\@.  Indeed, the locally finite lamp kernel is amenable and hence exact,
 while the linear group $V\leq\GL_4(\mathbb Q)$ is exact
 \cite{GHW}.  Exact groups are closed under extensions
 \cite{KWPermanence}, so $W$ is exact; for discrete groups this is equivalent
 to exactness of the reduced group algebra \cite{KWExact}.  The canonical trace
 and stable finiteness follow as in Lemma~\ref{lem:faithfultrace}.  Finally, an
 MF embedding of $\Cred(W)$ would restrict to a faithful norm-corona model of
-the canonical group unitaries, contradicting that $W$ is not MF.  All parts
+the canonical group unitaries, contradicting that $W$ is not MF\@.  All parts
 of this paragraph except exactness are also verified in Lean;
 the present formal library has no definition of exact $C^*$-algebras.
 
@@ -2947,7 +2994,7 @@ the quotient.  Expressing the finitely many multiplications and
 inequalities of that subset by words in the marked generators produces
 finitely many relation constraints; every marked group agreeing on
 those constraints transports the failed local-model problem verbatim,
-so an entire basic clopen neighborhood fails MF.  Enclosing the
+so an entire basic clopen neighborhood fails MF\@.  Enclosing the
 constraint words in a reduced-word ball gives the radius form.
 \end{proof}
 
@@ -3015,7 +3062,7 @@ group.  The Adian--Rabin theorem \cite{Rabin58} therefore applies.
 
 \begin{corollary}[undecidability]\label{cor:undecidable}
 There is no algorithm that decides, from a finite presentation,
-whether the presented group is MF.  By the effective form of the
+whether the presented group is MF\@.  By the effective form of the
 Adian--Rabin construction \cite{Rabin58}, the set of finite
 presentations of non-MF groups is not even recursively enumerable.
 \end{corollary}
@@ -3027,9 +3074,13 @@ an instance $(P,w)$ of the word problem of a fixed finitely presented
 group with undecidable word problem to a finite presentation whose
 group is trivial --- hence MF --- when $w=1$, and contains $E$ ---
 hence non-MF, by subgroup heredity --- when $w\ne1$.  The instances
-with $w\ne1$ form the complement of a recursively enumerable
-complete set, so an enumeration of the non-MF presentations would
-enumerate them; this is the pullback below.  Everything
+with $w=1$ form a recursively enumerable set which, the word problem
+being undecidable, is not recursive; hence the instances with $w\ne1$
+form a set that is \emph{not} recursively enumerable.  An enumeration
+of the non-MF presentations would enumerate that set, making the word
+problem decidable.  No completeness of the word problem under
+many-one reduction is needed, only its undecidability; this is the
+pullback below.  Everything
 group-theoretic that feeds the construction is machine-checked ---
 subgroup heredity of MF and the finitely presented non-MF group ---
 \leanverified{Computability/MarkovMFConsequences}{GroupApproximation.MarkovMFConsequences.operatorMF_subgroup_hereditary}
@@ -3081,10 +3132,17 @@ replaced by one all of whose pairwise Hilbert--Schmidt distances are
 smaller than the bound.
 \leanverified{Sofic/NormTraceGap}{GroupApproximation.NormModel.exists_hs_collapse}
 Hilbert--Schmidt invisibility of an element alone therefore can never
-prove a group non-MF: an obstruction must produce an invariant corner
-of macroscopic relative rank and renormalize the trace there, which is
-what the Reynolds corner, the moving spectral subspace, and the
-rank-calibrated collapse all do.
+prove a group non-MF: an obstruction must produce an invariant
+substructure carrying its own scale, renormalized intrinsically so
+that the normalization survives dilution, rather than reading a
+normalized trace off the ambient blocks.  Macroscopic relative rank is
+\emph{not} what is required, and none of the constructions here has
+it: padding leaves the Reynolds corner $q_nM_{d_n}(\C)q_n$ untouched
+while $d_n$ grows, so its relative rank $r_n/d_n$ may tend to zero,
+and the argument runs on the corner's own normalized trace.  The
+moving spectral subspace and the rank-calibrated collapse renormalize
+on their own range and on the displacement scale $k_n$ in the same
+way.
 
 This is a limitation of the method, not a tracial nonapproximation
 theorem for $E$.  Alekseev--Thom ask whether commutants arising in sofic
@@ -3155,7 +3213,7 @@ homomorphism to every norm matrix corona is trivial.  The implication
 from the construction's data to the conclusion is proved: given such
 routing data, there is a two-generated, finitely presented,
 torsion-free property-\textup{(T)} group equal to its own MF radical,
-and every nontrivial quotient of such a group also fails to be MF.
+and every nontrivial quotient of such a group also fails to be MF\@.
 Constructing the routing data uses the Hull--Osin small-cancellation
 theory and remains open; no unconditional torsion-free finitely
 presented non-MF group is proved here.
@@ -3251,7 +3309,7 @@ $1$ and every required product has defect at most $\varepsilon$.  This gives
 the normalized local model.
 
 Conversely, local models with separation constant $1$ for all finite
-sets and tolerances make the group \emph{weakly} MF.  Choose models
+sets and tolerances make the group \emph{weakly} MF\@.  Choose models
 along an exhaustion with errors tending to zero.  Then each fixed pair
 $g,h$ is eventually represented multiplicatively, and each fixed pair
 $g\ne h$ is eventually separated by $1$.  Hence the classes define an
@@ -3441,7 +3499,7 @@ there.
 \leanverified{Analysis/QuasiRegularWitness}{GroupApproximation.QuasiRegularWitness.baseVector_apply_base}
 By Proposition~\ref{prop:proper-isometry} the maximal algebra of such
 a group is then not stably finite, carries no faithful trace, and in
-particular is neither residually finite-dimensional nor MF.  The
+particular is neither residually finite-dimensional nor MF\@.  The
 assembly runs through the spectral projection, in the maximal algebra,
 of the averaged generator built from the Kazhdan pair: the spectral
 gap places the projection, the quasi-regular coordinate separates it
@@ -3522,7 +3580,7 @@ Adv. Math. \textbf{384} (2021), Paper No.~107722,
 \bibitem[DGLT]{DGLT}
 M.~De~Chiffre, L.~Glebsky, A.~Lubotzky, and A.~Thom,
 \emph{Stability, cohomology vanishing, and nonapproximable groups},
-Forum Math. Sigma \textbf{8} (2020), Paper No. e18,
+Forum Math. Sigma \textbf{8} (2020), Paper No.~e18,
 \doi{10.1017/fms.2020.5}.
 
 \bibitem[ES05]{ElekSzaboHyper}
