@@ -307,8 +307,8 @@ self-adjoint unitary commuting with $\Theta(H)$, so
 \]
 is a nonzero projection commuting with $\Theta(H)$.  Lifting $\Theta$
 to coordinates and compressing each block to $q$ gives a second
-operator-norm matrix model of $H$, on blocks each carrying their own
-normalized trace, in which $\varepsilon=-1$.  Transport applies to that
+operator-norm matrix model of $H$, whose blocks have their own
+normalized traces, in which $\varepsilon=-1$.  Transport applies to that
 model and gives $u^2\sim_2 1$, while $\hsnorm{-1-1}=2$.  Hence
 $\Theta(\varepsilon)=1$ for every corona representation $\Theta$, and
 if $\varepsilon\ne1$ then $H$ is not MF
@@ -695,7 +695,7 @@ corona representation with $\Theta(\varepsilon)\ne1$.  Then
 $\Theta(\varepsilon)$ is a self-adjoint unitary commuting with
 $\Theta(H)$, the projection $\tfrac12(1-\Theta(\varepsilon))$ is
 nonzero, and compressing to it gives a matrix model of $H$ in which
-$\varepsilon$ equals $-1$ and each block carries its own normalized
+$\varepsilon$ equals $-1$ and each block has its own normalized
 trace.  That renormalization is what makes the conclusion of transport
 usable: transport alone bounds a commutator in normalized
 Hilbert--Schmidt norm, and padding a matrix model with an identity
@@ -1555,7 +1555,7 @@ displayed relators reduce to the braid presentation
 $\langle p,q\mid pqp=qpq,\ (pqp)^4=1\rangle$, which maps isomorphically
 onto $\SL_2(\mathbb Z)$: it surjects onto
 $\mathbb Z/2\ast\mathbb Z/3$, that quotient embeds by the M\"obius
-ping-pong argument, and the residual central element is killed by
+ping-pong argument, and the residual central element is trivial by
 $(pqp)^4=1$.  So $\pi$ is injective on $\Lambda$.  Now let
 $W=e_{31}^{a}e_{32}^{b}\gamma\in H_{\mathrm{par}}$ have $\pi(W)=1$.
 The upper-left $2\times2$ block of $\pi(W)$ is the matrix of $\gamma$,
@@ -1719,7 +1719,7 @@ $E/\langle w\rangle$; here $\langle w\rangle=\{1,w\}$ is central, hence
 normal.  In the language of approximation radicals, $w$ is a
 nontrivial element of the MF radical of $E$.  The terminology follows
 Slofstra's quotients $G^{\mathrm{fin}}$ and $G^{\mathrm{fa}}$, obtained
-by killing the elements invisible to exact and to approximate
+by quotienting out the elements invisible to exact and to approximate
 finite-dimensional representations
 \cite[Definitions~2.5--2.7]{SlofstraCorrelations}.
 Theorem~\ref{thm:criterion} extends the conclusion to every countable
@@ -1871,14 +1871,18 @@ group elements involved.
 \parttitle{Part II.\ \ The mechanism in general}
 
 \noindent
-The main text used one transport theorem, one corner, and one finite central
-subgroup.  Each is a special case.  Transport holds at every Hilbertian scale
-and for intertwiners between different models; the corner argument holds for
-every finite normal subgroup of the compression defect, and then for every
-normal property-\textup{(T)} subgroup of it, with no centrality and no torsion;
-and the whole configuration has an exact finite-dimensional shadow that needs
-no analysis at all.  A cyclic comparison closes the section by showing that
-property~\textup{(T)} cannot be dropped.
+The main text used one transport theorem, one corner, and one finite
+central subgroup; each is a special case.  Transport holds at every
+Hilbertian scale and for intertwiners between two different models
+(Theorem~\ref{thm:transport-variants}).  The corner argument holds for
+every finite normal subgroup of the compression defect
+(Theorem~\ref{thm:criterion}), and then for every normal
+property-\textup{(T)} subgroup of it, which may be infinite,
+noncentral and torsion-free (Theorem~\ref{thm:normal-kazhdan}).  The
+same configuration has a purely algebraic finite-dimensional analogue
+(Theorem~\ref{thm:B}).  The cyclic comparison of
+Section~\ref{sec:necessity} shows that property~\textup{(T)} cannot be
+dropped.
 
 \section{Transport at every scale}\label{supp:transport-variants}
 
@@ -1933,7 +1937,7 @@ asymptotic representation, since block-diagonal operator norms are
 maxima.  The off-diagonal embedding of $x_n$ has operator norm
 $\opnorm{x_n}$, its commutator with $W_n(\iota(\gamma))$ is the
 off-diagonal embedding of the intertwining defect --- whose normalized
-Hilbert--Schmidt norm on the block space carries the denominator
+Hilbert--Schmidt norm on the block space has the denominator
 $d^1_n+d^2_n$ --- and conjugation by $W_n(s)$ acts on the embedded
 corner by $x_n\mapsto U^1_n(s)\,x_n\,U^2_n(s)^*$.
 Theorem~\ref{thm:kazhdan-transport} applied to $W_n$ transports the
@@ -1959,9 +1963,6 @@ one-sided compression of a Kazhdan image creates no asymptotic invariant
 tensors of any fixed type, at any weight.
 \leanverified{Sofic/TensorPowerTransport}{GroupApproximation.TensorPowerTransport.manuscriptFixedTensorTransport}
 \section{The compression defect and its obstruction theorems}\label{sec:conj}
-
-The transport theorem has a group-theoretic output.  We fix the
-configuration it needs once and for all.
 
 \begin{definition}[Kazhdan conjugation datum]\label{def:pattern}
 Let $H$ be a countable group.  A \emph{Kazhdan conjugation datum} in $H$
@@ -2075,7 +2076,7 @@ $|F|$ null sequences is itself null, so
  \sum_{f\in F}W_{f,n}\longrightarrow |F|1
  \quad\text{in normalized Hilbert--Schmidt norm},
 \]
-each block carrying its own normalized trace.  This contradicts
+each block with its own normalized trace.  This contradicts
 \((\ast)\), because operator-norm convergence dominates normalized
 Hilbert--Schmidt convergence.  Hence no corona representation is
 nontrivial on $F$.
@@ -2093,7 +2094,7 @@ Theorem~\ref{thm:criterion}: there the Reynolds average is
 $p_n=\tfrac12(1+V_{\varepsilon,n})$, its complementary corner is the negative
 spectral corner of the sign, and compression to that corner gives a model in
 which $\varepsilon=-1$ exactly.  Nothing else in the two-element case is
-special, and the general statement carries no centrality hypothesis.
+special, and the general statement has no centrality hypothesis.
 
 \subsection{The intrinsic defect}
 
@@ -2276,8 +2277,8 @@ proof of Theorem~\ref{thm:criterion}.
 
 The proofs above use the conjugation datum through one property only:
 every element of the defect subgroup is Hilbert--Schmidt invisible in
-every operator-norm almost representation.  The next theorem takes
-that invisibility as its hypothesis.
+every operator-norm almost representation.  That property alone
+suffices.
 
 \begin{theorem}[abstract invisibility obstruction]\label{thm:abstract-nk}
 Let $H$ be a countable group and let $D\le H$ be a subgroup every
@@ -2432,11 +2433,12 @@ identity.
 \begin{proof}
 Apply Theorem~\ref{thm:B} with $H=E$, the image of $\mathcal B$, and the
 elements $t,c,v_1$; the hypotheses hold by the defining relations
-\eqref{eq:E}.  Every finite-dimensional representation kills $w$, and
+\eqref{eq:E}.  Every finite-dimensional representation maps $w$ to the
+identity, and
 $w\neq1$ by Proposition~\ref{prop:witness}.  For a finite target, compose
 with its faithful left regular representation on the group algebra over
 $\mathbb Q$.  The composite is a finite-dimensional linear
-representation, so it kills $w$.  Evaluating the resulting identity
+representation, so it maps $w$ to the identity.  Evaluating the resulting identity
 matrix at the basis vector of the identity element returns the image
 of $w$ in the finite group.
 \end{proof}
@@ -2452,9 +2454,11 @@ $\sigma(L)\le\sigma(K)$ forces $K=L$.  If $gKg^{-1}\subseteq K$, then
 $gKg^{-1}$ and $K$ have equal size, so the inclusion is an equality:
 such a target admits no strict one-sided compression.
 \leanverified{Sofic/ManuscriptExactWrappers}{GroupApproximation.ManuscriptExactWrappers.manuscriptInvariantSizePrinciple}
-Cardinality on the subgroups of a finite group qualifies, so no finite
-quotient detects strict one-sided compression.  The finite-dimensional
-case is not the same principle applied to subgroups.  The natural
+Cardinality on the subgroups of a finite group qualifies: in a finite
+group $gKg^{-1}\subseteq K$ already gives $gKg^{-1}=K$, so a strict
+one-sided compression has no image in any finite quotient.  The
+finite-dimensional case is not the same principle applied to
+subgroups.  The natural
 candidate size there, the dimension of the fixed space of the adjoint
 action, is $\dim_k\End_H(V)$, the dimension of the commutant; it is
 order-reversing rather than order-preserving in $H$, and it does not
@@ -2464,7 +2468,7 @@ What the proof of Theorem~\ref{thm:B} uses is the principle one level
 down, on the commutant itself: the inclusion $C\subseteq uCu^{-1}$
 between subspaces of equal finite dimension is an equality
 \eqref{eq:pinning}.  Pinning the commutant, not the subgroup, is what
-kills the defect.  The corona argument of Theorem~\ref{thm:A}
+makes the defect trivial.  The corona argument of Theorem~\ref{thm:A}
 is the analytic counterpart of this principle at infinite dimension.
 \end{remark}
 
@@ -2505,8 +2509,8 @@ is the asymptotic counterpart at fixed tensor type.
 An MF model is only asymptotically multiplicative, so its coordinate fixed
 spaces are not literal invariant subspaces.  Operator-norm control keeps
 the coordinate adjoint actions almost multiplicative on the
-Hilbert--Schmidt spaces.  Property~(T) then supplies an almost-fixed
-spectral subspace.  The equal-rank reversal estimate of
+Hilbert--Schmidt spaces.  The spectral gap of a Kazhdan pair then
+produces an almost-fixed spectral subspace.  The equal-rank reversal estimate of
 Section~\ref{app:finite-stage} turns its one-sided compression into
 equality.  These are the quantitative counterparts of the exact
 finite-dimensional steps above.
@@ -2539,7 +2543,7 @@ $E_{\mathrm{BS}}$ over every field maps $w_{\mathrm{BS}}$ to the identity.
 
 Thus exact finite-dimensional invisibility does not by itself force
 triviality of the marked word.  The MF conclusion in
-Theorem~\ref{thm:A} is the separate uniform assertion supplied by the
+Theorem~\ref{thm:A} is the separate uniform assertion proved by the
 fixed-space argument.
 
 
@@ -2574,10 +2578,11 @@ realized quotient.
 
 \paragraph{Sharpness of the Kazhdan hypothesis.}
 The realized Clifford quotient in Theorem~\ref{thm:C} is amenable,
-hence MF, and its quotient map detects $w_{\mathrm{BS}}$.  Thus some
-corona representation of $E_{\mathrm{BS}}$ separates the marked word
-from the identity, and property~\textup{(T)} cannot be omitted from
-the central-sign criterion.  In the radical language of
+hence MF, and its quotient map sends $w_{\mathrm{BS}}$ to a nontrivial
+element.  Composing with a faithful corona representation of that
+quotient gives a corona representation $\Theta$ of $E_{\mathrm{BS}}$
+with $\Theta(w_{\mathrm{BS}})\ne1$, so property~\textup{(T)} cannot be
+omitted from the central-sign criterion.  In the radical language of
 Section~\ref{sec:consequences},
 $w_{\mathrm{BS}}\notin\operatorname{Rad}_{\mathrm{MF}}(E_{\mathrm{BS}})$.
 The affine group $\mathrm{BS}(1,2)\cong\mathbb Z[1/2]\rtimes\mathbb Z$ is
@@ -2632,11 +2637,6 @@ independent of $m$.
 
 \section{Consequences}\label{sec:consequences}
 
-This section develops the universal MF radical and the basic
-permanence facts, computes radicals by orbit collapse, constructs a
-sofic non-MF group, and proves the reduced-group-$C^*$ consequence.
-They all come from the same marked element.
-
 \subsection{The MF radical}
 
 \begin{definition}\label{def:radical}
@@ -2675,7 +2675,7 @@ representation of $G_1$, so $\Theta(\varphi(x))=1$.  For the second
 statement, $w\in\operatorname{Rad}_{\mathrm{MF}}(E)$ by
 Theorem~\ref{thm:A}, so
 $1\neq\varphi(w)\in\operatorname{Rad}_{\mathrm{MF}}(G_2)$, and an
-injective corona representation of $G_2$ would kill $\varphi(w)$, a
+injective corona representation of $G_2$ would map $\varphi(w)$ to $1$, a
 contradiction.
 \end{proof}
 
@@ -2699,17 +2699,20 @@ then $j\circ\varphi$ is a corona representation of $G_1$, so
 $j(\varphi(R))=1$ and, by injectivity of $j$, $\varphi(R)=1$.
 
 (1) and (2).  Work on $Q=G_1/R$.  Every corona representation of
-$G_1$ kills $R$, and each $g\notin R$ is detected by one, which
-descends; so every nonidentity element of $Q$ is detected by a corona
-representation of $Q$.  Enumerate the nonidentity elements and their
-detectors, pass to coordinate unitary lifts, and diagonalize: at stage
-$k$, select in each of the first $k$ detectors a coordinate at which
+$G_1$ maps $R$ to $1$, and for each $g\notin R$ there is one with
+$\Theta(g)\ne1$, which descends; so for every $\bar g\ne1$ in $Q$ there
+is a corona representation $\Theta_{\bar g}$ of $Q$ with
+$\Theta_{\bar g}(\bar g)\ne1$.  Enumerate the nonidentity elements and
+these representations, pass to coordinate unitary lifts, and
+diagonalize: at stage
+$k$, select in each of the first $k$ of them a coordinate at which
 multiplicativity holds within $1/k$ on the first $k$ group elements
 and each of the first $k$ marked elements stays separated by its fixed
-positive constant --- possible because each detector separates its
-element along infinitely many coordinates --- and take the block sum.  Block
-operator norms are maxima, so the resulting sequence is an almost
-representation detecting every nonidentity element; its class,
+positive constant --- possible because each $\Theta_{\bar g}$ separates
+its own element along infinitely many coordinates --- and take the
+block sum.  Block operator norms are maxima, so the resulting sequence
+is an almost representation separating every nonidentity element from
+the identity; its class,
 composed with the polar-correction isomorphism of
 Lemma~\ref{lem:unitarycorona}, is a faithful corona representation of
 $Q$.  This proves (2), and composing with
@@ -2759,7 +2762,7 @@ $q(\operatorname{Rad}_{\mathrm{MF}}(G_1))
 \subseteq\operatorname{Rad}_{\mathrm{MF}}(G_1/N)$.  Conversely, suppose
 $q(x)\in\operatorname{Rad}_{\mathrm{MF}}(G_1/N)$ and let $\Theta$ be a
 corona representation of $G_1$.  Every corona representation of $G_1$
-kills $N$ by hypothesis, so $\Theta$ factors as $\bar\Theta\circ q$
+maps $N$ to $1$ by hypothesis, so $\Theta$ factors as $\bar\Theta\circ q$
 with $\bar\Theta$ a corona representation of $G_1/N$; hence
 $\Theta(x)=\bar\Theta(q(x))=1$.
 \end{proof}
@@ -2792,7 +2795,7 @@ $\operatorname{cl}_{\mathrm{MF}}(N)=N$ exactly when $G_1/N$ is MF.
 \end{proposition}
 
 \begin{proof}
-Corona representations of $G_1$ killing $N$ correspond to corona
+Corona representations of $G_1$ that map $N$ to $1$ correspond to corona
 representations of $G_1/N$, which gives the membership
 characterization; extensivity, monotonicity, and idempotence are read
 off from it.  The quotient clause is Proposition~\ref{prop:univquot}(2)
@@ -2840,7 +2843,7 @@ $G_1/N$ is formed.
 
 Theorems~\ref{thm:criterion}, \ref{thm:normal-kazhdan},
 and~\ref{thm:collapse} are sound rules in this sense: each places a
-subgroup inside the radical of every countable group carrying its data,
+subgroup inside the radical of every countable group with its data,
 hence inside the radical of every reached quotient.
 Theorem~\ref{thm:saturation} is the case in which a single application
 reaches the whole group.  A rule instance can hold at a later stage
@@ -2948,7 +2951,7 @@ $\Theta(x)\ne1$.  Choose unitary coordinate lifts $U_n(g)$ of
 $\Theta(g)$.  Since $\Theta(x)-1\ne0$ in the norm quotient, after
 passing to a subsequence there is $\delta>0$ with
 $\opnorm{U_n(x)-1}\ge\delta$ for every $n$.  The lifts form an
-operator-norm almost representation, so stability supplies genuine
+operator-norm almost representation, so stability gives genuine
 representations $\pi_n$ on the same blocks with
 $\opnorm{U_n(g)-\pi_n(g)}\to0$ for each fixed $g$.  But
 $x\in\operatorname{Rad}_{\mathrm{fd}}(G)$ gives $\pi_n(x)=1$ for every
@@ -2959,7 +2962,7 @@ lower bound.
 
 For a stable group the corona representation theory is therefore
 computed by finite-dimensional representation theory alone.  Combined
-with the finite-dimensional blindness of Theorem~\ref{thm:B}, this is
+with Theorem~\ref{thm:B}, this is
 an obstruction axis with no torsion, no marked word, and no
 compression datum: any point-norm matricially stable group with a
 finite-dimensionally invisible element is non-MF.
@@ -3016,7 +3019,8 @@ $s\gamma s^{-1}\in L$ for every $\gamma\in L$.  Then
 
 \begin{proof}[Proof sketch]
 Fix a witness $k$ and suppose, toward a contradiction, that some corona
-representation does not kill $[\gamma_0,k]$ for some $\gamma_0\in L$.
+representation $\Theta$ has $\Theta([\gamma_0,k])\ne1$ for some
+$\gamma_0\in L$.
 Coordinate unitary lifts (Lemma~\ref{lem:unitarycorona}) give an
 operator-norm almost representation $(U_{g,n})$ on blocks
 $M_{d_n}(\C)$, and after passing to a subsequence there is $\eta>0$
@@ -3154,12 +3158,12 @@ replaced by explicit tolerances, the circumcenter by an approximate
 circumcenter of a near-optimal covering sequence, and the final
 contradiction assembled at one sufficiently late coordinate; we do not
 print that bookkeeping here.  The commutation hypothesis (W3) is
-essential: it supplies the joint spectral calculus behind the rank
+essential: it gives the joint spectral calculus behind the rank
 identity of Step 2.  Anticommuting Clifford coordinates have no joint
 spectral labels; their collapse mechanism is the central sign of
 Theorem~\ref{thm:A}.  At the corona level,
 Theorem~\ref{thm:projection-collapse} below removes the restriction to
-involutions, and Theorem~\ref{thm:torsion-collapse} carries the
+involutions, and Theorem~\ref{thm:torsion-collapse} extends the
 collapse to witnesses of every finite order through their discrete
 Fourier idempotents.
 \end{remark}
@@ -3235,10 +3239,9 @@ so $u$ commutes with $\Theta(L)$ and
 $\Theta([\gamma,k])=1$ for every $\gamma\in L$.
 \end{proof}
 
-The involutive collapse has a second structural consequence: killing
-the central sign of the Kazhdan--Clifford group of
-Theorem~\ref{thm:A} makes all lamps commute, and the moved root lamp
-becomes an involutive witness outright.
+In the quotient of the Kazhdan--Clifford group of
+Theorem~\ref{thm:A} by its central sign all lamps commute, and the
+moved root lamp is itself an involutive witness.
 
 \begin{theorem}[the commuting-lamp quotient]\label{thm:commutinglamp}
 The quotient $W/\langle\zeta\rangle$ of the Kazhdan--Clifford group
@@ -3259,7 +3262,7 @@ $\alpha$.
 
 \begin{proof}
 Write $q\colon W\to W/\langle\zeta\rangle$ and
-$k=q(tct^{-1})$, the moved root lamp.  Since $\zeta$ is killed, any
+$k=q(tct^{-1})$, the moved root lamp.  Since $q(\zeta)=1$, any
 two lamps commute in the quotient, so the $q(L)$-conjugation orbit of
 $k$ commutes pairwise, where $L=q(\bar\Gamma)$ is the image of the
 base copy; $k$ remains an involution, and the compressed copy
@@ -3281,10 +3284,9 @@ That kernel is again locally finite with finite level orbits, so the
 argument of Theorem~\ref{thm:E} gives soficity unchanged.
 \end{proof}
 
-Every route to an MF model of $W$ through the commuting-lamp quotient
-is thereby closed, and $W/\langle\zeta\rangle$ is a second finitely
-generated sofic group that is not MF\@.  The same collapse reaches the
-finitely presented group.
+Thus $W/\langle\zeta\rangle$ is a second finitely generated sofic group
+that is not MF\@.  The same collapse reaches the finitely presented
+group.
 
 \begin{proof}[Proof of Theorem~\ref{thm:signfree}]
 Write $q\colon E\to E/\langle w\rangle$, $\bar d=q(d)$, and
@@ -3327,9 +3329,7 @@ $\operatorname{Rad}_{\mathrm{MF}}(E/\langle w\rangle)$, so $u$ belongs
 to it.
 \end{proof}
 
-The Clifford sign is thus a certificate for an obstruction that
-survives its removal, and $E/\langle w\rangle$ is a second finitely
-presented non-MF group.
+Thus $E/\langle w\rangle$ is a second finitely presented non-MF group.
 \begin{corollary}[collapse computes the radical]\label{cor:collapsequot}
 In the setting of Theorem~\ref{thm:collapse}, write
 $q\colon H\to H/D_{\mathrm{coll}}(L,s)$ for the quotient map.  Then,
@@ -3386,19 +3386,19 @@ Proposition~\ref{prop:univquot}.
 A group as in (2) admits no nontrivial finite-dimensional unitary
 representation, no nontrivial MF quotient, and no nontrivial
 homomorphism to any countable residually finite or amenable group.
-The strategy --- detect a defect analytically, then saturate it
-algebraically --- develops a
+Proving the analytic obstruction for a defect subgroup and then
+arranging that the defect subgroup is the whole group develops a
 suggestion of Fournier-Facio (personal communication, 2026; cf.\ the
 Questions preamble of Section~\ref{sec:limits}).  Whether a
 small-cancellation construction produces a finitely presented group
-with saturated collapse or normal-Kazhdan defect is open.
+with $D_{\mathrm{coll}}(L,s)=H$, or with a normal-Kazhdan defect equal
+to the whole group, is open.
 
 
 \subsection{The reduced group algebra of \texorpdfstring{$E$}{E}}
 
-Theorem~\ref{thm:D} was stated in Section~\ref{sec:position}; its stable
-finiteness comes from the following standard facts, recorded here because the
-faithfulness of the canonical trace is what carries the argument.
+The stable finiteness in Theorem~\ref{thm:D} comes from the following
+two standard facts.
 
 \begin{lemma}\label{lem:faithfultrace}
 Let $G_1$ be a countable discrete group.
@@ -3555,7 +3555,7 @@ By Elek--Szab\'o, every countable sofic group embeds in a countable simple
 sofic group \cite[Theorem~1]{ElekSzaboHyper}.  Embed $W$ in such a group.  Functoriality
 of the MF radical sends $\zeta$ to a nontrivial element of the
 MF radical of the simple group.  That radical is normal, so it is the whole
-group.  Every homomorphism to an MF group kills the MF radical.
+group.  Every homomorphism to an MF group maps the MF radical to $1$.
 \end{proof}
 
 
@@ -3664,7 +3664,7 @@ presentations of non-MF groups is not even recursively enumerable.
 \end{corollary}
 
 The Adian--Rabin construction \cite{Rabin58} is quoted here and used
-nowhere else.  It supplies a computable map taking
+nowhere else.  It gives a computable map taking
 an instance $(P,w)$ of the word problem of a fixed finitely presented
 group with undecidable word problem to a finite presentation whose
 group is trivial --- hence MF --- when $w=1$, and contains $E$ ---
@@ -3711,7 +3711,7 @@ are.  Neumann's family is quoted, not reproved \cite{Neumann37}.
 \leanverified{Sofic/ContinuumMultiplicity}{GroupApproximation.ContinuumMultiplicity.manuscriptContinuumMultiplicity}
 
 \clearpage
-\parttitle{Part IV.\ \ Limits of the method, and further apparatus}
+\parttitle{Part IV.\ \ Limits of the method, and the maximal algebra}
 
 \section{Limitations of the operator-norm method}\label{sec:limits}
 
@@ -3722,7 +3722,7 @@ Both transport proofs require exactly that operator-norm control: the
 ultraproduct proof needs it to obtain an honest representation on the
 ultraproduct, and the finite-stage proof of
 Section~\ref{app:finite-stage} needs it for the spectral estimates.
-Normalized Hilbert--Schmidt control therefore does not supply the
+Normalized Hilbert--Schmidt control therefore does not give the
 transport used here.  The failure is exact and dimension-free: against
 the operator-norm estimate $\opnorm{\Ad(U)-\Ad(V)}\le2\opnorm{U-V}$,
 there are unitaries of arbitrarily small normalized Hilbert--Schmidt
@@ -3740,8 +3740,8 @@ smaller than the bound.
 \leanverified{Sofic/NormTraceGap}{GroupApproximation.NormModel.exists_hs_collapse}
 Hilbert--Schmidt invisibility of an element alone therefore can never
 prove a group non-MF: an obstruction must produce an invariant
-substructure carrying its own scale, renormalized intrinsically so
-that the normalization survives dilution, rather than reading a
+substructure with its own scale, renormalized on its own range so that
+the normalization is unchanged by dilution, rather than reading a
 normalized trace off the ambient blocks.  Macroscopic relative rank is
 \emph{not} what is required, and none of the constructions here has
 it: padding leaves the Reynolds corner $q_nM_{d_n}(\C)q_n$ untouched
@@ -3770,10 +3770,10 @@ on the trace space.  Constant coordinates $A_n=\Cred(E)$ refute any
 such generalization outright: the left regular representation embeds
 $E$ exactly and injectively into the corresponding corona, the
 element $c$ centralizes the Kazhdan base there, and conjugation by
-$t$ produces $tct^{-1}$, whose commutator with the base is precisely
-the nontrivial defect that Theorem~\ref{thm:A} detects.  A
-faithfully-traced coordinate transport theorem would collapse that
-commutator; no such theorem can hold.
+$t$ produces $tct^{-1}$, whose commutator with the base is the element
+$u$ with $u^2=w\ne1$ of Theorem~\ref{thm:A}.  A faithfully-traced
+coordinate transport theorem would make that commutator trivial in the
+corona; no such theorem can hold.
 \leanverified{Sofic/FaithfullyTracedCoordinateNoGo}{GroupApproximation.FaithfullyTracedCoordinates.manuscriptFaithfullyTracedCoordinateNoGo}
 The refuted statement is the
 transport theorem of Section~\ref{sec:transport} with its matrix
@@ -3803,10 +3803,11 @@ witness of that proof reduces the computation to the quotient by the
 resulting collapse defect $D$, and by
 Corollary~\ref{cor:exactradical} identifies the radical with the
 preimage of $D$ as soon as that quotient is MF\@.  Whether it is MF
-is open; a detecting model must survive both the sign collapse of
-Theorem~\ref{thm:A} and the commuting-orbit collapse, and by
-Theorem~\ref{thm:B} it factors through no finite quotient and no
-exact finite-dimensional representation.
+is open: a faithful corona representation of that quotient would have
+to evade both the sign collapse of Theorem~\ref{thm:A} and the
+commuting-orbit collapse, and by Theorem~\ref{thm:B} it factors
+through no finite quotient and no exact finite-dimensional
+representation.
 \item Is there a torsion-free finitely presented non-MF group?  The
 analytic obstruction no longer requires torsion
 (Theorem~\ref{thm:normal-kazhdan}); the remaining input is
@@ -3835,7 +3836,7 @@ require operator-norm multiplicative control, and neither property is
 decided by the results above.
 \item Does MF imply hyperlinearity?  A faithful embedding into a norm
 matrix corona need not make any coordinate trace faithful, so the defining
-MF representation does not immediately supply a hyperlinear model.  This
+MF representation does not immediately give a hyperlinear model.  This
 question concerns the CDE norm-corona convention fixed above; for stronger
 trace-controlled MF conventions the implication is built into the definition.
 \item By Proposition~\ref{prop:sounditeration}, every family of
@@ -3848,12 +3849,12 @@ radical exactly?
 \end{enumerate}
 \section{The maximal group \texorpdfstring{$C^*$}{C*}-algebra}\label{app:maxcstar}
 
-The familiar construction of the maximal group $C^*$-algebra
-completes the group ring over all unitary representations at once,
-and ``all'' is a class rather than a set.  This appendix carries out
-the standard size-honest version, relative to a fixed set-theoretic
-universe $\mathfrak U$; the result is the usual maximal group
-$C^*$-algebra.  For a $\mathfrak U$-small
+The maximal group $C^*$-algebra completes the group ring over all
+unitary representations at once, and ``all'' is a class rather than a
+set.  The construction below is relative to a fixed set-theoretic
+universe $\mathfrak U$, which makes the indexing family a set; the
+result is the usual maximal group $C^*$-algebra.  For a
+$\mathfrak U$-small
 group $H$, define $C^{*}_{\max,\mathfrak U}(H)$ to be the closed
 $*$-subalgebra generated by the diagonal copy of $H$ in the bounded product
 of all its nontrivial unitary representations on $\mathfrak U$-small unital
@@ -3884,7 +3885,7 @@ Let $A$ be a unital $C^*$-algebra (a unital star ring suffices)
 containing a projection $p$ and a unitary $u$ such that the conjugate
 $upu^{*}$ absorbs $p$ on both sides and $upu^{*}\ne p$.  Then $A$
 contains an isometry that is not a unitary; consequently $A$ is not
-stably finite and carries no faithful tracial state.
+stably finite and has no faithful tracial state.
 \leanverified{Analysis/ProperIsometryFromCompression}{GroupApproximation.ProperProjectionCompression.isometry_not_isUnit}
 \leanverified{Analysis/ProperIsometryFromCompression}{GroupApproximation.ProperProjectionCompression.not_isStablyFiniteRing}
 \leanverified{Analysis/ProperIsometryFromCompression}{GroupApproximation.ProperProjectionCompression.no_faithfulTracialState}
@@ -3892,7 +3893,7 @@ stably finite and carries no faithful tracial state.
 
 \begin{remark}[the maximal algebra under strict Kazhdan compression]
 \label{rem:maxinfinite}
-For a group carrying a strict Kazhdan compression
+For a group with a strict Kazhdan compression
 $t\Gamma t^{-1}\subsetneq\Gamma$ --- the base of $E$ is the running
 example --- the Kazhdan projection $p_\Gamma$ constructed in
 Section~\ref{sec:transport} exists in the maximal
@@ -3903,7 +3904,7 @@ moved by every element outside it, so the two projections differ
 there.
 \leanverified{Analysis/QuasiRegularWitness}{GroupApproximation.QuasiRegularWitness.baseVector_apply_base}
 By Proposition~\ref{prop:proper-isometry} the maximal algebra of such
-a group is then not stably finite, carries no faithful trace, and in
+a group is then not stably finite, has no faithful trace, and in
 particular is neither residually finite-dimensional nor MF\@.  The
 assembly runs through the spectral projection, in the maximal algebra,
 of the averaged generator built from the Kazhdan pair: the spectral
