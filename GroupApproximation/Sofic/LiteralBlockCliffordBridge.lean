@@ -4,72 +4,30 @@ import GroupApproximation.Sofic.BlockCliffordTowerSofic
 /-!
 # The lamp factor of the literal group is a block Clifford group
 
-**DRAFT — never compiled, and known to be on the wrong carrier.**
-
-**Defect, recorded rather than quietly fixed.**  This module opens
-`LiteralBlockNormalForm`, so `Vertical` here is
-`PresentedGroup verticalRelators`.  `BlockCliffordTowerSofic.isSofic_blockClifford_tower`
-wants `MarkedCompression.Vertical α hα`, the telescope.  These are different
-types with nothing relating them in the repository, so
-`markedGroup_isSofic_of_completeBlocks` below passes a homomorphism of the
-first kind where one of the second kind is expected and **cannot typecheck**.
-Everything above the endpoint — the sigma decomposition, the generator
-dictionary, the relator correspondence, `lampEquiv`, `closure_block_equivariant`,
-`isIrreflexive_of_siteA_ne_siteB` — is carrier-honest and survives; the last
-two declarations do not.
-
-**The repair is not the missing isomorphism.**  There is a route that stays on
-the telescope throughout and needs no comparison of the two models:
-
-* `LiteralLampKernelSplit.markedGroupEquivSemidirect` already presents the
-  literal group as `lampKernel ⋊ V` over the telescope;
-* `LiteralLampKernelSplit.cosetLamp` indexes the lamps by
-  `Cosets alpha conjD_injective`, the same site type
-  `LiteralBlockGeometry` uses;
-* `LiteralBlockGeometry.Block`, `blockOf` and `adj_of_blockOf_eq` are stated
-  over that site type;
-* `LiteralLampKernelAmalgam`'s block development is parameterized in
-  `Block`, `Site`, `blockOf` and the ambient group, so it instantiates at
-  `N := lampKernel`, `c := cosetLamp` directly.
-
-So the identification below should be redone with those, and this module kept
-only for the parts listed above.  Rewriting it that way is the outstanding
-work; it is recorded here rather than done because the correction arrived at
-the end of a session and a rewrite nobody compiles is worth less than an
-accurate note about which half is sound.
-
 `Sofic/LiteralBlockNormalForm.lean` computes the literal group as
 `Model = LampFactor ⋊[lampAutHom] Vertical`, where `LampFactor` is the Clifford
-group of the *orbital graph* `𝒢`: generators a central sign and one involution
-per site, with two lamps anticommuting exactly when their sites are
-`Adjacent`.  `Sofic/BlockCliffordTowerSofic.lean` proves soficity of
-`BlockClifford I B ⋊ Vertical`, where `BlockClifford` is the Clifford group of
-a *partitioned* site set: two lamps anticommute exactly when they lie in the
-same block, and lamps in different blocks satisfy no relation at all.
+group of the orbital graph `𝒢`: a central sign, one involution per site, and
+two lamps anticommuting through the sign exactly when their sites are
+`Adjacent`.  `Sofic/BlockCliffordLamp.lean` presents `BlockClifford I B` the
+same way for a *partitioned* site set: lamps anticommute exactly when they
+share a block, and lamps in different blocks satisfy no relation.
 
-These are the same presentation as soon as the orbital graph is a disjoint
-union of complete graphs on the blocks.  One half of that is already proved:
-`blockOf_eq_of_adjacent` says an edge stays inside a block.  The other half —
-that every pair of distinct sites in a common block *is* an edge — is missing
-from the repository, and it is the only thing between the two files.  This
-module isolates it as `IsCompleteOnBlocks` and shows that it is sufficient:
-granted it, the lamp factor is a block Clifford group, the tower theorem
-applies, and `IsSofic MarkedGroup` follows.
+The two presentations agree as soon as the orbital graph is a disjoint union
+of complete graphs on the blocks.  `blockOf_eq_of_adjacent` gives one half,
+that an edge stays inside a block; the other half is `IsCompleteOnBlocks`
+below, that distinct sites of a block are adjacent.  Granted it, `lampEquiv`
+identifies the two groups and `blockAutHom` carries the vertical action
+across.
 
-## What is assumed and what is not
+`IsCompleteOnBlocks` holds: `LiteralBlockGeometry.adj_of_blockOf_eq` derives
+it from `AlphaCosetTransitive`, which
+`LiteralAffineCosetTransitivity.conjD_cosetTransitive` proves over `gammaBar`.
+Both are stated for `Cosets α hα` rather than for
+`Site = Vertical ⧸ baseSubgroup`, so the two site types have to be identified
+before that derivation can be quoted here.
 
-`IsCompleteOnBlocks` is the manuscript's assertion that each block is a
-complete graph on eight sites (dossier §4).  It is a statement about the
-`Vertical`-orbit of the marked pair, not about approximation, and it needs no
-analysis; it is stated here as a hypothesis only because nobody has proved it
-in Lean yet.  Everything else below is derived.
-
-Irreflexivity of the edge relation is a second, much smaller hypothesis:
-`Adjacent ξ ξ` would force the central sign to be trivial, so the graph
-presentation is only the intended one when no site is adjacent to itself.
-It is separated out as `IsIrreflexive` rather than folded into the first,
-because the two have different proofs — the first is an orbit computation,
-the second is `siteA ≠ siteB` transported along the action.
+The second hypothesis, `IsIrreflexive`, is smaller and reduces to distinctness
+of the two marked sites by `isIrreflexive_of_siteA_ne_siteB`.
 -/
 
 namespace GroupApproximation
@@ -79,54 +37,7 @@ open LiteralBlockNormalForm BlockCliffordLamp
 
 noncomputable section
 
-/-! ## Where `IsCompleteOnBlocks` comes from, and what is still missing
 
-`Sofic/LiteralBlockGeometry.lean` proves the abstract form of the completeness
-hypothesis: `adj_of_blockOf_eq` derives "distinct sites of one block are
-adjacent" from `AlphaCosetTransitive α a₀`, the statement that `α(Γ)` acts
-transitively on the nontrivial cosets of `α(Γ)` in `Γ`.  For the affine
-doubling that hypothesis is also proved, as `alphaCosetTransitive`.
-
-Neither is usable here yet, for two separate reasons, and both are
-identifications rather than mathematics.
-
-*The carrier.*  `alphaCosetTransitive` is proved for
-`Monsters/AffineSL3Doubling.alpha` at `AffineSL3Doubling.Gamma`.  This chain
-runs over `ExplicitLinearModel.gammaBar` with `alpha = conjD`.  Nothing in the
-repository relates the two: there is no `MulEquiv` between the carriers and
-none intertwining the endomorphisms, and the only file that mentions both is a
-warning comment.  What is needed is `AlphaCosetTransitive conjD a₀` over
-`gammaBar` -- the same finite mod-`2` computation, that the reductions of the
-three rotation matrices move `ē₁` onto every nonzero class of `(ℤ/2)³`,
-carried out for the `4 × 4` rational model instead of the semidirect product.
-
-*The site vocabulary.*  `LiteralBlockGeometry` states its conclusion for its
-own `Cosets α hα`, `Adj α hα a₀` and `blockOf α hα`; `LiteralBlockNormalForm`
-states `Adjacent` and `blockOf` for its `Site = Vertical ⧸ baseSubgroup`.  The
-two are the same construction written twice, and a reader can see that, but
-Lean will want the identification spelled out before `adj_of_blockOf_eq`
-discharges `IsCompleteOnBlocks` below.
-
-So the honest status is: soficity of the literal group is one finite
-arithmetic statement plus two bookkeeping identifications away, and
-`IsCompleteOnBlocks` is stated as a hypothesis here rather than derived only
-because those identifications have not been written.
-
-Of the two hypotheses below only the first is substantial:
-`isIrreflexive_of_siteA_ne_siteB` reduces the second to distinctness of the
-two marked sites, which is `moved_cosets_ne` and is already applied at
-`alpha`/`conjD_injective` elsewhere in the repository.
-
-## Overlap with the amalgam lane
-
-`Sofic/LiteralLampKernelAmalgam.lean` reaches the same place from the other
-side: its §13 discharges `IsBlockCliffordPresentation` for `LampFactor`, and
-lands on the same two graph facts under the names `hcomplete` and `hadj_ne`.
-Its route additionally proves the block order `512` outright and gives
-`isSofic_centralAmalgam` with no hypotheses at all.  The two developments
-should be merged once either compiles; the reason to keep both for now is that
-they fail differently, and a build pass will say which survives.
--/
 
 /-! ## The two graph hypotheses -/
 
@@ -398,40 +309,20 @@ theorem closure_block_equivariant {N : Type} [Group N] (c : Site → N)
 
 /-! ## The endpoint -/
 
-/-- **The literal group is sofic**, granted that the orbital graph is a
-disjoint union of complete graphs on its blocks.
+/-! ## Not here: the passage to soficity
 
-Every other input is already in the repository: residual finiteness of the
-matrix base, injectivity of the doubling endomorphism, invariance of the sign,
-equivariance of the lamps, and finiteness of the telescope-level orbits on the
-block set. -/
-theorem markedGroup_isSofic_of_completeBlocks
-    (hc : IsCompleteOnBlocks) (hi : IsIrreflexive) :
-    IsSofic MarkedGroup := by
-  refine (isSofic_mulEquiv_iff (markedGroupEquivTower hc hi)).mpr ?_
-  refine BlockCliffordTowerSofic.isSofic_blockClifford_tower
-    (I := Block) (B := BlockSites)
-    ExplicitIntegralLinearModel.gammaBar_residuallyFinite
-    LiteralNonMFLinearWitness.alpha LiteralNonMFLinearWitness.conjD_injective
-    (blockAutHom hc hi)
-    (fun t ↦ sitePerm (SemidirectProduct.inl t))
-    (blockAutHom_sign hc hi)
-    (fun t p ↦ blockAutHom_lamp hc hi (SemidirectProduct.inl t) p)
-    ?_
-  intro n p
-  have := finite_telescopeLevel_site_orbit n (siteEquiv p)
-  exact this.image siteEquiv.symm |>.subset (by
-    rintro _ ⟨h, rfl⟩
-    exact ⟨_, ⟨h, rfl⟩, rfl⟩)
+Applying `BlockCliffordTowerSofic.isSofic_blockClifford_tower` to the model
+above would need its `Vertical` to be `MarkedCompression.Vertical`, the
+telescope, while the `Vertical` of this file is `PresentedGroup
+verticalRelators`.  The two are unrelated types.
 
-/-- **The separation, granted the same hypothesis.**  The literal
-eight-generator group is finitely presented, sofic, and not MF. -/
-theorem literal_finitelyPresented_sofic_not_isCDEOperatorMF
-    (hc : IsCompleteOnBlocks) (hi : IsIrreflexive) :
-    Group.IsFinitelyPresented MarkedGroup ∧ IsSofic MarkedGroup ∧
-      ¬ IsCDEOperatorMF MarkedGroup :=
-  ⟨inferInstance, markedGroup_isSofic_of_completeBlocks hc hi,
-    LiteralNonMFEndpoint.literal_not_isCDEOperatorMF⟩
+The passage is made instead over the telescope throughout, where
+`LiteralLampKernelSplit.markedGroupEquivSemidirect` presents the literal
+group as `lampKernel ⋊ V`, `LiteralLampKernelSplit.cosetLamp` indexes lamps
+by `Cosets alpha conjD_injective`, `LiteralBlockGeometry` states the block
+geometry over that same site type, and `LiteralLampKernelAmalgam` is
+parameterized in `Block`, `Site`, `blockOf` and the ambient group, so it
+instantiates at `N := lampKernel`, `c := cosetLamp`. -/
 
 end
 

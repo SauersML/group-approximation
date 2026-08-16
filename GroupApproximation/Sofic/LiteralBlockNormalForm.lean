@@ -188,8 +188,9 @@ theorem verticalWord_displacedLampWord :
 theorem verticalWord_markedWord : verticalWord markedWord = 1 := by
   show verticalWord (commutatorWord displacedLampWord
     (v1Word * displacedLampWord * v1Word⁻¹)) = 1
-  rw [map_commutatorWord, verticalWord_displacedLampWord]
-  simp
+  rw [map_commutatorWord, verticalWord_displacedLampWord, map_mul, map_mul,
+    map_inv, verticalWord_displacedLampWord, mul_one, mul_inv_cancel]
+  exact commutatorElement_one_left _
 
 /-- Every displayed relator of the literal presentation dies once the lamp
 letter is killed. -/
@@ -326,49 +327,6 @@ theorem adjacent_smul {ξ η : Site} (h : Adjacent ξ η) (v : Vertical) :
 square root of the first translation. -/
 def vBeta : Vertical := vStable⁻¹ * vV1 * vStable
 
-/-! ### Adjacency refines the block partition
-
-Half of the statement that the orbital graph is a disjoint union of cliques.
-Adjacent sites share a block: the marked pair does, by the definition of the
-block subgroup, and the edge relation is a translate of the marked pair while
-the block map is equivariant.
-
-The converse -- that sites of a common block are adjacent, so that each block
-is a *complete* subgraph -- is the remaining content of the block-amalgam
-structure theorem and is not proved here. -/
-
-/-- The block map is equivariant: it is the quotient of `V/B` by the further
-collapse `B ≤ K`, and left translation descends. -/
-theorem blockOf_smul (g : Vertical) (ξ : Site) :
-    blockOf (g • ξ) = g • blockOf ξ := by
-  induction ξ using QuotientGroup.induction_on with
-  | H a => rfl
-
-/-- The two marked sites lie in one block.  This is exactly what putting `β`
-into the block subgroup was for. -/
-theorem blockOf_siteA : blockOf siteA = blockOf siteB := by
-  show (QuotientGroup.mk vStable : Block)
-    = QuotientGroup.mk (vV1 * vStable)
-  rw [QuotientGroup.eq]
-  have hβ : vStable⁻¹ * (vV1 * vStable) = vBeta := by
-    rw [vBeta, mul_assoc]
-  rw [hβ]
-  exact vBeta_mem_blockSubgroup
-
-/-- **Adjacent sites share a block.**  Every edge of the orbital graph lies
-inside one block, so the graph refines the block partition. -/
-theorem blockOf_eq_of_adjacent {ξ η : Site} (h : Adjacent ξ η) :
-    blockOf ξ = blockOf η := by
-  rcases h with ⟨g, hga, hgb⟩ | ⟨g, hga, hgb⟩
-  · rw [← hga, ← hgb, blockOf_smul, blockOf_smul, blockOf_siteA]
-  · rw [← hga, ← hgb, blockOf_smul, blockOf_smul, blockOf_siteA]
-
-/-- Contrapositive form: sites of different blocks are never adjacent, so
-their lamps commute outright rather than through the sign. -/
-theorem not_adjacent_of_blockOf_ne {ξ η : Site} (h : blockOf ξ ≠ blockOf η) :
-    ¬ Adjacent ξ η :=
-  fun hadj ↦ h (blockOf_eq_of_adjacent hadj)
-
 /-- The block subgroup `K = ⟨B, β⟩`. -/
 def blockSubgroup : Subgroup Vertical :=
   baseSubgroup ⊔ Subgroup.closure ({vBeta} : Set Vertical)
@@ -377,7 +335,8 @@ theorem baseSubgroup_le_blockSubgroup : baseSubgroup ≤ blockSubgroup :=
   le_sup_left
 
 theorem vBeta_mem_blockSubgroup : vBeta ∈ blockSubgroup :=
-  Subgroup.mem_sup_right (Subgroup.subset_closure rfl)
+  (le_sup_right : Subgroup.closure {vBeta} ≤ blockSubgroup)
+    (Subgroup.subset_closure rfl)
 
 /-- The block set `I = V/K`. -/
 abbrev Block : Type := Vertical ⧸ blockSubgroup
@@ -751,7 +710,9 @@ theorem toModel_comp_baseMap : toModel.comp baseMap = modelBase := by
 /-- **The marked word is the central sign of the Clifford factor.** -/
 @[simp] theorem toModel_mark :
     toModel mark = SemidirectProduct.inl lampSign := by
-  simpa [realizationHom_mark] using model_marked_eq
+  show realizationHom modelRealization mark = SemidirectProduct.inl lampSign
+  rw [realizationHom_mark]
+  exact model_marked_eq
 
 /-! ## The model maps back to the presented group -/
 
