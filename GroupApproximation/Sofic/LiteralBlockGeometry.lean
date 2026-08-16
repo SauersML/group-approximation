@@ -2,6 +2,7 @@ import GroupApproximation.Sofic.MappingTelescopeFiniteOrbits
 import GroupApproximation.Monsters.AffineSL3Doubling
 import Mathlib.Data.Set.Card
 import Mathlib.LinearAlgebra.Matrix.Action
+import Mathlib.LinearAlgebra.Matrix.Notation
 import Mathlib.Tactic.Group
 
 /-!
@@ -52,6 +53,8 @@ namespace LiteralBlockGeometry
 
 open MappingTelescope MarkedCompression MappingTelescopeFiniteOrbits
 open SemidirectProduct
+
+section Abstract
 
 variable {Γ : Type u} [Group Γ] (α : Γ →* Γ) (hα : Function.Injective α)
 
@@ -154,7 +157,8 @@ def blockEquivCosets : Block α hα ≃ Cosets α hα where
   toFun :=
     Quotient.map' (fun g => g * (tVertical α hα)⁻¹) (by
       intro p q hpq
-      rw [QuotientGroup.leftRel_apply] at hpq ⊢
+      rw [QuotientGroup.leftRel_apply] at hpq
+      apply QuotientGroup.leftRel_apply.mpr
       have h := (mem_blockSubgroup_conj_iff α hα (p⁻¹ * q)).mp hpq
       have heq : (p * (tVertical α hα)⁻¹)⁻¹ * (q * (tVertical α hα)⁻¹) =
           tVertical α hα * (p⁻¹ * q) * (tVertical α hα)⁻¹ := by group
@@ -163,7 +167,8 @@ def blockEquivCosets : Block α hα ≃ Cosets α hα where
   invFun :=
     Quotient.map' (fun g => g * tVertical α hα) (by
       intro p q hpq
-      rw [QuotientGroup.leftRel_apply] at hpq ⊢
+      rw [QuotientGroup.leftRel_apply] at hpq
+      apply QuotientGroup.leftRel_apply.mpr
       refine (mem_blockSubgroup_conj_iff α hα _).mpr ?_
       have heq : tVertical α hα *
           ((p * tVertical α hα)⁻¹ * (q * tVertical α hα)) *
@@ -171,14 +176,16 @@ def blockEquivCosets : Block α hα ≃ Cosets α hα where
       rw [heq]
       exact hpq)
   left_inv := by
-    refine Quotient.ind' fun g => ?_
-    show (Quotient.mk'' (g * (tVertical α hα)⁻¹ * tVertical α hα) : Block α hα) =
-      Quotient.mk'' g
+    intro x
+    obtain ⟨g, rfl⟩ := QuotientGroup.mk_surjective x
+    show (QuotientGroup.mk (g * (tVertical α hα)⁻¹ * tVertical α hα) :
+        Block α hα) = QuotientGroup.mk g
     rw [inv_mul_cancel_right]
   right_inv := by
-    refine Quotient.ind' fun g => ?_
-    show (Quotient.mk'' (g * tVertical α hα * (tVertical α hα)⁻¹) : Cosets α hα) =
-      Quotient.mk'' g
+    intro x
+    obtain ⟨g, rfl⟩ := QuotientGroup.mk_surjective x
+    show (QuotientGroup.mk (g * tVertical α hα * (tVertical α hα)⁻¹) :
+        Cosets α hα) = QuotientGroup.mk g
     rw [mul_inv_cancel_right]
 
 @[simp] theorem blockEquivCosets_mk (g : Vertical α hα) :
@@ -661,13 +668,12 @@ theorem neighborSet_eq_sdiff {a₀ : Γ} (ha₀ : a₀ ∉ Set.range α)
     (htr : AlphaCosetTransitive α a₀) (ξ : Cosets α hα) :
     neighborSet α hα a₀ ξ = blockFibre α hα (blockOf α hα ξ) \ {ξ} := by
   ext η
-  rw [neighborSet, Set.mem_setOf_eq, Set.mem_diff, Set.mem_singleton_iff,
-    mem_blockFibre, adj_iff α hα ha₀ htr]
   constructor
+  · intro h
+    exact ⟨(adj_blockOf_eq α hα h).symm,
+      fun he => adj_irrefl α hα ha₀ ξ (he ▸ h)⟩
   · rintro ⟨h1, h2⟩
-    exact ⟨h2.symm, fun he => h1 he.symm⟩
-  · rintro ⟨h1, h2⟩
-    exact ⟨fun he => h2 he.symm, h1.symm⟩
+    exact adj_of_blockOf_eq α hα htr (fun he => h2 he.symm) h1.symm
 
 include hα in
 /-- **`𝒢` is `7`-regular.** -/
@@ -680,6 +686,208 @@ theorem neighborSet_ncard_eq_seven {a₀ : Γ} (ha₀ : a₀ ∉ Set.range α)
     Set.ncard_sdiff_singleton_of_mem
       (show ξ ∈ blockFibre α hα (blockOf α hα ξ) from rfl),
     ← Nat.card_coe_set_eq, h8]
+
+end Abstract
+
+/-! ## The literal affine instantiation
+
+Everything above is unconditional for any injective `α`.  We now instantiate
+at the concrete affine base `Γ̄ = ℤ³ ⋊ SL₃(ℤ)` of
+`GroupApproximation.AffineSL3Doubling`, with `α` the doubling and `a₀` the
+first standard translation.  This is the manuscript's `E_lin`; its transfer
+to the literal forty-one-relator presentation is the conditional input (I1)
+of the source document and is *not* asserted here.
+
+The one new mathematical ingredient is the manuscript's `[audit-fix]`
+computation: the mod-`2` reductions of `SL₃(ℤ)` move `ē₁` onto every nonzero
+class of `(ℤ/2)³`.  We realise the seven classes by seven explicit matrices.
+-/
+
+namespace Literal
+
+open AffineSL3Doubling Matrix
+open scoped MatrixGroups
+
+/-! ### Seven matrices realising the seven nonzero parity classes -/
+
+private def slC001 : Linear :=
+  ⟨!![0, 1, 0; 0, 0, 1; 1, 0, 0], by rw [Matrix.det_fin_three]; norm_num⟩
+
+private def slC010 : Linear :=
+  ⟨!![0, 0, 1; 1, 0, 0; 0, 1, 0], by rw [Matrix.det_fin_three]; norm_num⟩
+
+private def slC011 : Linear :=
+  ⟨!![0, 0, 1; 1, 0, 0; 1, 1, 0], by rw [Matrix.det_fin_three]; norm_num⟩
+
+private def slC100 : Linear :=
+  ⟨!![1, 0, 0; 0, 1, 0; 0, 0, 1], by rw [Matrix.det_fin_three]; norm_num⟩
+
+private def slC101 : Linear :=
+  ⟨!![1, 0, 0; 0, 1, 0; 1, 0, 1], by rw [Matrix.det_fin_three]; norm_num⟩
+
+private def slC110 : Linear :=
+  ⟨!![1, 0, 0; 1, 1, 0; 0, 0, 1], by rw [Matrix.det_fin_three]; norm_num⟩
+
+private def slC111 : Linear :=
+  ⟨!![1, 0, 0; 1, 1, 0; 1, 0, 1], by rw [Matrix.det_fin_three]; norm_num⟩
+
+/-- The `SL₃(ℤ)`-action moves the marked translation vector to a first
+column. -/
+private theorem sl_smul_aVector (A : Linear) (i : Fin 3) :
+    (A • aVector) i = (A : Matrix (Fin 3) (Fin 3) ℤ) i 0 := by
+  show ((A : Matrix (Fin 3) (Fin 3) ℤ) *ᵥ aVector) i = _
+  rw [Matrix.mulVec_apply_eq_sum, Fin.sum_univ_three]
+  simp [aVector]
+
+/-- **Transitivity on nonzero parity classes.**  If a lattice vector is not
+even then some element of `SL₃(ℤ)` has a first column congruent to it mod
+`2`.  Seven explicit matrices; the eighth case is excluded by hypothesis. -/
+private theorem exists_sl_column {w : Lattice} (hw : ¬ ∃ u : Lattice, w = 2 • u) :
+    ∃ (A : Linear) (v : Lattice),
+      ∀ i, (A : Matrix (Fin 3) (Fin 3) ℤ) i 0 = w i + 2 * v i := by
+  rcases Int.even_or_odd (w 0) with ⟨k0, h0⟩ | ⟨k0, h0⟩ <;>
+    rcases Int.even_or_odd (w 1) with ⟨k1, h1⟩ | ⟨k1, h1⟩ <;>
+      rcases Int.even_or_odd (w 2) with ⟨k2, h2⟩ | ⟨k2, h2⟩
+  · refine absurd ⟨![k0, k1, k2], ?_⟩ hw
+    rw [two_nsmul]
+    funext i
+    fin_cases i
+    · exact h0
+    · exact h1
+    · exact h2
+  · refine ⟨slC001, ![-k0, -k1, -k2], ?_⟩
+    intro i
+    fin_cases i
+    · show (0 : ℤ) = w 0 + 2 * -k0
+      omega
+    · show (0 : ℤ) = w 1 + 2 * -k1
+      omega
+    · show (1 : ℤ) = w 2 + 2 * -k2
+      omega
+  · refine ⟨slC010, ![-k0, -k1, -k2], ?_⟩
+    intro i
+    fin_cases i
+    · show (0 : ℤ) = w 0 + 2 * -k0
+      omega
+    · show (1 : ℤ) = w 1 + 2 * -k1
+      omega
+    · show (0 : ℤ) = w 2 + 2 * -k2
+      omega
+  · refine ⟨slC011, ![-k0, -k1, -k2], ?_⟩
+    intro i
+    fin_cases i
+    · show (0 : ℤ) = w 0 + 2 * -k0
+      omega
+    · show (1 : ℤ) = w 1 + 2 * -k1
+      omega
+    · show (1 : ℤ) = w 2 + 2 * -k2
+      omega
+  · refine ⟨slC100, ![-k0, -k1, -k2], ?_⟩
+    intro i
+    fin_cases i
+    · show (1 : ℤ) = w 0 + 2 * -k0
+      omega
+    · show (0 : ℤ) = w 1 + 2 * -k1
+      omega
+    · show (0 : ℤ) = w 2 + 2 * -k2
+      omega
+  · refine ⟨slC101, ![-k0, -k1, -k2], ?_⟩
+    intro i
+    fin_cases i
+    · show (1 : ℤ) = w 0 + 2 * -k0
+      omega
+    · show (0 : ℤ) = w 1 + 2 * -k1
+      omega
+    · show (1 : ℤ) = w 2 + 2 * -k2
+      omega
+  · refine ⟨slC110, ![-k0, -k1, -k2], ?_⟩
+    intro i
+    fin_cases i
+    · show (1 : ℤ) = w 0 + 2 * -k0
+      omega
+    · show (1 : ℤ) = w 1 + 2 * -k1
+      omega
+    · show (0 : ℤ) = w 2 + 2 * -k2
+      omega
+  · refine ⟨slC111, ![-k0, -k1, -k2], ?_⟩
+    intro i
+    fin_cases i
+    · show (1 : ℤ) = w 0 + 2 * -k0
+      omega
+    · show (1 : ℤ) = w 1 + 2 * -k1
+      omega
+    · show (1 : ℤ) = w 2 + 2 * -k2
+      omega
+
+/-- The `SL₃(ℤ)`-action commutes with doubling. -/
+private theorem smul_two_nsmul (C : Linear) (u : Lattice) :
+    C • ((2 : ℕ) • u) = (2 : ℕ) • (C • u) := by
+  rw [two_nsmul, two_nsmul, smul_add]
+
+/-- **The transitivity hypothesis holds for the affine doubling.** -/
+theorem alphaCosetTransitive :
+    AlphaCosetTransitive alpha AffineSL3Doubling.a := by
+  intro g hg
+  have hw : ¬ ∃ u : Lattice, g.left.toAdd = 2 • u := by
+    intro h
+    exact hg ((mem_range_alpha_iff g).mpr h)
+  obtain ⟨A, v, hAv⟩ := exists_sl_column hw
+  refine ⟨(⟨1, A⟩ : Gamma), ?_⟩
+  rw [mem_range_alpha_iff]
+  refine ⟨(g.right)⁻¹ • v, ?_⟩
+  have h1 : (alpha (⟨1, A⟩ : Gamma) * AffineSL3Doubling.a).left.toAdd =
+      A • aVector := by
+    show (2 : ℕ) • (0 : Lattice) + A • aVector = _
+    rw [smul_zero, zero_add]
+  have h2 : (g⁻¹ * (alpha (⟨1, A⟩ : Gamma) * AffineSL3Doubling.a)).left.toAdd =
+      (g.right)⁻¹ • (-(g.left.toAdd)) +
+        (g.right)⁻¹ •
+          ((alpha (⟨1, A⟩ : Gamma) * AffineSL3Doubling.a).left.toAdd) := rfl
+  have hAvec : -(g.left.toAdd) + A • aVector = (2 : ℕ) • v := by
+    funext i
+    have hi := hAv i
+    simp only [Pi.add_apply, Pi.neg_apply, Pi.smul_apply, nsmul_eq_mul]
+    rw [sl_smul_aVector]
+    omega
+  rw [h2, h1, ← smul_add, hAvec, smul_two_nsmul]
+
+/-! ### The concrete block geometry -/
+
+instance : (alpha.range).FiniteIndex :=
+  ⟨by rw [alpha_range_index]; decide⟩
+
+/-- Proposition 4.2 for the affine base: every block carries eight sites. -/
+theorem literalBlockCard_eq_eight (i : Block alpha alpha_injective) :
+    Nat.card ↥(blockFibre alpha alpha_injective i) = 8 :=
+  blockCard_eq_eight alpha alpha_injective alpha_range_index i
+
+/-- A chosen enumeration of the eight sites of a block. -/
+noncomputable def literalBlockFibreEquivFin (i : Block alpha alpha_injective) :
+    ↥(blockFibre alpha alpha_injective i) ≃ Fin 8 :=
+  blockFibreEquivFin alpha alpha_injective alpha_range_index i
+
+/-- Proposition 4.2 for the affine base: the orbital graph is the disjoint
+union of complete graphs, one on each block. -/
+theorem literalAdj_iff (ξ η : Cosets alpha alpha_injective) :
+    Adj alpha alpha_injective AffineSL3Doubling.a ξ η ↔
+      (ξ ≠ η ∧
+        blockOf alpha alpha_injective ξ = blockOf alpha alpha_injective η) :=
+  adj_iff alpha alpha_injective a_not_mem_range alphaCosetTransitive ξ η
+
+/-- Proposition 4.2 for the affine base: the orbital graph is `7`-regular. -/
+theorem literalNeighborSet_ncard_eq_seven (ξ : Cosets alpha alpha_injective) :
+    (neighborSet alpha alpha_injective AffineSL3Doubling.a ξ).ncard = 7 :=
+  neighborSet_ncard_eq_seven alpha alpha_injective a_not_mem_range
+    alphaCosetTransitive alpha_range_index ξ
+
+/-- The stabiliser of the base block is the telescope level `B₁`. -/
+theorem literalBlockStabilizer_eq_level :
+    MulAction.stabilizer (Vertical alpha alpha_injective)
+        (blockOf alpha alpha_injective (rootCoset alpha alpha_injective)) =
+      verticalLevel alpha alpha_injective 1 :=
+  blockStabilizer_eq_level alpha alpha_injective
+
+end Literal
 
 end LiteralBlockGeometry
 end GroupApproximation
