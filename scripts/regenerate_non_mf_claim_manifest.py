@@ -112,6 +112,12 @@ CLAIM_TARGETS: dict[str, tuple[str, str]] = {
     "lem:unitarycorona": (
         "Sofic/ManuscriptExactWrappers",
         "GroupApproximation.ManuscriptExactWrappers.manuscriptUnitaryCoronaEquivalence"),
+    "lem:finitecompare": (
+        "Sofic/UltraproductKazhdanTransport",
+        "GroupApproximation.kt_10_finiteness_reverses"),
+    "lem:ultrafinite": (
+        "Sofic/UltraproductDedekindFinite",
+        "GroupApproximation.kt_06_ultraproduct_finite"),
     "cor:undecidable": (
         "Computability/HaltingReduction",
         "GroupApproximation.MarkovMFConsequences."

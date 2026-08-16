@@ -78,7 +78,7 @@
       "id": "lem:unitarycorona",
       "environment": "lemma",
       "title": "unitaries in the quotient",
-      "statement_sha256": "33186746e1ecee3bd1ff907b2f698df80164da55a2844e1e610f1da7c994e77f",
+      "statement_sha256": "acf85808aae67e89fda0b4a932d51d23d5ae0b9e186e27c949b0dcd903d69bc7",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [
@@ -97,9 +97,49 @@
       ]
     },
     {
+      "id": "lem:finitecompare",
+      "environment": "lemma",
+      "title": "comparison in a finite algebra",
+      "statement_sha256": "fc2a55b505fb0455b75447b10bb9399a687fed72fda340b9483e12f1fede066c",
+      "status": "exact",
+      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
+      "dependencies": [],
+      "extra_assumptions": [],
+      "external_inputs": [],
+      "coverage_gap": "",
+      "lean": [
+        {
+          "role": "exact",
+          "module": "Sofic/UltraproductKazhdanTransport",
+          "declaration": "GroupApproximation.kt_10_finiteness_reverses",
+          "covers": "the complete printed proposition"
+        }
+      ]
+    },
+    {
+      "id": "lem:ultrafinite",
+      "environment": "lemma",
+      "title": "the norm ultraproduct",
+      "statement_sha256": "2bb52124d79d67fb83bc02ca2e18a8702deb0904469d755749bbb92605176041",
+      "status": "exact",
+      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
+      "dependencies": [],
+      "extra_assumptions": [],
+      "external_inputs": [],
+      "coverage_gap": "",
+      "lean": [
+        {
+          "role": "exact",
+          "module": "Sofic/UltraproductDedekindFinite",
+          "declaration": "GroupApproximation.kt_06_ultraproduct_finite",
+          "covers": "the complete printed proposition"
+        }
+      ]
+    },
+    {
       "id": "thm:B",
       "environment": "theorem",
-      "title": "the exact finite-dimensional analogue",
+      "title": "the finite-dimensional case",
       "statement_sha256": "0e1ab5f727ba25a609bafdbde8422dc2abf66e1391e043c89860d4f074ed1afa",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
@@ -1154,7 +1194,7 @@
       "id": "lem:faithfultrace",
       "environment": "lemma",
       "title": "",
-      "statement_sha256": "f052b6478d109bfe035a59e8b903034148762332937f979de80eb2279e5077cb",
+      "statement_sha256": "ed20bbd1df60ef72574a2eacd41c1695b90af19ef47e80e468344d36cc7b708a",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [],

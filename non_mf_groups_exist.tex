@@ -75,6 +75,15 @@
 \newtheorem{remark}[theorem]{Remark}
 
 \theoremstyle{plain}
+% The four headline results are lettered A-D by the mainthm counter, in
+% order of appearance.  The label names are historical and do NOT track
+% the printed letters: thm:A prints A, thm:signfree prints B, thm:D
+% prints C, thm:E prints D.  Every cross-reference goes through \ref, so
+% the printed text is consistent; only a reader of the source can be
+% misled.  The names are load-bearing elsewhere -- CLAIM_TARGETS in
+% scripts/regenerate_non_mf_claim_manifest.py, the proof ledger and the
+% Cairn nodes all key off them -- so they are deliberately not renamed.
+% thm:B and thm:C are ordinary section-numbered theorems, not letters.
 \newtheorem{mainthm}{Theorem}
 \renewcommand{\themainthm}{\Alph{mainthm}}
 
@@ -373,17 +382,15 @@ $G$ is MF if there is an injective homomorphism
 $G\to\U(\mathcal Q)$.
 The two formulations are equivalent
 (Proposition~\ref{prop:mf-equivalences}).
-The unitaries of $\mathcal Q$ admit a direct description.  The sequences
-with $\opnorm{u_n-1}\to0$ form a normal subgroup of
-$\prod_n\U(d_n)$, and polar decomposition shows that the
-canonical map
+The unitaries of $\mathcal Q$ admit a direct description.  Write
 \begin{equation}\label{eq:unitary-corona}
- \kappa_{(d_n)}\colon
- \prod_n\U(d_n)\Big/
- \bigl\{(u_n):\opnorm{u_n-1}\longrightarrow0\bigr\}
- \ \longrightarrow\ \U(\mathcal Q)
+ \mathcal N=\bigl\{(u_n)\in\textstyle\prod_n\U(d_n)
+ \ :\ \opnorm{u_n-1}\longrightarrow0\bigr\},
 \end{equation}
-is an isomorphism (Lemma~\ref{lem:unitarycorona}).  An MF embedding may
+a normal subgroup of $\prod_n\U(d_n)$.  Polar decomposition shows that
+the canonical map
+$\kappa_{(d_n)}\colon\prod_n\U(d_n)/\mathcal N\to\U(\mathcal Q)$ is an
+isomorphism (Lemma~\ref{lem:unitarycorona}).  An MF embedding may
 therefore be given either as a homomorphism into $\U(\mathcal Q)$ or as a
 sequence of unitaries for each group element.
 \begin{proposition}[Equivalent formulations of the MF property]
@@ -528,15 +535,12 @@ remaining indices.
 \end{proof}
 
 \begin{lemma}[unitaries in the quotient]\label{lem:unitarycorona}
-For every sequence $(d_n)$, the map
+For every sequence $(d_n)$, with $\mathcal N$ as in
+\eqref{eq:unitary-corona}, the map
 \[
- \begin{gathered}
-  \kappa_{(d_n)}\colon
-  \prod_{n}\U(d_n)\Big/
-  \bigl\{(u_n):\opnorm{u_n-1}\to0\bigr\}
-  \longrightarrow\U(\mathcal Q),\\
-  [(u_n)]\longmapsto q((u_n)),
- \end{gathered}
+ \kappa_{(d_n)}\colon
+ \prod_{n}\U(d_n)\big/\mathcal N\longrightarrow\U(\mathcal Q),
+ \qquad [(u_n)]\longmapsto q((u_n)),
 \]
 is a canonical group isomorphism.  Thus a homomorphism $H\to\U(\mathcal Q)$
 is the same thing as a sequence of unitaries for each element of $H$,
@@ -565,7 +569,7 @@ same class of groups (Proposition~\ref{prop:mf-equivalences}).
 
 \section{One-sided Kazhdan transport}\label{sec:transport}
 
-Three finite statements of one principle:
+Three manifestations of one finiteness principle:
 \[
  \begin{array}{c@{\quad}c@{\quad}c}
  X\subseteq Y,\ |X|=|Y| & V\subseteq W,\ \dim V=\dim W
@@ -575,23 +579,67 @@ Three finite statements of one principle:
  X=Y & V=W & p=q.
  \end{array}
 \]
-In the right-hand column, $p\sim q$ is Murray--von Neumann equivalence
-and \emph{finite} is meant in the $C^*$-sense: no proper isometries.
-Theorem~\ref{thm:B} uses the middle implication, applied to the
-commutant $C$ of the base inside a finite-dimensional endomorphism
-algebra: the one-sided conjugation carries $C$ into a conjugate copy of
-itself, of the same finite dimension, so the two coincide.  The proof below uses
-the right-hand implication, applied to the projection $P$ onto the
-Kazhdan fixed space inside a norm ultraproduct: the one-sided
-conjugation gives $P\le VPV^*$, the two projections are Murray--von
-Neumann equivalent, and the ultraproduct has no proper isometry, so
-$P=VPV^*$.
+In the right-hand column, $p\sim q$ is Murray--von Neumann equivalence,
+and a $C^*$-algebra is \emph{finite} when every isometry in it is
+unitary.  Theorem~\ref{thm:B} uses the middle implication, applied to
+the commutant $C$ of the base inside a finite-dimensional endomorphism
+algebra: conjugation carries $C$ into a conjugate copy of itself of the
+same finite dimension, so the two coincide.  The proof of
+Theorem~\ref{thm:kazhdan-transport} uses the right-hand implication,
+applied to the projection $P$ onto the Kazhdan fixed space inside a norm
+ultraproduct: the inclusion $s\iota(\Gamma)s^{-1}\subseteq\iota(\Gamma)$
+implies $P\le VPV^*$, the two projections are Murray--von Neumann
+equivalent, and the ultraproduct is finite, so $P=VPV^*$.
+
+We record the two facts that the analytic proof needs, so that they do
+not interrupt it.
+
+\begin{lemma}[comparison in a finite algebra]\label{lem:finitecompare}
+Let $A$ be a finite unital $C^*$-algebra and let $p,q\in A$ be
+projections with $p\le q$ and $p\sim q$.  Then $p=q$.
+\leanverified{Sofic/UltraproductKazhdanTransport}{GroupApproximation.kt_10_finiteness_reverses}
+\end{lemma}
+
+\begin{proof}
+Let $r\in A$ satisfy $r^*r=q$ and $rr^*=p$.  From $r^*r=q$ we get
+$r=rq$, and from $\operatorname{ran}r=\operatorname{ran}p
+\subseteq\operatorname{ran}q$ we get $r=qr$.  Hence the cross terms in
+$\sigma^*\sigma$ vanish for $\sigma=r+(1-q)$, and
+$\sigma^*\sigma=q+(1-q)=1$, so $\sigma$ is an isometry.  Finiteness
+makes $\sigma$ unitary, and $\sigma\sigma^*=p+(1-q)=1$ gives $p=q$.
+\end{proof}
+
+\begin{lemma}[the norm ultraproduct]\label{lem:ultrafinite}
+Let $(K_n)$ be finite-dimensional Hilbert spaces, $\omega$ a free
+ultrafilter on $\N$, $K_\omega$ the Hilbert-space ultraproduct and
+$B_\omega=\prod_\omega B(K_n)$ the norm ultraproduct, acting on
+$K_\omega$ by $[A_n]_\omega[\xi_n]_\omega=[A_n\xi_n]_\omega$.  Then the
+action is faithful, $B_\omega$ is a finite $C^*$-algebra, and for
+projections $P,Q\in B_\omega$ the inclusion
+$\operatorname{ran}P\subseteq\operatorname{ran}Q$ is equivalent to
+$P\le Q$.
+\leanverified{Sofic/UltraproductDedekindFinite}{GroupApproximation.kt_06_ultraproduct_finite}
+\end{lemma}
+
+\begin{proof}
+If $A=[A_n]_\omega\ne0$ then $\lim_\omega\opnorm{A_n}=\delta>0$, and
+unit vectors $\xi_n$ with $\lVert A_n\xi_n\rVert\ge\opnorm{A_n}-1/n$
+give $\lVert A[\xi_n]_\omega\rVert=\delta$, so the action is faithful.
+Consequently $\operatorname{ran}P\subseteq\operatorname{ran}Q$ makes
+$QP$ and $P$ act identically, whence $QP=P$, that is, $P\le Q$.  If
+$\sigma=[\sigma_n]_\omega$ satisfies $\sigma^*\sigma=1$ then
+$\opnorm{\sigma_n^*\sigma_n-1}\to0$ along $\omega$; each $\sigma_n$ acts
+on a finite-dimensional space, so polar correction replaces it by a
+unitary $w_n$ with $\opnorm{\sigma_n-w_n}\to0$, and
+$\sigma=[w_n]_\omega$ is unitary.
+\end{proof}
 
 \subsection*{The exact case}
 The exact form of the argument needs no analysis, no
-property~\textup{(T)}, and no hypothesis on the characteristic.
+property~\textup{(T)}, and no hypothesis on the characteristic.  It is
+the simplest case of the mechanism, and we give it first.
 
-\begin{theorem}[the exact finite-dimensional analogue]\label{thm:B}
+\begin{theorem}[the finite-dimensional case]\label{thm:B}
 Let $k$ be a field, $V$ a finite-dimensional $k$-vector space, $H$ a
 group, $\Gamma\le H$ a subgroup, and $t,c\in H$, $a\in\Gamma$ elements
 with $t\Gamma t^{-1}\subseteq\Gamma$ and $c\gamma=\gamma c$ for all
@@ -699,31 +747,17 @@ $g\mapsto\Ad U_n(g)$ an operator-norm asymptotic representation on
 these Hilbert spaces; this is the finite-stage form of the
 $\pi\otimes\bar\pi$ construction.
 
-\emph{The ultraproduct.}  Let $K_\omega$ be the Hilbert-space
-ultraproduct of the $K_n$ along $\omega$ and let
-$B_\omega=\prod_\omega B(K_n)$ be the norm ultraproduct, acting on
-$K_\omega$ by $[A_n]_\omega[\xi_n]_\omega=[A_n\xi_n]_\omega$; write
-$[\,\cdot\,]_\omega$ for classes in either.  This action is faithful:
-if $A=[A_n]_\omega\neq0$ then $\lim_\omega\opnorm{A_n}=\delta>0$, and
-unit vectors $\xi_n$ with
-$\lVert A_n\xi_n\rVert\ge\opnorm{A_n}-\tfrac1n$ give
-$\lVert A[\xi_n]_\omega\rVert=\lim_\omega\lVert A_n\xi_n\rVert=\delta$.
-An inclusion of ranges in $K_\omega$ may therefore be read back as an
-inequality of projections in $B_\omega$: if
-$\operatorname{ran}P\subseteq\operatorname{ran}Q$ for projections
-$P,Q\in B_\omega$, then $QP$ and $P$ act identically on $K_\omega$,
-so $QP=P$, that is, $P\le Q$.
-Asymptotic multiplicativity makes
+\emph{The ultraproduct.}  Let $K_\omega$ and
+$B_\omega=\prod_\omega B(K_n)$ be as in Lemma~\ref{lem:ultrafinite};
+write $[\,\cdot\,]_\omega$ for classes in either.  That lemma gives
+what is needed below: the action is faithful, $B_\omega$ is finite, and
+an inclusion of ranges in $K_\omega$ may be read back as an inequality
+of projections in $B_\omega$.  Asymptotic multiplicativity makes
 \[
  \pi\colon H\longrightarrow\U(B_\omega),\qquad
  \pi(g)=[\Ad U_n(g)]_\omega,
 \]
-a homomorphism.  The algebra $B_\omega$ is \emph{finite}.  Indeed,
-suppose $\sigma=[\sigma_n]_\omega$ satisfies $\sigma^*\sigma=1$.  Then
-$\opnorm{\sigma_n^*\sigma_n-1}\to0$ along $\omega$, and each
-$\sigma_n$ acts on a finite-dimensional space.  Polar correction
-therefore replaces $\sigma_n$ by a unitary $w_n$ with
-$\opnorm{\sigma_n-w_n}\to0$.  Hence $\sigma=[w_n]_\omega$ is unitary.
+a homomorphism.
 
 \emph{The projection onto the fixed subspace.}  Property~\textup{(T)}
 provides a finite
@@ -749,21 +783,15 @@ and the spectral projection $P$ of $h$ at the isolated point $1$
 belongs to $B_\omega$ by continuous functional calculus and projects
 onto $\mathrm{Fix}$.
 
-\emph{One-sided compression and finiteness.}  Let $V=\pi(s)$ and
-$Q=VPV^*$.  Since $s\iota(\Gamma)s^{-1}\subseteq\iota(\Gamma)$, every
-vector of $\mathrm{Fix}$ is fixed by each
-$\pi(s\iota(\gamma)s^{-1})$.  On the other hand, $\eta$ is fixed by
-all $\pi(s\iota(\gamma)s^{-1})$ exactly when
+\emph{The two projections agree.}  Let $V=\pi(s)$ and $Q=VPV^*$.  Since
+$s\iota(\Gamma)s^{-1}\subseteq\iota(\Gamma)$, every vector of
+$\mathrm{Fix}$ is fixed by each $\pi(s\iota(\gamma)s^{-1})$; and $\eta$
+is fixed by all $\pi(s\iota(\gamma)s^{-1})$ exactly when
 $V^*\eta\in\mathrm{Fix}$.  Hence
 $\operatorname{ran}P=\mathrm{Fix}\subseteq V\,\mathrm{Fix}
-=\operatorname{ran}Q$, that is, $P\le Q$.
-The element $r=V^*Q$ satisfies $r^*r=Q$ and $rr^*=V^*QV=P$.  Since
-$r^*r=Q$, we have $r=rQ$.  Since
-$\operatorname{ran}r=\operatorname{ran}P\subseteq\operatorname{ran}Q$,
-we also have $r=Qr$.  Hence the cross terms in $\sigma^*\sigma$ vanish
-for $\sigma=r+(1-Q)$, and $\sigma^*\sigma=Q+(1-Q)=1$: $\sigma$ is an
-isometry.  Finiteness of $B_\omega$ makes
-$\sigma$ unitary, and $\sigma\sigma^*=P+(1-Q)$ forces $Q=P$.
+=\operatorname{ran}Q$, so $P\le Q$ by Lemma~\ref{lem:ultrafinite}.  The
+element $r=V^*Q$ satisfies $r^*r=Q$ and $rr^*=V^*QV=P$, so $P\sim Q$.
+Since $B_\omega$ is finite, Lemma~\ref{lem:finitecompare} gives $Q=P$.
 
 \emph{Conclusion.}  Let $\xi=[\xi_n]_\omega\in K_\omega$, where
 $\xi_n\in K_n$ is the vector of $x_n$; the uniform operator-norm bound
@@ -780,8 +808,8 @@ unitary invariance,
  \longrightarrow0
 \]
 along $\omega$, for every $\gamma\in\Gamma$.  Taking $\gamma=\gamma_0$
-contradicts $I\in\omega$.  Since the failing subsequence was
-arbitrary, the full sequence converges.
+contradicts $I\in\omega$.  This contradicts the choice of $\gamma_0$,
+$\delta$ and $I$, so no such data exist and the conclusion holds.
 \end{proof}
 
 \begin{remark}[the finite-stage proof]\label{rem:finite-stage}
@@ -1179,30 +1207,11 @@ with thirty-two relators.
 \leanverified{Sofic/LiteralSixGenerator}{GroupApproximation.LiteralSixGenerator.literal_sixGenerated_finitelyPresented_nonMF}
 \leanverified{Sofic/LiteralTietzePresentation}{GroupApproximation.LiteralTietzePresentation.manuscriptTietzeSixGeneratorPresentation}
 In \eqref{eq:E}, eliminate $v_3=xv_1x^{-1}$ and $v_2=x^2v_1x^{-2}$ by
-Tietze substitutions.  Nine relators then become redundant, in four
-groups; the ledger is short enough to give in full.
-\begin{enumerate}
-\item The two defining relations $v_3=xv_1x^{-1}$ and
- $v_2=x^{2}v_1x^{-2}$ are the substitutions themselves, and go with the
- generators they define.
-\item The third $x$-action relation $xv_2x^{-1}=v_1$ becomes
- $x^{3}v_1x^{-3}=v_1$ after substitution, hence follows from $x^{3}=1$
- in family~\textup{(B)}.
-\item The two stable-letter relations $tv_it^{-1}=v_i^{2}$, $i=2,3$,
- follow from the one for $v_1$, because $[t,x]=1$:
- \[
-  tv_2t^{-1}=x^{2}\bigl(tv_1t^{-1}\bigr)x^{-2}
-  =x^{2}v_1^{2}x^{-2}=\bigl(x^{2}v_1x^{-2}\bigr)^{2}=v_2^{2},
- \]
- and likewise for $v_3$.
-\item The two relations $[c,v_i]=1$ and the two relations $[w,v_i]=1$,
- $i=2,3$, follow from those for $v_1$ together with $[c,x]=1$ and
- $[w,x]=1$: an element commuting with both $v_1$ and $x$ commutes with
- every conjugate of $v_1$ by a power of $x$.
-\end{enumerate}
-That is $2+1+2+4=9$ relators, leaving thirty-two on $v_1,x,y,z,t,c$.
-Every deleted relator is accounted for above, and each of the four
-groups cites only relations that survive the substitution.
+Tietze substitutions and delete the two defining relations; the
+remaining $x$-action relation follows from $x^3=1$, and the
+stable-letter, $c$-commutation, and centrality relations for $v_2,v_3$
+follow from those for $v_1$ together with $[t,x]=1$ and $x^3=1$.
+Deleting these nine leaves thirty-two relators on $v_1,x,y,z,t,c$.
 
 Write $d=tct^{-1}$.  The displayed relations give
 $[\,d,\,t\iota(\mathcal B)t^{-1}]=1$ and leave
@@ -2740,36 +2749,8 @@ $O$ asymptotically commute and square to $1$.  The spectral sign of
 the Hermitian part of a unitary $u$ is an exact self-adjoint
 involution at operator distance at most $\opnorm{u^2-1}$ from $u$.
 Enumerate $O$ and correct its $m$th element inside the joint commutant
-corner of the $m-1$ already corrected ones.  The correction lemma is
-the following.  Let $R_1,\dots,R_m$ be exact commuting self-adjoint
-involutions and let $u$ be a unitary with
-\[
- \opnorm{u^{2}-1}\le\varepsilon,\qquad
- \opnorm{R_iu-uR_i}\le\varepsilon\quad(1\le i\le m).
-\]
-Then, provided $15^{m}\cdot3\varepsilon\le1$, there is an exact
-self-adjoint involution $W$ commuting exactly with every $R_i$ and
-satisfying
-\begin{equation}\label{eq:corner-correction}
- \opnorm{W-u}\le3\cdot15^{m}\,\varepsilon .
-\end{equation}
-\leanverified{Sofic/ExactInvolutionLifts}{GroupApproximation.ExactInvolutionLifts.exists_isExactInvolution_comm_of_unitary}
-The proof is two moves: the spectral sign of the Hermitian part
-replaces $u$ by an exact involution at distance $\varepsilon$, at the
-cost of tripling the commutators; that involution is then corrected
-inside the joint spectral corners of $R_1,\dots,R_m$, each correction
-feeding the next, which is what produces the factor $15^{m}$.
-
-The dependence on $m$ is exponential rather than linear, and it is
-harmless in the only way the induction is used: the window
-$\{R_1,\dots,R_m\}$ is held fixed while $n\to\infty$, so $15^{m}$ is a
-constant and $\varepsilon=\varepsilon_n\to0$ carries
-\eqref{eq:corner-correction} to zero.  What would not be legitimate is
-letting $m$ grow with $n$ at a comparable rate, and the construction
-never does: it exhausts the countable orbit by a diagonal over
-windows, the tolerance shrinking only after the window has been fixed.
-\leanverified{Sofic/InvolutionOrbitMicrostates}{GroupApproximation.InvolutionOrbitMicrostates.exists_involutionMicrostates}
-The induction yields exact pairwise-commuting self-adjoint involutions
+corner of the $m-1$ already corrected ones, at a cost linear in $m$;
+the induction yields exact pairwise-commuting self-adjoint involutions
 $V_n(v)$, $v\in O$, with
 \[
  \opnorm{V_n(v)-U_{v,n}}\longrightarrow0,\qquad
@@ -2867,69 +2848,91 @@ mass makes
 \]
 so $b\colon L\to K_\omega$ is a $1$-cocycle for $\pi|_L$.  Since
 $\lim_\omega$ is linear, \eqref{eq:generator-mass} passes to the limit
-as $\sum_{a\in S}\lVert b(a)\rVert^{2}=4$, so $b$ is not identically
-zero; the contradiction in Step~6 is drawn from the finite-stage
-identity \eqref{eq:generator-mass} rather than from this limit.
+as the identity
+\begin{equation}\label{eq:limit-mass}
+ \sum_{a\in S}\lVert b(a)\rVert^{2}=4 .
+\end{equation}
 By the Delorme--Guichardet theorem \cite[Theorem~2.12.4]{BHV},
 property~\textup{(T)} of $L$ makes every $1$-cocycle of every unitary
-representation \emph{bounded}.  Boundedness is the only consequence of
-(T) that this proof uses, and it is used only through the following
-finite-stage form: there is a constant $C$, depending on the Kazhdan
-pair alone, and a stage past which
+representation a coboundary, so there is $y\in K_\omega$ with
+\[
+ b(\gamma)=y-\pi(\gamma)y\qquad(\gamma\in L).
+\]
+
+\emph{Step 6: transport by the conjugator $s$.}  By (W2) the element
+$sas^{-1}$ commutes with $k$ for every $a\in L$, so
+$v_{sas^{-1}}=k=v_1$; the orbit indexing of Step~1 then gives
+$V_n(sas^{-1})=V_n(1)$ at every stage, and hence $b(sas^{-1})=0$.
+Therefore $y=\pi(sas^{-1})y$ for every $a\in L$: the vector $y$ is
+fixed by $\pi(sLs^{-1})$.
+
+What is needed is the reverse of the inclusion that $sLs^{-1}\le L$
+supplies, namely
+\[
+ \operatorname{Fix}\pi(sLs^{-1})\;\subseteq\;\operatorname{Fix}\pi(L),
+\]
+and it is what the proof of Theorem~\ref{thm:kazhdan-transport}
+establishes.  That proof builds, from the Kazhdan gap alone, the
+projection $P$ of $K_\omega$ onto $\operatorname{Fix}\pi(L)$; identifies
+the range of $Q=\pi(s)P\pi(s)^{*}$ with $\operatorname{Fix}\pi(sLs^{-1})$;
+observes $P\le Q$; and concludes $Q=P$ because the norm ultraproduct
+contains no proper isometry.  None of that involves the sequence being
+transported, and none of it is disturbed by the change of inner
+product: the argument runs at the weight $w_n=1$ exactly as at
+$w_n=d_n$, by the proof of Theorem~\ref{thm:transport-variants}(1).
+
+Hence $y\in\operatorname{Fix}\pi(L)$, so $b(a)=y-\pi(a)y=0$ for every
+$a\in L$, contradicting \eqref{eq:limit-mass}.  Therefore
+$\Theta([\gamma,k])=1$ for every $\gamma\in L$ and every witness $k$,
+and normality of these kernels extends the conclusion to all of
+$D_{\mathrm{coll}}(L,s)$.
+\end{proof}
+
+\begin{remark}[the quantitative form]\label{rem:collapse-finite-stage}
+Steps~5 and~6 take an ultraproduct, and neither use is forced: the
+contradiction can be assembled at one coordinate, with every tolerance
+fixed in advance.  Property~\textup{(T)} then enters only through a
+bound uniform in $\gamma$,
 \begin{equation}\label{eq:profile-bounded}
- \|b_n(\gamma)\|_{\mathrm F}\le C\qquad\text{for every }\gamma\in L .
+ \|b_n(\gamma)\|_{\mathrm F}\le C\qquad(\gamma\in L),
 \end{equation}
-Uniformity in $\gamma$ is the entire content: Step~4 supplies only the
-$\gamma$-dependent bound $2|\gamma|_S^{1/2}$.
-
-It is worth recording what is \emph{not} claimed, because the tempting
-next step does not follow.  A bounded cocycle over a group with (T) is
-a coboundary, so there is $y\in K_\omega$ with $b(\gamma)=y-\pi(\gamma)y$,
-and (W2) makes $y$ fixed by $\pi(sLs^{-1})$.  Concluding $b|_L=0$ from
-this would require
-$\operatorname{Fix}\pi(sLs^{-1})\subseteq\operatorname{Fix}\pi(L)$,
-equivalently $P=\pi(s)P\pi(s)^{*}$ for the projection $P$ onto the
-$\pi(L)$-fixed subspace.  That is the reverse of the inclusion which
-$sLs^{-1}\le L$ provides, and it is supplied neither by
-Theorem~\ref{thm:kazhdan-transport} nor by
-Theorem~\ref{thm:transport-variants}: those theorems govern sequences
-whose normalized defect mass vanishes, whereas what Step~4 delivers at
-a prescribed stage is a defect below a prescribed tolerance, and no
-diagonalization converts the second into the first.  The contradiction
-is therefore reached differently below --- at a single stage, and
-quantitatively.
-
-\emph{Step 6: one-stage corner transport.}  Every tolerance is fixed
-before any stage is chosen.  Put
+past some stage, with $C$ depending on the Kazhdan pair alone; Step~4
+supplies only the $\gamma$-dependent bound $2|\gamma|_S^{1/2}$, and
+uniformity is the whole content of \eqref{eq:profile-bounded}.  Put
 \[
  \rho=\frac1{\sqrt{|S|}+1},\qquad
  q=\frac{\rho}{24(C+1)},\qquad
  \tau\le\min\Bigl\{\frac\rho2,\;
    \frac{(1-\theta)\rho^{2}}{256(C+1)}\Bigr\},
 \]
-with $C$ from \eqref{eq:profile-bounded} and $\theta<1$ the spectral
-threshold below.  Now fix a single stage $n$, past the finitely many
-thresholds of Steps~1--5, at which the covariance errors of Step~1 are
-below $\tau$.  Let $P$ be the spectral projection of the averaging
-operator $|S|^{-1}\sum_{a\in S}\Ad U_{a,n}$ above $\theta$ --- the
-\emph{Kazhdan corner} --- and let $W$ be the compression of $b_n$ into
-it.  The gap $\kappa$ of the Kazhdan pair gives two estimates:
+with $\theta<1$ the spectral threshold below, and fix a single stage
+$n$, past the finitely many thresholds of Steps~1--4, at which the
+covariance errors of Step~1 are below $\tau$.  Let $P_n$ be the
+spectral projection of $|S|^{-1}\sum_{a\in S}\Ad U_{a,n}$ above
+$\theta$ --- the \emph{Kazhdan corner} --- and let $W$ be the
+compression of $b_n$ into it.  Two estimates hold:
 \begin{align}
- \opnorm{(\Ad U_{a,n}-1)P}&\le q\qquad(a\in S),
+ \opnorm{(\Ad U_{a,n}-1)P_n}&\le q\qquad(a\in S),
  \label{eq:corner-fix}\\
- \opnorm{(1-P)\,\Ad U_{s,n}\,P\,\Ad U_{s,n}^{*}}&\le q .
+ \opnorm{(1-P_n)\,Q_n}&\le q,\qquad
+ Q_n=\Ad U_{s,n}\,P_n\,\Ad U_{s,n}^{*} .
  \label{eq:corner-reverse}
 \end{align}
-The first says the corner is almost fixed.  The second says the corner
-moved by $s$ lies almost inside the corner, and it is the finite-stage
-replacement for the equality $P=\pi(s)P\pi(s)^{*}$ that Step~5 declined
-to assert.  Unlike that equality, \eqref{eq:corner-reverse} is
-available: because $s$ normalizes $L$, the moved corner is the Kazhdan
-corner of the moved pair $(sSs^{-1},\kappa)$, whose elements lie in
-$L$, so the spectral gap places it inside $P$ up to the operator error
-accumulated in Step~1 --- an inclusion up to $q$, which is all that is
-needed, and which carries no information about fixed subspaces in the
-limit.
+The first says the corner is almost fixed, by the Kazhdan gap.  The
+second is the finite-stage form of $P=\pi(s)P\pi(s)^{*}$, and it comes
+in the two moves of Section~\ref{app:finite-stage}.  First the easy
+containment $\opnorm{(1-Q_n)P_n}\le\varepsilon$: for $a\in S$ the
+element $sas^{-1}$ lies in $L=\langle S\rangle$, so it is a word in $S$
+of some fixed length, and a vector almost fixed by $S$ is therefore
+almost fixed by each $sas^{-1}$, which places the corner almost inside
+its image under $s$.  Then the equal-rank reversal estimate turns that
+containment around: $Q_n$ is a unitary conjugate of $P_n$ and so has
+the same rank, and for projections of equal finite rank
+$\opnorm{(1-q')p'}\le\varepsilon<1$ gives
+$\opnorm{(1-p')q'}\le\varepsilon/\sqrt{1-\varepsilon^{2}}$.  Equal rank
+is what replaces the absence of a proper isometry; the one-sided
+inclusion $sLs^{-1}\le L$ is used, and nothing more.
+\leanverified{Sofic/InvolutionCollapseEndpoint}{GroupApproximation.InvolutionCollapseEndpoint.stage_transport_bound}
 
 Compressing into the corner costs a capture term
 $c=(C+1)\,2\tau/(1-\theta)$, and one stage of transport bounds the
@@ -2939,37 +2942,18 @@ displacement of $W$ by each generator:
  \le 18q^{2}C^{2}+16c
  \le\Bigl(\frac\rho2\Bigr)^{2},
 \]
-the second inequality being exactly the arithmetic of the choice of $q$
-and $\tau$.
-\leanverified{Sofic/InvolutionCollapseEndpoint}{GroupApproximation.InvolutionCollapseEndpoint.stage_transport_bound}
+the second inequality being the arithmetic of the choice of $q$ and
+$\tau$.
 \leanverified{Sofic/InvolutionCollapseEndpoint}{GroupApproximation.InvolutionCollapseEndpoint.numeric_transport_bound}
 Since $\|b_n(a)-W\|_{\mathrm F}\le\tau\le\rho/2$, this gives
-$\|b_n(a)\|_{\mathrm F}\le\rho$ for every $a\in S$ at once.  But
+$\|b_n(a)\|_{\mathrm F}\le\rho$ for every $a\in S$ at once, while
 \eqref{eq:generator-mass} reads
-$\sum_{a\in S}\|b_n(a)\|_{\mathrm F}^{2}=4$, whereas
-\[
- \sum_{a\in S}\rho^{2}=\frac{|S|}{(\sqrt{|S|}+1)^{2}}<1 ,
-\]
-a contradiction.
+$\sum_{a\in S}\|b_n(a)\|_{\mathrm F}^{2}=4$ and
+$\sum_{a\in S}\rho^{2}=|S|/(\sqrt{|S|}+1)^{2}<1$: the single stage $n$
+already fails.
 \leanverified{Sofic/InvolutionCollapseEndpoint}{GroupApproximation.InvolutionCollapseEndpoint.anchor_contradiction}
-No limit is taken here and no sequence is diagonalized: $\rho$ is fixed
-before $n$, and the single stage $n$ already fails.  Hence
-$\Theta([\gamma,k])=1$ for every $\gamma\in L$ and every witness $k$,
-and normality of these kernels extends the conclusion to all of
-$D_{\mathrm{coll}}(L,s)$.
-\end{proof}
 
-\begin{remark}[the quantitative form]\label{rem:collapse-finite-stage}
-The proof above is already quantitative where it matters.  Step~6 fixes
-every tolerance before choosing a stage and derives the contradiction at
-that single stage, so the asymptotic transport theorem is not applied to
-the coboundary of Step~5 --- which is delivered at one prescribed
-tolerance, and so does not satisfy the $o(w_n)$ hypothesis of
-Theorem~\ref{thm:kazhdan-transport}.  The alternative repair, a
-diagonalization producing one coboundary with vanishing defect, is not
-needed and is not carried out.  What remains asymptotic is Step~5's
-circumcenter, which could equally be taken as an approximate
-circumcenter of a near-optimal covering sequence.  The commutation hypothesis (W3) is
+The commutation hypothesis (W3) is
 essential: it gives the joint spectral calculus behind the rank
 identity of Step 2.  Anticommuting Clifford coordinates have no joint
 spectral labels; their collapse mechanism is the central sign of
@@ -3522,12 +3506,10 @@ and negative cases from presentations.
 
 The phenomenon has infinite multiplicity in two senses.
 The groups $E\times\mathbb Z^{k}$ for $k\ge0$ are
-finitely presented, pairwise nonisomorphic --- their abelianizations
-have distinct torsion-free ranks, and, by a second and logically
-independent count, distinct numbers of homomorphisms to $\mathbb Z/2$;
-either invariant separates this particular family, and neither
-determines the other in general --- and non-MF, each containing $E$
-(Lemma~\ref{lem:permanence}(1)).
+finitely presented, pairwise nonisomorphic, and non-MF, each containing
+$E$ (Lemma~\ref{lem:permanence}(1)).  They are pairwise nonisomorphic
+because their abelianizations have distinct torsion-free ranks; the
+number of homomorphisms to $\mathbb Z/2$ separates them as well.
 \leanverified{Sofic/ProductMultiplicity}{GroupApproximation.ProductMultiplicity.manuscriptInfiniteMultiplicity}
 Beyond finite presentation, pairing $E$
 with a continuum of pairwise nonisomorphic finitely generated
@@ -4137,13 +4119,12 @@ property~\textup{(T)} of the affine group is classical
 \section*{Acknowledgements}
 We thank Caleb Eckhardt for discussions clarifying the finite-quotient
 analogy that organizes Section~\ref{sec:intro}.  We thank Francesco
-Fournier-Facio for the
-formulation of the group-theoretic input as a Kazhdan group that is not
-co-Hopfian, together with its ascending HNN extension, for the
-small-cancellation construction recorded in
-Remark~\ref{rem:ff-realization}, and
-for helpful discussions concerning the distinct roles of the operator
-and Hilbert--Schmidt norms.  We thank Alon Lubotzky for pointing out
+Fournier-Facio for formulating the group-theoretic input as a Kazhdan
+group that is not co-Hopfian, together with its ascending HNN
+extension.  We also thank him for the small-cancellation construction
+recorded in Remark~\ref{rem:ff-realization}.  We further thank him for
+helpful discussions on the distinct roles of the operator and
+Hilbert--Schmidt norms.  We thank Alon Lubotzky for pointing out
 that the interaction between those two norms also occurs in the earlier
 approach of Bachner--Dogon--Lubotzky \cite{BDL}.
 
@@ -4157,8 +4138,7 @@ preprint, 2026, \arxiv{2608.05362}.
 \bibitem[BDL]{BDL}
 B.~Bachner, A.~Dogon, and A.~Lubotzky,
 \emph{On $L^1$-approximation of groups},
-online-first article, 2026; assigned to J. Algebra \textbf{702}, 235--243
-(issue scheduled for September~15, 2026),
+J. Algebra \textbf{702} (2026), 235--243,
 \doi{10.1016/j.jalgebra.2026.04.041}.
 
 \bibitem[Be]{BekkaAmenable}
@@ -4180,7 +4160,7 @@ Math. Z. \textbf{212} (1993), no.~2, 293--299,
 \doi{10.1007/BF02571659}.
 
 \bibitem[BK]{BK}
-Bruce Blackadar and Eberhard Kirchberg,
+B.~Blackadar and E.~Kirchberg,
 \emph{Generalized inductive limits of finite-dimensional
 $C^*$-algebras},
 Math. Ann. \textbf{307} (1997), no.~3, 343--380,
@@ -4189,9 +4169,8 @@ Math. Ann. \textbf{307} (1997), no.~3, 343--380,
 \bibitem[CDE]{CDE}
 J.~R. Carri\'on, M.~Dadarlat, and C.~Eckhardt,
 \emph{On groups with quasidiagonal $C^*$-algebras},
-preprint first posted October~15, 2012, \arxiv{1210.4050};
 J. Funct. Anal. \textbf{265} (2013), no.~1, 135--152,
-\doi{10.1016/j.jfa.2013.04.004}.
+\doi{10.1016/j.jfa.2013.04.004}, \arxiv{1210.4050}.
 
 \bibitem[CLV]{CLV}
 M.~D.~E. Conder, G.~Liversidge, and M.~R. Vsemirnov,
@@ -4332,7 +4311,7 @@ American Mathematical Society, Providence, RI, 1997.
 \bibitem[LuO]{LuO}
 A.~Lubotzky and I.~Oppenheim,
 \emph{Non $p$-norm approximated groups},
-\arxiv{1807.06790}.
+preprint, 2018, \arxiv{1807.06790}.
 
 \bibitem[Mal]{Malcev}
 A.~I.~Mal'cev,
@@ -4367,14 +4346,9 @@ Exp. Math. \textbf{24} (2015), no.~3, 371--374,
 \bibitem[OAI]{OAI}
 OpenAI,
 \emph{Nonsofic groups exist},
-in \emph{Ten advances in mathematics and theoretical computer science}
-(non-refereed corporate research document),
-Chapter~3, 78--95, version updated August~6, 2026,
+in \emph{Ten advances in mathematics and theoretical computer science},
+Chapter~3, 78--95, 2026,
 \url{https://cdn.openai.com/pdf/ten-proofs-oai.pdf}.
-The chapter appeared under the title \emph{A counterexample to the
-soficity conjecture}, Chapter~3, 77--93, in the original version of the
-document, now at
-\url{https://cdn.openai.com/pdf/ten-proofs-oai-original.pdf}.
 
 \bibitem[Os]{OsinAH}
 D.~Osin,
