@@ -2482,21 +2482,19 @@ compression creates no invariant tensors of any finite type; the
 commutant identity \eqref{eq:pinning} is the case
 $\End(V)\cong V\otimes V^{*}$.
 \leanverified{Criterion/TensorInvariantRigidity}{GroupApproximation.TensorInvariantRigidity.manuscriptTensorInvariantRigidity}
-The badge covers the tensor constructions only.  Taking the invariant to be the
+Taking the invariant to be the
 Zariski closure of the image in $\GL(V)$, whose closed subgroups
 satisfy the descending chain condition, gives
 $\overline{\sigma(t\Gamma t^{-1})}^{\,Z}=\overline{\sigma(\Gamma)}^{\,Z}$:
 an exact finite-dimensional representation assigns the compressed
-subgroup and the subgroup the same algebraic envelope.  The deduction is
-formalized, with the descending chain condition as its one hypothesis:
-given a conjugation-stable notion of closed subgroup whose closed
-subgroups are well-founded under $\supseteq$, and a monotone envelope
-landing in them, a one-sided compression leaves the envelope fixed.
+subgroup and the subgroup the same algebraic envelope.  Only the chain
+condition is used: whenever the closed subgroups are well-founded
+under $\supseteq$ and the envelope is monotone and conjugation-stable,
+a one-sided compression leaves the envelope fixed.
 \leanverified{Criterion/ClosedEnvelopeCompression}{GroupApproximation.ClosedEnvelopeCompression.manuscriptEnvelopeCompressionBlind}
-That the closed subgroups of $\GL(V)$ in the Zariski topology satisfy
-the chain condition is classical, and is the input the badge quantifies
-over rather than proves.  Theorem~\ref{thm:transport-variants}(2) is the asymptotic
-counterpart at fixed tensor type.
+The chain condition for Zariski-closed subgroups of $\GL(V)$ is
+classical and is quoted here.  Theorem~\ref{thm:transport-variants}(2)
+is the asymptotic counterpart at fixed tensor type.
 \end{remark}
 
 \paragraph{Why the corona argument is different.}
@@ -2646,8 +2644,7 @@ For a countable group $G_1$, the \emph{MF radical} is
 \]
 a normal subgroup of $G_1$.  The intersection does not change if the
 dimension sequences are allowed to be arbitrary positive rather than
-strictly increasing (Proposition~\ref{prop:mf-equivalences}); that is
-the form the formalization quantifies over.  This is the
+strictly increasing (Proposition~\ref{prop:mf-equivalences}).  This is the
 operator-norm analogue of
 the invisible subgroups of \cite[Definitions~2.5--2.7]{SlofstraCorrelations}
 and of the metric-ultraproduct approximation framework of \cite{NST}.
@@ -3535,9 +3532,7 @@ while the linear group $V\leq\GL_4(\mathbb Q)$ is exact
 to exactness of the reduced group algebra \cite{KWExact}.  The canonical trace
 and stable finiteness follow as in Lemma~\ref{lem:faithfultrace}.  Finally, an
 MF embedding of $\Cred(W)$ would restrict to a faithful norm-corona model of
-the canonical group unitaries, contradicting that $W$ is not MF\@.  All parts
-of this paragraph except exactness are also verified in Lean;
-the present formal library has no definition of exact $C^*$-algebras.
+the canonical group unitaries, contradicting that $W$ is not MF\@.
 
 \paragraph{A simple sofic envelope.}
 There is a countable simple sofic group $S_{\mathrm{simp}}$ with
@@ -3660,9 +3655,8 @@ Adian--Rabin construction \cite{Rabin58}, the set of finite
 presentations of non-MF groups is not even recursively enumerable.
 \end{corollary}
 
-This corollary carries one classical literature input, used only here:
-the Adian--Rabin construction itself \cite{Rabin58}, which we have not
-formalized.  What the construction supplies is a computable map taking
+The Adian--Rabin construction \cite{Rabin58} is quoted here and used
+nowhere else.  It supplies a computable map taking
 an instance $(P,w)$ of the word problem of a fixed finitely presented
 group with undecidable word problem to a finite presentation whose
 group is trivial --- hence MF --- when $w=1$, and contains $E$ ---
@@ -3689,12 +3683,9 @@ and negative cases from presentations.
 The phenomenon also has infinite multiplicity, in two senses that need
 no new analysis.  The groups $E\times\mathbb Z^{k}$ for $k\ge0$ are
 finitely presented, pairwise nonisomorphic --- their abelianizations
-have distinct torsion-free ranks --- and non-MF, each containing $E$
-(Lemma~\ref{lem:permanence}(1)).  That paragraph is machine-checked,
-with one deliberate difference: the formalization separates the members
-by counting homomorphisms into $\mathbb Z/2$, a count that determines
-$k$, rather than by torsion-free rank.  The two read the same
-invariant, but the argument below the badge is the counting one.
+have distinct torsion-free ranks, equivalently distinct numbers of
+homomorphisms to $\mathbb Z/2$ --- and non-MF, each containing $E$
+(Lemma~\ref{lem:permanence}(1)).
 \leanverified{Sofic/ProductMultiplicity}{GroupApproximation.ProductMultiplicity.manuscriptInfiniteMultiplicity}
 Beyond finite presentation, pairing $E$
 with the continuum of pairwise nonisomorphic two-generator groups of
@@ -3706,15 +3697,9 @@ isomorphism types $N$ --- each such $N$ embeds in $X$ as a finitely
 generated subgroup, a countable group has only countably many finitely
 generated subgroups, and the types $N$ are pairwise nonisomorphic.  A
 map with countable fibres from a continuum-sized family has
-continuum-sized image.  The counting argument of this second paragraph
-is machine-checked, conditionally on Neumann's family: the existence of
-a continuum of pairwise nonisomorphic two-generator groups is a
-quantified hypothesis of the formal statement, not a formalized
-theorem, and remains the literature input \cite{Neumann37}.  What is
-verified is the manuscript's own step on top of it --- that the
-products need not be pairwise nonisomorphic even when the factors are,
-and that countability of the fibres is what recovers a continuum of
-distinct isomorphism types.
+continuum-sized image.  The counting step is needed because the
+products can fail to be pairwise nonisomorphic even when the factors
+are.  Neumann's family is quoted, not reproved \cite{Neumann37}.
 \leanverified{Sofic/ContinuumMultiplicity}{GroupApproximation.ContinuumMultiplicity.manuscriptContinuumMultiplicity}
 
 \clearpage
@@ -3828,8 +3813,7 @@ from the construction's data to the conclusion is proved: given such
 routing data, there is a two-generated, finitely presented,
 torsion-free property-\textup{(T)} group equal to its own MF radical,
 and every nontrivial quotient of such a group also fails to be MF\@.
-It is that implication, with the routing datum as a hypothesis, that
-the two badges below certify; neither is an unconditional statement.
+Both statements assume the routing data; neither is unconditional.
 \leanverified{Sofic/FullMFRadicalEndpoint}{GroupApproximation.FullMFRadicalEndpoint.exists_twoGenerated_finitelyPresented_torsionFree_kazhdan_fullMFRadical}
 \leanverified{Sofic/FullMFRadicalEndpoint}{GroupApproximation.FullMFRadicalEndpoint.exists_group_with_every_nontrivial_quotient_not_isCDEOperatorMF}
 Constructing the routing data uses the Hull--Osin small-cancellation
@@ -3885,7 +3869,7 @@ $*$-subalgebra gives uniqueness, while the left-regular coordinate proves
 injectivity.
 
 The maximal and reduced algebras separate already at the level of
-finiteness.  The algebraic mechanism is machine-checked in full:
+finiteness, by an algebraic mechanism:
 
 \begin{proposition}[proper compression forbids finiteness]\label{prop:proper-isometry}
 Let $A$ be a unital $C^*$-algebra (a unital star ring suffices)
