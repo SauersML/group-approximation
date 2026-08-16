@@ -1,6 +1,7 @@
 import GroupApproximation.Algebra.PermutationalWreathSimple
 import GroupApproximation.Sofic.AscendingHNNStabilizer
 import GroupApproximation.Sofic.TorsionCompressionCollapse
+import GroupApproximation.Sofic.ProjectionCompressionCollapse
 
 /-!
 # The ascending-HNN lamp is a torsion compression witness
@@ -148,6 +149,77 @@ theorem commutator_witnessLamp_ne_one {k₀ : K} (hk₀ : k₀ ≠ 1) {a₀ : Γ
   rw [← hlamp]
   congr 1
   exact map_inv (Lamp.singleHom (K := K) (tSite α hα)) k₀
+
+/-! ## The unconditional involutive endpoint -/
+
+section Unconditional
+
+variable {Γ₀ : Type} [Group Γ₀] (β : Γ₀ →* Γ₀) (hβ : Function.Injective β)
+variable {K₀ : Type} [Group K₀] [DecidableEq (Cosets β hβ)]
+
+omit [DecidableEq (Cosets β hβ)] in
+include hβ in
+/-- The base copy inside the wreath product is isomorphic to `Γ`, so it
+inherits property `(T)`. -/
+theorem baseSub_hasKazhdanPropertyT (hΓ : HasKazhdanPropertyT.{0, 0} Γ₀) :
+    HasKazhdanPropertyT.{0, 0} ↥(baseSub (K := K₀) β hβ) := by
+  have hf : Function.Injective
+      ((inr : Vertical β hβ →* WreathV (K := K₀) β hβ).comp
+        (iotaVertical β hβ)) :=
+    inr_injective.comp (iotaVertical_injective β hβ)
+  exact HasKazhdanPropertyT.of_mulEquiv (MonoidHom.ofInjective hf).symm hΓ
+
+omit [DecidableEq (Cosets β hβ)] in
+include hβ in
+/-- The stable letter compresses the base copy: this is the HNN relation. -/
+theorem wreathT_compress {w : WreathV (K := K₀) β hβ}
+    (hw : w ∈ baseSub β hβ) :
+    wreathT β hβ * w * (wreathT β hβ)⁻¹ ∈ baseSub (K := K₀) β hβ := by
+  obtain ⟨γ, rfl⟩ := (mem_baseSub_iff β hβ).mp hw
+  have hconj : wreathT β hβ *
+      (inr (iotaVertical β hβ γ) : WreathV (K := K₀) β hβ) * (wreathT β hβ)⁻¹
+      = inr (iotaVertical β hβ (β γ)) := by
+    rw [wreathT, ← map_inv, ← map_mul, ← map_mul, vertical_compress]
+  rw [hconj]
+  exact (mem_baseSub_iff β hβ).mpr ⟨β γ, rfl⟩
+
+include hβ in
+/-- An involutive lamp value gives an involutive compression witness. -/
+theorem isInvolutiveCompressionWitness_witnessLamp {k₀ : K₀}
+    (hk2 : k₀ * k₀ = 1) :
+    InvolutionCollapseEndpoint.IsInvolutiveCompressionWitness
+      (baseSub β hβ) (wreathT β hβ) (witnessLamp β hβ k₀) := by
+  refine ⟨?_, fun _ hw => commute_compressed_witnessLamp β hβ k₀ hw,
+    fun _ h₁ _ h₂ => commute_orbit_witnessLamp β hβ k₀ h₁ h₂⟩
+  have hsingle : Lamp.single (tSite β hβ) k₀ * Lamp.single (tSite β hβ) k₀
+      = 1 := by
+    have h1 := map_mul (Lamp.singleHom (K := K₀) (tSite β hβ)) k₀ k₀
+    rw [hk2, map_one] at h1
+    simpa using h1.symm
+  rw [witnessLamp, ← map_mul, hsingle, map_one]
+
+include hβ in
+/-- **The ascending-HNN endpoint, unconditional for involutive lamps.**  A
+property-`(T)` group with a *proper* injective self-embedding gives a
+permutational wreath product that is not MF: the one-site lamp at the witness
+site is an involutive compression witness, and properness makes its commutator
+with a mover nontrivial.
+
+No soficity, residual finiteness or finite-index hypothesis is used. -/
+theorem not_isCDEOperatorMF_wreath
+    [Countable (WreathV (K := K₀) β hβ)]
+    (hΓ : HasKazhdanPropertyT.{0, 0} Γ₀)
+    {k₀ : K₀} (hk₀ : k₀ ≠ 1) (hk2 : k₀ * k₀ = 1)
+    {a₀ : Γ₀} (ha₀ : a₀ ∉ Set.range β) :
+    ¬ IsCDEOperatorMF (WreathV (K := K₀) β hβ) :=
+  ProjectionCompressionCollapse.not_isCDEOperatorMF_of_involutiveWitness
+    (baseSub_hasKazhdanPropertyT β hβ hΓ)
+    (fun _ hw => wreathT_compress β hβ hw)
+    (isInvolutiveCompressionWitness_witnessLamp β hβ hk2)
+    ((mem_baseSub_iff β hβ).mpr ⟨a₀, rfl⟩)
+    (commutator_witnessLamp_ne_one β hβ hk₀ ha₀)
+
+end Unconditional
 
 end MarkedCompression
 end GroupApproximation

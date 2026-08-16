@@ -53,6 +53,8 @@ formalized in this pass; **TODO** not yet formalized.
 | 30.6 co-amenable | strongly co-amenable subgroups have sofic coset actions | DONE-NEW | `Sofic/CoAmenableActionSofic` (`StronglyCoAmenable`, `isSoficAction_quotient_of_stronglyCoAmenable`, `normalCore_inf`) |
 | 30.7 | LERA groups: transitive actions are sofic | DONE-NEW | `Sofic/CoAmenableActionSofic.isSoficAction_quotient_of_isLERA`; the non-transitive case is closed in `Sofic/SoficActionOrbits` |
 | 34.1 | the witness site `tΓ` has stabiliser exactly `α(Γ)` in `Γ` | DONE-NEW | `Sofic/AscendingHNNStabilizer.smul_tSite_eq_iff` |
+| 34.2-34.3 | the one-site lamp at the witness site is a torsion (and involutive) compression witness for the base copy and the stable letter | DONE-NEW | `Sofic/AscendingHNNWreathWitness` (`isTorsionCompressionWitness_witnessLamp`, `isInvolutiveCompressionWitness_witnessLamp`, `commute_compressed_witnessLamp`, `commute_orbit_witnessLamp`) |
+| 34.4 | properness supplies a nontrivial defect, and the unconditional involutive endpoint | DONE-NEW | `Sofic/AscendingHNNWreathWitness` (`commutator_witnessLamp_ne_one`, `not_isCDEOperatorMF_wreath`): a property-(T) group with a proper injective self-embedding gives a non-MF wreath product, with no soficity, residual finiteness or finite-index hypothesis |
 | 43.3 | generation bound for the wreath product | DONE-NEW | `Algebra/PermutationalWreathSimple.wreath_eq_closure` |
 | 52.2 | simple quotients of a lamp group come from one coordinate | DONE-NEW | `Algebra/PermutationalWreathSimple.exists_site_bijective_of_simple_quotient` |
 | 31.1-31.2 | universally action-sofic HNN theorem | DONE-NEW | `Sofic/AscendingHNNCosetActionSofic` (`UniversallyActionSofic`, `isSoficAction_vertical_cosets_of_uas`) |
