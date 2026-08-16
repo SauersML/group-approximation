@@ -2855,11 +2855,11 @@ $q\colon G_1\to G_1/N$, put
 An element belongs to $\operatorname{cl}_{\mathrm{MF}}(N)$ exactly when
 every corona representation of $G_1$ that maps $N$ to the identity maps
 it to the identity.
-\leanverified{Sofic/MFRelationClosure}{GroupApproximation.mem_actualCoronaMFClosure_iff}
 The operation $N\mapsto\operatorname{cl}_{\mathrm{MF}}(N)$ is extensive,
 monotone, and idempotent on normal subgroups;
 $G_1/\operatorname{cl}_{\mathrm{MF}}(N)$ is MF; and
 $\operatorname{cl}_{\mathrm{MF}}(N)=N$ exactly when $G_1/N$ is MF.
+\leanverified{Sofic/MFRelationClosure}{GroupApproximation.mem_actualCoronaMFClosure_iff}
 \leanverified{Sofic/MFRelationClosure}{GroupApproximation.manuscriptRelationClosure}
 \end{proposition}
 
@@ -3254,6 +3254,9 @@ the witness altogether.
 
 \begin{theorem}[torsion collapse]\label{thm:torsion-collapse}
 Let $H$ be countable, let $L\le H$ have property~\textup{(T)}, let
+\leanverified{Sofic/TorsionSpectralCollapse}{GroupApproximation.TorsionSpectralCollapse.actualCoronaMFInvisible_of_torsionWitness}
+\leanverified{Sofic/TorsionSpectralCollapse}{GroupApproximation.TorsionSpectralCollapse.torsionCollapseDefect_le_actualCoronaMFResidual_of_kazhdan}
+\leanverified{Sofic/TorsionSpectralCollapse}{GroupApproximation.TorsionSpectralCollapse.actualCoronaMFResidual_eq_torsionCollapseDefect_of_kazhdan}
 $s\in H$ satisfy $s\gamma s^{-1}\in L$ for every $\gamma\in L$, and
 let $k\in H$ have finite order.  If the compressed copy $sLs^{-1}$
 centralizes $k$ and the conjugates $\gamma k\gamma^{-1}$,
@@ -3262,9 +3265,6 @@ $\gamma\in L$, is invisible in every corona representation of $H$; the
 normal closure of all such commutators, over all finite-order witnesses
 for $(L,s)$, lies in $\operatorname{Rad}_{\mathrm{MF}}(H)$, with
 equality whenever the corresponding quotient of $H$ is MF.
-\leanverified{Sofic/TorsionSpectralCollapse}{GroupApproximation.TorsionSpectralCollapse.actualCoronaMFInvisible_of_torsionWitness}
-\leanverified{Sofic/TorsionSpectralCollapse}{GroupApproximation.TorsionSpectralCollapse.torsionCollapseDefect_le_actualCoronaMFResidual_of_kazhdan}
-\leanverified{Sofic/TorsionSpectralCollapse}{GroupApproximation.TorsionSpectralCollapse.actualCoronaMFResidual_eq_torsionCollapseDefect_of_kazhdan}
 \end{theorem}
 
 \begin{proof}
