@@ -1433,7 +1433,11 @@ vector.  Three explicit words in $x,y,z$ act on the translation
 lattice as elementary transvections.  Consequently every lattice
 element is a product of two linear-subgroup conjugates of basis
 translations --- a two-conjugate normal form proved inside the
-presentation.  A conjugate $rvr^{-1}$ with $r$ in the linear subgroup
+presentation.  The three words, and the elimination that turns them
+into the normal form, are finite data of the same kind as the
+thirteen reductions of Step~2 and, like those, are carried out in the
+accompanying development rather than printed here.
+A conjugate $rvr^{-1}$ with $r$ in the linear subgroup
 displaces the fixed vector $p$ exactly as much as $v$ does.  Each
 control translation displaces $p$ by less than
 $1/64+\kappa/64+1/64=(\kappa+2)/64\le3/64$, its displacement bound at
@@ -3022,15 +3026,22 @@ and
  (1-\Ad U_{a,n})\,\Ad U_{s,n}^{*}P_n
  =\Ad U_{s,n}^{*}\,(1-\Ad U_{\delta,n})\,P_n ,
 \]
-whose norm the Kazhdan gap makes small; so the corner lies almost
+whose norm the Kazhdan gap makes small.  Each $\delta$ is a word in
+$S$, and the gap controls the displacement it induces one letter at a
+time, so this is one more threshold per generator --- $|S|$ of them,
+all fixed before the stage is chosen.  So the corner lies almost
 inside its image under $s$.  Then the equal-rank reversal estimate of
 Section~\ref{app:finite-stage} turns that containment around: $Q_n$ is
 a unitary conjugate of $P_n$ and so has the same rank, and for two
 projections of equal finite rank a containment within $\varepsilon<1$
 in one direction gives one within
-$\varepsilon/\sqrt{1-\varepsilon^{2}}$ in the other.  Equal rank
-is what replaces the absence of a proper isometry; the one-sided
-inclusion $sLs^{-1}\le L$ is used, and nothing more.
+$\varepsilon/\sqrt{1-\varepsilon^{2}}$ in the other.  That estimate is
+finiteness again and not a norm trick: the leakage bound makes the
+compression $\operatorname{ran}P_n\to\operatorname{ran}Q_n$ injective,
+and equal rank promotes an injective endomorphism of a
+finite-dimensional space to a surjective one.  Equal rank is what
+replaces the absence of a proper isometry, and the one-sided inclusion
+$sLs^{-1}\le L$ is the only group-theoretic input.
 \leanverified{Sofic/InvolutionCollapseEndpoint}{GroupApproximation.InvolutionCollapseEndpoint.stage_transport_bound}
 
 Compressing into the corner costs a capture term
