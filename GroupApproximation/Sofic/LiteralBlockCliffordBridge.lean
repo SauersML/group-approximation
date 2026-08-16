@@ -4,7 +4,39 @@ import GroupApproximation.Sofic.BlockCliffordTowerSofic
 /-!
 # The lamp factor of the literal group is a block Clifford group
 
-**DRAFT — never compiled.**
+**DRAFT — never compiled, and known to be on the wrong carrier.**
+
+**Defect, recorded rather than quietly fixed.**  This module opens
+`LiteralBlockNormalForm`, so `Vertical` here is
+`PresentedGroup verticalRelators`.  `BlockCliffordTowerSofic.isSofic_blockClifford_tower`
+wants `MarkedCompression.Vertical α hα`, the telescope.  These are different
+types with nothing relating them in the repository, so
+`markedGroup_isSofic_of_completeBlocks` below passes a homomorphism of the
+first kind where one of the second kind is expected and **cannot typecheck**.
+Everything above the endpoint — the sigma decomposition, the generator
+dictionary, the relator correspondence, `lampEquiv`, `closure_block_equivariant`,
+`isIrreflexive_of_siteA_ne_siteB` — is carrier-honest and survives; the last
+two declarations do not.
+
+**The repair is not the missing isomorphism.**  There is a route that stays on
+the telescope throughout and needs no comparison of the two models:
+
+* `LiteralLampKernelSplit.markedGroupEquivSemidirect` already presents the
+  literal group as `lampKernel ⋊ V` over the telescope;
+* `LiteralLampKernelSplit.cosetLamp` indexes the lamps by
+  `Cosets alpha conjD_injective`, the same site type
+  `LiteralBlockGeometry` uses;
+* `LiteralBlockGeometry.Block`, `blockOf` and `adj_of_blockOf_eq` are stated
+  over that site type;
+* `LiteralLampKernelAmalgam`'s block development is parameterized in
+  `Block`, `Site`, `blockOf` and the ambient group, so it instantiates at
+  `N := lampKernel`, `c := cosetLamp` directly.
+
+So the identification below should be redone with those, and this module kept
+only for the parts listed above.  Rewriting it that way is the outstanding
+work; it is recorded here rather than done because the correction arrived at
+the end of a session and a rewrite nobody compiles is worth less than an
+accurate note about which half is sound.
 
 `Sofic/LiteralBlockNormalForm.lean` computes the literal group as
 `Model = LampFactor ⋊[lampAutHom] Vertical`, where `LampFactor` is the Clifford

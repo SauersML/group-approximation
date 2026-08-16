@@ -365,9 +365,22 @@ theorem mark_mem_lampKernel : mark ∈ lampKernel :=
 
 /-! ## Site lamps
 
-The conjugates `c_ξ = g c g⁻¹` of the source document's §2, indexed by the
-splitting rather than by the coset space; the passage to `X = V/B` is the
-block-geometry lane's business. -/
+The conjugates `c_ξ = g c g⁻¹` of the source document's §2, indexed here by
+`V` rather than by the coset space `X = V/B`.
+
+**Read this before using them.**  `Sofic/LiteralBlockNormalForm.lean` carries
+a parallel site-indexed development — `siteLamp : Site → MarkedGroup` by
+`Quotient.liftOn'` over its `Site = Vertical ⧸ baseSubgroup`, with
+`siteLamp_sq`, `siteLamp_origin` and the braiding — but over the *presented*
+seven-letter model of `E/⟨⟨c⟩⟩`, not over the telescope.  The two are about
+the same elements of `E` and nothing yet identifies the two models.
+
+The descent below is to the telescope's own site set
+`Cosets alpha conjD_injective`, which is the site set
+`Sofic/LiteralBlockGeometry.lean` already uses (it opens `MarkedCompression`
+and states `blockOf`, `Block` and `blockOf_smul` for exactly this `Vertical`).
+So this is not a third indexing: it is the coordinate system that the block
+geometry, the telescope filtration and the soficity endpoint all share. -/
 
 /-- The lamp carried to the site indexed by `v ∈ V`. -/
 def siteLamp (v : V) : MarkedGroup := sect v * lamp * (sect v)⁻¹
@@ -394,6 +407,66 @@ theorem sect_conj_siteLamp (w v : V) :
 
 @[simp] theorem retraction_siteLamp (v : V) : retraction (siteLamp v) = 1 :=
   (mem_lampKernel_iff _).mp (siteLamp_mem_lampKernel v)
+
+/-! ### Descent to the site set `X = V/B`
+
+The site lamp depends only on the coset `vB`, because the base centralises the
+lamp letter — dossier §2, the well-definedness of `c_{gB} := g c g⁻¹`. -/
+
+/-- The site set `X = V/B` of the dossier, in the telescope's coordinates. -/
+abbrev Site : Type := Cosets alpha conjD_injective
+
+/-- Right translation by the level-zero base does not move a site lamp. -/
+theorem siteLamp_mul_iota (v : V) (γ : gammaBar) :
+    siteLamp (v * iotaVertical alpha conjD_injective γ) = siteLamp v := by
+  have hcomm : affineToMarked γ * lamp * (affineToMarked γ)⁻¹ = lamp := by
+    rw [affineToMarked_apply,
+      ← (lamp_commutes_base (LiteralBaseCompleteness.baseAffineEquiv.symm γ)).eq]
+    group
+  simp only [siteLamp, map_mul, sect_iota]
+  calc sect v * affineToMarked γ * lamp * (sect v * affineToMarked γ)⁻¹
+      = sect v * (affineToMarked γ * lamp * (affineToMarked γ)⁻¹) *
+          (sect v)⁻¹ := by group
+    _ = sect v * lamp * (sect v)⁻¹ := by rw [hcomm]
+
+/-- The lamp attached to a site. -/
+def cosetLamp (ξ : Site) : MarkedGroup :=
+  Quotient.liftOn' ξ siteLamp
+    (by
+      intro a b hab
+      rw [QuotientGroup.leftRel_apply] at hab
+      obtain ⟨γ, hγ⟩ := hab
+      have hb : b = a * iotaVertical alpha conjD_injective γ := by
+        rw [hγ]; group
+      rw [hb, siteLamp_mul_iota])
+
+@[simp] theorem cosetLamp_mk (v : V) :
+    cosetLamp (QuotientGroup.mk v : Site) = siteLamp v := rfl
+
+@[simp] theorem cosetLamp_rootCoset :
+    cosetLamp (rootCoset alpha conjD_injective) = lamp := by
+  show cosetLamp (QuotientGroup.mk 1 : Site) = lamp
+  rw [cosetLamp_mk, siteLamp_one]
+
+/-- **Equivariance of the site lamps.**  This is the field a bundled
+telescope-core instantiation needs in order to see the base permuting the
+block groups; with the block lane's `blockOf_smul` it is the site-level half
+of block equivariance. -/
+theorem cosetLamp_smul (v : V) (ξ : Site) :
+    cosetLamp (v • ξ) = sect v * cosetLamp ξ * (sect v)⁻¹ := by
+  obtain ⟨u, rfl⟩ := QuotientGroup.mk_surjective ξ
+  rw [MulAction.Quotient.smul_mk, smul_eq_mul, cosetLamp_mk, cosetLamp_mk,
+    sect_conj_siteLamp]
+
+theorem cosetLamp_mem_lampKernel (ξ : Site) : cosetLamp ξ ∈ lampKernel := by
+  obtain ⟨u, rfl⟩ := QuotientGroup.mk_surjective ξ
+  rw [cosetLamp_mk]
+  exact siteLamp_mem_lampKernel u
+
+theorem cosetLamp_sq (ξ : Site) : cosetLamp ξ ^ 2 = 1 := by
+  obtain ⟨u, rfl⟩ := QuotientGroup.mk_surjective ξ
+  rw [cosetLamp_mk]
+  exact siteLamp_sq u
 
 /-! ## The internal split -/
 
