@@ -279,5 +279,120 @@ theorem hasInvariantMean_of_extension (hN : HasInvariantMean N)
 
 end Extension
 
+/-! ## Directed unions, in the mean formulation -/
+
+section DirectedMean
+
+open Filter Topology
+
+variable {ι : Type*} [Nonempty ι] [SemilatticeSup ι] {G : Type*} [Group G]
+  (K : ι → Subgroup G) (m : ∀ i, FunctionMean (K i))
+
+/-- The averages of the restrictions stay in a fixed interval, so they
+converge along the ultrafilter. -/
+theorem directedExists {f : G → ℝ} (h : IsBddFun f) :
+    ∃ L ∈ Set.Icc (-Classical.choose h) (Classical.choose h),
+      Tendsto (fun i ↦ (m i).eval fun x : K i ↦ f (x : G))
+        (indexUltrafilter ι) (nhds L) :=
+  exists_ultrafilter_tendsto_Icc _ _ fun i ↦
+    Set.mem_Icc.mpr (abs_le.mp
+      ((m i).abs_eval_le ⟨Classical.choose h, fun _ ↦ Classical.choose_spec h _⟩
+        fun _ ↦ Classical.choose_spec h _))
+
+/-- The mean of the restrictions, along the fixed ultrafilter. -/
+noncomputable def directedEvalOf {f : G → ℝ} (h : IsBddFun f) : ℝ :=
+  (directedExists K m h).choose
+
+theorem directedEvalOf_tendsto {f : G → ℝ} (h : IsBddFun f) :
+    Tendsto (fun i ↦ (m i).eval fun x : K i ↦ f (x : G))
+      (indexUltrafilter ι) (nhds (directedEvalOf K m h)) :=
+  (directedExists K m h).choose_spec.2
+
+open Classical in
+/-- Extended by zero to unbounded functions. -/
+noncomputable def directedEval (f : G → ℝ) : ℝ :=
+  if h : IsBddFun f then directedEvalOf K m h else 0
+
+theorem directedEval_tendsto {f : G → ℝ} (hf : IsBddFun f) :
+    Tendsto (fun i ↦ (m i).eval fun x : K i ↦ f (x : G))
+      (indexUltrafilter ι) (nhds (directedEval K m f)) := by
+  classical
+  simp only [directedEval, dif_pos hf]
+  exact directedEvalOf_tendsto K m hf
+
+include m in
+/-- **Directed unions in the mean formulation.** -/
+theorem hasInvariantMean_of_directed (hmono : Monotone K)
+    (hcover : ∀ g : G, ∃ i, g ∈ K i) : HasInvariantMean G := by
+  classical
+  refine ⟨{ eval := directedEval K m
+            eval_add := ?_
+            eval_nonneg := ?_
+            eval_const := ?_
+            eval_invariant := ?_ }⟩
+  · intro f g hf hg
+    refine tendsto_nhds_unique (directedEval_tendsto K m (hf.add hg)) ?_
+    have hsplit : (fun i ↦ (m i).eval fun x : K i ↦ (f + g) (x : G)) =
+        fun i ↦ ((m i).eval fun x : K i ↦ f (x : G)) +
+          ((m i).eval fun x : K i ↦ g (x : G)) := by
+      funext i
+      obtain ⟨C, hC⟩ := hf
+      obtain ⟨D, hD⟩ := hg
+      exact (m i).eval_add _ _ ⟨C, fun x ↦ hC _⟩ ⟨D, fun x ↦ hD _⟩
+    rw [hsplit]
+    exact (directedEval_tendsto K m hf).add (directedEval_tendsto K m hg)
+  · intro f hf hpos
+    refine ge_of_tendsto (directedEval_tendsto K m hf)
+      (Filter.Eventually.of_forall fun i ↦ ?_)
+    obtain ⟨C, hC⟩ := hf
+    exact (m i).eval_nonneg _ ⟨C, fun x ↦ hC _⟩ fun x ↦ hpos _
+  · intro c
+    refine tendsto_nhds_unique
+      (directedEval_tendsto K m (IsBddFun.const c)) ?_
+    have hconst : (fun i ↦ (m i).eval fun _ : K i ↦ c) = fun _ ↦ c := by
+      funext i
+      exact (m i).eval_const c
+    rw [hconst]
+    exact tendsto_const_nhds
+  · intro g f hf
+    obtain ⟨C, hC⟩ := hf
+    refine tendsto_nhds_unique
+      (directedEval_tendsto K m ⟨C, fun x ↦ hC _⟩) ?_
+    obtain ⟨i₀, hi₀⟩ := hcover g
+    have heq : ∀ i, i₀ ≤ i →
+        ((m i).eval fun x : K i ↦ f (g * (x : G))) =
+          ((m i).eval fun x : K i ↦ f (x : G)) := by
+      intro i hi
+      have hgi : g ∈ K i := hmono hi hi₀
+      have := (m i).eval_invariant (⟨g, hgi⟩ : K i)
+        (fun x : K i ↦ f (x : G)) ⟨C, fun x ↦ hC _⟩
+      simpa using this
+    have hev : (fun i ↦ (m i).eval fun x : K i ↦ f (g * (x : G))) =ᶠ[
+        (indexUltrafilter ι : Filter ι)]
+        fun i ↦ (m i).eval fun x : K i ↦ f (x : G) := by
+      refine Filter.mem_of_superset
+        (indexUltrafilter_le (Filter.eventually_ge_atTop i₀)) ?_
+      intro i hi
+      exact heq i hi
+    exact (directedEval_tendsto K m ⟨C, fun x ↦ hC _⟩).congr' hev.symm
+
+end DirectedMean
+
+/-- **Locally finite groups carry invariant means.** -/
+theorem hasInvariantMean_of_locallyFinite {G : Type*} [Group G]
+    (h : ∀ S : Finset G, Finite (Subgroup.closure (S : Set G))) :
+    HasInvariantMean G := by
+  classical
+  refine hasInvariantMean_of_directed
+    (K := fun S : Finset G ↦ Subgroup.closure (S : Set G))
+    (fun S ↦ ?_) ?_ ?_
+  · haveI := h S
+    haveI : Fintype (Subgroup.closure (S : Set G)) := Fintype.ofFinite _
+    exact finiteFunctionMean _
+  · intro S T hST
+    exact Subgroup.closure_mono (Finset.coe_subset.mpr hST)
+  · intro g
+    exact ⟨{g}, Subgroup.subset_closure (by simp)⟩
+
 end Amenability
 end GroupApproximation
