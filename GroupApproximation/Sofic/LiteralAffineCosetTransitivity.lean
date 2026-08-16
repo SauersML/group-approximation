@@ -100,7 +100,7 @@ theorem parityRep_apply (e : Fin 3 → ℤ) :
     rw [← ofAdd_zsmul, ← ofAdd_zsmul, ← ofAdd_zsmul, ← ofAdd_add, ← ofAdd_add]
     congr 1
     funext i
-    fin_cases i <;> simp [Pi.single_apply, smul_eq_mul]
+    fin_cases i <;> simp
   rw [parityRep, hsplit, map_mul, map_mul, map_zpow, map_zpow, map_zpow,
     LiteralBaseTranslationLattice.latticeToBase_basis_zero,
     LiteralBaseTranslationLattice.latticeToBase_basis_one,
