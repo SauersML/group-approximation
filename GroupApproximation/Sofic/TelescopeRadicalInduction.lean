@@ -42,8 +42,6 @@ limit lemma, discharged by the caller.
 
 Nothing in this file knows what a lamp is; it is pure radical bookkeeping, and
 applies to any tower whose stages collapse.
-
-Never compiled.
 -/
 
 namespace GroupApproximation
@@ -63,6 +61,33 @@ theorem mem_of_map_mem {N : Subgroup W} [N.Normal]
     x ∈ coronaMFResidual W := by
   rw [coronaMFResidual_eq_comap N hN]
   exact Subgroup.mem_comap.mpr hx
+
+/-- Transport of invisibility across the first isomorphism theorem, forwards:
+an element invisible after passing to the quotient by `ker φ` is invisible after
+applying a surjection `φ` with that kernel. -/
+theorem mem_coronaMFResidual_map {G H : Type u} [Group G] [Group H]
+    (phi : G →* H) (hphi : Function.Surjective phi) {x : G}
+    (hx : QuotientGroup.mk' phi.ker x ∈ coronaMFResidual (G ⧸ phi.ker)) :
+    phi x ∈ coronaMFResidual H := by
+  intro X hX rho
+  have hval : QuotientGroup.quotientKerEquivOfSurjective phi hphi
+      (QuotientGroup.mk' phi.ker x) = phi x := QuotientGroup.kerLift_mk phi x
+  have h := hx X hX
+    (rho.comp (QuotientGroup.quotientKerEquivOfSurjective phi hphi).toMonoidHom)
+  rwa [MonoidHom.comp_apply, MulEquiv.coe_toMonoidHom, hval] at h
+
+/-- Transport of invisibility across the first isomorphism theorem, backwards. -/
+theorem mem_coronaMFResidual_quotient {G H : Type u} [Group G] [Group H]
+    (phi : G →* H) (hphi : Function.Surjective phi) {x : G}
+    (hx : phi x ∈ coronaMFResidual H) :
+    QuotientGroup.mk' phi.ker x ∈ coronaMFResidual (G ⧸ phi.ker) := by
+  intro X hX rho
+  have hval : QuotientGroup.quotientKerEquivOfSurjective phi hphi
+      (QuotientGroup.mk' phi.ker x) = phi x := QuotientGroup.kerLift_mk phi x
+  have h := hx X hX
+    (rho.comp (QuotientGroup.quotientKerEquivOfSurjective phi hphi).symm.toMonoidHom)
+  rwa [MonoidHom.comp_apply, MulEquiv.coe_toMonoidHom, ← hval,
+    MulEquiv.symm_apply_apply] at h
 
 /-! ## The tower -/
 
@@ -90,7 +115,7 @@ from, then every composite stage kernel lies in the radical of the source. -/
 theorem ker_stage_le_coronaMFResidual
     (hbase : (T.stage 0).ker ≤ coronaMFResidual W)
     (hstep : ∀ n, (T.step n).ker ≤ coronaMFResidual (V n))
-    (hnormal : ∀ n, ((T.stage n).ker).Normal)
+    (_hnormal : ∀ n, ((T.stage n).ker).Normal)
     (hpull : ∀ n, ∀ x : W, T.stage n x ∈ coronaMFResidual (V n) →
       x ∈ coronaMFResidual W) :
     ∀ n, (T.stage n).ker ≤ coronaMFResidual W := by
@@ -100,7 +125,7 @@ theorem ker_stage_le_coronaMFResidual
   | succ n _ =>
       intro x hx
       rw [MonoidHom.mem_ker, stage_succ_apply] at hx
-      exact hpull n x (hstep n ((MonoidHom.mem_ker _).mpr hx))
+      exact hpull n x (hstep n (MonoidHom.mem_ker.mpr hx))
 
 /-- The hypothesis `hpull` above is exactly what the pullback supplies once the
 stage kernel is known to be radical; this packages the two together so a caller
@@ -110,13 +135,8 @@ theorem pull_of_ker_le {n : ℕ} [((T.stage n).ker).Normal]
     (hsurj : Function.Surjective (T.stage n)) (x : W)
     (hx : T.stage n x ∈ coronaMFResidual (V n)) :
     x ∈ coronaMFResidual W := by
-  refine mem_of_map_mem hn ?_
   -- transport along the isomorphism `W ⧸ ker (stage n) ≃* V n`
-  have hequiv := QuotientGroup.quotientKerEquivOfSurjective (T.stage n) hsurj
-  have hmem : hequiv (QuotientGroup.mk' _ x) ∈ coronaMFResidual (V n) := by
-    simpa [QuotientGroup.quotientKerEquivOfSurjective] using hx
-  intro X hX rho
-  exact hmem X hX (rho.comp hequiv.symm.toMonoidHom)
+  exact mem_of_map_mem hn (mem_coronaMFResidual_quotient (T.stage n) hsurj hx)
 
 /-! ## The limit -/
 
@@ -143,12 +163,10 @@ theorem coronaMFResidual_eq_ker_limit {P : Type u} [Group P] [Countable P]
   refine le_antisymm ?_ hker
   intro x hx
   rw [coronaMFResidual_eq_comap limit.ker hker, Subgroup.mem_comap] at hx
-  have hequiv := QuotientGroup.quotientKerEquivOfSurjective limit hsurj
-  have himg : limit x ∈ coronaMFResidual P := by
-    intro X hX rho
-    exact hx X hX (rho.comp hequiv.toMonoidHom)
+  have himg : limit x ∈ coronaMFResidual P :=
+    mem_coronaMFResidual_map limit hsurj hx
   rw [hMF, Subgroup.mem_bot] at himg
-  exact (MonoidHom.mem_ker limit).mpr himg
+  exact MonoidHom.mem_ker.mpr himg
 
 end TelescopeRadicalInduction
 end GroupApproximation

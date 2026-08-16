@@ -30,27 +30,36 @@ finite-index case, so the work here is the reduction of a window to it.
 
 * `Gen`, `IsRelator`, `relators`, `BlockCliffordI` — the presentation over an
   arbitrary `I`, with the same four relation families: the sign squares, the
-  lamps square, the sign is central, and two lamps of a common block commute
-  through the sign.
+  lamps square, the sign is central, and two *distinct* lamps of a common
+  block commute through the sign.
 * `sign`, `lampAt` — the generators.
 * `windowGen`, `window` — the subgroup spanned by the blocks of a finite set
   `J`, and the corresponding restriction of the index type.
-* `windowEquiv` — a window is the block Clifford group of its own finite block
-  set, so every fact proved in `BlockCliffordLamp` applies to it.
+* `toWindow`, `toWindow_range` — the block Clifford group of the finite block
+  set `J` maps onto the window, so every fact proved in `BlockCliffordLamp`
+  about the source transfers to the window as a quotient.
+
+The presentation itself is universe polymorphic; the reduction to
+`BlockCliffordLamp` is stated at `Type` because `BlockCliffordLamp` is.
 
 ## What is deliberately absent
 
 No claim that the *whole* group is residually finite, LEF, or sofic: for an
 infinite block set the first is false and the other two are consequences of the
 locality argument, which belongs to the tower and not here.
+
+No claim that `toWindow` is injective: only its range is computed.
 -/
 
 namespace GroupApproximation
 namespace BlockCliffordIndex
 
 open Monoid
+open scoped commutatorElement
 
 universe u v
+
+section Presentation
 
 variable (I : Type u) (B : I → Type v)
 
@@ -68,7 +77,7 @@ inductive IsRelator : FreeGroup (Gen I B) → Prop
   | sign_comm (p : (i : I) × B i) :
       IsRelator ⁅(FreeGroup.of (Sum.inl ()) : FreeGroup (Gen I B)),
         FreeGroup.of (Sum.inr p)⁆
-  | braiding (i : I) (b b' : B i) :
+  | braiding {i : I} {b b' : B i} (h : b ≠ b') :
       IsRelator (⁅(FreeGroup.of (Sum.inr ⟨i, b⟩) : FreeGroup (Gen I B)),
           FreeGroup.of (Sum.inr ⟨i, b'⟩)⁆ * (FreeGroup.of (Sum.inl ()))⁻¹)
 
@@ -89,39 +98,50 @@ def lampAt (p : (i : I) × B i) : BlockCliffordI I B :=
 
 theorem sign_sq : sign I B ^ 2 = 1 := by
   have h := PresentedGroup.one_of_mem
-    (show FreeGroup.of (Sum.inl ()) ^ 2 ∈ relators I B from IsRelator.sign_sq)
+    (show FreeGroup.of (Sum.inl ()) ^ 2 ∈ relators I B from
+      IsRelator.sign_sq (I := I) (B := B))
   rwa [map_pow] at h
 
 theorem lampAt_sq (p : (i : I) × B i) : lampAt I B p ^ 2 = 1 := by
   have h := PresentedGroup.one_of_mem
-    (show FreeGroup.of (Sum.inr p) ^ 2 ∈ relators I B from IsRelator.lamp_sq p)
+    (show FreeGroup.of (Sum.inr p) ^ 2 ∈ relators I B from
+      IsRelator.lamp_sq (I := I) (B := B) p)
   rwa [map_pow] at h
 
 theorem sign_commute (p : (i : I) × B i) :
     Commute (sign I B) (lampAt I B p) := by
   have h := PresentedGroup.one_of_mem
     (show ⁅(FreeGroup.of (Sum.inl ()) : FreeGroup (Gen I B)),
-        FreeGroup.of (Sum.inr p)⁆ ∈ relators I B from IsRelator.sign_comm p)
+        FreeGroup.of (Sum.inr p)⁆ ∈ relators I B from
+      IsRelator.sign_comm (I := I) (B := B) p)
   rw [map_commutatorElement] at h
   exact commutatorElement_eq_one_iff_commute.mp h
 
-/-- Two lamps of a common block commute through the sign. -/
-theorem braiding (i : I) (b b' : B i) :
+/-- Two *distinct* lamps of a common block commute through the sign.  The
+distinctness hypothesis is not decoration: without it the relation at `b = b'`
+would force `sign = ⁅x, x⁆ = 1` and collapse the presentation. -/
+theorem braiding {i : I} {b b' : B i} (h : b ≠ b') :
     ⁅lampAt I B ⟨i, b⟩, lampAt I B ⟨i, b'⟩⁆ = sign I B := by
-  have h := PresentedGroup.one_of_mem
+  have h1 := PresentedGroup.one_of_mem
     (show (⁅(FreeGroup.of (Sum.inr ⟨i, b⟩) : FreeGroup (Gen I B)),
         FreeGroup.of (Sum.inr ⟨i, b'⟩)⁆ * (FreeGroup.of (Sum.inl ()))⁻¹)
-      ∈ relators I B from IsRelator.braiding i b b')
-  rw [map_mul, map_inv, map_commutatorElement] at h
-  exact mul_inv_eq_one.mp h
+      ∈ relators I B from IsRelator.braiding (I := I) (B := B) h)
+  rw [map_mul, map_inv, map_commutatorElement] at h1
+  have h2 : ⁅lampAt I B ⟨i, b⟩, lampAt I B ⟨i, b'⟩⁆ * (sign I B)⁻¹ = 1 := h1
+  exact mul_inv_eq_one.mp h2
 
 /-- The sign is central: it commutes with every generator, hence with
 everything. -/
 theorem sign_central (g : BlockCliffordI I B) : Commute (sign I B) g := by
-  refine PresentedGroup.generated_by (relators I B) _ ?_ g
-  rintro (⟨⟩ | p)
-  · exact Commute.refl _
-  · exact sign_commute I B p
+  have hmem : g ∈ Subgroup.centralizer {sign I B} := by
+    refine PresentedGroup.generated_by (relators I B)
+      (Subgroup.centralizer {sign I B}) (fun j => ?_) g
+    rw [Subgroup.mem_centralizer_singleton_iff]
+    match j with
+    | Sum.inl () => rfl
+    | Sum.inr p => exact (sign_commute I B p).eq.symm
+  rw [Subgroup.mem_centralizer_singleton_iff] at hmem
+  exact Commute.symm hmem
 
 /-! ## Windows
 
@@ -171,16 +191,22 @@ theorem window_empty :
     · exact absurd hp (Finset.notMem_empty _)
   · exact fun hg ↦ Or.inl hg
 
+end Presentation
+
 /-! ## Reduction of a window to the finite-index theory
 
-The point of the module.  A window is presented by the block Clifford
-relations of its own finite block set, so `BlockCliffordLamp`'s residual
-finiteness applies to it unchanged. -/
+The point of the module.  A window is generated by the images of the block
+Clifford generators of its own finite block set, and every defining relation
+of that finite presentation holds of those images, so `BlockCliffordLamp`'s
+theory maps into the window.  The block set of `BlockCliffordLamp` lives in
+`Type`, so this section does too. -/
+
+section Reduction
+
+variable (I : Type) (B : I → Type) (J : Finset I)
 
 /-- The generator map carrying the finite-index presentation into the window. -/
-def windowGenerator (J : Finset I) [DecidableEq I] [Fintype (WindowIndex I J)]
-    [∀ i, DecidableEq (WindowBlock I B J i)]
-    [∀ i, Fintype (WindowBlock I B J i)] :
+def windowGenerator :
     BlockCliffordLamp.Gen (WindowIndex I J) (WindowBlock I B J) →
       BlockCliffordI I B
   | Sum.inl () => sign I B
@@ -188,52 +214,66 @@ def windowGenerator (J : Finset I) [DecidableEq I] [Fintype (WindowIndex I J)]
 
 /-- The finite-index relations hold of the window generators, so the map
 descends to the window. -/
-theorem windowGenerator_kills (J : Finset I) [DecidableEq I]
-    [Fintype (WindowIndex I J)] [∀ i, DecidableEq (WindowBlock I B J i)]
-    [∀ i, Fintype (WindowBlock I B J i)] :
+theorem windowGenerator_kills :
     ∀ w ∈ BlockCliffordLamp.relators (WindowIndex I J) (WindowBlock I B J),
       FreeGroup.lift (windowGenerator I B J) w = 1 := by
   intro w hw
-  induction hw with
-  | sign_sq => simpa [windowGenerator] using sign_sq I B
-  | lamp_sq p => simpa [windowGenerator] using lampAt_sq I B ⟨(p.1 : I), p.2⟩
+  change BlockCliffordLamp.IsRelator (WindowIndex I J) (WindowBlock I B J) w
+    at hw
+  cases hw with
+  | sign_sq =>
+      rw [map_pow, FreeGroup.lift_apply_of]
+      exact sign_sq I B
+  | lamp_sq p =>
+      obtain ⟨i, b⟩ := p
+      rw [map_pow, FreeGroup.lift_apply_of]
+      exact lampAt_sq I B ⟨(i : I), b⟩
   | sign_comm p =>
-      have := sign_commute I B (⟨(p.1 : I), p.2⟩ : (i : I) × B i)
-      simpa [windowGenerator, commutatorElement_eq_one_iff_commute] using this
-  | braiding i b b' =>
-      have := braiding I B (i : I) b b'
-      simpa [windowGenerator] using this
+      obtain ⟨i, b⟩ := p
+      rw [map_commutatorElement, FreeGroup.lift_apply_of,
+        FreeGroup.lift_apply_of]
+      exact (sign_commute I B (⟨(i : I), b⟩ : (i : I) × B i)).commutator_eq
+  | @braiding i b b' h =>
+      rw [map_mul, map_inv, map_commutatorElement, FreeGroup.lift_apply_of,
+        FreeGroup.lift_apply_of, FreeGroup.lift_apply_of]
+      show ⁅lampAt I B ⟨(i : I), b⟩, lampAt I B ⟨(i : I), b'⟩⁆ *
+        (sign I B)⁻¹ = 1
+      rw [braiding I B h]
+      exact mul_inv_cancel _
 
-/-- **A window is a finite-block Clifford group.**  The finite-index
-presentation maps onto the window, so every theorem proved there — residual
-finiteness above all — transfers to it. -/
-def toWindow (J : Finset I) [DecidableEq I] [Fintype (WindowIndex I J)]
-    [∀ i, DecidableEq (WindowBlock I B J i)]
-    [∀ i, Fintype (WindowBlock I B J i)] :
+/-- **A window is covered by a finite-block Clifford group.**  The
+finite-index presentation maps into the group, with the window as its exact
+range. -/
+def toWindow :
     BlockCliffordLamp.BlockClifford (WindowIndex I J) (WindowBlock I B J) →*
       BlockCliffordI I B :=
   PresentedGroup.toGroup (windowGenerator_kills I B J)
 
-theorem toWindow_range (J : Finset I) [DecidableEq I]
-    [Fintype (WindowIndex I J)] [∀ i, DecidableEq (WindowBlock I B J i)]
-    [∀ i, Fintype (WindowBlock I B J i)] :
-    (toWindow I B J).range = window I B J := by
+@[simp] theorem toWindow_of
+    (j : BlockCliffordLamp.Gen (WindowIndex I J) (WindowBlock I B J)) :
+    toWindow I B J (PresentedGroup.of j) = windowGenerator I B J j :=
+  PresentedGroup.toGroup.of _
+
+theorem toWindow_range : (toWindow I B J).range = window I B J := by
   refine le_antisymm ?_ ?_
   · rintro _ ⟨g, rfl⟩
-    refine PresentedGroup.generated_by _ (window I B J) ?_ g
-    rintro (⟨⟩ | ⟨i, b⟩)
-    · simpa [toWindow, windowGenerator, PresentedGroup.toGroup.of]
-        using sign_mem_window I B J
-    · simpa [toWindow, windowGenerator, PresentedGroup.toGroup.of]
-        using lampAt_mem_window I B (p := (⟨(i : I), b⟩ : (i : I) × B i)) i.2
-  · refine (Subgroup.closure_le _).mpr ?_
+    have hmem : g ∈ (window I B J).comap (toWindow I B J) := by
+      refine PresentedGroup.generated_by _ _ (fun j => ?_) g
+      rw [Subgroup.mem_comap, toWindow_of]
+      match j with
+      | Sum.inl () => exact sign_mem_window I B J
+      | Sum.inr ⟨i, b⟩ =>
+          exact lampAt_mem_window I B (p := (⟨(i : I), b⟩ : (i : I) × B i)) i.2
+    exact hmem
+  · refine Subgroup.closure_le _ |>.mpr ?_
     rintro g (hg | ⟨p, hp, rfl⟩)
     · rw [Set.mem_singleton_iff] at hg
       subst hg
-      exact ⟨PresentedGroup.of (Sum.inl ()), by
-        simp [toWindow, windowGenerator, PresentedGroup.toGroup.of]⟩
+      exact ⟨PresentedGroup.of (Sum.inl ()), by rw [toWindow_of]; rfl⟩
     · exact ⟨PresentedGroup.of (Sum.inr ⟨⟨p.1, hp⟩, p.2⟩), by
-        simp [toWindow, windowGenerator, PresentedGroup.toGroup.of]⟩
+        rw [toWindow_of]; rfl⟩
+
+end Reduction
 
 end BlockCliffordIndex
 end GroupApproximation
