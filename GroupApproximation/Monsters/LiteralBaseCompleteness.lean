@@ -753,7 +753,6 @@ theorem exists_translation_form {τ : Base}
 
 /-! ## Injectivity -/
 
-set_option maxHeartbeats 1000000 in
 /-- **Completeness of the twenty-relator base presentation.**  The affine
 evaluation is injective; classically, the literal base presents
 `ℤ³ ⋊ SL₃(ℤ)`. -/
