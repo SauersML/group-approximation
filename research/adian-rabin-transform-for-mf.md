@@ -1,0 +1,89 @@
+---
+rg: 2
+id: adian-rabin-transform-for-mf
+kind: claim
+title: An effective Adian-Rabin transformation exists for the MF Markov property
+distinct_from:
+  operator-mf-is-a-markov-property: that is the Markov premise the construction consumes and is established; this is the construction itself, which is what remains open.
+  torsion-free-higman-embedding: that is an embedding theorem for recursively presented groups; this is a computable map on finite presentations with a triviality-versus-containment dichotomy, and Higman embedding is one of the routes it must *avoid* needing.
+artifacts:
+  - non_mf_groups_exist.tex
+  - GroupApproximation/Computability/MarkovMFConsequences.lean
+  - GroupApproximation/Computability/AdianRabinMarkovProperty.lean
+  - GroupApproximation/Computability/CStarRecognitionConsequences.lean
+---
+
+OPEN.  There is a finitely presented group with undecidable word problem and a
+**computable** map taking an instance `(P, w)` of its word problem to a finite
+presentation `P_w` such that
+
+- `G(P_w)` is trivial — hence MF — when `w = 1`, and
+- `E` embeds in `G(P_w)` — hence `G(P_w)` is not MF, by subgroup heredity —
+  when `w != 1`,
+
+together with the correctness equivalence in that form.  In Lean this is the
+fourth field of `MarkovMFConsequences.AdianRabinReduction`: the computable
+`transform` and its `correct` equivalence.  The other three fields are
+inhabited (see [[operator-mf-is-a-markov-property]]), so this single datum is
+the whole remaining input.
+
+This is the manuscript's one declared literature input, used in exactly one
+place: "This corollary carries one classical literature input, used only here:
+the Adian--Rabin construction itself, which we have not formalized."
+
+## The cost, itemized
+
+`Computability/AdianRabinMarkovProperty` records the dependency chain and its
+estimated size, because the honest thing to say about this hole is how big it
+is rather than that it is "routine":
+
+| | Obligation | Estimate |
+|---|---|---|
+| D1 | computable syntax of presentations (the coding layer) | done, see the Markov-property claim |
+| D2 | the word problem of a finite presentation is r.e. — certificate search over conjugated relators | 300--600 lines |
+| D3 | Markov--Post: undecidable word problem for finitely presented semigroups, by simulating a machine with a semi-Thue system | 1000--2000 lines |
+| D4 | Novikov--Boone: a finitely presented group with undecidable word problem, via the Boone--Britton HNN tower | 2500--5000 lines |
+| D5 | the Adian--Rabin construction, effectively: Rabin's chain of HNN extensions and free products, with the collapse-to-trivial induction | 1500--3000 lines |
+| D6 | assembly into `AdianRabinReduction` | 100--200 lines |
+
+Critical path D3 → D4; total on the order of 6000--11000 lines.  Mathlib's
+Britton's Lemma, HNN normal form and `PushoutI` are genuine enablers and cut
+D4 and D5 substantially; D4 has to the best of current knowledge never been
+done in any proof assistant.
+
+## Four shortcuts that do not exist
+
+Recorded so they are not re-attempted:
+
+1. *Only this one Markov property is needed, not all of them.*  True, but
+   Adian--Rabin is uniform in the forbidden group; specializing to this
+   repository's `E` removes no step.
+2. *Use the halting problem as the source instead of the word problem.*  The
+   reduction must output group presentations and its correctness is stated in
+   terms of a group element being trivial, so some finitely presented group
+   with undecidable word problem is unavoidable — D4 cannot be dodged by
+   changing the source.
+3. *Exploit MF-specific structure.*  MF holds for all countable residually
+   finite groups, so the positive side could target more than the trivial
+   group; but Adian--Rabin already targets the trivial group, the strongest
+   positive case, and the difficulty is the negative side plus the collapse
+   dichotomy.
+4. *Use a finitely generated recursively presented group with undecidable word
+   problem.*  Elementary to build, but the decision problem is over **finite**
+   presentations, and bridging the two is Higman embedding — strictly harder
+   than D4.
+
+The one genuinely separable piece is D2, worth roughly 5% of the total: it is
+what upgrades "undecidable" to "not even recursively enumerable", and nothing
+else depends on it.
+
+## A second consumer
+
+`Computability/CStarRecognitionConsequences` parameterizes the same reduction
+over five group-C-star recognition predicates from the manuscript (MF-ness of
+the reduced and maximal group C-star algebras, and finiteness, stable
+finiteness and direct finiteness of the maximal one).  It postulates no
+Adian--Rabin transformation, no construction of a group C-star algebra, and no
+operator-algebra inheritance result: each of its undecidability theorems takes
+the reductions as data.  So this claim gates that lane too, alongside the
+group-C-star semantics those predicates would need.
