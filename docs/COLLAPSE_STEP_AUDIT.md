@@ -645,16 +645,35 @@ why, because each is an easy mistake to make twice.
    theorem's hypotheses as if they governed every step inside its proof is the
    trap here.
 3. **What actually discharges the finite-stage `hrev`** is not a normalizer but
-   the equal-rank reversal estimate: `stage_transport_bound`
-   (`InvolutionCollapseEndpoint.lean:444`) *takes* `hrev` as a hypothesis, and
-   it is discharged by `KazhdanCompressorCorner.one_sub_corner_mul_moved_vanishing`,
-   which chains `one_sub_moved_mul_corner_vanishing` (the easy containment, via
-   `rotated_laplacian_vanishing`, which opens `C.compresses s` to get a single
-   `δ` with `t ι(s) t⁻¹ = ι(δ)` and rewrites the displacement of the rotated
-   corner at `s` as the rotation of its displacement at `δ` — the one-sided
-   relation used exactly once, and used as an equation, not as a normalizer)
-   with `norm_one_sub_mul_flip` at `movedProjection_rank = cornerProjection_rank`.
-   Equal rank is the finite-dimensional stand-in for the absent proper isometry.
+   the equal-rank reversal estimate.  `stage_transport_bound`
+   (`InvolutionCollapseEndpoint.lean:444`) *takes* `hrev` as a hypothesis; the
+   slot is filled inside `no_marked_model` by `h6`, built at
+   `InvolutionCollapseEndpoint.lean:731-736` from
+   `KazhdanCompressorCorner.one_sub_corner_mul_moved_vanishing`
+   (`KazhdanCompressorCorner.lean:492`), and consumed at `:812`.  That lemma
+   chains two things:
+   - the easy containment, `one_sub_moved_mul_corner_vanishing` (`:407`), which
+     factors `(1-Q)P = β(t)·[spectralBelow(H,θ)·(β(t)ᴴP)]` by unitarity alone
+     (`:431-443`) and kills the below-threshold part via
+     `rotated_laplacian_vanishing` (`:319`).  The compression field is touched
+     in exactly one place, `one_sub_map_mul_rotated_vanishing:216`:
+     `obtain ⟨δ, hrel⟩ := C.compresses s`.  Used as an equation, never
+     inverted, never conjugated back by `t⁻¹`.  `δ ∈ ⟨S⟩` enters only through
+     `hgen` and `Submonoid.closure_induction`; since `OpNormVanishing` is a
+     per-element limit and only `|S|` many `δ` ever appear, no uniform
+     word-length bound is needed or assumed.
+   - `norm_one_sub_mul_flip` (`ProjectionRankFlip.lean:140-144`) at
+     `movedProjection_rank = cornerProjection_rank`, the ranks agreeing only
+     because `movedProjection = β(t)·P·β(t)ᴴ` is a unitary conjugate
+     (`rank_unitary_conj`, `ProjectionRankFlip.lean:294`).
+
+   That second step is stable finiteness, not a norm manipulation: the leakage
+   bound makes the compression `range p → range q` injective (`:156-178`), and
+   equal rank promotes injective to surjective through
+   `LinearMap.injective_iff_surjective_of_finrank_eq_finrank` (`:180-183`).
+   Equal rank is the finite-dimensional stand-in for the absent proper
+   isometry — the same implication the three-column display at the head of
+   Section 3 puts in its middle column.  Zero group-theoretic input.
 
 The one-stage argument was kept: it is the content of
 `rem:collapse-finite-stage`, with its constants, both corner estimates and all
@@ -662,3 +681,36 @@ three `InvolutionCollapseEndpoint` badges, and with the crux justified as in
 (3).  Ledger consequence: those three badges now sit under
 `rem:collapse-finite-stage` rather than `thm:collapse`, so `CO.11`–`CO.15`
 need re-anchoring.
+
+### 8.1 Where the axiom attestation for `thm:collapse` actually comes from
+
+Traced because the badge is only as good as the check behind it.
+
+* **The kernel-wide gate reaches it, with no exclusions.**
+  `scripts/Audit.lean:633-635` folds `env.constants` for every name prefixed
+  `GroupApproximation` — no `userWritten`, no `DeclFilter`, no exclusion list —
+  and `:669-678` throws unless the union of axiom closures is contained in
+  `{propext, Classical.choice, Quot.sound}`, with a `decls.size < 100`
+  tripwire against an empty sweep.  `GroupApproximation.lean:290` imports
+  `Sofic.InvolutionCollapseEndpoint`, so the endpoint is in the swept set.
+  `Audit.Scan`'s population (`scripts/Audit/Scan.lean:84-86`) reaches it too,
+  by module root rather than namespace; `DeclFilter`'s exclusions
+  (`DeclFilter.lean:110-123`) match nothing here, and its own docstring
+  (`:80-84`) records that those exclusions apply to the author-shape scans
+  only, never to the axiom gate.
+* **It is hard-gated in CI.**  `prover.yml:535-538` runs the audit with
+  `continue-on-error: true`, and the verdict step at `:588-609` fails the job
+  unless that step's outcome is `success`, counting `skipped` as failure.
+* **One caveat, now closed.**  The independent nanoda re-check
+  (`independent-kernel.yml:163-174`) exports only `headlineTheorems` as roots,
+  and no collapse declaration was on that roster — so the collapse family had
+  namespace-sweep coverage but no independent-kernel coverage except by
+  accident of some other theorem's closure.  The four manuscript wrappers
+  (`manuscriptInvolutiveCollapse`, `manuscriptNormalKazhdanObstruction`, its
+  abstract form, `manuscriptDefectSaturation`) are now on the roster.  The
+  workflow extracts it with `grep -oE '``[A-Za-z0-9_.]+'`, so the comment line
+  added beside them is skipped.
+* **What a `sorry` grep is worth here: nothing.**  Exactly one `sorry` token
+  exists under `GroupApproximation/`, in a docstring
+  (`Sofic/LiteralSoficAssembly.lean:8`), and there are no hand-declared
+  `axiom`s — but that is a grep, and the attestation is the gate above.

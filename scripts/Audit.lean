@@ -523,6 +523,13 @@ def headlineTheorems : List Name :=
    ``NonMFImpact.finiteNormal_obstruction_is_trivial_in_torsionFree_groups,
    ``NonMFImpact.sofic_nonMF_is_hyperlinear_nonMF,
    ``ManuscriptExactWrappers.manuscriptRadicalPortability,
+   -- The collapse family.  These back printed theorems, so they belong on
+   -- the roster the independent kernel re-check takes as roots; the
+   -- namespace-wide axiom sweep below reaches them either way.
+   ``ManuscriptExactWrappers.manuscriptInvolutiveCollapse,
+   ``ManuscriptExactWrappers.manuscriptNormalKazhdanObstruction,
+   ``ManuscriptExactWrappers.manuscriptAbstractNormalKazhdanObstruction,
+   ``ManuscriptExactWrappers.manuscriptDefectSaturation,
    ``KazhdanCliffordConstruction.kazhdanCliffordConstruction,
    ``LiteralNonMFEndpoint.manuscriptTheoremD,
    ``LiteralBaseP13Replay.yFromUZXY_eq,
