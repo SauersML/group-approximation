@@ -805,6 +805,7 @@ import GroupApproximation.Sofic.LiteralNonMFPresentation
 import GroupApproximation.Sofic.LiteralUniformObstruction
 import GroupApproximation.Sofic.ManuscriptExactWrappers
 import GroupApproximation.Sofic.TorsionFreeFiniteNormalLimit
+import GroupApproximation.Sofic.LiteralSoficAssembly
 
 -- Modules that until now compiled only in isolation.  Outside the root import
 -- closure nothing in CI ever built them, so their proofs went unverified in every
