@@ -773,6 +773,7 @@ import GroupApproximation.Sofic.UltraproductIntertwinerTransport
 import GroupApproximation.Sofic.UltraproductScaledTransport
 import GroupApproximation.Sofic.MultiMoverUniversalUpgrade
 import GroupApproximation.Sofic.AscendingHNNSeparableCosetAction
+import GroupApproximation.Sofic.SimpleFullMFRadical
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
