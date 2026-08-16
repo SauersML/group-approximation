@@ -49,49 +49,66 @@ and that hypothesis is **discharged twice**, on both carriers:
 The second is the one `LiteralBlockCliffordBridge`'s warning comment asks for.
 That comment is now stale; the file it wants exists.
 
-## What is actually still open — one structure instance
+## What is actually still open — one theorem
 
-Traced exhaustively 2026-08-16.  Every other link exists:
-
-| Link | Where |
-|---|---|
-| `E ≃* (N_E ⋊ T) ⋊ ℤ`, over the telescope | `LiteralLampKernelSplit.markedGroupEquivCoreByInt` |
-| telescope levels residually finite, and exhausting | `LiteralLampKernelSplit.telescopeLevel_residuallyFinite`, `telescopeLevel_exhausts` |
-| lamp kernel sofic, **fully parameterized** in `Block`, `Site`, `blockOf`, `N`, `c`, `ζ` | `LiteralLampKernelAmalgam.lampKernel_isSofic` |
-| blocks complete, on the coset carrier | `LiteralBlockGeometry.adj_of_blockOf_eq` + `alphaCosetTransitive` |
-| adjacency irreflexive | `LiteralBlockGeometry.adj_irrefl` |
-| the eight-site chart per block | `LiteralBlockGeometry.literalBlockFibreEquivFin` |
-| arbitrary-index block Clifford target | `Sofic/BlockCliffordIndex.lean` |
-
-The single missing input is
+Traced field by field, 2026-08-16.  The target is
 
 ```text
-IsBlockCliffordPresentation Block Site blockOf ↥lampKernel cosetLamp ζ
+IsBlockCliffordPresentation Block Site blockOf ↥lampKernel cosetLamp mark
 ```
 
-over the **coset** carrier.  Of its six fields, three are already available —
-`cosetLamp_sq` gives `c_sq`, and the mark facts give `zeta_sq` and
-`zeta_central`.  The remaining three are the work:
+over the **coset** carrier, and `LiteralLampKernelAmalgam.lampKernel_isSofic`
+is parameterized in exactly these arguments, so nothing else is needed.
 
-* `braid` — distinct sites of one block anticommute through the mark.  The
-  geometry is proved; what is missing is transporting it onto `cosetLamp`.
-* `generated` — the lamps and the mark generate the lamp kernel.
-* `lift` — the universal property.  This is the substantial one: it is the
-  normal-form content again, now for `cosetLamp` inside `lampKernel` rather
-  than for the presented lamp factor.
+| Field | Status |
+|---|---|
+| `c_sq` | `LiteralLampKernelSplit.cosetLamp_sq` |
+| `zeta_sq` | `LiteralNonMFPresentation.mark_sq` |
+| `zeta_central` | `LiteralNonMFPresentation.mark_central` |
+| `braid` | `LiteralCosetBraid.braid_of_blockOf_eq` — landed 2026-08-16 |
+| `generated` | **open** |
+| `lift` | **open** |
 
-`LiteralLampKernelAmalgam.isBlockCliffordPresentation_lampFactor` is the
-analogous instance on the *presented* carrier, and is the model to follow.
+### The two open fields are one theorem
 
-Supplying that one instance yields `IsSofic ↥lampKernel` by
-`lampKernel_isSofic`, then `IsSofic TelescopeCore` by the residually-finite
-locality argument over the levels, then `IsSofic (TelescopeCore ⋊ ℤ)` by
-`SoficIntegerExtension.isSofic_int_semidirectProduct`, and finally
-`markedGroup_isSofic` by transport along `markedGroupEquivCoreByInt`.
+`generated` looks elementary and is not.  `lampKernel` is
+`normalClosure {lamp}`, so an element is a product of conjugates
+`g · lamp · g⁻¹`; the split `E = N_E ⋊ V` rewrites each as
+`m · cosetLamp ξ · m⁻¹` with `m ∈ lampKernel`, so the span of the lamps and the
+mark is all of `lampKernel` exactly when that span is normal *inside*
+`lampKernel`.  Normality there needs the commutator of two lamps to lie in
+`{1, mark}` — and while the `mark` case is now `braid`, the other case,
+
+```text
+¬ Adj ξ η  →  Commute (cosetLamp ξ) (cosetLamp η) ,
+```
+
+**is not proved anywhere.**  That statement is a defining relation of the
+Clifford group of the orbital graph, which is also precisely what `lift`
+asserts.  So the two remaining fields are not two tasks: they are one theorem,
+
+> **the lamp kernel of `E` is the Clifford group of its orbital graph,**
+
+with the relations holding and the universal property among groups satisfying
+them.  Half of the relations are now available — involutivity, centrality of
+the mark, and braiding along adjacency.  The missing half is commutation off
+adjacency, and it carries the universal property with it.
+
+`LiteralLampKernelAmalgam.isBlockCliffordPresentation_lampFactor` is the same
+statement on the *presented* carrier, where it is nearly free because
+`LampFactor` is a `PresentedGroup` and `lampLift` is its universal property.
+On the coset carrier there is no presentation to appeal to; this is the normal
+form itself, and it is the last genuine mathematics between the development and
+`markedGroup_isSofic`.
+
+### What it unlocks, unchanged
+
+`lampKernel_isSofic` → locality over `telescopeLevel_residuallyFinite` →
+`isSofic_int_semidirectProduct` → transport along `markedGroupEquivCoreByInt`.
 
 ## Then, and only then
 
 `markedGroup_isSofic`, and a finitely presented sofic non-MF group,
 strengthening `thm:E` from the finitely generated witness to the source.  Until
-that instance exists and the tree compiles, the manuscript's statement that
+that theorem exists and the tree compiles, the manuscript's statement that
 soficity of `E` is open stays correct and should not be edited.
