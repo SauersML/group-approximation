@@ -52,7 +52,9 @@ formalized in this pass; **TODO** not yet formalized.
 | 37.7B | residually finite ⇒ MF | DONE-PRE | `Sofic/OperatorMFPositiveControls.isOperatorMF_of_residuallyFinite` |
 | 37.7C | subgroups of MF groups are MF | DONE-PRE | `Sofic/OperatorMFPositiveControls.IsOperatorMF.subgroup` |
 | 43.4, 54.2 | the lamp group itself is residually finite for finite `K` | DONE-NEW | `Algebra/PermutationalWreath.lamp_isResiduallyFinite` |
-| 37 | telescope-kernel collapse, exact MF radical | TODO (partial in-repo) | |
+| 36.5-36.8 | radical pullback through a defect quotient; exact radical; defect saturation | DONE-NEW | `Sofic/CoronaRadicalPullback` (`coronaMFResidual_eq_comap`, `coronaMFResidual_eq_of_quotient_isOperatorMF`, `not_isOperatorMF_of_coronaMFResidual_eq_top`) |
+| 41.3 first inclusion | `Rad_MF ≤ Rad_fd` | DONE-PRE | `Sofic/MatricialStabilityRadical.actualCoronaMFResidual_le_fdUnitaryResidual` |
+| 37 | telescope-kernel collapse, exact MF radical | TODO (partial in-repo) | 36.5 now supplies the pullback step |
 | 39 | concrete affine base, index 8, RF skeleton | DONE-PRE | `Sofic/LiteralBaseDoublingIndex`, `Sofic/CommutingLampCollapse`, `Monsters/ExplicitLinearModel` |
 | 41-43 | equality of MF / f.d. / finite residuals | TODO | |
 | 42.7 | intersection of all finite-index subgroups = finite residual | DONE-NEW | `Algebra/FiniteResidual.finiteResidual_eq_normalFiniteResidual` |
