@@ -93,7 +93,8 @@ formalized in this pass; **TODO** not yet formalized.
 | 54.2 kernel clauses | the mod-two lamp group is locally finite, residually finite, amenable, and linear over a field | DONE-NEW | `Algebra/PermutationalWreath.suppIn_finite`, `lamp_isResiduallyFinite`, `Algebra/PermutationalWreathAmenable.lamp_isAmenable`, `Algebra/PermutationalWreathLinear.exists_faithful_linear_representation` |
 | 54.2 endpoint | MF not closed under split extensions | TODO | needs the concrete non-MF wreath witness |
 | 54.3 height half | infinitely many diagonal orbits on the square of the coset space | DONE-NEW | `Sofic/AscendingHNNDoubleCosets` (`no_diagonal_transport`, `injective_diagonal_orbit`); the graph-product half of Cornulier's criterion is still open |
-| 54.3 graph-product half | a finite presentation forces finitely many diagonal orbits | TODO | |
+| 54.4 | the HNN coset square has infinitely many diagonal orbits | DONE-NEW | `Sofic/AscendingHNNDiagonalOrbits.orbit_ray_pair_injective`, separating the ray pairs by height |
+| 54.3 graph-product half | a finite presentation forces finitely many diagonal orbits | TODO | needs graph products and Tietze transformations |
 | 42, 48 | universal factorization and the finite-index lattice correspondence for a subgroup of the finite residual | DONE-NEW | `Algebra/VisibleQuotient` (`existsUnique_factor`, `comap_map_of_finiteIndex`, `map_comap`, `index_comap`, `index_map_of_finiteIndex`, normality both ways); the kill lemmas for finite, finite-action and residually finite targets are in the same file |
 | 54.2A | the invisible radical is intrinsically tame | DONE-NEW | `Algebra/PermutationalWreathRadicalTame` (`lampSub_tame`: every subgroup of the lamp base is locally finite, amenable, residually finite and operator-MF), on the general bridge `isAmenable_of_isLocallyFiniteGroup` |
 

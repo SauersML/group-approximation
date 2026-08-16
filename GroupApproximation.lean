@@ -22,6 +22,7 @@ import GroupApproximation.Computability.MarkovMFConsequences
 import GroupApproximation.Computability.OperatorMFMarkovWitness
 import GroupApproximation.Computability.CStarRecognitionConsequences
 import GroupApproximation.Computability.PresentationCodes
+import GroupApproximation.Computability.PresentationCodeCompleteness
 import GroupApproximation.Sofic.AdjointMatrix
 import GroupApproximation.Sofic.ProjectionRankFlip
 import GroupApproximation.Sofic.ExactInvolutionCut
@@ -315,6 +316,7 @@ import GroupApproximation.Sofic.AscendingHNNWreathSofic
 import GroupApproximation.Sofic.SoficActionOrbits
 import GroupApproximation.Sofic.SoficActionApproximationBelow
 import GroupApproximation.Sofic.AscendingHNNFolner
+import GroupApproximation.Sofic.AscendingHNNDiagonalOrbits
 import GroupApproximation.Sofic.InducedFiniteDimensional
 import GroupApproximation.Kazhdan.IntegerNotKazhdan
 import GroupApproximation.Sofic.SoficAction
