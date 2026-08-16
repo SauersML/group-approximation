@@ -322,6 +322,7 @@ import GroupApproximation.Algebra.ProductFinitePresentation
 import GroupApproximation.Algebra.Amenable
 import GroupApproximation.Algebra.AmenableMean
 import GroupApproximation.Algebra.AmenableInt
+import GroupApproximation.Algebra.AmenableLocallyFiniteByInt
 import GroupApproximation.Sofic.ProductMultiplicity
 import GroupApproximation.Sofic.ContinuumMultiplicity
 import GroupApproximation.Sofic.OperatorMFPairAmplification
