@@ -77,8 +77,10 @@ theorem hnn_relator (a : A) :
 between the two conjugates. -/
 theorem hnn_conj_eq (a : A) :
     HNNExtension.t * HNNExtension.of (a : G) * HNNExtension.t⁻¹
-      = HNNExtension.of (φ a : G) :=
-  (HNNExtension.equiv_eq_conj φ a).symm
+      = (HNNExtension.of (φ a : G) : HNNExtension G A B φ) :=
+  -- `equiv_eq_conj` takes the subgroup element, not the equivalence, so it is
+  -- read off `hnn_relator` instead: `x * y⁻¹ = 1` is `x = y`.
+  mul_inv_eq_one.mp (hnn_relator φ a)
 
 /-! ## The amalgamation forward map -/
 
