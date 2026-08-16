@@ -10,3 +10,5 @@ scripts/msi-build.sh
 
 # cairn runtime state (locks, cache, generated site) — disposable
 .cairn/
+scripts/remote-build.env
+scripts/msi-build.sh.pre-split.bak
