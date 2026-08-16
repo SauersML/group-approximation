@@ -59,7 +59,14 @@ jobs:
           # tagging code aborted at \tableofcontents on a manuscript that
           # compiles cleanly without it, and each abort left the committed PDF
           # stale, which is the one thing this workflow exists to prevent.
-          sed 's/tagging=on/tagging=off/' "$TEX_FILE" > "build/${TEX_FILE}"
+          # Strip \DocumentMetadata entirely rather than only switching
+          # tagging off inside it.  A half-configured metadata block is worse
+          # than none: with tagging=off the 2026 toolchain still takes the new
+          # sectioning path and typesets the contents with every section number
+          # overprinted on the first letter of its title.  Without the
+          # declaration the class behaves classically, which is what the draft
+          # wants.  The release build keeps the declaration and its tagging.
+          sed '/\\DocumentMetadata/d' "$TEX_FILE" > "build/${TEX_FILE}"
           cp -f *.bib build/ 2>/dev/null || true
           docker run --rm \
             -e SOURCE_DATE_EPOCH="$source_epoch" \
