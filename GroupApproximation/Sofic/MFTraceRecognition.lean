@@ -732,6 +732,52 @@ theorem normTrace_sub' (Y : FiniteModel) (A B : Matrix Y Y ℂ) :
   unfold normTrace
   rw [Matrix.trace_sub, sub_div]
 
+/-- **The codimension weight of the unit corner is small.**  If the model
+unit has normalized trace within `e` of one, and the rounded projection is
+within `η` of that unit, then the corner complement carries relative
+dimension at most `e + η`.
+
+This is the estimate the separation clause turns on.  The trivial bound
+`‖1 - p‖ ≤ 1` is available but useless here: the corner correction in
+`norm_normTrace_inflate_sub` is weighted by exactly this quantity, and a
+bound of `1` would leave the corrected trace unconstrained. -/
+theorem codimension_weight_le (Y : FiniteModel) (hY : 0 < Fintype.card Y)
+    {M1 p : Matrix Y Y ℂ} {e η : ℝ}
+    (htr : ‖normTrace Y M1 - 1‖ ≤ e) (hη : ‖p - M1‖ ≤ η) :
+    (Matrix.trace ((1 : Matrix Y Y ℂ) - p)).re / (Fintype.card Y : ℝ)
+      ≤ e + η := by
+  have hc : (0 : ℝ) < (Fintype.card Y : ℝ) := by exact_mod_cast hY
+  have hone : normTrace Y (1 : Matrix Y Y ℂ) = 1 := by
+    unfold normTrace
+    rw [Matrix.trace_one]
+    have hcne : ((Fintype.card Y : ℂ)) ≠ 0 := by
+      simpa using (Nat.cast_ne_zero (R := ℂ)).mpr hY.ne'
+    field_simp
+  have hbound : ‖normTrace Y ((1 : Matrix Y Y ℂ) - p)‖ ≤ e + η := by
+    rw [normTrace_sub', hone]
+    have h1 : (1 : ℂ) - normTrace Y p
+        = -(normTrace Y M1 - 1) + normTrace Y (M1 - p) := by
+      rw [normTrace_sub']
+      ring
+    rw [h1]
+    refine (norm_add_le _ _).trans ?_
+    have hA : ‖-(normTrace Y M1 - 1)‖ ≤ e := by rwa [norm_neg]
+    have hB : ‖normTrace Y (M1 - p)‖ ≤ η := by
+      refine (norm_normTrace_le Y hY _).trans ?_
+      rw [show M1 - p = -(p - M1) from by abel, norm_neg]
+      exact hη
+    linarith
+  have hre : (Matrix.trace ((1 : Matrix Y Y ℂ) - p)).re
+      ≤ ‖Matrix.trace ((1 : Matrix Y Y ℂ) - p)‖ :=
+    (le_abs_self _).trans (Complex.abs_re_le_norm _)
+  have hnormtr : ‖normTrace Y ((1 : Matrix Y Y ℂ) - p)‖
+      = ‖Matrix.trace ((1 : Matrix Y Y ℂ) - p)‖ / (Fintype.card Y : ℝ) := by
+    unfold normTrace
+    rw [norm_div, Complex.norm_natCast]
+  rw [hnormtr, div_le_iff₀ hc] at hbound
+  rw [div_le_iff₀ hc]
+  linarith
+
 /-- **MF-trace recognition.**  If the regular character of a group is an
 MF trace, the group is operator MF: the corner-and-polar correction of
 any trace-correct model family produces operator-norm local models with
