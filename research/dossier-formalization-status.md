@@ -20,8 +20,8 @@ formalized in this pass; **TODO** not yet formalized.
 | 3.3 | commuting involutions: `T³=4T`, `‖u-v‖_F²=4·rank` | DONE-PRE | `Sofic/InvolutionRankMass` (`sub_mul_sub_mul_sub`, `matMass_sub_eq_four_mul_rank`) |
 | 4.1 | property (T) ⇒ finitely generated | TODO | |
 | 4.2 | finitely many movers | TODO | |
-| 5.1-5.3 | max-displacement word estimate | TODO | |
-| 6.1 | subsequence vanishing ≠ corona vanishing | TODO | |
+| 5.1-5.3 | max-displacement word estimate | DONE-NEW | `Sofic/MaxDisplacement` (`dist_inv_smul_le`, `dist_smul_le_of_mem_closure`, `exists_infinite_constant_argmax`) |
+| 6.1 | subsequence vanishing ≠ corona vanishing | DONE-NEW | `Sofic/CoronaSubsequence.exists_vanishing_on_subsequence_not_tendsto_zero` |
 | 7.1-7.2 | finite block amplification; corrected (iii) removal | TODO | |
 | 2.4 | GKEP sofic action (Definition 2.1) | DONE-NEW | `Sofic/SoficAction.SoficActionModel`, `IsSoficAction` |
 | 9.1-9.3 | ascending normal form, `N = ker χ`, `G = N ⋊ ℤ` | DONE-PRE | `Algebra/MappingTelescope`, `Sofic/MarkedCompressionGroup.Vertical` |
@@ -36,16 +36,19 @@ formalized in this pass; **TODO** not yet formalized.
 | 13.5 | finite-index HNN coset action is sofic | TODO | needs 12.1 |
 | 14.1 | sofic wreath criterion | TODO | needs 29.6 |
 | 29 | generalized-wreath soficity from first principles | TODO | |
-| 30 | every action of a LERF / LERA group is sofic | TODO | |
+| 30.2 | finite-index coset actions are sofic | DONE-NEW | `Sofic/SoficActionExamples.isSoficAction_quotient_of_finiteIndex` |
+| 30.1, 30.3-30.7 | Chabauty closure; LERF / LERA actions | TODO | |
 | 31 | universally action-sofic HNN theorem | TODO | |
 | 33 | involutive compression collapse theorem | DONE-PRE | `Sofic/InvolutionCollapseEndpoint` |
 | 36.1-36.3 | projection collapse, torsion collapse | DONE-PRE | `Sofic/ProjectionCompressionCollapse`, `Sofic/TorsionSpectralCollapse` |
 | 37 | telescope-kernel collapse, exact MF radical | TODO (partial in-repo) | |
 | 39 | concrete affine base, index 8, RF skeleton | DONE-PRE | `Sofic/LiteralBaseDoublingIndex`, `Sofic/CommutingLampCollapse`, `Monsters/ExplicitLinearModel` |
 | 41-43 | equality of MF / f.d. / finite residuals | TODO | |
+| 42.7 | intersection of all finite-index subgroups = finite residual | DONE-NEW | `Algebra/FiniteResidual.finiteResidual_eq_normalFiniteResidual` |
 | 46 | Malcev; all-fields linear residual; nonlinearity | TODO | |
-| 49 | finite-index induction of the MF radical | TODO | |
-| 50 | full invariance / functoriality of the radical | TODO | |
+| 49 | finite-index induction of the MF radical | TODO (MF case) | |
+| 49.4 | finite-index heredity of the finite residual | DONE-NEW | `Algebra/FiniteResidual.mem_finiteResidual_subgroup_iff` |
+| 50.1 | functoriality / full invariance of the finite residual | DONE-NEW | `Algebra/FiniteResidual.map_finiteResidual_le` |
 | 51 | simple lamps: one relation generates the radical | TODO | |
 | 52 | alternating-lamp noncommensurable family | TODO | |
 | 53 | four-dimensional rational envelope | TODO | |
