@@ -75,6 +75,26 @@ theorem hasInvariantMean_of_isLocallyFiniteGroup {G : Type} [Group G]
   have hval : (x : G) = (y : G) := congrArg (fun z : H ↦ (z : G)) hxy
   exact Subtype.ext hval
 
+/-! ## Locally finite by an amenable quotient -/
+
+/-- **Locally finite by amenable is amenable.**  This is the general shape;
+the manuscript's instance has quotient `BS(1,2)`, not `ℤ`. -/
+theorem hasInvariantMean_of_locallyFinite_by_amenable {G : Type} [Group G]
+    (N : Subgroup G) [N.Normal] (hN : IsLocallyFiniteGroup N)
+    (hQ : HasInvariantMean (G ⧸ N)) : HasInvariantMean G :=
+  hasInvariantMean_of_extension N (hasInvariantMean_of_isLocallyFiniteGroup hN) hQ
+
+/-- A group exhausted by a directed family of infinite cyclic subgroups is
+amenable.  This is the shape of `ℤ[1/2]`, the kernel of `BS(1,2)`. -/
+theorem hasInvariantMean_of_directed_cyclic {ι : Type} [Nonempty ι]
+    [SemilatticeSup ι] {G : Type} [Group G] (K : ι → Subgroup G)
+    (hmono : Monotone K) (hcover : ∀ g : G, ∃ i, g ∈ K i)
+    (hiso : ∀ i, Nonempty ((K i) ≃* Multiplicative ℤ)) :
+    HasInvariantMean G :=
+  hasInvariantMean_of_directed K
+    (fun i ↦ (hasInvariantMean_congr (hiso i).some hasInvariantMean_int).some)
+    hmono hcover
+
 /-! ## Locally finite by the integers -/
 
 /-- **A locally finite group extended by `ℤ` is amenable.**  Every step is
@@ -85,9 +105,19 @@ theorem hasInvariantMean_of_locallyFinite_by_int {G : Type} [Group G]
   hasInvariantMean_of_extension N (hasInvariantMean_of_isLocallyFiniteGroup hN)
     (hasInvariantMean_congr e hasInvariantMean_int)
 
-/-- Every subgroup of a locally-finite-by-`ℤ` group is amenable.  This is
-the shape the manuscript's sharpness sentence uses, with the realized
-quotient as the subgroup. -/
+/-- Every subgroup of a locally-finite-by-amenable group is amenable.
+This is the shape the manuscript's sharpness sentence uses --- with the
+realized quotient as the subgroup and `BS(1,2)` as the amenable quotient,
+which the two results above assemble from a directed union of infinite
+cyclic groups extended by `ℤ`. -/
+theorem isAmenable_subgroup_of_locallyFinite_by_amenable {G : Type} [Group G]
+    (N : Subgroup G) [N.Normal] (hN : IsLocallyFiniteGroup N)
+    (hQ : HasInvariantMean (G ⧸ N)) (H : Subgroup G) : IsAmenable H :=
+  IsAmenable.subgroup
+    (isAmenable_of_hasInvariantMean
+      (hasInvariantMean_of_locallyFinite_by_amenable N hN hQ)) H
+
+/-- The `ℤ` special case. -/
 theorem isAmenable_subgroup_of_locallyFinite_by_int {G : Type} [Group G]
     (N : Subgroup G) [N.Normal] (hN : IsLocallyFiniteGroup N)
     (e : (G ⧸ N) ≃* Multiplicative ℤ) (H : Subgroup G) : IsAmenable H :=
