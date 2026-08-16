@@ -348,6 +348,7 @@ import GroupApproximation.Algebra.TietzeFinitePresentation
 import GroupApproximation.Algebra.FinitePresentationKernel
 import GroupApproximation.Sofic.FiniteIndexRigidity
 import GroupApproximation.Algebra.FreePermutationalPrecursor
+import GroupApproximation.Algebra.FreePrecursorUniversal
 import GroupApproximation.Sofic.UniversalFactorization
 import GroupApproximation.Sofic.RadicalFunctoriality
 import GroupApproximation.Algebra.SplitExtensionFailure
