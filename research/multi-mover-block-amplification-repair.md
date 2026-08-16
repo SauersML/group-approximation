@@ -10,6 +10,7 @@ artifacts:
   - GroupApproximation/Sofic/MoverGeneration.lean
   - GroupApproximation/Sofic/CoronaSubsequence.lean
   - GroupApproximation/Sofic/BlockAmplificationRepair.lean
+  - GroupApproximation/Sofic/BlockingFamilyRadical.lean
   - research/artifacts/multi-mover-hnn-dossier-2026-08-15.md
 ---
 
@@ -82,6 +83,25 @@ so an element inside the fully invariant closure of every member is in the
 radical, and if endomorphisms act transitively on the family then every member
 is.  That criterion is optimal given only full invariance plus meeting the
 family.
+
+`Sofic/BlockingFamilyRadical.lean` is kernel-checked as of 2026-08-16 and
+root-imported; the first version of it did not elaborate.  It also carries the
+conclusion in the form the multi-mover argument is used in
+(`not_isCDEOperatorMF`: a blocking family avoiding the identity rules out an
+injective corona representation) and the automorphism specialization of the
+transitive case.
+
+One earlier note is superseded rather than refined.  The docstring of
+`Sofic/MultiMoverUniversalUpgrade` asserted that a transitively permuting
+automorphism family does *not* give the upgrade, reasoning that precomposing a
+fixed representation `Θ` by `σ` yields `(Θ ∘ σ)(w i₀) = 1` and so constrains
+the composite rather than `Θ`.  That is a correct warning about that route and
+a wrong verdict on the question: full invariance is a property of the radical,
+which is an intersection over *all* representations, so the symmetry is applied
+after the intersection and no representation is moved.  The upgrade does go
+through, and for endomorphisms rather than only automorphisms.  That docstring
+now records the failure as a failure of one route and points at this one; the
+inner-conjugation case it proves is unaffected.
 
 The ambient group in the conclusion is the whole lamp-action semidirect
 product, not the lamp subgroup alone — for finite lamps the lamp subgroup is
