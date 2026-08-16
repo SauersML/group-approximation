@@ -868,7 +868,7 @@ $w$ to the identity, and $H$ is not MF.
 Let $\Theta\colon H\to\U(\mathcal Q)$ be a homomorphism and
 suppose $\Theta(w)\ne1$.
 
-\emph{The negative corner.}  Choose coordinate unitary lifts
+\emph{The $(-1)$-spectral corner.}  Choose coordinate unitary lifts
 $(V_{g,n})$ of $\Theta$ (Lemma~\ref{lem:unitarycorona}) and put
 $p_n=\tfrac12(1+V_{w,n})$, the averaging operator of the
 two-element subgroup $F=\{1,w\}$.  Because the lifts are
@@ -1972,7 +1972,8 @@ weight, and both hypotheses and both conclusions concern only the
 renormalized norms, so the ultraproduct proof of
 Theorem~\ref{thm:kazhdan-transport} applies with $\tr_{d_n}$ replaced
 by $\operatorname{Tr}(\,\cdot\,)/\nu_n$ and nothing else changed: the
-mass bound defines the ultraproduct vector, the adjoint actions remain
+bound $\operatorname{Tr}(x_n^*x_n)\le C\nu_n$ defines the ultraproduct
+vector, the adjoint actions remain
 operator-norm almost multiplicative because the weight does not enter
 the operator norm, and finiteness of the norm ultraproduct turns
 $P\le VPV^{*}$ into $P=VPV^{*}$, which gives both directions.
@@ -2095,7 +2096,8 @@ $\Theta(f)=1$ for all $f\in F$.
 \end{theorem}
 
 \begin{proof}
-\emph{Tracial vanishing of the defect.}  Let $U_n\colon H\to\U(d_n)$ be
+\emph{$2$-norm triviality of $N_{\mathrm{conj}}$.}  Let
+$U_n\colon H\to\U(d_n)$ be
 an operator-norm asymptotic representation of $H$ --- in particular,
 coordinate unitary lifts of a homomorphism to $\U(\mathcal Q)$ --- write
 $U_{g,n}=U_n(g)$, and put
@@ -2300,7 +2302,7 @@ contradicting the operator-norm separation of any fixed nontrivial
 element of $\bar K$.  So $q_n\ne0$ along an infinite set of
 coordinates, which we retain.
 
-\emph{The tracial deficit on the corner.}  Equip each retained corner
+\emph{A $2$-norm separation on the corner.}  Equip each retained corner
 block $q_nM_{d_n}(\C)q_n$ with its renormalized trace.  By the
 choice of $q_n$ as the spectral projection of $h_n$ for
 $[-1,\theta]$, $q_nh_nq_n\le\theta q_n$, so the average over
@@ -2335,11 +2337,10 @@ distance from the identity.
 
 \emph{The contradiction.}  The corner models form an operator-norm
 asymptotic representation of $\bar H$, and $\bar K$ lies in the subgroup $N_{\mathrm{conj}}$ determined by the
-image datum, so the tracial vanishing applies to them:
-every element of $\bar K$ --- in particular $s_0$ --- is
-sent to the identity by the corner representation, contradicting the
-tracial
-deficit of $s_0$.
+image datum, so $2$-norm triviality applies to them: every element of
+$\bar K$ --- in particular $s_0$ --- satisfies
+$\hsnorm{W_{s_0,n}-1}\to0$ on the corner, contradicting the separation
+just obtained.
 \end{proof}
 
 \begin{theorem}[obstruction from $2$-norm triviality]\label{thm:abstract-nk}
@@ -2360,10 +2361,10 @@ element.  Every operator-norm asymptotic representation of $\bar H$
 composes with $\Theta$ to one of $H$, so every element of $\Theta(D)$
 is again $2$-norm trivial, while $\bar K=\Theta(K)\le\Theta(D)$ is
 normal, Kazhdan and nontrivial.  The spectral projection $q_n$, the
-tracial deficit at some $s_0\in\bar K$, and the compression constructed
-in the proof of Theorem~\ref{thm:normal-kazhdan} use only that
-$\bar K$ is normal, Kazhdan and nontrivial, and $2$-norm triviality of
-$s_0$ on the corner contradicts that deficit.
+$2$-norm separation at some $s_0\in\bar K$, and the compression
+constructed in the proof of Theorem~\ref{thm:normal-kazhdan} use only
+that $\bar K$ is normal, Kazhdan and nontrivial, and $2$-norm
+triviality of $s_0$ on the corner contradicts that separation.
 \end{proof}
 
 Applied to the intrinsic defect, Theorem~\ref{thm:abstract-nk} gives
@@ -3087,9 +3088,10 @@ $\opnorm{D_n}\to0$.  Both bounds are needed, because operator-norm
 control alone does not bound rank: two exact involutions at small
 operator distance can differ in full rank.  Combining them in
 $\operatorname{Tr}|D|^2\le\operatorname{rank}(D)\cdot\opnorm{D}^2$
-bounds the normalized defect mass by
-$\bigl(|\gamma|_S+|\mu|_S+|a|_S\bigr)\opnorm{D_n}^2\to0$: the defect
-mass vanishes at the scale $k_n$.
+gives
+$\operatorname{Tr}|D_n|^{2}/k_n
+\le\bigl(|\gamma|_S+|\mu|_S+|a|_S\bigr)\opnorm{D_n}^2\to0$: the
+cocycle defect is $o(k_n)$ in squared Frobenius norm.
 
 \emph{Step 5: the limiting cocycle is a coboundary.}  Fix a free
 ultrafilter $\omega$ on $\N$, give $M_{d_n}(\C)$ the inner product
@@ -3105,8 +3107,8 @@ norm of $B(M_{d_n}(\C))$, so
 is a unitary representation of $H$ on $K_\omega$.  The bound
 $\|b_n(\gamma)\|_{\mathrm F}^2\le4|\gamma|_S$ of Step~4 makes
 $b(\gamma)=[b_n(\gamma)]_\omega$ a well-defined vector of $K_\omega$
-for every $\gamma\in L$, and the vanishing of the normalized defect
-mass makes
+for every $\gamma\in L$, and the vanishing of the normalized cocycle
+defect makes
 \[
  b(a\mu)=b(a)+\pi(a)\,b(\mu)\qquad(a,\mu\in L),
 \]
@@ -4063,8 +4065,8 @@ for every $h\in H$.
 
 Injectivity comes from the left regular representation, uniqueness from
 density of $\C[H]$.  The restriction on $B$ is what keeps ``all
-representations'' a set rather than a proper class; it costs nothing,
-since every target used in this paper is small, and it is the form the
+representations'' a set rather than a proper class; it is harmless
+here, since every target used in this paper is small, and it is the form the
 accompanying development quantifies over.
 
 Under a proper one-sided conjugation the maximal algebra contains an
