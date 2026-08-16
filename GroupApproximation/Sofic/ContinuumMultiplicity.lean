@@ -240,5 +240,20 @@ theorem exists_continuum_pairwise_nonisomorphic
     rw [Quotient.out_eq, Quotient.out_eq] at hq
     rw [hq]
 
+/-- Closed form of the continuum-multiplicity statement: nothing to the
+left of the colon, with Neumann's family and its cardinality as visible
+quantified antecedents rather than declaration inputs. -/
+theorem manuscriptContinuumMultiplicity :
+    ∀ {ι : Type} (N : ι → Type) [∀ i, Group (N i)] [∀ i, Group.FG (N i)],
+      (∀ i j : ι, Nonempty (N i ≃* N j) → i = j) →
+        Cardinal.mk ι = Cardinal.continuum →
+        ∃ J : Set ι, Cardinal.mk J = Cardinal.continuum ∧
+          (∀ i ∈ J, Group.FG (MarkedGroup × N i) ∧
+            ¬ IsOperatorMF (MarkedGroup × N i)) ∧
+          ∀ i ∈ J, ∀ j ∈ J,
+            Nonempty ((MarkedGroup × N i) ≃* (MarkedGroup × N j)) → i = j := by
+  intro ι N _ _ hfam hcard
+  exact exists_continuum_pairwise_nonisomorphic N hfam hcard
+
 end ContinuumMultiplicity
 end GroupApproximation
