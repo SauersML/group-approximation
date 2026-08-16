@@ -236,6 +236,18 @@ equivalence `targetProperty (transform source) ↔ sourceProperty source`. Those
 fields *are* the Adian--Rabin theorem. Nothing in the corpus constructs one,
 and the file says so: "No inhabitant is postulated in this file."
 
+**Update (2026-08-16).** The excerpt above is the shape at the revision this
+inventory was taken. Two things have since moved, neither of them the
+conditionality this row records. The interface (`MarkovWitness`,
+`FinitePresentationSemantics`, `operatorMFProperty`, `AdianRabinReduction`, and
+the two pullback lemmas) now lives in
+`Computability/MarkovReductionInterface.lean`, under the same namespace; and
+`operatorMF_recognition_undecidable` no longer quantifies over `Code` and
+`semantics` but is stated at `PresentationCodes.semantics`, because the
+manuscript prints the corollary in the recursive coding and the paragraph after
+it disavows the arbitrary-semantics reading. The `AdianRabinReduction` premise
+is untouched, and the gate still reports this row.
+
 Standing in for: Rabin 1958 / Adian, the unsolvability of Markov properties of
 finite presentations.
 
