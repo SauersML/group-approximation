@@ -324,12 +324,23 @@ each `Y n` is nonempty. -/
 
 section Action
 
--- Nonemptiness of the coordinate models is *not* introduced here: everything
--- from `applyFam` to `actQ_eq_zero_of_isC0` works with bounded operator
--- sequences and never forms the corona, so carrying the instance through that
--- block would leave it unused in every one of those declarations.  It is
--- introduced below, immediately before `coronaLift`, which is the first
--- declaration that names `AdjointCorona Y`.
+-- Nonemptiness of the coordinate models is *not* introduced here: almost
+-- everything from `applyFam` to `actQ_eq_zero_of_isC0` works with bounded
+-- operator sequences and never forms the corona, so carrying the instance
+-- through that block would leave it unused in almost every one of those
+-- declarations.  It is introduced below as a section variable immediately
+-- before `coronaLift`, which is the first declaration that names
+-- `AdjointCorona Y`.
+--
+-- The exceptions are the four statements that name `1` or a scalar multiple
+-- of a bounded sequence (`applyFam_one`, `applyFam_smul_left`, `actQ_one`,
+-- `actQ_smul`).  The unit and the `ℂ`-algebra structure of
+-- `lp (fun n ↦ Matrix (DblIdx Y n) (DblIdx Y n) ℂ) ∞` come from
+-- `lp.inftyRing` and `lp.instAlgebra`, both of which want
+-- `NormOneClass (Matrix (DblIdx Y n) (DblIdx Y n) ℂ)`; with the l²-operator
+-- norm that holds only because the matrix algebra is nontrivial, i.e. only
+-- when the index is nonempty.  Those four carry the instance as their own
+-- binder rather than forcing it on the whole block.
 variable (Y : ℕ → FiniteModel) (w : ℕ → ℝ) (ω : Ultrafilter ℕ)
 
 /-- The doubled finite models `Y n × Y n`. -/
@@ -432,8 +443,8 @@ theorem applyFam_add_left (a b : BoundedMatrixSequence (DblIdx Y))
   ext i j
   rfl
 
-theorem applyFam_smul_left (c : ℂ) (a : BoundedMatrixSequence (DblIdx Y))
-    (ξ : MatFam Y) :
+theorem applyFam_smul_left [∀ n, Nonempty (Y n)] (c : ℂ)
+    (a : BoundedMatrixSequence (DblIdx Y)) (ξ : MatFam Y) :
     applyFam Y (c • a) ξ = c • applyFam Y a ξ := by
   funext n
   have hca : (c • a) n = c • a n := by
@@ -444,7 +455,7 @@ theorem applyFam_smul_left (c : ℂ) (a : BoundedMatrixSequence (DblIdx Y))
   ext i j
   rfl
 
-theorem applyFam_one (ξ : MatFam Y) :
+theorem applyFam_one [∀ n, Nonempty (Y n)] (ξ : MatFam Y) :
     applyFam Y (1 : BoundedMatrixSequence (DblIdx Y)) ξ = ξ := by
   funext n
   have h1 : (1 : BoundedMatrixSequence (DblIdx Y)) n = 1 := by
@@ -556,8 +567,8 @@ theorem applyFam_mem_massNull_of_isC0 (hw : ∀ n, 0 ≤ w n)
 def actSub (a : BoundedMatrixSequence (DblIdx Y)) :
     massBounded Y w →ₗ[ℂ] massBounded Y w where
   toFun ξ := ⟨applyFam Y a (ξ : MatFam Y), applyFam_mem_massBounded Y w a ξ.2⟩
-  map_add' ξ η := Subtype.ext (applyFam_add Y a _ _)
-  map_smul' c ξ := Subtype.ext (applyFam_smul Y a c _)
+  map_add' ξ η := Subtype.ext (applyFam_add Y a (ξ : MatFam Y) (η : MatFam Y))
+  map_smul' c ξ := Subtype.ext (applyFam_smul Y a c (ξ : MatFam Y))
 
 theorem actSub_coe (a : BoundedMatrixSequence (DblIdx Y))
     (ξ : massBounded Y w) :
@@ -579,18 +590,18 @@ def actQ (a : BoundedMatrixSequence (DblIdx Y)) :
     (ξ : massBounded Y w) :
     actQ Y w ω a (Submodule.Quotient.mk ξ)
       = Submodule.Quotient.mk (actSub Y w a ξ) :=
-  Submodule.mapQ_apply _ ξ
+  Submodule.mapQ_apply _ _ _ ξ
 
 /-- Two endomorphisms of the ultraproduct agree once they agree on classes. -/
 theorem vec_linearMap_ext {f g : Vec Y w ω →ₗ[ℂ] Vec Y w ω}
     (h : ∀ ξ : massBounded Y w,
       f (Submodule.Quotient.mk ξ) = g (Submodule.Quotient.mk ξ)) :
     f = g := by
-  refine Submodule.linearMap_qext ?_
-  refine LinearMap.ext fun ξ ↦ ?_
-  simpa only [LinearMap.comp_apply, Submodule.mkQ_apply] using h ξ
+  refine LinearMap.ext fun x ↦ ?_
+  obtain ⟨ξ, rfl⟩ := Submodule.Quotient.mk_surjective _ x
+  exact h ξ
 
-theorem actQ_one : actQ Y w ω 1 = LinearMap.id := by
+theorem actQ_one [∀ n, Nonempty (Y n)] : actQ Y w ω 1 = LinearMap.id := by
   refine vec_linearMap_ext Y w ω fun ξ ↦ ?_
   rw [actQ_mk]
   exact congrArg Submodule.Quotient.mk (Subtype.ext (applyFam_one Y _))
@@ -608,7 +619,8 @@ theorem actQ_add (a b : BoundedMatrixSequence (DblIdx Y)) :
     ← Submodule.Quotient.mk_add]
   exact congrArg Submodule.Quotient.mk (Subtype.ext (applyFam_add_left Y a b _))
 
-theorem actQ_smul (c : ℂ) (a : BoundedMatrixSequence (DblIdx Y)) :
+theorem actQ_smul [∀ n, Nonempty (Y n)] (c : ℂ)
+    (a : BoundedMatrixSequence (DblIdx Y)) :
     actQ Y w ω (c • a) = c • actQ Y w ω a := by
   refine vec_linearMap_ext Y w ω fun ξ ↦ ?_
   rw [actQ_mk, LinearMap.smul_apply, actQ_mk, ← Submodule.Quotient.mk_smul]
@@ -771,11 +783,13 @@ def adjUnitary (g : H) (n : ℕ) : Matrix.unitaryGroup (DblFam Y n) ℂ :=
   ⟨conjDouble (U n g : Matrix (Y n) (Y n) ℂ),
     conjDouble_mem_unitaryGroup (U n g).2⟩
 
+omit [∀ n, Nonempty (Y n)] [Group H] in
 theorem adjUnitary_coe (g : H) (n : ℕ) :
     ((adjUnitary Y U g n : Matrix.unitaryGroup (DblFam Y n) ℂ) :
         Matrix (DblFam Y n) (DblFam Y n) ℂ)
       = conjDouble (U n g : Matrix (Y n) (Y n) ℂ) := rfl
 
+omit [∀ n, Nonempty (Y n)] in
 /-- **KT.01.**  Operator-norm asymptotic multiplicativity passes to the
 adjoint model with no dimension loss, because the conjugate double is
 `2`-Lipschitz on the unitary group. -/
@@ -878,6 +892,7 @@ def piSeq (g : H) : BoundedMatrixSequence (DblIdx Y) :=
 theorem piHom_eq_mk (g : H) :
     piHom Y U hU g = normMatrixCStarCoronaMk (DblIdx Y) (piSeq Y U g) := rfl
 
+omit [Group H] in
 theorem piSeq_apply (g : H) (n : ℕ) :
     piSeq Y U g n = conjDouble (U n g : Matrix (Y n) (Y n) ℂ) := rfl
 
@@ -893,6 +908,7 @@ theorem star_piHom_eq_mk (g : H) :
 
 /-! ### The representation on coordinates -/
 
+omit [Group H] in
 theorem applyFam_piSeq (g : H) (ξ : MatFam Y) :
     applyFam Y (piSeq Y U g) ξ =
       fun n ↦ (U n g : Matrix (Y n) (Y n) ℂ) * ξ n *
@@ -902,14 +918,16 @@ theorem applyFam_piSeq (g : H) (ξ : MatFam Y) :
   rw [piSeq_apply]
   exact rowMat_conjDouble_mulVec (Y n) _ (ξ n)
 
+omit [Group H] in
 theorem star_piSeq_apply (g : H) (n : ℕ) :
     (star (piSeq Y U g)) n
       = conjDouble ((U n g : Matrix (Y n) (Y n) ℂ)ᴴ) := by
-  rw [lp.star_apply, ← conjDouble_conjTranspose]
+  rw [lp.star_apply, conjDouble_conjTranspose]
   show star (conjDouble (U n g : Matrix (Y n) (Y n) ℂ))
       = (conjDouble (U n g : Matrix (Y n) (Y n) ℂ))ᴴ
   exact Matrix.star_eq_conjTranspose _
 
+omit [Group H] in
 theorem applyFam_star_piSeq (g : H) (ξ : MatFam Y) :
     applyFam Y (star (piSeq Y U g)) ξ =
       fun n ↦ (U n g : Matrix (Y n) (Y n) ℂ)ᴴ * ξ n *
