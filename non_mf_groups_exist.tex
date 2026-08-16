@@ -75,15 +75,23 @@
 \newtheorem{remark}[theorem]{Remark}
 
 \theoremstyle{plain}
-% The four headline results are lettered A-D by the mainthm counter, in
-% order of appearance.  The label names are historical and do NOT track
-% the printed letters: thm:A prints A, thm:signfree prints B, thm:D
-% prints C, thm:E prints D.  Every cross-reference goes through \ref, so
-% the printed text is consistent; only a reader of the source can be
-% misled.  The names are load-bearing elsewhere -- CLAIM_TARGETS in
+% The headline results are lettered by the mainthm counter, in order of
+% appearance.  The label names are historical and do NOT track the
+% printed letters.  Verified against the .aux of a full build:
+%
+%     thm:A       -> Theorem A          thm:signfree -> Theorem B
+%     thm:D       -> Theorem C          thm:E        -> Theorem D
+%     thm:Esofic  -> Theorem E
+%     thm:B       -> Theorem 3.3        thm:C        -> Theorem 13.1
+%
+% so thm:B and thm:C are ordinary section-numbered theorems, not
+% letters.  Every cross-reference goes through \ref, so the printed text
+% is consistent and only a reader of the source can be misled.  The
+% names are load-bearing elsewhere -- CLAIM_TARGETS in
 % scripts/regenerate_non_mf_claim_manifest.py, the proof ledger and the
 % Cairn nodes all key off them -- so they are deliberately not renamed.
-% thm:B and thm:C are ordinary section-numbered theorems, not letters.
+% If you add a mainthm, re-derive this table from the .aux rather than
+% guessing: it has gone stale once already.
 \newtheorem{mainthm}{Theorem}
 \renewcommand{\themainthm}{\Alph{mainthm}}
 
