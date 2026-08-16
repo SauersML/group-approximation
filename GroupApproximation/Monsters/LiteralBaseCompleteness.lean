@@ -444,86 +444,109 @@ local macro "verify_word_matrix" : tactic =>
            Matrix.cons_val_one, Matrix.cons_val_two,
            Matrix.cons_val_three, Matrix.head_cons, Matrix.tail_cons]))
 
-set_option maxHeartbeats 1000000 in
+private theorem rotationToMat_p13_0 :
+    rotationToMat (p13ToRotation (PresentedGroup.of (0 : P13Generator))) =
+      blockEmbed4 (elem (0 : P13Generator)) := by
+  rw [p13ToRotation_E12_word, rotationToMat_word]
+  have hw : rotationSignedWord "YxzYX" = [((1 : Fin 3), false), ((0 : Fin 3), true), ((2 : Fin 3), true), ((1 : Fin 3), false), ((0 : Fin 3), false)] := by decide
+  rw [hw]
+  show FreeGroup.lift rotUnit (FreeGroup.mk [((1 : Fin 3), false), ((0 : Fin 3), true), ((2 : Fin 3), true), ((1 : Fin 3), false), ((0 : Fin 3), false)]) =
+    blockEmbed4 (elem 0)
+  rw [FreeGroup.lift_mk]
+  simp only [List.map_cons, List.map_nil, List.prod_cons, List.prod_nil,
+    cond_true, cond_false, mul_one, rotUnit_zero, rotUnit_one,
+    rotUnit_two]
+  rw [yU_inv, xU_inv]
+  verify_word_matrix
+
+private theorem rotationToMat_p13_1 :
+    rotationToMat (p13ToRotation (PresentedGroup.of (1 : P13Generator))) =
+      blockEmbed4 (elem (1 : P13Generator)) := by
+  rw [p13ToRotation_E13_word, rotationToMat_word]
+  have hw : rotationSignedWord "xzYXY" = [((0 : Fin 3), true), ((2 : Fin 3), true), ((1 : Fin 3), false), ((0 : Fin 3), false), ((1 : Fin 3), false)] := by decide
+  rw [hw]
+  show FreeGroup.lift rotUnit (FreeGroup.mk [((0 : Fin 3), true), ((2 : Fin 3), true), ((1 : Fin 3), false), ((0 : Fin 3), false), ((1 : Fin 3), false)]) =
+    blockEmbed4 (elem 1)
+  rw [FreeGroup.lift_mk]
+  simp only [List.map_cons, List.map_nil, List.prod_cons, List.prod_nil,
+    cond_true, cond_false, mul_one, rotUnit_zero, rotUnit_one,
+    rotUnit_two]
+  rw [yU_inv, xU_inv]
+  verify_word_matrix
+
+private theorem rotationToMat_p13_2 :
+    rotationToMat (p13ToRotation (PresentedGroup.of (2 : P13Generator))) =
+      blockEmbed4 (elem (2 : P13Generator)) := by
+  rw [p13ToRotation_E21_word, rotationToMat_word]
+  have hw : rotationSignedWord "Yxyxz" = [((1 : Fin 3), false), ((0 : Fin 3), true), ((1 : Fin 3), true), ((0 : Fin 3), true), ((2 : Fin 3), true)] := by decide
+  rw [hw]
+  show FreeGroup.lift rotUnit (FreeGroup.mk [((1 : Fin 3), false), ((0 : Fin 3), true), ((1 : Fin 3), true), ((0 : Fin 3), true), ((2 : Fin 3), true)]) =
+    blockEmbed4 (elem 2)
+  rw [FreeGroup.lift_mk]
+  simp only [List.map_cons, List.map_nil, List.prod_cons, List.prod_nil,
+    cond_true, cond_false, mul_one, rotUnit_zero, rotUnit_one,
+    rotUnit_two]
+  rw [yU_inv]
+  verify_word_matrix
+
+private theorem rotationToMat_p13_3 :
+    rotationToMat (p13ToRotation (PresentedGroup.of (3 : P13Generator))) =
+      blockEmbed4 (elem (3 : P13Generator)) := by
+  rw [p13ToRotation_E23_word, rotationToMat_word]
+  have hw : rotationSignedWord "XYxzY" = [((0 : Fin 3), false), ((1 : Fin 3), false), ((0 : Fin 3), true), ((2 : Fin 3), true), ((1 : Fin 3), false)] := by decide
+  rw [hw]
+  show FreeGroup.lift rotUnit (FreeGroup.mk [((0 : Fin 3), false), ((1 : Fin 3), false), ((0 : Fin 3), true), ((2 : Fin 3), true), ((1 : Fin 3), false)]) =
+    blockEmbed4 (elem 3)
+  rw [FreeGroup.lift_mk]
+  simp only [List.map_cons, List.map_nil, List.prod_cons, List.prod_nil,
+    cond_true, cond_false, mul_one, rotUnit_zero, rotUnit_one,
+    rotUnit_two]
+  rw [yU_inv, xU_inv]
+  verify_word_matrix
+
+private theorem rotationToMat_p13_4 :
+    rotationToMat (p13ToRotation (PresentedGroup.of (4 : P13Generator))) =
+      blockEmbed4 (elem (4 : P13Generator)) := by
+  rw [p13ToRotation_E31_word, rotationToMat_word]
+  have hw : rotationSignedWord "xYxzYx" = [((0 : Fin 3), true), ((1 : Fin 3), false), ((0 : Fin 3), true), ((2 : Fin 3), true), ((1 : Fin 3), false), ((0 : Fin 3), true)] := by decide
+  rw [hw]
+  show FreeGroup.lift rotUnit (FreeGroup.mk [((0 : Fin 3), true), ((1 : Fin 3), false), ((0 : Fin 3), true), ((2 : Fin 3), true), ((1 : Fin 3), false), ((0 : Fin 3), true)]) =
+    blockEmbed4 (elem 4)
+  rw [FreeGroup.lift_mk]
+  simp only [List.map_cons, List.map_nil, List.prod_cons, List.prod_nil,
+    cond_true, cond_false, mul_one, rotUnit_zero, rotUnit_one,
+    rotUnit_two]
+  rw [yU_inv]
+  verify_word_matrix
+
+private theorem rotationToMat_p13_5 :
+    rotationToMat (p13ToRotation (PresentedGroup.of (5 : P13Generator))) =
+      blockEmbed4 (elem (5 : P13Generator)) := by
+  rw [p13ToRotation_E32_word, rotationToMat_word]
+  have hw : rotationSignedWord "XzYXYX" = [((0 : Fin 3), false), ((2 : Fin 3), true), ((1 : Fin 3), false), ((0 : Fin 3), false), ((1 : Fin 3), false), ((0 : Fin 3), false)] := by decide
+  rw [hw]
+  show FreeGroup.lift rotUnit (FreeGroup.mk [((0 : Fin 3), false), ((2 : Fin 3), true), ((1 : Fin 3), false), ((0 : Fin 3), false), ((1 : Fin 3), false), ((0 : Fin 3), false)]) =
+    blockEmbed4 (elem 5)
+  rw [FreeGroup.lift_mk]
+  simp only [List.map_cons, List.map_nil, List.prod_cons, List.prod_nil,
+    cond_true, cond_false, mul_one, rotUnit_zero, rotUnit_one,
+    rotUnit_two]
+  rw [yU_inv, xU_inv]
+  verify_word_matrix
+
+
 /-- The Steinberg letters evaluate through the rotation words to the
 block elementary matrices. -/
 theorem rotationToMat_p13 (i : P13Generator) :
     rotationToMat (p13ToRotation (PresentedGroup.of i)) =
       blockEmbed4 (elem i) := by
   match i with
-  | 0 =>
-    rw [p13ToRotation_E12_word, rotationToMat_word]
-    have hw : rotationSignedWord "YxzYX" = [((1 : Fin 3), false), ((0 : Fin 3), true), ((2 : Fin 3), true), ((1 : Fin 3), false), ((0 : Fin 3), false)] := by decide
-    rw [hw]
-    show FreeGroup.lift rotUnit (FreeGroup.mk [((1 : Fin 3), false), ((0 : Fin 3), true), ((2 : Fin 3), true), ((1 : Fin 3), false), ((0 : Fin 3), false)]) =
-      blockEmbed4 (elem 0)
-    rw [FreeGroup.lift_mk]
-    simp only [List.map_cons, List.map_nil, List.prod_cons, List.prod_nil,
-      cond_true, cond_false, mul_one, rotUnit_zero, rotUnit_one,
-      rotUnit_two]
-    rw [yU_inv, xU_inv]
-    verify_word_matrix
-  | 1 =>
-    rw [p13ToRotation_E13_word, rotationToMat_word]
-    have hw : rotationSignedWord "xzYXY" = [((0 : Fin 3), true), ((2 : Fin 3), true), ((1 : Fin 3), false), ((0 : Fin 3), false), ((1 : Fin 3), false)] := by decide
-    rw [hw]
-    show FreeGroup.lift rotUnit (FreeGroup.mk [((0 : Fin 3), true), ((2 : Fin 3), true), ((1 : Fin 3), false), ((0 : Fin 3), false), ((1 : Fin 3), false)]) =
-      blockEmbed4 (elem 1)
-    rw [FreeGroup.lift_mk]
-    simp only [List.map_cons, List.map_nil, List.prod_cons, List.prod_nil,
-      cond_true, cond_false, mul_one, rotUnit_zero, rotUnit_one,
-      rotUnit_two]
-    rw [yU_inv, xU_inv]
-    verify_word_matrix
-  | 2 =>
-    rw [p13ToRotation_E21_word, rotationToMat_word]
-    have hw : rotationSignedWord "Yxyxz" = [((1 : Fin 3), false), ((0 : Fin 3), true), ((1 : Fin 3), true), ((0 : Fin 3), true), ((2 : Fin 3), true)] := by decide
-    rw [hw]
-    show FreeGroup.lift rotUnit (FreeGroup.mk [((1 : Fin 3), false), ((0 : Fin 3), true), ((1 : Fin 3), true), ((0 : Fin 3), true), ((2 : Fin 3), true)]) =
-      blockEmbed4 (elem 2)
-    rw [FreeGroup.lift_mk]
-    simp only [List.map_cons, List.map_nil, List.prod_cons, List.prod_nil,
-      cond_true, cond_false, mul_one, rotUnit_zero, rotUnit_one,
-      rotUnit_two]
-    rw [yU_inv]
-    verify_word_matrix
-  | 3 =>
-    rw [p13ToRotation_E23_word, rotationToMat_word]
-    have hw : rotationSignedWord "XYxzY" = [((0 : Fin 3), false), ((1 : Fin 3), false), ((0 : Fin 3), true), ((2 : Fin 3), true), ((1 : Fin 3), false)] := by decide
-    rw [hw]
-    show FreeGroup.lift rotUnit (FreeGroup.mk [((0 : Fin 3), false), ((1 : Fin 3), false), ((0 : Fin 3), true), ((2 : Fin 3), true), ((1 : Fin 3), false)]) =
-      blockEmbed4 (elem 3)
-    rw [FreeGroup.lift_mk]
-    simp only [List.map_cons, List.map_nil, List.prod_cons, List.prod_nil,
-      cond_true, cond_false, mul_one, rotUnit_zero, rotUnit_one,
-      rotUnit_two]
-    rw [yU_inv, xU_inv]
-    verify_word_matrix
-  | 4 =>
-    rw [p13ToRotation_E31_word, rotationToMat_word]
-    have hw : rotationSignedWord "xYxzYx" = [((0 : Fin 3), true), ((1 : Fin 3), false), ((0 : Fin 3), true), ((2 : Fin 3), true), ((1 : Fin 3), false), ((0 : Fin 3), true)] := by decide
-    rw [hw]
-    show FreeGroup.lift rotUnit (FreeGroup.mk [((0 : Fin 3), true), ((1 : Fin 3), false), ((0 : Fin 3), true), ((2 : Fin 3), true), ((1 : Fin 3), false), ((0 : Fin 3), true)]) =
-      blockEmbed4 (elem 4)
-    rw [FreeGroup.lift_mk]
-    simp only [List.map_cons, List.map_nil, List.prod_cons, List.prod_nil,
-      cond_true, cond_false, mul_one, rotUnit_zero, rotUnit_one,
-      rotUnit_two]
-    rw [yU_inv]
-    verify_word_matrix
-  | 5 =>
-    rw [p13ToRotation_E32_word, rotationToMat_word]
-    have hw : rotationSignedWord "XzYXYX" = [((0 : Fin 3), false), ((2 : Fin 3), true), ((1 : Fin 3), false), ((0 : Fin 3), false), ((1 : Fin 3), false), ((0 : Fin 3), false)] := by decide
-    rw [hw]
-    show FreeGroup.lift rotUnit (FreeGroup.mk [((0 : Fin 3), false), ((2 : Fin 3), true), ((1 : Fin 3), false), ((0 : Fin 3), false), ((1 : Fin 3), false), ((0 : Fin 3), false)]) =
-      blockEmbed4 (elem 5)
-    rw [FreeGroup.lift_mk]
-    simp only [List.map_cons, List.map_nil, List.prod_cons, List.prod_nil,
-      cond_true, cond_false, mul_one, rotUnit_zero, rotUnit_one,
-      rotUnit_two]
-    rw [yU_inv, xU_inv]
-    verify_word_matrix
-
+  | 0 => exact rotationToMat_p13_0
+  | 1 => exact rotationToMat_p13_1
+  | 2 => exact rotationToMat_p13_2
+  | 3 => exact rotationToMat_p13_3
+  | 4 => exact rotationToMat_p13_4
+  | 5 => exact rotationToMat_p13_5
 /-- The full compatibility square, as an equality of homomorphisms out
 of the Steinberg presentation. -/
 theorem rotationToMat_comp_p13ToRotation :
