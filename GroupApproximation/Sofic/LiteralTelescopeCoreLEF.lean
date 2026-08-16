@@ -375,6 +375,26 @@ theorem blockOrbitClosure_invariant' (σ : G →* Equiv.Perm I) (H : Subgroup G)
     σ g i ∈ blockOrbitClosure σ H J :=
   blockOrbitClosure_invariant σ H J ⟨g, hg⟩ hi
 
+/-- **Finite orbits transport along a homomorphism into the acting group.**
+
+The block geometry of the literal group states its level orbits for the level
+subgroups sitting inside the *vertical* group `V = T ⋊ ⟨τ⟩`, since that is
+where `MappingTelescopeFiniteOrbits` puts them; the telescope core needs them
+for the level subgroups sitting inside the *telescope* `T`.  The two index the
+same set of permutations, because the inclusion `T ↪ V` carries one level
+subgroup onto the other, so the smaller range is a subset of the finite one.
+
+Instantiate with `f := SemidirectProduct.inl`, `τ := MulAction.toPermHom`, and
+`S := (MappingTelescope.level α hα n).range`, whose image under `inl` is
+`MappingTelescopeFiniteOrbits.verticalLevel α hα n`. -/
+theorem finite_orbit_of_map {A B X : Type*} [Group A] [Group B]
+    (f : A →* B) (τ : B →* Equiv.Perm X) (S : Subgroup A) (x : X)
+    (h : (Set.range fun b : S.map f ↦ τ (b : B) x).Finite) :
+    (Set.range fun a : S ↦ τ (f (a : A)) x).Finite := by
+  refine h.subset ?_
+  rintro _ ⟨a, rfl⟩
+  exact ⟨⟨f (a : A), Subgroup.mem_map_of_mem f a.2⟩, rfl⟩
+
 /-- **The window of Theorem 4.1.**  Given a finite subset of `N ⋊[φ] G`,
 there is a level `n` and a finite `Γ_n`-invariant set `J` of blocks whose span
 contains every kernel coordinate of the subset, while every acting coordinate
