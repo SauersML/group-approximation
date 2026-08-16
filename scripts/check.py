@@ -562,13 +562,39 @@ def self_test() -> int:
     return 0
 
 
+def list_orphans(root: Path) -> int:
+    """Print every module outside its library root's import closure, one per line.
+
+    `scripts/msi-build.sh` has to name the orphans as explicit build targets,
+    because `lake build` reaches only the root's closure.  It used to decide
+    that with its own shell test for a *direct* `import` line in the root
+    module, which every transitively-reached module fails -- so a no-argument
+    invocation named hundreds of targets and built the whole corpus while
+    holding the fleet lock.  One closure implementation, printed here, is what
+    keeps the build script and this scan from ever disagreeing again.
+    """
+    for lib in LIBS:
+        modules = module_files(root, lib)
+        if not modules or lib not in modules:
+            continue
+        reachable = import_closure(modules, lib)
+        for name in sorted(modules):
+            if name not in reachable:
+                print(name)
+    return 0
+
+
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--self-test", action="store_true",
                     help="calibrate the detectors in both directions and exit")
+    ap.add_argument("--list-orphans", action="store_true",
+                    help="print modules outside the root import closure and exit")
     args = ap.parse_args()
     if args.self_test:
         return self_test()
+    if args.list_orphans:
+        return list_orphans(REPO)
     f = run(REPO)
     status = f.report()
     n = len(lean_source_files(REPO))
