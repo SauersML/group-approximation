@@ -6,7 +6,7 @@ title: Permutation operator-norm models certify exactly the LEF groups, so the F
 distinct_from:
   lef-implies-operator-mf: that is the one useful direction, LEF implies MF, and says nothing about what the permutation construction fails to reach; this is the equivalence together with the rigidity dichotomy that makes the converse true, and its point is the *limit* of the construction.
   cyclic-base-sharpness: that claim is about the marked word of the literal cyclic-base analogue and its detection by an amenable Clifford quotient; this one is about the approximation-theoretic reason the amenable side of that argument cannot be certified elementarily, and it applies to every group, not just that quotient.
-  commuting-lamp-quotient-via-exact-finite-models: that is a refuted route for one specific quotient; this is the general theorem explaining why every route of that shape is refuted, in operator norm.
+  commuting-lamp-quotient-mf: that asks whether one specific quotient is MF, and its exact-finite-model route is dead because the base has property (T); this is the general theorem saying why *no* permutation-model route reaches MF beyond LEF, for a reason that has nothing to do with (T).
   kazhdan-projection-not-in-l1: that says why the property-(T) averaging machinery is unavailable in the operator-norm corona, so that every (T) argument must first pass to the adjoint corona and terminate in the 2-norm; this says why the *Folner* machinery is unavailable there, for an unrelated reason -- permutation matrices are one apart -- and it involves no Kazhdan group, no averaging, and no projection.
 artifacts:
   - non_mf_groups_exist.tex

@@ -5,7 +5,7 @@ kind: claim
 title: Nuclear embeddability passes to C-star subalgebras, and nuclear algebras have it
 distinct_from:
   exact-stably-finite-non-mf-reduced-group-algebra: that claim asserts exactness of the concrete witness algebra, which rests on four external theorems and is not formalized; this is the definable fragment of that vocabulary and the two permanence facts that fragment actually supports.
-  literal-reduced-group-algebra: that concerns the construction and properties of the concrete reduced group algebra; this is a general C-star statement with no group in it.
+  literal-stably-finite-non-mf-reduced-group-algebra: that concerns the concrete reduced group algebra of the literal witness, its stable finiteness and its failure of MF; this is a general C-star statement with no group in it, and it supplies none of that claim's clauses.
 artifacts:
   - non_mf_groups_exist.tex
   - GroupApproximation/Analysis/CStarExactness.lean
