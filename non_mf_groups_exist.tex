@@ -265,18 +265,20 @@ Definition~\ref{def:E}, and put
 \[
  w=[tct^{-1},\,v_1(tct^{-1})v_1^{-1}].
 \]
-Then $w\ne1$, while $\Theta(w)=1$ for every sequence $(d_n)$ of
-positive integers and every homomorphism
-$\Theta\colon E\to\Ucor((d_n))$ into the corresponding unitary norm
-corona \eqref{eq:unitary-corona}.  In particular $E$ is not MF, and
-neither $\Cmax(E)$ nor $\Cred(E)$ is an MF $C^*$-algebra.
+The defining relations make $w$ central; together with $c^2=1$, centrality
+implies $w^2=1$.  Then the following statements hold:
+\begin{enumerate}
+ \item $w\ne1$ in $E$, so $w$ is a central involution;
+ \item for every sequence $(d_n)$ of positive integers and every
+  homomorphism $\Theta\colon E\to\Ucor((d_n))$ into the corresponding
+  unitary norm corona \eqref{eq:unitary-corona}, one has $\Theta(w)=1$.
+\end{enumerate}
+In particular $E$ is not MF, and neither $\Cmax(E)$ nor $\Cred(E)$ is an
+MF $C^*$-algebra.
 \leanverified{Sofic/LiteralNonMFEndpoint}{GroupApproximation.LiteralNonMFEndpoint.manuscriptTheoremA}
 \end{mainthm}
 
 \noindent
-The defining relations make $w$ central, and centrality together with
-$c^2=1$ gives $w^2=1$ (Definition~\ref{def:E}), so the theorem exhibits
-a central involution that every matrix model sends to the identity.
 The group is written out in Definition~\ref{def:E};
 Section~\ref{sec:example} proves the theorem.
 
@@ -701,12 +703,12 @@ arbitrary, the full sequence converges.
 \end{proof}
 
 \begin{remark}[the finite-stage proof]\label{rem:finite-stage}
-The proof above is qualitative, since it passes to an ultrafilter.
-Section~\ref{app:finite-stage} proves the theorem a second time,
-quantitatively at each single coordinate $n$: an explicit almost-fixed
-spectral subspace of the averaged adjoint action replaces the
-projection $P$, and the equal-rank reversal estimate replaces
-finiteness of $B_\omega$.  The rate there is explicit in $\kappa$,
+The ultrafilter gives no rate.  Section~\ref{app:finite-stage}
+proves the theorem a second time, quantitatively at each single
+coordinate $n$.  There, an explicit almost-fixed spectral subspace of
+the averaged adjoint action replaces that projection, and the
+equal-rank reversal estimate replaces finiteness of $B_\omega$.  That
+proof makes the error bookkeeping explicit in terms of $\kappa$,
 $|S|$, the uniform bound on $(x_n)$, and the multiplicative defects of
 $U_n$, once the robust spectral-gap input stated there is granted at
 each stage.
@@ -1182,11 +1184,18 @@ $E$ is sofic.
 \bigskip
 
 \noindent
-Part~I proves Theorem~\ref{thm:A} from the displayed relators, and
-proves the transport theorem a second time at each fixed matrix
-dimension.  Part~II proves the mechanism in its general form, Part~III
-develops further results, and Part~IV records the limits of the method
-and constructs the maximal group $C^*$-algebra.
+This part belongs to the same paper and uses the same bibliography.  It has
+three purposes.  Sections~\ref{app:equivalences}--\ref{app:finite-stage}
+provide a detailed verification of Theorem~\ref{thm:A}: they prove the
+equivalence of the MF formulations, write out the literal presentation and its
+optimization, certify property~\textup{(T)} for the base by exact rational
+arithmetic, construct the explicit Clifford witness over $\mathbb Q$, verify
+the theorem directly from the forty-one relators, and reprove the transport
+theorem quantitatively at each single matrix dimension.
+Sections~\ref{supp:transport-variants}--\ref{sec:necessity} develop the
+mechanism in greater generality.
+Sections~\ref{supp:scaling}--\ref{app:maxcstar} develop the consequences and
+the limits of the method.
 
 \parttitle{Part I.\ \ The explicit group}
 
@@ -3722,14 +3731,29 @@ subgroup heredity the finitely presented group $E$ embeds in no MF
 group.  The Adian--Rabin theorem \cite{Rabin58} therefore applies.
 
 \begin{corollary}[undecidability]\label{cor:undecidable}
-There is no algorithm that decides, from a finite presentation,
-whether the presented group is MF\@.  By the effective form of the
-Adian--Rabin construction \cite{Rabin58}, the set of finite
-presentations of non-MF groups is not even recursively enumerable.
+Fix a recursive coding of finite presentations and a decision problem
+$A$, and suppose given an Adian--Rabin reduction of $A$ to MF
+recognition in that coding: a computable map sending an instance of $A$
+to a presentation code whose group is MF exactly when the instance is
+positive.  If $A$ is undecidable, then no algorithm decides, from a
+finite presentation, whether the presented group is MF\@.  If moreover
+the negative side of $A$ is not recursively enumerable, then neither is
+the set of presentation codes of non-MF groups.
 \end{corollary}
+\leanverified{Computability/MarkovMFConsequences}{GroupApproximation.MarkovMFConsequences.operatorMF_recognition_undecidable}
+\leanverified{Computability/MarkovMFConsequences}{GroupApproximation.MarkovMFConsequences.manuscriptOperatorMFNegativeSideNotRE}
 
-The Adian--Rabin construction \cite{Rabin58} is quoted here and used
-nowhere else.  It gives a computable map taking
+The corollary quantifies its inputs rather than quoting them, because
+they are the one thing in this paper that is not machine-checked.  A
+reduction of the required kind does exist: take $A$ to be the word
+problem of a finitely presented group with unsolvable word problem, by
+the Novikov--Boone theorem, and apply the Adian--Rabin construction
+\cite{Rabin58} to the Markov property ``is MF''.  Neither of those two
+classical theorems is formalized here, and neither is now assumed
+silently --- they are precisely what the hypotheses of the corollary
+ask for, so what is taken on trust is visible in the statement rather
+than in a citation.  Everything below them is machine-checked.  The
+construction gives a computable map taking
 an instance $(P,w)$ of the word problem of a fixed finitely presented
 group with undecidable word problem to a finite presentation whose
 group is trivial --- hence MF --- when $w=1$, and contains $E$ ---

@@ -1272,16 +1272,27 @@
       "id": "cor:undecidable",
       "environment": "corollary",
       "title": "undecidability",
-      "statement_sha256": "48afe0f113a25836e189018a683c5880dea8b0c92c7846b852abdf6d495d8cb1",
-      "status": "literature-input",
-      "object_identity": "The printed environment consumes the stated literature input; its machine-checked inputs are badged in the surrounding discussion.",
+      "statement_sha256": "b89a70a5c82c8fd96ab18865751ecc178cc71210bddaba6f2c221b65e0b05214",
+      "status": "exact",
+      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [],
       "extra_assumptions": [],
-      "external_inputs": [
-        "Adian--Rabin construction [Rabin58]; the group-theoretic and computability-theoretic inputs are machine-checked and badged in the adjacent discussion"
-      ],
-      "coverage_gap": "The literature input itself is not formalized.",
-      "lean": []
+      "external_inputs": [],
+      "coverage_gap": "",
+      "lean": [
+        {
+          "role": "exact",
+          "module": "Computability/MarkovMFConsequences",
+          "declaration": "GroupApproximation.MarkovMFConsequences.operatorMF_recognition_undecidable",
+          "covers": "the complete printed proposition"
+        },
+        {
+          "role": "exact",
+          "module": "Computability/MarkovMFConsequences",
+          "declaration": "GroupApproximation.MarkovMFConsequences.manuscriptOperatorMFNegativeSideNotRE",
+          "covers": "a printed conclusion of the proposition"
+        }
+      ]
     },
     {
       "id": "prop:maximal-cstar",
