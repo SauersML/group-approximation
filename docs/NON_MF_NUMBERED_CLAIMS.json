@@ -313,7 +313,7 @@
       "id": "con:clifford",
       "environment": "construction",
       "title": "Clifford groups",
-      "statement_sha256": "bf97977fb1424d509a6b75bd9bfd9dbff296c8f4a5531b0b91d7a72b43386bc5",
+      "statement_sha256": "9113a55c13a6227d6414441ebdadf295970e7681a2b6f7c2607f69d06a6dda3a",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [],
@@ -378,7 +378,7 @@
     {
       "id": "thm:signfree",
       "environment": "mainthm",
-      "title": "the sign-free quotient of $E$",
+      "title": "the quotient of $E$ by $\\langle w\\rangle$",
       "statement_sha256": "1aeef33c21dab5e1a9025d55e3f41537d0ee591a20e775dee4fe01b54efacc52",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",

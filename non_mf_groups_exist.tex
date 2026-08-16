@@ -1470,7 +1470,8 @@ Write $\zeta=-1$.  In this concrete group,
 \]
 The sign $\zeta$ is nontrivial.  Thus $\Cl(X)$ is a central
 extension, by the sign $\zeta$, of the elementary abelian $2$-group on
-the points of $X$: distinct generators commute only up to $\zeta$,
+the points of $X$: the commutator of two distinct generators is
+$\zeta$,
 unlike the commuting generators of a classical lamplighter.  Every
 permutation of $X$ acts on this
 group by $c_x\mapsto c_{\sigma(x)}$ and fixes $\zeta$.
@@ -1571,11 +1572,11 @@ exactly when $\operatorname{Rad}_{\mathrm{MF}}(G)=1$
 (Proposition~\ref{prop:univquot}), and Theorem~\ref{thm:A} says
 $w\in\operatorname{Rad}_{\mathrm{MF}}(E)$ with $w\ne1$.
 
-\subsection*{The quotient by the sign}
+\subsection*{The quotient by the central involution}
 Passing to the quotient by $\langle w\rangle$ does not restore the MF
 property.
 
-\begin{mainthm}[the sign-free quotient of $E$]\label{thm:signfree}
+\begin{mainthm}[the quotient of $E$ by $\langle w\rangle$]\label{thm:signfree}
 The quotient $E/\langle w\rangle$ is not MF\@.  The image of
 $[\iota(v_1),d]$, the inverse of the marked commutator $u$, is
 nontrivial there and lies in
@@ -1592,8 +1593,8 @@ one-sided compression: if an involution is centralized by the
 compressed copy of a Kazhdan subgroup, and its conjugates under that
 subgroup commute with one another, then every homomorphism to $\U(\mathcal Q)$
 identifies the entire conjugation orbit
-(Theorem~\ref{thm:collapse}).  In $E$ those conjugates of $d$ commute
-only up to $w$, so in $E/\langle w\rangle$ the element $d$ satisfies
+(Theorem~\ref{thm:collapse}).  In $E$ the pairwise commutators of those conjugates of $d$ lie in
+$\langle w\rangle$, so in $E/\langle w\rangle$ the element $d$ satisfies
 both hypotheses, and every homomorphism $E/\langle
 w\rangle\to\U(\mathcal Q)$ maps $u$ to the identity.  Thus $E/\langle w\rangle$ is a
 second finitely presented non-MF group, and Theorem~\ref{thm:A} does
@@ -3016,7 +3017,7 @@ in one direction gives one within
 $\varepsilon/\sqrt{1-\varepsilon^{2}}$ in the other.  Equal rank
 is what replaces the absence of a proper isometry; the one-sided
 inclusion $sLs^{-1}\le L$ is used, and nothing more.
-\leanverified{Sofic/InvolutionCollapseEndpoint}{GroupApproximation.InvolutionCollapseEndpoint.manuscriptStageTransportBound}
+\leanverified{Sofic/InvolutionCollapseEndpoint}{GroupApproximation.InvolutionCollapseEndpoint.stage_transport_bound}
 
 Compressing into the corner costs a capture term
 $c=(C+1)\,2\tau/(1-\theta)$, and one stage of transport bounds the
@@ -3028,14 +3029,14 @@ displacement of $W$ by each generator:
 \]
 the second inequality being the arithmetic of the choice of $q$ and
 $\tau$.
-\leanverified{Sofic/InvolutionCollapseEndpoint}{GroupApproximation.InvolutionCollapseEndpoint.manuscriptNumericTransportBound}
+\leanverified{Sofic/InvolutionCollapseEndpoint}{GroupApproximation.InvolutionCollapseEndpoint.numeric_transport_bound}
 Since $\|b_n(a)-W\|_{\mathrm F}\le\tau\le\rho/2$, this gives
 $\|b_n(a)\|_{\mathrm F}\le\rho$ for every $a\in S$ at once, while
 \eqref{eq:generator-mass} reads
 $\sum_{a\in S}\|b_n(a)\|_{\mathrm F}^{2}=4$ and
 $\sum_{a\in S}\rho^{2}=|S|/(\sqrt{|S|}+1)^{2}<1$: the single stage $n$
 already fails.
-\leanverified{Sofic/InvolutionCollapseEndpoint}{GroupApproximation.InvolutionCollapseEndpoint.manuscriptAnchorContradiction}
+\leanverified{Sofic/InvolutionCollapseEndpoint}{GroupApproximation.InvolutionCollapseEndpoint.anchor_contradiction}
 
 The commutation hypothesis (W3) is
 essential: it gives the joint spectral calculus behind the rank
