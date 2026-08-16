@@ -3,12 +3,15 @@ rg: 2
 id: dossier-formalization-status
 kind: claim
 title: Formalization ledger for the multi-mover / ascending-HNN dossier
+artifacts:
+  - research/artifacts/multi-mover-hnn-dossier-2026-08-15.md
 ---
 
-Target: `Downloads/formalize/full_proof_dossier_multi_mover_hnn_soficity(4).md`
-(8489 lines, sections 0-54).  This card tracks, section by section, what is
-already machine-checked in this repository, what is newly formalized, and what
-remains.
+Target: `research/artifacts/multi-mover-hnn-dossier-2026-08-15.md`
+(8489 lines, sections 0-54), brought in-repo on 2026-08-16; it was previously
+tracked from an external download path.  This card tracks, section by section,
+what is already machine-checked in this repository, what is newly formalized,
+and what remains.
 
 Status codes: **DONE-PRE** already in-repo before this pass; **DONE-NEW**
 formalized in this pass; **TODO** not yet formalized.
@@ -72,7 +75,8 @@ formalized in this pass; **TODO** not yet formalized.
 | 42.7 | intersection of all finite-index subgroups = finite residual | DONE-NEW | `Algebra/FiniteResidual.finiteResidual_eq_normalFiniteResidual` |
 | 46.5, 49.2B | residual finiteness is a commensurability invariant | DONE-NEW | `Algebra/FiniteResidual` (`IsResiduallyFinite.subgroup`, `isResiduallyFinite_of_finiteIndex_subgroup`) |
 | 46.3 | the all-fields linear residual and its place in the chain | DONE-NEW (easy half) | `Sofic/LinearResidual` (`linearResidual`, `linearResidual_le_fdUnitaryResidual`, `linearResidual_le_finiteResidual`); fields range over `Type`, and the definition is elementwise as the dossier prescribes |
-| 46.1, 46.2 | finite residue fields; Mal'cev | TODO | needs Zariski's lemma and the char-0 integrality argument |
+| 46.1 | finite residue fields separate nonzero elements | DONE-NEW | `Algebra/Malcev.exists_finite_field_hom_of_ne_zero`, on `Algebra/FiniteTypeField.finite_of_polynomial_surjective` (a field finitely generated as a ring is finite) and `Algebra/IntJacobson.intIsJacobsonRing` (Mathlib lacked the instance) |
+| 46.2 | Mal'cev: linear groups over finitely generated domains are residually finite | DONE-NEW | `Algebra/Malcev.residuallyFinite_generalLinearGroup` |
 | 46.4 | nonlinearity of the concrete family | TODO | |
 | 49.1, 49.2 | induction from a finite-index subgroup; exact heredity (f.d. case) | DONE-NEW | `Sofic/InducedFiniteDimensional` (`indHom`, `fdUnitaryResidual_subgroupOf`) |
 | 49.1, 49.2, 49.2A | the same for norm matrix coronas | DONE-NEW | `Sofic/InducedCoronaMF` (`exists_induced_corona`, `corona_invisible_of_finiteIndex`, `isOperatorMF_of_finiteIndex_subgroup`), on the block-pattern norms of `Sofic/AmplifiedBlockNorms`.  The induced family is built on the *lifts*, so the amplification isomorphism of (49.4) is never needed |
