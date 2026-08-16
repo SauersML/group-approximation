@@ -29,7 +29,7 @@
       "id": "thm:A",
       "environment": "mainthm",
       "title": "explicit Kazhdan--Clifford group",
-      "statement_sha256": "f3a62f02cd918a78f4977424c01aa48396ca40305a202d08a43e7ee6ac1b2e6c",
+      "statement_sha256": "709b77bd99cbaf0e7b476dbe5ec127ea4da7f09df5bda1bb7d64fede26cb2638",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [
@@ -120,7 +120,7 @@
       "id": "thm:sign-criterion",
       "environment": "theorem",
       "title": "central-sign criterion",
-      "statement_sha256": "50daf8a96c218a8b2f6c63267f877fcb96ee56228f4af6164944dfc1ef8ec4f0",
+      "statement_sha256": "d83515e0138bd177cc88853006de691c3311ea833f961208868c0700e9afa974",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [
