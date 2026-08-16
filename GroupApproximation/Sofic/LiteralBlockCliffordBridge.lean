@@ -220,9 +220,34 @@ theorem blockAutHom_sign (hc : IsCompleteOnBlocks) (hi : IsIrreflexive)
   simpa [blockAutHom, lampEquiv_sign] using congrArg (lampEquiv hc hi).symm this
 
 /-- The permutation of the sigma-indexed site set induced by the vertical
-action. -/
+action: transport the action along `siteEquiv`.
+
+Read left to right, `Equiv.trans` composes forwards, so the sigma coordinate is
+sent to a site, moved, and sent back. -/
 def sitePerm (v : Vertical) : Equiv.Perm ((b : Block) × BlockSites b) :=
-  siteEquiv.symm.trans ((MulAction.toPermHom Vertical Site v).trans siteEquiv)
+  siteEquiv.trans ((MulAction.toPermHom Vertical Site v).trans siteEquiv.symm)
+
+@[simp] theorem sitePerm_apply (v : Vertical)
+    (p : (b : Block) × BlockSites b) :
+    sitePerm v p = siteEquiv.symm (v • siteEquiv p) := rfl
+
+/-- The site permutations compose: `sitePerm` is the transport of a monoid
+homomorphism along an equivalence, so it is one. -/
+def sitePermHom : Vertical →* Equiv.Perm ((b : Block) × BlockSites b) where
+  toFun := sitePerm
+  map_one' := by
+    refine Equiv.ext fun p ↦ ?_
+    rw [sitePerm_apply, one_smul, Equiv.symm_apply_apply]
+    rfl
+  map_mul' v w := by
+    refine Equiv.ext fun p ↦ ?_
+    rw [sitePerm_apply]
+    show siteEquiv.symm (v * w • siteEquiv p)
+      = sitePerm v (sitePerm w p)
+    rw [sitePerm_apply, sitePerm_apply, Equiv.apply_symm_apply, mul_smul]
+
+@[simp] theorem sitePermHom_apply (v : Vertical) :
+    sitePermHom v = sitePerm v := rfl
 
 /-- The vertical action permutes lamps according to `sitePerm`. -/
 theorem blockAutHom_lamp (hc : IsCompleteOnBlocks) (hi : IsIrreflexive)
