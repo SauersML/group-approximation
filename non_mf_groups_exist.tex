@@ -2322,20 +2322,19 @@ property~\textup{(T)} preserved, and $\bar K=\Theta(K)$ is nontrivial
 and lies in the compression defect of the image datum; it suffices to
 derive a contradiction for $\bar H$.
 
-\emph{The moving spectral subspace.}  Fix a finite symmetric
+\emph{The spectral projection $q_n$.}  Fix a finite symmetric
 generating Kazhdan set $S\subseteq\bar K$ with constant
 $\varepsilon_0$, at each coordinate let $h_n$ be the Hermitian part of
 the average of the models of $S$, and cut the spectrum of $h_n$ at
 $\theta=1-\varepsilon_0^2/(4|S|)$.  Let $q_n$ be the spectral
-projection of $h_n$ for $[-1,\theta]$: the \emph{moving spectral
-subspace}.  On
-its complement --- the top spectral subspace --- every model of every
+projection of $h_n$ for $[-1,\theta]$.  On the complementary range,
+where the spectrum of $h_n$ lies above $\theta$, every model of every
 element of $\bar K$ is close to the identity in operator norm, by the
 Kazhdan-pair displacement estimate.  If $q_n=0$ for all large $n$,
 every element of $\bar K$ would satisfy $\opnorm{V_{k,n}-1}\to0$,
 contradicting the operator-norm separation of any fixed nontrivial
-element of $\bar K$.  So the moving subspace is nonzero along an
-infinite set of coordinates, which we retain.
+element of $\bar K$.  So $q_n\ne0$ along an infinite set of
+coordinates, which we retain.
 
 \emph{The tracial deficit on the corner.}  Equip each retained corner
 block $q_nM_{d_n}(\C)q_n$ with its renormalized trace.  By the
@@ -2353,15 +2352,15 @@ Conjugating by an ambient model $V_{g,n}$ carries $h_n$ to the
 Hermitian average over the conjugate generating set $gSg^{-1}$ of
 $\bar K$, which has the same Kazhdan constant.  The two estimates of
 Section~\ref{app:finite-stage} now apply to either average
-symmetrically: a vector in the top spectral subspace of one average is
-almost fixed by each generator of the other set (displacement,
-transported across the finitely many conjugations by
-almost-multiplicativity), hence almost lies in the top spectral
-subspace of the other average (the concentration inequality).
+symmetrically: a vector on which one average has spectrum above
+$\theta$ is almost fixed by each generator of the other set
+(displacement, transported across the finitely many conjugations by
+almost-multiplicativity), hence almost lies in the corresponding range
+for the other average (the concentration inequality).
 Two-sided almost-containment of the two subspaces forces
 $\opnorm{q_n-V_{g,n}q_nV_{g,n}^{*}}\to0$, that is,
 $\opnorm{[q_n,V_{g,n}]_{-}}\to0$ for every $g\in\bar H$.  Compressing
-every model to the moving corner and polar-correcting yields an
+every model to the corner $q_nM_{d_n}(\C)q_n$ and polar-correcting yields an
 operator-norm asymptotic representation of all of $\bar H$ on nonzero
 blocks, in which $s_0$ keeps a definite normalized Hilbert--Schmidt
 distance from the identity.
@@ -2401,7 +2400,7 @@ every fixed nontrivial element.  Every operator-norm almost
 representation of $\bar H$ composes with $\Theta$ to one of $H$, so
 every element of $\Theta(D)$ inherits the invisibility hypothesis,
 while $\bar K=\Theta(K)\le\Theta(D)$ is normal, Kazhdan, and
-nontrivial.  The moving spectral subspace, the tracial deficit, and
+nontrivial.  The spectral projection $q_n$, the tracial deficit, and
 the compression step of the proof of
 Theorem~\ref{thm:normal-kazhdan} apply verbatim to $\bar K$, and the
 contradiction step uses the inherited invisibility in place of the
@@ -2563,12 +2562,12 @@ action, is $\dim_k\End_H(V)$, the dimension of the commutant; it is
 order-reversing rather than order-preserving in $H$, and it does not
 separate nested subgroups --- $A_4<S_4$ in the standard
 three-dimensional representation have the same commutant $k\cdot1$.
-What the proof of Theorem~\ref{thm:B} uses is the principle one level
-down, on the commutant itself: the inclusion $C\subseteq uCu^{-1}$
-between subspaces of equal finite dimension is an equality
-\eqref{eq:pinning}.  Pinning the commutant, not the subgroup, is what
-makes the defect trivial.  The corona argument of Theorem~\ref{thm:A}
-is the analytic counterpart of this principle at infinite dimension.
+The proof of Theorem~\ref{thm:B} applies the principle to the commutant
+instead: the inclusion $C\subseteq uCu^{-1}$ between subspaces of equal
+finite dimension is an equality \eqref{eq:pinning}, and it is that
+equality --- not an equality of subgroup images --- that sends the
+defect to the identity.  The corona argument of Theorem~\ref{thm:A} is
+the analytic counterpart at infinite dimension.
 \end{remark}
 
 \begin{remark}[chain conditions suffice]\label{rem:chaincondition}
@@ -2871,8 +2870,8 @@ $\Theta(x)=\bar\Theta(q(x))=1$.
 
 Corollary~\ref{cor:exactradical} is the case of trivial quotient
 radical.  Corollary~\ref{cor:pullback} needs no hypothesis on the
-quotient: the corona representation theory of $G_1$ \emph{is} that of
-$G_1/N$, whether or not the latter is MF.
+quotient: every corona representation of $G_1$ factors uniquely through
+$G_1/N$, whether or not $G_1/N$ is MF.
 
 By Corollary~\ref{cor:pullback}, the passage from $N$ to the full
 preimage of the quotient radical is a closure operation on the normal
@@ -2936,8 +2935,7 @@ so every subgroup chosen in the first operation is again inside the
 radical --- normal or not.  For the second operation, the radical is
 itself a subgroup, hence an upper bound in the subgroup lattice for any
 family contained in it; so the join $\bigvee_iH_i=\langle\bigcup_iH_i\rangle$
-lies in the radical too.  The union itself need not be a subgroup, and
-it is the join that the calculus uses.  The final two assertions are
+lies in the radical too.  The final two assertions are
 Corollary~\ref{cor:exactradical} and Proposition~\ref{prop:univquot};
 the second of them needs $N$ normal, which is where the quotient
 $G_1/N$ is formed.
@@ -2947,8 +2945,8 @@ Theorems~\ref{thm:criterion}, \ref{thm:normal-kazhdan},
 and~\ref{thm:collapse} are sound rules in this sense: each places a
 subgroup inside the radical of every countable group with its data,
 hence inside the radical of every reached quotient.
-Theorem~\ref{thm:saturation} is the case in which a single application
-reaches the whole group.  A rule instance can hold at a later stage
+Theorem~\ref{thm:saturation} is the case
+$D_{\mathrm{coll}}(L,s)=H$.  A rule instance can hold at a later stage
 without holding at an earlier one: modulo the earlier stage an element
 may acquire finite order, an orbit may begin to commute, or a subgroup
 may become normal.
@@ -3063,13 +3061,11 @@ $\opnorm{U_n(x)-1}=\opnorm{U_n(x)-\pi_n(x)}\to0$, against the uniform
 lower bound.
 \end{proof}
 
-For a stable group the corona representation theory is therefore
-computed by finite-dimensional representation theory alone.  Combined
-with Theorem~\ref{thm:B}, this is
-a second route to non-MF groups, one that uses neither torsion nor a
-marked word nor a conjugation datum: every point-norm matricially
-stable group with $\operatorname{Rad}_{\mathrm{fd}}(G)\ne1$ fails to
-be MF.
+For a stable group the two radicals therefore agree, so the corona
+representations see exactly what the finite-dimensional representations
+see.  With Theorem~\ref{thm:B} this gives a second route to non-MF
+groups: every point-norm matricially stable group with
+$\operatorname{Rad}_{\mathrm{fd}}(G)\ne1$ fails to be MF.
 
 \subsection{Orbit collapse and defect saturation}\label{subsec:collapse}
 
@@ -3077,10 +3073,10 @@ The criteria of Section~\ref{sec:conj} bound the radical from below
 by torsion or rigidity already present in the compression defect.  This
 subsection gives a second application of one-sided compression, under
 a commuting-orbit hypothesis in place of centrality: every corona
-representation identifies an entire conjugation orbit of an
-involution, so whole families of commutators --- not one marked
-element --- enter the radical, and by Corollary~\ref{cor:pullback}
-the radical computation reduces to the quotient by all of them.
+representation identifies an entire conjugation orbit of an involution,
+so a whole family of commutators enters the radical, and by
+Corollary~\ref{cor:pullback} the radical computation reduces to the
+quotient by that family.
 
 \begin{definition}[involutive compression witness]\label{def:invwitness}
 Let $H$ be a group, $L\le H$ a subgroup, and $s\in H$.  An element
@@ -3394,8 +3390,8 @@ argument of Theorem~\ref{thm:E} gives soficity unchanged.
 \end{proof}
 
 Thus $W/\langle\zeta\rangle$ is a second finitely generated sofic group
-that is not MF\@.  The same collapse reaches the finitely presented
-group.
+that is not MF\@.  Theorem~\ref{thm:collapse} applies to the finitely
+presented group $E/\langle w\rangle$ in the same way.
 
 \begin{proof}[Proof of Theorem~\ref{thm:signfree}]
 Write $q\colon E\to E/\langle w\rangle$, $\bar d=q(d)$, and
@@ -3404,7 +3400,7 @@ because $c^2=1$, and $q(t)\bar Lq(t)^{-1}$ centralizes $\bar d$
 because $t\iota(\mathcal B)t^{-1}$ commutes with $c$ in $E$.
 Property~\textup{(T)} passes to $\bar L$, and $q(t)$ compresses it.
 Conditions (W1) and (W2) of Definition~\ref{def:invwitness} therefore
-hold, and the content is (W3).
+hold.  It remains to verify (W3).
 
 The rotation letters commute with $d$, and $t$ carries each $v_i$ to
 $v_i^2$, so $\iota(v_i^2)$ commutes with $d$ as well.  Hence
@@ -3460,8 +3456,8 @@ Corollaries~\ref{cor:pullback} and~\ref{cor:exactradical}.
 \end{proof}
 
 In the second case $H/D_{\mathrm{coll}}(L,s)$ is the universal MF
-quotient of $H$ (Proposition~\ref{prop:univquot}): the corona
-representation theory of $H$ is computed exactly by the quotient.
+quotient of $H$ (Proposition~\ref{prop:univquot}): every corona
+representation of $H$ factors through it, and it is MF.
 
 \begin{theorem}[defect saturation]\label{thm:saturation}
 In the setting of Theorem~\ref{thm:collapse}:
@@ -3707,8 +3703,7 @@ constraint words in a reduced-word ball gives the radius form.
 \end{proof}
 
 Thus failure of MF is always certified by one finite ball of the
-marked Cayley diagram.  The next subsection computes such a
-certificate explicitly for $E$.
+marked Cayley diagram.
 
 \subsection{A finite universal Horn obstruction}
 
@@ -3785,15 +3780,10 @@ with $w=1$ form a recursively enumerable set which, the word problem
 being undecidable, is not recursive; hence the instances with $w\ne1$
 form a set that is \emph{not} recursively enumerable.  An enumeration
 of the non-MF presentations would enumerate that set, making the word
-problem decidable.  Only undecidability of the word problem is used
-here, not its completeness under many-one reduction: the conclusion
-comes from taking the preimage, under the computable Adian--Rabin
-reduction, of a set that is not recursively enumerable.  The two
-group-theoretic inputs to that argument are machine-checked ---
-subgroup heredity of MF and the finitely presented non-MF group ---
-as is the implication itself: from any computable
-Adian--Rabin reduction, undecidability and the failure of recursive
-enumerability on the negative side follow formally.
+problem decidable.  The argument uses undecidability of the word
+problem and takes the preimage of a set that is not recursively
+enumerable under the computable Adian--Rabin reduction; completeness of
+the word problem under many-one reduction is not needed.
 \leanverified{Computability/MarkovMFConsequences}{GroupApproximation.MarkovMFConsequences.operatorMF_subgroup_hereditary}
 \leanverified{Computability/MarkovMFConsequences}{GroupApproximation.MarkovMFConsequences.exists_finitelyPresented_nonOperatorMF}
 \leanverified{Computability/MarkovMFConsequences}{GroupApproximation.MarkovMFConsequences.operatorMF_recognition_undecidable}
@@ -3818,15 +3808,16 @@ isomorphism types $N$ --- each such $N$ embeds in $X$ as a finitely
 generated subgroup, a countable group has only countably many finitely
 generated subgroups, and the types $N$ are pairwise nonisomorphic.  A
 map with countable fibres from a continuum-sized family has
-continuum-sized image.  The counting step is needed because the
-products can fail to be pairwise nonisomorphic even when the factors
-are.  The deduction uses only that the $N$ are finitely generated, and at
-that strength the input is no longer quoted: a continuum of pairwise
-nonisomorphic finitely generated groups is constructed below, as a
-lamplighter over coset spaces of the free group rather than as a subdirect
-product of alternating groups, so the conclusion carries no literature
-input.  Neumann's sharper two-generator form is quoted, not reproved
-\cite{Neumann37}, and is not needed here.
+continuum-sized image.  The counting step is needed because products of
+pairwise nonisomorphic groups with a fixed factor can still be
+isomorphic.  The deduction uses only that the $N$ are finitely
+generated, and at that strength the input is constructed rather than
+quoted: a continuum of pairwise nonisomorphic finitely generated groups
+is built below, as a lamplighter over coset spaces of the free group
+rather than as a subdirect product of alternating groups, so the
+conclusion carries no literature input.  Neumann's sharper
+two-generator form is quoted, not reproved \cite{Neumann37}, and is not
+needed here.
 \leanverified{Sofic/ContinuumMultiplicity}{GroupApproximation.ContinuumMultiplicity.manuscriptContinuumMultiplicity}
 \leanverified{Monsters/NeumannContinuum}{GroupApproximation.NeumannContinuum.manuscriptContinuumMultiplicityUnconditional}
 
@@ -3863,14 +3854,14 @@ Hilbert--Schmidt invisibility of an element alone therefore can never
 prove a group non-MF: an obstruction must produce an invariant
 substructure with its own scale, renormalized on its own range so that
 the normalization is unchanged by amplification, rather than reading a
-normalized trace off the ambient blocks.  Macroscopic relative rank is
-\emph{not} what is required, and none of the constructions here has
-it: padding leaves the averaging corner $q_nM_{d_n}(\C)q_n$ untouched
-while $d_n$ grows, so its relative rank $r_n/d_n$ may tend to zero,
-and the argument runs on the corner's own normalized trace.  The
-moving spectral subspace and the rank-calibrated collapse renormalize
-on their own range and on the displacement scale $k_n$ in the same
-way.
+normalized trace off the ambient blocks.  What such a substructure
+needs is its own normalization, not a large relative rank.  Padding
+leaves the averaging corner $q_nM_{d_n}(\C)q_n$ untouched while $d_n$
+grows, so its relative rank $r_n/d_n$ may tend to zero while the
+argument runs on the corner's own normalized trace; the spectral
+projection $q_n$ of Theorem~\ref{thm:normal-kazhdan} is normalized on
+its own range in the same way, and the collapse argument of
+Theorem~\ref{thm:collapse} on the displacement scale $k_n$.
 
 This is a limitation of the method, not a tracial nonapproximation
 theorem for $E$.  Alekseev--Thom ask whether commutants arising in sofic
@@ -4056,9 +4047,9 @@ forced by the strict compression before any MF considerations arise.
 
 \section*{Acknowledgements}
 We thank Caleb Eckhardt for the reading of the argument that organizes
-Section~\ref{sec:intro}: that it promotes to matrix coronas the
-elementary obstruction by which a proper self-compression has no image
-in a finite quotient.  We thank Francesco Fournier-Facio for the
+Section~\ref{sec:intro}: that it is the matrix-corona form of the
+equality of the images of $\Gamma$ and $t\Gamma t^{-1}$ in a finite
+quotient.  We thank Francesco Fournier-Facio for the
 formulation of the group-theoretic input as a Kazhdan group that is not
 co-Hopfian, together with its ascending HNN extension, for the
 small-cancellation construction recorded in
