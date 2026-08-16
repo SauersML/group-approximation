@@ -744,6 +744,35 @@ import GroupApproximation.Sofic.CollapseUniverseScopeDefs
 import GroupApproximation.Sofic.CollapseUniverseScope
 import GroupApproximation.Sofic.CollapseProfileBound
 
+-- Modules that until now compiled only in isolation.  Outside the root import
+-- closure nothing in CI ever built them, so their proofs went unverified in every
+-- run that mattered; `scripts/check.py --list-orphans` is the scan.  The rest of
+-- the orphan set stays out on purpose: some of it is work other sessions have in
+-- flight, and some has gone stale against renames upstream of it.  Wiring either
+-- kind in here breaks the root build for everyone instead of getting it verified.
+import GroupApproximation.Analysis.CStarTensorProductAdjointable
+import GroupApproximation.Analysis.ExactnessPermanence
+import GroupApproximation.Computability.SemigroupWordProblemRewriting
+import GroupApproximation.Monsters.FournierFacioRealization
+import GroupApproximation.Monsters.P13SpectralGap
+import GroupApproximation.Sofic.CollapseProfileBoundNumeric
+import GroupApproximation.Sofic.CollapseTransportDiagonalization
+import GroupApproximation.Sofic.CollapseTransportDiagonalizationCommutant
+import GroupApproximation.Sofic.CollapseWordMetric
+import GroupApproximation.Sofic.GraphCliffordLamp
+import GroupApproximation.Sofic.LiteralAffineCosetTransitivity
+import GroupApproximation.Sofic.LiteralBlockGeometry
+import GroupApproximation.Sofic.LiteralBlockNormalForm
+import GroupApproximation.Sofic.LiteralLampKernelSplit
+import GroupApproximation.Sofic.LiteralTelescopeCoreLEF
+import GroupApproximation.Sofic.MatricialStabilityInstances
+import GroupApproximation.Sofic.SimpleSoficEnvelope
+import GroupApproximation.Sofic.SoficEnvelopeExistence
+import GroupApproximation.Sofic.UltraproductIntertwinerTransport
+import GroupApproximation.Sofic.UltraproductScaledTransport
+import GroupApproximation.Sofic.MultiMoverUniversalUpgrade
+import GroupApproximation.Sofic.AscendingHNNSeparableCosetAction
+
 /-!
 # An unconditional construction of a finitely presented nonsofic group
 
