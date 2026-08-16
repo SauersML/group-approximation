@@ -332,6 +332,7 @@ import GroupApproximation.Sofic.SoficActionChabauty
 import GroupApproximation.Sofic.SoficActionSum
 import GroupApproximation.Sofic.AscendingHNNStabilizer
 import GroupApproximation.Sofic.AscendingHNNDoubleCosets
+import GroupApproximation.Sofic.AscendingHNNWreathWitness
 import GroupApproximation.Sofic.CoronaRadicalPullback
 import GroupApproximation.Sofic.MoverGeneration
 import GroupApproximation.Sofic.FullMFRadicalEndpoint
@@ -360,6 +361,7 @@ import GroupApproximation.Algebra.AmenableRat
 import GroupApproximation.Sofic.CliffordBSAmenable
 import GroupApproximation.Sofic.ProductMultiplicity
 import GroupApproximation.Sofic.ContinuumMultiplicity
+import GroupApproximation.Sofic.ContinuumFamilyCriterion
 import GroupApproximation.Sofic.OperatorMFPairAmplification
 import GroupApproximation.Sofic.OperatorMFLocalNormalization
 import GroupApproximation.Sofic.MarkedGroupTopology
