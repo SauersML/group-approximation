@@ -77,17 +77,21 @@ def basisChangeEquiv {s : Set (FreeGroup α)} {t : Set (FreeGroup β)}
       intro a
       show (PresentedGroup.map g hts) ((PresentedGroup.map f hst)
         (PresentedGroup.of a)) = PresentedGroup.of a
-      have := congrArg (PresentedGroup.mk s) (hgf a)
-      simpa [PresentedGroup.map, PresentedGroup.of, QuotientGroup.map_mk']
-        using this)
+      have hcalc : (PresentedGroup.map g hts) ((PresentedGroup.map f hst)
+          (PresentedGroup.of a)) = PresentedGroup.mk s (g (f (FreeGroup.of a))) :=
+        rfl
+      rw [hcalc, hgf a]
+      rfl)
     (by
       refine PresentedGroup.ext ?_
       intro b
       show (PresentedGroup.map f hst) ((PresentedGroup.map g hts)
         (PresentedGroup.of b)) = PresentedGroup.of b
-      have := congrArg (PresentedGroup.mk t) (hfg b)
-      simpa [PresentedGroup.map, PresentedGroup.of, QuotientGroup.map_mk']
-        using this)
+      have hcalc : (PresentedGroup.map f hst) ((PresentedGroup.map g hts)
+          (PresentedGroup.of b)) = PresentedGroup.mk t (f (g (FreeGroup.of b))) :=
+        rfl
+      rw [hcalc, hfg b]
+      rfl)
 
 /-- The forward map of a basis change sends a generator to the substituted
 word. -/
