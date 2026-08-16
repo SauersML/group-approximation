@@ -62,7 +62,8 @@ formalized in this pass; **TODO** not yet formalized.
 | 49.4 | finite-index heredity of the finite residual | DONE-NEW | `Algebra/FiniteResidual.mem_finiteResidual_subgroup_iff` |
 | 50.1 | functoriality / full invariance of the finite residual | DONE-NEW | `Algebra/FiniteResidual.map_finiteResidual_le` |
 | 51.1 | simple lamps: one relation generates the whole lamp subgroup | DONE-NEW | `Algebra/PermutationalWreathSimple.lamp_le_normalClosure_single`, on `Lamp.mem_closure_singles` |
-| 52 | alternating-lamp noncommensurable family | TODO | |
+| 52.1 | `Aₙ` is simple for `n ≥ 5` | DONE-PRE | Mathlib `alternatingGroup.isSimpleGroup` (available for `5 ≤ Nat.card α`, not only `A₅`) |
+| 52.3 | the alternating lamps are pairwise non-isomorphic, so the hidden simple type is an invariant | DONE-NEW | `Algebra/PermutationalWreathSimple` (`nonempty_mulEquiv_of_lamp_mulEquiv`, `alternating_lamp_not_mulEquiv`) |
 | 53 | four-dimensional rational envelope | TODO | |
 | 54.2 | MF not closed under split extensions | TODO | |
 | 54.3 | wreath examples are not finitely presented | TODO | |

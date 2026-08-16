@@ -1,5 +1,6 @@
 import GroupApproximation.Algebra.PermutationalWreath
 import Mathlib.GroupTheory.Subgroup.Simple
+import Mathlib.GroupTheory.SpecificGroups.Alternating.Simple
 
 /-!
 # Simple lamps: one relation generates the whole invisible kernel
@@ -297,5 +298,64 @@ theorem exists_site_bijective_of_simple_quotient {K : Type u} [Group K]
         exact this
 
 end SimpleQuotient
+
+
+/-! ## The lamp group determines the lamp -/
+
+/-- **Section 52.2, transported.**  A simple lamp group is recoverable from the
+lamp group it generates: if two lamp groups over simple lamps are isomorphic,
+the lamps themselves are isomorphic.
+
+This is what makes the hidden simple type of the invisible radical an invariant.
+Combined with `alternatingGroup.isSimpleGroup`, the alternating lamps give
+pairwise non-isomorphic invisible kernels behind one and the same visible
+quotient. -/
+theorem nonempty_mulEquiv_of_lamp_mulEquiv {K : Type u} [Group K]
+    [IsSimpleGroup K] {L : Type u} [Group L] [IsSimpleGroup L] {X : Type v}
+    [DecidableEq X] [Nonempty X] (e : Lamp K X ≃* Lamp L X) :
+    Nonempty (K ≃* L) := by
+  classical
+  obtain ⟨x₀⟩ := ‹Nonempty X›
+  set φ : Lamp K X →* L := (evalHom x₀).comp e.toMonoidHom with hφ
+  have hsurj : Function.Surjective φ := by
+    intro l
+    refine ⟨e.symm (Lamp.single x₀ l), ?_⟩
+    show (evalHom x₀) (e (e.symm (Lamp.single x₀ l))) = l
+    rw [MulEquiv.apply_symm_apply]
+    exact Lamp.single_apply_self x₀ l
+  obtain ⟨y, hinj, hsur⟩ := exists_site_bijective_of_simple_quotient φ hsurj
+  exact ⟨MulEquiv.ofBijective _ ⟨hinj, hsur⟩⟩
+
+
+/-- **Section 52.3, algebraic core.**  The alternating lamps give pairwise
+non-isomorphic lamp groups.  Since the lamp subgroup is the invisible radical of
+the corresponding wreath product, this is what makes the family of examples
+pairwise distinguishable even though their visible quotients agree. -/
+theorem alternating_lamp_not_mulEquiv {m n : ℕ} (hm : 5 ≤ m) (hn : 5 ≤ n)
+    (hmn : m ≠ n) {X : Type v} [DecidableEq X] [Nonempty X] :
+    IsEmpty (Lamp (alternatingGroup (Fin m)) X ≃*
+      Lamp (alternatingGroup (Fin n)) X) := by
+  classical
+  haveI : IsSimpleGroup (alternatingGroup (Fin m)) :=
+    alternatingGroup.isSimpleGroup (by simpa using hm)
+  haveI : IsSimpleGroup (alternatingGroup (Fin n)) :=
+    alternatingGroup.isSimpleGroup (by simpa using hn)
+  haveI : Nontrivial (Fin m) := Fin.nontrivial_iff_two_le.mpr (by omega)
+  haveI : Nontrivial (Fin n) := Fin.nontrivial_iff_two_le.mpr (by omega)
+  refine ⟨fun e => ?_⟩
+  obtain ⟨ee⟩ := nonempty_mulEquiv_of_lamp_mulEquiv e
+  have hcard : Nat.card (alternatingGroup (Fin m))
+      = Nat.card (alternatingGroup (Fin n)) := Nat.card_congr ee.toEquiv
+  have h2 : Nat.card (Equiv.Perm (Fin m)) = Nat.card (Equiv.Perm (Fin n)) := by
+    rw [← two_mul_nat_card_alternatingGroup, ← two_mul_nat_card_alternatingGroup,
+      hcard]
+  have hfac : Nat.factorial m = Nat.factorial n := by
+    simpa [Nat.card_eq_fintype_card, Fintype.card_perm, Fintype.card_fin] using h2
+  rcases lt_trichotomy m n with h | h | h
+  · have := (Nat.factorial_lt (show 0 < m by omega)).mpr h
+    omega
+  · exact hmn h
+  · have := (Nat.factorial_lt (show 0 < n by omega)).mpr h
+    omega
 
 end GroupApproximation
