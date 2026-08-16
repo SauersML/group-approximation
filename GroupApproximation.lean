@@ -287,6 +287,7 @@ import GroupApproximation.Sofic.LEFMarkedCompression
 import GroupApproximation.Algebra.FiniteResidual
 import GroupApproximation.Algebra.PermutationalWreath
 import GroupApproximation.Algebra.PermutationalWreathSimple
+import GroupApproximation.Algebra.PermutationalWreathAmenable
 import GroupApproximation.Algebra.WreathSplitQuotient
 import GroupApproximation.Sofic.FiniteDimensionalResidual
 import GroupApproximation.Sofic.ThreeRadicalsCoincide
