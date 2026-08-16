@@ -860,6 +860,9 @@ import GroupApproximation.Sofic.TelescopeRadicalInduction
 import GroupApproximation.Sofic.BlockCliffordIndex
 import GroupApproximation.Sofic.LiteralCosetBraid
 import GroupApproximation.Computability.FreeGroupSquaring
+import GroupApproximation.Computability.SemigroupWordProblemSimulation
+import GroupApproximation.Computability.SemigroupWordProblemPresentation
+import GroupApproximation.Computability.SemigroupWordProblem
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group

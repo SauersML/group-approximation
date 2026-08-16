@@ -85,7 +85,7 @@ theorem word_right_move (M : Machine Γ Λ) (l : List Γ) (q : Λ) (b : Γ) (v :
         rightTail M.blank (headOpt v)) ++ rightPart v
       = word (b :: l) q (M.scan v) (tapeRest v) := by
   cases l <;> cases v <;>
-    simp [word, leftPart, rightPart, headOpt, optL, optR, rightTail, tapeRest,
+    simp [word, leftPart, rightPart, headOpt, optL, rightTail, tapeRest,
       Machine.scan, List.reverse_cons, List.map_append]
 
 /-- The result of firing a left-moving machine rule is the encoding of the next
@@ -95,8 +95,8 @@ theorem word_left_move (M : Machine Γ Λ) (l : List Γ) (q : Λ) (b : Γ) (v : 
         [Letter.tape b, optR (headOpt v)]) ++ rightPart v
       = word (tapeRest l) q (M.scan l) (b :: v) := by
   cases l <;> cases v <;>
-    simp [word, leftPart, rightPart, headOpt, optL, optR, leftHead, tapeRest,
-      Machine.scan, List.reverse_cons, List.map_append]
+    simp [word, leftPart, rightPart, headOpt, optR, leftHead, tapeRest,
+      Machine.scan]
 
 /-- The result of firing a halting machine rule is the eraser word. -/
 theorem word_halt (l : List Γ) (v : List Γ) :
@@ -123,6 +123,7 @@ theorem sstep_of_machine_step (M : Machine Γ Λ) {c c' : Cfg Γ Λ} (h : M.Step
         show machRhsOf M.blank (headOpt c.left) (headOpt (tapeRest c.right))
             (M.trans c.state (M.scan c.right)) = _
         rw [htr]
+        rfl
       rw [hr]
       exact (word_right_move M c.left q b (tapeRest c.right)).symm
   · refine ⟨RIdx.mach (headOpt c.left) c.state (M.scan c.right)
@@ -135,6 +136,7 @@ theorem sstep_of_machine_step (M : Machine Γ Λ) {c c' : Cfg Γ Λ} (h : M.Step
         show machRhsOf M.blank (headOpt c.left) (headOpt (tapeRest c.right))
             (M.trans c.state (M.scan c.right)) = _
         rw [htr]
+        rfl
       rw [hr]
       exact (word_left_move M c.left q b (tapeRest c.right)).symm
 
@@ -153,6 +155,7 @@ theorem sstep_of_halted (M : Machine Γ Λ) {c : Cfg Γ Λ} (h : M.Halted c) :
       show machRhsOf M.blank (headOpt c.left) (headOpt (tapeRest c.right))
           (M.trans c.state (M.scan c.right)) = _
       rw [h']
+      rfl
     rw [hr]
     exact (word_halt c.left (tapeRest c.right)).symm
 
@@ -224,7 +227,10 @@ theorem derives_done_of_eraseWord (M : Machine Γ Λ) (l v : List Γ) :
 on the whole forward orbit of an encoded configuration. -/
 @[simp] theorem weight_encCfg (M : Machine Γ Λ) (c : Cfg Γ Λ) :
     weight Letter.wt (encCfg M c) = 1 := by
-  simp [encCfg, word, Letter.wt]
+  -- `List.map_reverse` would push the `reverse` outside the `map`, past the
+  -- shape `weight_map_tape` recognises; the tape letters are what has weight
+  -- zero, whichever order they are written in.
+  simp [encCfg, word, Letter.wt, -List.map_reverse]
 
 /-- No encoded configuration is the one-letter word `done`. -/
 theorem encCfg_ne_done (M : Machine Γ Λ) (c : Cfg Γ Λ) :

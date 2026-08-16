@@ -65,10 +65,15 @@ theorem conGenRel_of_step (M : Machine Γ Λ) {u v : List (Letter Γ Λ)}
   have hbase : ConGen.Rel (machRels M)
       (lhsWord ruleSp rulePre rulePost i) (ruleRhs M i) :=
     ConGen.Rel.of _ _ hrule
+  -- The multiplication has to be the one of `FreeMonoid`, and a type ascription
+  -- does not supply it: ascribing `x : FreeMonoid _` leaves a term whose
+  -- inferred type is still `List _`, so `*` looks for `Mul (List _)` and finds
+  -- nothing.  `FreeMonoid.ofList` (the identity equivalence) names the type.
   have hfull : ConGen.Rel (machRels M)
-      ((x : FreeMonoid (Letter Γ Λ)) * lhsWord ruleSp rulePre rulePost i * y)
-      ((x : FreeMonoid (Letter Γ Λ)) * ruleRhs M i * y) :=
-    ConGen.Rel.mul (ConGen.Rel.mul (ConGen.Rel.refl x) hbase) (ConGen.Rel.refl y)
+      (FreeMonoid.ofList x * FreeMonoid.ofList (lhsWord ruleSp rulePre rulePost i) *
+          FreeMonoid.ofList y)
+      (FreeMonoid.ofList x * FreeMonoid.ofList (ruleRhs M i) * FreeMonoid.ofList y) :=
+    ConGen.Rel.mul (ConGen.Rel.mul (ConGen.Rel.refl _) hbase) (ConGen.Rel.refl _)
   subst hu
   subst hv
   exact hfull
@@ -86,7 +91,7 @@ theorem thueEquiv_iff_conGen (M : Machine Γ Λ) (u v : List (Letter Γ Λ)) :
     constructor
     · intro h
       induction h with
-      | refl => exact ConGen.Rel.refl u
+      | refl => exact ConGen.Rel.refl (FreeMonoid.ofList u)
       | tail hd hstep ih =>
           refine ConGen.Rel.trans ih ?_
           rcases hstep with hstep | hstep
