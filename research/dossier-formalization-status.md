@@ -94,6 +94,7 @@ formalized in this pass; **TODO** not yet formalized.
 | 52.3 | the alternating lamps are pairwise non-isomorphic, so the hidden simple type is an invariant | DONE-NEW | `Algebra/PermutationalWreathSimple` (`nonempty_mulEquiv_of_lamp_mulEquiv`, `alternating_lamp_not_mulEquiv`) |
 | 53 | wreath split quotient: `ker(rightHom) = ` lamp subgroup | DONE-NEW | `Algebra/WreathSplitQuotient` (`ker_rightHom_eq_lampRange`, `ker_comp_rightHom_eq_lampRange`) |
 | 54.2 kernel clauses | the mod-two lamp group is locally finite, residually finite, amenable, and linear over a field | DONE-NEW | `Algebra/PermutationalWreath.suppIn_finite`, `lamp_isResiduallyFinite`, `Algebra/PermutationalWreathAmenable.lamp_isAmenable`, `Algebra/PermutationalWreathLinear.exists_faithful_linear_representation` |
+| 51.1 for the family | for a simple lamp the kernel of the split projection is the normal closure of one witness lamp | DONE-NEW | `Sofic/AscendingHNNSplitExtension` (`ker_le_normalClosure_witnessLamp`, `exists_smul_tSite`, `ker_rightHom_eq`) |
 | 54.2 endpoint | MF is not closed under split extensions | DONE-NEW | `Sofic/AscendingHNNSplitExtension.mf_fails_for_split_extension`: locally finite MF kernel, MF quotient by hypothesis, non-MF middle; countability from `Algebra/LampCountable` |
 | 39 endpoint | the literal doubling wreath product is not MF | DONE-NEW | `Sofic/LiteralDoublingWreathNonMF` (`not_isCDEOperatorMF_W`, `mf_fails_for_literal_split_extension`), instantiating the abstract endpoint at `gammaBar`/`conjD` |
 | 52.3 separation | the alternating-lamp family is pairwise noncommensurable, given the residual identification | DONE-NEW | `Algebra/AlternatingLampNoncommensurable` (`not_mulEquiv_finiteIndex_of_alternating_residual`), on `Algebra/FiniteResidualCommensurability` |
@@ -108,6 +109,16 @@ formalized in this pass; **TODO** not yet formalized.
 | 53.5 (1)-(3) | finite-index twin tower: a subgroup containing the kernel is the full preimage of its image, the indices agree, and each node inherits the `Hom`-bijection | DONE-NEW | `Sofic/TargetEquivalence` (`eq_comap_map_of_ker_le`, `index_map_eq_index_of_ker_le`, `subgroupMap_surjective`, `ker_subgroupMap_eq`, `precomp_subgroupMap_bijective`); items (4)-(6) are the concrete perfect-lamp family |
 | 53.1, 53.2 (envelope) | one four-dimensional rational representation realizes the whole hidden kernel | NOT-TRACKED | concrete-family dependent: needs the §39.7 faithful `ρ_* : G_* ↪ GL₄(ℤ[1/2])` |
 | 54.2A | the invisible radical is intrinsically tame | DONE-NEW | `Algebra/PermutationalWreathRadicalTame` (`lampSub_tame`: every subgroup of the lamp base is locally finite, amenable, residually finite and operator-MF), on the general bridge `isAmenable_of_isLocallyFiniteGroup` |
+
+### Blocked, with the reason
+
+* **Bohr kernel (Section 46.5).**  Not formalizable against the pinned Mathlib:
+  there is no Peter--Weyl theorem in it, and the clause `Rad_Bohr = Rad_fd` is
+  exactly Peter--Weyl for compact groups.  Everything else in the five-radical
+  coincidence is either done or reduces to the telescope radical.
+* **Graph-product half of 54.3.**  Mathlib has no graph products, so the
+  necessity direction of Cornulier's criterion would have to be built from
+  scratch; the height half (infinitely many diagonal orbits) is done.
 
 ## Notes
 

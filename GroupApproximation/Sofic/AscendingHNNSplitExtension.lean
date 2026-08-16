@@ -78,5 +78,29 @@ theorem mf_fails_for_split_extension
   exact not_isCDEOperatorMF_wreath β hβ hΓ hk₀ hk2 ha₀
     ((isCDEOperatorMF_iff_isOperatorMF _).mpr hMF)
 
+/-! ## For a simple lamp the kernel is one relation -/
+
+omit [Finite K₀] [DecidableEq (Cosets β hβ)] in
+/-- The coset action is transitive from the witness site. -/
+theorem exists_smul_tSite (x : Cosets β hβ) :
+    ∃ g : Vertical β hβ, g • tSite β hβ = x := by
+  refine Quotient.inductionOn x fun v => ?_
+  refine ⟨v * (tVertical β hβ)⁻¹, ?_⟩
+  rw [tSite, ← mul_smul, inv_mul_cancel_right, smul_rootCoset]
+
+omit [Finite K₀] in
+/-- **Section 51.1 for the ascending-HNN family.**  For a simple lamp group the
+kernel of the split projection -- the whole lamp base -- is the normal closure
+of the single witness lamp.  So one relation separates the wreath product from
+its skeleton. -/
+theorem ker_le_normalClosure_witnessLamp [IsSimpleGroup K₀] {k₀ : K₀}
+    (hk₀ : k₀ ≠ 1) :
+    (rightHom : WreathV (K := K₀) β hβ →* Vertical β hβ).ker
+      ≤ Subgroup.normalClosure {witnessLamp β hβ k₀} := by
+  rw [ker_rightHom_eq]
+  rintro _ ⟨f, rfl⟩
+  exact lamp_le_normalClosure_single (G := Vertical β hβ) (tSite β hβ)
+    (exists_smul_tSite β hβ) hk₀ f
+
 end MarkedCompression
 end GroupApproximation
