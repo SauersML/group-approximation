@@ -462,6 +462,49 @@
       ]
     },
     {
+      "id": "thm:Esofic",
+      "environment": "mainthm",
+      "title": "a finitely presented sofic non-MF group",
+      "statement_sha256": "917c4fa5ef0893d91e8119db738a0dde9b82b46cad40779cc1d805f493096228",
+      "status": "exact",
+      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
+      "dependencies": [
+        "def:E",
+        "thm:A",
+        "thm:E",
+        "thm:markedclosed"
+      ],
+      "extra_assumptions": [],
+      "external_inputs": [],
+      "coverage_gap": "",
+      "lean": [
+        {
+          "role": "exact",
+          "module": "Sofic/LiteralSoficAssembly",
+          "declaration": "GroupApproximation.LiteralSoficAssembly.markedGroup_isSofic",
+          "covers": "a printed conclusion of the proposition"
+        },
+        {
+          "role": "exact",
+          "module": "Sofic/LiteralSoficAssembly",
+          "declaration": "GroupApproximation.LiteralSoficAssembly.markedGroup_finitelyPresented_sofic_nonMF",
+          "covers": "the complete printed proposition"
+        },
+        {
+          "role": "exact",
+          "module": "Sofic/LiteralSoficAssembly",
+          "declaration": "GroupApproximation.LiteralSoficAssembly.markedGroup_finitelyPresented_hyperlinear_nonMF",
+          "covers": "a printed conclusion of the proposition"
+        },
+        {
+          "role": "exact",
+          "module": "Sofic/LiteralSoficAssembly",
+          "declaration": "GroupApproximation.LiteralSoficAssembly.markedGroup_sofic_not_isLEF_unconditional",
+          "covers": "a printed conclusion of the proposition"
+        }
+      ]
+    },
+    {
       "id": "thm:transport-variants",
       "environment": "theorem",
       "title": "transport at every scale, and of intertwiners",

@@ -2830,9 +2830,11 @@ subsequence, the whole orbit collapses there to a single exact
 involution and $\opnorm{U_{[\gamma_0,k],n}-1}\to0$ along it, against
 the separation; so $k_n\ge1$ for all large $n$.
 
-\emph{Step 4: an approximate $1$-cocycle.}  In the Euclidean
-space of matrices, with the Frobenius norm
-$\|x\|_{\mathrm F}=\operatorname{Tr}(x^{*}x)^{1/2}$, set
+\emph{Step 4: an approximate $1$-cocycle.}  This step and the next work
+with the \emph{unnormalized} Hilbert--Schmidt, or Frobenius, norm
+$\|x\|_{\mathrm F}=\operatorname{Tr}(x^{*}x)^{1/2}$, so that
+$\|x\|_{\mathrm F}^2=d_n\hsnorm{x}^2$ on $M_{d_n}(\C)$; the
+normalization is by the rank $k_n$ below rather than by $d_n$.  Set
 $b_n(\gamma)=k_n^{-1/2}\bigl(V_n(\gamma)-V_n(1)\bigr)$.  By
 \eqref{eq:rank-support} and Steps 2 and 3,
 $\|b_n(\gamma)\|_{\mathrm{F}}^2=4d_n(1,\gamma)/k_n\le4\,|\gamma|_S$ at
@@ -2867,10 +2869,11 @@ control alone does not bound rank: two exact involutions at small
 operator distance can differ in full rank.  Combining them in
 $\operatorname{Tr}|D|^2\le\operatorname{rank}(D)\cdot\opnorm{D}^2$
 bounds the normalized defect mass by
-$\bigl(|\gamma|_S+|\mu|_S+|a|_S\bigr)\opnorm{D_n}^2\to0$: the normalized defect mass vanishes at the scale $k_n$.  All estimates below concern only
-differences of the involutions.
+$\bigl(|\gamma|_S+|\mu|_S+|a|_S\bigr)\opnorm{D_n}^2\to0$: the defect
+mass vanishes at the scale $k_n$.  Only differences of the involutions
+enter what follows.
 
-\emph{Step 5: property~\textup{(T)} bounds the profile uniformly.}  Fix a free
+\emph{Step 5: the limiting cocycle is a coboundary.}  Fix a free
 ultrafilter $\omega$ on $\N$, give $M_{d_n}(\C)$ the inner product
 $\langle x,y\rangle=\operatorname{Tr}(y^{*}x)$, and let $K_\omega$ be
 the Hilbert-space ultraproduct of these spaces along $\omega$.
@@ -3685,50 +3688,42 @@ formed as in Theorem~\ref{thm:kazhdan-clifford} over Fournier-Facio's
 torsion-free finitely presented property-\textup{(T)} group
 \cite{FFF}, subject to five conditions: $Q$ is finitely presented;
 $Q$ has property~\textup{(T)}; $Q$ is torsion-free; $Q$ is generated
-by two elements; and $q(N_{\mathrm{comp}})=Q$, the compression defect
-of the datum carried by $E'$ surjecting onto all of $Q$.  Given such a
+by two elements; and $q(N_{\mathrm{comp}})=Q$.  Given such a
 $q$, the group $Q$ is two-generated, finitely presented, torsion-free,
 Kazhdan, and equal to its own MF radical, so every homomorphism from
 $Q$ to a matrix quotient is trivial, and every nontrivial quotient
 of $Q$ likewise fails to be MF\@.
 \leanverified{Sofic/FullMFRadicalEndpoint}{GroupApproximation.FullMFRadicalEndpoint.exists_twoGenerated_finitelyPresented_torsionFree_kazhdan_fullMFRadical}
 \leanverified{Sofic/FullMFRadicalEndpoint}{GroupApproximation.FullMFRadicalEndpoint.exists_group_with_every_nontrivial_quotient_not_isCDEOperatorMF}
-Meeting the five conditions at once is the open part, and Hull's
-small-cancellation theorem for acylindrically hyperbolic groups
-\cite[Theorem 1.5]{Hull} reduces it to one certificate.  That theorem
-takes any \emph{suitable} subgroup $S$ of an acylindrically hyperbolic
-$G$ --- one whose induced action is non-elementary and which normalizes
-no finite subgroup --- and, when $G$ is finitely generated and the
-prescribed elements are a generating set, returns a quotient
-$\gamma\colon G\to\bar G$ with $\gamma(S)=\bar G$, injective on any
-prescribed finite set, preserving element orders, and obtained by
-adjoining finitely many relators.  Taking $S$ two-generated inside
-$N_{\mathrm{comp}}$ delivers four of the five conditions at once, and
-property~\textup{(T)} descends from a torsion-free Kazhdan lattice
-through a common quotient.  What is not available is the hypothesis:
-a suitable subgroup of the skeleton inside $N_{\mathrm{comp}}$, for
-which it would be enough to exhibit one infinite-order element of the
-defect generating a hyperbolically embedded cyclic subgroup
-\cite[Lemma 5.8]{Hull}.  The Bass--Serre action of an ascending HNN
-extension fixes the end of its telescope, and an acylindrical action is
-never quasi-parabolic \cite[Theorem~1.1]{OsinAH}, so that action does
-not certify the hypothesis.  No unconditional torsion-free finitely presented
-non-MF group is proved here.
 By Theorem~\ref{thm:saturation}, a group that equals its own collapse
 defect admits no nontrivial homomorphism to any countable MF group at
-all.
+all.  Meeting the five conditions at once is the open part; no
+unconditional torsion-free finitely presented non-MF group is proved
+here.  Hull's small-cancellation theorem for acylindrically hyperbolic
+groups \cite[Theorem 1.5]{Hull} would deliver four of the five from a
+two-generated \emph{suitable} subgroup $S$ of $N_{\mathrm{comp}}$ ---
+one whose induced action is non-elementary and which normalizes no
+finite subgroup --- since the quotient it returns is obtained by
+adjoining finitely many relators, preserves element orders, and
+restricts to a surjection from $S$, while property~\textup{(T)} descends
+from a torsion-free Kazhdan lattice through a common quotient.  What is
+not available is that hypothesis: one infinite-order element of the
+defect generating a hyperbolically embedded cyclic subgroup would supply
+it \cite[Lemma 5.8]{Hull}, but the Bass--Serre action of an ascending
+HNN extension fixes the end of its telescope, and an acylindrical action
+is never quasi-parabolic \cite[Theorem~1.1]{OsinAH}, so that action does
+not certify it.
 \item Soficity and hyperlinearity of $E$ are not decided by the
 operator-norm method: the adjoint spectral estimates require
 operator-norm multiplicative control, which permutation and
-Hilbert--Schmidt models do not supply.  This is a limitation of the
-method and not an open question about $E$.  Both properties hold, by
-the independent argument of Theorem~\ref{thm:Esofic}, so $E$ is an
-explicit finitely presented sofic --- indeed hyperlinear --- group that
-is not MF\@.  What the operator-norm method
-does leave open for $E$ is the size of its MF radical, item~(1).
-\item Does MF imply hyperlinearity?  A faithful embedding into a matrix quotient need not make any coordinate trace faithful, so the defining
+Hilbert--Schmidt models do not supply.  That is a limitation of the
+method, not an open question: Theorem~\ref{thm:Esofic} settles both by
+an independent argument.  What the operator-norm method does leave open
+for $E$ is the size of its MF radical, item~(1).
+\item Does MF imply hyperlinearity?  A faithful embedding into a matrix
+quotient need not make any coordinate trace faithful, so the defining
 MF representation does not immediately give a hyperlinear model.  This
-question concerns the CDE convention above fixed above; for stronger
+question concerns the CDE convention fixed above; for stronger
 trace-controlled MF conventions the implication is built into the definition.
 \item By Proposition~\ref{prop:sounditeration}, every family of
 theorems placing subgroups in the MF radical generates, by iteration
