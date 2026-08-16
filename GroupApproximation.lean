@@ -317,6 +317,7 @@ import GroupApproximation.Sofic.TensorPowerAmplification
 import GroupApproximation.Sofic.TensorPowerTransport
 import GroupApproximation.Algebra.ProductFinitePresentation
 import GroupApproximation.Algebra.Amenable
+import GroupApproximation.Algebra.AmenableMean
 import GroupApproximation.Sofic.ProductMultiplicity
 import GroupApproximation.Sofic.ContinuumMultiplicity
 import GroupApproximation.Sofic.OperatorMFPairAmplification
