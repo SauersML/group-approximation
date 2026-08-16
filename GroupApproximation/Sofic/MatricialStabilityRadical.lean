@@ -65,9 +65,15 @@ def constCoronaRep (Y : FiniteModel)
     (MonoidHom.pi fun _ : ℕ ↦ phi)
 
 /-- **No stability needed**: the MF radical lies in every
-finite-dimensional kernel. -/
+finite-dimensional kernel.
+
+The group is quantified inside the proposition, not carried in from the
+section `variable` above: a manuscript endpoint must state on its own face
+what a caller has to supply, and here that is nothing. -/
 theorem actualCoronaMFResidual_le_fdUnitaryResidual :
-    actualCoronaMFResidual G ≤ fdUnitaryResidual G := by
+    ∀ {G : Type u} [Group G],
+      actualCoronaMFResidual G ≤ fdUnitaryResidual G := by
+  intro G _
   intro x hx
   rw [mem_fdUnitaryResidual_iff]
   intro Y phi

@@ -109,8 +109,17 @@ variable [DecidableEq (G ⧸ K)]
 /-- The point mass at the base coset. -/
 def baseVector : CosetHilbert G K := lp.single 2 ((1 : G) : G ⧸ K) 1
 
+/-- **The witness is a point mass.**  The base coordinate of the base vector
+is `1`.
+
+The group, the subgroup and the decidability of the coset space are quantified
+inside the proposition.  They are the section variables of this file, and a
+cited endpoint that inherits them silently has a leading input its printed
+header does not show. -/
 theorem baseVector_apply_base :
-    baseVector G K ((1 : G) : G ⧸ K) = 1 := by
+    ∀ (G : Type u) [Group G] (K : Subgroup G) [DecidableEq (G ⧸ K)],
+      baseVector G K ((1 : G) : G ⧸ K) = 1 := by
+  intro G _ K _
   unfold baseVector
   exact lp.single_apply_self 2 _ _
 
@@ -123,7 +132,7 @@ theorem baseVector_ne_zero : baseVector G K ≠ 0 := by
   intro h
   have h1 := congrArg (fun f : CosetHilbert G K => f ((1 : G) : G ⧸ K)) h
   simp only at h1
-  rw [baseVector_apply_base] at h1
+  rw [baseVector_apply_base G K] at h1
   have h2 : ((0 : CosetHilbert G K) : (G ⧸ K) → ℂ) ((1 : G) : G ⧸ K) = 0 :=
     rfl
   exact one_ne_zero (h1.trans h2)
