@@ -135,9 +135,9 @@ $t\Gamma t^{-1}\subseteq\Gamma$, let $c$ centralize $\Gamma$, and put
 $d=tct^{-1}$ and $u=[d,a]$ for $a\in\Gamma$.  We prove that in every
 operator-norm matrix model of $H$ conjugation by $t$ preserves the
 Hilbert--Schmidt asymptotic commutant of $\Gamma$; hence
-$\hsnorm{u-1}\to0$.  In $E$ the element $w=u^2$ is central of order
-two, and a Clifford-group quotient of $E$ sends it to $-1$.  So $w\ne1$
-while every matrix model sends $w$ to $1$.  The construction takes as
+$\hsnorm{u-1}\to0$.  In $E$ the element $w=u^2$ is central and
+satisfies $w^2=1$, and a Clifford-group quotient of $E$ sends it to
+$-1$; so $w\ne1$, while every matrix model sends $w$ to $1$.  The construction takes as
 input any finitely presented property-\textup{(T)} group with a proper
 injective self-embedding; $E$ is the instance built on
 $\mathbb Z^3\rtimes\SL_3(\mathbb Z)$.
@@ -565,8 +565,8 @@ In the right-hand column, $p\sim q$ is Murray--von Neumann equivalence
 and \emph{finite} is meant in the $C^*$-sense: no proper isometries.
 Theorem~\ref{thm:B} uses the middle implication, applied to the
 commutant $C$ of the base inside a finite-dimensional endomorphism
-algebra: the one-sided conjugation gives $C\subseteq uCu^{-1}$, and
-$\dim_kC=\dim_kuCu^{-1}<\infty$, so $C=uCu^{-1}$.  The proof below uses
+algebra: the one-sided conjugation carries $C$ into a conjugate copy of
+itself, of the same finite dimension, so the two coincide.  The proof below uses
 the right-hand implication, applied to the projection $P$ onto the
 Kazhdan fixed space inside a norm ultraproduct: the one-sided
 conjugation gives $P\le VPV^*$, the two projections are Murray--von
@@ -1529,12 +1529,14 @@ isomorphism.
 \begin{proof}
 Write $\pi\colon P_{13}\to\SL_3(\mathbb Z)$ for the map in question, and
 \[
- w=e_{12}e_{21}^{-1}e_{12},\qquad
+ w_{12}=e_{12}e_{21}^{-1}e_{12},\qquad
  w_{13}=e_{13}e_{31}^{-1}e_{13},\qquad
  w_{23}=e_{23}e_{32}^{-1}e_{23}
 \]
-for the three signed swaps; $w$ is the Weyl element of the upper-left
-$2\times2$ block, and the thirteenth relator is $w^4=1$.  Let $e_3$ be
+for the three signed swaps; $w_{12}$ is the Weyl element of the
+upper-left $2\times2$ block, and the thirteenth relator is
+$w_{12}^4=1$.  The letter $w$ is reserved for the marked word of
+\eqref{eq:E} and is not used in this proof.  Let $e_3$ be
 the third basis column of $\mathbb Z^3$, let
 $\lVert\cdot\rVert_1$ be the $\ell^1$ norm on $\mathbb Z^3$, and put
 \[
@@ -1598,12 +1600,13 @@ and the orbit of $e_3$ is all six of them, with coset representatives
 carrying $e_3$ to $e_3,e_1,e_2,-e_3,-e_1,-e_2$ respectively.  Twelve
 Schreier relations, one for each generator and coset, have the form
 $w_\bullet\,r_j=r_{j'}\,w^{k}$: every Schreier element is a power of
-the block Weyl element $w$.  The identity that closes the table is
-$w_{23}^2=w^2w_{13}^2$, the residue of the classical computation
-$\{-1,-1\}=w^4$ in $K_2(3,\mathbb Z)$, and it is available exactly
-because the thirteenth relator gives $w^4=1$.  Hence every element of
-$\langle w_{13},w_{23}\rangle$ is $r_jw^k$; if in addition its matrix
-fixes $e_3$, then $r_je_3=e_3$ forces $j=0$, leaving $m=w^k\in
+the block Weyl element $w_{12}$.  The identity that closes the table is
+$w_{23}^2=w_{12}^2w_{13}^2$, the residue of the classical computation
+$\{-1,-1\}=w_{12}^4$ in $K_2(3,\mathbb Z)$, and it is available exactly
+because the thirteenth relator gives $w_{12}^4=1$.  Hence every element
+of $\langle w_{13},w_{23}\rangle$ is $r_jw_{12}^k$; if in addition its
+matrix fixes $e_3$, then $r_je_3=e_3$ forces $j=0$, leaving
+$m=w_{12}^k\in
 H_{\mathrm{par}}$.  With the previous step,
 \[
  W=m\cdot\bigl(m^{-1}Gm\bigr)\in H_{\mathrm{par}} .
