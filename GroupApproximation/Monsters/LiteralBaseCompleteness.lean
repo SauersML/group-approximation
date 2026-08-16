@@ -96,8 +96,43 @@ local macro "verify_unit_matrix" : tactic =>
          norm_num [Matrix.mul_apply, Matrix.one_apply, pow_succ,
            Fin.sum_univ_succ, xU, yU, zU, xM, yM, zM]))
 
-set_option maxHeartbeats 1000000 in
 set_option linter.unusedSimpArgs false in
+private theorem rotUnit_kills_xzcube :
+    FreeGroup.lift rotUnit relXZCube = 1 := by
+  simp only [relXZCube, map_pow, map_mul, FreeGroup.lift_apply_of,
+    rotUnit_zero, rotUnit_one, rotUnit_two]
+  verify_unit_matrix
+
+set_option linter.unusedSimpArgs false in
+private theorem rotUnit_kills_yzcube :
+    FreeGroup.lift rotUnit relYZCube = 1 := by
+  simp only [relYZCube, map_pow, map_mul, FreeGroup.lift_apply_of,
+    rotUnit_zero, rotUnit_one, rotUnit_two]
+  verify_unit_matrix
+
+set_option linter.unusedSimpArgs false in
+private theorem rotUnit_kills_xinvzxy :
+    FreeGroup.lift rotUnit relXInvZXY = 1 := by
+  simp only [relXInvZXY, map_pow, map_mul, map_inv, FreeGroup.lift_apply_of,
+    rotUnit_zero, rotUnit_one, rotUnit_two]
+  rw [xU_inv]
+  verify_unit_matrix
+
+set_option linter.unusedSimpArgs false in
+private theorem rotUnit_kills_yinvzyx :
+    FreeGroup.lift rotUnit relYInvZYX = 1 := by
+  simp only [relYInvZYX, map_pow, map_mul, map_inv, FreeGroup.lift_apply_of,
+    rotUnit_zero, rotUnit_one, rotUnit_two]
+  rw [yU_inv]
+  verify_unit_matrix
+
+set_option linter.unusedSimpArgs false in
+private theorem rotUnit_kills_xysix :
+    FreeGroup.lift rotUnit relXYSix = 1 := by
+  simp only [relXYSix, map_pow, map_mul, FreeGroup.lift_apply_of,
+    rotUnit_zero, rotUnit_one, rotUnit_two]
+  verify_unit_matrix
+
 theorem rotUnit_kills :
     ∀ r ∈ (rotationRelators : Set (FreeGroup RotationGenerator)),
       FreeGroup.lift rotUnit r = 1 := by
@@ -111,23 +146,11 @@ theorem rotUnit_kills :
       rotUnit_one] using yU_cube
   · simpa only [relZSq, map_pow, FreeGroup.lift_apply_of,
       rotUnit_two] using zU_sq
-  · simp only [relXZCube, map_pow, map_mul, FreeGroup.lift_apply_of,
-      rotUnit_zero, rotUnit_one, rotUnit_two]
-    verify_unit_matrix
-  · simp only [relYZCube, map_pow, map_mul, FreeGroup.lift_apply_of,
-      rotUnit_zero, rotUnit_one, rotUnit_two]
-    verify_unit_matrix
-  · simp only [relXInvZXY, map_pow, map_mul, map_inv, FreeGroup.lift_apply_of,
-      rotUnit_zero, rotUnit_one, rotUnit_two]
-    rw [xU_inv]
-    verify_unit_matrix
-  · simp only [relYInvZYX, map_pow, map_mul, map_inv, FreeGroup.lift_apply_of,
-      rotUnit_zero, rotUnit_one, rotUnit_two]
-    rw [yU_inv]
-    verify_unit_matrix
-  · simp only [relXYSix, map_pow, map_mul, FreeGroup.lift_apply_of,
-      rotUnit_zero, rotUnit_one, rotUnit_two]
-    verify_unit_matrix
+  · exact rotUnit_kills_xzcube
+  · exact rotUnit_kills_yzcube
+  · exact rotUnit_kills_xinvzxy
+  · exact rotUnit_kills_yinvzyx
+  · exact rotUnit_kills_xysix
 
 /-- The matrix model of the abstract eight-relator rotation group. -/
 def rotationToMat : Rotation →* Matˣ :=
