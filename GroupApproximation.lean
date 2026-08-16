@@ -293,6 +293,7 @@ import GroupApproximation.Algebra.WreathSplitQuotient
 import GroupApproximation.Sofic.FiniteDimensionalResidual
 import GroupApproximation.Sofic.ThreeRadicalsCoincide
 import GroupApproximation.Sofic.LinearResidual
+import GroupApproximation.Sofic.BlockAmplificationRepair
 import GroupApproximation.Sofic.SoficPiProduct
 import GroupApproximation.Sofic.AmenableActionSofic
 import GroupApproximation.Sofic.CoAmenableActionSofic

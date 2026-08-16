@@ -22,7 +22,8 @@ formalized in this pass; **TODO** not yet formalized.
 | 4.2 | finitely many movers | DONE-NEW | `Sofic/MoverGeneration` (`closure_stabilizer_union_movers`, `movers_finite`) |
 | 5.1-5.3 | max-displacement word estimate | DONE-NEW | `Sofic/MaxDisplacement` (`dist_inv_smul_le`, `dist_smul_le_of_mem_closure`, `exists_infinite_constant_argmax`) |
 | 6.1 | subsequence vanishing ≠ corona vanishing | DONE-NEW | `Sofic/CoronaSubsequence.exists_vanishing_on_subsequence_not_tendsto_zero` |
-| 7.1-7.2 | finite block amplification; corrected (iii) removal | TODO | |
+| 7.1 | finite-block amplification: limsup separation becomes stagewise separation | DONE-NEW | `Sofic/BlockAmplificationRepair.exists_stagewise_separated`, on the repository's block-list API |
+| 7.2 | corrected multi-mover removal of condition (iii) | DONE-NEW | `Sofic/BlockAmplificationRepair.not_isOperatorMF_of_no_multiMarked`; the analytic core enters as the hypothesis `hkill`, everything else is unconditional |
 | 2.4 | GKEP sofic action (Definition 2.1) | DONE-NEW | `Sofic/SoficAction.SoficActionModel`, `IsSoficAction` |
 | 9.1-9.3 | ascending normal form, `N = ker χ`, `G = N ⋊ ℤ` | DONE-PRE | `Algebra/MappingTelescope`, `Sofic/MarkedCompressionGroup.Vertical` |
 | 9.4 | ascending HNN is not property (T) | DONE-NEW | `Kazhdan/IntegerNotKazhdan.not_hasKazhdanPropertyT_multiplicative_int`, `Sofic/AscendingHNNNotKazhdan.not_hasKazhdanPropertyT_vertical` |
