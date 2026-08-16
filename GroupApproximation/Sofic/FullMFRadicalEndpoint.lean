@@ -29,17 +29,18 @@ universe u
 /-- **The Main Theorem, frozen.**  Routing data yields a two-generated,
 finitely presented, torsion-free property-(T) group whose literal CDE
 MF radical is everything. -/
-theorem exists_twoGenerated_finitelyPresented_torsionFree_kazhdan_fullMFRadical
-    {P : Type} {E : Type u} [Group P] [Group E]
-    {D : FournierFacioDefectData P E}
-    (h : Nonempty (DefectRoutingData.{u} D)) :
-    ∃ (Q : Type) (_ : Group Q) (_ : Countable Q),
-      IsTwoGenerated Q ∧
-      Group.IsFinitelyPresented Q ∧
-      IsPowerTorsionFree Q ∧
-      HasKazhdanPropertyT.{0, 0} Q ∧
-      Nontrivial Q ∧
-      cdeMFResidual Q = ⊤ := by
+theorem exists_twoGenerated_finitelyPresented_torsionFree_kazhdan_fullMFRadical :
+    ∀ {P : Type} {E : Type u} [Group P] [Group E]
+      {D : FournierFacioDefectData P E}
+      (_h : Nonempty (DefectRoutingData.{u} D)),
+      ∃ (Q : Type) (_ : Group Q) (_ : Countable Q),
+        IsTwoGenerated Q ∧
+        Group.IsFinitelyPresented Q ∧
+        IsPowerTorsionFree Q ∧
+        HasKazhdanPropertyT.{0, 0} Q ∧
+        Nontrivial Q ∧
+        cdeMFResidual Q = ⊤ := by
+  intro P E _ _ D h
   obtain ⟨R⟩ := h
   letI : Group R.Quotient := R.groupQuotient
   letI : Countable R.Quotient := R.quotientCountable
@@ -51,19 +52,20 @@ theorem exists_twoGenerated_finitelyPresented_torsionFree_kazhdan_fullMFRadical
 with the same profile, all of whose nontrivial quotients fail to be MF —
 in particular the group itself is not MF, and it admits no nontrivial
 finite, residually finite, or MF quotient of any kind. -/
-theorem exists_group_with_every_nontrivial_quotient_not_isCDEOperatorMF
-    {P : Type} {E : Type u} [Group P] [Group E]
-    {D : FournierFacioDefectData P E}
-    (h : Nonempty (DefectRoutingData.{u} D)) :
-    ∃ (Q : Type) (_ : Group Q) (_ : Countable Q),
-      IsTwoGenerated Q ∧
-      Group.IsFinitelyPresented Q ∧
-      IsPowerTorsionFree Q ∧
-      HasKazhdanPropertyT.{0, 0} Q ∧
-      Nontrivial Q ∧
-      ∀ (H : Type) (_ : Group H) (_ : Countable H) (_ : Nontrivial H)
-        (f : Q →* H),
-        Function.Surjective f → ¬ IsCDEOperatorMF H := by
+theorem exists_group_with_every_nontrivial_quotient_not_isCDEOperatorMF :
+    ∀ {P : Type} {E : Type u} [Group P] [Group E]
+      {D : FournierFacioDefectData P E}
+      (_h : Nonempty (DefectRoutingData.{u} D)),
+      ∃ (Q : Type) (_ : Group Q) (_ : Countable Q),
+        IsTwoGenerated Q ∧
+        Group.IsFinitelyPresented Q ∧
+        IsPowerTorsionFree Q ∧
+        HasKazhdanPropertyT.{0, 0} Q ∧
+        Nontrivial Q ∧
+        ∀ (H : Type) (_ : Group H) (_ : Countable H) (_ : Nontrivial H)
+          (f : Q →* H),
+          Function.Surjective f → ¬ IsCDEOperatorMF H := by
+  intro P E _ _ D h
   obtain ⟨R⟩ := h
   letI : Group R.Quotient := R.groupQuotient
   letI : Countable R.Quotient := R.quotientCountable

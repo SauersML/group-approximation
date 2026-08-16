@@ -109,15 +109,16 @@ theorem negative_side_not_re
 
 /-- Specialized undecidability statement for operator-MF recognition under
 an explicitly supplied presentation semantics and Adian--Rabin reduction. -/
-theorem operatorMF_recognition_undecidable
-    {Source : Type u} {Code : Type v} [Primcodable Source] [Primcodable Code]
-    {sourceProperty : Source → Prop}
-    (semantics : FinitePresentationSemantics Code)
-    (reduction : AdianRabinReduction sourceProperty
-      (operatorMFProperty semantics))
-    (source_undecidable : ¬ComputablePred sourceProperty) :
-    ¬ComputablePred (operatorMFProperty semantics) :=
-  recognition_undecidable reduction source_undecidable
+theorem operatorMF_recognition_undecidable :
+    ∀ {Source : Type u} {Code : Type v} [Primcodable Source] [Primcodable Code]
+      {sourceProperty : Source → Prop}
+      (semantics : FinitePresentationSemantics Code)
+      (_reduction : AdianRabinReduction sourceProperty
+        (operatorMFProperty semantics))
+      (_source_undecidable : ¬ComputablePred sourceProperty),
+      ¬ComputablePred (operatorMFProperty semantics) := by
+  intro Source Code _ _ sourceProperty semantics reduction source_undecidable
+  exact recognition_undecidable reduction source_undecidable
 
 /-- Specialized non-r.e. statement for negative operator-MF instances. -/
 theorem operatorMF_negative_side_not_re
@@ -136,10 +137,11 @@ recorded here without claiming that the syntactic Adian--Rabin transformation
 has been formalized. -/
 
 /-- Operator-MF is inherited by subgroups. -/
-theorem operatorMF_subgroup_hereditary
-    {G : Type u} [Group G] (hG : IsOperatorMF G) (H : Subgroup G) :
-    IsOperatorMF H :=
-  hG.subgroup H
+theorem operatorMF_subgroup_hereditary :
+    ∀ {G : Type u} [Group G] (_hG : IsOperatorMF G) (H : Subgroup G),
+      IsOperatorMF H := by
+  intro G _ hG H
+  exact hG.subgroup H
 
 /-- There is an unconditional finitely presented non-operator-MF group. -/
 theorem exists_finitelyPresented_nonOperatorMF :
