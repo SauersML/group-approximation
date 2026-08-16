@@ -137,7 +137,7 @@
       ]
     },
     {
-      "id": "thm:B",
+      "id": "thm:exactfd",
       "environment": "theorem",
       "title": "the finite-dimensional case",
       "statement_sha256": "0e1ab5f727ba25a609bafdbde8422dc2abf66e1391e043c89860d4f074ed1afa",
@@ -416,7 +416,7 @@
       ]
     },
     {
-      "id": "thm:D",
+      "id": "thm:reduced",
       "environment": "mainthm",
       "title": "the reduced group algebra of $E$",
       "statement_sha256": "3fbefcf7b1eaf4da2eaf473eda0e5ff6bd54dfd04e60e709e029ec95907af225",
@@ -439,7 +439,7 @@
       ]
     },
     {
-      "id": "thm:E",
+      "id": "thm:witnesssofic",
       "environment": "mainthm",
       "title": "a sofic non-MF group",
       "statement_sha256": "f0ae6bd739d62093a1d66edb93e3fcd0032cfa0a70335d19de9a910868f342fa",
@@ -471,7 +471,7 @@
       "dependencies": [
         "def:E",
         "thm:A",
-        "thm:E",
+        "thm:witnesssofic",
         "thm:markedclosed"
       ],
       "extra_assumptions": [],
@@ -721,7 +721,7 @@
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [
-        "thm:B",
+        "thm:exactfd",
         "prop:witness"
       ],
       "extra_assumptions": [],
@@ -737,14 +737,14 @@
       ]
     },
     {
-      "id": "thm:C",
+      "id": "thm:cyclic",
       "environment": "theorem",
       "title": "the cyclic comparison",
       "statement_sha256": "ee29ee959c43ba8b68b65d6fa5839c177680b6df85e0800025e40c06d02dd4ce",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [
-        "thm:B",
+        "thm:exactfd",
         "con:clifford"
       ],
       "extra_assumptions": [],

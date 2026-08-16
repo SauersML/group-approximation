@@ -73,16 +73,22 @@ CLAIM_TARGETS: dict[str, tuple[str, str]] = {
     "cor:scaling-family": (
         "Sofic/ScalingFamilyEndpoint",
         "GroupApproximation.ScalingFamilyEndpoint.manuscriptTheoremFamily"),
-    "thm:B": (
+    # Renamed 2026-08-16 away from letter-shaped labels: `mainthm` numbers by
+    # position, so `thm:D` printed as Theorem C and `thm:E` as Theorem D, while
+    # `thm:B` and `thm:C` were not lettered theorems at all.  The manuscript
+    # keeps the old spellings as second labels on the same environments, so
+    # in-flight `\ref`s still resolve; these keys follow the FIRST label, which
+    # is what `read_printed_claims` reads.
+    "thm:exactfd": (
         "Sofic/ManuscriptExactWrappers",
         "GroupApproximation.ManuscriptExactWrappers.manuscriptTheoremB"),
-    "thm:C": (
+    "thm:cyclic": (
         "Monsters/LiteralCyclicCalibration",
         "GroupApproximation.LiteralCyclicCalibration.manuscriptCyclicCalibration"),
-    "thm:D": (
+    "thm:reduced": (
         "Sofic/LiteralNonMFEndpoint",
         "GroupApproximation.LiteralNonMFEndpoint.manuscriptTheoremD"),
-    "thm:E": (
+    "thm:witnesssofic": (
         "Endpoint/NonMFImpact",
         "GroupApproximation.NonMFImpact.witness_sofic_hyperlinear_nonMF"),
     "thm:Esofic": (
@@ -248,15 +254,15 @@ DEPENDENCIES: dict[str, list[str]] = {
               "lem:unitarycorona", "lem:square"],
     "cor:scaling-family": ["thm:A", "thm:kazhdan-clifford"],
     "cor:uniform": ["thm:A"],
-    "thm:C": ["thm:B", "con:clifford"],
-    "thm:D": ["thm:A", "lem:faithfultrace"],
-    "thm:E": ["prop:witness", "lem:portable"],
-    "thm:Esofic": ["def:E", "thm:A", "thm:E", "thm:markedclosed"],
+    "thm:cyclic": ["thm:exactfd", "con:clifford"],
+    "thm:reduced": ["thm:A", "lem:faithfultrace"],
+    "thm:witnesssofic": ["prop:witness", "lem:portable"],
+    "thm:Esofic": ["def:E", "thm:A", "thm:witnesssofic", "thm:markedclosed"],
     "prop:mf-equivalences": ["lem:unitarycorona"],
     "prop:literal-base-T": ["def:E"],
     "lem:linear": ["def:E"],
     "prop:witness": ["con:clifford", "lem:linear", "def:E"],
-    "cor:notRFD": ["thm:B", "prop:witness"],
+    "cor:notRFD": ["thm:exactfd", "prop:witness"],
     "lem:unitarycorona": ["lem:lift"],
     "thm:criterion": ["def:pattern", "thm:kazhdan-transport"],
     "thm:normal-kazhdan": ["def:pattern", "thm:kazhdan-transport",
