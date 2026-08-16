@@ -293,9 +293,7 @@ theorem windowFreeLamp_commute (J : Finset I) {i : I} (b b' : B i) :
     Commute (windowFreeLamp I B J i b) (windowFreeLamp I B J i b') := by
   by_cases h : i ∈ J
   · rw [windowFreeLamp_pos I B h, windowFreeLamp_pos I B h]
-    show CoprodI.of (coordFlip I B i b) * CoprodI.of (coordFlip I B i b')
-      = CoprodI.of (coordFlip I B i b') * CoprodI.of (coordFlip I B i b)
-    rw [← map_mul, ← map_mul, mul_comm]
+    exact Commute.map (Commute.all _ _) _
   · rw [windowFreeLamp_neg I B h, windowFreeLamp_neg I B h]
     exact Commute.one_left _
 
@@ -668,13 +666,15 @@ theorem exists_residuallyFinite_subgroup
     window_invariant I B hsign hlamp hS
   haveI : Finite ↥(restrictAut φ (window I B S) H hinv).range := by
     have hrange : (Set.range (restrictAut φ (window I B S) H hinv)).Finite := by
-      refine finite_range_of_factors (C := {p : (i : I) × B i // p ∈ S}) _
+      refine finite_range_of_factors
+        (C := {p : (i : I) × B i // p ∈ S} → {p : (i : I) × B i // p ∈ S}) _
         (fun l ↦ fun p ↦ (⟨ρ (l : Λ) (p : (i : I) × B i),
           hS (l : Λ) l.2 (p : (i : I) × B i) p.2⟩ :
             {p : (i : I) × B i // p ∈ S})) ?_
       intro l₁ l₂ hl
       have hp : ∀ p ∈ S, ρ (l₁ : Λ) p = ρ (l₂ : Λ) p := fun p hp ↦
-        congrArg Subtype.val (congrFun hl ⟨p, hp⟩)
+        congrArg Subtype.val
+          (congrFun hl (⟨p, hp⟩ : {p : (i : I) × B i // p ∈ S}))
       apply MulEquiv.ext
       intro k
       apply Subtype.ext
