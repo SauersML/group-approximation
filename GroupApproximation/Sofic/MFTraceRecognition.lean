@@ -505,6 +505,178 @@ theorem one_le_norm_sub_of_normTrace_small (Y : FiniteModel)
   have hop := hsDistSq_le_sq_l2_opNorm Y A B
   nlinarith [norm_nonneg (A - B)]
 
+/-- **Projection-trace domination**: against an orthogonal projection,
+the trace pairing is bounded by the operator norm times the dimension of
+the projection, not the dimension of the space. -/
+theorem norm_trace_mul_proj_le (Y : FiniteModel)
+    {q : Matrix Y Y ℂ} (hq : qᴴ = q) (hq2 : q * q = q)
+    (X : Matrix Y Y ℂ) :
+    ‖Matrix.trace (X * q)‖ ≤ ‖X‖ * (Matrix.trace q).re := by
+  classical
+  have hcycle : Matrix.trace (q * X * q) = Matrix.trace (X * q) := by
+    rw [Matrix.mul_assoc, Matrix.trace_mul_comm, Matrix.mul_assoc, hq2]
+  set s : Y → ℝ := fun i => ∑ j : Y, Complex.normSq (q j i) with hs
+  have hs_nonneg : ∀ i, 0 ≤ s i := fun i =>
+    Finset.sum_nonneg fun j _ => Complex.normSq_nonneg _
+  have hsum_s : ∑ i : Y, s i = (Matrix.trace q).re := by
+    have hqq : qᴴ * q = q := by rw [hq, hq2]
+    have hdiag : ∀ i : Y, s i = ((qᴴ * q) i i).re := by
+      intro i
+      rw [Matrix.mul_apply, Complex.re_sum]
+      refine Finset.sum_congr rfl fun j _ => ?_
+      rw [Matrix.conjTranspose_apply]
+      simp [Complex.mul_re, Complex.normSq_apply]
+      ring
+    calc ∑ i : Y, s i = ∑ i : Y, ((qᴴ * q) i i).re :=
+          Finset.sum_congr rfl fun i _ => hdiag i
+      _ = (Matrix.trace (qᴴ * q)).re := by
+          rw [Matrix.trace, ← Complex.re_sum]
+          rfl
+      _ = (Matrix.trace q).re := by rw [hqq]
+  have hentry : ∀ i : Y, ‖(q * X * q) i i‖ ≤ ‖X‖ * s i := by
+    intro i
+    set v : Y → ℂ := fun j => q j i with hv
+    have hform : (q * X * q) i i =
+        ∑ j : Y, (starRingEnd ℂ) (v j) * (X.mulVec v) j := by
+      rw [Matrix.mul_assoc, Matrix.mul_apply]
+      refine Finset.sum_congr rfl fun j _ => ?_
+      have hqij : q i j = (starRingEnd ℂ) (q j i) := by
+        conv_lhs => rw [← hq]
+        rfl
+      rw [hqij]
+      congr 1
+      rw [Matrix.mul_apply, Matrix.mulVec]
+      rfl
+    have hb := sum_normSq_mulVec_le Y X v
+    have hva : ∑ j : Y, Complex.normSq (v j) = s i := rfl
+    have hS : ∑ j : Y, ‖v j‖ * ‖(X.mulVec v) j‖ ≤ ‖X‖ * s i := by
+      have hcs := Finset.inner_mul_le_norm_mul_norm (𝕜 := ℝ)
+        Finset.univ (fun j => ‖v j‖) (fun j => ‖(X.mulVec v) j‖)
+      have hsq : (∑ j : Y, ‖v j‖ * ‖(X.mulVec v) j‖) ^ 2 ≤
+          (∑ j : Y, Complex.normSq (v j)) *
+            (∑ j : Y, Complex.normSq ((X.mulVec v) j)) := by
+        have h1 : ∀ j : Y, Complex.normSq (v j) = ‖v j‖ ^ 2 := fun j =>
+          Complex.normSq_eq_norm_sq _
+        have h2 : ∀ j : Y, Complex.normSq ((X.mulVec v) j) =
+            ‖(X.mulVec v) j‖ ^ 2 := fun j => Complex.normSq_eq_norm_sq _
+        simp only [h1, h2]
+        exact Finset.sum_mul_sq_le_sq_mul_sq _ _ _
+      have hXv : ∑ j : Y, Complex.normSq ((X.mulVec v) j) ≤
+          ‖X‖ ^ 2 * s i := by rw [← hva]; exact hb
+      have hprod : (∑ j : Y, ‖v j‖ * ‖(X.mulVec v) j‖) ^ 2 ≤
+          (‖X‖ * s i) ^ 2 := by
+        calc (∑ j : Y, ‖v j‖ * ‖(X.mulVec v) j‖) ^ 2
+            ≤ (∑ j : Y, Complex.normSq (v j)) *
+              (∑ j : Y, Complex.normSq ((X.mulVec v) j)) := hsq
+          _ ≤ s i * (‖X‖ ^ 2 * s i) := by
+              rw [hva]
+              exact mul_le_mul_of_nonneg_left hXv (hs_nonneg i)
+          _ = (‖X‖ * s i) ^ 2 := by ring
+      have hnn : (0 : ℝ) ≤ ∑ j : Y, ‖v j‖ * ‖(X.mulVec v) j‖ :=
+        Finset.sum_nonneg fun j _ =>
+          mul_nonneg (norm_nonneg _) (norm_nonneg _)
+      nlinarith [mul_nonneg (norm_nonneg X) (hs_nonneg i)]
+    calc ‖(q * X * q) i i‖
+        = ‖∑ j : Y, (starRingEnd ℂ) (v j) * (X.mulVec v) j‖ := by
+          rw [hform]
+      _ ≤ ∑ j : Y, ‖(starRingEnd ℂ) (v j) * (X.mulVec v) j‖ :=
+          norm_sum_le _ _
+      _ = ∑ j : Y, ‖v j‖ * ‖(X.mulVec v) j‖ := by
+          refine Finset.sum_congr rfl fun j _ => ?_
+          rw [norm_mul, RCLike.norm_conj]
+      _ ≤ ‖X‖ * s i := hS
+  calc ‖Matrix.trace (X * q)‖ = ‖Matrix.trace (q * X * q)‖ := by
+        rw [hcycle]
+    _ = ‖∑ i : Y, (q * X * q) i i‖ := rfl
+    _ ≤ ∑ i : Y, ‖(q * X * q) i i‖ := norm_sum_le _ _
+    _ ≤ ∑ i : Y, ‖X‖ * s i := Finset.sum_le_sum fun i _ => hentry i
+    _ = ‖X‖ * (Matrix.trace q).re := by
+        rw [← Finset.mul_sum, hsum_s]
+
+/-- **Corner trace correction**: inflating a corner changes the
+normalized trace by at most the codimension weight of the corner. -/
+theorem norm_normTrace_inflate_sub (Y : FiniteModel)
+    {p : Matrix Y Y ℂ} (hp : pᴴ = p) (hp2 : p * p = p)
+    (X : Matrix Y Y ℂ) :
+    ‖normTrace Y (p * X * p + (1 - p)) - normTrace Y X‖ ≤
+      (1 + 3 * ‖X‖) * (Matrix.trace (1 - p)).re / Fintype.card Y := by
+  classical
+  set q : Matrix Y Y ℂ := 1 - p with hqdef
+  have hqherm : qᴴ = q := by
+    rw [hqdef, Matrix.conjTranspose_sub, Matrix.conjTranspose_one, hp]
+  have hqidem : q * q = q := by
+    rw [hqdef, Matrix.sub_mul, Matrix.one_mul, Matrix.mul_sub,
+      Matrix.mul_one, hp2]
+    abel
+  have hqtr_nonneg : 0 ≤ (Matrix.trace q).re := by
+    have h := norm_trace_mul_proj_le Y hqherm hqidem 1
+    rw [Matrix.one_mul] at h
+    by_contra hneg
+    push_neg at hneg
+    have habs : |(Matrix.trace q).re| ≤ ‖Matrix.trace q‖ :=
+      Complex.abs_re_le_norm _
+    have hXn : ‖(1 : Matrix Y Y ℂ)‖ ≤ 1 :=
+      norm_proj_le_one Matrix.conjTranspose_one (one_mul 1)
+    have : ‖Matrix.trace q‖ ≤ 1 * (Matrix.trace q).re :=
+      h.trans (by nlinarith [norm_nonneg (1 : Matrix Y Y ℂ)])
+    rw [abs_of_neg hneg] at habs
+    linarith
+  have hdecomp : p * X * p + q - X = q - (q * X + X * q - q * X * q) := by
+    have hpq : p = 1 - q := by rw [hqdef]; abel
+    rw [hpq]
+    noncomm_ring
+  have htr_qX : ‖Matrix.trace (q * X)‖ ≤ ‖X‖ * (Matrix.trace q).re := by
+    rw [Matrix.trace_mul_comm]
+    exact norm_trace_mul_proj_le Y hqherm hqidem X
+  have htr_Xq : ‖Matrix.trace (X * q)‖ ≤ ‖X‖ * (Matrix.trace q).re :=
+    norm_trace_mul_proj_le Y hqherm hqidem X
+  have htr_qXq : ‖Matrix.trace (q * X * q)‖ ≤
+      ‖X‖ * (Matrix.trace q).re := by
+    rw [Matrix.mul_assoc, Matrix.trace_mul_comm, Matrix.mul_assoc, hqidem]
+    rw [Matrix.trace_mul_comm]
+    exact htr_Xq
+  have hnum : ‖Matrix.trace (p * X * p + q) - Matrix.trace X‖ ≤
+      (1 + 3 * ‖X‖) * (Matrix.trace q).re := by
+    have h1 : Matrix.trace (p * X * p + q) - Matrix.trace X =
+        Matrix.trace q - (Matrix.trace (q * X) + Matrix.trace (X * q) -
+          Matrix.trace (q * X * q)) := by
+      rw [← Matrix.trace_sub, ← Matrix.trace_add, ← Matrix.trace_sub,
+        ← Matrix.trace_sub]
+      congr 1
+      rw [← hdecomp]
+      abel
+    rw [h1]
+    have htrq : ‖Matrix.trace q‖ ≤ (Matrix.trace q).re := by
+      have h := norm_trace_mul_proj_le Y hqherm hqidem 1
+      rw [Matrix.one_mul] at h
+      have hXn : ‖(1 : Matrix Y Y ℂ)‖ ≤ 1 :=
+        norm_proj_le_one Matrix.conjTranspose_one (one_mul 1)
+      exact h.trans (by nlinarith)
+    calc ‖Matrix.trace q - (Matrix.trace (q * X) + Matrix.trace (X * q) -
+        Matrix.trace (q * X * q))‖
+        ≤ ‖Matrix.trace q‖ + ‖Matrix.trace (q * X) + Matrix.trace (X * q) -
+            Matrix.trace (q * X * q)‖ := norm_sub_le _ _
+      _ ≤ ‖Matrix.trace q‖ + (‖Matrix.trace (q * X)‖ +
+            ‖Matrix.trace (X * q)‖ + ‖Matrix.trace (q * X * q)‖) := by
+          gcongr
+          exact (norm_sub_le _ _).trans (by gcongr; exact norm_add_le _ _)
+      _ ≤ (Matrix.trace q).re + (‖X‖ * (Matrix.trace q).re +
+            ‖X‖ * (Matrix.trace q).re + ‖X‖ * (Matrix.trace q).re) := by
+          gcongr
+      _ = (1 + 3 * ‖X‖) * (Matrix.trace q).re := by ring
+  have hcard : (0 : ℝ) ≤ (Fintype.card Y : ℝ) := Nat.cast_nonneg _
+  rcases Nat.eq_zero_or_pos (Fintype.card Y) with hzero | hpos
+  · rw [normTrace, normTrace, hzero]
+    push_cast
+    simp
+  · have hcpos : (0 : ℝ) < (Fintype.card Y : ℝ) := by exact_mod_cast hpos
+    rw [normTrace, normTrace, div_sub_div_same, ← Matrix.trace_sub]
+    rw [show Matrix.trace (p * X * p + q) - Matrix.trace X =
+      Matrix.trace (p * X * p + q - X) from (Matrix.trace_sub _ _).symm]
+    rw [norm_div, Complex.norm_natCast, div_le_div_iff_of_pos_right hcpos]
+    rw [Matrix.trace_sub]
+    exact hnum
+
 end TraceSeparation
 
 /-- **MF-trace recognition.**  If the regular character of a group is an
