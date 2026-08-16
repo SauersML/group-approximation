@@ -322,6 +322,7 @@ import GroupApproximation.Sofic.FiniteDimensionalResidual
 import GroupApproximation.Sofic.ThreeRadicalsCoincide
 import GroupApproximation.Sofic.LinearResidual
 import GroupApproximation.Sofic.FourRadicalsCoincide
+import GroupApproximation.Sofic.FiveRadicalsCoincide
 import GroupApproximation.Sofic.BlockAmplificationRepair
 import GroupApproximation.Sofic.AmplifiedBlockNorms
 import GroupApproximation.Sofic.InducedCoronaMF
