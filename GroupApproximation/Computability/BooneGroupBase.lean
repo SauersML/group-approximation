@@ -74,7 +74,8 @@ repository, fully proved with no gaps"; every size is new Lean lines.
   sh (n • h)` (via `map_zpow` and `ofAdd_zsmul`) together with the componentwise
   description of `n • (h : ℤ × ℤ)`, which is the only place the `Prod` `zsmul`
   instance is touched.
-* **S2c `TODO`, ~300--500 lines.**  `BaseGroup ≃* PresentedGroup ⟨t,x,y | [x,y]⟩`.
+* **S2c `DONE`** (`BooneGroupPresentation`, `presentedEquiv`).
+  `BaseGroup ≃* PresentedGroup ⟨t,x,y | [x,y]⟩`.
   Forward map by `PresentedGroup.toGroup`; backward by
   `SemidirectProduct.lift`; mutual inverses checked on generators.  Needed
   *only* to call the final group finitely presented.
