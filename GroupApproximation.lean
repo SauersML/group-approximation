@@ -919,6 +919,7 @@ import GroupApproximation.Sofic.CollapseTransportEndpoint
 import GroupApproximation.Sofic.CollapsePrintedDiagonalization
 import GroupApproximation.Computability.MachineRestrict
 import GroupApproximation.Sofic.CliffordLampGraphLocalFiniteness
+import GroupApproximation.Sofic.CliffordBSAmenableMF
 import GroupApproximation.Computability.FiniteMachineWordProblem
 import GroupApproximation.Computability.MarkovPost
 import GroupApproximation.Computability.BooneGroupFreeBasis
@@ -926,6 +927,7 @@ import GroupApproximation.Computability.BooneGroupModularMachine
 import GroupApproximation.Computability.BooneGroupBase
 import GroupApproximation.Computability.BooneGroupMachineIndex
 import GroupApproximation.Computability.UniversalMachineUndecidable
+import GroupApproximation.Computability.AdianRabinWordProblem
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group

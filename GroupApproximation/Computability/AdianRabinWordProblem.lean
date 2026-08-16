@@ -127,7 +127,7 @@ theorem list_prod_mem_normalClosure {s : Set G} :
     ∀ l : List G,
       (∀ y ∈ l, ∃ g : G, ∃ r ∈ s, y = g * r * g⁻¹ ∨ y = g * r⁻¹ * g⁻¹) →
         l.prod ∈ Subgroup.normalClosure s
-  | [], _ => by simpa using one_mem (Subgroup.normalClosure s)
+  | [], _ => by simp
   | a :: t, hl => by
       rw [List.prod_cons]
       have ha : a ∈ Subgroup.normalClosure s := by
@@ -242,7 +242,10 @@ theorem map_letterOf_map_val (c : PresentationCode) :
   | [] => by simp
   | p :: t => by
       have hlt : (p.1 : ℕ) < genCount c := p.1.isLt
-      simp [letterOf, Nat.mod_eq_of_lt hlt, map_letterOf_map_val c t]
+      have ih := map_letterOf_map_val c t
+      simp only [List.map_cons, List.map_map] at ih ⊢
+      rw [ih]
+      simp [letterOf, Nat.mod_eq_of_lt hlt]
 
 /-- Every element of the free group on a code's alphabet is the value of some
 raw word.  This is what lets a certificate carry its conjugators as raw data
