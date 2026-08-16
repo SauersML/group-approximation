@@ -11,6 +11,7 @@ import GroupApproximation.Sofic.KazhdanSignCriterion
 import GroupApproximation.Sofic.LiteralBaseP13PropertyTBridge
 import GroupApproximation.Sofic.LiteralNonMFLinearWitness
 import GroupApproximation.Sofic.MFRepresentationVariants
+import GroupApproximation.Sofic.ManuscriptCentralSignCriterion
 
 /-!
 # The literal eight-generator non-MF endpoint
@@ -228,7 +229,7 @@ theorem literal_centralSignCriterion :
           (fun n ↦ naturalFiniteModel (d n))),
         rho mark = 1) ∧
       ¬ IsCDEOperatorMF MarkedGroup :=
-  KazhdanCompressionCore.manuscriptCentralSignCriterion.{0}
+  CentralSignTransport.manuscriptCentralSignCriterionViaTransport.{0}
     (Γ := Base) (E := MarkedGroup)
     LiteralBaseP13PropertyTBridge.manuscriptBaseHasKazhdanPropertyT.2
     baseMap stable lamp inclusionData.compresses lamp_commutes_base
@@ -247,17 +248,36 @@ theorem literal_mark_eq_one_in_CStarCorona
   literal_centralSignCriterion.1 d hd
 
 /-- The unitary-sequence-corona clause of the printed theorem, in literal
-natural-number dimensions. -/
+natural-number dimensions.
+
+This is part (2) of the literal verification of Theorem~`\ref{thm:A}` in
+`\section{...}\label{sec:proofA}`, by its printed argument: "let
+`Θ : E → 𝒰cor((d_n))` be given and pass to the corona representation
+`κ_{(d_n)} ∘ Θ : E → 𝒰(𝒬)` of Lemma~`\ref{lem:unitarycorona}`.  Apply the
+central-sign criterion (Theorem~`\ref{thm:sign-criterion}`) ... The criterion
+therefore sends `w` to the identity under every corona representation of `E`.
+Since `κ_{(d_n)}` is injective, `Θ(w) = 1`."
+
+So the criterion is applied to the genuine C-star corona and transported back
+across `κ`, rather than the unitary-sequence statement being obtained
+independently from the finite-normal kernel theorem. -/
 theorem literal_mark_eq_one_in_unitaryCorona
     (d : ℕ → ℕ) (hd : ∀ n, 0 < d n)
     (Theta : MarkedGroup →*
       NormMatrixCoronaUnitary (fun n ↦ naturalFiniteModel (d n))) :
     Theta mark = 1 := by
-  exact MonoidHom.mem_ker.mp
-    (KazhdanCompressionCore.defectSquare_centralInvolution_mem_normMatrixCoronaKernel
-      inclusionData.toKazhdanCompressionCore inclusionData.a mark
-      mark_eq_compressionDefect_sq mark_sq mark_central
-      (fun n ↦ naturalFiniteModel (d n)) (by simpa using hd) Theta)
+  letI : ∀ n, Nonempty (naturalFiniteModel (d n)) :=
+    fun n ↦ Fintype.card_pos_iff.mp (by simpa using hd n)
+  let kappa : NormMatrixCoronaUnitary (fun n ↦ naturalFiniteModel (d n)) →*
+      unitary (NormMatrixCStarCorona (fun n ↦ naturalFiniteModel (d n))) :=
+    (normMatrixCoronaUnitaryEquiv (fun n ↦ naturalFiniteModel (d n))).toMonoidHom
+  have hkappa : kappa (Theta mark) = 1 := by
+    simpa only [MonoidHom.coe_comp, Function.comp_apply] using
+      literal_mark_eq_one_in_CStarCorona d hd (kappa.comp Theta)
+  apply (normMatrixCoronaUnitaryEquiv
+    (fun n ↦ naturalFiniteModel (d n))).injective
+  change kappa (Theta mark) = kappa 1
+  rw [hkappa, map_one]
 
 /-- The literal mark belongs to the MF radical exactly as printed, defined
 through genuine natural-dimension C-star coronas. -/

@@ -480,6 +480,101 @@ theorem kt_08_kazhdan_projection :
   ⟨kt_08_isSelfAdjoint_proj D, kt_08_proj_mul_proj D, kt_08_avg_mul_proj D,
     kt_08_proj_mul_avg D, kt_08_rep_mul_proj D⟩
 
+/-! #### The other half of `ran P = Fix`: every fixed vector is in the range
+
+The manuscript's `P` "projects onto `Fix`".  The inclusion `ran P ⊆ Fix` is
+`kt_08_rep_mul_proj`, which is algebra-internal.  The reverse inclusion
+`Fix ⊆ ran P` is a statement about vectors, so it is parametrised here by an
+arbitrary action of `B` on an abelian group `K`, supplied unbundled so that a
+caller with a concrete action on the Hilbert ultraproduct can use it whatever
+form that action takes.  None of the action hypotheses encodes mathematics:
+each is a defining property of a module action, discharged by `map_mul`,
+`map_one`, `map_sub`, `map_zero`, `map_smul`, `map_sum` for anyone holding an
+algebra homomorphism `B →ₐ[ℂ] (K →ₗ[ℂ] K)`.
+
+The spectral gap enters through the resolvent factorisation
+`1 - P = cfc (gapResolvent rate) h · (1 - h)`, which is where
+`sp(h) ⊆ [-1, rate] ∪ {1}` is consumed: a vector killed by `1 - h` is killed
+by `1 - P`, which is the operator form of "the spectral projection at the
+isolated point `1` restricts to the identity on the `1`-eigenspace". -/
+
+section FixedVectors
+
+variable {K : Type*} [AddCommGroup K]
+
+/-- The resolvent factorisation of the complement of the Kazhdan projection,
+specialised to this data.  This is the engine of `Fix ⊆ ran P`. -/
+theorem one_sub_proj_eq :
+    (1 : B) - proj D
+      = cfc (gapResolvent (rate D)) (avg D) * ((1 : B) - avg D) :=
+  one_sub_spectralProjection_eq (avg D) (isSelfAdjoint_avg D) (rate_lt_one D)
+    (kt_07_kazhdan_gap D)
+
+/-- **Spectral step of `Fix ⊆ ran P`.**  A vector fixed by the averaged
+element `h` is fixed by the Kazhdan projection `P`. -/
+theorem act_proj_of_act_avg (act : B → K → K)
+    (act_mul : ∀ a b ξ, act (a * b) ξ = act a (act b ξ))
+    (act_one : ∀ ξ, act 1 ξ = ξ)
+    (act_sub : ∀ a b ξ, act (a - b) ξ = act a ξ - act b ξ)
+    (act_zero : ∀ a, act a (0 : K) = 0)
+    {ζ : K} (hζ : act (avg D) ζ = ζ) :
+    act (proj D) ζ = ζ := by
+  have h0 : act ((1 : B) - avg D) ζ = 0 := by
+    rw [act_sub, act_one, hζ, sub_self]
+  have h1 : act ((1 : B) - proj D) ζ = 0 := by
+    rw [one_sub_proj_eq D, act_mul, h0, act_zero]
+  rw [act_sub, act_one] at h1
+  exact (sub_eq_zero.mp h1).symm
+
+/-- The `Module`-typed form of the previous lemma, for a caller whose action
+is the scalar multiplication of a `Module B K`. -/
+theorem smul_proj_of_smul_avg {N : Type*} [AddCommGroup N] [Module B N]
+    {ζ : N} (hζ : avg D • ζ = ζ) : proj D • ζ = ζ :=
+  act_proj_of_act_avg D (fun a ξ => a • ξ) (fun a b ξ => mul_smul a b ξ)
+    (fun ξ => one_smul B ξ) (fun a b ξ => sub_smul a b ξ)
+    (fun a => smul_zero a) hζ
+
+variable [Module ℂ K]
+
+/-- **Averaging step of `Fix ⊆ ran P`.**  A vector fixed by every generator
+`π(ι s')`, `s' ∈ S`, is fixed by the average `h`.  Only the generators of `S`
+are needed: this is the manuscript's "on `Fix`, `h = 1`". -/
+theorem act_avg_of_act_rep (act : B → K → K)
+    (act_smul : ∀ (c : ℂ) (a : B) (ξ : K), act (c • a) ξ = c • act a ξ)
+    (act_sum : ∀ (t : Finset Γ) (f : Γ → B) (ξ : K),
+      act (∑ γ ∈ t, f γ) ξ = ∑ γ ∈ t, act (f γ) ξ)
+    {ζ : K} (hζ : ∀ γ ∈ D.S, act ((D.pi (D.iota γ) : unitary B) : B) ζ = ζ) :
+    act (avg D) ζ = ζ := by
+  classical
+  have hcard : ((D.S.card : ℂ)) ≠ 0 := by
+    exact_mod_cast Finset.card_ne_zero.mpr ⟨1, D.one_mem⟩
+  have hsum : ∀ γ ∈ D.S,
+      act ((((D.pi.comp D.iota) γ : unitary B) : B)) ζ = ζ := by
+    intro γ hγ
+    exact hζ γ hγ
+  unfold avg unitaryAverage
+  rw [act_smul, act_sum, Finset.sum_congr rfl hsum, Finset.sum_const,
+    ← Nat.cast_smul_eq_nsmul ℂ D.S.card ζ, smul_smul,
+    inv_mul_cancel₀ hcard, one_smul]
+
+/-- **`Fix ⊆ ran P`.**  A vector fixed by every `π(ι γ)`, `γ ∈ Γ`, is fixed
+by the Kazhdan projection.  Together with `kt_08_rep_mul_proj` this is the
+manuscript's "`P` … projects onto `Fix`". -/
+theorem kt_08_act_proj_of_fixed (act : B → K → K)
+    (act_mul : ∀ a b ξ, act (a * b) ξ = act a (act b ξ))
+    (act_one : ∀ ξ, act 1 ξ = ξ)
+    (act_sub : ∀ a b ξ, act (a - b) ξ = act a ξ - act b ξ)
+    (act_zero : ∀ a, act a (0 : K) = 0)
+    (act_smul : ∀ (c : ℂ) (a : B) (ξ : K), act (c • a) ξ = c • act a ξ)
+    (act_sum : ∀ (t : Finset Γ) (f : Γ → B) (ξ : K),
+      act (∑ γ ∈ t, f γ) ξ = ∑ γ ∈ t, act (f γ) ξ)
+    {ζ : K} (hζ : ∀ γ : Γ, act ((D.pi (D.iota γ) : unitary B) : B) ζ = ζ) :
+    act (proj D) ζ = ζ :=
+  act_proj_of_act_avg D act act_mul act_one act_sub act_zero
+    (act_avg_of_act_rep D act act_smul act_sum fun γ _ => hζ γ)
+
+end FixedVectors
+
 /-- The adjoint of the shift is the image of the inverse: `V* = π(s⁻¹)`. -/
 theorem star_shift : star (shift D) = ((D.pi D.s⁻¹ : unitary B) : B) :=
   star_unitary_coe D.pi D.s

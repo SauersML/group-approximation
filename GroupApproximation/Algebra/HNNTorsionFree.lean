@@ -30,11 +30,19 @@ cyclic-reduction existence — as one named interface.
 
 The interface `ExistsCyclicConjugate` — every element of the HNN
 extension is conjugate into the base or to a cyclic word — is the
-classical cyclic-reduction existence lemma.  It is recorded as a named
-hypothesis, not an axiom, in the style of the routing program's
-construction data; the corollaries for the affine compression skeleton
-consume it explicitly, so the trust surface is one combinatorial lemma
-wide.
+classical cyclic-reduction existence lemma.  The theorems below take it
+as a named hypothesis rather than an axiom.
+
+**It is no longer an unformalized input.**  `GroupTheory/HNNBrittonCyclic.lean`
+proves it outright, from Mathlib's normal-form theory for HNN extensions,
+as `HNNBritton.existsCyclicConjugate`; the unconditional torsion theorem
+is `HNNBritton.isPowerTorsionFree_hnn`, and the affine-skeleton
+corollaries are `HNNBritton.isPowerTorsionFree_sourceGroup` and
+`HNNBritton.isPowerTorsionFree_integerSourceGroup`.  That file imports
+this one, so the conditional statements here cannot call it without a
+cycle; they are kept as the abstract form, and the declarations named
+above supersede them one for one.  Nothing in this file is on the trust
+surface: prefer the `HNNBritton` versions at every use site.
 -/
 
 namespace GroupApproximation
