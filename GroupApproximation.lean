@@ -327,6 +327,8 @@ import GroupApproximation.Algebra.AmenableMean
 import GroupApproximation.Algebra.AmenableInt
 import GroupApproximation.Algebra.AmenableLocallyFiniteByInt
 import GroupApproximation.Algebra.AmenableConstructions
+import GroupApproximation.Algebra.AmenableRat
+import GroupApproximation.Sofic.CliffordBSAmenable
 import GroupApproximation.Sofic.ProductMultiplicity
 import GroupApproximation.Sofic.ContinuumMultiplicity
 import GroupApproximation.Sofic.OperatorMFPairAmplification
