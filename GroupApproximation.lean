@@ -787,6 +787,7 @@ import GroupApproximation.Sofic.SimpleLampNormalGeneration
 import GroupApproximation.Sofic.UniversalVisibleQuotient
 import GroupApproximation.Sofic.SimpleFactorRecovery
 import GroupApproximation.Sofic.RadicalFiniteIndexTransfer
+import GroupApproximation.Sofic.WreathFinitePresentationObstruction
 
 -- Modules that until now compiled only in isolation.  Outside the root import
 -- closure nothing in CI ever built them, so their proofs went unverified in every
