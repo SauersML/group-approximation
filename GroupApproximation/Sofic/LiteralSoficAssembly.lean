@@ -159,7 +159,7 @@ properties; no normal form and no relator-set image is involved. -/
 /-- `C(𝒢) → BlockClifford`, by the universal property of the Clifford graph
 group.  The braiding hypothesis is exactly that adjacent sites are distinct
 sites of a common block. -/
-def toBlock : LampFactor →* LiteralBlockClifford :=
+def toBlock : LiteralBlockNormalForm.LampFactor →* LiteralBlockClifford :=
   lampLift (sign Block BlockSites) (fun ξ ↦ lamp Block BlockSites (pairOf ξ))
     (sign_sq Block BlockSites)
     (fun ξ ↦ lamp_sq Block BlockSites _)
@@ -184,7 +184,7 @@ def toBlock : LampFactor →* LiteralBlockClifford :=
 
 /-- `BlockClifford → C(𝒢)`, by the universal property of the block-Clifford
 presentation.  The braiding hypothesis is exactly completeness on blocks. -/
-def fromBlock : LiteralBlockClifford →* LampFactor := by
+def fromBlock : LiteralBlockClifford →* LiteralBlockNormalForm.LampFactor := by
   refine PresentedGroup.toGroup
     (f := Sum.elim (fun _ ↦ lampSign) fun p ↦ lampAt (siteOf p)) ?_
   intro w hw
@@ -213,7 +213,7 @@ def fromBlock : LiteralBlockClifford →* LampFactor := by
   PresentedGroup.toGroup.of _
 
 theorem fromBlock_comp_toBlock :
-    fromBlock.comp toBlock = MonoidHom.id LampFactor := by
+    fromBlock.comp toBlock = MonoidHom.id LiteralBlockNormalForm.LampFactor := by
   refine PresentedGroup.ext ?_
   intro j
   match j with
@@ -238,11 +238,12 @@ theorem toBlock_comp_fromBlock :
       rw [fromBlock_lamp, toBlock_at, pairOf_siteOf]
 
 /-- **The lamp factor of `E` is the block-Clifford group of its site set.** -/
-def lampEquiv : LampFactor ≃* LiteralBlockClifford :=
+def lampEquiv : LiteralBlockNormalForm.LampFactor ≃* LiteralBlockClifford :=
   MonoidHom.toMulEquiv toBlock fromBlock fromBlock_comp_toBlock
     toBlock_comp_fromBlock
 
-@[simp] theorem lampEquiv_apply (n : LampFactor) : lampEquiv n = toBlock n := rfl
+@[simp] theorem lampEquiv_apply (n : LiteralBlockNormalForm.LampFactor) :
+    lampEquiv n = toBlock n := rfl
 
 @[simp] theorem lampEquiv_symm_apply (n : LiteralBlockClifford) :
     lampEquiv.symm n = fromBlock n := rfl
