@@ -70,8 +70,11 @@ abbrev PresentationCode : Type := ℕ × List (List (ℕ × Bool))
 presentations" is a meaningful predicate. -/
 example : Primcodable PresentationCode := inferInstance
 
-/-- The alphabet size named by a code. -/
-def genCount (c : PresentationCode) : ℕ := c.1 + 1
+/-- The alphabet size named by a code.  Reducible on purpose: the alphabet
+appears inside the *type* `Fin (genCount c)`, so every lemma about a code built
+from an explicit pair needs `genCount` to reduce, or its statement will not
+even typecheck against `Fin (m + 1)`. -/
+abbrev genCount (c : PresentationCode) : ℕ := c.1 + 1
 
 theorem genCount_pos (c : PresentationCode) : 0 < genCount c := Nat.succ_pos _
 

@@ -160,10 +160,6 @@ theorem exists_code_mulEquiv (G : Type) [Group G] [Group.IsFinitelyPresented G] 
 
 /-! ## The Markov witness at this coding -/
 
-/-- **The Markov witness, transported from groups to codes.**  The positive
-side is the trivial group and the negative side is the manuscript's finitely
-presented non-MF group; adequacy supplies codes for both.  This is the third
-of the four fields of an `AdianRabinReduction`. -/
 /-- A code for the trivial group, obtained from adequacy. -/
 noncomputable abbrev positiveCode : PresentationCode :=
   (exists_code_mulEquiv PUnit.{1}).choose
@@ -186,6 +182,10 @@ theorem not_isOperatorMF_negativeCode :
   exact ChosenNonMFTheorem.chosenFinitelyPresented_not_isOperatorMF.2
     (h.comap en.symm.toMonoidHom en.symm.injective)
 
+/-- **The Markov witness, transported from groups to codes.**  The positive
+side is the trivial group and the negative side is the manuscript's finitely
+presented non-MF group; adequacy supplies codes for both.  This is the third
+of the four fields of an `AdianRabinReduction`. -/
 noncomputable def markovWitness :
     MarkovWitness (operatorMFProperty semantics) where
   positiveCode := positiveCode

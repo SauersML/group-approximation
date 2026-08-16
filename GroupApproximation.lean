@@ -343,6 +343,7 @@ import GroupApproximation.Sofic.SoficActionSum
 import GroupApproximation.Sofic.AscendingHNNStabilizer
 import GroupApproximation.Sofic.AscendingHNNDoubleCosets
 import GroupApproximation.Sofic.AscendingHNNWreathWitness
+import GroupApproximation.Sofic.AscendingHNNSplitExtension
 import GroupApproximation.Sofic.CoronaRadicalPullback
 import GroupApproximation.Sofic.MoverGeneration
 import GroupApproximation.Sofic.FullMFRadicalEndpoint
