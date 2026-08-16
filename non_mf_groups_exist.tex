@@ -196,9 +196,6 @@ $C^*$-algebra that is not MF, and the Clifford quotient of $E$ that
 proves $w\ne1$ is a finitely generated sofic --- hence hyperlinear ---
 group that is not MF.
 
-A supplementary part of this same paper carries the explicit
-presentation and its verification, the general compression theory
-behind the rigidity theorem, and the remaining consequences.
 \end{abstract}
 
 \maketitle
@@ -309,17 +306,12 @@ converge to the regular norms.
 Throughout, $[g,h]=ghg^{-1}h^{-1}$ for group elements, while for matrices
 $[x,y]=xy-yx$; the arguments always make the reading unambiguous.
 \subsection*{The result and the mechanism}
-The whole proof is organized around one sentence:
-\begin{center}
-\emph{Kazhdan transport forces $u\sim_2 1$, while a Clifford model
-forces $u^2=-1$.}
-\end{center}
-Here $\sim_2$ is convergence in normalized Hilbert--Schmidt norm.  We
-explain the two halves in turn.
+Write $\sim_2$ for convergence in normalized Hilbert--Schmidt norm.
+The proof has two halves: Kazhdan transport forces $u\sim_2 1$, and a
+Clifford model forces $u^2=-1$.
 
-Suppose a property-\textup{(T)} group $\Gamma$ sits in a group $H$
-through a homomorphism $\iota$, and that $H$ contains elements $t,c$
-with
+Let $\Gamma$ be a property-\textup{(T)} group with a homomorphism
+$\iota\colon\Gamma\to H$, and let $t,c\in H$ satisfy
 \[
  t\,\iota(\Gamma)\,t^{-1}\subseteq\iota(\Gamma),\qquad
  [c,\iota(\Gamma)]=1 .
@@ -344,8 +336,9 @@ defect}
 \[
  u=[\,d,\iota(a)\,]
 \]
-satisfies $u\sim_2 1$ in every operator-norm matrix model of $H$.  That
-is the first half.  For the second, suppose $w=u^2$ is a nontrivial
+satisfies $u\sim_2 1$ in every operator-norm matrix model of $H$.
+
+Suppose now that $w=u^2$ is a nontrivial
 central involution.  A corona representation detecting $w$ can be
 compressed to the negative spectral corner of $w$, and there $w=-1$
 exactly while transport still gives $u^2\sim_2 1$; since the
@@ -353,8 +346,8 @@ normalized Hilbert--Schmidt distance from $1$ to $-1$ is $2$, this is
 impossible.  So every corona representation kills $w$, and $H$ is not
 MF (Theorem~\ref{thm:sign-criterion}).
 
-Only one thing is left: making $w$ nontrivial.  This is where the
-Clifford algebra enters, and it is a question about the group alone.
+It remains to make $w$ nontrivial, which is a question about the group
+alone.
 Adjoin $t$ and $c$ to a finitely presented Kazhdan group $\Gamma$
 along a proper injective endomorphism $\alpha$, and let $a$ lie
 outside $\alpha(\Gamma)$.  In the mapping telescope of $\alpha$ the
@@ -362,10 +355,7 @@ cosets $t\Gamma$ and $at\Gamma$ are distinct, precisely because
 $a\notin\alpha(\Gamma)$.  Assigning anticommuting Clifford generators
 to the two cosets makes $u$ a product of two anticommuting
 involutions, so $u^2=-1$ and $w\ne1$
-(Theorem~\ref{thm:kazhdan-clifford}).  The element $a$ thus has exactly
-two jobs, one on each side of the organizing sentence: it lies in
-$\Gamma$, which is what transport needs, and outside $\alpha(\Gamma)$,
-which is what the Clifford model needs.
+(Theorem~\ref{thm:kazhdan-clifford}).
 
 Taking
 \[
@@ -3116,7 +3106,11 @@ $d_n(\gamma,\mu)=\operatorname{rank}(V_n(\gamma)-V_n(\mu))$ is an
 integer-valued pseudometric; projections at operator distance below
 $1$ have equal rank, so the covariance of Step 1 makes it eventually
 translation invariant: $d_n(g\gamma,g\mu)=d_n(\gamma,\mu)$ for all
-large $n$, for each fixed triple.
+large $n$, for each fixed triple.  The rank comparison is applied to
+the projections $T^2/4$, not to the involutions themselves, and that
+is where the threshold is consumed: the displacements have norm at
+most $2$, so a covariance error below $1/8$ moves the associated
+projections by at most $1/4<1$.
 
 \emph{Step 3: generator normalization.}  Property~\textup{(T)} makes
 $L$ finitely generated; fix a Kazhdan pair $(S,\kappa)$ with $S$
@@ -3173,16 +3167,31 @@ differences of the involutions.
 Gaussians $e^{-t\|\cdot\|^2}$ of the almost-cocycle are almost
 invariant under the twisted action, and the spectral gap of
 $(S,\kappa)$ bounds the limiting profile
-$\gamma\mapsto\limsup_n\|b_n(\gamma)\|_{\mathrm F}^2$ by its
+$\gamma\mapsto\lim_{n\to\omega}\|b_n(\gamma)\|_{\mathrm F}^2$, the limit
+along a fixed free ultrafilter $\omega$ on $\N$, by its
 generator values \eqref{eq:generator-mass} --- Delorme's argument at
-the level of limiting seminorms.  A circumcenter of the displacement
+the level of limiting seminorms.  The limit must be taken along an
+ultrafilter and not as a $\limsup$: Delorme's argument needs the
+profile to satisfy the displacement identity of Step~4 \emph{as an
+identity}, which is what makes the Gaussians positive definite, and
+$\limsup$ is only subadditive.  A circumcenter of the displacement
 orbit, taken at the level of bounded sequences, then produces one
 bounded sequence $(w_n)$ with
 $b_n(a)\approx w_n-U_{a,n}w_nU_{a,n}^{*}$ in limiting normalized mass,
 simultaneously for any prescribed finite set of movers.
 
 \emph{Step 6: transport through the compressor.}  By (W2) the
-displacement vanishes on compressed elements, so including the
+microstates of $sas^{-1}$ and of $1$ converge to one another, which is
+an operator-norm statement; Step~4 has just warned that two exact
+involutions at small operator distance can nevertheless differ in full
+rank, so this does not yet bound the displacement.  What closes the gap
+is a rigidity property of the commuting family of Step~1: two
+\emph{commuting} exact self-adjoint involutions $u,w$ at operator
+distance $\opnorm{u-w}<2$ are equal.  Indeed $T=u-w$ is self-adjoint
+with $T^3=4T$, so $T^2/4$ is an orthogonal projection, whose norm is
+therefore $0$ or $1$; but $\opnorm{T^2/4}=\opnorm{T}^2/4<1$, so
+$T^2=0$ and hence $T=0$.  The displacement therefore vanishes exactly
+on compressed elements, so including the
 compressed generators $sas^{-1}$ among the movers makes the primitive
 almost fixed by them; hence $u_n=U_{s,n}^{*}w_nU_{s,n}$ is almost
 fixed by every $a\in S$, because microstates of $as^{-1}$ and
