@@ -29,10 +29,21 @@ at:
   closures coincide, so the intersection contains `w i₀` itself and the
   designated mover is in the radical
   (`mem_actualCoronaMFResidual_of_forall_conj`).
-* **A symmetry permuting the movers.**  An automorphism permuting the family
-  permutes the normal closures and so fixes their intersection setwise; the
-  intersection is the canonical symmetric object to test, which is why a
-  symmetry helps at all.
+* **A symmetry permuting the movers -- but only the inner kind.**  It is
+  tempting to expect that any automorphism permuting the family transitively
+  gives the upgrade.  It does not, and the reason is worth stating.  Given a
+  representation `Θ` that kills `w i`, an automorphism `σ` carrying `w i₀` to
+  `w i` yields `(Θ ∘ σ)(w i₀) = 1` -- which says the *composite* kills the
+  designated mover, not that `Θ` does.  Symmetry moves the representation, and
+  the quantifier `∀Θ ∃i` is exactly the statement that one may not move it.
+
+  Conjugation is the case that survives, and it survives because it is inner:
+  conjugate movers have *equal* normal closures, so no transport is needed at
+  all.  What a general symmetry does give is that the intersection above is
+  invariant under it -- the radical is preserved by every automorphism
+  (`map_actualCoronaMFResidual_mulEquiv`), and the intersection is the
+  canonical symmetric object to test.  That is a reason to compute the
+  intersection, not a substitute for it.
 
 The negative half is equally clean: when `⨅ i, ⟨⟨w i⟩⟩` is trivial the
 existential statement has no universal consequence beyond `1 ∈ Rad_MF`, so no
@@ -46,6 +57,22 @@ namespace GroupApproximation
 universe u
 
 variable {G : Type u} [Group G]
+
+/-- **The MF radical is preserved by every automorphism.**  Functoriality gives
+one inclusion, and applying it to the inverse gives the other.
+
+This is what a symmetry of a mover family actually buys: the intersection of
+the normal closures is carried to itself, so it is the object a symmetric
+argument may test.  It does not let a symmetry transport a victim between
+representations; see the module docstring. -/
+theorem map_actualCoronaMFResidual_mulEquiv (σ : G ≃* G) :
+    (actualCoronaMFResidual G).map σ.toMonoidHom = actualCoronaMFResidual G := by
+  refine le_antisymm (map_actualCoronaMFResidual_le _) ?_
+  intro x hx
+  have hsymm : σ.symm.toMonoidHom x ∈ actualCoronaMFResidual G :=
+    map_actualCoronaMFResidual_le σ.symm.toMonoidHom
+      (Subgroup.mem_map_of_mem _ hx)
+  exact ⟨σ.symm x, hsymm, by simp⟩
 
 /-- **The universal content of an existential multi-mover obstruction.**
 

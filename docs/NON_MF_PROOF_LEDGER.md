@@ -219,8 +219,8 @@ opening the proof, have held.
 <!-- LEDGER-COUNTS -->
 | Column | EXACT | MISMATCH | MISSING | UNDER-SPECIFIED | total |
 | --- | --- | --- | --- | --- | --- |
-| statement | 380 | 71 | 65 | 0 | 516 |
-| proof | 391 | 47 | 73 | 5 | 516 |
+| statement | 384 | 71 | 65 | 0 | 520 |
+| proof | 395 | 47 | 73 | 5 | 520 |
 <!-- END-LEDGER-COUNTS -->
 
 ## Anchors
@@ -250,7 +250,7 @@ once in the comment-stripped manuscript; the probe is the drift detector.
 | lem:lift | env | lem:lift | 721a3d635e21456f |
 | lem:unitarycorona | env | lem:unitarycorona | a188e2b9a24399f8 |
 | thm:kazhdan-transport | env | thm:kazhdan-transport | 36a5391cd928c3d3 |
-| rem:finite-stage | env | rem:finite-stage | 2bc2a41c920839f2 |
+| rem:finite-stage | env | rem:finite-stage | f445629ec1a93b32 |
 | thm:transport-variants | env | thm:transport-variants | 70528198cea81006 |
 | def:pattern | env | def:pattern | 9fc5d15d6535fd5e |
 | def:invisible | env | def:invisible | 3f2a00bba6f9cb9d |
@@ -263,18 +263,18 @@ once in the comment-stripped manuscript; the probe is the drift detector.
 | cor:intrinsic-nk | env | cor:intrinsic-nk | a7a3cb91f6620f63 |
 | thm:kazhdan-clifford | env | thm:kazhdan-clifford | b1db1d8edeada441 |
 | rem:ff-realization | env | rem:ff-realization | 7dc2c4c67a341ebb |
-| thm:A | env | thm:A | 24fa7ec844cf3801 |
+| thm:A | env | thm:A | f3a62f02cd918a78 |
 | cor:uniform | env | cor:uniform | 043923ba46739c21 |
 | cor:scaling-family | env | cor:scaling-family | 0d2d1d84d3c1949c |
 | thm:B | env | thm:B | d6e18099881e7f18 |
 | cor:notRFD | env | cor:notRFD | 754e7536fa06cde2 |
 | rem:invariantsize | env | rem:invariantsize | 7dbeda481ba68238 |
-| rem:chaincondition | env | rem:chaincondition | a3b839a979d9b45c |
+| rem:chaincondition | env | rem:chaincondition | e981fb297b644ba8 |
 | def:E | env | def:E | 46c314ad2bcb6bd6 |
 | fig:compression-pattern | env | fig:compression-pattern | f0481ba0527fcf7f |
 | prop:literal-base-T | env | prop:literal-base-T | 4955bce3c162ac27 |
 | thm:p13-complete | env | thm:p13-complete | 32cf3b27267b128d |
-| rem:classical-base | env | rem:classical-base | 323ed20545ee95dd |
+| rem:classical-base | env | rem:classical-base | 3b14e3f10eb77180 |
 | con:clifford | env | con:clifford | 357782b7788ad2c6 |
 | lem:linear | env | lem:linear | d64613d28a87f958 |
 | prop:witness | env | prop:witness | 1a168e6eb3a8fb32 |
@@ -308,7 +308,7 @@ once in the comment-stripped manuscript; the probe is the drift detector.
 | cor:undecidable | env | cor:undecidable | 48afe0f113a25836 |
 | prop:maximal-cstar | env | prop:maximal-cstar | e804583acb4798be |
 | prop:proper-isometry | env | prop:proper-isometry | e2a8714db1305b83 |
-| rem:maxinfinite | env | rem:maxinfinite | 514fcef8838bd96e |
+| rem:maxinfinite | env | rem:maxinfinite | a9437baa2cf68577 |
 | p:abstract-refute | prose | `refutes the conjecture that every countable group is MF` | - |
 | p:abstract-mechanism | prose | `the commutant becomes a Hilbert--Schmidt asymptotic commutant` | - |
 | p:abstract-W | prose | `is finitely generated, sofic, and not MF, so` | - |
@@ -628,6 +628,7 @@ everywhere: the TeX is the specification and does not move).
 | FD.23 | rem:chaincondition | consequently for every finite-dimensional σ over every field the fixed subspaces of Γ and of tΓt⁻¹ coincide | `manuscriptChainConditionRigidity` | EXACT | EXACT | literal | unconditional | - | NO | third conjunct |
 | FD.24 | rem:chaincondition | applied to tensor constructions: compression creates no invariant tensors of any finite type | `TensorInvariantRigidity.manuscriptTensorInvariantRigidity` | EXACT | EXACT | literal | unconditional | - | NO | tensor, dual, Hom and product representations |
 | FD.25 | rem:chaincondition | taking the invariant to be the Zariski closure gives equal algebraic envelopes for Γ and tΓt⁻¹ | `ClosedEnvelopeCompression.manuscriptEnvelopeCompressionBlind` | MISMATCH | MISMATCH | substituted | unconditional | - | NO | univ0; and the Lean statement quantifies over an abstract `Closed` predicate, as the TeX itself says |
+| FD.25b | rem:chaincondition | the chain condition itself, for Zariski-closed subgroups of GL(V) over an arbitrary field, from the Hilbert basis theorem | `ZariskiClosedSubgroup.manuscriptZariskiClosureOfRepresentation` | EXACT | EXACT | literal | unconditional | - | NO | proved rather than quoted; FD.25 beside it is the envelope-blindness step and keeps its own status |
 | FD.26 | rem:chaincondition | that closed subgroups of GL(V) in the Zariski topology satisfy the chain condition is classical and is quantified over, not proved | - | MISSING | MISSING | - | literature-input | - | NO | the TeX states this explicitly |
 | FD.27 | p:B-why-corona | an MF model is only asymptotically multiplicative, so coordinate fixed spaces are not literal invariant subspaces; operator-norm control keeps the adjoint actions almost multiplicative; (T) supplies an almost-fixed spectral subspace; the equal-rank reversal turns one-sided compression into equality | `KazhdanCompressorCorner.cornerProjection`; `KazhdanCornerMatrices.norm_one_sub_mul_flip` | EXACT | EXACT | literal | unconditional | - | NO | this paragraph describes the Appendix B route, which is the formalized one |
 | GP.01 | eq:sl3presentation | the linear presentation ℛ = ⟨x,y,z \| eight relators⟩ | `LiteralBaseRotationRetract.rotationRelators` | EXACT | EXACT | literal | unconditional | CRW, CLV | NO | eight relators, term for term |
@@ -698,7 +699,7 @@ everywhere: the TeX is the specification and does not move).
 | PA.05 | thm:A | apply the central-sign criterion with Γ = ℬ, ι, t, c ∈ E and a = v₁ | `LiteralNonMFEndpoint.literal_centralSignCriterion` | EXACT | EXACT | literal | unconditional | - | NO | the criterion is instantiated verbatim, with every hypothesis discharged from the presentation |
 | PA.06 | thm:A | the hypotheses are the displayed relators: (T) of ℬ, the six stable-letter relators, the six c-commutation relators | `LiteralBaseP13PropertyTBridge.manuscriptBaseHasKazhdanPropertyT`; `LiteralNonMFPresentation.stable_conjugates_base_into_base`; `LiteralNonMFPresentation.lamp_commutes_base` | EXACT | EXACT | literal | unconditional | - | NO | - |
 | PA.07 | thm:A | in E, d² = (tct⁻¹)² = tc²t⁻¹ = 1, so Lemma 9.1 identifies w as u² | `LiteralNonMFEndpoint.mark_eq_compressionDefect_sq`; `LiteralNonMFEndpoint.mark_eq_rootCommutator_sq` | EXACT | EXACT | literal | unconditional | - | NO | - |
-| PA.08 | thm:A | centrality of w is a defining relator; with c² = 1 it forces w² = 1; and w ≠ 1 by part (1) | `LiteralNonMFPresentation.mark_central`; `LiteralNonMFPresentation.mark_sq` | EXACT | EXACT | literal | unconditional | - | NO | - |
+| PA.08 | thm:A | centrality of w is a defining relator; with c² = 1 it forces w² = 1; and w ≠ 1 as the theorem states (the enumeration this once cited as "part (1)" was collapsed into a single sentence) | `LiteralNonMFPresentation.mark_central`; `LiteralNonMFPresentation.mark_sq` | EXACT | EXACT | literal | unconditional | - | NO | - |
 | PA.09 | thm:A | since κ is injective, Θ(w) = 1 | `LiteralNonMFEndpoint.literal_mark_eq_one_in_unitaryCorona` | EXACT | EXACT | literal | unconditional | - | NO | - |
 | PA.10 | thm:A | an MF embedding of E would be an injective corona representation, impossible since w ≠ 1 dies | `LiteralNonMFEndpoint.literal_not_isCDEOperatorMF` | EXACT | EXACT | literal | unconditional | - | NO | - |
 | PA.11 | thm:A | if C*_red(E) were MF, complement correction plus g ↦ λ_g would give an injective corona representation | `LiteralNonMFEndpoint.literal_reducedGroupCStar_not_isMFAlgebra` | EXACT | EXACT | literal | unconditional | - | NO | - |
@@ -826,6 +827,7 @@ everywhere: the TeX is the specification and does not move).
 | RE.03 | thm:D | Theorem D: C*_red(E) is unital, separable, carries a faithful tracial state, is stably finite, and is not MF | `LiteralNonMFEndpoint.manuscriptTheoremD` | EXACT | EXACT | literal | unconditional | - | NO | stable finiteness in every nonempty finite matrix amplification |
 | RE.04 | p:D-base-injective | the canonical ℬ → E is injective: compose with E → W and use that ℬ → Γ̄ is an isomorphism and j is injective | `LiteralBaseCompleteness.baseAffineEquiv`; `MappingTelescope.level_injective` | EXACT | EXACT | literal | unconditional | - | NO | - |
 | RE.05 | p:D-base-injective | since the infinite Kazhdan group ℬ is nonamenable, so is E; hence C*_red(E) is not nuclear | - | MISSING | MISSING | - | literature-input | BHV, Lance | NO | the TeX declares these two classical inputs explicitly |
+| RE.05b | p:D-base-injective | E contains an isomorphic copy of the infinite Kazhdan base, hence is nonamenable | `NuclearityAmenability.not_isAmenable_of_base_embeds` | EXACT | EXACT | literal | unconditional | - | NO | the nonamenability half of RE.05, now proved; the step from nonamenable to non-nuclear is Lance and remains the literature input recorded there |
 | RE.06 | lem:faithfultrace | (1) the canonical tracial state on C*_red(G₁) is faithful | `ManuscriptExactWrappers.manuscriptFaithfulTraceAndStableFiniteness` | EXACT | EXACT | literal | unconditional | - | NO | universe-polymorphic |
 | RE.07 | lem:faithfultrace | (2) a unital C*-algebra with a faithful tracial state is stably finite: every isometry in M_I(A) is unitary, for every nonempty finite I | `ManuscriptExactWrappers.manuscriptFaithfulTraceAndStableFiniteness` | EXACT | EXACT | literal | unconditional | - | NO | both the general finite index set and the M_k form |
 | RE.08 | lem:faithfultrace | proof (1): right translations commute with C*_red; τ(x*x) = 0 gives xδ_e = 0, hence xδ_g = 0 for all g, and the δ_g are total | `ReducedGroupCStarTrace.canonicalFaithfulTracialState` | EXACT | EXACT | literal | unconditional | - | NO | - |
@@ -844,6 +846,7 @@ everywhere: the TeX is the specification and does not move).
 | SO.12 | p:E-extension | the lamp kernel is locally finite, LEF, sofic and MF | `CliffordLamp.isLocallyFiniteGroup_cliffordLamp`; `CliffordLamp.isLEF_cliffordLamp`; `CliffordLamp.isSofic_cliffordLamp`; `CliffordLamp.isOperatorMF_cliffordLamp` | EXACT | EXACT | literal | unconditional | - | NO | - |
 | SO.13 | p:E-extension | V is the subgroup of GL₄(ℚ) generated by Γ̄ and D, with telescope levels D^{-n}Γ̄D^n and determinant giving the ℤ-coordinate; it is residually finite via odd-modulus congruence reductions, hence MF | `WitnessVertical.vertical_isOperatorMF` | EXACT | EXACT | literal | unconditional | Malcev | NO | Mal'cev is cited only for comparison; the reduction is proved internally |
 | SO.14 | p:E-zext | W → ℤ has kernel ClLamp(X) ⋊ T, which is LEF hence MF; so W is an extension of an LEF group by ℤ and is not MF | `LiteralLEFExtension.literalWitness_LEFKernel_integerExtension_nonMF` | EXACT | EXACT | literal | unconditional | - | NO | - |
+| SO.14b | p:E-zext | soficity is preserved by an extension with amenable quotient | `SoficByAmenablePermanence.isSofic_of_isSofic_ker_of_isAmenable` | EXACT | EXACT | literal | unconditional | - | NO | the Elek--Szabo permanence the sentence cites, now in-repo rather than a citation |
 | SO.15 | p:E-zext | soficity is preserved by every extension with amenable quotient | - | MISSING | MISSING | - | literature-input | ElekSzabo | NO | only the ℤ case is formalized (SO.07) |
 | SO.16 | p:E-exact | C*_red(W) is exact, has a faithful tracial state, is stably finite and is not MF | `LiteralWitnessConsequences.literalWitness_reducedGroupCStar_stablyFinite_nonMF` | MISMATCH | MISSING | literal | literature-input | GHW, KWPermanence, KWExact | NO | everything except exactness is formal; the TeX says the library has no definition of exact C*-algebra |
 | SO.17 | p:E-simple | there is a countable simple sofic group equal to its own MF radical | - | MISSING | MISSING | - | literature-input | ElekSzaboHyper | NO | the embedding of a countable sofic group into a simple sofic one is quoted |
@@ -865,7 +868,8 @@ everywhere: the TeX is the specification and does not move).
 | UN.04 | p:undec-adianrabin | the Adian–Rabin construction supplies a computable map from word-problem instances to presentations, trivial when w = 1 and containing E when w ≠ 1 | - | MISSING | MISSING | - | literature-input | Rabin58 | NO | the TeX declares this the one classical input here |
 | UN.05 | p:undec-adianrabin | the computability-theoretic pullback: from any computable reduction, undecidability and failure of r.e. on the negative side follow formally | `MarkovMFConsequences.recognition_undecidable`; `MarkovMFConsequences.negative_side_not_re` | EXACT | EXACT | literal | unconditional | - | NO | the pullback itself is unconditional |
 | UN.06 | p:mult-products | E × ℤ^k for k ≥ 0 are f.p., pairwise nonisomorphic, and non-MF | `ProductMultiplicity.manuscriptInfiniteMultiplicity` | MISMATCH | MISMATCH | literal | unconditional | - | NO | the TeX separates by torsion-free rank of the abelianization; Lean counts homomorphisms into ℤ/2, a deliberate difference the TeX records |
-| UN.07 | p:mult-continuum | pairing E with Neumann's continuum of two-generator groups yields 2^ℵ₀ pairwise nonisomorphic f.g. non-MF groups | `ContinuumMultiplicity.manuscriptContinuumMultiplicity` | MISSING | MISSING | - | literature-input | Neumann37 | NO | Neumann's family is a quantified hypothesis, as the TeX states |
+| UN.07 | p:mult-continuum | pairing E with a continuum of pairwise nonisomorphic f.g. groups yields 2^ℵ₀ pairwise nonisomorphic f.g. non-MF groups | `ContinuumMultiplicity.manuscriptContinuumMultiplicity` | MISSING | MISSING | - | literature-input | Neumann37 | NO | Neumann's family is a quantified hypothesis, as the TeX states |
+| UN.07b | p:mult-continuum | the input family itself: a continuum of pairwise nonisomorphic finitely generated groups, constructed rather than quoted | `NeumannContinuum.manuscriptContinuumMultiplicityUnconditional` | EXACT | EXACT | literal | unconditional | - | NO | removes the Neumann literature input from UN.07; the family is not Neumann's (a lamplighter over free-group coset spaces, not a subdirect product of alternating groups) and is finitely generated, not two-generator, which is all the deduction uses -- the TeX now says so |
 | UN.08 | p:mult-continuum | the counting step: each N embeds in X as a f.g. subgroup, a countable group has countably many f.g. subgroups, and a map with countable fibres from a continuum-sized family has continuum-sized image | `ContinuumMultiplicity.exists_continuum_pairwise_nonisomorphic` | EXACT | MISMATCH | literal | conditional-data | - | NO | the manuscript's own step on top of the hypothesis is formal |
 | LI.01 | p:limits-opnorm | HS-controlled multiplication does not make the adjoint operators operator-norm close, and both transport proofs need exactly that control | `KazhdanCompressorCorner.displacement_vanishing` | MISMATCH | MISSING | literal | unconditional | - | NO | the necessity claim is not formalized; only the positive use of operator-norm control is |
 | LI.01b | p:limits-adjointgap | the failure is exact and dimension-free: against ‖Ad U − Ad V‖ ≤ 2‖U − V‖ there are unitaries of arbitrarily small normalized HS distance whose adjoints stay 2 apart in operator norm | `HilbertSchmidtAdjointGap.exists_hsClose_adjointFar`; `HilbertSchmidtAdjointGap.two_le_l2_opNorm_conjDouble_sub`; `HilbertSchmidtAdjointGap.hsNormSq_one_sub_signDiagonal` | EXACT | EXACT | literal | unconditional | - | NO | added during this audit; the sign-diagonal witness realizes the constant 2 |

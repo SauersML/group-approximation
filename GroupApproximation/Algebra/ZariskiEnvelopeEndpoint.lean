@@ -20,7 +20,7 @@ exactly that, and nothing else.
 
 ## What is here
 
-Three closed-header endpoints, in increasing distance from the abstract theorem.
+Five closed-header endpoints, in increasing distance from the abstract theorem.
 
 * `manuscriptZariskiChainCondition` --- the classical input itself, as a
   sentence about descending chains of Zariski closed subgroups of `GL n k`.
@@ -34,10 +34,15 @@ Three closed-header endpoints, in increasing distance from the abstract theorem.
 * `manuscriptZariskiEnvelopeCompression` and
   `manuscriptZariskiClosureCompression` --- the abstract theorem *applied*: the
   envelope, respectively the Zariski closure, of a one-sided compression
-  `tΓt⁻¹ ≤ Γ` agrees with that of `Γ`.  The second is the displayed identity
+  `tΓt⁻¹ ≤ Γ` agrees with that of `Γ`.
+* `manuscriptZariskiRepresentationEnvelope` --- the displayed identity
   `closure of σ(tΓt⁻¹) = closure of σ(Γ)` at the level at which the manuscript
   prints it, for an arbitrary finite-dimensional representation `σ` of an
-  arbitrary group.
+  arbitrary group.  This is the sentence a badge on `rem:chaincondition` should
+  cite.
+
+`manuscriptZariskiNoDescendingChain` is the negative form of the first, and is
+the fifth.
 
 Every one of them is stated with no declaration inputs: all quantifiers,
 including the typeclass ones, occur inside the proposition, which is what
@@ -154,8 +159,7 @@ theorem manuscriptZariskiClosureCompression :
       Γ.map (MulAut.conj t).toMonoidHom ≤ Γ →
       zClosure ((Γ.map (MulAut.conj t).toMonoidHom : Subgroup (GeneralLinearGroup n k)) :
           Set (GeneralLinearGroup n k))
-        = zClosure ((Γ : Subgroup (GeneralLinearGroup n k)) :
-          Set (GeneralLinearGroup n k)) := by
+        = zClosure (Γ : Set (GeneralLinearGroup n k)) := by
   intro n _ _ k _ Γ t ht
   exact manuscriptZariskiClosureCompressionBlind ht
 
@@ -167,7 +171,7 @@ representation `σ` of an arbitrary group `H` over an arbitrary field, a subgrou
 This is
 `\overline{\sigma(t\Gamma t^{-1})}^{\,Z}=\overline{\sigma(\Gamma)}^{\,Z}`
 of `rem:chaincondition`, unconditionally. -/
-theorem manuscriptZariskiClosureOfRepresentation :
+theorem manuscriptZariskiRepresentationEnvelope :
     ∀ {n : Type} [Fintype n] [DecidableEq n] {k : Type} [Field k]
       {H : Type} [Group H] (σ : H →* GeneralLinearGroup n k) (Γ : Subgroup H) (t : H),
       Γ.map (MulAut.conj t).toMonoidHom ≤ Γ →

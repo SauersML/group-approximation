@@ -55,6 +55,20 @@ theorem actualCoronaMFInvisible_of_isSimpleGroup [Countable G]
     exact Subgroup.mem_top x
   exact hmem
 
+/-- **The canonical MF quotient is trivial.**  Every corona representation of
+such a group factors through `G ⧸ Rad_MF`, and that quotient is a point, so
+every corona representation is trivial and there is no nontrivial MF target to
+map to.  This is the "entire group is its MF radical" property in the form the
+dossier's question asks for. -/
+theorem subsingleton_quotient_actualCoronaMFResidual_of_isSimpleGroup
+    [Countable G] (hsimple : IsSimpleGroup G) (hnot : ¬ IsCDEOperatorMF G) :
+    Subsingleton (G ⧸ actualCoronaMFResidual G) := by
+  have h : actualCoronaMFResidual G = ⊤ :=
+    actualCoronaMFResidual_eq_top_of_isSimpleGroup hsimple hnot
+  haveI : Subsingleton (G ⧸ (⊤ : Subgroup G)) :=
+    QuotientGroup.subsingleton_quotient_top
+  exact Equiv.subsingleton (QuotientGroup.quotientMulEquivOfEq h).toEquiv
+
 /-- **The hunting criterion, contrapositive.**  A simple group admitting a
 single nontrivial corona representation is MF.  In the simple case there is no
 intermediate radical to engineer. -/
