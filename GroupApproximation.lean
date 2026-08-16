@@ -29,6 +29,7 @@ import GroupApproximation.Computability.OperatorMFMarkovAtCodes
 import GroupApproximation.Computability.StringRewriting
 import GroupApproximation.Computability.UniversalCodeHalting
 import GroupApproximation.Computability.UniversalMachineInit
+import GroupApproximation.Computability.UniversalMachineUndecidable
 import GroupApproximation.Computability.UniversalCode
 import GroupApproximation.Computability.RewriteMonoid
 import GroupApproximation.Computability.RewriteInvariants
