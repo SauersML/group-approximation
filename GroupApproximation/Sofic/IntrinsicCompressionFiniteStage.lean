@@ -200,15 +200,15 @@ theorem one_sub_spectralProjection_mul_conjugate_vanishing
                 ‖(1 : Matrix (B.adjoint.model n) (B.adjoint.model n) ℂ)‖ +
                   ‖spectralProjection B D n‖ := norm_sub_le _ _
             _ ≤ 1 + 1 := add_le_add (by
-                  rcases isEmpty_or_nonempty (B.adjoint.model n).carrier with h | h
-                  · have h0 : (1 : Matrix (B.adjoint.model n).carrier
-                        (B.adjoint.model n).carrier ℂ) = 0 := Subsingleton.elim _ _
-                    rw [h0, norm_zero]
-                    norm_num
-                  · rw [← Matrix.diagonal_one, Matrix.l2_opNorm_diagonal,
-                      pi_norm_le_iff_of_nonneg zero_le_one]
-                    intro i
-                    simp) hP
+                  -- the identity is the permutation matrix of `1`, and a
+                  -- permutation matrix has l2-operator norm at most one; the
+                  -- bound holds on an empty index type too, where it is zero
+                  have h1 : (1 : Matrix (B.adjoint.model n).carrier
+                        (B.adjoint.model n).carrier ℂ)
+                      = (1 : Equiv.Perm (B.adjoint.model n).carrier).permMatrix ℂ :=
+                    Matrix.permMatrix_one.symm
+                  rw [h1]
+                  exact Matrix.permMatrix_l2_opNorm_le _) hP
             _ = 2 := by norm_num
         · exact hN n hn
       _ = epsilon := by ring
