@@ -314,6 +314,7 @@ import GroupApproximation.Sofic.TorsionFreeFullMFConsequences
 import GroupApproximation.Sofic.TensorPowerAmplification
 import GroupApproximation.Sofic.TensorPowerTransport
 import GroupApproximation.Algebra.ProductFinitePresentation
+import GroupApproximation.Algebra.Amenable
 import GroupApproximation.Sofic.ProductMultiplicity
 import GroupApproximation.Sofic.ContinuumMultiplicity
 import GroupApproximation.Sofic.OperatorMFPairAmplification
