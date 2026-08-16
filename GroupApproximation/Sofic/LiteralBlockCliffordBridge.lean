@@ -79,6 +79,21 @@ So the honest status is: soficity of the literal group is one finite
 arithmetic statement plus two bookkeeping identifications away, and
 `IsCompleteOnBlocks` is stated as a hypothesis here rather than derived only
 because those identifications have not been written.
+
+Of the two hypotheses below only the first is substantial:
+`isIrreflexive_of_siteA_ne_siteB` reduces the second to distinctness of the
+two marked sites, which is `moved_cosets_ne` and is already applied at
+`alpha`/`conjD_injective` elsewhere in the repository.
+
+## Overlap with the amalgam lane
+
+`Sofic/LiteralLampKernelAmalgam.lean` reaches the same place from the other
+side: its §13 discharges `IsBlockCliffordPresentation` for `LampFactor`, and
+lands on the same two graph facts under the names `hcomplete` and `hadj_ne`.
+Its route additionally proves the block order `512` outright and gives
+`isSofic_centralAmalgam` with no hypotheses at all.  The two developments
+should be merged once either compiles; the reason to keep both for now is that
+they fail differently, and a build pass will say which survives.
 -/
 
 /-! ## The two graph hypotheses -/
@@ -92,6 +107,30 @@ def IsCompleteOnBlocks : Prop :=
 /-- **No site is adjacent to itself.** -/
 def IsIrreflexive : Prop :=
   ∀ ξ : Site, ¬ Adjacent ξ ξ
+
+/-- Irreflexivity is exactly distinctness of the two marked sites, and needs
+no transitivity input: both disjuncts of `Adjacent ξ ξ` produce a `g` with
+`g • siteA = g • siteB`, and the action of a group element on its coset space
+is injective.
+
+The corresponding fact in the other site vocabulary is `moved_cosets_ne`,
+already applied at `alpha`/`conjD_injective` in
+`Sofic/LiteralSignFreeQuotient.lean`, so this hypothesis is in the repository
+over the right carrier and only the vocabulary identification is missing. -/
+theorem isIrreflexive_of_siteA_ne_siteB (h : siteA ≠ siteB) : IsIrreflexive := by
+  intro ξ hadj
+  have key : ∀ g : Vertical, g • siteA = ξ → g • siteB = ξ → False := by
+    intro g ha hb
+    exact h (smul_right_injective' (a := g) (ha.trans hb.symm))
+  rcases hadj with ⟨g, ha, hb⟩ | ⟨g, ha, hb⟩
+  · exact key g ha hb
+  · exact key g hb ha
+where
+  /-- `g • ·` is injective on the coset space. -/
+  smul_right_injective' {g : Vertical} {x y : Site} (hxy : g • x = g • y) :
+      x = y := by
+    have := congrArg (fun z ↦ g⁻¹ • z) hxy
+    simpa [inv_smul_smul] using this
 
 /-! ## The block family -/
 
