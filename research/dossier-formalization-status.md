@@ -74,7 +74,8 @@ formalized in this pass; **TODO** not yet formalized.
 | 46.3 | the all-fields linear residual and its place in the chain | DONE-NEW (easy half) | `Sofic/LinearResidual` (`linearResidual`, `linearResidual_le_fdUnitaryResidual`, `linearResidual_le_finiteResidual`); fields range over `Type`, and the definition is elementwise as the dossier prescribes |
 | 46.1, 46.2 | finite residue fields; Mal'cev | TODO | needs Zariski's lemma and the char-0 integrality argument |
 | 46.4 | nonlinearity of the concrete family | TODO | |
-| 49.1, 49.2 | induction from a finite-index subgroup; exact heredity | DONE-NEW (f.d. case) | `Sofic/InducedFiniteDimensional` (`indHom`, `fdUnitaryResidual_subgroupOf`); the whole construction runs on one coefficient function `coeff π a b`, so no dependent case distinction enters a matrix index.  The MF (corona) case still needs the amplification isomorphism of (49.4) |
+| 49.1, 49.2 | induction from a finite-index subgroup; exact heredity (f.d. case) | DONE-NEW | `Sofic/InducedFiniteDimensional` (`indHom`, `fdUnitaryResidual_subgroupOf`) |
+| 49.1, 49.2, 49.2A | the same for norm matrix coronas | DONE-NEW | `Sofic/InducedCoronaMF` (`exists_induced_corona`, `corona_invisible_of_finiteIndex`, `isOperatorMF_of_finiteIndex_subgroup`), on the block-pattern norms of `Sofic/AmplifiedBlockNorms`.  The induced family is built on the *lifts*, so the amplification isomorphism of (49.4) is never needed |
 | 49.4 | finite-index heredity of the finite residual | DONE-NEW | `Algebra/FiniteResidual.mem_finiteResidual_subgroup_iff` |
 | 50.1 | functoriality / full invariance of the finite residual | DONE-NEW | `Algebra/FiniteResidual.map_finiteResidual_le` |
 | 51.1 | simple lamps: one relation generates the whole lamp subgroup | DONE-NEW | `Algebra/PermutationalWreathSimple.lamp_le_normalClosure_single`, on `Lamp.mem_closure_singles` |
