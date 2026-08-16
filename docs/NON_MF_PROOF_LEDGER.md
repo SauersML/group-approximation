@@ -219,8 +219,8 @@ opening the proof, have held.
 <!-- LEDGER-COUNTS -->
 | Column | EXACT | MISMATCH | MISSING | UNDER-SPECIFIED | total |
 | --- | --- | --- | --- | --- | --- |
-| statement | 380 | 70 | 65 | 0 | 515 |
-| proof | 390 | 47 | 73 | 5 | 515 |
+| statement | 380 | 71 | 65 | 0 | 516 |
+| proof | 391 | 47 | 73 | 5 | 516 |
 <!-- END-LEDGER-COUNTS -->
 
 ## Anchors
@@ -509,6 +509,7 @@ everywhere: the TeX is the specification and does not move).
 | CD.03 | p:conj-datum-remark | both conditions are relations among generators, so a datum can be read off a presentation | `LiteralNonMFEndpoint.inclusionData` | EXACT | EXACT | literal | unconditional | - | NO | demonstrated for the literal presentation |
 | CD.04 | p:conj-datum-remark | the relations do not constrain the commutators [d, ι(λ)] | `LiteralNonMFLinearWitness.literal_mark_ne_one` | EXACT | EXACT | literal | unconditional | - | NO | witnessed, rather than asserted, by the Clifford model |
 | CD.05 | def:invisible | definition of Hilbert–Schmidt invisibility | `ManuscriptExactWrappers.ManuscriptHSInvisible` | MISMATCH | EXACT | literal | unconditional | - | NO | univ0 |
+| CD.06 | def:invisible | the definition read as a characterization: g is invisible exactly when every operator-norm asymptotic representation and every cofinite-refining ultrafilter send g to 1 in the tracial ultraproduct | `ManuscriptExactWrappers.manuscriptHSInvisibleCharacterization` | MISMATCH | EXACT | literal | unconditional | - | NO | univ0, as CD.05; the first conjunct is the printed definition and holds by Iff.rfl, and the theorem proves two further conjuncts the definition does not print (the subgroup form, and closure under 1, product and inverse) |
 | FN.00 | thm:criterion | Theorem 4.4: every finite normal F ⊆ N_comp dies in every corona representation | `ManuscriptExactWrappers.manuscriptFiniteNormalObstructionCriterion` | MISMATCH | EXACT | literal | unconditional | - | NO | univ0; the printed proof route is followed |
 | FN.01 | thm:criterion | K₂ = {g : ‖U_{g,n} − 1‖₂ → 0} is a normal subgroup of H | `nullUnitarySubgroup`; `AsymptoticUnitaryRepresentation.toUltraproductHom` | EXACT | EXACT | literal | unconditional | - | NO | realized as the kernel of the tracial-ultraproduct homomorphism |
 | FN.02 | thm:criterion | c centralizes ι(Λ), so its lifts lie in the HS asymptotic commutant of ι(Λ) | `KazhdanCompressorCorner.compressionDefect_hsDistSq_vanishing` | EXACT | EXACT | literal | unconditional | - | NO | - |
