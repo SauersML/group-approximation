@@ -41,6 +41,11 @@ formalized in this pass; **TODO** not yet formalized.
 | 31.1-31.2 | universally action-sofic HNN theorem | DONE-NEW | `Sofic/AscendingHNNCosetActionSofic` (`UniversallyActionSofic`, `isSoficAction_vertical_cosets_of_uas`) |
 | 33 | involutive compression collapse theorem | DONE-PRE | `Sofic/InvolutionCollapseEndpoint` |
 | 36.1-36.3 | projection collapse, torsion collapse | DONE-PRE | `Sofic/ProjectionCompressionCollapse`, `Sofic/TorsionSpectralCollapse` |
+| 36.4 | one-site lamp is a commuting-orbit witness for **any** lamp group; the defect is nontrivial | DONE-NEW | `Algebra/PermutationalWreath` (`conj_single_commute`, `single_mul_single_inv_ne_one`) |
+| infra | permutational wreath product `K^{(X)} ⋊ G` for arbitrary, possibly nonabelian, `K` | DONE-NEW | `Algebra/PermutationalWreath` (`lampSubgroup`, `Lamp`, `Lamp.single`, `lampAut`, `Wreath`) |
+| 37.7B | residually finite ⇒ MF | DONE-PRE | `Sofic/OperatorMFPositiveControls.isOperatorMF_of_residuallyFinite` |
+| 37.7C | subgroups of MF groups are MF | DONE-PRE | `Sofic/OperatorMFPositiveControls.IsOperatorMF.subgroup` |
+| 43.4, 54.2 | the lamp group itself is residually finite for finite `K` | DONE-NEW | `Algebra/PermutationalWreath.lamp_isResiduallyFinite` |
 | 37 | telescope-kernel collapse, exact MF radical | TODO (partial in-repo) | |
 | 39 | concrete affine base, index 8, RF skeleton | DONE-PRE | `Sofic/LiteralBaseDoublingIndex`, `Sofic/CommutingLampCollapse`, `Monsters/ExplicitLinearModel` |
 | 41-43 | equality of MF / f.d. / finite residuals | TODO | |
