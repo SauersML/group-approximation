@@ -78,8 +78,6 @@ import GroupApproximation.Monsters.SL2PingPong
 import GroupApproximation.Monsters.SL2Completeness
 import GroupApproximation.Monsters.P13BlockSL2
 import GroupApproximation.Monsters.CyclicBaseLEFObstruction
-import GroupApproximation.Monsters.FournierFacioRealization
-import GroupApproximation.Monsters.RealizationEmbedding
 import GroupApproximation.Sofic.ScalingFamilyPresentation
 import GroupApproximation.Sofic.ScalingFamilyRelatorCount
 import GroupApproximation.Sofic.ScalingFamilyLinearWitness
@@ -294,6 +292,7 @@ import GroupApproximation.Sofic.LEFMarkedCompression
 import GroupApproximation.Algebra.FiniteResidual
 import GroupApproximation.Algebra.VisibleQuotient
 import GroupApproximation.Algebra.FiniteResidualCommensurability
+import GroupApproximation.Algebra.AlternatingLampNoncommensurable
 import GroupApproximation.Algebra.TorsionFreeRank
 import GroupApproximation.Algebra.AmenableMFProof
 import GroupApproximation.Algebra.PermutationalWreath
