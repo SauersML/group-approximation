@@ -307,12 +307,14 @@ finite-order witness with commuting orbit, every collapse commutator is
 invisible in every corona representation.  This discharges the collapse
 gate of `Sofic/TorsionCompressionCollapse` at every order, extending the
 involutive endpoint from order two. -/
-theorem actualCoronaMFInvisible_of_torsionWitness {E : Type} [Group E]
-    [Countable E] {L : Subgroup E} (hT : HasKazhdanPropertyT.{0, 0} ↥L)
-    {s : E} (hcomp : ∀ γ ∈ L, s * γ * s⁻¹ ∈ L) {k : E}
-    (hk : TorsionCompressionCollapse.IsTorsionCompressionWitness L s k)
-    {γ : E} (hγ : γ ∈ L) :
-    ActualCoronaMFInvisible ⁅γ, k⁆ := by
+theorem actualCoronaMFInvisible_of_torsionWitness :
+    ∀ {E : Type} [Group E]
+      [Countable E] {L : Subgroup E} (_hT : HasKazhdanPropertyT.{0, 0} ↥L)
+      {s : E} (_hcomp : ∀ γ ∈ L, s * γ * s⁻¹ ∈ L) {k : E}
+      (_hk : TorsionCompressionCollapse.IsTorsionCompressionWitness L s k)
+      {γ : E} (_hγ : γ ∈ L),
+      ActualCoronaMFInvisible ⁅γ, k⁆ := by
+  intro E _ _ L hT s hcomp k hk γ hγ
   classical
   obtain ⟨⟨m, hm, hkm⟩, hcent, horb⟩ := hk
   haveI : NeZero m := ⟨hm.ne'⟩
@@ -466,12 +468,13 @@ local instance quotientCountable {E : Type} [Group E] (N : Subgroup E)
 /-- **The full torsion-collapse defect lies in the MF radical**, with no
 analytic hypothesis: the collapse gate of
 `Sofic/TorsionCompressionCollapse` is discharged at every order. -/
-theorem torsionCollapseDefect_le_actualCoronaMFResidual_of_kazhdan
-    {E : Type} [Group E] [Countable E] {L : Subgroup E}
-    (hT : HasKazhdanPropertyT.{0, 0} ↥L) {s : E}
-    (hcomp : ∀ γ ∈ L, s * γ * s⁻¹ ∈ L) :
-    TorsionCompressionCollapse.torsionCollapseDefect L s ≤
-      actualCoronaMFResidual E := by
+theorem torsionCollapseDefect_le_actualCoronaMFResidual_of_kazhdan :
+    ∀ {E : Type} [Group E] [Countable E] {L : Subgroup E}
+      (_hT : HasKazhdanPropertyT.{0, 0} ↥L) {s : E}
+      (_hcomp : ∀ γ ∈ L, s * γ * s⁻¹ ∈ L),
+      TorsionCompressionCollapse.torsionCollapseDefect L s ≤
+        actualCoronaMFResidual E := by
+  intro E _ _ L hT s hcomp
   refine TorsionCompressionCollapse.torsionCollapseDefect_le_actualCoronaMFResidual
     L s ?_
   rintro x ⟨k, hk, γ, hγ, rfl⟩
@@ -480,15 +483,16 @@ theorem torsionCollapseDefect_le_actualCoronaMFResidual_of_kazhdan
 /-- **Exact MF radical from the torsion collapse**: if the defect
 quotient is MF, the torsion-collapse defect is exactly the literal MF
 radical. -/
-theorem actualCoronaMFResidual_eq_torsionCollapseDefect_of_kazhdan
-    {E : Type} [Group E] [Countable E] {L : Subgroup E}
-    (hT : HasKazhdanPropertyT.{0, 0} ↥L) {s : E}
-    (hcomp : ∀ γ ∈ L, s * γ * s⁻¹ ∈ L)
-    (hquot : IsCDEOperatorMF
-      (E ⧸ TorsionCompressionCollapse.torsionCollapseDefect L s)) :
-    actualCoronaMFResidual E =
-      TorsionCompressionCollapse.torsionCollapseDefect L s :=
-  actualCoronaMFResidual_eq_of_le_and_quotient_isCDEOperatorMF
+theorem actualCoronaMFResidual_eq_torsionCollapseDefect_of_kazhdan :
+    ∀ {E : Type} [Group E] [Countable E] {L : Subgroup E}
+      (_hT : HasKazhdanPropertyT.{0, 0} ↥L) {s : E}
+      (_hcomp : ∀ γ ∈ L, s * γ * s⁻¹ ∈ L)
+      (_hquot : IsCDEOperatorMF
+        (E ⧸ TorsionCompressionCollapse.torsionCollapseDefect L s)),
+      actualCoronaMFResidual E =
+        TorsionCompressionCollapse.torsionCollapseDefect L s := by
+  intro E _ _ L hT s hcomp hquot
+  exact actualCoronaMFResidual_eq_of_le_and_quotient_isCDEOperatorMF
     (TorsionCompressionCollapse.torsionCollapseDefect L s)
     (torsionCollapseDefect_le_actualCoronaMFResidual_of_kazhdan hT hcomp)
     hquot

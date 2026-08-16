@@ -67,10 +67,11 @@ theorem not_isCDEOperatorMF_of_involutiveWitness {E : Type} [Group E]
 projection of the corona that commutes with the compressed image and
 whose `L`-conjugation orbit commutes pairwise already commutes with the
 full image of `L`. -/
-theorem corona_projection_collapse {E : Type} [Group E] [Countable E]
-    (L : Subgroup E) (hT : HasKazhdanPropertyT.{0, 0} ↥L)
-    {s : E} (hcomp : ∀ γ ∈ L, s * γ * s⁻¹ ∈ L)
-    (X : ℕ → FiniteModel) (hX : ∀ n, 0 < Fintype.card (X n)) :
+theorem corona_projection_collapse :
+    ∀ {E : Type} [Group E] [Countable E]
+      (L : Subgroup E) (_hT : HasKazhdanPropertyT.{0, 0} ↥L)
+      {s : E} (_hcomp : ∀ γ ∈ L, s * γ * s⁻¹ ∈ L)
+      (X : ℕ → FiniteModel) (hX : ∀ n, 0 < Fintype.card (X n)),
     letI : ∀ n, Nonempty (X n) := fun n ↦ Fintype.card_pos_iff.mp (hX n)
     ∀ (pi : E →* unitary (NormMatrixCStarCorona (fun n ↦ X n)))
       (p : NormMatrixCStarCorona (fun n ↦ X n)),
@@ -99,6 +100,7 @@ theorem corona_projection_collapse {E : Type} [Group E] [Countable E]
             NormMatrixCStarCorona (fun n ↦ X n)) * p =
           p * ((pi γ : unitary (NormMatrixCStarCorona (fun n ↦ X n))) :
             NormMatrixCStarCorona (fun n ↦ X n)) := by
+  intro E _ _ L hT s hcomp X hX
   classical
   letI : ∀ n, Nonempty (X n) := fun n ↦ Fintype.card_pos_iff.mp (hX n)
   intro pi p hsa hproj hpcomm horb γ hγ
