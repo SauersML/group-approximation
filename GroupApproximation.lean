@@ -297,6 +297,7 @@ import GroupApproximation.Sofic.WreathPermLayer
 import GroupApproximation.Sofic.WreathChartLamp
 import GroupApproximation.Sofic.GeneralizedWreathSofic
 import GroupApproximation.Sofic.AscendingHNNWreathSofic
+import GroupApproximation.Sofic.SoficActionOrbits
 import GroupApproximation.Kazhdan.IntegerNotKazhdan
 import GroupApproximation.Sofic.SoficAction
 import GroupApproximation.Sofic.SoficActionFiniteOrbits
