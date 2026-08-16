@@ -297,7 +297,10 @@ involution is centralized by the compressed copy and its conjugates
 under the property-\textup{(T)} subgroup commute, every corona
 representation identifies the whole conjugation orbit, and the MF
 radical is computed by the quotient by the resulting collapse defect
-(Theorems~\ref{thm:collapse} and~\ref{thm:saturation}).
+(Theorems~\ref{thm:collapse} and~\ref{thm:saturation}).  Applied to
+$E$ itself, this shows that $E/\langle w\rangle$ is again not MF, so
+the marked sign is a certificate for an obstruction that survives its
+removal (Theorem~\ref{thm:signfree}).
 
 The finitely presented group $E$ is the main example: it is not MF,
 and we do not determine whether $E$ itself is sofic or hyperlinear
@@ -1989,9 +1992,9 @@ source: the proof of Theorem~\ref{thm:criterion} makes the entire
 compression defect of $E$ --- in particular the unsquared commutator
 $u=[d,\iota(v_1)]$ --- Hilbert--Schmidt invisible in every
 operator-norm almost representation.
-Section~\ref{sec:consequences} develops the radical; whether
-$E/\langle w\rangle$ is MF --- equivalently, whether the MF radical of
-$E$ is exactly $\{1,w\}$ --- is open.
+Section~\ref{sec:consequences} develops the radical, and
+Theorem~\ref{thm:signfree} places $u$ itself inside it: the MF radical
+of $E$ properly contains $\{1,w\}$.
 
 \paragraph{Corner ranks.}
 The coordinate Reynolds corner in the proof of
@@ -2715,7 +2718,83 @@ $\langle\zeta\rangle$ has configuration coordinate zero.
 
 Every route to an MF model of $W$ through the commuting-lamp quotient
 is thereby closed: the obstruction of Theorem~\ref{thm:A} does not
-live in the sign alone.
+live in the sign alone.  The quotient also keeps the approximation
+property that Theorem~\ref{thm:E} proves for $W$.
+
+\begin{corollary}[a sign-free sofic non-MF group]\label{cor:signfreesofic}
+The group $W/\langle\zeta\rangle$ is sofic and is not MF\@.
+\leanverified{Sofic/CommutingLampQuotientSofic}{GroupApproximation.CommutingLampQuotientSofic.literalSignFreeQuotient_isSofic_and_not_isCDEOperatorMF}
+\end{corollary}
+
+\begin{proof}
+Killing $\zeta$ abelianizes the lamp kernel:
+$\ClLamp(X)/\langle\zeta\rangle$ is the elementary abelian group
+$\bigoplus_X\Z/2$ under the same $V$-action, so
+$W/\langle\zeta\rangle\cong\bigl(\bigoplus_X\Z/2\bigr)\rtimes V$.
+That kernel is again locally finite with finite level orbits, so the
+argument of Theorem~\ref{thm:E} gives soficity unchanged.  Failure of
+MF is Theorem~\ref{thm:commutinglamp}.
+\end{proof}
+
+A finitely generated sofic non-MF example therefore needs no Clifford
+sign.  The same collapse reaches the finitely presented group.
+
+\begin{theorem}[the sign-free quotient of $E$]\label{thm:signfree}
+The quotient $E/\langle w\rangle$ is not MF\@.  The image of
+$[\iota(v_1),d]$, the inverse of the marked commutator $u$, is
+nontrivial there and lies in
+$\operatorname{Rad}_{\mathrm{MF}}(E/\langle w\rangle)$; consequently
+$\{1,w\}$ is a proper subgroup of
+$\operatorname{Rad}_{\mathrm{MF}}(E)$.
+\leanverified{Sofic/LiteralSignFreeQuotient}{GroupApproximation.LiteralSignFreeQuotient.signFree_collapse}
+\leanverified{Sofic/LiteralSignFreeQuotient}{GroupApproximation.LiteralSignFreeQuotient.signFreeQuotient_not_isCDEOperatorMF}
+\leanverified{Sofic/LiteralSignFreeQuotient}{GroupApproximation.LiteralSignFreeQuotient.commutator_not_zpow_mark}
+\end{theorem}
+
+\begin{proof}
+Write $q\colon E\to E/\langle w\rangle$, $\bar d=q(d)$, and
+$\bar L=q(\iota(\mathcal B))$.  The element $\bar d$ is an involution
+because $c^2=1$, and $q(t)\bar Lq(t)^{-1}$ centralizes $\bar d$
+because $t\iota(\mathcal B)t^{-1}$ commutes with $c$ in $E$.
+Property~\textup{(T)} passes to $\bar L$, and $q(t)$ compresses it.
+Conditions (W1) and (W2) of Definition~\ref{def:invwitness} therefore
+hold, and the content is (W3).
+
+The rotation letters commute with $d$, and $t$ carries each $v_i$ to
+$v_i^2$, so $\iota(v_i^2)$ commutes with $d$ as well.  Hence
+$\iota(g)\,d\,\iota(g)^{-1}$ depends only on the exponent vector of
+the translation part of $g$ modulo $2$, which leaves eight conjugates,
+indexed by $(\Z/2)^3$.  By Theorem~\ref{thm:kazhdan-clifford} the
+marked word is $w=[d,\iota(v_1)\,d\,\iota(v_1)^{-1}]$, the commutator
+attached to the class of $v_1$.  The six rotation words
+$x,x^2,z,yz,yx,y^2x$ carry that class onto the six remaining nonzero
+classes, and each commutes with $d$; conjugating the displayed
+identity by the corresponding $\iota(r)$ exhibits every nonzero parity
+commutator as a conjugate of $w$, while the zero class contributes
+$[d,d]=1$.  Centrality of $w$ puts all eight in $\langle w\rangle$,
+and one further conjugation reduces an arbitrary pair of conjugates to
+this case.  Thus $\bar d$ is an involutive compression witness for
+$(\bar L,q(t))$, and Theorem~\ref{thm:collapse} places
+$[q(\iota(v_1)),\bar d]$ in
+$\operatorname{Rad}_{\mathrm{MF}}(E/\langle w\rangle)$.
+
+Nontriviality passes through the homomorphism $E\to W$ of
+Proposition~\ref{prop:witness}: it carries $[\iota(v_1),d]$ to the
+product of the lamp basis elements at the two distinct sites $\tau o$
+and $j(\bar v_1)\tau o$, and carries $\langle w\rangle$ into
+$\langle\zeta\rangle$, whose configuration coordinate is zero.  Hence
+$[\iota(v_1),d]\notin\langle w\rangle$, its image in
+$E/\langle w\rangle$ is nontrivial, and
+Proposition~\ref{prop:univquot} makes $E/\langle w\rangle$ non-MF\@.
+Corollary~\ref{cor:pullback} identifies
+$\operatorname{Rad}_{\mathrm{MF}}(E)$ with the $q$-preimage of
+$\operatorname{Rad}_{\mathrm{MF}}(E/\langle w\rangle)$, so $u$ belongs
+to it.
+\end{proof}
+
+The Clifford sign is thus a certificate for an obstruction that
+survives its removal, and $E/\langle w\rangle$ is a second finitely
+presented non-MF group.
 
 \begin{corollary}[collapse computes the radical]\label{cor:collapsequot}
 In the setting of Theorem~\ref{thm:collapse}, write
@@ -3227,23 +3306,17 @@ analogous torsion obstacle for nonsoficity \cite{FFF}, has suggested
 Remark~\ref{rem:ff-realization}) that a small-cancellation
 construction should produce such a group.
 \begin{enumerate}
-\item Is $E/\langle w\rangle$ MF?  By
-Corollary~\ref{cor:exactradical}, a positive answer would compute
-$\operatorname{Rad}_{\mathrm{MF}}(E)=\{1,w\}$ exactly.  The natural
-intermediate test is now closed: by
-Theorem~\ref{thm:commutinglamp}, the commuting-lamp quotient
-$W/\langle\zeta\rangle$ is itself not MF, and the image of $u$
-there is nontrivial inside its MF radical.  So no MF model of
-$W/\langle\zeta\rangle$ exists that could certify
-$u\notin\operatorname{Rad}_{\mathrm{MF}}(E)$: a detecting model
-must separate $u$ from the identity while surviving both the sign
-collapse of Theorem~\ref{thm:A} and the commuting-orbit collapse,
-and by Theorem~\ref{thm:B} it can factor through no finite quotient
-or exact finite-dimensional representation.  The same collapse,
-applied to the level-one block structure of $E/\langle w\rangle$,
-yields a negative answer conditional on an amalgam decomposition of
-the lamp kernel; that decomposition is not part of the formal
-development, and within it the question remains open.
+\item What is $\operatorname{Rad}_{\mathrm{MF}}(E)$?  It properly
+contains $\{1,w\}$ by Theorem~\ref{thm:signfree}.  Applying
+Corollary~\ref{cor:collapsequot} to $E/\langle w\rangle$ with the
+witness of that proof reduces the computation to the quotient by the
+resulting collapse defect $D$, and by
+Corollary~\ref{cor:exactradical} identifies the radical with the
+preimage of $D$ as soon as that quotient is MF\@.  Whether it is MF
+is open; a detecting model must survive both the sign collapse of
+Theorem~\ref{thm:A} and the commuting-orbit collapse, and by
+Theorem~\ref{thm:B} it factors through no finite quotient and no
+exact finite-dimensional representation.
 \item Is there a torsion-free finitely presented non-MF group?  The
 analytic obstruction no longer requires torsion
 (Theorem~\ref{thm:normal-kazhdan}); the remaining input is

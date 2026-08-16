@@ -1030,6 +1030,69 @@
       ]
     },
     {
+      "id": "cor:signfreesofic",
+      "environment": "corollary",
+      "title": "a sign-free sofic non-MF group",
+      "statement_sha256": "1b5b74b48236ee531601c8fda4e4e69eeeb58a0070af5d1fc6e47f5327e0964f",
+      "status": "exact",
+      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
+      "dependencies": [
+        "thm:commutinglamp",
+        "thm:E"
+      ],
+      "extra_assumptions": [],
+      "external_inputs": [],
+      "coverage_gap": "",
+      "lean": [
+        {
+          "role": "exact",
+          "module": "Sofic/CommutingLampQuotientSofic",
+          "declaration": "GroupApproximation.CommutingLampQuotientSofic.literalSignFreeQuotient_isSofic_and_not_isCDEOperatorMF",
+          "covers": "the complete printed proposition"
+        }
+      ]
+    },
+    {
+      "id": "thm:signfree",
+      "environment": "theorem",
+      "title": "the sign-free quotient of $E$",
+      "statement_sha256": "1aeef33c21dab5e1a9025d55e3f41537d0ee591a20e775dee4fe01b54efacc52",
+      "status": "exact",
+      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
+      "dependencies": [
+        "def:E",
+        "def:invwitness",
+        "thm:collapse",
+        "cor:pullback",
+        "prop:witness",
+        "prop:univquot",
+        "thm:kazhdan-clifford"
+      ],
+      "extra_assumptions": [],
+      "external_inputs": [],
+      "coverage_gap": "",
+      "lean": [
+        {
+          "role": "exact",
+          "module": "Sofic/LiteralSignFreeQuotient",
+          "declaration": "GroupApproximation.LiteralSignFreeQuotient.signFree_collapse",
+          "covers": "a printed conclusion of the proposition"
+        },
+        {
+          "role": "exact",
+          "module": "Sofic/LiteralSignFreeQuotient",
+          "declaration": "GroupApproximation.LiteralSignFreeQuotient.signFreeQuotient_not_isCDEOperatorMF",
+          "covers": "the complete printed proposition"
+        },
+        {
+          "role": "exact",
+          "module": "Sofic/LiteralSignFreeQuotient",
+          "declaration": "GroupApproximation.LiteralSignFreeQuotient.commutator_not_zpow_mark",
+          "covers": "a printed conclusion of the proposition"
+        }
+      ]
+    },
+    {
       "id": "cor:collapsequot",
       "environment": "corollary",
       "title": "collapse computes the radical",
