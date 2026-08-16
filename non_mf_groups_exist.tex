@@ -3138,10 +3138,16 @@ isomorphism types $N$ --- each such $N$ embeds in $X$ as a finitely
 generated subgroup, a countable group has only countably many finitely
 generated subgroups, and the types $N$ are pairwise nonisomorphic.  A
 map with countable fibres from a continuum-sized family has
-continuum-sized image.  This second paragraph is elementary group
-theory on top of the machine-checked heredity lemma, and is not
-separately formalized; the Neumann family and the counting argument
-over it are prose.
+continuum-sized image.  The counting argument of this second paragraph
+is machine-checked, conditionally on Neumann's family: the existence of
+a continuum of pairwise nonisomorphic two-generator groups is a
+quantified hypothesis of the formal statement, not a formalized
+theorem, and remains the literature input \cite{Neumann37}.  What is
+verified is the manuscript's own step on top of it --- that the
+products need not be pairwise nonisomorphic even when the factors are,
+and that countability of the fibres is what recovers a continuum of
+distinct isomorphism types.
+\leanverified{Sofic/ContinuumMultiplicity}{GroupApproximation.ContinuumMultiplicity.exists_continuum_pairwise_nonisomorphic}
 
 \section{Limitations of the operator-norm method}\label{sec:limits}
 
