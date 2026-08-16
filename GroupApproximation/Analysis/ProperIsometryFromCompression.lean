@@ -211,8 +211,10 @@ theorem exists_one_sided_inverse (D : ProperProjectionCompression A) :
 /-- The proper isometry `s` is not invertible: if it were a unit, its given
 left inverse `star s` would coincide with the two-sided inverse and hence
 `s * star s = 1`, contradicting properness. -/
-theorem isometry_not_isUnit (D : ProperProjectionCompression A) :
-    ¬ IsUnit D.isometry := by
+theorem isometry_not_isUnit :
+    ∀ {A : Type u} [Ring A] [StarRing A] (D : ProperProjectionCompression A),
+      ¬ IsUnit D.isometry := by
+  intro A _ _ D
   rintro ⟨u, hu⟩
   have hleft : star D.isometry * (u : A) = 1 := by
     rw [hu]
@@ -280,9 +282,10 @@ theorem unitary_conjugate_eq_of_absorbs [IsDedekindFiniteMonoid A]
   exact D.not_isDedekindFiniteMonoid inferInstance
 
 /-- In particular the ambient ring is not stably finite. -/
-theorem not_isStablyFiniteRing (D : ProperProjectionCompression A) :
-    ¬ IsStablyFiniteRing A := by
-  intro hstable
+theorem not_isStablyFiniteRing :
+    ∀ {A : Type u} [Ring A] [StarRing A] (_D : ProperProjectionCompression A),
+      ¬ IsStablyFiniteRing A := by
+  intro A _ _ D hstable
   letI : IsStablyFiniteRing A := hstable
   exact D.not_isDedekindFiniteMonoid inferInstance
 
@@ -300,10 +303,10 @@ theorem no_injective_monoidHom_to_dedekindFinite
 
 /-- A C-star algebra carrying a proper projection compression cannot admit a
 faithful tracial state. -/
-theorem no_faithfulTracialState
-    {B : Type*} [CStarAlgebra B]
-    (D : ProperProjectionCompression B) :
-    ¬ Nonempty (FaithfulTracialState B) := by
+theorem no_faithfulTracialState :
+    ∀ {B : Type*} [CStarAlgebra B] (_D : ProperProjectionCompression B),
+      ¬ Nonempty (FaithfulTracialState B) := by
+  intro B _ D
   rintro ⟨τ⟩
   exact D.isometry_mul_star_ne_one
     (τ.mul_star_eq_one_of_star_mul_eq_one D.star_isometry_mul_isometry)
