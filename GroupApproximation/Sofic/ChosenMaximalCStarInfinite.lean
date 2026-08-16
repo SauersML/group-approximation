@@ -1,5 +1,6 @@
 import GroupApproximation.Analysis.MaximalCStarProperCompression
 import GroupApproximation.Sofic.ChosenNonMFEndpoint
+import GroupApproximation.Sofic.MarkedCompressionProperness
 
 /-!
 # The chosen presentation has a properly infinite maximal algebra
