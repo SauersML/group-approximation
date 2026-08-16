@@ -1211,7 +1211,7 @@
     {
       "id": "thm:saturation",
       "environment": "theorem",
-      "title": "a collapse defect equal to the group",
+      "title": "when the collapse subgroup is everything",
       "statement_sha256": "43eab2fa31ed26b914c761ab6f90df6970901cdefd177808e177faef89733d3f",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
