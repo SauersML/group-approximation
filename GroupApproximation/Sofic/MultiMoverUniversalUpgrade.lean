@@ -98,6 +98,34 @@ theorem iInf_normalClosure_le_actualCoronaMFResidual {ι : Type*} (w : ι → G)
       (Set.singleton_subset_iff.mpr (MonoidHom.mem_ker.mpr hi))
   exact hle hmem
 
+/-- **The two-mover case**, written out because it is the shape the collapse
+criterion actually produces and the indexed form obscures it: if every corona
+representation kills `w₁` or kills `w₂`, then everything lying in *both* normal
+closures is invisible to all of them. -/
+theorem inf_normalClosure_le_actualCoronaMFResidual (w₁ w₂ : G)
+    (hmulti : ∀ (X : ℕ → FiniteModel), ∀ hX : ∀ n, 0 < Fintype.card (X n),
+      letI : ∀ n, Nonempty (X n) := fun n ↦ Fintype.card_pos_iff.mp (hX n)
+      ∀ rho : G →* unitary (NormMatrixCStarCorona (fun n ↦ X n)),
+        rho w₁ = 1 ∨ rho w₂ = 1) :
+    Subgroup.normalClosure {w₁} ⊓ Subgroup.normalClosure {w₂}
+      ≤ actualCoronaMFResidual G := by
+  intro x hx X hX
+  letI : ∀ n, Nonempty (X n) := fun n ↦ Fintype.card_pos_iff.mp (hX n)
+  intro rho
+  obtain ⟨hx₁, hx₂⟩ := Subgroup.mem_inf.mp hx
+  rcases hmulti X hX rho with h | h
+  · exact Subgroup.normalClosure_le_normal
+      (Set.singleton_subset_iff.mpr (MonoidHom.mem_ker.mpr h)) hx₁
+  · exact Subgroup.normalClosure_le_normal
+      (Set.singleton_subset_iff.mpr (MonoidHom.mem_ker.mpr h)) hx₂
+
+/-- The object the criterion produces is itself a normal subgroup, so it is a
+candidate piece of the radical and not merely a set of elements.  An
+intersection of normal subgroups is normal, and each `⟨⟨w i⟩⟩` is. -/
+instance iInf_normalClosure_normal {ι : Type*} (w : ι → G) :
+    (⨅ i, Subgroup.normalClosure {w i}).Normal :=
+  Subgroup.normal_iInf_normal fun _ => Subgroup.normalClosure_normal
+
 /-- **Conjugate movers upgrade.**  If every member of the family is conjugate
 to a designated one, the designated one is itself in the MF radical: the
 representation's choice of victim is immaterial, because killing any conjugate
