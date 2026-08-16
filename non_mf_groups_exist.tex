@@ -864,10 +864,9 @@ $r_n/d_n$.
 \emph{Transport on the corner.}  Since $c$ centralizes
 $\iota(\Gamma)$, the sequence $(W_{c,n})$ centralizes
 $(W_{\iota(\gamma),n})$ asymptotically in operator norm, hence in
-normalized Hilbert--Schmidt norm.  The one-sided conjugation relation
-$t\iota(\Gamma)t^{-1}\subseteq\iota(\Gamma)$ and
-Theorem~\ref{thm:kazhdan-transport}, applied to $x_n=W_{c,n}$, put the
-conjugated sequence $(W_{d,n})$ in the same asymptotic commutant.
+normalized Hilbert--Schmidt norm.  By
+Theorem~\ref{thm:kazhdan-transport} applied to $x_n=W_{c,n}$, the
+conjugated sequence $(W_{d,n})$ lies in the same asymptotic commutant.
 Therefore $\hsnorm{W_{u,n}-1}\to0$, and squaring gives
 $\hsnorm{W_{u,n}^2-1}\to0$.
 
@@ -1799,7 +1798,7 @@ $\eta$ with $H_n\eta=\lambda\eta$ satisfies
 \]
 so $\lambda\ge a>1-\kappa^{2}/(4|S|)$ forces
 $\hsnorm{(\Ad U_n(\iota(s'))-1)\eta}^{2}<\kappa^{2}/2$ for every
-$s'\in S$; the Kazhdan inequality then places $\eta$ near an invariant
+$s'\in S$; by the Kazhdan inequality $\eta$ is then close to an invariant
 vector, on which $H_n$ is within the multiplicative defects of $1$,
 against $\lambda\le b<1$.
 \leanverified{Sofic/WeakMFVectorGNS}{GroupApproximation.WeakMFVectorGNS.hermitianAverage_eventually_no_intermediate_eigenvalues}
@@ -1840,7 +1839,7 @@ $\delta_{s'}\in\Gamma$ with $s\iota(s')s^{-1}=\iota(\delta_{s'})$, and
 where $\opnorm{R_{n,s'}}$ is bounded by the multiplicative defects of
 $U_n$ on $\{s,\iota(s'),s^{-1}\}$ and therefore tends to $0$.  By~(i)
 so does the first term, so $T_n^{*}\eta$ is asymptotically fixed by
-every generator, and~(ii) places it asymptotically in
+every generator, and by~(ii) it lies asymptotically in
 $\operatorname{ran}P_n$.  Hence
 $\opnorm{(1-Q_n)P_n}\to0$, the finite-stage form of the one-sided
 inclusion $P\le VPV^*$.  Since $\operatorname{rank}P_n=
@@ -1977,10 +1976,10 @@ asymptotically invariant for the whole of it.
 
 \section{Obstructions from a one-sided conjugation datum}\label{sec:conj}
 
-Each result below places a subgroup of $H$ in the kernel of every
-homomorphism $H\to\U(\mathcal Q)$, by producing a corner on which that
-subgroup is at once $2$-norm trivial and $2$-norm far from the
-identity.  The hypothesis producing the corner varies:
+In each result below a subgroup of $H$ lies in the kernel of every
+homomorphism $H\to\U(\mathcal Q)$, because it is at once $2$-norm
+trivial and $2$-norm far from the identity on a corner.  The hypothesis
+producing the corner varies:
 \begin{itemize}
 \item Theorem~\ref{thm:criterion}: a \emph{finite} normal subgroup of
  $N_{\mathrm{conj}}$, the corner being the complement of its rounded
@@ -2195,8 +2194,8 @@ Let $(U_{h,n})$ be coordinate lifts of an operator-norm asymptotic
 representation of $H$ and put
 $K_2=\{h:\hsnorm{U_{h,n}-1}\to0\}$, a normal subgroup of $H$.
 If $z\in C_H(L)$, then $(U_{z,n})$ lies in the asymptotic commutant of
-$L$, and Corollary~\ref{cor:generaltransport} places
-$(U_{gzg^{-1},n})$ there for every $g\in G^{+}(L)$.  Hence each
+$L$, and by Corollary~\ref{cor:generaltransport} so does
+$(U_{gzg^{-1},n})$ for every $g\in G^{+}(L)$.  Hence each
 generator $[gzg^{-1},\ell]$, $\ell\in L$, displayed in
 \eqref{eq:intrinsicdefect} belongs to $K_2$; since
 $K_2\trianglelefteq H$, it contains their normal closure:
@@ -2370,9 +2369,9 @@ problems, and $E$ is such a counterexample for the operator norm.
 
 The same calculation proves the final, subgroup-valued assertion of
 Theorem~\ref{thm:B}.  The elements of $H$ whose conjugation action
-preserves $C$ in both directions form a subgroup.  The argument above
-places every one-sided conjugator in that subgroup, and therefore all
-of $G^{+}(\Gamma)$ in it.  Thus, for $g\in
+preserves $C$ in both directions form a subgroup.  Every one-sided
+conjugator lies in it by the argument above, hence so does all
+of $G^{+}(\Gamma)$.  Thus, for $g\in
 G^{+}(\Gamma)$ and $z\in C_H(\Gamma)$, the operator
 $\pi(gzg^{-1})$ still belongs to $C$ and commutes with every
 $\pi(\ell)$, $\ell\in\Gamma$.  Hence every displayed generator in
@@ -2758,10 +2757,10 @@ Corollary~\ref{cor:exactradical} and Proposition~\ref{prop:univquot};
 the latter needs $N$ normal so that $G_1/N$ is a group.
 \end{proof}
 
-Each of Theorems~\ref{thm:criterion}, \ref{thm:normal-kazhdan},
-and~\ref{thm:collapse} puts a subgroup inside the residual of every
-countable group carrying its data, hence inside the residual of every
-quotient reached by the iteration.  A hypothesis may hold at a later
+By Theorems~\ref{thm:criterion}, \ref{thm:normal-kazhdan}
+and~\ref{thm:collapse}, a subgroup lies inside the residual of every
+countable group with the relevant data, hence inside the residual of
+every quotient reached by the iteration.  A hypothesis may hold at a later
 stage without holding at an earlier one: modulo the earlier stage an
 element may acquire finite order, an orbit may begin to commute, or a
 subgroup may become normal.
@@ -3427,7 +3426,7 @@ carry that class onto the six remaining nonzero
 classes, and each commutes with $d$; conjugating the displayed
 identity by the corresponding $\iota(r)$ exhibits every nonzero parity
 commutator as a conjugate of $w$, while the zero class contributes
-$[d,d]=1$.  Centrality of $w$ places all eight in $\langle w\rangle$,
+$[d,d]=1$.  Since $w$ is central, all eight lie in $\langle w\rangle$,
 and one further conjugation reduces an arbitrary pair of conjugates to
 this case.  Thus $\bar d$ is an involutive orbit witness for
 $(\bar L,q(t))$, and by Theorem~\ref{thm:collapse}
