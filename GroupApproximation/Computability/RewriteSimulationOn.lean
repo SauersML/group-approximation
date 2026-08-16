@@ -214,36 +214,5 @@ theorem SimulationOn.mk_eq_mk_iff_of_halts {c d : C}
   · rintro rfl
     rfl
 
-/-- **The word problem is the reachability problem.**  Against a *halting*
-configuration `d`, equality in the presented monoid says exactly that the
-machine driven from `c` arrives at `d`.
-
-This is the form the reduction actually needs.  `mk_eq_mk_iff_of_halts` says
-distinct halts stay distinct, which keeps the encoding honest but decides
-nothing; here one side of the comparison is fixed and the other ranges over
-starting configurations, so an algorithm for the word problem would be an
-algorithm for "does this machine run reach that halt".  A machine whose halting
-is undecidable therefore hands its undecidability to the monoid.
-
-The proof is `derives_iff` plus the observation that a halting configuration
-reaches nothing but itself, so the meeting point of the two runs has to be `d`
-and the second run has to be empty. -/
-theorem SimulationOn.mk_eq_mk_iff_reach_of_halts {c d : C} (hd : S.step d = none) :
-    StringRewriting.mk S.system (S.encode c) =
-      StringRewriting.mk S.system (S.encode d) ↔ Reach S.step c d := by
-  rw [StringRewriting.mk_eq_mk_iff]
-  constructor
-  · intro h
-    obtain ⟨e, hce, hde⟩ := (S.derives_iff c d).mp h
-    have hde' : d = e := by
-      rcases Reach.cases_head hde with h' | ⟨f, hf, _⟩
-      · exact h'
-      · rw [hd] at hf
-        simp at hf
-    rw [hde']
-    exact hce
-  · intro h
-    exact (S.derives_iff c d).mpr ⟨d, h, Reach.refl d⟩
-
 end StringRewriting
 end GroupApproximation

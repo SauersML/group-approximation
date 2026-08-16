@@ -1,3 +1,11 @@
+% BUILD REQUIREMENT.  This file needs a LaTeX kernel of 2025-06-01 or later:
+% \DocumentMetadata's `tagging=on` key is rejected outright by older kernels
+% (TeX Live 2024 and earlier abort with an unknown `document/metadata/tagging`
+% key), so the failure is a hard error and not a degraded build.  The release
+% and draft workflows compile inside a digest-pinned TeX Live 2026 image --
+% see TEXLIVE_IMAGE in .github/workflows/build-non-mf-pdf.yml -- which is the
+% reproducible environment for this source.  To compile on an older stack,
+% delete the \DocumentMetadata line; the PDF is then untagged.
 \NeedsTeXFormat{LaTeX2e}[2025-06-01]
 \DocumentMetadata{lang=en-US,pdfversion=2.0,tagging=on}
 \documentclass[11pt]{amsart}
@@ -31,7 +39,21 @@
 }
 \newcommand{\doi}[1]{\href{https://doi.org/#1}{\nolinkurl{doi:#1}}}
 \newcommand{\arxiv}[1]{\href{https://arxiv.org/abs/#1}{\nolinkurl{arXiv:#1}}}
-\newcommand{\coderepository}{https://github.com/SauersML/group-approximation}
+% Locator for the accompanying Lean~4 development.  It is deliberately kept
+% out of this file: the repository name identifies the author, so an
+% anonymous build must not carry it in the *source* either, not merely in the
+% PDF.  For a public build, set \anonymousfalse above and provide
+% `coderepo.tex` defining \coderepository (URL) and \coderepositoryname
+% (the text to typeset).  Both builds compile; only the public one prints a
+% link.
+\ifanonymous
+  \newcommand{\coderepository}{}
+  \newcommand{\coderepositoryname}{}
+\else
+  \IfFileExists{coderepo.tex}{\input{coderepo.tex}}{%
+    \newcommand{\coderepository}{}%
+    \newcommand{\coderepositoryname}{}}
+\fi
 % Hidden link from a numbered statement to the declaration of the
 % accompanying Lean~4 development that proves it.  Not typeset; the
 % audit tooling that reads these records is documented in the repository.
@@ -69,7 +91,7 @@
 \newcommand{\End}{\operatorname{End}}
 \newcommand{\Cl}{\operatorname{Cl}}
 \newcommand{\Cmax}{C^*_{\mathrm{max}}}
-\newcommand{\Cred}{C^*_{\mathrm{red}}}
+\newcommand{\Cred}{C^*_{\mathrm r}}
 \newcommand{\opnorm}[1]{\left\lVert #1\right\rVert}
 \newcommand{\hsnorm}[1]{\left\lVert #1\right\rVert_{2}}
 
@@ -353,11 +375,11 @@ The two formulations are equivalent
 (Proposition~\ref{prop:mf-equivalences}).
 The unitaries of $\mathcal Q$ admit a direct description.  The sequences
 with $\opnorm{u_n-1}\to0$ form a normal subgroup of
-$\prod_n\U(M_{d_n}(\C))$, and polar decomposition shows that the
+$\prod_n\U(d_n)$, and polar decomposition shows that the
 canonical map
 \begin{equation}\label{eq:unitary-corona}
  \kappa_{(d_n)}\colon
- \prod_n\U(M_{d_n}(\C))\Big/
+ \prod_n\U(d_n)\Big/
  \bigl\{(u_n):\opnorm{u_n-1}\longrightarrow0\bigr\}
  \ \longrightarrow\ \U(\mathcal Q)
 \end{equation}
@@ -441,8 +463,9 @@ MF for a group $C^*$-algebra therefore leaves open whether the group
 itself embeds.  For $E$ both fail, and for the same reason.
 
 \subsection*{Formalization and computational data}
-A Lean~4 development accompanies the paper, at
-\href{\coderepository}{\nolinkurl{github.com/SauersML/group-approximation}}.
+A Lean~4 development accompanies the paper\ifanonymous, supplied with this
+submission as supplementary material\else, at
+\href{\coderepository}{\nolinkurl{\coderepositoryname}}\fi.
 It proves Theorems~\ref{thm:A}, \ref{thm:signfree}, \ref{thm:D}
 and~\ref{thm:E}, the forty-one-relator presentation of
 Definition~\ref{def:E}, and the finite-stage form of the transport
@@ -509,7 +532,7 @@ For every sequence $(d_n)$, the map
 \[
  \begin{gathered}
   \kappa_{(d_n)}\colon
-  \prod_{n}\U(M_{d_n}(\C))\Big/
+  \prod_{n}\U(d_n)\Big/
   \bigl\{(u_n):\opnorm{u_n-1}\to0\bigr\}
   \longrightarrow\U(\mathcal Q),\\
   [(u_n)]\longmapsto q((u_n)),
@@ -2970,15 +2993,15 @@ equality whenever the corresponding quotient of $H$ is MF.
 Let $\Theta$ be a homomorphism to $\U(\mathcal Q)$, $m$ the order of $k$, and
 $u=\Theta(k)$, a unitary with $u^{m}=1$.  Its discrete Fourier
 idempotents
-$p_j=m^{-1}\sum_{t\in\mathbf{Z}/m}\zeta^{-jt}u^{t}$, for
-$\zeta=e^{2\pi i/m}$ and $j\in\mathbf{Z}/m$, are self-adjoint
+$p_j=m^{-1}\sum_{t\in\mathbf{Z}/m}e^{-2\pi ijt/m}u^{t}$, for
+$j\in\mathbf{Z}/m$, are self-adjoint
 idempotents of $\mathcal Q$.  Each $p_j$ is a polynomial in $u$, so
 whatever commutes with $u$ commutes with every $p_j$: the represented
 compressed copy centralizes each $p_j$, and the
 $\Theta(L)$-conjugates of each $p_j$ commute pairwise because the
 conjugated witnesses do.  Theorem~\ref{thm:projection-collapse}
 therefore makes every $p_j$ commute with $\Theta(L)$, and Fourier
-reconstruction expresses $u$ as a $\zeta$-weighted sum of the $p_j$,
+reconstruction expresses $u=\sum_j e^{2\pi ij/m}p_j$,
 so $u$ commutes with $\Theta(L)$ and
 $\Theta([\gamma,k])=1$ for every $\gamma\in L$.
 \end{proof}
@@ -3146,9 +3169,8 @@ Let $G_1$ be a countable discrete group.
 \item The canonical tracial state $\tau$ on $\Cred(G_1)$ is
 faithful.
 \item Every unital $C^*$-algebra $A$ with a faithful tracial state
-is stably finite: for every nonempty finite index set $I$, every isometry
-in $M_I(A)$ is a unitary.  In particular this holds in $M_k(A)$ for every
-$k\ge1$.
+is stably finite: for every $k\ge1$, every isometry in $M_k(A)$ is a
+unitary.
 \leanverified{Sofic/ManuscriptExactWrappers}{GroupApproximation.ManuscriptExactWrappers.manuscriptFaithfulTraceAndStableFiniteness}
 \end{enumerate}
 \end{lemma}
@@ -3267,8 +3289,12 @@ subgroup $L$ and one telescope level, and that group is residually
 finite because the level acts on the finite group $L$ through a finite
 quotient.  Thus $W$ is an extension of an LEF group by $\Z$ and is not
 MF, while soficity is preserved by every extension with amenable
-quotient, as in Elek--Szab\'o \cite{ElekSzabo}; that permanence theorem is
-proved here from the invariant-mean definition of amenability.
+quotient, as in Elek--Szab\'o \cite{ElekSzabo}.  The $\mathbb Z$-quotient
+case used above is the one proved in this paper, in the proof of
+Theorem~\ref{thm:E}; the general permanence theorem is proved --- from
+the invariant-mean definition of amenability, rather than quoted --- in
+the accompanying development, and no argument in this paper depends on
+the general form.
 \leanverified{Sofic/LEFMarkedCompression}{GroupApproximation.LiteralLEFExtension.literalWitness_LEFKernel_integerExtension_nonMF}
 \leanverified{Sofic/SoficByAmenablePermanence}{GroupApproximation.SoficByAmenablePermanence.manuscriptSoficOfSoficKerOfAmenableQuotient}
 
@@ -3427,13 +3453,14 @@ than citing it.  Constructing it is the Adian--Rabin argument
 \cite{Rabin58} run over a group built from a machine; classically one
 takes the word problem of a finitely presented group with unsolvable
 word problem and applies Adian--Rabin to the Markov property ``is
-MF''.  That construction gives a computable map taking
-an instance $(P,w)$ of the word problem of a fixed finitely presented
-group with undecidable word problem to a finite presentation whose
-group is trivial --- hence MF --- when $w=1$, and contains $E$ ---
-hence non-MF, by subgroup heredity --- when $w\ne1$.  The instances
-with $w=1$ form a recursively enumerable set which, the word problem
-being undecidable, is not recursive; hence the instances with $w\ne1$
+MF''\@.  That construction fixes one finite presentation $P_0$ whose
+group has undecidable word problem, and gives a computable map taking
+a word $w$ in the generators of $P_0$ --- the instance varies, the
+presentation does not --- to a finite presentation whose
+group is trivial --- hence MF --- when $w=1$ in $P_0$, and contains $E$ ---
+hence non-MF, by subgroup heredity --- when $w\ne1$.  The words
+representing $1$ form a recursively enumerable set which, the word problem
+of $P_0$ being undecidable, is not recursive; hence the words with $w\ne1$
 form a set that is \emph{not} recursively enumerable.  An enumeration
 of the non-MF presentations would enumerate that set, making the word
 problem decidable.  The argument uses undecidability of the word
@@ -3449,8 +3476,10 @@ and negative cases from presentations.
 The phenomenon has infinite multiplicity in two senses.
 The groups $E\times\mathbb Z^{k}$ for $k\ge0$ are
 finitely presented, pairwise nonisomorphic --- their abelianizations
-have distinct torsion-free ranks, equivalently distinct numbers of
-homomorphisms to $\mathbb Z/2$ --- and non-MF, each containing $E$
+have distinct torsion-free ranks, and, by a second and logically
+independent count, distinct numbers of homomorphisms to $\mathbb Z/2$;
+either invariant separates this particular family, and neither
+determines the other in general --- and non-MF, each containing $E$
 (Lemma~\ref{lem:permanence}(1)).
 \leanverified{Sofic/ProductMultiplicity}{GroupApproximation.ProductMultiplicity.manuscriptInfiniteMultiplicity}
 Beyond finite presentation, pairing $E$
@@ -3566,9 +3595,14 @@ Corollary~\ref{cor:exactradical} identifies the radical with the
 preimage of $D$ as soon as that quotient is MF\@.  Whether it is MF
 is open: a faithful homomorphism from that quotient to $\U(\mathcal Q)$ would have
 to evade both the sign collapse of Theorem~\ref{thm:A} and the
-commuting-orbit collapse, and by Theorem~\ref{thm:B} it factors
-through no finite quotient and no exact finite-dimensional
-representation.
+commuting-orbit collapse.  Whatever part of the compression defect
+$\mathfrak D(E,\iota(\mathcal B))$ survives in that quotient,
+Theorem~\ref{thm:B} sends it to the identity under every
+finite-dimensional linear representation, and hence under every
+homomorphism to a finite group; so no finite quotient and no
+finite-dimensional representation separates the surviving defect, and
+any faithful corona representation of the quotient must detect it by
+genuinely infinite-dimensional means.
 \item Is there a torsion-free finitely presented non-MF group?  The
 analytic obstruction no longer requires torsion
 (Theorem~\ref{thm:normal-kazhdan}); the remaining input is
@@ -3900,6 +3934,7 @@ point mass at the base coset is fixed by the compressed subgroup and
 moved by every element outside it, so the two projections differ
 there.
 \leanverified{Analysis/QuasiRegularWitness}{GroupApproximation.QuasiRegularWitness.baseVector_apply_base}
+\leanverified{Analysis/MaximalCStarParagraphEndpoint}{GroupApproximation.MaximalCStarParagraphEndpoint.manuscriptMaximalCStarStrictCompressionRemark}
 By Proposition~\ref{prop:proper-isometry} the maximal algebra of such
 a group is then not stably finite, has no faithful trace, and in
 particular is neither residually finite-dimensional nor MF\@.  The
