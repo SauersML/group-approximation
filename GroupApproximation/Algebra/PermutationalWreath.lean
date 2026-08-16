@@ -276,4 +276,50 @@ theorem lamp_isResiduallyFinite [Finite K] :
 
 end Eval
 
+
+/-! ## Local finiteness of the lamp group -/
+
+section LocallyFinite
+
+variable {K : Type u} [Group K] {X : Type v}
+
+/-- The configurations supported inside a fixed finite set of sites. -/
+def suppIn (S : Finset X) : Subgroup (Lamp K X) where
+  carrier := {f | ∀ x : X, x ∉ S → (f : X → K) x = 1}
+  one_mem' := fun _ _ => rfl
+  mul_mem' := by
+    intro f g hf hg x hx
+    show (f : X → K) x * (g : X → K) x = 1
+    rw [hf x hx, hg x hx, one_mul]
+  inv_mem' := by
+    intro f hf x hx
+    show ((f : X → K) x)⁻¹ = 1
+    rw [hf x hx, inv_one]
+
+theorem mem_suppIn {S : Finset X} {f : Lamp K X} :
+    f ∈ suppIn (K := K) S ↔ ∀ x : X, x ∉ S → (f : X → K) x = 1 := Iff.rfl
+
+/-- **The lamp group over a finite lamp group is locally finite.**  Every
+finitely generated subgroup is supported on a finite set of sites, hence embeds
+in a finite product of copies of the lamp group.
+
+Together with `lamp_isResiduallyFinite` this says the invisible radical of the
+wreath construction is intrinsically as tame as possible: locally finite and
+residually finite.  What fails is extending its models through the compressed
+action, not approximating it on its own. -/
+theorem suppIn_finite [Finite K] (S : Finset X) :
+    Finite ↥(suppIn (K := K) S) := by
+  classical
+  have hinj : Function.Injective
+      (fun f : ↥(suppIn (K := K) S) => fun x : {x : X // x ∈ S} =>
+        ((f : Lamp K X) : X → K) (x : X)) := by
+    intro f g hfg
+    refine Subtype.ext (Subtype.ext (funext fun x => ?_))
+    by_cases hx : x ∈ S
+    · exact congrFun hfg ⟨x, hx⟩
+    · rw [(mem_suppIn.mp f.2) x hx, (mem_suppIn.mp g.2) x hx]
+  exact Finite.of_injective _ hinj
+
+end LocallyFinite
+
 end GroupApproximation

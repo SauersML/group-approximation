@@ -19,7 +19,7 @@ formalized in this pass; **TODO** not yet formalized.
 | 3.2 | nearby projections have equal rank | DONE-PRE | `Sofic/InvolutionRankMass.rank_eq_of_projections_close` |
 | 3.3 | commuting involutions: `T³=4T`, `‖u-v‖_F²=4·rank` | DONE-PRE | `Sofic/InvolutionRankMass` (`sub_mul_sub_mul_sub`, `matMass_sub_eq_four_mul_rank`) |
 | 4.1 | property (T) ⇒ finitely generated | TODO | |
-| 4.2 | finitely many movers | TODO | |
+| 4.2 | finitely many movers | DONE-NEW | `Sofic/MoverGeneration` (`closure_stabilizer_union_movers`, `movers_finite`) |
 | 5.1-5.3 | max-displacement word estimate | DONE-NEW | `Sofic/MaxDisplacement` (`dist_inv_smul_le`, `dist_smul_le_of_mem_closure`, `exists_infinite_constant_argmax`) |
 | 6.1 | subsequence vanishing ≠ corona vanishing | DONE-NEW | `Sofic/CoronaSubsequence.exists_vanishing_on_subsequence_not_tendsto_zero` |
 | 7.1-7.2 | finite block amplification; corrected (iii) removal | TODO | |
@@ -54,7 +54,9 @@ formalized in this pass; **TODO** not yet formalized.
 | 43.4, 54.2 | the lamp group itself is residually finite for finite `K` | DONE-NEW | `Algebra/PermutationalWreath.lamp_isResiduallyFinite` |
 | 36.5-36.8 | radical pullback through a defect quotient; exact radical; defect saturation | DONE-NEW | `Sofic/CoronaRadicalPullback` (`coronaMFResidual_eq_comap`, `coronaMFResidual_eq_of_quotient_isOperatorMF`, `not_isOperatorMF_of_coronaMFResidual_eq_top`) |
 | 41.3 first inclusion | `Rad_MF ≤ Rad_fd` | DONE-PRE | `Sofic/MatricialStabilityRadical.actualCoronaMFResidual_le_fdUnitaryResidual` |
-| 37 | telescope-kernel collapse, exact MF radical | TODO (partial in-repo) | 36.5 now supplies the pullback step |
+| 37 union step | increasing forced-defect kernels stay inside the radical | DONE-NEW | `Sofic/MoverGeneration.coronaMFResidual_iSup_le` |
+| 37 | telescope-kernel collapse, exact MF radical | TODO (partial in-repo) | 36.5 supplies the pullback step, 36.7 the exact-radical step; what remains is the concrete pushforward tower |
+| 54.2 lamp side | the lamp group is locally finite for finite `K` | DONE-NEW | `Algebra/PermutationalWreath.suppIn_finite` |
 | 39 | concrete affine base, index 8, RF skeleton | DONE-PRE | `Sofic/LiteralBaseDoublingIndex`, `Sofic/CommutingLampCollapse`, `Monsters/ExplicitLinearModel` |
 | 41-43 | equality of MF / f.d. / finite residuals | TODO | |
 | 42.7 | intersection of all finite-index subgroups = finite residual | DONE-NEW | `Algebra/FiniteResidual.finiteResidual_eq_normalFiniteResidual` |
