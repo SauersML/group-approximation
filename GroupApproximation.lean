@@ -28,6 +28,7 @@ import GroupApproximation.Computability.PresentationCodeCompleteness
 import GroupApproximation.Computability.OperatorMFMarkovAtCodes
 import GroupApproximation.Computability.StringRewriting
 import GroupApproximation.Computability.RewriteMonoid
+import GroupApproximation.Computability.RewriteInvariants
 import GroupApproximation.Computability.AdianRabinMarkovProperty
 import GroupApproximation.Sofic.AdjointMatrix
 import GroupApproximation.Sofic.ProjectionRankFlip
