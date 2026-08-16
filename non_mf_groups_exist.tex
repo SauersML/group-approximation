@@ -1709,24 +1709,28 @@ such a model with $\delta=1$ for every finite $F$ and every
 $\varepsilon>0$.
 
 \begin{proof}[Proof of Proposition~\ref{prop:mf-equivalences}]
-Lemma~\ref{lem:unitarycorona} identifies the unitary-sequence quotient with
-the unitary group of the $C^*$-quotient.  Replacing an arbitrary
-finite coordinate set by a standard set of the same cardinality merely
-conjugates that coordinate by a permutation unitary.  This proves the first
+Lemma~\ref{lem:unitarycorona} identifies
+$\prod_n\U(d_n)/\mathcal N$ with $\U(\mathcal Q)$, which is the first
 equivalence once the dimension convention is normalized.
 
 \emph{Dimension normalization.}  Given positive dimensions $d_n$,
 replace the $n$th sequence of unitary lifts by
 \[
- \widetilde V_n(g)=I_{X_0}\oplus\cdots\oplus I_{X_{n-1}}\oplus V_n(g)
+ \widetilde V_n(g)
+ =I_{\C^{d_0}}\oplus\cdots\oplus I_{\C^{d_{n-1}}}\oplus V_n(g)
 \]
-on $X_0\oplus\cdots\oplus X_n$, of strictly increasing dimension
-$D_n=d_0+\cdots+d_n$.  Products, multiplicative defects, and pairwise
-operator-norm distances are unchanged, because block-diagonal operator
-norms are maxima and every earlier block is the same identity for all
-group elements.  The construction therefore preserves and reflects
-the quotient relation and injectivity, and forgetting strict increase
-proves the converse.
+on $\C^{d_0}\oplus\cdots\oplus\C^{d_n}$, of strictly increasing
+dimension $D_n=d_0+\cdots+d_n$.  Block-diagonal operator norms are
+maxima and every earlier block is the same identity for all group
+elements, so for all $g,h$
+\[
+ \opnorm{\widetilde V_n(g)\widetilde V_n(h)-\widetilde V_n(gh)}
+ =\opnorm{V_n(g)V_n(h)-V_n(gh)},\qquad
+ \opnorm{\widetilde V_n(g)-\widetilde V_n(h)}
+ =\opnorm{V_n(g)-V_n(h)}.
+\]
+Both the class in the quotient and its injectivity are therefore
+unchanged, and the converse is immediate.
 
 Suppose first that
 $\rho\colon G\to\U(\mathcal Q((d_n)))$ is injective, and choose unitary lifts
@@ -1737,12 +1741,26 @@ Hence there are $\delta_{g,h}>0$ and arbitrarily large coordinates at which
 \[
  \lVert u_n(g)-u_n(h)\rVert\ge\delta_{g,h}.
 \]
-Choose an integer $N_{g,h}$ with $8<N_{g,h}\,\delta_{g,h}^2$.  An explicit
-tensor-power estimate then applies: whenever two unitaries are
-$\delta_{g,h}$-separated, some tensor power of exponent $p\le N_{g,h}$
-separates them by more than $1$ --- amplifying a spectral gap of the
-relative unitary until it crosses the unit circle takes at most
-$N_{g,h}$ steps once $8<N_{g,h}\delta_{g,h}^2$.
+Choose an integer $N_{g,h}$ with $8<N_{g,h}\,\delta_{g,h}^2$.  The
+following estimate then applies: if $u,v\in\U(d)$ satisfy
+$\opnorm{u-v}\ge\delta$, then $\opnorm{u^{\otimes p}-v^{\otimes p}}>1$
+for some $p\le N$ whenever $8<N\delta^{2}$.  Indeed, put $z=u^{*}v$, so
+that $\opnorm{u-v}=\opnorm{1-z}$ and $z$ has a spectral value
+$e^{2\pi i\alpha}$ with $|1-e^{2\pi i\alpha}|=2\sin(\pi\alpha')\ge\delta$,
+where $\alpha'=\min(\{\alpha\},1-\{\alpha\})$; since
+$(u^{\otimes p})^{*}v^{\otimes p}=z^{\otimes p}$ has $e^{2\pi ip\alpha}$
+in its spectrum,
+\[
+ \opnorm{u^{\otimes p}-v^{\otimes p}}
+ \;\ge\;\bigl|1-e^{2\pi ip\alpha}\bigr|
+ \;=\;2\sin\bigl(\pi\min(\{p\alpha\},1-\{p\alpha\})\bigr),
+\]
+which exceeds $1$ as soon as $\{p\alpha\}$ lies in $(1/6,5/6)$.  The
+bound $2\sin(\pi\alpha')\ge\delta$ gives $\alpha'\ge\delta/(2\pi)$;
+consecutive multiples of $\alpha$ move $\{p\alpha\}$ by $\alpha'$ in a
+fixed direction modulo $1$, which is less than the length $2/3$ of that
+interval, so some $p\le\lceil1/(6\alpha')\rceil\le\pi/(3\delta)+1<N$
+lands in it.
 The quotient homomorphism law makes all multiplicative defects for pairs in
 $F$ arbitrarily small at every sufficiently large coordinate.  Choose, for
 each $g\ne h$, a coordinate with the displayed separation and with every
@@ -1755,14 +1773,16 @@ diagonal matrices are maxima, so every pair in $F$ is separated by at least
 $1$ and every required product has defect at most $\varepsilon$.  This gives
 the normalized approximate representation.
 
-Conversely, approximate unitary representations with separation constant $1$ for all finite
-sets and tolerances make the group \emph{weakly} MF\@.  Choose models
-along an exhaustion with errors tending to zero.  Then each fixed pair
-$g,h$ is eventually represented multiplicatively, and each fixed pair
+Conversely, suppose approximate unitary representations with separation
+constant $1$ exist for all finite sets and tolerances.  Choose models
+along an exhaustion with errors tending to zero.  Each fixed pair
+$g,h$ is then eventually represented multiplicatively, and each fixed pair
 $g\ne h$ is eventually separated by $1$.  Hence the classes define an
-injective homomorphism into the unitary-sequence quotient, with no
-condition on the dimension sequence.  Weak MF in turn makes the MF radical of
-Definition~\ref{def:radical} trivial, and the block-sum diagonalization
+injective homomorphism into $\prod_n\U(r_n)/\mathcal N$, with no
+condition on the dimension sequence.  In particular every nonidentity
+element is separated by some homomorphism to a matrix quotient, so the
+MF radical of
+Definition~\ref{def:radical} is trivial, and the block-sum diagonalization
 in the proof of Proposition~\ref{prop:univquot}(2) then assembles the
 separating sequences into a single faithful homomorphism to $\U(\mathcal Q)$.
 That diagonalization uses the dimension normalization above and
@@ -1771,25 +1791,23 @@ not circular.
 
 \end{proof}
 
-\section{The finite-stage transport proof}\label{app:finite-stage}
+\section{The finite-stage proof}\label{app:finite-stage}
 
-This appendix proves Theorem~\ref{thm:kazhdan-transport} a second
-time, at finite stages.  Conditional on the robust
-spectral-gap input of~(i), every estimate below is an explicit
-inequality in $\kappa$, $|S|$, the uniform bound on $(x_n)$, and the
-multiplicative defects of $U_n$.  That input is the one place where a
-limit still enters: property~\textup{(T)} constrains
-exact unitary representations, while at a finite stage the matrix
-models only generate a representation of the free group on $S$, so no
-threshold in $\kappa$, $|S|$ and the defects on a fixed finite set can
-supply it.  Making that step effective as well would need a
+Theorem~\ref{thm:kazhdan-transport} also has a proof at finite stages,
+in which every estimate is an explicit inequality in $\kappa$, $|S|$,
+the uniform bound on $(x_n)$, and the multiplicative defects of $U_n$,
+conditional on the spectral-gap estimate~(i) below.  That estimate is
+the one step not reducible to a threshold on finitely many defects:
+property~\textup{(T)} constrains exact unitary representations, while
+at a finite stage the matrix models generate only a representation of
+the free group on $S$.  Making it effective as well would need a
 sum-of-squares certificate for property~\textup{(T)} in the sense of
 \cite{Ozawa}.
 
 \begin{proof}[Finite-stage proof of Theorem~\ref{thm:kazhdan-transport}]
 Property~\textup{(T)} provides a finite symmetric generating set
-$S\subseteq\Gamma$ with $1\in S$ and a Kazhdan constant
-$\kappa\in(0,1]$ for the pair $(S,\kappa)$.  As in the proof of
+$S\subseteq\Gamma$ with $1\in S$ and a constant $\kappa\in(0,1]$ such
+that $(S,\kappa)$ is a Kazhdan pair.  As in the proof of
 Section~\ref{sec:transport}, each group element acts by conjugation,
 $\Ad U_n(g)\,\xi=U_n(g)\,\xi\,U_n(g)^*$, on
 $L^2(M_{d_n}(\C),\tr_{d_n})$, and operator-norm almost multiplicativity
@@ -1802,17 +1820,24 @@ average $\frac1{|S|}\sum_{s'\in S}\Ad U_n(\iota(s'))$, fix the threshold
  \theta=\tfrac12\Bigl(\Bigl(1-\tfrac{\kappa^2}{4|S|}\Bigr)+1\Bigr)<1,
 \]
 and let $P_n$ be the spectral projection of $H_n$ for the part of the
-spectrum above $\theta$.  Two spectral estimates tie $P_n$ to the group.
+spectrum above $\theta$.  The following two estimates hold.
 \begin{enumerate}
 \item[(i)] \emph{Displacement.}  For every $\gamma\in\Gamma$,
 $\opnorm{(\Ad U_n(\iota(\gamma))-1)\,P_n}\to0$.  This comes from a
 quantitative spectral-gap estimate: for every pair $a,b$ with
 $1-\kappa^2/(4|S|)<a$ and $b<1$, once the multiplicative defects of
 $U_n$ on the finitely many group elements involved are small enough,
-no eigenvalue of $H_n$ lies in $[a,b]$
---- an eigenvector with intermediate eigenvalue would be a unit vector
-that the Kazhdan pair forbids: too fixed to be moved by
-$\kappa$, too moved to be fixed.
+no eigenvalue of $H_n$ lies in $[a,b]$.  Indeed, a unit eigenvector
+$\eta$ with $H_n\eta=\lambda\eta$ satisfies
+\[
+ \frac1{|S|}\sum_{s'\in S}
+   \hsnorm{(\Ad U_n(\iota(s'))-1)\eta}^{2}=2(1-\lambda),
+\]
+so $\lambda\ge a>1-\kappa^{2}/(4|S|)$ forces
+$\hsnorm{(\Ad U_n(\iota(s'))-1)\eta}^{2}<\kappa^{2}/2$ for every
+$s'\in S$; the Kazhdan inequality then places $\eta$ near an invariant
+vector, on which $H_n$ is within the multiplicative defects of $1$,
+against $\lambda\le b<1$.
 \leanverified{Sofic/WeakMFVectorGNS}{GroupApproximation.WeakMFVectorGNS.hermitianAverage_eventually_no_intermediate_eigenvalues}
 Hence the spectrum of $H_n$ above $\theta$ is eventually within any
 prescribed $\delta$ of $1$, so a unit vector $\eta\in\operatorname{ran}P_n$
@@ -4041,7 +4066,8 @@ Write $u_h$ for the canonical unitary of $h\in H$.
 \begin{proposition}[the universal property]
 \label{prop:maximal-cstar}
 The canonical map $h\mapsto u_h$ is injective, and for every unital
-$C^*$-algebra $B$ and every homomorphism $\rho\colon H\to\U(B)$ there is
+$C^*$-algebra $B$ lying in a fixed universe that contains $H$, and every
+homomorphism $\rho\colon H\to\U(B)$, there is
 a unique unital $*$-homomorphism $\Cmax(H)\to B$ with $u_h\mapsto\rho(h)$
 for every $h\in H$.
 \leanverified{Analysis/MaximalGroupCStar}{GroupApproximation.manuscriptUniverseRelativeMaximalGroupCStar}
