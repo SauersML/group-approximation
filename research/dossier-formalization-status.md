@@ -34,10 +34,11 @@ formalized in this pass; **TODO** not yet formalized.
 | 13.3 | finite-orbit actions are sofic, exact models | DONE-NEW | `Sofic/SoficActionFiniteOrbits.isSoficAction_of_finite_orbits` |
 | 13.4 | increasing unions preserve action soficity | DONE-NEW | `Sofic/SoficActionFiniteOrbits.isSoficAction_of_locally_finite_orbits`; general form `Sofic/SoficAction.isSoficAction_of_subgroup_cover` |
 | 13.5 | finite-index HNN coset action is sofic | DONE-NEW | `Sofic/AscendingHNNCosetActionSofic.isSoficAction_vertical_cosets` |
-| 14.1 | sofic wreath criterion | TODO | needs 29.6 |
+| 14.1 | sofic wreath criterion for finite-index self-embeddings | DONE-NEW | `Sofic/AscendingHNNWreathSofic.isSofic_wreath_cosets`, with `isSofic_vertical` assembling Section 11 |
 | 29.3 | finite products of sofic groups are sofic | DONE-NEW | `Sofic/SoficPiProduct` (`isSofic_pi`, `isSofic_prod`), on the exact agreement identity `one_sub_hammingDistance_piPerm` |
 | 29.1, 29.2 | normalized Hamming metric; ultraproduct criterion | DONE-PRE | `Sofic/Sofic`, `Sofic/SoficUltraproduct` |
-| 29.4-29.6 | permutation-wreath metric; full generalized-wreath theorem | TODO | needs a metric ultraproduct of wreath targets |
+| 29.4 | the permutation layer of a wreath model | DONE-NEW | `Sofic/WreathPermLayer` (`fiberPerm`, `hammingDistance_fiberPerm` and its two estimates) |
+| 29.6 | full generalized-wreath theorem | DONE-NEW | `Sofic/GeneralizedWreathSofic.isSofic_wreath`; the charted-lamp transport (29.3) is `Sofic/WreathChartLamp.chartLamp_congr`.  Proved with permutation models directly, so no metric ultraproduct of wreath targets is needed |
 | 30.2 | finite-index coset actions are sofic | DONE-NEW | `Sofic/SoficActionExamples.isSoficAction_quotient_of_finiteIndex` |
 | 30.3 | Chabauty closure of transitive sofic actions | DONE-NEW | `Sofic/SoficActionChabauty.isSoficAction_quotient_of_approximable` |
 | 30.5 | separable stabiliser ⇒ transitive coset action sofic (the LERF mechanism) | DONE-NEW | `Sofic/SoficActionChabauty.isSoficAction_quotient_of_separable` |
