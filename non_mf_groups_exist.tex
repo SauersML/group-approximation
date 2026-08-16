@@ -1179,11 +1179,30 @@ with thirty-two relators.
 \leanverified{Sofic/LiteralSixGenerator}{GroupApproximation.LiteralSixGenerator.literal_sixGenerated_finitelyPresented_nonMF}
 \leanverified{Sofic/LiteralTietzePresentation}{GroupApproximation.LiteralTietzePresentation.manuscriptTietzeSixGeneratorPresentation}
 In \eqref{eq:E}, eliminate $v_3=xv_1x^{-1}$ and $v_2=x^2v_1x^{-2}$ by
-Tietze substitutions and delete the two defining relations; the
-remaining $x$-action relation follows from $x^3=1$, and the
-stable-letter, $c$-commutation, and centrality relations for $v_2,v_3$
-follow from those for $v_1$ together with $[t,x]=1$ and $x^3=1$.
-Deleting these nine leaves thirty-two relators on $v_1,x,y,z,t,c$.
+Tietze substitutions.  Nine relators then become redundant, in four
+groups; the ledger is short enough to give in full.
+\begin{enumerate}
+\item The two defining relations $v_3=xv_1x^{-1}$ and
+ $v_2=x^{2}v_1x^{-2}$ are the substitutions themselves, and go with the
+ generators they define.
+\item The third $x$-action relation $xv_2x^{-1}=v_1$ becomes
+ $x^{3}v_1x^{-3}=v_1$ after substitution, hence follows from $x^{3}=1$
+ in family~\textup{(B)}.
+\item The two stable-letter relations $tv_it^{-1}=v_i^{2}$, $i=2,3$,
+ follow from the one for $v_1$, because $[t,x]=1$:
+ \[
+  tv_2t^{-1}=x^{2}\bigl(tv_1t^{-1}\bigr)x^{-2}
+  =x^{2}v_1^{2}x^{-2}=\bigl(x^{2}v_1x^{-2}\bigr)^{2}=v_2^{2},
+ \]
+ and likewise for $v_3$.
+\item The two relations $[c,v_i]=1$ and the two relations $[w,v_i]=1$,
+ $i=2,3$, follow from those for $v_1$ together with $[c,x]=1$ and
+ $[w,x]=1$: an element commuting with both $v_1$ and $x$ commutes with
+ every conjugate of $v_1$ by a power of $x$.
+\end{enumerate}
+That is $2+1+2+4=9$ relators, leaving thirty-two on $v_1,x,y,z,t,c$.
+Every deleted relator is accounted for above, and each of the four
+groups cites only relations that survive the substitution.
 
 Write $d=tct^{-1}$.  The displayed relations give
 $[\,d,\,t\iota(\mathcal B)t^{-1}]=1$ and leave
@@ -2721,8 +2740,36 @@ $O$ asymptotically commute and square to $1$.  The spectral sign of
 the Hermitian part of a unitary $u$ is an exact self-adjoint
 involution at operator distance at most $\opnorm{u^2-1}$ from $u$.
 Enumerate $O$ and correct its $m$th element inside the joint commutant
-corner of the $m-1$ already corrected ones, at a cost linear in $m$;
-the induction yields exact pairwise-commuting self-adjoint involutions
+corner of the $m-1$ already corrected ones.  The correction lemma is
+the following.  Let $R_1,\dots,R_m$ be exact commuting self-adjoint
+involutions and let $u$ be a unitary with
+\[
+ \opnorm{u^{2}-1}\le\varepsilon,\qquad
+ \opnorm{R_iu-uR_i}\le\varepsilon\quad(1\le i\le m).
+\]
+Then, provided $15^{m}\cdot3\varepsilon\le1$, there is an exact
+self-adjoint involution $W$ commuting exactly with every $R_i$ and
+satisfying
+\begin{equation}\label{eq:corner-correction}
+ \opnorm{W-u}\le3\cdot15^{m}\,\varepsilon .
+\end{equation}
+\leanverified{Sofic/ExactInvolutionLifts}{GroupApproximation.ExactInvolutionLifts.exists_isExactInvolution_comm_of_unitary}
+The proof is two moves: the spectral sign of the Hermitian part
+replaces $u$ by an exact involution at distance $\varepsilon$, at the
+cost of tripling the commutators; that involution is then corrected
+inside the joint spectral corners of $R_1,\dots,R_m$, each correction
+feeding the next, which is what produces the factor $15^{m}$.
+
+The dependence on $m$ is exponential rather than linear, and it is
+harmless in the only way the induction is used: the window
+$\{R_1,\dots,R_m\}$ is held fixed while $n\to\infty$, so $15^{m}$ is a
+constant and $\varepsilon=\varepsilon_n\to0$ carries
+\eqref{eq:corner-correction} to zero.  What would not be legitimate is
+letting $m$ grow with $n$ at a comparable rate, and the construction
+never does: it exhausts the countable orbit by a diagonal over
+windows, the tolerance shrinking only after the window has been fixed.
+\leanverified{Sofic/InvolutionOrbitMicrostates}{GroupApproximation.InvolutionOrbitMicrostates.exists_involutionMicrostates}
+The induction yields exact pairwise-commuting self-adjoint involutions
 $V_n(v)$, $v\in O$, with
 \[
  \opnorm{V_n(v)-U_{v,n}}\longrightarrow0,\qquad
