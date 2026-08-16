@@ -4,6 +4,7 @@ id: stage-one-radical-from-involutive-endpoint
 kind: route
 title: Read the collapse commutator as a lamp difference and transport it
 target: stage-one-lamp-difference-radical
+requires: [hnn-one-site-lamp-is-a-torsion-compression-witness, compression-torsion-collapse]
 artifacts:
   - GroupApproximation/Sofic/AscendingHNNTelescopeRadical.lean
 ---

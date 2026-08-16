@@ -81,12 +81,12 @@ theorem not_isOperatorMF_WA : ¬ IsOperatorMF WA := by
 is the normal closure of one witness lamp, every subgroup of it is tame, and
 the middle group is still not MF. -/
 theorem alternatingPackage :
-    (rightHom : WA →* Vertical conjD conjD_injective).ker
+    (SemidirectProduct.rightHom : WA →* Vertical conjD conjD_injective).ker
         ≤ Subgroup.normalClosure {witnessLamp conjD conjD_injective a5} ∧
       (∀ H : Subgroup (Lamp (alternatingGroup (Fin 5))
           (Cosets conjD conjD_injective)),
-        IsLocallyFiniteGroup H ∧ IsAmenable H ∧ IsResiduallyFinite H ∧
-          IsOperatorMF H) ∧
+        IsLocallyFiniteGroup H ∧ Amenability.IsAmenable H ∧
+          IsResiduallyFinite H ∧ IsOperatorMF H) ∧
       ¬ IsOperatorMF WA :=
   ⟨ker_le_normalClosure_witnessLamp conjD conjD_injective a5_ne_one,
     fun H => lampSub_tame H, not_isOperatorMF_WA⟩
