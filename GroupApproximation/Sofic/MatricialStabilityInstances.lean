@@ -97,6 +97,7 @@ namespace GroupApproximation
 namespace MatricialStabilityInstances
 
 open MatricialStabilityRadical
+open scoped Matrix
 open scoped Matrix.Norms.L2Operator
 
 universe u
@@ -367,9 +368,9 @@ theorem freeGroup_isPointNormMatriciallyStable :
     simp only [FreeGroup.lift_apply_of, sub_self, norm_zero]
     exact hε.le
   · intro a ha
-    exact ha.inv
+    exact AsymptoticallyMatches.inv ha
   · intro x y hx hy
-    exact hx.mul hy
+    exact AsymptoticallyMatches.mul hx hy
 
 /-! ## The integers -/
 
