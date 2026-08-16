@@ -1,0 +1,629 @@
+import GroupApproximation.Analysis.NaturalMatrixCoordinateEquiv
+import GroupApproximation.Analysis.ProperIsometryFromCompression
+import GroupApproximation.Sofic.LeavittTraceFloor
+import GroupApproximation.Sofic.UltraproductDedekindFinite
+import GroupApproximation.Sofic.UltraproductKazhdanProjection
+import Mathlib.Order.Filter.Ultrafilter.Defs
+
+/-!
+# The printed ultraproduct proof of Kazhdan transport: steps KT.10 and KT.11
+
+This file certifies the last two steps of the **printed** proof of
+`\label{thm:kazhdan-transport}` in `non_mf_groups_exist.tex`, together with
+the by-contradiction skeleton that the printed proof runs.  The manuscript
+proves the theorem twice; the proof replayed here is the ultraproduct one,
+not the quantitative finite-stage one of `\label{app:finite-stage}`.
+
+Anchors in the TeX, in decreasing stability: the label
+`thm:kazhdan-transport`; the enclosing
+`\section{One-sided Kazhdan transport}` (`\label{sec:transport}`); and the
+five italicized paragraph headings of the printed proof, which are the
+step boundaries used below --
+`\emph{The adjoint model.}`, `\emph{The ultraproduct.}`,
+`\emph{The Kazhdan projection.}`,
+`\emph{One-sided compression and finiteness.}`, `\emph{Conclusion.}`.
+Line numbers are deliberately not cited: the manuscript is under concurrent
+edit and every offset in this repository's notes is stale within minutes.
+As of the 4011-line revision the section ran 564--727, but re-grep the
+labels rather than trusting that.
+
+The manuscript's proof ledger is
+
+```
+KT.01  the adjoint model  K_n = L²(M_{d n}, tr_{d n}),  Ad U_n(g) ξ = U_n(g) ξ U_n(g)*
+KT.02  the Hilbert-space ultraproduct  K_ω
+KT.03  the norm ultraproduct  B_ω = ∏_ω B(K_n)  acting on  K_ω
+KT.04  faithfulness of that action, hence  ran P ⊆ ran Q → P ≤ Q
+KT.05  π : H → U(B_ω),  π g = [Ad U_n g]_ω,  is a homomorphism
+KT.06  B_ω is finite:  σ*σ = 1 → σσ* = 1
+KT.07  the Kazhdan spectral gap for the averaged operator h
+KT.08  the Kazhdan projection P, with  ran P = Fix
+KT.09  V = π s,  Q = V P V*,  and  Fix ⊆ V·Fix,  i.e.  P ≤ Q
+KT.10  r = V*Q,  σ = r + (1 - Q)  is an isometry; finiteness makes σ unitary,
+       and  σσ* = P + (1 - Q)  forces  Q = P
+KT.11  ξ = [ξ_n]_ω  is fixed by every π(ι γ); Q = P puts V ξ in Fix, which is
+       the asserted Hilbert--Schmidt vanishing along ω, contradicting I ∈ ω
+```
+
+Steps KT.01--KT.09 build the ambient; they are supplied here as the bundled
+interface `UltraproductAdjointModel`, one field per manuscript sentence.
+Steps **KT.10** (`kt_10_finiteness_reverses`, together with the isometry
+identities `kt_10_isometry_identities`) and **KT.11**
+(`UltraproductAdjointModel.kt_11_descend`) are proved in full, and
+`ultraproductKazhdanTransport` runs the manuscript's contradiction:
+the conclusion fails on an infinite set `I`, a free ultrafilter `ω` with
+`I ∈ ω` is fixed, KT.11 makes the commutators vanish along `ω`, and `I ∈ ω`
+is contradicted.
+
+KT.10 additionally lands on the real objects, with nothing assumed:
+`kt_10_shift_conjugate_proj` closes it for the KT.07--KT.09 bundle
+`UltraproductKazhdanProjection.KazhdanCompressionRep`, and
+`kt_10_corona_shift_conjugate_proj` specializes that to
+`B_ω = NormMatrixCStarCorona X`, where finiteness is the instance
+`normMatrixCStarCorona_isDedekindFiniteMonoid` rather than a hypothesis.
+
+KT.10 is *not* reproved here: `Analysis/ProperIsometryFromCompression.lean`
+already contains the whole calculation, with `r = V*Q = P V*` the first
+summand of `ProperProjectionCompression.isometry`,
+`star_isometry_mul_isometry` the identity `σ*σ = Q + (1 - Q) = 1`,
+`isometry_mul_star_isometry` the identity `σσ* = 1 - (Q - P) = P + (1 - Q)`,
+and `unitary_conjugate_eq_of_absorbs` the passage from Dedekind finiteness to
+`Q = P`.  This file only applies it.
+
+The trap recorded in `docs/NOTEPAD.md` under the heading
+"The Hilbert-ultraproduct trap in defect-localized commutant pinning" is
+avoided exactly as the
+manuscript avoids it: the hypotheses kept live are the **operator-norm**
+uniform bound on `(x_n)` and the **operator-norm** almost multiplicativity of
+`U_n`, never a bare Hilbert--Schmidt bound.  The operator-norm bound enters
+through `hsNormSq_le_mul_self_l2_opNorm`, which is what makes the class
+`ξ = [ξ_n]_ω` well defined.
+-/
+
+namespace GroupApproximation
+
+open Matrix
+open scoped Matrix.Norms.L2Operator
+
+universe u
+
+/-! ## Normalized Hilbert--Schmidt facts used by the descent -/
+
+/-- The identity matrix has normalized Hilbert--Schmidt norm one. -/
+theorem hsNormSq_one (Y : FiniteModel) (hY : 0 < Fintype.card Y) :
+    hsNormSq Y (1 : Matrix Y Y ℂ) = 1 := by
+  have hcard : ((Fintype.card Y : ℕ) : ℝ) ≠ 0 :=
+    (Nat.cast_ne_zero (R := ℝ)).mpr hY.ne'
+  have hrow : ∀ i : Y,
+      (∑ j : Y, Complex.normSq ((1 : Matrix Y Y ℂ) i j)) = 1 := by
+    intro i
+    have hstep : ∀ j : Y, Complex.normSq ((1 : Matrix Y Y ℂ) i j)
+        = if j = i then (1 : ℝ) else 0 := by
+      intro j
+      by_cases h : j = i
+      · subst h
+        rw [Matrix.one_apply_eq]
+        simp
+      · rw [Matrix.one_apply_ne (Ne.symm h)]
+        simp [h]
+    rw [Finset.sum_congr rfl fun j _ ↦ hstep j]
+    simp
+  have hdouble : (∑ i : Y, ∑ j : Y, Complex.normSq ((1 : Matrix Y Y ℂ) i j))
+      = (Fintype.card Y : ℝ) := by
+    calc (∑ i : Y, ∑ j : Y, Complex.normSq ((1 : Matrix Y Y ℂ) i j))
+        = ∑ _i : Y, (1 : ℝ) := Finset.sum_congr rfl fun i _ ↦ hrow i
+      _ = (Fintype.card Y : ℝ) := by simp [Finset.card_univ]
+  rw [hsNormSq, hdouble, div_self hcard]
+
+/-- Negation does not move the normalized Hilbert--Schmidt norm. -/
+theorem hsNormSq_neg (Y : FiniteModel) (A : Matrix Y Y ℂ) :
+    hsNormSq Y (-A) = hsNormSq Y A := by
+  have hentry : ∀ i j : Y,
+      Complex.normSq ((-A) i j) = Complex.normSq (A i j) := by
+    intro i j
+    rw [Matrix.neg_apply, Complex.normSq_neg]
+  have hsum : (∑ i : Y, ∑ j : Y, Complex.normSq ((-A) i j))
+      = ∑ i : Y, ∑ j : Y, Complex.normSq (A i j) :=
+    Finset.sum_congr rfl fun i _ ↦
+      Finset.sum_congr rfl fun j _ ↦ hentry i j
+  rw [hsNormSq, hsNormSq, hsum]
+
+/-- Conjugate transposition preserves the unitary group. -/
+theorem unitaryGroup_conjTranspose_mem {Y : FiniteModel} {W : Matrix Y Y ℂ}
+    (hW : W ∈ Matrix.unitaryGroup Y ℂ) : Wᴴ ∈ Matrix.unitaryGroup Y ℂ := by
+  rw [Matrix.mem_unitaryGroup_iff, Matrix.star_eq_conjTranspose,
+    Matrix.conjTranspose_conjTranspose]
+  exact Unitary.star_mul_self_of_mem hW
+
+/-- **The operator norm dominates the normalized Hilbert--Schmidt norm.**
+This is the estimate behind the manuscript's remark that "the uniform
+operator-norm bound makes `ξ` well defined": it is the only place where the
+operator-norm hypothesis on `(x_n)` is consumed, and it is exactly what the
+invalid variant of the argument recorded in `docs/NOTEPAD.md` lacks. -/
+theorem hsNormSq_le_mul_self_l2_opNorm (Y : FiniteModel)
+    (hY : 0 < Fintype.card Y) (A : Matrix Y Y ℂ) :
+    hsNormSq Y A ≤ ‖A‖ * ‖A‖ := by
+  have h := hsNormSq_mul_le_sq_l2_opNorm_mul Y A 1
+  rw [Matrix.mul_one, hsNormSq_one Y hY, mul_one] at h
+  calc hsNormSq Y A ≤ ‖A‖ ^ 2 := h
+    _ = ‖A‖ * ‖A‖ := by ring
+
+/-- The adjoint action `Ad W` is an isometry of the normalized
+Hilbert--Schmidt norm. -/
+theorem hsNormSq_conjugate (Y : FiniteModel) {W : Matrix Y Y ℂ}
+    (hW : W ∈ Matrix.unitaryGroup Y ℂ) (hY : 0 < Fintype.card Y)
+    (A : Matrix Y Y ℂ) : hsNormSq Y (W * A * Wᴴ) = hsNormSq Y A := by
+  rw [hsNormSq_mul_right Y (unitaryGroup_conjTranspose_mem hW),
+    hsNormSq_mul_left Y hW hY]
+
+/-- **Unitary invariance in the manuscript's form.**  The adjoint displacement
+`Ad W (A) - A` has exactly the normalized Hilbert--Schmidt length of the
+commutator `A W - W A`.  This is the sentence "by unitary invariance of the
+normalized Hilbert--Schmidt norm, the commutator hypothesis says exactly that
+each `π(ι γ)` fixes `ξ`", and it is used again in the other direction at the
+end of the printed proof. -/
+theorem hsNormSq_adjoint_sub (Y : FiniteModel) {W : Matrix Y Y ℂ}
+    (hW : W ∈ Matrix.unitaryGroup Y ℂ) (A : Matrix Y Y ℂ) :
+    hsNormSq Y (W * A * Wᴴ - A) = hsNormSq Y (A * W - W * A) := by
+  have hWW : W * Wᴴ = 1 := Unitary.mul_star_self_of_mem hW
+  have hexp : (A * W - W * A) * Wᴴ = A * (W * Wᴴ) - W * A * Wᴴ := by
+    noncomm_ring
+  have hfactor : W * A * Wᴴ - A = -((A * W - W * A) * Wᴴ) := by
+    rw [hexp, hWW, Matrix.mul_one]
+    abel
+  rw [hfactor, hsNormSq_neg,
+    hsNormSq_mul_right Y (unitaryGroup_conjTranspose_mem hW)]
+
+/-! ## KT.10: finiteness reverses the one-sided compression
+
+The manuscript writes `r = V*Q`, `σ = r + (1 - Q)`, and computes
+`σ*σ = Q + (1 - Q) = 1` and `σσ* = P + (1 - Q)`.  Since `V` is unitary,
+`r = V*(V P V*) = P V*`, so `σ` is literally
+`ProperProjectionCompression.isometry`, and the two computations are the two
+theorems of `Analysis/ProperIsometryFromCompression.lean`. -/
+
+/-- The manuscript's element `r = V*Q` is the first summand `P V*` of
+`ProperProjectionCompression.isometry`. -/
+theorem kt_10_star_unitary_mul_conjugate
+    {A : Type u} [Ring A] [StarRing A] (D : ProperProjectionCompression A) :
+    star D.u * D.q = D.p * star D.u := by
+  have hq : D.q = D.u * D.p * star D.u := rfl
+  rw [hq]
+  calc star D.u * (D.u * D.p * star D.u)
+      = (star D.u * D.u) * (D.p * star D.u) := by noncomm_ring
+    _ = D.p * star D.u := by rw [D.u_star_mul, one_mul]
+
+/-- **KT.10, the two computations.**  With `r = V*Q` and `σ = r + (1 - Q)`,
+the manuscript's identities `σ*σ = 1` and `σσ* = P + (1 - Q)` hold verbatim. -/
+theorem kt_10_isometry_identities
+    {A : Type u} [Ring A] [StarRing A] (D : ProperProjectionCompression A) :
+    D.isometry = star D.u * D.q + (1 - D.q) ∧
+      star D.isometry * D.isometry = 1 ∧
+      D.isometry * star D.isometry = D.p + (1 - D.q) := by
+  refine ⟨?_, D.star_isometry_mul_isometry, ?_⟩
+  · rw [kt_10_star_unitary_mul_conjugate D]
+    rfl
+  · rw [D.isometry_mul_star_isometry]
+    abel
+
+/-- **KT.10.**  Let `P` be a projection and `V` a unitary of a Dedekind-finite
+star ring, and put `Q = V P V*`.  If `P ≤ Q`, in the ring-theoretic form
+`P Q = P` and `Q P = P`, then `Q = P`.
+
+Mathematically: `σ = V*Q + (1 - Q)` satisfies `σ*σ = 1`, so finiteness of the
+ambient makes `σ` unitary, and then `σσ* = P + (1 - Q) = 1` forces `Q = P`.
+The proof is `ProperProjectionCompression.unitary_conjugate_eq_of_absorbs`,
+which runs exactly that argument in contrapositive form. -/
+theorem kt_10_finiteness_reverses
+    {A : Type u} [Ring A] [StarRing A] [IsDedekindFiniteMonoid A] {P V : A}
+    (hP_star : star P = P) (hP_idem : P * P = P)
+    (hV_star_mul : star V * V = 1) (hV_mul_star : V * star V = 1)
+    (hPQ : P * (V * P * star V) = P) (hQP : (V * P * star V) * P = P) :
+    V * P * star V = P :=
+  ProperProjectionCompression.unitary_conjugate_eq_of_absorbs
+    hP_star hP_idem hV_star_mul hV_mul_star hPQ hQP
+
+/-! ### KT.10 on the manuscript's own objects
+
+`Sofic/UltraproductKazhdanProjection.lean` delivers steps KT.07--KT.09 as the
+bundle `KazhdanCompressionRep Γ H B` in an abstract unital C-star algebra `B`,
+and `Sofic/UltraproductDedekindFinite.lean` delivers KT.06 as the instance
+`normMatrixCStarCorona_isDedekindFiniteMonoid`.  The two theorems below close
+KT.10 on exactly those objects: no hypothesis stands in for KT.06, KT.08 or
+KT.09, and the finiteness of `B_ω` is an instance, not an assumption. -/
+
+section CompressionBundle
+
+open UltraproductKazhdanProjection
+
+/-- **KT.10 on the Kazhdan compression bundle.**  In a Dedekind-finite unital
+C-star algebra, the conjugated Kazhdan projection `Q = V P V*` equals `P`.
+
+The six inputs are exactly the manuscript's: `P` is a projection
+(`kt_08_isSelfAdjoint_proj`, `kt_08_proj_mul_proj`), `V = π(s)` is unitary
+(`shift_star_mul`, `shift_mul_star`), and `P ≤ Q`
+(`kt_09_proj_mul_conjugate`, `kt_09_conjugate_mul_proj`).  Finiteness does the
+rest through `kt_10_finiteness_reverses`. -/
+theorem kt_10_shift_conjugate_proj
+    {Γ : Type*} {H : Type*} {B : Type*}
+    [Group Γ] [Group H] [CStarAlgebra B] [IsDedekindFiniteMonoid B]
+    (D : KazhdanCompressionRep Γ H B) :
+    D.shift * D.proj * star D.shift = D.proj :=
+  kt_10_finiteness_reverses
+    D.kt_08_isSelfAdjoint_proj.star_eq
+    D.kt_08_proj_mul_proj
+    D.shift_star_mul
+    D.shift_mul_star
+    D.kt_09_proj_mul_conjugate
+    D.kt_09_conjugate_mul_proj
+
+/-- **KT.10 in the norm ultraproduct `B_ω` itself.**  Specializing the
+previous theorem to `B_ω = NormMatrixCStarCorona X` discharges the finiteness
+hypothesis outright: `normMatrixCStarCorona_isDedekindFiniteMonoid` is an
+instance, so this statement carries no `Prop` premise beyond the compression
+bundle.  This is the manuscript's sentence "Finiteness of `B_ω` makes `σ`
+unitary, and `σσ* = P + (1 - Q)` forces `Q = P`", on the real algebra. -/
+theorem kt_10_corona_shift_conjugate_proj
+    {Γ : Type*} {H : Type*} [Group Γ] [Group H]
+    (X : ℕ → Type u) [∀ n, Fintype (X n)] [∀ n, DecidableEq (X n)]
+    [∀ n, Nonempty (X n)]
+    (D : KazhdanCompressionRep Γ H (NormMatrixCStarCorona X)) :
+    D.shift * D.proj * star D.shift = D.proj :=
+  kt_10_shift_conjugate_proj D
+
+end CompressionBundle
+
+/-! ## The ultrafilter skeleton of the printed proof -/
+
+/-- The manuscript's `→ 0` written as a filter limit. -/
+theorem tendsto_of_sqrt_le {f : ℕ → ℝ} (hf : ∀ n, 0 ≤ f n)
+    (h : ∀ ε : ℝ, 0 < ε → ∃ N, ∀ n ≥ N, Real.sqrt (f n) ≤ ε) :
+    Filter.Tendsto f Filter.atTop (nhds 0) := by
+  rw [Metric.tendsto_atTop]
+  intro δ hδ
+  have hhalf : (0 : ℝ) < δ / 2 := by linarith
+  obtain ⟨N, hN⟩ := h (Real.sqrt (δ / 2)) (Real.sqrt_pos.mpr hhalf)
+  refine ⟨N, fun n hn ↦ ?_⟩
+  have h1 : Real.sqrt (f n) * Real.sqrt (f n)
+      ≤ Real.sqrt (δ / 2) * Real.sqrt (δ / 2) :=
+    mul_self_le_mul_self (Real.sqrt_nonneg _) (hN n hn)
+  rw [Real.mul_self_sqrt (hf n), Real.mul_self_sqrt hhalf.le] at h1
+  rw [Real.dist_eq, sub_zero, abs_of_nonneg (hf n)]
+  linarith
+
+/-- **The manuscript's contradiction skeleton.**  Suppose the conclusion
+fails: there are `δ > 0` and an infinite set `I ⊆ ℕ` with `√(f n) ≥ δ` for
+`n ∈ I`.  A free ultrafilter `ω` with `I ∈ ω` is produced from a selector
+enumerating `I` cofinally, and vanishing of `f` along every free ultrafilter
+contradicts `I ∈ ω`.  Since the failing subsequence was arbitrary, the full
+sequence converges. -/
+theorem tendsto_along_free_ultrafilters {f : ℕ → ℝ} (hf : ∀ n, 0 ≤ f n)
+    (h : ∀ ω : Ultrafilter ℕ, (ω : Filter ℕ) ≤ Filter.cofinite →
+      Filter.Tendsto f (ω : Filter ℕ) (nhds 0)) :
+    ∀ ε : ℝ, 0 < ε → ∃ N, ∀ n ≥ N, Real.sqrt (f n) ≤ ε := by
+  intro ε hε
+  by_contra hcon
+  push_neg at hcon
+  -- `hcon` is the manuscript's infinite bad set `I`, presented cofinally.
+  choose sel hselge hselbad using hcon
+  have hid : Filter.Tendsto (fun n : ℕ ↦ n) Filter.atTop Filter.atTop :=
+    Filter.tendsto_id
+  have hseltop : Filter.Tendsto sel Filter.atTop Filter.atTop :=
+    Filter.tendsto_atTop_mono (fun n ↦ (hselge n : n ≤ sel n)) hid
+  haveI : (Filter.map sel Filter.atTop).NeBot := inferInstance
+  -- a free ultrafilter containing the bad set
+  let ω : Ultrafilter ℕ := Ultrafilter.of (Filter.map sel Filter.atTop)
+  have hωle : (ω : Filter ℕ) ≤ Filter.map sel Filter.atTop :=
+    Ultrafilter.of_le (Filter.map sel Filter.atTop)
+  have hωcof : (ω : Filter ℕ) ≤ Filter.cofinite := by
+    refine le_trans hωle ?_
+    rw [Nat.cofinite_eq_atTop]
+    exact hseltop
+  have hbad : {n : ℕ | ε < Real.sqrt (f n)} ∈ (ω : Filter ℕ) := by
+    have hmem : {n : ℕ | ε < Real.sqrt (f n)} ∈ Filter.map sel Filter.atTop := by
+      rw [Filter.mem_map]
+      have huniv : sel ⁻¹' {n : ℕ | ε < Real.sqrt (f n)} = Set.univ := by
+        ext k
+        simp [hselbad k]
+      rw [huniv]
+      exact Filter.univ_mem
+    exact hωle hmem
+  have hconv := h ω hωcof
+  have hsmall : ∀ᶠ n in (ω : Filter ℕ), f n < ε * ε :=
+    ((Metric.tendsto_nhds.mp hconv) (ε * ε) (mul_pos hε hε)).mono fun n hn ↦ by
+      have h1 : |f n - 0| < ε * ε := by
+        rw [← Real.dist_eq]
+        exact hn
+      rwa [sub_zero, abs_of_nonneg (hf n)] at h1
+  have hbadev : ∀ᶠ n in (ω : Filter ℕ), ε < Real.sqrt (f n) :=
+    Filter.eventually_iff.mpr hbad
+  obtain ⟨n, hn1, hn2⟩ := (hbadev.and hsmall).exists
+  have hsq : ε * ε < Real.sqrt (f n) * Real.sqrt (f n) :=
+    mul_self_lt_mul_self hε.le hn1
+  rw [Real.mul_self_sqrt (hf n)] at hsq
+  linarith
+
+/-! ## The KT.01--KT.09 interface -/
+
+/-- The matrix algebra `M_{d n}(ℂ)` in the manuscript's natural coordinates. -/
+abbrev NatMatrix (d : ℕ → ℕ) (n : ℕ) : Type :=
+  Matrix (naturalFiniteModel (d n)) (naturalFiniteModel (d n)) ℂ
+
+/-- The underlying matrix of the model unitary `U_n(g)`. -/
+@[reducible] def natU {H : Type} {d : ℕ → ℕ}
+    (U : ∀ n, H → Matrix.unitaryGroup (naturalFiniteModel (d n)) ℂ)
+    (n : ℕ) (g : H) : NatMatrix d n :=
+  (U n g : Matrix (naturalFiniteModel (d n)) (naturalFiniteModel (d n)) ℂ)
+
+/-- `U_n(g)` is unitary. -/
+theorem natU_mem {H : Type} {d : ℕ → ℕ}
+    (U : ∀ n, H → Matrix.unitaryGroup (naturalFiniteModel (d n)) ℂ)
+    (n : ℕ) (g : H) :
+    natU U n g ∈ Matrix.unitaryGroup (naturalFiniteModel (d n)) ℂ :=
+  (U n g).2
+
+/-- **The ambient produced by manuscript steps KT.01--KT.09**, bundled.
+
+Each field is one sentence of the printed proof:
+
+* `Alg`, `ring`, `starRing` -- the norm ultraproduct `B_ω = ∏_ω B(K_n)` (KT.03);
+* `dedekindFinite` -- "the algebra `B_ω` is *finite*", proved there by polar
+  correction of a family `σ_n` with `‖σ_n*σ_n - 1‖ → 0` (KT.06);
+* `Vec`, `act`, `act_mul` -- the Hilbert-space ultraproduct `K_ω` and the
+  action `[A_n]_ω[ξ_n]_ω = [A_n ξ_n]_ω` (KT.02, KT.03);
+* `cls`, `cls_eq_iff` -- the class `[ξ_n]_ω` of a uniformly bounded family of
+  matrices, each regarded as a vector of `K_n = L²(M_{d n}, tr_{d n})`, and
+  the fact that two such classes agree exactly when the difference is null
+  along `ω` (KT.02, and KT.04 in the direction that reads an equality of
+  vectors back off the sequences);
+* `pi`, `pi_star`, `act_pi_cls` -- the homomorphism `π g = [Ad U_n g]_ω` into
+  the unitaries of `B_ω` and its action on classes (KT.01, KT.05);
+* `P`, `P_star`, `P_mul_P`, `act_P_iff` -- the Kazhdan projection at the
+  isolated spectral point `1` and the identification `ran P = Fix`
+  (KT.07, KT.08);
+* `P_mul_conjugate`, `conjugate_mul_P` -- `Fix ⊆ V·Fix` read back as
+  `P ≤ Q` for `Q = V P V*`, `V = π s` (KT.04, KT.09).
+
+Nothing here is a hypothesis about the *theorem*: every field is an
+intermediate object of the manuscript's own proof, and each is discharged by
+the companion modules that build the ultraproduct. -/
+structure UltraproductAdjointModel
+    {Γ H : Type} [Group Γ] [Group H]
+    (iota : Γ →* H) (s : H) (d : ℕ → ℕ)
+    (U : ∀ n, H → Matrix.unitaryGroup (naturalFiniteModel (d n)) ℂ)
+    (ω : Ultrafilter ℕ) where
+  /-- KT.03: the carrier of the norm ultraproduct `B_ω = ∏_ω B(K_n)`. -/
+  Alg : Type
+  /-- `B_ω` is a ring. -/
+  [ring : Ring Alg]
+  /-- `B_ω` is a star ring. -/
+  [starRing : StarRing Alg]
+  /-- KT.06: `B_ω` is finite, i.e. `σ*σ = 1` forces `σσ* = 1`.  When `Alg` is
+  instantiated at the real ambient `NormMatrixCStarCorona X` this field is
+  `inferInstance`: `Sofic/UltraproductDedekindFinite.lean` registers
+  `normMatrixCStarCorona_isDedekindFiniteMonoid`, and proves it as printed via
+  `kt_06_polar_correction` and `kt_06_ultraproduct_finite`. -/
+  [dedekindFinite : IsDedekindFiniteMonoid Alg]
+  /-- KT.02: the carrier of the Hilbert-space ultraproduct `K_ω`. -/
+  Vec : Type
+  /-- KT.03: the action of `B_ω` on `K_ω`. -/
+  act : Alg → Vec → Vec
+  /-- The action is an action of the multiplicative structure. -/
+  act_mul : ∀ (a b : Alg) (ζ : Vec), act (a * b) ζ = act a (act b ζ)
+  /-- KT.02: the class `[ξ_n]_ω ∈ K_ω` of a family of matrices, each read as a
+  vector of `K_n = L²(M_{d n}, tr_{d n})`. -/
+  cls : (∀ n, NatMatrix d n) → Vec
+  /-- KT.02 and KT.04: two uniformly bounded families have the same class in
+  `K_ω` exactly when their difference is Hilbert--Schmidt null along `ω`. -/
+  cls_eq_iff : ∀ (C : ℝ) (ξ η : ∀ n, NatMatrix d n),
+      (∀ n, hsNormSq (naturalFiniteModel (d n)) (ξ n) ≤ C) →
+      (∀ n, hsNormSq (naturalFiniteModel (d n)) (η n) ≤ C) →
+      (cls ξ = cls η ↔
+        Filter.Tendsto
+          (fun n ↦ hsNormSq (naturalFiniteModel (d n)) (ξ n - η n))
+          (ω : Filter ℕ) (nhds 0))
+  /-- KT.05: `π : H → U(B_ω)`, `π g = [Ad U_n g]_ω`, is a homomorphism. -/
+  pi : H →* Alg
+  /-- KT.05: `π` is a star homomorphism, so every `π g` is a unitary. -/
+  pi_star : ∀ g : H, star (pi g) = pi g⁻¹
+  /-- KT.01 and KT.03: `π g` acts on classes of uniformly bounded families by
+  the ultraproduct of the adjoint actions `Ad U_n(g) ξ = U_n(g) ξ U_n(g)*`. -/
+  act_pi_cls : ∀ (g : H) (C : ℝ) (ξ : ∀ n, NatMatrix d n),
+      (∀ n, hsNormSq (naturalFiniteModel (d n)) (ξ n) ≤ C) →
+      act (pi g) (cls ξ) =
+        cls (fun n ↦ natU U n g * ξ n * (natU U n g)ᴴ)
+  /-- KT.08: the Kazhdan projection, the spectral projection of the averaged
+  operator `h` at its isolated spectral point `1`. -/
+  P : Alg
+  /-- The Kazhdan projection is self-adjoint. -/
+  P_star : star P = P
+  /-- The Kazhdan projection is idempotent. -/
+  P_mul_P : P * P = P
+  /-- KT.07 and KT.08: `P` projects onto `Fix`, the subspace of vectors fixed
+  by every `π(ι γ)`. -/
+  act_P_iff : ∀ ζ : Vec, act P ζ = ζ ↔ ∀ γ : Γ, act (pi (iota γ)) ζ = ζ
+  /-- KT.09: `Fix ⊆ V·Fix` read as `P ≤ Q`, first absorption identity. -/
+  P_mul_conjugate : P * (pi s * P * star (pi s)) = P
+  /-- KT.09: `Fix ⊆ V·Fix` read as `P ≤ Q`, second absorption identity. -/
+  conjugate_mul_P : (pi s * P * star (pi s)) * P = P
+
+attribute [instance] UltraproductAdjointModel.ring
+  UltraproductAdjointModel.starRing UltraproductAdjointModel.dedekindFinite
+
+namespace UltraproductAdjointModel
+
+variable {Γ H : Type} [Group Γ] [Group H]
+  {iota : Γ →* H} {s : H} {d : ℕ → ℕ}
+  {U : ∀ n, H → Matrix.unitaryGroup (naturalFiniteModel (d n)) ℂ}
+  {ω : Ultrafilter ℕ}
+  (D : UltraproductAdjointModel iota s d U ω)
+
+/-- Every `π g` is a unitary of `B_ω`: the left inverse identity. -/
+theorem star_pi_mul_pi (g : H) : star (D.pi g) * D.pi g = 1 := by
+  rw [D.pi_star, ← map_mul]
+  simp
+
+/-- Every `π g` is a unitary of `B_ω`: the right inverse identity. -/
+theorem pi_mul_star_pi (g : H) : D.pi g * star (D.pi g) = 1 := by
+  rw [D.pi_star, ← map_mul]
+  simp
+
+/-- **KT.10 in the ultraproduct.**  With `V = π s` and `Q = V P V*`, the
+one-sided containment `P ≤ Q` of KT.09 and finiteness of `B_ω` force
+`Q = P`. -/
+theorem kt_10_conjugate_eq : D.pi s * D.P * star (D.pi s) = D.P :=
+  kt_10_finiteness_reverses D.P_star D.P_mul_P
+    (D.star_pi_mul_pi s) (D.pi_mul_star_pi s)
+    D.P_mul_conjugate D.conjugate_mul_P
+
+/-- Since `V P V* = P` and `V` is unitary, `V` commutes with `P`.  This is the
+form of `Q = P` used in the concluding paragraph: it turns
+`ξ ∈ Fix` into `V ξ ∈ Fix`. -/
+theorem pi_mul_P : D.pi s * D.P = D.P * D.pi s := by
+  calc D.pi s * D.P
+      = D.pi s * D.P * (star (D.pi s) * D.pi s) := by
+        rw [D.star_pi_mul_pi s, mul_one]
+    _ = (D.pi s * D.P * star (D.pi s)) * D.pi s := by noncomm_ring
+    _ = D.P * D.pi s := by rw [D.kt_10_conjugate_eq]
+
+/-- **The fixed-vector dictionary.**  For a uniformly bounded family `ξ`, the
+class `[ξ_n]_ω` is fixed by `π g` exactly when the normalized
+Hilbert--Schmidt commutators `ξ_n U_n(g) - U_n(g) ξ_n` vanish along `ω`.
+
+This is the manuscript's use of unitary invariance, in both directions: at the
+start of the concluding paragraph to place `ξ` in `Fix`, and at the end to
+read the membership `V ξ ∈ Fix` back as the asserted vanishing. -/
+theorem act_pi_cls_eq_iff (hd : ∀ n, 0 < d n) (C : ℝ) (ξ : ∀ n, NatMatrix d n)
+    (hξ : ∀ n, hsNormSq (naturalFiniteModel (d n)) (ξ n) ≤ C) (g : H) :
+    D.act (D.pi g) (D.cls ξ) = D.cls ξ ↔
+      Filter.Tendsto
+        (fun n ↦ hsNormSq (naturalFiniteModel (d n))
+          (ξ n * natU U n g - natU U n g * ξ n))
+        (ω : Filter ℕ) (nhds 0) := by
+  have hcard : ∀ n, 0 < Fintype.card (naturalFiniteModel (d n)) := fun n ↦ by
+    simpa using hd n
+  have hconj : ∀ n, hsNormSq (naturalFiniteModel (d n))
+      (natU U n g * ξ n * (natU U n g)ᴴ) ≤ C := by
+    intro n
+    rw [hsNormSq_conjugate _ (natU_mem U n g) (hcard n)]
+    exact hξ n
+  have hkey := D.cls_eq_iff C
+    (fun n ↦ natU U n g * ξ n * (natU U n g)ᴴ) ξ hconj hξ
+  have hpt : ∀ n, hsNormSq (naturalFiniteModel (d n))
+        (natU U n g * ξ n * (natU U n g)ᴴ - ξ n)
+      = hsNormSq (naturalFiniteModel (d n))
+        (ξ n * natU U n g - natU U n g * ξ n) :=
+    fun n ↦ hsNormSq_adjoint_sub _ (natU_mem U n g) (ξ n)
+  constructor
+  · intro hfix
+    have h1 : D.cls (fun n ↦ natU U n g * ξ n * (natU U n g)ᴴ) = D.cls ξ := by
+      rw [← D.act_pi_cls g C ξ hξ]
+      exact hfix
+    exact Filter.Tendsto.congr hpt (hkey.mp h1)
+  · intro htend
+    have h1 : D.cls (fun n ↦ natU U n g * ξ n * (natU U n g)ᴴ) = D.cls ξ :=
+      hkey.mpr (Filter.Tendsto.congr (fun n ↦ (hpt n).symm) htend)
+    rw [D.act_pi_cls g C ξ hξ]
+    exact h1
+
+/-- **KT.11, the descent.**  Let `ξ = [ξ_n]_ω` be the class of the uniformly
+bounded family `x`.  By unitary invariance the commutator hypothesis says
+exactly that every `π(ι γ)` fixes `ξ`, so `ξ ∈ Fix = ran P`.  Since `Q = P`,
+`V ξ ∈ V·Fix = ran Q = ran P = Fix`.  The vector of `U_n(s) x_n U_n(s)*` is
+`Ad U_n(s) ξ_n`, so, again by unitary invariance, the conjugated commutators
+vanish along `ω`. -/
+theorem kt_11_descend (hd : ∀ n, 0 < d n) (C : ℝ) (x : ∀ n, NatMatrix d n)
+    (hx : ∀ n, hsNormSq (naturalFiniteModel (d n)) (x n) ≤ C)
+    (hcomm : ∀ γ : Γ, Filter.Tendsto
+      (fun n ↦ hsNormSq (naturalFiniteModel (d n))
+        (x n * natU U n (iota γ) - natU U n (iota γ) * x n))
+      (ω : Filter ℕ) (nhds 0))
+    (γ : Γ) :
+    Filter.Tendsto
+      (fun n ↦ hsNormSq (naturalFiniteModel (d n))
+        ((natU U n s * x n * (natU U n s)ᴴ) * natU U n (iota γ)
+          - natU U n (iota γ) * (natU U n s * x n * (natU U n s)ᴴ)))
+      (ω : Filter ℕ) (nhds 0) := by
+  have hcard : ∀ n, 0 < Fintype.card (naturalFiniteModel (d n)) := fun n ↦ by
+    simpa using hd n
+  -- the transported family, with the same uniform bound
+  have hy : ∀ n, hsNormSq (naturalFiniteModel (d n))
+      (natU U n s * x n * (natU U n s)ᴴ) ≤ C := by
+    intro n
+    rw [hsNormSq_conjugate _ (natU_mem U n s) (hcard n)]
+    exact hx n
+  -- ξ ∈ Fix
+  have hfix : D.act D.P (D.cls x) = D.cls x :=
+    (D.act_P_iff (D.cls x)).mpr fun γ' ↦
+      (D.act_pi_cls_eq_iff hd C x hx (iota γ')).mpr (hcomm γ')
+  -- V ξ ∈ Fix, because Q = P makes V commute with P
+  have hVfix : D.act D.P (D.act (D.pi s) (D.cls x))
+      = D.act (D.pi s) (D.cls x) := by
+    rw [← D.act_mul, ← D.pi_mul_P, D.act_mul, hfix]
+  have hall := (D.act_P_iff (D.act (D.pi s) (D.cls x))).mp hVfix
+  have hclsy : D.act (D.pi s) (D.cls x)
+      = D.cls (fun n ↦ natU U n s * x n * (natU U n s)ᴴ) :=
+    D.act_pi_cls s C x hx
+  rw [hclsy] at hall
+  exact (D.act_pi_cls_eq_iff hd C
+    (fun n ↦ natU U n s * x n * (natU U n s)ᴴ) hy (iota γ)).mp (hall γ)
+
+end UltraproductAdjointModel
+
+/-! ## The printed proof of `thm:kazhdan-transport` -/
+
+/-- **Kazhdan transport, by the manuscript's ultraproduct proof.**
+
+`non_mf_groups_exist.tex`, `\label{thm:kazhdan-transport}` and the proof
+printed under it.  Given the ambient of steps
+KT.01--KT.09 for every free ultrafilter on `ℕ`, the printed contradiction
+runs: if the conclusion fails there are `γ₀`, `δ > 0` and an infinite
+`I ⊆ ℕ` on which the conjugated commutator has normalized Hilbert--Schmidt
+norm at least `δ`; a free ultrafilter `ω` with `I ∈ ω` is fixed; KT.11 makes
+the conjugated commutators vanish along `ω`; and `I ∈ ω` is contradicted.
+Since the failing subsequence was arbitrary, the full sequence converges.
+
+The uniform **operator-norm** bound on `(x_n)` is used exactly where the
+manuscript uses it -- to make the class `ξ = [ξ_n]_ω` well defined -- via
+`hsNormSq_le_mul_self_l2_opNorm`. -/
+theorem ultraproductKazhdanTransport
+    {Γ H : Type} [Group Γ] [Group H]
+    (iota : Γ →* H) (s : H) (d : ℕ → ℕ) (hd : ∀ n, 0 < d n)
+    (U : ∀ n, H → Matrix.unitaryGroup (naturalFiniteModel (d n)) ℂ)
+    (x : ∀ n, NatMatrix d n)
+    (hbound : ∃ M : ℝ, 0 ≤ M ∧ ∀ n, ‖x n‖ ≤ M)
+    (hx : ∀ γ : Γ, ∀ ε : ℝ, 0 < ε → ∃ N, ∀ n ≥ N,
+      Real.sqrt (hsNormSq (naturalFiniteModel (d n))
+        (x n * natU U n (iota γ) - natU U n (iota γ) * x n)) ≤ ε)
+    (ambient : ∀ ω : Ultrafilter ℕ, (ω : Filter ℕ) ≤ Filter.cofinite →
+      UltraproductAdjointModel iota s d U ω) :
+    ∀ γ : Γ, ∀ ε : ℝ, 0 < ε → ∃ N, ∀ n ≥ N,
+      Real.sqrt (hsNormSq (naturalFiniteModel (d n))
+        ((natU U n s * x n * (natU U n s)ᴴ) * natU U n (iota γ)
+          - natU U n (iota γ) * (natU U n s * x n * (natU U n s)ᴴ))) ≤ ε := by
+  obtain ⟨M, _hM0, hMle⟩ := hbound
+  have hcard : ∀ n, 0 < Fintype.card (naturalFiniteModel (d n)) := fun n ↦ by
+    simpa using hd n
+  -- the operator-norm bound gives the Hilbert--Schmidt bound `ξ` needs
+  have hxb : ∀ n, hsNormSq (naturalFiniteModel (d n)) (x n) ≤ M * M := fun n ↦
+    le_trans (hsNormSq_le_mul_self_l2_opNorm _ (hcard n) (x n))
+      (mul_self_le_mul_self (norm_nonneg _) (hMle n))
+  have hxtend : ∀ γ : Γ, Filter.Tendsto
+      (fun n ↦ hsNormSq (naturalFiniteModel (d n))
+        (x n * natU U n (iota γ) - natU U n (iota γ) * x n))
+      Filter.atTop (nhds 0) := fun γ ↦
+    tendsto_of_sqrt_le (fun n ↦ hsNormSq_nonneg _ _) (hx γ)
+  intro γ
+  refine tendsto_along_free_ultrafilters
+    (f := fun n ↦ hsNormSq (naturalFiniteModel (d n))
+      ((natU U n s * x n * (natU U n s)ᴴ) * natU U n (iota γ)
+        - natU U n (iota γ) * (natU U n s * x n * (natU U n s)ᴴ)))
+    (fun n ↦ hsNormSq_nonneg _ _) ?_
+  intro ω hωcof
+  have hωtop : (ω : Filter ℕ) ≤ Filter.atTop := by
+    rw [← Nat.cofinite_eq_atTop]
+    exact hωcof
+  exact (ambient ω hωcof).kt_11_descend hd (M * M) x hxb
+    (fun γ' ↦ (hxtend γ').mono_left hωtop) γ
+
+end GroupApproximation

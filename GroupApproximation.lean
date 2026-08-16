@@ -15,6 +15,8 @@ import GroupApproximation.Analysis.AbstractSpectralGap
 import GroupApproximation.Analysis.CStarSpectralProjection
 import GroupApproximation.Analysis.KazhdanProjectionAbsorption
 import GroupApproximation.Analysis.MaximalCStarProperCompression
+import GroupApproximation.Analysis.AmenableQuasidiagonal
+import GroupApproximation.Analysis.CStarExactness
 import GroupApproximation.Kazhdan.KazhdanUniverseDescent
 import GroupApproximation.Sofic.ChosenMaximalCStarInfinite
 import GroupApproximation.Analysis.TorsionFreeFullMFCStarConsequences
@@ -23,6 +25,7 @@ import GroupApproximation.Computability.OperatorMFMarkovWitness
 import GroupApproximation.Computability.CStarRecognitionConsequences
 import GroupApproximation.Computability.PresentationCodes
 import GroupApproximation.Computability.PresentationCodeCompleteness
+import GroupApproximation.Computability.AdianRabinMarkovProperty
 import GroupApproximation.Sofic.AdjointMatrix
 import GroupApproximation.Sofic.ProjectionRankFlip
 import GroupApproximation.Sofic.ExactInvolutionCut
@@ -76,6 +79,8 @@ import GroupApproximation.Monsters.SL2PingPong
 import GroupApproximation.Monsters.SL2Completeness
 import GroupApproximation.Monsters.P13BlockSL2
 import GroupApproximation.Monsters.CyclicBaseLEFObstruction
+import GroupApproximation.Monsters.FournierFacioRealization
+import GroupApproximation.Monsters.RealizationEmbedding
 import GroupApproximation.Sofic.ScalingFamilyPresentation
 import GroupApproximation.Sofic.ScalingFamilyRelatorCount
 import GroupApproximation.Sofic.ScalingFamilyLinearWitness
@@ -289,6 +294,8 @@ import GroupApproximation.Sofic.LEFMarkedCompression
 import GroupApproximation.Algebra.FiniteResidual
 import GroupApproximation.Algebra.VisibleQuotient
 import GroupApproximation.Algebra.FiniteResidualCommensurability
+import GroupApproximation.Algebra.TorsionFreeRank
+import GroupApproximation.Algebra.AmenableMFProof
 import GroupApproximation.Algebra.PermutationalWreath
 import GroupApproximation.Algebra.PermutationalWreathSimple
 import GroupApproximation.Algebra.PermutationalWreathAmenable
@@ -345,11 +352,16 @@ import GroupApproximation.Sofic.ConcreteCompressionSource
 import GroupApproximation.Sofic.DefectSaturation
 import GroupApproximation.Sofic.KazhdanSignCriterion
 import GroupApproximation.Sofic.IntrinsicCompressionMFRadical
+import GroupApproximation.Sofic.UltraproductAdjointAmbient
+import GroupApproximation.Sofic.UltraproductDedekindFinite
+import GroupApproximation.Sofic.UltraproductKazhdanProjection
+import GroupApproximation.Sofic.UltraproductKazhdanTransport
 import GroupApproximation.Sofic.ManuscriptKazhdanTransport
 import GroupApproximation.Sofic.NormalKazhdanCompressionObstruction
 import GroupApproximation.Sofic.KazhdanCompressionFunctorial
 import GroupApproximation.Sofic.NormalKazhdanMFRadical
 import GroupApproximation.Sofic.NormalKazhdanHyperlinearKilled
+import GroupApproximation.Sofic.CoronaImageNormalKazhdan
 import GroupApproximation.Sofic.TorsionFreeFullMFRadical
 import GroupApproximation.Sofic.TorsionFreeFullMFConsequences
 import GroupApproximation.Sofic.TensorPowerAmplification
@@ -363,6 +375,7 @@ import GroupApproximation.Algebra.AmenableConstructions
 import GroupApproximation.Algebra.AmenableRat
 import GroupApproximation.Sofic.CliffordBSAmenable
 import GroupApproximation.Sofic.ProductMultiplicity
+import GroupApproximation.Sofic.ProductMultiplicityRank
 import GroupApproximation.Sofic.ContinuumMultiplicity
 import GroupApproximation.Sofic.ContinuumFamilyCriterion
 import GroupApproximation.Sofic.OperatorMFPairAmplification
