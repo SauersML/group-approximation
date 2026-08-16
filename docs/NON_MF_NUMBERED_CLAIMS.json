@@ -670,7 +670,7 @@
     {
       "id": "thm:abstract-nk",
       "environment": "theorem",
-      "title": "abstract invisibility obstruction",
+      "title": "obstruction from $2$-norm triviality",
       "statement_sha256": "d93135ce6813697c3808c8a0baee2c65d73085c4c397533a3c68ad1a1a699e3d",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
@@ -786,7 +786,7 @@
       "id": "def:radical",
       "environment": "definition",
       "title": "",
-      "statement_sha256": "c72c325fa0b06592581482d7b204a03f451e9a9fe4492f9e895be2375e192a58",
+      "statement_sha256": "4670a2530000aa3793b6e711d91661b262f176edb45f7e1ca3f02a1437103fc7",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [],

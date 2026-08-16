@@ -6,16 +6,23 @@ Spec document: `non_mf_groups_exist.tex`.  Formal development: `GroupApproximati
 
 | | |
 | --- | --- |
-| commit | `050f2c8358664f53214dd2bc2df4bfc00dc450f5` |
-| `git hash-object non_mf_groups_exist.tex` | `33a0b08c87fed2acf358c9145d97b54a3ab3b281` |
-| sha256 of the file | `c9d652df435846455a80423074ac62eb9b9a31af8eb85d74900207ea3e06c06d` |
-| `wc -l` | 4196 |
+| commit | `a1af62b2f57ff7e7499f894110b0d8b21c0299b7` |
+| `git hash-object non_mf_groups_exist.tex` | `4a7a6f21f706477c297aa4e2036580249b39253e` |
+| sha256 of the file | `5f31f0bb96c4f476359599df21f3553a211fe7a900601ba0b71f879194d10b71` |
+| `wc -l` | 4529 |
 
-The blob above is the **working-tree** blob at re-scan time: a peer session had the
+The blob above is the **working-tree** blob at re-pin time: a peer session had the
 file dirty, so it is not yet reachable from any commit.  `git hash-object` of the file
-must reproduce it exactly for the rows below to be read as current.  (An earlier scan
-in this audit did land on a clean tree, at blob `55e425cf`; both scans are recorded
-because the rows were reconciled across them.)
+must reproduce it exactly for the rows below to be read as current.  (Earlier scans in
+this audit landed on blobs `55e425cf` and `33a0b08c`, the latter at commit
+`050f2c83`; the rows were reconciled across all of them.)
+
+**Re-pinned 2026-08-16 after an editorial pass.**  Thirty-seven printed statements
+were reworded and four prose probes stopped occurring.  A first pass repinned the
+digests and repointed the probes; this second pass is the re-reading that a repin is
+supposed to be preceded by, and it changed rows.  The substantive results are
+recorded in findings 8--10 below, and the vocabulary table under "Reading the claim
+column" maps the old names the claims still use onto the printed ones.
 
 **No row is keyed on a line number.**  Every row is anchored either on a `\label`
 or on a verbatim phrase from the claim itself that occurs exactly once in the
@@ -24,12 +31,37 @@ Insertions anywhere in the preamble or body move no row.  (Verified live: the fi
 grew by several hundred lines during this audit while the gate stayed green.)
 
 **Concurrent editing.**  Ten sessions share this checkout and the manuscript was
-being rewritten while it was being read.  Nothing below is reported as a manuscript
-defect: the `Edit` column is `NO` on all 505 rows, and every discrepancy the ledger
-records is a gap on the Lean side or a mismatch between the two, never a claim that
-the TeX is wrong.  Two observations about the TeX itself — the badge placement noted
-in finding 5, and the retired paragraphs noted in a few rows — may simply be
-mid-edit; they are flagged as things to re-check, not as errors.
+being rewritten while it was being read.  Almost nothing below is reported as a
+manuscript defect: every discrepancy the ledger records is a gap on the Lean side or
+a mismatch between the two, never a claim that the TeX is wrong.  The one exception
+is `RFS.03`, the single `Edit = YES` row, added on 2026-08-16: a paragraph of
+`rem:finite-stage` asserts something about the development that the development
+contradicts, and no Lean work can repair a sentence.  Two further observations about
+the TeX — the badge placement noted in findings 5 and 10, and the retired paragraphs
+noted in a few rows — may simply be mid-edit; they are flagged as things to
+re-check, not as errors.
+
+## Reading the claim column
+
+The editorial pass of 2026-08-16 renamed several objects.  The claims below were
+written against the older names and are **not** rewritten wholesale, because
+rewording several hundred rows to chase a synonym would put more errors into the
+ledger than it takes out.  Read them through this table; where a rename changed the
+mathematics rather than the name, the row itself was re-read and says so.
+
+| The claims say | The manuscript now prints |
+| --- | --- |
+| corona representation of `H` | homomorphism `H → U(Q)` |
+| `U_cor((d_n))` | `U(Q((d_n)))` |
+| Hilbert--Schmidt invisible | `2`-norm trivial (`g ∈ K₂(U)` for every `U`) |
+| `ClLamp(X)` | `Cl(X)` (rewritten in the rows) |
+| `V`, as the acting group of the witness | `Σ = T ⋊ ℤ` (rewritten in the rows) |
+| the intrinsic defect `𝔇(H,Γ)` | the subgroup `𝔇(H,Γ)` of `\eqref{eq:intrinsicdefect}` |
+| the compression defect `N_comp` | the normal closure `N_comp` (the name was dropped) |
+| the involutive collapse defect `D_coll(L,s)` | the normal subgroup `D_coll(L,s)` (likewise) |
+| the central sign `ε` | the central involution `w` |
+| point-norm matricially stable | matricially stable |
+| the commuting-lamp quotient | the commuting-generator quotient |
 
 The manuscript was under active revision throughout this audit: it grew from
 3854 to 4262 lines, Theorem `thm:signfree` (`E/⟨w⟩` is not MF) was added, the
@@ -148,10 +180,18 @@ opening the proof, have held.
    ultraproduct `B_ω = ∏_ω B(K_n)`, faithfulness of its action, finiteness of `B_ω`
    (no proper isometries), a Kazhdan projection `P ∈ B_ω` obtained by continuous
    functional calculus at the isolated spectral point `1`, the one-sided compression
-   `P ≤ Q = VPV*`, the isometry `σ = r + (1−Q)`, and `Q = P` by finiteness.  **None of
-   that is in the development.**  There is no `C*`-ultraproduct of `B(K_n)`, no
-   Murray–von Neumann comparison, no Kazhdan projection in an ultraproduct.  Lean's
-   `KazhdanAsymptoticCommutant.transport` runs the *Appendix B* proof instead:
+   `P ≤ Q = VPV*`, the isometry `σ = r + (1−Q)`, and `Q = P` by finiteness.  **The
+   route is still the Appendix B one, but this finding is no longer "none of that is
+   in the development" — updated 2026-08-16.**  Since it was written, `K_ω` has been
+   built as a module (`UltraproductModelConstruction.Vec`, with the inner product
+   deliberately omitted), `B_ω` has been realized as the `ℓ∞/c₀` corona along the
+   cofinite filter with its finiteness proved (`kt_06_ultraproduct_finite`), the
+   Kazhdan projection has been built in an abstract `C*`-algebra
+   (`UltraproductKazhdanProjection`), and the `σ = r + (1−Q)` computation is
+   `kt_10_isometry_identities`.  What is still absent is faithfulness of the action on
+   `K_ω` (UF.02) and any ultraproduct along a genuine free `ω` (UF.01, UF.03); and
+   Murray–von Neumann comparison is replaced throughout by unitary conjugacy (FC.01).
+   Lean's `KazhdanAsymptoticCommutant.transport` still runs the *Appendix B* proof:
    finite-stage spectral projection `cornerProjection = spectralAbove(hermitianAverage …) θ`,
    the robust-gap eigenvalue exclusion, spectral capture, and the equal-rank flip
    `KazhdanCornerMatrices.norm_one_sub_mul_flip` (`‖(1−p)q‖ ≤ ε/√(1−ε²)`).
@@ -209,6 +249,35 @@ opening the proof, have held.
    faithfully-traced coordinate no-go are all `EXACT` in both columns, step by step —
    including the parity argument that reduces the eight `(ℤ/2)³` conjugates of `d` to
    the marked word.
+8. **The two ultraproduct lemmas that Section 3 factored out are over-badged**
+   (2026-08-16).  `lem:ultrafinite` prints three assertions about `B_ω = ∏_ω B(K_n)`
+   acting on `K_ω` — faithfulness, finiteness, and `ran P ⊆ ran Q ⟺ P ≤ Q` — and
+   carries one badge, `kt_06_ultraproduct_finite`, which proves the middle one for a
+   different object: the `ℓ∞/c₀` corona along the *cofinite* filter, as its own
+   module docstring states.  `lem:finitecompare` prints Murray–von Neumann
+   equivalence and is badged with a lemma about unitary conjugates, a strictly
+   smaller class.  Rows UF.01, UF.03 and FC.01 were downgraded from `EXACT/EXACT`
+   to `MISMATCH/MISMATCH` over substituted objects and UF.02 was added as `MISSING`.
+   The substitutions are sound where the manuscript *uses* the lemmas; they are not
+   sound for the lemmas as stated, which is what a badge on a numbered environment
+   certifies.
+9. **One printed sentence is now false about the development** (2026-08-16), and it
+   is the only `Edit = YES` row in the ledger.  A paragraph added to
+   `rem:finite-stage` says the ultraproduct apparatus "has no counterpart in the
+   development, or in the library it is built on"; two of the four items it lists do
+   have counterparts, one of them badged by this same manuscript at `lem:ultrafinite`
+   two hundred lines earlier.  See RFS.03.
+10. **The collapse remark grew a full quantitative route, and it holds up**
+    (2026-08-16).  `rem:collapse-finite-stage` now prints the constants
+    `ρ, q, τ`, the two corner estimates, the capture term and the closing arithmetic
+    where it used to say the bookkeeping was omitted; CO.16 was rewritten and CO.15b,
+    CO.15c, CO.15d added.  Two things to note.  The appeal to Delorme–Guichardet
+    `\cite[Section 2.12]{BHV}` for the uniform bound is **not** a trust surface — the
+    repo proves that bound itself with a displayed constant — but by Delorme's
+    Gaussian/GNS argument rather than the printed Kazhdan-projection derivation, and
+    at the limit rather than at a stage (CO.15b).  And the `stage_transport_bound`
+    badge sits at the end of the paragraph deriving `\eqref{eq:corner-reverse}`,
+    which that declaration takes as a hypothesis rather than proving.
 
 ## Corpus hygiene (verified)
 
@@ -219,8 +288,8 @@ opening the proof, have held.
 <!-- LEDGER-COUNTS -->
 | Column | EXACT | MISMATCH | MISSING | UNDER-SPECIFIED | total |
 | --- | --- | --- | --- | --- | --- |
-| statement | 396 | 71 | 63 | 1 | 531 |
-| proof | 407 | 47 | 71 | 6 | 531 |
+| statement | 394 | 75 | 63 | 1 | 533 |
+| proof | 405 | 50 | 72 | 6 | 533 |
 <!-- END-LEDGER-COUNTS -->
 
 ## Anchors
@@ -273,7 +342,7 @@ once in the comment-stripped manuscript; the probe is the drift detector.
 | rem:invariantsize | env | rem:invariantsize | aaae6ba6be6c706c |
 | rem:chaincondition | env | rem:chaincondition | 1353d0d0ae9d8202 |
 | def:E | env | def:E | 82744070e0aa91e5 |
-| fig:compression-pattern | env | fig:compression-pattern | f0481ba0527fcf7f |
+| fig:compression-pattern | env | fig:compression-pattern | e075f8a755247f85 |
 | prop:literal-base-T | env | prop:literal-base-T | 4955bce3c162ac27 |
 | thm:p13-complete | env | thm:p13-complete | 32cf3b27267b128d |
 | rem:classical-base | env | rem:classical-base | 3b14e3f10eb77180 |
@@ -282,7 +351,7 @@ once in the comment-stripped manuscript; the probe is the drift detector.
 | prop:witness | env | prop:witness | 1a168e6eb3a8fb32 |
 | lem:square | env | lem:square | 36940cc67e41844e |
 | thm:cyclic | env | thm:cyclic | ee29ee959c43ba8b |
-| def:radical | env | def:radical | c72c325fa0b06592 |
+| def:radical | env | def:radical | 4670a2530000aa37 |
 | lem:portable | env | lem:portable | 3cd3c8cd3e2d8419 |
 | prop:univquot | env | prop:univquot | 7821f139d506b59e |
 | cor:exactradical | env | cor:exactradical | cba1a12eca30acd6 |
@@ -474,8 +543,10 @@ everywhere: the TeX is the specification and does not move).
 | KT.08 | thm:kazhdan-transport | consequence: ran P ⊆ ran Q for projections of B_ω gives QP = P, i.e. P ≤ Q | - | MISSING | MISSING | - | unconditional | - | NO | - |
 | KT.09 | thm:kazhdan-transport | π(g) = [Ad U_n(g)]_ω is a homomorphism H → U(B_ω) | - | MISSING | MISSING | - | unconditional | - | NO | - |
 | KT.10 | thm:kazhdan-transport | B_ω is finite: σ*σ = 1 gives ‖σ_n*σ_n − 1‖ → 0 along ω, polar correction gives unitaries w_n, σ = [w_n]_ω is unitary | - | MISSING | MISSING | - | unconditional | - | NO | this is the load-bearing finiteness step of the printed proof; nothing corresponds to it |
-| UF.01 | lem:ultrafinite | the norm ultraproduct is finite: an isometry of it is a unitary | `kt_06_ultraproduct_finite` | EXACT | EXACT | literal | unconditional | - | NO | the manuscript factored this out of the transport proof, so KT.10 above -- which records it as MISSING inside `thm:kazhdan-transport` -- is now covered here on its own anchor; header closed 2026-08-16 |
-| FC.01 | lem:finitecompare | in a Dedekind-finite star ring, P ≤ Q for Q = VPV* with V unitary forces Q = P | `kt_10_finiteness_reverses` | EXACT | EXACT | literal | unconditional | - | NO | the ring-theoretic form (`PQ = P` and `QP = P`); this is the step Step 6 of `thm:collapse` cites for the reverse inclusion, and KT.08 above is its in-proof counterpart |
+| UF.01 | lem:ultrafinite | `B_ω = ∏_ω B(K_n)` is a finite `C*`-algebra: an isometry of it is a unitary | `kt_06_ultraproduct_finite` | MISMATCH | MISMATCH | substituted | unconditional | - | NO | RE-READ 2026-08-16, downgraded from EXACT/EXACT/literal.  The printed object is the ultraproduct along a free ultrafilter `ω`; the Lean object is `NormMatrixCStarCorona`, the `ℓ∞/c₀` corona, and the module docstring says so ("the manuscript's `ω` is realized as the cofinite filter").  The substitution is sound where the manuscript *uses* the lemma -- the contradiction first passes to an infinite set and only then chooses `ω` -- but the lemma as printed quantifies over every free `ω`, and no `ω`-ultraproduct of `B(K_n)` is constructed.  `normMatrixCStarCorona_isDedekindFiniteMonoid` is the instance form |
+| UF.02 | lem:ultrafinite | the action `[A_n]_ω[ξ_n]_ω = [A_nξ_n]_ω` of `B_ω` on the Hilbert-space ultraproduct `K_ω` is faithful | - | MISSING | MISSING | - | unconditional | - | NO | NEW 2026-08-16.  Faithfulness is not stated anywhere.  `Sofic/UltraproductAdjointAmbient.lean` records only its two consequences -- `kt_04_norm_eq_limsup` (the corona norm is the limsup of the coordinate norms) and `kt_04_absorb_of_range_le` (the algebraic reading of a range inclusion) -- under the heading "what faithfulness is used for".  `Sofic/UltraproductModelConstruction.lean` builds `K_ω` only as a module (`Vec`) and says the inner product and the Hilbert-space structure are "deliberately not built", so the printed sentence has no object to be about |
+| UF.03 | lem:ultrafinite | for projections `P,Q ∈ B_ω`, `ran P ⊆ ran Q` is equivalent to `P ≤ Q` | `kt_04_absorb_of_range_le` | MISMATCH | MISMATCH | substituted | unconditional | - | NO | NEW 2026-08-16.  Lean does not interpret `ran` on `K_ω`: it takes the algebraic surrogate `(1-q)p = 0` as the hypothesis and derives the absorption pair `qp = p`, `pq = p`.  That is one implication between two algebraic identities, not the printed equivalence between a range inclusion in `K_ω` and an order relation |
+| FC.01 | lem:finitecompare | in a finite unital `C*`-algebra, projections with p ≤ q and p ∼ q satisfy p = q | `kt_10_finiteness_reverses` | MISMATCH | MISMATCH | substituted | unconditional | - | NO | RE-READ 2026-08-16, downgraded from EXACT/EXACT/literal.  The printed hypothesis is Murray--von Neumann equivalence (some r with r\*r = q, rr\* = p); Lean's is the strictly stronger `q = VPV*` for a unitary V, so the Lean lemma is the unitary-conjugate special case of the printed one.  The *route* is the printed one on that case: `kt_10_isometry_identities` builds σ = V\*Q + (1-Q) and proves σ\*σ = 1 and σσ\* = P + (1-Q) verbatim.  Also, `p ≤ q` is the ring-theoretic `PQ = P`, `QP = P`.  This is the step Step 6 of `thm:collapse` cites for the reverse inclusion, and KT.08 above is its in-proof counterpart |
 | KT.11 | thm:kazhdan-transport | property (T) provides a finite symmetric generating S ∋ 1 and a Kazhdan constant κ ∈ (0,1] | `KazhdanProjection.HasKazhdanPropertyT.exists_symmetric_generating_pair` | EXACT | EXACT | literal | unconditional | - | NO | used verbatim at the head of `transport` |
 | KT.12 | thm:kazhdan-transport | let h be the Hermitian part of the S-average of the π(ι(s')) | `KazhdanCornerMatrices.hermitianAverage` | MISMATCH | MISMATCH | substituted | unconditional | - | NO | Lean's average lives at each finite stage, not in an ultraproduct |
 | KT.13 | thm:kazhdan-transport | Fix and Fix^⊥ are invariant under each π(ι(s')), hence under h; h = 1 on Fix | - | MISSING | MISSING | - | unconditional | - | NO | no ultraproduct fixed subspace |
@@ -495,8 +566,9 @@ everywhere: the TeX is the specification and does not move).
 | KT.27 | thm:kazhdan-transport | the vector of U_n(s)x_nU_n(s)* is Ad U_n(s)ξ_n, so the commutator norm → 0 along ω | `MarkedCompressionVectorChain.transported_displacement_le` | MISMATCH | MISMATCH | substituted | unconditional | - | NO | the finite-stage displacement chain, with explicit constants |
 | KT.28 | thm:kazhdan-transport | since the failing subsequence was arbitrary, the full sequence converges | - | MISSING | MISSING | - | unconditional | - | NO | not needed on the Lean route, which is direct |
 | KT.29 | thm:kazhdan-transport | the reduction of the printed hypothesis (HS commutator vanishing) to the Lean displacement form x_n − U x_n U* | `KazhdanAsymptoticCommutant.manuscriptKazhdanTransport` | EXACT | EXACT | literal | unconditional | - | NO | done in the wrapper, by unitary invariance of ‖·‖₂ |
-| RFS.01 | rem:finite-stage | the ultrafilter gives no rate; Appendix B proves the theorem a second time, quantitatively at each coordinate | `KazhdanAsymptoticCommutant.transport` | EXACT | EXACT | literal | unconditional | - | NO | this remark is the accurate description of what Lean actually proves |
-| RFS.02 | rem:finite-stage | the error bookkeeping is explicit in κ, \| S \| , the bound on x_n and the multiplicative defects, once the robust spectral-gap input is granted at each stage | `WeakMFVectorGNS.hermitianAverage_eventually_no_intermediate_eigenvalues` | EXACT | EXACT | literal | unconditional | - | NO | Lean is stronger: the gap input is proved, not granted |
+| RFS.01 | rem:finite-stage | the ultrafilter gives no rate; Appendix B proves the theorem a second time, at finite stages | `KazhdanAsymptoticCommutant.transport` | EXACT | EXACT | literal | unconditional | - | NO | this remark is the accurate description of what Lean actually proves |
+| RFS.02 | rem:finite-stage | conditional on the robust spectral-gap input, every estimate of that proof is an explicit inequality in κ, \| S \| , the bound on x_n and the multiplicative defects of U_n | `WeakMFVectorGNS.hermitianAverage_eventually_no_intermediate_eigenvalues` | EXACT | EXACT | literal | unconditional | - | NO | Lean is stronger: the gap input is proved, not granted |
+| RFS.03 | rem:finite-stage | the apparatus of the printed proof --- K_ω, B_ω, its faithfulness and its finiteness --- has no counterpart in the development, or in the library it is built on | `kt_06_ultraproduct_finite`; `kt_04_norm_eq_limsup` | MISMATCH | MISSING | - | unconditional | - | YES | NEW 2026-08-16, and the only `Edit = YES` row in the ledger.  The paragraph was added after the ultraproduct lemmas were formalized, and it is now false as printed on two of its four items: the finiteness of `B_ω` is `kt_06_ultraproduct_finite`, badged by this same manuscript at `lem:ultrafinite` roughly two hundred lines earlier, and `K_ω` is built as a module in `Sofic/UltraproductModelConstruction.lean`.  What remains true is the sentence's point -- the machine-checked *proof* of `thm:kazhdan-transport` is the Appendix B one -- and its faithfulness clause (UF.02).  The sentence needs weakening to the two items it still holds for; the ledger cannot repair it, because the claim is about the development and is printed in the manuscript |
 | TV.01 | thm:transport-variants | (1) transport at an arbitrary nonnegative weight sequence w_n, both directions | `ScaledKazhdanTransport.scaled_transport_both` | MISMATCH | EXACT | literal | unconditional | - | NO | univ0 (Γ, E : Type); `IsScaledAsymptoticCommutant`/`IsScaledMassBounded` are the printed Tr-conditions verbatim |
 | TV.02 | thm:transport-variants | (2) intertwiner transport between two asymptotic representations at the d¹_n + d²_n normalization | `IntertwinerKazhdanTransport.manuscriptIntertwinerTransport` | MISMATCH | EXACT | literal | unconditional | - | NO | univ0 |
 | TV.03 | thm:transport-variants | (2) at every weight | `IntertwinerKazhdanTransport.scaled_intertwiner_transport` | MISMATCH | EXACT | literal | unconditional | - | NO | univ0 |
@@ -513,8 +585,8 @@ everywhere: the TeX is the specification and does not move).
 | CD.02 | def:pattern | d := tct⁻¹ and the defect subgroup N_comp = ⟨⟨[d, ι(λ)]⟩⟩_H, normal in H | `KazhdanCompressionCore.transported`; `KazhdanCompressionCore.defectNormal` | EXACT | EXACT | literal | unconditional | - | NO | `rfl` against the printed normal closure |
 | CD.03 | p:conj-datum-remark | both conditions are relations among generators, so a datum can be read off a presentation | `LiteralNonMFEndpoint.inclusionData` | EXACT | EXACT | literal | unconditional | - | NO | demonstrated for the literal presentation |
 | CD.04 | p:conj-datum-remark | the relations do not constrain the commutators [d, ι(λ)] | `LiteralNonMFLinearWitness.literal_mark_ne_one` | EXACT | EXACT | literal | unconditional | - | NO | witnessed, rather than asserted, by the Clifford model |
-| CD.05 | def:invisible | definition of Hilbert–Schmidt invisibility | `ManuscriptExactWrappers.ManuscriptHSInvisible` | MISMATCH | EXACT | literal | unconditional | - | NO | univ0 |
-| CD.06 | def:invisible | the definition read as a characterization: g is invisible exactly when every operator-norm asymptotic representation and every cofinite-refining ultrafilter send g to 1 in the tracial ultraproduct | `ManuscriptExactWrappers.manuscriptHSInvisibleCharacterization` | MISMATCH | EXACT | literal | unconditional | - | NO | univ0, as CD.05; the first conjunct is the printed definition and holds by Iff.rfl, and the theorem proves two further conjuncts the definition does not print (the subgroup form, and closure under 1, product and inverse) |
+| CD.05 | def:invisible | definition of `2`-norm triviality: g ∈ K₂(U) for every operator-norm asymptotic representation U and every cofinite-refining ultrafilter | `ManuscriptExactWrappers.ManuscriptHSInvisible` | MISMATCH | EXACT | literal | unconditional | - | NO | univ0.  RE-READ 2026-08-16: the definition was reworded from "Hilbert--Schmidt invisible" to "`2`-norm trivial" and now factors through the per-representation set K₂(U); the Lean predicate is unchanged and is still the printed quantification |
+| CD.06 | def:invisible | K₂(U) = {g : ‖U_n(g) − 1‖₂ → 0} is a normal subgroup of H, and is the kernel of the homomorphism U induces into the tracial ultraproduct | `ManuscriptExactWrappers.manuscriptHSInvisibleCharacterization` | MISMATCH | EXACT | literal | unconditional | - | NO | univ0, as CD.05.  RE-READ 2026-08-16: the kernel description holds by `Iff.rfl` (first conjunct), and the subgroup form -- which the note here previously called a conjunct "the definition does not print" -- is now printed.  *Normality* is not a conjunct of this theorem; it comes from FN.01, where K₂ is realized as `nullUnitarySubgroup`, the kernel of `toUltraproductHom` |
 | FN.00 | thm:criterion | Theorem 4.4: every finite normal F ⊆ N_comp dies in every corona representation | `ManuscriptExactWrappers.manuscriptFiniteNormalObstructionCriterion` | MISMATCH | EXACT | literal | unconditional | - | NO | univ0; the printed proof route is followed |
 | FN.01 | thm:criterion | K₂ = {g : ‖U_{g,n} − 1‖₂ → 0} is a normal subgroup of H | `nullUnitarySubgroup`; `AsymptoticUnitaryRepresentation.toUltraproductHom` | EXACT | EXACT | literal | unconditional | - | NO | realized as the kernel of the tracial-ultraproduct homomorphism |
 | FN.02 | thm:criterion | c centralizes ι(Λ), so its lifts lie in the HS asymptotic commutant of ι(Λ) | `KazhdanCompressorCorner.compressionDefect_hsDistSq_vanishing` | EXACT | EXACT | literal | unconditional | - | NO | - |
@@ -593,7 +665,8 @@ everywhere: the TeX is the specification and does not move).
 | KC.21 | rem:ff-realization | Fournier-Facio's f.p. torsion-free (T) group P contains every f.p. torsion-free group, in particular P₁ × P₂ | - | MISSING | MISSING | - | literature-input | FFF | NO | personal communication plus FFF; nothing formal |
 | KC.22 | rem:ff-realization | hence α : P ≅ P₁ ≤ P and any a ∈ P₂ \ {1} satisfy the hypotheses of Theorem 5.1 | - | MISSING | MISSING | - | literature-input | FFF | NO | conditional on KC.21 |
 | KC.23 | rem:ff-realization | E(P,α,a) contains involutions whatever the base | - | MISSING | MISSING | - | literature-input | FFF | NO | - |
-| TA.00 | thm:A | Theorem A: w ≠ 1 in E, and Θ(w) = 1 for every homomorphism E → U_cor((d_n)); E is not MF and neither C*_max(E) nor C*_red(E) is MF | `LiteralNonMFEndpoint.manuscriptTheoremA` | EXACT | EXACT | literal | unconditional | - | NO | fully unconditional; the strongest row in the ledger |
+| TA.00 | thm:A | Theorem A: w ≠ 1 in E, and Θ(w) = 1 for every homomorphism E → U(Q((d_n))); E is not MF and neither C*_max(E) nor C*_red(E) is MF | `LiteralNonMFEndpoint.manuscriptTheoremA` | EXACT | EXACT | literal | unconditional | - | NO | fully unconditional; the strongest row in the ledger |
+| TA.00b | thm:A | a Tietze reduction presents the same group on six generators with thirty-two relators; the eight-generator form is displayed because it exhibits the construction | `LiteralTietzePresentation.manuscriptTietzeSixGeneratorPresentation` | EXACT | EXACT | literal | unconditional | - | NO | NEW 2026-08-16: this sentence was added to the statement of Theorem A this revision.  The claim is the one GP.08/GP.09 audit at `p:group-tietze32`, where the elimination is also checked; the row is repeated here because the assertion is now printed inside a numbered environment |
 | TA.01 | thm:A | the defining relations make w central; with c² = 1 centrality implies w² = 1 | `LiteralNonMFPresentation.mark_central`; `LiteralNonMFPresentation.mark_sq` | EXACT | EXACT | literal | unconditional | - | NO | - |
 | TA.02 | cor:uniform | Corollary 5.4: there are δ > 0 and finite F₀ ⊂ E with a uniform local obstruction ‖φ(w) − 1‖ < 1 in every dimension | `LiteralUniformObstruction.literal_uniform_operatorNorm_obstruction` | EXACT | EXACT | literal | unconditional | - | NO | - |
 | TA.03 | cor:uniform | proof: otherwise choose models violating the conclusion for δ = 1/n along an exhaustion | `uniform_invisibility` | EXACT | EXACT | literal | unconditional | - | NO | - |
@@ -605,7 +678,7 @@ everywhere: the TeX is the specification and does not move).
 | TA.09 | cor:scaling-family | the Kazhdan base, the one-sided conjugation argument and the central-sign criterion are independent of m | `ScalingFamilyEndpoint.scalingFamily_not_isCDEOperatorMF` | EXACT | EXACT | literal | unconditional | - | NO | - |
 | TA.10 | p:A-defect-square | d = tct⁻¹, u = [d, v₁], w = u², so w lies in the compression defect and the criterion applies at the marked word | `LiteralNonMFEndpoint.mark_eq_compressionDefect_sq`; `LiteralNonMFEndpoint.literalInvolutionSubgroup_le_defectNormal` | EXACT | EXACT | literal | unconditional | - | NO | - |
 | TA.11 | p:A-defect-square | for a detecting corona representation, the negative corner gives a model with w = −1 exactly, while transport gives u ∼₂ 1 and hence w ∼₂ 1 | `LiteralNonMFEndpoint.negativeCorner_kazhdanTransport_contradiction` | EXACT | MISMATCH | literal | unconditional | - | NO | the transport half runs the Appendix B route |
-| TA.12 | prop:witness | nontriviality of w is witnessed by a representation into ClLamp ⋊ (telescope of the exact rational affine model) | `LiteralNonMFLinearWitness.realization` | EXACT | EXACT | literal | unconditional | - | NO | - |
+| TA.12 | prop:witness | nontriviality of w is witnessed by a representation into Cl ⋊ (telescope of the exact rational affine model) | `LiteralNonMFLinearWitness.realization` | EXACT | EXACT | literal | unconditional | - | NO | - |
 | TA.13 | p:A-consequences | for E the datum is (ℬ, ι, t, c) and the relevant finite normal subgroup of the defect is {1, w} | `LiteralNonMFEndpoint.inclusionData`; `LiteralNonMFEndpoint.literalInvolutionSubgroup` | EXACT | EXACT | literal | unconditional | - | NO | - |
 | FD.00 | thm:exactfd | Theorem B, first clause: every finite-dimensional π over every field kills [tct⁻¹, a(tct⁻¹)a⁻¹] | `ManuscriptExactWrappers.manuscriptTheoremB` | EXACT | EXACT | literal | unconditional | - | NO | fully universe-polymorphic in k, V, H |
 | FD.01 | thm:exactfd | Theorem B, second clause: every such π sends the entire subgroup 𝔇(H,Γ) to the identity | `ManuscriptExactWrappers.manuscriptTheoremB` | MISMATCH | EXACT | literal | unconditional | - | NO | univ0: the second conjunct fixes `H : Type` while the first is polymorphic |
@@ -633,13 +706,12 @@ everywhere: the TeX is the specification and does not move).
 | FD.23 | rem:chaincondition | consequently for every finite-dimensional σ over every field the fixed subspaces of Γ and of tΓt⁻¹ coincide | `manuscriptChainConditionRigidity` | EXACT | EXACT | literal | unconditional | - | NO | third conjunct |
 | FD.24 | rem:chaincondition | applied to tensor constructions: compression creates no invariant tensors of any finite type | `TensorInvariantRigidity.manuscriptTensorInvariantRigidity` | EXACT | EXACT | literal | unconditional | - | NO | tensor, dual, Hom and product representations |
 | FD.25 | rem:chaincondition | taking the invariant to be the Zariski closure gives equal algebraic envelopes for Γ and tΓt⁻¹ | `ClosedEnvelopeCompression.manuscriptEnvelopeCompressionBlind` | MISMATCH | MISMATCH | substituted | unconditional | - | NO | univ0; and the Lean statement quantifies over an abstract `Closed` predicate, as the TeX itself says |
-| FD.25b | rem:chaincondition | the chain condition itself, for Zariski-closed subgroups of GL(V) over an arbitrary field, from the Hilbert basis theorem | `ZariskiClosedSubgroup.manuscriptZariskiRepresentationEnvelopeClosed` | EXACT | EXACT | literal | unconditional | - | NO | proved rather than quoted; FD.25 beside it is the envelope-blindness step and keeps its own status |
-| FD.26 | rem:chaincondition | that closed subgroups of GL(V) in the Zariski topology satisfy the chain condition is classical and is quantified over, not proved | - | MISSING | MISSING | - | literature-input | - | NO | the TeX states this explicitly |
+| FD.25b | rem:chaincondition | the descending chain condition for Zariski-closed subgroups of GL(V), over an arbitrary field, coming from the Hilbert basis theorem | `ZariskiClosedSubgroup.zariski_dcc_closedSubgroups`; `ZariskiClosedSubgroup.wellFoundedLT_isZClosedSubgroup`; `ZariskiClosedSubgroup.manuscriptZariskiRepresentationEnvelopeClosed` | EXACT | EXACT | literal | unconditional | - | NO | RE-READ 2026-08-16, Lean cell corrected.  The declaration this row used to cite alone, `manuscriptZariskiRepresentationEnvelopeClosed`, states the envelope *equality* `zClosure σ(tΓt⁻¹) = zClosure σ(Γ)` and not the chain condition; the chain condition itself is `zariski_dcc_closedSubgroups`, proved from `MvPolynomial.isNoetherianRing`.  FD.25 beside it is the envelope-blindness step and keeps its own status |
 | FD.27 | p:B-why-corona | an MF model is only asymptotically multiplicative, so coordinate fixed spaces are not literal invariant subspaces; operator-norm control keeps the adjoint actions almost multiplicative; (T) supplies an almost-fixed spectral subspace; the equal-rank reversal turns one-sided compression into equality | `KazhdanCompressorCorner.cornerProjection`; `KazhdanCornerMatrices.norm_one_sub_mul_flip` | EXACT | EXACT | literal | unconditional | - | NO | this paragraph describes the Appendix B route, which is the formalized one |
 | GP.01 | eq:sl3presentation | the linear presentation ℛ = ⟨x,y,z \| eight relators⟩ | `LiteralBaseRotationRetract.rotationRelators` | EXACT | EXACT | literal | unconditional | CRW, CLV | NO | eight relators, term for term |
 | GP.02 | eq:gamma-presentation | the base ℬ on v₁,v₂,v₃,x,y,z with the twenty displayed relators | `LiteralNonMFPresentation.baseRelators`; `LiteralNonMFPresentation.baseRelators_card` | EXACT | EXACT | literal | unconditional | - | NO | list and cardinality 20 both checked |
 | GP.03 | def:E | the eight-generator, forty-one-relator presentation of E, with w the displayed word | `LiteralNonMFPresentation.manuscriptLiteralPresentation` | EXACT | EXACT | literal | unconditional | - | NO | generator indexing, all four relator families, `relators.card = 41`, and the marked word all `rfl` |
-| GP.04 | def:E | the relator count decomposes as 20 base + 6 stable-letter + c² + 6 c-commutation + 8 centrality | `LiteralNonMFPresentation.relators_card` | EXACT | EXACT | literal | unconditional | - | NO | - |
+| GP.04 | def:E | the forty-one relators decompose as twenty in family (B), six in (T), seven in (C) and eight in (W) | `LiteralNonMFPresentation.relators_card` | EXACT | EXACT | literal | unconditional | - | NO | RE-READ 2026-08-16: the presentation was regrouped into the four named families and the count restated accordingly.  Family (C) is the old "c² plus the six c-commutation relators", so the arithmetic is the same 20 + 6 + 7 + 8 = 41 that `relators_card` proves |
 | GP.05 | def:E | the defining relations make w central, and centrality with c² = 1 gives w² = 1 | `LiteralNonMFPresentation.mark_central`; `LiteralNonMFPresentation.mark_sq` | EXACT | EXACT | literal | unconditional | - | NO | - |
 | GP.06 | def:E | the base relations give tι(ℬ)t⁻¹ ⊆ ι(ℬ) and [c, ι(ℬ)] = 1 | `LiteralNonMFPresentation.stable_conjugates_base_into_base`; `LiteralNonMFPresentation.lamp_commutes_base` | EXACT | EXACT | literal | unconditional | - | NO | - |
 | GP.07 | p:group-sixgen | E is generated by the six elements v₁, x, y, z, t, c | `LiteralSixGenerator.literal_rank_le_six` | EXACT | EXACT | literal | unconditional | - | NO | stated as `Group.rank ≤ 6` |
@@ -680,8 +752,8 @@ everywhere: the TeX is the specification and does not move).
 | BT.23b | thm:p13-complete | the printed order of the route: normalize, then squeeze, then conjugate through the signed-swap tail | `P13DescentMaster.toSL3_injective` | MISMATCH | MISMATCH | literal | unconditional | - | NO | CORRECTED against docs/P13_STEP_AUDIT.md §2 (P13.08 vs P13.09–11): Lean inverts the order, and the audit finds the printed order is not executable as printed — the defect is on the TeX side |
 | BT.24 | rem:classical-base | the eight relations present SL₃(ℤ), and ℬ is then the affine group ℤ³ ⋊ SL₃(ℤ) | `LiteralBaseCompleteness.baseAffineEquiv` | EXACT | EXACT | literal | unconditional | CRW, CLV, BHV | NO | the surjection ℬ → Γ̄ is proved bijective internally, as the TeX asserts |
 | BT.25 | rem:classical-base | the presentations go back to CRW, the matrix-labelled generators to CLV, and property (T) of the affine group is classical | - | MISSING | MISSING | - | literature-input | CRW, CLV, BHV | NO | scholarship only; the TeX says the proofs here are independent |
-| WI.01 | con:clifford | the real Clifford-algebra convention: generators c_x with c_x² = 1 and c_xc_y = −c_yc_x for x ≠ y; ClLamp(X) generated by −1 and the c_x | `ManuscriptExactWrappers.manuscriptCliffordConstruction` | EXACT | EXACT | literal | unconditional | - | NO | quadratic form, generators, and the generated subgroup all `rfl` |
-| WI.02 | con:clifford | ζ = −1 is a nontrivial central involution; ClLamp(X) is a central extension of the elementary abelian 2-group on X | `CliffordAlgebraLamp.zGen_ne_one`; `CliffordAlgebraLamp.zGen_sq`; `CliffordAlgebraLamp.zGen_mem_center` | EXACT | EXACT | literal | unconditional | - | NO | - |
+| WI.01 | con:clifford | the real Clifford-algebra convention: generators c_x with c_x² = 1 and c_xc_y = −c_yc_x for x ≠ y; Cl(X) generated by −1 and the c_x | `ManuscriptExactWrappers.manuscriptCliffordConstruction` | EXACT | EXACT | literal | unconditional | - | NO | quadratic form, generators, and the generated subgroup all `rfl` |
+| WI.02 | con:clifford | ζ = −1 is a nontrivial central involution; Cl(X) is a central extension of the elementary abelian 2-group on X | `CliffordAlgebraLamp.zGen_ne_one`; `CliffordAlgebraLamp.zGen_sq`; `CliffordAlgebraLamp.zGen_mem_center` | EXACT | EXACT | literal | unconditional | - | NO | - |
 | WI.03 | con:clifford | every permutation of X acts by c_x ↦ c_{σx} and fixes ζ | `CliffordAlgebraLamp.cliffordLamp_permutation_package` | EXACT | EXACT | literal | unconditional | - | NO | - |
 | WI.04 | lem:linear | the seven displayed 4×4 rational matrices and the dilation D = diag(2,2,2,1) | `ManuscriptExactWrappers.manuscriptLinearModel` | EXACT | EXACT | literal | unconditional | - | NO | each matrix is `rfl` against the printed entries |
 | WI.05 | lem:linear | the six matrices satisfy all twenty relators of ℬ | `LiteralNonMFLinearWitness.matrixBaseGenerator_kills` | EXACT | EXACT | literal | unconditional | - | NO | - |
@@ -691,7 +763,7 @@ everywhere: the TeX is the specification and does not move).
 | WI.09 | p:witness-telescope | T = colim(Γ̄, ᾱ), V = T ⋊ ℤ with shift τ, level-zero map j, X = V/j(Γ̄) with root o | `MappingTelescope.Telescope`; `MarkedCompression.Vertical`; `MarkedCompression.Cosets` | EXACT | EXACT | literal | unconditional | - | NO | - |
 | WI.10 | p:witness-telescope | the final assertion of the linear model states τo ≠ j(v̄₁)τo, so the Clifford generators at those sites anticommute | `MarkedCompression.moved_cosets_ne`; `CliffordLamp.commutator_lamp_lamp` | EXACT | EXACT | literal | unconditional | - | NO | - |
 | WI.11 | prop:witness | Proposition 8.4: w ≠ 1 in E | `LiteralNonMFLinearWitness.literal_mark_ne_one` | EXACT | EXACT | literal | unconditional | - | NO | - |
-| WI.12 | prop:witness | proof: form W = ClLamp(X) ⋊ V and define the map on generators by g ↦ j(ḡ), t ↦ τ, c ↦ c_o | `LiteralNonMFLinearWitness.realization` | EXACT | EXACT | literal | unconditional | - | NO | - |
+| WI.12 | prop:witness | proof: form W = Cl(X) ⋊ Σ and define the map on generators by g ↦ j(ḡ), t ↦ τ, c ↦ c_o | `LiteralNonMFLinearWitness.realization` | EXACT | EXACT | literal | unconditional | - | NO | - |
 | WI.13 | prop:witness | the exact checks give the twenty base and six stable-letter relations; the level-zero subgroup fixes o, so c_o commutes with every base generator and c_o² = 1 | `LiteralNonMFLinearWitness.realization` | EXACT | EXACT | literal | unconditional | - | NO | discharged as the fields of the realization datum |
 | WI.14 | prop:witness | under the assignment tct⁻¹ ↦ c_{τo} and v₁(tct⁻¹)v₁⁻¹ ↦ c_{j(v̄₁)τo} | `MarkedCompression.conj_inl_lamp` | EXACT | EXACT | literal | unconditional | - | NO | - |
 | WI.15 | prop:witness | the two sites are distinct, so w ↦ [c_{τo}, c_{j(v̄₁)τo}] = −1 = ζ | `LiteralNonMFLinearWitness.realization_marked_word`; `MarkedCompression.signAmbient_ne_one` | EXACT | EXACT | literal | unconditional | - | NO | - |
@@ -763,7 +835,7 @@ everywhere: the TeX is the specification and does not move).
 | PM.07 | cor:quotclosure | proof: map the eight free generators onto the eight displayed generators; F₈ is residually finite hence MF | `LiteralMFQuotientControls.quotientMap8_surjective` | EXACT | EXACT | literal | unconditional | - | NO | - |
 | ST.01 | p:stability-def | definition of point-norm matricial stability and of Rad_fd(G) | `MatricialStabilityRadical.IsPointNormMatriciallyStable`; `MatricialStabilityRadical.fdUnitaryResidual` | EXACT | EXACT | literal | unconditional | - | NO | - |
 | ST.02 | prop:stabradical | Rad_MF(G) ≤ Rad_fd(G) always | `MatricialStabilityRadical.actualCoronaMFResidual_le_fdUnitaryResidual` | EXACT | EXACT | literal | unconditional | - | NO | - |
-| ST.03 | prop:stabradical | equality for point-norm matricially stable G | `MatricialStabilityRadical.actualCoronaMFResidual_eq_fdUnitaryResidual` | EXACT | EXACT | literal | unconditional | - | NO | - |
+| ST.03 | prop:stabradical | equality for matricially stable G | `MatricialStabilityRadical.actualCoronaMFResidual_eq_fdUnitaryResidual` | EXACT | EXACT | literal | unconditional | - | NO | RE-READ 2026-08-16: the printed hypothesis dropped the "point-norm" qualifier; the notion defined at `p:stability-def` and the Lean hypothesis are unchanged |
 | ST.04 | prop:stabradical | a stable group with Rad_fd(G) ≠ 1 is not MF | `MatricialStabilityRadical.not_isCDEOperatorMF_of_stable_of_fdResidual_ne_bot` | EXACT | EXACT | literal | unconditional | - | NO | - |
 | ST.05 | prop:stabradical | proof of the first inclusion: amplify π to π^{⊕n} on ℂ^{nd}, dimensions strictly increasing, and ‖π^{⊕n}(x) − 1‖ = ‖π(x) − 1‖ | `MatricialStabilityRadical.constCoronaRep` | MISMATCH | MISMATCH | substituted | unconditional | - | NO | Lean uses the constant sequence (fun _ ↦ Y) with `opLength`, not the printed strictly increasing amplification π^{⊕n} |
 | ST.06 | prop:stabradical | proof of the converse: lifts of a detecting Θ form an almost representation, stability supplies π_n with π_n(x) = 1, contradicting the uniform lower bound | `MatricialStabilityRadical.fdUnitaryResidual_le_coronaMFResidual` | EXACT | EXACT | literal | unconditional | - | NO | - |
@@ -788,7 +860,10 @@ everywhere: the TeX is the specification and does not move).
 | CO.14b | thm:collapse | Step 6: transporting forward returns w_n up to vanishing mass, again almost fixed by every a ∈ S | `InvolutionCollapseEndpoint.stage_transport_bound` | MISMATCH | MISMATCH | literal | unconditional | - | NO | CORRECTED against docs/COLLAPSE_STEP_AUDIT.md COL.35: a quantitative one-stage substitute stands where the manuscript asserts a limit |
 | CO.14c | thm:collapse | Step 6 is an instance of the transport theorem at the rank weight w_n = k_n | `InvolutionCollapseEndpoint.stage_capture`; `InvolutionCollapseEndpoint.stage_transport_bound` | MISMATCH | MISMATCH | literal | unconditional | - | NO | CORRECTED against docs/COLLAPSE_STEP_AUDIT.md R1: the rank weight is genuinely carried and no dimension-normalized substitute occurs, but neither `manuscriptKazhdanTransport` nor `scaled_transport_both` is ever invoked — Step 6 is re-derived inline, so the manuscript's deduction from a previously proved theorem is not the Lean deduction |
 | CO.15 | thm:collapse | Step 6: contradiction with the generator mass; normality of corona kernels extends the conclusion to all of D_coll(L,s) | `InvolutionCollapseEndpoint.no_marked_model`; `InvolutionCollapseEndpoint.involutiveCollapseDefect_le_actualCoronaMFResidual` | EXACT | EXACT | literal | unconditional | - | NO | - |
-| CO.16 | rem:collapse-finite-stage | the limits can be replaced by explicit tolerances and the contradiction assembled at one late coordinate; that bookkeeping is not printed | `InvolutionCollapseEndpoint.numeric_transport_bound` | EXACT | EXACT | literal | unconditional | - | NO | Lean does carry explicit tolerances |
+| CO.15b | rem:collapse-finite-stage | (T) enters through the bound ‖b_n(γ)‖_F ≤ C uniform in γ, with C depending on the Kazhdan pair alone --- the quantitative Delorme--Guichardet argument, read on the limiting cocycle as C = 4C₀ | `CollapseProfileBound.collapse_profile_le`; `CollapseProfileBound.collapse_profile_le_generator_values` | MISMATCH | MISMATCH | literal | unconditional | BHV | NO | NEW 2026-08-16, for the uniformity paragraph the remark grew this revision.  The citation \cite[Section~2.12]{BHV} is **not** a trust surface: the repo proves the bound itself, `seqNormSq (b · γ) ≤ 160·log 2/κ²`, from Delorme's Gaussian positive-definiteness through the GNS argument of `Kazhdan/DelormeFixedPoint.lean`, with the constant displayed rather than existentially quantified.  Two deviations: the printed constant is 4C₀ from the Kazhdan-projection fixed vector and Lean's is Delorme's own, and the printed bound is on ‖b_n(γ)‖_F past some stage while Lean's is on the limiting seminorm.  The remark itself says C "is still read off the limit", which is exactly Lean's level |
+| CO.15c | rem:collapse-finite-stage | the easy containment ‖(1−Q_n)P_n‖ ≤ ε: for a ∈ S the one-sided relation gives sas⁻¹ = δ ∈ L, and each δ is a word in S, so this is one further threshold per generator, \| S \| of them, all fixed before the stage is chosen | `KazhdanCompressorCorner.one_sub_moved_mul_corner_vanishing` | EXACT | EXACT | literal | unconditional | - | NO | NEW 2026-08-16 for the per-generator threshold sentence added this revision.  ID.06 records the same estimate inside `cor:generaltransport` |
+| CO.15d | rem:collapse-finite-stage | the reversal is finiteness, not a norm trick: the leakage bound makes the compression ran P_n → ran Q_n injective, and equal rank promotes an injective endomorphism of a finite-dimensional space to a surjective one | `KazhdanCornerMatrices.norm_one_sub_mul_flip` | EXACT | EXACT | literal | unconditional | - | NO | NEW 2026-08-16 for the sentence added this revision, and the Lean proof is literally it: it builds `f : range p.mulVecLin →ₗ range q.mulVecLin`, proves `hf_inj` from the leakage bound and then `hf_surj` by `LinearMap.injective_iff_surjective_of_finrank_eq_finrank` at equal rank |
+| CO.16 | rem:collapse-finite-stage | with ρ = 1/(√\| S \|+1), q = ρ/(24(C+1)) and τ ≤ (1−θ)ρ²/(256(C+1)), one stage of transport gives Tr\|W − U_aWU_a\*\|² ≤ 18q²C² + 16c ≤ (ρ/2)², where c = (C+1)2τ/(1−θ) | `InvolutionCollapseEndpoint.stage_transport_bound`; `InvolutionCollapseEndpoint.numeric_transport_bound` | EXACT | EXACT | literal | unconditional | - | NO | RE-READ 2026-08-16, claim rewritten: the old claim said the bookkeeping "is not printed", and this revision printed all of it, so the row now audits the displayed constants.  `stage_transport_bound` gives the 18q²C² + 16κ transport bound and `numeric_transport_bound` the arithmetic (ρ/2)².  Badge placement to watch: the `stage_transport_bound` badge sits at the end of the paragraph that *derives* \eqref{eq:corner-reverse}, and that estimate is a hypothesis (`_hrev`) of the declaration, not a conclusion of it; the derivation is CO.15c and CO.15d |
 | CO.16b | rem:collapse-finite-stage | the single stage already fails: a family of at most ρ-small values cannot carry total squared mass four | `InvolutionCollapseEndpoint.anchor_contradiction` | EXACT | EXACT | literal | unconditional | - | NO | the arithmetic closing the one-coordinate assembly, against `eq:generator-mass`; header closed 2026-08-16 |
 | CO.17 | rem:collapse-finite-stage | (W3) is essential: it supplies the joint spectral calculus behind the rank identity; anticommuting Clifford coordinates have no joint spectral labels | `InvolutionCollapseMetric.dV` | MISMATCH | MISSING | literal | unconditional | - | NO | (W3) is used, but the necessity claim about anticommuting coordinates is not formalized |
 | CO.18 | thm:projection-collapse | Theorem 11.24: an arbitrary corona projection with commuting L-orbit, centralized by the compressed copy, commutes with Θ(L) | `ProjectionCompressionCollapse.corona_projection_collapse` | MISMATCH | EXACT | literal | unconditional | - | NO | univ0 |
@@ -805,7 +880,7 @@ everywhere: the TeX is the specification and does not move).
 | CO.29 | thm:commutinglamp | k remains an involution and the compressed copy centralizes it because the compressed base fixes the moved site | `CommutingLampCollapse.commutingLampQuotient_collapse` | EXACT | EXACT | literal | unconditional | - | NO | the `hsite`/`hcommAmb` blocks |
 | CO.30 | thm:commutinglamp | (T) passes to L, so Theorem 11.22 places every [q(v̄₁), k] in the MF radical of the quotient | `CommutingLampCollapse.commutingLampQuotient_collapse` | EXACT | EXACT | literal | unconditional | - | NO | - |
 | CO.31 | thm:commutinglamp | nontriviality survives: in the signed finite-support model the commutator has nonzero configuration coordinate while every element of ⟨ζ⟩ has zero | `CommutingLampCollapse.commutingLampQuotient_collapse` | EXACT | EXACT | literal | unconditional | - | NO | the `hne1` block |
-| CO.31b | thm:commutinglamp | killing ζ abelianizes the lamp kernel: ClLamp(X)/⟨ζ⟩ is ⊕_X ℤ/2 under the same V-action, so W/⟨ζ⟩ ≅ (⊕_X ℤ/2) ⋊ V | `CommutingLampQuotientSofic.toModTwo`; `CommutingLampQuotientSofic.psiHom`; `CommutingLampQuotientSofic.Phi` | EXACT | EXACT | literal | unconditional | - | NO | - |
+| CO.31b | thm:commutinglamp | killing ζ abelianizes the lamp kernel: Cl(X)/⟨ζ⟩ is ⊕_X ℤ/2 under the same Σ-action, so W/⟨ζ⟩ ≅ (⊕_X ℤ/2) ⋊ Σ | `CommutingLampQuotientSofic.toModTwo`; `CommutingLampQuotientSofic.psiHom`; `CommutingLampQuotientSofic.Phi` | EXACT | EXACT | literal | unconditional | - | NO | - |
 | CO.31c | thm:commutinglamp | that kernel is again locally finite with finite level orbits, so the argument of Theorem E gives soficity unchanged; failure of MF is Theorem 11.27 | `CommutingLampQuotientSofic.isLocallyFiniteGroup_modTwoLamp`; `CommutingLampQuotientSofic.exists_finite_invariant_modTwo_subgroup` | EXACT | EXACT | literal | unconditional | - | NO | the Theorem E route is reused, not restated |
 | CO.32 | p:collapse-route-closed | every route to an MF model of W through the commuting-lamp quotient is closed | `CommutingLampCollapse.literalCommutingLampQuotient_not_isCDEOperatorMF` | EXACT | EXACT | literal | unconditional | - | NO | - |
 | CO.32b | thm:commutinglamp | W/⟨ζ⟩ is a second finitely generated sofic non-MF group | `CommutingLampQuotientSofic.literalSignFreeQuotient_isSofic_and_not_isCDEOperatorMF` | EXACT | EXACT | literal | unconditional | - | NO | this corollary was split out of Theorem 11.27 during this audit |
@@ -835,15 +910,15 @@ everywhere: the TeX is the specification and does not move).
 | RE.05 | p:D-base-injective | since the infinite Kazhdan group ℬ is nonamenable, so is E; hence C*_red(E) is not nuclear | - | MISSING | MISSING | - | literature-input | BHV, Lance | NO | the TeX declares these two classical inputs explicitly |
 | RE.05b | p:D-base-injective | E contains an isomorphic copy of the infinite Kazhdan base, hence is nonamenable | `NuclearityAmenability.manuscriptNotAmenableOfBaseEmbeds` | EXACT | EXACT | literal | unconditional | - | NO | the nonamenability half of RE.05, now proved; the step from nonamenable to non-nuclear is Lance and remains the literature input recorded there |
 | RE.06 | lem:faithfultrace | (1) the canonical tracial state on C*_red(G₁) is faithful | `ManuscriptExactWrappers.manuscriptFaithfulTraceAndStableFiniteness` | EXACT | EXACT | literal | unconditional | - | NO | universe-polymorphic |
-| RE.07 | lem:faithfultrace | (2) a unital C*-algebra with a faithful tracial state is stably finite: every isometry in M_I(A) is unitary, for every nonempty finite I | `ManuscriptExactWrappers.manuscriptFaithfulTraceAndStableFiniteness` | EXACT | EXACT | literal | unconditional | - | NO | both the general finite index set and the M_k form |
+| RE.07 | lem:faithfultrace | (2) a unital C*-algebra with a faithful tracial state is stably finite: for every k ≥ 1, every isometry in M_k(A) is a unitary | `ManuscriptExactWrappers.manuscriptFaithfulTraceAndStableFiniteness` | EXACT | EXACT | literal | unconditional | - | NO | RE-READ 2026-08-16: the printed clause was narrowed from an arbitrary nonempty finite index set to M_k, so Lean is now strictly stronger than the print -- it proves both forms |
 | RE.08 | lem:faithfultrace | proof (1): right translations commute with C*_red; τ(x*x) = 0 gives xδ_e = 0, hence xδ_g = 0 for all g, and the δ_g are total | `ReducedGroupCStarTrace.canonicalFaithfulTracialState` | EXACT | EXACT | literal | unconditional | - | NO | - |
 | RE.09 | lem:faithfultrace | proof (2): τ_k is a faithful trace on M_k(A), and v*v = 1 makes y = 1 − vv* a projection with τ_k(y) = 0, so y = 0 | `FaithfulTracialState.matrix_mul_star_eq_one_of_star_mul_eq_one` | EXACT | EXACT | literal | unconditional | - | NO | - |
 | SO.01 | thm:witnesssofic | Theorem E: W is finitely generated, sofic, hence hyperlinear, and not MF | `NonMFImpact.witness_sofic_hyperlinear_nonMF` | EXACT | EXACT | literal | unconditional | - | NO | - |
 | SO.02 | thm:witnesssofic | the image of ᾱ has finite index (at most eight, by parity classes of the lattice), so every telescope level is commensurable with B | `LiteralBaseDoublingIndex.conjD_range_finiteIndex` | EXACT | EXACT | literal | unconditional | - | NO | supplies the `FiniteIndex` instance consumed by `isSofic_ambient` |
 | SO.03 | thm:witnesssofic | the stable letter conjugates B onto ᾱ(Γ̄), so all of V commensurates B; orbit–stabilizer makes every Γ̄_n-orbit in X finite | `MappingTelescopeFiniteOrbits.finite_verticalLevel_orbit` | EXACT | EXACT | literal | unconditional | - | NO | - |
-| SO.04 | thm:witnesssofic | a finite subset of ClLamp(X) ⋊ T has T-coordinates in one level and lamp coordinates with finite orbits, so it lies in L ⋊ Γ̄_n with L finite invariant | `SoficMarkedCompression.isSofic_lamp_telescope` | EXACT | EXACT | literal | unconditional | - | NO | via the local finite-kernel criterion |
-| SO.05 | thm:witnesssofic | L ⋊ Γ̄_n is sofic (finite-by-sofic) and soficity is local over finite subsets, so ClLamp(X) ⋊ T is sofic | `SoficMarkedCompression.isSofic_lamp_telescope` | EXACT | EXACT | literal | unconditional | - | NO | - |
-| SO.06 | thm:witnesssofic | reassociating gives W ≅ (ClLamp(X) ⋊ T) ⋊ ℤ | `SemidirectAssoc.assocEquiv` | EXACT | EXACT | literal | unconditional | - | NO | - |
+| SO.04 | thm:witnesssofic | a finite subset of Cl(X) ⋊ T has T-coordinates in one level and lamp coordinates with finite orbits, so it lies in L ⋊ Γ̄_n with L finite invariant | `SoficMarkedCompression.isSofic_lamp_telescope` | EXACT | EXACT | literal | unconditional | - | NO | via the local finite-kernel criterion |
+| SO.05 | thm:witnesssofic | L ⋊ Γ̄_n is sofic (finite-by-sofic) and soficity is local over finite subsets, so Cl(X) ⋊ T is sofic | `SoficMarkedCompression.isSofic_lamp_telescope` | EXACT | EXACT | literal | unconditional | - | NO | - |
+| SO.06 | thm:witnesssofic | reassociating gives W ≅ (Cl(X) ⋊ T) ⋊ ℤ | `SemidirectAssoc.assocEquiv` | EXACT | EXACT | literal | unconditional | - | NO | - |
 | SO.07 | thm:witnesssofic | a split extension of a sofic group by ℤ is sofic: truncate levels to ℤ/N, induce the kernel's approximations, and the wrap-around boundary occupies at most 2·abs(k)/N of the levels | `SoficIntegerExtension.isSofic_int_semidirectProduct`; `SoficIntegerExtension.card_badLevels_le` | EXACT | EXACT | literal | unconditional | ElekSzabo | NO | the printed 2·abs(k)/N estimate is proved internally, not quoted |
 | SO.08 | thm:witnesssofic | Γ̄ is sofic: its six generators lie in GL₄(ℤ) and the integral subgroup is residually finite through congruence quotients | `ExplicitIntegralLinearModel.gammaBar_isSofic`; `ExplicitIntegralLinearModel.gammaBar_residuallyFinite` | EXACT | EXACT | literal | unconditional | - | NO | - |
 | SO.09 | thm:witnesssofic | E → W is surjective: the image contains V, the root lamp, and hence every lamp by transitivity | `LiteralNonMFLinearWitness.witnessGroup_finitelyGenerated` | EXACT | EXACT | literal | unconditional | - | NO | - |
@@ -854,10 +929,10 @@ everywhere: the TeX is the specification and does not move).
 | ES.04 | thm:Esofic | the same, with hyperlinear in place of sofic | `LiteralSoficAssembly.markedGroup_finitelyPresented_hyperlinear_nonMF` | EXACT | EXACT | literal | unconditional | - | NO | - |
 | ES.05 | thm:Esofic | E is sofic and not LEF, in particular not residually finite | `LiteralSoficAssembly.markedGroup_sofic_not_isLEF_unconditional` | EXACT | EXACT | literal | unconditional | - | NO | the printed reason is that an LEF group is a marked limit of finite groups and `thm:markedclosed` closes the MF locus; the Lean route is `markedGroup_not_isLEF` |
 | ES.06 | thm:Esofic | the kernel of the stable-letter exponent is locally residually finite, hence LEF, hence sofic | `LiteralSoficAssembly.markedGroup_isSofic` | UNDER-SPECIFIED | UNDER-SPECIFIED | literal | unconditional | - | NO | the printed sentence is a route, not a determinate step: the formal proof runs the block-Clifford window tower rather than a literal locally-residually-finite argument, so there is nothing here to bind step for step |
-| SO.11 | p:E-extension | W fits in 1 → ClLamp(X) → W → V → 1 with MF kernel and quotient but non-MF total | `LiteralWitnessConsequences.literalWitness_locallyFiniteKernel_nonMF` | EXACT | EXACT | literal | unconditional | - | NO | - |
+| SO.11 | p:E-extension | W fits in 1 → Cl(X) → W → Σ → 1 with MF kernel and quotient but non-MF total | `LiteralWitnessConsequences.literalWitness_locallyFiniteKernel_nonMF` | EXACT | EXACT | literal | unconditional | - | NO | - |
 | SO.12 | p:E-extension | the lamp kernel is locally finite, LEF, sofic and MF | `CliffordLamp.isLocallyFiniteGroup_cliffordLamp`; `CliffordLamp.isLEF_cliffordLamp`; `CliffordLamp.isSofic_cliffordLamp`; `CliffordLamp.isOperatorMF_cliffordLamp` | EXACT | EXACT | literal | unconditional | - | NO | - |
 | SO.13 | p:E-extension | V is the subgroup of GL₄(ℚ) generated by Γ̄ and D, with telescope levels D^{-n}Γ̄D^n and determinant giving the ℤ-coordinate; it is residually finite via odd-modulus congruence reductions, hence MF | `WitnessVertical.vertical_isOperatorMF` | EXACT | EXACT | literal | unconditional | Malcev | NO | Mal'cev is cited only for comparison; the reduction is proved internally |
-| SO.14 | p:E-zext | W → ℤ has kernel ClLamp(X) ⋊ T, which is LEF hence MF; so W is an extension of an LEF group by ℤ and is not MF | `LiteralLEFExtension.literalWitness_LEFKernel_integerExtension_nonMF` | EXACT | EXACT | literal | unconditional | - | NO | - |
+| SO.14 | p:E-zext | W → ℤ has kernel Cl(X) ⋊ T, which is LEF hence MF; so W is an extension of an LEF group by ℤ and is not MF | `LiteralLEFExtension.literalWitness_LEFKernel_integerExtension_nonMF` | EXACT | EXACT | literal | unconditional | - | NO | - |
 | SO.14b | p:E-zext | soficity is preserved by an extension with amenable quotient | `SoficByAmenablePermanence.manuscriptSoficOfSoficKerOfAmenableQuotient` | EXACT | EXACT | literal | unconditional | - | NO | the Elek--Szabo permanence the sentence cites, now in-repo rather than a citation |
 | SO.15 | p:E-zext | soficity is preserved by every extension with amenable quotient | - | MISSING | MISSING | - | literature-input | ElekSzabo | NO | only the ℤ case is formalized (SO.07) |
 | SO.16 | p:E-exact | C*_red(W) is exact, has a faithful tracial state, is stably finite and is not MF | `LiteralWitnessConsequences.literalWitness_reducedGroupCStar_stablyFinite_nonMF` | MISMATCH | MISSING | literal | literature-input | GHW, KWPermanence, KWExact | NO | everything except exactness is formal; the TeX says the library has no definition of exact C*-algebra |
@@ -933,9 +1008,9 @@ everywhere: the TeX is the specification and does not move).
 | FS.17 | app:finite-stage | applying A_n − 1 gives ‖(A_n−1)T_nξ_n‖₂² ≤ (qM + 2qM + 2q^{1/2})² ≤ 18q²M² + 16q ≤ ε | `KazhdanAsymptoticCommutant.transport_of_leakage` | EXACT | EXACT | literal | unconditional | - | NO | the Lean bound is `(2q² + 16q²)·mass + 16q·card`, which is the same 18q²M² + 16q after normalization |
 | FS.18 | app:finite-stage | T_nξ_n is the vector of U_n(s)x_nU_n(s)*, proving the convergence with an explicit rate in κ, \| S \| , M and the defects | `KazhdanAsymptoticCommutant.transport` | EXACT | EXACT | literal | unconditional | - | NO | - |
 | MC.01 | p:appC-construction | the universe-relative maximal group C*-algebra: the closed *-subalgebra generated by the diagonal copy of H in the bounded product of all its nontrivial unitary representations on 𝔘-small unital C*-algebras | `MaximalGroupCStar` | EXACT | EXACT | literal | unconditional | - | NO | - |
-| MC.02 | prop:maximal-cstar | h ↦ u_h is injective, and every ρ : H → U(B) extends uniquely to a unital *-homomorphism | `manuscriptUniverseRelativeMaximalGroupCStar` | EXACT | EXACT | literal | unconditional | - | NO | universe-polymorphic in H at the stated universe |
+| MC.02 | prop:maximal-cstar | h ↦ u_h is injective, and for every unital C*-algebra B every ρ : H → U(B) extends uniquely to a unital *-homomorphism | `manuscriptUniverseRelativeMaximalGroupCStar` | MISMATCH | EXACT | literal | unconditional | - | NO | RE-READ 2026-08-16, downgraded from EXACT.  This revision deleted the "𝔘-small" qualifier on the target, so the printed universal property now quantifies over *every* unital C*-algebra while the Lean statement reads `∀ (B : Type u)` at the same universe as H; the surviving parenthesis after the proposition explains the *construction* device (a set of representations rather than a proper class) and not the quantifier over B.  Universe-polymorphic in H at the stated universe, as before |
 | MC.03 | p:appC-universal | for a nontrivial target, projection to its coordinate gives the extension; density gives uniqueness; the left-regular coordinate proves injectivity | `maximalGroupCStar_existsUnique_lift`; `maximalGroupCStarUnitaryHom_injective` | EXACT | EXACT | literal | unconditional | - | NO | - |
-| MC.04 | prop:proper-isometry | a projection p and unitary u with upu* absorbing p on both sides and upu* ≠ p give a non-unitary isometry | `ProperProjectionCompression.isometry_not_isUnit` | EXACT | EXACT | literal | unconditional | - | NO | the structure fields are exactly the printed hypotheses |
+| MC.04 | prop:proper-isometry | a projection p and unitary u with upu* absorbing p on both sides and upu* ≠ p give a non-unitary isometry | `ProperProjectionCompression.isometry_not_isUnit` | EXACT | EXACT | literal | unconditional | - | NO | the structure fields are exactly the printed hypotheses.  RE-READ 2026-08-16: the print dropped its own parenthesis "(a unital star ring suffices)", so Lean is now the more general statement -- `ProperProjectionCompression` is defined over `[Ring A] [StarRing A]` and never uses the C*-structure |
 | MC.05 | prop:proper-isometry | consequently A is not stably finite | `ProperProjectionCompression.not_isStablyFiniteRing` | EXACT | EXACT | literal | unconditional | - | NO | - |
 | MC.06 | prop:proper-isometry | and carries no faithful tracial state | `ProperProjectionCompression.no_faithfulTracialState` | EXACT | EXACT | literal | unconditional | - | NO | - |
 | MC.06b | p:appC-separate | the maximal and reduced algebras separate already at the level of finiteness, and the algebraic mechanism is machine-checked in full | `ProperProjectionCompression.isometry_not_isUnit`; `ProperProjectionCompression.not_isStablyFiniteRing` | EXACT | EXACT | literal | unconditional | - | NO | - |
