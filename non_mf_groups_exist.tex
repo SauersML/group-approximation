@@ -320,15 +320,18 @@ property~\textup{(T)}.  The group $E$ surjects onto $\mathbb Z$, by
 sending $t$ to $1$ and every other generator to $0$, so $E$ itself does
 not have property~\textup{(T)}.
 
-Two consequences deserve mention here.  The reduced group
+Three consequences deserve mention here.  The reduced group
 $C^*$-algebra $\Cred(E)$ is separable and stably finite but not MF
 (Theorem~\ref{thm:D}).  The Clifford quotient $W$ used to prove $w\ne1$
 is itself finitely generated, sofic and not MF, so neither soficity nor
-hyperlinearity implies the MF property (Theorem~\ref{thm:E}).  The
+hyperlinearity implies the MF property (Theorem~\ref{thm:E}); $E$
+itself is sofic as well, by an argument owing nothing to the rest of
+this paper, so the separation is already witnessed by a finitely
+presented group (Theorem~\ref{thm:Esofic}).  The
 quotient $E/\langle w\rangle$ is also not MF, so $\{1,w\}$ is a proper
-subgroup of the MF radical of $E$ (Theorem~\ref{thm:signfree}); the
-operator-norm method does not by itself decide soficity of $E$
-(Section~\ref{sec:limits}).
+subgroup of the MF radical of $E$ (Theorem~\ref{thm:signfree}).  The
+operator-norm method of this paper decides soficity for neither group
+on its own (Section~\ref{sec:limits}).
 
 \subsection*{Relation to prior work}
 
@@ -473,8 +476,8 @@ itself embeds.  For $E$ both fail, and for the same reason.
 A Lean~4 development accompanies the paper\ifanonymous, supplied with this
 submission as supplementary material\else, at
 \href{\coderepository}{\nolinkurl{\coderepositoryname}}\fi.
-It proves Theorems~\ref{thm:A}, \ref{thm:signfree}, \ref{thm:D}
-and~\ref{thm:E}, the forty-one-relator presentation of
+It proves Theorems~\ref{thm:A}, \ref{thm:signfree}, \ref{thm:D},
+\ref{thm:E} and~\ref{thm:Esofic}, the forty-one-relator presentation of
 Definition~\ref{def:E}, and the finite-stage form of the transport
 theorem of Section~\ref{app:finite-stage}; the correspondence between
 numbered statements and declarations is recorded there.  Results quoted
@@ -814,7 +817,7 @@ $\delta$ and $I$, so no such data exist and the conclusion holds.
 
 \begin{remark}[the finite-stage proof]\label{rem:finite-stage}
 The ultrafilter gives no rate.  Section~\ref{app:finite-stage}
-proves the theorem a second time, at each single coordinate $n$.
+proves the theorem a second time, at finite stages.
 There, an explicit almost-fixed spectral subspace of the averaged
 adjoint action replaces that projection, and the equal-rank reversal
 estimate replaces finiteness of $B_\omega$.  Conditional on the robust
@@ -834,15 +837,16 @@ $w$ equals $-1$ and each block has its own normalized trace.
 
 The corner is what turns the conclusion of
 Theorem~\ref{thm:kazhdan-transport} into an obstruction.  That theorem
-bounds a commutator in normalized Hilbert--Schmidt norm, and padding a
-matrix model with an identity block leaves every operator-norm quantity
-unchanged while sending all normalized Hilbert--Schmidt distances to
-zero (Section~\ref{sec:limits}).  Compressing to the corner changes the
-Hilbert--Schmidt scale and not the approximation norm: the operator norm
-on $q_nM_{d_n}(\C)q_n$ is the restriction of the operator norm, while
-the trace is renormalized on the corner, so
-$\hsnorm{1-(-1)}=2$ there for the corner's own normalized trace,
-however small the ratio $r_n/d_n$ becomes.
+bounds a commutator in normalized Hilbert--Schmidt norm, and such a
+bound is by itself worthless: padding an asymptotic representation with
+an identity block leaves every operator-norm quantity unchanged while
+sending all normalized Hilbert--Schmidt distances to zero
+(Section~\ref{sec:limits}).  Passing to the corner $q_nM_{d_n}(\C)q_n$
+removes that slack.  The operator norm there is the restriction of the
+operator norm, so the approximation hypotheses survive; but the trace is
+the corner's own normalized trace $\tr_{r_n}$, not the restriction of
+$\tr_{d_n}$.  Against $\tr_{r_n}$ one has
+$\lVert1-(-1)\rVert_{2,\tr_{r_n}}=2$ however small $r_n/d_n$ becomes.
 
 \begin{theorem}[central involution obstruction]\label{thm:sign-criterion}
 Let $H$ and $\Gamma$ be countable groups, let $\Gamma$ have
@@ -1671,10 +1675,50 @@ whose quotient is residually finite, shows that they are not closed
 under extensions either (Section~\ref{sec:consequences}).
 
 The kernel of $E\to W$ is a free group of infinite rank, so soficity
-does not pass from $W$ back to $E$.  Section~\ref{sec:limits} explains
-why the operator-norm method decides neither soficity nor
-hyperlinearity for either group, and records the separate argument that
-$E$ is sofic.
+does not pass from $W$ back to $E$.  The operator-norm method of this
+paper decides soficity for neither group: its adjoint spectral
+estimates need operator-norm multiplicative control, which permutation
+models do not supply (Section~\ref{sec:limits}).  A separate argument
+does settle it for $E$, and settles it in the stronger direction.
+
+\begin{mainthm}[a finitely presented sofic non-MF group]\label{thm:Esofic}
+The group $E$ of Definition~\ref{def:E} is sofic, hence hyperlinear.
+Consequently $E$ is itself a finitely presented sofic group that is not
+MF, and a finitely presented hyperlinear group that is not MF\@.  It is
+also sofic and not LEF, and in particular not residually finite.
+\leanverified{Sofic/LiteralSoficAssembly}{GroupApproximation.LiteralSoficAssembly.markedGroup_isSofic}
+\leanverified{Sofic/LiteralSoficAssembly}{GroupApproximation.LiteralSoficAssembly.markedGroup_finitelyPresented_sofic_nonMF}
+\leanverified{Sofic/LiteralSoficAssembly}{GroupApproximation.LiteralSoficAssembly.markedGroup_finitelyPresented_hyperlinear_nonMF}
+\leanverified{Sofic/LiteralSoficAssembly}{GroupApproximation.LiteralSoficAssembly.markedGroup_sofic_not_isLEF_unconditional}
+\end{mainthm}
+
+The argument is independent of everything else in this paper and uses
+nothing about the MF property.  The kernel $E_0$ of the stable-letter
+exponent $E\to\Z$ is locally residually finite: each of its finite
+subsets lies in a subgroup generated by one telescope level of the base
+together with finitely many blocks of the lamp kernel, the lamp blocks
+are finite because the doubling map has finite index, and a
+finite-by-residually-finite group of that shape is residually finite.
+Hence $E_0$ is LEF and therefore sofic, and $E$ is its split extension
+by $\Z$, which preserves soficity exactly as in the proof of
+Theorem~\ref{thm:E}.  Soficity implies hyperlinearity; failure of MF is
+Theorem~\ref{thm:A}; and $E$ is not LEF because an LEF group is a
+marked limit of finite groups, which Theorem~\ref{thm:markedclosed}
+excludes for a non-MF group.  The full argument, including the
+block-by-block residual finiteness, is carried out in the accompanying
+development, where the two soficity routes meet the non-MF endpoint in
+a single premise-free statement.
+
+Theorem~\ref{thm:Esofic} subsumes the finite-generation half of
+Theorem~\ref{thm:E}: a finitely presented group is finitely generated,
+so $E$ already witnesses that neither soficity nor hyperlinearity
+implies MF\@.  Theorem~\ref{thm:E} is kept because $W$ is not an
+alternative example but the instrument: it is the Clifford quotient
+that proves $w\ne1$ in the first place, its soficity is proved by a
+short direct argument rather than by the block-tower analysis above,
+and it is the group whose locally finite kernel and residually finite
+quotient give the permanence counterexamples of
+Section~\ref{sec:consequences}, which $E$ does not supply.
 
 \section{Transport at every scale}\label{supp:transport-variants}
 
@@ -2875,8 +2919,9 @@ and it is what the proof of Theorem~\ref{thm:kazhdan-transport}
 establishes.  That proof builds, from the Kazhdan gap alone, the
 projection $P$ of $K_\omega$ onto $\operatorname{Fix}\pi(L)$; identifies
 the range of $Q=\pi(s)P\pi(s)^{*}$ with $\operatorname{Fix}\pi(sLs^{-1})$;
-observes $P\le Q$; and concludes $Q=P$ because the norm ultraproduct
-contains no proper isometry.  None of that involves the sequence being
+observes $P\le Q$; and concludes $Q=P$ from
+Lemmas~\ref{lem:finitecompare} and~\ref{lem:ultrafinite}, the norm
+ultraproduct being finite.  None of that involves the sequence being
 transported, and none of it is disturbed by the change of inner
 product: the argument runs at the weight $w_n=1$ exactly as at
 $w_n=d_n$, by the proof of Theorem~\ref{thm:transport-variants}(1).
@@ -3604,34 +3649,33 @@ trace $2$-norm, with all its remaining hypotheses unchanged.
 The finite-normal criterion has a precise torsion limitation: every finite
 subgroup of a torsion-free group is trivial.
 \leanverified{Sofic/TorsionFreeFiniteNormalLimit}{GroupApproximation.finiteSubgroup_eq_bot_of_isMulTorsionFree}
-By Theorem~\ref{thm:normal-kazhdan}, a normal property-\textup{(T)}
-subgroup of $N_{\mathrm{comp}}$ obstructs homomorphisms to $\U(\mathcal Q)$
-without any torsion.  What
-remains for a torsion-free example is group-theoretic: a torsion-free
-finitely presented group whose subgroup $N_{\mathrm{comp}}$ contains a normal
-subgroup with property~\textup{(T)}.
+Theorem~\ref{thm:normal-kazhdan} removes it: a normal
+property-\textup{(T)} subgroup of $N_{\mathrm{comp}}$ obstructs
+homomorphisms to $\U(\mathcal Q)$ with no torsion anywhere.  What remains
+for a torsion-free example is group-theoretic --- a torsion-free finitely
+presented group whose subgroup $N_{\mathrm{comp}}$ contains a normal
+subgroup with property~\textup{(T)} --- and
 Remark~\ref{rem:ff-realization} records a small-cancellation route to
 such a group, over the torsion-free finitely presented Kazhdan group
 of \cite{FFF}, which removed the analogous torsion obstacle for
 nonsoficity.
 \begin{enumerate}
 \item What is $\operatorname{Rad}_{\mathrm{MF}}(E)$?  It properly
-contains $\{1,w\}$ by Theorem~\ref{thm:signfree}.  Applying
-Corollary~\ref{cor:collapsequot} to $E/\langle w\rangle$ with the
-witness of that proof reduces the computation to the quotient by the
-resulting collapse defect $D$, and by
-Corollary~\ref{cor:exactradical} identifies the radical with the
-preimage of $D$ as soon as that quotient is MF\@.  Whether it is MF
-is open: a faithful homomorphism from that quotient to $\U(\mathcal Q)$ would have
-to evade both the sign collapse of Theorem~\ref{thm:A} and the
-commuting-orbit collapse.  Whatever part of the compression defect
-$\mathfrak D(E,\iota(\mathcal B))$ survives in that quotient,
-Theorem~\ref{thm:B} sends it to the identity under every
-finite-dimensional linear representation, and hence under every
-homomorphism to a finite group; so no finite quotient and no
-finite-dimensional representation separates the surviving defect, and
-any faithful corona representation of the quotient must detect it by
-genuinely infinite-dimensional means.
+contains $\{1,w\}$ by Theorem~\ref{thm:signfree}, and two reductions
+apply: Corollary~\ref{cor:collapsequot}, applied to $E/\langle w\rangle$
+with the witness of that proof, reduces the computation to the quotient
+by the resulting collapse defect $D$, and
+Corollary~\ref{cor:exactradical} then identifies the radical with the
+preimage of $D$ as soon as that quotient is MF\@.  Whether it is MF is
+open: a faithful homomorphism from that quotient to $\U(\mathcal Q)$
+could exist only if both the sign collapse of Theorem~\ref{thm:A} and
+the commuting-orbit collapse failed to apply to it.  By
+Theorem~\ref{thm:B}, whatever part of the compression defect
+$\mathfrak D(E,\iota(\mathcal B))$ survives in that quotient lies in the
+kernel of every finite-dimensional linear representation, and hence in
+the kernel of every homomorphism to a finite group; such a homomorphism
+would have to be injective on a subgroup that all of them send to the
+identity.
 \item Is there a torsion-free finitely presented non-MF group?  The
 analytic obstruction no longer requires torsion
 (Theorem~\ref{thm:normal-kazhdan}); the remaining input is
@@ -3673,18 +3717,14 @@ non-MF group is proved here.
 By Theorem~\ref{thm:saturation}, a group that equals its own collapse
 defect admits no nontrivial homomorphism to any countable MF group at
 all.
-\item Neither soficity nor hyperlinearity of $E$ is decided by the
-results above: the adjoint spectral estimates require operator-norm
-multiplicative control, which permutation and Hilbert--Schmidt models do
-not supply.  Both do hold, by an argument independent of everything
-proved here.  The kernel of the stable-letter exponent is locally
-residually finite --- each of its finite subsets lies in a subgroup
-generated by one telescope level together with finitely many blocks of
-the lamp kernel, and that subgroup is residually finite --- hence it is
-LEF and therefore sofic, and $E$ is its split extension by $\mathbb Z$,
-which preserves soficity as in the proof of Theorem~\ref{thm:E}.  That
-argument is carried out in full in the accompanying Lean~4 development
-and is not used elsewhere in this paper.  What the operator-norm method
+\item Soficity and hyperlinearity of $E$ are not decided by the
+operator-norm method: the adjoint spectral estimates require
+operator-norm multiplicative control, which permutation and
+Hilbert--Schmidt models do not supply.  This is a limitation of the
+method and not an open question about $E$.  Both properties hold, by
+the independent argument of Theorem~\ref{thm:Esofic}, so $E$ is an
+explicit finitely presented sofic --- indeed hyperlinear --- group that
+is not MF\@.  What the operator-norm method
 does leave open for $E$ is the size of its MF radical, item~(1).
 \item Does MF imply hyperlinearity?  A faithful embedding into a matrix quotient need not make any coordinate trace faithful, so the defining
 MF representation does not immediately give a hyperlinear model.  This
@@ -3781,7 +3821,7 @@ not circular.
 \section{The finite-stage transport proof}\label{app:finite-stage}
 
 This appendix proves Theorem~\ref{thm:kazhdan-transport} a second
-time, at each single coordinate $n$.  Conditional on the robust
+time, at finite stages.  Conditional on the robust
 spectral-gap input of~(i), every estimate below is an explicit
 inequality in $\kappa$, $|S|$, the uniform bound on $(x_n)$, and the
 multiplicative defects of $U_n$.  That input is the one place where a
