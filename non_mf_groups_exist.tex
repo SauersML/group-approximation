@@ -144,8 +144,7 @@ problem subsequently supplied abstract stably finite non-MF algebras
 \cite{MIPRE,FGH}.  No countable group was known whose reduced or maximal group
 $C^*$-algebra fails to be MF \cite{Shulman}.
 
-These questions belong to a program of finitary
-approximation.  In his 2018 ICM address, Thom asked for which Schatten
+In his 2018 ICM address, Thom asked for which Schatten
 $p$-norms there exist non-approximable groups \cite[Question~3.11]{Th}.
 The case $p=2$ was settled by De~Chiffre--Glebsky--Lubotzky--Thom
 \cite{DGLT}, the cases $1<p<\infty$ by Lubotzky--Oppenheim \cite{LuO},
@@ -155,13 +154,14 @@ the Hamming metric (soficity), the Hilbert--Schmidt norm
 the first nonsofic group was constructed by OpenAI \cite{OAI},
 Fournier-Facio then gave a torsion-free example \cite{FFF}, and
 Kun--Thom developed further wreath-product examples \cite{KT}.
-One-sided conjugation of a property-\textup{(T)} subgroup into itself
-drives those arguments and also starts this one.  Soficity concerns
-permutations in the Hamming metric and MF concerns unitaries in
-operator norm, so a different rigidity argument is needed; we obtain it
-from a one-sided transport theorem for the Kazhdan fixed spaces of the
-adjoint actions.  Of the three problems, only hyperlinearity remains
-open.
+Our construction also begins with a relation
+$t\Gamma t^{-1}\subseteq\Gamma$ for a property-\textup{(T)} subgroup
+$\Gamma$, as those arguments do.  Soficity concerns permutations in the
+Hamming metric and MF concerns unitaries in operator norm, so the
+rigidity input is a different one: we prove that conjugation by $t$
+preserves the Hilbert--Schmidt asymptotic commutant of $\Gamma$ in
+every operator-norm matrix model.  Of the three problems, only
+hyperlinearity remains open.
 In the language of approximate representations, a countable discrete
 group $G$ is \emph{MF} if, for every finite subset $F\subseteq G$ and
 every $\varepsilon>0$, there is a unitary matrix model
@@ -208,8 +208,8 @@ be strictly increasing.
 \leanverified{Sofic/ManuscriptExactWrappers}{GroupApproximation.ManuscriptExactWrappers.manuscriptMFDefinitionEquivalences}
 \end{proposition}
 
-The proof is deferred, together with the precise formulation of the
-operator-norm local models, to Section~\ref{app:equivalences}.
+Section~\ref{app:equivalences} defines the operator-norm local models
+and proves the proposition.
 
 Hereafter ``MF'' means this property: the operator-norm notion of
 Carri\'on--Dadarlat--Eckhardt, in the form used by Shulman.  Stronger
