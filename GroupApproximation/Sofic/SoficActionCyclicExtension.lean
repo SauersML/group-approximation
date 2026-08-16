@@ -76,7 +76,6 @@ def ActionCompatible : Prop :=
 
 variable {φ}
 
-set_option maxHeartbeats 4000000 in
 /-- **Theorem 12.1.**  Soficity of an action is stable under adjoining a
 compatible cyclic normalizer. -/
 theorem isSoficAction_semidirect [DecidableEq X]
