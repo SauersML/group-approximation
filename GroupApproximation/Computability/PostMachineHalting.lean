@@ -248,6 +248,190 @@ theorem hstep_sound {R : RewriteSystem (Letter Γ (HState Λ))} (hR : HPresents 
       rw [hq] at h
       exact absurd h (by simp)
 
+/-! ## Completeness
+
+A rewriting step out of a configuration word is a step of the extended machine.
+The machine rules are handled by `step_complete_of_rule`; the four cleanup
+shapes are done here, and each one is pinned the same way --- the state letter
+of the rule has to be the state letter of the word, which fixes the state, and
+the marker in the rule then fixes how much tape is left. -/
+
+theorem hstep_complete {R : RewriteSystem (Letter Γ (HState Λ))}
+    (hR : HPresents M R) (c : Cfg Γ (HState Λ)) (w : List (Letter Γ (HState Λ)))
+    (hst : Step R (encode c) w) : ∃ d, hstep M c = some d ∧ w = encode d := by
+  generalize hgen : encode c = z at hst
+  cases hst with
+  | intro u v l r hmem =>
+    rcases (hR.mem_iff l r).mp hmem with hrule | hrule
+    · obtain ⟨d, hd, hw⟩ := step_complete_of_rule hrule hgen
+      exact ⟨d, hstep_of_step hd, hw⟩
+    · obtain ⟨hu, hv⟩ := stateFree_context (c := c) hgen.symm (countP_cleanup_lhs hrule)
+      rcases hrule with ⟨q, a, hM, rfl, rfl⟩ | ⟨a, x, rfl, rfl⟩ | ⟨y, a, rfl, rfl⟩ |
+        ⟨a, rfl, rfl⟩
+      · -- the machine has stopped: hand over to the cleanup state
+        have hsplit : u ++ (Letter.state (HState.run q) :: (Letter.tape a :: v)) =
+            encode c := by simpa using hgen.symm
+        obtain ⟨h1, h2, h3⟩ :=
+          eq_of_stateFree_prefix hu (stateFree_pre c) (hsplit.trans (encode_eq c))
+        rw [post] at h3
+        obtain ⟨h4, h5⟩ := List.cons.inj h3
+        have ha : a = c.head := by injection h4
+        have hhalt : step (liftM M) c = none := by
+          rw [step_eq_none_iff, ← h2, liftM_run, ← ha, hM]
+          rfl
+        refine ⟨⟨.cleanup, c.left, c.head, c.right⟩, ?_, ?_⟩
+        · rw [hstep_of_halt hhalt, cleanupStep, ← h2]
+        · rw [h1, h5, ha]; simp [encode, pre, post]
+      · -- eat one cell on the right
+        have hsplit : u ++ (Letter.state (HState.cleanup : HState Λ) ::
+            (Letter.tape a :: Letter.tape x :: v)) = encode c := by simpa using hgen.symm
+        obtain ⟨h1, h2, h3⟩ :=
+          eq_of_stateFree_prefix hu (stateFree_pre c) (hsplit.trans (encode_eq c))
+        rw [post] at h3
+        obtain ⟨h4, h5⟩ := List.cons.inj h3
+        have ha : a = c.head := by injection h4
+        rcases post_eq_cons h5 with ⟨_, hz, _⟩ | ⟨x', R', hcr, hz, hv'⟩
+        · exact absurd hz (by simp)
+        · have hx : x = x' := by injection hz
+          have hhalt : step (liftM M) c = none := by
+            rw [step_eq_none_iff, ← h2]; rfl
+          refine ⟨⟨.cleanup, c.left, x', R'⟩, ?_, ?_⟩
+          · rw [hstep_of_halt hhalt, cleanupStep, ← h2, hcr]
+          · rw [h1, hv', hx]; simp [encode, pre, post]
+      · -- eat one cell on the left; the marker says the right is exhausted
+        have hsplit : (u ++ [Letter.tape y]) ++
+            (Letter.state (HState.cleanup : HState Λ) ::
+              (Letter.tape a :: Letter.endR :: v)) = encode c := by
+          simpa [List.append_assoc] using hgen.symm
+        obtain ⟨h1, h2, h3⟩ :=
+          eq_of_stateFree_prefix (stateFree_snoc hu rfl) (stateFree_pre c)
+            (hsplit.trans (encode_eq c))
+        rw [post] at h3
+        obtain ⟨h4, h5⟩ := List.cons.inj h3
+        have ha : a = c.head := by injection h4
+        rcases post_eq_cons h5 with ⟨hcr, _, hv'⟩ | ⟨_, _, _, hz, _⟩
+        · rcases pre_eq_snoc h1 with ⟨_, hz', _⟩ | ⟨m, y', hu', hz', hcl⟩
+          · exact absurd hz' (by simp)
+          · have hy : y = y' := by injection hz'
+            have hhalt : step (liftM M) c = none := by
+              rw [step_eq_none_iff, ← h2]; rfl
+            refine ⟨⟨.cleanup, m.reverse, y', []⟩, ?_, ?_⟩
+            · rw [hstep_of_halt hhalt, cleanupStep, ← h2, hcr, hcl]
+            · rw [hu', hv', hy]; simp [encode, pre, post]
+        · exact absurd hz.symm (by simp)
+      · -- both markers adjacent: finish
+        have hsplit : (u ++ [Letter.endL]) ++
+            (Letter.state (HState.cleanup : HState Λ) ::
+              (Letter.tape a :: Letter.endR :: v)) = encode c := by
+          simpa [List.append_assoc] using hgen.symm
+        obtain ⟨h1, h2, h3⟩ :=
+          eq_of_stateFree_prefix (stateFree_snoc hu rfl) (stateFree_pre c)
+            (hsplit.trans (encode_eq c))
+        rw [post] at h3
+        obtain ⟨h4, h5⟩ := List.cons.inj h3
+        have ha : a = c.head := by injection h4
+        rcases post_eq_cons h5 with ⟨hcr, _, hv'⟩ | ⟨_, _, _, hz, _⟩
+        · rcases pre_eq_snoc h1 with ⟨hu', _, hcl⟩ | ⟨_, _, _, hz', _⟩
+          · have hhalt : step (liftM M) c = none := by
+              rw [step_eq_none_iff, ← h2]; rfl
+            refine ⟨doneCfg, ?_, ?_⟩
+            · rw [hstep_of_halt hhalt, cleanupStep, ← h2, hcr, hcl]
+            · rw [hu', hv']; simp [encode, pre, post, doneCfg]
+          · exact absurd hz' (by simp)
+        · exact absurd hz.symm (by simp)
+
+/-! ## Backward closure -/
+
+theorem hstep_closed_inv {R : RewriteSystem (Letter Γ (HState Λ))}
+    (hR : HPresents M R) (c : Cfg Γ (HState Λ)) (w : List (Letter Γ (HState Λ)))
+    (hst : Step R w (encode c)) : ∃ d, w = encode d := by
+  generalize hgen : encode c = z at hst
+  cases hst with
+  | intro u v l r hmem =>
+    rcases (hR.mem_iff l r).mp hmem with hrule | hrule
+    · exact step_closed_inv_of_rule hrule hgen
+    · obtain ⟨hu, hv⟩ := stateFree_context (c := c) hgen.symm (countP_cleanup_rhs hrule)
+      rcases hrule with ⟨q, a, hM, rfl, rfl⟩ | ⟨a, x, rfl, rfl⟩ | ⟨y, a, rfl, rfl⟩ |
+        ⟨a, rfl, rfl⟩
+      · have hsplit : u ++ (Letter.state (HState.cleanup : HState Λ) ::
+            (Letter.tape a :: v)) = encode c := by simpa using hgen.symm
+        obtain ⟨h1, _, h3⟩ :=
+          eq_of_stateFree_prefix hu (stateFree_pre c) (hsplit.trans (encode_eq c))
+        rw [post] at h3
+        obtain ⟨_, h5⟩ := List.cons.inj h3
+        exact ⟨⟨.run q, c.left, a, c.right⟩,
+          by rw [h1, h5]; simp [encode, pre, post]⟩
+      · have hsplit : u ++ (Letter.state (HState.cleanup : HState Λ) ::
+            (Letter.tape x :: v)) = encode c := by simpa using hgen.symm
+        obtain ⟨h1, _, h3⟩ :=
+          eq_of_stateFree_prefix hu (stateFree_pre c) (hsplit.trans (encode_eq c))
+        rw [post] at h3
+        obtain ⟨h4, h5⟩ := List.cons.inj h3
+        have hx : x = c.head := by injection h4
+        exact ⟨⟨.cleanup, c.left, a, x :: c.right⟩,
+          by rw [h1, h5, hx]; simp [encode, pre, post]⟩
+      · have hsplit : u ++ (Letter.state (HState.cleanup : HState Λ) ::
+            (Letter.tape y :: Letter.endR :: v)) = encode c := by simpa using hgen.symm
+        obtain ⟨h1, _, h3⟩ :=
+          eq_of_stateFree_prefix hu (stateFree_pre c) (hsplit.trans (encode_eq c))
+        rw [post] at h3
+        obtain ⟨h4, h5⟩ := List.cons.inj h3
+        have hy : y = c.head := by injection h4
+        rcases post_eq_cons h5 with ⟨hcr, _, hv'⟩ | ⟨_, _, _, hz, _⟩
+        · exact ⟨⟨.cleanup, c.head :: c.left, a, []⟩, by
+            rw [h1, hv', hy]; simp [encode, pre, post]⟩
+        · exact absurd hz.symm (by simp)
+      · have hsplit : (u ++ [Letter.endL]) ++
+            (Letter.state (HState.done : HState Λ) ::
+              (Letter.tape default :: Letter.endR :: v)) = encode c := by
+          simpa [List.append_assoc] using hgen.symm
+        obtain ⟨h1, _, h3⟩ :=
+          eq_of_stateFree_prefix (stateFree_snoc hu rfl) (stateFree_pre c)
+            (hsplit.trans (encode_eq c))
+        rw [post] at h3
+        obtain ⟨_, h5⟩ := List.cons.inj h3
+        rcases post_eq_cons h5 with ⟨_, _, hv'⟩ | ⟨_, _, _, hz, _⟩
+        · rcases pre_eq_snoc h1 with ⟨hu', _, _⟩ | ⟨_, _, _, hz', _⟩
+          · exact ⟨⟨.cleanup, [], a, []⟩, by
+              rw [hu', hv']; simp [encode, pre, post]⟩
+          · exact absurd hz' (by simp)
+        · exact absurd hz.symm (by simp)
+
+/-! ## The simulation, and the fixed final word -/
+
+/-- **The extended system simulates the extended machine.**  Adding the cleanup
+rules did not cost determinism on configuration words, so all four conditions
+still hold. -/
+def hsimulation {R : RewriteSystem (Letter Γ (HState Λ))} (hR : HPresents M R) :
+    SimulationOn (Letter Γ (HState Λ)) (Cfg Γ (HState Λ)) where
+  system := R
+  encode := encode
+  step := hstep M
+  encode_injective := encode_injective
+  step_sound := hstep_sound hR
+  step_complete := hstep_complete hR
+  step_closed_inv := hstep_closed_inv hR
+
+/-- The final word: four letters, independent of the machine, the input, and
+whatever the machine had written when it stopped. -/
+def finalWord : List (Letter Γ (HState Λ)) :=
+  [Letter.endL, Letter.state .done, Letter.tape default, Letter.endR]
+
+theorem encode_doneCfg : encode (doneCfg : Cfg Γ (HState Λ)) = finalWord := by
+  simp [encode, pre, post, doneCfg, finalWord]
+
+/-- **The word problem against a fixed word is the halting problem.**  For the
+extended system, `mk (encode c) = mk finalWord` says exactly that the extended
+machine run from `c` reaches the final configuration --- and it gets there
+precisely by stopping and then erasing.  The right-hand side no longer mentions
+`c`, the tape, or the machine. -/
+theorem mk_eq_finalWord_iff {R : RewriteSystem (Letter Γ (HState Λ))}
+    (hR : HPresents M R) (c : Cfg Γ (HState Λ)) :
+    StringRewriting.mk R (encode c) = StringRewriting.mk R finalWord ↔
+      Reach (hstep M) c doneCfg := by
+  rw [← encode_doneCfg]
+  exact (hsimulation hR).mk_eq_mk_iff_reach_of_halts (hstep_doneCfg M)
+
 end PostMachine
 end StringRewriting
 end GroupApproximation
