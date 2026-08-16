@@ -24,8 +24,13 @@ The two analytic bricks are already in the library: quantitative
 involution rounding (`ApproxInvolutionCorner`) and quantitative polar
 correction under a Gram-defect bound (`KazhdanCornerPolar`).
 
-**Status: statement-complete; the quantitative assembly is in progress.**
-This module is not yet imported by the library root.
+The quantitative schedule: on a test set closed under inverses, products
+and `g h⁻¹`, take the accuracy `e` below both `ε/(400 C⁴)` and
+`1/(1000 C⁴)`, where `C` bounds the model images.  Then the rounded
+projection sits within `9 e C` of the model unit, the corner Gram defect
+is at most `21 e C³` — under `1/2`, so polar correction fires — and both
+clauses come out at `400 e C⁴`, which is `≤ ε` for multiplicativity and
+`≤ 1/2` for separation, with a factor of two to spare on the latter.
 -/
 
 namespace GroupApproximation
@@ -724,6 +729,118 @@ theorem norm_inflate_le {p A : Matrix Y Y ℂ} {C : ℝ}
           hpn (norm_nonneg _) (by linarith)
     _ = C := by ring
 
+/-- Inflations of nearby elements are nearby: the difference is the
+corner of the difference, and the corner is a contraction. -/
+theorem norm_inflate_sub_inflate (p Z W : Matrix Y Y ℂ)
+    (hp : pᴴ = p) (hp2 : p * p = p) :
+    ‖inflate p Z - inflate p W‖ ≤ ‖Z - W‖ := by
+  have hpn : ‖p‖ ≤ 1 := norm_proj_le_one hp hp2
+  have hdiff : inflate p Z - inflate p W = p * (Z - W) * p := by
+    unfold inflate
+    noncomm_ring
+  rw [hdiff]
+  calc ‖p * (Z - W) * p‖ ≤ ‖p * (Z - W)‖ * ‖p‖ := Matrix.l2_opNorm_mul _ _
+    _ ≤ (‖p‖ * ‖Z - W‖) * ‖p‖ := by
+        gcongr
+        exact Matrix.l2_opNorm_mul _ _
+    _ ≤ (1 * ‖Z - W‖) * 1 :=
+        mul_le_mul (mul_le_mul_of_nonneg_right hpn (norm_nonneg _)) hpn
+          (norm_nonneg _) (by positivity)
+    _ = ‖Z - W‖ := by ring
+
+/-- **The rounded unit projection is close to the model unit.**  The
+star defect and the idempotent defect of the model unit together pin the
+rounded projection at distance `9 e C`. -/
+theorem norm_unitProjection_sub_le {M1 : Matrix Y Y ℂ} {e C : ℝ}
+    (hstar : ‖M1 - M1ᴴ‖ ≤ e) (hidem : ‖M1 * M1 - M1‖ ≤ e)
+    (hnorm : ‖M1‖ ≤ C) (he0 : 0 ≤ e) (he1 : e ≤ 1) (hC : 1 ≤ C) :
+    ‖unitProjection M1 - M1‖ ≤ 9 * e * C := by
+  set H := ApproxInvolutionCorner.hermitianPart M1 with hHdef
+  have hHM : ‖H - M1‖ ≤ e / 2 := by
+    have h1 : H - M1 = ((2 : ℂ)⁻¹) • (M1ᴴ - M1) := by
+      rw [hHdef]
+      unfold ApproxInvolutionCorner.hermitianPart
+      module
+    rw [h1, norm_smul, show ‖((2 : ℂ)⁻¹)‖ = 2⁻¹ from by norm_num,
+      show (M1ᴴ - M1 : Matrix Y Y ℂ) = -(M1 - M1ᴴ) from by abel, norm_neg]
+    linarith
+  have hHn : ‖H‖ ≤ C + e / 2 := by
+    calc ‖H‖ = ‖(H - M1) + M1‖ := by congr 1; abel
+      _ ≤ ‖H - M1‖ + ‖M1‖ := norm_add_le _ _
+      _ ≤ C + e / 2 := by linarith
+  have h1 : ‖H * (H - M1)‖ ≤ (C + e / 2) * (e / 2) :=
+    (Matrix.l2_opNorm_mul _ _).trans
+      (mul_le_mul hHn hHM (norm_nonneg _) (by linarith))
+  have h2 : ‖(H - M1) * M1‖ ≤ (e / 2) * C :=
+    (Matrix.l2_opNorm_mul _ _).trans
+      (mul_le_mul hHM hnorm (norm_nonneg _) (by linarith))
+  have h3 : ‖M1 - H‖ ≤ e / 2 := by
+    rw [show M1 - H = -(H - M1) from by abel, norm_neg]
+    exact hHM
+  have hHH : ‖H * H - H‖ ≤ 4 * e * C := by
+    have hsplit : H * H - H
+        = (H * (H - M1) + (H - M1) * M1) + (M1 * M1 - M1) + (M1 - H) := by
+      noncomm_ring
+    rw [hsplit]
+    calc ‖(H * (H - M1) + (H - M1) * M1) + (M1 * M1 - M1) + (M1 - H)‖
+        ≤ ‖(H * (H - M1) + (H - M1) * M1) + (M1 * M1 - M1)‖ + ‖M1 - H‖ :=
+          norm_add_le _ _
+      _ ≤ (‖H * (H - M1) + (H - M1) * M1‖ + ‖M1 * M1 - M1‖) + ‖M1 - H‖ := by
+          gcongr
+          exact norm_add_le _ _
+      _ ≤ ((‖H * (H - M1)‖ + ‖(H - M1) * M1‖) + ‖M1 * M1 - M1‖)
+            + ‖M1 - H‖ := by
+          gcongr
+          exact norm_add_le _ _
+      _ ≤ (((C + e / 2) * (e / 2) + (e / 2) * C) + e) + e / 2 := by gcongr
+      _ ≤ 4 * e * C := by nlinarith
+  calc ‖unitProjection M1 - M1‖
+      ≤ 2 * ‖H * H - H‖ + ‖M1 - M1ᴴ‖ / 2 := norm_unitProjection_sub M1
+    _ ≤ 2 * (4 * e * C) + e / 2 := by gcongr
+    _ ≤ 9 * e * C := by nlinarith
+
+/-- A unitary matrix is an operator-norm contraction. -/
+theorem norm_unitary_le_one {U : Matrix Y Y ℂ}
+    (hU : U ∈ Matrix.unitaryGroup Y ℂ) : ‖U‖ ≤ 1 := by
+  have h1 : Uᴴ * U = 1 := by
+    have h := Matrix.mem_unitaryGroup_iff'.mp hU
+    rwa [Matrix.star_eq_conjTranspose] at h
+  have hsq : ‖U‖ * ‖U‖ = ‖(1 : Matrix Y Y ℂ)‖ := by
+    rw [← Matrix.l2_opNorm_conjTranspose_mul_self, h1]
+  have hone : ‖(1 : Matrix Y Y ℂ)‖ ≤ 1 :=
+    norm_proj_le_one Matrix.conjTranspose_one (one_mul 1)
+  nlinarith [norm_nonneg U]
+
+/-- **The corner Gram defect of a model image**, assembled from the
+model's own multiplicativity, star-compatibility and norm bound. -/
+theorem corner_defect_le {p M1 A Ainv : Matrix Y Y ℂ} {e C : ℝ}
+    (hp : pᴴ = p) (hp2 : p * p = p)
+    (hA : ‖A‖ ≤ C) (hC : 1 ≤ C) (he0 : 0 ≤ e)
+    (hη : ‖p - M1‖ ≤ 9 * e * C)
+    (hδ₁ : ‖M1 * A - A‖ ≤ e)
+    (hstarA : ‖Ainv - Aᴴ‖ ≤ e)
+    (hmulA : ‖M1 - Ainv * A‖ ≤ e) :
+    ‖(p * A * p)ᴴ * (p * A * p) - p‖ ≤ 21 * e * C ^ 3 := by
+  have hC0 : (0 : ℝ) ≤ C := by linarith
+  have hδ₂ : ‖Aᴴ * A - M1‖ ≤ e * C + e := by
+    have hsplit : Aᴴ * A - M1 = (Aᴴ - Ainv) * A + (Ainv * A - M1) := by
+      noncomm_ring
+    rw [hsplit]
+    have h1 : ‖(Aᴴ - Ainv) * A‖ ≤ e * C := by
+      refine (Matrix.l2_opNorm_mul _ _).trans ?_
+      refine mul_le_mul ?_ hA (norm_nonneg _) (by linarith)
+      rw [show Aᴴ - Ainv = -(Ainv - Aᴴ) from by abel, norm_neg]
+      exact hstarA
+    have h2 : ‖Ainv * A - M1‖ ≤ e := by
+      rw [show Ainv * A - M1 = -(M1 - Ainv * A) from by abel, norm_neg]
+      exact hmulA
+    exact (norm_add_le _ _).trans (by linarith)
+  have hmain := corner_gram_bound (p := p) (A := A) (B₁ := M1)
+    (C := C) (η := 9 * e * C) (δ₁ := e) (δ₂ := e * C + e)
+    hp hp2 hA hC0 hη hδ₁ hδ₂
+  refine hmain.trans ?_
+  nlinarith [sq_nonneg C, sq_nonneg (C - 1), mul_nonneg he0 hC0]
+
 end Assembly
 
 /-- The normalized trace is additive on differences. -/
@@ -778,6 +895,261 @@ theorem codimension_weight_le (Y : FiniteModel) (hY : 0 < Fintype.card Y)
   rw [div_le_iff₀ hc]
   linarith
 
+/-! ## The two clause estimates
+
+Both are stated as free-standing lemmas over abstract matrices rather
+than inlined into the recognition proof.  That is not stylistic: the
+heartbeat budget is per declaration, and the assembled recognition
+theorem exceeds it when either estimate is carried inside it. -/
+
+section Estimates
+
+variable {Y : Type*} [Fintype Y] [DecidableEq Y]
+
+/-- **The multiplicativity estimate.**  Corrected unitaries multiply to
+within `400 e C⁴`: the corner mediates the product exactly, and the model
+unit is a near-identity for the corner. -/
+theorem mult_estimate {p M1 A Bm Agy Ug Uy Ugy : Matrix Y Y ℂ} {e C : ℝ}
+    (hp : pᴴ = p) (hp2 : p * p = p) (hC1 : 1 ≤ C) (he0 : 0 ≤ e)
+    (hnA : ‖A‖ ≤ C) (hnB : ‖Bm‖ ≤ C)
+    (hη : ‖p - M1‖ ≤ 9 * e * C)
+    (hmulAB : ‖Agy - A * Bm‖ ≤ e)
+    (hδB : ‖M1 * Bm - Bm‖ ≤ e)
+    (hUg : ‖Ug - inflate p A‖ ≤ 4 * (21 * e * C ^ 3))
+    (hUy : ‖Uy - inflate p Bm‖ ≤ 4 * (21 * e * C ^ 3))
+    (hUgy : ‖Ugy - inflate p Agy‖ ≤ 4 * (21 * e * C ^ 3))
+    (hUyn : ‖Uy‖ ≤ 1) :
+    ‖Ugy - Ug * Uy‖ ≤ 400 * e * C ^ 4 := by
+  have hC0 : (0 : ℝ) < C := by linarith
+  have hC3 : C ^ 3 ≤ C ^ 4 := pow_le_pow_right₀ hC1 (by norm_num)
+  have hC2 : C ^ 2 ≤ C ^ 4 := pow_le_pow_right₀ hC1 (by norm_num)
+  have hCC : C ≤ C ^ 4 := by
+    calc C = C ^ 1 := (pow_one C).symm
+      _ ≤ C ^ 4 := pow_le_pow_right₀ hC1 (by norm_num)
+  have hCone : (1 : ℝ) ≤ C ^ 4 := one_le_pow₀ hC1
+  have hCe3 : e * C ^ 3 ≤ e * C ^ 4 := mul_le_mul_of_nonneg_left hC3 he0
+  have hCe2 : e * C ^ 2 ≤ e * C ^ 4 := mul_le_mul_of_nonneg_left hC2 he0
+  have hCeC : e * C ≤ e * C ^ 4 := mul_le_mul_of_nonneg_left hCC he0
+  have hCe1 : e ≤ e * C ^ 4 := by nlinarith
+  have hIA : ‖inflate p A‖ ≤ C + 1 := norm_inflate_le hp hp2 hnA hC0.le
+  have hinner : ‖Agy - A * p * Bm‖ ≤ e + (C * e + 9 * e * C ^ 3) := by
+    have hsplit : Agy - A * p * Bm = (Agy - A * Bm) + A * ((1 - p) * Bm) := by
+      noncomm_ring
+    rw [hsplit]
+    have h2 : ‖(1 - p) * Bm‖ ≤ e + 9 * e * C ^ 2 := by
+      have hd : (1 - p) * Bm = (Bm - M1 * Bm) + (M1 - p) * Bm := by noncomm_ring
+      rw [hd]
+      have ha : ‖Bm - M1 * Bm‖ ≤ e := by
+        rw [show Bm - M1 * Bm = -(M1 * Bm - Bm) from by abel, norm_neg]
+        exact hδB
+      have hb : ‖(M1 - p) * Bm‖ ≤ 9 * e * C ^ 2 := by
+        refine (Matrix.l2_opNorm_mul _ _).trans ?_
+        have hb' : ‖M1 - p‖ ≤ 9 * e * C := by
+          rw [show M1 - p = -(p - M1) from by abel, norm_neg]
+          exact hη
+        calc ‖M1 - p‖ * ‖Bm‖ ≤ (9 * e * C) * C :=
+              mul_le_mul hb' hnB (norm_nonneg _) (by positivity)
+          _ = 9 * e * C ^ 2 := by ring
+      exact (norm_add_le _ _).trans (by linarith)
+    have h3 : ‖A * ((1 - p) * Bm)‖ ≤ C * e + 9 * e * C ^ 3 := by
+      refine (Matrix.l2_opNorm_mul _ _).trans ?_
+      calc ‖A‖ * ‖(1 - p) * Bm‖ ≤ C * (e + 9 * e * C ^ 2) :=
+            mul_le_mul hnA h2 (norm_nonneg _) hC0.le
+        _ = C * e + 9 * e * C ^ 3 := by ring
+    exact (norm_add_le _ _).trans (by linarith)
+  have hstep2 : ‖inflate p Agy - inflate p A * inflate p Bm‖
+      ≤ e + (C * e + 9 * e * C ^ 3) := by
+    rw [inflate_mul p A Bm hp2]
+    exact (norm_inflate_sub_inflate p _ _ hp hp2).trans hinner
+  have hstep3 : ‖inflate p A * inflate p Bm - Ug * Uy‖
+      ≤ (C + 1) * (4 * (21 * e * C ^ 3)) + 4 * (21 * e * C ^ 3) := by
+    have hd : inflate p A * inflate p Bm - Ug * Uy
+        = inflate p A * (inflate p Bm - Uy) + (inflate p A - Ug) * Uy := by
+      noncomm_ring
+    rw [hd]
+    have ha : ‖inflate p A * (inflate p Bm - Uy)‖
+        ≤ (C + 1) * (4 * (21 * e * C ^ 3)) := by
+      refine (Matrix.l2_opNorm_mul _ _).trans ?_
+      refine mul_le_mul hIA ?_ (norm_nonneg _) (by positivity)
+      rw [show inflate p Bm - Uy = -(Uy - inflate p Bm) from by abel, norm_neg]
+      exact hUy
+    have hb : ‖(inflate p A - Ug) * Uy‖ ≤ 4 * (21 * e * C ^ 3) := by
+      refine (Matrix.l2_opNorm_mul _ _).trans ?_
+      calc ‖inflate p A - Ug‖ * ‖Uy‖ ≤ (4 * (21 * e * C ^ 3)) * 1 := by
+            refine mul_le_mul ?_ hUyn (norm_nonneg _) (by positivity)
+            rw [show inflate p A - Ug = -(Ug - inflate p A) from by abel,
+              norm_neg]
+            exact hUg
+        _ = 4 * (21 * e * C ^ 3) := by ring
+    exact (norm_add_le _ _).trans (by linarith)
+  have htri : ‖Ugy - Ug * Uy‖ ≤ ‖Ugy - inflate p Agy‖
+      + ‖inflate p Agy - inflate p A * inflate p Bm‖
+      + ‖inflate p A * inflate p Bm - Ug * Uy‖ := by
+    have h3 : Ugy - Ug * Uy = (Ugy - inflate p Agy)
+        + ((inflate p Agy - inflate p A * inflate p Bm)
+          + (inflate p A * inflate p Bm - Ug * Uy)) := by abel
+    rw [h3]
+    have h1 := norm_add_le (Ugy - inflate p Agy)
+      ((inflate p Agy - inflate p A * inflate p Bm)
+        + (inflate p A * inflate p Bm - Ug * Uy))
+    have h2 := norm_add_le (inflate p Agy - inflate p A * inflate p Bm)
+      (inflate p A * inflate p Bm - Ug * Uy)
+    linarith
+  refine htri.trans ?_
+  nlinarith
+
+end Estimates
+
+/-- **The separation estimate.**  The relative normalized trace of two
+corrected unitaries is at most `400 e C⁴`, which at small accuracy is
+below the `1/2` that forces operator distance `1`. -/
+theorem sep_estimate (Y : FiniteModel) (hY : 0 < Fintype.card Y)
+    {p M1 A Bm Binv Agy Ug Uy : Matrix Y Y ℂ} {e C : ℝ}
+    (hp : pᴴ = p) (hp2 : p * p = p) (hC1 : 1 ≤ C) (he0 : 0 ≤ e)
+    (hnA : ‖A‖ ≤ C) (hnB : ‖Bm‖ ≤ C) (hn1 : ‖M1‖ ≤ C)
+    (hη : ‖p - M1‖ ≤ 9 * e * C)
+    (hstarB : ‖Binv - Bmᴴ‖ ≤ e)
+    (hδBinv : ‖M1 * Binv - Binv‖ ≤ e)
+    (hmulAB : ‖Agy - A * Binv‖ ≤ e)
+    (htrAgy : ‖normTrace Y Agy‖ ≤ e)
+    (htrM1 : ‖normTrace Y M1 - 1‖ ≤ e)
+    (hUg : ‖Ug - inflate p A‖ ≤ 4 * (21 * e * C ^ 3))
+    (hUy : ‖Uy - inflate p Bm‖ ≤ 4 * (21 * e * C ^ 3))
+    (hUgn : ‖Ug‖ ≤ 1) :
+    ‖normTrace Y (Ug * Uyᴴ)‖ ≤ 400 * e * C ^ 4 := by
+  have hC0 : (0 : ℝ) < C := by linarith
+  have hC3 : C ^ 3 ≤ C ^ 4 := pow_le_pow_right₀ hC1 (by norm_num)
+  have hC2 : C ^ 2 ≤ C ^ 4 := pow_le_pow_right₀ hC1 (by norm_num)
+  have hCC : C ≤ C ^ 4 := by
+    calc C = C ^ 1 := (pow_one C).symm
+      _ ≤ C ^ 4 := pow_le_pow_right₀ hC1 (by norm_num)
+  have hCone : (1 : ℝ) ≤ C ^ 4 := one_le_pow₀ hC1
+  have hCe3 : e * C ^ 3 ≤ e * C ^ 4 := mul_le_mul_of_nonneg_left hC3 he0
+  have hCe2 : e * C ^ 2 ≤ e * C ^ 4 := mul_le_mul_of_nonneg_left hC2 he0
+  have hCeC : e * C ≤ e * C ^ 4 := mul_le_mul_of_nonneg_left hCC he0
+  have hCe1 : e ≤ e * C ^ 4 := by nlinarith
+  have hpn : ‖p‖ ≤ 1 := norm_proj_le_one hp hp2
+  have hnBstar : ‖Bmᴴ‖ ≤ C := by rw [Matrix.l2_opNorm_conjTranspose]; exact hnB
+  have hWprod : inflate p A * (inflate p Bm)ᴴ = inflate p (A * p * Bmᴴ) := by
+    rw [inflate_conjTranspose p Bm hp, inflate_mul p A (Bmᴴ) hp2]
+  have hIB : ‖(inflate p Bm)ᴴ‖ ≤ C + 1 := by
+    rw [Matrix.l2_opNorm_conjTranspose]
+    exact norm_inflate_le hp hp2 hnB hC0.le
+  have hUUclose : ‖Ug * Uyᴴ - inflate p A * (inflate p Bm)ᴴ‖
+      ≤ 4 * (21 * e * C ^ 3) + (C + 1) * (4 * (21 * e * C ^ 3)) := by
+    have hd : Ug * Uyᴴ - inflate p A * (inflate p Bm)ᴴ
+        = Ug * (Uyᴴ - (inflate p Bm)ᴴ)
+          + (Ug - inflate p A) * (inflate p Bm)ᴴ := by noncomm_ring
+    rw [hd]
+    have ha : ‖Ug * (Uyᴴ - (inflate p Bm)ᴴ)‖ ≤ 4 * (21 * e * C ^ 3) := by
+      refine (Matrix.l2_opNorm_mul _ _).trans ?_
+      calc ‖Ug‖ * ‖Uyᴴ - (inflate p Bm)ᴴ‖ ≤ 1 * (4 * (21 * e * C ^ 3)) := by
+            refine mul_le_mul hUgn ?_ (norm_nonneg _) zero_le_one
+            rw [← Matrix.conjTranspose_sub, Matrix.l2_opNorm_conjTranspose]
+            exact hUy
+        _ = 4 * (21 * e * C ^ 3) := by ring
+    have hb : ‖(Ug - inflate p A) * (inflate p Bm)ᴴ‖
+        ≤ (C + 1) * (4 * (21 * e * C ^ 3)) := by
+      refine (Matrix.l2_opNorm_mul _ _).trans ?_
+      calc ‖Ug - inflate p A‖ * ‖(inflate p Bm)ᴴ‖
+          ≤ (4 * (21 * e * C ^ 3)) * (C + 1) :=
+            mul_le_mul hUg hIB (norm_nonneg _) (by positivity)
+        _ = (C + 1) * (4 * (21 * e * C ^ 3)) := by ring
+    exact (norm_add_le _ _).trans (by linarith)
+  have hXnorm : ‖A * p * Bmᴴ‖ ≤ C ^ 2 := by
+    calc ‖A * p * Bmᴴ‖ ≤ ‖A * p‖ * ‖Bmᴴ‖ := Matrix.l2_opNorm_mul _ _
+      _ ≤ (‖A‖ * ‖p‖) * ‖Bmᴴ‖ := by
+          gcongr
+          exact Matrix.l2_opNorm_mul _ _
+      _ ≤ (C * 1) * C :=
+          mul_le_mul (mul_le_mul hnA hpn (norm_nonneg _) hC0.le) hnBstar
+            (norm_nonneg _) (by positivity)
+      _ = C ^ 2 := by ring
+  have hcorner : ‖(p - 1) * Bmᴴ‖ ≤ 9 * e * C ^ 2 + C * e + 2 * e := by
+    have hd : (p - 1) * Bmᴴ
+        = (p - M1) * Bmᴴ
+          + (M1 * (Bmᴴ - Binv) + ((M1 * Binv - Binv) + (Binv - Bmᴴ))) := by
+      noncomm_ring
+    rw [hd]
+    have h1 : ‖(p - M1) * Bmᴴ‖ ≤ 9 * e * C ^ 2 := by
+      refine (Matrix.l2_opNorm_mul _ _).trans ?_
+      calc ‖p - M1‖ * ‖Bmᴴ‖ ≤ (9 * e * C) * C :=
+            mul_le_mul hη hnBstar (norm_nonneg _) (by positivity)
+        _ = 9 * e * C ^ 2 := by ring
+    have h2 : ‖M1 * (Bmᴴ - Binv)‖ ≤ C * e := by
+      refine (Matrix.l2_opNorm_mul _ _).trans ?_
+      refine mul_le_mul hn1 ?_ (norm_nonneg _) hC0.le
+      rw [show Bmᴴ - Binv = -(Binv - Bmᴴ) from by abel, norm_neg]
+      exact hstarB
+    have h34 := (norm_add_le (M1 * Binv - Binv) (Binv - Bmᴴ)).trans
+      (by linarith : ‖M1 * Binv - Binv‖ + ‖Binv - Bmᴴ‖ ≤ e + e)
+    have h234 := (norm_add_le (M1 * (Bmᴴ - Binv))
+      ((M1 * Binv - Binv) + (Binv - Bmᴴ))).trans
+      (by linarith : ‖M1 * (Bmᴴ - Binv)‖
+        + ‖(M1 * Binv - Binv) + (Binv - Bmᴴ)‖ ≤ C * e + (e + e))
+    exact (norm_add_le _ _).trans (by linarith)
+  have hXclose : ‖A * p * Bmᴴ - Agy‖
+      ≤ C * (9 * e * C ^ 2 + C * e + 2 * e) + (C * e + e) := by
+    have hd : A * p * Bmᴴ - Agy
+        = A * ((p - 1) * Bmᴴ) + (A * (Bmᴴ - Binv) + (A * Binv - Agy)) := by
+      noncomm_ring
+    rw [hd]
+    have t1 : ‖A * ((p - 1) * Bmᴴ)‖ ≤ C * (9 * e * C ^ 2 + C * e + 2 * e) := by
+      refine (Matrix.l2_opNorm_mul _ _).trans ?_
+      exact mul_le_mul hnA hcorner (norm_nonneg _) hC0.le
+    have t2 : ‖A * (Bmᴴ - Binv)‖ ≤ C * e := by
+      refine (Matrix.l2_opNorm_mul _ _).trans ?_
+      refine mul_le_mul hnA ?_ (norm_nonneg _) hC0.le
+      rw [show Bmᴴ - Binv = -(Binv - Bmᴴ) from by abel, norm_neg]
+      exact hstarB
+    have t3 : ‖A * Binv - Agy‖ ≤ e := by
+      rw [show A * Binv - Agy = -(Agy - A * Binv) from by abel, norm_neg]
+      exact hmulAB
+    have t23 := (norm_add_le (A * (Bmᴴ - Binv)) (A * Binv - Agy)).trans
+      (by linarith : ‖A * (Bmᴴ - Binv)‖ + ‖A * Binv - Agy‖ ≤ C * e + e)
+    exact (norm_add_le _ _).trans (by linarith)
+  have htrX : ‖normTrace Y (A * p * Bmᴴ)‖
+      ≤ e + (C * (9 * e * C ^ 2 + C * e + 2 * e) + (C * e + e)) := by
+    have hd : normTrace Y (A * p * Bmᴴ)
+        = normTrace Y Agy + normTrace Y (A * p * Bmᴴ - Agy) := by
+      rw [normTrace_sub']; ring
+    rw [hd]
+    have h2 := (norm_normTrace_le Y hY (A * p * Bmᴴ - Agy)).trans hXclose
+    exact (norm_add_le _ _).trans (by linarith)
+  have hcodim : (Matrix.trace ((1 : Matrix Y Y ℂ) - p)).re
+        / (Fintype.card Y : ℝ) ≤ e + 9 * e * C :=
+    codimension_weight_le Y hY htrM1 hη
+  have hwnn : (0 : ℝ) ≤ e + 9 * e * C := by nlinarith
+  have hinflTr : ‖normTrace Y (inflate p (A * p * Bmᴴ))
+        - normTrace Y (A * p * Bmᴴ)‖ ≤ (1 + 3 * C ^ 2) * (e + 9 * e * C) := by
+    have hbase := norm_normTrace_inflate_sub Y hp hp2 (A * p * Bmᴴ)
+    rw [mul_div_assoc] at hbase
+    refine hbase.trans ?_
+    calc (1 + 3 * ‖A * p * Bmᴴ‖)
+          * ((Matrix.trace ((1 : Matrix Y Y ℂ) - p)).re
+            / (Fintype.card Y : ℝ))
+        ≤ (1 + 3 * ‖A * p * Bmᴴ‖) * (e + 9 * e * C) :=
+          mul_le_mul_of_nonneg_left hcodim (by positivity)
+      _ ≤ (1 + 3 * C ^ 2) * (e + 9 * e * C) :=
+          mul_le_mul_of_nonneg_right (by linarith) hwnn
+  have hlast : ‖normTrace Y (Ug * Uyᴴ - inflate p (A * p * Bmᴴ))‖
+      ≤ 4 * (21 * e * C ^ 3) + (C + 1) * (4 * (21 * e * C ^ 3)) := by
+    refine (norm_normTrace_le Y hY _).trans ?_
+    rw [← hWprod]
+    exact hUUclose
+  have hsplit : normTrace Y (Ug * Uyᴴ)
+      = (normTrace Y (inflate p (A * p * Bmᴴ))
+          - normTrace Y (A * p * Bmᴴ))
+        + (normTrace Y (A * p * Bmᴴ)
+          + normTrace Y (Ug * Uyᴴ - inflate p (A * p * Bmᴴ))) := by
+    rw [normTrace_sub']
+    ring
+  rw [hsplit]
+  have hinner := norm_add_le (normTrace Y (A * p * Bmᴴ))
+    (normTrace Y (Ug * Uyᴴ - inflate p (A * p * Bmᴴ)))
+  refine (norm_add_le _ _).trans ?_
+  nlinarith
+
 /-- **MF-trace recognition.**  If the regular character of a group is an
 MF trace, the group is operator MF: the corner-and-polar correction of
 any trace-correct model family produces operator-norm local models with
@@ -788,7 +1160,145 @@ pins the unit corner at relative dimension one, and at `g ≠ 1` it gives
 separation `√2 - o(1) > 1` automatically. -/
 theorem isNormApproximable_of_isMFRegularCharacter
     (h : IsMFRegularCharacter G) : IsNormApproximable G 1 := by
-  sorry
-
-end MFTraceRecognition
-end GroupApproximation
+  classical
+  obtain ⟨Bnd, hB⟩ := h
+  intro F ε hε
+  -- The test set, closed under everything the two clauses touch.
+  set F₀ : Finset G := insert 1 ((F ∪ F.image (fun x => x⁻¹)) ∪
+      ((F ×ˢ F).image (fun q => q.1 * q.2) ∪
+        (F ×ˢ F).image (fun q => q.1 * q.2⁻¹))) with hF₀def
+  set F' : Finset G := F₀ ∪ F₀.image (fun x => x⁻¹) with hF'def
+  have hsub₀ : F₀ ⊆ F' := Finset.subset_union_left
+  have h1F' : (1 : G) ∈ F' := hsub₀ (Finset.mem_insert_self _ _)
+  have hFF' : ∀ g ∈ F, g ∈ F' := fun g hg =>
+    hsub₀ (Finset.mem_insert_of_mem
+      (Finset.mem_union_left _ (Finset.mem_union_left _ hg)))
+  have hmulF' : ∀ g ∈ F, ∀ y ∈ F, g * y ∈ F' := fun g hg y hy =>
+    hsub₀ (Finset.mem_insert_of_mem (Finset.mem_union_right _
+      (Finset.mem_union_left _
+        (Finset.mem_image.mpr ⟨(g, y), Finset.mem_product.mpr ⟨hg, hy⟩, rfl⟩))))
+  have hdivF' : ∀ g ∈ F, ∀ y ∈ F, g * y⁻¹ ∈ F' := fun g hg y hy =>
+    hsub₀ (Finset.mem_insert_of_mem (Finset.mem_union_right _
+      (Finset.mem_union_right _
+        (Finset.mem_image.mpr ⟨(g, y), Finset.mem_product.mpr ⟨hg, hy⟩, rfl⟩))))
+  have hinvF' : ∀ x ∈ F', x⁻¹ ∈ F' := by
+    intro x hx
+    rcases Finset.mem_union.mp hx with hx | hx
+    · exact Finset.mem_union_right _ (Finset.mem_image.mpr ⟨x, hx, rfl⟩)
+    · obtain ⟨z, hz, rfl⟩ := Finset.mem_image.mp hx
+      simpa using hsub₀ hz
+  -- A uniform norm bound on the test set: a sum dominates each of its
+  -- nonnegative terms, which is cheaper here than a maximum.
+  set C : ℝ := (∑ g ∈ F', |Bnd g|) + 1 with hCdef
+  have hCsum : (0 : ℝ) ≤ ∑ g ∈ F', |Bnd g| :=
+    Finset.sum_nonneg fun g _ => abs_nonneg _
+  have hC1 : (1 : ℝ) ≤ C := by rw [hCdef]; linarith
+  have hC0 : (0 : ℝ) < C := by linarith
+  have hC3 : C ^ 3 ≤ C ^ 4 := pow_le_pow_right₀ hC1 (by norm_num)
+  have hC2 : C ^ 2 ≤ C ^ 4 := pow_le_pow_right₀ hC1 (by norm_num)
+  have hCC : C ≤ C ^ 4 := by
+    calc C = C ^ 1 := (pow_one C).symm
+      _ ≤ C ^ 4 := pow_le_pow_right₀ hC1 (by norm_num)
+  have hCone : (1 : ℝ) ≤ C ^ 4 := one_le_pow₀ hC1
+  -- the accuracy
+  set e : ℝ := min 1 (min (ε / (400 * C ^ 4)) (1 / (1000 * C ^ 4))) with hedef
+  have he1 : e ≤ 1 := min_le_left _ _
+  have hea : e ≤ ε / (400 * C ^ 4) := (min_le_right _ _).trans (min_le_left _ _)
+  have heb : e ≤ 1 / (1000 * C ^ 4) :=
+    (min_le_right _ _).trans (min_le_right _ _)
+  have he0 : 0 < e := by
+    rw [hedef]
+    exact lt_min one_pos (lt_min (by positivity) (by positivity))
+  have heps : 400 * e * C ^ 4 ≤ ε := by
+    rw [le_div_iff₀ (by positivity : (0:ℝ) < 400 * C ^ 4)] at hea
+    nlinarith
+  have hsmall : 1000 * e * C ^ 4 ≤ 1 := by
+    rw [le_div_iff₀ (by positivity : (0:ℝ) < 1000 * C ^ 4)] at heb
+    nlinarith
+  have hCe3 : e * C ^ 3 ≤ e * C ^ 4 := mul_le_mul_of_nonneg_left hC3 he0.le
+  have hCe2 : e * C ^ 2 ≤ e * C ^ 4 := mul_le_mul_of_nonneg_left hC2 he0.le
+  have hCeC : e * C ≤ e * C ^ 4 := mul_le_mul_of_nonneg_left hCC he0.le
+  have hCe1 : e ≤ e * C ^ 4 := by nlinarith
+  -- the model
+  obtain ⟨M⟩ := hB F' e he0
+  obtain ⟨Y, hYpos, mp, hbdd, hmul, hstar, htr1, htrne⟩ := M
+  set p : Matrix Y Y ℂ := unitProjection (mp 1) with hpdef
+  have hp : pᴴ = p := by
+    rw [hpdef]; exact (unitProjection_isOrthogonalProjection (mp 1)).1
+  have hp2 : p * p = p := by
+    rw [hpdef]; exact (unitProjection_isOrthogonalProjection (mp 1)).2
+  have hbound : ∀ g ∈ F', ‖mp g‖ ≤ C := by
+    intro g hg
+    refine (hbdd g hg).trans ?_
+    have h2 : |Bnd g| ≤ ∑ x ∈ F', |Bnd x| :=
+      Finset.single_le_sum (f := fun x => |Bnd x|)
+        (fun x _ => abs_nonneg (Bnd x)) hg
+    have h1 : Bnd g ≤ |Bnd g| := le_abs_self _
+    rw [hCdef]
+    linarith
+  have hnorm1 : ‖mp 1‖ ≤ C := hbound 1 h1F'
+  have hstar1 : ‖mp 1 - (mp 1)ᴴ‖ ≤ e := by
+    have hs := hstar 1 h1F'
+    rwa [inv_one] at hs
+  have hidem1 : ‖mp 1 * mp 1 - mp 1‖ ≤ e := by
+    have hm := hmul 1 h1F' 1 h1F'
+    rw [mul_one] at hm
+    rw [show mp 1 * mp 1 - mp 1 = -(mp 1 - mp 1 * mp 1) from by abel, norm_neg]
+    exact hm
+  have hη : ‖p - mp 1‖ ≤ 9 * e * C := by
+    rw [hpdef]
+    exact norm_unitProjection_sub_le hstar1 hidem1 hnorm1 he0.le he1 hC1
+  have hδ₁ : ∀ g ∈ F', ‖mp 1 * mp g - mp g‖ ≤ e := by
+    intro g hg
+    have hm := hmul 1 h1F' g hg
+    rw [one_mul] at hm
+    rw [show mp 1 * mp g - mp g = -(mp g - mp 1 * mp g) from by abel, norm_neg]
+    exact hm
+  have hmulinv : ∀ g ∈ F', ‖mp 1 - mp g⁻¹ * mp g‖ ≤ e := by
+    intro g hg
+    have hm := hmul g⁻¹ (hinvF' g hg) g hg
+    rwa [inv_mul_cancel] at hm
+  -- the corrected unitaries
+  have hΔhalf : 21 * e * C ^ 3 ≤ 1 / 2 := by nlinarith
+  have hexists : ∀ g ∈ F', ∃ U ∈ Matrix.unitaryGroup Y ℂ,
+      ‖U - inflate p (mp g)‖ ≤ 4 * (21 * e * C ^ 3) := by
+    intro g hg
+    refine exists_unitary_near_inflate p (mp g) hp hp2 (by positivity) hΔhalf ?_
+    exact corner_defect_le hp hp2 (hbound g hg) hC1 he0.le hη (hδ₁ g hg)
+      (hstar g hg) (hmulinv g hg)
+  choose! U hUmem hUnear using hexists
+  refine ⟨{
+    carrier := Y
+    nonempty := hYpos
+    map := fun g => if g ∈ F' then U g else 1
+    isUnitary := ?_
+    multiplicative := ?_
+    separated := ?_ }⟩
+  · intro g
+    by_cases hg : g ∈ F'
+    · rw [if_pos hg]; exact hUmem g hg
+    · rw [if_neg hg]; exact one_mem _
+  · intro g hg y hy
+    have hgF := hFF' g hg
+    have hyF := hFF' y hy
+    have hgyF := hmulF' g hg y hy
+    rw [if_pos hgF, if_pos hyF, if_pos hgyF]
+    refine (mult_estimate hp hp2 hC1 he0.le (hbound g hgF) (hbound y hyF) hη
+      (hmul g hgF y hyF) (hδ₁ y hyF) (hUnear g hgF) (hUnear y hyF)
+      (hUnear (g * y) hgyF) (norm_unitary_le_one (hUmem y hyF))).trans ?_
+    linarith
+  · intro g hg y hy hne
+    have hgF := hFF' g hg
+    have hyF := hFF' y hy
+    have hyinvF := hinvF' y hyF
+    rw [if_pos hgF, if_pos hyF]
+    refine one_le_norm_sub_of_normTrace_small Y (hUmem g hgF) (hUmem y hyF)
+      hYpos ?_
+    refine (sep_estimate Y hYpos hp hp2 hC1 he0.le (hbound g hgF)
+      (hbound y hyF) hnorm1 hη (hstar y hyF) (hδ₁ y⁻¹ hyinvF)
+      (hmul g hgF y⁻¹ hyinvF)
+      (htrne (g * y⁻¹) (hdivF' g hg y hy)
+        (fun hcon => hne (mul_inv_eq_one.mp hcon)))
+      (htr1 h1F') (hUnear g hgF) (hUnear y hyF)
+      (norm_unitary_le_one (hUmem g hgF))).trans ?_
+    linarith
