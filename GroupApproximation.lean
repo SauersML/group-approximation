@@ -827,6 +827,7 @@ import GroupApproximation.Sofic.BlockCliffordTowerSofic
 import GroupApproximation.Sofic.LiteralSoficAssembly
 import GroupApproximation.Sofic.LiteralSoficEndpoint
 import GroupApproximation.Sofic.LiteralVerticalBridge
+import GroupApproximation.Computability.PostMachineTM0Canonical
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
