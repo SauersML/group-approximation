@@ -56,5 +56,60 @@ jobs:
                     f"{mod} is imported twice")
           print(f"{len(imports)} root imports, {len(missing)} missing, "
                 f"{len(dupes)} duplicated")
+
+          # A module can also be in the tree and reachable from nothing.  It is
+          # then committed but never compiled, so it rots silently and its
+          # breakage surfaces only when someone finally imports it.  Twelve such
+          # modules were on main at once today, ten of which no longer built.
+          # Walk the transitive closure and name the strays.
+          def module_of(path):
+              return str(path.with_suffix("")).replace("/", ".")
+
+          all_mods = {module_of(p) for p in
+                      pathlib.Path("GroupApproximation").rglob("*.lean")}
+          imp_re = re.compile(r"^import\s+(GroupApproximation\.\S+)\s*$", re.M)
+
+          def imports_of(mod):
+              f = pathlib.Path(mod.replace(".", "/") + ".lean")
+              if not f.is_file():
+                  return []
+              return imp_re.findall(f.read_text(encoding="utf-8"))
+
+          seen, stack = set(), [m for m in imports if m not in missing]
+          while stack:
+              m = stack.pop()
+              if m in seen:
+                  continue
+              seen.add(m)
+              stack.extend(i for i in imports_of(m) if i not in seen)
+
+          unreached = sorted(all_mods - seen)
+          for mod in unreached:
+              print(f"::warning::{mod} is in the tree but outside the root "
+                    f"import closure; nothing compiles it")
+          print(f"{len(all_mods)} modules, {len(unreached)} outside the closure")
+
           sys.exit(1 if missing else 0)
           PY
+
+      - name: The PDF toolchain pin has not been reverted
+        shell: bash
+        run: |
+          # This one-line pin has been reverted three times by whole-tree
+          # commits.  Each revert left the committed PDF stale for hours,
+          # because the release image cannot build this manuscript: tagpdf
+          # fails to name a sectioning level and feeds an unexpanded control
+          # sequence to \directlua, which kills lualatex at
+          # \tableofcontents.  A comment in the workflow did not stop it, so
+          # the digest now lives in two places and a revert of one fails here.
+          expected=556e2e2caa7d489ce155de0eb3f43e324e6502ed4e9871aa400662b156cf00ad
+          for wf in refresh-non-mf-pdf draft-non-mf-pdf; do
+            f=".github/workflows/${wf}.yml"
+            [ -f "$f" ] || continue
+            if ! grep -q "$expected" "$f"; then
+              echo "::error file=$f::the TeX Live pin in $wf does not match the known-good digest; if the change is deliberate, update the expected digest in check-root-imports.yml in the same commit"
+              grep -n TEXLIVE_IMAGE "$f" || true
+              exit 1
+            fi
+          done
+          echo "PDF toolchain pin intact in both PDF workflows"
