@@ -40,10 +40,19 @@ corona
 ∏ₙ M_{dₙ}(ℂ) / ⊕ₙ M_{dₙ}(ℂ).
 ```
 
-Building this manuscript requires LaTeX2e dated 2025-06-01 or newer.  The
-attested release PDF uses the `\DocumentMetadata{tagging=on}` interface
-introduced in that release; the release workflow uses a digest-pinned TeX
-Live 2026 image.
+Building this manuscript requires LaTeX2e dated 2025-06-01 or newer, and
+the release workflow uses a digest-pinned TeX Live 2026 image.
+
+Tagging is **not yet enabled**.  The source sets
+`\DocumentMetadata{lang=en-US,pdfversion=2.0}` without the `tagging=on`
+key introduced in the 2025-06-01 release, and the committed PDF
+accordingly carries no `/MarkInfo` and no `/StructTreeRoot`.  The
+release workflow does assert `Tagged: yes`, so that assertion is a
+requirement the artifact does not currently meet rather than a
+description of it.  Turning tagging on is open work, not a one-line
+change: it needs alternative text or an artifact designation for the
+TikZ figure, and the theorem environments and margin-note machinery
+have to be rerouted through the tagging code path.
 
 The current manuscript draft gives a literal finite presentation on eight
 generators `v₁,v₂,v₃,x,y,z,t,c`. Its six-generator, twenty-relator base is
