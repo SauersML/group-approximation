@@ -120,6 +120,17 @@
 \raggedbottom
 \emergencystretch=1.5em
 
+% amsart provides no \@spart, so the nameref patch loaded by hyperref makes
+% \part* expand to an undefined control sequence.  The part headings of the
+% supplement are therefore set directly rather than through \part.
+\newcommand{\parttitle}[1]{%
+  \begingroup
+    \centering\normalfont\bfseries\Large
+    #1\par
+  \endgroup
+  \nopagebreak
+  \vskip\bigskipamount}
+
 \newtheorem{theorem}{Theorem}[section]
 \newtheorem{proposition}[theorem]{Proposition}
 \newtheorem{lemma}[theorem]{Lemma}
@@ -950,10 +961,12 @@ $e_1\notin2\mathbb Z^3$, and $a\notin\alpha(\Gamma)$ for the same
 reason.  Theorem~\ref{thm:kazhdan-clifford} therefore applies, and
 relative to $\Gamma$ the resulting group has the finite presentation
 \[
- E=\bigl\langle\,\Gamma,t,c \ \bigm| \
-   t\gamma t^{-1}=\alpha(\gamma),\quad
-   [c,\gamma]=1 \quad(\gamma\in S_\Gamma),\qquad
-   c^2=1,\qquad [w,g]=1 \,\bigr\rangle,
+ E=\left\langle\,\Gamma,t,c \ \middle|\
+ \begin{gathered}
+  t\gamma t^{-1}=\alpha(\gamma),\quad
+  [c,\gamma]=1\quad(\gamma\in S_\Gamma),\\
+  c^2=1,\qquad [w,g]=1
+ \end{gathered}\,\right\rangle,
 \]
 where $S_\Gamma$ is a finite generating set of $\Gamma$, $g$ runs over
 the generators, and $w=[\,tct^{-1},\,a\,(tct^{-1})\,a^{-1}]$.
@@ -1144,7 +1157,7 @@ operator-norm method decides neither soficity nor hyperlinearity for
 either group.
 
 \clearpage
-\part*{Supplementary material}
+\parttitle{Supplementary material}
 \setcounter{section}{0}
 \renewcommand{\thesection}{S\arabic{section}}
 \providecommand{\theHsection}{}
@@ -1168,7 +1181,7 @@ Sections~\ref{supp:scaling}--\ref{app:maxcstar} develop the consequences and
 the limits of the method.
 
 
-\part*{Part I.\ \ Audit of the main theorem}
+\parttitle{Part I.\ \ Audit of the main theorem}
 
 \section{The MF equivalences}\label{app:equivalences}
 
@@ -1868,7 +1881,7 @@ group elements involved.
 \end{proof}
 
 \clearpage
-\part*{Part II.\ \ The mechanism in general}
+\parttitle{Part II.\ \ The mechanism in general}
 
 \noindent
 The main text used one transport theorem, one corner, and one finite central
@@ -2601,7 +2614,7 @@ LEF.
 \leanverified{Monsters/CyclicBaseLEFObstruction}{GroupApproximation.CyclicBaseLEFObstruction.cyclicBase_exactModel_package}
 
 \clearpage
-\part*{Part III.\ \ Structure of the example and its consequences}
+\parttitle{Part III.\ \ Structure of the example and its consequences}
 
 \section{The scaling family}\label{supp:scaling}
 
@@ -3711,7 +3724,7 @@ are.  Neumann's family is quoted, not reproved \cite{Neumann37}.
 \leanverified{Sofic/ContinuumMultiplicity}{GroupApproximation.ContinuumMultiplicity.manuscriptContinuumMultiplicity}
 
 \clearpage
-\part*{Part IV.\ \ Limits of the method, and further apparatus}
+\parttitle{Part IV.\ \ Limits of the method, and further apparatus}
 
 \section{Limitations of the operator-norm method}\label{sec:limits}
 
