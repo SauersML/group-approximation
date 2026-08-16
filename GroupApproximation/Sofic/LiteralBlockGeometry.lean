@@ -711,25 +711,25 @@ open scoped MatrixGroups
 /-! ### Seven matrices realising the seven nonzero parity classes -/
 
 private def slC001 : Linear :=
-  ⟨!![0, 1, 0; 0, 0, 1; 1, 0, 0], by rw [Matrix.det_fin_three]; norm_num⟩
+  ⟨!![0, 1, 0; 0, 0, 1; 1, 0, 0], by rw [Matrix.det_fin_three]; simp⟩
 
 private def slC010 : Linear :=
-  ⟨!![0, 0, 1; 1, 0, 0; 0, 1, 0], by rw [Matrix.det_fin_three]; norm_num⟩
+  ⟨!![0, 0, 1; 1, 0, 0; 0, 1, 0], by rw [Matrix.det_fin_three]; simp⟩
 
 private def slC011 : Linear :=
-  ⟨!![0, 0, 1; 1, 0, 0; 1, 1, 0], by rw [Matrix.det_fin_three]; norm_num⟩
+  ⟨!![0, 0, 1; 1, 0, 0; 1, 1, 0], by rw [Matrix.det_fin_three]; simp⟩
 
 private def slC100 : Linear :=
-  ⟨!![1, 0, 0; 0, 1, 0; 0, 0, 1], by rw [Matrix.det_fin_three]; norm_num⟩
+  ⟨!![1, 0, 0; 0, 1, 0; 0, 0, 1], by rw [Matrix.det_fin_three]; simp⟩
 
 private def slC101 : Linear :=
-  ⟨!![1, 0, 0; 0, 1, 0; 1, 0, 1], by rw [Matrix.det_fin_three]; norm_num⟩
+  ⟨!![1, 0, 0; 0, 1, 0; 1, 0, 1], by rw [Matrix.det_fin_three]; simp⟩
 
 private def slC110 : Linear :=
-  ⟨!![1, 0, 0; 1, 1, 0; 0, 0, 1], by rw [Matrix.det_fin_three]; norm_num⟩
+  ⟨!![1, 0, 0; 1, 1, 0; 0, 0, 1], by rw [Matrix.det_fin_three]; simp⟩
 
 private def slC111 : Linear :=
-  ⟨!![1, 0, 0; 1, 1, 0; 1, 0, 1], by rw [Matrix.det_fin_three]; norm_num⟩
+  ⟨!![1, 0, 0; 1, 1, 0; 1, 0, 1], by rw [Matrix.det_fin_three]; simp⟩
 
 /-- The `SL₃(ℤ)`-action moves the marked translation vector to a first
 column. -/
@@ -739,14 +739,11 @@ private theorem sl_smul_aVector (A : Linear) (i : Fin 3) :
   rw [Matrix.mulVec_apply_eq_sum, Fin.sum_univ_three]
   simp [aVector]
 
-/-- **Transitivity on nonzero parity classes.**  If a lattice vector is not
-even then some element of `SL₃(ℤ)` has a first column congruent to it mod
-`2`.  Seven explicit matrices; the eighth case is excluded by hypothesis. -/
-/-- **The mod-`2` content of the transitivity hypothesis, and the only part of
-it that is about matrices rather than about a particular carrier.**
-
-Every integer vector that is not twice another one is, modulo `2`, the first
-column of a matrix of `SL₃(ℤ)`; equivalently the reduction
+/-- **Transitivity on nonzero parity classes, and the only part of the
+transitivity hypothesis that is about matrices rather than about a particular
+carrier.**  If a lattice vector is not even then some element of `SL₃(ℤ)` has
+a first column congruent to it mod `2`.  Seven explicit matrices; the eighth
+case is excluded by hypothesis.  Equivalently the reduction
 `SL₃(ℤ) → GL₃(𝔽₂)` moves `ē₁` onto every nonzero class.  `alphaCosetTransitive`
 below packages this for `AffineSL3Doubling.Gamma`, but the statement mentions
 only `Lattice` and `Linear`, so the same lemma serves any model of the affine
