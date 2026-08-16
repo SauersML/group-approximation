@@ -483,6 +483,122 @@ theorem derives_iff {R : RewriteSystem (Letter Γ Λ)} (hR : Presents M R)
       ∃ e, Reach (step M) c e ∧ Reach (step M) d e :=
   (simulation hR).derives_iff c d
 
+/-! ## The rule set, exhibited
+
+`Presents` says *which* rules a system must have; it does not build one.  Here
+the rules are listed outright, by `flatMap` over state/symbol pairs, and since
+`RewriteSystem.rules` is a `List` the resulting presentation is finite by
+construction --- there is nothing further to check.
+
+The enumerations of the state set and tape alphabet are taken as *data* rather
+than extracted from `Fintype`, because `Finset.toList` is noncomputable and the
+whole point of listing the rules is that the list is computable.  `exists_presents`
+recovers the `Fintype` phrasing, at the cost of being a mere existence claim. -/
+
+section Finite
+
+variable (M)
+
+/-- The rules contributed by a single transition, given an enumeration `tapes`
+of the tape alphabet.  A move rule has to name the symbol the head moves onto,
+so each move transition contributes one rule per tape symbol. -/
+def rulesFor (tapes : List Γ) (q : Λ) (a : Γ) : Option (Λ × Action Γ) →
+    List (List (Letter Γ Λ) × List (Letter Γ Λ))
+  | none => []
+  | some (q', .write b) =>
+      [([Letter.state q, Letter.tape a], [Letter.state q', Letter.tape b])]
+  | some (q', .moveRight) =>
+      tapes.map fun x =>
+        ([Letter.state q, Letter.tape a, Letter.tape x],
+         [Letter.tape a, Letter.state q', Letter.tape x])
+  | some (q', .moveLeft) =>
+      tapes.map fun y =>
+        ([Letter.tape y, Letter.state q, Letter.tape a],
+         [Letter.state q', Letter.tape y, Letter.tape a])
+
+theorem mem_rulesFor {tapes : List Γ} (htapes : ∀ x : Γ, x ∈ tapes)
+    {q : Λ} {a : Γ} {o : Option (Λ × Action Γ)} {l r : List (Letter Γ Λ)} :
+    (l, r) ∈ rulesFor tapes q a o ↔
+      (∃ q' b, o = some (q', .write b) ∧
+          l = [Letter.state q, Letter.tape a] ∧
+          r = [Letter.state q', Letter.tape b]) ∨
+      (∃ q' x, o = some (q', .moveRight) ∧
+          l = [Letter.state q, Letter.tape a, Letter.tape x] ∧
+          r = [Letter.tape a, Letter.state q', Letter.tape x]) ∨
+      (∃ q' y, o = some (q', .moveLeft) ∧
+          l = [Letter.tape y, Letter.state q, Letter.tape a] ∧
+          r = [Letter.state q', Letter.tape y, Letter.tape a]) := by
+  cases o with
+  | none => simp [rulesFor]
+  | some p =>
+    obtain ⟨q', act⟩ := p
+    cases act <;> simp [rulesFor, htapes] <;>
+      exact ⟨fun ⟨x, h1, h2⟩ => ⟨x, h1.symm, h2.symm⟩,
+             fun ⟨x, h1, h2⟩ => ⟨x, h1.symm, h2.symm⟩⟩
+
+/-- Every rule of the machine, as a finite list, given enumerations of the
+state set and the tape alphabet. -/
+def machineRules (states : List Λ) (tapes : List Γ) :
+    List (List (Letter Γ Λ) × List (Letter Γ Λ)) :=
+  states.flatMap fun q => tapes.flatMap fun a => rulesFor tapes q a (M q a)
+
+/-- The finite rewriting system attached to a machine. -/
+def machineSystem (states : List Λ) (tapes : List Γ) : RewriteSystem (Letter Γ Λ) :=
+  ⟨machineRules M states tapes⟩
+
+theorem presents_machineSystem {states : List Λ} {tapes : List Γ}
+    (hstates : ∀ q : Λ, q ∈ states) (htapes : ∀ a : Γ, a ∈ tapes) :
+    Presents M (machineSystem M states tapes) := by
+  constructor
+  intro l r
+  simp only [machineSystem, machineRules, List.mem_flatMap, mem_rulesFor htapes]
+  constructor
+  · rintro ⟨q, -, a, -, (⟨q', b, h1, h2, h3⟩ | ⟨q', x, h1, h2, h3⟩ |
+      ⟨q', y, h1, h2, h3⟩)⟩
+    · exact Or.inl ⟨q, a, q', b, h1, h2, h3⟩
+    · exact Or.inr (Or.inl ⟨q, a, x, q', h1, h2, h3⟩)
+    · exact Or.inr (Or.inr ⟨q, a, y, q', h1, h2, h3⟩)
+  · rintro (⟨q, a, q', b, h1, h2, h3⟩ | ⟨q, a, x, q', h1, h2, h3⟩ |
+      ⟨q, a, y, q', h1, h2, h3⟩)
+    · exact ⟨q, hstates q, a, htapes a, Or.inl ⟨q', b, h1, h2, h3⟩⟩
+    · exact ⟨q, hstates q, a, htapes a, Or.inr (Or.inl ⟨q', x, h1, h2, h3⟩)⟩
+    · exact ⟨q, hstates q, a, htapes a, Or.inr (Or.inr ⟨q', y, h1, h2, h3⟩)⟩
+
+/-- **A machine with enumerated alphabets is simulated by an explicitly listed
+finite rewriting system.** -/
+def machineSimulation {states : List Λ} {tapes : List Γ}
+    (hstates : ∀ q : Λ, q ∈ states) (htapes : ∀ a : Γ, a ∈ tapes) :
+    SimulationOn (Letter Γ Λ) (Cfg Γ Λ) :=
+  simulation (presents_machineSystem M hstates htapes)
+
+/-- **The word problem of the listed system decides the machine's halting
+configuration.**  Two halting configurations are equal in the presented monoid
+exactly when they are the same configuration --- unconditionally, for the
+explicit finite rule list above. -/
+theorem machineSystem_mk_eq_mk_iff {states : List Λ} {tapes : List Γ}
+    (hstates : ∀ q : Λ, q ∈ states) (htapes : ∀ a : Γ, a ∈ tapes)
+    {c d : Cfg Γ Λ} (hc : step M c = none) (hd : step M d = none) :
+    StringRewriting.mk (machineSystem M states tapes) (encode c) =
+      StringRewriting.mk (machineSystem M states tapes) (encode d) ↔ c = d :=
+  mk_eq_mk_iff_of_halts (presents_machineSystem M hstates htapes) hc hd
+
+/-- Derivability in the listed system is meeting of machine runs. -/
+theorem machineSystem_derives_iff {states : List Λ} {tapes : List Γ}
+    (hstates : ∀ q : Λ, q ∈ states) (htapes : ∀ a : Γ, a ∈ tapes)
+    (c d : Cfg Γ Λ) :
+    Derives (machineSystem M states tapes) (encode c) (encode d) ↔
+      ∃ e, Reach (step M) c e ∧ Reach (step M) d e :=
+  derives_iff (presents_machineSystem M hstates htapes) c d
+
+/-- Finite alphabets always admit such enumerations, so every finite machine is
+presented by a finite rewriting system. -/
+theorem exists_presents [Fintype Γ] [Fintype Λ] :
+    ∃ R : RewriteSystem (Letter Γ Λ), Presents M R :=
+  ⟨machineSystem M (Finset.univ : Finset Λ).toList (Finset.univ : Finset Γ).toList,
+    presents_machineSystem M (fun q => by simp) (fun a => by simp)⟩
+
+end Finite
+
 end PostMachine
 end StringRewriting
 end GroupApproximation
