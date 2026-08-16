@@ -265,20 +265,18 @@ Definition~\ref{def:E}, and put
 \[
  w=[tct^{-1},\,v_1(tct^{-1})v_1^{-1}].
 \]
-The defining relations make $w$ central; together with $c^2=1$, centrality
-implies $w^2=1$.  Then the following statements hold:
-\begin{enumerate}
- \item $w\ne1$ in $E$, so $w$ is a central involution;
- \item for every sequence $(d_n)$ of positive integers and every
-  homomorphism $\Theta\colon E\to\Ucor((d_n))$ into the corresponding
-  unitary norm corona \eqref{eq:unitary-corona}, one has $\Theta(w)=1$.
-\end{enumerate}
-In particular $E$ is not MF, and neither $\Cmax(E)$ nor $\Cred(E)$ is an
-MF $C^*$-algebra.
+Then $w\ne1$, while $\Theta(w)=1$ for every sequence $(d_n)$ of
+positive integers and every homomorphism
+$\Theta\colon E\to\Ucor((d_n))$ into the corresponding unitary norm
+corona \eqref{eq:unitary-corona}.  In particular $E$ is not MF, and
+neither $\Cmax(E)$ nor $\Cred(E)$ is an MF $C^*$-algebra.
 \leanverified{Sofic/LiteralNonMFEndpoint}{GroupApproximation.LiteralNonMFEndpoint.manuscriptTheoremA}
 \end{mainthm}
 
 \noindent
+The defining relations make $w$ central, and centrality together with
+$c^2=1$ gives $w^2=1$ (Definition~\ref{def:E}), so the theorem exhibits
+a central involution that every matrix model sends to the identity.
 The group is written out in Definition~\ref{def:E};
 Section~\ref{sec:example} proves the theorem.
 
@@ -703,12 +701,12 @@ arbitrary, the full sequence converges.
 \end{proof}
 
 \begin{remark}[the finite-stage proof]\label{rem:finite-stage}
-The ultrafilter gives no rate.  Section~\ref{app:finite-stage}
-proves the theorem a second time, quantitatively at each single
-coordinate $n$.  There, an explicit almost-fixed spectral subspace of
-the averaged adjoint action replaces that projection, and the
-equal-rank reversal estimate replaces finiteness of $B_\omega$.  That
-proof makes the error bookkeeping explicit in terms of $\kappa$,
+The proof above is qualitative, since it passes to an ultrafilter.
+Section~\ref{app:finite-stage} proves the theorem a second time,
+quantitatively at each single coordinate $n$: an explicit almost-fixed
+spectral subspace of the averaged adjoint action replaces the
+projection $P$, and the equal-rank reversal estimate replaces
+finiteness of $B_\omega$.  The rate there is explicit in $\kappa$,
 $|S|$, the uniform bound on $(x_n)$, and the multiplicative defects of
 $U_n$, once the robust spectral-gap input stated there is granted at
 each stage.
@@ -1184,18 +1182,11 @@ $E$ is sofic.
 \bigskip
 
 \noindent
-This part belongs to the same paper and uses the same bibliography.  It has
-three purposes.  Sections~\ref{app:equivalences}--\ref{app:finite-stage}
-provide a detailed verification of Theorem~\ref{thm:A}: they prove the
-equivalence of the MF formulations, write out the literal presentation and its
-optimization, certify property~\textup{(T)} for the base by exact rational
-arithmetic, construct the explicit Clifford witness over $\mathbb Q$, verify
-the theorem directly from the forty-one relators, and reprove the transport
-theorem quantitatively at each single matrix dimension.
-Sections~\ref{supp:transport-variants}--\ref{sec:necessity} develop the
-mechanism in greater generality.
-Sections~\ref{supp:scaling}--\ref{app:maxcstar} develop the consequences and
-the limits of the method.
+Part~I proves Theorem~\ref{thm:A} from the displayed relators, and
+proves the transport theorem a second time at each fixed matrix
+dimension.  Part~II proves the mechanism in its general form, Part~III
+develops further results, and Part~IV records the limits of the method
+and constructs the maximal group $C^*$-algebra.
 
 \parttitle{Part I.\ \ The explicit group}
 
