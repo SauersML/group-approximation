@@ -139,8 +139,9 @@ CLAIM_TARGETS: dict[str, tuple[str, str]] = {
         "GroupApproximation.MatricialStabilityRadical.actualCoronaMFResidual_eq_fdUnitaryResidual",
     ),
     "thm:commutinglamp": (
-        "Sofic/CommutingLampCollapse",
-        "GroupApproximation.CommutingLampCollapse.literalCommutingLampQuotient_collapse",
+        "Sofic/CommutingLampQuotientSofic",
+        "GroupApproximation.CommutingLampQuotientSofic."
+        "literalSignFreeQuotient_isSofic_and_not_isCDEOperatorMF",
     ),
     "thm:signfree": (
         "Sofic/LiteralSignFreeQuotient",
