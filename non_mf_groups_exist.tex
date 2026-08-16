@@ -3599,15 +3599,23 @@ subgroup heredity the finitely presented group $E$ embeds in no MF
 group.  The Adian--Rabin theorem \cite{Rabin58} therefore applies.
 
 \begin{corollary}[undecidability]\label{cor:undecidable}
-Fix a recursive coding of finite presentations, and suppose given a
-computable map sending each instance of the halting problem to a
-presentation code whose group is MF exactly when that instance halts.
+In the recursive coding of finite presentations fixed above, suppose
+given a computable map sending each instance of the halting problem to
+a presentation code whose group is MF exactly when that instance halts.
 Then no algorithm decides, from a finite presentation, whether the
 presented group is MF, and the set of presentation codes of non-MF
 groups is not recursively enumerable.
 \end{corollary}
-\leanverified{Computability/HaltingReduction}{GroupApproximation.MarkovMFConsequences.operatorMF_recognition_undecidable_of_haltingReduction}
-\leanverified{Computability/HaltingReduction}{GroupApproximation.MarkovMFConsequences.operatorMF_negative_side_not_re_of_haltingReduction}
+\leanverified{Computability/HaltingReduction}{GroupApproximation.MarkovMFConsequences.presentationCodes_recognition_undecidable_of_haltingReduction}
+\leanverified{Computability/HaltingReduction}{GroupApproximation.MarkovMFConsequences.presentationCodes_negative_side_not_re_of_haltingReduction}
+
+The coding is the fixed recursive one, not an arbitrary
+semantics, and that matters: a semantics is only required to attach a
+finitely presented group to each code, not to do so effectively, so an
+ineffective choice would make the statement true for reasons having
+nothing to do with groups.  Pinning the coding removes that reading ---
+the group is read syntactically off the code, and the only way to
+supply the hypothesis is to build presentations from machines.
 
 No undecidability is assumed.  The corollary reduces from the halting
 problem, whose undecidability and whose non-enumerable complement are

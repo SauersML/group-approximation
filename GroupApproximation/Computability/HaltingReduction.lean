@@ -1,4 +1,4 @@
-import GroupApproximation.Computability.MarkovMFConsequences
+import GroupApproximation.Computability.PresentationCodes
 import Mathlib.Computability.Halting
 
 /-!
@@ -73,6 +73,43 @@ theorem operatorMF_negative_side_not_re_of_haltingReduction :
         (operatorMFProperty semantics)),
       ¬ REPred (fun code ↦ ¬ operatorMFProperty semantics code) := by
   intro Code _ semantics n reduction
+  exact negative_side_not_re reduction (not_rePred_haltingProperty_compl n)
+
+
+/-! ## Pinning the coding
+
+`FinitePresentationSemantics` does **not** require the code-to-group map to be
+effective.  That is a real loophole: one could define, noncomputably,
+`Carrier c := if (eval c 0).Dom then PUnit else MarkedGroup`, and then
+`operatorMFProperty` would literally *be* the halting predicate, giving an
+unconditional undecidability theorem with no reduction at all.  It would say
+nothing about groups --- the code-to-group map is not computable, so deciding
+the property from a code is not deciding anything from a presentation.
+
+The statements below close that off by pinning the coding to
+`PresentationCodes.semantics`, where the group really is read syntactically off
+the code.  For that coding the hypothesis cannot be met vacuously: the only way
+to supply the reduction is to build presentations from machines. -/
+
+/-- **MF recognition for the actual presentation coding is undecidable, given a
+reduction.**  The coding is fixed to the recursive one, so no noneffective
+choice of semantics can make this true cheaply. -/
+theorem presentationCodes_recognition_undecidable_of_haltingReduction :
+    ∀ (n : ℕ)
+      (_reduction : AdianRabinReduction (haltingProperty n)
+        (operatorMFProperty PresentationCodes.semantics)),
+      ¬ ComputablePred (operatorMFProperty PresentationCodes.semantics) := by
+  intro n reduction
+  exact recognition_undecidable reduction (not_computablePred_haltingProperty n)
+
+/-- The non-r.e. statement, likewise pinned to the actual coding. -/
+theorem presentationCodes_negative_side_not_re_of_haltingReduction :
+    ∀ (n : ℕ)
+      (_reduction : AdianRabinReduction (haltingProperty n)
+        (operatorMFProperty PresentationCodes.semantics)),
+      ¬ REPred (fun code ↦
+        ¬ operatorMFProperty PresentationCodes.semantics code) := by
+  intro n reduction
   exact negative_side_not_re reduction (not_rePred_haltingProperty_compl n)
 
 end MarkovMFConsequences

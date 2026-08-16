@@ -115,7 +115,7 @@ CLAIM_TARGETS: dict[str, tuple[str, str]] = {
     "cor:undecidable": (
         "Computability/HaltingReduction",
         "GroupApproximation.MarkovMFConsequences."
-        "operatorMF_recognition_undecidable_of_haltingReduction"),
+        "presentationCodes_recognition_undecidable_of_haltingReduction"),
     "def:invisible": (
         "Sofic/ManuscriptExactWrappers",
         "GroupApproximation.ManuscriptExactWrappers."
