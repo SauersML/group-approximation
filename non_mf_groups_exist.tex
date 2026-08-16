@@ -819,13 +819,9 @@ stated there, every estimate of that proof is an explicit inequality in
 $\kappa$, $|S|$, the uniform bound on $(x_n)$, and the multiplicative
 defects of $U_n$.
 
-The formalization follows the second route and not the first.  The declarations
-recorded at this theorem prove it through the spectral corner and the
-equal-rank reversal; the apparatus of the printed proof --- the Hilbert-space
-ultraproduct $K_\omega$, the norm ultraproduct $B_\omega$, its faithfulness and
-its finiteness --- has no counterpart in the development, or in the library it
-is built on.  The machine-checked statement is the one printed above; the
-machine-checked \emph{proof} is the one of Section~\ref{app:finite-stage}.
+The accompanying development proves the theorem as printed above, by
+the finite-stage argument of Section~\ref{app:finite-stage} rather
+than by the ultraproduct proof given here.
 \end{remark}
 
 \section{The central involution obstruction}\label{sec:sign}
@@ -3195,7 +3191,7 @@ than uniformity in $\gamma$ and more than
 \eqref{eq:profile-bounded} asks for.
 \leanverified{Sofic/CollapseProfileBound}{GroupApproximation.CollapseProfileBound.collapse_profile_le}
 \leanverified{Sofic/CollapseProfileBoundNumeric}{GroupApproximation.CollapseProfileBound.collapse_profile_le_num}
-That reading is the one place where the present assembly
+That reading is the one place where the argument below
 still consults the limit rather than a single stage: what is
 ultraproduct-free below is the transport and the contradiction, not the
 provenance of $C$.  Put
@@ -3287,7 +3283,8 @@ everything after it is a statement about the single stage $n_0$.
 \leanverified{Sofic/InvolutionCollapseCenter}{GroupApproximation.InvolutionCollapseCenter.exists_approximate_coboundary}
 
 Compressing into the corner loses at most
-$c_{\mathrm{cap}}=(C+1)\,2\tau/(1-\theta)$ of the mass, and one
+$c_{\mathrm{cap}}=(C+1)\,2\tau/(1-\theta)$ in squared Frobenius norm,
+and one
 stage of transport bounds the displacement of $\widehat b_n$ by each
 generator:
 \[
