@@ -86,12 +86,13 @@ theorem hasInvariantMean_of_locallyFinite_by_amenable {G : Type} [Group G]
 
 /-- A group exhausted by a directed family of infinite cyclic subgroups is
 amenable.  This is the shape of `ℤ[1/2]`, the kernel of `BS(1,2)`. -/
-theorem hasInvariantMean_of_directed_cyclic {ι : Type} [Nonempty ι]
+theorem hasInvariantMean_of_directed_cyclic {ι : Type} (hι : Nonempty ι)
     [SemilatticeSup ι] {G : Type} [Group G] (K : ι → Subgroup G)
     (hmono : Monotone K) (hcover : ∀ g : G, ∃ i, g ∈ K i)
     (hiso : ∀ i, Nonempty ((K i) ≃* Multiplicative ℤ)) :
-    HasInvariantMean G :=
-  hasInvariantMean_of_directed K
+    HasInvariantMean G := by
+  haveI := hι
+  exact hasInvariantMean_of_directed K
     (fun i ↦ (hasInvariantMean_congr (hiso i).some hasInvariantMean_int).some)
     hmono hcover
 
