@@ -406,6 +406,29 @@
       ]
     },
     {
+      "id": "cor:mftrace",
+      "environment": "corollary",
+      "title": "the canonical trace of $\\Cmax(E)$ is not an MF trace",
+      "statement_sha256": "2ac0dd6776191e4afbe159d5b27a3b084c56525ab8eb13fa434ac1817c8c91ff",
+      "status": "exact",
+      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
+      "dependencies": [
+        "thm:A",
+        "def:E"
+      ],
+      "extra_assumptions": [],
+      "external_inputs": [],
+      "coverage_gap": "",
+      "lean": [
+        {
+          "role": "exact",
+          "module": "Sofic/LiteralTraceConsequence",
+          "declaration": "GroupApproximation.LiteralTraceConsequence.markedGroup_canonicalMaximalTrace_not_isMFTrace",
+          "covers": "the complete printed proposition"
+        }
+      ]
+    },
+    {
       "id": "prop:literal-base-T",
       "environment": "proposition",
       "title": "",

@@ -1283,6 +1283,52 @@ quotient, both MF, so the MF property is not closed under extensions;
 and $F_8$ surjects onto $E$, so it is not closed under quotients
 (Section~\ref{sec:algebras-sofic}, Corollary~\ref{cor:quotclosure}).
 
+\subsection*{The canonical trace}
+
+Approximation properties of a group have counterparts for traces on a
+$C^*$-algebra: a trace is \emph{MF} when it admits matrix models that are
+asymptotically multiplicative, linear and $*$-preserving in operator norm,
+uniformly bounded, and trace-correct.  No positivity, unitality or complete
+positivity is required of the models.  The obstruction of
+Theorem~\ref{thm:A} reaches that setting.
+
+\begin{corollary}[the canonical trace of $\Cmax(E)$ is not an MF trace]
+\label{cor:mftrace}
+Let $\tau_E$ denote the canonical trace on $\Cmax(E)$, determined by
+$\tau_E(u_g)=1$ for $g=1$ and $\tau_E(u_g)=0$ otherwise.  There is no
+sequence of maps $\varphi_n\colon\Cmax(E)\to M_{k_n}$ satisfying, for all
+$a,b\in\Cmax(E)$ and all $\lambda,\mu\in\mathbb C$,
+\[
+\lVert\varphi_n(ab)-\varphi_n(a)\varphi_n(b)\rVert\to0,\qquad
+\lVert\varphi_n(\lambda a+\mu b)-\lambda\varphi_n(a)-\mu\varphi_n(b)\rVert\to0,
+\]
+\[
+\lVert\varphi_n(a^*)-\varphi_n(a)^*\rVert\to0,\qquad
+\sup_n\lVert\varphi_n(a)\rVert<\infty,\qquad
+\lvert\tau_E(a)-\operatorname{tr}\varphi_n(a)\rvert\to0,
+\]
+every norm being the operator norm and $\operatorname{tr}$ the normalized
+trace.  Moreover $\Cmax(E)$ is separable and $\tau_E$ is a tracial state.
+\leanverified{Sofic/LiteralTraceConsequence}{GroupApproximation.LiteralTraceConsequence.markedGroup_canonicalMaximalTrace_not_isMFTrace}
+\end{corollary}
+
+\begin{proof}
+Such a family, restricted to the canonical unitaries $u_g$ and read on a
+finite test set at a late enough index, is a trace-correct operator-norm
+model of the regular character.  The trace clause at $g=1$ pins a corner of
+asymptotically full normalized rank: rounding the hermitian part of
+$\varphi_n(1)$ gives a projection whose corank is $O(\varepsilon)$ relative
+to the dimension.  Inflating the corners by the complement and correcting
+polarly produces exact unitaries, still multiplicative to within
+$O(\varepsilon)$, and the clause $\operatorname{tr}\varphi_n(u_g)\to0$
+separates them: for a unitary $V$ the normalized trace obeys
+$\lVert V-1\rVert\ge\lvert\operatorname{tr}V-1\rvert$, so the separation
+tends to $1$.  Hence $E$ would be MF, contradicting Theorem~\ref{thm:A}.
+Separability of $\Cmax(E)$ follows from countability of $E$, and the trace
+properties from those of the canonical trace of $\Cred(E)$, which
+$\tau_E$ pulls back along the canonical surjection.
+\end{proof}
+
 \clearpage
 \begingroup
   \centering

@@ -89,6 +89,10 @@ CLAIM_TARGETS: dict[str, tuple[str, str]] = {
     "thm:Esofic": (
         "Sofic/LiteralSoficAssembly",
         "GroupApproximation.LiteralSoficAssembly.markedGroup_finitelyPresented_sofic_nonMF"),
+    "cor:mftrace": (
+        "Sofic/LiteralTraceConsequence",
+        "GroupApproximation.LiteralTraceConsequence."
+        "markedGroup_canonicalMaximalTrace_not_isMFTrace"),
     "prop:maximal-cstar": (
         "Analysis/MaximalGroupCStar",
         "GroupApproximation.manuscriptUniverseRelativeMaximalGroupCStar"),
@@ -238,6 +242,7 @@ DEPENDENCIES: dict[str, list[str]] = {
     "thm:cyclic": ["thm:exactfd", "con:clifford"],
     "thm:reduced": ["thm:A", "lem:faithfultrace"],
     "thm:Esofic": ["def:E", "thm:A", "prop:blocknormalform", "lem:window"],
+    "cor:mftrace": ["thm:A", "def:E"],
     "prop:mf-equivalences": ["lem:unitarycorona"],
     "prop:literal-base-T": ["def:E"],
     "lem:linear": ["def:E"],
