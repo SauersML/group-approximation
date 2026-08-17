@@ -1,4 +1,5 @@
 import GroupApproximation.Analysis.ShulmanTraceClasses
+import GroupApproximation.Analysis.MaximalGroupCStarTrace
 import GroupApproximation.Analysis.ReducedGroupCStarMFObstruction
 import GroupApproximation.Analysis.ReducedGroupCStarTraceFaithful
 import GroupApproximation.Sofic.MFTraceRecognition
@@ -225,6 +226,30 @@ theorem isOperatorMF_of_isMFTrace_canonicalReduced [Countable G]
     (fun g ↦ (star_reducedLeftRegular G g).symm)
     (canonicalCoefficientAtOne_reducedLeftRegular_one G)
     (fun g hg ↦ canonicalCoefficientAtOne_reducedLeftRegular_ne G g hg) h
+
+/-! ## The canonical trace of the full group C⋆-algebra
+
+This is the statement the non-MF program consumes, in contrapositive form:
+the group is the witness, the trace is the canonical trace of `C⋆(G)`, and
+`Analysis.MaximalGroupCStarTrace` has already proved the generator formula
+`τ(u_g) = 1` at the identity and `0` elsewhere.  Nothing is left over. -/
+
+/-- **The headline, with nothing left to discharge.**  If the canonical trace
+of the full group C⋆-algebra `C⋆(G)` is an MF trace in Shulman's sense, then
+`G` is operator MF.
+
+Contrapositive: a group that is not operator MF has a canonical trace that is
+not an MF trace — which, against a soficity hypothesis supplying
+hyperlinearity of the same trace, separates the two trace classes. -/
+theorem isOperatorMF_of_isMFTrace_canonicalMaximal [Countable G]
+    (h : IsMFTrace (fun a : MaximalGroupCStar G ↦ canonicalMaximalTrace G a)) :
+    IsOperatorMF G :=
+  OperatorMFLocalNormalization.isOperatorMF_iff_isNormApproximable_one.mpr
+    (isNormApproximable_of_isMFRegularCharacter G
+      (isMFRegularCharacter_of_isMFTrace_unitaryHom
+        (maximalGroupCStarUnitaryHom G)
+        (canonicalMaximalTrace_generator_one G)
+        (fun _g hg ↦ canonicalMaximalTrace_generator_of_ne_one G hg) h))
 
 end ShulmanTrace
 end GroupApproximation
