@@ -281,10 +281,10 @@ Post's theorem turns r.e.-ness of the positive side plus undecidability into
 non-r.e.-ness of the negative side.  The undecidability is `D4'`, which is itself
 unconditional, so the conclusions are too.
 
-The hypothesis-taking forms are kept below the unconditional ones because they
-record which half of the corollary needs what: the positive side is r.e. outright,
-and only the negative side reaches for `D4'`.  Reading the two off a single
-statement would hide that. -/
+The hypothesis-taking forms come first, and are kept, because they record which
+half of the corollary needs what: the positive side is r.e. outright, and only
+the negative side reaches for `D4'`.  Reading the two off a single statement
+would hide that. -/
 
 /-- **The negative side of the word problem is not recursively enumerable**,
 given that the word problem is undecidable.  This is the manuscript's inference
