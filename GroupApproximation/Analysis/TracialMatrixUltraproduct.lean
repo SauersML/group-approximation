@@ -68,37 +68,51 @@ missing step is exactly
 > for `j ∈ J₂ω` and `ε > 0` there is `e ∈ J₂ω` with `0 ≤ e ≤ 1` and
 > `‖j - j e‖ < ε`,
 
-for which the witness is the resolvent element
+**The matrix-level half of that step is built**, in
+`Analysis/HilbertSchmidtApproximateUnit.exists_projection_approximate_unit`.
+For a single matrix `j` and a threshold `t > 0` it produces an orthogonal
+projection `e` with `‖e‖ ≤ 1`, `‖j - j e‖² ≤ t` and `t · ‖e‖₂² ≤ ‖j‖₂²`: it
+thresholds the spectrum of `jᴴj`, so the order bounds come free from
+idempotence and `‖e‖₂² = rank / d` is a trace identity, Chebyshev supplying
+the second clause.
+
+Note what that is and is not.  It is a statement about **one matrix**, not
+about a member of `J₂ω`.  The sequence-level step quoted above is still open:
+it needs the projections chosen coordinatewise and the second clause -- `t`
+fixed before the sequence varies, so `t · ‖eₙ‖₂² ≤ ‖jₙ‖₂²` forces
+`‖eₙ‖₂ → 0` along any filter along which `‖jₙ‖₂ → 0` -- read along the
+filter to put `e` back in the ideal.  That assembly is what remains, and the
+matrix lemma is its main ingredient rather than its conclusion.
+
+*An alternative construction, recorded but **not built**.*  In the ambient
+algebra one may instead take the resolvent
 
 `e = a * (δ • 1 + a)⁻¹`,   `a = star j * j`,
 
-formed in the *ambient* algebra.  Three things make this the right witness.
+which is a *continuous* function of `a`, namely `t ↦ t / (δ + t)`, so it needs
+only the functional calculus of a nonnegative element and never forms an
+eigenbasis.  Its appeal is at the sequence level: membership `e ∈ J₂ω` is
+`Ideal.mul_mem_right` -- `a ∈ J₂ω` because `j` is, and `e` is `a` times an
+ambient element -- so the argument never needs the (unavailable) theory of
+ideals as non-unital C-star algebras, whereas the projection witness carries a
+pointwise Chebyshev bound across the filter.  The two estimates would be one
+step each: `‖e‖₂ ≤ ‖a‖₂ / δ` from `‖AB‖₂ ≤ ‖B‖ ‖A‖₂` together with
+`‖(δ + a)⁻¹‖ ≤ 1/δ`, and `‖a‖₂ ≤ ‖j‖ ‖j‖₂ → 0`; while
+`‖j (1 - e)‖² = ‖(1 - e) a (1 - e)‖ = ‖g(a)‖` with `g t = t δ² / (δ + t)²`,
+whose supremum on `[0,∞)` is `δ/4`, gives `‖j (1 - e)‖ ≤ √δ / 2`.  Mathlib's
+`Analysis/CStarAlgebra/ApproximateUnit.lean` is built around this same
+function in the form `x ↦ 1 - (1 + x)⁻¹`
+(`CFC.monotoneOn_one_sub_one_add_inv`, `norm_cfcₙ_one_sub_one_add_inv_lt_one`).
+Whoever assembles `‖b + J‖ = lim ‖b - b e‖` may want it; until someone does,
+it is prose.
 
-* It is a **continuous** function of `a`, namely `t ↦ t / (δ + t)`, so it
-  needs only the continuous functional calculus of a nonnegative element and
-  no diagonalization.  An earlier draft of this paragraph proposed the
-  spectral projection `1_{[δ,∞)}(|j n|)` instead; that indicator is
-  discontinuous, so it needs the spectral theorem coordinatewise, and
-  `Analysis/CStarSpectralProjection.lean` does not help with it -- its
-  `spectralProjection` is a `cfc` of a gap indicator and its continuity lemma
-  wants a genuine spectral gap, which `|j n|` has no reason to have.
-* Membership `e ∈ J₂ω` is **immediate from the ideal property** and needs no
-  C-star structure on the ideal itself: `a ∈ J₂ω` because `j` is, and `e` is
-  `a` times an element of the ambient algebra.  This is what keeps the
-  argument out of the (unavailable) theory of ideals as non-unital C-star
-  algebras.
-* The two estimates are one step each.  `‖e‖₂ ≤ ‖a‖₂ / δ` from
-  `‖AB‖₂ ≤ ‖B‖ ‖A‖₂` -- the lemma already used above -- together with
-  `‖(δ + a)⁻¹‖ ≤ 1/δ`; and `‖a‖₂ ≤ ‖j‖ ‖j‖₂ → 0`.  For the other side,
-  `‖j (1 - e)‖² = ‖(1 - e) a (1 - e)‖ = ‖g(a)‖` with
-  `g t = t δ² / (δ + t)²`, whose supremum on `[0,∞)` is `δ/4`, so
-  `‖j (1 - e)‖ ≤ √δ / 2`.
-
-Mathlib's own `Analysis/CStarAlgebra/ApproximateUnit.lean` is built around
-exactly this function in the form `x ↦ 1 - (1 + x)⁻¹`
-(`CFC.monotoneOn_one_sub_one_add_inv`, `norm_cfcₙ_one_sub_one_add_inv_lt_one`),
-so more of it should be reusable than the projection route suggested.
-Everything downstream of that one lemma is the standard three-line estimate.
+A note on the search that established the premise: the claim that the pinned
+mathlib has no quotient C-star instance is not an inference from failing to
+find one.  All sixteen `CStarRing` instances in the pin were enumerated --
+`ContinuousMapZero`, `C(α,β)`, `α →ᵇ β`, `C₀(α,β)`, `Quaternion`, `E →L[𝕜] E`,
+`ℝ`, `Prod`, `Pi`, `Pi'`, `Eᵐᵒᵖ`, `Multiplier`, `CStarMatrix`, `RCLike`,
+`Unitization`, `lp B ∞` -- and not one is a quotient, an ideal or a
+subalgebra.
 
 Nothing below papers over the gap: no statement here asserts the C-star
 identity for the quotient norm.
