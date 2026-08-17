@@ -6,6 +6,9 @@ title: An explicit order-three unit gives a corner of the group algebra mapping 
 distinct_from:
   leavitt-unit-group-algebra-surjects-onto-leavitt: that is the plain surjection from the whole group algebra, whose identity is the group identity; this is a surjection from one explicit idempotent corner, unital for the corner's own identity, and its content is the idempotent, not the spanning.
   augmentation-blocks-unital-leavitt-family: that is the no-go forbidding Leavitt relations wherever a unital map to a domain exists; this exhibits the one corner where that obstruction is switched off, because the corner's identity has augmentation zero.
+  leavitt-unit-group-algebra-not-directly-finite: that is the open failure of direct finiteness for the whole group algebra; this is an established construction of a corner and a map, and it deliberately proves nothing about direct finiteness anywhere.
+  leavitt-group-algebra-not-stably-finite: that is the open matrix-level failure the surjunctivity lane consumes; this is an established idempotent computation, and the corner it builds is not a matrix amplification.
+  leavitt-gl-equals-el-and-perfect-unit-group: that is about the group GL over the algebra; this is about one order-three element of that group and the idempotent its powers span in the group algebra.
 artifacts:
   - research/artifacts/kaplansky-direct-finiteness-audit-2026-08-17.md
 ---

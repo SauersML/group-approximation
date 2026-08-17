@@ -5,6 +5,8 @@ kind: claim
 title: Three units suffice to lift each Leavitt generator into the group algebra
 distinct_from:
   leavitt-unit-group-algebra-surjects-onto-leavitt: that is the qualitative spanning statement, which gives no bound on how many units an element needs; this pins the number at three for the two generators that carry the defect, by a self-similarity computation the spanning proof does not perform.
+  leavitt-gl-equals-el-and-perfect-unit-group: that identifies GL with EL over the Leavitt algebra and proves the unit group perfect; this counts how many units it takes to write one non-unit additively, a question about the additive structure that says nothing about the group.
+  leavitt-unit-group-algebra-not-directly-finite: that is the open failure of direct finiteness; this is an established construction of two specific short elements of the group algebra, and their product is explicitly not claimed to be 1.
 artifacts:
   - research/artifacts/kaplansky-direct-finiteness-audit-2026-08-17.md
 ---

@@ -5,6 +5,9 @@ kind: claim
 title: The binary Leavitt algebra is not directly finite
 distinct_from:
   augmentation-blocks-unital-leavitt-family: that says where the Leavitt relations can never be found, namely in any ring with a unital map to a domain; this is the elementary consequence of having them, that the one-sided inverse in the algebra itself is not two-sided.
+  leavitt-group-algebra-not-stably-finite: that is the open demand for the same failure inside the group algebra F_2[R^x] at some matrix size; this is the established two-line fact about the Leavitt algebra itself, which is not a group algebra, and the whole difficulty of that node is the distance between the two.
+  leavitt-gl-equals-el-and-perfect-unit-group: that is a K-theoretic statement inside the unit group, identifying GL with EL and proving perfectness; this is a statement about a single equation between four generators of the algebra, and neither uses the other.
+  d-ary-leavitt-groups-nonsofic-over-finite-fields: that is a soficity statement about the unit and elementary groups of d-ary Leavitt algebras over finite fields, proved through property (T) and a non-LEF witness; this is a ring identity in the binary algebra with no approximation content at all.
 artifacts:
   - research/artifacts/kaplansky-direct-finiteness-audit-2026-08-17.md
 ---
