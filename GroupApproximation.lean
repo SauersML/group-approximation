@@ -43,6 +43,7 @@ import GroupApproximation.Sofic.HilbertUltraproductSeparating
 import GroupApproximation.Sofic.KOmegaHilbert
 import GroupApproximation.Sofic.OmegaOperatorUltraproduct
 import GroupApproximation.Sofic.OmegaAlmostRepresentation
+import GroupApproximation.Sofic.UltrafilterSubsequence
 import GroupApproximation.Sofic.HilbertUltraproductSpace
 import GroupApproximation.Sofic.ProjectionRankFlip
 import GroupApproximation.Sofic.ExactInvolutionCut
