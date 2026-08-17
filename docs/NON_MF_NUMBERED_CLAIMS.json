@@ -1305,6 +1305,12 @@
         },
         {
           "role": "exact",
+          "module": "Computability/WordProblemRE",
+          "declaration": "GroupApproximation.WordProblemRE.operatorMF_negative_side_not_re",
+          "covers": "a printed conclusion of the proposition"
+        },
+        {
+          "role": "exact",
           "module": "Computability/AdianRabinVariantTransform",
           "declaration": "GroupApproximation.AdianRabinVariantTransform.operatorMF_recognition_undecidable_of_wordProblem",
           "covers": "a printed conclusion of the proposition"
