@@ -93,10 +93,12 @@ theorem card_cycleType_parity {u v : Equiv.Perm Y} (hu : u * u = 1)
     · rw [Nat.even_iff] at hue hve
       omega
     · rw [hue.neg_one_pow, hvo.neg_one_pow] at hsign
-      exact absurd hsign (by decide)
+      have hcast : ((1 : ℤˣ) : ℤ) = ((-1 : ℤˣ) : ℤ) := congrArg _ hsign
+      norm_num at hcast
   · rcases Nat.even_or_odd (Multiset.card v.cycleType) with hve | hvo
     · rw [huo.neg_one_pow, hve.neg_one_pow] at hsign
-      exact absurd hsign (by decide)
+      have hcast : ((-1 : ℤˣ) : ℤ) = ((1 : ℤˣ) : ℤ) := congrArg _ hsign
+      norm_num at hcast
     · rw [Nat.odd_iff] at huo hvo
       omega
 
