@@ -29,13 +29,22 @@ on:
     branches: [main]
   workflow_dispatch:
 
-# One reaper at a time and the newest wins.  Unlike the runs it reaps, a reaper
-# holds no certificate: killing one mid-flight costs nothing, so
-# `cancel-in-progress` is safe here and a push burst collapses to a single
-# reaper in the control plane at zero runner cost.
+# One reaper at a time, and it must be allowed to FINISH.
+#
+# `cancel-in-progress: true` looks right here -- a reaper holds no certificate,
+# so killing one costs nothing -- and it is wrong for one reason: runner
+# acquisition on this account takes minutes while pushes arrive every ~45s, so
+# every reaper was superseded before it ever reached a runner.  Measured on the
+# first deploy of this workflow: eleven consecutive reapers cancelled, zero
+# executions.  It was starved by precisely the pathology it exists to fix.
+#
+# `false` keeps at most one running plus one pending -- still bounded, still
+# deduplicated by the control plane -- but the running one is never collected,
+# so the reaping actually happens.  A slightly stale reaper costs nothing
+# because it recomputes the newest queued run itself when it starts.
 concurrency:
   group: prover-reaper
-  cancel-in-progress: true
+  cancel-in-progress: false
 
 permissions:
   actions: write

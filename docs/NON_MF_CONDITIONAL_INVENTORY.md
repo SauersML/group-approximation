@@ -41,9 +41,18 @@ badge surface. By category, over *declarations*:
 | unconditional | 88 | — |
 | conditional-data — undischarged existence package | 3 | 1, 3, 4 |
 | literature-input — published theorem as a quantified premise | 2 | 2, 5 |
-| open — corpus predicate no corpus theorem concludes | 2 | 6, 7 |
+| ~~open — corpus predicate no corpus theorem concludes~~ **discharged 2026-08-17** | 0 *(was 2)* | 6, 7 |
 | *(not mathematical conditionality)* header-hygiene | 4 | 8--11 |
 | *(not mathematical conditionality)* category error | 1 | 12 |
+
+> **The counts above are as-scanned at `8e84fb4c` and are now low by at least
+> rows 6--7.** Those two are discharged; see § 6--7. A full gate run against
+> `origin/main` `0ed335cd` — `check_non_mf_unconditional.py --self-test`, then
+> `--tex non_mf_groups_exist.tex --baseline docs/NON_MF_UNCONDITIONAL_BASELINE.txt`
+> — exits 0 with **zero findings** and reports 113 cited declarations
+> unconditional, so the remaining rows have moved too. Only rows 6--7 have been
+> re-verified declaration-by-declaration and rewritten here; the rest are left
+> to their owners rather than closed wholesale on a count.
 
 So **7 of 100 badged declarations are mathematically conditional**, and 5 more
 carry a badge defect that is not conditionality. Reproduce with
@@ -177,8 +186,8 @@ an acylindrical action is never quasi-parabolic (Osin, Theorem 1.1); Hull's own
 HNN result (Proposition 6.2) covers extensions over cyclic subgroups, not over
 the whole Kazhdan base.  These rows therefore stay, with that sharper reason.
 | 5 | ~~`ClosedEnvelopeCompression.manuscriptEnvelopeCompressionBlind`~~ → **CLOSED 2026-08-16** | `rem:chaincondition`, Zariski-envelope sentence | **None.** The chain condition is proved: `Algebra/ZariskiDescendingChain.wellFoundedLT_isZClosedSubgroup`, from the Hilbert basis theorem. | Closed — the badged declaration now exhibits the `Closed` package as a conjunct; see §5 |
-| 6 | `MatricialStabilityRadical.actualCoronaMFResidual_eq_fdUnitaryResidual` | open-predicate | `prop:stabradical` clause 2 | Clause 2 is *printed* conditional, so no print/Lean mismatch — but the hypothesis is satisfied by no group in the corpus, so the clause is never applied. | none seen |
-| 7 | `MatricialStabilityRadical.not_isCDEOperatorMF_of_stable_of_fdResidual_ne_bot` | open-predicate | `prop:stabradical` clause 3 | as above | none seen |
+| 6 | `MatricialStabilityRadical.actualCoronaMFResidual_eq_fdUnitaryResidual` | **discharged** | *(target cut from the tex)* | Premise inhabited with no literature input by `MatricialStabilityInstances.{freeGroup,multiplicativeInt}_isPointNormMatriciallyStable`, and clause 2 applied at both; `prop:stabradical` itself was cut by `3a45fa60`, so nothing badges this. | — |
+| 7 | `MatricialStabilityRadical.not_isCDEOperatorMF_of_stable_of_fdResidual_ne_bot` | **discharged** | *(target cut from the tex)* | As row 6, but discharged in the *contrapositive*: the forward direction (stable + nontrivial fd residual ⟹ non-MF) is exercised by no corpus group, and both stable witnesses provably have `fdUnitaryResidual = ⊥`. | — |
 | 8 | `MatricialStabilityRadical.actualCoronaMFResidual_le_fdUnitaryResidual` | header-hygiene | `prop:stabradical` clause 1 | None mathematically; the theorem is true and unconditional. | — |
 | 9 | `MarkedGroupSpace.isClosed_operatorMFLocus` | header-hygiene | `thm:markedclosed`(1) | None mathematically. | — |
 | 10 | `MarkedGroupSpace.isOpen_compl_operatorMFLocus` | header-hygiene | `thm:markedclosed`(2) | None mathematically. | — |
@@ -449,22 +458,64 @@ What is true now:
   theorem".  The same fabricated quote had been copied into the gate roster and
   into `ZariskiDescendingChain`'s own docstring; both are corrected.
 
-### 6--7. Point-norm matricial stability
+### 6--7. Point-norm matricial stability — **DISCHARGED**, and off the badge surface
 
-`GroupApproximation/Sofic/MatricialStabilityRadical.lean:175` and `:186`,
-premise `IsPointNormMatriciallyStable G` (defined at `:40`). No corpus theorem
-concludes it for any group.
+`GroupApproximation/Sofic/MatricialStabilityRadical.lean:182` and `:193`,
+premise `IsPointNormMatriciallyStable G` (defined at `:48`).
 
-This one is different in kind from 1--5 and should not be lumped with them.
-`prop:stabradical` prints clauses 2 and 3 *with* the stability hypothesis, so
-Lean and print agree exactly; the honest reading is a printed hypothesis, not a
-smuggled literature import. The residual concern is vacuity: with no group
-proved stable in the corpus, and the intended witnesses (Eckhardt--Shulman,
-Dadarlat-style stability results) unformalized, clauses 2--3 are never applied
-to anything. The gate reports them because the user's standard is that a
-premise the corpus cannot satisfy is a premise the corpus has not discharged.
-Whether that warrants a badge change is a judgement call for the manuscript
-owner; the mechanical answer is recorded here either way.
+**Both rows are closed, on two independent grounds.** Recorded 2026-08-17
+against `origin/main` `0ed335cd`; the line numbers above are current at that
+revision, and the ones this section previously carried (`:175`, `:186`, `:40`)
+had drifted.
+
+**The premise is inhabited, and proved so with no literature input.**
+`GroupApproximation/Sofic/MatricialStabilityInstances.lean` concludes it twice:
+
+| Theorem | Statement |
+|---|---|
+| `freeGroup_isPointNormMatriciallyStable` (`:359`) | `∀ α : Type u, IsPointNormMatriciallyStable (FreeGroup α)` |
+| `multiplicativeInt_isPointNormMatriciallyStable` (`:393`) | `IsPointNormMatriciallyStable (Multiplicative ℤ)` |
+
+Neither imports anything. The free-group proof takes the genuine
+representations to be `FreeGroup.lift fun a ↦ B.map n (FreeGroup.of a)` — the
+universal property — so they agree with the almost representation *exactly* at
+the generators, and the estimate propagates along words because the tracking
+locus is a subgroup (`:324`--`:350`). `ℤ` is the same construction through
+`intPowerHom`. No averaging, no repair, no functional calculus, and in
+particular no Eckhardt--Shulman: the earlier text's assumption that the
+witnesses had to come from the literature was simply wrong, because free groups
+have no relations to preserve.
+
+**And both clauses are applied.** Clause 2 at `:446` (free groups) and `:479`
+(the integers); clause 3 at `:459` and `:491`. `stabilityHypothesis_inhabited`
+(`:500`) bundles an inhabitant with both consequences, and says in its own
+docstring that it exists so this row can be closed by pointing at one name.
+
+**Claim strength, stated exactly.** Clause 3 is discharged *in the
+contrapositive*: the corpus uses it as "stable and MF, therefore
+`fdUnitaryResidual = ⊥`", which is how countable free groups are shown
+residually finite dimensional. The forward direction — stable with a
+nontrivial finite-dimensional residual, therefore not MF, the direction that
+would manufacture a new non-MF group — is exercised by **no corpus group**, and
+both stable witnesses provably have `fdUnitaryResidual = ⊥` (`:452`, `:485`).
+The gate's criterion is satisfied and the clause is not dead weight, but it has
+never been run in the direction the manuscript wanted it for.
+
+**Independently, the printed target no longer exists.** `prop:stabradical`
+occurs in no `.tex` file in the repository; it was cut by `3a45fa60`
+("Editorial pass: rewrite orbit collapse, cut what nothing uses"). Neither
+declaration is cited by any badge, and no surviving `\label` matches `stab`, so
+these rows are outside this document's own scope — what every `\leanverified`
+badge rests on — regardless of the mathematics above.
+
+**Why this sat stale.** `MatricialStabilityInstances.lean` was created by
+`892665dc`, which post-dates this document's scan revision `8e84fb4c`
+(`git cat-file -e 8e84fb4c:<path>` fails). The provenance block above promises
+the sweep included untracked modules, and it did — the file did not yet exist.
+This is the same drift mechanism as row 13: a row describing a corpus that has
+since moved. Both modules are on `origin/verified` with the root import
+(`git cat-file -e origin/verified:<path>`), so they have passed a real green
+`Build and audit`, not merely reached `main`.
 
 ### 8--11. Section variables: the advertised property is false
 

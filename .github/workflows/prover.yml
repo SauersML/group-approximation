@@ -110,12 +110,40 @@ jobs:
             # per-run concurrency groups nothing can cancel that run, so
             # skipping is safe: if it fails, the next push or cron tick
             # retries this tree.  Fail closed: an API error keeps run=true.
-            inflight=$(gh api \
+            #
+            # It must yield only to a run that is ACTUALLY COMPUTING the
+            # certificate -- one whose gate has already concluded success --
+            # and never to a merely queued run.  This is the same livelock the
+            # push branch below was fixed for, and until now the schedule
+            # branch still had it: a queued same-SHA push run made this tick
+            # cancel, and that push run's own gate then yielded to the build
+            # mutex in turn, so neither certified anything.  Measured
+            # 2026-08-17: six consecutive scheduled runs cancelled, every one
+            # of them, back to 07:36 -- the hourly tick that this file calls
+            # load-bearing had not certified a tree all day, which is exactly
+            # the gap it exists to close for commits overtaken by the mutex.
+            inflight=0
+            for rid in $(gh api \
               "repos/${{ github.repository }}/actions/workflows/prover.yml/runs?head_sha=${{ github.sha }}&per_page=100" \
-              --jq '[.workflow_runs[]
+              --jq '.workflow_runs[]
                       | select(.id != ${{ github.run_id }})
                       | select(.status == "queued" or .status == "in_progress")
-                    ] | length' || echo 0)
+                      | .id' 2>/dev/null || true); do
+              if [ "$(gh api \
+                "repos/${{ github.repository }}/actions/runs/${rid}/jobs?per_page=50" \
+                --jq '[.jobs[]
+                        | select(.name | startswith("Decide whether"))
+                        | select(.conclusion == "success")] | length' \
+                2>/dev/null || echo 0)" -gt 0 ]; then
+                # Note the direction on failure: an unreadable job listing
+                # counts as NOT a builder, so this tick proceeds and builds.
+                # That is the file's existing fail-closed choice -- duplicating
+                # a certificate wastes compute, while declining to compute one
+                # is how a tree ends up certified by nothing.
+                echo "Run $rid is already computing this exact tree."
+                inflight=$((inflight+1))
+              fi
+            done
             if [ "${inflight:-0}" -gt 0 ]; then
               # Cancel rather than skip.  A run that certifies nothing must
               # not conclude `success`: the promotion workflow triggers on
