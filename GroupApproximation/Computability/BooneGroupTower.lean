@@ -223,6 +223,44 @@ theorem good_pinch {A : Subgroup G} (hA : Good A φ) (a : Asub) (ha : (a : G) �
   rw [← HNNExtension.equiv_eq_conj]
   exact ⟨((φ a : Bsub) : G), hA.1 a ha, rfl⟩
 
+/-! #### The small extension
+
+`A₁` and `B₁` are `Asub` and `Bsub` seen inside `A`, and goodness is exactly what
+lets `φ` restrict to them. -/
+
+/-- `Asub`, as a subgroup of `A`. -/
+abbrev subOne (A Asub : Subgroup G) : Subgroup A := Asub.subgroupOf A
+
+/-- The restriction of `φ` to `A₁ ≃* B₁`, which is what goodness provides. -/
+def goodEquiv {A : Subgroup G} (hA : Good A φ) :
+    subOne A Asub ≃* subOne A Bsub where
+  toFun a := ⟨⟨(φ ⟨(a : G), a.2⟩ : G), hA.1 ⟨(a : G), a.2⟩ (a : A).2⟩,
+    (φ ⟨(a : G), a.2⟩).2⟩
+  invFun b := ⟨⟨(φ.symm ⟨(b : G), b.2⟩ : G), hA.2 ⟨(b : G), b.2⟩ (b : A).2⟩,
+    (φ.symm ⟨(b : G), b.2⟩).2⟩
+  left_inv a := by
+    ext
+    simp
+  right_inv b := by
+    ext
+    simp
+  map_mul' a b := by
+    simp only [Subtype.ext_iff, Subgroup.coe_mul]
+    exact congrArg Subtype.val
+      (map_mul φ ⟨((a : A) : G), a.2⟩ ⟨((b : A) : G), b.2⟩)
+
+/-- The natural map from the small extension to the big one. -/
+def smallLift {A : Subgroup G} (hA : Good A φ) :
+    HNNExtension A (subOne A Asub) (subOne A Bsub) (goodEquiv φ hA) →*
+      HNNExtension G Asub Bsub φ :=
+  HNNExtension.lift ((HNNExtension.of : G →* HNNExtension G Asub Bsub φ).comp A.subtype)
+    HNNExtension.t (by
+      intro a
+      have := HNNExtension.equiv_eq_conj (φ := φ) ⟨((a : A) : G), a.2⟩
+      simp only [MonoidHom.comp_apply, Subgroup.coe_subtype]
+      rw [show ((goodEquiv φ hA a : A) : G) = (φ ⟨((a : A) : G), a.2⟩ : G) from rfl, this]
+      group)
+
 /-- The pinch in the other direction. -/
 theorem good_pinch_inv {A : Subgroup G} (hA : Good A φ) (b : Bsub)
     (hb : (b : G) ∈ A) :
