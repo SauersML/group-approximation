@@ -129,5 +129,22 @@ theorem commElt_pow_ne_one (w : G) (hw : w ≠ 1) (n : ℕ) :
     (MulEquiv.refl (⊥ : Subgroup G)) (commWord w hw n) hmem
   exact commList_ne_nil w n hnil
 
+/-- **The commutator generates an infinite cyclic subgroup.**  The `ℤ`-form of
+`commElt_pow_ne_one`, which is what an HNN layer with cyclic associated
+subgroups asks for. -/
+theorem commElt_zpow_ne_one (w : G) (hw : w ≠ 1) {p : ℤ} (hp : p ≠ 0) :
+    (commElt w) ^ p ≠ 1 := by
+  have pos : ∀ q : ℤ, 0 < q → (commElt w) ^ q ≠ 1 := by
+    intro q hq
+    obtain ⟨n, rfl⟩ : ∃ n : ℕ, q = ((n + 1 : ℕ) : ℤ) := ⟨(q - 1).toNat, by omega⟩
+    rw [zpow_natCast]
+    exact commElt_pow_ne_one w hw n
+  rcases lt_trichotomy p 0 with hneg | hzero | hpos
+  · intro h
+    refine pos (-p) (by omega) ?_
+    rw [zpow_neg, h, inv_one]
+  · exact absurd hzero hp
+  · exact pos p hpos
+
 end HNNTrivialAssociated
 end GroupApproximation

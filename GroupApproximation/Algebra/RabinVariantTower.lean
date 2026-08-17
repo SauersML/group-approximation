@@ -1,5 +1,6 @@
 import GroupApproximation.Algebra.HNNRetraction
 import GroupApproximation.Algebra.FreeProductOrder
+import GroupApproximation.Algebra.HNNTrivialAssociated
 import Mathlib.GroupTheory.Coprod.Basic
 import Mathlib.GroupTheory.FreeGroup.Basic
 
@@ -39,18 +40,29 @@ open Monoid HNNRetraction
 
 variable {Γ : Type} [Group Γ]
 
-/-- Stage 1: `Γ * ℤ`. -/
-abbrev Base (Γ : Type) [Group Γ] : Type := Monoid.Coprod Γ (Multiplicative ℤ)
+/-- Stage 1: `Γ * ℤ`, written as an HNN extension with trivial associated
+subgroups.  That description is chosen deliberately: it is the one in which the
+witness `⁅w, s⁆` can be shown to have infinite order, because with trivial
+associated subgroups every word in the stable letter is Britton-reduced
+(`HNNTrivialAssociated.commElt_pow_ne_one`). -/
+abbrev Base (Γ : Type) [Group Γ] : Type :=
+  HNNExtension Γ (⊥ : Subgroup Γ) (⊥ : Subgroup Γ) (MulEquiv.refl _)
 
 /-- The free letter adjoined in stage 1. -/
-def s : Base Γ := Monoid.Coprod.inr (Multiplicative.ofAdd (1 : ℤ))
+def s : Base Γ := HNNExtension.t
+
+/-- The base group, inside stage 1. -/
+def baseOf : Γ →* Base Γ := HNNExtension.of
 
 /-- `sᵢ = s · xᵢ`.  The change of generators: these have infinite order even
-when the `xᵢ` do not. -/
-def sgen (x : Γ) : Base Γ := s * Monoid.Coprod.inl x
+when the `xᵢ` do not, because the retraction killing the base sees only `s`. -/
+def sgen (x : Γ) : Base Γ := s * baseOf x
 
 theorem zpow_sgen_ne_one (x : Γ) {n : ℤ} (hn : n ≠ 0) : (sgen x) ^ n ≠ 1 :=
-  zpow_inr_mul_inl_ne_one x hn
+  zpow_t_mul_of_ne_one _ x hn
+
+theorem baseOf_injective : Function.Injective (baseOf (Γ := Γ)) :=
+  HNNExtension.of_injective _
 
 /-- Stage 2: adjoin a free group of rank `n` as a free factor. -/
 abbrev Mid (Γ : Type) [Group Γ] (n : ℕ) : Type :=
@@ -62,6 +74,10 @@ def t {n : ℕ} (i : Fin n) : Mid Γ n :=
 
 /-- `Γ`, inside stage 2. -/
 def midOfBase {n : ℕ} : Base Γ →* Mid Γ n := Monoid.Coprod.inl
+
+theorem midOfBase_injective {n : ℕ} :
+    Function.Injective (midOfBase (Γ := Γ) (n := n)) :=
+  Monoid.Coprod.inl_injective
 
 /-- The retraction of stage 2 onto its free factor. -/
 def midRetract {n : ℕ} : Mid Γ n →* FreeGroup (Fin n) := killLeft
@@ -114,15 +130,14 @@ abbrev Top (Γ : Type) [Group Γ] {n : ℕ} (x : Fin n → Γ) : Type :=
 
 /-- `Γ`, inside the top of the tower. -/
 noncomputable def topOfBase {n : ℕ} (x : Fin n → Γ) : Γ →* Top Γ x :=
-  (HNNExtension.of).comp (midOfBase.comp Monoid.Coprod.inl)
+  (HNNExtension.of).comp (midOfBase.comp baseOf)
 
 /-- **The embedding half, for the part of the tower built here.**  `Γ` embeds
 in the top of the tower: the free-product inclusions are injective and so is
 `HNNExtension.of`. -/
 theorem base_injective {n : ℕ} (x : Fin n → Γ) :
     Function.Injective (topOfBase x) := by
-  have h1 : Function.Injective (Monoid.Coprod.inl : Γ →* Base Γ) :=
-    Monoid.Coprod.inl_injective
+  have h1 : Function.Injective (baseOf : Γ →* Base Γ) := baseOf_injective
   have h2 : Function.Injective (midOfBase : Base Γ →* Mid Γ n) :=
     Monoid.Coprod.inl_injective
   have h3 := HNNExtension.of_injective (stepEquiv x)
@@ -334,6 +349,10 @@ theorem casc2OfBase_injective : Function.Injective (casc2OfBase x) := by
 /-- The base of stage 2, inside `Casc2`. -/
 noncomputable def casc2OfMid : Mid Γ n →* Casc2 x :=
   (casc2Of x).comp ((casc1Of x).comp HNNExtension.of)
+
+theorem casc2OfMid_injective : Function.Injective (casc2OfMid x) := by
+  intro a b hab
+  exact HNNExtension.of_injective _ (casc1Of_injective x (casc2Of_injective x hab))
 
 /-- **The full tower**: adjoin `k` along `⟨z⟩ ≅ ⟨c⟩`. -/
 noncomputable def Full {z : Casc2 x} (hz : ∀ p : ℤ, p ≠ 0 → z ^ p ≠ 1) : Type :=

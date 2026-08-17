@@ -69,6 +69,22 @@ theorem t_ne_one : (HNNExtension.t : HNNExtension G A B φ) ≠ 1 := by
   intro h
   exact zpow_t_ne_one φ (n := 1) one_ne_zero (by simpa using h)
 
+/-- **The change of generators, for an HNN base.**  `t·g` has infinite order for
+every `g` in the base, whatever the order of `g` --- the retraction kills the
+base and sees only the stable letter.  This is what makes the variant
+construction's `sᵢ = s·xᵢ` usable without any hypothesis on the source
+generators. -/
+theorem zpow_t_mul_of_ne_one (g : G) {n : ℤ} (hn : n ≠ 0) :
+    ((HNNExtension.t : HNNExtension G A B φ) * HNNExtension.of g) ^ n ≠ 1 := by
+  intro h
+  have h' : (Multiplicative.ofAdd (1 : ℤ)) ^ n = 1 := by
+    have hz := congrArg (killBase φ (Multiplicative.ofAdd (1 : ℤ))) h
+    rw [map_zpow, map_mul, killBase_t, killBase_of, mul_one] at hz
+    simpa using hz
+  have h2 := congrArg Multiplicative.toAdd h'
+  simp [toAdd_zpow] at h2
+  exact hn h2
+
 /-! ## Freeness from a retraction
 
 The roadmap in `Computability.RabinConstruction` asks, at `E3`, `E4` and `E5`,
