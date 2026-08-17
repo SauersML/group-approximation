@@ -1023,6 +1023,8 @@ import GroupApproximation.Analysis.OmegaDefectExtraction
 import GroupApproximation.Analysis.UltraproductRigidityRoute
 import GroupApproximation.Manuscript.NonMF.QuestionAtoms
 import GroupApproximation.Sofic.LiteralTraceConsequence
+import GroupApproximation.Analysis.ShulmanTraceClasses
+import GroupApproximation.Sofic.ShulmanMFTraceBridge
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
