@@ -44,6 +44,11 @@ namespace OmegaActionLinear
 open Filter Matrix Topology
 open UltraproductModelConstruction OmegaOperatorUltraproduct
 open UltraproductKazhdanProjection
+-- `BoundedMatrixSequence` is `lp` over the matrix algebras, so its ring and
+-- module structure are synthesized only with the matrix norm in scope.  Every
+-- file that manipulates bounded sequences directly carries this open; the
+-- corona-level files do not need it, which is why the omission survived here.
+open scoped Matrix.Norms.L2Operator
 
 noncomputable section
 

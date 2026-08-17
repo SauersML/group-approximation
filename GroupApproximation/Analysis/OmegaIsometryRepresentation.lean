@@ -40,6 +40,9 @@ open UltrafilterLimit UltraproductModelConstruction
 open OmegaOperatorUltraproduct OmegaConjugationOperators
 open HilbertUltraproductInner KOmegaHilbert
 open ScaledKazhdanTransport UltraproductScaledTransport
+-- `adSeq` lands in `BoundedMatrixSequence`, which is `lp` over the matrix
+-- algebras; its structure needs the matrix norm in scope.
+open scoped Matrix.Norms.L2Operator
 
 noncomputable section
 
