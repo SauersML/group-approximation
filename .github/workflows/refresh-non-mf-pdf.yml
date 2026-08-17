@@ -13,12 +13,15 @@
 # commit it makes touches only the PDF.
 name: Refresh non-MF PDF
 
+# 2026-08-17: the push trigger moved to draft-non-mf-pdf.yml, which is the
+# single fast path -- it never cancels an in-flight build, publishes through
+# publish_pdf_commit.py's unchanged-source guard, and a quarter-hour schedule
+# heals any lost build.  Running both workflows per tex push made them race
+# each other's PDF commit: this workflow's rebase retry hits a binary merge
+# conflict on the PDF whenever the draft workflow lands first, and the loser
+# fails loudly while doubling load on starved runners.  Keep this workflow
+# dispatch-only, for rebuilding on demand.
 on:
-  push:
-    branches: [main]
-    paths:
-      - 'non_mf_groups_exist.tex'
-      - '.github/workflows/refresh-non-mf-pdf.yml'
   workflow_dispatch:
 
 permissions:
@@ -103,16 +106,32 @@ jobs:
           git commit \
             -m "build: refresh non-MF PDF (draft; unattested)" \
             -m "Rebuilt from ${GITHUB_SHA} by the refresh workflow, so the committed PDF matches the committed source.  No gates and no attestation ran: the signed artifact still comes from the attested release pipeline."
-          # Another session may have pushed while we built.  Rebase onto it and
-          # retry rather than forcing; the PDF is a derived file and the newest
-          # source always wins.
+          # Another session may have pushed while we built.  Never rebase a
+          # binary across the race -- it can only conflict.  The PDF is a
+          # derived file and the newest source always wins: if the tex moved,
+          # this build is already stale and the draft workflow's schedule
+          # will heal it; if only other files moved, re-seat this build's PDF
+          # on the new tip and push again.
           for attempt in 1 2 3 4 5; do
             if git push origin HEAD:main; then
               echo "pushed on attempt ${attempt}"
               exit 0
             fi
             git fetch origin main
-            git rebase origin/main || { git rebase --abort; exit 1; }
+            if ! git diff --quiet HEAD origin/main -- "${TEX_FILE}"; then
+              echo "tex moved on origin; abandoning this stale PDF build"
+              exit 0
+            fi
+            git reset --hard origin/main
+            cp "build/${PDF_FILE}" "${PDF_FILE}"
+            if git diff --quiet -- "${PDF_FILE}"; then
+              echo "tip already carries this PDF; nothing to push"
+              exit 0
+            fi
+            git add "${PDF_FILE}"
+            git commit \
+              -m "build: refresh non-MF PDF (draft; unattested)" \
+              -m "Rebuilt from ${GITHUB_SHA}; re-seated on the moved tip, whose ${TEX_FILE} is identical."
           done
           echo "::error::could not push the refreshed PDF after five attempts"
           exit 1
