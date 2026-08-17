@@ -574,7 +574,6 @@ def headlineTheorems : List Name :=
    ``MarkedGroupSpace.isClosed_operatorMFLocus,
    ``MarkedGroupSpace.isOpen_compl_operatorMFLocus,
    ``MarkedGroupSpace.isOperatorMF_of_tendsto,
-   ``OperatorMFQuotientNonclosure.operatorMF_not_closed_under_this_quotient,
    ``not_injective_of_coronaMFInvisible,
    ``KazhdanCompressionCore.finiteNormal_uniform_invisibility,
    ``KazhdanCompressionCore.finiteNormal_uniform_invisibility_positiveModel,
