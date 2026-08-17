@@ -174,7 +174,7 @@ theorem towerLift_emb (r : FreeGroup (Fin m)) :
 Each family is one of the tower's conjugation lemmas, pushed up the cascade one
 layer at a time. -/
 
-theorem casc2OfBase_eq (g : Γ) :
+@[simp] theorem casc2OfBase_eq (g : Γ) :
     casc2OfBase x g = casc2OfMid x (midOfBase (Monoid.Coprod.inl g)) := rfl
 
 /-- The killing relation, pushed to the top. -/
@@ -494,7 +494,7 @@ def gK : Pres R w := PresentedGroup.of (Sum.inr Extra.k)
 /-- The source family, with `1` at index `0`. -/
 def gFam : Fin (m + 1) → Pres R w := Fin.cases 1 (gX R w)
 
-theorem gFam_zero : gFam R w 0 = 1 := rfl
+@[simp] theorem gFam_zero : gFam R w 0 = 1 := rfl
 
 /-- `b u b⁻¹ = u²`. -/
 theorem rel_B : gB R w * gU R w * (gB R w)⁻¹ = (gU R w) ^ (2 : ℕ) := by
