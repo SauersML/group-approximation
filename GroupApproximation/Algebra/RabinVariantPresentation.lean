@@ -69,8 +69,11 @@ def K : FreeGroup (Gen m) := FreeGroup.of (Sum.inr Extra.k)
 /-- `sᵢ`: the letter `s` at `i = 0`, and `s xᵢ₋₁` afterwards.  The change of
 generators, at the level of words. -/
 def sWord (i : Fin (m + 1)) : FreeGroup (Gen m) :=
-  if h : (i : ℕ) = 0 then S
-  else S * X ⟨(i : ℕ) - 1, by omega⟩
+  Fin.cases S (fun j => S * X j) i
+
+@[simp] theorem sWord_zero : sWord (0 : Fin (m + 1)) = S := rfl
+
+@[simp] theorem sWord_succ (j : Fin m) : sWord j.succ = S * X j := rfl
 
 /-- The source generators, embedded in the larger free group. -/
 def emb : FreeGroup (Fin m) →* FreeGroup (Gen m) := FreeGroup.map Sum.inl
@@ -274,6 +277,133 @@ theorem relator_K_dies :
   simp only [map_mul, map_inv, towerLift_K, towerLift_Z, towerLift_C]
   rw [← h]
   group
+
+/-! ## The killing family
+
+The one relator family left needs the tower's family `x : Fin (n+1) → Γ` to
+line up with the source generators.  Taking it to be `Fin.cases 1 xs` makes
+`sWord` match structurally --- `sWord 0 = s` and `sWord j.succ = s xⱼ` are both
+`rfl` --- so the index bookkeeping disappears. -/
+
+/-- The family the tower is applied to: `1` at index `0`, the source generators
+after it.  Index `0` is what gives the letter `s` itself, which is what makes
+the collapse reach `s = 1` and not merely `s xᵢ = 1`. -/
+def famOf (xs : Fin m → Γ) : Fin (m + 1) → Γ := Fin.cases 1 xs
+
+@[simp] theorem famOf_zero : famOf xs 0 = 1 := rfl
+
+@[simp] theorem famOf_succ (j : Fin m) : famOf xs j.succ = xs j := rfl
+
+theorem sgen_one : RabinVariantTower.sgen (1 : Γ) = RabinVariantTower.s := by
+  simp [RabinVariantTower.sgen]
+
+variable {hz' : ∀ p : ℤ, p ≠ 0 → (zElt (famOf xs) xs w) ^ p ≠ 1}
+
+/-- The word `sᵢ` maps to the tower's `sᵢ`. -/
+theorem towerLift_sWord (i : Fin (m + 1)) :
+    towerLift (famOf xs) xs (hz := hz') (sWord i)
+      = fullOf (famOf xs) hz'
+          (casc2OfMid (famOf xs) (midOfBase (RabinVariantTower.sgen (famOf xs i)))) := by
+  induction i using Fin.cases with
+  | zero => rw [sWord_zero, towerLift_S, famOf_zero, sgen_one]
+  | succ j =>
+      rw [sWord_succ, map_mul, towerLift_S, towerLift_X, famOf_succ,
+        RabinVariantTower.sgen, map_mul, map_mul, map_mul, casc2OfBase_eq]
+
+/-- **The killing relator holds.**  This is the relation that does the work:
+`u = 1` turns it into `sᵢ = 1`. -/
+theorem relator_kill_dies (i : Fin (m + 1)) :
+    towerLift (famOf xs) xs (hz := hz')
+        (U * T i * U⁻¹ * (T i * sWord i)⁻¹) = 1 := by
+  have h := conj_ts_top (famOf xs) xs (hz := hz') i
+  have hts : casc2OfMid (famOf xs) (ts (famOf xs) i)
+      = casc2OfMid (famOf xs) (t i) *
+        casc2OfMid (famOf xs) (midOfBase (RabinVariantTower.sgen (famOf xs i))) := by
+    rw [ts, map_mul]
+  rw [hts, map_mul] at h
+  simp only [map_mul, map_inv, towerLift_U, towerLift_T, towerLift_sWord]
+  rw [← h]
+  group
+
+/-! ## The homomorphism into the tower
+
+Every relator dies, so the presentation maps into the tower.  Composed with
+`RabinVariantTower.full_base_injective` this is the embedding half for the
+*presented* group, which is what the reduction needs. -/
+
+variable {R : Set (FreeGroup (Fin m))}
+
+theorem relators_die (hR : ∀ r ∈ R, FreeGroup.lift xs r = 1) :
+    ∀ r ∈ relators R w, towerLift (famOf xs) xs (hz := hz') r = 1 := by
+  rintro r ((⟨r₀, hr₀, rfl⟩ | ⟨i, rfl⟩) | (rfl | rfl | rfl))
+  · rw [towerLift_emb, hR r₀ hr₀, map_one]
+  · exact relator_kill_dies xs i
+  · exact relator_B_dies (famOf xs) xs
+  · exact relator_C_dies (famOf xs) xs
+  · exact relator_K_dies (famOf xs) xs
+
+/-- **The presentation maps into the tower.** -/
+noncomputable def toTower (hR : ∀ r ∈ R, FreeGroup.lift xs r = 1) :
+    Pres R w →* Full (famOf xs) hz' :=
+  PresentedGroup.toGroup (relators_die xs (hz' := hz') hR)
+
+@[simp] theorem toTower_of (hR : ∀ r ∈ R, FreeGroup.lift xs r = 1) (g : Gen m) :
+    toTower xs (hz' := hz') hR (PresentedGroup.of g)
+      = towerGen (famOf xs) xs (hz := hz') g :=
+  PresentedGroup.toGroup.of _
+
+/-! ## The source group embeds in the presented group
+
+Specialising to the source group given by its own presentation. -/
+
+section Source
+
+variable {m : ℕ} (R : Set (FreeGroup (Fin m))) (w : FreeGroup (Fin m))
+
+/-- The source generators, in the source group. -/
+noncomputable def srcGens : Fin m → PresentedGroup R := fun i => PresentedGroup.of i
+
+theorem srcGens_relators (r : FreeGroup (Fin m)) (hr : r ∈ R) :
+    FreeGroup.lift (srcGens R) r = 1 := by
+  have h : (FreeGroup.lift (srcGens R)) = PresentedGroup.mk R := by
+    refine FreeGroup.ext_hom _ _ fun i => ?_
+    simp [srcGens, PresentedGroup.of]
+  rw [h]
+  exact PresentedGroup.mk_eq_one_iff.2 (Subgroup.subset_normalClosure hr)
+
+/-- The source group, inside the presented group of the construction. -/
+noncomputable def srcToPres : PresentedGroup R →* Pres R w :=
+  PresentedGroup.toGroup (f := fun i => PresentedGroup.of (Sum.inl i)) (by
+    intro r hr
+    have h : (FreeGroup.lift fun i => (PresentedGroup.of (Sum.inl i) : Pres R w))
+        = (PresentedGroup.mk (relators R w)).comp emb := by
+      refine FreeGroup.ext_hom _ _ fun i => ?_
+      simp [emb, PresentedGroup.of]
+    rw [h, MonoidHom.comp_apply]
+    exact PresentedGroup.mk_eq_one_iff.2
+      (Subgroup.subset_normalClosure (Or.inl (Or.inl ⟨r, hr, rfl⟩))))
+
+/-- **The embedding half, for the presented group.**  The source group embeds in
+the group the construction presents.  Its image under `toTower` is the image of
+the source group in the tower, which is injective by
+`RabinVariantTower.full_base_injective`. -/
+theorem srcToPres_injective
+    (hzz : ∀ p : ℤ, p ≠ 0 → (zElt (famOf (srcGens R)) (srcGens R) w) ^ p ≠ 1) :
+    Function.Injective (srcToPres R w) := by
+  have hcomp : (toTower (srcGens R) (hz' := hzz) (srcGens_relators R)).comp
+      (srcToPres R w)
+      = (fullOf (famOf (srcGens R)) hzz).comp (casc2OfBase (famOf (srcGens R))) := by
+    refine PresentedGroup.ext fun i => ?_
+    show toTower (srcGens R) (hz' := hzz) (srcGens_relators R)
+      (srcToPres R w (PresentedGroup.of i)) = _
+    rw [srcToPres, PresentedGroup.toGroup.of, toTower_of]
+    rfl
+  intro a b hab
+  have h := congrArg (toTower (srcGens R) (hz' := hzz) (srcGens_relators R)) hab
+  rw [← MonoidHom.comp_apply, ← MonoidHom.comp_apply, hcomp] at h
+  exact full_base_injective (famOf (srcGens R)) hzz h
+
+end Source
 
 end RabinVariantPresentation
 end GroupApproximation
