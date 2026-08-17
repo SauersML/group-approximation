@@ -163,16 +163,48 @@ jobs:
           # can both build; that wastes compute, not soundness.  API failures
           # count as zero builders: that direction at worst duplicates work,
           # while the other direction starves certification.
+          # A builder must also be building something that MATTERS.  A run whose
+          # head_sha `verified` already contains cannot advance anything --
+          # choose_target treats an already-certified ancestor as a no-op -- so
+          # holding the mutex is all it can still do, and it does that for as
+          # long as its shards run.  Observed 2026-08-17: two runs launched at
+          # 05:29 and 06:24 were still replaying kernel shards at 12:40, both on
+          # commits that a later run had already certified and promoted past.
+          # They were nine hours from their own timeouts, they could promote
+          # nothing, and every push run in that window dismissed itself in their
+          # favour, so 93 commits and 11k lines of new Lean had no certificate in
+          # flight at all.  A worthless certificate must not be able to starve a
+          # needed one.
+          #
+          # Fail closed in the direction that preserves the mutex: only a
+          # SUCCESSFUL ancestry test disqualifies a builder.  A missing commit or
+          # a git error leaves the run counted, which is the behaviour that has
+          # always been safe here.
           count_builders() {
-            local n=0 rid gate_ok
-            for rid in $(gh api \
-              "repos/${{ github.repository }}/actions/workflows/prover.yml/runs?per_page=50" \
+            local n=0 entry rid sha gate_ok
+            # The window matters, and it used to be 50.  Run creation here can
+            # exceed sixty an hour under a push burst, so a builder three hours
+            # into its shards falls off the first page and stops counting --
+            # after which fresh gates see an empty mutex and start rival full
+            # builds that compete with it for the same twenty-job pool.  That is
+            # how a needed certificate loses its runners to duplicates of
+            # itself.  Widening the window is only safe together with the
+            # ancestry test below, which is what keeps long-dead runs from
+            # holding the mutex once they are visible again.
+            for entry in $(gh api \
+              "repos/${{ github.repository }}/actions/workflows/prover.yml/runs?per_page=100" \
               --jq '.workflow_runs[]
                       | select(.id != ${{ github.run_id }})
                       | select(.event == "push" or .event == "schedule"
                                or .event == "workflow_dispatch")
                       | select(.status == "queued" or .status == "in_progress")
-                      | .id' 2>/dev/null || true); do
+                      | "\(.id):\(.head_sha)"' 2>/dev/null || true); do
+              rid="${entry%%:*}"
+              sha="${entry#*:}"
+              if git merge-base --is-ancestor "$sha" "$verified" 2>/dev/null; then
+                echo "Run $rid is certifying $sha, which verified already contains; it is not a builder."
+                continue
+              fi
               gate_ok=$(gh api \
                 "repos/${{ github.repository }}/actions/runs/${rid}/jobs?per_page=50" \
                 --jq '[.jobs[]
