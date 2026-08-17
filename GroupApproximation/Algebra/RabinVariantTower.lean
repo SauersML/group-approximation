@@ -252,66 +252,125 @@ variable {Γ : Type} [Group Γ] {n : ℕ} (x : Fin n → Γ)
 theorem u_infinite : ∀ m : ℤ, m ≠ 0 → (HNNExtension.t : Top Γ x) ^ m ≠ 1 :=
   fun _ hm => zpow_t_ne_one _ hm
 
+/-! Each cascade layer is an opaque `def` carrying its own `Group` instance,
+with its stable letter and its inclusion exposed by name.  They are not
+`abbrev`s on purpose: the layers nest, and a reducible layer unfolds its whole
+predecessor --- including the `cycEquiv` and injectivity proofs sitting in its
+type --- into every elaboration above it, which is exponential in the number of
+layers.  With the types opaque each step is one unfolding. -/
+
 /-- Cascade layer one: `b`, with `b u b⁻¹ = u²`. -/
-noncomputable abbrev Casc1 : Type :=
+noncomputable def Casc1 : Type :=
   CycLayer (zpowersHom_injective (u_infinite x))
     (zpowersHom_injective (sq_infinite (u_infinite x)))
 
-theorem b_infinite : ∀ m : ℤ, m ≠ 0 → (HNNExtension.t : Casc1 x) ^ m ≠ 1 :=
-  fun _ hm => zpow_t_ne_one _ hm
+noncomputable instance : Group (Casc1 x) :=
+  inferInstanceAs (Group (CycLayer (zpowersHom_injective (u_infinite x))
+    (zpowersHom_injective (sq_infinite (u_infinite x)))))
+
+/-- The inclusion of the killing layer into the first cascade layer. -/
+noncomputable def casc1Of : Top Γ x →* Casc1 x :=
+  (HNNExtension.of : Top Γ x →*
+    CycLayer (zpowersHom_injective (u_infinite x))
+      (zpowersHom_injective (sq_infinite (u_infinite x))))
+
+/-- The stable letter `b`. -/
+noncomputable def bLetter : Casc1 x :=
+  (HNNExtension.t : CycLayer (zpowersHom_injective (u_infinite x))
+    (zpowersHom_injective (sq_infinite (u_infinite x))))
+
+theorem b_infinite : ∀ p : ℤ, p ≠ 0 → (bLetter x) ^ p ≠ 1 :=
+  fun _ hp => zpow_t_ne_one _ hp
+
+theorem casc1Of_injective : Function.Injective (casc1Of x) :=
+  HNNExtension.of_injective _
+
+/-- `b u b⁻¹ = u²`. -/
+theorem casc1_conj :
+    casc1Of x ((HNNExtension.t : Top Γ x) ^ (2 : ℤ))
+      = bLetter x * casc1Of x HNNExtension.t * (bLetter x)⁻¹ :=
+  cyc_conj _ _
 
 /-- Cascade layer two: `c`, with `c b c⁻¹ = b²`. -/
-noncomputable abbrev Casc2 : Type :=
+noncomputable def Casc2 : Type :=
   CycLayer (zpowersHom_injective (b_infinite x))
     (zpowersHom_injective (sq_infinite (b_infinite x)))
 
-theorem c_infinite : ∀ m : ℤ, m ≠ 0 → (HNNExtension.t : Casc2 x) ^ m ≠ 1 :=
-  fun _ hm => zpow_t_ne_one _ hm
+noncomputable instance : Group (Casc2 x) :=
+  inferInstanceAs (Group (CycLayer (zpowersHom_injective (b_infinite x))
+    (zpowersHom_injective (sq_infinite (b_infinite x)))))
+
+/-- The inclusion of the first cascade layer into the second. -/
+noncomputable def casc2Of : Casc1 x →* Casc2 x :=
+  (HNNExtension.of : Casc1 x →*
+    CycLayer (zpowersHom_injective (b_infinite x))
+      (zpowersHom_injective (sq_infinite (b_infinite x))))
+
+/-- The stable letter `c`. -/
+noncomputable def cLetter : Casc2 x :=
+  (HNNExtension.t : CycLayer (zpowersHom_injective (b_infinite x))
+    (zpowersHom_injective (sq_infinite (b_infinite x))))
+
+theorem c_infinite : ∀ p : ℤ, p ≠ 0 → (cLetter x) ^ p ≠ 1 :=
+  fun _ hp => zpow_t_ne_one _ hp
+
+theorem casc2Of_injective : Function.Injective (casc2Of x) :=
+  HNNExtension.of_injective _
+
+/-- `c b c⁻¹ = b²`. -/
+theorem casc2_conj :
+    casc2Of x ((bLetter x) ^ (2 : ℤ))
+      = cLetter x * casc2Of x (bLetter x) * (cLetter x)⁻¹ :=
+  cyc_conj _ _
 
 /-- `Γ`, inside `Casc2`. -/
 noncomputable def casc2OfBase : Γ →* Casc2 x :=
-  (HNNExtension.of).comp ((HNNExtension.of).comp (topOfBase x))
+  (casc2Of x).comp ((casc1Of x).comp (topOfBase x))
 
 theorem casc2OfBase_injective : Function.Injective (casc2OfBase x) := by
   intro a b hab
-  exact base_injective x
-    (HNNExtension.of_injective _ (HNNExtension.of_injective _ hab))
+  exact base_injective x (casc1Of_injective x (casc2Of_injective x hab))
 
-/-- The image of an element of the base at the top of the cascade. -/
+/-- The base of stage 2, inside `Casc2`. -/
 noncomputable def casc2OfMid : Mid Γ n →* Casc2 x :=
-  (HNNExtension.of).comp ((HNNExtension.of).comp HNNExtension.of)
+  (casc2Of x).comp ((casc1Of x).comp HNNExtension.of)
 
-/-- **The full tower**: adjoin `k` along `⟨z⟩ ≅ ⟨c⟩`, where `z` is the image of
-`⁅w, s⁆`.  The hypothesis is that `z` has infinite order, which holds exactly
-when `w ≠ 1`. -/
-noncomputable abbrev Full {z : Casc2 x} (hz : ∀ m : ℤ, m ≠ 0 → z ^ m ≠ 1) : Type :=
+/-- **The full tower**: adjoin `k` along `⟨z⟩ ≅ ⟨c⟩`. -/
+noncomputable def Full {z : Casc2 x} (hz : ∀ p : ℤ, p ≠ 0 → z ^ p ≠ 1) : Type :=
   CycLayer (zpowersHom_injective hz) (zpowersHom_injective (c_infinite x))
 
-/-- **The embedding half.**  `Γ` embeds in the full tower.  Every step is an
-injection: two free-product inclusions and four `HNNExtension.of`s. -/
-theorem full_base_injective {z : Casc2 x} (hz : ∀ m : ℤ, m ≠ 0 → z ^ m ≠ 1) :
-    Function.Injective
-      ((HNNExtension.of : Casc2 x →* Full x hz).comp (casc2OfBase x)) := by
+noncomputable instance {z : Casc2 x} (hz : ∀ p : ℤ, p ≠ 0 → z ^ p ≠ 1) :
+    Group (Full x hz) :=
+  inferInstanceAs (Group (CycLayer (zpowersHom_injective hz)
+    (zpowersHom_injective (c_infinite x))))
+
+/-- The inclusion of the second cascade layer into the full tower. -/
+noncomputable def fullOf {z : Casc2 x} (hz : ∀ p : ℤ, p ≠ 0 → z ^ p ≠ 1) :
+    Casc2 x →* Full x hz :=
+  (HNNExtension.of : Casc2 x →*
+    CycLayer (zpowersHom_injective hz) (zpowersHom_injective (c_infinite x)))
+
+/-- The stable letter `k`. -/
+noncomputable def kLetter {z : Casc2 x} (hz : ∀ p : ℤ, p ≠ 0 → z ^ p ≠ 1) :
+    Full x hz :=
+  (HNNExtension.t : CycLayer (zpowersHom_injective hz)
+    (zpowersHom_injective (c_infinite x)))
+
+theorem fullOf_injective {z : Casc2 x} (hz : ∀ p : ℤ, p ≠ 0 → z ^ p ≠ 1) :
+    Function.Injective (fullOf x hz) :=
+  HNNExtension.of_injective _
+
+/-- `k z k⁻¹ = c`. -/
+theorem full_conj {z : Casc2 x} (hz : ∀ p : ℤ, p ≠ 0 → z ^ p ≠ 1) :
+    fullOf x hz (cLetter x)
+      = kLetter x hz * fullOf x hz z * (kLetter x hz)⁻¹ :=
+  cyc_conj _ _
+
+/-- **The embedding half.**  `Γ` embeds in the full tower. -/
+theorem full_base_injective {z : Casc2 x} (hz : ∀ p : ℤ, p ≠ 0 → z ^ p ≠ 1) :
+    Function.Injective ((fullOf x hz).comp (casc2OfBase x)) := by
   intro a b hab
-  exact casc2OfBase_injective x (HNNExtension.of_injective _ hab)
-
-/-- **The cascade fires.**  In the full tower the stable letter `k` conjugates
-`z` to `c`; so if `z = 1` then `c = 1`, and the three relations
-`k z k⁻¹ = c`, `c b c⁻¹ = b²`, `b u b⁻¹ = u²` carry that down to `u = 1`. -/
-theorem full_conj {z : Casc2 x} (hz : ∀ m : ℤ, m ≠ 0 → z ^ m ≠ 1) :
-    (HNNExtension.of (HNNExtension.t : Casc2 x) : Full x hz)
-      = HNNExtension.t * HNNExtension.of z * HNNExtension.t⁻¹ :=
-  cyc_conj _ _
-
-theorem casc1_conj :
-    (HNNExtension.of ((HNNExtension.t : Top Γ x) ^ (2 : ℤ)) : Casc1 x)
-      = HNNExtension.t * HNNExtension.of HNNExtension.t * HNNExtension.t⁻¹ :=
-  cyc_conj _ _
-
-theorem casc2_conj :
-    (HNNExtension.of ((HNNExtension.t : Casc1 x) ^ (2 : ℤ)) : Casc2 x)
-      = HNNExtension.t * HNNExtension.of HNNExtension.t * HNNExtension.t⁻¹ :=
-  cyc_conj _ _
+  exact casc2OfBase_injective x (fullOf_injective x hz hab)
 
 end FullTower
 
