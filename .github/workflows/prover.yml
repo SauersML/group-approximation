@@ -678,10 +678,21 @@ jobs:
       # saturate the twenty-runner account pool: the draft-PDF build, the
       # gates, and the site jobs must always find a free runner (observed
       # 2026-08-15: a saturated pool starved the PDF build for ten hours).
-      # The shard count is now equal to this cap, so the matrix runs in a
-      # single wave; if you raise the cap, raise the count with it, and if you
-      # lower the cap, lower the count, or promotion silently pays for an
-      # extra wave.
+      # TWO INVARIANTS, and the first one costs certification rather than
+      # time, so read it first.
+      #
+      # (1) The modulus in the `Fresh kernel re-check` step must equal the
+      #     LENGTH of this shard list.  Raise the modulus above the list and
+      #     the extra residue classes are checked by nothing at all: silent
+      #     coverage loss, and the run is still green.  Lower it below the
+      #     list and shards merely idle.
+      # (2) The shard count must not exceed `max-parallel`.  The shards have
+      #     near-equal duration, so an overflow shard does not trickle in
+      #     early -- it serializes a second full wave, and promotion pays for
+      #     it after every gate has already gone green.
+      #
+      # Only (2) costs time; (1) costs certification.  Violating either leaves
+      # the run green, which is why they are written down here.
       max-parallel: 10
       matrix:
         shard: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
