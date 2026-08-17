@@ -91,7 +91,7 @@ variable (X : Type) [Fintype X] [DecidableEq X]
 def flipVec (x : X) : X → Multiplicative (ZMod 2) :=
   fun x' => if x' = x then Multiplicative.ofAdd 1 else 1
 
-omit [DecidableEq X] in
+omit [Fintype X] in
 @[simp] theorem flipVec_apply (x x' : X) :
     flipVec X x x' = if x' = x then Multiplicative.ofAdd (1 : ZMod 2) else 1 :=
   rfl
@@ -250,7 +250,6 @@ def abelBar : SignQuotient X →* (X → Multiplicative (ZMod 2)) :=
     obtain ⟨k, rfl⟩ := Subgroup.mem_zpowers_iff.mp hg
     rw [MonoidHom.mem_ker, map_zpow, abelHom_sign, one_zpow])
 
-omit [Fintype X] in
 @[simp] theorem abelBar_mk (g : CliffordLamp.CliffordLamp X) :
     abelBar X (QuotientGroup.mk' _ g) = abelHom X g := rfl
 
