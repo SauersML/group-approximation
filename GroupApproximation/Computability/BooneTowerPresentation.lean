@@ -717,14 +717,14 @@ theorem final_mem_iff (g : S.Carrier) :
     g ∈ P.tsub ↔ P.equiv g ∈ HNNPresentation.srcSub P.rels (finalWords P) := by
   rw [srcSub_finalWords, ← P.tsub_spec, Subgroup.mem_map_equiv, MulEquiv.symm_apply_apply]
 
-theorem final_intertwines :
+@[simp] theorem final_intertwines :
     HNNCongr.Intertwines (MulEquiv.refl P.tsub)
       (MulEquiv.refl (HNNPresentation.srcSub P.rels (finalWords P))) P.equiv
       (final_mem_iff P) := by
   intro a ha
   rfl
 
-theorem final_hphi (i : Fin P.tsubWords.length) :
+@[simp] theorem final_hphi (i : Fin P.tsubWords.length) :
     ((MulEquiv.refl (HNNPresentation.srcSub P.rels (finalWords P))
         ⟨HNNPresentation.srcGen P.rels (finalWords P) i,
           HNNPresentation.srcGen_mem P.rels (finalWords P) i⟩ :
@@ -855,11 +855,6 @@ end Final
 
 With the numbering carried in the structure, the code is the relator list read
 through it, and the group it presents is the stage itself. -/
-
-theorem setOf_mem_map {α β : Type} (f : α → β) (L : List α) :
-    {x | x ∈ L.map f} = f '' {x | x ∈ L} := by
-  ext x
-  simp only [Set.mem_setOf_eq, List.mem_map, Set.mem_image]
 
 /-- **The code of a stage's presentation.** -/
 noncomputable def stageCode (P : StagePres S) : PresentationCodes.PresentationCode :=

@@ -53,7 +53,7 @@ noncomputable def naturalize (n : ℕ) :
       Matrix (naturalizedModel Y n) (naturalizedModel Y n) ℂ :=
   matrixReindexStarAlgEquiv (Fintype.equivFin (Y n))
 
-theorem naturalize_apply (n : ℕ) (A : Matrix (Y n) (Y n) ℂ)
+@[simp] theorem naturalize_apply (n : ℕ) (A : Matrix (Y n) (Y n) ℂ)
     (i j : naturalizedModel Y n) :
     naturalize Y n A i j =
       A ((Fintype.equivFin (Y n)).symm i) ((Fintype.equivFin (Y n)).symm j) :=
@@ -81,7 +81,7 @@ theorem naturalize_conjTranspose (n : ℕ) (A : Matrix (Y n) (Y n) ℂ) :
 /-- The unitary-group reindexing agrees with the algebra reindexing on the
 underlying matrices.  `opLength_unitaryReindexEquiv` already relies on this
 identification definitionally; naming it lets `rw` use it. -/
-theorem coe_unitaryReindexEquiv (n : ℕ) (u : Matrix.unitaryGroup (Y n) ℂ) :
+@[simp] theorem coe_unitaryReindexEquiv (n : ℕ) (u : Matrix.unitaryGroup (Y n) ℂ) :
     ((unitaryReindexEquiv (Fintype.equivFin (Y n)) u :
         Matrix.unitaryGroup (naturalizedModel Y n) ℂ) :
         Matrix (naturalizedModel Y n) (naturalizedModel Y n) ℂ)

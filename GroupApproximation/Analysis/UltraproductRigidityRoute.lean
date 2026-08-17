@@ -247,7 +247,7 @@ section Reindex
 
 variable {Y : FiniteModel} {d : ℕ}
 
-theorem matrixReindex_apply (e : Y ≃ Fin d) (A : Matrix Y Y ℂ) (i j : Fin d) :
+@[simp] theorem matrixReindex_apply (e : Y ≃ Fin d) (A : Matrix Y Y ℂ) (i j : Fin d) :
     (matrixReindexStarAlgEquiv e A) i j = A (e.symm i) (e.symm j) := rfl
 
 theorem matrixReindex_conjTranspose (e : Y ≃ Fin d) (A : Matrix Y Y ℂ) :

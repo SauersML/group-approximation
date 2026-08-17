@@ -96,12 +96,6 @@ word `w` determine the construction applied to the group `c` presents, and the
 result is again a code --- built from lists throughout, so that it is a
 computable function of `(c, w)`. -/
 
-/-- The members of a mapped list are the image of the members. -/
-theorem setOf_mem_map {α β : Type} (f : α → β) (L : List α) :
-    {x | x ∈ L.map f} = f '' {x | x ∈ L} := by
-  ext x
-  simp only [Set.mem_setOf_eq, List.mem_map, Set.mem_image]
-
 /-- The relators of the construction over a code's group, renumbered. -/
 def variantRelators (c : PresentationCode) (w : List (ℕ × Bool)) :
     List (FreeGroup (Fin (genCount c + (genCount c + 5) + 1))) :=

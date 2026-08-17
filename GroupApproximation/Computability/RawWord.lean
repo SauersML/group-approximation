@@ -22,6 +22,20 @@ open PresentationCodes
 
 variable (c : PresentationCode)
 
+/-- The definitional unfolding of `wordOf`, named so that `rw` can use it.
+
+**Deliberately not `@[simp]`, which is why the audit's RFL scan reports it.**
+The scan's remedy for a `rfl`-proved theorem is to tag it, on the ground that
+such a lemma exists to make a definitional fact available to `simp`.  That is
+the wrong reading here: the three lemmas below (`wordOf_nil`, `wordOf_append`,
+`wordOf_inv`) are the intended `simp` interface to `wordOf`, and two of them are
+already tagged.  A `simp`-visible `wordOf_def` would unfold `wordOf` before they
+could fire — including in `wordOf c []`, where it competes directly with
+`wordOf_nil` — and it would do so in every `simp` call across the whole
+`Computability` subtree, which is where all 180 occurrences of `wordOf` live.
+
+So this one is left as an explicit-`rw` lemma.  The four call sites all spell it
+out. -/
 theorem wordOf_def (u : List (ℕ × Bool)) :
     wordOf c u = FreeGroup.mk (u.map fun p => (letterOf c p.1, p.2)) := rfl
 

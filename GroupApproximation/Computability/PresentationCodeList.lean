@@ -21,6 +21,23 @@ image --- are equalities of sets, not definitional identities.
 -/
 
 namespace GroupApproximation
+
+/-- The members of a mapped list are the image of the members.
+
+Deliberately in the root namespace rather than in `PresentationCodeList`: three
+separate code constructions (`CoprodCode`, `RabinVariantCode`,
+`BooneTowerPresentation`) each had a verbatim copy of this, and only two of the
+three `open PresentationCodeList`.  Stated here, all three see it unqualified,
+which is why none of their call sites had to change.
+
+Nothing about it is specific to presentations — it is the list-to-set step that
+every `relatorList`-to-relator-set argument goes through, which is why it kept
+being rediscovered. -/
+theorem setOf_mem_map {α β : Type} (f : α → β) (L : List α) :
+    {x | x ∈ L.map f} = f '' {x | x ∈ L} := by
+  ext x
+  simp only [Set.mem_setOf_eq, List.mem_map, Set.mem_image]
+
 namespace PresentationCodeList
 
 open PresentationCodes

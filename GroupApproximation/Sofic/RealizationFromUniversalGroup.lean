@@ -125,9 +125,9 @@ def firstFactor : Subgroup P := h.alpha.range
 /-- The printed second factor `P₂`. -/
 def secondFactor : Subgroup P := (h.emb.comp (MonoidHom.inr P P)).range
 
-theorem alpha_apply (g : P) : h.alpha g = h.emb (g, 1) := rfl
+@[simp] theorem alpha_apply (g : P) : h.alpha g = h.emb (g, 1) := rfl
 
-theorem embInr_apply (b : P) :
+@[simp] theorem embInr_apply (b : P) :
     (h.emb.comp (MonoidHom.inr P P)) b = h.emb (1, b) := rfl
 
 /-- The second factor inclusion into `P` is injective, so `P₂ ≅ P`. -/

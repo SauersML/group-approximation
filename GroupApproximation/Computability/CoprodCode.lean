@@ -55,12 +55,6 @@ theorem setOf_mem_coprodList (c d : PresentationCode) :
   simp only [coprodList, coprodRels, List.mem_append, List.mem_map, Set.mem_union,
     Set.mem_image, Set.mem_setOf_eq]
 
-/-- The members of a mapped list are the image of the members. -/
-theorem setOf_mem_map {α β : Type} (f : α → β) (L : List α) :
-    {x | x ∈ L.map f} = f '' {x | x ∈ L} := by
-  ext x
-  simp only [Set.mem_setOf_eq, List.mem_map, Set.mem_image]
-
 /-- **The code presents the free product.** -/
 noncomputable def coprodCodeEquiv (c d : PresentationCode) :
     Carrier (coprodCode c d) ≃*
