@@ -678,9 +678,13 @@ jobs:
       # saturate the twenty-runner account pool: the draft-PDF build, the
       # gates, and the site jobs must always find a free runner (observed
       # 2026-08-15: a saturated pool starved the PDF build for ten hours).
+      # The shard count is now equal to this cap, so the matrix runs in a
+      # single wave; if you raise the cap, raise the count with it, and if you
+      # lower the cap, lower the count, or promotion silently pays for an
+      # extra wave.
       max-parallel: 10
       matrix:
-        shard: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+        shard: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
     steps:
       - name: Check out repository
         uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
@@ -744,16 +748,27 @@ jobs:
             --directory build/p13-prebuild
           python3 scripts/p13_build_shards.py seal
 
-      # Deterministic 12-way partition of every module in the library, by
-      # sorted index modulo the shard count.  A synthetic root importing the
+      # Deterministic 10-way partition of every module in the library, by
+      # sorted index modulo the shard count.  Ten, not twelve, and the reason
+      # is wall clock rather than coverage: `max-parallel` is capped at ten to
+      # keep the runner pool from starving the PDF build, so twelve shards ran
+      # as ten plus a second wave of two, and each shard's cost is dominated by
+      # re-verifying the shared Mathlib prefix rather than by its own slice.
+      # Twelve shards therefore cost about twice the wall clock of ten while
+      # verifying the same modules -- measured 2026-08-17: shards 10 and 11 sat
+      # queued for the full duration of the first wave, delaying promotion of
+      # `verified` by one whole shard-time after every gate had gone green.
+      #
+      # A synthetic root importing the
       # shard's modules is compiled against the restored build (seconds, and
       # Lake's hashing rebuilds anything stale rather than trusting it), and
       # the toolchain's built-in checker then replays that root's full
       # import closure through a fresh kernel environment.  Every module of
       # the library lies in some shard's closure, and the shared Mathlib
-      # prefix is re-verified by every shard; the union of the twelve green
+      # prefix is re-verified by every shard; the union of the ten green
       # shards is therefore at least as strong as the old single
-      # `leanchecker --fresh GroupApproximation` invocation.
+      # `leanchecker --fresh GroupApproximation` invocation.  Shard 0 also
+      # imports the root, so the root's own closure is replayed too.
       - name: Fresh kernel re-check (leanchecker)
         shell: bash
         run: |
@@ -763,7 +778,7 @@ jobs:
           while read -r f; do
             mod="${f%.lean}"
             mod="${mod//\//.}"
-            if [ $((i % 12)) -eq ${{ matrix.shard }} ]; then
+            if [ $((i % 10)) -eq ${{ matrix.shard }} ]; then
               echo "import $mod" >> KernelShard.lean
             fi
             i=$((i+1))
