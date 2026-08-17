@@ -71,5 +71,62 @@ theorem isBoundedConjProduct_two_of_cycleType_doubled {s g : Equiv.Perm Y}
   rw [Equiv.Perm.cycleType_conj]
   exact hz
 
+/-! ## How far this is from the premise `hBNG`
+
+`Sofic/SoficEnvelopeSimplicity.lean`, `Sofic/SoficEnvelopeExistence.lean` and
+`Sofic/SoficEnvelopeWitness.lean` carry, verbatim and identically, the premise
+
+```
+∀ δ : ℝ, 0 < δ → ∃ K M : ℕ,
+  ∀ (Y : FiniteModel) (s a : Equiv.Perm Y), M ≤ Fintype.card Y →
+    Equiv.Perm.sign s = 1 →
+    δ * (Fintype.card Y : ℝ) ≤ ((s.support.card : ℝ)) →
+    Equiv.Perm.sign a = 1 → IsBoundedConjProduct s K a
+```
+
+The theorem below is that sentence with one hypothesis added to the target and
+with `K = 2`, `M = 0`: it is `hBNG` restricted to those even targets whose cycle
+type is a doubling.  Writing it in the premise's own shape is the honest way to
+record how much of the premise is proved, since the difference between the two
+statements is then a single visible conjunct rather than a claim in prose.
+
+**The added hypothesis is not removable by anything here.**  An arbitrary even
+permutation does not have a doubled cycle type -- a `3`-cycle is the smallest
+counterexample -- so what is missing is a *consumption count*: a bound, in terms
+of `δ` alone, on the number of doubled-type elements needed to write an
+arbitrary even permutation.  The classical route to that count factors the
+target as a product of two involutions, splits each into blocks of at most
+`|supp s|/6` disjoint transpositions (a block with `2k` transpositions has cycle
+type `2^k + 2^k`, so this theorem reaches it), and repairs the two odd blocks
+with a spare transposition, since the two involutions of an even permutation
+have transposition counts of equal parity.  The input that route needs and that
+mathlib does not have at the pin is: *every permutation of a finite type is a
+product of two involutions supported in its support*.  `isConj_iff_cycleType_eq`
+with `cycleType_inv` supplies a conjugator carrying a permutation to its
+inverse, but not an involutive one, which is exactly the content. -/
+
+/-- **`hBNG` for doubled targets, with `K = 2` and no size threshold.**  This is
+the premise of `SO.17` with the target restricted to permutations of doubled
+cycle type; see the section comment for what the restriction costs and what
+would remove it.
+
+Neither the evenness of `s`, nor the evenness of the target, nor the size
+threshold `M`, nor the density constant `δ` is used: the reachable supply is
+governed by `|supp s|` alone, and the length is `2` outright.  The unused
+hypotheses are kept so that the statement can be read against the premise
+verbatim. -/
+theorem exists_bound_doubled_targets (δ : ℝ) (_hδ : 0 < δ) :
+    ∃ K M : ℕ,
+      ∀ (Y : FiniteModel) (s a : Equiv.Perm Y), M ≤ Fintype.card Y →
+        Equiv.Perm.sign s = 1 →
+        δ * (Fintype.card Y : ℝ) ≤ ((s.support.card : ℝ)) →
+        Equiv.Perm.sign a = 1 →
+        (∃ g : Equiv.Perm Y, 3 * g.support.card ≤ s.support.card ∧
+          a.cycleType = g.cycleType + g.cycleType) →
+        IsBoundedConjProduct s K a := by
+  refine ⟨2, 0, ?_⟩
+  rintro Y s a - - - - ⟨g, hgcard, hgtype⟩
+  exact isBoundedConjProduct_two_of_cycleType_doubled hgcard hgtype
+
 end AlternatingBoundedNormalGeneration
 end GroupApproximation
