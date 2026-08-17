@@ -1,0 +1,95 @@
+import Mathlib.GroupTheory.CoprodI
+
+/-!
+# Alternating products in a free product
+
+The variant Adian--Rabin construction recorded in
+`Computability.RabinConstruction` reduces the whole embedding half to
+retractions except for one statement about a free product: an *alternating*
+product of nontrivial elements taken from distinct factors is nontrivial, and
+has infinite order.
+
+Mathlib supplies the normal form (`Monoid.CoprodI.Word.equiv`, whose inverse is
+`Word.prod`) and the inductive description of nonempty reduced words
+(`Monoid.CoprodI.NeWord`), but no consequence about orders.  This file is that
+consequence, and it is three steps:
+
+* `neWord_prod_ne_one` --- a nonempty reduced word is not the identity.  This is
+  the normal form: `Word.prod` is injective because it is the inverse half of
+  `Word.equiv`, and `NeWord.toWord` is not `empty` because its list is not nil.
+* `alt` --- the reduced word spelling `(xy)ⁿ⁺¹` when `x` and `y` are nontrivial
+  and lie in distinct factors.  Alternation is what makes it reduced, and it is
+  the only thing being checked.
+* `zpow_of_mul_of_ne_one` and `commutator_of_ne_one` --- the two forms the
+  construction consumes: `of x * of y` has infinite order, and `⁅of x, of y⁆`
+  is nontrivial.
+-/
+
+namespace GroupApproximation
+namespace FreeProductOrder
+
+open Monoid Monoid.CoprodI
+
+variable {ι : Type*} [DecidableEq ι] {M : ι → Type*} [∀ i, Group (M i)]
+  [∀ i, DecidableEq (M i)]
+
+/-- **A nonempty reduced word is not the identity.**  `Word.prod` is injective,
+being the inverse half of the normal-form equivalence, and the word of a
+`NeWord` is not the empty word. -/
+theorem neWord_prod_ne_one {i j : ι} (w : NeWord M i j) : w.prod ≠ 1 := by
+  intro h
+  have hprod : Word.prod w.toWord = 1 := by
+    rw [← NeWord.prod]
+    exact h
+  have hinj : Function.Injective (Word.prod : Word M → CoprodI M) :=
+    Word.equiv.symm.injective
+  have hempty : w.toWord = Word.empty := by
+    apply hinj
+    rw [hprod, Word.prod_empty]
+  have hnil : w.toList = List.nil := by
+    have : w.toWord.toList = (Word.empty : Word M).toList := by rw [hempty]
+    simpa [NeWord.toWord] using this
+  exact w.toList_ne_nil hnil
+
+/-- The reduced word spelling `(x y)ⁿ⁺¹`, for nontrivial `x`, `y` in distinct
+factors. -/
+def alt {i j : ι} {x : M i} {y : M j} (hx : x ≠ 1) (hy : y ≠ 1) (hij : i ≠ j) :
+    ℕ → NeWord M i j
+  | 0 => (NeWord.singleton x hx).append hij (NeWord.singleton y hy)
+  | n + 1 => (alt hx hy hij n).append hij.symm (alt hx hy hij 0)
+
+omit [DecidableEq ι] [∀ i, DecidableEq (M i)] in
+theorem alt_prod {i j : ι} {x : M i} {y : M j} (hx : x ≠ 1) (hy : y ≠ 1)
+    (hij : i ≠ j) :
+    ∀ n : ℕ, (alt hx hy hij n).prod = (CoprodI.of x * CoprodI.of y) ^ (n + 1)
+  | 0 => by
+      simp [alt]
+  | n + 1 => by
+      rw [alt, NeWord.append_prod, alt_prod hx hy hij n, alt_prod hx hy hij 0,
+        pow_one, ← pow_succ]
+
+/-- **An alternating product of two nontrivial elements has infinite order.** -/
+theorem pow_of_mul_of_ne_one {i j : ι} {x : M i} {y : M j} (hx : x ≠ 1)
+    (hy : y ≠ 1) (hij : i ≠ j) (n : ℕ) :
+    (CoprodI.of x * CoprodI.of y) ^ (n + 1) ≠ 1 := by
+  rw [← alt_prod hx hy hij n]
+  exact neWord_prod_ne_one _
+
+/-- **The commutator of two nontrivial elements of distinct factors is
+nontrivial.**  This is the fact the variant construction needs of
+`[w, s₀]`: it vanishes exactly when `w` does. -/
+theorem commutator_of_ne_one {i j : ι} {x : M i} {y : M j} (hx : x ≠ 1)
+    (hy : y ≠ 1) (hij : i ≠ j) :
+    CoprodI.of x * CoprodI.of y * (CoprodI.of x)⁻¹ * (CoprodI.of y)⁻¹ ≠ 1 := by
+  have hxi : x⁻¹ ≠ 1 := inv_ne_one.2 hx
+  have hyi : y⁻¹ ≠ 1 := inv_ne_one.2 hy
+  have hw : (((NeWord.singleton x hx).append hij (NeWord.singleton y hy)).append
+      hij.symm ((NeWord.singleton x⁻¹ hxi).append hij
+        (NeWord.singleton y⁻¹ hyi))).prod
+      = CoprodI.of x * CoprodI.of y * (CoprodI.of x)⁻¹ * (CoprodI.of y)⁻¹ := by
+    simp [NeWord.append_prod, mul_assoc]
+  rw [← hw]
+  exact neWord_prod_ne_one _
+
+end FreeProductOrder
+end GroupApproximation

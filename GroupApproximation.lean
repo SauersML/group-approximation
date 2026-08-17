@@ -938,6 +938,7 @@ import GroupApproximation.Computability.AdianRabinWordProblem
 import GroupApproximation.Algebra.HNNFinitePresentation
 import GroupApproximation.Algebra.HNNPresentation
 import GroupApproximation.Algebra.HNNRetraction
+import GroupApproximation.Algebra.FreeProductOrder
 import GroupApproximation.Computability.BooneGroupFinitePresentation
 import GroupApproximation.Computability.NovikovBoone
 
