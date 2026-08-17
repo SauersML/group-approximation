@@ -312,10 +312,11 @@ pairwise non-isomorphic invisible kernels behind one and the same visible
 quotient. -/
 theorem nonempty_mulEquiv_of_lamp_mulEquiv {K : Type u} [Group K]
     [IsSimpleGroup K] {L : Type u} [Group L] [IsSimpleGroup L] {X : Type v}
-    [DecidableEq X] [Nonempty X] (e : Lamp K X ≃* Lamp L X) :
+    [DecidableEq X] (hX : Nonempty X) (e : Lamp K X ≃* Lamp L X) :
     Nonempty (K ≃* L) := by
   classical
-  obtain ⟨x₀⟩ := ‹Nonempty X›
+  haveI := hX
+  obtain ⟨x₀⟩ := hX
   set φ : Lamp K X →* L := (evalHom x₀).comp e.toMonoidHom with hφ
   have hsurj : Function.Surjective φ := by
     intro l
@@ -332,10 +333,11 @@ non-isomorphic lamp groups.  Since the lamp subgroup is the invisible radical of
 the corresponding wreath product, this is what makes the family of examples
 pairwise distinguishable even though their visible quotients agree. -/
 theorem alternating_lamp_not_mulEquiv {m n : ℕ} (hm : 5 ≤ m) (hn : 5 ≤ n)
-    (hmn : m ≠ n) {X : Type v} [DecidableEq X] [Nonempty X] :
+    (hmn : m ≠ n) {X : Type v} [DecidableEq X] (hX : Nonempty X) :
     IsEmpty (Lamp (alternatingGroup (Fin m)) X ≃*
       Lamp (alternatingGroup (Fin n)) X) := by
   classical
+  haveI := hX
   haveI : IsSimpleGroup (alternatingGroup (Fin m)) :=
     alternatingGroup.isSimpleGroup (by simpa using hm)
   haveI : IsSimpleGroup (alternatingGroup (Fin n)) :=
@@ -343,7 +345,7 @@ theorem alternating_lamp_not_mulEquiv {m n : ℕ} (hm : 5 ≤ m) (hn : 5 ≤ n)
   haveI : Nontrivial (Fin m) := Fin.nontrivial_iff_two_le.mpr (by omega)
   haveI : Nontrivial (Fin n) := Fin.nontrivial_iff_two_le.mpr (by omega)
   refine ⟨fun e => ?_⟩
-  obtain ⟨ee⟩ := nonempty_mulEquiv_of_lamp_mulEquiv e
+  obtain ⟨ee⟩ := nonempty_mulEquiv_of_lamp_mulEquiv hX e
   have hcard : Nat.card (alternatingGroup (Fin m))
       = Nat.card (alternatingGroup (Fin n)) := Nat.card_congr ee.toEquiv
   have h2 : Nat.card (Equiv.Perm (Fin m)) = Nat.card (Equiv.Perm (Fin n)) := by
