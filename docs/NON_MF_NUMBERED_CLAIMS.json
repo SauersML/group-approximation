@@ -7,7 +7,7 @@
       "id": "thm:A",
       "environment": "mainthm",
       "title": "an explicit finitely presented non-MF group",
-      "statement_sha256": "ce8aa94da2910ee5aa0a99de99700afd76b9678d5a795e4c998f9276f729a4c9",
+      "statement_sha256": "3073242b8e939a9857e80110e4e0aa13634c4bbf6be252bf7a7929743f4b1be1",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [
@@ -62,7 +62,7 @@
       "id": "lem:unitarycorona",
       "environment": "lemma",
       "title": "unitaries in the quotient",
-      "statement_sha256": "1b476b8632de4a941305d35ed9d851de38fe5dec0066de6147c6a8145156a730",
+      "statement_sha256": "da8c086325c912abb1442b5253c1868ff3598bf556a67d67f1cbed5ae4c6731b",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [
@@ -146,7 +146,7 @@
       "id": "thm:exactfd",
       "environment": "theorem",
       "title": "the finite-dimensional case",
-      "statement_sha256": "06b19a3bf4660f937f06b20a70cb10cf7f6b09918d1351f9b58b82555ac513f9",
+      "statement_sha256": "fd6920b91037455e002cb1f3b7f54d81189ca8e01b99c44407e775763a55a113",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [],
@@ -214,7 +214,7 @@
       "id": "thm:kazhdan-clifford",
       "environment": "theorem",
       "title": "Kazhdan--Clifford construction",
-      "statement_sha256": "924348a10c11440d1ad3cd133d792fc63a255ac1f95e96cbe3fa887ddda0f1bf",
+      "statement_sha256": "b4e0d1c3ccbbbcc3b5cc8a3f53dc7a9e28fa6aa6f57667f558ddc243ea366f83",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [
@@ -241,7 +241,7 @@
       "id": "def:E",
       "environment": "definition",
       "title": "",
-      "statement_sha256": "fec9598f435e5d181ed75d47c54529c46412ba861dbf9c6258be52aeebdd091c",
+      "statement_sha256": "c90243450781f9e7be6b11f7cc1880c7d8812ce48835452d3c3232d7cd531d0d",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [],
@@ -303,7 +303,7 @@
       "id": "thm:signfree",
       "environment": "mainthm",
       "title": "the quotient of $E$ by $\\langle w\\rangle$",
-      "statement_sha256": "684a845d1f1d9cb42e48d8f26d5bf3725fbf90dac6cead14a173b5ae16aec446",
+      "statement_sha256": "0e66635debf64a1a6e00ba1cdee61b3f0ca3454338bc9aed0eb5165f31868460",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [
@@ -343,7 +343,7 @@
       "id": "thm:reduced",
       "environment": "mainthm",
       "title": "the reduced group algebra of $E$",
-      "statement_sha256": "3fbefcf7b1eaf4da2eaf473eda0e5ff6bd54dfd04e60e709e029ec95907af225",
+      "statement_sha256": "942e85e1ef739f8366b5bf0a0c2f300d912a06fb05d1be38407d71781a20f879",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [
@@ -366,7 +366,7 @@
       "id": "thm:Esofic",
       "environment": "mainthm",
       "title": "a finitely presented sofic non-MF group",
-      "statement_sha256": "917c4fa5ef0893d91e8119db738a0dde9b82b46cad40779cc1d805f493096228",
+      "statement_sha256": "a31c79735c511ebc2525423a3b69694d1c138cb8daeb03a7bec47137e0ae290b",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [
@@ -431,7 +431,7 @@
       "id": "con:clifford",
       "environment": "construction",
       "title": "Clifford groups",
-      "statement_sha256": "34149a9131896348739e5efff163c7cc2b901ab4efe664414077413579bc9d48",
+      "statement_sha256": "aeebd5be01240d4047bbb0e7d14a73617b832cbe153fbbe307cdc67f39cb54b3",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [],
@@ -547,7 +547,7 @@
       "id": "def:pattern",
       "environment": "definition",
       "title": "Kazhdan conjugation datum",
-      "statement_sha256": "fd8b3b2fc56c2c08ad477cd46d7bccf0f652b8e238f18d55439de9b14447bb16",
+      "statement_sha256": "79446102142d5b3ead53213e04877cb764622af21edfd6bebfc760179f9ab679",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [],
@@ -567,7 +567,7 @@
       "id": "def:invisible",
       "environment": "definition",
       "title": "$2$-norm triviality",
-      "statement_sha256": "7ce386073afc36fd24a7556cb7f64059fe2fcff5e59886ebcf4a53b59b91db95",
+      "statement_sha256": "41698d326dec67b00d36e37207aa5a34a2fdea6c9449781117f04e1c39bc4ec2",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [],
@@ -609,8 +609,8 @@
     {
       "id": "cor:generaltransport",
       "environment": "corollary",
-      "title": "every one-sided conjugator acts, in both directions",
-      "statement_sha256": "c808cecbd21732fb3259e95b7121e7209cf8f429d51f272cd24c099736f27484",
+      "title": "one-sided conjugators preserve the commutant under conjugation and inverse conjugation",
+      "statement_sha256": "2cd351da03fb75b00067d72dcc3e943639f2747a73a5a484139db31b173ea897",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [
@@ -793,7 +793,7 @@
       "id": "def:radical",
       "environment": "definition",
       "title": "",
-      "statement_sha256": "6233a98058787419f07f034e8455a1d3276a9fab32090ca39de370ecc4baea62",
+      "statement_sha256": "5b0001b1a72e5a73c095e7fcf72a591734182326b14894942ada8888a677a873",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [],
@@ -1199,7 +1199,7 @@
       "id": "thm:markedclosed",
       "environment": "theorem",
       "title": "the MF locus is closed",
-      "statement_sha256": "f666d6dd719b2ff98c7161eb4bb8a32ad065689932652911bef9f170e783d677",
+      "statement_sha256": "b1dc2e411d332f29882dae3f482554cd1b2bf90d85d42885271c1d4609c20643",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [],
@@ -1276,8 +1276,8 @@
     {
       "id": "cor:undecidable",
       "environment": "corollary",
-      "title": "undecidability, given the word problem",
-      "statement_sha256": "697d3efaa043b736a446619b2056bd448f90492a3637230ce31cc8c1c4155cd4",
+      "title": "undecidability of MF recognition",
+      "statement_sha256": "6677ae20f59826f60d5af5eb739c6519468ec0b9c9ed4489e93ae70b5222eb42",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [],
@@ -1287,9 +1287,27 @@
       "lean": [
         {
           "role": "exact",
+          "module": "Computability/BooneWordProblemUndecidable",
+          "declaration": "GroupApproximation.Computability.not_computablePred_wordProblemPred",
+          "covers": "a printed conclusion of the proposition"
+        },
+        {
+          "role": "exact",
+          "module": "Computability/BooneWordProblemUndecidable",
+          "declaration": "GroupApproximation.Computability.operatorMF_recognition_not_computable",
+          "covers": "the complete printed proposition"
+        },
+        {
+          "role": "exact",
+          "module": "Computability/WordProblemRE",
+          "declaration": "GroupApproximation.WordProblemRE.rePred_wordProblemPred",
+          "covers": "a printed conclusion of the proposition"
+        },
+        {
+          "role": "exact",
           "module": "Computability/AdianRabinVariantTransform",
           "declaration": "GroupApproximation.AdianRabinVariantTransform.operatorMF_recognition_undecidable_of_wordProblem",
-          "covers": "the complete printed proposition"
+          "covers": "a printed conclusion of the proposition"
         },
         {
           "role": "exact",
@@ -1303,7 +1321,7 @@
       "id": "prop:maximal-cstar",
       "environment": "proposition",
       "title": "the universal property",
-      "statement_sha256": "ea236f6967fee3987b70ae76e196472088c3a2f54bc9733207293436233b2257",
+      "statement_sha256": "7108b280fbf939cbd544410fcba8365978af3adf89c6cc628f6b88cf2b28b95c",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [],
@@ -1323,7 +1341,7 @@
       "id": "prop:proper-isometry",
       "environment": "proposition",
       "title": "a strictly dominated projection gives a proper isometry",
-      "statement_sha256": "0243b2ca55a4d58457294a57449f99541b4ebb4ea3e64238d7f63b3de175ddb6",
+      "statement_sha256": "af0fbcd75508bcd30dd77faa8d68b3ecb429e3312941499e0d0dd983c5f95fe6",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [],

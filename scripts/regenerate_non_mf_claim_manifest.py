@@ -129,9 +129,9 @@ CLAIM_TARGETS: dict[str, tuple[str, str]] = {
         "Sofic/BlockCliffordTowerSofic",
         "GroupApproximation.BlockCliffordTowerSofic.manuscriptResiduallyFiniteWindow"),
     "cor:undecidable": (
-        "Computability/AdianRabinVariantTransform",
-        "GroupApproximation.AdianRabinVariantTransform."
-        "operatorMF_recognition_undecidable_of_wordProblem"),
+        "Computability/BooneWordProblemUndecidable",
+        "GroupApproximation.Computability."
+        "operatorMF_recognition_not_computable"),
     "def:invisible": (
         "Sofic/ManuscriptExactWrappers",
         "GroupApproximation.ManuscriptExactWrappers."
