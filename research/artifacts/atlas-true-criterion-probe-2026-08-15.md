@@ -340,11 +340,26 @@ logged before death and is valid data: loss 2.0015, active mean
 1.9988, control mean 0.0028, block_diag_distance 0.054,
 monomial_distance 0.0014, 237 s/iteration.
 
-**Run 2 (V100, job 16009606): running.**  Same design plus the memory
-fix; 100 iterations, report every 5, 8 h wall.  A grad-norm logging
-addition (see below) was rsynced seconds after the job started and
-likely missed the process launch; the A100 twin (16009228, pending on
-down nodes) would pick it up.
+**Run 2 (V100, job 16009606): cancelled at iteration ~7 — the fixed
+probe set became the objective.**  Memory fix held (past the run-1
+fault point, 30+ min healthy).  But by iteration 5 the trajectory read
+active mean `2.00 → 1.32` with control `0.003 → 0.65`: the probe
+matrix was drawn ONCE, so the optimizer was free to learn
+identity-on-an-8-dimensional-subspace for the active words instead of
+operator proximity — with `4×10⁸` parameters against `161k` probe
+entries, the empirical estimator is gameable and its descent says
+nothing about the true HS landscape.  (A control rise alone would be
+legitimate — a saddle direction of the total objective may trade
+slices — the diagnosis is the fixed-probe coupling, not the trade.)
+Killed as contaminated; the numbers are recorded here as the
+overfitting signature to recognize, not as landscape evidence.
+
+**Run 3 (V100, job 16010002): running.**  Probes resampled every
+iteration, so `W` depends only on past samples and every report is
+conditionally unbiased (true SGD on the exact objective); also logs
+`grad_norm` and normalized `‖W − I‖`.  100 iterations, report every 5,
+8 h wall.  The A100 twin (16009228, pending on down nodes) picks up
+the same script if it ever starts.
 
 **Pre-registered interpretation (unchanged from §(d)):** a descent of
 the active mean visibly below the 1.9987 baseline is the
