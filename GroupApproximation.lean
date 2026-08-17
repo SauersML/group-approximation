@@ -933,6 +933,8 @@ import GroupApproximation.Computability.QuadMachineTM0
 import GroupApproximation.Computability.BooneGroupMachineIndex
 import GroupApproximation.Computability.UniversalMachineUndecidable
 import GroupApproximation.Computability.AdianRabinWordProblem
+import GroupApproximation.Algebra.HNNFinitePresentation
+import GroupApproximation.Computability.BooneGroupFinitePresentation
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group

@@ -11,9 +11,10 @@ artifacts:
   - GroupApproximation/Computability/BooneGroupTower.lean
 ---
 
-OPEN.  Two finite-generation facts are needed before finite presentability of
-the final group can even be stated through
-[[hnn-extension-finite-presentation-permanence]]:
+ESTABLISHED (2026-08-16), `Computability/BooneGroupFinitePresentation`
+(`Gsub_fg`, `liftedSubgroup_fg`, `towerTSub_fg`).  Two finite-generation facts
+are needed before finite presentability of the final group can even be stated
+through [[hnn-extension-finite-presentation-permanence]]:
 
 * each `G_{ab}^{MN}` is finitely generated -- immediate from
   `Gsub_eq_closure`, which exhibits it as `<t(a,b), x^M, y^N>`, so this half is
@@ -26,5 +27,7 @@ the final group can even be stated through
   the tower conjugating those basis elements onto one another.
 
 The second half is what makes this a claim rather than a remark: it is a
-statement about the tower, it is false one level down, and no argument for it
-has been written out in this repository.
+statement about the tower, and it is false one level down.  What makes it true
+upstairs is that `liftedSubgroup φ A = ⟨of '' A, t⟩`, so each stage costs
+exactly **one** new generator; along a machine's finite identification list
+that is finitely many in total.

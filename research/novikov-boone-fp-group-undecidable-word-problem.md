@@ -47,14 +47,21 @@ tracks them stage by stage.  Established, and all machine-checked:
   in `G_M`, `k` commutes with `t(α,β)` exactly when `(α,β)` halts, for an
   arbitrary modular machine.
 
-Open: only [[boone-final-group-finitely-presented]] (S8) and
-[[modular-machine-with-noncomputable-halting]] (S9, external and prose-only).
+* [[boone-final-group-finitely-presented]] (S8) -- `G_M` is finitely presented,
+  for every modular machine, on the strength of
+  [[hnn-extension-finite-presentation-permanence]] and
+  [[boone-normal-closure-of-t-finitely-generated]].
 
-**The mathematical content of Novikov--Boone is therefore complete.**  S3--S7
-produce the halting biconditional for an arbitrary modular machine, which is
-what the chain was for; what remains is one permanence statement about
-presentations (S8) and one external theorem deliberately stated nowhere in Lean
-(S9), and the capstone from them is two lines.
+Open: **only** [[modular-machine-with-noncomputable-halting]] (S9), which is
+external and deliberately stated nowhere in Lean.
+
+**The group side of Novikov--Boone is therefore complete.**  S3--S7 produce the
+halting biconditional for an arbitrary modular machine, and S8 makes the group
+it is about finitely presented -- so for every modular machine there is now a
+*finitely presented* group whose word problem decides that machine's halting
+set.  The single remaining input is S9, a machine whose halting set is not
+computable, and the capstone from it is two lines: compose the biconditional
+with non-computability along the computable map `(a,b) ↦ ⁅k, t(a,b)⁆`.
 
 ## Why this route
 

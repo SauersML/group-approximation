@@ -175,7 +175,23 @@ repository, fully proved with no gaps"; every size is new Lean lines.
   which **is** within reach of Mathlib's exported form.  Combine with S5, S6 and
   `of_mem_basisSubgroup_iff` to get `(α,β) ∈ H_M ↔ ⁅k, t(α,β)⁆ = 1`, then feed
   `Mathlib/Computability/Reduce.lean` to transport non-computability.
-* **S8 `TODO`, ~500--900 lines.**  Finite presentability of the final group.
+* **S8 `DONE`** (`BooneGroupFinitePresentation`, `finalGroup_isFinitelyPresented`),
+  in about 300 lines rather than the 500--900 estimated here, because the
+  permanence statement turned out not to need Britton's Lemma at all.
+  `Algebra/HNNFinitePresentation.isFinitelyPresented_hnnExtension` is "an HNN
+  extension of a finitely presented group along finitely generated associated
+  subgroups is finitely presented" --- still absent from Mathlib, but Mathlib
+  *defines* `HNNExtension` as a quotient of `G ∗ ℤ` and closes finite
+  presentability under free products and under quotients by finitely normally
+  generated subgroups, so the only content is replacing the relation family
+  `{t a t⁻¹ (φ a)⁻¹ : a ∈ A}` by the relators of a generating set --- an
+  equalizer argument on two homomorphisms out of `A`.  Then S2c makes the base
+  presented, `Gsub_fg` makes each `G_{ab}^{MN}` three-generated, and
+  `towerTSub_fg` makes `⟨t⟩'` finitely generated in the tower (it is free of
+  infinite rank in the base group; what saves it is that
+  `liftedSubgroup φ A = ⟨of '' A, t⟩`, so a stage costs exactly one generator).
+  Original entry follows.
+  Finite presentability of the final group.
   Needs S2c, plus "an HNN extension of a finitely presented group along
   finitely generated associated subgroups is finitely presented", which is not
   in Mathlib in any form, plus finite generation of `⟨t⟩'`.
@@ -200,11 +216,13 @@ That is `BooneGroupGoodness.conj_k_finalTw_eq_iff`.  It is the whole
 mathematical content of Novikov--Boone, and it carries no hypothesis on the
 machine.
 
-Remaining: **S8** (finite presentability, the one load-bearing item left, and
-bookkeeping rather than mathematics) and **S9** (Simpson's Theorem 4,
-deliberately stated nowhere in Lean).  The undecidability capstone is two lines
-from the two of them, and must be written only once S9 exists --- until then no
-theorem in this repository depends on it, which is the point of not naming it.
+Remaining: **S9 alone** (Simpson's Theorem 4, a modular machine with
+non-computable halting set, deliberately stated nowhere in Lean).  S8 closed on
+2026-08-16, so the group side of Novikov--Boone is complete: `G_M` is finitely
+presented and its word problem decides halting.  The undecidability capstone is
+two lines from S7, S8 and S9 together, and must be written only once S9 exists
+--- until then no theorem in this repository depends on it, which is the point
+of not naming it.
 -/
 
 namespace GroupApproximation

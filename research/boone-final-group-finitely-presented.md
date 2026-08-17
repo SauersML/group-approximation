@@ -14,10 +14,15 @@ artifacts:
   - GroupApproximation/Computability/BooneGroupTower.lean
 ---
 
-OPEN.  Item **S8** of the roadmap in `Computability/BooneGroupBase`, and the
-larger of the two remaining bookkeeping items: the group `(G'_M)'` -- the tower
-over the base group with the final stable letter `k` adjoined -- is finitely
-presented.
+ESTABLISHED (2026-08-16),
+`Computability/BooneGroupFinitePresentation.finalGroup_isFinitelyPresented`.
+Item **S8** of the roadmap in `Computability/BooneGroupBase`: the group `G_M`
+-- the tower over the base group with the final stable letter `k` adjoined --
+is finitely presented, for every modular machine.
+
+**Status (2026-08-16): the permanence statement and both finite-generation
+facts are proved**, so what this claim needs is in hand; see the route below
+and `Computability/BooneGroupFinitePresentation`.
 
 ## Why it is not automatic
 
@@ -30,10 +35,11 @@ generation of the associated subgroups
 ([[boone-normal-closure-of-t-finitely-generated]]) without which the
 permanence statement does not apply.
 
-Estimated cost: 500--900 new lines, most of it in the permanence statement.
-This and the good-subgroup lemma are the two load-bearing items left in the
-chain, and unlike the good-subgroup lemma this one carries no mathematical
-risk -- only length.
+The estimate here was 500--900 lines, most of it in the permanence statement.
+It came to about 300, because the permanence statement does not need Britton's
+Lemma: Mathlib *defines* the HNN extension as a quotient of `G ∗ Z`, so the
+only content is cutting the relation family down to a generating set.  The
+prediction that this item carried no mathematical risk was right.
 
 ## What it is needed for
 
