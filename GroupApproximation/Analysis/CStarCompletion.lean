@@ -79,23 +79,25 @@ noncomputable instance completionStar : Star (Completion A) where
 @[simp] theorem star_coe (a : A) : star (↑a : Completion A) = ↑(star a) :=
   Completion.map_coe uniformContinuous_star a
 
+omit [NormedStarGroup A] in
 theorem continuous_star_completion :
     Continuous (star : Completion A → Completion A) :=
   Completion.continuous_map
 
-noncomputable instance completionInvolutiveStar :
-    InvolutiveStar (Completion A) where
+/-- **The completion of a normed ⋆-ring is a ⋆-ring.**  Every law is an
+identity between continuous functions, so each holds on a closed set
+containing the dense image of `A`.
+
+All three flat fields are given explicitly rather than letting the
+`InvolutiveStar` parent be synthesized from a separate instance, so that there
+is exactly one path to `star` on the completion and no structure diamond. -/
+noncomputable instance completionStarRing : StarRing (Completion A) where
   star_involutive x := by
     refine Completion.induction_on x
       (isClosed_eq (continuous_star_completion.comp continuous_star_completion)
         continuous_id) ?_
     intro a
     rw [star_coe, star_coe, star_star]
-
-/-- **The completion of a normed ⋆-ring is a ⋆-ring.**  Both laws are
-equalities of continuous functions of two variables, so each holds on a closed
-set containing the dense image of `A`. -/
-noncomputable instance completionStarRing : StarRing (Completion A) where
   star_add x y := by
     refine Completion.induction_on₂ x y (isClosed_eq ?_ ?_) ?_
     · exact continuous_star_completion.comp continuous_add

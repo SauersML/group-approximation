@@ -146,8 +146,7 @@ theorem exists_mulEquiv_factor {K : Type*} [Group K] [IsSimpleGroup K]
     calc k = e (e.symm k) := (e.apply_symm_apply k).symm
       _ = e 1 := by rw [hone (e.symm k)]
       _ = 1 := map_one e
-  · push_neg at hall
-    obtain ⟨i, hi⟩ := hall
+  · obtain ⟨i, hi⟩ := not_forall.mp hall
     have hnm : (N.map (coordHom G i)).Normal := hN.map (coordHom G i) (hG i)
     have htop : N.map (coordHom G i) = ⊤ := hnm.eq_bot_or_eq_top.resolve_left hi
     have hsurj : Function.Surjective
@@ -240,7 +239,9 @@ theorem exists_normal_mulEquiv_of_mulSingle_mem [DecidableEq ι]
       by_cases hj : j = i
       · subst hj
         exact hm
-      · rw [m₁.2 j hj, m₂.2 j hj]
+      · have h₁ : ((m₁ : G) : ∀ k, Q k) j = 1 := m₁.2 j hj
+        have h₂ : ((m₂ : G) : ∀ k, Q k) j = 1 := m₂.2 j hj
+        rw [h₁, h₂]
     exact Subtype.ext (Subtype.ext hval)
   have hsurj : Function.Surjective
       ((coordHom G i).comp ((piFactor i).comap G.subtype).subtype) := by
@@ -287,9 +288,7 @@ theorem normalFactorSet_eq_of_subsetProduct
     rw [hmi]
     exact i.2
   · intro n hn
-    obtain ⟨N, hN, hequiv⟩ :=
-      exists_normal_mulEquiv_of_mulSingle_mem (i := (⟨n, hn⟩ : S)) (hfac ⟨n, hn⟩)
-    exact ⟨N, hN, hequiv⟩
+    exact exists_normal_mulEquiv_of_mulSingle_mem (hfac ⟨n, hn⟩)
 
 end Recovery
 

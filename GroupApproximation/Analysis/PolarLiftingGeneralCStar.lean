@@ -67,6 +67,8 @@ namespace PolarLiftingGeneralCStar
 open Filter
 open scoped ENNReal
 
+noncomputable section
+
 /-! ## The scalar estimate
 
 For `t` within `δ ≤ 1/2` of `1` the reciprocal square root is within `2δ`
@@ -131,9 +133,10 @@ theorem abs_sub_one_le_of_mem_spectrum {a : A} {t : ℝ} (ht : t ∈ spectrum �
   obtain (hA | hA) := subsingleton_or_nontrivial A
   · rw [spectrum.of_subsingleton] at ht
     exact absurd ht (Set.notMem_empty t)
-  · have hmem : t - 1 ∈ spectrum ℝ (a - 1) := by
-      have h := Set.sub_mem_sub ht (rfl : (1 : ℝ) ∈ ({1} : Set ℝ))
-      rwa [spectrum.sub_singleton_eq, map_one] at h
+  · have hmem : t - 1 ∈ spectrum ℝ (a - algebraMap ℝ A 1) := by
+      rw [← spectrum.sub_singleton_eq]
+      exact Set.sub_mem_sub ht rfl
+    rw [map_one] at hmem
     simpa only [Real.norm_eq_abs] using spectrum.norm_le_norm_of_mem hmem
 
 /-- Under the printed `1/2` hypothesis the Gram element has strictly positive
@@ -284,6 +287,7 @@ variable (A : ℕ → Type u) [∀ n, CStarAlgebra (A n)] [∀ n, Nontrivial (A 
 /-- The bounded C-star product `∏_n A_n`. -/
 abbrev BoundedCStarSequence := lp A ∞
 
+omit [∀ n, Nontrivial (A n)] in
 theorem boundedCStarSequence_coord_norm_le (a : BoundedCStarSequence A) (n : ℕ) :
     ‖a n‖ ≤ ‖a‖ :=
   lp.norm_apply_le_norm ENNReal.top_ne_zero a n
@@ -297,11 +301,13 @@ def IsNullCStarSequence (a : BoundedCStarSequence A) : Prop :=
 
 namespace IsNullCStarSequence
 
+omit [∀ n, Nontrivial (A n)] in
 theorem zero : IsNullCStarSequence A l 0 := by
   rw [IsNullCStarSequence]
   refine tendsto_const_nhds.congr fun n ↦ ?_
   simp
 
+omit [∀ n, Nontrivial (A n)] in
 theorem add {a b : BoundedCStarSequence A} (ha : IsNullCStarSequence A l a)
     (hb : IsNullCStarSequence A l b) : IsNullCStarSequence A l (a + b) := by
   apply squeeze_zero' (Eventually.of_forall fun n ↦ norm_nonneg ((a + b) n))
@@ -327,6 +333,7 @@ theorem mul_right {a : BoundedCStarSequence A} (ha : IsNullCStarSequence A l a)
         (norm_nonneg _))
   · simpa only [zero_mul] using ha.mul tendsto_const_nhds
 
+omit [∀ n, Nontrivial (A n)] in
 theorem star {a : BoundedCStarSequence A} (ha : IsNullCStarSequence A l a) :
     IsNullCStarSequence A l (star a) := by
   simpa [IsNullCStarSequence, lp.star_apply] using ha
@@ -350,7 +357,7 @@ theorem mem_nullCStarSequenceIdeal_iff (a : BoundedCStarSequence A) :
 
 theorem nullCStarSequenceIdeal_star_mem {a : BoundedCStarSequence A}
     (ha : a ∈ nullCStarSequenceIdeal A l) :
-    _root_.star a ∈ nullCStarSequenceIdeal A l :=
+    star a ∈ nullCStarSequenceIdeal A l :=
   IsNullCStarSequence.star A l ha
 
 /-- The corona `(∏_n A_n)/(⨁_l A_n)`.  At `l = cofinite` this is the
@@ -438,10 +445,12 @@ many remaining indices", which for a general filter means off a member of
 noncomputable def polarLift (x : BoundedCStarSequence A) (n : ℕ) : A n :=
   if PolarGood A x n then polarUnitary (x n) else 1
 
+omit [∀ n, Nontrivial (A n)] in
 theorem polarLift_of_good {x : BoundedCStarSequence A} {n : ℕ}
     (h : PolarGood A x n) : polarLift A x n = polarUnitary (x n) :=
   if_pos h
 
+omit [∀ n, Nontrivial (A n)] in
 theorem polarLift_of_not_good {x : BoundedCStarSequence A} {n : ℕ}
     (h : ¬ PolarGood A x n) : polarLift A x n = 1 :=
   if_neg h
@@ -629,6 +638,8 @@ theorem printedUnitaryLifting_cofinite (A : ℕ → Type*)
       Ideal.Quotient.mk (nullCStarSequenceIdeal A cofinite) (polarLiftSeq A x) =
         Ideal.Quotient.mk (nullCStarSequenceIdeal A cofinite) x :=
   printedUnitaryLifting A cofinite x hq
+
+end
 
 end PolarLiftingGeneralCStar
 end GroupApproximation

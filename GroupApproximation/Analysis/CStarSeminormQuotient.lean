@@ -175,7 +175,10 @@ theorem IsCStarSeminorm.comp {A : Type u} {B : Type v}
   add_le a b := by simpa only [map_add] using hp.add_le (f a) (f b)
   smul c a := by simpa only [map_smul] using hp.smul c (f a)
   mul_le a b := by simpa only [map_mul] using hp.mul_le (f a) (f b)
-  cstar a := by simpa only [map_mul, map_star] using hp.cstar (f a)
+  cstar a := by
+    show p (f (star a * a)) = p (f a) * p (f a)
+    rw [map_mul, map_star]
+    exact hp.cstar (f a)
 
 /-! ## Suprema of C⋆-seminorms
 
@@ -193,6 +196,7 @@ variable {ι : Type v} [Nonempty ι]
 /-- The pointwise supremum of a family of functions on `A`. -/
 noncomputable def iSupSeminorm (p : ι → A → ℝ) : A → ℝ := fun a ↦ ⨆ i, p i a
 
+omit [Ring A] [StarRing A] [Algebra ℂ A] [Nonempty ι] in
 @[simp] theorem iSupSeminorm_apply (p : ι → A → ℝ) (a : A) :
     iSupSeminorm p a = ⨆ i, p i a := rfl
 
