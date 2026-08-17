@@ -7,6 +7,7 @@ distinct_from:
   leavitt-corner-idempotent-unital-surjection: that builds the corner `eAe` and its unital evaluation onto `R`, and is about a map out of the corner; this says what sits *inside* the same corner — a full matrix algebra over the whole group algebra — and it uses that node's idempotent as its starting point.
   leavitt-gl-equals-el-and-perfect-unit-group: that identifies `GL_n(R)` with `EL_n(R)` and is a statement about groups over the Leavitt algebra; this is a statement about matrix rings over the *group algebra* `F_2[R^x]`, one level up, and neither transports to the other.
   augmentation-blocks-unital-leavitt-family: that forbids a binary Leavitt family in any matrix ring over an integral group ring; this exhibits matrix rings over a group algebra inside that group algebra, and the two do not meet — the amplification carries no Leavitt relations.
+  leavitt-unit-group-algebra-not-directly-finite: that is the open Kaplansky failure, an existence question about a one-sided inverse pair; this is an established embedding statement that supplies no pair and is neutral on the answer -- it only removes matrix size from the search.
 artifacts:
   - research/artifacts/leavitt-stable-finiteness-audit-2026-08-17.md
   - research/artifacts/verify-s3-corner-2026-08-17.py

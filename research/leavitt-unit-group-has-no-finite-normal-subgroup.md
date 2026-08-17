@@ -7,6 +7,8 @@ distinct_from:
   leavitt-gl-equals-el-and-perfect-unit-group: that identifies `R^x` with `GL_3 = EL_3` and proves it perfect; this uses that identification as an input and concludes something else entirely — that the group has no finite normal subgroup and no proper finite-index subgroup.
   leavitt-center-is-coefficient-field: that is the ring-side input, `Z(R) = F_2`, imported from the literature; this is the group-side conclusion drawn from it together with two formalized theorems, and it is what the primality criterion consumes.
   leavitt-unit-group-algebra-is-prime: that is the group-algebra consequence, reached from this one by Connell's criterion; this is a statement about the group and mentions no group algebra.
+  finite-infranormal-subgroup-is-normal: that says an infranormal finite subgroup of any group is normal, a general lemma about when normality is automatic; this says one specific group has no nontrivial finite normal subgroup at all, so there is nothing for that lemma to apply to here.
+  leavitt-unit-group-nonsurjunctive: that is the open Gottschalk failure for this group, about cellular automata over it; this is an established structural fact about its subgroups, and it is an input to a route-killing argument rather than to that failure.
 artifacts:
   - research/artifacts/leavitt-stable-finiteness-audit-2026-08-17.md
   - GroupApproximation/Leavitt/ElementaryNoFiniteQuotients.lean

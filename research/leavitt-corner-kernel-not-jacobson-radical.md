@@ -8,6 +8,7 @@ distinct_from:
   leavitt-corner-kernel-is-jacobson-radical: that open claim asserts `ker(pi_e) = J(eAe)`; this one refutes it, and in the strong form that `ker(pi_e)` is not even contained in the radical, so that node should be read as false rather than unattempted.
   leavitt-evaluation-kernel-hits-augmentation-one: that says the whole-algebra kernel is nonzero and meets augmentation one, with the three-term witness `[u]+[v]+[w]`; this says the *corner* kernel is nonzero and meets augmentation *zero*, and the two witnesses are disjoint — the three-term one is annihilated by `e` on both sides.
   leavitt-recursive-kernel-idempotents: that produces an infinite orthogonal family in the whole kernel and is about the family's size; this produces one idempotent in the corner kernel and is about what its existence rules out.
+  sofic-radical-soficization: that is an approximation-theoretic radical of a group, the largest quotient visible to sofic approximations; this concerns the Jacobson radical of a ring corner, and the two share only the word radical -- the same disclaimer the refuted node carries.
 artifacts:
   - research/artifacts/leavitt-stable-finiteness-audit-2026-08-17.md
   - research/artifacts/verify-s3-corner-2026-08-17.py

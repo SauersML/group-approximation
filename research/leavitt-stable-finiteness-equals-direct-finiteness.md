@@ -8,6 +8,7 @@ distinct_from:
   leavitt-unit-group-algebra-not-directly-finite: that is the open scalar failure, the Kaplansky question proper; this is the established statement that the scalar and matrix questions coincide for this one algebra, and it settles neither.
   stable-finiteness-reduces-to-prime-field: that reduces the coefficient field for every group at once, leaving the matrix size untouched; this reduces the matrix size for one group, leaving the field untouched, and the two reductions compose.
   leavitt-matrix-amplification-in-unit-group-algebra: that is the structural input — matrix algebras over `S` sit inside `S` as corners; this is the finiteness consequence extracted from it by padding and unitizing.
+  leavitt-unit-group-nonsurjunctive: that is the open Gottschalk failure for the group, which consumes the matrix statement; this is the established equivalence between the matrix and scalar statements, and its effect on that node is only to say which of the two now has to be settled.
 artifacts:
   - research/artifacts/leavitt-stable-finiteness-audit-2026-08-17.md
 ---
