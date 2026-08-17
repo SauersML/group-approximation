@@ -280,6 +280,45 @@ jobs:
             echo "Superseded by $main, but no certificate is in flight; verifying this tree anyway (an older certified SHA is a promotion no-op, so this can only advance verified)."
           fi
 
+          # Current-tip push.  The mutex above is reached only by a SUPERSEDED
+          # push, so a push that is still the tip used to start a full
+          # certificate unconditionally -- and since a certificate takes ~3.5h
+          # while pushes here arrive minutes apart, every push that cleared its
+          # gate while still the tip added another concurrent certificate.
+          # Observed 2026-08-17: two full certificates building at once, each
+          # wanting eight P13 shards and then five kernel shards out of an
+          # account pool of twenty that another repository routinely holds
+          # thirteen of.  They do not run faster together; they interleave and
+          # BOTH finish late, which delays the promotion of verified rather than
+          # advancing it.  Fixing the queue made this worse, not better: gates
+          # now reach runners promptly, so more of them get far enough to start
+          # a rival build.
+          #
+          # One certificate at a time is therefore the faster policy, not the
+          # more cautious one.  Throughput is unchanged -- the pool is the
+          # bottleneck either way -- but the in-flight certificate finishes in
+          # its true wall time and promotes, instead of two finishing at twice
+          # that.
+          #
+          # The cost is bounded and paid by design: a tip push that yields is
+          # certified by the hourly tick once the mutex clears, which is the
+          # mechanism that already covers every commit overtaken by a build, and
+          # which now yields only to real builders.  Yielding is still only ever
+          # to a run whose gate has CONCLUDED -- never to a merely queued run,
+          # which is the livelock documented above -- and a zombie certifying an
+          # ancestor of verified is not a builder, so neither can park the queue.
+          if [ "${{ github.event_name }}" = "push" ] && [ "$target" = "$main" ]; then
+            if [ "$(count_builders)" -gt 0 ]; then
+              echo "This tree is the tip, but a certificate is already being computed; yielding to the build mutex so it finishes on time (the hourly tick certifies this tip once the mutex clears)."
+              echo "run=false" >> "$GITHUB_OUTPUT"
+              echo "lean=false" >> "$GITHUB_OUTPUT"
+              gh api -X POST \
+                "repos/${{ github.repository }}/actions/runs/${{ github.run_id }}/cancel" \
+                || true
+              exit 0
+            fi
+          fi
+
           # Lane classifier.  The fresh kernel verdict, the compiled tree,
           # and every Lean-side gate are functions of the paths below.  A
           # push that leaves all of them byte-identical to the certified
