@@ -251,7 +251,10 @@ theorem norm_mul_self_le_norm_star_mul (x : TracialMatrixQuotient X l) :
     have hsplit : (star a * a) * ((1 : ModelBoundedSequence X) - e)
         = m * ((1 : ModelBoundedSequence X) - e)
           - (m - star a * a) * ((1 : ModelBoundedSequence X) - e) := by
-      noncomm_ring
+      -- Same reason as `h2`: distribute by hand and finish additively, rather
+      -- than let `noncomm_ring` normalise through the `lp` subtype.
+      simp only [sub_mul]
+      abel
     have hlast : (m - star a * a) * ((1 : ModelBoundedSequence X) - e)
         = (m - star a * a) - (m - star a * a) * e := by
       rw [mul_sub, mul_one]
@@ -380,7 +383,8 @@ theorem norm_mk_eq_sInf (a : ModelBoundedSequence X) :
       have hsplit : a - a * e
           = m * ((1 : ModelBoundedSequence X) - e)
             - ((m - a) - (m - a) * e) := by
-        noncomm_ring
+        simp only [mul_sub, sub_mul, mul_one]
+        abel
       calc ‖a - a * e‖
           = ‖m * ((1 : ModelBoundedSequence X) - e)
               - ((m - a) - (m - a) * e)‖ := by rw [hsplit]
