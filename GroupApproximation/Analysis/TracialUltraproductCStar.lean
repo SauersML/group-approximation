@@ -56,8 +56,14 @@ failed to synthesize HMul (TracialMatrixQuotient X ↑ω) (TracialMatrixQuotient
 while `1`, the module structure and the norm all resolved instantly in the
 same file.  The instance is reached only by unfolding the `abbrev` to
 `ModelBoundedSequence X ⧸ hilbertSchmidtNullIdeal X ↑ω` and then walking the
-hand-built `SeminormedRing`/`NormedRing` instances.  It is not a missing
-instance and not a `variable` ordering mistake: it is search cost.  So
+hand-built `SeminormedRing`/`NormedRing` instances -- and `*` is the one whose
+route runs through `Ideal.Quotient.ring`, hence through the expensive
+`lp.inftyRing` chain that has to rediscover each model's `Fintype` and
+`DecidableEq` through the `FiniteModel` projections.  It is not a missing
+instance and not a `variable` ordering mistake: it is search cost.  The local
+palliative is `set_option synthInstance.maxHeartbeats`, which is what
+`Analysis/TracialMatrixUltraproduct.lean` itself carries and for the same
+reason; the durable fix is below.  So
 traciality is *not* restated here — use `ultratrace_mul_comm` together with
 `ultratraceCLM_apply`.  Anyone writing the factorization glue will meet this
 at `map_mul`, and the durable fix belongs in the defining file: a directly
@@ -69,6 +75,32 @@ Note the contrast with `Analysis/NormMatrixCorona.lean`, which *does* carry a
 `limsup ‖a n‖` and the identity is a coordinatewise computation.  The
 `‖·‖₂`-null ideal admits no such formula, which is precisely why that proof
 does not transfer.
+
+## The blocker may not need to be closed at all
+
+There is a second route to a lift out of `C*(G)` which never forms the
+quotient.  Represent the *numerator* on the GNS space of the ultratrace:
+`PositiveLinearMap.gnsStarAlgHom` gives a unital ⋆-homomorphism of
+`ModelBoundedSequence X` into `f.GNS →L[ℂ] f.GNS`, bounded operators on a
+Hilbert space, which is already a C-star algebra in `Type 0` and is the
+ambient this repository uses for `ReducedGroupCStar`.  The permutation
+sequences are honestly unitary in the numerator, and a GNS representation of a
+*tracial* functional annihilates exactly the `‖·‖₂`-null elements, so the
+multiplicativity defect of a sofic approximation dies in the representation
+and the group map becomes a genuine homomorphism without any quotient being
+taken.  The trace is then the vector state at the cyclic vector.
+
+Everything that route needs is already in the tree: `GNSEigenvector.gnsCyclic`
+is the cyclic vector with `norm_gnsCyclic`, and the instance surface
+`[CStarAlgebra A] [PartialOrder A] [StarOrderedRing A]` it wants is installed
+by the repository's standard idiom, `CStarAlgebra.spectralOrder` and
+`CStarAlgebra.spectralOrderedRing` as `local instance`s at namespace level, as
+in `Analysis/MaximalCStarProperCompression.lean` and
+`Sofic/UltraproductKazhdanProjection.lean`.
+
+If that route is taken, the C-star identity for the quotient norm stops being
+on the critical path, and this file's `ultratraceCLM` is still the right
+object: the trace being bundled is the same one.
 -/
 
 namespace GroupApproximation
