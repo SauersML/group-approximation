@@ -913,6 +913,7 @@ import GroupApproximation.Sofic.ContinuumMultiplicityCore
 import GroupApproximation.Sofic.PrintedPreliminaryEstimates
 import GroupApproximation.Sofic.LiteralSignFreeRadicalReduction
 import GroupApproximation.Sofic.SoficEnvelopeSimplicity
+import GroupApproximation.Sofic.BoundedConjProductAlgebra
 import GroupApproximation.Sofic.SoficEnvelopeWitness
 import GroupApproximation.Sofic.CollapsePrintedProfile
 import GroupApproximation.Sofic.CliffordBSSixRelator
