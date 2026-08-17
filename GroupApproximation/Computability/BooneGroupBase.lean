@@ -143,11 +143,15 @@ repository, fully proved with no gaps"; every size is new Lean lines.
   the HNN transport --- rewriting S5a's two images along
   `emb c 0 M² 1 ∘ (emb a b M M)⁻¹`, which is well defined because
   `emb_injective` holds.
-* **S6 `PARTIAL`** (`BooneGroupGoodness`, `stable_conj_emb_right`/`_left`): the
-  inductive step is proved --- the stable letter carries the source embedding
-  onto the target, which is the displayed computation.  The induction itself
-  needs the tower's stable letters exposed in `Stage`; `towerSub` shows the
-  pattern for threading structure through the fold.  Original entry follows.
+* **S6 `DONE`** (`BooneGroupGoodness`, `towerSub_halting_eq_towerTSub`).  The
+  displayed computation is `stable_conj_emb_right`/`_left` --- the stable letter
+  carries the source embedding onto the target --- but the finished proof does
+  not string those steps along a halting computation.  Both inclusions are
+  structural inductions over the identification list instead
+  (`towerSub_le_of_mem` with `twSub_halting_le_comap` one way,
+  `towerTSub_le_towerSub_halting` with `hasLetters_towerTSub` the other), which
+  is the shape `towerSub_inf_range` already used one level down.  Original
+  entry follows.
   Simpson's Lemma 7, `T'_M = ⟨t⟩'`.  Induction on
   the length of the halting computation, via
   `Relation.ReflTransGen.head_induction_on`; the inductive step is the displayed
@@ -159,8 +163,12 @@ repository, fully proved with no gaps"; every size is new Lean lines.
   nontrivial direction is Britton for a single stable letter and a word of
   length two --- the chain condition of `t⁻¹ g t` is exactly `g ∈ A → -1 = 1`,
   so the word is reduced when `g ∉ A`, and Britton then says it has no stable
-  letters, which is false.  What remains of S7 is instantiating `A` at
-  `⟨t⟩'` and assembling the final presentation.  Original entry follows.
+  letters, which is false.  **S7 itself is now `DONE`**
+  (`BooneGroupGoodness`, `conj_k_finalTw_eq_iff`): `FinalGroup` adjoins `k` over
+  `towerTSub`, `goodTower_machine` discharges S4's hypothesis for an actual
+  machine's identification list, and the biconditional
+  `k⁻¹ t(α,β) k = t(α,β) ↔ M.Halts (α,β)` follows from `conj_t_eq_iff` and S6.
+  Original entry follows.
   Simpson's Theorem 8.  Adjoin `k` with
   `A = B = ⟨t⟩'` and `φ = id`; then `k⁻¹ g k = g ↔ g ∈ ⟨t⟩'` --- the nontrivial
   direction is Britton for a *single* stable letter and a length-one word,
@@ -181,16 +189,22 @@ repository, fully proved with no gaps"; every size is new Lean lines.
   mathematical content of Novikov--Boone; the undecidability capstone is a
   two-line corollary that must be written only once Theorem 4 is proved.
 
-**The target statement.**  Everything above converges on one unconditional
-theorem, which is what S3--S7 must produce and which mentions no undecidability
-whatsoever:
+**The target statement, and it is proved.**  Everything above converges on one
+unconditional theorem, which S3--S7 produce and which mentions no
+undecidability whatsoever:
 
     for every `M : ModularMachine` and every `(α, β) : ℕ × ℕ`,
-      `⁅k, t(α,β)⁆ = 1`  in  `(G'_M)'`   ↔   `M.Halts (α, β)`.
+      `⁅k, t(α,β)⁆ = 1`  in  `G_M`   ↔   `M.Halts (α, β)`.
 
-Remaining after this file: roughly **2000--3500 lines**, with S4 and S8 the two
-load-bearing items and S4 the only one with mathematical (as opposed to
-bookkeeping) risk.
+That is `BooneGroupGoodness.conj_k_finalTw_eq_iff`.  It is the whole
+mathematical content of Novikov--Boone, and it carries no hypothesis on the
+machine.
+
+Remaining: **S8** (finite presentability, the one load-bearing item left, and
+bookkeeping rather than mathematics) and **S9** (Simpson's Theorem 4,
+deliberately stated nowhere in Lean).  The undecidability capstone is two lines
+from the two of them, and must be written only once S9 exists --- until then no
+theorem in this repository depends on it, which is the point of not naming it.
 -/
 
 namespace GroupApproximation

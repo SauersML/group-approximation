@@ -13,36 +13,32 @@ artifacts:
   - GroupApproximation/Computability/BooneGroupGoodness.lean
 ---
 
-OPEN.  Item **S6** of the roadmap in `Computability/BooneGroupBase`.  In the
-tower `G'_M` of a modular machine,
+ESTABLISHED (2026-08-16), `BooneGroupGoodness.towerSub_halting_eq_towerTSub`.
+Item **S6** of the roadmap in `Computability/BooneGroupBase`.  In the tower
+`G'_M` of a modular machine,
 
     T'_M  =  <<t>>,
 
 the normal closure of the single generator `t`.  Simpson's Lemma 7.
 
-## The route, and why it is not merely a sketch
+## How it was proved, against how it was planned
 
-Induction on the length of the halting computation, via
-`Relation.ReflTransGen.head_induction_on`.  The inductive step is the displayed
-computation of the source, `r_i^{-1} t(a,b) r_i = t(a1,b1)`, where `r_i` is the
-stable letter attached to the quadruple that fires at `(a,b)`; at the level of
-basis indices that identity is `haltsZ_right_iff` -- the machine fact of
-[[modular-machine-halting-invariance]] -- again, so no new machine input is
-needed.
-
-**The inductive step is now proved.**
-`Computability/BooneGroupGoodness.stable_conj_emb_right` and
-`stable_conj_emb_left`: the stable letter attached to a quadruple carries the
-source embedding to the target one,
+The plan was an induction on the length of the halting computation via
+`Relation.ReflTransGen.head_induction_on`, with the displayed computation
+`r_i^{-1} t(a,b) r_i = t(a1,b1)` as the step.  The step is real and is
+`stable_conj_emb_right` / `_left`: the stable letter attached to a quadruple
+carries the source embedding onto the target,
 `of (emb c 0 M^2 1 g) = t * of (emb a b M M g) * t^{-1}`, which is the defining
 relation of the HNN extension read through `quadEquiv` -- and `quadEquiv` was
-defined to make it so.  What is left is the induction that strings those steps
-along a halting computation and the reverse inclusion.
+defined to make it so.
 
-Estimated cost: what remains of the original 150 lines.  No route node is
-recorded yet: the induction has been read but not re-derived against Mathlib's
-HNN API, and a route in this graph asserts that its implication is valid, not
-that it is plausible.
+What the finished proof does *not* do is string those steps along a computation
+by hand.  Both inclusions are structural inductions over the identification
+list instead (`towerSub_le_of_mem` with `twSub_halting_le_comap` one way,
+`towerTSub_le_towerSub_halting` with `hasLetters_towerTSub` the other), which
+is the same shape as `towerSub_inf_range` one level down.  The machine enters
+only through the step above, so no new machine input was needed, as the plan
+predicted.
 
 ## Where it is consumed
 

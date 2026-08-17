@@ -24,7 +24,7 @@ assistant.
 ## Where the chain stands
 
 Seven modules are in place, and the roadmap in `Computability/BooneGroupBase`
-tracks them stage by stage.  Established:
+tracks them stage by stage.  Established, and all machine-checked:
 
 * [[modular-machine-halting-invariance]] (S0) -- the three machine facts;
 * [[free-subbasis-subgroup-calculus]] (S1) -- sub-basis subgroups of a free
@@ -39,16 +39,22 @@ tracks them stage by stage.  Established:
   rather than bookkeeping risk, closed on 2026-08-16 with no induction on
   stable letters, together with its iteration up the tower;
 * [[boone-tower-good-subgroup-transport]] (S5b) -- goodness of the halting
-  subgroup at every quadruple, in both directions.
+  subgroup at every quadruple, in both directions, with `GoodTower` discharged
+  for an actual machine;
+* [[boone-halting-subgroup-is-normal-closure]] (S6) -- Simpson's Lemma 7, the
+  lift of the halting subgroup is the lift of `⟨t⟩`;
+* [[boone-commutator-criterion-for-halting]] (S7) -- **the target statement**:
+  in `G_M`, `k` commutes with `t(α,β)` exactly when `(α,β)` halts, for an
+  arbitrary modular machine.
 
-Open: [[boone-halting-subgroup-is-normal-closure]] (S6, whose inductive step is
-proved),
-[[boone-commutator-criterion-for-halting]] (S7, the target statement),
-[[boone-final-group-finitely-presented]] (S8) and
+Open: only [[boone-final-group-finitely-presented]] (S8) and
 [[modular-machine-with-noncomputable-halting]] (S9, external and prose-only).
 
-With S4 and S5b closed the estimate drops sharply: S8 is now the one
-load-bearing item left, and S6 and S7 are inductions whose steps are in hand.
+**The mathematical content of Novikov--Boone is therefore complete.**  S3--S7
+produce the halting biconditional for an arbitrary modular machine, which is
+what the chain was for; what remains is one permanence statement about
+presentations (S8) and one external theorem deliberately stated nowhere in Lean
+(S9), and the capstone from them is two lines.
 
 ## Why this route
 

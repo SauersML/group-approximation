@@ -12,8 +12,7 @@ artifacts:
   - GroupApproximation/Computability/BooneGroupTower.lean
 ---
 
-ESTABLISHED via the route below, and machine-checked except for one mechanical
-assembly named at the end.  Item **S5b** of the roadmap in
+ESTABLISHED, and machine-checked end to end.  Item **S5b** of the roadmap in
 `Computability/BooneGroupBase`.  Inside the tower `G'_M` of a modular machine,
 
     T = T' cap G     and     T_M = T'_M cap G,
@@ -32,10 +31,9 @@ Simpson's Definition 2 for `T_M` comes out with no computation left to do, and
 lemma at that stable letter.  `towerSub_inf_range` supplies the iteration up
 the tower under the hypothesis `GoodTower`.
 
-What is not yet a Lean declaration is the last mechanical step: discharging
-`GoodTower` for the list `machineIdentifications mm` of an actual machine, i.e.
-running the per-quadruple goodness theorems along the fold.  Nothing in it is
-new -- both ingredients exist and the induction is over a `List` -- but until
-it is written, the claim is established here by the route rather than by a
-single Lean theorem.  The estimate of about 120 lines was for the whole of S5b;
-what remains of it is perhaps twenty.
+The last mechanical step is done too: `goodTower_machine` discharges
+`GoodTower` for the list `machineIdentifications mm` of an actual machine, by
+`goodTower_of_forall_good` over `good_of_mem_machineIdentifications`, which
+case-splits on the quadruple's direction and applies the per-quadruple theorem
+above.  So S5b is machine-checked end to end, not merely established by this
+route.

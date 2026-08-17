@@ -11,8 +11,9 @@ artifacts:
   - GroupApproximation/Computability/BooneGroupMachineIndex.lean
 ---
 
-OPEN.  This is the target statement the whole Novikov--Boone chain converges
-on, and it mentions no undecidability whatsoever:
+ESTABLISHED (2026-08-16), `BooneGroupGoodness.conj_k_finalTw_eq_iff`.  This is
+the target statement the whole Novikov--Boone chain converges on, and it
+mentions no undecidability whatsoever:
 
 > for every `M : ModularMachine` and every `(a, b) : N x N`,
 > the commutator `[k, t(a,b)]` is trivial in `(G'_M)'` if and only if
@@ -31,15 +32,18 @@ statement is deliberately not present in Lean anywhere in this chain, not as a
 hypothesis and not as a named predicate, so that no theorem in the repository
 can silently depend on it.
 
-## The remaining work
+## How it goes
 
-**The Britton core is proved** (`BooneGroupTower.conj_t_eq_iff`): adjoining `k`
-with both associated subgroups equal to `A` and the identity identification,
-conjugation by `k` fixes exactly the image of `A` -- so `k^{-1} g k = g` if and
-only if `g in <<t>>`.  That was the step this entry expected to be the
-delicate one, and it is the easiest Britton application in the chain: one
-stable letter, one syllable.  Combining it with
+`FinalGroup mm hM` is `G'_M` with `k` adjoined over `towerTSub`, both
+associated subgroups equal and the identification the identity, and `finalTw`
+is `t(α,β)` seen there.  `BooneGroupTower.conj_t_eq_iff` is the Britton core:
+for that shape of extension, conjugation by the stable letter fixes exactly the
+image of the associated subgroup, so `k^{-1} g k = g` iff `g ∈ <<t>>`.  It is
+the easiest Britton application in the chain -- one stable letter, one
+syllable.  Composing with
 [[boone-tower-good-subgroup-transport]],
 [[boone-halting-subgroup-is-normal-closure]] and `of_mem_basisSubgroup_iff`
 from [[free-subbasis-subgroup-calculus]] gives
-`(a,b) in H_M <-> [k, t(a,b)] = 1`.  Estimated cost: about 200 new lines.
+`(a,b) in H_M <-> [k, t(a,b)] = 1`.  `goodTower_machine` is what discharges
+S4's hypothesis for an actual machine's identification list, which was the last
+mechanical step either side of this statement.
