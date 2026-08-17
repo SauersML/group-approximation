@@ -40,7 +40,12 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
+      # Full history: the orphan ratchet below compares this push against the
+      # commit main pointed at before it, and `github.event.before` is not
+      # reachable from a shallow clone.
       - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
+        with:
+          fetch-depth: 0
 
       - name: Check
         shell: bash
@@ -124,3 +129,31 @@ jobs:
             fi
           done
           echo "PDF toolchain pin intact in both PDF workflows"
+
+      # The orphan ratchet.  This is the cheapest place in the repository to
+      # learn that a module will never be compiled, and on 2026-08-17 it was
+      # learned in the most expensive place instead: the orphan set grew from 0
+      # to 15 over a day of modules landing without their root import, and
+      # because the Source scan fails on ANY orphan, every one of them failed
+      # every certificate.  `verified` sat 93 commits behind while the Lean
+      # itself compiled clean.  Ten seconds here would have stopped each one.
+      #
+      # Only an INCREASE fails, so the cleanup commits that drain the current
+      # backlog are never blocked by the part of it they have not reached.
+      - name: No push may add an orphan module
+        if: >-
+          github.event_name == 'push' &&
+          github.event.before != '0000000000000000000000000000000000000000'
+        shell: bash
+        run: |
+          set -euo pipefail
+          # A force-push or a freshly grafted history can leave `before`
+          # unreachable.  Fail open in that case: this gate exists to stop a
+          # regression, not to block work when it cannot compute one.
+          if ! git cat-file -e '${{ github.event.before }}^{commit}' 2>/dev/null; then
+            echo "::notice::${{ github.event.before }} is not reachable here; skipping the orphan ratchet for this push"
+            exit 0
+          fi
+          python3 scripts/check_import_regression.py \
+            --base '${{ github.event.before }}' \
+            --head '${{ github.sha }}'
