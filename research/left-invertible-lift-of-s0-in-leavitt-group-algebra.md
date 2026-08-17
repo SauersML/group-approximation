@@ -4,42 +4,52 @@ id: left-invertible-lift-of-s0-in-leavitt-group-algebra
 kind: claim
 title: A left-invertible lift of s_0 to the Leavitt group algebra
 distinct_from:
-  leavitt-group-algebra-not-stably-finite: that asks only that some one-sided inverse pair exist at some matrix size; this asks for one whose right factor evaluates to `s_0` under `pi`, which is strictly stronger and is exactly the condition for the explicit four-site rule to extend to the full shift
-  leavitt-evaluation-splits-as-module-map: that asks for a module splitting of the evaluation map, a structural statement that manufactures this one; this is the bare element-level search target
+  leavitt-unit-group-algebra-not-directly-finite: that asks only that some one-sided inverse pair exist somewhere in the group algebra; this asks for one whose right factor evaluates to `s_0`, which is strictly stronger and is exactly the condition for the explicit four-site rule to extend to the full shift
+  leavitt-corner-one-sided-lift-exists: that states the lifting problem inside the corner `eAe`, where the identity is `e` and the augmentation no-go is switched off; this stays in the whole algebra with identity `1`, which is a different equation and is what the support-thirteen bound constrains
+  leavitt-rank-three-lift-inverse-support-thirteen: that fixes the explicit support-three lift of `t_0` and bounds the support of any completing factor; this quantifies over all lifts of `s_0` and asserts existence, so that bound restricts one instance of it rather than deciding it
+  leavitt-rank-three-unit-lift: that constructs support-three lifts of the generators, which exist and are explicit; this asks for a lift with a one-sided inverse, which is the thing no construction supplies
 artifacts:
   - research/artifacts/gottschalk-leavitt-audit-2026-08-17.md
 ---
 
-Exhibit `a` in `S = F_2[G]`, `G = L_(F_2)(1,2)^x`, with
+Exhibit `a` in `A = F_2[G]`, `G = L_(F_2)(1,2)^x`, with
 
-    pi(a) = s_0        and     b a = 1 for some b in S,
+    pi(a) = s_0        and     b a = 1 for some b in A,
 
-where `pi : S ->> R = L_(F_2)(1,2)` is the evaluation map of
-`leavitt-evaluation-surjective-with-nonzero-kernel`.
+where `pi : A ->> R = L_(F_2)(1,2)` is the evaluation map of
+`leavitt-unit-group-algebra-surjects-onto-leavitt`.
 
-## Why this is the sharp form of the gap
+## Why this is the sharp form of the surjunctivity gap
 
-For any `a` in `S`, the dual of right multiplication `R_a : s |-> s a` is the
+For any `a` in `A`, the dual of right multiplication `R_a : s |-> s a` is a
 linear cellular automaton `T_a` on the full shift `F_2^G`, and
 
-    T_a injective  <=>  R_a surjective  <=>  a left-invertible in S.
+    T_a injective  <=>  R_a surjective  <=>  a left-invertible in A.
 
 So this claim says precisely that the explicit four-site rule of
-`leavitt-kernel-annihilator-strict-self-embedding` — which is injective on
-the proper subshift `X` — extends to an **injective** automaton of the full
-shift.  Non-surjectivity is then automatic: `pi(a b) = s_0 t_0 != 1` forces
-`a b != 1`, hence `R_a` is not injective, hence `T_a` is not surjective.
-
-Equivalently, in the notation of `leavitt-group-algebra-not-stably-finite`,
-one must correct chosen lifts `a, b` of `s_0, t_0` by kernel elements
-`alpha, beta` so that `(b + beta)(a + alpha) = 1`.
+`leavitt-kernel-annihilator-strict-self-embedding` — injective on the proper
+subshift `X`, and useless there — extends to an **injective** automaton of the
+full shift.  Non-surjectivity is then automatic, since `pi(a b) = s_0 t_0 != 1`
+(see `leavitt-direct-finiteness-failure-from-left-invertible-lift`).  It is
+therefore the one statement that would convert the repository's dynamical
+material into a disproof of Gottschalk's conjecture, and it simultaneously
+refutes Kaplansky direct finiteness.
 
 ## Necessary conditions already known
 
-`eps(a) = 1` for the augmentation `eps : S -> F_2`, since `eps(b) eps(a) = 1`.
-This alone kills the natural four-unit lift `a = [uv] + [u] + [v] + [w]`,
-which has four terms and hence `eps(a) = 0`.  It is not an obstruction to the
-claim: `ker(pi)` contains an element of augmentation `1`
-(`leavitt-evaluation-surjective-with-nonzero-kernel`), so parity can always
-be repaired.  It is simply the first of infinitely many necessary conditions,
-and the reason no naive lift works.
+*Augmentation.*  `eps(a) = 1`, since `eps(b) eps(a) = 1`.  This alone kills
+the natural four-unit lift `a = [uv] + [u] + [v] + [w]` of `s_0`, which has
+four terms.  It is **not** an obstruction to the claim: by
+`leavitt-evaluation-kernel-hits-augmentation-one` the kernel contains an
+element of augmentation `1`, so parity is always repairable.
+
+*Support.*  The corresponding question for the explicit support-three lift of
+`t_0` carries a proved floor: any completing factor has support at least
+thirteen (`leavitt-rank-three-lift-inverse-support-thirteen`).  That bound is
+about `t~`, not about lifts of `s_0`, and it excludes small witnesses rather
+than all of them.
+
+Equivalently, in element form: correct chosen lifts `a, b` of `s_0, t_0` by
+kernel elements `alpha, beta` so that `(b + beta)(a + alpha) = 1`, that is
+
+    (b a - 1) + b alpha + beta a + beta alpha = 0,   alpha, beta in ker(pi).

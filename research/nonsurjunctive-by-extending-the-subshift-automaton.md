@@ -33,6 +33,11 @@ construction runs verbatim over a finitely generated free group, which is
 surjunctive.  The premise is therefore compatible with the negation of the
 conclusion, and no repair of the lift can help.
 
+The same shortcut at ring level is refused by
+`direct-finiteness-not-inherited-by-quotients`, which is the reason the
+Kaplansky lane is posed as a lifting problem rather than read off the
+surjection.  Both refusals have the same shape.
+
 The algebra behind the failure is exact.  Injectivity of `T_a` restricted to
 `X` is surjectivity of right multiplication by `a` **modulo** `ker(pi)`;
 injectivity of `T_a` on the full shift is surjectivity of right

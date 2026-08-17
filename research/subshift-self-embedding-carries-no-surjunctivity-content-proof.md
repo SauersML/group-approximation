@@ -4,7 +4,7 @@ id: subshift-self-embedding-carries-no-surjunctivity-content-proof
 kind: route
 title: Run the same construction over a free group that maps onto the Leavitt algebra
 target: subshift-self-embedding-carries-no-surjunctivity-content
-requires: [leavitt-evaluation-surjective-with-nonzero-kernel]
+requires: [leavitt-unit-group-algebra-surjects-onto-leavitt, leavitt-evaluation-kernel-hits-augmentation-one]
 artifacts:
   - research/artifacts/gottschalk-leavitt-audit-2026-08-17.md
 ---
@@ -12,8 +12,8 @@ artifacts:
 ## Why sufficient
 
 *A free group surjecting onto `R = L_(F_2)(1,2)`.*  By the unit-span theorem
-underlying the prerequisite, each of `s_0, s_1, t_0, t_1` is a finite sum of
-units of `R`.  Let `E` be the finite set of units so used, `U = <E> <= R^x`
+of `leavitt-unit-group-algebra-surjects-onto-leavitt`, each of
+`s_0, s_1, t_0, t_1` is a finite sum of units of `R`.  Let `E` be the finite set of units so used, `U = <E> <= R^x`
 the subgroup it generates, and `F` the free group on `E`, mapped onto `U`.
 The `F_2`-span of a subgroup of `R^x` is closed under multiplication and
 contains `1`, so it is a unital subring; it contains `s_0, s_1, t_0, t_1`,
@@ -21,8 +21,9 @@ hence equals `R`.  So `pi : F_2[F] ->> R` is onto, and `F` is free of finite
 rank.
 
 *Nonzero kernel.*  `F_2[F]` carries the augmentation to `F_2`, and `R` admits
-no unital ring homomorphism to `F_2` (prerequisite), so `pi` is not
-injective.
+no unital ring homomorphism to `F_2` — the argument of
+`leavitt-evaluation-kernel-hits-augmentation-one`, which uses nothing about
+which group is upstairs — so `pi` is not injective.
 
 *The construction transfers.*  Everything in
 `leavitt-kernel-annihilator-strict-self-embedding-proof` after the choice of

@@ -4,7 +4,7 @@ id: leavitt-kernel-annihilator-strict-self-embedding-proof
 kind: route
 title: Right multiplication by s_0 is onto and not injective; dualize
 target: leavitt-kernel-annihilator-strict-self-embedding
-requires: [leavitt-evaluation-surjective-with-nonzero-kernel]
+requires: [leavitt-unit-group-algebra-surjects-onto-leavitt, leavitt-evaluation-kernel-hits-augmentation-one]
 artifacts:
   - research/artifacts/gottschalk-leavitt-audit-2026-08-17.md
 ---
@@ -15,8 +15,9 @@ artifacts:
 `G`, so `S^*` is the product `F_2^G`.  Each `k` in `K` imposes the single
 finite-support equation `sum_(g in supp k) c_g x(g) = 0`, whose solution set
 is clopen, so `X = K^perp` is closed.  `K` is a left ideal, so
-`x |-> x . ([h] . -)` preserves `X`: `X` is shift-invariant.  `K != 0` by the
-prerequisite, and a nonzero vector carries a functional not annihilating it,
+`x |-> x . ([h] . -)` preserves `X`: `X` is shift-invariant.  `K != 0` by
+`leavitt-evaluation-kernel-hits-augmentation-one`, and a nonzero vector
+carries a functional not annihilating it,
 so `X` is **proper**.  Dually `X = im(pi^*)`, since a functional vanishes on
 `K` exactly when it factors through `S/K ~ R`.
 

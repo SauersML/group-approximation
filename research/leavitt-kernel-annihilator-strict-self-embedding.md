@@ -5,6 +5,7 @@ kind: claim
 title: A four-site automaton strictly embeds a proper subshift over the Leavitt unit group
 distinct_from:
   level-shift-obstruction: that is about level shifts inside the Leavitt grading; this is about a shift-equivariant map of configuration space over the unit group, and its content is dynamical rather than graded
+  leavitt-unit-group-nonsurjunctive: that is the open question about the whole full shift over the same group; this is an established theorem about one proper invariant subshift of it, and by subshift-self-embedding-carries-no-surjunctivity-content it is not a step toward that one
 artifacts:
   - research/artifacts/gottschalk-leavitt-audit-2026-08-17.md
   - GroupApproximation/Leavitt/UnitAdditiveSpan.lean

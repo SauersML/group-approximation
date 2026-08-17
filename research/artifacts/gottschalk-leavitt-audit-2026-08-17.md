@@ -112,7 +112,10 @@ asks for *some* one-sided inverse pair, with no constraint on its image under
 
 The source's Theorem 10.1 asks for a splitting of `pi` as a map of left
 `F_2[G]`-modules, and does not say why the obvious stronger thing is not
-available.  It is not available, for a two-line reason already in this graph.
+available.  It is not available, for a two-line reason already in this graph —
+and, as it turns out, already recorded there by the Kaplansky lane
+(`leavitt-corner-idempotent-unital-surjection`), which is why this ingestion
+adds no node for it and cites that one instead.
 
 A unital ring section `sigma : R -> F_2[G]` of `pi` would exhibit a binary
 Leavitt family inside `F_2[G]`.  Composing with the augmentation
@@ -214,11 +217,14 @@ and not injective (else cancel `R_A` in `R_A R_B R_A = R_A`).  Dualizing,
 on the full shift over the finite alphabet `k^n` that is injective and not
 surjective.  So `G` is not surjunctive.
 
-The argument is standard in the linear-cellular-automaton literature (the
-relation between stable finiteness of `k[G]` and linear surjunctivity is due
-to Ceccherini-Silberstein and Coornaert); it is reproved here rather than
-cited because no source was read this session.  Nothing downstream depends on
-the attribution.
+This is the contrapositive of an implication this repository already cites:
+`official/counterexample.tex` line 109, read from source this session, says
+"If `R^x` were surjunctive, then `k[R^x]` would be stably finite for every
+field [BFF24, Corollary 3.25]".  So the bridge is not new — what the source
+adds, and what is reproved in full above, is the explicit automaton, and what
+this ingestion adds is that the bridge now has a graph node
+(`stable-finiteness-failure-refutes-surjunctivity`) with a complete proof and
+therefore no trust surface.
 
 ## D. The module-splitting criterion (Section 10, verified)
 
@@ -251,6 +257,58 @@ properties, which is itself a result worth having.
 
 ---
 
+## F. Where this lands in the graph, and how it meets the Kaplansky lane
+
+A parallel session ingested a Kaplansky direct-finiteness audit the same day,
+building the lane headed by `leavitt-unit-group-algebra-not-directly-finite`.
+The two ingestions overlap, and the overlap was resolved by **reuse**, not by
+parallel nodes:
+
+* The surjectivity of `pi` is theirs
+  (`leavitt-unit-group-algebra-surjects-onto-leavitt`).  This ingestion's own
+  surjectivity node was withdrawn and replaced by
+  `leavitt-evaluation-kernel-hits-augmentation-one`, which carries only the
+  two kernel facts of Section A that their node does not state.
+* The no-go against a ring section was withdrawn: their
+  `leavitt-corner-idempotent-unital-surjection` already records that the
+  `F_2`-augmentation forbids a unital Leavitt family in any `F_2[G]`.
+* The element-level targets are kept separate on purpose.  Their
+  `leavitt-corner-one-sided-lift-exists` lives in the corner `eAe` with
+  identity `e`; this lane's `left-invertible-lift-of-s0-in-leavitt-group-`
+  `algebra` lives in the whole algebra with identity `1` and is pinned over
+  `s_0`, which is what the dynamical criterion of Section 2 above requires.
+  Their support-thirteen floor constrains the whole-algebra form only.
+* The lanes are ordered: a Kaplansky witness gives a stable-finiteness
+  failure, which gives the automaton.  So the corner constructions, the
+  lifting problems and the support bound are all evidence about Gottschalk's
+  conjecture too, and nothing runs back the other way.
+
+Nodes this ingestion contributes:
+
+| id | kind | status |
+|---|---|---|
+| `leavitt-unit-group-nonsurjunctive` | claim, root | open |
+| `leavitt-group-algebra-not-stably-finite` | claim | open |
+| `left-invertible-lift-of-s0-in-leavitt-group-algebra` | claim | open |
+| `leavitt-evaluation-splits-as-module-map` | claim | open |
+| `stable-finiteness-failure-refutes-surjunctivity` | claim | established |
+| `leavitt-evaluation-kernel-hits-augmentation-one` | claim | established |
+| `leavitt-kernel-annihilator-strict-self-embedding` | claim | established |
+| `subshift-self-embedding-carries-no-surjunctivity-content` | claim | established, invalidates |
+| `nonsurjunctive-from-stable-finiteness-failure` | route | live |
+| `stably-finite-failure-from-direct-finiteness-failure` | route | live |
+| `leavitt-direct-finiteness-failure-from-left-invertible-lift` | route | live |
+| `leavitt-direct-finiteness-failure-from-module-splitting` | route | live |
+| `nonsurjunctive-by-extending-the-subshift-automaton` | route | INVALIDATED |
+
+plus the four `-proof` routes for the established claims.
+
+The invalidated route is the point of the whole ingestion: it is the reading
+the source warns against, given an address and a kill, so that the next reader
+of the Leavitt subshift material finds the refutation attached to it.
+
+---
+
 ## Source map
 
 Lean, read from source this session (statements only; no build was run):
@@ -275,7 +333,11 @@ repository citation doctrine they are recorded as reported, not as read:
 - Paturi and Kari, on surjunctivity for non-uniform cellular automata,
   *Natural Computing* (2026) — reported as calling the conjecture open.
 - Bradford and Fournier-Facio, "Hopfian wreath products and the stable
-  finiteness conjecture", *Math. Z.* 308 (2024), art. 58.
+  finiteness conjecture", *Math. Z.* 308 (2024), art. 58.  **This one is not
+  in doubt**: the repository already cites it as `[BFF24]` at
+  `official/counterexample.tex` line 109, for Thm 3.4/Cor 3.5 (char-zero
+  stable finiteness) and Cor 3.25 (surjunctive implies stably finite).  The
+  source's Theorem 4.1 is that corollary re-derived.
 - Liu, on Kaplansky direct finiteness for `F_2[R^x]`, Zenodo, 2026-08-05,
   reported DOI 10.5281/zenodo.21840947 — reported to run exhaustive bounded
   searches for a one-sided inverse, finding none.  If real, this is

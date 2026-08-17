@@ -4,8 +4,9 @@ id: leavitt-group-algebra-not-stably-finite
 kind: claim
 title: The group algebra of the Leavitt unit group is not stably finite
 distinct_from:
+  leavitt-unit-group-algebra-not-directly-finite: that is the scalar case `n = 1`, the Kaplansky question proper, and it heads its own lane; this is the matrix statement at some unspecified finite size, which is what the surjunctivity criterion actually consumes and which a witness at `n >= 2` would satisfy without settling that one
+  stable-finiteness-reduces-to-prime-field: that fixes which coefficient fields a search must cover, for every group at once; this is the failure demanded of one group over the prime field, and that node is the reason `F_2` here costs nothing
   augmentation-blocks-unital-leavitt-family: that is a no-go saying no full binary Leavitt family sits in a matrix ring over an integral group ring; this asks only for a one-sided inverse pair, which is far weaker than a Leavitt family and is not excluded by any argument in this graph
-  left-invertible-lift-of-s0-in-leavitt-group-algebra: that pins the one-sided inverse to lie over the Leavitt generator `s_0` under the evaluation map, which is strictly stronger; this asks only that some one-sided inverse pair exists at some finite matrix size
 artifacts:
   - research/artifacts/gottschalk-leavitt-audit-2026-08-17.md
 ---
@@ -15,33 +16,31 @@ Exhibit a finite `n >= 1` and matrices `A, B` in `M_n(F_2[G])`, where
 
     B A = I_n,        A B != I_n.
 
-At `n = 1` this is failure of **Kaplansky direct finiteness** for `F_2[G]`;
-at general `n` it is failure of **stable finiteness**.  Either suffices for
-`leavitt-unit-group-nonsurjunctive`, via
-`stable-finiteness-failure-refutes-surjunctivity`.
+This is failure of **stable finiteness** for `F_2[G]`.  It is what
+`stable-finiteness-failure-refutes-surjunctivity` consumes, and hence the
+immediate prerequisite of `leavitt-unit-group-nonsurjunctive`.
 
-## Where the temptation is
+## Its place between the two lanes
 
-The Leavitt relation `t_0 s_0 = 1 != s_0 t_0` is exactly a one-sided inverse
-pair — but it lives in the quotient ring `R = L_(F_2)(1,2)`, not in
-`F_2[R^x]`, and `s_0, t_0` are not group elements.  The evaluation map
-`pi : F_2[G] ->> R` of `leavitt-evaluation-surjective-with-nonzero-kernel` is
-surjective, so lifts `a, b` of `s_0, t_0` exist, and they satisfy
-`b a - 1 in ker(pi)` and `a b - 1 not in ker(pi)`.  The whole difficulty is
-that `b a - 1` need not be `0`.  Concretely, one must solve
+At `n = 1` this is `leavitt-unit-group-algebra-not-directly-finite`, the
+Kaplansky question, and every route currently aimed here goes through that
+node — a scalar witness is a matrix witness.  The statement is kept at general
+`n` because the surjunctivity criterion is, and because a witness at some
+`n >= 2` would refute Gottschalk's conjecture for `G` without deciding
+Kaplansky's direct-finiteness conjecture.  Nothing in this graph reduces the
+matrix problem to the scalar one; for group algebras over a field the two are
+not known to be equivalent, and the char-`0` theorem quoted in
+`official/counterexample.tex` is stated in the stronger stable form for that
+reason.
 
-    (b a - 1) + b alpha + beta a + beta alpha = 0,     alpha, beta in ker(pi),
-
-and no solution is known.  This is the concrete search form; see
-`left-invertible-lift-of-s0-in-leavitt-group-algebra` for the sharp
-statement, which also shows the reverse product then fails automatically.
+By `stable-finiteness-reduces-to-prime-field`, restricting to `F_2` rather
+than to an arbitrary field of characteristic two costs nothing.
 
 ## What is known against it
 
-Nothing in this graph.  The augmentation no-go
-(`augmentation-blocks-unital-leavitt-family`) rules out a *full Leavitt
-family* in `M_n` over a group ring, and
-`leavitt-evaluation-has-no-ring-section` rules out a ring-theoretic section
-of `pi`; neither touches a bare one-sided inverse.  External bounded searches
-are reported in the audit artifact, unverified here, and are evidence rather
-than obstruction.
+Nothing decisive, in either direction.  The nearest constraints live at
+`n = 1`: `leavitt-rank-three-lift-inverse-support-thirteen` excludes the
+smallest completions of the explicit generator lift, and
+`direct-finiteness-not-inherited-by-quotients` explains why the surjection
+onto the Leavitt algebra supplies nothing by itself.  No obstruction is known
+at any `n >= 2`, and none has been looked for.

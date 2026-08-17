@@ -26,7 +26,14 @@ coordinates.
 
 This is a general lemma about group algebras, with no Leavitt content.  It is
 the only live bridge in this graph from algebra to
-`leavitt-unit-group-nonsurjunctive`.  The relation between stable finiteness
-of `k[G]` and surjunctivity of linear cellular automata is standard in that
-literature (Ceccherini-Silberstein and Coornaert); the proof is carried in
-full here rather than imported, so this node has no trust surface.
+`leavitt-unit-group-nonsurjunctive`, and what it consumes is
+`leavitt-group-algebra-not-stably-finite` — the matrix statement, at whatever
+`n` the witness has, which is why it is not specialized to the scalar case.
+
+It is the contrapositive of a published implication: surjunctive implies
+stably finite is Bradford--Fournier-Facio Cor 3.25, already cited at
+`official/counterexample.tex` line 109 of this repository, and the
+relation between stable finiteness of `k[G]` and surjunctivity of linear
+cellular automata is standard in that literature.  The proof is carried in
+full here rather than imported, so this node has **no trust surface** and
+needs no `LITERATURE_INPUT` tag; the attribution is bookkeeping.
