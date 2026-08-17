@@ -8,7 +8,7 @@ import GroupApproximation.Sofic.PrintedPreliminaryEstimates
 fixes the notation `tr_r`, `‖·‖`, `‖x‖₂ = tr_r(x*x)^{1/2}` on `M_r(ℂ)` and then
 closes the paragraph with
 
-> We use without comment:
+> We repeatedly use the inequalities
 > `‖x‖₂ ≤ ‖x‖`;  `|tr_r(x)| ≤ ‖x‖`;  and `‖uxv‖₂ = ‖x‖₂` for unitaries `u, v`.
 
 Proof-ledger row `PRE.07` asks for the three to be located separately.  The
