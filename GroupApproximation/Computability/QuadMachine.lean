@@ -380,9 +380,9 @@ theorem WF.qstep {Q : QuadMachine} {c c' : QCfg} (hc : Q.WF c)
 
 /-! ## The quadruple table, on the digits the simulation produces -/
 
-theorem lo_eq (n : ℕ) : Q.toModular.lo n = n % Q.m := rfl
+@[simp] theorem lo_eq (n : ℕ) : Q.toModular.lo n = n % Q.m := rfl
 
-theorem hi_eq (n : ℕ) : Q.toModular.hi n = n / Q.m := rfl
+@[simp] theorem hi_eq (n : ℕ) : Q.toModular.hi n = n / Q.m := rfl
 
 theorem mod_tag_add {t : ℕ} (E : ℕ) (ht : t < Q.m) : (t + Q.m * E) % Q.m = t := by
   rw [Nat.add_mul_mod_self_left, Nat.mod_eq_of_lt ht]
@@ -565,11 +565,11 @@ theorem halts_transfer : ∀ (L R : List ℕ), Q.CleanDigits L → Q.CleanDigits
 
 /-! ## One machine step is one modular-machine step -/
 
-theorem encCfg_true (back front : List ℕ) (q : ℕ) :
+@[simp] theorem encCfg_true (back front : List ℕ) (q : ℕ) :
     Q.encCfg ⟨back, front, q, true⟩
       = (Q.tagA q + Q.m * encList Q.m back, encList Q.m front) := rfl
 
-theorem encCfg_false (back front : List ℕ) (q : ℕ) :
+@[simp] theorem encCfg_false (back front : List ℕ) (q : ℕ) :
     Q.encCfg ⟨back, front, q, false⟩
       = (encList Q.m front, Q.tagB q + Q.m * encList Q.m back) := rfl
 
@@ -737,7 +737,7 @@ def qsteps (Q : QuadMachine) : ℕ → QCfg → Option QCfg
 
 @[simp] theorem qsteps_zero (c : QCfg) : Q.qsteps 0 c = some c := rfl
 
-theorem qsteps_succ (n : ℕ) (c : QCfg) :
+@[simp] theorem qsteps_succ (n : ℕ) (c : QCfg) :
     Q.qsteps (n + 1) c = (Q.qstep c).bind (Q.qsteps n) := rfl
 
 /-- A run can be extended by one step at its end. -/
