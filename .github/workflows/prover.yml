@@ -7,6 +7,11 @@ on:
     # certification gap left by a superseded or red push run.  The same-SHA
     # dedupe gate makes an already-certified tick cost seconds, so hourly
     # keeps verified fresh without adding runner contention.
+    #
+    # LOAD-BEARING under the gate's build mutex: commits pushed while a
+    # build holds the mutex are certified by no push run of their own --
+    # their gates yield.  This tick is what guarantees they are eventually
+    # certified rather than merely overtaken.  Do not remove or slow it.
     - cron: '43 * * * *'
   push:
     branches: [ "main" ]
@@ -139,24 +144,63 @@ jobs:
           main=$(git rev-parse refs/remotes/origin/main)
           verified=$(git rev-parse refs/remotes/origin/verified)
 
-          # Newest wins.  A full certificate run costs a dozen runner-hours,
-          # and promotion fast-forwards straight to the newest green head,
-          # so a push that has already been superseded should not start one.
-          # Skip only when the newer head verifiably has its own queued,
-          # running, or green prover run; otherwise fail closed and verify
-          # here (a publication-only or [skip ci] successor triggers no run
-          # of its own).  Self-cancelling makes the run conclude cancelled,
-          # which the promotion workflow already ignores; a run that has
-          # started its expensive jobs is never touched by this check.
+          # Build mutex.  A prover run "holds the mutex" once its gate job
+          # has concluded success while the run itself is still queued or in
+          # progress: its expensive certifying jobs are under way (callers of
+          # reusable workflows flap back to `queued` between jobs, so queued
+          # runs count too).  A superseded gate yields ONLY to a mutex
+          # holder -- never to a merely queued run, whose own gate may yield
+          # in turn.  Yielding to queued runs is the livelock that starved
+          # certification: under sustained pushes every gate that finally
+          # reached a runner found a newer queued run and cancelled itself,
+          # so at any push cadence faster than gate latency NOTHING ever
+          # built.  With the mutex, whichever gate reaches a runner first
+          # while nothing is building proceeds -- even if superseded -- and
+          # every completed build promotes its own head_sha; promotion treats
+          # an older certified SHA as a no-op, never a rewind
+          # (advance_verified_branch.choose_target), so building a superseded
+          # ancestor of main can only help.  Two gates racing an empty mutex
+          # can both build; that wastes compute, not soundness.  API failures
+          # count as zero builders: that direction at worst duplicates work,
+          # while the other direction starves certification.
+          count_builders() {
+            local n=0 rid gate_ok
+            for rid in $(gh api \
+              "repos/${{ github.repository }}/actions/workflows/prover.yml/runs?per_page=50" \
+              --jq '.workflow_runs[]
+                      | select(.id != ${{ github.run_id }})
+                      | select(.event == "push" or .event == "schedule"
+                               or .event == "workflow_dispatch")
+                      | select(.status == "queued" or .status == "in_progress")
+                      | .id' 2>/dev/null || true); do
+              gate_ok=$(gh api \
+                "repos/${{ github.repository }}/actions/runs/${rid}/jobs?per_page=50" \
+                --jq '[.jobs[]
+                        | select(.name | startswith("Decide whether"))
+                        | select(.conclusion == "success")] | length' \
+                2>/dev/null || echo 0)
+              if [ "${gate_ok:-0}" -gt 0 ]; then n=$((n+1)); fi
+            done
+            echo "$n"
+          }
+
+          # Superseded push.  A full certificate run costs a dozen
+          # runner-hours, so a superseded push should not START one while a
+          # certificate is already being computed, and need not run at all if
+          # the newer head is already green.  But a superseded push whose
+          # gate finds the mutex EMPTY must build: its certificate advances
+          # verified to its own commit, and cancelling it in favour of a
+          # merely queued newer run is the livelock described above.  A run
+          # that has started its expensive jobs is never touched by any of
+          # this -- per-run concurrency groups see to that.
           if [ "${{ github.event_name }}" = "push" ] && [ "$target" != "$main" ]; then
-            newer=$(gh api \
+            newer_green=$(gh api \
               "repos/${{ github.repository }}/actions/workflows/prover.yml/runs?head_sha=${main}&per_page=100" \
               --jq '[.workflow_runs[]
-                      | select(.status == "queued" or .status == "in_progress"
-                               or .conclusion == "success")
+                      | select(.conclusion == "success")
                     ] | length' || echo 0)
-            if [ "${newer:-0}" -gt 0 ]; then
-              echo "Superseded by $main, which has its own prover run; cancelling."
+            if [ "${newer_green:-0}" -gt 0 ]; then
+              echo "Superseded by $main, which already has a green prover run; cancelling."
               echo "run=false" >> "$GITHUB_OUTPUT"
               echo "lean=false" >> "$GITHUB_OUTPUT"
               gh api -X POST \
@@ -164,6 +208,16 @@ jobs:
                 || true
               exit 0
             fi
+            if [ "$(count_builders)" -gt 0 ]; then
+              echo "Superseded by $main and a certificate is already being computed; yielding to the build mutex (the hourly tick covers anything overtaken)."
+              echo "run=false" >> "$GITHUB_OUTPUT"
+              echo "lean=false" >> "$GITHUB_OUTPUT"
+              gh api -X POST \
+                "repos/${{ github.repository }}/actions/runs/${{ github.run_id }}/cancel" \
+                || true
+              exit 0
+            fi
+            echo "Superseded by $main, but no certificate is in flight; verifying this tree anyway (an older certified SHA is a promotion no-op, so this can only advance verified)."
           fi
 
           # Lane classifier.  The fresh kernel verdict, the compiled tree,
@@ -244,12 +298,17 @@ jobs:
                 echo "run=true" >> "$GITHUB_OUTPUT"
                 ;;
               1)
-                echo "A newer verification-relevant proof tree is queued; cancelling this SHA."
-                echo "run=false" >> "$GITHUB_OUTPUT"
-                echo "lean=false" >> "$GITHUB_OUTPUT"
-                gh api -X POST \
-                  "repos/${{ github.repository }}/actions/runs/${{ github.run_id }}/cancel" \
-                  || true
+                if [ "$(count_builders)" -gt 0 ]; then
+                  echo "A newer verification-relevant proof tree exists and a certificate is already being computed; cancelling this SHA."
+                  echo "run=false" >> "$GITHUB_OUTPUT"
+                  echo "lean=false" >> "$GITHUB_OUTPUT"
+                  gh api -X POST \
+                    "repos/${{ github.repository }}/actions/runs/${{ github.run_id }}/cancel" \
+                    || true
+                else
+                  echo "A newer verification-relevant proof tree exists but nothing is building; certifying this SHA (the newer tree's own gate will yield to this build, and the hourly tick covers it)."
+                  echo "run=true" >> "$GITHUB_OUTPUT"
+                fi
                 ;;
               *)
                 echo "Proof-tree comparison failed with status $newer_delta." >&2
