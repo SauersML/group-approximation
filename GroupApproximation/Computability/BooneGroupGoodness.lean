@@ -308,6 +308,148 @@ theorem step_right_eq_embIdx (p : ℕ × ℕ) (c : ℕ) :
     ring
   · ring
 
+theorem step_left_eq_embIdx (p : ℕ × ℕ) (c : ℕ) :
+    (((mm.hi p.1 : ℕ) : ℤ), ((mm.hi p.2 * mm.size ^ 2 + c : ℕ) : ℤ))
+      = embIdx 0 (c : ℤ) 1 ((mm.size : ℤ) ^ 2)
+          ((mm.hi p.1 : ℤ), (mm.hi p.2 : ℤ)) := by
+  simp only [embIdx, Prod.mk.injEq]
+  constructor
+  · ring
+  · push_cast
+    ring
+
+/-! ### The step of Lemma 7, at the top of the tower
+
+`stable_conj_tw_right` is the defining relation at one level.  To use it in an
+induction that changes quadruple at every step, it has to be read in the group
+at the top: `liftUp` carries the whole level up, and `liftUp_t_mem_towerTSub`
+says the stable letter it carries lands in `⟨t⟩'`. -/
+
+/-- What a right-moving quadruple's identification does to a basis element. -/
+theorem quadEquiv_coe_tw (a b c M : ℤ) (hM : M ≠ 0) (p : ℤ × ℤ)
+    (h : tw (embIdx a b M M p) ∈ Gsub a b M M) :
+    ((quadEquiv a b c M hM ⟨tw (embIdx a b M M p), h⟩ : Gsub c 0 (M ^ 2) 1) : BaseGroup)
+      = tw (embIdx c 0 (M ^ 2) 1 p) := by
+  have he₁ : Function.Injective (emb a b M M) := emb_injective hM hM
+  have hsym : (MonoidHom.ofInjective he₁).symm ⟨tw (embIdx a b M M p), h⟩ = tw p := by
+    apply (MonoidHom.ofInjective he₁).injective
+    rw [MulEquiv.apply_symm_apply]
+    exact Subtype.ext (emb_tw a b M M p).symm
+  show emb c 0 (M ^ 2) 1
+      ((MonoidHom.ofInjective he₁).symm ⟨tw (embIdx a b M M p), h⟩) = _
+  rw [hsym, emb_tw]
+
+/-- The same for a left-moving quadruple. -/
+theorem quadEquivLeft_coe_tw (a b c M : ℤ) (hM : M ≠ 0) (p : ℤ × ℤ)
+    (h : tw (embIdx a b M M p) ∈ Gsub a b M M) :
+    ((quadEquivLeft a b c M hM ⟨tw (embIdx a b M M p), h⟩ : Gsub 0 c 1 (M ^ 2)) :
+        BaseGroup)
+      = tw (embIdx 0 c 1 (M ^ 2) p) := by
+  have he₁ : Function.Injective (emb a b M M) := emb_injective hM hM
+  have hsym : (MonoidHom.ofInjective he₁).symm ⟨tw (embIdx a b M M p), h⟩ = tw p := by
+    apply (MonoidHom.ofInjective he₁).injective
+    rw [MulEquiv.apply_symm_apply]
+    exact Subtype.ext (emb_tw a b M M p).symm
+  show emb 0 c 1 (M ^ 2)
+      ((MonoidHom.ofInjective he₁).symm ⟨tw (embIdx a b M M p), h⟩) = _
+  rw [hsym, emb_tw]
+
+theorem tw_mem_Gsub_embIdx (a b M N : ℤ) (p : ℤ × ℤ) :
+    tw (embIdx a b M N p) ∈ Gsub a b M N :=
+  ⟨tw p, emb_tw a b M N p⟩
+
+/-- **Lemma 7's step, at one level of the tower over an arbitrary stage.** -/
+theorem of_ι_tw_conj_right (l : List Identification) (a b c M : ℤ) (hM : M ≠ 0)
+    (p : ℤ × ℤ) :
+    (HNNExtension.of ((tower l).ι (tw (embIdx c 0 (M ^ 2) 1 p))) :
+        (tower (quadIdentification a b c M hM :: l)).Carrier)
+      = HNNExtension.t * HNNExtension.of ((tower l).ι (tw (embIdx a b M M p))) *
+          HNNExtension.t⁻¹ := by
+  have h := of_ι_conj l (quadEquiv a b c M hM) (tw (embIdx a b M M p))
+    (tw_mem_Gsub_embIdx a b M M p)
+  rwa [quadEquiv_coe_tw] at h
+
+theorem of_ι_tw_conj_left (l : List Identification) (a b c M : ℤ) (hM : M ≠ 0)
+    (p : ℤ × ℤ) :
+    (HNNExtension.of ((tower l).ι (tw (embIdx 0 c 1 (M ^ 2) p))) :
+        (tower (quadIdentificationLeft a b c M hM :: l)).Carrier)
+      = HNNExtension.t * HNNExtension.of ((tower l).ι (tw (embIdx a b M M p))) *
+          HNNExtension.t⁻¹ := by
+  have h := of_ι_conj l (quadEquivLeft a b c M hM) (tw (embIdx a b M M p))
+    (tw_mem_Gsub_embIdx a b M M p)
+  rwa [quadEquivLeft_coe_tw] at h
+
+/-- The same step, read in the group at the top of the tower. -/
+theorem ι_tw_conj_top_right (l₁ l₂ : List Identification) (a b c M : ℤ) (hM : M ≠ 0)
+    (p : ℤ × ℤ) :
+    (tower (l₁ ++ quadIdentification a b c M hM :: l₂)).ι
+        (tw (embIdx c 0 (M ^ 2) 1 p))
+      = liftUp l₁ (quadIdentification a b c M hM :: l₂) HNNExtension.t *
+          (tower (l₁ ++ quadIdentification a b c M hM :: l₂)).ι
+            (tw (embIdx a b M M p)) *
+          (liftUp l₁ (quadIdentification a b c M hM :: l₂) HNNExtension.t)⁻¹ := by
+  rw [← liftUp_ι_apply l₁ (quadIdentification a b c M hM :: l₂)
+        (tw (embIdx c 0 (M ^ 2) 1 p)),
+    ← liftUp_ι_apply l₁ (quadIdentification a b c M hM :: l₂)
+        (tw (embIdx a b M M p)),
+    ← map_inv, ← map_mul, ← map_mul]
+  exact congrArg _ (of_ι_tw_conj_right l₂ a b c M hM p)
+
+theorem ι_tw_conj_top_left (l₁ l₂ : List Identification) (a b c M : ℤ) (hM : M ≠ 0)
+    (p : ℤ × ℤ) :
+    (tower (l₁ ++ quadIdentificationLeft a b c M hM :: l₂)).ι
+        (tw (embIdx 0 c 1 (M ^ 2) p))
+      = liftUp l₁ (quadIdentificationLeft a b c M hM :: l₂) HNNExtension.t *
+          (tower (l₁ ++ quadIdentificationLeft a b c M hM :: l₂)).ι
+            (tw (embIdx a b M M p)) *
+          (liftUp l₁ (quadIdentificationLeft a b c M hM :: l₂) HNNExtension.t)⁻¹ := by
+  rw [← liftUp_ι_apply l₁ (quadIdentificationLeft a b c M hM :: l₂)
+        (tw (embIdx 0 c 1 (M ^ 2) p)),
+    ← liftUp_ι_apply l₁ (quadIdentificationLeft a b c M hM :: l₂)
+        (tw (embIdx a b M M p)),
+    ← map_inv, ← map_mul, ← map_mul]
+  exact congrArg _ (of_ι_tw_conj_left l₂ a b c M hM p)
+
+/-- **One step of Lemma 7's induction, in the top group.**  If the target basis
+element is in `⟨t⟩'`, so is the source one --- they differ by conjugation by the
+stable letter of the quadruple's own level, which is itself in `⟨t⟩'`. -/
+theorem ι_tw_mem_towerTSub_of_target_right {L : List Identification}
+    {a b c M : ℤ} {hM : M ≠ 0} (hmem : quadIdentification a b c M hM ∈ L) (p : ℤ × ℤ)
+    (h : (tower L).ι (tw (embIdx c 0 (M ^ 2) 1 p)) ∈ towerTSub L) :
+    (tower L).ι (tw (embIdx a b M M p)) ∈ towerTSub L := by
+  obtain ⟨l₁, l₂, rfl⟩ := List.append_of_mem hmem
+  have hX := liftUp_t_mem_towerTSub (Gsub a b M M) (Gsub c 0 (M ^ 2) 1)
+    (quadEquiv a b c M hM) l₁ l₂
+  have key : (tower (l₁ ++ quadIdentification a b c M hM :: l₂)).ι
+        (tw (embIdx a b M M p))
+      = (liftUp l₁ (quadIdentification a b c M hM :: l₂) HNNExtension.t)⁻¹ *
+          (tower (l₁ ++ quadIdentification a b c M hM :: l₂)).ι
+            (tw (embIdx c 0 (M ^ 2) 1 p)) *
+          liftUp l₁ (quadIdentification a b c M hM :: l₂) HNNExtension.t := by
+    rw [ι_tw_conj_top_right]
+    group
+  rw [key]
+  exact mul_mem (mul_mem (inv_mem hX) h) hX
+
+theorem ι_tw_mem_towerTSub_of_target_left {L : List Identification}
+    {a b c M : ℤ} {hM : M ≠ 0} (hmem : quadIdentificationLeft a b c M hM ∈ L)
+    (p : ℤ × ℤ)
+    (h : (tower L).ι (tw (embIdx 0 c 1 (M ^ 2) p)) ∈ towerTSub L) :
+    (tower L).ι (tw (embIdx a b M M p)) ∈ towerTSub L := by
+  obtain ⟨l₁, l₂, rfl⟩ := List.append_of_mem hmem
+  have hX := liftUp_t_mem_towerTSub (Gsub a b M M) (Gsub 0 c 1 (M ^ 2))
+    (quadEquivLeft a b c M hM) l₁ l₂
+  have key : (tower (l₁ ++ quadIdentificationLeft a b c M hM :: l₂)).ι
+        (tw (embIdx a b M M p))
+      = (liftUp l₁ (quadIdentificationLeft a b c M hM :: l₂) HNNExtension.t)⁻¹ *
+          (tower (l₁ ++ quadIdentificationLeft a b c M hM :: l₂)).ι
+            (tw (embIdx 0 c 1 (M ^ 2) p)) *
+          liftUp l₁ (quadIdentificationLeft a b c M hM :: l₂) HNNExtension.t := by
+    rw [ι_tw_conj_top_left]
+    group
+  rw [key]
+  exact mul_mem (mul_mem (inv_mem hX) h) hX
+
 /-! ## `t` lies in the halting subgroup
 
 The easy half of Lemma 7 needs only that `t` itself is in the base subgroup.  For
@@ -326,6 +468,72 @@ lift of the halting subgroup at every height. -/
 theorem towerTSub_le_towerSub_halting (l : List Identification) :
     towerTSub l ≤ towerSub (twSub mm.haltingSetZ) l :=
   towerTSub_le_towerSub _ (tGen_mem_twSub_halting mm) l
+
+/-! ## Simpson's Lemma 7
+
+The induction runs along a halting computation, from the halting configuration
+backwards.  At the base, `t(0,0) = t` is in `⟨t⟩'` by definition.  At each step
+the machine's quadruple names a level of the tower, and the stable letter of
+*that* level conjugates the configuration's basis element to its successor's;
+since that letter is in `⟨t⟩'`, membership travels backwards along the
+computation.  Which level to use is read off from the configuration by the
+division algorithm --- `coe_eq_embIdx_src` and `step_*_eq_embIdx`. -/
+
+/-- **Simpson's Lemma 7, the hard half, on basis elements.**  If a configuration
+halts, its basis element lies in `⟨t⟩'`. -/
+theorem ι_tw_mem_towerTSub_of_halts (hM : (mm.size : ℤ) ≠ 0) {p : ℕ × ℕ}
+    (hp : mm.Halts p) :
+    (tower (machineIdentifications mm hM)).ι (tw ((p.1 : ℤ), (p.2 : ℤ)))
+      ∈ towerTSub (machineIdentifications mm hM) := by
+  induction hp using Relation.ReflTransGen.head_induction_on with
+  | refl =>
+      rw [show ((((0, 0) : ℕ × ℕ).1 : ℤ), (((0, 0) : ℕ × ℕ).2 : ℤ))
+          = ((0 : ℤ), (0 : ℤ)) by norm_num]
+      exact ι_tGen_mem_towerTSub _
+  | @head r s h' _ ih =>
+      have hlo1 : mm.lo r.1 < mm.size := mm.lo_lt r.1
+      have hlo2 : mm.lo r.2 < mm.size := mm.lo_lt r.2
+      have h'' : mm.step (r.1, r.2) = some s := h'
+      rcases hq : mm.quad (mm.lo r.1) (mm.lo r.2) with _ | ⟨c, dir⟩
+      · rw [mm.step_eq_none hq] at h''
+        exact absurd h'' (by simp)
+      · rw [coe_eq_embIdx_src mm r]
+        cases dir
+        · have hs : s = (mm.hi r.1, mm.hi r.2 * mm.size ^ 2 + c) :=
+            Option.some.inj (h''.symm.trans (mm.step_left hq))
+          subst hs
+          refine ι_tw_mem_towerTSub_of_target_left
+            (quadIdentificationLeft_mem_machineIdentifications hlo1 hlo2 hq) _ ?_
+          rw [← step_left_eq_embIdx mm r c]
+          exact ih
+        · have hs : s = (mm.hi r.1 * mm.size ^ 2 + c, mm.hi r.2) :=
+            Option.some.inj (h''.symm.trans (mm.step_right hq))
+          subst hs
+          refine ι_tw_mem_towerTSub_of_target_right
+            (quadIdentification_mem_machineIdentifications hlo1 hlo2 hq) _ ?_
+          rw [← step_right_eq_embIdx mm r c]
+          exact ih
+
+theorem twSub_halting_le_comap (hM : (mm.size : ℤ) ≠ 0) :
+    twSub mm.haltingSetZ ≤
+      (towerTSub (machineIdentifications mm hM)).comap
+        (tower (machineIdentifications mm hM)).ι := by
+  rw [twSub_eq_closure]
+  refine (Subgroup.closure_le _).2 ?_
+  rintro _ ⟨q, hq, rfl⟩
+  obtain ⟨m, n, rfl, hmn⟩ := hq
+  exact ι_tw_mem_towerTSub_of_halts mm hM hmn
+
+/-- **Simpson's Lemma 7.**  In `G'_M`, the lift of the halting subgroup is
+exactly `⟨t⟩'`.  Both inclusions are now proved: the easy one from `(0,0)`
+halting, the hard one by the induction along a halting computation. -/
+theorem towerSub_halting_eq_towerTSub (hM : (mm.size : ℤ) ≠ 0) :
+    towerSub (twSub mm.haltingSetZ) (machineIdentifications mm hM)
+      = towerTSub (machineIdentifications mm hM) :=
+  le_antisymm
+    (towerSub_le_of_mem _ _ _ (fun _ ha => twSub_halting_le_comap mm hM ha)
+      (hasLetters_towerTSub _))
+    (towerTSub_le_towerSub_halting mm _)
 
 end BooneGroup
 end GroupApproximation

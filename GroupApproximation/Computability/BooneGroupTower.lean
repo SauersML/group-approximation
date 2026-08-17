@@ -62,6 +62,24 @@ noncomputable def Stage.stepEquiv (S : Stage) {A B : Subgroup BaseGroup}
   ((Subgroup.equivMapOfInjective A S.ι S.ι_injective).symm.trans ψ).trans
     (Subgroup.equivMapOfInjective B S.ι S.ι_injective)
 
+/-- **What the transported identification does to a base element.**  It is `ψ`,
+read through `ι`.  Everything the induction of Lemma 7 needs about `stepEquiv`
+is this one equation. -/
+theorem Stage.coe_stepEquiv (S : Stage) {A B : Subgroup BaseGroup} (ψ : A ≃* B)
+    (a : BaseGroup) (ha : a ∈ A) :
+    ((S.stepEquiv ψ ⟨S.ι a, ⟨a, ha, rfl⟩⟩ : B.map S.ι) : S.Carrier)
+      = S.ι ((ψ ⟨a, ha⟩ : B) : BaseGroup) := by
+  have hsymm : (Subgroup.equivMapOfInjective A S.ι S.ι_injective).symm
+      ⟨S.ι a, ⟨a, ha, rfl⟩⟩ = ⟨a, ha⟩ := by
+    apply (Subgroup.equivMapOfInjective A S.ι S.ι_injective).injective
+    rw [MulEquiv.apply_symm_apply]
+    refine Subtype.ext ?_
+    rw [Subgroup.coe_equivMapOfInjective_apply]
+  show ((Subgroup.equivMapOfInjective B S.ι S.ι_injective)
+      (ψ ((Subgroup.equivMapOfInjective A S.ι S.ι_injective).symm
+        ⟨S.ι a, ⟨a, ha, rfl⟩⟩)) : S.Carrier) = _
+  rw [hsymm, Subgroup.coe_equivMapOfInjective_apply]
+
 /-- Adjoin one stable letter, conjugating the image of `A` onto the image of `B`
 along `ψ`.  This is one step of Simpson's Definition 6. -/
 noncomputable def Stage.step (S : Stage) {A B : Subgroup BaseGroup} (ψ : A ≃* B) : Stage where
@@ -133,6 +151,33 @@ theorem liftUp_conj (l₁ l₂ : List Identification) {A' B' : Subgroup BaseGrou
   rw [← map_inv, ← map_mul, ← map_mul]
   exact congrArg _ (HNNExtension.equiv_eq_conj (φ := (tower l₂).stepEquiv ψ) a)
 
+/-- **The base group's embedding is compatible with mapping up.**  Both sides
+are the composite of every `of` from the bottom to the top. -/
+theorem liftUp_comp_ι : ∀ (l₁ l₂ : List Identification),
+    (liftUp l₁ l₂).comp (tower l₂).ι = (tower (l₁ ++ l₂)).ι
+  | [], _ => MonoidHom.ext fun _ => rfl
+  | _ :: l₁, l₂ => by
+      show (HNNExtension.of).comp ((liftUp l₁ l₂).comp (tower l₂).ι) = _
+      rw [liftUp_comp_ι l₁ l₂]
+      rfl
+
+theorem liftUp_ι_apply (l₁ l₂ : List Identification) (g : BaseGroup) :
+    liftUp l₁ l₂ ((tower l₂).ι g) = (tower (l₁ ++ l₂)).ι g :=
+  DFunLike.congr_fun (liftUp_comp_ι l₁ l₂) g
+
+/-- **The defining relation on base elements.**  At the level `⟨A, B, ψ⟩` the
+stable letter conjugates `ι a` to `ι (ψ a)`.  This is `equiv_eq_conj` with the
+transported identification computed away. -/
+theorem of_ι_conj (l : List Identification) {A B : Subgroup BaseGroup} (ψ : A ≃* B)
+    (a : BaseGroup) (ha : a ∈ A) :
+    (HNNExtension.of ((tower l).ι ((ψ ⟨a, ha⟩ : B) : BaseGroup)) :
+        (tower (⟨A, B, ψ⟩ :: l)).Carrier)
+      = HNNExtension.t * HNNExtension.of ((tower l).ι a) * HNNExtension.t⁻¹ := by
+  have h := HNNExtension.equiv_eq_conj (φ := (tower l).stepEquiv ψ)
+    ⟨(tower l).ι a, ⟨a, ha, rfl⟩⟩
+  rw [Stage.coe_stepEquiv] at h
+  exact h
+
 /-! ## The identification a machine quadruple supplies
 
 Simpson attaches to a quadruple the identification of `G_{ab}^{MM}` with
@@ -154,9 +199,15 @@ noncomputable def quadEquivLeft (a b c M : ℤ) (hM : M ≠ 0) :
     (MonoidHom.ofInjective
       (emb_injective (a := 0) (b := c) one_ne_zero (pow_ne_zero 2 hM)))
 
-/-- The identification a quadruple contributes to the tower. -/
+/-- The identification a right-moving quadruple contributes to the tower. -/
 noncomputable def quadIdentification (a b c M : ℤ) (hM : M ≠ 0) : Identification :=
   ⟨Gsub a b M M, Gsub c 0 (M ^ 2) 1, quadEquiv a b c M hM⟩
+
+/-- The identification a *left*-moving quadruple contributes.  The direction of
+the quadruple is visible in the tower: it decides which of the two target
+subgroups the stable letter conjugates onto. -/
+noncomputable def quadIdentificationLeft (a b c M : ℤ) (hM : M ≠ 0) : Identification :=
+  ⟨Gsub a b M M, Gsub 0 c 1 (M ^ 2), quadEquivLeft a b c M hM⟩
 
 /-! ## The tower of a machine
 
@@ -179,7 +230,30 @@ noncomputable def machineIdentifications (mm : ModularMachine)
     (hM : (mm.size : ℤ) ≠ 0) : List Identification :=
   (residuePairs mm).filterMap fun p =>
     (mm.quad p.1 p.2).map fun q =>
-      quadIdentification (p.1 : ℤ) (p.2 : ℤ) (q.1 : ℤ) (mm.size : ℤ) hM
+      if q.2 then quadIdentification (p.1 : ℤ) (p.2 : ℤ) (q.1 : ℤ) (mm.size : ℤ) hM
+      else quadIdentificationLeft (p.1 : ℤ) (p.2 : ℤ) (q.1 : ℤ) (mm.size : ℤ) hM
+
+/-- The identification of a right-moving quadruple is in the machine's list. -/
+theorem quadIdentification_mem_machineIdentifications {mm : ModularMachine}
+    {hM : (mm.size : ℤ) ≠ 0} {a b c : ℕ} (ha : a < mm.size) (hb : b < mm.size)
+    (h : mm.quad a b = some (c, true)) :
+    quadIdentification (a : ℤ) (b : ℤ) (c : ℤ) (mm.size : ℤ) hM
+      ∈ machineIdentifications mm hM := by
+  rw [machineIdentifications, List.mem_filterMap]
+  refine ⟨(a, b), mem_residuePairs ha hb, ?_⟩
+  rw [h]
+  rfl
+
+/-- The identification of a left-moving quadruple is in the machine's list. -/
+theorem quadIdentificationLeft_mem_machineIdentifications {mm : ModularMachine}
+    {hM : (mm.size : ℤ) ≠ 0} {a b c : ℕ} (ha : a < mm.size) (hb : b < mm.size)
+    (h : mm.quad a b = some (c, false)) :
+    quadIdentificationLeft (a : ℤ) (b : ℤ) (c : ℤ) (mm.size : ℤ) hM
+      ∈ machineIdentifications mm hM := by
+  rw [machineIdentifications, List.mem_filterMap]
+  refine ⟨(a, b), mem_residuePairs ha hb, ?_⟩
+  rw [h]
+  rfl
 
 /-- **`G'_M`**: the tower over a machine, one stable letter per quadruple. -/
 noncomputable def machineTower (mm : ModularMachine) (hM : (mm.size : ℤ) ≠ 0) : Stage :=
@@ -210,6 +284,10 @@ def liftedSubgroup (A : Subgroup G) : Subgroup (HNNExtension G Asub Bsub φ) :=
 theorem t_mem_liftedSubgroup (A : Subgroup G) :
     (HNNExtension.t : HNNExtension G Asub Bsub φ) ∈ liftedSubgroup φ A :=
   Subgroup.subset_closure (Or.inr rfl)
+
+theorem of_mem_liftedSubgroup {A : Subgroup G} {a : G} (ha : a ∈ A) :
+    (HNNExtension.of a : HNNExtension G Asub Bsub φ) ∈ liftedSubgroup φ A :=
+  Subgroup.subset_closure (Or.inl ⟨a, ha, rfl⟩)
 
 theorem liftedSubgroup_mono {A B : Subgroup G} (h : A ≤ B) :
     liftedSubgroup φ A ≤ liftedSubgroup φ B :=
@@ -569,6 +647,17 @@ noncomputable def towerTSub : (l : List Identification) → Subgroup (tower l).C
   | [] => Subgroup.closure {tGen}
   | ⟨_, _, ψ⟩ :: l => liftedSubgroup ((tower l).stepEquiv ψ) (towerTSub l)
 
+/-- **Every level's stable letter, seen at the top, lies in `⟨t⟩'`.**  This is
+what lets the induction of Lemma 7 use a different quadruple at each step
+without ever naming a stable letter. -/
+theorem liftUp_t_mem_towerTSub (A' B' : Subgroup BaseGroup) (ψ : A' ≃* B') :
+    ∀ (l₁ l₂ : List Identification),
+      liftUp l₁ (⟨A', B', ψ⟩ :: l₂) HNNExtension.t ∈
+        towerTSub (l₁ ++ (⟨A', B', ψ⟩ :: l₂))
+  | [], _ => t_mem_liftedSubgroup _ _
+  | ⟨_, _, _⟩ :: l₁, l₂ =>
+      of_mem_liftedSubgroup _ (liftUp_t_mem_towerTSub A' B' ψ l₁ l₂)
+
 /-- **The easy half of Lemma 7.**  If `t` lies in the base subgroup, then `⟨t⟩'`
 lies in its lift, at every height of the tower. -/
 theorem towerTSub_le_towerSub (A : Subgroup BaseGroup) (htGen : tGen ∈ A) :
@@ -578,6 +667,55 @@ theorem towerTSub_le_towerSub (A : Subgroup BaseGroup) (htGen : tGen ∈ A) :
       exact htGen)
   | ⟨_, _, ψ⟩ :: l =>
       liftedSubgroup_mono _ (towerTSub_le_towerSub A htGen l)
+
+/-- `t` itself, at the bottom of the tower, is in `⟨t⟩'` at every height. -/
+theorem ι_tGen_mem_towerTSub : ∀ l : List Identification,
+    (tower l).ι tGen ∈ towerTSub l
+  | [] => Subgroup.subset_closure rfl
+  | ⟨_, _, _⟩ :: l => of_mem_liftedSubgroup _ (ι_tGen_mem_towerTSub l)
+
+/-! ### Bounding a lifted subgroup from above
+
+The hard half of Lemma 7 is an inclusion `T'_M ≤ ⟨t⟩'` at the *top* of the
+tower, and `towerSub` is defined level by level, so it cannot be proved by
+monotonicity: at the bottom it would ask for `T_M ≤ ⟨t⟩`, which is false.  What
+is true is that `towerSub A l` is generated by the image of `A` together with
+the stable letters, so any subgroup containing both contains it.  `HasLetters`
+records "contains every stable letter" without naming one: at each level the
+predicate descends by pulling back along `of`. -/
+
+/-- `K` contains the stable letter of every level of `l`. -/
+def HasLetters : (l : List Identification) → Subgroup (tower l).Carrier → Prop
+  | [], _ => True
+  | ⟨_, _, _⟩ :: l, K => HNNExtension.t ∈ K ∧ HasLetters l (K.comap HNNExtension.of)
+
+theorem HasLetters.mono : ∀ (l : List Identification)
+    {K K' : Subgroup (tower l).Carrier}, K ≤ K' → HasLetters l K → HasLetters l K'
+  | [], _, _, _, _ => trivial
+  | ⟨_, _, _⟩ :: l, _, _, h, hK =>
+      ⟨h hK.1, HasLetters.mono l (Subgroup.comap_mono h) hK.2⟩
+
+theorem hasLetters_towerTSub : ∀ l : List Identification, HasLetters l (towerTSub l)
+  | [] => trivial
+  | ⟨_, _, _⟩ :: l =>
+      ⟨t_mem_liftedSubgroup _ _,
+        HasLetters.mono l (fun _ hx => of_mem_liftedSubgroup _ hx)
+          (hasLetters_towerTSub l)⟩
+
+/-- **The lifted subgroup is generated by `A` and the stable letters.**  Any
+subgroup of the top group containing the image of `A` and every stable letter
+contains the whole lift. -/
+theorem towerSub_le_of_mem (A : Subgroup BaseGroup) :
+    ∀ (l : List Identification) (K : Subgroup (tower l).Carrier),
+      (∀ a ∈ A, (tower l).ι a ∈ K) → HasLetters l K → towerSub A l ≤ K
+  | [], _, hι, _ => fun x hx => hι x hx
+  | ⟨_, _, ψ⟩ :: l, K, hι, hL => by
+      show liftedSubgroup ((tower l).stepEquiv ψ) (towerSub A l) ≤ K
+      refine (Subgroup.closure_le _).2 ?_
+      rintro x (⟨y, hy, rfl⟩ | rfl)
+      · exact towerSub_le_of_mem A l (K.comap HNNExtension.of)
+          (fun a ha => hι a ha) hL.2 hy
+      · exact hL.1
 
 end BooneGroup
 end GroupApproximation
