@@ -311,7 +311,7 @@ same conclusion holds with the commutant $C$ of $\pi(\Gamma)$ in place
 of the subgroup: the inclusion gives $C\subseteq\pi(t)\,C\,\pi(t)^{-1}$
 between subspaces of equal finite dimension, hence equality, and
 $\pi(c)\in C$ then puts $\pi(tct^{-1})$ in $C$
-(Theorem~\ref{thm:B}).  In $\mathcal Q$ neither cardinality nor
+(Theorem~\ref{thm:exactfd}).  In $\mathcal Q$ neither cardinality nor
 dimension is available, and finiteness of the norm ultraproduct plays
 their part.
 
@@ -322,7 +322,7 @@ not have property~\textup{(T)}.
 
 The reduced group
 $C^*$-algebra $\Cred(E)$ is separable and stably finite but not MF
-(Theorem~\ref{thm:D}); it is also exact.  The group $E$ is sofic
+(Theorem~\ref{thm:reduced}); it is also exact.  The group $E$ is sofic
 (Theorem~\ref{thm:Esofic}), so neither soficity nor hyperlinearity
 implies the MF property.  The
 quotient $E/\langle w\rangle$ is not MF either, so $\{1,w\}$ is a proper
@@ -524,7 +524,7 @@ the regular norms.
 
 \section{One-sided conjugation in matrix models}\label{sec:transport}
 
-In Theorem~\ref{thm:B} the commutant $C$ of the base inside a
+In Theorem~\ref{thm:exactfd} the commutant $C$ of the base inside a
 finite-dimensional endomorphism algebra satisfies
 $C\subseteq\pi(t)C\pi(t)^{-1}$, and equal finite dimension forces
 equality.  In the proof of Theorem~\ref{thm:kazhdan-transport} the
@@ -592,12 +592,10 @@ converse is immediate.
 
 % LABELS.  `mainthm` numbers by letter in order of appearance, so a label
 % spelled `thm:X` is a promise about position that the source cannot keep.
-% This one is NOT the lettered Theorem B -- it is an ordinary numbered
-% theorem.  Cite it as \ref{thm:exactfd}; `thm:B` is a legacy alias kept only
-% so that references written before the rename still resolve, and it should
-% be deleted once no draft in flight uses it.  Same for `thm:C`, `thm:D`,
-% `thm:E` at their own definitions.
-\begin{theorem}[the finite-dimensional case]\label{thm:exactfd}\label{thm:B}
+% This one is an ordinary numbered theorem, not a lettered one.  The legacy
+% aliases `thm:B`, `thm:C`, `thm:D`, `thm:E` are gone; label after the
+% content, never after the expected letter.
+\begin{theorem}[the finite-dimensional case]\label{thm:exactfd}
 Let $k$ be a field, $V$ a finite-dimensional $k$-vector space, $H$ a
 group, $\Gamma\le H$ a subgroup, and $t,c\in H$, $a\in\Gamma$ elements
 with $t\Gamma t^{-1}\subseteq\Gamma$ and $c\gamma=\gamma c$ for all
@@ -1154,14 +1152,12 @@ finite (Lemma~\ref{lem:faithfultrace}), independently of the MF
 question.
 Abstract examples follow from the failure of the Connes embedding
 problem \cite{FGH}; the reduced algebra of the finitely presented group
-$E$ is an explicit one (Theorem~\ref{thm:D}).  For
+$E$ is an explicit one (Theorem~\ref{thm:reduced}).  For
 $\Cred(\SL_3(\mathbb Z))$ and $\Cred(\SL_4(\mathbb Z))$ the MF
 property is undecided; only the stronger PMF property is known to
 fail, for $\SL_4(\mathbb Z)$ \cite{MdlS}.
 
-% This prints as Theorem C, not Theorem D.  Cite \ref{thm:reduced}; `thm:D`
-% is a legacy alias.  See the note at thm:exactfd.
-\begin{mainthm}[the reduced group algebra of $E$]\label{thm:reduced}\label{thm:D}
+\begin{mainthm}[the reduced group algebra of $E$]\label{thm:reduced}
 $\Cred(E)$ is a unital separable $C^*$-algebra which has a
 faithful tracial state --- and is therefore stably finite --- but is
 not an MF algebra.
@@ -2042,7 +2038,7 @@ every homomorphism to $\U(\mathcal Q)$.
 \section{The finite-dimensional obstruction}\label{sec:findim}
 
 Every finite-dimensional representation of $E$ over every field maps $w$
-to the identity (Theorem~\ref{thm:B} with $H=E$).  So
+to the identity (Theorem~\ref{thm:exactfd} with $H=E$).  So
 finite-dimensional linear representations do not separate the points of
 $E$, the image of $w$ is trivial in every finite quotient, and the
 Clifford quotient of Section~\ref{sec:witness} is infinite.  The central involution
@@ -2053,7 +2049,7 @@ natural candidate counterexamples for all three remaining approximation
 problems, and $E$ is such a counterexample for the operator norm.
 
 The same calculation proves the final, subgroup-valued assertion of
-Theorem~\ref{thm:B}.  The elements of $H$ whose conjugation action
+Theorem~\ref{thm:exactfd}.  The elements of $H$ whose conjugation action
 preserves $C$ in both directions form a subgroup.  Every one-sided
 conjugator lies in it by the argument above, hence so does all
 of $G^{+}(\Gamma)$.  Thus, for $g\in
@@ -2074,7 +2070,7 @@ identity.
 \end{corollary}
 
 \begin{proof}
-Apply Theorem~\ref{thm:B} with $H=E$, the image of $\mathcal B$, and the
+Apply Theorem~\ref{thm:exactfd} with $H=E$, the image of $\mathcal B$, and the
 elements $t,c,v_1$; the hypotheses hold by the defining relations
 \eqref{eq:E}.  Every finite-dimensional representation maps $w$ to the
 identity, and
@@ -2090,7 +2086,7 @@ of $w$ in the finite group.
 
 % Not the lettered Theorem C: an ordinary numbered theorem.  Cite
 % \ref{thm:cyclic}; `thm:C` is a legacy alias.  See the note at thm:exactfd.
-\begin{theorem}[the cyclic comparison]\label{thm:cyclic}\label{thm:C}
+\begin{theorem}[the cyclic comparison]\label{thm:cyclic}
 Define the presentation
 \[
  E_{\mathrm{BS}}=\left\langle\gamma_0,t,c\ \middle|\
@@ -2116,7 +2112,7 @@ So a distinguished word can be trivial in every exact
 finite-dimensional representation without being trivial in the group.
 
 
-\begin{proof}[Proof of Theorem~\ref{thm:C}]
+\begin{proof}[Proof of Theorem~\ref{thm:cyclic}]
 As with $w$, the relator $w_{\mathrm{BS}}^2=1$ is redundant: $tct^{-1}$
 and $\gamma_0(tct^{-1})\gamma_0^{-1}$ are involutions, so centrality
 forces it by \eqref{eq:involution-reversal}.  Deleting it gives a
@@ -2124,7 +2120,7 @@ six-relator presentation of the same group.
 The stable relation gives
 \(t\langle\gamma_0\rangle t^{-1}\subseteq
 \langle\gamma_0\rangle\), and \(c\) centralizes this cyclic base.
-By the commutant argument of Theorem~\ref{thm:B}, every
+By the commutant argument of Theorem~\ref{thm:exactfd}, every
 finite-dimensional representation over every field maps
 \(w_{\mathrm{BS}}\) to the identity.
 
@@ -2148,7 +2144,7 @@ onto a Clifford quotient.
 The affine group $\mathrm{BS}(1,2)\cong\mathbb Z[1/2]\rtimes\mathbb Z$
 is solvable and the Clifford group on its coset space is locally
 finite, so their semidirect product is amenable.  The Clifford quotient
-in Theorem~\ref{thm:C} is a subgroup of it, hence amenable and, by
+in Theorem~\ref{thm:cyclic} is a subgroup of it, hence amenable and, by
 \cite{TWW}, MF; its distinguished word is the nontrivial Clifford sign
 by the calculation above.  Composing the quotient map with a faithful
 homomorphism to $\U(\mathcal Q)$ gives
@@ -2697,7 +2693,7 @@ $H\to\U(\mathcal Q)$ factors through it, and it is MF.
 
 \subsection{The reduced group algebra of \texorpdfstring{$E$}{E}}
 
-The stable finiteness in Theorem~\ref{thm:D} comes from two standard
+The stable finiteness in Theorem~\ref{thm:reduced} comes from two standard
 facts.
 
 \begin{lemma}\label{lem:faithfultrace}
@@ -3371,7 +3367,7 @@ By Proposition~\ref{prop:proper-isometry}, $\Cmax(G)$ is then not
 stably finite, has no faithful trace, and in particular is neither
 residually finite-dimensional nor MF\@.  For the reduced algebra of
 $E$, by contrast, the canonical trace is faithful and the algebra is
-stably finite (Theorem~\ref{thm:D}), so its failure of MF is not a
+stably finite (Theorem~\ref{thm:reduced}), so its failure of MF is not a
 failure of finiteness.
 \end{remark}
 

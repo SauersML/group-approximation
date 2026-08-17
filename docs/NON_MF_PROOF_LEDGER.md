@@ -483,16 +483,18 @@ environment to that environment's digest, and reports an anchor keyed on a
 non-primary label as exactly that, naming the primary label to use.  Both behaviours
 are covered by `--self-test`.
 
-What remains unguarded, and is recorded here rather than gated: the aliases
-themselves.  `thm:B`, `thm:C`, `thm:D` and `thm:E` are still referenced 12, 2, 5 and 9
-times in the manuscript, and nothing checks that those labels still sit on the
-environments they are aliases of.  Deleting a label breaks the LaTeX build loudly;
-*moving* one would silently retarget every `\ref` to the wrong theorem.  Declaring
-them as ledger anchors would guard it, but every declared anchor needs a step row, and
-four rows asserting "this alias still names that environment" are not proof steps —
-they would inflate the `MISSING` counts and blur what a row means.  The manuscript's
-own comment says the aliases exist only until no draft in flight uses them; **deleting
-them is the fix, and until then this paragraph is the record.**
+**Closed.**  The aliases are gone.  Every `\ref` that named one now names the
+primary label — `thm:exactfd`, `thm:cyclic`, `thm:reduced` — and `thm:E` had
+already fallen to zero uses.  The hazard this section described, a *moved* alias
+silently retargeting every `\ref` to the wrong theorem while the build stays
+green, went with them, so the gate needs no rows to guard it and the `MISSING`
+counts stay meaningful.
+
+The rule that replaces the paragraph is in the manuscript's own comment at
+`thm:exactfd`: **label after the content, never after the expected letter.**
+`mainthm` numbers by position, so a label spelled `thm:X` is a promise about
+position that the source cannot keep — `thm:D` had come to sit on the theorem
+that prints as Theorem C, and needed a comment above it saying so.
 
 ## Anchors
 
@@ -571,7 +573,7 @@ once in the comment-stripped manuscript; the probe is the drift detector.
 | cor:undecidable | env | cor:undecidable | e6bbb11192c5e3f9 |
 | prop:maximal-cstar | env | prop:maximal-cstar | ea236f6967fee398 |
 | prop:proper-isometry | env | prop:proper-isometry | 0243b2ca55a4d584 |
-| rem:maxinfinite | env | rem:maxinfinite | 03a46742997d18a3 |
+| rem:maxinfinite | env | rem:maxinfinite | 9439bf92f9dab405 |
 | p:abstract-refute | prose | `the conjecture that every countable group is MF` | - |
 | p:abstract-mechanism | prose | `spectral projection of $\Theta(w)$ contradicts this` | - |
 | p:intro-history | prose | `Residually finite groups satisfy the conjecture through their finite quotients` | - |
