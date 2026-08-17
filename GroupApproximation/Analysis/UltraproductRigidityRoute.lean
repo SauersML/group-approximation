@@ -382,9 +382,14 @@ theorem transportedRoot_displacement_ultraproduct
           (B.map n (C.iota γ) : Matrix (B.model n) (B.model n) ℂ)ᴴ)
         (lampMatrix B C n) ≤ ε := by
   refine transportedRoot_displacement_of_hsCommutator B C γ ?_
+  -- The representation universe of property `(T)` is pinned explicitly: it
+  -- occurs only in this hypothesis, so leaving it to unification would leave a
+  -- universe metavariable in the proof term.  `manuscriptKazhdanTransport` is
+  -- polymorphic in it, so any instantiation is available.
+  have hT : HasKazhdanPropertyTComplex.{0, 0} Γ :=
+    hasKazhdanPropertyT_iff_textbook.mp C.kazhdan
   have hconc := KazhdanAsymptoticCommutant.manuscriptKazhdanTransport
-    (hasKazhdanPropertyT_iff_textbook.mp C.kazhdan)
-    C.iota C.t C.compresses (natDim B) (natDim_pos B) (natRep B)
+    hT C.iota C.t C.compresses (natDim B) (natDim_pos B) (natRep B)
     (natRep_asymptoticallyMultiplicative B)
     (fun n ↦ (natRep B n C.c : Matrix (naturalFiniteModel (natDim B n))
       (naturalFiniteModel (natDim B n)) ℂ))

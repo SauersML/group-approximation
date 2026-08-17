@@ -52,7 +52,7 @@ theorem exists_infinite_defect_of_not_tendsto {f : ℕ → ℝ} (hf : ∀ n, 0 �
     (h : ¬ Tendsto f atTop (𝓝 (0 : ℝ))) :
     ∃ δ : ℝ, 0 < δ ∧ {n : ℕ | δ ≤ f n}.Infinite := by
   rw [Metric.tendsto_atTop] at h
-  push_neg at h
+  push Not at h
   obtain ⟨δ, hδ, hN⟩ := h
   refine ⟨δ, hδ, ?_⟩
   rw [← Nat.frequently_atTop_iff_infinite, Filter.frequently_atTop]
@@ -102,7 +102,7 @@ theorem kt_01_exists_infinite_defect
       Tendsto (fun n ↦ transportedDefect A w iota s x n γ) atTop (𝓝 (0 : ℝ))) :
     ∃ γ₀ : Γ, ∃ δ : ℝ, 0 < δ ∧
       {n : ℕ | δ ≤ transportedDefect A w iota s x n γ₀}.Infinite := by
-  push_neg at h
+  push Not at h
   obtain ⟨γ₀, hγ₀⟩ := h
   obtain ⟨δ, hδ, hinf⟩ :=
     exists_infinite_defect_of_not_tendsto
