@@ -207,6 +207,10 @@ variable {G : Type} [Group G] {Asub Bsub : Subgroup G} (φ : Asub ≃* Bsub)
 def liftedSubgroup (A : Subgroup G) : Subgroup (HNNExtension G Asub Bsub φ) :=
   Subgroup.closure (HNNExtension.of '' (A : Set G) ∪ {HNNExtension.t})
 
+theorem t_mem_liftedSubgroup (A : Subgroup G) :
+    (HNNExtension.t : HNNExtension G Asub Bsub φ) ∈ liftedSubgroup φ A :=
+  Subgroup.subset_closure (Or.inr rfl)
+
 theorem liftedSubgroup_mono {A B : Subgroup G} (h : A ≤ B) :
     liftedSubgroup φ A ≤ liftedSubgroup φ B :=
   Subgroup.closure_mono (Set.union_subset_union_left _ (Set.image_mono h))

@@ -246,6 +246,31 @@ theorem stable_conj_tw_left (a b c M : ℤ) (hM : M ≠ 0) (p : ℤ × ℤ) :
   rw [← emb_tw, ← emb_tw]
   exact stable_conj_emb_left a b c M hM (tw p)
 
+/-- **One step of Lemma 7's induction, at one level.**  If the basis element on
+the target side of a quadruple lies in a subgroup containing the stable letter,
+so does the one on the source side --- they differ by conjugation. -/
+theorem of_tw_mem_of_target_right (a b c M : ℤ) (hM : M ≠ 0) (p : ℤ × ℤ)
+    (A : Subgroup BaseGroup)
+    (h : (HNNExtension.of (tw (embIdx c 0 (M ^ 2) 1 p)) :
+            HNNExtension BaseGroup (Gsub a b M M) (Gsub c 0 (M ^ 2) 1)
+              (quadEquiv a b c M hM))
+          ∈ liftedSubgroup (quadEquiv a b c M hM) A) :
+    (HNNExtension.of (tw (embIdx a b M M p)) :
+        HNNExtension BaseGroup (Gsub a b M M) (Gsub c 0 (M ^ 2) 1)
+          (quadEquiv a b c M hM))
+      ∈ liftedSubgroup (quadEquiv a b c M hM) A := by
+  have ht := t_mem_liftedSubgroup (quadEquiv a b c M hM) A
+  have hc := stable_conj_tw_right a b c M hM p
+  have hrw : (HNNExtension.of (tw (embIdx a b M M p)) :
+      HNNExtension BaseGroup (Gsub a b M M) (Gsub c 0 (M ^ 2) 1)
+        (quadEquiv a b c M hM))
+      = HNNExtension.t⁻¹ *
+          HNNExtension.of (tw (embIdx c 0 (M ^ 2) 1 p)) * HNNExtension.t := by
+    rw [hc]
+    group
+  rw [hrw]
+  exact mul_mem (mul_mem (inv_mem ht) h) ht
+
 /-! ## `t` lies in the halting subgroup
 
 The easy half of Lemma 7 needs only that `t` itself is in the base subgroup.  For
