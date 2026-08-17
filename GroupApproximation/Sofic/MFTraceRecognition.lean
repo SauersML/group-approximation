@@ -842,12 +842,6 @@ theorem corner_defect_le {p M1 A Ainv : Matrix Y Y ℂ} {e C : ℝ}
   nlinarith [sq_nonneg C, sq_nonneg (C - 1), mul_nonneg he0 hC0]
 
 end Assembly
-/-- The normalized trace is additive on differences. -/
-theorem normTrace_sub' (Y : FiniteModel) (A B : Matrix Y Y ℂ) :
-    normTrace Y (A - B) = normTrace Y A - normTrace Y B := by
-  unfold normTrace
-  rw [Matrix.trace_sub, sub_div]
-
 
 /-- **The codimension weight of the unit corner is small.**  If the model
 unit has normalized trace within `e` of one, and the rounded projection is
@@ -871,10 +865,10 @@ theorem codimension_weight_le (Y : FiniteModel) (hY : 0 < Fintype.card Y)
       simpa using (Nat.cast_ne_zero (R := ℂ)).mpr hY.ne'
     field_simp
   have hbound : ‖normTrace Y ((1 : Matrix Y Y ℂ) - p)‖ ≤ e + η := by
-    rw [normTrace_sub', hone]
+    rw [normTrace_sub, hone]
     have h1 : (1 : ℂ) - normTrace Y p
         = -(normTrace Y M1 - 1) + normTrace Y (M1 - p) := by
-      rw [normTrace_sub']
+      rw [normTrace_sub]
       ring
     rw [h1]
     refine (norm_add_le _ _).trans ?_
@@ -1112,7 +1106,7 @@ theorem sep_estimate (Y : FiniteModel) (hY : 0 < Fintype.card Y)
       ≤ e + (C * (9 * e * C ^ 2 + C * e + 2 * e) + (C * e + e)) := by
     have hd : normTrace Y (A * p * Bmᴴ)
         = normTrace Y Agy + normTrace Y (A * p * Bmᴴ - Agy) := by
-      rw [normTrace_sub']; ring
+      rw [normTrace_sub]; ring
     rw [hd]
     have h2 := (norm_normTrace_le Y hY (A * p * Bmᴴ - Agy)).trans hXclose
     exact (norm_add_le _ _).trans (by linarith)
@@ -1142,7 +1136,7 @@ theorem sep_estimate (Y : FiniteModel) (hY : 0 < Fintype.card Y)
           - normTrace Y (A * p * Bmᴴ))
         + (normTrace Y (A * p * Bmᴴ)
           + normTrace Y (Ug * Uyᴴ - inflate p (A * p * Bmᴴ))) := by
-    rw [normTrace_sub']
+    rw [normTrace_sub]
     ring
   rw [hsplit]
   have hinner := norm_add_le (normTrace Y (A * p * Bmᴴ))
