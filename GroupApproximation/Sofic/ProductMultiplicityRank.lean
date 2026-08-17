@@ -102,14 +102,6 @@ theorem chosenAbelianizationRank_lt_aleph0 :
   haveI : Group.FG MarkedGroup :=
     ProductFinitePresentation.fg_of_isFinitelyPresented MarkedGroup
   exact abelianizationRank_lt_aleph0 MarkedGroup
-/-- The chosen family has pairwise nonisomorphic members, separated by the
-torsion-free rank of the abelianization. -/
-theorem chosenFamily_eq_of_mulEquiv_rank {k l : ℕ}
-    (e : Family MarkedGroup k ≃* Family MarkedGroup l) : k = l := by
-  haveI : Group.FG MarkedGroup :=
-    ProductFinitePresentation.fg_of_isFinitelyPresented MarkedGroup
-  exact eq_of_family_mulEquiv_rank e
-
 /-- **The manuscript's multiplicity paragraph, with its own invariant.**
 There is an infinite family of finitely presented groups, none of them
 operator-MF, whose abelianizations have pairwise distinct torsion-free
@@ -126,7 +118,7 @@ theorem manuscriptInfiniteMultiplicityRank :
     fun k ↦ (chosenFamily_finitelyPresented_not_isOperatorMF k).2,
     fun k l h ↦ GroupApproximation.ProductMultiplicity.chosenFamily_torsionFreeRank_ne h, ?_⟩
   rintro k l ⟨e⟩
-  exact chosenFamily_eq_of_mulEquiv_rank e
+  exact GroupApproximation.ProductMultiplicity.chosenFamily_eq_of_mulEquiv e
 
 end ProductMultiplicityRank
 end GroupApproximation

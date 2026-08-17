@@ -231,7 +231,7 @@ theorem literal_centralSignCriterion :
       ¬ IsCDEOperatorMF MarkedGroup :=
   -- Two universe levels: the ambient group's, then the property-`(T)`
   -- Hilbert-space universe.  Both are `0` for the literal marked group.
-  CentralSignTransport.manuscriptCentralSignCriterionViaTransport.{0, 0}
+  GroupApproximation.KazhdanCompressionCore.manuscriptCentralSignCriterion.{0, 0}
     (Γ := Base) (E := MarkedGroup)
     LiteralBaseP13PropertyTBridge.manuscriptBaseHasKazhdanPropertyT.2
     baseMap stable lamp inclusionData.compresses lamp_commutes_base
