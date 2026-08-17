@@ -80,10 +80,9 @@
 % printed letters.  Verified against the .aux of a full build:
 %
 %     thm:A       -> Theorem A          thm:signfree -> Theorem B
-%     thm:reduced -> Theorem C          thm:witnesssofic -> Theorem D
-%       (alias thm:D)                     (alias thm:E)
-%     thm:Esofic  -> Theorem E
-%     thm:exactfd -> Theorem 3.3        thm:cyclic   -> Theorem S8.1
+%     thm:reduced -> Theorem C          thm:Esofic   -> Theorem D
+%       (alias thm:D)
+%     thm:exactfd -> Theorem 3.3        thm:cyclic   -> Theorem S7.1
 %       (alias thm:B)                     (alias thm:C)
 %
 % so thm:B and thm:C are ordinary section-numbered theorems, not
@@ -204,6 +203,7 @@ In particular $E$ is not MF, and neither $\Cmax(E)$ nor $\Cred(E)$ is an
 MF $C^*$-algebra.  A Tietze reduction presents the same group on six
 generators with thirty-two relators (Section~\ref{sec:group}).
 \leanverified{Sofic/LiteralNonMFEndpoint}{GroupApproximation.LiteralNonMFEndpoint.manuscriptTheoremA}
+\leanverified{Sofic/LiteralTietzePresentation}{GroupApproximation.LiteralTietzePresentation.manuscriptTietzeSixGeneratorPresentation}
 \end{mainthm}
 
 \noindent
@@ -291,20 +291,14 @@ representation $(U_n)$ of $H$,
 
 Suppose now that $w=u^2$ is central in $H$ with $w^2=1$, and let
 $\Theta$ be a homomorphism $H\to\U(\mathcal Q)$ with $\Theta(w)\ne1$.
-Then $\Theta(w)$ is a self-adjoint unitary commuting with $\Theta(H)$,
-so
-\[
- q=\tfrac12\bigl(1-\Theta(w)\bigr)
-\]
-is a nonzero projection commuting with $\Theta(H)$.  Choosing unitary
-lifts of $\Theta$ and rounding the corresponding coordinate averages to
-genuine projections represents $q$ by projections $q_n\in M_{d_n}(\C)$,
-nonzero for infinitely many $n$ and asymptotically commuting with the
-lifts.  Compressing to $q_n$, and giving each corner its own normalized
-trace, yields a second operator-norm asymptotic representation of $H$,
-one in which $w$ goes to $-1$.  In that representation the display above
-gives $\hsnorm{U_n(u)^2-1}\to0$, while $\hsnorm{-1-1}=2$.  Hence
-$\Theta(w)=1$ for every such $\Theta$, and if $w\ne1$ then $H$ is not MF
+Then $q=\tfrac12(1-\Theta(w))$ is a nonzero projection commuting with
+$\Theta(H)$, and rounding the coordinate averages of unitary lifts
+represents $q$ by projections $q_n\in M_{d_n}(\C)$, nonzero for
+infinitely many $n$.  Compressing to $q_n$, and giving each corner its
+own normalized trace, yields an operator-norm asymptotic representation
+of $H$ in which $w$ goes to $-1$.  There the display above gives
+$\hsnorm{U_n(u)^2-1}\to0$, while $\hsnorm{-1-1}=2$.  Hence
+$\Theta(w)=1$, and if $w\ne1$ then $H$ is not MF
 (Theorem~\ref{thm:sign-criterion}).
 
 Let $\Gamma$ be a finitely presented Kazhdan group with a proper
@@ -334,11 +328,10 @@ not have property~\textup{(T)}.
 
 The reduced group
 $C^*$-algebra $\Cred(E)$ is separable and stably finite but not MF
-(Theorem~\ref{thm:D}).  The Clifford quotient $W$ used to prove $w\ne1$
-is itself finitely generated, sofic and not MF, so neither soficity nor
-hyperlinearity implies the MF property (Theorem~\ref{thm:E}); the group
-$E$ is sofic as well (Theorem~\ref{thm:Esofic}), so a finitely
-presented group already separates the two properties.  The
+(Theorem~\ref{thm:D}), and it is exact.  The group $E$ is sofic
+(Theorem~\ref{thm:Esofic}), so neither soficity nor hyperlinearity
+implies the MF property, and a finitely presented group already
+separates the two properties.  The
 quotient $E/\langle w\rangle$ is also not MF, so $\{1,w\}$ is a proper
 subgroup of the MF residual of $E$ (Theorem~\ref{thm:signfree}).  The
 non-MF argument implies neither soficity nor nonsoficity, for either
@@ -389,8 +382,8 @@ Alekseev--Thom prove a related centralizer rigidity for sofic embeddings
 approximations.  Here the group acts by conjugation on the
 Hilbert--Schmidt space of each matrix block, and finiteness of the norm
 ultraproduct as a $C^*$-algebra forces the projection onto the
-$\iota(\Gamma)$-fixed subspace to equal its unitary conjugate (Theorem~\ref{thm:kazhdan-transport}, and
-Section~\ref{app:finite-stage} for a finite-stage form).
+$\iota(\Gamma)$-fixed subspace to equal its unitary conjugate
+(Theorem~\ref{thm:kazhdan-transport}).
 
 Slofstra's hyperlinear-profile construction uses a Clifford group, a
 distinguished central involution, a shift, and an HNN doubling map
@@ -673,12 +666,9 @@ An MF
 model is only asymptotically multiplicative, so its coordinate fixed
 spaces are not invariant subspaces.  Operator-norm control keeps the
 adjoint actions almost multiplicative on the Hilbert--Schmidt spaces,
-and the finite-stage proof of Section~\ref{app:finite-stage} works with
-the spectral subspace $\operatorname{ran}P_n$ of a Kazhdan average above
-a fixed threshold and with $Q_n=\Ad U_n(s)\,P_n\,\Ad U_n(s)^{*}$: there
-$\opnorm{(1-Q_n)P_n}\to0$ and
-$\operatorname{rank}P_n=\operatorname{rank}Q_n$, hence
-$\opnorm{(1-P_n)Q_n}\to0$.  Property~\textup{(T)} cannot be
+which is what puts the Kazhdan projection in the norm ultraproduct and
+lets finiteness there replace an equality of ranks.
+Property~\textup{(T)} cannot be
 dropped: the group $E_{\mathrm{BS}}$ of
 Section~\ref{sec:necessity} has cyclic base, its distinguished word is trivial
 in every finite-dimensional representation over every field, and some
@@ -789,13 +779,6 @@ along $\omega$, for every $\gamma\in\Gamma$.  For $\gamma=\gamma_0$ this
 contradicts $I\in\omega$.
 \end{proof}
 
-\begin{remark}[the finite-stage proof]\label{rem:finite-stage}
-Section~\ref{app:finite-stage} proves the theorem again at finite
-stages.  Conditional on the spectral-gap estimate stated there, every
-bound in that proof is an explicit inequality in $\kappa$, $|S|$, the
-uniform bound on $(x_n)$, and the multiplicative defects of $U_n$.
-\end{remark}
-
 \section{The central involution obstruction}\label{sec:sign}
 
 Let $w$ be a central involution of $H$ and let $\Theta$ be a
@@ -805,17 +788,16 @@ $\Theta(H)$, the projection $\tfrac12(1-\Theta(w))$ is
 nonzero, and compressing to it gives a matrix model of $H$ in which
 $w$ equals $-1$ and each block has its own normalized trace.
 
-A bound on a commutator in normalized Hilbert--Schmidt norm does not by
-itself yield an operator-norm obstruction: padding an asymptotic
-representation with an identity block leaves every operator-norm
-quantity unchanged and sends every normalized Hilbert--Schmidt distance
-to zero (Section~\ref{sec:limits}).  On the corner $q_nM_{d_n}(\C)q_n$
-the operator norm is the restriction of the operator norm, so the
-compressed and polar-corrected maps remain operator-norm asymptotically
-multiplicative, while the trace is the corner's own
-normalized trace $\tr_{r_n}$ rather than the restriction of
-$\tr_{d_n}$; and $\lVert1-(-1)\rVert_{2,\tr_{r_n}}=2$ for every value
-of $r_n/d_n$.
+On the corner $q_nM_{d_n}(\C)q_n$ the operator norm is the restriction
+of the operator norm, so the compressed and polar-corrected maps remain
+operator-norm asymptotically multiplicative, while the trace is the
+corner's own normalized trace $\tr_{r_n}$, not the restriction of
+$\tr_{d_n}$.  Hence $\lVert1-(-1)\rVert_{2,\tr_{r_n}}=2$ for every
+value of $r_n/d_n$.  The compression is what turns a normalized
+Hilbert--Schmidt bound into an operator-norm obstruction: padding an
+asymptotic representation with an identity block leaves every
+operator-norm quantity unchanged and sends every normalized
+Hilbert--Schmidt distance to zero (Section~\ref{sec:limits}).
 
 \begin{theorem}[central involution obstruction]\label{thm:sign-criterion}
 Let $H$ and $\Gamma$ be countable groups, let $\Gamma$ have
@@ -1169,8 +1151,8 @@ $\Theta\colon E\to\U(\mathcal Q)$, and $\opnorm{\Theta(w)-1}\ge1$ gives
 $\Theta(w)\ne1$, against Theorem~\ref{thm:A}.
 \end{proof}
 
-The argument is a diagonal one and bounds neither $\delta$ nor
-$|F_0|$; whether an effective modulus follows from the rational
+The proof is nonquantitative: it gives no bound for $\delta$ or for
+$|F_0|$.  Whether an effective modulus follows from the rational
 spectral certificate of Section~\ref{sec:group} is open.
 
 \section{Consequences of the example}\label{sec:position}
@@ -1240,6 +1222,9 @@ algebra is therefore stably finite.  It is not an MF algebra by
 Theorem~\ref{thm:A}.
 \end{proof}
 
+The algebra is also exact, by the block normal form of $E$ and
+permanence for free products and extensions
+(Section~\ref{sec:algebras-sofic}).
 The algebra is not nuclear: the canonical map
 $\mathcal B\to E$ is injective (Section~\ref{sec:witness}), so $E$
 contains an infinite Kazhdan group and is nonamenable, whence
@@ -1258,30 +1243,11 @@ Theorem~\ref{thm:kazhdan-clifford}, at the affine data
 be the Clifford group over it.  The homomorphism of that proof carrying
 $w$ to $-1$ has target $W$; Section~\ref{sec:witness} realizes $W$ over
 $\mathbb Q$, writing $\Sigma$ for $G$ in the explicit rational model.
-
-% This prints as Theorem D, not Theorem E.  Cite \ref{thm:witnesssofic};
-% `thm:E` is a legacy alias.  See the note at thm:exactfd.  The lettered
-% Theorem E is thm:Esofic, further down this section.
-\begin{mainthm}[a sofic non-MF group]\label{thm:witnesssofic}\label{thm:E}
-The Clifford quotient $W=\Cl(X)\rtimes\Sigma$ of
-Section~\ref{sec:witness} is a finitely generated sofic group that
-is not MF; since sofic groups are hyperlinear, $W$ is likewise a
-hyperlinear group that is not MF\@.  In particular, neither soficity nor
-hyperlinearity implies the MF property.
-\leanverified{Endpoint/NonMFImpact}{GroupApproximation.NonMFImpact.witness_sofic_hyperlinear_nonMF}
-\end{mainthm}
-
-\noindent
-The proof is in Section~\ref{sec:algebras-sofic}.
-The image of the doubling map has finite index, so every level of the
-direct limit has finite orbits on $X$, every finite subset of
-$\Cl(X)\rtimes\Gamma_\infty$ lies in a finite-by-sofic subgroup, and the
-remaining $\Z$-extension is sofic by Elek--Szab\'o \cite{ElekSzabo}.
 The surjection $E\to W$ sends $w$ to the nontrivial Clifford sign
 $\zeta$, and $w\in\operatorname{Res}_{\mathrm{MF}}(E)$, so functoriality
 (Lemma~\ref{lem:portable}) gives
-$\zeta\in\operatorname{Res}_{\mathrm{MF}}(W)$ and $W$ is not MF.
-The extension
+$\zeta\in\operatorname{Res}_{\mathrm{MF}}(W)$ and $W$ is not MF.  The
+extension
 $1\to\Cl(X)\to W\to\Sigma\to1$ has locally finite kernel and residually
 finite quotient, hence MF kernel and MF quotient, while $W$ is not MF:
 the MF property is not closed under extensions
@@ -1316,12 +1282,12 @@ anticommute.
 \bigskip
 
 \noindent
-The supplement has four parts.  Sections~\ref{sec:group}--\ref{app:finite-stage} verify the explicit group and the two theorems the
-main text applies to it.  Sections~\ref{supp:transport-variants}--\ref{sec:necessity} develop the transport argument in the generality it has, and
+The supplement has four parts.  Sections~\ref{sec:group}--\ref{app:equivalences} verify the explicit group and fix the
+formulations the main text uses.  Sections~\ref{supp:transport-variants}--\ref{sec:necessity} develop the transport argument in the generality it has, and
 show that property~\textup{(T)} cannot be dropped.
 Sections~\ref{supp:scaling}--\ref{sec:marked-horn} draw the consequences.
-Sections~\ref{sec:limits}--\ref{app:p13} describe what the method does
-not decide, and give two auxiliary constructions.
+Sections~\ref{sec:limits} and~\ref{app:maxcstar} describe what the
+method does not decide, and record the maximal group $C^*$-algebra.
 
 \setcounter{section}{0}
 \renewcommand{\thesection}{S\arabic{section}}
@@ -1330,14 +1296,8 @@ not decide, and give two auxiliary constructions.
 \section{The base, and a smaller presentation}\label{sec:group}
 
 The base $\mathcal B$ of \eqref{eq:gamma-presentation} is the affine
-group $\mathbb Z^3\rtimes\SL_3(\mathbb Z)$
-(Remark~\ref{rem:classical-base}), for which property~\textup{(T)} is
-classical \cite[Example~1.7.4(i)]{BHV}.  It is proved below from the
-displayed relators, by an exact rational spectral
-certificate for an auxiliary Steinberg-type presentation, an explicit
-surjection onto the linear presentation, and a passage from the linear
-subgroup to the full base that produces an invariant vector from an
-almost-invariant one.
+group $\mathbb Z^3\rtimes\SL_3(\mathbb Z)$, for which
+property~\textup{(T)} is classical \cite[Example~1.7.4(i)]{BHV}.
 
 \paragraph{Six generators suffice.}
 The group $E$ is generated by the six elements $v_1,x,y,z,t,c$, and has
@@ -1421,133 +1381,27 @@ the real-orthogonal and complex-unitary formulations.
 \end{proposition}
 
 \begin{proof}
-\emph{Step 1: a certified Steinberg-type presentation.}  Let $P_{13}$ be
-the group on the six generators
-$e_{12},e_{13},e_{21},e_{23},e_{31},e_{32}$ with the thirteen relators
-\[
-\begin{gathered}
- [e_{12},e_{23}]=e_{13},\qquad [e_{13},e_{32}]=e_{12},\qquad
- [e_{21},e_{13}]=e_{23},\\
- [e_{23},e_{31}]=e_{21},\qquad [e_{31},e_{12}]=e_{32},\qquad
- [e_{32},e_{21}]=e_{31},\\
- [e_{12},e_{13}]=[e_{12},e_{32}]=[e_{13},e_{23}]
- =[e_{21},e_{23}]=[e_{21},e_{31}]=[e_{31},e_{32}]=1,\\
- (e_{12}\,e_{21}^{-1}\,e_{12})^{4}=1,
-\end{gathered}
-\]
-the elementary-matrix relations in rank three.  The degree-one Hodge
-Laplacian $\Delta_1$ of this presentation, a matrix over the real group
-ring of $P_{13}$, admits the exact decomposition
-\[
- \Delta_1=\tfrac1{250}\,I+Q^{*}Q+R,
-\]
-in which $Q$ and $R$ are matrices over the group ring with rational
-coefficients supported on finitely many group elements, and every row
-and every column of $R$ has coefficient $\ell^1$ norm at most
-$\tfrac1{500}$.  Clearing denominators makes both sides equal integer
-combinations of finitely many group elements, so the decomposition and
-the two bounds are finite identities and inequalities over $\mathbb Z$,
-evaluated in exact arithmetic; the certificate data are in the
-supplementary material.  Together they bound $\Delta_1$ below by
-$\tfrac1{500}$ in every orthogonal representation.  Testing that bound
-on coboundaries gives the quadratic gap
-\[
- \lVert\Delta\xi\rVert^2\ \ge\ \tfrac1{500}\,\langle\Delta\xi,\xi\rangle
-\]
-for the six-generator Laplacian $\Delta$, so the spectrum of $\Delta$
-lies in $\{0\}\cup[\tfrac1{500},\infty)$.  The kernel of
-$\Delta$ is the space of invariant vectors, so in a representation
-with no nonzero invariant vector that kernel is trivial and $\Delta$ is
-bounded below.  Hence a unit
-vector almost fixed by the six generators has small Laplacian energy
-and is close to an invariant vector.  This yields a Kazhdan pair: $P_{13}$ has
-property~\textup{(T)}.  Certificates of this kind go back to Ozawa's
-algebraic characterization of property~\textup{(T)} \cite{Ozawa} and its
-computer-assisted implementations for $\SL_3(\mathbb Z)$
-\cite{NetzerThom}.
-
-\emph{Step 2: the explicit surjection onto the linear presentation.}
-Map the six generators to the words
-\[
-\begin{gathered}
- e_{12}\mapsto y^{-1}xzy^{-1}x^{-1},\quad
- e_{13}\mapsto xzy^{-1}x^{-1}y,\quad
- e_{21}\mapsto y^{-1}xyxz,\\
- e_{23}\mapsto x^{-1}y^{-1}xzy^{-1},\quad
- e_{31}\mapsto xy^{-1}xzy^{-1}x,\quad
- e_{32}\mapsto x^{-1}zy^{-1}x^{-1}y^{-1}x^{-1}
-\end{gathered}
-\]
-in the linear presentation $\mathcal R$ of \eqref{eq:sl3presentation}.
-Each of the thirteen relators of $P_{13}$ reduces to the identity in
-$\mathcal R$ using only the eight relators of
-\eqref{eq:sl3presentation}; the thirteen reductions are finite words
-and are carried out in the supplementary material.  The assignment
-therefore defines a homomorphism $P_{13}\to\mathcal R$, and the same
-reductions exhibit explicit words in the six images whose values are
-$z$ and $xy$.  Those two elements generate $\mathcal R$: writing $g=z$
-and $h=xy$, the eight relators give the generating-pair word of
-\cite{CLV}
-\[
- y=\bigl(ghgh^{-1}g^{-1}hg^{-1}h^{-1}g^{-1}h^{-1}g^{-1}h\bigr)^{2},
-\]
-and then $x=hy^{-1}$.  Hence the homomorphism is surjective.
-Property~\textup{(T)} passes to quotients, so $\mathcal R$ has
-property~\textup{(T)}.
-
-\emph{Step 3: from an almost-invariant vector to an invariant one over
-the base.}  The generators
-$x,y,z$ of $\mathcal B$ satisfy the relators of $\mathcal R$, so
-$\mathcal R$ maps to the linear subgroup of $\mathcal B$ they generate,
-and Step~2
-gives a finite set $S$ of words in $x,y,z$ and a $\kappa>0$ forming a
-Kazhdan pair for it.  A Kazhdan pair remains one when its constant is
-decreased, so assume $\kappa\le1$.  Let $\rho$ be an orthogonal representation of
-$\mathcal B$ with a unit vector $\xi$ displaced by less than $\kappa/64$ by
-every element of the finite control set consisting of $S$ together
-with the translations $v_2,v_3$.  Since $v_1=xv_2x^{-1}$ by the
-displayed $x$-action, any vector $\eta$ fixed by the linear subgroup
-satisfies
-$\lVert\rho(v_1)\eta-\eta\rVert=\lVert\rho(v_2)\eta-\eta\rVert$, so
-$v_1$ needs no separate control.  We construct a nonzero
-invariant vector near $\xi$ as follows.
-\begin{enumerate}
-\item Projecting $\xi$ to the subspace of vectors fixed by the linear
-subgroup gives such a fixed vector $p$ with $\lVert p-\xi\rVert<1/64$, by the
-standard estimate that this projection moves a unit vector by at most
-the ratio of its displacement under the Kazhdan set to the Kazhdan
-constant.
-\item Translations move $p$ by a bound independent of the lattice
-vector.  Three explicit words in $x,y,z$ act on the translation
-lattice as elementary transvections.  Consequently every lattice
-element is a product of two conjugates, by elements of the linear
-subgroup, of basis translations.  The three words and the elimination
-that produces this factorization are finite data of the same kind as the
-thirteen reductions of Step~2, and are in the supplementary material.
-A conjugate $rvr^{-1}$ with $r$ in the linear subgroup
-displaces the fixed vector $p$ exactly as much as $v$ does.  Each
-control translation displaces $p$ by less than
-$1/64+\kappa/64+1/64=(\kappa+2)/64\le3/64$, its displacement bound at
-$\xi$ transferring across $\lVert p-\xi\rVert$ at both ends.
-Hence every translation displaces $p$ by at most $1/8$.
-\item The orbit of $p$ under the translation subgroup is bounded, so
-the Hilbert-space circumcenter argument gives a translation-fixed
-vector $q$ with $\lVert q-p\rVert\le1/8$; the orthogonal projection
-$\eta$ of $p$ to the translation-fixed subspace is the nearest fixed
-vector, so $\lVert\eta-p\rVert\le\lVert q-p\rVert\le1/8$.
-The linear subgroup normalizes the translation subgroup and fixes $p$,
-so $\eta$ is fixed by it as well.  Translations and the linear
-generators generate $\mathcal B$, so $\eta$ is $\mathcal B$-invariant.
-Finally, $\lVert \eta-\xi\rVert\le 1/8+1/64<1$ keeps $\eta$ nonzero.
-\end{enumerate}
-Thus almost-invariant vectors produce invariant vectors and $\mathcal B$
-has property~\textup{(T)} in the real-orthogonal formulation;
-realification and complexification identify it with the complex-unitary
-formulation.
+By Remark~\ref{rem:classical-base} the presentation
+\eqref{eq:gamma-presentation} defines $\mathbb Z^3\rtimes\SL_3(\mathbb
+Z)$, which has property~\textup{(T)}
+\cite[Example~1.7.4(i)]{BHV}.  For an orthogonal representation
+$\rho$ on a real Hilbert space $H_{\mathbb R}$, the complexification
+$H_{\mathbb R}\otimes_{\mathbb R}\mathbb C$ carries the unitary
+representation $\rho\otimes1$, whose invariant vectors and displacement
+norms are those of $\rho$ in each of the two real coordinates; a
+Kazhdan pair for the unitary formulation is therefore one for the
+orthogonal formulation.
 \end{proof}
 
-$P_{13}\cong\SL_3(\mathbb Z)$, and $\mathcal B$ is the affine group
-$\mathbb Z^3\rtimes\SL_3(\mathbb Z)$ (Section~\ref{app:p13}).
+\begin{remark}[the classical identification]\label{rem:classical-base}
+The eight relations \eqref{eq:sl3presentation} present
+$\SL_3(\mathbb Z)$ \cite[Theorem~2]{CRW}, with the matrix-labelled
+generators also recorded in \cite{CLV}, and the base $\mathcal B$ is
+then the affine group $\mathbb Z^3\rtimes\SL_3(\mathbb Z)$: the
+surjection $\mathcal B\to\bar\Gamma$ of Lemma~\ref{lem:linear} onto the
+matrix realization is an isomorphism.
+\leanverified{Monsters/LiteralBaseCompleteness}{GroupApproximation.LiteralBaseCompleteness.baseAffineEquiv}
+\end{remark}
 
 \section{Nontriviality of \texorpdfstring{$w$}{w}}\label{sec:witness}
 
@@ -1753,139 +1607,6 @@ normalization above and nothing else from the present proposition.
 
 \end{proof}
 
-\section{The finite-stage proof}\label{app:finite-stage}
-
-Theorem~\ref{thm:kazhdan-transport} also has a proof at finite stages,
-in which every estimate is an explicit inequality in $\kappa$, $|S|$,
-the uniform bound on $(x_n)$, and the multiplicative defects of $U_n$,
-conditional on the spectral-gap estimate~(i) below.  That estimate is
-not reducible to a threshold on finitely many defects:
-property~\textup{(T)} constrains exact unitary representations, while
-at a finite stage the matrix models generate only a representation of
-the free group on $S$.  Making it effective as well would need a
-sum-of-squares certificate for property~\textup{(T)} in the sense of
-\cite{Ozawa}.
-
-\begin{proof}[Finite-stage proof of Theorem~\ref{thm:kazhdan-transport}]
-Property~\textup{(T)} provides a finite symmetric generating set
-$S\subseteq\Gamma$ with $1\in S$ and a constant $\kappa\in(0,1]$ such
-that $(S,\kappa)$ is a Kazhdan pair.  As in the proof of
-Section~\ref{sec:transport}, each group element acts by conjugation,
-$\Ad U_n(g)\,\xi=U_n(g)\,\xi\,U_n(g)^*$, on
-$L^2(M_{d_n}(\C),\tr_{d_n})$, and operator-norm almost multiplicativity
-of $U_n$ makes $g\mapsto\Ad U_n(g)$ an operator-norm asymptotic
-representation on these Hilbert spaces.
-
-\emph{The almost-fixed spectral subspace.}  Let $H_n$ be the Hermitian part of the
-average $\frac1{|S|}\sum_{s'\in S}\Ad U_n(\iota(s'))$, fix the threshold
-\[
- \theta=\tfrac12\Bigl(\Bigl(1-\tfrac{\kappa^2}{4|S|}\Bigr)+1\Bigr)<1,
-\]
-and let $P_n$ be the spectral projection of $H_n$ for the part of the
-spectrum above $\theta$.
-\begin{enumerate}
-\item[(i)] \emph{Displacement.}  For every $\gamma\in\Gamma$,
-$\opnorm{(\Ad U_n(\iota(\gamma))-1)\,P_n}\to0$.  This comes from a
-quantitative spectral-gap estimate: for every pair $a,b$ with
-$1-\kappa^2/(4|S|)<a$ and $b<1$, once the multiplicative defects of
-$U_n$ on the finitely many group elements involved are small enough,
-no eigenvalue of $H_n$ lies in $[a,b]$.  Indeed, a unit eigenvector
-$\eta$ with $H_n\eta=\lambda\eta$ satisfies
-\[
- \frac1{|S|}\sum_{s'\in S}
-   \hsnorm{(\Ad U_n(\iota(s'))-1)\eta}^{2}=2(1-\lambda),
-\]
-so $\lambda\ge a>1-\kappa^{2}/(4|S|)$ forces
-$\hsnorm{(\Ad U_n(\iota(s'))-1)\eta}^{2}<\kappa^{2}/2$ for every
-$s'\in S$; by the Kazhdan inequality $\eta$ is then close to an invariant
-vector, on which $H_n$ is within the multiplicative defects of $1$,
-against $\lambda\le b<1$.
-\leanverified{Sofic/WeakMFVectorGNS}{GroupApproximation.WeakMFVectorGNS.hermitianAverage_eventually_no_intermediate_eigenvalues}
-Hence the spectrum of $H_n$ above $\theta$ is eventually within any
-prescribed $\delta$ of $1$, so a unit vector $\eta\in\operatorname{ran}P_n$
-has $\langle(1-H_n)\eta,\eta\rangle\le\delta$; since $1-H_n$ is the
-average of the positive operators $1-\operatorname{Re}\Ad U_n(\iota(s'))$,
-each generator satisfies
-$\tfrac1{2}\hsnorm{(\Ad U_n(\iota(s'))-1)\eta}^2\le|S|\,\delta$, and a word
-in $S$ of length $\ell$ moves $\eta$ by at most $\ell\sqrt{2|S|\delta}$
-plus the accumulated multiplicative defects.
-\item[(ii)] \emph{Spectral concentration.}  Write $\xi_n\in L^2(M_{d_n}(\C),\tr_{d_n})$
-for the vector $x_n$.  The commutator hypothesis says each
-$\Ad U_n(\iota(s'))$ almost fixes $\xi_n$, so the residual
-$(1-H_n)\xi_n$ is Hilbert--Schmidt null.  On
-$\operatorname{ran}(1-P_n)$ the operator $1-H_n$ is bounded below by
-$1-\theta$, and it commutes with $P_n$, so every vector $\eta$
-satisfies
-\[
- \hsnorm{(1-P_n)\eta}\;\le\;(1-\theta)^{-1}\,\hsnorm{(1-H_n)\eta}.
-\]
-Applied to $\eta=\xi_n$, this shows $\xi_n$ is asymptotically
-concentrated in $\operatorname{ran}P_n$.
-\end{enumerate}
-
-\emph{Reversing the one-sided projection estimate.}  Put
-$T_n=\Ad U_n(s)$ and $Q_n=T_nP_nT_n^*$, a projection of the same rank as
-$P_n$.  Since $\opnorm{(1-Q_n)P_n}=\opnorm{(1-P_n)T_n^{*}P_n}$, it is
-enough to bound the latter.  Let $\eta\in\operatorname{ran}P_n$ be a
-unit vector and let $s'\in S$.  The hypothesis
-$s\iota(\Gamma)s^{-1}\subseteq\iota(\Gamma)$ supplies a single
-$\delta_{s'}\in\Gamma$ with $s\iota(s')s^{-1}=\iota(\delta_{s'})$, and
-\[
- \bigl(\Ad U_n(\iota(s'))-1\bigr)T_n^{*}\eta
- \;=\;T_n^{*}\bigl(\Ad U_n(\iota(\delta_{s'}))-1\bigr)\eta
- \;+\;R_{n,s'},
-\]
-where $\opnorm{R_{n,s'}}$ is bounded by the multiplicative defects of
-$U_n$ on $\{s,\iota(s'),s^{-1}\}$ and therefore tends to $0$.  By~(i)
-so does the first term, so $T_n^{*}\eta$ is asymptotically fixed by
-every generator, and by~(ii) it lies asymptotically in
-$\operatorname{ran}P_n$.  Hence
-$\opnorm{(1-Q_n)P_n}\to0$, the finite-stage form of the one-sided
-inclusion $P\le VPV^*$.  Since $\operatorname{rank}P_n=
-\operatorname{rank}Q_n$, the equal-rank projection lemma --- for projections $p,q$ of
-equal finite rank, $\opnorm{(1-q)p}\le\varepsilon<1$ implies
-$\opnorm{(1-p)q}\le\varepsilon/\sqrt{1-\varepsilon^2}$ --- reverses the
-containment:
-\[
- \opnorm{(1-P_n)\,Q_n}\longrightarrow0.
-\]
-
-\emph{Combining the estimates.}  Fix $\gamma$ and $\varepsilon>0$, let $M\ge1$ bound
-$\opnorm{x_n}$, and put $q=\min(1,\varepsilon/(40(M^2+1)))$.  For all
-large $n$,
-\[
- \hsnorm{(1-P_n)\xi_n}^2\le q,\qquad
- \opnorm{(1-P_n)Q_n}\le q,\qquad
- \opnorm{(A_n-1)P_n}\le q,
-\]
-where $A_n=\Ad U_n(\iota(\gamma))$.  Decompose the transported vector
-along $P_n$ and $Q_n$:
-\[
- T_n\xi_n\;=\;P_nQ_n\,T_n\xi_n\;+\;(1-P_n)Q_n\,T_n\xi_n
- \;+\;(1-Q_n)\,T_n\xi_n.
-\]
-Since $Q_n=T_nP_nT_n^*$ and $T_n$ is conjugation by a unitary,
-\[
- \hsnorm{(1-Q_n)T_n\xi_n}=\hsnorm{T_n(1-P_n)\xi_n}
- =\hsnorm{(1-P_n)\xi_n}\le q^{1/2};
-\]
-the middle term obeys
-$\hsnorm{(1-P_n)Q_n\,T_n\xi_n}\le\opnorm{(1-P_n)Q_n}\hsnorm{\xi_n}
-\le qM$, and the displacement estimate moves the first term by at most
-$q\hsnorm{\xi_n}\le qM$.  Applying $A_n-1$, whose operator norm is at
-most $2$, to the last two terms and using the displacement bound on
-the first gives
-\[
- \hsnorm{(A_n-1)\,T_n\xi_n}^2
- \;\le\;\bigl(qM+2qM+2q^{1/2}\bigr)^2
- \;\le\;18q^2M^2+16q\;\le\;\varepsilon.
-\]
-Since $T_n\xi_n$ is the vector of $U_n(s)x_nU_n(s)^*$, this proves the
-asserted convergence.  Once the threshold of~(i) is fixed, every bound
-used above is explicit in $\kappa$, $|S|$, $M$, and the multiplicative
-defects of $U_n$ on the finitely many group elements involved.
-\end{proof}
-
 \clearpage
 
 \section{Transport at arbitrary weights}\label{supp:transport-variants}
@@ -1957,9 +1678,10 @@ every weight.
 
 Taking $\nu_n=d_n$ gives Theorem~\ref{thm:kazhdan-transport} with the
 uniform operator-norm bound relaxed to a uniform bound on
-$\operatorname{Tr}(x_n^*x_n)/d_n$.  Taking $\nu_n=k_n$, the rank of
-Step~3 in the proof of Theorem~\ref{thm:collapse}, gives the
-normalization used there.
+$\operatorname{Tr}(x_n^*x_n)/d_n$.  Taking $\nu_n=k_n$, the rank of the
+projection lift in the proof of
+Theorem~\ref{thm:projection-collapse}, gives the normalization used
+there.
 
 Invariant tensors of type $(p,q)$ may be identified with Hilbert--Schmidt
 intertwiners from the $q$th to the $p$th tensor power.  Tensor powers of unitaries are exactly
@@ -2247,53 +1969,46 @@ and lies in the subgroup $N_{\mathrm{conj}}$ determined by the image
 datum; it suffices to
 derive a contradiction for $\bar H$.
 
-\emph{The spectral projection $q_n$.}  Fix a finite symmetric
-generating Kazhdan set $S\subseteq\bar K$ with constant
-$\varepsilon_0$, at each coordinate let $h_n$ be the Hermitian part of
-the average of the models of $S$, and cut the spectrum of $h_n$ at
-$\theta=1-\varepsilon_0^2/(4|S|)$.  Let $q_n$ be the spectral
-projection of $h_n$ for $[-1,\theta]$.  On the complementary range,
-where the spectrum of $h_n$ lies above $\theta$, every model of every
-element of $\bar K$ is close to the identity in operator norm, by the
-Kazhdan-pair displacement estimate.  If $q_n=0$ for all large $n$,
-every element of $\bar K$ would satisfy $\opnorm{V_{k,n}-1}\to0$,
-contradicting the operator-norm separation of any fixed nontrivial
-element of $\bar K$.  So $q_n\ne0$ along an infinite set of
-coordinates, which we retain.
+\emph{The Kazhdan corner.}  Fix a free ultrafilter $\omega$, let
+$H_\omega$ be the Hilbert-space ultraproduct of the coordinate spaces
+$\C^{d_n}$, and let $B_\omega=\prod_\omega B(\C^{d_n})$ act on it as in
+Section~\ref{sec:transport}, so that the classes
+$\pi(g)=[V_{g,n}]_\omega$ define a unitary representation of $\bar H$
+on $H_\omega$.  Fix a finite symmetric generating Kazhdan set
+$S\subseteq\bar K$ with constant $\varepsilon_0$, put
+$\theta=1-\varepsilon_0^{2}/(4|S|)$, and let
+\[
+ h=\frac1{|S|}\sum_{a\in S}\pi(a)\in B_\omega ,
+\]
+self-adjoint because $S$ is symmetric.  A unit vector $\xi$ has
+$\langle h\xi,\xi\rangle=1$ exactly when $\pi(a)\xi=\xi$ for every
+$a\in S$, while the Kazhdan pair bounds $\langle h\xi,\xi\rangle$ by
+$\theta$ on the orthogonal complement of
+$\operatorname{Fix}\pi(\bar K)$.  The spectrum of $h$ therefore lies in
+$[-1,\theta]\cup\{1\}$, the spectral projection $P=\chi_{\{1\}}(h)$
+belongs to $B_\omega$, and its range is
+$\operatorname{Fix}\pi(\bar K)$.  Put $q=1-P$.
 
-\emph{A $2$-norm separation on the corner.}  Equip each retained corner
-block $q_nM_{d_n}(\C)q_n$ with its renormalized trace.  By the
-choice of $q_n$ as the spectral projection of $h_n$ for
-$[-1,\theta]$, $q_nh_nq_n\le\theta q_n$, so the average over
-$S$ of the real parts of the renormalized traces of the compressed
-models is at most $\theta$.  Hence at every retained coordinate some
-generator in $S$ has compressed model with real renormalized trace at
-most $\theta$, and therefore normalized Hilbert--Schmidt distance at
-least $\sqrt{2(1-\theta)}-o(1)$ from the corner identity after polar
-correction; passing to a subsequence fixes a single such generator
-$s_0$.
+If $q=0$ then $\pi(k)=1$ for every $k\in\bar K$, against the
+operator-norm separation of a fixed nontrivial element of $\bar K$.
+For $g\in\bar H$ the projection $\pi(g)P\pi(g)^{*}$ has range
+$\operatorname{Fix}\pi(g\bar Kg^{-1})=\operatorname{Fix}\pi(\bar K)$ by
+normality, so $P$ and $q$ commute with $\pi(\bar H)$ exactly.  Lift $q$
+to projections $q_n\in M_{d_n}(\C)$, nonzero along $\omega$ and with
+$\opnorm{[q_n,V_{g,n}]_{-}}\to_\omega0$ for every $g\in\bar H$.
+Compressing every model to $q_nM_{d_n}(\C)q_n$ and polar-correcting
+yields an operator-norm asymptotic representation $(W_{g,n})$ of
+$\bar H$ on nonzero blocks.
 
-\emph{Compression.}  Normality of $\bar K$ makes $q_n$ asymptotically
-commute with the ambient models: $\opnorm{[q_n,V_{g,n}]_{-}}\to0$ for
-every $g$.
-Because the models are only asymptotically multiplicative,
-$V_{g,n}h_nV_{g,n}^{*}$ is not the Hermitian average over the
-conjugate generating set $gSg^{-1}$ of $\bar K$ but converges to it in
-operator norm; that set has the same Kazhdan constant.  The
-displacement and concentration estimates of
-Section~\ref{app:finite-stage} apply to either average
-symmetrically: a vector on which one average has spectrum above
-$\theta$ is almost fixed by each generator of the other set
-(displacement, transported across the finitely many conjugations by
-almost-multiplicativity), hence almost lies in the corresponding range
-for the other average (the concentration inequality).
-Two-sided almost-containment of the two subspaces implies
-$\opnorm{q_n-V_{g,n}q_nV_{g,n}^{*}}\to0$, that is,
-$\opnorm{[q_n,V_{g,n}]_{-}}\to0$ for every $g\in\bar H$.  Compressing
-every model to the corner $q_nM_{d_n}(\C)q_n$ and polar-correcting yields an
-operator-norm asymptotic representation of all of $\bar H$ on nonzero
-blocks, in which $s_0$ keeps a definite normalized Hilbert--Schmidt
-distance from the identity.
+\emph{A $2$-norm separation on the corner.}  Equip each corner block
+with its renormalized trace.  The corner compression satisfies
+$qhq\le\theta q$, so at $\omega$-most coordinates the average over $S$
+of the real parts of the renormalized traces of the compressed models
+is at most $\theta+o(1)$.  Some generator in $S$ therefore has
+compressed model with real renormalized trace at most $\theta+o(1)$,
+and so normalized Hilbert--Schmidt distance at least
+$\sqrt{2(1-\theta)}-o(1)$ from the corner identity; passing to a
+subsequence fixes a single such generator $s_0$.
 
 \emph{The contradiction.}  The corner models form an operator-norm
 asymptotic representation of $\bar H$, and $\bar K$ lies in the subgroup $N_{\mathrm{conj}}$ determined by the
@@ -2425,26 +2140,6 @@ equality, and not an equality of subgroup images, that sends the defect
 to the identity.
 \end{remark}
 
-\begin{remark}[chain conditions suffice]\label{rem:chaincondition}
-Finiteness of the invariant can be weakened to a chain condition.  A
-conjugation-equivariant monotone invariant whose values satisfy the
-ascending or descending chain condition takes the same value on $\Gamma$
-as on $t\Gamma t^{-1}$, because an order isomorphism of such a poset
-fixes every point it moves weakly upward.  The fixed
-subspaces of $\Gamma$ and $t\Gamma t^{-1}$ agree in every
-finite-dimensional representation over every field; the same holds for
-the invariants of the induced representations on
-$V^{\otimes p}\otimes(V^{*})^{\otimes q}$, of which the commutant
-identity \eqref{eq:pinning} is the case $\End(V)\cong V\otimes V^{*}$;
-and the Zariski closures of $\sigma(\Gamma)$ and $\sigma(t\Gamma t^{-1})$
-coincide, the descending chain condition for Zariski-closed subgroups of
-$\GL(V)$ coming from the Hilbert basis theorem.
-\leanverified{Criterion/ChainConditionCompression}{GroupApproximation.manuscriptChainConditionRigidity}
-\leanverified{Criterion/TensorInvariantRigidity}{GroupApproximation.TensorInvariantRigidity.manuscriptTensorInvariantRigidity}
-\leanverified{Criterion/ClosedEnvelopeCompression}{GroupApproximation.ClosedEnvelopeCompression.manuscriptEnvelopeCompressionBlind}
-\leanverified{Algebra/ZariskiDescendingChain}{GroupApproximation.ZariskiClosedSubgroup.manuscriptZariskiRepresentationEnvelopeClosed}
-\end{remark}
-
 \section{The cyclic comparison}\label{sec:necessity}
 
 % Not the lettered Theorem C: an ordinary numbered theorem.  Cite
@@ -2518,20 +2213,15 @@ of this amenable group and is therefore amenable, hence MF by \cite{TWW}.
 Its distinguished word is the nontrivial Clifford sign by the calculation above.
 
 The homomorphism to $\U(\mathcal Q)$ just constructed cannot be
-assembled from exact finite-dimensional representations: it is an
-exact homomorphism, but any coordinate lifts of it are asymptotically
-multiplicative without being multiplicative.  Indeed, neither
-$E_{\mathrm{BS}}$ nor its Clifford quotient is LEF, and the latter is
-not residually finite.  In every finite
-group the doubling relation makes the image of
+assembled from exact finite-dimensional representations.  In every
+finite group the doubling relation makes the image of
 $\langle\gamma_0^2\rangle$ equal to the image of
-$\langle\gamma_0\rangle$; the generator therefore commutes with the
-required ``halved'' element and the distinguished word maps to the identity,
-so neither group is residually finite.  Any exact local embedding of a
-finite set containing the defining relators and the distinguished word
-satisfies the same equations, so an exact finite-dimensional
-representation would already send the distinguished word to the identity:
-neither group is LEF.
+$\langle\gamma_0\rangle$, so the generator commutes with the required
+``halved'' element and the distinguished word maps to the identity; any
+exact local embedding of a finite set containing the defining relators
+and the distinguished word satisfies the same equations.  Hence neither
+$E_{\mathrm{BS}}$ nor its Clifford quotient is LEF, and the latter is
+not residually finite.
 \leanverified{Monsters/CyclicBaseLEFObstruction}{GroupApproximation.CyclicBaseLEFObstruction.cyclicBase_exactModel_package}
 
 \clearpage
@@ -2691,79 +2381,6 @@ with $\bar\Theta$ a homomorphism $G_1/N\to\U(\mathcal Q)$; hence
 $\Theta(x)=\bar\Theta(q(x))=1$.
 \end{proof}
 
-By Corollary~\ref{cor:pullback}, the passage from $N$ to the full
-preimage of the quotient residual is a closure operation on the normal
-subgroups of a fixed group.
-
-\begin{proposition}[the MF closure of relations]\label{prop:mfclosure}
-For a countable group $G_1$ and $N\trianglelefteq G_1$ with quotient map
-$q\colon G_1\to G_1/N$, put
-\[
- \operatorname{cl}_{\mathrm{MF}}(N)
- =q^{-1}\bigl(\operatorname{Res}_{\mathrm{MF}}(G_1/N)\bigr).
-\]
-An element belongs to $\operatorname{cl}_{\mathrm{MF}}(N)$ exactly when
-every homomorphism $G_1\to\U(\mathcal Q)$ that maps $N$ to the identity maps
-it to the identity.
-\leanverified{Sofic/MFRelationClosure}{GroupApproximation.mem_actualCoronaMFClosure_iff}
-The operation $N\mapsto\operatorname{cl}_{\mathrm{MF}}(N)$ is extensive,
-monotone, and idempotent on normal subgroups;
-$G_1/\operatorname{cl}_{\mathrm{MF}}(N)$ is MF; and
-$\operatorname{cl}_{\mathrm{MF}}(N)=N$ exactly when $G_1/N$ is MF.
-\leanverified{Sofic/MFRelationClosure}{GroupApproximation.manuscriptRelationClosure}
-\end{proposition}
-
-\begin{proof}
-Homomorphisms $G_1\to\U(\mathcal Q)$ that map $N$ to $1$ correspond to homomorphisms $G_1/N\to\U(\mathcal Q)$, which gives the membership
-characterization; extensivity, monotonicity, and idempotence are read
-off from it.  The quotient clause is Proposition~\ref{prop:univquot}(2)
-transported along the third isomorphism theorem, and the fixed-point
-clause is the final equivalence of Proposition~\ref{prop:univquot}.
-\end{proof}
-
-For a presentation $G=\langle X\mid R\rangle=F/N$, the closure of $N$
-consists of the relations satisfied by every solution of $R$ in every
-MF group, and the group is MF exactly when $N$ is closed.
-The distinguished word of Theorem~\ref{thm:A} lies in
-$\operatorname{cl}_{\mathrm{MF}}(N)\setminus N$ for the forty-one
-relators (Proposition~\ref{prop:horn}).
-
-\begin{proposition}[iterating closure and join]\label{prop:sounditeration}
-Let $\mathcal S$ be the smallest family of subgroups of $G_1$ that
-contains the trivial subgroup and is closed under the following two
-operations: from a \emph{normal} $N\in\mathcal S$, adjoin every
-subgroup of $\operatorname{cl}_{\mathrm{MF}}(N)$; and from any
-subfamily of $\mathcal S$, adjoin its join, the subgroup generated by
-the union.  Then every member of $\mathcal S$ is contained in
-$\operatorname{Res}_{\mathrm{MF}}(G_1)$; a normal member with MF
-quotient equals $\operatorname{Res}_{\mathrm{MF}}(G_1)$; and if
-$G_1\in\mathcal S$, every homomorphism from $G_1$ to a countable MF
-group is trivial.
-\leanverified{Sofic/MFRelationClosure}{GroupApproximation.manuscriptSoundIterationClosure}
-\end{proposition}
-
-\begin{proof}
-Induct over the two operations.  If a normal $N\in\mathcal S$
-satisfies $N\le\operatorname{Res}_{\mathrm{MF}}(G_1)$, then
-Corollary~\ref{cor:pullback} gives
-$\operatorname{cl}_{\mathrm{MF}}(N)=\operatorname{Res}_{\mathrm{MF}}(G_1)$,
-so every subgroup chosen in the first operation is again inside the
-residual --- normal or not.  For the second operation, the residual is
-itself a subgroup, hence an upper bound in the subgroup lattice for any
-family contained in it; so the join $\bigvee_iH_i=\langle\bigcup_iH_i\rangle$
-lies in the residual too.  The remaining assertions are
-Corollary~\ref{cor:exactradical} and Proposition~\ref{prop:univquot};
-the latter needs $N$ normal so that $G_1/N$ is a group.
-\end{proof}
-
-By Theorems~\ref{thm:criterion}, \ref{thm:normal-kazhdan}
-and~\ref{thm:collapse}, a subgroup lies inside the residual of every
-countable group with the relevant data, hence inside the residual of
-every quotient reached by the iteration.  A hypothesis may hold at a later
-stage without holding at an earlier one: modulo the earlier stage an
-element may acquire finite order, an orbit may begin to commute, or a
-subgroup may become normal.
-
 \begin{corollary}\label{cor:nofaithful}
 Let $A$ be a unital $C^*$-algebra admitting an injective, possibly
 nonunital, $*$-homomorphism into a matrix quotient.  Then the group $E$
@@ -2827,69 +2444,139 @@ displayed presentation.  The group \(F_8\) is residually finite, hence MF by
 Lemma~\ref{lem:permanence}(2), while \(E\) is not MF by Theorem~\ref{thm:A}.
 \end{proof}
 
-
-\subsection{Matricial stability and the residual}\label{subsec:stability}
-
-Following Dadarlat \cite{Dadarlat}, a countable group $G$ is
-\emph{matricially stable} if for every operator-norm asymptotic
-representation $(V_n)$ of $G$ there are genuine finite-dimensional
-unitary representations $\pi_n$, in the same matrix dimensions, with
-$\opnorm{V_n(g)-\pi_n(g)}\to0$ for every $g\in G$.
-Write $\operatorname{Res}_{\mathrm{fd}}(G)$ for the intersection of
-the kernels of all finite-dimensional unitary representations of $G$.
-
-\begin{proposition}[stability identifies the residuals]\label{prop:stabradical}
-For every countable group,
-$\operatorname{Res}_{\mathrm{MF}}(G)\le\operatorname{Res}_{\mathrm{fd}}(G)$.
-If $G$ is matricially stable, then
-$\operatorname{Res}_{\mathrm{MF}}(G)=\operatorname{Res}_{\mathrm{fd}}(G)$;
-in particular a stable group with
-$\operatorname{Res}_{\mathrm{fd}}(G)\neq1$ is not MF.
-\leanverified{Sofic/MatricialStabilityRadical}{GroupApproximation.MatricialStabilityRadical.actualCoronaMFResidual_le_fdUnitaryResidual}
-\leanverified{Sofic/MatricialStabilityRadical}{GroupApproximation.MatricialStabilityRadical.actualCoronaMFResidual_eq_fdUnitaryResidual}
-\leanverified{Sofic/MatricialStabilityRadical}{GroupApproximation.MatricialStabilityRadical.not_isCDEOperatorMF_of_stable_of_fdResidual_ne_bot}
-\end{proposition}
-
-\begin{proof}
-The first inclusion holds for every countable group.  A
-finite-dimensional unitary
-representation $\pi$ on $\C^{d}$ amplifies to $\pi^{\oplus n}$ on
-$\C^{nd}$; the dimensions $nd$ are strictly increasing, so
-$(\pi^{\oplus n})_n$ is a homomorphism to $\U(\mathcal Q)$ in the sense of
-\eqref{eq:unitary-corona}.  Since
-$\opnorm{\pi^{\oplus n}(x)-1}=\opnorm{\pi(x)-1}$ for every $n$, that
-sequence is null exactly when $\pi(x)=1$.  Hence an element of
-$\operatorname{Res}_{\mathrm{MF}}(G)$ is sent to the identity by every finite-dimensional
-representation.
-
-For the converse inclusion, assume $G$ matricially stable,
-let $x\in\operatorname{Res}_{\mathrm{fd}}(G)$, and suppose toward a
-contradiction that a homomorphism $\Theta$ to $\U(\mathcal Q)$ has
-$\Theta(x)\ne1$.  Choose unitary coordinate lifts $U_n(g)$ of
-$\Theta(g)$.  Since $\Theta(x)-1\ne0$ in the norm quotient, after
-passing to a subsequence there is $\delta>0$ with
-$\opnorm{U_n(x)-1}\ge\delta$ for every $n$.  The lifts form an
-operator-norm asymptotic representation, so stability gives genuine
-representations $\pi_n$ on the same blocks with
-$\opnorm{U_n(g)-\pi_n(g)}\to0$ for each fixed $g$.  But
-$x\in\operatorname{Res}_{\mathrm{fd}}(G)$ gives $\pi_n(x)=1$ for every
-$n$, so
-$\opnorm{U_n(x)-1}=\opnorm{U_n(x)-\pi_n(x)}\to0$, against the uniform
-lower bound.
-\end{proof}
-
-For a stable group the two residuals therefore agree.  With
-Theorem~\ref{thm:B}: every matricially stable group with
-$\operatorname{Res}_{\mathrm{fd}}(G)\ne1$ is not MF.
-
 \section{Orbit collapse}\label{subsec:collapse}
 
-Under a
-commuting-orbit hypothesis in place of centrality, every homomorphism
-to $\U(\mathcal Q)$ identifies an entire conjugation orbit of an
-involution; a whole family of commutators therefore lies in the
-residual, and by Corollary~\ref{cor:pullback} computing the residual
-reduces to the quotient by that family.
+The argument of Theorem~\ref{thm:sign-criterion} extends from the
+negative spectral corner of a central involution to an arbitrary
+projection of $\mathcal Q$ with commuting conjugation orbit.
+
+\begin{theorem}[projection collapse]\label{thm:projection-collapse}
+Let $H$ be countable, let $L\le H$ have property~\textup{(T)}, let
+$s\in H$ satisfy $s\gamma s^{-1}\in L$ for every $\gamma\in L$, and let
+$\Theta\colon H\to\U(\mathcal Q)$ be a homomorphism.  Let
+$p\in\mathcal Q$ be a projection such that $p$ commutes with
+$\Theta(s\gamma s^{-1})$ for every $\gamma\in L$ and the projections
+$\Theta(\gamma)\,p\,\Theta(\gamma)^*$, $\gamma\in L$, commute pairwise.
+Then $p$ commutes with $\Theta(L)$.
+\leanverified{Sofic/ProjectionCompressionCollapse}{GroupApproximation.ProjectionCompressionCollapse.corona_projection_collapse}
+\end{theorem}
+
+\begin{proof}
+Property~\textup{(T)} makes $L$ finitely generated; fix a finite
+generating set $S=\{a_1,\dots,a_m\}$.  Write
+$p_g=\Theta(g)\,p\,\Theta(g)^{*}$ and $d_g=p_g-p$ for $g\in L$, and
+suppose $d_{g_0}\ne0$ for some $g_0\in L$.
+
+Since $p_g$ and $p$ are commuting projections, $d_g$ is self-adjoint
+with $d_g^{3}=d_g$, so $d_g^{2}$ is a projection and $d_gd_g^{2}=d_g$;
+write $q_g=d_g^{2}$.  All the $p_g$ commute, hence so do all the $d_g$
+and all the $q_g$.  Put
+\[
+ q=1-\prod_{a\in S}(1-q_a),
+\]
+the join of the projections $q_a$, $a\in S$.  The elements $g$ with
+$p_g=p$ form a subgroup of $L$, so if $q=0$, and hence $d_a=0$ for
+every $a\in S$, then $d_g=0$ for every $g\in L$, against
+$d_{g_0}\ne0$.  Thus $q\ne0$.
+
+\emph{A Hilbert space attached to $q$.}  Take a self-adjoint bounded
+lift $(x_n)$ of $q$.  Then $\opnorm{x_n^{2}-x_n}\to0$, so the spectrum
+of $x_n$ clusters at $\{0,1\}$ and continuous functional calculus makes
+$Q_n=\chi_{[1/2,\infty)}(x_n)$ a projection with
+$\opnorm{Q_n-x_n}\to0$; the sequence $(Q_n)$ again lifts $q$.  Since
+$q\ne0$, $Q_n\ne0$ for infinitely many $n$; discard the remaining
+coordinates, relabel by $\N$, and put
+$k_n=\operatorname{rank}Q_n\ge1$.
+
+Give $M_{d_n}(\C)$ the inner product
+$\langle x,y\rangle_n=\operatorname{Tr}(y^{*}x)/k_n$, write
+$\lVert x\rVert_{\mathrm F}=\operatorname{Tr}(x^{*}x)^{1/2}$ for the
+unnormalized Hilbert--Schmidt norm, and let $K_\omega$ be the
+Hilbert-space ultraproduct of these spaces along a free ultrafilter
+$\omega$.  Let $\mathcal I_q$ be the set of finite sums
+$\sum_{j\le r}x_jqy_j$ with $x_j,y_j\in\mathcal Q$, a two-sided ideal
+of $\mathcal Q$ invariant under inner automorphisms.
+
+Given such a sum, choose bounded coordinate lifts $X_{j,n}$ of $x_j$
+and $Y_{j,n}$ of $y_j$ and put $Z_n=\sum_{j\le r}X_{j,n}Q_nY_{j,n}$,
+of rank at most $rk_n$.  The square of the Frobenius norm is the sum of
+the squares of the singular values, of which at most
+$\operatorname{rank}(Z_n)$ are nonzero and each is at most the operator
+norm, so
+\begin{equation}\label{eq:rank-frobenius}
+ \lVert Z_n\rVert_{\mathrm F}^{2}
+ \;\le\;\operatorname{rank}(Z_n)\opnorm{Z_n}^{2}
+ \;\le\;r\,k_n\opnorm{Z_n}^{2}
+\end{equation}
+and $(Z_n)$ is a bounded sequence for the inner products
+$\langle\cdot,\cdot\rangle_n$.  Its class in $K_\omega$ depends only on
+$z=\sum_jx_jqy_j$: a sequence $Z_n'$ obtained from a second
+decomposition, with $r'$ summands, satisfies $\opnorm{Z_n-Z_n'}\to0$
+and $\operatorname{rank}(Z_n-Z_n')\le(r+r')k_n$, so
+$\lVert Z_n-Z_n'\rVert_{\mathrm F}^{2}/k_n\to0$ by
+\eqref{eq:rank-frobenius}.  Write $\Lambda(z)=[Z_n]_\omega$.  The map
+$\Lambda\colon\mathcal I_q\to K_\omega$ is linear,
+\[
+ \lVert\Lambda(q)\rVert
+ =\lim_\omega\Bigl(\frac{\operatorname{Tr}Q_n}{k_n}\Bigr)^{1/2}=1,
+\]
+and $\Lambda(z)=0$ implies $\Lambda(xzy)=0$ for all
+$x,y\in\mathcal Q$, since bounded lifts of $x$ and $y$ multiply
+$\lVert Z_n\rVert_{\mathrm F}$ by a bounded factor.
+
+\emph{An exact cocycle.}  For $a\in S$ the projection $q_a$ annihilates
+$\prod_{b\in S}(1-q_b)$, so $q_aq=q_a$ and
+$d_a=d_aq_a=d_aq\in\mathcal I_q$.  From
+$p_{gh}=\Theta(g)\,p_h\,\Theta(g)^{*}$,
+\begin{equation}\label{eq:collapse-cocycle}
+ d_{gh}=d_g+\Theta(g)\,d_h\,\Theta(g)^{*}\qquad(g,h\in L),
+\end{equation}
+and $\mathcal I_q$ is inner-invariant, so $d_g\in\mathcal I_q$ for
+every $g\in L$.
+
+Choose unitary coordinate lifts $U_n(h)$ of $\Theta(h)$
+(Lemma~\ref{lem:unitarycorona}).  Conjugation by a unitary preserves
+each $\langle\cdot,\cdot\rangle_n$, and
+$\opnorm{\Ad u-\Ad v}\le2\opnorm{u-v}$, so
+$\pi(h)=[\Ad U_n(h)]_\omega$ defines a unitary representation of $H$ on
+$K_\omega$, and
+$\pi(h)\Lambda(z)=\Lambda\bigl(\Theta(h)\,z\,\Theta(h)^{*}\bigr)$ on
+the closed invariant subspace
+$K_q=\overline{\Lambda(\mathcal I_q)}$.  By
+\eqref{eq:collapse-cocycle} the map $\beta(g)=\Lambda(d_g)$ satisfies
+\[
+ \beta(gh)=\beta(g)+\pi(g)\beta(h)\qquad(g,h\in L),
+\]
+a $1$-cocycle for $\pi|_L$ with values in $K_q$.
+
+Suppose $\beta(a)=0$ for every $a\in S$.  Put $r_1=1$ and
+$r_i=\prod_{j<i}(1-q_{a_j})$ for $i\ge2$.  The products
+$e_i=r_iq_{a_i}$ are projections with $e_i=r_i-r_{i+1}$, so they are
+pairwise orthogonal and $\sum_ie_i=1-r_{m+1}=q$.  Each $d_{a_i}$
+commutes with $r_i$, so $e_i=(d_{a_i}r_i)\,d_{a_i}$ and
+$\Lambda(e_i)=0$, whence $\Lambda(q)=0$ against
+$\lVert\Lambda(q)\rVert=1$.  So $\beta$ is not identically zero.
+
+\emph{Property~\textup{(T)}.}  By the Delorme--Guichardet theorem
+\cite[Theorem~2.12.4]{BHV}, $\beta$ is a coboundary: there is $y\in K_q$
+with $\beta(g)=y-\pi(g)y$ for every $g\in L$.  The hypothesis on $p$
+gives $d_{sas^{-1}}=0$, hence $\pi(sas^{-1})y=y$, for every $a\in L$.
+The proof of Theorem~\ref{thm:kazhdan-transport} identifies
+$\operatorname{Fix}\pi(sLs^{-1})$ with $\operatorname{Fix}\pi(L)$: the
+projection $P$ onto $\operatorname{Fix}\pi(L)$ and its conjugate
+$Q=\pi(s)P\pi(s)^{*}$, whose range is
+$\operatorname{Fix}\pi(sLs^{-1})$, satisfy $P\le Q$ and $P\sim Q$ in
+the norm ultraproduct, which is finite, so $P=Q$ by
+Lemma~\ref{lem:finitecompare}.  The weight $k_n$ in place of $d_n$
+leaves that comparison unchanged
+(Theorem~\ref{thm:transport-variants}(1)).  Hence $\pi(g)y=y$ and
+$\beta(g)=0$ for every $g\in L$, contradicting the previous paragraph.
+So $d_g=0$, that is, $p$ commutes with $\Theta(g)$, for every $g\in L$.
+\end{proof}
+
+Equivalently, every projection of $\Theta(sLs^{-1})'\cap\mathcal Q$
+whose $\Theta(L)$-conjugates commute pairwise already lies in
+$\Theta(L)'\cap\mathcal Q$.
 
 \begin{definition}[involutive orbit witness]\label{def:invwitness}
 Let $H$ be a group, $L\le H$ a subgroup, and $s\in H$.  An element
@@ -2914,11 +2601,9 @@ The pair $(L,s)$ determines the normal subgroup
 
 In a permutational wreath product $K^{(X)}\rtimes G$ with $L\le G$
 conjugated into itself by $s$ and $x_0\in X$ a point fixed by
-$sLs^{-1}$, every
-involution of the copy of $K$ at $x_0$ is a witness: copies at distinct
-points commute, and the conjugate copy fixes the point.  Every
-homomorphism to $\U(\mathcal Q)$ then identifies those copies along the
-whole $L$-orbit of $x_0$ (Theorem~\ref{thm:collapse}).
+$sLs^{-1}$, every involution of the copy of $K$ at $x_0$ is a witness:
+copies at distinct points commute, and the conjugate copy fixes the
+point.
 
 \begin{theorem}[involutive collapse]\label{thm:collapse}
 Let $H$ be countable, let $L\le H$ be a subgroup with
@@ -2931,394 +2616,21 @@ $s\gamma s^{-1}\in L$ for every $\gamma\in L$.  Then
 \end{theorem}
 
 \begin{proof}
-Fix a witness $k$ and suppose, toward a contradiction, that some homomorphism $\Theta\colon H\to\U(\mathcal Q)$ has
-$\Theta([\gamma_0,k])\ne1$ for some
-$\gamma_0\in L$.
-Coordinate unitary lifts (Lemma~\ref{lem:unitarycorona}) give an
-operator-norm asymptotic representation $(U_{g,n})$ on blocks
-$M_{d_n}(\C)$, and after passing to a subsequence there is $\eta>0$
-with $\opnorm{U_{[\gamma_0,k],n}-1}\ge\eta$ for every $n$.
-
-\emph{Step 1: approximation by commuting self-adjoint involutions.}
-Write $v_\gamma=\gamma k\gamma^{-1}$ and let
-$O=\{v_\gamma:\gamma\in L\}$ be the conjugation orbit of $k$; by (W1),
-(W3), and asymptotic multiplicativity the models of the elements of
-$O$ asymptotically commute and square to $1$.  The spectral sign of
-the Hermitian part of a unitary $u$ is an exact self-adjoint
-involution at operator distance at most $\opnorm{u^2-1}$ from $u$.
-Enumerate $O$ as $v^{(1)},v^{(2)},\dots$ and correct in that order,
-carrying the induction hypothesis that after stage $m$ the operators
-$V_n(v^{(1)}),\dots,V_n(v^{(m)})$ are exact self-adjoint involutions
-commuting pairwise, \emph{and that no later stage alters them}.  At
-stage $m$ the model $U_{v^{(m)},n}$ fails to commute with $V_n(v^{(j)})$, $j<m$, by at most
-$\opnorm{[U_{v^{(m)},n},U_{v^{(j)},n}]_{-}}
- +2\opnorm{V_n(v^{(j)})-U_{v^{(j)},n}}$,
-the first term an asymptotic-commutation error of (W3) and the second
-the error already accumulated, so the total is a sum of $m$ quantities
-each tending to $0$.  The joint commutant of
-$V_n(v^{(1)}),\dots,V_n(v^{(m-1)})$ is a unital $*$-subalgebra --- a
-finite intersection of joint spectral corners of exact commuting
-involutions --- so compressing $U_{v^{(m)},n}$ into it moves it by at
-most that amount, and taking the spectral sign of the Hermitian part
-\emph{inside that subalgebra} yields an exact self-adjoint involution
-commuting exactly with all earlier ones while leaving them untouched.
-The resulting perturbation is bounded by the sum of the preceding $m$
-commutation and correction errors, hence tends to $0$ for fixed $m$;
-each $m$ is fixed before $n$ grows, so the limits displayed next are
-taken at fixed $m$.
-The induction yields exact pairwise-commuting self-adjoint involutions
-$V_n(v)$, $v\in O$, with
+Let $\Theta\colon H\to\U(\mathcal Q)$ be a homomorphism and $k$ a
+witness for $(L,s)$.  By (W1) the unitary $u=\Theta(k)$ is
+self-adjoint, so $p=\tfrac12(1-u)$ is a projection, and
 \[
- \opnorm{V_n(v)-U_{v,n}}\longrightarrow0,\qquad
- \opnorm{U_{g,n}V_n(v)U_{g,n}^{*}-V_n(gvg^{-1})}\longrightarrow0
+ \Theta(\gamma)\,p\,\Theta(\gamma)^{*}
+ =\tfrac12\bigl(1-\Theta(\gamma k\gamma^{-1})\bigr)
+ \qquad(\gamma\in L).
 \]
-for each fixed $v\in O$ and $g\in L$.  Write $V_n(\gamma)$ for
-$V_n(v_\gamma)$; it depends on $\gamma$ only through $v_\gamma$.
-
-\emph{Step 2: a rank pseudometric on the orbit.}  For commuting exact
-involutions $e,f$ the self-adjoint displacement $T=e-f$ satisfies
-$T^3=4T$, so its eigenvalues lie in $\{0,\pm2\}$, the operator $T^2/4$
-is the orthogonal projection onto $\operatorname{ran}T$, and
-\begin{equation}\label{eq:rank-support}
- \operatorname{Tr}|e-f|^2=4\operatorname{rank}(e-f).
-\end{equation}
-Hence $r_n(\gamma,\mu)=\operatorname{rank}(V_n(\gamma)-V_n(\mu))$
-is an integer-valued pseudometric.  It is eventually translation
-invariant, $r_n(g\gamma,g\mu)=r_n(\gamma,\mu)$ for all large $n$ and
-each fixed triple: the comparison is made between the projections
-$T^2/4$, whose ranks agree once they lie at operator distance below
-$1$, and the displacements have operator norm at most $2$, so a
-covariance error below $1/8$ moves the associated projections by at
-most $1/4$.
-
-\emph{Step 3: normalization at the generators.}  Property~\textup{(T)} makes
-$L$ finitely generated; fix a Kazhdan pair $(S,\kappa)$ with $S$
-finite symmetric and put $k_n=\sum_{a\in S}r_n(1,a)$.  For each fixed
-$\gamma$, translation invariance and the triangle inequality along one
-fixed word for $\gamma$ give $r_n(1,\gamma)\le|\gamma|_S\,k_n$ for all
-large $n$, where $|\cdot|_S$ is the word length.  Suppose $k_n=0$
-along a subsequence.  Only $\gamma_0$ is needed there, and
-the estimate above is available for it: $r_n(1,\gamma_0)\le
-|\gamma_0|_S\,k_n=0$ at every sufficiently late stage of that
-subsequence, so $V_n(\gamma_0)=V_n(1)$ and
-$\opnorm{U_{[\gamma_0,k],n}-1}\to0$ along it, against the separation.
-Hence $k_n\ge1$ for all large $n$.  (The bound $r_n(1,\gamma)\le
-|\gamma|_S k_n$ holds for each fixed $\gamma$ past a stage depending on
-$\gamma$, so it does not collapse the whole orbit at one stage when $L$
-is infinite; the argument does not ask it to.)
-
-\emph{Step 4: an approximate $1$-cocycle.}  This step and the next work
-with the \emph{unnormalized} Hilbert--Schmidt, or Frobenius, norm
-$\|x\|_{\mathrm F}=\operatorname{Tr}(x^{*}x)^{1/2}$, so that
-$\|x\|_{\mathrm F}^2=d_n\hsnorm{x}^2$ on $M_{d_n}(\C)$; the
-normalization is by the rank $k_n$ below rather than by $d_n$.  Set
-$b_n(\gamma)=k_n^{-1/2}\bigl(V_n(\gamma)-V_n(1)\bigr)$.  By
-\eqref{eq:rank-support} and Steps 2 and 3,
-$\|b_n(\gamma)\|_{\mathrm{F}}^2=4r_n(1,\gamma)/k_n\le4\,|\gamma|_S$ at
-every large stage, and
-\begin{equation}\label{eq:generator-mass}
-  \sum_{a\in S}\|b_n(a)\|_{\mathrm{F}}^2=4
-\end{equation}
-whenever $k_n\ge1$.  Conjugation by $U_{a,n}$ is a Frobenius isometry.
-Fix $a,\gamma\in L$, put $\mu=a^{-1}\gamma$, and let $k_n^{-1/2}D_n$ be
-the defect in the cocycle identity, so that
-\[
-  D_n=\bigl(V_n(\gamma)-V_n(1)\bigr)
-  -U_{a,n}\bigl(V_n(\mu)-V_n(1)\bigr)U_{a,n}^{*}
-  -\bigl(V_n(a)-V_n(1)\bigr).
-\]
-As written, $D_n$ is a sum of three displacements of the commuting
-family of Step~1, one of them conjugated; rank is subadditive and
-invariant under unitary conjugation, so Step~2 with the bound of
-Step~3 gives
-\[
-  \operatorname{rank}D_n\le r_n(\gamma,1)+r_n(\mu,1)+r_n(a,1)
-  \le\bigl(|\gamma|_S+|\mu|_S+|a|_S\bigr)k_n
-\]
-eventually.  Regrouped as
-\[
-  D_n=\bigl(V_n(\gamma)-U_{a,n}V_n(\mu)U_{a,n}^{*}\bigr)
-  +\bigl(U_{a,n}V_n(1)U_{a,n}^{*}-V_n(a)\bigr),
-\]
-the same $D_n$ is a sum of two covariance errors of Step~1, so
-$\opnorm{D_n}\to0$.  Both bounds are needed, because operator-norm
-control alone does not bound rank: two exact involutions at small
-operator distance can differ in full rank.  Combining them in
-$\operatorname{Tr}|D|^2\le\operatorname{rank}(D)\cdot\opnorm{D}^2$
-gives
-$\operatorname{Tr}|D_n|^{2}/k_n
-\le\bigl(|\gamma|_S+|\mu|_S+|a|_S\bigr)\opnorm{D_n}^2\to0$: the
-cocycle defect is $o(k_n)$ in squared Frobenius norm.
-
-\emph{Step 5: the limiting cocycle is a coboundary.}  Fix a free
-ultrafilter $\omega$ on $\N$, give $M_{d_n}(\C)$ the inner product
-$\langle x,y\rangle=\operatorname{Tr}(y^{*}x)$, and let $K_\omega$ be
-the Hilbert-space ultraproduct of these spaces along $\omega$.
-Conjugation is unitary for that inner product, and the dimension-free
-estimate $\opnorm{\Ad u_1-\Ad u_2}\le2\opnorm{u_1-u_2}$ makes
-$g\mapsto\Ad U_{g,n}$ asymptotically multiplicative in the operator
-norm of $B(M_{d_n}(\C))$, so
-\[
- \pi(g)=[\Ad U_{g,n}]_\omega
-\]
-is a unitary representation of $H$ on $K_\omega$.  The bound
-$\|b_n(\gamma)\|_{\mathrm F}^2\le4|\gamma|_S$ of Step~4 makes
-$b(\gamma)=[b_n(\gamma)]_\omega$ a well-defined vector of $K_\omega$
-for every $\gamma\in L$, and the vanishing of the normalized cocycle
-defect makes
-\[
- b(a\mu)=b(a)+\pi(a)\,b(\mu)\qquad(a,\mu\in L),
-\]
-so $b\colon L\to K_\omega$ is a $1$-cocycle for $\pi|_L$.  Since
-$\lim_\omega$ is linear, \eqref{eq:generator-mass} passes to the limit
-as the identity
-\begin{equation}\label{eq:limit-mass}
- \sum_{a\in S}\lVert b(a)\rVert^{2}=4 .
-\end{equation}
-By the Delorme--Guichardet theorem \cite[Theorem~2.12.4]{BHV},
-property~\textup{(T)} of $L$ makes every $1$-cocycle of every unitary
-representation a coboundary, so there is $y\in K_\omega$ with
-\[
- b(\gamma)=y-\pi(\gamma)y\qquad(\gamma\in L).
-\]
-
-\emph{Step 6: transport by the conjugator $s$.}  By (W2) the element
-$sas^{-1}$ commutes with $k$ for every $a\in L$, so
-$v_{sas^{-1}}=k=v_1$; the assignment $\gamma\mapsto v_\gamma$ of Step~1 then gives
-$V_n(sas^{-1})=V_n(1)$ at every stage, and hence $b(sas^{-1})=0$.
-Therefore $y=\pi(sas^{-1})y$ for every $a\in L$: the vector $y$ is
-fixed by $\pi(sLs^{-1})$.
-
-The proof of Theorem~\ref{thm:kazhdan-transport} gives the reverse of
-the inclusion supplied by $sLs^{-1}\le L$, namely
-\[
- \operatorname{Fix}\pi(sLs^{-1})\;\subseteq\;\operatorname{Fix}\pi(L):
-\]
-there $P$ is the projection of $K_\omega$ onto $\operatorname{Fix}\pi(L)$,
-the range of $Q=\pi(s)P\pi(s)^{*}$ is $\operatorname{Fix}\pi(sLs^{-1})$,
-$P\le Q$, and $Q=P$ by Lemma~\ref{lem:finitecompare} and finiteness of
-$B_\omega$.  That chain is independent of $(x_n)$,
-and multiplying each coordinate inner product by a positive scalar ---
-here passing from $\tr_{d_n}$ to $\operatorname{Tr}$ --- changes neither
-the operator norms of the adjoint actions nor the comparison of
-projections, so it applies unchanged.
-
-Hence $y\in\operatorname{Fix}\pi(L)$, so $b(a)=y-\pi(a)y=0$ for every
-$a\in L$, contradicting \eqref{eq:limit-mass}.  Therefore
-$\Theta([\gamma,k])=1$ for every $\gamma\in L$ and every witness $k$,
-and normality of these kernels extends the conclusion to all of
+By (W2) the projection $p$ commutes with $\Theta(s\gamma s^{-1})$ for
+$\gamma\in L$, and by (W3) the displayed projections commute pairwise.
+Theorem~\ref{thm:projection-collapse} makes $p$, and hence $u=1-2p$,
+commute with $\Theta(L)$, so $\Theta([\gamma,k])=1$ for every
+$\gamma\in L$.  Kernels are normal, so $\Theta$ is trivial on
 $D_{\mathrm{coll}}(L,s)$.
 \end{proof}
-
-\begin{remark}[the quantitative form]\label{rem:collapse-finite-stage}
-Steps~5 and~6 can be carried out at a single coordinate, with every
-tolerance fixed in advance, except for the constant $C$ below, which is
-read off the limiting cocycle.  By property~\textup{(T)}, that
-\emph{limiting} cocycle satisfies a bound uniform in $\gamma$,
-\begin{equation}\label{eq:profile-bounded}
- \lVert b(\gamma)\rVert\le C\qquad(\gamma\in L),
-\end{equation}
-with $C$ depending on the Kazhdan pair alone.  Step~4 gives only the
-$\gamma$-dependent bound $2|\gamma|_S^{1/2}$;
-\eqref{eq:profile-bounded} strengthens it to a bound uniform in
-$\gamma$.
-
-The finite-stage reading of \eqref{eq:profile-bounded} fails, and the
-argument below does not use it.
-For each fixed $\gamma$ the finite-stage norms $\lVert
-b_n(\gamma)\rVert_{\mathrm F}$ approach $\lVert b(\gamma)\rVert$ along
-$\omega$, so each $\gamma$ has its own $\omega$-large set of good
-stages; there is no single stage at which the bound holds
-simultaneously for all $\gamma\in L$, since $L$ is infinite and an
-infinite intersection of $\omega$-large sets need not be $\omega$-large.
-The bound is used at finitely many places only --- on the generators
-$a\in S$ and on the primitive --- and there the intersection is finite.
-Property~\textup{(T)} supplies that uniformity, in the quantitative
-form of the Delorme--Guichardet argument \cite[Section~2.12]{BHV}: for
-a Kazhdan pair $(S,\kappa)$, every $1$-cocycle of every unitary
-representation of $L$ is bounded by its generator values, the fixed
-vector produced from the Kazhdan projection lying within a multiple of
-$\max_{a\in S}\lVert b(a)\rVert$ of the origin and
-$b(\gamma)=y-\pi(\gamma)y$ being at most twice that.  Applied to the
-limiting cocycle of Step~5, where $\sum_{a\in S}\lVert b(a)\rVert^{2}=4$
-by \eqref{eq:generator-mass}, this gives
-\begin{equation}\label{eq:profile-explicit}
- \lVert b(\gamma)\rVert^{2}\;\le\;\frac{160\log2}{\kappa^{2}}
- \;\le\;\frac{111}{\kappa^{2}}\qquad(\gamma\in L),
-\end{equation}
-so $C=\sqrt{111}/\kappa$ serves.  The Kazhdan constant is the only
-datum that enters: neither $|S|$ nor the group appears, which is more
-than uniformity in $\gamma$ and more than
-\eqref{eq:profile-bounded} asks for.
-\leanverified{Sofic/CollapseProfileBound}{GroupApproximation.CollapseProfileBound.collapse_profile_le}
-\leanverified{Sofic/CollapseProfileBoundNumeric}{GroupApproximation.CollapseProfileBound.collapse_profile_le_num}
-The constant $C$ is the only quantity below taken from the limit; the
-transport and the contradiction take place at a single stage.  Put
-\[
- \rho=\frac1{\sqrt{|S|}+1},\qquad
- q=\frac{\rho}{24(C+1)},\qquad
- \tau\le\min\Bigl\{\frac\rho2,\;
-   \frac{(1-\theta)\rho^{2}}{256(C+1)}\Bigr\},
-\]
-with
-\[
- 1-\frac{\kappa^{2}}{4|S|}<\theta<1
-\]
-the spectral threshold, and fix a single stage $n$, past the finitely
-many thresholds of Steps~1--4, at which the covariance errors of
-Step~1 are below $\tau$.  Both inequalities on $\theta$ are used.  The
-upper one keeps the corner nonempty.  The lower one holds because the
-Kazhdan gap of Step~4 bounds the Hermitian average by
-$1-\kappa^{2}/(4|S|)$ off the fixed subspace, and it yields
-\eqref{eq:corner-fix}.
-
-The operator to cut is not quite the average.  At a finite stage
-$|S|^{-1}\sum_{a\in S}\Ad U_{a,n}$ need not be self-adjoint even for
-symmetric $S$, because $U_{a^{-1},n}$ is only \emph{approximately}
-$U_{a,n}^{*}$; an ordered spectral cut ``above $\theta$'' is therefore
-undefined for it as it stands.  Let $P_n$ be instead the spectral
-projection above $\theta$ of the Hermitian part
-\[
- \frac1{2|S|}\sum_{a\in S}
-   \bigl(\Ad U_{a,n}+(\Ad U_{a,n})^{*}\bigr)
-\]
---- the \emph{Kazhdan corner} --- and let $\widehat b_n$ be the
-compression into it of the primitive supplied below.
-\begin{align}
- \opnorm{(\Ad U_{a,n}-1)P_n}&\le q\qquad(a\in S),
- \label{eq:corner-fix}\\
- \opnorm{(1-P_n)\,Q_n}&\le q,\qquad
- Q_n=\Ad U_{s,n}\,P_n\,\Ad U_{s,n}^{*} .
- \label{eq:corner-reverse}
-\end{align}
-The first says the corner is almost fixed, by the Kazhdan gap.  The
-second is the finite-stage form of $P=\pi(s)P\pi(s)^{*}$.  First the easy
-containment $\opnorm{(1-Q_n)P_n}\le\varepsilon$: for $a\in S$ the
-one-sided relation gives $sas^{-1}=\delta$ for a single $\delta\in L$,
-and
-\[
- (1-\Ad U_{a,n})\,\Ad U_{s,n}^{*}P_n
- =\Ad U_{s,n}^{*}\,(1-\Ad U_{\delta,n})\,P_n ,
-\]
-whose norm the Kazhdan gap makes small.  Each $\delta$ is a word in
-$S$, and the gap controls the displacement it induces one letter at a
-time, so this is one more threshold per generator --- $|S|$ of them,
-all fixed before the stage is chosen.  So the corner lies almost
-inside its image under $s$.  Then the equal-rank reversal estimate of
-Section~\ref{app:finite-stage} turns that containment around: $Q_n$ is
-a unitary conjugate of $P_n$ and so has the same rank, and for two
-projections of equal finite rank a containment within $\varepsilon<1$
-in one direction gives one within
-$\varepsilon/\sqrt{1-\varepsilon^{2}}$ in the other.  The estimate uses
-only finiteness: the leakage bound makes the
-compression $\operatorname{ran}P_n\to\operatorname{ran}Q_n$ injective,
-and an injective endomorphism of a finite-dimensional space is
-surjective.  In infinite dimensions this last step fails, a proper
-isometry being injective and not surjective.
-The one-sided inclusion $sLs^{-1}\le L$ enters as the
-only group-theoretic input.
-\leanverified{Sofic/InvolutionCollapseEndpoint}{GroupApproximation.InvolutionCollapseEndpoint.stage_transport_bound}
-
-The compressed object is a primitive for the displacement map $b_n$.
-The Delorme--Guichardet
-bound \eqref{eq:profile-bounded} on the limiting cocycle produces, at
-each tolerance, a stage $n_0$ and a matrix $w_{n_0}$ with
-$\lVert w_{n_0}\rVert_{\mathrm F}\le C+1$ satisfying
-\[
- \bigl\lVert b_{n_0}(a)-\bigl(w_{n_0}
-   -U_{a,n_0}w_{n_0}U_{a,n_0}^{*}\bigr)\bigr\rVert_{\mathrm F}\le\tau
- \qquad(a\in S),
-\]
-an approximate coboundary at one stage, for the finitely many
-generators only.  Write $\widehat b_n=P_nw_nP_n$ for its compression
-into the Kazhdan corner.  The bound on $w_{n_0}$ is the last use of the
-limiting cocycle; every estimate below concerns the single stage $n_0$.
-\leanverified{Sofic/InvolutionCollapseCenter}{GroupApproximation.InvolutionCollapseCenter.exists_approximate_coboundary}
-
-Compressing into the corner loses at most
-$c_{\mathrm{cap}}=(C+1)\,2\tau/(1-\theta)$ in squared Frobenius norm,
-and one
-stage of transport bounds the displacement of $\widehat b_n$ by each
-generator:
-\[
- \operatorname{Tr}\bigl|\widehat b_n
-   -U_{a,n}\widehat b_nU_{a,n}^{*}\bigr|^{2}
- \le 18q^{2}C^{2}+16c_{\mathrm{cap}}
- \le\Bigl(\frac\rho2\Bigr)^{2},
-\]
-the second inequality being the arithmetic of the choice of $q$ and
-$\tau$.
-\leanverified{Sofic/InvolutionCollapseEndpoint}{GroupApproximation.InvolutionCollapseEndpoint.numeric_transport_bound}
-The primitive enters here, and it is the coboundary relation rather
-than proximity that closes the argument: $b_n(a)$ does not approximate
-$\widehat b_n$ --- the left side moves with $a$ and the right side does
-not --- but approximates its displacement,
-\[
- \bigl\lVert b_n(a)
-   -\bigl(\widehat b_n-U_{a,n}\widehat b_nU_{a,n}^{*}\bigr)
- \bigr\rVert_{\mathrm F}\le\tau\le\frac\rho2
- \qquad(a\in S).
-\]
-Combined with the displayed transport bound this gives
-$\|b_n(a)\|_{\mathrm F}\le\rho$ for every $a\in S$ at once, while
-\eqref{eq:generator-mass} reads
-$\sum_{a\in S}\|b_n(a)\|_{\mathrm F}^{2}=4$ and
-$\sum_{a\in S}\rho^{2}=|S|/(\sqrt{|S|}+1)^{2}<1$: the single stage $n$
-already fails.
-\leanverified{Sofic/InvolutionCollapseEndpoint}{GroupApproximation.InvolutionCollapseEndpoint.anchor_contradiction}
-
-The commutation hypothesis (W3) is
-essential: it gives the joint spectral calculus behind the rank
-identity of Step 2.  Anticommuting Clifford coordinates have no joint
-spectral labels; they are instead collapsed by the central sign of
-Theorem~\ref{thm:A}.  In $\mathcal Q$,
-Theorem~\ref{thm:projection-collapse} below removes the restriction to
-involutions, and Theorem~\ref{thm:torsion-collapse} extends the
-collapse to witnesses of every finite order through their discrete
-Fourier idempotents.
-\end{remark}
-
-The witness of Theorem~\ref{thm:collapse} is a group element.  The same
-collapse holds for arbitrary projections of $\mathcal Q$.
-
-\begin{theorem}[projection collapse]\label{thm:projection-collapse}
-Let $H$ be countable, let $L\le H$ have property~\textup{(T)}, let
-$s\in H$ satisfy $s\gamma s^{-1}\in L$ for every $\gamma\in L$, and let
-$\Theta\colon H\to\U(\mathcal Q)$ be a homomorphism.  Let
-$p\in\mathcal Q$ be a projection such that $p$ commutes with
-$\Theta(s\gamma s^{-1})$ for every $\gamma\in L$ and the projections
-$\Theta(\gamma)\,p\,\Theta(\gamma)^*$, $\gamma\in L$, commute pairwise.
-Then $p$ commutes with $\Theta(L)$.
-\leanverified{Sofic/ProjectionCompressionCollapse}{GroupApproximation.ProjectionCompressionCollapse.corona_projection_collapse}
-\end{theorem}
-
-\begin{proof}
-The symmetry $\sigma=1-2p$ is a self-adjoint unitary of $\mathcal Q$.  The
-subgroup $H'\le\U(\mathcal Q)$ generated by $\Theta(H)$ and $\sigma$ is
-countable.  Inside $H'$, the image $\Theta(L)$ has
-property~\textup{(T)}, $\Theta(s)$ conjugates it into itself, $\sigma$
-is an involution centralizing the conjugate copy, and the
-$\Theta(L)$-conjugates of $\sigma$
-commute because the conjugated projections do.  So $\sigma$ is an
-involutive orbit witness in $H'$, so by Theorem~\ref{thm:collapse}
-every commutator $[\Theta(\gamma),\sigma]$, $\gamma\in L$, lies in
-$\operatorname{Res}_{\mathrm{MF}}(H')$.  The inclusion
-$H'\to\U(\mathcal Q)$ is itself a homomorphism $H'\to\U(\mathcal Q)$, so it
-maps each of these commutators to the identity:
-$[\Theta(\gamma),\sigma]=1$ in $\mathcal Q$, and $\sigma=1-2p$ gives
-$[\Theta(\gamma),p]_{-}=0$.
-\end{proof}
-
-Theorem~\ref{thm:projection-collapse} applies to an arbitrary projection
-of $\mathcal Q$, not only to one arising from a group element.  So
-every projection $p\in\Theta(sLs^{-1})'\cap\mathcal Q$ whose
-$\Theta(L)$-conjugates commute pairwise already lies in
-$\Theta(L)'\cap\mathcal Q$.
-
-If $k$ has finite order $m$, applying
-Theorem~\ref{thm:projection-collapse} to the Fourier spectral
-projections of $\Theta(k)$ removes the assumption that $k$ is an
-involution.
 
 \begin{theorem}[torsion collapse]\label{thm:torsion-collapse}
 Let $H$ be countable, let $L\le H$ have property~\textup{(T)}, let
@@ -3337,71 +2649,19 @@ equality whenever the corresponding quotient of $H$ is MF.
 \end{theorem}
 
 \begin{proof}
-Let $\Theta$ be a homomorphism to $\U(\mathcal Q)$, $m$ the order of $k$, and
-$u=\Theta(k)$, a unitary with $u^{m}=1$.  Its discrete Fourier
+Let $\Theta$ be a homomorphism to $\U(\mathcal Q)$, $m$ the order of
+$k$, and $u=\Theta(k)$, a unitary with $u^{m}=1$.  Its discrete Fourier
 idempotents
 $p_j=m^{-1}\sum_{t\in\mathbf{Z}/m}e^{-2\pi ijt/m}u^{t}$, for
-$j\in\mathbf{Z}/m$, are self-adjoint
-idempotents of $\mathcal Q$.  Each $p_j$ is a polynomial in $u$, so
-whatever commutes with $u$ commutes with every $p_j$: the represented
-conjugate copy centralizes each $p_j$, and the
-$\Theta(L)$-conjugates of each $p_j$ commute pairwise because the
-conjugated witnesses do.  Theorem~\ref{thm:projection-collapse}
+$j\in\mathbf{Z}/m$, are self-adjoint idempotents of $\mathcal Q$.  Each
+$p_j$ is a polynomial in $u$, so whatever commutes with $u$ commutes
+with every $p_j$: the represented conjugate copy centralizes each
+$p_j$, and the $\Theta(L)$-conjugates of each $p_j$ commute pairwise
+because the conjugated witnesses do.  Theorem~\ref{thm:projection-collapse}
 therefore makes every $p_j$ commute with $\Theta(L)$, and Fourier
-reconstruction expresses $u=\sum_j e^{2\pi ij/m}p_j$,
-so $u$ commutes with $\Theta(L)$ and
-$\Theta([\gamma,k])=1$ for every $\gamma\in L$.
+reconstruction expresses $u=\sum_j e^{2\pi ij/m}p_j$, so $u$ commutes
+with $\Theta(L)$ and $\Theta([\gamma,k])=1$ for every $\gamma\in L$.
 \end{proof}
-
-In the quotient of the Kazhdan--Clifford group of
-Theorem~\ref{thm:A} by its central involution the Clifford generators
-commute, and the moved base-point generator is itself an involutive
-witness.
-
-\begin{theorem}[the commuting-generator quotient]\label{thm:commutinglamp}
-The quotient $W/\langle\zeta\rangle$ of the Kazhdan--Clifford group
-by its central involution is sofic and is not MF\@.  More precisely, the
-image of the
-commutator $[v_1,tct^{-1}]$, the inverse of the distinguished commutator
-$u$, in $W/\langle\zeta\rangle$ is nontrivial and lies in
-$\operatorname{Res}_{\mathrm{MF}}(W/\langle\zeta\rangle)$; that last
-conclusion holds with $W$ replaced by the ambient affine--Clifford group of
-any injective endomorphism $\alpha$ of a countable
-property-\textup{(T)} group and any base element outside the image of
-$\alpha$.
-\leanverified{Sofic/CommutingLampQuotientSofic}{GroupApproximation.CommutingLampQuotientSofic.literalSignFreeQuotient_isSofic_and_not_isCDEOperatorMF}
-\leanverified{Sofic/CommutingLampCollapse}{GroupApproximation.CommutingLampCollapse.commutingLampQuotient_collapse}
-\leanverified{Sofic/CommutingLampCollapse}{GroupApproximation.CommutingLampCollapse.literalCommutingLampQuotient_collapse}
-\leanverified{Sofic/CommutingLampCollapse}{GroupApproximation.CommutingLampCollapse.literalCommutingLampQuotient_not_isCDEOperatorMF}
-\end{theorem}
-
-\begin{proof}
-Write $q\colon W\to W/\langle\zeta\rangle$ and
-$k=q(tct^{-1})$, the moved base-point generator.  Since $q(\zeta)=1$, any
-two Clifford generators commute in the quotient, so the $q(L)$-conjugation orbit of
-$k$ commutes pairwise, where $L=q(\bar\Gamma)$ is the image of the
-base copy; $k$ remains an involution, and the conjugate copy
-$q(t)Lq(t)^{-1}$ centralizes $k$ because $q(t)Lq(t)^{-1}$ fixes the
-moved point.  Property~\textup{(T)} passes to the image $L$, so
-by Theorem~\ref{thm:collapse} every commutator
-$[q(\bar v_1),k]$ lies in the MF residual of the quotient.  The commutator
-remains nontrivial in the sign quotient: in the signed finite-support model of
-$\Cl(X)$, the commutator is the product of the two distinct basis
-elements at $\tau o$ and $j(\bar v_1)\tau o$, whose configuration
-coordinate is nonzero, while every element of
-$\langle\zeta\rangle$ has configuration coordinate zero.
-
-The Clifford kernel becomes abelian in the quotient:
-$\Cl(X)/\langle\zeta\rangle$ is the elementary abelian group
-$\bigoplus_X\Z/2$ under the same $\Sigma$-action, so
-$W/\langle\zeta\rangle\cong\bigl(\bigoplus_X\Z/2\bigr)\rtimes\Sigma$.
-That kernel is again locally finite with finite level orbits, so the
-finite-by-sofic exhaustion in the proof of Theorem~\ref{thm:E} proves
-soficity.
-\end{proof}
-
-The same argument applies to the finitely presented group
-$E/\langle w\rangle$.
 
 \begin{proof}[Proof of Theorem~\ref{thm:signfree}]
 Write $q\colon E\to E/\langle w\rangle$, $\bar d=q(d)$, and
@@ -3448,8 +2708,7 @@ to it.
 
 \begin{corollary}[collapse computes the residual]\label{cor:collapsequot}
 In the setting of Theorem~\ref{thm:collapse}, write
-$q\colon H\to H/D_{\mathrm{coll}}(L,s)$ for the quotient map.  Then,
-unconditionally,
+$q\colon H\to H/D_{\mathrm{coll}}(L,s)$ for the quotient map.  Then
 \[
   \operatorname{Res}_{\mathrm{MF}}(H)
   \;=\;
@@ -3467,45 +2726,8 @@ Corollaries~\ref{cor:pullback} and~\ref{cor:exactradical}.
 \end{proof}
 
 In the second case $H/D_{\mathrm{coll}}(L,s)$ is the universal MF
-quotient of $H$ (Proposition~\ref{prop:univquot}): every homomorphism $H\to\U(\mathcal Q)$ factors through it, and it is MF.
-
-\begin{theorem}[when the collapse subgroup is everything]\label{thm:saturation}
-In the setting of Theorem~\ref{thm:collapse}:
-\begin{enumerate}
-\item Every homomorphism $f$ from $H$ to a countable MF group maps
-every element of $D_{\mathrm{coll}}(L,s)$ to the identity.
-\item If $D_{\mathrm{coll}}(L,s)=H$, then
-$\operatorname{Res}_{\mathrm{MF}}(H)=H$; every homomorphism from $H$
-to a countable MF group is trivial; and if $H$ is nontrivial, then
-$H$ is not MF.
-\leanverified{Sofic/ManuscriptExactWrappers}{GroupApproximation.ManuscriptExactWrappers.manuscriptDefectSaturation}
-\end{enumerate}
-\end{theorem}
-
-\begin{proof}
-(1)  By Theorem~\ref{thm:collapse} and Lemma~\ref{lem:portable},
-\[
- f(D_{\mathrm{coll}}(L,s))\le
- f(\operatorname{Res}_{\mathrm{MF}}(H))\le
- \operatorname{Res}_{\mathrm{MF}}(f(H)).
-\]
-The subgroup $f(H)$ of the MF target is MF
-(Lemma~\ref{lem:permanence}(1)), so its residual is trivial by
-Proposition~\ref{prop:univquot}.
-(2)  The residual statement is Theorem~\ref{thm:collapse} with
-$D_{\mathrm{coll}}(L,s)=H$; triviality of every homomorphism follows
-from (1); and a nontrivial group with full residual is not MF by
-Proposition~\ref{prop:univquot}.
-\end{proof}
-
-For a group as in (2), every finite-dimensional unitary
-representation is trivial, every MF quotient is trivial, and every
-homomorphism to a countable residually finite group is trivial.
-Whether a
-small-cancellation construction produces a finitely presented group
-with $D_{\mathrm{coll}}(L,s)=H$, or with a normal-Kazhdan defect equal
-to the whole group, is open.
-
+quotient of $H$ (Proposition~\ref{prop:univquot}): every homomorphism
+$H\to\U(\mathcal Q)$ factors through it, and it is MF.
 
 \section{Group algebras, soficity, and permanence}
 \label{sec:algebras-sofic}
@@ -3553,59 +2775,21 @@ $\tau_k(y)=\tau_k(1)-\tau_k(vv^*)=\tau_k(1)-\tau_k(v^*v)=0$; since
 $y=y^*y$, faithfulness gives $y=0$, i.e.\ $vv^*=1$.
 \end{proof}
 
-
-\subsection{A sofic non-MF group}
-
-
-\begin{proof}[Proof of Theorem~\ref{thm:E}]
-Write $T=\varinjlim(\bar\Gamma,\bar\alpha)$, so
-$\Sigma=T\rtimes\mathbb Z$, and let $B\le\Sigma$ be the level-zero copy of
-$\bar\Gamma$.  The image of $\bar\alpha$ has finite index (at most eight,
-by the parity classes of the translation lattice).  Thus every
-level $\bar\Gamma_n\le T$ is commensurable with $B$.  The stable letter
-conjugates $B$ onto $\bar\alpha(\bar\Gamma)$, so all of $\Sigma$ commensurates
-$B$.  Orbit--stabilizer now shows that every $\bar\Gamma_n$-orbit in
-$X=\Sigma/B$ is finite.
-
-Consider a finite subset of $\Cl(X)\rtimes T$.  Its $T$-coordinates
-lie in one level $\bar\Gamma_n$.  Each of its Clifford coordinates has
-finite $\bar\Gamma_n$-orbit: this holds for the central sign and for
-each generator $c_x$, hence for every Clifford word.  The finitely many
-resulting orbits
-generate a finite $\bar\Gamma_n$-invariant subgroup $L\le\Cl(X)$,
-because $\Cl(X)$ is locally finite.  Our original finite set therefore
-lies in $L\rtimes\bar\Gamma_n$, which is sofic (finite-by-sofic).  A
-group is sofic as soon as each of its finitely generated subgroups is,
-so $\Cl(X)\rtimes T$ is sofic.
-
-Reassociating the semidirect products gives
-\[
- W=\Cl(X)\rtimes(T\rtimes\mathbb Z)
-   \cong (\Cl(X)\rtimes T)\rtimes\mathbb Z.
-\]
-Thus $W$ is sofic, because a split extension of a sofic group by
-$\Z$ is sofic.  Truncate the integer levels to $\Z/N$ and let the
-shift act cyclically.  Induce the kernel's sofic approximations over
-this finite level set.  The cocycle identity that makes the
-finite-quotient case exact now fails only on the wrap-around boundary.
-For a window shifted by $k$, that boundary occupies at most $2|k|/N$
-of the levels, which vanishes as $N$ grows.
-This is the $\Z$-extension case of the Elek--Szab\'o amenable-extension
-theorem \cite{ElekSzabo}.  Here
-$\bar\Gamma$ is sofic: its six generators lie in $\GL_4(\mathbb Z)$,
-the resulting integral subgroup is residually finite through its
-congruence quotients, and it is isomorphic to $\bar\Gamma$.
+\subsection{The Clifford quotient and permanence}
 
 The map $E\to W$ of Proposition~\ref{prop:witness} is surjective: its image
 contains $\Sigma$ and the generator $c_o$ at the base point, hence
 every Clifford generator by transitivity of
 the $\Sigma$-action on $X$.  Since $E$ is generated by
-  $v_1,x,y,z,t,c$ (by the Tietze calculation above), their six
+$v_1,x,y,z,t,c$ (Section~\ref{sec:group}), their six
 images generate $W$.  The map sends
 $w\in\operatorname{Res}_{\mathrm{MF}}(E)$ to the
 nontrivial sign $\zeta$; functoriality (Lemma~\ref{lem:portable}) makes
-$\zeta\in\operatorname{Res}_{\mathrm{MF}}(W)$.  Hence $W$ is not MF.
-\end{proof}
+$\zeta\in\operatorname{Res}_{\mathrm{MF}}(W)$.  Hence the finitely
+generated group $W$ is not MF, and neither is $\Cred(W)$: an MF
+embedding of it would restrict to a faithful homomorphism
+$W\to\U(\mathcal Q)$ on the canonical group unitaries.
+
 \paragraph{Failure of extension permanence.}
 MF groups are not closed under extensions.  More precisely, $W$ fits into
 an exact sequence
@@ -3649,17 +2833,6 @@ quotient, as in Elek--Szab\'o \cite{ElekSzabo}.
 \leanverified{Sofic/LEFMarkedCompression}{GroupApproximation.LiteralLEFExtension.literalWitness_LEFKernel_integerExtension_nonMF}
 \leanverified{Sofic/SoficByAmenablePermanence}{GroupApproximation.SoficByAmenablePermanence.manuscriptSoficOfSoficKerOfAmenableQuotient}
 
-\paragraph{An exact stably finite non-MF algebra.}
-The algebra $\Cred(W)$ is separable, exact, stably finite, and not
-MF\@.  Indeed, the locally finite Clifford kernel is amenable and hence exact,
-while the linear group $\Sigma\leq\GL_4(\mathbb Q)$ is exact
-\cite{GHW}.  Exact groups are closed under extensions
-\cite{KWPermanence}, so $W$ is exact; for discrete groups this is equivalent
-to exactness of the reduced group algebra \cite{KWExact}.  The canonical trace
-and stable finiteness follow as in Lemma~\ref{lem:faithfultrace}.  Finally, an
-MF embedding of $\Cred(W)$ would restrict to a faithful homomorphism to $\U(\mathcal Q)$ on
-the canonical group unitaries, contradicting that $W$ is not MF\@.
-
 \paragraph{A simple sofic envelope.}
 There is a countable simple sofic group $S_{\mathrm{simp}}$ with
 \[
@@ -3670,8 +2843,9 @@ trivial.
 
 \begin{proof}
 By Elek--Szab\'o, every countable sofic group embeds in a countable simple
-sofic group \cite[Theorem~1]{ElekSzaboHyper}.  Embed $W$ in such a group.  Functoriality
-of the MF residual sends $\zeta$ to a nontrivial element of the
+sofic group \cite[Theorem~1]{ElekSzaboHyper}.  Embed $E$, which is sofic
+by Theorem~\ref{thm:Esofic}, in such a group.  Functoriality
+of the MF residual sends $w$ to a nontrivial element of the
 MF residual of the simple group.  That residual is normal, so it is the whole
 group.  Every homomorphism to an MF group maps the MF residual to $1$.
 \end{proof}
@@ -3690,7 +2864,7 @@ for the group $\Sigma=T\rtimes\Z$ of Section~\ref{sec:witness}, with
 its site set $X=\Sigma/B$, base point $o$, shift $\tau$ and level-zero
 base $B=j(\bar\Gamma)$.  The levels
 \[
- \Gamma_n=\tau^{-n}B\tau^{n}\qquad(n\ge0)
+ \bar\Gamma_n=\tau^{-n}B\tau^{n}\qquad(n\ge0)
 \]
 form an ascending chain of copies of $\bar\Gamma$ with union
 $T$.  Put $K=\tau^{-1}B\tau$; then $B\le K$ and
@@ -3733,13 +2907,13 @@ There is an isomorphism
 \]
 under which $\langle\!\langle c\rangle\!\rangle$ is the factor
 $C(\mathcal G)$, the conjugate $gcg^{-1}$ is the lamp $c_{gB}$, and the
-distinguished word $w$ is the sign $\zeta$.  Each level $\Gamma_n$ has
+distinguished word $w$ is the sign $\zeta$.  Each level $\bar\Gamma_n$ has
 finite orbits on $X$.
 \leanverified{Sofic/LiteralBlockNormalForm}{GroupApproximation.LiteralBlockNormalForm.markedGroupEquivModel}
 \leanverified{Sofic/LiteralBlockNormalForm}{GroupApproximation.LiteralBlockNormalForm.lampKernelEquiv}
-\leanverified{Sofic/LiteralBlockNormalForm}{GroupApproximation.LiteralBlockNormalForm.toModel_siteLamp}
+\leanverified{Sofic/LiteralBlockNormalForm}{GroupApproximation.LiteralBlockNormalForm.manuscriptSiteLampImage}
 \leanverified{Sofic/LiteralBlockNormalForm}{GroupApproximation.LiteralBlockNormalForm.toModel_mark}
-\leanverified{Sofic/LiteralBlockNormalForm}{GroupApproximation.LiteralBlockNormalForm.finite_telescopeLevel_site_orbit}
+\leanverified{Sofic/LiteralBlockNormalForm}{GroupApproximation.LiteralBlockNormalForm.manuscriptFiniteLevelSiteOrbit}
 \leanverified{Sofic/LiteralVerticalBridge}{GroupApproximation.LiteralVerticalBridge.verticalEquiv}
 \end{proposition}
 
@@ -3759,8 +2933,8 @@ respects the defining relations of $C(\mathcal G)$: the assignment is
 independent of the coset representative because the base centralizes
 $c$; the images are involutions; $w$ is central of order two; and along
 an edge $g\{\tau o,\,j(\bar v_1)\tau o\}$ the commutator of the two
-images is $gwg^{-1}=w$.  Non-adjacent pairs carry no relation to
-verify.  Combined with the splitting $\Sigma\to E$ on the seven
+images is $gwg^{-1}=w$.  There is no relation at a non-adjacent pair.
+Combined with the splitting $\Sigma\to E$ on the seven
 remaining letters, this gives $C(\mathcal G)\rtimes\Sigma\to E$.  The
 two composites fix the eight letters of $E$ and the generators
 $\zeta,c_\xi$ of $C(\mathcal G)$, hence are the identity.
@@ -3768,8 +2942,8 @@ $\zeta,c_\xi$ of $C(\mathcal G)$, hence are the identity.
 For the orbits, $\bar\alpha(\bar\Gamma)$ has index at most eight in
 $\bar\Gamma$ --- the parity classes of the translation lattice --- so
 $\tau$ conjugates $B$ onto a subgroup of finite index in itself.  Every
-$\Gamma_n$ is therefore commensurable with $B$, all of $\Sigma$
-commensurates $B$, and orbit--stabilizer makes each $\Gamma_n$-orbit in
+$\bar\Gamma_n$ is therefore commensurable with $B$, all of $\Sigma$
+commensurates $B$, and orbit--stabilizer makes each $\bar\Gamma_n$-orbit in
 $X=\Sigma/B$ finite.
 \end{proof}
 
@@ -3787,7 +2961,7 @@ write
 \begin{lemma}[windows are residually finite]\label{lem:window}
 For every finite set $S$ of sites the subgroup $M_S$ is residually
 finite.
-\leanverified{Sofic/BlockCliffordTowerSofic}{GroupApproximation.BlockCliffordTowerSofic.residuallyFinite_window}
+\leanverified{Sofic/BlockCliffordTowerSofic}{GroupApproximation.BlockCliffordTowerSofic.manuscriptResiduallyFiniteWindow}
 \leanverified{Sofic/LiteralSoficAssembly}{GroupApproximation.LiteralSoficAssembly.lampEquiv}
 \end{lemma}
 
@@ -3807,26 +2981,26 @@ map separates the two elements of that subgroup.
 
 \begin{proof}[Proof of Theorem~\ref{thm:Esofic}]
 Let $E_0$ be the kernel of the homomorphism $E\to\Z$ given by the
-exponent sum in $t$.  Under
+exponent sum in $t$.  By
 Proposition~\ref{prop:blocknormalform}, $E_0\cong C(\mathcal G)\rtimes
 T$.
 
 Take a finite subset of $E_0$.  Its $T$-coordinates lie in one level
-$\Gamma_n$, the chain being ascending, and its $C(\mathcal
+$\bar\Gamma_n$, the chain being ascending, and its $C(\mathcal
 G)$-coordinates lie in $M_{S_0}$ for some finite set $S_0$ of sites,
 each generator of $C(\mathcal G)$ being a single lamp or the sign.  Let
-$S$ be the union of the $\Gamma_n$-orbits of the sites in $S_0$, a
+$S$ be the union of the $\bar\Gamma_n$-orbits of the sites in $S_0$, a
 finite set by Proposition~\ref{prop:blocknormalform}.  Then $M_S$ is
-$\Gamma_n$-invariant and contains $M_{S_0}$, so the finite subset lies
-in $M_S\rtimes\Gamma_n$.
+$\bar\Gamma_n$-invariant and contains $M_{S_0}$, so the finite subset lies
+in $M_S\rtimes\bar\Gamma_n$.
 
 That group is residually finite.  Indeed $M_S$ is residually finite by
-Lemma~\ref{lem:window}, the level $\Gamma_n\cong\bar\Gamma$ is
+Lemma~\ref{lem:window}, the level $\bar\Gamma_n\cong\bar\Gamma$ is
 residually finite through the congruence quotients of its matrix model
-(Lemma~\ref{lem:linear}), and $\Gamma_n$ acts on $M_S$ through
+(Lemma~\ref{lem:linear}), and $\bar\Gamma_n$ acts on $M_S$ through
 permutations of the finite set $S$, hence through a finite quotient
 $F$.  The preimage of the identity of $F$ is a subgroup of finite index
-isomorphic to $M_S\times\ker(\Gamma_n\to F)$, which is residually
+isomorphic to $M_S\times\ker(\bar\Gamma_n\to F)$, which is residually
 finite, and residual finiteness passes to a group containing a
 residually finite subgroup of finite index.
 
@@ -3839,6 +3013,19 @@ Theorem~\ref{thm:A}.  LEF groups are MF \cite{CDE}, so $E$ is not LEF;
 a residually finite group is LEF, so $E$ is not residually finite
 either.
 \end{proof}
+
+The same decomposition makes $E$ exact.  Killing $\zeta$ sends
+$C(\mathcal G)$ onto the free product of the elementary abelian
+$2$-groups of the blocks, each of order at most $2^{8}$, and free
+products, directed unions and extensions of exact groups are exact
+\cite{KWPermanence}; so that free product is exact, and $C(\mathcal G)$,
+a central extension of it by $\langle\zeta\rangle$, is exact as well.
+The group $\Sigma$ is a subgroup of $\GL_4(\mathbb Q)$ and therefore
+exact \cite{GHW}, and $E\cong C(\mathcal G)\rtimes\Sigma$.  For a
+discrete group exactness is equivalent to exactness of the reduced
+group algebra \cite{KWExact}, so $\Cred(E)$ is exact.  The same
+applies to $W$, whose Clifford kernel is locally finite and hence
+amenable.
 
 
 \section{Marked limits, quasi-identities, and undecidability}
@@ -3954,26 +3141,15 @@ presented group to each code need not be computable, and an
 uncomputable choice would make the statement true for reasons having
 nothing to do with groups.
 
-The corollary reduces from the halting problem, whose undecidability
-and non-recursively-enumerable complement are classical, so the fact
-that some finitely presented group has unsolvable word problem is not
-needed: the reduction asks only for a computable map and a correctness
-equivalence, and does not require its source to be a word problem.
-Constructing such a map is the Adian--Rabin argument
-\cite{Rabin58} run over a group built from a machine; classically one
-takes the word problem of a finitely presented group with unsolvable
-word problem and applies Adian--Rabin to the Markov property ``is
-MF''\@.  That construction fixes one finite presentation $P_0$ whose
-group has undecidable word problem, and gives a computable map taking
-a word $w$ in the generators of $P_0$ --- the instance varies, the
-presentation does not --- to a finite presentation whose
-group is trivial --- hence MF --- when $w=1$ in $P_0$, and contains $E$ ---
-hence non-MF, by subgroup heredity --- when $w\ne1$.  The words
-representing $1$ form a recursively enumerable set which, the word problem
-of $P_0$ being undecidable, is not recursive; hence the words with $w\ne1$
-form a set that is \emph{not} recursively enumerable.  An enumeration
-of the non-MF presentations would enumerate that set, making the word
-problem decidable.
+Constructing such a map is the Adian--Rabin argument \cite{Rabin58}
+applied to the Markov property ``is MF''\@.  It fixes one finite
+presentation $P_0$ whose group has undecidable word problem and takes a
+word $v$ in the generators of $P_0$ to a finite presentation whose group
+is trivial, hence MF, when $v=1$ in $P_0$, and contains $E$, hence
+non-MF by subgroup heredity, when $v\ne1$.  The words representing $1$
+form a recursively enumerable set that is not recursive, so the words
+with $v\ne1$ form a set that is not recursively enumerable, and an
+enumeration of the non-MF presentations would enumerate it.
 \leanverified{Computability/MarkovMFConsequences}{GroupApproximation.MarkovMFConsequences.operatorMF_subgroup_hereditary}
 \leanverified{Computability/MarkovMFConsequences}{GroupApproximation.MarkovMFConsequences.exists_finitelyPresented_nonOperatorMF}
 \leanverified{Computability/MarkovMFConsequences}{GroupApproximation.MarkovMFConsequences.operatorMF_recognition_undecidable}
@@ -3985,72 +3161,48 @@ $E$ (Lemma~\ref{lem:permanence}(1)).  They are pairwise nonisomorphic
 because their abelianizations have distinct torsion-free ranks; the
 number of homomorphisms to $\mathbb Z/2$ separates them as well.
 \leanverified{Sofic/ProductMultiplicity}{GroupApproximation.ProductMultiplicity.manuscriptInfiniteMultiplicity}
-Beyond finite presentation, pairing $E$
-with a continuum of pairwise nonisomorphic finitely generated
-groups yields $2^{\aleph_0}$ pairwise
-nonisomorphic finitely generated non-MF groups: each product
-$E\times N$ is non-MF, and a fixed countable group $X$ satisfies
-$X\cong E\times N$ for at most countably many of the continuum many
-isomorphism types $N$ --- each such $N$ embeds in $X$ as a finitely
-generated subgroup, a countable group has only countably many finitely
-generated subgroups, and the types $N$ are pairwise nonisomorphic.  A
-map with countable fibres from a continuum-sized family has
-continuum-sized image.  Products of pairwise nonisomorphic groups with
-a fixed factor can still be isomorphic, so it is the isomorphism types
-of the products that are counted.  The deduction uses only that the $N$
-are finitely generated; a continuum of pairwise nonisomorphic finitely
-generated groups is given by the lamplighters over coset spaces of the
-free group, or by Neumann's two-generator groups \cite{Neumann37}.
+Beyond finite presentation, pairing $E$ with a continuum of pairwise
+nonisomorphic finitely generated groups $N$ --- Neumann's
+two-generator groups \cite{Neumann37}, say --- yields $2^{\aleph_0}$
+pairwise nonisomorphic finitely generated non-MF groups: each product
+$E\times N$ is non-MF, while a fixed countable group $X$ satisfies
+$X\cong E\times N$ for at most countably many of the isomorphism types
+$N$, since each such $N$ embeds in $X$ as a finitely generated subgroup
+and a countable group has only countably many of those.
 \leanverified{Sofic/ContinuumMultiplicity}{GroupApproximation.ContinuumMultiplicity.manuscriptContinuumMultiplicity}
 \leanverified{Monsters/NeumannContinuum}{GroupApproximation.NeumannContinuum.manuscriptContinuumMultiplicityUnconditional}
 
 \section{Limitations of the operator-norm method}\label{sec:limits}
 
-The proof is specific to the operator norm.  If multiplication
-is controlled only in normalized Hilbert--Schmidt norm, the induced adjoint
-operators on the Hilbert--Schmidt spaces need not be close in operator norm.
-Both proofs of Theorem~\ref{thm:kazhdan-transport} use that operator-norm
-control: without it the classes $[\Ad U_n(g)]_\omega$ need not be
-multiplicative, and the spectral estimates of
-Section~\ref{app:finite-stage} are unavailable.
-The failure is exact and dimension-free: against
-the operator-norm estimate $\opnorm{\Ad(U)-\Ad(V)}\le2\opnorm{U-V}$,
+The proof is specific to the operator norm.  If multiplication is
+controlled only in normalized Hilbert--Schmidt norm, the induced adjoint
+operators on the Hilbert--Schmidt spaces need not be close in operator
+norm: against the estimate $\opnorm{\Ad(U)-\Ad(V)}\le2\opnorm{U-V}$
 there are unitaries of arbitrarily small normalized Hilbert--Schmidt
-distance whose adjoints stay $2$ apart in operator norm --- the same
-constant, in the opposite direction.
+distance whose adjoints stay $2$ apart in operator norm.  The proof of
+Theorem~\ref{thm:kazhdan-transport} uses the operator-norm control at
+exactly that point: without it the classes $[\Ad U_n(g)]_\omega$ need
+not be multiplicative.
 \leanverified{Sofic/HilbertSchmidtAdjointGap}{GroupApproximation.HilbertSchmidtAdjointGap.exists_hsClose_adjointFar}
 
-Conversely, amplification by an identity block separates the two
-normalizations exactly.  Padding a model with an identity
-block preserves every operator-norm quantity --- the multiplicative
-defects and the pairwise separations are unchanged --- while the
-normalized Hilbert--Schmidt distances decay with the padding ratio:
-below any prescribed bound, every approximate unitary representation can be
-replaced by one all of whose pairwise Hilbert--Schmidt distances are
-smaller than the bound.
+Amplification by an identity block separates the two normalizations.
+Padding a model with an identity block preserves every operator-norm
+quantity --- the multiplicative defects and the pairwise separations
+are unchanged --- while the normalized Hilbert--Schmidt distances decay
+with the padding ratio: below any prescribed bound, every approximate
+unitary representation can be replaced by one all of whose pairwise
+Hilbert--Schmidt distances are smaller than the bound.
 \leanverified{Sofic/NormTraceGap}{GroupApproximation.NormModel.exists_hs_collapse}
 $2$-norm triviality of an element therefore does not by itself
 prove a group non-MF: an obstruction must produce an invariant
 corner with its own normalized trace, so that the normalization is
-unchanged by amplification.  A normalized trace taken from the ambient
-blocks does not survive amplification.  The relative rank of that
-substructure is unconstrained: padding
-leaves the averaging corner $q_nM_{d_n}(\C)q_n$ untouched while $d_n$
-grows, so $r_n/d_n$ may tend to zero while the
-argument uses the corner's own normalized trace; the spectral
-projection $q_n$ of Theorem~\ref{thm:normal-kazhdan} is normalized on
-its own range in the same way, and the collapse argument of
-Theorem~\ref{thm:collapse} normalizes by the rank $k_n$.
-
-Alekseev--Thom ask
-whether commutants arising in sofic approximations of Kazhdan groups
-can be recovered from finite-dimensional coordinate subalgebras
-\cite[Open Problem~6.2]{AlekseevThom}; that question is independent of
-Theorem~\ref{thm:kazhdan-transport}.  The adjoint spectral estimates
-used here need operator-norm multiplicative control, which permutation
-and Hilbert--Schmidt models do not supply, so they do not settle
-soficity or hyperlinearity of $E$ or of $W$; both groups are sofic by
-Theorems~\ref{thm:E} and~\ref{thm:Esofic}.
+unchanged by amplification.  The relative rank of the corner is
+unconstrained: padding leaves the averaging corner $q_nM_{d_n}(\C)q_n$
+untouched while $d_n$ grows, so $r_n/d_n$ may tend to zero while the
+argument uses the corner's own normalized trace.  The spectral
+projection of Theorem~\ref{thm:normal-kazhdan} is normalized on its own
+range in the same way, and the proof of
+Theorem~\ref{thm:projection-collapse} normalizes by the rank $k_n$.
 
 Finite dimensionality of the coordinates cannot be replaced by stable
 finiteness of the coordinate algebras together with faithful traces.
@@ -4074,153 +3226,58 @@ carrying faithful tracial states and its normalized Hilbert--Schmidt
 norm by the trace $2$-norm, with all its remaining hypotheses
 unchanged.
 
+Alekseev--Thom ask whether commutants arising in sofic approximations
+of Kazhdan groups can be recovered from finite-dimensional coordinate
+subalgebras \cite[Open Problem~6.2]{AlekseevThom}; that question is
+independent of Theorem~\ref{thm:kazhdan-transport}.  The adjoint
+spectral estimates used here need operator-norm multiplicative control,
+which permutation and Hilbert--Schmidt models do not supply; soficity
+of $E$ comes instead from its normal form
+(Theorem~\ref{thm:Esofic}).
+
 \subsection*{Questions}
-Every finite subgroup of a torsion-free group is trivial, so
-Theorem~\ref{thm:criterion} is empty for such a group.
-\leanverified{Sofic/TorsionFreeFiniteNormalLimit}{GroupApproximation.finiteSubgroup_eq_bot_of_isMulTorsionFree}
-In Theorem~\ref{thm:normal-kazhdan} a normal
-property-\textup{(T)} subgroup of $N_{\mathrm{conj}}$ obstructs
-homomorphisms to $\U(\mathcal Q)$ with no torsion anywhere.  What remains
-for a torsion-free example is group-theoretic --- a torsion-free finitely
-presented group whose subgroup $N_{\mathrm{conj}}$ contains a normal
-subgroup with property~\textup{(T)} --- and
-Remark~\ref{rem:ff-realization} gives a small-cancellation route to
-such a group, over the torsion-free finitely presented Kazhdan group
-of \cite{FFF}, which removed the analogous torsion obstacle for
-nonsoficity.
 \begin{enumerate}
 \item What is $\operatorname{Res}_{\mathrm{MF}}(E)$?  It properly
-contains $\{1,w\}$ by Theorem~\ref{thm:signfree}.  Write
-$q_1\colon E\to E/\langle w\rangle$, let $D=D_{\mathrm{coll}}(\bar
-L,q_1(t))$ for the witness $\bar d$ of that proof, and let
-$q_2\colon E/\langle w\rangle\to(E/\langle w\rangle)/D$.  By
-Corollary~\ref{cor:collapsequot} applied to $E/\langle w\rangle$ and
-then Corollary~\ref{cor:pullback},
-\[
- \operatorname{Res}_{\mathrm{MF}}(E)
- \;=\;q_1^{-1}q_2^{-1}
-   \bigl(\operatorname{Res}_{\mathrm{MF}}
-   ((E/\langle w\rangle)/D)\bigr),
-\]
-so by Corollary~\ref{cor:exactradical} the residual equals
-$q_1^{-1}(D)$ exactly when $(E/\langle w\rangle)/D$ is MF\@.  Whether
-it is, is open, and neither collapse theorem applies to it: $w$ is
-already trivial in $E/\langle w\rangle$, and the commutators
-generating $D$ are already trivial in the second quotient.
-By Theorem~\ref{thm:B}, $\mathfrak D(E,\iota(\mathcal B))$ lies in the
-kernel of every
-finite-dimensional linear representation, and hence of every
-homomorphism to a finite group; but after both quotients that
-conclusion has no content unless some element of
-$\mathfrak D(E,\iota(\mathcal B))$ has a nontrivial image there, and no
-such element is exhibited here.  Deciding the question this way
-therefore requires producing one.
-\item Is there a torsion-free finitely presented non-MF group?  The
-analytic obstruction no longer requires torsion
-(Theorem~\ref{thm:normal-kazhdan}), so the question is which source to
-apply it to.
-
-The source of Theorem~\ref{thm:kazhdan-clifford} cannot serve, because
-its relation $c^2=1$ makes the conjugation defect vanish in every
-torsion-free quotient.  If $q\colon E\twoheadrightarrow Q$ has $Q$
-torsion-free then $q(c)^2=1$ forces $q(c)=1$, hence $q(d)=1$ for
-$d=tct^{-1}$, hence $q$ kills every generator $[d,\iota(\lambda)]$ of
-$N_{\mathrm{conj}}$.  A quotient of that source with
-$q(N_{\mathrm{conj}})=Q$ and $Q$ torsion-free is therefore trivial.
-
-Take instead the one-sided Kazhdan datum with $c$ of infinite order:
-for $\Gamma$ torsion-free finitely presented with
-property~\textup{(T)} \cite{FFF}, $\alpha\colon\Gamma\hookrightarrow\Gamma$
-injective and proper, and $a\in\Gamma\setminus\alpha(\Gamma)$, put
-\[
- E_\infty=\bigl\langle\,\Gamma,t,c \;\bigm|\;
-   t\gamma t^{-1}=\alpha(\gamma),\quad [c,\gamma]=1
-   \;\;(\gamma\in\Gamma)\,\bigr\rangle ,
-\]
-with no relation on $c$.  Viewing $E_\infty$ as an HNN extension of
-$\Gamma\times\langle c\rangle\cong\Gamma\times\Z$ that identifies
-$\Gamma$ with $\alpha(\Gamma)$, a finite-order element fixes a vertex of
-the Bass--Serre tree and so is conjugate into $\Gamma\times\Z$, which is
-torsion-free; hence $E_\infty$ is torsion-free.
-
-Set $d=tct^{-1}$ and $u=[d,a]$, a generator of $N_{\mathrm{conj}}$.  Then
-$u$ has infinite order.  Map $E_\infty$ to the $\Z$-lamp group
-$\bigl(\bigoplus_{G/\Gamma}\Z\bigr)\rtimes G$ over
-$G=\langle\Gamma,t\mid t\gamma t^{-1}=\alpha(\gamma)\rangle$ by sending
-$c$ to the lamp at the coset $\Gamma$; the relation $[c,\gamma]=1$ holds
-because $\Gamma$ fixes that coset.  Then $d\mapsto e_{t\Gamma}$ and
-$ada^{-1}\mapsto e_{at\Gamma}$, and $a\notin\alpha(\Gamma)$ gives
-$at\Gamma\ne t\Gamma$, so
-\[
- u\longmapsto e_{t\Gamma}-e_{at\Gamma}\ne0 ,
-\]
-of infinite order in $\bigoplus_{G/\Gamma}\Z$.  This is the torsion-free
-counterpart of the central sign: there the lamp group is $\Cl(X)$ and
-$u^2=-1$; here it is $\bigoplus_X\Z$ and $u$ is a difference of two
-distinct basis vectors.
-
-What is wanted is a quotient $q\colon E_\infty\twoheadrightarrow Q$ with
-$Q$ finitely presented, $Q$ Kazhdan, $Q$ torsion-free, $Q$ two-generated,
-$q(N_{\mathrm{conj}})=Q$, and $q(u)\ne1$.  The first five hold for the
-trivial quotient, whatever the underlying data, so they carry no
-information on their own.
-\leanverified{Sofic/FiveConditionInsufficiency}{GroupApproximation.exists_subsingleton_quotient}
-\leanverified{Sofic/FiveConditionInsufficiency}{GroupApproximation.trivial_group_has_printed_profile}
-
-Given such a $q$ with $Q\ne1$, the group $Q$ is two-generated, finitely
-presented, torsion-free, Kazhdan, and equal to its own MF residual, so
-every homomorphism from $Q$ to the unitary group of a matrix quotient is
-trivial, and every nontrivial quotient of $Q$ likewise fails to be MF;
-in particular $Q$ itself is not MF\@.
-\leanverified{Sofic/FullMFRadicalEndpoint}{GroupApproximation.FullMFRadicalEndpoint.exists_nontrivial_twoGenerated_finitelyPresented_torsionFree_kazhdan_fullMFRadical}
-\leanverified{Sofic/FullMFRadicalEndpoint}{GroupApproximation.FullMFRadicalEndpoint.exists_nontrivial_group_with_every_nontrivial_quotient_not_isCDEOperatorMF}
-By Theorem~\ref{thm:saturation}, a group that equals its own collapse
-defect admits no nontrivial homomorphism to any countable MF group.
-
-Hull's small-cancellation theorem \cite[Theorem 1.5]{Hull} would supply
-such a $q$ from a two-generated \emph{suitable} subgroup $S$ of
-$N_{\mathrm{conj}}$ --- one whose induced action is non-elementary and
-which normalizes no finite subgroup.  The quotient it returns is
-obtained by adjoining finitely many relators and restricts to a
-surjection from $S$; property~\textup{(T)} descends from a torsion-free
-Kazhdan lattice through a common quotient.  Torsion-freeness of $Q$
-follows from its torsion clause, which produces every finite-order
-element of the quotient from a source element of the same order, and
-$E_\infty$ is torsion-free.  The condition $q(u)\ne1$ follows from
-injectivity on a prescribed ball, taking the radius large enough for
-that ball to contain $u$.
-
-What is not available is a suitable such $S$.  Lemma~5.8 of \cite{Hull}
-produces one from an infinite-order $h$ with $\langle h\rangle$
-hyperbolically embedded, and infinite order alone does not give that, so
-$u$ does not yet suffice.  The Bass--Serre action of $E_\infty$ does not
-supply it either: with vertex group $\Gamma\times\Z$ both associated
-subgroups are proper, and segments along the $t$-axis have stabilizers
-containing $\alpha^n(\Gamma)$, so that action is not acylindrical.
+contains $\{1,w\}$ by Theorem~\ref{thm:signfree}, and
+Corollary~\ref{cor:collapsequot}, applied to $E/\langle w\rangle$ and
+its collapse defect $D$, computes it from
+$\operatorname{Res}_{\mathrm{MF}}\bigl((E/\langle w\rangle)/D\bigr)$.
+Neither collapse theorem applies to that second quotient: $w$ is
+already trivial in $E/\langle w\rangle$, and the commutators generating
+$D$ are already trivial in the quotient by $D$.
+\item Is there a torsion-free finitely presented non-MF group?  Every
+finite subgroup of a torsion-free group is trivial, so
+Theorem~\ref{thm:criterion} is empty there, while
+Theorem~\ref{thm:normal-kazhdan} obstructs homomorphisms to
+$\U(\mathcal Q)$ with no torsion anywhere.  What remains is
+group-theoretic: a torsion-free finitely presented group whose subgroup
+$N_{\mathrm{conj}}$ contains a normal property-\textup{(T)} subgroup.
+Remark~\ref{rem:ff-realization} gives a small-cancellation route over
+the torsion-free finitely presented Kazhdan group of \cite{FFF}, which
+removed the analogous torsion obstacle for nonsoficity.  The Clifford
+construction of Theorem~\ref{thm:kazhdan-clifford} cannot produce such
+a group: it imposes $c^2=1$, so $d^2=1$, and a torsion-free quotient
+$q$ then has $q(d)=1$ and $q(N_{\mathrm{conj}})=1$.
+\leanverified{Sofic/TorsionFreeFiniteNormalLimit}{GroupApproximation.finiteSubgroup_eq_bot_of_isMulTorsionFree}
 \item Does MF imply hyperlinearity?  A faithful embedding into a matrix
 quotient need not make any coordinate trace faithful, so the defining
 MF representation does not immediately give a hyperlinear model.  This
 question concerns the CDE convention fixed above; for stronger
 trace-controlled MF conventions the implication is built into the definition.
-\item By Proposition~\ref{prop:sounditeration}, every family of
-theorems placing subgroups in the MF residual generates, by iteration
-through quotients, a closure contained in
-$\operatorname{Res}_{\mathrm{MF}}$.  For which groups do the criteria of
-Theorems~\ref{thm:criterion}, \ref{thm:normal-kazhdan},
-\ref{thm:collapse}, and~\ref{thm:projection-collapse} compute the
-residual exactly?
+\item For which groups do the criteria of
+Theorems~\ref{thm:criterion}, \ref{thm:normal-kazhdan}
+and~\ref{thm:projection-collapse} compute the residual exactly?
 \item Does the obstruction survive when the matrix blocks are replaced
 by other building blocks?  The proof of
 Theorem~\ref{thm:kazhdan-transport} uses finite dimensionality of
 $M_{d_n}(\C)$ twice: for the conjugation action on
 $L^2(M_{d_n}(\C),\tr_{d_n})$, and for finiteness of the norm
-ultraproduct.  Section~\ref{sec:limits} shows that faithful traces
-alone do not replace it.  For which separable $C^*$-algebras $A_n$ of
-real rank zero does every homomorphism
-$H\to\U\bigl(\prod_nA_n/\bigoplus_nA_n\bigr)$ still kill $w$?  The
-lifting of Lemma~\ref{lem:lift}, which is where the matrix structure
-first enters, is a semiprojectivity question in the sense of Loring
-\cite{Loring98}.
+ultraproduct.  Faithful traces alone do not replace it.  For which
+separable $C^*$-algebras $A_n$ of real rank zero does every
+homomorphism $H\to\U\bigl(\prod_nA_n/\bigoplus_nA_n\bigr)$ still kill
+$w$?  The lifting of Lemma~\ref{lem:lift}, which is where the matrix
+structure first enters, is a semiprojectivity question in the sense of
+Loring \cite{Loring98}.
 \end{enumerate}
 
 \section{The maximal group \texorpdfstring{$C^*$}{C*}-algebra}\label{app:maxcstar}
@@ -4284,172 +3341,6 @@ residually finite-dimensional nor MF\@.  For the reduced algebra of
 $E$, by contrast, the canonical trace is faithful and the algebra is
 stably finite (Theorem~\ref{thm:D}), so its failure of MF is not a
 failure of finiteness.
-\end{remark}
-
-\section{The thirteen-relator presentation of \texorpdfstring{$\SL_3(\mathbb Z)$}{SL3(Z)}}\label{app:p13}
-
-Property~\textup{(T)} of $\mathbb Z^3\rtimes\SL_3(\mathbb Z)$ is
-classical \cite[Example~1.7.4(i)]{BHV}, and the presentations go back to
-\cite[Theorem~2]{CRW}.  Proposition~\ref{prop:literal-base-T} derives
-property~\textup{(T)} for the twenty relators of
-\eqref{eq:gamma-presentation} through the thirteen-relator presentation
-$P_{13}$, using the isomorphism $P_{13}\cong\SL_3(\mathbb Z)$ proved
-here.
-
-\begin{theorem}[completeness of the thirteen-relator presentation]
-\label{thm:p13-complete}
-The canonical homomorphism $P_{13}\to\SL_3(\mathbb Z)$, sending each
-generator $e_{ij}$ to the corresponding elementary matrix, is an
-isomorphism.
-\leanverified{Monsters/P13DescentMaster}{GroupApproximation.P13DescentMaster.p13CompletenessEquiv}
-\end{theorem}
-
-\begin{proof}
-Write $\pi\colon P_{13}\to\SL_3(\mathbb Z)$ for the map in question, and
-\[
- \omega_{12}=e_{12}e_{21}^{-1}e_{12},\qquad
- \omega_{13}=e_{13}e_{31}^{-1}e_{13},\qquad
- \omega_{23}=e_{23}e_{32}^{-1}e_{23}
-\]
-for the three signed swaps; $\omega_{12}$ is the Weyl element of the
-upper-left $2\times2$ block, and the thirteenth relator is
-$\omega_{12}^4=1$.  Let $e_3$ be
-the third basis column of $\mathbb Z^3$, let
-$\lVert\cdot\rVert_1$ be the $\ell^1$ norm on $\mathbb Z^3$, and put
-\[
- H_{\mathrm{par}}=\langle e_{12},e_{21},e_{31},e_{32}\rangle\le P_{13},
-\]
-the subgroup on the four root letters whose matrices fix $e_3$.
-
-\emph{Surjectivity.}  Division with
-remainder in the first column of $A\in\SL_3(\mathbb Z)$ is a product of
-integer powers of elementary matrices, and iterating it on columns and
-then on rows reduces $A$ to a diagonal sign matrix.  Each such sign
-matrix is the square of a signed swap, and each signed swap is the
-displayed three-transvection word.
-
-\emph{Injectivity: a normal form.}  Write an element of $P_{13}$ as a
-word $W=\ell_k\cdots\ell_1$ in the letters $e_i^{\pm1}$.  Given a
-column $b\in\mathbb Z^3$, the \emph{trajectory} of $W$ over $b$ is the
-sequence $b,\ \pi(\ell_1)b,\ \pi(\ell_2\ell_1)b,\ \dots,\ \pi(W)b$, and
-$W$ is \emph{norm-monotone} over $b$ when the $\ell^1$ norms along that
-sequence do not decrease.  Using only the thirteen relators, every $W$
-can be rewritten as
-\[
- W=G\,m,\qquad m\in\langle\omega_{13},\omega_{23}\rangle,\qquad
- G\ \text{norm-monotone over}\ b:=\pi(m)e_3 .
-\]
-The rewriting is a descent, in the lexicographic order on
-$\mathbb N\times\mathbb N$, of the pair consisting of the largest
-$\ell^1$ norm attained along the trajectory at a position where
-monotonicity fails, and the number of positions at which it attains
-that norm and fails.  One step splits $W$ at such a position and
-rewrites the offending pair of adjacent letters; the thirty-six ordered
-pairs of root families fall into four classes --- cancelling,
-commuting, Steinberg, and braid --- each handled by one of the
-displayed relators, and each strictly decreasing the pair.  The
-thirty-six cases are
-enumerated in the supplementary material.
-
-\emph{Injectivity: a kernel word has constant trajectory.}
-Suppose $\pi(W)=1$.
-The subgroup $\langle\omega_{13},\omega_{23}\rangle$ maps into the signed
-permutation matrices, so $b=\pi(m)e_3$ is a signed basis column and
-$\lVert b\rVert_1=1$.  The trajectory of $G$ over $b$ starts at $b$ and
-ends at $\pi(G)b=\pi(m)^{-1}b=e_3$, again of norm one, and it is
-nondecreasing; hence it is constant.  A root letter that preserves the
-$\ell^1$ norm of a signed basis column fixes that column, so every
-letter of $G$ fixes $b$ --- and, taking the whole word,
-$\pi(m)e_3=\pi(G)b=e_3$, so $\pi(m)$ fixes $e_3$.
-
-\emph{Injectivity: reduction to the parabolic subgroup.}
-Conjugation by $\omega_{13}$ and by
-$\omega_{23}$ permutes the twelve letters $e_i^{\pm1}$, by two explicit
-tables derived from the relators.  Applying them letter by letter turns
-$m^{-1}Gm$ into a word in root letters, each of which fixes
-$\pi(m)^{-1}b=e_3$.  The root letters whose matrices fix $e_3$ are
-exactly $e_{12}^{\pm1},e_{21}^{\pm1},e_{31}^{\pm1},e_{32}^{\pm1}$, so
-$m^{-1}Gm\in H_{\mathrm{par}}$.
-
-\emph{Injectivity: the subgroup $\langle\omega_{13},\omega_{23}\rangle$.}
-The group $\langle\omega_{13},\omega_{23}\rangle$ acts on the six
-signed basis columns,
-and the orbit of $e_3$ is all six of them, with coset representatives
-\[
- 1,\quad \omega_{13},\quad \omega_{23},\quad \omega_{13}^2,\quad
- \omega_{13}^3,\quad \omega_{23}\omega_{13}^2
-\]
-carrying $e_3$ to $e_3,e_1,e_2,-e_3,-e_1,-e_2$ respectively.  Twelve
-Schreier relations, one for each generator and coset, have the form
-$\omega_\bullet\,r_j=r_{j'}\,\omega_{12}^{k}$: every Schreier element is a
-power of the block Weyl element $\omega_{12}$; the twelve are listed in
-the supplementary material.  The remaining Schreier relation is
-$\omega_{23}^2=\omega_{12}^2\omega_{13}^2$.  In $K_2(3,\mathbb Z)$ the
-Steinberg symbol $\{-1,-1\}$ is $\omega_{12}^{4}$, so this relation
-holds in $P_{13}$ exactly because the thirteenth relator sets
-$\omega_{12}^4=1$.  Hence
-every element of $\langle\omega_{13},\omega_{23}\rangle$ is
-$r_j\omega_{12}^k$; if in addition its
-matrix fixes $e_3$, then $r_je_3=e_3$ forces $j=0$, leaving
-$m=\omega_{12}^k\in
-H_{\mathrm{par}}$.  With the previous step,
-\[
- W=m\cdot\bigl(m^{-1}Gm\bigr)\in H_{\mathrm{par}} .
-\]
-The next step is applied to this product and not to $m^{-1}Gm$ alone,
-whose image under $\pi$ is $\pi(m)^{-1}$ rather than $1$.
-
-\emph{Injectivity: the parabolic subgroup.}  Let
-$N=\langle e_{31},e_{32}\rangle$ and $\Lambda=\langle
-e_{12},e_{21}\rangle$.  The Steinberg relations make $N$ abelian and
-normalized by $\Lambda$, and every element of $H_{\mathrm{par}}$ is
-$e_{31}^{a}e_{32}^{b}\gamma$ with $\gamma\in\Lambda$.  On $\Lambda$ the
-displayed relators reduce to
-\[
- \Lambda=\langle p,q\mid pqp=qpq,\ (pqp)^{4}=1\rangle,
- \qquad p=e_{12},\quad q=e_{21}^{-1},
-\]
-and $\pi$ carries $p$ and $q$ to the two elementary matrices of the
-upper-left $\SL_2(\mathbb Z)$ block, whose entries outside that block
-are those of the identity.  Put
-\[
- \chi=pqp,\qquad \psi=pq,\qquad \eta=\chi^{2}.
-\]
-Since $p=\psi^{-1}\chi$ and $q=\chi^{-1}\psi^{2}$, the pair
-$\chi,\psi$ generates $\Lambda$, and the braid relation is equivalent
-to $\chi^{2}=\psi^{3}$; thus
-$\Lambda=\langle\chi,\psi\mid\chi^{2}=\psi^{3},\ \chi^{4}=1\rangle$,
-and $\eta=\chi^{2}=\psi^{3}$ is central with $\eta^{2}=1$.  Killing
-$\eta$ leaves
-$\langle\chi,\psi\mid\chi^{2}=\psi^{3}=1\rangle
-=\mathbb Z/2\ast\mathbb Z/3$.  The M\"obius ping-pong argument
-identifies $\mathrm{PSL}_2(\mathbb Z)$ with the free product of the
-order-two and order-three subgroups generated by the images of
-$\pi(\chi)$ and $\pi(\psi)$, so the induced surjection
-$\Lambda/\langle\eta\rangle\to\mathrm{PSL}_2(\mathbb Z)$ carries each
-free factor isomorphically onto the corresponding one and is therefore
-an isomorphism.  Hence $\ker(\pi|_\Lambda)\subseteq\langle\eta\rangle$;
-and $\pi(\eta)=\operatorname{diag}(-1,-1,1)\ne I$, so
-$\ker(\pi|_\Lambda)=1$.  Now let
-$W=e_{31}^{a}e_{32}^{b}\gamma\in H_{\mathrm{par}}$ have $\pi(W)=1$.
-The upper-left $2\times2$ block of $\pi(W)$ is the matrix of $\gamma$,
-so $\gamma=1$; the bottom row of $\pi(W)$ is then $(a,b,1)$, so
-$a=b=0$.  Hence $W=1$, and $\ker\pi$ is trivial.
-\end{proof}
-
-\begin{remark}[the classical identification]\label{rem:classical-base}
-The eight relations \eqref{eq:sl3presentation} present
-$\SL_3(\mathbb Z)$: Theorem~\ref{thm:p13-complete} composed with the
-surjection of Step 2 identifies $\mathcal R$ with $\SL_3(\mathbb Z)$,
-and the base $\mathcal B$ is then the affine group
-$\mathbb Z^3\rtimes\SL_3(\mathbb Z)$ --- the surjection
-$\mathcal B\to\bar\Gamma$ of Lemma~\ref{lem:linear} onto the matrix
-realization is an isomorphism.
-\leanverified{Monsters/LiteralBaseCompleteness}{GroupApproximation.LiteralBaseCompleteness.baseAffineEquiv}
-The presentations go back to \cite[Theorem~2]{CRW}, with the
-matrix-labelled generators also recorded in \cite{CLV}, and
-property~\textup{(T)} of the affine group is classical
-\cite[Example~1.7.4(i)]{BHV}.
 \end{remark}
 
 \section*{Acknowledgements}
@@ -4594,11 +3485,6 @@ $\operatorname{Ext}(C^*_{\mathrm{red}}(F_2))$ is not a group},
 Ann. of Math. (2) \textbf{162} (2005), no.~2, 711--775,
 \doi{10.4007/annals.2005.162.711}, \arxiv{math/0212265}.
 
-\bibitem[Hu]{Hull}
-M.~Hull,
-\emph{Small cancellation in acylindrically hyperbolic groups},
-Groups Geom. Dyn. \textbf{10} (2016), 1077--1119,
-\doi{10.4171/GGD/377}, \arxiv{1308.4345}.
 
 \bibitem[JNVWY]{MIPRE}
 Z.~Ji, A.~Natarajan, T.~Vidick, J.~Wright, and H.~Yuen,
@@ -4679,11 +3565,6 @@ B.~H.~Neumann,
 J. London Math. Soc. \textbf{12} (1937), 120--127,
 \doi{10.1112/jlms/s1-12.46.120}.
 
-\bibitem[NT]{NetzerThom}
-T.~Netzer and A.~Thom,
-\emph{Kazhdan's property (T) via semidefinite optimization},
-Exp. Math. \textbf{24} (2015), no.~3, 371--374,
-\doi{10.1080/10586458.2014.999149}, \arxiv{1411.2488}.
 
 \bibitem[OAI]{OAI}
 OpenAI,
@@ -4692,17 +3573,6 @@ in \emph{Ten advances in mathematics and theoretical computer science},
 Chapter~3, 78--95, 2026,
 \url{https://cdn.openai.com/pdf/ten-proofs-oai.pdf}.
 
-\bibitem[Os]{OsinAH}
-D.~Osin,
-\emph{Acylindrically hyperbolic groups},
-Trans. Amer. Math. Soc. \textbf{368} (2016), no.~2, 851--888,
-\arxiv{1304.1246}.
-
-\bibitem[Oz]{Ozawa}
-N.~Ozawa,
-\emph{Noncommutative real algebraic geometry of Kazhdan's property (T)},
-J. Inst. Math. Jussieu \textbf{15} (2016), no.~1, 85--90,
-\doi{10.1017/S1474748014000309}, \arxiv{1312.5431}.
 
 \bibitem[Ra]{Rabin58}
 M.~O.~Rabin,

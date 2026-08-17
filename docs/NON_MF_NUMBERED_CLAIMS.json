@@ -29,6 +29,12 @@
           "module": "Sofic/LiteralNonMFEndpoint",
           "declaration": "GroupApproximation.LiteralNonMFEndpoint.manuscriptTheoremA",
           "covers": "the complete printed proposition"
+        },
+        {
+          "role": "exact",
+          "module": "Sofic/LiteralTietzePresentation",
+          "declaration": "GroupApproximation.LiteralTietzePresentation.manuscriptTietzeSixGeneratorPresentation",
+          "covers": "a printed conclusion of the proposition"
         }
       ]
     },
@@ -119,8 +125,8 @@
     {
       "id": "lem:ultrafinite",
       "environment": "lemma",
-      "title": "the norm ultraproduct",
-      "statement_sha256": "2bb52124d79d67fb83bc02ca2e18a8702deb0904469d755749bbb92605176041",
+      "title": "finiteness of a norm quotient of matrix blocks",
+      "statement_sha256": "18a9bd515024e111bf781e608fc7e1df56453a4e5eb1608c5e417424dfe46102",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [],
@@ -351,29 +357,6 @@
       ]
     },
     {
-      "id": "thm:witnesssofic",
-      "environment": "mainthm",
-      "title": "a sofic non-MF group",
-      "statement_sha256": "f0ae6bd739d62093a1d66edb93e3fcd0032cfa0a70335d19de9a910868f342fa",
-      "status": "exact",
-      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
-      "dependencies": [
-        "prop:witness",
-        "lem:portable"
-      ],
-      "extra_assumptions": [],
-      "external_inputs": [],
-      "coverage_gap": "",
-      "lean": [
-        {
-          "role": "exact",
-          "module": "Endpoint/NonMFImpact",
-          "declaration": "GroupApproximation.NonMFImpact.witness_sofic_hyperlinear_nonMF",
-          "covers": "the complete printed proposition"
-        }
-      ]
-    },
-    {
       "id": "thm:Esofic",
       "environment": "mainthm",
       "title": "a finitely presented sofic non-MF group",
@@ -383,8 +366,8 @@
       "dependencies": [
         "def:E",
         "thm:A",
-        "thm:witnesssofic",
-        "thm:markedclosed"
+        "prop:blocknormalform",
+        "lem:window"
       ],
       "extra_assumptions": [],
       "external_inputs": [],
@@ -895,52 +878,6 @@
       ]
     },
     {
-      "id": "prop:mfclosure",
-      "environment": "proposition",
-      "title": "the MF closure of relations",
-      "statement_sha256": "2a8cf8615326c25679b378ad9d3169a2acd1dadc227e69d1ca27a97d93abb290",
-      "status": "exact",
-      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
-      "dependencies": [],
-      "extra_assumptions": [],
-      "external_inputs": [],
-      "coverage_gap": "",
-      "lean": [
-        {
-          "role": "exact",
-          "module": "Sofic/MFRelationClosure",
-          "declaration": "GroupApproximation.mem_actualCoronaMFClosure_iff",
-          "covers": "a printed conclusion of the proposition"
-        },
-        {
-          "role": "exact",
-          "module": "Sofic/MFRelationClosure",
-          "declaration": "GroupApproximation.manuscriptRelationClosure",
-          "covers": "the complete printed proposition"
-        }
-      ]
-    },
-    {
-      "id": "prop:sounditeration",
-      "environment": "proposition",
-      "title": "iterating closure and join",
-      "statement_sha256": "3d059f7e96aa593a214256deefc0c2652c3ad6416e32ee5385848c788a989eca",
-      "status": "exact",
-      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
-      "dependencies": [],
-      "extra_assumptions": [],
-      "external_inputs": [],
-      "coverage_gap": "",
-      "lean": [
-        {
-          "role": "exact",
-          "module": "Sofic/MFRelationClosure",
-          "declaration": "GroupApproximation.manuscriptSoundIterationClosure",
-          "covers": "the complete printed proposition"
-        }
-      ]
-    },
-    {
       "id": "cor:nofaithful",
       "environment": "corollary",
       "title": "",
@@ -1018,10 +955,10 @@
       ]
     },
     {
-      "id": "prop:stabradical",
-      "environment": "proposition",
-      "title": "stability identifies the residuals",
-      "statement_sha256": "422a62ed9f0a82cb8b55c7566034160389a2af3a511b459fc984bc8303b12415",
+      "id": "thm:projection-collapse",
+      "environment": "theorem",
+      "title": "projection collapse",
+      "statement_sha256": "f8010458149ae59b274a279ed754d1cb8ed12611ade9c90c774d6bd162f78c55",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [],
@@ -1031,21 +968,9 @@
       "lean": [
         {
           "role": "exact",
-          "module": "Sofic/MatricialStabilityRadical",
-          "declaration": "GroupApproximation.MatricialStabilityRadical.actualCoronaMFResidual_le_fdUnitaryResidual",
-          "covers": "a printed conclusion of the proposition"
-        },
-        {
-          "role": "exact",
-          "module": "Sofic/MatricialStabilityRadical",
-          "declaration": "GroupApproximation.MatricialStabilityRadical.actualCoronaMFResidual_eq_fdUnitaryResidual",
+          "module": "Sofic/ProjectionCompressionCollapse",
+          "declaration": "GroupApproximation.ProjectionCompressionCollapse.corona_projection_collapse",
           "covers": "the complete printed proposition"
-        },
-        {
-          "role": "exact",
-          "module": "Sofic/MatricialStabilityRadical",
-          "declaration": "GroupApproximation.MatricialStabilityRadical.not_isCDEOperatorMF_of_stable_of_fdResidual_ne_bot",
-          "covers": "a printed conclusion of the proposition"
         }
       ]
     },
@@ -1095,26 +1020,6 @@
       ]
     },
     {
-      "id": "thm:projection-collapse",
-      "environment": "theorem",
-      "title": "projection collapse",
-      "statement_sha256": "f8010458149ae59b274a279ed754d1cb8ed12611ade9c90c774d6bd162f78c55",
-      "status": "exact",
-      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
-      "dependencies": [],
-      "extra_assumptions": [],
-      "external_inputs": [],
-      "coverage_gap": "",
-      "lean": [
-        {
-          "role": "exact",
-          "module": "Sofic/ProjectionCompressionCollapse",
-          "declaration": "GroupApproximation.ProjectionCompressionCollapse.corona_projection_collapse",
-          "covers": "the complete printed proposition"
-        }
-      ]
-    },
-    {
       "id": "thm:torsion-collapse",
       "environment": "theorem",
       "title": "torsion collapse",
@@ -1147,48 +1052,10 @@
       ]
     },
     {
-      "id": "thm:commutinglamp",
-      "environment": "theorem",
-      "title": "the commuting-generator quotient",
-      "statement_sha256": "1202711ab680499f030b7dd376699571cee6fae9af008563a2a0582c3a571e96",
-      "status": "exact",
-      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
-      "dependencies": [],
-      "extra_assumptions": [],
-      "external_inputs": [],
-      "coverage_gap": "",
-      "lean": [
-        {
-          "role": "exact",
-          "module": "Sofic/CommutingLampQuotientSofic",
-          "declaration": "GroupApproximation.CommutingLampQuotientSofic.literalSignFreeQuotient_isSofic_and_not_isCDEOperatorMF",
-          "covers": "the complete printed proposition"
-        },
-        {
-          "role": "exact",
-          "module": "Sofic/CommutingLampCollapse",
-          "declaration": "GroupApproximation.CommutingLampCollapse.commutingLampQuotient_collapse",
-          "covers": "a printed conclusion of the proposition"
-        },
-        {
-          "role": "exact",
-          "module": "Sofic/CommutingLampCollapse",
-          "declaration": "GroupApproximation.CommutingLampCollapse.literalCommutingLampQuotient_collapse",
-          "covers": "a printed conclusion of the proposition"
-        },
-        {
-          "role": "exact",
-          "module": "Sofic/CommutingLampCollapse",
-          "declaration": "GroupApproximation.CommutingLampCollapse.literalCommutingLampQuotient_not_isCDEOperatorMF",
-          "covers": "a printed conclusion of the proposition"
-        }
-      ]
-    },
-    {
       "id": "cor:collapsequot",
       "environment": "corollary",
       "title": "collapse computes the residual",
-      "statement_sha256": "72075e72ddb62db9935a8b01e88ea48a2016220e32ad2ff6a2cc084edc0e5c82",
+      "statement_sha256": "aacd98ae2be82cbc3c4d93b713ca43af20fbb7b3d32522c5f358500f10ee3db2",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [
@@ -1204,31 +1071,6 @@
           "role": "exact",
           "module": "Sofic/ManuscriptExactWrappers",
           "declaration": "GroupApproximation.ManuscriptExactWrappers.manuscriptCollapseRadicalReduction",
-          "covers": "the complete printed proposition"
-        }
-      ]
-    },
-    {
-      "id": "thm:saturation",
-      "environment": "theorem",
-      "title": "when the collapse subgroup is everything",
-      "statement_sha256": "0c140613786aa5274d09f834381a50826e44547d8f99634d6a43da22a4b3a73e",
-      "status": "exact",
-      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
-      "dependencies": [
-        "thm:collapse",
-        "lem:portable",
-        "lem:permanence",
-        "prop:univquot"
-      ],
-      "extra_assumptions": [],
-      "external_inputs": [],
-      "coverage_gap": "",
-      "lean": [
-        {
-          "role": "exact",
-          "module": "Sofic/ManuscriptExactWrappers",
-          "declaration": "GroupApproximation.ManuscriptExactWrappers.manuscriptDefectSaturation",
           "covers": "the complete printed proposition"
         }
       ]
@@ -1250,6 +1092,82 @@
           "module": "Sofic/ManuscriptExactWrappers",
           "declaration": "GroupApproximation.ManuscriptExactWrappers.manuscriptFaithfulTraceAndStableFiniteness",
           "covers": "the complete printed proposition"
+        }
+      ]
+    },
+    {
+      "id": "prop:blocknormalform",
+      "environment": "proposition",
+      "title": "normal form for $E$",
+      "statement_sha256": "4e271fd389e7e29d321b3d3733e6a32cb5b06798e39f9a540489034472b7d25a",
+      "status": "exact",
+      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
+      "dependencies": [],
+      "extra_assumptions": [],
+      "external_inputs": [],
+      "coverage_gap": "",
+      "lean": [
+        {
+          "role": "exact",
+          "module": "Sofic/LiteralBlockNormalForm",
+          "declaration": "GroupApproximation.LiteralBlockNormalForm.markedGroupEquivModel",
+          "covers": "the complete printed proposition"
+        },
+        {
+          "role": "exact",
+          "module": "Sofic/LiteralBlockNormalForm",
+          "declaration": "GroupApproximation.LiteralBlockNormalForm.lampKernelEquiv",
+          "covers": "a printed conclusion of the proposition"
+        },
+        {
+          "role": "exact",
+          "module": "Sofic/LiteralBlockNormalForm",
+          "declaration": "GroupApproximation.LiteralBlockNormalForm.manuscriptSiteLampImage",
+          "covers": "a printed conclusion of the proposition"
+        },
+        {
+          "role": "exact",
+          "module": "Sofic/LiteralBlockNormalForm",
+          "declaration": "GroupApproximation.LiteralBlockNormalForm.toModel_mark",
+          "covers": "a printed conclusion of the proposition"
+        },
+        {
+          "role": "exact",
+          "module": "Sofic/LiteralBlockNormalForm",
+          "declaration": "GroupApproximation.LiteralBlockNormalForm.manuscriptFiniteLevelSiteOrbit",
+          "covers": "a printed conclusion of the proposition"
+        },
+        {
+          "role": "exact",
+          "module": "Sofic/LiteralVerticalBridge",
+          "declaration": "GroupApproximation.LiteralVerticalBridge.verticalEquiv",
+          "covers": "a printed conclusion of the proposition"
+        }
+      ]
+    },
+    {
+      "id": "lem:window",
+      "environment": "lemma",
+      "title": "windows are residually finite",
+      "statement_sha256": "ffcad9af5c739fc445e6c9432c0598c368e66ad83c32bd013530666c1d2f729c",
+      "status": "exact",
+      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
+      "dependencies": [],
+      "extra_assumptions": [],
+      "external_inputs": [],
+      "coverage_gap": "",
+      "lean": [
+        {
+          "role": "exact",
+          "module": "Sofic/BlockCliffordTowerSofic",
+          "declaration": "GroupApproximation.BlockCliffordTowerSofic.manuscriptResiduallyFiniteWindow",
+          "covers": "the complete printed proposition"
+        },
+        {
+          "role": "exact",
+          "module": "Sofic/LiteralSoficAssembly",
+          "declaration": "GroupApproximation.LiteralSoficAssembly.lampEquiv",
+          "covers": "a printed conclusion of the proposition"
         }
       ]
     },
@@ -1406,26 +1324,6 @@
           "module": "Analysis/ProperIsometryFromCompression",
           "declaration": "GroupApproximation.ProperProjectionCompression.no_faithfulTracialState",
           "covers": "a printed conclusion of the proposition"
-        }
-      ]
-    },
-    {
-      "id": "thm:p13-complete",
-      "environment": "theorem",
-      "title": "completeness of the thirteen-relator presentation",
-      "statement_sha256": "32cf3b27267b128d3d24a79fe0b2150596fb9cc7247c17dc994d3521f544641d",
-      "status": "exact",
-      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
-      "dependencies": [],
-      "extra_assumptions": [],
-      "external_inputs": [],
-      "coverage_gap": "",
-      "lean": [
-        {
-          "role": "exact",
-          "module": "Monsters/P13DescentMaster",
-          "declaration": "GroupApproximation.P13DescentMaster.p13CompletenessEquiv",
-          "covers": "the complete printed proposition"
         }
       ]
     }

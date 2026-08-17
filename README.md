@@ -4,9 +4,10 @@
 > fast-forwarded after every complete Lean Prover CI success on `main`.
 >
 > That branch is the exact repository state most recently certified by
-> the full Lean Prover CI gate.
->
-> The repository's Actions history records the most
+> the full Lean Prover CI gate -- `lake build` with warnings as errors, the
+> source and compiled-environment scans, the non-MF counterpart contract,
+> the kernel-level axiom audit, signature pinning, and the fresh-kernel
+> `leanchecker` replay. The repository's Actions history records the most
 > recent successful run.
 > To inspect that state:
 >
@@ -41,6 +42,18 @@ corona
 
 Building this manuscript requires LaTeX2e dated 2025-06-01 or newer, and
 the release workflow uses a digest-pinned TeX Live 2026 image.
+
+Tagging is **enabled**: the source sets
+`\DocumentMetadata{lang=en-US,pdfversion=2.0,tagging=on}`, and the TikZ
+figure carries alternative text inside a `Figure` structure element, so
+a LuaLaTeX build produces `/MarkInfo`, `/StructTreeRoot`, and an `/Alt`
+entry for the figure — what the release workflow's `Tagged: yes`
+assertion requires.  Two limits are worth naming.  `tagpdf` reports that
+math tagging is running without `unicode-math`, which this manuscript
+does not load, and the theorem environments and margin notes are tagged
+as ordinary paragraphs, so the structure tree is coarser than the
+document's logical structure.  The committed PDF predates the change and
+stays untagged until the next release build.
 
 The current manuscript draft gives a literal finite presentation on eight
 generators `v₁,v₂,v₃,x,y,z,t,c`. Its six-generator, twenty-relator base is
@@ -88,6 +101,10 @@ The paper also proves:
 - a cyclic-base comparison showing that exact finite-dimensional
   invisibility does not force the marked word to be trivial;
 - a unital separable stably finite non-MF C*-algebra, namely `C*red(E)`;
+- soficity of `E` itself, so that a finitely presented sofic and hyperlinear
+  group need not be MF;
+- non-MF of the quotient `E/⟨w⟩`, so that `{1, w}` is a proper subgroup of the
+  MF radical of `E`;
 - failure of closure of MF groups under quotients;
 - the MF radical, its single-corona detector, and the universal MF quotient;
 - a finite universal Horn obstruction and a nonempty clopen cylinder of
@@ -95,10 +112,11 @@ The paper also proves:
 - a dimension-independent finite test set and positive defect threshold
   forcing the literal mark within operator norm `< 1` of the identity.
 
-The result is specific to operator-norm approximation. It does not decide
-whether the presenting group `E` itself is hyperlinear or sofic, or whether
-`E/⟨w⟩` is MF, and does not address quasidiagonality of nuclear stably
-finite C*-algebras.
+The result is specific to operator-norm approximation. Soficity of `E` and
+non-MF of `E/⟨w⟩` are proved by separate arguments, the first from the block
+normal form and the second from orbit collapse; the operator-norm obstruction
+by itself decides neither, and none of this addresses quasidiagonality of
+nuclear stably finite C*-algebras.
 
 Kazhdan transport is a rigidity mechanism, not a new fourth approximation
 class alongside MF, sofic, and hyperlinear groups.  The present result is an
@@ -201,6 +219,37 @@ for the binary Leavitt algebra. Lean reaches the same endpoint independently
 through the constructive prefix-code pencil reduction in `KOne/`; external
 results are not imported as axioms.
 
+## Nonsofic groups exist
+
+The construction the library is named after is `EL₄(L_{𝔽₂}(1,2))`: the rank-four
+elementary group over the universal binary Leavitt algebra, is countable,
+infinite, finitely generated, has property `(T)`, and is not sofic. Its
+endpoints are in `Endpoint/MainResults.lean` — `nonsofic_groups_exist`,
+`countable_nonsofic_groups_exist`, `exists_finitelyPresented_nonsofic_group`,
+and `countable_group_without_essentiallyFreeNearAction_exists`, the negative
+answer to Pestov's Question 5.3 — and each printed statement has one endpoint
+of its own in `Endpoint/ManuscriptStatements.lean`. The statement-by-statement
+correspondence is [`docs/CLAIM_MAP.md`](docs/CLAIM_MAP.md), generated from the
+margin notes of the manuscript and checked by `scripts/check.py`.
+
+The manuscript itself is no longer kept in the repository; the Lean endpoints
+above are the primary record, and `scripts/check.py` reports the absence rather
+than passing silently over it.
+
+## Library scope
+
+The repository contains several interacting developments:
+
+- sofic, LEF, hyperlinear, and operator-norm matrix approximation;
+- Kazhdan property (T), explicit Kazhdan systems, and fixed-point methods;
+- expander decomposition and repair arguments;
+- matching, finite groupoids, and local-to-global approximation criteria;
+- elementary and Steinberg groups over noncommutative rings;
+- Leavitt algebras, matrix self-similarity, unstable elementary reduction,
+  and Whitehead `K₁`;
+- quasi-cocycles and property (TT)/T;
+- domination, representation-theoretic obstructions, and finitely presented
+  covers.
 
 ## Subject map
 
@@ -222,3 +271,50 @@ results are not imported as axioms.
 | Domination/ | Finite-dimensional and permutation domination obstructions |
 | Monsters/ | Further constructions built from the common infrastructure |
 | Endpoint/ | Public theorem surfaces and audit reports |
+
+The docs/ directory is a working research archive as well as documentation.
+Files prefixed FALSE_ record investigated approaches that were ruled out;
+they are retained so failed routes and their precise obstructions remain
+searchable.
+
+## Trust and verification
+
+The project pins Lean and Mathlib in `lean-toolchain` and `lake-manifest.json`.
+GitHub Actions performs the computational checks:
+
+- Lean Prover CI builds with warnings as errors, runs source and compiled
+  environment scans, checks transitive axiom closures, pins mapped theorem
+  signatures, and replays compiled objects through a fresh Lean kernel.
+- The non-MF and property-(TT)/T PDF workflows validate visible TeX-to-formal
+  references, compile and lint each manuscript, reject unresolved references
+  and layout overflow, render every page, validate the PDFs, and publish
+  immutable, attested artifacts for audited revisions.
+- Independent kernel re-check is an additional manually triggered audit.
+- API documentation publishes the generated Lean documentation.
+
+The accepted axiom closure is restricted to `propext`, `Classical.choice`,
+and `Quot.sound`. The audit rejects `sorry`, project axioms, compiler-trust
+shortcuts, and theorem-shaped literature assumptions.
+
+Key audit files:
+
+- `scripts/check.py`: source-level checks;
+- `scripts/Audit.lean`: statement pins, axiom closure, and environment scans;
+- `GroupApproximation/Endpoint/ChosenNonMFAudit.lean`: fast focused axiom audit
+  of the chosen non-MF endpoint, together with the part of the literal
+  eight-generator presentation that is unconditional;
+- `scripts/Signatures.lean` and `docs/CLAIM_SIGNATURES.md`: elaborated public
+  signatures;
+- `scripts/check_non_mf_refs.py` and `scripts/check_property_tt_refs.py`:
+  visible manuscript-to-Lean reference checks;
+- `scripts/check_non_mf_zero_input.py`: enforces that every Lean declaration
+  cited by the non-MF manuscript has no declaration inputs (all quantifiers
+  occur inside the proposition);
+- `docs/NON_MF_IMPACT_FORMAL_STATUS.md`: records which stronger consequences
+  have closed Lean endpoints and which still use literature or require new
+  mathematics;
+- `docs/PROPERTY_TT_CLAIM_MAP.md`: statement mapping for the property-(TT)/T
+  paper.
+
+Cold local builds are expensive. The maintained verification path is the
+GitHub Actions workflows in `.github/workflows/`.

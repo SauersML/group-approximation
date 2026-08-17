@@ -55,9 +55,6 @@ CLAIM_TARGETS: dict[str, tuple[str, str]] = {
     "cor:collapsequot": (
         "Sofic/ManuscriptExactWrappers",
         "GroupApproximation.ManuscriptExactWrappers.manuscriptCollapseRadicalReduction"),
-    "thm:saturation": (
-        "Sofic/ManuscriptExactWrappers",
-        "GroupApproximation.ManuscriptExactWrappers.manuscriptDefectSaturation"),
     "thm:compression-radical": (
         "Sofic/ManuscriptKazhdanTransport",
         "GroupApproximation.KazhdanAsymptoticCommutant.manuscriptCompressionRadical"),
@@ -88,9 +85,6 @@ CLAIM_TARGETS: dict[str, tuple[str, str]] = {
     "thm:reduced": (
         "Sofic/LiteralNonMFEndpoint",
         "GroupApproximation.LiteralNonMFEndpoint.manuscriptTheoremD"),
-    "thm:witnesssofic": (
-        "Endpoint/NonMFImpact",
-        "GroupApproximation.NonMFImpact.witness_sofic_hyperlinear_nonMF"),
     "thm:Esofic": (
         "Sofic/LiteralSoficAssembly",
         "GroupApproximation.LiteralSoficAssembly.markedGroup_finitelyPresented_sofic_nonMF"),
@@ -132,7 +126,7 @@ CLAIM_TARGETS: dict[str, tuple[str, str]] = {
         "GroupApproximation.LiteralBlockNormalForm.markedGroupEquivModel"),
     "lem:window": (
         "Sofic/BlockCliffordTowerSofic",
-        "GroupApproximation.BlockCliffordTowerSofic.residuallyFinite_window"),
+        "GroupApproximation.BlockCliffordTowerSofic.manuscriptResiduallyFiniteWindow"),
     "cor:undecidable": (
         "Computability/HaltingReduction",
         "GroupApproximation.MarkovMFConsequences."
@@ -142,26 +136,9 @@ CLAIM_TARGETS: dict[str, tuple[str, str]] = {
         "GroupApproximation.ManuscriptExactWrappers."
         "manuscriptHSInvisibleCharacterization",
     ),
-    "prop:mfclosure": (
-        "Sofic/MFRelationClosure",
-        "GroupApproximation.manuscriptRelationClosure",
-    ),
     "prop:proper-isometry": (
         "Analysis/ProperIsometryFromCompression",
         "GroupApproximation.ProperProjectionCompression.isometry_not_isUnit",
-    ),
-    "prop:sounditeration": (
-        "Sofic/MFRelationClosure",
-        "GroupApproximation.manuscriptSoundIterationClosure",
-    ),
-    "prop:stabradical": (
-        "Sofic/MatricialStabilityRadical",
-        "GroupApproximation.MatricialStabilityRadical.actualCoronaMFResidual_eq_fdUnitaryResidual",
-    ),
-    "thm:commutinglamp": (
-        "Sofic/CommutingLampQuotientSofic",
-        "GroupApproximation.CommutingLampQuotientSofic."
-        "literalSignFreeQuotient_isSofic_and_not_isCDEOperatorMF",
     ),
     "thm:signfree": (
         "Sofic/LiteralSignFreeQuotient",
@@ -178,10 +155,6 @@ CLAIM_TARGETS: dict[str, tuple[str, str]] = {
     "thm:transport-variants": (
         "Sofic/ScaledKazhdanTransport",
         "GroupApproximation.ScaledKazhdanTransport.scaled_transport_both",
-    ),
-    "thm:p13-complete": (
-        "Monsters/P13DescentMaster",
-        "GroupApproximation.P13DescentMaster.p13CompletenessEquiv",
     ),
     "thm:markedclosed": (
         "Sofic/MarkedMFClosed",
@@ -262,8 +235,7 @@ DEPENDENCIES: dict[str, list[str]] = {
     "cor:uniform": ["thm:A"],
     "thm:cyclic": ["thm:exactfd", "con:clifford"],
     "thm:reduced": ["thm:A", "lem:faithfultrace"],
-    "thm:witnesssofic": ["prop:witness", "lem:portable"],
-    "thm:Esofic": ["def:E", "thm:A", "thm:witnesssofic", "thm:markedclosed"],
+    "thm:Esofic": ["def:E", "thm:A", "prop:blocknormalform", "lem:window"],
     "prop:mf-equivalences": ["lem:unitarycorona"],
     "prop:literal-base-T": ["def:E"],
     "lem:linear": ["def:E"],
@@ -284,8 +256,6 @@ DEPENDENCIES: dict[str, list[str]] = {
     "thm:signfree": ["def:E", "def:invwitness", "thm:collapse",
                      "cor:pullback", "prop:witness", "prop:univquot",
                      "thm:kazhdan-clifford"],
-    "thm:saturation": ["thm:collapse", "lem:portable", "lem:permanence",
-                       "prop:univquot"],
     "lem:portable": ["thm:A", "def:radical"],
     "prop:univquot": ["def:radical", "lem:lift", "lem:unitarycorona"],
     "cor:exactradical": ["def:radical"],
