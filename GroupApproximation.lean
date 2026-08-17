@@ -1004,6 +1004,7 @@ import GroupApproximation.Analysis.OmegaHilbertComplete
 import GroupApproximation.Analysis.RankFrobeniusBound
 import GroupApproximation.Sofic.RealizationFromUniversalGroup
 import GroupApproximation.Analysis.PrintedReverseTransport
+import GroupApproximation.Manuscript.NonMF.QuestionAtoms
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
