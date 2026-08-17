@@ -937,6 +937,7 @@ import GroupApproximation.Computability.UniversalMachineUndecidable
 import GroupApproximation.Computability.AdianRabinWordProblem
 import GroupApproximation.Algebra.HNNFinitePresentation
 import GroupApproximation.Algebra.HNNPresentation
+import GroupApproximation.Algebra.HNNRetraction
 import GroupApproximation.Computability.BooneGroupFinitePresentation
 
 /-!
