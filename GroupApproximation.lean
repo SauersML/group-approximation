@@ -995,6 +995,8 @@ import GroupApproximation.Computability.BooneWords
 import GroupApproximation.Computability.BooneWordMapPrimrec
 import GroupApproximation.Computability.BooneWordAgreement
 import GroupApproximation.Computability.BooneWordProblemUndecidable
+import GroupApproximation.Analysis.PrintedLiftingSteps
+import GroupApproximation.Kazhdan.PrintedComplexificationBridge
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
