@@ -974,6 +974,7 @@ import GroupApproximation.Algebra.FreeProductOrder
 import GroupApproximation.Computability.BooneGroupFinitePresentation
 import GroupApproximation.Computability.NovikovBoone
 import GroupApproximation.Computability.BooneGroupCode
+import GroupApproximation.Computability.UniformWordProblemUndecidable
 import GroupApproximation.Computability.CodedWordTriviality
 import GroupApproximation.Computability.FreeGroupCheckerPrimrec
 import GroupApproximation.Computability.FreeGroupDeletion
