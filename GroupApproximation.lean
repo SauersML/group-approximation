@@ -941,6 +941,7 @@ import GroupApproximation.Computability.AdianRabinWordProblem
 import GroupApproximation.Algebra.HNNFinitePresentation
 import GroupApproximation.Algebra.HNNPresentation
 import GroupApproximation.Algebra.RabinVariantPresentation
+import GroupApproximation.Computability.RabinVariantMF
 import GroupApproximation.Algebra.RabinVariantTower
 import GroupApproximation.Algebra.HNNRetraction
 import GroupApproximation.Algebra.FreeProductOrder
