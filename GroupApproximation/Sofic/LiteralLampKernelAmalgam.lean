@@ -1187,7 +1187,7 @@ end IsBlockCliffordPresentation
 
 /-- **The block-Clifford model satisfies its own presentation criterion.** -/
 theorem isBlockCliffordPresentation_model (I : Type) :
-    IsBlockCliffordPresentation I ((i : I) × Fin 8) Sigma.fst
+    IsBlockCliffordPresentation I ((_ : I) × Fin 8) Sigma.fst
       (LampKernelModel I) (fun p => modelLamp I p.1 p.2) (modelZeta I) where
   c_sq p := modelLamp_sq I p.1 p.2
   zeta_sq := modelZeta_sq I
@@ -1322,6 +1322,8 @@ theorem lampKernel_isSofic [Nonempty Block]
     (chart : ∀ i : Block, Fin 8 ≃ {s : Site // blockOf s = i})
     {N : Type} [Group N] {c : Site → N} {ζ : N}
     (h : IsBlockCliffordPresentation Block Site blockOf N c ζ) : IsSofic N := by
+  -- the finite sub-amalgams decide membership in a `Finset Block`
+  haveI : DecidableEq Block := Classical.decEq _
   obtain ⟨E, _, _⟩ := lampKernel_eq_amalgam blockOf chart h
   exact isSofic_of_injective E.toMonoidHom E.injective isSofic_centralAmalgam
 
@@ -1586,6 +1588,7 @@ theorem literalLampKernel_isSofic
     (chart : ∀ i : Block, Fin 8 ≃ {ξ : Site // blockOf ξ = i}) :
     IsSofic ↥lampKernel := by
   haveI : Nonempty Block := ⟨QuotientGroup.mk 1⟩
+  haveI : DecidableEq Block := Classical.decEq _
   obtain ⟨E⟩ := literalLampKernel_equiv_amalgam hcomplete hadj_ne chart
   exact isSofic_of_injective E.toMonoidHom E.injective isSofic_centralAmalgam
 

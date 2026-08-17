@@ -280,7 +280,9 @@ theorem manuscriptFiniteNormalObstructionCriterion :
       (fun n ↦ naturalFiniteModel (d n)) (fun n ↦ by simpa using hd n)
   letI : ∀ n, Nonempty (naturalFiniteModel (d n)) :=
     fun n ↦ Fintype.card_pos_iff.mp (by simpa using hd n)
-  intro Theta
+  -- the statement binds the model family and its nonemptiness with `let` before
+  -- quantifying over `Theta`, so both have to be introduced first
+  intro _X _hXne Theta
   intro x hx
   have hx₀ := MonoidHom.mem_ker.mp
     (h₀ (Theta.comp e.symm.toMonoidHom)
@@ -325,7 +327,9 @@ theorem manuscriptNormalKazhdanObstruction :
       (fun n ↦ naturalFiniteModel (d n)) (fun n ↦ by simpa using hd n)
   letI : ∀ n, Nonempty (naturalFiniteModel (d n)) :=
     fun n ↦ Fintype.card_pos_iff.mp (by simpa using hd n)
-  intro Theta
+  -- the statement binds the model family and its nonemptiness with `let` before
+  -- quantifying over `Theta`, so both have to be introduced first
+  intro _X _hXne Theta
   intro x hx
   have hx₀ := MonoidHom.mem_ker.mp
     (h₀ (Theta.comp e.symm.toMonoidHom)
@@ -732,11 +736,6 @@ theorem manuscriptDefectSaturation :
 
 /-! ## The abstract obstruction over an invisible subgroup -/
 
-/-- Manuscript Definition (Hilbert--Schmidt invisibility): the element
-is killed in the tracial ultraproduct attached to every operator-norm
-almost representation, along every ultrafilter refining the cofinite
-filter.  This is the per-element form of the hypothesis of the abstract
-invisibility obstruction below. -/
 /-- The asymptotic unitary representation attached to an operator-norm almost
 representation, over a group in **any** universe.
 
@@ -754,6 +753,7 @@ the nine consumers of the original keep the arity they were written against.
 The body is field for field the original's; both `OpAlmostRepresentation` and
 `AsymptoticUnitaryRepresentation` are already universe-polymorphic, so no step
 of the multiplicativity estimate sees the universe. -/
+open scoped Matrix.Norms.L2Operator in
 noncomputable def asymptoticUnitaryOfOpAlmost {H : Type u} [Group H]
     (B : OpAlmostRepresentation H) : AsymptoticUnitaryRepresentation H where
   model := B.model
@@ -783,6 +783,11 @@ theorem asymptoticUnitaryOfOpAlmost_typeZero {H : Type} [Group H]
     asymptoticUnitaryOfOpAlmost B =
       KazhdanCompressionCore.toAsymptoticUnitaryRepresentation B := rfl
 
+/-- Manuscript Definition (Hilbert--Schmidt invisibility): the element
+is killed in the tracial ultraproduct attached to every operator-norm
+almost representation, along every ultrafilter refining the cofinite
+filter.  This is the per-element form of the hypothesis of the abstract
+invisibility obstruction below. -/
 def ManuscriptHSInvisible : ∀ {H : Type u} [Group H], H → Prop :=
   fun {H : Type u} [Group H] (g : H) ↦
     ∀ (B : OpAlmostRepresentation H) (U : Ultrafilter ℕ)
@@ -908,7 +913,9 @@ theorem manuscriptAbstractNormalKazhdanObstruction :
       (fun n ↦ naturalFiniteModel (d n)) (fun n ↦ by simpa using hd n)
   letI : ∀ n, Nonempty (naturalFiniteModel (d n)) :=
     fun n ↦ Fintype.card_pos_iff.mp (by simpa using hd n)
-  intro Theta
+  -- the statement binds the model family and its nonemptiness with `let` before
+  -- quantifying over `Theta`, so both have to be introduced first
+  intro _X _hXne Theta
   intro x hx
   have hx₀ := MonoidHom.mem_ker.mp
     (h₀ (Theta.comp e.symm.toMonoidHom)

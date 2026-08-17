@@ -117,6 +117,15 @@ without a coercion step. -/
 def freeEquiv : FreeGroup (Gen Block BlockSites) ≃* FreeGroup LampGen :=
   FreeGroup.freeGroupCongr genEquiv
 
+@[simp] theorem genEquiv_symm_sign :
+    genEquiv.symm (Sum.inl () : LampGen) = Sum.inl () := rfl
+
+@[simp] theorem genEquiv_symm_lamp (ξ : Site) :
+    genEquiv.symm (Sum.inr ξ : LampGen) = Sum.inr (siteEquiv.symm ξ) := rfl
+
+@[simp] theorem freeEquiv_symm_of (x : LampGen) :
+    freeEquiv.symm (FreeGroup.of x) = FreeGroup.of (genEquiv.symm x) := rfl
+
 /-! ## The relator sets correspond
 
 Both directions need one of the two graph hypotheses, and they need different
@@ -146,9 +155,18 @@ theorem freeEquiv_symm_maps_relators (hi : IsIrreflexive) :
   · exact IsRelator.sign_comm _
   · have hblock : blockOf ξ = blockOf η := blockOf_eq_of_adjacent hadj
     have hne : ξ ≠ η := by rintro rfl; exact hi _ hadj
-    exact IsRelator.braiding (i := blockOf ξ) (by
-      intro h
-      exact hne (congrArg Subtype.val h))
+    -- The goal carries `siteEquiv.symm η = ⟨blockOf η, η⟩`, while `braiding`
+    -- needs both sites in *one* block.  `hblock` is exactly what re-seats the
+    -- second one, and it is a propositional equality, so the seat change is a
+    -- rewrite rather than unification.
+    have hξ : siteEquiv.symm ξ = ⟨blockOf ξ, ⟨ξ, rfl⟩⟩ :=
+      siteEquiv.symm_apply_eq.mpr rfl
+    have hη : siteEquiv.symm η = ⟨blockOf ξ, ⟨η, hblock.symm⟩⟩ :=
+      siteEquiv.symm_apply_eq.mpr rfl
+    show IsRelator Block BlockSites _
+    simp only [map_mul, map_inv, map_commutatorElement, freeEquiv_symm_of,
+      genEquiv_symm_lamp, genEquiv_symm_sign, hξ, hη]
+    exact IsRelator.braiding (fun h ↦ hne (congrArg Subtype.val h))
 
 /-! ## The isomorphism of lamp groups -/
 
@@ -237,7 +255,7 @@ theorem blockAutHom_sign (hc : IsCompleteOnBlocks) (hi : IsIrreflexive)
       (lampAutHom v (lampEquiv hc hi (sign Block BlockSites)))
     = sign Block BlockSites
   apply (lampEquiv hc hi).injective
-  rw [MulEquiv.apply_symm_apply, lampEquiv_sign, lampAutHom_sign, lampEquiv_sign]
+  rw [MulEquiv.apply_symm_apply, lampEquiv_sign, lampAutHom_sign]
 
 /-- The permutation of the sigma-indexed site set induced by the vertical
 action: transport the action along `siteEquiv`.
@@ -338,7 +356,7 @@ def modelEquiv (hc : IsCompleteOnBlocks) (hi : IsIrreflexive) :
 
 /-- **The literal group is a block-Clifford tower.** -/
 def markedGroupEquivTower (hc : IsCompleteOnBlocks) (hi : IsIrreflexive) :
-    MarkedGroup ≃*
+    LiteralNonMFPresentation.MarkedGroup ≃*
       (BlockClifford Block BlockSites ⋊[blockAutHom hc hi] Vertical) :=
   markedGroupEquivModel.trans (modelEquiv hc hi).symm
 

@@ -75,7 +75,9 @@ theorem freeLetterGen_kills :
         = (1 : FreeGroup α →* Multiplicative ℤ) := by
       refine FreeGroup.ext_hom _ _ ?_
       intro a
-      simp [FreeGroup.map, freeLetterGen]
+      -- `map` on a generator, `lift` on a generator and the generator table all
+      -- reduce definitionally
+      rfl
     exact DFunLike.congr_fun h v
   · exact absurd hv (Set.notMem_empty v)
 

@@ -84,6 +84,10 @@ which is therefore unitary.
 
 This is the argument of `unitaryCoronaToCStarCoronaUnitary_surjective`, which
 uses only the isometry half of the unitarity hypothesis. -/
+-- The corona is a quotient of a subalgebra of a `Pi` type, so the class chain
+-- `SubtractionMonoidHomClass → AddMonoidHomClass → …` behind `map_sub` is deep
+-- enough to exhaust the default instance budget before it reaches an answer.
+set_option synthInstance.maxHeartbeats 400000 in
 theorem normMatrixCStarCorona_mul_star_eq_one_of_star_mul_eq_one
     (X : ℕ → FiniteModel) [∀ n, Nonempty (X n)]
     {x : NormMatrixCStarCorona (fun n ↦ X n)}

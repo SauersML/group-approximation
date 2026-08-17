@@ -82,8 +82,7 @@ theorem nonempty_weightedUltraproductAdjointModel
     simp only [act_mul Y w ω hw hω, LinearMap.comp_apply]
   have hact_one : ∀ ζ : Vec Y w ω, act Y w ω 1 ζ = ζ := by
     intro ζ
-    simp only [act_one Y w ω hw hω, LinearMap.id_coe, LinearMap.id_apply,
-      id_eq]
+    simp only [act_one Y w ω hw hω, LinearMap.id_apply]
   have hact_sub : ∀ (a b : AdjointCorona Y) (ζ : Vec Y w ω),
       act Y w ω (a - b) ζ = act Y w ω a ζ - act Y w ω b ζ := by
     intro a b ζ
