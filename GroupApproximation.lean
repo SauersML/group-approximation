@@ -48,6 +48,7 @@ import GroupApproximation.Sofic.OmegaOperatorUltraproduct
 import GroupApproximation.Sofic.OmegaAlmostRepresentation
 import GroupApproximation.Sofic.OmegaCoronaFinite
 import GroupApproximation.Sofic.OmegaKazhdanCompression
+import GroupApproximation.Sofic.OmegaWeightedAmbient
 import GroupApproximation.Sofic.UltrafilterSubsequence
 import GroupApproximation.Sofic.HilbertUltraproductSpace
 import GroupApproximation.Sofic.ProjectionRankFlip
