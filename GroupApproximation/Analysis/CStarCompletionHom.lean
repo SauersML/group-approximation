@@ -83,12 +83,17 @@ section Extend
 variable {A : Type*} [NormedRing A] [StarRing A] [NormedStarGroup A]
   [NormedAlgebra ℂ A] [StarModule ℂ A]
 variable {B : Type*} [CStarAlgebra B]
-variable (f : A →⋆ₐ[ℂ] B) (hf : UniformContinuous (f : A → B))
 
 /-- **A ⋆-homomorphism into a C⋆-algebra extends along the completion.**
 Every law is an identity between continuous functions, so it holds on the
-closure of the image of `A`, where it is the corresponding law in `A`. -/
-noncomputable def extendStarAlgHom : Completion A →⋆ₐ[ℂ] B where
+closure of the image of `A`, where it is the corresponding law in `A`.
+
+`f` and `hf` are explicit binders rather than section variables: a plain
+hypothesis is not auto-included, and `extendStarAlgHom`'s *type* does not
+mention `hf`, so as a section variable it would not be in scope inside these
+proofs. -/
+noncomputable def extendStarAlgHom (f : A →⋆ₐ[ℂ] B)
+    (hf : UniformContinuous (f : A → B)) : Completion A →⋆ₐ[ℂ] B where
   toFun := Completion.extension (f : A → B)
   map_one' := by
     rw [← Completion.coe_one, Completion.extension_coe hf, map_one]
@@ -124,14 +129,16 @@ noncomputable def extendStarAlgHom : Completion A →⋆ₐ[ℂ] B where
     · intro a
       rw [star_coe, Completion.extension_coe hf, Completion.extension_coe hf, map_star]
 
-@[simp] theorem extendStarAlgHom_coe (a : A) :
+@[simp] theorem extendStarAlgHom_coe (f : A →⋆ₐ[ℂ] B)
+    (hf : UniformContinuous (f : A → B)) (a : A) :
     extendStarAlgHom f hf (a : Completion A) = f a :=
   Completion.extension_coe hf a
 
 /-- **Uniqueness of the extension.**  Density of `A` in its completion forces
 any two continuous extensions to agree; continuity is the only hypothesis
 needed, and every ⋆-homomorphism between C⋆-algebras has it. -/
-theorem extendStarAlgHom_unique (g : Completion A →⋆ₐ[ℂ] B)
+theorem extendStarAlgHom_unique (f : A →⋆ₐ[ℂ] B)
+    (hf : UniformContinuous (f : A → B)) (g : Completion A →⋆ₐ[ℂ] B)
     (hg : Continuous (g : Completion A → B))
     (hga : ∀ a : A, g (a : Completion A) = f a) :
     g = extendStarAlgHom f hf := by

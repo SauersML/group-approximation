@@ -42,7 +42,7 @@ simplicity chasing, done below in full.
 * `exists_mulEquiv_factor` --- **the remaining half**, as displayed above.
 * `normalFactorSet` --- the invariant `{i | Q i occurs as a normal subgroup}`,
   and `normalFactorSet_congr`, that it is an isomorphism invariant.
-* `piFactor` and `exists_normal_mulEquiv_of_mulSingle_mem` --- the reverse
+* `piFactor` and `exists_normal_mulEquiv_of_factor_mem` --- the reverse
   inclusion, for a subgroup containing each factor.
 * `normalFactorSet_eq_of_subsetProduct` --- **the recovery theorem**: for
   `G ≤ ∏_{n ∈ S} Q n` subdirect and containing every factor, with the `Q n`
@@ -226,10 +226,15 @@ instance piFactor_normal (i : ι) : (piFactor i : Subgroup (∀ j, Q j)).Normal 
     simp [hx j hj]
 
 /-- **The reverse inclusion.**  A subgroup of the product that contains the
-whole `i`-th factor has a normal subgroup isomorphic to `Q i`. -/
-theorem exists_normal_mulEquiv_of_mulSingle_mem [DecidableEq ι]
+whole `i`-th factor has a normal subgroup isomorphic to `Q i`.
+
+"Contains the factor" is spelled as an existential rather than through
+`Pi.mulSingle`, which would drag in a `DecidableEq` on the index type and make
+the hypothesis's type depend on which decidability instance was in scope where
+it was stated. -/
+theorem exists_normal_mulEquiv_of_factor_mem
     {G : Subgroup (∀ i, Q i)} {i : ι}
-    (hfac : ∀ q : Q i, Pi.mulSingle i q ∈ G) :
+    (hfac : ∀ q : Q i, ∃ g ∈ G, (∀ j, j ≠ i → g j = 1) ∧ g i = q) :
     ∃ N : Subgroup G, N.Normal ∧ Nonempty (N ≃* Q i) := by
   have hinj : Function.Injective
       ((coordHom G i).comp ((piFactor i).comap G.subtype).subtype) := by
@@ -246,12 +251,8 @@ theorem exists_normal_mulEquiv_of_mulSingle_mem [DecidableEq ι]
   have hsurj : Function.Surjective
       ((coordHom G i).comp ((piFactor i).comap G.subtype).subtype) := by
     intro q
-    have hmem : Pi.mulSingle i q ∈ piFactor (Q := Q) i := by
-      intro j hj
-      exact Pi.mulSingle_eq_of_ne hj q
-    refine ⟨⟨⟨Pi.mulSingle i q, hfac q⟩, hmem⟩, ?_⟩
-    show Pi.mulSingle i q i = q
-    exact Pi.mulSingle_eq_same i q
+    obtain ⟨g, hgG, hgsupp, hgi⟩ := hfac q
+    exact ⟨⟨⟨g, hgG⟩, hgsupp⟩, hgi⟩
   exact ⟨(piFactor i).comap G.subtype,
     Subgroup.Normal.comap (piFactor_normal i) G.subtype,
     ⟨MulEquiv.ofBijective
@@ -274,12 +275,13 @@ isomorphism invariant `normalFactorSet Q` computes `S` on the nose.
 
 Both inclusions are proved: `⊆` is `exists_mulEquiv_factor` (the half that had
 been missing) together with pairwise nonisomorphism, and `⊇` is
-`exists_normal_mulEquiv_of_mulSingle_mem`. -/
+`exists_normal_mulEquiv_of_factor_mem`. -/
 theorem normalFactorSet_eq_of_subsetProduct
     (hpair : ∀ m n : ℕ, Nonempty (Q m ≃* Q n) → m = n)
     {S : Set ℕ} {G : Subgroup (∀ i : S, Q (i : ℕ))}
     (hG : IsSubdirect G)
-    (hfac : ∀ (i : S) (q : Q (i : ℕ)), Pi.mulSingle i q ∈ G) :
+    (hfac : ∀ (i : S) (q : Q (i : ℕ)), ∃ g ∈ G,
+      (∀ j, j ≠ i → g j = 1) ∧ g i = q) :
     normalFactorSet Q G = S := by
   apply Set.Subset.antisymm
   · rintro m ⟨N, hN, ⟨eN⟩⟩
@@ -288,7 +290,7 @@ theorem normalFactorSet_eq_of_subsetProduct
     rw [hmi]
     exact i.2
   · intro n hn
-    exact exists_normal_mulEquiv_of_mulSingle_mem (hfac ⟨n, hn⟩)
+    exact exists_normal_mulEquiv_of_factor_mem (hfac ⟨n, hn⟩)
 
 end Recovery
 

@@ -282,12 +282,11 @@ section Corona
 
 universe u
 
-variable (A : ℕ → Type u) [∀ n, CStarAlgebra (A n)] [∀ n, Nontrivial (A n)]
+variable (A : ℕ → Type u) [∀ n, CStarAlgebra (A n)]
 
 /-- The bounded C-star product `∏_n A_n`. -/
 abbrev BoundedCStarSequence := lp A ∞
 
-omit [∀ n, Nontrivial (A n)] in
 theorem boundedCStarSequence_coord_norm_le (a : BoundedCStarSequence A) (n : ℕ) :
     ‖a n‖ ≤ ‖a‖ :=
   lp.norm_apply_le_norm ENNReal.top_ne_zero a n
@@ -301,13 +300,11 @@ def IsNullCStarSequence (a : BoundedCStarSequence A) : Prop :=
 
 namespace IsNullCStarSequence
 
-omit [∀ n, Nontrivial (A n)] in
 theorem zero : IsNullCStarSequence A l 0 := by
   rw [IsNullCStarSequence]
   refine tendsto_const_nhds.congr fun n ↦ ?_
   simp
 
-omit [∀ n, Nontrivial (A n)] in
 theorem add {a b : BoundedCStarSequence A} (ha : IsNullCStarSequence A l a)
     (hb : IsNullCStarSequence A l b) : IsNullCStarSequence A l (a + b) := by
   apply squeeze_zero' (Eventually.of_forall fun n ↦ norm_nonneg ((a + b) n))
@@ -333,12 +330,54 @@ theorem mul_right {a : BoundedCStarSequence A} (ha : IsNullCStarSequence A l a)
         (norm_nonneg _))
   · simpa only [zero_mul] using ha.mul tendsto_const_nhds
 
-omit [∀ n, Nontrivial (A n)] in
 theorem star {a : BoundedCStarSequence A} (ha : IsNullCStarSequence A l a) :
     IsNullCStarSequence A l (star a) := by
   simpa [IsNullCStarSequence, lp.star_apply] using ha
 
 end IsNullCStarSequence
+
+/-! ## The corrected sequence -/
+
+/-- The indices where the printed polar correction applies.  This is an
+`abbrev` so that the `Decidable` instance used by `polarLift` below is the
+one instance search finds for a conjunction of real inequalities, and the
+`if_pos`/`if_neg` unfoldings elaborate against that same instance. -/
+abbrev PolarGood (x : BoundedCStarSequence A) (n : ℕ) : Prop :=
+  ‖star (x n) * x n - 1‖ ≤ 1 / 2 ∧ ‖x n * star (x n) - 1‖ ≤ 1 / 2
+
+/-- The polar-corrected sequence: the printed correction where it applies,
+and the identity at the remaining indices ("set `u_n = 1` at the finitely
+many remaining indices", which for a general filter means off a member of
+`l`). -/
+noncomputable def polarLift (x : BoundedCStarSequence A) (n : ℕ) : A n :=
+  if PolarGood A x n then polarUnitary (x n) else 1
+
+theorem polarLift_of_good {x : BoundedCStarSequence A} {n : ℕ}
+    (h : PolarGood A x n) : polarLift A x n = polarUnitary (x n) :=
+  if_pos h
+
+theorem polarLift_of_not_good {x : BoundedCStarSequence A} {n : ℕ}
+    (h : ¬ PolarGood A x n) : polarLift A x n = 1 :=
+  if_neg h
+
+theorem polarLift_mem_unitary (x : BoundedCStarSequence A) (n : ℕ) :
+    polarLift A x n ∈ unitary (A n) := by
+  by_cases hn : PolarGood A x n
+  · rw [polarLift_of_good A hn]
+    exact polarUnitary_mem_unitary hn.1 hn.2
+  · rw [polarLift_of_not_good A hn]
+    exact (unitary (A n)).one_mem
+
+/-! ## The unital region
+
+Everything from here on needs the *unital* ring structure on `∏_nA_n`, and
+mathlib builds that only under `NormOneClass` of every block -- which for a
+C-star algebra is exactly nontriviality.  Declaring the binder here rather
+than at the top of the section is what keeps it used by every declaration
+that carries it: adding `omit` above instead only moves the unused frontier
+onto the callers. -/
+
+variable [∀ n, Nontrivial (A n)]
 
 /-- The two-sided ideal `⨁_l A_n` of sequences null along `l`.  At
 `l = cofinite` this is the `c₀`-sum `⨁_n A_n`. -/
@@ -428,40 +467,6 @@ noncomputable instance coronaStarRing : StarRing (CStarProductCorona A l) where
 
 @[simp] theorem gram'_apply (x : BoundedCStarSequence A) (n : ℕ) :
     (x * star x - 1) n = x n * star (x n) - 1 := rfl
-
-/-! ## The corrected sequence -/
-
-/-- The indices where the printed polar correction applies.  This is an
-`abbrev` so that the `Decidable` instance used by `polarLift` below is the
-one instance search finds for a conjunction of real inequalities, and the
-`if_pos`/`if_neg` unfoldings elaborate against that same instance. -/
-abbrev PolarGood (x : BoundedCStarSequence A) (n : ℕ) : Prop :=
-  ‖star (x n) * x n - 1‖ ≤ 1 / 2 ∧ ‖x n * star (x n) - 1‖ ≤ 1 / 2
-
-/-- The polar-corrected sequence: the printed correction where it applies,
-and the identity at the remaining indices ("set `u_n = 1` at the finitely
-many remaining indices", which for a general filter means off a member of
-`l`). -/
-noncomputable def polarLift (x : BoundedCStarSequence A) (n : ℕ) : A n :=
-  if PolarGood A x n then polarUnitary (x n) else 1
-
-omit [∀ n, Nontrivial (A n)] in
-theorem polarLift_of_good {x : BoundedCStarSequence A} {n : ℕ}
-    (h : PolarGood A x n) : polarLift A x n = polarUnitary (x n) :=
-  if_pos h
-
-omit [∀ n, Nontrivial (A n)] in
-theorem polarLift_of_not_good {x : BoundedCStarSequence A} {n : ℕ}
-    (h : ¬ PolarGood A x n) : polarLift A x n = 1 :=
-  if_neg h
-
-theorem polarLift_mem_unitary (x : BoundedCStarSequence A) (n : ℕ) :
-    polarLift A x n ∈ unitary (A n) := by
-  by_cases hn : PolarGood A x n
-  · rw [polarLift_of_good A hn]
-    exact polarUnitary_mem_unitary hn.1 hn.2
-  · rw [polarLift_of_not_good A hn]
-    exact (unitary (A n)).one_mem
 
 /-- The corrected sequence is bounded, since every coordinate is unitary. -/
 noncomputable def polarLiftSeq (x : BoundedCStarSequence A) :
