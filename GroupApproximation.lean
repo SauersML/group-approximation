@@ -1016,6 +1016,7 @@ import GroupApproximation.Monsters.NeumannTwoGenerator
 import GroupApproximation.Sofic.CollapseRankWeightTransport
 import GroupApproximation.Sofic.StableLetterLEFRoute
 import GroupApproximation.Manuscript.NonMF.ClosedRows
+import GroupApproximation.Manuscript.NonMF.QuestionAtoms
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group

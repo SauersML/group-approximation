@@ -28,13 +28,14 @@ those dies as soon as `q(d)` does.  `cliffordTorsionFreeObstruction` is that
 composite, stated over an arbitrary normal-closure presentation of `N_conj` so
 that it applies to the printed datum without naming it.
 
-Nothing here is deep and nothing here is new; what it is, is *stated*.  The
-ledger rows LI.11, LI.12 and LI.12a name this module and do not cite it, because
-it is not yet in the root import closure and so has never been elaborated.
+Nothing here is deep and nothing here is new; what it is, is *stated*.
 
-To wire it in, add to `GroupApproximation.lean`:
-
-    import GroupApproximation.Manuscript.NonMF.QuestionAtoms
+Wired into the root import closure on 2026-08-17, which is the first time any of
+it was elaborated.  It did not elaborate as written: `map_eq_one_of_mem_normalClosure`
+passed `q` to `MonoidHom.mem_ker`, whose `f` is implicit in the pinned Mathlib
+(`Algebra/Group/Subgroup/Ker.lean`), so the term applied an `Iff` to an argument.
+Every other use of that lemma in this repository spells it bare, and it now does
+too.  Nothing else changed, and the four statements are as they were.
 -/
 
 namespace GroupApproximation
@@ -60,11 +61,9 @@ uses this at `D = D_coll(L,s)`; the statement is the general fact, since nothing
 in the sentence depends on which normal closure it is. -/
 theorem map_eq_one_of_mem_normalClosure {H : Type u} [Group H] {Q : Type v}
     [Group Q] (q : H →* Q) {S : Set H} (hS : ∀ s ∈ S, q s = 1) {x : H}
-    (hx : x ∈ Subgroup.normalClosure S) : q x = 1 := by
-  have hsub : S ⊆ (q.ker : Set H) := by
-    intro s hs
-    simpa using hS s hs
-  simpa using Subgroup.normalClosure_le_normal (N := q.ker) hsub hx
+    (hx : x ∈ Subgroup.normalClosure S) : q x = 1 :=
+  Subgroup.normalClosure_le_normal (N := q.ker)
+    (fun s hs => MonoidHom.mem_ker.2 (hS s hs)) hx
 
 /-! ## Question 2: why the Clifford construction cannot be torsion-free -/
 

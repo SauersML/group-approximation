@@ -32,35 +32,51 @@ and where the existing gates stop looking.
 Scanned corpus: `GroupApproximation/**` (all modules, not only the import
 closure), 1073 modules, against `non_mf_groups_exist.tex`. The badge count rose
 from 94 to **100** during the sweep; the findings did not move. At the last
-run: **88 unconditional, 12 conditional** (15 findings, rows 1--12), no badge
-carrying any of the other five certification statuses. Rows 13--14 are off the
-badge surface. By category, over *declarations*:
+run *of that sweep*: **88 unconditional, 12 conditional** (15 findings, rows
+1--12), no badge carrying any of the other five certification statuses. Rows
+13--14 were off the badge surface. By category, over *declarations*:
 
-| Category | Count | Rows |
-|---|---|---|
-| unconditional | 88 | — |
-| conditional-data — undischarged existence package | 3 | 1, 3, 4 |
-| literature-input — published theorem as a quantified premise | 2 | 2, 5 |
-| ~~open — corpus predicate no corpus theorem concludes~~ **discharged 2026-08-17** | 0 *(was 2)* | 6, 7 |
-| *(not mathematical conditionality)* header-hygiene | 4 | 8--11 |
-| *(not mathematical conditionality)* category error | 1 | 12 |
+| Category | As scanned at `8e84fb4c` | Rows | Now (2026-08-17) |
+|---|---|---|---|
+| unconditional | 88 | — | every cited declaration |
+| conditional-data — undischarged existence package | 3 | 1, 3, 4 | **1** — row 1 discharged; rows 3--4 are off the badge surface, not proved |
+| literature-input — published theorem as a quantified premise | 2 | 2, 5 | **0** — both discharged in Lean |
+| open — corpus predicate no corpus theorem concludes | 2 | 6, 7 | **0** — discharged, and the anchor was cut |
+| *(not mathematical conditionality)* header-hygiene | 4 | 8--11 | **0** — 9--11 fixed in place, 8's anchor cut |
+| *(not mathematical conditionality)* category error | 1 | 12 | **0** — the badge moved to a claim |
 
-> **The counts above are as-scanned at `8e84fb4c` and are now low by at least
-> rows 6--7.** Those two are discharged; see § 6--7. A full gate run against
-> `origin/main` `0ed335cd` — `check_non_mf_unconditional.py --self-test`, then
-> `--tex non_mf_groups_exist.tex --baseline docs/NON_MF_UNCONDITIONAL_BASELINE.txt`
-> — exits 0 with **zero findings** and reports 113 cited declarations
-> unconditional, so the remaining rows have moved too. Only rows 6--7 have been
-> re-verified declaration-by-declaration and rewritten here; the rest are left
-> to their owners rather than closed wholesale on a count.
+**Every row of the left-hand column has now been re-verified
+declaration-by-declaration, and the right-hand column is the result.** The
+interim note that stood here — recording that a gate run exited 0 with zero
+findings while only rows 6--7 had been re-read — has done its job and is
+retired, as it asked to be. Rows 1 and 18 closed with `D4'`, rows 6--7 with
+capstone's instance module, row 13 with the sharpness rewrite, and rows 2, 5
+and 8--12 in the pass this table records. Nothing was closed on the strength of
+the count.
 
-So **7 of 100 badged declarations are mathematically conditional**, and 5 more
-carry a badge defect that is not conditionality. Reproduce with
+**Two ways a row leaves this table, and they are not the same.** Rows 1, 2, 5,
+6, 7, 9, 10, 11, 12, 13 were *discharged*: a declaration in the tree now proves
+what the row said was assumed, or a badge moved onto a claim. Rows 3, 4, 3b and
+8 left because the **manuscript stopped citing them** — `prop:stabradical` and
+`rem:chaincondition` were cut, and the `\subsection{Questions}` routing datum
+is now written as an open question. A detector cannot see a declaration the TeX
+does not name, so for those rows an empty gate is not evidence. **Rows 3--4
+record mathematics that is still not proved.**
+
+The warrant used throughout is `git cat-file -e origin/verified:<path>`:
+presence proves the module went through a green `Build and audit`, since
+nothing reaches `verified` without one. Absence proves nothing, because
+`verified` runs about a hundred commits behind `main`. Every module named in
+rows 2, 5 and 8--12 is present.
+
+So **0 of the badged declarations carry a recorded conditionality finding**,
+and the four that carry none only because they are unbadged are named above.
+Reproduce with
 
 ```
 python3 scripts/check_non_mf_unconditional.py --explain      # per-badge verdict
 python3 scripts/check_non_mf_unconditional.py --audit-corpus # off-badge watchlist
-python3 scripts/check_non_mf_unconditional.py                # the gate (exit 1 today)
+python3 scripts/check_non_mf_unconditional.py                # the gate (exit 0 since 2026-08-17)
 ```
 
 ---
@@ -143,7 +159,7 @@ than as closed or as abandoned.
 | # | Declaration | Status | Anchor | Collapse if never discharged | Fix in flight |
 |---|---|---|---|---|---|
 | 1 | ~~`MarkovMFConsequences.operatorMF_recognition_undecidable`~~ | ~~literature-input~~ → **CLOSED 2026-08-17** | § "Undecidability of MF recognition", prose after `\end{corollary}` of `cor:undecidable` | **None.** Unconditional Lean support exists: `Computability.operatorMF_recognition_not_computable` (`Computability/BooneWordProblemUndecidable.lean`) concludes `¬ ComputablePred (MarkovMFConsequences.operatorMFProperty PresentationCodes.semantics)` outright — no reduction datum, no Markov hypothesis, no literature input. It is `AdianRabinVariantTransform.operatorMF_recognition_undecidable_of_wordProblem` applied to `Computability.not_computablePred_wordProblemPred`, which is `D4'` closed: the word map is `BooneWords.rawComm`, computable by `Computability.computable_rawComm`, and agreement with halting is `Computability.wordProblem_rawComm_iff` composed with `Computability.commElt_eq_one_iff_halts`, packaged as `Computability.exists_boone_words`. The quantified `operatorMF_recognition_undecidable` remains badged in the TeX as the classical form of the conclusion, with the Markov data quantified rather than exhibited; it is no longer the corollary's only support, so the finding it recorded is discharged rather than accepted. | Closed — `Computability/BooneWords.lean`, `BooneWordMapPrimrec.lean`, `BooneWordAgreement.lean`, `BooneWordProblemUndecidable.lean` |
-| 2 | ~~`ContinuumMultiplicity.manuscriptContinuumMultiplicity`~~ → **CLOSED 2026-08-16** | § "Undecidability of MF recognition", multiplicity paragraph citing `\cite{Neumann37}` | **None.** The family is constructed: `Monsters/NeumannContinuum`, lamplighters over coset spaces of the free group. | Closed — the badged declaration now exhibits the family as a conjunct; see §2 |
+| 2 | ~~`ContinuumMultiplicity.manuscriptContinuumMultiplicity`~~ → **CLOSED 2026-08-16** | § "Undecidability of MF recognition", multiplicity paragraph citing `\cite{Neumann37}` | **None.** The family is constructed: `Monsters/NeumannContinuum`, lamplighters over coset spaces of the free group. **Re-verified 2026-08-17**, declaration by declaration: `manuscriptContinuumMultiplicity` is a three-way conjunction whose second conjunct *exhibits* a continuum of pairwise nonisomorphic finitely generated groups and whose third is the printed headline with nothing assumed, both discharged from `NeumannContinuum.manuscriptContinuumMultiplicityUnconditional`. It is zero-input, badged at one site, inside the import closure, and `Sofic/ContinuumMultiplicity` and `Monsters/NeumannContinuum` are both on `origin/verified`. The `Neumann37` citation survives in the manuscript as attribution for the classical family, not as a step. | Closed — the badged declaration now exhibits the family as a conjunct; see §2 |
 | 3 | `FullMFRadicalEndpoint.exists_nontrivial_twoGenerated_finitelyPresented_torsionFree_kazhdan_fullMFRadical` | conditional-data | § "Questions", torsion-free f.p. non-MF group | **Total** for that answer. Printed caveat is now "No unconditional torsion-free finitely presented non-MF group is proved here" (the older wording "neither is an unconditional statement" is no longer in the TeX). | `Monsters/FournierFacioRealization.lean`; scope fixed by `docs/HULL_ROUTING_AUDIT_2026-08-16.md`; six-condition split recorded in `Sofic/FiveConditionInsufficiency.lean` |
 | 4 | `FullMFRadicalEndpoint.exists_nontrivial_group_with_every_nontrivial_quotient_not_isCDEOperatorMF` | conditional-data | same | as above | same |
 | 3b | `orderPreserving_quotient_not_subsingleton` | conditional-data | § "Questions", the Hull order-preservation sentence | **None beyond row 3.** The statement is a refutation universally quantified over data, and the printed sentence it certifies is itself conditional ("would supply the sixth condition"). | `Sofic/TorsionFreeFullMFRadical.OrderPreservingRoutingData` — row exists only because the zero-input repair moved the binders after the colon; drop it if the detector reports no finding |
@@ -185,14 +201,14 @@ skeleton cannot supply it, since that action fixes the end of the telescope and
 an acylindrical action is never quasi-parabolic (Osin, Theorem 1.1); Hull's own
 HNN result (Proposition 6.2) covers extensions over cyclic subgroups, not over
 the whole Kazhdan base.  These rows therefore stay, with that sharper reason.
-| 5 | ~~`ClosedEnvelopeCompression.manuscriptEnvelopeCompressionBlind`~~ → **CLOSED 2026-08-16** | `rem:chaincondition`, Zariski-envelope sentence | **None.** The chain condition is proved: `Algebra/ZariskiDescendingChain.wellFoundedLT_isZClosedSubgroup`, from the Hilbert basis theorem. | Closed — the badged declaration now exhibits the `Closed` package as a conjunct; see §5 |
+| 5 | ~~`ClosedEnvelopeCompression.manuscriptEnvelopeCompressionBlind`~~ → **CLOSED 2026-08-16** | `rem:chaincondition`, Zariski-envelope sentence | **None.** The chain condition is proved: `Algebra/ZariskiDescendingChain.wellFoundedLT_isZClosedSubgroup`, from the Hilbert basis theorem. **Re-verified 2026-08-17, and it is now closed twice over.** The mathematics: `Algebra/ZariskiDescendingChain` is in the import closure and on `origin/verified`. The print: `rem:chaincondition` **no longer exists in the manuscript** — the label occurs zero times, the string `Zariski` occurs zero times, and `manuscriptEnvelopeCompressionBlind` has zero badge sites. There is no longer a printed sentence quoting the chain condition as classical, so there is nothing left for this row to be a finding about. | Closed — the badged declaration now exhibits the `Closed` package as a conjunct; see §5 |
 | 6 | `MatricialStabilityRadical.actualCoronaMFResidual_eq_fdUnitaryResidual` | **discharged** | *(target cut from the tex)* | Premise inhabited with no literature input by `MatricialStabilityInstances.{freeGroup,multiplicativeInt}_isPointNormMatriciallyStable`, and clause 2 applied at both; `prop:stabradical` itself was cut by `3a45fa60`, so nothing badges this. | — |
 | 7 | `MatricialStabilityRadical.not_isCDEOperatorMF_of_stable_of_fdResidual_ne_bot` | **discharged** | *(target cut from the tex)* | As row 6, but discharged in the *contrapositive*: the forward direction (stable + nontrivial fd residual ⟹ non-MF) is exercised by no corpus group, and both stable witnesses provably have `fdUnitaryResidual = ⊥`. | — |
-| 8 | `MatricialStabilityRadical.actualCoronaMFResidual_le_fdUnitaryResidual` | header-hygiene | `prop:stabradical` clause 1 | None mathematically; the theorem is true and unconditional. | — |
-| 9 | `MarkedGroupSpace.isClosed_operatorMFLocus` | header-hygiene | `thm:markedclosed`(1) | None mathematically. | — |
-| 10 | `MarkedGroupSpace.isOpen_compl_operatorMFLocus` | header-hygiene | `thm:markedclosed`(2) | None mathematically. | — |
-| 11 | `QuasiRegularWitness.baseVector_apply_base` | header-hygiene | `rem:maxinfinite` | None mathematically. | `Analysis/ResiduallyFiniteDimensional.lean` works on the same remark (different clause) |
-| 12 | `ManuscriptExactWrappers.ManuscriptHSInvisible` | category | `def:invisible` | None; but the badge certifies a definition, not a claim. | — |
+| 8 | ~~`MatricialStabilityRadical.actualCoronaMFResidual_le_fdUnitaryResidual`~~ | ~~header-hygiene~~ → **CLOSED 2026-08-17** | ~~`prop:stabradical` clause 1~~ — the anchor is gone | **None, and now for the second of two independent reasons.** The binders were moved after the colon on 2026-08-16 (see the status table below), and the declaration is verified zero-input today. Since then `prop:stabradical` was cut from the manuscript entirely: the label occurs **zero** times and this declaration has **zero** badge sites, which is the same reason rows 6--7 fell. `Sofic/MatricialStabilityRadical` is on `origin/verified`. A finding needs a badge to be a finding about. | — |
+| 9 | ~~`MarkedGroupSpace.isClosed_operatorMFLocus`~~ | ~~header-hygiene~~ → **CLOSED 2026-08-17** | `thm:markedclosed`(1) | **None.** Fixed in place rather than by retreat: the anchor still exists, the declaration is still badged at one site, and it is verified zero-input at the current sha. `Sofic/MarkedMFClosed` is on `origin/verified`. | — |
+| 10 | ~~`MarkedGroupSpace.isOpen_compl_operatorMFLocus`~~ | ~~header-hygiene~~ → **CLOSED 2026-08-17** | `thm:markedclosed`(2) | **None.** Same anchor, same module, same three checks, same result. | — |
+| 11 | ~~`QuasiRegularWitness.baseVector_apply_base`~~ | ~~header-hygiene~~ → **CLOSED 2026-08-17** | `rem:maxinfinite` | **None.** `rem:maxinfinite` survives, the badge is at one site, the declaration is verified zero-input, and `Analysis/QuasiRegularWitness` is on `origin/verified`. | `Analysis/ResiduallyFiniteDimensional.lean` works on the same remark (different clause) |
+| 12 | ~~`ManuscriptExactWrappers.ManuscriptHSInvisible`~~ | ~~category~~ → **CLOSED 2026-08-17** | `def:invisible` | **None, and the badge move that was pending has landed.** `ManuscriptHSInvisible` — the definition — has **zero** badge sites. `def:invisible` now badges `manuscriptHSInvisibleCharacterization`, `CLAIM_TARGETS["def:invisible"]` points at it, and `docs/NON_MF_NUMBERED_CLAIMS.json` records it as covering "the complete printed proposition". So the badge certifies a claim, which is the whole of what this row asked for. `Sofic/ManuscriptExactWrappers` is on `origin/verified`. | — |
 | 13 | `CliffordBSAmenable.isOperatorMF_subgroup_CliffordBS` | **RESOLVED 2026-08-17** (was: literature-input, off-badge) | `\paragraph{Sharpness of the Kazhdan hypothesis.}` | **None.** The paragraph no longer deduces through amenability; it routes through exhibited monomial models and is badged `\leanverified` over `CliffordBSAmenableMF.manuscriptSharpnessOfKazhdanHypothesis`, which is on `origin/verified`. The Lean structure survives, cited by nothing. What stays conditional is one clause, `IsOperatorMF RealizedQuotient`, as a binder in `CliffordBSPrintedRoute` — the printed route, kept deliberately. See §13 | `Sofic/CliffordBSAmenableMF.lean` supplies it; `Algebra/AmenableMFProof.lean`, `Analysis/AmenableQuasidiagonal.lean` explain why no permutation route could |
 | 14 | ~~`HNNTorsionFree.isPowerTorsionFree_of_existsCyclicConjugate` (and `…_sourceGroup_…`, `…_integerSourceGroup_…`)~~ | ~~literature-input~~ → **CLOSED 2026-08-16** | none — no manuscript claim cites it yet | **None.** `ExistsCyclicConjugate` is now proved, not assumed: `HNNBritton.existsCyclicConjugate` (`GroupTheory/HNNBrittonCyclic.lean`, commit `ae4053f7`) discharges it for every `φ` from Mathlib's HNN normal-form theory. The three hypothesis-taking theorems remain only because that file imports `Algebra/HNNTorsionFree.lean` (invoking it there would be an import cycle); they are superseded one for one by `HNNBritton.isPowerTorsionFree_hnn`, `…_sourceGroup`, `…_integerSourceGroup`. | — |
 | 15 | ~~`NuclearityAmenability.not_isAmenable_of_base_embeds`~~ | ~~header-hygiene~~ → **CLOSED 2026-08-16** | `thm:D`, the non-nuclearity paragraph | **None.** The manuscript now badges the wrapper `manuscriptNotAmenableOfBaseEmbeds`, whose binders are all after the colon, so the finding is gone rather than accepted. | — |
@@ -211,7 +227,7 @@ The sweep above is a snapshot and is left as recorded.  What has moved since:
 | 9 | **fixed.** `∀ {k : ℕ}, …`; proof unchanged apart from `intro k` | `Sofic/MarkedMFClosed.lean` |
 | 10 | **fixed.** likewise, and its one-line proof now names the rank explicitly | same |
 | 11 | **fixed.** `∀ (G : Type u) [Group G] (K : Subgroup G) [DecidableEq (G ⧸ K)], …`; same elaborated type as before, now printed | `Analysis/QuasiRegularWitness.lean` |
-| 12 | **Lean side landed, badge move pending.** `ManuscriptExactWrappers.manuscriptHSInvisibleCharacterization` states what a badge on `def:invisible` can honestly certify: fidelity of the predicate to the printed text, the identity of that predicate with the `hDkill` premise of `thm:abstract-nk`, and that invisibility is a subgroup condition. The badge and `CLAIM_TARGETS["def:invisible"]` still point at the definition | `Sofic/ManuscriptExactWrappers.lean` |
+| 12 | **DONE 2026-08-17** *(this cell read "Lean side landed, badge move pending"; the move has since landed — see row 12 above)*. **Lean side landed, badge move pending.** `ManuscriptExactWrappers.manuscriptHSInvisibleCharacterization` states what a badge on `def:invisible` can honestly certify: fidelity of the predicate to the printed text, the identity of that predicate with the `hDkill` premise of `thm:abstract-nk`, and that invisibility is a subgroup condition. The badge and `CLAIM_TARGETS["def:invisible"]` still point at the definition | `Sofic/ManuscriptExactWrappers.lean` |
 
 None of the four restatements changes an elaborated type, so no printed
 statement moves and no manifest hash changes.  Rows 8--11 were fixed by moving
