@@ -947,6 +947,8 @@ import GroupApproximation.Computability.BooneGroupBase
 import GroupApproximation.Computability.BooneGroupPresentation
 import GroupApproximation.Computability.BooneGroupTower
 import GroupApproximation.Computability.BooneGroupGoodness
+import GroupApproximation.Computability.BooneBaseWords
+import GroupApproximation.Computability.BooneTowerPresentation
 import GroupApproximation.Computability.QuadMachine
 import GroupApproximation.Computability.QuadMachineTM0
 import GroupApproximation.Computability.ModularMachineUndecidable
