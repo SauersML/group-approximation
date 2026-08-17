@@ -160,15 +160,26 @@ The remaining 56 are body prose. That is where the debts are.
 
 Seven live debts, in descending order of what collapses.
 
-### 3.1 `TWW` — the sharpness paragraph  *(inventory row 13)*
+### 3.1 `TWW` — the sharpness paragraph  *(inventory row 13)* — **CLOSED 2026-08-17**
 
-**Sentence** (L2473, grep `hence MF by`):
+**Status: executed.** The recommendation at the foot of this subsection has been
+carried out. The sentence below is no longer in the manuscript, the paragraph now
+routes through the exhibited monomial models instead of through amenability, and
+it carries the badge this subsection asked for. `TWW` survives in the manuscript
+only as the intro attribution sentence (grep `amenable groups are MF`), which is
+credit, not a step in an argument. **The corpus has no live `TWW` inference.**
+The rest of the subsection is kept as the record of what was owed and why the
+replacement is sound; the paragraph-level facts in it that have since changed are
+corrected in place below.
+
+**Sentence, as it stood** (grep `hence MF by`; deleted 2026-08-17):
 
 > The realized quotient is a subgroup of this amenable group and is therefore
 > amenable, hence MF by \cite{TWW}.
 
 **Environment:** body prose, `\paragraph{Sharpness of the Kazhdan hypothesis.}`,
-after `\end{proof}` of `thm:C`. **No badge**, so no gate sees it.
+after `\end{proof}` of `thm:cyclic`. It carried **no badge**, so no gate saw it;
+it does now.
 
 **What is owed:** amenable ⇒ MF, i.e. Tikuisis–White–Winter quasidiagonality.
 Lean state: `Sofic/CliffordBSAmenable.lean:84` carries it as an assumed
@@ -180,11 +191,16 @@ nuclearity (`Analysis/NuclearityAmenability.lean` calls this a foundations gap;
 `Analysis/CStarExactness.lean` says exactness "is not expressible in this
 library"). TWW itself is a Annals-scale theorem on top of that.
 
-**What it costs to formalize the paragraph's actual conclusion:** already
-written. `GroupApproximation/Sofic/CliffordBSAmenableMF.lean` (1,579 lines,
-untracked, wired into `GroupApproximation.lean:759`, reported to have 21
-compile errors) proves it without TWW. **The route is sound.** Assessed
-independently of whether it compiles:
+**What it costs to formalize the paragraph's actual conclusion:** nothing more —
+it is written, compiled and certified. `GroupApproximation/Sofic/CliffordBSAmenableMF.lean`
+proves it without TWW. **Corrected 2026-08-17:** this paragraph used to read
+"1,579 lines, untracked, wired into `GroupApproximation.lean:759`, reported to
+have 21 compile errors", and that description outlived the facts by a day. The
+module is 1,635 lines, tracked and clean, imported at `GroupApproximation.lean:948`,
+and **present on `origin/verified` together with its root-import line** — and
+promotion to `verified` requires the exact successful `Build and audit` job of a
+push run, so it compiles and passes the kernel audit. The assessment below was
+written before that was known and holds independently of it:
 
 * The paragraph's conclusion is `w_BS ∉ Rad_MF(E_BS)` — an intersection of
   kernels. One corona representation that does not kill the mark suffices; no
@@ -221,8 +237,14 @@ The one thing to be clear about: the file discharges the paragraph's
 stays conditional, and the file's own docstring says so.
 
 **Recommendation: PROVE — the proof exists; fix the compile errors and rewrite
-the sentence.** Replacement text (three sentences for one), to be applied by
-whoever owns the `.tex`:
+the sentence. DONE 2026-08-17.** There were no compile errors left to fix: the
+module had entered the closure and reached `verified` while this subsection still
+described it as broken, which is why the item read as open for a day longer than
+it was. The paragraph was rewritten and badged; the text that landed differs from
+the draft below in routing the reader back to the Clifford attachment already
+built in the preceding proof, rather than describing the models afresh, and in
+not restating the `O(1/M)` defect bound, which is an artifact of the formalization
+rather than of the argument. Draft as proposed:
 
 > The realized Clifford quotient in Theorem~\ref{thm:C} is amenable, and its
 > marked word is the nontrivial Clifford sign. More is true, and does not need
@@ -544,8 +566,8 @@ lines of TeX.
 | 3.7 | `ElekSzabo` | L1070, L3368, L3417 | **PROVE — done** | badge edits only | — |
 | 3.9 | Zariski DCC (uncited) | L2386 | **PROVE — done** | 2 lines TeX | — |
 | 3.8 | `Neumann37` | L3587, L3597 | **PROVE by amendment** | 1 sentence TeX | the adjective *two-generator* |
-| 3.1 | `TWW` (sharpness) | L2473 | **PROVE** | fix 21 compile errors in an existing sound 1,579-line module + rewrite 1 paragraph | "property (T) cannot be omitted from the central-sign criterion" |
-| 3.2 | `TWW` (general) | L3275 | **DROP** | 1 word | the clause "or amenable" in one sentence |
+| 3.1 | `TWW` (sharpness) | grep `hence MF by` | **PROVE — DONE 2026-08-17** | no compile errors remained; module was already on `verified`.  1 paragraph rewritten and badged | "property (T) cannot be omitted from the central-sign criterion" |
+| 3.2 | `TWW` (general) | grep `or amenable` | **DROP — DONE** | 1 word | the clause "or amenable" in one sentence, already gone from the tex |
 | 3.3 | `ElekSzaboHyper` | L3442 | **PROVE**, else restate conditionally | one bounded-normal-generation theorem for finite symmetric groups | the simple sofic group with full MF radical |
 | 3.5 | `Lance` | L1039 | **DROP** | 1 clause | "`Cred(E)` is not nuclear" |
 | 3.4 | `GHW`+`KWPermanence`+`KWExact` | L3425–3427 | **DROP** | 1 paragraph rewritten to 1 sentence | the word *exact* in "exact stably finite non-MF algebra" |
@@ -581,12 +603,17 @@ lines of TeX.
 
 **Wave 2 — the one that needs Lean debugging (days, not weeks).**
 
-8. Fix the 21 compile errors in `Sofic/CliffordBSAmenableMF.lean` and land it.
-   The mathematics is right; what is broken is elaboration, not argument.
-9. Rewrite `\paragraph{Sharpness of the Kazhdan hypothesis.}` per §3.1 and badge
-   `manuscriptSharpnessOfKazhdanHypothesis`. Leave
+8. ~~Fix the 21 compile errors in `Sofic/CliffordBSAmenableMF.lean` and land it.~~
+   **DONE 2026-08-17, and there was nothing to fix** — the module reached the root
+   import closure and then `origin/verified` while this list still described it as
+   broken. Check `git cat-file -e origin/verified:<path>` before believing any
+   claim here that a module is uncompiled.
+9. ~~Rewrite `\paragraph{Sharpness of the Kazhdan hypothesis.}` per §3.1 and badge
+   `manuscriptSharpnessOfKazhdanHypothesis`.~~ **DONE 2026-08-17.** Leave
    `CliffordBSAmenable.isOperatorMF_subgroup_CliffordBS` in place, unbadged and
-   unreferenced — it is a clean conditional and nothing cites it.
+   unreferenced — it is a clean conditional and nothing cites it; likewise the six
+   `tww` binders in `Sofic/CliffordBSPrintedRoute.lean`, which are the
+   formalization of the *printed* route and are deliberately kept as such.
 
 **Wave 3 — the last closable citation (a real but bounded project).**
 

@@ -184,7 +184,7 @@ the whole Kazhdan base.  These rows therefore stay, with that sharper reason.
 | 10 | `MarkedGroupSpace.isOpen_compl_operatorMFLocus` | header-hygiene | `thm:markedclosed`(2) | None mathematically. | — |
 | 11 | `QuasiRegularWitness.baseVector_apply_base` | header-hygiene | `rem:maxinfinite` | None mathematically. | `Analysis/ResiduallyFiniteDimensional.lean` works on the same remark (different clause) |
 | 12 | `ManuscriptExactWrappers.ManuscriptHSInvisible` | category | `def:invisible` | None; but the badge certifies a definition, not a claim. | — |
-| 13 | `CliffordBSAmenable.isOperatorMF_subgroup_CliffordBS` | literature-input, **off-badge** | `\paragraph{Sharpness of the Kazhdan hypothesis.}` | **Total** for the sharpness paragraph's key step. Carries no badge, so no gate sees it. | `Algebra/AmenableMFProof.lean`, `Analysis/AmenableQuasidiagonal.lean` — both analyse what the step costs; neither supplies it |
+| 13 | `CliffordBSAmenable.isOperatorMF_subgroup_CliffordBS` | **RESOLVED 2026-08-17** (was: literature-input, off-badge) | `\paragraph{Sharpness of the Kazhdan hypothesis.}` | **None.** The paragraph no longer deduces through amenability; it routes through exhibited monomial models and is badged `\leanverified` over `CliffordBSAmenableMF.manuscriptSharpnessOfKazhdanHypothesis`, which is on `origin/verified`. The Lean structure survives, cited by nothing. What stays conditional is one clause, `IsOperatorMF RealizedQuotient`, as a binder in `CliffordBSPrintedRoute` — the printed route, kept deliberately. See §13 | `Sofic/CliffordBSAmenableMF.lean` supplies it; `Algebra/AmenableMFProof.lean`, `Analysis/AmenableQuasidiagonal.lean` explain why no permutation route could |
 | 14 | ~~`HNNTorsionFree.isPowerTorsionFree_of_existsCyclicConjugate` (and `…_sourceGroup_…`, `…_integerSourceGroup_…`)~~ | ~~literature-input~~ → **CLOSED 2026-08-16** | none — no manuscript claim cites it yet | **None.** `ExistsCyclicConjugate` is now proved, not assumed: `HNNBritton.existsCyclicConjugate` (`GroupTheory/HNNBrittonCyclic.lean`, commit `ae4053f7`) discharges it for every `φ` from Mathlib's HNN normal-form theory. The three hypothesis-taking theorems remain only because that file imports `Algebra/HNNTorsionFree.lean` (invoking it there would be an import cycle); they are superseded one for one by `HNNBritton.isPowerTorsionFree_hnn`, `…_sourceGroup`, `…_integerSourceGroup`. | — |
 | 15 | ~~`NuclearityAmenability.not_isAmenable_of_base_embeds`~~ | ~~header-hygiene~~ → **CLOSED 2026-08-16** | `thm:D`, the non-nuclearity paragraph | **None.** The manuscript now badges the wrapper `manuscriptNotAmenableOfBaseEmbeds`, whose binders are all after the colon, so the finding is gone rather than accepted. | — |
 | 16 | ~~`SoficByAmenablePermanence.isSofic_of_isSofic_ker_of_isAmenable`~~ | ~~header-hygiene~~ → **CLOSED 2026-08-16** | `\paragraph{Extensions by $\Z$.}` | **None.** Superseded by the badged wrapper `manuscriptSoficOfSoficKerOfAmenableQuotient`. | — |
@@ -496,7 +496,33 @@ and `LiteralBaseCompleteness.baseAffineEquiv`, also `def`s and also badged:
 those construct isomorphisms and carry real content, which is why the gate
 flags only `Prop`/`Type`-valued definitions.
 
-### 13. Tikuisis--White--Winter, off the badge surface
+### 13. Tikuisis--White--Winter, off the badge surface — **RESOLVED 2026-08-17**
+
+**Resolved, and not by supplying the input.** The paragraph was rewritten to
+route through models it exhibits rather than through amenability, and badged with
+`CliffordBSAmenableMF.manuscriptSharpnessOfKazhdanHypothesis`. The deduction
+quoted below is no longer in the manuscript, so the finding this section records
+is closed at its manuscript end; the Lean structure survives, unbadged and cited
+by nothing, as the formalization of the route the manuscript used to print.
+
+Two corrections to the record, both of which made this look harder than it was.
+First, the conclusion never needed the input: the sharpness paragraph concludes
+that some homomorphism to `U(Q)` does not kill the mark, and MF-ness of the
+realized quotient was only the route chosen to get there. Second, the
+unconditional route was already finished and certified while three documents —
+this one, the ledger's `CY.13` note, and `NON_MF_LITERATURE_SURFACE` §3.1 — still
+described `Sofic/CliffordBSAmenableMF.lean` as uncompiled and outside the import
+closure. It is imported at `GroupApproximation.lean:948` and is on
+`origin/verified` with that import line, which is proof of a green
+`Build and audit`. **Check `git cat-file -e origin/verified:<path>` before
+believing a claim in this document that a module does not compile.**
+
+What genuinely remains conditional is narrower than this section states: not the
+paragraph, but the single clause `IsOperatorMF RealizedQuotient`, carried as a raw
+binder in `Sofic/CliffordBSPrintedRoute.lean:172` and threaded through five
+further theorems there. Those are deliberately kept as the formalization of the
+printed route. The `AmenableImpliesMF` structure named in this row is a separate
+and dead surface — nothing outside its own file mentions it.
 
 `GroupApproximation/Sofic/CliffordBSAmenable.lean:84`
 
@@ -754,10 +780,12 @@ change regardless):
    `literatureInputNames`, or extend `Audit.literatureScan` to accept structure
    names. Until one of the two happens, an empty roster reads like a clean bill
    of health.
-3. **Badge the sharpness paragraph, or drop the deduction.** Row 13 is invisible
-   to every gate precisely because it has no badge. A `\leanconditional` over
-   `isOperatorMF_subgroup_CliffordBS` would make the TWW dependency auditable
-   instead of leaving it as the one live literature inference no tool can see.
+3. ~~**Badge the sharpness paragraph, or drop the deduction.**~~ **DONE
+   2026-08-17, and better than either option.** The recommendation was to make the
+   TWW dependency auditable with a `\leanconditional`; instead the deduction was
+   dropped and the paragraph badged `\leanverified` over
+   `CliffordBSAmenableMF.manuscriptSharpnessOfKazhdanHypothesis`, so there is no
+   dependency left to audit. See §13.
 4. **Move four binder groups inside their propositions** (rows 8--11), or add
    those names to `Audit.zeroInputEndpoints`. Mechanical.
 5. **Decide `def:invisible`** (row 12): keep the link but at a status that does
