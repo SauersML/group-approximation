@@ -632,7 +632,7 @@ once in the comment-stripped manuscript; the probe is the drift detector.
 | p:undec-markov | prose | `make MF a Markov` | - |
 | p:undec-adianrabin | prose | `applied to the Markov property` | - |
 | p:mult-products | prose | `The groups $E\times\mathbb Z^{k}$ for $k\ge0$ are` | - |
-| p:mult-continuum | prose | `Beyond finite presentation, pairing $E$` | - |
+| p:mult-continuum | prose | `Beyond finite presentation, take a continuum` | - |
 | p:limits-opnorm | prose | `The proof is specific to the operator norm.` | - |
 | p:limits-dilution | prose | `by an identity block separates the two` | - |
 | p:limits-alekseev | prose | `that question is independent of` | - |

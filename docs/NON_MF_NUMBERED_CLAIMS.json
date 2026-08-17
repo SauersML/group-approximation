@@ -585,7 +585,7 @@
     {
       "id": "cor:generaltransport",
       "environment": "corollary",
-      "title": "transport along all one-sided conjugators",
+      "title": "every one-sided conjugator acts, in both directions",
       "statement_sha256": "c808cecbd21732fb3259e95b7121e7209cf8f429d51f272cd24c099736f27484",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",

@@ -379,11 +379,12 @@ $\iota(\Gamma)$-fixed subspace to equal its unitary conjugate
 
 Slofstra's hyperlinear-profile construction uses a Clifford group, a
 distinguished central involution, a shift, and an HNN doubling map
-\cite[Section~2 and Remark~3.3]{SlofstraProfile}.  His quotients by the
-elements sent to the identity by every exact, and by every approximate,
-finite-dimensional representation
-\cite[Definitions~2.5--2.7]{SlofstraCorrelations} are the exact and the
-approximate analogues of the MF residual used below.
+\cite[Section~2 and Remark~3.3]{SlofstraProfile}.  He also considers the
+elements sent to the identity by every exact finite-dimensional
+representation, and those sent there by every approximate one
+\cite[Definitions~2.5--2.7]{SlofstraCorrelations}; the two subgroups
+they form are the exact and the approximate analogues of the MF
+residual used below.
 Negative-eigenspace
 compression appears in Slofstra--Vidick
 \cite[proof of Proposition~2.7]{SlofstraVidick}, and Fritz's marked
@@ -1627,10 +1628,10 @@ off-diagonal embedding of the intertwining defect --- whose normalized
 Hilbert--Schmidt norm on the block space has the denominator
 $d^1_n+d^2_n$ --- and conjugation by $U^{\oplus}_n(s)$ acts on the embedded
 corner by $x_n\mapsto U^1_n(s)\,x_n\,U^2_n(s)^*$.
-Theorem~\ref{thm:kazhdan-transport} applied to $U^{\oplus}_n$ transports the
-embedded sequence.  Replacing the denominator $d^1_n+d^2_n$ by an
-arbitrary weight $\nu_n$ and applying (1) to the block sum instead of
-Theorem~\ref{thm:kazhdan-transport} gives the intertwiner transport at
+Theorem~\ref{thm:kazhdan-transport} applied to $U^{\oplus}_n$ gives the
+conclusion for the embedded sequence.  Replacing the denominator
+$d^1_n+d^2_n$ by an arbitrary weight $\nu_n$, and applying (1) to the
+block sum in place of Theorem~\ref{thm:kazhdan-transport}, gives (2) at
 every weight.
 \end{proof}
 
@@ -1821,7 +1822,7 @@ $sLs^{-1}\subseteq L$ --- the \emph{one-sided conjugators} of $L$ --- and put
 \end{equation}
 which depends only on the pair $(H,L)$, not on a choice of datum.
 
-\begin{corollary}[transport along all one-sided conjugators]\label{cor:generaltransport}
+\begin{corollary}[every one-sided conjugator acts, in both directions]\label{cor:generaltransport}
 Let $(r_n)$ and $V_{g,n}\in\U(r_n)$ be an operator-norm asymptotic
 representation of $H$, let $\Lambda$ have property~\textup{(T)}, let
 $\iota\colon\Lambda\to H$ be a homomorphism, and put $L=\iota(\Lambda)$.
@@ -2268,15 +2269,16 @@ $j(\varphi(R))=1$ and, by injectivity of $j$, $\varphi(R)=1$.
 (1) and (2).  Work on $Q=G_1/R$.  Every homomorphism $G_1\to\U(\mathcal Q)$ maps $R$ to $1$, and for each $g\notin R$ there is one with
 $\Theta(g)\ne1$, which descends; so for every $\bar g\ne1$ in $Q$ there
 is a homomorphism $\Theta_{\bar g}\colon Q\to\U(\mathcal Q)$ with
-$\Theta_{\bar g}(\bar g)\ne1$.  Enumerate the nonidentity elements and
-these representations, pass to coordinate unitary lifts, and
-diagonalize: at stage
-$k$, select in the $i$th of them, for each $i\le k$, a coordinate at which
-multiplicativity holds within $1/k$ on the first $k$ group elements and
-at which \emph{its own} designated element $\bar g_i$ stays separated by
-its fixed positive constant --- possible because $\Theta_{\bar g_i}$
-separates $\bar g_i$ along infinitely many coordinates, which is all the
-hypothesis gives --- and take the block sum.  Block operator norms are
+$\Theta_{\bar g}(\bar g)\ne1$.  Enumerate the nonidentity elements
+$\bar g_1,\bar g_2,\dots$ and these representations, and pass to
+coordinate unitary lifts.  At stage $k$, choose in the $i$th lift, for
+each $i\le k$, a coordinate at which multiplicativity holds within
+$1/k$ on the first $k$ group elements and at which \emph{its own}
+designated element $\bar g_i$ stays separated by its fixed positive
+constant; such a coordinate exists because $\Theta_{\bar g_i}$
+separates $\bar g_i$ along infinitely many coordinates, which is all
+the hypothesis gives.  Take the block sum of the $k$ chosen
+coordinates.  Block operator norms are
 maxima, so the single block coming from $\Theta_{\bar g_i}$ already
 separates $\bar g_i$, and the sum therefore separates all of
 $\bar g_1,\dots,\bar g_k$ at once.  The resulting sequence
@@ -3145,14 +3147,14 @@ $E$ (Lemma~\ref{lem:permanence}(1)).  They are pairwise nonisomorphic
 because their abelianizations have distinct torsion-free ranks; the
 number of homomorphisms to $\mathbb Z/2$ separates them as well.
 \leanverified{Sofic/ProductMultiplicity}{GroupApproximation.ProductMultiplicity.manuscriptInfiniteMultiplicity}
-Beyond finite presentation, pairing $E$ with a continuum of pairwise
-nonisomorphic finitely generated groups $N$ --- Neumann's
-two-generator groups \cite{Neumann37}, say --- yields $2^{\aleph_0}$
-pairwise nonisomorphic finitely generated non-MF groups: each product
-$E\times N$ is non-MF, while a fixed countable group $X$ satisfies
-$X\cong E\times N$ for at most countably many of the isomorphism types
-$N$, since each such $N$ embeds in $X$ as a finitely generated subgroup
-and a countable group has only countably many of those.
+Beyond finite presentation, take a continuum of pairwise nonisomorphic
+finitely generated groups $N$ --- Neumann's two-generator groups
+\cite{Neumann37}, say.  Each product $E\times N$ is non-MF, and a fixed
+countable group $X$ satisfies $X\cong E\times N$ for at most countably
+many of the isomorphism types $N$, since each such $N$ embeds in $X$ as
+a finitely generated subgroup and a countable group has only countably
+many of those.  So the products realize $2^{\aleph_0}$ pairwise
+nonisomorphic finitely generated non-MF groups.
 \leanverified{Sofic/ContinuumMultiplicity}{GroupApproximation.ContinuumMultiplicity.manuscriptContinuumMultiplicity}
 \leanverified{Monsters/NeumannContinuum}{GroupApproximation.NeumannContinuum.manuscriptContinuumMultiplicityUnconditional}
 
