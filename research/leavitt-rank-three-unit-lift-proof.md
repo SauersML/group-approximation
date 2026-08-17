@@ -18,7 +18,9 @@ column) the relations read `ST = 1` and `TS = I_2`, so
     Psi : M_2(R) -> R,  Psi(M) = S M T          Phi : R -> M_2(R),  Phi(r) = T r S
 
 are mutually inverse ring isomorphisms: `Psi(Phi(r)) = (ST) r (ST) = r` and
-`Phi(Psi(M)) = (TS) M (TS) = M`.
+`Phi(Psi(M)) = (TS) M (TS) = M`.  This is `binaryMatrixRingEquiv` in
+`GroupApproximation/Leavitt/LeavittSelfSimilarity.lean`, kernel-checked, so
+only the matrix splitting below is new here.
 
 **The two images.**  `Phi(r)_(ij) = t_i r s_j`, and associativity alone gives
 
