@@ -1004,6 +1004,18 @@ import GroupApproximation.Analysis.OmegaHilbertComplete
 import GroupApproximation.Analysis.RankFrobeniusBound
 import GroupApproximation.Sofic.RealizationFromUniversalGroup
 import GroupApproximation.Analysis.PrintedReverseTransport
+import GroupApproximation.Algebra.AlternatingBoundedNormalGeneration
+import GroupApproximation.Algebra.AlternatingDoubledTransport
+import GroupApproximation.Analysis.CollapseCocycleAnalytic
+import GroupApproximation.Analysis.MaximalCStarAnyUniverse
+import GroupApproximation.Analysis.NormalKazhdanUltraproduct
+import GroupApproximation.Analysis.OmegaConjugationOperators
+import GroupApproximation.Analysis.OmegaCommutatorFixes
+import GroupApproximation.Analysis.RankNormalizedHilbertization
+import GroupApproximation.Monsters.NeumannTwoGenerator
+import GroupApproximation.Sofic.CollapseRankWeightTransport
+import GroupApproximation.Sofic.StableLetterLEFRoute
+import GroupApproximation.Manuscript.NonMF.ClosedRows
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
