@@ -241,6 +241,56 @@ HNN extension --- comes from the same retraction and is what `E4` and `E5` need
 about `u` and about `a`; what those two still need on top is the *base* side
 (`[w,s₀]` of infinite order in `G''`, which is `E2` plus Britton).
 
+### A variant construction that removes E3, E4 and E5 entirely
+
+The expensive entries all come from one place: Rabin's `u`-layer must force
+`n+1` stable letters to be trivial at once, so its associated subgroups are
+`⟨t₀,…,tₙ⟩` and `⟨t₀²,…,tₙ²⟩`, and the second has to be shown free *on the
+squares*.  That fact (equivalently, injectivity of the squaring endomorphism of
+a free group) is not in Mathlib at the pinned revision, which has neither
+`PingPong.lean` nor `NielsenSchreier.lean`, so it would have to be proved from
+reduced words.  `E4` and `E5` then ask for two more rank-two freeness facts.
+
+All three disappear under one observation about what the collapse half has to
+achieve.  **The collapse does not have to reach the trivial group.**  What
+`cor:undecidable` needs is that `K(w)` is MF when `w = 1`, and free groups are
+MF --- they are residually finite, so `lem:permanence(2)` applies.  It is
+therefore enough to kill the *base*, and to let the stable letters survive.
+
+That frees the `u`-layer to conjugate `⟨t₀,…,tₙ⟩` onto `⟨t₀s₀,…,tₙsₙ⟩` rather
+than onto the squares.  Both are free on the displayed generators for the same
+reason and by the same witness: the retraction `G' →* FreeGroup (Fin (n+1))`
+of `HNNRetraction.killBase` kills the base, so it sends `tᵢ` and `tᵢsᵢ` alike
+to the `i`th generator, and `HNNRetraction.freeGroupLift_injective` converts
+that into freeness of both.  No squares fact, and no rank-two argument.  The
+collapse still fires: `u = 1` turns `u tᵢ u⁻¹ = tᵢsᵢ` into `tᵢ = tᵢsᵢ`, hence
+`sᵢ = 1` for every `i`, hence the base is trivial, since the `sᵢ` generate it.
+What is left standing is a free group on the stable letters, which is MF.
+
+The same move removes the amalgam of stage 4, whose associated subgroups
+`⟨u,[w,s₀]⟩` and `⟨a,c⟩` are the other rank-two demand.  Continue instead with
+HNN layers over `G''`: adjoin `b` along `⟨u⟩ ≅ ⟨u²⟩` and `c` along
+`⟨b⟩ ≅ ⟨b²⟩`, both cyclic and both legitimate because a stable letter has
+infinite order (`HNNRetraction.zpow_t_ne_one`), and close the cascade with a
+final stable letter `k` adjoined along `⟨[w,s₀]⟩ ≅ ⟨b⟩`.  Then `w = 1` makes
+`[w,s₀] = 1`, so `b = 1`, so `u = 1`, and the cascade runs as before.
+
+Under this variant the *only* fact left that is not a retraction is:
+
+> `[w,s₀]` has infinite order in `(Γ * E) * ⟨s₀⟩` when `w ≠ 1`,
+
+a single free-product statement, provable from `CoprodI.Word`; every associated
+subgroup in the tower is then either cyclic on an element of infinite order or
+free on a family the retraction exhibits.  `E7` is unchanged: the composite
+`E ↪ (Γ * E) * ⟨s₀⟩ ↪ ⋯ ↪ K(w)` is injective because each step is
+`HNNExtension.of_injective` and the first is `inclRight_injective`.
+
+This is a design, not a proof: nothing below implements it, the presentation in
+this file is still Rabin's, and the embedding half is still absent.  It is
+recorded because it changes what the remaining work is --- one free-product
+lemma, the tower, and the assembly, rather than three Britton arguments and a
+free-group fact Mathlib does not have.
+
 Total for the missing direction: **~2000 lines** as first priced, dominated by
 E3 and E4; less the HNN half of E6, which `Algebra.HNNPresentation` supplies,
 and less the freeness of E3 and the infinite-order halves of E4 and E5, which
