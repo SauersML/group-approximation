@@ -73,16 +73,21 @@ of the coefficient of `x` at `g⁻¹`. -/
 @[simp] theorem coeff_star (x : MonoidAlgebra R G) (g : G) :
     (star x).coeff g = star (x.coeff g⁻¹) := rfl
 
-/-- The involution on a single term. -/
+/-- The involution on a single term.
+
+Proved coefficientwise rather than by rewriting the definition: the `Equiv.inv`
+inside the definition does not reduce at `rw`'s reducible transparency, so a
+route through `Finsupp.equivMapDomain_single` would end on a goal that `rw`
+closes or does not close depending on that transparency.  Reading both sides at
+a point avoids the question. -/
 @[simp] theorem star_single (g : G) (c : R) :
     star (MonoidAlgebra.single g c) = MonoidAlgebra.single g⁻¹ (star c) := by
-  apply MonoidAlgebra.ext
-  show Finsupp.mapRange star star_zero
-      (Finsupp.equivMapDomain (Equiv.inv G) (MonoidAlgebra.single g c).coeff)
-    = (MonoidAlgebra.single g⁻¹ (star c)).coeff
-  rw [MonoidAlgebra.coeff_single, MonoidAlgebra.coeff_single,
-    Finsupp.equivMapDomain_single, Finsupp.mapRange_single]
-  rfl
+  ext h
+  rw [coeff_star, MonoidAlgebra.coeff_single, MonoidAlgebra.coeff_single]
+  by_cases hgh : g⁻¹ = h
+  · rw [← hgh, inv_inv, Finsupp.single_eq_same, Finsupp.single_eq_same]
+  · rw [Finsupp.single_eq_of_ne (fun hcon => hgh (by rw [← hcon, inv_inv])),
+      Finsupp.single_eq_of_ne (Ne.symm hgh), star_zero]
 
 theorem star_zero' : star (0 : MonoidAlgebra R G) = 0 := by
   ext g

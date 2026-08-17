@@ -90,7 +90,7 @@ theorem conj_mem_closure_of_gen {g : G} {S : Set G}
   intro y hy
   induction hy using Subgroup.closure_induction with
   | mem z hz => exact h z hz
-  | one => simpa using (Subgroup.closure S).one_mem
+  | one => simp
   | mul a b _ _ ha hb =>
       have hab : g * (a * b) * g⁻¹ = (g * a * g⁻¹) * (g * b * g⁻¹) := by group
       rw [hab]
