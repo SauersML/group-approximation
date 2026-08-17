@@ -99,6 +99,19 @@ theorem countable_of_hasKazhdanPropertyTComplex {G : Type u} [Group G]
     KazhdanFiniteGeneration.exists_symmetric_generating_finset G hreal
   exact GeneralCornerTheorem.countable_of_closure_finset_eq_top hS
 
+
+/-- **A compression core's source is automatically countable.**  Its `kazhdan`
+field is property `(T)`, which supplies a finite generating set, so the `Type 0`
+model of the source always exists and no countability hypothesis is owed of it.
+This is the compression-datum analogue of
+`countable_of_hasKazhdanPropertyTComplex`, and it is what a universe descent for
+the Kazhdan source of `thm:transport-variants` consumes. -/
+theorem KazhdanCompressionCore.countable_source {Γ : Type v} [Group Γ]
+    {E : Type u} [Group E] (C : KazhdanCompressionCore Γ E) : Countable Γ := by
+  obtain ⟨S, -, -, hS⟩ :=
+    KazhdanFiniteGeneration.exists_symmetric_generating_finset Γ C.kazhdan
+  exact GeneralCornerTheorem.countable_of_closure_finset_eq_top hS
+
 /-! ## The theorem at any universe -/
 
 namespace KazhdanAsymptoticCommutant
