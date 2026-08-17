@@ -389,6 +389,57 @@ theorem good_pinch_inv {A : Subgroup G} (hA : Good A φ) (b : Bsub)
   rw [h]
   group
 
+/-! ## S7: the last stable letter detects membership
+
+Simpson's Theorem 8 adjoins a final stable letter `k` with both associated
+subgroups equal to `A` and the identification the identity.  Then conjugation by
+`k` fixes exactly the image of `A`.
+
+The nontrivial direction is Britton for a *single* stable letter and a word of
+length two: if `g ∉ A`, the word `t⁻¹ g t` is reduced --- its chain condition is
+precisely `g ∈ A → -1 = 1`, which is vacuous when `g ∉ A` --- and its product
+lies in the range of `of`, so Britton says it has no stable letters.  It has two.
+-/
+
+theorem conj_t_eq_iff {G' : Type} [Group G'] (A : Subgroup G') (g : G') :
+    (HNNExtension.t⁻¹ * HNNExtension.of g * HNNExtension.t
+      : HNNExtension G' A A (MulEquiv.refl A)) = HNNExtension.of g ↔ g ∈ A := by
+  constructor
+  · intro h
+    by_contra hg
+    let w : HNNExtension.NormalWord.ReducedWord G' A A :=
+      { head := 1
+        toList := [((-1 : ℤˣ), g), ((1 : ℤˣ), 1)]
+        chain := by
+          simp only [List.isChain_cons]
+          refine ⟨?_, ?_, ?_⟩
+          · rintro y - hmem
+            exact absurd hmem hg
+          · rintro y hy -
+            simp at hy
+          · simp }
+    have hprod : w.prod (MulEquiv.refl A) = HNNExtension.of g := by
+      have hw : w.prod (MulEquiv.refl A)
+          = HNNExtension.t⁻¹ * HNNExtension.of g * HNNExtension.t := by
+        show HNNExtension.of (1 : G') *
+          ([((-1 : ℤˣ), g), ((1 : ℤˣ), (1 : G'))].map
+            (fun x => HNNExtension.t ^ (x.1 : ℤ) * HNNExtension.of x.2)).prod = _
+        have hneg : ((-1 : ℤˣ) : ℤ) = -1 := rfl
+        have hone : ((1 : ℤˣ) : ℤ) = 1 := rfl
+        simp only [List.map_cons, List.map_nil, List.prod_cons, List.prod_nil,
+          map_one, one_mul, mul_one, hneg, hone, zpow_one, zpow_neg_one]
+      rw [hw, h]
+    have hbrit :=
+      HNNExtension.ReducedWord.toList_eq_nil_of_mem_of_range (MulEquiv.refl A) w
+        (by rw [hprod]; exact ⟨g, rfl⟩)
+    simp only [w] at hbrit
+    exact absurd hbrit (by simp)
+  · intro hg
+    have h := HNNExtension.equiv_eq_conj (φ := MulEquiv.refl A) ⟨g, hg⟩
+    simp only [MulEquiv.refl_apply] at h
+    conv_lhs => rw [h]
+    group
+
 /-- An injective hom carries intersections to intersections. -/
 theorem map_inf_of_injective {G' N : Type*} [Group G'] [Group N] (f : G' →* N)
     (hf : Function.Injective f) (H K : Subgroup G') :

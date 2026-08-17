@@ -141,12 +141,25 @@ repository, fully proved with no gaps"; every size is new Lean lines.
   the HNN transport --- rewriting S5a's two images along
   `emb c 0 M² 1 ∘ (emb a b M M)⁻¹`, which is well defined because
   `emb_injective` holds.
-* **S6 `TODO`, ~150 lines.**  Simpson's Lemma 7, `T'_M = ⟨t⟩'`.  Induction on
+* **S6 `PARTIAL`** (`BooneGroupGoodness`, `stable_conj_emb_right`/`_left`): the
+  inductive step is proved --- the stable letter carries the source embedding
+  onto the target, which is the displayed computation.  The induction itself
+  needs the tower's stable letters exposed in `Stage`; `towerSub` shows the
+  pattern for threading structure through the fold.  Original entry follows.
+  Simpson's Lemma 7, `T'_M = ⟨t⟩'`.  Induction on
   the length of the halting computation, via
   `Relation.ReflTransGen.head_induction_on`; the inductive step is the displayed
   computation `rᵢ⁻¹ t(α,β) rᵢ = t(α₁,β₁)`, which at the level of basis indices
   is `haltsZ_right_iff` again.
-* **S7 `TODO`, ~200 lines.**  Simpson's Theorem 8.  Adjoin `k` with
+* **S7 `DONE` for its Britton core** (`BooneGroupTower`, `conj_t_eq_iff`):
+  adjoining `k` with both associated subgroups `A` and the identity
+  identification, conjugation by `k` fixes exactly the image of `A`.  The
+  nontrivial direction is Britton for a single stable letter and a word of
+  length two --- the chain condition of `t⁻¹ g t` is exactly `g ∈ A → -1 = 1`,
+  so the word is reduced when `g ∉ A`, and Britton then says it has no stable
+  letters, which is false.  What remains of S7 is instantiating `A` at
+  `⟨t⟩'` and assembling the final presentation.  Original entry follows.
+  Simpson's Theorem 8.  Adjoin `k` with
   `A = B = ⟨t⟩'` and `φ = id`; then `k⁻¹ g k = g ↔ g ∈ ⟨t⟩'` --- the nontrivial
   direction is Britton for a *single* stable letter and a length-one word,
   which **is** within reach of Mathlib's exported form.  Combine with S5, S6 and
