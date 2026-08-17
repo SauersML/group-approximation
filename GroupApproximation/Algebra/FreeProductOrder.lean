@@ -131,5 +131,31 @@ theorem pow_commutator_ne_one {i j : ι} {x : M i} {y : M j} (hx : x ≠ 1)
   rw [← altComm_prod hx hy hij hxi hyi n]
   exact neWord_prod_ne_one _
 
+/-! ## Transferring this to the binary free product
+
+The variant construction's base is `Monoid.Coprod Γ ℤ`, and `Monoid.Coprod` is
+not defined as a `Monoid.CoprodI` --- it is its own `Con` quotient --- so the
+results above do not apply to it directly.  They should not need to: all of
+them say "this element is not `1`", which any homomorphism reflects, so a map
+`Monoid.Coprod Γ K →* CoprodI (Bool-indexed family)` built by
+`Monoid.Coprod.lift` from the two `CoprodI.of`s ought to transfer them in three
+lines.
+
+That transfer is *not* here, and the reason is worth recording because it is
+not mathematical.  The two-element family has to be given by recursion on
+`Bool`, and it does not reduce at a variable index, so the `Group` and
+`DecidableEq` instances on the factors must be supplied by hand.  Every way of
+doing that which was tried --- `cond`, `Bool.rec`, an instance by cases, and
+pinning the decidability instances with `letI` rather than `classical` ---
+elaborates the final application into a `whnf` or `isDefEq` timeout at the
+default heartbeat budget.  The obstruction is the cost of unifying
+`CoprodI (pairFam Γ K)` against the instance arguments, not anything about the
+statement.
+
+Until it is done, the infinite order of the witness is a hypothesis of the
+tower (`RabinVariantTower.Full` takes it as `hz`), which is where it belongs
+anyway: the tower is stated for any element of infinite order, and this file
+supplies the reason the witness is one. -/
+
 end FreeProductOrder
 end GroupApproximation
