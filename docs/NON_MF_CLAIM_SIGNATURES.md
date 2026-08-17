@@ -626,13 +626,14 @@ IsSofic LiteralNonMFPresentation.MarkedGroup ∧
     ¬Group.ResiduallyFinite LiteralNonMFPresentation.MarkedGroup
 ```
 
-## `GroupApproximation.LiteralTietzePresentation.manuscriptTietzeSixGeneratorPresentation`
+## `GroupApproximation.LiteralTietzePresentation.exists_sixGenerator_thirtyTwo_presentation`
 
 ```lean
-∀ (x : Unit),
-  ∃ L,
-    L.length = 32 ∧
-      ∃ e, ∀ (i : Fin 6), e (PresentedGroup.of i) = LiteralSixGenerator.sixGenerator i
+∃ L,
+  L.length = 32 ∧
+    ∃ e,
+      ∀ (i : LiteralSixGenerator.SixGenerator),
+        e (PresentedGroup.of i) = LiteralSixGenerator.sixGenerator i
 ```
 
 ## `GroupApproximation.LiteralUniformObstruction.literal_uniform_operatorNorm_obstruction`
@@ -828,18 +829,6 @@ IsLocallyFiniteGroup LiteralWitnessConsequences.WitnessLampGroup ∧
     ∀ (K : Subgroup H) [K.Normal],
       HasKazhdanPropertyT ↥K →
         K ≤ compressionCentralizerDefect iota.range → K ≤ actualCoronaMFResidual H
-```
-
-## `GroupApproximation.ManuscriptExactWrappers.manuscriptInvariantSizePrinciple`
-
-```lean
-∀ {Q : Type u} [inst : Group Q] (size : Subgroup Q → ℕ),
-  (∀ (g : Q) (K : Subgroup Q),
-      size (Subgroup.map (MulEquiv.toMonoidHom (MulAut.conj g)) K) = size K) →
-    (∀ (K L : Subgroup Q), K ≤ L → size L ≤ size K → K = L) →
-      ∀ (K : Subgroup Q) (g : Q),
-        Subgroup.map (MulEquiv.toMonoidHom (MulAut.conj g)) K ≤ K →
-          Subgroup.map (MulEquiv.toMonoidHom (MulAut.conj g)) K = K
 ```
 
 ## `GroupApproximation.ManuscriptExactWrappers.manuscriptInvolutiveCollapse`
