@@ -236,11 +236,9 @@ theorem abelGenerator_kills :
 def abelHom : CliffordLamp.CliffordLamp X →* (X → Multiplicative (ZMod 2)) :=
   PresentedGroup.toGroup (abelGenerator_kills X)
 
-omit [Fintype X] in
 @[simp] theorem abelHom_sign : abelHom X (CliffordLamp.sign X) = 1 :=
   PresentedGroup.toGroup.of _
 
-omit [Fintype X] in
 @[simp] theorem abelHom_lamp (x : X) :
     abelHom X (CliffordLamp.lamp X x) = flipVec X x :=
   PresentedGroup.toGroup.of _
@@ -252,6 +250,7 @@ def abelBar : SignQuotient X →* (X → Multiplicative (ZMod 2)) :=
     obtain ⟨k, rfl⟩ := Subgroup.mem_zpowers_iff.mp hg
     rw [MonoidHom.mem_ker, map_zpow, abelHom_sign, one_zpow])
 
+omit [Fintype X] in
 @[simp] theorem abelBar_mk (g : CliffordLamp.CliffordLamp X) :
     abelBar X (QuotientGroup.mk' _ g) = abelHom X g := rfl
 
