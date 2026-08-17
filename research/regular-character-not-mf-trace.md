@@ -83,3 +83,44 @@ its corollary, not a restatement of it.
 Recorded because the repository was carrying the trace consequence entirely
 outside Lean, and the half of it that is cheap to formalize was never
 composed.
+
+## The one blocker, and why the tempting shortcut does not take
+
+The hyperlinear half needs `π : C^*(E) -> Q`, which needs
+`maximalGroupCStar_existsUnique_lift`, which needs `[CStarAlgebra Q]` on the
+tracial matrix quotient.  **That instance does not exist, and the pinned
+Mathlib has no C-star-quotient instance at all** — nothing for
+`Ideal.Quotient`, nothing under `Analysis/CStarAlgebra`.  So
+`||x + J|| ^ 2 = ||x^* x + J||` has to be proved here.
+
+**The shortcut that looks available, and why it fails.**
+`Analysis/CStarSeminormQuotient.exists_isCStarNorm_on_quotient` produces a
+C-star *norm* on `A / nullIdeal p` for a C-star seminorm `p`, without any
+approximate unit.  One can even produce the right seminorm for the `omega`
+version: let `tau_omega(x) = lim_omega tr(x_n)`, take its GNS representation,
+and set `p(x) = ||pi_GNS(x)||`.  For a *tracial* state the kernel is exactly
+`{x : tau(x^* x) = 0}` — because `tau(a^* x^* x a) = tau(x^* x a a^*) <=
+||a a^*|| tau(x^* x)` — which is precisely the Hilbert--Schmidt-null ideal.  So
+`isCStarSeminorm_iSup_starRep` applies and a C-star norm on the quotient
+follows.
+
+**But it is the wrong norm.**  What comes out is the GNS operator norm
+`q(x) = p(g x)` on a chosen representative, not the hand-built quotient norm
+already installed as `tracialMatrixQuotientNormedRing`
+(`TracialMatrixUltraproduct.lean:472`, a `Submodule.Quotient` infimum).  The two
+do agree — the C-star norm on a quotient is unique — but *proving* they agree is
+the same theorem we were trying to avoid.  And adopting the GNS norm instead
+would fork the normed structure: every quotient-representative lemma, the
+`ultratraceCLM` bound and the completeness instance are all stated against the
+existing norm, so a second norm bundle is a diamond that fails far from its
+cause or, worse, typechecks and means something else.
+
+**Consequence.**  The instance must be a `CStarRing` **mixin over the existing
+normed structure**, proved by the approximate-unit route:
+`||a + J|| = inf { ||a - a e|| : e in J, 0 <= e <= 1 }`, then the C-star
+identity via `||(1-e) a^* a (1-e)|| <= ||a^* a (1-e)||`.  Only a per-`j`,
+per-`epsilon` witness is needed rather than an approximate-unit net, which is
+exactly the shape of
+`HilbertSchmidtApproximateUnit.exists_projection_approximate_unit` (landed,
+`c8f8768b`): `||j - j e||^2 <= t` together with `t * ||e||_2^2 <= ||j||_2^2`,
+the second clause being what keeps the witness inside the ideal.
