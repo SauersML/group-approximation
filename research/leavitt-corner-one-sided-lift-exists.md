@@ -51,11 +51,13 @@ algebra; transporting that floor into the corner is not done and is not
 routine, since the corner's identity `e` has support two and its elements are
 not free to have arbitrary support patterns.
 
-Two strictly stronger targets that would settle this, in decreasing order of
-ambition, are `binary-leavitt-family-lifts-into-unit-corner` (lift the whole
-family, equivalently split `pi_e` by a unital ring section) and — bypassing
-this claim entirely, via a different route into the same conclusion —
-`leavitt-corner-kernel-is-jacobson-radical`.
+One strictly stronger target that would settle this is
+`binary-leavitt-family-lifts-into-unit-corner` (lift the whole family,
+equivalently split `pi_e` by a unital ring section).  There used to be a
+second, bypassing this claim entirely via a different route into the same
+conclusion — `leavitt-corner-kernel-is-jacobson-radical` — and it is now
+refuted (`leavitt-corner-kernel-not-jacobson-radical`), so the corner lane
+runs through this claim alone.
 
 ## Attempts
 
@@ -89,10 +91,31 @@ units — `w^2 = xy + yx = 1` — and `u + v + w = 0` in characteristic two.  So
     [u] + [v] + [w]   lies in   ker(pi),   and has augmentation 1,
 
 an explicit witness for both parts of `leavitt-evaluation-kernel-hits-augmentation-one`.
-What is *not* known is whether `e([u]+[v]+[w])e` is nonzero, i.e. whether the
-corner sees this element at all.  Computing `ker(pi_e)` even to the point of
-deciding `ker(pi_e) != 0` has not been done, and is the first concrete piece
-of work this claim is waiting on.
+
+**Answered 2026-08-17, and both halves of the answer matter.**  The question
+just posed — is `e([u]+[v]+[w])e` nonzero, i.e. does the corner see this
+element at all — has the answer **no**: `e k = k e = 0` exactly, certified in
+`research/artifacts/verify-s3-corner-2026-08-17.py`.  The corner is blind to
+the only kernel element this graph owned, which is why restricting it was
+never going to work.
+
+The larger question it gated — is `ker(pi_e) != 0` — also has the answer
+**no**, reached from a different direction.
+`leavitt-primitive-corner-recursive-extension` embeds the whole extension
+`S ->> R` into a primitive subcorner compatibly with evaluation, carrying
+`ker(pi)` injectively into `ker(pi_e)`; the image of `z = [1]+[g]+[g^2]` is an
+explicit twelve-term **idempotent** of augmentation zero
+(`leavitt-corner-kernel-not-jacobson-radical`), and iterating gives an
+infinite orthogonal family (`leavitt-recursive-kernel-idempotents`).
+
+So this claim is no longer waiting on that computation.  What it gained is a
+description of the ideal the correction has to live in, and the description is
+discouraging rather than helpful: `ker(pi_e)` is large, contains idempotents
+of augmentation zero, and is not radical, so `alpha, beta` have plenty of room
+and no structure that narrows the search.  The one recursive correction the
+new embedding makes natural fails at every finite depth, because `lambda` is
+injective and group-algebra elements have finite support.  The equation
+`(a + alpha)(b + beta) = e` is still the whole problem.
 
 **Not attempted: a bounded search.**  Nothing here has been searched by
 machine.  A search would need a presentation of `e A e`, which nobody has

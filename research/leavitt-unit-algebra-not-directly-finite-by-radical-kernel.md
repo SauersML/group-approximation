@@ -12,6 +12,12 @@ artifacts:
   - research/artifacts/kaplansky-direct-finiteness-audit-2026-08-17.md
 ---
 
+**INVALIDATED 2026-08-17 by `leavitt-corner-kernel-not-jacobson-radical`.**
+The second prerequisite is false: `ker(pi_e)` contains a nonzero idempotent,
+and a Jacobson radical contains none.  The implication below is still valid —
+nothing is wrong with the descent argument — but its hypothesis cannot be
+supplied, so this route can never fire.
+
 ## Why sufficient
 
 Direct finiteness descends modulo an ideal contained in the Jacobson radical

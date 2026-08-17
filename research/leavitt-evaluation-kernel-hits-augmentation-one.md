@@ -37,3 +37,23 @@ tries to close that claim by an augmentation count is dead on arrival.
 Neither part uses characteristic two, and neither uses the unit-span theorem;
 they need only that `pi` is a surjective unital ring map onto `R`, which is
 where the spanning theorem is consumed.
+
+## What the three-term witness cannot do (2026-08-17)
+
+`e k = k e = 0` for `k = [u] + [v] + [w]` and the corner idempotent
+`e = [g] + [g^2]` — an exact six-element computation, certified in
+`research/artifacts/verify-s3-corner-2026-08-17.py`.  So the natural way to
+show `ker(pi_e) != 0`, namely restricting the witness this node supplies, was
+never available, and the corner question stayed open for that reason rather
+than for want of trying.
+
+A second witness now exists and is of a different kind: `z = [1] + [g] + [g^2]`
+lies in `K`, is **idempotent**, and has `eps(z) = 1`.  Pushed down the
+recursive corner embedding of
+`leavitt-primitive-corner-recursive-extension` it becomes a nonzero idempotent
+of augmentation *zero* inside `ker(pi_e)`
+(`leavitt-corner-kernel-not-jacobson-radical`), and iterating gives an
+infinite orthogonal family (`leavitt-recursive-kernel-idempotents`).  Part 2
+of this claim is therefore no longer the only thing known about how `K` meets
+the augmentation: `K n ker(eps) != 0` as well, which is the ideal a
+parity-respecting correction has to live in.

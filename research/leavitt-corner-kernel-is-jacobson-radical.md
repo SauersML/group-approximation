@@ -11,6 +11,16 @@ artifacts:
   - research/artifacts/kaplansky-direct-finiteness-audit-2026-08-17.md
 ---
 
+**REFUTED, 2026-08-17, by `leavitt-corner-kernel-not-jacobson-radical`.**
+`ker(pi_e)` contains an explicit nonzero idempotent of augmentation zero, and
+a Jacobson radical contains no nonzero idempotent.  So `ker(pi_e)` is not even
+*contained* in `J(eAe)`, let alone equal to it, and the route
+`leavitt-unit-algebra-not-directly-finite-by-radical-kernel` is dead.  The
+statement below is retained as written, unestablished and now known false; the
+Attempts section is left in place because its diagnosis of where the question
+sat was accurate, and because the computation it names as the gate has now
+been done.
+
 With `A = F_2[R^x]`, `e = [g] + [g^2]`, `pi_e : eAe ->> R` as in
 `leavitt-corner-idempotent-unital-surjection`:
 
@@ -68,3 +78,20 @@ bound `J(e F_2[R^x] e)`, and none should be made before `ker(pi_e)` is
 understood, since the two ends of the equality are the same unknown. Compared
 with `leavitt-corner-one-sided-lift-exists` this lane is the less promising
 one and is kept only because it needs no witness.
+
+**The gate was opened, and it closed the lane (2026-08-17).**  The question
+named just above — *is `ker(pi_e)` zero?* — is answered: no, and the witness
+is an idempotent, which is the one shape that makes the equality impossible
+rather than merely unproved.  Two details of the answer are worth carrying
+back here, because they explain why the question resisted for as long as it
+did.  First, the three-term witness `[u]+[v]+[w]` quoted above is annihilated
+by `e` on both sides, so the corner really is blind to the only kernel element
+this graph owned — the restriction attempt that everyone tries first was
+always going to fail.  Second, the element that works arrives from a direction
+this node did not consider: a *recursive* copy of the whole extension inside a
+primitive subcorner (`leavitt-primitive-corner-recursive-extension`), which
+carries `ker(pi)` injectively into `ker(pi_e)`.  Neither end of the equality
+is small.  See `leavitt-recursive-kernel-idempotents` for the infinite
+orthogonal family, and
+`research/artifacts/leavitt-stable-finiteness-audit-2026-08-17.md` for the
+computation.
