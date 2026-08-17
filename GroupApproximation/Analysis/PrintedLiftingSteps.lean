@@ -138,16 +138,21 @@ theorem quotientMk_eq_of_eventuallyEq
     {u v : ∀ n, Matrix.unitaryGroup (X n) ℂ}
     (h : ∀ᶠ n in cofinite, u n = v n) :
     (QuotientGroup.mk u : NormMatrixCoronaUnitary X) = QuotientGroup.mk v := by
-  refine QuotientGroup.eq_iff_div_mem.mpr ?_
-  show IsNullCofiniteOpSeq X (u / v)
-  intro ε hε
-  filter_upwards [h] with n hn
-  have hone : (u / v) n = 1 := by
-    show u n / v n = 1
-    rw [hn, div_self']
-  show opLength (X n) ((u / v) n) < ε
-  rw [hone]
-  simpa using hε
+  have hmem : u / v ∈ nullCofiniteOpSubgroup X := by
+    show IsNullCofiniteOpSeq X (u / v)
+    intro ε hε
+    filter_upwards [h] with n hn
+    have hone : (u / v) n = 1 := by
+      show u n / v n = 1
+      rw [hn, div_self']
+    show opLength (X n) ((u / v) n) < ε
+    rw [hone, opLength_one]
+    exact hε
+  have hquot : (QuotientGroup.mk (u / v) : NormMatrixCoronaUnitary X) = 1 :=
+    (QuotientGroup.eq_one_iff (u / v)).mpr hmem
+  have hdiv : (QuotientGroup.mk u : NormMatrixCoronaUnitary X) /
+      QuotientGroup.mk v = 1 := hquot
+  exact div_eq_one.mp hdiv
 
 /-! ## The printed sequence, and `lem:lift` routed through the four moves -/
 
@@ -170,16 +175,26 @@ theorem polarPatch_eq_polarCorrect
     (hn : ‖KazhdanCornerMatrices.cornerGram (a n) - 1‖ ≤ (1 / 2 : ℝ)) :
     polarPatch X a n =
       KazhdanCornerMatrices.polarCorrectUnitary (a n)
-        (KazhdanCornerMatrices.cornerGram_isHermitian (a n)) hn le_rfl :=
-  dif_pos hn
+        (KazhdanCornerMatrices.cornerGram_isHermitian (a n)) hn le_rfl := by
+  rw [show polarPatch X a n
+        = dite (‖KazhdanCornerMatrices.cornerGram (a n) - 1‖ ≤ (1 / 2 : ℝ))
+            (fun h ↦ KazhdanCornerMatrices.polarCorrectUnitary (a n)
+              (KazhdanCornerMatrices.cornerGram_isHermitian (a n)) h le_rfl)
+            (fun _ ↦ 1) from rfl]
+  exact dif_pos hn
 
 /-- **"Set `uₙ = 1` at the finitely many remaining indices."**  The other
 branch, named. -/
 theorem polarPatch_eq_one
     (a : BoundedMatrixSequence (fun n ↦ X n)) {n : ℕ}
     (hn : ¬ ‖KazhdanCornerMatrices.cornerGram (a n) - 1‖ ≤ (1 / 2 : ℝ)) :
-    polarPatch X a n = 1 :=
-  dif_neg hn
+    polarPatch X a n = 1 := by
+  rw [show polarPatch X a n
+        = dite (‖KazhdanCornerMatrices.cornerGram (a n) - 1‖ ≤ (1 / 2 : ℝ))
+            (fun h ↦ KazhdanCornerMatrices.polarCorrectUnitary (a n)
+              (KazhdanCornerMatrices.cornerGram_isHermitian (a n)) h le_rfl)
+            (fun _ ↦ 1) from rfl]
+  exact dif_neg hn
 
 /-- **`lem:lift`, through the four printed moves.**  Every unitary of the
 corona is `q((uₙ))` for the patched polar correction of some bounded lift.
