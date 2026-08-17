@@ -58,7 +58,41 @@ which is reason enough never to take a remark number from a fetch.
 So this route stands on the author's own equivalence and the longer route
 below is a fallback, not the primary.
 
-### `tau` is hyperlinear — the definitional route, kept as a fallback
+### The lifting step needs no Bartle--Graves, and no citation
+
+**Superseded, 2026-08-17, under the standing directive that nothing may be
+conditional and nothing may enter as a literature input.**  The route below
+uses Bartle--Graves to produce a continuous section, and an earlier revision of
+this node was willing to take Shulman's equivalence between the sequential and
+factorized definitions on citation.  Neither is needed and neither is allowed.
+
+The reason is in a sentence Shulman **commented out** of her own source
+(arXiv:2508.00125), which is the proof of the equivalence:
+
+> "Indeed the homomorphism `f : A -> prod M_n/(+) M_n` can be lifted to a
+> linear (not necessarily continuous) map by sending any element of a Hamel
+> basis of `A` to any its preimage and extending it linearly to `A`.  Then
+> `phi` can be defined as the `n`-th coordinate of this lift."
+
+Her maps are **not required to be continuous**, which is exactly why no
+section theorem is needed.  Take a Hamel basis of `A`, choose any preimage in
+the bounded product of `f(b)` for each basis vector, extend linearly to get
+`Phi : A ->L[C] prod M_(k_n)` -- linear, not continuous -- with `q . Phi = f`,
+and set `phi_n a := (Phi a) n`.  Then the linearity defect is **exactly zero**
+rather than asymptotically zero; the multiplicativity and star defects lie in
+the ideal, which is precisely `||.||_2 -> 0`; and the uniform bound is free
+because `Phi` lands in the *bounded* product.  In Lean this is `Basis.constr`
+plus `Classical.choice`, both already inside the permitted axiom set.
+
+**One real gap, named rather than hidden.**  `tr` on the quotient is an
+*ultralimit*, while the sequential definition asks for an ordinary
+`lim_(n->infinity)`.  Closing that needs a subsequence extraction against a
+countable dense subalgebra -- available, since
+`maximalGroupCStar_separableSpace` is proved.  Until that extraction is
+written, the sequential trace clause is the one step of this route not in
+hand, and it must be stated as such and not absorbed into a citation.
+
+### `tau` is hyperlinear — the Bartle--Graves route, retained only as history
 
 Soficity gives unitaries `u_n : G -> U(k_n)` with
 `||u_n(g)u_n(h)-u_n(gh)||_2 -> 0` and `tr(u_n(g)) -> 0` for `g != 1`, so the

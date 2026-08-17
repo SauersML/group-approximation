@@ -91,11 +91,30 @@ from non-unitary images" to "rigidify asymptotic linearity into exact
 linearity on a separable algebra".  Cite it as a cross-check, print the
 comparison, and do not elide it.
 
-## Formalization boundary
+## Formalization boundary, as of 2026-08-17
 
-The not-MF half is formalized and the hyperlinear half is not; see
-[[regular-character-not-mf-trace]] for exactly what the Lean says and what it
-does not.
+**The not-MF half is done, in Shulman's own definition.**
+`Analysis/ShulmanTraceClasses.IsMFTrace` transcribes it verbatim,
+`Sofic/ShulmanMFTraceBridge.isOperatorMF_of_isMFTrace_canonicalMaximal`
+carries it to operator MF for the group, and
+`LiteralTraceConsequence.markedGroup_canonicalMaximalTrace_not_isMFTrace`
+composes it at the literal group.  Printed as `cor:mftrace`, badged, and
+hypothesis-free: the manuscript's zero-input and unconditionality gates both
+pass with it in place.  See [[regular-character-not-mf-trace]].
+
+`Analysis/ShulmanTraceNorms.lean` now also has `IsHyperlinearTrace` — the same
+five clauses with the three defect norms changed to `||.||_2` — together with
+`isHyperlinearTrace_of_isMFTrace`, which is the check that the two definitions
+are parameterized consistently.
+
+**What remains is the hyperlinear half for the specific trace `tau_E`.**  Three
+named obligations, all in `Analysis/TracialMatrixUltraproduct.lean` or
+downstream of it: a `CStarAlgebra` instance on the quotient (without it the
+lift out of `C^*(E)` cannot fire), the ultratrace bundled as a **continuous**
+functional (`canonicalMaximalTrace_eq_of_generator` takes `->L[C] C`), and the
+quotient staying in `Type 0` so the lift's universe constraint is met.  None of
+the three is a mathematical obstacle; all three are the kind of thing that
+compiles in isolation and fails to compose.
 
 ## Why it is a contrast rather than a contradiction
 
