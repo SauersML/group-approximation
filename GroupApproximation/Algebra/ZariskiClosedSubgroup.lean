@@ -116,6 +116,7 @@ variable {n : Type*} [Fintype n] [DecidableEq n] {k : Type*} [Field k]
 `(n × n) → k` whose coordinate ring is the polynomial ring `k[X_{ij}]`. -/
 def matCoords (M : Matrix n n k) : n × n → k := fun p => M p.1 p.2
 
+omit [Fintype n] [DecidableEq n] in
 @[simp]
 theorem matCoords_apply (M : Matrix n n k) (p : n × n) : matCoords M p = M p.1 p.2 := rfl
 
@@ -225,6 +226,7 @@ theorem zClosure_subset_of_isZClosed {T S : Set (GeneralLinearGroup n k)} (hS : 
 
 /-! ### Stability of closedness under intersections -/
 
+omit [Fintype n] [DecidableEq n] in
 /-- A point lies in the zero locus of `I` exactly when `I` consists of
 polynomials vanishing at that point. -/
 theorem mem_zeroLocus_iff_le_vanishingIdeal (c : n × n → k)
@@ -274,6 +276,7 @@ the only geometry the envelope argument needs: no determinant, no localisation.
 def rowForm (U : Matrix n n k) (i b : n) : MvPolynomial (n × n) k :=
   ∑ a : n, MvPolynomial.C (U i a) * MvPolynomial.X ((a, b) : n × n)
 
+omit [DecidableEq n] in
 /-- `rowForm` computes the entries of `U * M`. -/
 theorem aeval_rowForm (U M : Matrix n n k) (i b : n) :
     MvPolynomial.aeval (matCoords M) (rowForm U i b) = (U * M) i b := by
@@ -314,6 +317,7 @@ theorem aeval_mulSubstHom_coords (u v y : GeneralLinearGroup n k)
   have h := aeval_mulSubstHom u.val v.val y.val f
   simpa only [coords, Units.val_mul] using h
 
+omit [Fintype n] [DecidableEq n] in
 /-- A point lies in the zero locus of a pushed-forward ideal exactly when the
 substituted generators vanish there. -/
 theorem mem_zeroLocus_map_iff (φ : MvPolynomial (n × n) k →ₐ[k] MvPolynomial (n × n) k)
