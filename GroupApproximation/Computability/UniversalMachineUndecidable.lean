@@ -13,17 +13,24 @@ the first into the vector form `ToPartrec.exists_code` consumes.
 The result is `tm0_halting_not_computablePred`: a single Post--Turing machine,
 and a family of inputs, on which no algorithm decides halting.
 
-## What is still missing, and it is only one thing
+## The finiteness this needed, and where it came from
 
 The machine's state type `Turing.PartrecToTM2.Λ'` is infinite --- its states
 carry continuations, which carry codes.  A *finitely presented* monoid needs a
 machine with finitely many states, so the machine has to be cut down to the
 states a run actually visits.  `Computability.MachineRestrict` does the cutting
-and proves nothing is lost; what is not proved anywhere yet is that the visited
-set is finite, which is what `PartrecToTM2.trStmts₁` and `Λ'.Supports` are for.
+and proves nothing is lost.
 
-Until that is done this file does not feed `TM0WordProblem`: it gives an
-undecidable machine, not an undecidable *finite* machine.
+That the visited set is finite was once recorded here as unproved anywhere.  It
+was already in Mathlib: `PartrecToTM2.tr_supports` on the finite set
+`codeSupp c k`, then `TM2to1.tr_supports`, then `TM1to0.tr_supports`, whose
+conclusion is `TM0.Supports (tr M) ↑(trStmts M S)` with a `Finset` carrier ---
+which is exactly the hypothesis
+`FiniteMachineWordProblem.not_computablePred_wordProblem_of_finite` asks for.
+
+So this file does feed `TM0WordProblem`, and `Computability.MarkovPost` is the
+composition: a finitely presented monoid with undecidable word problem, with no
+hypothesis and no literature input.
 -/
 
 namespace GroupApproximation

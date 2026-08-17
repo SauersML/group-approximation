@@ -14,10 +14,20 @@ This is the entry point of the four-module development
   `PresentedMonoid`,
 
 whose target is the **Markov--Post theorem**: *the word problem for finitely
-presented semigroups (monoids) is undecidable*.  That theorem is **not** proved
-here.  What is proved is its reduction half, in full and unconditionally; the
-missing half is a universal machine, and this docstring is the engineering
-statement of that debt.
+presented semigroups (monoids) is undecidable*.  What is proved *here* is its
+reduction half, in full and unconditionally; the other half is a universal
+machine.
+
+**That half is no longer missing, though it arrived by a different route.**
+`Computability.MarkovPost.exists_undecidable_wordProblem` proves Markov--Post
+outright, with no hypothesis and no literature input, by composing
+`Computability.UniversalMachineUndecidable` with the word encoding of
+`Computability.FiniteMachineWordProblem` --- a `Turing.TM0` machine and the
+`StringRewriting.PostMachine` system rather than the deterministic machine and
+semi-Thue system developed in these four modules.  So the theorem holds; this
+chain is a second, independent reduction that stops one step short of it, and
+is retained because its simulation is stated for an arbitrary deterministic
+machine.
 
 ## Manuscript context
 

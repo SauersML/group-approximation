@@ -33,10 +33,12 @@ can silently depend on it.
 
 ## The remaining work
 
-Adjoining `k` with equal associated subgroups and the identity isomorphism
-gives `k^{-1} g k = g` if and only if `g in <<t>>`; the nontrivial direction is
-Britton's Lemma for a *single* stable letter and a length-one word, which is
-within reach of Mathlib's exported form.  Combining that with
+**The Britton core is proved** (`BooneGroupTower.conj_t_eq_iff`): adjoining `k`
+with both associated subgroups equal to `A` and the identity identification,
+conjugation by `k` fixes exactly the image of `A` -- so `k^{-1} g k = g` if and
+only if `g in <<t>>`.  That was the step this entry expected to be the
+delicate one, and it is the easiest Britton application in the chain: one
+stable letter, one syllable.  Combining it with
 [[boone-tower-good-subgroup-transport]],
 [[boone-halting-subgroup-is-normal-closure]] and `of_mem_basisSubgroup_iff`
 from [[free-subbasis-subgroup-calculus]] gives

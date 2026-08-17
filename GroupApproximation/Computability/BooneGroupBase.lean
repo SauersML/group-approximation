@@ -79,14 +79,16 @@ repository, fully proved with no gaps"; every size is new Lean lines.
   Forward map by `PresentedGroup.toGroup`; backward by
   `SemidirectProduct.lift`; mutual inverses checked on generators.  Needed
   *only* to call the final group finitely presented.
-* **S3 `DONE` for the construction** (`BooneGroupTower`), *not* for the
-  per-machine assembly.  Built: `Stage` (carrier + group + `ι` + injectivity as
+* **S3 `DONE`** (`BooneGroupTower`), construction and per-machine assembly
+  both.  Built: `Stage` (carrier + group + `ι` + injectivity as
   a bundle, which is what avoids defining a type, its instance and `ι` by one
   mutual recursion), `Stage.step`, `tower` as a fold, `tower_ι_injective`, and
   `quadEquiv`/`quadIdentification` --- the transport of
-  `(emb a b M M)⁻¹ ∘ (emb c 0 M² 1)`, which is `φₙ`.  What is **not** done is
-  collecting one identification per quadruple of a given machine into the list
-  `tower` consumes; that is mechanical.  Original entry follows.
+  `(emb a b M M)⁻¹ ∘ (emb c 0 M² 1)`, which is `φₙ`.  The assembly this entry
+  once listed as missing is `residuePairs`, `machineIdentifications` and
+  `machineTower`, with `machineTower_ι_injective`: one identification per
+  residue pair carrying a quadruple, over a list rather than a `Fintype` index.
+  Original entry follows.
   The tower of Simpson's Definition 6.
   Mathlib's `HNNExtension` carries one stable letter, so `G'_M` must be built
   as an iterated single-letter HNN indexed by `Fin M × Fin M` --- one stable
