@@ -1029,6 +1029,8 @@ import GroupApproximation.Analysis.MaximalGroupCStarTrace
 import GroupApproximation.Analysis.ShulmanTraceNorms
 import GroupApproximation.Analysis.TracialMatrixUltraproduct
 import GroupApproximation.Analysis.ShulmanTraceFactorization
+import GroupApproximation.Analysis.TracialUltraproductCStar
+import GroupApproximation.Analysis.UltrafilterDiagonalExtraction
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
