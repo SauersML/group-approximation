@@ -19,9 +19,20 @@ on:
 permissions:
   contents: read
 
+# This check is a statement about the tip's TREE, not about a diff, so the
+# newest run's verdict subsumes every older one: a stale import that commit A
+# introduced still fails on commit B unless B fixed it.  The group therefore
+# holds one run per ref and GitHub cancels the superseded ones in its control
+# plane -- free, instant, and without occupying a runner.
+#
+# It used to key the group on `github.sha` as well, which made every group a
+# singleton, so nothing was ever superseded.  On 2026-08-17 that left 29 of
+# these queued at once behind a saturated account pool (this repository shares
+# a twenty-job pool with `gam`), each waiting to spend ten seconds.  A
+# ten-second check must never be what a certificate run is queued behind.
 concurrency:
-  group: root-imports-${{ github.ref }}-${{ github.sha }}
-  cancel-in-progress: false
+  group: root-imports-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
   imports:
