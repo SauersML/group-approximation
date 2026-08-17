@@ -40,6 +40,20 @@ that proof, not of the current manuscript.
 **Earlier pins.**  `b61c8879` (4768 lines) was the 2026-08-16 working-tree pin,
 preceded by blobs `55e425cf` and `33a0b08c`, the latter at commit `050f2c83`.
 
+**Where 2026-08-17 left the ledger, in one number.**  The "Rows waiting for a
+first green build" table began the day with seven entries and ends it with one,
+`CO.17`.  That is the clearest single measure of the wave, and it is worth
+saying what did and did not cause it.  Four rows cleared because the modules
+they name were wired into the root import closure, which is the condition the
+marker was actually waiting on — a module the build cannot reach is not merely
+unbuilt.  One (`MC.04`) cleared after being *downgraded* first, on the discovery
+that two of its citations resolved into an orphan module through a shared
+namespace.  One (`CY.13`) cleared because the manuscript rewrote the paragraph
+to print the route Lean had taken, so a `MISMATCH` became `EXACT` with no Lean
+changing at all.  And `CY.10` left the table by ceasing to be a claim: its
+sentence was deleted.  Only the first of those four mechanisms is what anyone
+would have predicted at the start of the day.
+
 **No row is keyed on a line number.**  Every row is anchored either on a `\label`
 or on a verbatim phrase from the claim itself that occurs exactly once in the
 comment-stripped manuscript, and the checker re-locates each anchor on every run.
@@ -275,6 +289,13 @@ opening the proof, have held.
    (Rabin58), Neumann's continuum family (Ne), nonamenability of infinite Kazhdan
    groups and nonnuclearity of `C*_red` of a nonamenable group (BHV, Lance), and the
    general amenable-quotient case of Elek–Szabó (only the `ℤ` case is formalized).
+   **Update 2026-08-17: three of those load-bearing entries are retired.**  Adian--Rabin
+   is closed --- `D4'` supplies the undecidable source in coordinates, and `UN.02`/`UN.02b`
+   are now `EXACT` and `unconditional`.  Neumann's family is exhibited rather than quoted
+   (`UN.07`/`UN.07b`, same grade).  And amenable ⇒ MF left the *printed* surface when the
+   sharpness paragraph was rerouted through the exhibited monomial models, so the print now
+   states amenability only as an aside it explicitly does not use.  Still load-bearing:
+   exactness, the simple sofic envelope, BHV/Lance, and Elek--Szabó beyond `ℤ`.
    The remaining literature rows are the "relation to prior work" attributions, which
    feed no deduction; their notes say so.  The manuscript declares the load-bearing
    ones itself; the ledger records all of them as `MISSING`, per the standard.
@@ -354,6 +375,29 @@ opening the proof, have held.
 
 `sorry`: 0.  `axiom`: 0.  `native_decide`: 0.  Checked across `GroupApproximation/`.
 
+Those three greps are worth exactly what they measure and no more.  A corpus can
+be free of all three and still contain declarations that have never been through
+the kernel, which is the distinction the next section is about.
+
+## Build state, and one clean instance of why it is a separate question
+
+**The distinction this ledger keeps insisting on is: a name existing, a name
+being cited, and a name having elaborated are three different facts.**  On
+2026-08-17 CI supplied a textbook instance of the gap between the second and the
+third.  A certificate run died at `Build and audit` on exactly one file,
+`PrintedLiftingSteps`, for three `unusedSectionVars` — fatal because the node
+compiles with `-DwarningAsError=true`.  Those three theorems existed in the tree,
+`lean_decls` resolved them, a ledger row could have cited them and the ledger
+gate would have passed, and **they did not elaborate**.  Nothing about them was
+mathematically wrong; the build simply never accepted the file.
+
+That is why rows here are held on closure membership and on green builds rather
+than on `grep`, why the "Rows waiting for a first green build" section exists,
+and why the orphan intersection described there is run rather than assumed.  It
+is also why the marker is enforced by `check_steps` instead of being a note: a
+convention that depends on remembering to apply it is a convention that fails on
+the day someone is in a hurry.
+
 ## Status counts
 
 <!-- LEDGER-COUNTS -->
@@ -395,10 +439,11 @@ lands without its root import.
 | Row | Currently | Proposed once green |
 | --- | --- | --- |
 | CO.17 | MISMATCH/MISSING | `WreathWitnessW3.pauli_rank_identity_fails`, and a reworded claim |
-| CY.10 | rewritten | the row's old claim became a ghost when the paragraph was rewritten; see CY.10 |
 
-**Seven of the seven cleared on 2026-08-17: CY.04, CY.11, CY.12, CY.13, CO.02,
-CO.14c and MC.04**, leaving only CO.17 above.
+**Seven of the eight cleared on 2026-08-17: CY.04, CY.11, CY.12, CY.13, CO.02,
+CO.14c and MC.04**, leaving only CO.17 above.  CY.10 left the table by a
+different door: its claim became a ghost when the sharpness paragraph was
+rewritten, so there was no longer a pending grade to wait for.
 What changed for four of them is not a report of a green run — none is observable from
 this checkout — but the condition the marker was actually waiting on.  When it was
 written, the modules those rows name had been committed without being reachable from
@@ -1239,6 +1284,11 @@ In dependency order, cheapest first.
    infinite Kazhdan groups; nonnuclearity of `C*_red` of a nonamenable group; the
    amenable-quotient case of Elek–Szabó beyond `ℤ`.  Each needs a Lean proof, or the
    corresponding manuscript claim must be understood as unformalized.
+   **Update 2026-08-17:** amenable ⇒ MF, Adian--Rabin and Neumann's family are struck from
+   this list --- the first left the printed surface with the sharpness reroute, the other two
+   are proved in-repo (`UN.02`, `UN.07`).  Under the zero-literature order the remainder may
+   not be closed by citation: each needs a Lean proof, or the printed claim stands as
+   unformalized.
 5. **The conditional endpoints.**  ~~Discharge `Nonempty (DefectRoutingData D)`~~,
    and formalize Neumann's family.  **Struck 2026-08-17: discharging the routing
    datum is no longer a live task, and not because it was done.**  Nothing printed
