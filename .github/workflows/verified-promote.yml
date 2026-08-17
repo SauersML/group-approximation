@@ -22,10 +22,24 @@ permissions:
 jobs:
   advance:
     name: Fast-forward the certified revision
+    # `workflow_dispatch` belongs in this allowlist, and its absence removed the
+    # only escape hatch on a day that needed one.  A dispatched Prover run takes
+    # the gate's "runs at its requested SHA" branch, so it computes the FULL
+    # certificate -- same jobs, same kernel replay, same audit -- and then could
+    # not promote it, which meant no manual action could ever advance `verified`
+    # when the automatic paths were stuck.  They were stuck all of 2026-08-17.
+    #
+    # Nothing about the trust argument changes.  Promotion still requires the
+    # triggering run to be a success with exactly one successful certifying lane
+    # (checked below, fail-closed), to come from this repository rather than a
+    # fork, and to be on `main`; dispatching requires write access; and the
+    # checkout below pins the exact certified SHA rather than a moving ref.  A
+    # dispatch on any other ref fails the `head_branch` test as before.
     if: >-
       github.event.workflow_run.conclusion == 'success' &&
       (github.event.workflow_run.event == 'push' ||
-       github.event.workflow_run.event == 'schedule') &&
+       github.event.workflow_run.event == 'schedule' ||
+       github.event.workflow_run.event == 'workflow_dispatch') &&
       github.event.workflow_run.head_repository.full_name == github.repository &&
       github.event.workflow_run.head_branch == 'main'
     runs-on: ubuntu-latest
