@@ -126,6 +126,48 @@ theorem norm_mkK_conjBounded (hw : ∀ n, 0 ≤ w n)
     rw [matMass_unitary_conj (U n).2 ((ξ : MatFam Y) n)]
   rw [norm_mkK, norm_mkK, hfun]
 
+/-! ## `π` is multiplicative -/
+
+/-- `Ad(u v) = Ad u ∘ Ad v` on the numerator: the composition law of the
+conjugation action, which is what makes `π` a *representation*. -/
+theorem conjBounded_comp (U V : ∀ n, Matrix.unitaryGroup (Y n) ℂ)
+    (ξ : massBounded Y w) :
+    conjBounded Y w U (conjBounded Y w V ξ)
+      = conjBounded Y w (fun n ↦ U n * V n) ξ := by
+  apply Subtype.ext
+  funext n
+  show (U n : Matrix (Y n) (Y n) ℂ) *
+        ((V n : Matrix (Y n) (Y n) ℂ) * (ξ : MatFam Y) n *
+          (V n : Matrix (Y n) (Y n) ℂ)ᴴ) *
+        (U n : Matrix (Y n) (Y n) ℂ)ᴴ
+      = (U n : Matrix (Y n) (Y n) ℂ) * (V n : Matrix (Y n) (Y n) ℂ) *
+          (ξ : MatFam Y) n *
+          ((U n : Matrix (Y n) (Y n) ℂ) * (V n : Matrix (Y n) (Y n) ℂ))ᴴ
+  rw [Matrix.conjTranspose_mul]
+  noncomm_ring
+
+/-- `Ad 1 = id` on the numerator. -/
+theorem conjBounded_one (ξ : massBounded Y w) :
+    conjBounded Y w (fun _ ↦ 1) ξ = ξ := by
+  apply Subtype.ext
+  funext n
+  show (1 : Matrix (Y n) (Y n) ℂ) * (ξ : MatFam Y) n *
+      (1 : Matrix (Y n) (Y n) ℂ)ᴴ = (ξ : MatFam Y) n
+  rw [Matrix.conjTranspose_one, mul_one, one_mul]
+
+/-- The composition law on the classes: `π(uv) = π(u) π(v)`. -/
+theorem conjQ_conjQ_mk (U V : ∀ n, Matrix.unitaryGroup (Y n) ℂ)
+    (ξ : massBounded Y w) :
+    conjQ Y w ω U (conjQ Y w ω V (Submodule.Quotient.mk ξ))
+      = conjQ Y w ω (fun n ↦ U n * V n) (Submodule.Quotient.mk ξ) := by
+  rw [conjQ_mk, conjQ_mk, conjQ_mk, conjBounded_comp]
+
+/-- `π(1)` is the identity on the classes. -/
+theorem conjQ_one_mk (ξ : massBounded Y w) :
+    conjQ Y w ω (fun _ ↦ 1) (Submodule.Quotient.mk ξ)
+      = Submodule.Quotient.mk ξ := by
+  rw [conjQ_mk, conjBounded_one]
+
 /-! ## The cocycle -/
 
 /-- **CO.21, transport of the cocycle identity to the classes.**  If three
