@@ -1,4 +1,6 @@
 import GroupApproximation.Analysis.RankNormalizedHilbertization
+import GroupApproximation.Kazhdan.DelormeFixedPoint
+import GroupApproximation.Kazhdan.KazhdanComplex
 
 /-!
 # The join, the nonvanishing of `β`, and the Delorme–Guichardet consumption
@@ -57,28 +59,39 @@ None of these four uses multiplicativity of `π`, so `π` is carried as a plain
 family of linear automorphisms; that keeps the statements independent of the
 upgrade of `Analysis/CollapseCocycleAnalytic.conjQ` to a representation.
 
+## Delorme–Guichardet is not a literature input here
+
+The printed step cites `\cite[Theorem 2.12.4]{BHV}`.  It does not have to be
+cited: `Kazhdan/DelormeFixedPoint.exists_fixed_point_of_hasKazhdanPropertyT`
+proves it in the corpus, for a **complete real** Hilbert space, and
+`exists_primitive_of_hasKazhdanPropertyT` below carries it to the complex
+case, which is the case the collapse needs.  The complex-to-real passage is
+not hand-built: `Kazhdan/KazhdanComplex.realifyHom` already reads a unitary
+representation as an orthogonal representation of the underlying real
+Hilbert space, with the same norm, and `IsKazhdanPair.toComplex` already uses
+exactly this idiom.  So `collapse_contradiction_of_hasKazhdanPropertyT` needs
+property (T) and completeness, and no citation.
+
+Completeness of `K_ω` itself is `Analysis/OmegaHilbertComplete`, so the
+hypothesis is discharged where the collapse uses it.
+
 ## What is still hypothesis, and why
 
-`collapse_contradiction` takes two named hypotheses.
+`collapse_contradiction_of_hasKazhdanPropertyT` takes one named hypothesis,
+`htransport`: the identification of `Fix π(sLs⁻¹)` with `Fix π(L)`.  The
+weighted transport theorem is invoked at `ν_n = k_n` in
+`Sofic/CollapseRankWeightTransport`; what is missing between that and
+`htransport` is the passage from the transported *commutant* statement to the
+equality of fixed subspaces inside `K_ω`.
 
-* `hdelorme`, that `β` is a coboundary.  Delorme–Guichardet is in the corpus,
-  as `Kazhdan/DelormeFixedPoint.exists_fixed_point_of_hasKazhdanPropertyT`,
-  but it is stated for a **complete real** Hilbert space, and `K_ω` is
-  complex and is not proved complete: `Sofic/KOmegaHilbert` supplies
-  `InnerProductSpace ℂ (KOmega …)` and claims no `CompleteSpace`.  Both gaps
-  are real work — the ultraproduct-is-complete diagonal argument along `ω`,
-  and a `ℂ`-to-`ℝ` transfer for which Mathlib at the pin offers neither an
-  `InnerProductSpace ℝ` instance from an `InnerProductSpace ℂ` one nor a
-  `LinearIsometryEquiv.restrictScalars`.
-* `htransport`, the identification of `Fix π(sLs⁻¹)` with `Fix π(L)`.  The
-  weighted transport theorem is invoked at `ν_n = k_n` in
-  `Sofic/CollapseRankWeightTransport`; what is missing between that and
-  `htransport` is the passage from the transported *commutant* statement to
-  the equality of fixed subspaces inside `K_ω`.
+`collapse_contradiction` keeps the coboundary as a hypothesis too, for the
+cases where the primitive is produced some other way.
 
-Stating them as hypotheses rather than as axioms or placeholder binders is
-deliberate: this file proves an implication, and the implication is exactly
-the printed reasoning between those two inputs.
+Separately, applying any of this to `K_ω` still needs the conjugation action
+of `Analysis/CollapseCocycleAnalytic.conjQ` bundled as a homomorphism
+`L →* (KOmega ≃ₗᵢ[ℂ] KOmega)`.  Its norm-preservation is
+`CollapseCocycleAnalytic.norm_mkK_conjBounded`; what remains is the inverse,
+the multiplicativity, and the descent of both to the quotient.
 -/
 
 namespace GroupApproximation
@@ -90,6 +103,8 @@ open RankNormalizedHilbertization KOmegaHilbert
 open scoped Matrix.Norms.L2Operator
 
 noncomputable section
+
+universe u v
 
 /-! ## The join of finitely many idempotents, and its telescoping -/
 
@@ -248,6 +263,71 @@ theorem collapse_contradiction (π : L → (V ≃ₗ[ℂ] V)) (β : L → V) (c 
   exact hg (eq_zero_of_compressed_fixed π β y c hy hcompressed (htransport y) g)
 
 end Delorme
+
+/-! ## Delorme–Guichardet, discharged -/
+
+section ComplexDelorme
+
+variable {L : Type u} [Group L] {E : Type v}
+  [NormedAddCommGroup E] [InnerProductSpace ℂ E]
+
+/-- **Delorme–Guichardet on a complex Hilbert space.**  Property (T) makes
+every affine isometric action of `L` on a complete complex Hilbert space have
+a fixed point.
+
+The printed proof cites `\cite[Theorem 2.12.4]{BHV}` for this; it need not.
+`Kazhdan/DelormeFixedPoint.exists_fixed_point_of_hasKazhdanPropertyT` proves
+it for a complete **real** Hilbert space, and
+`Kazhdan/KazhdanComplex.realifyHom` reads a unitary representation as an
+orthogonal representation of the underlying real Hilbert space, with the same
+norm — so the cocycle, the affine action and the fixed point are literally the
+same objects on both sides, and the whole transfer is the `letI` idiom already
+used by `IsKazhdanPair.toComplex`. -/
+theorem exists_fixed_point_complex [CompleteSpace E]
+    (hT : HasKazhdanPropertyT.{u, u} L) (π : L →* (E ≃ₗᵢ[ℂ] E)) {b : L → E}
+    (hb : ∀ g h : L, b (g * h) = b g + π g (b h)) :
+    ∃ x : E, ∀ g : L, π g x + b g = x := by
+  letI : InnerProductSpace ℝ E := InnerProductSpace.complexToReal
+  obtain ⟨x, hx⟩ :=
+    Delorme.exists_fixed_point_of_hasKazhdanPropertyT hT (realifyHom π)
+      (fun g h ↦ hb g h)
+  exact ⟨x, fun g ↦ hx g⟩
+
+/-- **The coboundary form**, which is the shape the collapse consumes: the
+fixed point of the affine action is a primitive for the cocycle,
+`β(g) = y - π(g) y`. -/
+theorem exists_primitive_of_hasKazhdanPropertyT [CompleteSpace E]
+    (hT : HasKazhdanPropertyT.{u, u} L) (π : L →* (E ≃ₗᵢ[ℂ] E)) {β : L → E}
+    (hβ : ∀ g h : L, β (g * h) = β g + π g (β h)) :
+    ∃ y : E, ∀ g : L, β g = y - π g y := by
+  obtain ⟨y, hy⟩ := exists_fixed_point_complex hT π hβ
+  refine ⟨y, fun g ↦ ?_⟩
+  calc β g = (π g y + β g) - π g y := by abel
+    _ = y - π g y := by rw [hy g]
+
+/-- **`CO.21b`, with Delorme–Guichardet discharged.**
+
+The printed last paragraph, from property (T) alone.  `hβ` is the cocycle
+identity of the previous step, `hcompressed` is the printed `d_{sas⁻¹} = 0`,
+`hne` is the nonvanishing of `β`, and `htransport` is the one remaining
+analytic input — the identification of `Fix π(sLs⁻¹)` with `Fix π(L)` that the
+weighted transport theorem supplies at `ν_n = k_n`.  The coboundary is no
+longer a hypothesis and no longer a citation.
+
+Applied at `E = KOmega Y w ω hw`, whose completeness is
+`Analysis/OmegaHilbertComplete`, this is the printed contradiction inside the
+rank-normalized ultraproduct. -/
+theorem collapse_contradiction_of_hasKazhdanPropertyT [CompleteSpace E]
+    (hT : HasKazhdanPropertyT.{u, u} L) (π : L →* (E ≃ₗᵢ[ℂ] E)) (β : L → E)
+    (c : L →* L)
+    (hβ : ∀ g h : L, β (g * h) = β g + π g (β h))
+    (hcompressed : ∀ a : L, β (c a) = 0)
+    (htransport : ∀ y : E, (∀ a : L, π (c a) y = y) → ∀ g : L, π g y = y)
+    (hne : ∃ g : L, β g ≠ 0) : False :=
+  collapse_contradiction (fun g ↦ (π g).toLinearEquiv) β c
+    (exists_primitive_of_hasKazhdanPropertyT hT π hβ) hcompressed htransport hne
+
+end ComplexDelorme
 
 end
 
