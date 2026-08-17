@@ -205,6 +205,7 @@ lamp becomes its coordinate flip. -/
 def abelGenerator : CliffordLamp.Generator X → (X → Multiplicative (ZMod 2)) :=
   Sum.elim (fun _ => 1) (fun x => flipVec X x)
 
+omit [Fintype X] in
 theorem abelGenerator_kills :
     ∀ w ∈ CliffordLamp.relators X, FreeGroup.lift (abelGenerator X) w = 1 := by
   intro w hw

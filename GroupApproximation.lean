@@ -939,6 +939,7 @@ import GroupApproximation.Algebra.HNNFinitePresentation
 import GroupApproximation.Algebra.HNNPresentation
 import GroupApproximation.Algebra.HNNRetraction
 import GroupApproximation.Computability.BooneGroupFinitePresentation
+import GroupApproximation.Computability.NovikovBoone
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
