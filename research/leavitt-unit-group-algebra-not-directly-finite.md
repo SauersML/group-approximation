@@ -55,22 +55,42 @@ that reason.
 
 ## The lanes
 
-Two go through the explicit corner `e A e`:
+There were four.  **Two of them died on 2026-08-17**, and both died for
+structural reasons rather than for want of effort — see
+`research/artifacts/leavitt-stable-finiteness-audit-2026-08-17.md`.  What is
+left is the two that ask for an explicit element:
 
 * Exhibit the pair inside the corner — `leavitt-corner-one-sided-lift-exists`,
   reached through `binary-leavitt-family-lifts-into-unit-corner`, and padded
   back up to `A` by the route
   `leavitt-unit-algebra-not-directly-finite-by-corner-padding`.
-* Prove the structural hypothesis `leavitt-corner-kernel-is-jacobson-radical`
-  and let the quotient argument become legal.
+* A left-invertible lift of `s_0`
+  (`left-invertible-lift-of-s0-in-leavitt-group-algebra`), which works in the
+  whole algebra and belongs to the surjunctivity lane.  It is independent of
+  the corner lane — in particular
+  `leavitt-rank-three-lift-inverse-support-thirteen` constrains the
+  whole-algebra form and is not known to transfer into the corner.
 
-Two work in the whole algebra and belong to the surjunctivity lane, which
-reaches this claim from the other side: a left-invertible lift of `s_0`
-(`left-invertible-lift-of-s0-in-leavitt-group-algebra`) and a module
-splitting of the evaluation (`leavitt-evaluation-splits-as-module-map`).
-They are independent of the corner lanes — in particular
-`leavitt-rank-three-lift-inverse-support-thirteen` constrains the
-whole-algebra form and is not known to transfer into the corner.
+**Dead.**
+
+* *The radical hypothesis.*  `leavitt-corner-kernel-is-jacobson-radical` is
+  **false**: `ker(pi_e)` contains a nonzero idempotent of augmentation zero
+  (`leavitt-corner-kernel-not-jacobson-radical`), and a Jacobson radical
+  contains no nonzero idempotent.  Route
+  `leavitt-unit-algebra-not-directly-finite-by-radical-kernel` invalidated.
+* *The module splitting.*  `leavitt-evaluation-splits-as-module-map` is
+  **false**: `A` is a prime ring
+  (`leavitt-unit-group-algebra-is-prime`), and a section would make `ker(pi)`
+  annihilate a nonzero ideal.  Route
+  `leavitt-direct-finiteness-failure-from-module-splitting` invalidated.
+  `R` is not projective over `A`.
+
+**And one route was added, in the other direction.**  By
+`leavitt-stable-finiteness-equals-direct-finiteness`, a failure of stable
+finiteness at any matrix size compresses back to this scalar claim
+(`leavitt-direct-finiteness-failure-from-matrix-failure`).  So this claim and
+`leavitt-group-algebra-not-stably-finite` are interderivable, and Kaplansky
+for `F_2[R^x]` and Gottschalk for `R^x` are now the same problem.
 
 On the corner lanes, one should be precise about why the corner.  The
 `F_2`-augmentation excludes a full **Leavitt family** from `A` itself and from
@@ -93,9 +113,11 @@ out for different reasons.**
   one, each contributing its own kernel element.  Notably it is not *refuted*
   in the corner, because `eps(e) = 0` switches off the only no-go available;
   it is simply unconstrained.
-* *Use the radical.*  `ker(pi_e) = J(eAe)` would make the quotient argument
-  legal without exhibiting anything, but it is gated on the same unknown
-  kernel, from the other side.
+* *Use the radical.*  **Refuted 2026-08-17.**  `ker(pi_e) = J(eAe)` would have
+  made the quotient argument legal without exhibiting anything.  It is false:
+  the kernel contains a nonzero idempotent.  What is worth keeping from this
+  lane is the diagnosis it produced — the question was gated on whether
+  `ker(pi_e)` was zero, and that was the right gate.
 * *Work in the whole algebra.*  The surjunctivity lane's
   `left-invertible-lift-of-s0-in-leavitt-group-algebra` faces the identical
   correction problem with `ker(pi)` in place of `ker(pi_e)`, and its first
@@ -107,9 +129,26 @@ completion of the explicit support-three lift of `t_0` needs support at least
 thirteen (`leavitt-rank-three-lift-inverse-support-thirteen`), which is a real
 exclusion imported from a published exhaustive search rather than a failure of
 imagination.  The parity half of that argument also says every candidate has
-odd support.  Nothing else here is an obstruction.
+odd support.  Since 2026-08-17 there are two structural exclusions as well,
+but note what they exclude: they kill two *ways of arguing*, not any candidate
+pair.  Nothing yet excludes a pair.
 
-**Not attempted.**  No machine search has been run at any support size in this
-repository, and no presentation of `e A e` exists to search inside.  The
-cheapest piece of new information anyone could produce is whether
-`ker(pi_e) = 0`.
+**The cheapest new information has now been produced, and it did not help.**
+This section used to name `ker(pi_e) = 0?` as the cheapest thing anyone could
+find out.  The answer is no — `leavitt-corner-kernel-not-jacobson-radical`
+exhibits a twelve-term idempotent in it, and
+`leavitt-recursive-kernel-idempotents` an infinite orthogonal family.  The
+lesson for the surviving lanes is negative and specific: the correction ideal
+in `(a + alpha)(b + beta) = e` is large and idempotent-rich rather than
+radical noise, so corrections should be sought with Peirce and corner
+structure, not with nilpotent perturbation.  The one recursive correction that
+the new structure makes natural has been tried and fails — the telescoping
+tail `lambda^m(error)` is nonzero at every finite depth, and group-algebra
+elements have finite support.
+
+**Still not attempted.**  No machine search has been run at any support size
+in this repository, and no presentation of `e A e` exists to search inside.
+Two 2026-08-17 attempts both declined to search below the bound in Liu's
+Zenodo preprint, which neither could retrieve; that bound is still unknown
+here.  By `leavitt-stable-finiteness-equals-direct-finiteness` any such search
+may fix `n = 1`.
