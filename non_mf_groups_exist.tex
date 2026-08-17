@@ -127,7 +127,7 @@
 \author{\paperauthor}
 \subjclass[2020]{Primary 46L05; Secondary 20F05, 22D25, 20E26}
 \keywords{MF groups, approximate unitary representations, property~(T),
-group $C^*$-algebras, Clifford groups}
+group $C^*$-algebras, sofic groups, Clifford groups}
 
 \begin{abstract}
 A countable discrete group is MF if it embeds in the unitary group of a
@@ -152,8 +152,10 @@ $\Gamma=\mathbb Z^3\rtimes\SL_3(\mathbb Z)$ and $\alpha(v,A)=(2v,A)$
 gives $E$, on eight generators and forty-one relators.
 
 The group $E$ is sofic, hence hyperlinear, so neither soficity nor
-hyperlinearity implies the MF property; and its reduced $C^*$-algebra
-$\Cred(E)$ is separable and stably finite but not MF\@.
+hyperlinearity implies the MF property; its reduced $C^*$-algebra
+$\Cred(E)$ is separable, exact and stably finite but not MF; and
+$E/\langle w\rangle$ is not MF either, so $\{1,w\}$ is a proper subgroup
+of the kernel common to all homomorphisms $E\to\U(\mathcal Q)$.
 
 \end{abstract}
 
@@ -178,10 +180,7 @@ the conjecture through their finite quotients, as do LEF groups \cite{CDE} and, 
 quasidiagonality \cite{TWW}, all amenable groups.  Recent work
 establishes it for many amalgamated free products
 \cite{Schafhauser,Shulman,GKEMP}.
-Throughout, $[g,h]=ghg^{-1}h^{-1}$ denotes the commutator of two group
-elements.  The additive commutator of two operators is written
-$[x,y]_{-}=xy-yx$, so that the two brackets are never confused where a
-group element and its matrix image occur together.
+
 \subsection*{The result}
 
 \begin{mainthm}[an explicit finitely presented non-MF group]\label{thm:A}
@@ -191,8 +190,8 @@ Definition~\ref{def:E}, and put
 \[
  w=[tct^{-1},\,v_1(tct^{-1})v_1^{-1}].
 \]
-The defining relations make $w$ central; together with $c^2=1$, centrality
-implies $w^2=1$.  Then the following statements hold:
+The defining relations make $w$ central, and with $c^2=1$ centrality
+forces $w^2=1$.
 \begin{enumerate}
  \item $w\ne1$ in $E$, so $w$ is a central involution;
  \item for every sequence $(d_n)$ of positive integers and every
@@ -328,14 +327,13 @@ not have property~\textup{(T)}.
 
 The reduced group
 $C^*$-algebra $\Cred(E)$ is separable and stably finite but not MF
-(Theorem~\ref{thm:D}), and it is exact.  The group $E$ is sofic
+(Theorem~\ref{thm:D}); it is also exact.  The group $E$ is sofic
 (Theorem~\ref{thm:Esofic}), so neither soficity nor hyperlinearity
-implies the MF property, and a finitely presented group already
-separates the two properties.  The
-quotient $E/\langle w\rangle$ is also not MF, so $\{1,w\}$ is a proper
+implies the MF property.  The
+quotient $E/\langle w\rangle$ is not MF either, so $\{1,w\}$ is a proper
 subgroup of the MF residual of $E$ (Theorem~\ref{thm:signfree}).  The
-non-MF argument implies neither soficity nor nonsoficity, for either
-group (Section~\ref{sec:limits}).
+non-MF argument by itself decides neither soficity nor nonsoficity of
+$E$ (Section~\ref{sec:limits}).
 
 \subsection*{Relation to prior work}
 
@@ -426,7 +424,8 @@ itself embeds.  For $E$, Theorem~\ref{thm:A} rules out both.
 
 All groups are discrete and countable.  We use the standard formulation of
 property~\textup{(T)} for unitary representations on complex Hilbert
-spaces.  A $C^*$-homomorphism is unital only when this is stated; in
+spaces.  For group elements $[g,h]=ghg^{-1}h^{-1}$; for operators
+$[x,y]_{-}=xy-yx$.  A $C^*$-homomorphism is unital only when this is stated; in
 particular an MF embedding may be nonunital.  For a unital $C^*$-algebra
 $A$ we write $\U(A)$ for its unitary group.  On $M_r(\C)$ we use the
 normalized trace $\tr_r$, the operator norm $\opnorm{\cdot}$, and the
@@ -869,18 +868,6 @@ with neither centrality nor torsion assumed
 
 \section{The Kazhdan--Clifford construction}\label{sec:construction}
 
-Let $\Gamma$ be a finitely presented Kazhdan group, let $\alpha$ be a
-proper injective endomorphism of it, and let
-$a\in\Gamma\setminus\alpha(\Gamma)$.
-
-With $d=tct^{-1}$ and $u=[d,a]$, put
-\[
- w=u^2 .
-\]
-Since $d$ is an involution, $w=[\,d,ada^{-1}]$, a word in the
-generators, so centrality of $w$ is a relation among them; centrality
-then forces $w^2=1$ by \eqref{eq:involution-reversal} below.
-
 \begin{theorem}[Kazhdan--Clifford construction]
 \label{thm:kazhdan-clifford}
 Let $\Gamma$ be a finitely presented group with property~\textup{(T)}, let
@@ -904,10 +891,7 @@ Thus $w$ commutes with a generating set of the entire resulting group.  The
 group $E(\Gamma,\alpha,a)$ is finitely presented,
 the canonical map $\Gamma\to E(\Gamma,\alpha,a)$ is injective, and $w$ is a
 nontrivial central involution.  Every homomorphism
-\[
- E(\Gamma,\alpha,a)\longrightarrow \U(\mathcal Q)
-\]
-to $\U(\mathcal Q)$ maps $w$ to $1$.  Consequently
+$E(\Gamma,\alpha,a)\to\U(\mathcal Q)$ maps $w$ to $1$, so
 $E(\Gamma,\alpha,a)$ is not MF.
 \leanverified{Sofic/KazhdanCliffordConstruction}{GroupApproximation.KazhdanCliffordConstruction.kazhdanCliffordConstruction}
 \end{theorem}
@@ -982,9 +966,9 @@ Specialize Theorem~\ref{thm:kazhdan-clifford} to
  \alpha(v,A)=(2v,A),\qquad a=(e_1,I).
 \end{equation}
 The affine group $\Gamma$ is finitely presented and has
-property~\textup{(T)} \cite[Example~1.7.4(i)]{BHV};
-Section~\ref{sec:group} also proves this from the presentation used
-below, by an exact rational sum-of-squares certificate.  The
+property~\textup{(T)} \cite[Example~1.7.4(i)]{BHV}, and
+Section~\ref{sec:group} identifies it with the presentation used below.
+The
 endomorphism $\alpha$ is injective because
 doubling is injective on $\mathbb Z^3$, it is proper because
 $e_1\notin2\mathbb Z^3$, and $a\notin\alpha(\Gamma)$ for the same
@@ -1152,8 +1136,9 @@ $\Theta(w)\ne1$, against Theorem~\ref{thm:A}.
 \end{proof}
 
 The proof is nonquantitative: it gives no bound for $\delta$ or for
-$|F_0|$.  Whether an effective modulus follows from the rational
-spectral certificate of Section~\ref{sec:group} is open.
+$|F_0|$.  An effective modulus would need an effective Kazhdan
+constant for the base together with effective versions of the
+compression estimates.
 
 \section{Consequences of the example}\label{sec:position}
 
@@ -1185,8 +1170,7 @@ If an involution is
 centralized by the conjugate copy of a Kazhdan subgroup, and its
 conjugates under that subgroup commute with one another, then every
 homomorphism to $\U(\mathcal Q)$ identifies the entire conjugation orbit
-(Theorem~\ref{thm:collapse}, proved in
-Section~\ref{subsec:collapse}).  In $E$ the pairwise commutators of those conjugates of $d$ lie in
+(Theorem~\ref{thm:collapse}).  In $E$ the pairwise commutators of those conjugates of $d$ lie in
 $\langle w\rangle$, so in $E/\langle w\rangle$ the element $d$ satisfies
 these hypotheses, and every homomorphism $E/\langle
 w\rangle\to\U(\mathcal Q)$ maps $u$ to the identity.  Thus $E/\langle w\rangle$ is a

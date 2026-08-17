@@ -7,7 +7,7 @@
       "id": "thm:A",
       "environment": "mainthm",
       "title": "an explicit finitely presented non-MF group",
-      "statement_sha256": "f2d0efe22831a791ca12031b4917e1dce1528101f92ad322aaa723e71a94a20d",
+      "statement_sha256": "e424965973a05efc2569d8a42b5eb22ef408d794487633a3736376485ffc84ce",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [
@@ -208,7 +208,7 @@
       "id": "thm:kazhdan-clifford",
       "environment": "theorem",
       "title": "Kazhdan--Clifford construction",
-      "statement_sha256": "0e8f49d2bd0f95a2ef00ea32b8a9dc3c7372f5d893a3fe4e8c65ce2bfeb7444d",
+      "statement_sha256": "924348a10c11440d1ad3cd133d792fc63a255ac1f95e96cbe3fa887ddda0f1bf",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [
