@@ -178,6 +178,24 @@ sizes were re-estimated against the pinned Mathlib source
   stable-letter grading that separates `a` from `⟨b⟩`.  **~250 lines.**
 * **E6. A presented group given by HNN relations *is* the HNN extension, and
   one given by amalgamation relations *is* the amalgamated free product.**
+  *The HNN half of this is now done*: `Algebra.HNNPresentation.equivPres` is
+  the isomorphism
+
+  ```
+  ⟨X ⊔ {s} | R ∪ { s (w i) s⁻¹ (v i)⁻¹ }⟩  ≃*  HNNExtension ⟨X | R⟩ A B φ
+  ```
+
+  for `A = ⟨w i⟩`, `B = ⟨v i⟩`, both directions, axiom-clean.  It is stated for
+  an arbitrary index type `I`, so the `t`-layer of stage 2 and the single `u`
+  of stage 2' are instances of it, and it gives the forward map E6 says is the
+  only strictly needed half *and* the inverse.  The one step that is not
+  bookkeeping there --- and the reason Mathlib's universal property does not
+  suffice on its own --- is that `HNNExtension.lift` demands the conjugation
+  identity for *every* element of the associated subgroup while a presentation
+  supplies it only at the generators; `HNNPresentation.conj_eq_of_mem` closes
+  that by `Subgroup.closure_induction`, which is worth knowing before
+  attempting the amalgam half.  What remains of E6 is the `PushoutI` analogue
+  for stage 4.
   Mathlib nowhere identifies `HNNExtension` or `PushoutI` with a
   `PresentedGroup`, but it does give both universal properties in usable form
   (`HNNExtension.lift`, `HNNExtension.hom_ext`; `PushoutI.lift`,
@@ -196,7 +214,8 @@ sizes were re-estimated against the pinned Mathlib source
   the first by `RabinConstructionSource.inclRight_injective`.  **~150 lines**,
   once E1--E6 exist.
 
-Total for the missing direction: **~2000 lines**, dominated by E3 and E4.  The
+Total for the missing direction: **~2000 lines**, dominated by E3 and E4;
+less the HNN half of E6, which `Algebra.HNNPresentation` now supplies.  The
 critical difficulty is uniform: every one of E2--E5 is the statement that some
 explicitly displayed subgroup of a free product or HNN extension is as free as
 it looks, and each needs its own normal-form argument.
