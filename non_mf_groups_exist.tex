@@ -1218,26 +1218,6 @@ nuclear $C^*$-algebra is quasidiagonal --- therefore remains open.
 \leanverified{Analysis/NuclearityAmenability}{GroupApproximation.NuclearityAmenability.manuscriptNotAmenableOfBaseEmbeds}
 
 \subsection*{A sofic example}
-Let $X=G/\Gamma$ be the coset space of the ascending HNN extension $G=\Gamma_\infty\rtimes\Z$ used in the proof of
-Theorem~\ref{thm:kazhdan-clifford}, at the affine data
-\eqref{eq:affine-data}, and let
-\[
- W=\Cl(X)\rtimes G
-\]
-be the Clifford group over it.  The homomorphism of that proof carrying
-$w$ to $-1$ has target $W$; Section~\ref{sec:witness} realizes $W$ over
-$\mathbb Q$, writing $\Sigma$ for $G$ in the explicit rational model.
-The surjection $E\to W$ sends $w$ to the nontrivial Clifford sign
-$\zeta$, and $w\in\operatorname{Res}_{\mathrm{MF}}(E)$, so functoriality
-(Lemma~\ref{lem:portable}) gives
-$\zeta\in\operatorname{Res}_{\mathrm{MF}}(W)$ and $W$ is not MF.  The
-extension
-$1\to\Cl(X)\to W\to\Sigma\to1$ has locally finite kernel and residually
-finite quotient, hence MF kernel and MF quotient, while $W$ is not MF:
-the MF property is not closed under extensions
-(Section~\ref{sec:algebras-sofic}).  Corollary~\ref{cor:quotclosure}
-gives the corresponding failure for quotients, through
-$F_8\twoheadrightarrow E$.
 
 \begin{mainthm}[a finitely presented sofic non-MF group]\label{thm:Esofic}
 The group $E$ of Definition~\ref{def:E} is sofic, hence hyperlinear.
@@ -1257,6 +1237,22 @@ Proposition~\ref{prop:blocknormalform}: here $\mathcal G$ is the graph
 on $X$ whose cliques are the blocks of the coset space, and $W$ is the
 quotient of $E$ in which lamps at sites of different blocks
 anticommute.
+
+That quotient is the Clifford group $W=\Cl(X)\rtimes G$ over the coset
+space $X=G/\Gamma$ of the ascending HNN extension
+$G=\Gamma_\infty\rtimes\Z$ used in the proof of
+Theorem~\ref{thm:kazhdan-clifford}, at the affine data
+\eqref{eq:affine-data}; Section~\ref{sec:witness} realizes it over
+$\mathbb Q$, writing $\Sigma$ for $G$.  The surjection $E\to W$ sends
+$w$ to the nontrivial Clifford sign $\zeta$, so functoriality
+(Lemma~\ref{lem:portable}) gives
+$\zeta\in\operatorname{Res}_{\mathrm{MF}}(W)$ and $W$ is not MF\@.  The
+extension $1\to\Cl(X)\to W\to\Sigma\to1$ has locally finite kernel and
+residually finite quotient, hence MF kernel and MF quotient, while $W$
+is not MF: the MF property is not closed under extensions
+(Section~\ref{sec:algebras-sofic}).  Corollary~\ref{cor:quotclosure}
+gives the corresponding failure for quotients, through
+$F_8\twoheadrightarrow E$.
 
 \clearpage
 \begingroup
