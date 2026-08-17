@@ -7,6 +7,7 @@ distinct_from:
   one-relator-groups-sofic: that is Pestov's Question 4.9 as stated, over all one-relator groups; this is the single object that question reduces to, and establishing it establishes the question but not conversely in any usable way — the reduction runs one direction as a proof obligation.
   linton-radical-sofic: that asks for soficity of the radical `R` alone; this asks for soficity of `R ⋊ F₀`, which does not follow from it, because semidirect closure fails in general.
   one-relator-soficity-localizes-at-rational-derived-stage: that is the established reduction producing this shell and is closed; this is the open statement about the shell it produces.
+  residually-rationally-solvable-one-relator-sofic: that closes the case `R = 1`, where the shell is free and soficity is immediate; this is the statement in the remaining case, where the shell is a genuine semidirect product and nothing is immediate.
 artifacts:
   - research/artifacts/one-relator-soficity-audit-2026-08-17.md
 ---

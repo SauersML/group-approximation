@@ -6,6 +6,10 @@ title: A nonsofic one-relator group has primitivity rank exactly two, hence is t
 distinct_from:
   nonsofic-one-relator-group: that asks for such a group to exist and is open; this is a necessary condition on any that does, and is closed. It constrains the search space without populating it.
   torsion-free-one-relator-has-no-kazhdan-subgroup: that excludes property-(T) subgroups and is what blocks importing the known nonsofic witnesses; this pins the relator invariant and the torsion-freeness that the other one takes as its hypothesis.
+  torsion-free-countable-non-mf: that asserts a torsion-free countable group is not MF; this asserts that a hypothetical nonsofic one-relator group is torsion-free. Torsion-freeness is the conclusion here and a hypothesis there, and MF does not appear here at all.
+  torsion-free-finitely-presented-non-mf: that is an existence statement about non-MF groups and is a root of this graph; this is a necessary-condition statement about nonsofic one-relator groups. Neither soficity nor one-relator presentation figures there, and MF does not figure here.
+  torsion-free-higman-embedding: that is an embedding theorem placing recursively presented torsion-free groups inside finitely presented ones; this constrains the relator of a hypothetical nonsofic one-relator group. Both mention torsion-freeness and nothing else.
+  degree-one-assembly-surjective-torsion-free: that is a surjectivity statement about degree-one assembly holding for every torsion-free group; this derives torsion-freeness (among other things) for a hypothetical nonsofic one-relator group. Torsion-freeness is that one's hypothesis and this one's conclusion; no assembly map appears here.
 artifacts:
   - research/artifacts/one-relator-soficity-audit-2026-08-17.md
 ---

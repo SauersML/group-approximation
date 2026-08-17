@@ -8,6 +8,7 @@ distinct_from:
   residually-rationally-solvable-one-relator-sofic: that is this statement restricted to the residually rationally solvable subclass, and it is closed; this is the full question and is open.
   hyperlinear-implies-sofic: that is Pestov's Question 3.4 in the affirmative and concerns hyperlinear groups; this is his Question 4.9 and concerns one-relator presentations. Neither is known to bear on the other.
   pestov-question-5-3-negative: that is Pestov's Question 5.3, about essentially free near actions, and it is closed negatively by this development; this is his Question 4.9 and is untouched by it.
+  q3-4-resolved: that is the program goal — Pestov's Question 3.4, resolved either way, about hyperlinear groups — and admits exactly two answer routes by construction; this is his Question 4.9, a single directional statement about one-relator groups, with ordinary routes and a separate negation claim. Neither question is known to bear on the other.
 artifacts:
   - research/artifacts/one-relator-soficity-audit-2026-08-17.md
 ---
