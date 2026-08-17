@@ -34,8 +34,10 @@ again at the end of this docstring.
 
 `partialComplement x i` is `r_i`, and `sum_partialComplement_mul` is the
 printed telescoping `∑_{i<m} r_i x_i = 1 - r_m`, i.e. `∑_i e_i = q`.  It holds
-in an arbitrary ring and needs no commutativity: `r_{i+1} = r_i - r_i x_i` is
-`Finset.prod_range_succ` and `mul_sub`.
+in an arbitrary ring and needs no commutativity, which is why `r_i` is a
+recursion and not a `Finset.prod`: `Finset.prod` would demand a `CommMonoid`,
+and the printed product `∏_{j<i}(1 - q_{a_j})` is an *ordered* one.  With the
+recursion, `r_{i+1} = r_i - r_i x_i` is `mul_sub` and `mul_one`.
 
 ## Nonvanishing of `β`
 
