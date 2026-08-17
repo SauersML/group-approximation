@@ -60,9 +60,11 @@ uses this at `D = D_coll(L,s)`; the statement is the general fact, since nothing
 in the sentence depends on which normal closure it is. -/
 theorem map_eq_one_of_mem_normalClosure {H : Type u} [Group H] {Q : Type v}
     [Group Q] (q : H →* Q) {S : Set H} (hS : ∀ s ∈ S, q s = 1) {x : H}
-    (hx : x ∈ Subgroup.normalClosure S) : q x = 1 :=
-  Subgroup.normalClosure_le_normal (N := q.ker)
-    (fun s hs => (MonoidHom.mem_ker q).2 (hS s hs)) hx
+    (hx : x ∈ Subgroup.normalClosure S) : q x = 1 := by
+  have hsub : S ⊆ (q.ker : Set H) := by
+    intro s hs
+    simpa using hS s hs
+  simpa using Subgroup.normalClosure_le_normal (N := q.ker) hsub hx
 
 /-! ## Question 2: why the Clifford construction cannot be torsion-free -/
 
