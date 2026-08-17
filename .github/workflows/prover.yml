@@ -832,9 +832,31 @@ jobs:
       #
       # Only (2) costs time; (1) costs certification.  Violating either leaves
       # the run green, which is why they are written down here.
-      max-parallel: 10
+      # FIVE, measured rather than guessed, and it is faster than ten.
+      #
+      # Every shard replays the shared Mathlib prefix, and that prefix -- not
+      # the shard's own slice -- is nearly all of its cost.  Timings from run
+      # 32001524762 (ten shards, all green): 176, 180, 182, 190, 192, 193, 195,
+      # 199, 201, 213 minutes.  The floor is 176m of Mathlib replay that every
+      # shard pays in full, so the entire project-specific work in that run was
+      # the 161m of spread above the floor.  Ten shards therefore bought 161m of
+      # parallelism at a cost of ten Mathlib replays: 32 runner-hours to verify
+      # 2.7 runner-hours of this library.
+      #
+      # wall = 176 + 161/N, so wall is nearly flat in N while runner-hours are
+      # linear.  N=10 -> 213m and 32.0 runner-hours; N=5 -> 208m and 17.4.
+      # Five is both slightly faster in wall clock and half the pool footprint,
+      # which is the resource that was actually scarce: this account's twenty
+      # job slots are shared with another repository that routinely holds
+      # thirteen of them, and on 2026-08-17 a ten-second gate job waited 37
+      # minutes for a runner while a certificate held ten.
+      #
+      # Do not raise this back toward ten expecting speed.  The only way to make
+      # certification substantially faster is to stop replaying Mathlib in every
+      # shard, which is a trust-surface decision and not a tuning one.
+      max-parallel: 5
       matrix:
-        shard: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+        shard: [0, 1, 2, 3, 4]
     steps:
       - name: Check out repository
         uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
@@ -898,16 +920,17 @@ jobs:
             --directory build/p13-prebuild
           python3 scripts/p13_build_shards.py seal
 
-      # Deterministic 10-way partition of every module in the library, by
-      # sorted index modulo the shard count.  Ten, not twelve, and the reason
-      # is wall clock rather than coverage: `max-parallel` is capped at ten to
-      # keep the runner pool from starving the PDF build, so twelve shards ran
-      # as ten plus a second wave of two, and each shard's cost is dominated by
-      # re-verifying the shared Mathlib prefix rather than by its own slice.
-      # Twelve shards therefore cost about twice the wall clock of ten while
-      # verifying the same modules -- measured 2026-08-17: shards 10 and 11 sat
-      # queued for the full duration of the first wave, delaying promotion of
-      # `verified` by one whole shard-time after every gate had gone green.
+      # Deterministic 5-way partition of every module in the library, by sorted
+      # index modulo the shard count.  THE MODULUS BELOW MUST EQUAL THE LENGTH
+      # OF THE SHARD LIST -- see invariant (1) above, which costs certification
+      # rather than time.  The count went twelve -> ten -> five; the sizing
+      # argument and its measurements live with the matrix.
+      #
+      # Verified as an exact partition before the change landed, by replaying
+      # this exact loop over the real tree: 1374 modules, 1374 covered by the
+      # union of the five residue classes, zero covered twice.  The same check
+      # at modulus ten gave the same 1374, which is what makes the two
+      # configurations equivalent in coverage and not merely believed to be.
       #
       # A synthetic root importing the
       # shard's modules is compiled against the restored build (seconds, and
@@ -915,7 +938,7 @@ jobs:
       # the toolchain's built-in checker then replays that root's full
       # import closure through a fresh kernel environment.  Every module of
       # the library lies in some shard's closure, and the shared Mathlib
-      # prefix is re-verified by every shard; the union of the ten green
+      # prefix is re-verified by every shard; the union of the five green
       # shards is therefore at least as strong as the old single
       # `leanchecker --fresh GroupApproximation` invocation.  Shard 0 also
       # imports the root, so the root's own closure is replayed too.
@@ -928,7 +951,7 @@ jobs:
           while read -r f; do
             mod="${f%.lean}"
             mod="${mod//\//.}"
-            if [ $((i % 10)) -eq ${{ matrix.shard }} ]; then
+            if [ $((i % 5)) -eq ${{ matrix.shard }} ]; then
               echo "import $mod" >> KernelShard.lean
             fi
             i=$((i+1))
