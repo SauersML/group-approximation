@@ -23,11 +23,11 @@ subgroup is the *presentation's* `tsub`, while `FinalGroup` uses `towerTSub`.
 The subgroup occurs in the **type** of the HNN extension, so the agreement
 `machineTowerPres_tsub` cannot be rewritten and has to be substituted --- which
 is why the bridge is stated with the subgroup as a variable.  With `T` a local,
-the equality is `subst`-able, and after the substitution the two types agree up
-to unfolding `machineTower`, so Theorem 8 applies on the nose.  Going instead
-through `finalGroupCodeEquiv` would ask for the image of `k` and of `t(α,β)`
-under a four-fold composite; only their triviality is at stake, and this route
-never forms the composite.
+the equality is `subst`-able, and the substituted type is `FinalGroup mm hM`
+outright, so Theorem 8 applies on the nose.  Going instead through
+`finalGroupCodeEquiv` would ask for the image of `k` and of `t(α,β)` under a
+four-fold composite; only their triviality is at stake, and this route never
+forms the composite.
 
 What closes here is `D4'` itself, `¬ComputablePred wordProblemPred`: the uniform
 word problem on presentation codes is undecidable, unconditionally --- no
@@ -55,17 +55,16 @@ identified with the tower's `⟨t⟩'` only by substitution, and quantifying ove
 
 Everything in the statement is spelled at the tower itself --- `tower
 (machineIdentifications mm hM)`, raw `HNNExtension`, no `machineTower` and no
-`finalStage` --- because `subst` re-typechecks the motive at *reducible*
-transparency: a `Subgroup (machineTower mm hM).Carrier` binder makes the
-substituted motive carry `(machineTower mm hM).group` against
-`(tower …).group`, defeq but not syntactically equal, and the `subst` fails
-(observed; and the same disease at one level down is why the operands are
-`HNNExtension.of ((tower …).ι …)` rather than `(finalStage …).ι …`, whose
-`.Carrier` projection instance search will not unfold).  The consumer below
-supplies the presented stage's data through plain unification, which runs at
-default transparency and unfolds all of it.  After the `subst` the ambient
-type is literally `FinalGroup mm hM`'s unfolding, and the statement is
-`conj_k_finalTw_eq_iff` with the commutator collected. -/
+`finalStage` --- so that substituting `T` lands on `FinalGroup mm hM`
+syntactically rather than up to unfolding.  `FinalGroup` is a reducible abbrev
+for exactly this `HNNExtension`, and the operands are then `finalTw`'s body
+character for character, so the `exact` closing this proof rests on no delta
+step at all; spelled at `machineTower` and `finalStage` instead, every one of
+those matches would ride on unfolding two non-reducible defs and a structure
+projection, and `subst`'s motive would carry `(machineTower mm hM).group`
+against `(tower …).group`.  Nothing is lost at the call site: the consumer
+below supplies the presented stage's data by plain unification, which runs at
+default transparency and unfolds all of it. -/
 theorem commElt_eq_one_iff_halts_of_tsub_eq (mm : ModularMachine)
     (hM : (mm.size : ℤ) ≠ 0)
     {T : Subgroup (tower (machineIdentifications mm hM)).Carrier}
