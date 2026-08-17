@@ -1000,6 +1000,7 @@ import GroupApproximation.Analysis.PrintedLiftingSteps
 import GroupApproximation.Kazhdan.PrintedComplexificationBridge
 import GroupApproximation.Sofic.CentralSignAnyUniverse
 import GroupApproximation.Analysis.OmegaHilbertComplete
+import GroupApproximation.Analysis.RankFrobeniusBound
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
