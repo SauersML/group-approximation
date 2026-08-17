@@ -100,18 +100,18 @@ theorem conjBounded_starFam_right (U : ∀ n, Matrix.unitaryGroup (Y n) ℂ)
 
 theorem conjQ_comp_starFam (U : ∀ n, Matrix.unitaryGroup (Y n) ℂ) :
     (conjQ Y w ω U).comp (conjQ Y w ω (starFam Y U)) = LinearMap.id := by
-  apply Submodule.linearMap_qext
   apply LinearMap.ext
-  intro ξ
+  intro x
+  obtain ⟨ξ, rfl⟩ := Submodule.Quotient.mk_surjective (nullIn Y w ω) x
   show conjQ Y w ω U (conjQ Y w ω (starFam Y U) (Submodule.Quotient.mk ξ))
     = Submodule.Quotient.mk ξ
   rw [conjQ_mk, conjQ_mk, conjBounded_starFam_left]
 
 theorem conjQ_starFam_comp (U : ∀ n, Matrix.unitaryGroup (Y n) ℂ) :
     (conjQ Y w ω (starFam Y U)).comp (conjQ Y w ω U) = LinearMap.id := by
-  apply Submodule.linearMap_qext
   apply LinearMap.ext
-  intro ξ
+  intro x
+  obtain ⟨ξ, rfl⟩ := Submodule.Quotient.mk_surjective (nullIn Y w ω) x
   show conjQ Y w ω (starFam Y U) (conjQ Y w ω U (Submodule.Quotient.mk ξ))
     = Submodule.Quotient.mk ξ
   rw [conjQ_mk, conjQ_mk, conjBounded_starFam_right]
