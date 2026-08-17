@@ -48,5 +48,62 @@ theorem wordOf_rawComm (q : ℕ × ℕ) :
   simp only [map_mul, map_inv, FreeGroup.map.of, mul_assoc]
   rfl
 
+/-- The code's relator set is the stage's, renumbered.  Both sides live in
+`FreeGroup (Fin (genCount (stageCode _)))`, and `genCount_stageCode` is `rfl`,
+so no transport is needed to state it. -/
+theorem relatorSet_stageCode :
+    relatorSet (stageCode (finalPres P))
+      = relabelRels ((finalPres P).enum : (finalPres P).Letters → Fin ((finalPres P).gpred + 1))
+          (finalPres P).rels := by
+  rw [relatorSet, ← stageCode_relSet]
+  exact PresentationCodeList.coe_relatorFinset_codeOfList _
+
+/-- Triviality moves across the renumbering, in membership form.  Stating it
+this way keeps every rewrite inside a single `FreeGroup`, which the `mk` form
+does not: there the relator set sits in the type. -/
+theorem relabel_mem_normalClosure_iff (v : FreeGroup (finalPres P).Letters) :
+    (relabel ((finalPres P).enum : (finalPres P).Letters → Fin ((finalPres P).gpred + 1)) v)
+        ∈ Subgroup.normalClosure (relabelRels
+          ((finalPres P).enum : (finalPres P).Letters → Fin ((finalPres P).gpred + 1))
+          (finalPres P).rels)
+      ↔ v ∈ Subgroup.normalClosure (finalPres P).rels := by
+  rw [← PresentedGroup.mk_eq_one_iff, ← PresentedGroup.mk_eq_one_iff]
+  exact mk_relabel_eq_one_iff _ _ _
+
+/-- **The code's word problem on the halting word is triviality of the halting
+element.**
+
+The steps are chained with `Iff.trans` rather than a single `rw` because the
+membership lives in `FreeGroup (Fin (genCount (stageCode _)))` while the
+renumbering lemma is stated over `Fin (gpred + 1)`.  Those are definitionally
+equal --- `genCount_stageCode` is `rfl` --- but not syntactically, so `rw` cannot
+see through them while `Iff.trans` can. -/
+theorem wordProblem_rawComm_iff (q : ℕ × ℕ) :
+    WordProblem (stageCode (finalPres P)) (rawComm P q) ↔ commElt P q = 1 := by
+  have h1 : WordProblem (stageCode (finalPres P)) (rawComm P q)
+      ↔ (relabel ((finalPres P).enum :
+            (finalPres P).Letters → Fin ((finalPres P).gpred + 1))
+          ((FreeGroup.of (kLetter P))⁻¹ *
+            (finalPres P).word (twWord ((q.1 : ℤ), (q.2 : ℤ))) *
+            FreeGroup.of (kLetter P) *
+            ((finalPres P).word (twWord ((q.1 : ℤ), (q.2 : ℤ))))⁻¹))
+        ∈ Subgroup.normalClosure (relabelRels ((finalPres P).enum :
+            (finalPres P).Letters → Fin ((finalPres P).gpred + 1)) (finalPres P).rels) := by
+    rw [WordProblem, PresentedGroup.mk_eq_one_iff, relatorSet_stageCode, wordOf_rawComm]
+    rfl
+  have h2 := relabel_mem_normalClosure_iff P
+      ((FreeGroup.of (kLetter P))⁻¹ *
+        (finalPres P).word (twWord ((q.1 : ℤ), (q.2 : ℤ))) *
+        FreeGroup.of (kLetter P) *
+        ((finalPres P).word (twWord ((q.1 : ℤ), (q.2 : ℤ))))⁻¹)
+  have h3 : ((FreeGroup.of (kLetter P))⁻¹ *
+        (finalPres P).word (twWord ((q.1 : ℤ), (q.2 : ℤ))) *
+        FreeGroup.of (kLetter P) *
+        ((finalPres P).word (twWord ((q.1 : ℤ), (q.2 : ℤ))))⁻¹)
+        ∈ Subgroup.normalClosure (finalPres P).rels
+      ↔ commElt P q = 1 := by
+    rw [← PresentedGroup.mk_eq_one_iff, ← equiv_commElt, MulEquiv.map_eq_one_iff]
+  exact h1.trans (h2.trans h3)
+
 end Computability
 end GroupApproximation
