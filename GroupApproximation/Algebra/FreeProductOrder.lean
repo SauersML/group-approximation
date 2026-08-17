@@ -91,5 +91,45 @@ theorem commutator_of_ne_one {i j : ι} {x : M i} {y : M j} (hx : x ≠ 1)
   rw [← hw]
   exact neWord_prod_ne_one _
 
+/-! ## The commutator has infinite order
+
+The last layer of the variant construction adjoins a stable letter along
+`⟨z⟩ ≅ ⟨c⟩` with `z = ⁅w, s⁆`, so `z` must generate an infinite cyclic
+subgroup, not merely be nontrivial.  The word spelling `z ⁿ⁺¹` alternates
+between the two factors exactly as `alt` does, so the same argument applies. -/
+
+/-- The reduced word spelling `⁅x, y⁆ⁿ⁺¹`. -/
+def altComm {i j : ι} {x : M i} {y : M j} (hx : x ≠ 1) (hy : y ≠ 1) (hij : i ≠ j)
+    (hxi : x⁻¹ ≠ 1) (hyi : y⁻¹ ≠ 1) : ℕ → NeWord M i j
+  | 0 =>
+      ((NeWord.singleton x hx).append hij (NeWord.singleton y hy)).append hij.symm
+        ((NeWord.singleton x⁻¹ hxi).append hij (NeWord.singleton y⁻¹ hyi))
+  | n + 1 =>
+      (altComm hx hy hij hxi hyi n).append hij.symm (altComm hx hy hij hxi hyi 0)
+
+omit [DecidableEq ι] [∀ i, DecidableEq (M i)] in
+theorem altComm_prod {i j : ι} {x : M i} {y : M j} (hx : x ≠ 1) (hy : y ≠ 1)
+    (hij : i ≠ j) (hxi : x⁻¹ ≠ 1) (hyi : y⁻¹ ≠ 1) :
+    ∀ n : ℕ, (altComm hx hy hij hxi hyi n).prod
+      = (CoprodI.of x * CoprodI.of y * (CoprodI.of x)⁻¹ * (CoprodI.of y)⁻¹) ^ (n + 1)
+  | 0 => by
+      simp [altComm, mul_assoc]
+  | n + 1 => by
+      rw [altComm, NeWord.append_prod, altComm_prod hx hy hij hxi hyi n,
+        altComm_prod hx hy hij hxi hyi 0, pow_one, ← pow_succ]
+
+/-- **The commutator of two nontrivial elements of distinct factors has infinite
+order.**  With `w ≠ 1` this is what makes `⟨⁅w, s⁆⟩` an infinite cyclic
+associated subgroup, so the last layer of the variant construction is a
+legitimate HNN extension. -/
+theorem pow_commutator_ne_one {i j : ι} {x : M i} {y : M j} (hx : x ≠ 1)
+    (hy : y ≠ 1) (hij : i ≠ j) (n : ℕ) :
+    (CoprodI.of x * CoprodI.of y * (CoprodI.of x)⁻¹ * (CoprodI.of y)⁻¹) ^ (n + 1)
+      ≠ 1 := by
+  have hxi : x⁻¹ ≠ 1 := inv_ne_one.2 hx
+  have hyi : y⁻¹ ≠ 1 := inv_ne_one.2 hy
+  rw [← altComm_prod hx hy hij hxi hyi n]
+  exact neWord_prod_ne_one _
+
 end FreeProductOrder
 end GroupApproximation
