@@ -535,5 +535,74 @@ theorem towerSub_halting_eq_towerTSub (hM : (mm.size : ℤ) ≠ 0) :
       (hasLetters_towerTSub _))
     (towerTSub_le_towerSub_halting mm _)
 
+/-! ## S7: the final group, and Simpson's Theorem 8
+
+`G_M` is `G'_M` with one more stable letter `k`, both of whose associated
+subgroups are `⟨t⟩'` and whose identification is the identity.  Britton's Lemma
+for that single letter (`conj_t_eq_iff`) says `k` commutes with exactly the
+elements of `⟨t⟩'`.  Lemma 7 identifies `⟨t⟩'` with the lift of `T_M`, S4
+identifies the part of that lift lying in the base group with `T_M` itself, and
+`tw_mem_twSub_iff` reads `T_M` back as the halting set.  Chaining the four gives
+Theorem 8: `k` commutes with `t(α,β)` exactly when `(α,β)` halts. -/
+
+/-- Every identification a machine contributes is good for `T_M`.  This is S5b,
+read off the two shapes of quadruple. -/
+theorem good_of_mem_machineIdentifications (hM : (mm.size : ℤ) ≠ 0)
+    {q : Identification} (hq : q ∈ machineIdentifications mm hM) :
+    Good (twSub mm.haltingSetZ) q.2.2 := by
+  rw [machineIdentifications, List.mem_filterMap] at hq
+  obtain ⟨pr, hpr, hval⟩ := hq
+  obtain ⟨hb1, hb2⟩ := lt_of_mem_residuePairs hpr
+  rcases hquad : mm.quad pr.1 pr.2 with _ | ⟨c, dir⟩
+  · rw [hquad] at hval
+    exact absurd hval (by simp)
+  · rw [hquad] at hval
+    have hval' := Option.some.inj hval
+    cases dir
+    · subst hval'
+      exact good_twSub_halting_left mm hb1 hb2 hquad hM
+    · subst hval'
+      exact good_twSub_halting_right mm hb1 hb2 hquad hM
+
+/-- **S4's hypothesis, discharged for a machine's tower.** -/
+theorem goodTower_machine (hM : (mm.size : ℤ) ≠ 0) :
+    GoodTower (twSub mm.haltingSetZ) (machineIdentifications mm hM) :=
+  goodTower_of_forall_good _ _ fun _ hq => good_of_mem_machineIdentifications mm hM hq
+
+/-- **Simpson's `G_M`.**  `G'_M` with `k` adjoined, commuting with `⟨t⟩'`. -/
+noncomputable abbrev FinalGroup (mm : ModularMachine) (hM : (mm.size : ℤ) ≠ 0) : Type :=
+  HNNExtension (tower (machineIdentifications mm hM)).Carrier
+    (towerTSub (machineIdentifications mm hM))
+    (towerTSub (machineIdentifications mm hM)) (MulEquiv.refl _)
+
+/-- The generator `t(α,β)` of the base group, seen in `G_M`. -/
+noncomputable def finalTw (mm : ModularMachine) (hM : (mm.size : ℤ) ≠ 0)
+    (p : ℤ × ℤ) : FinalGroup mm hM :=
+  HNNExtension.of ((tower (machineIdentifications mm hM)).ι (tw p))
+
+/-- **Simpson's Theorem 8.**  In `G_M`, the stable letter `k` commutes with
+`t(α,β)` exactly when the configuration `(α,β)` halts.  Everything on the left
+is a word in the generators; everything on the right is a fact about the
+machine. -/
+theorem conj_k_finalTw_eq_iff (hM : (mm.size : ℤ) ≠ 0) (p : ℕ × ℕ) :
+    (HNNExtension.t⁻¹ * finalTw mm hM ((p.1 : ℤ), (p.2 : ℤ)) * HNNExtension.t
+        : FinalGroup mm hM)
+      = finalTw mm hM ((p.1 : ℤ), (p.2 : ℤ)) ↔ mm.Halts p := by
+  rw [finalTw, conj_t_eq_iff]
+  constructor
+  · intro h
+    rw [← towerSub_halting_eq_towerTSub mm hM] at h
+    have hS4 := towerSub_inf_range (twSub mm.haltingSetZ) _ (goodTower_machine mm hM)
+    have hmem : (tower (machineIdentifications mm hM)).ι (tw ((p.1 : ℤ), (p.2 : ℤ)))
+        ∈ (twSub mm.haltingSetZ).map (tower (machineIdentifications mm hM)).ι := by
+      rw [← hS4]
+      exact ⟨h, ⟨_, rfl⟩⟩
+    obtain ⟨g, hg, hgeq⟩ := hmem
+    rw [(tower (machineIdentifications mm hM)).ι_injective hgeq] at hg
+    have hp : ((p.1 : ℤ), (p.2 : ℤ)) ∈ mm.haltingSetZ := tw_mem_twSub_iff.1 hg
+    exact (mm.haltsZ_natCast p.1 p.2).1 hp
+  · intro h
+    exact ι_tw_mem_towerTSub_of_halts mm hM h
+
 end BooneGroup
 end GroupApproximation

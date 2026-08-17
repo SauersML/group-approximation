@@ -66,18 +66,34 @@ noncomputable def Stage.stepEquiv (S : Stage) {A B : Subgroup BaseGroup}
 read through `ι`.  Everything the induction of Lemma 7 needs about `stepEquiv`
 is this one equation. -/
 theorem Stage.coe_stepEquiv (S : Stage) {A B : Subgroup BaseGroup} (ψ : A ≃* B)
-    (a : BaseGroup) (ha : a ∈ A) :
-    ((S.stepEquiv ψ ⟨S.ι a, ⟨a, ha, rfl⟩⟩ : B.map S.ι) : S.Carrier)
+    (a : BaseGroup) (ha : a ∈ A) (h : S.ι a ∈ A.map S.ι) :
+    ((S.stepEquiv ψ ⟨S.ι a, h⟩ : B.map S.ι) : S.Carrier)
       = S.ι ((ψ ⟨a, ha⟩ : B) : BaseGroup) := by
   have hsymm : (Subgroup.equivMapOfInjective A S.ι S.ι_injective).symm
-      ⟨S.ι a, ⟨a, ha, rfl⟩⟩ = ⟨a, ha⟩ := by
+      ⟨S.ι a, h⟩ = ⟨a, ha⟩ := by
     apply (Subgroup.equivMapOfInjective A S.ι S.ι_injective).injective
     rw [MulEquiv.apply_symm_apply]
     refine Subtype.ext ?_
     rw [Subgroup.coe_equivMapOfInjective_apply]
   show ((Subgroup.equivMapOfInjective B S.ι S.ι_injective)
       (ψ ((Subgroup.equivMapOfInjective A S.ι S.ι_injective).symm
-        ⟨S.ι a, ⟨a, ha, rfl⟩⟩)) : S.Carrier) = _
+        ⟨S.ι a, h⟩)) : S.Carrier) = _
+  rw [hsymm, Subgroup.coe_equivMapOfInjective_apply]
+
+/-- The same, for the inverse identification. -/
+theorem Stage.coe_stepEquiv_symm (S : Stage) {A B : Subgroup BaseGroup} (ψ : A ≃* B)
+    (b : BaseGroup) (hb : b ∈ B) (h : S.ι b ∈ B.map S.ι) :
+    (((S.stepEquiv ψ).symm ⟨S.ι b, h⟩ : A.map S.ι) : S.Carrier)
+      = S.ι ((ψ.symm ⟨b, hb⟩ : A) : BaseGroup) := by
+  have hsymm : (Subgroup.equivMapOfInjective B S.ι S.ι_injective).symm
+      ⟨S.ι b, h⟩ = ⟨b, hb⟩ := by
+    apply (Subgroup.equivMapOfInjective B S.ι S.ι_injective).injective
+    rw [MulEquiv.apply_symm_apply]
+    refine Subtype.ext ?_
+    rw [Subgroup.coe_equivMapOfInjective_apply]
+  show ((Subgroup.equivMapOfInjective A S.ι S.ι_injective)
+      (ψ.symm ((Subgroup.equivMapOfInjective B S.ι S.ι_injective).symm
+        ⟨S.ι b, h⟩)) : S.Carrier) = _
   rw [hsymm, Subgroup.coe_equivMapOfInjective_apply]
 
 /-- Adjoin one stable letter, conjugating the image of `A` onto the image of `B`
@@ -175,7 +191,7 @@ theorem of_ι_conj (l : List Identification) {A B : Subgroup BaseGroup} (ψ : A 
       = HNNExtension.t * HNNExtension.of ((tower l).ι a) * HNNExtension.t⁻¹ := by
   have h := HNNExtension.equiv_eq_conj (φ := (tower l).stepEquiv ψ)
     ⟨(tower l).ι a, ⟨a, ha, rfl⟩⟩
-  rw [Stage.coe_stepEquiv] at h
+  rw [Stage.coe_stepEquiv (tower l) ψ a ha ⟨a, ha, rfl⟩] at h
   exact h
 
 /-! ## The identification a machine quadruple supplies
@@ -225,13 +241,20 @@ theorem mem_residuePairs {mm : ModularMachine} {p : ℕ × ℕ}
   simp only [residuePairs, List.mem_flatMap, List.mem_map, List.mem_range]
   exact ⟨a, ha, b, hb, rfl⟩
 
+theorem lt_of_mem_residuePairs {mm : ModularMachine} {p : ℕ × ℕ}
+    (h : p ∈ residuePairs mm) : p.1 < mm.size ∧ p.2 < mm.size := by
+  simp only [residuePairs, List.mem_flatMap, List.mem_map, List.mem_range] at h
+  obtain ⟨a, ha, b, hb, heq⟩ := h
+  subst heq
+  exact ⟨ha, hb⟩
+
 /-- **The identifications a machine contributes**, one per quadruple. -/
 noncomputable def machineIdentifications (mm : ModularMachine)
     (hM : (mm.size : ℤ) ≠ 0) : List Identification :=
   (residuePairs mm).filterMap fun p =>
     (mm.quad p.1 p.2).map fun q =>
-      if q.2 then quadIdentification (p.1 : ℤ) (p.2 : ℤ) (q.1 : ℤ) (mm.size : ℤ) hM
-      else quadIdentificationLeft (p.1 : ℤ) (p.2 : ℤ) (q.1 : ℤ) (mm.size : ℤ) hM
+      cond q.2 (quadIdentification (p.1 : ℤ) (p.2 : ℤ) (q.1 : ℤ) (mm.size : ℤ) hM)
+        (quadIdentificationLeft (p.1 : ℤ) (p.2 : ℤ) (q.1 : ℤ) (mm.size : ℤ) hM)
 
 /-- The identification of a right-moving quadruple is in the machine's list. -/
 theorem quadIdentification_mem_machineIdentifications {mm : ModularMachine}
@@ -716,6 +739,47 @@ theorem towerSub_le_of_mem (A : Subgroup BaseGroup) :
       · exact towerSub_le_of_mem A l (K.comap HNNExtension.of)
           (fun a ha => hι a ha) hL.2 hy
       · exact hL.1
+
+/-! ### Goodness lifts up the tower
+
+Simpson checks goodness of `T_M` once, in the base group, against each
+quadruple's identification.  What `towerSub_inf_range` consumes is goodness of
+the *lifted* subgroup against the *transported* identification, at every level.
+The two are the same statement, because S4 at the level below says the elements
+of the lift that lie in the base group are exactly those of `A` --- so a
+lifted-level witness is a base-group witness, where the base check applies. -/
+
+/-- **Goodness transports up a stage.**  Goodness of `A` against `ψ` in the base
+group gives goodness of the lift of `A` against the transported `ψ`, provided
+the tower below is already good. -/
+theorem good_lift (A : Subgroup BaseGroup) (l : List Identification)
+    {A' B' : Subgroup BaseGroup} {ψ : A' ≃* B'} (hψ : Good A ψ)
+    (hl : GoodTower A l) : Good (towerSub A l) ((tower l).stepEquiv ψ) := by
+  have hS4 := towerSub_inf_range A l hl
+  have hmap_le : A.map (tower l).ι ≤ towerSub A l := by
+    rw [← hS4]; exact inf_le_left
+  have hdown : ∀ g : BaseGroup, (tower l).ι g ∈ towerSub A l → g ∈ A := by
+    intro g hg
+    have hmem : (tower l).ι g ∈ A.map (tower l).ι := by
+      rw [← hS4]; exact ⟨hg, ⟨g, rfl⟩⟩
+    obtain ⟨g', hg', hgeq⟩ := hmem
+    rwa [(tower l).ι_injective hgeq] at hg'
+  constructor
+  · rintro ⟨_, g, hg, rfl⟩ hmem
+    rw [Stage.coe_stepEquiv (tower l) ψ g hg ⟨g, hg, rfl⟩]
+    exact hmap_le ⟨_, hψ.1 ⟨g, hg⟩ (hdown g hmem), rfl⟩
+  · rintro ⟨_, g, hg, rfl⟩ hmem
+    rw [Stage.coe_stepEquiv_symm (tower l) ψ g hg ⟨g, hg, rfl⟩]
+    exact hmap_le ⟨_, hψ.2 ⟨g, hg⟩ (hdown g hmem), rfl⟩
+
+/-- **Goodness at every level, from goodness in the base group.** -/
+theorem goodTower_of_forall_good (A : Subgroup BaseGroup) :
+    ∀ l : List Identification, (∀ q ∈ l, Good A q.2.2) → GoodTower A l
+  | [], _ => trivial
+  | ⟨A', B', ψ⟩ :: l, h => by
+      have hl : GoodTower A l :=
+        goodTower_of_forall_good A l fun q hq => h q (List.mem_cons_of_mem _ hq)
+      exact ⟨hl, good_lift A l (h ⟨A', B', ψ⟩ (List.mem_cons_self ..)) hl⟩
 
 end BooneGroup
 end GroupApproximation
