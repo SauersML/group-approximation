@@ -4,11 +4,13 @@ id: mf-recognition-undecidable-via-adian-rabin
 kind: route
 title: Feed the Markov premise and the transformation into the reduction
 target: mf-recognition-undecidable
-requires: [operator-mf-is-a-markov-property, adian-rabin-transform-for-mf, uniform-word-problem-on-presentation-codes-undecidable]
+requires: [operator-mf-is-a-markov-property, adian-rabin-transform-for-mf, uniform-word-problem-on-presentation-codes-undecidable, word-problem-of-finite-presentation-is-re]
 artifacts:
   - non_mf_groups_exist.tex
   - GroupApproximation/Computability/MarkovMFConsequences.lean
   - GroupApproximation/Computability/AdianRabinMarkovProperty.lean
+  - GroupApproximation/Computability/BooneWordProblemUndecidable.lean
+  - GroupApproximation/Computability/WordProblemRE.lean
 ---
 
 ## Why sufficient
@@ -21,8 +23,19 @@ The first two prerequisites are exactly the four fields of
 *already closed theorems* in the repository — this route is complete the
 instant its prerequisites are.
 
+The **fourth** prerequisite was missing from this route until 2026-08-17, for
+the same reason as the third and with the same consequence.  The target has two
+assertions, and the second one — "not even recursively enumerable" — is Post's
+theorem, which needs the positive side r.e. *as well as* undecidable.  The
+paragraph below said so in prose ("r.e. because the word problem of a finite
+presentation is r.e. (D2 in the prerequisite's cost table)") while the
+`requires` list did not, so the route promised the second assertion on the
+strength of three inputs that cannot deliver it.  D2 is
+[[word-problem-of-finite-presentation-is-re]]; it is now listed, and it is now
+established.
+
 The third prerequisite was missing from this route until 2026-08-16, and its
-absence was not cosmetic.  `operatorMF_recognition_undecidable` takes
+absence was not cosmetic either.  `operatorMF_recognition_undecidable` takes
 `¬ComputablePred sourceProperty` as a hypothesis *alongside* the reduction
 datum; the argument below contradicts "undecidability of the source", and
 nothing in the structure supplies it.  With `sourceProperty` concretized to

@@ -56,3 +56,46 @@ ambition, are `binary-leavitt-family-lifts-into-unit-corner` (lift the whole
 family, equivalently split `pi_e` by a unital ring section) and — bypassing
 this claim entirely, via a different route into the same conclusion —
 `leavitt-corner-kernel-is-jacobson-radical`.
+
+## Attempts
+
+**Compress the explicit rank-three lifts, and watch which half survives.**
+Take the support-three lifts of `leavitt-rank-three-unit-lift` and push them
+into the corner: `a = e t~ e`, `b = e s~ e`.  The *inequality* is then free
+and needs no work at all,
+
+    pi_e(b a) = s_0 t_0 != 1_R,
+
+so the second condition of the claim is automatic for any pair lying over
+`(t_0, s_0)` in that order — note the order matters, and the opposite
+assignment fails the first condition instead.  Everything therefore reduces
+to the single equation `a b = e`.  Applying `pi_e` gives only
+`t_0 s_0 = 1`, which is true, so what remains is
+
+    a b - e  in  ker(pi_e),
+
+with no reason for it to vanish.  This is where the attempt dies, and it is
+the same wall the whole-algebra lane hits in
+`left-invertible-lift-of-s0-in-leavitt-group-algebra`: correcting by kernel
+elements, `(a + alpha)(b + beta) = e` with `alpha, beta` in `ker(pi_e)`,
+turns the problem into solving one equation in an ideal about which nothing
+is known here.
+
+**The kernel is at least not trivial, and one element of it is explicit.**
+With `x = s_0t_1`, `y = s_1t_0` as in `leavitt-corner-idempotent-unital-surjection`,
+the three elements `u = 1+x`, `v = 1+y`, `w = x+y` are pairwise distinct
+units — `w^2 = xy + yx = 1` — and `u + v + w = 0` in characteristic two.  So
+
+    [u] + [v] + [w]   lies in   ker(pi),   and has augmentation 1,
+
+an explicit witness for both parts of `leavitt-evaluation-kernel-hits-augmentation-one`.
+What is *not* known is whether `e([u]+[v]+[w])e` is nonzero, i.e. whether the
+corner sees this element at all.  Computing `ker(pi_e)` even to the point of
+deciding `ker(pi_e) != 0` has not been done, and is the first concrete piece
+of work this claim is waiting on.
+
+**Not attempted: a bounded search.**  Nothing here has been searched by
+machine.  A search would need a presentation of `e A e`, which nobody has
+written down; the only quantitative constraint available is
+`leavitt-rank-three-lift-inverse-support-thirteen`, and it is a statement
+about the whole algebra that is explicitly not known to transfer.

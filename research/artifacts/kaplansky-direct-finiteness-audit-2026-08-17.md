@@ -114,6 +114,28 @@ binary Leavitt family for any group `G`** — the relations cannot be lifted on
 the nose, only into a corner, and only into one of vanishing augmentation.
 `e` is such a corner.
 
+### B'. An explicit element of the kernel
+
+Neither the source nor the graph carried a witness for `ker(pi) != 0`, which
+`leavitt-evaluation-kernel-hits-augmentation-one` establishes abstractly.  One
+falls straight out of the same three elements.  With `x = s_0t_1`, `y = s_1t_0`
+put
+
+    u = 1 + x,      v = 1 + y,      w = x + y.
+
+`u` and `v` are involutions as above, and so is `w`, since
+`w^2 = x^2 + xy + yx + y^2 = xy + yx = 1`.  They are pairwise distinct: `u = v`
+would give `x = y` and hence `s_0t_0 = xy = yx = s_1t_1`, contradicting
+`s_0t_0 + s_1t_1 = 1`; `u = w` would give `y = 1`, impossible since `y^2 = 0`;
+and `v = w` likewise gives `x = 1`.  In characteristic two
+
+    u + v + w = (1+x) + (1+y) + (x+y) = 0,
+
+so `[u] + [v] + [w]` is a nonzero element of `ker(pi)` of augmentation `1` —
+a witness for both parts of that claim at once.  Whether the corner sees it,
+that is whether `e([u]+[v]+[w])e != 0`, is not computed here, and deciding
+`ker(pi_e) != 0` is the cheapest open piece of work in the whole lane.
+
 ## C. The gap, stated as the source states it
 
 Direct finiteness does not pass to quotients, so neither
@@ -256,3 +278,18 @@ Open: `leavitt-corner-one-sided-lift-exists`,
 `binary-leavitt-family-lifts-into-unit-corner`,
 `leavitt-corner-kernel-is-jacobson-radical`,
 `leavitt-unit-group-algebra-not-directly-finite`.
+
+**Where this joins the rest of the graph.**  The lane head is shared with the
+Gottschalk lane audited the same day in
+`research/artifacts/gottschalk-leavitt-audit-2026-08-17.md`: failure of direct
+finiteness feeds `leavitt-group-algebra-not-stably-finite` and from there
+`leavitt-unit-group-nonsurjunctive`, so a witness produced here would settle
+two named conjectures at once.  The two lanes attack the *same* correction
+equation from different sides — that one works in the whole algebra with the
+right factor pinned over `s_0`, which is what the cellular-automaton reading
+needs, while this one works in `e A e` where the augmentation no-go is
+inactive.  Neither implies the other, and only this side carries the support
+floor of Section D.  Read together, they say the missing object is one
+solution of `(a + alpha)(b + beta) = 1` with `alpha, beta` in a kernel nobody
+has computed, and that computing that kernel — even to the point of deciding
+whether the corner's part of it is nonzero — is the next real piece of work.

@@ -8,17 +8,23 @@ distinct_from:
   markov-post-undecidable-monoid-word-problem: That is the monoid statement and is about undecidability; this is an enumerability statement about groups, and neither implies the other.
   literal-word-problem-solvable: That is a DECIDABILITY statement about one specific group, the manuscript's E, proved by an explicit algorithm; this is enumerability of the positive instances for an arbitrary finite presentation, which is strictly weaker per presentation and quantified over all of them.
 artifacts:
+  - GroupApproximation/Computability/WordProblemRE.lean
   - GroupApproximation/Computability/AdianRabinWordProblem.lean
   - GroupApproximation/Computability/PresentationCodes.lean
 ---
 
-OPEN, and item **D2** of the cost table in [[adian-rabin-transform-for-mf]] --
-300--600 lines, the one genuinely separable piece of that claim.  For a coded
+ESTABLISHED (2026-08-17), `WordProblemRE.rePred_wordProblemPred`.  For a coded
 finite presentation `c` and a coded word `w`,
 
     REPred (fun x : PresentationCode x List (N x Bool) => WordProblem x.1 x.2).
 
-## The mathematics is already done
+Item **D2** of the cost table in [[adian-rabin-transform-for-mf]] -- estimated
+300--600 lines, and the one genuinely separable piece of that claim.
+Unconditional, no literature input; axiom closure `[propext, Classical.choice,
+Quot.sound]`.  The route is
+[[word-problem-of-finite-presentation-is-re-proof]].
+
+## The mathematics that was already done
 
 `Computability/AdianRabinWordProblem` proves the characterization the
 enumerability rests on, and does it in the awkward direction that matters:
@@ -38,35 +44,39 @@ Soundness is unconditional by design: a relator word the code does not list
 decodes to `1` rather than to garbage, so a search over *all* certificates can
 only ever produce genuine positive instances.
 
-## What remains is computability, and the obstruction is a dependent type
+## What remained was computability, and the obstruction was a dependent type
 
 `rawValue c cert` lands in `FreeGroup (Fin (genCount c))`, whose *type depends
 on the code*.  Equality there is decidable, but a search space a partial
 recursive function ranges over must be `Primcodable`, and a dependent family is
-not.  So the certificate equation has to be re-expressed on code-independent
-raw data before any computability lemma applies:
+not.  So the certificate equation had to be re-expressed on code-independent
+raw data before any computability lemma applied — which is what
+`Computability/WordProblemRE` does, in exactly the three steps below:
 
-1. implement free-group reduction on `List (N x Bool)` -- cancel adjacent
-   inverse letters -- as a plain computable function, and prove that two raw
-   words have equal images in `FreeGroup (Fin n)` exactly when their reductions
-   agree after reading letters modulo `n` (the `wordOf` convention already
-   reads letters modulo the alphabet size, so no partiality enters);
-2. restate the matrix of `wordProblemPred_iff` as an equation between reduced
-   raw words, giving a `DecidablePred` on the `Primcodable` type
-   `(PresentationCode x List (N x Bool)) x RawCertificate`;
-3. prove that predicate `Computable`, which is the tedious half: `Primrec`
-   plumbing for the fold that decodes a certificate.
+1. `certWord` builds, by list surgery alone, a raw word the code reads as the
+   product of conjugates a certificate names (`wordOf_certWord`).  The element
+   of the dependent type is never formed, so nothing has to be reduced inside
+   `FreeGroup (Fin n)`;
+2. `wordOf_testWord_eq_one_iff` restates the matrix of `wordProblemPred_iff` as
+   one equation between raw words, so `searchCheck` is a `Bool`-valued test on
+   the `Primcodable` type `(PresentationCode x List (N x Bool)) x
+   RawCertificate` and `wordProblemPred_iff_exists` is the resulting
+   existential;
+3. `primrec_certWord`, `primrec_searchCheck` and `computable_searchCheck` are
+   the tedious half: `Primrec` plumbing for the fold that decodes a
+   certificate.
 
-## The bridge to use, and the one not to
+## The bridge used, and the one avoided
 
 Mathlib's pinned copy calls the notion **`REPred`**, not `RePred`
-(`Mathlib/Computability/RE.lean`).  Finish with
+(`Mathlib/Computability/RE.lean`).  The finish is `rePred_exists_eq_true`,
+which is
 
     Partrec.dom_re : Partrec f -> REPred fun a => (f a).Dom
 
 applied to `fun x => (Nat.rfind fun n => Part.some (decide (matrix x n))).map
 fun _ => ()`, whose domain is exactly the set of `x` admitting a certificate,
-then `REPred.of_eq` against `wordProblemPred_iff`.
+then `REPred.of_eq` against `wordProblemPred_iff_exists`.
 
 `Computable.find` in the same file looks like the right tool and is not: it
 requires `∀ x, ∃ n, P x n`, a *total* search, and the whole point here is that
@@ -76,7 +86,12 @@ the search diverges on the negative instances.
 
 Only the second assertion of the manuscript's undecidability corollary --
 "not even recursively enumerable" -- and nothing else in the corpus depends on
-it.  That is why it is worth roughly 5% of [[adian-rabin-transform-for-mf]] and
-can be done independently of [[rabin-chain-effective-collapse-dichotomy]],
-which is the actual critical path now that
-[[novikov-boone-fp-group-undecidable-word-problem]] is closed.
+it.  Post's theorem needs enumerability of the positive side *and*
+undecidability, so it is this claim together with
+[[uniform-word-problem-on-presentation-codes-undecidable]] that makes
+`WordProblemRE.not_rePred_compl_wordProblemPred` and
+`WordProblemRE.operatorMF_negative_side_not_re` unconditional.  That is why it
+was worth roughly 5% of [[adian-rabin-transform-for-mf]] and was done
+independently of [[rabin-chain-effective-collapse-dichotomy]], which was read
+as the critical path once
+[[novikov-boone-fp-group-undecidable-word-problem]] closed.

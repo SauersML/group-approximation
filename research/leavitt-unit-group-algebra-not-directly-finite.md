@@ -12,9 +12,13 @@ artifacts:
   - research/artifacts/kaplansky-direct-finiteness-audit-2026-08-17.md
 ---
 
-*Marked `root` because it heads a lane of its own. It is not on the way to
-`q3-4-resolved` and no route should be built from it toward that goal — see
-the scope note below.*
+*Marked `root` because Kaplansky's conjecture is a top-level question in its
+own right, not a step toward another one. It is also reachable from the
+surjunctivity root, through `stably-finite-failure-from-direct-finiteness-failure`
+into `leavitt-group-algebra-not-stably-finite`; the mark is kept anyway, so
+that the lane does not read as a sub-question of Gottschalk. It is not on the
+way to `q3-4-resolved` and no route should be built from it toward that goal
+— see the scope note below.*
 
 Exhibit `alpha, beta` in `A = F_2[R^x]`, `R = L_(F_2)(1,2)`, with
 
@@ -75,3 +79,37 @@ else to live.  It does **not** exclude a bare pair `alpha beta = 1 != beta
 alpha` from `A`: applying `eps` gives only `eps(alpha) = eps(beta) = 1`, no
 contradiction.  A direct construction of such a pair in `A`, owing nothing to
 the corner, remains admissible and would be a third lane; nobody has one.
+
+## Attempts
+
+**Every lane runs out at the same place, and it is worth seeing that they run
+out for different reasons.**
+
+* *Compress the explicit lifts into the corner.*  The inequality comes free
+  and the whole problem reduces to one equation `ab = e`, whose defect lies in
+  `ker(pi_e)` — see the attempts under `leavitt-corner-one-sided-lift-exists`.
+  Dies on having no handle on that kernel.
+* *Lift the whole Leavitt family.*  Strictly harder: five relations instead of
+  one, each contributing its own kernel element.  Notably it is not *refuted*
+  in the corner, because `eps(e) = 0` switches off the only no-go available;
+  it is simply unconstrained.
+* *Use the radical.*  `ker(pi_e) = J(eAe)` would make the quotient argument
+  legal without exhibiting anything, but it is gated on the same unknown
+  kernel, from the other side.
+* *Work in the whole algebra.*  The surjunctivity lane's
+  `left-invertible-lift-of-s0-in-leavitt-group-algebra` faces the identical
+  correction problem with `ker(pi)` in place of `ker(pi_e)`, and its first
+  necessary condition already kills the obvious candidate: a left-invertible
+  lift needs `eps(a) = 1`, while the natural four-unit lift has `eps = 0`.
+
+**What has actually been ruled out, as opposed to merely not found.**  Any
+completion of the explicit support-three lift of `t_0` needs support at least
+thirteen (`leavitt-rank-three-lift-inverse-support-thirteen`), which is a real
+exclusion imported from a published exhaustive search rather than a failure of
+imagination.  The parity half of that argument also says every candidate has
+odd support.  Nothing else here is an obstruction.
+
+**Not attempted.**  No machine search has been run at any support size in this
+repository, and no presentation of `e A e` exists to search inside.  The
+cheapest piece of new information anyone could produce is whether
+`ker(pi_e) = 0`.

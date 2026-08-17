@@ -47,3 +47,31 @@ the only concrete way anyone has proposed to produce the pair `(a,b)` is to
 produce the family and read the pair off it, and because it fails or succeeds
 for reasons one can look for — a section is a rigid object with a Leavitt
 normal form on one side.
+
+## Attempts
+
+**The only candidate anyone has is the compressed lift, and it satisfies the
+relations only after evaluation.**  The matrix identity behind
+`leavitt-rank-three-unit-lift` applies to `Phi(s_1) = [[0,0],[s_0,s_1]]` and
+`Phi(t_1) = [[0,t_0],[0,t_1]]` exactly as it does to the two generators that
+node states, so all four have support-three lifts; put `S_i = e s~_i e`,
+`T_i = e t~_i e`.  Then `pi_e(T_i S_j) = delta_ij` and `pi_e(S_0T_0 + S_1T_1) = 1`, so
+every relation holds *in the image* — and none is known to hold in `e A e`.
+Each of the five relations contributes its own element of `ker(pi_e)` that
+must be made to vanish simultaneously, which is strictly harder than the one
+equation `leavitt-corner-one-sided-lift-exists` needs.  That is why this node
+sits above that one rather than beside it.
+
+**Every no-go tool in this graph is inactive here, which is information but
+not progress.**  The augmentation argument needs `eps(f) = 1` and the corner
+has `eps(e) = 0`; the finite-dimensional rank argument of
+`augmentation-blocks-leavitt-family-proof` needs a finite matrix size and
+`e A e` supplies none; `division-ring-hosts-no-binary-leavitt-family` needs a
+division ring.  So nothing refutes the claim — and equally, nothing narrows a
+search, which is the honest reason no search has been run.
+
+**Deferred, deliberately.**  The prerequisite work is a presentation, or at
+least a normal form, for `e A e`; until that exists neither a construction nor
+a refutation has anything to bite on.  Anyone picking this up should attack
+`leavitt-corner-one-sided-lift-exists` first, since it needs one equation
+rather than five and would already settle the conjecture.

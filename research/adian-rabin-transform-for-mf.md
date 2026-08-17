@@ -8,44 +8,55 @@ distinct_from:
   torsion-free-higman-embedding: that is an embedding theorem for recursively presented groups; this is a computable map on finite presentations with a triviality-versus-containment dichotomy, and Higman embedding is one of the routes it must *avoid* needing.
 artifacts:
   - non_mf_groups_exist.tex
+  - GroupApproximation/Computability/AdianRabinVariantTransform.lean
+  - GroupApproximation/Computability/RawTransformPrimrec.lean
   - GroupApproximation/Computability/MarkovMFConsequences.lean
   - GroupApproximation/Computability/AdianRabinMarkovProperty.lean
   - GroupApproximation/Computability/CStarRecognitionConsequences.lean
 ---
 
-OPEN.  There is a finitely presented group with undecidable word problem and a
-**computable** map taking an instance `(P, w)` of its word problem to a finite
-presentation `P_w` such that
+ESTABLISHED (2026-08-17), `AdianRabinVariantTransform.reduction`, via
+[[adian-rabin-transform-for-mf-proof]].  There is a finitely presented group
+with undecidable word problem and a **computable** map taking an instance
+`(P, w)` of its word problem to a finite presentation `P_w` such that
 
 - `G(P_w)` is trivial — hence MF — when `w = 1`, and
 - `E` embeds in `G(P_w)` — hence `G(P_w)` is not MF, by subgroup heredity —
   when `w != 1`,
 
-together with the correctness equivalence in that form.  In Lean this is the
+together with the correctness equivalence in that form.  In Lean this was the
 fourth field of `MarkovMFConsequences.AdianRabinReduction`: the computable
-`transform` and its `correct` equivalence.  The other three fields are
-inhabited (see [[operator-mf-is-a-markov-property]]), so this single datum is
-the whole remaining input.
+`transform` and its `correct` equivalence, the other three fields having been
+inhabited already (see [[operator-mf-is-a-markov-property]]).  All four are now
+supplied at once by `AdianRabinVariantTransform.reduction`.
 
-This is the manuscript's one declared literature input, used in exactly one
-place: "This corollary carries one classical literature input, used only here:
-the Adian--Rabin construction itself, which we have not formalized."
+This was the manuscript's one declared literature input, used in exactly one
+place: the Adian--Rabin construction behind `cor:undecidable`.  It is no longer
+an input, and `non_mf_groups_exist.tex` already says so — the corollary now
+cites `Rabin58` only as the classical antecedent of the statement, and carries
+`\leanverified` lines for `not_computablePred_wordProblemPred`,
+`operatorMF_recognition_not_computable`, `rePred_wordProblemPred`,
+`operatorMF_negative_side_not_re` and the two
+`AdianRabinVariantTransform` hypothesis-taking forms.  The unconditionality
+register `docs/NON_MF_UNCONDITIONAL_BASELINE.txt` is correspondingly empty.
+What had not moved was this graph.
 
-## The cost, itemized
+## The cost table, as it stood — every row now closed
 
 `Computability/AdianRabinMarkovProperty` records the dependency chain and its
-estimated size, because the honest thing to say about this hole is how big it
-is rather than that it is "routine":
+estimated size, because the honest thing to say about a hole is how big it is
+rather than that it is "routine".  The estimates are kept beside the outcomes,
+since the point of an itemized table is that it can be graded afterwards:
 
-| | Obligation | Estimate |
-|---|---|---|
-| D1 | computable syntax of presentations (the coding layer) | done, see the Markov-property claim |
-| D2 | the word problem of a finite presentation is r.e. — certificate search over conjugated relators | 300--600 lines |
-| D3 | Markov--Post: undecidable word problem for finitely presented semigroups, by simulating a machine with a semi-Thue system | **done**, see below |
-| D4 | Novikov--Boone: a finitely presented group with undecidable word problem, via an HNN tower | **done**, see below |
-| D4' | the same group in coordinates: an explicit `PresentationCode` and a computable sequence of words | 200--400 lines |
-| D5 | the Adian--Rabin construction, effectively: Rabin's chain of HNN extensions and free products, with the collapse-to-trivial induction | **correctness done**, see below; `Computable transform` remains |
-| D6 | assembly into `AdianRabinReduction` | 100--200 lines |
+| | Obligation | Estimate | Outcome |
+|---|---|---|---|
+| D1 | computable syntax of presentations (the coding layer) | done | done, see the Markov-property claim |
+| D2 | the word problem of a finite presentation is r.e. — certificate search over conjugated relators | 300--600 lines | **done**, `WordProblemRE.rePred_wordProblemPred` |
+| D3 | Markov--Post: undecidable word problem for finitely presented semigroups, by simulating a machine with a semi-Thue system | — | **done**, see below |
+| D4 | Novikov--Boone: a finitely presented group with undecidable word problem, via an HNN tower | — | **done**, see below |
+| D4' | the same group in coordinates: an explicit `PresentationCode` and a computable sequence of words | 200--400 lines | **done**, `Computability.not_computablePred_wordProblemPred` |
+| D5 | the Adian--Rabin construction, effectively: Rabin's chain of HNN extensions and free products, with the collapse-to-trivial induction | — | **done**: `correct` first, then `Computable transform` via `RawTransform` |
+| D6 | assembly into `AdianRabinReduction` | 100--200 lines | **done**, `AdianRabinVariantTransform.reduction` |
 
 Mathlib's Britton's Lemma, HNN normal form and `PushoutI` are genuine enablers
 and cut D4 and D5 substantially; D4 had, to the best of current knowledge, never
@@ -66,12 +77,7 @@ induction on stable letters; finite presentability needed no Britton's Lemma;
 and the one deliberately unstated external input, Simpson's Theorem 4, became a
 theorem by reading a modular machine as a two-stack machine.
 
-So of the obligations in the table, **D1, D3 and D4 are done** and the
-critical path now runs through **D5** alone --- the effective Adian--Rabin
-construction, which is a different construction and consumes D4 as its source
---- plus D2 for the r.e. half and D6 for assembly.
-
-**The correctness clause of this claim is closed (2026-08-17).**
+**The correctness clause of this claim closed first (2026-08-17).**
 `Computability.AdianRabinVariantTransform.correct` reads
 
     operatorMFProperty semantics (transform (c, w)) ↔ WordProblem c w
@@ -85,15 +91,17 @@ unconditional the same day by writing stage 1 as `HNNExtension Γ ⊥ ⊥` inste
 `Monoid.Coprod Γ ℤ` --- the same group, described so Britton's lemma applies,
 after which infinite order of `⁅w, s⁆` is a theorem rather than a hypothesis.
 
-**What remains of this claim is `Computable transform`, and it is a different
+**`Computable transform` closed second, the same night, and it was a different
 kind of obligation than the one the table estimated.** `transform` is a
-`noncomputable` def, so this is not a proof away: it needs a computable
-definition plus a proof that the two agree.  That is the same
-Prop-versus-coordinates gap as [[uniform-word-problem-on-presentation-codes-undecidable]],
-and it means **every group-theoretic input to the endpoint is now
-machine-checked** --- what is left of the whole cost table is three
-computability obligations: `Computable transform`, D4', and the `Primrec`
-plumbing of D2.
+`noncomputable` def, so it was never a proof away: it needed a computable
+definition plus a proof that the two agree — the same Prop-versus-coordinates
+gap as [[uniform-word-problem-on-presentation-codes-undecidable]].
+`RawTransform.rawTransform` is that second definition, by pure list surgery;
+`RawTransform.relSet_rawTransform` proves the two codes name the same relators,
+so `rawCarrierEquiv` transports correctness (`correct_raw`); and
+`RawTransformPrimrec.computable_rawTransform` supplies the field.  With that,
+every group-theoretic input to the endpoint *and* every computability
+obligation of the table is machine-checked.
 
 **D4' was separated out on 2026-08-16**, after D4 closed, because closing D4
 made visible something the table had assumed: that D6 could discharge
@@ -107,11 +115,13 @@ explicit in the machine --- but it is not zero, and it was previously invisible
 because every step up to here had a reason not to need a generator numbering.
 See [[uniform-word-problem-on-presentation-codes-undecidable]].
 
-This claim now carries a decomposition rather than standing alone as a hole:
-the route `adian-rabin-transform-via-boone-source-and-rabin-chain` reduces it to
-D4 together with [[rabin-chain-effective-collapse-dichotomy]], which is D5 as a
+The claim also carries a decomposition, written while it was still a hole: the
+route `adian-rabin-transform-via-boone-source-and-rabin-chain` reduces it to D4
+together with [[rabin-chain-effective-collapse-dichotomy]], which is D5 as a
 claim in its own right — uniform in the forbidden group and with no
-computability in it.  D6 is the route's own content.
+computability in it.  That route is kept.  It is a correct reduction and its
+prerequisite is worth having on its own terms; being reached by a second,
+direct route does not retract it.
 
 ## Four shortcuts that do not exist
 
@@ -135,9 +145,10 @@ Recorded so they are not re-attempted:
    presentations, and bridging the two is Higman embedding — strictly harder
    than D4.
 
-The one genuinely separable piece is D2, worth roughly 5% of the total: it is
+The one genuinely separable piece was D2, worth roughly 5% of the total: it is
 what upgrades "undecidable" to "not even recursively enumerable", and nothing
-else depends on it.
+else depends on it.  It is now [[word-problem-of-finite-presentation-is-re]],
+established in its own right.
 
 ## A second consumer
 

@@ -43,3 +43,28 @@ of `e F_2[R^x] e` is that large, and no attempt to compute it has been made.
 It is a real route only in the sense that it is a *sufficient* condition that
 does not require exhibiting a lift; if someone can compute `J(e A e)` at all,
 this is where that computation would land.
+
+## Attempts
+
+**Half of it is already proved, and that half is the reverse containment.**
+`J(e A e) subseteq ker(pi_e)` holds unconditionally, by simplicity of `R` plus
+the fact that surjections carry radical into radical.  So no work remains on
+that side, and the open content is entirely `ker(pi_e) subseteq J(e A e)`.
+
+**Where a first attempt starts, and why it has not been taken.**  The
+statement collapses in a revealing way at each end.  If `J(e A e) = 0` — the
+default behaviour for group algebras and the case one would guess first — the
+claim is *equivalent* to `ker(pi_e) = 0`, that is, to `e A e` being isomorphic
+to the Leavitt algebra outright.  If instead `ker(pi_e) = 0` fails, the claim
+demands a radical as large as that kernel.  So the whole question is gated on
+one computation nobody here has done: **is `ker(pi_e)` zero?**  The
+corresponding question one level up is settled —
+`leavitt-evaluation-kernel-hits-augmentation-one` gives `ker(pi) != 0`, and
+`[u]+[v]+[w]` with `u = 1+s_0t_1`, `v = 1+s_1t_0`, `w = s_0t_1+s_1t_0` is an
+explicit three-term witness — but whether the corner sees any of it is open.
+
+**Deferred behind that computation.**  No attempt has been made to compute or
+bound `J(e F_2[R^x] e)`, and none should be made before `ker(pi_e)` is
+understood, since the two ends of the equality are the same unknown. Compared
+with `leavitt-corner-one-sided-lift-exists` this lane is the less promising
+one and is kept only because it needs no witness.
