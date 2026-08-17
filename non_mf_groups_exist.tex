@@ -136,9 +136,11 @@
 \author{\paperauthor}
 \ifanonymous\else
   \ifx\coderepository\empty\else
-    \thanks{The accompanying Lean~4 development, which proves the numbered
-      statements carrying a verification record, is at
-      \href{\coderepository}{\nolinkurl{\coderepositoryname}}.}%
+    \thanks{The numbered statements of this paper are machine-checked in an
+      accompanying Lean~4 development, at
+      \href{\coderepository}{\nolinkurl{\coderepositoryname}}, which records
+      for each one the declaration that proves it and any input taken from
+      the literature.}%
   \fi
 \fi
 \subjclass[2020]{Primary 46L05; Secondary 20F05, 22D25, 20E26}
@@ -3101,6 +3103,15 @@ groups is not recursively enumerable.
 \leanverified{Computability/HaltingReduction}{GroupApproximation.MarkovMFConsequences.presentationCodes_recognition_undecidable_of_haltingReduction}
 \leanverified{Computability/HaltingReduction}{GroupApproximation.MarkovMFConsequences.presentationCodes_negative_side_not_re_of_haltingReduction}
 
+\begin{proof}
+Composing a decision procedure for MF recognition with $e$ would decide
+the halting problem.  For the second assertion, $e$ carries the
+nonhalting instances exactly to codes of non-MF groups, and the
+preimage of a recursively enumerable set under a computable map is
+recursively enumerable; so an enumeration of the codes of non-MF groups
+would enumerate the nonhalting instances.
+\end{proof}
+
 Effectiveness of the coding is necessary: a map attaching a finitely
 presented group to each code need not be computable, and an
 uncomputable choice would make the statement true for reasons having
@@ -3111,22 +3122,22 @@ applied to the Markov property ``is MF''\@.  It fixes one finite
 presentation $P_0$ whose group has undecidable word problem and takes a
 word $v$ in the generators of $P_0$ to a finite presentation whose group
 is trivial, hence MF, when $v=1$ in $P_0$, and contains $E$, hence
-non-MF by subgroup heredity, when $v\ne1$.  Its source is available
+non-MF by subgroup heredity, when $v\ne1$.  Such a $P_0$ is available
 here: a finitely presented group carrying a sequence of words whose
-triviality is undecidable, with no hypothesis and no literature input,
-by way of Aanderaa--Cohen modular machines rather than
+triviality is undecidable, proved with no hypothesis and no literature
+input, by way of Aanderaa--Cohen modular machines instead of
 Boone--Britton.
 \leanverified{Computability/NovikovBoone}{GroupApproximation.BooneGroup.exists_finitelyPresented_wordProblem_undecidable}
 What remains external is the effective reduction itself.  The words representing $1$
 form a recursively enumerable set that is not recursive, so the words
 with $v\ne1$ form a set that is not recursively enumerable, and an
 enumeration of the non-MF presentations would enumerate it.  This
-paragraph is classical and rests on \cite{Rabin58}; the verification
-records below cover subgroup heredity, the existence of a finitely
-presented non-MF group, and the undecidability statement \emph{given} a
-reduction, which is the hypothesis of
+paragraph is classical and rests on \cite{Rabin58}.  Machine-checked
+here are subgroup heredity, the existence of a finitely presented
+non-MF group, the existence of $P_0$, and the undecidability statement
+\emph{given} a reduction, which is the hypothesis of
 Corollary~\ref{cor:undecidable}.  The Adian--Rabin construction itself
-is not formalized, and no record above claims it.
+is not formalized, and nothing here claims it.
 \leanverified{Computability/MarkovMFConsequences}{GroupApproximation.MarkovMFConsequences.operatorMF_subgroup_hereditary}
 \leanverified{Computability/MarkovMFConsequences}{GroupApproximation.MarkovMFConsequences.exists_finitelyPresented_nonOperatorMF}
 \leanverified{Computability/MarkovMFConsequences}{GroupApproximation.MarkovMFConsequences.operatorMF_recognition_undecidable}
@@ -3263,8 +3274,7 @@ $(x_n)$ has $\opnorm{x_n^{*}x_n-1}\to0$ and $\opnorm{x_nx_n^{*}-1}\to0$,
 so $x_n$ is invertible for all large $n$ and the polar correction
 $u_n=x_n(x_n^{*}x_n)^{-1/2}$ is unitary with $\opnorm{u_n-x_n}\to0$.
 Neither real rank zero nor semiprojectivity in the sense of
-Loring \cite{Loring98} is used.  The two genuinely
-matrix-specific ingredients are the ones listed above.
+Loring \cite{Loring98} is used.
 \end{enumerate}
 
 \begin{remark}[a small-cancellation realization]
