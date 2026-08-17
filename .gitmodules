@@ -1,3 +1,0 @@
-[submodule "tools/cairn"]
-	path = tools/cairn
-	url = https://github.com/SauersML/Cairn.git

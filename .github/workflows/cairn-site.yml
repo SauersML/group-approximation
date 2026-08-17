@@ -1,7 +1,7 @@
 # Group Approximation research-graph site.  Rebuilds and republishes the public site
 # whenever the research state or the generator changes.  Fast (seconds,
-# no toolchain): the site is compiled from research/*.md by the cairn CLI,
-# which lives in the tools/cairn submodule (github.com/SauersML/Cairn).
+# no toolchain): the site is compiled from research/*.md by the cairn CLI
+# (github.com/SauersML/Cairn), committed at tools/cairn.py.
 #
 # Coexistence with docs.yml (doc-gen4, weekly): Pages serves one tree per
 # repo, so this workflow also folds the latest API docs under /api/ when a
@@ -15,8 +15,7 @@ on:
     branches: [main]
     paths:
       - 'research/**'
-      - 'tools/cairn'
-      - '.gitmodules'
+      - 'tools/cairn.py'
       - 'bin/cairn'
       - '.github/workflows/cairn-site.yml'
   workflow_dispatch:
@@ -44,25 +43,9 @@ jobs:
     timeout-minutes: 10
     steps:
       - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
-        with:
-          submodules: true
 
       - name: Build the site
         run: bin/cairn site
-
-      - name: Title the site
-        # `bin/cairn` passes the project name to the generator, but generators
-        # older than that hook title their pages after the tool.  Rewrite those.
-        # A no-op once the pinned generator honours CAIRN_SITE_TITLE.
-        run: |
-          python3 - <<'PY'
-          import pathlib
-          for f in pathlib.Path('.cairn/site').glob('*.html'):
-              t = f.read_text(encoding='utf-8')
-              if '<title>Cairn' in t:
-                  f.write_text(t.replace('<title>Cairn', '<title>Group Approximation'),
-                               encoding='utf-8')
-          PY
 
       - name: Fold in the latest API docs, if published
         run: |

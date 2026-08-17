@@ -1,13 +1,16 @@
 #!/bin/sh
-# The cairn CLI lives in the tools/cairn submodule
-# (https://github.com/SauersML/Cairn), pinned like any dependency.
+# The cairn CLI (github.com/SauersML/Cairn) — one dependency-free Python
+# file, committed at tools/cairn.py rather than pulled in as a submodule.
+# A submodule is empty in every copy of this repo that is not a git clone
+# (a Download ZIP, a tarball, an uploaded sandbox) and needs a network to
+# fill; committing the file means every copy arrives able to read the
+# research graph, with no setup step.
+#
+# To upgrade it:
+#   curl -fsSLo tools/cairn.py \
+#     https://raw.githubusercontent.com/SauersML/Cairn/main/cairn.py
 root="$(cd "$(dirname "$0")/.." && pwd)"
-tool="$root/tools/cairn/cairn.py"
-if [ ! -f "$tool" ]; then
-  echo "cairn submodule missing — run: git submodule update --init tools/cairn" >&2
-  exit 1
-fi
-# Pin the cairn root to this repo so behavior stays cwd-independent.
-# The graph is about this project, so the site carries this project's name.
+# Pin the root to this repo so behavior stays cwd-independent, and name the
+# site after the project the graph is about rather than after the tool.
 CAIRN_ROOT="$root" CAIRN_SITE_TITLE="${CAIRN_SITE_TITLE:-Group Approximation}" \
-  exec python3 "$tool" "$@"
+  exec python3 "$root/tools/cairn.py" "$@"
