@@ -15,13 +15,13 @@ decidability.  S9 (`Computability.ModularMachineUndecidable`) supplies a machine
 whose halting set is not computable, and the two together give a group in which
 deciding whether a word is trivial is not possible.
 
-What is still missing for the classical statement is `S8`: that `G_M` is
-*finitely presented*.  The group here is built as a tower of HNN extensions over
-a two-generator one-relator group, so it is finitely presented in the ordinary
-mathematical sense, but Mathlib has no closure property for
-`Group.IsFinitelyPresented` under HNN extensions, and that is what would have to
-be proved.  The theorem below is therefore the word-problem half of
-Novikov--Boone, stated for the group as constructed.
+The theorem below is the word-problem half of Novikov--Boone, stated for the
+group as constructed.  **S8, the other half, is also proved**: Mathlib indeed
+has no closure property for `Group.IsFinitelyPresented` under HNN extensions,
+and `Algebra.HNNFinitePresentation` supplies one, from which
+`BooneGroupFinitePresentation.finalGroup_isFinitelyPresented` gives that `G_M`
+is finitely presented.  `Computability.NovikovBoone` is the conjunction of the
+two, and is the classical statement.
 -/
 
 namespace GroupApproximation

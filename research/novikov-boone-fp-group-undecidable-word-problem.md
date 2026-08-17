@@ -9,17 +9,24 @@ distinct_from:
   literal-word-problem-solvable: That records that the manuscript's own group E has SOLVABLE word problem, by an explicit algorithm; this asks for a different, purpose-built group where the word problem fails to be decidable.
   torsion-free-finitely-presented-non-mf: That asks for a finitely presented group failing an approximation property, with no decision problem in it; this asks for one whose word problem is undecidable, and says nothing about MF or torsion.
 artifacts:
-  - GroupApproximation/Computability/BooneGroupModularMachine.lean
+  - GroupApproximation/Computability/NovikovBoone.lean
+  - GroupApproximation/Computability/BooneWordProblem.lean
+  - GroupApproximation/Computability/BooneGroupFinitePresentation.lean
+  - GroupApproximation/Computability/ModularMachineUndecidable.lean
   - GroupApproximation/Computability/BooneGroupBase.lean
   - GroupApproximation/Computability/BooneGroupTower.lean
 ---
 
-OPEN.  Item **D4** of the cost table in [[adian-rabin-transform-for-mf]], and
-the critical path of that claim: there is a finitely presented group whose word
-problem is not computable.
+ESTABLISHED (2026-08-16),
+`Computability/NovikovBoone.exists_finitelyPresented_wordProblem_not_computablePred`:
+there is a finitely presented group and a sequence of words in it for which
+triviality is not decidable.  Unconditional, with no literature input --- the
+only undecidable source anywhere in the chain is Mathlib's
+`ComputablePred.halting_problem`.
 
-To the best of current knowledge this has never been done in any proof
-assistant.
+Item **D4** of the cost table in [[adian-rabin-transform-for-mf]], and its
+critical path.  To the best of current knowledge this had never been done in
+any proof assistant.
 
 ## Where the chain stands
 
@@ -52,16 +59,20 @@ tracks them stage by stage.  Established, and all machine-checked:
   [[hnn-extension-finite-presentation-permanence]] and
   [[boone-normal-closure-of-t-finitely-generated]].
 
-Open: **only** [[modular-machine-with-noncomputable-halting]] (S9), which is
-external and deliberately stated nowhere in Lean.
+* [[modular-machine-with-noncomputable-halting]] (S9) -- Simpson's Theorem 4,
+  the last external input, closed by reading a modular machine as a two-stack
+  machine and simulating a Post-Turing tape with it.
 
-**The group side of Novikov--Boone is therefore complete.**  S3--S7 produce the
-halting biconditional for an arbitrary modular machine, and S8 makes the group
-it is about finitely presented -- so for every modular machine there is now a
-*finitely presented* group whose word problem decides that machine's halting
-set.  The single remaining input is S9, a machine whose halting set is not
-computable, and the capstone from it is two lines: compose the biconditional
-with non-computability along the computable map `(a,b) ↦ ⁅k, t(a,b)⁆`.
+Nothing is open.  The capstone is `Computability/NovikovBoone`, which is the
+conjunction of S7's biconditional, S8's finite presentation and S9's machine,
+all three about the same group `G_M`.
+
+**Novikov--Boone is therefore complete.**  S3--S7 produce the halting
+biconditional for an arbitrary modular machine, S8 makes that group finitely
+presented, and S9 supplies a machine whose halting set is not computable; the
+capstone composes them along the computable map `(a,b) |-> [k, t(a,b)]`.  Every
+stage is machine-checked, and the chain contains no literature input at any
+point.
 
 ## Why this route
 

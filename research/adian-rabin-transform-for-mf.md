@@ -42,13 +42,13 @@ is rather than that it is "routine":
 | D1 | computable syntax of presentations (the coding layer) | done, see the Markov-property claim |
 | D2 | the word problem of a finite presentation is r.e. — certificate search over conjugated relators | 300--600 lines |
 | D3 | Markov--Post: undecidable word problem for finitely presented semigroups, by simulating a machine with a semi-Thue system | **done**, see below |
-| D4 | Novikov--Boone: a finitely presented group with undecidable word problem, via an HNN tower | in progress, see below |
+| D4 | Novikov--Boone: a finitely presented group with undecidable word problem, via an HNN tower | **done**, see below |
 | D5 | the Adian--Rabin construction, effectively: Rabin's chain of HNN extensions and free products, with the collapse-to-trivial induction | 1500--3000 lines |
 | D6 | assembly into `AdianRabinReduction` | 100--200 lines |
 
 Mathlib's Britton's Lemma, HNN normal form and `PushoutI` are genuine enablers
-and cut D4 and D5 substantially; D4 has to the best of current knowledge never
-been done in any proof assistant.
+and cut D4 and D5 substantially; D4 had, to the best of current knowledge, never
+been done in any proof assistant before this one.
 
 **D3 is closed** (2026-08-16), unconditionally and with no literature input:
 [[markov-post-undecidable-monoid-word-problem]].  It was not, however, on the
@@ -59,11 +59,16 @@ directly from a machine, not from a monoid word problem — so
 cheaper by it.  The two are independent, and the earlier reading of D3 → D4 as
 a critical path was wrong about the dependency, not merely about the order.
 
-**D4 is under way**: six of its ten stages are proved, and the remaining
-frontier is the good-subgroup lemma [[hnn-good-subgroup-lemma]] (the only step
-with mathematical risk), finite presentability of the final group
-[[boone-final-group-finitely-presented]], and the one deliberately unstated
-external input [[modular-machine-with-noncomputable-halting]].
+**D4 is closed** (2026-08-16): [[novikov-boone-fp-group-undecidable-word-problem]],
+all ten stages proved, no literature input.  The good-subgroup lemma needed no
+induction on stable letters; finite presentability needed no Britton's Lemma;
+and the one deliberately unstated external input, Simpson's Theorem 4, became a
+theorem by reading a modular machine as a two-stack machine.
+
+So of the six obligations in the table, **D1, D3 and D4 are done** and the
+critical path now runs through **D5** alone --- the effective Adian--Rabin
+construction, which is a different construction and consumes D4 as its source
+--- plus D2 for the r.e. half and D6 for assembly.
 
 This claim now carries a decomposition rather than standing alone as a hole:
 the route `adian-rabin-transform-via-boone-source-and-rabin-chain` reduces it to

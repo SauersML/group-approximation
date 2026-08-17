@@ -248,13 +248,16 @@ That is `BooneGroupGoodness.conj_k_finalTw_eq_iff`.  It is the whole
 mathematical content of Novikov--Boone, and it carries no hypothesis on the
 machine.
 
-Remaining: **S9 alone** (Simpson's Theorem 4, a modular machine with
-non-computable halting set, deliberately stated nowhere in Lean).  S8 closed on
-2026-08-16, so the group side of Novikov--Boone is complete: `G_M` is finitely
-presented and its word problem decides halting.  The undecidability capstone is
-two lines from S7, S8 and S9 together, and must be written only once S9 exists
---- until then no theorem in this repository depends on it, which is the point
-of not naming it.
+**Nothing remains.**  S8 and S9 both closed on 2026-08-16, and the capstone is
+`Computability.NovikovBoone.exists_finitelyPresented_wordProblem_not_computablePred`:
+a finitely presented group and a sequence of words in it for which triviality is
+not decidable, with no hypothesis and no literature input.  It is the
+conjunction of S7's biconditional, S8's finite presentation and S9's machine,
+all three about the same group `G_M`.
+
+The discipline of not naming Simpson's Theorem 4 anywhere in Lean until it was
+proved paid for itself: nothing below S9 ever depended on it, so when it arrived
+no statement had to be weakened, and the capstone really was two lines.
 -/
 
 namespace GroupApproximation
