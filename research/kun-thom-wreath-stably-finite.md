@@ -40,7 +40,10 @@ sofic — and `W` is the standing counterexample to any hope that the reverse
 orientation is automatic.  So the question is precisely whether stable
 finiteness lifts along a locally finite kernel.
 
-## The two bridges, both dead
+## Attempts
+
+Three approaches have been tried and all three are dead; each entry says where
+it dies.
 
 * **Modular radical.**  `k[W]/omega(k[N])k[W] = k[G]`, and direct finiteness
   descends modulo an ideal inside the Jacobson radical.  The lamp
@@ -54,12 +57,17 @@ finiteness lifts along a locally finite kernel.
   audit proposed on 2026-08-17, is blocked by property (T):
   `kun-thom-stabilizer-not-co-amenable`.
 
-## No route is recorded, deliberately
+A fourth approach is deliberately *not* recorded as a route: "reduce to the
+prime fields and prove it there" would be a restatement dressed as a
+reduction, because by `stable-finiteness-reduces-to-prime-field` the
+prime-field statement is *equivalent* to this one, so it renames the problem
+instead of reducing it.
 
-A route "reduce to the prime fields and prove it there" would be a
-restatement dressed as a reduction: by
-`stable-finiteness-reduces-to-prime-field` the prime-field statement is
-*equivalent* to this one, so such a route renames the problem rather than
-reducing it.  What would count is a lifting theorem for locally finite
-kernels that does not go through the radical, or a mechanism that survives the
-non-soficity of the Bernoulli action.
+## What would count
+
+A lifting theorem for locally finite kernels that does not go through the
+Jacobson radical — equivalently, direct control of
+`1 + M_n(omega(k[N])k[W])` — or an approximation mechanism that survives the
+non-soficity of the generalized Bernoulli action.  Failing either, an
+explicit one-sided inverse pair over `F_p[W]` would settle it the other way,
+though nothing here suggests one exists.
