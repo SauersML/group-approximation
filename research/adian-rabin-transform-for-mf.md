@@ -43,6 +43,7 @@ is rather than that it is "routine":
 | D2 | the word problem of a finite presentation is r.e. — certificate search over conjugated relators | 300--600 lines |
 | D3 | Markov--Post: undecidable word problem for finitely presented semigroups, by simulating a machine with a semi-Thue system | **done**, see below |
 | D4 | Novikov--Boone: a finitely presented group with undecidable word problem, via an HNN tower | **done**, see below |
+| D4' | the same group in coordinates: an explicit `PresentationCode` and a computable sequence of words | 200--400 lines |
 | D5 | the Adian--Rabin construction, effectively: Rabin's chain of HNN extensions and free products, with the collapse-to-trivial induction | 1500--3000 lines |
 | D6 | assembly into `AdianRabinReduction` | 100--200 lines |
 
@@ -65,10 +66,22 @@ induction on stable letters; finite presentability needed no Britton's Lemma;
 and the one deliberately unstated external input, Simpson's Theorem 4, became a
 theorem by reading a modular machine as a two-stack machine.
 
-So of the six obligations in the table, **D1, D3 and D4 are done** and the
+So of the obligations in the table, **D1, D3 and D4 are done** and the
 critical path now runs through **D5** alone --- the effective Adian--Rabin
 construction, which is a different construction and consumes D4 as its source
 --- plus D2 for the r.e. half and D6 for assembly.
+
+**D4' was separated out on 2026-08-16**, after D4 closed, because closing D4
+made visible something the table had assumed: that D6 could discharge
+`¬ComputablePred sourceProperty` "from D4".  It cannot.  D4 delivers an
+abstract group and a sequence of group *elements*, and `Group.IsFinitelyPresented`
+is a Prop-valued class recording no code, no generator numbering and no words;
+what the assembly needs is a code together with a **computable** sequence of
+words in it.  Choice supplies the code but not the words.  The work is
+coordinates rather than mathematics --- the relators and the words are both
+explicit in the machine --- but it is not zero, and it was previously invisible
+because every step up to here had a reason not to need a generator numbering.
+See [[uniform-word-problem-on-presentation-codes-undecidable]].
 
 This claim now carries a decomposition rather than standing alone as a hole:
 the route `adian-rabin-transform-via-boone-source-and-rabin-chain` reduces it to

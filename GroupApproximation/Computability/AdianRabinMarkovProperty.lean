@@ -74,8 +74,12 @@ premise:
   classical (a recursively presented group has r.e. word problem), but it is
   load-bearing and must not be omitted from the ledger.
 
-(a) and (b) are out of reach today; (c) has its mathematical half proved in
-`AdianRabinWordProblem` and only `Primrec` plumbing left.  What this file
+**(b) is done as of 2026-08-16**, unconditionally and with no literature
+input: `Computability.NovikovBoone.exists_finitelyPresented_wordProblem_not_computablePred`.
+(a) remains out of reach; (c) has its mathematical half proved in
+`AdianRabinWordProblem` and only `Primrec` plumbing left.  But see D4 and D6
+below before assuming (b) can simply be handed to the assembly step: the
+statement proved is about an abstract group, and the assembly needs a code.  What this file
 supplies is everything on either side of them: the group-theoretic premises
 that let the Adian--Rabin theorem be invoked (`operatorMF_isMarkovProperty`)
 and the recursion-theoretic inference the manuscript performs once the
@@ -188,8 +192,9 @@ an `AdianRabinReduction`, and `¬ComputablePred sourceProperty`.  Current state:
   `PresentationCode × List (ℕ × Bool)`).
 * `AdianRabinReduction.transform`, `.transform_computable`, `.correct` ---
   **open**; these three fields *are* (a), the Adian--Rabin construction.
-* `¬ComputablePred sourceProperty` --- **open**; with the source concretized
-  this is literally (b), Novikov--Boone.
+* `¬ComputablePred sourceProperty` --- **open, but no longer for want of (b)**.
+  Novikov--Boone is proved (D4).  What is missing is the passage from it to
+  *this* predicate, which quantifies over `PresentationCode`s: see D6.
 
 So the conditionality of `cor:undecidable` is **unchanged**: what the recent
 work bought is that both ends of the reduction now have concrete referents
@@ -213,14 +218,17 @@ Two observations about the existing material, both acted on below:
 
 ## Engineering assessment of the remaining debt
 
-The debt is exactly (a), (b) and (c) above; the pullback and the two
-group-theoretic inputs are already machine-checked, so nothing else stands
-between the repository and `cor:undecidable`.  The corollary cannot be closed
-without a formal Novikov--Boone theorem, and the manuscript's *specific*
-Markov property admits no cheaper route than the general construction; see "No
-cheaper route" below.  Sizes are for a Lean 4 / Mathlib development, counting
-only new lines and assuming the Mathlib pieces listed above are reused.  D1 and
-D2 belong to (c) and to making (a) expressible; D3 and D4 are (b); D5 is (a).
+The debt was (a), (b) and (c) above; as of 2026-08-16 it is **(a) and (c)**,
+since (b) is proved.  The pullback and the two group-theoretic inputs are
+already machine-checked, so nothing else stands between the repository and
+`cor:undecidable`.  The corollary could not be closed without a formal
+Novikov--Boone theorem, which is why D4 was the first thing built once D3
+landed; and the manuscript's *specific* Markov property admits no cheaper route
+than the general construction; see "No cheaper route" below.  Sizes are for a
+Lean 4 / Mathlib development, counting only new lines and assuming the Mathlib
+pieces listed above are reused.  D1 and D2 belong to (c) and to making (a)
+expressible; D3 and D4 are (b); D4' is the passage from (b) to the coded form
+the assembly consumes; D5 is (a).
 
 * **D1. A presentation-code layer.**  `Primcodable` for finite presentations
   over a countable generating alphabet: a code type, the semantic map to
@@ -303,13 +311,24 @@ D2 belong to (c) and to making (a) expressible; D3 and D4 are (b); D5 is (a).
   * `BooneGroup.exists_group_wordProblem_not_computablePred` is the two
     together: a group and a sequence of words in it for which triviality is not
     decidable.  Axiom-clean.
-  What remains is **S8**: that `G_M` is finitely presented.  It is, as
-  constructed --- a tower of HNN extensions over a two-generator one-relator
-  group, with finitely generated associated subgroups --- but Mathlib has no
-  closure property for `Group.IsFinitelyPresented` under HNN extensions, so the
-  presentation `⟨X, s | R, s aᵢ s⁻¹ = bᵢ⟩` has to be built and proved to
-  present the extension.  **~500--900 lines remaining.**  Depends on D3, which
-  is done.
+  **DONE (2026-08-16).**  S8 --- that `G_M` is finitely presented --- is
+  `BooneGroupFinitePresentation.finalGroup_isFinitelyPresented`, and
+  `NovikovBoone.exists_finitelyPresented_wordProblem_not_computablePred` is the
+  conjunction of the two halves over the same `FinalGroup mm hM`.  Axiom-clean,
+  no hypothesis, no literature input.
+
+  The estimate above was **~500--900 lines**; it came to about 300, because the
+  entry mis-stated the obstacle.  Mathlib does not need a presentation
+  `⟨X, s | R, s aᵢ s⁻¹ = bᵢ⟩` to be built and proved to present the extension:
+  it *defines* `HNNExtension G A B φ` as a quotient of `G ∗ Multiplicative ℤ`,
+  and already closes `IsFinitelyPresented` under `Monoid.Coprod` and under
+  quotient by a `Subgroup.IsFinitelyNormallyGenerated`.  So the whole content
+  is cutting the relation family `{t a t⁻¹ (φ a)⁻¹ : a ∈ A}` down to a
+  generating set, which is `MonoidHom.eq_of_eqOn_dense` applied to two homs
+  `A →* Q`.  **Britton's Lemma is never used** in this half.  The half that
+  could have failed was instead that `⟨t⟩'` --- free of infinite rank in the
+  base group --- is finitely generated *in the tower*, one generator per stage.
+  See `Algebra.HNNFinitePresentation`.
 
 * **D5. The Adian--Rabin construction, effectively.**  Given the group of D4,
   a word `w`, and a fixed finitely presented `E`, build `P_w` with `G(P_w)`
@@ -325,11 +344,45 @@ D2 belong to (c) and to making (a) expressible; D3 and D4 are (b); D5 is (a).
   via `computablePred_of_re_of_negativeSide_re` below.  **~100--200
   lines.**  Mechanical once D1--D5 exist; the interfaces already fit.
 
+  **Correction (2026-08-16), now that D4 is done: "discharge `¬ComputablePred
+  sourceProperty` from D4" is not mechanical, and the gap is not plumbing.**
+  `sourceProperty` is `wordProblemPred` on `PresentationCode × List (ℕ × Bool)`,
+  where `PresentationCode = ℕ × List (List (ℕ × Bool))` is concrete data.  D4
+  delivers `Group.IsFinitelyPresented (FinalGroup mm hM)`, which in Mathlib is
+  a `Prop`-valued class --- `∃ (n : ℕ) (φ : FreeGroup (Fin n) →* G),
+  Surjective φ ∧ φ.ker.IsFinitelyNormallyGenerated`.  Choice extracts `n`, `φ`
+  and a finite relator set from it, so a code `c₀` for the group does exist;
+  that much is fine, and a constant function at a noncomputable value is still
+  computable.  What choice does *not* give is the other half of the reduction:
+  the undecidable sequence in D4 is a sequence of group **elements**
+  `g : ℕ → FinalGroup mm hM`, and to contradict computability of
+  `wordProblemPred` one needs a **computable** `w : ℕ → List (ℕ × Bool)` with
+  `wordOf c₀ (w m)` trivial exactly when `g m = 1`.  Preimages under a chosen
+  `φ` carry no such guarantee.
+
+  So D6 acquires a genuine predecessor, which is not D5 and not hard, but is
+  not nothing:
+
+  * **D4'. The Boone group as an explicit code.**  Exhibit `c₀ :
+    PresentationCode` presenting `FinalGroup mm hM` --- the relators are
+    explicit in the machine, one HNN stable letter per quadruple plus `k` ---
+    together with a computable `w : ℕ → List (ℕ × Bool)` spelling out the words
+    `t⁻¹ · finalTw (f m) · t · (finalTw (f m))⁻¹` in `c₀`'s generator
+    numbering, and prove the two agree.  Then `¬ComputablePred wordProblemPred`
+    is immediate.  Everything needed is already constructed; what is missing is
+    that it was never written down in coordinates.  Depends on D1.
+
+  This does not change the manuscript's conditionality, which rests on (a)/D5.
+
 Total: on the order of **6000--11000 new lines**, i.e. a multi-month
 single-developer project whose critical path is D3 → D4.  It is a genuine
 formalization project in its own right, not a gap in this manuscript's own
-mathematics.  (D3 and the correctness half of D4 are now done; the estimate
-above is the original one and has not been rescaled.)
+mathematics.  (The estimate above is the original one and has not been
+rescaled.  As of 2026-08-16 **D3 and D4 are both done in full**, so the
+critical path has moved to D5, with D1, D2 and the newly separated D4' as its
+prerequisites.  D4 came in at roughly a third of its estimate; nothing licenses
+assuming D5 will do the same, since its cost is in a Britton-based induction
+rather than in a permanence property Mathlib turned out to already have.)
 
 ### Cost of retracting the manuscript's self-declaration
 

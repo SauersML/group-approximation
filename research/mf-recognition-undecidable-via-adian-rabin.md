@@ -4,7 +4,7 @@ id: mf-recognition-undecidable-via-adian-rabin
 kind: route
 title: Feed the Markov premise and the transformation into the reduction
 target: mf-recognition-undecidable
-requires: [operator-mf-is-a-markov-property, adian-rabin-transform-for-mf]
+requires: [operator-mf-is-a-markov-property, adian-rabin-transform-for-mf, uniform-word-problem-on-presentation-codes-undecidable]
 artifacts:
   - non_mf_groups_exist.tex
   - GroupApproximation/Computability/MarkovMFConsequences.lean
@@ -13,13 +13,26 @@ artifacts:
 
 ## Why sufficient
 
-The two prerequisites are exactly the four fields of
+The first two prerequisites are exactly the four fields of
 `MarkovMFConsequences.AdianRabinReduction`: the first supplies the
 `Primcodable` code type, the `FinitePresentationSemantics`, and the
 `MarkovWitness`; the second supplies the computable `transform` and its
 `correct` equivalence.  Given the structure, both halves of the target are
 *already closed theorems* in the repository — this route is complete the
 instant its prerequisites are.
+
+The third prerequisite was missing from this route until 2026-08-16, and its
+absence was not cosmetic.  `operatorMF_recognition_undecidable` takes
+`¬ComputablePred sourceProperty` as a hypothesis *alongside* the reduction
+datum; the argument below contradicts "undecidability of the source", and
+nothing in the structure supplies it.  With `sourceProperty` concretized to
+`AdianRabinWordProblem.wordProblemPred`, that hypothesis is
+[[uniform-word-problem-on-presentation-codes-undecidable]] — which is **not**
+[[novikov-boone-fp-group-undecidable-word-problem]], because the latter is
+stated for an abstract group and a sequence of elements, and
+`Group.IsFinitelyPresented` is a Prop carrying no code and no words.  Listing
+only the first two would have let this route read as solved with the endpoint
+still unproved.
 
 **Undecidability.**  `MarkovMFConsequences.recognition_undecidable`, then
 `operatorMF_recognition_undecidable`.  Suppose MF-recognition on codes were
