@@ -22,8 +22,26 @@ json.load(open('docs/NON_MF_NUMBERED_CLAIMS.json'))['claims']
 # -> Counter(x['status'] for x in claims) == {'exact': 55, 'literature-input': 1}
 ```
 
-**Confirmed.** Exactly one numbered claim declares an external input:
-`cor:undecidable`, on the Adian–Rabin construction.
+**Confirmed** at the revision this was taken.
+
+> **Re-run 2026-08-17 — every number in the block above has moved, and the
+> conclusion it supported is gone.** Against the current
+> `docs/NON_MF_NUMBERED_CLAIMS.json`:
+>
+> ```python
+> # -> [x['id'] for x in claims if x['external_inputs']]   == []
+> # -> [x['id'] for x in claims if x['coverage_gap']]      == []
+> # -> [x['id'] for x in claims if x['extra_assumptions']] == []
+> # -> Counter(x['status'] for x in claims) == {'exact': 54}
+> ```
+>
+> **No** numbered claim declares an external input any more. `cor:undecidable`
+> was the one, and it is now proved on both clauses — see § 3.6, rewritten
+> below.  The environment count is 54, not 56.  The section's *argument*
+> survives the correction intact and is worth restating for that reason: the
+> numbered-claim surface was never where the literature debts lived, and an
+> empty `external_inputs` list is no more a certificate now than a
+> one-element list was then.
 
 That fact is true and it is also the least informative true fact about this
 manuscript's literature surface, because **the numbered-claim surface is not
@@ -299,11 +317,13 @@ at L3432–3438):
 claim. **No badge anywhere in the paragraph.** Not in the JSON (unnumbered),
 not in the inventory.
 
-**Lean state, and it is good:** `Sofic/SimpleSoficEnvelope.lean` (193 lines,
-untracked) proves steps 2–4 of the printed four-step argument for the
+**Lean state, and it is good:** `Sofic/SimpleSoficEnvelope.lean` (193 lines;
+*this said "untracked" and that was wrong by 2026-08-17 — it is tracked, inside
+the root import closure, and on `verified`*) proves steps 2–4 of the printed four-step argument for the
 manuscript's actual witness `W` and mark `ζ`, plus the "Equivalently" as a
 genuine biconditional — and assumes nothing: it proves the implication *from a
-concrete envelope*. `Sofic/SoficEnvelopeExistence.lean` (503 lines, untracked)
+concrete envelope*. `Sofic/SoficEnvelopeExistence.lean` (535 lines as of 2026-08-17, not 503;
+likewise tracked, in the closure, and on `verified`)
 does moves 1 and 3 of the classical proof in full and reduces the entire
 remaining debt to one statement:
 
@@ -402,7 +422,44 @@ Loss: the assertion that `Cred(E)` is *not* nuclear. Nothing downstream uses
 it; its only function was to explain why the nuclear form of the BK problem is
 untouched, which the replacement says directly.
 
-### 3.6 `Rabin58` — undecidability  *(inventory row 1; the JSON's one declared input)*
+### 3.6 `Rabin58` — undecidability  *(inventory row 1)*
+
+> **SUPERSEDED 2026-08-17. This debt is closed, and the section below is kept
+> only as the record of what it looked like open.** Every factual claim in it
+> about the tree or the manuscript has since become false, checked one at a
+> time:
+>
+> * The quoted sentence — "By the effective form of the Adian--Rabin
+>   construction \cite{Rabin58}, the set of finite presentations of non-MF
+>   groups is not even recursively enumerable" — **occurs zero times** in
+>   `non_mf_groups_exist.tex`. So do the three cited line numbers.
+>   `\cite{Rabin58}` now has exactly one body site, framing prose before the
+>   corollary, where it is priority attribution and not a step.
+> * "Every undecidability theorem is conditional" is false.
+>   `Computability.not_computablePred_wordProblemPred` proves the word problem
+>   on presentation codes undecidable with no hypothesis, and
+>   `Computability.operatorMF_recognition_not_computable` carries it to MF
+>   recognition. The negative side went the same way:
+>   `WordProblemRE.rePred_wordProblemPred` makes the word problem recursively
+>   enumerable, and `WordProblemRE.operatorMF_negative_side_not_re` concludes
+>   that no enumeration lists the codes of non-MF groups. All four take no
+>   argument and all four are badged at the corollary.
+> * The subheading's "the JSON's one declared input" is false; see § 0.
+> * The **6000–11000 line** estimate, and "it includes Novikov--Boone", are
+>   both moot rather than wrong: the route taken was Aanderaa--Cohen modular
+>   machines, and the closing work was coordinates — writing the halting word
+>   as raw data in the code's own numbering, proving the
+>   configuration-to-word map primitive recursive, and matching triviality
+>   with halting.
+> * **The recommendation below is retracted.** "KEEP, restated as conditional"
+>   and the `\leanconditional` proposal describe a corollary that no longer
+>   exists. `\leanconditional` is still used zero times in the manuscript, and
+>   now for the better reason.
+>
+> The estimate is the part worth keeping in view. A section that priced this
+> debt in five figures of Lean and named it the manuscript's least tractable
+> citation was reporting the cost of the route it could see, not the cost of
+> the problem.
 
 **Sentences** (L3544 body, L3549 inside `cor:undecidable`, L3553 body). The
 in-environment one:
@@ -524,7 +581,8 @@ lines of TeX.
 ## 4. What contradicts the inventory and the brief
 
 1. **"Exactly one claim carries `external_inputs`" is true and misleading.**
-   The JSON covers 56 numbered environments. Five of the seven live literature
+   The JSON covers 56 numbered environments *(54 as of 2026-08-17, and the
+   `external_inputs` list is now empty — § 0)*. Five of the seven live literature
    debts (§3.1, §3.2, §3.3, §3.4, §3.5) live in unnumbered `\paragraph{}`
    blocks that the JSON cannot represent, and a sixth (§3.9) is not a citation.
    A manuscript with zero unformalized literature inputs cannot be certified by
@@ -539,11 +597,17 @@ lines of TeX.
 3. **Row 5 is discharged.** `ClosedEnvelopeCompression.lean`'s docstring ("the
    external input … stays external") is stale; `ZariskiDescendingChain.lean`
    removes it. The manuscript sentence quoting it as classical should go.
+   *(2026-08-17: both halves are done. The docstring now states the two things
+   the badge carries and quotes nothing as external, and the manuscript
+   sentence occurs zero times.)*
 
 4. **Row 2 is discharged up to one adjective.** `ContinuumFamilyCriterion.lean`'s
    docstring ("not proved anywhere in this development. This file does not prove
    it either") is stale for the same reason — `NeumannContinuum.lean` imports
    that file and discharges its obligation.
+   *(2026-08-17: the docstring was refreshed and now says "**It is no longer
+   quoted**", naming the discharging declaration. The adjective is still in the
+   manuscript — wave 0 item 3 below is the one wave-0 item still outstanding.)*
 
 5. **`ElekSzabo` is no longer a debt at all** (§3.7), which no inventory row
    records because it was never a badged claim.
@@ -571,13 +635,18 @@ lines of TeX.
 | 3.3 | `ElekSzaboHyper` | L3442 | **PROVE**, else restate conditionally | one bounded-normal-generation theorem for finite symmetric groups | the simple sofic group with full MF radical |
 | 3.5 | `Lance` | L1039 | **DROP** | 1 clause | "`Cred(E)` is not nuclear" |
 | 3.4 | `GHW`+`KWPermanence`+`KWExact` | L3425–3427 | **DROP** | 1 paragraph rewritten to 1 sentence | the word *exact* in "exact stably finite non-MF algebra" |
-| 3.6 | `Rabin58` | L3544, L3549, L3553 | **KEEP, mark conditional** | `\leanconditional`, 1 badge | the whole undecidability subsection |
+| 3.6 | `Rabin58` | one body site (attribution only) | ~~KEEP, mark conditional~~ **PROVED 2026-08-17** | — | — |
 
 ---
 
 ## 6. Ordered plan to zero unformalized literature inputs
 
 **Wave 0 — free, no Lean (half a day).** Everything here is already proved.
+
+*Status 2026-08-17: items 1, 2, 4 and 5 are done — verified against the tex and
+the two docstrings, not inferred. Item 3 is the only one outstanding, and
+`\cite{Neumann37}` with its "two-generator" adjective is still in the
+manuscript.*
 
 1. Badge L3417 with `SoficByAmenablePermanence.isSofic_of_isSofic_ker_of_isAmenable`;
    keep `\cite{ElekSzabo}` as attribution. (§3.7)
@@ -625,12 +694,17 @@ lines of TeX.
     `SimpleSoficEnvelope`. That is *also* zero unformalized inputs — the
     hypothesis becomes printed rather than quoted.
 
-**Terminal state.** After waves 0–3, the manuscript's only unformalized
+**Terminal state.** ~~After waves 0–3, the manuscript's only unformalized
 literature input is Adian–Rabin at `cor:undecidable`, printed as conditional,
-marked `\leanconditional`, and visible to `check_non_mf_refs.py`. That is one
-declared input in one corollary that says so in its own prose — which is what
-`NON_MF_NUMBERED_CLAIMS.json` currently claims is *already* the situation, and
-after wave 3 it would be true.
+marked `\leanconditional`, and visible to `check_non_mf_refs.py`.~~
+
+*Revised 2026-08-17.* The terminal state this paragraph describes was overtaken
+from the other end: Adian–Rabin was proved rather than marked, so the residue
+after waves 0–3 is **zero** declared inputs, not one. `\leanconditional`
+remains unused and there is no longer a candidate for it. What the paragraph
+got right is the shape of the argument — that a manifest reporting no external
+inputs certifies nothing by itself — and § 0 now makes that point against an
+empty list instead of a singleton.
 
 **Gate work owed regardless.** No gate reads `\cite`. A ten-line addition to
 `check_non_mf_refs.py` — flag any `\cite` outside `\subsection*{Relation to
