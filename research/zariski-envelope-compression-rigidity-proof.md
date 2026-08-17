@@ -5,6 +5,11 @@ kind: route
 title: Instantiate the chain-condition principle on Zariski-closed subgroups
 target: zariski-envelope-compression-rigidity
 requires: [noetherian-invariant-compression-rigidity]
+artifacts:
+  - GroupApproximation/Algebra/ZariskiEnvelopeEndpoint.lean
+  - GroupApproximation/Algebra/ZariskiClosedSubgroup.lean
+  - GroupApproximation/Algebra/ZariskiDescendingChain.lean
+  - GroupApproximation/Criterion/ClosedEnvelopeCompressionCore.lean
 ---
 
 ## Why sufficient

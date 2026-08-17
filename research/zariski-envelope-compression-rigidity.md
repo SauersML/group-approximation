@@ -5,6 +5,11 @@ kind: claim
 title: Compression preserves the algebraic envelope in every finite-dimensional representation
 distinct_from:
   commutant-no-growth: That claim says compression creates no new commuting endomorphisms; this one says the compressed and uncompressed subgroups have the same Zariski closure, which determines the commutant and every other envelope-level invariant at once.
+artifacts:
+  - GroupApproximation/Algebra/ZariskiEnvelopeEndpoint.lean
+  - GroupApproximation/Algebra/ZariskiClosedSubgroup.lean
+  - GroupApproximation/Algebra/ZariskiDescendingChain.lean
+  - GroupApproximation/Criterion/ClosedEnvelopeCompressionCore.lean
 ---
 
 Let `rho : H -> GL(V)` be any finite-dimensional complex representation and
