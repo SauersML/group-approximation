@@ -1027,6 +1027,8 @@ import GroupApproximation.Analysis.ShulmanTraceClasses
 import GroupApproximation.Sofic.ShulmanMFTraceBridge
 import GroupApproximation.Analysis.MaximalGroupCStarTrace
 import GroupApproximation.Analysis.ShulmanTraceNorms
+import GroupApproximation.Analysis.TracialMatrixUltraproduct
+import GroupApproximation.Analysis.ShulmanTraceFactorization
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
