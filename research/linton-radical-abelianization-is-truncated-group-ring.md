@@ -7,6 +7,7 @@ distinct_from:
   one-relator-soficity-localizes-at-rational-derived-stage: that locates the soficity question inside the shell `E = R ⋊ F₀`; this computes the first homology of `R` itself, as a module over the quotient, and carries no soficity content.
   perfect-two-generator-relation-module-not-cyclic: that is a *negative* statement about the relation module of a two-generator perfect group, obstructing one-relator compression; this is a *positive* computation of the relation-module quotient inside a group that already is one-relator. Opposite directions of the same Lyndon machinery.
   leavitt-degree-kernel-normally-generated-by-one-word: that asks for a word normally generating a degree kernel over the Leavitt unit group and is open; this computes an abelianization in a one-relator group and is closed. The shared vocabulary is "normal closure of one element" and nothing else.
+  linton-shell-sofic: that asks whether `R ⋊ F₀` is sofic and is open; this computes `R_ab` and is closed. The computation is an input to reasoning about the shell — it separates the `k = 1` and `k > 1` regimes — but decides nothing about soficity.
 artifacts:
   - research/artifacts/one-relator-soficity-audit-2026-08-17.md
 ---

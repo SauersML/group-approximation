@@ -8,6 +8,7 @@ distinct_from:
   nonsofic-one-relator-relator-has-primitivity-rank-two: that identifies the relator invariant a counterexample must have and supplies the torsion-freeness; this is the subgroup obstruction that follows, and it is what actually blocks the embedding strategy.
   fournier-facio-torsion-free-skeleton: that records the structure of a published torsion-free nonsofic group; this is a statement about what one-relator groups cannot contain, and its role here is to say that that group is not among their subgroups.
   bekka-valette-amenable-t-dichotomy: that is the amenable-versus-(T) dichotomy used elsewhere in this graph for representation-theoretic purposes; this is a local-indicability obstruction inside one-relator groups and uses only that (T) passes to quotients and `Z` fails it.
+  degree-one-assembly-surjective-torsion-free: that is a surjectivity statement about degree-one assembly over torsion-free groups; this is a subgroup-exclusion statement inside torsion-free one-relator groups. They share the hypothesis "torsion-free" and no machinery — no assembly map, K-theory or index appears here.
 artifacts:
   - research/artifacts/one-relator-soficity-audit-2026-08-17.md
 ---
