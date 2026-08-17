@@ -402,11 +402,47 @@ the assembly consumes; D5 is (a).
   * **D4'. The Boone group as an explicit code.**  Exhibit `c₀ :
     PresentationCode` presenting `FinalGroup mm hM` --- the relators are
     explicit in the machine, one HNN stable letter per quadruple plus `k` ---
-    together with a computable `w : ℕ → List (ℕ × Bool)` spelling out the words
-    `t⁻¹ · finalTw (f m) · t · (finalTw (f m))⁻¹` in `c₀`'s generator
-    numbering, and prove the two agree.  Then `¬ComputablePred wordProblemPred`
-    is immediate.  Everything needed is already constructed; what is missing is
-    that it was never written down in coordinates.  Depends on D1.
+    together with a computable `w` spelling out the words
+    `t⁻¹ · finalTw · t · finalTw⁻¹` in `c₀`'s generator numbering, and prove
+    the two agree.  Then `¬ComputablePred wordProblemPred` is immediate.
+
+    **Status 2026-08-17: three of the four pieces are done, and the fourth is
+    the words.**
+
+    - *The undecidable source, in the form the group side can use* --- **done**,
+      `ModularMachineConfigHalting.exists_modularMachine_config_halting_not_computablePred`:
+      `∃ mm, ¬ComputablePred fun p : ℕ × ℕ => mm.Halts p`, axiom-clean.  Note
+      this is on the machine's own *configurations*, with no indexing map, which
+      is what lets the words be attached to `(i, j)` directly.  It needed the
+      index map of `exists_modularMachine_halting_not_computablePred` to be
+      computable, and that turned out **not** to require `Primrec` through
+      `PartrecToTM2 → TM2to1 → TM1to0`: the map only ever builds an *initial*
+      configuration, so `encCfg` of it is a constant beside a Horner fold, and
+      the choice-based `Fintype.equivFin` contributes fixed naturals rather than
+      needing evaluation (`BinaryDigitPrimrec`, `TrNatRecurrence`,
+      `IndexMapComputable`).
+    - *The code* --- **done**, `BooneGroupCode.finalGroupCodeEquiv`:
+      `Carrier (finalGroupCode mm hM) ≃* FinalGroup mm hM`.  `BooneTowerPresentation`
+      had presented the tower and adjoined `k` without ever saying the result was
+      `FinalGroup`; the two are not definitionally equal, since the presentation's
+      associated subgroup is its own `tsub` and agreement is `machineTowerPres_tsub`,
+      an equality of subgroups appearing in the *type*.  `hnnCongrOfEq` transports
+      it by `subst`.
+    - *Coded triviality as a decidable search* --- **done**,
+      `CodedWordTriviality.wordOf_eq_one_iff_exists_steps`.  `wordOf c w` lives in
+      `FreeGroup (Fin (genCount c))`, a family depending on the code, and no
+      dependent family is `Primcodable`; normalising letters mod `genCount c` and
+      pushing along the injection `Fin.val` moves the question into `FreeGroup ℕ`,
+      where the deletion certificate of `FreeGroupDeletion` decides it.
+    - *The words* --- **open**, and the whole of what is left: a computable
+      `ℕ × ℕ → List (ℕ × Bool)` giving each configuration's word in
+      `finalGroupCode`'s numbering, plus its agreement with
+      `conj_k_finalTw_eq_iff`.
+
+    One trap for whoever writes them: `stageCode` is `noncomputable`, and that is
+    harmless.  The code is a fixed object, and a constant at a noncomputable value
+    is still `Computable`; only the *word map* has to be effective.  Needing
+    `stageCode` itself to compute would be a sign the statement had drifted.
 
   This does not change the manuscript's conditionality, which rests on (a)/D5.
 
