@@ -1,5 +1,4 @@
 import GroupApproximation.Analysis.FiniteCStarMurrayVonNeumann
-import GroupApproximation.Analysis.OmegaActionLinear
 import GroupApproximation.Analysis.OmegaConjugationOperators
 import GroupApproximation.Sofic.OmegaCoronaFinite
 
@@ -34,19 +33,15 @@ conclusion is the printed `P = Q`.
 
 ## From `P = Q` to the fixed spaces
 
-`mem_omegaFix_of_conjugated_fixed` carries the equality of the two
-*projections* to the printed equality of the two *fixed spaces*,
-`Fix π(sLs⁻¹) = Fix π(L)`.  That needs the identification of `ran P` with
-`Fix π(L)` in both directions, and both directions are already in the corpus:
-`OmegaActionLinear.omegaAct_proj_of_fixed` is `Fix ⊆ ran P`, whose spectral
-content is the resolvent factorisation of `1 - P`, and
-`kt_08_rep_mul_proj` is `ran P ⊆ Fix`.  So this half is an assembly too.
+That step is **not** here.  `Analysis/OmegaFixRange` does it, and consumes
+`omegaConjProj_eq_proj` below to do so: it identifies each fixed space with
+the range of its projection (`range_proj_eq_omegaFix`,
+`range_conjProj_eq_omegaFixConj`), rewrites one into the other along this
+finiteness comparison (`omegaFixConj_eq_omegaFix`), and reads off the
+implication the collapse endpoint consumes (`fix_of_fix_conjugated`).
 
-The result is exactly the `htransport` hypothesis of
-`Analysis/CollapseUltraproductRepresentation.collapse_contradiction_kOmega`,
-so `CO.21b` inside `K_ω` no longer carries an analytic hypothesis: the
-Delorme–Guichardet step is proved, completeness of `K_ω` is proved, `π` is
-built, and the transport step is this theorem.
+This file deliberately stops at the algebra of `B_ω` and takes no import from
+the `K_ω` action, so it stays validatable independently of that lane.
 -/
 
 namespace GroupApproximation
@@ -95,62 +90,6 @@ theorem omegaImplementer_isometry_identities_eq
   refine ⟨?_, h2⟩
   rw [h1]
   exact omegaConjProj_eq_proj Y ω D
-
-/-! ## `Fix π(sLs⁻¹) = Fix π(L)`: the transport hypothesis, discharged -/
-
-section Transport
-
-variable (w : ℕ → ℝ)
-
-/-- **The printed identification of the two fixed spaces.**  A vector of `K_ω`
-fixed by every `π(s ι(γ) s⁻¹)` is fixed by every `π(ι γ)`.
-
-This is the `htransport` hypothesis of
-`Analysis/CollapseUltraproductRepresentation.collapse_contradiction_kOmega`
-and of the corresponding step in `thm:kazhdan-transport`, and it is an
-assembly of four results that were already in the corpus, in three lanes:
-
-* `kt_19_omega_mem_fix_iff` turns the hypothesis into `V* η ∈ Fix`;
-* `OmegaActionLinear.omegaAct_proj_of_fixed` — the printed `Fix ⊆ ran P`,
-  whose spectral content is the resolvent factorisation of `1 - P` — turns
-  that into `P (V* η) = V* η`;
-* applying `V` and using `omegaConjProj_eq_proj`, the finiteness comparison
-  proved above, replaces `V P V*` by `P` and gives `P η = η`;
-* `kt_08_rep_mul_proj` — the printed `ran P ⊆ Fix`, i.e. `π(ι γ) P = P` —
-  returns `η` to `Fix`.
-
-The one-sided compression `s ι(Γ) s⁻¹ ⊆ ι(Γ)` enters exactly once, inside
-`omegaConjProj_eq_proj`, through `kt_09_conjugate_mul_proj`. -/
-theorem mem_omegaFix_of_conjugated_fixed (hw : ∀ n, 0 ≤ w n)
-    (D : KazhdanCompressionRep Γ H (OmegaAdjointCorona Y ω))
-    {η : Vec Y w ω}
-    (hη : ∀ γ : Γ, omegaAct Y w ω hw
-      (omegaRep Y ω D (D.s * D.iota γ * D.s⁻¹)) η = η) :
-    η ∈ omegaFix Y ω w hw D := by
-  have hstar : omegaAct Y w ω hw (star D.shift) η ∈ omegaFix Y ω w hw D :=
-    (kt_19_omega_mem_fix_iff Y ω w hw D η).1 hη
-  have hproj : omegaAct Y w ω hw D.proj (omegaAct Y w ω hw (star D.shift) η)
-      = omegaAct Y w ω hw (star D.shift) η :=
-    OmegaActionLinear.omegaAct_proj_of_fixed Y w ω hw D
-      ((mem_omegaFix_iff Y ω w hw D _).1 hstar)
-  have hPη : omegaAct Y w ω hw D.proj η = η := by
-    have h4 := congrArg (omegaAct Y w ω hw D.shift) hproj
-    rw [← omegaAct_mul, ← omegaAct_mul, ← omegaAct_mul,
-      shift_mul_proj_mul_star_shift_eq_proj Y ω D, D.shift_mul_star,
-      omegaAct_one] at h4
-    exact h4
-  refine (mem_omegaFix_iff Y ω w hw D η).2 fun γ ↦ ?_
-  have hrep : omegaRep Y ω D (D.iota γ) * D.proj = D.proj :=
-    D.kt_08_rep_mul_proj γ
-  calc omegaAct Y w ω hw (omegaRep Y ω D (D.iota γ)) η
-      = omegaAct Y w ω hw (omegaRep Y ω D (D.iota γ))
-          (omegaAct Y w ω hw D.proj η) := by rw [hPη]
-    _ = omegaAct Y w ω hw (omegaRep Y ω D (D.iota γ) * D.proj) η := by
-          rw [omegaAct_mul]
-    _ = omegaAct Y w ω hw D.proj η := by rw [hrep]
-    _ = η := hPη
-
-end Transport
 
 end
 
