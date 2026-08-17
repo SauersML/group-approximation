@@ -130,6 +130,7 @@ theorem normMatrixCStarCoronaMk_eq_of_eventuallyEq
     rw [hn0, norm_zero]
   exact Tendsto.congr' key tendsto_const_nhds
 
+omit [∀ n, Nonempty (X n)] in
 /-- **The same patch in the unitary-sequence quotient.**  Two coordinatewise
 unitary sequences that agree off a finite set have the same class in
 `NormMatrixCoronaUnitary X`, because their quotient is eventually the identity
@@ -168,6 +169,7 @@ def polarPatch (a : BoundedMatrixSequence (fun n ↦ X n)) :
       (KazhdanCornerMatrices.cornerGram_isHermitian (a n)) hn le_rfl
   else 1
 
+omit [∀ n, Nonempty (X n)] in
 /-- On the cofinite set where the Gram defect is at most `1/2`, the patched
 sequence is the printed polar correction. -/
 theorem polarPatch_eq_polarCorrect
@@ -183,6 +185,7 @@ theorem polarPatch_eq_polarCorrect
             (fun _ ↦ 1) from rfl]
   exact dif_pos hn
 
+omit [∀ n, Nonempty (X n)] in
 /-- **"Set `uₙ = 1` at the finitely many remaining indices."**  The other
 branch, named. -/
 theorem polarPatch_eq_one

@@ -117,7 +117,7 @@ theorem exists_independent_subset (s : Equiv.Perm Y) :
         intro hall
         have hcard := hAmax (insert x A)
           (Finset.mem_filter.mpr ⟨Finset.mem_powerset.mpr hsub, hall⟩)
-        rw [Finset.card_insert_of_not_mem hxA] at hcard
+        rw [Finset.card_insert_of_notMem hxA] at hcard
         omega
       have hex : ∃ y ∈ insert x A, s y ∈ insert x A := by
         by_contra hcon

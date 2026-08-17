@@ -120,10 +120,12 @@ section Fix
 variable {B : Type*} [Ring B] [StarRing B]
 variable {R K : Type*} [Semiring R] [AddCommMonoid K] [Module R K]
 
+omit [StarRing B] in
 theorem act_mul_apply (rho : B →* Module.End R K) (a b : B) (ζ : K) :
     rho (a * b) ζ = rho a (rho b ζ) := by
   simp only [map_mul, Module.End.mul_apply]
 
+omit [StarRing B] in
 theorem act_one_apply (rho : B →* Module.End R K) (ζ : K) :
     rho 1 ζ = ζ := by
   simp only [map_one, Module.End.one_apply]

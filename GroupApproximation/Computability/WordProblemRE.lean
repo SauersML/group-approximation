@@ -203,7 +203,7 @@ theorem primrec_factorWord : Primrec₂ factorWord := by
 theorem primrec_certWord : Primrec₂ certWord :=
   (Primrec.list_flatten.comp
     (Primrec.list_map Primrec.snd
-      (primrec_factorWord.comp (Primrec.fst.comp Primrec.fst) Primrec.snd))).of_eq
+      (primrec_factorWord.comp (Primrec.fst.comp Primrec.fst) Primrec.snd).to₂)).of_eq
     fun _ => rfl
 
 theorem primrec_searchCheck :
