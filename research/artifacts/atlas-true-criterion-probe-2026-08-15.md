@@ -354,12 +354,36 @@ slices — the diagnosis is the fixed-probe coupling, not the trade.)
 Killed as contaminated; the numbers are recorded here as the
 overfitting signature to recognize, not as landscape evidence.
 
-**Run 3 (V100, job 16010002): running.**  Probes resampled every
-iteration, so `W` depends only on past samples and every report is
-conditionally unbiased (true SGD on the exact objective); also logs
-`grad_norm` and normalized `‖W − I‖`.  100 iterations, report every 5,
-8 h wall.  The A100 twin (16009228, pending on down nodes) picks up
-the same script if it ever starts.
+**Run 3 (V100, job 16010002): the unbiased design — cancelled on a
+MISDIAGNOSIS, recorded here as the lesson.**  Probes resampled every
+iteration (true SGD on the exact objective, reports conditionally
+unbiased), `grad_norm` and `‖W − I‖` logged.  Iteration 0 read
+`w_minus_identity = 1.9993` where the step size predicts 0.04, and I
+killed the run believing the cusolver QR retraction had scrambled `W`.
+The CPU repro (`experiments/qr_phase_repro.py`, torch 2.4.1, identical
+numbers) then showed the truth: **LAPACK/cusolver Householder QR of a
+near-identity input returns `Q ≈ −I`** (with `R ≈ −I`, product `+I`),
+the script's *init* used raw QR with no phase fix, so every run's warm
+start sat at the gauge copy `−I` — and a global phase cancels in
+`W R_h W*`, so `−I` is model-equivalent to `I`.  The in-loop
+phase-fixed QR retraction was then continuous *in that gauge* (`R`'s
+diagonal stays positive around `−I`, the fix a no-op).  Nothing was
+broken; the diagnostic measured gauge, not damage.  Iteration 0's
+other reads were genuine and correct: `grad_norm 2.21` is the m=8
+estimator's noise floor at the (provably zero-gradient) flip, and
+active/control matched baseline.  Moral: before killing a run over a
+diagnostic, check whether the quantity is gauge-invariant in the
+model; the honest drift measure is `2 − 2|tr W|/n`.
+
+**Run 4 (V100, job 16010744): running — the clean design.**
+Resampled probes; Newton–Schulz polar retraction (pure GEMMs, nearest
+unitary, and its init lands in the `+I` gauge, so `w_minus_identity`
+is honest); `unitarity_defect` logged; `gauge_distance_sq =
+2 − 2|tr W|/n` in the script (may postdate the process launch —
+raced).  100 iterations, report every 5, 8 h wall.  Pre-registered
+reading, unchanged: honest descent of the active mean below 1.9987 ⟹
+the flip is a strict saddle in U(20160); a stall or pure diffusion
+decides nothing (consistent with a local minimum).
 
 **Pre-registered interpretation (unchanged from §(d)):** a descent of
 the active mean visibly below the 1.9987 baseline is the
