@@ -124,14 +124,12 @@ theorem isIdempotentElem_listProd {l : List A}
       _ = (a * a) * (t.prod * t.prod) := by noncomm_ring
       _ = a * t.prod := by rw [ha, ht]
 
-/-- **CO.19, the vanishing criterion.**  If `1 − ∏(1 − q_a) = 0` then every
-`q_a` vanishes.  The argument is the printed one: multiply by `q_a`, which
-annihilates its own factor, and commute it past the others. -/
-theorem eq_zero_of_one_sub_listProd_eq_zero {l : List A}
+/-- **The printed `q_a` annihilation.**  Each factor's index annihilates the
+whole product: `q_a · ∏_b (1 − q_b) = 0`.  The argument is the printed one:
+`q_a(1 − q_a) = 0`, and `q_a` commutes past the other factors. -/
+theorem mul_listProd_one_sub_eq_zero {l : List A}
     (hl : ∀ y ∈ l, IsIdempotentElem y) (hc : l.Pairwise Commute)
-    {x : A} (hx : x ∈ l)
-    (h : (1 : A) - (l.map fun y ↦ 1 - y).prod = 0) : x = 0 := by
-  have hprod : (l.map fun y ↦ 1 - y).prod = 1 := (sub_eq_zero.mp h).symm
+    {x : A} (hx : x ∈ l) : x * (l.map fun y ↦ 1 - y).prod = 0 := by
   obtain ⟨s, t, hst⟩ := List.append_of_mem hx
   have hc' : (s ++ x :: t).Pairwise Commute := by rw [← hst]; exact hc
   have hcross := (List.pairwise_append.mp hc').2.2
@@ -163,8 +161,33 @@ theorem eq_zero_of_one_sub_listProd_eq_zero {l : List A}
             * (t.map fun y ↦ 1 - y).prod := by
           noncomm_ring
       _ = 0 := by rw [hxx, mul_zero, zero_mul]
+  exact hkey
+
+/-- **CO.19, the vanishing criterion.**  If `1 − ∏(1 − q_a) = 0` then every
+`q_a` vanishes. -/
+theorem eq_zero_of_one_sub_listProd_eq_zero {l : List A}
+    (hl : ∀ y ∈ l, IsIdempotentElem y) (hc : l.Pairwise Commute)
+    {x : A} (hx : x ∈ l)
+    (h : (1 : A) - (l.map fun y ↦ 1 - y).prod = 0) : x = 0 := by
+  have hprod : (l.map fun y ↦ 1 - y).prod = 1 := (sub_eq_zero.mp h).symm
+  have hkey := mul_listProd_one_sub_eq_zero hl hc hx
   rw [hprod, mul_one] at hkey
   exact hkey
+
+/-- **The printed `q_a q = q_a`.**  Immediate from the annihilation. -/
+theorem mul_one_sub_listProd {l : List A}
+    (hl : ∀ y ∈ l, IsIdempotentElem y) (hc : l.Pairwise Commute)
+    {x : A} (hx : x ∈ l) :
+    x * ((1 : A) - (l.map fun y ↦ 1 - y).prod) = x := by
+  rw [mul_sub, mul_one, mul_listProd_one_sub_eq_zero hl hc hx, sub_zero]
+
+/-- **The printed `d_a = d_a q_a`.**  The cube identity, read as `d · d² = d`;
+with `q_a q = q_a` this is the printed `d_a = d_a q_a = d_a q`. -/
+theorem sub_mul_sq_sub {p q : A} (hp : IsIdempotentElem p)
+    (hq : IsIdempotentElem q) (h : Commute p q) :
+    (q - p) * (q - p) ^ 2 = q - p := by
+  calc (q - p) * (q - p) ^ 2 = (q - p) ^ 3 := by noncomm_ring
+    _ = q - p := cube_sub_eq_self hp hq h
 
 /-- **CO.19, assembled.**  `q = 1 − ∏_{i}(1 − (P i − p)²)` is nonzero as soon as
 one `P i` differs from `p`. -/
@@ -236,6 +259,19 @@ def fixer (ρ : G →* unitary A) (p : A) : Subgroup G where
 
 theorem mem_fixer_iff (ρ : G →* unitary A) (p : A) (g : G) :
     g ∈ fixer ρ p ↔ conj ρ p g = p := Iff.rfl
+
+/-- **`eq:collapse-cocycle`.**  `d_{gh} = d_g + Θ(g) d_h Θ(g)*`.
+
+This is pure algebra and needs nothing about the ambient: `p_{gh} = Θ(g) p_h
+Θ(g)*` by multiplicativity, and then the two copies of `Θ(g) p Θ(g)*` cancel.
+It is the identity that makes `β(g) = Λ(d_g)` a `1`-cocycle for the conjugation
+representation, once `Λ` is available. -/
+theorem sub_conj_mul (ρ : G →* unitary A) (p : A) (g h : G) :
+    conj ρ p (g * h) - p
+      = (conj ρ p g - p) + (ρ g : A) * (conj ρ p h - p) * star (ρ g : A) := by
+  rw [conj_mul]
+  simp only [conj, mul_sub, sub_mul]
+  abel
 
 /-- **CO.19, the generating step.**  If no generator moves `p`, nothing does; so
 if something does, a generator already does. -/
