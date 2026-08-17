@@ -127,10 +127,11 @@ def conjHom : A →* Q φ S :=
 def phiHom : A →* Q φ S :=
   (qOf φ S).comp (B.subtype.comp (φ : A →* B))
 
-theorem conjHom_apply (a : A) :
+@[simp] theorem conjHom_apply (a : A) :
     conjHom φ (S := S) a = qT φ S * qOf φ S (a : G) * (qT φ S)⁻¹ := rfl
 
-theorem phiHom_apply (a : A) : phiHom φ (S := S) a = qOf φ S (φ a : G) := rfl
+@[simp] theorem phiHom_apply (a : A) :
+    phiHom φ (S := S) a = qOf φ S (φ a : G) := rfl
 
 theorem conjHom_eq_phiHom_of_mem {a : A} (ha : a ∈ S) :
     conjHom φ (S := S) a = phiHom φ (S := S) a := by
