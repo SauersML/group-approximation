@@ -1,0 +1,35 @@
+---
+rg: 2
+id: leavitt-rank-three-unit-lift
+kind: claim
+title: Three units suffice to lift each Leavitt generator into the group algebra
+distinct_from:
+  leavitt-unit-group-algebra-surjects-onto-leavitt: that is the qualitative spanning statement, which gives no bound on how many units an element needs; this pins the number at three for the two generators that carry the defect, by a self-similarity computation the spanning proof does not perform.
+artifacts:
+  - research/artifacts/kaplansky-direct-finiteness-audit-2026-08-17.md
+---
+
+There are units `u_1, u_2, u_3` and `v_1, v_2, v_3` of `R = L_(F_2)(1,2)`,
+each triple pairwise distinct and given in closed form, with
+
+    t_0 = u_1 + u_2 + u_3,      s_0 = v_1 + v_2 + v_3.
+
+Hence `t~ = [u_1] + [u_2] + [u_3]` and `s~ = [v_1] + [v_2] + [v_3]` in
+`F_2[R^x]` have support **exactly three**, with `pi(t~) = t_0`,
+`pi(s~) = s_0`, and therefore `pi(t~ s~) = t_0 s_0 = 1`.
+
+The last equation holds only after applying `pi`.  The formal product
+`t~ s~` in the group algebra is not `1` and nothing here says it is; this
+claim supplies lifts of the *generators*, not of the relation.
+
+The units come from the self-similarity `R = M_2(R)` and a
+characteristic-two identity writing any `2x2` matrix as a sum of three
+elementary-type units, so the count three is what that identity gives, not a
+proved minimum.  Whether the Leavitt generators admit lifts of support one or
+two is not decided here; support one would make `t_0` a unit, which
+`binary-leavitt-algebra-not-directly-finite` forbids.
+
+Its use is `leavitt-rank-three-lift-inverse-support-thirteen`: fixing the
+rank of the lift at three is what lets the bounded-rank computations of
+`dykema-heister-juschenko-bounded-rank-direct-finiteness` apply, and they then
+push any completing one-sided inverse out to support at least thirteen.
