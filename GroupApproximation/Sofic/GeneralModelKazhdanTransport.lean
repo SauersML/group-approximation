@@ -74,6 +74,32 @@ theorem coe_naturalizeUnitary (Y : ℕ → FiniteModel)
       = naturalize Y n (U n g : Matrix (Y n) (Y n) ℂ) :=
   coe_unitaryReindexEquiv Y n (U n g)
 
+/-- Reindexing a unitary conjugation, in one step.  Split out of the transport
+proof because a single `simp only` over the whole conjugated commutator never
+exposed a `naturalize (·ᴴ)` for `naturalize_conjTranspose` to fire on; here the
+three rewrites are explicit and the adjoint is reached by construction. -/
+theorem naturalize_conj (Y : ℕ → FiniteModel) (n : ℕ)
+    (u a : Matrix (Y n) (Y n) ℂ) :
+    naturalize Y n (u * a * uᴴ)
+      = naturalize Y n u * naturalize Y n a * (naturalize Y n u)ᴴ := by
+  rw [map_mul, map_mul, naturalize_conjTranspose]
+
+/-- Reindexing a commutator against a transported unitary.  This is the shape
+both the hypothesis and the conclusion of the transport theorem are stated in,
+so it is proved once and used at both ends. -/
+theorem naturalize_commutator (Y : ℕ → FiniteModel)
+    (U : ∀ n, H → Matrix.unitaryGroup (Y n) ℂ) (n : ℕ) (g : H)
+    (a : Matrix (Y n) (Y n) ℂ) :
+    naturalize Y n a *
+        (naturalizeUnitary Y U n g :
+          Matrix (naturalizedModel Y n) (naturalizedModel Y n) ℂ) -
+      (naturalizeUnitary Y U n g :
+        Matrix (naturalizedModel Y n) (naturalizedModel Y n) ℂ) *
+        naturalize Y n a
+      = naturalize Y n (a * (U n g : Matrix (Y n) (Y n) ℂ) -
+          (U n g : Matrix (Y n) (Y n) ℂ) * a) := by
+  rw [map_sub, map_mul, map_mul, coe_naturalizeUnitary]
+
 /-! ## The statement over a general model family -/
 
 /-- The Hilbert--Schmidt commutator-vanishing predicate of
@@ -173,30 +199,23 @@ theorem generalModelKazhdanTransport
   obtain ⟨N, hN⟩ := hmain γ ε hε
   refine ⟨N, fun n hn ↦ ?_⟩
   have hstep := hN n hn
-  have hconj : ((naturalizeUnitary Y U n s :
+  -- First collapse the conjugated triple into a single reindexed matrix.  This
+  -- is the only step where the adjoint is involved, and it is `naturalize_conj`.
+  have hPconj : (naturalizeUnitary Y U n s :
         Matrix (naturalizedModel Y n) (naturalizedModel Y n) ℂ) *
         naturalizeSeq Y x n *
         (naturalizeUnitary Y U n s :
-          Matrix (naturalizedModel Y n) (naturalizedModel Y n) ℂ)ᴴ) *
-        (naturalizeUnitary Y U n (iota γ) :
-          Matrix (naturalizedModel Y n) (naturalizedModel Y n) ℂ) -
-      (naturalizeUnitary Y U n (iota γ) :
-        Matrix (naturalizedModel Y n) (naturalizedModel Y n) ℂ) *
-        ((naturalizeUnitary Y U n s :
-          Matrix (naturalizedModel Y n) (naturalizedModel Y n) ℂ) *
-          naturalizeSeq Y x n *
-          (naturalizeUnitary Y U n s :
-            Matrix (naturalizedModel Y n) (naturalizedModel Y n) ℂ)ᴴ)
-      = naturalize Y n
-          (((U n s : Matrix (Y n) (Y n) ℂ) * x n *
-              (U n s : Matrix (Y n) (Y n) ℂ)ᴴ) *
-              (U n (iota γ) : Matrix (Y n) (Y n) ℂ) -
-            (U n (iota γ) : Matrix (Y n) (Y n) ℂ) *
-              ((U n s : Matrix (Y n) (Y n) ℂ) * x n *
-                (U n s : Matrix (Y n) (Y n) ℂ)ᴴ)) := by
-    simp only [map_sub, map_mul, naturalize_conjTranspose,
-      coe_naturalizeUnitary, naturalizeSeq_apply]
-  rw [hconj, hsNormSq_naturalize] at hstep
+          Matrix (naturalizedModel Y n) (naturalizedModel Y n) ℂ)ᴴ
+      = naturalize Y n ((U n s : Matrix (Y n) (Y n) ℂ) * x n *
+          (U n s : Matrix (Y n) (Y n) ℂ)ᴴ) := by
+    rw [naturalize_conj, coe_naturalizeUnitary, naturalizeSeq_apply]
+  rw [hPconj] at hstep
+  -- What is left is the commutator shape, which `naturalize_commutator`
+  -- already handles at both ends of the proof.
+  rw [naturalize_commutator Y U n (iota γ)
+      ((U n s : Matrix (Y n) (Y n) ℂ) * x n *
+        (U n s : Matrix (Y n) (Y n) ℂ)ᴴ),
+    hsNormSq_naturalize] at hstep
   exact hstep
 
 end GeneralModelTransport
