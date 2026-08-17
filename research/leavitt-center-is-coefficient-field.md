@@ -6,6 +6,8 @@ title: The center of the binary Leavitt algebra is its coefficient field
 distinct_from:
   leavitt-unit-group-has-no-finite-normal-subgroup: that is the group-theoretic conclusion this claim is imported to reach, and it also consumes the no-finite-quotients theorem and the unit-span theorem; this is one ring-theoretic input to it, about `R` and not about `R^x`.
   binary-leavitt-algebra-not-directly-finite: that is the failure of direct finiteness in `R` itself, proved internally from the defining relations; this is a statement about the center of the same ring, imported, and the two share only their subject.
+  d-ary-leavitt-groups-nonsofic-over-finite-fields: that is a soficity statement about the unit and elementary groups of d-ary Leavitt algebras over finite fields, proved here through property (T); this is a one-line ring fact about the center of the binary algebra over `F_2`, imported, and no approximation property appears in it.
+  leavitt-gl-equals-el-and-perfect-unit-group: that identifies `GL_n(R)` with `EL_n(R)` and proves the unit group perfect, all internal; this says what the center of `R` is, is imported, and the only place they meet is as two separate inputs to the finite-normal-subgroup node.
 artifacts:
   - research/artifacts/leavitt-stable-finiteness-audit-2026-08-17.md
 ---

@@ -7,6 +7,16 @@ distinct_from:
   connell-group-ring-primality: that is the general criterion, imported from Connell and true for every group and coefficient ring; this is the single instance, and its content is that this group satisfies the criterion's hypothesis.
   leavitt-unit-group-has-no-finite-normal-subgroup: that is the group-theoretic hypothesis, a statement about `R^x` with no group algebra in it; this is the ring-theoretic conclusion about `F_2[R^x]`.
   leavitt-unit-group-algebra-surjects-onto-leavitt: that is the evaluation map and its surjectivity; this is a structural property of the same algebra that says nothing about the map, and it is what kills a splitting of it.
+  binary-leavitt-family-lifts-into-unit-corner: that asks for four elements of a corner satisfying the Leavitt relations, and is open; this asserts a two-sided-ideal property of the whole algebra, is established, and neither implies anything about the other.
+  division-ring-hosts-no-binary-leavitt-family: that is a no-go about division rings, proved in one line from invertibility; this is a primality statement about a group algebra that is very far from a division ring, and the shared word is "ring".
+  kl-violating-equation-over-leavitt-unit-group: that asks for an equation over the group with no solution in any overgroup, aimed at Kervaire--Laudenbach; this is a ring-theoretic property of the group's modular group algebra, and neither is known to bear on the other.
+  leavitt-corner-idempotent-unital-surjection: that constructs one idempotent corner of this algebra and a map out of it; this is a global property of the algebra with no idempotent or corner in its statement, and it is what the corner constructions could never have supplied.
+  leavitt-gl-equals-el-and-perfect-unit-group: that is about the group `R^x` -- its identification with `EL_n` and its perfectness; this is about the ring `F_2[R^x]`, and the group facts enter only through the finite-normal-subgroup hypothesis two nodes upstream.
+  leavitt-rank-three-unit-lift: that exhibits explicit three-term lifts of the Leavitt generators into the group algebra; this asserts no element at all, and its content is a property no finite computation can witness.
+  leavitt-unit-group-nonsurjunctive: that is the open Gottschalk failure for this group, a statement about cellular automata; this is an established ring-theoretic property of its group algebra, and it removes a route toward that failure rather than advancing one.
+  leavitt-center-is-coefficient-field: that is one imported input about the center of `R`, two steps upstream; this is the conclusion about `F_2[R^x]`, and the intermediate group statement sits between them.
+  leavitt-matrix-amplification-in-unit-group-algebra: that puts matrix algebras inside this algebra as corners and is used for the finiteness equivalence; this is primality and is used to kill the splitting route -- the two established facts about `F_2[R^x]` landed together but share no argument.
+  leavitt-stable-finiteness-equals-direct-finiteness: that is the finiteness equivalence, proved from the corner amplification; this is primality, proved from the group's finite-normal-subgroup structure, and neither is used in the other's derivation.
 artifacts:
   - research/artifacts/leavitt-stable-finiteness-audit-2026-08-17.md
 ---

@@ -8,6 +8,8 @@ distinct_from:
   leavitt-evaluation-splits-as-module-map: that open claim asks for a left `A`-linear section of the same evaluation; this one is its negation, established from primality of the group algebra, and it is why that node should be read as refuted rather than unattempted.
   augmentation-blocks-unital-leavitt-family: that no-go forbids a *ring* section, by an augmentation count that never sees the module structure; this forbids the strictly weaker *module* section, and it needs a global argument because no local count can see it.
   leavitt-unit-group-algebra-is-prime: that is the structural input, a property of `F_2[R^x]` alone; this is the consequence for one specific map out of it, and it is what removes a route.
+  leavitt-group-algebra-not-stably-finite: that is the open matrix-level finiteness failure this lane is aimed at; this is an established module-theoretic no-go about the evaluation map, and it makes that target harder to reach rather than closer.
+  left-invertible-lift-of-s0-in-leavitt-group-algebra: that asks for one element `a` over `s_0` with a left inverse, and survives; this forbids the structural machine that would have manufactured such an element wholesale, and says nothing about any particular candidate.
 artifacts:
   - research/artifacts/leavitt-stable-finiteness-audit-2026-08-17.md
 ---
