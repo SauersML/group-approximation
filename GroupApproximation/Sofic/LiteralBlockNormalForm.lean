@@ -1266,9 +1266,9 @@ commensurated-subgroup criterion gives finite orbits. -/
 @[simp] theorem compressedBaseWord_v1 : compressedBaseWord v1Index = bv1 ^ 2 := rfl
 @[simp] theorem compressedBaseWord_v2 : compressedBaseWord v2Index = bv2 ^ 2 := rfl
 @[simp] theorem compressedBaseWord_v3 : compressedBaseWord v3Index = bv3 ^ 2 := rfl
-theorem compressedBaseWord_x : compressedBaseWord xIndex = bx := rfl
+@[simp] theorem compressedBaseWord_x : compressedBaseWord xIndex = bx := rfl
 @[simp] theorem compressedBaseWord_y : compressedBaseWord yIndex = bY := rfl
-theorem compressedBaseWord_z : compressedBaseWord zIndex = bz := rfl
+@[simp] theorem compressedBaseWord_z : compressedBaseWord zIndex = bz := rfl
 
 theorem baseWord_compressed_mem (i : BaseGenerator) :
     LiteralBaseRelations.baseWord (compressedBaseWord i) ∈

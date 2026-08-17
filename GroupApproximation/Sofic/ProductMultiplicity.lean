@@ -206,10 +206,7 @@ arguments above do: the rank is additive over products, and one infinite
 cyclic coordinate contributes `1`. -/
 theorem torsionFreeRank_intPow :
     ∀ k : ℕ, TorsionFreeRank.abelianizationRank (IntPow k) = (k : Cardinal)
-  | 0 => by
-      have h0 : TorsionFreeRank.abelianizationRank (IntPow 0) = 0 :=
-        TorsionFreeRank.abelianizationRank_eq_zero_of_subsingleton (IntPow 0)
-      simpa using h0
+  | 0 => by simp
   | k + 1 => by
       rw [TorsionFreeRank.abelianizationRank_congr (intPowSucc k),
         TorsionFreeRank.abelianizationRank_prod,

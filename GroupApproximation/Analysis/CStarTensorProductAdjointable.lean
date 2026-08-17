@@ -218,7 +218,7 @@ theorem isAdjoint_zero : IsAdjoint (0 : V →L[ℂ] V) 0 := by
   simp
 
 /-- The identity operator is its own adjoint. -/
-theorem isAdjoint_id : IsAdjoint (ContinuousLinearMap.id ℂ V)
+@[simp] theorem isAdjoint_id : IsAdjoint (ContinuousLinearMap.id ℂ V)
     (ContinuousLinearMap.id ℂ V) := by
   intro x y
   rfl

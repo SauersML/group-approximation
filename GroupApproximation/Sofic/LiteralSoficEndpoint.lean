@@ -100,7 +100,7 @@ def splitHom : (π.ker ⋊[splitAction π s] Multiplicative ℤ) →* G :=
     exact MulAut.conjNormal_apply (s n) k)
 
 /-- The splitting map is the multiplication map, by construction. -/
-theorem splitHom_apply (x : π.ker ⋊[splitAction π s] Multiplicative ℤ) :
+@[simp] theorem splitHom_apply (x : π.ker ⋊[splitAction π s] Multiplicative ℤ) :
     splitHom π s x = (x.left : G) * s x.right := rfl
 
 /-- Injectivity of the splitting map: an element of the kernel has trivial

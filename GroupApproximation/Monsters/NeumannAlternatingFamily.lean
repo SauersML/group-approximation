@@ -148,7 +148,7 @@ def conjGen (n : ℕ) : Acting := genA ^ n * genB * (genA ^ n)⁻¹
 def markedSubgroup (S : Set ℕ) : Subgroup Acting :=
   Subgroup.closure (conjGen '' S)
 
-theorem markedSubgroup_def (S : Set ℕ) :
+@[simp] theorem markedSubgroup_def (S : Set ℕ) :
     markedSubgroup S = Subgroup.closure (conjGen '' S) := rfl
 
 /-! ## The sites `genA ^ n` are pairwise distinct -/
@@ -276,7 +276,7 @@ theorem markedSubgroup_injective : Function.Injective markedSubgroup := by
 /-- The base coset, the site at which the distinguished lamps sit. -/
 def baseSite (H : Subgroup Acting) : Acting ⧸ H := QuotientGroup.mk 1
 
-theorem baseSite_def (H : Subgroup Acting) :
+@[simp] theorem baseSite_def (H : Subgroup Acting) :
     baseSite H = (QuotientGroup.mk (1 : Acting) : Acting ⧸ H) := rfl
 
 /-- Translating the base coset. -/
@@ -338,8 +338,11 @@ theorem detector_eq_one_iff (H : Subgroup Acting) [DecidableEq (Acting ⧸ H)]
     detector H k g = 1 ↔ g ∈ H := by
   have hinv : (Lamp.single (baseSite H) k : Lamp AltLamp (Acting ⧸ H))⁻¹
       = Lamp.single (baseSite H) k⁻¹ := by
+    -- the base site is generalized first so that no simp set can unfold it and
+    -- leave `single_apply_of_ne` without a match
+    generalize baseSite H = b
     refine Lamp.ext fun y => ?_
-    by_cases h : y = baseSite H
+    by_cases h : y = b
     · subst h
       simp
     · simp [Lamp.single_apply_of_ne h]

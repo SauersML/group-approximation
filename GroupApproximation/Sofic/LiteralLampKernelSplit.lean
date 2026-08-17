@@ -164,7 +164,7 @@ theorem affineQuotient_mk (w : FreeGroup BaseGenerator) :
     (PresentedGroup.mk _ w) = _
   rw [presentedToGroup_mk]
 
-theorem baseAffineEquiv_apply (b : Base) :
+@[simp] theorem baseAffineEquiv_apply (b : Base) :
     LiteralBaseCompleteness.baseAffineEquiv b = affineQuotient b := rfl
 
 theorem affineQuotient_baseAffineEquiv_symm (γ : gammaBar) :

@@ -168,7 +168,7 @@ manuscript invokes as "each `σ_n` acts on a finite-dimensional space":
 `Matrix Y Y ℂ` is Dedekind finite, and the Neumann series repairs the
 inexactness. -/
 theorem norm_swap_sub_one_le {Y : Type*} [Fintype Y] [DecidableEq Y]
-    [Nonempty Y] (a b : Matrix Y Y ℂ) (h : ‖a * b - 1‖ ≤ 1 / 2) :
+    (hne : Nonempty Y) (a b : Matrix Y Y ℂ) (h : ‖a * b - 1‖ ≤ 1 / 2) :
     ‖b * a - 1‖ ≤ 2 * ‖a‖ * ‖b‖ * ‖a * b - 1‖ := by
   have hrev : ‖(1 : Matrix Y Y ℂ) - a * b‖ = ‖a * b - 1‖ := norm_sub_rev _ _
   have ht : ‖(1 : Matrix Y Y ℂ) - a * b‖ ≤ 1 / 2 := by rw [hrev]; exact h
@@ -223,7 +223,7 @@ theorem isC0MatrixSequence_swap
     filter_upwards [hhalf] with n hn
     show ‖b n * a n - 1‖ ≤ 2 * ‖a‖ * ‖b‖ * ‖a n * b n - 1‖
     have hcoord : ‖b n * a n - 1‖ ≤ 2 * ‖a n‖ * ‖b n‖ * ‖a n * b n - 1‖ :=
-      norm_swap_sub_one_le (a n) (b n) hn
+      norm_swap_sub_one_le (by infer_instance) (a n) (b n) hn
     have h1 : ‖a n‖ ≤ ‖a‖ := (lp.isLUB_norm a).1 ⟨n, rfl⟩
     have h2 : ‖b n‖ ≤ ‖b‖ := (lp.isLUB_norm b).1 ⟨n, rfl⟩
     have hconst : 2 * ‖a n‖ * ‖b n‖ ≤ 2 * ‖a‖ * ‖b‖ :=

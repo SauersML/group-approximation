@@ -47,7 +47,7 @@ def unitaryMap (π : A →⋆ₐ[ℂ] B) : unitary A →* unitary B where
   map_one' := Subtype.ext (map_one π)
   map_mul' u v := Subtype.ext (map_mul π _ _)
 
-theorem unitaryMap_coe (π : A →⋆ₐ[ℂ] B) (u : unitary A) :
+@[simp] theorem unitaryMap_coe (π : A →⋆ₐ[ℂ] B) (u : unitary A) :
     ((unitaryMap π u : unitary B) : B) = π (u : A) :=
   rfl
 

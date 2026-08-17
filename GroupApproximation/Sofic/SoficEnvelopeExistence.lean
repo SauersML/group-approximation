@@ -215,7 +215,7 @@ noncomputable def envelopeSeed (s : Set Γ) (n : ℕ) : Set Γ :=
     (fun _ A => A ∪ ⋃ p : ↥(Subgroup.closure A) × ↥(Subgroup.closure A),
       (↑(conjugatorFinset (p.1 : Γ) (p.2 : Γ)) : Set Γ)) n
 
-theorem envelopeSeed_zero (s : Set Γ) : envelopeSeed s 0 = s := rfl
+@[simp] theorem envelopeSeed_zero (s : Set Γ) : envelopeSeed s 0 = s := rfl
 
 @[simp] theorem envelopeSeed_succ (s : Set Γ) (n : ℕ) :
     envelopeSeed s (n + 1) =

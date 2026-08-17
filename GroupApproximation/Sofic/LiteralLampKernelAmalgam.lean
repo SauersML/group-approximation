@@ -91,6 +91,7 @@ variable (X : Type) [Fintype X] [DecidableEq X]
 def flipVec (x : X) : X → Multiplicative (ZMod 2) :=
   fun x' => if x' = x then Multiplicative.ofAdd 1 else 1
 
+omit [Fintype X] in
 @[simp] theorem flipVec_apply (x x' : X) :
     flipVec X x x' = if x' = x then Multiplicative.ofAdd (1 : ZMod 2) else 1 :=
   rfl
@@ -100,10 +101,12 @@ theorem mult_zmod_two_mul_self (v : Multiplicative (ZMod 2)) : v * v = 1 := by
   have h : ∀ w : Multiplicative (ZMod 2), w * w = 1 := by decide
   exact h v
 
+omit [Fintype X] in
 theorem flipVec_mul_self (x : X) : flipVec X x * flipVec X x = 1 := by
   funext x'
   exact mult_zmod_two_mul_self (flipVec X x x')
 
+omit [DecidableEq X] in
 theorem mem_sset_iff (ε : X → Multiplicative (ZMod 2)) (y : X) :
     y ∈ BlockCliffordLamp.sset ε ↔ Multiplicative.toAdd (ε y) = 1 := by
   rw [BlockCliffordLamp.sset, Finset.mem_filter]
@@ -246,7 +249,7 @@ def abelBar : SignQuotient X →* (X → Multiplicative (ZMod 2)) :=
     obtain ⟨k, rfl⟩ := Subgroup.mem_zpowers_iff.mp hg
     rw [MonoidHom.mem_ker, map_zpow, abelHom_sign, one_zpow])
 
-theorem abelBar_mk (g : CliffordLamp.CliffordLamp X) :
+@[simp] theorem abelBar_mk (g : CliffordLamp.CliffordLamp X) :
     abelBar X (QuotientGroup.mk' _ g) = abelHom X g := rfl
 
 /-- The inverse direction: a sign vector becomes the product of the lamps in
@@ -313,7 +316,7 @@ abbrev Z2 : Type := Multiplicative (ZMod 2)
 
 theorem card_mult_zmod_two : Nat.card Z2 = 2 := Nat.card_zmod 2
 
-theorem card_signVectors (X : Type) [Fintype X] [DecidableEq X] :
+theorem card_signVectors (X : Type) [Fintype X] :
     Nat.card (X → Multiplicative (ZMod 2)) = 2 ^ Fintype.card X := by
   rw [Nat.card_pi]
   simp only [card_mult_zmod_two]
@@ -446,7 +449,7 @@ def involutionHom {M : Type*} [Group M] (m : M) (hm : m ^ 2 = 1) : Z2 →* M whe
     -- up to reducible defeq.
     congr 1
 
-theorem involutionHom_apply {M : Type*} [Group M] (m : M) (hm : m ^ 2 = 1)
+@[simp] theorem involutionHom_apply {M : Type*} [Group M] (m : M) (hm : m ^ 2 = 1)
     (a : Z2) : involutionHom m hm a = m ^ (Multiplicative.toAdd a).val := rfl
 
 theorem involutionHom_zgen {M : Type*} [Group M] (m : M) (hm : m ^ 2 = 1) :
@@ -906,6 +909,7 @@ theorem subInclusion_injective (J : Finset I) (i₀ : ↥J) :
   show (if h : (j : I) ∈ J then (⟨(j : I), h⟩ : ↥J) else i₀) = j
   rw [dif_pos j.2]
 
+omit [DecidableEq I] in
 theorem subInclusion_mono {J J' : Finset I} (h : J ⊆ J') :
     (subInclusion J).range ≤ (subInclusion J').range := by
   rintro _ ⟨u, rfl⟩
@@ -947,6 +951,7 @@ theorem exists_finset_subInclusion_range (g : LampKernelModel I) :
         (subInclusion_mono Finset.subset_union_left hJa)
         (subInclusion_mono Finset.subset_union_right hJb)⟩
 
+omit [DecidableEq I] in
 /-- **The finite sub-amalgams are finitely generated.** -/
 theorem subInclusion_range_fg (J : Finset I) : ((subInclusion J).range).FG := by
   refine (Subgroup.fg_iff _).mpr ⟨(subInclusion J) '' (Set.range
@@ -966,7 +971,7 @@ theorem residuallyFinite_sub (J : Finset I) :
 /-- **Every finitely generated subgroup of the amalgam is residually
 finite.**  Its generators involve only finitely many blocks, and the
 sub-amalgam on those blocks is a retract of the whole. -/
-theorem residuallyFinite_of_fg [Nonempty I] (H : Subgroup (LampKernelModel I))
+theorem residuallyFinite_of_fg (hne : Nonempty I) (H : Subgroup (LampKernelModel I))
     (hH : H.FG) : Group.ResiduallyFinite H := by
   classical
   obtain ⟨S, hS⟩ := hH
@@ -1006,13 +1011,13 @@ theorem residuallyFinite_of_fg [Nonempty I] (H : Subgroup (LampKernelModel I))
 
 /-- **The lamp-kernel model is sofic.**  Local residual finiteness gives LEF,
 and LEF groups are sofic. -/
-theorem isSofic_lampKernelModel [Nonempty I] : IsSofic (LampKernelModel I) :=
-  isSofic_of_locallyResiduallyFinite residuallyFinite_of_fg
+theorem isSofic_lampKernelModel (hne : Nonempty I) : IsSofic (LampKernelModel I) :=
+  isSofic_of_locallyResiduallyFinite (residuallyFinite_of_fg hne)
 
 /-- **The central Clifford amalgam is sofic.** -/
-theorem isSofic_centralAmalgam [Nonempty I] : IsSofic (CentralAmalgam I) :=
+theorem isSofic_centralAmalgam (hne : Nonempty I) : IsSofic (CentralAmalgam I) :=
   isSofic_of_injective (modelEquivAmalgam I).symm.toMonoidHom
-    (modelEquivAmalgam I).symm.injective isSofic_lampKernelModel
+    (modelEquivAmalgam I).symm.injective (isSofic_lampKernelModel hne)
 
 end SubAmalgam
 
@@ -1318,14 +1323,14 @@ theorem lampKernel_eq_amalgam
     exact modelEquivAmalgam_zeta Block
 
 /-- **The lamp kernel is sofic.** -/
-theorem lampKernel_isSofic [Nonempty Block]
+theorem lampKernel_isSofic (hne : Nonempty Block)
     (chart : ∀ i : Block, Fin 8 ≃ {s : Site // blockOf s = i})
     {N : Type} [Group N] {c : Site → N} {ζ : N}
     (h : IsBlockCliffordPresentation Block Site blockOf N c ζ) : IsSofic N := by
   -- the finite sub-amalgams decide membership in a `Finset Block`
   haveI : DecidableEq Block := Classical.decEq _
   obtain ⟨E, _, _⟩ := lampKernel_eq_amalgam blockOf chart h
-  exact isSofic_of_injective E.toMonoidHom E.injective isSofic_centralAmalgam
+  exact isSofic_of_injective E.toMonoidHom E.injective (isSofic_centralAmalgam hne)
 
 /-- The block subgroup inside any group carrying the site elements: generated
 by the eight lamps sitting at the sites of one block. -/
@@ -1382,7 +1387,7 @@ block, and the central involution is a commutator of two lamps of any single
 block, so the block subgroups generate the whole lamp kernel.  With
 `blockGroupOf_finite` this is the `blockSpan block Set.univ = ⊤` /
 `block_finite` pair the telescope-core lane consumes. -/
-theorem closure_iUnion_blockGroupOf [Nonempty Block]
+theorem closure_iUnion_blockGroupOf (hne : Nonempty Block)
     (chart : ∀ i : Block, Fin 8 ≃ {s : Site // blockOf s = i})
     {N : Type} [Group N] {c : Site → N} {ζ : N}
     (h : IsBlockCliffordPresentation Block Site blockOf N c ζ) :
@@ -1587,10 +1592,10 @@ theorem literalLampKernel_isSofic
     (hadj_ne : ∀ ξ η : Site, Adjacent ξ η → ξ ≠ η)
     (chart : ∀ i : Block, Fin 8 ≃ {ξ : Site // blockOf ξ = i}) :
     IsSofic ↥lampKernel := by
-  haveI : Nonempty Block := ⟨QuotientGroup.mk 1⟩
+  have hne : Nonempty Block := ⟨QuotientGroup.mk 1⟩
   haveI : DecidableEq Block := Classical.decEq _
   obtain ⟨E⟩ := literalLampKernel_equiv_amalgam hcomplete hadj_ne chart
-  exact isSofic_of_injective E.toMonoidHom E.injective isSofic_centralAmalgam
+  exact isSofic_of_injective E.toMonoidHom E.injective (isSofic_centralAmalgam hne)
 
 /-- **The block groups of the literal lamp kernel**: for each block, the
 subgroup of `C(𝒢)` generated by the eight lamps sitting at its sites. -/

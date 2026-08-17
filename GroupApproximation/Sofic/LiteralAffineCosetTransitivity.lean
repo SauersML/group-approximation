@@ -106,7 +106,7 @@ theorem parityRep_apply (e : Fin 3 → ℤ) :
     LiteralBaseTranslationLattice.latticeToBase_basis_one,
     LiteralBaseTranslationLattice.latticeToBase_basis_two]
 
-theorem cast_fin2_zero : ((0 : Fin 2) : ℤ) = 0 := rfl
+@[simp] theorem cast_fin2_zero : ((0 : Fin 2) : ℤ) = 0 := rfl
 
 @[simp] theorem cast_fin2_one : ((1 : Fin 2) : ℤ) = 1 := rfl
 

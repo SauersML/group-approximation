@@ -301,7 +301,7 @@ def doublingAut : MulAut (Multiplicative Dyadic) where
   rfl
 
 /-- Evaluation of the inverse doubling automorphism. -/
-theorem doublingAut_inv_ofAdd (x : Dyadic) :
+@[simp] theorem doublingAut_inv_ofAdd (x : Dyadic) :
     doublingAut⁻¹ (Multiplicative.ofAdd x) =
       Multiplicative.ofAdd (halveFun x) := rfl
 

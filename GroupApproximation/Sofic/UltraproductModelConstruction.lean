@@ -784,7 +784,7 @@ def adjUnitary (g : H) (n : ℕ) : Matrix.unitaryGroup (DblFam Y n) ℂ :=
     conjDouble_mem_unitaryGroup (U n g).2⟩
 
 omit [∀ n, Nonempty (Y n)] [Group H] in
-theorem adjUnitary_coe (g : H) (n : ℕ) :
+@[simp] theorem adjUnitary_coe (g : H) (n : ℕ) :
     ((adjUnitary Y U g n : Matrix.unitaryGroup (DblFam Y n) ℂ) :
         Matrix (DblFam Y n) (DblFam Y n) ℂ)
       = conjDouble (U n g : Matrix (Y n) (Y n) ℂ) := rfl

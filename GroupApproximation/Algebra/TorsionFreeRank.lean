@@ -79,7 +79,7 @@ noncomputable def torsionFreeRank (A : Type u) [AddCommGroup A] : Cardinal.{u} :
   Module.rank ℚ (ℚ ⊗[ℤ] A)
 
 /-- Unfolding lemma for `torsionFreeRank`. -/
-theorem torsionFreeRank_eq (A : Type u) [AddCommGroup A] :
+@[simp] theorem torsionFreeRank_eq (A : Type u) [AddCommGroup A] :
     torsionFreeRank A = Module.rank ℚ (ℚ ⊗[ℤ] A) := rfl
 
 /-- Isomorphic abelian groups have the same torsion-free rank: an additive
@@ -261,7 +261,7 @@ noncomputable def abelianizationRank (G : Type u) [Group G] : Cardinal.{u} :=
   torsionFreeRank (Additive (Abelianization G))
 
 /-- Unfolding lemma for `abelianizationRank`. -/
-theorem abelianizationRank_eq (G : Type u) [Group G] :
+@[simp] theorem abelianizationRank_eq (G : Type u) [Group G] :
     abelianizationRank G = torsionFreeRank (Additive (Abelianization G)) := rfl
 
 /-- Isomorphic groups have abelianizations of the same torsion-free rank.

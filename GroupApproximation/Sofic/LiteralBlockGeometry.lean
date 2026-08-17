@@ -273,7 +273,7 @@ def blockFibre (i : Block α hα) : Set (Cosets α hα) :=
 abbrev baseBlock : Set (Cosets α hα) :=
   blockFibre α hα (blockOf α hα (rootCoset α hα))
 
-theorem blockOf_rootCoset :
+@[simp] theorem blockOf_rootCoset :
     blockOf α hα (rootCoset α hα) = (QuotientGroup.mk 1 : Block α hα) := rfl
 
 /-- Translating a block translates its site set. -/

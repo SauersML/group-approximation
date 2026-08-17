@@ -113,7 +113,7 @@ def directSumRep (Y : FiniteModel) (phi : G →* Matrix.unitaryGroup Y ℂ) :
       (blockDiagHom (directSumModel Y n) Y).comp
         ((directSumRep Y phi n).prod phi)
 
-theorem directSumRep_succ_apply (Y : FiniteModel)
+@[simp] theorem directSumRep_succ_apply (Y : FiniteModel)
     (phi : G →* Matrix.unitaryGroup Y ℂ) (n : ℕ) (g : G) :
     ((directSumRep Y phi (n + 1) g :
         Matrix (directSumModel Y (n + 1)) (directSumModel Y (n + 1)) ℂ))
