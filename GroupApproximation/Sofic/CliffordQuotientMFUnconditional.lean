@@ -63,16 +63,6 @@ namespace CliffordQuotientMFUnconditional
 
 open LiteralCyclicCalibration
 
-/-! ## Steps 1--4, unchanged and already unconditional -/
-
-/-- The realized Clifford quotient of `thm:C` is amenable.  This is steps 1--4
-of the printed chain, machine-checked in `Sofic.CliffordBSAmenable` and
-collected in `Sofic.CliffordBSPrintedRoute`; it never needed the citation, and
-is repeated here only so that the unconditional half of the paragraph reads in
-one place. -/
-theorem realizedQuotient_isAmenable : Amenability.IsAmenable RealizedQuotient :=
-  CliffordBSPrintedRoute.ambient_and_realizedQuotient_isAmenable.2
-
 /-! ## Step 6's endpoint, without the binder -/
 
 /-- **The paragraph's `Θ`, unconditionally.**  There is a homomorphism of
@@ -91,31 +81,25 @@ theorem exists_coronaRepresentation_mark_ne_one :
   ⟨CliffordBSAmenableMF.site, CliffordBSAmenableMF.card_site_pos,
     CliffordBSAmenableMF.coronaRep, CliffordBSAmenableMF.coronaRep_mark_ne_one⟩
 
-/-- The marked word of `E_BS` is not invisible to cofinite norm-matrix
-coronas, with no hypothesis. -/
-theorem mark_not_coronaMFInvisible :
-    ¬ CoronaMFInvisible (mark : LiteralGroup) :=
-  CliffordBSAmenableMF.mark_not_coronaMFInvisible
+/-! ## Row `CY.13`, and the invisibility clauses
 
-/-- The same for the genuine C-star-corona notion of invisibility. -/
-theorem mark_not_actualCoronaMFInvisible :
-    ¬ ActualCoronaMFInvisible (mark : LiteralGroup) :=
-  CliffordBSAmenableMF.mark_not_actualCoronaMFInvisible
+These four statements — `mark_not_coronaMFInvisible`,
+`mark_not_actualCoronaMFInvisible`, `mark_notMem_coronaMFResidual` and
+`mark_notMem_normMFResidual` — together with `realizedQuotient_isAmenable`
+were once restated here under the same names, each proved by delegating to
+`Sofic.CliffordBSAmenableMF`.  They are **not** restated any more, and the
+aggregate below cites the base module directly.
 
-/-! ## Row `CY.13`, unconditionally -/
-
-/-- **`w_BS ∉ Res_MF(E_BS)`**, the paragraph's conclusion in the radical
-language of `\section{Consequences}`, with the Tikuisis--White--Winter binder
-removed.  This is proof-ledger row `CY.13`. -/
-theorem mark_notMem_coronaMFResidual :
-    (mark : LiteralGroup) ∉ coronaMFResidual LiteralGroup :=
-  CliffordBSAmenableMF.mark_notMem_coronaMFResidual
-
-/-- The same statement for the universal-ultraproduct presentation of the
-radical. -/
-theorem mark_notMem_normMFResidual :
-    (mark : LiteralGroup) ∉ normMFResidual LiteralGroup :=
-  CliffordBSAmenableMF.mark_notMem_normMFResidual
+The reason is mechanical rather than editorial: the kernel audit's `DUPLICATE`
+detector keys on the *type* of a declaration and ignores its proof term
+(`scripts/Audit/Scan.lean`, `let key := toString ci.type`).  A wrapper whose
+proof is literally the base theorem's name is therefore still a second
+declaration of the same proposition, and delegation cannot clear the finding —
+only removing one of the two names can.  The base module is the one that keeps
+them: it is the badged module for the sharpness paragraph and it carries the
+monomial models that do the work.  Nothing outside this file ever referred to
+the wrappers, and no badge, `docs/NON_MF_CLAIM_DECLS.txt` entry, proof-ledger
+row or pinned signature named any of them. -/
 
 /-! ## The paragraph, minus its one citation -/
 
@@ -137,9 +121,10 @@ theorem manuscriptSharpnessConclusionUnconditional :
         ∃ Theta : LiteralGroup →* NormMatrixCoronaUnitary X, Theta mark ≠ 1) ∧
       (mark : LiteralGroup) ∉ coronaMFResidual LiteralGroup ∧
       (mark : LiteralGroup) ∉ normMFResidual LiteralGroup :=
-  ⟨realizedQuotient_isAmenable, quotientMap_mark_ne_one,
-    exists_coronaRepresentation_mark_ne_one, mark_notMem_coronaMFResidual,
-    mark_notMem_normMFResidual⟩
+  ⟨CliffordBSAmenableMF.realizedQuotient_isAmenable, quotientMap_mark_ne_one,
+    exists_coronaRepresentation_mark_ne_one,
+    CliffordBSAmenableMF.mark_notMem_coronaMFResidual,
+    CliffordBSAmenableMF.mark_notMem_normMFResidual⟩
 
 end CliffordQuotientMFUnconditional
 end GroupApproximation

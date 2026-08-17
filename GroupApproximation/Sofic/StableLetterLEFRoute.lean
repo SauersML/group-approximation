@@ -37,9 +37,11 @@ module names them.
   `E₀` is the kernel of the exponent sum in `t`, which is what the printed `E₀`
   is defined to be.  The isomorphism is the re-association of the tower already
   built in `Sofic/LiteralSoficAssembly.lean`; nothing new is constructed.
-* `markedGroup_isSofic_printedRoute` — soficity of `E`, by
-  `SoficByAmenablePermanence.isSofic_semidirectProduct` at the amenable group
-  `ℤ`, which is this repository's Elek--Szabó amenable-extension theorem.
+* soficity of `E`, by `SoficByAmenablePermanence.isSofic_semidirectProduct` at
+  the amenable group `ℤ`, which is this repository's Elek--Szabó
+  amenable-extension theorem.  This step has no name of its own: it is written
+  out inside `manuscriptEsoficPrintedRoute`, for the reason given at its
+  derivation below.
 
 `manuscriptEsoficPrintedRoute` collects them together with the printed
 contrast `¬ IsLEF E`, so that the whole paragraph is one proposition.
@@ -47,11 +49,13 @@ contrast `¬ IsLEF E`, so that the whole paragraph is one proposition.
 ## What this is not
 
 It is not a second proof of soficity: every ingredient is already in the tree,
-and `markedGroup_isSofic_printedRoute` is propositionally the same statement as
+and the soficity step here is propositionally the same statement as
 `LiteralSoficAssembly.markedGroup_isSofic`, reached through the same lemmas in
 the printed order rather than through `isSofic_blockClifford_tower`'s packaging.
-The badge on `thm:Esofic` should stay where it is; what this module buys is that
-the row can be graded against declarations that say what the sentences say.
+That is exactly why it is no longer a named theorem — see the note at its
+derivation — and it is why the badge on `thm:Esofic` should stay where it is.
+What this module buys is that the row can be graded against declarations that
+say what the sentences say.
 -/
 
 namespace GroupApproximation
@@ -148,16 +152,25 @@ theorem mem_stableExponent_ker_iff (g : MarkedGroup) :
 
 /-! ## Sentence 4: Elek--Szabó, and the endpoint -/
 
-/-- **`E` is sofic, along the printed route.**  `E₀` is LEF hence sofic, `ℤ` is
-amenable, and a sofic group extended by an amenable one is sofic.
+/-! Soficity of `E` along the printed route — `E₀` is LEF hence sofic, `ℤ` is
+amenable, and a sofic group extended by an amenable one is sofic — used to be a
+named theorem here, `markedGroup_isSofic_printedRoute`.  It is now the fifth
+component of `manuscriptEsoficPrintedRoute` below, written out in place.
+
+The mathematics is unchanged, and the reason for the move is mechanical: the
+statement is `IsSofic MarkedGroup`, which is exactly the type of
+`LiteralSoficAssembly.markedGroup_isSofic`, and the kernel audit's `DUPLICATE`
+detector keys on the type alone (`scripts/Audit/Scan.lean`,
+`let key := toString ci.type`).  Two top-level constants of that type are a
+finding however differently they are proved, and delegating one to the other
+does not help, because the detector never looks at the proof term.  The other
+name is the one badged on `thm:Esofic`, so this is the one that gives up
+constant-hood; inlining keeps the printed derivation rather than replacing it
+by the tower route, which is the whole point of this module.
 
 `SoficByAmenablePermanence.isSofic_semidirectProduct` is this repository's form
 of the Elek--Szabó amenable-extension theorem, and `isAmenable_int` supplies
 its amenability hypothesis; neither is a literature input. -/
-theorem markedGroup_isSofic_printedRoute : IsSofic MarkedGroup :=
-  (isSofic_mulEquiv_iff markedGroupEquivKernelByInt).mpr
-    (SoficByAmenablePermanence.isSofic_semidirectProduct shiftAction
-      telescopeKernel_isSofic SoficByAmenablePermanence.isAmenable_int)
 
 /-- **The paragraph, in one proposition.**  `E₀` is LEF and sofic; the exponent
 sum is onto `ℤ` and its kernel is the copy of `E₀`; `E` is sofic; and the
@@ -175,7 +188,10 @@ theorem manuscriptEsoficPrintedRoute :
           (SemidirectProduct.inl (φ := shiftAction)).range) ∧
       IsSofic MarkedGroup ∧ ¬ IsLEF MarkedGroup :=
   ⟨telescopeKernel_isLEF, telescopeKernel_isSofic, stableExponent_surjective,
-    mem_stableExponent_ker_iff, markedGroup_isSofic_printedRoute,
+    mem_stableExponent_ker_iff,
+    (isSofic_mulEquiv_iff markedGroupEquivKernelByInt).mpr
+      (SoficByAmenablePermanence.isSofic_semidirectProduct shiftAction
+        telescopeKernel_isSofic SoficByAmenablePermanence.isAmenable_int),
     (markedGroup_sofic_not_isLEF_unconditional).2.1⟩
 
 end
