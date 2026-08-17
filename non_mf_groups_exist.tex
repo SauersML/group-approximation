@@ -1024,8 +1024,77 @@ and~\textup{(C)} give, respectively,
 \]
 \end{definition}
 
+Figure~\ref{fig:compression-pattern} is the configuration these two
+relations create: $d=tct^{-1}$ commutes with the conjugate copy
+$t\iota(\mathcal B)t^{-1}$, while nothing constrains its commutator with
+$\iota(v_1)$, which lies outside that copy.
+
 A Tietze reduction removes two generators and nine relators
 (Section~\ref{sec:group}).
+
+\begin{figure}[htbp]
+\centering
+% Tagging: the picture is one graphic, so it is a single marked-content unit
+% inside a Figure structure element carrying the alternative text.  Without
+% this the tagged PDF has an untagged drawing where the reader expects a
+% figure; the caption is a caption, not a substitute for /Alt.
+% Guards for the fallback build of the header comment: on a kernel without
+% the tagging commands these become no-ops, and on one with them they do
+% nothing at all.
+\providecommand{\tagstructbegin}[1]{}%
+\providecommand{\tagstructend}{}%
+\providecommand{\tagmcbegin}[1]{}%
+\providecommand{\tagmcend}{}%
+\tagstructbegin{tag=Figure,alt={Diagram of the one-sided conjugation
+  configuration.  A large rounded rectangle is the image of the base group;
+  a smaller rounded rectangle inside it is the conjugate copy
+  obtained by conjugating by t, and an arrow between them is labelled by that
+  conjugation.  The element v1 is drawn in the base outside the conjugate
+  copy.
+  Below, a circled c is joined by an arrow labelled ``conjugation by t'' to a
+  circled d; c is linked to the base by the relation that c commutes with the
+  base, and d is linked to the conjugate copy by the relation that d commutes
+  with it.  A line from d leads to a box reading: distinguished word w equals the
+  commutator of d with v1 d v1 inverse, which equals the square of the
+  commutator of d with v1 because d squares to one, and no relation forces
+  that commutator to be trivial.}}%
+\tagmcbegin{}%
+\begin{tikzpicture}[x=1cm,y=1cm,font=\small]
+  \draw[rounded corners=2.5mm,line width=.4pt] (0,0) rectangle (6.5,3.1);
+  \node[fignote] (iblab) at (1.05,2.7) {$\iota(\mathcal B)$};
+  \draw[rounded corners=2mm,line width=.4pt] (2.95,.45) rectangle (6.15,2.4);
+  \node (complab) at (4.55,1.62) {$t\iota(\mathcal B)t^{-1}$};
+  \node (v1) at (1.35,1.15) {$\iota(v_1)$};
+  \draw[figarr] (1.75,2.62) -- (3.35,2.62);
+  \node[fignote] (setconj) at (2.55,2.88) {$t(\,\cdot\,)t^{-1}$};
+  \node[draw,circle,line width=.4pt,inner sep=1.5pt] (c) at (1.35,-1.5) {$c$};
+  \node[draw,circle,line width=.4pt,inner sep=1.5pt] (d) at (4.55,-1.5) {$d$};
+  \draw[figarr] (c) -- node[fignote,below=3pt] {conjugation by $t$} (d);
+  \draw[line width=.4pt] (c) -- (1.35,0);
+  \node[fignote,anchor=east] (crel) at (1.17,-.68) {$[c,\iota(\mathcal B)]=1$};
+  \draw[line width=.4pt] (d) -- (4.55,.45);
+  \node[fignote,anchor=west] (drel) at (4.73,-.68)
+    {$[\,d,\,t\iota(\mathcal B)t^{-1}]=1$};
+  \node[figout,text width=3.7cm] (mark) at (9.35,1.0)
+    {distinguished word\\[3pt]
+     $w=[\,d,\ \iota(v_1)\,d\,\iota(v_1)^{-1}]$\\[3pt]
+     {\footnotesize $=[\,d,\iota(v_1)]^{\,2}$ since $d^2=1$;\\
+      no relation forces\\ $[\,d,\iota(v_1)]=1$}};
+  \draw[figarr] (d) -| (mark);
+\end{tikzpicture}%
+\tagmcend\tagstructend
+\caption{The one-sided conjugation configuration.  The relations of
+\eqref{eq:E} give $t\iota(\mathcal B)t^{-1}\subseteq\iota(\mathcal B)$
+and $[c,\iota(\mathcal B)]=1$, hence
+$[\,d,\,t\iota(\mathcal B)t^{-1}]=1$ for $d=tct^{-1}$; they do not give
+$[\,d,\iota(v_1)]=1$, and
+$w=[\,d,\,\iota(v_1)d\iota(v_1)^{-1}]=[\,d,\iota(v_1)]^2$.
+Section~\ref{sec:witness} proves that the inclusion is strict and that
+$\iota(v_1)$ lies outside the conjugate copy, as drawn;
+Theorem~\ref{thm:sign-criterion} uses only the inclusion.}
+\label{fig:compression-pattern}
+\end{figure}
+
 
 \begin{lemma}[the distinguished word is a square]\label{lem:square}
 Let $H_1$ be a group and $d,a_1\in H_1$ with $d^2=1$.  Then
@@ -1251,73 +1320,10 @@ stable-letter, $c$-commutation, and centrality relations for $v_2,v_3$
 follow from those for $v_1$ together with $[t,x]=1$ and $x^3=1$.
 Deleting these nine leaves thirty-two relators on $v_1,x,y,z,t,c$.
 
-Write $d=tct^{-1}$.  The displayed relations give
-$[\,d,\,t\iota(\mathcal B)t^{-1}]=1$ and leave
-$[\,d,\ \iota(v_1)\,d\,\iota(v_1)^{-1}]$ unconstrained
-(Figure~\ref{fig:compression-pattern}).
-
-\begin{figure}[htbp]
-\centering
-% Tagging: the picture is one graphic, so it is a single marked-content unit
-% inside a Figure structure element carrying the alternative text.  Without
-% this the tagged PDF has an untagged drawing where the reader expects a
-% figure; the caption is a caption, not a substitute for /Alt.
-% Guards for the fallback build of the header comment: on a kernel without
-% the tagging commands these become no-ops, and on one with them they do
-% nothing at all.
-\providecommand{\tagstructbegin}[1]{}%
-\providecommand{\tagstructend}{}%
-\providecommand{\tagmcbegin}[1]{}%
-\providecommand{\tagmcend}{}%
-\tagstructbegin{tag=Figure,alt={Diagram of the one-sided conjugation
-  configuration.  A large rounded rectangle is the image of the base group;
-  a smaller rounded rectangle inside it is the conjugate copy
-  obtained by conjugating by t, and an arrow between them is labelled by that
-  conjugation.  The element v1 is drawn in the base outside the conjugate
-  copy.
-  Below, a circled c is joined by an arrow labelled ``conjugation by t'' to a
-  circled d; c is linked to the base by the relation that c commutes with the
-  base, and d is linked to the conjugate copy by the relation that d commutes
-  with it.  A line from d leads to a box reading: distinguished word w equals the
-  commutator of d with v1 d v1 inverse, which equals the square of the
-  commutator of d with v1 because d squares to one, and no relation forces
-  that commutator to be trivial.}}%
-\tagmcbegin{}%
-\begin{tikzpicture}[x=1cm,y=1cm,font=\small]
-  \draw[rounded corners=2.5mm,line width=.4pt] (0,0) rectangle (6.5,3.1);
-  \node[fignote] (iblab) at (1.05,2.7) {$\iota(\mathcal B)$};
-  \draw[rounded corners=2mm,line width=.4pt] (2.95,.45) rectangle (6.15,2.4);
-  \node (complab) at (4.55,1.62) {$t\iota(\mathcal B)t^{-1}$};
-  \node (v1) at (1.35,1.15) {$\iota(v_1)$};
-  \draw[figarr] (1.75,2.62) -- (3.35,2.62);
-  \node[fignote] (setconj) at (2.55,2.88) {$t(\,\cdot\,)t^{-1}$};
-  \node[draw,circle,line width=.4pt,inner sep=1.5pt] (c) at (1.35,-1.5) {$c$};
-  \node[draw,circle,line width=.4pt,inner sep=1.5pt] (d) at (4.55,-1.5) {$d$};
-  \draw[figarr] (c) -- node[fignote,below=3pt] {conjugation by $t$} (d);
-  \draw[line width=.4pt] (c) -- (1.35,0);
-  \node[fignote,anchor=east] (crel) at (1.17,-.68) {$[c,\iota(\mathcal B)]=1$};
-  \draw[line width=.4pt] (d) -- (4.55,.45);
-  \node[fignote,anchor=west] (drel) at (4.73,-.68)
-    {$[\,d,\,t\iota(\mathcal B)t^{-1}]=1$};
-  \node[figout,text width=3.7cm] (mark) at (9.35,1.0)
-    {distinguished word\\[3pt]
-     $w=[\,d,\ \iota(v_1)\,d\,\iota(v_1)^{-1}]$\\[3pt]
-     {\footnotesize $=[\,d,\iota(v_1)]^{\,2}$ since $d^2=1$;\\
-      no relation forces\\ $[\,d,\iota(v_1)]=1$}};
-  \draw[figarr] (d) -| (mark);
-\end{tikzpicture}%
-\tagmcend\tagstructend
-\caption{The one-sided conjugation configuration.  The relations of
-\eqref{eq:E} give $t\iota(\mathcal B)t^{-1}\subseteq\iota(\mathcal B)$
-and $[c,\iota(\mathcal B)]=1$, hence
-$[\,d,\,t\iota(\mathcal B)t^{-1}]=1$ for $d=tct^{-1}$; they do not give
-$[\,d,\iota(v_1)]=1$, and
-$w=[\,d,\,\iota(v_1)d\iota(v_1)^{-1}]=[\,d,\iota(v_1)]^2$.
-Section~\ref{sec:witness} proves that the inclusion is strict and that
-$\iota(v_1)$ lies outside the conjugate copy, as drawn;
-Theorem~\ref{thm:sign-criterion} uses only the inclusion.}
-\label{fig:compression-pattern}
-\end{figure}
+The reduction leaves the configuration of
+Figure~\ref{fig:compression-pattern} unchanged: the surviving relations
+still give $[\,d,\,t\iota(\mathcal B)t^{-1}]=1$ for $d=tct^{-1}$, and
+still leave $[\,d,\ \iota(v_1)\,d\,\iota(v_1)^{-1}]$ unconstrained.
 
 \subsection{Property~\textup{(T)} of the base}
 
