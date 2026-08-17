@@ -505,9 +505,13 @@ theorem eventually_polarGood (x : BoundedCStarSequence A)
     filter_upwards [hd] with n hn
     simpa only [Real.dist_eq, sub_zero, abs_norm] using hn.le
   filter_upwards [e1, e2] with n hn1 hn2
-  rw [gram_apply] at hn1
-  rw [gram'_apply] at hn2
-  exact ⟨hn1, hn2⟩
+  refine ⟨?_, ?_⟩
+  · have h : ‖(star x * x - 1) n‖ ≤ (1 : ℝ) / 2 := hn1
+    rw [gram_apply] at h
+    exact h
+  · have h : ‖(x * star x - 1) n‖ ≤ (1 : ℝ) / 2 := hn2
+    rw [gram'_apply] at h
+    exact h
 
 /-- **"so `x_n` is invertible for all large `n`".**  Every lift of a unitary
 of the corona is invertible along the filter. -/

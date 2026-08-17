@@ -228,12 +228,16 @@ theorem isCStarSeminorm_iSup {p : ι → A → ℝ} (hp : ∀ i, IsCStarSeminorm
     show (⨆ i, p i (star a * a)) = (⨆ i, p i a) * ⨆ i, p i a
     refine le_antisymm ?_ ?_
     · refine ciSup_le fun i ↦ ?_
-      rw [hstar i]
-      exact mul_le_mul (le_ciSup (hb a) i) (le_ciSup (hb a) i) (hnn i) hSA
+      have hi : p i (star a * a) ≤ (⨆ i, p i a) * ⨆ i, p i a := by
+        rw [hstar i]
+        exact mul_le_mul (le_ciSup (hb a) i) (le_ciSup (hb a) i) (hnn i) hSA
+      exact hi
     · have hle : (⨆ i, p i a) ≤ Real.sqrt (⨆ i, p i (star a * a)) := by
         refine ciSup_le fun i ↦ ?_
-        rw [Real.le_sqrt (hnn i) hSG, sq, ← hstar i]
-        exact le_ciSup (hb (star a * a)) i
+        have hsq : p i a ^ 2 ≤ ⨆ i, p i (star a * a) := by
+          rw [sq, ← hstar i]
+          exact le_ciSup (hb (star a * a)) i
+        exact (Real.le_sqrt (hnn i) hSG).mpr hsq
       calc (⨆ i, p i a) * ⨆ i, p i a
           ≤ Real.sqrt (⨆ i, p i (star a * a)) *
               Real.sqrt (⨆ i, p i (star a * a)) :=
