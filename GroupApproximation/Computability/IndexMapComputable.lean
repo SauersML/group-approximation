@@ -1,5 +1,6 @@
 import GroupApproximation.Computability.TrNatRecurrence
 import GroupApproximation.Computability.QuadMachine
+import GroupApproximation.Computability.ModularMachineUndecidable
 
 /-!
 # The index map is computable
@@ -83,6 +84,34 @@ theorem computable_encList_map_trInit (base : ℕ)
   have h := (primrec_encList base).to_comp.comp hcons
   refine h.of_eq fun m => ?_
   rw [map_enc_trInit enc m, List.map_reverse]
+
+/-! ## The index map itself -/
+
+/-- **The initial configuration, encoded.**  `initQCfg` leaves the back stack
+empty and fixes the side, so the pair is a constant beside the Horner value of
+the encoded symbol list.  This is why no part of the machine's transition
+function enters the computability question. -/
+theorem encCfg_initQCfg {Γ Λ : Type} [Inhabited Γ] [Inhabited Λ]
+    (D : TMData Γ Λ) (M : TM0.Machine Γ Λ) (l : List Γ) :
+    (D.toQuad M).encCfg (D.initQCfg l)
+      = ((D.toQuad M).tagA (D.stIdx default false true),
+          encList (D.toQuad M).m (l.map D.encodeSym)) := by
+  simp [QuadMachine.encCfg, TMData.initQCfg]
+
+/-- **The index map is computable**, for any state type and any machine: the
+first component is constant and the second is the fold proved computable above.
+The symbol encoding inside `D` may be choice-based — as `TMData.ofFintype`'s is
+— without affecting this, since it is applied only to the finitely many symbols
+of the initial word and each of its values is a fixed natural. -/
+theorem computable_index_map {Λ : Type} [Inhabited Λ]
+    (D : TMData (TM2to1.Γ' K' (fun _ : K' => Γ')) Λ)
+    (M : TM0.Machine (TM2to1.Γ' K' (fun _ : K' => Γ')) Λ) :
+    Computable (fun m : ℕ =>
+      (D.toQuad M).encCfg (D.initQCfg (TM2to1.trInit K'.main (trList [m])))) := by
+  have hpair :=
+    (Computable.const ((D.toQuad M).tagA (D.stIdx default false true))).pair
+      (computable_encList_map_trInit (D.toQuad M).m D.encodeSym)
+  exact hpair.of_eq fun m => (encCfg_initQCfg D M _).symm
 
 end Computability
 end GroupApproximation
