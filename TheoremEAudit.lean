@@ -21,11 +21,20 @@ Theorem E to be "fully formalized, no-input proven".
 
        [propext, Classical.choice, Quot.sound]
 
-   for all four.  Anything else -- `sorryAx`, `Lean.ofReduceBool`,
-   `Lean.trustCompiler`, or a hand-declared axiom -- means the proof is
-   not unconditional, and a `grep` for `sorry` cannot detect it because
-   an admitted lemma reached transitively contributes `sorryAx` without
-   the token appearing in any file in the chain.
+   for all four.  Anything else -- the admission axiom that an admitted
+   proof introduces, `Lean.ofReduceBool`, `Lean.trustCompiler`, or a
+   hand-declared axiom -- means the proof is not unconditional.  A textual
+   search cannot substitute for this check: an admitted lemma reached
+   transitively contributes the admission axiom without its token appearing
+   in any file in the chain.
+
+   The two names this paragraph pointedly does not spell are the reason.
+   `scripts/check.py` scans every `.lean` file in the repository for those
+   tokens and treats a hit as a hard finding under any tag, prose included,
+   because a reviewer grepping the tree cannot tell an occurrence in a
+   docstring from one in a tactic block.  So this file describes them
+   instead of naming them; `scripts/check.py` is Python and may name them
+   freely.
 -/
 
 open GroupApproximation

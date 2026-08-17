@@ -29,8 +29,9 @@ CLAIM_TARGETS: dict[str, tuple[str, str]] = {
         "Sofic/ManuscriptExactWrappers",
         "GroupApproximation.ManuscriptExactWrappers.manuscriptMFDefinitionEquivalences"),
     "thm:kazhdan-transport": (
-        "Sofic/ManuscriptKazhdanTransport",
-        "GroupApproximation.KazhdanAsymptoticCommutant.manuscriptKazhdanTransport"),
+        "Sofic/KazhdanTransportAnyUniverse",
+        "GroupApproximation.KazhdanAsymptoticCommutant."
+        "manuscriptKazhdanTransport_anyUniverse"),
     "cor:generaltransport": (
         "Sofic/KazhdanAsymptoticCommutant",
         "GroupApproximation.KazhdanAsymptoticCommutant.compressionGroup_transport_both"),
@@ -128,9 +129,9 @@ CLAIM_TARGETS: dict[str, tuple[str, str]] = {
         "Sofic/BlockCliffordTowerSofic",
         "GroupApproximation.BlockCliffordTowerSofic.manuscriptResiduallyFiniteWindow"),
     "cor:undecidable": (
-        "Computability/HaltingReduction",
-        "GroupApproximation.MarkovMFConsequences."
-        "presentationCodes_recognition_undecidable_of_haltingReduction"),
+        "Computability/AdianRabinVariantTransform",
+        "GroupApproximation.AdianRabinVariantTransform."
+        "operatorMF_recognition_undecidable_of_wordProblem"),
     "def:invisible": (
         "Sofic/ManuscriptExactWrappers",
         "GroupApproximation.ManuscriptExactWrappers."
@@ -153,8 +154,9 @@ CLAIM_TARGETS: dict[str, tuple[str, str]] = {
         "GroupApproximation.TorsionSpectralCollapse.actualCoronaMFInvisible_of_torsionWitness",
     ),
     "thm:transport-variants": (
-        "Sofic/ScaledKazhdanTransport",
-        "GroupApproximation.ScaledKazhdanTransport.scaled_transport_both",
+        "Sofic/TransportVariantsAnyUniverse",
+        "GroupApproximation.TransportVariantsAnyUniverse."
+        "scaled_transport_both_anyUniverse",
     ),
     "thm:markedclosed": (
         "Sofic/MarkedMFClosed",
