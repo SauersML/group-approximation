@@ -405,5 +405,135 @@ theorem srcToPres_injective
 
 end Source
 
+/-! ## The collapse, at the level of the presentation
+
+When `w = 1` in the source group the witness `z` is trivial, the cascade fires,
+and everything except the `tᵢ` and `k` dies.  What is left is free, hence
+residually finite, hence MF --- which is all the reduction needs on this side,
+and the reason the tower's associated subgroups could be taken cyclic.
+
+The retraction below exists for *every* `w`: it sends the `tᵢ` and `k` to a
+free basis and everything else to `1`, and each relator dies because every
+relator contains a generator outside `{tᵢ, k}` in a position that kills it. -/
+
+/-- The free basis the collapse lands on: one letter per `tᵢ`, and `k`. -/
+abbrev FreeGen (m : ℕ) : Type := Fin (m + 1) ⊕ Unit
+
+/-- Where the generators go in the free group. -/
+def freeGen : Gen m → FreeGroup (FreeGen m)
+  | Sum.inl _ => 1
+  | Sum.inr Extra.s => 1
+  | Sum.inr (Extra.t i) => FreeGroup.of (Sum.inl i)
+  | Sum.inr Extra.u => 1
+  | Sum.inr Extra.b => 1
+  | Sum.inr Extra.c => 1
+  | Sum.inr Extra.k => FreeGroup.of (Sum.inr ())
+
+theorem freeGen_relators (R : Set (FreeGroup (Fin m))) (w : FreeGroup (Fin m)) :
+    ∀ r ∈ relators R w, FreeGroup.lift (freeGen (m := m)) r = 1 := by
+  have hemb : ∀ r : FreeGroup (Fin m),
+      FreeGroup.lift (freeGen (m := m)) (emb r) = 1 := by
+    intro r
+    have h : (FreeGroup.lift (freeGen (m := m))).comp
+        (emb : FreeGroup (Fin m) →* _) = 1 := by
+      refine FreeGroup.ext_hom _ _ fun i => ?_
+      simp [emb, freeGen]
+    exact DFunLike.congr_fun h r
+  have hS : FreeGroup.lift (freeGen (m := m)) S = 1 := by simp [S, freeGen]
+  have hU : FreeGroup.lift (freeGen (m := m)) U = 1 := by simp [U, freeGen]
+  have hB : FreeGroup.lift (freeGen (m := m)) B = 1 := by simp [B, freeGen]
+  have hC : FreeGroup.lift (freeGen (m := m)) C = 1 := by simp [C, freeGen]
+  have hsw : ∀ i : Fin (m + 1), FreeGroup.lift (freeGen (m := m)) (sWord i) = 1 := by
+    intro i
+    induction i using Fin.cases with
+    | zero => rw [sWord_zero, hS]
+    | succ j => rw [sWord_succ, map_mul, hS, X]; simp [freeGen]
+  have hZ : FreeGroup.lift (freeGen (m := m)) (Z w) = 1 := by
+    rw [Z, map_mul, map_mul, map_mul, map_inv, map_inv, hemb, hS]
+    simp
+  rintro r ((⟨r₀, -, rfl⟩ | ⟨i, rfl⟩) | (rfl | rfl | rfl))
+  · exact hemb r₀
+  · rw [map_mul, map_mul, map_mul, map_inv, map_inv, map_mul, hU, hsw]
+    simp
+  · rw [map_mul, map_mul, map_mul, map_inv, map_inv, map_pow, hB, hU]
+    simp
+  · rw [map_mul, map_mul, map_mul, map_inv, map_inv, map_pow, hB, hC]
+    simp
+  · rw [map_mul, map_mul, map_mul, map_inv, map_inv, hZ, hC]
+    simp
+
+/-- **The retraction onto the free group.** -/
+noncomputable def presRetract (R : Set (FreeGroup (Fin m))) (w : FreeGroup (Fin m)) :
+    Pres R w →* FreeGroup (FreeGen m) :=
+  PresentedGroup.toGroup (freeGen_relators R w)
+
+/-! ### The relations, inside the presented group -/
+
+variable (R : Set (FreeGroup (Fin m))) (w : FreeGroup (Fin m))
+
+/-- A relator is trivial in the presented group. -/
+theorem mk_relator_eq_one {r : FreeGroup (Gen m)} (hr : r ∈ relators R w) :
+    (PresentedGroup.mk (relators R w)) r = 1 :=
+  PresentedGroup.mk_eq_one_iff.2 (Subgroup.subset_normalClosure hr)
+
+/-- The generators of the presented group. -/
+def gS : Pres R w := PresentedGroup.of (Sum.inr Extra.s)
+/-- A source generator. -/
+def gX (i : Fin m) : Pres R w := PresentedGroup.of (Sum.inl i)
+/-- A killing-layer letter. -/
+def gT (i : Fin (m + 1)) : Pres R w := PresentedGroup.of (Sum.inr (Extra.t i))
+/-- The first cascade letter. -/
+def gU : Pres R w := PresentedGroup.of (Sum.inr Extra.u)
+/-- The second cascade letter. -/
+def gB : Pres R w := PresentedGroup.of (Sum.inr Extra.b)
+/-- The third cascade letter. -/
+def gC : Pres R w := PresentedGroup.of (Sum.inr Extra.c)
+/-- The last cascade letter. -/
+def gK : Pres R w := PresentedGroup.of (Sum.inr Extra.k)
+
+/-- The source family, with `1` at index `0`. -/
+def gFam : Fin (m + 1) → Pres R w := Fin.cases 1 (gX R w)
+
+theorem gFam_zero : gFam R w 0 = 1 := rfl
+
+/-- `b u b⁻¹ = u²`. -/
+theorem rel_B : gB R w * gU R w * (gB R w)⁻¹ = (gU R w) ^ (2 : ℕ) := by
+  have h := mk_relator_eq_one R w (r := B * U * B⁻¹ * (U ^ (2 : ℕ))⁻¹)
+    (Or.inr (by simp))
+  rw [map_mul, map_mul, map_mul, map_inv, map_inv, map_pow] at h
+  have := mul_inv_eq_one.1 h
+  exact this
+
+/-- `c b c⁻¹ = b²`. -/
+theorem rel_C : gC R w * gB R w * (gC R w)⁻¹ = (gB R w) ^ (2 : ℕ) := by
+  have h := mk_relator_eq_one R w (r := C * B * C⁻¹ * (B ^ (2 : ℕ))⁻¹)
+    (Or.inr (by simp))
+  rw [map_mul, map_mul, map_mul, map_inv, map_inv, map_pow] at h
+  exact mul_inv_eq_one.1 h
+
+/-- `k z k⁻¹ = c`. -/
+theorem rel_K :
+    gK R w * (PresentedGroup.mk (relators R w) (Z w)) * (gK R w)⁻¹ = gC R w := by
+  have h := mk_relator_eq_one R w (r := K * Z w * K⁻¹ * C⁻¹) (Or.inr (by simp))
+  rw [map_mul, map_mul, map_mul, map_inv, map_inv] at h
+  exact mul_inv_eq_one.1 h
+
+/-- The word `sᵢ`, inside the presented group. -/
+theorem mk_sWord (i : Fin (m + 1)) :
+    (PresentedGroup.mk (relators R w)) (sWord i) = gS R w * gFam R w i := by
+  induction i using Fin.cases with
+  | zero => rw [sWord_zero, gFam_zero, mul_one]; rfl
+  | succ j => rw [sWord_succ, map_mul]; rfl
+
+/-- `u tᵢ u⁻¹ = tᵢ sᵢ`. -/
+theorem rel_kill (i : Fin (m + 1)) :
+    gU R w * gT R w i * (gU R w)⁻¹ = gT R w i * (gS R w * gFam R w i) := by
+  have h := mk_relator_eq_one R w
+    (r := U * T i * U⁻¹ * (T i * sWord i)⁻¹) (Or.inl (Or.inr ⟨i, rfl⟩))
+  rw [map_mul, map_mul, map_mul, map_inv, map_inv, map_mul] at h
+  have h2 := mul_inv_eq_one.1 h
+  rw [mk_sWord] at h2
+  exact h2
+
 end RabinVariantPresentation
 end GroupApproximation
