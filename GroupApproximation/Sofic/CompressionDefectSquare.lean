@@ -74,18 +74,23 @@ theorem sq_mul_eq_commutator {G : Type*} [Group G] (d b : G)
 square of the pointwise defect `[d,a]`.  This is the group identity used by
 the manuscript's `lem:square`.
 
-The proof is the printed one and travels the printed road: put
-`b = a d a⁻¹`, which is an involution by `conj_sq_eq_one`; the square of the
-pointwise defect is `(db)²` by `commutator_eq_mul_conj`; and `(db)²` is
-`[d,b]` by `sq_mul_eq_commutator`. -/
+The proof is the printed one and travels the printed road in the printed
+direction.  The manuscript starts at `[d,a₁]²` and works down to `[d,b]`, so
+the chain below is set up by `Eq.symm` to run that way rather than back from
+the goal's left-hand side: put `b = a d a⁻¹`, which is an involution by
+`conj_sq_eq_one`; the square of the pointwise defect is `(db)²` by
+`commutator_eq_mul_conj`; and `(db)²` is `[d,b]` by `sq_mul_eq_commutator`.
+The three substeps are therefore consumed in the order the manuscript
+establishes them. -/
 theorem commutator_conjugate_eq_commutator_sq_of_sq_eq_one :
     ∀ {G : Type*} [Group G] (d a : G), d ^ 2 = 1 →
     ⁅d, a * d * a⁻¹⁆ = ⁅d, a⁆ ^ 2 := by
   intro G _ d a hd
   have hb : (a * d * a⁻¹) ^ 2 = 1 := conj_sq_eq_one d a hd
-  calc ⁅d, a * d * a⁻¹⁆ = (d * (a * d * a⁻¹)) ^ 2 :=
-        (sq_mul_eq_commutator d (a * d * a⁻¹) hd hb).symm
-    _ = ⁅d, a⁆ ^ 2 := by rw [← commutator_eq_mul_conj d a hd]
+  refine Eq.symm ?_
+  calc ⁅d, a⁆ ^ 2 = (d * (a * d * a⁻¹)) ^ 2 := by
+        rw [commutator_eq_mul_conj d a hd]
+    _ = ⁅d, a * d * a⁻¹⁆ := sq_mul_eq_commutator d (a * d * a⁻¹) hd hb
 
 /-- If `d` is an involution, then centrality of
 `[d, a d a⁻¹]` already forces that commutator to be an involution.  Thus the
