@@ -1148,7 +1148,7 @@
     {
       "id": "lem:window",
       "environment": "lemma",
-      "title": "windows are residually finite",
+      "title": "finite-site subgroups are residually finite",
       "statement_sha256": "ffcad9af5c739fc445e6c9432c0598c368e66ad83c32bd013530666c1d2f729c",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",

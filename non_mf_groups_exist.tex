@@ -221,49 +221,11 @@ generators with thirty-two relators (Section~\ref{sec:group}).
 \leanverified{Sofic/LiteralTietzePresentation}{GroupApproximation.LiteralTietzePresentation.exists_sixGenerator_thirtyTwo_presentation}
 \end{mainthm}
 
-\noindent
-The proof is in Section~\ref{sec:example}.
-
 \subsection*{Outline of the proof}
 
-An inclusion between two objects of equal finite size is an equality.
-\begin{equation}\label{eq:three-columns}
- \begin{array}{c@{\quad}c@{\quad}c}
- X\subseteq Y,\ |X|=|Y| & V\subseteq W,\ \dim V=\dim W
-   & \substack{p\le q,\ p\sim q\\
-       \text{in a finite }C^*\text{-algebra}}\\[2mm]
- \Downarrow & \Downarrow & \Downarrow\\[-1mm]
- X=Y & V=W & p=q.
- \end{array}
-\end{equation}
-Here $p\sim q$ is Murray--von Neumann equivalence, and a $C^*$-algebra
-is \emph{finite} when every isometry in it is unitary.  The three
-columns are the arguments for finite quotients, for
-finite-dimensional representations, and for $\mathcal Q$.
 Operator norm is the approximation norm throughout, and the normalized
 Hilbert--Schmidt norm appears only as the norm of the Hilbert space on
 which the conjugation representation acts.
-
-Let $\pi$ be a homomorphism to a finite group and let
-$t\Gamma t^{-1}\subseteq\Gamma$.  Then
-$\pi(t\Gamma t^{-1})=\pi(\Gamma)$: the left side is a conjugate of the
-right side contained in it, and the two are finite of the same
-cardinality.  So an element $c$ centralizing $\Gamma$ has
-$\pi(tct^{-1})$ centralizing $\pi(\Gamma)$, and every commutator
-$[\,tct^{-1},a\,]$ with $a\in\Gamma$ lies in $\ker\pi$.
-
-Every finite-dimensional representation $\pi$ of the ambient group over
-every field gives the same conclusion, with the commutant in place of
-the subgroup.  Let $C$ be the commutant of $\pi(\Gamma)$ in
-$\End_k(V)$.  The inclusion $t\Gamma t^{-1}\subseteq\Gamma$ implies
-$C\subseteq\pi(t)\,C\,\pi(t)^{-1}$, the two sides have equal finite
-dimension, and therefore
-\[
- C=\pi(t)\,C\,\pi(t)^{-1}
-\]
-(Theorem~\ref{thm:B} and Remark~\ref{rem:invariantsize}).  Since
-$\pi(c)\in C$, also $\pi(tct^{-1})\in C$, so it commutes with every
-$\pi(a)$, $a\in\Gamma$.
 
 Regard
 $M_d(\C)$ as the Hilbert space $L^2(M_d(\C),\tr_d)$, on which
@@ -335,6 +297,21 @@ Taking
  \alpha(v,A)=(2v,A),\qquad a=(e_1,I)
 \]
 gives the group $E$ of Theorem~\ref{thm:A}.
+
+The same one-sided inclusion has exact analogues, which is where the
+mechanism is easiest to see.  For a homomorphism $\pi$ to a finite
+group, $\pi(t\Gamma t^{-1})=\pi(\Gamma)$, since the left side is a
+conjugate of the right side contained in it and the two are finite of
+the same cardinality; so $\pi(tct^{-1})$ centralizes $\pi(\Gamma)$ and
+every commutator $[\,tct^{-1},a\,]$ with $a\in\Gamma$ lies in
+$\ker\pi$.  For a finite-dimensional representation over any field the
+same conclusion holds with the commutant $C$ of $\pi(\Gamma)$ in place
+of the subgroup: the inclusion gives $C\subseteq\pi(t)\,C\,\pi(t)^{-1}$
+between subspaces of equal finite dimension, hence equality, and
+$\pi(c)\in C$ then puts $\pi(tct^{-1})$ in $C$
+(Theorem~\ref{thm:B}).  In $\mathcal Q$ neither cardinality nor
+dimension is available, and finiteness of the norm ultraproduct plays
+their part.
 
 Only the subgroup $\iota(\Gamma)$ is assumed to have
 property~\textup{(T)}.  The group $E$ surjects onto $\mathbb Z$, by
@@ -545,16 +522,14 @@ the regular norms.
 
 \section{One-sided conjugation in matrix models}\label{sec:transport}
 
-Theorem~\ref{thm:B} uses the middle implication of
-\eqref{eq:three-columns} for the
-commutant $C$ of the base inside a finite-dimensional endomorphism
-algebra, where $C\subseteq\pi(t)C\pi(t)^{-1}$ and the two sides have
-equal finite dimension.  The proof of
-Theorem~\ref{thm:kazhdan-transport} uses the right-hand implication for
-the projection $P$ onto the Kazhdan fixed space inside a norm
-ultraproduct: there $s\iota(\Gamma)s^{-1}\subseteq\iota(\Gamma)$
-gives $P\le VPV^*$, the two projections are Murray--von Neumann
-equivalent, and the ultraproduct is finite, so $P=VPV^*$.
+In Theorem~\ref{thm:B} the commutant $C$ of the base inside a
+finite-dimensional endomorphism algebra satisfies
+$C\subseteq\pi(t)C\pi(t)^{-1}$, and equal finite dimension forces
+equality.  In the proof of Theorem~\ref{thm:kazhdan-transport} the
+projection $P$ onto the Kazhdan fixed space satisfies $P\le VPV^*$
+inside a norm ultraproduct, by $s\iota(\Gamma)s^{-1}\subseteq
+\iota(\Gamma)$; the two projections are Murray--von Neumann equivalent
+and the ultraproduct is finite, so $P=VPV^*$.
 
 \begin{lemma}[comparison in a finite algebra]\label{lem:finitecompare}
 Let $A$ be a finite unital $C^*$-algebra and let $p,q\in A$ be
@@ -1174,7 +1149,6 @@ $\operatorname{Res}_{\mathrm{MF}}(E)$.
 \end{mainthm}
 
 \noindent
-The proof is in Section~\ref{subsec:collapse}.
 If an involution is
 centralized by the conjugate copy of a Kazhdan subgroup, and its
 conjugates under that subgroup commute with one another, then every
@@ -1240,7 +1214,7 @@ also sofic and not LEF, and in particular not residually finite.
 \end{mainthm}
 
 \noindent
-The proof is in Section~\ref{sec:Esofic}, through the decomposition
+Section~\ref{sec:Esofic} proves it through the decomposition
 $E\cong C(\mathcal G)\rtimes\Sigma$ of
 Proposition~\ref{prop:blocknormalform}: here $\mathcal G$ is the graph
 on $X$ whose cliques are the blocks of the coset space, and $W$ is the
@@ -1271,12 +1245,9 @@ $F_8\twoheadrightarrow E$.
 \bigskip
 
 \noindent
-The supplement has four parts.  Sections~\ref{sec:group}--\ref{app:equivalences} verify the explicit group and fix the
-formulations the main text uses.  Sections~\ref{supp:transport-variants}--\ref{sec:necessity} develop the transport argument in the generality it has, and
-show that property~\textup{(T)} cannot be dropped.
-Sections~\ref{supp:scaling}--\ref{sec:marked-horn} draw the consequences.
-Sections~\ref{sec:limits} and~\ref{app:maxcstar} describe what the
-method does not decide, and record the maximal group $C^*$-algebra.
+Section~\ref{sec:witness} proves $w\ne1$ and
+Section~\ref{sec:Esofic} proves $E$ sofic; both are used by the main
+text and neither is a corollary of it.
 
 \setcounter{section}{0}
 \renewcommand{\thesection}{S\arabic{section}}
@@ -2128,31 +2099,6 @@ matrix at the basis vector of the identity element returns the image
 of $w$ in the finite group.
 \end{proof}
 
-\begin{remark}[a conjugation-invariant size forbids strict compression]\label{rem:invariantsize}
-The proof of Theorem~\ref{thm:B} used one feature of finite
-dimensionality: if $V\subseteq W$ and $\dim V=\dim W<\infty$, then
-$V=W$.  Abstractly, let a conjugation-invariant size $\sigma$ with
-values in $\mathbb N$ be defined on the subgroups of a group $Q$, and
-suppose $K\le L$ with $\sigma(L)\le\sigma(K)$ implies $K=L$.  If
-$gKg^{-1}\subseteq K$ then the two have equal size, so the inclusion is
-an equality: in such a target no subgroup is properly conjugated into
-itself.
-\leanverified{Sofic/ManuscriptExactWrappers}{GroupApproximation.ManuscriptExactWrappers.manuscriptInvariantSizePrinciple}
-Cardinality on the subgroups of a finite group qualifies, which is the
-finite-quotient argument of Section~\ref{sec:intro}.
-
-The finite-dimensional case is \emph{not} that principle applied to
-subgroups.  The natural candidate size, the
-dimension $\dim_k\End_H(V)$ of the commutant, is order-reversing rather
-than order-preserving, and it does not separate nested subgroups: $A_4<S_4$
-in the standard three-dimensional representation have the same commutant
-$k\cdot1$.  Theorem~\ref{thm:B} applies the principle to the commutant
-instead, where the inclusion $C\subseteq uCu^{-1}$ between subspaces of
-equal finite dimension is an equality \eqref{eq:pinning}; it is that
-equality, and not an equality of subgroup images, that sends the defect
-to the identity.
-\end{remark}
-
 \section{The cyclic comparison}\label{sec:necessity}
 
 % Not the lettered Theorem C: an ordinary numbered theorem.  Cite
@@ -2987,7 +2933,7 @@ write
  \;\le\;C(\mathcal G).
 \]
 
-\begin{lemma}[windows are residually finite]\label{lem:window}
+\begin{lemma}[finite-site subgroups are residually finite]\label{lem:window}
 For every finite set $S$ of sites the subgroup $M_S$ is residually
 finite.
 \leanverified{Sofic/BlockCliffordTowerSofic}{GroupApproximation.BlockCliffordTowerSofic.manuscriptResiduallyFiniteWindow}
@@ -2995,9 +2941,10 @@ finite.
 \end{lemma}
 
 \begin{proof}
-Killing $\zeta$ sends $C(\mathcal G)$ onto the free product of the
-elementary abelian $2$-groups of the blocks, and $M_S$ into the free
-product of the finitely many factors at blocks meeting $S$.  A free
+The quotient map by $\langle\zeta\rangle$ carries $C(\mathcal G)$ onto
+the free product of the elementary abelian $2$-groups of the blocks,
+and $M_S$ into the free product of the finitely many factors at blocks
+meeting $S$.  A free
 product of finite groups is residually finite.  The kernel of
 $C(\mathcal G)\to C(\mathcal G)/\langle\!\langle\zeta\rangle\!\rangle$ is
 the normal closure of $\zeta$, and $\zeta$ is central, so that normal
@@ -3047,9 +2994,10 @@ a residually finite group is LEF, so $E$ is not residually finite
 either.
 \end{proof}
 
-The same decomposition makes $E$ exact.  Killing $\zeta$ sends
-$C(\mathcal G)$ onto the free product of the elementary abelian
-$2$-groups of the blocks, each of order at most $2^{8}$, and free
+The same decomposition makes $E$ exact.  The quotient of
+$C(\mathcal G)$ by $\langle\zeta\rangle$ is the free product of the
+elementary abelian $2$-groups of the blocks, each of order at most
+$2^{8}$, and free
 products, directed unions and extensions of exact groups are exact
 \cite{KWPermanence}; so that free product is exact, and $C(\mathcal G)$,
 a central extension of it by $\langle\zeta\rangle$, is exact as well.

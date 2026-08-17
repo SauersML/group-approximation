@@ -323,8 +323,8 @@ opening the proof, have held.
 <!-- LEDGER-COUNTS -->
 | Column | EXACT | MISMATCH | MISSING | UNDER-SPECIFIED | total |
 | --- | --- | --- | --- | --- | --- |
-| statement | 328 | 58 | 52 | 1 | 439 |
-| proof | 332 | 44 | 62 | 1 | 439 |
+| statement | 326 | 57 | 51 | 1 | 435 |
+| proof | 329 | 44 | 61 | 1 | 435 |
 <!-- END-LEDGER-COUNTS -->
 
 ## Rows waiting for a first green build
@@ -515,7 +515,7 @@ once in the comment-stripped manuscript; the probe is the drift detector.
 | eq:pinning | eq | eq:pinning | - |
 | eq:sl3presentation | eq | eq:sl3presentation | - |
 | eq:gamma-presentation | eq | eq:gamma-presentation | - |
-| prop:mf-equivalences | env | prop:mf-equivalences | 8fcbf4fc050755b2 |
+| prop:mf-equivalences | env | prop:mf-equivalences | f68097942772b011 |
 | lem:lift | env | lem:lift | 721a3d635e21456f |
 | lem:unitarycorona | env | lem:unitarycorona | 1b476b8632de4a94 |
 | lem:finitecompare | env | lem:finitecompare | fc2a55b505fb0455 |
@@ -534,13 +534,12 @@ once in the comment-stripped manuscript; the probe is the drift detector.
 | thm:kazhdan-clifford | env | thm:kazhdan-clifford | 924348a10c11440d |
 | rem:ff-realization | env | rem:ff-realization | 95d3df4896ab80a4 |
 | thm:A | env | thm:A | e424965973a05efc |
-| cor:uniform | env | cor:uniform | 043923ba46739c21 |
+| cor:uniform | env | cor:uniform | 127963fa65d9be4e |
 | cor:scaling-family | env | cor:scaling-family | 9370bcd0aa550f6e |
 | thm:exactfd | env | thm:exactfd | 06b19a3bf4660f93 |
 | cor:notRFD | env | cor:notRFD | 754e7536fa06cde2 |
-| rem:invariantsize | env | rem:invariantsize | 5b662c1d7c81ad8d |
 | def:E | env | def:E | fec9598f435e5d18 |
-| fig:compression-pattern | env | fig:compression-pattern | 15e8f16170029b42 |
+| fig:compression-pattern | env | fig:compression-pattern | 9cd87cd9993f0fd7 |
 | prop:literal-base-T | env | prop:literal-base-T | 4955bce3c162ac27 |
 | prop:blocknormalform | env | prop:blocknormalform | 4e271fd389e7e29d |
 | lem:window | env | lem:window | ffcad9af5c739fc4 |
@@ -592,7 +591,7 @@ once in the comment-stripped manuscript; the probe is the drift detector.
 | p:prelim-defs | prose | `An \emph{operator-norm asymptotic representation} of $H$` | - |
 | p:prelim-unit | prose | `Taking $g=h=1$ gives` | - |
 | p:prelim-cmax | prose | `the maximal group $C^*$-algebra $\Cmax(H)$ is` | - |
-| p:transport-display | prose | `is \emph{finite} when every isometry in it is unitary` | - |
+| p:transport-display | prose | `equal finite dimension forces` | - |
 | p:transport-weights | prose | `Taking $\nu_n=k_n$, the rank of` | - |
 | p:transport-tensors | prose | `Invariant tensors of type $(p,q)$ may be identified with Hilbert--Schmidt intertwiners` | - |
 | p:conj-datum-remark | prose | `conditions (M1)--(M2) are imposed by` | - |
@@ -865,10 +864,6 @@ everywhere: the TeX is the specification and does not move).
 | FD.15 | cor:notRFD | proof of the finite-target clause: compose with the faithful left regular representation over ℚ and evaluate at the identity basis vector | `LiteralFiniteDimensionalObstruction.map_literal_mark_eq_one_of_finite` | EXACT | EXACT | literal | unconditional | - | NO | - |
 | FD.16 | p:B-applied | consequently finite-dimensional representations do not separate points of E, no finite quotient witnesses w ≠ 1, and the infinite Clifford witness cannot be replaced by a finite-dimensional one | `LiteralFiniteDimensionalObstruction.manuscriptFiniteDimensionalConsequences`; `LiteralNonMFLinearWitness.literal_mark_ne_one` | EXACT | EXACT | literal | unconditional | - | NO | - |
 | FD.17 | p:B-deligne | w makes E a group of Deligne type in the sense of BDL, realizing their proposal at the operator-norm endpoint | - | MISSING | MISSING | - | literature-input | BDL | NO | terminology import; no formal content |
-| FD.18 | rem:invariantsize | the abstract invariant-size principle: a conjugation-invariant ℕ-valued size separating nested subgroups admits no strict one-sided compression | `ManuscriptExactWrappers.manuscriptInvariantSizePrinciple` | EXACT | EXACT | literal | unconditional | - | NO | universe-polymorphic |
-| FD.19 | rem:invariantsize | cardinality on the subgroups of a finite group qualifies, which is the finite-quotient argument of the introduction | `manuscriptCardinalityInvariantSize` | MISMATCH | EXACT | literal | unconditional | - | NO | RE-READ 2026-08-16, upgraded from MISSING/MISSING.  The old note, "the instantiation at cardinality is not stated", was carried forward rather than re-verified: `compressedImage_eq'` had long been the instance *through a homomorphism*, and `manuscriptCardinalityInvariantSize` now states it for the target group alone, which is the form the remark's clause uses.  Its three conjuncts are the principle's two hypotheses at `Nat.card` and its conclusion.  `univ0`: the Lean statement fixes `{Q : Type}` |
-| FD.20 | rem:invariantsize | the finite-dimensional case is not the same principle: dim End_H(V) is order-reversing and does not separate, e.g. A₄ < S₄ have the same commutant k·1 | - | MISSING | MISSING | - | unconditional | - | NO | the A₄ < S₄ counterexample is not formalized |
-| FD.21 | rem:invariantsize | what the proof of Theorem B uses is the principle one level down, on the commutant | `map_marked_commutator_eq_one` | EXACT | EXACT | literal | unconditional | - | NO | - |
 | FD.27 | p:B-why-corona | an MF model is only asymptotically multiplicative, so coordinate fixed spaces are not literal invariant subspaces; operator-norm control keeps the adjoint actions almost multiplicative; (T) supplies an almost-fixed spectral subspace; the equal-rank reversal turns one-sided compression into equality | `KazhdanCompressorCorner.cornerProjection`; `KazhdanCornerMatrices.norm_one_sub_mul_flip` | EXACT | EXACT | literal | unconditional | - | NO | this paragraph describes the Appendix B route, which is the formalized one |
 | BN.01 | prop:blocknormalform | there is an isomorphism E ≅ C(𝒢) ⋊ Σ | `LiteralBlockNormalForm.markedGroupEquivModel`; `LiteralVerticalBridge.verticalEquiv` | EXACT | EXACT | literal | unconditional | - | NO | NEW 2026-08-16, for badges that entered without a routed row request.  `markedGroupEquivModel` is the multiplicative equivalence built from the two universal properties (`toModel`/`fromModel` with both round trips), which is the printed proof; `verticalEquiv` identifies the acting group `LiteralBlockNormalForm.Vertical` with `LiteralLampKernelSplit.V`, so that the `V` of the printed statement is the `V` the rest of the development uses |
 | BN.02 | prop:blocknormalform | under it ⟨⟨c⟩⟩ is the factor C(𝒢) | `LiteralBlockNormalForm.lampKernelEquiv` | EXACT | EXACT | literal | unconditional | - | NO | NEW 2026-08-16: `lampKernelEquiv : lampKernel ≃* LampFactor` is exactly this clause, composed from `equivMapOfInjective`, `lampKernel_map_toModel` and the injectivity of `SemidirectProduct.inl` |
