@@ -1,5 +1,6 @@
 import Mathlib.GroupTheory.HNNExtension
 import Mathlib.GroupTheory.FreeGroup.Basic
+import Mathlib.GroupTheory.Coprod.Basic
 
 /-!
 # Retractions of HNN extensions that kill the base
@@ -100,6 +101,42 @@ theorem freeGroupLift_t_injective :
     (killBase φ (FreeGroup.of ())) _ fun i => ?_
   cases i
   simp
+
+/-! ## The same trick over a free product
+
+`E2` of the same roadmap asks that every `sᵢ = s₀xᵢ` have infinite order in
+`G = Γ * ⟨s₀⟩`, and prices it against the free-product normal form
+(`CoprodI.Word`, `NeWord`).  It is again a retraction: the homomorphism
+`G → ⟨s₀⟩` that kills `Γ` and is the identity on `⟨s₀⟩` sends every `sᵢ` to
+`s₀`, whatever the `xᵢ` do --- which is exactly the property the change of
+generators was made for. -/
+
+/-- Killing the left factor of a free product. -/
+def killLeft {Γ K : Type*} [Group Γ] [Group K] : (Monoid.Coprod Γ K) →* K :=
+  Monoid.Coprod.lift 1 (MonoidHom.id K)
+
+@[simp] theorem killLeft_inl {Γ K : Type*} [Group Γ] [Group K] (x : Γ) :
+    killLeft (Monoid.Coprod.inl x : Monoid.Coprod Γ K) = 1 := by
+  simp [killLeft]
+
+@[simp] theorem killLeft_inr {Γ K : Type*} [Group Γ] [Group K] (k : K) :
+    killLeft (Monoid.Coprod.inr k : Monoid.Coprod Γ K) = k := by
+  simp [killLeft]
+
+/-- **`E2`.**  In `Γ * ⟨s₀⟩`, the element `s₀x` has infinite order for every
+`x ∈ Γ`.  No hypothesis on `x`, and in particular none on the order of `x` in
+`Γ`: the retraction does not see `Γ` at all. -/
+theorem zpow_inr_mul_inl_ne_one {Γ : Type*} [Group Γ] (x : Γ) {n : ℤ} (hn : n ≠ 0) :
+    ((Monoid.Coprod.inr (Multiplicative.ofAdd (1 : ℤ)) * Monoid.Coprod.inl x :
+        Monoid.Coprod Γ (Multiplicative ℤ))) ^ n ≠ 1 := by
+  intro h
+  have h' : (Multiplicative.ofAdd (1 : ℤ)) ^ n = 1 := by
+    have hz := congrArg (killLeft (Γ := Γ) (K := Multiplicative ℤ)) h
+    rw [map_zpow, map_mul, killLeft_inl, killLeft_inr, mul_one] at hz
+    simpa using hz
+  have h2 := congrArg Multiplicative.toAdd h'
+  simp [toAdd_zpow] at h2
+  exact hn h2
 
 end HNNRetraction
 end GroupApproximation
