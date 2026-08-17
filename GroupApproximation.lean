@@ -14,6 +14,7 @@ import GroupApproximation.Kazhdan.KazhdanEigenvalueBound
 import GroupApproximation.Analysis.AbstractSpectralGap
 import GroupApproximation.Analysis.CStarSpectralProjection
 import GroupApproximation.Analysis.KazhdanProjectionAbsorption
+import GroupApproximation.Analysis.ProjectionOrbitCollapse
 import GroupApproximation.Analysis.MaximalCStarProperCompression
 import GroupApproximation.Analysis.AmenableQuasidiagonal
 import GroupApproximation.Analysis.CStarExactness
