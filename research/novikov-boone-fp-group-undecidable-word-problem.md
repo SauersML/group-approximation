@@ -23,7 +23,7 @@ assistant.
 
 ## Where the chain stands
 
-Six modules are in place, and the roadmap in `Computability/BooneGroupBase`
+Seven modules are in place, and the roadmap in `Computability/BooneGroupBase`
 tracks them stage by stage.  Established:
 
 * [[modular-machine-halting-invariance]] (S0) -- the three machine facts;
@@ -34,16 +34,21 @@ tracks them stage by stage.  Established:
 * [[boone-hnn-tower-embeds-base-group]] (S3) -- the tower, one stable letter at
   a time, with its embedding invariant;
 * [[boone-halting-index-good-parameter-set]] (S5a) -- the base-group half of
-  both good-subgroup verifications.
+  both good-subgroup verifications;
+* [[hnn-good-subgroup-lemma]] (S4) -- the only item that carried mathematical
+  rather than bookkeeping risk, closed on 2026-08-16 with no induction on
+  stable letters, together with its iteration up the tower;
+* [[boone-tower-good-subgroup-transport]] (S5b) -- goodness of the halting
+  subgroup at every quadruple, in both directions.
 
-Open: [[hnn-good-subgroup-lemma]] (S4, the only item with mathematical risk),
-[[boone-tower-good-subgroup-transport]] (S5b),
-[[boone-halting-subgroup-is-normal-closure]] (S6),
+Open: [[boone-halting-subgroup-is-normal-closure]] (S6, whose inductive step is
+proved),
 [[boone-commutator-criterion-for-halting]] (S7, the target statement),
 [[boone-final-group-finitely-presented]] (S8) and
 [[modular-machine-with-noncomputable-halting]] (S9, external and prose-only).
 
-Roughly 2000--3500 further lines, with S4 and S8 load-bearing.
+With S4 and S5b closed the estimate drops sharply: S8 is now the one
+load-bearing item left, and S6 and S7 are inductions whose steps are in hand.
 
 ## Why this route
 

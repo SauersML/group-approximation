@@ -10,6 +10,7 @@ distinct_from:
 artifacts:
   - GroupApproximation/Computability/BooneGroupModularMachine.lean
   - GroupApproximation/Computability/BooneGroupMachineIndex.lean
+  - GroupApproximation/Computability/BooneGroupGoodness.lean
 ---
 
 OPEN.  Item **S6** of the roadmap in `Computability/BooneGroupBase`.  In the
@@ -29,10 +30,19 @@ basis indices that identity is `haltsZ_right_iff` -- the machine fact of
 [[modular-machine-halting-invariance]] -- again, so no new machine input is
 needed.
 
-Estimated cost: about 150 new lines.  No route node is recorded for it yet:
-the induction has been read but not re-derived against Mathlib's HNN API, and
-a route in this graph asserts that its implication is valid, not that it is
-plausible.
+**The inductive step is now proved.**
+`Computability/BooneGroupGoodness.stable_conj_emb_right` and
+`stable_conj_emb_left`: the stable letter attached to a quadruple carries the
+source embedding to the target one,
+`of (emb c 0 M^2 1 g) = t * of (emb a b M M g) * t^{-1}`, which is the defining
+relation of the HNN extension read through `quadEquiv` -- and `quadEquiv` was
+defined to make it so.  What is left is the induction that strings those steps
+along a halting computation and the reverse inclusion.
+
+Estimated cost: what remains of the original 150 lines.  No route node is
+recorded yet: the induction has been read but not re-derived against Mathlib's
+HNN API, and a route in this graph asserts that its implication is valid, not
+that it is plausible.
 
 ## Where it is consumed
 

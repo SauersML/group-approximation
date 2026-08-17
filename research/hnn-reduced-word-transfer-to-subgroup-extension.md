@@ -7,7 +7,9 @@ artifacts:
   - GroupApproximation/Computability/BooneGroupTower.lean
 ---
 
-OPEN, and it is the only unproved part of Simpson's good-subgroup lemma.
+ESTABLISHED (2026-08-16).  This was the only unproved part of Simpson's
+good-subgroup lemma, and it is now `mem_toSubgroup_subOne_iff`, `pushWord` and
+`smallLift_prod` in `Computability/BooneGroupTower`.
 
 Let `A <= G` with `phi : Asub =~ Bsub`, and suppose `A` is *good*: `phi` carries
 `A cap Asub` onto `A cap Bsub`.  Set `A1 = Asub.comap A.subtype` and
@@ -43,9 +45,6 @@ re-deriving the transfer above one letter at a time.
 Estimated cost: the two items are the transfer of a structure field and one
 `MonoidHom` computation on a normal form.
 
-**In flight (2026-08-16).**  A candidate implementation of exactly these two
-items -- `mem_toSubgroup_subOne_iff`, `pushWord` and `smallLift_prod` -- sits
-uncommitted in the shared working tree, together with a proof of
-[[hnn-good-subgroup-lemma]] built on them.  It is neither pushed nor compiled,
-so it does not change the status recorded here; if it lands green, this claim
-and its consumer both close at once.
+Both items landed in `a44616f4`, and [[hnn-good-subgroup-lemma]] closed with
+them in the same commit.  The estimate above was right about the shape and the
+size: no induction on stable letters appears anywhere in the finished proof.
