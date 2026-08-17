@@ -41,6 +41,7 @@ import GroupApproximation.Computability.RewriteMonoid
 import GroupApproximation.Computability.RewriteInvariants
 import GroupApproximation.Computability.RewriteConfluence
 import GroupApproximation.Computability.AdianRabinMarkovProperty
+import GroupApproximation.Computability.WordProblemRE
 import GroupApproximation.Sofic.AdjointMatrix
 import GroupApproximation.Sofic.HilbertUltraproductFaithful
 import GroupApproximation.Sofic.HilbertUltraproductSeparating
