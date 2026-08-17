@@ -44,7 +44,7 @@ is rather than that it is "routine":
 | D3 | Markov--Post: undecidable word problem for finitely presented semigroups, by simulating a machine with a semi-Thue system | **done**, see below |
 | D4 | Novikov--Boone: a finitely presented group with undecidable word problem, via an HNN tower | **done**, see below |
 | D4' | the same group in coordinates: an explicit `PresentationCode` and a computable sequence of words | 200--400 lines |
-| D5 | the Adian--Rabin construction, effectively: Rabin's chain of HNN extensions and free products, with the collapse-to-trivial induction | 1500--3000 lines |
+| D5 | the Adian--Rabin construction, effectively: Rabin's chain of HNN extensions and free products, with the collapse-to-trivial induction | **correctness done**, see below; `Computable transform` remains |
 | D6 | assembly into `AdianRabinReduction` | 100--200 lines |
 
 Mathlib's Britton's Lemma, HNN normal form and `PushoutI` are genuine enablers
@@ -70,6 +70,30 @@ So of the obligations in the table, **D1, D3 and D4 are done** and the
 critical path now runs through **D5** alone --- the effective Adian--Rabin
 construction, which is a different construction and consumes D4 as its source
 --- plus D2 for the r.e. half and D6 for assembly.
+
+**The correctness clause of this claim is closed (2026-08-17).**
+`Computability.AdianRabinVariantTransform.correct` reads
+
+    operatorMFProperty semantics (transform (c, w)) ↔ WordProblem c w
+
+hypothesis-free and axiom-clean.  The transform free-products the input code
+with the fixed non-MF code and runs the variant construction; the collapse
+direction goes through "output presents a free group, which is residually
+finite, hence MF", and the embedding direction through "the free product embeds,
+so its non-MF factor does".  The variant tower's own embedding half became
+unconditional the same day by writing stage 1 as `HNNExtension Γ ⊥ ⊥` instead of
+`Monoid.Coprod Γ ℤ` --- the same group, described so Britton's lemma applies,
+after which infinite order of `⁅w, s⁆` is a theorem rather than a hypothesis.
+
+**What remains of this claim is `Computable transform`, and it is a different
+kind of obligation than the one the table estimated.** `transform` is a
+`noncomputable` def, so this is not a proof away: it needs a computable
+definition plus a proof that the two agree.  That is the same
+Prop-versus-coordinates gap as [[uniform-word-problem-on-presentation-codes-undecidable]],
+and it means **every group-theoretic input to the endpoint is now
+machine-checked** --- what is left of the whole cost table is three
+computability obligations: `Computable transform`, D4', and the `Primrec`
+plumbing of D2.
 
 **D4' was separated out on 2026-08-16**, after D4 closed, because closing D4
 made visible something the table had assumed: that D6 could discharge

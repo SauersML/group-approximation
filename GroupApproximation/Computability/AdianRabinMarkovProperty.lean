@@ -76,7 +76,9 @@ premise:
 
 **(b) is done as of 2026-08-16**, unconditionally and with no literature
 input: `Computability.NovikovBoone.exists_finitelyPresented_wordProblem_not_computablePred`.
-(a) remains out of reach; (c) has its mathematical half proved in
+**(a) is half done as of 2026-08-17**: its correctness clause is
+`AdianRabinVariantTransform.correct`, hypothesis-free, and what remains of it is
+`Computable transform` alone.  (c) has its mathematical half proved in
 `AdianRabinWordProblem` and only `Primrec` plumbing left.  But see D4 and D6
 below before assuming (b) can simply be handed to the assembly step: the
 statement proved is about an abstract group, and the assembly needs a code.  What this file
@@ -190,8 +192,20 @@ an `AdianRabinReduction`, and `¬ComputablePred sourceProperty`.  Current state:
 * `Source`, `Primcodable Source`, `sourceProperty` --- **discharged**
   (`AdianRabinWordProblem.wordProblemPred` on
   `PresentationCode × List (ℕ × Bool)`).
-* `AdianRabinReduction.transform`, `.transform_computable`, `.correct` ---
-  **open**; these three fields *are* (a), the Adian--Rabin construction.
+* `AdianRabinReduction.transform` and `.correct` --- **discharged**
+  (2026-08-17, `Computability.AdianRabinVariantTransform`).  `correct` reads
+  `operatorMFProperty semantics (transform x) ↔ WordProblem x.1 x.2`, with no
+  hypothesis and no literature input: the transform free-products the input
+  code with the fixed non-MF code and runs the variant construction, and the
+  two directions are the collapse clause (the word dies, the output presents a
+  free group, which is residually finite, hence MF) and the embedding clause
+  (the word survives, the free product embeds, so its non-MF factor does).
+* `AdianRabinReduction.transform_computable` --- **open, and now the whole of
+  (a)**.  Note the shape of what is left: `transform` is a *`noncomputable`
+  def*, so `Computable transform` is not a proof away, it needs a computable
+  definition together with a proof that the two agree.  This is the same
+  Prop-versus-coordinates gap as D4' below, and the same one the D3 entry flags
+  about its own presentation being noncomputable.
 * `¬ComputablePred sourceProperty` --- **open, but no longer for want of (b)**.
   Novikov--Boone is proved (D4).  What is missing is the passage from it to
   *this* predicate, which quantifies over `PresentationCode`s: see D6.
@@ -218,7 +232,12 @@ Two observations about the existing material, both acted on below:
 
 ## Engineering assessment of the remaining debt
 
-The debt was (a), (b) and (c) above; as of 2026-08-16 it is **(a) and (c)**,
+The debt was (a), (b) and (c) above; as of 2026-08-17 what is left of it is
+**three computability obligations and nothing group-theoretic**: `Computable
+transform` (the rest of (a)), `¬ComputablePred wordProblemPred` (D4', the coded
+form of (b)), and the `Primrec` plumbing of (c).  Every group-theoretic input
+the corollary needs is now machine-checked.  The older reading follows; as of
+2026-08-16 the debt was **(a) and (c)**,
 since (b) is proved.  The pullback and the two group-theoretic inputs are
 already machine-checked, so nothing else stands between the repository and
 `cor:undecidable`.  The corollary could not be closed without a formal
@@ -337,6 +356,23 @@ the assembly consumes; D5 is (a).
   products; correctness again runs on Britton's Lemma, and the "collapse to
   the trivial group" half needs a careful induction.  **~1500--3000 lines.**
   Depends on D1 and D4.
+
+  **The correctness half is DONE (2026-08-17)**, in
+  `Computability.AdianRabinVariantTransform.correct`, hypothesis-free and
+  axiom-clean.  The construction is the variant tower, whose embedding half was
+  itself made unconditional the same day by describing stage 1 as
+  `HNNExtension Γ ⊥ ⊥` rather than `Monoid.Coprod Γ ℤ` --- the same group, said
+  so that Britton applies, after which every word in the stable letter is
+  Britton-reduced and `⁅w, s⁆` has infinite order rather than being assumed to.
+  The estimate above was not wrong about the mathematics; what shortened it is
+  that the collapse induction runs on relabelling lemmas
+  (`PresentedGroupRelabel.congrEquiv`, `HNNCongr.congrEquiv`) instead of on a
+  bespoke normal form.
+
+  **What is left of D5 is exactly `Computable transform`**, and it is not a
+  small residue of the same kind: see the parameter list above.  A
+  `noncomputable def` cannot be shown `Computable`; the obligation is to give
+  the transform a computable definition and prove it agrees with this one.
 
 * **D6. Assembly.**  Feed D5 into `MarkovMFConsequences.AdianRabinReduction`
   over `PresentationCodes.semantics`, discharge `¬ComputablePred
