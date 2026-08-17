@@ -323,8 +323,8 @@ opening the proof, have held.
 <!-- LEDGER-COUNTS -->
 | Column | EXACT | MISMATCH | MISSING | UNDER-SPECIFIED | total |
 | --- | --- | --- | --- | --- | --- |
-| statement | 349 | 49 | 36 | 1 | 435 |
-| proof | 352 | 35 | 47 | 1 | 435 |
+| statement | 349 | 50 | 35 | 1 | 435 |
+| proof | 352 | 36 | 46 | 1 | 435 |
 <!-- END-LEDGER-COUNTS -->
 
 ## Rows waiting for a first green build
@@ -697,7 +697,7 @@ everywhere: the TeX is the specification and does not move).
 | PRE.08 | lem:lift | every unitary of Q lifts to a sequence of unitaries | `ManuscriptExactWrappers.manuscriptUnitaryLifting` | EXACT | EXACT | literal | unconditional | Loring | NO | - |
 | PRE.09 | lem:lift | proof step: lift to a bounded sequence; unitarity gives ‖x_n*x_n − 1‖ → 0 | `unitaryCoronaToCStarCoronaUnitary_surjective` | EXACT | MISMATCH | literal | unconditional | - | NO | Lean proves surjectivity of the canonical map directly; the printed bounded-lift step is not a separate declaration |
 | PRE.10 | lem:lift | proof step: once ‖x_n*x_n − 1‖ ≤ 1/2, polar correction u_n = x_n(x_n*x_n)^{-1/2} is unitary with ‖u_n − x_n‖ ≤ 2‖x_n‖‖x_n*x_n − 1‖ → 0 by CFC | `KazhdanCornerMatrices.polarCorrectUnitary`; `KazhdanCornerMatrices.norm_polarCorrect_sub_le_mul` | EXACT | EXACT | literal | unconditional | - | NO | **RESOLVED 2026-08-17 from MISSING/MISSING, by inspection.**  The old note said "the explicit polar-correction estimate with this constant is not a located declaration", and it was simply not located: `polarCorrectUnitary` is unitarity of the corrected matrix under the printed hypothesis `‖gram − 1‖ ≤ 1/2`, and `norm_polarCorrect_sub_le_mul` is the estimate `‖polarCorrect C − C‖ ≤ ‖C‖ · (2 · δ)` with `δ = ‖gram C − 1‖` at `hclose := le_rfl` — the printed constant exactly.  Both are consumed by `kt_06_polar_correction` |
-| PRE.11 | lem:lift | proof step: set u_n = 1 at the finitely many remaining indices | - | MISSING | MISSING | - | unconditional | - | NO | finite-exception patching is not separately stated |
+| PRE.11 | lem:lift | proof step: set u_n = 1 at the finitely many remaining indices | `kt_06_polar_correction`; `OmegaCoronaFinite.omega_polar_correction` | MISMATCH | MISMATCH | literal | unconditional | - | NO | **UPGRADED 2026-08-17 from MISSING/MISSING, and not to EXACT.**  The old note, "finite-exception patching is not separately stated", is accurate and stays accurate: there is no declaration whose content is the patching.  What the two cited theorems do instead is *stronger* and is why no patching lemma is needed — they define the corrected sequence with the printed `else 1` branch and then require the closeness estimate only on a **member of the filter** (`filter_upwards [hgood]`), so the values off that member are unconstrained rather than finitely many.  "Finitely many remaining indices" is the `cofinite` case of that.  The row stays MISMATCH because the printed sentence is a step about a finite exceptional set and the Lean route never forms one |
 | PRE.12 | lem:unitarycorona | κ is a canonical group isomorphism U_cor((d_n)) → U(Q) | `ManuscriptExactWrappers.manuscriptUnitaryCoronaEquivalence` | EXACT | EXACT | literal | unconditional | - | NO | includes the formula on represented sequences, which the TeX also displays |
 | PRE.13 | lem:unitarycorona | proof step: the kernel is exactly the null unitary sequences, giving injectivity | `normMatrixCoronaUnitaryEquiv` | EXACT | EXACT | literal | unconditional | - | NO | the quotient is by that subgroup by construction |
 | PRE.14 | lem:unitarycorona | proof step: surjectivity is Lemma lem:lift | `unitaryCoronaToCStarCoronaUnitary_surjective` | EXACT | EXACT | literal | unconditional | - | NO | - |
