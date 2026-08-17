@@ -2,6 +2,7 @@ import GroupApproximation.Sofic.LiteralSoficAssembly
 import GroupApproximation.Sofic.MFTraceRecognition
 import GroupApproximation.Sofic.OperatorMFLocalNormalization
 import GroupApproximation.Sofic.CDEOperatorMF
+import GroupApproximation.Sofic.ShulmanMFTraceBridge
 
 /-!
 # The regular character of the literal group is not an MF trace
@@ -60,6 +61,55 @@ theorem markedGroup_sofic_hyperlinear_not_isMFRegularCharacter :
     LiteralSoficAssembly.markedGroup_isSofic,
     LiteralSoficAssembly.markedGroup_isHyperlinear,
     markedGroup_not_isMFRegularCharacter⟩
+
+/-! ## The same statement in Shulman's own definition
+
+`markedGroup_not_isMFRegularCharacter` above is stated in the finite-test-set
+form on the group unitaries.  `Sofic/ShulmanMFTraceBridge.lean` now closes the
+gap to the asymptotic condition on the whole algebra, so the conclusion can be
+restated where the literature states it: about the canonical trace of the full
+group C⋆-algebra, with the quantifier ranging over every element of `C⋆(E)`
+rather than over a finite set of group elements. -/
+
+/-- **The canonical trace of `C⋆(E)` is not an MF trace**, in the sense of
+Shulman: there is no sequence of maps `C⋆(E) → M_{kₙ}` that is asymptotically
+multiplicative, linear and `*`-preserving in operator norm, uniformly bounded,
+and trace-correct.
+
+If there were, `isOperatorMF_of_isMFTrace_canonicalMaximal` would make `E`
+operator MF, contradicting Theorem A. -/
+theorem markedGroup_canonicalMaximalTrace_not_isMFTrace :
+    ¬ ShulmanTrace.IsMFTrace
+      (fun a : MaximalGroupCStar MarkedGroup ↦ canonicalMaximalTrace MarkedGroup a) := by
+  intro h
+  refine LiteralSoficAssembly.markedGroup_finitelyPresented_sofic_nonMF.2.2 ?_
+  exact (isCDEOperatorMF_iff_isOperatorMF MarkedGroup).mpr
+    (ShulmanTrace.isOperatorMF_of_isMFTrace_canonicalMaximal h)
+
+/-- The half of the trace-class separation that this development proves,
+packaged with the facts a reader needs beside it.
+
+`E` is finitely presented, sofic and hyperlinear; `C⋆(E)` is separable; its
+canonical trace is a tracial state; and that trace is not MF.  What is *not*
+here is the other half — that the same trace is hyperlinear — which needs the
+tracial matrix ultraproduct and is deliberately absent. -/
+theorem markedGroup_separable_tracialState_not_isMFTrace :
+    Group.IsFinitelyPresented MarkedGroup ∧ IsSofic MarkedGroup ∧
+      IsHyperlinear MarkedGroup ∧
+      TopologicalSpace.SeparableSpace (MaximalGroupCStar MarkedGroup) ∧
+      canonicalMaximalTrace MarkedGroup 1 = 1 ∧
+      (∀ a b : MaximalGroupCStar MarkedGroup,
+        canonicalMaximalTrace MarkedGroup (a * b)
+          = canonicalMaximalTrace MarkedGroup (b * a)) ∧
+      ¬ ShulmanTrace.IsMFTrace
+        (fun a : MaximalGroupCStar MarkedGroup ↦ canonicalMaximalTrace MarkedGroup a) :=
+  ⟨LiteralSoficAssembly.markedGroup_finitelyPresented_sofic_nonMF.1,
+    LiteralSoficAssembly.markedGroup_isSofic,
+    LiteralSoficAssembly.markedGroup_isHyperlinear,
+    maximalGroupCStar_separableSpace MarkedGroup,
+    (canonicalMaximalTrace_isTracialState MarkedGroup).1,
+    (canonicalMaximalTrace_isTracialState MarkedGroup).2.2,
+    markedGroup_canonicalMaximalTrace_not_isMFTrace⟩
 
 end LiteralTraceConsequence
 end GroupApproximation

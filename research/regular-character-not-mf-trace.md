@@ -57,15 +57,28 @@ tree, no tracial ultraproduct object, and no Bartle--Graves.  "There exists a
 hyperlinear trace which is not MF" is therefore **not** a Lean theorem; it is
 [[hyperlinear-trace-not-mf-trace]], carried by a written proof route.
 
-Two gaps separate this claim from that one, and they should be named
-separately:
+Two gaps separated this claim from that one.  **One of them is now closed.**
 
-- **the hyperlinear half**, unformalized;
-- **the definitional comparison**, between the finite-test-set predicate above
-  and Shulman's asymptotic condition on `C^*(E)`.  Nothing in the tree relates
-  them, and the same comparison is what stands between us and the shorter
-  Schafhauser Proposition 2.2 route recorded in
-  [[hyperlinear-trace-not-mf-trace]].
+- **The definitional comparison — CLOSED 2026-08-17.**  It used to be true that
+  nothing in the tree related the finite-test-set predicate above to Shulman's
+  asymptotic condition on all of `C^*(E)`.  It no longer is.
+  `Analysis/ShulmanTraceClasses.lean` transcribes her `IsMFTrace` verbatim —
+  operator-norm asymptotic multiplicativity, linearity and `*`-preservation, a
+  uniform bound, trace-correctness, and no positivity or unitality — and
+  `Sofic/ShulmanMFTraceBridge.isOperatorMF_of_isMFTrace_canonicalMaximal`
+  carries it to operator MF for the group, through the canonical trace of the
+  *full* group C-star algebra built in
+  `Analysis/MaximalGroupCStarTrace.lean`.  Composed at the literal group in
+  `LiteralTraceConsequence.markedGroup_canonicalMaximalTrace_not_isMFTrace`,
+  the conclusion is now stated where the literature states it: about `tau_E`
+  on `C^*(E)`, quantified over every element of the algebra.
+- **The hyperlinear half** — still unformalized, and now the only thing between
+  this development and [[hyperlinear-trace-not-mf-trace]].  It needs the
+  tracial matrix ultraproduct of Shulman's reformulation remark.
+
+The finite-test-set statement is kept as the primitive because it is what the
+1298-line recognition theorem actually concludes; the trace-level statement is
+its corollary, not a restatement of it.
 
 Recorded because the repository was carrying the trace consequence entirely
 outside Lean, and the half of it that is cheap to formalize was never
