@@ -67,6 +67,18 @@ pair-level vanishing of the unsymmetrized differential) are in
    with single-factor-escaping relators is first-order rigid — a fence
    for every future ansatz of this shape, not just this one.
 
+**Corollary (the classical sector is gradient-dead).**  An
+automorphism fold `P_φ`, `φ ∈ Aut(A₈) ≅ S₈`, conjugates right
+translations to right translations: `P_φ R_h P_φ* = R_{φ(h)}`.  So at
+any of the 40,320 fold basepoints of `atlas-true-criterion-baseline`
+the second chart again acts by right translations, the factor
+projections become `(p₁, φ(p₂))`, and the single-factor-escape
+dichotomy is `φ`-invariant — the same two cases kill the differential.
+Every classical warm start (all folds, the whole flip manifold, at
+every multiplicity) is first-order rigid.  The criterion has no
+first-order entry point from anywhere in its classical sector; pure
+thought, no new computation.
+
 Evidence and structure only with respect to the branch question: this
 selects between nothing.  It sharpens `leavitt-steinberg-hs-unstable`
 by closing the entire first-order neighborhood of the one warm start
