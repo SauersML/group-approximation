@@ -406,15 +406,37 @@
       ]
     },
     {
-      "id": "cor:mftrace",
-      "environment": "corollary",
-      "title": "the canonical trace of $\\Cmax(E)$ is not an MF trace",
-      "statement_sha256": "2ac0dd6776191e4afbe159d5b27a3b084c56525ab8eb13fa434ac1817c8c91ff",
+      "id": "lem:mftrace-group",
+      "environment": "lemma",
+      "title": "an MF canonical trace makes the group MF",
+      "statement_sha256": "2fc00b7172eebb3bd72707a120c3507f652a858303ef49607e5dc4c30ab05ec5",
+      "status": "exact",
+      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
+      "dependencies": [],
+      "extra_assumptions": [],
+      "external_inputs": [],
+      "coverage_gap": "",
+      "lean": [
+        {
+          "role": "exact",
+          "module": "Sofic/TraceSeparationEndpoint",
+          "declaration": "GroupApproximation.manuscriptMFTraceGroupBridge",
+          "covers": "the complete printed proposition"
+        }
+      ]
+    },
+    {
+      "id": "thm:trace",
+      "environment": "mainthm",
+      "title": "a hyperlinear trace that is not MF",
+      "statement_sha256": "cd165350bd758fae18809a4e70263beb6607f5caf23b8b66848e0e5a5c87612e",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [
         "thm:A",
-        "def:E"
+        "def:E",
+        "thm:Esofic",
+        "lem:mftrace-group"
       ],
       "extra_assumptions": [],
       "external_inputs": [],
@@ -422,8 +444,8 @@
       "lean": [
         {
           "role": "exact",
-          "module": "Sofic/LiteralTraceConsequence",
-          "declaration": "GroupApproximation.LiteralTraceConsequence.markedGroup_canonicalMaximalTrace_not_isMFTrace",
+          "module": "Sofic/TraceSeparationEndpoint",
+          "declaration": "GroupApproximation.LiteralTraceConsequence.markedGroup_separable_canonicalTrace_hyperlinear_not_isMFTrace",
           "covers": "the complete printed proposition"
         }
       ]
