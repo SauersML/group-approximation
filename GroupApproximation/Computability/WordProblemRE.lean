@@ -4,6 +4,7 @@ import GroupApproximation.Computability.AdianRabinWordProblem
 import GroupApproximation.Computability.CodedWordTriviality
 import GroupApproximation.Computability.AdianRabinMarkovProperty
 import GroupApproximation.Computability.AdianRabinVariantTransform
+import GroupApproximation.Computability.BooneWordProblemUndecidable
 import Mathlib.Computability.RE
 
 /-!
@@ -39,12 +40,11 @@ pinned Mathlib carries no `Primrec` fact; `PrimrecRel.exists_mem_list` applied t
 
 The manuscript's `cor:undecidable` discussion asserts that the instances with
 `w = 1` form a recursively enumerable set, and uses it to conclude that the
-instances with `w ≠ 1` do not.  `rePred_wordProblemPred` is the first half,
-unconditionally.  The second half is Post's theorem against undecidability of
-the word problem, which is `AdianRabinMarkovProperty` contraposed; it is stated
-here with that undecidability as an explicit hypothesis, so that this file
-asserts nothing it has not proved, and discharged where the hypothesis is
-available.
+instances with `w ≠ 1` do not.  `rePred_wordProblemPred` is the first half.  The
+second is Post's theorem run against `D4'`; since `D4'` carries no hypothesis and
+no literature input, neither does `not_rePred_compl_wordProblemPred`, and
+`operatorMF_negative_side_not_re` carries it across the Adian--Rabin reduction to
+MF recognition itself.  Both clauses are closed unconditionally.
 -/
 
 namespace GroupApproximation
@@ -278,15 +278,19 @@ theorem rePred_wordProblemPred : REPred AdianRabinWordProblem.wordProblemPred :=
 /-! ## The negative side
 
 Post's theorem turns r.e.-ness of the positive side plus undecidability into
-non-r.e.-ness of the negative side.  The undecidability is `D4'`; it is taken as
-a hypothesis here rather than imported, so that nothing in this file depends on
-which module supplies it. -/
+non-r.e.-ness of the negative side.  The undecidability is `D4'`, which is itself
+unconditional, so the conclusions are too.
+
+The hypothesis-taking forms are kept below the unconditional ones because they
+record which half of the corollary needs what: the positive side is r.e. outright,
+and only the negative side reaches for `D4'`.  Reading the two off a single
+statement would hide that. -/
 
 /-- **The negative side of the word problem is not recursively enumerable**,
 given that the word problem is undecidable.  This is the manuscript's inference
 "an enumeration of the non-MF presentations would enumerate that set, making the
 word problem decidable", contraposed. -/
-theorem not_rePred_compl_wordProblemPred
+theorem not_rePred_compl_wordProblemPred_of_not_computablePred
     (h : ¬ ComputablePred AdianRabinWordProblem.wordProblemPred) :
     ¬ REPred fun x => ¬ AdianRabinWordProblem.wordProblemPred x := fun hre =>
   h (AdianRabinMarkovProperty.computablePred_of_re_of_negativeSide_re
@@ -295,12 +299,33 @@ theorem not_rePred_compl_wordProblemPred
 /-- **The negative side of operator-MF recognition is not recursively
 enumerable**, given undecidability of the word problem.  One application of the
 Adian--Rabin reduction to the previous theorem. -/
-theorem operatorMF_negative_side_not_re
+theorem operatorMF_negative_side_not_re_of_not_computablePred
     (h : ¬ ComputablePred AdianRabinWordProblem.wordProblemPred) :
     ¬ REPred fun code =>
       ¬ MarkovMFConsequences.operatorMFProperty PresentationCodes.semantics code :=
   AdianRabinVariantTransform.operatorMF_negative_side_not_re_of_wordProblem
-    (not_rePred_compl_wordProblemPred h)
+    (not_rePred_compl_wordProblemPred_of_not_computablePred h)
+
+/-- **The negative side of the word problem is not recursively enumerable.**
+
+Unconditional: the positive side is `rePred_wordProblemPred` above, and the
+undecidability Post's theorem needs against it is `D4'`, which carries no
+hypothesis and no literature input.  This is the second clause of the
+manuscript's `cor:undecidable` discussion. -/
+theorem not_rePred_compl_wordProblemPred :
+    ¬ REPred fun x => ¬ AdianRabinWordProblem.wordProblemPred x :=
+  not_rePred_compl_wordProblemPred_of_not_computablePred
+    Computability.not_computablePred_wordProblemPred
+
+/-- **The negative side of operator-MF recognition is not recursively
+enumerable.**  Unconditional, by the same route through the Adian--Rabin
+reduction: no enumeration lists the presentation codes whose group is not
+operator-MF. -/
+theorem operatorMF_negative_side_not_re :
+    ¬ REPred fun code =>
+      ¬ MarkovMFConsequences.operatorMFProperty PresentationCodes.semantics code :=
+  operatorMF_negative_side_not_re_of_not_computablePred
+    Computability.not_computablePred_wordProblemPred
 
 end WordProblemRE
 end GroupApproximation
