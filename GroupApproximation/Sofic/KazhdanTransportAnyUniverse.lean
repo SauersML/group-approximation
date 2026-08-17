@@ -115,28 +115,31 @@ The `Type 0` statement is applied to the model `Γ₀` of `Γ`, which exists bec
 property `(T)` makes `Γ` countable, and which still has property `(T)` because
 the isomorphism carries it.  The data is pulled back along the isomorphism and
 the conclusion pushed forward; the conclusion only ever mentions `U n s` and
-`U n (ι γ)`, so nothing else has to move. -/
-theorem manuscriptKazhdanTransport_anyUniverse
-    {Γ : Type w} {H : Type u'} [Group Γ] [Group H]
-    (hT : HasKazhdanPropertyTComplex.{w, max w v} Γ)
-    (iota : Γ →* H) (s : H)
-    (hs : ∀ γ : Γ, ∃ δ : Γ, s * iota γ * s⁻¹ = iota δ)
-    (d : ℕ → ℕ) (hd : ∀ n, 0 < d n)
-    (U : ∀ n, H → Matrix.unitaryGroup (naturalFiniteModel (d n)) ℂ)
-    (hU : ∀ g h : H, ∀ ε : ℝ, 0 < ε → ∃ N, ∀ n ≥ N,
-      ‖(U n (g * h) : Matrix (naturalFiniteModel (d n))
-          (naturalFiniteModel (d n)) ℂ) -
-        (U n g : Matrix (naturalFiniteModel (d n))
-          (naturalFiniteModel (d n)) ℂ) * U n h‖ ≤ ε)
-    (x : ∀ n, Matrix (naturalFiniteModel (d n)) (naturalFiniteModel (d n)) ℂ)
-    (hbound : ∃ M : ℝ, 0 ≤ M ∧ ∀ n, ‖x n‖ ≤ M)
-    (hx : ∀ γ : Γ, NaturalHSCommutatorVanishing d U x (iota γ)) :
+`U n (ι γ)`, so nothing else has to move.
+
+Every binder is after the colon, as `manuscriptKazhdanTransport` does it: the
+zero-input gate rejects a badged declaration with header binders. -/
+theorem manuscriptKazhdanTransport_anyUniverse :
+    ∀ {Γ : Type w} {H : Type u'} [Group Γ] [Group H]
+      (_hT : HasKazhdanPropertyTComplex.{w, max w v} Γ)
+      (iota : Γ →* H) (s : H)
+      (_hs : ∀ γ : Γ, ∃ δ : Γ, s * iota γ * s⁻¹ = iota δ)
+      (d : ℕ → ℕ) (_hd : ∀ n, 0 < d n)
+      (U : ∀ n, H → Matrix.unitaryGroup (naturalFiniteModel (d n)) ℂ)
+      (_hU : ∀ g h : H, ∀ ε : ℝ, 0 < ε → ∃ N, ∀ n ≥ N,
+        ‖(U n (g * h) : Matrix (naturalFiniteModel (d n))
+            (naturalFiniteModel (d n)) ℂ) -
+          (U n g : Matrix (naturalFiniteModel (d n))
+            (naturalFiniteModel (d n)) ℂ) * U n h‖ ≤ ε)
+      (x : ∀ n, Matrix (naturalFiniteModel (d n)) (naturalFiniteModel (d n)) ℂ)
+      (_hbound : ∃ M : ℝ, 0 ≤ M ∧ ∀ n, ‖x n‖ ≤ M)
+      (_hx : ∀ γ : Γ, NaturalHSCommutatorVanishing d U x (iota γ)),
     ∀ γ : Γ, NaturalHSCommutatorVanishing d U (fun n ↦
       (U n s : Matrix (naturalFiniteModel (d n))
         (naturalFiniteModel (d n)) ℂ) * x n *
         (U n s : Matrix (naturalFiniteModel (d n))
           (naturalFiniteModel (d n)) ℂ)ᴴ) (iota γ) := by
-  intro γ
+  intro Γ H _ _ hT iota s hs d hd U hU x hbound hx γ
   haveI : Countable Γ := countable_of_hasKazhdanPropertyTComplex.{w, v} hT
   obtain ⟨Γ₀, _, ⟨e⟩⟩ := Type0Transfer.exists_type0_model Γ
   have hT₀ : HasKazhdanPropertyTComplex.{0, max w v} Γ₀ := hT.mulEquiv e
