@@ -1025,6 +1025,7 @@ import GroupApproximation.Manuscript.NonMF.QuestionAtoms
 import GroupApproximation.Sofic.LiteralTraceConsequence
 import GroupApproximation.Analysis.ShulmanTraceClasses
 import GroupApproximation.Sofic.ShulmanMFTraceBridge
+import GroupApproximation.Analysis.MaximalGroupCStarTrace
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
