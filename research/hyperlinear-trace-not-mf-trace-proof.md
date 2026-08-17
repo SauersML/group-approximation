@@ -29,14 +29,20 @@ and the canonical trace is carried to `tr_omega`.  A trace that factors
 through a tracial matricial ultraproduct *is* a hyperlinear trace, so this is
 the whole argument.
 
-**Source check owed.**  That last sentence is the load-bearing one and it is
-reported rather than verified here: the characterization "hyperlinear trace
-iff it factors through a tracial matricial ultraproduct" was attributed to
-Shulman's arXiv:2508.00125 in a forwarded analysis and has NOT been read from
-the source in this repository.  Before this route is used in print, read
-arXiv:2508.00125v5 and confirm the characterization and its exact hypotheses
-(separability, unitality).  Until then the longer route below is the one that
-stands on definitions we have quoted ourselves.
+**Source check DISCHARGED, 2026-08-17.**  The characterization is
+arXiv:2507.22783v3 **Remark 1** — the same paper that records the open
+problem, not the companion arXiv:2508.00125 that a forwarded analysis
+attributed it to:
+
+> "Equivalently, one can say that `tau` is hyperlinear if `tau = tr . f`, for
+> some `*`-homomorphism `f : A -> prod M_(k_n) / (+)_2 M_(k_n)`"
+
+and equivalently into the tracial ultraproduct `prod M_(k_n)/(+)_(2,omega)`,
+or into `R^omega`.  Three admissible targets; the ultrafilter-free `(+)_2`
+version is the cheapest to build and is equally definitional.
+
+So this route stands on the author's own equivalence and the longer route
+below is a fallback, not the primary.
 
 ### `tau` is hyperlinear — the definitional route, kept as a fallback
 
@@ -104,13 +110,33 @@ Four inputs, in decreasing order of what a reviewer should check.
    continuous section.  Any continuous section of any norm serves; the norm-one
    refinement is not needed.
 
-## The external cross-check
+## The two definitions differ only in the norm
+
+Read from arXiv:2507.22783v3: the hyperlinear and MF trace definitions are the
+same sentence with a different norm on the multiplicativity defect —
+`||.||_2` (normalized Hilbert--Schmidt) for hyperlinear, `||.||` (operator)
+for MF.  That is why "every MF trace is hyperlinear" is immediate and why the
+converse is the hard direction: it is the same rank-visibility gap that makes
+`mf-implies-hyperlinear` open at the group level, transposed to traces.
+
+## The external cross-check, and a correction to it
 
 Schafhauser arXiv:2306.02498 Proposition 2.2 looks like a shortcut around the
-whole "not MF" half.  It is not, quite: his Definition 2.1 asks for exactly
-linear, exactly self-adjoint maps where Shulman asks only for asymptotically
-linear ones, so entering his proposition from Shulman's hypothesis is itself a
-step.  The comparison is written out in [[hyperlinear-trace-not-mf-trace]].
+whole "not MF" half.  On 2026-08-17 this node recorded that it is not, because
+his Definition 2.1 asks for exactly linear, exactly self-adjoint maps where
+Shulman asks only for asymptotically linear ones.
+
+**That objection is probably answered by Shulman herself.**  A remark in the
+same preliminaries says "In the definition of an MF-trace one can additionally
+require the maps `phi_n` to be `*`-linear."  If that means exactly linear and
+exactly `*`-preserving, the entry arrow into Schafhauser's Definition 2.1 is
+cheap after all and the cross-check is genuinely importable.  **Not yet read
+in its own words** — only through a fetch summary — so it is recorded here as
+probable, not settled.  Read it before relying on it, and note that the fetch
+summaries disagree about which remark number carries which sentence, so
+numbering must be taken from the PDF rather than from this node.
+
+Either way we print our own route: the corner-and-polar argument is the thing
+that makes the result depend on our mathematics rather than on a citation.
 His Definition 1.1 group notion being "(a priori) quite a bit stronger" than
-Carrion--Dadarlat--Eckhardt is verified verbatim and is the part of the
-cross-check that costs nothing.
+Carrion--Dadarlat--Eckhardt is verified verbatim and costs nothing.
