@@ -117,10 +117,27 @@ rsync -rlptz --delete \
 
 [ "$SYNC_ONLY" = 1 ] && { echo "==> sync only, done"; exit 0; }
 
+# How much of the Sioux host one build may use.  Both hosts are 128-core EPYC.
+#
+# This was 8 cores and 8 threads, chosen on 2026-08-14 when several sessions
+# built CONCURRENTLY and each lean process spawned workers for all 128 cores,
+# producing load ~3749 and "failed to create thread".  The same commit added
+# the fleet mutex below, and the mutex is what actually fixed that: at most one
+# `lake` runs across the whole fleet now.  With serialization in place an
+# 8-core cap is not traffic control, it is leaving 94% of an otherwise idle
+# node unused -- measured 2026-08-17, acn112 at load 0.13 with the lock free.
+#
+# 48 of 128 leaves the majority of the host for other users while giving the
+# one build that is allowed to run at a time a useful share.  Override with
+# MSI_BUILD_CORES; keep it well under 128 so a second tenant is never starved,
+# and never raise it in a way that outlives the mutex.
+CORES="${MSI_BUILD_CORES:-48}"
+LAST_CORE=$((CORES - 1))
+
 if [ "$AUDIT" = 1 ]; then
   echo "==> kernel audit on the compute node"
-  exec "$MSI" "export PATH=\$HOME/.elan/bin:\$PATH LEAN_NUM_THREADS=8 && cd $REMOTE && \
-    taskset -c 0-7 lake env lean scripts/Audit.lean"
+  exec "$MSI" "export PATH=\$HOME/.elan/bin:\$PATH LEAN_NUM_THREADS=$CORES && cd $REMOTE && \
+    taskset -c 0-$LAST_CORE lake env lean scripts/Audit.lean"
 fi
 
 # The lean_lib root is `GroupApproximation`, so `lake build` only reaches
@@ -166,8 +183,8 @@ BUILD_TARGETS="$TARGET"
 BUILD_TARGETS="$BUILD_TARGETS$ORPHANS"
 
 # Lake 5 has no -j flag; taskset is what caps concurrency on the shared node.
-# Eight cores give fast warm-cache signal without taking a disproportionate
-# share of either Sioux host from other users.
+# The share is $CORES, set above -- see the rationale there for why it is no
+# longer 8.
 #
 # Do NOT pipe lake through `tail`: it both masks the exit status and silently
 # drops the *earliest* errors, which are the ones that matter (a later failure
@@ -194,7 +211,7 @@ TAG="${MSI_BUILD_TAG:-$$}"
 # the worst case and only if you really do wait an hour.
 LOCK=$REMOTE/.lake/fleet-build.lock
 echo "==> building${TARGET:+ $TARGET} on the compute node (log tag: $TAG)"
-exec "$MSI" "export PATH=\$HOME/.elan/bin:\$PATH LEAN_NUM_THREADS=8 && cd $REMOTE && \
+exec "$MSI" "export PATH=\$HOME/.elan/bin:\$PATH LEAN_NUM_THREADS=$CORES && cd $REMOTE && \
   tries=0; until mkdir \"$LOCK\" 2>/dev/null; do \
     age=\$(( \$(date +%s) - \$(stat -c %Y \"$LOCK\" 2>/dev/null || date +%s) )); \
     if [ \$age -gt 5400 ]; then rmdir \"$LOCK\" 2>/dev/null; continue; fi; \
@@ -205,7 +222,7 @@ exec "$MSI" "export PATH=\$HOME/.elan/bin:\$PATH LEAN_NUM_THREADS=8 && cd $REMOT
   done; \
   trap 'rmdir \"$LOCK\" 2>/dev/null' EXIT INT TERM; \
   LOG=$REMOTE/.lake/last-build-$TAG.log && \
-  taskset -c 0-7 lake build $BUILD_TARGETS > \"\$LOG\" 2>&1; rc=\$? ; \
+  taskset -c 0-$LAST_CORE lake build $BUILD_TARGETS > \"\$LOG\" 2>&1; rc=\$? ; \
   echo '===== ERROR INDEX =====' ; \
   grep -anE 'error:|declaration uses|warning:' \"\$LOG\" | head -60 ; \
   echo '===== CONTEXT (from first error) =====' ; \
