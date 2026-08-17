@@ -160,9 +160,8 @@ than as closed or as abandoned.
 |---|---|---|---|---|---|
 | 1 | ~~`MarkovMFConsequences.operatorMF_recognition_undecidable`~~ | ~~literature-input~~ → **CLOSED 2026-08-17** | § "Undecidability of MF recognition", prose after `\end{corollary}` of `cor:undecidable` | **None.** Unconditional Lean support exists: `Computability.operatorMF_recognition_not_computable` (`Computability/BooneWordProblemUndecidable.lean`) concludes `¬ ComputablePred (MarkovMFConsequences.operatorMFProperty PresentationCodes.semantics)` outright — no reduction datum, no Markov hypothesis, no literature input. It is `AdianRabinVariantTransform.operatorMF_recognition_undecidable_of_wordProblem` applied to `Computability.not_computablePred_wordProblemPred`, which is `D4'` closed: the word map is `BooneWords.rawComm`, computable by `Computability.computable_rawComm`, and agreement with halting is `Computability.wordProblem_rawComm_iff` composed with `Computability.commElt_eq_one_iff_halts`, packaged as `Computability.exists_boone_words`. The quantified `operatorMF_recognition_undecidable` remains badged in the TeX as the classical form of the conclusion, with the Markov data quantified rather than exhibited; it is no longer the corollary's only support, so the finding it recorded is discharged rather than accepted. | Closed — `Computability/BooneWords.lean`, `BooneWordMapPrimrec.lean`, `BooneWordAgreement.lean`, `BooneWordProblemUndecidable.lean` |
 | 2 | ~~`ContinuumMultiplicity.manuscriptContinuumMultiplicity`~~ → **CLOSED 2026-08-16** | § "Undecidability of MF recognition", multiplicity paragraph citing `\cite{Neumann37}` | **None.** The family is constructed: `Monsters/NeumannContinuum`, lamplighters over coset spaces of the free group. **Re-verified 2026-08-17**, declaration by declaration: `manuscriptContinuumMultiplicity` is a three-way conjunction whose second conjunct *exhibits* a continuum of pairwise nonisomorphic finitely generated groups and whose third is the printed headline with nothing assumed, both discharged from `NeumannContinuum.manuscriptContinuumMultiplicityUnconditional`. It is zero-input, badged at one site, inside the import closure, and `Sofic/ContinuumMultiplicity` and `Monsters/NeumannContinuum` are both on `origin/verified`. The `Neumann37` citation survives in the manuscript as attribution for the classical family, not as a step. | Closed — the badged declaration now exhibits the family as a conjunct; see §2 |
-| 3 | `FullMFRadicalEndpoint.exists_nontrivial_twoGenerated_finitelyPresented_torsionFree_kazhdan_fullMFRadical` | conditional-data | § "Questions", torsion-free f.p. non-MF group | **Total** for that answer. Printed caveat is now "No unconditional torsion-free finitely presented non-MF group is proved here" (the older wording "neither is an unconditional statement" is no longer in the TeX). | `Monsters/FournierFacioRealization.lean`; scope fixed by `docs/HULL_ROUTING_AUDIT_2026-08-16.md`; six-condition split recorded in `Sofic/FiveConditionInsufficiency.lean` |
-| 4 | `FullMFRadicalEndpoint.exists_nontrivial_group_with_every_nontrivial_quotient_not_isCDEOperatorMF` | conditional-data | same | as above | same |
-| 3b | `orderPreserving_quotient_not_subsingleton` | conditional-data | § "Questions", the Hull order-preservation sentence | **None beyond row 3.** The statement is a refutation universally quantified over data, and the printed sentence it certifies is itself conditional ("would supply the sixth condition"). | `Sofic/TorsionFreeFullMFRadical.OrderPreservingRoutingData` — row exists only because the zero-input repair moved the binders after the colon; drop it if the detector reports no finding |
+| 3 | `FullMFRadicalEndpoint.exists_nontrivial_twoGenerated_finitelyPresented_torsionFree_kazhdan_fullMFRadical` | **NOT DISCHARGED**, off the badge surface (2026-08-17; was `conditional-data`) | nothing — the § "Questions" material it answered was deleted from the TeX | **None on the printed surface.** The datum is still unbuilt, but no printed sentence consumes the endpoint, so it exposes nothing. See §3–4 | `docs/HULL_ROUTING_AUDIT_2026-08-16.md` (the reduction to one certificate — **protect this**); `Sofic/FiveConditionInsufficiency.lean`; `Sofic/ConcreteCompressionSource.lean` (7 of 12 fields built) |
+| 4 | `FullMFRadicalEndpoint.exists_nontrivial_group_with_every_nontrivial_quotient_not_isCDEOperatorMF` | **NOT DISCHARGED**, off the badge surface (2026-08-17; was `conditional-data`) | same | as above | same |
 
 **Rows 3–4, the six-condition correction of 2026-08-16.** The manuscript now
 prints **six** conditions, not five: it adds "`q` does not kill the
@@ -393,7 +392,84 @@ What is genuinely proved on top of it is the manuscript's own counting step
 countable) — real content, and the honest badge for it is `\leanpartial` or
 `\leanconditional`, not `\leanverified`.
 
-### 3--4. The routing datum
+### 3--4. The routing datum — **NOT DISCHARGED**, and off the badge surface
+
+**Read this heading against §6--7.** Those rows say DISCHARGED and off the badge
+surface; these say the opposite about the first half and the same about the
+second, and the difference is the whole point. Rows 6--7 and 13 were rows
+describing a corpus that had moved underneath them. **These are not.** The
+packages below are still unbuilt, and the route to them has closed rather than
+opened. What changed is only that the manuscript **stopped claiming** the
+conditional results — it did not **acquire** unconditional ones. An empty grep is
+the wrong signal to trust here; that is why these rows stay, regraded rather than
+deleted.
+
+**Off the badge surface (2026-08-17).** `Hull`, `FullMFRadicalEndpoint`,
+`DefectRoutingData`, `orderPreserving_quotient_not_subsingleton` and
+`\leanconditional` each occur **zero** times in `non_mf_groups_exist.tex`, and
+there is no `\bibitem` for Hull. The § "Questions" item that rows 3--4 answered
+now asks the question and answers nothing: its only badge is
+`finiteSubgroup_eq_bot_of_isMulTorsionFree`, which is unconditional and unrelated
+to the routing program. So the endpoints are conditional Lean that no printed
+sentence consumes, and they expose nothing on the trust surface. Row 3b was
+dropped in the same pass, per its own note: its printed sentence ("would supply
+the sixth condition") was deleted a day earlier at `8b16a847`, whose commit
+message records that the badge never supported the claim.
+
+**Why the route is closed, twice over.** This is the part to read before anyone
+reopens it.
+
+* *Inadmissible.* The only known route is the one
+  `docs/HULL_ROUTING_AUDIT_2026-08-16.md` reduces it to, and discharging the
+  package by quoting Hull's Theorem 7.1, Hull's Lemma 5.8 or Osin's Theorem 1.1
+  is a literature-transcription premise. The standing zero-literature order keeps
+  `Audit.literatureInputNames` empty — the roster's own docstring states the
+  prohibition — so a citation route is not a legal closing move, whatever its
+  quality.
+* *Unavailable.* Proving those results here is not a lemma but a library. The
+  pinned Mathlib has **no** acylindrical hyperbolicity, **no** hyperbolically
+  embedded subgroups, **no** small cancellation and **no** Greendlinger: a grep
+  over `Mathlib/` at the pin for `acylindric`, `hyperbolically embedded`,
+  `smallCancellation` and `Greendlinger` matches zero files. That is a
+  from-scratch geometric group theory development, comparable to or larger than
+  the routing layer it would serve.
+
+**The asset to protect.** `docs/HULL_ROUTING_AUDIT_2026-08-16.md` reduces the
+whole problem to a single certificate — one infinite-order `h ∈ N_comp` with
+`⟨h⟩` hyperbolically embedded and properly contained in `N_comp` — after which
+six of the seven `DefectRoutingData` fields fall out of Hull's Theorem 7.1 as
+published, with property (T) supplied by a torsion-free finitely presented
+Kazhdan uniform lattice. It also proves the Bass--Serre action of the skeleton
+**cannot** supply that certificate, since an acylindrical action is never
+quasi-parabolic. That reduction is real work and survives this regrade; it is
+findable at that path and should not be lost in any cleanup.
+
+**How far the packages are actually built**, so nobody re-derives it:
+
+* `ConcreteCompressionSource.sourceData` (`:353`) and `integerSource` (`:413`)
+  build `CompressionSourceData` unconditionally — that is
+  `FournierFacioDefectData` minus `kazhdan`, `simpleSubgroup`, `simple`, `s_mem`
+  and `witness_mem`, so **7 of 12 fields are done**.
+* But `integerSource`'s base is `Multiplicative ℤ`, infinite and amenable, so it
+  can **never** carry property (T). That specialization is a **permanent dead
+  end, not a near miss**; a different source is required.
+* `OrderPreservingRoutingData.sourceTorsionFree` is fully closed for the concrete
+  skeleton by `HNNBrittonCyclic.isPowerTorsionFree_integerSourceGroup` (`:347`).
+  `quotient_surjective` follows from `defect_surjective`; `torsionFree` and
+  `protected_ne_one` both follow from `orderPreserving`.
+* **`orderPreserving` itself has no candidate anywhere in the tree.** That is the
+  hard field, and it is where an attempt would actually stall.
+
+**The layer stays.** It compiles, it is on `origin/verified`, it is a legitimate
+data-parameter layer with no premise exposure, and it is the honest record of a
+real research route. Deleting certified work to tidy a count is not something
+this repository does. The guardrail is the off-print grade here plus the banners
+on `docs/TORSION_FREE_HULL_ROUTE.md` and
+`docs/TORSION_FREE_NORMAL_GENERATION_HULL_QUOTIENT.md`, which together make
+promotion to a numbered environment impossible without deliberately overriding a
+written prohibition.
+
+The original assessment follows, unchanged and still accurate about the Lean.
 
 `GroupApproximation/Sofic/FullMFRadicalEndpoint.lean:32` and `:55`, both with
 

@@ -6,6 +6,19 @@ Osin that are not verified here and not formalized anywhere in the
 corpus. Do not promote this to a numbered environment until a geometric
 group theorist has confirmed Steps 5–8.
 
+**PROHIBITION, not a caution (2026-08-17).** Steps 5–8 quote Hull and Osin.
+Under the standing zero-literature order — `Audit.literatureInputNames` is empty
+and its docstring states that literature-transcription premises are not
+permitted in the corpus — this route **cannot** be used to close anything, at
+any quality. There are exactly two legal moves: retire the dependence, or prove
+the antecedent in-repo. The second is not a lemma but a library: the pinned
+Mathlib has no acylindrical hyperbolicity, no hyperbolically embedded subgroups,
+no small cancellation and no Greendlinger's lemma. So this document is a record
+of a research route, not a plan of work, and promoting any part of it to a
+numbered environment or to a `\leanverified` badge would require deliberately
+overriding a written prohibition. What is worth preserving here is the
+mathematics, not the schedule.
+
 ## The claim
 
 There is a nontrivial, two-generated, finitely presented, torsion-free

@@ -281,8 +281,17 @@ opening the proof, have held.
 4. **Four rows are conditional by construction** — the torsion-free full-radical
    endpoints of Question 2 take `Nonempty (DefectRoutingData D)`, `ContinuumMultiplicity`
    takes Neumann's family as a quantified hypothesis, and Remark C.4's maximal-algebra
-   endpoint is stated over a `StrictKazhdanCompression` datum.  All are labelled
-   conditional in the TeX where the TeX mentions them.
+   endpoint is stated over a `StrictKazhdanCompression` datum.  **Corrected
+   2026-08-17:** this used to end "All are labelled conditional in the TeX where
+   the TeX mentions them", which was true of the first two and is no longer true
+   of the routing endpoints — the TeX mentions them nowhere.  `Hull`,
+   `FullMFRadicalEndpoint`, `DefectRoutingData` and `\leanconditional` each occur
+   **zero** times in `non_mf_groups_exist.tex`, and there is no `\bibitem` for
+   Hull.  The Question 2 item now asks the question and answers nothing, so the
+   routing endpoints are conditional Lean that no printed sentence consumes.  See
+   `docs/NON_MF_CONDITIONAL_INVENTORY.md` §3–4 for the full regrade; the
+   distinction that matters is that the manuscript **stopped claiming** the
+   conditional results rather than **acquiring** unconditional ones.
 5. **One badge under-certifies its remark** — *possibly mid-edit, re-check.*  The
    badge macro was being rewritten into margin notes during this audit, so badge
    placement is exactly the kind of thing that may still be in flight.
@@ -1229,8 +1238,19 @@ In dependency order, cheapest first.
    infinite Kazhdan groups; nonnuclearity of `C*_red` of a nonamenable group; the
    amenable-quotient case of Elek–Szabó beyond `ℤ`.  Each needs a Lean proof, or the
    corresponding manuscript claim must be understood as unformalized.
-5. **The conditional endpoints.**  Discharge `Nonempty (DefectRoutingData D)`, and
-   formalize Neumann's family.
+5. **The conditional endpoints.**  ~~Discharge `Nonempty (DefectRoutingData D)`~~,
+   and formalize Neumann's family.  **Struck 2026-08-17: discharging the routing
+   datum is no longer a live task, and not because it was done.**  Nothing printed
+   consumes those endpoints, so discharging the datum would change no printed
+   claim; and the only known route is closed twice over — quoting Hull's
+   Theorem 7.1 / Lemma 5.8 or Osin's Theorem 1.1 is a literature-transcription
+   premise, forbidden by the standing zero-literature order that keeps
+   `Audit.literatureInputNames` empty, while proving them here is a from-scratch
+   geometric group theory library, the pinned Mathlib having no acylindrical
+   hyperbolicity, no hyperbolically embedded subgroups, no small cancellation and
+   no Greendlinger.  The reduction of the open problem to a single certificate is
+   preserved in `docs/HULL_ROUTING_AUDIT_2026-08-16.md`; Neumann's family remains
+   a live task.
 6. **Remark C.4.**  Instantiate `StrictKazhdanCompression` at the literal `E` rather than
    at the Chosen presentation, and add the RFD clause; then the remark's badge can point
    at a declaration that carries its content instead of at
