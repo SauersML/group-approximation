@@ -398,6 +398,30 @@ is also why the marker is enforced by `check_steps` instead of being a note: a
 convention that depends on remembering to apply it is a convention that fails on
 the day someone is in a hurry.
 
+**The tree does compile, and that is worth recording as precisely as the
+failures.**  At `1bd2ab72`, `Build project` succeeded and `Build the audit
+library` succeeded: 39041 declarations audited, `AXIOM 0`, `UNUSED 0`,
+`LITERATURE_INPUT 0`.  That is the first clean compile-and-audit of 2026-08-17,
+and it is the fact that makes the `EXACT` rows above mean anything at all — a
+row graded against a declaration in a tree that does not build is a row graded
+against nothing.  The signature regeneration that followed it is the other half:
+`CLAIM_SIGNATURES.md` unchanged at 421 declarations, `NON_MF_CLAIM_SIGNATURES.md`
+at 113, **42 insertions and zero deletions** across 58 changed Lean modules.
+Zero deletions is the load-bearing number: nothing already mapped had its
+signature *move*, so no mapped declaration silently changed its statement
+underneath a badge, which is the defect regeneration exists to catch.
+
+**A fourth thing, and it inverts the sign of the evidence: a green checkmark in
+CI.**  `Source scan` and `Kernel audit` both carry `continue-on-error`, so the
+GitHub UI and the API report them as conclusion `success` **even when they exit
+1**.  The only place the truth appears is the Zero-tolerance verdict's `src=`
+and `ker=` fields.  As of 2026-08-17 those read `src='failure'` — 15 orphan
+modules at `main`, 18 at the certificate's tree, 0 at `verified` — and
+`ker='failure'`, with `RFL 17` and `DUPLICATE 9`.  A reader trusting the green
+ticks would conclude the opposite of the truth.  This is the same shape as
+everything else in this section, one layer further out: the gate ran, the gate
+failed, and the reporting surface says it passed.
+
 **A third thing that is not the same as the other two: what a commit message
 says.**  On 2026-08-17 a commit subject read "htransport discharged".  Checked
 against the file, the bridge it built is real and is the printed inference, but
@@ -407,6 +431,17 @@ import closure.  So CO.21b records the advance and does not take the grade.
 Reading the commit subject instead of the file would have moved a `MISMATCH` to
 `EXACT` on the strength of a sentence written by someone describing their own
 work in good faith.
+
+**The same distinction bit the person running the tooling, which is the useful
+part.**  The first signature regeneration of 2026-08-17 failed reporting that a
+mapped declaration was "not in the environment" — which reads exactly like a
+missing theorem, and was not one.  The build the script's docstring requires had
+been skipped, so the environment was stale: the declaration existed, and the
+environment being queried had not elaborated it.  Nobody was careless and the
+error message was accurate; it was accurate about a different question than the
+one it appeared to answer.  Anyone reading a "not in the environment" failure
+should check what built the environment before concluding anything about the
+tree.
 
 ## A failure mode no gate here can see: two claimed proofs collapsing into one
 
