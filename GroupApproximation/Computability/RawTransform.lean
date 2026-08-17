@@ -134,7 +134,11 @@ def rawTransform (w : List (ℕ × Bool)) : PresentationCode :=
 @[simp] theorem genCount_rawTransform (w : List (ℕ × Bool)) :
     genCount (rawTransform c d w) = srcCount c d + (srcCount c d + 5) + 1 := rfl
 
-theorem relatorListOf_rawTransform (w : List (ℕ × Bool)) :
+/-- The output code's relator list, read off the construction.  `@[simp]` like
+`genCount_rawTransform` above: definitional, and worth stating only because
+`simp` and `rw` need the surgery form spelled out.  No loop --- the right-hand
+side has no `relatorListOf` of a `rawTransform`. -/
+@[simp] theorem relatorListOf_rawTransform (w : List (ℕ × Bool)) :
     relatorListOf (rawTransform c d w)
       = (rawWords c d w).map (wordOf (rawTransform c d w)) := rfl
 

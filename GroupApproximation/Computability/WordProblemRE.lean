@@ -89,9 +89,13 @@ theorem wordOf_factorWord (c : PresentationCode)
 def certWord (c : PresentationCode) (cert : RawCertificate) : List (ℕ × Bool) :=
   (cert.map (factorWord c)).flatten
 
-theorem certWord_nil (c : PresentationCode) : certWord c [] = [] := rfl
+/-- The two recursion equations of `certWord`.  Both are definitional; they are
+stated, and stated as `@[simp]` lemmas, because `rw` needs a syntactic target
+and the `flatten`-of-`map` form does not present one.  The recursive occurrence
+is at a strictly shorter certificate, so the pair terminates. -/
+@[simp] theorem certWord_nil (c : PresentationCode) : certWord c [] = [] := rfl
 
-theorem certWord_cons (c : PresentationCode)
+@[simp] theorem certWord_cons (c : PresentationCode)
     (t : List (ℕ × Bool) × List (ℕ × Bool) × Bool) (rest : RawCertificate) :
     certWord c (t :: rest) = factorWord c t ++ certWord c rest := rfl
 

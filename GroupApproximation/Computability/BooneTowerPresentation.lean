@@ -248,11 +248,10 @@ theorem quadEquivLeft_coe_sh (a b c M : ℤ) (hM : M ≠ 0) (h : ℤ × ℤ)
       ((MonoidHom.ofInjective he₁).symm ⟨sh (scaleIdx M M h), hmem⟩) = _
   rw [hsym, emb_sh]
 
-/-- The three generators lie in the subgroup they generate. -/
-theorem tw_mem_Gsub (a b M N : ℤ) : tw (a, b) ∈ Gsub a b M N := by
-  rw [Gsub_eq_closure]
-  exact Subgroup.subset_closure (by simp)
-
+/-- The three generators lie in the subgroup they generate.  The `tw` case is
+not restated here: it is `BooneGroup.Base.tw_mem_Gsub`, reached unqualified
+through the `open Base` above, and a second copy is the same proposition under
+a second name. -/
 theorem sh_fst_mem_Gsub (a b M N : ℤ) : sh (M, 0) ∈ Gsub a b M N := by
   rw [Gsub_eq_closure]
   exact Subgroup.subset_closure (by simp)

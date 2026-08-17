@@ -32,9 +32,15 @@ theorem wordOf_append (u v : List (ℕ × Bool)) :
   rw [wordOf_def, wordOf_def, wordOf_def, List.map_append]
   rfl
 
-theorem wordOf_pos (i : ℕ) : wordOf c [(i, true)] = FreeGroup.of (letterOf c i) := rfl
+/-- A one-letter positive word.  `@[simp]` for the same reason as the two
+`cons` lemmas below: the content is definitional, and stating it is worth doing
+only if `simp` can use it.  It agrees with `wordOf_cons_pos` on the singleton,
+which reaches the same normal form through `wordOf_nil` and `mul_one`. -/
+@[simp] theorem wordOf_pos (i : ℕ) :
+    wordOf c [(i, true)] = FreeGroup.of (letterOf c i) := rfl
 
-theorem wordOf_neg (i : ℕ) :
+/-- A one-letter negative word. -/
+@[simp] theorem wordOf_neg (i : ℕ) :
     wordOf c [(i, false)] = (FreeGroup.of (letterOf c i))⁻¹ := rfl
 
 theorem wordOf_cons (p : ℕ × Bool) (u : List (ℕ × Bool)) :
