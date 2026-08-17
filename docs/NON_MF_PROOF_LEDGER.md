@@ -323,8 +323,8 @@ opening the proof, have held.
 <!-- LEDGER-COUNTS -->
 | Column | EXACT | MISMATCH | MISSING | UNDER-SPECIFIED | total |
 | --- | --- | --- | --- | --- | --- |
-| statement | 326 | 57 | 51 | 1 | 435 |
-| proof | 329 | 44 | 61 | 1 | 435 |
+| statement | 325 | 57 | 51 | 1 | 434 |
+| proof | 328 | 44 | 61 | 1 | 434 |
 <!-- END-LEDGER-COUNTS -->
 
 ## Rows waiting for a first green build
@@ -533,7 +533,7 @@ once in the comment-stripped manuscript; the probe is the drift detector.
 | cor:intrinsic-nk | env | cor:intrinsic-nk | 74911f7eaffe314f |
 | thm:kazhdan-clifford | env | thm:kazhdan-clifford | 924348a10c11440d |
 | rem:ff-realization | env | rem:ff-realization | 95d3df4896ab80a4 |
-| thm:A | env | thm:A | e424965973a05efc |
+| thm:A | env | thm:A | ce8aa94da2910ee5 |
 | cor:uniform | env | cor:uniform | 127963fa65d9be4e |
 | cor:scaling-family | env | cor:scaling-family | 9370bcd0aa550f6e |
 | thm:exactfd | env | thm:exactfd | 06b19a3bf4660f93 |
@@ -832,7 +832,6 @@ everywhere: the TeX is the specification and does not move).
 | KC.22 | rem:ff-realization | hence α : P ≅ P₁ ≤ P and any a ∈ P₂ \ {1} satisfy the hypotheses of Theorem 5.1 | - | MISSING | MISSING | - | literature-input | FFF | NO | conditional on KC.21 |
 | KC.23 | rem:ff-realization | E(P,α,a) contains involutions whatever the base | - | MISSING | MISSING | - | literature-input | FFF | NO | - |
 | TA.00 | thm:A | Theorem A: w ≠ 1 in E, and Θ(w) = 1 for every homomorphism E → U(Q((d_n))); E is not MF and neither C*_max(E) nor C*_red(E) is MF | `LiteralNonMFEndpoint.manuscriptTheoremA` | EXACT | EXACT | literal | unconditional | - | NO | fully unconditional; the strongest row in the ledger |
-| TA.00b | thm:A | a Tietze reduction presents the same group on six generators with thirty-two relators; the eight-generator form is displayed because it exhibits the construction | `LiteralTietzePresentation.exists_sixGenerator_thirtyTwo_presentation` | EXACT | EXACT | literal | unconditional | - | NO | NEW 2026-08-16: this sentence was added to the statement of Theorem A this revision.  The claim is the one GP.08/GP.09 audit at `p:group-tietze32`, where the elimination is also checked; the row is repeated here because the assertion is now printed inside a numbered environment |
 | TA.01 | thm:A | the defining relations make w central; with c² = 1 centrality implies w² = 1 | `LiteralNonMFPresentation.mark_central`; `LiteralNonMFPresentation.mark_sq` | EXACT | EXACT | literal | unconditional | - | NO | - |
 | TA.02 | cor:uniform | Corollary 5.4: there are δ > 0 and finite F₀ ⊂ E with a uniform local obstruction ‖φ(w) − 1‖ < 1 in every dimension | `LiteralUniformObstruction.literal_uniform_operatorNorm_obstruction` | EXACT | EXACT | literal | unconditional | - | NO | - |
 | TA.03 | cor:uniform | proof: otherwise choose models violating the conclusion for δ = 1/n along an exhaustion | `uniform_invisibility` | EXACT | EXACT | literal | unconditional | - | NO | - |

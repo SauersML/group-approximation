@@ -7,7 +7,7 @@
       "id": "thm:A",
       "environment": "mainthm",
       "title": "an explicit finitely presented non-MF group",
-      "statement_sha256": "e424965973a05efc2569d8a42b5eb22ef408d794487633a3736376485ffc84ce",
+      "statement_sha256": "ce8aa94da2910ee5aa0a99de99700afd76b9678d5a795e4c998f9276f729a4c9",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [
