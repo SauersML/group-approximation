@@ -1031,6 +1031,8 @@ import GroupApproximation.Analysis.TracialMatrixUltraproduct
 import GroupApproximation.Analysis.ShulmanTraceFactorization
 import GroupApproximation.Analysis.TracialUltraproductCStar
 import GroupApproximation.Analysis.UltrafilterDiagonalExtraction
+import GroupApproximation.Analysis.ShulmanTracePositiveControls
+import GroupApproximation.Analysis.HilbertSchmidtApproximateUnit
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
