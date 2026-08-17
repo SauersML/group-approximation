@@ -282,8 +282,7 @@ theorem manuscriptFiniteNormalObstructionCriterion :
     fun n ↦ Fintype.card_pos_iff.mp (by simpa using hd n)
   -- the statement names the model family with `let` before quantifying over
   -- `Theta`, so the family has to be introduced first
-  intro _X Theta
-  intro x hx
+  intro _X Theta x hx
   have hx₀ := MonoidHom.mem_ker.mp
     (h₀ (Theta.comp e.symm.toMonoidHom)
       (CompressionUniverseTransfer.mem_map_of_mem e hx))
@@ -329,8 +328,7 @@ theorem manuscriptNormalKazhdanObstruction :
     fun n ↦ Fintype.card_pos_iff.mp (by simpa using hd n)
   -- the statement names the model family with `let` before quantifying over
   -- `Theta`, so the family has to be introduced first
-  intro _X Theta
-  intro x hx
+  intro _X Theta x hx
   have hx₀ := MonoidHom.mem_ker.mp
     (h₀ (Theta.comp e.symm.toMonoidHom)
       (CompressionUniverseTransfer.mem_map_of_mem e hx))
@@ -915,8 +913,7 @@ theorem manuscriptAbstractNormalKazhdanObstruction :
     fun n ↦ Fintype.card_pos_iff.mp (by simpa using hd n)
   -- the statement names the model family with `let` before quantifying over
   -- `Theta`, so the family has to be introduced first
-  intro _X Theta
-  intro x hx
+  intro _X Theta x hx
   have hx₀ := MonoidHom.mem_ker.mp
     (h₀ (Theta.comp e.symm.toMonoidHom)
       (CompressionUniverseTransfer.mem_map_of_mem e hx))
