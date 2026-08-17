@@ -1016,6 +1016,11 @@ import GroupApproximation.Monsters.NeumannTwoGenerator
 import GroupApproximation.Sofic.CollapseRankWeightTransport
 import GroupApproximation.Sofic.StableLetterLEFRoute
 import GroupApproximation.Manuscript.NonMF.ClosedRows
+import GroupApproximation.Analysis.MatrixReindexHilbertSchmidt
+import GroupApproximation.Analysis.CollapseDelormeEndpoint
+import GroupApproximation.Analysis.ProperIsometryStrictOrder
+import GroupApproximation.Analysis.OmegaDefectExtraction
+import GroupApproximation.Analysis.UltraproductRigidityRoute
 import GroupApproximation.Manuscript.NonMF.QuestionAtoms
 
 /-!
