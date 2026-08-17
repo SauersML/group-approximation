@@ -928,6 +928,7 @@ import GroupApproximation.Computability.BooneGroupBase
 import GroupApproximation.Computability.BooneGroupPresentation
 import GroupApproximation.Computability.BooneGroupTower
 import GroupApproximation.Computability.BooneGroupGoodness
+import GroupApproximation.Computability.QuadMachine
 import GroupApproximation.Computability.BooneGroupMachineIndex
 import GroupApproximation.Computability.UniversalMachineUndecidable
 import GroupApproximation.Computability.AdianRabinWordProblem
