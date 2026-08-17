@@ -985,6 +985,7 @@ import GroupApproximation.Computability.FreeGroupRedNil
 import GroupApproximation.Computability.ModularMachineConfigHalting
 import GroupApproximation.Computability.BooneWords
 import GroupApproximation.Computability.BooneWordMapPrimrec
+import GroupApproximation.Computability.BooneWordAgreement
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
