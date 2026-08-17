@@ -122,6 +122,31 @@ def congrEquiv (e : α ≃ β) (s : Set (FreeGroup α)) :
       PresentedGroup (relabelRels (e : α → β) s) => F x) (relabel_comp_symm e s)
   map_mul' := map_mul _
 
+/-- Relabelling commutes with `PresentedGroup.mk`. -/
+theorem relabelHom_mk (e : α → β) (s : Set (FreeGroup α)) (v : FreeGroup α) :
+    relabelHom e s (PresentedGroup.mk s v)
+      = PresentedGroup.mk (relabelRels e s) (relabel e v) := by
+  have h : (relabelHom e s).comp (PresentedGroup.mk s)
+      = (PresentedGroup.mk (relabelRels e s)).comp (relabel e) := by
+    refine FreeGroup.ext_hom _ _ fun a => ?_
+    simp only [MonoidHom.comp_apply]
+    exact relabelHom_of e s a
+  exact congrArg (fun F : FreeGroup α →* PresentedGroup (relabelRels e s) => F v) h
+
+/-- **A relabelled word dies exactly when the original does.**  This is what
+lets a triviality statement be moved between a presentation and its
+renumbering. -/
+theorem mk_relabel_eq_one_iff (e : α ≃ β) (s : Set (FreeGroup α)) (v : FreeGroup α) :
+    PresentedGroup.mk (relabelRels (e : α → β) s) (relabel (e : α → β) v) = 1
+      ↔ PresentedGroup.mk s v = 1 := by
+  rw [← relabelHom_mk]
+  constructor
+  · intro h
+    have h' := congrArg (relabelHomSymm e s) h
+    rwa [← MonoidHom.comp_apply, relabel_symm_comp, MonoidHom.id_apply, map_one] at h'
+  · intro h
+    rw [h, map_one]
+
 /-! ## The numbering the towers need
 
 Each HNN step of `Algebra.HNNPresentation` wraps the generator type in one
