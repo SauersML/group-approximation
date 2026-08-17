@@ -40,6 +40,30 @@ One entry per declaration named by a manuscript margin note, in the order of `do
 ∃ G x, Group.IsFinitelyPresented G ∧ ∃ g, ¬ComputablePred fun m => g m = 1
 ```
 
+## `GroupApproximation.CliffordBSAmenableMF.manuscriptSharpnessOfKazhdanHypothesis`
+
+```lean
+LiteralCyclicCalibration.mark ≠ 1 ∧
+  LiteralCyclicCalibration.mark ∉ coronaMFResidual LiteralCyclicCalibration.LiteralGroup ∧
+    LiteralCyclicCalibration.mark ∉ normMFResidual LiteralCyclicCalibration.LiteralGroup ∧
+      IsOperatorMF ↥CliffordBSAmenableMF.coronaRep.range ∧
+        ∃ X,
+          (∀ (n : ℕ), 0 < Fintype.card (X n).carrier) ∧
+            ∃ rho, rho LiteralCyclicCalibration.mark ≠ 1
+```
+
+## `GroupApproximation.Computability.not_computablePred_wordProblemPred`
+
+```lean
+¬ComputablePred AdianRabinWordProblem.wordProblemPred
+```
+
+## `GroupApproximation.Computability.operatorMF_recognition_not_computable`
+
+```lean
+¬ComputablePred (MarkovMFConsequences.operatorMFProperty PresentationCodes.semantics)
+```
+
 ## `GroupApproximation.ContinuumMultiplicity.manuscriptContinuumMultiplicity`
 
 ```lean
@@ -1426,6 +1450,24 @@ Function.Injective ⇑LiteralNonMFPresentation.baseMap ∧
               ↑(B.map n C.t) * x n * (↑(B.map n C.t)).conjTranspose) ∧
             ScaledKazhdanTransport.IsScaledAsymptoticCommutant B w C fun n =>
               (↑(B.map n C.t)).conjTranspose * x n * ↑(B.map n C.t)
+```
+
+## `GroupApproximation.WordProblemRE.not_rePred_compl_wordProblemPred`
+
+```lean
+¬REPred fun x => ¬AdianRabinWordProblem.wordProblemPred x
+```
+
+## `GroupApproximation.WordProblemRE.operatorMF_negative_side_not_re`
+
+```lean
+¬REPred fun code => ¬MarkovMFConsequences.operatorMFProperty PresentationCodes.semantics code
+```
+
+## `GroupApproximation.WordProblemRE.rePred_wordProblemPred`
+
+```lean
+REPred AdianRabinWordProblem.wordProblemPred
 ```
 
 ## `GroupApproximation.commutator_conjugate_eq_commutator_sq_of_sq_eq_one`
