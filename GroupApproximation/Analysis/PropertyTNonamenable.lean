@@ -216,6 +216,7 @@ theorem memℓp_folner (A : Finset G) :
 noncomputable def folnerVec (A : Finset G) : lp (fun _ : G ↦ ℝ) 2 :=
   ⟨fun x : G ↦ if x ∈ A then folnerCoeff A else 0, memℓp_folner A⟩
 
+omit [Group G] in
 @[simp] theorem folnerVec_apply (A : Finset G) (x : G) :
     folnerVec A x = if x ∈ A then folnerCoeff A else 0 := rfl
 

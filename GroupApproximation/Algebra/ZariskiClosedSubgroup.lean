@@ -301,6 +301,7 @@ def mulSubstHom (U V : Matrix n n k) :
     MvPolynomial (n × n) k →ₐ[k] MvPolynomial (n × n) k :=
   MvPolynomial.bind₁ (mulSubst U V)
 
+omit [DecidableEq n] in
 /-- Substituting and then evaluating at `M` is evaluating at `U * M * V`. -/
 theorem aeval_mulSubstHom (U V M : Matrix n n k) (f : MvPolynomial (n × n) k) :
     MvPolynomial.aeval (matCoords M) (mulSubstHom U V f)
