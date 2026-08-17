@@ -998,6 +998,8 @@ import GroupApproximation.Computability.BooneWordAgreement
 import GroupApproximation.Computability.BooneWordProblemUndecidable
 import GroupApproximation.Analysis.PrintedLiftingSteps
 import GroupApproximation.Kazhdan.PrintedComplexificationBridge
+import GroupApproximation.Sofic.CentralSignAnyUniverse
+import GroupApproximation.Analysis.OmegaHilbertComplete
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
