@@ -1,0 +1,76 @@
+---
+rg: 2
+id: non-residually-finite-hyperbolic-group
+kind: claim
+title: A word-hyperbolic group that is not residually finite
+root: true
+distinct_from:
+  nonsofic-hyperbolic-group: that claim demands a hyperbolic group that is not sofic, which is strictly stronger — non-soficity implies failure of residual finiteness, but this claim is also satisfied by a group that is sofic and not residually finite, which is exactly the shape of this repository's own literal group E
+artifacts:
+  - research/artifacts/hyperbolic-residual-finiteness-audit-2026-08-17.md
+---
+
+Produce a word-hyperbolic group that is not residually finite, or prove that
+none exists.
+
+This is the long-standing question usually attributed to Gromov.  It is open:
+Cui--Wan, arXiv:2604.04007 (5 April 2026), read from source 2026-08-17, say in
+their §1.2 "It is an open conjecture that every hyperbolic group is residually
+finite."
+
+## Why it sits in this program
+
+Two of this program's objects sit directly above and below it.
+
+Above: `nonsofic-hyperbolic-group`.  A non-sofic group is never residually
+finite, so a non-sofic hyperbolic group settles this claim as a corollary
+(`non-rf-hyperbolic-from-nonsofic-hyperbolic`).  That is the *only* logical
+traffic between the two, and it runs one way.  The graph carries the weaker
+demand separately because three of the four live attacks below reach it
+without saying anything about soficity, and because the converse fails —
+this repository's own literal group `E` is sofic and not residually finite
+(`literal-group-sofic`, `literal-mark-quotient-finite-residual`), so a
+non-residually-finite hyperbolic group need not be a second non-soficity
+mechanism.
+
+Below: nothing.  A resolution in the *positive* direction — every hyperbolic
+group is residually finite — would not close any hole in this graph either;
+it would remove `nonsofic-hyperbolic-group` as a Q3.4 candidate, since
+residually finite groups are sofic.
+
+## Attempts
+
+Four live routes, none of which this graph can walk:
+
+- `non-rf-hyperbolic-from-nonsofic-hyperbolic` — inherit it from a non-sofic
+  hyperbolic group.  Blocked exactly where `nonsofic-hyperbolic-group` is
+  blocked, i.e. on the Chapman--Peled estimate.
+- `non-rf-hyperbolic-via-relative-dehn-filling` — build the counterexample
+  *relatively* hyperbolic with residually finite peripherals and fill.  The
+  filling step is proved; the input claim
+  `non-rf-relatively-hyperbolic-with-rf-peripherals` is open and, by that very
+  reduction, is not easier than this one.
+- `non-rf-hyperbolic-via-persistent-central-extension` — a finite central
+  extension of a residually finite hyperbolic group whose class survives
+  restriction to every finite-index subgroup.  The criterion is classical and
+  established here (`finite-central-extension-rf-iff-virtually-splits`); the
+  cohomological input `persistent-degree-two-class-on-hyperbolic-group` is
+  open, and the nearest arithmetic sources push the other way.
+- `non-rf-hyperbolic-via-rips-kernel` — a hyperbolic Rips extension of a
+  non-residually-finite quotient whose kernel has no finite quotients.
+  Belegradek--Osin supply everything except the kernel condition, and that
+  condition is `rips-kernel-without-finite-quotients`, which is open and
+  adjacent to circularity.
+
+Four attacks are recorded dead, each with its own route and its own
+obstruction: transplanting this program's finite-residual compression witness
+into a hyperbolic ambient group
+(`non-rf-hyperbolic-via-compression-transplant`), its free-lamp repair
+(`non-rf-hyperbolic-via-free-lamp-compression`), Oyakawa's hyperbolic
+graph-wreath products (`non-rf-hyperbolic-via-oyakawa-graph-wreath`), and
+routing a known non-residually-finite group through Hull's small-cancellation
+theorem (`non-rf-hyperbolic-via-hull-routing`).
+
+Conservatively modeled as OPEN with no expectation of resolution here.  This
+node exists to hold the reductions and the kills, not because the program has
+an attack on it.
