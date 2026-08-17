@@ -1,0 +1,59 @@
+---
+rg: 2
+id: leavitt-degree-kernel-normally-generated-by-one-word
+kind: claim
+title: A degree-m word normally generating the kernel over the Leavitt unit group
+distinct_from:
+  kl-violating-equation-over-leavitt-unit-group: that asks for any nonsingular equation over the same group killing some coefficient; this asks for the specific maximal form -- a word whose ambient normal closure is the whole degree-m kernel, which kills every coefficient at once. It is sufficient for that claim and strictly stronger.
+  uniform-normal-rank-certificate-for-degree-kernels: that asks for a uniform reason no word ever normally generates such a kernel, which would prove the conjecture; this asks for one word over one group that does. Opposite answers to the same question.
+  leavitt-group-algebra-not-stably-finite: that asks for a one-sided inverse pair of matrices over the group algebra of the same group, a ring-theoretic finiteness failure; this asks for a word in the group's free product with an infinite cyclic group, and neither statement supplies or excludes the other.
+  leavitt-unit-group-nonsurjunctive: that asks for an injective non-surjective cellular automaton over the same group, refuting Gottschalk; this asks for a normal-generation identity refuting Kervaire--Laudenbach. Same group, unrelated conjectures, and no implication is known in either direction.
+artifacts:
+  - research/artifacts/kervaire-laudenbach-audit-2026-08-17.md
+---
+
+Exhibit `m >= 1` and a word `w in N_m = ker(R^x * <t> -> C_m)` with
+`deg_t(w) = m`, where `R^x = L_(F_2)(1,2)^x`, such that
+
+    <<w>>_{R^x * <t>}  =  N_m .
+
+By part (b) of `kl-simple-failure-leaves-only-the-cyclic-quotient` — which
+needs no simplicity, only `R^x != 1` — this makes
+`(R^x * <t>)/<<w>> = C_m`, so every coefficient dies and
+`kl-violating-equation-over-leavitt-unit-group` follows.
+
+## Why state the maximal form rather than the general one
+
+Because over a group like this one the general form is not actually weaker in
+any usable way.  `R^x` is perfect
+(`leavitt-gl-equals-el-and-perfect-unit-group`); if it is also simple, then by
+part (a) of the same claim *any* violation over it is already of this maximal
+form, and asking for less buys nothing.  If it is not simple, this is a
+genuine strengthening — but it is also the only form for which the search has
+a definite target, namely a single normal-generation identity rather than an
+unspecified element to kill.
+
+## Attempts
+
+1. **First-homology certificate.**  Compute in `N_m^ab` and try to select `w`
+   by its class.  *Dies* at `degree-kernel-abelianization-is-infinite-cyclic`:
+   `R^x` is perfect, so `N_m^ab = Z` and *every* degree-`m` word is a
+   generator.  The test passes for all candidates and therefore selects none.
+   Recorded as `leavitt-kl-violation-via-fox-calculus`.
+2. **Screen the group by its subgroups.**  *Dies* at
+   `kl-counterexample-absorbs-any-countable-group`.  Recorded as
+   `kl-counterexample-screening-by-local-subgroup-structure`.
+3. **Use the explicit atlas relators.**  *Deferred*, and the audit's advice is
+   to stop repeating first-homology tests on them: a finite list of relators
+   in a chart presentation is not a relative relator, and the atlas source's
+   own kernel `R/[R, R]` bears on one-relator compression of that source, not
+   on `N_m`.  The next computation worth running is a nonabelian one — a
+   finite quotient of `N_m`, or a Peiffer/crossed-module quotient, in which a
+   candidate word's normal closure can be seen to be proper or not.
+4. **Reality check, recorded because this claim reads more tractable than it
+   is.**  Establishing it refutes `kervaire-laudenbach-nonsingular-conjecture`
+   outright, and no violating equation is known over any group whatsoever.
+   The honest reading — inherited from
+   `kl-violating-equation-over-leavitt-unit-group` and unchanged by the
+   sharpening — is that this is a falsification instrument and a consistency
+   constraint, not a plausible line of attack.
