@@ -90,7 +90,7 @@
 %
 %     thm:A       -> Theorem A          thm:signfree -> Theorem B
 %     thm:reduced -> Theorem C          thm:Esofic   -> Theorem D
-%       (alias thm:D)
+%       (alias thm:D)                   thm:trace    -> Theorem E
 %     thm:exactfd -> Theorem 3.3        thm:cyclic   -> Theorem S7.1
 %       (alias thm:B)                     (alias thm:C)
 %
@@ -173,7 +173,8 @@ group $E$.
 The group $E$ is sofic, hence hyperlinear, so neither soficity nor
 hyperlinearity implies the MF property.  Its reduced $C^*$-algebra
 $\Cred(E)$ is separable, exact and stably finite but not MF, and the
-canonical trace of $\Cmax(E)$ is not an MF trace.  The
+canonical trace of $\Cmax(E)$ is hyperlinear but not an MF trace, so
+not every hyperlinear trace is MF\@.  The
 quotient $E/\langle w\rangle$ is also non-MF, so $\{1,w\}$ is properly
 contained in the intersection of the kernels of all homomorphisms
 $E\to\U(\mathcal Q)$.
@@ -327,7 +328,8 @@ $C^*$-algebra $\Cred(E)$ is separable and stably finite but not MF
 (Theorem~\ref{thm:reduced}); it is also exact.  The group $E$ is sofic
 (Theorem~\ref{thm:Esofic}), so neither soficity nor hyperlinearity
 implies the MF property.  At the level of traces, the canonical trace
-of $\Cmax(E)$ is not an MF trace (Corollary~\ref{cor:mftrace}).  The
+of $\Cmax(E)$ is hyperlinear but not an MF trace (Theorem~\ref{thm:trace}),
+answering negatively a question of Shulman \cite{ShulmanTraces}.  The
 quotient $E/\langle w\rangle$ is not MF either, so $\{1,w\}$ is a proper
 subgroup of the MF residual of $E$ (Theorem~\ref{thm:signfree}).
 
@@ -1285,25 +1287,19 @@ quotient, both MF, so the MF property is not closed under extensions;
 and $F_8$ surjects onto $E$, so it is not closed under quotients
 (Section~\ref{sec:algebras-sofic}, Corollary~\ref{cor:quotclosure}).
 
-\subsection*{The canonical trace}
+\subsection*{A hyperlinear trace that is not MF}
 
-Approximation properties of a group have counterparts for traces on a
-$C^*$-algebra.  Following Shulman \cite{ShulmanTraces}, a trace is
-\emph{MF} when it admits matrix models that are asymptotically
-multiplicative, linear and $*$-preserving in operator norm, pointwise
-bounded, and trace-correct; it is \emph{hyperlinear} when the same three
-defects vanish in normalized Hilbert--Schmidt norm instead, with the
-boundedness and trace clauses unchanged.  No positivity, unitality or
-complete positivity is required of the models.  Every MF trace is
+We use Shulman's terminology \cite{ShulmanTraces}: hyperlinear and MF
+traces are defined by the same pointwise bounded, trace-correct matrix
+models, with the algebraic defects measured in normalized
+Hilbert--Schmidt norm and in operator norm respectively.  No linearity,
+positivity or unitality is required of the models, so every MF trace is
 hyperlinear, and whether the converse holds is recorded as an open
 problem in \cite{ShulmanTraces}.  The operator-norm notion was developed
 by Rainone--Schafhauser \cite{RainoneSchafhauser}, after Brown's tracial
 analogues of finite-dimensional approximation properties
-\cite{BrownMeans}, and is used by Schafhauser and by Shulman
-\cite{SchafhauserCuntz,Schafhauser,ShulmanTraces,Shulman}.
-
-The known results run toward equality of the two trace classes:
-Rainone--Schafhauser establish finite-dimensional approximation
+\cite{BrownMeans}, and the known results run toward equality of the two
+classes: Rainone--Schafhauser establish finite-dimensional approximation
 properties for all traces on broad classes of crossed products
 \cite{RainoneSchafhauser}, and Shulman proves that every hyperlinear
 trace on a cone is MF \cite{ShulmanCones}, with further positive classes
@@ -1311,54 +1307,86 @@ in \cite{ShulmanTraces}.  In the other direction, the failure of the
 Connes embedding problem produces traces that are not MF, but the
 previously known non-MF traces do not factor through tracial
 ultraproducts of matrix algebras and in particular are not hyperlinear
-\cite{MIPRE,Schafhauser}.  The obstruction of Theorem~\ref{thm:A}
-reaches the trace setting through a different mechanism.
+\cite{MIPRE,Schafhauser}.
 
-\begin{corollary}[the canonical trace of $\Cmax(E)$ is not an MF trace]
-\label{cor:mftrace}
-Let $\tau_E$ denote the canonical trace on $\Cmax(E)$, determined by
-$\tau_E(u_g)=1$ for $g=1$ and $\tau_E(u_g)=0$ otherwise.  There is no
-sequence of maps $\varphi_n\colon\Cmax(E)\to M_{k_n}$ satisfying, for all
-$a,b\in\Cmax(E)$ and all $\lambda,\mu\in\mathbb C$,
-\[
-\lVert\varphi_n(ab)-\varphi_n(a)\varphi_n(b)\rVert\to0,\qquad
-\lVert\varphi_n(\lambda a+\mu b)-\lambda\varphi_n(a)-\mu\varphi_n(b)\rVert\to0,
-\]
-\[
-\lVert\varphi_n(a^*)-\varphi_n(a)^*\rVert\to0,\qquad
-\sup_n\lVert\varphi_n(a)\rVert<\infty,\qquad
-\lvert\tau_E(a)-\operatorname{tr}\varphi_n(a)\rvert\to0,
-\]
-every norm being the operator norm and $\operatorname{tr}$ the normalized
-trace.  Moreover $\Cmax(E)$ is separable and $\tau_E$ is a tracial state.
-\leanverified{Sofic/LiteralTraceConsequence}{GroupApproximation.LiteralTraceConsequence.markedGroup_canonicalMaximalTrace_not_isMFTrace}
-\end{corollary}
+\begin{lemma}[an MF canonical trace makes the group MF]
+\label{lem:mftrace-group}
+Let $G$ be a countable group and let $\tau_G$ be the canonical trace on
+$\Cmax(G)$, determined by $\tau_G(u_g)=1$ for $g=1$ and $\tau_G(u_g)=0$
+otherwise.  If $\tau_G$ is an MF trace, then $G$ is MF\@.
+\leanverified{Sofic/TraceSeparationEndpoint}{GroupApproximation.manuscriptMFTraceGroupBridge}
+\end{lemma}
 
 \begin{proof}
-Such a family, restricted to the canonical unitaries $u_g$ and read on a
-finite test set at a late enough index, is a trace-correct operator-norm
-model of the regular character.  The trace clause at $g=1$ pins a corner of
-asymptotically full normalized rank: rounding the hermitian part of
-$\varphi_n(1)$ gives a projection whose corank is $O(\varepsilon)$ relative
-to the dimension.  Inflating the corners by the complement and correcting
-polarly produces exact unitaries, still multiplicative to within
-$O(\varepsilon)$, and the clause $\operatorname{tr}\varphi_n(u_g)\to0$
-separates them: for a unitary $V$ the normalized trace obeys
-$\lVert V-1\rVert\ge\lvert\operatorname{tr}V-1\rvert$, so the separation
-tends to $1$.  Hence $E$ would be MF, contradicting Theorem~\ref{thm:A}.
-Separability of $\Cmax(E)$ follows from countability of $E$, and the trace
-properties from those of the canonical trace of $\Cred(E)$, which
-$\tau_E$ pulls back along the canonical surjection.
+Let $\varphi_n\colon\Cmax(G)\to M_{k_n}(\C)$ witness that $\tau_G$ is MF
+and put $\mathcal Q=\prod_n M_{k_n}(\C)\big/\bigoplus_n M_{k_n}(\C)$,
+the quotient of the bounded product by the operator-norm $c_0$ ideal.
+Pointwise boundedness places $(\varphi_n(a))_n$ in the bounded product
+for every $a$, and the operator-norm defect conditions say exactly that
+$\Phi(a)=[(\varphi_n(a))_n]$ is a $*$-homomorphism
+$\Phi\colon\Cmax(G)\to\mathcal Q$.  There is no reason for $\Phi$ to be
+unital; write $p=\Phi(1)$, a projection with
+$\Phi(\Cmax(G))\subseteq p\mathcal Qp$.  Then
+$\Theta(g)=\Phi(u_g)+(1-p)$ defines a homomorphism
+$\Theta\colon G\to\U(\mathcal Q)$.  It is injective: if $g\ne1$ and
+$\Theta(g)=1$, then $\Phi(u_g)=\Phi(1)$, so
+$\lVert\varphi_n(u_g)-\varphi_n(1)\rVert\to0$; the normalized trace is
+contractive for the operator norm, whereas trace-correctness gives
+$\operatorname{tr}_{k_n}(\varphi_n(u_g))\to0$ and
+$\operatorname{tr}_{k_n}(\varphi_n(1))\to1$, a contradiction.  Thus $G$
+embeds in the unitary group of a norm matrix corona and is MF
+(Proposition~\ref{prop:mf-equivalences}).
+\end{proof}
+
+\begin{mainthm}[a hyperlinear trace that is not MF]\label{thm:trace}
+The canonical trace $\tau_E$ on $\Cmax(E)$ is hyperlinear but is not an
+MF trace.  Consequently there exists a separable unital $C^*$-algebra
+carrying a hyperlinear trace that is not MF; in particular, the answer
+to the question of \cite{ShulmanTraces} is negative.
+\leanverified{Sofic/TraceSeparationEndpoint}{GroupApproximation.LiteralTraceConsequence.markedGroup_canonicalTrace_isHyperlinearTrace_not_isMFTrace}
+\leanverified{Sofic/TraceSeparationEndpoint}{GroupApproximation.LiteralTraceConsequence.markedGroup_separable_canonicalTrace_hyperlinear_not_isMFTrace}
+\leanverified{Analysis/SoficHyperlinearBridge}{GroupApproximation.ShulmanTrace.canonicalMaximalTrace_isHyperlinearTrace_of_isSofic}
+\end{mainthm}
+
+\begin{proof}
+By Theorem~\ref{thm:Esofic}, $E$ is sofic.  Choose a sofic approximation
+$\sigma_n\colon E\to\operatorname{Sym}(d_n)$ whose defects vanish along
+the full sequence, and let $U_n(g)$ be the permutation unitaries.  In
+the quotient of the bounded product $\prod_n M_{d_n}(\C)$ by the ideal
+$\oplus_2 M_{d_n}(\C)$ of sequences that are null in normalized
+Hilbert--Schmidt norm --- Shulman's tracial matrix quotient, with no
+ultrafilter --- the classes $[(U_n(g))_n]$ are unitary, and
+$g\mapsto[(U_n(g))_n]$ is a homomorphism because the multiplicative
+Hamming defects vanish.  By the universal property of $\Cmax(E)$ it
+extends to a $*$-homomorphism $\pi$.  Choosing for each $a\in\Cmax(E)$ a
+representative $\varphi_n(a)$ of $\pi(a)$ of nearly minimal norm yields
+pointwise bounded matrix models whose algebraic defects vanish in
+normalized Hilbert--Schmidt norm, because each defect represents $0$ in
+the quotient; and the normalized traces converge to $\tau_E$ --- on the
+span of the canonical unitaries because the normalized trace of a
+permutation matrix is its proportion of fixed points, and in general
+because $\lvert\operatorname{tr}\rvert\le\lVert\cdot\rVert_2$, $\pi$ is
+contractive, and that span is dense.  Hence $\tau_E$ is hyperlinear;
+this realizes sequentially Shulman's tracial-ultraproduct reformulation
+of hyperlinearity \cite{ShulmanTraces}.
+
+If $\tau_E$ were an MF trace, Lemma~\ref{lem:mftrace-group} would make
+$E$ an MF group, contradicting Theorem~\ref{thm:A}\@.  Finally,
+$\Cmax(E)$ is separable, since $E$ is countable.
 \end{proof}
 
 \noindent
-We note that Schafhauser's MF condition for groups
+The two halves of the proof run the same construction against two
+different ideals: sofic permutation models become exact after dividing
+by the $\lVert\cdot\rVert_2$-null sequences, whereas an MF model of the
+canonical trace would become exact after dividing by the operator-norm
+null sequences and would force an MF embedding of the group.  The
+separation lives in the gap between the two ideals.  We note that
+Schafhauser's MF condition for groups
 \cite[Definition~1.1]{Schafhauser} is a priori stronger than the
-Carri\'on--Dadarlat--Eckhardt notion used throughout this paper, and
-his Proposition~2.2 relates it to the canonical trace of the
-\emph{reduced} algebra; Corollary~\ref{cor:mftrace} concerns the weaker
-group notion and the canonical trace of $\Cmax(E)$, which is why it is
-proved rather than imported.
+Carri\'on--Dadarlat--Eckhardt notion used throughout this paper, and his
+Proposition~2.2 relates it to the canonical trace of the \emph{reduced}
+algebra; neither half of Theorem~\ref{thm:trace} is imported from it.
 
 \clearpage
 \begingroup

@@ -1036,6 +1036,11 @@ import GroupApproximation.Analysis.ShulmanTracePositiveControls
 import GroupApproximation.Analysis.HilbertSchmidtApproximateUnit
 import GroupApproximation.Sofic.MFTraceCoronaBridge
 import GroupApproximation.Sofic.SoficPermutationTrace
+import GroupApproximation.Analysis.TracialQuotientCStar
+import GroupApproximation.Analysis.SoficHyperlinearTrace
+import GroupApproximation.Analysis.TracialQuotientCStarIdentity
+import GroupApproximation.Analysis.SoficHyperlinearBridge
+import GroupApproximation.Sofic.TraceSeparationEndpoint
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
