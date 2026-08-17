@@ -116,6 +116,55 @@ quotient staying in `Type 0` so the lift's universe constraint is met.  None of
 the three is a mathematical obstacle; all three are the kind of thing that
 compiles in isolation and fails to compose.
 
+## The premise is not hypothetical here, and that is the whole point
+
+An external referee-style read of the argument (2026-08-17) confirmed both
+halves as standard and correct, and then added the caveat that would be right
+for anyone else: *"No sofic non-MF group is known to exist ... this argument
+shows that IF a sofic non-MF group exists, its canonical trace is hyperlinear
+but not MF — it does not yet produce an actual example."*
+
+**That caveat does not apply to this development.**  The sofic non-MF group is
+Theorem A together with Theorem D, both machine-checked and both unconditional:
+
+- `LiteralSoficAssembly.markedGroup_isSofic` — docstring reads "Unconditional:
+  no hypothesis, no literature input";
+- `LiteralSoficAssembly.markedGroup_finitelyPresented_sofic_nonMF` — finitely
+  presented, sofic, and not `IsCDEOperatorMF`, in one theorem.
+
+So the conditional is discharged at its own premise.  Anyone reading the trace
+argument in isolation will reach for that caveat, which is a reason to state
+the dependence on Theorem A/D explicitly at the point of use rather than leave
+a reader to supply the objection themselves.
+
+**The reverse implication is not available and should not be suggested.**  `E`
+being an MF *group* would not obviously make `tau_E` an MF *trace*: an
+operator-norm embedding of the group need not recover the canonical trace.  The
+conditional runs one way only.
+
+## Two refinements from the same read, worth keeping
+
+**Where the trace condition earns its keep.**  In the MF half, injectivity of
+`g -> Phi(u_g) + (1 - p)` comes from the *trace* clause, not from `Phi` being a
+`*`-homomorphism.  A bare `*`-homomorphism into `prod M/(+)M` would not give
+injectivity on the group at all.  Worth one sentence in the paper, because it
+tells the reader why the definition carries a trace clause.
+
+**Keep the filters consistent, and note the Lean does.**  The printed proof
+quotients by `(+)_(2,omega)` in the hyperlinear half and by the `c_0`-type
+`(+) M_(k_n)` in the MF half.  Both conventions are fine, but the displayed
+limits in the contradiction must be taken along the *same* filter as the
+quotient they belong to.  Shulman's two definitions both use ordinary
+`n -> infinity` limits; the ultrafilter enters only through her reformulation
+remark.  Our Lean predicates are both at `atTop`, and the formal hyperlinear
+route is built at `atTop` precisely so that no filter conversion is ever
+needed — an independent confirmation of that design choice.
+
+Also from the same read, and useful for the introduction: each `M_(d_n)`
+embeds trace-preservingly into `R`, so the tracial ultraproduct embeds into
+`R^omega`, which is what ties this to Connes-embeddability in the vocabulary
+the operator-algebra reader already has.
+
 ## Why the region was empty, and the novelty sentence that says so
 
 The best sentence available for the introduction is not "Shulman asked this
