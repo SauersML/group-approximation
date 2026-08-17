@@ -44,7 +44,7 @@ variable {Γ₀ : Type} [Group Γ₀] (β : Γ₀ →* Γ₀) (hβ : Function.In
 variable {K₀ : Type} [Group K₀] [DecidableEq (Cosets β hβ)]
 
 local instance telescopeQuotientCountable {E : Type} [Group E] (N : Subgroup E)
-    [N.Normal] [Countable E] : Countable (E ⧸ N) := Quotient.countable
+    [Countable E] : Countable (E ⧸ N) := Quotient.countable
 
 /-! ## The level tower -/
 
