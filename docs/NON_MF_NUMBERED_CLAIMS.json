@@ -84,7 +84,7 @@
       "id": "prop:mf-equivalences",
       "environment": "proposition",
       "title": "Equivalent formulations of the MF property",
-      "statement_sha256": "8fcbf4fc050755b2c72e7ecfa4d27b70b8c77ace2961ce40cc7ebadcfc3e9781",
+      "statement_sha256": "f68097942772b0116101c4c168a193858c02dba053eee4c0f9ad4d5f4ecce8d6",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [
@@ -275,7 +275,7 @@
       "id": "cor:uniform",
       "environment": "corollary",
       "title": "uniform finite operator-norm obstruction",
-      "statement_sha256": "043923ba46739c21aa855f9e9528c5647f18939422a19b845f761a27a355e8ea",
+      "statement_sha256": "0472fe81acbe1c7be8811f1fc97b789e7e79b1c35e4da97d2231d082c1869c2c",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [
