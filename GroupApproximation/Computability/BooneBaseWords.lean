@@ -75,5 +75,11 @@ theorem presentedEquiv_twWord (p : ℤ × ℤ) :
   rw [mk_twWord_eq]
   exact congrArg (fun f : BaseGroup →* BaseGroup => f (tw p)) toBase_ofBase
 
+/-- The base's stable letter `t` is the word `of 0`. -/
+theorem ofBase_tGen : ofBase tGen = T := by
+  have h : toBase T = tGen := PresentedGroup.toGroup.of _
+  rw [← h]
+  exact congrArg (fun f : Pres →* Pres => f T) ofBase_toBase
+
 end BooneBaseWords
 end GroupApproximation
