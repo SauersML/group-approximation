@@ -275,7 +275,7 @@
       "id": "cor:uniform",
       "environment": "corollary",
       "title": "uniform finite operator-norm obstruction",
-      "statement_sha256": "0472fe81acbe1c7be8811f1fc97b789e7e79b1c35e4da97d2231d082c1869c2c",
+      "statement_sha256": "127963fa65d9be4e6a9e27bc9d6910285109ce088fc61e729b0963319c059142",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [
