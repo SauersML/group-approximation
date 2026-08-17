@@ -271,6 +271,43 @@ theorem of_tw_mem_of_target_right (a b c M : ℤ) (hM : M ≠ 0) (p : ℤ × ℤ
   rw [hrw]
   exact mul_mem (mul_mem (inv_mem ht) h) ht
 
+/-! ### The machine step, in the tower's index coordinates
+
+A configuration `(m,n)` is `embIdx a b M M (u,v)` with `a,b` its residues and
+`u,v` its quotients --- that is the division algorithm.  A right-moving step
+sends it to `embIdx c 0 M² 1 (u,v)`, the *same* `(u,v)`.  That is why one
+stable letter serves the whole residue class, and it is what lets the induction
+use `of_tw_mem_of_target_right`. -/
+
+theorem coe_eq_lo_add_hi (n : ℕ) :
+    (n : ℤ) = (mm.lo n : ℤ) + (mm.hi n : ℤ) * (mm.size : ℤ) := by
+  have h : (n % mm.size) + mm.size * (n / mm.size) = n := Nat.mod_add_div n mm.size
+  have h' : ((n % mm.size : ℕ) : ℤ) + (mm.size : ℤ) * ((n / mm.size : ℕ) : ℤ)
+      = (n : ℤ) := by exact_mod_cast congrArg (fun k : ℕ => (k : ℤ)) h
+  show (n : ℤ) = ((n % mm.size : ℕ) : ℤ) + ((n / mm.size : ℕ) : ℤ) * (mm.size : ℤ)
+  linarith [h']
+
+/-- A configuration sits at the index the source embedding assigns to its
+quotients. -/
+theorem coe_eq_embIdx_src (p : ℕ × ℕ) :
+    ((p.1 : ℤ), (p.2 : ℤ))
+      = embIdx (mm.lo p.1 : ℤ) (mm.lo p.2 : ℤ) (mm.size : ℤ) (mm.size : ℤ)
+          ((mm.hi p.1 : ℤ), (mm.hi p.2 : ℤ)) := by
+  simp only [embIdx, Prod.mk.injEq]
+  exact ⟨coe_eq_lo_add_hi mm p.1, coe_eq_lo_add_hi mm p.2⟩
+
+/-- A right-moving step lands at the index the target embedding assigns to the
+same quotients. -/
+theorem step_right_eq_embIdx (p : ℕ × ℕ) (c : ℕ) :
+    (((mm.hi p.1 * mm.size ^ 2 + c : ℕ) : ℤ), ((mm.hi p.2 : ℕ) : ℤ))
+      = embIdx (c : ℤ) 0 ((mm.size : ℤ) ^ 2) 1
+          ((mm.hi p.1 : ℤ), (mm.hi p.2 : ℤ)) := by
+  simp only [embIdx, Prod.mk.injEq]
+  constructor
+  · push_cast
+    ring
+  · ring
+
 /-! ## `t` lies in the halting subgroup
 
 The easy half of Lemma 7 needs only that `t` itself is in the base subgroup.  For
