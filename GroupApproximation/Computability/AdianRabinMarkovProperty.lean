@@ -286,16 +286,30 @@ D2 belong to (c) and to making (a) expressible; D3 and D4 are (b); D5 is (a).
   chain above supplies.
 
 * **D4. Novikov--Boone: a finitely presented group with undecidable word
-  problem.**  The standard modern route is the Boone--Britton group: a tower
-  of HNN extensions over a free group whose Britton reductions mirror the
-  semi-Thue derivations of D3, plus the "special words" lemma.  Mathlib's
-  Britton's Lemma and HNN normal form are a genuine enabler here and remove
-  what used to be the single largest sub-project; `PushoutI` supplies the
-  amalgamated-product normal forms needed for the free-subgroup arguments.
-  What remains is the bookkeeping of the tower and the two-directional
-  correctness proof.  **~2500--5000 lines.**  Depends on D3.  This is the
-  dominant cost and, to the best of current knowledge, has never been done in
-  any proof assistant.
+  problem.**  **The group and its correctness are DONE; what is left is
+  finite presentability.**  The route taken is not Boone--Britton but
+  Aanderaa--Cohen's modular machines, in Simpson's form: base group
+  `⟨t, x, y | xy = yx⟩`, one HNN stable letter per machine quadruple, then one
+  more letter `k`.
+  * `BooneGroupGoodness.conj_k_finalTw_eq_iff` is the two-directional
+    correctness statement, for an **arbitrary** modular machine and with no
+    hypothesis: in `G_M`, `k` commutes with `t(α,β)` exactly when `(α,β)`
+    halts.  Its inputs are Simpson's Lemma 5 (S2/S5a), the good-subgroup
+    lemma (S4, from Mathlib's Britton), Lemma 7 (S6), and Britton for the
+    single letter `k` (S7).
+  * `Computability.ModularMachineUndecidable` supplies a machine whose halting
+    set is not computable --- the input Simpson leaves to the reader --- by
+    reading a modular machine as a two-stack machine and running a `TM0` on it.
+  * `BooneGroup.exists_group_wordProblem_not_computablePred` is the two
+    together: a group and a sequence of words in it for which triviality is not
+    decidable.  Axiom-clean.
+  What remains is **S8**: that `G_M` is finitely presented.  It is, as
+  constructed --- a tower of HNN extensions over a two-generator one-relator
+  group, with finitely generated associated subgroups --- but Mathlib has no
+  closure property for `Group.IsFinitelyPresented` under HNN extensions, so the
+  presentation `⟨X, s | R, s aᵢ s⁻¹ = bᵢ⟩` has to be built and proved to
+  present the extension.  **~500--900 lines remaining.**  Depends on D3, which
+  is done.
 
 * **D5. The Adian--Rabin construction, effectively.**  Given the group of D4,
   a word `w`, and a fixed finitely presented `E`, build `P_w` with `G(P_w)`
@@ -314,7 +328,8 @@ D2 belong to (c) and to making (a) expressible; D3 and D4 are (b); D5 is (a).
 Total: on the order of **6000--11000 new lines**, i.e. a multi-month
 single-developer project whose critical path is D3 → D4.  It is a genuine
 formalization project in its own right, not a gap in this manuscript's own
-mathematics.
+mathematics.  (D3 and the correctness half of D4 are now done; the estimate
+above is the original one and has not been rescaled.)
 
 ### Cost of retracting the manuscript's self-declaration
 
