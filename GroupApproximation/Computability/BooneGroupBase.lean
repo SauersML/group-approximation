@@ -131,11 +131,11 @@ repository, fully proved with no gaps"; every size is new Lean lines.
   parameter set (`twSub_halting_inf_Gsub_src` versus
   `twSub_halting_inf_Gsub_right` / `_left`).  That is the good-subgroup
   condition with the associated isomorphism left implicit.
-* **S5b `DONE` for the right-moving quadruple** (`BooneGroupGoodness`,
-  `good_twSub_halting_right` and `twSub_halting_liftedSubgroup_inf_right`).
-  Goodness of `T_M` is S5a's two computations read through `twSub_map_emb`, and
-  S4 then applies with nothing left to compute.  The left-moving case is the
-  same proof against `twSub_halting_inf_Gsub_left`.  Original entry follows.
+* **S5b `DONE`** (`BooneGroupGoodness`).  Both directions:
+  `good_twSub_halting_right`/`_left` and
+  `twSub_halting_liftedSubgroup_inf_right`/`_left`.  Goodness of `T_M` is S5a's
+  two computations read through `twSub_map_emb`, and S4 then applies with nothing
+  left to compute.  Original entry follows.
   Supply the isomorphism: feed S5a into S4 to get
   `T = T' ⊓ G` and `T_M = T'_M ⊓ G` inside the tower.  What remains is purely
   the HNN transport --- rewriting S5a's two images along

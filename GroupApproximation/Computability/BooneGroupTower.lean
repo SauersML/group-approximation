@@ -104,6 +104,14 @@ noncomputable def quadEquiv (a b c M : ℤ) (hM : M ≠ 0) :
     (MonoidHom.ofInjective
       (emb_injective (a := c) (b := 0) (pow_ne_zero 2 hM) one_ne_zero))
 
+/-- The isomorphism a *left*-moving quadruple attaches: the target is
+`G_{0c}^{1,M²}` rather than `G_{c0}^{M²,1}`. -/
+noncomputable def quadEquivLeft (a b c M : ℤ) (hM : M ≠ 0) :
+    Gsub a b M M ≃* Gsub 0 c 1 (M ^ 2) :=
+  (MonoidHom.ofInjective (emb_injective (a := a) (b := b) hM hM)).symm.trans
+    (MonoidHom.ofInjective
+      (emb_injective (a := 0) (b := c) one_ne_zero (pow_ne_zero 2 hM)))
+
 /-- The identification a quadruple contributes to the tower. -/
 noncomputable def quadIdentification (a b c M : ℤ) (hM : M ≠ 0) : Identification :=
   ⟨Gsub a b M M, Gsub c 0 (M ^ 2) 1, quadEquiv a b c M hM⟩
