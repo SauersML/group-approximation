@@ -790,6 +790,76 @@ theorem isSofic_blockClifford_telescope {Γ : Type*} [Group Γ]
     exists_residuallyFinite_subgroup I B φ ρ hsign hlamp _ hHrf S hSinv F hF
   exact ⟨T, hTmem, hTrf⟩
 
+/-- **The exhaustion behind the telescope theorem.**  Every finite window of
+`BlockClifford I B ⋊ Telescope` lies in a residually finite subgroup.
+
+This is exactly what `isSofic_blockClifford_telescope` establishes and then
+spends on `isSofic_of_forall_finset_residuallyFinite`; the body is that proof's,
+stopped one step earlier.  Naming it lets the same work produce *local
+embeddability* as well, which is the property the manuscript's soficity proof
+asserts of the kernel of the stable-letter exponent before invoking
+Elek--Szabó -- soficity of that kernel is a consequence there, not the
+statement. -/
+theorem exists_residuallyFinite_subgroup_telescope {Γ : Type*} [Group Γ]
+    (hΓ : Group.ResiduallyFinite Γ) (α : Γ →* Γ) (hα : Function.Injective α)
+    (φ : Telescope α hα →* MulAut (BlockClifford I B))
+    (ρ : Telescope α hα →* Equiv.Perm ((i : I) × B i))
+    (hsign : ∀ t : Telescope α hα, φ t (sign I B) = sign I B)
+    (hlamp : ∀ (t : Telescope α hα) (p : (i : I) × B i),
+      φ t (lamp I B p) = lamp I B (ρ t p))
+    (horbit : ∀ (n : ℕ) (p : (i : I) × B i),
+      (Set.range fun h : ↥(level α hα n).range ↦
+        ρ (h : Telescope α hα) p).Finite) :
+    ∀ F : Finset (BlockClifford I B ⋊[φ] Telescope α hα),
+      ∃ T : Subgroup (BlockClifford I B ⋊[φ] Telescope α hα),
+        (∀ g ∈ F, g ∈ T) ∧ Group.ResiduallyFinite T := by
+  classical
+  haveI := hΓ
+  intro F
+  choose lvl elt hrepr using fun g : BlockClifford I B ⋊[φ] Telescope α hα ↦
+    exists_level_repr α hα g.right
+  have hHrf : Group.ResiduallyFinite ↥((level α hα (F.sup lvl)).range) :=
+    residuallyFinite_of_mulEquiv
+      (MonoidHom.ofInjective (level_injective α hα (F.sup lvl))).symm
+  obtain ⟨S₀, hS₀⟩ :=
+    exists_window_of_finset I B (F.image SemidirectProduct.left)
+  obtain ⟨S, hSS, hSinv⟩ :=
+    exists_invariant_window I B ρ ((level α hα (F.sup lvl)).range)
+      (horbit (F.sup lvl)) S₀
+  have hF : ∀ g ∈ F, g.left ∈ window I B S ∧
+      g.right ∈ (level α hα (F.sup lvl)).range := by
+    intro g hg
+    refine ⟨window_mono I B hSS
+      (hS₀ g.left (Finset.mem_image_of_mem _ hg)), ?_⟩
+    have hle : lvl g ≤ F.sup lvl := Finset.le_sup (f := lvl) hg
+    have hmem := level_mem_range_of_le α hα hle (elt g)
+    rwa [hrepr g] at hmem
+  exact exists_residuallyFinite_subgroup I B φ ρ hsign hlamp _ hHrf S hSinv F hF
+
+/-- **Block-Clifford lamps by a mapping telescope are LEF.**  The window
+exhaustion of `exists_residuallyFinite_subgroup_telescope` is precisely the
+hypothesis of `isLEF_of_forall_finset_residuallyFinite`: a finite window
+embeds in a finite group through the residual finiteness of the subgroup that
+contains it, at whatever dimension that residual finiteness provides.
+
+Local embeddability is strictly more than the soficity recorded above -- LEF
+groups are sofic and not conversely -- and it is what the manuscript's proof
+of `thm:Esofic` asserts of `E₀` before the Elek--Szabó step. -/
+theorem isLEF_blockClifford_telescope {Γ : Type*} [Group Γ]
+    (hΓ : Group.ResiduallyFinite Γ) (α : Γ →* Γ) (hα : Function.Injective α)
+    (φ : Telescope α hα →* MulAut (BlockClifford I B))
+    (ρ : Telescope α hα →* Equiv.Perm ((i : I) × B i))
+    (hsign : ∀ t : Telescope α hα, φ t (sign I B) = sign I B)
+    (hlamp : ∀ (t : Telescope α hα) (p : (i : I) × B i),
+      φ t (lamp I B p) = lamp I B (ρ t p))
+    (horbit : ∀ (n : ℕ) (p : (i : I) × B i),
+      (Set.range fun h : ↥(level α hα n).range ↦
+        ρ (h : Telescope α hα) p).Finite) :
+    IsLEF (BlockClifford I B ⋊[φ] Telescope α hα) :=
+  isLEF_of_forall_finset_residuallyFinite
+    (exists_residuallyFinite_subgroup_telescope I B hΓ α hα φ ρ hsign hlamp
+      horbit)
+
 /-- **Soficity of the full block-Clifford tower** `(BlockClifford ⋊ Telescope)
 ⋊ ℤ`, in the reassociated form `BlockClifford ⋊ (Telescope ⋊ ℤ)` in which the
 vertical group acts.  The lamp layer is handled by the telescope theorem, the
