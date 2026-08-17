@@ -94,6 +94,45 @@ theorem tower_ι_injective (l : List Identification) :
     (l : List Identification) :
     tower (⟨A, B, ψ⟩ :: l) = (tower l).step ψ := rfl
 
+/-! ## Mapping a lower stage into the top
+
+The induction in Simpson's Lemma 7 needs the stable letter of one level, seen in
+the group at the top of the tower.  Rather than name the letters, map the whole
+stage up: `liftUp l₁ l₂` is the composite of the `of`s that carry
+`tower l₂` through the `l₁` levels above it, and it is injective for the same
+reason each `of` is. -/
+
+/-- The stage `l₂`, mapped into the stage `l₁ ++ l₂` above it. -/
+noncomputable def liftUp : (l₁ l₂ : List Identification) →
+    (tower l₂).Carrier →* (tower (l₁ ++ l₂)).Carrier
+  | [], _ => MonoidHom.id _
+  | _ :: l₁, l₂ => (HNNExtension.of).comp (liftUp l₁ l₂)
+
+theorem liftUp_injective : ∀ (l₁ l₂ : List Identification),
+    Function.Injective (liftUp l₁ l₂)
+  | [], _ => fun _ _ h => h
+  | _ :: l₁, l₂ => by
+    intro x y h
+    exact liftUp_injective l₁ l₂ (HNNExtension.of_injective _ h)
+
+@[simp] theorem liftUp_nil (l₂ : List Identification) :
+    liftUp [] l₂ = MonoidHom.id _ := rfl
+
+/-- **The defining relation, seen at the top of the tower.**  A homomorphism
+carries the HNN relation of one level to the same relation among the images, so
+the stable letter of that level still conjugates the source subgroup onto the
+target after being mapped up. -/
+theorem liftUp_conj (l₁ l₂ : List Identification) {A' B' : Subgroup BaseGroup}
+    (ψ : A' ≃* B') (a : (A'.map (tower l₂).ι)) :
+    liftUp l₁ (⟨A', B', ψ⟩ :: l₂)
+        (HNNExtension.of (((tower l₂).stepEquiv ψ a : _) : (tower l₂).Carrier))
+      = liftUp l₁ (⟨A', B', ψ⟩ :: l₂) HNNExtension.t *
+          liftUp l₁ (⟨A', B', ψ⟩ :: l₂)
+            (HNNExtension.of ((a : _) : (tower l₂).Carrier)) *
+          (liftUp l₁ (⟨A', B', ψ⟩ :: l₂) HNNExtension.t)⁻¹ := by
+  rw [← map_inv, ← map_mul, ← map_mul]
+  exact congrArg _ (HNNExtension.equiv_eq_conj (φ := (tower l₂).stepEquiv ψ) a)
+
 /-! ## The identification a machine quadruple supplies
 
 Simpson attaches to a quadruple the identification of `G_{ab}^{MM}` with
