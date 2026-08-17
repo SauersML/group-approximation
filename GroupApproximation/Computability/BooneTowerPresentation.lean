@@ -32,13 +32,54 @@ namespace BooneTowerPresentation
 
 open BooneGroup Base BooneBaseWords
 
+/-- A three-element range is the members of a three-element list. -/
+theorem range_fin3 {α : Type} (f : Fin 3 → α) : Set.range f = {x | x ∈ [f 0, f 1, f 2]} := by
+  ext x
+  simp only [Set.mem_range, Set.mem_setOf_eq, List.mem_cons, List.not_mem_nil, or_false]
+  constructor
+  · rintro ⟨i, rfl⟩
+    fin_cases i
+    · exact Or.inl rfl
+    · exact Or.inr (Or.inl rfl)
+    · exact Or.inr (Or.inr rfl)
+  · rintro (rfl | rfl | rfl)
+    · exact ⟨0, rfl⟩
+    · exact ⟨1, rfl⟩
+    · exact ⟨2, rfl⟩
+
+/-- The HNN relator attached to the `i`-th pair of generator words. -/
+def hnnRelator {X : Type} (w v : Fin 3 → FreeGroup X) (i : Fin 3) :
+    FreeGroup (Option X) :=
+  HNNPresentation.stableWord * HNNPresentation.emb (w i) *
+    (HNNPresentation.stableWord)⁻¹ * (HNNPresentation.emb (v i))⁻¹
+
+/-- **The step's relators, as a list.**  The old relators pushed through the
+inclusion of letters, then one new relator per generator. -/
+theorem hnnRels_eq_list {X : Type} (rels : Set (FreeGroup X)) (L : List (FreeGroup X))
+    (hL : {x | x ∈ L} = rels) (w v : Fin 3 → FreeGroup X) :
+    HNNPresentation.hnnRels rels w v
+      = {x | x ∈ L.map (fun r => HNNPresentation.emb r) ++
+          [hnnRelator w v 0, hnnRelator w v 1, hnnRelator w v 2]} := by
+  rw [HNNPresentation.hnnRels, ← hL,
+    show (fun i => HNNPresentation.stableWord * HNNPresentation.emb (w i) *
+        (HNNPresentation.stableWord)⁻¹ * (HNNPresentation.emb (v i))⁻¹)
+      = hnnRelator w v from rfl,
+    range_fin3]
+  ext x
+  simp only [Set.mem_union, Set.mem_image, Set.mem_setOf_eq, List.mem_append,
+    List.mem_map, List.mem_cons, List.not_mem_nil, or_false]
+
 /-- A presentation of a stage, together with the dictionary saying which word
 names which base element. -/
 structure StagePres (S : Stage) where
   /-- The generators of this stage's presentation. -/
   Letters : Type
+  /-- Its relators, as a finite list. -/
+  relList : List (FreeGroup Letters)
   /-- Its relators. -/
   rels : Set (FreeGroup Letters)
+  /-- The list spells the relator set. -/
+  relList_spec : {x | x ∈ relList} = rels
   /-- The stage is the group these relators present. -/
   equiv : S.Carrier ≃* PresentedGroup rels
   /-- Where a word in the base's three letters goes. -/
@@ -53,7 +94,12 @@ structure StagePres (S : Stage) where
 the dictionary is the identity. -/
 def basePres : StagePres Stage.base where
   Letters := BooneGroup.Gen
+  relList := [FreeGroup.of 1 * FreeGroup.of 2 * (FreeGroup.of 1)⁻¹ * (FreeGroup.of 2)⁻¹]
   rels := BooneGroup.rels
+  relList_spec := by
+    ext x
+    simp only [Set.mem_setOf_eq, List.mem_cons, List.not_mem_nil, or_false,
+      BooneGroup.rels, Set.mem_singleton_iff]
   equiv := presentedEquiv.symm
   word := MonoidHom.id _
   compat := by
@@ -274,7 +320,10 @@ variable (hphi : ∀ i, ((stepPhi P ψ w v hA hB
 adjoined; the dictionary composes with the inclusion of the old letters. -/
 noncomputable def stepPres : StagePres (S.step ψ) where
   Letters := Option P.Letters
+  relList := P.relList.map (fun r => HNNPresentation.emb r) ++
+    [hnnRelator w v 0, hnnRelator w v 1, hnnRelator w v 2]
   rels := HNNPresentation.hnnRels P.rels w v
+  relList_spec := (hnnRels_eq_list P.rels P.relList P.relList_spec w v).symm
   equiv :=
     (HNNCongr.congrEquiv (S.stepEquiv ψ) (stepPhi P ψ w v hA hB) P.equiv
         (mem_srcSub_iff P w hA) (stepPhi_intertwines P ψ w v hA hB)).trans
@@ -406,6 +455,60 @@ noncomputable def quadLeftStepPres (a b c M : ℤ) (hM : M ≠ 0) :
     StagePres (S.step (quadEquivLeft a b c M hM)) :=
   stepPres P (quadEquivLeft a b c M hM) (gsubWords P a b M M) (gsubWords P 0 c 1 (M ^ 2))
     (map_Gsub P a b M M) (map_Gsub P 0 c 1 (M ^ 2)) (quadLeft_hphi P a b c M hM)
+
+/-! ## The whole tower
+
+Recursion over `List Identification` cannot see that each entry is a quadruple's
+identification, and destructuring an equality of sigma types to recover that is
+worse than not needing it.  So the recursion runs over the quadruple *data*
+instead, and `tower` is applied to its image --- at which point each step is
+definitionally the right one and `quadStepPres` applies without any unpacking. -/
+
+/-- A quadruple's contribution, as data: which residue pair, which new state,
+and which direction. -/
+inductive QuadData where
+  | right (a b c : ℤ)
+  | left (a b c : ℤ)
+
+/-- The identification a quadruple contributes. -/
+noncomputable def QuadData.toIdent (M : ℤ) (hM : M ≠ 0) : QuadData → Identification
+  | .right a b c => quadIdentification a b c M hM
+  | .left a b c => quadIdentificationLeft a b c M hM
+
+/-- **The tower's presentation.**  One letter and three relators per quadruple,
+carried up by `stepPres`. -/
+noncomputable def towerPres (M : ℤ) (hM : M ≠ 0) :
+    (qs : List QuadData) → StagePres (tower (qs.map (QuadData.toIdent M hM)))
+  | [] => basePres
+  | .right a b c :: qs => quadStepPres (towerPres M hM qs) a b c M hM
+  | .left a b c :: qs => quadLeftStepPres (towerPres M hM qs) a b c M hM
+
+/-- The quadruple data a machine contributes, in the same order as
+`machineIdentifications`. -/
+def machineQuads (mm : ModularMachine) : List QuadData :=
+  (residuePairs mm).filterMap fun p =>
+    (mm.quad p.1 p.2).map fun q =>
+      cond q.2 (QuadData.right (p.1 : ℤ) (p.2 : ℤ) (q.1 : ℤ))
+        (QuadData.left (p.1 : ℤ) (p.2 : ℤ) (q.1 : ℤ))
+
+/-- The data reproduces the machine's identifications. -/
+theorem map_machineQuads (mm : ModularMachine) (hM : (mm.size : ℤ) ≠ 0) :
+    (machineQuads mm).map (QuadData.toIdent (mm.size : ℤ) hM)
+      = machineIdentifications mm hM := by
+  rw [machineQuads, machineIdentifications, List.map_filterMap]
+  congr 1
+  funext p
+  rcases h : mm.quad p.1 p.2 with _ | q
+  · rfl
+  · rcases q with ⟨c, dir⟩
+    cases dir <;> rfl
+
+/-- **The machine tower is presented.** -/
+noncomputable def machineTowerPres (mm : ModularMachine) (hM : (mm.size : ℤ) ≠ 0) :
+    StagePres (machineTower mm hM) :=
+  cast (congrArg (fun l : List Identification => StagePres (tower l))
+      (map_machineQuads mm hM))
+    (towerPres (mm.size : ℤ) hM (machineQuads mm))
 
 end BooneTowerPresentation
 end GroupApproximation
