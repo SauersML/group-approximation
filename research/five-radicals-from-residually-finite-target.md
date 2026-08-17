@@ -8,6 +8,8 @@ requires: [wreath-compression-mf-radical]
 artifacts:
   - research/artifacts/multi-mover-hnn-dossier-2026-08-15.md
   - GroupApproximation/Sofic/LinearResidual.lean
+  - GroupApproximation/Sofic/FiveRadicalsCoincide.lean
+  - GroupApproximation/Analysis/PeterWeylProfinite.lean
 ---
 
 ## Why sufficient
@@ -64,6 +66,19 @@ is again finite index.
 
 Zariski's lemma and Peter--Weyl are used as stated, at the two points marked
 above.  Everything else is proved in section 46 of the dossier.
+
+**Where Peter--Weyl now sits in the development.**  It is no longer a remark.
+`Analysis/PeterWeylProfinite` defines the Bohr residual, proves
+`bohrResidual <= finiteResidual` outright, and isolates the analytic core as
+the single named hypothesis `SeparatesPoints`
+([[peter-weyl-separation-core]]), from which
+`fdUnitaryResidual_le_bohrResidual_of_separates` derives the remaining
+inclusion.  For **profinite** targets nothing is assumed at all:
+[[bohr-residual-equals-finite-residual-for-profinite-targets]] is unconditional
+by van Dantzig, and `Sofic/FiveRadicalsCoincide` carries both forms
+(`five_radicals_eq` under the separation hypothesis, `five_radicals_eq_profinite`
+with none).  So the classical input used here is one precisely stated lemma
+about compact groups rather than a citation.
 
 ## Priority
 

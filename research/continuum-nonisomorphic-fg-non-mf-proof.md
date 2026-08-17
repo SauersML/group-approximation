@@ -4,20 +4,25 @@ id: continuum-nonisomorphic-fg-non-mf-proof
 kind: route
 title: Subgroup heredity plus abelianization rank, then Neumann's continuum family
 target: continuum-nonisomorphic-fg-non-mf
-requires: [mf-positive-controls, literal-group-fails-mf-conventions]
+requires: [mf-positive-controls, literal-group-fails-mf-conventions, constructed-continuum-of-finitely-generated-groups]
 artifacts:
   - docs/CREDIT_AND_PRIORITY_AUDIT.md
   - GroupApproximation/Sofic/ProductMultiplicity.lean
   - GroupApproximation/Sofic/ProductMultiplicityRank.lean
   - GroupApproximation/Algebra/TorsionFreeRank.lean
+  - GroupApproximation/Sofic/ContinuumMultiplicity.lean
+  - GroupApproximation/Sofic/ContinuumMultiplicityCore.lean
 ---
 
 # Subgroup heredity plus abelianization rank, then Neumann's continuum family
 
 Recovered proof, transcribed verbatim from the deleted manuscript subsection at
-`git show c3501887:non_mf_groups_exist.tex`, lines 2095-2129. The two `requires`
-are the graph nodes supplying its two inputs: subgroup heredity of MF
+`git show c3501887:non_mf_groups_exist.tex`, lines 2095-2129. The first two
+`requires` are the graph nodes supplying its two inputs: subgroup heredity of MF
 (`mf-positive-controls`) and non-MF-ness of `E` (`literal-group-fails-mf-conventions`).
+The third, [[constructed-continuum-of-finitely-generated-groups]], is the
+continuum family part (2) needs; it was an external citation when this route was
+written and is now a theorem of the development.
 
 ## The two inputs
 
@@ -58,7 +63,7 @@ Equivalently: a group containing a non-MF subgroup is not MF. Combined with
 > set of cardinality $2^{\aleph_0}$ with countable fibres has image of
 > cardinality $2^{\aleph_0}$; apply this to $i\mapsto[G_i]$.
 
-## The external citation, verified
+## The external citation, verified — and then removed
 
 B. H. Neumann, *Some remarks on infinite groups*, J. London Math. Soc. **s1-12**
 (1937) 120-127 — continuum many pairwise non-isomorphic 2-generator groups.
@@ -69,8 +74,15 @@ the repository's definitive citation audit:
 > * B. H. Neumann JLMS s1-12 (1937) 120–127: verified incl. continuum
 >   family content.
 
-So the one external input has been read against the primary source for exactly
+So the one external input had been read against the primary source for exactly
 the content used here, not merely for existence of the reference.
+
+**It is no longer an input.** The development now constructs its own continuum
+family — [[constructed-continuum-of-finitely-generated-groups]], the alternating
+lamplighters `A5 wreath_{F2/markedSubgroup S} F2` — which is finitely generated
+rather than two-generator, and that is all the counting step consumes. The
+citation stays in the manuscript's prior-work discussion; nothing in this route
+rests on it.
 
 ## Remarks on the argument
 
@@ -110,9 +122,21 @@ manuscript actually printed.**
   `k`; and equal invariants on isomorphic groups finish.  The counting proof
   stays in place as an independent second route.
 
-**Part (2) is not formalized**, and the reason is not neglect: it needs
-Neumann's continuum family, whose citation is source-verified above but whose
-construction is not in the development.
+**Part (2) is now formalized too, and unconditionally.**
+`Sofic/ContinuumMultiplicity.manuscriptContinuumMultiplicity` states all three
+printed sentences with no premises: the deduction (for any continuum-sized
+pairwise nonisomorphic family of finitely generated `N`, the products `E x N`
+have continuum many isomorphism types, all non-MF), the existence of such a
+family, and the conclusion.  The middle conjunct is
+`NeumannContinuum.neumann_continuum_of_finitely_generated_groups`, so the family
+is *built* rather than quoted; `Sofic/ContinuumMultiplicityCore` carries the
+counting step and `Sofic/ContinuumFamilyCriterion` the reduction that made the
+construction cheap to supply.
+
+Note the shape of the third conjunct: the products `E x N` need not be pairwise
+nonisomorphic even when the `N` are, so what is exhibited is a transversal of
+the isomorphism classes of the products — which is exactly what the counting
+step produces, and is stronger than applying the deduction blindly.
 
 This is also the answer to the remark in the claim body about
 `scaling-family-pairwise-nonisomorphic`: the abelianization-rank invariant is

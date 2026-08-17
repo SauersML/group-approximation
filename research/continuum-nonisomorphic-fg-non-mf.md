@@ -14,6 +14,8 @@ artifacts:
   - GroupApproximation/Sofic/ProductMultiplicity.lean
   - GroupApproximation/Sofic/ProductMultiplicityRank.lean
   - GroupApproximation/Algebra/TorsionFreeRank.lean
+  - GroupApproximation/Sofic/ContinuumMultiplicity.lean
+  - GroupApproximation/Monsters/NeumannContinuum.lean
 ---
 
 Two multiplicity statements:
