@@ -136,25 +136,8 @@ omit [(i : I) → DecidableEq (B i)] [(i : I) → Fintype (B i)] in
     toFullHom I B (lamp I B p) = CliffordLamp.lamp ((i : I) × B i) p :=
   PresentedGroup.toGroup.of _
 
-omit [(i : I) → DecidableEq (B i)] [(i : I) → Fintype (B i)] in
-/-- The sign is central. -/
-theorem sign_central (g : BlockClifford I B) : Commute (sign I B) g := by
-  have hmem : g ∈ Subgroup.centralizer {sign I B} := by
-    apply PresentedGroup.generated_by (relators I B)
-      (Subgroup.centralizer {sign I B}) (fun j => ?_) g
-    rw [Subgroup.mem_centralizer_singleton_iff]
-    match j with
-    | Sum.inl () => rfl
-    | Sum.inr p => exact (sign_commute_lamp I B p).eq.symm
-  rw [Subgroup.mem_centralizer_singleton_iff] at hmem
-  exact Commute.symm hmem
-
-omit [(i : I) → DecidableEq (B i)] [(i : I) → Fintype (B i)] in
-theorem sign_mem_center' : sign I B ∈ Subgroup.center (BlockClifford I B) :=
-  Subgroup.mem_center_iff.mpr fun g => ((sign_central I B g).symm).eq
-
 instance signZpowersNormal : (Subgroup.zpowers (sign I B)).Normal :=
-  normal_zpowers_of_mem_center (sign_mem_center' I B)
+  normal_zpowers_of_mem_center (sign_mem_center I B)
 
 /-- The quotient of the block Clifford group by the central sign. -/
 abbrev SignQuotient : Type := BlockClifford I B ⧸ Subgroup.zpowers (sign I B)
@@ -471,19 +454,6 @@ theorem residuallyFinite_window (S : Finset ((i : I) × B i)) :
 
 /-! ## Block-preserving site permutations act at an arbitrary index type -/
 
-omit [(i : I) → DecidableEq (B i)] [(i : I) → Fintype (B i)] in
-/-- The commutator of two distinct same-block lamps is the sign. -/
-theorem commutator_lamp_lamp_fst {p q : (i : I) × B i}
-    (hfst : p.1 = q.1) (hne : p ≠ q) :
-    ⁅lamp I B p, lamp I B q⁆ = sign I B := by
-  obtain ⟨i, b⟩ := p
-  obtain ⟨j, b'⟩ := q
-  obtain rfl : i = j := hfst
-  have hb : b ≠ b' := by
-    intro hc
-    exact hne (by rw [hc])
-  exact commutator_lamp_lamp I B hb
-
 /-- Generator images under a block-preserving permutation. -/
 def permGenerator (π : blockPermSubgroup I B) : Gen I B → BlockClifford I B :=
   Sum.elim (fun _ ↦ sign I B) fun p ↦
@@ -520,7 +490,7 @@ theorem permGenerator_kills (π : blockPermSubgroup I B) :
         intro hc
         exact h (sigma_mk_injective
           ((π : Equiv.Perm ((i : I) × B i)).injective hc))
-      rw [commutator_lamp_lamp_fst I B hfst hne]
+      rw [commutator_lamp_lamp' I B hfst hne]
       exact mul_inv_cancel _
 
 /-- The endomorphism induced by a block-preserving permutation. -/
