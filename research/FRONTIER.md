@@ -675,13 +675,13 @@ wreath-compression-mf-radical [✓] Exact MF radicals of compression wreath prod
 ## Recently touched
 
 - 2026-08-17 · uniform-word-problem-on-presentation-codes-undecidable [ESTABLISHED] The word problem is undecidable as a predicate on presentation codes
-- 2026-08-17 · mf-recognition-undecidable [ESTABLISHED] MF is not recognizable from a finite presentation, and its failure is not even r.e.
 - 2026-08-17 · mf-recognition-undecidable-via-adian-rabin [COMPLETE] Feed the Markov premise and the transformation into the reduction
-- 2026-08-17 · adian-rabin-transform-for-mf [ESTABLISHED] An effective Adian-Rabin transformation exists for the MF Markov property
+- 2026-08-17 · mf-recognition-undecidable [ESTABLISHED] MF is not recognizable from a finite presentation, and its failure is not even r.e.
+- 2026-08-17 · word-problem-of-finite-presentation-is-re-proof [COMPLETE] One unbounded search over raw certificates, made Primcodable
 - 2026-08-17 · word-problem-of-finite-presentation-is-re [ESTABLISHED] The word problem of a finite presentation is recursively enumerable
-- 2026-08-17 · adian-rabin-transform-for-mf-proof [COMPLETE] The variant construction as list surgery, and its four assembled fields
-- 2026-08-17 · leavitt-unit-group-algebra-not-directly-finite [OPEN] The modular group algebra of the Leavitt unit group is not directly finite
 - 2026-08-17 · uniform-word-problem-on-presentation-codes-undecidable-proof [COMPLETE] A machine, its group in a generator numbering, and a computable word map
+- 2026-08-17 · leavitt-unit-group-algebra-not-directly-finite [OPEN] The modular group algebra of the Leavitt unit group is not directly finite
+- 2026-08-17 · leavitt-corner-one-sided-lift-exists [OPEN] A one-sided invertible pair in the Leavitt corner whose defect survives evaluation
 
 ## Active claims
 
