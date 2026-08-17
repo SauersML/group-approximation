@@ -159,7 +159,7 @@ LiteralCyclicCalibration.quotientMap LiteralCyclicCalibration.mark ≠ 1 ∧
 ## `GroupApproximation.KazhdanAsymptoticCommutant.manuscriptKazhdanTransport`
 
 ```lean
-∀ {Γ H : Type} [inst : Group Γ] [inst_1 : Group H],
+∀ {Γ : Type} {H : Type u} [inst : Group Γ] [inst_1 : Group H],
   HasKazhdanPropertyTComplex Γ →
     ∀ (iota : Γ →* H) (s : H),
       (∀ (γ : Γ), ∃ δ, s * iota γ * s⁻¹ = iota δ) →
