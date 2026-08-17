@@ -5,7 +5,7 @@ Companion to `docs/NON_MF_PROOF_LEDGER.md`.  Created 2026-08-17.
 ## What lives here, and why it does not live in the ledger
 
 The proof ledger answers one question about each printed assertion: *is this
-inferential step in Lean, and is it the same step?*  Fifteen of its rows could
+inferential step in Lean, and is it the same step?*  Sixteen of its rows could
 never answer it, because the sentences they were about are not inferential
 steps.  They are of three kinds:
 
@@ -18,7 +18,7 @@ steps.  They are of three kinds:
   ("an effective modulus would need an effective Kazhdan constant").
 
 Grading such a sentence `MISSING/MISSING` is not false, but it is not
-informative either, and fifteen of them inflated the ledger's `MISSING` counts
+informative either, and sixteen of them inflated the ledger's `MISSING` counts
 with rows that no amount of Lean work could ever move.  The right question to
 ask of them is different — *is the attribution correct, is the citation key
 right, and is the status still current?* — and this file is where it is asked.
@@ -32,9 +32,11 @@ are the only user of their anchor, and the gate rejects an anchor no step uses.
 
 `Sentence` is the manuscript's current text, quoted verbatim from the pinned
 blob (`git hash-object non_mf_groups_exist.tex` =
-`9a54dc64fd822cbbbd03d94c466fbc30801ed275`, 3681 lines) with LaTeX left as
-written.  A sentence that no longer matches is drift and must be re-read, exactly
-as a moved ledger anchor is.
+`ad184a59acd6643ba25699f729a45a61c2ce19c4`, 3678 lines, commit `36490e17`) with
+LaTeX left as written.  A sentence that no longer matches is drift and must be
+re-read, exactly as a moved ledger anchor is.  Two of the sixteen were re-quoted
+on 2026-08-17 after the sentence-level pass reworded them; the versions below are
+the current ones.
 
 `Status` is one of `historical`, `terminology`, `open-status`.
 
@@ -156,7 +158,7 @@ character-isotypic corner \cite[proof of Proposition~1.6]{BDL}."
 *Keys.* `DGLT`, `BDL`, `GR`, `Gl19`.  *Anchor.* `p:intro-dglt`.
 *Load-bearing.* no.  *Recorded.* 2026-08-17.
 
-*Caution.* This is the closest of the fifteen to being load-bearing, and it is
+*Caution.* This is the closest of the sixteen to being load-bearing, and it is
 the one to re-check if the attribution list changes: the procedures it names are
 re-proved in `Section~\ref{sec:conj}` rather than quoted, and the ledger grades
 those proofs on their own (`FN.*`).  The sentence is an attribution of priority,
@@ -174,31 +176,6 @@ finite \cite[Section~2.14 and Corollary~2.18]{CDE}."
 The *definition* CDE supply is load-bearing and is graded in the ledger at
 `INT.18` and `PRE.16`, where it is `EXACT`: `IsCDEOperatorMF` is that definition.
 What is recorded here is only the attribution and the Abels'-group example.
-
-### BT.16 — property (T) of the affine base is classical
-
-*Sentence.* "By Remark~\ref{rem:classical-base} the presentation
-\eqref{eq:gamma-presentation} defines $\mathbb Z^3\rtimes\SL_3(\mathbb Z)$,
-which has property~\textup{(T)} \cite[Example~1.7.4(i)]{BHV}."
-
-*Keys.* `BHV`.  *Anchor.* `prop:literal-base-T`.  *Load-bearing.* no.
-*Recorded.* 2026-08-17.
-
-*Why this is not a trust surface, which is the whole point of the entry.*  This
-is the only literature the printed proof of `prop:literal-base-T` now contains,
-and after commit `3a45fa60` it is one of only two sentences in that proof.  A
-reader could reasonably conclude that the manuscript's property-`(T)` input is
-quoted rather than proved.  It is not.  The badge on the proposition itself,
-`LiteralBaseP13PropertyTBridge.manuscriptBaseHasKazhdanPropertyT`, proves that
-the twenty-relator base has property `(T)` in **both** the real-orthogonal and
-the complex-unitary formulations, intrinsically, with an explicit Kazhdan pair
-and no literature premise of any kind.  Deleting the citation from the
-manuscript would cost the exposition a pointer and would cost the development
-nothing.
-
-The citation is nonetheless correct as scholarship and is the standard
-reference: BHV Example 1.7.4(i) is where property `(T)` for
-`ℤⁿ ⋊ SL_n(ℤ)`, `n ≥ 3`, is stated.
 
 ### BT.25 — the classical presentation
 
@@ -291,12 +268,12 @@ the ledger, at `LI.16`.
 
 ## Provenance of this file
 
-Every sentence above was quoted from the working-tree manuscript on 2026-08-17
-and matched against the citation keys in the manuscript's own
-`thebibliography`.  Nothing here was copied from an earlier draft of the ledger
-without re-reading the current text: three of the fifteen ledger rows described
-sentences that had been reworded since they were written, and the versions above
-are the current ones.
+Every sentence above was quoted from the manuscript at commit `36490e17` and
+matched against the citation keys in the manuscript's own `thebibliography`.
+Nothing here was copied from an earlier draft of the ledger without re-reading
+the current text: five of the sixteen ledger rows described sentences that had
+been reworded since they were written, and the versions above are the current
+ones.
 
 Citation-key correctness is a separate audit and is not re-done here; see the
 repository's citation audit for the source-verification of these keys.  Two
