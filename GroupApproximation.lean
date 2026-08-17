@@ -944,6 +944,7 @@ import GroupApproximation.Algebra.RabinVariantPresentation
 import GroupApproximation.Computability.RabinVariantMF
 import GroupApproximation.Algebra.RabinVariantTower
 import GroupApproximation.Algebra.HNNRetraction
+import GroupApproximation.Algebra.HNNTrivialAssociated
 import GroupApproximation.Algebra.FreeProductOrder
 import GroupApproximation.Computability.BooneGroupFinitePresentation
 import GroupApproximation.Computability.NovikovBoone
