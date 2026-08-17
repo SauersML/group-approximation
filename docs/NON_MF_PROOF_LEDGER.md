@@ -447,6 +447,44 @@ rows already cover; `rem:collapse-finite-stage` was tightened without losing a s
 and CO.16's claim follows the `c_cap` rename; `cor:undecidable` restated its reduction
 with an explicit computable map `e`, which is the same hypothesis spelled out.
 
+### Third wave, 2026-08-17: the sentence-level pass (commit `36490e17`)
+
+A user-approved pass of 184 sentence-level edits landed across every section.
+Twenty-one printed statements moved and twenty-four prose probes stopped
+occurring — the largest single drift the ledger has taken.  All forty-five were
+read before anything was re-pinned, and this is the record of that reading.
+
+**Prose probes.**  All twenty-four were repointed by hand onto the sentence the
+paragraph now prints, never deleted, and each new probe was checked to occur
+exactly once.  Three of the twenty-four (`p:prelim-notation`,
+`p:transport-display`, `p:B-why-corona`) had been reported by a peer's gate run
+as anchors matching nothing at all; they are repaired here on the same terms as
+the rest.  Nine probes had been anchored on a project-specific noun that the
+pass renamed, which is the failure mode the section below already names.
+
+**Statements.**  Four of the twenty-one changed content and their rows changed
+with them; the other seventeen were wording.
+
+| Anchor | What moved | Verdict on the rows |
+| --- | --- | --- |
+| `cor:undecidable` | **content**: the first assertion is now unconditional — "Then `W` is undecidable, and no algorithm decides…"; only the negative-side clause keeps its `if the complement of W is not recursively enumerable` premise | UN.02 **upgraded**, UN.03 restated; see those rows |
+| `prop:proper-isometry` | **content**: the two absorbing hypotheses are replaced by the single strict domination `p < upu*` | MC.04 **restated** on the new hypothesis |
+| `thm:markedclosed` | **content**: "finite-radius certificate" → "finite-radius obstruction" | MH.* claims restated; no step content moved |
+| `def:invisible` | **content**: `K₂^ω(U)` is now identified as the kernel of the induced homomorphism into the tracial ultraproduct, and hence normal | CD.05, CD.06 re-read; the normality clause is new print and is recorded |
+| `thm:A` | the derivation sentence "the defining relations make `w` central, and with `c²=1` centrality forces `w²=1`" is compressed to "the element `w` is central and satisfies `w²=1`" | wording; TA.00 stands, and the compressed sentence is the *conclusion* of what it replaced |
+| `prop:maximal-cstar` | the universe-management clause deleted | wording; MC.02's note already audits the universe of the target |
+| `rem:maxinfinite` | the closing contrast with `Cred(E)` rephrased | wording; MC.07, MC.08, MC.08b stand |
+| `rem:ff-realization` | "contains a copy of every" → "contains every" | wording; KC.21--KC.23 stand |
+| `def:radical` | the "residual" justification now also says the quotient is MF, citing `prop:univquot` | wording; RA.01 and the functoriality rows cover it |
+| `lem:unitarycorona`, `def:pattern`, `cor:generaltransport`, `thm:kazhdan-clifford`, `thm:exactfd`, `def:E`, `fig:compression-pattern`, `rem:classical-base`, `con:clifford`, `thm:reduced`, `thm:Esofic`, `thm:signfree` | wording only | rows stand |
+
+**One thing the digest cannot see, and it is the largest change of the day.**
+A statement digest fingerprints the *statement*, not the proof, so a deleted
+proof leaves every digest on its anchor intact.  Commit `3a45fa60` deleted the
+printed three-step property-`(T)` proof of `prop:literal-base-T`, and the
+anchor's digest never moved.  See "Deleted proofs are invisible to the gate"
+below.
+
 ### Prose probes: what survives an editing pass, and what does not
 
 Sixteen probes went to zero occurrences across the day, in three waves.  The lesson is
@@ -519,39 +557,39 @@ once in the comment-stripped manuscript; the probe is the drift detector.
 | eq:gamma-presentation | eq | eq:gamma-presentation | - |
 | prop:mf-equivalences | env | prop:mf-equivalences | f68097942772b011 |
 | lem:lift | env | lem:lift | 721a3d635e21456f |
-| lem:unitarycorona | env | lem:unitarycorona | 1b476b8632de4a94 |
+| lem:unitarycorona | env | lem:unitarycorona | da8c086325c912ab |
 | lem:finitecompare | env | lem:finitecompare | fc2a55b505fb0455 |
 | lem:ultrafinite | env | lem:ultrafinite | 18a9bd515024e111 |
 | thm:kazhdan-transport | env | thm:kazhdan-transport | 36a5391cd928c3d3 |
 | thm:transport-variants | env | thm:transport-variants | 97f0d64b8d1325da |
-| def:pattern | env | def:pattern | fd8b3b2fc56c2c08 |
-| def:invisible | env | def:invisible | 7ce386073afc36fd |
+| def:pattern | env | def:pattern | 79446102142d5b3e |
+| def:invisible | env | def:invisible | 41698d326dec67b0 |
 | thm:criterion | env | thm:criterion | 4153ff9fb688e0de |
 | thm:sign-criterion | env | thm:sign-criterion | 27a3e86c5351bfb6 |
-| cor:generaltransport | env | cor:generaltransport | c808cecbd21732fb |
+| cor:generaltransport | env | cor:generaltransport | 2cd351da03fb75b0 |
 | thm:compression-radical | env | thm:compression-radical | f4e9fb766fe58572 |
 | thm:normal-kazhdan | env | thm:normal-kazhdan | 0dcfb82167b7e591 |
 | thm:abstract-nk | env | thm:abstract-nk | d93135ce6813697c |
 | cor:intrinsic-nk | env | cor:intrinsic-nk | 74911f7eaffe314f |
-| thm:kazhdan-clifford | env | thm:kazhdan-clifford | 924348a10c11440d |
-| rem:ff-realization | env | rem:ff-realization | 95d3df4896ab80a4 |
-| thm:A | env | thm:A | ce8aa94da2910ee5 |
+| thm:kazhdan-clifford | env | thm:kazhdan-clifford | b4e0d1c3ccbbbcc3 |
+| rem:ff-realization | env | rem:ff-realization | b410f6c308460598 |
+| thm:A | env | thm:A | 3073242b8e939a98 |
 | cor:uniform | env | cor:uniform | 127963fa65d9be4e |
 | cor:scaling-family | env | cor:scaling-family | 9370bcd0aa550f6e |
-| thm:exactfd | env | thm:exactfd | 06b19a3bf4660f93 |
+| thm:exactfd | env | thm:exactfd | fd6920b91037455e |
 | cor:notRFD | env | cor:notRFD | 754e7536fa06cde2 |
-| def:E | env | def:E | fec9598f435e5d18 |
-| fig:compression-pattern | env | fig:compression-pattern | 9cd87cd9993f0fd7 |
+| def:E | env | def:E | c90243450781f9e7 |
+| fig:compression-pattern | env | fig:compression-pattern | b198b91ff511bbbe |
 | prop:literal-base-T | env | prop:literal-base-T | 4955bce3c162ac27 |
 | prop:blocknormalform | env | prop:blocknormalform | 4e271fd389e7e29d |
 | lem:window | env | lem:window | ffcad9af5c739fc4 |
-| rem:classical-base | env | rem:classical-base | cb7ed47885b1a17b |
-| con:clifford | env | con:clifford | 34149a9131896348 |
+| rem:classical-base | env | rem:classical-base | 3897212259c86040 |
+| con:clifford | env | con:clifford | aeebd5be01240d40 |
 | lem:linear | env | lem:linear | f475a90d8ab3f621 |
 | prop:witness | env | prop:witness | 1a168e6eb3a8fb32 |
 | lem:square | env | lem:square | 36940cc67e41844e |
 | thm:cyclic | env | thm:cyclic | 08ab17486524f52a |
-| def:radical | env | def:radical | 6233a98058787419 |
+| def:radical | env | def:radical | 5b0001b1a72e5a73 |
 | lem:portable | env | lem:portable | ad40116ce5cb86dd |
 | prop:univquot | env | prop:univquot | bf0e863dc76ab01d |
 | cor:exactradical | env | cor:exactradical | 3534e895b8bf93de |
@@ -564,16 +602,16 @@ once in the comment-stripped manuscript; the probe is the drift detector.
 | thm:projection-collapse | env | thm:projection-collapse | f8010458149ae59b |
 | thm:torsion-collapse | env | thm:torsion-collapse | 702b6f8894246819 |
 | cor:collapsequot | env | cor:collapsequot | aacd98ae2be82cbc |
-| thm:reduced | env | thm:reduced | 3fbefcf7b1eaf4da |
+| thm:reduced | env | thm:reduced | 942e85e1ef739f83 |
 | lem:faithfultrace | env | lem:faithfultrace | ed20bbd1df60ef72 |
-| thm:Esofic | env | thm:Esofic | 917c4fa5ef0893d9 |
-| thm:markedclosed | env | thm:markedclosed | f666d6dd719b2ff9 |
+| thm:Esofic | env | thm:Esofic | a31c79735c511ebc |
+| thm:markedclosed | env | thm:markedclosed | b1dc2e411d332f29 |
 | prop:horn | env | prop:horn | 3e2c6bb45f9627c7 |
 | cor:cylinder | env | cor:cylinder | 847c38b2b21a9d92 |
-| cor:undecidable | env | cor:undecidable | 697d3efaa043b736 |
-| prop:maximal-cstar | env | prop:maximal-cstar | ea236f6967fee398 |
-| prop:proper-isometry | env | prop:proper-isometry | 0243b2ca55a4d584 |
-| rem:maxinfinite | env | rem:maxinfinite | 9439bf92f9dab405 |
+| cor:undecidable | env | cor:undecidable | badd83c9ad46cbb5 |
+| prop:maximal-cstar | env | prop:maximal-cstar | 7108b280fbf939cb |
+| prop:proper-isometry | env | prop:proper-isometry | af0fbcd75508bcd3 |
+| rem:maxinfinite | env | rem:maxinfinite | 92b53660bf2ead3e |
 | p:abstract-refute | prose | `the conjecture that every countable group is MF` | - |
 | p:abstract-mechanism | prose | `compressing to the $(-1)$-spectral projection of $\Theta(w)$ yields a contradiction` | - |
 | p:intro-history | prose | `Residually finite groups are MF because their finite quotients separate points` | - |
@@ -645,7 +683,7 @@ once in the comment-stripped manuscript; the probe is the drift detector.
 | p:appA-localmodel | prose | `An \emph{approximate unitary representation} for a countable group` | - |
 | p:appC-construction | prose | `is the completion of the group ring` | - |
 | p:appC-universal | prose | `Injectivity follows from the left regular representation` | - |
-| thm:signfree | env | thm:signfree | 684a845d1f1d9cb4 |
+| thm:signfree | env | thm:signfree | 0e66635debf64a1a |
 | p:limits-adjointgap | prose | `adjoints are at operator-norm distance` | - |
 | p:limits-nogo | prose | `matrix coordinates are replaced by stably finite unital` | - |
 <!-- END-LEDGER-ANCHORS -->
