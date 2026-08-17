@@ -4,19 +4,23 @@ import GroupApproximation.Analysis.TracialMatrixUltraproduct
 /-!
 # The factorization form of a hyperlinear trace, and the easy direction
 
-Shulman gives a second description of a hyperlinear trace (arXiv:2508.00125,
-Preliminaries, "Traces"):
-
-> Equivalently, one can say that `τ` is hyperlinear if `τ = tr ∘ f`, for some
-> `⋆`-homomorphism `f : A → ∏ M_{kₙ} / ⊕₂ M_{kₙ}`.
-
-`IsFactoredHyperlinearTrace` is that description, stated against the tracial
-matrix quotient of `Analysis/TracialMatrixUltraproduct.lean`, with `tr` its
+A trace can also be presented as `τ = tr ∘ f` for a `⋆`-homomorphism
+`f : A → ∏ M_{kₙ} / ⊕₂ M_{kₙ}`, where `⊕₂ M_{kₙ}` is the ideal of sequences
+converging to `0` in the `2`-norm and `tr [(Tₙ)] = limω tr Tₙ`.
+`IsFactoredHyperlinearTrace` is that shape, stated against the tracial matrix
+quotient of `Analysis/TracialMatrixUltraproduct.lean`, with `tr` its
 `ultratrace`.  The quotient is taken along an ultrafilter refining `atTop`,
 because that is where the ultratrace of an arbitrary bounded sequence is
 defined: at `atTop` alone `limₙ tr(aₙ)` need not exist.
 
-## Only one direction is proved, and it is the easy one
+**It is a separate predicate, not a restatement.**  This file proves one
+implication into it and nothing back, and no declaration anywhere asserts the
+two predicates agree.  The literature reports them as equivalent; that report
+is not used here, is not an input to any proof below, and the analysis of what
+it would cost is worked out from the definitions rather than taken on anyone's
+word.
+
+## The direction that is proved
 
 `isFactoredHyperlinearTrace_of_isHyperlinearTrace` : sequential ⟹ factorized.
 Given the maps `φₙ`, the assignment `a ↦ [(φₙ(a))]` is a `⋆`-homomorphism
@@ -24,25 +28,43 @@ because every one of the three defects vanishes in `‖·‖₂` and is therefor
 killed by the quotient, and `tr ∘ it = τ` because the trace clause is an
 ordinary limit along `atTop`, hence along any refining ultrafilter.
 
-**The converse is not proved here and must not be assumed.**  It is Shulman's
-remark, cited above.  It is not out of reach — her own (commented-out) proof
-lifts `f` along a Hamel basis to a linear, *not necessarily continuous*, map
-into the bounded product, which needs no section theorem at all, so the
-linearity defect comes out exactly zero rather than asymptotically zero.  What
-is genuinely missing is smaller and specific: `tr` on the quotient is an
-*ultralimit* while the sequential definition asks for an ordinary limit, and
-closing that needs a subsequence extraction against a countable dense
-subalgebra.  Until that is written, no declaration below claims the two
-predicates are equivalent.  They are deliberately two predicates: an
-implication in one direction is a formalization, an `Iff` here would be a
-claim.
+## The direction that is not, and why it is not one missing lemma
+
+Recovering the `φₙ` from `f` means lifting `f` to `Φ : A → ∏ M_{kₙ}` with
+`q ∘ Φ = f` and setting `φₙ a := (Φ a) n`.  There are two obstructions, and
+they are not the same size.
+
+*Linearity is the cheap one.*  A ℂ-Hamel basis of `A` and one choice of
+preimage per basis vector extend to a genuinely linear `Φ` with `q ∘ Φ = f`.
+Then the linearity defect is exactly `0` rather than asymptotically `0`, the
+multiplicativity and `⋆` defects land in the ideal because `q` kills them, and
+the uniform bound is free because `Φ` lands in the bounded product.  No
+section theorem is needed for any of that.
+
+*The trace clause is the real one, and a Hamel lift does not reach it.*  `tr`
+on the quotient is an ultralimit, so `tr ∘ f = τ` yields
+`limω tr φₙ(a) = τ(a)`, whereas the sequential definition asks for a limit
+along `atTop`.  Choosing a different lift cannot help: two lifts differ by a
+map into the ideal, and `|tr x| ≤ ‖x‖₂`, so the `atTop` behaviour of
+`n ↦ tr φₙ(a)` is the same for every lift of the same `f`.  Passing to a
+subsequence fixes one element `a`; a diagonal argument fixes countably many;
+and since `a ↦ tr φₙ(a)` and `τ` are both linear, the set of `a` that get
+fixed is a ℂ-linear subspace — so this reaches the span of a countable set and
+stops there.  Getting from a dense subspace to all of `A` needs `Φ` to be
+*continuous*, which is exactly what a Hamel-basis lift is not, and for which
+this repository has no substitute.
+
+So the missing direction is not a single extraction step: it needs a lift that
+is simultaneously usable and continuous.  Until one exists here, the two
+predicates stay separate — an implication in one direction is a formalization,
+an `Iff` here would be a claim.
 
 ## Not a bundled `StarAlgHom`, on purpose
 
 The homomorphism is carried as a bare function together with its four
-identities rather than as `A →⋆ₐ[ℂ] _`.  Shulman's definition does not ask the
-`φₙ` to be unital — no clause of `TraceApproximationModel` mentions `φₙ(1)` —
-so `a ↦ [(φₙ(a))]` is a *non-unital* `⋆`-homomorphism, and bundling it as a
+identities rather than as `A →⋆ₐ[ℂ] _`.  No clause of
+`TraceApproximationModel` mentions `φₙ(1)`, so nothing in the hypothesis makes
+`a ↦ [(φₙ(a))]` unital: it is a *non-unital* `⋆`-homomorphism, and bundling as a
 unital one would assert something the hypothesis does not give.  Unitality is
 recoverable when `τ` is a state, by a faithfulness argument on the quotient
 trace; that is not needed here and is not done.
@@ -153,7 +175,8 @@ along `atTop`, hence along the ultrafilter, hence lies in the ideal.  The
 trace clause is a limit along `atTop`, so it survives the refinement and is
 pinned against the ultratrace by uniqueness of limits.
 
-The converse is Shulman's remark and is not proved; see the module docstring. -/
+The converse is not proved, and no result here depends on it; the module
+docstring works out what it would cost. -/
 theorem isFactoredHyperlinearTrace_of_isHyperlinearTrace {τ : A → ℂ}
     (h : IsHyperlinearTrace τ) : IsFactoredHyperlinearTrace τ := by
   obtain ⟨M⟩ := h
