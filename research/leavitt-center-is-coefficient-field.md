@@ -8,6 +8,7 @@ distinct_from:
   binary-leavitt-algebra-not-directly-finite: that is the failure of direct finiteness in `R` itself, proved internally from the defining relations; this is a statement about the center of the same ring, imported, and the two share only their subject.
   d-ary-leavitt-groups-nonsofic-over-finite-fields: that is a soficity statement about the unit and elementary groups of d-ary Leavitt algebras over finite fields, proved here through property (T); this is a one-line ring fact about the center of the binary algebra over `F_2`, imported, and no approximation property appears in it.
   leavitt-gl-equals-el-and-perfect-unit-group: that identifies `GL_n(R)` with `EL_n(R)` and proves the unit group perfect, all internal; this says what the center of `R` is, is imported, and the only place they meet is as two separate inputs to the finite-normal-subgroup node.
+  binary-leavitt-family-lifts-into-unit-corner: that asks for four elements of a group-algebra corner satisfying the Leavitt relations, and is open; this states what the center of the Leavitt algebra itself is, involves no group algebra and no corner, and is imported rather than open.
 artifacts:
   - research/artifacts/leavitt-stable-finiteness-audit-2026-08-17.md
 ---

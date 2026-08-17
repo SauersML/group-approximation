@@ -9,6 +9,7 @@ distinct_from:
   stable-finiteness-reduces-to-prime-field: that reduces the coefficient field for every group at once, leaving the matrix size untouched; this reduces the matrix size for one group, leaving the field untouched, and the two reductions compose.
   leavitt-matrix-amplification-in-unit-group-algebra: that is the structural input — matrix algebras over `S` sit inside `S` as corners; this is the finiteness consequence extracted from it by padding and unitizing.
   leavitt-unit-group-nonsurjunctive: that is the open Gottschalk failure for the group, which consumes the matrix statement; this is the established equivalence between the matrix and scalar statements, and its effect on that node is only to say which of the two now has to be settled.
+  leavitt-gl-equals-el-and-perfect-unit-group: that transports statements between matrix ranks *of the group* `GL_n(R)`, using the prefix-code self-similarity of `R`; this transports a finiteness failure between matrix ranks *over the group algebra* `M_n(F_2[R^x])`, one level up, and although both descend from self-similarity neither is an instance of the other.
 artifacts:
   - research/artifacts/leavitt-stable-finiteness-audit-2026-08-17.md
 ---

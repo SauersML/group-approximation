@@ -7,6 +7,8 @@ distinct_from:
   leavitt-unit-group-algebra-not-directly-finite: that is the scalar case `n = 1`, the Kaplansky question proper, and it heads its own lane; this is the matrix statement at some unspecified finite size, which is what the surjunctivity criterion actually consumes. The two are interderivable for this group by `leavitt-stable-finiteness-equals-direct-finiteness`, established 2026-08-17, but they remain different statements and each keeps its own lane
   stable-finiteness-reduces-to-prime-field: that fixes which coefficient fields a search must cover, for every group at once; this is the failure demanded of one group over the prime field, and that node is the reason `F_2` here costs nothing
   augmentation-blocks-unital-leavitt-family: that is a no-go saying no full binary Leavitt family sits in a matrix ring over an integral group ring; this asks only for a one-sided inverse pair, which is far weaker than a Leavitt family and is not excluded by any argument in this graph
+  d-ary-leavitt-groups-nonsofic-over-finite-fields: that is an established soficity statement about the unit, GL and EL groups of d-ary Leavitt algebras; this is an open ring identity demanded of one modular group algebra, and soficity of the group would refute it by Elek--Szabo rather than supply it
+  exact-stably-finite-non-mf-reduced-group-algebra: that is an established statement about a reduced group C-star algebra of a different group, where stable finiteness holds and MF fails; this is a purely algebraic modular group algebra of the Leavitt unit group, where stable finiteness is what is in question, and no operator norm appears in it
 artifacts:
   - research/artifacts/gottschalk-leavitt-audit-2026-08-17.md
 ---
