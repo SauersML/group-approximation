@@ -167,7 +167,7 @@ def descend (f : G →* G) : G ⧸ R →* G ⧸ R :=
   QuotientGroup.map R R f (Subgroup.map_le_iff_le_comap.mp (hR f))
 
 /-- The descended map is computed on representatives by the original map. -/
-theorem descend_mk (f : G →* G) (x : G) :
+@[simp] theorem descend_mk (f : G →* G) (x : G) :
     descend R hR f (QuotientGroup.mk' R x) = QuotientGroup.mk' R (f x) := rfl
 
 /-- Equation (50.6): the descended map intertwines the two quotient maps. -/
@@ -227,7 +227,7 @@ theorem descendEquiv_toMonoidHom (e : G ≃* G) :
   MonoidHom.ext fun _ => rfl
 
 /-- The descended automorphism is computed on representatives by the original automorphism. -/
-theorem descendEquiv_mk (e : G ≃* G) (x : G) :
+@[simp] theorem descendEquiv_mk (e : G ≃* G) (x : G) :
     descendEquiv R hR e (QuotientGroup.mk' R x) = QuotientGroup.mk' R (e x) := rfl
 
 end Descent
@@ -354,7 +354,7 @@ noncomputable def wreathQuotientSingleEquiv [IsSimpleGroup K] (x₀ : X)
     (QuotientGroup.quotientKerEquivOfSurjective _ wreathRightHom_surjective)
 
 /-- The collapse of Corollary 51.2 is the wreath projection itself. -/
-theorem wreathQuotientSingleEquiv_mk [IsSimpleGroup K] (x₀ : X)
+@[simp] theorem wreathQuotientSingleEquiv_mk [IsSimpleGroup K] (x₀ : X)
     (htrans : ∀ x : X, ∃ g : G, g • x₀ = x) {k₀ : K} (hk₀ : k₀ ≠ 1) (w : Wreath K G X) :
     wreathQuotientSingleEquiv x₀ htrans hk₀
         (QuotientGroup.mk' (Subgroup.normalClosure

@@ -114,7 +114,7 @@ def unitaryToIsometryEquiv (u : unitary (H →L[ℂ] H)) : H ≃ₗᵢ[ℂ] H wh
   norm_map' := fun x =>
     ContinuousLinearMap.norm_map_of_mem_unitary u.property x
 
-theorem unitaryToIsometryEquiv_apply (u : unitary (H →L[ℂ] H)) (x : H) :
+@[simp] theorem unitaryToIsometryEquiv_apply (u : unitary (H →L[ℂ] H)) (x : H) :
     unitaryToIsometryEquiv u x = (u : H →L[ℂ] H) x :=
   rfl
 

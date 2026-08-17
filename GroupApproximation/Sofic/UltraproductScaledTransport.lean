@@ -148,7 +148,7 @@ about `matMass X` compared with a multiple of `w n`: this is the manuscript's
 
 /-- The dimension normalization is the weight `w n = d n`: `hsNormSq` is
 `matMass` divided by the cardinality of the model. -/
-theorem hsNormSq_eq_matMass_div (Z : FiniteModel) (A : Matrix Z Z ℂ) :
+@[simp] theorem hsNormSq_eq_matMass_div (Z : FiniteModel) (A : Matrix Z Z ℂ) :
     hsNormSq Z A = matMass A / (Fintype.card Z : ℝ) := rfl
 
 /-- A matrix of zero Frobenius mass is zero. -/
@@ -265,7 +265,7 @@ of `K_n` is exactly `Ad (U_n(g)*)`, coordinate by coordinate.
 **This signature is frozen** while the construction is built against it, and
 **no instance exists yet** — see the status section of the module docstring. -/
 structure WeightedUltraproductAdjointModel
-    {Γ H : Type} [Group Γ] [Group H]
+    {Γ : Type} {H : Type*} [Group Γ] [Group H]
     (iota : Γ →* H) (s : H) (Y : ℕ → FiniteModel)
     (U : ∀ n, H → Matrix.unitaryGroup (Y n) ℂ)
     (w : ℕ → ℝ) (ω : Ultrafilter ℕ) where
@@ -353,7 +353,7 @@ attribute [instance] WeightedUltraproductAdjointModel.ring
 
 namespace WeightedUltraproductAdjointModel
 
-variable {Γ H : Type} [Group Γ] [Group H]
+variable {Γ : Type} {H : Type*} [Group Γ] [Group H]
   {iota : Γ →* H} {s : H} {Y : ℕ → FiniteModel}
   {U : ∀ n, H → Matrix.unitaryGroup (Y n) ℂ}
   {w : ℕ → ℝ} {ω : Ultrafilter ℕ}
@@ -399,6 +399,20 @@ theorem star_pi_mul_P : star (D.pi s) * D.P = D.P * star (D.pi s) := by
   have h := congrArg star D.pi_mul_P
   rw [star_mul, star_mul, D.P_star] at h
   exact h.symm
+
+/-- **KT.26.**  `V·Fix ⊆ ran P`: a vector fixed by the Kazhdan projection is
+still fixed by it after applying `V = π(s)`.  This is where `Q = P` is
+consumed, and it is the step that turns the one-sided compression into the
+conclusion. -/
+theorem act_P_shift_of_act_P {ζ : D.Vec} (hζ : D.act D.P ζ = ζ) :
+    D.act D.P (D.act (D.pi s) ζ) = D.act (D.pi s) ζ := by
+  rw [← D.act_mul, ← D.pi_mul_P, D.act_mul, hζ]
+
+/-- **KT.26, adjoint form.**  `V*·Fix ⊆ ran P`, from the starred identity.  It
+is the half of the printed conclusion concerning `U_n(s)* x_n U_n(s)`. -/
+theorem act_P_star_shift_of_act_P {ζ : D.Vec} (hζ : D.act D.P ζ = ζ) :
+    D.act D.P (D.act (star (D.pi s)) ζ) = D.act (star (D.pi s)) ζ := by
+  rw [← D.act_mul, ← D.star_pi_mul_P, D.act_mul, hζ]
 
 /-- **The fixed-vector dictionary at the weight `w`.**  For a family `ξ` with
 the printed mass bound, the class `[ξ_n]_ω` is fixed by `π g` exactly when the
@@ -492,8 +506,7 @@ theorem kt_11_descend_at_every_weight (C : ℝ) (x : ∀ n, Matrix (Y n) (Y n) �
   constructor
   · -- V ξ ∈ Fix
     have hVfix : D.act D.P (D.act (D.pi s) (D.cls x))
-        = D.act (D.pi s) (D.cls x) := by
-      rw [← D.act_mul, ← D.pi_mul_P, D.act_mul, hfix]
+        = D.act (D.pi s) (D.cls x) := D.act_P_shift_of_act_P hfix
     have hall := (D.act_P_iff (D.act (D.pi s) (D.cls x))).mp hVfix
     rw [D.act_pi_cls s x] at hall
     intro γ
@@ -502,8 +515,7 @@ theorem kt_11_descend_at_every_weight (C : ℝ) (x : ∀ n, Matrix (Y n) (Y n) �
         (U n s : Matrix (Y n) (Y n) ℂ)ᴴ) hy (iota γ)).mp (hall γ)
   · -- V* ξ ∈ Fix
     have hVfix : D.act D.P (D.act (star (D.pi s)) (D.cls x))
-        = D.act (star (D.pi s)) (D.cls x) := by
-      rw [← D.act_mul, ← D.star_pi_mul_P, D.act_mul, hfix]
+        = D.act (star (D.pi s)) (D.cls x) := D.act_P_star_shift_of_act_P hfix
     have hall := (D.act_P_iff (D.act (star (D.pi s)) (D.cls x))).mp hVfix
     rw [D.act_star_pi_cls C s x hx] at hall
     intro γ
@@ -588,7 +600,7 @@ both `V` and `V*`.
 this statement is currently vacuous.  See the status section of the module
 docstring. -/
 theorem transport_variants_one
-    {Γ H : Type} [Group Γ] [Group H]
+    {Γ : Type} {H : Type*} [Group Γ] [Group H]
     (iota : Γ →* H) (s : H) (Y : ℕ → FiniteModel)
     (U : ∀ n, H → Matrix.unitaryGroup (Y n) ℂ)
     (w : ℕ → ℝ) (_hw : ∀ n, 0 ≤ w n) (C : ℝ)
@@ -770,7 +782,7 @@ what this file does.
 
 **Not badgeable as it stands**: inherits the `ambient` hypothesis. -/
 theorem dimension_weight_recovers_kazhdan_transport
-    {Γ H : Type} [Group Γ] [Group H]
+    {Γ : Type} {H : Type*} [Group Γ] [Group H]
     (iota : Γ →* H) (s : H) (Y : ℕ → FiniteModel)
     (hY : ∀ n, 0 < Fintype.card (Y n))
     (U : ∀ n, H → Matrix.unitaryGroup (Y n) ℂ)

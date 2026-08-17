@@ -123,7 +123,7 @@ noncomputable def tensorPow (A : OpAlmostRepresentation G) (p : ℕ) :
 
 /-- The first tensor power reproduces the original unitary up to the
 one-point padding of the recursive index. -/
-theorem tensorPow_one_map_coe (A : OpAlmostRepresentation G) (n : ℕ) (g : G) :
+@[simp] theorem tensorPow_one_map_coe (A : OpAlmostRepresentation G) (n : ℕ) (g : G) :
     ((A.tensorPow 1).map n g :
         Matrix ((A.tensorPow 1).model n) ((A.tensorPow 1).model n) ℂ) =
       (A.map n g : Matrix (A.model n) (A.model n) ℂ) ⊗ₖ 1 := rfl

@@ -1042,7 +1042,7 @@ theorem norm_conj_sub_sq_le (m : ℕ) :
 
 /-! ## The unitaries of the model -/
 
-theorem coe_mulU {Y : FiniteModel} (u v : Matrix.unitaryGroup Y ℂ) :
+@[simp] theorem coe_mulU {Y : FiniteModel} (u v : Matrix.unitaryGroup Y ℂ) :
     ((u * v : Matrix.unitaryGroup Y ℂ) : Matrix Y Y ℂ)
       = (u : Matrix Y Y ℂ) * (v : Matrix Y Y ℂ) := rfl
 

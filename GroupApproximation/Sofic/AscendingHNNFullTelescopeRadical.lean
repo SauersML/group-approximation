@@ -44,7 +44,7 @@ variable {Γ₀ : Type} [Group Γ₀] (β : Γ₀ →* Γ₀) (hβ : Function.In
 variable {K₀ : Type} [Group K₀] [DecidableEq (Cosets β hβ)]
 
 local instance telescopeQuotientCountable {E : Type} [Group E] (N : Subgroup E)
-    [N.Normal] [Countable E] : Countable (E ⧸ N) := Quotient.countable
+    [Countable E] : Countable (E ⧸ N) := Quotient.countable
 
 /-! ## The level tower -/
 
@@ -60,7 +60,7 @@ def levelHom (n : ℕ) : Γ₀ →* Vertical β hβ :=
   (inl : Telescope β hβ →* Vertical β hβ).comp (level β hβ n)
 
 omit [DecidableEq (Cosets β hβ)] in
-theorem levelHom_zero_apply (γ : Γ₀) :
+@[simp] theorem levelHom_zero_apply (γ : Γ₀) :
     levelHom β hβ 0 γ = iotaVertical β hβ γ := rfl
 
 omit [DecidableEq (Cosets β hβ)] in

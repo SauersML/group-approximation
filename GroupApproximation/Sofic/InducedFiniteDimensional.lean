@@ -137,7 +137,7 @@ noncomputable def indMatrix (g : G) :
     Matrix (indModel n Y) (indModel n Y) ℂ :=
   Matrix.of fun p q => coeff π (r p.1) (g * r q.1) p.2 q.2
 
-theorem indMatrix_apply (g : G) (p q : indModel n Y) :
+@[simp] theorem indMatrix_apply (g : G) (p q : indModel n Y) :
     indMatrix π r g p q = coeff π (r p.1) (g * r q.1) p.2 q.2 := rfl
 
 variable (hidx : ∀ (i : Fin n) (b : G), idx b = i ↔ (r i)⁻¹ * b ∈ H)

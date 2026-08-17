@@ -159,7 +159,7 @@ downstream theorem continued to elaborate against the changed abbreviation. -/
 noncomputable example (X : ℕ → FiniteModel) [∀ n, Nonempty (X n)] :
     NormMatrixCStarCorona (fun n ↦ X n) =
       (BoundedMatrixSequence (fun n ↦ X n) ⧸
-        c0MatrixSequenceIdeal (fun n ↦ X n)) :=
+        nullMatrixSequenceIdeal (fun n ↦ X n) Filter.cofinite) :=
   rfl
 
 noncomputable example (X : ℕ → FiniteModel) [∀ n, Nonempty (X n)] :

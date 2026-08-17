@@ -36,7 +36,7 @@ namespace BlockCliffordLamp
 open Monoid Finset FreeProductSignReflection
 open scoped symmDiff commutatorElement
 
-set_option linter.unusedSectionVars false
+set_option linter.unusedSectionVars true
 
 variable (I : Type) [DecidableEq I] [Fintype I]
 variable (B : I → Type) [∀ i, DecidableEq (B i)] [∀ i, Fintype (B i)]
@@ -96,12 +96,14 @@ theorem commute_prodOf (g : G) (hg : ∀ b, Commute g (t b))
     (s : Finset β) : Commute g (prodOf t hcomm s) :=
   Finset.noncommProd_commute _ _ _ _ fun b _ => hg b
 
+omit [Fintype β] [DecidableEq β] in
 theorem prodOf_commute (s u : Finset β) :
     Commute (prodOf t hcomm s) (prodOf t hcomm u) := by
   apply commute_prodOf
   intro b
   exact (commute_prodOf t hcomm (t b) (fun a => hcomm b a) s).symm
 
+omit [Fintype β] in
 theorem prodOf_sq (hsq : ∀ b, t b * t b = 1) (s : Finset β) :
     prodOf t hcomm s * prodOf t hcomm s = 1 := by
   classical
@@ -122,6 +124,7 @@ theorem prodOf_sq (hsq : ∀ b, t b * t b = 1) (s : Finset β) :
             group
         _ = 1 := by rw [hsq a, ih, one_mul]
 
+omit [Fintype β] in
 theorem prodOf_symmDiff (hsq : ∀ b, t b * t b = 1) (s u : Finset β) :
     prodOf t hcomm (s ∆ u) = prodOf t hcomm s * prodOf t hcomm u := by
   classical
@@ -294,6 +297,7 @@ def toFull : BlockClifford I B →*
     CliffordLamp.CliffordLamp ((i : I) × B i) :=
   PresentedGroup.toGroup (fullGenerator_kills I B)
 
+omit [DecidableEq I] [Fintype I] [(i : I) → DecidableEq (B i)] [(i : I) → Fintype (B i)] in
 @[simp] theorem toFull_sign :
     toFull I B (sign I B) = CliffordLamp.sign _ :=
   PresentedGroup.toGroup.of _
@@ -336,6 +340,7 @@ theorem sset_coordFlip (i : I) (b : B i) :
 def freeGenerator : Gen I B → Monoid.CoprodI (SignGroup B) :=
   Sum.elim (fun _ => 1) fun p => Monoid.CoprodI.of (coordFlip I B p.1 p.2)
 
+omit [DecidableEq I] [Fintype I] [(i : I) → Fintype (B i)] in
 theorem freeGenerator_kills :
     ∀ w ∈ relators I B,
       FreeGroup.lift (freeGenerator I B) w = 1 := by
@@ -376,9 +381,11 @@ theorem freeGenerator_kills :
 def toFree : BlockClifford I B →* Monoid.CoprodI (SignGroup B) :=
   PresentedGroup.toGroup (freeGenerator_kills I B)
 
+omit [DecidableEq I] [Fintype I] [(i : I) → Fintype (B i)] in
 @[simp] theorem toFree_sign : toFree I B (sign I B) = 1 :=
   PresentedGroup.toGroup.of _
 
+omit [DecidableEq I] [Fintype I] [(i : I) → Fintype (B i)] in
 @[simp] theorem toFree_lamp (p : (i : I) × B i) :
     toFree I B (lamp I B p) = Monoid.CoprodI.of (coordFlip I B p.1 p.2) :=
   PresentedGroup.toGroup.of _
@@ -399,10 +406,12 @@ abbrev BarBlock := BlockClifford I B ⧸ signSubgroup I B
 def lampBar (p : (i : I) × B i) : BarBlock I B :=
   QuotientGroup.mk' _ (lamp I B p)
 
+omit [DecidableEq I] [Fintype I] [(i : I) → DecidableEq (B i)] [(i : I) → Fintype (B i)] in
 theorem lampBar_sq (p : (i : I) × B i) :
     lampBar I B p * lampBar I B p = 1 := by
   rw [lampBar, ← map_mul, ← pow_two, lamp_sq, map_one]
 
+omit [DecidableEq I] [Fintype I] [(i : I) → Fintype (B i)] in
 theorem lampBar_commute {i : I} (b b' : B i) :
     Commute (lampBar I B ⟨i, b⟩) (lampBar I B ⟨i, b'⟩) := by
   by_cases h : b = b'
@@ -423,6 +432,7 @@ def fromFree : Monoid.CoprodI (SignGroup B) →* BarBlock I B :=
       (fun a b => lampBar_commute I B a b)
       (fun b => lampBar_sq I B ⟨i, b⟩)
 
+omit [DecidableEq I] [Fintype I] in
 theorem fromFree_of_coordFlip (i : I) (b : B i) :
     fromFree I B (Monoid.CoprodI.of (coordFlip I B i b)) = lampBar I B ⟨i, b⟩ := by
   rw [fromFree, Monoid.CoprodI.lift_of, signProdHom_apply, sset_coordFlip,
@@ -435,9 +445,11 @@ def toFreeBar : BarBlock I B →* Monoid.CoprodI (SignGroup B) :=
     obtain ⟨k, rfl⟩ := Subgroup.mem_zpowers_iff.mp hx
     rw [MonoidHom.mem_ker, map_zpow, toFree_sign, one_zpow])
 
+omit [DecidableEq I] [Fintype I] [(i : I) → Fintype (B i)] in
 @[simp] theorem toFreeBar_mk (g : BlockClifford I B) :
     toFreeBar I B (QuotientGroup.mk' _ g) = toFree I B g := rfl
 
+omit [DecidableEq I] [Fintype I] in
 /-- The section is a left inverse on the quotient. -/
 theorem fromFree_comp_toFreeBar :
     (fromFree I B).comp (toFreeBar I B) = MonoidHom.id (BarBlock I B) := by
@@ -457,6 +469,7 @@ theorem fromFree_comp_toFreeBar :
       rw [toFree_lamp, fromFree_of_coordFlip]
       rfl
 
+omit [DecidableEq I] [Fintype I] in
 theorem toFreeBar_injective : Function.Injective (toFreeBar I B) := by
   intro x y hxy
   have hx := DFunLike.congr_fun (fromFree_comp_toFreeBar I B) x
@@ -489,6 +502,7 @@ noncomputable def detector : BlockClifford I B →*
     CliffordLamp.SignedModel ((i : I) × B i) :=
   (CliffordLamp.toModel ((i : I) × B i)).comp (toFull I B)
 
+omit [DecidableEq I] [(i : I) → DecidableEq (B i)] in
 theorem detector_sign_ne_one : detector I B (sign I B) ≠ 1 := by
   rw [detector, MonoidHom.comp_apply, toFull_sign,
     CliffordLamp.toModel_sign]
@@ -565,6 +579,7 @@ def blockPermGenerator (π : blockPermSubgroup I B) :
   Sum.elim (fun _ => sign I B) fun p =>
     lamp I B ((π : Equiv.Perm ((i : I) × B i)) p)
 
+omit [DecidableEq I] [Fintype I] [(i : I) → DecidableEq (B i)] [(i : I) → Fintype (B i)] in
 theorem blockPermGenerator_kills (π : blockPermSubgroup I B) :
     ∀ w ∈ relators I B,
       FreeGroup.lift (blockPermGenerator I B π) w = 1 := by
@@ -603,16 +618,19 @@ def blockPermMap (π : blockPermSubgroup I B) :
     BlockClifford I B →* BlockClifford I B :=
   PresentedGroup.toGroup (blockPermGenerator_kills I B π)
 
+omit [DecidableEq I] [Fintype I] [(i : I) → DecidableEq (B i)] [(i : I) → Fintype (B i)] in
 @[simp] theorem blockPermMap_sign (π : blockPermSubgroup I B) :
     blockPermMap I B π (sign I B) = sign I B :=
   PresentedGroup.toGroup.of _
 
+omit [DecidableEq I] [Fintype I] [(i : I) → DecidableEq (B i)] [(i : I) → Fintype (B i)] in
 @[simp] theorem blockPermMap_lamp (π : blockPermSubgroup I B)
     (p : (i : I) × B i) :
     blockPermMap I B π (lamp I B p)
       = lamp I B ((π : Equiv.Perm ((i : I) × B i)) p) :=
   PresentedGroup.toGroup.of _
 
+omit [DecidableEq I] [Fintype I] [(i : I) → DecidableEq (B i)] [(i : I) → Fintype (B i)] in
 theorem blockPermMap_comp (π₁ π₂ : blockPermSubgroup I B)
     (g : BlockClifford I B) :
     blockPermMap I B π₁ (blockPermMap I B π₂ g)
@@ -633,6 +651,7 @@ theorem blockPermMap_comp (π₁ π₂ : blockPermSubgroup I B)
         rfl
   exact DFunLike.congr_fun h g
 
+omit [DecidableEq I] [Fintype I] [(i : I) → DecidableEq (B i)] [(i : I) → Fintype (B i)] in
 theorem blockPermMap_one_apply (g : BlockClifford I B) :
     blockPermMap I B 1 g = g := by
   have h : blockPermMap I B 1 = MonoidHom.id (BlockClifford I B) := by
@@ -680,6 +699,7 @@ def blockPermAut (π : blockPermSubgroup I B) :
           rw [blockPermMap_lamp, blockPermMap_lamp]
           simp)
 
+omit [DecidableEq I] [Fintype I] [(i : I) → DecidableEq (B i)] [(i : I) → Fintype (B i)] in
 @[simp] theorem blockPermAut_apply (π : blockPermSubgroup I B)
     (g : BlockClifford I B) :
     blockPermAut I B π g = blockPermMap I B π g := rfl

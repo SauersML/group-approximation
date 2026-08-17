@@ -917,10 +917,10 @@ theorem of_base_eq (i : BaseGenerator) :
       baseMap (PresentedGroup.of i) :=
   (baseMap_generator i).symm
 
-theorem of_stable_eq :
+@[simp] theorem of_stable_eq :
     (PresentedGroup.of Generator.stable : MarkedGroup) = stable := rfl
 
-theorem of_lamp_eq :
+@[simp] theorem of_lamp_eq :
     (PresentedGroup.of Generator.lamp : MarkedGroup) = lamp := rfl
 
 theorem fromModel_comp_toModel :
@@ -960,9 +960,17 @@ theorem toModel_comp_verticalToE :
     toModel (verticalToE v) = SemidirectProduct.inr v :=
   DFunLike.congr_fun toModel_comp_verticalToE v
 
-/-- The site lamps of `E` are exactly the lamps of the Clifford factor. -/
-@[simp] theorem toModel_siteLamp (ξ : Site) :
-    toModel (siteLamp ξ) = SemidirectProduct.inl (lampAt ξ) := by
+/-- **Manuscript `prop:blocknormalform`.**  The site lamps of `E` are exactly
+the lamps of the Clifford factor.
+
+Stated with the site after the colon, which is what the manuscript badges.
+There is deliberately no second, wrapped copy: `Site` here is a concrete type
+rather than a section variable, so a restatement would be the *same*
+proposition under a second name and the kernel audit would report it as a
+duplicate. -/
+@[simp] theorem manuscriptSiteLampImage :
+    ∀ ξ : Site, toModel (siteLamp ξ) = SemidirectProduct.inl (lampAt ξ) := by
+  intro ξ
   obtain ⟨g, rfl⟩ := QuotientGroup.mk_surjective ξ
   rw [siteLamp_mk, map_mul, map_mul, map_inv, toModel_lamp,
     toModel_verticalToE, inr_conj_inl, lampAutHom_at, smul_origin]
@@ -977,7 +985,7 @@ theorem toModel_comp_lampToE :
       rw [lampToE_sign, toModel_mark]
   | Sum.inr ξ =>
       show toModel (lampToE (lampAt ξ)) = SemidirectProduct.inl (lampAt ξ)
-      rw [lampToE_at, toModel_siteLamp]
+      rw [lampToE_at, manuscriptSiteLampImage]
 
 theorem toModel_comp_fromModel :
     toModel.comp fromModel = MonoidHom.id Model := by
@@ -1078,7 +1086,7 @@ theorem lampKernel_map_toModel :
       | Sum.inr ξ =>
           show (SemidirectProduct.inl (lampAt ξ) : Model) ∈
             lampKernel.map toModel
-          exact ⟨siteLamp ξ, siteLamp_mem_lampKernel ξ, toModel_siteLamp ξ⟩
+          exact ⟨siteLamp ξ, siteLamp_mem_lampKernel ξ, manuscriptSiteLampImage ξ⟩
     exact hmem
 
 /-- The vertical group receives the lamp-killed quotient of `E`. -/
@@ -1205,13 +1213,13 @@ theorem blockSpan_map (J : Finset Block) :
     · rw [Set.mem_singleton_iff] at hg
       subst hg
       exact ⟨lampSign, Or.inl rfl, toModel_mark.symm⟩
-    · exact ⟨lampAt ξ, Or.inr ⟨ξ, hξ, rfl⟩, (toModel_siteLamp ξ).symm⟩
+    · exact ⟨lampAt ξ, Or.inr ⟨ξ, hξ, rfl⟩, (manuscriptSiteLampImage ξ).symm⟩
   · rintro ⟨x, hx, rfl⟩
     rcases hx with hx | ⟨ξ, hξ, rfl⟩
     · rw [Set.mem_singleton_iff] at hx
       subst hx
       exact ⟨mark, Or.inl rfl, toModel_mark⟩
-    · exact ⟨siteLamp ξ, Or.inr ⟨ξ, hξ, rfl⟩, toModel_siteLamp ξ⟩
+    · exact ⟨siteLamp ξ, Or.inr ⟨ξ, hξ, rfl⟩, manuscriptSiteLampImage ξ⟩
 
 /-- Every element of the lamp kernel is supported on finitely many blocks. -/
 theorem exists_blockSpan {g : MarkedGroup} (hg : g ∈ lampKernel) :
@@ -1255,12 +1263,12 @@ base — the eight parity cosets of `LiteralBaseDoublingIndex`, an unconditional
 count.  Hence the whole vertical group commensurates the base, and the
 commensurated-subgroup criterion gives finite orbits. -/
 
-theorem compressedBaseWord_v1 : compressedBaseWord v1Index = bv1 ^ 2 := rfl
-theorem compressedBaseWord_v2 : compressedBaseWord v2Index = bv2 ^ 2 := rfl
-theorem compressedBaseWord_v3 : compressedBaseWord v3Index = bv3 ^ 2 := rfl
-theorem compressedBaseWord_x : compressedBaseWord xIndex = bx := rfl
-theorem compressedBaseWord_y : compressedBaseWord yIndex = bY := rfl
-theorem compressedBaseWord_z : compressedBaseWord zIndex = bz := rfl
+@[simp] theorem compressedBaseWord_v1 : compressedBaseWord v1Index = bv1 ^ 2 := rfl
+@[simp] theorem compressedBaseWord_v2 : compressedBaseWord v2Index = bv2 ^ 2 := rfl
+@[simp] theorem compressedBaseWord_v3 : compressedBaseWord v3Index = bv3 ^ 2 := rfl
+@[simp] theorem compressedBaseWord_x : compressedBaseWord xIndex = bx := rfl
+@[simp] theorem compressedBaseWord_y : compressedBaseWord yIndex = bY := rfl
+@[simp] theorem compressedBaseWord_z : compressedBaseWord zIndex = bz := rfl
 
 theorem baseWord_compressed_mem (i : BaseGenerator) :
     LiteralBaseRelations.baseWord (compressedBaseWord i) ∈
@@ -1301,7 +1309,7 @@ theorem baseWord_compressed_mem (i : BaseGenerator) :
 def conjStable : Base →* Vertical :=
   (MulAut.conj vStable).toMonoidHom.comp verticalBase
 
-theorem conjStable_apply (u : Base) :
+@[simp] theorem conjStable_apply (u : Base) :
     conjStable u = vStable * verticalBase u * vStable⁻¹ := rfl
 
 theorem conjStable_of (i : BaseGenerator) :
@@ -1458,9 +1466,12 @@ theorem finite_conj_site_orbit (g : Vertical) (ξ : Site) :
 def telescopeLevel (n : ℕ) : Subgroup Vertical :=
   ConjAct.toConjAct ((vStable ^ n)⁻¹) • baseSubgroup
 
-theorem finite_telescopeLevel_site_orbit (n : ℕ) (ξ : Site) :
-    (MulAction.orbit ↥(telescopeLevel n) ξ).Finite :=
-  finite_conj_site_orbit _ ξ
+/-- **Manuscript `prop:blocknormalform`.**  Every telescope level has finite
+orbits on sites.  Binders after the colon, and a single name, for the reason
+given at `manuscriptSiteLampImage`. -/
+theorem manuscriptFiniteLevelSiteOrbit :
+    ∀ (n : ℕ) (ξ : Site), (MulAction.orbit ↥(telescopeLevel n) ξ).Finite :=
+  fun _ ξ ↦ finite_conj_site_orbit _ ξ
 
 /-- **Finite telescope-level orbits on blocks.**  Each level of the mapping
 telescope moves any block into only finitely many blocks.  This is the second
@@ -1479,26 +1490,8 @@ theorem finite_telescopeLevel_block_orbit (n : ℕ) (b : Block) :
     · rintro ⟨y, ⟨h, rfl⟩, rfl⟩
       exact ⟨h, (blockOf_smul _ _).symm⟩
   rw [himg]
-  exact (finite_telescopeLevel_site_orbit n ξ).image _
+  exact (manuscriptFiniteLevelSiteOrbit n ξ).image _
 
-/-! ## Closed forms of the two clauses the manuscript badges
-
-`toModel_siteLamp` and `finite_telescopeLevel_site_orbit` take their arguments
-in the declaration header, so the proposition each names has leading inputs.
-The manuscript's `prop:blocknormalform` states both with every binder after the
-colon. -/
-
-/-- **Manuscript `prop:blocknormalform`:** the conjugate `g c g⁻¹` is the lamp
-at the site `gB`. -/
-theorem manuscriptSiteLampImage :
-    ∀ ξ : Site, toModel (siteLamp ξ) = SemidirectProduct.inl (lampAt ξ) :=
-  fun ξ ↦ toModel_siteLamp ξ
-
-/-- **Manuscript `prop:blocknormalform`:** every telescope level has finite
-orbits on sites. -/
-theorem manuscriptFiniteLevelSiteOrbit :
-    ∀ (n : ℕ) (ξ : Site), (MulAction.orbit ↥(telescopeLevel n) ξ).Finite :=
-  fun n ξ ↦ finite_telescopeLevel_site_orbit n ξ
 
 end
 

@@ -973,6 +973,14 @@ import GroupApproximation.Algebra.HNNCongr
 import GroupApproximation.Algebra.FreeProductOrder
 import GroupApproximation.Computability.BooneGroupFinitePresentation
 import GroupApproximation.Computability.NovikovBoone
+import GroupApproximation.Computability.BooneGroupCode
+import GroupApproximation.Computability.CodedWordTriviality
+import GroupApproximation.Computability.FreeGroupCheckerPrimrec
+import GroupApproximation.Computability.FreeGroupDeletion
+import GroupApproximation.Computability.FreeGroupDeletionPrimrec
+import GroupApproximation.Computability.FreeGroupRedNil
+import GroupApproximation.Computability.ModularMachineConfigHalting
+import GroupApproximation.Computability.BooneWords
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group

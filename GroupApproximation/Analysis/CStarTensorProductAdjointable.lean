@@ -75,7 +75,7 @@ def IsAdjoint (T S : V →L[ℂ] V) : Prop :=
   ∀ x y : V, ⟪T x, y⟫_ℂ = ⟪x, S y⟫_ℂ
 
 /-- Multiplication of continuous endomorphisms is composition. -/
-theorem mul_eq_comp (S T : V →L[ℂ] V) : S * T = S.comp T := rfl
+@[simp] theorem mul_eq_comp (S T : V →L[ℂ] V) : S * T = S.comp T := rfl
 
 namespace IsAdjoint
 
@@ -218,7 +218,7 @@ theorem isAdjoint_zero : IsAdjoint (0 : V →L[ℂ] V) 0 := by
   simp
 
 /-- The identity operator is its own adjoint. -/
-theorem isAdjoint_id : IsAdjoint (ContinuousLinearMap.id ℂ V)
+@[simp] theorem isAdjoint_id : IsAdjoint (ContinuousLinearMap.id ℂ V)
     (ContinuousLinearMap.id ℂ V) := by
   intro x y
   rfl

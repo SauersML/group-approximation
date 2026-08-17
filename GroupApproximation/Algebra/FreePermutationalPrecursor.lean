@@ -167,7 +167,7 @@ variable (K : Type u) [Group K] (X : Type v) [DecidableEq X] {G : Type w} [Group
 omit [DecidableEq X] in
 /-- The site action on the finitely supported lamp group, read off the
 homomorphism the wreath product is formed along. -/
-theorem lampActionHom_apply' (g : G) (f : Lamp K X) :
+@[simp] theorem lampActionHom_apply' (g : G) (f : Lamp K X) :
     lampActionHom (K := K) (X := X) g f = lampAut (K := K) g f := rfl
 
 /-- The collapse intertwines the two site actions: moving a free factor and then

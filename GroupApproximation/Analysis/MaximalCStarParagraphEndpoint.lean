@@ -106,12 +106,12 @@ theorem normMatrixCStarCorona_mul_star_eq_one_of_star_mul_eq_one
         map_one (normMatrixCStarCoronaMk (fun n ↦ X n))]
       simpa using hx
     rw [hsub, hone, sub_self]
-  have hgram : IsC0MatrixSequence (fun n ↦ X n) (star a * a - 1) :=
+  have hgram : IsNullMatrixSequence (fun n ↦ X n) cofinite (star a * a - 1) :=
     (normMatrixCStarCoronaMk_eq_zero_iff (fun n ↦ X n) _).mp hgramZero
   have hgramTendsto :
       Tendsto (fun n ↦
         ‖KazhdanCornerMatrices.cornerGram (a n) - 1‖) cofinite (nhds 0) := by
-    simpa [IsC0MatrixSequence, KazhdanCornerMatrices.cornerGram,
+    simpa [IsNullMatrixSequence, KazhdanCornerMatrices.cornerGram,
       lp.star_apply, Matrix.star_eq_conjTranspose] using hgram
   have hgood : ∀ᶠ n in cofinite,
       ‖KazhdanCornerMatrices.cornerGram (a n) - 1‖ ≤ (1 / 2 : ℝ) := by
@@ -124,7 +124,7 @@ theorem normMatrixCStarCorona_mul_star_eq_one_of_star_mul_eq_one
       KazhdanCornerMatrices.polarCorrectUnitary (a n)
         (KazhdanCornerMatrices.cornerGram_isHermitian (a n)) hn le_rfl
     else 1
-  have hdiff : IsC0MatrixSequence (fun n ↦ X n)
+  have hdiff : IsNullMatrixSequence (fun n ↦ X n) cofinite
       (unitarySequenceBounded X u - a) := by
     apply squeeze_zero'
       (Eventually.of_forall fun n ↦ norm_nonneg ((unitarySequenceBounded X u - a) n))

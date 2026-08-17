@@ -190,13 +190,13 @@ theorem chosenFamily_finitelyPresented_not_isOperatorMF (k : ℕ) :
       ¬ IsOperatorMF (Family MarkedGroup k) :=
   ⟨family_finitelyPresented MarkedGroup k,
     not_isOperatorMF_family ChosenNonMFTheorem.chosenFinitelyPresented_not_isOperatorMF.2 k⟩
-
 /-- The chosen family has pairwise nonisomorphic members. -/
 theorem chosenFamily_eq_of_mulEquiv {k l : ℕ}
     (e : Family MarkedGroup k ≃* Family MarkedGroup l) : k = l := by
   haveI : Group.FG MarkedGroup :=
     fg_of_isFinitelyPresented MarkedGroup
   exact eq_of_family_mulEquiv e
+
 
 /-! ## The printed invariant: the torsion-free rank of the abelianization -/
 
@@ -206,10 +206,7 @@ arguments above do: the rank is additive over products, and one infinite
 cyclic coordinate contributes `1`. -/
 theorem torsionFreeRank_intPow :
     ∀ k : ℕ, TorsionFreeRank.abelianizationRank (IntPow k) = (k : Cardinal)
-  | 0 => by
-      have h0 : TorsionFreeRank.abelianizationRank (IntPow 0) = 0 :=
-        TorsionFreeRank.abelianizationRank_eq_zero_of_subsingleton (IntPow 0)
-      simpa using h0
+  | 0 => by simp
   | k + 1 => by
       rw [TorsionFreeRank.abelianizationRank_congr (intPowSucc k),
         TorsionFreeRank.abelianizationRank_prod,

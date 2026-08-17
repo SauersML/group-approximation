@@ -75,6 +75,10 @@ def t {n : ℕ} (i : Fin n) : Mid Γ n :=
 /-- `Γ`, inside stage 2. -/
 def midOfBase {n : ℕ} : Base Γ →* Mid Γ n := Monoid.Coprod.inl
 
+theorem midOfBase_injective {n : ℕ} :
+    Function.Injective (midOfBase (Γ := Γ) (n := n)) :=
+  Monoid.Coprod.inl_injective
+
 /-- The retraction of stage 2 onto its free factor. -/
 def midRetract {n : ℕ} : Mid Γ n →* FreeGroup (Fin n) := killLeft
 
@@ -345,6 +349,10 @@ theorem casc2OfBase_injective : Function.Injective (casc2OfBase x) := by
 /-- The base of stage 2, inside `Casc2`. -/
 noncomputable def casc2OfMid : Mid Γ n →* Casc2 x :=
   (casc2Of x).comp ((casc1Of x).comp HNNExtension.of)
+
+theorem casc2OfMid_injective : Function.Injective (casc2OfMid x) := by
+  intro a b hab
+  exact HNNExtension.of_injective _ (casc1Of_injective x (casc2Of_injective x hab))
 
 /-- **The full tower**: adjoin `k` along `⟨z⟩ ≅ ⟨c⟩`. -/
 noncomputable def Full {z : Casc2 x} (hz : ∀ p : ℤ, p ≠ 0 → z ^ p ≠ 1) : Type :=

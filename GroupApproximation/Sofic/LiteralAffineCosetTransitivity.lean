@@ -106,9 +106,9 @@ theorem parityRep_apply (e : Fin 3 → ℤ) :
     LiteralBaseTranslationLattice.latticeToBase_basis_one,
     LiteralBaseTranslationLattice.latticeToBase_basis_two]
 
-theorem cast_fin2_zero : ((0 : Fin 2) : ℤ) = 0 := rfl
+@[simp] theorem cast_fin2_zero : ((0 : Fin 2) : ℤ) = 0 := rfl
 
-theorem cast_fin2_one : ((1 : Fin 2) : ℤ) = 1 := rfl
+@[simp] theorem cast_fin2_one : ((1 : Fin 2) : ℤ) = 1 := rfl
 
 /-! ## 2.  Moving a rotation past `v₁`
 
@@ -162,10 +162,6 @@ theorem y_mul_v2inv : y * v2⁻¹ = v3⁻¹ * v2 * y := by
 conjugate `rot_word · v₁ · rot_word⁻¹`.  Its parity class is the point: the
 seven classes below are `100`, `001`, `010`, `011`, `110`, `111`, `101`, which
 is every nonzero class of `(ℤ/2)³`. -/
-
-/-- `x · v₁ · x⁻¹ = v₃`: parity class `001`. -/
-theorem rot_x : x * v1 = v3 * x := x_mul_v1
-
 /-- `x² · v₁ · x⁻² = v₂`: parity class `010`. -/
 theorem rot_xx : x * x * v1 = v2 * (x * x) := by
   calc x * x * v1 = x * (x * v1) := by group
@@ -173,10 +169,6 @@ theorem rot_xx : x * x * v1 = v2 * (x * x) := by
     _ = x * v3 * x := by group
     _ = v2 * x * x := by rw [x_mul_v3]
     _ = v2 * (x * x) := by group
-
-/-- `z · v₁ · z⁻¹ = v₂v₃⁻¹`: parity class `011`. -/
-theorem rot_z : z * v1 = v2 * v3⁻¹ * z := z_mul_v1
-
 /-- `(yx) · v₁ · (yx)⁻¹ = v₁v₂⁻¹`: parity class `110`. -/
 theorem rot_yx : y * x * v1 = v1 * v2⁻¹ * (y * x) := by
   calc y * x * v1 = y * (x * v1) := by group
@@ -216,7 +208,7 @@ theorem core_100 : v1⁻¹ * (1 * v1) = (1 : LiteralNonMFPresentation.Base) := b
   group
 
 theorem core_001 : v3⁻¹ * (x * v1) = x := by
-  rw [rot_x]
+  rw [GroupApproximation.LiteralAffineCosetTransitivity.x_mul_v1]
   group
 
 theorem core_010 : v2⁻¹ * (x * x * v1) = x * x := by
@@ -224,7 +216,7 @@ theorem core_010 : v2⁻¹ * (x * x * v1) = x * x := by
   group
 
 theorem core_011 : (v2 * v3)⁻¹ * (z * v1) = (v3 ^ 2)⁻¹ * z := by
-  rw [rot_z]
+  rw [GroupApproximation.LiteralAffineCosetTransitivity.z_mul_v1]
   group
 
 theorem core_110 : (v1 * v2)⁻¹ * (y * x * v1) = (v2 ^ 2)⁻¹ * (y * x) := by
@@ -254,9 +246,6 @@ theorem core_101 : (v1 * v3)⁻¹ * (x * y * x * v1)
 
 theorem d_100_mem : (1 : LiteralNonMFPresentation.Base) ∈ doubledBase :=
   Subgroup.one_mem _
-
-theorem d_001_mem : x ∈ doubledBase := x_mem_doubledBase
-
 theorem d_010_mem : x * x ∈ doubledBase :=
   Subgroup.mul_mem _ x_mem_doubledBase x_mem_doubledBase
 
@@ -339,7 +328,7 @@ theorem exists_witness (e : Fin 3 → Fin 2)
             zpow_one, one_mul, one_mul]
         rw [hp]
         exact ⟨affineQuotient x, conjD_fix_x,
-          witness_of_base d_001_mem core_001⟩
+          witness_of_base GroupApproximation.LiteralBaseDoublingIndex.x_mem_doubledBase core_001⟩
     · rcases hcase (e 2) with h2 | h2
       · -- class `010`, rotation word `x²`
         have hp : v1 ^ ((e 0 : ℤ)) *

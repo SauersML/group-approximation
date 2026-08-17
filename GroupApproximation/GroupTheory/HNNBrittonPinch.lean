@@ -203,7 +203,7 @@ def toReducedWord {l : List (ℤˣ × G)} (h : NoPinch A B l) (g : G) :
 @[simp] theorem toReducedWord_head {l : List (ℤˣ × G)} (h : NoPinch A B l)
     (g : G) : (toReducedWord h g).head = g := rfl
 
-theorem toReducedWord_prod (φ : A ≃* B) {l : List (ℤˣ × G)}
+@[simp] theorem toReducedWord_prod (φ : A ≃* B) {l : List (ℤˣ × G)}
     (h : NoPinch A B l) (g : G) :
     (toReducedWord h g).prod φ = wordProd φ g l := rfl
 

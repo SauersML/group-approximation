@@ -54,8 +54,8 @@ theorem hasInvariantMean_CliffordBS : HasInvariantMean CliffordBS :=
 
 /-- **Every subgroup of the extension is amenable** --- in particular the
 realized quotient of Theorem C, whatever generating set is used to cut it
-out.  Amenable implies MF is not proved here and is not provable from
-anything in this repository; it is the manuscript's citation to
+out.  Amenable implies MF lies outside what this repository establishes and
+does not follow from anything in it; it is the manuscript's citation to
 Tikuisis--White--Winter. -/
 theorem isAmenable_subgroup_CliffordBS (H : Subgroup CliffordBS) :
     IsAmenable H :=

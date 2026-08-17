@@ -28,7 +28,7 @@ alternating lamps of different degree have no isomorphic finite-index
 subgroups. -/
 theorem not_mulEquiv_finiteIndex_of_alternating_residual
     {m n : ℕ} (hm : 5 ≤ m) (hn : 5 ≤ n) (hmn : m ≠ n)
-    {X : Type v} [DecidableEq X] [Nonempty X]
+    {X : Type v} [DecidableEq X] (hX : Nonempty X)
     {W₁ : Type w} [Group W₁] {W₂ : Type w} [Group W₂]
     {K₁ : Subgroup W₁} [K₁.FiniteIndex] {K₂ : Subgroup W₂} [K₂.FiniteIndex]
     (h₁ : Nonempty (↥((finiteResidual W₁).subgroupOf K₁)
@@ -39,14 +39,14 @@ theorem not_mulEquiv_finiteIndex_of_alternating_residual
   refine not_commensurable_of_finiteResidual_not_mulEquiv ⟨fun e => ?_⟩
   obtain ⟨e₁⟩ := h₁
   obtain ⟨e₂⟩ := h₂
-  exact (alternating_lamp_not_mulEquiv (X := X) hm hn hmn).elim
+  exact (alternating_lamp_not_mulEquiv (X := X) hm hn hmn hX).elim
     ((e₁.symm.trans e).trans e₂)
 
 /-- The same statement for the groups themselves: different degrees give
 non-isomorphic members. -/
 theorem not_mulEquiv_of_alternating_residual
     {m n : ℕ} (hm : 5 ≤ m) (hn : 5 ≤ n) (hmn : m ≠ n)
-    {X : Type v} [DecidableEq X] [Nonempty X]
+    {X : Type v} [DecidableEq X] (hX : Nonempty X)
     {W₁ : Type w} [Group W₁] {W₂ : Type w} [Group W₂]
     (h₁ : Nonempty (↥(finiteResidual W₁) ≃* Lamp (alternatingGroup (Fin m)) X))
     (h₂ : Nonempty (↥(finiteResidual W₂) ≃* Lamp (alternatingGroup (Fin n)) X)) :
@@ -54,7 +54,7 @@ theorem not_mulEquiv_of_alternating_residual
   refine not_mulEquiv_of_finiteResidual_not_mulEquiv ⟨fun e => ?_⟩
   obtain ⟨e₁⟩ := h₁
   obtain ⟨e₂⟩ := h₂
-  exact (alternating_lamp_not_mulEquiv (X := X) hm hn hmn).elim
+  exact (alternating_lamp_not_mulEquiv (X := X) hm hn hmn hX).elim
     ((e₁.symm.trans e).trans e₂)
 
 end GroupApproximation

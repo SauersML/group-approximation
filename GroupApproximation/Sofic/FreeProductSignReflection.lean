@@ -28,7 +28,7 @@ namespace FreeProductSignReflection
 open Monoid Finset
 open scoped symmDiff
 
-set_option linter.unusedSectionVars false
+set_option linter.unusedSectionVars true
 
 variable {I : Type} [DecidableEq I] [Fintype I]
 variable {B : I → Type} [∀ i, DecidableEq (B i)] [∀ i, Fintype (B i)]
@@ -73,11 +73,13 @@ theorem mem_blockSet_iff {i : I} {x : Coord B} :
   · rintro ⟨b, rfl⟩
     exact mem_image.mpr ⟨b, mem_univ b, rfl⟩
 
+omit [Fintype I] in
 theorem none_notMem_blockSet (i : I) : (none : Coord B) ∉ blockSet i := by
   intro h
   obtain ⟨b, hb⟩ := mem_blockSet_iff.mp h
   exact Option.some_ne_none _ hb.symm
 
+omit [Fintype I] in
 theorem blockSet_disjoint {i j : I} (hij : i ≠ j) :
     Disjoint (blockSet (B := B) i) (blockSet j) := by
   rw [Finset.disjoint_left]
@@ -91,6 +93,7 @@ def suppSet (i : I) (g : SignGroup B i) : Finset (Coord B) :=
   ((univ : Finset (B i)).filter fun b =>
     Multiplicative.toAdd (g b) = 1).image fun b => some ⟨i, b⟩
 
+omit [Fintype I] in
 theorem suppSet_subset_blockSet (i : I) (g : SignGroup B i) :
     suppSet i g ⊆ blockSet i := by
   intro x hx
@@ -117,6 +120,7 @@ theorem suppSet_one (i : I) : suppSet i (1 : SignGroup B i) = ∅ := by
   simp only [Pi.one_apply, toAdd_one]
   decide
 
+omit [Fintype I] in
 theorem suppSet_nonempty_of_ne_one {i : I} {g : SignGroup B i}
     (hg : g ≠ 1) : (suppSet i g).Nonempty := by
   have hb : ∃ b : B i, g b ≠ 1 := by
@@ -132,6 +136,7 @@ theorem suppSet_nonempty_of_ne_one {i : I} {g : SignGroup B i}
   revert a
   decide
 
+omit [Fintype I] in
 theorem suppSet_mul (i : I) (g h : SignGroup B i) :
     suppSet i (g * h) = suppSet i g ∆ suppSet i h := by
   have hxor : ∀ a b : ZMod 2, a + b = 1 ↔
@@ -188,6 +193,7 @@ theorem otherSum_smul (i : I) (c : ℤ) (v : V B) :
   rw [Finset.mul_sum]
   exact Finset.sum_congr rfl fun j _ => blockSum_smul j c v
 
+omit [Fintype I] in
 theorem blockSum_basepoint (i : I) : blockSum i (basepoint : V B) = 0 := by
   unfold blockSum
   refine Finset.sum_eq_zero fun x hx => ?_
@@ -350,6 +356,7 @@ def GoodAt (i₀ : I) (v : V B) : Prop :=
     2 + otherSum i₀ v ≤ blockSum i₀ v ∧
     ∀ j, j ≠ i₀ → blockSum j v + 2 ≤ otherSum j v
 
+omit [Fintype I] in
 theorem single_le_blockSum {i : I} {v : V B} (hv : ∀ x, 0 ≤ v x)
     {b : B i} : v (some ⟨i, b⟩) ≤ blockSum i v :=
   Finset.single_le_sum (fun x _ => hv x) (mem_blockSet_iff.mpr ⟨b, rfl⟩)

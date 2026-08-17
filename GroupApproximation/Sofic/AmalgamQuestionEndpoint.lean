@@ -413,7 +413,8 @@ theorem q1_08_actualCoronaMFResidual_ne_bot (A : LampKernelBlockAmalgam) :
   rw [hbot] at hmem
   exact q1_06_collapsed_commutator_ne_one A (Subgroup.mem_bot.mp hmem)
 
-/-- **The conditional endpoint of manuscript Question 1.**  *If* the lamp
+/-- **The endpoint of manuscript Question 1, stated as an implication.**
+*If* the lamp
 kernel of the literal group admits the amalgam decomposition of
 `LampKernelBlockAmalgam` — the open group-theoretic input the manuscript
 names and declines to prove — *then* the answer to "Is `E/⟨w⟩` MF?" is

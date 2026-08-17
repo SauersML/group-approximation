@@ -77,7 +77,7 @@ variable {H : Type u} [Group H]
 /-- Permutations multiply as reversed composition, so their inverses
 compose in the forward order; recorded once because `simp` cannot see
 through the definitional unfolding. -/
-theorem perm_mul_symm_apply (e₁ e₂ : Equiv.Perm X) (x : X) :
+@[simp] theorem perm_mul_symm_apply (e₁ e₂ : Equiv.Perm X) (x : X) :
     (e₁ * e₂).symm x = e₂.symm (e₁.symm x) := rfl
 
 /-- The lamp action of a group acting on the sites by permutations. -/

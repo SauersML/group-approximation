@@ -154,8 +154,8 @@ theorem ker_limit_le_coronaMFResidual {P : Type u} [Group P] (limit : W →* P)
 /-- **The radical is the limit kernel exactly, when the limit is MF.**  With the
 limit kernel inside the radical, the pullback computes the radical, and an MF
 limit makes the correction term vanish. -/
-theorem coronaMFResidual_eq_ker_limit {P : Type u} [Group P] [Countable P]
-    (limit : W →* P) [limit.ker.Normal]
+theorem coronaMFResidual_eq_ker_limit {P : Type u} [Group P]
+    (limit : W →* P)
     (hker : limit.ker ≤ coronaMFResidual W)
     (hsurj : Function.Surjective limit)
     (hMF : coronaMFResidual P = ⊥) :

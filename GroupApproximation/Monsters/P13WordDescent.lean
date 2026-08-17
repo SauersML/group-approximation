@@ -46,7 +46,7 @@ theorem sigma_length (W : List Letter) (b : Fin 3 → ℤ) :
   unfold sigma
   rw [List.drop_length, vecOf_nil]
 
-theorem sigma_cons_succ (l : Letter) (W : List Letter) (b : Fin 3 → ℤ)
+@[simp] theorem sigma_cons_succ (l : Letter) (W : List Letter) (b : Fin 3 → ℤ)
     (j : ℕ) : sigma (l :: W) b (j + 1) = sigma W b j := rfl
 
 theorem sigma_of_ge (W : List Letter) (b : Fin 3 → ℤ) {j : ℕ}

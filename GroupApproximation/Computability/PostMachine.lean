@@ -204,7 +204,7 @@ def post (c : Cfg Γ Λ) : List (Letter Γ Λ) :=
 def encode (c : Cfg Γ Λ) : List (Letter Γ Λ) :=
   pre c ++ (Letter.state c.q :: post c)
 
-theorem encode_eq (c : Cfg Γ Λ) :
+@[simp] theorem encode_eq (c : Cfg Γ Λ) :
     encode c = pre c ++ (Letter.state c.q :: post c) := rfl
 
 theorem stateFree_pre (c : Cfg Γ Λ) : StateFree (pre c) :=

@@ -96,7 +96,7 @@ measures commutators. -/
 def traceTwoNorm (τ : FaithfulTracialState B) (y : B) : ℝ :=
   Real.sqrt (τ (star y * y)).re
 
-theorem traceTwoNorm_def (τ : FaithfulTracialState B) (y : B) :
+@[simp] theorem traceTwoNorm_def (τ : FaithfulTracialState B) (y : B) :
     traceTwoNorm τ y = Real.sqrt (τ (star y * y)).re := rfl
 
 @[simp] theorem traceTwoNorm_zero (τ : FaithfulTracialState B) :

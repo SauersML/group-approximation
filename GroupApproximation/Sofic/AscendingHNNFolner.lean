@@ -38,7 +38,7 @@ def ray (j : ℤ) : Cosets α hα :=
 
 /-! ## Heights -/
 
-theorem right_iotaVertical (γ : Γ) :
+@[simp] theorem right_iotaVertical (γ : Γ) :
     (iotaVertical α hα γ).right = 1 := rfl
 
 theorem right_tVertical_zpow (j : ℤ) :

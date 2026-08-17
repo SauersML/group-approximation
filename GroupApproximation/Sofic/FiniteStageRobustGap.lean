@@ -251,7 +251,7 @@ noncomputable def act (A : OpAlmostRepresentation G) (n : ℕ) (g : G)
     (x : EuclideanSpace ℂ (A.model n)) : EuclideanSpace ℂ (A.model n) :=
   applyMat (A.map n g : Matrix (A.model n) (A.model n) ℂ) x
 
-theorem act_eq_applyMat (A : OpAlmostRepresentation G) (n : ℕ) (g : G)
+@[simp] theorem act_eq_applyMat (A : OpAlmostRepresentation G) (n : ℕ) (g : G)
     (x : EuclideanSpace ℂ (A.model n)) :
     act A n g x =
       applyMat (A.map n g : Matrix (A.model n) (A.model n) ℂ) x := rfl
@@ -266,7 +266,7 @@ noncomputable def correlation (A : OpAlmostRepresentation G) (n : ℕ)
     (x : EuclideanSpace ℂ (A.model n)) (g : G) : ℝ :=
   inner ℝ x (act A n g x)
 
-theorem correlation_eq (A : OpAlmostRepresentation G) (n : ℕ)
+@[simp] theorem correlation_eq (A : OpAlmostRepresentation G) (n : ℕ)
     (x : EuclideanSpace ℂ (A.model n)) (g : G) :
     correlation A n x g =
       inner ℝ x (applyMat (A.map n g : Matrix (A.model n) (A.model n) ℂ) x) :=

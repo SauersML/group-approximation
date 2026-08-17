@@ -39,7 +39,7 @@ open Matrix KazhdanCornerMatrices KazhdanCompressorCorner
 open KazhdanAsymptoticCommutant
 open scoped Matrix.Norms.L2Operator
 
-universe u
+universe u v
 
 /-! The ambient group is quantified at an arbitrary universe, matching the
 manuscript, which fixes no universe for the group `H` carrying the almost
@@ -432,16 +432,18 @@ theorem IsUniformlyBounded.isScaledMassBounded_card
 
 /-- A matrix sequence asymptotically centralizes the image of a homomorphism
 at scale `w`. -/
-def IsScaledAsymptoticCommutantOf (B : OpAlmostRepresentation E)
-    (w : ℕ → ℝ) (iota : Γ →* E)
+def IsScaledAsymptoticCommutantOf {G : Type v} [Group G]
+    (B : OpAlmostRepresentation E)
+    (w : ℕ → ℝ) (iota : G →* E)
     (x : ∀ n, Matrix (B.model n) (B.model n) ℂ) : Prop :=
-  ∀ γ : Γ, ScaledMassVanishing B w (fun n ↦
+  ∀ γ : G, ScaledMassVanishing B w (fun n ↦
     x n - (B.map n (iota γ) : Matrix (B.model n) (B.model n) ℂ) *
       x n * (B.map n (iota γ) : Matrix (B.model n) (B.model n) ℂ)ᴴ)
 
 /-- The compression-core form of the scaled asymptotic commutant. -/
-abbrev IsScaledAsymptoticCommutant (B : OpAlmostRepresentation E)
-    (w : ℕ → ℝ) (C : KazhdanCompressionCore Γ E)
+abbrev IsScaledAsymptoticCommutant {G : Type v} [Group G]
+    (B : OpAlmostRepresentation E)
+    (w : ℕ → ℝ) (C : KazhdanCompressionCore G E)
     (x : ∀ n, Matrix (B.model n) (B.model n) ℂ) : Prop :=
   IsScaledAsymptoticCommutantOf B w C.iota x
 

@@ -45,11 +45,6 @@ theorem normTrace_smul_one (Y : FiniteModel) (hY : 0 < Fintype.card Y) (c : ℂ)
   rw [Matrix.trace_smul, Matrix.trace_one, smul_eq_mul]
   field_simp
 
-theorem normTrace_sub (Y : FiniteModel) (A B : Matrix Y Y ℂ) :
-    normTrace Y (A - B) = normTrace Y A - normTrace Y B := by
-  show Matrix.trace (A - B) / _ = _
-  rw [Matrix.trace_sub, sub_div]
-  rfl
 
 /-! ## Propagation of the scalar defect through powers -/
 

@@ -106,7 +106,7 @@ universe u
 
 /-- The coordinates of a product of unitaries are the product of the
 coordinates. -/
-theorem coe_unitary_mul (Y : FiniteModel) (u v : Matrix.unitaryGroup Y ℂ) :
+@[simp] theorem coe_unitary_mul (Y : FiniteModel) (u v : Matrix.unitaryGroup Y ℂ) :
     ((u * v : Matrix.unitaryGroup Y ℂ) : Matrix Y Y ℂ) =
       (u : Matrix Y Y ℂ) * (v : Matrix Y Y ℂ) := rfl
 
@@ -495,8 +495,8 @@ theorem multiplicativeInt_fdUnitaryResidual_eq_bot :
 
 /-- **The stability hypothesis of `prop:stabradical` is inhabited, and both
 clauses have consequences at an inhabitant.**  Recorded as one statement so
-that the conditional-inventory row can be closed by pointing at a single
-name. -/
+that the inventory row tracking this dependence can be closed by pointing at a
+single name. -/
 theorem stabilityHypothesis_inhabited :
     IsPointNormMatriciallyStable (Multiplicative ℤ) ∧
       actualCoronaMFResidual (Multiplicative ℤ) =
