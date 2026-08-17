@@ -112,21 +112,25 @@ section RingTelescope
 
 variable {A : Type*} [Ring A]
 
-/-- The printed `r_i = ∏_{j < i} (1 - x_j)`. -/
-def partialComplement (x : ℕ → A) (i : ℕ) : A :=
-  ∏ j ∈ Finset.range i, (1 - x j)
+/-- The printed `r_1 = 1`, `r_i = ∏_{j < i} (1 - x_j)`.
+
+The product is written as a recursion rather than as `∏ j ∈ Finset.range i`
+because `A` is *not* assumed commutative and `Finset.prod` needs a
+`CommMonoid`.  The recursion fixes the printed order — `j` increasing, the new
+factor entering on the right — which is what the telescoping below uses. -/
+def partialComplement (x : ℕ → A) : ℕ → A
+  | 0 => 1
+  | i + 1 => partialComplement x i * (1 - x i)
 
 @[simp] theorem partialComplement_zero (x : ℕ → A) :
-    partialComplement x 0 = 1 := by
-  unfold partialComplement
-  exact Finset.prod_range_zero _
+    partialComplement x 0 = 1 := rfl
 
 /-- The printed `e_i = r_i - r_{i+1}`, rearranged. -/
 theorem partialComplement_succ (x : ℕ → A) (i : ℕ) :
     partialComplement x (i + 1)
       = partialComplement x i - partialComplement x i * x i := by
-  unfold partialComplement
-  rw [Finset.prod_range_succ, mul_sub, mul_one]
+  simp only [partialComplement]
+  rw [mul_sub, mul_one]
 
 /-- **The printed telescoping.**  `∑_{i<m} e_i = 1 - r_m`, which is the join
 `q` of the `x_i`.  No commutativity and no idempotence is used. -/
@@ -210,9 +214,12 @@ theorem projection_not_massNull (Y : ℕ → FiniteModel) (ω : Ultrafilter ℕ)
 
 /-! ## The Delorme–Guichardet consumption -/
 
-section Delorme
+-- The first two lemmas never use the group structure of `L` — only that its
+-- elements index the cocycle — so they are stated before `[Group L]` enters,
+-- which keeps the `unusedSectionVars` linter satisfied without an `omit`.
+section Coboundary
 
-variable {L : Type*} [Group L] {V : Type*} [AddCommGroup V] [Module ℂ V]
+variable {L : Type*} {V : Type*} [AddCommGroup V] [Module ℂ V]
 
 /-- If `β` is the coboundary of `y` and `β a = 0`, then `y` is fixed by
 `π a`.  This is the printed *"the hypothesis on `p` gives `d_{sas⁻¹} = 0`,
@@ -228,6 +235,12 @@ theorem fixed_of_coboundary_eq_zero (π : L → (V ≃ₗ[ℂ] V)) (β : L → V
 theorem eq_zero_of_fixed (π : L → (V ≃ₗ[ℂ] V)) (β : L → V) (y : V)
     (hy : ∀ g : L, β g = y - π g y) {g : L} (hg : π g y = y) : β g = 0 := by
   rw [hy g, hg, sub_self]
+
+end Coboundary
+
+section Delorme
+
+variable {L : Type*} [Group L] {V : Type*} [AddCommGroup V] [Module ℂ V]
 
 /-- **The printed deduction, positive form.**  A primitive for `β` that is
 fixed by the compressed subgroup is fixed by the whole of `L` once the

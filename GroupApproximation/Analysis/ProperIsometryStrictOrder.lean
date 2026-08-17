@@ -124,12 +124,12 @@ theorem manuscriptProperIsometryStrictOrder :
         ¬ IsStablyFiniteRing A ∧
         ¬ Nonempty (FaithfulTracialState A) := by
   intro A _ _ _ p u hp hu hlt
-  refine ⟨⟨(ProperProjectionCompression.ofStrictLT hp hu hlt).isometry, ?_, ?_⟩,
-    ?_, ?_⟩
-  · exact ProperProjectionCompression.star_isometry_mul_isometry _
-  · exact ProperProjectionCompression.isometry_not_isUnit _
-  · exact ProperProjectionCompression.not_isStablyFiniteRing _
-  · exact ProperProjectionCompression.no_faithfulTracialState _
+  -- `not_isStablyFiniteRing` and `no_faithfulTracialState` do not mention the
+  -- datum in their conclusions, so it cannot be inferred from the goal and has
+  -- to be named at every call site.
+  let D := ProperProjectionCompression.ofStrictLT hp hu hlt
+  exact ⟨⟨D.isometry, D.star_isometry_mul_isometry, D.isometry_not_isUnit⟩,
+    D.not_isStablyFiniteRing, D.no_faithfulTracialState⟩
 
 end
 
