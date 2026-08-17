@@ -3093,11 +3093,12 @@ Write $W$ for the predicate on pairs consisting of a presentation code
 and a word in the generators of that code, holding when the word is
 trivial in the presented group.  Then $W$ is undecidable, and no
 algorithm decides, from a presentation code, whether the presented group
-is MF\@.  If the complement of $W$ is not recursively enumerable, then
-neither is the set of presentation codes of non-MF groups.
+is MF\@.  Moreover $W$ is recursively enumerable, so its complement is
+not, and neither is the set of presentation codes of non-MF groups.
 \end{corollary}
 \leanverified{Computability/BooneWordProblemUndecidable}{GroupApproximation.Computability.not_computablePred_wordProblemPred}
 \leanverified{Computability/BooneWordProblemUndecidable}{GroupApproximation.Computability.operatorMF_recognition_not_computable}
+\leanverified{Computability/WordProblemRE}{GroupApproximation.WordProblemRE.rePred_wordProblemPred}
 \leanverified{Computability/AdianRabinVariantTransform}{GroupApproximation.AdianRabinVariantTransform.operatorMF_recognition_undecidable_of_wordProblem}
 \leanverified{Computability/AdianRabinVariantTransform}{GroupApproximation.AdianRabinVariantTransform.operatorMF_negative_side_not_re_of_wordProblem}
 
@@ -3119,9 +3120,14 @@ trivial group, and in the nontrivial case the output group contains
 $E$ and is non-MF by Lemma~\ref{lem:permanence}(1).  Composing a
 decision procedure for MF recognition with this map would therefore
 decide $W$, so no such procedure exists.  For the last assertion, the
-preimage of the set of non-MF presentation codes under this
-computable map is exactly the set of pairs outside $W$, and the
-preimage of a recursively enumerable set under a computable map is
+positive instances of $W$ are exactly those carrying a finite
+certificate --- a list of conjugators and relators, written as raw
+data --- and whether a certificate works is decided by a search over
+raw words, so $W$ is recursively enumerable.  Were its complement
+recursively enumerable as well, $W$ would be decidable, which it is
+not.  Finally, the preimage of the set of non-MF presentation codes
+under this computable map is exactly the set of pairs outside $W$, and
+the preimage of a recursively enumerable set under a computable map is
 recursively enumerable.
 \end{proof}
 
@@ -3154,14 +3160,18 @@ exactly when the configuration halts, which is what the group was built
 for.  Agreement with halting is therefore a theorem and not an
 assumption.  Joining these at the group of a machine whose configuration
 halting problem is undecidable leaves $W$ undecidable outright, and the
-corollary carries no hypothesis in its first assertion.
+corollary carries no hypothesis.
 
-What remains conditional is the negative-side clause alone: it asks that
-the complement of $W$ be not recursively enumerable, and the
-recursively enumerable half of $W$ is not proved here.  The positive
-instances of $W$ do carry finite certificates, which is the mathematical
-content of that half, but the search over certificates is not yet
-formalized as a partial recursive function.
+The negative side needs one more ingredient, and it is the same
+coordinate discipline.  A certificate for $w=1$ is naturally a list of
+conjugators and relators in the free group on the code's generators,
+but that free group depends on the code, so no search can range over
+it; written instead as raw words, and with the equality test replaced
+by a deletion sequence witnessing free triviality, the certificates
+become data a single unbounded search can enumerate.  That makes $W$
+recursively enumerable, and an undecidable recursively enumerable
+predicate has a complement that is not.
+\leanverified{Computability/WordProblemRE}{GroupApproximation.WordProblemRE.rePred_wordProblemPred}
 
 \leanverified{Computability/MarkovMFConsequences}{GroupApproximation.MarkovMFConsequences.operatorMF_subgroup_hereditary}
 \leanverified{Computability/MarkovMFConsequences}{GroupApproximation.MarkovMFConsequences.exists_finitelyPresented_nonOperatorMF}

@@ -133,7 +133,7 @@ than as closed or as abandoned.
 
 | # | Declaration | Status | Anchor | Collapse if never discharged | Fix in flight |
 |---|---|---|---|---|---|
-| 1 | `MarkovMFConsequences.operatorMF_recognition_undecidable` | literature-input | § "Undecidability of MF recognition", prose after `\end{corollary}` of `cor:undecidable` | **Total.** The printed corollary is unconditional; its only Lean support is conditional. | `Computability/AdianRabinMarkovProperty.lean` — certifies the *hypotheses* of Adian--Rabin, explicitly not the theorem |
+| 1 | ~~`MarkovMFConsequences.operatorMF_recognition_undecidable`~~ | ~~literature-input~~ → **CLOSED 2026-08-17** | § "Undecidability of MF recognition", prose after `\end{corollary}` of `cor:undecidable` | **None.** Unconditional Lean support exists: `Computability.operatorMF_recognition_not_computable` (`Computability/BooneWordProblemUndecidable.lean`) concludes `¬ ComputablePred (MarkovMFConsequences.operatorMFProperty PresentationCodes.semantics)` outright — no reduction datum, no Markov hypothesis, no literature input. It is `AdianRabinVariantTransform.operatorMF_recognition_undecidable_of_wordProblem` applied to `Computability.not_computablePred_wordProblemPred`, which is `D4'` closed: the word map is `BooneWords.rawComm`, computable by `Computability.computable_rawComm`, and agreement with halting is `Computability.wordProblem_rawComm_iff` composed with `Computability.commElt_eq_one_iff_halts`, packaged as `Computability.exists_boone_words`. The quantified `operatorMF_recognition_undecidable` remains badged in the TeX as the classical form of the conclusion, with the Markov data quantified rather than exhibited; it is no longer the corollary's only support, so the finding it recorded is discharged rather than accepted. | Closed — `Computability/BooneWords.lean`, `BooneWordMapPrimrec.lean`, `BooneWordAgreement.lean`, `BooneWordProblemUndecidable.lean` |
 | 2 | ~~`ContinuumMultiplicity.manuscriptContinuumMultiplicity`~~ → **CLOSED 2026-08-16** | § "Undecidability of MF recognition", multiplicity paragraph citing `\cite{Neumann37}` | **None.** The family is constructed: `Monsters/NeumannContinuum`, lamplighters over coset spaces of the free group. | Closed — the badged declaration now exhibits the family as a conjunct; see §2 |
 | 3 | `FullMFRadicalEndpoint.exists_nontrivial_twoGenerated_finitelyPresented_torsionFree_kazhdan_fullMFRadical` | conditional-data | § "Questions", torsion-free f.p. non-MF group | **Total** for that answer. Printed caveat is now "No unconditional torsion-free finitely presented non-MF group is proved here" (the older wording "neither is an unconditional statement" is no longer in the TeX). | `Monsters/FournierFacioRealization.lean`; scope fixed by `docs/HULL_ROUTING_AUDIT_2026-08-16.md`; six-condition split recorded in `Sofic/FiveConditionInsufficiency.lean` |
 | 4 | `FullMFRadicalEndpoint.exists_nontrivial_group_with_every_nontrivial_quotient_not_isCDEOperatorMF` | conditional-data | same | as above | same |
@@ -189,7 +189,7 @@ the whole Kazhdan base.  These rows therefore stay, with that sharper reason.
 | 15 | ~~`NuclearityAmenability.not_isAmenable_of_base_embeds`~~ | ~~header-hygiene~~ → **CLOSED 2026-08-16** | `thm:D`, the non-nuclearity paragraph | **None.** The manuscript now badges the wrapper `manuscriptNotAmenableOfBaseEmbeds`, whose binders are all after the colon, so the finding is gone rather than accepted. | — |
 | 16 | ~~`SoficByAmenablePermanence.isSofic_of_isSofic_ker_of_isAmenable`~~ | ~~header-hygiene~~ → **CLOSED 2026-08-16** | `\paragraph{Extensions by $\Z$.}` | **None.** Superseded by the badged wrapper `manuscriptSoficOfSoficKerOfAmenableQuotient`. | — |
 | 17 | ~~`ZariskiClosedSubgroup.manuscriptZariskiClosureOfRepresentation`~~ | ~~header-hygiene, open-variable~~ → **CLOSED 2026-08-16** | `rem:chaincondition` | **None.** Superseded by `manuscriptZariskiRepresentationEnvelopeClosed`, which binds `n`, `k` and the field instances after the colon, so the open-variable half is closed too.  Row 5 on the same remark is a genuine literature input and stays. | — |
-| 18 | `MarkovMFConsequences.presentationCodes_recognition_undecidable_of_haltingReduction`, `…_negative_side_not_re_of_haltingReduction` | conditional-data, buried-conditional | `cor:undecidable`, the two badges under the corollary | **None for the print/Lean relation, which is the thing this document audits.** Row 1's reduction is here an *explicit hypothesis*, and `cor:undecidable` is printed conditional in as many words — "suppose given a computable map sending each instance of the halting problem to a presentation code whose group is MF exactly when that instance halts". Badge and printed statement therefore have the same strength. What collapses if the reduction is never built is the *unconditional* undecidability of MF recognition, which row 1 already tracks and which the manuscript does not claim. The `buried-conditional` half names `haltingProperty` under the same premise; that is the halting problem, named, not a second input. **Update (2026-08-16):** these two now take the printed data directly --- the transform, `Computable transform`, and the correctness equivalence --- and build the `AdianRabinReduction` internally from the closed `PresentationCodes.markovWitness`, so the badge matches the printed hypothesis exactly rather than asking for a Markov witness the prose never grants. The `conditional-data` detector consequently stops firing on them (a hypothesised plain function is not a corpus-defined structure) and the two baseline lines were removed; the conditionality itself is unchanged, is printed in the corollary, and is recorded by ledger rows UN.02/UN.03 and by the surviving `buried-conditional` lines. | `Computability/AdianRabinMarkovProperty.lean` and `Computability/HaltingReduction.lean` — the first certifies the Markov hypotheses, the second the reduction interface; neither constructs an `AdianRabinReduction` |
+| 18 | `MarkovMFConsequences.presentationCodes_recognition_undecidable_of_haltingReduction`, `…_negative_side_not_re_of_haltingReduction` | conditional-data, buried-conditional | `cor:undecidable`, the two badges under the corollary | **None for the print/Lean relation, which is the thing this document audits.** Row 1's reduction is here an *explicit hypothesis*, and `cor:undecidable` is printed conditional in as many words — "suppose given a computable map sending each instance of the halting problem to a presentation code whose group is MF exactly when that instance halts". Badge and printed statement therefore have the same strength. What collapses if the reduction is never built is the *unconditional* undecidability of MF recognition, which row 1 already tracks and which the manuscript does not claim. The `buried-conditional` half names `haltingProperty` under the same premise; that is the halting problem, named, not a second input. **Update (2026-08-16):** these two now take the printed data directly --- the transform, `Computable transform`, and the correctness equivalence --- and build the `AdianRabinReduction` internally from the closed `PresentationCodes.markovWitness`, so the badge matches the printed hypothesis exactly rather than asking for a Markov witness the prose never grants. The `conditional-data` detector consequently stops firing on them (a hypothesised plain function is not a corpus-defined structure) and the two baseline lines were removed; the conditionality itself is unchanged, is printed in the corollary, and is recorded by ledger rows UN.02/UN.03 and by the surviving `buried-conditional` lines. **Update (2026-08-17): the hypothesis is discharged, and these two declarations have left the badge surface.** The reduction the row asks for is now built and applied: `Computability.not_computablePred_wordProblemPred` (`Computability/BooneWordProblemUndecidable.lean`) proves the uniform word problem on presentation codes undecidable outright, by supplying the Boone word map — `BooneWords.rawComm` as raw data in the code's own numbering, `Computability.computable_rawComm` for its computability, `Computability.exists_boone_words` for agreement with halting — to the join in `UniformWordProblemUndecidable`. `Computability.operatorMF_recognition_not_computable` is that fed through `AdianRabinVariantTransform.operatorMF_recognition_undecidable_of_wordProblem`. The printed corollary changed with it: its first assertion is now "`W` is undecidable, and no algorithm decides MF from a presentation code", with no premise, and the quoted "suppose given a computable map…" wording is no longer in the TeX. Separately, and for an unrelated reason, `presentationCodes_recognition_undecidable_of_haltingReduction` and `…_negative_side_not_re_of_haltingReduction` are cited nowhere in `non_mf_groups_exist.tex` any more (verified, zero occurrences), so the `buried-conditional` detector no longer reaches them and their two baseline lines were deleted as stale rather than as discharged. **Second update, same day: the negative-side clause went too.** `WordProblemRE.rePred_wordProblemPred` proves `W` recursively enumerable with no hypothesis, by writing both sides of the certificate check as raw words and witnessing free triviality with a deletion sequence — the repair `AdianRabinWordProblem`'s docstring had scoped and could not reach, because the natural certificate lives in a free group whose type depends on the code. An undecidable r.e. predicate has a non-r.e. complement, so the printed clause is now unconditional as well and `cor:undecidable` carries no hypothesis at all. One packaging gap remains and is recorded at ledger row UN.03, not here: `WordProblemRE.not_rePred_compl_wordProblemPred` and `…operatorMF_negative_side_not_re` take undecidability as an explicit argument, so the argument-free composition is a term rather than a named declaration, and no single badge states that clause. That is a wrapper, not mathematics. | `Computability/AdianRabinMarkovProperty.lean` and `Computability/HaltingReduction.lean` — the first certifies the Markov hypotheses, the second the reduction interface; neither constructs an `AdianRabinReduction`.  Superseded 2026-08-17 by `Computability/BooneWordProblemUndecidable.lean` and `Computability/WordProblemRE.lean`, which construct nothing of the sort and do not need to: between them they discharge the two hypotheses `AdianRabinVariantTransform` had left |
 | 19 | ~~`kt_06_ultraproduct_finite`, `kt_10_finiteness_reverses`~~ | ~~header-hygiene~~ → **CLOSED 2026-08-16** | `lem:ultrafinite`, `lem:finitecompare` | **None mathematically**, and now nothing to accept: both are fixed in place by the rows 8--11 method, binders after the colon and a leading `intro`. These two badges arrived with the Step 6 rewrite of `thm:collapse` and were never on the baseline. `kt_10` had no section variables at all; `kt_06` draws `(Z : ℕ → FiniteModel)` and `[∀ n, Nonempty (Z n)]` from the `Polar` section block, and they are restated in that order, so the elaborated type does not move. | — |
 
 ### Status, 2026-08-16: rows 8--12 and the gate
@@ -221,20 +221,62 @@ nothing fails too, so a discharged row cannot leave its exemption behind.
 There is no count in the mechanism and `--strict` ignores the register
 entirely, which is the end state once rows 1--7 land.
 
+**The register is empty as of 2026-08-17, and `--baseline` and `--strict`
+now agree**: every cited declaration is reported unconditional, and no
+finding of any status is raised. That is not the same as rows 1--7 having
+landed, and the distinction is the whole point of keeping § 2 as prose.
+
+* **Discharged.** Row 1: `Computability.operatorMF_recognition_not_computable`
+  proves MF recognition undecidable with nothing quantified. Rows 2, 5,
+  14--17 and 19 closed on 2026-08-16, each on its own mathematics.
+* **Fixed in place.** Rows 8--11 by moving binders after the colon; row 12 by
+  moving the badge from the definition to
+  `manuscriptHSInvisibleCharacterization`, which is now the declaration
+  `def:invisible` cites (verified in the TeX).
+* **Off the badge surface, not proved.** Rows 3, 4, 3b, 6, 7 and 18 name
+  declarations that occur **zero** times in `non_mf_groups_exist.tex` after
+  the 2026-08-17 restore (verified by grep, name by name). A detector that
+  cannot see a declaration reports nothing about it, so the register's
+  silence about them is not evidence. Row 13 was never on the badge surface
+  at all and is unaffected.
+
+Use the register only to answer "would the gate fail today". For "what is
+still conditional", read the rows.
+
 ### Cross-check against the manuscript's own prose
 
-Grepping the `.tex` for self-declared conditionality (`quantifies over`,
-`not formalized`, `literature input`, `as a hypothesis`, `conditionally on`,
-`not an unconditional`) returns exactly **four** sites, and all four are rows
-above: `rem:chaincondition` (row 5), the `cor:undecidable` discussion (row 1),
-the Neumann paragraph (row 2), the `\subsection{Questions}` routing datum
-(rows 3--4). A fifth hit, at `def:radical` — "that is the form the
-formalization quantifies over" — is benign: it names the definitional variant,
-and the equivalence is itself proved (`prop:mf-equivalences`).
+**As taken (2026-08-16.)** Grepping the `.tex` for self-declared
+conditionality (`quantifies over`, `not formalized`, `literature input`,
+`as a hypothesis`, `conditionally on`, `not an unconditional`) returned
+exactly **four** sites, and all four were rows above: `rem:chaincondition`
+(row 5), the `cor:undecidable` discussion (row 1), the Neumann paragraph
+(row 2), the `\subsection{Questions}` routing datum (rows 3--4). A fifth
+hit, at `def:radical` — "that is the form the formalization quantifies
+over" — was benign: it names the definitional variant, and the equivalence
+is itself proved (`prop:mf-equivalences`).
 
-The manuscript, in other words, already knows about four of these and says so
-in print. In all four cases the sentence admitting the condition sits within a
+The manuscript, in other words, already knew about four of these and said so
+in print. In all four cases the sentence admitting the condition sat within a
 few lines of a `\leanverified` badge.
+
+**Re-run 2026-08-17: the same grep now returns one site, and it is not a
+caveat.** The single hit is "with no hypothesis and no literature input" in
+the `cor:undecidable` discussion — a claim that something *is*
+unconditional, which is true and is row 1's closure. The other four sites
+went for three different reasons, and only one of them is mathematics:
+
+* row 1's caveat is gone because the hypothesis is discharged;
+* rows 2 and 5's caveats went with their 2026-08-16 closures;
+* rows 3--4's caveat went because the `\subsection{Questions}` item is now
+  written as an open question with a route sketch — "What remains is
+  group-theoretic: a torsion-free finitely presented group whose subgroup
+  `N_conj` contains a *nontrivial* normal property-(T) subgroup" — and no
+  longer announces a conditional answer, so there is no conditional
+  statement left to caveat and no `exists_nontrivial_*` badge on it.
+
+This is the one place where an empty grep is the wrong signal to trust. The
+manuscript stopped claiming the conditional results; it did not acquire
+unconditional ones. Rows 3--4 record what is still not proved.
 
 ### 1. Adian--Rabin as quantified reduction data
 
