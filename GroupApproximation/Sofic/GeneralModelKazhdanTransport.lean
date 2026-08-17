@@ -209,13 +209,16 @@ theorem generalModelKazhdanTransport
       = naturalize Y n ((U n s : Matrix (Y n) (Y n) ℂ) * x n *
           (U n s : Matrix (Y n) (Y n) ℂ)ᴴ) := by
     rw [naturalize_conj, coe_naturalizeUnitary, naturalizeSeq_apply]
-  rw [hPconj] at hstep
+  -- `simp only`, not `rw`: `hstep` carries the conjugated block as an
+  -- un-beta-reduced `(fun n => …) n`, which `rw` matches syntactically and so
+  -- cannot see through, while `simp only` beta-reduces first.
+  simp only [hPconj] at hstep
   -- What is left is the commutator shape, which `naturalize_commutator`
   -- already handles at both ends of the proof.
-  rw [naturalize_commutator Y U n (iota γ)
-      ((U n s : Matrix (Y n) (Y n) ℂ) * x n *
-        (U n s : Matrix (Y n) (Y n) ℂ)ᴴ),
-    hsNormSq_naturalize] at hstep
+  simp only [naturalize_commutator Y U n (iota γ)
+    ((U n s : Matrix (Y n) (Y n) ℂ) * x n *
+      (U n s : Matrix (Y n) (Y n) ℂ)ᴴ)] at hstep
+  simp only [hsNormSq_naturalize] at hstep
   exact hstep
 
 end GeneralModelTransport
