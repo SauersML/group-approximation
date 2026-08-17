@@ -10,7 +10,21 @@ distinct_from:
 
 For any sequence `(d_n)` of positive integers,
 
-    K_0( prod_n M_{d_n} / oplus_n M_{d_n} )  ==  prod_n Z / oplus_n Z.
+    K_0( prod_n M_{d_n} / oplus_n M_{d_n} )  ==  L(d) / oplus_n Z,
+
+where `L(d) = { (z_n) in prod_n Z : sup_n |z_n|/d_n < oo }` is the group of
+rank-bounded integer sequences.
+
+**Corrected 2026-08-17.**  This statement read `prod_n Z / oplus_n Z` until
+that date; `K_0` of the bounded product is `L(d)`, not `prod_n Z`, because
+one stabilization size must serve every coordinate
+(`matrix-corona-product-k0-is-rank-bounded-sequences`).  The correction
+sharpens this node rather than weakening it: the Bott index of an
+almost-commuting pair in `M_{d_n}` is a difference of ranks in `M_{d_n}` and
+is therefore bounded by `d_n`, so the index sequences this node is about land
+in `L(d)` on the nose.  They never needed the bigger group, and the bigger
+group was never there.  The quotient is still enormous and every consequence
+drawn below stands.
 
 Together with `matrix-corona-k1-vanishes` this delimits index arguments in
 the non-MF program exactly.  A single marked unitary carries a `K_1` class

@@ -3,39 +3,58 @@ rg: 2
 id: torsion-free-higman-embedding
 kind: claim
 title: Torsion-free Higman embedding
+artifacts:
+  - research/artifacts/whitehead-vanishing-audit-2026-08-17.md
 ---
 
 Every recursively presented torsion-free group embeds into a finitely
 presented torsion-free group.
 
-A weaker statement is available and is enough for many purposes: there is a
-**universal finitely presented torsion-free group**, one that contains a
-copy of every finitely presented torsion-free group.  Fournier-Facio uses
-exactly this as the first input of arXiv:2608.02025 Section 2, citing
-Higman 1961, Belegradek--Szczepanski 2008, and Chiodo 2014; the repository
-carries `GroupApproximation/Monsters/UniversalFinitelyPresentedTorsionFreeGroup.lean`
-for the countable payload.  Verified at usage level (Fournier-Facio's text
-read in full this session), not at the level of the three cited sources.
-That form absorbs finitely presented torsion-free groups only, so it does
-not by itself discharge the claim below, which is about recursively
-presented ones.
+**ESTABLISHED 2026-08-17** from Chiodo, arXiv:1107.1489v4, Theorem 2.2, read
+and quoted from source; see `torsion-free-higman-embedding-via-chiodo-torsion-orders`.
+That theorem gives a uniform algorithm sending a countably generated
+recursive presentation `P` to a finite presentation `T(P)` with
+`P- ↪ T(P)` and `Tord(P-) = Tord(T(P))`, where `Tord` is the set of orders
+of nontrivial torsion elements.  Empty torsion-order set in, empty
+torsion-order set out.  Chiodo attributes the theorem to his own earlier
+work ([4, Lemma 6.9 and Theorem 6.10] in his numbering) and notes it is
+implicit in Rotman's proof of Higman embedding (Theorem 12.18) -- which
+matches the informal reason this node
+previously recorded, that torsion in an HNN extension is conjugate into the
+base and torsion in an amalgam into a factor.
 
-Status of the full statement: **literature-plausible, not verified at
-theorem level in this repository.**  The standard Higman construction proceeds by iterated HNN
-extensions and amalgamated free products over free groups, and torsion
-elements of an HNN extension are conjugate into the base while torsion
-elements of an amalgam are conjugate into a factor; so torsion-freeness is
-formally preserved by every step, provided the auxiliary groups are chosen
-torsion-free.  Verified at abstract level only: Chiodo--Hill,
-*Preserving torsion orders when embedding into groups with "small" finite
-presentations*, states that the Boone--Collins embedding of a **finitely
-presented** group into an 8-generator 26-relator group preserves the set of
-orders of torsion elements, and in particular torsion-freeness, and that
-there is a universal finitely presented torsion-free group.  That is the
-finitely-presented-to-finitely-presented statement, not the recursively
-presented one.  Belegradek is cited in the secondary literature for the
-torsion-free universal group; his theorem statement was **not** read in
-this session and must not be cited until it is.
+## History of this node, kept deliberately
 
-Do not treat this claim as established, and do not let a route depend on it
-silently: if it is only needed to shed finite presentation, say so.
+It stood open for months with the status "literature-plausible, not verified
+at theorem level", on the strength of a *weaker* neighbouring result:
+Chiodo--Hill (arXiv:1610.00977) preserve torsion orders when embedding a
+**finitely presented** group into an 8-generator 26-relator one, which is
+finitely-presented-to-finitely-presented and does not give this claim.  The
+node also refused to lean on Belegradek, cited in the secondary literature
+but unread.  Both cautions were correct; what was missing was simply that the
+recursively-presented form is Theorem 2.2 of a paper already cited here for
+other purposes.  The lesson is narrow and worth keeping: a citation checked
+at *usage* level (Fournier-Facio uses the universal-group form) can leave the
+stronger, directly applicable theorem in the same literature unread.
+
+## Neighbouring statements, all now read
+
+* Chiodo Theorem 3.9: one finitely presented torsion-free group containing
+  every countably generated recursively presentable torsion-free group --
+  strictly stronger than the payload formalized in
+  `GroupApproximation/Monsters/UniversalFinitelyPresentedTorsionFreeGroup.lean`,
+  which absorbs finitely presented torsion-free groups only.
+* Chiodo Theorem 3.10 (= Belegradek, appendix to [1], Theorem A.1): the
+  universal finitely presented torsion-free group.  This is the form
+  Fournier-Facio uses as the first input of arXiv:2608.02025 Section 2.
+* `torsion-free-universal-quotient-recursively-presented`: the effective
+  torsion-free radical quotient from the same paper, used alongside this
+  claim by `finite-pattern-realization-via-torsion-free-radical`.
+
+## What it does not give
+
+An embedding, and nothing else.  It says nothing about `K_1`, and in
+particular does not make `Wh(K) -> Wh(H)` injective; that gap is
+`whitehead-injective-torsion-free-embedding`.  Routes may now depend on this
+claim without inheriting an unverified premise, but must not silently upgrade
+"embeds" to "embeds with control on an invariant".
