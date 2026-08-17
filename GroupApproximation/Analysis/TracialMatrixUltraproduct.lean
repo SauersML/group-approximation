@@ -29,9 +29,11 @@ and it carries the ultratrace `trω [a] = lim_ω tr_{X n}(a n)`.
   structure.
 * `ultratrace` is the descended `lim_ω tr`.  It is additive, complex
   homogeneous (`ultratrace_smul`), tracial (`ultratrace_mul_comm`),
+  `*`-compatible (`ultratrace_star`), contractive (`norm_ultratrace_le`),
   positive and normalized (`ultratrace_star_mul_self_nonneg`,
   `ultratrace_one`), and **faithful**
-  (`ultratrace_star_mul_self_eq_zero_iff`).
+  (`ultratrace_star_mul_self_eq_zero_iff`).  The first five together say it is
+  a tracial state on `Mω`.
 
 Faithfulness is not an extra argument: the identity `‖A‖₂² = tr(AᴴA)` makes
 `trω (x* x)` literally the ultralimit of the squared Hilbert--Schmidt norms of
@@ -73,6 +75,23 @@ again in the ideal.  Everything downstream of that one lemma is the standard
 three-line estimate.  Nothing below papers over the gap: no statement here
 asserts the C-star identity for the quotient norm.
 -/
+
+/- Typeclass search on `↥(ModelBoundedSequence X) ⧸ hilbertSchmidtNullIdeal X l`
+has to unfold the ideal quotient, then `lp`, and then rediscover the
+`Fintype`/`DecidableEq` instances of each model through the `FiniteModel`
+projections.  `NormMatrixCorona` avoids this by carrying its index types as
+instance-implicit section variables; here the index sequence is a
+`FiniteModel`-valued function -- which is what the Hilbert--Schmidt norm needs
+-- so the search is genuinely longer and does not fit the default budget. -/
+set_option synthInstance.maxHeartbeats 800000
+set_option maxHeartbeats 1000000
+
+/- The nonemptiness of the models is a standing hypothesis of the whole
+construction (without it the numerator is not a unital ring), but a dozen
+coordinatewise estimates do not mention it.  Threading `omit` through them
+moves the unused frontier one declaration at a time rather than removing it,
+so the linter is turned off for the file instead. -/
+set_option linter.unusedSectionVars false
 
 namespace GroupApproximation
 namespace TracialUltraproduct
@@ -158,6 +177,15 @@ theorem normTrace_mul_comm (Y : FiniteModel) (A B : Matrix Y Y ℂ) :
     normTrace Y (A * B) = normTrace Y (B * A) := by
   show Matrix.trace (A * B) / _ = Matrix.trace (B * A) / _
   rw [Matrix.trace_mul_comm]
+
+/-- The normalized trace is `*`-compatible: the normalization is a real
+scalar, so it commutes with conjugation. -/
+theorem normTrace_conjTranspose (Y : FiniteModel) (A : Matrix Y Y ℂ) :
+    normTrace Y Aᴴ = (starRingEnd ℂ) (normTrace Y A) := by
+  show Matrix.trace Aᴴ / ((Fintype.card Y : ℕ) : ℂ)
+      = (starRingEnd ℂ) (Matrix.trace A / ((Fintype.card Y : ℕ) : ℂ))
+  rw [Matrix.trace_conjTranspose, map_div₀, Complex.conj_natCast]
+  rfl
 
 /-! ## The numerator -/
 
@@ -289,10 +317,11 @@ theorem mul_right {a : ModelBoundedSequence X}
     exact hstep.trans (mul_le_mul_of_nonneg_right hsqle h0)
 
 theorem star {a : ModelBoundedSequence X}
-    (ha : IsHilbertSchmidtNull X l a) : IsHilbertSchmidtNull X l (star a) := by
+    (ha : IsHilbertSchmidtNull X l a) :
+    IsHilbertSchmidtNull X l (Star.star a) := by
   rw [isHilbertSchmidtNull_iff_sq] at ha ⊢
   refine ha.congr fun n ↦ ?_
-  have h : (star a) n = (a n)ᴴ := Matrix.star_eq_conjTranspose (a n)
+  have h : (Star.star a) n = (a n)ᴴ := Matrix.star_eq_conjTranspose (a n)
   rw [h, hsNormSq_conjTranspose]
 
 end IsHilbertSchmidtNull
@@ -598,6 +627,28 @@ theorem seqUltratrace_mul_comm (a b : ModelBoundedSequence X) :
   refine (tendsto_seqUltratrace X ω (b * a)).congr fun n ↦ ?_
   exact normTrace_mul_comm (X n) (b n) (a n)
 
+theorem seqUltratrace_star (a : ModelBoundedSequence X) :
+    seqUltratrace X ω (star a) = star (seqUltratrace X ω a) := by
+  refine UltrafilterLimit.ulim_eq ?_
+  have hc : Tendsto (fun n ↦ star (normTrace (X n) (a n))) (ω : Filter ℕ)
+      (nhds (star (seqUltratrace X ω a))) :=
+    (continuous_star.tendsto _).comp (tendsto_seqUltratrace X ω a)
+  refine hc.congr fun n ↦ ?_
+  have h : (star a) n = (a n)ᴴ := Matrix.star_eq_conjTranspose (a n)
+  rw [h, normTrace_conjTranspose]
+  rfl
+
+/-- `|lim_ω tr_{X n}(a n)| ≤ ‖a‖`: the second printed inequality
+`|tr_r(x)| ≤ ‖x‖` survives the ultralimit. -/
+theorem norm_seqUltratrace_le (a : ModelBoundedSequence X) :
+    ‖seqUltratrace X ω a‖ ≤ ‖a‖ := by
+  have hn : Tendsto (fun n ↦ ‖normTrace (X n) (a n)‖) (ω : Filter ℕ)
+      (nhds ‖seqUltratrace X ω a‖) :=
+    (continuous_norm.tendsto _).comp (tendsto_seqUltratrace X ω a)
+  refine le_of_tendsto' hn fun n ↦ ?_
+  exact (PrintedPreliminaryEstimates.norm_normTrace_le_l2_opNorm (X n) (a n)).trans
+    (boundedMatrixSequence_coord_norm_le (fun n ↦ X n) a n)
+
 /-- **Well-definedness on the quotient.**  Two lifts differing by a
 `‖·‖₂`-null sequence have the same ultratrace, because `|tr_r(x)| ≤ ‖x‖₂`. -/
 theorem seqUltratrace_eq_of_sub_isHilbertSchmidtNull
@@ -744,6 +795,31 @@ theorem ultratrace_mul_comm (x y : TracialMatrixQuotient X (ω : Filter ℕ)) :
           (Ideal.Quotient.mk (hilbertSchmidtNullIdeal X (ω : Filter ℕ)) (b * a))
       rw [ultratrace_mk, ultratrace_mk]
       exact seqUltratrace_mul_comm X ω a b
+
+/-- **`*`-compatibility**: `trω (x*) = conj (trω x)`. -/
+theorem ultratrace_star (x : TracialMatrixQuotient X (ω : Filter ℕ)) :
+    ultratrace X ω (star x) = star (ultratrace X ω x) := by
+  induction x using QuotientAddGroup.induction_on with
+  | _ a =>
+    change ultratrace X ω
+        (star (Ideal.Quotient.mk (hilbertSchmidtNullIdeal X (ω : Filter ℕ)) a))
+      = star (ultratrace X ω
+        (Ideal.Quotient.mk (hilbertSchmidtNullIdeal X (ω : Filter ℕ)) a))
+    rw [tracialMatrixQuotient_star_mk, ultratrace_mk, ultratrace_mk]
+    exact seqUltratrace_star X ω a
+
+/-- **Contractivity**: `|trω x| ≤ ‖x‖` for the quotient norm.  Together with
+`ultratrace_one` and `ultratrace_star_mul_self_nonneg` this makes `trω` a
+tracial state on `Mω`, not merely a linear functional. -/
+theorem norm_ultratrace_le (x : TracialMatrixQuotient X (ω : Filter ℕ)) :
+    ‖ultratrace X ω x‖ ≤ ‖x‖ := by
+  refine _root_.le_of_forall_pos_le_add fun ε hε ↦ ?_
+  obtain ⟨a, ha_eq, ha⟩ :=
+    tracialQuot_exists_rep_norm_lt X (ω : Filter ℕ) x hε
+  have h1 : ultratrace X ω x = seqUltratrace X ω a := by
+    rw [← ha_eq, ultratrace_mk]
+  rw [h1]
+  exact (norm_seqUltratrace_le X ω a).trans ha.le
 
 /-- **Normalization**: `trω 1 = 1`.  The positive dimensionality that makes
 this true is carried by the `Nonempty` instance on the models. -/
