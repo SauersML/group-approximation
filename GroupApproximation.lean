@@ -936,6 +936,7 @@ import GroupApproximation.Computability.BooneGroupMachineIndex
 import GroupApproximation.Computability.UniversalMachineUndecidable
 import GroupApproximation.Computability.AdianRabinWordProblem
 import GroupApproximation.Algebra.HNNFinitePresentation
+import GroupApproximation.Algebra.HNNPresentation
 import GroupApproximation.Computability.BooneGroupFinitePresentation
 
 /-!
