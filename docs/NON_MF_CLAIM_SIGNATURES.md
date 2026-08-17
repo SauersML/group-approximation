@@ -4,6 +4,29 @@
 
 One entry per declaration named by a manuscript margin note, in the order of `docs/NON_MF_CLAIM_DECLS.txt`.  The types are printed by Lean from the elaborated environment, so this file records what each mapped declaration actually states -- the layer of the correspondence that name resolution alone cannot check.
 
+## `GroupApproximation.AdianRabinVariantTransform.correct`
+
+```lean
+∀ (x : PresentationCodes.PresentationCode × List (ℕ × Bool)),
+  MarkovMFConsequences.operatorMFProperty PresentationCodes.semantics
+      (AdianRabinVariantTransform.transform x) ↔
+    AdianRabinWordProblem.WordProblem x.1 x.2
+```
+
+## `GroupApproximation.AdianRabinVariantTransform.operatorMF_negative_side_not_re_of_wordProblem`
+
+```lean
+(¬REPred fun x => ¬AdianRabinWordProblem.wordProblemPred x) →
+  ¬REPred fun code => ¬MarkovMFConsequences.operatorMFProperty PresentationCodes.semantics code
+```
+
+## `GroupApproximation.AdianRabinVariantTransform.operatorMF_recognition_undecidable_of_wordProblem`
+
+```lean
+¬ComputablePred AdianRabinWordProblem.wordProblemPred →
+  ¬ComputablePred (MarkovMFConsequences.operatorMFProperty PresentationCodes.semantics)
+```
+
 ## `GroupApproximation.BlockCliffordTowerSofic.manuscriptResiduallyFiniteWindow`
 
 ```lean
@@ -160,6 +183,32 @@ LiteralCyclicCalibration.quotientMap LiteralCyclicCalibration.mark ≠ 1 ∧
 
 ```lean
 ∀ {Γ : Type} {H : Type u} [inst : Group Γ] [inst_1 : Group H],
+  HasKazhdanPropertyTComplex Γ →
+    ∀ (iota : Γ →* H) (s : H),
+      (∀ (γ : Γ), ∃ δ, s * iota γ * s⁻¹ = iota δ) →
+        ∀ (d : ℕ → ℕ),
+          (∀ (n : ℕ), 0 < d n) →
+            ∀ (U : (n : ℕ) → H → ↥(Matrix.unitaryGroup (naturalFiniteModel (d n)).carrier ℂ)),
+              (∀ (g h : H) (ε : ℝ),
+                  0 < ε → ∃ N, ∀ n ≥ N, ‖↑(U n (g * h)) - ↑(U n g) * ↑(U n h)‖ ≤ ε) →
+                ∀
+                  (x :
+                    (n : ℕ) →
+                      Matrix (naturalFiniteModel (d n)).carrier
+                        (naturalFiniteModel (d n)).carrier ℂ),
+                  (∃ M, 0 ≤ M ∧ ∀ (n : ℕ), ‖x n‖ ≤ M) →
+                    (∀ (γ : Γ),
+                        KazhdanAsymptoticCommutant.NaturalHSCommutatorVanishing d U x
+                          (iota γ)) →
+                      ∀ (γ : Γ),
+                        KazhdanAsymptoticCommutant.NaturalHSCommutatorVanishing d U
+                          (fun n => ↑(U n s) * x n * (↑(U n s)).conjTranspose) (iota γ)
+```
+
+## `GroupApproximation.KazhdanAsymptoticCommutant.manuscriptKazhdanTransport_anyUniverse`
+
+```lean
+∀ {Γ : Type w} {H : Type u'} [inst : Group Γ] [inst_1 : Group H],
   HasKazhdanPropertyTComplex Γ →
     ∀ (iota : Γ →* H) (s : H),
       (∀ (γ : Γ), ∃ δ, s * iota γ * s⁻¹ = iota δ) →
@@ -1063,28 +1112,6 @@ IsLocallyFiniteGroup LiteralWitnessConsequences.WitnessLampGroup ∧
 
 ```lean
 ∀ {G : Type u} [inst : Group G], IsOperatorMF G → ∀ (H : Subgroup G), IsOperatorMF ↥H
-```
-
-## `GroupApproximation.MarkovMFConsequences.presentationCodes_negative_side_not_re_of_haltingReduction`
-
-```lean
-∀ (n : ℕ) (transform : Nat.Partrec.Code → PresentationCodes.PresentationCode),
-  Computable transform →
-    (∀ (c : Nat.Partrec.Code),
-        IsOperatorMF (PresentationCodes.Carrier (transform c)) ↔
-          MarkovMFConsequences.haltingProperty n c) →
-      ¬REPred fun code => ¬IsOperatorMF (PresentationCodes.Carrier code)
-```
-
-## `GroupApproximation.MarkovMFConsequences.presentationCodes_recognition_undecidable_of_haltingReduction`
-
-```lean
-∀ (n : ℕ) (transform : Nat.Partrec.Code → PresentationCodes.PresentationCode),
-  Computable transform →
-    (∀ (c : Nat.Partrec.Code),
-        IsOperatorMF (PresentationCodes.Carrier (transform c)) ↔
-          MarkovMFConsequences.haltingProperty n c) →
-      ¬ComputablePred fun code => IsOperatorMF (PresentationCodes.Carrier code)
 ```
 
 ## `GroupApproximation.MaximalCStarParagraphEndpoint.manuscriptMaximalCStarStrictCompressionRemark`

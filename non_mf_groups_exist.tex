@@ -681,6 +681,7 @@ centralizes $\iota(\Gamma)$ in normalized Hilbert--Schmidt norm,
  \qquad(\gamma\in\Gamma),
 \]
 then the conjugated sequence does as well:
+\leanverified{Sofic/KazhdanTransportAnyUniverse}{GroupApproximation.KazhdanAsymptoticCommutant.manuscriptKazhdanTransport_anyUniverse}
 \leanverified{Sofic/ManuscriptKazhdanTransport}{GroupApproximation.KazhdanAsymptoticCommutant.manuscriptKazhdanTransport}
 \[
 \hsnorm{[U_n(s)x_nU_n(s)^*,U_n(\iota(\gamma))]_{-}}
@@ -3100,25 +3101,29 @@ under which a code determines computably its number of generators and
 its finite list of relator words, and write $G_e$ for the group
 presented by the code $e$.
 
-\begin{corollary}[undecidability, given a halting reduction]%
+\begin{corollary}[undecidability, given the word problem]%
 \label{cor:undecidable}
-Suppose given a computable map $e$ sending each instance $i$ of the
-halting problem to a presentation code $e(i)$ such that $G_{e(i)}$ is
-MF exactly when $i$ halts.
-Then no algorithm decides, from a finite presentation, whether the
-presented group is MF, and the set of presentation codes of non-MF
-groups is not recursively enumerable.
+Write $W$ for the predicate on pairs consisting of a presentation code
+and a word in the generators of that code, holding when the word is
+trivial in the presented group.  If $W$ is undecidable, then no
+algorithm decides, from a presentation code, whether the presented group
+is MF\@.  If the complement of $W$ is not recursively enumerable, then
+neither is the set of presentation codes of non-MF groups.
 \end{corollary}
-\leanverified{Computability/HaltingReduction}{GroupApproximation.MarkovMFConsequences.presentationCodes_recognition_undecidable_of_haltingReduction}
-\leanverified{Computability/HaltingReduction}{GroupApproximation.MarkovMFConsequences.presentationCodes_negative_side_not_re_of_haltingReduction}
+\leanverified{Computability/AdianRabinVariantTransform}{GroupApproximation.AdianRabinVariantTransform.operatorMF_recognition_undecidable_of_wordProblem}
+\leanverified{Computability/AdianRabinVariantTransform}{GroupApproximation.AdianRabinVariantTransform.operatorMF_negative_side_not_re_of_wordProblem}
 
 \begin{proof}
-Composing a decision procedure for MF recognition with $e$ would decide
-the halting problem.  For the second assertion, $e$ carries the
-nonhalting instances exactly to codes of non-MF groups, and the
-preimage of a recursively enumerable set under a computable map is
-recursively enumerable; so an enumeration of the codes of non-MF groups
-would enumerate the nonhalting instances.
+Free-product the input code with a fixed code presenting $E$, and apply
+the Adian--Rabin construction to the input word.  The resulting code is
+computable in the pair, and presents an MF group exactly when the input
+word is trivial: when it is, the construction collapses the group to the
+trivial one; when it is not, the group contains $E$ and
+Lemma~\ref{lem:permanence}(1) makes it non-MF\@.  Composing a decision
+procedure for MF recognition with this map would therefore decide $W$.
+For the second assertion the same map carries the pairs outside $W$
+exactly to codes of non-MF groups, and the preimage of a recursively
+enumerable set under a computable map is recursively enumerable.
 \end{proof}
 
 Effectiveness of the coding is necessary: a map attaching a finitely
@@ -3126,27 +3131,34 @@ presented group to each code need not be computable, and an
 uncomputable choice would make the statement true for reasons having
 nothing to do with groups.
 
-Constructing such a map is the Adian--Rabin argument \cite{Rabin58}
-applied to the Markov property ``is MF''\@.  It fixes one finite
-presentation $P_0$ whose group has undecidable word problem and takes a
-word $v$ in the generators of $P_0$ to a finite presentation whose group
-is trivial, hence MF, when $v=1$ in $P_0$, and contains $E$, hence
-non-MF by subgroup heredity, when $v\ne1$.  Such a $P_0$ is available
-here: a finitely presented group carrying a sequence of words whose
-triviality is undecidable, proved with no hypothesis and no literature
-input, by way of Aanderaa--Cohen modular machines instead of
-Boone--Britton.
+Every group-theoretic step of that reduction is proved here, and so is
+the computability of the map.  The Markov witness is
+Lemma~\ref{lem:permanence}(1) with Theorem~\ref{thm:A}; correctness is
+the statement that the output presents an MF group exactly when the
+input word dies; and the transformation is computable because it is
+built as surgery on the relator lists rather than through free groups
+over a code-dependent alphabet, together with a proof that the two
+descriptions name the same relator set.
+\leanverified{Computability/AdianRabinVariantTransform}{GroupApproximation.AdianRabinVariantTransform.correct}
+\leanverified{Computability/AdianRabinVariantTransform}{GroupApproximation.AdianRabinVariantTransform.operatorMF_recognition_undecidable_of_wordProblem}
+
+What is not proved here is the hypothesis, and the gap is not in the
+Adian--Rabin argument, which is complete above.  Undecidability of $W$
+is classical, and a finitely presented group carrying a sequence of
+words whose triviality is undecidable is available here, with no
+hypothesis and no literature input, by way of Aanderaa--Cohen modular
+machines instead of Boone--Britton.
 \leanverified{Computability/NovikovBoone}{GroupApproximation.BooneGroup.exists_finitelyPresented_wordProblem_undecidable}
-What remains external is the effective reduction itself.  The words representing $1$
-form a recursively enumerable set that is not recursive, so the words
-with $v\ne1$ form a set that is not recursively enumerable, and an
-enumeration of the non-MF presentations would enumerate it.  This
-paragraph is classical and rests on \cite{Rabin58}.  Machine-checked
-here are subgroup heredity, the existence of a finitely presented
-non-MF group, the existence of $P_0$, and the undecidability statement
-\emph{given} a reduction, which is the hypothesis of
-Corollary~\ref{cor:undecidable}.  The Adian--Rabin construction itself
-is not formalized, and nothing here claims it.
+The two have not been matched up, and the gap is coordinates rather than
+group theory: $W$ is a predicate on codes, while what the existence
+statement supplies is a group together with a sequence of words obtained
+by choice.  Until they are matched, Corollary~\ref{cor:undecidable}
+keeps its hypothesis.
+
+The two ingredients the reduction consumes from the rest of the paper
+are subgroup heredity and the existence of a finitely presented non-MF
+group; the classical form of the conclusion, with the Markov data
+quantified rather than exhibited, is recorded alongside them.
 \leanverified{Computability/MarkovMFConsequences}{GroupApproximation.MarkovMFConsequences.operatorMF_subgroup_hereditary}
 \leanverified{Computability/MarkovMFConsequences}{GroupApproximation.MarkovMFConsequences.exists_finitelyPresented_nonOperatorMF}
 \leanverified{Computability/MarkovMFConsequences}{GroupApproximation.MarkovMFConsequences.operatorMF_recognition_undecidable}

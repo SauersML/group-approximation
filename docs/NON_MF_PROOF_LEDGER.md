@@ -323,8 +323,8 @@ opening the proof, have held.
 <!-- LEDGER-COUNTS -->
 | Column | EXACT | MISMATCH | MISSING | UNDER-SPECIFIED | total |
 | --- | --- | --- | --- | --- | --- |
-| statement | 350 | 49 | 35 | 1 | 435 |
-| proof | 353 | 35 | 46 | 1 | 435 |
+| statement | 351 | 49 | 34 | 1 | 435 |
+| proof | 354 | 35 | 45 | 1 | 435 |
 <!-- END-LEDGER-COUNTS -->
 
 ## Rows waiting for a first green build
@@ -570,7 +570,7 @@ once in the comment-stripped manuscript; the probe is the drift detector.
 | thm:markedclosed | env | thm:markedclosed | f666d6dd719b2ff9 |
 | prop:horn | env | prop:horn | 3e2c6bb45f9627c7 |
 | cor:cylinder | env | cor:cylinder | 847c38b2b21a9d92 |
-| cor:undecidable | env | cor:undecidable | e6bbb11192c5e3f9 |
+| cor:undecidable | env | cor:undecidable | 697d3efaa043b736 |
 | prop:maximal-cstar | env | prop:maximal-cstar | ea236f6967fee398 |
 | prop:proper-isometry | env | prop:proper-isometry | 0243b2ca55a4d584 |
 | rem:maxinfinite | env | rem:maxinfinite | 9439bf92f9dab405 |
@@ -630,7 +630,7 @@ once in the comment-stripped manuscript; the probe is the drift detector.
 | p:E-simple | prose | `There is a countable simple sofic group` | - |
 | p:horn-intro | prose | `Every MF group satisfies a single finite quasi-identity` | - |
 | p:undec-markov | prose | `make MF a Markov` | - |
-| p:undec-adianrabin | prose | `applied to the Markov property` | - |
+| p:undec-adianrabin | prose | `Every group-theoretic step of that` | - |
 | p:mult-products | prose | `The groups $E\times\mathbb Z^{k}$ for $k\ge0$ are` | - |
 | p:mult-continuum | prose | `Beyond finite presentation, take a continuum` | - |
 | p:limits-opnorm | prose | `The proof is specific to the operator norm.` | - |
@@ -1043,9 +1043,9 @@ everywhere: the TeX is the specification and does not move).
 | HO.04 | cor:cylinder | the marked groups satisfying R with w ≠ 1 form a nonempty clopen set of non-MF groups | `LiteralMarkedCylinder.literal_nonempty_clopen_nonMF_cylinder` | EXACT | EXACT | literal | unconditional | - | NO | - |
 | HO.05 | cor:cylinder | proof: both conditions constrain finitely many values, the set contains E, and Proposition 11.36 excludes every MF point | `LiteralMarkedCylinder.literalCylinder_isClopen`; `LiteralMarkedCylinder.literalCylinder_nonempty`; `LiteralMarkedCylinder.literalCylinder_subset_nonMF` | EXACT | EXACT | literal | unconditional | - | NO | - |
 | UN.01 | p:undec-markov | MF is a Markov property: the trivial group is MF and the f.p. group E embeds in no MF group | `MarkovMFConsequences.operatorMF_subgroup_hereditary`; `MarkovMFConsequences.exists_finitelyPresented_nonOperatorMF` | EXACT | EXACT | literal | unconditional | - | NO | - |
-| UN.02 | cor:undecidable | given a computable reduction from the halting problem, no algorithm decides MF from a finite presentation | `MarkovMFConsequences.presentationCodes_recognition_undecidable_of_haltingReduction` | EXACT | EXACT | literal | unconditional | - | NO | the printed corollary quantifies the reduction and nothing else, and so does the Lean: the hypothesis is the transform, its computability and the correctness equivalence, with the `MarkovWitness` half of `AdianRabinReduction` built internally from the closed `PresentationCodes.markovWitness`; undecidability of the halting problem is proved in the development, so no literature premise remains |
-| UN.03 | cor:undecidable | given the same reduction, the set of presentation codes of non-MF groups is not recursively enumerable | `MarkovMFConsequences.presentationCodes_negative_side_not_re_of_haltingReduction` | EXACT | EXACT | literal | unconditional | - | NO | same shape as UN.02; the non-enumerable complement of the halting problem is proved rather than cited |
-| UN.04 | p:undec-adianrabin | the Adian–Rabin construction supplies a computable map from word-problem instances to presentations, trivial when w = 1 and containing E when w ≠ 1 | - | MISSING | MISSING | - | literature-input | Rabin58 | NO | the TeX names Novikov–Boone and Adian–Rabin as the inputs the corollary quantifies |
+| UN.02 | cor:undecidable | if the word problem is undecidable as a predicate on presentation codes, no algorithm decides MF from a presentation code | `AdianRabinVariantTransform.operatorMF_recognition_undecidable_of_wordProblem` | EXACT | EXACT | literal | unconditional | - | NO | the printed hypothesis is exactly the Lean hypothesis, one computability statement about a predicate on codes.  Every group-theoretic input -- the Markov witness, the transform, its computability, the correctness equivalence -- is discharged inside `AdianRabinVariantTransform.reduction`, so nothing about groups is quantified here |
+| UN.03 | cor:undecidable | under the corresponding hypothesis on its complement, the set of presentation codes of non-MF groups is not recursively enumerable | `AdianRabinVariantTransform.operatorMF_negative_side_not_re_of_wordProblem` | EXACT | EXACT | literal | unconditional | - | NO | same reduction, negative side |
+| UN.04 | p:undec-adianrabin | the Adian--Rabin construction supplies a computable map from word-problem instances to presentation codes, presenting an MF group exactly when the input word is trivial | `AdianRabinVariantTransform.correct`; `AdianRabinVariantTransform.correct_raw`; `RawTransformPrimrec.computable_rawTransform`; `AdianRabinVariantTransform.reduction` | EXACT | EXACT | literal | unconditional | - | NO | was a `Rabin58` literature input until the construction was rebuilt as surgery on relator lists: `FreeGroup` over the code-dependent alphabet `Fin (genCount c)` has no `Primcodable` instance, so computability was not approachable in the earlier description, and the two descriptions are matched by a proof that they name the same relator set |
 | UN.04b | p:undec-adianrabin | the source the construction consumes is available here: a finitely presented group with a sequence of words whose triviality is undecidable, unconditionally | `BooneGroup.exists_finitelyPresented_wordProblem_undecidable` | EXACT | EXACT | literal | unconditional | - | NO | the closed form; the parametrised statement it specializes takes the machine index before the colon, which the zero-input contract rejects |
 | UN.05 | p:undec-adianrabin | the computability-theoretic pullback: from any computable reduction, undecidability and failure of r.e. on the negative side follow formally | `MarkovMFConsequences.recognition_undecidable`; `MarkovMFConsequences.negative_side_not_re` | EXACT | EXACT | literal | unconditional | - | NO | the pullback itself is unconditional |
 | UN.05b | p:undec-adianrabin | the same pullback in the manuscript's general form: a reduction from any undecidable source problem makes MF recognition undecidable | `MarkovMFConsequences.operatorMF_recognition_undecidable` | EXACT | EXACT | literal | unconditional | - | NO | general in the source, as the prose prints ("does not require its source to be a word problem"), and pinned to the recursive coding, as the prose also prints ("not an arbitrary semantics"); `recognition_undecidable` (UN.05) is the coding-free pullback it delegates to |

@@ -176,9 +176,15 @@
       "lean": [
         {
           "role": "exact",
+          "module": "Sofic/KazhdanTransportAnyUniverse",
+          "declaration": "GroupApproximation.KazhdanAsymptoticCommutant.manuscriptKazhdanTransport_anyUniverse",
+          "covers": "the complete printed proposition"
+        },
+        {
+          "role": "exact",
           "module": "Sofic/ManuscriptKazhdanTransport",
           "declaration": "GroupApproximation.KazhdanAsymptoticCommutant.manuscriptKazhdanTransport",
-          "covers": "the complete printed proposition"
+          "covers": "a printed conclusion of the proposition"
         }
       ]
     },
@@ -1252,8 +1258,8 @@
     {
       "id": "cor:undecidable",
       "environment": "corollary",
-      "title": "undecidability, given a halting reduction",
-      "statement_sha256": "e6bbb11192c5e3f9b74ab673cfe48982318445617fd25f1dc48c40d15fdfb2ad",
+      "title": "undecidability, given the word problem",
+      "statement_sha256": "697d3efaa043b736a446619b2056bd448f90492a3637230ce31cc8c1c4155cd4",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [],
@@ -1263,14 +1269,14 @@
       "lean": [
         {
           "role": "exact",
-          "module": "Computability/HaltingReduction",
-          "declaration": "GroupApproximation.MarkovMFConsequences.presentationCodes_recognition_undecidable_of_haltingReduction",
+          "module": "Computability/AdianRabinVariantTransform",
+          "declaration": "GroupApproximation.AdianRabinVariantTransform.operatorMF_recognition_undecidable_of_wordProblem",
           "covers": "the complete printed proposition"
         },
         {
           "role": "exact",
-          "module": "Computability/HaltingReduction",
-          "declaration": "GroupApproximation.MarkovMFConsequences.presentationCodes_negative_side_not_re_of_haltingReduction",
+          "module": "Computability/AdianRabinVariantTransform",
+          "declaration": "GroupApproximation.AdianRabinVariantTransform.operatorMF_negative_side_not_re_of_wordProblem",
           "covers": "a printed conclusion of the proposition"
         }
       ]

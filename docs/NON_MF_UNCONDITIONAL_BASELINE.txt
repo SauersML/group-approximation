@@ -13,6 +13,3 @@
 #
 # and delete a line the moment its mathematics lands.
 
-conditional-data GroupApproximation.MarkovMFConsequences.operatorMF_recognition_undecidable  -- inventory row 1: AdianRabinReduction is Rabin 1958 as quantified data; no inhabitant is constructed or postulated anywhere
-buried-conditional GroupApproximation.MarkovMFConsequences.presentationCodes_recognition_undecidable_of_haltingReduction  -- inventory row 18: `haltingProperty` sits below the head of the premise; it is the halting problem, named, and not a further hidden input.  The `conditional-data` half of this row is gone from the detector, not from the mathematics: the premise is now the printed data itself -- a transform, `Computable transform`, and the correctness equivalence -- rather than an `AdianRabinReduction`, and a hypothesised plain function is invisible to a detector keyed on corpus-defined structures.  cor:undecidable is PRINTED conditional ("suppose given a computable map...") and ledger rows UN.02/UN.03 carry the record
-buried-conditional GroupApproximation.MarkovMFConsequences.presentationCodes_negative_side_not_re_of_haltingReduction  -- inventory row 18: same premise, same reading, same note about the retired `conditional-data` half
