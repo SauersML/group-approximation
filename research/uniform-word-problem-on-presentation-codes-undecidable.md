@@ -13,11 +13,23 @@ artifacts:
   - GroupApproximation/Computability/PresentationCodes.lean
   - GroupApproximation/Computability/NovikovBoone.lean
   - GroupApproximation/Computability/AdianRabinMarkovProperty.lean
+  - GroupApproximation/Computability/BooneWords.lean
+  - GroupApproximation/Computability/BooneWordMapPrimrec.lean
+  - GroupApproximation/Computability/BooneWordAgreement.lean
+  - GroupApproximation/Computability/UniformWordProblemUndecidable.lean
+  - GroupApproximation/Computability/BooneWordProblemUndecidable.lean
 ---
 
-OPEN.  `¬ ComputablePred AdianRabinWordProblem.wordProblemPred`: the word
-problem, taken as a predicate on `PresentationCode × List (ℕ × Bool)` where
+ESTABLISHED (2026-08-17),
+`Computability.not_computablePred_wordProblemPred` in
+`Computability/BooneWordProblemUndecidable`: the word problem, taken as a
+predicate on `PresentationCode × List (ℕ × Bool)` where
 `PresentationCode = ℕ × List (List (ℕ × Bool))`, is not decidable.
+Unconditional, with no literature input; the undecidable source at the bottom
+is Mathlib's `ComputablePred.halting_problem`.  In the same module,
+`Computability.operatorMF_recognition_not_computable` applies the reduction of
+[[adian-rabin-transform-for-mf]] and discharges
+[[mf-recognition-undecidable]]'s recognition half outright.
 
 This is *not* [[novikov-boone-fp-group-undecidable-word-problem]], and the
 difference is the reason this node exists rather than the graph treating the
@@ -48,7 +60,7 @@ that `m ↦ (some word representing g m)` is computable, and for a `φ` produced
 by choice there is no reason it should be.  Undecidability of a sequence of
 elements does not transport across a noncomputable presentation.
 
-## Status, 2026-08-17: three of four pieces done
+## Status, 2026-08-17 evening: all four pieces done, the join instantiated
 
 * **The undecidable source, on configurations** --- done.
   `ModularMachineConfigHalting.exists_modularMachine_config_halting_not_computablePred`
@@ -68,24 +80,39 @@ elements does not transport across a noncomputable presentation.
   `CodedWordTriviality.wordOf_eq_one_iff_exists_steps`, via normalisation past the
   dependent type and the deletion certificate of [[word-problem-of-finite-presentation-is-re]]'s
   raw-word route.
-* **The words** --- open, and now the whole of what remains.
+* **The words** --- done, in three layers plus the join.  `BooneWords` writes
+  `k⁻¹ · t(α,β) · k · t(α,β)⁻¹` as raw data over four fixed generator indices
+  and proves the presentation reads it as the halting element
+  (`equiv_commElt`).  `BooneWordMapPrimrec.computable_rawComm` makes the
+  configuration-to-word map computable --- the indices come off a choice-based
+  enumeration and never need to evaluate, since a constant at a noncomputable
+  value is still `Primrec`.  `BooneWordAgreement.wordProblem_rawComm_iff`
+  moves the code's word problem on the raw word to `commElt P q = 1` by
+  transporting *triviality* across the renumbering
+  (`mk_relabel_eq_one_iff`), never tracking an element through the four
+  equivalences of `stageCodeEquiv`.  `BooneWordProblemUndecidable` closes with
+  Simpson's Theorem 8 stated at a **variable** associated subgroup, so
+  `machineTowerPres_tsub` --- an equality of subgroups occurring in the *type*
+  of the HNN extension --- can be `subst`ituted, and instantiates the join of
+  `UniformWordProblemUndecidable`, which threads a single machine through both
+  halves.
 
-## What closes it
+## What closed it
 
 Not new mathematics — coordinates.  The Boone group's presentation is explicit:
 base group `⟨t, x, y | xy = yx⟩`, one HNN stable letter per machine quadruple,
 then `k`.  The words are explicit too, `t⁻¹ · finalTw (f m) · t ·
-(finalTw (f m))⁻¹` with `f` computable.  What has never been written down is
-either object *in a generator numbering*, because every step so far had a
+(finalTw (f m))⁻¹` with `f` computable.  What had never been written down was
+either object *in a generator numbering*, because every step before this had a
 reason not to need one: `HNNFinitePresentation` works through Mathlib's
 quotient-of-coproduct definition and never builds a relator list, and the
 word-problem half works in the tower's own generators.
 
-So the obligation is to exhibit `c₀` together with the computable `w`, and to
-prove the two agree.  Called **D4'** in the cost table of
-[[adian-rabin-transform-for-mf]] and in
-`Computability/AdianRabinMarkovProperty`; on the order of 200--400 lines, with
-no mathematical risk and a dependence on D1 (the coding layer).
+So the obligation was to exhibit `c₀` together with the computable `w`, and to
+prove the two agree --- which the modules above do.  Called **D4'** in the
+cost table of [[adian-rabin-transform-for-mf]] and in
+`Computability/AdianRabinMarkovProperty`; it carried no mathematical risk and
+came in near its 200--400 line estimate.
 
 ## Why it is load-bearing
 
@@ -99,4 +126,8 @@ it would read as solved with the endpoint still unproved.  The same gap sits
 behind the "D6 is 100--200 mechanical lines" estimate, which assumed this step
 came free from D4.
 
-None of this touches the manuscript's conditionality, which rests on D5.
+With the claim established that hypothesis is discharged, and the manuscript's
+conditionality moves: the positive clause of `cor:undecidable` --- no
+algorithm decides MF from a presentation code --- is unconditional.  What
+remains conditional is only the negative-side clause, whose hypothesis is the
+r.e. half, [[word-problem-of-finite-presentation-is-re]]'s integration.
