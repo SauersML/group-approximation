@@ -29,17 +29,31 @@ and the canonical trace is carried to `tr_omega`.  A trace that factors
 through a tracial matricial ultraproduct *is* a hyperlinear trace, so this is
 the whole argument.
 
-**Source check DISCHARGED, 2026-08-17.**  The characterization is
-arXiv:2507.22783v3 **Remark 1** — the same paper that records the open
-problem, not the companion arXiv:2508.00125 that a forwarded analysis
-attributed it to:
+**Source check DISCHARGED against the LaTeX source, 2026-08-17.**  The
+characterization is the remark `hypTraceReformulation` in the preliminaries of
+**arXiv:2508.00125**, *Homotopy lifting, asymptotic homomorphisms, and traces*:
 
-> "Equivalently, one can say that `tau` is hyperlinear if `tau = tr . f`, for
-> some `*`-homomorphism `f : A -> prod M_(k_n) / (+)_2 M_(k_n)`"
+> "Equivalently, one can say that `tau` is hyperlinear if `tau = tr o f`, for
+> some `*`-homomorphism `f : A -> prod M_(k_n)/(+)_2 M_(k_n)`, for some
+> `k_n`'s, where `(+)_2 M_(k_n)` is the ideal of all sequences that converge to
+> zero in the 2-norm and `tr` is a trace on `prod M_(k_n)/(+)_2 M_(k_n)`
+> defined by the formula `tr([(T_n)]) = lim_(n->omega) tr T_n`, where `omega`
+> is some non-trivial ultrafilter on `N`."
 
-and equivalently into the tracial ultraproduct `prod M_(k_n)/(+)_(2,omega)`,
-or into `R^omega`.  Three admissible targets; the ultrafilter-free `(+)_2`
-version is the cheapest to build and is equally definitional.
+The remark continues with the `(+)_(2,omega)` ideal — the tracial ultraproduct,
+"a von Neumann algebra with the faithful trace" — states the iff for that
+version too, and adds that one may replace it by `R^omega`.  Three admissible
+targets; the `(+)_2` one puts no ultrafilter in the ideal and is the cheapest
+to build.
+
+**CITATION CORRECTION.**  An earlier revision of this node placed the remark in
+arXiv:2507.22783v3 (*Sections and cones*) as "Remark 1".  That came from a
+fetch summary, not from a source read, and it is not supported.  The verbatim
+text above is from 2508.00125.  The two papers are companions and both discuss
+these trace classes, so the sentence may well appear in both — but **cite
+2508.00125 for it**, which is the one we have read.  Two independent fetches of
+the 2507.22783 HTML also disagreed with each other about remark numbering,
+which is reason enough never to take a remark number from a fetch.
 
 So this route stands on the author's own equivalence and the longer route
 below is a fallback, not the primary.
@@ -126,15 +140,24 @@ whole "not MF" half.  On 2026-08-17 this node recorded that it is not, because
 his Definition 2.1 asks for exactly linear, exactly self-adjoint maps where
 Shulman asks only for asymptotically linear ones.
 
-**That objection is probably answered by Shulman herself.**  A remark in the
-same preliminaries says "In the definition of an MF-trace one can additionally
-require the maps `phi_n` to be `*`-linear."  If that means exactly linear and
-exactly `*`-preserving, the entry arrow into Schafhauser's Definition 2.1 is
-cheap after all and the cross-check is genuinely importable.  **Not yet read
-in its own words** — only through a fetch summary — so it is recorded here as
-probable, not settled.  Read it before relying on it, and note that the fetch
-summaries disagree about which remark number carries which sentence, so
-numbering must be taken from the PDF rather than from this node.
+**That objection is answered by Shulman herself, and the reference is not the
+one we guessed.**  Read from the LaTeX source of arXiv:2508.00125:
+
+> "In the definition of an MF-trace one can additionally require the maps
+> `phi_n` to be `*`-linear \cite[Prop. 2.2]{RainoneSch}.  The same argument
+> works also for hyperlinear traces."
+
+`RainoneSch` is **Rainone--Schafhauser, *Crossed products of nuclear C-star
+algebras and their traces*, Adv. Math. 347 (2019) 105--149** — not
+Schafhauser's amalgamated-free-products paper arXiv:2306.02498, which is where
+a forwarded analysis put the Proposition 2.2 we were arguing about.  Two
+different papers, both by Schafhauser with different coauthors, both with a
+load-bearing Proposition 2.2; the collision is easy to make and was made.
+
+Consequences: the `*`-linear strengthening is free and applies to BOTH trace
+classes, so the entry arrow the earlier objection called missing exists.  The
+objection is withdrawn.  We still print our own corner-and-polar route, because
+that is what makes the result depend on our mathematics rather than a citation.
 
 Either way we print our own route: the corner-and-polar argument is the thing
 that makes the result depend on our mathematics rather than on a citation.

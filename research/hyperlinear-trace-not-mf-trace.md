@@ -27,17 +27,27 @@ maps and remains open.
 
 ## The quote is source-verified, and the problem is current
 
-Re-read from the arXiv full text on 2026-08-17: the sentence is **Remark 2**,
-in the Preliminaries section of arXiv:2507.22783v3, where the four trace
-classes are defined.  The repository's citation is correct.
+Read from the **LaTeX source** of arXiv:2508.00125, *Homotopy lifting,
+asymptotic homomorphisms, and traces*, in the preliminaries immediately after
+the four trace classes are defined:
 
-Currency has a second, sharper witness.  The same author's companion paper —
-*Homotopy lifting, asymptotic homomorphisms, and traces*, arXiv:2508.00125,
-**v5 uploaded 2026-07-31** — still carries "all hyperlinear traces on `B` are
-MF" as a *hypothesis* of its theorems rather than a fact.  That is seventeen
-days before this claim was written, and it is the best available timestamp for
-the problem being open.  Any priority sentence should cite v5's date, not this
-repository's v3 reference.
+> "Clearly every quasidiagonal trace is amenable and every MF-trace is
+> hyperlinear.  Whether the converse implications hold is an open problem."
+
+and from its introduction: "Another open problem is whether every hyperlinear
+trace is MF."  That paper's **v5 was uploaded 2026-07-31**, and it carries "all
+hyperlinear traces on `B` are MF" as a *hypothesis* of its theorems rather than
+a fact — Corollary `BNuclear` concludes it only for algebras homotopy dominated
+by a nuclear `B` with that property.  Seventeen days before this claim was
+written, and the best available timestamp for the problem being open.
+
+**Cite 2508.00125 for the open-status sentence.**  An earlier revision of this
+node attributed it to arXiv:2507.22783v3 (*Sections and cones*) on the strength
+of a fetch summary; that attribution was never confirmed against a source and
+two fetches of the same URL disagreed about remark numbering.  The companion
+relationship is real — 2508.00125 cites *Sections and cones* for "any
+hyperlinear trace on any cone C-star algebra is MF" — so the sentence may
+appear in both, but only one of them has been read.
 
 ## Which witness to use
 
