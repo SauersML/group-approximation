@@ -116,6 +116,79 @@ quotient staying in `Type 0` so the lift's universe constraint is met.  None of
 the three is a mathematical obstacle; all three are the kind of thing that
 compiles in isolation and fails to compose.
 
+## Why the region was empty, and the novelty sentence that says so
+
+The best sentence available for the introduction is not "Shulman asked this
+question".  It is the one that explains why nobody had answered it.
+
+Schafhauser, arXiv:2306.02498, records the state of the art immediately before
+his Proposition 2.2: **the previously known non-MF traces are those arising
+from the failure of the Connes embedding problem, and those do not factor
+through `R^omega`** — so they are not hyperlinear at all.  Every known non-MF
+trace was outside the hyperlinear class for the same reason.  That is exactly
+why the separation had no witness, and it is the contrast our example lands in.
+
+As a diagram of trace classes on a C-star algebra:
+
+```text
+all traces  ⊋  hyperlinear traces  ⊇  MF traces
+              ↑                      ↑
+        MIP*=RE makes           this one had no known
+        this strict             strict instance
+```
+
+MIP*=RE supplies traces outside the hyperlinear class; ours is the first inside
+it and outside MF.  Stated structurally rather than as one odd trace:
+`T_MF(A) ⊊ T_hyp(A)` for `A = C^*(E)`.
+
+**The direction of the surrounding literature makes the contrast sharper, not
+weaker.**  Substantial recent work runs the *other* way — proving the two
+classes coincide for ever larger families: Rainone--Schafhauser for broad
+classes of crossed products, Shulman for cones and suspensions
+(arXiv:2507.22783), and further positive cases under Hilbert--Schmidt
+stability and homotopy domination (arXiv:2508.00125, arXiv:2603.13564).  So the
+honest framing is: equality was being established family by family, the general
+question was posed, and it fails.
+
+## Citation lineage, for whoever writes the introduction
+
+Two historical lines meet here:
+
+```text
+Brown (Mem. AMS 184(865), 2006)  ->  Rainone--Schafhauser (Adv. Math. 347)
+  ->  Shulman's question  ->  this separation
+
+Radulescu / Elek--Szabo  ->  E is sofic  ->  tau_E is hyperlinear
+```
+
+**Attribution wrinkle, do not get this wrong.**  Schafhauser writes that the MF
+trace notion was introduced in Rainone--Schafhauser.  But Hadwin--Li--Li--Shen,
+arXiv:1109.0673 (2011), is titled *MF-traces and a lower bound for the
+topological free entropy dimension* and its abstract says it introduces a
+notion called "MF-trace".  So **never write "MF traces were introduced by
+Rainone--Schafhauser" unqualified.**  Write "the operator-norm approximation
+notion of an MF trace developed by Rainone--Schafhauser and used by Schafhauser
+and Shulman", and put Hadwin--Li--Li--Shen in a terminology footnote if at all.
+Do not use it as the *definition* citation without first checking that their
+microstate formulation agrees with the class in use here.
+
+**The manuscript bibliography currently has neither.**  As of 2026-08-17 it
+carries exactly two of the relevant keys — `Schafhauser` (2306.02498) and
+`Shulman` (2603.13564, the amalgamated-free-products paper).  Missing and worth
+adding: Shulman 2508.00125 (the definitions and the open problem — this is the
+primary citation), Shulman 2507.22783 (cones and suspensions, the positive
+contrast), Rainone--Schafhauser 1601.06090, Schafhauser 1705.06555, Brown
+math/0304009, and optionally Musat--Rordam 1903.10182 and Radulescu
+math/0004172.
+
+**One convention sentence is mandatory.**  Schafhauser's Definition 1.1 group
+notion is a priori *stronger* than Carrion--Dadarlat--Eckhardt's, adding
+approximation of the regular character and of the reduced norm.  Our group-MF
+convention is CDE throughout.  Without that sentence a careful reader meets his
+Proposition 2.2 (`G` MF iff `tau_G` MF) and asks why we reprove a direction; the
+answer is that his left-hand side is the stronger property and our full-`C^*(G)`
+recognition theorem gives the implication for the weaker one.
+
 ## Why it is a contrast rather than a contradiction
 
 That paper's Theorem 30 — "all hyperlinear traces on cones are MF" — is
