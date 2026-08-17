@@ -23,10 +23,9 @@ The inverse is the only new mathematical ingredient, and it is the adjoint
 family: `starFam` sends `U_n` to `U_n*`, and the two unitarity identities
 `U U* = 1` and `U* U = 1` turn `conjBounded_comp` and `conjBounded_one` into
 the two round trips.  `LinearEquiv.ofLinear` then packages `conjQ` and its
-inverse without any quotient induction, because both round trips are
-identities of *linear maps* and `Submodule.linearMap_qext` reduces those to
-the classes.  Only the norm needs a representative, and there
-`Submodule.Quotient.mk_surjective` supplies one.
+inverse.  Every step that has to descend to the quotient does so by picking a
+representative with `Submodule.Quotient.mk_surjective`, the idiom
+`Analysis/VectorHilbertUltraproduct` already uses on this same construction.
 
 `collapse_contradiction_kOmega` is the payoff: the printed last paragraph of
 the collapse proof, stated for the rank-normalized ultraproduct, with
