@@ -174,5 +174,56 @@ theorem twSub_halting_liftedSubgroup_inf_left {a b c : ℕ} (ha : a < mm.size)
       = (twSub mm.haltingSetZ).map HNNExtension.of :=
   liftedSubgroup_inf_range _ (good_twSub_halting_left mm ha hb hq hM)
 
+/-! ## S6's inductive step
+
+Simpson's Lemma 7 is an induction along a halting computation whose step is the
+displayed computation `rᵢ⁻¹ t(α,β) rᵢ = t(α₁,β₁)`.  At the level of the tower
+that step is just the defining relation of the HNN extension, read through
+`quadEquiv`: the stable letter conjugates the image of `emb a b M M` onto the
+image of `emb c 0 M² 1`, which is exactly how `quadEquiv` was defined. -/
+
+/-- **The step of Simpson's Lemma 7.**  The stable letter attached to a
+right-moving quadruple carries the source embedding to the target embedding. -/
+theorem stable_conj_emb_right (a b c M : ℤ) (hM : M ≠ 0) (g : BaseGroup) :
+    (HNNExtension.of (emb c 0 (M ^ 2) 1 g) :
+        HNNExtension BaseGroup (Gsub a b M M) (Gsub c 0 (M ^ 2) 1)
+          (quadEquiv a b c M hM))
+      = HNNExtension.t * HNNExtension.of (emb a b M M g) * HNNExtension.t⁻¹ := by
+  have he₁ : Function.Injective (emb a b M M) := emb_injective hM hM
+  have hx : (emb a b M M g) ∈ Gsub a b M M := ⟨g, rfl⟩
+  have hsym : (MonoidHom.ofInjective he₁).symm ⟨emb a b M M g, hx⟩ = g := by
+    apply (MonoidHom.ofInjective he₁).injective
+    rw [MulEquiv.apply_symm_apply]
+    rfl
+  have hcoe : ((quadEquiv a b c M hM ⟨emb a b M M g, hx⟩ : _) : BaseGroup)
+      = emb c 0 (M ^ 2) 1 g := by
+    show emb c 0 (M ^ 2) 1 ((MonoidHom.ofInjective he₁).symm ⟨emb a b M M g, hx⟩) = _
+    rw [hsym]
+  have h := HNNExtension.equiv_eq_conj (φ := quadEquiv a b c M hM)
+    ⟨emb a b M M g, hx⟩
+  rw [hcoe] at h
+  exact h
+
+/-- The same for a left-moving quadruple. -/
+theorem stable_conj_emb_left (a b c M : ℤ) (hM : M ≠ 0) (g : BaseGroup) :
+    (HNNExtension.of (emb 0 c 1 (M ^ 2) g) :
+        HNNExtension BaseGroup (Gsub a b M M) (Gsub 0 c 1 (M ^ 2))
+          (quadEquivLeft a b c M hM))
+      = HNNExtension.t * HNNExtension.of (emb a b M M g) * HNNExtension.t⁻¹ := by
+  have he₁ : Function.Injective (emb a b M M) := emb_injective hM hM
+  have hx : (emb a b M M g) ∈ Gsub a b M M := ⟨g, rfl⟩
+  have hsym : (MonoidHom.ofInjective he₁).symm ⟨emb a b M M g, hx⟩ = g := by
+    apply (MonoidHom.ofInjective he₁).injective
+    rw [MulEquiv.apply_symm_apply]
+    rfl
+  have hcoe : ((quadEquivLeft a b c M hM ⟨emb a b M M g, hx⟩ : _) : BaseGroup)
+      = emb 0 c 1 (M ^ 2) g := by
+    show emb 0 c 1 (M ^ 2) ((MonoidHom.ofInjective he₁).symm ⟨emb a b M M g, hx⟩) = _
+    rw [hsym]
+  have h := HNNExtension.equiv_eq_conj (φ := quadEquivLeft a b c M hM)
+    ⟨emb a b M M g, hx⟩
+  rw [hcoe] at h
+  exact h
+
 end BooneGroup
 end GroupApproximation
