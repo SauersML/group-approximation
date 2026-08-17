@@ -178,12 +178,12 @@ section Representatives
 
 variable {Y : ℕ → FiniteModel} {w : ℕ → ℝ} {ω : Ultrafilter ℕ}
 
-theorem mkK_zero (hw : ∀ n, 0 ≤ w n) : mkK Y w ω hw 0 = 0 := rfl
+@[simp] theorem mkK_zero (hw : ∀ n, 0 ≤ w n) : mkK Y w ω hw 0 = 0 := rfl
 
-theorem mkK_add (hw : ∀ n, 0 ≤ w n) (ξ η : massBounded Y w) :
+@[simp] theorem mkK_add (hw : ∀ n, 0 ≤ w n) (ξ η : massBounded Y w) :
     mkK Y w ω hw (ξ + η) = mkK Y w ω hw ξ + mkK Y w ω hw η := rfl
 
-theorem mkK_sub (hw : ∀ n, 0 ≤ w n) (ξ η : massBounded Y w) :
+@[simp] theorem mkK_sub (hw : ∀ n, 0 ≤ w n) (ξ η : massBounded Y w) :
     mkK Y w ω hw (ξ - η) = mkK Y w ω hw ξ - mkK Y w ω hw η := rfl
 
 theorem mkK_sum (hw : ∀ n, 0 ≤ w n) (s : Finset ℕ) (f : ℕ → massBounded Y w) :
