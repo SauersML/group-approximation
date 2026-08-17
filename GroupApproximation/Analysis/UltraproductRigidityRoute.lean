@@ -1,3 +1,4 @@
+import GroupApproximation.Sofic.ManuscriptKazhdanTransport
 import GroupApproximation.Sofic.MarkedCompressionRootCapture
 import GroupApproximation.Sofic.UltraproductKazhdanTransport
 
@@ -54,17 +55,34 @@ statement*, so that the route can be exchanged without touching any endpoint.
   transported vector `Ad U_n(t) x_n` of the printed conclusion, so no object is
   substituted.
 
+and then the rewired lemma itself:
+
+* `transportedRoot_displacement_ultraproduct` -- the Appendix-B displacement
+  lemma, character for character, proved by one application of
+  `manuscriptKazhdanTransport` at `s = t` and `x_n = V_c`.  No spectral corner,
+  no reversal estimate, no explicit constant.
+
+The coordinate bridge in between is `hsNormSq_matrixReindex`: the transport is
+stated over `naturalFiniteModel (d n)` while an `OpAlmostRepresentation` carries
+an arbitrary `FiniteModel` at each stage, and
+`Analysis/NaturalMatrixCoordinateEquiv.lean` already supplies the reindexing and
+its *operator*-norm invariance but not its normalized Hilbert--Schmidt
+invariance.
+
 ## What is not here
 
-The data-packaging step: `manuscriptKazhdanTransport` is stated over
-`naturalFiniteModel (d n)`, while an `OpAlmostRepresentation` carries an
-arbitrary `FiniteModel` at each stage, so feeding
-`centralRoot_commutator_hsNormSq_vanishing` into it needs the reindexing
-`Analysis/NaturalMatrixCoordinateEquiv.lean` provides
-(`matrixReindexStarAlgEquiv`, `unitaryReindexEquiv`,
-`norm_matrixReindexStarAlgEquiv`) together with the one lemma that file lacks,
-invariance of `hsNormSq` under reindexing.  That is bureaucracy, not
-mathematics, and it is the whole of what still separates these two routes.
+The flip itself.  `KazhdanCompressorCorner.compressionDefect_hsDistSq_vanishing`
+calls the Appendix-B lemma by name, and it lives in
+`Sofic/MarkedCompressionRootCapture.lean`, which this file imports -- so making
+that call site read `transportedRoot_displacement_ultraproduct` here would be an
+import cycle.  Completing rows `INT.03` and `INT.04` is therefore one edit *in
+that file*, replacing
+
+  `transportedRoot_displacement_hsDistSq_vanishing B C gamma`
+
+by this declaration, once the two files are ordered the other way round (or once
+the operator-norm bookkeeping of `compressionDefect_hsDistSq_vanishing` is moved
+below both).  Nothing mathematical remains.
 -/
 
 namespace GroupApproximation
@@ -214,6 +232,197 @@ theorem transportedRoot_displacement_of_hsCommutator
   exact le_of_sqrt_le_sqrt (hsNormSq_nonneg _ _) hε.le (hN n hn)
 
 end Core
+
+/-! ## The coordinate bridge
+
+`manuscriptKazhdanTransport` is stated over `naturalFiniteModel (d n)`, while an
+`OpAlmostRepresentation` carries an arbitrary `FiniteModel` at each stage.
+`Analysis/NaturalMatrixCoordinateEquiv.lean` supplies the reindexing and its
+operator-norm invariance; what it does not supply, and what the transfer needs,
+is invariance of the *normalized Hilbert--Schmidt* norm.  That is the one lemma
+here: reindexing permutes the double sum of squared entries and leaves the
+cardinality alone. -/
+
+section Reindex
+
+variable {Y : FiniteModel} {d : ℕ}
+
+theorem matrixReindex_apply (e : Y ≃ Fin d) (A : Matrix Y Y ℂ) (i j : Fin d) :
+    (matrixReindexStarAlgEquiv e A) i j = A (e.symm i) (e.symm j) := rfl
+
+theorem matrixReindex_conjTranspose (e : Y ≃ Fin d) (A : Matrix Y Y ℂ) :
+    matrixReindexStarAlgEquiv e Aᴴ = (matrixReindexStarAlgEquiv e A)ᴴ := by
+  rw [← Matrix.star_eq_conjTranspose, ← Matrix.star_eq_conjTranspose, map_star]
+
+/-- **Reindexing is an isometry for the normalized Hilbert--Schmidt norm.** -/
+theorem hsNormSq_matrixReindex (e : Y ≃ Fin d) (A : Matrix Y Y ℂ) :
+    hsNormSq (naturalFiniteModel d) (matrixReindexStarAlgEquiv e A)
+      = hsNormSq Y A := by
+  have hcard : Fintype.card Y = d :=
+    (Fintype.card_congr e).trans (Fintype.card_fin d)
+  have hnum : ∑ i : Fin d, ∑ j : Fin d,
+        Complex.normSq ((matrixReindexStarAlgEquiv e A) i j)
+      = ∑ i : Y, ∑ j : Y, Complex.normSq (A i j) := by
+    calc ∑ i : Fin d, ∑ j : Fin d,
+          Complex.normSq ((matrixReindexStarAlgEquiv e A) i j)
+        = ∑ i : Fin d, ∑ j : Fin d,
+            Complex.normSq (A (e.symm i) (e.symm j)) := by
+          refine Finset.sum_congr rfl fun i _ ↦ Finset.sum_congr rfl fun j _ ↦ ?_
+          rw [matrixReindex_apply]
+      _ = ∑ i : Fin d, ∑ j : Y, Complex.normSq (A (e.symm i) j) := by
+          refine Finset.sum_congr rfl fun i _ ↦ ?_
+          exact Equiv.sum_comp e.symm (fun j ↦ Complex.normSq (A (e.symm i) j))
+      _ = ∑ i : Y, ∑ j : Y, Complex.normSq (A i j) :=
+          Equiv.sum_comp e.symm (fun i ↦ ∑ j : Y, Complex.normSq (A i j))
+  show (∑ i : Fin d, ∑ j : Fin d,
+        Complex.normSq ((matrixReindexStarAlgEquiv e A) i j))
+        / (Fintype.card (naturalFiniteModel d) : ℝ)
+      = (∑ i : Y, ∑ j : Y, Complex.normSq (A i j)) / (Fintype.card Y : ℝ)
+  rw [hnum, card_naturalFiniteModel, hcard]
+
+end Reindex
+
+/-! ## The rewired displacement lemma -/
+
+section Rewire
+
+variable {Γ : Type} [Group Γ] {E : Type u} [Group E]
+
+/-- The natural coordinate dimension of a stage. -/
+def natDim (B : OpAlmostRepresentation E) (n : ℕ) : ℕ := Fintype.card (B.model n)
+
+theorem natDim_pos (B : OpAlmostRepresentation E) (n : ℕ) : 0 < natDim B n :=
+  B.modelNonempty n
+
+/-- The chosen coordinate bijection at each stage. -/
+noncomputable def natEquiv (B : OpAlmostRepresentation E) (n : ℕ) :
+    B.model n ≃ Fin (natDim B n) :=
+  Fintype.equivFin (B.model n)
+
+/-- The almost representation read in the natural coordinates
+`M_{d n}(ℂ)` that `manuscriptKazhdanTransport` is stated over. -/
+noncomputable def natRep (B : OpAlmostRepresentation E) (n : ℕ) (g : E) :
+    Matrix.unitaryGroup (naturalFiniteModel (natDim B n)) ℂ :=
+  unitaryReindexEquiv (natEquiv B n) (B.map n g)
+
+@[simp] theorem natRep_coe (B : OpAlmostRepresentation E) (n : ℕ) (g : E) :
+    ((natRep B n g : Matrix.unitaryGroup (naturalFiniteModel (natDim B n)) ℂ) :
+        Matrix (naturalFiniteModel (natDim B n))
+          (naturalFiniteModel (natDim B n)) ℂ)
+      = matrixReindexStarAlgEquiv (natEquiv B n)
+          (B.map n g : Matrix (B.model n) (B.model n) ℂ) := rfl
+
+theorem natRep_asymptoticallyMultiplicative (B : OpAlmostRepresentation E)
+    (g h : E) (ε : ℝ) (hε : 0 < ε) :
+    ∃ N, ∀ n ≥ N,
+      ‖(natRep B n (g * h) : Matrix (naturalFiniteModel (natDim B n))
+            (naturalFiniteModel (natDim B n)) ℂ) -
+        (natRep B n g : Matrix (naturalFiniteModel (natDim B n))
+            (naturalFiniteModel (natDim B n)) ℂ) * natRep B n h‖ ≤ ε := by
+  obtain ⟨N, hN⟩ := B.asymptoticallyMultiplicative g h ε hε
+  refine ⟨N, fun n hn ↦ ?_⟩
+  have hrw : (natRep B n (g * h) : Matrix (naturalFiniteModel (natDim B n))
+          (naturalFiniteModel (natDim B n)) ℂ) -
+        (natRep B n g : Matrix (naturalFiniteModel (natDim B n))
+          (naturalFiniteModel (natDim B n)) ℂ) * natRep B n h
+      = matrixReindexStarAlgEquiv (natEquiv B n)
+          ((B.map n (g * h) : Matrix (B.model n) (B.model n) ℂ) -
+            (B.map n g : Matrix (B.model n) (B.model n) ℂ) * B.map n h) := by
+    simp only [natRep_coe, map_sub, map_mul]
+  rw [hrw, norm_matrixReindexStarAlgEquiv]
+  exact hN n hn
+
+theorem natRep_norm_le_one (B : OpAlmostRepresentation E) (n : ℕ) (g : E) :
+    ‖(natRep B n g : Matrix (naturalFiniteModel (natDim B n))
+        (naturalFiniteModel (natDim B n)) ℂ)‖ ≤ 1 :=
+  norm_le_one_of_mem_unitary (natRep B n g).2
+
+/-- The transport's hypothesis `_hx`, in natural coordinates, at the root
+element `x_n = V_c`. -/
+theorem natRep_centralRoot_hsCommutator (B : OpAlmostRepresentation E)
+    (C : KazhdanCompressionCore Γ E) (γ : Γ) :
+    KazhdanAsymptoticCommutant.NaturalHSCommutatorVanishing (natDim B) (natRep B)
+      (fun n ↦ (natRep B n C.c : Matrix (naturalFiniteModel (natDim B n))
+        (naturalFiniteModel (natDim B n)) ℂ)) (C.iota γ) := by
+  intro ε hε
+  obtain ⟨N, hN⟩ := centralRoot_commutator_hsNormSq_vanishing B C γ ε hε
+  refine ⟨N, fun n hn ↦ ?_⟩
+  have hrw : (natRep B n C.c : Matrix (naturalFiniteModel (natDim B n))
+          (naturalFiniteModel (natDim B n)) ℂ) * natRep B n (C.iota γ)
+        - (natRep B n (C.iota γ) : Matrix (naturalFiniteModel (natDim B n))
+          (naturalFiniteModel (natDim B n)) ℂ) * natRep B n C.c
+      = matrixReindexStarAlgEquiv (natEquiv B n)
+          ((B.map n C.c : Matrix (B.model n) (B.model n) ℂ) * B.map n (C.iota γ)
+            - (B.map n (C.iota γ) : Matrix (B.model n) (B.model n) ℂ)
+              * B.map n C.c) := by
+    simp only [natRep_coe, map_sub, map_mul]
+  rw [hrw, hsNormSq_matrixReindex]
+  exact hN n hn
+
+/-- **INT.03 and INT.04, the rewired step.**  The Appendix-B displacement lemma
+`KazhdanCompressorCorner.transportedRoot_displacement_hsDistSq_vanishing`,
+re-proved through the printed §3 ultraproduct route.
+
+The proof is one application of
+`KazhdanAsymptoticCommutant.manuscriptKazhdanTransport` -- which is itself
+derived by `ultraproductKazhdanTransport`, the printed proof -- at `s = t` and
+`x_n = V_c`, followed by unitary invariance.  No spectral corner, no reversal
+estimate and no explicit constant appears.
+
+The statement is character-for-character the Appendix-B lemma's, so replacing
+that lemma by this one inside
+`KazhdanCompressorCorner.compressionDefect_hsDistSq_vanishing` exchanges the
+route of `LiteralNonMFEndpoint.kazhdanPinning` without touching any endpoint. -/
+theorem transportedRoot_displacement_ultraproduct
+    (B : OpAlmostRepresentation E) (C : KazhdanCompressionCore Γ E) (γ : Γ) :
+    ∀ ε : ℝ, 0 < ε → ∃ N, ∀ n ≥ N,
+      hsDistSq (B.model n)
+        ((B.map n (C.iota γ) : Matrix (B.model n) (B.model n) ℂ) *
+          lampMatrix B C n *
+          (B.map n (C.iota γ) : Matrix (B.model n) (B.model n) ℂ)ᴴ)
+        (lampMatrix B C n) ≤ ε := by
+  refine transportedRoot_displacement_of_hsCommutator B C γ ?_
+  have hconc := KazhdanAsymptoticCommutant.manuscriptKazhdanTransport
+    (hasKazhdanPropertyT_iff_textbook.mp C.kazhdan)
+    C.iota C.t C.compresses (natDim B) (natDim_pos B) (natRep B)
+    (natRep_asymptoticallyMultiplicative B)
+    (fun n ↦ (natRep B n C.c : Matrix (naturalFiniteModel (natDim B n))
+      (naturalFiniteModel (natDim B n)) ℂ))
+    ⟨1, zero_le_one, fun n ↦ natRep_norm_le_one B n C.c⟩
+    (natRep_centralRoot_hsCommutator B C) γ
+  intro ε hε
+  obtain ⟨N, hN⟩ := hconc ε hε
+  refine ⟨N, fun n hn ↦ ?_⟩
+  have key : hsNormSq (B.model n)
+        (lampMatrix B C n *
+            (B.map n (C.iota γ) : Matrix (B.model n) (B.model n) ℂ)
+          - (B.map n (C.iota γ) : Matrix (B.model n) (B.model n) ℂ) *
+            lampMatrix B C n)
+      = hsNormSq (naturalFiniteModel (natDim B n))
+          ((natRep B n C.t : Matrix (naturalFiniteModel (natDim B n))
+                (naturalFiniteModel (natDim B n)) ℂ) *
+              (natRep B n C.c : Matrix (naturalFiniteModel (natDim B n))
+                (naturalFiniteModel (natDim B n)) ℂ) *
+              (natRep B n C.t : Matrix (naturalFiniteModel (natDim B n))
+                (naturalFiniteModel (natDim B n)) ℂ)ᴴ *
+              (natRep B n (C.iota γ) : Matrix (naturalFiniteModel (natDim B n))
+                (naturalFiniteModel (natDim B n)) ℂ)
+            - (natRep B n (C.iota γ) : Matrix (naturalFiniteModel (natDim B n))
+                (naturalFiniteModel (natDim B n)) ℂ) *
+              ((natRep B n C.t : Matrix (naturalFiniteModel (natDim B n))
+                  (naturalFiniteModel (natDim B n)) ℂ) *
+                (natRep B n C.c : Matrix (naturalFiniteModel (natDim B n))
+                  (naturalFiniteModel (natDim B n)) ℂ) *
+                (natRep B n C.t : Matrix (naturalFiniteModel (natDim B n))
+                  (naturalFiniteModel (natDim B n)) ℂ)ᴴ)) := by
+    rw [← hsNormSq_matrixReindex (natEquiv B n)]
+    congr 1
+    simp only [lampMatrix, map_sub, map_mul, matrixReindex_conjTranspose,
+      natRep_coe]
+  rw [key]
+  exact hN n hn
+
+end Rewire
 
 end
 
