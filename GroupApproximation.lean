@@ -1003,6 +1003,7 @@ import GroupApproximation.Sofic.CentralSignAnyUniverse
 import GroupApproximation.Analysis.OmegaHilbertComplete
 import GroupApproximation.Analysis.RankFrobeniusBound
 import GroupApproximation.Sofic.RealizationFromUniversalGroup
+import GroupApproximation.Analysis.PrintedReverseTransport
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
