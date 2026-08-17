@@ -425,13 +425,18 @@ of which the corpus ever produces.  `operatorMF_recognition_undecidable` reaches
 they are documented in `docs/NON_MF_CONDITIONAL_INVENTORY.md` and are the *whole
 point* of the routing program rather than defects to fix here.
 
-**`IsPointNormMatriciallyStable`, transitively.**
+**`IsPointNormMatriciallyStable`, transitively — no longer a finding.**
 `MatricialStabilityRadical.fdUnitaryResidual_le_coronaMFResidual`
-(`Sofic/MatricialStabilityRadical.lean:113`) carries the stability premise and is
+(`Sofic/MatricialStabilityRadical.lean:120`) carries the stability premise and is
 reached from `actualCoronaMFResidual_eq_fdUnitaryResidual` and
-`not_isCDEOperatorMF_of_stable_of_fdResidual_ne_bot`.  Both badges also carry the
-premise themselves, so the gate already reports them; the transitive view only
-confirms the premise is genuinely load-bearing rather than vestigial.
+`not_isCDEOperatorMF_of_stable_of_fdResidual_ne_bot`.  The premise is genuinely
+load-bearing rather than vestigial, and it is also **discharged**:
+`Sofic/MatricialStabilityInstances.lean` concludes it for every free group
+(`:359`) and for `Multiplicative ℤ` (`:393`), with no literature input, so the
+gate no longer reports these two — the sentence here that said it did was
+written before that module existed.  See § 6--7 of
+`docs/NON_MF_CONDITIONAL_INVENTORY.md` for the claim-strength caveat: clause 3
+is discharged only in the contrapositive.
 
 **The bundling-structure class — detected, and off the manuscript path.**
 `UltraproductAdjointModel` and `WeightedUltraproductAdjointModel`
