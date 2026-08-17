@@ -177,7 +177,7 @@ unitary group, so this identity is definitional.  It is recorded because the
 KT.07--KT.09 bundle states its conclusions with the coercion and the interface
 states its fields with `piHom`. -/
 @[simp] theorem piHom_eq_coe_piUnitary (Y : ℕ → FiniteModel) [∀ n, Nonempty (Y n)]
-    {H : Type} [Group H] (U : ∀ n, H → Matrix.unitaryGroup (Y n) ℂ)
+    {H : Type*} [Group H] (U : ∀ n, H → Matrix.unitaryGroup (Y n) ℂ)
     (hU : ∀ g h : H, ∀ ε : ℝ, 0 < ε → ∃ N, ∀ n ≥ N,
       ‖(U n (g * h) : Matrix (Y n) (Y n) ℂ) -
         (U n g : Matrix (Y n) (Y n) ℂ) * (U n h : Matrix (Y n) (Y n) ℂ)‖ ≤ ε)
@@ -204,7 +204,7 @@ is exactly the manuscript's sentence "Property (T) provides a finite symmetric
 generating set `S ⊆ Γ` with `1 ∈ S` and a Kazhdan constant `κ`".  It is passed
 in rather than chosen here so that the ambient constructor below can obtain it
 once and reuse it. -/
-def compressionRep {Γ H : Type} [Group Γ] [Group H]
+def compressionRep {Γ : Type} {H : Type*} [Group Γ] [Group H]
     (Y : ℕ → FiniteModel) [∀ n, Nonempty (Y n)]
     (iota : Γ →* H) (s : H)
     (hs : ∀ γ : Γ, ∃ δ : Γ, s * iota γ * s⁻¹ = iota δ)
@@ -261,7 +261,7 @@ the compression, positive dimensions, operator-norm asymptotic multiplicativity
 freeness the printed proof asks for; it is what lets the cofinite corona act on
 the `ω`-ultraproduct. -/
 theorem nonempty_ultraproductAdjointModel
-    {Γ H : Type} [Group Γ] [Group H]
+    {Γ : Type} {H : Type*} [Group Γ] [Group H]
     (hT : HasKazhdanPropertyT.{0, 0} Γ)
     (iota : Γ →* H) (s : H)
     (hs : ∀ γ : Γ, ∃ δ : Γ, s * iota γ * s⁻¹ = iota δ)
@@ -371,7 +371,7 @@ become unconditional, and the manuscript's printed proof -- the adjoint model,
 the ultraproduct, the Kazhdan projection, one-sided compression and finiteness
 -- is the proof the theorem's `\leanverified` badge certifies. -/
 def ultraproductAdjointModel
-    {Γ H : Type} [Group Γ] [Group H]
+    {Γ : Type} {H : Type*} [Group Γ] [Group H]
     (hT : HasKazhdanPropertyT.{0, 0} Γ)
     (iota : Γ →* H) (s : H)
     (hs : ∀ γ : Γ, ∃ δ : Γ, s * iota γ * s⁻¹ = iota δ)

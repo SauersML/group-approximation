@@ -774,7 +774,7 @@ end ActLaws
 
 section Representation
 
-variable {H : Type} [Group H] (U : ∀ n, H → Matrix.unitaryGroup (Y n) ℂ)
+variable {H : Type*} [Group H] (U : ∀ n, H → Matrix.unitaryGroup (Y n) ℂ)
 
 /-- **KT.01.**  The unitary `Ad U_n(g)` of `K_n`, as a matrix on the doubled
 index.  This is the manuscript's "finite-stage form of the `π ⊗ π̄`

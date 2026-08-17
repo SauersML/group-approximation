@@ -265,7 +265,7 @@ of `K_n` is exactly `Ad (U_n(g)*)`, coordinate by coordinate.
 **This signature is frozen** while the construction is built against it, and
 **no instance exists yet** — see the status section of the module docstring. -/
 structure WeightedUltraproductAdjointModel
-    {Γ H : Type} [Group Γ] [Group H]
+    {Γ : Type} {H : Type*} [Group Γ] [Group H]
     (iota : Γ →* H) (s : H) (Y : ℕ → FiniteModel)
     (U : ∀ n, H → Matrix.unitaryGroup (Y n) ℂ)
     (w : ℕ → ℝ) (ω : Ultrafilter ℕ) where
@@ -353,7 +353,7 @@ attribute [instance] WeightedUltraproductAdjointModel.ring
 
 namespace WeightedUltraproductAdjointModel
 
-variable {Γ H : Type} [Group Γ] [Group H]
+variable {Γ : Type} {H : Type*} [Group Γ] [Group H]
   {iota : Γ →* H} {s : H} {Y : ℕ → FiniteModel}
   {U : ∀ n, H → Matrix.unitaryGroup (Y n) ℂ}
   {w : ℕ → ℝ} {ω : Ultrafilter ℕ}
@@ -600,7 +600,7 @@ both `V` and `V*`.
 this statement is currently vacuous.  See the status section of the module
 docstring. -/
 theorem transport_variants_one
-    {Γ H : Type} [Group Γ] [Group H]
+    {Γ : Type} {H : Type*} [Group Γ] [Group H]
     (iota : Γ →* H) (s : H) (Y : ℕ → FiniteModel)
     (U : ∀ n, H → Matrix.unitaryGroup (Y n) ℂ)
     (w : ℕ → ℝ) (_hw : ∀ n, 0 ≤ w n) (C : ℝ)
@@ -782,7 +782,7 @@ what this file does.
 
 **Not badgeable as it stands**: inherits the `ambient` hypothesis. -/
 theorem dimension_weight_recovers_kazhdan_transport
-    {Γ H : Type} [Group Γ] [Group H]
+    {Γ : Type} {H : Type*} [Group Γ] [Group H]
     (iota : Γ →* H) (s : H) (Y : ℕ → FiniteModel)
     (hY : ∀ n, 0 < Fintype.card (Y n))
     (U : ∀ n, H → Matrix.unitaryGroup (Y n) ℂ)

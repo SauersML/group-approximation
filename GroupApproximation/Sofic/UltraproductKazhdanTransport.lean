@@ -451,13 +451,13 @@ abbrev NatMatrix (d : ℕ → ℕ) (n : ℕ) : Type :=
   Matrix (naturalFiniteModel (d n)) (naturalFiniteModel (d n)) ℂ
 
 /-- The underlying matrix of the model unitary `U_n(g)`. -/
-@[reducible] def natU {H : Type} {d : ℕ → ℕ}
+@[reducible] def natU {H : Type*} {d : ℕ → ℕ}
     (U : ∀ n, H → Matrix.unitaryGroup (naturalFiniteModel (d n)) ℂ)
     (n : ℕ) (g : H) : NatMatrix d n :=
   (U n g : Matrix (naturalFiniteModel (d n)) (naturalFiniteModel (d n)) ℂ)
 
 /-- `U_n(g)` is unitary. -/
-theorem natU_mem {H : Type} {d : ℕ → ℕ}
+theorem natU_mem {H : Type*} {d : ℕ → ℕ}
     (U : ∀ n, H → Matrix.unitaryGroup (naturalFiniteModel (d n)) ℂ)
     (n : ℕ) (g : H) :
     natU U n g ∈ Matrix.unitaryGroup (naturalFiniteModel (d n)) ℂ :=
@@ -495,7 +495,7 @@ hypothesis about the *theorem*, and each is discharged by
 `UltraproductModelConstruction.ultraproductAdjointModel` from the hypotheses of
 `thm:kazhdan-transport` alone. -/
 structure UltraproductAdjointModel
-    {Γ H : Type} [Group Γ] [Group H]
+    {Γ : Type} {H : Type*} [Group Γ] [Group H]
     (iota : Γ →* H) (s : H) (d : ℕ → ℕ)
     (U : ∀ n, H → Matrix.unitaryGroup (naturalFiniteModel (d n)) ℂ)
     (ω : Ultrafilter ℕ) where
@@ -577,7 +577,7 @@ attribute [instance] UltraproductAdjointModel.ring
 
 namespace UltraproductAdjointModel
 
-variable {Γ H : Type} [Group Γ] [Group H]
+variable {Γ : Type} {H : Type*} [Group Γ] [Group H]
   {iota : Γ →* H} {s : H} {d : ℕ → ℕ}
   {U : ∀ n, H → Matrix.unitaryGroup (naturalFiniteModel (d n)) ℂ}
   {ω : Ultrafilter ℕ}
@@ -757,7 +757,7 @@ statement of the theorem,
 `KazhdanAsymptoticCommutant.manuscriptKazhdanTransport`, is proved through this
 declaration, so the printed proof is the one its badge certifies. -/
 theorem ultraproductKazhdanTransport
-    {Γ H : Type} [Group Γ] [Group H]
+    {Γ : Type} {H : Type*} [Group Γ] [Group H]
     (iota : Γ →* H) (s : H) (d : ℕ → ℕ) (hd : ∀ n, 0 < d n)
     (U : ∀ n, H → Matrix.unitaryGroup (naturalFiniteModel (d n)) ℂ)
     (x : ∀ n, NatMatrix d n)
