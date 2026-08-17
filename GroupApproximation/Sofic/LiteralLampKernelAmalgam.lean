@@ -91,7 +91,7 @@ variable (X : Type) [Fintype X] [DecidableEq X]
 def flipVec (x : X) : X → Multiplicative (ZMod 2) :=
   fun x' => if x' = x then Multiplicative.ofAdd 1 else 1
 
-omit [Fintype X] in
+omit [DecidableEq X] in
 @[simp] theorem flipVec_apply (x x' : X) :
     flipVec X x x' = if x' = x then Multiplicative.ofAdd (1 : ZMod 2) else 1 :=
   rfl
