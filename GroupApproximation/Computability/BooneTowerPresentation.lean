@@ -132,6 +132,10 @@ structure StagePres (S : Stage) where
   /-- The generators, numbered.  Carried rather than derived: the letters are
   `Option`-nested, and an equality of types would have to be transported. -/
   enum : Letters ≃ Fin (gpred + 1)
+  /-- Which letter each of the base's three generators became. -/
+  letterOfGen : BooneGroup.Gen → Letters
+  /-- The dictionary sends a generator to a generator. -/
+  word_of : ∀ i, word (FreeGroup.of i) = FreeGroup.of (letterOfGen i)
 
 /-- **The bottom of the tower.**  The base group is its own presentation, and
 the dictionary is the identity. -/
@@ -165,6 +169,8 @@ def basePres : StagePres Stage.base where
       exact ⟨tGen, rfl, ofBase_tGen⟩
   gpred := 2
   enum := Equiv.refl _
+  letterOfGen := fun i => i
+  word_of := fun _ => rfl
 
 variable {S : Stage} (P : StagePres S)
 
@@ -435,6 +441,11 @@ noncomputable def stepPres : StagePres (S.step ψ) where
   gpred := P.gpred + 1
   enum := (Equiv.optionCongr P.enum).trans
     (PresentedGroupRelabel.optionFinEquiv (P.gpred + 1))
+  letterOfGen := fun i => some (P.letterOfGen i)
+  word_of := by
+    intro i
+    show HNNPresentation.emb (P.word (FreeGroup.of i)) = _
+    rw [P.word_of, HNNPresentation.emb, FreeGroup.map.of]
   tsub_spec := by
     have h1 : (liftedSubgroup (S.stepEquiv ψ) P.tsub).map
         (stepEquivPres P ψ w v hA hB hphi).toMonoidHom
@@ -785,6 +796,27 @@ theorem finalEquivPres_of (a : S.Carrier) :
       (final_hphi P) (HNNExtension.of (P.equiv a)) = _
   rw [HNNPresentation.bwd, HNNExtension.lift_of]
 
+theorem finalEquivPres_t :
+    finalEquivPres P
+        (HNNExtension.t : HNNExtension S.Carrier P.tsub P.tsub (MulEquiv.refl _))
+      = PresentedGroup.of none := by
+  show (HNNPresentation.equivPres P.rels (finalWords P) (finalWords P)
+      (MulEquiv.refl _) (final_hphi P)).symm
+      (HNNCongr.congrEquiv (MulEquiv.refl P.tsub)
+        (MulEquiv.refl (HNNPresentation.srcSub P.rels (finalWords P))) P.equiv
+        (final_mem_iff P) (final_intertwines P) HNNExtension.t) = _
+  rw [show (HNNCongr.congrEquiv (MulEquiv.refl P.tsub)
+        (MulEquiv.refl (HNNPresentation.srcSub P.rels (finalWords P))) P.equiv
+        (final_mem_iff P) (final_intertwines P)
+        (HNNExtension.t : HNNExtension S.Carrier P.tsub P.tsub (MulEquiv.refl _)))
+      = HNNExtension.t from
+    HNNCongr.congrHom_t (MulEquiv.refl P.tsub)
+      (MulEquiv.refl (HNNPresentation.srcSub P.rels (finalWords P))) P.equiv
+      (final_mem_iff P) (final_intertwines P)]
+  show HNNPresentation.bwd P.rels (finalWords P) (finalWords P) (MulEquiv.refl _)
+      (final_hphi P) HNNExtension.t = _
+  rw [HNNPresentation.bwd, HNNExtension.lift_t]
+
 /-- **The whole group, presented.**  The tower's presentation with `k` and its
 commutators adjoined. -/
 noncomputable def finalPres : StagePres (finalStage S P.tsub) where
@@ -812,6 +844,11 @@ noncomputable def finalPres : StagePres (finalStage S P.tsub) where
   gpred := P.gpred + 1
   enum := (Equiv.optionCongr P.enum).trans
     (PresentedGroupRelabel.optionFinEquiv (P.gpred + 1))
+  letterOfGen := fun i => some (P.letterOfGen i)
+  word_of := by
+    intro i
+    show HNNPresentation.emb (P.word (FreeGroup.of i)) = _
+    rw [P.word_of, HNNPresentation.emb, FreeGroup.map.of]
 
 end Final
 

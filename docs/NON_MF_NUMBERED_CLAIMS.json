@@ -507,9 +507,27 @@
       "lean": [
         {
           "role": "exact",
+          "module": "Sofic/TransportVariantsAnyUniverse",
+          "declaration": "GroupApproximation.TransportVariantsAnyUniverse.scaled_transport_both_anyUniverse",
+          "covers": "the complete printed proposition"
+        },
+        {
+          "role": "exact",
+          "module": "Sofic/TransportVariantsAnyUniverse",
+          "declaration": "GroupApproximation.TransportVariantsAnyUniverse.manuscriptIntertwinerTransport_anyUniverse",
+          "covers": "a printed conclusion of the proposition"
+        },
+        {
+          "role": "exact",
+          "module": "Sofic/TransportVariantsAnyUniverse",
+          "declaration": "GroupApproximation.TransportVariantsAnyUniverse.scaled_intertwiner_transport_anyUniverse",
+          "covers": "a printed conclusion of the proposition"
+        },
+        {
+          "role": "exact",
           "module": "Sofic/ScaledKazhdanTransport",
           "declaration": "GroupApproximation.ScaledKazhdanTransport.scaled_transport_both",
-          "covers": "the complete printed proposition"
+          "covers": "a printed conclusion of the proposition"
         },
         {
           "role": "exact",

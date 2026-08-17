@@ -1365,6 +1365,69 @@ Function.Injective ⇑LiteralNonMFPresentation.baseMap ∧
         TorsionCompressionCollapse.torsionCollapseDefect L s ≤ actualCoronaMFResidual E
 ```
 
+## `GroupApproximation.TransportVariantsAnyUniverse.manuscriptIntertwinerTransport_anyUniverse`
+
+```lean
+∀ {Γ : Type v} {H : Type u} [inst : Group Γ] [inst_1 : Group H],
+  HasKazhdanPropertyTComplex Γ →
+    ∀ (iota : Γ →* H) (s : H),
+      (∀ (γ : Γ), ∃ δ, s * iota γ * s⁻¹ = iota δ) →
+        ∀ (d₁ d₂ : ℕ → ℕ),
+          (∀ (n : ℕ), 0 < d₁ n) →
+            (∀ (n : ℕ), 0 < d₂ n) →
+              ∀
+                (U₁ :
+                  (n : ℕ) → H → ↥(Matrix.unitaryGroup (naturalFiniteModel (d₁ n)).carrier ℂ))
+                (U₂ :
+                  (n : ℕ) → H → ↥(Matrix.unitaryGroup (naturalFiniteModel (d₂ n)).carrier ℂ)),
+                (∀ (g h : H) (ε : ℝ),
+                    0 < ε → ∃ N, ∀ n ≥ N, ‖↑(U₁ n (g * h)) - ↑(U₁ n g) * ↑(U₁ n h)‖ ≤ ε) →
+                  (∀ (g h : H) (ε : ℝ),
+                      0 < ε → ∃ N, ∀ n ≥ N, ‖↑(U₂ n (g * h)) - ↑(U₂ n g) * ↑(U₂ n h)‖ ≤ ε) →
+                    ∀
+                      (x :
+                        (n : ℕ) →
+                          Matrix (naturalFiniteModel (d₁ n)).carrier
+                            (naturalFiniteModel (d₂ n)).carrier ℂ),
+                      (∃ M, 0 ≤ M ∧ ∀ (n : ℕ), ‖x n‖ ≤ M) →
+                        (∀ (γ : Γ),
+                            IntertwinerKazhdanTransport.NaturalHSIntertwinerVanishing d₁ d₂ U₁
+                              U₂ x (iota γ)) →
+                          ∀ (γ : Γ),
+                            IntertwinerKazhdanTransport.NaturalHSIntertwinerVanishing d₁ d₂ U₁
+                              U₂ (fun n => ↑(U₁ n s) * x n * (↑(U₂ n s)).conjTranspose) (iota γ)
+```
+
+## `GroupApproximation.TransportVariantsAnyUniverse.scaled_intertwiner_transport_anyUniverse`
+
+```lean
+∀ {Γ : Type v} {E : Type u} [inst : Group Γ] [inst_1 : Group E]
+  (B₁ B₂ : OpAlmostRepresentation E) (w : ℕ → ℝ),
+  (∀ (n : ℕ), 0 ≤ w n) →
+    ∀ (C : KazhdanCompressionCore Γ E)
+      (x : (n : ℕ) → Matrix (B₁.model n).carrier (B₂.model n).carrier ℂ),
+      IntertwinerKazhdanTransport.IsScaledAsymptoticIntertwinerOf B₁ B₂ w C.iota x →
+        IntertwinerKazhdanTransport.IsScaledRectMassBounded B₁ B₂ w x →
+          IntertwinerKazhdanTransport.IsScaledAsymptoticIntertwinerOf B₁ B₂ w C.iota fun n =>
+            ↑(B₁.map n C.t) * x n * (↑(B₂.map n C.t)).conjTranspose
+```
+
+## `GroupApproximation.TransportVariantsAnyUniverse.scaled_transport_both_anyUniverse`
+
+```lean
+∀ {Γ : Type v} {E : Type u} [inst : Group Γ] [inst_1 : Group E] (B : OpAlmostRepresentation E)
+  (w : ℕ → ℝ),
+  (∀ (n : ℕ), 0 ≤ w n) →
+    ∀ (C : KazhdanCompressionCore Γ E)
+      (x : (n : ℕ) → Matrix (B.model n).carrier (B.model n).carrier ℂ),
+      ScaledKazhdanTransport.IsScaledAsymptoticCommutant B w C x →
+        ScaledKazhdanTransport.IsScaledMassBounded B w x →
+          (ScaledKazhdanTransport.IsScaledAsymptoticCommutant B w C fun n =>
+              ↑(B.map n C.t) * x n * (↑(B.map n C.t)).conjTranspose) ∧
+            ScaledKazhdanTransport.IsScaledAsymptoticCommutant B w C fun n =>
+              (↑(B.map n C.t)).conjTranspose * x n * ↑(B.map n C.t)
+```
+
 ## `GroupApproximation.commutator_conjugate_eq_commutator_sq_of_sq_eq_one`
 
 ```lean

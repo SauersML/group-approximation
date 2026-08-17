@@ -154,8 +154,9 @@ CLAIM_TARGETS: dict[str, tuple[str, str]] = {
         "GroupApproximation.TorsionSpectralCollapse.actualCoronaMFInvisible_of_torsionWitness",
     ),
     "thm:transport-variants": (
-        "Sofic/ScaledKazhdanTransport",
-        "GroupApproximation.ScaledKazhdanTransport.scaled_transport_both",
+        "Sofic/TransportVariantsAnyUniverse",
+        "GroupApproximation.TransportVariantsAnyUniverse."
+        "scaled_transport_both_anyUniverse",
     ),
     "thm:markedclosed": (
         "Sofic/MarkedMFClosed",

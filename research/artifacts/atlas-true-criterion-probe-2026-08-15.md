@@ -315,3 +315,54 @@ general stage-2 engine, used early).  A stage-1b exact engine — the
 exact objective should cost milliseconds — is the right next
 implementation and would allow full V-landscape sweeps before any
 stage-2 spend.
+
+## Stage-2 execution log (2026-08-17)
+
+Design as §(d): `U = W·J`, `W ∈ U(20160)` dense complex64, warm start
+`W = I + 1e-4·(A - A†)` re-unitarized, Adam lr 2e-4, QR retraction
+with diagonal-phase fix each step, residual estimator m = 8, the
+determined 72-word active set against a 72-word satisfied control
+slice.  Baseline gate (identity fast-path, no matmuls) passed on both
+attempted devices: active mean defect² 1.998732, control max exactly
+0.000e+00.
+
+**Run 1 (V100 32 GB, job 16009229): OOM postmortem.**  Died at the
+iteration-1 backward ("tried to allocate 3.03 GiB" = one W-sized
+complex64 buffer).  Ledger: W (3.03) + grad (3.03) + Adam moments
+(6.06) are unavoidable; the killers were the QR retraction's `q, r`
+outputs (3.03 each) surviving as *loop locals* through the entire next
+backward pass, plus the gradient overlapping the cusolver QR workspace
+spike — 27.4 GiB live at the fault.  Fix: `del q, r, d` after the
+in-place copy, `zero_grad(set_to_none=True)` immediately after the
+optimizer step (before QR), `PYTORCH_CUDA_ALLOC_CONF=
+expandable_segments:True` against fragmentation.  Iteration 0 was
+logged before death and is valid data: loss 2.0015, active mean
+1.9988, control mean 0.0028, block_diag_distance 0.054,
+monomial_distance 0.0014, 237 s/iteration.
+
+**Run 2 (V100, job 16009606): running.**  Same design plus the memory
+fix; 100 iterations, report every 5, 8 h wall.  A grad-norm logging
+addition (see below) was rsynced seconds after the job started and
+likely missed the process launch; the A100 twin (16009228, pending on
+down nodes) would pick it up.
+
+**Pre-registered interpretation (unchanged from §(d)):** a descent of
+the active mean visibly below the 1.9987 baseline is the
+hyperlinear-side signature at k = 1 and the trigger for a k-trend
+study; a stall at the baseline is stability-side evidence and elevates
+the stationarity question below.  Neither is proof.  Monomial drift
+(monomial_distance → 0 with loss stuck) is the recorded descent trap;
+block_diag_distance tracks collapse back into the dead index-15 coset
+slice.
+
+**The stationarity question (sharpened by this run):** the fleet
+proved the flip is stationary along the (I ⊗ V)J slice and that every
+stabilizer-commuting W is dead.  Whether the flip is a critical point
+of the full defect objective on U(20160) is open and *exactly
+decidable*: at W = I the gradient is the anti-Hermitian part of a
+finite signed sum of permutation operators (one per K2-syllable per
+active word, each a composable product of left/right translations of
+A₈), so its vanishing is a finite combinatorial check over the 20160
+points — no floats.  If run 2 stalls at the baseline, that CPU-exact
+computation is the designated next step; if the loss moves, the
+question is answered negatively for free.
