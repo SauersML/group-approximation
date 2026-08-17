@@ -261,6 +261,31 @@ def smallLift {A : Subgroup G} (hA : Good A φ) :
       rw [show ((goodEquiv φ hA a : A) : G) = (φ ⟨((a : A) : G), a.2⟩ : G) from rfl, this]
       group)
 
+/-- **The range of the small extension is Simpson's `A'`.**  Both are generated
+by `of '' A` together with the stable letter. -/
+theorem smallLift_range {A : Subgroup G} (hA : Good A φ) :
+    (smallLift φ hA).range = liftedSubgroup φ A := by
+  refine le_antisymm ?_ ?_
+  · rintro _ ⟨u, rfl⟩
+    induction u using HNNExtension.induction_on with
+    | of a =>
+      simp only [smallLift, HNNExtension.lift_of, MonoidHom.comp_apply,
+        Subgroup.coe_subtype]
+      exact Subgroup.subset_closure (Or.inl ⟨((a : A) : G), a.2, rfl⟩)
+    | t =>
+      simp only [smallLift, HNNExtension.lift_t]
+      exact Subgroup.subset_closure (Or.inr rfl)
+    | mul x y hx hy => rw [map_mul]; exact mul_mem hx hy
+    | inv x hx => rw [map_inv]; exact inv_mem hx
+  · refine (Subgroup.closure_le _).2 ?_
+    rintro g hg
+    rcases hg with ⟨a, ha, rfl⟩ | hg
+    · exact ⟨HNNExtension.of ⟨a, ha⟩, by
+        simp only [smallLift, HNNExtension.lift_of, MonoidHom.comp_apply,
+          Subgroup.coe_subtype]⟩
+    · rw [Set.mem_singleton_iff] at hg
+      exact ⟨HNNExtension.t, by simp only [smallLift, HNNExtension.lift_t, hg]⟩
+
 /-- The pinch in the other direction. -/
 theorem good_pinch_inv {A : Subgroup G} (hA : Good A φ) (b : Bsub)
     (hb : (b : G) ∈ A) :
