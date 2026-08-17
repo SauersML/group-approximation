@@ -1034,6 +1034,8 @@ import GroupApproximation.Analysis.TracialUltraproductCStar
 import GroupApproximation.Analysis.UltrafilterDiagonalExtraction
 import GroupApproximation.Analysis.ShulmanTracePositiveControls
 import GroupApproximation.Analysis.HilbertSchmidtApproximateUnit
+import GroupApproximation.Sofic.MFTraceCoronaBridge
+import GroupApproximation.Sofic.SoficPermutationTrace
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
