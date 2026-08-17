@@ -188,9 +188,21 @@ jobs:
             echo "lean=true" >> "$GITHUB_OUTPUT"
           fi
 
+          # Every remaining `run=false` below cancels for the reason spelled
+          # out at the schedule dedupe above: a run that certifies nothing must
+          # not conclude `success`.  The dedupe branch was fixed on 2026-08-16
+          # and these three were not, so the defect survived one branch over --
+          # on 2026-08-17 run 32016760517 concluded `success` on `12497c2d`
+          # with the gate green and BOTH certifying lanes skipped, which is the
+          # false-green badge that comment describes, and it also fires the
+          # promotion workflow only for its certifying-lane check to fail.
           if git merge-base --is-ancestor "$target" "$verified"; then
-            echo "Requested proof tree is already contained in verified."
+            echo "Requested proof tree is already contained in verified; cancelling."
             echo "run=false" >> "$GITHUB_OUTPUT"
+            echo "lean=false" >> "$GITHUB_OUTPUT"
+            gh api -X POST \
+              "repos/${{ github.repository }}/actions/runs/${{ github.run_id }}/cancel" \
+              || true
             exit 0
           fi
           if ! git merge-base --is-ancestor "$verified" "$target"; then
@@ -232,8 +244,12 @@ jobs:
                 echo "run=true" >> "$GITHUB_OUTPUT"
                 ;;
               1)
-                echo "A newer verification-relevant proof tree is queued; skipping this SHA."
+                echo "A newer verification-relevant proof tree is queued; cancelling this SHA."
                 echo "run=false" >> "$GITHUB_OUTPUT"
+                echo "lean=false" >> "$GITHUB_OUTPUT"
+                gh api -X POST \
+                  "repos/${{ github.repository }}/actions/runs/${{ github.run_id }}/cancel" \
+                  || true
                 ;;
               *)
                 echo "Proof-tree comparison failed with status $newer_delta." >&2
@@ -249,8 +265,12 @@ jobs:
           set -e
           case "$verified_delta" in
             0)
-              echo "The current verification-relevant tree is already certified."
+              echo "The current verification-relevant tree is already certified; cancelling."
               echo "run=false" >> "$GITHUB_OUTPUT"
+              echo "lean=false" >> "$GITHUB_OUTPUT"
+              gh api -X POST \
+                "repos/${{ github.repository }}/actions/runs/${{ github.run_id }}/cancel" \
+                || true
               ;;
             1)
               echo "The current proof tree differs from verified; running."

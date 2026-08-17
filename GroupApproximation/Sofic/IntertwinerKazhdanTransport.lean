@@ -32,12 +32,17 @@ open Matrix KazhdanCornerMatrices KazhdanAsymptoticCommutant
 open ScaledKazhdanTransport
 open scoped Matrix.Norms.L2Operator
 
-universe u
+universe u v
 
 /-! The ambient group carrying the two almost representations is quantified at
-an arbitrary universe, as in the manuscript.  See
-`Sofic.KazhdanAsymptoticCommutant` for why the Kazhdan source `Γ` stays in
-`Type 0`. -/
+an arbitrary universe, as in the manuscript.  The Kazhdan source `Γ` is fixed at
+`Type 0` for the *theorems* of this file, which is where the transport proof
+lives; the **predicates** carry their own universe binder instead of taking it
+from here, so that the printed generality can be stated.  What closes the gap is
+not a sweep of these proofs but the derived-countability descent of
+`Sofic.TransportVariantsAnyUniverse`: property `(T)` forces a finite generating
+set, so a Kazhdan source in any universe has a `Type 0` model and the datum
+travels to it. -/
 variable {Γ : Type} {E : Type u} [Group Γ] [Group E]
 
 /-! ## Rectangular mass and the off-diagonal block embedding -/
@@ -392,11 +397,19 @@ theorem intertwiner_transport_star (B₁ B₂ : OpAlmostRepresentation E)
 
 /-! ## The scaled versions -/
 
-/-- Scaled asymptotic intertwining at an arbitrary weight. -/
-def IsScaledAsymptoticIntertwinerOf (B₁ B₂ : OpAlmostRepresentation E)
-    (w : ℕ → ℝ) (iota : Γ →* E)
+/-- Scaled asymptotic intertwining at an arbitrary weight.
+
+The source group carries its own universe binder rather than taking `Γ` from the
+section, matching `ScaledKazhdanTransport.IsScaledAsymptoticCommutantOf`: the
+printed statement quantifies over groups, so the *predicate* must be able to
+speak about a source in any universe even where the transport proof below is
+carried out at `Type 0`.  Every existing use instantiates `v := 0` and is
+unaffected. -/
+def IsScaledAsymptoticIntertwinerOf {G : Type v} [Group G]
+    (B₁ B₂ : OpAlmostRepresentation E)
+    (w : ℕ → ℝ) (iota : G →* E)
     (x : ∀ n, Matrix (B₁.model n) (B₂.model n) ℂ) : Prop :=
-  ∀ γ : Γ, ∀ ε : ℝ, 0 < ε → ∃ N, ∀ n ≥ N,
+  ∀ γ : G, ∀ ε : ℝ, 0 < ε → ∃ N, ∀ n ≥ N,
     rectMass (x n -
         (B₁.map n (iota γ) :
           Matrix (B₁.model n) (B₁.model n) ℂ) * x n *

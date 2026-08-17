@@ -904,6 +904,7 @@ import GroupApproximation.Monsters.RealizationEmbedding
 import GroupApproximation.Monsters.FournierFacioUniversalRealization
 import GroupApproximation.Monsters.P13InvariantProjection
 import GroupApproximation.Sofic.CompressionUniverseTransfer
+import GroupApproximation.Sofic.TransportVariantsAnyUniverse
 import GroupApproximation.Sofic.SoundIterateInstances
 import GroupApproximation.Sofic.ContinuumMultiplicityCore
 import GroupApproximation.Sofic.PrintedPreliminaryEstimates
