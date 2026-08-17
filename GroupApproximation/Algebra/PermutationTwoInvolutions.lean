@@ -124,12 +124,14 @@ theorem power_rev {y : α} (hy : y ∈ σ.support) :
       = ⟨((power hσ ⟨y, hy⟩)⁻¹ : Equiv.Perm α) (base hσ), hmem⟩ :=
     Subtype.ext h
   rw [heq]
-  exact power_of_apply_base hσ _ hmem
+  exact power_of_apply_base hσ ((power hσ ⟨y, hy⟩)⁻¹) hmem
 
 /-- **The reversal is an involution.** -/
 theorem rev_rev (y : α) : rev hσ (rev hσ y) = y := by
   by_cases hy : y ∈ σ.support
-  · rw [rev_apply_of_mem hσ (rev_mem_support hσ hy), power_rev hσ hy, inv_inv]
+  · have hinv : ((power hσ ⟨y, hy⟩)⁻¹)⁻¹ = power hσ ⟨y, hy⟩ :=
+      inv_inv (power hσ ⟨y, hy⟩)
+    rw [rev_apply_of_mem hσ (rev_mem_support hσ hy), power_rev hσ hy, hinv]
     exact power_apply_base hσ ⟨y, hy⟩
   · rw [rev_apply_of_not_mem hσ hy, rev_apply_of_not_mem hσ hy]
 
