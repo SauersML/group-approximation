@@ -184,7 +184,7 @@ theorem manuscriptSignFreeRadicalReduction :
             (QuotientGroup.mk' signFreeCollapseDefect)
           = signFreeCollapseDefect := by
         ext x
-        simp [QuotientGroup.eq_one_iff]
+        simp
       exact Subgroup.comap_injective
         (QuotientGroup.mk'_surjective signFreeCollapseDefect)
         (h1.trans h2.symm)

@@ -101,6 +101,23 @@ theorem exists_subsingleton_quotient (D : FournierFacioDefectData P E) :
     ∃ R : FiveConditionRoutingData.{u} D, Subsingleton R.Quotient :=
   ⟨trivialQuotient D, inferInstance⟩
 
+/-! ## The closed form of the clause the manuscript badges
+
+`exists_subsingleton_quotient` reads the file-wide `variable {P} {E}` and takes
+its defect datum in the declaration header, so the proposition it names has
+leading inputs that the header does not print.  The manuscript states it with
+every binder after the colon; the names below differ from the section variables
+so that nothing here depends on what is in scope. -/
+
+/-- **Manuscript closed form.**  For every defect datum, the five printed
+conditions admit a subsingleton solution. -/
+theorem manuscriptExistsSubsingletonQuotient :
+    ∀ {Q : Type} {H : Type u} [Group Q] [Group H]
+      (D : FournierFacioDefectData Q H),
+      ∃ R : FiveConditionRoutingData.{u} D, Subsingleton R.Quotient := by
+  intro Q H _ _ D
+  exact exists_subsingleton_quotient D
+
 /-- **The five printed conditions cannot force nontriviality.**
 
 This is the precise reason
