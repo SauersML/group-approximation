@@ -56,13 +56,16 @@ def Stage.base : Stage where
   ι := MonoidHom.id _
   ι_injective := fun _ _ h => h
 
+/-- The identification, transported into the current stage. -/
+noncomputable def Stage.stepEquiv (S : Stage) {A B : Subgroup BaseGroup}
+    (ψ : A ≃* B) : (A.map S.ι) ≃* (B.map S.ι) :=
+  ((Subgroup.equivMapOfInjective A S.ι S.ι_injective).symm.trans ψ).trans
+    (Subgroup.equivMapOfInjective B S.ι S.ι_injective)
+
 /-- Adjoin one stable letter, conjugating the image of `A` onto the image of `B`
 along `ψ`.  This is one step of Simpson's Definition 6. -/
 noncomputable def Stage.step (S : Stage) {A B : Subgroup BaseGroup} (ψ : A ≃* B) : Stage where
-  Carrier :=
-    HNNExtension S.Carrier (A.map S.ι) (B.map S.ι)
-      (((Subgroup.equivMapOfInjective A S.ι S.ι_injective).symm.trans ψ).trans
-        (Subgroup.equivMapOfInjective B S.ι S.ι_injective))
+  Carrier := HNNExtension S.Carrier (A.map S.ι) (B.map S.ι) (S.stepEquiv ψ)
   group := inferInstance
   ι := (HNNExtension.of).comp S.ι
   ι_injective := by
@@ -385,6 +388,71 @@ theorem good_pinch_inv {A : Subgroup G} (hA : Good A φ) (b : Bsub)
   rw [MulEquiv.apply_symm_apply] at h
   rw [h]
   group
+
+/-- An injective hom carries intersections to intersections. -/
+theorem map_inf_of_injective {G' N : Type*} [Group G'] [Group N] (f : G' →* N)
+    (hf : Function.Injective f) (H K : Subgroup G') :
+    (H ⊓ K).map f = H.map f ⊓ K.map f := by
+  refine le_antisymm
+    (le_inf (Subgroup.map_mono inf_le_left) (Subgroup.map_mono inf_le_right)) ?_
+  rintro _ ⟨⟨h, hh, rfl⟩, ⟨k, hk, hk2⟩⟩
+  exact ⟨h, ⟨hh, by rwa [← hf hk2]⟩, rfl⟩
+
+/-! ## Lifting a base subgroup through the whole tower
+
+S4 is a statement about one stable letter.  To use it up the tower, the lifted
+subgroup has to be defined by the same recursion as the tower itself, and the
+goodness hypothesis has to hold at every level --- which is what `GoodTower`
+records.  The conclusion then follows level by level, each stage's S4 feeding
+the next. -/
+
+/-- A base subgroup, lifted through the tower: at each stable letter it becomes
+Simpson's `A'`. -/
+noncomputable def towerSub (A : Subgroup BaseGroup) :
+    (l : List Identification) → Subgroup (tower l).Carrier
+  | [] => A
+  | ⟨_, _, ψ⟩ :: l => liftedSubgroup ((tower l).stepEquiv ψ) (towerSub A l)
+
+/-- Goodness at every level of the tower. -/
+def GoodTower (A : Subgroup BaseGroup) : (l : List Identification) → Prop
+  | [] => True
+  | ⟨_, _, ψ⟩ :: l => GoodTower A l ∧ Good (towerSub A l) ((tower l).stepEquiv ψ)
+
+/-- **S4, iterated up the tower.**  If the lift of `A` is good at every level,
+then the elements of its lift that lie in the base group are exactly those of
+`A`.  This is the form Simpson's Lemma 7 and Theorem 8 use. -/
+theorem towerSub_inf_range (A : Subgroup BaseGroup) :
+    ∀ (l : List Identification), GoodTower A l →
+      towerSub A l ⊓ (tower l).ι.range = A.map (tower l).ι
+  | [], _ => by
+    simp only [towerSub, tower_nil]
+    show A ⊓ (MonoidHom.id BaseGroup).range = A.map (MonoidHom.id BaseGroup)
+    rw [MonoidHom.range_eq_map, Subgroup.map_id, Subgroup.map_id, inf_top_eq]
+  | ⟨A', B', ψ⟩ :: l, h => by
+    have hprev := towerSub_inf_range A l h.1
+    have hS4 := liftedSubgroup_inf_range ((tower l).stepEquiv ψ) h.2
+    have hof : Function.Injective
+        (HNNExtension.of :
+          (tower l).Carrier →*
+            HNNExtension (tower l).Carrier (A'.map (tower l).ι) (B'.map (tower l).ι)
+              ((tower l).stepEquiv ψ)) :=
+      HNNExtension.of_injective _
+    have hle : ((tower l).ι.range).map
+          (HNNExtension.of :
+            (tower l).Carrier →*
+              HNNExtension (tower l).Carrier (A'.map (tower l).ι) (B'.map (tower l).ι)
+                ((tower l).stepEquiv ψ))
+        ≤ (HNNExtension.of :
+            (tower l).Carrier →*
+              HNNExtension (tower l).Carrier (A'.map (tower l).ι) (B'.map (tower l).ι)
+                ((tower l).stepEquiv ψ)).range := by
+      rintro _ ⟨x, -, rfl⟩
+      exact ⟨x, rfl⟩
+    show liftedSubgroup ((tower l).stepEquiv ψ) (towerSub A l) ⊓
+        ((HNNExtension.of).comp (tower l).ι).range
+      = A.map ((HNNExtension.of).comp (tower l).ι)
+    rw [MonoidHom.range_comp, ← Subgroup.map_map, ← hprev,
+      map_inf_of_injective _ hof, ← hS4, inf_assoc, inf_eq_right.2 hle]
 
 end BooneGroup
 end GroupApproximation
