@@ -80,8 +80,12 @@ end Isometric
 
 section Extend
 
+-- `StarModule ℂ A` is deliberately absent: the completion's `Algebra ℂ`
+-- instance is built by density from the module laws and never touches `star`,
+-- and a `→⋆ₐ[ℂ]` needs only `Algebra` and `Star` on each side.  Including it
+-- would leave it unused in `extendStarAlgHom_coe`.
 variable {A : Type*} [NormedRing A] [StarRing A] [NormedStarGroup A]
-  [NormedAlgebra ℂ A] [StarModule ℂ A]
+  [NormedAlgebra ℂ A]
 variable {B : Type*} [CStarAlgebra B]
 
 /-- **A ⋆-homomorphism into a C⋆-algebra extends along the completion.**

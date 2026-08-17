@@ -177,7 +177,11 @@ theorem IsCStarSeminorm.comp {A : Type u} {B : Type v}
   mul_le a b := by simpa only [map_mul] using hp.mul_le (f a) (f b)
   cstar a := by
     show p (f (star a * a)) = p (f a) * p (f a)
-    rw [map_mul f (star a) a, map_star f a]
+    -- `map_star` unqualified would resolve to `IsCStarSeminorm.map_star`
+    -- (`p (star a) = p a`), because declaring `IsCStarSeminorm.comp` opens that
+    -- namespace inside its own body; the mathlib lemma is reached through its
+    -- class, since the root `map_star` is only an `export` alias.
+    rw [map_mul f (star a) a, StarHomClass.map_star f a]
     exact hp.cstar (f a)
 
 /-! ## Suprema of C⋆-seminorms
