@@ -2,6 +2,7 @@ import GroupApproximation.Analysis.ShulmanTraceClasses
 import GroupApproximation.Analysis.MaximalGroupCStarTrace
 import GroupApproximation.Analysis.ReducedGroupCStarMFObstruction
 import GroupApproximation.Analysis.ReducedGroupCStarTraceFaithful
+import GroupApproximation.Sofic.MFTraceCoronaBridge
 import GroupApproximation.Sofic.MFTraceRecognition
 import GroupApproximation.Sofic.OperatorMFLocalNormalization
 
@@ -240,16 +241,25 @@ of the full group C⋆-algebra `C⋆(G)` is an MF trace in Shulman's sense, then
 
 Contrapositive: a group that is not operator MF has a canonical trace that is
 not an MF trace — which, against a soficity hypothesis supplying
-hyperlinearity of the same trace, separates the two trace classes. -/
+hyperlinearity of the same trace, separates the two trace classes.
+
+**The proof is the corona argument of `Sofic/MFTraceCoronaBridge.lean`**, not
+the local recognition route that the rest of this file develops.  Dividing the
+bounded matrix sequences by the operator-norm-null ones turns the asymptotic
+homomorphism of an `MFTraceModel` into an exact one, so the approximation is
+discharged once by the quotient instead of being tracked through a schedule of
+accuracies.  In particular this theorem does **not** depend on
+`IsMFRegularCharacter`, on `IsNormApproximable`, or on the corner-and-polar
+argument of `Sofic/MFTraceRecognition.lean` — which stays in the tree, proves
+a different quantitative statement, and is still what the other theorems above
+use. -/
 theorem isOperatorMF_of_isMFTrace_canonicalMaximal [Countable G]
     (h : IsMFTrace (fun a : MaximalGroupCStar G ↦ canonicalMaximalTrace G a)) :
-    IsOperatorMF G :=
-  OperatorMFLocalNormalization.isOperatorMF_iff_isNormApproximable_one.mpr
-    (isNormApproximable_of_isMFRegularCharacter G
-      (isMFRegularCharacter_of_isMFTrace_unitaryHom
-        (maximalGroupCStarUnitaryHom G)
-        (canonicalMaximalTrace_generator_one G)
-        (fun _g hg ↦ canonicalMaximalTrace_generator_of_ne_one G hg) h))
+    IsOperatorMF G := by
+  obtain ⟨M⟩ := h
+  obtain ⟨M', hcard⟩ := M.exists_shift (canonicalMaximalTrace_one G)
+  obtain ⟨rho, hrho⟩ := exists_injective_coronaUnitaryHom G M' hcard
+  exact ⟨M'.space, hcard, rho, hrho⟩
 
 end ShulmanTrace
 end GroupApproximation

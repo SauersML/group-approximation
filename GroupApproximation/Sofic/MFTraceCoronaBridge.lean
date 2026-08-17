@@ -6,11 +6,15 @@ import GroupApproximation.Analysis.ShulmanTraceClasses
 /-!
 # The MF-trace bridge, through the operator-norm corona
 
-`Sofic/ShulmanMFTraceBridge.lean` already proves that an MF canonical trace
-forces the group to be operator MF, by way of `IsMFRegularCharacter` and the
-quantitative corner-and-polar argument of `Sofic/MFTraceRecognition.lean`.
-This file proves the same conclusion again along a different and much shorter
-route, and lands the literal CDE form as well.
+`ShulmanTrace.isOperatorMF_of_isMFTrace_canonicalMaximal` used to be proved by
+way of `IsMFRegularCharacter` and the quantitative corner-and-polar argument
+of `Sofic/MFTraceRecognition.lean`.  This file supplies its replacement proof.
+
+The theorem itself stays where it is, with its statement untouched: a second
+declaration concluding the same proposition would be a genuine `DUPLICATE`
+finding for the kernel audit, not a false positive.  So the last step is taken
+in `Sofic/ShulmanMFTraceBridge.lean`, which imports this module and consumes
+`exists_injective_coronaUnitaryHom` as the whole of its proof.
 
 ## The idea
 
@@ -55,8 +59,10 @@ Reindexing by a tail preserves every clause, all of them being limits along
 
 `Sofic/MFTraceRecognition.lean` proves a different, quantitative statement --
 a finite test set, an explicit accuracy schedule, a separation constant -- and
-other results depend on it.  This is an additional route to `IsOperatorMF`,
-not a replacement.
+other results depend on it, including the two theorems of
+`Sofic/ShulmanMFTraceBridge.lean` that this route does not touch.  What
+changes is only that the *canonical-maximal* headline no longer routes through
+it.
 -/
 
 set_option linter.unusedSectionVars false
@@ -341,28 +347,15 @@ theorem exists_injective_coronaUnitaryHom
         (maximalGroupCStarUnitaryHom G)),
     (normMatrixCoronaUnitaryEquiv M.space).symm.injective.comp hinj⟩
 
-/-- **The headline, by the corona route.**  If the canonical trace of the full
-group C⋆-algebra is an MF trace, then `G` is operator MF.
+/-! This module deliberately stops here, one step short of the conclusion.
 
-This is `isOperatorMF_of_isMFTrace_canonicalMaximal` again, proved without
-`IsMFRegularCharacter`, without `IsNormApproximable`, and without any of the
-quantitative corner-and-polar machinery. -/
-theorem isOperatorMF_of_isMFTrace_corona
-    (h : IsMFTrace
-      (fun a : MaximalGroupCStar G ↦ canonicalMaximalTrace G a)) :
-    IsOperatorMF G := by
-  obtain ⟨M⟩ := h
-  obtain ⟨M', hcard⟩ := M.exists_shift (canonicalMaximalTrace_one G)
-  obtain ⟨rho, hrho⟩ := exists_injective_coronaUnitaryHom G M' hcard
-  exact ⟨M'.space, hcard, rho, hrho⟩
-
-/-- **The literal CDE form**, which is the shape the corona route produces. -/
-theorem isCDEOperatorMF_of_isMFTrace_corona [Countable G]
-    (h : IsMFTrace
-      (fun a : MaximalGroupCStar G ↦ canonicalMaximalTrace G a)) :
-    IsCDEOperatorMF G :=
-  (isCDEOperatorMF_iff_isOperatorMF G).mpr
-    (isOperatorMF_of_isMFTrace_corona G h)
+Discharging `IsMFTrace → IsOperatorMF` again *here* would state a proposition
+already proved as `isOperatorMF_of_isMFTrace_canonicalMaximal`, which the
+kernel audit's `DUPLICATE` detector reports and which would be a real finding
+rather than a false positive: two declarations, one proposition.  So the last
+step is not taken in this file.  `exists_injective_coronaUnitaryHom` is the
+whole corona argument, and `Sofic/ShulmanMFTraceBridge.lean` consumes it as
+the body of the pinned theorem, whose statement is unchanged. -/
 
 end Bridge
 
