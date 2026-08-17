@@ -1,5 +1,7 @@
 import GroupApproximation.Algebra.RabinVariantPresentation
 import GroupApproximation.Algebra.PresentedGroupRelabel
+import GroupApproximation.Computability.PresentationCodeList
+import GroupApproximation.Computability.RabinVariantMF
 import Mathlib.Data.Fin.VecNotation
 import Mathlib.Tactic.FinCases
 import Mathlib.Logic.Equiv.Fin.Basic
@@ -33,7 +35,8 @@ a statement about codes.
 namespace GroupApproximation
 namespace RabinVariantCode
 
-open RabinVariantPresentation
+open RabinVariantPresentation PresentationCodes PresentationCodeList
+open PresentedGroupRelabel
 
 variable {m : ℕ}
 
@@ -85,6 +88,72 @@ theorem mem_relatorList (R : List (FreeGroup (Fin m))) (w : FreeGroup (Fin m)) :
     List.mem_cons, List.not_mem_nil, or_false, Set.mem_union, Set.mem_image,
     Set.mem_range, Set.mem_insert_iff, Set.mem_singleton_iff, List.mem_finRange,
     true_and]
+
+/-! ## The code of the construction
+
+Everything above is bookkeeping; this is where it is spent.  A code `c` and a
+word `w` determine the construction applied to the group `c` presents, and the
+result is again a code --- built from lists throughout, so that it is a
+computable function of `(c, w)`. -/
+
+/-- The members of a mapped list are the image of the members. -/
+theorem setOf_mem_map {α β : Type} (f : α → β) (L : List α) :
+    {x | x ∈ L.map f} = f '' {x | x ∈ L} := by
+  ext x
+  simp only [Set.mem_setOf_eq, List.mem_map, Set.mem_image]
+
+/-- The relators of the construction over a code's group, renumbered. -/
+def variantRelators (c : PresentationCode) (w : List (ℕ × Bool)) :
+    List (FreeGroup (Fin (genCount c + (genCount c + 5) + 1))) :=
+  (relatorList (relatorListOf c) (wordOf c w)).map (relabel (genEquiv (genCount c)))
+
+/-- **The code the construction outputs.** -/
+abbrev variantCode (c : PresentationCode) (w : List (ℕ × Bool)) : PresentationCode :=
+  codeOfList (variantRelators c w)
+
+/-- **The code presents the group the construction builds.** -/
+noncomputable def variantCodeEquiv (c : PresentationCode) (w : List (ℕ × Bool)) :
+    Carrier (variantCode c w) ≃* Pres {x | x ∈ relatorListOf c} (wordOf c w) :=
+  ((carrierOfList (variantRelators c w)).trans
+      (presCongrSet (setOf_mem_map _ _))).trans
+    (((congrEquiv (genEquiv (genCount c))
+        {x | x ∈ relatorList (relatorListOf c) (wordOf c w)}).symm).trans
+      (presCongrSet (mem_relatorList _ _)))
+
+/-- **The relator set of the construction's code**, as a renumbering of the
+construction's relators.  The analogue of `CoprodCode.relSet_coprodCode`, and
+what lets a differently-built code with the same relator set be recognised as
+presenting the same group. -/
+theorem relSet_variantCode (c : PresentationCode) (w : List (ℕ × Bool)) :
+    {x | x ∈ relatorListOf (variantCode c w)}
+      = relabelRels (genEquiv (genCount c))
+          (relators {x | x ∈ relatorListOf c} (wordOf c w)) := by
+  have h1 : {x | x ∈ relatorListOf (variantCode c w)}
+      = {x | x ∈ variantRelators c w} := by
+    rw [← coe_relatorFinset, coe_relatorFinset_codeOfList]
+  rw [h1, variantRelators, setOf_mem_map, mem_relatorList]
+  rfl
+
+/-- **The collapse clause, at codes.**  When the word dies in the group the
+input code presents, the output code presents a free group, hence an
+operator-MF one. -/
+theorem variantCode_isOperatorMF (c : PresentationCode) (w : List (ℕ × Bool))
+    (hw : PresentedGroup.mk {x | x ∈ relatorListOf c} (wordOf c w) = 1) :
+    IsOperatorMF (Carrier (variantCode c w)) :=
+  (RabinVariantMF.pres_isOperatorMF _ _ hw).comap
+    (variantCodeEquiv c w).toMonoidHom (variantCodeEquiv c w).injective
+
+/-- **The embedding clause, at codes.**  When the word survives, the input
+group embeds in the output group, so operator-MF descends from one to the
+other. -/
+theorem isOperatorMF_of_variantCode (c : PresentationCode) (w : List (ℕ × Bool))
+    (hw : PresentedGroup.mk {x | x ∈ relatorListOf c} (wordOf c w) ≠ 1)
+    (hMF : IsOperatorMF (Carrier (variantCode c w))) : IsOperatorMF (Carrier c) := by
+  have h1 : IsOperatorMF (Pres {x | x ∈ relatorListOf c} (wordOf c w)) :=
+    hMF.comap (variantCodeEquiv c w).symm.toMonoidHom (variantCodeEquiv c w).symm.injective
+  have h3 : IsOperatorMF (PresentedGroup {x | x ∈ relatorListOf c}) :=
+    h1.comap (srcToPres _ _) (srcToPres_injective_of_ne_one _ _ hw)
+  exact h3.comap (carrierEquivList c).toMonoidHom (carrierEquivList c).injective
 
 end RabinVariantCode
 end GroupApproximation

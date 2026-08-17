@@ -1,5 +1,7 @@
 import GroupApproximation.Computability.RabinVariantCode
 import GroupApproximation.Computability.CoprodCode
+import GroupApproximation.Computability.RawTransform
+import GroupApproximation.Computability.RawTransformPrimrec
 import GroupApproximation.Computability.AdianRabinWordProblem
 
 /-!
@@ -62,8 +64,9 @@ theorem coprod_mk_eq_one_iff (c : PresentationCode) (w : List (ℕ × Bool)) :
 
 /-- **Correctness of the reduction.**  The output code presents an operator-MF
 group exactly when the input word dies in the input group. -/
-theorem correct (x : PresentationCode × List (ℕ × Bool)) :
+theorem correct : ∀ x : PresentationCode × List (ℕ × Bool),
     operatorMFProperty semantics (transform x) ↔ WordProblem x.1 x.2 := by
+  intro x
   obtain ⟨c, w⟩ := x
   rw [operatorMFProperty_semantics]
   constructor
@@ -84,6 +87,68 @@ theorem correct (x : PresentationCode × List (ℕ × Bool)) :
         (carrierEquivList forbidden).injective)
   · intro hw
     exact variantCode_isOperatorMF _ _ ((coprod_mk_eq_one_iff c w).2 hw)
+
+/-! ## The same transformation, as list surgery
+
+`transform` is `noncomputable`, and irreparably so in that form: it builds its
+output through `codeOfList`, which encodes free-group elements, and `FreeGroup`
+over the dependent alphabet `Fin (genCount c)` carries no `Primcodable`
+instance.  `RawTransform.rawTransform` performs the same construction by pure
+list surgery, and `RawTransform.relSet_rawTransform` says the two codes name the
+same relators --- so they present the same group, and correctness transfers. -/
+
+/-- The transformation, as list surgery, at the fixed forbidden code. -/
+noncomputable def rawTransform (x : PresentationCode × List (ℕ × Bool)) : PresentationCode :=
+  RawTransform.rawTransform x.1 forbidden x.2
+
+/-- **Correctness, for the list-surgery form.**  The statement `transform`
+proves, about the code a program can actually build. -/
+theorem correct_raw : ∀ x : PresentationCode × List (ℕ × Bool),
+    operatorMFProperty semantics (rawTransform x) ↔ WordProblem x.1 x.2 := by
+  intro x
+  rw [operatorMFProperty_semantics]
+  constructor
+  · intro h
+    refine (correct x).1 ((operatorMFProperty_semantics (transform x)).2 ?_)
+    exact h.comap (RawTransform.rawCarrierEquiv x.1 forbidden x.2).symm.toMonoidHom
+      (RawTransform.rawCarrierEquiv x.1 forbidden x.2).symm.injective
+  · intro h
+    exact ((operatorMFProperty_semantics (transform x)).1 ((correct x).2 h)).comap
+      (RawTransform.rawCarrierEquiv x.1 forbidden x.2).toMonoidHom
+      (RawTransform.rawCarrierEquiv x.1 forbidden x.2).injective
+
+/-! ## The reduction
+
+All four fields are now available: the Markov witness from
+`PresentationCodes.markovWitness`, the transformation as list surgery, its
+computability from `RawTransformPrimrec`, and correctness above.  Assembling
+them leaves the undecidability of MF recognition resting on exactly one input,
+the undecidability of the word problem as a predicate on codes. -/
+
+/-- **The Adian--Rabin reduction**, from the word problem on presentation codes
+to operator-MF recognition. -/
+noncomputable def reduction :
+    AdianRabinReduction AdianRabinWordProblem.wordProblemPred
+      (operatorMFProperty semantics) where
+  markov := markovWitness
+  transform := rawTransform
+  transform_computable := RawTransformPrimrec.computable_rawTransform forbidden
+  correct := correct_raw
+
+/-- **Operator-MF recognition is undecidable**, given only that the word
+problem is undecidable as a predicate on presentation codes.  Every
+group-theoretic input is discharged; this is the single remaining hypothesis,
+and it is a statement about computability, not about groups. -/
+theorem operatorMF_recognition_undecidable_of_wordProblem :
+    ¬ ComputablePred AdianRabinWordProblem.wordProblemPred →
+      ¬ ComputablePred (operatorMFProperty semantics) :=
+  fun h => recognition_undecidable reduction h
+
+/-- The same, for the negative side. -/
+theorem operatorMF_negative_side_not_re_of_wordProblem :
+    ¬ REPred (fun x => ¬ AdianRabinWordProblem.wordProblemPred x) →
+      ¬ REPred (fun code => ¬ operatorMFProperty semantics code) :=
+  fun h => negative_side_not_re reduction h
 
 end AdianRabinVariantTransform
 end GroupApproximation

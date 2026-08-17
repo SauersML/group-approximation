@@ -29,6 +29,9 @@ import GroupApproximation.Computability.PresentationCodeList
 import GroupApproximation.Computability.RabinVariantCode
 import GroupApproximation.Computability.CoprodCode
 import GroupApproximation.Computability.AdianRabinVariantTransform
+import GroupApproximation.Computability.RawWord
+import GroupApproximation.Computability.RawTransform
+import GroupApproximation.Computability.RawTransformPrimrec
 import GroupApproximation.Computability.OperatorMFMarkovAtCodes
 import GroupApproximation.Computability.StringRewriting
 import GroupApproximation.Computability.UniversalCodeHalting
