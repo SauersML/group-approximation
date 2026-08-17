@@ -225,5 +225,24 @@ theorem stable_conj_emb_left (a b c M : ℤ) (hM : M ≠ 0) (g : BaseGroup) :
   rw [hcoe] at h
   exact h
 
+/-! ## `t` lies in the halting subgroup
+
+The easy half of Lemma 7 needs only that `t` itself is in the base subgroup.  For
+the halting subgroup that is `halts_zero_zero`: the configuration `(0,0)` halts,
+in zero steps. -/
+
+theorem tw_mem_twSub {S : Set (ℤ × ℤ)} {p : ℤ × ℤ} (hp : p ∈ S) :
+    tw p ∈ twSub S :=
+  ⟨FreeGroup.of p, Subgroup.subset_closure ⟨p, hp, rfl⟩, rfl⟩
+
+theorem tGen_mem_twSub_halting : tGen ∈ twSub mm.haltingSetZ :=
+  tw_mem_twSub ⟨0, 0, by simp, mm.halts_zero_zero⟩
+
+/-- **The easy half of Lemma 7, for a machine's tower.**  `⟨t⟩'` sits inside the
+lift of the halting subgroup at every height. -/
+theorem towerTSub_le_towerSub_halting (l : List Identification) :
+    towerTSub l ≤ towerSub (twSub mm.haltingSetZ) l :=
+  towerTSub_le_towerSub _ (tGen_mem_twSub_halting mm) l
+
 end BooneGroup
 end GroupApproximation
