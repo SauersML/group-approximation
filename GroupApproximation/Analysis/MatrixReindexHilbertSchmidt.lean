@@ -1,4 +1,5 @@
 import GroupApproximation.Analysis.NaturalMatrixCoordinateEquiv
+import GroupApproximation.Analysis.UltraproductRigidityRoute
 import GroupApproximation.Sofic.HyperlinearScalar
 
 /-!
@@ -10,23 +11,24 @@ isomorphism (`matrixReindexStarAlgEquiv`) preserving the operator norm
 (`norm_matrixReindexStarAlgEquiv`).  That is what the corona constructions
 need, because they are stated in operator norm.
 
-The Kazhdan transport theorem is not.  Its hypothesis and its conclusion are
-both written in the *normalized Hilbert--Schmidt* norm, and the corresponding
-invariance was missing: nothing in the corpus said that `hsNormSq` is a
-coordinate invariant.  It is, for the obvious reason — reindexing permutes the
-entries, and the cardinality the normalization divides by is unchanged — and
-this file says so.
+The Kazhdan transport theorem is not: its hypothesis and its conclusion are
+both written in the *normalized Hilbert--Schmidt* norm, so moving it between
+coordinate systems needs the invariance of `hsNormSq` instead.
 
-`hsNormSq_congr_equiv` is the general form: any bijection of finite models
-carrying one matrix to another entrywise preserves the normalized mass.  The
-rest specializes it to the canonical reindexing of a model family onto the
-literal natural bases `Fin (card (Y n))`, which is the change of basis that
-carries a statement about arbitrary finite models onto the manuscript's own
-coordinates `M_{d n}(ℂ)`.
+**That invariance is not proved here.**  It is
+`UltraproductRigidityRoute.hsNormSq_matrixReindex`, and everything below is a
+thin specialization of it to the canonical reindexing of a model *family* onto
+the literal natural bases `Fin (card (Y n))` — the change of basis that carries
+a statement about arbitrary finite models onto the manuscript's own coordinates
+`M_{d n}(ℂ)`, which is what `Sofic/GeneralModelKazhdanTransport.lean` consumes.
 
-Everything here is bookkeeping; the point is that it was not available, and
-`Sofic/GeneralModelKazhdanTransport.lean` cannot move the literal Section-3
-theorem off natural coordinates without it.
+An earlier revision of this file proved the invariance again, from scratch,
+under the heading that the corpus did not have it.  The corpus did have it, in
+a green root-imported module, and the reason it was not found is worth keeping:
+the search that would have turned it up was for what the lemma is *for* — the
+transport rewiring and its ledger rows — not for the lemma itself.  The
+duplicate proof has been deleted and `hsNormSq_naturalize` now instantiates the
+canonical one.
 -/
 
 namespace GroupApproximation
@@ -37,30 +39,6 @@ namespace MatrixReindexHS
 -- continues, opens the same two.
 open Matrix
 open scoped Matrix.Norms.L2Operator
-
-/-! ## The invariance -/
-
-/-- **The normalized Hilbert--Schmidt norm is a coordinate invariant.**  If a
-bijection of finite models carries `A` to `B` entrywise, the two have the same
-normalized Hilbert--Schmidt mass. -/
-theorem hsNormSq_congr_equiv (Y Z : FiniteModel) (e : Y ≃ Z)
-    (A : Matrix Y Y ℂ) (B : Matrix Z Z ℂ)
-    (hB : ∀ i j : Y, B (e i) (e j) = A i j) :
-    hsNormSq Z B = hsNormSq Y A := by
-  have hcard : Fintype.card Z = Fintype.card Y := (Fintype.card_congr e).symm
-  have hsum : (∑ i : Z, ∑ j : Z, Complex.normSq (B i j))
-      = ∑ i : Y, ∑ j : Y, Complex.normSq (A i j) := by
-    refine (Fintype.sum_equiv e
-      (fun i : Y ↦ ∑ j : Y, Complex.normSq (A i j))
-      (fun i : Z ↦ ∑ j : Z, Complex.normSq (B i j)) ?_).symm
-    intro i
-    refine Fintype.sum_equiv e
-      (fun j : Y ↦ Complex.normSq (A i j))
-      (fun j : Z ↦ Complex.normSq (B (e i) j)) ?_
-    intro j
-    rw [hB]
-  unfold hsNormSq
-  rw [hsum, hcard]
 
 /-! ## The canonical naturalizing reindexing -/
 
@@ -86,14 +64,13 @@ theorem norm_naturalize (n : ℕ) (A : Matrix (Y n) (Y n) ℂ) :
     ‖naturalize Y n A‖ = ‖A‖ :=
   norm_matrixReindexStarAlgEquiv (Fintype.equivFin (Y n)) A
 
-/-- **Reindexing preserves the normalized Hilbert--Schmidt mass.**  This is the
-statement the transport theorem's change of basis turns on. -/
+/-- **Reindexing preserves the normalized Hilbert--Schmidt mass**, at the
+canonical equivalence.  The invariance itself is
+`UltraproductRigidityRoute.hsNormSq_matrixReindex`; this only instantiates it at
+`Fintype.equivFin`, which is the equivalence `naturalize` is built from. -/
 theorem hsNormSq_naturalize (n : ℕ) (A : Matrix (Y n) (Y n) ℂ) :
-    hsNormSq (naturalizedModel Y n) (naturalize Y n A) = hsNormSq (Y n) A := by
-  refine hsNormSq_congr_equiv (Y n) (naturalizedModel Y n)
-    (Fintype.equivFin (Y n)) A (naturalize Y n A) ?_
-  intro i j
-  rw [naturalize_apply, Equiv.symm_apply_apply, Equiv.symm_apply_apply]
+    hsNormSq (naturalizedModel Y n) (naturalize Y n A) = hsNormSq (Y n) A :=
+  UltraproductRigidityRoute.hsNormSq_matrixReindex (Fintype.equivFin (Y n)) A
 
 /-- Reindexing commutes with the adjoint. -/
 theorem naturalize_conjTranspose (n : ℕ) (A : Matrix (Y n) (Y n) ℂ) :
