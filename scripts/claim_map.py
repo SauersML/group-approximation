@@ -21,6 +21,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 import re
 import sys
 from dataclasses import dataclass, field
@@ -32,14 +33,17 @@ from lean_decls import build_index
 
 REPO = Path(__file__).resolve().parent.parent
 LIB = "GroupApproximation"
-# The sofic manuscript.  It was deleted from the tree on 2026-08-12
-# (`ddb3d4d0`) with no commit message mentioning it, which silently disabled
-# every detector below for four days -- `check.py` returned early and printed
-# zeros.  Restored 2026-08-16; the zeros are now `NOT RUN` if it ever goes
-# missing again.  The non-MF manuscript has its own layer:
+# The manuscript this map is read out of.  The document it was written for is
+# no longer in the tree, and no manuscript currently sits at the default name,
+# so every detector below reports `NOT RUN` rather than zero -- a missing
+# manuscript once went unnoticed for four days while five detectors printed
+# `0` while executing nothing, and `check.py` is now loud about it.  Point the
+# layer at a manuscript by setting `CLAIM_MAP_TEX` to a path relative to the
+# repository root, or by putting one at the default name.  The non-MF
+# manuscript has its own layer and does not belong here:
 # `check_non_mf_refs.py`, `check_non_mf_zero_input.py`, and
 # `check_non_mf_claim_manifest.py`.
-TEX_NAME = "nonsofic_groups_exist.tex"
+TEX_NAME = os.environ.get("CLAIM_MAP_TEX", "sofic_manuscript.tex")
 
 # Environments that state something.  A `remark` is commentary: it carries a
 # note when it has formal content of its own, and is not required to.

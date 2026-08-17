@@ -4129,7 +4129,7 @@ drops or extraction fires).
   refine forces this obstruction to die — candidate second-tier
   measure: dim(coker A-stack ∩ (surviving-C-cols)^⊥) strictly grows.
 - User expanded the goal: after formalization completes → fully
-  update nonsofic_groups_exist.tex → pursue new results beyond it.
+  update the sofic write-up → pursue new results beyond it.
 
 ## Session 46: M4b — the atom peel WRITTEN
 AtomPeel.lean: atom_peel — given pencil data E over (R, C) with a

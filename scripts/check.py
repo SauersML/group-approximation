@@ -434,9 +434,9 @@ def check_claim_map(root: Path, f: Findings) -> None:
         describing the audit that actually runs.
 
     When the manuscript is not in the tree none of that can run.  This scan
-    used to return early there, silently: `nonsofic_groups_exist.tex` was
-    deleted on 2026-08-12 by a commit whose message never mentioned it, and for
-    four days five detectors printed `0` while executing nothing.  A missing
+    used to return early there, silently: the manuscript it reads was deleted
+    on 2026-08-12 by a commit whose message never mentioned it, and for four
+    days five detectors printed `0` while executing nothing.  A missing
     manuscript is now reported as such, and `check_frozen_claim_roster` checks
     the half of the contract that survives it -- that every name in the roster
     `scripts/Signatures.lean` elaborates still exists.

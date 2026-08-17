@@ -31,7 +31,7 @@ Britton's Lemma then forces the syllable list of an element of the base
 copy to be empty, leaving the head, which lies in `A'`.
 
 Supporting the undecidability corollary at
-`nonsofic_groups_exist.tex:2414-2417` and `non_mf_groups_exist.tex:3256-3282`.
+`non_mf_groups_exist.tex:3256-3282`.
 -/
 
 namespace GroupApproximation

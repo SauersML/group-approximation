@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """Validate every visible Lean counterpart link in the property-(TT)/T manuscript.
 
-The retired ``nonsofic_groups_exist.tex`` used a richer ``\\leanmod`` syntax,
-still parsed by ``claim_map``.  The property-(TT)/T paper uses the smaller
+``claim_map`` parses a richer ``\\leanmod`` syntax, retained for the corpus it
+was written against.  The property-(TT)/T paper uses the smaller
 
     \\leanverified{PropertyTT/PaperStatements}{PropertyTTPaper.theorem}
 

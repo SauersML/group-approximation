@@ -12,8 +12,8 @@ import GroupApproximation.Endpoint.MainResults
 
 Every result in this module is assembled from theorems proved elsewhere in the
 library; nothing new is proved about the mathematics.  What is new is the
-*shape*: each declaration below has, as its type, one printed statement of
-`nonsofic_groups_exist.tex`, so that a referee can `#check` a single name
+*shape*: each declaration below has, as its type, one headline statement in the
+form it is stated for a reader, so that a referee can `#check` a single name
 against a single displayed theorem instead of reassembling it from several.
 
 Nothing below depends on the print: the types are the statements, and
