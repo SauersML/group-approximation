@@ -81,9 +81,14 @@ variable {A : Type*} [Ring A] [StarRing A] [Algebra ℂ A]
 /-- Matrix models for a trace, with the three defect clauses measured in a
 norm `d` supplied as a parameter.
 
-The last two clauses are *not* parameterized: `bounded` is the operator norm
-and `tendsto_trace` the modulus on `ℂ`, in both of Shulman's definitions. -/
-structure TraceApproximationModel
+The last two clauses are *not* parameterized by `d`: `bounded` is the operator
+norm and `tendsto_trace` the modulus on `ℂ`, in both definitions.
+
+The limits are taken along a filter `l` rather than fixed at `atTop`.  Both
+trace classes read `atTop`, and that is how `IsHyperlinearTrace` instantiates
+it; the parameter is here because a construction can land along a finer filter
+than the one it is wanted along, and because it costs nothing. -/
+structure TraceApproximationModel (l : Filter ℕ)
     (d : ∀ Y : FiniteModel, Matrix Y Y ℂ → ℝ) (τ : A → ℂ) where
   /-- The finite matrix sizes. -/
   space : ℕ → FiniteModel
@@ -92,26 +97,26 @@ structure TraceApproximationModel
   /-- Asymptotic multiplicativity, in the defect norm `d`. -/
   tendsto_mul : ∀ a b : A,
     Tendsto (fun n ↦ d (space n) (map n (a * b) - map n a * map n b))
-      atTop (nhds 0)
+      l (nhds 0)
   /-- Asymptotic linearity, in the defect norm `d`. -/
-  tendsto_linear : ∀ (l m : ℂ) (a b : A),
+  tendsto_linear : ∀ (c₁ c₂ : ℂ) (a b : A),
     Tendsto (fun n ↦ d (space n)
-        (map n (l • a + m • b) - l • map n a - m • map n b)) atTop (nhds 0)
+        (map n (c₁ • a + c₂ • b) - c₁ • map n a - c₂ • map n b)) l (nhds 0)
   /-- Asymptotic `⋆`-compatibility, in the defect norm `d`. -/
   tendsto_star : ∀ a : A,
     Tendsto (fun n ↦ d (space n) (map n (star a) - (map n a)ᴴ))
-      atTop (nhds 0)
-  /-- Pointwise boundedness, in the operator norm whatever `d` is. -/
+      l (nhds 0)
+  /-- Pointwise boundedness, in the operator norm whatever `d` and `l` are. -/
   bounded : ∀ a : A, ∃ C : ℝ, ∀ n : ℕ, ‖map n a‖ ≤ C
   /-- The normalized traces converge to `τ`, whatever `d` is. -/
   tendsto_trace : ∀ a : A,
-    Tendsto (fun n ↦ ‖τ a - normTrace (space n) (map n a)‖) atTop (nhds 0)
+    Tendsto (fun n ↦ ‖τ a - normTrace (space n) (map n a)‖) l (nhds 0)
 
 /-! ## The operator-norm member is the MF trace already defined -/
 
 /-- An MF-trace model, read as a member of the parameterized family. -/
 def MFTraceModel.toApproximationModel {τ : A → ℂ} (M : MFTraceModel τ) :
-    TraceApproximationModel (fun _ B ↦ ‖B‖) τ where
+    TraceApproximationModel atTop (fun _ B ↦ ‖B‖) τ where
   space := M.space
   map := M.map
   tendsto_mul := M.tendsto_mul
@@ -122,7 +127,7 @@ def MFTraceModel.toApproximationModel {τ : A → ℂ} (M : MFTraceModel τ) :
 
 /-- The operator-norm member of the family, read back as an MF-trace model. -/
 def TraceApproximationModel.toMFTraceModel {τ : A → ℂ}
-    (M : TraceApproximationModel (fun _ B ↦ ‖B‖) τ) : MFTraceModel τ where
+    (M : TraceApproximationModel atTop (fun _ B ↦ ‖B‖) τ) : MFTraceModel τ where
   space := M.space
   map := M.map
   tendsto_mul := M.tendsto_mul
@@ -137,15 +142,15 @@ def TraceApproximationModel.toMFTraceModel {τ : A → ℂ}
 three defect clauses measured in the normalized Hilbert–Schmidt norm.  The
 boundedness and trace clauses are the same in both definitions. -/
 def IsHyperlinearTrace (τ : A → ℂ) : Prop :=
-  Nonempty (TraceApproximationModel (fun Y B ↦ hsNorm Y B) τ)
+  Nonempty (TraceApproximationModel atTop (fun Y B ↦ hsNorm Y B) τ)
 
 /-- The defect comparison, in the shape the five clauses consume it: an
 operator-norm null sequence of matrices is Hilbert–Schmidt null, by the first
 printed inequality `‖x‖₂ ≤ ‖x‖` and a squeeze. -/
-theorem tendsto_hsNorm_of_tendsto_opNorm {Y : ℕ → FiniteModel}
+theorem tendsto_hsNorm_of_tendsto_opNorm {l : Filter ℕ} {Y : ℕ → FiniteModel}
     {X : ∀ n : ℕ, Matrix (Y n) (Y n) ℂ}
-    (h : Tendsto (fun n ↦ ‖X n‖) atTop (nhds 0)) :
-    Tendsto (fun n ↦ hsNorm (Y n) (X n)) atTop (nhds 0) := by
+    (h : Tendsto (fun n ↦ ‖X n‖) l (nhds 0)) :
+    Tendsto (fun n ↦ hsNorm (Y n) (X n)) l (nhds 0) := by
   apply squeeze_zero' (Eventually.of_forall fun n ↦ hsNorm_nonneg (Y n) (X n))
   · exact Eventually.of_forall fun n ↦
       PrelimNotation.hsNorm_le_l2_opNorm (Y n) (X n)
@@ -154,19 +159,19 @@ theorem tendsto_hsNorm_of_tendsto_opNorm {Y : ℕ → FiniteModel}
 /-- **The comparison.**  An operator-norm model is a Hilbert–Schmidt model:
 the three defect clauses weaken through `‖x‖₂ ≤ ‖x‖`, and the two
 unparameterized clauses are carried across unchanged. -/
-def TraceApproximationModel.toHilbertSchmidt {τ : A → ℂ}
-    (M : TraceApproximationModel (fun _ B ↦ ‖B‖) τ) :
-    TraceApproximationModel (fun Y B ↦ hsNorm Y B) τ where
+def TraceApproximationModel.toHilbertSchmidt {l : Filter ℕ} {τ : A → ℂ}
+    (M : TraceApproximationModel l (fun _ B ↦ ‖B‖) τ) :
+    TraceApproximationModel l (fun Y B ↦ hsNorm Y B) τ where
   space := M.space
   map := M.map
   tendsto_mul a b :=
     tendsto_hsNorm_of_tendsto_opNorm (Y := M.space)
       (X := fun n ↦ M.map n (a * b) - M.map n a * M.map n b)
       (M.tendsto_mul a b)
-  tendsto_linear l m a b :=
+  tendsto_linear c₁ c₂ a b :=
     tendsto_hsNorm_of_tendsto_opNorm (Y := M.space)
-      (X := fun n ↦ M.map n (l • a + m • b) - l • M.map n a - m • M.map n b)
-      (M.tendsto_linear l m a b)
+      (X := fun n ↦ M.map n (c₁ • a + c₂ • b) - c₁ • M.map n a - c₂ • M.map n b)
+      (M.tendsto_linear c₁ c₂ a b)
   tendsto_star a :=
     tendsto_hsNorm_of_tendsto_opNorm (Y := M.space)
       (X := fun n ↦ M.map n (star a) - (M.map n a)ᴴ)
@@ -179,7 +184,7 @@ def TraceApproximationModel.toHilbertSchmidt {τ : A → ℂ}
 /-- `IsMFTrace` is exactly the operator-norm member of the parameterized
 family — both directions, by an identity transfer of all five clauses. -/
 theorem isMFTrace_iff_nonempty_opNorm (τ : A → ℂ) :
-    IsMFTrace τ ↔ Nonempty (TraceApproximationModel (fun _ B ↦ ‖B‖) τ) := by
+    IsMFTrace τ ↔ Nonempty (TraceApproximationModel atTop (fun _ B ↦ ‖B‖) τ) := by
   constructor
   · rintro ⟨M⟩
     exact ⟨M.toApproximationModel⟩

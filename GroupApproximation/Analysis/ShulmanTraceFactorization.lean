@@ -1,8 +1,10 @@
 import GroupApproximation.Analysis.ShulmanTraceNorms
 import GroupApproximation.Analysis.TracialMatrixUltraproduct
+import Mathlib.LinearAlgebra.Basis.Basic
+import Mathlib.LinearAlgebra.Basis.VectorSpace
 
 /-!
-# The factorization form of a hyperlinear trace, and the easy direction
+# The factorization form of a hyperlinear trace, and the Hamel-basis lift
 
 A trace can also be presented as `τ = tr ∘ f` for a `⋆`-homomorphism
 `f : A → ∏ M_{kₙ} / ⊕₂ M_{kₙ}`, where `⊕₂ M_{kₙ}` is the ideal of sequences
@@ -13,61 +15,64 @@ quotient of `Analysis/TracialMatrixUltraproduct.lean`, with `tr` its
 because that is where the ultratrace of an arbitrary bounded sequence is
 defined: at `atTop` alone `limₙ tr(aₙ)` need not exist.
 
-**It is a separate predicate, not a restatement.**  This file proves one
-implication into it and nothing back, and no declaration anywhere asserts the
-two predicates agree.  The literature reports them as equivalent; that report
-is not used here, is not an input to any proof below, and the analysis of what
-it would cost is worked out from the definitions rather than taken on anyone's
-word.
+**It is a separate predicate, not a restatement.**  Neither implication is
+asserted as an equivalence anywhere, and nothing is taken on anyone's
+authority: the analysis below is worked out from the definitions.
 
-## The direction that is proved
+## Both directions, and the one clause that is open
 
-`isFactoredHyperlinearTrace_of_isHyperlinearTrace` : sequential ⟹ factorized.
-Given the maps `φₙ`, the assignment `a ↦ [(φₙ(a))]` is a `⋆`-homomorphism
-because every one of the three defects vanishes in `‖·‖₂` and is therefore
-killed by the quotient, and `tr ∘ it = τ` because the trace clause is an
-ordinary limit along `atTop`, hence along any refining ultrafilter.
+*Sequential ⟹ factorized* is `isFactoredHyperlinearTrace_of_model`.  The
+assignment `a ↦ [(φₙ(a))]` is a `⋆`-homomorphism because every one of the
+three defects vanishes in `‖·‖₂` and is therefore killed by the quotient, and
+`tr ∘ it = τ` because the trace clause is an ordinary limit along `atTop`,
+hence along any refining ultrafilter.
 
-## The direction that is not, and why it is not one missing lemma
+*Factorized ⟹ sequential*, up to the filter, is
+`exists_traceApproximationModel_of_isFactored`.  It does the Hamel-basis lift:
+a ℂ-basis of `A`, one choice of preimage per basis vector, extended linearly
+to `Φ : A →ₗ[ℂ] ∏ M_{kₙ}` with `mk ∘ Φ = f`.  No continuous section is used
+and `Classical.choice` is inside the permitted axiom set.  With
+`φₙ a := Φ a n`, **all five clauses hold** — the linearity defect is exactly
+`0` rather than asymptotically `0`, the multiplicativity and `⋆` defects lie in
+the ideal because the quotient map kills them, and the uniform bound is free
+because `Φ` lands in the bounded product.
 
-Recovering the `φₙ` from `f` means lifting `f` to `Φ : A → ∏ M_{kₙ}` with
-`q ∘ Φ = f` and setting `φₙ a := (Φ a) n`.  There are two obstructions, and
-they are not the same size.
+The limits, however, are along the factorization's own ultrafilter `ω`, while
+`IsHyperlinearTrace` reads them along `atTop`.  Four of the five clauses are
+indifferent to that: `isHilbertSchmidtNull_mul` and `isHilbertSchmidtNull_star`
+are ideal membership, `lift_linear_defect` is an identity, and `bounded`
+mentions no filter.  **The trace clause is the only one that is not**, and it
+is open here for a reason worth recording rather than retrying:
 
-*Linearity is the cheap one.*  A ℂ-Hamel basis of `A` and one choice of
-preimage per basis vector extend to a genuinely linear `Φ` with `q ∘ Φ = f`.
-Then the linearity defect is exactly `0` rather than asymptotically `0`, the
-multiplicativity and `⋆` defects land in the ideal because `q` kills them, and
-the uniform bound is free because `Φ` lands in the bounded product.  No
-section theorem is needed for any of that.
+`tr` on the quotient is an ultralimit, so `tr ∘ f = τ` gives
+`limω tr φₙ(a) = τ(a)`.  Choosing a different lift cannot repair this — two
+lifts of the same `f` differ by a map into the ideal and `|tr x| ≤ ‖x‖₂`, so
+the `atTop` behaviour of `n ↦ tr φₙ(a)` is the same for every lift.  Passing
+to a subsequence fixes one `a`, and a diagonal argument fixes countably many;
+but `a ↦ tr φₙ(a)` and `τ` are both linear, so the set of `a` that get fixed
+is a ℂ-linear subspace, which reaches the span of a countable set and stops.
+Crossing from a dense subspace to all of `A` needs `Φ` *continuous*, which a
+Hamel lift is exactly not.
 
-*The trace clause is the real one, and a Hamel lift does not reach it.*  `tr`
-on the quotient is an ultralimit, so `tr ∘ f = τ` yields
-`limω tr φₙ(a) = τ(a)`, whereas the sequential definition asks for a limit
-along `atTop`.  Choosing a different lift cannot help: two lifts differ by a
-map into the ideal, and `|tr x| ≤ ‖x‖₂`, so the `atTop` behaviour of
-`n ↦ tr φₙ(a)` is the same for every lift of the same `f`.  Passing to a
-subsequence fixes one element `a`; a diagonal argument fixes countably many;
-and since `a ↦ tr φₙ(a)` and `τ` are both linear, the set of `a` that get
-fixed is a ℂ-linear subspace — so this reaches the span of a countable set and
-stops there.  Getting from a dense subspace to all of `A` needs `Φ` to be
-*continuous*, which is exactly what a Hamel-basis lift is not, and for which
-this repository has no substitute.
+So the gap is named to the clause, and it is stated rather than assumed: no
+declaration here or downstream pretends to have it.
 
-So the missing direction is not a single extraction step: it needs a lift that
-is simultaneously usable and continuous.  Until one exists here, the two
-predicates stay separate — an implication in one direction is a formalization,
-an `Iff` here would be a claim.
+## Nonempty models
+
+`ModelBoundedSequence` asks for `∀ n, Nonempty (X n)` — the `kₙ ≥ 1` implicit
+in writing `M_{kₙ}`, and without it the bounded product is not a unital ring.
+It is a hypothesis of the sequential-to-factorized direction rather than a
+clause of `TraceApproximationModel`, because a trace that is identically `0`
+is modelled by empty matrices and nothing forces `kₙ ≥ 1` from the five
+clauses alone.
 
 ## Not a bundled `StarAlgHom`, on purpose
 
 The homomorphism is carried as a bare function together with its four
 identities rather than as `A →⋆ₐ[ℂ] _`.  No clause of
 `TraceApproximationModel` mentions `φₙ(1)`, so nothing in the hypothesis makes
-`a ↦ [(φₙ(a))]` unital: it is a *non-unital* `⋆`-homomorphism, and bundling as a
-unital one would assert something the hypothesis does not give.  Unitality is
-recoverable when `τ` is a state, by a faithfulness argument on the quotient
-trace; that is not needed here and is not done.
+`a ↦ [(φₙ(a))]` unital: it is a *non-unital* `⋆`-homomorphism, and bundling as
+a unital one would assert something the hypothesis does not give.
 -/
 
 open Filter Matrix
@@ -78,28 +83,40 @@ namespace ShulmanTrace
 
 open TracialUltraproduct
 
+/- Same reason as in `TracialMatrixUltraproduct`: typeclass search on the
+ideal quotient has to unfold `lp` and rediscover the `Fintype`/`DecidableEq`
+instances through the `FiniteModel` projections, and does not fit the default
+budget.  The section-variable linter is off for the same reason it is off
+there: the nonemptiness instance is a standing hypothesis that many of the
+coordinatewise steps do not mention. -/
+set_option synthInstance.maxHeartbeats 800000
+set_option maxHeartbeats 1000000
+set_option linter.unusedSectionVars false
+
 noncomputable section
 
 /-! ## Bounded sequences from pointwise bounds -/
 
+variable {X : ℕ → FiniteModel} [∀ n, Nonempty (X n)]
+
 /-- A pointwise operator-norm-bounded family of matrices, as an element of the
 bounded sequence algebra `ℓ∞`. -/
-def boundedSeqOfBound {X : ℕ → FiniteModel} (f : ∀ n, Matrix (X n) (X n) ℂ)
-    {C : ℝ} (hf : ∀ n, ‖f n‖ ≤ C) : ModelBoundedSequence X :=
+def boundedSeqOfBound (f : ∀ n, Matrix (X n) (X n) ℂ) {C : ℝ}
+    (hf : ∀ n, ‖f n‖ ≤ C) : ModelBoundedSequence X :=
   ⟨f, memℓp_infty ⟨C, by
     rintro _ ⟨n, rfl⟩
     exact hf n⟩⟩
 
-@[simp] theorem boundedSeqOfBound_apply {X : ℕ → FiniteModel}
-    (f : ∀ n, Matrix (X n) (X n) ℂ) {C : ℝ} (hf : ∀ n, ‖f n‖ ≤ C) (n : ℕ) :
+@[simp] theorem boundedSeqOfBound_apply (f : ∀ n, Matrix (X n) (X n) ℂ) {C : ℝ}
+    (hf : ∀ n, ‖f n‖ ≤ C) (n : ℕ) :
     boundedSeqOfBound f hf n = f n :=
   rfl
 
-/-- **The transfer every clause runs through.**  Two bounded sequences whose
-coordinatewise difference is `‖·‖₂`-null along `atTop` have the same class in
-the quotient at any ultrafilter refining `atTop`. -/
-theorem mk_eq_mk_of_tendsto {X : ℕ → FiniteModel} {ω : Ultrafilter ℕ}
-    (hω : (ω : Filter ℕ) ≤ atTop) {p q : ModelBoundedSequence X}
+/-- **The transfer the easy direction runs through.**  Two bounded sequences
+whose coordinatewise difference is `‖·‖₂`-null along `atTop` have the same
+class in the quotient at any ultrafilter refining `atTop`. -/
+theorem mk_eq_mk_of_tendsto {ω : Ultrafilter ℕ} (hω : (ω : Filter ℕ) ≤ atTop)
+    {p q : ModelBoundedSequence X}
     (h : Tendsto (fun n ↦ hsNorm (X n) (p n - q n)) atTop (nhds 0)) :
     tracialMatrixQuotientMk X (ω : Filter ℕ) p
       = tracialMatrixQuotientMk X (ω : Filter ℕ) q := by
@@ -110,8 +127,8 @@ theorem mk_eq_mk_of_tendsto {X : ℕ → FiniteModel} {ω : Ultrafilter ℕ}
   exact sub_eq_zero.mp hzero
 
 /-- Scalars pass through the quotient map. -/
-theorem smul_tracialMatrixQuotientMk {X : ℕ → FiniteModel} {l : Filter ℕ}
-    (c : ℂ) (p : ModelBoundedSequence X) :
+theorem smul_tracialMatrixQuotientMk {l : Filter ℕ} (c : ℂ)
+    (p : ModelBoundedSequence X) :
     c • tracialMatrixQuotientMk X l p = tracialMatrixQuotientMk X l (c • p) :=
   rfl
 
@@ -127,6 +144,8 @@ module docstring for why unitality is not among them. -/
 structure UltraproductFactorization (τ : A → ℂ) where
   /-- The finite matrix sizes. -/
   space : ℕ → FiniteModel
+  /-- The sizes are positive, which is what `M_{kₙ}` means. -/
+  [nonempty : ∀ n, Nonempty (space n)]
   /-- The ultrafilter the quotient is taken along. -/
   ultra : Ultrafilter ℕ
   /-- It refines `atTop`, which is what makes the quotient an ultraproduct
@@ -145,46 +164,45 @@ structure UltraproductFactorization (τ : A → ℂ) where
   /-- `τ = tr ∘ f`. -/
   trace_eq : ∀ a : A, τ a = ultratrace space ultra (hom a)
 
+attribute [instance] UltraproductFactorization.nonempty
+
 /-- `τ` factors: it is `tr ∘ f` for a `⋆`-homomorphism into a tracial matrix
-quotient.  This is *not* identified with `IsHyperlinearTrace`; only the
-implication below is proved. -/
+quotient. -/
 def IsFactoredHyperlinearTrace (τ : A → ℂ) : Prop :=
   Nonempty (UltraproductFactorization τ)
 
+/-! ## Sequential implies factorized -/
+
 /-- The bounded matrix sequence of the models of a fixed element. -/
 def modelSeq {τ : A → ℂ}
-    (M : TraceApproximationModel (fun Y B ↦ hsNorm Y B) τ) {C : A → ℝ}
+    (M : TraceApproximationModel atTop (fun Y B ↦ hsNorm Y B) τ)
+    [∀ n, Nonempty (M.space n)] {C : A → ℝ}
     (hC : ∀ (a : A) (n : ℕ), ‖M.map n a‖ ≤ C a) (a : A) :
     ModelBoundedSequence M.space :=
   boundedSeqOfBound (fun n ↦ M.map n a) (hC a)
 
 @[simp] theorem modelSeq_apply {τ : A → ℂ}
-    (M : TraceApproximationModel (fun Y B ↦ hsNorm Y B) τ) {C : A → ℝ}
+    (M : TraceApproximationModel atTop (fun Y B ↦ hsNorm Y B) τ)
+    [∀ n, Nonempty (M.space n)] {C : A → ℝ}
     (hC : ∀ (a : A) (n : ℕ), ‖M.map n a‖ ≤ C a) (a : A) (n : ℕ) :
     modelSeq M hC a n = M.map n a :=
   rfl
 
-/-! ## Sequential implies factorized -/
-
-/-- **The easy direction.**  A hyperlinear trace in the sequential sense
-factors through a tracial matrix quotient.
-
-Each of the four homomorphism identities is the corresponding defect clause of
-the sequential definition, read in the quotient: the defect is `‖·‖₂`-null
-along `atTop`, hence along the ultrafilter, hence lies in the ideal.  The
-trace clause is a limit along `atTop`, so it survives the refinement and is
-pinned against the ultratrace by uniqueness of limits.
-
-The converse is not proved, and no result here depends on it; the module
-docstring works out what it would cost. -/
-theorem isFactoredHyperlinearTrace_of_isHyperlinearTrace {τ : A → ℂ}
-    (h : IsHyperlinearTrace τ) : IsFactoredHyperlinearTrace τ := by
-  obtain ⟨M⟩ := h
+/-- **Sequential implies factorized.**  Each homomorphism identity is the
+corresponding defect clause read in the quotient: the defect is `‖·‖₂`-null
+along `atTop`, hence along the ultrafilter, hence in the ideal.  The trace
+clause is an ordinary limit, so it survives refinement and is pinned by
+uniqueness of limits. -/
+theorem isFactoredHyperlinearTrace_of_model {τ : A → ℂ}
+    (M : TraceApproximationModel atTop (fun Y B ↦ hsNorm Y B) τ)
+    (hne : ∀ n, Nonempty (M.space n)) : IsFactoredHyperlinearTrace τ := by
+  haveI := hne
   choose C hC using M.bounded
   have hfree : ((Ultrafilter.of (atTop : Filter ℕ)) : Filter ℕ) ≤ atTop :=
     Ultrafilter.of_le _
   refine ⟨{
     space := M.space
+    nonempty := hne
     ultra := Ultrafilter.of (atTop : Filter ℕ)
     free := hfree
     hom := fun a ↦ tracialMatrixQuotientMk M.space
@@ -240,12 +258,160 @@ theorem isFactoredHyperlinearTrace_of_isHyperlinearTrace {τ : A → ℂ}
       (tendsto_seqUltratrace M.space (Ultrafilter.of (atTop : Filter ℕ))
         (modelSeq M hC a))
 
-/-- **Every MF trace factors**, by composing the norm comparison with the
-easy direction. -/
-theorem isFactoredHyperlinearTrace_of_isMFTrace {τ : A → ℂ}
-    (h : IsMFTrace τ) : IsFactoredHyperlinearTrace τ :=
-  isFactoredHyperlinearTrace_of_isHyperlinearTrace
-    (isHyperlinearTrace_of_isMFTrace h)
+/-! ## The Hamel-basis lift: factorized implies sequential, up to the filter -/
+
+namespace UltraproductFactorization
+
+variable {τ : A → ℂ}
+
+/-- One preimage in the bounded product for each Hamel basis vector.  The
+quotient map is surjective, so this is a choice and nothing more. -/
+def liftOnBasis (F : UltraproductFactorization τ) :
+    ↥(Module.Basis.ofVectorSpaceIndex ℂ A) → ModelBoundedSequence F.space :=
+  fun i ↦ Classical.choose
+    (tracialMatrixQuotientMk_surjective F.space (F.ultra : Filter ℕ)
+      (F.hom (Module.Basis.ofVectorSpace ℂ A i)))
+
+theorem liftOnBasis_spec (F : UltraproductFactorization τ)
+    (i : ↥(Module.Basis.ofVectorSpaceIndex ℂ A)) :
+    tracialMatrixQuotientMk F.space (F.ultra : Filter ℕ) (F.liftOnBasis i)
+      = F.hom (Module.Basis.ofVectorSpace ℂ A i) :=
+  Classical.choose_spec
+    (tracialMatrixQuotientMk_surjective F.space (F.ultra : Filter ℕ)
+      (F.hom (Module.Basis.ofVectorSpace ℂ A i)))
+
+/-- **The lift.**  Linear by construction — *not* continuous, and it does not
+need to be. -/
+def lift (F : UltraproductFactorization τ) :
+    A →ₗ[ℂ] ModelBoundedSequence F.space :=
+  (Module.Basis.ofVectorSpace ℂ A).constr ℂ F.liftOnBasis
+
+/-- `Φ` really is a lift of `f`: two ℂ-linear maps agreeing on a basis. -/
+theorem mk_lift (F : UltraproductFactorization τ) (a : A) :
+    tracialMatrixQuotientMk F.space (F.ultra : Filter ℕ) (F.lift a)
+      = F.hom a := by
+  let mkL : ModelBoundedSequence F.space →ₗ[ℂ]
+      TracialMatrixQuotient F.space (F.ultra : Filter ℕ) :=
+    { toFun := tracialMatrixQuotientMk F.space (F.ultra : Filter ℕ)
+      map_add' := fun x y ↦ _root_.map_add _ x y
+      map_smul' := fun c p ↦ (smul_tracialMatrixQuotientMk c p).symm }
+  let fL : A →ₗ[ℂ] TracialMatrixQuotient F.space (F.ultra : Filter ℕ) :=
+    { toFun := F.hom
+      map_add' := F.map_add
+      map_smul' := F.map_smul }
+  have hext : mkL.comp F.lift = fL := by
+    refine (Module.Basis.ofVectorSpace ℂ A).ext fun i ↦ ?_
+    show tracialMatrixQuotientMk F.space (F.ultra : Filter ℕ)
+        (((Module.Basis.ofVectorSpace ℂ A).constr ℂ F.liftOnBasis)
+          (Module.Basis.ofVectorSpace ℂ A i))
+      = F.hom (Module.Basis.ofVectorSpace ℂ A i)
+    rw [Module.Basis.constr_basis]
+    exact F.liftOnBasis_spec i
+  exact LinearMap.congr_fun hext a
+
+/-- The multiplicativity defect of the lift lies in the ideal, because the
+quotient map kills it. -/
+theorem isHilbertSchmidtNull_mul (F : UltraproductFactorization τ) (a b : A) :
+    IsHilbertSchmidtNull F.space (F.ultra : Filter ℕ)
+      (F.lift (a * b) - F.lift a * F.lift b) := by
+  have hmk : tracialMatrixQuotientMk F.space (F.ultra : Filter ℕ)
+        (F.lift a * F.lift b)
+      = tracialMatrixQuotientMk F.space (F.ultra : Filter ℕ) (F.lift a) *
+        tracialMatrixQuotientMk F.space (F.ultra : Filter ℕ) (F.lift b) :=
+    _root_.map_mul (tracialMatrixQuotientMk F.space (F.ultra : Filter ℕ))
+      (F.lift a) (F.lift b)
+  refine (tracialMatrixQuotientMk_eq_zero_iff F.space (F.ultra : Filter ℕ)
+    _).mp ?_
+  rw [_root_.map_sub, hmk, F.mk_lift, F.mk_lift, F.mk_lift, F.map_mul]
+  exact sub_self _
+
+/-- The `⋆` defect of the lift lies in the ideal, for the same reason. -/
+theorem isHilbertSchmidtNull_star (F : UltraproductFactorization τ) (a : A) :
+    IsHilbertSchmidtNull F.space (F.ultra : Filter ℕ)
+      (F.lift (star a) - star (F.lift a)) := by
+  have hst : tracialMatrixQuotientMk F.space (F.ultra : Filter ℕ)
+        (star (F.lift a))
+      = star (tracialMatrixQuotientMk F.space (F.ultra : Filter ℕ)
+        (F.lift a)) :=
+    (tracialMatrixQuotient_star_mk F.space (F.ultra : Filter ℕ) (F.lift a)).symm
+  refine (tracialMatrixQuotientMk_eq_zero_iff F.space (F.ultra : Filter ℕ)
+    _).mp ?_
+  rw [_root_.map_sub, hst, F.mk_lift, F.mk_lift, F.map_star]
+  exact sub_self _
+
+/-- **The linearity defect is exactly zero**, not asymptotically zero: this is
+what a linear lift buys. -/
+theorem lift_linear_defect (F : UltraproductFactorization τ) (c₁ c₂ : ℂ)
+    (a b : A) (n : ℕ) :
+    F.lift (c₁ • a + c₂ • b) n - c₁ • F.lift a n - c₂ • F.lift b n = 0 := by
+  have h : F.lift (c₁ • a + c₂ • b) = c₁ • F.lift a + c₂ • F.lift b := by
+    simp only [_root_.map_add, _root_.map_smul]
+  rw [h]
+  show c₁ • F.lift a n + c₂ • F.lift b n - c₁ • F.lift a n - c₂ • F.lift b n = 0
+  abel
+
+/-- The trace of the lift is the ultratrace of the class it lifts. -/
+theorem trace_eq_seqUltratrace (F : UltraproductFactorization τ) (a : A) :
+    τ a = seqUltratrace F.space F.ultra (F.lift a) := by
+  rw [F.trace_eq a, ← F.mk_lift a, tracialMatrixQuotientMk_apply, ultratrace_mk]
+
+/-- **The Hamel-basis lift as a model.**  All five clauses of the sequential
+definition hold for `φₙ a := Φ a n`, with the limits along the factorization's
+ultrafilter `ω`.
+
+What separates this from `IsHyperlinearTrace` is the filter and nothing
+else. -/
+def toModel (F : UltraproductFactorization τ) :
+    TraceApproximationModel (F.ultra : Filter ℕ) (fun Y B ↦ hsNorm Y B) τ where
+  space := F.space
+  map := fun n a ↦ F.lift a n
+  tendsto_mul a b := F.isHilbertSchmidtNull_mul a b
+  tendsto_linear c₁ c₂ a b := by
+    have hz : ∀ n : ℕ, hsNorm (F.space n)
+        (F.lift (c₁ • a + c₂ • b) n - c₁ • F.lift a n - c₂ • F.lift b n)
+          = 0 := by
+      intro n
+      rw [F.lift_linear_defect c₁ c₂ a b n]
+      exact hsNorm_zero (F.space n)
+    refine Tendsto.congr (fun n ↦ (hz n).symm) ?_
+    exact tendsto_const_nhds
+  tendsto_star a := by
+    have hnull : Tendsto (fun n ↦ hsNorm (F.space n)
+        ((F.lift (star a) - star (F.lift a)) n)) (F.ultra : Filter ℕ)
+          (nhds 0) :=
+      F.isHilbertSchmidtNull_star a
+    refine hnull.congr fun n ↦ ?_
+    show hsNorm (F.space n) (F.lift (star a) n - star (F.lift a n))
+      = hsNorm (F.space n) (F.lift (star a) n - (F.lift a n)ᴴ)
+    rw [Matrix.star_eq_conjTranspose]
+  bounded a := ⟨‖F.lift a‖, fun n ↦
+    boundedMatrixSequence_coord_norm_le (fun n ↦ F.space n) (F.lift a) n⟩
+  tendsto_trace a := by
+    have hconv : Tendsto (fun n ↦ normTrace (F.space n) (F.lift a n))
+        (F.ultra : Filter ℕ) (nhds (τ a)) := by
+      rw [F.trace_eq_seqUltratrace a]
+      exact tendsto_seqUltratrace F.space F.ultra (F.lift a)
+    exact (tendsto_iff_norm_sub_tendsto_zero.mp hconv).congr fun n ↦
+      norm_sub_rev _ _
+
+end UltraproductFactorization
+
+/-- **The returning direction, up to the filter.**  A factorized trace has
+Hilbert–Schmidt matrix models satisfying every clause of the sequential
+definition, along an ultrafilter.
+
+`IsHyperlinearTrace` is the same statement along `atTop`, so exactly one step
+separates this from the converse of `isFactoredHyperlinearTrace_of_model`:
+replacing the ultrafilter by `atTop` in the *trace* clause.  The other four
+clauses are filter-uniform.  That step is stated here rather than assumed, and
+nothing in this file or downstream of it pretends to have it. -/
+theorem exists_traceApproximationModel_of_isFactored {τ : A → ℂ}
+    (h : IsFactoredHyperlinearTrace τ) :
+    ∃ ω : Ultrafilter ℕ,
+      Nonempty (TraceApproximationModel (ω : Filter ℕ)
+        (fun Y B ↦ hsNorm Y B) τ) := by
+  obtain ⟨F⟩ := h
+  exact ⟨F.ultra, ⟨F.toModel⟩⟩
 
 end
 
