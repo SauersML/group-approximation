@@ -689,6 +689,30 @@ theorem Tsub_inf_Gsub (a b M N : ℤ) :
     obtain ⟨v, rfl⟩ := hw
     exact ⟨SemidirectProduct.inl v, emb_inl a b M N v⟩
 
+/-! ## S5b: transporting the base-group computations along `emb`
+
+`BooneGroupMachineIndex` computes `T ⊓ G_{ab}^{MN}` and `T_M ⊓ G_{ab}^{MN}` and
+exhibits the source and target sides of a quadruple as the two images of one
+parameter set.  To feed that into S4 one needs to know that `emb` carries `twSub`
+to `twSub` of the image, which is `map_basisSubgroup` transported along
+`emb_inl`. -/
+
+theorem twSub_map_emb (a b M N : ℤ) (S : Set (ℤ × ℤ)) :
+    (twSub S).map (emb a b M N) = twSub (embIdx a b M N '' S) := by
+  rw [twSub, twSub, ← map_basisSubgroup, Subgroup.map_map, Subgroup.map_map]
+  congr 1
+  exact MonoidHom.ext (emb_inl a b M N)
+
+theorem emb_mem_twSub_iff {a b M N : ℤ} (hM : M ≠ 0) (hN : N ≠ 0)
+    (S : Set (ℤ × ℤ)) (g : BaseGroup) :
+    emb a b M N g ∈ twSub (embIdx a b M N '' S) ↔ g ∈ twSub S := by
+  rw [← twSub_map_emb, Subgroup.mem_map]
+  constructor
+  · rintro ⟨x, hx, hxg⟩
+    rwa [emb_injective hM hN hxg] at hx
+  · intro hg
+    exact ⟨g, hg, rfl⟩
+
 end Base
 end BooneGroup
 end GroupApproximation
