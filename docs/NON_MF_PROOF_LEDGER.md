@@ -586,7 +586,7 @@ once in the comment-stripped manuscript; the probe is the drift detector.
 | p:intro-dglt | prose | `The case $p=2$ was settled by` | - |
 | p:intro-cde | prose | `Carri\'on--Dadarlat--Eckhardt, who also give` | - |
 | p:intro-final | prose | `therefore leaves open whether the group itself embeds` | - |
-| p:prelim-complement | prose | `Complement correction gives the injective unitary homomorphism` | - |
+| p:prelim-complement | prose | `after \emph{complement` | - |
 | p:prelim-notation | prose | `We use without comment:` | - |
 | p:prelim-defs | prose | `An \emph{operator-norm asymptotic representation} of $H$` | - |
 | p:prelim-unit | prose | `Taking $g=h=1$ gives` | - |

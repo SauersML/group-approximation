@@ -490,7 +490,7 @@
     {
       "id": "thm:transport-variants",
       "environment": "theorem",
-      "title": "transport at an arbitrary weight, and of intertwiners",
+      "title": "one-sided conjugation at an arbitrary weight, and for intertwiners",
       "statement_sha256": "97f0d64b8d1325da9d604b850c24f1aa9192f9e2530d1d6f907187bcc45d153b",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",

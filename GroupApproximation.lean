@@ -35,7 +35,6 @@ import GroupApproximation.Computability.RewriteConfluence
 import GroupApproximation.Computability.AdianRabinMarkovProperty
 import GroupApproximation.Sofic.AdjointMatrix
 import GroupApproximation.Sofic.HilbertUltraproductFaithful
-import GroupApproximation.Sofic.HilbertUltraproductSeparating
 import GroupApproximation.Sofic.HilbertUltraproductSpace
 import GroupApproximation.Sofic.ProjectionRankFlip
 import GroupApproximation.Sofic.ExactInvolutionCut

@@ -829,7 +829,7 @@ Equip each corner block with its own normalized trace $\tr_{r_n}$; all
 estimates below are relative to $r_n$ and independent of the ratio
 $r_n/d_n$.
 
-\emph{Transport on the corner.}  Since $c$ centralizes
+\emph{The commutant on the corner.}  Since $c$ centralizes
 $\iota(\Gamma)$, the sequence $(W_{c,n})$ centralizes
 $(W_{\iota(\gamma),n})$ asymptotically in operator norm, hence in
 normalized Hilbert--Schmidt norm.  By
@@ -1067,19 +1067,18 @@ by \eqref{eq:involution-reversal}; and $w\ne1$ as above.  Hence
 $\Theta(w)=1$.
 \leanverified{Sofic/LiteralNonMFEndpoint}{GroupApproximation.LiteralNonMFEndpoint.negativeCorner_kazhdanTransport_contradiction}
 
-An MF embedding of $E$ would be an injective homomorphism to $\U(\mathcal Q)$, and
-every homomorphism to $\U(\mathcal Q)$ maps the nontrivial element $w$ to $1$; so
-$E$ is not MF\@.  Suppose $\Cred(E)$ were an MF algebra, with an
-injective, possibly nonunital $*$-homomorphism
-$e\colon\Cred(E)\to\mathcal Q$.  Complement correction gives the
-injective unitary homomorphism $u\mapsto e(u)+(1-e(1))$; composing it
-with the canonical map $E\to\U(\Cred(E))$, which is injective because
-$g\mapsto\lambda_g$ is, exhibits an injective homomorphism
-$E\to\U(\mathcal Q)$.  The canonical map
-$E\to\U(\Cmax(E))$ is injective as well, since the left regular
-representation factors through $\Cmax(E)$ and sends $u_g$ to
-$\lambda_g$, so an MF embedding of $\Cmax(E)$ produces an injective
-homomorphism $E\to\U(\mathcal Q)$ after the same conversion.
+An MF embedding of $E$ would be an injective homomorphism to
+$\U(\mathcal Q)$, and every homomorphism to $\U(\mathcal Q)$ maps the
+nontrivial element $w$ to $1$; so $E$ is not MF\@.  For the two
+algebras, the canonical maps $E\to\U(\Cred(E))$ and $E\to\U(\Cmax(E))$
+are injective, the first because $g\mapsto\lambda_g$ is and the second
+because the left regular representation factors through $\Cmax(E)$;
+and an injective, possibly nonunital $*$-homomorphism
+$e\colon A\to\mathcal Q$ of a unital algebra becomes an injective
+homomorphism $\U(A)\to\U(\mathcal Q)$ after \emph{complement
+correction}, $u\mapsto e(u)+1-e(1)$.  An MF embedding of either algebra
+would compose with these to give an injective homomorphism
+$E\to\U(\mathcal Q)$.
 \end{proof}
 
 \begin{corollary}[uniform finite operator-norm obstruction]\label{cor:uniform}
@@ -1199,28 +1198,25 @@ also sofic and not LEF, and in particular not residually finite.
 \end{mainthm}
 
 \noindent
-Section~\ref{sec:Esofic} proves it through the decomposition
-$E\cong C(\mathcal G)\rtimes\Sigma$ of
-Proposition~\ref{prop:blocknormalform}: here $\mathcal G$ is the graph
-on $X$ whose cliques are the blocks of the coset space, and $W$ is the
-quotient of $E$ in which lamps at sites of different blocks
-anticommute.
+The proof is in Section~\ref{sec:Esofic}.  Let $E_0$ be the kernel of
+the exponent sum in $t$.  A finite subset of $E_0$ involves finitely
+many conjugates of $c$ and lies over a single level of the ascending
+chain, and the subgroup they generate embeds in a residually finite
+group; so $E_0$ is a directed union of such subgroups, hence LEF, and
+$E$ is a split extension of $E_0$ by $\Z$, hence sofic by the
+Elek--Szab\'o amenable-extension theorem \cite{ElekSzabo}.  That last
+step is where LEF is lost: LEF groups are MF \cite{CDE}, so $E_0$ is
+LEF and $E$ is not.
 
-That quotient is the Clifford group $W=\Cl(X)\rtimes G$ over the coset
-space $X=G/\Gamma$ of the ascending HNN extension
-$G=\Gamma_\infty\rtimes\Z$ used in the proof of
-Theorem~\ref{thm:kazhdan-clifford}, at the affine data
-\eqref{eq:affine-data}; Section~\ref{sec:witness} realizes it over
-$\mathbb Q$, writing $\Sigma$ for $G$.  The surjection $E\to W$ sends
-$w$ to the nontrivial Clifford sign $\zeta$, so functoriality
-(Lemma~\ref{lem:portable}) gives
-$\zeta\in\operatorname{Res}_{\mathrm{MF}}(W)$ and $W$ is not MF\@.  The
-extension $1\to\Cl(X)\to W\to\Sigma\to1$ has locally finite kernel and
-residually finite quotient, hence MF kernel and MF quotient, while $W$
-is not MF: the MF property is not closed under extensions
-(Section~\ref{sec:algebras-sofic}).  Corollary~\ref{cor:quotclosure}
-gives the corresponding failure for quotients, through
-$F_8\twoheadrightarrow E$.
+Filling in the anticommutation relations at every pair of distinct
+cosets maps $E$ onto the Clifford group $W=\Cl(X)\rtimes G$ built in the
+proof of Theorem~\ref{thm:kazhdan-clifford}, and carries $w$ to the
+Clifford sign, so functoriality (Lemma~\ref{lem:portable}) puts that
+sign in $\operatorname{Res}_{\mathrm{MF}}(W)$ and $W$ is not MF either.
+Its defining extension has locally finite kernel and residually finite
+quotient, both MF, so the MF property is not closed under extensions;
+and $F_8$ surjects onto $E$, so it is not closed under quotients
+(Section~\ref{sec:algebras-sofic}, Corollary~\ref{cor:quotclosure}).
 
 \clearpage
 \begingroup
@@ -1416,7 +1412,9 @@ assertion.
 \end{proof}
 
 Form the direct limit $T=\varinjlim(\bar\Gamma,\bar\alpha)$, the direct limit of $\bar\alpha$, extend it by its shift
-$\tau$, and call the resulting group $\Sigma=T\rtimes\mathbb Z$.  Let
+$\tau$, and call the resulting group $\Sigma=T\rtimes\mathbb Z$; this is
+the group $G$ of Theorem~\ref{thm:kazhdan-clifford} at the data
+\eqref{eq:affine-data}.  Let
 $j\colon\bar\Gamma\hookrightarrow\Sigma$ be the level-zero map.  Put
 $X=\Sigma/j(\bar\Gamma)$, with base point $o=j(\bar\Gamma)$.  Since
 $D^{-1}\bar v_1D\notin\bar\Gamma$ (Lemma~\ref{lem:linear}), we have
@@ -1570,13 +1568,14 @@ normalization above.
 
 \clearpage
 
-\section{Transport at arbitrary weights}\label{supp:transport-variants}
+\section{Weights and intertwiners}\label{supp:transport-variants}
 
-The transport theorem extends to arbitrary weights $\nu_n$ in place of
-the dimension; Theorem~\ref{thm:kazhdan-transport} is the case
+Theorem~\ref{thm:kazhdan-transport} holds with an arbitrary weight
+$\nu_n$ in place of the dimension, and between two asymptotic
+representations in place of one; the theorem as stated is the case
 $\nu_n=d_n$.
 
-\begin{theorem}[transport at an arbitrary weight, and of intertwiners]
+\begin{theorem}[one-sided conjugation at an arbitrary weight, and for intertwiners]
 \label{thm:transport-variants}
 Let $\Gamma$, $H$, $\iota$, and $s$ be as in
 Theorem~\ref{thm:kazhdan-transport}.
@@ -1848,9 +1847,10 @@ satisfy the preceding convergence for every $\lambda\in\Lambda$.
 
 \begin{proof}
 For a one-sided conjugator $s$, Theorem~\ref{thm:kazhdan-transport}
-gives forward transport, and the equality $P=VPV^*$ established in its
-proof gives $V^*PV=P$, hence
-$V^*\operatorname{Fix}=\operatorname{Fix}$ and reverse transport.  The
+gives the conclusion for $V_{g,n}x_nV_{g,n}^*$, and the equality
+$P=VPV^*$ established in its proof gives $V^*PV=P$, hence
+$V^*\operatorname{Fix}=\operatorname{Fix}$ and the conclusion for
+$V_{g,n}^*x_nV_{g,n}$.  The
 elements acting in both directions form a subgroup of $H$, which
 therefore contains $G^{+}(L)$.
 \end{proof}
@@ -2342,7 +2342,8 @@ admits no injective homomorphism into $\U(A)$.
 
 \begin{proof}
 Let $j\colon A\to\mathcal Q$ be the possibly nonunital inclusion into the
-ambient matrix quotient and let $\phi\colon E\to\U(A)$.  Complement correction gives
+ambient matrix quotient and let $\phi\colon E\to\U(A)$.  Complement
+correction, as in the proof of Theorem~\ref{thm:A}, gives
 \[
    \widehat j(u)=j(u)+1-j(1_A)\in\U(\mathcal Q).
 \]
@@ -2746,9 +2747,10 @@ images generate $W$.  The map sends
 $w\in\operatorname{Res}_{\mathrm{MF}}(E)$ to the
 nontrivial sign $\zeta$; functoriality (Lemma~\ref{lem:portable}) makes
 $\zeta\in\operatorname{Res}_{\mathrm{MF}}(W)$.  Hence the finitely
-generated group $W$ is not MF, and neither is $\Cred(W)$: an MF
-embedding of it would restrict to a faithful homomorphism
-$W\to\U(\mathcal Q)$ on the canonical group unitaries.
+generated group $W$ is not MF, and neither is $\Cred(W)$: complement
+correction turns an MF embedding of $\Cred(W)$ into an injective
+homomorphism $W\to\U(\mathcal Q)$, as in the proof of
+Theorem~\ref{thm:A}.
 
 \paragraph{Failure of extension permanence.}
 MF groups are not closed under extensions.  More precisely, $W$ fits into
@@ -3216,13 +3218,12 @@ of $E$ comes instead from its normal form
 \item What is $\operatorname{Res}_{\mathrm{MF}}(E)$?  It properly
 contains $\{1,w\}$ by Theorem~\ref{thm:signfree}, and
 Corollary~\ref{cor:collapsequot}, applied to $E/\langle w\rangle$ and
-its collapse defect $D$, computes it from
+its defect $D=D_{\mathrm{coll}}$, computes it from
 $\operatorname{Res}_{\mathrm{MF}}\bigl((E/\langle w\rangle)/D\bigr)$.
-Neither of these two specific collapse applications gives further
-information about that second quotient: $w$ is already trivial in
+Neither reduction constrains that last group: $w$ is already trivial in
 $E/\langle w\rangle$, and the commutators generating $D$ are already
-trivial in the quotient by $D$.  This does not rule out some other
-finite-normal, normal-Kazhdan or orbit-collapse datum in it.
+trivial in the quotient by $D$.  Some other finite-normal,
+normal-Kazhdan or orbit datum could still be present there.
 \item Is there a torsion-free finitely presented non-MF group?  Every
 finite subgroup of a torsion-free group is trivial, so
 Theorem~\ref{thm:criterion} is empty there, while
