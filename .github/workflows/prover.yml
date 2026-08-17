@@ -112,9 +112,21 @@ jobs:
                       | select(.status == "queued" or .status == "in_progress")
                     ] | length' || echo 0)
             if [ "${inflight:-0}" -gt 0 ]; then
-              echo "Another run is already verifying this exact proof tree."
+              # Cancel rather than skip.  A run that certifies nothing must
+              # not conclude `success`: the promotion workflow triggers on
+              # every successful run of this workflow, and a success with
+              # both certifying lanes skipped makes it fail its
+              # certifying-lane check.  For two days every `success` on this
+              # workflow was a scheduled run that took this branch, which is
+              # why a red kernel audit could sit behind a wall of green run
+              # badges.  A cancelled run is ignored by promotion and says
+              # what actually happened.
+              echo "Another run is already verifying this exact proof tree; cancelling."
               echo "run=false" >> "$GITHUB_OUTPUT"
               echo "lean=false" >> "$GITHUB_OUTPUT"
+              gh api -X POST \
+                "repos/${{ github.repository }}/actions/runs/${{ github.run_id }}/cancel" \
+                || true
               exit 0
             fi
           fi
