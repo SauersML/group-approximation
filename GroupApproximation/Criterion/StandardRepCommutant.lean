@@ -188,7 +188,7 @@ by matrices, enlarging the subgroup shrinks its commutant.  This is the first
 half of the manuscript's sentence: the candidate size `dim_k End_H(V)` is
 antitone in `H`, not monotone. -/
 theorem commutant_antitone {G : Type*} [Group G] {n : Type*} {R : Type*}
-    [Fintype n] [DecidableEq n] [CommRing R] (ρ : G → Matrix n n R)
+    [Fintype n] [CommRing R] (ρ : G → Matrix n n R)
     {H H' : Subgroup G} (hHH' : H ≤ H') :
     {M : Matrix n n R | ∀ g ∈ H', M * ρ g = ρ g * M}
       ⊆ {M : Matrix n n R | ∀ g ∈ H, M * ρ g = ρ g * M} :=

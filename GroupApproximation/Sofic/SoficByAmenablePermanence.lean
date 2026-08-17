@@ -418,6 +418,7 @@ variable {G : Type*} [Group G] (N : Subgroup G) [N.Normal]
 noncomputable def sect (q : G ⧸ N) : G :=
   Function.surjInv (QuotientGroup.mk_surjective (s := N)) q
 
+omit [N.Normal] in
 @[simp] theorem mk_sect (q : G ⧸ N) :
     (QuotientGroup.mk (sect N q) : G ⧸ N) = q :=
   Function.surjInv_eq (QuotientGroup.mk_surjective (s := N)) q
