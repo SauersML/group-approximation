@@ -172,7 +172,8 @@ group $E$.
 
 The group $E$ is sofic, hence hyperlinear, so neither soficity nor
 hyperlinearity implies the MF property.  Its reduced $C^*$-algebra
-$\Cred(E)$ is separable, exact and stably finite but not MF\@.  The
+$\Cred(E)$ is separable, exact and stably finite but not MF, and the
+canonical trace of $\Cmax(E)$ is not an MF trace.  The
 quotient $E/\langle w\rangle$ is also non-MF, so $\{1,w\}$ is properly
 contained in the intersection of the kernels of all homomorphisms
 $E\to\U(\mathcal Q)$.
@@ -325,7 +326,8 @@ The reduced group
 $C^*$-algebra $\Cred(E)$ is separable and stably finite but not MF
 (Theorem~\ref{thm:reduced}); it is also exact.  The group $E$ is sofic
 (Theorem~\ref{thm:Esofic}), so neither soficity nor hyperlinearity
-implies the MF property.  The
+implies the MF property.  At the level of traces, the canonical trace
+of $\Cmax(E)$ is not an MF trace (Corollary~\ref{cor:mftrace}).  The
 quotient $E/\langle w\rangle$ is not MF either, so $\{1,w\}$ is a proper
 subgroup of the MF residual of $E$ (Theorem~\ref{thm:signfree}).
 
@@ -1286,11 +1288,31 @@ and $F_8$ surjects onto $E$, so it is not closed under quotients
 \subsection*{The canonical trace}
 
 Approximation properties of a group have counterparts for traces on a
-$C^*$-algebra: a trace is \emph{MF} when it admits matrix models that are
-asymptotically multiplicative, linear and $*$-preserving in operator norm,
-uniformly bounded, and trace-correct.  No positivity, unitality or complete
-positivity is required of the models.  The obstruction of
-Theorem~\ref{thm:A} reaches that setting.
+$C^*$-algebra.  Following Shulman \cite{ShulmanTraces}, a trace is
+\emph{MF} when it admits matrix models that are asymptotically
+multiplicative, linear and $*$-preserving in operator norm, pointwise
+bounded, and trace-correct; it is \emph{hyperlinear} when the same three
+defects vanish in normalized Hilbert--Schmidt norm instead, with the
+boundedness and trace clauses unchanged.  No positivity, unitality or
+complete positivity is required of the models.  Every MF trace is
+hyperlinear, and whether the converse holds is recorded as an open
+problem in \cite{ShulmanTraces}.  The operator-norm notion was developed
+by Rainone--Schafhauser \cite{RainoneSchafhauser}, after Brown's tracial
+analogues of finite-dimensional approximation properties
+\cite{BrownMeans}, and is used by Schafhauser and by Shulman
+\cite{SchafhauserCuntz,Schafhauser,ShulmanTraces,Shulman}.
+
+The known results run toward equality of the two trace classes:
+Rainone--Schafhauser establish finite-dimensional approximation
+properties for all traces on broad classes of crossed products
+\cite{RainoneSchafhauser}, and Shulman proves that every hyperlinear
+trace on a cone is MF \cite{ShulmanCones}, with further positive classes
+in \cite{ShulmanTraces}.  In the other direction, the failure of the
+Connes embedding problem produces traces that are not MF, but the
+previously known non-MF traces do not factor through tracial
+ultraproducts of matrix algebras and in particular are not hyperlinear
+\cite{MIPRE,Schafhauser}.  The obstruction of Theorem~\ref{thm:A}
+reaches the trace setting through a different mechanism.
 
 \begin{corollary}[the canonical trace of $\Cmax(E)$ is not an MF trace]
 \label{cor:mftrace}
@@ -1328,6 +1350,15 @@ Separability of $\Cmax(E)$ follows from countability of $E$, and the trace
 properties from those of the canonical trace of $\Cred(E)$, which
 $\tau_E$ pulls back along the canonical surjection.
 \end{proof}
+
+\noindent
+We note that Schafhauser's MF condition for groups
+\cite[Definition~1.1]{Schafhauser} is a priori stronger than the
+Carri\'on--Dadarlat--Eckhardt notion used throughout this paper, and
+his Proposition~2.2 relates it to the canonical trace of the
+\emph{reduced} algebra; Corollary~\ref{cor:mftrace} concerns the weaker
+group notion and the canonical trace of $\Cmax(E)$, which is why it is
+proved rather than imported.
 
 \clearpage
 \begingroup
@@ -3509,6 +3540,13 @@ $C^*$-algebras},
 Math. Ann. \textbf{307} (1997), no.~3, 343--380,
 \doi{10.1007/s002080050039}.
 
+\bibitem[Br]{BrownMeans}
+N.~P.~Brown,
+\emph{Invariant means and finite representation theory of
+$C^*$-algebras},
+Mem. Amer. Math. Soc. \textbf{184} (2006), no.~865,
+\doi{10.1090/memo/0865}, \arxiv{math/0304009}.
+
 \bibitem[CDE]{CDE}
 J.~R. Carri\'on, M.~Dadarlat, and C.~Eckhardt,
 \emph{On groups with quasidiagonal $C^*$-algebras},
@@ -3695,16 +3733,37 @@ M.~O.~Rabin,
 \emph{Recursive unsolvability of group theoretic problems},
 Ann. of Math. (2) \textbf{67} (1958), 172--194.
 
+\bibitem[RS]{RainoneSchafhauser}
+T.~Rainone and C.~Schafhauser,
+\emph{Crossed products of nuclear $C^*$-algebras and their traces},
+Adv. Math. \textbf{347} (2019), 105--149,
+\doi{10.1016/j.aim.2019.01.045}, \arxiv{1601.06090}.
+
 \bibitem[Sc]{Schafhauser}
 C.~Schafhauser,
 \emph{Finite dimensional approximations of certain amalgamated free
 products of groups},
 preprint, 2023, \arxiv{2306.02498}.
 
+\bibitem[Sc17]{SchafhauserCuntz}
+C.~Schafhauser,
+\emph{MF traces and the Cuntz semigroup},
+preprint, 2017, \arxiv{1705.06555}.
+
 \bibitem[Sh]{Shulman}
 T.~Shulman,
 \emph{The MF property for amalgamated free products},
 preprint, 2026, \arxiv{2603.13564}.
+
+\bibitem[ShC]{ShulmanCones}
+T.~Shulman,
+\emph{Sections and cones},
+preprint, 2025, \arxiv{2507.22783}.
+
+\bibitem[ShT]{ShulmanTraces}
+T.~Shulman,
+\emph{Homotopy lifting, asymptotic homomorphisms, and traces},
+preprint, 2025, \arxiv{2508.00125}.
 
 \bibitem[Slo17]{SlofstraCorrelations}
 W.~Slofstra,
