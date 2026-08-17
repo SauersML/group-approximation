@@ -204,21 +204,23 @@ numerator. -/
     (a b : BoundedMatrixSequence X) (n : ℕ) :
     (a * b - 1) n = a n * b n - 1 := rfl
 
-/-- The coordinatewise estimate assembles into a statement about the `c₀`
-ideal: if `a b` is asymptotically the identity, so is `b a`. -/
-theorem isC0MatrixSequence_swap
-    {a b : BoundedMatrixSequence X} (hab : IsNullMatrixSequence X cofinite (a * b - 1)) :
-    IsNullMatrixSequence X cofinite (b * a - 1) := by
-  have hab' : Tendsto (fun n ↦ ‖(a * b - 1) n‖) cofinite (nhds 0) := hab
-  have hhalf : ∀ᶠ n in cofinite, ‖(a * b - 1) n‖ ≤ (1 / 2 : ℝ) := by
+/-- The coordinatewise estimate assembles into a statement about the null
+ideal at **any** filter: if `a b` is asymptotically the identity along `l`, so
+is `b a`.  Nothing in the Neumann-series estimate above is special to the
+cofinite filter, which is what lets the same argument serve `B_c` and `B_ω`. -/
+theorem isNullMatrixSequence_swap (l : Filter ℕ)
+    {a b : BoundedMatrixSequence X} (hab : IsNullMatrixSequence X l (a * b - 1)) :
+    IsNullMatrixSequence X l (b * a - 1) := by
+  have hab' : Tendsto (fun n ↦ ‖(a * b - 1) n‖) l (nhds 0) := hab
+  have hhalf : ∀ᶠ n in l, ‖(a * b - 1) n‖ ≤ (1 / 2 : ℝ) := by
     have hnear := (Metric.tendsto_nhds.mp hab') (1 / 2 : ℝ) (by norm_num)
     filter_upwards [hnear] with n hn
     simpa only [Real.dist_eq, sub_zero, abs_norm] using hn.le
-  show Tendsto (fun n ↦ ‖(b * a - 1) n‖) cofinite (nhds 0)
-  have hsq : Tendsto (fun n ↦ 2 * ‖a‖ * ‖b‖ * ‖(a * b - 1) n‖) cofinite
+  show Tendsto (fun n ↦ ‖(b * a - 1) n‖) l (nhds 0)
+  have hsq : Tendsto (fun n ↦ 2 * ‖a‖ * ‖b‖ * ‖(a * b - 1) n‖) l
       (nhds 0) := by
     simpa only [mul_zero] using hab'.const_mul (2 * ‖a‖ * ‖b‖)
-  have hle : ∀ᶠ n in cofinite,
+  have hle : ∀ᶠ n in l,
       ‖(b * a - 1) n‖ ≤ 2 * ‖a‖ * ‖b‖ * ‖(a * b - 1) n‖ := by
     filter_upwards [hhalf] with n hn
     show ‖b n * a n - 1‖ ≤ 2 * ‖a‖ * ‖b‖ * ‖a n * b n - 1‖
@@ -250,7 +252,7 @@ instance normMatrixCStarCorona_isDedekindFiniteMonoid :
     have hab : IsNullMatrixSequence X cofinite (a * b - 1) :=
       (normMatrixCStarCoronaMk_eq_zero_iff X _).mp h0
     have hba : IsNullMatrixSequence X cofinite (b * a - 1) :=
-      isC0MatrixSequence_swap X hab
+      isNullMatrixSequence_swap X cofinite hab
     have h1 : normMatrixCStarCoronaMk X (b * a - 1) = 0 :=
       (normMatrixCStarCoronaMk_eq_zero_iff X _).mpr hba
     rw [map_sub, map_mul, map_one] at h1
@@ -381,24 +383,26 @@ Two differences remain, both formal and both recorded rather than papered over:
   `CStarRing.norm_of_mem_unitary` and so needs the coordinate algebra to be
   nontrivial.  Removing it there would make the printed route hypothesis-free.
 
-**Not certified here.**  The manuscript's *unnumbered* discussion following this
-lemma passes to a free ultrafilter `ω`, forms `B_ω = ∏_ω B(K_n)` and the
-Hilbert-space ultraproduct `K_ω`, and asserts that the action of `B_ω` on `K_ω`
-is faithful and that `ran P ⊆ ran Q` is equivalent to `P ≤ Q`.  None of that is
-proved anywhere in this development, and none of it is what this declaration
-says; the printed proof of `\label{thm:kazhdan-transport}` uses it.  Because it
-sits in prose rather than in a numbered environment, no manifest gate sees it.
-The record is in the status section of
-`Sofic/UltraproductKazhdanTransport.lean`, under UF.01--UF.03.
+**Not this declaration, but no longer uncertified (updated 2026-08-17).**  The
+manuscript's *unnumbered* discussion following this lemma passes to a free
+ultrafilter `ω`, forms `B_ω = ∏_ω B(K_n)` and the Hilbert-space ultraproduct
+`K_ω`, and asserts that the action of `B_ω` on `K_ω` is faithful and that
+`ran P ⊆ ran Q` is equivalent to `P ≤ Q`.  That is *not* what this declaration
+says, and it used to be true that none of it was proved anywhere; the earlier
+version of this docstring recorded that.  It is now proved, in
+`Sofic/OmegaOperatorUltraproduct.lean`: `omegaAct_injective` is faithfulness
+and `range_le_iff_mul_eq` is the projection order, both for the genuine
+`ω`-indexed corona.
 
-Faithfulness in particular is *false* for this algebra acting on an
-`ω`-ultraproduct: `UltraproductAdjointAmbient.kt_04_norm_eq_limsup` identifies
-the corona norm with `limsup_{atTop} ‖a_n‖`, so choosing `S ∈ ω` with infinite
-complement and `A_n = 0` for `n ∈ S`, `A_n = 1` otherwise gives a nonzero corona
-class annihilating every vector of `K_ω`.  It would need the genuine
-`ω`-indexed corona.  The formalized transport chain never uses it, reading
-`Fix ⊆ V·Fix` back as `P ≤ Q` through the algebraic absorption identities
-`UltraproductKazhdanProjection.kt_09_*` instead. -/
+The reason it needed that corona is worth keeping in view, because it is a
+statement about *this* algebra: faithfulness is **false** here.
+`UltraproductAdjointAmbient.kt_04_norm_eq_limsup` identifies the corona norm
+with `limsup_{atTop} ‖a_n‖`, so choosing `S ∈ ω` with infinite complement and
+`A_n = 0` for `n ∈ S`, `A_n = 1` otherwise gives a nonzero corona class
+annihilating every vector of `K_ω`.  The formalized transport chain still never
+uses faithfulness, reading `Fix ⊆ V·Fix` back as `P ≤ Q` through the algebraic
+absorption identities `UltraproductKazhdanProjection.kt_09_*`; what has changed
+is that the printed route is now available beside it rather than absent. -/
 theorem kt_06_ultraproduct_finite :
     ∀ (Z : ℕ → FiniteModel) [∀ n, Nonempty (Z n)]
       {sigma : NormMatrixCStarCorona (fun n ↦ Z n)}
