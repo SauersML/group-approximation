@@ -286,6 +286,87 @@ theorem smallLift_range {A : Subgroup G} (hA : Good A φ) :
     · rw [Set.mem_singleton_iff] at hg
       exact ⟨HNNExtension.t, by simp only [smallLift, HNNExtension.lift_t, hg]⟩
 
+/-- **The observation that removes the induction.**  For a letter *of `A`*,
+lying in the associated subgroup of the small extension is the same as lying in
+the associated subgroup of the big one --- because the former is by definition
+the comap of the latter. -/
+theorem mem_toSubgroup_subOne_iff {A : Subgroup G} (u : ℤˣ) (a : A) :
+    a ∈ HNNExtension.toSubgroup (subOne A Asub) (subOne A Bsub) u ↔
+      (a : G) ∈ HNNExtension.toSubgroup Asub Bsub u := by
+  rcases Int.units_eq_one_or u with rfl | rfl
+  · simp only [HNNExtension.toSubgroup_one, subOne, Subgroup.mem_subgroupOf]
+  · simp only [HNNExtension.toSubgroup_neg_one, subOne, Subgroup.mem_subgroupOf]
+
+/-- A reduced word over `A` pushes forward to a reduced word over `G`.  The
+`chain` condition transfers letter by letter, by the observation above. -/
+def pushWord {A : Subgroup G}
+    (w : HNNExtension.NormalWord.ReducedWord A (subOne A Asub) (subOne A Bsub)) :
+    HNNExtension.NormalWord.ReducedWord G Asub Bsub where
+  head := (w.head : G)
+  toList := w.toList.map (fun x => (x.1, (x.2 : G)))
+  chain := by
+    rw [List.isChain_map]
+    refine w.chain.imp ?_
+    rintro ⟨u, a⟩ ⟨v, b⟩ h hmem
+    exact h ((mem_toSubgroup_subOne_iff u a).mpr hmem)
+
+@[simp] theorem pushWord_toList {A : Subgroup G}
+    (w : HNNExtension.NormalWord.ReducedWord A (subOne A Asub) (subOne A Bsub)) :
+    (pushWord w).toList
+      = w.toList.map (fun x => (x.1, (x.2 : G))) := rfl
+
+/-- The small extension's map carries products of words to products of the
+pushed-forward words. -/
+theorem smallLift_prod {A : Subgroup G} (hA : Good A φ)
+    (w : HNNExtension.NormalWord.ReducedWord A (subOne A Asub) (subOne A Bsub)) :
+    smallLift φ hA (w.prod (goodEquiv φ hA)) = (pushWord w).prod φ := by
+  rw [HNNExtension.NormalWord.ReducedWord.prod, HNNExtension.NormalWord.ReducedWord.prod, map_mul,
+    map_list_prod, List.map_map, pushWord, List.map_map]
+  congr 1
+  refine congrArg List.prod (List.map_congr_left ?_)
+  intro x _
+  simp only [Function.comp_apply, map_mul, map_zpow, smallLift,
+    HNNExtension.lift_t, HNNExtension.lift_of, MonoidHom.comp_apply,
+    Subgroup.coe_subtype]
+
+/-- **S4, the good-subgroup lemma.**  For a good `A`, the only elements of
+Simpson's `A'` that lie in the base group are the ones that were already in `A`.
+
+The proof needs no induction on stable letters: take a normal word for the
+element in the *small* extension, push it forward --- which is legitimate
+because `A₁` is the comap of `Asub`, so reducedness transfers --- and apply
+Britton's Lemma in the big extension. -/
+theorem liftedSubgroup_inf_range {A : Subgroup G} (hA : Good A φ) :
+    liftedSubgroup φ A ⊓ (HNNExtension.of : G →* HNNExtension G Asub Bsub φ).range
+      = A.map (HNNExtension.of : G →* HNNExtension G Asub Bsub φ) := by
+  classical
+  refine le_antisymm ?_ (map_of_le_liftedSubgroup_inf φ A)
+  rintro g ⟨hg1, hg2⟩
+  rw [← smallLift_range φ hA] at hg1
+  obtain ⟨u, rfl⟩ := hg1
+  obtain ⟨d⟩ :=
+    (inferInstance :
+      Nonempty (HNNExtension.NormalWord.TransversalPair A (subOne A Asub) (subOne A Bsub)))
+  set w : HNNExtension.NormalWord d := u • HNNExtension.NormalWord.empty with hwdef
+  have hw : w.toReducedWord.prod (goodEquiv φ hA) = u := by
+    rw [hwdef]
+    simp [HNNExtension.NormalWord.prod_smul, HNNExtension.NormalWord.prod_empty]
+  have hmem : (pushWord w.toReducedWord).prod φ ∈
+      (HNNExtension.of : G →* HNNExtension G Asub Bsub φ).range := by
+    rw [← smallLift_prod φ hA, hw]
+    exact hg2
+  have hnil :=
+    HNNExtension.ReducedWord.toList_eq_nil_of_mem_of_range φ
+      (pushWord w.toReducedWord) hmem
+  rw [pushWord_toList, List.map_eq_nil_iff] at hnil
+  refine ⟨((w.toReducedWord.head : A) : G), (w.toReducedWord.head).2, ?_⟩
+  have hu : u = HNNExtension.of w.toReducedWord.head := by
+    rw [← hw, HNNExtension.NormalWord.ReducedWord.prod, hnil]
+    simp
+  rw [hu]
+  simp only [smallLift, HNNExtension.lift_of, MonoidHom.comp_apply,
+    Subgroup.coe_subtype]
+
 /-- The pinch in the other direction. -/
 theorem good_pinch_inv {A : Subgroup G} (hA : Good A φ) (b : Bsub)
     (hb : (b : G) ∈ A) :
