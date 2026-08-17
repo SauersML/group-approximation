@@ -175,6 +175,31 @@ The *definition* CDE supply is load-bearing and is graded in the ledger at
 `INT.18` and `PRE.16`, where it is `EXACT`: `IsCDEOperatorMF` is that definition.
 What is recorded here is only the attribution and the Abels'-group example.
 
+### BT.16 — property (T) of the affine base is classical
+
+*Sentence.* "By Remark~\ref{rem:classical-base} the presentation
+\eqref{eq:gamma-presentation} defines $\mathbb Z^3\rtimes\SL_3(\mathbb Z)$,
+which has property~\textup{(T)} \cite[Example~1.7.4(i)]{BHV}."
+
+*Keys.* `BHV`.  *Anchor.* `prop:literal-base-T`.  *Load-bearing.* no.
+*Recorded.* 2026-08-17.
+
+*Why this is not a trust surface, which is the whole point of the entry.*  This
+is the only literature the printed proof of `prop:literal-base-T` now contains,
+and after commit `3a45fa60` it is one of only two sentences in that proof.  A
+reader could reasonably conclude that the manuscript's property-`(T)` input is
+quoted rather than proved.  It is not.  The badge on the proposition itself,
+`LiteralBaseP13PropertyTBridge.manuscriptBaseHasKazhdanPropertyT`, proves that
+the twenty-relator base has property `(T)` in **both** the real-orthogonal and
+the complex-unitary formulations, intrinsically, with an explicit Kazhdan pair
+and no literature premise of any kind.  Deleting the citation from the
+manuscript would cost the exposition a pointer and would cost the development
+nothing.
+
+The citation is nonetheless correct as scholarship and is the standard
+reference: BHV Example 1.7.4(i) is where property `(T)` for
+`ℤⁿ ⋊ SL_n(ℤ)`, `n ≥ 3`, is stated.
+
 ### BT.25 — the classical presentation
 
 *Sentence.* "The eight relations \eqref{eq:sl3presentation} present
