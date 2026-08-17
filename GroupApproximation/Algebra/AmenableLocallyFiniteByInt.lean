@@ -94,7 +94,7 @@ theorem hasInvariantMean_of_directed_cyclic {ι : Type} (hι : Nonempty ι)
   haveI := hι
   exact hasInvariantMean_of_directed K
     (fun i ↦ (hasInvariantMean_congr (hiso i).some hasInvariantMean_int).some)
-    hmono hcover
+    hι hmono hcover
 
 /-! ## Locally finite by the integers -/
 
