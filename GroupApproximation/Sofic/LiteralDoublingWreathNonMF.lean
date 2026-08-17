@@ -39,12 +39,14 @@ theorem c_mul_self : c * c = 1 := by
     decide
   exact Multiplicative.toAdd.injective this
 
-/-! ## Countability of the concrete base
+/-! ## Countability of the concrete base -/
 
-The countability of `Matˣ` and of `gammaBar` is not restated here: both are
-already instances in `Monsters/ExplicitLinearModel.lean`, which this module
-imports, so instance resolution finds them.  Naming them again would prove the
-same two propositions a second time. -/
+instance matUnits_countable : Countable Matˣ :=
+  Function.Injective.countable
+    (f := fun u : Matˣ => ((u : Mat), ((u⁻¹ : Matˣ) : Mat)))
+    (fun _ _ h => Units.ext (congrArg Prod.fst h))
+
+instance gammaBar_countable : Countable ↥gammaBar := Subtype.countable
 
 noncomputable instance cosetsDecEq :
     DecidableEq (Cosets conjD conjD_injective) := Classical.decEq _

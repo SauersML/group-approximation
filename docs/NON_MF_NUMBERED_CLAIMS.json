@@ -33,7 +33,7 @@
         {
           "role": "exact",
           "module": "Sofic/LiteralTietzePresentation",
-          "declaration": "GroupApproximation.LiteralTietzePresentation.manuscriptTietzeSixGeneratorPresentation",
+          "declaration": "GroupApproximation.LiteralTietzePresentation.exists_sixGenerator_thirtyTwo_presentation",
           "covers": "a printed conclusion of the proposition"
         }
       ]
