@@ -819,5 +819,22 @@ theorem isSofic_blockClifford_tower {Γ : Type*} [Group Γ]
   exact (isSofic_mulEquiv_iff
     (SemidirectAssoc.assocEquiv (shiftHom α hα) f)).mp houter
 
+/-! ## The closed form of the window statement
+
+`residuallyFinite_window` reads the file-wide `variable (I) (B)` and takes its
+finite site set in the declaration header, so its elaborated type has leading
+inputs that the header does not print.  The manuscript's `lem:window` is the
+same proposition with every binder after the colon; the index names differ from
+the section variables so that nothing here depends on what is in scope. -/
+
+/-- **Manuscript `lem:window`.**  For every block family and every finite set of
+sites, the window subgroup they generate is residually finite. -/
+theorem manuscriptResiduallyFiniteWindow :
+    ∀ (J : Type) (C : J → Type) [∀ j, DecidableEq (C j)] [∀ j, Fintype (C j)]
+      (S : Finset ((j : J) × C j)),
+      Group.ResiduallyFinite ↥(window J C S) := by
+  intro J C _ _ S
+  exact residuallyFinite_window J C S
+
 end BlockCliffordTowerSofic
 end GroupApproximation

@@ -1481,6 +1481,25 @@ theorem finite_telescopeLevel_block_orbit (n : ℕ) (b : Block) :
   rw [himg]
   exact (finite_telescopeLevel_site_orbit n ξ).image _
 
+/-! ## Closed forms of the two clauses the manuscript badges
+
+`toModel_siteLamp` and `finite_telescopeLevel_site_orbit` take their arguments
+in the declaration header, so the proposition each names has leading inputs.
+The manuscript's `prop:blocknormalform` states both with every binder after the
+colon. -/
+
+/-- **Manuscript `prop:blocknormalform`:** the conjugate `g c g⁻¹` is the lamp
+at the site `gB`. -/
+theorem manuscriptSiteLampImage :
+    ∀ ξ : Site, toModel (siteLamp ξ) = SemidirectProduct.inl (lampAt ξ) :=
+  fun ξ ↦ toModel_siteLamp ξ
+
+/-- **Manuscript `prop:blocknormalform`:** every telescope level has finite
+orbits on sites. -/
+theorem manuscriptFiniteLevelSiteOrbit :
+    ∀ (n : ℕ) (ξ : Site), (MulAction.orbit ↥(telescopeLevel n) ξ).Finite :=
+  fun n ξ ↦ finite_telescopeLevel_site_orbit n ξ
+
 end
 
 end LiteralBlockNormalForm
