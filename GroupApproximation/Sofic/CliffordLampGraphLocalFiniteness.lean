@@ -173,9 +173,12 @@ theorem not_isLocallyFiniteGroup_lampFactor {ξ η : Site} (hd : η ≠ ξ)
       DihedralGroup.r_one_pow]
   have hinj : Function.Injective (fun k : ℕ => (z ^ k : H)) := by
     intro a b hab
+    -- `hab` is a beta-redex `(fun k ↦ z ^ k) a = …`, which `rw` cannot match;
+    -- retyping it contracts the redex.
+    have hab' : (z : H) ^ a = (z : H) ^ b := hab
     have h : DihedralGroup.r ((a : ℕ) : ZMod 0)
         = DihedralGroup.r ((b : ℕ) : ZMod 0) := by
-      rw [← hpow a, ← hpow b, hab]
+      rw [← hpow a, ← hpow b, hab']
     simpa using h
   exact absurd hinj (not_injective_infinite_finite _)
 
@@ -184,7 +187,9 @@ two sites in different blocks are non-adjacent, because
 `blockOf_eq_of_adjacent` says adjacent sites share a block. -/
 theorem not_isLocallyFiniteGroup_lampFactor_of_two_blocks {ξ η : Site}
     (hb : blockOf ξ ≠ blockOf η) : ¬ IsLocallyFiniteGroup LampFactor := by
-  refine not_isLocallyFiniteGroup_lampFactor (fun hd => hb ?_) (fun hadj => hb ?_)
+  -- the sites are invisible in the conclusion, so they must be named
+  refine not_isLocallyFiniteGroup_lampFactor (ξ := ξ) (η := η)
+    (fun hd => hb ?_) (fun hadj => hb ?_)
   · rw [hd]
   · exact blockOf_eq_of_adjacent hadj
 

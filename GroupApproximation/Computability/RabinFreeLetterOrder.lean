@@ -53,7 +53,7 @@ namespace RabinFreeLetterOrder
 
 open RabinConstructionSource PresentedGroupBasisChange
 
-variable {α : Type*} (rels : Set (FreeGroup α))
+variable {α : Type} (rels : Set (FreeGroup α))
 
 /-! ## The retraction onto the free letter -/
 

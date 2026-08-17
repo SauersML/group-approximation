@@ -91,7 +91,12 @@ theorem normMatrixCStarCorona_mul_star_eq_one_of_star_mul_eq_one
   obtain ⟨a, rfl⟩ := normMatrixCStarCoronaMk_surjective (fun n ↦ X n) x
   have hgramZero :
       normMatrixCStarCoronaMk (fun n ↦ X n) (star a * a - 1) = 0 := by
-    rw [map_sub, map_mul, map_one]
+    -- naming the homomorphism is not cosmetic: with `f` left as a metavariable
+    -- the `AddMonoidHomClass` search runs over the whole instance graph and
+    -- times out, while pinning it makes the class immediate.
+    rw [map_sub (normMatrixCStarCoronaMk (fun n ↦ X n)),
+      map_mul (normMatrixCStarCoronaMk (fun n ↦ X n)),
+      map_one (normMatrixCStarCoronaMk (fun n ↦ X n))]
     exact sub_eq_zero.mpr hx
   have hgram : IsC0MatrixSequence (fun n ↦ X n) (star a * a - 1) :=
     (normMatrixCStarCoronaMk_eq_zero_iff (fun n ↦ X n) _).mp hgramZero
@@ -134,7 +139,7 @@ theorem normMatrixCStarCorona_mul_star_eq_one_of_star_mul_eq_one
         (hgramTendsto.const_mul 2).const_mul ‖a‖
   have hmk : normMatrixCStarCoronaMk (fun n ↦ X n) (unitarySequenceBounded X u)
       = normMatrixCStarCoronaMk (fun n ↦ X n) a := by
-    rw [← sub_eq_zero, ← map_sub]
+    rw [← sub_eq_zero, ← map_sub (normMatrixCStarCoronaMk (fun n ↦ X n))]
     exact (normMatrixCStarCoronaMk_eq_zero_iff (fun n ↦ X n) _).mpr hdiff
   have hus : unitarySequenceBounded X u * star (unitarySequenceBounded X u) = 1 := by
     ext n i j

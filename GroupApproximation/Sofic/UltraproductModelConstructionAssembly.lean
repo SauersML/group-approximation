@@ -296,7 +296,7 @@ theorem nonempty_ultraproductAdjointModel
       act (natModels d) (dimWeight (natModels d)) ω 1 ζ = ζ := by
     intro ζ
     simp only [act_one (natModels d) (dimWeight (natModels d)) ω hwnn hω,
-      LinearMap.id_coe, LinearMap.id_apply, id_eq]
+      LinearMap.id_apply]
   have hact_sub : ∀ (a b : AdjointCorona (natModels d))
       (ζ : Vec (natModels d) (dimWeight (natModels d)) ω),
       act (natModels d) (dimWeight (natModels d)) ω (a - b) ζ =

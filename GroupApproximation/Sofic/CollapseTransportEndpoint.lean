@@ -109,20 +109,26 @@ theorem exists_stage_generators_small
       kazhdan := hkazhdan
       compresses := hcomp
       comm_c := fun _ ↦ Commute.one_left _ }
+  -- The rescaled primitive, *named at the reindexed model*.  `B'.model j` and
+  -- `B.model (φ j)` are definitionally equal — `reindex_model` is `rfl` — but
+  -- `unflatE (W j)` infers the latter while `B'.map j g` infers the former, and
+  -- `HMul` is synthesized from the inferred types, not up to defeq.  Binding the
+  -- family with a declared type makes every leaf below syntactically `B'`-typed.
+  set X : ∀ j, Matrix (B'.model j) (B'.model j) ℂ :=
+    fun j ↦ ((Real.sqrt (ρ j) : ℝ) : ℂ) • unflatE (W j) with hXdef
   -- the two hypotheses of the transport theorem, at the rank weight
-  have hbound : IsScaledMassBounded B' ρ
-      (fun j ↦ ((Real.sqrt (ρ j) : ℝ) : ℂ) • unflatE (W j)) :=
-    isScaledMassBounded_rankScaled B' ρ hρ W hWn
+  have hbound : IsScaledMassBounded B' ρ X := by
+    rw [hXdef]
+    exact isScaledMassBounded_rankScaled B' ρ hρ W hWn
   have hS' : ∀ a ∈ S, ScaledMassVanishing B' ρ (fun j ↦
-      ((Real.sqrt (ρ j) : ℝ) : ℂ) • unflatE (W j) -
+      X j -
         (B'.map j (C.t * C.iota a * C.t⁻¹) :
-            Matrix (B'.model j) (B'.model j) ℂ) *
-          (((Real.sqrt (ρ j) : ℝ) : ℂ) • unflatE (W j)) *
+            Matrix (B'.model j) (B'.model j) ℂ) * X j *
           (B'.map j (C.t * C.iota a * C.t⁻¹) :
             Matrix (B'.model j) (B'.model j) ℂ)ᴴ) := by
     intro a haS
     have hgeq : s * iota a * s⁻¹ = iota (da a) := hda a
-    rw [show C.t * C.iota a * C.t⁻¹ = iota (da a) from hgeq]
+    rw [show C.t * C.iota a * C.t⁻¹ = iota (da a) from hgeq, hXdef]
     -- `(W2)` makes the printed displacement vanish at the compressed generator
     have hb : ∃ N, ∀ j ≥ N,
         CollapseWordMetric.bVec B V S (φ j) (da a) = 0 := by
@@ -150,12 +156,17 @@ theorem exists_stage_generators_small
   have hkpos : 1 ≤ kNorm B V S (φ j₀) :=
     hNm (φ j₀) (le_trans hjNm (hφ j₀))
   have hρpos : 0 < ρ j₀ := by
-    rw [hρdef]
+    -- `rw` leaves the beta-redex `(fun j ↦ ↑(kNorm …)) j₀`, which `mod_cast`
+    -- cannot see through; `simp only` contracts it.
+    simp only [hρdef]
     exact_mod_cast lt_of_lt_of_le Nat.zero_lt_one hkpos
   refine ⟨φ j₀, hkpos, fun a haS ↦ ?_⟩
   -- the primitive is barely moved by the generator
   have hmass := hNa a j₀
     (le_trans (Finset.le_sup (f := Na) haS) (le_max_left _ _))
+  -- unfold the naming binder again: the calc below speaks of the rescaled
+  -- primitive itself, not of `X`
+  simp only [hXdef] at hmass
   -- `B'.map j₀ (C.iota a)` and `B.map (φ j₀) (iota a)` are definitionally the
   -- same unitary, but only the latter is syntactically what the diagonalization
   -- speaks about, and `linarith` compares atoms syntactically; so every bound

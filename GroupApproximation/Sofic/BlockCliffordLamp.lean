@@ -237,6 +237,7 @@ theorem commutator_lamp_lamp {i : I} {b b' : B i} (h : b ≠ b') :
     _ = 1 * sign I B := by rw [h2]
     _ = sign I B := one_mul _
 
+omit [DecidableEq I] [Fintype I] [∀ i, DecidableEq (B i)] [∀ i, Fintype (B i)] in
 /-- The sign is central. -/
 theorem sign_commute (g : BlockClifford I B) :
     Commute (sign I B) g := by
@@ -250,6 +251,7 @@ theorem sign_commute (g : BlockClifford I B) :
   rw [Subgroup.mem_centralizer_singleton_iff] at hmem
   exact Commute.symm hmem
 
+omit [DecidableEq I] [Fintype I] [∀ i, DecidableEq (B i)] [∀ i, Fintype (B i)] in
 theorem sign_mem_center : sign I B ∈ Subgroup.center (BlockClifford I B) :=
   Subgroup.mem_center_iff.mpr fun g => ((sign_commute I B g).symm).eq
 

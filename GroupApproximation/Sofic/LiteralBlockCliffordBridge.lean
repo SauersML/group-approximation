@@ -64,10 +64,12 @@ theorem isIrreflexive_of_siteA_ne_siteB (h : siteA ≠ siteB) : IsIrreflexive :=
   intro ξ hadj
   have key : ∀ g : Vertical, g • siteA = ξ → g • siteB = ξ → False := by
     intro g ha hb
-    exact h (smul_right_injective' (a := g) (ha.trans hb.symm))
+    exact h (smul_right_injective' (g := g) (ha.trans hb.symm))
+  -- at `η = ξ` the two disjuncts of `Adjacent ξ ξ` are the same statement, so
+  -- both branches hand `key` its arguments in the same order
   rcases hadj with ⟨g, ha, hb⟩ | ⟨g, ha, hb⟩
   · exact key g ha hb
-  · exact key g hb ha
+  · exact key g ha hb
 where
   /-- `g • ·` is injective on the coset space. -/
   smul_right_injective' {g : Vertical} {x y : Site} (hxy : g • x = g • y) :
@@ -125,7 +127,9 @@ a common block (proved) and distinctness (irreflexivity). -/
 /-- Block relators map to graph relators, given completeness. -/
 theorem freeEquiv_maps_relators (hc : IsCompleteOnBlocks) :
     ∀ w ∈ relators Block BlockSites, freeEquiv w ∈ lampRelatorSet := by
-  rintro w (- | p | p | ⟨b, ξ, η, hne⟩)
+  -- `braiding` keeps its block and its two sites implicit, so the pattern has
+  -- to open them with `@`
+  rintro w (- | p | p | @⟨b, ξ, η, hne⟩)
   · exact IsLampRelator.sign_sq
   · exact IsLampRelator.lamp_sq _
   · exact IsLampRelator.sign_comm _
@@ -136,7 +140,7 @@ theorem freeEquiv_maps_relators (hc : IsCompleteOnBlocks) :
 /-- Graph relators map to block relators, given irreflexivity. -/
 theorem freeEquiv_symm_maps_relators (hi : IsIrreflexive) :
     ∀ w ∈ lampRelatorSet, freeEquiv.symm w ∈ relators Block BlockSites := by
-  rintro w (- | ξ | ξ | ⟨ξ, η, hadj⟩)
+  rintro w (- | ξ | ξ | @⟨ξ, η, hadj⟩)
   · exact IsRelator.sign_sq
   · exact IsRelator.lamp_sq _
   · exact IsRelator.sign_comm _
@@ -180,16 +184,22 @@ respectively, so this is `equivPresentedGroup_apply_of` followed by
 transport along a set equality. -/
 @[simp] theorem lampEquiv_sign (hc : IsCompleteOnBlocks) (hi : IsIrreflexive) :
     lampEquiv hc hi (sign Block BlockSites) = lampSign := by
-  show QuotientGroup.quotientMulEquivOfEq _
-      (PresentedGroup.equivPresentedGroup _ genEquiv (PresentedGroup.of _)) = _
+  -- every placeholder here is a relator set that no later argument pins down,
+  -- so they are written out
+  show QuotientGroup.quotientMulEquivOfEq
+      (congrArg Subgroup.normalClosure (image_relators hc hi))
+      (PresentedGroup.equivPresentedGroup (relators Block BlockSites) genEquiv
+        (PresentedGroup.of (Sum.inl ()))) = lampSign
   rw [PresentedGroup.equivPresentedGroup_apply_of]
   rfl
 
 @[simp] theorem lampEquiv_lamp (hc : IsCompleteOnBlocks) (hi : IsIrreflexive)
     (p : (b : Block) × BlockSites b) :
     lampEquiv hc hi (lamp Block BlockSites p) = lampAt (siteEquiv p) := by
-  show QuotientGroup.quotientMulEquivOfEq _
-      (PresentedGroup.equivPresentedGroup _ genEquiv (PresentedGroup.of _)) = _
+  show QuotientGroup.quotientMulEquivOfEq
+      (congrArg Subgroup.normalClosure (image_relators hc hi))
+      (PresentedGroup.equivPresentedGroup (relators Block BlockSites) genEquiv
+        (PresentedGroup.of (Sum.inr p))) = lampAt (siteEquiv p)
   rw [PresentedGroup.equivPresentedGroup_apply_of]
   rfl
 
@@ -205,19 +215,29 @@ def blockAutHom (hc : IsCompleteOnBlocks) (hi : IsIrreflexive) :
     Vertical →* MulAut (BlockClifford Block BlockSites) where
   toFun v :=
     (lampEquiv hc hi).trans ((lampAutHom v).trans (lampEquiv hc hi).symm)
+  -- both cancellations are done by hand.  `simp` proves them too, but the term
+  -- it produces has to be rechecked by the kernel through `lampEquiv`, which is
+  -- a composite of two quotient equivalences, and that times out.
   map_one' := by
     refine MulEquiv.ext fun n ↦ ?_
-    simp [map_one]
+    show (lampEquiv hc hi).symm (lampAutHom 1 (lampEquiv hc hi n)) = n
+    rw [map_one, MulAut.one_apply, MulEquiv.symm_apply_apply]
   map_mul' v w := by
     refine MulEquiv.ext fun n ↦ ?_
-    simp [map_mul, MulAut.mul_apply]
+    show (lampEquiv hc hi).symm (lampAutHom (v * w) (lampEquiv hc hi n))
+      = (lampEquiv hc hi).symm (lampAutHom v (lampEquiv hc hi
+          ((lampEquiv hc hi).symm (lampAutHom w (lampEquiv hc hi n)))))
+    rw [MulEquiv.apply_symm_apply, map_mul, MulAut.mul_apply]
 
 /-- The vertical action fixes the sign. -/
 theorem blockAutHom_sign (hc : IsCompleteOnBlocks) (hi : IsIrreflexive)
     (v : Vertical) :
     blockAutHom hc hi v (sign Block BlockSites) = sign Block BlockSites := by
-  have := lampAutHom_sign v
-  simpa [blockAutHom, lampEquiv_sign] using congrArg (lampEquiv hc hi).symm this
+  show (lampEquiv hc hi).symm
+      (lampAutHom v (lampEquiv hc hi (sign Block BlockSites)))
+    = sign Block BlockSites
+  apply (lampEquiv hc hi).injective
+  rw [MulEquiv.apply_symm_apply, lampEquiv_sign, lampAutHom_sign, lampEquiv_sign]
 
 /-- The permutation of the sigma-indexed site set induced by the vertical
 action: transport the action along `siteEquiv`.
@@ -242,7 +262,7 @@ def sitePermHom : Vertical →* Equiv.Perm ((b : Block) × BlockSites b) where
   map_mul' v w := by
     refine Equiv.ext fun p ↦ ?_
     rw [sitePerm_apply]
-    show siteEquiv.symm (v * w • siteEquiv p)
+    show siteEquiv.symm ((v * w) • siteEquiv p)
       = sitePerm v (sitePerm w p)
     rw [sitePerm_apply, sitePerm_apply, Equiv.apply_symm_apply, mul_smul]
 
@@ -254,9 +274,12 @@ theorem blockAutHom_lamp (hc : IsCompleteOnBlocks) (hi : IsIrreflexive)
     (v : Vertical) (p : (b : Block) × BlockSites b) :
     blockAutHom hc hi v (lamp Block BlockSites p) =
       lamp Block BlockSites (sitePerm v p) := by
-  have := lampAutHom_at v (siteEquiv p)
-  simpa [blockAutHom, sitePerm, lampEquiv_lamp] using
-    congrArg (lampEquiv hc hi).symm this
+  show (lampEquiv hc hi).symm
+      (lampAutHom v (lampEquiv hc hi (lamp Block BlockSites p)))
+    = lamp Block BlockSites (sitePerm v p)
+  apply (lampEquiv hc hi).injective
+  rw [MulEquiv.apply_symm_apply, lampEquiv_lamp, lampAutHom_at, lampEquiv_lamp,
+    sitePerm_apply, Equiv.apply_symm_apply]
 
 /-! ## The model as a block-Clifford tower -/
 
@@ -273,8 +296,27 @@ def toModel (hc : IsCompleteOnBlocks) (hi : IsIrreflexive) :
       intro v
       refine MonoidHom.ext fun n ↦ ?_
       show SemidirectProduct.inl (lampEquiv hc hi (blockAutHom hc hi v n)) = _
-      rw [blockAutHom]
+      -- `blockAutHom` conjugates, so the outer `lampEquiv` cancels the inner
+      -- `lampEquiv.symm` and what is left is the defining relation of the
+      -- semidirect product
+      rw [show lampEquiv hc hi (blockAutHom hc hi v n)
+            = lampAutHom v (lampEquiv hc hi n) from
+          (lampEquiv hc hi).apply_symm_apply _]
       simp [SemidirectProduct.inl_aut, MulAut.conj_apply])
+
+@[simp] theorem toModel_left (hc : IsCompleteOnBlocks) (hi : IsIrreflexive)
+    (r : BlockClifford Block BlockSites ⋊[blockAutHom hc hi] Vertical) :
+    (toModel hc hi r).left = lampEquiv hc hi r.left := by
+  show (SemidirectProduct.inl (lampEquiv hc hi r.left) *
+      SemidirectProduct.inr r.right).left = lampEquiv hc hi r.left
+  simp
+
+@[simp] theorem toModel_right (hc : IsCompleteOnBlocks) (hi : IsIrreflexive)
+    (r : BlockClifford Block BlockSites ⋊[blockAutHom hc hi] Vertical) :
+    (toModel hc hi r).right = r.right := by
+  show (SemidirectProduct.inl (lampEquiv hc hi r.left) *
+      SemidirectProduct.inr r.right).right = r.right
+  simp
 
 /-- **The block model is a block-Clifford semidirect product.** -/
 def modelEquiv (hc : IsCompleteOnBlocks) (hi : IsIrreflexive) :
@@ -282,16 +324,17 @@ def modelEquiv (hc : IsCompleteOnBlocks) (hi : IsIrreflexive) :
   MulEquiv.ofBijective (toModel hc hi)
     ⟨by
       intro p q hpq
-      have hr : p.right = q.right := congrArg SemidirectProduct.right hpq
+      have hr : p.right = q.right := by
+        simpa using congrArg SemidirectProduct.right hpq
       have hl : lampEquiv hc hi p.left = lampEquiv hc hi q.left := by
-        have := congrArg SemidirectProduct.left hpq
-        simpa [toModel, hr] using this
+        simpa using congrArg SemidirectProduct.left hpq
       exact SemidirectProduct.ext ((lampEquiv hc hi).injective hl) hr,
      by
       intro m
       refine ⟨⟨(lampEquiv hc hi).symm m.left, m.right⟩, ?_⟩
-      refine SemidirectProduct.ext ?_ rfl
-      simp [toModel]⟩
+      refine SemidirectProduct.ext ?_ ?_
+      · simp
+      · simp⟩
 
 /-- **The literal group is a block-Clifford tower.** -/
 def markedGroupEquivTower (hc : IsCompleteOnBlocks) (hi : IsIrreflexive) :
@@ -328,7 +371,7 @@ theorem closure_block_equivariant {N : Type} [Group N] (c : Site → N)
       refine Subgroup.subset_closure ⟨v • ξ, ?_, (hc v ξ).symm ▸ rfl⟩
       show blockOf (v • ξ) = v • i
       rw [blockOf_smul, hξ]
-  | one => simpa using (Subgroup.one_mem _)
+  | one => simp
   | mul y z _ _ hy hz => simpa [map_mul] using Subgroup.mul_mem _ hy hz
   | inv y _ hy => simpa [map_inv] using Subgroup.inv_mem _ hy
 
