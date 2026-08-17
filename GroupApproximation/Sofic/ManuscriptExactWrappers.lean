@@ -280,9 +280,9 @@ theorem manuscriptFiniteNormalObstructionCriterion :
       (fun n ↦ naturalFiniteModel (d n)) (fun n ↦ by simpa using hd n)
   letI : ∀ n, Nonempty (naturalFiniteModel (d n)) :=
     fun n ↦ Fintype.card_pos_iff.mp (by simpa using hd n)
-  -- the statement binds the model family and its nonemptiness with `let` before
-  -- quantifying over `Theta`, so both have to be introduced first
-  intro _X _hXne Theta
+  -- the statement names the model family with `let` before quantifying over
+  -- `Theta`, so the family has to be introduced first
+  intro _X Theta
   intro x hx
   have hx₀ := MonoidHom.mem_ker.mp
     (h₀ (Theta.comp e.symm.toMonoidHom)
@@ -327,9 +327,9 @@ theorem manuscriptNormalKazhdanObstruction :
       (fun n ↦ naturalFiniteModel (d n)) (fun n ↦ by simpa using hd n)
   letI : ∀ n, Nonempty (naturalFiniteModel (d n)) :=
     fun n ↦ Fintype.card_pos_iff.mp (by simpa using hd n)
-  -- the statement binds the model family and its nonemptiness with `let` before
-  -- quantifying over `Theta`, so both have to be introduced first
-  intro _X _hXne Theta
+  -- the statement names the model family with `let` before quantifying over
+  -- `Theta`, so the family has to be introduced first
+  intro _X Theta
   intro x hx
   have hx₀ := MonoidHom.mem_ker.mp
     (h₀ (Theta.comp e.symm.toMonoidHom)
@@ -736,6 +736,7 @@ theorem manuscriptDefectSaturation :
 
 /-! ## The abstract obstruction over an invisible subgroup -/
 
+open scoped Matrix.Norms.L2Operator in
 /-- The asymptotic unitary representation attached to an operator-norm almost
 representation, over a group in **any** universe.
 
@@ -753,7 +754,6 @@ the nine consumers of the original keep the arity they were written against.
 The body is field for field the original's; both `OpAlmostRepresentation` and
 `AsymptoticUnitaryRepresentation` are already universe-polymorphic, so no step
 of the multiplicativity estimate sees the universe. -/
-open scoped Matrix.Norms.L2Operator in
 noncomputable def asymptoticUnitaryOfOpAlmost {H : Type u} [Group H]
     (B : OpAlmostRepresentation H) : AsymptoticUnitaryRepresentation H where
   model := B.model
@@ -913,9 +913,9 @@ theorem manuscriptAbstractNormalKazhdanObstruction :
       (fun n ↦ naturalFiniteModel (d n)) (fun n ↦ by simpa using hd n)
   letI : ∀ n, Nonempty (naturalFiniteModel (d n)) :=
     fun n ↦ Fintype.card_pos_iff.mp (by simpa using hd n)
-  -- the statement binds the model family and its nonemptiness with `let` before
-  -- quantifying over `Theta`, so both have to be introduced first
-  intro _X _hXne Theta
+  -- the statement names the model family with `let` before quantifying over
+  -- `Theta`, so the family has to be introduced first
+  intro _X Theta
   intro x hx
   have hx₀ := MonoidHom.mem_ker.mp
     (h₀ (Theta.comp e.symm.toMonoidHom)
