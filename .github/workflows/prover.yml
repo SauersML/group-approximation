@@ -413,7 +413,7 @@ jobs:
       # kernel environment) and a first failure that hides the second costs a
       # multi-hour build to learn the other half.  One red run should name
       # every finding in the repository, not the first one alphabetically.
-      - name: Source scan
+      - name: Source scan [outcome masked -- read the verdict]
         id: source-scan
         continue-on-error: true
         run: |
@@ -428,7 +428,7 @@ jobs:
       # literal endpoints below are required explicitly: the unconditional
       # eight-generator counterexample and the unconditional property-(T)
       # theorem for its literal base presentation.
-      - name: Non-MF counterpart contract
+      - name: Non-MF counterpart contract [outcome masked -- read the verdict]
         id: non-mf-contract
         continue-on-error: true
         run: |
@@ -498,6 +498,7 @@ jobs:
       # The build itself.  `lakefile.toml` sets `-DwarningAsError=true` for the
       # library, so an unused variable or a deprecated lemma is a failure here.
       - name: Build project
+        id: build-project
         # The large P13 leaves were built three blocks at a time in 12 bounded
         # shards and sealed above.  The ordinary root build can now schedule
         # the remaining modules without exposing those 144 leaves together.
@@ -544,7 +545,7 @@ jobs:
       #
       # `continue-on-error` for the same reason as the source scan, and with
       # the same backstop: the verdict step below reads this outcome.
-      - name: Kernel audit (statements, axiom closure, environment scans)
+      - name: Kernel audit [outcome masked -- read the verdict]
         id: kernel-audit
         continue-on-error: true
         run: lake env lean scripts/Audit.lean
@@ -601,11 +602,39 @@ jobs:
         shell: bash
         run: |
           failed=0
+          bld='${{ steps.build-project.outcome }}'
           src='${{ steps.source-scan.outcome }}'
           nonmf='${{ steps.non-mf-contract.outcome }}'
           ker='${{ steps.kernel-audit.outcome }}'
-          # `skipped` counts as failure: it means an earlier step (the build)
-          # died, and an unrun scan is not a clean one.
+          # The run page shows this table without anyone opening a log, which
+          # is the whole point: the three gates above carry
+          # `continue-on-error`, so GitHub records their *conclusion* as
+          # success while their *outcome* -- the value read here -- is the
+          # real one.  A reader who trusts the step list, `--json jobs`, or
+          # `--log-failed` sees green over red; `--log-failed` does not even
+          # contain the step that failed.
+          {
+            echo "## Zero-tolerance verdict"
+            echo
+            echo "| gate | outcome |"
+            echo "| --- | --- |"
+            echo "| build | ${bld:-skipped} |"
+            echo "| source scan | ${src:-skipped} |"
+            echo "| non-MF contract | ${nonmf:-skipped} |"
+            echo "| kernel audit | ${ker:-skipped} |"
+            echo
+            echo "These outcomes are authoritative.  The step list is not:"
+            echo "the three scan steps are \`continue-on-error\`, so each"
+            echo "renders green whatever it found."
+          } >> "$GITHUB_STEP_SUMMARY"
+          # `skipped` counts as failure: it means an earlier step died, and an
+          # unrun scan is not a clean one.  A scan reading `skipped` while the
+          # build reads `failure` is a broken tree, not a red gate -- a
+          # different emergency, and the table above distinguishes them.
+          if [ "$bld" != "success" ]; then
+            echo "::error::the build did not pass (outcome: ${bld:-skipped}); every scan below it is therefore unrun, not clean"
+            failed=1
+          fi
           if [ "$src" != "success" ]; then
             echo "::error::source scan did not pass (outcome: ${src:-skipped}); see the 'Source scan' step"
             failed=1
@@ -622,7 +651,7 @@ jobs:
             echo "zero tolerance: the repository is not clean."
             exit 1
           fi
-          echo "zero tolerance: source scans, counterpart contract, and kernel audit all clean."
+          echo "zero tolerance: build, source scans, counterpart contract, and kernel audit all clean."
 
   kernel:
     name: Fresh kernel re-check (shard ${{ matrix.shard }})
