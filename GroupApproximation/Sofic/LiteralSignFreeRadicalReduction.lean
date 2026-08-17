@@ -161,9 +161,8 @@ theorem manuscriptSignFreeRadicalReduction :
       Lbar (proj stable) Lbar_hasKazhdanPropertyT Lbar_compressed
   refine ⟨hcomap, ?_, ?_, ?_⟩
   · rw [actualCoronaMFResidual_markedGroup_eq_comap, hcomap]
-  · intro hMF
-    have hquot := hexact hMF
-    rw [actualCoronaMFResidual_markedGroup_eq_comap, hquot]
+  -- `refine` splits the `Iff` into `mp` then `mpr`, so the direction that
+  -- *consumes* the radical identity comes first.
   · intro hEq
     -- `proj` is surjective, so the two preimages agree only if the two
     -- subgroups do: this is the reverse direction the manuscript's
@@ -184,11 +183,15 @@ theorem manuscriptSignFreeRadicalReduction :
       have h2 : (⊥ : Subgroup (SignFreeQuotient ⧸ signFreeCollapseDefect)).comap
             (QuotientGroup.mk' signFreeCollapseDefect)
           = signFreeCollapseDefect := by
-        rw [Subgroup.comap_bot, QuotientGroup.ker_mk']
+        ext x
+        simp [QuotientGroup.eq_one_iff]
       exact Subgroup.comap_injective
         (QuotientGroup.mk'_surjective signFreeCollapseDefect)
         (h1.trans h2.symm)
     exact isCDEOperatorMF_iff_actualCoronaMFResidual_eq_bot.mpr hbot
+  · intro hMF
+    have hquot := hexact hMF
+    rw [actualCoronaMFResidual_markedGroup_eq_comap, hquot]
 
 end
 

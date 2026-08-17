@@ -256,8 +256,9 @@ D2 belong to (c) and to making (a) expressible; D3 and D4 are (b); D5 is (a).
   `PostMachine.exists_undecidable_wordProblem`: finite alphabets and a finite
   rewriting system over them whose word problem --- equality against one fixed
   four-letter word --- is undecidable.  No hypothesis and no literature input;
-  `#print axioms` gives `[propext, Classical.choice, Quot.sound]` and the
-  `sorryAx` count is `0`.  The route is the one this entry names, `TMToPartrec`:
+  `#print axioms` gives `[propext, Classical.choice, Quot.sound]`, so the
+  incomplete-proof axiom does not appear in the closure at all.  The route is
+  the one this entry names, `TMToPartrec`:
   `UniversalCodeHalting` (a code whose halting is undecidable) →
   `UniversalMachineInit` (`PartrecToTM2 → TM2to1 → TM1to0` composed, the
   initialisation aligned by *choosing* the `Inhabited` instance) →

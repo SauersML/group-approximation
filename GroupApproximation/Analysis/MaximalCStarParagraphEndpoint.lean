@@ -71,10 +71,6 @@ noncomputable section
 
 universe u w
 
--- The corona is a quotient of a subalgebra of a `Pi` type, so the class chain
--- `SubtractionMonoidHomClass → AddMonoidHomClass → …` behind `map_sub` is deep
--- enough to exhaust the default instance budget before it reaches an answer.
-set_option synthInstance.maxHeartbeats 400000 in
 /-- **Every isometry of the norm-matrix C⋆-corona is a unitary.**
 
 Lift the isometry `x` to a bounded matrix sequence `a`.  Being an isometry
@@ -95,13 +91,21 @@ theorem normMatrixCStarCorona_mul_star_eq_one_of_star_mul_eq_one
   obtain ⟨a, rfl⟩ := normMatrixCStarCoronaMk_surjective (fun n ↦ X n) x
   have hgramZero :
       normMatrixCStarCoronaMk (fun n ↦ X n) (star a * a - 1) = 0 := by
-    -- naming the homomorphism is not cosmetic: with `f` left as a metavariable
-    -- the `AddMonoidHomClass` search runs over the whole instance graph and
-    -- times out, while pinning it makes the class immediate.
-    rw [map_sub (normMatrixCStarCoronaMk (fun n ↦ X n)),
-      map_mul (normMatrixCStarCoronaMk (fun n ↦ X n)),
-      map_one (normMatrixCStarCoronaMk (fun n ↦ X n))]
-    exact sub_eq_zero.mpr hx
+    -- The additivity step is written out rather than rewritten with.  As a
+    -- rewrite rule `map_sub` carries metavariable carriers, and the corona sits
+    -- under `NormedRing`/`CStarAlgebra`, so the `SubtractionMonoidHomClass`
+    -- query becomes a search over the whole instance graph.  Stated against a
+    -- fully known proposition it is one determined lookup.
+    have hsub : normMatrixCStarCoronaMk (fun n ↦ X n) (star a * a - 1)
+        = normMatrixCStarCoronaMk (fun n ↦ X n) (star a * a)
+          - normMatrixCStarCoronaMk (fun n ↦ X n) 1 :=
+      map_sub (normMatrixCStarCoronaMk (fun n ↦ X n)) _ _
+    have hone : normMatrixCStarCoronaMk (fun n ↦ X n) (star a * a)
+        = normMatrixCStarCoronaMk (fun n ↦ X n) 1 := by
+      rw [map_mul (normMatrixCStarCoronaMk (fun n ↦ X n)),
+        map_one (normMatrixCStarCoronaMk (fun n ↦ X n))]
+      simpa using hx
+    rw [hsub, hone, sub_self]
   have hgram : IsC0MatrixSequence (fun n ↦ X n) (star a * a - 1) :=
     (normMatrixCStarCoronaMk_eq_zero_iff (fun n ↦ X n) _).mp hgramZero
   have hgramTendsto :
@@ -143,7 +147,12 @@ theorem normMatrixCStarCorona_mul_star_eq_one_of_star_mul_eq_one
         (hgramTendsto.const_mul 2).const_mul ‖a‖
   have hmk : normMatrixCStarCoronaMk (fun n ↦ X n) (unitarySequenceBounded X u)
       = normMatrixCStarCoronaMk (fun n ↦ X n) a := by
-    rw [← sub_eq_zero, ← map_sub (normMatrixCStarCoronaMk (fun n ↦ X n))]
+    have hsub : normMatrixCStarCoronaMk (fun n ↦ X n)
+          (unitarySequenceBounded X u - a)
+        = normMatrixCStarCoronaMk (fun n ↦ X n) (unitarySequenceBounded X u)
+          - normMatrixCStarCoronaMk (fun n ↦ X n) a :=
+      map_sub (normMatrixCStarCoronaMk (fun n ↦ X n)) _ _
+    rw [← sub_eq_zero, ← hsub]
     exact (normMatrixCStarCoronaMk_eq_zero_iff (fun n ↦ X n) _).mpr hdiff
   have hus : unitarySequenceBounded X u * star (unitarySequenceBounded X u) = 1 := by
     ext n i j
