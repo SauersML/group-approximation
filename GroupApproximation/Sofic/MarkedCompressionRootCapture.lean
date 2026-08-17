@@ -353,12 +353,23 @@ theorem productInverse_defect_vanishing (B : OpAlmostRepresentation E)
   refine (h1.add h2).congr fun n ↦ ?_
   noncomm_ring
 
-/-- **Marker-free Kazhdan-compression collapse.**  Every pointwise
-compression defect `[t c t⁻¹, iota gamma]` is Hilbert--Schmidt trivial in
-every operator-norm almost representation. -/
-theorem compressionDefect_hsDistSq_vanishing
+/-- **Marker-free Kazhdan-compression collapse, with the transport step as an
+input.**  Everything after the transport step is operator-norm bookkeeping and
+does not care how the transported root displacement was obtained, so the step
+is taken as a hypothesis and the two routes to it share this proof instead of
+duplicating the estimate combination that follows.
+
+`compressionDefect_hsDistSq_vanishing` below supplies the Appendix-B step;
+`Sofic/LiteralRouteTransport.lean` supplies the printed Section-3 one. -/
+theorem compressionDefect_hsDistSq_vanishing_of
     (B : OpAlmostRepresentation E)
-    (C : KazhdanCompressionCore Gamma E) (gamma : Gamma) :
+    (C : KazhdanCompressionCore Gamma E) (gamma : Gamma)
+    (htransport : ∀ epsilon : ℝ, 0 < epsilon → ∃ N, ∀ n ≥ N,
+      hsDistSq (B.model n)
+        ((B.map n (C.iota gamma) : Matrix (B.model n) (B.model n) ℂ) *
+          lampMatrix B C n *
+          (B.map n (C.iota gamma) : Matrix (B.model n) (B.model n) ℂ)ᴴ)
+        (lampMatrix B C n) ≤ epsilon) :
     ∀ epsilon : ℝ, 0 < epsilon → ∃ N, ∀ n ≥ N,
       hsDistSq (B.model n)
         (B.map n ⁅C.t * C.c * C.t⁻¹, C.iota gamma⁆)
@@ -368,8 +379,7 @@ theorem compressionDefect_hsDistSq_vanishing
   let y : E := C.iota gamma * x * (C.iota gamma)⁻¹
   intro epsilon hepsilon
   have heSmall : 0 < epsilon / 128 := by linarith
-  obtain ⟨N1, hN1⟩ := transportedRoot_displacement_hsDistSq_vanishing B C gamma
-    (epsilon / 128) heSmall
+  obtain ⟨N1, hN1⟩ := htransport (epsilon / 128) heSmall
   obtain ⟨N2, hN2⟩ := lampMatrix_defect_vanishing B C
     (Real.sqrt (epsilon / 128)) (Real.sqrt_pos.mpr heSmall)
   obtain ⟨N3, hN3⟩ := conjugatedLampGamma_defect_vanishing B C gamma
@@ -478,6 +488,24 @@ theorem compressionDefect_hsDistSq_vanishing
   rw [hsDistSq_comm (B.model n)
     (B.map n ⁅C.t * C.c * C.t⁻¹, C.iota gamma⁆) Pm] at htri1
   linarith [htri1, htri2, hPm, hdef, hone]
+
+/-- **Marker-free Kazhdan-compression collapse.**  Every pointwise
+compression defect `[t c t⁻¹, iota gamma]` is Hilbert--Schmidt trivial in
+every operator-norm almost representation.
+
+Statement and consumers are unchanged; the proof now names the transport step
+it uses, which is the Appendix-B one.  Rows `INT.03` and `INT.04` are about
+that choice, and the alternative is
+`KazhdanAsymptoticCommutant.compressionDefect_hsDistSq_vanishing_literal`. -/
+theorem compressionDefect_hsDistSq_vanishing
+    (B : OpAlmostRepresentation E)
+    (C : KazhdanCompressionCore Gamma E) (gamma : Gamma) :
+    ∀ epsilon : ℝ, 0 < epsilon → ∃ N, ∀ n ≥ N,
+      hsDistSq (B.model n)
+        (B.map n ⁅C.t * C.c * C.t⁻¹, C.iota gamma⁆)
+        (B.map n 1) ≤ epsilon :=
+  compressionDefect_hsDistSq_vanishing_of B C gamma
+    (transportedRoot_displacement_hsDistSq_vanishing B C gamma)
 
 end KazhdanCompressorCorner
 end GroupApproximation
