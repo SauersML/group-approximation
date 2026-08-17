@@ -225,6 +225,27 @@ theorem stable_conj_emb_left (a b c M : ℤ) (hM : M ≠ 0) (g : BaseGroup) :
   rw [hcoe] at h
   exact h
 
+/-- **Lemma 7's step, on basis elements.**  The stable letter carries the basis
+element at `embIdx a b M M p` to the one at `embIdx c 0 M² 1 p`. -/
+theorem stable_conj_tw_right (a b c M : ℤ) (hM : M ≠ 0) (p : ℤ × ℤ) :
+    (HNNExtension.of (tw (embIdx c 0 (M ^ 2) 1 p)) :
+        HNNExtension BaseGroup (Gsub a b M M) (Gsub c 0 (M ^ 2) 1)
+          (quadEquiv a b c M hM))
+      = HNNExtension.t * HNNExtension.of (tw (embIdx a b M M p)) *
+          HNNExtension.t⁻¹ := by
+  rw [← emb_tw, ← emb_tw]
+  exact stable_conj_emb_right a b c M hM (tw p)
+
+/-- The same for a left-moving quadruple. -/
+theorem stable_conj_tw_left (a b c M : ℤ) (hM : M ≠ 0) (p : ℤ × ℤ) :
+    (HNNExtension.of (tw (embIdx 0 c 1 (M ^ 2) p)) :
+        HNNExtension BaseGroup (Gsub a b M M) (Gsub 0 c 1 (M ^ 2))
+          (quadEquivLeft a b c M hM))
+      = HNNExtension.t * HNNExtension.of (tw (embIdx a b M M p)) *
+          HNNExtension.t⁻¹ := by
+  rw [← emb_tw, ← emb_tw]
+  exact stable_conj_emb_left a b c M hM (tw p)
+
 /-! ## `t` lies in the halting subgroup
 
 The easy half of Lemma 7 needs only that `t` itself is in the base subgroup.  For

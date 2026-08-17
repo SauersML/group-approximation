@@ -721,6 +721,12 @@ theorem twSub_map_emb (a b M N : ℤ) (S : Set (ℤ × ℤ)) :
   congr 1
   exact MonoidHom.ext (emb_inl a b M N)
 
+/-- `emb` acts on the basis by `embIdx`. -/
+theorem emb_tw (a b M N : ℤ) (p : ℤ × ℤ) :
+    emb a b M N (tw p) = tw (embIdx a b M N p) := by
+  rw [tw, emb_inl, indexMap_of]
+  rfl
+
 theorem emb_mem_twSub_iff {a b M N : ℤ} (hM : M ≠ 0) (hN : N ≠ 0)
     (S : Set (ℤ × ℤ)) (g : BaseGroup) :
     emb a b M N g ∈ twSub (embIdx a b M N '' S) ↔ g ∈ twSub S := by
