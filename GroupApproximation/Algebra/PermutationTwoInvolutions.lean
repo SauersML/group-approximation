@@ -92,7 +92,7 @@ theorem zpowers_commute (τ : Subgroup.zpowers σ) :
 along `IsCycle.zpowersEquivSupport`, and the identity elsewhere.  It sends
 `σ^k(x₀)` to `σ^{-k}(x₀)`. -/
 noncomputable def rev : Equiv.Perm α :=
-  Equiv.Perm.subtypeCongr
+  Equiv.Perm.subtypeCongr (p := fun x => x ∈ σ.support)
     (hσ.zpowersEquivSupport.symm.trans
       ((Equiv.inv ↥(Subgroup.zpowers σ)).trans hσ.zpowersEquivSupport))
     (Equiv.refl _)
@@ -258,6 +258,24 @@ theorem exists_two_involutions (a : Equiv.Perm α) :
     rcases Finset.mem_union.mp hx' with h | h
     · exact h
     · exact hvsupp h
+
+/-- **The two factors of an even permutation have the same sign.**  Signs in
+`ℤˣ` are their own inverses, so a product equal to `1` forces the two factors to
+agree.
+
+This is the parity fact the blocking step needs: the two involutions of an even
+permutation have transposition counts of equal parity, so the single spare
+transposition that makes one leftover block even makes the other one even
+too. -/
+theorem sign_eq_of_sign_mul_eq_one {u v : Equiv.Perm α}
+    (h : Equiv.Perm.sign (u * v) = 1) :
+    Equiv.Perm.sign u = Equiv.Perm.sign v := by
+  have h1 : Equiv.Perm.sign u * Equiv.Perm.sign v = 1 := by
+    rw [← Equiv.Perm.sign_mul]
+    exact h
+  have h2 : Equiv.Perm.sign u * Equiv.Perm.sign u = 1 :=
+    Int.units_mul_self _
+  exact (mul_left_cancel (h1.trans h2.symm)).symm
 
 end PermutationTwoInvolutions
 end GroupApproximation
