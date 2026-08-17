@@ -34,13 +34,18 @@ declaration the ledger row names:
   from, but no declaration instantiated them at the literal `E`.  That is what
   this one does, from `LiteralNonMFEndpoint.cliffordSign_blackHole`.
 
-None of these is cited by a ledger row as evidence, because this module is not
-yet in the root import closure and so has never been elaborated.  The rows are
-graded against the internal declarations, which are.
+This module is in the root import closure and MSI-validated green as of
+`ce9ea2ff`.  The ledger rows it restates are nevertheless graded against the
+*internal* declarations rather than against these, deliberately: a restatement
+proved by handing hypotheses to an internal theorem is evidence about the
+restatement, not about the theorem, and a row that cited only the façade would
+certify the printed shape while saying nothing about what proves it.  What these
+are for is reading — the printed quantification without reconstructing it from a
+`variable` block.
 
-To wire it in, add to `GroupApproximation.lean`:
-
-    import GroupApproximation.Manuscript.NonMF.ClosedRows
+`manuscriptSimpleEnvelopeFromLiteralEmbedding` is the exception and is genuinely
+new: no declaration instantiated the generic residual lemmas at the literal `E`,
+which is the group the printed proof now embeds.
 -/
 
 namespace GroupApproximation

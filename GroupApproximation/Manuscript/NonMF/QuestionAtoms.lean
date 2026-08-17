@@ -36,6 +36,12 @@ passed `q` to `MonoidHom.mem_ker`, whose `f` is implicit in the pinned Mathlib
 (`Algebra/Group/Subgroup/Ker.lean`), so the term applied an `Iff` to an argument.
 Every other use of that lemma in this repository spells it bare, and it now does
 too.  Nothing else changed, and the four statements are as they were.
+
+Ledger rows LI.11, LI.12 and LI.12a cite these declarations.  Those rows also
+record that the declarations were written by the audit that grades them: they
+were authored to state printed sentences that had no counterpart, not located by
+searching, so the same reading produced them and graded them.  A reader weighing
+those grades should know that.
 -/
 
 namespace GroupApproximation
