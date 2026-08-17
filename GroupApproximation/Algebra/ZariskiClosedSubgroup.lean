@@ -116,7 +116,7 @@ variable {n : Type*} [Fintype n] [DecidableEq n] {k : Type*} [Field k]
 `(n × n) → k` whose coordinate ring is the polynomial ring `k[X_{ij}]`. -/
 def matCoords (M : Matrix n n k) : n × n → k := fun p => M p.1 p.2
 
-omit [Fintype n] [DecidableEq n] in
+omit [Fintype n] [DecidableEq n] [Field k] in
 @[simp]
 theorem matCoords_apply (M : Matrix n n k) (p : n × n) : matCoords M p = M p.1 p.2 := rfl
 
@@ -288,6 +288,7 @@ entry coordinates. -/
 def mulSubst (U V : Matrix n n k) (p : n × n) : MvPolynomial (n × n) k :=
   ∑ b : n, rowForm U p.1 b * MvPolynomial.C (V b p.2)
 
+omit [DecidableEq n] in
 /-- `mulSubst` computes the entries of `U * M * V`. -/
 theorem aeval_mulSubst (U V M : Matrix n n k) (p : n × n) :
     MvPolynomial.aeval (matCoords M) (mulSubst U V p) = matCoords (U * M * V) p := by

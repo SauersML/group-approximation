@@ -194,14 +194,15 @@ variable {G : Type u} [Group G] [DecidableEq G]
 /-- The normalizing constant `|A|^(-1/2)` of the indicator of a finite set. -/
 noncomputable def folnerCoeff (A : Finset G) : ℝ := Real.sqrt ((A.card : ℝ)⁻¹)
 
-omit [DecidableEq G] in
+omit [Group G] [DecidableEq G] in
 theorem folnerCoeff_nonneg (A : Finset G) : 0 ≤ folnerCoeff A :=
   Real.sqrt_nonneg _
 
-omit [DecidableEq G] in
+omit [Group G] [DecidableEq G] in
 theorem folnerCoeff_sq (A : Finset G) : folnerCoeff A ^ 2 = (A.card : ℝ)⁻¹ :=
   Real.sq_sqrt (inv_nonneg.mpr (Nat.cast_nonneg _))
 
+omit [Group G] in
 /-- The normalized indicator of a finite set is square summable. -/
 theorem memℓp_folner (A : Finset G) :
     Memℓp (fun x : G ↦ if x ∈ A then folnerCoeff A else 0) 2 := by
