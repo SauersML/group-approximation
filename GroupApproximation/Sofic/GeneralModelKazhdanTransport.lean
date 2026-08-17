@@ -35,10 +35,17 @@ namespace GroupApproximation
 namespace GeneralModelTransport
 
 open KazhdanAsymptoticCommutant MatrixReindexHS
+open Matrix
+open scoped Matrix.Norms.L2Operator
 
 universe u w
 
-variable {H : Type u} [Group H]
+-- `[Group H]` is deliberately NOT a section variable: an instance binder whose
+-- type mentions an included variable is itself included automatically, and only
+-- `generalModelKazhdanTransport` uses the group structure of `H`.  Left in the
+-- section it would be an unused section variable in the four declarations
+-- below, which this project's linter treats as fatal.
+variable {H : Type u}
 
 /-! ## Carrying the data onto the literal coordinates -/
 
@@ -89,7 +96,7 @@ models.  The proof reindexes the data onto the literal coordinates, applies the
 literal theorem there, and carries the conclusion back; no hypothesis is added,
 dropped or weakened, and the transport itself is not reproved. -/
 theorem generalModelKazhdanTransport
-    {Γ : Type} [Group Γ]
+    {Γ : Type} [Group Γ] [Group H]
     (hT : HasKazhdanPropertyTComplex.{0, w} Γ)
     (iota : Γ →* H) (s : H)
     (hs : ∀ γ : Γ, ∃ δ : Γ, s * iota γ * s⁻¹ = iota δ)

@@ -32,6 +32,12 @@ theorem off natural coordinates without it.
 namespace GroupApproximation
 namespace MatrixReindexHS
 
+-- The adjoint postfix `ᴴ` and the `L²` operator norm on matrices are both
+-- scoped: `Analysis/NaturalMatrixCoordinateEquiv`, whose statements this file
+-- continues, opens the same two.
+open Matrix
+open scoped Matrix.Norms.L2Operator
+
 /-! ## The invariance -/
 
 /-- **The normalized Hilbert--Schmidt norm is a coordinate invariant.**  If a
