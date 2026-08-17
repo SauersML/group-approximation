@@ -56,7 +56,9 @@ and this avoids introducing a second `NormedAddCommGroup` structure on
 
 ## What is deliberately *not* claimed
 
-The quotient is **not** given a `CStarRing` instance.  The C-star identity for
+The quotient is **not** given a `CStarRing` instance *in this file*; that
+instance, the bundled `CStarAlgebra`, and the exact quotient-norm formula now
+live in `Analysis/TracialQuotientCStar.lean`.  The C-star identity for
 a quotient of a C-star algebra by a closed two-sided ideal is not formal: it
 needs an approximate unit of the ideal, and mathlib (at the pinned revision)
 has no quotient C-star instance to inherit.  Unlike the operator-norm corona
@@ -77,12 +79,15 @@ idempotence and `‖e‖₂² = rank / d` is a trace identity, Chebyshev supplyi
 the second clause.
 
 Note what that is and is not.  It is a statement about **one matrix**, not
-about a member of `J₂ω`.  The sequence-level step quoted above is still open:
-it needs the projections chosen coordinatewise and the second clause -- `t`
+about a member of `J₂ω`.  The sequence-level step quoted above is no longer
+open: `Analysis/TracialQuotientCStar.exists_ideal_approximate_unit` performs
+it -- the projections chosen coordinatewise, and the second clause -- `t`
 fixed before the sequence varies, so `t · ‖eₙ‖₂² ≤ ‖jₙ‖₂²` forces
 `‖eₙ‖₂ → 0` along any filter along which `‖jₙ‖₂ → 0` -- read along the
-filter to put `e` back in the ideal.  That assembly is what remains, and the
-matrix lemma is its main ingredient rather than its conclusion.
+filter to put `e` back in the ideal.  That assembly, the instances it
+unlocks, and the formula `‖a + J‖ = inf { ‖a - a e‖ : e ∈ J }` all live in
+that file; the matrix lemma is their main ingredient rather than their
+conclusion.
 
 *An alternative construction, recorded but **not built**.*  In the ambient
 algebra one may instead take the resolvent
@@ -103,8 +108,9 @@ whose supremum on `[0,∞)` is `δ/4`, gives `‖j (1 - e)‖ ≤ √δ / 2`.  M
 `Analysis/CStarAlgebra/ApproximateUnit.lean` is built around this same
 function in the form `x ↦ 1 - (1 + x)⁻¹`
 (`CFC.monotoneOn_one_sub_one_add_inv`, `norm_cfcₙ_one_sub_one_add_inv_lt_one`).
-Whoever assembles `‖b + J‖ = lim ‖b - b e‖` may want it; until someone does,
-it is prose.
+The assembly has since been done through the projection witness instead
+(`Analysis/TracialQuotientCStar.lean`, up to the exact `sInf` formula); the
+resolvent construction stays unbuilt prose.
 
 A note on the search that established the premise: the claim that the pinned
 mathlib has no quotient C-star instance is not an inference from failing to
