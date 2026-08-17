@@ -43,6 +43,15 @@ open Equiv
 
 variable {α : Type*} [DecidableEq α] [Fintype α]
 
+omit [DecidableEq α] [Fintype α] in
+/-- Elements of `⟨σ⟩` commute with `σ`.  Stated outside the cycle section
+because it needs neither the cycle hypothesis nor the finiteness of `α`. -/
+theorem zpowers_commute {σ : Equiv.Perm α} (τ : Subgroup.zpowers σ) :
+    Commute (τ : Equiv.Perm α) σ := by
+  obtain ⟨k, hk⟩ := Subgroup.mem_zpowers_iff.mp τ.2
+  rw [← hk]
+  exact (Commute.refl σ).zpow_left k
+
 /-! ## The powers that reach a point of the support -/
 
 section Cycle
@@ -78,13 +87,6 @@ theorem power_of_apply_base (τ : Subgroup.zpowers σ)
     Subtype.ext (coe_zpowersEquivSupport hσ τ)
   show hσ.zpowersEquivSupport.symm ⟨(τ : Equiv.Perm α) (base hσ), h⟩ = τ
   rw [← hτ, Equiv.symm_apply_apply]
-
-/-- Elements of `⟨σ⟩` commute with `σ`. -/
-theorem zpowers_commute (τ : Subgroup.zpowers σ) :
-    Commute (τ : Equiv.Perm α) σ := by
-  obtain ⟨k, hk⟩ := Subgroup.mem_zpowers_iff.mp τ.2
-  rw [← hk]
-  exact (Commute.refl σ).zpow_left k
 
 /-! ## The reversal of a cycle -/
 
@@ -165,11 +167,11 @@ theorem rev_mul_eq : rev hσ * σ = σ⁻¹ * rev hσ := by
       = σ⁻¹ (((power hσ ⟨y, hy⟩)⁻¹ : Equiv.Perm α) (base hσ))
     have hcomm : ((power hσ ⟨y, hy⟩)⁻¹ : Equiv.Perm α) * σ⁻¹
         = σ⁻¹ * ((power hσ ⟨y, hy⟩)⁻¹ : Equiv.Perm α) :=
-      ((zpowers_commute hσ (power hσ ⟨y, hy⟩)).inv_left.inv_right).eq
+      ((zpowers_commute (power hσ ⟨y, hy⟩)).inv_left.inv_right).eq
     calc ((⟨σ, Subgroup.mem_zpowers σ⟩ * power hσ ⟨y, hy⟩ :
             Subgroup.zpowers σ)⁻¹ : Equiv.Perm α) (base hσ)
         = (((power hσ ⟨y, hy⟩)⁻¹ : Equiv.Perm α) * σ⁻¹) (base hσ) := by
-          simp [mul_inv_rev]
+          simp
       _ = (σ⁻¹ * ((power hσ ⟨y, hy⟩)⁻¹ : Equiv.Perm α)) (base hσ) := by
           rw [hcomm]
       _ = σ⁻¹ (((power hσ ⟨y, hy⟩)⁻¹ : Equiv.Perm α) (base hσ)) :=

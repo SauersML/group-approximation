@@ -159,36 +159,37 @@ theorem norm_singleBlock_le (i j : Fin m)
     ‖singleBlock i j A‖ ≤ ‖block i j A‖ := by
   classical
   refine l2_opNorm_le_of_sum_normSq_general _ (norm_nonneg _) fun v => ?_
-  have hval : ∀ (l : Fin m) (y : Y.carrier),
-      (singleBlock i j A *ᵥ v) (l, y)
-        = if l = i then (block i j A *ᵥ fun z => v (j, z)) y else 0 := by
-    intro l y
-    rw [Matrix.mulVec, dotProduct, Fintype.sum_prod_type]
-    by_cases hl : l = i
-    · rw [if_pos hl, Matrix.mulVec, dotProduct, Finset.sum_eq_single j]
-      · refine Finset.sum_congr rfl fun z _ => ?_
-        simp [hl]
-      · intro l' _ hl'
-        refine Finset.sum_eq_zero fun z _ => ?_
-        simp [hl']
-      · intro hcon
-        exact absurd (Finset.mem_univ _) hcon
-    · rw [if_neg hl]
-      refine Finset.sum_eq_zero fun l' _ => ?_
+  have hval_row : ∀ y : Y.carrier,
+      (singleBlock i j A *ᵥ v) (i, y)
+        = (block i j A *ᵥ fun z => v (j, z)) y := by
+    intro y
+    rw [Matrix.mulVec, dotProduct, Fintype.sum_prod_type, Matrix.mulVec,
+      dotProduct, Finset.sum_eq_single j]
+    · refine Finset.sum_congr rfl fun z _ => ?_
+      simp
+    · intro l' _ hl'
       refine Finset.sum_eq_zero fun z _ => ?_
-      simp [hl]
+      simp [hl']
+    · intro hcon
+      exact absurd (Finset.mem_univ _) hcon
+  have hval_off : ∀ l : Fin m, l ≠ i → ∀ y : Y.carrier,
+      (singleBlock i j A *ᵥ v) (l, y) = 0 := by
+    intro l hl y
+    rw [Matrix.mulVec, dotProduct, Fintype.sum_prod_type]
+    refine Finset.sum_eq_zero fun l' _ => ?_
+    refine Finset.sum_eq_zero fun z _ => ?_
+    simp [hl]
   have hsum : ∑ p : Fin m × Y.carrier,
         Complex.normSq ((singleBlock i j A *ᵥ v) p)
       = ∑ y : Y.carrier,
           Complex.normSq ((block i j A *ᵥ fun z => v (j, z)) y) := by
     rw [Fintype.sum_prod_type, Finset.sum_eq_single i]
     · refine Finset.sum_congr rfl fun y _ => ?_
-      rw [hval i y]
-      simp
+      rw [hval_row y]
     · intro l _ hl
       refine Finset.sum_eq_zero fun y _ => ?_
-      rw [hval l y]
-      simp [hl]
+      rw [hval_off l hl y]
+      simp
     · intro hcon
       exact absurd (Finset.mem_univ _) hcon
   rw [hsum]
@@ -245,7 +246,7 @@ theorem tendsto_norm_block {l : Filter ℕ} {X : ℕ → FiniteModel}
     (a : ∀ n, Matrix (ampModel m (X n)) (ampModel m (X n)) ℂ)
     (h : Filter.Tendsto (fun n ↦ ‖a n‖) l (nhds 0)) (i j : Fin m) :
     Filter.Tendsto (fun n ↦ ‖block i j (a n)‖) l (nhds 0) :=
-  squeeze_zero' (Filter.Eventually.of_forall fun n ↦ norm_nonneg _)
+  squeeze_zero' (Filter.Eventually.of_forall fun n ↦ norm_nonneg (block i j (a n)))
     (Filter.Eventually.of_forall fun n ↦ norm_block_le i j (a n)) h
 
 /-- **A sequence with null blocks is null.**  This is what makes the assembled
@@ -256,12 +257,12 @@ theorem tendsto_norm_of_forall_block {l : Filter ℕ} {X : ℕ → FiniteModel}
     (h : ∀ i j : Fin m,
       Filter.Tendsto (fun n ↦ ‖block i j (a n)‖) l (nhds 0)) :
     Filter.Tendsto (fun n ↦ ‖a n‖) l (nhds 0) := by
-  refine squeeze_zero' (Filter.Eventually.of_forall fun n ↦ norm_nonneg _)
+  refine squeeze_zero' (Filter.Eventually.of_forall fun n ↦ norm_nonneg (a n))
     (Filter.Eventually.of_forall fun n ↦ norm_le_sum_blocks (a n)) ?_
   have hsum : Filter.Tendsto
       (fun n ↦ ∑ i : Fin m, ∑ j : Fin m, ‖block i j (a n)‖) l
       (nhds (∑ _i : Fin m, ∑ _j : Fin m, (0 : ℝ))) :=
-    tendsto_finset_sum _ fun i _ ↦ tendsto_finset_sum _ fun j _ ↦ h i j
+    tendsto_finsetSum _ fun i _ ↦ tendsto_finsetSum _ fun j _ ↦ h i j
   simpa using hsum
 
 end StablyFiniteAmplification
