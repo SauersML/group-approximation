@@ -142,7 +142,10 @@ them say "this element is not `1`", which any homomorphism reflects, so a map
 lines.
 
 That transfer is *not* here, and the reason is worth recording because it is
-not mathematical.  The two-element family has to be given by recursion on
+not mathematical.  It has since been measured: raising `maxHeartbeats` to
+1000000 and `synthInstance.maxHeartbeats` to 400000 does *not* make it go
+through, so the cost is not linear in the budget --- it is blowup, and the
+budget is the wrong knob.  The two-element family has to be given by recursion on
 `Bool`, and it does not reduce at a variable index, so the `Group` and
 `DecidableEq` instances on the factors must be supplied by hand.  Every way of
 doing that which was tried --- `cond`, `Bool.rec`, an instance by cases, and
