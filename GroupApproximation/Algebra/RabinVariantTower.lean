@@ -154,5 +154,226 @@ theorem conj_t_eq_ts {n : ℕ} (x : Fin n → Γ) (i : Fin n) :
   rw [hval] at h
   exact h
 
+/-! ## The cascade layers
+
+Above the stable letter `u` the construction is a chain of HNN extensions along
+*cyclic* associated subgroups: `⟨u⟩ ≅ ⟨u²⟩`, then `⟨b⟩ ≅ ⟨b²⟩`, then
+`⟨z⟩ ≅ ⟨c⟩` with `z = ⁅w, s⁆`.  Each is legitimate for the same reason --- both
+generators have infinite order --- and each contributes one implication to the
+collapse, because `x y x⁻¹ = y²` with `x = 1` forces `y = 1`.
+
+The layer is built once here, generically. -/
+
+section CyclicLayer
+
+variable {G : Type*} [Group G]
+
+/-- An element of infinite order generates an infinite cyclic subgroup: the
+`ℤ`-power map is injective. -/
+theorem zpowersHom_injective {x : G} (h : ∀ n : ℤ, n ≠ 0 → x ^ n ≠ 1) :
+    Function.Injective (zpowersHom G x) := by
+  rw [injective_iff_map_eq_one]
+  intro a ha
+  by_contra hne
+  refine h (Multiplicative.toAdd a) ?_ ha
+  intro h0
+  exact hne (by
+    have : a = Multiplicative.ofAdd (Multiplicative.toAdd a) := rfl
+    rw [this, h0]
+    rfl)
+
+/-- The identification of two infinite cyclic subgroups. -/
+noncomputable def cycEquiv {x y : G} (hx : Function.Injective (zpowersHom G x))
+    (hy : Function.Injective (zpowersHom G y)) :
+    (zpowersHom G x).range ≃* (zpowersHom G y).range :=
+  (MonoidHom.ofInjective hx).symm.trans (MonoidHom.ofInjective hy)
+
+/-- **One cascade layer**: adjoin a stable letter conjugating `⟨x⟩` onto
+`⟨y⟩`. -/
+abbrev CycLayer {x y : G} (hx : Function.Injective (zpowersHom G x))
+    (hy : Function.Injective (zpowersHom G y)) : Type _ :=
+  HNNExtension G (zpowersHom G x).range (zpowersHom G y).range (cycEquiv hx hy)
+
+theorem mem_range_self (x : G) : x ∈ (zpowersHom G x).range :=
+  ⟨Multiplicative.ofAdd (1 : ℤ), by simp⟩
+
+/-- **The relation the layer imposes.**  This is the implication the collapse
+runs on: with the stable letter trivial it reads `y = x`, and in the cascade
+`y = x²`, which forces `x = 1`. -/
+theorem cyc_conj {x y : G} (hx : Function.Injective (zpowersHom G x))
+    (hy : Function.Injective (zpowersHom G y)) :
+    (HNNExtension.of y : CycLayer hx hy)
+      = HNNExtension.t * HNNExtension.of x * HNNExtension.t⁻¹ := by
+  have h := HNNExtension.equiv_eq_conj (φ := cycEquiv hx hy) ⟨x, mem_range_self x⟩
+  have hval : ((cycEquiv hx hy ⟨x, mem_range_self x⟩ :
+      (zpowersHom G y).range) : G) = y := by
+    show (zpowersHom G y) ((MonoidHom.ofInjective hx).symm ⟨x, mem_range_self x⟩) = y
+    have hsym : (MonoidHom.ofInjective hx).symm ⟨x, mem_range_self x⟩
+        = Multiplicative.ofAdd (1 : ℤ) := by
+      apply (MonoidHom.ofInjective hx).injective
+      rw [MulEquiv.apply_symm_apply]
+      refine Subtype.ext ?_
+      show x = zpowersHom G x (Multiplicative.ofAdd (1 : ℤ))
+      simp
+    rw [hsym]
+    simp
+  rw [hval] at h
+  exact h
+
+/-- The base of a cascade layer embeds in it. -/
+theorem cycLayer_of_injective {x y : G} (hx : Function.Injective (zpowersHom G x))
+    (hy : Function.Injective (zpowersHom G y)) :
+    Function.Injective (HNNExtension.of : G →* CycLayer hx hy) :=
+  HNNExtension.of_injective _
+
+end CyclicLayer
+
+/-! ## The full tower
+
+Three cascade layers on top of `Top`, and the base still embeds.  The `k`-layer
+needs `z = ⁅w, s⁆` to have infinite order, which is exactly the condition
+`w ≠ 1` (`FreeProductOrder.pow_commutator_ne_one`); it is taken as a hypothesis
+here so that the tower is stated for any element with that property. -/
+
+section FullTower
+
+variable {G : Type*} [Group G]
+
+theorem sq_infinite {g : G} (h : ∀ m : ℤ, m ≠ 0 → g ^ m ≠ 1) :
+    ∀ m : ℤ, m ≠ 0 → (g ^ (2 : ℤ)) ^ m ≠ 1 := by
+  intro m hm hc
+  refine h (2 * m) (by omega) ?_
+  rw [zpow_mul]
+  exact hc
+
+variable {Γ : Type} [Group Γ] {n : ℕ} (x : Fin n → Γ)
+
+/-- The stable letter of the killing layer has infinite order. -/
+theorem u_infinite : ∀ m : ℤ, m ≠ 0 → (HNNExtension.t : Top Γ x) ^ m ≠ 1 :=
+  fun _ hm => zpow_t_ne_one _ hm
+
+/-- Cascade layer one: `b`, with `b u b⁻¹ = u²`. -/
+noncomputable abbrev Casc1 : Type :=
+  CycLayer (zpowersHom_injective (u_infinite x))
+    (zpowersHom_injective (sq_infinite (u_infinite x)))
+
+theorem b_infinite : ∀ m : ℤ, m ≠ 0 → (HNNExtension.t : Casc1 x) ^ m ≠ 1 :=
+  fun _ hm => zpow_t_ne_one _ hm
+
+/-- Cascade layer two: `c`, with `c b c⁻¹ = b²`. -/
+noncomputable abbrev Casc2 : Type :=
+  CycLayer (zpowersHom_injective (b_infinite x))
+    (zpowersHom_injective (sq_infinite (b_infinite x)))
+
+theorem c_infinite : ∀ m : ℤ, m ≠ 0 → (HNNExtension.t : Casc2 x) ^ m ≠ 1 :=
+  fun _ hm => zpow_t_ne_one _ hm
+
+/-- `Γ`, inside `Casc2`. -/
+noncomputable def casc2OfBase : Γ →* Casc2 x :=
+  (HNNExtension.of).comp ((HNNExtension.of).comp (topOfBase x))
+
+theorem casc2OfBase_injective : Function.Injective (casc2OfBase x) := by
+  intro a b hab
+  exact base_injective x
+    (HNNExtension.of_injective _ (HNNExtension.of_injective _ hab))
+
+/-- The image of an element of the base at the top of the cascade. -/
+noncomputable def casc2OfMid : Mid Γ n →* Casc2 x :=
+  (HNNExtension.of).comp ((HNNExtension.of).comp HNNExtension.of)
+
+/-- **The full tower**: adjoin `k` along `⟨z⟩ ≅ ⟨c⟩`, where `z` is the image of
+`⁅w, s⁆`.  The hypothesis is that `z` has infinite order, which holds exactly
+when `w ≠ 1`. -/
+noncomputable abbrev Full {z : Casc2 x} (hz : ∀ m : ℤ, m ≠ 0 → z ^ m ≠ 1) : Type :=
+  CycLayer (zpowersHom_injective hz) (zpowersHom_injective (c_infinite x))
+
+/-- **The embedding half.**  `Γ` embeds in the full tower.  Every step is an
+injection: two free-product inclusions and four `HNNExtension.of`s. -/
+theorem full_base_injective {z : Casc2 x} (hz : ∀ m : ℤ, m ≠ 0 → z ^ m ≠ 1) :
+    Function.Injective
+      ((HNNExtension.of : Casc2 x →* Full x hz).comp (casc2OfBase x)) := by
+  intro a b hab
+  exact casc2OfBase_injective x (HNNExtension.of_injective _ hab)
+
+/-- **The cascade fires.**  In the full tower the stable letter `k` conjugates
+`z` to `c`; so if `z = 1` then `c = 1`, and the three relations
+`k z k⁻¹ = c`, `c b c⁻¹ = b²`, `b u b⁻¹ = u²` carry that down to `u = 1`. -/
+theorem full_conj {z : Casc2 x} (hz : ∀ m : ℤ, m ≠ 0 → z ^ m ≠ 1) :
+    (HNNExtension.of (HNNExtension.t : Casc2 x) : Full x hz)
+      = HNNExtension.t * HNNExtension.of z * HNNExtension.t⁻¹ :=
+  cyc_conj _ _
+
+theorem casc1_conj :
+    (HNNExtension.of ((HNNExtension.t : Top Γ x) ^ (2 : ℤ)) : Casc1 x)
+      = HNNExtension.t * HNNExtension.of HNNExtension.t * HNNExtension.t⁻¹ :=
+  cyc_conj _ _
+
+theorem casc2_conj :
+    (HNNExtension.of ((HNNExtension.t : Casc1 x) ^ (2 : ℤ)) : Casc2 x)
+      = HNNExtension.t * HNNExtension.of HNNExtension.t * HNNExtension.t⁻¹ :=
+  cyc_conj _ _
+
+end FullTower
+
+/-! ## The collapse half
+
+The other direction of the biconditional, and like the collapse in
+`Computability.RabinConstruction` it is stated about an *arbitrary* group
+carrying the relations, so it survives any re-encoding of the presentation.
+
+The chain is the cascade read downwards.  `z = 1` makes `c = 1`; a
+Baumslag--Solitar relation `x y x⁻¹ = y²` with `x = 1` forces `y = 1`, which
+takes `c = 1` to `b = 1` to `u = 1`; and `u = 1` turns the killing relation
+`u tᵢ u⁻¹ = tᵢ sᵢ` into `sᵢ = 1` for every `i` at once.  With one index
+carrying `xⱼ = 1` --- the letter `s` itself --- that gives `s = 1`, and then
+every `xᵢ = 1`.
+
+What is left standing is generated by the `tᵢ` and the last stable letter, with
+every relation now trivial: a free group, which is MF.  That the collapse
+reaches a free group rather than the trivial group is the whole reason the
+associated subgroups above could be taken cyclic. -/
+
+section Collapse
+
+variable {H : Type*} [Group H]
+
+theorem eq_one_of_eq_sq {y : H} (h : y = y ^ 2) : y = 1 := by
+  have h' : y = y * y := by rwa [sq] at h
+  have h2 : y * 1 = y * y := by rw [mul_one]; exact h'
+  exact (mul_left_cancel h2).symm
+
+theorem eq_one_of_conj_eq_sq {x y : H} (h : x * y * x⁻¹ = y ^ 2) (hx : x = 1) :
+    y = 1 := by
+  apply eq_one_of_eq_sq
+  rw [← h, hx]
+  simp
+
+/-- **The collapse.**  Any group carrying the variant relations, in which the
+witness `z` is trivial, has all of `c`, `b`, `u`, `s` and every `xᵢ` trivial. -/
+theorem collapse_of_relations {n : ℕ} {S : H} {X T : Fin n → H} {U B C K Z : H}
+    {j : Fin n} (hj : X j = 1)
+    (hk : K * Z * K⁻¹ = C)
+    (hc : C * B * C⁻¹ = B ^ 2)
+    (hb : B * U * B⁻¹ = U ^ 2)
+    (hu : ∀ i, U * T i * U⁻¹ = T i * (S * X i))
+    (hz : Z = 1) :
+    C = 1 ∧ B = 1 ∧ U = 1 ∧ S = 1 ∧ ∀ i, X i = 1 := by
+  have hC : C = 1 := by rw [← hk, hz, mul_one, mul_inv_cancel]
+  have hB : B = 1 := eq_one_of_conj_eq_sq hc hC
+  have hU : U = 1 := eq_one_of_conj_eq_sq hb hB
+  have hSX : ∀ i, S * X i = 1 := by
+    intro i
+    have h := hu i
+    rw [hU, one_mul, inv_one, mul_one] at h
+    exact (mul_left_cancel (a := T i) (by rw [mul_one, ← h])).symm
+  have hS : S = 1 := by
+    have := hSX j
+    rwa [hj, mul_one] at this
+  refine ⟨hC, hB, hU, hS, fun i => ?_⟩
+  have := hSX i
+  rwa [hS, one_mul] at this
+
+end Collapse
+
 end RabinVariantTower
 end GroupApproximation
