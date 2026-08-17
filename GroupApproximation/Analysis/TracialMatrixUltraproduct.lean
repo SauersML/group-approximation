@@ -68,12 +68,40 @@ missing step is exactly
 > for `j ∈ J₂ω` and `ε > 0` there is `e ∈ J₂ω` with `0 ≤ e ≤ 1` and
 > `‖j - j e‖ < ε`,
 
-for which the concrete witness is the spectral projection
-`e n = 1_{[δ,∞)}(|j n|)`: it satisfies `‖j n (1 - e n)‖ ≤ δ` in operator norm,
-and Chebyshev on the singular values gives `‖e n‖₂ ≤ ‖j n‖₂ / δ`, so `e` is
-again in the ideal.  Everything downstream of that one lemma is the standard
-three-line estimate.  Nothing below papers over the gap: no statement here
-asserts the C-star identity for the quotient norm.
+for which the witness is the resolvent element
+
+`e = a * (δ • 1 + a)⁻¹`,   `a = star j * j`,
+
+formed in the *ambient* algebra.  Three things make this the right witness.
+
+* It is a **continuous** function of `a`, namely `t ↦ t / (δ + t)`, so it
+  needs only the continuous functional calculus of a nonnegative element and
+  no diagonalization.  An earlier draft of this paragraph proposed the
+  spectral projection `1_{[δ,∞)}(|j n|)` instead; that indicator is
+  discontinuous, so it needs the spectral theorem coordinatewise, and
+  `Analysis/CStarSpectralProjection.lean` does not help with it -- its
+  `spectralProjection` is a `cfc` of a gap indicator and its continuity lemma
+  wants a genuine spectral gap, which `|j n|` has no reason to have.
+* Membership `e ∈ J₂ω` is **immediate from the ideal property** and needs no
+  C-star structure on the ideal itself: `a ∈ J₂ω` because `j` is, and `e` is
+  `a` times an element of the ambient algebra.  This is what keeps the
+  argument out of the (unavailable) theory of ideals as non-unital C-star
+  algebras.
+* The two estimates are one step each.  `‖e‖₂ ≤ ‖a‖₂ / δ` from
+  `‖AB‖₂ ≤ ‖B‖ ‖A‖₂` -- the lemma already used above -- together with
+  `‖(δ + a)⁻¹‖ ≤ 1/δ`; and `‖a‖₂ ≤ ‖j‖ ‖j‖₂ → 0`.  For the other side,
+  `‖j (1 - e)‖² = ‖(1 - e) a (1 - e)‖ = ‖g(a)‖` with
+  `g t = t δ² / (δ + t)²`, whose supremum on `[0,∞)` is `δ/4`, so
+  `‖j (1 - e)‖ ≤ √δ / 2`.
+
+Mathlib's own `Analysis/CStarAlgebra/ApproximateUnit.lean` is built around
+exactly this function in the form `x ↦ 1 - (1 + x)⁻¹`
+(`CFC.monotoneOn_one_sub_one_add_inv`, `norm_cfcₙ_one_sub_one_add_inv_lt_one`),
+so more of it should be reusable than the projection route suggested.
+Everything downstream of that one lemma is the standard three-line estimate.
+
+Nothing below papers over the gap: no statement here asserts the C-star
+identity for the quotient norm.
 -/
 
 /- Typeclass search on `↥(ModelBoundedSequence X) ⧸ hilbertSchmidtNullIdeal X l`
