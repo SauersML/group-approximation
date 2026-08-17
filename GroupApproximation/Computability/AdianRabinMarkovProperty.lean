@@ -406,8 +406,8 @@ the assembly consumes; D5 is (a).
     `t⁻¹ · finalTw · t · finalTw⁻¹` in `c₀`'s generator numbering, and prove
     the two agree.  Then `¬ComputablePred wordProblemPred` is immediate.
 
-    **Status 2026-08-17: three of the four pieces are done, and the fourth is
-    the words.**
+    **Status 2026-08-17, evening: all four pieces are done and the join is
+    instantiated --- D4' is closed.**
 
     - *The undecidable source, in the form the group side can use* --- **done**,
       `ModularMachineConfigHalting.exists_modularMachine_config_halting_not_computablePred`:
@@ -434,17 +434,35 @@ the assembly consumes; D5 is (a).
       dependent family is `Primcodable`; normalising letters mod `genCount c` and
       pushing along the injection `Fin.val` moves the question into `FreeGroup ℕ`,
       where the deletion certificate of `FreeGroupDeletion` decides it.
-    - *The words* --- **open**, and the whole of what is left: a computable
-      `ℕ × ℕ → List (ℕ × Bool)` giving each configuration's word in
-      `finalGroupCode`'s numbering, plus its agreement with
-      `conj_k_finalTw_eq_iff`.
+    - *The words* --- **done (2026-08-17), and with them D4' is CLOSED.**  Four
+      modules, one per layer: `BooneWords` writes
+      `k⁻¹ · t(α,β) · k · t(α,β)⁻¹` as raw data and proves the presentation
+      reads it as the halting element (`equiv_commElt`);
+      `BooneWordMapPrimrec.computable_rawComm` makes the configuration-to-word
+      map computable (the four generator indices are fixed naturals, so
+      `Primrec.const` carries them without evaluating);
+      `BooneWordAgreement.wordProblem_rawComm_iff` reads the code's word
+      problem on the raw word as `commElt P q = 1`, moving triviality across
+      the renumbering without tracking elements through `stageCodeEquiv`; and
+      `BooneWordProblemUndecidable` bridges to Simpson's Theorem 8 by stating
+      it at a *variable* associated subgroup so `machineTowerPres_tsub` can be
+      substituted, then instantiates the join.  The endpoints are
+      `Computability.not_computablePred_wordProblemPred` --- the uniform word
+      problem on presentation codes is undecidable, no hypothesis, no
+      literature input --- and `Computability.operatorMF_recognition_not_computable`.
 
-    One trap for whoever writes them: `stageCode` is `noncomputable`, and that is
-    harmless.  The code is a fixed object, and a constant at a noncomputable value
-    is still `Computable`; only the *word map* has to be effective.  Needing
-    `stageCode` itself to compute would be a sign the statement had drifted.
+    The trap note below was right and is kept for the record: `stageCode` is
+    `noncomputable`, and that is harmless.  The code is a fixed object, and a
+    constant at a noncomputable value is still `Computable`; only the *word
+    map* has to be effective.  Needing `stageCode` itself to compute would be
+    a sign the statement had drifted.
 
-  This does not change the manuscript's conditionality, which rests on (a)/D5.
+  **This DOES now change the manuscript's conditionality** (the sentence above
+  saying otherwise predates the close): with D4' discharged,
+  `operatorMF_recognition_undecidable_of_wordProblem` fires and the positive
+  clause of `cor:undecidable` is unconditional.  What remains conditional is
+  only the negative-side clause, whose hypothesis is the r.e. half ((c)/D2's
+  integration, `REPred wordProblemPred`).
 
 Total: on the order of **6000--11000 new lines**, i.e. a multi-month
 single-developer project whose critical path is D3 → D4.  It is a genuine
@@ -457,6 +475,17 @@ assuming D5 will do the same, since its cost is in a Britton-based induction
 rather than in a permanence property Mathlib turned out to already have.)
 
 ### Cost of retracting the manuscript's self-declaration
+
+**Executed (2026-08-17).**  The retraction this section prices has since been
+carried out: (a) was rebuilt as surgery on relator lists
+(`AdianRabinVariantTransform`, ledger row UN.04), (b) closed as D3/D4, and the
+D4' coordinates closed above, so the sentence this section is about is being
+removed from the manuscript and the positive clause of `cor:undecidable` is
+unconditional.  The paragraphs below are the original estimate, kept because
+the reasoning about *why* there was no partial retraction was correct --- the
+route taken is exactly the "whole 6000--11000 lines" it describes, which came
+in cheaper than priced for the reasons recorded per-item above.  Only
+(c)/D2's integration (the r.e. half, worth the quoted ~5%) is still open.
 
 The manuscript says of `cor:undecidable`: "This corollary carries one classical
 literature input, used only here: the Adian--Rabin construction itself, which
