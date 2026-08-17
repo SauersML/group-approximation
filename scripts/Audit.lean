@@ -574,7 +574,6 @@ def headlineTheorems : List Name :=
    ``MarkedGroupSpace.isClosed_operatorMFLocus,
    ``MarkedGroupSpace.isOpen_compl_operatorMFLocus,
    ``MarkedGroupSpace.isOperatorMF_of_tendsto,
-   ``OperatorMFQuotientNonclosure.operatorMF_not_closed_under_this_quotient,
    ``not_injective_of_coronaMFInvisible,
    ``KazhdanCompressionCore.finiteNormal_uniform_invisibility,
    ``KazhdanCompressionCore.finiteNormal_uniform_invisibility_positiveModel,
@@ -605,7 +604,21 @@ def headlineTheorems : List Name :=
    ``Manuscript.cor_fgring_exact,
    ``Manuscript.cor_fgring_countableFree,
    ``binaryLeavittWhiteheadK1_subsingleton,
-   ``KunSpectral.no_uniform_spectral_gap]
+   ``KunSpectral.no_uniform_spectral_gap,
+   -- The undecidability endpoints.  The namespace sweep below already refuses a
+   -- disallowed axiom in any of these, so adding them buys no new *safety*; what
+   -- it buys is the per-theorem `logInfo` line above, which is the only place a
+   -- CI log states what an individual endpoint rests on.  These six carry the
+   -- claim that they are unconditional, and a bulk "no disallowed axioms" over
+   -- the namespace is not that claim: it would read the same if one of them
+   -- rested on an admission that some *other* declaration also carried.  The
+   -- reported closure is the machine's form of the sentence each of them makes.
+   ``Computability.not_computablePred_wordProblemPred,
+   ``Computability.operatorMF_recognition_not_computable,
+   ``WordProblemRE.rePred_wordProblemPred,
+   ``WordProblemRE.not_rePred_compl_wordProblemPred,
+   ``WordProblemRE.operatorMF_negative_side_not_re,
+   ``CliffordBSAmenableMF.manuscriptSharpnessOfKazhdanHypothesis]
 
 /-- Advertised closed endpoints.  A declaration on this list must have an
 empty outer telescope.  Universally quantified mathematics belongs inside a

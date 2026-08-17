@@ -290,7 +290,12 @@ theorem normalFactorSet_eq_of_subsetProduct
     rw [hmi]
     exact i.2
   · intro n hn
-    exact exists_normal_mulEquiv_of_factor_mem (hfac ⟨n, hn⟩)
+    -- `Q` is pinned: from `hfac ⟨n, hn⟩` alone the unifier must solve
+    -- `?Q ⟨n, hn⟩ =?= Q ↑⟨n, hn⟩`, which admits the constant solution
+    -- `fun _ ↦ Q n` as well as the intended `fun j ↦ Q ↑j`, and the constant
+    -- one then makes the ambient `Subgroup (∀ i, ?Q i)` disagree with `G`.
+    exact exists_normal_mulEquiv_of_factor_mem
+      (Q := fun j : S ↦ Q (j : ℕ)) (G := G) (hfac ⟨n, hn⟩)
 
 end Recovery
 

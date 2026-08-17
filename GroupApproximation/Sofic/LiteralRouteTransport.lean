@@ -53,7 +53,7 @@ open Matrix
 open scoped Matrix.Norms.L2Operator
 open GroupApproximation.GeneralModelTransport
 
-universe u w
+universe u
 
 /-- **Forward Kazhdan transport, by the printed route.**  Statement-identical
 to `KazhdanAsymptoticCommutant.transport`, proved from the literal Section-3
@@ -67,7 +67,13 @@ theorem transport_literal
     IsAsymptoticCommutant B C (fun n ↦
       (B.map n C.t : Matrix (B.model n) (B.model n) ℂ) * x n *
         (B.map n C.t : Matrix (B.model n) (B.model n) ℂ)ᴴ) := by
-  have hT : HasKazhdanPropertyTComplex.{0, w} Γ :=
+  -- The representation universe of property `(T)` is pinned to `0` rather than
+  -- left to unification: it occurs only in this hypothesis, so an unpinned `w`
+  -- becomes a universe parameter of the theorem and leaves a metavariable in
+  -- every consumer's proof term.  `UltraproductRigidityRoute` records the same
+  -- pin for the same reason; `manuscriptKazhdanTransport` is polymorphic here,
+  -- so any instantiation is available.
+  have hT : HasKazhdanPropertyTComplex.{0, 0} Γ :=
     hasKazhdanPropertyT_iff_textbook.mp C.kazhdan
   have hY : ∀ n, 0 < Fintype.card (B.model n) := fun n ↦
     Fintype.card_pos_iff.mpr (B.modelNonempty n)
@@ -117,6 +123,100 @@ theorem transport_literal
           (B.map n (C.iota γ) : Matrix (B.model n) (B.model n) ℂ)ᴴ) ≤ ε
   rw [TransportShapeBridges.hsNormSq_conjugation_defect (B.model n) hu _]
   exact hsq
+
+/-! ## The `cor:generaltransport` chain, on the literal route
+
+Counterparts of `transport_both`, `compressionSet_transport_both` and
+`compressionGroup_transport_both`, differing from them in exactly one place:
+the forward half is `transport_literal` rather than `transport`.  The Appendix-B
+chain is left standing beside this one, so the two printed proofs remain two
+developments and a reader can tell which route a declaration traverses from its
+name.
+
+The reverse half is still `transport_star`, which reverses the *approximate*
+leakage bound.  That is deliberate and is the honest state: the printed reverse
+step of `cor:generaltransport` is the exact identity `P = VPV* ⟹ V*PV = P`,
+formalized abstractly in `Analysis/PrintedReverseTransport`, but not yet wired
+to the finite-stage reverse transport.  Row `ID.05` is the forward direction and
+is closed by this chain; row `ID.06` is the reverse and is not. -/
+
+/-- **Two-sided transport, forward half on the printed route.** -/
+theorem transport_both_literal
+    {Γ : Type} [Group Γ] {E : Type u} [Group E]
+    (B : OpAlmostRepresentation E) (C : KazhdanCompressionCore Γ E)
+    (x : ∀ n, Matrix (B.model n) (B.model n) ℂ)
+    (hx : IsAsymptoticCommutant B C x)
+    (hbound : IsUniformlyBounded B x) :
+    IsAsymptoticCommutant B C (fun n ↦
+        (B.map n C.t : Matrix (B.model n) (B.model n) ℂ) * x n *
+          (B.map n C.t : Matrix (B.model n) (B.model n) ℂ)ᴴ) ∧
+      IsAsymptoticCommutant B C (fun n ↦
+        (B.map n C.t : Matrix (B.model n) (B.model n) ℂ)ᴴ * x n *
+          (B.map n C.t : Matrix (B.model n) (B.model n) ℂ)) :=
+  ⟨transport_literal B C x hx hbound, transport_star B C x hx hbound⟩
+
+/-- **Every one-sided compressor transports, forward half on the printed
+route.** -/
+theorem compressionSet_transport_both_literal
+    {Γ : Type} [Group Γ] {E : Type u} [Group E]
+    (B : OpAlmostRepresentation E) (iota : Γ →* E)
+    (hkazhdan : HasKazhdanPropertyT.{0, 0} Γ)
+    (x : ∀ n, Matrix (B.model n) (B.model n) ℂ)
+    (hx : ∀ gamma : Γ, HSSqVanishing B (fun n ↦
+      x n - (B.map n (iota gamma) : Matrix (B.model n) (B.model n) ℂ) *
+        x n * (B.map n (iota gamma) : Matrix (B.model n) (B.model n) ℂ)ᴴ))
+    (hbound : IsUniformlyBounded B x)
+    {s : E} (hs : s ∈ compressionSet iota.range) :
+    IsAsymptoticCommutantOf B iota (adjointSequence B s x) ∧
+      IsAsymptoticCommutantOf B iota (coadjointSequence B s x) := by
+  let C := coreOfCompressor iota hkazhdan s hs
+  have hxC : IsAsymptoticCommutant B C x := by
+    change IsAsymptoticCommutantOf B iota x
+    exact hx
+  have htransport := transport_both_literal B C x hxC hbound
+  change IsAsymptoticCommutantOf B C.iota (adjointSequence B C.t x) ∧
+    IsAsymptoticCommutantOf B C.iota (coadjointSequence B C.t x) at htransport
+  change IsAsymptoticCommutantOf B iota (adjointSequence B s x) ∧
+    IsAsymptoticCommutantOf B iota (coadjointSequence B s x)
+  exact htransport
+
+/-- Membership in the stabilizer, established on the printed route.  The
+stabilizer itself is route-agnostic: it is a property of an element, so the two
+chains prove membership in the same subgroup by different arguments. -/
+theorem compressionSet_subset_asymptoticCommutantStabilizer_literal
+    {Γ : Type} [Group Γ] {E : Type u} [Group E]
+    (B : OpAlmostRepresentation E) (iota : Γ →* E)
+    (hkazhdan : HasKazhdanPropertyT.{0, 0} Γ) :
+    compressionSet iota.range ⊆ asymptoticCommutantStabilizer B iota := by
+  intro s hs x hbound hx
+  exact compressionSet_transport_both_literal B iota hkazhdan x hx hbound hs
+
+theorem compressionGroup_le_asymptoticCommutantStabilizer_literal
+    {Γ : Type} [Group Γ] {E : Type u} [Group E]
+    (B : OpAlmostRepresentation E) (iota : Γ →* E)
+    (hkazhdan : HasKazhdanPropertyT.{0, 0} Γ) :
+    compressionGroup iota.range ≤ asymptoticCommutantStabilizer B iota := by
+  rw [compressionGroup, Subgroup.closure_le]
+  exact compressionSet_subset_asymptoticCommutantStabilizer_literal B iota
+    hkazhdan
+
+/-- **`cor:generaltransport`, forward half on the printed route.**  Pointwise
+form, ambient group arbitrary, matching `compressionGroup_transport_both`
+statement for statement.  This is the declaration the manuscript badge should
+cite if the corollary is to traverse the route its proof names. -/
+theorem compressionGroup_transport_both_literal :
+    ∀ {Γ₀ : Type} {E₀ : Type u} [Group Γ₀] [Group E₀]
+    (B : OpAlmostRepresentation E₀) (iota : Γ₀ →* E₀)
+    (_hkazhdan : HasKazhdanPropertyT.{0, 0} Γ₀)
+    {g : E₀} (_hg : g ∈ compressionGroup iota.range)
+    (x : ∀ n, Matrix (B.model n) (B.model n) ℂ)
+    (_hbound : IsUniformlyBounded B x)
+    (_hx : IsAsymptoticCommutantOf B iota x),
+    IsAsymptoticCommutantOf B iota (adjointSequence B g x) ∧
+      IsAsymptoticCommutantOf B iota (coadjointSequence B g x) := by
+  intro Γ₀ E₀ _ _ B iota hkazhdan g hg x hbound hx
+  exact compressionGroup_le_asymptoticCommutantStabilizer_literal B iota
+    hkazhdan hg x hbound hx
 
 end KazhdanAsymptoticCommutant
 end GroupApproximation

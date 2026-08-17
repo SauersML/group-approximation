@@ -133,7 +133,7 @@ representation of `A ⊙ B` on `H ⊗ K`, the right-hand side is the roadmap's
 `A ⊗_{π,ρ} B` as a genuine C⋆-algebra.  It is still indexed by `(π, ρ)`;
 removing that index is Takesaki's theorem and is not done anywhere in this
 development. -/
-noncomputable def completionCStarAlgebraOfIsCStarNorm [StarModule ℂ A]
+@[reducible] noncomputable def completionCStarAlgebraOfIsCStarNorm [StarModule ℂ A]
     (h : IsCStarNorm p) :
     CStarAlgebra (UniformSpace.Completion (WithCStarNorm h)) :=
   CStarCompletion.completionCStarAlgebra
