@@ -323,8 +323,8 @@ opening the proof, have held.
 <!-- LEDGER-COUNTS -->
 | Column | EXACT | MISMATCH | MISSING | UNDER-SPECIFIED | total |
 | --- | --- | --- | --- | --- | --- |
-| statement | 330 | 58 | 52 | 1 | 441 |
-| proof | 334 | 44 | 62 | 1 | 441 |
+| statement | 328 | 58 | 52 | 1 | 439 |
+| proof | 332 | 44 | 62 | 1 | 439 |
 <!-- END-LEDGER-COUNTS -->
 
 ## Rows waiting for a first green build
@@ -532,11 +532,11 @@ once in the comment-stripped manuscript; the probe is the drift detector.
 | thm:abstract-nk | env | thm:abstract-nk | d93135ce6813697c |
 | cor:intrinsic-nk | env | cor:intrinsic-nk | 74911f7eaffe314f |
 | thm:kazhdan-clifford | env | thm:kazhdan-clifford | 924348a10c11440d |
-| rem:ff-realization | env | rem:ff-realization | 8abb6ef0f8e210a8 |
+| rem:ff-realization | env | rem:ff-realization | 95d3df4896ab80a4 |
 | thm:A | env | thm:A | e424965973a05efc |
 | cor:uniform | env | cor:uniform | 043923ba46739c21 |
 | cor:scaling-family | env | cor:scaling-family | 9370bcd0aa550f6e |
-| thm:exactfd | env | thm:exactfd | 0e1ab5f727ba25a6 |
+| thm:exactfd | env | thm:exactfd | 06b19a3bf4660f93 |
 | cor:notRFD | env | cor:notRFD | 754e7536fa06cde2 |
 | rem:invariantsize | env | rem:invariantsize | 5b662c1d7c81ad8d |
 | def:E | env | def:E | fec9598f435e5d18 |
@@ -545,13 +545,13 @@ once in the comment-stripped manuscript; the probe is the drift detector.
 | prop:blocknormalform | env | prop:blocknormalform | 4e271fd389e7e29d |
 | lem:window | env | lem:window | ffcad9af5c739fc4 |
 | rem:classical-base | env | rem:classical-base | cb7ed47885b1a17b |
-| con:clifford | env | con:clifford | 9113a55c13a6227d |
-| lem:linear | env | lem:linear | d64613d28a87f958 |
+| con:clifford | env | con:clifford | 34149a9131896348 |
+| lem:linear | env | lem:linear | f475a90d8ab3f621 |
 | prop:witness | env | prop:witness | 1a168e6eb3a8fb32 |
 | lem:square | env | lem:square | 36940cc67e41844e |
 | thm:cyclic | env | thm:cyclic | 08ab17486524f52a |
-| def:radical | env | def:radical | dfd6fe10e75e339c |
-| lem:portable | env | lem:portable | 7b68777de4a531be |
+| def:radical | env | def:radical | 6233a98058787419 |
+| lem:portable | env | lem:portable | ad40116ce5cb86dd |
 | prop:univquot | env | prop:univquot | bf0e863dc76ab01d |
 | cor:exactradical | env | cor:exactradical | 3534e895b8bf93de |
 | cor:pullback | env | cor:pullback | a198d2414f61bde0 |
@@ -583,7 +583,7 @@ once in the comment-stripped manuscript; the probe is the drift detector.
 | p:intro-commutator | prose | `For group elements $[g,h]=ghg^{-1}h^{-1}$` | - |
 | p:intro-slofstra | prose | `Slofstra's hyperlinear-profile construction uses a Clifford group` | - |
 | p:intro-bekka | prose | `Bekka and Bekka--Valette study property` | - |
-| p:intro-slofstra-quotients | prose | `his quotients by the elements sent to the identity by all exact` | - |
+| p:intro-slofstra-quotients | prose | `elements sent to the identity by every exact` | - |
 | p:intro-dglt | prose | `The case $p=2$ was settled by` | - |
 | p:intro-cde | prose | `Carri\'on--Dadarlat--Eckhardt, who also give` | - |
 | p:intro-final | prose | `therefore leaves open whether the group itself embeds` | - |
@@ -604,7 +604,7 @@ once in the comment-stripped manuscript; the probe is the drift detector.
 | p:constr-tietze | prose | `The endomorphism $\alpha$ is injective because` | - |
 | p:constr-role-of-a | prose | `$e_1\notin2\mathbb Z^3$, and $a\notin\alpha(\Gamma)$ for the same` | - |
 | p:A-defect-square | prose | `Let $H_1$ be a group and $d,a_1\in H_1$ with $d^2=1$` | - |
-| p:A-consequences | prose | `contained in it, lies in the kernel of every homomorphism` | - |
+| p:A-consequences | prose | `do not constrain the commutators` | - |
 | p:B-applied | prose | `finite-dimensional linear representations do not separate the points` | - |
 | p:B-deligne | prose | `Such groups were proposed there as the natural candidate counterexamples` | - |
 | p:B-subgroup-valued | prose | `The same calculation proves the final, subgroup-valued assertion` | - |
@@ -627,7 +627,6 @@ once in the comment-stripped manuscript; the probe is the drift detector.
 | p:E-zext | prose | `canonical projections gives a surjection $W\to\Z$` | - |
 | p:E-exact | prose | `equivalent to exactness of the reduced group algebra` | - |
 | p:E-simple | prose | `There is a countable simple sofic group` | - |
-| p:markedlimit-intro | prose | `At every fixed number of marked generators the MF property is closed` | - |
 | p:horn-intro | prose | `Every MF group satisfies a single finite quasi-identity` | - |
 | p:undec-markov | prose | `make MF a Markov` | - |
 | p:undec-adianrabin | prose | `applied to the Markov property` | - |
@@ -645,9 +644,8 @@ once in the comment-stripped manuscript; the probe is the drift detector.
 | p:appA-localmodel | prose | `An \emph{approximate unitary representation} for a countable group` | - |
 | p:appC-construction | prose | `is the completion of the group ring` | - |
 | p:appC-universal | prose | `Injectivity comes from the left regular representation, uniqueness from` | - |
-| p:appC-separate | prose | `while the reduced algebra of $E$ is` | - |
 | thm:signfree | env | thm:signfree | 684a845d1f1d9cb4 |
-| p:limits-adjointgap | prose | `whose adjoints stay $2$ apart in operator norm` | - |
+| p:limits-adjointgap | prose | `adjoints are at operator-norm distance` | - |
 | p:limits-nogo | prose | `matrix coordinates are replaced by stably finite unital` | - |
 <!-- END-LEDGER-ANCHORS -->
 
@@ -1038,7 +1036,6 @@ everywhere: the TeX is the specification and does not move).
 | SO.16 | p:E-exact | C*_red(E) is exact, and so is C*_red(W) | `LiteralWitnessConsequences.literalWitness_reducedGroupCStar_stablyFinite_nonMF` | MISMATCH | MISSING | literal | literature-input | GHW, KWPermanence, KWExact | NO | everything except exactness is formal; the TeX says the library has no definition of exact C*-algebra |
 | SO.17 | p:E-simple | there is a countable simple sofic group equal to its own MF radical | - | MISSING | MISSING | - | literature-input | ElekSzaboHyper | NO | the embedding of a countable sofic group into a simple sofic one is quoted |
 | SO.18 | p:E-simple | proof: embed W, use functoriality, and note that a normal radical containing a nontrivial element of a simple group is everything | `map_actualCoronaMFResidual_le` | MISMATCH | MISSING | literal | literature-input | ElekSzaboHyper | NO | functoriality is formal; the simple sofic envelope is not |
-| ML.01 | p:markedlimit-intro | at every fixed number of marked generators, MF is closed under limits of marked groups and its failure always has a finite certificate | `MarkedGroupSpace.isClosed_operatorMFLocus` | EXACT | EXACT | literal | unconditional | - | NO | - |
 | ML.02 | thm:markedclosed | (1) the marked groups with MF quotient form a closed set | `MarkedGroupSpace.isClosed_operatorMFLocus` | EXACT | EXACT | literal | unconditional | - | NO | - |
 | ML.03 | thm:markedclosed | (2) the non-MF marked groups form an open set | `MarkedGroupSpace.isOpen_compl_operatorMFLocus` | EXACT | EXACT | literal | unconditional | - | NO | - |
 | ML.04 | thm:markedclosed | (3) every non-MF k-marked group admits a finite-radius certificate | `MarkedGroupSpace.exists_wordBall_cylinder_subset_compl_operatorMFLocus` | EXACT | EXACT | literal | unconditional | - | NO | - |
@@ -1060,7 +1057,7 @@ everywhere: the TeX is the specification and does not move).
 | UN.07b | p:mult-continuum | the input family itself: a continuum of pairwise nonisomorphic finitely generated groups, constructed rather than quoted | `NeumannContinuum.manuscriptContinuumMultiplicityUnconditional` | EXACT | EXACT | literal | unconditional | - | NO | removes the Neumann literature input from UN.07; the family is not Neumann's (a lamplighter over free-group coset spaces, not a subdirect product of alternating groups) and is finitely generated, not two-generator, which is all the deduction uses -- the TeX now says so |
 | UN.08 | p:mult-continuum | the counting step: each N embeds in X as a f.g. subgroup, a countable group has countably many f.g. subgroups, and a map with countable fibres from a continuum-sized family has continuum-sized image | `ContinuumMultiplicity.exists_continuum_pairwise_nonisomorphic` | EXACT | MISMATCH | literal | conditional-data | - | NO | the manuscript's own step on top of the hypothesis is formal |
 | LI.01 | p:limits-opnorm | HS-controlled multiplication does not make the adjoint operators operator-norm close, and both transport proofs need exactly that control | `KazhdanCompressorCorner.displacement_vanishing` | MISMATCH | MISSING | literal | unconditional | - | NO | the necessity claim is not formalized; only the positive use of operator-norm control is |
-| LI.01b | p:limits-adjointgap | the failure is exact and dimension-free: against ‖Ad U − Ad V‖ ≤ 2‖U − V‖ there are unitaries of arbitrarily small normalized HS distance whose adjoints stay 2 apart in operator norm | `HilbertSchmidtAdjointGap.exists_hsClose_adjointFar`; `HilbertSchmidtAdjointGap.two_le_l2_opNorm_conjDouble_sub`; `HilbertSchmidtAdjointGap.hsNormSq_one_sub_signDiagonal` | EXACT | EXACT | literal | unconditional | - | NO | added during this audit; the sign-diagonal witness realizes the constant 2 |
+| LI.01b | p:limits-adjointgap | the estimate ‖Ad U − Ad V‖ ≤ 2‖U − V‖ has no converse: there are unitaries of arbitrarily small normalized HS distance whose adjoints stay 2 apart in operator norm | `HilbertSchmidtAdjointGap.exists_hsClose_adjointFar`; `HilbertSchmidtAdjointGap.two_le_l2_opNorm_conjDouble_sub`; `HilbertSchmidtAdjointGap.hsNormSq_one_sub_signDiagonal` | EXACT | EXACT | literal | unconditional | - | NO | added during this audit; the sign-diagonal witness realizes the constant 2 |
 | LI.02 | p:limits-dilution | padding with an identity block preserves every operator-norm quantity while collapsing normalized HS distances below any bound | `NormModel.exists_hs_collapse`; `l2_opNorm_cornerPad` | EXACT | EXACT | literal | unconditional | - | NO | - |
 | LI.03 | p:limits-dilution | hence HS invisibility alone can never prove a group non-MF; an obstruction must carry its own scale | `NormModel.exists_hs_collapse` | EXACT | EXACT | literal | unconditional | - | NO | - |
 | LI.04 | p:limits-dilution | macroscopic relative rank is not required: padding leaves the Reynolds corner untouched while d_n grows, so r_n/d_n may tend to zero | `FiniteNormalAverageCorner.exists_corner_with_finite_sum_vanishing` | MISMATCH | MISSING | literal | unconditional | - | NO | the corner is intrinsically renormalized in Lean, but no declaration states this independence claim |
@@ -1098,7 +1095,6 @@ everywhere: the TeX is the specification and does not move).
 | MC.04 | prop:proper-isometry | a projection p and unitary u with upu* absorbing p on both sides and upu* ≠ p give a non-unitary isometry | `ProperProjectionCompression.isometry_not_isUnit` | EXACT | EXACT | literal | unconditional | - | NO | the structure fields are exactly the printed hypotheses.  RE-READ 2026-08-16: the print dropped its own parenthesis "(a unital star ring suffices)", so Lean is now the more general statement -- `ProperProjectionCompression` is defined over `[Ring A] [StarRing A]` and never uses the C*-structure |
 | MC.05 | prop:proper-isometry | consequently A is not stably finite | `ProperProjectionCompression.not_isStablyFiniteRing` | EXACT | EXACT | literal | unconditional | - | NO | - |
 | MC.06 | prop:proper-isometry | and carries no faithful tracial state | `ProperProjectionCompression.no_faithfulTracialState` | EXACT | EXACT | literal | unconditional | - | NO | - |
-| MC.06b | p:appC-separate | the maximal and reduced algebras separate already at the level of finiteness, and the algebraic mechanism is machine-checked in full | `ProperProjectionCompression.isometry_not_isUnit`; `ProperProjectionCompression.not_isStablyFiniteRing` | EXACT | EXACT | literal | unconditional | - | NO | - |
 | MC.07 | rem:maxinfinite | for a group with strict Kazhdan compression the Kazhdan projection exists in the maximal algebra and conjugation by u_t dominates it | `MaximalCStarProperCompression.StrictKazhdanCompression.proj`; `MaximalCStarProperCompression.StrictKazhdanCompression.proj_mul_conjugate` | MISMATCH | MISMATCH | literal | conditional-data | - | NO | stated over a `StrictKazhdanCompression` datum; the TeX badge that named only `QuasiRegularWitness.baseVector_apply_base`, a trivial fragment, is now joined by the paragraph-level certificate of MC.08b |
 | MC.08 | rem:maxinfinite | the domination is strict: at the quasi-regular coordinate ℓ²(G/tΓt⁻¹) the point mass at the base coset is fixed by the compressed subgroup and moved by everything outside it | `QuasiRegularWitness.exists_baseVector_witness`; `QuasiRegularWitness.baseVector_apply_base` | EXACT | EXACT | literal | unconditional | - | NO | the badge certifies only the evaluation; the separation is `exists_baseVector_witness` |
 | MC.08b | rem:maxinfinite | the whole remark at once: projection, strict domination, failure of Dedekind and stable finiteness, no faithful trace, neither RFD nor MF, and the contrast with the reduced algebra | `MaximalCStarParagraphEndpoint.manuscriptMaximalCStarStrictCompressionRemark` | EXACT | EXACT | literal | unconditional | - | NO | added to the TeX 2026-08-16 in answer to MC.07's note: the paragraph now carries a certificate for its load-bearing conclusions, not only for the quasi-regular evaluation.  Conjuncts follow the printed sentence order |
