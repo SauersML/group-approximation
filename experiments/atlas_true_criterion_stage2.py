@@ -157,11 +157,24 @@ def run(args):
     probe = draw_probe()
     norm = float(probe.numel())
 
+    def polar_retract(x, steps=4):
+        """Newton-Schulz iteration to the nearest unitary, pure GEMMs.
+        Note the QR retraction was NEVER broken: LAPACK/cusolver QR of a
+        near-identity input returns Q = -(near I), so the warm start
+        lives at the gauge copy -I (a global phase cancels in W R W*),
+        and w_minus_identity = 2.0 is that gauge, not damage.  Polar is
+        kept as the geometrically cleaner retraction; the honest drift
+        diagnostic is the gauge-invariant one below."""
+        for _ in range(steps):
+            x = 1.5 * x - 0.5 * (x @ (x.conj().T @ x))
+        return x
+
     w_mat = torch.eye(n, dtype=torch.complex64, device=dev)
     w_mat += args.initial_scale * (
         torch.randn(n, n, dtype=torch.complex64, device=dev)
         - torch.randn(n, n, dtype=torch.complex64, device=dev).conj().T)
-    w_mat, _ = torch.linalg.qr(w_mat)
+    with torch.no_grad():
+        w_mat = polar_retract(w_mat)
     w_mat.requires_grad_()
     optimizer = torch.optim.Adam([w_mat], lr=args.learning_rate)
 
@@ -208,17 +221,12 @@ def run(args):
             if w_mat.grad is not None:
                 gnorm = float(torch.linalg.norm(w_mat.grad))
             optimizer.step()
-            # free the 3 GiB gradient before the QR workspace spike
+            # free the 3 GiB gradient before the retraction's temporaries
             optimizer.zero_grad(set_to_none=True)
             with torch.no_grad():
-                q, r = torch.linalg.qr(w_mat)
-                # fix the QR phase so the retraction is continuous
-                d = torch.diagonal(r)
-                q = q * (d / d.abs().clamp_min(1e-12)).unsqueeze(0)
-                w_mat.copy_(q)
-                # q/r are W-sized (3 GiB each); as loop locals they would
-                # otherwise stay live through the next backward pass
-                del q, r, d
+                fresh = polar_retract(w_mat.detach())
+                w_mat.copy_(fresh)
+                del fresh
         if iteration % args.report_every == 0 or iteration == args.iterations:
             rec = {
                 "iteration": iteration,
@@ -232,6 +240,15 @@ def run(args):
                     w_mat.detach()
                     - torch.eye(n, dtype=w_mat.dtype, device=dev))
                     / (n ** 0.5)),
+                "unitarity_defect": float(torch.linalg.norm(
+                    w_mat.detach().conj().T @ w_mat.detach()
+                    - torch.eye(n, dtype=w_mat.dtype, device=dev))
+                    / (n ** 0.5)),
+                # gauge-invariant distance^2 to the flip manifold's
+                # scalar copies: min_theta ||W - e^{i theta} I||^2 / n
+                "gauge_distance_sq": float(
+                    2.0 - 2.0 * torch.diagonal(w_mat.detach())
+                    .sum().abs().item() / n),
                 "block_diag_distance": block_diag_distance(w_mat.detach()),
                 "monomial_distance": monomial_distance(w_mat.detach()),
                 "elapsed_s": round(time.time() - started, 1),
