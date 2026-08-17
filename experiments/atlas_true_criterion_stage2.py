@@ -144,9 +144,17 @@ def run(args):
     model = FlipDenseModel(ordered, ordered_index, dev)
 
     n = 20160
-    probe = (2.0 * torch.randint(0, 2, (n, args.probes),
+
+    def draw_probe():
+        p = (2.0 * torch.randint(0, 2, (n, args.probes),
                                  dtype=torch.float32) - 1.0)
-    probe = probe.to(torch.complex64).to(dev)
+        return p.to(torch.complex64).to(dev)
+
+    # resampled every iteration: with a FIXED probe set the estimator
+    # becomes the objective and the optimizer learns identity-on-the-
+    # probe-subspace instead of operator proximity (observed: active
+    # mean 2.0 -> 1.32 while control 0.003 -> 0.65 by iteration 5)
+    probe = draw_probe()
     norm = float(probe.numel())
 
     w_mat = torch.eye(n, dtype=torch.complex64, device=dev)
@@ -185,6 +193,7 @@ def run(args):
     n_act, n_ctl = len(active), max(1, len(control))
     for iteration in range(args.iterations + 1):
         optimizer.zero_grad(set_to_none=True)
+        probe = draw_probe()  # W depends only on PAST samples: unbiased
         train = iteration != args.iterations
         act_vals = defects(active, train, 1.0 / n_act)
         ctl_vals = defects(control, train,
@@ -219,6 +228,10 @@ def run(args):
                 "active_max_defect_sq": float(np.max(act_vals)),
                 "control_mean_defect_sq": float(np.mean(ctl_vals)),
                 "grad_norm": gnorm,
+                "w_minus_identity": float(torch.linalg.norm(
+                    w_mat.detach()
+                    - torch.eye(n, dtype=w_mat.dtype, device=dev))
+                    / (n ** 0.5)),
                 "block_diag_distance": block_diag_distance(w_mat.detach()),
                 "monomial_distance": monomial_distance(w_mat.detach()),
                 "elapsed_s": round(time.time() - started, 1),
