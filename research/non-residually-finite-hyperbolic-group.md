@@ -5,6 +5,9 @@ kind: claim
 title: A word-hyperbolic group that is not residually finite
 root: true
 distinct_from:
+  oyakawa-graph-wreath-rf-iff-acting-group-rf: that is an established equivalence inside one construction, saying that a residual finiteness failure there is always inherited from the acting group; this is the open existence question that construction was hoped to settle, and the equivalence is precisely why it does not
+  persistent-degree-two-class-on-hyperbolic-group: that is the cohomological input to one of the four live routes, a statement about classes and finite-index subgroups of a group already known to be residually finite; this is the counterexample target itself, which three other routes reach without any cohomology
+  exact-stably-finite-non-mf-reduced-group-algebra: that is a proved C-star statement about the quotient witness W — exact, stably finite, not MF; this is an open group-theoretic existence question about hyperbolic groups and their finite quotients, and no operator algebra appears in it
   nonsofic-hyperbolic-group: that claim demands a hyperbolic group that is not sofic, which is strictly stronger — non-soficity implies failure of residual finiteness, but this claim is also satisfied by a group that is sofic and not residually finite, which is exactly the shape of this repository's own literal group E
 artifacts:
   - research/artifacts/hyperbolic-residual-finiteness-audit-2026-08-17.md

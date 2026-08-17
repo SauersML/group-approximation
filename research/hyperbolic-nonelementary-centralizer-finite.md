@@ -3,6 +3,8 @@ rg: 2
 id: hyperbolic-nonelementary-centralizer-finite
 kind: claim
 title: Centralizers of non-elementary subgroups of hyperbolic groups are finite
+distinct_from:
+  non-residually-finite-hyperbolic-group: that is the open counterexample target; this is an established structural fact about centralizers in hyperbolic groups, mentions no finite quotient and no residual finiteness, and is consumed only as an input to two obstruction claims
 artifacts:
   - research/artifacts/hyperbolic-residual-finiteness-audit-2026-08-17.md
 ---

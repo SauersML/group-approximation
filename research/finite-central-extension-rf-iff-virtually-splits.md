@@ -4,6 +4,8 @@ id: finite-central-extension-rf-iff-virtually-splits
 kind: claim
 title: A finite central extension of a residually finite group is residually finite exactly when it virtually splits
 distinct_from:
+  oyakawa-graph-wreath-rf-iff-acting-group-rf: that is also a residual finiteness criterion, but for a semidirect product with a graph-product kernel, and it is discharged by properness and local finiteness of an action on a graph; this one has a finite central kernel and is decided by a cohomology class, with no action, no graph and no hyperbolicity in its statement
+  non-residually-finite-hyperbolic-group: that is the open counterexample target; this is an established general criterion about arbitrary residually finite base groups, and it neither asserts nor denies that any hyperbolic group has a persistent class
   central-extension-twisted-sector-criterion: that is an MF criterion for a central order-two extension, phrased as nonemptiness of a twisted asymptotic sector over the quotient; this is a residual finiteness criterion for an arbitrary finite central kernel, phrased as vanishing of the extension class on a finite-index subgroup, and no approximation property appears in it
   mf-hyperlinear-of-finite-normal-quotient: that transports operator approximation properties across a finite normal subgroup; this decides residual finiteness of the total group from cohomology of the quotient
 artifacts:
