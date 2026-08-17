@@ -207,8 +207,8 @@ numerator. -/
 /-- The coordinatewise estimate assembles into a statement about the `c₀`
 ideal: if `a b` is asymptotically the identity, so is `b a`. -/
 theorem isC0MatrixSequence_swap
-    {a b : BoundedMatrixSequence X} (hab : IsC0MatrixSequence X (a * b - 1)) :
-    IsC0MatrixSequence X (b * a - 1) := by
+    {a b : BoundedMatrixSequence X} (hab : IsNullMatrixSequence X cofinite (a * b - 1)) :
+    IsNullMatrixSequence X cofinite (b * a - 1) := by
   have hab' : Tendsto (fun n ↦ ‖(a * b - 1) n‖) cofinite (nhds 0) := hab
   have hhalf : ∀ᶠ n in cofinite, ‖(a * b - 1) n‖ ≤ (1 / 2 : ℝ) := by
     have hnear := (Metric.tendsto_nhds.mp hab') (1 / 2 : ℝ) (by norm_num)
@@ -247,9 +247,9 @@ instance normMatrixCStarCorona_isDedekindFiniteMonoid :
     have h0 : normMatrixCStarCoronaMk X (a * b - 1) = 0 := by
       rw [map_sub, map_mul, map_one]
       exact sub_eq_zero.mpr hxy
-    have hab : IsC0MatrixSequence X (a * b - 1) :=
+    have hab : IsNullMatrixSequence X cofinite (a * b - 1) :=
       (normMatrixCStarCoronaMk_eq_zero_iff X _).mp h0
-    have hba : IsC0MatrixSequence X (b * a - 1) :=
+    have hba : IsNullMatrixSequence X cofinite (b * a - 1) :=
       isC0MatrixSequence_swap X hab
     have h1 : normMatrixCStarCoronaMk X (b * a - 1) = 0 :=
       (normMatrixCStarCoronaMk_eq_zero_iff X _).mpr hba
@@ -301,12 +301,12 @@ theorem kt_06_polar_correction
   have hgramZero :
       normMatrixCStarCoronaMk (fun n ↦ Z n) (star a * a - 1) = 0 := by
     rw [map_sub, map_mul, map_one, hstarmul, sub_self]
-  have hgram : IsC0MatrixSequence (fun n ↦ Z n) (star a * a - 1) :=
+  have hgram : IsNullMatrixSequence (fun n ↦ Z n) cofinite (star a * a - 1) :=
     (normMatrixCStarCoronaMk_eq_zero_iff (fun n ↦ Z n) _).mp hgramZero
   have hgramTendsto :
       Tendsto (fun n ↦
         ‖KazhdanCornerMatrices.cornerGram (a n) - 1‖) cofinite (nhds 0) := by
-    simpa [IsC0MatrixSequence, KazhdanCornerMatrices.cornerGram,
+    simpa [IsNullMatrixSequence, KazhdanCornerMatrices.cornerGram,
       lp.star_apply, Matrix.star_eq_conjTranspose] using hgram
   have hgood : ∀ᶠ n in cofinite,
       ‖KazhdanCornerMatrices.cornerGram (a n) - 1‖ ≤ (1 / 2 : ℝ) := by
@@ -319,7 +319,7 @@ theorem kt_06_polar_correction
       KazhdanCornerMatrices.polarCorrectUnitary (a n)
         (KazhdanCornerMatrices.cornerGram_isHermitian (a n)) hn le_rfl
     else 1
-  have hdiff : IsC0MatrixSequence (fun n ↦ Z n)
+  have hdiff : IsNullMatrixSequence (fun n ↦ Z n) cofinite
       (unitarySequenceBounded Z w - a) := by
     apply squeeze_zero'
       (Eventually.of_forall fun n ↦
@@ -358,7 +358,7 @@ that
 the quotient of the bounded family algebra by the `c₀`-sum, is a finite C-star
 algebra.  That is this statement, on this algebra: `NormMatrixCStarCorona X` is
 the quotient of `BoundedMatrixSequence X = ∏_n B(K_n)` by
-`c0MatrixSequenceIdeal X`, whose members are exactly the families whose
+`nullMatrixSequenceIdeal X cofinite`, whose members are exactly the families whose
 operator norms tend to zero along the cofinite filter, i.e. the `c₀`-sum.  The
 proof is the printed one as well: the Gram defect is eventually at most `1/2`,
 polar correction replaces those coordinates by genuine unitaries

@@ -164,9 +164,10 @@ quantitative content of the manuscript's faithfulness computation
 theorem kt_04_norm_eq_limsup (X : ℕ → Type v) [∀ n, Fintype (X n)]
     [∀ n, DecidableEq (X n)] [∀ n, Nonempty (X n)]
     (a : BoundedMatrixSequence X) :
-    ‖Ideal.Quotient.mk (c0MatrixSequenceIdeal X) a‖ =
+    ‖Ideal.Quotient.mk (nullMatrixSequenceIdeal X cofinite) a‖ =
       Filter.limsup (fun n ↦ ‖a n‖) atTop :=
-  norm_normMatrixCorona_mk_eq_limsup X a
+  (norm_filterMatrixCorona_mk_eq_limsup X cofinite a).trans
+    (by rw [Nat.cofinite_eq_atTop])
 
 /-- **KT.04 (projection form).**  "`ran p ⊆ ran q`", written algebraically as
 `(1 - q) p = 0`, is exactly the pair of absorption identities `q p = p` and

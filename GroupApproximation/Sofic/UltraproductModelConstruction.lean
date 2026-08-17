@@ -526,7 +526,7 @@ on `K_ω`. -/
 theorem applyFam_mem_massNull_of_isC0 (hw : ∀ n, 0 ≤ w n)
     (hω : (ω : Filter ℕ) ≤ Filter.cofinite)
     {a : BoundedMatrixSequence (DblIdx Y)}
-    (ha : IsC0MatrixSequence (DblIdx Y) a)
+    (ha : IsNullMatrixSequence (DblIdx Y) cofinite a)
     {ξ : MatFam Y} (hξ : ξ ∈ massBounded Y w) :
     applyFam Y a ξ ∈ massNull Y w ω := by
   obtain ⟨C, hC⟩ := hξ
@@ -646,7 +646,7 @@ theorem actQ_sub (a b : BoundedMatrixSequence (DblIdx Y)) :
 theorem actQ_eq_zero_of_isC0 (hw : ∀ n, 0 ≤ w n)
     (hω : (ω : Filter ℕ) ≤ Filter.cofinite)
     {a : BoundedMatrixSequence (DblIdx Y)}
-    (ha : IsC0MatrixSequence (DblIdx Y) a) :
+    (ha : IsNullMatrixSequence (DblIdx Y) cofinite a) :
     actQ Y w ω a = 0 := by
   refine vec_linearMap_ext Y w ω fun ξ ↦ ?_
   rw [actQ_mk, LinearMap.zero_apply]
@@ -691,7 +691,7 @@ theorem act_mk (hw : ∀ n, 0 ≤ w n) (hω : (ω : Filter ℕ) ≤ Filter.cofin
     coronaLift_spec Y (normMatrixCStarCoronaMk (DblIdx Y) a)
   have hzero : normMatrixCStarCoronaMk (DblIdx Y) (b - a) = 0 := by
     rw [map_sub, hspec, sub_self]
-  have hc0 : IsC0MatrixSequence (DblIdx Y) (b - a) :=
+  have hc0 : IsNullMatrixSequence (DblIdx Y) cofinite (b - a) :=
     (normMatrixCStarCoronaMk_eq_zero_iff (DblIdx Y) _).mp hzero
   have hz : actQ Y w ω b - actQ Y w ω a = 0 := by
     rw [← actQ_sub]
