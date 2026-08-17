@@ -57,7 +57,7 @@ namespace CollapseCocycleAnalytic
 
 open Filter Matrix Topology
 open ScaledKazhdanTransport UltraproductModelConstruction
-open RankNormalizedHilbertization
+open RankNormalizedHilbertization KOmegaHilbert
 open scoped Matrix.Norms.L2Operator
 
 noncomputable section
@@ -107,6 +107,24 @@ def conjQ (U : ∀ n, Matrix.unitaryGroup (Y n) ℂ) :
     conjQ Y w ω U (Submodule.Quotient.mk ξ)
       = Submodule.Quotient.mk (conjBounded Y w U ξ) :=
   rfl
+
+/-- **`π(h)` acts by norm-preserving maps.**  Conjugation by a unitary family
+leaves every coordinate mass unchanged, hence leaves
+`‖[ξ_n]_ω‖ = (lim_ω ‖ξ_n‖_F² / w_n)^{1/2}` unchanged.  This is the printed
+*"conjugation by a unitary preserves each `⟨·,·⟩_n`"* read on the classes,
+and it is what makes `π` a representation **by isometries** rather than by
+bounded operators. -/
+theorem norm_mkK_conjBounded (hw : ∀ n, 0 ≤ w n)
+    (U : ∀ n, Matrix.unitaryGroup (Y n) ℂ) (ξ : massBounded Y w) :
+    ‖mkK Y w ω hw (conjBounded Y w U ξ)‖ = ‖mkK Y w ω hw ξ‖ := by
+  have hfun : (fun n ↦ matMass ((conjBounded Y w U ξ : MatFam Y) n) / w n)
+      = fun n ↦ matMass ((ξ : MatFam Y) n) / w n := by
+    funext n
+    show matMass ((U n : Matrix (Y n) (Y n) ℂ) * (ξ : MatFam Y) n *
+        (U n : Matrix (Y n) (Y n) ℂ)ᴴ) / w n
+      = matMass ((ξ : MatFam Y) n) / w n
+    rw [matMass_unitary_conj (U n).2 ((ξ : MatFam Y) n)]
+  rw [norm_mkK, norm_mkK, hfun]
 
 /-! ## The cocycle -/
 
