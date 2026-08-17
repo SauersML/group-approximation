@@ -20,9 +20,10 @@ artifacts:
   - GroupApproximation/Computability/BooneWordProblemUndecidable.lean
 ---
 
-ESTABLISHED (2026-08-17),
+ESTABLISHED (2026-08-17), via
+[[uniform-word-problem-on-presentation-codes-undecidable-proof]]:
 `Computability.not_computablePred_wordProblemPred` in
-`Computability/BooneWordProblemUndecidable`: the word problem, taken as a
+`Computability/BooneWordProblemUndecidable` says the word problem, taken as a
 predicate on `PresentationCode × List (ℕ × Bool)` where
 `PresentationCode = ℕ × List (List (ℕ × Bool))`, is not decidable.
 Unconditional, with no literature input; the undecidable source at the bottom
@@ -126,8 +127,11 @@ it would read as solved with the endpoint still unproved.  The same gap sits
 behind the "D6 is 100--200 mechanical lines" estimate, which assumed this step
 came free from D4.
 
-With the claim established that hypothesis is discharged, and the manuscript's
-conditionality moves: the positive clause of `cor:undecidable` --- no
-algorithm decides MF from a presentation code --- is unconditional.  What
-remains conditional is only the negative-side clause, whose hypothesis is the
-r.e. half, [[word-problem-of-finite-presentation-is-re]]'s integration.
+With the claim established that hypothesis is discharged, and the positive
+clause of `cor:undecidable` --- no algorithm decides MF from a presentation
+code --- is unconditional.  The negative-side clause followed the same day:
+its remaining hypothesis was the r.e. half, and
+[[word-problem-of-finite-presentation-is-re]] supplies it
+(`WordProblemRE.rePred_wordProblemPred`), so
+`WordProblemRE.operatorMF_negative_side_not_re` carries no hypothesis either
+and [[mf-recognition-undecidable]] is closed in both of its assertions.

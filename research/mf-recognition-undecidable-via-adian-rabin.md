@@ -21,7 +21,7 @@ The first two prerequisites are exactly the four fields of
 `MarkovWitness`; the second supplies the computable `transform` and its
 `correct` equivalence.  Given the structure, both halves of the target are
 *already closed theorems* in the repository — this route is complete the
-instant its prerequisites are.
+instant its prerequisites are, and as of 2026-08-17 they are.
 
 The **fourth** prerequisite was missing from this route until 2026-08-17, for
 the same reason as the third and with the same consequence.  The target has two
@@ -64,11 +64,19 @@ presentations — r.e. because the word problem of a finite presentation is r.e.
 complement, the non-MF presentations, is not r.e.  `rePred_comp` transports
 enumerability across the computable transform.
 
-## Two prerequisites, and why neither is the target restated
+## Four prerequisites, and why none is the target restated
 
 The Markov premise is a statement about groups and codes with no algorithm in
-it; the transform is an algorithm with no MF in it.  Neither mentions
-decidability of MF-recognition, and each can hold without the other — indeed
-the first does hold and the second does not, which is precisely the present
-state.  What makes the conjunction sufficient is the reduction argument above,
-which is real content and is where `correct` is consumed.
+it; the transform is an algorithm with no MF in it; the third and fourth are
+statements about a word problem on codes, with no MF in either.  None mentions
+decidability of MF-recognition, and each can hold without the others.  What
+makes the conjunction sufficient is the reduction argument above, which is real
+content and is where `correct` is consumed.
+
+Concretely, the four are discharged by
+`PresentationCodes.markovWitness` (with the semantics and the code type),
+`AdianRabinVariantTransform.reduction`,
+`Computability.not_computablePred_wordProblemPred` and
+`WordProblemRE.rePred_wordProblemPred`; the two halves of the conclusion they
+compose into are `Computability.operatorMF_recognition_not_computable` and
+`WordProblemRE.operatorMF_negative_side_not_re`.
