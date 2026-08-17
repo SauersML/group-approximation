@@ -57,10 +57,16 @@ namespace CStarCompletion
 
 open UniformSpace UniformSpace.Completion
 
-section Extend
+/-! ### Uniform continuity from norm preservation
 
-variable {A : Type*} [NormedRing A] [StarRing A] [NormedStarGroup A]
-  [NormedAlgebra ℂ A] [StarModule ℂ A]
+Stated in its own section, carrying only the instances it uses: a
+⋆-homomorphism needs `Star` and `Algebra` on the source but neither
+`NormedStarGroup` nor `StarModule`, so including those here would leave
+section variables unused. -/
+
+section Isometric
+
+variable {A : Type*} [NormedRing A] [StarRing A] [NormedAlgebra ℂ A]
 variable {B : Type*} [CStarAlgebra B]
 
 /-- A norm-preserving additive map between normed groups is uniformly
@@ -70,11 +76,14 @@ theorem uniformContinuous_of_norm_map (f : A →⋆ₐ[ℂ] B)
     (h : ∀ a : A, ‖f a‖ = ‖a‖) : UniformContinuous (f : A → B) :=
   (AddMonoidHomClass.isometry_of_norm f h).uniformContinuous
 
-variable (f : A →⋆ₐ[ℂ] B) (hf : UniformContinuous (f : A → B))
+end Isometric
 
-private theorem extension_coe_apply (a : A) :
-    Completion.extension (f : A → B) (a : Completion A) = f a :=
-  Completion.extension_coe hf a
+section Extend
+
+variable {A : Type*} [NormedRing A] [StarRing A] [NormedStarGroup A]
+  [NormedAlgebra ℂ A] [StarModule ℂ A]
+variable {B : Type*} [CStarAlgebra B]
+variable (f : A →⋆ₐ[ℂ] B) (hf : UniformContinuous (f : A → B))
 
 /-- **A ⋆-homomorphism into a C⋆-algebra extends along the completion.**
 Every law is an identity between continuous functions, so it holds on the
@@ -82,42 +91,42 @@ closure of the image of `A`, where it is the corresponding law in `A`. -/
 noncomputable def extendStarAlgHom : Completion A →⋆ₐ[ℂ] B where
   toFun := Completion.extension (f : A → B)
   map_one' := by
-    rw [← Completion.coe_one, extension_coe_apply f hf, map_one]
+    rw [← Completion.coe_one, Completion.extension_coe hf, map_one]
   map_zero' := by
-    rw [← Completion.coe_zero, extension_coe_apply f hf, map_zero]
+    rw [← Completion.coe_zero, Completion.extension_coe hf, map_zero]
   map_add' x y := by
     refine Completion.induction_on₂ x y (isClosed_eq ?_ ?_) ?_
     · exact Completion.continuous_extension.comp continuous_add
     · exact (Completion.continuous_extension.comp continuous_fst).add
         (Completion.continuous_extension.comp continuous_snd)
     · intro a b
-      rw [← Completion.coe_add, extension_coe_apply f hf, extension_coe_apply f hf,
-        extension_coe_apply f hf, map_add]
+      rw [← Completion.coe_add, Completion.extension_coe hf, Completion.extension_coe hf,
+        Completion.extension_coe hf, map_add]
   map_mul' x y := by
     refine Completion.induction_on₂ x y (isClosed_eq ?_ ?_) ?_
     · exact Completion.continuous_extension.comp continuous_mul
     · exact (Completion.continuous_extension.comp continuous_fst).mul
         (Completion.continuous_extension.comp continuous_snd)
     · intro a b
-      rw [← Completion.coe_mul, extension_coe_apply f hf, extension_coe_apply f hf,
-        extension_coe_apply f hf, map_mul]
+      rw [← Completion.coe_mul, Completion.extension_coe hf, Completion.extension_coe hf,
+        Completion.extension_coe hf, map_mul]
   commutes' r := by
     have hmap : (algebraMap ℂ (Completion A) r)
         = ((algebraMap ℂ A r : A) : Completion A) := by
       rw [Algebra.algebraMap_eq_smul_one, Algebra.algebraMap_eq_smul_one,
         Completion.coe_smul, Completion.coe_one]
-    rw [hmap, extension_coe_apply f hf]
+    rw [hmap, Completion.extension_coe hf]
     exact f.commutes r
   map_star' x := by
     refine Completion.induction_on x (isClosed_eq ?_ ?_) ?_
     · exact Completion.continuous_extension.comp continuous_star_completion
     · exact continuous_star.comp Completion.continuous_extension
     · intro a
-      rw [star_coe, extension_coe_apply f hf, extension_coe_apply f hf, map_star]
+      rw [star_coe, Completion.extension_coe hf, Completion.extension_coe hf, map_star]
 
 @[simp] theorem extendStarAlgHom_coe (a : A) :
     extendStarAlgHom f hf (a : Completion A) = f a :=
-  extension_coe_apply f hf a
+  Completion.extension_coe hf a
 
 /-- **Uniqueness of the extension.**  Density of `A` in its completion forces
 any two continuous extensions to agree; continuity is the only hypothesis
