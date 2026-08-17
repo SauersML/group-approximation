@@ -957,7 +957,7 @@
     {
       "id": "thm:projection-collapse",
       "environment": "theorem",
-      "title": "projection collapse",
+      "title": "a commuting orbit forces commutation",
       "statement_sha256": "f8010458149ae59b274a279ed754d1cb8ed12611ade9c90c774d6bd162f78c55",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
@@ -997,7 +997,7 @@
     {
       "id": "thm:collapse",
       "environment": "theorem",
-      "title": "involutive collapse",
+      "title": "the orbit of an involutive witness",
       "statement_sha256": "978ac3e37662c0079e48f50444452aae75a13642dd91a8644440043521a823a4",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
@@ -1022,7 +1022,7 @@
     {
       "id": "thm:torsion-collapse",
       "environment": "theorem",
-      "title": "torsion collapse",
+      "title": "the orbit of a finite-order witness",
       "statement_sha256": "702b6f8894246819d522cc270da7e8ca0f6a698a9f3b8dc93822a6d392af1164",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",

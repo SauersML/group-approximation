@@ -11,6 +11,12 @@ One entry per declaration named by a manuscript margin note, in the order of `do
   (S : Finset ((j : J) × C j)), Group.ResiduallyFinite ↥(BlockCliffordTowerSofic.window J C S)
 ```
 
+## `GroupApproximation.BooneGroup.exists_finitelyPresented_wordProblem_undecidable`
+
+```lean
+∃ G x, Group.IsFinitelyPresented G ∧ ∃ g, ¬ComputablePred fun m => g m = 1
+```
+
 ## `GroupApproximation.ContinuumMultiplicity.manuscriptContinuumMultiplicity`
 
 ```lean

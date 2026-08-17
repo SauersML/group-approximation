@@ -73,5 +73,14 @@ theorem exists_finitelyPresented_wordProblem_not_computablePred (n : ℕ) :
     exact propext (conj_k_finalTw_eq_iff mm hM (f m)).symm
   exact hEq ▸ hcomp
 
+/-- The manuscript's form: existence alone, with every binder after the
+colon.  Weaker than the parametrised statement above, which is why it is a
+separate proposition rather than a restatement of it. -/
+theorem exists_finitelyPresented_wordProblem_undecidable :
+    ∃ (G : Type) (_ : Group G),
+      Group.IsFinitelyPresented G ∧
+        ∃ g : ℕ → G, ¬ ComputablePred fun m : ℕ => g m = 1 :=
+  exists_finitelyPresented_wordProblem_not_computablePred 0
+
 end BooneGroup
 end GroupApproximation

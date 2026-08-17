@@ -323,8 +323,8 @@ opening the proof, have held.
 <!-- LEDGER-COUNTS -->
 | Column | EXACT | MISMATCH | MISSING | UNDER-SPECIFIED | total |
 | --- | --- | --- | --- | --- | --- |
-| statement | 325 | 57 | 51 | 1 | 434 |
-| proof | 328 | 44 | 61 | 1 | 434 |
+| statement | 326 | 57 | 51 | 1 | 435 |
+| proof | 329 | 44 | 61 | 1 | 435 |
 <!-- END-LEDGER-COUNTS -->
 
 ## Rows waiting for a first green build
@@ -1044,6 +1044,7 @@ everywhere: the TeX is the specification and does not move).
 | UN.02 | cor:undecidable | given a computable reduction from the halting problem, no algorithm decides MF from a finite presentation | `MarkovMFConsequences.presentationCodes_recognition_undecidable_of_haltingReduction` | EXACT | EXACT | literal | unconditional | - | NO | the printed corollary quantifies the reduction and nothing else, and so does the Lean: the hypothesis is the transform, its computability and the correctness equivalence, with the `MarkovWitness` half of `AdianRabinReduction` built internally from the closed `PresentationCodes.markovWitness`; undecidability of the halting problem is proved in the development, so no literature premise remains |
 | UN.03 | cor:undecidable | given the same reduction, the set of presentation codes of non-MF groups is not recursively enumerable | `MarkovMFConsequences.presentationCodes_negative_side_not_re_of_haltingReduction` | EXACT | EXACT | literal | unconditional | - | NO | same shape as UN.02; the non-enumerable complement of the halting problem is proved rather than cited |
 | UN.04 | p:undec-adianrabin | the Adian–Rabin construction supplies a computable map from word-problem instances to presentations, trivial when w = 1 and containing E when w ≠ 1 | - | MISSING | MISSING | - | literature-input | Rabin58 | NO | the TeX names Novikov–Boone and Adian–Rabin as the inputs the corollary quantifies |
+| UN.04b | p:undec-adianrabin | the source the construction consumes is available here: a finitely presented group with a sequence of words whose triviality is undecidable, unconditionally | `BooneGroup.exists_finitelyPresented_wordProblem_undecidable` | EXACT | EXACT | literal | unconditional | - | NO | the closed form; the parametrised statement it specializes takes the machine index before the colon, which the zero-input contract rejects |
 | UN.05 | p:undec-adianrabin | the computability-theoretic pullback: from any computable reduction, undecidability and failure of r.e. on the negative side follow formally | `MarkovMFConsequences.recognition_undecidable`; `MarkovMFConsequences.negative_side_not_re` | EXACT | EXACT | literal | unconditional | - | NO | the pullback itself is unconditional |
 | UN.05b | p:undec-adianrabin | the same pullback in the manuscript's general form: a reduction from any undecidable source problem makes MF recognition undecidable | `MarkovMFConsequences.operatorMF_recognition_undecidable` | EXACT | EXACT | literal | unconditional | - | NO | general in the source, as the prose prints ("does not require its source to be a word problem"), and pinned to the recursive coding, as the prose also prints ("not an arbitrary semantics"); `recognition_undecidable` (UN.05) is the coding-free pullback it delegates to |
 | UN.06 | p:mult-products | E × ℤ^k for k ≥ 0 are f.p., pairwise nonisomorphic, and non-MF | `ProductMultiplicity.manuscriptInfiniteMultiplicity` | MISMATCH | MISMATCH | literal | unconditional | - | NO | the TeX separates by torsion-free rank of the abelianization; Lean counts homomorphisms into ℤ/2, a deliberate difference the TeX records |

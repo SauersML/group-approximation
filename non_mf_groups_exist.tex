@@ -933,21 +933,6 @@ $\U(\mathcal Q)$ maps $w$ to the identity.  Since $w\ne1$, every such
 homomorphism has nontrivial kernel.
 \end{proof}
 
-\begin{remark}[a small-cancellation realization]
-\label{rem:ff-realization}
-Fournier-Facio has pointed out (personal communication, 2026) that the
-affine base of Sections~\ref{sec:group}--\ref{sec:witness} can be
-replaced by a small-cancellation construction as in \cite{FFF}.  His
-finitely presented torsion-free property-\textup{(T)} group $P$
-contains a copy of every finitely presented torsion-free group, in
-particular a direct product $P_1\times P_2$ with $P_i\cong P$.  Then
-$\alpha\colon P\xrightarrow{\;\cong\;}P_1\le P$, together with any
-$a\in P_2\setminus\{1\}$, satisfies the hypotheses of
-Theorem~\ref{thm:kazhdan-clifford}.  The group $E(P,\alpha,a)$ has
-torsion even though $P$ does not, since the construction adjoins the
-involution $c$.
-\end{remark}
-
 \section{A finitely presented non-MF group}\label{sec:example}
 
 Specialize Theorem~\ref{thm:kazhdan-clifford} to
@@ -2422,7 +2407,7 @@ The argument of Theorem~\ref{thm:sign-criterion} extends from the
 negative spectral corner of a central involution to an arbitrary
 projection of $\mathcal Q$ with commuting conjugation orbit.
 
-\begin{theorem}[projection collapse]\label{thm:projection-collapse}
+\begin{theorem}[a commuting orbit forces commutation]\label{thm:projection-collapse}
 Let $H$ be countable, let $L\le H$ have property~\textup{(T)}, let
 $s\in H$ satisfy $s\gamma s^{-1}\in L$ for every $\gamma\in L$, and let
 $\Theta\colon H\to\U(\mathcal Q)$ be a homomorphism.  Let
@@ -2579,7 +2564,7 @@ $sLs^{-1}$, every involution of the copy of $K$ at $x_0$ is a witness:
 copies at distinct points commute, and the conjugate copy fixes the
 point.
 
-\begin{theorem}[involutive collapse]\label{thm:collapse}
+\begin{theorem}[the orbit of an involutive witness]\label{thm:collapse}
 Let $H$ be countable, let $L\le H$ be a subgroup with
 property~\textup{(T)}, and let $s\in H$ satisfy
 $s\gamma s^{-1}\in L$ for every $\gamma\in L$.  Then
@@ -2606,7 +2591,7 @@ $\gamma\in L$.  Kernels are normal, so $\Theta$ is trivial on
 $D_{\mathrm{coll}}(L,s)$.
 \end{proof}
 
-\begin{theorem}[torsion collapse]\label{thm:torsion-collapse}
+\begin{theorem}[the orbit of a finite-order witness]\label{thm:torsion-collapse}
 Let $H$ be countable, let $L\le H$ have property~\textup{(T)}, let
 $s\in H$ satisfy $s\gamma s^{-1}\in L$ for every $\gamma\in L$, and
 let $k\in H$ have finite order.  If the conjugate copy $sLs^{-1}$
@@ -3124,7 +3109,13 @@ applied to the Markov property ``is MF''\@.  It fixes one finite
 presentation $P_0$ whose group has undecidable word problem and takes a
 word $v$ in the generators of $P_0$ to a finite presentation whose group
 is trivial, hence MF, when $v=1$ in $P_0$, and contains $E$, hence
-non-MF by subgroup heredity, when $v\ne1$.  The words representing $1$
+non-MF by subgroup heredity, when $v\ne1$.  Its source is available
+here: a finitely presented group carrying a sequence of words whose
+triviality is undecidable, with no hypothesis and no literature input,
+by way of Aanderaa--Cohen modular machines rather than
+Boone--Britton.
+\leanverified{Computability/NovikovBoone}{GroupApproximation.BooneGroup.exists_finitelyPresented_wordProblem_undecidable}
+What remains external is the effective reduction itself.  The words representing $1$
 form a recursively enumerable set that is not recursive, so the words
 with $v\ne1$ form a set that is not recursively enumerable, and an
 enumeration of the non-MF presentations would enumerate it.  This
@@ -3274,6 +3265,22 @@ Neither real rank zero nor semiprojectivity in the sense of
 Loring \cite{Loring98} is used.  The two genuinely
 matrix-specific ingredients are the ones listed above.
 \end{enumerate}
+
+\begin{remark}[a small-cancellation realization]
+\label{rem:ff-realization}
+Fournier-Facio has pointed out (personal communication, 2026) that the
+affine base of Sections~\ref{sec:group}--\ref{sec:witness} can be
+replaced by a small-cancellation construction as in \cite{FFF}.  His
+finitely presented torsion-free property-\textup{(T)} group $P$
+contains a copy of every finitely presented torsion-free group, in
+particular a direct product $P_1\times P_2$ with $P_i\cong P$.  Then
+$\alpha\colon P\xrightarrow{\;\cong\;}P_1\le P$, together with any
+$a\in P_2\setminus\{1\}$, satisfies the hypotheses of
+Theorem~\ref{thm:kazhdan-clifford}.  The group $E(P,\alpha,a)$ has
+torsion even though $P$ does not, since the construction adjoins the
+involution $c$.
+\end{remark}
+
 
 \section{The maximal group \texorpdfstring{$C^*$}{C*}-algebra}\label{app:maxcstar}
 
