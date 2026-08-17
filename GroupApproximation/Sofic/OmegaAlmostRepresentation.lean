@@ -87,7 +87,7 @@ theorem adSeq_mul_star (g : G) : adSeq A g * star (adSeq A g) = 1 := by
 def piOmega (g : G) : OmegaAdjointCorona A.model ω :=
   omegaMk A.model ω (adSeq A g)
 
-theorem piOmega_def (g : G) :
+@[simp] theorem piOmega_def (g : G) :
     piOmega A ω g = omegaMk A.model ω (adSeq A g) := rfl
 
 theorem omegaMk_star {Y : ℕ → FiniteModel} [∀ n, Nonempty (Y n)]

@@ -124,7 +124,8 @@ def omegaRep (D : KazhdanCompressionRep Γ H (OmegaAdjointCorona Y ω)) (g : H) 
     OmegaAdjointCorona Y ω :=
   ((D.pi g : unitary (OmegaAdjointCorona Y ω)) : OmegaAdjointCorona Y ω)
 
-theorem omegaRep_s (D : KazhdanCompressionRep Γ H (OmegaAdjointCorona Y ω)) :
+@[simp] theorem omegaRep_s
+    (D : KazhdanCompressionRep Γ H (OmegaAdjointCorona Y ω)) :
     omegaRep Y ω D D.s = D.shift := rfl
 
 /-- Conjugation by `V = π(s)` is the representation of conjugation in `H`. -/
@@ -146,11 +147,11 @@ def omegaImplementer (D : KazhdanCompressionRep Γ H (OmegaAdjointCorona Y ω)) 
     OmegaAdjointCorona Y ω :=
   star D.shift * omegaConjProj Y ω D
 
-theorem omegaConjProj_def
+@[simp] theorem omegaConjProj_def
     (D : KazhdanCompressionRep Γ H (OmegaAdjointCorona Y ω)) :
     omegaConjProj Y ω D = D.shift * D.proj * star D.shift := rfl
 
-theorem omegaImplementer_def
+@[simp] theorem omegaImplementer_def
     (D : KazhdanCompressionRep Γ H (OmegaAdjointCorona Y ω)) :
     omegaImplementer Y ω D = star D.shift * (D.shift * D.proj * star D.shift) :=
   rfl
