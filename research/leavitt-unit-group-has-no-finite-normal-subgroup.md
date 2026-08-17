@@ -9,6 +9,7 @@ distinct_from:
   leavitt-unit-group-algebra-is-prime: that is the group-algebra consequence, reached from this one by Connell's criterion; this is a statement about the group and mentions no group algebra.
   finite-infranormal-subgroup-is-normal: that says an infranormal finite subgroup of any group is normal, a general lemma about when normality is automatic; this says one specific group has no nontrivial finite normal subgroup at all, so there is nothing for that lemma to apply to here.
   leavitt-unit-group-nonsurjunctive: that is the open Gottschalk failure for this group, about cellular automata over it; this is an established structural fact about its subgroups, and it is an input to a route-killing argument rather than to that failure.
+  binary-leavitt-algebra-not-directly-finite: that is a ring identity failing inside `R`, proved from the defining relations; this is a subgroup-structure statement about the group of units of `R`, and no finiteness property of the ring appears in it.
 artifacts:
   - research/artifacts/leavitt-stable-finiteness-audit-2026-08-17.md
   - GroupApproximation/Leavitt/ElementaryNoFiniteQuotients.lean

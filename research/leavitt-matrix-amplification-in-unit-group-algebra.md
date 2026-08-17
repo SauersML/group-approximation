@@ -8,6 +8,7 @@ distinct_from:
   leavitt-gl-equals-el-and-perfect-unit-group: that identifies `GL_n(R)` with `EL_n(R)` and is a statement about groups over the Leavitt algebra; this is a statement about matrix rings over the *group algebra* `F_2[R^x]`, one level up, and neither transports to the other.
   augmentation-blocks-unital-leavitt-family: that forbids a binary Leavitt family in any matrix ring over an integral group ring; this exhibits matrix rings over a group algebra inside that group algebra, and the two do not meet — the amplification carries no Leavitt relations.
   leavitt-unit-group-algebra-not-directly-finite: that is the open Kaplansky failure, an existence question about a one-sided inverse pair; this is an established embedding statement that supplies no pair and is neutral on the answer -- it only removes matrix size from the search.
+  binary-leavitt-family-lifts-into-unit-corner: that asks for a full Leavitt family inside the same corner `eAe`, which would carry five multiplicative relations; this puts matrix algebras over the group algebra there instead, carries no Leavitt relation, and is established -- the two occupy the same corner and ask for unrelated things.
 artifacts:
   - research/artifacts/leavitt-stable-finiteness-audit-2026-08-17.md
   - research/artifacts/verify-s3-corner-2026-08-17.py

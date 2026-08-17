@@ -17,6 +17,7 @@ distinct_from:
   leavitt-center-is-coefficient-field: that is one imported input about the center of `R`, two steps upstream; this is the conclusion about `F_2[R^x]`, and the intermediate group statement sits between them.
   leavitt-matrix-amplification-in-unit-group-algebra: that puts matrix algebras inside this algebra as corners and is used for the finiteness equivalence; this is primality and is used to kill the splitting route -- the two established facts about `F_2[R^x]` landed together but share no argument.
   leavitt-stable-finiteness-equals-direct-finiteness: that is the finiteness equivalence, proved from the corner amplification; this is primality, proved from the group's finite-normal-subgroup structure, and neither is used in the other's derivation.
+  binary-leavitt-algebra-not-directly-finite: that is a finiteness failure inside `R`, proved in three lines from the defining relations; this is primality of `F_2[R^x]`, which is a different ring, a different property, and says nothing about finiteness in either direction.
 artifacts:
   - research/artifacts/leavitt-stable-finiteness-audit-2026-08-17.md
 ---

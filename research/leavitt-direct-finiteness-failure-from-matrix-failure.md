@@ -30,6 +30,22 @@ deciding Kaplansky's.  That option is gone.  Anyone tempted to search at
 `n = 2` for room that `n = 1` does not have should read the second
 prerequisite first: there is none.
 
+## The cycle warning this route creates is intended — do not delete the route
+
+`cairn check` now reports
+
+    dependency cycle through claims: leavitt-group-algebra-not-stably-finite
+      -> leavitt-unit-group-algebra-not-directly-finite
+      -> leavitt-group-algebra-not-stably-finite
+
+and that is exactly what an equivalence looks like in a kernel whose only
+relation is `AND(requires) => target`.  Two claims that imply each other are
+two routes forming a loop.  The fixpoint handles it correctly — neither claim
+is established through the other, because a least fixpoint never fires a cycle
+— so the warning is hygiene, not a defect, and silencing it by removing either
+route would delete a true implication.  The companion route is
+`stably-finite-failure-from-direct-finiteness-failure`.
+
 ## What it is not
 
 It is not a reduction of anything to anything easier, and it should not be
