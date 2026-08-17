@@ -104,7 +104,7 @@ theorem evec_sum {ι : Type*} (s : Finset ι) (f : ι → Z → ℂ) :
 /-- The coordinate inner product, as mathlib's on `ℓ²(Z)`.  Conjugate-linear in
 the first argument, which is the manuscript's convention too. -/
 theorem inner_evec (x y : Z → ℂ) :
-    (inner (evec x) (evec y) : ℂ) = ∑ i : Z, (starRingEnd ℂ) (x i) * y i := by
+    inner ℂ (evec x) (evec y) = ∑ i : Z, (starRingEnd ℂ) (x i) * y i := by
   rw [PiLp.inner_apply]
   refine Finset.sum_congr rfl fun i _ ↦ ?_
   exact RCLike.inner_apply' (x i) (y i)
@@ -122,7 +122,7 @@ abbrev VecFam (Y : ℕ → FiniteModel) : Type := ∀ n, (Y n) → ℂ
 
 /-- The coordinate inner product of `ℂ^{d_n}`. -/
 def vpairAt (ξ η : VecFam Y) (n : ℕ) : ℂ :=
-  inner (evec (ξ n)) (evec (η n))
+  inner ℂ (evec (ξ n)) (evec (η n))
 
 theorem vpairAt_eq_sum (ξ η : VecFam Y) (n : ℕ) :
     vpairAt ξ η n = ∑ i : Y n, (starRingEnd ℂ) (ξ n i) * η n i :=
@@ -138,9 +138,11 @@ theorem vecMass_smul (Z : FiniteModel) (c : ℂ) (x : Z → ℂ) :
 
 theorem vpairAt_self (ξ : VecFam Y) (n : ℕ) :
     vpairAt ξ ξ n = ((vecMass (ξ n) : ℝ) : ℂ) := by
-  have h : vpairAt ξ ξ n = ((‖evec (ξ n)‖ : ℂ)) ^ 2 :=
-    inner_self_eq_norm_sq_to_K (evec (ξ n))
-  rw [h, ← Complex.ofReal_pow, ← vecMass_eq_norm_sq]
+  rw [vpairAt_eq_sum]
+  unfold vecMass
+  rw [Complex.ofReal_sum]
+  refine Finset.sum_congr rfl fun i _ ↦ ?_
+  rw [mul_comm, Complex.mul_conj]
 
 theorem vpairAt_conj (ξ η : VecFam Y) (n : ℕ) :
     (starRingEnd ℂ) (vpairAt ξ η n) = vpairAt η ξ n :=
@@ -148,12 +150,12 @@ theorem vpairAt_conj (ξ η : VecFam Y) (n : ℕ) :
 
 theorem vpairAt_add_right (ξ η ζ : VecFam Y) (n : ℕ) :
     vpairAt ξ (fun m ↦ η m + ζ m) n = vpairAt ξ η n + vpairAt ξ ζ n := by
-  show (inner (evec (ξ n)) (evec (η n + ζ n)) : ℂ) = _
+  show inner ℂ (evec (ξ n)) (evec (η n + ζ n)) = _
   rw [evec_add, inner_add_right]
 
 theorem vpairAt_smul_right (c : ℂ) (ξ η : VecFam Y) (n : ℕ) :
     vpairAt ξ (fun m ↦ c • η m) n = c * vpairAt ξ η n := by
-  show (inner (evec (ξ n)) (evec (c • η n)) : ℂ) = _
+  show inner ℂ (evec (ξ n)) (evec (c • η n)) = _
   have hsmul : evec (c • η n) = c • evec (η n) := rfl
   rw [hsmul, inner_smul_right]
 
