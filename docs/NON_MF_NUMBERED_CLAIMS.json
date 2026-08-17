@@ -543,7 +543,7 @@
       "id": "def:invisible",
       "environment": "definition",
       "title": "$2$-norm triviality",
-      "statement_sha256": "1b074b45598fa7609b79f8d4154c854e235199837c0601fb2d54176b463c67cc",
+      "statement_sha256": "7ce386073afc36fd24a7556cb7f64059fe2fcff5e59886ebcf4a53b59b91db95",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [],

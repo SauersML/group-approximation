@@ -1729,8 +1729,7 @@ ultraproduct of the matrix blocks along $\omega$, and hence a normal
 subgroup of $H$.  An element $g$ is \emph{$2$-norm trivial} if
 $g\in K_2^{\omega}(U)$ for every such $U$ and every such $\omega$.
 Convergence of the full sequence, $\hsnorm{U_n(g)-1}\to0$, gives
-membership along every $\omega$ at once, and is how the condition is
-verified below.
+membership along every $\omega$ at once.
 \leanverified{Sofic/ManuscriptExactWrappers}{GroupApproximation.ManuscriptExactWrappers.manuscriptHSInvisibleCharacterization}
 \end{definition}
 
@@ -1776,7 +1775,7 @@ $F$ makes it asymptotically central for all of $\Theta(H)$.  The
 Hermitian part of $p_n$ is asymptotically idempotent, so its spectrum
 clusters at $\{0,1\}$ and rounding at $1/2$ by continuous functional
 calculus yields genuine projections at operator-norm distance $o(1)$
-from $p_n$; the rounded projections inherit the asymptotic centrality.
+from $p_n$; the rounded projections are asymptotically central as well.
 Let $q_n$ be their complements.  Nontriviality of
 $\Theta$ on $F$ forces $q_n\ne0$ along infinitely many coordinates ---
 otherwise the averages converge to $1$ and $\Theta|_F$ is trivial.
@@ -1888,9 +1887,9 @@ generator $[gzg^{-1},\ell]$, $\ell\in L$, displayed in
 $K_2\trianglelefteq H$, it contains their normal closure:
 $\mathfrak D(H,L)\le K_2$.  Every element of $\mathfrak D(H,L)$ is
 therefore $2$-norm trivial in every operator-norm asymptotic
-representation of $H$.  The coordinate averaging corner of
-Theorem~\ref{thm:criterion} uses only that triviality, so it applies
-to any finite normal $F\le\mathfrak D(H,L)$.
+representation of $H$.  The proof of Theorem~\ref{thm:criterion} uses
+only that triviality, so it applies to any finite normal
+$F\le\mathfrak D(H,L)$.
 \end{proof}
 
 \subsection{The normal-Kazhdan form of the obstruction}
@@ -2133,8 +2132,8 @@ $E_{\mathrm{BS}}$ over every field maps $w_{\mathrm{BS}}$ to the identity.
 \leanverified{Monsters/LiteralCyclicCalibration}{GroupApproximation.LiteralCyclicCalibration.manuscriptCyclicCalibration}
 \end{theorem}
 
-Thus being sent to the identity by every exact finite-dimensional
-representation does not by itself force triviality of the distinguished word.
+So a distinguished word can be trivial in every exact
+finite-dimensional representation without being trivial in the group.
 
 
 \begin{proof}[Proof of Theorem~\ref{thm:C}]
@@ -2145,9 +2144,9 @@ six-relator presentation of the same group.
 The stable relation gives
 \(t\langle\gamma_0\rangle t^{-1}\subseteq
 \langle\gamma_0\rangle\), and \(c\) centralizes this cyclic base.
-The same commutant argument as in Theorem~\ref{thm:B} therefore maps
-\(w_{\mathrm{BS}}\) to the identity in every finite-dimensional
-representation over every field.
+By the commutant argument of Theorem~\ref{thm:B}, every
+finite-dimensional representation over every field maps
+\(w_{\mathrm{BS}}\) to the identity.
 
 For nontriviality, use the affine realization of
 \(\mathrm{BS}(1,2)\) and its coset action.  The base point is fixed by the
@@ -2166,18 +2165,18 @@ onto a Clifford quotient.
 \end{proof}
 
 \paragraph{Sharpness of the Kazhdan hypothesis.}
-The Clifford quotient in Theorem~\ref{thm:C} is amenable,
-hence MF, and its quotient map sends $w_{\mathrm{BS}}$ to a nontrivial
-element.  Composing with a faithful homomorphism from that quotient to $\U(\mathcal Q)$ gives a homomorphism $\Theta\colon E_{\mathrm{BS}}\to\U(\mathcal Q)$
-with $\Theta(w_{\mathrm{BS}})\ne1$, so property~\textup{(T)} cannot be
-omitted from the central involution obstruction.  In the residual language of
-Section~\ref{sec:consequences},
+The affine group $\mathrm{BS}(1,2)\cong\mathbb Z[1/2]\rtimes\mathbb Z$
+is solvable and the Clifford group on its coset space is locally
+finite, so their semidirect product is amenable.  The Clifford quotient
+in Theorem~\ref{thm:C} is a subgroup of it, hence amenable and, by
+\cite{TWW}, MF; its distinguished word is the nontrivial Clifford sign
+by the calculation above.  Composing the quotient map with a faithful
+homomorphism to $\U(\mathcal Q)$ gives
+$\Theta\colon E_{\mathrm{BS}}\to\U(\mathcal Q)$ with
+$\Theta(w_{\mathrm{BS}})\ne1$, so property~\textup{(T)} cannot be
+omitted from the central involution obstruction; in the residual
+language of Section~\ref{sec:consequences},
 $w_{\mathrm{BS}}\notin\operatorname{Res}_{\mathrm{MF}}(E_{\mathrm{BS}})$.
-The affine group $\mathrm{BS}(1,2)\cong\mathbb Z[1/2]\rtimes\mathbb Z$ is
-solvable.  The Clifford group on its coset space is locally finite, so
-their semidirect product is amenable.  That quotient is a subgroup
-of this amenable group and is therefore amenable, hence MF by \cite{TWW}.
-Its distinguished word is the nontrivial Clifford sign by the calculation above.
 
 The homomorphism to $\U(\mathcal Q)$ just constructed cannot be
 assembled from exact finite-dimensional representations.  In every

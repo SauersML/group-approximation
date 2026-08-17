@@ -523,7 +523,7 @@ once in the comment-stripped manuscript; the probe is the drift detector.
 | thm:kazhdan-transport | env | thm:kazhdan-transport | 36a5391cd928c3d3 |
 | thm:transport-variants | env | thm:transport-variants | 97f0d64b8d1325da |
 | def:pattern | env | def:pattern | fd8b3b2fc56c2c08 |
-| def:invisible | env | def:invisible | 1b074b45598fa760 |
+| def:invisible | env | def:invisible | 7ce386073afc36fd |
 | thm:criterion | env | thm:criterion | 4153ff9fb688e0de |
 | thm:sign-criterion | env | thm:sign-criterion | 27a3e86c5351bfb6 |
 | cor:generaltransport | env | cor:generaltransport | c808cecbd21732fb |
@@ -616,7 +616,7 @@ once in the comment-stripped manuscript; the probe is the drift detector.
 | p:witness-scope | prose | `each of its elements involves only finitely many Clifford generators` | - |
 | p:A-marked-radical | prose | `In $E$ the pairwise commutators of those conjugates of $d$ lie in` | - |
 | p:A-corner-ranks | prose | `all estimates below are relative to` | - |
-| p:C-sharpness | prose | `The Clifford group on its coset space is locally finite` | - |
+| p:C-sharpness | prose | `is solvable and the Clifford group` | - |
 | p:C-approx | prose | `In every finite group the doubling relation makes the image of` | - |
 | p:collapse-wreath | prose | `In a permutational wreath product` | - |
 | p:collapse-relcomm | prose | `already lies in` | - |
