@@ -3,6 +3,8 @@ rg: 2
 id: needham-graph-wreath-rf-criterion
 kind: claim
 title: Needham's exact residual finiteness criterion for graph wreath products
+distinct_from:
+  wreath-compression-mf-radical: that computes MF radicals of this program's compression wreath products — an operator approximation invariant of a specific Kazhdan family; this is an imported residual finiteness criterion for graph wreath products over an arbitrary graph action, purely group-theoretic, with the separability of the action carrying all of the content
 artifacts:
   - research/artifacts/hyperbolic-residual-finiteness-audit-2026-08-17.md
 ---

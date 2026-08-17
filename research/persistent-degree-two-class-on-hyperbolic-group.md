@@ -4,6 +4,7 @@ id: persistent-degree-two-class-on-hyperbolic-group
 kind: claim
 title: A degree-two class on a residually finite hyperbolic group that survives every finite-index subgroup
 distinct_from:
+  finite-infranormal-subgroup-is-normal: that is an elementary normalizer lemma — a finite subgroup whose compression semigroup generates the group is normal; this is a cohomological persistence statement about degree-two classes over the whole finite-index subgroup lattice, and the shared vocabulary of "finite" and "index" is coincidental
   finite-central-extension-rf-iff-virtually-splits: that is the established criterion converting persistence into failure of residual finiteness; this is the cohomological existence statement the criterion consumes, and it is open
 artifacts:
   - research/artifacts/hyperbolic-residual-finiteness-audit-2026-08-17.md

@@ -4,6 +4,8 @@ id: non-rf-relatively-hyperbolic-with-rf-peripherals
 kind: claim
 title: A relatively hyperbolic group that is not residually finite, with residually finite peripherals
 distinct_from:
+  oyakawa-graph-wreath-rf-iff-acting-group-rf: that settles residual finiteness inside Oyakawa's proper-cocompact hyperbolic family by discharging a published criterion; this asks for the existence of a relatively hyperbolic group with a specific pair of properties, and the one contact between them — Oyakawa's relative Theorem 1.3 as a possible source of such a group — is recorded as an open attack, not as an overlap of statements
+  persistent-degree-two-class-on-hyperbolic-group: that is a cohomological statement about a group already known to be residually finite; this is a group-existence statement whose content is the peripheral structure, and neither implies the other
   non-residually-finite-hyperbolic-group: that asks for an ordinary word-hyperbolic group; this asks only for relative hyperbolicity but adds a condition on the peripheral subgroups, and by the filling route the two are equivalent in one direction — this claim implies that one, not conversely
 artifacts:
   - research/artifacts/hyperbolic-residual-finiteness-audit-2026-08-17.md
