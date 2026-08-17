@@ -94,7 +94,7 @@ def dimWeight (Y : ℕ → FiniteModel) : ℕ → ℝ :=
 /-- The dimension weight, unfolded.  It is definitional, and is recorded so that
 statements about `WeightBounded` and `WeightNull` at this weight can be read
 against `matMass_le_iff_hsNormSq_le` without unfolding a `def` by hand. -/
-theorem dimWeight_apply (Y : ℕ → FiniteModel) (n : ℕ) :
+@[simp] theorem dimWeight_apply (Y : ℕ → FiniteModel) (n : ℕ) :
     dimWeight Y n = (Fintype.card (Y n) : ℝ) := rfl
 
 /-- The dimension weight is nonnegative, which is the standing hypothesis under
@@ -176,7 +176,7 @@ two are the same term: `piHom` is `piUnitary` composed with the inclusion of the
 unitary group, so this identity is definitional.  It is recorded because the
 KT.07--KT.09 bundle states its conclusions with the coercion and the interface
 states its fields with `piHom`. -/
-theorem piHom_eq_coe_piUnitary (Y : ℕ → FiniteModel) [∀ n, Nonempty (Y n)]
+@[simp] theorem piHom_eq_coe_piUnitary (Y : ℕ → FiniteModel) [∀ n, Nonempty (Y n)]
     {H : Type} [Group H] (U : ∀ n, H → Matrix.unitaryGroup (Y n) ℂ)
     (hU : ∀ g h : H, ∀ ε : ℝ, 0 < ε → ∃ N, ∀ n ≥ N,
       ‖(U n (g * h) : Matrix (Y n) (Y n) ℂ) -

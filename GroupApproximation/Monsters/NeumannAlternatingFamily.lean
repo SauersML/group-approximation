@@ -142,7 +142,7 @@ def genB : Acting := FreeGroup.of 1
 /-- The `n`-th translate of the second generator by the first. -/
 def conjGen (n : ℕ) : Acting := genA ^ n * genB * (genA ^ n)⁻¹
 
-theorem conjGen_def (n : ℕ) : conjGen n = genA ^ n * genB * (genA ^ n)⁻¹ := rfl
+@[simp] theorem conjGen_def (n : ℕ) : conjGen n = genA ^ n * genB * (genA ^ n)⁻¹ := rfl
 
 /-- The subgroup of the free group attached to a set of naturals. -/
 def markedSubgroup (S : Set ℕ) : Subgroup Acting :=
@@ -326,7 +326,7 @@ def detector (H : Subgroup Acting) [DecidableEq (Acting ⧸ H)] (k : AltLamp) (g
   inl (Lamp.single (baseSite H) k) *
     (inr g * (inl (Lamp.single (baseSite H) k))⁻¹ * (inr g)⁻¹)
 
-theorem detector_def (H : Subgroup Acting) [DecidableEq (Acting ⧸ H)]
+@[simp] theorem detector_def (H : Subgroup Acting) [DecidableEq (Acting ⧸ H)]
     (k : AltLamp) (g : Acting) :
     detector H k g = inl (Lamp.single (baseSite H) k) *
       (inr g * (inl (Lamp.single (baseSite H) k))⁻¹ * (inr g)⁻¹) := rfl

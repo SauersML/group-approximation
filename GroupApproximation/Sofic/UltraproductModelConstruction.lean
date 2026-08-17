@@ -370,7 +370,7 @@ def applyFam (a : BoundedMatrixSequence (DblIdx Y)) (ξ : MatFam Y) :
     MatFam Y :=
   fun n ↦ rowMat (a n *ᵥ rowVec (ξ n))
 
-theorem applyFam_apply (a : BoundedMatrixSequence (DblIdx Y))
+@[simp] theorem applyFam_apply (a : BoundedMatrixSequence (DblIdx Y))
     (ξ : MatFam Y) (n : ℕ) :
     applyFam Y a ξ n = rowMat (a n *ᵥ rowVec (ξ n)) := rfl
 
@@ -570,7 +570,7 @@ def actSub (a : BoundedMatrixSequence (DblIdx Y)) :
   map_add' ξ η := Subtype.ext (applyFam_add Y a (ξ : MatFam Y) (η : MatFam Y))
   map_smul' c ξ := Subtype.ext (applyFam_smul Y a c (ξ : MatFam Y))
 
-theorem actSub_coe (a : BoundedMatrixSequence (DblIdx Y))
+@[simp] theorem actSub_coe (a : BoundedMatrixSequence (DblIdx Y))
     (ξ : massBounded Y w) :
     ((actSub Y w a ξ : massBounded Y w) : MatFam Y)
       = applyFam Y a (ξ : MatFam Y) := rfl
@@ -889,11 +889,11 @@ def piHom : H →* AdjointCorona Y :=
 def piSeq (g : H) : BoundedMatrixSequence (DblIdx Y) :=
   unitarySequenceBounded (DblFam Y) (fun n ↦ adjUnitary Y U g n)
 
-theorem piHom_eq_mk (g : H) :
+@[simp] theorem piHom_eq_mk (g : H) :
     piHom Y U hU g = normMatrixCStarCoronaMk (DblIdx Y) (piSeq Y U g) := rfl
 
 omit [Group H] in
-theorem piSeq_apply (g : H) (n : ℕ) :
+@[simp] theorem piSeq_apply (g : H) (n : ℕ) :
     piSeq Y U g n = conjDouble (U n g : Matrix (Y n) (Y n) ℂ) := rfl
 
 /-- **KT.05.**  `π` is a star homomorphism: `π(g)* = π(g⁻¹)`. -/

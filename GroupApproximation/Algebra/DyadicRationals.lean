@@ -296,7 +296,7 @@ def doublingAut : MulAut (Multiplicative Dyadic) where
     rw [toAdd_mul, doubleFun_add, ofAdd_add]
 
 /-- Evaluation of the doubling automorphism. -/
-theorem doublingAut_ofAdd (x : Dyadic) :
+@[simp] theorem doublingAut_ofAdd (x : Dyadic) :
     doublingAut (Multiplicative.ofAdd x) = Multiplicative.ofAdd (doubleFun x) :=
   rfl
 

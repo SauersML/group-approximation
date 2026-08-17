@@ -172,7 +172,7 @@ noncomputable def indMat (T : Transversal G H m) (π : H → Matrix Y Y ℂ)
     (g : G) : Matrix (ampModel m Y) (ampModel m Y) ℂ :=
   Matrix.of fun p q => coeffOf π (T.rep p.1) (g * T.rep q.1) p.2 q.2
 
-theorem indMat_apply (T : Transversal G H m) (π : H → Matrix Y Y ℂ) (g : G)
+@[simp] theorem indMat_apply (T : Transversal G H m) (π : H → Matrix Y Y ℂ) (g : G)
     (p q : Fin m × Y.carrier) :
     indMat T π g p q = coeffOf π (T.rep p.1) (g * T.rep q.1) p.2 q.2 := rfl
 

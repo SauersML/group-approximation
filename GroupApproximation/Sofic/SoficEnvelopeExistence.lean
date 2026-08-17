@@ -217,7 +217,7 @@ noncomputable def envelopeSeed (s : Set Γ) (n : ℕ) : Set Γ :=
 
 theorem envelopeSeed_zero (s : Set Γ) : envelopeSeed s 0 = s := rfl
 
-theorem envelopeSeed_succ (s : Set Γ) (n : ℕ) :
+@[simp] theorem envelopeSeed_succ (s : Set Γ) (n : ℕ) :
     envelopeSeed s (n + 1) =
       envelopeSeed s n ∪
         ⋃ p : ↥(Subgroup.closure (envelopeSeed s n)) ×

@@ -200,7 +200,7 @@ theorem hermitianPart_two_smul_sub_one (M1 : Matrix Y Y ℂ) :
   rw [show (star (2 : ℂ)) = (2 : ℂ) from by norm_num]
   module
 
-theorem roundedInvolution_eq_two_smul_sub_one (M1 : Matrix Y Y ℂ) :
+@[simp] theorem roundedInvolution_eq_two_smul_sub_one (M1 : Matrix Y Y ℂ) :
     roundedInvolution ((2 : ℂ) • M1 - 1) =
       (2 : ℂ) • unitProjection M1 - 1 := by
   rfl
@@ -842,12 +842,12 @@ theorem corner_defect_le {p M1 A Ainv : Matrix Y Y ℂ} {e C : ℝ}
   nlinarith [sq_nonneg C, sq_nonneg (C - 1), mul_nonneg he0 hC0]
 
 end Assembly
-
 /-- The normalized trace is additive on differences. -/
 theorem normTrace_sub' (Y : FiniteModel) (A B : Matrix Y Y ℂ) :
     normTrace Y (A - B) = normTrace Y A - normTrace Y B := by
   unfold normTrace
   rw [Matrix.trace_sub, sub_div]
+
 
 /-- **The codimension weight of the unit corner is small.**  If the model
 unit has normalized trace within `e` of one, and the rounded projection is

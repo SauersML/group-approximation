@@ -38,20 +38,15 @@ noncomputable section
 private abbrev Base := LiteralNonMFPresentation.Base
 
 /-! ## Torsion of the rotation units -/
-
-theorem xM_cube : xM * xM * xM = 1 := xM_orderThree'
-
-theorem yM_cube : yM * yM * yM = 1 := yM_orderThree'
-
 theorem xU_cube : xU ^ 3 = 1 := by
   refine Units.ext ?_
   rw [Units.val_pow_eq_pow_val, Units.val_one, pow_succ, pow_succ, pow_one]
-  exact xM_cube
+  exact GroupApproximation.ExplicitLinearModel.xM_orderThree'
 
 theorem yU_cube : yU ^ 3 = 1 := by
   refine Units.ext ?_
   rw [Units.val_pow_eq_pow_val, Units.val_one, pow_succ, pow_succ, pow_one]
-  exact yM_cube
+  exact GroupApproximation.ExplicitLinearModel.yM_orderThree'
 
 theorem zU_sq : zU ^ 2 = 1 := by
   refine Units.ext ?_
@@ -83,9 +78,9 @@ def rotUnit : RotationGenerator → Matˣ
   | 1 => yU
   | 2 => zU
 
-theorem rotUnit_zero : rotUnit 0 = xU := rfl
-theorem rotUnit_one : rotUnit 1 = yU := rfl
-theorem rotUnit_two : rotUnit 2 = zU := rfl
+@[simp] theorem rotUnit_zero : rotUnit 0 = xU := rfl
+@[simp] theorem rotUnit_one : rotUnit 1 = yU := rfl
+@[simp] theorem rotUnit_two : rotUnit 2 = zU := rfl
 
 local macro "verify_unit_matrix" : tactic =>
   `(tactic|
@@ -272,7 +267,7 @@ def blockEmbed4 : SL3 →* Matˣ where
       Matrix.SpecialLinearGroup.coe_mul A B, castMat_mul, map_mul]
     rfl
 
-theorem blockEmbed4_val (A : SL3) :
+@[simp] theorem blockEmbed4_val (A : SL3) :
     (blockEmbed4 A).val =
       blockMonoid (castMat (A : Matrix (Fin 3) (Fin 3) ℤ)) := rfl
 

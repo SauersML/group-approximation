@@ -148,7 +148,7 @@ about `matMass X` compared with a multiple of `w n`: this is the manuscript's
 
 /-- The dimension normalization is the weight `w n = d n`: `hsNormSq` is
 `matMass` divided by the cardinality of the model. -/
-theorem hsNormSq_eq_matMass_div (Z : FiniteModel) (A : Matrix Z Z ℂ) :
+@[simp] theorem hsNormSq_eq_matMass_div (Z : FiniteModel) (A : Matrix Z Z ℂ) :
     hsNormSq Z A = matMass A / (Fintype.card Z : ℝ) := rfl
 
 /-- A matrix of zero Frobenius mass is zero. -/

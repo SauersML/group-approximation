@@ -167,7 +167,7 @@ def descend (f : G →* G) : G ⧸ R →* G ⧸ R :=
   QuotientGroup.map R R f (Subgroup.map_le_iff_le_comap.mp (hR f))
 
 /-- The descended map is computed on representatives by the original map. -/
-theorem descend_mk (f : G →* G) (x : G) :
+@[simp] theorem descend_mk (f : G →* G) (x : G) :
     descend R hR f (QuotientGroup.mk' R x) = QuotientGroup.mk' R (f x) := rfl
 
 /-- Equation (50.6): the descended map intertwines the two quotient maps. -/

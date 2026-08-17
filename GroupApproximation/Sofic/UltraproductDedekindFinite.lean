@@ -92,7 +92,7 @@ variable {R : Type*} [NormedRing R]
 /-- The Neumann series `∑ tᵏ`, which inverts `1 - t` whenever `‖t‖ < 1`. -/
 def neumannInverse (t : R) : R := ∑' k : ℕ, t ^ k
 
-theorem neumannInverse_def (t : R) : neumannInverse t = ∑' k : ℕ, t ^ k := rfl
+@[simp] theorem neumannInverse_def (t : R) : neumannInverse t = ∑' k : ℕ, t ^ k := rfl
 
 /-- The Neumann series is bounded by the scalar geometric series. -/
 theorem norm_neumannInverse_le [NormOneClass R] {t : R} (ht : ‖t‖ < 1) :
@@ -200,7 +200,7 @@ variable (X : ℕ → Type u) [∀ n, Fintype (X n)] [∀ n, DecidableEq (X n)]
 
 /-- Coordinates of a multiplicative defect in the bounded-sequence
 numerator. -/
-theorem boundedMatrixSequence_mul_sub_one_apply
+@[simp] theorem boundedMatrixSequence_mul_sub_one_apply
     (a b : BoundedMatrixSequence X) (n : ℕ) :
     (a * b - 1) n = a n * b n - 1 := rfl
 

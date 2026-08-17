@@ -180,7 +180,7 @@ isomorphism.  Its image is exactly the image of the literal base. -/
 def affineToMarked : gammaBar →* MarkedGroup :=
   baseMap.comp LiteralBaseCompleteness.baseAffineEquiv.symm.toMonoidHom
 
-theorem affineToMarked_apply (γ : gammaBar) :
+@[simp] theorem affineToMarked_apply (γ : gammaBar) :
     affineToMarked γ =
       baseMap (LiteralBaseCompleteness.baseAffineEquiv.symm γ) := rfl
 
@@ -291,7 +291,7 @@ that it is the kernel of `E ↠ V`; `lampKernel_eq_ker` below supplies that. -/
 def lampKernel : Subgroup MarkedGroup :=
   Subgroup.normalClosure ({lamp} : Set MarkedGroup)
 
-theorem lampKernel_def :
+@[simp] theorem lampKernel_def :
     lampKernel = Subgroup.normalClosure ({lamp} : Set MarkedGroup) := rfl
 
 instance lampKernel_normal : lampKernel.Normal :=
@@ -553,7 +553,7 @@ def fromSemidirect : lampKernel ⋊[lampKernelAction] V →* MarkedGroup :=
       MulAut.conj_apply]
     exact lampKernelAction_coe v n)
 
-theorem fromSemidirect_apply (p : lampKernel ⋊[lampKernelAction] V) :
+@[simp] theorem fromSemidirect_apply (p : lampKernel ⋊[lampKernelAction] V) :
     fromSemidirect p = (p.left : MarkedGroup) * sect p.right := rfl
 
 theorem fromSemidirect_bijective : Function.Bijective fromSemidirect := by

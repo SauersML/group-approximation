@@ -91,7 +91,7 @@ variable (X : Type) [Fintype X] [DecidableEq X]
 def flipVec (x : X) : X → Multiplicative (ZMod 2) :=
   fun x' => if x' = x then Multiplicative.ofAdd 1 else 1
 
-theorem flipVec_apply (x x' : X) :
+@[simp] theorem flipVec_apply (x x' : X) :
     flipVec X x x' = if x' = x then Multiplicative.ofAdd (1 : ZMod 2) else 1 :=
   rfl
 
@@ -1280,7 +1280,7 @@ def siteEquiv (chart : ∀ i : Block, Fin 8 ≃ {s : Site // blockOf s = i}) :
       (β₂ := fun i : Block => {s : Site // blockOf s = i}) chart).trans
     (Equiv.sigmaFiberEquiv blockOf)
 
-theorem siteEquiv_apply
+@[simp] theorem siteEquiv_apply
     (chart : ∀ i : Block, Fin 8 ≃ {s : Site // blockOf s = i})
     (p : (_ : Block) × Fin 8) :
     siteEquiv blockOf chart p = ((chart p.1 p.2 : {s : Site // blockOf s = p.1}) : Site) :=

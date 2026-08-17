@@ -160,7 +160,7 @@ def trim : List Γ → List Γ
 theorem trim_nil : trim ([] : List Γ) = [] := rfl
 
 /-- The defining equation of `trim` on a cons. -/
-theorem trim_cons (a : Γ) (l : List Γ) :
+@[simp] theorem trim_cons (a : Γ) (l : List Γ) :
     trim (a :: l) = if trim l = [] ∧ a = default then [] else a :: trim l := rfl
 
 /-- `trim` lands in blank-reduced lists: that is what it is for. -/

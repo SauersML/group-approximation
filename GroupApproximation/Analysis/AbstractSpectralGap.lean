@@ -106,7 +106,7 @@ def realifyIsometryEquiv (e : H ≃ₗᵢ[ℂ] H) : H ≃ₗᵢ[ℝ] H where
       right_inv := e.toLinearEquiv.right_inv }
   norm_map' := fun x => e.norm_map x
 
-theorem realifyIsometryEquiv_apply (e : H ≃ₗᵢ[ℂ] H) (x : H) :
+@[simp] theorem realifyIsometryEquiv_apply (e : H ≃ₗᵢ[ℂ] H) (x : H) :
     realifyIsometryEquiv e x = e x :=
   rfl
 

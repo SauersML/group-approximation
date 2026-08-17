@@ -125,7 +125,7 @@ theorem latticeEquiv_coe (hq : Function.Surjective q) (hker : q.ker ≤ finiteRe
   rfl
 
 /-- The inverse direction of `latticeEquiv` is the pullback. -/
-theorem latticeEquiv_symm_coe (hq : Function.Surjective q) (hker : q.ker ≤ finiteResidual W)
+@[simp] theorem latticeEquiv_symm_coe (hq : Function.Surjective q) (hker : q.ker ≤ finiteResidual W)
     (M : {M : Subgroup P // M.FiniteIndex}) :
     ((latticeEquiv q hq hker).symm M : Subgroup W) = M.1.comap q :=
   rfl

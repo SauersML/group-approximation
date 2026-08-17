@@ -300,7 +300,6 @@ theorem cs_04_no_corona_survival {Γ E : Type} [Group Γ] [Group E] [Countable E
       ((centralInvolutionSubgroup_le_iff_mem z hz_sq _).mpr hzker x.property)
   -- Step 3: the corner average and the sign cannot both vanish.
   exact cs_03_contradiction F B hcof hsum hkillF
-
 /-- **The manuscript's central-sign criterion (`thm:sign-criterion`), certified
 along its printed proof.**  Let `H` and `Γ` be countable, `Γ` Kazhdan,
 `ι : Γ → H`, `t ι(Γ) t⁻¹ ⊆ ι(Γ)`, `[c, ι(Γ)] = 1`, `d = t c t⁻¹`,
@@ -376,6 +375,7 @@ theorem manuscriptCentralSignCriterionViaTransport :
     apply hrho
     simpa using
       cs_04_no_corona_survival C₀ a (e z) hzC hz_sq₀ hz_central₀ X rho
+
 
 end CentralSignTransport
 end GroupApproximation

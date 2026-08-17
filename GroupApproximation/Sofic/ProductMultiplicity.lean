@@ -190,13 +190,13 @@ theorem chosenFamily_finitelyPresented_not_isOperatorMF (k : ℕ) :
       ¬ IsOperatorMF (Family MarkedGroup k) :=
   ⟨family_finitelyPresented MarkedGroup k,
     not_isOperatorMF_family ChosenNonMFTheorem.chosenFinitelyPresented_not_isOperatorMF.2 k⟩
-
 /-- The chosen family has pairwise nonisomorphic members. -/
 theorem chosenFamily_eq_of_mulEquiv {k l : ℕ}
     (e : Family MarkedGroup k ≃* Family MarkedGroup l) : k = l := by
   haveI : Group.FG MarkedGroup :=
     fg_of_isFinitelyPresented MarkedGroup
   exact eq_of_family_mulEquiv e
+
 
 /-! ## The printed invariant: the torsion-free rank of the abelianization -/
 

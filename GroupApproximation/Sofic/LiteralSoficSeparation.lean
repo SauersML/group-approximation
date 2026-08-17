@@ -144,7 +144,8 @@ finitely presented, it is not operator MF, and its MF radical is nontrivial
 with the marked central involution as an explicit witness.
 
 The sofic and hyperlinear radicals of this same group are not addressed: that
-requires soficity of `E`, which is not proved in this development. -/
+requires soficity of `E`, which this statement does not use and which is
+established elsewhere in the development. -/
 theorem literal_finitelyPresented_nonMF_nontrivialMFRadical :
     Group.IsFinitelyPresented MarkedGroup ∧
       ¬ IsOperatorMF MarkedGroup ∧

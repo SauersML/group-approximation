@@ -123,7 +123,7 @@ def tietzeRelatorList : List (FreeGroup SixGenerator) :=
   retainedList.map substHom
 
 /-- **Thirty-two relators**, exactly as displayed. -/
-theorem tietzeRelatorList_length : tietzeRelatorList.length = 32 := rfl
+@[simp] theorem tietzeRelatorList_length : tietzeRelatorList.length = 32 := rfl
 
 /-- The group presented on six letters by the thirty-two relators. -/
 abbrev TietzeGroup : Type := PresentedGroup {r | r ∈ tietzeRelatorList}
