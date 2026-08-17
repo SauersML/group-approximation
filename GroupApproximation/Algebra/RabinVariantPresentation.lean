@@ -1,5 +1,4 @@
 import GroupApproximation.Algebra.RabinVariantTower
-import GroupApproximation.Algebra.HNNTrivialAssociated
 import Mathlib.GroupTheory.PresentedGroup
 import Mathlib.Tactic.Group
 import Mathlib.Tactic.NormNum
@@ -108,33 +107,11 @@ variable {Γ : Type} [Group Γ] (x : Fin (m + 1) → Γ) (xs : Fin m → Γ)
 /-- The witness `z = ⁅w, s⁆`, as an element of the tower. -/
 noncomputable def zElt (w : FreeGroup (Fin m)) : Casc2 x :=
   casc2OfMid x (midOfBase
-    (RabinVariantTower.baseOf (FreeGroup.lift xs w) * RabinVariantTower.s *
-      (RabinVariantTower.baseOf (FreeGroup.lift xs w))⁻¹ * (RabinVariantTower.s)⁻¹))
+    (Monoid.Coprod.inl (FreeGroup.lift xs w) * RabinVariantTower.s *
+      (Monoid.Coprod.inl (FreeGroup.lift xs w))⁻¹ * (RabinVariantTower.s)⁻¹))
 
 variable {w : FreeGroup (Fin m)}
   {hz : ∀ p : ℤ, p ≠ 0 → (zElt x xs w) ^ p ≠ 1}
-
-/-- **The witness has infinite order.**  Stage 1 of the tower is an HNN
-extension with trivial associated subgroups, where every word in the stable
-letter is Britton-reduced, so `HNNTrivialAssociated.commElt_zpow_ne_one`
-applies to `⁅w, s⁆` there; and stage 1 embeds in `Casc2` because every layer
-above it is an HNN extension over its own base.
-
-This is what removes the last hypothesis of the construction: the tower is
-stated for an arbitrary element of infinite order, and the witness is one
-exactly when the word is nontrivial in the source group. -/
-theorem zElt_infinite (hw : FreeGroup.lift xs w ≠ 1) :
-    ∀ p : ℤ, p ≠ 0 → (zElt x xs w) ^ p ≠ 1 := by
-  intro p hp h
-  have hzz : casc2OfMid x (midOfBase
-      ((HNNTrivialAssociated.commElt (FreeGroup.lift xs w)) ^ p)) = 1 := by
-    rw [map_zpow, map_zpow]
-    exact h
-  refine HNNTrivialAssociated.commElt_zpow_ne_one _ hw hp ?_
-  refine midOfBase_injective (n := m + 1) ?_
-  refine casc2OfMid_injective x ?_
-  rw [map_one, map_one]
-  exact hzz
 
 /-- Where the generators go in the tower. -/
 noncomputable def towerGen : Gen m → Full x hz
@@ -198,7 +175,7 @@ Each family is one of the tower's conjugation lemmas, pushed up the cascade one
 layer at a time. -/
 
 @[simp] theorem casc2OfBase_eq (g : Γ) :
-    casc2OfBase x g = casc2OfMid x (midOfBase (RabinVariantTower.baseOf g)) := rfl
+    casc2OfBase x g = casc2OfMid x (midOfBase (Monoid.Coprod.inl g)) := rfl
 
 /-- The killing relation, pushed to the top. -/
 theorem conj_ts_top (i : Fin (m + 1)) :
@@ -425,19 +402,6 @@ theorem srcToPres_injective
   have h := congrArg (toTower (srcGens R) (hz' := hzz) (srcGens_relators R)) hab
   rw [← MonoidHom.comp_apply, ← MonoidHom.comp_apply, hcomp] at h
   exact full_base_injective (famOf (srcGens R)) hzz h
-
-/-- **The embedding half, with no hypothesis left.**  If the word is nontrivial
-in the source group then the source group embeds in the group the construction
-presents.  The witness hypothesis is discharged by `zElt_infinite`, so what
-remains is exactly the Adian--Rabin condition on `w`. -/
-theorem srcToPres_injective_of_ne_one (hw : PresentedGroup.mk R w ≠ 1) :
-    Function.Injective (srcToPres R w) := by
-  have h : (FreeGroup.lift (srcGens R)) = PresentedGroup.mk R := by
-    refine FreeGroup.ext_hom _ _ fun i => ?_
-    simp [srcGens, PresentedGroup.of]
-  refine srcToPres_injective R w (zElt_infinite (famOf (srcGens R)) (srcGens R) ?_)
-  rw [h]
-  exact hw
 
 end Source
 

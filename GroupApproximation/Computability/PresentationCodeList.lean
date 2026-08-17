@@ -29,12 +29,6 @@ open PresentationCodes
 def presCongrSet {α : Type} {s t : Set (FreeGroup α)} (h : s = t) :
     PresentedGroup s ≃* PresentedGroup t := h ▸ MulEquiv.refl _
 
-@[simp] theorem presCongrSet_mk {α : Type} {s t : Set (FreeGroup α)} (h : s = t)
-    (v : FreeGroup α) :
-    presCongrSet h (PresentedGroup.mk s v) = PresentedGroup.mk t v := by
-  subst h
-  rfl
-
 /-- The code naming a *list* of relators over an alphabet of size `m + 1`.
 Unlike `codeOf` this is computable, which is what a reduction's `transform`
 needs. -/

@@ -83,7 +83,7 @@ open BlockCliffordLamp FreeProductSignReflection MappingTelescope
 open MarkedCompression Monoid
 open scoped commutatorElement
 
-set_option linter.unusedSectionVars true
+set_option linter.unusedSectionVars false
 
 /-! ## Two general lemmas -/
 
@@ -126,18 +126,31 @@ anticommutation relations. -/
 def toFullHom : BlockClifford I B →* CliffordLamp.CliffordLamp ((i : I) × B i) :=
   PresentedGroup.toGroup (fullGenerator_kills I B)
 
-omit [(i : I) → DecidableEq (B i)] [(i : I) → Fintype (B i)] in
 @[simp] theorem toFullHom_sign :
     toFullHom I B (sign I B) = CliffordLamp.sign ((i : I) × B i) :=
   PresentedGroup.toGroup.of _
 
-omit [(i : I) → DecidableEq (B i)] [(i : I) → Fintype (B i)] in
 @[simp] theorem toFullHom_lamp (p : (i : I) × B i) :
     toFullHom I B (lamp I B p) = CliffordLamp.lamp ((i : I) × B i) p :=
   PresentedGroup.toGroup.of _
 
+/-- The sign is central. -/
+theorem sign_central (g : BlockClifford I B) : Commute (sign I B) g := by
+  have hmem : g ∈ Subgroup.centralizer {sign I B} := by
+    apply PresentedGroup.generated_by (relators I B)
+      (Subgroup.centralizer {sign I B}) (fun j => ?_) g
+    rw [Subgroup.mem_centralizer_singleton_iff]
+    match j with
+    | Sum.inl () => rfl
+    | Sum.inr p => exact (sign_commute_lamp I B p).eq.symm
+  rw [Subgroup.mem_centralizer_singleton_iff] at hmem
+  exact Commute.symm hmem
+
+theorem sign_mem_center' : sign I B ∈ Subgroup.center (BlockClifford I B) :=
+  Subgroup.mem_center_iff.mpr fun g => ((sign_central I B g).symm).eq
+
 instance signZpowersNormal : (Subgroup.zpowers (sign I B)).Normal :=
-  normal_zpowers_of_mem_center (sign_mem_center I B)
+  normal_zpowers_of_mem_center (sign_mem_center' I B)
 
 /-- The quotient of the block Clifford group by the central sign. -/
 abbrev SignQuotient : Type := BlockClifford I B ⧸ Subgroup.zpowers (sign I B)
@@ -146,12 +159,10 @@ abbrev SignQuotient : Type := BlockClifford I B ⧸ Subgroup.zpowers (sign I B)
 def lampClass (p : (i : I) × B i) : SignQuotient I B :=
   QuotientGroup.mk' _ (lamp I B p)
 
-omit [(i : I) → DecidableEq (B i)] [(i : I) → Fintype (B i)] in
 theorem lampClass_sq (p : (i : I) × B i) :
     lampClass I B p * lampClass I B p = 1 := by
   rw [lampClass, ← map_mul, ← pow_two, lamp_sq, map_one]
 
-omit [(i : I) → Fintype (B i)] in
 theorem lampClass_commute {i : I} (b b' : B i) :
     Commute (lampClass I B ⟨i, b⟩) (lampClass I B ⟨i, b'⟩) := by
   by_cases h : b = b'
@@ -175,24 +186,20 @@ def windowGens (S : Finset ((i : I) × B i)) : Set (BlockClifford I B) :=
 def window (S : Finset ((i : I) × B i)) : Subgroup (BlockClifford I B) :=
   Subgroup.closure (windowGens I B S)
 
-omit [(i : I) → DecidableEq (B i)] [(i : I) → Fintype (B i)] in
 theorem sign_mem_window (S : Finset ((i : I) × B i)) :
     sign I B ∈ window I B S :=
   Subgroup.subset_closure (Set.mem_insert _ _)
 
-omit [(i : I) → DecidableEq (B i)] [(i : I) → Fintype (B i)] in
 theorem lamp_mem_window {S : Finset ((i : I) × B i)} {p : (i : I) × B i}
     (hp : p ∈ S) : lamp I B p ∈ window I B S :=
   Subgroup.subset_closure
     (Set.mem_insert_of_mem _ ⟨p, Finset.mem_coe.mpr hp, rfl⟩)
 
-omit [(i : I) → DecidableEq (B i)] [(i : I) → Fintype (B i)] in
 theorem window_mono {S T : Finset ((i : I) × B i)} (h : S ⊆ T) :
     window I B S ≤ window I B T :=
   Subgroup.closure_mono
     (Set.insert_subset_insert (Set.image_mono (Finset.coe_subset.mpr h)))
 
-omit [(i : I) → DecidableEq (B i)] [(i : I) → Fintype (B i)] in
 /-- Generation principle for a window: the sign and its lamps generate it. -/
 theorem window_induction (S : Finset ((i : I) × B i))
     {P : BlockClifford I B → Prop}
@@ -213,7 +220,6 @@ theorem window_induction (S : Finset ((i : I) × B i))
   | mul x y _ _ hx hy => exact hmul x y hx hy
   | inv x _ hx => exact hinv x hx
 
-omit [(i : I) → Fintype (B i)] in
 /-- Every element of the block Clifford group lies in a finite window. -/
 theorem exists_window (n : BlockClifford I B) :
     ∃ S : Finset ((i : I) × B i), n ∈ window I B S := by
@@ -240,7 +246,6 @@ theorem exists_window (n : BlockClifford I B) :
         exact ⟨{p}, lamp_mem_window I B (Finset.mem_singleton_self p)⟩
   exact PresentedGroup.generated_by (relators I B) P hgen n
 
-omit [(i : I) → Fintype (B i)] in
 /-- Finitely many elements lie in a common finite window. -/
 theorem exists_window_of_finset (F : Finset (BlockClifford I B)) :
     ∃ S : Finset ((i : I) × B i), ∀ n ∈ F, n ∈ window I B S := by
@@ -270,24 +275,20 @@ def windowFreeLamp (J : Finset I) (i : I) (b : B i) :
     CoprodI (SignGroup (WFam I B J)) :=
   if h : i ∈ J then CoprodI.of (i := ⟨i, h⟩) (coordFlip I B i b) else 1
 
-omit [(i : I) → Fintype (B i)] in
 theorem windowFreeLamp_pos {J : Finset I} {i : I} (h : i ∈ J) (b : B i) :
     windowFreeLamp I B J i b = CoprodI.of (i := ⟨i, h⟩) (coordFlip I B i b) :=
   dif_pos h
 
-omit [(i : I) → Fintype (B i)] in
 theorem windowFreeLamp_neg {J : Finset I} {i : I} (h : i ∉ J) (b : B i) :
     windowFreeLamp I B J i b = 1 :=
   dif_neg h
 
-omit [(i : I) → Fintype (B i)] in
 theorem windowFreeLamp_mul_self (J : Finset I) (i : I) (b : B i) :
     windowFreeLamp I B J i b * windowFreeLamp I B J i b = 1 := by
   by_cases h : i ∈ J
   · rw [windowFreeLamp_pos I B h, ← map_mul, coordFlip_mul_self, map_one]
   · rw [windowFreeLamp_neg I B h, one_mul]
 
-omit [(i : I) → Fintype (B i)] in
 theorem windowFreeLamp_commute (J : Finset I) {i : I} (b b' : B i) :
     Commute (windowFreeLamp I B J i b) (windowFreeLamp I B J i b') := by
   by_cases h : i ∈ J
@@ -300,7 +301,6 @@ def windowFreeGenerator (J : Finset I) :
     Gen I B → CoprodI (SignGroup (WFam I B J)) :=
   Sum.elim (fun _ ↦ 1) fun p ↦ windowFreeLamp I B J p.1 p.2
 
-omit [(i : I) → Fintype (B i)] in
 theorem windowFreeGenerator_kills (J : Finset I) :
     ∀ w ∈ relators I B,
       FreeGroup.lift (windowFreeGenerator I B J) w = 1 := by
@@ -335,12 +335,10 @@ def windowFreeHom (J : Finset I) :
     BlockClifford I B →* CoprodI (SignGroup (WFam I B J)) :=
   PresentedGroup.toGroup (windowFreeGenerator_kills I B J)
 
-omit [(i : I) → Fintype (B i)] in
 @[simp] theorem windowFreeHom_sign (J : Finset I) :
     windowFreeHom I B J (sign I B) = 1 :=
   PresentedGroup.toGroup.of _
 
-omit [(i : I) → Fintype (B i)] in
 @[simp] theorem windowFreeHom_lamp (J : Finset I) (p : (i : I) × B i) :
     windowFreeHom I B J (lamp I B p) = windowFreeLamp I B J p.1 p.2 :=
   PresentedGroup.toGroup.of _
@@ -353,7 +351,6 @@ def lampClassProd (i : I) :
   signProdHom (fun b : B i ↦ lampClass I B ⟨i, b⟩)
     (fun a b ↦ lampClass_commute I B a b) (fun b ↦ lampClass_sq I B ⟨i, b⟩)
 
-omit [DecidableEq I] in
 theorem lampClassProd_coordFlip (i : I) (b : B i) :
     lampClassProd I B i (coordFlip I B i b) = lampClass I B ⟨i, b⟩ := by
   rw [lampClassProd, signProdHom_apply, sset_coordFlip, prodOf_singleton]
@@ -363,7 +360,6 @@ def windowFromFree (J : Finset I) :
     CoprodI (SignGroup (WFam I B J)) →* SignQuotient I B :=
   CoprodI.lift fun j ↦ lampClassProd I B j.1
 
-omit [DecidableEq I] in
 theorem windowFromFree_of {J : Finset I} {i : I} (h : i ∈ J) (b : B i) :
     windowFromFree I B J (CoprodI.of (i := ⟨i, h⟩) (coordFlip I B i b))
       = lampClass I B ⟨i, b⟩ := by
@@ -454,12 +450,23 @@ theorem residuallyFinite_window (S : Finset ((i : I) × B i)) :
 
 /-! ## Block-preserving site permutations act at an arbitrary index type -/
 
+/-- The commutator of two distinct same-block lamps is the sign. -/
+theorem commutator_lamp_lamp_fst {p q : (i : I) × B i}
+    (hfst : p.1 = q.1) (hne : p ≠ q) :
+    ⁅lamp I B p, lamp I B q⁆ = sign I B := by
+  obtain ⟨i, b⟩ := p
+  obtain ⟨j, b'⟩ := q
+  obtain rfl : i = j := hfst
+  have hb : b ≠ b' := by
+    intro hc
+    exact hne (by rw [hc])
+  exact commutator_lamp_lamp I B hb
+
 /-- Generator images under a block-preserving permutation. -/
 def permGenerator (π : blockPermSubgroup I B) : Gen I B → BlockClifford I B :=
   Sum.elim (fun _ ↦ sign I B) fun p ↦
     lamp I B ((π : Equiv.Perm ((i : I) × B i)) p)
 
-omit [(i : I) → DecidableEq (B i)] [(i : I) → Fintype (B i)] in
 theorem permGenerator_kills (π : blockPermSubgroup I B) :
     ∀ w ∈ relators I B,
       FreeGroup.lift (permGenerator I B π) w = 1 := by
@@ -490,7 +497,7 @@ theorem permGenerator_kills (π : blockPermSubgroup I B) :
         intro hc
         exact h (sigma_mk_injective
           ((π : Equiv.Perm ((i : I) × B i)).injective hc))
-      rw [commutator_lamp_lamp' I B hfst hne]
+      rw [commutator_lamp_lamp_fst I B hfst hne]
       exact mul_inv_cancel _
 
 /-- The endomorphism induced by a block-preserving permutation. -/
@@ -498,19 +505,16 @@ def permMap (π : blockPermSubgroup I B) :
     BlockClifford I B →* BlockClifford I B :=
   PresentedGroup.toGroup (permGenerator_kills I B π)
 
-omit [(i : I) → DecidableEq (B i)] [(i : I) → Fintype (B i)] in
 @[simp] theorem permMap_sign (π : blockPermSubgroup I B) :
     permMap I B π (sign I B) = sign I B :=
   PresentedGroup.toGroup.of _
 
-omit [(i : I) → DecidableEq (B i)] [(i : I) → Fintype (B i)] in
 @[simp] theorem permMap_lamp (π : blockPermSubgroup I B)
     (p : (i : I) × B i) :
     permMap I B π (lamp I B p)
       = lamp I B ((π : Equiv.Perm ((i : I) × B i)) p) :=
   PresentedGroup.toGroup.of _
 
-omit [(i : I) → DecidableEq (B i)] [(i : I) → Fintype (B i)] in
 theorem permMap_comp (π₁ π₂ : blockPermSubgroup I B) (g : BlockClifford I B) :
     permMap I B π₁ (permMap I B π₂ g) = permMap I B (π₁ * π₂) g := by
   have h : (permMap I B π₁).comp (permMap I B π₂) = permMap I B (π₁ * π₂) := by
@@ -528,7 +532,6 @@ theorem permMap_comp (π₁ π₂ : blockPermSubgroup I B) (g : BlockClifford I 
         rfl
   exact DFunLike.congr_fun h g
 
-omit [(i : I) → DecidableEq (B i)] [(i : I) → Fintype (B i)] in
 theorem permMap_one_apply (g : BlockClifford I B) : permMap I B 1 g = g := by
   have h : permMap I B 1 = MonoidHom.id (BlockClifford I B) := by
     apply PresentedGroup.ext
@@ -568,7 +571,6 @@ def permAut (π : blockPermSubgroup I B) : MulAut (BlockClifford I B) :=
           show permMap I B π (permMap I B π⁻¹ (lamp I B p)) = lamp I B p
           simp [permMap_lamp])
 
-omit [(i : I) → DecidableEq (B i)] [(i : I) → Fintype (B i)] in
 @[simp] theorem permAut_apply (π : blockPermSubgroup I B)
     (g : BlockClifford I B) : permAut I B π g = permMap I B π g := rfl
 
@@ -591,7 +593,6 @@ def permHom : blockPermSubgroup I B →* MulAut (BlockClifford I B) where
 
 variable {Λ : Type*} [Group Λ]
 
-omit [(i : I) → DecidableEq (B i)] [(i : I) → Fintype (B i)] in
 /-- A window over a set of sites invariant under `H` is invariant under `H`. -/
 theorem window_invariant {φ : Λ →* MulAut (BlockClifford I B)}
     {ρ : Λ →* Equiv.Perm ((i : I) × B i)}
@@ -618,7 +619,6 @@ theorem window_invariant {φ : Λ →* MulAut (BlockClifford I B)}
     rw [map_inv]
     exact inv_mem hx
 
-omit [(i : I) → Fintype (B i)] in
 /-- Finite site orbits saturate a finite set of sites to an invariant one. -/
 theorem exists_invariant_window (ρ : Λ →* Equiv.Perm ((i : I) × B i))
     (H : Subgroup Λ)

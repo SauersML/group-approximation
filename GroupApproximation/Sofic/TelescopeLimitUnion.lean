@@ -106,7 +106,7 @@ This is the full telescope collapse conclusion, with the induction, the limit
 union, and the MF correction all in place; what remains for any concrete
 telescope is to exhibit the collapse theorems and the normal generating set. -/
 theorem coronaMFResidual_eq_ker_limit_of_generators {P : Type u} [Group P]
-    (limit : W →* P)
+    [Countable P] (limit : W →* P) [limit.ker.Normal]
     (hstages : ∀ n, (T.stage n).ker ≤ coronaMFResidual W)
     (hmono : Monotone fun n => (T.stage n).ker)
     (hnormal : ∀ n, ((T.stage n).ker).Normal)

@@ -63,75 +63,6 @@ section QuadraticGap
 variable {G : Type u} [Group G]
 variable {E : Type v} [NormedAddCommGroup E] [InnerProductSpace ℝ E]
 
-/-- **KT.15, the Cauchy--Schwarz half.**  At *every* generator the quadratic
-form of an isometric representation is bounded by the squared norm: "every
-other term is at most `1`" in the printed paragraph, before normalizing. -/
-theorem inner_le_norm_sq (ρ : G →* (E ≃ₗᵢ[ℝ] E)) (g : G) (x : E) :
-    ⟪ρ g x, x⟫_ℝ ≤ ‖x‖ ^ 2 := by
-  have h1 : ⟪ρ g x, x⟫_ℝ ≤ ‖ρ g x‖ * ‖x‖ := real_inner_le_norm _ _
-  rw [(ρ g).norm_map x] at h1
-  rw [pow_two]
-  exact h1
-
-/-- **KT.15, the displaced generator.**  A generator that moves `x` by at least
-`ε‖x‖` loses `ε²/2` from the quadratic form: the printed
-`Re⟨π(ι(s'))ξ, ξ⟩ ≤ 1 − κ²/2`, before normalizing.
-
-The identity behind it is the expansion `‖ρ g x − x‖² = 2‖x‖² − 2⟨ρ g x, x⟫`,
-which uses only that `ρ g` is an isometry. -/
-theorem inner_le_of_moved (ρ : G →* (E ≃ₗᵢ[ℝ] E)) {g : G} {x : E} {ε : ℝ}
-    (hε : 0 ≤ ε) (hmove : ε * ‖x‖ ≤ ‖ρ g x - x‖) :
-    ⟪ρ g x, x⟫_ℝ ≤ (1 - ε ^ 2 / 2) * ‖x‖ ^ 2 := by
-  have hnn : (0 : ℝ) ≤ ε * ‖x‖ := mul_nonneg hε (norm_nonneg x)
-  have hsq2 : (ε * ‖x‖) * (ε * ‖x‖) ≤ ‖ρ g x - x‖ * ‖ρ g x - x‖ :=
-    mul_self_le_mul_self hnn hmove
-  have hsq : ‖ρ g x - x‖ * ‖ρ g x - x‖
-      = 2 * ‖x‖ ^ 2 - 2 * ⟪ρ g x, x⟫_ℝ := by
-    rw [← pow_two, norm_sub_sq_real, (ρ g).norm_map x]
-    ring
-  have hexp : (ε * ‖x‖) * (ε * ‖x‖) = ε ^ 2 * ‖x‖ ^ 2 := by ring
-  rw [hexp, hsq] at hsq2
-  nlinarith [hsq2]
-
-/-- **KT.16, averaging the quadratic form.**  One generator losing `ε²/2` and
-the rest losing nothing gives `⟨hξ, ξ⟩ ≤ (1 − ε²/(2|S|))‖ξ‖²`, which is the
-last line of the printed paragraph. -/
-theorem inner_averageOperator_le_of_moved (S : Finset G) (hone : (1 : G) ∈ S)
-    (ρ : G →* (E ≃ₗᵢ[ℝ] E)) {g : G} (hgS : g ∈ S) {x : E} {ε : ℝ}
-    (hε : 0 ≤ ε) (hmove : ε * ‖x‖ ≤ ‖ρ g x - x‖) :
-    ⟪averageOperator S ρ x, x⟫_ℝ
-      ≤ (1 - ε ^ 2 / (2 * S.card)) * ‖x‖ ^ 2 := by
-  classical
-  have hcardNat : 0 < S.card := Finset.card_pos.mpr ⟨1, hone⟩
-  have hcard : (0 : ℝ) < S.card := by exact_mod_cast hcardNat
-  have hne : ((S.card : ℝ)) ≠ 0 := ne_of_gt hcard
-  have hdefect : ∀ g' ∈ S, 0 ≤ ‖x‖ ^ 2 - ⟪ρ g' x, x⟫_ℝ :=
-    fun g' _ ↦ sub_nonneg.mpr (inner_le_norm_sq ρ g' x)
-  have hqdefect : ε ^ 2 / 2 * ‖x‖ ^ 2 ≤ ‖x‖ ^ 2 - ⟪ρ g x, x⟫_ℝ := by
-    have := inner_le_of_moved ρ hε hmove
-    nlinarith [this]
-  have hsum_le : ∑ g' ∈ S, ⟪ρ g' x, x⟫_ℝ
-      ≤ (S.card : ℝ) * ‖x‖ ^ 2 - ε ^ 2 / 2 * ‖x‖ ^ 2 := by
-    have hsingle : ‖x‖ ^ 2 - ⟪ρ g x, x⟫_ℝ
-        ≤ ∑ g' ∈ S, (‖x‖ ^ 2 - ⟪ρ g' x, x⟫_ℝ) :=
-      Finset.single_le_sum hdefect hgS
-    have hsum_eq : ∑ g' ∈ S, (‖x‖ ^ 2 - ⟪ρ g' x, x⟫_ℝ)
-        = (S.card : ℝ) * ‖x‖ ^ 2 - ∑ g' ∈ S, ⟪ρ g' x, x⟫_ℝ := by
-      rw [Finset.sum_sub_distrib, Finset.sum_const, nsmul_eq_mul]
-    linarith
-  have hinner : ⟪averageOperator S ρ x, x⟫_ℝ
-      = ((S.card : ℝ))⁻¹ * ∑ g' ∈ S, ⟪ρ g' x, x⟫_ℝ := by
-    rw [averageOperator_apply, IsKazhdanPair.orbitAverage,
-      real_inner_smul_left, sum_inner]
-  have key : (S.card : ℝ) * ⟪averageOperator S ρ x, x⟫_ℝ
-      ≤ (S.card : ℝ) * ‖x‖ ^ 2 - ε ^ 2 / 2 * ‖x‖ ^ 2 := by
-    rw [hinner, ← mul_assoc, mul_inv_cancel₀ hne, one_mul]
-    exact hsum_le
-  have hexp : (S.card : ℝ) * ((1 - ε ^ 2 / (2 * (S.card : ℝ))) * ‖x‖ ^ 2)
-      = (S.card : ℝ) * ‖x‖ ^ 2 - ε ^ 2 / 2 * ‖x‖ ^ 2 := by
-    field_simp
-  exact le_of_mul_le_mul_left (by rw [hexp]; exact key) hcard
-
 /-- **The manuscript's Kazhdan eigenvalue bound** (paragraph *The Kazhdan
 projection*).  An eigenvalue of the orbit average other than `1` is at most
 `1 - ε²/(2|S|)`.
@@ -196,14 +127,58 @@ theorem manuscript_eigenvalue_le_of_ne_one [CompleteSpace E]
   have hcardNat : 0 < S.card := Finset.card_pos.mpr ⟨1, hone⟩
   have hcard : (0 : ℝ) < S.card := by exact_mod_cast hcardNat
   have hne : ((S.card : ℝ)) ≠ 0 := ne_of_gt hcard
-  -- the averaged quadratic form, from KT.15 and KT.16
-  have havg := inner_averageOperator_le_of_moved S hone ρ hqS hQ.1.le hmove
+  -- Cauchy-Schwarz at every generator
+  have hdefect : ∀ g ∈ S, 0 ≤ ‖x‖ ^ 2 - ⟪ρ g x, x⟫_ℝ := by
+    intro g _
+    have h1 : ⟪ρ g x, x⟫_ℝ ≤ ‖ρ g x‖ * ‖x‖ := real_inner_le_norm _ _
+    rw [(ρ g).norm_map x] at h1
+    have h2 : ‖x‖ ^ 2 = ‖x‖ * ‖x‖ := pow_two ‖x‖
+    linarith
+  -- the displaced generator loses `ε²/2`
+  have hqdefect : ε ^ 2 / 2 * ‖x‖ ^ 2 ≤ ‖x‖ ^ 2 - ⟪ρ q x, x⟫_ℝ := by
+    have hnn : (0 : ℝ) ≤ ε * ‖x‖ := mul_nonneg hQ.1.le (norm_nonneg x)
+    have hsq2 : (ε * ‖x‖) * (ε * ‖x‖) ≤ ‖ρ q x - x‖ * ‖ρ q x - x‖ :=
+      mul_self_le_mul_self hnn hmove
+    have hsq : ‖ρ q x - x‖ * ‖ρ q x - x‖
+        = 2 * ‖x‖ ^ 2 - 2 * ⟪ρ q x, x⟫_ℝ := by
+      rw [← pow_two, norm_sub_sq_real, (ρ q).norm_map x]
+      ring
+    have hexp : (ε * ‖x‖) * (ε * ‖x‖) = ε ^ 2 * ‖x‖ ^ 2 := by ring
+    rw [hexp, hsq] at hsq2
+    linarith
+  -- averaging the quadratic form
+  have hsum_le : ∑ g ∈ S, ⟪ρ g x, x⟫_ℝ
+      ≤ (S.card : ℝ) * ‖x‖ ^ 2 - ε ^ 2 / 2 * ‖x‖ ^ 2 := by
+    have hsingle : ‖x‖ ^ 2 - ⟪ρ q x, x⟫_ℝ
+        ≤ ∑ g ∈ S, (‖x‖ ^ 2 - ⟪ρ g x, x⟫_ℝ) :=
+      Finset.single_le_sum hdefect hqS
+    have hsum_eq : ∑ g ∈ S, (‖x‖ ^ 2 - ⟪ρ g x, x⟫_ℝ)
+        = (S.card : ℝ) * ‖x‖ ^ 2 - ∑ g ∈ S, ⟪ρ g x, x⟫_ℝ := by
+      rw [Finset.sum_sub_distrib, Finset.sum_const, nsmul_eq_mul]
+    linarith
+  have hinner : ⟪averageOperator S ρ x, x⟫_ℝ
+      = ((S.card : ℝ))⁻¹ * ∑ g ∈ S, ⟪ρ g x, x⟫_ℝ := by
+    rw [averageOperator_apply, IsKazhdanPair.orbitAverage,
+      real_inner_smul_left, sum_inner]
   have heigval : ⟪averageOperator S ρ x, x⟫_ℝ = μ * ‖x‖ ^ 2 := by
     rw [heig, real_inner_smul_left, real_inner_self_eq_norm_sq]
-  rw [heigval] at havg
-  have hmu : μ ≤ 1 - ε ^ 2 / (2 * (S.card : ℝ)) :=
-    le_of_mul_le_mul_right (by linarith [havg]) (pow_pos hxnorm 2)
-  simpa using hmu
+  have hstep : (S.card : ℝ) * (μ * ‖x‖ ^ 2) = ∑ g ∈ S, ⟪ρ g x, x⟫_ℝ := by
+    rw [← heigval, hinner, ← mul_assoc, mul_inv_cancel₀ hne, one_mul]
+  -- cancel the norm and then the cardinality
+  have hstep2 : (S.card : ℝ) * μ ≤ (S.card : ℝ) - ε ^ 2 / 2 := by
+    have h1 : ((S.card : ℝ) * μ) * ‖x‖ ^ 2
+        ≤ ((S.card : ℝ) - ε ^ 2 / 2) * ‖x‖ ^ 2 := by
+      have e1 : ((S.card : ℝ) * μ) * ‖x‖ ^ 2
+          = (S.card : ℝ) * (μ * ‖x‖ ^ 2) := by ring
+      have e2 : ((S.card : ℝ) - ε ^ 2 / 2) * ‖x‖ ^ 2
+          = (S.card : ℝ) * ‖x‖ ^ 2 - ε ^ 2 / 2 * ‖x‖ ^ 2 := by ring
+      rw [e1, e2, hstep]
+      exact hsum_le
+    exact le_of_mul_le_mul_right h1 (pow_pos hxnorm 2)
+  have hgap : ε ^ 2 / (2 * (S.card : ℝ)) ≤ 1 - μ := by
+    rw [div_le_iff₀ (by linarith : (0 : ℝ) < 2 * (S.card : ℝ))]
+    nlinarith [hstep2]
+  linarith
 
 end QuadraticGap
 

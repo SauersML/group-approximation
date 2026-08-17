@@ -2432,9 +2432,9 @@ Group.FG ↥UniversalRankFour.Ambient ∧
 ## `GroupApproximation.commutantStabilizer`
 
 ```lean
-{G : Type u_1} →
-  {k : Type u_2} →
-    {V : Type u_3} →
+{G : Type} →
+  {k : Type u_1} →
+    {V : Type u_2} →
       [inst : Group G] →
         [inst_1 : Field k] →
           [inst_2 : AddCommGroup V] →
@@ -2444,7 +2444,7 @@ Group.FG ↥UniversalRankFour.Ambient ∧
 ## `GroupApproximation.commutantStabilizer_eq_top`
 
 ```lean
-∀ {G : Type u_1} {k : Type u_2} {V : Type u_3} [inst : Group G] [inst_1 : Field k]
+∀ {G : Type} {k : Type u_1} {V : Type u_2} [inst : Group G] [inst_1 : Field k]
   [inst_2 : AddCommGroup V] [inst_3 : _root_.Module k V] [FiniteDimensional k V]
   (ρ : G →* V ≃ₗ[k] V) (Γ : Subgroup G) (S : Set G),
   (∀ s ∈ S, ∀ δ ∈ Γ, s * δ * s⁻¹ ∈ Γ) → Subgroup.closure S = ⊤ → commutantStabilizer ρ Γ = ⊤

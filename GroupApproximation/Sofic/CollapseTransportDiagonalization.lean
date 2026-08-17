@@ -98,7 +98,7 @@ theorem matMass_smul_unflatE {Y : Type*} [Fintype Y] (r : ℝ)
 /-- The Frobenius mass of the adjoint displacement of a real rescaling of an
 unflattened vector, in terms of the flattened adjoint action `adFlat`. -/
 theorem matMass_smul_unflatE_displacement {Y : Type*} [Fintype Y]
-    (r : ℝ) (U : Matrix Y Y ℂ)
+    [DecidableEq Y] (r : ℝ) (U : Matrix Y Y ℂ)
     (v : EuclideanSpace ℂ (Y × Y)) :
     ScaledKazhdanTransport.matMass
         ((r : ℂ) • unflatE v - U * ((r : ℂ) • unflatE v) * Uᴴ) =

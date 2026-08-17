@@ -355,14 +355,21 @@ the stationarity question below.  Neither is proof.  Monomial drift
 block_diag_distance tracks collapse back into the dead index-15 coset
 slice.
 
-**The stationarity question (sharpened by this run):** the fleet
-proved the flip is stationary along the (I ⊗ V)J slice and that every
-stabilizer-commuting W is dead.  Whether the flip is a critical point
-of the full defect objective on U(20160) is open and *exactly
-decidable*: at W = I the gradient is the anti-Hermitian part of a
-finite signed sum of permutation operators (one per K2-syllable per
-active word, each a composable product of left/right translations of
-A₈), so its vanishing is a finite combinatorial check over the 20160
-points — no floats.  If run 2 stalls at the baseline, that CPU-exact
-computation is the designated next step; if the loss moves, the
-question is answered negatively for free.
+**The stationarity question — ANSWERED (2026-08-17, exact):** the flip
+is a critical point of the full defect objective on U(20160), per
+word, at every multiplicity, provably — see
+`atlas-flip-first-order-rigidity(-proof)` and
+`atlas-flip-stationarity-2026-08-17.json`.  The CPU-exact computation
+ran ahead of the GPU (integer verdict: the unsymmetrized differential
+itself vanishes at the pair level; 376 raw terms, 0 surviving), and
+the analytic proof came out of reading the machine's answer: every
+T_St word escapes in at most one factor (36 + 36 + 4,564, none in
+both), `p₂ = I` kills each site via `b = h⁻¹`, and `p₁ = I` makes the
+terms telescope cyclically.  **Run 2 is therefore reinterpreted before
+its data arrives: it is a negative-curvature (Hessian) probe.**
+Descent below the 1.9987 baseline now means the flip is a strict
+saddle and names an escape direction; a stall is consistent with a
+local minimum and decides nothing.  The earlier trend framing
+("decreasing-in-k = FALSE-side signature") survives unchanged one
+level up: any such trend must now come from second-order or global
+structure, never from a gradient flow off the flip.

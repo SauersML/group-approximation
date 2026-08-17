@@ -93,7 +93,7 @@ theorem qK_cover (g : Multiplicative ℚ) : ∃ n, g ∈ qK n := by
 /-- **The additive rationals are amenable.** -/
 theorem hasInvariantMean_rat : HasInvariantMean (Multiplicative ℚ) :=
   hasInvariantMean_of_directed qK
-    (fun n ↦ (hasInvariantMean_zpowers (qStep n)).some) ⟨0⟩ qK_mono qK_cover
+    (fun n ↦ (hasInvariantMean_zpowers (qStep n)).some) qK_mono qK_cover
 
 end Amenability
 end GroupApproximation

@@ -7,7 +7,7 @@
       "id": "thm:A",
       "environment": "mainthm",
       "title": "an explicit finitely presented non-MF group",
-      "statement_sha256": "ce8aa94da2910ee5aa0a99de99700afd76b9678d5a795e4c998f9276f729a4c9",
+      "statement_sha256": "e424965973a05efc2569d8a42b5eb22ef408d794487633a3736376485ffc84ce",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [
@@ -33,7 +33,7 @@
         {
           "role": "exact",
           "module": "Sofic/LiteralTietzePresentation",
-          "declaration": "GroupApproximation.LiteralTietzePresentation.exists_sixGenerator_thirtyTwo_presentation",
+          "declaration": "GroupApproximation.LiteralTietzePresentation.manuscriptTietzeSixGeneratorPresentation",
           "covers": "a printed conclusion of the proposition"
         }
       ]
@@ -84,7 +84,7 @@
       "id": "prop:mf-equivalences",
       "environment": "proposition",
       "title": "Equivalent formulations of the MF property",
-      "statement_sha256": "f68097942772b0116101c4c168a193858c02dba053eee4c0f9ad4d5f4ecce8d6",
+      "statement_sha256": "8fcbf4fc050755b2c72e7ecfa4d27b70b8c77ace2961ce40cc7ebadcfc3e9781",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [
@@ -176,15 +176,9 @@
       "lean": [
         {
           "role": "exact",
-          "module": "Sofic/KazhdanTransportAnyUniverse",
-          "declaration": "GroupApproximation.KazhdanAsymptoticCommutant.manuscriptKazhdanTransport_anyUniverse",
-          "covers": "the complete printed proposition"
-        },
-        {
-          "role": "exact",
           "module": "Sofic/ManuscriptKazhdanTransport",
           "declaration": "GroupApproximation.KazhdanAsymptoticCommutant.manuscriptKazhdanTransport",
-          "covers": "a printed conclusion of the proposition"
+          "covers": "the complete printed proposition"
         }
       ]
     },
@@ -281,7 +275,7 @@
       "id": "cor:uniform",
       "environment": "corollary",
       "title": "uniform finite operator-norm obstruction",
-      "statement_sha256": "127963fa65d9be4e6a9e27bc9d6910285109ce088fc61e729b0963319c059142",
+      "statement_sha256": "043923ba46739c21aa855f9e9528c5647f18939422a19b845f761a27a355e8ea",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [
@@ -496,7 +490,7 @@
     {
       "id": "thm:transport-variants",
       "environment": "theorem",
-      "title": "one-sided conjugation at an arbitrary weight, and for intertwiners",
+      "title": "transport at an arbitrary weight, and of intertwiners",
       "statement_sha256": "97f0d64b8d1325da9d604b850c24f1aa9192f9e2530d1d6f907187bcc45d153b",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
@@ -507,27 +501,9 @@
       "lean": [
         {
           "role": "exact",
-          "module": "Sofic/TransportVariantsAnyUniverse",
-          "declaration": "GroupApproximation.TransportVariantsAnyUniverse.scaled_transport_both_anyUniverse",
-          "covers": "the complete printed proposition"
-        },
-        {
-          "role": "exact",
-          "module": "Sofic/TransportVariantsAnyUniverse",
-          "declaration": "GroupApproximation.TransportVariantsAnyUniverse.manuscriptIntertwinerTransport_anyUniverse",
-          "covers": "a printed conclusion of the proposition"
-        },
-        {
-          "role": "exact",
-          "module": "Sofic/TransportVariantsAnyUniverse",
-          "declaration": "GroupApproximation.TransportVariantsAnyUniverse.scaled_intertwiner_transport_anyUniverse",
-          "covers": "a printed conclusion of the proposition"
-        },
-        {
-          "role": "exact",
           "module": "Sofic/ScaledKazhdanTransport",
           "declaration": "GroupApproximation.ScaledKazhdanTransport.scaled_transport_both",
-          "covers": "a printed conclusion of the proposition"
+          "covers": "the complete printed proposition"
         },
         {
           "role": "exact",
@@ -567,7 +543,7 @@
       "id": "def:invisible",
       "environment": "definition",
       "title": "$2$-norm triviality",
-      "statement_sha256": "7ce386073afc36fd24a7556cb7f64059fe2fcff5e59886ebcf4a53b59b91db95",
+      "statement_sha256": "1b074b45598fa7609b79f8d4154c854e235199837c0601fb2d54176b463c67cc",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [],
@@ -609,7 +585,7 @@
     {
       "id": "cor:generaltransport",
       "environment": "corollary",
-      "title": "every one-sided conjugator acts, in both directions",
+      "title": "transport along all one-sided conjugators",
       "statement_sha256": "c808cecbd21732fb3259e95b7121e7209cf8f429d51f272cd24c099736f27484",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
@@ -981,7 +957,7 @@
     {
       "id": "thm:projection-collapse",
       "environment": "theorem",
-      "title": "a commuting orbit forces commutation",
+      "title": "projection collapse",
       "statement_sha256": "f8010458149ae59b274a279ed754d1cb8ed12611ade9c90c774d6bd162f78c55",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
@@ -1021,7 +997,7 @@
     {
       "id": "thm:collapse",
       "environment": "theorem",
-      "title": "the orbit of an involutive witness",
+      "title": "involutive collapse",
       "statement_sha256": "978ac3e37662c0079e48f50444452aae75a13642dd91a8644440043521a823a4",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
@@ -1046,7 +1022,7 @@
     {
       "id": "thm:torsion-collapse",
       "environment": "theorem",
-      "title": "the orbit of a finite-order witness",
+      "title": "torsion collapse",
       "statement_sha256": "702b6f8894246819d522cc270da7e8ca0f6a698a9f3b8dc93822a6d392af1164",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
@@ -1172,7 +1148,7 @@
     {
       "id": "lem:window",
       "environment": "lemma",
-      "title": "finite-site subgroups are residually finite",
+      "title": "windows are residually finite",
       "statement_sha256": "ffcad9af5c739fc445e6c9432c0598c368e66ad83c32bd013530666c1d2f729c",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
@@ -1276,8 +1252,8 @@
     {
       "id": "cor:undecidable",
       "environment": "corollary",
-      "title": "undecidability, given the word problem",
-      "statement_sha256": "697d3efaa043b736a446619b2056bd448f90492a3637230ce31cc8c1c4155cd4",
+      "title": "undecidability, given a halting reduction",
+      "statement_sha256": "e6bbb11192c5e3f9b74ab673cfe48982318445617fd25f1dc48c40d15fdfb2ad",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [],
@@ -1287,14 +1263,14 @@
       "lean": [
         {
           "role": "exact",
-          "module": "Computability/AdianRabinVariantTransform",
-          "declaration": "GroupApproximation.AdianRabinVariantTransform.operatorMF_recognition_undecidable_of_wordProblem",
+          "module": "Computability/HaltingReduction",
+          "declaration": "GroupApproximation.MarkovMFConsequences.presentationCodes_recognition_undecidable_of_haltingReduction",
           "covers": "the complete printed proposition"
         },
         {
           "role": "exact",
-          "module": "Computability/AdianRabinVariantTransform",
-          "declaration": "GroupApproximation.AdianRabinVariantTransform.operatorMF_negative_side_not_re_of_wordProblem",
+          "module": "Computability/HaltingReduction",
+          "declaration": "GroupApproximation.MarkovMFConsequences.presentationCodes_negative_side_not_re_of_haltingReduction",
           "covers": "a printed conclusion of the proposition"
         }
       ]

@@ -61,7 +61,7 @@ open scoped Matrix.Norms.L2Operator
 -- printed hypothesis is countability rather than smallness.
 universe u w
 
-variable {H : Type u} [Group H]
+variable {H : Type} [Group H]
 
 /-- Convergence of a raw matrix commutator to zero in normalized
 Hilbert--Schmidt norm, written in the natural coordinates `M_{d n}`. -/
@@ -249,7 +249,7 @@ exactly the hypotheses displayed above: property `(T)` for `Γ`, the compression
 multiplicativity of `U`.  Nothing further is assumed, so the theorem is
 unconditional. -/
 theorem manuscriptKazhdanTransport :
-    ∀ {Γ : Type} {H : Type u} [Group Γ] [Group H]
+    ∀ {Γ H : Type} [Group Γ] [Group H]
     (_hT : HasKazhdanPropertyTComplex.{0, w} Γ)
     (iota : Γ →* H) (s : H)
     (_hs : ∀ γ : Γ, ∃ δ : Γ,

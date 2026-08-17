@@ -123,7 +123,7 @@ def tietzeRelatorList : List (FreeGroup SixGenerator) :=
   retainedList.map substHom
 
 /-- **Thirty-two relators**, exactly as displayed. -/
-@[simp] theorem tietzeRelatorList_length : tietzeRelatorList.length = 32 := rfl
+theorem tietzeRelatorList_length : tietzeRelatorList.length = 32 := rfl
 
 /-- The group presented on six letters by the thirty-two relators. -/
 abbrev TietzeGroup : Type := PresentedGroup {r | r ∈ tietzeRelatorList}
@@ -649,6 +649,13 @@ theorem exists_sixGenerator_thirtyTwo_presentation :
         ∀ i : SixGenerator, e (PresentedGroup.of i) = sixGenerator i :=
   ⟨tietzeRelatorList, tietzeRelatorList_length,
     markedEquivTietze.symm, markedEquivTietze_symm_of⟩
+
+/-- Closed form of the Tietze statement. -/
+theorem manuscriptTietzeSixGeneratorPresentation :
+    ∀ _ : Unit, ∃ L : List (FreeGroup (Fin 6)), L.length = 32 ∧
+      ∃ e : PresentedGroup {r | r ∈ L} ≃* MarkedGroup,
+        ∀ i : Fin 6, e (PresentedGroup.of i) = sixGenerator i :=
+  fun _ ↦ exists_sixGenerator_thirtyTwo_presentation
 
 end
 

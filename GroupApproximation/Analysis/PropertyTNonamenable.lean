@@ -216,11 +216,9 @@ theorem memℓp_folner (A : Finset G) :
 noncomputable def folnerVec (A : Finset G) : lp (fun _ : G ↦ ℝ) 2 :=
   ⟨fun x : G ↦ if x ∈ A then folnerCoeff A else 0, memℓp_folner A⟩
 
-omit [Group G] in
 @[simp] theorem folnerVec_apply (A : Finset G) (x : G) :
     folnerVec A x = if x ∈ A then folnerCoeff A else 0 := rfl
 
-omit [Group G] in
 /-- The normalized indicator of a nonempty finite set is a unit vector. -/
 theorem norm_folnerVec (A : Finset G) (hA : A.Nonempty) :
     ‖folnerVec A‖ = 1 := by

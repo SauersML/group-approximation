@@ -70,7 +70,7 @@ noncomputable section
 
 /-- **The two lanes' lamp kernels are the same subgroup.**  Both are defined
 as `Subgroup.normalClosure {lamp}` inside `MarkedGroup`. -/
-@[simp] theorem lampKernel_agree :
+theorem lampKernel_agree :
     LiteralBlockNormalForm.lampKernel = LiteralLampKernelSplit.lampKernel := rfl
 
 /-- **The two retractions have the same kernel.** -/

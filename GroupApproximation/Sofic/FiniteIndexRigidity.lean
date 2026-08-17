@@ -119,13 +119,13 @@ def latticeEquiv (hq : Function.Surjective q) (hker : q.ker ≤ finiteResidual W
   right_inv M := Subtype.ext (map_comap_of_surjective q hq M.1)
 
 /-- The forward direction of `latticeEquiv` is the pushforward. -/
-@[simp] theorem latticeEquiv_coe (hq : Function.Surjective q) (hker : q.ker ≤ finiteResidual W)
+theorem latticeEquiv_coe (hq : Function.Surjective q) (hker : q.ker ≤ finiteResidual W)
     (L : {L : Subgroup W // L.FiniteIndex}) : (latticeEquiv q hq hker L : Subgroup P) =
       L.1.map q :=
   rfl
 
 /-- The inverse direction of `latticeEquiv` is the pullback. -/
-@[simp] theorem latticeEquiv_symm_coe (hq : Function.Surjective q) (hker : q.ker ≤ finiteResidual W)
+theorem latticeEquiv_symm_coe (hq : Function.Surjective q) (hker : q.ker ≤ finiteResidual W)
     (M : {M : Subgroup P // M.FiniteIndex}) :
     ((latticeEquiv q hq hker).symm M : Subgroup W) = M.1.comap q :=
   rfl
@@ -280,7 +280,7 @@ noncomputable def homEquiv (hq : Function.Surjective q) (hker : q.ker ≤ finite
   Equiv.ofBijective _ (comp_bijective q hq hker)
 
 /-- `homEquiv` is inflation along `q`. -/
-@[simp] theorem homEquiv_apply (hq : Function.Surjective q) (hker : q.ker ≤ finiteResidual W)
+theorem homEquiv_apply (hq : Function.Surjective q) (hker : q.ker ≤ finiteResidual W)
     (F : Type*) [Group F] [Finite F] (ψ : P →* F) : homEquiv q hq hker F ψ = ψ.comp q :=
   rfl
 

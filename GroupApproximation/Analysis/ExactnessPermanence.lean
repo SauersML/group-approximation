@@ -58,7 +58,7 @@ attempted here.
   A**.  The finite scale `R` sits inside a finite subgroup `H`; the uniform
   measure on the coset `g·H` is *exactly* invariant under moving the base point
   inside `H`, so the `ℓ¹` defect is `0` and no limit is taken.
-* `GroupApproximation.ExactnessPermanence.hasPropertyA_cliffordLamp_viaAmenability`: the manuscript's actual lamp kernel
+* `hasPropertyA_cliffordLamp`: the manuscript's actual lamp kernel
   `ClLamp(X)` has property A, for every site set `X`.  This is the
   group-combinatorial content of `E.1`, discharged on the real object.
 * `hasPropertyA_of_finite`: the degenerate case.
@@ -459,6 +459,16 @@ theorem hasPropertyA_of_finite (G : Type u) [Group G] [Finite G] :
   hasPropertyA_of_isLocallyFiniteGroup (isLocallyFiniteGroup_of_finite G)
 
 open CliffordLamp in
+/-- **The manuscript's lamp kernel has property A.**  `ClLamp(X)` is the locally
+finite Clifford lamp group of `Proposition (witness)`, and this is the
+group-combinatorial content of link `E.1` (*"the locally finite lamp kernel is
+amenable and hence exact"*), discharged for every site set `X`.
+
+The passage from property A to exactness of the reduced C⋆-algebra is Ozawa's
+theorem and remains unformalized. -/
+theorem hasPropertyA_cliffordLamp (X : Type u) : HasPropertyA (CliffordLamp X) :=
+  hasPropertyA_of_isLocallyFiniteGroup (isLocallyFiniteGroup_cliffordLamp X)
+
 /-! ## Link `E.1` along the manuscript's own route, through amenability
 
 The manuscript does not say "locally finite, hence property A"; it says

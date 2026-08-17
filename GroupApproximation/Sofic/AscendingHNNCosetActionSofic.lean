@@ -41,7 +41,7 @@ variable {Γ : Type u} [Group Γ] (α : Γ →* Γ) (hα : Function.Injective α
 local instance telescopeCosetAction : MulAction (Telescope α hα) (Cosets α hα) :=
   MulAction.compHom _ (inl : Telescope α hα →* Vertical α hα)
 
-@[simp] theorem telescope_smul_cosets (g : Telescope α hα) (x : Cosets α hα) :
+theorem telescope_smul_cosets (g : Telescope α hα) (x : Cosets α hα) :
     g • x = (inl g : Vertical α hα) • x := rfl
 
 include hα in

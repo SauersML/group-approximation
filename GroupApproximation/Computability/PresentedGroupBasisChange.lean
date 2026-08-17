@@ -91,7 +91,7 @@ def basisChangeEquiv {s : Set (FreeGroup α)} {t : Set (FreeGroup β)}
 
 /-- The forward map of a basis change sends a generator to the substituted
 word. -/
-@[simp] theorem basisChangeEquiv_of {s : Set (FreeGroup α)} {t : Set (FreeGroup β)}
+theorem basisChangeEquiv_of {s : Set (FreeGroup α)} {t : Set (FreeGroup β)}
     (f : FreeGroup α →* FreeGroup β) (g : FreeGroup β →* FreeGroup α)
     (hst : s.MapsTo f t) (hts : t.MapsTo g s)
     (hgf : ∀ a : α, g (f (FreeGroup.of a)) = FreeGroup.of a)

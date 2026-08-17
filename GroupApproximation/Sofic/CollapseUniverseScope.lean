@@ -87,14 +87,14 @@ theorem isInvolutiveCompressionWitness_iff {E : Type} [Group E]
 
 /-- At `Type 0` the universe-polymorphic collapse set is literally the
 endpoint's. -/
-@[simp] theorem involutiveCollapseSet_eq {E : Type} [Group E] (L : Subgroup E)
+theorem involutiveCollapseSet_eq {E : Type} [Group E] (L : Subgroup E)
     (s : E) :
     involutiveCollapseSet L s =
       InvolutionCollapseEndpoint.involutiveCollapseSet L s := rfl
 
 /-- At `Type 0` the universe-polymorphic collapse defect is literally the
 endpoint's. -/
-@[simp] theorem involutiveCollapseDefect_eq {E : Type} [Group E] (L : Subgroup E)
+theorem involutiveCollapseDefect_eq {E : Type} [Group E] (L : Subgroup E)
     (s : E) :
     involutiveCollapseDefect L s =
       InvolutionCollapseEndpoint.involutiveCollapseDefect L s := rfl

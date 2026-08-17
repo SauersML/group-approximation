@@ -60,7 +60,7 @@ theorem fiberPerm_mul (Θ₁ Θ₂ : A → Equiv.Perm D) (σ₁ σ₂ : Equiv.Pe
   · rfl
 
 /-- A product of permutations is the constant-label case. -/
-@[simp] theorem fiberPerm_const (p : Equiv.Perm D) (σ : Equiv.Perm A)
+theorem fiberPerm_const (p : Equiv.Perm D) (σ : Equiv.Perm A)
     (q : prodModel D A) : fiberPerm (fun _ => p) σ q = (p q.1, σ q.2) := rfl
 
 /-! ## The fibrewise distance formula -/

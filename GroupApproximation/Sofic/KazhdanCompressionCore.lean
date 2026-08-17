@@ -19,10 +19,10 @@ namespace GroupApproximation
 
 open scoped commutatorElement
 
-universe u v
+universe u
 
 /-- The exact marker-free input to Kazhdan compression. -/
-structure KazhdanCompressionCore (Γ : Type v) (E : Type u) [Group Γ]
+structure KazhdanCompressionCore (Γ : Type) (E : Type u) [Group Γ]
     [Group E] where
   /-- The Kazhdan source mapped into the ambient group. -/
   iota : Γ →* E
@@ -31,7 +31,7 @@ structure KazhdanCompressionCore (Γ : Type v) (E : Type u) [Group Γ]
   /-- The root element centralized by the Kazhdan image. -/
   c : E
   /-- Property `(T)` for the source. -/
-  kazhdan : HasKazhdanPropertyT.{v, v} Γ
+  kazhdan : HasKazhdanPropertyT.{0, 0} Γ
   /-- Conjugation by `t` carries `ι(Γ)` back into `ι(Γ)`. -/
   compresses : ∀ γ : Γ, ∃ δ : Γ, t * iota γ * t⁻¹ = iota δ
   /-- The root centralizes the image of `Γ`. -/
@@ -39,7 +39,7 @@ structure KazhdanCompressionCore (Γ : Type v) (E : Type u) [Group Γ]
 
 namespace KazhdanCompressionCore
 
-variable {Γ : Type v} {E : Type u} [Group Γ] [Group E]
+variable {Γ : Type} {E : Type u} [Group Γ] [Group E]
 
 /-- The transported root `d = t c t⁻¹`. -/
 def transported (C : KazhdanCompressionCore Γ E) : E :=

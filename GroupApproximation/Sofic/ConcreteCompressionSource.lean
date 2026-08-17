@@ -144,7 +144,7 @@ def ofFournierFacio {P : Type} {E : Type u} [Group P] [Group E]
   witness_commutator_ne_one := D.witness_commutator_ne_one
 
 /-- The forgetful map is compatible with the hidden compression cores. -/
-@[simp] theorem ofFournierFacio_core {P : Type} {E : Type u} [Group P] [Group E]
+theorem ofFournierFacio_core {P : Type} {E : Type u} [Group P] [Group E]
     (D : FournierFacioDefectData P E) :
     (ofFournierFacio D).core D.kazhdan = D.core := rfl
 

@@ -776,7 +776,7 @@ noncomputable def asymptoticUnitaryOfOpAlmost {H : Type u} [Group H]
 
 /-- At `Type 0` the universe-general construction is the one the finite-normal
 machinery uses, field for field. -/
-@[simp] theorem asymptoticUnitaryOfOpAlmost_typeZero {H : Type} [Group H]
+theorem asymptoticUnitaryOfOpAlmost_typeZero {H : Type} [Group H]
     (B : OpAlmostRepresentation H) :
     asymptoticUnitaryOfOpAlmost B =
       KazhdanCompressionCore.toAsymptoticUnitaryRepresentation B := rfl

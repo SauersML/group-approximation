@@ -45,7 +45,7 @@ This file supplies the declaration whose *proof route* is the printed one:
 `cs_01_negative_corner`, `cs_02_transport_on_the_corner`,
 `cs_03_contradiction`, assembled by `cs_04_no_corona_survival` and presented
 as the manuscript's own closed proposition by
-`GroupApproximation.KazhdanCompressionCore.manuscriptCentralSignCriterion`.
+`manuscriptCentralSignCriterionViaTransport`.
 
 Statement identity with the existing theorem is definitional, not textual:
 both inhabit the single closed proposition
@@ -300,5 +300,82 @@ theorem cs_04_no_corona_survival {Γ E : Type} [Group Γ] [Group E] [Countable E
       ((centralInvolutionSubgroup_le_iff_mem z hz_sq _).mpr hzker x.property)
   -- Step 3: the corner average and the sign cannot both vanish.
   exact cs_03_contradiction F B hcof hsum hkillF
+
+/-- **The manuscript's central-sign criterion (`thm:sign-criterion`), certified
+along its printed proof.**  Let `H` and `Γ` be countable, `Γ` Kazhdan,
+`ι : Γ → H`, `t ι(Γ) t⁻¹ ⊆ ι(Γ)`, `[c, ι(Γ)] = 1`, `d = t c t⁻¹`,
+`u = [d, ι(a)]`.  If `ε = u² ≠ 1`, `ε² = 1` and `ε ∈ Z(H)`, then every
+homomorphism from `H` to a norm matrix corona maps `ε` to the identity, and
+`H` is not MF.
+
+This inhabits the very same closed proposition as
+`KazhdanCompressionCore.manuscriptCentralSignCriterion`, so statement identity
+with the badged theorem is definitional rather than a textual coincidence.
+What differs is the route: the negative corner is built directly for the
+manuscript's two-element subgroup `{1, ε}` instead of being inherited from the
+general finite-normal obstruction of `sec:conj`, and the engine on the corner
+is Kazhdan transport instead of finite-stage root capture. -/
+theorem manuscriptCentralSignCriterionViaTransport :
+    KazhdanCompressionCore.ManuscriptCentralSignCriterion := by
+  intro Γ E _ _ _ hT iota t c hcompresses hcomm a z hz hz_ne hz_sq hz_central
+  -- The printed hypothesis is that `H` is countable, which is exactly what puts
+  -- it in `Type 0` up to isomorphism.  Steps `cs_01`--`cs_04` are the printed
+  -- proof and are run on the model; nothing analytic is repeated here.
+  obtain ⟨E₀, _groupE₀, ⟨e⟩⟩ := Type0Transfer.exists_type0_model E
+  haveI : Countable E₀ := Type0Transfer.countable_type0_model E e
+  have hcompresses₀ : ∀ γ : Γ, ∃ δ : Γ,
+      e t * (e.toMonoidHom.comp iota) γ * (e t)⁻¹ =
+        (e.toMonoidHom.comp iota) δ := by
+    intro γ
+    obtain ⟨δ, hδ⟩ := hcompresses γ
+    refine ⟨δ, ?_⟩
+    have h : e (t * iota γ * t⁻¹) = e (iota δ) := by rw [hδ]
+    simpa using h
+  have hcomm₀ : ∀ γ : Γ, Commute (e c) ((e.toMonoidHom.comp iota) γ) := by
+    intro γ
+    simpa using (hcomm γ).map e
+  let C₀ : KazhdanCompressionCore Γ E₀ := {
+    iota := e.toMonoidHom.comp iota
+    t := e t
+    c := e c
+    kazhdan := hasKazhdanPropertyT_iff_textbook.mpr hT
+    compresses := hcompresses₀
+    comm_c := hcomm₀
+  }
+  have hzC : e z = ⁅C₀.transported, C₀.iota a⁆ ^ 2 := by
+    have h : e z = e (⁅t * c * t⁻¹, iota a⁆ ^ 2) := by rw [hz]
+    simpa [C₀, KazhdanCompressionCore.transported, map_commutatorElement]
+      using h
+  have hz_sq₀ : (e z) ^ 2 = 1 := by rw [← map_pow, hz_sq, map_one]
+  have hz_central₀ : ∀ g : E₀, Commute (e z) g := by
+    intro g
+    simpa using (hz_central (e.symm g)).map e
+  have hz_ne₀ : e z ≠ 1 := fun h ↦
+    hz_ne (e.injective (h.trans (map_one e).symm))
+  constructor
+  · intro d hd
+    letI : ∀ n, Nonempty (naturalFiniteModel (d n)) :=
+      fun n ↦ Fintype.card_pos_iff.mp (by simpa using hd n)
+    intro rho
+    let sigma : E₀ →* NormMatrixCoronaUnitary
+        (fun n ↦ naturalFiniteModel (d n)) :=
+      (normMatrixCoronaUnitaryEquiv
+        (fun n ↦ naturalFiniteModel (d n))).symm.toMonoidHom.comp
+          (rho.comp e.symm.toMonoidHom)
+    have hsig : sigma (e z) = 1 :=
+      cs_04_no_corona_survival C₀ a (e z) hzC hz_sq₀ hz_central₀
+        (fun n ↦ naturalFiniteModel (d n)) sigma
+    apply (normMatrixCoronaUnitaryEquiv
+      (fun n ↦ naturalFiniteModel (d n))).symm.injective
+    simpa [sigma] using hsig
+  · rw [isCDEOperatorMF_iff_isOperatorMF]
+    intro hMF
+    obtain ⟨X, _hX, rho, hrho⟩ :=
+      CommensurabilityInvariance.isOperatorMF_of_mulEquiv e hMF
+    apply hz_ne₀
+    apply hrho
+    simpa using
+      cs_04_no_corona_survival C₀ a (e z) hzC hz_sq₀ hz_central₀ X rho
+
 end CentralSignTransport
 end GroupApproximation

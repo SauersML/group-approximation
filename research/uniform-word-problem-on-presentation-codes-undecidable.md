@@ -48,28 +48,6 @@ that `m ↦ (some word representing g m)` is computable, and for a `φ` produced
 by choice there is no reason it should be.  Undecidability of a sequence of
 elements does not transport across a noncomputable presentation.
 
-## Status, 2026-08-17: three of four pieces done
-
-* **The undecidable source, on configurations** --- done.
-  `ModularMachineConfigHalting.exists_modularMachine_config_halting_not_computablePred`
-  gives `∃ mm, ¬ComputablePred fun p : ℕ × ℕ => mm.Halts p`, axiom-clean.  This
-  is the form with no indexing map, which is what lets words be attached to a
-  configuration directly.  Reaching it needed the index map computable, and that
-  needed **no** `Primrec` through `PartrecToTM2 → TM2to1 → TM1to0`: the map only
-  builds an *initial* configuration, so it is a constant beside a Horner fold
-  over the binary digits of the input, and the choice-based symbol encoding
-  contributes fixed naturals rather than needing evaluation.
-* **The code** --- done.  `BooneGroupCode.finalGroupCodeEquiv` :
-  `Carrier (finalGroupCode mm hM) ≃* FinalGroup mm hM`.  The tower presentation
-  had never said the group it presented *was* `FinalGroup`; the two agree only by
-  transporting an equality of subgroups that occurs in the type of the HNN
-  extension.
-* **Coded triviality as a decidable search** --- done.
-  `CodedWordTriviality.wordOf_eq_one_iff_exists_steps`, via normalisation past the
-  dependent type and the deletion certificate of [[word-problem-of-finite-presentation-is-re]]'s
-  raw-word route.
-* **The words** --- open, and now the whole of what remains.
-
 ## What closes it
 
 Not new mathematics — coordinates.  The Boone group's presentation is explicit:

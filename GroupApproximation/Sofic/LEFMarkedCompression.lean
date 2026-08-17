@@ -187,6 +187,11 @@ theorem ker_zShiftProjection_isLEF : IsLEF zShiftProjection.ker := by
 theorem ker_zShiftProjection_isOperatorMF :
     IsOperatorMF zShiftProjection.ker :=
   isOperatorMF_of_isLEF ker_zShiftProjection_isLEF
+
+/-- The integer quotient is LEF. -/
+theorem integerQuotient_isLEF : IsLEF (Multiplicative ℤ) :=
+  isLEF_multiplicative_int
+
 /-- The integer quotient is operator MF. -/
 theorem integerQuotient_isOperatorMF : IsOperatorMF (Multiplicative ℤ) :=
   isOperatorMF_of_isLEF isLEF_multiplicative_int

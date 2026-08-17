@@ -33,6 +33,13 @@ open ChosenMarkedPresentation ChosenNonMFEndpoint
 open MaximalCStarProperCompression
 
 noncomputable section
+
+/-- Property `(T)` for the vertex cover at representation universe `1`,
+straight from the universe-generalized Shalom cover data. -/
+theorem vertex_hasKazhdanPropertyT_universeOne :
+    HasKazhdanPropertyT.{0, 1} Vertex :=
+  ChosenMarkedPresentation.vertex_hasKazhdanPropertyT_universeOne
+
 /-- The symmetric generating Kazhdan package for the vertex cover, with
 the pair at representation universe `1`. -/
 theorem exists_pair_package :
@@ -43,7 +50,7 @@ theorem exists_pair_package :
     KazhdanFiniteGeneration.exists_symmetric_generating_finset
       Vertex vertex_hasKazhdanPropertyT
   obtain ⟨δ, hδ⟩ := KazhdanGenerators.exists_pair_on_generators
-    GroupApproximation.ChosenMarkedPresentation.vertex_hasKazhdanPropertyT_universeOne S hsymm hgen
+    vertex_hasKazhdanPropertyT_universeOne S hsymm hgen
   have hpos : 0 < min δ 1 := lt_min hδ.1 zero_lt_one
   exact ⟨S, min δ 1, hone, hsymm, hgen, hpos, min_le_right _ _,
     IsKazhdanPair.shrink hδ hpos (min_le_left _ _)⟩

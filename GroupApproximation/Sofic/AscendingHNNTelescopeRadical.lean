@@ -42,7 +42,7 @@ variable {Γ₀ : Type} [Group Γ₀] (β : Γ₀ →* Γ₀) (hβ : Function.In
 variable {K₀ : Type} [Group K₀] [DecidableEq (Cosets β hβ)]
 
 local instance quotientCountable {E : Type} [Group E] (N : Subgroup E)
-    [Countable E] : Countable (E ⧸ N) := Quotient.countable
+    [N.Normal] [Countable E] : Countable (E ⧸ N) := Quotient.countable
 
 /-- The lamp difference: the value `k` at one site against the same value at
 another.  Every collapse commutator of the witness lamp has this shape. -/

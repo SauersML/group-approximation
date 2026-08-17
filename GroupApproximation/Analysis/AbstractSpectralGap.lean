@@ -47,7 +47,7 @@ def unitaryMap (π : A →⋆ₐ[ℂ] B) : unitary A →* unitary B where
   map_one' := Subtype.ext (map_one π)
   map_mul' u v := Subtype.ext (map_mul π _ _)
 
-@[simp] theorem unitaryMap_coe (π : A →⋆ₐ[ℂ] B) (u : unitary A) :
+theorem unitaryMap_coe (π : A →⋆ₐ[ℂ] B) (u : unitary A) :
     ((unitaryMap π u : unitary B) : B) = π (u : A) :=
   rfl
 
@@ -106,7 +106,7 @@ def realifyIsometryEquiv (e : H ≃ₗᵢ[ℂ] H) : H ≃ₗᵢ[ℝ] H where
       right_inv := e.toLinearEquiv.right_inv }
   norm_map' := fun x => e.norm_map x
 
-@[simp] theorem realifyIsometryEquiv_apply (e : H ≃ₗᵢ[ℂ] H) (x : H) :
+theorem realifyIsometryEquiv_apply (e : H ≃ₗᵢ[ℂ] H) (x : H) :
     realifyIsometryEquiv e x = e x :=
   rfl
 

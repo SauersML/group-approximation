@@ -370,7 +370,7 @@ def applyFam (a : BoundedMatrixSequence (DblIdx Y)) (ξ : MatFam Y) :
     MatFam Y :=
   fun n ↦ rowMat (a n *ᵥ rowVec (ξ n))
 
-@[simp] theorem applyFam_apply (a : BoundedMatrixSequence (DblIdx Y))
+theorem applyFam_apply (a : BoundedMatrixSequence (DblIdx Y))
     (ξ : MatFam Y) (n : ℕ) :
     applyFam Y a ξ n = rowMat (a n *ᵥ rowVec (ξ n)) := rfl
 
@@ -526,7 +526,7 @@ on `K_ω`. -/
 theorem applyFam_mem_massNull_of_isC0 (hw : ∀ n, 0 ≤ w n)
     (hω : (ω : Filter ℕ) ≤ Filter.cofinite)
     {a : BoundedMatrixSequence (DblIdx Y)}
-    (ha : IsNullMatrixSequence (DblIdx Y) cofinite a)
+    (ha : IsC0MatrixSequence (DblIdx Y) a)
     {ξ : MatFam Y} (hξ : ξ ∈ massBounded Y w) :
     applyFam Y a ξ ∈ massNull Y w ω := by
   obtain ⟨C, hC⟩ := hξ
@@ -570,7 +570,7 @@ def actSub (a : BoundedMatrixSequence (DblIdx Y)) :
   map_add' ξ η := Subtype.ext (applyFam_add Y a (ξ : MatFam Y) (η : MatFam Y))
   map_smul' c ξ := Subtype.ext (applyFam_smul Y a c (ξ : MatFam Y))
 
-@[simp] theorem actSub_coe (a : BoundedMatrixSequence (DblIdx Y))
+theorem actSub_coe (a : BoundedMatrixSequence (DblIdx Y))
     (ξ : massBounded Y w) :
     ((actSub Y w a ξ : massBounded Y w) : MatFam Y)
       = applyFam Y a (ξ : MatFam Y) := rfl
@@ -646,7 +646,7 @@ theorem actQ_sub (a b : BoundedMatrixSequence (DblIdx Y)) :
 theorem actQ_eq_zero_of_isC0 (hw : ∀ n, 0 ≤ w n)
     (hω : (ω : Filter ℕ) ≤ Filter.cofinite)
     {a : BoundedMatrixSequence (DblIdx Y)}
-    (ha : IsNullMatrixSequence (DblIdx Y) cofinite a) :
+    (ha : IsC0MatrixSequence (DblIdx Y) a) :
     actQ Y w ω a = 0 := by
   refine vec_linearMap_ext Y w ω fun ξ ↦ ?_
   rw [actQ_mk, LinearMap.zero_apply]
@@ -691,7 +691,7 @@ theorem act_mk (hw : ∀ n, 0 ≤ w n) (hω : (ω : Filter ℕ) ≤ Filter.cofin
     coronaLift_spec Y (normMatrixCStarCoronaMk (DblIdx Y) a)
   have hzero : normMatrixCStarCoronaMk (DblIdx Y) (b - a) = 0 := by
     rw [map_sub, hspec, sub_self]
-  have hc0 : IsNullMatrixSequence (DblIdx Y) cofinite (b - a) :=
+  have hc0 : IsC0MatrixSequence (DblIdx Y) (b - a) :=
     (normMatrixCStarCoronaMk_eq_zero_iff (DblIdx Y) _).mp hzero
   have hz : actQ Y w ω b - actQ Y w ω a = 0 := by
     rw [← actQ_sub]
@@ -774,7 +774,7 @@ end ActLaws
 
 section Representation
 
-variable {H : Type*} [Group H] (U : ∀ n, H → Matrix.unitaryGroup (Y n) ℂ)
+variable {H : Type} [Group H] (U : ∀ n, H → Matrix.unitaryGroup (Y n) ℂ)
 
 /-- **KT.01.**  The unitary `Ad U_n(g)` of `K_n`, as a matrix on the doubled
 index.  This is the manuscript's "finite-stage form of the `π ⊗ π̄`
@@ -784,7 +784,7 @@ def adjUnitary (g : H) (n : ℕ) : Matrix.unitaryGroup (DblFam Y n) ℂ :=
     conjDouble_mem_unitaryGroup (U n g).2⟩
 
 omit [∀ n, Nonempty (Y n)] [Group H] in
-@[simp] theorem adjUnitary_coe (g : H) (n : ℕ) :
+theorem adjUnitary_coe (g : H) (n : ℕ) :
     ((adjUnitary Y U g n : Matrix.unitaryGroup (DblFam Y n) ℂ) :
         Matrix (DblFam Y n) (DblFam Y n) ℂ)
       = conjDouble (U n g : Matrix (Y n) (Y n) ℂ) := rfl
@@ -889,11 +889,11 @@ def piHom : H →* AdjointCorona Y :=
 def piSeq (g : H) : BoundedMatrixSequence (DblIdx Y) :=
   unitarySequenceBounded (DblFam Y) (fun n ↦ adjUnitary Y U g n)
 
-@[simp] theorem piHom_eq_mk (g : H) :
+theorem piHom_eq_mk (g : H) :
     piHom Y U hU g = normMatrixCStarCoronaMk (DblIdx Y) (piSeq Y U g) := rfl
 
 omit [Group H] in
-@[simp] theorem piSeq_apply (g : H) (n : ℕ) :
+theorem piSeq_apply (g : H) (n : ℕ) :
     piSeq Y U g n = conjDouble (U n g : Matrix (Y n) (Y n) ℂ) := rfl
 
 /-- **KT.05.**  `π` is a star homomorphism: `π(g)* = π(g⁻¹)`. -/

@@ -122,7 +122,7 @@ def generatorAction (φ : G →* MulAut N) (H : Subgroup G) {S : Set N}
     (hstab : ∀ h ∈ H, ∀ x ∈ S, φ h x ∈ S) (h : H) : S → S :=
   fun x ↦ ⟨φ (h : G) (x : N), hstab (h : G) h.2 (x : N) x.2⟩
 
-@[simp] theorem generatorAction_val (φ : G →* MulAut N) (H : Subgroup G) {S : Set N}
+theorem generatorAction_val (φ : G →* MulAut N) (H : Subgroup G) {S : Set N}
     (hstab : ∀ h ∈ H, ∀ x ∈ S, φ h x ∈ S) (h : H) (x : S) :
     (generatorAction φ H hstab h x).1 = φ (h : G) (x : N) := rfl
 

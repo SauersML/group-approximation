@@ -177,15 +177,12 @@ open Filter Topology
 variable {ι : Type*} [Nonempty ι] [SemilatticeSup ι] {G : Type*} [Group G]
 
 /-- An ultrafilter refining the eventually-large filter on the index. -/
-noncomputable def indexUltrafilter (ι : Type*) (hι : Nonempty ι)
-    [SemilatticeSup ι] : Ultrafilter ι :=
-  haveI := hι
+noncomputable def indexUltrafilter (ι : Type*) [Nonempty ι] [SemilatticeSup ι] :
+    Ultrafilter ι :=
   (Ultrafilter.exists_le (Filter.atTop : Filter ι)).choose
 
-omit [Nonempty ι] in
-theorem indexUltrafilter_le (hι : Nonempty ι) :
-    (indexUltrafilter ι hι : Filter ι) ≤ Filter.atTop :=
-  haveI := hι
+theorem indexUltrafilter_le :
+    (indexUltrafilter ι : Filter ι) ≤ Filter.atTop :=
   (Ultrafilter.exists_le (Filter.atTop : Filter ι)).choose_spec
 
 omit [Nonempty ι] [SemilatticeSup ι] in
@@ -210,18 +207,16 @@ theorem exists_ultrafilter_tendsto (u : Ultrafilter ι) (f : ι → ℝ)
 
 variable (K : ι → Subgroup G)
 
-omit [Nonempty ι] in
 /-- **Directed unions.**  A group exhausted by a directed family of
 amenable subgroups is amenable.  The limit is taken along an ultrafilter
 refining the eventually-large filter; invariance is the only step with
 content, and it holds because a fixed element lies in all large enough
 members of the family. -/
-theorem isAmenable_of_directed (hι : Nonempty ι) (hmono : Monotone K)
+theorem isAmenable_of_directed (hmono : Monotone K)
     (hcover : ∀ g : G, ∃ i, g ∈ K i) (hamen : ∀ i, IsAmenable (K i)) :
     IsAmenable G := by
   classical
-  haveI := hι
-  set u := indexUltrafilter ι hι with hu
+  set u := indexUltrafilter ι with hu
   set m : ∀ i, InvariantMean (K i) := fun i ↦ (hamen i).some with hm
   set f : Set G → ι → ℝ :=
     fun A i ↦ (m i).measure {x : K i | (x : G) ∈ A} with hf
@@ -294,7 +289,7 @@ theorem isAmenable_of_directed (hι : Nonempty ι) (hmono : Monotone K)
       simp only
       rw [himg, (m i).invariant]
     have hev : f ((fun x ↦ g * x) '' A) =ᶠ[(u : Filter ι)] f A := by
-      refine Filter.mem_of_superset (indexUltrafilter_le hι (Filter.eventually_ge_atTop i₀)) ?_
+      refine Filter.mem_of_superset (indexUltrafilter_le (Filter.eventually_ge_atTop i₀)) ?_
       intro i hi
       exact heq i hi
     exact (hLtend A).congr' hev.symm
@@ -307,7 +302,7 @@ theorem isAmenable_of_locallyFinite {G : Type*} [Group G]
     IsAmenable G := by
   classical
   refine isAmenable_of_directed (K := fun S : Finset G ↦ Subgroup.closure (S : Set G))
-    ⟨∅⟩ ?_ ?_ ?_
+    ?_ ?_ ?_
   · intro S T hST
     exact Subgroup.closure_mono (Finset.coe_subset.mpr hST)
   · intro g

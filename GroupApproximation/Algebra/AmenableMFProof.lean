@@ -268,6 +268,13 @@ quotient of Theorem C.  That group is amenable
 (`CyclicBaseLEFObstruction.realizedQuotient_not_isLEF`).  The two facts
 together locate the manuscript's citation exactly. -/
 
+/-- The realized Clifford quotient of Theorem C is amenable: it is a subgroup
+of the locally-finite-by-solvable extension `CliffordBS`. -/
+theorem realizedQuotient_isAmenable :
+    Amenability.IsAmenable LiteralCyclicCalibration.RealizedQuotient :=
+  CyclicBaseCalibration.isAmenable_subgroup_CliffordBS
+    LiteralCyclicCalibration.realization.range
+
 /-- **The manuscript's group is amenable and has no permutation operator-norm
 model.**
 
@@ -279,8 +286,7 @@ nothing in this repository supplies it. -/
 theorem realizedQuotient_isAmenable_and_not_hasPermutationNormModels :
     Amenability.IsAmenable LiteralCyclicCalibration.RealizedQuotient ∧
       ¬ HasPermutationNormModels LiteralCyclicCalibration.RealizedQuotient :=
-  ⟨CyclicBaseCalibration.isAmenable_subgroup_CliffordBS
-      LiteralCyclicCalibration.realization.range,
+  ⟨realizedQuotient_isAmenable,
     not_hasPermutationNormModels_of_not_isLEF
       CyclicBaseLEFObstruction.realizedQuotient_not_isLEF⟩
 

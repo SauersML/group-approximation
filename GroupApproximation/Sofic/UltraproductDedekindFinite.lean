@@ -92,7 +92,7 @@ variable {R : Type*} [NormedRing R]
 /-- The Neumann series `∑ tᵏ`, which inverts `1 - t` whenever `‖t‖ < 1`. -/
 def neumannInverse (t : R) : R := ∑' k : ℕ, t ^ k
 
-@[simp] theorem neumannInverse_def (t : R) : neumannInverse t = ∑' k : ℕ, t ^ k := rfl
+theorem neumannInverse_def (t : R) : neumannInverse t = ∑' k : ℕ, t ^ k := rfl
 
 /-- The Neumann series is bounded by the scalar geometric series. -/
 theorem norm_neumannInverse_le [NormOneClass R] {t : R} (ht : ‖t‖ < 1) :
@@ -168,7 +168,7 @@ manuscript invokes as "each `σ_n` acts on a finite-dimensional space":
 `Matrix Y Y ℂ` is Dedekind finite, and the Neumann series repairs the
 inexactness. -/
 theorem norm_swap_sub_one_le {Y : Type*} [Fintype Y] [DecidableEq Y]
-    (hne : Nonempty Y) (a b : Matrix Y Y ℂ) (h : ‖a * b - 1‖ ≤ 1 / 2) :
+    [Nonempty Y] (a b : Matrix Y Y ℂ) (h : ‖a * b - 1‖ ≤ 1 / 2) :
     ‖b * a - 1‖ ≤ 2 * ‖a‖ * ‖b‖ * ‖a * b - 1‖ := by
   have hrev : ‖(1 : Matrix Y Y ℂ) - a * b‖ = ‖a * b - 1‖ := norm_sub_rev _ _
   have ht : ‖(1 : Matrix Y Y ℂ) - a * b‖ ≤ 1 / 2 := by rw [hrev]; exact h
@@ -200,32 +200,30 @@ variable (X : ℕ → Type u) [∀ n, Fintype (X n)] [∀ n, DecidableEq (X n)]
 
 /-- Coordinates of a multiplicative defect in the bounded-sequence
 numerator. -/
-@[simp] theorem boundedMatrixSequence_mul_sub_one_apply
+theorem boundedMatrixSequence_mul_sub_one_apply
     (a b : BoundedMatrixSequence X) (n : ℕ) :
     (a * b - 1) n = a n * b n - 1 := rfl
 
-/-- The coordinatewise estimate assembles into a statement about the null
-ideal at **any** filter: if `a b` is asymptotically the identity along `l`, so
-is `b a`.  Nothing in the Neumann-series estimate above is special to the
-cofinite filter, which is what lets the same argument serve `B_c` and `B_ω`. -/
-theorem isNullMatrixSequence_swap (l : Filter ℕ)
-    {a b : BoundedMatrixSequence X} (hab : IsNullMatrixSequence X l (a * b - 1)) :
-    IsNullMatrixSequence X l (b * a - 1) := by
-  have hab' : Tendsto (fun n ↦ ‖(a * b - 1) n‖) l (nhds 0) := hab
-  have hhalf : ∀ᶠ n in l, ‖(a * b - 1) n‖ ≤ (1 / 2 : ℝ) := by
+/-- The coordinatewise estimate assembles into a statement about the `c₀`
+ideal: if `a b` is asymptotically the identity, so is `b a`. -/
+theorem isC0MatrixSequence_swap
+    {a b : BoundedMatrixSequence X} (hab : IsC0MatrixSequence X (a * b - 1)) :
+    IsC0MatrixSequence X (b * a - 1) := by
+  have hab' : Tendsto (fun n ↦ ‖(a * b - 1) n‖) cofinite (nhds 0) := hab
+  have hhalf : ∀ᶠ n in cofinite, ‖(a * b - 1) n‖ ≤ (1 / 2 : ℝ) := by
     have hnear := (Metric.tendsto_nhds.mp hab') (1 / 2 : ℝ) (by norm_num)
     filter_upwards [hnear] with n hn
     simpa only [Real.dist_eq, sub_zero, abs_norm] using hn.le
-  show Tendsto (fun n ↦ ‖(b * a - 1) n‖) l (nhds 0)
-  have hsq : Tendsto (fun n ↦ 2 * ‖a‖ * ‖b‖ * ‖(a * b - 1) n‖) l
+  show Tendsto (fun n ↦ ‖(b * a - 1) n‖) cofinite (nhds 0)
+  have hsq : Tendsto (fun n ↦ 2 * ‖a‖ * ‖b‖ * ‖(a * b - 1) n‖) cofinite
       (nhds 0) := by
     simpa only [mul_zero] using hab'.const_mul (2 * ‖a‖ * ‖b‖)
-  have hle : ∀ᶠ n in l,
+  have hle : ∀ᶠ n in cofinite,
       ‖(b * a - 1) n‖ ≤ 2 * ‖a‖ * ‖b‖ * ‖(a * b - 1) n‖ := by
     filter_upwards [hhalf] with n hn
     show ‖b n * a n - 1‖ ≤ 2 * ‖a‖ * ‖b‖ * ‖a n * b n - 1‖
     have hcoord : ‖b n * a n - 1‖ ≤ 2 * ‖a n‖ * ‖b n‖ * ‖a n * b n - 1‖ :=
-      norm_swap_sub_one_le (by infer_instance) (a n) (b n) hn
+      norm_swap_sub_one_le (a n) (b n) hn
     have h1 : ‖a n‖ ≤ ‖a‖ := (lp.isLUB_norm a).1 ⟨n, rfl⟩
     have h2 : ‖b n‖ ≤ ‖b‖ := (lp.isLUB_norm b).1 ⟨n, rfl⟩
     have hconst : 2 * ‖a n‖ * ‖b n‖ ≤ 2 * ‖a‖ * ‖b‖ :=
@@ -249,10 +247,10 @@ instance normMatrixCStarCorona_isDedekindFiniteMonoid :
     have h0 : normMatrixCStarCoronaMk X (a * b - 1) = 0 := by
       rw [map_sub, map_mul, map_one]
       exact sub_eq_zero.mpr hxy
-    have hab : IsNullMatrixSequence X cofinite (a * b - 1) :=
+    have hab : IsC0MatrixSequence X (a * b - 1) :=
       (normMatrixCStarCoronaMk_eq_zero_iff X _).mp h0
-    have hba : IsNullMatrixSequence X cofinite (b * a - 1) :=
-      isNullMatrixSequence_swap X cofinite hab
+    have hba : IsC0MatrixSequence X (b * a - 1) :=
+      isC0MatrixSequence_swap X hab
     have h1 : normMatrixCStarCoronaMk X (b * a - 1) = 0 :=
       (normMatrixCStarCoronaMk_eq_zero_iff X _).mpr hba
     rw [map_sub, map_mul, map_one] at h1
@@ -303,12 +301,12 @@ theorem kt_06_polar_correction
   have hgramZero :
       normMatrixCStarCoronaMk (fun n ↦ Z n) (star a * a - 1) = 0 := by
     rw [map_sub, map_mul, map_one, hstarmul, sub_self]
-  have hgram : IsNullMatrixSequence (fun n ↦ Z n) cofinite (star a * a - 1) :=
+  have hgram : IsC0MatrixSequence (fun n ↦ Z n) (star a * a - 1) :=
     (normMatrixCStarCoronaMk_eq_zero_iff (fun n ↦ Z n) _).mp hgramZero
   have hgramTendsto :
       Tendsto (fun n ↦
         ‖KazhdanCornerMatrices.cornerGram (a n) - 1‖) cofinite (nhds 0) := by
-    simpa [IsNullMatrixSequence, KazhdanCornerMatrices.cornerGram,
+    simpa [IsC0MatrixSequence, KazhdanCornerMatrices.cornerGram,
       lp.star_apply, Matrix.star_eq_conjTranspose] using hgram
   have hgood : ∀ᶠ n in cofinite,
       ‖KazhdanCornerMatrices.cornerGram (a n) - 1‖ ≤ (1 / 2 : ℝ) := by
@@ -321,7 +319,7 @@ theorem kt_06_polar_correction
       KazhdanCornerMatrices.polarCorrectUnitary (a n)
         (KazhdanCornerMatrices.cornerGram_isHermitian (a n)) hn le_rfl
     else 1
-  have hdiff : IsNullMatrixSequence (fun n ↦ Z n) cofinite
+  have hdiff : IsC0MatrixSequence (fun n ↦ Z n)
       (unitarySequenceBounded Z w - a) := by
     apply squeeze_zero'
       (Eventually.of_forall fun n ↦
@@ -360,7 +358,7 @@ that
 the quotient of the bounded family algebra by the `c₀`-sum, is a finite C-star
 algebra.  That is this statement, on this algebra: `NormMatrixCStarCorona X` is
 the quotient of `BoundedMatrixSequence X = ∏_n B(K_n)` by
-`nullMatrixSequenceIdeal X cofinite`, whose members are exactly the families whose
+`c0MatrixSequenceIdeal X`, whose members are exactly the families whose
 operator norms tend to zero along the cofinite filter, i.e. the `c₀`-sum.  The
 proof is the printed one as well: the Gram defect is eventually at most `1/2`,
 polar correction replaces those coordinates by genuine unitaries
@@ -383,26 +381,24 @@ Two differences remain, both formal and both recorded rather than papered over:
   `CStarRing.norm_of_mem_unitary` and so needs the coordinate algebra to be
   nontrivial.  Removing it there would make the printed route hypothesis-free.
 
-**Not this declaration, but no longer uncertified (updated 2026-08-17).**  The
-manuscript's *unnumbered* discussion following this lemma passes to a free
-ultrafilter `ω`, forms `B_ω = ∏_ω B(K_n)` and the Hilbert-space ultraproduct
-`K_ω`, and asserts that the action of `B_ω` on `K_ω` is faithful and that
-`ran P ⊆ ran Q` is equivalent to `P ≤ Q`.  That is *not* what this declaration
-says, and it used to be true that none of it was proved anywhere; the earlier
-version of this docstring recorded that.  It is now proved, in
-`Sofic/OmegaOperatorUltraproduct.lean`: `omegaAct_injective` is faithfulness
-and `range_le_iff_mul_eq` is the projection order, both for the genuine
-`ω`-indexed corona.
+**Not certified here.**  The manuscript's *unnumbered* discussion following this
+lemma passes to a free ultrafilter `ω`, forms `B_ω = ∏_ω B(K_n)` and the
+Hilbert-space ultraproduct `K_ω`, and asserts that the action of `B_ω` on `K_ω`
+is faithful and that `ran P ⊆ ran Q` is equivalent to `P ≤ Q`.  None of that is
+proved anywhere in this development, and none of it is what this declaration
+says; the printed proof of `\label{thm:kazhdan-transport}` uses it.  Because it
+sits in prose rather than in a numbered environment, no manifest gate sees it.
+The record is in the status section of
+`Sofic/UltraproductKazhdanTransport.lean`, under UF.01--UF.03.
 
-The reason it needed that corona is worth keeping in view, because it is a
-statement about *this* algebra: faithfulness is **false** here.
-`UltraproductAdjointAmbient.kt_04_norm_eq_limsup` identifies the corona norm
-with `limsup_{atTop} ‖a_n‖`, so choosing `S ∈ ω` with infinite complement and
-`A_n = 0` for `n ∈ S`, `A_n = 1` otherwise gives a nonzero corona class
-annihilating every vector of `K_ω`.  The formalized transport chain still never
-uses faithfulness, reading `Fix ⊆ V·Fix` back as `P ≤ Q` through the algebraic
-absorption identities `UltraproductKazhdanProjection.kt_09_*`; what has changed
-is that the printed route is now available beside it rather than absent. -/
+Faithfulness in particular is *false* for this algebra acting on an
+`ω`-ultraproduct: `UltraproductAdjointAmbient.kt_04_norm_eq_limsup` identifies
+the corona norm with `limsup_{atTop} ‖a_n‖`, so choosing `S ∈ ω` with infinite
+complement and `A_n = 0` for `n ∈ S`, `A_n = 1` otherwise gives a nonzero corona
+class annihilating every vector of `K_ω`.  It would need the genuine
+`ω`-indexed corona.  The formalized transport chain never uses it, reading
+`Fix ⊆ V·Fix` back as `P ≤ Q` through the algebraic absorption identities
+`UltraproductKazhdanProjection.kt_09_*` instead. -/
 theorem kt_06_ultraproduct_finite :
     ∀ (Z : ℕ → FiniteModel) [∀ n, Nonempty (Z n)]
       {sigma : NormMatrixCStarCorona (fun n ↦ Z n)}

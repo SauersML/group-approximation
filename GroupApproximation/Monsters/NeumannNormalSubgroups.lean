@@ -126,7 +126,7 @@ def genHom (H : Subgroup Acting) [DecidableEq (Acting ⧸ H)] :
     FixedFree →* Wreath AltLamp Acting (Acting ⧸ H) :=
   FreeGroup.lift (genMap H)
 
-@[simp] theorem genHom_def (H : Subgroup Acting) [DecidableEq (Acting ⧸ H)] :
+theorem genHom_def (H : Subgroup Acting) [DecidableEq (Acting ⧸ H)] :
     genHom H = FreeGroup.lift (genMap H) := rfl
 
 theorem genHom_of (H : Subgroup Acting) [DecidableEq (Acting ⧸ H)] (m : Marker) :

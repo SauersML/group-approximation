@@ -85,7 +85,7 @@ def unitMatrix (i₀ i₁ : Y) : Matrix Y Y ℂ :=
   Matrix.of fun i j ↦ if i = i₀ ∧ j = i₁ then 1 else 0
 
 omit [Fintype Y] in
-@[simp] theorem unitMatrix_apply (i₀ i₁ i j : Y) :
+theorem unitMatrix_apply (i₀ i₁ i j : Y) :
     unitMatrix i₀ i₁ i j = if i = i₀ ∧ j = i₁ then 1 else 0 := rfl
 
 /-- The matrix unit carries unit Frobenius mass. -/

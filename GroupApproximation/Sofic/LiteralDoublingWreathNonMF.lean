@@ -39,10 +39,14 @@ theorem c_mul_self : c * c = 1 := by
     decide
   exact Multiplicative.toAdd.injective this
 
-/-! ## Instances for the concrete base
+/-! ## Countability of the concrete base -/
 
-The two countability instances this section used to carry are the ones
-`ExplicitLinearModel` already provides, and this file imports it. -/
+instance matUnits_countable : Countable Matˣ :=
+  Function.Injective.countable
+    (f := fun u : Matˣ => ((u : Mat), ((u⁻¹ : Matˣ) : Mat)))
+    (fun _ _ h => Units.ext (congrArg Prod.fst h))
+
+instance gammaBar_countable : Countable ↥gammaBar := Subtype.countable
 
 noncomputable instance cosetsDecEq :
     DecidableEq (Cosets conjD conjD_injective) := Classical.decEq _

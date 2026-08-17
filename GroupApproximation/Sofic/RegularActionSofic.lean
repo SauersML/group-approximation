@@ -61,11 +61,11 @@ theorem permCongr_mul {Y : Type*} (e : A ≃ Y) (p q : Equiv.Perm A) :
   simp [Equiv.permCongr_apply, Equiv.Perm.mul_apply]
 
 /-- The two normalized distances, unfolded to the same shape. -/
-@[simp] theorem permDist_eq (p q : Equiv.Perm A) :
+theorem permDist_eq (p q : Equiv.Perm A) :
     permDist p q = ((hammingDisagreement p q).card : ℝ) / Fintype.card A := rfl
 
 omit [Fintype A] [DecidableEq A] in
-@[simp] theorem hammingDistance_eq (Y : FiniteModel) (p q : Equiv.Perm Y) :
+theorem hammingDistance_eq (Y : FiniteModel) (p q : Equiv.Perm Y) :
     hammingDistance Y p q
       = ((hammingDisagreement p q).card : ℝ) / Fintype.card Y := rfl
 

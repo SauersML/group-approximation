@@ -51,6 +51,23 @@ open ProductMultiplicity
 open TorsionFreeRank
 
 /-! ## The rank of the free abelian factor -/
+
+/-- **`ℤ^k` has abelianization of torsion-free rank `k`.**  The induction
+splits off one coordinate at a time, exactly as the finite-presentation
+and counting arguments do: the rank is additive, and one infinite cyclic
+coordinate contributes `1`. -/
+theorem abelianizationRank_intPow :
+    ∀ k : ℕ, abelianizationRank (IntPow k) = (k : Cardinal)
+  | 0 => by
+      have h0 : abelianizationRank (IntPow 0) = 0 :=
+        abelianizationRank_eq_zero_of_subsingleton (IntPow 0)
+      simpa using h0
+  | k + 1 => by
+      rw [abelianizationRank_congr (intPowSucc k), abelianizationRank_prod,
+        abelianizationRank_multiplicativeInt, abelianizationRank_intPow k]
+      push_cast
+      ring
+
 /-! ## The rank of a family member -/
 
 /-- **The manuscript's invariant of `G × ℤ^k`.**  Its abelianization has
@@ -60,7 +77,7 @@ theorem abelianizationRank_family (G : Type) [Group G] (k : ℕ) :
   calc abelianizationRank (Family G k)
       = abelianizationRank G + abelianizationRank (IntPow k) :=
         abelianizationRank_prod G (IntPow k)
-    _ = abelianizationRank G + (k : Cardinal) := by rw [GroupApproximation.ProductMultiplicity.torsionFreeRank_intPow]
+    _ = abelianizationRank G + (k : Cardinal) := by rw [abelianizationRank_intPow]
 
 /-- **The invariant determines `k`.**  Finite generation of `G` makes
 `rk G^{ab}` a natural number, and cancellation in `ℕ` finishes.  This is
@@ -102,6 +119,24 @@ theorem chosenAbelianizationRank_lt_aleph0 :
   haveI : Group.FG MarkedGroup :=
     ProductFinitePresentation.fg_of_isFinitelyPresented MarkedGroup
   exact abelianizationRank_lt_aleph0 MarkedGroup
+
+/-- **The abelianizations of the members of `E × ℤ^k` have distinct
+torsion-free ranks.** -/
+theorem chosenFamily_abelianizationRank_ne {k l : ℕ} (h : k ≠ l) :
+    abelianizationRank (Family MarkedGroup k)
+      ≠ abelianizationRank (Family MarkedGroup l) := by
+  haveI : Group.FG MarkedGroup :=
+    ProductFinitePresentation.fg_of_isFinitelyPresented MarkedGroup
+  exact abelianizationRank_family_ne h
+
+/-- The chosen family has pairwise nonisomorphic members, separated by the
+torsion-free rank of the abelianization. -/
+theorem chosenFamily_eq_of_mulEquiv_rank {k l : ℕ}
+    (e : Family MarkedGroup k ≃* Family MarkedGroup l) : k = l := by
+  haveI : Group.FG MarkedGroup :=
+    ProductFinitePresentation.fg_of_isFinitelyPresented MarkedGroup
+  exact eq_of_family_mulEquiv_rank e
+
 /-- **The manuscript's multiplicity paragraph, with its own invariant.**
 There is an infinite family of finitely presented groups, none of them
 operator-MF, whose abelianizations have pairwise distinct torsion-free
@@ -116,9 +151,9 @@ theorem manuscriptInfiniteMultiplicityRank :
   refine ⟨fun k ↦ Family MarkedGroup k, fun _ ↦ inferInstance,
     fun k ↦ (chosenFamily_finitelyPresented_not_isOperatorMF k).1,
     fun k ↦ (chosenFamily_finitelyPresented_not_isOperatorMF k).2,
-    fun k l h ↦ GroupApproximation.ProductMultiplicity.chosenFamily_torsionFreeRank_ne h, ?_⟩
+    fun k l h ↦ chosenFamily_abelianizationRank_ne h, ?_⟩
   rintro k l ⟨e⟩
-  exact GroupApproximation.ProductMultiplicity.chosenFamily_eq_of_mulEquiv e
+  exact chosenFamily_eq_of_mulEquiv_rank e
 
 end ProductMultiplicityRank
 end GroupApproximation

@@ -106,15 +106,15 @@ ultrafilter refining the eventually-large filter. -/
 noncomputable def intEval (f : Multiplicative ℤ → ℝ) : ℝ := by
   classical
   exact if h : IsBddFun f then
-    (exists_ultrafilter_tendsto_Icc (indexUltrafilter ℕ ⟨0⟩) (intAvg f)
+    (exists_ultrafilter_tendsto_Icc (indexUltrafilter ℕ) (intAvg f)
       (intAvg_mem_Icc h.choose_spec)).choose
   else 0
 
 theorem intEval_tendsto {f : Multiplicative ℤ → ℝ} (hf : IsBddFun f) :
-    Tendsto (intAvg f) (indexUltrafilter ℕ ⟨0⟩) (nhds (intEval f)) := by
+    Tendsto (intAvg f) (indexUltrafilter ℕ) (nhds (intEval f)) := by
   classical
   rw [intEval, dif_pos hf]
-  exact (exists_ultrafilter_tendsto_Icc (indexUltrafilter ℕ ⟨0⟩) (intAvg f)
+  exact (exists_ultrafilter_tendsto_Icc (indexUltrafilter ℕ) (intAvg f)
     (intAvg_mem_Icc hf.choose_spec)).choose_spec.2
 
 theorem intEval_add (f g : Multiplicative ℤ → ℝ) (hf : IsBddFun f)
@@ -134,10 +134,10 @@ theorem intEval_nonneg (f : Multiplicative ℤ → ℝ) (hf : IsBddFun f)
 
 theorem intEval_const (c : ℝ) : intEval (fun _ ↦ c) = c := by
   refine tendsto_nhds_unique (intEval_tendsto (IsBddFun.const c)) ?_
-  have hev : intAvg (fun _ : Multiplicative ℤ ↦ c) =ᶠ[(indexUltrafilter ℕ ⟨0⟩ : Filter ℕ)]
+  have hev : intAvg (fun _ : Multiplicative ℤ ↦ c) =ᶠ[(indexUltrafilter ℕ : Filter ℕ)]
       fun _ ↦ c := by
     refine Filter.mem_of_superset
-      (indexUltrafilter_le ⟨0⟩ (Filter.eventually_ge_atTop 1)) ?_
+      (indexUltrafilter_le (Filter.eventually_ge_atTop 1)) ?_
     intro n hn
     have hnpos : (0 : ℝ) < (n : ℝ) := by
       have : 0 < n := hn
@@ -179,11 +179,11 @@ theorem intEval_shift_one (f : Multiplicative ℤ → ℝ) (hf : IsBddFun f) :
       (fun n ↦ (abs_le.mp (hbound n)).1) (fun n ↦ (abs_le.mp (hbound n)).2)
   have hdiff' : Tendsto
       (fun n ↦ intAvg (fun x ↦ f (Multiplicative.ofAdd (1 : ℤ) * x)) n - intAvg f n)
-      (indexUltrafilter ℕ ⟨0⟩) (nhds 0) :=
-    hdiff.mono_left (indexUltrafilter_le ⟨0⟩)
+      (indexUltrafilter ℕ) (nhds 0) :=
+    hdiff.mono_left indexUltrafilter_le
   have hsum : Tendsto
       (fun n ↦ intAvg (fun x ↦ f (Multiplicative.ofAdd (1 : ℤ) * x)) n)
-      (indexUltrafilter ℕ ⟨0⟩) (nhds (0 + intEval f)) := by
+      (indexUltrafilter ℕ) (nhds (0 + intEval f)) := by
     have := hdiff'.add (intEval_tendsto ⟨C, hC⟩)
     simpa using this
   rw [zero_add] at hsum

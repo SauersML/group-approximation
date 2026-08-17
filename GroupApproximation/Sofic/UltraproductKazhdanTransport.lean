@@ -451,13 +451,13 @@ abbrev NatMatrix (d : ℕ → ℕ) (n : ℕ) : Type :=
   Matrix (naturalFiniteModel (d n)) (naturalFiniteModel (d n)) ℂ
 
 /-- The underlying matrix of the model unitary `U_n(g)`. -/
-@[reducible] def natU {H : Type*} {d : ℕ → ℕ}
+@[reducible] def natU {H : Type} {d : ℕ → ℕ}
     (U : ∀ n, H → Matrix.unitaryGroup (naturalFiniteModel (d n)) ℂ)
     (n : ℕ) (g : H) : NatMatrix d n :=
   (U n g : Matrix (naturalFiniteModel (d n)) (naturalFiniteModel (d n)) ℂ)
 
 /-- `U_n(g)` is unitary. -/
-theorem natU_mem {H : Type*} {d : ℕ → ℕ}
+theorem natU_mem {H : Type} {d : ℕ → ℕ}
     (U : ∀ n, H → Matrix.unitaryGroup (naturalFiniteModel (d n)) ℂ)
     (n : ℕ) (g : H) :
     natU U n g ∈ Matrix.unitaryGroup (naturalFiniteModel (d n)) ℂ :=
@@ -495,7 +495,7 @@ hypothesis about the *theorem*, and each is discharged by
 `UltraproductModelConstruction.ultraproductAdjointModel` from the hypotheses of
 `thm:kazhdan-transport` alone. -/
 structure UltraproductAdjointModel
-    {Γ : Type} {H : Type*} [Group Γ] [Group H]
+    {Γ H : Type} [Group Γ] [Group H]
     (iota : Γ →* H) (s : H) (d : ℕ → ℕ)
     (U : ∀ n, H → Matrix.unitaryGroup (naturalFiniteModel (d n)) ℂ)
     (ω : Ultrafilter ℕ) where
@@ -577,7 +577,7 @@ attribute [instance] UltraproductAdjointModel.ring
 
 namespace UltraproductAdjointModel
 
-variable {Γ : Type} {H : Type*} [Group Γ] [Group H]
+variable {Γ H : Type} [Group Γ] [Group H]
   {iota : Γ →* H} {s : H} {d : ℕ → ℕ}
   {U : ∀ n, H → Matrix.unitaryGroup (naturalFiniteModel (d n)) ℂ}
   {ω : Ultrafilter ℕ}
@@ -723,16 +723,6 @@ end UltraproductAdjointModel
 
 /-! ## The printed proof of `thm:kazhdan-transport` -/
 
-/-- **KT.24.**  The class `ξ = [ξ_n]_ω` is well defined, and this is the one
-place the *operator-norm* bound on `(x_n)` is used: it gives the normalized
-Hilbert--Schmidt bound that the numerator of `K_ω` asks for.  The manuscript
-uses it in exactly this position and for exactly this purpose. -/
-theorem hsNormSq_le_of_opNorm_le {d : ℕ → ℕ} (hd : ∀ n, 0 < d n)
-    (x : ∀ n, NatMatrix d n) {M : ℝ} (hM : ∀ n, ‖x n‖ ≤ M) (n : ℕ) :
-    hsNormSq (naturalFiniteModel (d n)) (x n) ≤ M * M :=
-  le_trans (hsNormSq_le_mul_self_l2_opNorm _ (by simpa using hd n) (x n))
-    (mul_self_le_mul_self (norm_nonneg _) (hM n))
-
 /-- **Kazhdan transport, by the manuscript's ultraproduct proof.**
 
 `non_mf_groups_exist.tex`, `\label{thm:kazhdan-transport}` and the proof
@@ -757,7 +747,7 @@ statement of the theorem,
 `KazhdanAsymptoticCommutant.manuscriptKazhdanTransport`, is proved through this
 declaration, so the printed proof is the one its badge certifies. -/
 theorem ultraproductKazhdanTransport
-    {Γ : Type} {H : Type*} [Group Γ] [Group H]
+    {Γ H : Type} [Group Γ] [Group H]
     (iota : Γ →* H) (s : H) (d : ℕ → ℕ) (hd : ∀ n, 0 < d n)
     (U : ∀ n, H → Matrix.unitaryGroup (naturalFiniteModel (d n)) ℂ)
     (x : ∀ n, NatMatrix d n)
@@ -775,8 +765,9 @@ theorem ultraproductKazhdanTransport
   have hcard : ∀ n, 0 < Fintype.card (naturalFiniteModel (d n)) := fun n ↦ by
     simpa using hd n
   -- the operator-norm bound gives the Hilbert--Schmidt bound `ξ` needs
-  have hxb : ∀ n, hsNormSq (naturalFiniteModel (d n)) (x n) ≤ M * M :=
-    hsNormSq_le_of_opNorm_le hd x hMle
+  have hxb : ∀ n, hsNormSq (naturalFiniteModel (d n)) (x n) ≤ M * M := fun n ↦
+    le_trans (hsNormSq_le_mul_self_l2_opNorm _ (hcard n) (x n))
+      (mul_self_le_mul_self (norm_nonneg _) (hMle n))
   have hxtend : ∀ γ : Γ, Filter.Tendsto
       (fun n ↦ hsNormSq (naturalFiniteModel (d n))
         (x n * natU U n (iota γ) - natU U n (iota γ) * x n))

@@ -41,7 +41,7 @@ def quasiRegularOperator (g : G) :
     CosetHilbert G K →L[ℂ] CosetHilbert G K :=
   (quasiRegular G K g).toLinearIsometry.toContinuousLinearMap
 
-@[simp] theorem quasiRegularOperator_apply (g : G) (f : CosetHilbert G K)
+theorem quasiRegularOperator_apply (g : G) (f : CosetHilbert G K)
     (x : G ⧸ K) :
     quasiRegularOperator G K g f x = f (g⁻¹ • x) :=
   rfl

@@ -233,11 +233,11 @@ def imPart (a : A) : selfAdjoint A :=
     rw [show Complex.I • ((star a) - a) = (-Complex.I) • (a - star a) by
       rw [← neg_smul_neg, neg_sub]]⟩
 
-@[simp] theorem rePart_coe (a : A) :
+theorem rePart_coe (a : A) :
     ((rePart a : selfAdjoint A) : A) = (2⁻¹ : ℝ) • (a + star a) :=
   rfl
 
-@[simp] theorem imPart_coe (a : A) :
+theorem imPart_coe (a : A) :
     ((imPart a : selfAdjoint A) : A)
       = (2⁻¹ : ℝ) • ((-Complex.I) • (a - star a)) :=
   rfl
@@ -340,7 +340,7 @@ def complexify : A →ₗ[ℂ] ℂ where
     linear_combination (-(c.im : ℂ) * ((g (imPart a) : ℝ) : ℂ))
       * Complex.I_sq
 
-@[simp] theorem complexify_apply (a : A) :
+theorem complexify_apply (a : A) :
     complexify g a
       = (g (rePart a) : ℂ) + Complex.I * (g (imPart a) : ℂ) :=
   rfl

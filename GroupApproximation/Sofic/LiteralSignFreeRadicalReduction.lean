@@ -183,11 +183,8 @@ theorem manuscriptSignFreeRadicalReduction :
       have h2 : (⊥ : Subgroup (SignFreeQuotient ⧸ signFreeCollapseDefect)).comap
             (QuotientGroup.mk' signFreeCollapseDefect)
           = signFreeCollapseDefect := by
-        -- named rather than left to `simp`: the kernel of `mk'` is the
-        -- subgroup itself, and this step should not move when the simp set does
         ext x
-        rw [Subgroup.mem_comap, Subgroup.mem_bot, QuotientGroup.mk'_apply,
-          QuotientGroup.eq_one_iff]
+        simp
       exact Subgroup.comap_injective
         (QuotientGroup.mk'_surjective signFreeCollapseDefect)
         (h1.trans h2.symm)

@@ -138,13 +138,6 @@ omit [DecidableEq Y] in
 noncomputable def normTrace (Y : FiniteModel) (A : Matrix Y Y ℂ) : ℂ :=
   Matrix.trace A / Fintype.card Y
 
-/-- The normalized trace is additive on differences. -/
-theorem normTrace_sub (Y : FiniteModel) (A B : Matrix Y Y ℂ) :
-    normTrace Y (A - B) = normTrace Y A - normTrace Y B := by
-  show Matrix.trace (A - B) / _ = _
-  rw [Matrix.trace_sub, sub_div]
-  rfl
-
 /-- The model on `k` tensor slots.  Reducible, so that `rw` can see through
 `(tensorModel Y k).carrier` to `Fin k → Y`. -/
 abbrev tensorModel (Y : FiniteModel) (k : ℕ) : FiniteModel :=
