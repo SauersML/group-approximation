@@ -1,11 +1,18 @@
 % BUILD REQUIREMENT.  This file needs a LaTeX kernel of 2025-06-01 or later:
 % \DocumentMetadata's `tagging=on` key is rejected outright by older kernels
 % (TeX Live 2024 and earlier abort with an unknown `document/metadata/tagging`
-% key), so the failure is a hard error and not a degraded build.  The release
-% and draft workflows compile inside a digest-pinned TeX Live 2026 image --
-% see TEXLIVE_IMAGE in .github/workflows/build-non-mf-pdf.yml -- which is the
-% reproducible environment for this source.  To compile on an older stack,
-% delete the \DocumentMetadata line; the PDF is then untagged.
+% key), so the failure is a hard error and not a degraded build.  Both the
+% release and the draft workflow compile inside the same digest-pinned TeX
+% Live 2025 image -- see TEXLIVE_IMAGE in .github/workflows/build-non-mf-pdf.yml
+% and draft-non-mf-pdf.yml -- which is the reproducible environment for this
+% source.  The 2026 image is deliberately NOT used: its tagpdf aborts at
+% \tableofcontents on this source and garbles the contents page.
+% To compile on an older stack, delete BOTH the \NeedsTeXFormat line and the
+% \DocumentMetadata line.  That is a complete fallback: the only tagging
+% commands in the body are the four around the figure in
+% Section~\ref{sec:group}, and they are guarded by \providecommand there,
+% so on a kernel without them they degrade to no-ops.  The PDF is then
+% untagged.
 \NeedsTeXFormat{LaTeX2e}[2025-06-01]
 \DocumentMetadata{lang=en-US,pdfversion=2.0,tagging=on}
 \documentclass[11pt]{amsart}
@@ -30,7 +37,24 @@
   \do\0\do\1\do\2\do\3\do\4\do\5\do\6\do\7\do\8\do\9}
 \newif\ifanonymous
 \anonymoustrue
-\newcommand{\paperauthor}{Anonymous}
+% Locator for the accompanying Lean~4 development, and the author line.  Both
+% are deliberately kept out of this file: the repository name identifies the
+% author, so an anonymous build must not carry it in the *source* either, not
+% merely in the PDF.  For a public build, set \anonymousfalse above and supply
+% `coderepo.tex` defining \coderepository (URL), \coderepositoryname (the text
+% to typeset) and, optionally, \paperauthorname.  Both builds compile; only the
+% public one prints an author and a link (as a title footnote, below).
+\ifanonymous
+  \newcommand{\coderepository}{}
+  \newcommand{\coderepositoryname}{}
+  \newcommand{\paperauthor}{Anonymous}
+\else
+  \IfFileExists{coderepo.tex}{\input{coderepo.tex}}{%
+    \newcommand{\coderepository}{}%
+    \newcommand{\coderepositoryname}{}}
+  \providecommand{\paperauthorname}{Anonymous}
+  \newcommand{\paperauthor}{\paperauthorname}
+\fi
 \hypersetup{
   pdftitle={A finitely presented non-MF group},
   pdfauthor={\paperauthor},
@@ -39,21 +63,6 @@
 }
 \newcommand{\doi}[1]{\href{https://doi.org/#1}{\nolinkurl{doi:#1}}}
 \newcommand{\arxiv}[1]{\href{https://arxiv.org/abs/#1}{\nolinkurl{arXiv:#1}}}
-% Locator for the accompanying Lean~4 development.  It is deliberately kept
-% out of this file: the repository name identifies the author, so an
-% anonymous build must not carry it in the *source* either, not merely in the
-% PDF.  For a public build, set \anonymousfalse above and provide
-% `coderepo.tex` defining \coderepository (URL) and \coderepositoryname
-% (the text to typeset).  Both builds compile; only the public one prints a
-% link.
-\ifanonymous
-  \newcommand{\coderepository}{}
-  \newcommand{\coderepositoryname}{}
-\else
-  \IfFileExists{coderepo.tex}{\input{coderepo.tex}}{%
-    \newcommand{\coderepository}{}%
-    \newcommand{\coderepositoryname}{}}
-\fi
 % Hidden link from a numbered statement to the declaration of the
 % accompanying Lean~4 development that proves it.  Not typeset; the
 % audit tooling that reads these records is documented in the repository.
@@ -125,6 +134,13 @@
 
 \title[A finitely presented non-MF group]{A finitely presented non-MF group}
 \author{\paperauthor}
+\ifanonymous\else
+  \ifx\coderepository\empty\else
+    \thanks{The accompanying Lean~4 development, which proves the numbered
+      statements carrying a verification record, is at
+      \href{\coderepository}{\nolinkurl{\coderepositoryname}}.}%
+  \fi
+\fi
 \subjclass[2020]{Primary 46L05; Secondary 20F05, 22D25, 20E26}
 \keywords{MF groups, approximate unitary representations, property~(T),
 group $C^*$-algebras, sofic groups, Clifford groups}
@@ -509,7 +525,8 @@ dimensions.
 
 \begin{proposition}[Equivalent formulations of the MF property]
 \label{prop:mf-equivalences}
-For every countable group, the $C^*$-algebra definition above is
+For every countable group, the group-MF definition above --- an injective
+homomorphism to $\U(\mathcal Q)$ --- is
 equivalent to the definition by sequences of unitaries.  Both are
 equivalent to the existence of approximate unitary representations with
 separation constant $1$, and allowing arbitrary positive dimensions is
@@ -1106,13 +1123,13 @@ homomorphism $E\to\U(\mathcal Q)$ after the same conversion.
 \end{proof}
 
 \begin{corollary}[uniform finite operator-norm obstruction]\label{cor:uniform}
-There exist $\delta>0$ and a finite set $F_0\subset E$ such that,
-in every matrix dimension, any unitary-valued map $\phi$ satisfying
+There exist $\delta>0$ and a finite set $F_0\subset E$ such that, for
+every $d\ge1$, every map $\phi\colon E\to\U(d)$ satisfying
 \[
  \opnorm{\phi(gh)-\phi(g)\phi(h)}\leq\delta
  \qquad(g,h\in F_0)
 \]
-also satisfies $\opnorm{\phi(w)-1}<1$.
+satisfies $\opnorm{\phi(w)-1}<1$.
 \leanverified{Sofic/LiteralUniformObstruction}{GroupApproximation.LiteralUniformObstruction.literal_uniform_operatorNorm_obstruction}
 \end{corollary}
 
@@ -1294,6 +1311,13 @@ $[\,d,\ \iota(v_1)\,d\,\iota(v_1)^{-1}]$ unconstrained
 % inside a Figure structure element carrying the alternative text.  Without
 % this the tagged PDF has an untagged drawing where the reader expects a
 % figure; the caption is a caption, not a substitute for /Alt.
+% Guards for the fallback build of the header comment: on a kernel without
+% the tagging commands these become no-ops, and on one with them they do
+% nothing at all.
+\providecommand{\tagstructbegin}[1]{}%
+\providecommand{\tagstructend}{}%
+\providecommand{\tagmcbegin}[1]{}%
+\providecommand{\tagmcend}{}%
 \tagstructbegin{tag=Figure,alt={Diagram of the one-sided conjugation
   configuration.  A large rounded rectangle is the image of the base group;
   a smaller rounded rectangle inside it is the conjugate copy
@@ -1517,8 +1541,11 @@ elements, so for all $g,h$
  \opnorm{\widetilde V_n(g)-\widetilde V_n(h)}
  &=\opnorm{V_n(g)-V_n(h)}.
 \end{align*}
-Both the class in the quotient and its injectivity are therefore
-unchanged, and the converse is immediate.
+The defect and separation data are therefore unchanged, so the classes
+$[(\widetilde V_n(g))_n]$ define a homomorphism to
+$\U(\mathcal Q((D_n)))$ --- a different matrix quotient, so not the same
+class --- which is injective for exactly the elements the original one
+separated.  The converse is immediate.
 
 Suppose first that
 $\rho\colon G\to\U(\mathcal Q((d_n)))$ is injective, and choose unitary lifts
@@ -1531,7 +1558,7 @@ Hence there are $\delta_{g,h}>0$ and arbitrarily large coordinates at which
 \]
 Choose an integer $N_{g,h}$ with $8<N_{g,h}\,\delta_{g,h}^2$.  The
 following estimate then applies: if $u,v\in\U(d)$ satisfy
-$\opnorm{u-v}\ge\delta$, then $\opnorm{u^{\otimes p}-v^{\otimes p}}>1$
+$\opnorm{u-v}\ge\delta$, then $\opnorm{u^{\otimes p}-v^{\otimes p}}\ge1$
 for some $p\le N$ whenever $8<N\delta^{2}$.  Indeed, put $z=u^{*}v$, so
 that $\opnorm{u-v}=\opnorm{1-z}$ and $z$ has a spectral value
 $e^{2\pi i\alpha}$ with $|1-e^{2\pi i\alpha}|=2\sin(\pi\alpha')\ge\delta$,
@@ -1543,7 +1570,10 @@ in its spectrum,
  \;\ge\;\bigl|1-e^{2\pi ip\alpha}\bigr|
  \;=\;2\sin\bigl(\pi\min(\{p\alpha\},1-\{p\alpha\})\bigr),
 \]
-which exceeds $1$ as soon as $\{p\alpha\}$ lies in $(1/6,5/6)$.  The
+which is at least $1$ as soon as $\{p\alpha\}$ lies in the closed
+interval $[1/6,5/6]$; the interval is taken closed because the stepping
+estimate below can land exactly on an endpoint, where the norm is exactly
+$1$, and separation at least $1$ is all that is required.  The
 bound $2\sin(\pi\alpha')\ge\delta$ gives $\alpha'\ge\delta/(2\pi)$;
 consecutive multiples of $\alpha$ move $\{p\alpha\}$ by $\alpha'$ in a
 fixed direction modulo $1$, which is less than the length $2/3$ of that
@@ -1553,13 +1583,17 @@ The quotient homomorphism law makes all multiplicative defects for pairs in
 $F$ arbitrarily small at every sufficiently large coordinate.  Choose, for
 each $g\ne h$, a coordinate with the displayed separation and with every
 required defect at most $\varepsilon/N_{g,h}$.  Then the $p$th tensor
-power separates the designated pair by more than $1$, while the
+power separates the designated pair by at least $1$, while the
 tensor-product telescoping identity bounds each new defect by
 $p\,\varepsilon/N_{g,h}\le\varepsilon$.  Finally take the block
 sum of these finitely many pair-specific models.  Operator norms of block
 diagonal matrices are maxima, so every pair in $F$ is separated by at least
 $1$ and every required product has defect at most $\varepsilon$.  This gives
-the normalized approximate representation.
+the normalized approximate representation.  If $\lvert F\rvert\le1$ there
+are no distinct pairs and hence no blocks, and the dimension is required to
+be positive; in that case take $r=1$ and the map sending every element of
+$G$ to $1\in\U(1)$, which is exactly multiplicative and separates the empty
+set of pairs.
 
 Conversely, suppose approximate unitary representations with separation
 constant $1$ exist for all finite sets and tolerances.  Choose models
@@ -1962,9 +1996,22 @@ $\operatorname{Fix}\pi(g\bar Kg^{-1})=\operatorname{Fix}\pi(\bar K)$ by
 normality, so $P$ and $q$ commute with $\pi(\bar H)$ exactly.  Lift $q$
 to projections $q_n\in M_{d_n}(\C)$, nonzero along $\omega$ and with
 $\opnorm{[q_n,V_{g,n}]_{-}}\to_\omega0$ for every $g\in\bar H$.
-Compressing every model to $q_nM_{d_n}(\C)q_n$ and polar-correcting
-yields an operator-norm asymptotic representation $(W_{g,n})$ of
-$\bar H$ on nonzero blocks.
+
+Convergence along $\omega$ is not convergence as $n\to\infty$, so pass
+to a subsequence before compressing.  Enumerate
+$\bar H=\{g_1,g_2,\dots\}$.  For each $j$ the set
+\[
+ A_j=\{n\ :\ q_n\ne0\ \text{ and }\
+ \opnorm{[q_n,V_{g_i,n}]_{-}}<1/j\ \text{ for all }i\le j\}
+\]
+is a finite intersection of sets in $\omega$, hence lies in $\omega$ and
+in particular is infinite.  Choose $n_1<n_2<\cdots$ with $n_j\in A_j$
+and relabel along $(n_j)_j$.  On the relabelled sequence $q_n\ne0$ for
+every $n$ and $\opnorm{[q_n,V_{g,n}]_{-}}\to0$ in the ordinary sense for
+every fixed $g\in\bar H$, since $g=g_i$ lies in the constraint of $A_j$
+for all $j\ge i$.  Compressing every model to $q_nM_{d_n}(\C)q_n$ and
+polar-correcting now yields an operator-norm asymptotic representation
+$(W_{g,n})$ of $\bar H$ on nonzero blocks.
 
 \emph{A $2$-norm separation on the corner.}  Equip each corner block
 with its renormalized trace.  The corner compression satisfies
@@ -2183,9 +2230,14 @@ assembled from exact finite-dimensional representations.  In every
 finite group the doubling relation makes the image of
 $\langle\gamma_0^2\rangle$ equal to the image of
 $\langle\gamma_0\rangle$, so the generator commutes with the required
-``halved'' element and the distinguished word maps to the identity; any
-exact local embedding of a finite set containing the defining relators
-and the distinguished word satisfies the same equations.  Hence neither
+``halved'' element and the distinguished word maps to the identity.  A
+defining relator is already the identity \emph{as an element} of the
+presented group, so containing it in the local set says nothing; what is
+needed is that the partial multiplication table evaluate the defining
+words and the distinguished word correctly.  Take, then, a finite set
+containing the generators together with every intermediate prefix of
+every defining word and of the distinguished word.  An exact local
+embedding of such a set satisfies the same equations.  Hence neither
 $E_{\mathrm{BS}}$ nor its Clifford quotient is LEF, and the latter is
 not residually finite.
 \leanverified{Monsters/CyclicBaseLEFObstruction}{GroupApproximation.CyclicBaseLEFObstruction.cyclicBase_exactModel_package}
@@ -2290,12 +2342,15 @@ is a homomorphism $\Theta_{\bar g}\colon Q\to\U(\mathcal Q)$ with
 $\Theta_{\bar g}(\bar g)\ne1$.  Enumerate the nonidentity elements and
 these representations, pass to coordinate unitary lifts, and
 diagonalize: at stage
-$k$, select in each of the first $k$ of them a coordinate at which
-multiplicativity holds within $1/k$ on the first $k$ group elements
-and each of the first $k$ designated elements stays separated by its fixed
-positive constant --- possible because each $\Theta_{\bar g}$ separates
-its own element along infinitely many coordinates --- and take the
-block sum.  Block operator norms are maxima, so the resulting sequence
+$k$, select in the $i$th of them, for each $i\le k$, a coordinate at which
+multiplicativity holds within $1/k$ on the first $k$ group elements and
+at which \emph{its own} designated element $\bar g_i$ stays separated by
+its fixed positive constant --- possible because $\Theta_{\bar g_i}$
+separates $\bar g_i$ along infinitely many coordinates, which is all the
+hypothesis gives --- and take the block sum.  Block operator norms are
+maxima, so the single block coming from $\Theta_{\bar g_i}$ already
+separates $\bar g_i$, and the sum therefore separates all of
+$\bar g_1,\dots,\bar g_k$ at once.  The resulting sequence
 is an operator-norm asymptotic representation separating every nonidentity element from
 the identity; its class,
 composed with the polar-correction isomorphism of
@@ -2388,12 +2443,17 @@ left regular permutation action, is an exact finite-dimensional representation; 
 permutations differ in some column of a permutation matrix, giving
 operator-norm separation at least $1$, and the local-to-global
 direction of Proposition~\ref{prop:mf-equivalences} concludes.
-(3)  A finite test set lies in a finite subgroup $K$.  The left
+(3)  A finite test set $F$ lies in a finite subgroup $K$.  The left
 regular representation $\lambda_K\colon K\to\U(\C^{K})$ is a
 finite-dimensional unitary representation of $K$ by permutation
-matrices, and the local model that sends each test element $g$ to
-$\lambda_K(g)$ is exactly multiplicative on the test set, since a
-product of test elements again lies in $K$.  It separates as in (2).
+matrices.  A local model is a map defined on all of $G$, so set
+\[
+ V(g)=\lambda_K(g)\ \ (g\in K),\qquad V(g)=1\ \ (g\notin K).
+\]
+On the test set $V$ is exactly multiplicative, since a product of test
+elements again lies in $K$ and $\lambda_K$ is a homomorphism there; the
+values outside $K$ are never used in the two conditions, which quantify
+over $F$ only.  It separates as in (2).
 \end{proof}
 
 \begin{corollary}[quotients]\label{cor:quotclosure}
@@ -2429,7 +2489,9 @@ Then $p$ commutes with $\Theta(L)$.
 
 \begin{proof}
 Property~\textup{(T)} makes $L$ finitely generated; fix a finite
-generating set $S=\{a_1,\dots,a_m\}$.  Write
+\emph{symmetric} generating set $S=\{a_1,\dots,a_m\}$, so that $S=S^{-1}$
+and every element of $L$ is a product of elements of $S$ with no
+inverses taken.  Write
 $p_g=\Theta(g)\,p\,\Theta(g)^{*}$ and $d_g=p_g-p$ for $g\in L$, and
 suppose $d_{g_0}\ne0$ for some $g_0\in L$.
 
@@ -2936,9 +2998,13 @@ finite.
 Killing $\zeta$ sends $C(\mathcal G)$ onto the free product of the
 elementary abelian $2$-groups of the blocks, and $M_S$ into the free
 product of the finitely many factors at blocks meeting $S$.  A free
-product of finite groups is residually finite, and the products of
-lamps inside one block give a section over each factor, so the kernel
-of this map on $M_S$ lies in $\langle\zeta\rangle$.  The surjection
+product of finite groups is residually finite.  The kernel of
+$C(\mathcal G)\to C(\mathcal G)/\langle\!\langle\zeta\rangle\!\rangle$ is
+the normal closure of $\zeta$, and $\zeta$ is central, so that normal
+closure is $\langle\zeta\rangle$; hence the kernel of this map on $M_S$
+lies in $\langle\zeta\rangle$.  (No splitting is available or needed: a
+two-lamp block is the Clifford extension $D_8\to(\Z/2)^2$, which does
+not split over the whole factor.)  The surjection
 $C(\mathcal G)\to\Cl(X)$ sends $\zeta$ to the sign of $\Cl(X)$, which
 is nontrivial, and $\Cl(X)$ is locally finite, so the image of the
 finitely generated group $M_S$ there is finite.  An element of $M_S$
@@ -3112,7 +3178,13 @@ is trivial, hence MF, when $v=1$ in $P_0$, and contains $E$, hence
 non-MF by subgroup heredity, when $v\ne1$.  The words representing $1$
 form a recursively enumerable set that is not recursive, so the words
 with $v\ne1$ form a set that is not recursively enumerable, and an
-enumeration of the non-MF presentations would enumerate it.
+enumeration of the non-MF presentations would enumerate it.  This
+paragraph is classical and rests on \cite{Rabin58}; the verification
+records below cover subgroup heredity, the existence of a finitely
+presented non-MF group, and the undecidability statement \emph{given} a
+reduction, which is the hypothesis of
+Corollary~\ref{cor:undecidable}.  The Adian--Rabin construction itself
+is not formalized, and no record above claims it.
 \leanverified{Computability/MarkovMFConsequences}{GroupApproximation.MarkovMFConsequences.operatorMF_subgroup_hereditary}
 \leanverified{Computability/MarkovMFConsequences}{GroupApproximation.MarkovMFConsequences.exists_finitelyPresented_nonOperatorMF}
 \leanverified{Computability/MarkovMFConsequences}{GroupApproximation.MarkovMFConsequences.operatorMF_recognition_undecidable}
@@ -3206,16 +3278,20 @@ contains $\{1,w\}$ by Theorem~\ref{thm:signfree}, and
 Corollary~\ref{cor:collapsequot}, applied to $E/\langle w\rangle$ and
 its collapse defect $D$, computes it from
 $\operatorname{Res}_{\mathrm{MF}}\bigl((E/\langle w\rangle)/D\bigr)$.
-Neither collapse theorem applies to that second quotient: $w$ is
-already trivial in $E/\langle w\rangle$, and the commutators generating
-$D$ are already trivial in the quotient by $D$.
+Neither of these two specific collapse applications gives further
+information about that second quotient: $w$ is already trivial in
+$E/\langle w\rangle$, and the commutators generating $D$ are already
+trivial in the quotient by $D$.  This does not rule out some other
+finite-normal, normal-Kazhdan or orbit-collapse datum in it.
 \item Is there a torsion-free finitely presented non-MF group?  Every
 finite subgroup of a torsion-free group is trivial, so
 Theorem~\ref{thm:criterion} is empty there, while
 Theorem~\ref{thm:normal-kazhdan} applies to torsion-free groups.  What
 remains is
 group-theoretic: a torsion-free finitely presented group whose subgroup
-$N_{\mathrm{conj}}$ contains a normal property-\textup{(T)} subgroup.
+$N_{\mathrm{conj}}$ contains a \emph{nontrivial} normal
+property-\textup{(T)} subgroup.  The trivial subgroup is normal and has
+property~\textup{(T)} vacuously and gives no obstruction.
 Remark~\ref{rem:ff-realization} gives a small-cancellation route over
 the torsion-free finitely presented Kazhdan group of \cite{FFF}, which
 removed the analogous torsion obstacle for nonsoficity.  The Clifford
@@ -3237,11 +3313,17 @@ Theorem~\ref{thm:kazhdan-transport} uses finite dimensionality of
 $M_{d_n}(\C)$ twice: for the conjugation action on
 $L^2(M_{d_n}(\C),\tr_{d_n})$, and for finiteness of the norm
 ultraproduct.  Faithful traces alone do not replace it.  For which
-separable $C^*$-algebras $A_n$ of real rank zero does every
+separable $C^*$-algebras $A_n$ does every
 homomorphism $H\to\U\bigl(\prod_nA_n/\bigoplus_nA_n\bigr)$ still map
-$w$ to the identity?  The lifting of Lemma~\ref{lem:lift}, which is where the matrix
-structure first enters, is a semiprojectivity question in the sense of
-Loring \cite{Loring98}.
+$w$ to the identity?  The lifting of Lemma~\ref{lem:lift} is \emph{not}
+where the matrix structure enters, and it is not a semiprojectivity
+question: for unital $A_n$ and $u$ unitary in the quotient, any lift
+$(x_n)$ has $\opnorm{x_n^{*}x_n-1}\to0$ and $\opnorm{x_nx_n^{*}-1}\to0$,
+so $x_n$ is invertible for all large $n$ and the polar correction
+$u_n=x_n(x_n^{*}x_n)^{-1/2}$ is unitary with $\opnorm{u_n-x_n}\to0$.
+Neither real rank zero nor semiprojectivity in the sense of
+Loring \cite{Loring98} is used.  The two genuinely
+matrix-specific ingredients are the ones listed above.
 \end{enumerate}
 
 \section{The maximal group \texorpdfstring{$C^*$}{C*}-algebra}\label{app:maxcstar}
@@ -3281,6 +3363,29 @@ stably finite and has no faithful tracial state.
 \leanverified{Analysis/ProperIsometryFromCompression}{GroupApproximation.ProperProjectionCompression.not_isStablyFiniteRing}
 \leanverified{Analysis/ProperIsometryFromCompression}{GroupApproximation.ProperProjectionCompression.no_faithfulTracialState}
 \end{proposition}
+
+\begin{proof}
+Write $q=upu^{*}$, so $q$ is a projection with $pq=qp=p$, and put
+$r=pu^{*}$.  Then
+\[
+ r^{*}r=up\,pu^{*}=upu^{*}=q,\qquad rr^{*}=pu^{*}up=p .
+\]
+Put $s=r+(1-q)$.  Since $p(1-q)=0$ and $(1-q)p=0$,
+\[
+ s^{*}s=r^{*}r+(1-q)=q+(1-q)=1,
+\]
+and since $pu^{*}(1-q)=pu^{*}-pu^{*}upu^{*}=pu^{*}-pu^{*}=0$ and
+likewise $(1-q)up=0$,
+\[
+ ss^{*}=rr^{*}+(1-q)=p+(1-q)=1-(q-p).
+\]
+Thus $s$ is an isometry, and $ss^{*}=1$ would force $q=p$, which is
+excluded; so $s$ is not a unitary.  A unital $C^*$-algebra containing a
+nonunitary isometry is not finite, hence not stably finite.  If $\tau$
+were a faithful tracial state then
+$\tau(1-ss^{*})=\tau(1)-\tau(s^{*}s)=0$ while $1-ss^{*}=q-p$ is a
+nonzero positive element, contradicting faithfulness.
+\end{proof}
 
 \begin{remark}[the maximal algebra under proper one-sided conjugation]
 \label{rem:maxinfinite}
@@ -3493,7 +3598,7 @@ American Mathematical Society, Providence, RI, 1997.
 \bibitem[Lo98]{Loring98}
 T.~A. Loring,
 \emph{$C^*$-algebras that are only weakly semiprojective},
-Proc. Amer. Math. Soc. \textbf{126} (1998), no.~9,
+Proc. Amer. Math. Soc. \textbf{126} (1998), no.~9, 2713--2715,
 \doi{10.1090/S0002-9939-98-04292-0}.
 
 \bibitem[LuO]{LuO}

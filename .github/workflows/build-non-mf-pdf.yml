@@ -32,10 +32,17 @@ permissions:
 env:
   TEX_FILE: non_mf_groups_exist.tex
   PDF_FILE: non_mf_groups_exist.pdf
-  # A complete rolling TeX Live 2026 image, pinned by its linux/amd64 OCI
-  # manifest.  Pinning the image makes the accessibility/tagging toolchain an
-  # immutable part of the release provenance.
-  TEXLIVE_IMAGE: ghcr.io/xu-cheng/texlive-alpine@sha256:d9bfb267e3e3f5e0820ca86e867ee59ebb133fc29561bb28677d9b5a1a9e84ff
+  # TeX Live 2025, pinned by its linux/amd64 OCI manifest.  Pinning the image
+  # makes the accessibility/tagging toolchain an immutable part of the release
+  # provenance.
+  #
+  # This used to pin a 2026 image.  It must not: on this source the 2026
+  # tagpdf aborts at \tableofcontents and garbles the contents page, which is
+  # exactly why draft-non-mf-pdf.yml and refresh-non-mf-pdf.yml pin 2025.  The
+  # attested release path is the one place that failure would be worst, so all
+  # three workflows now share the same pin.  Re-pin to a newer image only
+  # after a green run of the draft workflow on that image.
+  TEXLIVE_IMAGE: ghcr.io/xu-cheng/texlive-alpine@sha256:556e2e2caa7d489ce155de0eb3f43e324e6502ed4e9871aa400662b156cf00ad
 
 jobs:
   build-pdf:
@@ -151,6 +158,7 @@ jobs:
           python3 scripts/test_claim_map.py
           python3 scripts/check_non_mf_refs.py --self-test
           python3 scripts/check_non_mf_claim_manifest.py --self-test
+          python3 scripts/check_non_mf_unconditional.py --self-test
           python3 scripts/check_non_mf_zero_input.py \
             --tex "$TEX_FILE"
           python3 scripts/regenerate_non_mf_claim_manifest.py \
@@ -188,16 +196,15 @@ jobs:
       # and on any baseline entry whose finding has gone, so the register can
       # only shrink.  There is no count in the mechanism.
       #
-      # REPORT-ONLY, deliberately and temporarily: the register was written by
-      # hand from docs/NON_MF_CONDITIONAL_INVENTORY.md and has not yet met the
-      # real corpus, so its first contact must not be able to fail a PDF build.
-      # TO ARM, after one run whose log shows this step green, move the
-      # `--self-test` line into "Calibrate and check exact declaration links"
-      # above and delete `continue-on-error: true`.
-      - name: Non-MF unconditionality (report-only until the register is confirmed)
-        continue-on-error: true
+      # ARMED 2026-08-16.  The register has now met the real corpus: the
+      # self-test passes (it has moved up into the calibration step, where the
+      # other self-tests live) and the real run reports 102 cited declarations
+      # with no new findings and three entries accepted by the baseline.  The
+      # arming condition written here when the step was report-only has
+      # therefore been met, so this step gates the attested build like the
+      # others.
+      - name: Non-MF unconditionality
         run: |
-          python3 scripts/check_non_mf_unconditional.py --self-test
           python3 scripts/check_non_mf_unconditional.py \
             --tex "$TEX_FILE" \
             --baseline docs/NON_MF_UNCONDITIONAL_BASELINE.txt
