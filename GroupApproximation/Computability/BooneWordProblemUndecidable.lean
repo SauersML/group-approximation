@@ -51,17 +51,33 @@ open BooneGroup BooneTowerPresentation BooneWords AdianRabinWordProblem
 /-- **Simpson's Theorem 8, at a variable associated subgroup.**  The subgroup
 sits in the type of the HNN extension, so the presented stage's `tsub` can be
 identified with the tower's `⟨t⟩'` only by substitution, and quantifying over
-`T` is what lets `machineTowerPres_tsub` reach it.  After the `subst` the
-ambient type is `FinalGroup mm hM` up to unfolding `machineTower`, and the
-statement is `conj_k_finalTw_eq_iff` with the commutator collected. -/
+`T` is what lets `machineTowerPres_tsub` reach it.
+
+Everything in the statement is spelled at the tower itself --- `tower
+(machineIdentifications mm hM)`, raw `HNNExtension`, no `machineTower` and no
+`finalStage` --- because `subst` re-typechecks the motive at *reducible*
+transparency: a `Subgroup (machineTower mm hM).Carrier` binder makes the
+substituted motive carry `(machineTower mm hM).group` against
+`(tower …).group`, defeq but not syntactically equal, and the `subst` fails
+(observed; and the same disease at one level down is why the operands are
+`HNNExtension.of ((tower …).ι …)` rather than `(finalStage …).ι …`, whose
+`.Carrier` projection instance search will not unfold).  The consumer below
+supplies the presented stage's data through plain unification, which runs at
+default transparency and unfolds all of it.  After the `subst` the ambient
+type is literally `FinalGroup mm hM`'s unfolding, and the statement is
+`conj_k_finalTw_eq_iff` with the commutator collected. -/
 theorem commElt_eq_one_iff_halts_of_tsub_eq (mm : ModularMachine)
-    (hM : (mm.size : ℤ) ≠ 0) {T : Subgroup (machineTower mm hM).Carrier}
+    (hM : (mm.size : ℤ) ≠ 0)
+    {T : Subgroup (tower (machineIdentifications mm hM)).Carrier}
     (hT : T = towerTSub (machineIdentifications mm hM)) (q : ℕ × ℕ) :
     ((HNNExtension.t)⁻¹ *
-          (finalStage (machineTower mm hM) T).ι (Base.tw ((q.1 : ℤ), (q.2 : ℤ))) *
+          HNNExtension.of
+            ((tower (machineIdentifications mm hM)).ι (Base.tw ((q.1 : ℤ), (q.2 : ℤ)))) *
           HNNExtension.t *
-          ((finalStage (machineTower mm hM) T).ι (Base.tw ((q.1 : ℤ), (q.2 : ℤ))))⁻¹
-        : (finalStage (machineTower mm hM) T).Carrier) = 1
+          (HNNExtension.of
+            ((tower (machineIdentifications mm hM)).ι (Base.tw ((q.1 : ℤ), (q.2 : ℤ)))))⁻¹
+        : HNNExtension (tower (machineIdentifications mm hM)).Carrier T T
+            (MulEquiv.refl _)) = 1
       ↔ mm.Halts q := by
   subst hT
   rw [mul_inv_eq_one]
