@@ -66,9 +66,9 @@ omit [Nontrivial B] in
 @[simp] theorem gnsCompRep_hom_apply (ψ : State Q) (q : B →⋆ₐ[ℂ] Q) (b : B) :
     (gnsCompRep ψ q).hom b = (ψ.gnsRep).hom (q b) := rfl
 
+omit [Nontrivial B] in
 /-- Composing the spatial representation with `q ⊗ id` is the spatial
 representation of the composite. -/
-omit [Nontrivial B] in
 theorem spatialHom_map_eq (ψ : State Q) (ρ : State C) (q : B →⋆ₐ[ℂ] Q)
     (x : B ⊗[ℂ] C) :
     spatialHom ψ.gnsRep ρ.gnsRep

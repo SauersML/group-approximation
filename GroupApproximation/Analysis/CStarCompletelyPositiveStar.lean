@@ -154,7 +154,7 @@ theorem IsCompletelyPositive.map_star
       Complex.star_def, Complex.conj_I, neg_smul, ← sub_eq_add_neg]
   rw [hstar, hx, map_sub, map_add, star_add,
     (hφ.isSelfAdjoint_map hre_sa).star_eq,
-    map_smul, star_smul, Complex.star_def, Complex.conj_I,
+    map_smul, map_smul, star_smul, Complex.star_def, Complex.conj_I,
     (hφ.isSelfAdjoint_map him_sa).star_eq, neg_smul, ← sub_eq_add_neg]
 
 end CStarExactness
