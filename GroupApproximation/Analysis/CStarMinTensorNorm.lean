@@ -94,10 +94,13 @@ theorem bddAbove_spatialNorm_gnsRep (x : A ⊗[ℂ] B) :
   | zero =>
       refine ⟨0, ?_⟩
       rintro r ⟨p, rfl⟩
-      simp only [spatialNorm_apply, map_zero, norm_zero, le_refl]
+      show spatialNorm p.1.gnsRep p.2.gnsRep 0 ≤ 0
+      rw [spatialNorm_apply, map_zero]
+      exact le_of_eq ContinuousLinearMap.opNorm_zero
   | tmul a b =>
       refine ⟨‖a‖ * ‖b‖, ?_⟩
       rintro r ⟨p, rfl⟩
+      show spatialNorm p.1.gnsRep p.2.gnsRep (a ⊗ₜ[ℂ] b) ≤ ‖a‖ * ‖b‖
       rw [spatialNorm_tmul]
       exact mul_le_mul (p.1.norm_gnsRep_apply_le a)
         (p.2.norm_gnsRep_apply_le b) (norm_nonneg _) (norm_nonneg a)
@@ -132,8 +135,7 @@ theorem eq_zero_of_forall_spatialHom_gnsRep_eq_zero {x : A ⊗[ℂ] B}
     refine eq_zero_of_forall_state_inner_eq_zero _ fun ψ η η' => ?_
     have h := inner_spatialHom_apply φ.gnsRep ψ.gnsRep ξ ξ' η η' x
     rw [hx φ ψ] at h
-    simp only [ContinuousLinearMap.zero_apply, inner_zero_right,
-      vecFunctional_apply] at h
+    simp only [zero_apply, inner_zero_right, vecFunctional_apply] at h
     exact h.symm
   -- Step 3: every second-variable coordinate slice vanishes, by separation
   -- on `A`.
@@ -171,7 +173,13 @@ theorem isCStarNorm_minTensorNorm :
     have h2 : spatialNorm φ.gnsRep ψ.gnsRep x = 0 :=
       le_antisymm h1 (norm_nonneg _)
     rw [spatialNorm_apply] at h2
-    exact norm_eq_zero.mp h2
+    ext ξ
+    have hξ : ‖spatialHom φ.gnsRep ψ.gnsRep x ξ‖ ≤ 0 := by
+      calc ‖spatialHom φ.gnsRep ψ.gnsRep x ξ‖
+          ≤ ‖spatialHom φ.gnsRep ψ.gnsRep x‖ * ‖ξ‖ :=
+            ContinuousLinearMap.le_opNorm _ _
+        _ = 0 := by rw [h2, zero_mul]
+    simpa using norm_le_zero_iff.mp hξ
 
 /-- **The minimal tensor norm is a cross norm on the nose**:
 `‖a ⊗ₜ b‖_min = ‖a‖ * ‖b‖`.  The upper bound is contractivity of every GNS
@@ -181,9 +189,8 @@ theorem minTensorNorm_tmul (a : A) (b : B) :
     minTensorNorm (a ⊗ₜ[ℂ] b) = ‖a‖ * ‖b‖ := by
   refine le_antisymm ?_ ?_
   · refine ciSup_le fun p => ?_
-    have h : (gnsPairRep p).seminorm (a ⊗ₜ[ℂ] b)
-        = spatialNorm p.1.gnsRep p.2.gnsRep (a ⊗ₜ[ℂ] b) := rfl
-    rw [h, spatialNorm_tmul]
+    show spatialNorm p.1.gnsRep p.2.gnsRep (a ⊗ₜ[ℂ] b) ≤ ‖a‖ * ‖b‖
+    rw [spatialNorm_tmul]
     exact mul_le_mul (p.1.norm_gnsRep_apply_le a)
       (p.2.norm_gnsRep_apply_le b) (norm_nonneg _) (norm_nonneg a)
   · obtain ⟨φ, hφ⟩ := exists_state_norm_le_gnsRep a

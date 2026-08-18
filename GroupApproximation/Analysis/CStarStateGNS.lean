@@ -117,8 +117,8 @@ noncomputable def State.toPositive (φ : State A) : A →ₚ[ℂ] ℂ :=
             have h := φ.star_mul_self_nonneg w
             rw [Complex.le_def]
             exact ⟨by simpa using h.1, by simpa using h.2.symm⟩
-        | one => simp
-        | mul c d hc hd hc0 hd0 =>
+        | zero => simp
+        | add c d hc hd hc0 hd0 =>
             rw [map_add]
             exact add_nonneg hc0 hd0
       show φ.toCLM x ≤ φ.toCLM (x + p)
@@ -194,7 +194,7 @@ theorem State.norm_gnsVector (φ : State A) : ‖φ.gnsVector‖ = 1 := by
   show ‖((φ.toPositive.toPreGNS 1 : φ.toPositive.PreGNS) :
       φ.toPositive.GNS)‖ = 1
   rw [UniformSpace.Completion.norm_coe, PositiveLinearMap.preGNS_norm_def]
-  simp
+  simp [φ.map_one]
 
 /-- **The matrix coefficient of the cyclic vector computes the state**:
 `‖gnsRep φ a Ω‖² = (φ (star a * a)).re`. -/
@@ -208,15 +208,25 @@ theorem State.normSq_gnsRep_apply_gnsVector (φ : State A) (a : A) :
           φ.toPositive.GNS) = _
     rw [ContinuousLinearMap.completion_apply_coe]
     congr 1
-    simp
-  rw [h1, UniformSpace.Completion.norm_coe]
-  have h2 := PositiveLinearMap.preGNS_norm_sq (f := φ.toPositive)
+    show φ.toPositive.toPreGNS (a * φ.toPositive.ofPreGNS
+        (φ.toPositive.toPreGNS 1)) = φ.toPositive.toPreGNS a
+    rw [PositiveLinearMap.ofPreGNS_toPreGNS, mul_one]
+  have h2 : ‖(φ.gnsRep).hom a φ.gnsVector‖
+      = ‖(φ.toPositive.toPreGNS a : φ.toPositive.PreGNS)‖ := by
+    rw [h1]
+    exact UniformSpace.Completion.norm_coe _
+  rw [h2]
+  have h3 := PositiveLinearMap.preGNS_norm_sq (f := φ.toPositive)
     (φ.toPositive.toPreGNS a)
-  rw [PositiveLinearMap.ofPreGNS_toPreGNS] at h2
-  have h3 := congrArg Complex.re h2
-  rw [Complex.ofReal_re] at h3
-  rw [h3]
-  rfl
+  rw [PositiveLinearMap.ofPreGNS_toPreGNS] at h3
+  have h4 : ‖φ.toPositive.toPreGNS a‖ ^ 2
+      = (φ.toPositive (star a * a)).re := by
+    have h := congrArg Complex.re h3
+    rw [show ((‖φ.toPositive.toPreGNS a‖ : ℂ) ^ 2)
+        = (((‖φ.toPositive.toPreGNS a‖ ^ 2 : ℝ)) : ℂ) by push_cast; ring,
+      Complex.ofReal_re] at h
+    exact h
+  exact h4
 
 end SpectralBridge
 
@@ -231,8 +241,10 @@ theorem exists_state_norm_le_gnsRep (a : A) :
   refine ⟨φ, ?_⟩
   have h1 : ‖(φ.gnsRep).hom a φ.gnsVector‖ ^ 2 = ‖a‖ ^ 2 := by
     rw [State.normSq_gnsRep_apply_gnsVector, hφ]
-    push_cast
-    simp
+    have hcast : (((‖a‖ : ℝ) : ℂ) ^ 2) = (((‖a‖ ^ 2 : ℝ)) : ℂ) := by
+      push_cast
+      ring
+    rw [hcast, Complex.ofReal_re]
   have h2 : ‖(φ.gnsRep).hom a φ.gnsVector‖
       ≤ ‖(φ.gnsRep).hom a‖ * ‖φ.gnsVector‖ :=
     ContinuousLinearMap.le_opNorm _ _
