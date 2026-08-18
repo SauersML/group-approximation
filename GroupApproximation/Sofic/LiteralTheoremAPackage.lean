@@ -32,7 +32,7 @@ a reader has to take on faith when the clauses are spread over three files.
 namespace GroupApproximation
 namespace LiteralTheoremAPackage
 
-open LiteralNonMFPresentation
+open LiteralNonMFPresentation ReducedGroupCStarTrace
 
 /-- **Theorem A, whole.**
 

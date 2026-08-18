@@ -1619,6 +1619,18 @@ theorem half2_ne_zero : half2 ≠ 0 := by
   rw [h, mul_zero] at hsq
   exact absurd hsq.symm (by norm_num)
 
+/-! The two spin coordinates are distinct, and the swap exchanges them.  These
+are stated as closed facts about `Fin 2` because the coordinate type of the
+model is `Fin 2 × ZMod (modulus m)`, whose second factor carries the free
+variable `m`: `decide` refuses a goal whose type mentions it, even when the
+decidable content is entirely in the first factor. -/
+
+theorem fin2_zero_ne_one : (0 : Fin 2) ≠ 1 := by decide
+
+theorem fin2_one_ne_zero : (1 : Fin 2) ≠ 0 := by decide
+
+theorem spinSwap_zero : spinSwap 0 = 1 := by decide
+
 theorem monomialMatrix_row_unique (Y : FiniteModel) (d : Y → ℂ)
     (σ : Equiv.Perm Y) {i j j' : Y}
     (hj : monomialMatrix Y d σ i j ≠ 0)
@@ -1643,12 +1655,14 @@ theorem lampBase_apply_diag (m : ℕ) :
       ((0 : Fin 2), (0 : ZMod (modulus m))) = 0 := by
     rw [flipMatrix, monomialMatrix_apply, if_neg]
     intro hc
-    rw [flipPerm_apply, Prod.ext_iff] at hc
-    exact absurd hc.1 (by decide)
+    have h1 : spinSwap (0 : Fin 2) = 0 := congrArg Prod.fst hc
+    rw [spinSwap_zero] at h1
+    exact fin2_one_ne_zero h1
   have hs : spinMatrix m ((0 : Fin 2), (0 : ZMod (modulus m)))
       ((0 : Fin 2), (0 : ZMod (modulus m))) = 1 := by
-    rw [spinMatrix, monomialMatrix_apply, if_pos rfl]
-    exact spin_zero
+    rw [spinMatrix, monomialMatrix_apply, if_pos]
+    · exact spin_zero
+    · rfl
   rw [lampBase_apply, hf, hs, zero_add, mul_one]
 
 theorem lampBase_apply_offdiag (m : ℕ) :
@@ -1657,14 +1671,15 @@ theorem lampBase_apply_offdiag (m : ℕ) :
   have hf : flipMatrix m ((0 : Fin 2), (0 : ZMod (modulus m)))
       ((1 : Fin 2), (0 : ZMod (modulus m))) = 1 := by
     rw [flipMatrix, monomialMatrix_apply, if_pos]
-    rw [flipPerm_apply, Prod.ext_iff]
-    exact ⟨by decide, rfl⟩
+    show ((spinSwap (0 : Fin 2), (0 : ZMod (modulus m))) :
+        Fin 2 × ZMod (modulus m)) = ((1 : Fin 2), (0 : ZMod (modulus m)))
+    rw [spinSwap_zero]
   have hs : spinMatrix m ((0 : Fin 2), (0 : ZMod (modulus m)))
       ((1 : Fin 2), (0 : ZMod (modulus m))) = 0 := by
     rw [spinMatrix, monomialMatrix_apply, if_neg]
     intro hc
-    rw [Equiv.Perm.coe_one, id_eq, Prod.ext_iff] at hc
-    exact absurd hc.1 (by decide)
+    have h1 : (0 : Fin 2) = 1 := congrArg Prod.fst hc
+    exact fin2_zero_ne_one h1
   rw [lampBase_apply, hf, hs, add_zero, mul_one]
 
 /-- **The lamp is not a monomial matrix.**  Two entries of one row are
@@ -1683,9 +1698,9 @@ theorem lampBase_not_monomial (m : ℕ) (d : site m → ℂ)
       ((1 : Fin 2), (0 : ZMod (modulus m))) ≠ 0 := by
     rw [← hEq, lampBase_apply_offdiag]
     exact half2_ne_zero
-  have := monomialMatrix_row_unique (site m) d σ h1 h2
-  rw [Prod.ext_iff] at this
-  exact absurd this.1 (by decide)
+  have hrow := monomialMatrix_row_unique (site m) d σ h1 h2
+  have h01 : (0 : Fin 2) = 1 := congrArg Prod.fst hrow
+  exact fin2_zero_ne_one h01
 
 /-! ### The specification -/
 

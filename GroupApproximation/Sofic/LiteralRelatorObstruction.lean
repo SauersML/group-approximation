@@ -26,8 +26,8 @@ identity, uniformly in the dimension.
 
 `RelatorDefectBudget` supplies the bridge.  Given an assignment `u` of
 unitaries to the eight letters, choose once and for all a word `rep g` in the
-free group representing each `g ∈ E`, and let `induced u` be the map
-`g ↦ u(rep g)` on all of `E`.  Its multiplicative defect at `(g, h)` is the
+free group representing each `g ∈ E`, and read `u` on all of `E` through
+the map `g ↦ u(rep g)`.  Its multiplicative defect at `(g, h)` is the
 value at `u` of the word `(rep g · rep h)⁻¹ · rep (gh)`, which lies in the
 normal closure of the relators because it dies in `E`; so it is a product of
 `pairBudget g h` conjugates of relators, and operator-norm displacement is
@@ -35,7 +35,7 @@ subadditive under products and invariant under inversion and unitary
 conjugation.  Hence its defect is at most `pairBudget g h · δ`.  Taking the
 maximum of `pairBudget` over the finite set `F₀ ×ˢ F₀` turns a relator budget
 into a multiplicativity budget on `F₀`, and the compactness statement applies.
-One more budget, `markBudget`, converts the conclusion about `induced u mark`
+One more budget, `markBudget`, converts the conclusion about `u(rep w)`
 back into a conclusion about the printed word `markedWord` itself.
 
 ## What is still not effective, and exactly why
@@ -135,14 +135,14 @@ theorem markBudget_spec :
     IsRelatorProduct literalRelatorSet markBudget ((rep mark)⁻¹ * markedWord) :=
   (exists_isRelatorProduct mark_mem_normalClosure).choose_spec
 
-/-! ## The induced almost representation -/
+/-! ## The induced almost representation
 
-/-- The map on all of `E` induced by an assignment of unitaries to the eight
-letters, through the chosen word representatives. -/
-noncomputable def induced {Y : FiniteModel}
-    (u : Generator → Matrix.unitaryGroup Y ℂ) (g : MarkedGroup) :
-    Matrix.unitaryGroup Y ℂ :=
-  FreeGroup.lift u (rep g)
+The map on all of `E` induced by an assignment `u` of unitaries to the eight
+letters is `g ↦ u(rep g)`.  It is written inline below rather than given a
+name: naming it puts a second spelling of the same term into the goal, and the
+defeq checks that reconcile the two spellings against the `FreeGroup.lift`
+form produced by `RelatorDefectBudget` are what exhausted the elaborator's
+budget when this file first compiled. -/
 
 /-! ## The obstruction on the printed relators -/
 
@@ -192,9 +192,12 @@ theorem literal_relator_uniform_obstruction :
     exact hu r (Finset.mem_coe.mp hr)
   -- the induced map is `eps`-multiplicative on `F₀`
   have hmul : ∀ g ∈ F₀, ∀ h ∈ F₀,
-      ‖((induced u (g * h) : Matrix.unitaryGroup Y ℂ) : Matrix Y Y ℂ) -
-          ((induced u g : Matrix.unitaryGroup Y ℂ) : Matrix Y Y ℂ) *
-            ((induced u h : Matrix.unitaryGroup Y ℂ) : Matrix Y Y ℂ)‖
+      ‖((FreeGroup.lift u (rep (g * h)) : Matrix.unitaryGroup Y ℂ) :
+            Matrix Y Y ℂ) -
+          ((FreeGroup.lift u (rep g) : Matrix.unitaryGroup Y ℂ) :
+            Matrix Y Y ℂ) *
+            ((FreeGroup.lift u (rep h) : Matrix.unitaryGroup Y ℂ) :
+              Matrix Y Y ℂ)‖
         ≤ eps := by
     intro g hg h hh
     have hb := opLength_le_of_isRelatorProduct (FreeGroup.lift u) hrel
@@ -217,8 +220,9 @@ theorem literal_relator_uniform_obstruction :
     exact hb.trans (hstep.trans hNbound)
   -- compactness sends the mark into the ball of radius `1/2`
   have hmarkobs :
-      ‖((induced u mark : Matrix.unitaryGroup Y ℂ) : Matrix Y Y ℂ) - 1‖
-        < 1 / 2 := hobs Y (induced u) hmul
+      ‖((FreeGroup.lift u (rep mark) : Matrix.unitaryGroup Y ℂ) :
+          Matrix Y Y ℂ) - 1‖ < 1 / 2 :=
+    hobs Y (fun g ↦ FreeGroup.lift u (rep g)) hmul
   -- and the representative is within `1/2` of the printed word
   have hb1 := opLength_le_of_isRelatorProduct (FreeGroup.lift u) hrel
     markBudget_spec
@@ -227,10 +231,10 @@ theorem literal_relator_uniform_obstruction :
         FreeGroup.lift u ((rep mark)⁻¹ * markedWord) := by
     rw [← map_mul, mul_inv_cancel_left]
   have hfinal : opLength Y (FreeGroup.lift u markedWord)
-      ≤ opLength Y (induced u mark) + (markBudget : ℝ) * delta := by
+      ≤ opLength Y (FreeGroup.lift u (rep mark)) + (markBudget : ℝ) * delta := by
     rw [hsplit]
     exact (opLength_mul_le Y _ _).trans (add_le_add_left hb1 _)
-  have hhalf : opLength Y (induced u mark) < 1 / 2 := hmarkobs
+  have hhalf : opLength Y (FreeGroup.lift u (rep mark)) < 1 / 2 := hmarkobs
   show ‖((FreeGroup.lift u markedWord : Matrix.unitaryGroup Y ℂ) :
       Matrix Y Y ℂ) - 1‖ < 1
   have hlt : opLength Y (FreeGroup.lift u markedWord) < 1 := by
