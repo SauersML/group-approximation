@@ -924,6 +924,7 @@ import GroupApproximation.Analysis.CStarStinespringDefect
 import GroupApproximation.Analysis.CStarStinespringMul
 import GroupApproximation.Analysis.CStarStinespringRep
 import GroupApproximation.Analysis.CStarStinespringLinear
+import GroupApproximation.Analysis.CStarStinespringDilation
 import GroupApproximation.Analysis.LanceReiterMean
 import GroupApproximation.Analysis.CStarIdealQuotient
 import GroupApproximation.Analysis.CStarQuotientIdentity
