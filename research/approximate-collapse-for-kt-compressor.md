@@ -120,6 +120,18 @@ sharpening).**
   of `EL_r` over (Laurent) polynomial rings (Trost-type results;
   status for multivariate Laurent needs a source check) would give
   uniform-width leverage on the same reduction.
+- *The method's precise breaking point, found by attempted assembly —
+  hence the campaign's OPENING LEMMA:* the classical relative-(T)
+  pair `(EL₂(A) ⋉ M², M²)` needs `M` finitely generated over the
+  acting ring, but `R` over the compressed ring `S_Λ` is an
+  INCREASING UNION of monomial translates `x^{−Nw₀}S_Λ`, never
+  finite.  What the method needs first is a **uniform (directed)
+  relative property (T) along the monomial exhaustion**: one Kazhdan
+  pair `(Q, κ)` with `Q` inside the compressed part, valid
+  simultaneously at every stage of the union.  Well-posed and
+  quantitative — the right first target for the Ershov–Jaikin
+  toolkit — but not in the literature and not provable by this
+  session's methods.
 
 **Stakes, stated once:** a proof refutes hyperlinearity of the
 Kun–Thom wreath group (first non-hyperlinear group; group-CEP
