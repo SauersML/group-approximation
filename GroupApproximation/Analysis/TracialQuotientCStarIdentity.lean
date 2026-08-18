@@ -133,10 +133,13 @@ theorem norm_sq_le_norm_star_mul_self (x : TracialMatrixQuotient X l) :
     Submodule.Quotient.norm_mk_lt (star x * x) hδpos
   have hrmk' : tracialMatrixQuotientMk X l r = star x * x := hrmk
   have hkmk : tracialMatrixQuotientMk X l (star b * b) = star x * x := by
-    -- `simp only` rather than `rw`+`congr`: whether the quotient `star`
-    -- unfolds definitionally here has changed under it once already, and
-    -- `simp` is indifferent to which rewrite closes the goal.
-    simp only [map_mul, tracialMatrixQuotient_star_mk, ← hbmk]
+    -- The spelling bridge is done by defeq type ascription, exactly as in
+    -- `hrmk'` above: `star_mk` is stated at `Ideal.Quotient.mk`, the goal at
+    -- `tracialMatrixQuotientMk`, and the ascribed `have` converts silently.
+    have hstarb : tracialMatrixQuotientMk X l (star b)
+        = star (tracialMatrixQuotientMk X l b) :=
+      (tracialMatrixQuotient_star_mk X l b).symm
+    rw [map_mul, hstarb, hbmk]
   have hkJ : IsHilbertSchmidtNull X l (r - star b * b) := by
     refine (tracialMatrixQuotientMk_eq_zero_iff X l _).mp ?_
     rw [map_sub, hrmk', hkmk, sub_self]
