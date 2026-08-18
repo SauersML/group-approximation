@@ -1629,8 +1629,6 @@ theorem fin2_zero_ne_one : (0 : Fin 2) ≠ 1 := by decide
 
 theorem fin2_one_ne_zero : (1 : Fin 2) ≠ 0 := by decide
 
-theorem spinSwap_zero : spinSwap 0 = 1 := by decide
-
 theorem monomialMatrix_row_unique (Y : FiniteModel) (d : Y → ℂ)
     (σ : Equiv.Perm Y) {i j j' : Y}
     (hj : monomialMatrix Y d σ i j ≠ 0)

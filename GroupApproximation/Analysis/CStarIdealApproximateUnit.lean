@@ -46,6 +46,8 @@ namespace CStarTensor
 
 open Filter Metric
 
+open scoped Pointwise
+
 universe u
 
 variable {R : Type u} [CStarAlgebra R] (I : Ideal R) [I.IsTwoSided]
@@ -66,9 +68,11 @@ def idealStarSub : NonUnitalStarSubalgebra ℂ R where
     exact I.mul_mem_left _ hx
   star_mem' := fun hx => IsStarStable.star_mem hx
 
+omit [I.IsTwoSided] in
 @[simp] theorem mem_idealStarSub_iff (x : R) :
     x ∈ idealStarSub I ↔ x ∈ I := Iff.rfl
 
+omit [I.IsTwoSided] in
 theorem coe_idealStarSub : ((idealStarSub I : Set R)) = (I : Set R) := rfl
 
 instance [IsClosed (I : Set R)] : IsClosed ((idealStarSub I : Set R)) :=
@@ -187,7 +191,7 @@ noncomputable def idealApproximateUnit : IdealApproximateUnit I where
     -- Spectral mapping for `1 - e`.
     have hshift : spectrum ℝ ((1 : R) - (e : R))
         = ({(1 : ℝ)} : Set ℝ) - spectrum ℝ (e : R) := by
-      have := spectrum.singleton_sub_eq (𝕜 := ℝ) (e : R) 1
+      have := spectrum.singleton_sub_eq (R := ℝ) (e : R) 1
       rw [← this]
       norm_num
     rw [hshift] at hs
