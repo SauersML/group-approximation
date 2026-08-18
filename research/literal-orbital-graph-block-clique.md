@@ -44,3 +44,20 @@ them survives.  The repair stays on the telescope throughout, via
 comparison of the models.
 
 Nothing in this lane has been compiled.
+
+## Why this sits off the root graph
+
+The consumer is obvious and the edge is still wrong to draw.
+[[literal-lamp-kernel-clifford-block-amalgam]] is the claim this identifies the
+presentations for, and it is ESTABLISHED through
+`literal-lamp-kernel-clifford-block-amalgam-proof`, which requires only
+[[literal-telescope-split-normal-form]] and does not route through this node.
+Adding this claim to that route's requirements would take an established region
+with ten downstream consumers back to OPEN on the strength of a lane where, as
+recorded above, nothing has been compiled.  Adding a second route into the same
+target would assert a decomposition nobody has checked.
+
+So the honest state is this one: detached until the lane compiles.  When it
+does, the edge to add is into the amalgam claim, and the thing to check first is
+whether the existing proof was ever independent of the clique fact or only
+looked it.

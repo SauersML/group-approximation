@@ -3,6 +3,7 @@ rg: 2
 id: near-representation-amenability-dichotomy
 kind: claim
 title: A near-representation analogue of the Bekka–Valette dichotomy
+root: true
 invalidates: [amenable-charge-route]
 distinct_from:
   amenable-rep-of-kazhdan-has-fd-subrep: that is the genuine-representation statement, proved; this asks whether the same conclusion survives replacing homomorphisms by near representations, and is open

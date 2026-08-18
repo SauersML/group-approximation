@@ -43,3 +43,20 @@ program as [[defect-saturation-full-mf-radical]] (audited 2026-08-15,
 see `docs/TORSION_FREE_NORMAL_GENERATION_HULL_QUOTIENT.md` §9) plus the
 nonsofic heredity of
 [[defect-normally-generates-torsion-free-quotient]] item 3.
+
+## Why this sits off the root graph
+
+Two reasons, and the second is the binding one.
+
+The inputs are not source-verified at theorem level — arXiv:2512.09180's
+Propositions B and C have not been read against the PDF — so an edge from here
+into a root would put unverified literature on a path to a program target,
+which is exactly what the trust-surface discipline forbids.
+
+And the conclusion does not fit either root that looks close.  It carries no
+torsion-free adjective, so it cannot feed
+[[torsion-free-finitely-presented-non-mf]]; and its group is nonsofic by
+construction, so it cannot feed [[finitely-presented-sofic-non-mf]].  The
+landmark it would serve — finitely presented, every nontrivial quotient
+simultaneously nonsofic and non-MF — is not a node, and should not become one
+until the amplifier is verified.

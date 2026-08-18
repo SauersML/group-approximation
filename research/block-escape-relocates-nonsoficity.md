@@ -50,3 +50,19 @@ and not the sites.  But the gap it leaves is not a place where a witness can
 comfortably live: any invariant partition that keeps the mark separated
 carries the same nonsoficity down to a smaller coset space, so the escape is a
 translation of the problem rather than a solution to it.
+
+## Why this sits off the root graph
+
+This is a settled lemma with no consumer, for a structural reason worth
+recording.  Its clause 3 generalizes [[coordinate-action-not-sofic]] from the
+marked subgroup to every intermediate `Gamma <= H <= G`, and that claim is
+itself an established island — proved, consumed by nothing.  So the natural
+edge here would run into a node that is already off the root graph, which moves
+the detachment rather than removing it.
+
+The lemma earns its place by what it kills: the resolution lemma is FALSE, and
+anyone who reaches for orbit resolution to convert
+[[two-site-rigidity-of-lamp-witnesses]] into an obstruction will rediscover the
+block counterexample.  Clause 3 is the reason the failure is not a way out —
+every block escape inherits the nonsoficity, so there is no smaller coset space
+where the problem becomes easy.

@@ -99,3 +99,15 @@ infinite-index self-embedding for which alpha(Gamma) is not separable -- easy
 to arrange in isolation -- together with a proof that non-separability really
 obstructs the action models rather than merely this route to them.  That
 converse is the remaining gap: separability is proved sufficient, not necessary.
+
+## Why this sits off the root graph
+
+Nothing in the graph requires this card any more, and that is a result rather
+than neglect.  The sofic-and-non-MF headline used to wait on action soficity
+for this skeleton; [[sign-free-quotient-sofic]] closed it for the literal
+family by the telescope-window pipeline, with no action-soficity input at all.
+What is left here is the question for the LEAN skeleton — no lamps in the
+group, soficity of the coset action itself — which is a cleaner statement than
+the one the program needed and is nobody's prerequisite.  It is kept because
+the question was raised by Fournier-Facio against a specific mechanism, and a
+question with a named mechanism is worth more than the absence of a node.

@@ -34,3 +34,18 @@ and, resting on those two, compactness of the convolution operator.
 That last item is the whole gap, and it is [[haar-convolution-operator-is-compact]].
 So the remaining work is one analytic lemma plus the convolution API it needs,
 not a missing theory of compact groups.
+
+## Why this sits off the root graph
+
+The consumer is a statement the graph does not carry.  With separation, the
+five approximation radicals coincide for general compact targets; that general
+statement has no node.  What the graph does have is
+[[bohr-residual-equals-finite-residual-for-profinite-targets]], the profinite
+case, which is unconditional and needs nothing from here, and
+[[compression-wreath-five-radicals-coincide]], which is established by squeezing
+against a residually finite target and likewise never separates a compact group.
+
+So this hole is real but nothing is currently blocked on it.  Adding a node for
+the general-target statement would produce a second detached top rather than a
+path, so the right time to add it is when something in the program actually
+needs a compact target that is not profinite.

@@ -180,3 +180,10 @@ formalized in this pass; **TODO** not yet formalized.
 * Every module listed here is imported by the root `GroupApproximation.lean`, so
   the kernel audit and `lake build` see all of it; orphan modules are invisible to
   both and must never be left unimported.
+
+## Why this sits off the root graph
+
+This card is a ledger, not a mathematical assertion, so no route can require it
+and no route should be invented to.  Its OPEN status tracks the TODO rows in
+the table above, not an unproved statement; it closes when the last row is
+formalized, and until then it is deliberately a leaf that nothing consumes.
