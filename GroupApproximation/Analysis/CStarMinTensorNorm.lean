@@ -32,14 +32,17 @@ the jointly isometric GNS family of `CStarStateGNS`:
 
 The construction depends on no choices: the index is *every* state of each
 factor, so `MinTensorProduct A B` is a canonical functorial object -- this is
-what makes the notation `⊗_min` honest as a *definition*.  Two theorems about
-it remain open, and neither is claimed:
+what makes the notation `⊗_min` honest as a *definition*.
 
-* **Takesaki's identification** (Stage C.4 of the roadmap): that for any one
-  faithful pair `(π, ρ)` the spatial norm equals `minTensorNorm`, i.e. that
-  `A ⊗_{π,ρ} B ≅ A ⊗_min B`.  The supremum dominates no single pair and no
-  single pair dominates the supremum, until that theorem is proved.
-* **Minimality**: that `minTensorNorm` is the least C⋆-norm on `A ⊙ B`.
+* **Takesaki's identification** (Stage C.4 of the roadmap) is now
+  **proved**: for any faithful pair `(π, ρ)` on complete Hilbert spaces the
+  spatial norm equals `minTensorNorm`
+  (`CStarTakesakiIdentification.spatialNorm_eq_minTensorNorm`, via the
+  positivity-transfer half in `CStarTakesakiMinLe` and the cyclic half in
+  `CStarTakesakiCyclic`).  `A ⊗_{π,ρ} B ≅ A ⊗_min B` for every faithful
+  pair.
+* **Minimality** -- that `minTensorNorm` is the least C⋆-norm on `A ⊙ B` --
+  remains open and is not claimed.
 
 ## Manuscript status
 

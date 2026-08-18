@@ -128,11 +128,14 @@ ingredient was present: `Module.Basis.ofVectorSpace`
 and no analysis** --- in particular no states, no GNS, and no continuity.
 
 **What it would still not give.**  Independence of the norm from `(π, ρ)` is
-untouched by the above: that is Takesaki's theorem, it genuinely does need
-states, GNS and continuous slice maps, and without it the norm cannot honestly
-be written `⊗_min`.  So this repair upgrades the lane from "a conditional
-C⋆-norm attached to a chosen pair" to "a C⋆-norm attached to a chosen pair",
-and **does not** make C⋆-exactness statable.  See `CStarExactness.lean`.
+untouched by the above: that is Takesaki's theorem.  (It has since been
+proved downstream: for faithful pairs on complete Hilbert spaces the spatial
+norm equals the canonical minimal norm,
+`CStarTakesakiIdentification.spatialNorm_eq_minTensorNorm`; this file's own
+content remains exactly the fixed-pair construction.)  On its own this
+repair upgrades the lane from "a conditional C⋆-norm attached to a chosen
+pair" to "a C⋆-norm attached to a chosen pair", and **does not** make
+C⋆-exactness statable.  See `CStarExactness.lean`.
 
 ## Manuscript status
 
