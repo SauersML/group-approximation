@@ -1004,12 +1004,8 @@ $\bigl[\,tct^{-1},\,v_1(tct^{-1})v_1^{-1}\bigr]$.
 This is an explicit finite presentation with eight generators and
 forty-one relators: twenty in family~\textup{(B)}, six in
 family~\textup{(T)}, seven in family~\textup{(C)}, and eight in
-family~\textup{(W)}.  Family~\textup{(B)} presents the base.  Family~\textup{(T)} states
-that conjugation by $t$ maps each base generator into the base.
-Family~\textup{(C)} states that $c$ is an involution commuting with
-the base generators, and family~\textup{(W)} states that $w$ is
-central.
-Centrality together with $c^2=1$ implies
+family~\textup{(W)}.
+Centrality of $w$ together with $c^2=1$ implies
 $w^2=1$ by \eqref{eq:involution-reversal}.  Families~\textup{(T)}
 and~\textup{(C)} give, respectively,
 \leanverified{Sofic/LiteralNonMFPresentation}{GroupApproximation.LiteralNonMFPresentation.manuscriptLiteralPresentation}
@@ -1109,7 +1105,11 @@ and
 \end{proof}
 
 \begin{proof}[Proof of Theorem~\ref{thm:A}]
-Proposition~\ref{prop:witness} gives $w\ne1$.
+Proposition~\ref{prop:witness} gives $w\ne1$.  The group $E$ is the
+specialization of Theorem~\ref{thm:kazhdan-clifford} to the data
+\eqref{eq:affine-data}; we apply the central involution obstruction
+directly to the displayed presentation, so that every hypothesis is
+checked on the literal relators.
 
 Let $(d_n)$ be given, write $\mathcal Q=\mathcal Q((d_n))$, and let
 $\Theta\colon E\to\U(\mathcal Q)$ be a homomorphism.  Apply the central
@@ -1128,8 +1128,7 @@ $a_1=\iota(v_1)$ gives
   \qquad u=[\,d,\iota(v_1)\,].
 \]
 The defining relations make $w$ central, and $c^2=1$ then implies
-$w^2=1$ by \eqref{eq:involution-reversal}.  Proposition~\ref{prop:witness}
-gives $w\ne1$.  Hence $\Theta(w)=1$.
+$w^2=1$ by \eqref{eq:involution-reversal}.  Hence $\Theta(w)=1$.
 \leanverified{Sofic/LiteralNonMFEndpoint}{GroupApproximation.LiteralNonMFEndpoint.negativeCorner_kazhdanTransport_contradiction}
 
 Every homomorphism $E\to\U(\mathcal Q)$ maps the nontrivial element
@@ -1166,10 +1165,9 @@ $\Theta\colon E\to\U(\mathcal Q)$, and $\opnorm{\Theta(w)-1}\ge1$ gives
 $\Theta(w)\ne1$, contradicting Theorem~\ref{thm:A}.
 \end{proof}
 
-This argument is nonquantitative and gives no bound for $\delta$ or
-$|F_0|$.  An effective modulus would need an effective Kazhdan
-constant for the base together with effective versions of the
-compression estimates.
+The compactness argument gives no bound for $\delta$ or $|F_0|$; an
+effective modulus would need an effective Kazhdan constant for the
+base together with effective versions of the compression estimates.
 
 \section{Consequences of the example}\label{sec:position}
 
@@ -1195,17 +1193,16 @@ $\operatorname{Res}_{\mathrm{MF}}(E)$.
 \end{mainthm}
 
 \noindent
-If an involution commutes with the conjugate copy of a Kazhdan
-subgroup and its conjugates under the original subgroup commute
-pairwise, then every homomorphism to $\U(\mathcal Q)$ maps all of
-those conjugates to the same element (Theorem~\ref{thm:collapse}).
+The proof, in Section~\ref{subsec:collapse}, rests on
+Theorem~\ref{thm:collapse}: if an involution commutes with the
+conjugate copy of a Kazhdan subgroup and its conjugates under the
+original subgroup commute pairwise, then every homomorphism to
+$\U(\mathcal Q)$ maps all of those conjugates to the same element.
 In $E$ the pairwise commutators of those conjugates of $d$ lie in
 $\langle w\rangle$, so in $E/\langle w\rangle$ the element $d$
 satisfies these hypotheses, and every homomorphism
 $E/\langle w\rangle\to\U(\mathcal Q)$ maps $u$ to $1$.  Thus
-$E/\langle w\rangle$ is a second finitely presented non-MF group, and
-$\operatorname{Res}_{\mathrm{MF}}(E)$ contains elements outside
-$\{1,w\}$ (Section~\ref{sec:limits}).
+$E/\langle w\rangle$ is a second finitely presented non-MF group.
 
 \subsection*{A stably finite non-MF group algebra}
 Every MF algebra is stably finite \cite{BK}; the converse fails.  The
@@ -1266,15 +1263,9 @@ Elek--Szab\'o amenable-extension theorem \cite{ElekSzabo}.  This
 extension does not preserve LEF: LEF groups are MF \cite{CDE}, so
 $E_0$ is LEF whereas $E$ is not.
 
-Adding the anticommutation relations for every pair of distinct
-cosets gives a quotient map from $E$ onto the Clifford group
-$W=\Cl(X)\rtimes G$ built in the proof of
-Theorem~\ref{thm:kazhdan-clifford}.  This map sends $w$ to the
-Clifford sign, which lies in $\operatorname{Res}_{\mathrm{MF}}(W)$ by
-Lemma~\ref{lem:portable}, so $W$ is not MF either.
-Its defining extension has locally finite kernel and residually finite
-quotient, both MF, so the MF property is not closed under extensions;
-and $F_8$ surjects onto $E$, so it is not closed under quotients
+The MF property is closed under neither extensions nor quotients: a
+Clifford quotient of $E$ is a non-MF extension of an MF group by an
+MF group, and the MF group $F_8$ surjects onto $E$
 (Section~\ref{sec:algebras-sofic}, Corollary~\ref{cor:quotclosure}).
 
 \subsection*{A hyperlinear non-MF trace}
@@ -2164,11 +2155,11 @@ $\ker\pi\trianglelefteq H$, the whole normal closure
 $\mathfrak D(H,\Gamma)$ does as well.
 
 \begin{corollary}\label{cor:notRFD}
-The group $E$ of Definition~\ref{def:E} admits no injective homomorphism
-into $\GL(V)$ for any finite-dimensional vector space $V$ over any field.
-More strongly, every finite-dimensional linear representation maps $w$ to
-the identity, and every homomorphism to a finite group maps $w$ to the
-identity.
+Every finite-dimensional linear representation of the group $E$ of
+Definition~\ref{def:E}, over any field, maps $w$ to the identity, and
+every homomorphism from $E$ to a finite group does as well.  In
+particular $E$ admits no injective homomorphism into $\GL(V)$ for any
+finite-dimensional vector space $V$ over any field.
 \leanverified{Sofic/LiteralFiniteDimensionalObstruction}{GroupApproximation.LiteralFiniteDimensionalObstruction.manuscriptFiniteDimensionalConsequences}
 \end{corollary}
 
