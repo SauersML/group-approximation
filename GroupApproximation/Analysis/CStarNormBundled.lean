@@ -117,6 +117,46 @@ noncomputable instance normedAlgebra (h : IsCStarNorm p) :
     NormedAlgebra ℂ (WithCStarNorm h) where
   norm_smul_le c a := le_of_eq (h.isCStarSeminorm.smul c a)
 
+/-! ### Crossing the retagging
+
+The synonym is `A` itself, so the identity is a ⋆-algebra homomorphism in each
+direction, and every field is `rfl`.  Both directions are needed: an assembly
+maps *into* the synonym to install the norm, and maps a homomorphism defined on
+`A` *out of* it to feed the completion. -/
+
+/-- The retagging, as a ⋆-algebra homomorphism. -/
+def toStarAlgHom (h : IsCStarNorm p) : A →⋆ₐ[ℂ] WithCStarNorm h where
+  toFun := id
+  map_one' := rfl
+  map_mul' _ _ := rfl
+  map_zero' := rfl
+  map_add' _ _ := rfl
+  commutes' _ := rfl
+  map_star' _ := rfl
+
+/-- The retagging back, as a ⋆-algebra homomorphism. -/
+def ofStarAlgHom (h : IsCStarNorm p) : WithCStarNorm h →⋆ₐ[ℂ] A where
+  toFun := id
+  map_one' := rfl
+  map_mul' _ _ := rfl
+  map_zero' := rfl
+  map_add' _ _ := rfl
+  commutes' _ := rfl
+  map_star' _ := rfl
+
+@[simp] theorem toStarAlgHom_apply (h : IsCStarNorm p) (a : A) :
+    toStarAlgHom h a = a := rfl
+
+@[simp] theorem ofStarAlgHom_apply (h : IsCStarNorm p) (a : WithCStarNorm h) :
+    ofStarAlgHom h a = a := rfl
+
+theorem toStarAlgHom_surjective (h : IsCStarNorm p) :
+    Function.Surjective (toStarAlgHom h) := fun a ↦ ⟨a, rfl⟩
+
+/-- The retagging carries the chosen norm, by construction. -/
+theorem norm_toStarAlgHom (h : IsCStarNorm p) (a : A) :
+    ‖toStarAlgHom h a‖ = p a := rfl
+
 end WithCStarNorm
 
 /-- **The chain closed: a C⋆-norm on a complex ⋆-algebra makes its completion a

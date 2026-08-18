@@ -59,6 +59,27 @@ noncomputable instance quotientStarModule [StarModule ℂ A] :
     rw [← quotient_mk_smul I c a, quotient_star_mk, quotient_star_mk,
       StarModule.star_smul c a, quotient_mk_smul]
 
+/-- **The quotient map, as a ⋆-algebra homomorphism.**
+
+Mathlib has `Ideal.Quotient.mk` as a ring homomorphism and `Ideal.Quotient.mkₐ`
+as an algebra homomorphism; neither carries the involution, and the assembly
+needs a `→⋆ₐ[ℂ]` because it is composed with one and because
+`CStarRepresentationNorm.map_mem_unitary` — the step that keeps the group
+elements unitary all the way to the completion — consumes exactly that. -/
+noncomputable def quotientStarMk : A →⋆ₐ[ℂ] A ⧸ I where
+  toFun := Ideal.Quotient.mk I
+  map_one' := map_one _
+  map_mul' _ _ := map_mul _ _ _
+  map_zero' := map_zero _
+  map_add' _ _ := map_add _ _ _
+  -- `Ideal.Quotient.mk_algebraMap` is itself `rfl`: the quotient's algebra map
+  -- is defined as the composite through `A`.
+  commutes' _ := rfl
+  map_star' a := quotient_star_mk I a
+
+@[simp] theorem quotientStarMk_apply (a : A) :
+    quotientStarMk I a = Ideal.Quotient.mk I a := rfl
+
 /-- **The universal property of the quotient, for ⋆-algebra homomorphisms.**
 A ⋆-homomorphism killing `I` factors through `A ⧸ I`, still as a
 ⋆-homomorphism.

@@ -393,6 +393,28 @@ theorem exists_isCStarNorm_on_quotient (h : IsCStarSeminorm p) :
     rw [Ideal.Quotient.eq_zero_iff_mem]
     exact hx
 
+/-- **The C⋆-norm the seminorm induces on the quotient by its null ideal**, as a
+named function rather than an existential witness.
+
+`exists_isCStarNorm_on_quotient` produces it existentially, which is enough to
+know the quotient is C⋆-normable but not enough to *norm* it: installing a norm
+as an instance requires naming the function, since the type synonym that carries
+it is indexed by the proof that this particular function is a C⋆-norm.  The
+choice is therefore made once, here, and every later statement about the
+enveloping algebra of `p` refers back to it. -/
+noncomputable def quotientNorm (h : IsCStarSeminorm p) : (A ⧸ h.nullIdeal) → ℝ :=
+  Classical.choose h.exists_isCStarNorm_on_quotient
+
+/-- The induced norm computes the seminorm on every representative.  In
+particular it takes no infimum: see the module docstring. -/
+@[simp] theorem quotientNorm_mk (h : IsCStarSeminorm p) (a : A) :
+    h.quotientNorm (Ideal.Quotient.mk h.nullIdeal a) = p a :=
+  (Classical.choose_spec h.exists_isCStarNorm_on_quotient).1 a
+
+theorem isCStarNorm_quotientNorm (h : IsCStarSeminorm p) :
+    IsCStarNorm h.quotientNorm :=
+  (Classical.choose_spec h.exists_isCStarNorm_on_quotient).2
+
 end IsCStarSeminorm
 
 end CStarTensor

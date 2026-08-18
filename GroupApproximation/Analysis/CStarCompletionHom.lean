@@ -76,6 +76,19 @@ theorem uniformContinuous_of_norm_map (f : A →⋆ₐ[ℂ] B)
     (h : ∀ a : A, ‖f a‖ = ‖a‖) : UniformContinuous (f : A → B) :=
   (AddMonoidHomClass.isometry_of_norm f h).uniformContinuous
 
+/-- A norm-*decreasing* ⋆-homomorphism is uniformly continuous.
+
+The isometric form above is not enough for the maximal seminorm.  There the norm
+on the source is the supremum over *all* representations, which dominates the
+norm of any one of them and in general dominates it strictly, so the map to a
+single target contracts rather than preserves.  Contraction is all uniform
+continuity needs. -/
+theorem uniformContinuous_of_norm_le (f : A →⋆ₐ[ℂ] B)
+    (h : ∀ a : A, ‖f a‖ ≤ ‖a‖) : UniformContinuous (f : A → B) := by
+  refine (LipschitzWith.mk_one fun x y ↦ ?_).uniformContinuous
+  rw [dist_eq_norm, dist_eq_norm, ← map_sub]
+  exact h (x - y)
+
 end Isometric
 
 section Extend
