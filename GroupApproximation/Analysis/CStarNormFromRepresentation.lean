@@ -26,10 +26,6 @@ extends `ρ̃` across the completion to give `j`.
 
 ## Contents
 
-* `isCStarSeminorm_norm` --- the norm of a unital C⋆-algebra is a
-  C⋆-seminorm in the sense of `CStarTensorProductSeminorm`.  This is the
-  seminorm everything is pulled back from, and it is where the C⋆-identity
-  enters (`CStarRing.norm_star_mul_self`).
 * `repSeminorm`, `isCStarSeminorm_repSeminorm` --- the pullback along the
   ⋆-homomorphism `ρ̃ = GroupRingStar.unitaryLift ρ`, so `‖ρ̃(·)‖_B` is a
   C⋆-seminorm on `ℂ[G]`.
@@ -67,20 +63,6 @@ namespace CStarRepresentationNorm
 open CStarTensor
 
 universe u v
-
-/-! ## The norm of a C⋆-algebra as a C⋆-seminorm -/
-
-/-- **The norm of a unital C⋆-algebra is a C⋆-seminorm.**  Every field is the
-corresponding norm axiom; the C⋆-identity field is exactly
-`CStarRing.norm_star_mul_self`, which is where the C⋆-structure of the target
-enters the whole construction. -/
-theorem isCStarSeminorm_norm {B : Type v} [CStarAlgebra B] :
-    IsCStarSeminorm (fun b : B ↦ ‖b‖) where
-  nonneg b := norm_nonneg b
-  add_le a b := norm_add_le a b
-  smul c b := norm_smul c b
-  mul_le a b := norm_mul_le a b
-  cstar _ := CStarRing.norm_star_mul_self
 
 /-! ## Unitaries -/
 

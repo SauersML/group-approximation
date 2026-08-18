@@ -166,6 +166,26 @@ theorem quotient_mk_smul (c : ℂ) (a : A) :
 
 end QuotientScalars
 
+/-! ## The norm of a C⋆-algebra, and pullbacks -/
+
+/-- **The norm of a unital C⋆-algebra is a C⋆-seminorm.**  Every field is the
+corresponding norm axiom; the C⋆-identity field is exactly
+`CStarRing.norm_star_mul_self`, which is where the C⋆-structure of the algebra
+enters.
+
+With `IsCStarSeminorm.comp` below this is the source of every seminorm in this
+development that is defined as "the norm of the image": a representation on a
+Hilbert space, a unitary representation of a group, or a pair of commuting
+homomorphisms out of the factors of a tensor product all produce their seminorm
+this way. -/
+theorem isCStarSeminorm_norm {B : Type v} [CStarAlgebra B] :
+    IsCStarSeminorm (fun b : B ↦ ‖b‖) where
+  nonneg b := norm_nonneg b
+  add_le a b := norm_add_le a b
+  smul c b := norm_smul c b
+  mul_le a b := norm_mul_le a b
+  cstar _ := CStarRing.norm_star_mul_self
+
 /-! ## Pullback of a C⋆-seminorm -/
 
 /-- **A C⋆-seminorm pulls back along a ⋆-homomorphism.**  With
