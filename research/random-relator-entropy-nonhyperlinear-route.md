@@ -3,7 +3,7 @@ rg: 2
 id: random-relator-entropy-nonhyperlinear-route
 kind: route
 title: Random small-cancellation presentations kill every separated HS microstate by entropy
- target: non-hyperlinear-group
+target: non-hyperlinear-group
 requires:
   - random-relator-net-killing-criterion
   - unitary-word-return-entropy-summability
