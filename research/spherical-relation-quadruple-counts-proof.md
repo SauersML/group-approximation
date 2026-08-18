@@ -8,9 +8,12 @@ requires: []
 ---
 
 For a fixed unitary `U_w` and fixed input point `x_i`, the indicators
-`A_w(i,j)` over independent output points have success probability exactly
-`p_d`, because `U_w x_i` is another unit vector.  The same is true for an
-in-degree after conditioning on `x_j`, since
+`A_w(i,j)` for `j != i` are independent Bernoulli variables with success
+probability exactly `p_d`, because `U_w x_i` is another unit vector and the
+other cloud points are independent uniform points.  The diagonal term `j=i`
+is one additional bounded summand, so every out-degree is a
+`Bin(N-1,p_d)` variable plus a number in `{0,1}`.  The same statement holds
+for an in-degree after conditioning on `x_j`, since for `i != j`
 
 ```text
 ||U_w x_i-x_j|| = ||x_i-U_w^*x_j||.
@@ -25,8 +28,10 @@ N p_d^3 -> infinity.
 ```
 
 This is always possible for each `d`; no upper bound on the point-cloud size
-is part of the construction.  Chernoff and a union bound over the finitely many
-colours and the `2N` in/out vertices give, with probability `1-o(1)`,
+is part of the construction.  Since these conditions also imply
+`N p_d -> infinity`, the one diagonal summand is negligible.  Chernoff and a
+union bound over the finitely many colours and the `2N` in/out vertices give,
+with probability `1-o(1)`,
 
 ```text
 d_w^out(i), d_w^in(i) = (1+O(eps_d)) N p_d
