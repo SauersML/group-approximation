@@ -7,9 +7,9 @@ Spec document: `non_mf_groups_exist.tex`.  Formal development: `GroupApproximati
 | | |
 | --- | --- |
 | commit | the prove-once restructure commit of 2026-08-18 (this one) |
-| `git hash-object non_mf_groups_exist.tex` | `26359a5325ad342f86ff8d3a9b061a2bf914d38f` |
-| sha256 of the file | `0966ee4b7e586cebd77428c7a578ef6f981140a5e19b9917361a64b061a5bf46` |
-| `wc -l` | 3699 |
+| `git hash-object non_mf_groups_exist.tex` | `a60188253a1e537f28ae4ed98a9b1e123c92f8a4` |
+| sha256 of the file | `e05d536cddb6df5d2d3639e2153911801fe0dd27f2feea5bc501287a45e53a98` |
+| `wc -l` | 3701 |
 
 `git hash-object` of the file must reproduce the blob above for the rows below
 to be read as current.  The file has shrunk from 4768 lines to 3771 across the
@@ -728,6 +728,7 @@ blessed unread.**  If a future re-pin outruns its reading, add the anchor here m
 | `cor:cylinder` | **2026-08-18: env folded into prose after `prop:horn`**; the duplicated topology parenthetical dropped | HO.04, HO.05 re-anchored to `p:cylinder` |
 | `supp:scaling` | **2026-08-18: the one-corollary section dissolved**; `cor:scaling-family` and its proof moved verbatim into S7 under a paragraph heading | TA.06–TA.09 stand; env digest unchanged |
 | `thm:exactfd` | **2026-08-18: the "More generally" clause moved out of the main text** — the intrinsic statement is now `thm:exactfd-intrinsic` in S6, stated and proved where 𝔇 is defined | FD.00 restated; FD.01 re-anchored to the new env; FD.10, FD.11 re-anchored from `p:B-subgroup-valued` (probe retired) as its proof |
+| `thm:transport-variants` | the matrices `(x_n)` are now introduced in the statement, previously inherited informally from `thm:kazhdan-transport` | wording; TV.01, TV.04, TV.05 stand |
 | `thm:abstract-nk` | **2026-08-18: proved first and in full** — the Kazhdan-corner construction moved here verbatim from the proof of `thm:normal-kazhdan`, whose printed proof is now the two-line derivation with D = N_conj | NK.03–NK.09, NK.13 re-anchored to `thm:abstract-nk`; NK.02 grades the derivation; both statements unchanged |
 
 Four further anchors — `thm:exactfd`, `thm:cyclic`, `thm:reduced`, `thm:witnesssofic` —
@@ -871,7 +872,7 @@ once in the comment-stripped manuscript; the probe is the drift detector.
 | lem:finitecompare | env | lem:finitecompare | fc2a55b505fb0455 |
 | lem:ultrafinite | env | lem:ultrafinite | 18a9bd515024e111 |
 | thm:kazhdan-transport | env | thm:kazhdan-transport | 36a5391cd928c3d3 |
-| thm:transport-variants | env | thm:transport-variants | e22b668523e7be38 |
+| thm:transport-variants | env | thm:transport-variants | 7a79775ae5cf5bc9 |
 | def:pattern | env | def:pattern | 79446102142d5b3e |
 | def:invisible | env | def:invisible | 41698d326dec67b0 |
 | thm:criterion | env | thm:criterion | 4153ff9fb688e0de |

@@ -1237,8 +1237,9 @@ $\Cred(E)$ is not nuclear \cite{Lance}.  The nuclear form of the
 Blackadar--Kirchberg problem --- whether every stably finite separable
 nuclear $C^*$-algebra is quasidiagonal --- therefore remains open.
 \leanverified{Analysis/NuclearityAmenability}{GroupApproximation.NuclearityAmenability.manuscriptNotAmenableOfBaseEmbeds}
-By contrast, $\Cmax(E)$ is not stably finite and has no faithful
-tracial state (Remark~\ref{rem:maxinfinite}).
+
+While $\Cred(E)$ is stably finite, $\Cmax(E)$ is not, and it has no
+faithful tracial state (Remark~\ref{rem:maxinfinite}).
 
 \subsection*{A sofic example}
 
@@ -1625,10 +1626,11 @@ $\nu_n$ in place of the dimension.
 \begin{theorem}[one-sided conjugation at an arbitrary weight]
 \label{thm:transport-variants}
 Let $\Gamma$, $H$, $\iota$, and $s$ be as in
-Theorem~\ref{thm:kazhdan-transport}, let $(U_n)$ be as there, let
-$(\nu_n)$ be nonnegative weights, and suppose there is $C$ with
-$\operatorname{Tr}(x_n^*x_n)\le C\,\nu_n$ for all $n$, and that for
-every $\gamma\in\Gamma$ and every $\varepsilon>0$, eventually
+Theorem~\ref{thm:kazhdan-transport}, let $U_n\colon H\to\U(d_n)$ be an
+operator-norm asymptotic representation, let $(\nu_n)$ be nonnegative
+weights, and let $x_n\in M_{d_n}(\C)$ be matrices for which there is
+$C$ with $\operatorname{Tr}(x_n^*x_n)\le C\,\nu_n$ for all $n$ and,
+for every $\gamma\in\Gamma$ and every $\varepsilon>0$, eventually
 \[
  \operatorname{Tr}\,\bigl|x_n-U_n(\iota(\gamma))\,x_n\,
    U_n(\iota(\gamma))^*\bigr|^2\le\varepsilon\,\nu_n.
@@ -1664,22 +1666,22 @@ there.
 Each result below combines $2$-norm triviality of a subgroup of $H$
 with a corner on which that subgroup stays a positive $2$-norm
 distance from the identity, so the subgroup lies in the kernel of
-every homomorphism $H\to\U(\mathcal Q)$.  The corner comes from a
-different object in each:
+every homomorphism $H\to\U(\mathcal Q)$:
 \begin{itemize}
 \item Theorem~\ref{thm:criterion}: a \emph{finite} normal subgroup of
  $N_{\mathrm{conj}}$, the corner being the complement of its rounded
  averaging operator --- the case of the central involution of
  Section~\ref{sec:sign};
-\item Theorem~\ref{thm:normal-kazhdan}: a normal
- property-\textup{(T)} subgroup of $N_{\mathrm{conj}}$, which may be
- infinite, noncentral and torsion-free, the corner being a spectral
- projection of a Kazhdan average;
-\item Theorem~\ref{thm:abstract-nk}: a version that assumes $2$-norm
- triviality directly, without a conjugation datum;
-\item Corollary~\ref{cor:intrinsic-nk}: that statement applied to the
- subgroup $\mathfrak D(H,L)$ of \eqref{eq:intrinsicdefect}, which
- depends on $L$ alone and not on a choice of $t$ and $c$.
+\item Theorem~\ref{thm:abstract-nk}: a normal property-\textup{(T)}
+ subgroup, possibly infinite, noncentral and torsion-free, inside any
+ subgroup of $2$-norm trivial elements --- no conjugation datum
+ enters, and the corner is a spectral projection of a Kazhdan
+ average;
+\item Theorem~\ref{thm:normal-kazhdan}: that theorem at
+ $D=N_{\mathrm{conj}}$;
+\item Corollary~\ref{cor:intrinsic-nk}: that theorem at the subgroup
+ $\mathfrak D(H,L)$ of \eqref{eq:intrinsicdefect}, which depends on
+ $L$ alone and not on a choice of $t$ and $c$.
 \end{itemize}
 
 \begin{definition}[Kazhdan conjugation datum]\label{def:pattern}

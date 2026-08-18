@@ -536,7 +536,7 @@
       "id": "thm:transport-variants",
       "environment": "theorem",
       "title": "one-sided conjugation at an arbitrary weight",
-      "statement_sha256": "e22b668523e7be38769d8e5c955d3c309c80104d3081ddd4f79775c8bce390e4",
+      "statement_sha256": "7a79775ae5cf5bc942191dab5e71b1ef0ff81ab1de25d6e62264625affe4cde0",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [],
