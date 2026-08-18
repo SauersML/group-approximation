@@ -13,6 +13,7 @@ import GroupApproximation.Sofic.LiteralBaseP13PropertyTBridge
 import GroupApproximation.Sofic.LiteralNonMFLinearWitness
 import GroupApproximation.Sofic.MFRepresentationVariants
 import GroupApproximation.Sofic.ManuscriptCentralSignCriterion
+import GroupApproximation.Sofic.PrintedCentralSignCriterion
 import GroupApproximation.Sofic.PrintedNegativeCornerKill
 
 /-!
@@ -245,7 +246,16 @@ closed proposition `ManuscriptCentralSignCriterion` is instantiated at
 `mark_eq_compressionDefect_sq` and `mark ≠ 1` by the Clifford witness.  Both
 mathematical clauses of Theorem A are read off from its conclusion. -/
 
-/-- **The central-sign criterion at the literal datum.** -/
+/-- **The central-sign criterion at the literal datum.**
+
+**By the printed route.**  The criterion instantiated here is
+`PrintedCentralSign.manuscriptCentralSignCriterionPrinted`, whose one transport
+step is `\ref{thm:kazhdan-transport}` by the printed §3 ultraproduct proof.  It
+used to be `KazhdanCompressionCore.manuscriptCentralSignCriterion`, which
+inhabits the *same* closed proposition through the finite-stage corner; that
+route is unchanged and still proves the same statement.  What is instantiated,
+and at which data, is untouched -- the swap is the choice of inhabitant and
+nothing else, which is why the rows that grade this application do not move. -/
 theorem literal_centralSignCriterion :
     (∀ (d : ℕ → ℕ) (hd : ∀ n, 0 < d n),
       letI : ∀ n, Nonempty (naturalFiniteModel (d n)) :=
@@ -256,7 +266,7 @@ theorem literal_centralSignCriterion :
       ¬ IsCDEOperatorMF MarkedGroup :=
   -- Two universe levels: the ambient group's, then the property-`(T)`
   -- Hilbert-space universe.  Both are `0` for the literal marked group.
-  GroupApproximation.KazhdanCompressionCore.manuscriptCentralSignCriterion.{0, 0}
+  GroupApproximation.PrintedCentralSign.manuscriptCentralSignCriterionPrinted.{0, 0}
     (Γ := Base) (E := MarkedGroup)
     LiteralBaseP13PropertyTBridge.manuscriptBaseHasKazhdanPropertyT.2
     baseMap stable lamp inclusionData.compresses lamp_commutes_base
