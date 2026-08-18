@@ -1140,6 +1140,8 @@ import GroupApproximation.Analysis.LancePositiveDefinite
 import GroupApproximation.Analysis.LanceReduction
 import GroupApproximation.Analysis.CStarTakesakiDense
 import GroupApproximation.Analysis.CStarTakesakiMinLe
+import GroupApproximation.Analysis.CStarTakesakiCyclic
+import GroupApproximation.Analysis.CStarTakesakiIdentification
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
