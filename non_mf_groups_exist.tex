@@ -138,9 +138,7 @@
   \ifx\coderepository\empty\else
     \thanks{The numbered statements of this paper are machine-checked in an
       accompanying Lean~4 development, at
-      \href{\coderepository}{\nolinkurl{\coderepositoryname}}, which records
-      for each one the declaration that proves it and any input taken from
-      the literature.}%
+      \href{\coderepository}{\nolinkurl{\coderepositoryname}}.}%
   \fi
 \fi
 \subjclass[2020]{Primary 46L05; Secondary 20F05, 22D25, 20E26}
@@ -164,8 +162,11 @@ with a nontrivial central involution $w$ such that $\Theta(w)=1$ for
 every homomorphism $\Theta$ to $\U(\mathcal Q)$.  In every
 operator-norm asymptotic representation, one-sided conjugation
 preserves the asymptotic commutant of $\Gamma$ in normalized
-Hilbert--Schmidt norm.  If $\Theta(w)\ne1$, compressing to the
-$(-1)$-spectral projection of $\Theta(w)$ yields a contradiction.
+Hilbert--Schmidt norm, and $w$ is the square of a commutator $u$ that
+this invariance forces to converge to $1$.  If $\Theta(w)\ne1$,
+compressing to the $(-1)$-spectral projection of $\Theta(w)$ yields a
+contradiction: on that corner the image of $w$ converges to $-1$,
+while the image of $u$ converges to $1$ and $w=u^2$.
 Taking $\Gamma=\mathbb Z^3\rtimes\SL_3(\mathbb Z)$ and
 $\alpha(v,A)=(2v,A)$ gives the eight-generator, forty-one-relator
 group $E$.
@@ -175,9 +176,7 @@ hyperlinearity implies the MF property.  Its reduced $C^*$-algebra
 $\Cred(E)$ is separable, exact, and stably finite but not MF\@.  The
 canonical trace on $\Cmax(E)$ is hyperlinear but not MF, giving a
 negative answer to a question of Shulman.  The
-quotient $E/\langle w\rangle$ is also non-MF, so $\{1,w\}$ is properly
-contained in the intersection of the kernels of all homomorphisms
-$E\to\U(\mathcal Q)$.
+quotient $E/\langle w\rangle$ is also non-MF\@.
 
 \end{abstract}
 
@@ -808,13 +807,9 @@ On the corner $q_nM_{d_n}(\C)q_n$ the operator norm is the restriction
 of the ambient one, so the compressed and polar-corrected maps remain
 operator-norm asymptotically multiplicative, while the trace is the
 corner's own normalized trace $\tr_{r_n}$, not the restriction of
-$\tr_{d_n}$.  Hence $\lVert1-(-1)\rVert_{2,\tr_{r_n}}=2$ for every
-value of $r_n/d_n$.  Renormalizing the compressed corner is what
-protects the normalized Hilbert--Schmidt estimate from identity-block
-amplification: padding by an identity block leaves operator-norm
-defects and separations unchanged but can make normalized
-Hilbert--Schmidt distances arbitrarily small
-(Section~\ref{sec:limits}).
+$\tr_{d_n}$.  Hence $\lVert1-(-1)\rVert_{2,\tr_{r_n}}=2$ whatever the
+ratio $r_n/d_n$; Section~\ref{sec:limits} records why this
+renormalization is necessary.
 
 \begin{theorem}[central involution obstruction]\label{thm:sign-criterion}
 Let $H$ and $\Gamma$ be countable groups, let $\Gamma$ have
@@ -1057,8 +1052,9 @@ and~\textup{(C)} give, respectively,
 \end{definition}
 
 The two relations imply that $d=tct^{-1}$ commutes with
-$t\iota(\mathcal B)t^{-1}$.  They impose no relation requiring $d$ to
-commute with $\iota(v_1)$, which lies outside that conjugate subgroup;
+$t\iota(\mathcal B)t^{-1}$.  The element $\iota(v_1)$ lies outside
+that conjugate subgroup, and the commutator $[\,d,\iota(v_1)]$ is
+nontrivial (Proposition~\ref{prop:witness} and Lemma~\ref{lem:square});
 Figure~\ref{fig:compression-pattern} depicts this configuration.
 
 A Tietze reduction removes two generators and nine relators
@@ -1089,8 +1085,8 @@ A Tietze reduction removes two generators and nine relators
   with it.  A line from d leads to a box displaying the distinguished word
   w equals the commutator of d with v1 d v1 inverse, which equals the
   square of the commutator of d with v1 because d squares to one, and
-  stating that the defining relations do not require the commutator of
-  d with v1 to be trivial.}}%
+  noting that this commutator is proved nontrivial later in the
+  paper.}}%
 \tagmcbegin{}%
 \begin{tikzpicture}[x=1cm,y=1cm,font=\small]
   \draw[rounded corners=2.5mm,line width=.4pt] (0,0) rectangle (6.5,3.1);
@@ -1112,18 +1108,17 @@ A Tietze reduction removes two generators and nine relators
     {distinguished word\\[3pt]
      $w=[\,d,\ \iota(v_1)\,d\,\iota(v_1)^{-1}]$\\[3pt]
      {\footnotesize $=[\,d,\iota(v_1)]^{\,2}$ since $d^2=1$;\\
-      no relation forces\\ $[\,d,\iota(v_1)]=1$}};
+      nontrivial by\\ Proposition~\ref{prop:witness}}};
   \draw[figarr] (d) -| (mark);
 \end{tikzpicture}%
 \tagmcend\tagstructend
 \caption{The one-sided conjugation configuration.  The relations of
 \eqref{eq:E} give $t\iota(\mathcal B)t^{-1}\subseteq\iota(\mathcal B)$
 and $[c,\iota(\mathcal B)]=1$, hence
-$[\,d,\,t\iota(\mathcal B)t^{-1}]=1$ for $d=tct^{-1}$; the commutator
-$[\,d,\iota(v_1)]$ remains unconstrained, and
+$[\,d,\,t\iota(\mathcal B)t^{-1}]=1$ for $d=tct^{-1}$, and
 $w=[\,d,\,\iota(v_1)d\iota(v_1)^{-1}]=[\,d,\iota(v_1)]^2$.
-Section~\ref{sec:witness} proves that the inclusion is strict and that
-$\iota(v_1)$ lies outside the conjugate subgroup.}
+Section~\ref{sec:witness} proves that the inclusion is strict, that
+$\iota(v_1)$ lies outside the conjugate subgroup, and that $w\ne1$.}
 \label{fig:compression-pattern}
 \end{figure}
 
@@ -1393,12 +1388,6 @@ that $E$ is MF, contradicting Theorem~\ref{thm:A}\@.  Separability of
 $\Cmax(E)$ follows from countability of $E$.
 \end{proof}
 
-\noindent
-The proof highlights the distinction between the two ideals: sofic
-permutation models become exact modulo $2$-norm-null sequences, whereas
-an MF model of the canonical trace would become exact modulo
-operator-norm-null sequences and hence yield an MF embedding of $E$.
-
 \clearpage
 \begingroup
   \centering
@@ -1421,7 +1410,7 @@ The base $\mathcal B$ of \eqref{eq:gamma-presentation} is the affine
 group $\mathbb Z^3\rtimes\SL_3(\mathbb Z)$, for which
 property~\textup{(T)} is classical \cite[Example~1.7.4(i)]{BHV}.
 
-\paragraph{Six generators suffice.}
+\paragraph{A six-generator presentation.}
 The group $E$ is generated by the six elements $v_1,x,y,z,t,c$, and has
 a Tietze-equivalent presentation on them with thirty-two relators.
 \leanverified{Sofic/LiteralSixGenerator}{GroupApproximation.LiteralSixGenerator.literal_sixGenerated_finitelyPresented_nonMF}
@@ -1434,8 +1423,9 @@ follow from those for $v_1$ together with $[t,x]=1$ and $x^3=1$.
 Deleting these nine leaves thirty-two relators on $v_1,x,y,z,t,c$.
 
 After these Tietze transformations, the remaining relations still
-imply $[\,d,\,t\iota(\mathcal B)t^{-1}]=1$ for $d=tct^{-1}$ and impose
-no relation on $[\,d,\ \iota(v_1)\,d\,\iota(v_1)^{-1}]$.
+imply $[\,d,\,t\iota(\mathcal B)t^{-1}]=1$ for $d=tct^{-1}$, and the
+distinguished word $[\,d,\ \iota(v_1)\,d\,\iota(v_1)^{-1}]$, computed
+in the same group, is unchanged.
 
 \subsection{Property~\textup{(T)} of the base}
 
