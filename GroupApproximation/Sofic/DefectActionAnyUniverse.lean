@@ -1,5 +1,6 @@
 import GroupApproximation.Sofic.ConjugationDatumAnyUniverse
 import GroupApproximation.Sofic.KazhdanAsymptoticCommutant
+import GroupApproximation.Sofic.LiteralRouteTransport
 
 /-!
 # `cor:generaltransport` with the Kazhdan source in any universe
@@ -124,7 +125,14 @@ theorem compressionGroup_transport_both_anyUniverse :
   have hx₀ : IsAsymptoticCommutantOf B (iota.comp e.symm.toMonoidHom) x := by
     intro γ₀
     exact hx (e.symm γ₀)
-  obtain ⟨h1, h2⟩ := compressionGroup_transport_both B
+  -- `_literal`, not the finite-stage engine: `cor:generaltransport` prints
+  -- "forward transport for a one-sided conjugator `s` is Theorem 3.1", so the
+  -- corollary has to traverse the norm-ultraproduct proof of
+  -- `\ref{thm:kazhdan-transport}`, which is what
+  -- `compressionGroup_transport_both_literal` does.  That is ledger row
+  -- `ID.05`; the universe generality below is `ID.04`, and the two are only
+  -- closed together if one declaration carries both.
+  obtain ⟨h1, h2⟩ := compressionGroup_transport_both_literal B
     (iota.comp e.symm.toMonoidHom) hkazhdan₀ hg₀ x hbound hx₀
   -- at `Type 0` the two commutant predicates are the same definition, so the
   -- retyping below is a defeq check and not a translation

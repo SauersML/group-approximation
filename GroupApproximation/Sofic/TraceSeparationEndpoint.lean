@@ -58,6 +58,52 @@ theorem markedGroup_separable_canonicalTrace_hyperlinear_not_isMFTrace :
 
 end LiteralTraceConsequence
 
+universe u
+
+/-- **The printed consequence of `thm:trace`, as a closed proposition.**
+
+> Consequently, there is a separable unital C*-algebra carrying a hyperlinear
+> non-MF trace.
+
+The theorem prints its concrete witness *and* this sentence, and the sentence
+is what answers Shulman's question: the question is asked about C*-algebras in
+general, not about `C*(E)`.  A concrete conjunction implies it but is not it,
+so the existential is stated here and discharged by the witness below.
+Unitality is intrinsic to `CStarAlgebra`.
+
+Universe-polymorphic, and instantiated at `1` below because that is where
+`MaximalGroupCStar` lands: the printed sentence names no universe, and pinning
+one in the proposition would be an artifact of the witness rather than a
+reading of the text. -/
+def SeparableHyperlinearNonMFTrace : Prop :=
+  ∃ (A : Type u) (_inst : CStarAlgebra A) (τ : A → ℂ),
+    TopologicalSpace.SeparableSpace A ∧
+      ShulmanTrace.IsHyperlinearTrace τ ∧ ¬ ShulmanTrace.IsMFTrace τ
+
+/-- **`thm:trace`, the whole printed statement.**  The canonical trace of
+`C*(E)` is hyperlinear and not MF, `C*(E)` is separable, and consequently some
+separable unital C*-algebra carries a hyperlinear non-MF trace — which is the
+negative answer to Shulman's question.  The badged declaration is this one,
+not the concrete conjunction alone: the conjunction implies the consequence
+but is a different proposition, and the consequence is the half the literature
+asks about. -/
+theorem manuscriptTraceSeparation :
+    (TopologicalSpace.SeparableSpace
+        (MaximalGroupCStar LiteralNonMFPresentation.MarkedGroup) ∧
+      ShulmanTrace.IsHyperlinearTrace
+        (fun a : MaximalGroupCStar LiteralNonMFPresentation.MarkedGroup ↦
+          canonicalMaximalTrace LiteralNonMFPresentation.MarkedGroup a) ∧
+      ¬ ShulmanTrace.IsMFTrace
+        (fun a : MaximalGroupCStar LiteralNonMFPresentation.MarkedGroup ↦
+          canonicalMaximalTrace LiteralNonMFPresentation.MarkedGroup a)) ∧
+    SeparableHyperlinearNonMFTrace.{1} :=
+  ⟨LiteralTraceConsequence.markedGroup_separable_canonicalTrace_hyperlinear_not_isMFTrace,
+    ⟨MaximalGroupCStar LiteralNonMFPresentation.MarkedGroup, inferInstance,
+      fun a ↦ canonicalMaximalTrace LiteralNonMFPresentation.MarkedGroup a,
+      LiteralTraceConsequence.markedGroup_separable_canonicalTrace_hyperlinear_not_isMFTrace.1,
+      LiteralTraceConsequence.markedGroup_separable_canonicalTrace_hyperlinear_not_isMFTrace.2.1,
+      LiteralTraceConsequence.markedGroup_separable_canonicalTrace_hyperlinear_not_isMFTrace.2.2⟩⟩
+
 /-- The universal sentence of `lem:mftrace-group`, as a closed proposition:
 for every countable group, an MF canonical trace on the full group C-star
 algebra makes the group operator MF\@.  The audit's zero-input gate requires

@@ -66,7 +66,7 @@ defined coefficientwise, by inverting the domain and conjugating the values, so
 that `coeff_star` below is definitional. -/
 noncomputable instance instStar : Star (MonoidAlgebra R G) where
   star x :=
-    .ofCoeff (Finsupp.mapRange star star_zero (x.coeff.equivMapDomain (Equiv.inv G)))
+    .ofCoeff (Finsupp.mapRange star (star_zero R) (x.coeff.equivMapDomain (Equiv.inv G)))
 
 /-- The defining property: the coefficient of `star x` at `g` is the conjugate
 of the coefficient of `x` at `g⁻¹`. -/

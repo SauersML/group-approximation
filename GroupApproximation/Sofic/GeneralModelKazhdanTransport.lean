@@ -62,7 +62,7 @@ noncomputable def naturalizeSeq (Y : ℕ → FiniteModel)
     Matrix (naturalizedModel Y n) (naturalizedModel Y n) ℂ :=
   naturalize Y n (x n)
 
-theorem naturalizeSeq_apply (Y : ℕ → FiniteModel)
+@[simp] theorem naturalizeSeq_apply (Y : ℕ → FiniteModel)
     (x : ∀ n, Matrix (Y n) (Y n) ℂ) (n : ℕ) :
     naturalizeSeq Y x n = naturalize Y n (x n) := rfl
 
@@ -218,8 +218,20 @@ theorem generalModelKazhdanTransport
   simp only [naturalize_commutator Y U n (iota γ)
     ((U n s : Matrix (Y n) (Y n) ℂ) * x n *
       (U n s : Matrix (Y n) (Y n) ℂ)ᴴ)] at hstep
-  simp only [hsNormSq_naturalize] at hstep
-  exact hstep
+  -- `hstep` spells the index as `naturalFiniteModel (Fintype.card (Y n))`,
+  -- which is `naturalizedModel Y n` by definition but not syntactically, so
+  -- `hsNormSq_naturalize` cannot match it.  Restate at the spelling the lemma
+  -- is stated in -- the two are definitionally equal, so this is `hstep`
+  -- itself -- and only then rewrite.
+  have hstep' : Real.sqrt (hsNormSq (naturalizedModel Y n)
+      (naturalize Y n ((U n s : Matrix (Y n) (Y n) ℂ) * x n *
+          (U n s : Matrix (Y n) (Y n) ℂ)ᴴ *
+            (U n (iota γ) : Matrix (Y n) (Y n) ℂ) -
+          (U n (iota γ) : Matrix (Y n) (Y n) ℂ) *
+            ((U n s : Matrix (Y n) (Y n) ℂ) * x n *
+              (U n s : Matrix (Y n) (Y n) ℂ)ᴴ)))) ≤ ε := hstep
+  rw [hsNormSq_naturalize] at hstep'
+  exact hstep'
 
 end GeneralModelTransport
 end GroupApproximation

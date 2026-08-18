@@ -63,7 +63,7 @@ noncomputable abbrev base : α := Classical.choose hσ
 
 /-- Every element of `⟨σ⟩` is carried to the point it sends the base point to.
 This is `IsCycle.zpowersEquivSupport` read off its definition. -/
-theorem coe_zpowersEquivSupport (τ : Subgroup.zpowers σ) :
+@[simp] theorem coe_zpowersEquivSupport (τ : Subgroup.zpowers σ) :
     ((hσ.zpowersEquivSupport τ : σ.support) : α)
       = (τ : Equiv.Perm α) (base hσ) := rfl
 
@@ -129,9 +129,11 @@ theorem power_rev {y : α} (hy : y ∈ σ.support) :
 /-- **The reversal is an involution.** -/
 theorem rev_rev (y : α) : rev hσ (rev hσ y) = y := by
   by_cases hy : y ∈ σ.support
-  · have hinv : ((power hσ ⟨y, hy⟩)⁻¹)⁻¹ = power hσ ⟨y, hy⟩ :=
-      inv_inv (power hσ ⟨y, hy⟩)
-    rw [rev_apply_of_mem hσ (rev_mem_support hσ hy), power_rev hσ hy, hinv]
+  · -- `rev_apply_of_mem` puts the inverse in `Equiv.Perm α`, *outside* the
+    -- coercion, so the subgroup-level `inv_inv` cannot match.  Push the
+    -- coercion through the inverse first, then cancel in `Equiv.Perm α`.
+    rw [rev_apply_of_mem hσ (rev_mem_support hσ hy), power_rev hσ hy,
+      Subgroup.coe_inv, inv_inv]
     exact power_apply_base hσ ⟨y, hy⟩
   · rw [rev_apply_of_not_mem hσ hy, rev_apply_of_not_mem hσ hy]
 

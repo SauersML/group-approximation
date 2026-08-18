@@ -80,8 +80,7 @@ theorem transport_literal
   -- so any instantiation is available.
   have hT : HasKazhdanPropertyTComplex.{0, 0} Γ :=
     hasKazhdanPropertyT_iff_textbook.mp C.kazhdan
-  have hY : ∀ n, 0 < Fintype.card (B.model n) := fun n ↦
-    Fintype.card_pos_iff.mpr (B.modelNonempty n)
+  have hY : ∀ n, 0 < Fintype.card (B.model n) := B.modelNonempty
   -- The hypothesis, moved from the conjugation defect onto the commutator.
   have hxgen : ∀ γ : Γ,
       GeneralHSCommutatorVanishing B.model B.map x (C.iota γ) := by

@@ -51,10 +51,13 @@ which is what `IsCStarSeminorm` and `WithCStarNorm` require of it. -/
 noncomputable instance quotientStarModule [StarModule ℂ A] :
     StarModule ℂ (A ⧸ I) where
   star_smul c x := by
-    induction x using QuotientAddGroup.induction_on with
-    | _ a =>
-      rw [← quotient_mk_smul I c a, quotient_star_mk, quotient_star_mk,
-        StarModule.star_smul c a, quotient_mk_smul]
+    -- `QuotientAddGroup.induction_on` produces a representative in
+    -- `A ⧸ Submodule.toAddSubgroup I`, which is only *definitionally* `A ⧸ I`;
+    -- every subsequent `rw` then fails as not type-correct at `instances`
+    -- transparency.  Take the representative through `Ideal.Quotient` instead.
+    obtain ⟨a, rfl⟩ := Ideal.Quotient.mk_surjective x
+    rw [← quotient_mk_smul I c a, quotient_star_mk, quotient_star_mk,
+      StarModule.star_smul c a, quotient_mk_smul]
 
 /-- **The universal property of the quotient, for ⋆-algebra homomorphisms.**
 A ⋆-homomorphism killing `I` factors through `A ⧸ I`, still as a
@@ -75,10 +78,9 @@ noncomputable def quotientStarLift {B : Type v} [Ring B] [StarRing B]
     rw [← Ideal.Quotient.mk_algebraMap ℂ I r, Ideal.Quotient.lift_mk]
     exact f.commutes r
   map_star' x := by
-    induction x using QuotientAddGroup.induction_on with
-    | _ a =>
-      rw [quotient_star_mk, Ideal.Quotient.lift_mk, Ideal.Quotient.lift_mk]
-      exact StarHomClass.map_star f a
+    obtain ⟨a, rfl⟩ := Ideal.Quotient.mk_surjective x
+    rw [quotient_star_mk, Ideal.Quotient.lift_mk, Ideal.Quotient.lift_mk]
+    exact StarHomClass.map_star f a
 
 @[simp] theorem quotientStarLift_mk {B : Type v} [Ring B] [StarRing B]
     [Algebra ℂ B] (f : A →⋆ₐ[ℂ] B) (hf : ∀ a : A, a ∈ I → f a = 0) (a : A) :

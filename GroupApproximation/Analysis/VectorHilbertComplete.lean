@@ -51,7 +51,7 @@ theorem vecMass_zero : vecMass (0 : Z → ℂ) = 0 := by
   unfold vecMass
   simp
 
-theorem evec_ofLp (v : EuclideanSpace ℂ Z) : evec (WithLp.ofLp v) = v := rfl
+@[simp] theorem evec_ofLp (v : EuclideanSpace ℂ Z) : evec (WithLp.ofLp v) = v := rfl
 
 theorem vecMass_ofLp (v : EuclideanSpace ℂ Z) :
     vecMass (WithLp.ofLp v) = ‖v‖ ^ 2 := by
@@ -74,9 +74,9 @@ section Representatives
 
 variable (Y : ℕ → FiniteModel) (ω : Ultrafilter ℕ)
 
-theorem mkV_zero : mkV Y ω 0 = 0 := rfl
+@[simp] theorem mkV_zero : mkV Y ω 0 = 0 := rfl
 
-theorem mkV_add (ξ η : vecBounded Y) :
+@[simp] theorem mkV_add (ξ η : vecBounded Y) :
     mkV Y ω (ξ + η) = mkV Y ω ξ + mkV Y ω η := rfl
 
 theorem mkV_sum (s : Finset ℕ) (f : ℕ → vecBounded Y) :
@@ -206,7 +206,7 @@ theorem exists_tendsto_sum_of_summable_norm (u : ℕ → VecOmega Y ω)
           = (∑ k ∈ Finset.range N, (ξ k : VecFam Y) n)
             + WithLp.ofLp (∑' i, evec ((ξ (i + N) : VecFam Y) n)) := by
       intro n
-      rw [← (hsummable n).sum_add_tsum_nat_add N, ofLp_add, ofLp_sum_evec]
+      rw [← (hsummable n).sum_add_tsum_nat_add N, WithLp.ofLp_add, ofLp_sum_evec]
     refine Subtype.ext (funext fun n ↦ ?_)
     rw [Submodule.coe_add, Pi.add_apply,
       AddSubmonoidClass.coe_finsetSum, Finset.sum_apply]

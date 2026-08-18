@@ -1042,6 +1042,43 @@ import GroupApproximation.Analysis.TracialQuotientCStarIdentity
 import GroupApproximation.Analysis.SoficHyperlinearBridge
 import GroupApproximation.Sofic.TraceSeparationEndpoint
 
+-- Modules that stood outside this root's import closure and were therefore
+-- never compiled by an ordinary `lake build`: `scripts/check.py --list-orphans`
+-- named twenty-eight of them, and ten did not elaborate at all.  They carry the
+-- literal-route transport, the coordinate Hilbert ultraproduct `H_ω`, the
+-- C*-completion chain, general polar lifting, stably finite amplification and
+-- the unconditional simple sofic envelope -- the very files the manuscript
+-- correspondence needs -- so an unbuilt module here reads as coverage that does
+-- not exist.  They are wired in below.
+import GroupApproximation.Algebra.AlternatingPairGeneration
+import GroupApproximation.Algebra.GroupRingStar
+import GroupApproximation.Algebra.PermutationTwoInvolutions
+import GroupApproximation.Algebra.InvolutionBlocks
+import GroupApproximation.Algebra.InvolutionBlockSplit
+import GroupApproximation.Algebra.InvolutionBlockAssembly
+import GroupApproximation.Analysis.CStarCompletion
+import GroupApproximation.Analysis.CStarCompletionCoe
+import GroupApproximation.Analysis.CStarCompletionHom
+import GroupApproximation.Analysis.CStarSeminormQuotient
+import GroupApproximation.Analysis.CStarNormBundled
+import GroupApproximation.Analysis.CStarQuotientHom
+import GroupApproximation.Analysis.CStarNormFromRepresentation
+import GroupApproximation.Analysis.CollapseUltraproductRepresentation
+import GroupApproximation.Analysis.OmegaActionLinear
+import GroupApproximation.Analysis.OmegaIsometryRepresentation
+import GroupApproximation.Analysis.OmegaConjQCompatibility
+import GroupApproximation.Analysis.OmegaFiniteComparison
+import GroupApproximation.Analysis.OmegaFixRange
+import GroupApproximation.Analysis.PolarLiftingGeneralCStar
+import GroupApproximation.Analysis.StablyFiniteAmplification
+import GroupApproximation.Analysis.VectorHilbertUltraproduct
+import GroupApproximation.Analysis.VectorHilbertComplete
+import GroupApproximation.Monsters.NeumannSimpleSocle
+import GroupApproximation.Sofic.TransportShapeBridges
+import GroupApproximation.Sofic.GeneralModelKazhdanTransport
+import GroupApproximation.Sofic.LiteralRouteTransport
+import GroupApproximation.Sofic.SimpleSoficEnvelopeUnconditional
+
 /-!
 # An unconditional construction of a finitely presented nonsofic group
 

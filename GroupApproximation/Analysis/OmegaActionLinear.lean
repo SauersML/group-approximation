@@ -59,7 +59,12 @@ variable (Y : ℕ → FiniteModel) [∀ n, Nonempty (Y n)] (w : ℕ → ℝ)
 
 /-- **Scalars pass through `[·]_ω`.**  The `ω`-corona is an ideal quotient of a
 complex algebra, and its algebra map is the quotient map composed with the
-algebra map upstairs; this is the `ω`-analogue of `coronaMk_smul`. -/
+algebra map upstairs; this is the `ω`-analogue of `coronaMk_smul`.
+
+`RingHom.map_mul` is spelled out rather than `map_mul`: with the homomorphism
+left to a metavariable, resolving `MulHomClass` for the quotient map runs past
+the default `synthInstance` budget, because `BoundedMatrixSequence` is an `lp`
+bundle over the matrix algebras and its instance tower is deep. -/
 theorem omegaMk_smul (c : ℂ) (a : BoundedMatrixSequence (DblIdx Y)) :
     omegaMk Y ω (c • a) = c • omegaMk Y ω a := by
   have hmk : ∀ b : BoundedMatrixSequence (DblIdx Y),
@@ -67,10 +72,15 @@ theorem omegaMk_smul (c : ℂ) (a : BoundedMatrixSequence (DblIdx Y)) :
         = Ideal.Quotient.mk
             (nullMatrixSequenceIdeal (DblIdx Y) (ω : Filter ℕ)) b :=
     fun _ ↦ rfl
-  rw [hmk, hmk, Algebra.smul_def, Algebra.smul_def, map_mul]
-  congr 1
-  exact Ideal.Quotient.mk_algebraMap ℂ
-    (nullMatrixSequenceIdeal (DblIdx Y) (ω : Filter ℕ)) c
+  -- Name the ring hom `map_mul` is about: left to a metavariable, the
+  -- `MulHomClass` search for the quotient map runs past its heartbeat budget.
+  rw [hmk, hmk, Algebra.smul_def, Algebra.smul_def,
+    RingHom.map_mul (Ideal.Quotient.mk (nullMatrixSequenceIdeal (DblIdx Y) (ω : Filter ℕ))),
+    Ideal.Quotient.mk_algebraMap ℂ
+      (nullMatrixSequenceIdeal (DblIdx Y) (ω : Filter ℕ)) c]
+  -- All that is left is `OmegaAdjointCorona Y ω` versus the quotient it is
+  -- defined to be, on the algebra map's target.
+  rfl
 
 /-- **`omegaAct` is `ℂ`-linear in the algebra argument.**  This is the field
 `Fix ⊆ ran P` consumes, through the resolvent factorisation of `1 - P`. -/

@@ -130,10 +130,17 @@ theorem rep_strictRep_eq_conjRep (Θ : H →* (∀ n, Matrix.unitaryGroup (Y n) 
       = CollapseUltraproductRepresentation.conjRep Y w ω hw Θ := by
   refine MonoidHom.ext fun g ↦ ?_
   refine LinearIsometryEquiv.ext fun x ↦ ?_
-  show omegaAct Y w ω hw
+  -- Spell the model as `(strictRep Y Θ).model`, not as `Y`: the two are equal
+  -- by `rfl` and the ambient `Nonempty` instances are propositionally
+  -- irrelevant, so the goal is the same either way -- but `rw` matches
+  -- syntactically and only the first spelling is the head of
+  -- `omegaAct_piOmega_eq_conjQ`.
+  show omegaAct (strictRep Y Θ).model w ω hw
       (OmegaAlmostRepresentation.piOmega (strictRep Y Θ) ω g) x
     = conjQ Y w ω (fun n ↦ Θ g n) x
   rw [omegaAct_piOmega_eq_conjQ (strictRep Y Θ) w ω hw g]
+  -- `strictRep_model` and `strictRep_map` are both `rfl`.
+  rfl
 
 end Strict
 

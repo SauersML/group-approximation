@@ -220,7 +220,6 @@ The element $w$ is central and satisfies $w^2=1$.
 In particular $E$ is not MF, and neither $\Cmax(E)$ nor $\Cred(E)$ is an
 MF $C^*$-algebra.
 \leanverified{Sofic/LiteralNonMFEndpoint}{GroupApproximation.LiteralNonMFEndpoint.manuscriptTheoremA}
-\leanverified{Sofic/LiteralTietzePresentation}{GroupApproximation.LiteralTietzePresentation.exists_sixGenerator_thirtyTwo_presentation}
 \end{mainthm}
 
 \subsection*{Outline of the proof}
@@ -795,7 +794,7 @@ Put $d=tct^{-1}$ and $u=[d,\iota(a)]$ for some $a\in\Gamma$.
 If $w:=u^2$ is a nontrivial central involution of $H$, then every
 homomorphism $H\to\U(\mathcal Q)$ maps
 $w$ to the identity, and $H$ is not MF.
-\leanverified{Sofic/KazhdanSignCriterion}{GroupApproximation.KazhdanCompressionCore.manuscriptCentralSignCriterion}
+\leanverified{Sofic/CentralSignAnyUniverse}{GroupApproximation.KazhdanCompressionCore.manuscriptCentralSignCriterion_anyUniverse}
 \end{theorem}
 
 \begin{proof}
@@ -1323,7 +1322,7 @@ MF\@.  Consequently, there is a separable unital $C^*$-algebra carrying
 a hyperlinear non-MF trace.  In particular, this gives a negative
 answer to Shulman's question whether every hyperlinear trace is MF
 \cite{ShulmanTraces}.
-\leanverified{Sofic/TraceSeparationEndpoint}{GroupApproximation.LiteralTraceConsequence.markedGroup_separable_canonicalTrace_hyperlinear_not_isMFTrace}
+\leanverified{Sofic/TraceSeparationEndpoint}{GroupApproximation.manuscriptTraceSeparation}
 \end{mainthm}
 
 \begin{proof}
@@ -1706,7 +1705,7 @@ Theorem~\ref{thm:transport-variants}(2) therefore applies to every
 pair of tensor powers: at each fixed tensor type and each weight, a
 sequence asymptotically invariant for the conjugate copy of the
 Kazhdan image is asymptotically invariant for the whole of it.
-\leanverified{Sofic/TensorPowerTransport}{GroupApproximation.TensorPowerTransport.manuscriptFixedTensorTransport}
+\leanverified{Sofic/TensorPowerAnyUniverse}{GroupApproximation.TensorPowerTransport.manuscriptFixedTensorTransport_anyUniverse}
 
 \section{Obstructions from a one-sided conjugation datum}\label{sec:conj}
 
@@ -1744,7 +1743,7 @@ subject to
     $\lambda\in\Lambda$.
 \end{enumerate}
 Write $d:=tct^{-1}$.  The datum determines the normal closure
-\leanverified{Sofic/ManuscriptExactWrappers}{GroupApproximation.ManuscriptExactWrappers.manuscriptMarkedKazhdanPattern}
+\leanverified{Sofic/ConjugationDatumAnyUniverse}{GroupApproximation.ManuscriptExactWrappers.manuscriptMarkedKazhdanPattern_anyUniverse}
 \[
   N_{\mathrm{conj}}
   \;=\;\bigl\langle\!\bigl\langle\,
@@ -1781,7 +1780,7 @@ $(\Lambda,\iota,t,c)$, and let $F\trianglelefteq H$ be a finite
 normal subgroup with $F\subseteq N_{\mathrm{conj}}$.  Then every
 homomorphism $\Theta\colon H\to\U(\mathcal Q)$ satisfies
 $\Theta(f)=1$ for all $f\in F$.
-\leanverified{Sofic/ManuscriptExactWrappers}{GroupApproximation.ManuscriptExactWrappers.manuscriptFiniteNormalObstructionCriterion}
+\leanverified{Sofic/FiniteNormalAnyUniverse}{GroupApproximation.ManuscriptExactWrappers.manuscriptFiniteNormalObstructionCriterion_anyUniverse}
 \end{theorem}
 
 \begin{proof}
@@ -1893,7 +1892,7 @@ both preserve that asymptotic commutant.  Explicitly, both
  V_{g,n}^*x_nV_{g,n}
 \]
 satisfy the preceding convergence for every $\lambda\in\Lambda$.
-\leanverified{Sofic/KazhdanAsymptoticCommutant}{GroupApproximation.KazhdanAsymptoticCommutant.compressionGroup_transport_both}
+\leanverified{Sofic/DefectActionAnyUniverse}{GroupApproximation.KazhdanAsymptoticCommutant.compressionGroup_transport_both_anyUniverse}
 \end{corollary}
 
 \begin{proof}
@@ -1914,7 +1913,7 @@ property~\textup{(T)}, let
 $\iota\colon\Gamma\to H$ be a homomorphism, and put
 $L=\iota(\Gamma)$.  If $F\trianglelefteq H$ is finite and
 $F\le\mathfrak D(H,L)$, then every homomorphism $H\to\U(\mathcal Q)$ maps every element of $F$ to the identity.
-\leanverified{Sofic/ManuscriptKazhdanTransport}{GroupApproximation.KazhdanAsymptoticCommutant.manuscriptCompressionRadical}
+\leanverified{Sofic/DefectRadicalAnyUniverse}{GroupApproximation.KazhdanAsymptoticCommutant.manuscriptCompressionRadical_anyUniverse}
 \end{theorem}
 
 \begin{proof}
@@ -1949,7 +1948,7 @@ $(\Lambda,\iota,t,c)$, and let $K\trianglelefteq H$ be a normal
 subgroup with property~\textup{(T)} such that
 $K\subseteq N_{\mathrm{conj}}$.  Then every homomorphism $\Theta\colon H\to\U(\mathcal Q)$ satisfies $\Theta(k)=1$ for all
 $k\in K$.
-\leanverified{Sofic/ManuscriptExactWrappers}{GroupApproximation.ManuscriptExactWrappers.manuscriptNormalKazhdanObstruction}
+\leanverified{Sofic/NormalKazhdanAnyUniverse}{GroupApproximation.ManuscriptExactWrappers.manuscriptNormalKazhdanObstruction_anyUniverse}
 \end{theorem}
 
 Since finite groups have property~\textup{(T)},
@@ -2100,7 +2099,7 @@ and put $L=\iota(\Gamma)$.  If $K\trianglelefteq H$ is a normal
 subgroup with property~\textup{(T)} and $K\le\mathfrak D(H,L)$, then
 every homomorphism $H\to\U(\mathcal Q)$ maps every
 element of $K$ to the identity.
-\leanverified{Sofic/ManuscriptExactWrappers}{GroupApproximation.ManuscriptExactWrappers.manuscriptIntrinsicNormalKazhdanRadical}
+\leanverified{Sofic/NormalKazhdanAnyUniverse}{GroupApproximation.ManuscriptExactWrappers.manuscriptIntrinsicNormalKazhdanRadical_anyUniverse}
 \end{corollary}
 
 \begin{proof}
@@ -2113,7 +2112,7 @@ Theorem~\ref{thm:abstract-nk} with $D=\mathfrak D(H,L)$.
 The subgroup generated by \emph{all} normal property-\textup{(T)}
 subgroups of $\mathfrak D(H,L)$ therefore also lies in the kernel of
 every homomorphism to $\U(\mathcal Q)$.
-\leanverified{Sofic/ManuscriptExactWrappers}{GroupApproximation.ManuscriptExactWrappers.manuscriptIntrinsicNormalKazhdanPart}
+\leanverified{Sofic/NormalKazhdanAnyUniverse}{GroupApproximation.ManuscriptExactWrappers.manuscriptIntrinsicNormalKazhdanPart_anyUniverse}
 
 \section{The finite-dimensional obstruction}\label{sec:findim}
 
@@ -3419,9 +3418,7 @@ Let $A$ be a unital $C^*$-algebra containing a projection $p$ and a
 unitary $u$ with $p<upu^{*}$.  Then $A$
 contains an isometry that is not a unitary; consequently $A$ is not
 stably finite and has no faithful tracial state.
-\leanverified{Analysis/ProperIsometryFromCompression}{GroupApproximation.ProperProjectionCompression.isometry_not_isUnit}
-\leanverified{Analysis/ProperIsometryFromCompression}{GroupApproximation.ProperProjectionCompression.not_isStablyFiniteRing}
-\leanverified{Analysis/ProperIsometryFromCompression}{GroupApproximation.ProperProjectionCompression.no_faithfulTracialState}
+\leanverified{Analysis/ProperIsometryStrictOrder}{GroupApproximation.manuscriptProperIsometryStrictOrder}
 \end{proposition}
 
 \begin{proof}

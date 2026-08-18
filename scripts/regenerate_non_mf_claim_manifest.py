@@ -33,17 +33,17 @@ CLAIM_TARGETS: dict[str, tuple[str, str]] = {
         "GroupApproximation.KazhdanAsymptoticCommutant."
         "manuscriptKazhdanTransport_anyUniverse"),
     "cor:generaltransport": (
-        "Sofic/KazhdanAsymptoticCommutant",
-        "GroupApproximation.KazhdanAsymptoticCommutant.compressionGroup_transport_both"),
+        "Sofic/DefectActionAnyUniverse",
+        "GroupApproximation.KazhdanAsymptoticCommutant.compressionGroup_transport_both_anyUniverse"),
     "thm:sign-criterion": (
-        "Sofic/KazhdanSignCriterion",
-        "GroupApproximation.KazhdanCompressionCore.manuscriptCentralSignCriterion"),
+        "Sofic/CentralSignAnyUniverse",
+        "GroupApproximation.KazhdanCompressionCore.manuscriptCentralSignCriterion_anyUniverse"),
     "thm:abstract-nk": (
         "Sofic/ManuscriptExactWrappers",
         "GroupApproximation.ManuscriptExactWrappers.manuscriptAbstractNormalKazhdanObstruction"),
     "cor:intrinsic-nk": (
-        "Sofic/ManuscriptExactWrappers",
-        "GroupApproximation.ManuscriptExactWrappers.manuscriptIntrinsicNormalKazhdanRadical"),
+        "Sofic/NormalKazhdanAnyUniverse",
+        "GroupApproximation.ManuscriptExactWrappers.manuscriptIntrinsicNormalKazhdanRadical_anyUniverse"),
     "cor:pullback": (
         "Sofic/ManuscriptExactWrappers",
         "GroupApproximation.ManuscriptExactWrappers.manuscriptRadicalReductionToQuotient"),
@@ -57,8 +57,8 @@ CLAIM_TARGETS: dict[str, tuple[str, str]] = {
         "Sofic/ManuscriptExactWrappers",
         "GroupApproximation.ManuscriptExactWrappers.manuscriptCollapseRadicalReduction"),
     "thm:compression-radical": (
-        "Sofic/ManuscriptKazhdanTransport",
-        "GroupApproximation.KazhdanAsymptoticCommutant.manuscriptCompressionRadical"),
+        "Sofic/DefectRadicalAnyUniverse",
+        "GroupApproximation.KazhdanAsymptoticCommutant.manuscriptCompressionRadical_anyUniverse"),
     "thm:kazhdan-clifford": (
         "Sofic/KazhdanCliffordConstruction",
         "GroupApproximation.KazhdanCliffordConstruction.kazhdanCliffordConstruction"),
@@ -94,8 +94,7 @@ CLAIM_TARGETS: dict[str, tuple[str, str]] = {
         "GroupApproximation.manuscriptMFTraceGroupBridge"),
     "thm:trace": (
         "Sofic/TraceSeparationEndpoint",
-        "GroupApproximation.LiteralTraceConsequence."
-        "markedGroup_separable_canonicalTrace_hyperlinear_not_isMFTrace"),
+        "GroupApproximation.manuscriptTraceSeparation"),
     "prop:maximal-cstar": (
         "Analysis/MaximalGroupCStar",
         "GroupApproximation.manuscriptUniverseRelativeMaximalGroupCStar"),
@@ -145,8 +144,8 @@ CLAIM_TARGETS: dict[str, tuple[str, str]] = {
         "manuscriptHSInvisibleCharacterization",
     ),
     "prop:proper-isometry": (
-        "Analysis/ProperIsometryFromCompression",
-        "GroupApproximation.ProperProjectionCompression.isometry_not_isUnit",
+        "Analysis/ProperIsometryStrictOrder",
+        "GroupApproximation.manuscriptProperIsometryStrictOrder",
     ),
     "thm:signfree": (
         "Sofic/LiteralSignFreeQuotient",
@@ -178,14 +177,14 @@ CLAIM_TARGETS: dict[str, tuple[str, str]] = {
         "GroupApproximation.IsOperatorMF.subgroup",
     ),
     "def:pattern": (
-        "Sofic/ManuscriptExactWrappers",
-        "GroupApproximation.ManuscriptExactWrappers.manuscriptMarkedKazhdanPattern"),
+        "Sofic/ConjugationDatumAnyUniverse",
+        "GroupApproximation.ManuscriptExactWrappers.manuscriptMarkedKazhdanPattern_anyUniverse"),
     "thm:criterion": (
-        "Sofic/ManuscriptExactWrappers",
-        "GroupApproximation.ManuscriptExactWrappers.manuscriptFiniteNormalObstructionCriterion"),
+        "Sofic/FiniteNormalAnyUniverse",
+        "GroupApproximation.ManuscriptExactWrappers.manuscriptFiniteNormalObstructionCriterion_anyUniverse"),
     "thm:normal-kazhdan": (
-        "Sofic/ManuscriptExactWrappers",
-        "GroupApproximation.ManuscriptExactWrappers.manuscriptNormalKazhdanObstruction"),
+        "Sofic/NormalKazhdanAnyUniverse",
+        "GroupApproximation.ManuscriptExactWrappers.manuscriptNormalKazhdanObstruction_anyUniverse"),
     "lem:square": (
         "Sofic/CompressionDefectSquare",
         "GroupApproximation.commutator_conjugate_eq_commutator_sq_of_sq_eq_one"),

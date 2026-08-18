@@ -117,7 +117,7 @@ variable {A : Type*} [CStarAlgebra A]
 /-- The printed correction symbol `t ↦ t^{-1/2}`. -/
 def invSqrt : ℝ → ℝ := fun t ↦ (Real.sqrt t)⁻¹
 
-theorem invSqrt_apply (t : ℝ) : invSqrt t = (Real.sqrt t)⁻¹ := rfl
+@[simp] theorem invSqrt_apply (t : ℝ) : invSqrt t = (Real.sqrt t)⁻¹ := rfl
 
 /-- `(x^*x)^{-1/2}`, defined by the continuous functional calculus of the
 self-adjoint element `x^*x`.  No finite dimensionality, real rank zero or

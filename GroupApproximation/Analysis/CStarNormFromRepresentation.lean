@@ -80,7 +80,7 @@ theorem isCStarSeminorm_norm {B : Type v} [CStarAlgebra B] :
   add_le a b := norm_add_le a b
   smul c b := norm_smul c b
   mul_le a b := norm_mul_le a b
-  cstar b := CStarRing.norm_star_mul_self
+  cstar _ := CStarRing.norm_star_mul_self
 
 /-! ## Unitaries -/
 

@@ -118,7 +118,7 @@ involutions, each carrying at most `c` pairs of transpositions**, whenever
 Each block has an *even* number of transpositions, which is what makes it
 reachable by `isBoundedConjProduct_two_of_involution`.  The induction is on the
 fuel: one block of `2c` transpositions is cut off at each step. -/
-theorem exists_blocks (c : ℕ) (hc : 0 < c) :
+theorem exists_blocks (c : ℕ) (_hc : 0 < c) :
     ∀ (fuel p : ℕ), p ≤ fuel * c → ∀ w : Equiv.Perm Y, w * w = 1 →
       Multiset.card w.cycleType = 2 * p →
       ∃ L : List (Equiv.Perm Y), L.prod = w ∧

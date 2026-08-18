@@ -91,7 +91,7 @@ theorem vecMass_eq_norm_sq (x : Z → ℂ) : vecMass x = ‖evec x‖ ^ 2 := by
 theorem norm_evec (x : Z → ℂ) : ‖evec x‖ = Real.sqrt (vecMass x) := by
   rw [vecMass_eq_norm_sq, Real.sqrt_sq (norm_nonneg _)]
 
-theorem evec_add (x y : Z → ℂ) : evec (x + y) = evec x + evec y := rfl
+@[simp] theorem evec_add (x y : Z → ℂ) : evec (x + y) = evec x + evec y := rfl
 
 theorem evec_sum {ι : Type*} (s : Finset ι) (f : ι → Z → ℂ) :
     evec (∑ i ∈ s, f i) = ∑ i ∈ s, evec (f i) := by
@@ -152,12 +152,14 @@ theorem vpairAt_add_right (ξ η ζ : VecFam Y) (n : ℕ) :
     vpairAt ξ (fun m ↦ η m + ζ m) n = vpairAt ξ η n + vpairAt ξ ζ n := by
   show inner ℂ (evec (ξ n)) (evec (η n + ζ n)) = _
   rw [evec_add, inner_add_right]
+  rfl
 
 theorem vpairAt_smul_right (c : ℂ) (ξ η : VecFam Y) (n : ℕ) :
     vpairAt ξ (fun m ↦ c • η m) n = c * vpairAt ξ η n := by
   show inner ℂ (evec (ξ n)) (evec (c • η n)) = _
   have hsmul : evec (c • η n) = c • evec (η n) := rfl
   rw [hsmul, inner_smul_right]
+  rfl
 
 /-- **Cauchy--Schwarz at a stage.**  Available because the coordinate space is
 `ℓ²(Y n)` itself; the matrix construction had to substitute a rescaled

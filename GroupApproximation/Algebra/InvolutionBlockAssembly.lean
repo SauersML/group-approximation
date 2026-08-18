@@ -46,6 +46,7 @@ variable {Y : Type*} [Fintype Y] [DecidableEq Y]
 
 /-! ## Products of reachable elements -/
 
+omit [Fintype Y] [DecidableEq Y] in
 /-- A product of a list of elements each reachable in `K` conjugates is
 reachable in `length · K`. -/
 theorem isBoundedConjProduct_list {s : Equiv.Perm Y} :
@@ -56,10 +57,10 @@ theorem isBoundedConjProduct_list {s : Equiv.Perm Y} :
   induction L with
   | nil =>
       intro K _
-      simpa using isBoundedConjProduct_one s 0
+      simp
   | cons z L ih =>
       intro K h
-      have h1 : IsBoundedConjProduct s K z := h z (List.mem_cons_self z L)
+      have h1 : IsBoundedConjProduct s K z := h z (List.mem_cons_self ..)
       have h2 : IsBoundedConjProduct s (L.length * K) L.prod :=
         ih K fun w hw => h w (List.mem_cons_of_mem z hw)
       have h3 := isBoundedConjProduct_mul K (L.length * K) z L.prod h1 h2
@@ -79,6 +80,7 @@ theorem sign_involution {w : Equiv.Perm Y} (hw : w * w = 1) :
     rw [Multiset.sum_replicate, smul_eq_mul, mul_comm]
   rw [Equiv.Perm.sign_of_cycleType, hsum, pow_add, pow_mul]
   simp
+  rfl
 
 /-- The two involutions of an even permutation have transposition counts of
 equal parity. -/
@@ -92,11 +94,17 @@ theorem card_cycleType_parity {u v : Equiv.Perm Y} (hu : u * u = 1)
   · rcases Nat.even_or_odd (Multiset.card v.cycleType) with hve | hvo
     · rw [Nat.even_iff] at hue hve
       omega
-    · rw [hue.neg_one_pow, hvo.neg_one_pow] at hsign
+    · -- `Even.neg_one_pow` leaves its carrier a metavariable, which does not
+      -- resolve to `ℤˣ` from the rewrite target alone; ascribe both first.
+      have h1 : ((-1 : ℤˣ)) ^ Multiset.card u.cycleType = 1 := hue.neg_one_pow
+      have h2 : ((-1 : ℤˣ)) ^ Multiset.card v.cycleType = -1 := hvo.neg_one_pow
+      rw [h1, h2] at hsign
       have hcast : ((1 : ℤˣ) : ℤ) = ((-1 : ℤˣ) : ℤ) := congrArg _ hsign
       norm_num at hcast
   · rcases Nat.even_or_odd (Multiset.card v.cycleType) with hve | hvo
-    · rw [huo.neg_one_pow, hve.neg_one_pow] at hsign
+    · have h1 : ((-1 : ℤˣ)) ^ Multiset.card u.cycleType = -1 := huo.neg_one_pow
+      have h2 : ((-1 : ℤˣ)) ^ Multiset.card v.cycleType = 1 := hve.neg_one_pow
+      rw [h1, h2] at hsign
       have hcast : ((-1 : ℤˣ) : ℤ) = ((1 : ℤˣ) : ℤ) := congrArg _ hsign
       norm_num at hcast
     · rw [Nat.odd_iff] at huo hvo

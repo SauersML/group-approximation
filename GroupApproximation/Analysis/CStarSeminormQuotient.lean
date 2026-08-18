@@ -200,22 +200,23 @@ continuity lemma is to run the nontrivial inequality through `Real.sqrt`. -/
 section Sup
 
 variable {A : Type u} [Ring A] [StarRing A] [Algebra ℂ A]
-variable {ι : Type v} [Nonempty ι]
+variable {ι : Type v}
 
 /-- The pointwise supremum of a family of functions on `A`. -/
 noncomputable def iSupSeminorm (p : ι → A → ℝ) : A → ℝ := fun a ↦ ⨆ i, p i a
 
-omit [Ring A] [StarRing A] [Algebra ℂ A] [Nonempty ι] in
+omit [Ring A] [StarRing A] [Algebra ℂ A] in
 @[simp] theorem iSupSeminorm_apply (p : ι → A → ℝ) (a : A) :
     iSupSeminorm p a = ⨆ i, p i a := rfl
 
 /-- **The pointwise supremum of a bounded family of C⋆-seminorms is a
 C⋆-seminorm.** -/
-theorem isCStarSeminorm_iSup {p : ι → A → ℝ} (hp : ∀ i, IsCStarSeminorm (p i))
+theorem isCStarSeminorm_iSup {p : ι → A → ℝ} (hne : Nonempty ι)
+    (hp : ∀ i, IsCStarSeminorm (p i))
     (hb : ∀ a : A, BddAbove (Set.range fun i ↦ p i a)) :
     IsCStarSeminorm (iSupSeminorm p) where
   nonneg a :=
-    le_ciSup_of_le (hb a) (Classical.arbitrary ι) ((hp _).nonneg a)
+    le_ciSup_of_le (hb a) hne.some ((hp _).nonneg a)
   add_le a b := by
     refine ciSup_le fun i ↦ ?_
     exact ((hp i).add_le a b).trans
@@ -262,10 +263,10 @@ C⋆-seminorm, with no faithfulness hypothesis on any member.  This is the
 canonical-seminorm recipe the tensor roadmap names. -/
 theorem isCStarSeminorm_iSup_starRep {V : ι → Type*}
     [∀ i, NormedAddCommGroup (V i)] [∀ i, InnerProductSpace ℂ (V i)]
-    (π : ∀ i, StarRep A (V i))
+    (hne : Nonempty ι) (π : ∀ i, StarRep A (V i))
     (hb : ∀ a : A, BddAbove (Set.range fun i ↦ (π i).seminorm a)) :
     IsCStarSeminorm (iSupSeminorm fun i ↦ (π i).seminorm) :=
-  isCStarSeminorm_iSup (fun i ↦ (π i).isCStarSeminorm) hb
+  isCStarSeminorm_iSup hne (fun i ↦ (π i).isCStarSeminorm) hb
 
 end Sup
 
