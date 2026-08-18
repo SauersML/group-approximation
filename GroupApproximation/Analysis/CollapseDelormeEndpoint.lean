@@ -54,7 +54,7 @@ in hand.
 `fixed_of_coboundary_eq_zero`, `eq_zero_of_fixed`,
 `eq_zero_of_compressed_fixed` and `collapse_contradiction` are the last
 paragraph, over an arbitrary complex module.  The compressed subgroup enters
-as a monoid endomorphism `c : L →* L` — conjugation by `s`, which lands in
+as a plain map `c : L → L` — conjugation by `s`, which lands in
 `L` because `s L s⁻¹ ⊆ L` is a printed hypothesis of the theorem.
 
 None of these four uses multiplicativity of `π`, so `π` is carried as a plain
@@ -216,9 +216,14 @@ theorem projection_not_massNull (Y : ℕ → FiniteModel) (ω : Ultrafilter ℕ)
 
 /-! ## The Delorme–Guichardet consumption -/
 
--- The first two lemmas never use the group structure of `L` — only that its
--- elements index the cocycle — so they are stated before `[Group L]` enters,
--- which keeps the `unusedSectionVars` linter satisfied without an `omit`.
+-- None of the four lemmas below uses the group structure of `L` — only that
+-- its elements index the cocycle — so they are stated before `[Group L]`
+-- enters, which keeps the `unusedSectionVars` linter satisfied without an
+-- `omit`.  The compressed subgroup likewise enters as a plain map `c : L → L`
+-- rather than as a monoid endomorphism: nothing here composes `c` with itself
+-- or with the group law, and the printed compression `γ ↦ sγs⁻¹` is delivered
+-- by hypotheses of the shape `∀ γ, ∃ δ, s γ s⁻¹ = δ`, from which a function is
+-- available by choice while a homomorphism is not.
 section Coboundary
 
 variable {L : Type*} {V : Type*} [AddCommGroup V] [Module ℂ V]
@@ -238,18 +243,12 @@ theorem eq_zero_of_fixed (π : L → (V ≃ₗ[ℂ] V)) (β : L → V) (y : V)
     (hy : ∀ g : L, β g = y - π g y) {g : L} (hg : π g y = y) : β g = 0 := by
   rw [hy g, hg, sub_self]
 
-end Coboundary
-
-section Delorme
-
-variable {L : Type*} [Group L] {V : Type*} [AddCommGroup V] [Module ℂ V]
-
 /-- **The printed deduction, positive form.**  A primitive for `β` that is
 fixed by the compressed subgroup is fixed by the whole of `L` once the
 transport chain identifies the two fixed spaces, and then `β` vanishes
 identically. -/
 theorem eq_zero_of_compressed_fixed (π : L → (V ≃ₗ[ℂ] V)) (β : L → V) (y : V)
-    (c : L →* L) (hy : ∀ g : L, β g = y - π g y)
+    (c : L → L) (hy : ∀ g : L, β g = y - π g y)
     (hcompressed : ∀ a : L, β (c a) = 0)
     (htransport : (∀ a : L, π (c a) y = y) → ∀ g : L, π g y = y) :
     ∀ g : L, β g = 0 := fun g ↦
@@ -268,7 +267,7 @@ hypotheses is proved here.
 
 The module docstring records precisely what each of the two analytic
 hypotheses would take to discharge inside `K_ω`. -/
-theorem collapse_contradiction (π : L → (V ≃ₗ[ℂ] V)) (β : L → V) (c : L →* L)
+theorem collapse_contradiction (π : L → (V ≃ₗ[ℂ] V)) (β : L → V) (c : L → L)
     (hdelorme : ∃ y : V, ∀ g : L, β g = y - π g y)
     (hcompressed : ∀ a : L, β (c a) = 0)
     (htransport : ∀ y : V, (∀ a : L, π (c a) y = y) → ∀ g : L, π g y = y)
@@ -277,7 +276,7 @@ theorem collapse_contradiction (π : L → (V ≃ₗ[ℂ] V)) (β : L → V) (c 
   obtain ⟨g, hg⟩ := hne
   exact hg (eq_zero_of_compressed_fixed π β y c hy hcompressed (htransport y) g)
 
-end Delorme
+end Coboundary
 
 /-! ## Delorme–Guichardet, discharged -/
 
@@ -334,7 +333,7 @@ Applied at `E = KOmega Y w ω hw`, whose completeness is
 rank-normalized ultraproduct. -/
 theorem collapse_contradiction_of_hasKazhdanPropertyT [CompleteSpace E]
     (hT : HasKazhdanPropertyT.{u, u} L) (π : L →* (E ≃ₗᵢ[ℂ] E)) (β : L → E)
-    (c : L →* L)
+    (c : L → L)
     (hβ : ∀ g h : L, β (g * h) = β g + π g (β h))
     (hcompressed : ∀ a : L, β (c a) = 0)
     (htransport : ∀ y : E, (∀ a : L, π (c a) y = y) → ∀ g : L, π g y = y)
