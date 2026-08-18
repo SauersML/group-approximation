@@ -3,15 +3,15 @@ import GroupApproximation.Sofic.IntertwinerKazhdanTransport
 /-!
 # Ultraproduct Kazhdan transport of asymptotic intertwiners
 
-This file certifies part **(2)** of the manuscript theorem
-`thm:transport-variants` ("transport at every scale, and of intertwiners"),
-`non_mf_groups_exist.tex` lines **749--806** (statement 752--782, printed
-proof 784--806), *by the route the manuscript prints*: the block reduction
-feeds the **ultraproduct** proof of `thm:kazhdan-transport`, not the
-finite-stage proof of Appendix `app:finite-stage`.
+This file proves the intertwiner transport variant by the block reduction
+feeding the **ultraproduct** proof of `thm:kazhdan-transport`.  **The printed
+clause was cut from the manuscript on 2026-08-18**: `thm:transport-variants`
+now states the weighted variant alone, and neither the intertwiner statement
+nor its six-step proof is printed any more (see the change-history table of
+`docs/NON_MF_PROOF_LEDGER.md`); no badge is owed for this module.
 
-The printed proof of (2) is six steps, and the declarations below are named
-after them so that a step-level audit matches mechanically.
+The six steps below record the formal argument as it stood when it mirrored
+the print, and the declarations keep their step names.
 
 ```
 IT.01  it_01_blockSum_defect_eq_max            W_n = U¹_n ⊕ U²_n is an operator-norm

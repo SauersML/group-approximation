@@ -134,8 +134,9 @@ theorem scaled_transport_both_anyUniverse :
     (CompressionUniverseTransfer.mapCoreSource C e) x hx₀ hbound
   exact ⟨commutantOf_of_precomp C.iota e h1, commutantOf_of_precomp C.iota e h2⟩
 
-/-- **`thm:transport-variants`(2) with the Kazhdan source at an arbitrary
-universe.**  Intertwiner transport at the `d¹ₙ + d²ₙ` normalization, with no
+/-- **The intertwiner transport variant with the Kazhdan source at an arbitrary
+universe** (printed as `thm:transport-variants`(2) until the clause was cut on
+2026-08-18).  Intertwiner transport at the `d¹ₙ + d²ₙ` normalization, with no
 countability and no universe hypothesis on either group.
 
 This is `IntertwinerKazhdanTransport.manuscriptIntertwinerTransport` composed
@@ -194,8 +195,9 @@ theorem manuscriptIntertwinerTransport_anyUniverse :
   rw [hpull, e.symm_apply_apply] at hconc
   exact hconc
 
-/-- **`thm:transport-variants`(2) at every weight, with the Kazhdan source at an
-arbitrary universe.**  The scaled form of the intertwiner variant, with no
+/-- **The intertwiner transport variant at every weight, with the Kazhdan source
+at an arbitrary universe** (the clause left the print on 2026-08-18).  The
+scaled form of the intertwiner variant, with no
 countability and no universe hypothesis on the source.
 
 Same descent as `scaled_transport_both_anyUniverse`, with the rectangular

@@ -155,10 +155,6 @@ CLAIM_TARGETS: dict[str, tuple[str, str]] = {
         "Sofic/LiteralSignFreeQuotient",
         "GroupApproximation.LiteralSignFreeQuotient.signFreeQuotient_not_isCDEOperatorMF",
     ),
-    "thm:torsion-collapse": (
-        "Sofic/TorsionSpectralCollapse",
-        "GroupApproximation.TorsionSpectralCollapse.actualCoronaMFInvisible_of_torsionWitness",
-    ),
     "thm:transport-variants": (
         "Sofic/TransportVariantsAnyUniverse",
         "GroupApproximation.TransportVariantsAnyUniverse."
@@ -206,9 +202,6 @@ CLAIM_TARGETS: dict[str, tuple[str, str]] = {
     "prop:horn": (
         "Sofic/LiteralUniversalHorn",
         "GroupApproximation.LiteralUniversalHorn.manuscriptLiteralUniversalHorn"),
-    "cor:cylinder": (
-        "Sofic/LiteralMarkedCylinder",
-        "GroupApproximation.LiteralMarkedCylinder.literal_nonempty_clopen_nonMF_cylinder"),
     "lem:permanence": (
         "Sofic/OperatorMFPositiveControls",
         "GroupApproximation.IsOperatorMF.subgroup"),
@@ -271,7 +264,6 @@ DEPENDENCIES: dict[str, list[str]] = {
     "cor:exactradical": ["def:radical"],
     "cor:nofaithful": ["thm:A"],
     "prop:horn": ["thm:A", "lem:portable"],
-    "cor:cylinder": ["prop:horn", "thm:A"],
     "cor:quotclosure": ["thm:A", "lem:permanence"],
 }
 

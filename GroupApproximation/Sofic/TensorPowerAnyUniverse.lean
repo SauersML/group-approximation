@@ -4,7 +4,10 @@ import GroupApproximation.Sofic.TransportVariantsAnyUniverse
 /-!
 # The fixed-tensor sentence with the Kazhdan source in any universe
 
-The manuscript's fixed-tensor paragraph reads
+**The fixed-tensor paragraph was cut from the manuscript on 2026-08-18**,
+with the intertwiner clause of `thm:transport-variants` (see the change-history
+table of `docs/NON_MF_PROOF_LEDGER.md`); no badge is owed for this module.  The
+quotation below is kept as a record.  The paragraph read
 
 > Invariant tensors of type `(p,q)` may be identified with Hilbert--Schmidt
 > intertwiners from the `q`th to the `p`th tensor power. … tensor powers of an
@@ -17,12 +20,12 @@ The manuscript's fixed-tensor paragraph reads
 and `thm:transport-variants` inherits its groups from `thm:kazhdan-transport`,
 which says only "let `Γ` and `H` be groups" — no countability, no universe.
 `TensorPowerTransport.manuscriptFixedTensorTransport` fixed the source at
-`Type 0`; that is ledger row `TV.12`.
+`Type 0`; that was ledger row `TV.12`, retired with the paragraph.
 
 The row closes with no new mathematics, because the paragraph is explicit that
 it *is* `thm:transport-variants`(2) instantiated at `B₁ = U^{⊗p}`,
 `B₂ = U^{⊗q}`, and that variant is already available at every source universe as
-`TransportVariantsAnyUniverse.scaled_intertwiner_transport_anyUniverse` (ledger
+`TransportVariantsAnyUniverse.scaled_intertwiner_transport_anyUniverse` (the retired ledger
 rows `TV.02`/`TV.03`).  The tensor-power construction
 `OpAlmostRepresentation.tensorPow` never mentions the source group, so the
 instantiation is the same one line it was at `Type 0`.

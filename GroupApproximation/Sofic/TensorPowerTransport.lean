@@ -8,8 +8,10 @@ import GroupApproximation.Sofic.IntertwinerKazhdanTransport
 between *any* two operator-norm almost representations of the ambient
 group, and its header names the fixed-tensor instance `B₁ = U^{⊗p}`,
 `B₂ = U^{⊗q}` as the intended application.  This file builds that
-instance, so the manuscript's fixed-tensor sentence is an instantiation of
-a proved theorem rather than a reading of one.
+instance.  (The manuscript's fixed-tensor sentence was an instantiation of
+this theorem until 2026-08-18, when the paragraph was cut together with the
+intertwiner clause of `thm:transport-variants`; the mathematics stands on its
+own.)
 
 The analytic input is already available: `l2_opNorm_opTensorPow_sub_le`
 telescopes the `p`-fold Kronecker power of unitaries, so the power moves

@@ -2,11 +2,11 @@ import GroupApproximation.Sofic.ScaledKazhdanTransport
 import GroupApproximation.Sofic.UltraproductKazhdanTransport
 
 /-!
-# Transport at every Hilbertian scale: the printed proof of `thm:transport-variants`(1)
+# Transport at every Hilbertian scale: the printed proof of `thm:transport-variants`
 
-This file replays part **(1)** of Theorem `\ref{thm:transport-variants}`
-("transport at every scale, and of intertwiners") of `non_mf_groups_exist.tex`,
-inside `\section{Weights and intertwiners}` (`\ref{supp:transport-variants}`).
+This file replays Theorem `\ref{thm:transport-variants}`
+("one-sided conjugation at an arbitrary weight") of `non_mf_groups_exist.tex`,
+inside `\section{Transport at an arbitrary weight}` (`\ref{supp:transport-variants}`).
 The route is the one the manuscript prints: "the ultraproduct proof of Theorem
 `\ref{thm:kazhdan-transport}` applies with `\tr_{d_n}` replaced by
 `\operatorname{Tr}(\,\cdot\,)/\nu_n`".

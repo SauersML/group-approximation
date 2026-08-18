@@ -6,10 +6,10 @@ Spec document: `non_mf_groups_exist.tex`.  Formal development: `GroupApproximati
 
 | | |
 | --- | --- |
-| commit | the badge-repoint commit of 2026-08-18 (this one) |
-| `git hash-object non_mf_groups_exist.tex` | `f6d90f7e8914d747c95b2032b007d93b0e1fab25` |
-| sha256 of the file | `3aca013943caea9341eaab7224579bb4098835a01bf7c672c158935c53d18a3d` |
-| `wc -l` | 3771 |
+| commit | the supplement-trim commit of 2026-08-18 (this one) |
+| `git hash-object non_mf_groups_exist.tex` | `c962cee8de7df7cccf19deb047733efe7d45682c` |
+| sha256 of the file | `34bcbbc24781d040856b733c4e7450e323a7f3e20a9543ec9e34f2b4515a148e` |
+| `wc -l` | 3709 |
 
 `git hash-object` of the file must reproduce the blob above for the rows below
 to be read as current.  The file has shrunk from 4768 lines to 3771 across the

@@ -535,8 +535,8 @@
     {
       "id": "thm:transport-variants",
       "environment": "theorem",
-      "title": "one-sided conjugation at an arbitrary weight, and for intertwiners",
-      "statement_sha256": "97f0d64b8d1325da9d604b850c24f1aa9192f9e2530d1d6f907187bcc45d153b",
+      "title": "one-sided conjugation at an arbitrary weight",
+      "statement_sha256": "e22b668523e7be38769d8e5c955d3c309c80104d3081ddd4f79775c8bce390e4",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [],
@@ -552,32 +552,8 @@
         },
         {
           "role": "exact",
-          "module": "Sofic/TransportVariantsAnyUniverse",
-          "declaration": "GroupApproximation.TransportVariantsAnyUniverse.manuscriptIntertwinerTransport_anyUniverse",
-          "covers": "a printed conclusion of the proposition"
-        },
-        {
-          "role": "exact",
-          "module": "Sofic/TransportVariantsAnyUniverse",
-          "declaration": "GroupApproximation.TransportVariantsAnyUniverse.scaled_intertwiner_transport_anyUniverse",
-          "covers": "a printed conclusion of the proposition"
-        },
-        {
-          "role": "exact",
           "module": "Sofic/ScaledKazhdanTransport",
           "declaration": "GroupApproximation.ScaledKazhdanTransport.scaled_transport_both",
-          "covers": "a printed conclusion of the proposition"
-        },
-        {
-          "role": "exact",
-          "module": "Sofic/IntertwinerKazhdanTransport",
-          "declaration": "GroupApproximation.IntertwinerKazhdanTransport.manuscriptIntertwinerTransport",
-          "covers": "a printed conclusion of the proposition"
-        },
-        {
-          "role": "exact",
-          "module": "Sofic/IntertwinerKazhdanTransport",
-          "declaration": "GroupApproximation.IntertwinerKazhdanTransport.scaled_intertwiner_transport",
           "covers": "a printed conclusion of the proposition"
         }
       ]
@@ -1083,38 +1059,6 @@
       ]
     },
     {
-      "id": "thm:torsion-collapse",
-      "environment": "theorem",
-      "title": "the orbit of a finite-order witness",
-      "statement_sha256": "702b6f8894246819d522cc270da7e8ca0f6a698a9f3b8dc93822a6d392af1164",
-      "status": "exact",
-      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
-      "dependencies": [],
-      "extra_assumptions": [],
-      "external_inputs": [],
-      "coverage_gap": "",
-      "lean": [
-        {
-          "role": "exact",
-          "module": "Sofic/TorsionSpectralCollapse",
-          "declaration": "GroupApproximation.TorsionSpectralCollapse.actualCoronaMFInvisible_of_torsionWitness",
-          "covers": "the complete printed proposition"
-        },
-        {
-          "role": "exact",
-          "module": "Sofic/TorsionSpectralCollapse",
-          "declaration": "GroupApproximation.TorsionSpectralCollapse.torsionCollapseDefect_le_actualCoronaMFResidual_of_kazhdan",
-          "covers": "a printed conclusion of the proposition"
-        },
-        {
-          "role": "exact",
-          "module": "Sofic/TorsionSpectralCollapse",
-          "declaration": "GroupApproximation.TorsionSpectralCollapse.actualCoronaMFResidual_eq_torsionCollapseDefect_of_kazhdan",
-          "covers": "a printed conclusion of the proposition"
-        }
-      ]
-    },
-    {
       "id": "cor:collapsequot",
       "environment": "corollary",
       "title": "collapse computes the residual",
@@ -1285,29 +1229,6 @@
           "role": "exact",
           "module": "Sofic/LiteralUniversalHorn",
           "declaration": "GroupApproximation.LiteralUniversalHorn.manuscriptLiteralUniversalHorn",
-          "covers": "the complete printed proposition"
-        }
-      ]
-    },
-    {
-      "id": "cor:cylinder",
-      "environment": "corollary",
-      "title": "a basic clopen set of non-MF marked groups",
-      "statement_sha256": "847c38b2b21a9d92e23cd827741a7a8cfe4f121ebf1ad8b874bb755b726b13c4",
-      "status": "exact",
-      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
-      "dependencies": [
-        "prop:horn",
-        "thm:A"
-      ],
-      "extra_assumptions": [],
-      "external_inputs": [],
-      "coverage_gap": "",
-      "lean": [
-        {
-          "role": "exact",
-          "module": "Sofic/LiteralMarkedCylinder",
-          "declaration": "GroupApproximation.LiteralMarkedCylinder.literal_nonempty_clopen_nonMF_cylinder",
           "covers": "the complete printed proposition"
         }
       ]
