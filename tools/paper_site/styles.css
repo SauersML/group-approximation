@@ -346,7 +346,7 @@ dl.bib { margin: 1em 0; }
 }
 .lean-drawer-close:hover { color: var(--ink); }
 .lean-gap { color: var(--ink-soft); font-size: 0.95em; margin-top: 6px; }
-.lean-covers { color: var(--ink-soft); font-size: 0.95em; margin: 2px 0 4px; }
+.lean-covers { color: var(--ink-faint); font-style: italic; font-size: 0.9em; margin: 2px 0 4px; }
 .lean-trunc { color: var(--ink-faint); font-style: italic; font-size: 0.9em; margin: 2px 0; }
 .lean-name { overflow-wrap: anywhere; }
 details.proof > summary .badge-lean { font-size: 12px; padding: 0 8px; }

@@ -307,10 +307,13 @@ function leanDeclHtml(l) {
   // wants the whole thing, not another fold
   const code = rec.proof ? rec.sig + '\n' + rec.proof : rec.sig;
   let inner = '<pre class="lean-code">' + escHtml(code) + '</pre>';
-  // "the complete printed proposition" is the default and says nothing;
-  // only partial coverage is worth a line
+  // full coverage is the default and says nothing; partial coverage gets a
+  // plain-language line (not the manifest's internal phrasing)
   if (l.covers && l.covers !== 'the complete printed proposition') {
-    inner += '<div class="lean-covers"><span class="meta-label">covers</span> ' + escHtml(l.covers) + '</div>';
+    const covers = l.covers === 'a printed conclusion of the proposition'
+      ? 'covers part of the statement'
+      : 'covers ' + l.covers;
+    inner += '<div class="lean-covers">' + escHtml(covers) + '</div>';
   }
   if (rec.trunc) inner += '<div class="lean-trunc">shortened here — full source on GitHub</div>';
   inner += link;
