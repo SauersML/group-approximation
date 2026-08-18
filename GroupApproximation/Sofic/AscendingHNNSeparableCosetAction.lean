@@ -1,5 +1,6 @@
 import Mathlib.Tactic.Group
 import GroupApproximation.Sofic.AscendingHNNCosetActionSofic
+import GroupApproximation.Sofic.AscendingHNNIteratedCosetAction
 import GroupApproximation.Sofic.AscendingHNNWreathSofic
 import GroupApproximation.Sofic.AscendingHNNProfiniteClosure
 import GroupApproximation.Sofic.SoficActionChabauty
@@ -23,10 +24,14 @@ and consequently
 
 Thus for a **proper** injective self-embedding the separable-base hypothesis is
 never satisfied: every finite-index subgroup of the HNN group containing `B`
-already contains the whole height-zero mapping-telescope kernel.  In particular,
-this route does not address Fournier-Facio's infinite-index question; it is a
-positive control for the automorphic case and a useful warning that finite
-quotients of the ambient HNN group cannot distinguish the strict compression.
+already contains the whole height-zero mapping-telescope kernel.  The right
+replacement is the base-level tower formalized in `AscendingHNNIteratedCosetAction`:
+
+`G ↷ G/B is sofic ↔ ∀ m, Γ ↷ Γ/α^m(Γ) is sofic`.
+
+In particular, separability of every iterated range `α^m(Γ)` inside `Γ` is a
+valid sufficient condition even for a proper embedding, whereas separability
+of `B` inside the HNN group is not.
 
 The theorem `separable_range_of_separable_base` below remains a valid descent
 statement, but in the proper case its premise is now known to be impossible.
