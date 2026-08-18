@@ -972,6 +972,7 @@ import GroupApproximation.Sofic.IntrinsicCompressionFiniteStage
 import GroupApproximation.Computability.UniversalMachineInit
 import GroupApproximation.Sofic.CollapseTransportEndpoint
 import GroupApproximation.Sofic.CollapsePrintedDiagonalization
+import GroupApproximation.Sofic.CollapsePrintedCorollary
 import GroupApproximation.Computability.MachineRestrict
 import GroupApproximation.Sofic.CliffordLampGraphLocalFiniteness
 import GroupApproximation.Sofic.CliffordBSAmenableMF
