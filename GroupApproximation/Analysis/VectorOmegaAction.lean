@@ -26,28 +26,29 @@ sequences whose coordinate operator norms vanish along it; at a free ultrafilter
 that quotient is the printed `∏_ω M_{d_n}`.  What is new is that it acts:
 
 * `actFam` — the coordinatewise action `(A · ξ)_n = A_n ξ_n`, on raw families;
-* `vecMass_actVec_le` — the estimate that makes everything else work,
+* `vecMass_mulVec_le` — the estimate that makes everything else work,
   `mass (A_n ξ_n) ≤ ‖A_n‖² · mass (ξ_n)`, which is
   `KazhdanCornerMatrices.sum_normSq_mulVec_le_general` read through `vecMass`;
-* `actBounded` — hence the action preserves `vecBounded`, and is `ℂ`-linear
-  there;
-* `actFam_vecNull` and `actFam_vecNull_of_null` — the two null directions, one
-  for each argument: a null vector family stays null under a bounded matrix
-  family, and a *null matrix family* sends a bounded vector family to a null
-  one.  The second is why the action descends to the quotient in the algebra
-  variable as well as the vector variable, which is what makes it an action of
-  `B_ω` rather than of the bounded sequences;
-* `actOmega` — the resulting `ℂ`-linear endomorphism of `H_ω`, with
-  `actOmega_mk` its defining equation on classes;
-* `norm_actOmega_le` — it is bounded, by the corona norm;
-* `actOmega_mul`, `actOmega_one` — multiplicativity and unitality, so `A ↦
-  actOmega A` is a homomorphism of the algebra of bounded sequences into
-  `Module.End ℂ H_ω`;
-* `actOmega_isometry` and `actOmega_unitaryEquiv` — for a coordinatewise
+* `actFam_mem_vecBounded` — hence the action preserves `vecBounded`, and
+  `actSub` is it as a `ℂ`-linear map there;
+* `actFam_mem_vecNull` and `actFam_mem_vecNull_of_null` — the two null
+  directions, one for each argument: a null vector family stays null under a
+  bounded matrix family, and a *null matrix family* sends a bounded vector
+  family to a null one.  The second is why the action descends to the quotient
+  in the algebra variable as well as the vector variable, which is what makes it
+  an action of `B_ω` rather than of the bounded sequences;
+* `actQ` — the resulting `ℂ`-linear endomorphism of `H_ω`, with `actQ_mkV` its
+  defining equation on classes;
+* `norm_actQ_le` — it is bounded, by the corona norm;
+* `actQ_mul`, `actQ_one`, `actQ_add`, `actQ_eq_zero_of_null` — multiplicativity,
+  unitality, additivity, and the vanishing on null classes;
+* `norm_actQ_of_unitary` and `actIsometryEquiv` — for a coordinatewise
   **unitary** family the action is norm preserving on the nose, not merely
-  bounded, and with the adjoint family for an inverse it is a
-  `LinearIsometryEquiv`.  This is the form the printed `π(g)` has, and the form
-  a unitary representation has to land in.
+  bounded, and with an inverting class it is a `LinearIsometryEquiv`.  This is
+  the form the printed `π(g)` has, and the form a unitary representation has to
+  land in;
+* `OmegaUnitaryRep` and `rep'` — the manuscript's hypothesis, the coordinate
+  family only `ω`-multiplicative, and the representation it defines.
 
 ## Why norm preservation is exact, and boundedness only an estimate
 
@@ -307,6 +308,80 @@ theorem actQ_mul (a b : BoundedMatrixSequence (Idx Y)) :
     (Subtype.ext (actFam_mul (fun n ↦ a n) (fun n ↦ b n) (ξ : VecFam Y)))
 
 end Endomorphism
+
+/-! ## The action is bounded by the corona norm
+
+The docstring at the head of this file lists `norm_actOmega_le`; this is it.
+For a general class only the estimate is available, not the equality the unitary
+case gets. -/
+
+section Bounded
+
+variable (Y) (ω : Ultrafilter ℕ)
+
+/-- Ultralimits are monotone.  Not in `Sofic/UltrafilterLimit.lean`, which has
+the two one-sided bounds against a constant but not the comparison of two
+limits; it follows from those by subtracting. -/
+theorem ulim_mono {f g : ℕ → ℝ}
+    (hf : ∃ L : ℝ, Filter.Tendsto f (ω : Filter ℕ) (nhds L))
+    (hg : ∃ L : ℝ, Filter.Tendsto g (ω : Filter ℕ) (nhds L))
+    (h : ∀ n, f n ≤ g n) : UltrafilterLimit.ulim ω f ≤ UltrafilterLimit.ulim ω g := by
+  have hsub : UltrafilterLimit.ulim ω (fun n ↦ g n - f n)
+      = UltrafilterLimit.ulim ω g - UltrafilterLimit.ulim ω f :=
+    UltrafilterLimit.ulim_sub hg hf
+  have hnn : 0 ≤ UltrafilterLimit.ulim ω (fun n ↦ g n - f n) := by
+    refine UltrafilterLimit.ulim_nonneg ?_ fun n ↦ sub_nonneg.2 (h n)
+    obtain ⟨Lg, hLg⟩ := hg
+    obtain ⟨Lf, hLf⟩ := hf
+    exact ⟨Lg - Lf, hLg.sub hLf⟩
+  linarith [hsub ▸ hnn]
+
+/-- A constant passes through an ultralimit. -/
+theorem ulim_const_smul (c : ℝ) {f : ℕ → ℝ}
+    (hf : ∃ L : ℝ, Filter.Tendsto f (ω : Filter ℕ) (nhds L)) :
+    UltrafilterLimit.ulim ω (fun n ↦ c * f n) = c * UltrafilterLimit.ulim ω f := by
+  obtain ⟨L, hL⟩ := hf
+  have hlim : UltrafilterLimit.ulim ω f = L := UltrafilterLimit.ulim_eq hL
+  refine UltrafilterLimit.ulim_eq ?_
+  rw [hlim]
+  exact hL.const_mul c
+
+/-- **The action is bounded by the corona norm.**  For a general class this is
+an estimate and not an equality; the unitary case below is exact. -/
+theorem norm_actQ_le (a : BoundedMatrixSequence (Idx Y)) (x : VecOmega Y ω) :
+    ‖actQ Y ω a x‖ ≤ ‖a‖ * ‖x‖ := by
+  obtain ⟨ξ, rfl⟩ := mkV_surjective Y ω x
+  rw [actQ_mkV, norm_mkV, norm_mkV]
+  have hbnd : ∀ n, ‖(a : ∀ n, Matrix (Idx Y n) (Idx Y n) ℂ) n‖ ≤ ‖a‖ :=
+    boundedMatrixSequence_coord_norm_le (Idx Y) a
+  have hA : ∀ n, vecMass (((actSub Y a ξ : vecBounded Y) : VecFam Y) n)
+      ≤ ‖a‖ ^ 2 * vecMass ((ξ : VecFam Y) n) := by
+    intro n
+    have h1 := vecMass_mulVec_le ((a : ∀ n, Matrix (Idx Y n) (Idx Y n) ℂ) n)
+      ((ξ : VecFam Y) n)
+    refine le_trans h1 (mul_le_mul_of_nonneg_right ?_ (vecMass_nonneg _))
+    have h0 : (0 : ℝ) ≤ ‖(a : ∀ n, Matrix (Idx Y n) (Idx Y n) ℂ) n‖ := norm_nonneg _
+    nlinarith [hbnd n]
+  have hex1 := exists_tendsto_vecMass (Y := Y) (ω := ω) (actSub Y a ξ)
+  have hex2 := exists_tendsto_vecMass (Y := Y) (ω := ω) ξ
+  have hexs : ∃ L : ℝ, Filter.Tendsto
+      (fun n ↦ ‖a‖ ^ 2 * vecMass ((ξ : VecFam Y) n)) (ω : Filter ℕ) (nhds L) := by
+    obtain ⟨L, hL⟩ := hex2
+    exact ⟨‖a‖ ^ 2 * L, hL.const_mul _⟩
+  have hmono := ulim_mono ω hex1 hexs hA
+  rw [ulim_const_smul ω (‖a‖ ^ 2) hex2] at hmono
+  have hnn2 : 0 ≤ UltrafilterLimit.ulim ω
+      (fun n ↦ vecMass ((ξ : VecFam Y) n)) :=
+    UltrafilterLimit.ulim_nonneg hex2 fun n ↦ vecMass_nonneg _
+  calc Real.sqrt (UltrafilterLimit.ulim ω
+        (fun n ↦ vecMass (((actSub Y a ξ : vecBounded Y) : VecFam Y) n)))
+      ≤ Real.sqrt (‖a‖ ^ 2 * UltrafilterLimit.ulim ω
+          (fun n ↦ vecMass ((ξ : VecFam Y) n))) := Real.sqrt_le_sqrt hmono
+    _ = ‖a‖ * Real.sqrt (UltrafilterLimit.ulim ω
+          (fun n ↦ vecMass ((ξ : VecFam Y) n))) := by
+        rw [Real.sqrt_mul (by positivity), Real.sqrt_sq (norm_nonneg a)]
+
+end Bounded
 
 /-! ## Coordinatewise unitaries act by isometries
 
