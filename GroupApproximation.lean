@@ -1017,6 +1017,7 @@ import GroupApproximation.Analysis.OmegaConjugationOperators
 import GroupApproximation.Analysis.OmegaCommutatorFixes
 import GroupApproximation.Analysis.RankNormalizedHilbertization
 import GroupApproximation.Analysis.CollapseLambdaCocycle
+import GroupApproximation.Analysis.CollapseProjectionLift
 import GroupApproximation.Analysis.RankNormalizedLambda
 import GroupApproximation.Monsters.NeumannTwoGenerator
 import GroupApproximation.Sofic.CollapseRankWeightTransport
