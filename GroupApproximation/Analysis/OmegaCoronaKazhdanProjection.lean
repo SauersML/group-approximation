@@ -649,12 +649,37 @@ theorem manuscriptCornerCompression (R : OmegaUnitaryRep Y ω G)
 
 /-- The printed corner defect `θ q − q h q`, as a bounded sequence.  Written
 with the algebra map rather than a scalar action because the opaque corona's
-scalar action does not rewrite; at a coordinate it is `θ q_n − q_n h_n q_n`. -/
+scalar action does not rewrite; `cornerDefectSeq_coord` checks that its
+coordinates are the printed `θ q_n − q_n h_n q_n`. -/
 def cornerDefectSeq (R : OmegaUnitaryRep Y ω G) (S : Finset G)
     (qn : BoundedMatrixSequence (Idx Y)) (c : ℝ) :
     BoundedMatrixSequence (Idx Y) :=
   algebraMap ℂ (BoundedMatrixSequence (Idx Y)) (c : ℂ) * qn
     - qn * hermitianAverageSeq Y ω R S * qn
+
+/-- **Its coordinates are the printed defect.**  Stated rather than left to the
+reader because the name claims it. -/
+@[simp] theorem cornerDefectSeq_coord (R : OmegaUnitaryRep Y ω G) (S : Finset G)
+    (qn : BoundedMatrixSequence (Idx Y)) (c : ℝ) (n : ℕ) :
+    (cornerDefectSeq Y ω R S qn c : ∀ n, Matrix (Idx Y n) (Idx Y n) ℂ) n
+      = (c : ℂ) • (qn : ∀ n, Matrix (Idx Y n) (Idx Y n) ℂ) n
+        - (qn : ∀ n, Matrix (Idx Y n) (Idx Y n) ℂ) n
+          * (hermitianAverageSeq Y ω R S :
+              ∀ n, Matrix (Idx Y n) (Idx Y n) ℂ) n
+          * (qn : ∀ n, Matrix (Idx Y n) (Idx Y n) ℂ) n := by
+  have halg : ((algebraMap ℂ (BoundedMatrixSequence (Idx Y)) ((c : ℝ) : ℂ)) :
+        ∀ n, Matrix (Idx Y n) (Idx Y n) ℂ) n
+      = (c : ℂ) • (1 : Matrix (Idx Y n) (Idx Y n) ℂ) := by
+    show algebraMap ℂ (Matrix (Idx Y n) (Idx Y n) ℂ) ((c : ℝ) : ℂ) = _
+    rw [Algebra.algebraMap_eq_smul_one]
+  show ((algebraMap ℂ (BoundedMatrixSequence (Idx Y)) ((c : ℝ) : ℂ)) :
+        ∀ n, Matrix (Idx Y n) (Idx Y n) ℂ) n
+      * (qn : ∀ n, Matrix (Idx Y n) (Idx Y n) ℂ) n
+      - (qn : ∀ n, Matrix (Idx Y n) (Idx Y n) ℂ) n
+        * (hermitianAverageSeq Y ω R S :
+            ∀ n, Matrix (Idx Y n) (Idx Y n) ℂ) n
+        * (qn : ∀ n, Matrix (Idx Y n) (Idx Y n) ℂ) n = _
+  rw [halg, Matrix.smul_mul, one_mul]
 
 open scoped ComplexOrder in
 /-- **The corner inequality in coordinates.**
