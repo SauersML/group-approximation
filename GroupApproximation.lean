@@ -1076,6 +1076,7 @@ import GroupApproximation.Analysis.VectorHilbertComplete
 import GroupApproximation.Analysis.VectorOmegaAction
 import GroupApproximation.Analysis.VectorOmegaKazhdanGap
 import GroupApproximation.Analysis.UnitaryAverageFixedVector
+import GroupApproximation.Analysis.OmegaCoronaKazhdanProjection
 import GroupApproximation.Sofic.OmegaRouteManuscriptTransport
 import GroupApproximation.Sofic.LiteralProductMultiplicity
 import GroupApproximation.Monsters.NeumannSimpleSocle

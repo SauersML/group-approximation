@@ -258,6 +258,39 @@ theorem manuscriptNormalKazhdanFixedSpace
   exact UnitaryAverageFixedVector.spectralProjection_apply_eq_self_iff
     (repUnitary' Y ω R) hS hsymm hc hgap x
 
+/-- **`NK.06`, third clause, on the printed objects.**
+
+> `q = 1 − P` is nonzero because `q = 0` would make `π` trivial on `K̄`, against
+> the operator-norm separation.
+
+The printed reason as an iff, on `H_ω`.  Nontriviality of `π` on the Kazhdan set
+is not merely sufficient for `q ≠ 0`; it is equivalent to it.  Whatever supplies
+the nontriviality — in the manuscript, the operator-norm separation — supplies
+the nonvanishing through this and needs no estimate of its own. -/
+theorem manuscriptNormalKazhdanComplementNeZero
+    (R : OmegaUnitaryRep Y ω G)
+    {Q : Finset G} {ε : ℝ} (hQ : IsKazhdanPair.{u, 0} G Q ε)
+    (S : Finset G) (hS : S.Nonempty) (hQS : Q ⊆ S) (hone : 1 ∈ S)
+    (hsymm : ∀ g ∈ S, g⁻¹ ∈ S) (hεone : ε ≤ 1) :
+    (1 : VecOmega Y ω →L[ℂ] VecOmega Y ω)
+        - CStarSpectralProjection.spectralProjection
+            (AbstractSpectralGap.unitaryAverage (repUnitary' Y ω R) S)
+            (1 - ε ^ 2 / (4 * S.card)) ≠ 0
+      ↔ ∃ g ∈ S, ((repUnitary' Y ω R g :
+          unitary (VecOmega Y ω →L[ℂ] VecOmega Y ω)) :
+          VecOmega Y ω →L[ℂ] VecOmega Y ω) ≠ 1 := by
+  have hc : 1 - ε ^ 2 / (4 * S.card) < 1 := gapConstant_lt_one hQ.1 hS
+  have hgap : ∀ μ ∈ spectrum ℝ
+      (AbstractSpectralGap.unitaryAverage (repUnitary' Y ω R) S),
+      μ ≤ 1 - ε ^ 2 / (4 * S.card) ∨ μ = 1 := by
+    intro μ hμ
+    rcases manuscriptNormalKazhdanSpectralGap Y ω R hQ S hS hQS hone hsymm hεone hμ
+      with h | h
+    · exact Or.inl h.2
+    · exact Or.inr h
+  exact UnitaryAverageFixedVector.one_sub_spectralProjection_ne_zero_iff
+    (repUnitary' Y ω R) hS hsymm hc hgap
+
 end FixedSpace
 
 end

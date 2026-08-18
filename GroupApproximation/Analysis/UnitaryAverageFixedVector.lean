@@ -236,6 +236,51 @@ theorem spectralProjection_apply_eq_self_iff
     rwa [hPx] at h
   · exact spectralProjection_apply_eq_of_forall_apply_eq ρ hS hsymm hc hgap
 
+/-- **`q = 1 − P` is nonzero exactly when the representation is nontrivial on
+the Kazhdan set.**
+
+> `q = 1 − P` is nonzero because `q = 0` would make `π` trivial on `K̄`, against
+> the operator-norm separation.
+
+The printed reason, as an iff.  `P = 1` says every vector of the space is fixed
+by `P`, and by the range identification that says every vector is fixed by every
+`π(a)`, which is exactly triviality of `π` on the Kazhdan set.  So the
+nonvanishing of `q` needs no estimate of its own: whatever supplies
+nontriviality — in the manuscript, the operator-norm separation — supplies `q ≠
+0` through this. -/
+theorem one_sub_spectralProjection_ne_zero_iff
+    (ρ : G →* unitary (E →L[ℂ] E)) {S : Finset G} (hS : S.Nonempty)
+    (hsymm : ∀ g ∈ S, g⁻¹ ∈ S) {c : ℝ} (hc : c < 1)
+    (hgap : ∀ μ ∈ spectrum ℝ (unitaryAverage ρ S), μ ≤ c ∨ μ = 1) :
+    (1 : E →L[ℂ] E)
+        - CStarSpectralProjection.spectralProjection (unitaryAverage ρ S) c ≠ 0
+      ↔ ∃ g ∈ S, ((ρ g : unitary (E →L[ℂ] E)) : E →L[ℂ] E) ≠ 1 := by
+  set P := CStarSpectralProjection.spectralProjection (unitaryAverage ρ S) c with hP
+  have hkey : P = 1 ↔ ∀ g ∈ S, ((ρ g : unitary (E →L[ℂ] E)) : E →L[ℂ] E) = 1 := by
+    constructor
+    · intro h1 g hg
+      refine ContinuousLinearMap.ext fun x ↦ ?_
+      have hPx : (P : E →L[ℂ] E) x = x := by rw [h1]; rfl
+      have := (spectralProjection_apply_eq_self_iff ρ hS hsymm hc hgap x).1 hPx g hg
+      simpa using this
+    · intro hall
+      refine ContinuousLinearMap.ext fun x ↦ ?_
+      have : (P : E →L[ℂ] E) x = x :=
+        (spectralProjection_apply_eq_self_iff ρ hS hsymm hc hgap x).2
+          (fun g hg ↦ by rw [hall g hg]; rfl)
+      simpa using this
+  constructor
+  · intro hq
+    by_contra hall
+    push Not at hall
+    exact hq (by rw [hkey.2 hall, sub_self])
+  · rintro ⟨g, hg, hne⟩ hq
+    exact hne (hkey.1 (by
+      have : (1 : E →L[ℂ] E) = P := by
+        have := sub_eq_zero.mp hq
+        exact this
+      exact this.symm) g hg)
+
 end
 
 end UnitaryAverageFixedVector
