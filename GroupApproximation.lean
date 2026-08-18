@@ -900,6 +900,7 @@ import GroupApproximation.Analysis.FiniteCStarMurrayVonNeumann
 import GroupApproximation.Analysis.MaximalCStarLiteralBase
 import GroupApproximation.Analysis.MaximalGroupCStarUniqueness
 import GroupApproximation.Analysis.PropertyAExtension
+import GroupApproximation.Analysis.ExactnessGroupSideEndpoint
 import GroupApproximation.Analysis.CStarTensorProductSeminorm
 import GroupApproximation.Analysis.CStarTensorProductSpatial
 import GroupApproximation.Analysis.CStarTensorProductConcrete
@@ -913,6 +914,8 @@ import GroupApproximation.Analysis.CStarMinTensorFunctorial
 import GroupApproximation.Analysis.CStarMinTensorQuotient
 import GroupApproximation.Analysis.CStarNonUnitalState
 import GroupApproximation.Analysis.CStarCompletelyPositiveForm
+import GroupApproximation.Analysis.CStarCompletelyPositiveStar
+import GroupApproximation.Analysis.CStarStinespringForm
 import GroupApproximation.Analysis.CStarIdealQuotient
 import GroupApproximation.Analysis.CStarQuotientIdentity
 import GroupApproximation.Analysis.CStarIdealApproximateUnit
