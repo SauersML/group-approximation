@@ -159,6 +159,27 @@ A residual chain gives the canonical faithful-trace sofic
 Net: for the canonical `σ`, (CCR) is a clean, self-contained question
 about excess commutants of Kazhdan images in sofic ultraproducts.
 
+**2026-08-18g: two trap-fences for the next campaign.**
+
+1. **The bicommutant shortcut is impossible.**  `σ(γ) ∈ σ(Λ)''` would
+   imply (CCR) instantly (bicommutant), and the congruence collapse
+   makes it look plausible — the diagonal `(π_n(λ_n))_n` EQUALS
+   `σ(γ)` coordinatewise.  But it provably fails, always:
+   trace-faithfulness gives `⟨σ(γ), σ(λ)⟩ = tr σ(γλ⁻¹) = 0` for every
+   `λ ∈ Λ`, so `σ(γ)` is orthogonal to `L²(σ(Λ)'')` and
+   `E_{σ(Λ)''}(σ(γ)) = 0`.  The diagonal of escaping group elements
+   coincides with `σ(γ)` in `M` yet lies outside the von Neumann
+   closure of the constants.  Moral: (CCR), if true, holds strictly
+   "from the commutant side" — `σ(Λ)' ∩ M` must be small enough
+   without `σ(Γ)` ever entering `σ(Λ)''`.  Do not re-attempt.
+2. **Small-block surgery cannot refute (CCR).**  Gluing junk blocks
+   of dimension fraction `o(1)` onto genuine representations produces
+   approximate representations for free, but any `x` supported on the
+   junk has `‖x‖₂ → 0`: a counterexample needs
+   `‖[x, σ(γ₀)]‖₂ ≥ c > 0`, so its `Λ`-commuting structure must be
+   macroscopically distributed across the coordinates.  Do not
+   re-attempt block-gluing refutations.
+
 **2026-08-18f: the residue is an approximate-collapse question, and
 both program forks meet there.**  Re-running the coordinate proof
 against an arbitrary `σ` (approximate coordinates `π_n`): steps 1–2
