@@ -34,6 +34,14 @@ Theorem E pair, and `X=G/Gamma`.
 
    so the `Gamma`-orbit of the marked coset `h Gamma` in `X` is infinite and
    the orbital graph of `Gamma h Gamma` has infinite degree at every vertex.
+2'. **The neighbour set has coordinates (2026-08-18).**  The infinitude of
+   step 2 is now explicit: for every `p != q` the marked neighbours
+   `e_(qp)(a) h_(pq) Gamma` of the base point are indexed injectively by
+   `a in R_+/m^2 R_+`, because
+   `U_(qp) cap Gamma cap h_(pq) Gamma h_(pq)^(-1) = {e_(qp)(a) : a in m^2 R_+}`
+   exactly (`minimal-marked-graph-private-neighbour`, item 2).  That chart is
+   what makes the separation argument of that claim possible, and it turns
+   further demands on a neighbour into conditions on a Laurent parameter.
 3. **Consequence for the invariant-graph family.**  A `G`-invariant graph on
    `X` that contains the marked edge contains the whole orbital graph of
    `Gamma h Gamma`, so **no finite-degree `G`-invariant graph on `X` keeps

@@ -128,3 +128,12 @@ orbital graph of one symmetric double coset, whose `z=-1` lamp algebra is the
 AF twisted algebra `C_r^*(directSum_X F_2,(-1)^(B_*))` and whose Bogoliubov
 action is far more local than the complete one.  If a construction is going
 to be attempted at all, attempt it there.
+
+*(2026-08-18.)*  That instance is now a first-class node,
+`minimal-marked-graph-crossed-product-ce`, and its algebraic prerequisite is
+discharged: `minimal-marked-graph-nondegenerate` proves the minimal marked
+orbital graph has zero radical, so its lamp algebra is the hyperfinite
+factor and no graph search is left.  Prefer it over this claim: it is
+strictly weaker, it targets a named algebra, and its finite-window form has
+the lamp side solved exactly (`vertex-supported-symplectic-completion`), so
+all of its content sits in the coherence of the implementers.
