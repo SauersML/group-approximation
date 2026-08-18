@@ -159,6 +159,12 @@ def initialPart (i k : Fin 6) (p : Fin 4) : ℕ :=
     finProdFinEquiv ((2 : Fin 4), (7 : Fin 9)) = (25 : Fin 36) := by
   decide +kernel
 
+/-- Normalize the exceptional chunk at the level used by generated residual proofs. -/
+@[simp] theorem initialChunk_part2Offset7 (i k : Fin 6) :
+    initialChunk i k (finProdFinEquiv ((2 : Fin 4), (7 : Fin 9))) =
+      initialChunk i k 25 := by
+  rw [part2Offset7_eq_chunk25]
+
 private theorem sum_fin36_parts {M : Type*} [AddCommMonoid M]
     (f : Fin 36 → M) :
     ∑ j, f j = ∑ p : Fin 4, ∑ u : Fin 9, f (finProdFinEquiv (p, u)) := by
