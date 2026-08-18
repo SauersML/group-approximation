@@ -1046,6 +1046,7 @@ import GroupApproximation.Analysis.TracialQuotientCStar
 import GroupApproximation.Analysis.SoficHyperlinearTrace
 import GroupApproximation.Analysis.TracialQuotientCStarIdentity
 import GroupApproximation.Analysis.SoficHyperlinearBridge
+import GroupApproximation.Analysis.PrintedUltrafilterHyperlinearTrace
 import GroupApproximation.Sofic.TraceSeparationEndpoint
 
 -- Modules that stood outside this root's import closure and were therefore
