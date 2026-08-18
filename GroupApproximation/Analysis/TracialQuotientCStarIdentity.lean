@@ -8,12 +8,8 @@ import GroupApproximation.Analysis.TracialMatrixUltraproduct
 C-star structure: it installs the `CStarRing` and `CStarAlgebra` instances
 and records the exact quotient-norm formula
 `‖a + J‖ = inf { ‖a - a e‖ : e ∈ J }`, consuming the identity proved
-here.  This file is the proof of the identity's hard direction.
-The two were authored in parallel, same day, different sessions, sharing no
-proof text; the duplication was then kept deliberately, because independent
-derivations of the one lemma the trace-separation chain stands on are worth
-their weight, and because this route contributes a reusable sequence-level
-cut API the canonical file keeps inline:
+here.  This file is the proof of the identity's hard direction, together
+with the reusable sequence-level cut API it runs on:
 
 * `cutSeq`: the coordinatewise spectral cut of a bounded sequence, an
   orthogonal projection in every coordinate, uniformly bounded by `1`;
@@ -137,9 +133,10 @@ theorem norm_sq_le_norm_star_mul_self (x : TracialMatrixQuotient X l) :
     Submodule.Quotient.norm_mk_lt (star x * x) hδpos
   have hrmk' : tracialMatrixQuotientMk X l r = star x * x := hrmk
   have hkmk : tracialMatrixQuotientMk X l (star b * b) = star x * x := by
-    rw [map_mul, ← hbmk]
-    congr 1
-    exact (tracialMatrixQuotient_star_mk X l b).symm
+    -- `simp only` rather than `rw`+`congr`: whether the quotient `star`
+    -- unfolds definitionally here has changed under it once already, and
+    -- `simp` is indifferent to which rewrite closes the goal.
+    simp only [map_mul, tracialMatrixQuotient_star_mk, ← hbmk]
   have hkJ : IsHilbertSchmidtNull X l (r - star b * b) := by
     refine (tracialMatrixQuotientMk_eq_zero_iff X l _).mp ?_
     rw [map_sub, hrmk', hkmk, sub_self]
