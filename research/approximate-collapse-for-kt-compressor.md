@@ -95,6 +95,32 @@ coordinates — while simultaneously respecting `G`'s property (T) on
 the global generating set.  The tension "locally finite roots vs
 global (T) vs torus normalization" is the whole question.
 
+**Two fences and the designated method (2026-08-18, final
+sharpening).**
+
+- *Self-similarity fence:* bridging `σ(Λ)'` to a torus-shifted copy
+  through the common subcone fails structurally — the intersection
+  cone is finitely generated (Gordan), its elementary group is again
+  Kazhdan (Ershov–Jaikin applies to any f.g. commutative ring), and
+  the sandwich reproduces the IDENTICAL cone-subcone compression
+  question one scale down.  The wall is scale-invariant; do not
+  re-attempt subcone interpolation.
+- *Designated method — relative (T) on root pairs:* Ershov–Jaikin's
+  proof of (T) for `EL_r` runs through RELATIVE property (T) of
+  Steinberg pairs (`EL_2`-type acting on root modules `R²`).  That
+  is the weapon whose shape matches the enemy: the Cantor escape
+  lives entirely in the root subgroups' images going infinite, and
+  relative (T) is precisely an almost-invariance upgrade TARGETED at
+  a root subgroup rather than at the whole group.  Conjectural form
+  for the next campaign: relative (T) of the pairs forces the
+  `Ad σ`-action on `L²(M)` to have its root-invariant structure
+  controlled by the Λ-invariant structure, torus slot by torus slot
+  — which via the torus reduction is exactly (CCR).  Second
+  possible input, flagged UNVERIFIED: bounded elementary generation
+  of `EL_r` over (Laurent) polynomial rings (Trost-type results;
+  status for multivariate Laurent needs a source check) would give
+  uniform-width leverage on the same reduction.
+
 **Stakes, stated once:** a proof refutes hyperlinearity of the
 Kun–Thom wreath group (first non-hyperlinear group; group-CEP
 refuted; Pestov 3.9 falls).  A refutation kills the rigidity route
