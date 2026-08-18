@@ -4,6 +4,9 @@ id: twisted-brin-thompson-finite-presentation-criterion
 kind: claim
 title: A twisted Brin-Thompson group is finitely presented exactly when the base is, pair-orbits are finite and point stabilizers are finitely generated
 distinct_from:
+  boone-final-group-finitely-presented: that establishes that one specific HNN tower's final group is finitely presented; this is an if-and-only-if criterion for a family of groups built from actions, and its hypotheses are about orbits and stabilizers rather than about relators.
+  finitely-presented-nonsofic-group-exists: that is an existence statement about soficity failing in a finitely presented group; this is a finite-presentation criterion with no approximation content.
+  finitely-presented-sofic-non-mf: that is about the approximation properties of the literal group E; this is a criterion for finite presentability of twisted Brin-Thompson groups and names no particular group.
   hnn-extension-finite-presentation-permanence: that is finite-presentation permanence for HNN extensions along finitely generated associated subgroups; this is a criterion for a completely different construction, is an equivalence rather than a permanence, and its hypotheses are about a group ACTION rather than about a subgroup pair.
   boone-higman-thompson-simple-envelope: that produces a computably presented simple envelope from a solvable word problem; this says when a twisted Brin-Thompson group is finitely presented, and supplies simplicity only when the underlying action is faithful.
   chatterji-kassabov-normal-generator-embedding: that is an embedding theorem producing a finitely presented property (T) group; this characterizes finite presentability of a specific construction and involves no embedding and no property (T).
