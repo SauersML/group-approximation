@@ -380,6 +380,10 @@ details.proof > summary .badge-lean { font-size: 12px; padding: 0 8px; }
   vertical-align: 0.12em; line-height: 1.4;
 }
 .lean-chip:hover { border-color: var(--verified); }
+.lean-chip-mismatch { color: #8a6100; background: #f7efdc; border-color: rgba(138, 97, 0, 0.35); }
+.lean-chip-mismatch:hover { border-color: #8a6100; }
+.lean-chip-missing { color: var(--ink-faint); background: var(--bg-inset); border-color: var(--rule); }
+.lean-chip-missing:hover { border-color: var(--ink-soft); }
 .lean-ref {
   color: inherit; cursor: pointer;
   border-bottom: 1px dotted var(--ink-faint);

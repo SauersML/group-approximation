@@ -202,6 +202,22 @@ function renderInline(src, ctx) {
           '" title="This step is machine-checked in Lean 4 — click for the formal proof">Lean&thinsp;✓</button>';
         break;
       }
+      case 'leanstep': {
+        // official positional metadata: the id names a row of the audited
+        // proof-step ledger, and the chip's face reports that row's grade
+        flush();
+        const id = (takeGroup() || '').trim();
+        const row = ledgerStep(id);
+        if (!row) { warn('leanstep names no ledger row: ' + id); break; }
+        const face = { 'EXACT': 'Lean&thinsp;✓', 'MISMATCH': 'Lean&thinsp;~' }[row.proof] || 'Lean&thinsp;–';
+        const cls = { 'EXACT': '', 'MISMATCH': ' lean-chip-mismatch' }[row.proof] ?? ' lean-chip-missing';
+        const title = {
+          'EXACT': 'This step is machine-checked in Lean 4 — audited as exact',
+          'MISMATCH': 'The Lean development proves this step by a different route — click for the audit row',
+        }[row.proof] || 'This step has no complete Lean proof yet — click for the audit row';
+        out += '<button class="lean-chip' + cls + '" data-step="' + escHtml(id) + '" title="' + title + '">' + face + '</button>';
+        break;
+      }
       case 'S': { flush(); out += '§'; break; }
       case 'dots': case 'ldots': { flush(); out += '…'; break; }
       case 'o': { plain += 'ø'; break; }
@@ -824,6 +840,16 @@ function addProofBadges() {
   });
 }
 
+let STEP_INDEX = null;
+function ledgerStep(id) {
+  if (!STEP_INDEX) {
+    STEP_INDEX = Object.create(null);
+    const L = window.LEDGER || {};
+    for (const anchor in L) for (const r of L[anchor]) STEP_INDEX[r.step] = r;
+  }
+  return STEP_INDEX[id] || null;
+}
+
 const GRADE_TXT = { 'EXACT': '✓ exact', 'MISMATCH': 'different route', 'MISSING': 'not formalized', 'UNDER-SPECIFIED': 'under-specified' };
 function ledgerHtml(rows) {
   let html = '<div class="ledger-head">Printed steps, graded against Lean' +
@@ -896,15 +922,18 @@ function setupLeanPanels(root) {
     if (ev.target.closest('.lean-drawer') && ev.target.closest('a[href^="#"]')) { close(); return; }
     // clicking anywhere off the drawer closes it
     if (!drawer.hidden && !ev.target.closest('.lean-drawer, .badge-lean, .lean-chip')) close();
-    // a positional chip in the running text: just that declaration
+    // a positional chip in the running text: just that step
     const chip = ev.target.closest('.lean-chip');
     if (chip) {
       ev.preventDefault();
       if (openFor === chip) { close(); return; }
       close();
+      const row = chip.dataset.step ? ledgerStep(chip.dataset.step) : null;
+      const content = row
+        ? ledgerHtml([row])
+        : leanDeclHtml({ module: chip.dataset.module, decl: chip.dataset.decl });
       drawer.innerHTML = '<div class="lean-drawer-head"><span class="lean-drawer-title">This step in Lean</span>' +
-        '<button class="lean-drawer-close" aria-label="Close">×</button></div>' +
-        leanDeclHtml({ module: chip.dataset.module, decl: chip.dataset.decl });
+        '<button class="lean-drawer-close" aria-label="Close">×</button></div>' + content;
       drawer.querySelectorAll('details.lean-decl').forEach(d => { d.open = true; });
       drawer.hidden = false;
       drawer.scrollTop = 0;

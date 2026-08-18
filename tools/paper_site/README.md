@@ -31,7 +31,12 @@ open a fixed side drawer — statement and proof shown together, the
 manuscript never reflows.  A `\leanverified` marker in
 running text renders as a chip at that exact spot, and identifiers inside
 drawer code expand the declaration they name (statements of every decl in
-the cited modules are embedded for this).  Manuscript proofs
+the cited modules are embedded for this).  `\leanstep{ID}` is the
+sentence-level form: the manuscript carries the position, the ledger row
+named by ID carries the grade and declarations, and the chip's face is
+grade-honest (`Lean ✓` exact, `Lean ~` different route, `Lean –`
+otherwise).  A marker naming no ledger row logs a warning to
+`window.__diag`.  Manuscript proofs
 start folded behind the topbar toggle, and cross-reference hover cards
 stack, so a link inside a card opens a nested card instead of replacing
 it.  `freshness.js` keeps the address bar

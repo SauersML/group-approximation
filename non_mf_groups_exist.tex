@@ -67,6 +67,13 @@
 % accompanying Lean~4 development that proves it.  Not typeset; the
 % audit tooling that reads these records is documented in the repository.
 \newcommand{\leanverified}[2]{\ignorespaces}
+% \leanstep{ID}: positional audit metadata, not typeset.  ID names a step
+% row of metadata/NON_MF_PROOF_LEDGER.md; the marker sits directly after
+% the sentence that row grades, so tooling (the web edition, checkers)
+% can bind the audited grade to its exact place in the prose.  The ledger
+% stays the single source for grades and declarations; the manuscript
+% carries only the position.
+\newcommand{\leanstep}[1]{\ignorespaces}
 \setlist[enumerate]{leftmargin=2.35em}
 \setlist[itemize]{leftmargin=2.1em}
 \allowdisplaybreaks
@@ -458,12 +465,13 @@ Every unitary $u\in\mathcal Q$ lifts to a sequence of unitaries.
 
 \begin{proof}
 Lift $u$ to a bounded sequence $(x_n)$; unitarity of $q((x_n))$ gives
-$\opnorm{x_n^*x_n-1}\to0$.  Once $\opnorm{x_n^*x_n-1}\le\tfrac12$,
+$\opnorm{x_n^*x_n-1}\to0$.\leanstep{PRE.09}
+Once $\opnorm{x_n^*x_n-1}\le\tfrac12$,
 the matrix $x_n$ is invertible and the polar correction
 $u_n=x_n(x_n^*x_n)^{-1/2}$ is unitary with
 $\opnorm{u_n-x_n}\le2\opnorm{x_n}\opnorm{x_n^*x_n-1}\to0$ by
-continuous functional calculus; set $u_n=1$ at the finitely many
-remaining indices.
+continuous functional calculus;\leanstep{PRE.10} set $u_n=1$ at the finitely many
+remaining indices.\leanstep{PRE.11}
 \end{proof}
 
 Write
@@ -490,7 +498,8 @@ lift sequences identified when their quotient tends to $1$.
 
 \begin{proof}
 The kernel of $(u_n)\mapsto q((u_n))$ is exactly $\mathcal N$, so the
-induced map is injective.  Surjectivity is Lemma~\ref{lem:lift}.
+induced map is injective.\leanstep{PRE.13}
+Surjectivity is Lemma~\ref{lem:lift}.\leanstep{PRE.14}
 \end{proof}
 
 An \emph{operator-norm asymptotic representation} of $H$ is a sequence of
