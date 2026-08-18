@@ -62,10 +62,12 @@ hand-built `SeminormedRing`/`NormedRing` instances -- and `*` is the one whose
 route runs through `Ideal.Quotient.ring`, hence through the expensive
 `lp.inftyRing` chain that has to rediscover each model's `Fintype` and
 `DecidableEq` through the `FiniteModel` projections.  It is not a missing
-instance and not a `variable` ordering mistake: it is search cost.  The local
-palliative is `set_option synthInstance.maxHeartbeats`, which is what
-`Analysis/TracialMatrixUltraproduct.lean` itself carries and for the same
-reason; the durable fix is below.  So
+instance and not a `variable` ordering mistake: it was search cost, and it is
+now paid once.  **The durable fix named below has landed**:
+`Analysis/TracialMatrixUltraproduct.lean` declares `TracialMatrixQuotient` as a
+plain `def` and names its `Ring`, `NormedAddCommGroup` and `Algebra ℂ`
+outright, so the search terminates in one step and no file in the development
+raises a heartbeat budget any more.  So
 traciality is *not* restated here — use `ultratrace_mul_comm` together with
 `ultratraceCLM_apply`.  Anyone writing the factorization glue will meet this
 at `map_mul`, and the durable fix belongs in the defining file: a directly
@@ -122,7 +124,11 @@ example : Type := TracialMatrixQuotient X (ω : Filter ℕ)
 bound `‖tr_ω x‖ ≤ ‖x‖` is `norm_ultratrace_le`. -/
 def ultratraceCLM : TracialMatrixQuotient X (ω : Filter ℕ) →L[ℂ] ℂ :=
   (ultratraceLinearMap X ω).mkContinuous 1 fun x ↦ by
-    simpa using norm_ultratrace_le X ω x
+    -- `mkContinuous 1` leaves the bound as `1 * ‖x‖`; clear that by rewriting,
+    -- and let `exact` cross from `ultratraceLinearMap` to `ultratrace`, which
+    -- `ultratraceLinearMap_apply` makes definitional.
+    rw [one_mul]
+    exact norm_ultratrace_le X ω x
 
 @[simp] theorem ultratraceCLM_apply
     (x : TracialMatrixQuotient X (ω : Filter ℕ)) :

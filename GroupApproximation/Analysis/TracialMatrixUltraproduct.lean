@@ -132,8 +132,6 @@ projections.  `NormMatrixCorona` avoids this by carrying its index types as
 instance-implicit section variables; here the index sequence is a
 `FiniteModel`-valued function -- which is what the Hilbert--Schmidt norm needs
 -- so the search is genuinely longer and does not fit the default budget. -/
-set_option synthInstance.maxHeartbeats 800000
-set_option maxHeartbeats 1000000
 
 /- The nonemptiness of the models is a standing hypothesis of the whole
 construction (without it the numerator is not a unital ring), but a dozen
@@ -453,18 +451,95 @@ noncomputable instance hilbertSchmidtNullIdeal_isClosed :
 /-! ## The quotient -/
 
 /-- **The tracial matrix quotient at the filter `l`.**  At a free ultrafilter
-this is the manuscript's tracial ultraproduct `∏_ω M_{X n}(ℂ)`. -/
-abbrev TracialMatrixQuotient :=
+this is the manuscript's tracial ultraproduct `∏_ω M_{X n}(ℂ)`.
+
+A plain `def`, not an `abbrev`, and that is what lets this file and the seven
+above it set no heartbeat option.  Reducible, every typeclass goal about the
+quotient unfolded through `ModelBoundedSequence` to
+`lp (fun n ↦ Matrix (X n) (X n) ℂ) ∞` and the search rebuilt that tower:
+measured on one `NonAssocSemiring` goal, `FiniteModel.carrier` unfolded 21109
+times and `WithLp.equiv` 10048, the latter because the L2 operator norm on
+`Matrix` is transported through `NormedAddCommGroup.induced`.  That goal fails
+at 20000 heartbeats and at 40000 and succeeds at 80000.  Opaque, the head is
+its own discrimination key and the tower is never re-entered.
+
+The opacity is here, on the QUOTIENT, and deliberately not on
+`ModelBoundedSequence`.  Making the numerator opaque is not merely harder, it
+is impossible: the numerator carries both a normed structure and a module
+structure over itself, `Ideal M` being `Submodule M M`, and the `AddCommMonoid`
+argument of `Module M M` then reaches the goal by the normed path and the
+instance by the semiring path.  Those agree only after unfolding the
+definition, and `synthInstance` unifies at reducible transparency and will not
+unfold a `def` -- so the instance is found and rejected, forever.  The quotient
+needs no module structure over itself and has no such obstruction. -/
+def TracialMatrixQuotient : Type :=
   ModelBoundedSequence X ⧸ hilbertSchmidtNullIdeal X l
 
-private theorem tracialQuot_exists_rep_norm_lt
+/-- The ring structure of the ideal quotient, named rather than searched for.
+`inferInstanceAs` would mint a fresh constant and stop mathlib's quotient simp
+lemmas from matching it. -/
+noncomputable instance tracialMatrixQuotientRing :
+    Ring (TracialMatrixQuotient X l) :=
+  Ideal.Quotient.ring (hilbertSchmidtNullIdeal X l)
+
+/-- The normed group structure of the quotient by a CLOSED ideal.  This is the
+instance `hilbertSchmidtNullIdeal_isClosed` exists to supply. -/
+noncomputable instance tracialMatrixQuotientNormedAddCommGroup :
+    NormedAddCommGroup (TracialMatrixQuotient X l) :=
+  Submodule.Quotient.normedAddCommGroup (hilbertSchmidtNullIdeal X l)
+
+/-- The complex algebra structure, which the quotient carries because the ideal
+is two-sided. -/
+noncomputable instance tracialMatrixQuotientAlgebra :
+    Algebra ℂ (TracialMatrixQuotient X l) :=
+  Ideal.Quotient.algebra ℂ
+
+/-- The quotient map, declared here because it is the map whose *codomain* is
+the quotient as this file names it.  A bare `Ideal.Quotient.mk` produces a term
+at the underlying `ModelBoundedSequence X ⧸ hilbertSchmidtNullIdeal X l`, and a
+product, adjoint or norm written at that type sends instance search straight
+back into the `lp` tower this file exists to stay out of.  Every use below goes
+through this map for that reason. -/
+def tracialMatrixQuotientMk :
+    ModelBoundedSequence X →+* TracialMatrixQuotient X l :=
+  Ideal.Quotient.mk (hilbertSchmidtNullIdeal X l)
+
+@[simp] theorem tracialMatrixQuotientMk_apply (a : ModelBoundedSequence X) :
+    tracialMatrixQuotientMk X l a =
+      Ideal.Quotient.mk (hilbertSchmidtNullIdeal X l) a := rfl
+
+/-- **Vanishing at the quotient is membership of the ideal.**  This is
+`Ideal.Quotient.eq_zero_iff_mem`, restated at `TracialMatrixQuotient`.
+
+The restatement is necessary, not cosmetic.  `rw` matches up to reducible
+transparency, and mathlib's lemma is stated with the ambient type spelled
+`?M ⧸ ?I`; against a goal whose type is the opaque `TracialMatrixQuotient X l`
+that pattern cannot match, however the quotient map inside it is written.
+`exact` is under no such restriction, so the bridge is proved once by `show`
+and every use below goes through it. -/
+theorem tracialMatrixQuotientMk_eq_zero_iff_mem (a : ModelBoundedSequence X) :
+    tracialMatrixQuotientMk X l a = 0 ↔ a ∈ hilbertSchmidtNullIdeal X l := by
+  show Ideal.Quotient.mk (hilbertSchmidtNullIdeal X l) a = 0 ↔ _
+  exact Ideal.Quotient.eq_zero_iff_mem
+
+/-- **A representative of nearly minimal norm**, stated at the canonical map.
+
+Public, and it must stay public: it is `Submodule.Quotient.norm_mk_lt` with its
+conclusion spelled at `tracialMatrixQuotientMk`.  A caller who uses mathlib's
+form instead gets a `Submodule.Quotient.mk` term and has to convert by defeq,
+which means unfolding the opaque `TracialMatrixQuotient` inside whatever goal
+it sits in -- cheap while the quotient was reducible, and the dominant cost
+once it is not. -/
+theorem tracialQuot_exists_rep_norm_lt
     (x : TracialMatrixQuotient X l) {ε : ℝ} (hε : 0 < ε) :
     ∃ a : ModelBoundedSequence X,
-      Ideal.Quotient.mk (hilbertSchmidtNullIdeal X l) a = x ∧ ‖a‖ < ‖x‖ + ε :=
+      tracialMatrixQuotientMk X l a = x ∧ ‖a‖ < ‖x‖ + ε :=
   Submodule.Quotient.norm_mk_lt x hε
 
-private theorem tracialQuot_norm_mk_le (a : ModelBoundedSequence X) :
-    ‖Ideal.Quotient.mk (hilbertSchmidtNullIdeal X l) a‖ ≤ ‖a‖ :=
+/-- **The quotient map is contractive**, stated at the canonical map, and
+public for the same reason as `tracialQuot_exists_rep_norm_lt`. -/
+theorem tracialQuot_norm_mk_le (a : ModelBoundedSequence X) :
+    ‖tracialMatrixQuotientMk X l a‖ ≤ ‖a‖ :=
   Submodule.Quotient.norm_mk_le (hilbertSchmidtNullIdeal X l) a
 
 /-- The quotient seminorm is submultiplicative.  Mathlib's ideal-quotient
@@ -473,7 +548,7 @@ the proof is the usual choice of representatives of nearly minimal norm with a
 tolerance `δ` calibrated once against `‖x‖ + ‖y‖ + 1`. -/
 noncomputable instance tracialMatrixQuotientSeminormedRing :
     SeminormedRing (TracialMatrixQuotient X l) where
-  dist_eq := dist_eq_norm_neg_add
+  dist_eq := (tracialMatrixQuotientNormedAddCommGroup X l).dist_eq
   norm_mul_le x y := by
     refine _root_.le_of_forall_pos_le_add fun ε hε ↦ ?_
     have hK : (0 : ℝ) < ‖x‖ + ‖y‖ + 1 := by positivity
@@ -492,7 +567,7 @@ noncomputable instance tracialMatrixQuotientSeminormedRing :
       mul_le_mul ha.le hb.le (norm_nonneg b) (by linarith)
     have hsq : δ * δ ≤ δ := by nlinarith
     calc ‖x * y‖
-        = ‖Ideal.Quotient.mk (hilbertSchmidtNullIdeal X l) (a * b)‖ := by
+        = ‖tracialMatrixQuotientMk X l (a * b)‖ := by
           rw [map_mul, ha_eq, hb_eq]
       _ ≤ ‖a * b‖ := tracialQuot_norm_mk_le X l (a * b)
       _ ≤ ‖a‖ * ‖b‖ := norm_mul_le a b
@@ -507,19 +582,20 @@ noncomputable instance tracialMatrixQuotientNormedRing :
 /-- The tracial matrix quotient is complete. -/
 noncomputable instance tracialMatrixQuotientCompleteSpace :
     CompleteSpace (TracialMatrixQuotient X l) :=
-  Submodule.Quotient.completeSpace (hilbertSchmidtNullIdeal X l)
+  inferInstanceAs (CompleteSpace
+    (ModelBoundedSequence X ⧸ hilbertSchmidtNullIdeal X l))
 
 private def boundedSequenceStarHom :
     ModelBoundedSequence X →+ TracialMatrixQuotient X l :=
-  (Ideal.Quotient.mk (hilbertSchmidtNullIdeal X l)).toAddMonoidHom.comp
+  (tracialMatrixQuotientMk X l).toAddMonoidHom.comp
     starAddEquiv.toAddMonoidHom
 
 private theorem hilbertSchmidtNullIdeal_le_star_ker :
     (hilbertSchmidtNullIdeal X l).toAddSubgroup ≤
       (boundedSequenceStarHom X l).ker := by
   intro a ha
-  change Ideal.Quotient.mk (hilbertSchmidtNullIdeal X l) (star a) = 0
-  rw [Ideal.Quotient.eq_zero_iff_mem]
+  change tracialMatrixQuotientMk X l (star a) = 0
+  rw [tracialMatrixQuotientMk_eq_zero_iff_mem]
   exact hilbertSchmidtNullIdeal_star_mem X l ha
 
 /-- Coordinatewise adjoint descends to the tracial quotient. -/
@@ -531,8 +607,8 @@ noncomputable instance tracialMatrixQuotientStar :
     (hilbertSchmidtNullIdeal_le_star_ker X l)
 
 @[simp] theorem tracialMatrixQuotient_star_mk (a : ModelBoundedSequence X) :
-    star (Ideal.Quotient.mk (hilbertSchmidtNullIdeal X l) a) =
-      Ideal.Quotient.mk (hilbertSchmidtNullIdeal X l) (star a) :=
+    star (tracialMatrixQuotientMk X l a) =
+      tracialMatrixQuotientMk X l (star a) :=
   QuotientAddGroup.lift_mk _ _ _
 
 noncomputable instance tracialMatrixQuotientInvolutiveStar :
@@ -540,8 +616,8 @@ noncomputable instance tracialMatrixQuotientInvolutiveStar :
   star_involutive x := by
     induction x using QuotientAddGroup.induction_on with
     | _ a =>
-      change star (star (Ideal.Quotient.mk (hilbertSchmidtNullIdeal X l) a)) =
-        Ideal.Quotient.mk (hilbertSchmidtNullIdeal X l) a
+      change star (star (tracialMatrixQuotientMk X l a)) =
+        tracialMatrixQuotientMk X l a
       rw [tracialMatrixQuotient_star_mk, tracialMatrixQuotient_star_mk,
         star_star]
 
@@ -552,9 +628,9 @@ noncomputable instance tracialMatrixQuotientStarRing :
     | _ a =>
       induction y using QuotientAddGroup.induction_on with
       | _ b =>
-        change star (Ideal.Quotient.mk (hilbertSchmidtNullIdeal X l) (a + b)) =
-          star (Ideal.Quotient.mk (hilbertSchmidtNullIdeal X l) a) +
-            star (Ideal.Quotient.mk (hilbertSchmidtNullIdeal X l) b)
+        change star (tracialMatrixQuotientMk X l (a + b)) =
+          star (tracialMatrixQuotientMk X l a) +
+            star (tracialMatrixQuotientMk X l b)
         rw [tracialMatrixQuotient_star_mk, tracialMatrixQuotient_star_mk,
           tracialMatrixQuotient_star_mk, star_add]
         rfl
@@ -563,9 +639,9 @@ noncomputable instance tracialMatrixQuotientStarRing :
     | _ a =>
       induction y using QuotientAddGroup.induction_on with
       | _ b =>
-        change star (Ideal.Quotient.mk (hilbertSchmidtNullIdeal X l) (a * b)) =
-          star (Ideal.Quotient.mk (hilbertSchmidtNullIdeal X l) b) *
-            star (Ideal.Quotient.mk (hilbertSchmidtNullIdeal X l) a)
+        change star (tracialMatrixQuotientMk X l (a * b)) =
+          star (tracialMatrixQuotientMk X l b) *
+            star (tracialMatrixQuotientMk X l a)
         rw [tracialMatrixQuotient_star_mk, tracialMatrixQuotient_star_mk,
           tracialMatrixQuotient_star_mk]
         rw [show star (a * b) = star b * star a from StarMul.star_mul a b]
@@ -588,6 +664,13 @@ theorem norm_tracialMatrixQuotient_star (x : TracialMatrixQuotient X l) :
     ‖star x‖ = ‖x‖ :=
   norm_star x
 
+/-- `‖z • x‖ = ‖z‖ * ‖x‖` on the quotient.  A `Prop` mixin, so unlike the
+structures above it may be recovered rather than named: nothing is keyed on it. -/
+noncomputable instance tracialMatrixQuotientNormSMulClass :
+    NormSMulClass ℂ (TracialMatrixQuotient X l) :=
+  inferInstanceAs (NormSMulClass ℂ
+    (ModelBoundedSequence X ⧸ hilbertSchmidtNullIdeal X l))
+
 /-- The quotient's complex algebra structure is compatible with the quotient
 norm. -/
 noncomputable instance tracialMatrixQuotientNormedAlgebra :
@@ -601,20 +684,11 @@ noncomputable instance tracialMatrixQuotientStarModule :
   intro z x
   induction x using QuotientAddGroup.induction_on with
   | _ a =>
-      change star (Ideal.Quotient.mk (hilbertSchmidtNullIdeal X l) (z • a)) =
-        star z • star (Ideal.Quotient.mk (hilbertSchmidtNullIdeal X l) a)
+      change star (tracialMatrixQuotientMk X l (z • a)) =
+        star z • star (tracialMatrixQuotientMk X l a)
       rw [tracialMatrixQuotient_star_mk, tracialMatrixQuotient_star_mk,
         star_smul]
       rfl
-
-/-- The quotient map onto the tracial quotient. -/
-def tracialMatrixQuotientMk :
-    ModelBoundedSequence X →+* TracialMatrixQuotient X l :=
-  Ideal.Quotient.mk (hilbertSchmidtNullIdeal X l)
-
-@[simp] theorem tracialMatrixQuotientMk_apply (a : ModelBoundedSequence X) :
-    tracialMatrixQuotientMk X l a =
-      Ideal.Quotient.mk (hilbertSchmidtNullIdeal X l) a := rfl
 
 theorem tracialMatrixQuotientMk_surjective :
     Function.Surjective (tracialMatrixQuotientMk X l) :=
@@ -624,8 +698,7 @@ theorem tracialMatrixQuotientMk_surjective :
 statement faithfulness of the ultratrace is measured against. -/
 theorem tracialMatrixQuotientMk_eq_zero_iff (a : ModelBoundedSequence X) :
     tracialMatrixQuotientMk X l a = 0 ↔ IsHilbertSchmidtNull X l a := by
-  change Ideal.Quotient.mk (hilbertSchmidtNullIdeal X l) a = 0 ↔ _
-  rw [Ideal.Quotient.eq_zero_iff_mem]
+  rw [tracialMatrixQuotientMk_eq_zero_iff_mem]
   rfl
 
 /-! ## The ultratrace on bounded sequences
@@ -820,7 +893,7 @@ def ultratrace : TracialMatrixQuotient X (ω : Filter ℕ) →+ ℂ :=
     (seqUltratraceHom X ω) (hilbertSchmidtNullIdeal_le_ultratrace_ker X ω)
 
 @[simp] theorem ultratrace_mk (a : ModelBoundedSequence X) :
-    ultratrace X ω (Ideal.Quotient.mk (hilbertSchmidtNullIdeal X (ω : Filter ℕ)) a)
+    ultratrace X ω (tracialMatrixQuotientMk X (ω : Filter ℕ) a)
       = seqUltratrace X ω a :=
   QuotientAddGroup.lift_mk _ _ _
 
@@ -834,9 +907,9 @@ theorem ultratrace_smul (c : ℂ) (x : TracialMatrixQuotient X (ω : Filter ℕ)
   induction x using QuotientAddGroup.induction_on with
   | _ a =>
     change ultratrace X ω
-        (Ideal.Quotient.mk (hilbertSchmidtNullIdeal X (ω : Filter ℕ)) (c • a))
+        (tracialMatrixQuotientMk X (ω : Filter ℕ) (c • a))
       = c * ultratrace X ω
-        (Ideal.Quotient.mk (hilbertSchmidtNullIdeal X (ω : Filter ℕ)) a)
+        (tracialMatrixQuotientMk X (ω : Filter ℕ) a)
     rw [ultratrace_mk, ultratrace_mk]
     exact seqUltratrace_smul X ω c a
 
@@ -861,9 +934,9 @@ theorem ultratrace_mul_comm (x y : TracialMatrixQuotient X (ω : Filter ℕ)) :
     induction y using QuotientAddGroup.induction_on with
     | _ b =>
       change ultratrace X ω
-          (Ideal.Quotient.mk (hilbertSchmidtNullIdeal X (ω : Filter ℕ)) (a * b))
+          (tracialMatrixQuotientMk X (ω : Filter ℕ) (a * b))
         = ultratrace X ω
-          (Ideal.Quotient.mk (hilbertSchmidtNullIdeal X (ω : Filter ℕ)) (b * a))
+          (tracialMatrixQuotientMk X (ω : Filter ℕ) (b * a))
       rw [ultratrace_mk, ultratrace_mk]
       exact seqUltratrace_mul_comm X ω a b
 
@@ -873,9 +946,9 @@ theorem ultratrace_star (x : TracialMatrixQuotient X (ω : Filter ℕ)) :
   induction x using QuotientAddGroup.induction_on with
   | _ a =>
     change ultratrace X ω
-        (star (Ideal.Quotient.mk (hilbertSchmidtNullIdeal X (ω : Filter ℕ)) a))
+        (star (tracialMatrixQuotientMk X (ω : Filter ℕ) a))
       = star (ultratrace X ω
-        (Ideal.Quotient.mk (hilbertSchmidtNullIdeal X (ω : Filter ℕ)) a))
+        (tracialMatrixQuotientMk X (ω : Filter ℕ) a))
     rw [tracialMatrixQuotient_star_mk, ultratrace_mk, ultratrace_mk]
     exact seqUltratrace_star X ω a
 
@@ -897,8 +970,8 @@ this true is carried by the `Nonempty` instance on the models. -/
 theorem ultratrace_one :
     ultratrace X ω (1 : TracialMatrixQuotient X (ω : Filter ℕ)) = 1 := by
   have h1 : (1 : TracialMatrixQuotient X (ω : Filter ℕ))
-      = Ideal.Quotient.mk (hilbertSchmidtNullIdeal X (ω : Filter ℕ)) 1 :=
-    (map_one (Ideal.Quotient.mk (hilbertSchmidtNullIdeal X (ω : Filter ℕ)))).symm
+      = tracialMatrixQuotientMk X (ω : Filter ℕ) 1 :=
+    (map_one (tracialMatrixQuotientMk X (ω : Filter ℕ))).symm
   rw [h1, ultratrace_mk]
   exact seqUltratrace_one X ω
 
@@ -906,12 +979,12 @@ theorem ultratrace_one :
 any lift.**  Everything about positivity and faithfulness reduces to this. -/
 theorem ultratrace_star_mul_self_eq_ofReal (a : ModelBoundedSequence X) :
     ultratrace X ω
-        (star (Ideal.Quotient.mk (hilbertSchmidtNullIdeal X (ω : Filter ℕ)) a) *
-          Ideal.Quotient.mk (hilbertSchmidtNullIdeal X (ω : Filter ℕ)) a)
+        (star (tracialMatrixQuotientMk X (ω : Filter ℕ) a) *
+          tracialMatrixQuotientMk X (ω : Filter ℕ) a)
       = ((seqHSLimit X ω a : ℝ) : ℂ) := by
   rw [tracialMatrixQuotient_star_mk]
   change ultratrace X ω
-      (Ideal.Quotient.mk (hilbertSchmidtNullIdeal X (ω : Filter ℕ)) (star a * a))
+      (tracialMatrixQuotientMk X (ω : Filter ℕ) (star a * a))
     = ((seqHSLimit X ω a : ℝ) : ℂ)
   rw [ultratrace_mk]
   exact seqUltratrace_star_mul_self X ω a
@@ -935,11 +1008,11 @@ theorem ultratrace_star_mul_self_eq_zero_iff
   induction x using QuotientAddGroup.induction_on with
   | _ a =>
     have hmk : ultratrace X ω
-          (star (Ideal.Quotient.mk (hilbertSchmidtNullIdeal X (ω : Filter ℕ)) a) *
-            Ideal.Quotient.mk (hilbertSchmidtNullIdeal X (ω : Filter ℕ)) a) = 0
-        ↔ Ideal.Quotient.mk (hilbertSchmidtNullIdeal X (ω : Filter ℕ)) a = 0 := by
+          (star (tracialMatrixQuotientMk X (ω : Filter ℕ) a) *
+            tracialMatrixQuotientMk X (ω : Filter ℕ) a) = 0
+        ↔ tracialMatrixQuotientMk X (ω : Filter ℕ) a = 0 := by
       rw [ultratrace_star_mul_self_eq_ofReal X ω a, Complex.ofReal_eq_zero,
-        seqHSLimit_eq_zero_iff X ω a, Ideal.Quotient.eq_zero_iff_mem]
+        seqHSLimit_eq_zero_iff X ω a, tracialMatrixQuotientMk_eq_zero_iff_mem]
       exact Iff.rfl
     exact hmk
 

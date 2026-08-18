@@ -62,10 +62,8 @@ namespace ShulmanTrace
 
 open TracialUltraproduct
 
-/- Same budget as `TracialMatrixUltraproduct`: typeclass search on the ideal
-quotient has to unfold `lp` and rediscover the `FiniteModel` projections. -/
-set_option synthInstance.maxHeartbeats 800000
-set_option maxHeartbeats 1000000
+/- No budget is raised: the quotient is opaque to instance search and carries
+its own instances, so nothing here unfolds the ideal quotient. -/
 set_option linter.unusedSectionVars false
 
 noncomputable section

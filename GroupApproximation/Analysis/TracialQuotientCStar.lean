@@ -172,18 +172,12 @@ theorem exists_ideal_approximate_unit (j : ModelBoundedSequence X)
 
 /-! ## The C⋆-identity -/
 
--- Both budgets are raised for the declaration below, and neither is masking a
--- missing instance: the quotient's algebraic structure is assembled through
--- three layers (`lp` → `BoundedMatrixSequence` → `Submodule.Quotient`), so
--- resolving `*`, `star` and `‖·‖` on it, and unfolding far enough to see the
--- ambient C⋆-identity, both exceed the defaults.  Every instance involved
--- exists in `Analysis/TracialMatrixUltraproduct`.
---
--- The `set_option ... in` must precede the docstring: between a docstring and
--- its declaration Lean expects the declaration itself, and a `set_option`
--- there is a parse error rather than a scoping mistake.
-set_option synthInstance.maxHeartbeats 2000000 in
-set_option maxHeartbeats 4000000 in
+-- No budget is raised for the declaration below.  It used to be: the
+-- quotient's algebraic structure is assembled through three layers
+-- (`lp` → `BoundedMatrixSequence` → `Submodule.Quotient`), and while
+-- `TracialMatrixQuotient` was reducible, resolving `*`, `star` and `‖·‖` on it
+-- re-walked all three every time.  It is opaque now and names its own
+-- instances, so each of those goals is one step.
 /-- **The C⋆-identity for the tracial matrix quotient.**
 
 Only `‖x‖² ≤ ‖x⋆ x‖` is proved: it is mathlib's sole `CStarRing` field, and the
@@ -212,12 +206,16 @@ constructs a norm, which is the point: `maximalGroupCStar_existsUnique_lift`
 needs `[CStarAlgebra B]` on its target, and it must be *this* target, carrying
 the norm the rest of the development is stated against. -/
 noncomputable instance tracialMatrixQuotientCStarAlgebra :
-    CStarAlgebra (TracialMatrixQuotient X l) where
+    CStarAlgebra (TracialMatrixQuotient X l) :=
+  -- The two `Star`-side parents are named rather than left to the structure
+  -- elaborator.  Each resolves on its own -- `#synth` finds all seven parents
+  -- -- but with `TracialMatrixQuotient` opaque the no-fields `where` no longer
+  -- assembles them, reporting `star_add` and `norm_mul_self_le` as missing.
+  -- Naming them changes nothing about which instances are used.
+  { tracialMatrixQuotientStarRing X l,
+    tracialMatrixQuotientCStarRing X l,
+    tracialMatrixQuotientStarModule X l with }
 
--- The same two budgets as on `norm_mul_self_le_norm_star_mul`, for the same
--- reason: the statement alone resolves `star`, `*` and `‖·‖` on the quotient.
-set_option synthInstance.maxHeartbeats 2000000 in
-set_option maxHeartbeats 4000000 in
 /-- The C⋆-identity of the quotient in its two-sided, equational form.  The
 `CStarRing` field carries only `‖x‖ * ‖x‖ ≤ ‖x⋆ x‖`; mathlib assembles the
 reverse from submultiplicativity and the isometric involution, and this
@@ -228,8 +226,6 @@ theorem norm_tracialMatrixQuotient_star_mul_self
 
 /-! ## The quotient norm as an infimum -/
 
-set_option synthInstance.maxHeartbeats 2000000 in
-set_option maxHeartbeats 4000000 in
 /-- **The approximate-unit formula for the quotient norm**:
 `‖a + J‖ = inf { ‖a - a e‖ : e ∈ J }`.
 
@@ -248,7 +244,7 @@ constraint on `e`.  The constrained and unconstrained infima agree: dropping
 constraints only enlarges the set, and an enlarged set can only lower an
 infimum that the `≤` direction already bounds below by `‖a + J‖`. -/
 theorem norm_mk_eq_sInf (a : ModelBoundedSequence X) :
-    ‖Ideal.Quotient.mk (hilbertSchmidtNullIdeal X l) a‖ =
+    ‖tracialMatrixQuotientMk X l a‖ =
       sInf ((fun e ↦ ‖a - a * e‖) ''
         (hilbertSchmidtNullIdeal X l : Set (ModelBoundedSequence X))) := by
   refine le_antisymm ?_ ?_
@@ -256,15 +252,15 @@ theorem norm_mk_eq_sInf (a : ModelBoundedSequence X) :
     refine le_csInf
       ⟨‖a - a * 0‖, 0, SetLike.mem_coe.mpr (Submodule.zero_mem _), rfl⟩ ?_
     rintro b ⟨e, he, rfl⟩
-    have hae : Ideal.Quotient.mk (hilbertSchmidtNullIdeal X l) (a - a * e)
-        = Ideal.Quotient.mk (hilbertSchmidtNullIdeal X l) a := by
-      rw [map_sub, Ideal.Quotient.eq_zero_iff_mem.mpr
+    have hae : tracialMatrixQuotientMk X l (a - a * e)
+        = tracialMatrixQuotientMk X l a := by
+      rw [map_sub, (tracialMatrixQuotientMk_eq_zero_iff_mem X l _).mpr
         ((mem_hilbertSchmidtNullIdeal_iff X l _).mpr
           (IsHilbertSchmidtNull.mul_left X l a
             ((mem_hilbertSchmidtNullIdeal_iff X l e).mp
               (SetLike.mem_coe.mp he)))), sub_zero]
     rw [← hae]
-    exact Submodule.Quotient.norm_mk_le _ _
+    exact tracialQuot_norm_mk_le X l _
   · -- The approximate unit brings an element of the set within any `ε`.
     have hbdd : BddBelow ((fun e ↦ ‖a - a * e‖) ''
         (hilbertSchmidtNullIdeal X l : Set (ModelBoundedSequence X))) := by
@@ -275,11 +271,11 @@ theorem norm_mk_eq_sInf (a : ModelBoundedSequence X) :
     have hδ : (0 : ℝ) < ε / 2 := by positivity
     -- A representative of `mk a` of nearly minimal norm, and the witness for
     -- its difference from `a`.
-    obtain ⟨m, hm_eq, hm_lt⟩ := Submodule.Quotient.norm_mk_lt
-      (Ideal.Quotient.mk (hilbertSchmidtNullIdeal X l) a) hδ
+    obtain ⟨m, hm_eq, hm_lt⟩ := tracialQuot_exists_rep_norm_lt X l
+      (tracialMatrixQuotientMk X l a) hδ
     have hj_mem : IsHilbertSchmidtNull X l (m - a) := by
-      rw [← mem_hilbertSchmidtNullIdeal_iff, ← Ideal.Quotient.eq_zero_iff_mem,
-        map_sub]
+      rw [← mem_hilbertSchmidtNullIdeal_iff,
+        ← tracialMatrixQuotientMk_eq_zero_iff_mem X l, map_sub]
       exact sub_eq_zero.mpr hm_eq
     obtain ⟨e, he_mem, he_one_sub, he_move⟩ :=
       exists_ideal_approximate_unit X l (m - a) hj_mem hδ

@@ -66,14 +66,14 @@ namespace ShulmanTrace
 open Filter Matrix TracialUltraproduct SoficPermutationTrace
 open scoped Matrix.Norms.L2Operator
 
-/- Above the budget of `TracialMatrixUltraproduct` itself: from a foreign file
-every use of `*` on the quotient re-runs the search through
-`Ideal.Quotient.ring` and the `lp.inftyRing` chain, which rediscovers each
-model's `Fintype`/`DecidableEq` through the `FiniteModel` projections.  The
-first build of this file timed out at 1,000,000 exactly there
-(`soficUnitaryHom`, and `map_mul π` in the assembly). -/
-set_option synthInstance.maxHeartbeats 2000000
-set_option maxHeartbeats 4000000
+/- This file once carried the largest budget in the development: from a foreign
+file every use of `*` on the quotient re-ran the search through
+`Ideal.Quotient.ring` and the `lp.inftyRing` chain, rediscovering each model's
+`Fintype`/`DecidableEq` through the `FiniteModel` projections, and its first
+build timed out at 1,000,000 exactly there (`soficUnitaryHom`, and `map_mul π`
+in the assembly).  That was a property of the defining file and is fixed there:
+the quotient is opaque, so `*` on it resolves in one step from here as readily
+as from its own file. -/
 set_option linter.unusedSectionVars false
 
 noncomputable section

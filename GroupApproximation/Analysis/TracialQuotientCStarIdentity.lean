@@ -60,8 +60,6 @@ open Filter Matrix HilbertSchmidtApproximateUnit KazhdanCornerMatrices
   ExactInvolutionLifts
 open scoped Matrix.Norms.L2Operator
 
-set_option synthInstance.maxHeartbeats 2000000
-set_option maxHeartbeats 4000000
 set_option linter.unusedSectionVars false
 
 noncomputable section
@@ -132,7 +130,7 @@ theorem norm_sq_le_norm_star_mul_self (x : TracialMatrixQuotient X l) :
   have hδpos : 0 < ε / 2 := by positivity
   obtain ⟨b, hbmk⟩ := tracialMatrixQuotientMk_surjective X l x
   obtain ⟨r, hrmk, hrn⟩ :=
-    Submodule.Quotient.norm_mk_lt (star x * x) hδpos
+    tracialQuot_exists_rep_norm_lt X l (star x * x) hδpos
   have hrmk' : tracialMatrixQuotientMk X l r = star x * x := hrmk
   have hkmk : tracialMatrixQuotientMk X l (star b * b) = star x * x := by
     -- The spelling bridge is done by defeq type ascription, exactly as in
@@ -163,7 +161,7 @@ theorem norm_sq_le_norm_star_mul_self (x : TracialMatrixQuotient X l) :
       rw [map_sub, hbmk,
         (tracialMatrixQuotientMk_eq_zero_iff X l _).mpr hbeJ, sub_zero]
     calc ‖x‖ = ‖tracialMatrixQuotientMk X l (b - b * e)‖ := by rw [hmk]
-      _ ≤ ‖b - b * e‖ := Submodule.Quotient.norm_mk_le _ _
+      _ ≤ ‖b - b * e‖ := tracialQuot_norm_mk_le X l _
   have hcoordb : ∀ n, ‖(b - b * e) n‖ * ‖(b - b * e) n‖
       ≤ ‖star x * x‖ + 2 * (ε / 2) := by
     intro n

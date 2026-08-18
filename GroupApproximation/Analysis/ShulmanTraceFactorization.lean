@@ -83,14 +83,12 @@ namespace ShulmanTrace
 
 open TracialUltraproduct
 
-/- Same reason as in `TracialMatrixUltraproduct`: typeclass search on the
-ideal quotient has to unfold `lp` and rediscover the `Fintype`/`DecidableEq`
-instances through the `FiniteModel` projections, and does not fit the default
-budget.  The section-variable linter is off for the same reason it is off
-there: the nonemptiness instance is a standing hypothesis that many of the
-coordinatewise steps do not mention. -/
-set_option synthInstance.maxHeartbeats 800000
-set_option maxHeartbeats 1000000
+/- No proof budget is raised here and none is needed: `TracialMatrixQuotient`
+is opaque to instance search and carries its own instances, so no goal about
+the quotient unfolds `lp` or rediscovers the `FiniteModel` projections.  The
+section-variable linter is off for an unrelated reason: the nonemptiness
+instance is a standing hypothesis that many of the coordinatewise steps do not
+mention. -/
 set_option linter.unusedSectionVars false
 
 noncomputable section
@@ -249,7 +247,7 @@ theorem isFactoredHyperlinearTrace_of_model {τ : A → ℂ}
       = hsNorm (M.space n) (M.map n (star a) - star (M.map n a))
     rw [Matrix.star_eq_conjTranspose]
   · intro a
-    rw [tracialMatrixQuotientMk_apply, ultratrace_mk]
+    rw [ultratrace_mk]
     have hconv : Tendsto (fun n ↦ normTrace (M.space n) (M.map n a)) atTop
         (nhds (τ a)) := by
       rw [tendsto_iff_norm_sub_tendsto_zero]
@@ -354,7 +352,7 @@ theorem lift_linear_defect (F : UltraproductFactorization τ) (c₁ c₂ : ℂ)
 /-- The trace of the lift is the ultratrace of the class it lifts. -/
 theorem trace_eq_seqUltratrace (F : UltraproductFactorization τ) (a : A) :
     τ a = seqUltratrace F.space F.ultra (F.lift a) := by
-  rw [F.trace_eq a, ← F.mk_lift a, tracialMatrixQuotientMk_apply, ultratrace_mk]
+  rw [F.trace_eq a, ← F.mk_lift a, ultratrace_mk]
 
 /-- **The Hamel-basis lift as a model.**  All five clauses of the sequential
 definition hold for `φₙ a := Φ a n`, with the limits along the factorization's

@@ -23,9 +23,6 @@ namespace ShulmanTrace
 
 open Filter TracialUltraproduct SoficPermutationTrace
 
-set_option synthInstance.maxHeartbeats 2000000
-set_option maxHeartbeats 4000000
-
 /-- The universal sentence of the bridge, as a closed proposition: the
 canonical maximal trace of every countable sofic group is a hyperlinear
 trace.  The audit's zero-input gate requires advertised endpoints to have an
