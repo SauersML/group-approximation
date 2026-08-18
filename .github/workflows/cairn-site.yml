@@ -17,6 +17,9 @@ on:
       - 'research/**'
       - 'tools/cairn.py'
       - 'bin/cairn'
+      - 'non_mf_groups_exist.tex'
+      - 'docs/NON_MF_NUMBERED_CLAIMS.json'
+      - 'tools/paper_site/**'
       - '.github/workflows/cairn-site.yml'
   workflow_dispatch:
 
@@ -46,6 +49,18 @@ jobs:
 
       - name: Build the site
         run: bin/cairn site
+
+      # The web edition of the manuscript, at /paper/.  Non-fatal by design:
+      # a broken paper build must not stop the research site from
+      # publishing, so failure degrades to a site without /paper plus a
+      # warning annotation on the run.
+      - name: Build the paper edition
+        run: |
+          if python3 tools/paper_site/build.py --out .cairn/site/paper/index.html; then
+            echo "paper edition built"
+          else
+            echo "::warning::paper edition build failed; publishing without /paper"
+          fi
 
       - name: Fold in the latest API docs, if published
         run: |
