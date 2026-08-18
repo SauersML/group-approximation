@@ -192,7 +192,7 @@ weighted transport theorem at `ν_n = k_n` is meant to supply. -/
 theorem collapse_contradiction_kOmega {H : Type u} [Group H]
     (hw : ∀ n, 0 ≤ w n) (hT : HasKazhdanPropertyT.{u, u} H)
     (Θ : H →* (∀ n, Matrix.unitaryGroup (Y n) ℂ))
-    (β : H → KOmega Y w ω hw) (c : H →* H)
+    (β : H → KOmega Y w ω hw) (c : H → H)
     (hβ : ∀ g h : H,
       β (g * h) = β g + conjRep Y w ω hw Θ g (β h))
     (hcompressed : ∀ a : H, β (c a) = 0)
