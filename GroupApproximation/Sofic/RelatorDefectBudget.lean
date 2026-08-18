@@ -122,22 +122,18 @@ theorem opLength_le_of_isRelatorProduct {R : Set G} {Y : FiniteModel}
   intro n w h
   induction h with
   | one => simp
-  | base r hr => simpa using hR r hr
-  | inv n w h ih =>
+  | base hr => simpa using hR _ hr
+  | inv _ ih =>
       rw [map_inv, opLength_inv]
       exact ih
-  | conj n w c h ih =>
+  | conj c _ ih =>
       rw [map_mul, map_mul, map_inv, opLength_conj]
       exact ih
-  | mul m n a b ha hb iha ihb =>
+  | mul _ _ iha ihb =>
       rw [map_mul]
-      refine (opLength_mul_le Y (psi a) (psi b)).trans ?_
-      have hcast : ((m + n : ℕ) : ℝ) * delta
-          = (m : ℝ) * delta + (n : ℝ) * delta := by
-        push_cast
-        ring
-      rw [hcast]
-      exact add_le_add iha ihb
+      refine (opLength_mul_le Y _ _).trans ?_
+      push_cast
+      linarith [iha, ihb]
 
 end RelatorDefectBudget
 end GroupApproximation
