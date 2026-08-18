@@ -1,7 +1,8 @@
 /-
 Portions adapted from `PrimeGapsCert/Meta/Batched.lean` in PrimeGapsLib.
 Copyright (c) 2026 Axiom Math. All rights reserved.
-Released under the Apache 2.0 license as described in the repository LICENSE.
+Released under the Apache 2.0 license as described in the PrimeGapsLib LICENSE.
+Original authors: Axiom Math.
 
 The original PrimeGapsLib command generates consecutively indexed kernel
 `decide` theorems and assembles them into a balanced dependent function.  This
@@ -43,11 +44,11 @@ elab "mk_kernel_batched_theorem_except" count:num skip:num fi:ident : command =>
 namespace BatchedKernelChecks
 
 /-- Assemble a dependent function on `Fin 1` from its value at zero. -/
-def finOne {motive : Fin 1 → Sort*} (zero : motive 0) : ∀ i, motive i :=
+def finOne {motive : Fin 1 → Sort _} (zero : motive 0) : ∀ i, motive i :=
   fun i ↦ Fin.cases zero (fun j ↦ Fin.elim0 j) i
 
 /-- Assemble a dependent function on `Fin (m + n)` from its two summands. -/
-def finAdd {m n : Nat} {motive : Fin (m + n) → Sort*}
+def finAdd {m n : Nat} {motive : Fin (m + n) → Sort _}
     (left : ∀ i, motive (Fin.castAdd n i))
     (right : ∀ i, motive (Fin.natAdd m i)) : ∀ i, motive i :=
   fun i ↦ Fin.addCases left right i
