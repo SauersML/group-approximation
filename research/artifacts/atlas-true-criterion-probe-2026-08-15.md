@@ -375,15 +375,38 @@ active/control matched baseline.  Moral: before killing a run over a
 diagnostic, check whether the quantity is gauge-invariant in the
 model; the honest drift measure is `2 − 2|tr W|/n`.
 
-**Run 4 (V100, job 16010744): running — the clean design.**
-Resampled probes; Newton–Schulz polar retraction (pure GEMMs, nearest
-unitary, and its init lands in the `+I` gauge, so `w_minus_identity`
-is honest); `unitarity_defect` logged; `gauge_distance_sq =
-2 − 2|tr W|/n` in the script (may postdate the process launch —
-raced).  100 iterations, report every 5, 8 h wall.  Pre-registered
-reading, unchanged: honest descent of the active mean below 1.9987 ⟹
-the flip is a strict saddle in U(20160); a stall or pure diffusion
-decides nothing (consistent with a local minimum).
+**Run 4 (V100, job 16010744): COMPLETED — the clean design, and the
+stage-2 verdict.**  Resampled probes; Newton–Schulz polar retraction
+(pure GEMMs, nearest unitary, init in the `+I` gauge so
+`w_minus_identity` is honest); `unitarity_defect` logged (`~1e-7`
+throughout after the first retraction).  All 100 iterations, exit 0,
+`research/artifacts/atlas-stage2-run4-result.json`.
+
+Outcome: **zero descent.**  `best_loss` remained iteration 0's
+2.00035 for the entire run.  The dynamics equilibrated by iteration
+~20 into a noise ball of radius `‖W − I‖ ≈ 0.048–0.052` around the
+flip, with the loss hovering at `≈ 2.019` — strictly ABOVE baseline
+everywhere the trajectory wandered — active mean pinned at
+`2.000 ± 0.003`, control damage saturating at `≈ 0.018–0.022`, and
+`grad_norm` constant at the `2.19–2.20` estimator noise floor (the
+theorem says the true gradient is exactly 0; the floor is m=8
+sampling noise).
+
+Reading, per the pre-registration: unbiased SGD found **no accessible
+negative curvature** at this radius and noise scale — the empirical
+complement of `atlas-flip-first-order-rigidity`.  Consistent with the
+flip being a local minimum of the full objective at `k = 1`; NOT proof
+of it (sign-normalized Adam is a weak saddle-escaper; thin or rare
+negative directions among `8×10⁸` coordinates could hide).  A stall
+decides nothing about the branch question.  If anyone returns here,
+the designated sharper instruments are: (i) the exact restricted
+Hessian on structured subspaces via the fixed-point-count calculus of
+`atlas-flip-first-order-rigidity-proof` §7 (gauge directions to mod
+out: left translations act trivially, right translations are
+inner-fold flat, all-second-chart words have identically zero
+Hessian), and (ii) plain-SGD/momentum dynamics, which amplify a
+growing mode where Adam's sign normalization suppresses it.  The
+GPU chapter of this probe is closed.
 
 **Pre-registered interpretation (unchanged from §(d)):** a descent of
 the active mean visibly below the 1.9987 baseline is the

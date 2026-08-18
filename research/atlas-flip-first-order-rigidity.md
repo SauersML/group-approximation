@@ -55,12 +55,17 @@ pair-level vanishing of the unsymmetrized differential) are in
    construction through this criterion must either start at a genuinely
    different basepoint or exploit second-order/global structure;
    raising `k` alone changes nothing at first order.
-2. **The running unrestricted-deformation probe is a Hessian probe.**
-   Stage 2 (V100 job 16009606, warm start `‖W − I‖ ≈ 1e-4`) can now
-   only detect negative curvature: descent below the `1.9987` baseline
-   means the flip is a strict saddle in `U(20160)` and names an escape
-   direction; a stall is consistent with a local minimum (and with slow
-   saddle escape — a stall decides nothing).
+2. **The unrestricted-deformation probe became a Hessian probe, and it
+   found nothing to escape through.**  Stage 2's clean run (V100 job
+   16010744, resampled probes, Newton–Schulz retraction, 100 unbiased
+   SGD iterations, completed 2026-08-18) recorded ZERO descent:
+   best loss stayed at iteration 0's value, the dynamics equilibrated
+   in a `‖W − I‖ ≈ 0.05` noise ball with the objective strictly above
+   baseline throughout, and the gradient norm sat at the estimator
+   noise floor — empirically no accessible negative curvature at that
+   radius and noise scale, consistent with a local minimum and proving
+   nothing beyond that (see the probe artifact for the full record and
+   the designated sharper instruments).
 3. **The mechanism is model-independent.**  The proof uses only that
    each relator escapes in at most one factor of the two-chart
    presentation.  Any flip-type warm start for any two-chart criterion
