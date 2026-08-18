@@ -3,7 +3,7 @@ rg: 2
 id: balanced-word-high-return-packing-proof
 kind: route
 title: Inflate high-return sets by Lipschitz tuple balls
- target: balanced-word-high-return-packing
+target: balanced-word-high-return-packing
 requires:
   - balanced-word-haar-small-ball
 artifacts:
