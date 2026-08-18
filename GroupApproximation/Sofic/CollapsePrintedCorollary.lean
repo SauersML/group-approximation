@@ -62,11 +62,24 @@ noncomputable section
 
 variable {E : Type u} [Group E] [Countable E]
 
+/-!
+The scalar bookkeeping of the printed derivation is done once, in this
+section, over an arbitrary complex algebra.  The corona's instances are
+registered on an opaque definition, so `rw` with `Module`-projected lemmas
+(`smul_smul`, `two_smul`) fails to match there syntactically; in a generic
+algebra the projections are the canonical ones and the rewrites go through,
+and applying the finished lemmas at the corona is a definitional-unfolding
+`exact`, which does succeed. -/
+
+section ScalarHelpers
+
+variable {A : Type*} [Ring A] [Module ℂ A]
+  [SMulCommClass ℂ A A] [IsScalarTower ℂ A A]
+
 /-- Two affine images `c • (1 − a)` and `c • (1 − b)` commute as soon as `a`
 and `b` do.  The scalar bookkeeping behind clause (W3) of the printed
 derivation. -/
-private theorem smul_one_sub_mul_comm {A : Type*} [Ring A] [SMul ℂ A]
-    [IsScalarTower ℂ A A] [SMulCommClass ℂ A A]
+private theorem smul_one_sub_mul_comm
     (c : ℂ) {a b : A} (hab : a * b = b * a) :
     (c • (1 - a)) * (c • (1 - b)) = (c • (1 - b)) * (c • (1 - a)) := by
   rw [smul_mul_assoc, smul_mul_assoc, mul_smul_comm, mul_smul_comm]
@@ -75,6 +88,43 @@ private theorem smul_one_sub_mul_comm {A : Type*} [Ring A] [SMul ℂ A]
   have h₂ : (1 - b) * (1 - a) = 1 - b - a + b * a := by noncomm_ring
   rw [h₁, h₂, hab]
   abel
+
+/-- `p = ½(1 − u)` is idempotent for an involution `u`: the (W1) computation. -/
+private theorem half_one_sub_idempotent {u : A} (huu : u * u = 1) :
+    ((2 : ℂ)⁻¹ • (1 - u)) * ((2 : ℂ)⁻¹ • (1 - u)) = (2 : ℂ)⁻¹ • (1 - u) := by
+  rw [smul_mul_assoc, mul_smul_comm, smul_smul]
+  have hexp : (1 - u) * (1 - u) = 1 - u - u + u * u := by noncomm_ring
+  rw [hexp, huu]
+  have h2 : (1 : A) - u - u + 1 = (2 : ℂ) • (1 - u) := by
+    rw [two_smul ℂ]
+    abel
+  rw [h2, smul_smul]
+  have hc : (2 : ℂ)⁻¹ * (2 : ℂ)⁻¹ * 2 = (2 : ℂ)⁻¹ := by norm_num
+  rw [hc]
+
+/-- The displayed conjugation identity, generically: conjugating
+`½(1 − u)` by a unitary pair carrying `u` to `m` gives `½(1 − m)`. -/
+private theorem conj_half_one_sub {v w u m : A}
+    (hvw : v * w = 1) (hm : v * u * w = m) :
+    v * ((2 : ℂ)⁻¹ • (1 - u)) * w = (2 : ℂ)⁻¹ • (1 - m) := by
+  rw [mul_smul_comm, smul_mul_assoc]
+  congr 1
+  rw [mul_sub, mul_one, sub_mul, hvw, hm]
+
+/-- Commuting with `½(1 − u)` is commuting with `1 − u`. -/
+private theorem mul_one_sub_comm_of_half {v u : A}
+    (h : v * ((2 : ℂ)⁻¹ • (1 - u)) = ((2 : ℂ)⁻¹ • (1 - u)) * v) :
+    v * (1 - u) = (1 - u) * v := by
+  have h1 : (2 : ℂ)⁻¹ • (v * (1 - u)) = (2 : ℂ)⁻¹ • ((1 - u) * v) := by
+    rw [← mul_smul_comm, ← smul_mul_assoc]
+    exact h
+  have h2 : (2 : ℂ) ≠ 0 := by norm_num
+  calc v * (1 - u) = (2 : ℂ) • (2 : ℂ)⁻¹ • (v * (1 - u)) :=
+        (smul_inv_smul₀ h2 _).symm
+    _ = (2 : ℂ) • (2 : ℂ)⁻¹ • ((1 - u) * v) := by rw [h1]
+    _ = (1 - u) * v := smul_inv_smul₀ h2 _
+
+end ScalarHelpers
 
 /-- **The printed proof of `thm:collapse`, one corona representation at a
 time.**  Given the involutive witness data, every norm-matrix C\*-corona
@@ -107,15 +157,9 @@ theorem coronaRep_commutator_eq_one_printed
   -- (W1): `p = 2⁻¹ • (1 − u)` is a projection.
   have hsa : star ((2 : ℂ)⁻¹ • (1 - u)) = (2 : ℂ)⁻¹ • (1 - u) := by
     rw [star_smul, star_sub, star_one, hustar, star_inv₀, star_ofNat]
-  have hsq : (1 - u) * (1 - u) = (2 : ℂ) • (1 - u) := by
-    have hexp : (1 - u) * (1 - u) = 1 - u - u + u * u := by noncomm_ring
-    rw [hexp, huu, two_smul]
-    abel
   have hproj : ((2 : ℂ)⁻¹ • (1 - u)) * ((2 : ℂ)⁻¹ • (1 - u)) =
-      (2 : ℂ)⁻¹ • (1 - u) := by
-    rw [smul_mul_assoc, mul_smul_comm, hsq, smul_smul, smul_smul]
-    have hc : (2 : ℂ)⁻¹ * ((2 : ℂ)⁻¹ * 2) = (2 : ℂ)⁻¹ := by norm_num
-    rw [hc]
+      (2 : ℂ)⁻¹ • (1 - u) :=
+    half_one_sub_idempotent huu
   -- The displayed identity: `Θ(γ) p Θ(γ)* = ½(1 − Θ(γ k γ⁻¹))`.
   have hconj : ∀ γ' : E,
       ((rho γ' : unitary (NormMatrixCStarCorona (fun n ↦ X n))) :
@@ -132,7 +176,7 @@ theorem coronaRep_commutator_eq_one_printed
           NormMatrixCStarCorona (fun n ↦ X n)) =
         ((rho γ'⁻¹ : unitary (NormMatrixCStarCorona (fun n ↦ X n))) :
           NormMatrixCStarCorona (fun n ↦ X n)) := by
-      rw [map_inv]
+      rw [map_inv, ← Unitary.star_eq_inv, Unitary.coe_star]
     have hvv : ((rho γ' : unitary (NormMatrixCStarCorona (fun n ↦ X n))) :
           NormMatrixCStarCorona (fun n ↦ X n)) *
         ((rho γ'⁻¹ : unitary (NormMatrixCStarCorona (fun n ↦ X n))) :
@@ -210,14 +254,8 @@ theorem coronaRep_commutator_eq_one_printed
   have h2 : ((rho γ : unitary (NormMatrixCStarCorona (fun n ↦ X n))) :
         NormMatrixCStarCorona (fun n ↦ X n)) * (1 - u) =
       (1 - u) * ((rho γ : unitary (NormMatrixCStarCorona (fun n ↦ X n))) :
-        NormMatrixCStarCorona (fun n ↦ X n)) := by
-    have h1 := congrArg (fun z : NormMatrixCStarCorona (fun n ↦ X n) ↦
-      (2 : ℂ) • z) hpγ
-    simp only [mul_smul_comm, smul_mul_assoc] at h1
-    rw [smul_smul, smul_smul] at h1
-    have hone : (2 : ℂ) * (2 : ℂ)⁻¹ = 1 := by norm_num
-    rw [hone, one_smul, one_smul] at h1
-    exact h1
+        NormMatrixCStarCorona (fun n ↦ X n)) :=
+    mul_one_sub_comm_of_half hpγ
   have hvu : ((rho γ : unitary (NormMatrixCStarCorona (fun n ↦ X n))) :
         NormMatrixCStarCorona (fun n ↦ X n)) * u =
       u * ((rho γ : unitary (NormMatrixCStarCorona (fun n ↦ X n))) :
