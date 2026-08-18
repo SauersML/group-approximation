@@ -3,6 +3,7 @@ import GroupApproximation.Analysis.MaximalGroupCStar
 import GroupApproximation.Analysis.NaturalMatrixCoordinateEquiv
 import GroupApproximation.Analysis.ReducedGroupCStarSeparable
 import GroupApproximation.Analysis.ReducedGroupCStarTraceFaithful
+import GroupApproximation.Analysis.UltraproductRigidityRoute
 import GroupApproximation.Sofic.ActualCoronaMFRadical
 import GroupApproximation.Sofic.CentralInvolutionSubgroup
 import GroupApproximation.Sofic.CompressionDefectSquare
@@ -97,11 +98,23 @@ theorem compressionDefect_sq_ne_one : compressionDefect ^ 2 ≠ 1 := by
 
 /-- Every pointwise compression defect converges to the identity in
 normalized Hilbert--Schmidt distance in every operator-norm almost
-representation. -/
+representation.
+
+**By the printed route.**  The transport step is
+`\ref{thm:kazhdan-transport}` itself, through
+`UltraproductRigidityRoute.compressionDefects_hsTrivial_literal` and
+`KazhdanAsymptoticCommutant.manuscriptKazhdanTransport`, which is the proof
+`\ref{thm:criterion}` prints: "apply Theorem 3.1 with `x_n = U_{c,n}` to put
+the lifts of `d = t c t⁻¹` in the commutant".  It used to travel
+`KazhdanCompressionCore.compressionDefects_hsTrivial`, whose one transport
+step is the finite-stage corner argument instead; that route is unchanged and
+still proves the same statement, and the corner bookkeeping below the
+transport is shared by both. -/
 theorem kazhdanPinning (B : OpAlmostRepresentation MarkedGroup) :
     KazhdanCompressionCore.CompressionDefectsHSTrivial
       inclusionData.toKazhdanCompressionCore B :=
-  inclusionData.toKazhdanCompressionCore.compressionDefects_hsTrivial B
+  UltraproductRigidityRoute.compressionDefects_hsTrivial_literal
+    inclusionData.toKazhdanCompressionCore B
 
 /-- A separated negative corner for the literal mark contradicts Kazhdan
 transport and the identity `mark = compressionDefect²`. -/
