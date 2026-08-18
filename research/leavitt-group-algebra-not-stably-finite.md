@@ -9,6 +9,8 @@ distinct_from:
   augmentation-blocks-unital-leavitt-family: that is a no-go saying no full binary Leavitt family sits in a matrix ring over an integral group ring; this asks only for a one-sided inverse pair, which is far weaker than a Leavitt family and is not excluded by any argument in this graph
   d-ary-leavitt-groups-nonsofic-over-finite-fields: that is an established soficity statement about the unit, GL and EL groups of d-ary Leavitt algebras; this is an open ring identity demanded of one modular group algebra, and soficity of the group would refute it by Elek--Szabo rather than supply it
   exact-stably-finite-non-mf-reduced-group-algebra: that is an established statement about a reduced group C-star algebra of a different group, where stable finiteness holds and MF fails; this is a purely algebraic modular group algebra of the Leavitt unit group, where stable finiteness is what is in question, and no operator norm appears in it
+  leavitt-gl-equals-el-and-perfect-unit-group: that identifies `GL_n(L)` with `EL_n(L)` and proves the unit group perfect, transporting statements between matrix ranks of the *group*; this asks for a one-sided inverse pair in matrices over the *group algebra*, one level up, and the rank collapse there is `leavitt-stable-finiteness-equals-direct-finiteness` rather than this node
+  kl-violating-equation-over-leavitt-unit-group: that asks for an equation over the same group with no solution in any overgroup, aimed at Kervaire--Laudenbach and hence at hyperlinearity; this asks for a matrix identity in its modular group algebra, aimed at Gottschalk and Kaplansky, and neither is known to bear on the other
 artifacts:
   - research/artifacts/gottschalk-leavitt-audit-2026-08-17.md
 ---
