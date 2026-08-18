@@ -125,3 +125,39 @@ Theorem 4.1".  Adjacent recorded fact pointing the same direction:
 profinite-closure skeleton), so (CCR) cannot be reached through
 finite-quotient approximations of `t`; whatever proves it must use the
 ultraproduct structure itself.
+
+**2026-08-18b ((CCR) on the canonical congruence representation).**
+A residual chain gives the canonical faithful-trace sofic
+`σ = ∏_𝒰 (regular rep of G/N_n)` (`tr σ(g) = lim tr → 0` for
+`g ≠ e`).  Three facts localize (CCR) there:
+
+1. In congruence quotients the compression COLLAPSES:
+   `π(tΓt⁻¹) = π(t)π(Γ)π(t)⁻¹ = π(Γ)` exactly, because the elementary
+   part `E` is normal in `Q_M` and `π(Γ) = E` — the same
+   finite-quotient-blindness that drives the two-point refutation.  So
+   the coordinatewise commutants of `Λ̄_n` and `Γ̄_n` are EQUAL at every
+   level and coordinatewise (CCR) is a triviality.
+
+2. Hence the entire content of (CCR) for this `σ` lives in the
+   **excess commutant** — elements almost-commuting with `σ(Λ)`
+   elementwise without coordinate centralizer structure — precisely
+   the approximate-vs-genuine homomorphism gap of Alekseev–Thom
+   OP 6.2, now with a sharp question attached to it rather than a
+   description problem.
+
+3. The naive counterexample template dies structurally: taking
+   `x = σ(t) y σ(t)⁻¹` with `y` in the coordinate commutant of
+   `Γ̄` gives `[x, σ(γ₀)] = σ(t)[y, σ(t⁻¹γ₀t)]σ(t)⁻¹`, and
+   `t⁻¹γ₀t ∈ E` by normality of `E` in `G`, so `y` commutes with it
+   and `x` commutes with `σ(γ₀)` — the transported commutant never
+   leaves the protected zone.  Any refutation of (CCR)-for-this-`σ`
+   must build `x` with no coordinate structure at all; any proof must
+   convert Kazhdan `(T)`-stability (almost-commuting with the
+   generators of `Λ` ⟹ near the exact centralizer, uniformly in `n`)
+   into control of exactly that excess.
+
+Net: for the canonical `σ`, (CCR) is a clean, self-contained question
+about excess commutants of Kazhdan images in sofic ultraproducts —
+decidable-feeling, still open, and the right first battlefield for the
+next campaign: refuting it there kills the route outright; proving it
+there is the template for the general case.
