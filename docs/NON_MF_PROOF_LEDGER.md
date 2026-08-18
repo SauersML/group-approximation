@@ -7,8 +7,8 @@ Spec document: `non_mf_groups_exist.tex`.  Formal development: `GroupApproximati
 | | |
 | --- | --- |
 | commit | the external-audit repair wave of 2026-08-18 (this one) |
-| `git hash-object non_mf_groups_exist.tex` | `06f84774173c5a8f16acbe9403aa66c04d32d5c6` |
-| sha256 of the file | `a0098176df820c749baad1d6d4d9cbbcc7e332a024213d2eebe9ea5670927bab` |
+| `git hash-object non_mf_groups_exist.tex` | `d65b8f8fc3c7363f6df40b5f1bdd31c5cc36e4be` |
+| sha256 of the file | `516b2c845a0439dda10e8ca0ccfdb08897b11d064acf231e263f826d01a62e2f` |
 | `wc -l` | 3716 |
 
 `git hash-object` of the file must reproduce the blob above for the rows below
@@ -915,7 +915,7 @@ once in the comment-stripped manuscript; the probe is the drift detector.
 | prop:witness | env | prop:witness | 1a168e6eb3a8fb32 |
 | lem:square | env | lem:square | 36940cc67e41844e |
 | thm:cyclic | env | thm:cyclic | 08ab17486524f52a |
-| def:radical | env | def:radical | b2b88958e09d26e4 |
+| def:radical | env | def:radical | e74535968f545020 |
 | lem:portable | env | lem:portable | ad40116ce5cb86dd |
 | prop:univquot | env | prop:univquot | bf0e863dc76ab01d |
 | cor:exactradical | env | cor:exactradical | 3534e895b8bf93de |
