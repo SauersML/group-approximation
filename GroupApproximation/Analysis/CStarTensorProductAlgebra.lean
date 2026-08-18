@@ -61,42 +61,11 @@ variable {A : Type u} {B : Type v} [Ring A] [StarRing A] [Algebra ℂ A]
 variable {H : Type w} {K : Type x} [NormedAddCommGroup H] [InnerProductSpace ℂ H]
   [NormedAddCommGroup K] [InnerProductSpace ℂ K]
 
-/-! ## The retagging homomorphism
+/-! ## The object
 
-`WithCStarNorm h` is definitionally the underlying algebra, so the identity is
-a ⋆-algebra homomorphism into it.  Recorded once, generically: every consumer
-of `WithCStarNorm` needs this arrow and none should rebuild it. -/
-
-namespace WithCStarNorm
-
-variable {C : Type u} [Ring C] [StarRing C] [Algebra ℂ C] {p : C → ℝ}
-
-/-- The identity of the underlying algebra, as a ⋆-algebra homomorphism into
-the retagged copy.  Every field is `rfl` because `WithCStarNorm h` carries the
-algebra structure of `C` verbatim; only the norm is new. -/
-def retagStarAlgHom (h : IsCStarNorm p) : C →⋆ₐ[ℂ] WithCStarNorm h where
-  toFun c := equiv h c
-  map_one' := rfl
-  map_mul' _ _ := rfl
-  map_zero' := rfl
-  map_add' _ _ := rfl
-  commutes' _ := rfl
-  map_star' _ := rfl
-
-@[simp] theorem retagStarAlgHom_apply (h : IsCStarNorm p) (c : C) :
-    retagStarAlgHom h c = equiv h c := rfl
-
-theorem retagStarAlgHom_surjective (h : IsCStarNorm p) :
-    Function.Surjective (retagStarAlgHom h) :=
-  fun x => ⟨(equiv h).symm x, rfl⟩
-
-/-- The retagging homomorphism realises the C⋆-norm as the norm. -/
-@[simp] theorem norm_retagStarAlgHom (h : IsCStarNorm p) (c : C) :
-    ‖retagStarAlgHom h c‖ = p c := rfl
-
-end WithCStarNorm
-
-/-! ## The object -/
+The retagging arrow this module introduced, `WithCStarNorm.retagStarAlgHom`,
+now lives in `CStarNormBundled` beside the synonym it retags and its inverse
+`unretagStarAlgHom`; it moved in one commit so no call site changed. -/
 
 variable (π : StarRep A H) (ρ : StarRep B K)
 variable (hπ : Function.Injective π.hom) (hρ : Function.Injective ρ.hom)

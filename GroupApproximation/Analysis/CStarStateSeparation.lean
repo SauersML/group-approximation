@@ -96,19 +96,21 @@ theorem norm_sq_add_smul_I_le {x : A} (hx : IsSelfAdjoint x) (t : ℝ) :
     rw [hc]
     ring_nf
     simp [Complex.I_sq]
-    ring
   have hmul : star (x + c • (1 : A)) * (x + c • (1 : A))
       = x * x + ((t : ℂ) ^ 2) • (1 : A) := by
-    rw [hstar, sub_mul, mul_add, mul_add, h1, h2, h3, hcc, neg_smul,
-      sub_neg_eq_add]
-    abel
+    have hmul' : star (x + c • (1 : A)) * (x + c • (1 : A))
+        = x * x - (c * c) • (1 : A) := by
+      rw [hstar, sub_mul, mul_add, mul_add, h1, h2, h3]
+      abel
+    rw [hmul', hcc, neg_smul, sub_neg_eq_add]
   have hnorm : ‖x + c • (1 : A)‖ ^ 2
       = ‖star (x + c • (1 : A)) * (x + c • (1 : A))‖ := by
     rw [CStarRing.norm_star_mul_self, sq]
   have hsmul : ‖((t : ℂ) ^ 2) • (1 : A)‖ = t ^ 2 := by
     rw [norm_smul, norm_one, mul_one]
-    push_cast
-    rw [Complex.norm_real, Real.norm_eq_abs, abs_of_nonneg (sq_nonneg t)]
+    have hcast : ((t : ℂ) ^ 2) = (((t ^ 2 : ℝ)) : ℂ) := by push_cast; ring
+    rw [hcast, Complex.norm_real, Real.norm_eq_abs,
+      abs_of_nonneg (sq_nonneg t)]
   calc ‖x + c • (1 : A)‖ ^ 2
       = ‖star (x + c • (1 : A)) * (x + c • (1 : A))‖ := hnorm
     _ = ‖x * x + ((t : ℂ) ^ 2) • (1 : A)‖ := by rw [hmul]
@@ -157,7 +159,8 @@ theorem im_apply_eq_zero_of_isSelfAdjoint (f : A →L[ℂ] ℂ) (hf1 : f 1 = 1)
     intro h
     exact him (by linarith [mul_eq_zero.mp h |>.resolve_left two_ne_zero])
   rw [mul_div_cancel₀ _ h2im] at this
-  nlinarith [sq_nonneg ((f x).im), sq_abs ((f x).im)]
+  have him2 : 0 < (f x).im ^ 2 := by positivity
+  linarith
 
 /-! ## Spectral values are attained by unital contractions -/
 
@@ -173,7 +176,9 @@ theorem affine_mem_spectrum {y : A} {μ : ℂ} (hμ : μ ∈ spectrum ℂ y)
     have := spectrum.singleton_add_eq (0 : A) s
     rw [h0] at this
     have hmem : s ∈ ({s} + ({0} : Set ℂ)) := by
-      refine Set.add_mem_add rfl rfl
+      have h := Set.add_mem_add (Set.mem_singleton s)
+        (Set.mem_singleton (0 : ℂ))
+      rwa [add_zero] at h
     rw [this] at hmem
     rwa [add_zero, ← halg] at hmem
   · have hsmul : spectrum ℂ (t • y) = t • spectrum ℂ y := by
@@ -184,7 +189,7 @@ theorem affine_mem_spectrum {y : A} {μ : ℂ} (hμ : μ ∈ spectrum ℂ y)
       exact ⟨μ, hμ, rfl⟩
     have := spectrum.singleton_add_eq (t • y) s
     have hmem2 : s + t * μ ∈ ({s} + spectrum ℂ (t • y)) :=
-      Set.add_mem_add rfl hmem
+      Set.add_mem_add (Set.mem_singleton s) hmem
     rw [this] at hmem2
     rwa [← halg] at hmem2
 

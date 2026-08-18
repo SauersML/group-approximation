@@ -908,6 +908,8 @@ import GroupApproximation.Analysis.CStarStateSeparation
 import GroupApproximation.Analysis.CStarStateGNS
 import GroupApproximation.Analysis.CStarMinTensorNorm
 import GroupApproximation.Analysis.CStarIdealQuotient
+import GroupApproximation.Analysis.CStarQuotientIdentity
+import GroupApproximation.Analysis.CStarIdealApproximateUnit
 import GroupApproximation.Analysis.CStarTensorProduct
 import GroupApproximation.Algebra.ZariskiEnvelopeEndpoint
 import GroupApproximation.Criterion.ClosedEnvelopeCompressionCore
@@ -1025,6 +1027,7 @@ import GroupApproximation.Analysis.OmegaConjugationOperators
 import GroupApproximation.Analysis.OmegaCommutatorFixes
 import GroupApproximation.Analysis.RankNormalizedHilbertization
 import GroupApproximation.Analysis.RankNormalizedLambda
+import GroupApproximation.Analysis.CollapseDisplacementIdeal
 import GroupApproximation.Analysis.CollapseLambdaCocycle
 import GroupApproximation.Analysis.CollapseProjectionLift
 import GroupApproximation.Monsters.NeumannTwoGenerator
@@ -1090,6 +1093,7 @@ import GroupApproximation.Analysis.OmegaFiniteComparison
 import GroupApproximation.Analysis.OmegaFixRange
 import GroupApproximation.Analysis.PolarLiftingGeneralCStar
 import GroupApproximation.Analysis.StablyFiniteAmplification
+import GroupApproximation.Analysis.MatrixCoronaDedekindFinite
 import GroupApproximation.Analysis.VectorHilbertUltraproduct
 import GroupApproximation.Analysis.VectorHilbertComplete
 import GroupApproximation.Analysis.VectorOmegaAction

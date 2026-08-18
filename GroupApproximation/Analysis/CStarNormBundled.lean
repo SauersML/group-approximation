@@ -120,12 +120,34 @@ noncomputable instance normedAlgebra (h : IsCStarNorm p) :
 /-! ### Crossing the retagging
 
 The synonym is `A` itself, so the identity is a ⋆-algebra homomorphism in each
-direction and every field is `rfl`.  Only the *inverse* direction is added
-here.  The forward one is `WithCStarNorm.retagStarAlgHom`, in
-`Analysis/CStarTensorProductAlgebra` — same name, same namespace as this — and
-duplicating it would put two names for one arrow in one namespace.  That
-module has no counterpart for the direction below, which is what a
-homomorphism defined on `A` needs in order to be fed to the completion. -/
+direction and every field is `rfl`.  Both directions live here, beside the
+`WithCStarNorm` they retag: the forward arrow was born in
+`Analysis/CStarTensorProductAlgebra` and moved here in one commit so that no
+call site had to change and no window existed in which the name was declared
+twice. -/
+
+/-- The identity of the underlying algebra, as a ⋆-algebra homomorphism into
+the retagged copy.  Every field is `rfl` because `WithCStarNorm h` carries the
+algebra structure of `A` verbatim; only the norm is new. -/
+def retagStarAlgHom (h : IsCStarNorm p) : A →⋆ₐ[ℂ] WithCStarNorm h where
+  toFun a := equiv h a
+  map_one' := rfl
+  map_mul' _ _ := rfl
+  map_zero' := rfl
+  map_add' _ _ := rfl
+  commutes' _ := rfl
+  map_star' _ := rfl
+
+@[simp] theorem retagStarAlgHom_apply (h : IsCStarNorm p) (a : A) :
+    retagStarAlgHom h a = equiv h a := rfl
+
+theorem retagStarAlgHom_surjective (h : IsCStarNorm p) :
+    Function.Surjective (retagStarAlgHom h) :=
+  fun x => ⟨(equiv h).symm x, rfl⟩
+
+/-- The retagging homomorphism realises the C⋆-norm as the norm. -/
+@[simp] theorem norm_retagStarAlgHom (h : IsCStarNorm p) (a : A) :
+    ‖retagStarAlgHom h a‖ = p a := rfl
 
 /-- The retagging read backwards, as a ⋆-algebra homomorphism.  The partner of
 `retagStarAlgHom`; a homomorphism out of the retagged algebra is a
