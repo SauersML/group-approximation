@@ -1,4 +1,5 @@
 import GroupApproximation.Analysis.CStarTensorProductConcrete
+import GroupApproximation.Analysis.CStarTensorProductAlgebra
 
 /-!
 # The minimal (spatial) tensor product of C⋆-algebras: entry point and roadmap
@@ -120,23 +121,23 @@ the wrong thing entirely.  Before budgeting a stage here, check what the step
 actually needs rather than what the standard proof of the *neighbouring* step
 needs.
 
-### Stage B --- completion of a C⋆-normed ⋆-algebra  (medium)
+### Stage B --- completion of a C⋆-normed ⋆-algebra  --- **DONE**
 
-`NormedRing (Completion A)` is already in Mathlib for a seminormed ring, with
-`norm_mul_le` proved by density.  What is missing:
+Every item that stood here is built and in the root import closure:
+`Analysis/CStarCompletion.lean` supplies `Star`, `StarRing`,
+`NormedStarGroup`, the C⋆-identity, the noncommutative `Algebra ℂ` and
+`NormedAlgebra ℂ`, `StarModule`, and the assembled
+`CStarAlgebra (Completion A)`; `Analysis/CStarNormBundled.lean` retags an
+algebra along a C⋆-norm (`WithCStarNorm`) and packages the chain as
+`completionCStarAlgebraOfIsCStarNorm`; `Analysis/CStarCompletionCoe.lean` and
+`Analysis/CStarCompletionHom.lean` give the canonical arrow into the
+completion and the extension of ⋆-homomorphisms across it.
 
-* `Star (Completion A)` --- extend the isometric involution along
-  `Completion.map`, then `star_involutive`, `star_add`, `star_mul` and
-  `norm_star` by density (`Completion.induction_on₂` against a closed
-  predicate, exactly as Mathlib proves `norm_mul_le`);
-* the C⋆-identity on the completion, again by density;
-* `Algebra ℂ (Completion A)` for **non**commutative `A` --- Mathlib's
-  `NormedAlgebra 𝕜 (Completion A)` instance is stated only for
-  `SeminormedCommRing A`, so the noncommutative case needs supplying;
-* assembly of `CStarAlgebra (Completion A)` (`toNormedRing`, `toStarRing`,
-  `toCompleteSpace`, `toCStarRing`, `toNormedAlgebra`, `toStarModule`).
-
-*~600 lines.*  With Stage B, `A ⊗_{π,ρ} B` exists as a genuine C⋆-algebra.
+`Analysis/CStarTensorProductAlgebra.lean` (imported above) joins Stages A and
+B: `SpatialTensorProduct π ρ hπ hρ` is `A ⊗_{π,ρ} B` as an honest
+C⋆-algebra, with the algebraic tensor product isometrically and densely
+embedded by `spatialTensorIn`, and the cross-seminorm value
+`‖a ⊗ₜ b‖ = ‖π.hom a‖ * ‖ρ.hom b‖` on elementary tensors.
 
 ### Stage C --- independence of the representations (Takesaki)  (research scale)
 
@@ -168,9 +169,9 @@ library has approached.  See `CStarExactness.lean` and
 
 ## Honest verdict
 
-Revised estimate: Stages A and B together are roughly 1400 lines of ordinary
-formalization, and they would deliver `A ⊗_{π,ρ} B` as an honest C⋆-algebra
-with a faithful cross-norm.  Stage C is a research-scale project on its own,
+Stages A and B are done and joined: `A ⊗_{π,ρ} B` is an honest C⋆-algebra
+with a faithful cross-norm (`CStarTensorProductAlgebra.lean`).  Stage C is a
+research-scale project on its own,
 and until it is done the minimal tensor product cannot be written `⊗_min`
 without lying about canonicity.  Stage D is out of reach.
 

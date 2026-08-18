@@ -899,6 +899,7 @@ import GroupApproximation.Analysis.PropertyAExtension
 import GroupApproximation.Analysis.CStarTensorProductSeminorm
 import GroupApproximation.Analysis.CStarTensorProductSpatial
 import GroupApproximation.Analysis.CStarTensorProductConcrete
+import GroupApproximation.Analysis.CStarTensorProductAlgebra
 import GroupApproximation.Analysis.CStarTensorProduct
 import GroupApproximation.Algebra.ZariskiEnvelopeEndpoint
 import GroupApproximation.Criterion.ClosedEnvelopeCompressionCore
