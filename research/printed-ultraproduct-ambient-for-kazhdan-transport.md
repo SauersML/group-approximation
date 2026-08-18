@@ -11,9 +11,11 @@ artifacts:
   - GroupApproximation/Sofic/UltraproductAdjointAmbient.lean
   - GroupApproximation/Sofic/UltraproductDedekindFinite.lean
   - GroupApproximation/Sofic/UltraproductKazhdanProjection.lean
+  - GroupApproximation/Sofic/UltraproductModelConstructionAssembly.lean
+  - GroupApproximation/Sofic/ManuscriptKazhdanTransport.lean
 ---
 
-OPEN.  Fix a countable group `H`, an element `s`, dimensions `d_n`, and
+ESTABLISHED (2026-08-17).  Fix a countable group `H`, an element `s`, dimensions `d_n`, and
 unitaries `U_n : H -> U(M_{d_n}(C))`.  For every free ultrafilter `omega` on
 `N` the printed proof of `thm:kazhdan-transport` (`non_mf_groups_exist.tex`,
 lines 516--636) assumes the following package exists, and this claim asserts
@@ -31,16 +33,32 @@ that it does:
 
 In Lean this is exactly a term of the `UltraproductAdjointModel` structure for
 every `omega` refining the cofinite filter.  That structure is a *hypothesis* of
-`ultraproductKazhdanTransport`; nothing in the repository constructs one, so the
-printed road to the transport theorem is open at precisely this point and
-nowhere else.
+`ultraproductKazhdanTransport`, and **the hypothesis is now discharged by a
+construction**:
 
-Where that structure lives is in flux: `Sofic/UltraproductKazhdanTransport` was
-carrying it and the KT.10/KT.11 endgame, and as of 2026-08-16 that module does
-not elaborate (unknown projections on the bundle, an unsolved goal in the
-descent, and a field-notation failure on `kt_11_descend`), so it is out of the
-root build and out of this node's `artifacts:` until it lands.  The three
-modules cited above do elaborate and carry everything listed below.
+- `UltraproductModelConstruction.nonempty_ultraproductAdjointModel` and its
+  choice form `.ultraproductAdjointModel`
+  (`Sofic/UltraproductModelConstructionAssembly.lean`) build the model at every
+  ultrafilter `omega` with `(omega : Filter N) <= cofinite`, from property (T)
+  of `Gamma`, the compression `s iota(Gamma) s^-1 <= iota(Gamma)`, positivity of
+  the dimensions, and operator-norm asymptotic multiplicativity of `U` — that
+  is, from the transport theorem's own hypotheses and nothing else;
+- `manuscriptKazhdanTransport` (`Sofic/ManuscriptKazhdanTransport.lean`) closes
+  the loop: it states Kazhdan transport in the manuscript's coordinates with no
+  `ambient` argument at all and supplies it by that constructor, so the
+  **printed** proof — not merely the finite-stage one — is unconditional.
+
+Both modules sit in the root import closure (`GroupApproximation.lean` imports
+`Sofic.ManuscriptKazhdanTransport`, which imports the assembly), so they are
+inside what `lake build` and the kernel audit cover, and neither carries a
+`sorry` or an `axiom`.  This node was written when nothing constructed the
+object; that gap is closed, and the earlier note recording it as the one open
+point of the printed road no longer describes the repository.
+
+The 2026-08-16 note that `Sofic/UltraproductKazhdanTransport` did not elaborate
+(unknown projections on the bundle, an unsolved goal in the descent, a
+field-notation failure on `kt_11_descend`) is likewise stale: that module is
+imported by the root today, alongside the three cited above.
 
 ## What is already machine-checked
 
@@ -71,22 +89,23 @@ The rest of the printed ambient is in place, and unconditionally:
 The endgame — `KT.10` (`sigma = r + (1 - Q)` is an isometry, finiteness makes it
 unitary, `sigma sigma* = P + (1 - Q)` forces `Q = P`) and `KT.11` (a fixed class
 descends to the asserted Hilbert--Schmidt vanishing along `omega`), plus the
-manuscript's by-contradiction skeleton — is written but is the part that does not
-currently elaborate, as noted above.  KT.10's calculation itself is not new: it
-lives in `Analysis/ProperIsometryFromCompression`, which is in the build.
+manuscript's by-contradiction skeleton — is in the build as well.  KT.10's
+calculation itself is not new: it lives in
+`Analysis/ProperIsometryFromCompression`.
 
-So the missing datum is a single construction, not an argument: a Hilbert-space
-ultraproduct of finite-dimensional inner-product spaces with a faithful action
-of the corresponding operator-norm corona.  Mathlib has no completed tensor
-product or ultraproduct of Hilbert spaces at the pinned revision, which is why
-this is separated out rather than inlined.
+The datum that was missing was a single construction, not an argument: a
+Hilbert-space ultraproduct of finite-dimensional inner-product spaces with a
+faithful action of the corresponding operator-norm corona.  Mathlib has no
+completed tensor product or ultraproduct of Hilbert spaces at the pinned
+revision, which is why it was built here by hand and separated out as a node
+rather than inlined.
 
 ## Why this is worth a node rather than a footnote
 
 `docs/NON_MF_PROOF_LEDGER.md` records as its first headline finding that the
 printed proof of `thm:kazhdan-transport` was *not* the formalized proof.  The
-modules above close all of that finding except this one object, and the
-distinction matters for the trust surface: the transport theorem itself is
-established (by the finite-stage proof, see
-[[kazhdan-asymptotic-commutant-transport]]), while the *printed route* to it
-remains conditional on the construction asserted here.
+modules above close that finding entirely.  The distinction it drew still
+matters for reading the trust surface, and both halves are now on the same
+side of it: the transport theorem is established by the finite-stage proof
+(see [[kazhdan-asymptotic-commutant-transport]]) **and** the printed
+ultraproduct route to it is formalized, ambient included.

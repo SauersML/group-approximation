@@ -8,6 +8,8 @@ requires: []
 artifacts:
   - non_mf_groups_exist.tex
   - GroupApproximation/Sofic/UltraproductAdjointAmbient.lean
+  - GroupApproximation/Sofic/UltraproductModelConstructionAssembly.lean
+  - GroupApproximation/Sofic/ManuscriptKazhdanTransport.lean
 ---
 
 # Direct construction of KT.02--KT.04
@@ -126,3 +128,20 @@ route exists for every free ultrafilter.  This establishes
 [[printed-ultraproduct-ambient-for-kazhdan-transport]].  It does not replace
 the repository's finite-stage proof of Kazhdan transport; it repairs the
 separate ultraproduct proof printed in the manuscript.
+
+## Machine-checked form
+
+The argument above is also formalized, so this route is not carried by its
+prose alone.  `UltraproductModelConstruction.nonempty_ultraproductAdjointModel`
+(`Sofic/UltraproductModelConstructionAssembly.lean`) returns a term of
+`UltraproductAdjointModel iota s d U omega` for every `omega` below the
+cofinite filter, taking as input exactly what the transport theorem already
+assumes: property (T) of `Gamma`, `s iota(Gamma) s^-1 <= iota(Gamma)`,
+`0 < d n`, and operator-norm asymptotic multiplicativity of `U`.  Sections 1--3
+above correspond to the `Vec`/`act` construction and its multiplicativity,
+unitality and faithfulness lemmas; section 4 to the `compressionRep` bundling of
+the coordinate adjoint family.  `manuscriptKazhdanTransport`
+(`Sofic/ManuscriptKazhdanTransport.lean`) then states the manuscript's
+`thm:kazhdan-transport` with no ambient hypothesis and discharges it with that
+constructor.  Both modules are in the root import closure, so they are covered
+by `lake build` and the kernel audit.
