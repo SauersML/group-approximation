@@ -310,6 +310,22 @@ opening the proof, have held.
    `kt_10_isometry_identities`.  What is still absent is faithfulness of the action on
    `K_ω` (UF.02) and any ultraproduct along a genuine free `ω` (UF.01, UF.03); and
    Murray–von Neumann comparison is replaced throughout by unitary conjugacy (FC.01).
+   **The clause about a genuine free `ω` is no longer true — updated 2026-08-18.**
+   `OmegaAdjointCorona Y ω` *is* `∏_ω B(K_n)`: the quotient of the bounded sequences
+   by the `ω`-null ideal, not by `c₀`.  `Sofic/OmegaWeightedAmbient.lean` builds the
+   KT.01–KT.09 ambient over it — with the Kazhdan bundle, the representation
+   `[Ad U_n(·)]_ω` and Dedekind finiteness all in place — and its
+   `omega_route_kazhdan_transport` derives the conclusion of `thm:kazhdan-transport`
+   through it, constructing the ambient from the theorem's own hypotheses rather than
+   assuming it.  All of that was in the tree and **cited by nothing**;
+   `Sofic/OmegaRouteManuscriptTransport.lean` states the result in the badged
+   theorem's own shape, so the printed route and the printed statement now meet in one
+   declaration, `manuscriptKazhdanTransport_omegaRoute`.  Two things are still true:
+   the *badged* `manuscriptKazhdanTransport` continues to run through the cofinite
+   corona, deliberately, so that a consumer's route is readable from the name it
+   cites; and the `ω` route fixes the ambient group at `Type 0` while the badged form
+   is polymorphic in it.  FC.01 was separately resolved on 2026-08-16 and the clause
+   about unitary conjugacy is stale too — see that row.
    Lean's `KazhdanAsymptoticCommutant.transport` still runs the *Appendix B* proof:
    finite-stage spectral projection `cornerProjection = spectralAbove(hermitianAverage …) θ`,
    the robust-gap eigenvalue exclusion, spectral capture, and the equal-rank flip
@@ -553,8 +569,8 @@ and `7ab8bd96` is where its real description lives.
 <!-- LEDGER-COUNTS -->
 | Column | EXACT | MISMATCH | MISSING | UNDER-SPECIFIED | total |
 | --- | --- | --- | --- | --- | --- |
-| statement | 381 | 25 | 27 | 1 | 434 |
-| proof | 376 | 26 | 31 | 1 | 434 |
+| statement | 382 | 24 | 27 | 1 | 434 |
+| proof | 377 | 25 | 31 | 1 | 434 |
 <!-- END-LEDGER-COUNTS -->
 
 ## Rows waiting for a first green build
@@ -1046,7 +1062,7 @@ everywhere: the TeX is the specification and does not move).
 | KT.02 | thm:kazhdan-transport | fix a free ultrafilter ω on ℕ with I ∈ ω | `UltrafilterLimit.exists_freeUltrafilter_mem`; `UltrafilterSubsequence.exists_freeUltrafilter_defect` | EXACT | EXACT | literal | unconditional | - | NO | **RESOLVED 2026-08-17 from MISSING/MISSING.**  `exists_freeUltrafilter_mem` is this sentence verbatim: an infinite `I ⊆ ℕ` belongs to some ultrafilter refining the cofinite filter, which is what "free" means and what every later step consumes as `↑ω ≤ cofinite`.  `exists_freeUltrafilter_defect` composes it with KT.01 and is the object the printed proof hands to the ultraproduct construction |
 | KT.03 | thm:kazhdan-transport | the adjoint model: regard M_{d_n}(ℂ) as K_n = L²(M_{d_n}, tr) with Ad U_n(g)ξ = U_n(g)ξU_n(g)* | `OpAlmostRepresentation.adjoint`; `conjDouble`; `KazhdanCompressorCorner.gammaRowVec` | EXACT | EXACT | literal | unconditional | - | NO | `conjDouble_mulVec_rowVec` is the printed identification |
 | KT.04 | thm:kazhdan-transport | operator-norm almost multiplicativity makes g ↦ Ad U_n(g) an operator-norm asymptotic representation (finite-stage π⊗π̄) | `OpAlmostRepresentation.adjoint`; `KazhdanAsymptoticCommutant.adjointSequence_mul_hs` | EXACT | EXACT | literal | unconditional | BekkaValette | NO | - |
-| KT.05 | thm:kazhdan-transport | form the Hilbert-space ultraproduct K_ω of the K_n along ω | `KOmegaHilbert.KOmega`; `KOmegaHilbert.kOmegaInnerProductSpace` | MISMATCH | MISMATCH | substituted | unconditional | - | NO | **NARROWED 2026-08-17.**  The earlier note said the printed object is a Hilbert space and the Lean object is not, `Vec` having "deliberately not built" an inner product.  `Sofic/KOmegaHilbert.lean` now descends the ultralimit pairing to the quotient and registers mathlib's `InnerProductSpace ℂ`, with positive definiteness *proved* — by `uinner_self_eq_zero_iff`, which is exactly why the quotient is by the null families.  The remaining gap is completeness alone: the ultraproduct of Hilbert spaces along an ultrafilter is complete, that is a separate diagonal argument, and no `CompleteSpace` instance is claimed.  So the row stays MISMATCH, but over one missing property rather than over a missing structure |
+| KT.05 |thm:kazhdan-transport |form the Hilbert-space ultraproduct K_ω of the K_n along ω | `KOmegaHilbert.KOmega`; `KOmegaHilbert.kOmegaInnerProductSpace`; `OmegaHilbertComplete.kOmegaCompleteSpace` | EXACT | EXACT | literal |unconditional |- |NO | **CLOSED 2026-08-18, upgraded from MISMATCH/MISMATCH over substituted objects.**  The 2026-08-17 note narrowed the gap to one property: "the remaining gap is completeness alone: the ultraproduct of Hilbert spaces along an ultrafilter is complete, that is a separate diagonal argument, and no `CompleteSpace` instance is claimed".  The instance exists and did when that was written: `Analysis/OmegaHilbertComplete.lean` registers `kOmegaCompleteSpace` by the absolutely-convergent-series criterion, a truncation lemma producing representatives bounded at every stage, and coordinatewise summation.  The module is in the root closure and compiles, so the diagnosis was stale rather than the mathematics missing.  With the inner product of `KOmegaHilbert` and this instance, `K_ω` is a Hilbert space in mathlib's sense and the printed sentence "form the Hilbert-space ultraproduct K_omega of the K_n along omega" has its object |
 | KT.06 | thm:kazhdan-transport | form the norm ultraproduct B_ω = ∏_ω B(K_n) acting on K_ω | `OmegaOperatorUltraproduct.OmegaAdjointCorona`; `OmegaOperatorUltraproduct.norm_omegaMk` | EXACT | EXACT | literal | unconditional | - | NO | **RESOLVED 2026-08-17, upgraded from MISMATCH/MISMATCH over substituted objects.**  `Analysis/NormMatrixCorona.lean` now carries the filter as a parameter, so the corona along a free `ω` is an instance of the same construction rather than a surrogate for it, and `OmegaAdjointCorona` is `∏_ω B(K_n)` itself — a complete complex `CStarAlgebra`, with `‖[A_n]_ω‖ = lim_ω ‖A_n‖` (`norm_omegaMk`).  The substitution the old note recorded is now itself a theorem: `ofCofinite_surjective` says the cofinite corona *surjects onto* `B_ω` rather than equalling it |
 | KT.07 | thm:kazhdan-transport | the action of B_ω on K_ω is faithful (unit vectors nearly attaining the norm) | `OmegaOperatorUltraproduct.omegaAct`; `OmegaOperatorUltraproduct.omegaAct_injective` | EXACT | EXACT | literal | unconditional | - | NO | **RESOLVED 2026-08-17, from MISSING/MISSING — this was the sharpest gap in the printed ultraproduct proof.**  The route is the printed one: `HilbertUltraproductSeparating.exists_matMass_moved` produces the manuscript's near-norm-attaining test vectors, at the weight rather than in the coordinate space (a coordinate unit vector has class zero in `K_ω`, so the test family must carry the weight), and `actQ_eq_zero_iff_tendsto` is KT.04 as stated: the kernel of the action is exactly the `ω`-null families.  Faithfulness is FALSE for the cofinite corona `UltraproductAdjointAmbient` used to carry the action, which is why it could not be recorded before the corona carried its filter |
 | KT.08 | thm:kazhdan-transport | consequence: ran P ⊆ ran Q for projections of B_ω gives QP = P, i.e. P ≤ Q | `OmegaOperatorUltraproduct.range_le_iff_mul_eq` | EXACT | EXACT | literal | unconditional | - | NO | **RESOLVED 2026-08-17, upgraded from MISMATCH/MISMATCH over substituted objects.**  The old note is exact about what was wrong: the algebraic surrogate `(1-q)p = 0 → qp = p` assumes what the printed step deduces, since its hypothesis is its conclusion written differently.  `range_le_iff_mul_eq` takes the hypothesis the printed proof actually has — inclusion of ranges *in `K_ω`* — and derives `q p = p` from faithfulness (KT.07), for idempotents of `B_ω`.  Both directions |
