@@ -73,10 +73,23 @@ DEFAULT_LEAN = REPO / "GroupApproximation"
 # `\label{...}`, `\ref{...}`, `\eqref{...}` as written inside a Lean docstring.
 TEX_REF = re.compile(r"\\(?:label|ref|eqref)\{([^}\s]+)\}")
 
-# "line 3964", "lines 3352--3374", "lines 1436–1438", "lines 177, 248".
-# Two digits minimum, so that "line 2 of the proof" is not a citation.
+# "line 3964", "lines 3352--3374", "lines 1436–1438", "lines 177, 248", and the
+# bare-`L` spelling "L1426–L1427", "(L1322–L1450)".
+#
+# The `L` alternative was added 2026-08-18.  The pass had been green on the
+# whole corpus while four sites in `Monsters/P13SpectralGap.lean` and
+# `Monsters/P13InvariantProjection.lean` located deleted sentences by
+# `(L1426–L1427)`; the advisory `--quotes` pass printed them and the strict
+# pass could not see them, which is the worst arrangement of the two.  Four
+# digits minimum for that form, since `L2` and `L15` are ordinary identifiers
+# in this corpus while a five-figure manuscript offset is not.
+#
+# Two digits minimum for the spelled-out form, so that "line 2 of the proof" is
+# not a citation.
 LINE_CITE = re.compile(
-    r"\b(?:line|lines)\s+\d{2,6}(?:\s*(?:--|–|-|,|\s+to\s+)\s*\d{2,6})?", re.I
+    r"\b(?:line|lines)\s+\d{2,6}(?:\s*(?:--|–|-|,|\s+to\s+)\s*\d{2,6})?"
+    r"|\bL\d{4,6}(?:\s*(?:--|–|-)\s*L?\d{4,6})?",
+    re.I,
 )
 
 # A citation whose target is a Lean file, not the manuscript: "that file's
@@ -240,6 +253,15 @@ SELF_TEST_CASES: list[tuple[str, str, int, int, int, int]] = [
     ("LineCite.lean",
      "/-! The manuscript prints this at lines 100--200. -/\n",
      0, 1, 0, 0),
+    # The bare-`L` spelling of the same defect.  Both endpoints are one
+    # citation, so this must report 1 and not 2.
+    ("LineCiteBareL.lean",
+     "/-! The manuscript prints this at (L1426-L1427). -/\n",
+     0, 1, 0, 0),
+    # Short `L` tokens are ordinary identifiers, not manuscript offsets.
+    ("BareLIdentifier.lean",
+     "/-! The manuscript's operator `L2` acts on the level `L15` block. -/\n",
+     0, 0, 0, 0),
     # A line number whose target is another Lean file is not this gate's
     # business, even in a file that also talks about the manuscript.
     ("LeanTarget.lean",

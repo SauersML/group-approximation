@@ -4,19 +4,22 @@ import GroupApproximation.Monsters.P13SpectralGapNorm
 /-!
 # Step 1's projection estimate: an almost-fixed vector is near an invariant one
 
-Manuscript: `non_mf_groups_exist.tex`, Proposition `prop:literal-base-T`
-(subsection *Property (T) of the base*), **Step 1**.  At the time of writing the
-proposition occupies L1322–L1450 and Step 1 runs to L1373; the two sentences
-formalized here are its last two,
+Manuscript: `non_mf_groups_exist.tex`, Proposition `\ref{prop:literal-base-T}`
+(subsection *Property (T) of the base*), **Step 1**.  The two sentences
+formalized here were the last two of that step:
 
 > "Hence a unit vector almost fixed by the six generators has small Laplacian
-> energy and is close to an invariant vector."   (L1367–L1369)
+> energy and is close to an invariant vector."
 >
-> "This yields a Kazhdan pair: `P₁₃` has property (T)."   (L1369–L1370)
+> "This yields a Kazhdan pair: `P₁₃` has property (T)."
 
-The stable anchor is the label `prop:literal-base-T`, Step 1, immediately after
-the sentence "In a representation with no nonzero invariant vector the kernel is
-trivial, so `Δ` is bounded below there."
+**Neither is printed any more.**  Commit `3a45fa60` ("Editorial pass: rewrite
+orbit collapse, cut what nothing uses") replaced the whole three-step
+property-`(T)` proof with a one-paragraph citation of
+`\ref{rem:classical-base}` and `\cite[Example~1.7.4(i)]{BHV}`.  The proposition
+and its badge are unchanged; the quotations above are a record of the deleted
+text, kept so the rows of `docs/P13_STEP_AUDIT.md` stay readable, and nothing
+below is badgeable on their account.
 
 ## What was missing
 

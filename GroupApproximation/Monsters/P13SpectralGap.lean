@@ -8,17 +8,20 @@ import Mathlib.Analysis.Normed.Operator.Banach
 /-!
 # The spectral localization of the P13 Kazhdan Laplacian
 
-Manuscript: `non_mf_groups_exist.tex`, Proposition `prop:literal-base-T`
-(subsection *Property (T) of the base*), **Step 1**.  At the time of writing
-the proposition begins at L1397 and Step 1 runs to L1434; the two sentences
-formalized here are
+Manuscript: `non_mf_groups_exist.tex`, Proposition `\ref{prop:literal-base-T}`
+(subsection *Property (T) of the base*), **Step 1**.  The two sentences
+formalized here were
 
-> "The gap places the spectrum of `Δ` in `{0} ∪ [1/500, ∞)`."   (L1426–L1427)
+> "The gap places the spectrum of `Δ` in `{0} ∪ [1/500, ∞)`."
 >
-> "The kernel of `Δ` is exactly the space of invariant vectors." (L1427–L1428)
+> "The kernel of `Δ` is exactly the space of invariant vectors."
 
-The stable anchor is the label `prop:literal-base-T`, Step 1, immediately
-after the displayed quadratic gap `‖Δξ‖² ≥ (1/500)⟨Δξ,ξ⟩`.
+**Neither is printed any more.**  Commit `3a45fa60` replaced the three-step
+property-`(T)` proof of `\ref{prop:literal-base-T}` with a one-paragraph
+citation; see the header of `Monsters/P13CircumcenterRouteStep3.lean` for the
+same note about Step 3.  The proposition and its badge are unchanged, the
+quotations above are a record of the deleted text, and no badge is owed on the
+theorems below.
 
 ## What is proved
 

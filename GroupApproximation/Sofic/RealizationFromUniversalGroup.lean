@@ -233,11 +233,18 @@ theorem realization {P : Type} [Group P] [Group.IsFinitelyPresented P]
       (h.emb_inr_not_mem_range_alpha hb)
   exact ⟨hfp, hne, hsq, hcentral, hMF⟩
 
-/-- **The remark's closing sentence, with a different witness.**  `E(P,α,a)`
-has torsion.  The manuscript attributes this to the adjoined involution `c`;
-the element exhibited here is instead the marked word, whose nontriviality is
-what the construction actually proves.  Both are involutions of the extension,
-so the printed conclusion holds, but the printed witness is not the one used.
+/-- **The remark's closing sentence.**  `E(P,α,a)` has torsion, witnessed by
+the marked word: an `x ≠ 1` with `x ^ 2 = 1` in the extension.
+
+Until 2026-08-18 the manuscript attributed the torsion to the adjoined
+involution `c` instead, and this docstring recorded the resulting mismatch of
+witness (ledger row `KC.23`).  An external audit found that reason to be a
+non-sequitur in its own right — a presentation relation `c ^ 2 = 1` does not
+show `c ≠ 1`, since the presented quotient may collapse `c` — and
+`\ref{rem:ff-realization}` now attributes the torsion to the nontrivial central
+involution `w` that `\ref{thm:kazhdan-clifford}` produces.  That `w` is exactly
+the marked word exhibited below, so the printed witness and this one are the
+same element and `KC.23` is `EXACT` in both columns.
 -/
 theorem exists_involution {P : Type} [Group P] [Group.IsFinitelyPresented P]
     (hT : HasKazhdanPropertyTComplex.{0, w} P)
