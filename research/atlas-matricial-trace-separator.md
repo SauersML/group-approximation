@@ -3,6 +3,9 @@ rg: 2
 id: atlas-matricial-trace-separator
 kind: claim
 title: A matrix-only trace-polynomial inequality separates the explicit atlas group trace
+distinct_from:
+  non-hyperlinear-group: at unrestricted finite support this is a dual certificate language for nonhyperlinearity of the named atlas group, not a logically smaller theorem; it is kept as the proof-search interface, while only bounded-window specializations should be wired as new routes to the root.
+  character-domination-collapse-equivalences: that is the repository's general linear character-domination/dimension-escape interface; this node fixes the explicit atlas presentation, includes robust approximate-relator penalties, and asks for a finite-matrix-only certificate that is allowed to fail in a non-Connes-embeddable tracial algebra.
 artifacts:
   - research/artifacts/nonhyperlinear-random-presentation-and-matricial-separator-2026-08-18.md
 ---
@@ -30,9 +33,12 @@ tau_Gamma_St(P(lambda(g_1),...,lambda(g_12))) <= -c.
 ```
 
 This is an all-dimensions matrix inequality, not an assertion that approximate
-solutions are close to exact finite-dimensional representations.  In
-particular it is designed to bypass the atlas program's existing
-Leavitt/Pauli/PVM/commutant decoder machinery completely.
+solutions are close to exact finite-dimensional representations.  It is a
+useful certificate/search language for the explicit atlas presentation, but in
+this unrestricted form it should **not** be advertised as a new logical
+reduction of the root: Hahn--Banach/finite-word duality makes general separator
+existence too close to nonhyperlinearity itself.  The genuinely stronger route
+is the bounded first-window specialization `atlas-radius-nine-trace-separator`.
 
 ## Attempts
 
