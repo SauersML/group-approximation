@@ -25,6 +25,9 @@ code { font-family: var(--font-mono); font-size: 0.9em; }
 .proof-toggle { margin-left: 2px; }
 
 .thm-mainthm { border-left-color: var(--ink); }
+/* copying math must yield it once: the visual layer is unselectable, the
+   accessible MathML layer is what lands on the clipboard */
+.katex-html { -webkit-user-select: none; user-select: none; }
 .lean-code { font-family: var(--font-mono); font-size: 0.82em; }
 .lean-decl summary { font-family: var(--font-mono); font-size: 0.82em; }
 
@@ -94,7 +97,7 @@ body:not([data-view="paper"]) .toc-toggle { display: none !important; }
 }
 
 @media print {
-  .topbar, .sidebar, .toc-scrim, .hover-card { display: none !important; }
+  .topbar, .sidebar, .toc-scrim, .hover-card, .lean-drawer { display: none !important; }
   .content { max-width: none; padding: 0; }
   .paper-head { padding-top: 0; }
   details.proof { display: block; }

@@ -19,10 +19,12 @@ figure in the tex changes, that function must follow by hand.
 `build.py` also embeds the full Lean source of every declaration the
 manifest or an in-tex `\leanverified` marker names — statement and proof,
 split at the top-level `:=`, with the source line for a GitHub deep link.
-On the page: theorem badges open an inline panel (statement first, proof
-one fold deeper), manuscript proofs start folded behind the topbar toggle,
-and cross-reference hover cards stack, so a link inside a card opens a
-nested card instead of replacing it.  `freshness.js` keeps the address bar
+On the page: Lean badges (on theorem heads, and on the Proof line when a
+marker sits inside that proof) open a fixed side drawer — statement and
+proof shown together, the manuscript never reflows.  Manuscript proofs
+start folded behind the topbar toggle, and cross-reference hover cards
+stack, so a link inside a card opens a nested card instead of replacing
+it.  `freshness.js` keeps the address bar
 on the canonical `/paper/` URL: a stale cached copy reloads itself with a
 `?v=<sha>` cache-buster (fragment preserved) and falls back to the
 immutable `/paper/v/<sha>/` snapshot only if the query is ignored.

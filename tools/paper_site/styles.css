@@ -325,37 +325,32 @@ dl.bib { margin: 1em 0; }
 .hover-card p:last-child { margin-bottom: 0; }
 .hover-card .eqno { display: none; }
 
-/* ============ inline lean panel ============ */
-.lean-panel {
-  margin: 10px 0 4px;
-  padding: 10px 12px;
-  background: var(--bg-inset);
-  border: 1px solid var(--rule-soft);
-  border-radius: 8px;
-  font-size: 14px; line-height: 1.5;
-  font-style: normal;
+/* ============ lean drawer ============ */
+.lean-drawer {
+  position: fixed; z-index: 55;
+  top: 50px; right: 0; bottom: 0;
+  width: min(600px, 96vw);
+  background: var(--bg);
+  border-left: 1px solid var(--rule);
+  box-shadow: var(--shadow);
+  padding: 14px 18px 30px; box-sizing: border-box;
+  overflow-y: auto; overscroll-behavior: contain;
+  font-size: 14px; line-height: 1.5; font-style: normal;
 }
+.lean-drawer-head { display: flex; align-items: baseline; gap: 10px; margin-bottom: 6px; }
+.lean-drawer-title { font-weight: 700; }
+.lean-drawer-close {
+  margin-left: auto; padding: 0 6px;
+  font: 20px/1 var(--font-body); color: var(--ink-soft);
+  background: none; border: none; cursor: pointer;
+}
+.lean-drawer-close:hover { color: var(--ink); }
 .lean-gap { color: var(--ink-soft); font-size: 0.95em; margin-top: 6px; }
 .lean-covers { color: var(--ink-soft); font-size: 0.95em; margin: 2px 0 4px; }
 .lean-trunc { color: var(--ink-faint); font-style: italic; font-size: 0.9em; margin: 2px 0; }
 .lean-name { overflow-wrap: anywhere; }
-.lean-panel .lean-code, .proof-lean .lean-code { background: var(--bg); border: 1px solid var(--rule-soft); }
-details.lean-proof { margin: 2px 0 6px 12px; }
-details.lean-proof > summary { cursor: pointer; font-style: italic; color: var(--ink-soft); font-size: 0.95em; }
-details.proof-lean { margin: 4px 0 2px; font-size: 13.5px; font-style: normal; clear: both; }
-details.proof-lean > summary {
-  cursor: pointer; display: inline-block;
-  font-style: italic; color: var(--ink-faint); font-size: 12.5px;
-  list-style: none;
-}
-details.proof-lean > summary::-webkit-details-marker { display: none; }
-details.proof-lean > summary::before { content: "▸ "; font-size: 0.8em; }
-details.proof-lean[open] > summary::before { content: "▾ "; }
-details.proof-lean > summary:hover { color: var(--ink-soft); }
-details.proof-lean[open] {
-  padding: 6px 10px; margin: 6px 0 10px;
-  background: var(--bg-inset); border: 1px solid var(--rule-soft); border-radius: 8px;
-}
+details.proof > summary .badge-lean { font-size: 12px; padding: 0 8px; }
+.claim-card .lean-code { max-height: 300px; overflow-y: auto; }
 .lean-decl { margin: 6px 0; }
 .lean-decl summary { cursor: pointer; overflow-wrap: anywhere; list-style-position: inside; font-size: 0.95em; }
 .lean-code {

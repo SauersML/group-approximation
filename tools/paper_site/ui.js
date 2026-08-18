@@ -303,15 +303,14 @@ function leanDeclHtml(l) {
   const link = '<a class="lean-mod" href="' + GITHUB_BLOB + escHtml(l.module) + '.lean' + line +
     '" target="_blank" rel="noopener">' + escHtml(l.module) + '.lean' + (rec && rec.line ? ':' + rec.line : '') + '</a>';
   if (!rec) return '<div class="lean-decl"><code class="lean-name">' + escHtml(short) + '</code>' + link + '</div>';
-  let inner = '<pre class="lean-code">' + escHtml(rec.sig) + '</pre>';
-  if (rec.proof) {
-    inner += '<details class="lean-proof"><summary>Lean proof</summary>' +
-      '<pre class="lean-code">' + escHtml(rec.proof) + '</pre></details>';
-  }
+  // statement and proof as one block: a reader who opened the declaration
+  // wants the whole thing, not another fold
+  const code = rec.proof ? rec.sig + '\n' + rec.proof : rec.sig;
+  let inner = '<pre class="lean-code">' + escHtml(code) + '</pre>';
   // "the complete printed proposition" is the default and says nothing;
   // only partial coverage is worth a line
   if (l.covers && l.covers !== 'the complete printed proposition') {
-    inner += '<div class="lean-covers"><span class="meta-label">covers</span>' + escHtml(l.covers) + '</div>';
+    inner += '<div class="lean-covers"><span class="meta-label">covers</span> ' + escHtml(l.covers) + '</div>';
   }
   if (rec.trunc) inner += '<div class="lean-trunc">shortened here — full source on GitHub</div>';
   inner += link;
@@ -372,7 +371,7 @@ function renderThm(n, ctx) {
   return '<section class="thm ' + style + ' thm-' + n.env + '" id="' + n.anchor + '" data-labels="' + escHtml(n.labels.join(' ')) + '">' +
     '<div class="thm-head">' + head + badges + '</div>' +
     '<div class="thm-stmt">' + body + '</div>' +
-    (panel ? '<div class="lean-panel" hidden>' + panel + '</div>' : '') +
+    (panel ? '<template class="lean-panel-tpl">' + panel + '</template>' : '') +
     '</section>';
 }
 
@@ -381,16 +380,16 @@ function renderProof(n, ctx) {
   let body = renderNodes(n.body, c);
   const title = n.title ? renderInline(n.title, c) : 'Proof';
   // \leanverified markers placed inside this proof: the formal counterpart
-  // of exactly this argument.  A single faint folded line — the manuscript
-  // text stays clean unless the reader asks for the Lean.
-  let leanStrip = '';
+  // of exactly this argument — same badge treatment as theorems, opening
+  // the same drawer, so nothing sits in the manuscript text itself.
+  let leanBadge = '', leanTpl = '';
   if (n.lean && n.lean.length) {
-    leanStrip = '<details class="proof-lean"><summary>formalized in Lean</summary>' +
-      n.lean.map(leanDeclHtml).join('') + '</details>';
+    leanBadge = '<button class="badge badge-lean" aria-expanded="false" title="Machine-checked in Lean 4 — click for the formal statement and proof">Lean&thinsp;✓</button>';
+    leanTpl = '<template class="lean-panel-tpl">' + n.lean.map(leanDeclHtml).join('') + '</template>';
   }
   // tombstone
   body += '<span class="qed" title="end of proof">∎</span>';
-  return '<details class="proof"><summary><span class="proof-label">' + title + '.</span></summary><div class="proof-body">' + body + leanStrip + '</div></details>';
+  return '<details class="proof"><summary><span class="proof-label">' + title + '.</span>' + leanBadge + '</summary><div class="proof-body">' + body + '</div>' + leanTpl + '</details>';
 }
 
 /* ---------- the figure (hand-converted from TikZ) ---------- */
@@ -726,22 +725,46 @@ function setupHoverPreviews(root) {
   document.addEventListener('keydown', ev => { if (ev.key === 'Escape') hoverCloseFrom(0); });
 }
 
-/* ---------- inline lean panels ---------- */
+/* ---------- the lean drawer ---------- */
+/* One fixed side panel for all formal counterparts: a badge opens it, the
+   manuscript never reflows, and the declarations arrive already expanded —
+   statement and proof visible with no further clicks. */
 
 function setupLeanPanels(root) {
+  const drawer = document.createElement('aside');
+  drawer.className = 'lean-drawer';
+  drawer.hidden = true;
+  document.body.appendChild(drawer);
+  let openFor = null;
+
+  function close() {
+    drawer.hidden = true;
+    if (openFor) {
+      const b = openFor.querySelector('.badge-lean');
+      if (b) b.setAttribute('aria-expanded', 'false');
+    }
+    openFor = null;
+  }
+
   root.addEventListener('click', ev => {
+    if (ev.target.closest('.lean-drawer-close')) { close(); return; }
+    // a cross-reference chip inside the drawer navigates the paper: get out of the way
+    if (ev.target.closest('.lean-drawer') && ev.target.closest('a[href^="#"]')) { close(); return; }
     const b = ev.target.closest('.badge-lean');
     if (!b) return;
     ev.preventDefault();
-    const thm = b.closest('.thm');
-    const panel = thm && thm.querySelector('.lean-panel');
-    if (!panel) return;
-    panel.hidden = !panel.hidden;
-    b.setAttribute('aria-expanded', String(!panel.hidden));
-    // fill in uses/used-by once, after the dependency graph exists
-    const deps = panel.querySelector('.lean-panel-deps');
-    if (deps && !deps.dataset.filled && window.__graphDeps) {
-      deps.dataset.filled = '1';
+    const owner = b.closest('.thm, details.proof');
+    const tpl = owner && owner.querySelector('.lean-panel-tpl');
+    if (!tpl) return;
+    if (openFor === owner) { close(); return; }
+    close();
+    const nameEl = owner.querySelector('.thm-name, .proof-label');
+    const name = nameEl ? nameEl.textContent.replace(/\.$/, '') : 'Statement';
+    drawer.innerHTML = '<div class="lean-drawer-head"><span class="lean-drawer-title">' + escHtml(name) + ' in Lean</span>' +
+      '<button class="lean-drawer-close" aria-label="Close">×</button></div>' + tpl.innerHTML;
+    drawer.querySelectorAll('details.lean-decl').forEach(d => { d.open = true; });
+    const deps = drawer.querySelector('.lean-panel-deps');
+    if (deps && window.__graphDeps) {
       const id = deps.dataset.claim;
       const usedBy = buildUsedBy();
       let html = '';
@@ -749,7 +772,12 @@ function setupLeanPanels(root) {
       if ((usedBy[id] || []).length) html += '<div class="claim-deps"><span class="meta-label">used by</span>' + usedBy[id].map(xrefClaimChip).join('') + '</div>';
       deps.innerHTML = html;
     }
+    drawer.hidden = false;
+    drawer.scrollTop = 0;
+    b.setAttribute('aria-expanded', 'true');
+    openFor = owner;
   });
+  document.addEventListener('keydown', ev => { if (ev.key === 'Escape' && !drawer.hidden) close(); });
 }
 
 /* ---------- init ---------- */
