@@ -159,6 +159,14 @@ A residual chain gives the canonical faithful-trace sofic
 Net: for the canonical `σ`, (CCR) is a clean, self-contained question
 about excess commutants of Kazhdan images in sofic ultraproducts.
 
+**2026-08-18d: the group-algebra slice is PROVED, for every σ.**
+`FC_Λ(G) = Z` (finite-orbit pigeonhole + transvection rigidity over
+the compressed subring, which retains the constants), hence
+`σ(Λ)' ∩ L(G) = σ(Γ)' ∩ L(G) = Z(L(G))` unconditionally — every
+group-algebra-supported counterexample channel (centralizer excess,
+finite-orbit sums) is dead.  See `ccr-group-algebra-slice(-proof)`.
+The full question now lives entirely in `M ⊖ L(G)`.
+
 **2026-08-18c: the canonical case is PROVED.**  (CCR) holds for every
 coordinatewise ultraproduct of genuine finite-dimensional
 representations with image collapse `π_n(Γ) ⊆ π_n(Λ)` — in particular
