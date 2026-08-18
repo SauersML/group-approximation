@@ -31,7 +31,20 @@ proved minimum.  Whether the Leavitt generators admit lifts of support one or
 two is not decided here; support one would make `t_0` a unit, which
 `binary-leavitt-algebra-not-directly-finite` forbids.
 
-Its use is `leavitt-rank-three-lift-inverse-support-thirteen`: fixing the
+Its use was `leavitt-rank-three-lift-inverse-support-thirteen`: fixing the
 rank of the lift at three is what lets the bounded-rank computations of
 `dykema-heister-juschenko-bounded-rank-direct-finiteness` apply, and they then
 push any completing one-sided inverse out to support at least thirteen.
+
+**What the three units turned out to be (2026-08-18).**  They generate a free
+product `(C_2 x C_2) * C_3`, and so do `v_1,v_2,v_3`
+(`leavitt-rank-three-support-group-is-virtually-free`); moreover the shared
+third unit `u_3 = v_3` is exactly the order-three unit
+`g = (1+s_0t_1)(1+s_1t_0)` of `leavitt-corner-idempotent-unital-surjection`,
+so the corner idempotent `e = [g]+[g^2]` lies in the same group algebra
+`F_2[<u_1,u_2,u_3>]`.  That is fatal for both lifts:
+`leavitt-rank-three-lift-has-no-one-sided-inverse` shows neither `t~` nor `s~`
+nor `e t~ e` can be completed, at any support.  This claim is unaffected — it
+only ever asserted the additive splitting, and was explicit that the product
+is not `1` — but its downstream use has changed from "bound the completion" to
+"there is no completion".

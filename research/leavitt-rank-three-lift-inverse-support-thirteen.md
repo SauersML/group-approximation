@@ -21,6 +21,19 @@ So the smallest conceivable completion of the explicit rank-three lift — the
 one that would make `t~` left invertible in the group algebra and start a
 counterexample — is excluded, by a wide margin, with no new conjecture.
 
+**SUPERSEDED 2026-08-18, and now vacuous.**
+`leavitt-rank-three-lift-has-no-one-sided-inverse` proves there is no such `B`
+at **any** support: the support of `t~` generates a subgroup
+`(C_2 x C_2) * C_3` of `R^x`
+(`leavitt-rank-three-support-group-is-virtually-free`), whose group algebra is
+directly finite, and a one-sided inverse cannot escape it
+(`subgroup-supported-one-sided-inverse-rigidity`).  This claim is kept because
+it is true and because its parity half is still informative, but it should not
+be read as "look above thirteen" any more, and the second route
+`support-thirteen-from-no-inverse` derives it with no machine enumeration in
+the chain.  The same no-go covers the lift of `s_0` and the corner
+compression `e t~ e`; see the caveats below, which it settles.
+
 **What it does not say.**  It does not say `B` exists.  It does not bound the
 support of a lift of `s_0` (that is `s~`, of support three, and `t~ s~` is
 simply not `1`).  And it does not touch the corner formulation
