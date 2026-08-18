@@ -320,7 +320,7 @@ theorem tendsto_diff_zero {g : G} {f : G → ℝ} (hf : IsBddFun f) :
   have hev : ∀ᶠ i in (reiterUltra G : Filter (ReiterIndex G)),
       |weightedAvg (reiterDensity hR i) (fun x ↦ f (g * x))
         - weightedAvg (reiterDensity hR i) f| ≤ C * tol i :=
-    (eventually_abs_diff_le hR hC).filter_mono reiterUltra_le_atTop
+    reiterUltra_le_atTop (eventually_abs_diff_le hR hC)
   refine tendsto_of_tendsto_of_tendsto_of_le_of_le' hbu' hbu ?_ ?_
   · exact hev.mono fun i hi ↦ (abs_le.mp hi).1
   · exact hev.mono fun i hi ↦ (abs_le.mp hi).2
