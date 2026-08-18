@@ -1,5 +1,5 @@
 import GroupApproximation.Analysis.SoficHyperlinearTrace
-import GroupApproximation.Analysis.TracialQuotientCStarIdentity
+import GroupApproximation.Analysis.TracialQuotientCStar
 
 /-!
 # The canonical trace of a sofic group is a hyperlinear trace

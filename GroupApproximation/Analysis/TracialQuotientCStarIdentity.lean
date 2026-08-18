@@ -1,15 +1,14 @@
 import GroupApproximation.Analysis.HilbertSchmidtApproximateUnit
 import GroupApproximation.Analysis.TracialMatrixUltraproduct
-import GroupApproximation.Analysis.TracialQuotientCStar
 
 /-!
 # The C-star identity for the tracial matrix quotient, proved a second way
 
 `Analysis/TracialQuotientCStar.lean` is the canonical home of the quotient's
-C-star structure: it proves the identity through a per-element approximate
-unit, installs the `CStarRing` and `CStarAlgebra` instances, and records the
-exact quotient-norm formula `‖a + J‖ = inf { ‖a - a e‖ : e ∈ J }`.  This
-file is the **independent second proof** of the identity's hard direction.
+C-star structure: it installs the `CStarRing` and `CStarAlgebra` instances
+and records the exact quotient-norm formula
+`‖a + J‖ = inf { ‖a - a e‖ : e ∈ J }`, consuming the identity proved
+here.  This file is the proof of the identity's hard direction.
 The two were authored in parallel, same day, different sessions, sharing no
 proof text; the duplication was then kept deliberately, because independent
 derivations of the one lemma the trace-separation chain stands on are worth
@@ -26,11 +25,10 @@ cut API the canonical file keeps inline:
 * `norm_sq_le_norm_star_mul_self`: **the C-star identity**, hard direction,
   for the quotient norm at an arbitrary filter.
 
-The instances themselves are declared once, in
-`Analysis/TracialQuotientCStar.lean`, and reach importers of this module
-(the hyperlinear bridge) through the import above; declaring them a second
-time here would put two defeq-but-distinct `CStarAlgebra` structures on the
-same type in every downstream file.
+The instances themselves are declared once, downstream in
+`Analysis/TracialQuotientCStar.lean`, which imports this module; declaring
+them a second time here would put two defeq-but-distinct `CStarAlgebra`
+structures on the same type in every downstream file.
 
 ## The three-line estimate, honestly three lines
 
