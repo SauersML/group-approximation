@@ -179,6 +179,41 @@ sharpening).**
   the unitary proof must consume the matricial ambient.  The
   pure-representation shortcut is CLOSED; do not re-attempt.
 
+**Vanguard results (2026-08-18, successor campaign's opening pass —
+proofs one-line-checkable, recorded from the fork's report).**
+
+1. **The commutants are ALWAYS unitarily conjugate:**
+   `σ(Λ)' ∩ M = u(σ(Γ)' ∩ M)u⁻¹` for `u = σ(t)`, and
+   `σ(Γ)' ⊆ σ(Λ)'`.  So (CCR) is the statement that a
+   self-conjugate nested containment is equality — strictness
+   requires infinite dimension.
+2. **Theorem (new special case):** if `σ(Γ)' ∩ M` is
+   finite-dimensional — in particular for every irreducible-type σ
+   with trivial relative commutant — (CCR) HOLDS, with no coordinate
+   hypothesis: `C ⊆ uCu⁻¹` and equal finite dimensions force
+   equality.
+3. **Shift-spectral equivalence (the most computable form of the
+   wall):** iterating the containment gives the nested ℤ-tower
+   `C_k = u^kCu^{−k}` with orthogonal L²-increments `V_k`, and
+   `Ad u` shifts `V_k` onto `V_{k+1}`; hence (CCR) FAILS for σ ⟺
+   `Ad σ(t)` contains a bilateral-shift summand (Lebesgue spectrum,
+   multiplicity `dim V₀`) supported on the commutant tower.
+   Trace-faithfulness makes `σ(t)` Haar, so the wall is now: can the
+   Koopman spectrum of one Haar unitary carry a shift on that
+   specific subspace, `G`-equivariantly?  Rigid side: exclude it.
+   Flexible side: build it.  Next-attempt pointer: intersect the
+   shift picture with Popa-style spectral gap of the `Λ`-action on
+   `L²(M) ⊖ L²(σ(Λ)'')`, which constrains where `V₀` can sit.
+4. **Jung fence (recalled statement — verify numbering before
+   further use):** all embeddings of a separable II₁ factor into a
+   matrix ultraproduct are unitarily conjugate iff it is amenable
+   (Jung 2007); `L(G)` is non-amenable, so non-conjugate
+   trace-faithful σ exist and NO argument can reduce arbitrary σ to
+   the canonical coordinate embedding by conjugation.  Peterson
+   Thm 5.2 does not rescue it (it conjugates coordinatewise
+   deformations of ONE embedding).  The transport strategy is dead;
+   only direct spectral/bimodule arguments remain.
+
 **Stakes, stated once:** a proof refutes hyperlinearity of the
 Kun–Thom wreath group (first non-hyperlinear group; group-CEP
 refuted; Pestov 3.9 falls).  A refutation kills the rigidity route
