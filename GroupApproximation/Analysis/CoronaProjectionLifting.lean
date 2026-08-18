@@ -269,6 +269,137 @@ theorem exists_projection_lift (p : FilterMatrixCStarCorona X l)
 
 end Corona
 
+/-! ## The order of the corona is the asymptotic order of the coordinates
+
+`thm:abstract-nk` reads the corner inequality `q h q ≤ θ q`, which holds in
+`B_ω`, as a statement about the coordinates.  The printed form uses the positive
+part; the equivalent form proved here is that `q_n h_n q_n − θ q_n` is at most
+`ε` for every `ε > 0`, eventually along the filter, which is what the trace
+estimate of the next paragraph consumes and what `‖x₊‖ ≤ ε` says.
+
+The transfer needs no positive part and no order on the corona in its
+statement.  A nonnegative element of a C*-algebra is `star b * b`
+(`CStarAlgebra.nonneg_iff_eq_star_mul_self`), and that is the hypothesis taken
+here, so the caller does the one order step where the order instance already
+lives.  A representative of `b` then makes the coordinate difference
+`z_n − b_nᴴ b_n` null along the filter, `b_nᴴ b_n` is positive semidefinite on
+the nose, and the error is absorbed by `ε` because a Hermitian matrix is bounded
+below by minus its norm. -/
+
+section Order
+
+open scoped ComplexOrder
+
+/-- **A Hermitian matrix is bounded below by minus its norm.**  In the spectral
+picture this is immediate: `ε·1 + D` is diagonal with entries `ε + λ_i` in the
+eigenbasis of `D`, and every `|λ_i|` is at most `‖D‖`. -/
+theorem posSemidef_smul_one_add {Z : Type*} [Fintype Z] [DecidableEq Z]
+    {D : Matrix Z Z ℂ} (hD : D.IsHermitian) {ε : ℝ} (hε : ‖D‖ ≤ ε) :
+    (((ε : ℂ) • (1 : Matrix Z Z ℂ)) + D).PosSemidef := by
+  classical
+  let V : Matrix Z Z ℂ := hD.eigenvectorUnitary
+  have hVV : V * Vᴴ = 1 := Unitary.mul_star_self_of_mem hD.eigenvectorUnitary.2
+  have hDdiag : D
+      = V * Matrix.diagonal (fun i ↦ ((hD.eigenvalues i : ℝ) : ℂ)) * Vᴴ := by
+    calc D = Unitary.conjStarAlgAut ℂ _ hD.eigenvectorUnitary
+          (Matrix.diagonal (RCLike.ofReal ∘ hD.eigenvalues)) :=
+        hD.spectral_theorem
+      _ = V * Matrix.diagonal (fun i ↦ ((hD.eigenvalues i : ℝ) : ℂ)) * Vᴴ := by
+        rfl
+  have hconst : Matrix.diagonal (fun _ : Z ↦ ((ε : ℝ) : ℂ))
+      = ((ε : ℂ) • (1 : Matrix Z Z ℂ)) := by
+    ext i j
+    by_cases hij : i = j
+    · subst hij
+      simp
+    · simp [hij]
+  have hfirst : V * Matrix.diagonal (fun _ : Z ↦ ((ε : ℝ) : ℂ)) * Vᴴ
+      = ((ε : ℂ) • (1 : Matrix Z Z ℂ)) := by
+    rw [hconst, Matrix.mul_smul, Matrix.smul_mul, mul_one, hVV]
+  have hd : Matrix.diagonal
+        (fun i ↦ ((ε : ℝ) : ℂ) + ((hD.eigenvalues i : ℝ) : ℂ))
+      = Matrix.diagonal (fun _ : Z ↦ ((ε : ℝ) : ℂ))
+        + Matrix.diagonal (fun i ↦ ((hD.eigenvalues i : ℝ) : ℂ)) := by
+    rw [Matrix.diagonal_add]
+  have hsum : ((ε : ℂ) • (1 : Matrix Z Z ℂ)) + D
+      = V * Matrix.diagonal
+          (fun i ↦ ((ε : ℝ) : ℂ) + ((hD.eigenvalues i : ℝ) : ℂ)) * Vᴴ := by
+    rw [hd, Matrix.mul_add, Matrix.add_mul, hfirst, ← hDdiag]
+  rw [hsum]
+  refine Matrix.PosSemidef.mul_mul_conjTranspose_same ?_ V
+  refine Matrix.PosSemidef.diagonal fun i ↦ ?_
+  have habs : |hD.eigenvalues i| ≤ ε :=
+    le_trans (abs_hermitianEigenvalue_le_norm D hD i) hε
+  have hnn : (0 : ℝ) ≤ ε + hD.eigenvalues i := by
+    have h := (abs_le.mp habs).1
+    linarith
+  rw [Complex.le_def]
+  constructor <;> simp [hnn]
+
+section Transfer
+
+variable (X : ℕ → Type u) [∀ n, Fintype (X n)] [∀ n, DecidableEq (X n)]
+  [∀ n, Nonempty (X n)] (l : Filter ℕ)
+
+/-- **The corner inequality, coordinatewise.**
+
+If a self-adjoint bounded sequence has a class of the form `star b * b` -- which
+by `CStarAlgebra.nonneg_iff_eq_star_mul_self` is exactly what nonnegativity in
+the corona means -- then its coordinates are bounded below by `−ε` eventually
+along the filter, for every `ε > 0`.
+
+This is the printed passage from `q h q ≤ θ q` in `B_ω` to the coordinate
+statement, with the positive part written as the order bound it abbreviates. -/
+theorem eventually_posSemidef_smul_one_add
+    (z : BoundedMatrixSequence X) (hzsa : star z = z)
+    {b : FilterMatrixCStarCorona X l}
+    (hz : filterMatrixCStarCoronaMk X l z = star b * b) {ε : ℝ} (hε : 0 < ε) :
+    ∀ᶠ n in l, (((ε : ℂ) • (1 : Matrix (X n) (X n) ℂ))
+      + (z : ∀ n, Matrix (X n) (X n) ℂ) n).PosSemidef := by
+  classical
+  obtain ⟨bs, hbs⟩ := filterMatrixCStarCoronaMk_surjective X l b
+  have hnull : IsNullMatrixSequence X l (z - star bs * bs) := by
+    rw [← filterMatrixCStarCoronaMk_eq_zero_iff, map_sub, map_mul,
+      ← filterMatrixCStarCorona_star_mk, hbs, hz, sub_self]
+  have hev : ∀ᶠ n in l,
+      ‖((z - star bs * bs : BoundedMatrixSequence X) :
+        ∀ n, Matrix (X n) (X n) ℂ) n‖ ≤ ε :=
+    (Metric.tendsto_nhds.mp hnull ε hε).mono fun n hn ↦ by
+      simpa only [Real.dist_eq, sub_zero, abs_norm] using hn.le
+  filter_upwards [hev] with n hn
+  have hzn : ((z : ∀ n, Matrix (X n) (X n) ℂ) n).IsHermitian :=
+    congrArg (fun w : BoundedMatrixSequence X ↦
+      (w : ∀ n, Matrix (X n) (X n) ℂ) n) hzsa
+  have hdiff : ((z - star bs * bs : BoundedMatrixSequence X) :
+        ∀ n, Matrix (X n) (X n) ℂ) n
+      = (z : ∀ n, Matrix (X n) (X n) ℂ) n
+        - ((bs : ∀ n, Matrix (X n) (X n) ℂ) n)ᴴ
+          * ((bs : ∀ n, Matrix (X n) (X n) ℂ) n) := rfl
+  have hDherm : ((z : ∀ n, Matrix (X n) (X n) ℂ) n
+      - ((bs : ∀ n, Matrix (X n) (X n) ℂ) n)ᴴ
+        * ((bs : ∀ n, Matrix (X n) (X n) ℂ) n)).IsHermitian := by
+    rw [Matrix.IsHermitian, Matrix.conjTranspose_sub, hzn,
+      Matrix.conjTranspose_mul, Matrix.conjTranspose_conjTranspose]
+  have hsplit : ((ε : ℂ) • (1 : Matrix (X n) (X n) ℂ))
+        + (z : ∀ n, Matrix (X n) (X n) ℂ) n
+      = (((bs : ∀ n, Matrix (X n) (X n) ℂ) n)ᴴ
+          * ((bs : ∀ n, Matrix (X n) (X n) ℂ) n))
+        + (((ε : ℂ) • (1 : Matrix (X n) (X n) ℂ))
+          + ((z : ∀ n, Matrix (X n) (X n) ℂ) n
+            - ((bs : ∀ n, Matrix (X n) (X n) ℂ) n)ᴴ
+              * ((bs : ∀ n, Matrix (X n) (X n) ℂ) n))) := by
+    abel
+  rw [hsplit]
+  refine Matrix.PosSemidef.add
+    (Matrix.posSemidef_conjTranspose_mul_self _)
+    (posSemidef_smul_one_add hDherm ?_)
+  rw [← hdiff]
+  exact hn
+
+end Transfer
+
+end Order
+
 end
 
 end CoronaProjectionLifting

@@ -647,6 +647,87 @@ theorem manuscriptCornerCompression (R : OmegaUnitaryRep Y ω G)
     (gapConstant_lt_one hQ.1 hS)
     (coronaGap Y ω R hQ S hS hQS hone hsymm hεone)
 
+/-- The printed corner defect `θ q − q h q`, as a bounded sequence.  Written
+with the algebra map rather than a scalar action because the opaque corona's
+scalar action does not rewrite; at a coordinate it is `θ q_n − q_n h_n q_n`. -/
+def cornerDefectSeq (R : OmegaUnitaryRep Y ω G) (S : Finset G)
+    (qn : BoundedMatrixSequence (Idx Y)) (c : ℝ) :
+    BoundedMatrixSequence (Idx Y) :=
+  algebraMap ℂ (BoundedMatrixSequence (Idx Y)) (c : ℂ) * qn
+    - qn * hermitianAverageSeq Y ω R S * qn
+
+open scoped ComplexOrder in
+/-- **The corner inequality in coordinates.**
+
+> that inequality is exactly the coordinate statement
+> `‖(q_n h_n q_n − θ q_n)₊‖ →_ω 0`.
+
+For every tolerance, the printed corner defect is bounded below by minus that
+tolerance at almost every coordinate along `ω` -- which is what the vanishing of
+the positive part says, and the form the trace estimate of the next paragraph
+consumes.
+
+The passage is `CoronaProjectionLifting.eventually_posSemidef_smul_one_add`, and
+the one order step happens here, where the order instance lives: a nonnegative
+element of a C*-algebra is `star b * b`, and a representative of `b` makes the
+coordinate difference null along `ω`. -/
+theorem manuscriptCornerCompressionCoordinates (R : OmegaUnitaryRep Y ω G)
+    {Q : Finset G} {ε : ℝ} (hQ : IsKazhdanPair.{u, 0} G Q ε)
+    (S : Finset G) (hS : S.Nonempty) (hQS : Q ⊆ S) (hone : 1 ∈ S)
+    (hsymm : ∀ g ∈ S, g⁻¹ ∈ S) (hεone : ε ≤ 1)
+    (qn : BoundedMatrixSequence (Idx Y)) (hqsa : star qn = qn)
+    (hqn : filterMatrixCStarCoronaMk (Idx Y) (ω : Filter ℕ) qn
+      = (1 : FilterMatrixCStarCorona (Idx Y) (ω : Filter ℕ))
+        - manuscriptKazhdanProjection Y ω R S (1 - ε ^ 2 / (4 * S.card)))
+    {δ : ℝ} (hδ : 0 < δ) :
+    ∀ᶠ n in (ω : Filter ℕ),
+      (((δ : ℂ) • (1 : Matrix (Idx Y n) (Idx Y n) ℂ))
+        + (cornerDefectSeq Y ω R S qn (1 - ε ^ 2 / (4 * S.card)) :
+            ∀ n, Matrix (Idx Y n) (Idx Y n) ℂ) n).PosSemidef := by
+  have hbridge : algebraMap ℝ (FilterMatrixCStarCorona (Idx Y) (ω : Filter ℕ))
+        (1 - ε ^ 2 / (4 * S.card))
+      = algebraMap ℂ (FilterMatrixCStarCorona (Idx Y) (ω : Filter ℕ))
+        ((1 - ε ^ 2 / (4 * S.card) : ℝ) : ℂ) := by
+    rw [IsScalarTower.algebraMap_apply ℝ ℂ
+      (FilterMatrixCStarCorona (Idx Y) (ω : Filter ℕ))]
+    rfl
+  have hnn : 0 ≤ algebraMap ℂ (FilterMatrixCStarCorona (Idx Y) (ω : Filter ℕ))
+        ((1 - ε ^ 2 / (4 * S.card) : ℝ) : ℂ)
+        * ((1 : FilterMatrixCStarCorona (Idx Y) (ω : Filter ℕ))
+          - manuscriptKazhdanProjection Y ω R S (1 - ε ^ 2 / (4 * S.card)))
+      - ((1 : FilterMatrixCStarCorona (Idx Y) (ω : Filter ℕ))
+          - manuscriptKazhdanProjection Y ω R S (1 - ε ^ 2 / (4 * S.card)))
+        * unitaryAverage (coronaRep Y ω R) S
+        * ((1 : FilterMatrixCStarCorona (Idx Y) (ω : Filter ℕ))
+          - manuscriptKazhdanProjection Y ω R S (1 - ε ^ 2 / (4 * S.card))) := by
+    rw [← hbridge, sub_nonneg]
+    exact manuscriptCornerCompression Y ω R hQ S hS hQS hone hsymm hεone
+  obtain ⟨b, hb⟩ := CStarAlgebra.nonneg_iff_eq_star_mul_self.mp hnn
+  have hsa : star (cornerDefectSeq Y ω R S qn (1 - ε ^ 2 / (4 * S.card)))
+      = cornerDefectSeq Y ω R S qn (1 - ε ^ 2 / (4 * S.card)) := by
+    have hstarAlg : star (algebraMap ℂ (BoundedMatrixSequence (Idx Y))
+          ((1 - ε ^ 2 / (4 * S.card) : ℝ) : ℂ))
+        = algebraMap ℂ (BoundedMatrixSequence (Idx Y))
+          ((1 - ε ^ 2 / (4 * S.card) : ℝ) : ℂ) := by
+      rw [Algebra.algebraMap_eq_smul_one, star_smul, star_one,
+        Complex.star_def, Complex.conj_ofReal]
+    rw [cornerDefectSeq]
+    simp only [star_sub, star_mul, hqsa, hermitianAverageSeq_selfAdjoint,
+      hstarAlg, mul_assoc, Algebra.commutes]
+  have hmk : filterMatrixCStarCoronaMk (Idx Y) (ω : Filter ℕ)
+      (cornerDefectSeq Y ω R S qn (1 - ε ^ 2 / (4 * S.card))) = star b * b := by
+    have halg : filterMatrixCStarCoronaMk (Idx Y) (ω : Filter ℕ)
+          (algebraMap ℂ (BoundedMatrixSequence (Idx Y))
+            ((1 - ε ^ 2 / (4 * S.card) : ℝ) : ℂ))
+        = algebraMap ℂ (FilterMatrixCStarCorona (Idx Y) (ω : Filter ℕ))
+          ((1 - ε ^ 2 / (4 * S.card) : ℝ) : ℂ) :=
+      (filterMatrixCStarCoronaQuotient (Idx Y) (ω : Filter ℕ)).commutes _
+    rw [cornerDefectSeq, map_sub, map_mul, map_mul, map_mul, halg, hqn,
+      mk_hermitianAverageSeq Y ω R hsymm]
+    exact hb
+  exact CoronaProjectionLifting.eventually_posSemidef_smul_one_add (Idx Y)
+    (ω : Filter ℕ) _ hsa hmk hδ
+
 end Compression
 
 end
