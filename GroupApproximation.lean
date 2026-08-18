@@ -1073,6 +1073,8 @@ import GroupApproximation.Analysis.PolarLiftingGeneralCStar
 import GroupApproximation.Analysis.StablyFiniteAmplification
 import GroupApproximation.Analysis.VectorHilbertUltraproduct
 import GroupApproximation.Analysis.VectorHilbertComplete
+import GroupApproximation.Analysis.VectorOmegaAction
+import GroupApproximation.Analysis.VectorOmegaKazhdanGap
 import GroupApproximation.Monsters.NeumannSimpleSocle
 import GroupApproximation.Sofic.TransportShapeBridges
 import GroupApproximation.Sofic.GeneralModelKazhdanTransport
