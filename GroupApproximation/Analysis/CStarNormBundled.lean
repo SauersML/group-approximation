@@ -153,8 +153,11 @@ def ofStarAlgHom (h : IsCStarNorm p) : WithCStarNorm h →⋆ₐ[ℂ] A where
 theorem toStarAlgHom_surjective (h : IsCStarNorm p) :
     Function.Surjective (toStarAlgHom h) := fun a ↦ ⟨a, rfl⟩
 
-/-- The retagging carries the chosen norm, by construction. -/
-theorem norm_toStarAlgHom (h : IsCStarNorm p) (a : A) :
+/-- The retagging carries the chosen norm, by construction.  Marked `simp`
+alongside `norm_eq`, of which it is the homomorphism-level form; the kernel
+audit rejects a non-`simp` theorem whose proof term is `Eq.refl`, and rightly,
+since such a statement earns its place only by being available to rewriting. -/
+@[simp] theorem norm_toStarAlgHom (h : IsCStarNorm p) (a : A) :
     ‖toStarAlgHom h a‖ = p a := rfl
 
 end WithCStarNorm
