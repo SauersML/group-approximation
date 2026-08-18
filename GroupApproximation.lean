@@ -1134,6 +1134,8 @@ import GroupApproximation.Sofic.SimpleSoficEnvelopeUnconditional
 import GroupApproximation.Analysis.CStarTakesakiCoefficient
 import GroupApproximation.Analysis.LancePositiveDefinite
 import GroupApproximation.Analysis.LanceReduction
+import GroupApproximation.Analysis.CStarTakesakiDense
+import GroupApproximation.Analysis.CStarTakesakiMinLe
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
