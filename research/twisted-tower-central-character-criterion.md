@@ -10,7 +10,19 @@ artifacts:
   - research/char-p-root-torsion-collapse.md
 ---
 
-**Question (OPEN, finite, two-sided).**  For the finite central
+**ANSWERED (2026-08-18, same session): NO — vacuously, and the whole
+channel is empty.**  `fd-invisibility-of-compression` proves
+`ρ(Λ) = ρ(E)` for EVERY finite-dimensional representation (three
+lines: the kernel swallows `e_ij(J)`, the compressed subring
+satisfies `S_Λ + J = R`, and same-slot additivity factors every
+generator), so `π(Λ) = Ē` contains every central class and no irrep
+pair can separate centrally while agreeing on `π(Λ)`.  The compute
+target below is UNNECESSARY; the `SK₁` facts remain true but are not
+load-bearing.  This node is kept as the record of how the channel
+was posed, verified nonvacuous at the `K₂` level, and then closed at
+the group level.  Original text follows.
+
+**Question (now answered — original statement).**  For the finite central
 extensions `Ē = E/E_r(J)` arising from finite-codimension ideals
 `J ⊆ R` via `char-p-root-torsion-collapse` (central kernel
 `K(R,J)` = relative `K₁`, over the finite quotient `EL_r(R/J)`):

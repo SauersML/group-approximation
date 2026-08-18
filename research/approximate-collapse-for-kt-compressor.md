@@ -34,8 +34,13 @@ route to the first non-hyperlinear group.
 sibling claims):**
 
 - TRUE for every coordinatewise ultraproduct of genuine
-  representations with image collapse — congruence chains included
-  (`ccr-for-coordinate-collapsing-models`).
+  representations, UNCONDITIONALLY — the collapse hypothesis is
+  automatic: `ρ(Λ) = ρ(E)` identically across all of FD
+  (`fd-invisibility-of-compression`), so the coordinate regime is
+  fully closed and any counterexample here must violate an IDENTITY
+  of finite-dimensional representation theory, not a generic
+  property (`ccr-for-coordinate-collapsing-models` supplies the
+  (T)-uniformity step).
 - The group-algebra slice cannot break it (`ccr-group-algebra-slice`:
   `FC_Λ(G) = Z`), nor can coarse-bimodule content, amplification,
   finite quotients, small-block gluing, or the bicommutant shortcut
