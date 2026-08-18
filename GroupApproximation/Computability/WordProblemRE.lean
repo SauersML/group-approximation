@@ -71,7 +71,7 @@ theorem wordOf_relatorWord (c : PresentationCode) (u : List (ℕ × Bool)) (s : 
     wordOf c (relatorWord c u s)
       = (if s then relatorOf c u else (relatorOf c u)⁻¹) := by
   by_cases hu : u ∈ c.2 <;> cases s <;>
-    simp [relatorWord, relatorOf, hu, wordOf_invWord]
+    simp [relatorWord, relatorOf, hu, wordOf_invWord, -wordOf_def]
 
 /-- The raw word naming one certificate entry: conjugator, signed relator,
 inverse conjugator. -/

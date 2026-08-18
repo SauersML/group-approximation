@@ -108,7 +108,7 @@ theorem eigenCalc_mul_hermitian_mul (H : Matrix Y Y ℂ) (hH : H.IsHermitian)
 
 /-- The spectral cut is the eigenbasis calculus applied to the indicator of
 the eigenvalues above the threshold. -/
-theorem spectralAbove_eq_eigenCalc (H : Matrix Y Y ℂ) (hH : H.IsHermitian)
+@[simp] theorem spectralAbove_eq_eigenCalc (H : Matrix Y Y ℂ) (hH : H.IsHermitian)
     (t : ℝ) :
     spectralAbove H hH t =
       eigenCalc H hH (fun i ↦ if t < hH.eigenvalues i then (1 : ℂ) else 0) :=

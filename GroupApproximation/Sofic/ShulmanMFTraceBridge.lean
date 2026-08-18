@@ -253,7 +253,7 @@ accuracies.  In particular this theorem does **not** depend on
 argument of `Sofic/MFTraceRecognition.lean` — which stays in the tree, proves
 a different quantitative statement, and is still what the other theorems above
 use. -/
-theorem isOperatorMF_of_isMFTrace_canonicalMaximal [Countable G]
+theorem isOperatorMF_of_isMFTrace_canonicalMaximal
     (h : IsMFTrace (fun a : MaximalGroupCStar G ↦ canonicalMaximalTrace G a)) :
     IsOperatorMF G := by
   obtain ⟨M⟩ := h

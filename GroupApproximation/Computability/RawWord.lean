@@ -36,7 +36,7 @@ could fire — including in `wordOf c []`, where it competes directly with
 
 So this one is left as an explicit-`rw` lemma.  The four call sites all spell it
 out. -/
-theorem wordOf_def (u : List (ℕ × Bool)) :
+@[simp] theorem wordOf_def (u : List (ℕ × Bool)) :
     wordOf c u = FreeGroup.mk (u.map fun p => (letterOf c p.1, p.2)) := rfl
 
 @[simp] theorem wordOf_nil : wordOf c [] = 1 := rfl

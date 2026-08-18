@@ -251,6 +251,7 @@ model, where the identity matrix is `0`.  Without it the numerator is not even
 a unital ring. -/
 abbrev ModelBoundedSequence := BoundedMatrixSequence (fun n ↦ X n)
 
+omit [∀ n, Nonempty (X n)] in
 /-- Every coordinate Hilbert--Schmidt norm is bounded by the uniform operator
 norm: `‖a n‖₂ ≤ ‖a n‖ ≤ ‖a‖`. -/
 theorem hsNorm_coord_le (a : ModelBoundedSequence X) (n : ℕ) :
@@ -258,6 +259,7 @@ theorem hsNorm_coord_le (a : ModelBoundedSequence X) (n : ℕ) :
   (PrelimNotation.hsNorm_le_l2_opNorm (X n) (a n)).trans
     (boundedMatrixSequence_coord_norm_le (fun n ↦ X n) a n)
 
+omit [∀ n, Nonempty (X n)] in
 /-- The squared form of the same bound. -/
 theorem hsNormSq_coord_le (a : ModelBoundedSequence X) (n : ℕ) :
     hsNormSq (X n) (a n) ≤ ‖a‖ ^ 2 := by
@@ -274,6 +276,7 @@ the manuscript's `lim_ω ‖a n‖₂ = 0`. -/
 def IsHilbertSchmidtNull (a : ModelBoundedSequence X) : Prop :=
   Tendsto (fun n ↦ hsNorm (X n) (a n)) l (nhds 0)
 
+omit [∀ n, Nonempty (X n)] in
 /-- Every estimate below is cheaper in squared form, and squaring is
 reversible on nonnegative families. -/
 theorem isHilbertSchmidtNull_iff_sq (a : ModelBoundedSequence X) :
@@ -293,6 +296,7 @@ theorem isHilbertSchmidtNull_iff_sq (a : ModelBoundedSequence X) :
       (hc.comp h).congr fun n ↦ rfl
     exact hcomp
 
+omit [∀ n, Nonempty (X n)] in
 /-- The domination criterion used for every closure property of the ideal. -/
 theorem isHilbertSchmidtNull_of_sq_le {a : ModelBoundedSequence X} {g : ℕ → ℝ}
     (hg : Tendsto g l (nhds 0))
@@ -304,11 +308,13 @@ theorem isHilbertSchmidtNull_of_sq_le {a : ModelBoundedSequence X} {g : ℕ → 
 
 namespace IsHilbertSchmidtNull
 
+omit [∀ n, Nonempty (X n)] in
 theorem zero : IsHilbertSchmidtNull X l 0 := by
   rw [IsHilbertSchmidtNull]
   refine tendsto_const_nhds.congr fun n ↦ ?_
   exact (hsNorm_zero (X n)).symm
 
+omit [∀ n, Nonempty (X n)] in
 theorem add {a b : ModelBoundedSequence X}
     (ha : IsHilbertSchmidtNull X l a) (hb : IsHilbertSchmidtNull X l b) :
     IsHilbertSchmidtNull X l (a + b) := by
@@ -324,6 +330,7 @@ theorem add {a b : ModelBoundedSequence X}
   · intro n
     exact hsNormSq_add_le (X n) (a n) (b n)
 
+omit [∀ n, Nonempty (X n)] in
 theorem mul_left (b : ModelBoundedSequence X) {a : ModelBoundedSequence X}
     (ha : IsHilbertSchmidtNull X l a) : IsHilbertSchmidtNull X l (b * a) := by
   rw [isHilbertSchmidtNull_iff_sq] at ha
@@ -344,6 +351,7 @@ theorem mul_left (b : ModelBoundedSequence X) {a : ModelBoundedSequence X}
       exact mul_self_le_mul_self (norm_nonneg (b n)) hb
     exact hstep.trans (mul_le_mul_of_nonneg_right hsqle h0)
 
+omit [∀ n, Nonempty (X n)] in
 theorem mul_right {a : ModelBoundedSequence X}
     (ha : IsHilbertSchmidtNull X l a) (b : ModelBoundedSequence X) :
     IsHilbertSchmidtNull X l (a * b) := by
@@ -365,6 +373,7 @@ theorem mul_right {a : ModelBoundedSequence X}
       exact mul_self_le_mul_self (norm_nonneg (b n)) hb
     exact hstep.trans (mul_le_mul_of_nonneg_right hsqle h0)
 
+omit [∀ n, Nonempty (X n)] in
 theorem star {a : ModelBoundedSequence X}
     (ha : IsHilbertSchmidtNull X l a) :
     IsHilbertSchmidtNull X l (Star.star a) := by
@@ -628,6 +637,7 @@ section Ultratrace
 
 variable (ω : Ultrafilter ℕ)
 
+omit [∀ n, Nonempty (X n)] in
 /-- The coordinate normalized traces of a bounded sequence are bounded by its
 uniform operator norm, hence converge along every ultrafilter. -/
 theorem exists_tendsto_normTrace (a : ModelBoundedSequence X) :
@@ -640,17 +650,20 @@ theorem exists_tendsto_normTrace (a : ModelBoundedSequence X) :
 def seqUltratrace (a : ModelBoundedSequence X) : ℂ :=
   UltrafilterLimit.ulim ω (fun n ↦ normTrace (X n) (a n))
 
+omit [∀ n, Nonempty (X n)] in
 theorem tendsto_seqUltratrace (a : ModelBoundedSequence X) :
     Tendsto (fun n ↦ normTrace (X n) (a n)) (ω : Filter ℕ)
       (nhds (seqUltratrace X ω a)) :=
   UltrafilterLimit.tendsto_ulim (exists_tendsto_normTrace X ω a)
 
+omit [∀ n, Nonempty (X n)] in
 theorem seqUltratrace_zero :
     seqUltratrace X ω (0 : ModelBoundedSequence X) = 0 := by
   refine UltrafilterLimit.ulim_eq ?_
   refine tendsto_const_nhds.congr fun n ↦ ?_
   exact (normTrace_zero (X n)).symm
 
+omit [∀ n, Nonempty (X n)] in
 theorem seqUltratrace_add (a b : ModelBoundedSequence X) :
     seqUltratrace X ω (a + b) = seqUltratrace X ω a + seqUltratrace X ω b := by
   refine UltrafilterLimit.ulim_eq ?_
@@ -670,12 +683,14 @@ theorem seqUltratrace_one :
   refine tendsto_const_nhds.congr fun n ↦ ?_
   exact (normTrace_one' (X n) Fintype.card_pos).symm
 
+omit [∀ n, Nonempty (X n)] in
 theorem seqUltratrace_mul_comm (a b : ModelBoundedSequence X) :
     seqUltratrace X ω (a * b) = seqUltratrace X ω (b * a) := by
   refine UltrafilterLimit.ulim_eq ?_
   refine (tendsto_seqUltratrace X ω (b * a)).congr fun n ↦ ?_
   exact normTrace_mul_comm (X n) (b n) (a n)
 
+omit [∀ n, Nonempty (X n)] in
 theorem seqUltratrace_star (a : ModelBoundedSequence X) :
     seqUltratrace X ω (star a) = star (seqUltratrace X ω a) := by
   refine UltrafilterLimit.ulim_eq ?_
@@ -687,6 +702,7 @@ theorem seqUltratrace_star (a : ModelBoundedSequence X) :
   rw [h, normTrace_conjTranspose]
   rfl
 
+omit [∀ n, Nonempty (X n)] in
 /-- `|lim_ω tr_{X n}(a n)| ≤ ‖a‖`: the second printed inequality
 `|tr_r(x)| ≤ ‖x‖` survives the ultralimit. -/
 theorem norm_seqUltratrace_le (a : ModelBoundedSequence X) :
@@ -698,6 +714,7 @@ theorem norm_seqUltratrace_le (a : ModelBoundedSequence X) :
   exact (PrintedPreliminaryEstimates.norm_normTrace_le_l2_opNorm (X n) (a n)).trans
     (boundedMatrixSequence_coord_norm_le (fun n ↦ X n) a n)
 
+omit [∀ n, Nonempty (X n)] in
 /-- **Well-definedness on the quotient.**  Two lifts differing by a
 `‖·‖₂`-null sequence have the same ultratrace, because `|tr_r(x)| ≤ ‖x‖₂`. -/
 theorem seqUltratrace_eq_of_sub_isHilbertSchmidtNull
@@ -720,6 +737,7 @@ theorem seqUltratrace_eq_of_sub_isHilbertSchmidtNull
 `trω (x* x)` is real and nonnegative because it *is* the ultralimit of the
 squared normalized Hilbert--Schmidt norms of any lift. -/
 
+omit [∀ n, Nonempty (X n)] in
 theorem exists_tendsto_hsNormSq (a : ModelBoundedSequence X) :
     ∃ L : ℝ, Tendsto (fun n ↦ hsNormSq (X n) (a n)) (ω : Filter ℕ) (nhds L) :=
   UltrafilterLimit.exists_tendsto_of_bounded ω (C := ‖a‖ ^ 2) fun n ↦ by
@@ -730,16 +748,19 @@ theorem exists_tendsto_hsNormSq (a : ModelBoundedSequence X) :
 def seqHSLimit (a : ModelBoundedSequence X) : ℝ :=
   UltrafilterLimit.ulim ω (fun n ↦ hsNormSq (X n) (a n))
 
+omit [∀ n, Nonempty (X n)] in
 theorem tendsto_seqHSLimit (a : ModelBoundedSequence X) :
     Tendsto (fun n ↦ hsNormSq (X n) (a n)) (ω : Filter ℕ)
       (nhds (seqHSLimit X ω a)) :=
   UltrafilterLimit.tendsto_ulim (exists_tendsto_hsNormSq X ω a)
 
+omit [∀ n, Nonempty (X n)] in
 theorem seqHSLimit_nonneg (a : ModelBoundedSequence X) :
     0 ≤ seqHSLimit X ω a :=
   UltrafilterLimit.ulim_nonneg (exists_tendsto_hsNormSq X ω a)
     fun n ↦ hsNormSq_nonneg (X n) (a n)
 
+omit [∀ n, Nonempty (X n)] in
 /-- **The vanishing criterion.**  The squared Hilbert--Schmidt ultralimit
 vanishes exactly on the ideal that is divided out. -/
 theorem seqHSLimit_eq_zero_iff (a : ModelBoundedSequence X) :
@@ -752,6 +773,7 @@ theorem seqHSLimit_eq_zero_iff (a : ModelBoundedSequence X) :
   · intro h
     exact UltrafilterLimit.ulim_eq h
 
+omit [∀ n, Nonempty (X n)] in
 /-- **`trω (a* a) = lim_ω ‖a n‖₂²`.**  This single identity supplies
 positivity and faithfulness at once. -/
 theorem seqUltratrace_star_mul_self (a : ModelBoundedSequence X) :

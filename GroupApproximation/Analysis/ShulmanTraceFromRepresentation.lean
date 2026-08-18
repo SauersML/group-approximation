@@ -112,10 +112,12 @@ variable {A : Type*} [NormedRing A] [StarRing A] [NormedAlgebra ℂ A]
 def qrep (Φ : A → TracialMatrixQuotient X l) (a : A) : ModelBoundedSequence X :=
   Classical.choose (exists_rep_norm_le_two (Φ a))
 
+omit [NormedRing A] [StarRing A] [NormedAlgebra ℂ A] in
 @[simp] theorem qrep_mk (Φ : A → TracialMatrixQuotient X l) (a : A) :
     tracialMatrixQuotientMk X l (qrep Φ a) = Φ a :=
   (Classical.choose_spec (exists_rep_norm_le_two (Φ a))).1
 
+omit [NormedRing A] [StarRing A] [NormedAlgebra ℂ A] in
 /-- The norm control that makes the downstream `ε/3` argument legal, and the
 reason bounded-per-element beats a linear lift: exact linearity with no norm
 control cannot cross a dense subspace, an `o(1)` linearity defect with
@@ -124,6 +126,7 @@ theorem qrep_norm_le (Φ : A → TracialMatrixQuotient X l) (a : A) :
     ‖qrep Φ a‖ ≤ 2 * ‖Φ a‖ :=
   (Classical.choose_spec (exists_rep_norm_le_two (Φ a))).2
 
+omit [NormedRing A] [StarRing A] [NormedAlgebra ℂ A] in
 theorem qrep_coord_norm_le (Φ : A → TracialMatrixQuotient X l) (a : A)
     (n : ℕ) : ‖qrep Φ a n‖ ≤ ‖qrep Φ a‖ :=
   boundedMatrixSequence_coord_norm_le (fun n ↦ X n) (qrep Φ a) n
@@ -133,6 +136,7 @@ theorem qrep_coord_norm_le (Φ : A → TracialMatrixQuotient X l) (a : A)
 Each is the same two lines: the quotient map kills the defect, so the defect
 is in the ideal, and at `l = atTop` being in the ideal *is* the clause. -/
 
+omit [StarRing A] [NormedAlgebra ℂ A] in
 /-- Multiplicativity. -/
 theorem isHilbertSchmidtNull_qrep_mul {Φ : A → TracialMatrixQuotient X l}
     (hmul : ∀ a b : A, Φ (a * b) = Φ a * Φ b) (a b : A) :
@@ -145,6 +149,7 @@ theorem isHilbertSchmidtNull_qrep_mul {Φ : A → TracialMatrixQuotient X l}
   rw [_root_.map_sub, hmk, qrep_mk, qrep_mk, qrep_mk, hmul]
   exact sub_self _
 
+omit [NormedAlgebra ℂ A] in
 /-- `⋆`-compatibility. -/
 theorem isHilbertSchmidtNull_qrep_star {Φ : A → TracialMatrixQuotient X l}
     (hstar : ∀ a : A, Φ (star a) = star (Φ a)) (a : A) :
@@ -156,6 +161,7 @@ theorem isHilbertSchmidtNull_qrep_star {Φ : A → TracialMatrixQuotient X l}
   rw [_root_.map_sub, hst, qrep_mk, qrep_mk, hstar]
   exact sub_self _
 
+omit [StarRing A] in
 /-- Linearity.  This is the clause the Hamel lift got exactly and this one
 gets only up to the ideal — which is all the definition asks for. -/
 theorem isHilbertSchmidtNull_qrep_linear {Φ : A → TracialMatrixQuotient X l}
@@ -213,6 +219,7 @@ two facts that carry it from wherever it is known to everywhere: it propagates
 along the module operations, and it is closed under norm limits.  Together
 they take it from a set of generators to the whole algebra. -/
 
+omit [∀ n, Nonempty (X n)] in
 /-- Two coordinate families differing by an ideal element have trace defects
 differing by `o(1)`.  This is where `|tr x| ≤ ‖x‖₂` does its work, and it is
 what makes the non-linearity of `qrep` harmless. -/
@@ -227,6 +234,7 @@ theorem tendsto_normTrace_sub_of_isHilbertSchmidtNull
   rw [← normTrace_sub]
   exact norm_normTrace_le_hsNorm (X n) (p n - q n)
 
+omit [StarRing A] [NormedAlgebra ℂ A] in
 /-- The difference defect of the representatives lies in the ideal. -/
 theorem isHilbertSchmidtNull_qrep_sub {Φ : A → TracialMatrixQuotient X l}
     (hsub : ∀ a b : A, Φ (a - b) = Φ a - Φ b) (a b : A) :
@@ -236,6 +244,7 @@ theorem isHilbertSchmidtNull_qrep_sub {Φ : A → TracialMatrixQuotient X l}
   rw [qrep_mk, qrep_mk, qrep_mk, hsub]
   abel
 
+omit [StarRing A] [NormedAlgebra ℂ A] in
 /-- **The `ε/3` argument.**  The trace clause is closed under norm limits, so
 knowing it on a dense set gives it everywhere.
 

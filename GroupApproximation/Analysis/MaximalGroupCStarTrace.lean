@@ -204,7 +204,7 @@ def maximalGroupCStarAmbientHom : G →* MaximalGroupCStarAmbient G :=
   (unitary (MaximalGroupCStarAmbient G)).subtype.comp
     (maximalGroupCStarAmbientRepresentation G)
 
-theorem maximalGroupCStarAmbientHom_apply (g : G) :
+@[simp] theorem maximalGroupCStarAmbientHom_apply (g : G) :
     maximalGroupCStarAmbientHom G g =
       (maximalGroupCStarGenerator G g : MaximalGroupCStarAmbient G) :=
   rfl

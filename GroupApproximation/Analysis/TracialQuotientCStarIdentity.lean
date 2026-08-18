@@ -77,6 +77,7 @@ def cutSeq (k : ModelBoundedSequence X) (t : ℝ) : ModelBoundedSequence X :=
     rintro _ ⟨n, rfl⟩
     exact norm_cut_le_one (X n) (k n) t⟩⟩
 
+omit [∀ n, Nonempty (X n)] in
 @[simp] theorem cutSeq_apply (k : ModelBoundedSequence X) (t : ℝ) (n : ℕ) :
     cutSeq X k t n = cut (X n) (k n) t := rfl
 
@@ -102,6 +103,7 @@ theorem isHilbertSchmidtNull_cutSeq {k : ModelBoundedSequence X}
     (Eventually.of_forall fun n ↦ hsNormSq_nonneg (X n) _)
     (Eventually.of_forall hb) hlim
 
+omit [∀ n, Nonempty (X n)] in
 /-- **Clause 1, sequence level.**  The cut moves its own sequence by at most
 the square root of the threshold, uniformly over the coordinates. -/
 theorem norm_sub_mul_cutSeq_le (k : ModelBoundedSequence X) {t : ℝ}

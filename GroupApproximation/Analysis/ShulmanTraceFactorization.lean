@@ -107,6 +107,7 @@ def boundedSeqOfBound (f : ∀ n, Matrix (X n) (X n) ℂ) {C : ℝ}
     rintro _ ⟨n, rfl⟩
     exact hf n⟩⟩
 
+omit [∀ n, Nonempty (X n)] in
 @[simp] theorem boundedSeqOfBound_apply (f : ∀ n, Matrix (X n) (X n) ℂ) {C : ℝ}
     (hf : ∀ n, ‖f n‖ ≤ C) (n : ℕ) :
     boundedSeqOfBound f hf n = f n :=
@@ -127,7 +128,7 @@ theorem mk_eq_mk_of_tendsto {ω : Ultrafilter ℕ} (hω : (ω : Filter ℕ) ≤ 
   exact sub_eq_zero.mp hzero
 
 /-- Scalars pass through the quotient map. -/
-theorem smul_tracialMatrixQuotientMk {l : Filter ℕ} (c : ℂ)
+@[simp] theorem smul_tracialMatrixQuotientMk {l : Filter ℕ} (c : ℂ)
     (p : ModelBoundedSequence X) :
     c • tracialMatrixQuotientMk X l p = tracialMatrixQuotientMk X l (c • p) :=
   rfl

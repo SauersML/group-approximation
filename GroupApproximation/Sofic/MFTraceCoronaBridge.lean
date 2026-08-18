@@ -158,7 +158,7 @@ section Corona
 
 variable (X : ℕ → FiniteModel) [∀ n, Nonempty (X n)]
 
-theorem coronaQuotient_apply (s : BoundedMatrixSequence (fun n ↦ X n)) :
+@[simp] theorem coronaQuotient_apply (s : BoundedMatrixSequence (fun n ↦ X n)) :
     normMatrixCStarCoronaQuotient (fun n ↦ X n) s
       = normMatrixCStarCoronaMk (fun n ↦ X n) s := rfl
 
