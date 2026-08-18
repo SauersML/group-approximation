@@ -1,126 +1,65 @@
 import GroupApproximation.Sofic.LiteralP13HodgeCertificateCore
+import GroupApproximation.Meta.BatchedKernelChecks
 
 namespace GroupApproximation
 namespace LiteralP13HodgeCertificate
 
-/-! Direct kernel checks 18--26 for residual block (1, 4). -/
+/-! Batched kernel checks 18--26 for residual block (1, 4). -/
 
-theorem residual_chunk_1_4_18 : initialChunk 1 4 18 = 262741310 := by
-  decide
+namespace Residual14Part2
 
-theorem residual_chunk_1_4_19 : initialChunk 1 4 19 = 52506302 := by
-  decide
+/-- Expected chunk totals; these numerals are data, not trusted equalities. -/
+def expected : Fin 9 → Nat := ![262741310, 52506302, 179942748, 114219620, 242990175, 181054224, 78073303, 303366512, 290866946]
 
-theorem residual_chunk_1_4_20 : initialChunk 1 4 20 = 179942748 := by
-  decide
+/-- One independently kernel-checked chunk equality. -/
+def check (u : Fin 9) : Prop :=
+  initialChunk 1 4 (finProdFinEquiv ((2 : Fin 4), u)) = expected u
 
-theorem residual_chunk_1_4_21 : initialChunk 1 4 21 = 114219620 := by
-  decide
+/-- The identity-containing chunk is split into eight coefficient checks. -/
+def chunk25Expected : Fin 8 → Nat := ![28362123, 102223018, 45081335, 25140210, 1244154, 70789655, 25045128, 5480889]
 
-theorem residual_chunk_1_4_22 : initialChunk 1 4 22 = 242990175 := by
-  decide
+def chunk25Check (u : Fin 8) : Prop :=
+  (residualNumerator 1 4
+    (Fin.castAdd 5 (finProdFinEquiv ((25 : Fin 36), u)))).natAbs =
+      chunk25Expected u
 
-theorem residual_chunk_1_4_23 : initialChunk 1 4 23 = 181054224 := by
-  decide
+mk_kernel_batched_theorem 8 chunk25Check
 
-theorem residual_chunk_1_4_24 : initialChunk 1 4 24 = 78073303 := by
-  decide
+theorem chunk25All : ∀ u : Fin 8, chunk25Check u :=
+  combine_kernel_batched_theorems% chunk25Check 8
 
-theorem residual_coeff_1_4_200 :
-    (residualNumerator 1 4 200).natAbs = 28362123 := by
-  decide
-
-theorem residual_index_1_4_0 :
-    Fin.castAdd 5 (finProdFinEquiv ((25 : Fin 36), (0 : Fin 8))) =
-      (200 : Fin 293) := by
-  decide
-
-theorem residual_coeff_1_4_201 :
-    (residualNumerator 1 4 201).natAbs = 102223018 := by
-  decide
-
-theorem residual_index_1_4_1 :
-    Fin.castAdd 5 (finProdFinEquiv ((25 : Fin 36), (1 : Fin 8))) =
-      (201 : Fin 293) := by
-  decide
-
-theorem residual_coeff_1_4_202 :
-    (residualNumerator 1 4 202).natAbs = 45081335 := by
-  decide
-
-theorem residual_index_1_4_2 :
-    Fin.castAdd 5 (finProdFinEquiv ((25 : Fin 36), (2 : Fin 8))) =
-      (202 : Fin 293) := by
-  decide
-
-theorem residual_coeff_1_4_203 :
-    (residualNumerator 1 4 203).natAbs = 25140210 := by
-  decide
-
-theorem residual_index_1_4_3 :
-    Fin.castAdd 5 (finProdFinEquiv ((25 : Fin 36), (3 : Fin 8))) =
-      (203 : Fin 293) := by
-  decide
-
-theorem residual_coeff_1_4_204 :
-    (residualNumerator 1 4 204).natAbs = 1244154 := by
-  decide
-
-theorem residual_index_1_4_4 :
-    Fin.castAdd 5 (finProdFinEquiv ((25 : Fin 36), (4 : Fin 8))) =
-      (204 : Fin 293) := by
-  decide
-
-theorem residual_coeff_1_4_205 :
-    (residualNumerator 1 4 205).natAbs = 70789655 := by
-  decide
-
-theorem residual_index_1_4_5 :
-    Fin.castAdd 5 (finProdFinEquiv ((25 : Fin 36), (5 : Fin 8))) =
-      (205 : Fin 293) := by
-  decide
-
-theorem residual_coeff_1_4_206 :
-    (residualNumerator 1 4 206).natAbs = 25045128 := by
-  decide
-
-theorem residual_index_1_4_6 :
-    Fin.castAdd 5 (finProdFinEquiv ((25 : Fin 36), (6 : Fin 8))) =
-      (206 : Fin 293) := by
-  decide
-
-theorem residual_coeff_1_4_207 :
-    (residualNumerator 1 4 207).natAbs = 5480889 := by
-  decide
-
-theorem residual_index_1_4_7 :
-    Fin.castAdd 5 (finProdFinEquiv ((25 : Fin 36), (7 : Fin 8))) =
-      (207 : Fin 293) := by
-  decide
-
-theorem residual_chunk_1_4_25 : initialChunk 1 4 25 = 303366512 := by
+theorem chunk25 : initialChunk 1 4 25 = 303366512 := by
   unfold initialChunk
-  rw [Fin.sum_univ_eight]
-  rw [residual_index_1_4_0, residual_index_1_4_1, residual_index_1_4_2, residual_index_1_4_3, residual_index_1_4_4, residual_index_1_4_5, residual_index_1_4_6, residual_index_1_4_7]
-  norm_num only [residual_coeff_1_4_200, residual_coeff_1_4_201, residual_coeff_1_4_202, residual_coeff_1_4_203, residual_coeff_1_4_204, residual_coeff_1_4_205, residual_coeff_1_4_206, residual_coeff_1_4_207]
+  calc
+    ∑ u : Fin 8,
+        (residualNumerator 1 4
+          (Fin.castAdd 5 (finProdFinEquiv ((25 : Fin 36), u)))).natAbs =
+        ∑ u : Fin 8, chunk25Expected u := by
+      apply Finset.sum_congr rfl
+      intro u _
+      exact chunk25All u
+    _ = 303366512 := by decide +kernel
 
-theorem residual_chunk_1_4_26 : initialChunk 1 4 26 = 290866946 := by
-  decide
+mk_kernel_batched_theorem_except 9 7 check
+
+theorem check.case_7 : check 7 := by
+  simpa [check, expected] using chunk25
+
+theorem all : ∀ u : Fin 9, check u :=
+  combine_kernel_batched_theorems% check 9
+
+end Residual14Part2
 
 /-- Exact subtotal for this independently checked residual part. -/
 theorem residual_part_sum_1_4_2 : initialPart 1 4 2 = 1705761140 := by
-  unfold initialPart
-  rw [sum_fin9_explicit]
-  rw [show finProdFinEquiv ((2 : Fin 4), (0 : Fin 9)) = (18 : Fin 36) by decide]
-  rw [show finProdFinEquiv ((2 : Fin 4), (1 : Fin 9)) = (19 : Fin 36) by decide]
-  rw [show finProdFinEquiv ((2 : Fin 4), (2 : Fin 9)) = (20 : Fin 36) by decide]
-  rw [show finProdFinEquiv ((2 : Fin 4), (3 : Fin 9)) = (21 : Fin 36) by decide]
-  rw [show finProdFinEquiv ((2 : Fin 4), (4 : Fin 9)) = (22 : Fin 36) by decide]
-  rw [show finProdFinEquiv ((2 : Fin 4), (5 : Fin 9)) = (23 : Fin 36) by decide]
-  rw [show finProdFinEquiv ((2 : Fin 4), (6 : Fin 9)) = (24 : Fin 36) by decide]
-  rw [show finProdFinEquiv ((2 : Fin 4), (7 : Fin 9)) = (25 : Fin 36) by decide]
-  rw [show finProdFinEquiv ((2 : Fin 4), (8 : Fin 9)) = (26 : Fin 36) by decide]
-  rw [residual_chunk_1_4_18, residual_chunk_1_4_19, residual_chunk_1_4_20, residual_chunk_1_4_21, residual_chunk_1_4_22, residual_chunk_1_4_23, residual_chunk_1_4_24, residual_chunk_1_4_25, residual_chunk_1_4_26]
+  have hpart : initialPart 1 4 2 =
+      ∑ u : Fin 9, Residual14Part2.expected u := by
+    unfold initialPart
+    apply Finset.sum_congr rfl
+    intro u _
+    exact Residual14Part2.all u
+  rw [hpart]
+  decide +kernel
 
 end LiteralP13HodgeCertificate
 end GroupApproximation

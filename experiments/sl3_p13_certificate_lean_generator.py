@@ -127,12 +127,17 @@ def chunks(values):
     return initial, final
 
 
+def vector(values):
+    return "![%s]" % ", ".join(str(value) for value in values)
+
+
 def module_header(core_module, i, k, first, last):
     return (
-        "import GroupApproximation.Sofic.%s\n\n" % core_module +
+        "import GroupApproximation.Sofic.%s\n" % core_module +
+        "import GroupApproximation.Meta.BatchedKernelChecks\n\n" +
         "namespace GroupApproximation\n" +
         "namespace LiteralP13HodgeCertificate\n\n" +
-        "/-! Direct kernel checks %d--%d for residual block (%d, %d). -/\n\n"
+        "/-! Batched kernel checks %d--%d for residual block (%d, %d). -/\n\n"
         % (first, last, i, k))
 
 
@@ -142,49 +147,65 @@ MODULE_END = "\nend LiteralP13HodgeCertificate\nend GroupApproximation\n"
 def emit_part(output, core_module, residual, i, k, part):
     initial, final = chunks(residual[i][k])
     first = 9 * part
+    namespace = "Residual%d%dPart%d" % (i, k, part)
+    expected = initial[first:first + 9]
     out = [module_header(core_module, i, k, first, first + 8)]
-    for chunk in range(first, first + 9):
-        if chunk == 25:
-            for offset, coefficient_class in enumerate(range(200, 208)):
-                out.extend([
-                    "theorem residual_coeff_%d_%d_%d :\n" %
-                    (i, k, coefficient_class),
-                    "    (residualNumerator %d %d %d).natAbs = %d := by\n" %
-                    (i, k, coefficient_class,
-                     abs(residual[i][k][coefficient_class])),
-                    "  decide\n\n",
-                    "theorem residual_index_%d_%d_%d :\n" % (i, k, offset),
-                    "    Fin.castAdd 5 (finProdFinEquiv "
-                    "((25 : Fin 36), (%d : Fin 8))) =\n" % offset,
-                    "      (%d : Fin 293) := by\n" % coefficient_class,
-                    "  decide\n\n",
-                ])
-            out.extend([
-                "theorem residual_chunk_%d_%d_25 : initialChunk %d %d 25 = %d := by\n"
-                % (i, k, i, k, initial[25]),
-                "  unfold initialChunk\n",
-                "  rw [Fin.sum_univ_eight]\n",
-                "  rw [%s]\n" % ", ".join(
-                    "residual_index_%d_%d_%d" % (i, k, offset)
-                    for offset in range(8)),
-                "  norm_num only [%s]\n\n" % ", ".join(
-                    "residual_coeff_%d_%d_%d" % (i, k, coefficient_class)
-                    for coefficient_class in range(200, 208)),
-            ])
-        else:
-            out.extend([
-                "theorem residual_chunk_%d_%d_%d : initialChunk %d %d %d = %d := by\n"
-                % (i, k, chunk, i, k, chunk, initial[chunk]),
-                "  decide\n\n",
-            ])
+    out.extend([
+        "namespace %s\n\n" % namespace,
+        "/-- Expected chunk totals; these numerals are data, not trusted equalities. -/\n",
+        "def expected : Fin 9 → Nat := %s\n\n" % vector(expected),
+        "/-- One independently kernel-checked chunk equality. -/\n",
+        "def check (u : Fin 9) : Prop :=\n",
+        "  initialChunk %d %d (finProdFinEquiv ((%d : Fin 4), u)) = expected u\n\n"
+        % (i, k, part),
+    ])
+
+    if part == 2:
+        coefficient_values = [
+            abs(residual[i][k][coefficient_class])
+            for coefficient_class in range(200, 208)
+        ]
+        out.extend([
+            "/-- The identity-containing chunk is split into eight coefficient checks. -/\n",
+            "def chunk25Expected : Fin 8 → Nat := %s\n\n" % vector(coefficient_values),
+            "def chunk25Check (u : Fin 8) : Prop :=\n",
+            "  (residualNumerator %d %d\n" % (i, k),
+            "    (Fin.castAdd 5 (finProdFinEquiv ((25 : Fin 36), u)))).natAbs =\n",
+            "      chunk25Expected u\n\n",
+            "mk_kernel_batched_theorem 8 chunk25Check\n\n",
+            "theorem chunk25All : ∀ u : Fin 8, chunk25Check u :=\n",
+            "  combine_kernel_batched_theorems% chunk25Check 8\n\n",
+            "theorem chunk25 : initialChunk %d %d 25 = %d := by\n" %
+            (i, k, initial[25]),
+            "  unfold initialChunk\n",
+            "  calc\n",
+            "    ∑ u : Fin 8,\n",
+            "        (residualNumerator %d %d\n" % (i, k),
+            "          (Fin.castAdd 5 (finProdFinEquiv ((25 : Fin 36), u)))).natAbs =\n",
+            "        ∑ u : Fin 8, chunk25Expected u := by\n",
+            "      apply Finset.sum_congr rfl\n",
+            "      intro u _\n",
+            "      exact chunk25All u\n",
+            "    _ = %d := by decide +kernel\n\n" % initial[25],
+            "mk_kernel_batched_theorem_except 9 7 check\n\n",
+            "theorem check.case_7 : check 7 := by\n",
+            "  simpa [check, expected] using chunk25\n\n",
+        ])
+    else:
+        out.append("mk_kernel_batched_theorem 9 check\n\n")
+
+    out.extend([
+        "theorem all : ∀ u : Fin 9, check u :=\n",
+        "  combine_kernel_batched_theorems% check 9\n\n",
+    ])
     if part == 3:
         out.extend([
-            "theorem residual_chunk_%d_%d_36 : finalChunk %d %d = %d := by\n"
-            % (i, k, i, k, final),
-            "  decide\n\n",
+            "theorem final : finalChunk %d %d = %d := by\n" % (i, k, final),
+            "  decide +kernel\n\n",
         ])
+    out.append("end %s\n\n" % namespace)
 
-    subtotal = sum(initial[first:first + 9]) + (final if part == 3 else 0)
+    subtotal = sum(expected) + (final if part == 3 else 0)
     lhs = "initialPart %d %d %d" % (i, k, part)
     if part == 3:
         lhs += " + finalChunk %d %d" % (i, k)
@@ -192,23 +213,25 @@ def emit_part(output, core_module, residual, i, k, part):
         "/-- Exact subtotal for this independently checked residual part. -/\n",
         "theorem residual_part_sum_%d_%d_%d : %s = %d := by\n" %
         (i, k, part, lhs, subtotal),
-        "  unfold initialPart\n",
-        "  rw [sum_fin9_explicit]\n",
+        "  have hpart : initialPart %d %d %d =\n" % (i, k, part),
+        "      ∑ u : Fin 9, %s.expected u := by\n" % namespace,
+        "    unfold initialPart\n",
+        "    apply Finset.sum_congr rfl\n",
+        "    intro u _\n",
+        "    exact %s.all u\n" % namespace,
     ])
-    for offset in range(9):
-        chunk = first + offset
-        out.append(
-            "  rw [show finProdFinEquiv ((%d : Fin 4), (%d : Fin 9)) = "
-            "(%d : Fin 36) by decide]\n" % (part, offset, chunk))
-    theorem_names = [
-        "residual_chunk_%d_%d_%d" % (i, k, chunk)
-        for chunk in range(first, first + 9)]
     if part == 3:
-        theorem_names.append("residual_chunk_%d_%d_36" % (i, k))
-    out.append("  rw [%s]\n" % ", ".join(theorem_names))
+        out.extend([
+            "  rw [hpart, %s.final]\n" % namespace,
+            "  decide +kernel\n",
+        ])
+    else:
+        out.extend([
+            "  rw [hpart]\n",
+            "  decide +kernel\n",
+        ])
     out.append(MODULE_END)
     output.write_text("".join(out))
-
 
 def emit_block(output, module_prefix, residual, i, k):
     total = sum(abs(value) for value in residual[i][k])
