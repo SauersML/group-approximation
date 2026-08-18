@@ -859,14 +859,14 @@ wreath-compression-mf-radical [✓] Exact MF radicals of compression wreath prod
 
 ## Recently touched
 
+- 2026-08-17 · peter-weyl-separation-core [OPEN] Finite-dimensional unitary representations separate the points of a compact group
+- 2026-08-17 · near-representation-amenability-dichotomy [OPEN] A near-representation analogue of the Bekka–Valette dichotomy
+- 2026-08-17 · mixed-approximation-black-hole [OPEN] A finitely presented mixed sofic/MF approximation black hole
+- 2026-08-17 · literal-orbital-graph-block-clique [OPEN] Each block of the literal orbital graph is a complete subgraph
+- 2026-08-17 · dossier-formalization-status [OPEN] Formalization ledger for the multi-mover / ascending-HNN dossier
+- 2026-08-17 · block-escape-relocates-nonsoficity [OPEN] Orbit resolution fails only through invariant blocks, and every such escape inherits the nonsoficity
+- 2026-08-17 · ascending-hnn-coset-action-sofic [OPEN] The coset action of an ascending HNN skeleton is sofic when the fiber is
 - 2026-08-17 · two-point-orbit-approximation [OPEN] The Kun–Thom coset action admits a two-point approximation at the marked pair
-- 2026-08-17 · two-point-approximation-fails [ESTABLISHED] The two-point approximation fails at the marked pair — the negation claim
-- 2026-08-17 · torsion-free-non-mf-from-bespoke-router [OPEN] Feed the routed quotient to the frozen full-radical endpoint
-- 2026-08-17 · cyclic-base-sharpness [OPEN] Property (T) is essential to the central-sign obstruction
-- 2026-08-17 · commuting-lamp-mf-radical-is-level-even [OPEN] The MF radical of the commuting-lamp quotient is the level-even lamp subgroup
-- 2026-08-17 · torsion-free-non-mf-from-defect-saturation [OPEN] A group whose MF radical is everything is itself non-MF
-- 2026-08-17 · one-relator-groups-sofic [OPEN] Pestov Question 4.9: every one-relator group is sofic
-- 2026-08-17 · nonsofic-one-relator-group [OPEN] A one-relator group that is not sofic
 
 ## Active claims
 
