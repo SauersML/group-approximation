@@ -213,7 +213,8 @@ theorem coronaRep_commutator_eq_one_printed
         NormMatrixCStarCorona (fun n ↦ X n)) := by
     have h1 := congrArg (fun z : NormMatrixCStarCorona (fun n ↦ X n) ↦
       (2 : ℂ) • z) hpγ
-    simp only [mul_smul_comm, smul_mul_assoc, smul_smul] at h1
+    simp only [mul_smul_comm, smul_mul_assoc] at h1
+    rw [smul_smul, smul_smul] at h1
     have hone : (2 : ℂ) * (2 : ℂ)⁻¹ = 1 := by norm_num
     rw [hone, one_smul, one_smul] at h1
     exact h1

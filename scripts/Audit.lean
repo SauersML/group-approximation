@@ -788,7 +788,21 @@ def routeGuards : List (Name × Name) :=
     -- of a property-`(T)` group, which is what lets it be moved to its `Type 0`
     -- model rather than assumed to live there.
     (`GroupApproximation.OmegaRouteManuscriptTransport.manuscriptKazhdanTransport_omegaRoute_anyUniverse,
-     `GroupApproximation.countable_of_hasKazhdanPropertyTComplex) ]
+     `GroupApproximation.countable_of_hasKazhdanPropertyTComplex),
+    -- KT.01: the printed proof of `thm:kazhdan-transport` opens by
+    -- contradiction -- "suppose the conclusion fails: there are `γ₀`, `δ > 0`
+    -- and an infinite `I` with the commutator at least `δ` on `I`" -- and the
+    -- badged theorem used to reach the same conclusion directly, through the
+    -- generic skeleton, leaving that opening stated and unconsumed.  It is
+    -- consumed now, at the printed objects ...
+    (`GroupApproximation.KazhdanAsymptoticCommutant.manuscriptKazhdanTransport,
+     `GroupApproximation.PrintedTransportOpening.exists_gamma_infinite_commutator_defect),
+    -- ... and so is the sentence after it, "fix a free ultrafilter `ω` on `ℕ`
+    -- with `I ∈ ω`", which is where the printed proof's `ω` comes from.  Both
+    -- pins are kept: the contradiction is the route, and the choice of `ω` is
+    -- what makes it a contradiction rather than a second direct argument.
+    (`GroupApproximation.KazhdanAsymptoticCommutant.manuscriptKazhdanTransport,
+     `GroupApproximation.UltrafilterLimit.exists_freeUltrafilter_mem) ]
 
 /-- Does the dependency closure of `root` contain `target`?  A depth-first
 walk over `ConstantInfo.getUsedConstantsAsSet`, which visits types and proof
