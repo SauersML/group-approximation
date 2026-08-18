@@ -1129,6 +1129,7 @@ import GroupApproximation.Sofic.TransportShapeBridges
 import GroupApproximation.Sofic.GeneralModelKazhdanTransport
 import GroupApproximation.Sofic.LiteralRouteTransport
 import GroupApproximation.Sofic.SimpleSoficEnvelopeUnconditional
+import GroupApproximation.Analysis.CStarTakesakiCoefficient
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
