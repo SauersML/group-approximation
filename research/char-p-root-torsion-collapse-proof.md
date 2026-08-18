@@ -35,7 +35,19 @@ finitely many bad monomials — finite.  Hence
 **3. Structure of the quotient and the collapse.**  `Ē = E/E_r(J)`
 surjects onto the finite group `EL_r(R/J)` with kernel
 `K(R,J) = (E ∩ SL_r(R,J))/E_r(J)`, which is CENTRAL in `Ē` for
-`r ≥ 3` (relative Mennicke/Suslin–Vaserstein centrality).  In
+`r ≥ 3` — verified citation (2026-08-18 K-theory pass):
+Hazrat–Vavilov–Zhang arXiv:1510.07143 Thm 11
+(`[E(n,A), GL(n,A,I)] = E(n,A,I)`, `n ≥ 3`, module-finite `A`, no
+stable range needed); centrality is claimed only in the
+`E`-quotient, never in `GL/E_r(J)` (which would need stable-range
+input) — and this proof conjugates only by elementary matrices, so
+the `E`-ambient form suffices.  Moreover `K(R,J) ≅
+coker(K₂(R) → K₂(R/J))` unconditionally (Weibel III Thm 5.7.1 with
+`SK₁(R) = 0`, Suslin 1977 Cor 7.11), and this group is genuinely
+NONZERO for the KT rings (see
+`twisted-tower-central-character-criterion` — `(ℤ/2)²` at least via
+the `𝔽_2[C_2×C_2]` quotient), so the modulo clause below is not
+removable.  In
 `EL_r(R/J)`: `R/J` is a finite ring, so `x̄_i` has finite
 multiplicative order `m_i` and `x̄_i^{-1} = x̄_i^{m_i−1}` lies in the
 image of the polynomial subring — hence the polynomial subring
