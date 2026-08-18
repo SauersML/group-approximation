@@ -172,18 +172,13 @@ theorem exists_ideal_approximate_unit (j : ModelBoundedSequence X)
 
 /-! ## The C⋆-identity -/
 
--- Both budgets are raised for the declaration below, and neither is masking a
--- missing instance: the quotient's algebraic structure is assembled through
--- three layers (`lp` → `BoundedMatrixSequence` → `Submodule.Quotient`), so
--- resolving `*`, `star` and `‖·‖` on it, and unfolding far enough to see the
--- ambient C⋆-identity, both exceed the defaults.  Every instance involved
--- exists in `Analysis/TracialMatrixUltraproduct`.
---
--- The `set_option ... in` must precede the docstring: between a docstring and
--- its declaration Lean expects the declaration itself, and a `set_option`
--- there is a parse error rather than a scoping mistake.
-set_option synthInstance.maxHeartbeats 2000000 in
-set_option maxHeartbeats 4000000 in
+-- No budget is raised for the declaration below.  It used to be: the
+-- quotient's algebraic structure is assembled through three layers
+-- (`lp` → `BoundedMatrixSequence` → `Submodule.Quotient`), and while
+-- `TracialMatrixQuotient` was a reducible abbreviation, resolving `*`, `star`
+-- and `‖·‖` on it re-walked all three every time.  The name is now opaque to
+-- instance search and carries the instances itself, so each of those goals is
+-- one step.
 /-- **The C⋆-identity for the tracial matrix quotient.**
 
 Only `‖x‖² ≤ ‖x⋆ x‖` is proved: it is mathlib's sole `CStarRing` field, and the
@@ -214,10 +209,6 @@ the norm the rest of the development is stated against. -/
 noncomputable instance tracialMatrixQuotientCStarAlgebra :
     CStarAlgebra (TracialMatrixQuotient X l) where
 
--- The same two budgets as on `norm_mul_self_le_norm_star_mul`, for the same
--- reason: the statement alone resolves `star`, `*` and `‖·‖` on the quotient.
-set_option synthInstance.maxHeartbeats 2000000 in
-set_option maxHeartbeats 4000000 in
 /-- The C⋆-identity of the quotient in its two-sided, equational form.  The
 `CStarRing` field carries only `‖x‖ * ‖x‖ ≤ ‖x⋆ x‖`; mathlib assembles the
 reverse from submultiplicativity and the isometric involution, and this
@@ -228,8 +219,6 @@ theorem norm_tracialMatrixQuotient_star_mul_self
 
 /-! ## The quotient norm as an infimum -/
 
-set_option synthInstance.maxHeartbeats 2000000 in
-set_option maxHeartbeats 4000000 in
 /-- **The approximate-unit formula for the quotient norm**:
 `‖a + J‖ = inf { ‖a - a e‖ : e ∈ J }`.
 

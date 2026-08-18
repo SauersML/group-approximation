@@ -62,10 +62,12 @@ hand-built `SeminormedRing`/`NormedRing` instances -- and `*` is the one whose
 route runs through `Ideal.Quotient.ring`, hence through the expensive
 `lp.inftyRing` chain that has to rediscover each model's `Fintype` and
 `DecidableEq` through the `FiniteModel` projections.  It is not a missing
-instance and not a `variable` ordering mistake: it is search cost.  The local
-palliative is `set_option synthInstance.maxHeartbeats`, which is what
-`Analysis/TracialMatrixUltraproduct.lean` itself carries and for the same
-reason; the durable fix is below.  So
+instance and not a `variable` ordering mistake: it was search cost, and it is
+now paid once.  **The durable fix named below has landed**: `Analysis/
+TracialMatrixUltraproduct.lean` declares `TracialMatrixQuotient` as a plain
+`def` with `Ring`, `NormedAddCommGroup` and `Algebra ℂ` cached on that head
+symbol, so the search terminates in one step and no file in the development
+raises a heartbeat budget any more.  So
 traciality is *not* restated here — use `ultratrace_mul_comm` together with
 `ultratraceCLM_apply`.  Anyone writing the factorization glue will meet this
 at `map_mul`, and the durable fix belongs in the defining file: a directly

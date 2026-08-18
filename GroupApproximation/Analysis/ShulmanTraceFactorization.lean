@@ -83,14 +83,13 @@ namespace ShulmanTrace
 
 open TracialUltraproduct
 
-/- Same reason as in `TracialMatrixUltraproduct`: typeclass search on the
-ideal quotient has to unfold `lp` and rediscover the `Fintype`/`DecidableEq`
-instances through the `FiniteModel` projections, and does not fit the default
-budget.  The section-variable linter is off for the same reason it is off
-there: the nonemptiness instance is a standing hypothesis that many of the
-coordinatewise steps do not mention. -/
-set_option synthInstance.maxHeartbeats 800000
-set_option maxHeartbeats 1000000
+/- No proof budget is raised here, and none is needed: `TracialMatrixQuotient`
+is a plain `def`, so typeclass goals about the quotient match the instances
+cached on that head symbol in one step instead of unfolding `lp` and
+rediscovering each model's `Fintype`/`DecidableEq` through the `FiniteModel`
+projections.  The section-variable linter is off for an unrelated reason: the
+nonemptiness instance is a standing hypothesis that many of the coordinatewise
+steps do not mention. -/
 set_option linter.unusedSectionVars false
 
 noncomputable section
