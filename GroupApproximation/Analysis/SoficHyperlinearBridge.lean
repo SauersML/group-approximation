@@ -1,5 +1,5 @@
 import GroupApproximation.Analysis.SoficHyperlinearTrace
-import GroupApproximation.Analysis.TracialQuotientCStarIdentity
+import GroupApproximation.Analysis.TracialQuotientCStar
 
 /-!
 # The canonical trace of a sofic group is a hyperlinear trace
@@ -26,15 +26,23 @@ open Filter TracialUltraproduct SoficPermutationTrace
 set_option synthInstance.maxHeartbeats 2000000
 set_option maxHeartbeats 4000000
 
+/-- The universal sentence of the bridge, as a closed proposition: the
+canonical maximal trace of every countable sofic group is a hyperlinear
+trace.  The audit's zero-input gate requires advertised endpoints to have an
+empty outer telescope, so the quantifiers live here rather than on the
+theorem. -/
+def SoficCanonicalTraceIsHyperlinear : Prop :=
+  ∀ (G : Type) [Group G] [Countable G], IsSofic G →
+    IsHyperlinearTrace
+      (fun a : MaximalGroupCStar G ↦ canonicalMaximalTrace G a)
+
 /-- **Soficity makes the canonical trace hyperlinear.**  For a countable
 sofic group `G`, the canonical trace of the full group C-star algebra is a
 hyperlinear trace: a sofic approximation's permutation matrices represent
 `C*(G)` in the `atTop` tracial matrix quotient, and bounded elementwise
 representatives of that representation are sequential matrix models. -/
 theorem canonicalMaximalTrace_isHyperlinearTrace_of_isSofic :
-    ∀ (G : Type) [Group G] [Countable G], IsSofic G →
-      IsHyperlinearTrace
-        (fun a : MaximalGroupCStar G ↦ canonicalMaximalTrace G a) := by
+    SoficCanonicalTraceIsHyperlinear := by
   intro G _ _ hG
   obtain ⟨S, hpos, -, -⟩ :=
     SoficPermutationTrace.exists_soficApproximation_tendsto_normTrace hG

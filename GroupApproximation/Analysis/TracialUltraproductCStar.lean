@@ -35,13 +35,14 @@ typed out.  The C-star identity for the quotient norm
 `‖b + J‖ = inf {‖b + j‖ : j ∈ J}` is a genuine theorem: its standard proof
 runs through an approximate unit of `J` and the identity
 `‖b + J‖ = lim_λ ‖b - b e_λ‖`, and the pinned mathlib has no quotient C-star
-instance to inherit.  `Analysis/TracialQuotientCStar.lean` has since closed
-exactly this gap: the per-element spectral-projection witness (for `j ∈ J₂ω`
-and `ε > 0` there is `e ∈ J₂ω` with `‖1 - e‖ ≤ 1` and `‖j - j e‖ ≤ ε` —
-the lemma the ambient docstring predicted), then the identity, the
-`CStarRing` and `CStarAlgebra` instances, and the exact formula
-`‖a + J‖ = inf {‖a - a e‖ : e ∈ J}`.  The lift can now fire at this
-target.
+instance to inherit.  This gap has since closed, in two modules:
+`Analysis/TracialQuotientCStarIdentity.lean` proves the identity through the
+coordinatewise spectral cut (the witness the ambient docstring predicted:
+for `j ∈ J₂ω` and `ε > 0` there is `e ∈ J₂ω` with `‖1 - e‖ ≤ 1` and
+`‖j - j e‖ ≤ ε`), and `Analysis/TracialQuotientCStar.lean` installs the
+`CStarRing` and `CStarAlgebra` instances on top of it, together with the
+exact formula `‖a + J‖ = inf {‖a - a e‖ : e ∈ J}`.  The lift can now fire
+at this target.
 
 ## A trap found by building this file
 

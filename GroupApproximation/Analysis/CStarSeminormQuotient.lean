@@ -65,9 +65,10 @@ vanishes, so no infimum is ever taken).  The pin does carry
 `Mathlib/Analysis/CStarAlgebra/ApproximateUnit.lean`, so the quotient theorem
 is not obviously out of reach, but it is not done here.  For the one quotient
 this development needs it for — the tracial matrix quotient — it *is* now
-done, in `Analysis/TracialQuotientCStar.lean`, through a bespoke approximate
-unit of its null ideal; the theorem for a general `B` and `J` remains
-unformalized.
+done, through a bespoke approximate unit of its null ideal: the identity in
+`Analysis/TracialQuotientCStarIdentity.lean`, the instances and the exact
+norm formula in `Analysis/TracialQuotientCStar.lean`.  The theorem for a
+general `B` and `J` remains unformalized.
 
 Consequently the exactness rows of `non_mf_groups_exist.tex` (`SO.16`) and the
 nuclearity row (`RE.05`) are untouched: exactness is defined through

@@ -172,9 +172,9 @@ group $E$.
 
 The group $E$ is sofic, hence hyperlinear, so neither soficity nor
 hyperlinearity implies the MF property.  Its reduced $C^*$-algebra
-$\Cred(E)$ is separable, exact and stably finite but not MF, and the
-canonical trace of $\Cmax(E)$ is hyperlinear but not an MF trace, so
-not every hyperlinear trace is MF\@.  The
+$\Cred(E)$ is separable, exact, and stably finite but not MF\@.  The
+canonical trace on $\Cmax(E)$ is hyperlinear but not MF, giving a
+negative answer to a question of Shulman.  The
 quotient $E/\langle w\rangle$ is also non-MF, so $\{1,w\}$ is properly
 contained in the intersection of the kernels of all homomorphisms
 $E\to\U(\mathcal Q)$.
@@ -327,9 +327,10 @@ The reduced group
 $C^*$-algebra $\Cred(E)$ is separable and stably finite but not MF
 (Theorem~\ref{thm:reduced}); it is also exact.  The group $E$ is sofic
 (Theorem~\ref{thm:Esofic}), so neither soficity nor hyperlinearity
-implies the MF property.  At the level of traces, the canonical trace
-of $\Cmax(E)$ is hyperlinear but not an MF trace (Theorem~\ref{thm:trace}),
-answering negatively a question of Shulman \cite{ShulmanTraces}.  The
+implies the MF property.  Moreover, the canonical trace on $\Cmax(E)$
+is hyperlinear but not MF (Theorem~\ref{thm:trace}), giving a negative
+answer to Shulman's question whether every hyperlinear trace is MF
+\cite{ShulmanTraces}.  The
 quotient $E/\langle w\rangle$ is not MF either, so $\{1,w\}$ is a proper
 subgroup of the MF residual of $E$ (Theorem~\ref{thm:signfree}).
 
@@ -344,22 +345,19 @@ problem subsequently implied the existence of abstract stably finite
 non-MF algebras \cite{MIPRE,FGH}.  No countable group was known whose reduced or maximal group
 $C^*$-algebra fails to be MF \cite{Shulman}.
 
-There is a parallel hierarchy for traces.  Following Shulman
-\cite{ShulmanTraces}, a trace is \emph{hyperlinear} or \emph{MF}
-according as the algebraic defects of its matrix models vanish in
-normalized Hilbert--Schmidt norm or in operator norm; the operator-norm
-formulation appears in Rainone--Schafhauser \cite{RainoneSchafhauser},
-after Brown's tracial analogues of finite-dimensional approximation
-properties \cite{BrownMeans}.  The known results run toward equality of
-the two classes: Rainone--Schafhauser establish finite-dimensional
-approximation properties for all traces on broad classes of crossed
-products \cite{RainoneSchafhauser}, and Shulman proves that every
-hyperlinear trace on a cone is MF \cite{ShulmanCones}, with further
-positive classes in \cite{ShulmanTraces}.  In the other direction, the
-failure of the Connes embedding problem produces traces that are not
-MF, but those traces do not factor through tracial ultraproducts of
-matrix algebras and are not hyperlinear \cite{MIPRE,Schafhauser}.
-Theorem~\ref{thm:trace} separates the two classes.
+There is a parallel hierarchy for traces.  Brown developed tracial
+analogues of finite-dimensional approximation properties
+\cite{BrownMeans}, and MF traces were studied by Rainone--Schafhauser
+\cite{RainoneSchafhauser}.  We use Shulman's formulation
+\cite{ShulmanTraces}, in which hyperlinear and MF traces differ by
+whether the algebraic defects are measured in normalized
+Hilbert--Schmidt norm or in operator norm.  Several classes are known
+for which every hyperlinear trace is MF; for example, Shulman proves
+this for cones \cite{ShulmanCones}.  By contrast, the non-MF traces
+arising from the failure of the Connes embedding problem do not factor
+through tracial ultraproducts of matrix algebras and are not
+hyperlinear \cite{MIPRE,Schafhauser}.  Theorem~\ref{thm:trace}
+separates the hyperlinear and MF trace classes.
 
 In his 2018 ICM address, Thom asked for which Schatten
 $p$-norms there exist non-approximable groups \cite[Question~3.11]{Th}.
@@ -1304,17 +1302,17 @@ quotient, both MF, so the MF property is not closed under extensions;
 and $F_8$ surjects onto $E$, so it is not closed under quotients
 (Section~\ref{sec:algebras-sofic}, Corollary~\ref{cor:quotclosure}).
 
-\subsection*{A hyperlinear trace that is not MF}
+\subsection*{A hyperlinear non-MF trace}
 
-We use Shulman's terminology \cite{ShulmanTraces}: hyperlinear and MF
+We use Shulman's terminology \cite{ShulmanTraces}.  Hyperlinear and MF
 traces are defined by the same pointwise bounded, trace-correct matrix
 models, with the algebraic defects measured in normalized
-Hilbert--Schmidt norm and in operator norm respectively.  The
+Hilbert--Schmidt norm and operator norm, respectively.  The
 approximating maps themselves need not be linear, positive, unital, or
-completely positive.  Every MF trace is hyperlinear, and whether the
-converse holds is recorded as an open problem in \cite{ShulmanTraces}.
+completely positive.  Every MF trace is hyperlinear; Shulman asks
+whether the converse holds.
 
-\begin{lemma}[an MF canonical trace makes the group MF]
+\begin{lemma}
 \label{lem:mftrace-group}
 Let $G$ be a countable group and let $\tau_G$ be the canonical trace on
 $\Cmax(G)$, determined by $\tau_G(u_g)=1$ for $g=1$ and $\tau_G(u_g)=0$
@@ -1327,13 +1325,13 @@ Let $\varphi_n\colon\Cmax(G)\to M_{k_n}(\C)$ witness that $\tau_G$ is MF
 and put $\mathcal Q=\prod_n M_{k_n}(\C)\big/\bigoplus_n M_{k_n}(\C)$,
 the quotient of the bounded product by the operator-norm $c_0$ ideal.
 Pointwise boundedness places $(\varphi_n(a))_n$ in the bounded product
-for every $a$, and the operator-norm defect conditions say exactly that
+for every $a$, while the operator-norm defect conditions imply that
 $\Phi(a)=[(\varphi_n(a))_n]$ is a $*$-homomorphism
 $\Phi\colon\Cmax(G)\to\mathcal Q$.  Set $p=\Phi(1)$, a projection with
 $\Phi(\Cmax(G))\subseteq p\mathcal Qp$.  Then
 $\Theta(g)=\Phi(u_g)+(1-p)$ defines a homomorphism
-$\Theta\colon G\to\U(\mathcal Q)$.  It is injective: if $g\ne1$ and
-$\Theta(g)=1$, then $\Phi(u_g)=\Phi(1)$, so
+$\Theta\colon G\to\U(\mathcal Q)$.  We claim that $\Theta$ is
+injective.  If $g\ne1$ and $\Theta(g)=1$, then $\Phi(u_g)=\Phi(1)$, so
 $\lVert\varphi_n(u_g)-\varphi_n(1)\rVert\to0$; the normalized trace is
 contractive for the operator norm, whereas trace-correctness gives
 $\operatorname{tr}_{k_n}(\varphi_n(u_g))\to0$ and
@@ -1343,18 +1341,18 @@ embeds in the unitary group of a norm matrix corona and is MF
 \end{proof}
 
 \noindent
-Schafhauser \cite[Definition~1.1]{Schafhauser} uses a stronger notion
-of MF group and relates it to the canonical trace on $\Cred(G)$;
-Lemma~\ref{lem:mftrace-group} instead concerns the
-Carri\'on--Dadarlat--Eckhardt notion used here and the canonical trace
-on $\Cmax(G)$.
+Schafhauser \cite[Definition~1.1 and Proposition~2.2]{Schafhauser}
+uses a stronger notion of MF group and relates it to the canonical
+trace on $\Cred(G)$; Lemma~\ref{lem:mftrace-group} concerns instead
+the Carri\'on--Dadarlat--Eckhardt notion used here and the canonical
+trace on $\Cmax(G)$.
 
-\begin{mainthm}[a hyperlinear trace that is not MF]\label{thm:trace}
-The canonical trace $\tau_E$ on $\Cmax(E)$ is hyperlinear but is not an
-MF trace.  Consequently there exists a separable unital $C^*$-algebra
-carrying a hyperlinear trace that is not MF\@.  In particular, this
-answers negatively Shulman's question whether every hyperlinear trace
-is MF \cite{ShulmanTraces}.
+\begin{mainthm}[a hyperlinear non-MF trace]\label{thm:trace}
+The canonical trace $\tau_E$ on $\Cmax(E)$ is hyperlinear but not
+MF\@.  Consequently, there is a separable unital $C^*$-algebra carrying
+a hyperlinear non-MF trace.  In particular, this gives a negative
+answer to Shulman's question whether every hyperlinear trace is MF
+\cite{ShulmanTraces}.
 \leanverified{Sofic/TraceSeparationEndpoint}{GroupApproximation.LiteralTraceConsequence.markedGroup_separable_canonicalTrace_hyperlinear_not_isMFTrace}
 \end{mainthm}
 
@@ -1363,12 +1361,17 @@ By Theorem~\ref{thm:Esofic}, $E$ is sofic.  Let
 $\sigma_n\colon E\to\operatorname{Sym}(d_n)$ be a sofic approximation
 and $U_n(g)$ the associated permutation unitaries.  For a free
 ultrafilter $\omega$, the classes $[(U_n(g))_n]$ define a homomorphism
-of $E$ into the unitary group of
-$\prod_n M_{d_n}(\C)\big/\oplus_{2,\omega}M_{d_n}(\C)$, and sofic
-freeness gives $\operatorname{tr}_\omega([(U_n(g))_n])=\delta_{g,1}$,
-since the normalized trace of a permutation matrix is its proportion of
-fixed points.  By the universal property of $\Cmax(E)$ this extends to
-a $*$-homomorphism $\pi$ with
+\[
+E\longrightarrow
+\U\!\left(\prod_n M_{d_n}(\C)\big/\oplus_{2,\omega}M_{d_n}(\C)\right).
+\]
+Moreover, asymptotic freeness of the sofic approximation gives
+\[
+\operatorname{tr}_\omega([(U_n(g))_n])=\delta_{g,1},
+\]
+because the normalized trace of a permutation matrix is the proportion
+of its fixed points.  By the universal property of $\Cmax(E)$ this
+extends to a $*$-homomorphism $\pi$ with
 $\tau_E=\operatorname{tr}_\omega\circ\pi$, so $\tau_E$ is hyperlinear
 by Shulman's tracial-ultraproduct characterization
 \cite{ShulmanTraces}.
@@ -1379,7 +1382,7 @@ $\Cmax(E)$ follows from countability of $E$.
 \end{proof}
 
 \noindent
-Conceptually, the two halves differ only in the ideal: sofic
+The proof highlights the distinction between the two ideals: sofic
 permutation models become exact modulo $2$-norm-null sequences, whereas
 an MF model of the canonical trace would become exact modulo
 operator-norm-null sequences and hence yield an MF embedding of $E$.

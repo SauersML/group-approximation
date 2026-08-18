@@ -56,9 +56,10 @@ and this avoids introducing a second `NormedAddCommGroup` structure on
 
 ## What is deliberately *not* claimed
 
-The quotient is **not** given a `CStarRing` instance *in this file*; that
-instance, the bundled `CStarAlgebra`, and the exact quotient-norm formula now
-live in `Analysis/TracialQuotientCStar.lean`.  The C-star identity for
+The quotient is **not** given a `CStarRing` instance *in this file*; the
+identity is proved in `Analysis/TracialQuotientCStarIdentity.lean`, and the
+instances and the exact quotient-norm formula live in
+`Analysis/TracialQuotientCStar.lean`.  The C-star identity for
 a quotient of a C-star algebra by a closed two-sided ideal is not formal: it
 needs an approximate unit of the ideal, and mathlib (at the pinned revision)
 has no quotient C-star instance to inherit.  Unlike the operator-norm corona

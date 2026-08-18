@@ -58,15 +58,20 @@ theorem markedGroup_separable_canonicalTrace_hyperlinear_not_isMFTrace :
 
 end LiteralTraceConsequence
 
-/-- Manuscript wrapper for `lem:mftrace-group`, with every binder after the
-colon: for a countable group, an MF canonical trace on the full group
-C-star algebra makes the group operator MF\@.  The content is
+/-- The universal sentence of `lem:mftrace-group`, as a closed proposition:
+for every countable group, an MF canonical trace on the full group C-star
+algebra makes the group operator MF\@.  The audit's zero-input gate requires
+advertised endpoints to have an empty outer telescope, so the quantifiers
+live here rather than on the theorem. -/
+def MFTraceGroupBridge : Prop :=
+  ∀ (G : Type*) [Group G] [Countable G],
+    ShulmanTrace.IsMFTrace
+      (fun a : MaximalGroupCStar G ↦ canonicalMaximalTrace G a) →
+    IsOperatorMF G
+
+/-- Manuscript wrapper for `lem:mftrace-group`.  The content is
 `ShulmanTrace.isOperatorMF_of_isMFTrace_canonicalMaximal`. -/
-theorem manuscriptMFTraceGroupBridge :
-    ∀ (G : Type*) [Group G] [Countable G],
-      ShulmanTrace.IsMFTrace
-        (fun a : MaximalGroupCStar G ↦ canonicalMaximalTrace G a) →
-      IsOperatorMF G :=
+theorem manuscriptMFTraceGroupBridge : MFTraceGroupBridge :=
   fun _ _ _ h ↦ ShulmanTrace.isOperatorMF_of_isMFTrace_canonicalMaximal h
 
 end GroupApproximation

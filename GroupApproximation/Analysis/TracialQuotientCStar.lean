@@ -1,5 +1,6 @@
 import GroupApproximation.Analysis.TracialMatrixUltraproduct
 import GroupApproximation.Analysis.HilbertSchmidtApproximateUnit
+import GroupApproximation.Analysis.TracialQuotientCStarIdentity
 
 /-!
 # The tracial matrix quotient is a C⋆-algebra
@@ -76,6 +77,10 @@ whose `≥` half is `exists_ideal_approximate_unit` applied to the difference
 `m - a ∈ J` of a nearly minimal representative `m`, and whose `≤` half needs
 no approximate unit at all: `a e ∈ J`, so every `a - a e` represents the
 class of `a`.
+
+The hard direction is proved in
+`Analysis/TracialQuotientCStarIdentity.lean` (the coordinatewise-cut API),
+which this file imports; the instances are declared only here.
 -/
 
 
@@ -177,112 +182,16 @@ theorem exists_ideal_approximate_unit (j : ModelBoundedSequence X)
 -- The `set_option ... in` must precede the docstring: between a docstring and
 -- its declaration Lean expects the declaration itself, and a `set_option`
 -- there is a parse error rather than a scoping mistake.
-set_option synthInstance.maxHeartbeats 800000 in
-set_option maxHeartbeats 1000000 in
+set_option synthInstance.maxHeartbeats 2000000 in
+set_option maxHeartbeats 4000000 in
 /-- **The C⋆-identity for the tracial matrix quotient.**
 
 Only `‖x‖² ≤ ‖x⋆ x‖` is proved: it is mathlib's sole `CStarRing` field, and the
 reverse inequality is `‖x⋆ x‖ ≤ ‖x⋆‖ ‖x‖ = ‖x‖²`, which mathlib derives from
 submultiplicativity and the isometric involution the quotient already has. -/
 theorem norm_mul_self_le_norm_star_mul (x : TracialMatrixQuotient X l) :
-    ‖x‖ * ‖x‖ ≤ ‖star x * x‖ := by
-  refine le_of_forall_pos_le_add fun ε hε ↦ ?_
-  obtain ⟨a, rfl⟩ := Ideal.Quotient.mk_surjective x
-  have hδ : (0 : ℝ) < ε / 2 := by positivity
-  -- `star (mk a) * mk a` is `mk (a⋆ a)`.
-  have hstar : star (Ideal.Quotient.mk (hilbertSchmidtNullIdeal X l) a) *
-      Ideal.Quotient.mk (hilbertSchmidtNullIdeal X l) a
-      = Ideal.Quotient.mk (hilbertSchmidtNullIdeal X l) (star a * a) := by
-    rw [tracialMatrixQuotient_star_mk, ← map_mul]
-  -- A representative of `mk (a⋆a)` of nearly minimal norm.
-  obtain ⟨m, hm_eq, hm_lt⟩ := Submodule.Quotient.norm_mk_lt
-    (Ideal.Quotient.mk (hilbertSchmidtNullIdeal X l) (star a * a)) hδ
-  have hj_mem : IsHilbertSchmidtNull X l (m - star a * a) := by
-    -- `Submodule.Quotient.norm_mk_lt` states `hm_eq` with `Submodule.Quotient.mk`,
-    -- while `map_sub` leaves the goal in terms of `Ideal.Quotient.mk`.  The two
-    -- are definitionally equal but not syntactically, so `rw [hm_eq]` finds no
-    -- occurrence; `exact` closes it because it works up to defeq.
-    rw [← mem_hilbertSchmidtNullIdeal_iff, ← Ideal.Quotient.eq_zero_iff_mem,
-      map_sub]
-    exact sub_eq_zero.mpr hm_eq
-  obtain ⟨e, he_mem, he_one_sub, he_move⟩ :=
-    exists_ideal_approximate_unit X l (m - star a * a) hj_mem hδ
-  -- Step 1: `a` and `a (1 - e)` differ by `a e ∈ J`, so `mk` cannot tell them
-  -- apart, and the quotient norm is at most the norm of either.
-  have hae : Ideal.Quotient.mk (hilbertSchmidtNullIdeal X l)
-        (a * ((1 : ModelBoundedSequence X) - e))
-      = Ideal.Quotient.mk (hilbertSchmidtNullIdeal X l) a := by
-    rw [mul_sub, mul_one, map_sub, Ideal.Quotient.eq_zero_iff_mem.mpr
-      ((mem_hilbertSchmidtNullIdeal_iff X l _).mpr
-        (IsHilbertSchmidtNull.mul_left X l a he_mem)), sub_zero]
-  have h1 : ‖Ideal.Quotient.mk (hilbertSchmidtNullIdeal X l) a‖
-      ≤ ‖a * ((1 : ModelBoundedSequence X) - e)‖ := by
-    rw [← hae]
-    exact Submodule.Quotient.norm_mk_le _ _
-  -- Step 2: the C⋆-identity in the AMBIENT algebra, contracted by `1 - e`.
-  have h2 : ‖a * ((1 : ModelBoundedSequence X) - e)‖ *
-        ‖a * ((1 : ModelBoundedSequence X) - e)‖
-      = ‖star ((1 : ModelBoundedSequence X) - e) * (star a * a) *
-          ((1 : ModelBoundedSequence X) - e)‖ := by
-    rw [← CStarRing.norm_star_mul_self
-      (x := a * ((1 : ModelBoundedSequence X) - e)), star_mul]
-    congr 1
-    -- Pure associativity.  `noncomm_ring` here times out at a million
-    -- heartbeats: it normalises through `ModelBoundedSequence`, which is an
-    -- `lp` subtype, so every step drags the `Memℓp` witness with it.  Only
-    -- reassociation is needed.
-    simp only [mul_assoc]
-  have h3 : ‖star ((1 : ModelBoundedSequence X) - e) * (star a * a) *
-        ((1 : ModelBoundedSequence X) - e)‖
-      ≤ ‖(star a * a) * ((1 : ModelBoundedSequence X) - e)‖ := by
-    calc ‖star ((1 : ModelBoundedSequence X) - e) * (star a * a) *
-          ((1 : ModelBoundedSequence X) - e)‖
-        ≤ ‖star ((1 : ModelBoundedSequence X) - e)‖ *
-            ‖(star a * a) * ((1 : ModelBoundedSequence X) - e)‖ := by
-          rw [mul_assoc]
-          exact norm_mul_le _ _
-      _ ≤ 1 * ‖(star a * a) * ((1 : ModelBoundedSequence X) - e)‖ := by
-          gcongr
-          rw [norm_star]
-          exact he_one_sub
-      _ = ‖(star a * a) * ((1 : ModelBoundedSequence X) - e)‖ := one_mul _
-  -- Step 3: replace `a⋆a` by the nearly minimal representative `m`.
-  have h4 : ‖(star a * a) * ((1 : ModelBoundedSequence X) - e)‖ ≤ ‖m‖ + ε / 2 := by
-    have hsplit : (star a * a) * ((1 : ModelBoundedSequence X) - e)
-        = m * ((1 : ModelBoundedSequence X) - e)
-          - (m - star a * a) * ((1 : ModelBoundedSequence X) - e) := by
-      -- Same reason as `h2`: distribute by hand and finish additively, rather
-      -- than let `noncomm_ring` normalise through the `lp` subtype.
-      simp only [sub_mul]
-      abel
-    have hlast : (m - star a * a) * ((1 : ModelBoundedSequence X) - e)
-        = (m - star a * a) - (m - star a * a) * e := by
-      rw [mul_sub, mul_one]
-    calc ‖(star a * a) * ((1 : ModelBoundedSequence X) - e)‖
-        = ‖m * ((1 : ModelBoundedSequence X) - e)
-            - (m - star a * a) * ((1 : ModelBoundedSequence X) - e)‖ := by
-          rw [hsplit]
-      _ ≤ ‖m * ((1 : ModelBoundedSequence X) - e)‖
-            + ‖(m - star a * a) * ((1 : ModelBoundedSequence X) - e)‖ :=
-          norm_sub_le _ _
-      _ ≤ ‖m‖ * ‖(1 : ModelBoundedSequence X) - e‖
-            + ‖(m - star a * a) * ((1 : ModelBoundedSequence X) - e)‖ := by
-          gcongr
-          exact norm_mul_le _ _
-      _ ≤ ‖m‖ * 1 + ε / 2 := by
-          gcongr
-          · exact norm_nonneg m
-          · exact he_one_sub
-          · rw [hlast]
-            exact he_move
-      _ = ‖m‖ + ε / 2 := by rw [mul_one]
-  -- Assemble the chain and spend the two halves of `ε`.
-  have hchain : ‖Ideal.Quotient.mk (hilbertSchmidtNullIdeal X l) a‖ *
-      ‖Ideal.Quotient.mk (hilbertSchmidtNullIdeal X l) a‖ ≤ ‖m‖ + ε / 2 :=
-    le_trans (mul_le_mul h1 h1 (norm_nonneg _) (norm_nonneg _))
-      (le_trans (le_of_eq h2) (le_trans h3 h4))
-  rw [hstar]
-  linarith
+    ‖x‖ * ‖x‖ ≤ ‖star x * x‖ :=
+  TracialUltraproduct.norm_sq_le_norm_star_mul_self X l x
 
 /-- **The tracial matrix quotient satisfies the C⋆-identity.**
 
@@ -307,8 +216,8 @@ noncomputable instance tracialMatrixQuotientCStarAlgebra :
 
 -- The same two budgets as on `norm_mul_self_le_norm_star_mul`, for the same
 -- reason: the statement alone resolves `star`, `*` and `‖·‖` on the quotient.
-set_option synthInstance.maxHeartbeats 800000 in
-set_option maxHeartbeats 1000000 in
+set_option synthInstance.maxHeartbeats 2000000 in
+set_option maxHeartbeats 4000000 in
 /-- The C⋆-identity of the quotient in its two-sided, equational form.  The
 `CStarRing` field carries only `‖x‖ * ‖x‖ ≤ ‖x⋆ x‖`; mathlib assembles the
 reverse from submultiplicativity and the isometric involution, and this
@@ -319,8 +228,8 @@ theorem norm_tracialMatrixQuotient_star_mul_self
 
 /-! ## The quotient norm as an infimum -/
 
-set_option synthInstance.maxHeartbeats 800000 in
-set_option maxHeartbeats 1000000 in
+set_option synthInstance.maxHeartbeats 2000000 in
+set_option maxHeartbeats 4000000 in
 /-- **The approximate-unit formula for the quotient norm**:
 `‖a + J‖ = inf { ‖a - a e‖ : e ∈ J }`.
 
@@ -391,14 +300,11 @@ theorem norm_mk_eq_sInf (a : ModelBoundedSequence X) :
         _ ≤ ‖m * ((1 : ModelBoundedSequence X) - e)‖
               + ‖(m - a) - (m - a) * e‖ := norm_sub_le _ _
         _ ≤ ‖m‖ * ‖(1 : ModelBoundedSequence X) - e‖
-              + ‖(m - a) - (m - a) * e‖ := by
-            gcongr
-            exact norm_mul_le _ _
-        _ ≤ ‖m‖ * 1 + ε / 2 := by
-            gcongr
-            · exact norm_nonneg m
-            · exact he_one_sub
-            · exact he_move
+              + ‖(m - a) - (m - a) * e‖ :=
+            add_le_add_right (norm_mul_le _ _) _
+        _ ≤ ‖m‖ * 1 + ε / 2 :=
+            add_le_add
+              (mul_le_mul_of_nonneg_left he_one_sub (norm_nonneg m)) he_move
         _ = ‖m‖ + ε / 2 := by rw [mul_one]
     linarith
 
