@@ -398,15 +398,28 @@ complement of `atlas-flip-first-order-rigidity`.  Consistent with the
 flip being a local minimum of the full objective at `k = 1`; NOT proof
 of it (sign-normalized Adam is a weak saddle-escaper; thin or rare
 negative directions among `8×10⁸` coordinates could hide).  A stall
-decides nothing about the branch question.  If anyone returns here,
-the designated sharper instruments are: (i) the exact restricted
-Hessian on structured subspaces via the fixed-point-count calculus of
-`atlas-flip-first-order-rigidity-proof` §7 (gauge directions to mod
-out: left translations act trivially, right translations are
-inner-fold flat, all-second-chart words have identically zero
-Hessian), and (ii) plain-SGD/momentum dynamics, which amplify a
-growing mode where Adam's sign normalization suppresses it.  The
-GPU chapter of this probe is closed.
+decides nothing about the branch question.  The GPU chapter of this
+probe is closed.
+
+## Exact restricted Hessian scan (2026-08-18)
+
+Instrument (i) was then executed exactly
+(`experiments/atlas_flip_hessian_scan.py`; engine self-tested 300/300
+against dense `S₄` computation): every Hessian term reduces to
+canonical `tr(X T₂ X T₁)` / `tr(X² T)` forms with translation
+contexts, evaluated by fixed-point counts on the structured directions
+`E(u,v) = L_uR_v − L_{u⁻¹}R_{v⁻¹}` and `i(L_uR_v + L_{u⁻¹}R_{v⁻¹})`.
+Verdict over 4,000 catalog pairs × 2 families (full active set +
+72-control sample): **zero negative-curvature directions; max Q = 0 on
+flat directions; and `Q_active = 0` on every single evaluation** —
+confirmed per class (both the `p₁`-trivial and `p₂`-trivial escapees,
+separately) on 600 fresh directions from an independent seed.  All
+second-order resistance in the sector belongs to the control words.
+A dense `S₄` counterexample separately shows the flatness is NOT a
+global identity in `W` (active-type traces move for random unitaries),
+so none of this is a `k = 1` impossibility theorem.  Full record:
+`research/atlas-flip-translation-sector-hessian.md` and
+`research/artifacts/atlas-flip-hessian-scan-2026-08-18.json`.
 
 **Pre-registered interpretation (unchanged from §(d)):** a descent of
 the active mean visibly below the 1.9987 baseline is the

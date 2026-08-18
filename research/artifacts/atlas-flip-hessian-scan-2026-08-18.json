@@ -1,0 +1,14 @@
+{
+ "pairs_scanned": 4000,
+ "positive_Q_directions": 0,
+ "max_Q_total": 0,
+ "max_detail": {
+  "q_active": 0,
+  "q_control": 0,
+  "family": "asym",
+  "u": "b'\\x01\\x00\\x00\\x00\\x01\\x00\\x01\\x00\\x01\\x01\\x00\\x00\\x00\\x01\\x01\\x01'",
+  "v": "b'\\x01\\x00\\x01\\x00\\x00\\x01\\x01\\x00\\x00\\x00\\x01\\x00\\x00\\x00\\x01\\x01'"
+ },
+ "interpretation": "POSITIVE Q_total = certified negative curvature of the loss (strict saddle) along that direction; all-nonpositive = the structured translation sector is curvature-nonnegative at the flip (exact).",
+ "positives": []
+}
