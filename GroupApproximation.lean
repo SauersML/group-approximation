@@ -1017,7 +1017,6 @@ import GroupApproximation.Analysis.OmegaConjugationOperators
 import GroupApproximation.Analysis.OmegaCommutatorFixes
 import GroupApproximation.Analysis.RankNormalizedHilbertization
 import GroupApproximation.Analysis.CollapseLambdaCocycle
-import GroupApproximation.Analysis.CollapseProjectionLift
 import GroupApproximation.Analysis.RankNormalizedLambda
 import GroupApproximation.Monsters.NeumannTwoGenerator
 import GroupApproximation.Sofic.CollapseRankWeightTransport
@@ -1047,7 +1046,6 @@ import GroupApproximation.Analysis.TracialQuotientCStar
 import GroupApproximation.Analysis.SoficHyperlinearTrace
 import GroupApproximation.Analysis.TracialQuotientCStarIdentity
 import GroupApproximation.Analysis.SoficHyperlinearBridge
-import GroupApproximation.Analysis.PrintedUltrafilterHyperlinearTrace
 import GroupApproximation.Sofic.TraceSeparationEndpoint
 
 -- Modules that stood outside this root's import closure and were therefore
@@ -1088,7 +1086,6 @@ import GroupApproximation.Analysis.VectorOmegaAction
 import GroupApproximation.Analysis.VectorOmegaKazhdanGap
 import GroupApproximation.Analysis.FilterMatrixCStarCorona
 import GroupApproximation.Analysis.VectorOmegaCoronaAction
-import GroupApproximation.Analysis.CoronaProjectionLifting
 import GroupApproximation.Analysis.UnitaryAverageFixedVector
 import GroupApproximation.Analysis.OmegaCoronaKazhdanProjection
 import GroupApproximation.Analysis.PolarLiftingMatrixBlocks
