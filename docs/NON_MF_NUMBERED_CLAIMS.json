@@ -29,6 +29,12 @@
           "module": "Sofic/LiteralNonMFEndpoint",
           "declaration": "GroupApproximation.LiteralNonMFEndpoint.manuscriptTheoremA",
           "covers": "the complete printed proposition"
+        },
+        {
+          "role": "exact",
+          "module": "Sofic/LiteralTheoremAPackage",
+          "declaration": "GroupApproximation.LiteralTheoremAPackage.manuscriptTheoremA_package",
+          "covers": "a printed conclusion of the proposition"
         }
       ]
     },
