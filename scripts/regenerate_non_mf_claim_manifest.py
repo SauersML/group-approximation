@@ -361,7 +361,7 @@ def main() -> int:
     parser.add_argument("--tex", type=Path,
                         default=REPO / "non_mf_groups_exist.tex")
     parser.add_argument("--output", type=Path,
-                        default=REPO / "docs" / "NON_MF_NUMBERED_CLAIMS.json")
+                        default=REPO / "metadata" / "NON_MF_NUMBERED_CLAIMS.json")
     args = parser.parse_args()
     args.output.write_text(
         json.dumps(generate(args.tex), indent=2, ensure_ascii=False) + "\n",

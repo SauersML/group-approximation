@@ -21,7 +21,7 @@ The checker provides three independent safeguards:
 * every badge invocation has exactly two nonempty, syntactically valid
   arguments;
 * every cited declaration exists in the named module;
-* ``docs/NON_MF_CLAIM_DECLS.txt`` can be checked as a generated roster of all
+* ``metadata/NON_MF_CLAIM_DECLS.txt`` can be checked as a generated roster of all
   cited declarations, giving proposition-signature tooling complete input
   rather than the former hand-selected seven names.
 
@@ -50,7 +50,7 @@ from lean_decls import build_index
 
 REPO = Path(__file__).resolve().parent.parent
 DEFAULT_TEX = REPO / "non_mf_groups_exist.tex"
-DEFAULT_DECLS = REPO / "docs" / "NON_MF_CLAIM_DECLS.txt"
+DEFAULT_DECLS = REPO / "metadata" / "NON_MF_CLAIM_DECLS.txt"
 
 STATUSES = (
     "verified",

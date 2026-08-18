@@ -59,7 +59,7 @@ questions the manuscript audit asks of a helper:
     declarations only, and this script applies it to everything they reach.
 `literature`
     the helper's short name is on the literature roster
-    (`docs/NON_MF_LITERATURE_INPUTS.txt`, the mirror of
+    (`metadata/NON_MF_LITERATURE_INPUTS.txt`, the mirror of
     `Audit.literatureInputNames`).
 `abstraction`
     the helper's name matches one of `--abstraction`'s patterns.  These name
@@ -112,7 +112,7 @@ from check_non_mf_unconditional import (
 
 REPO = Path(__file__).resolve().parent.parent
 DEFAULT_TEX = REPO / "non_mf_groups_exist.tex"
-DEFAULT_ROSTER = REPO / "docs" / "NON_MF_LITERATURE_INPUTS.txt"
+DEFAULT_ROSTER = REPO / "metadata" / "NON_MF_LITERATURE_INPUTS.txt"
 
 LEAN_REF = re.compile(r"\\leanverified\{([^}]+)\}\{([^}]+)\}")
 

@@ -3,7 +3,7 @@
 `build.py` assembles a single self-contained page at `/paper/` on the Pages
 site from three inputs, none of which live here: `non_mf_groups_exist.tex`
 (embedded raw and typeset in the browser by `parser.js` + `ui.js` with the
-inlined KaTeX under `katex/`), `docs/NON_MF_NUMBERED_CLAIMS.json` (Lean
+inlined KaTeX under `katex/`), `metadata/NON_MF_NUMBERED_CLAIMS.json` (Lean
 badges, the claim explorer, and the dependency graph), and nothing else — so
 a tex or manifest push republishes the page with no edits here.
 
@@ -19,7 +19,7 @@ figure in the tex changes, that function must follow by hand.
 `build.py` also embeds the full Lean source of every declaration the
 manifest or an in-tex `\leanverified` marker names — statement and proof,
 split at the top-level `:=`, with the source line for a GitHub deep link.
-`docs/NON_MF_PROOF_LEDGER.md` (hand-audited, pin-enforced in CI) is a
+`metadata/NON_MF_PROOF_LEDGER.md` (hand-audited, pin-enforced in CI) is a
 fourth input: its step rows drive the Proof-line badges — `Lean ✓` only
 when every printed step's proof route is graded EXACT, a count like
 `Lean 9/14` when the Lean development diverges from the printed route,

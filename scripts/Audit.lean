@@ -16,7 +16,7 @@ It fails, with a nonzero exit code, if either check below fails:
 
 1. **Statement pinning.**  The `example`s restate the principal headline
    theorems verbatim.  The complete manuscript-mapped surface is pinned by
-   `scripts/Signatures.lean` and `docs/CLAIM_SIGNATURES.md`; if a mapped
+   `scripts/Signatures.lean` and `metadata/CLAIM_SIGNATURES.md`; if a mapped
    statement is weakened or gains a premise, that signature gate changes.
 2. **Transitive axiom closure.**  Every declaration in the
    `GroupApproximation` namespace is traversed through the *kernel*

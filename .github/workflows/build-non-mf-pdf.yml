@@ -162,12 +162,12 @@ jobs:
             --tex "$TEX_FILE"
           python3 scripts/regenerate_non_mf_claim_manifest.py \
             --output build/NON_MF_NUMBERED_CLAIMS.generated.json
-          diff -u docs/NON_MF_NUMBERED_CLAIMS.json \
+          diff -u metadata/NON_MF_NUMBERED_CLAIMS.json \
             build/NON_MF_NUMBERED_CLAIMS.generated.json
           python3 scripts/check_non_mf_refs.py \
             --tex "$TEX_FILE" \
             --check-decls \
-            --extra-declarations-from docs/NON_MF_NUMBERED_CLAIMS.json \
+            --extra-declarations-from metadata/NON_MF_NUMBERED_CLAIMS.json \
             --require-verified \
               Sofic/LiteralNonMFEndpoint \
               GroupApproximation.LiteralNonMFEndpoint.manuscriptTheoremA \
@@ -179,8 +179,8 @@ jobs:
               GroupApproximation.LiteralBaseP13PropertyTBridge.manuscriptBaseHasKazhdanPropertyT
           python3 scripts/check_non_mf_claim_manifest.py \
             --tex "$TEX_FILE" \
-            --manifest docs/NON_MF_NUMBERED_CLAIMS.json \
-            --signature-roster docs/NON_MF_CLAIM_DECLS.txt
+            --manifest metadata/NON_MF_NUMBERED_CLAIMS.json \
+            --signature-roster metadata/NON_MF_CLAIM_DECLS.txt
 
       # The step above certifies that every cited declaration is SOURCE-CLOSED:
       # its printed header ends at the colon.  That is a fact about where the
@@ -191,7 +191,7 @@ jobs:
       # never discharges is a conditional badge, however the header is
       # punctuated.
       #
-      # It fails on any finding absent from docs/NON_MF_UNCONDITIONAL_BASELINE.txt
+      # It fails on any finding absent from metadata/NON_MF_UNCONDITIONAL_BASELINE.txt
       # and on any baseline entry whose finding has gone, so the register can
       # only shrink.  There is no count in the mechanism.
       #
@@ -206,7 +206,7 @@ jobs:
         run: |
           python3 scripts/check_non_mf_unconditional.py \
             --tex "$TEX_FILE" \
-            --baseline docs/NON_MF_UNCONDITIONAL_BASELINE.txt
+            --baseline metadata/NON_MF_UNCONDITIONAL_BASELINE.txt
 
       # ADDED 2026-08-18, after an external audit found both of these red on a
       # revision this workflow would have published green.  The steps above ask
@@ -232,7 +232,7 @@ jobs:
           python3 scripts/check_non_mf_proof_ledger.py --self-test
           python3 scripts/check_non_mf_proof_ledger.py \
             --tex "$TEX_FILE" \
-            --ledger docs/NON_MF_PROOF_LEDGER.md
+            --ledger metadata/NON_MF_PROOF_LEDGER.md
           python3 scripts/check_manuscript_claims.py --self-test
           python3 scripts/check_manuscript_claims.py \
             --tex "$TEX_FILE" \
@@ -277,15 +277,15 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          cp docs/CLAIM_SIGNATURES.md /tmp/CLAIM_SIGNATURES.expected.md
-          cp docs/NON_MF_CLAIM_SIGNATURES.md /tmp/NON_MF_CLAIM_SIGNATURES.expected.md
+          cp metadata/CLAIM_SIGNATURES.md /tmp/CLAIM_SIGNATURES.expected.md
+          cp metadata/NON_MF_CLAIM_SIGNATURES.md /tmp/NON_MF_CLAIM_SIGNATURES.expected.md
           lake env lean scripts/Signatures.lean | tee signatures.log
-          cmp -s /tmp/CLAIM_SIGNATURES.expected.md docs/CLAIM_SIGNATURES.md
+          cmp -s /tmp/CLAIM_SIGNATURES.expected.md metadata/CLAIM_SIGNATURES.md
           cmp -s /tmp/NON_MF_CLAIM_SIGNATURES.expected.md \
-            docs/NON_MF_CLAIM_SIGNATURES.md
-          mv /tmp/CLAIM_SIGNATURES.expected.md docs/CLAIM_SIGNATURES.md
+            metadata/NON_MF_CLAIM_SIGNATURES.md
+          mv /tmp/CLAIM_SIGNATURES.expected.md metadata/CLAIM_SIGNATURES.md
           mv /tmp/NON_MF_CLAIM_SIGNATURES.expected.md \
-            docs/NON_MF_CLAIM_SIGNATURES.md
+            metadata/NON_MF_CLAIM_SIGNATURES.md
 
       - name: Fresh kernel replay
         shell: bash

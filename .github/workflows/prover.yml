@@ -31,11 +31,11 @@ on:
       - '!official/README.md'
       - '!property_tt_leavitt.pdf'
       - '!docs/**/*.md'
-      - 'docs/CLAIM_MAP.md'
-      - 'docs/CLAIM_SIGNATURES.md'
-      - 'docs/NON_MF_CLAIM_SIGNATURES.md'
-      - 'docs/PROPERTY_TT_CLAIM_MAP.md'
-      - 'docs/PROPERTY_TT_PROVENANCE.md'
+      - 'metadata/CLAIM_MAP.md'
+      - 'metadata/CLAIM_SIGNATURES.md'
+      - 'metadata/NON_MF_CLAIM_SIGNATURES.md'
+      - 'metadata/PROPERTY_TT_CLAIM_MAP.md'
+      - 'metadata/PROPERTY_TT_PROVENANCE.md'
   pull_request:
     branches: [ "main" ]
     paths:
@@ -51,11 +51,11 @@ on:
       - '!official/README.md'
       - '!property_tt_leavitt.pdf'
       - '!docs/**/*.md'
-      - 'docs/CLAIM_MAP.md'
-      - 'docs/CLAIM_SIGNATURES.md'
-      - 'docs/NON_MF_CLAIM_SIGNATURES.md'
-      - 'docs/PROPERTY_TT_CLAIM_MAP.md'
-      - 'docs/PROPERTY_TT_PROVENANCE.md'
+      - 'metadata/CLAIM_MAP.md'
+      - 'metadata/CLAIM_SIGNATURES.md'
+      - 'metadata/NON_MF_CLAIM_SIGNATURES.md'
+      - 'metadata/PROPERTY_TT_CLAIM_MAP.md'
+      - 'metadata/PROPERTY_TT_PROVENANCE.md'
   workflow_dispatch:
 
 concurrency:
@@ -329,11 +329,11 @@ jobs:
               GroupApproximation.lean GroupApproximation \
               lakefile.toml lake-manifest.json lean-toolchain \
               scripts .github bin \
-              docs/CLAIM_DECLS.txt docs/CLAIM_MAP.md \
-              docs/CLAIM_SIGNATURES.md docs/NON_MF_CLAIM_DECLS.txt \
-              docs/NON_MF_CLAIM_SIGNATURES.md \
-              docs/PROPERTY_TT_CLAIM_MAP.md \
-              docs/PROPERTY_TT_PROVENANCE.md 2>/dev/null; then
+              metadata/CLAIM_DECLS.txt metadata/CLAIM_MAP.md \
+              metadata/CLAIM_SIGNATURES.md metadata/NON_MF_CLAIM_DECLS.txt \
+              metadata/NON_MF_CLAIM_SIGNATURES.md \
+              metadata/PROPERTY_TT_CLAIM_MAP.md \
+              metadata/PROPERTY_TT_PROVENANCE.md 2>/dev/null; then
             echo "lean=false" >> "$GITHUB_OUTPUT"
             echo "Lean-relevant tree identical to verified; publication lane."
           else
@@ -611,12 +611,12 @@ jobs:
             --tex non_mf_groups_exist.tex
           python3 scripts/regenerate_non_mf_claim_manifest.py \
             --output /tmp/NON_MF_NUMBERED_CLAIMS.generated.json
-          diff -u docs/NON_MF_NUMBERED_CLAIMS.json \
+          diff -u metadata/NON_MF_NUMBERED_CLAIMS.json \
             /tmp/NON_MF_NUMBERED_CLAIMS.generated.json
           python3 scripts/check_non_mf_refs.py \
             --tex non_mf_groups_exist.tex \
             --check-decls \
-            --extra-declarations-from docs/NON_MF_NUMBERED_CLAIMS.json \
+            --extra-declarations-from metadata/NON_MF_NUMBERED_CLAIMS.json \
             --require-verified \
               Sofic/LiteralNonMFEndpoint \
               GroupApproximation.LiteralNonMFEndpoint.manuscriptTheoremA \
@@ -628,8 +628,8 @@ jobs:
               GroupApproximation.LiteralBaseP13PropertyTBridge.manuscriptBaseHasKazhdanPropertyT
           python3 scripts/check_non_mf_claim_manifest.py \
             --tex non_mf_groups_exist.tex \
-            --manifest docs/NON_MF_NUMBERED_CLAIMS.json \
-            --signature-roster docs/NON_MF_CLAIM_DECLS.txt
+            --manifest metadata/NON_MF_NUMBERED_CLAIMS.json \
+            --signature-roster metadata/NON_MF_CLAIM_DECLS.txt
 
       # The contract above certifies that every badge resolves and that every
       # cited declaration is SOURCE-CLOSED: its printed header ends at the
@@ -639,13 +639,13 @@ jobs:
       # name the corpus never discharges is a conditional badge, however the
       # header is punctuated.
       #
-      # It fails on any finding absent from docs/NON_MF_UNCONDITIONAL_BASELINE.txt,
+      # It fails on any finding absent from metadata/NON_MF_UNCONDITIONAL_BASELINE.txt,
       # and on any baseline entry whose finding has gone -- so the register can
       # only shrink, and a discharged row cannot leave its exemption behind to
       # license a regression.  There is no count in the mechanism.
       #
       # REPORT-ONLY, deliberately and temporarily.  The register was written by
-      # hand from docs/NON_MF_CONDITIONAL_INVENTORY.md because it could not be
+      # hand from metadata/NON_MF_CONDITIONAL_INVENTORY.md because it could not be
       # generated locally, so its first contact with the real corpus must not
       # be able to fail a certificate run.  TO ARM, after one run whose log
       # shows this step green:
@@ -668,7 +668,7 @@ jobs:
           python3 scripts/check_non_mf_unconditional.py --self-test
           python3 scripts/check_non_mf_unconditional.py \
             --tex non_mf_groups_exist.tex \
-            --baseline docs/NON_MF_UNCONDITIONAL_BASELINE.txt
+            --baseline metadata/NON_MF_UNCONDITIONAL_BASELINE.txt
 
       # The build itself.  `lakefile.toml` sets `-DwarningAsError=true` for the
       # library, so an unused variable or a deprecated lemma is a failure here.
@@ -733,18 +733,18 @@ jobs:
       # reviewed diff of the signature files.
       - name: Signature pinning (elaborated types of mapped declarations)
         run: |
-          if grep -q '^PLACEHOLDER:' docs/CLAIM_SIGNATURES.md; then
+          if grep -q '^PLACEHOLDER:' metadata/CLAIM_SIGNATURES.md; then
             # Not yet populated by a first build; generate for the log but do
             # not gate until a real signature file is committed.
             lake env lean scripts/Signatures.lean
-            echo "::warning::docs/CLAIM_SIGNATURES.md is a placeholder; commit the generated file to arm this gate"
-          elif [ ! -s docs/NON_MF_CLAIM_SIGNATURES.md ]; then
-            echo "::error::docs/NON_MF_CLAIM_SIGNATURES.md is missing; generate it with 'lake env lean scripts/Signatures.lean' and commit it"
+            echo "::warning::metadata/CLAIM_SIGNATURES.md is a placeholder; commit the generated file to arm this gate"
+          elif [ ! -s metadata/NON_MF_CLAIM_SIGNATURES.md ]; then
+            echo "::error::metadata/NON_MF_CLAIM_SIGNATURES.md is missing; generate it with 'lake env lean scripts/Signatures.lean' and commit it"
             exit 1
           else
             lake env lean scripts/Signatures.lean
             git diff --exit-code \
-              docs/CLAIM_SIGNATURES.md docs/NON_MF_CLAIM_SIGNATURES.md \
+              metadata/CLAIM_SIGNATURES.md metadata/NON_MF_CLAIM_SIGNATURES.md \
               || { echo "::error::a claim signature snapshot is stale; regenerate with 'lake env lean scripts/Signatures.lean' and commit the diff"; exit 1; }
           fi
 
@@ -1053,7 +1053,7 @@ jobs:
           python3 scripts/check_non_mf_unconditional.py --self-test
           python3 scripts/check_non_mf_unconditional.py \
             --tex non_mf_groups_exist.tex \
-            --baseline docs/NON_MF_UNCONDITIONAL_BASELINE.txt
+            --baseline metadata/NON_MF_UNCONDITIONAL_BASELINE.txt
 
       - name: Non-MF counterpart contract
         run: |
@@ -1061,12 +1061,12 @@ jobs:
             --tex non_mf_groups_exist.tex
           python3 scripts/regenerate_non_mf_claim_manifest.py \
             --output /tmp/NON_MF_NUMBERED_CLAIMS.generated.json
-          diff -u docs/NON_MF_NUMBERED_CLAIMS.json \
+          diff -u metadata/NON_MF_NUMBERED_CLAIMS.json \
             /tmp/NON_MF_NUMBERED_CLAIMS.generated.json
           python3 scripts/check_non_mf_refs.py \
             --tex non_mf_groups_exist.tex \
             --check-decls \
-            --extra-declarations-from docs/NON_MF_NUMBERED_CLAIMS.json \
+            --extra-declarations-from metadata/NON_MF_NUMBERED_CLAIMS.json \
             --require-verified \
               Sofic/LiteralNonMFEndpoint \
               GroupApproximation.LiteralNonMFEndpoint.manuscriptTheoremA \
@@ -1078,5 +1078,5 @@ jobs:
               GroupApproximation.LiteralBaseP13PropertyTBridge.manuscriptBaseHasKazhdanPropertyT
           python3 scripts/check_non_mf_claim_manifest.py \
             --tex non_mf_groups_exist.tex \
-            --manifest docs/NON_MF_NUMBERED_CLAIMS.json \
-            --signature-roster docs/NON_MF_CLAIM_DECLS.txt
+            --manifest metadata/NON_MF_NUMBERED_CLAIMS.json \
+            --signature-roster metadata/NON_MF_CLAIM_DECLS.txt

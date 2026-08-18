@@ -52,14 +52,14 @@ PUBLICATION_ONLY_FILES = frozenset(
 # list beside the allowlist makes a broad docs/ rule impossible to overlook.
 VERIFICATION_DOC_FILES = frozenset(
     {
-        "docs/CLAIM_DECLS.txt",
-        "docs/CLAIM_MAP.md",
-        "docs/CLAIM_SIGNATURES.md",
-        "docs/NON_MF_CLAIM_DECLS.txt",
-        "docs/NON_MF_CLAIM_SIGNATURES.md",
-        "docs/NON_MF_NUMBERED_CLAIMS.json",
-        "docs/PROPERTY_TT_CLAIM_MAP.md",
-        "docs/PROPERTY_TT_PROVENANCE.md",
+        "metadata/CLAIM_DECLS.txt",
+        "metadata/CLAIM_MAP.md",
+        "metadata/CLAIM_SIGNATURES.md",
+        "metadata/NON_MF_CLAIM_DECLS.txt",
+        "metadata/NON_MF_CLAIM_SIGNATURES.md",
+        "metadata/NON_MF_NUMBERED_CLAIMS.json",
+        "metadata/PROPERTY_TT_CLAIM_MAP.md",
+        "metadata/PROPERTY_TT_PROVENANCE.md",
     }
 )
 
@@ -71,7 +71,7 @@ def is_publication_only(path: str) -> bool:
     # A future Lean file under docs/ is proof-relevant even if it has a .md
     # sibling.  Unknown extensions also fail closed.
     return (
-        path.startswith("docs/")
+        (path.startswith("docs/") or path.startswith("metadata/"))
         and PurePosixPath(path).suffix == ".md"
         and path not in VERIFICATION_DOC_FILES
     )
@@ -284,8 +284,8 @@ def self_test() -> int:
 
     assert is_publication_only("README.md")
     assert is_publication_only("docs/NOTEPAD.md")
-    assert not is_publication_only("docs/CLAIM_SIGNATURES.md")
-    assert not is_publication_only("docs/PROPERTY_TT_CLAIM_MAP.md")
+    assert not is_publication_only("metadata/CLAIM_SIGNATURES.md")
+    assert not is_publication_only("metadata/PROPERTY_TT_CLAIM_MAP.md")
     assert not is_publication_only("official/counterexample.tex")
     assert not is_publication_only("docs/new_proof.lean")
     assert not is_publication_only("scripts/advance_verified_branch.py")

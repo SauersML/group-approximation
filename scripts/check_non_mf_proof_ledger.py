@@ -4,7 +4,7 @@
 `check_non_mf_refs.py` asks whether every margin badge resolves.
 `check_non_mf_claim_manifest.py` asks whether every numbered environment has a
 manifest entry whose printed statement has not drifted.  Neither asks the
-question `docs/NON_MF_PROOF_LEDGER.md` exists to answer: whether every
+question `metadata/NON_MF_PROOF_LEDGER.md` exists to answer: whether every
 inferential step of every printed proof has a Lean counterpart, and whether
 that counterpart is the *same* step.
 
@@ -55,7 +55,7 @@ from lean_decls import build_index
 
 REPO = Path(__file__).resolve().parent.parent
 DEFAULT_TEX = REPO / "non_mf_groups_exist.tex"
-DEFAULT_LEDGER = REPO / "docs" / "NON_MF_PROOF_LEDGER.md"
+DEFAULT_LEDGER = REPO / "metadata" / "NON_MF_PROOF_LEDGER.md"
 
 ROOT_NAMESPACE = "GroupApproximation"
 MATHLIB_PREFIX = "Mathlib:"
