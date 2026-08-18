@@ -1028,6 +1028,7 @@ import GroupApproximation.Analysis.OmegaCommutatorFixes
 import GroupApproximation.Analysis.RankNormalizedHilbertization
 import GroupApproximation.Analysis.RankNormalizedLambda
 import GroupApproximation.Analysis.CollapseDisplacementIdeal
+import GroupApproximation.Analysis.CollapseTransportEndpoint
 import GroupApproximation.Analysis.CollapseLambdaCocycle
 import GroupApproximation.Analysis.CollapseProjectionLift
 import GroupApproximation.Monsters.NeumannTwoGenerator
