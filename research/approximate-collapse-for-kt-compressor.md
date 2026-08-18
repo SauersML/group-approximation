@@ -326,6 +326,24 @@ recorded from the fork's report, self-contained).**
    with double-coset combinatorics.  Characters (girth-neutralized),
    plain dimension counting, and all fences are otherwise neutral;
    this ratio dichotomy is the live front.
+5. **The needle IS threadable at the dimension level — the ratio
+   obstruction cannot become a rigid-side win (proved template).**
+   Take `π_k = (⊕_{i≤n_k} U_i) ⊕ V₀` with `U_i` pairwise
+   non-isomorphic `Q_k`-irreps that stay irreducible on `P_k`, and
+   `V₀` a single macroscopic `Q_k`-irrep whose `P_k`-restriction
+   splits as `W ⊕ W^⊥` (two non-isomorphic irreducibles).  Then
+   `D_Γ = n_k + 1` and `D_Λ = n_k + 2` — ratio `→ 1` — while the
+   projection onto `W` lies in `π(Λ)' ∖ π(Γ)'` EXACTLY with
+   normalized mass `dim W/dim H = Θ(1)`.  (Character-mass
+   identities: `D_Γ = ⟨χ,χ⟩_Q`, `D_Λ = ⟨χ|_P, χ|_P⟩_P`.)  So the
+   rigid side cannot win by dimension counting; the final constraint
+   is TWIST-CONTENT MATCHING: does any such needle tower admit an
+   approximate intertwiner between `π_k` and the pullback
+   `π_k ∘ β_A`, whose irreducible content is `P`-level content
+   lifted through the non-surjective `β_A`?  Girth and Bessel are
+   both silent there; trace-faithfulness of needle towers is
+   plausible (quasirandom pieces); nothing currently known decides
+   it.  The crux-of-the-crux, both sides open.
 
 **Stakes, stated once:** a proof refutes hyperlinearity of the
 Kun–Thom wreath group (first non-hyperlinear group; group-CEP
