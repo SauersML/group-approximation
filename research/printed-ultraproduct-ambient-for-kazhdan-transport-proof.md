@@ -10,6 +10,10 @@ artifacts:
   - GroupApproximation/Sofic/UltraproductAdjointAmbient.lean
   - GroupApproximation/Sofic/UltraproductModelConstructionAssembly.lean
   - GroupApproximation/Sofic/ManuscriptKazhdanTransport.lean
+  - GroupApproximation/Sofic/KOmegaHilbert.lean
+  - GroupApproximation/Sofic/OmegaOperatorUltraproduct.lean
+  - GroupApproximation/Sofic/HilbertUltraproductSeparating.lean
+  - GroupApproximation/Sofic/OmegaWeightedAmbient.lean
 ---
 
 # Direct construction of KT.02--KT.04
@@ -131,17 +135,47 @@ separate ultraproduct proof printed in the manuscript.
 
 ## Machine-checked form
 
-The argument above is also formalized, so this route is not carried by its
-prose alone.  `UltraproductModelConstruction.nonempty_ultraproductAdjointModel`
-(`Sofic/UltraproductModelConstructionAssembly.lean`) returns a term of
-`UltraproductAdjointModel iota s d U omega` for every `omega` below the
-cofinite filter, taking as input exactly what the transport theorem already
-assumes: property (T) of `Gamma`, `s iota(Gamma) s^-1 <= iota(Gamma)`,
-`0 < d n`, and operator-norm asymptotic multiplicativity of `U`.  Sections 1--3
-above correspond to the `Vec`/`act` construction and its multiplicativity,
-unitality and faithfulness lemmas; section 4 to the `compressionRep` bundling of
-the coordinate adjoint family.  `manuscriptKazhdanTransport`
-(`Sofic/ManuscriptKazhdanTransport.lean`) then states the manuscript's
-`thm:kazhdan-transport` with no ambient hypothesis and discharges it with that
-constructor.  Both modules are in the root import closure, so they are covered
-by `lake build` and the kernel audit.
+The argument above is also formalized, section by section, so this route is not
+carried by its prose alone.  All five modules named below are in the root
+import closure, so they are covered by `lake build` and the kernel audit.
+
+1. **Section 1, the Hilbert-space ultraproduct.**  `KOmegaHilbert.KOmega` is
+   the quotient of uniformly mass-bounded matrix families by `omega`-null
+   families, carrying the descended inner product
+   (`kOmegaInnerProductSpace`).  Positive definiteness is proved, not assumed:
+   `HilbertUltraproductSpace.uinner_self_eq_zero_iff` identifies the null space
+   of the form with the quotient's denominator.  At the dimension weight,
+   `UltraproductModelConstruction.weightNull_dimWeight_iff_tendsto` is the
+   `KT.02` criterion itself — class equality is exactly normalized
+   Hilbert--Schmidt convergence to zero along `omega`.
+2. **Section 2, the norm ultraproduct and its action.**
+   `OmegaOperatorUltraproduct.OmegaAdjointCorona Y omega` is the norm quotient
+   along the ultrafilter, a complete complex C-star algebra, with
+   `norm_omegaMk` identifying its quotient norm with the `omega`-limit of the
+   coordinate operator norms; `omegaAct` is its multiplicative linear action on
+   the vector ultraproduct.
+3. **Section 3, faithfulness and the absorption dictionary.**  The separating
+   lemma `HilbertUltraproductSeparating.actQ_eq_zero_iff_tendsto` says an
+   operator family acts as zero exactly when its norms are `omega`-null, whence
+   `OmegaOperatorUltraproduct.omegaAct_injective`.  For idempotents,
+   `range_le_iff_mul_eq` is the range-inclusion/absorption equivalence
+   `q * p = p`, and the same fact at adjoints gives the two-sided form the
+   printed absorption argument uses.
+4. **Section 4, the bundled ambient.**
+   `UltraproductModelConstruction.nonempty_ultraproductAdjointModel` and its
+   choice form `.ultraproductAdjointModel`
+   (`Sofic/UltraproductModelConstructionAssembly.lean`) inhabit
+   `UltraproductAdjointModel iota s d U omega` under exactly the transport
+   hypotheses — property (T) of `Gamma`, `s iota(Gamma) s^-1 <= iota(Gamma)`,
+   `0 < d n`, operator-norm asymptotic multiplicativity of `U` — and
+   `OmegaWeightedAmbient.omegaWeightedAmbient` assembles the `omega`-corona
+   route the current printed proof runs on.  `manuscriptKazhdanTransport`
+   (`Sofic/ManuscriptKazhdanTransport.lean`) then states the manuscript's
+   `thm:kazhdan-transport` with no ambient hypothesis and discharges it with
+   the constructor, so the printed theorem is unconditional.
+
+One honest gap in the correspondence, and it is inert: no `CompleteSpace`
+instance is constructed for the synonym `KOmega`.  Completeness is not a field
+of `UltraproductAdjointModel` and is not used anywhere in the printed transport
+chain, so the prose argument's completeness paragraph is a convenience of the
+hand construction rather than something the formalization owes.

@@ -31,8 +31,8 @@ That substitution was the point of keeping this route: if the
 small-cancellation prerequisite landed and the normal-Kazhdan obstruction
 turned out to have a gap, this route would still reach the root.  **That is
 no longer true.**  Its last open prerequisite,
-`fournier-facio-group-matricially-stable`, was closed by
-`fournier-facio-stability-from-total-corona-triviality`, which proves the
+`fournier-facio-group-matricially-stable`, was closed through
+[[fournier-facio-asymptotic-representations-trivial]], which proves the
 stability of `G` *from* `normal-kazhdan-defect-non-mf` — the very
 obstruction this route was held in reserve against.  Both routes into the
 root now rest on the same analytic theorem, and a gap in it would take both

@@ -36,3 +36,23 @@ For every fixed `g`, `Theta(g) = 1` means precisely that
 This proves the claim.  Notice that the conclusion is strictly stronger
 than matricial stability: no search for correcting representations is
 needed; the constant trivial representation is always a correction.
+
+## The machine-checked step, named
+
+The killing step is
+`KazhdanCompressionCore.normalKazhdan_le_normMatrixCStarCoronaKernel`
+(`Sofic/NormalKazhdanMFRadical.lean`): for a countable `E`, a normal `K` with
+`HasKazhdanPropertyT K` and `K <= C.defectNormal`, **every**
+`rho : E ->* unitary (NormMatrixCStarCorona X)` satisfies `K <= rho.ker`.
+Applied at `K = G` — legitimate because the established form of
+`defect-normally-generates-torsion-free-quotient` gives
+`C.defectNormal = <<pi(S)>>^G = G`, so no inheritance of property (T) is
+needed — it gives `G <= Theta.ker` directly.
+
+Two definitional details the argument leans on, both discharged in the
+repository rather than assumed here.  `NormMatrixCStarCorona X` is the corona
+along the **cofinite** filter, so `[u_n] = 1` unwinds to the ordinary limit
+`||u_n - 1|| -> 0` rather than to an ultrafilter limit.  And `phi_n(1)` need
+not equal `1`: a unitary with `phi_n(1)^2 - phi_n(1) -> 0` has
+`phi_n(1) -> 1`, which is what makes `Theta` unital and hence a homomorphism
+into the unitary group rather than merely a multiplicative map.

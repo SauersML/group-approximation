@@ -21,14 +21,18 @@ pointwise-norm close to a sequence of genuine homomorphisms.
 ESTABLISHED, and in a strictly stronger form than stated: every
 operator-norm asymptotic representation of `G` is **asymptotically
 trivial**, so the correcting homomorphisms may always be taken to be the
-trivial homomorphism.  The route is
-`fournier-facio-stability-from-total-corona-triviality`; it does not attack
-the stability question on its own terms at all.  It observes that an
-asymptotic homomorphism is a representation in the norm matrix corona, that
-`defect-normally-generates-torsion-free-quotient` makes the compression
-defect the whole group, and that `normal-kazhdan-defect-non-mf` then kills
-every corona representation elementwise.  What remains of an asymptotic
-representation after that is a sequence converging pointwise to `1`.
+trivial homomorphism.  That stronger statement has its own node,
+[[fournier-facio-asymptotic-representations-trivial]], reached by
+`fournier-facio-asymptotic-triviality-from-normal-kazhdan-defect`; this claim
+follows from it in one line
+(`fournier-facio-matricial-stability-from-asymptotic-triviality`).
+
+Neither route attacks the stability question on its own terms.  An asymptotic
+homomorphism is a representation in the norm matrix corona,
+`defect-normally-generates-torsion-free-quotient` makes the compression defect
+the whole group, and `normal-kazhdan-defect-non-mf` then kills every corona
+representation elementwise.  What remains of an asymptotic representation
+after that is a sequence converging pointwise to `1`.
 
 Two consequences of the shape of the proof, both worth carrying:
 
