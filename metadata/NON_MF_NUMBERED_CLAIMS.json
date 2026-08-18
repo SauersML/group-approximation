@@ -587,8 +587,8 @@
     {
       "id": "def:invisible",
       "environment": "definition",
-      "title": "$2$-norm triviality",
-      "statement_sha256": "41698d326dec67b00d36e37207aa5a34a2fdea6c9449781117f04e1c39bc4ec2",
+      "title": "universal $2$-norm triviality",
+      "statement_sha256": "a9bfafac2d6d94fc70e3d7b852b4366305918e8f88dcac57d1729368733e13c2",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [],
@@ -630,7 +630,7 @@
     {
       "id": "cor:generaltransport",
       "environment": "corollary",
-      "title": "one-sided conjugators preserve the commutant under conjugation and inverse conjugation",
+      "title": "transport by the compression semigroup",
       "statement_sha256": "2cd351da03fb75b00067d72dcc3e943639f2747a73a5a484139db31b173ea897",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
@@ -674,8 +674,8 @@
     {
       "id": "thm:abstract-nk",
       "environment": "theorem",
-      "title": "obstruction from $2$-norm triviality",
-      "statement_sha256": "d93135ce6813697c3808c8a0baee2c65d73085c4c397533a3c68ad1a1a699e3d",
+      "title": "obstruction from universal $2$-norm triviality",
+      "statement_sha256": "45b50a521fff6393944b99bac01378626182dddb87c242bd4c09a04901572345",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [
@@ -1265,7 +1265,7 @@
       "id": "cor:undecidable",
       "environment": "corollary",
       "title": "undecidability of MF recognition",
-      "statement_sha256": "6677ae20f59826f60d5af5eb739c6519468ec0b9c9ed4489e93ae70b5222eb42",
+      "statement_sha256": "465508722f012ed497a96b030a26e057bbb145ec69e14e623207fee78095afad",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [],

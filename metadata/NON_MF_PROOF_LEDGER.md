@@ -7,9 +7,9 @@ Spec document: `non_mf_groups_exist.tex`.  Formal development: `GroupApproximati
 | | |
 | --- | --- |
 | commit | the external-audit repair wave of 2026-08-18 (this one) |
-| `git hash-object non_mf_groups_exist.tex` | `b8ef46227bff754d646b16b11b6d15108d715d38` |
-| sha256 of the file | `e3ac5b99675af9cc23dff44e1ac7edac965d4b1d35a560be1d4859b242c1bca9` |
-| `wc -l` | 3758 |
+| `git hash-object non_mf_groups_exist.tex` | `8695b0a86831bb5e6d412b69e14996a06d8f409d` |
+| sha256 of the file | `af68f3548c214d08851551a45247ea29dd62619f15225a4ef872b75f29226905` |
+| `wc -l` | 3831 |
 
 `git hash-object` of the file must reproduce the blob above for the rows below
 to be read as current.  The file has shrunk from 4768 lines to 3771 across the
@@ -895,13 +895,13 @@ once in the comment-stripped manuscript; the probe is the drift detector.
 | thm:kazhdan-transport | env | thm:kazhdan-transport | 36a5391cd928c3d3 |
 | thm:transport-variants | env | thm:transport-variants | 7a79775ae5cf5bc9 |
 | def:pattern | env | def:pattern | 79446102142d5b3e |
-| def:invisible | env | def:invisible | 41698d326dec67b0 |
+| def:invisible | env | def:invisible | a9bfafac2d6d94fc |
 | thm:criterion | env | thm:criterion | 4153ff9fb688e0de |
 | thm:sign-criterion | env | thm:sign-criterion | 27a3e86c5351bfb6 |
 | cor:generaltransport | env | cor:generaltransport | 2cd351da03fb75b0 |
 | thm:compression-radical | env | thm:compression-radical | f4e9fb766fe58572 |
 | thm:normal-kazhdan | env | thm:normal-kazhdan | 0dcfb82167b7e591 |
-| thm:abstract-nk | env | thm:abstract-nk | d93135ce6813697c |
+| thm:abstract-nk | env | thm:abstract-nk | 45b50a521fff6393 |
 | cor:intrinsic-nk | env | cor:intrinsic-nk | 74911f7eaffe314f |
 | thm:kazhdan-clifford | env | thm:kazhdan-clifford | b4e0d1c3ccbbbcc3 |
 | rem:ff-realization | env | rem:ff-realization | 99600546f98872af |
@@ -933,7 +933,7 @@ once in the comment-stripped manuscript; the probe is the drift detector.
 | def:invwitness | env | def:invwitness | 19f64aedeec57699 |
 | thm:collapse | env | thm:collapse | 978ac3e37662c007 |
 | thm:projection-collapse | env | thm:projection-collapse | f8010458149ae59b |
-| thm:torsion-collapse | env | thm:torsion-collapse | a7ab2a0ec6b1e17d |
+| thm:torsion-collapse | env | thm:torsion-collapse | f1525d60c9480bb6 |
 | cor:collapsequot | env | cor:collapsequot | aacd98ae2be82cbc |
 | thm:reduced | env | thm:reduced | 942e85e1ef739f83 |
 | lem:faithfultrace | env | lem:faithfultrace | ed20bbd1df60ef72 |
@@ -941,7 +941,7 @@ once in the comment-stripped manuscript; the probe is the drift detector.
 | thm:markedclosed | env | thm:markedclosed | b1dc2e411d332f29 |
 | prop:horn | env | prop:horn | 3e2c6bb45f9627c7 |
 | p:cylinder | prose | `therefore form a nonempty clopen set` | - |
-| cor:undecidable | env | cor:undecidable | 6677ae20f59826f6 |
+| cor:undecidable | env | cor:undecidable | 465508722f012ed4 |
 | prop:maximal-cstar | env | prop:maximal-cstar | 7108b280fbf939cb |
 | prop:proper-isometry | env | prop:proper-isometry | af0fbcd75508bcd3 |
 | rem:maxinfinite | env | rem:maxinfinite | 92b53660bf2ead3e |
@@ -951,7 +951,7 @@ once in the comment-stripped manuscript; the probe is the drift detector.
 | p:intro-thom | prose | `In his 2018 ICM address, Thom asked for which Schatten` | - |
 | p:intro-nonsofic | prose | `The first was answered negatively in 2026: a nonsofic group was constructed` | - |
 | p:intro-collapse-pointer | prose | `is a second finitely presented non-MF group` | - |
-| p:intro-convention | prose | `is the operator-norm property of` | - |
+| p:intro-convention | prose | `Throughout, MF for groups means the` | - |
 | p:intro-commutator | prose | `For group elements $[g,h]=ghg^{-1}h^{-1}$` | - |
 | p:intro-slofstra | prose | `Slofstra's hyperlinear-profile construction uses a Clifford group` | - |
 | p:intro-bekka | prose | `Bekka and Bekka--Valette study property` | - |
@@ -961,7 +961,7 @@ once in the comment-stripped manuscript; the probe is the drift detector.
 | p:intro-final | prose | `therefore leaves open whether the group itself embeds` | - |
 | p:prelim-complement | prose | `is an injective homomorphism $\U(A)\to\U(\mathcal Q)$` | - |
 | p:prelim-notation | prose | `We repeatedly use the inequalities` | - |
-| p:prelim-dim-convention | prose | `nothing below changes if the sequences are further required to be strictly increasing` | - |
+| p:prelim-dim-convention | prose | `nothing changes if the dimensions are required to be strictly increasing` | - |
 | p:prelim-defs | prose | `An \emph{operator-norm asymptotic representation} of $H$` | - |
 | p:prelim-unit | prose | `Taking $g=h=1$ gives` | - |
 | p:prelim-cmax | prose | `the maximal group $C^*$-algebra $\Cmax(H)$ is` | - |
@@ -1014,7 +1014,7 @@ once in the comment-stripped manuscript; the probe is the drift detector.
 | p:q3 | prose | `Does MF imply hyperlinearity?` | - |
 | p:q4 | prose | `compute the residual exactly` | - |
 | p:q5 | prose | `by other building blocks` | - |
-| p:q5-lift | prose | `with no real-rank-zero or semiprojectivity hypothesis` | - |
+| p:q5-lift | prose | `No real-rank-zero or semiprojectivity hypothesis is needed` | - |
 | p:appA-localmodel | prose | `An \emph{approximate unitary representation} for a countable group` | - |
 | p:appC-construction | prose | `is the completion of the group ring` | - |
 | p:appC-universal | prose | `Injectivity follows from the left regular representation` | - |
