@@ -25,7 +25,9 @@ elab "mk_kernel_batched_theorem" count:num fi:ident : command => do
   for i in List.range count do
     let thmName := mkIdent (f.str s!"case_{i}")
     elabCommand <| ←
-      `(command| theorem $thmName : $fi $(quote i) := by decide +kernel)
+      `(command| theorem $thmName : $fi $(quote i) := by
+          unfold $fi
+          decide +kernel)
 
 /-- As `mk_kernel_batched_theorem`, but leave one case for a custom proof. -/
 elab "mk_kernel_batched_theorem_except" count:num skip:num fi:ident : command => do
@@ -39,7 +41,9 @@ elab "mk_kernel_batched_theorem_except" count:num skip:num fi:ident : command =>
     unless i = skip do
       let thmName := mkIdent (f.str s!"case_{i}")
       elabCommand <| ←
-        `(command| theorem $thmName : $fi $(quote i) := by decide +kernel)
+        `(command| theorem $thmName : $fi $(quote i) := by
+            unfold $fi
+            decide +kernel)
 
 namespace BatchedKernelChecks
 
