@@ -344,6 +344,25 @@ recorded from the fork's report, self-contained).**
    both silent there; trace-faithfulness of needle towers is
    plausible (quasirandom pieces); nothing currently known decides
    it.  The crux-of-the-crux, both sides open.
+6. **Clean reframing of the crux as a self-map fixed point.**  `β_A`
+   is INJECTIVE (monomial substitution by an `ℚ`-invertible matrix
+   `A`), with image the compressed copy, so `π_k ∘ β_A` is precisely
+   `π_k|_Λ` transported through the isomorphism `Λ ≅ Γ` induced by
+   `Ad t`.  Twist-content matching therefore reads: is `π_k`
+   approximately unitarily equivalent to `π_k ∘ Ad t`?  I.e. **is
+   the representation approximately fixed by conjugation by the
+   compressor** — the exact unitary shadow of "`t` normalizes
+   `σ(Γ)`", the very statement KT 4.1 proves on the permutation
+   side.  This makes the crux a fixed-point problem for the single
+   automorphism `Ad t` acting on the (approximate) representation
+   variety of `Γ`, and puts it squarely in the domain of
+   Popa/Peterson deformation-rigidity (Peterson Thm 5.2 gives
+   inner-ness of coordinatewise deformations of a (T) subfactor with
+   factorial relative commutant — the needle towers are exactly the
+   non-factorial case its hypothesis excludes, which is why the
+   question survives).  Sharpest statement of the goal's gate: does
+   the compressor automorphism have an approximate fixed point in
+   the representation variety of `Γ` over separating needle towers?
 
 **Stakes, stated once:** a proof refutes hyperlinearity of the
 Kun–Thom wreath group (first non-hyperlinear group; group-CEP
