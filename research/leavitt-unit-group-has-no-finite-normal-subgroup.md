@@ -61,3 +61,43 @@ neither implies the other.
 Part (3) is the form actually consumed: `Delta(G) = 1` is all the Delta-method
 version of the criterion needs, and it is a strictly stronger statement than
 (4) here only in appearance — over this group they come from the same line.
+
+## Where this sits in the rest of the program
+
+Until this node there was **no claim in the graph citing
+`ElementaryNoFiniteQuotients.lean`**, although two separate lanes lean on
+what it proves.  This node is its home, and the scope is worth stating once
+because the lanes want it for different groups.
+
+The formalized theorem is about `EL_iota(L)` for any index set with at least
+three elements, so it covers directly:
+
+* `L^x ~= GL_3(L) = EL_3(L)`, the group of this lane, and
+* `Q = EL_4(L)`, the nonsofic quotient of the atlas lane.
+
+It does **not** directly cover `U = St_5(L)`, the Steinberg cover the
+normalized-HS fork is stated about, because a homomorphism from `St_5` to a
+finite group need not kill the central kernel `K_2(5, L)`.  It comes within
+one standard step, and the step is worth recording for whoever works that
+lane: given `phi : St_5(L) -> Q` with `Q` finite, `phi(K_2)` is central in
+`phi(St_5)` and `phi(St_5)/phi(K_2)` is a finite quotient of `EL_5(L)`, hence
+trivial; so `phi(St_5) = phi(K_2)` is abelian, and a perfect group has no
+nontrivial abelian quotient.  `St_n` is perfect for `n >= 3` by the Steinberg
+relation `x_ij(a) = [x_ik(a), x_kj(1)]`.
+
+If that is right, then the step in `leavitt-steinberg-hs-stable` that argues
+"`U` has exactly one finite-index subgroup" from **minimal almost
+periodicity** has a second, independent derivation from a theorem
+kernel-checked in this repository, needing only perfectness of the Steinberg
+group in place of the representation-theoretic input.  Perfectness of `St_5`
+is *not* formalized here — `ElementaryPerfect.lean` proves it for `EL_n`, not
+for the cover — so this is an observation offered to that lane, not a claim
+of this one, and it is deliberately not wired as a route.
+
+The Boone--Higman ring lane cites the same Lean file for the same property:
+`boone-higman-via-universal-leavitt-host` wants a finitely presented strongly
+simple ring whose elementary groups are finitely presented, perfect, and
+without finite quotients, and `L_K(1,2)` is exactly that.  That route is dead
+for an unrelated reason (`weyl-algebra-blocks-a-universal-leavitt-host`), and
+nothing here revives it — the obstruction there is about which algebras embed
+*into* `L_K(1,2)`, which this node does not touch.

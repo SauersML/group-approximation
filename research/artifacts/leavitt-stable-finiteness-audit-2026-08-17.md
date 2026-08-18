@@ -441,6 +441,47 @@ Unchanged and still the whole problem: `leavitt-corner-one-sided-lift-exists`,
 `leavitt-group-algebra-not-stably-finite`,
 `leavitt-unit-group-nonsurjunctive`.
 
+## G.1 Program placement
+
+Three connections outside the Kaplansky/Gottschalk lane, recorded because the
+graph grew a great deal on the same day and this material touches parts of it.
+
+**The formalized no-finite-quotients theorem finally has a claim.**  Before
+this ingestion, no node in `research/` cited
+`ElementaryNoFiniteQuotients.lean`, though two lanes lean on what it proves.
+`leavitt-unit-group-has-no-finite-normal-subgroup` is now its home, and it
+records the scope: the theorem covers `EL_iota(L)` for at least three
+indices, hence `L^x ~= EL_3(L)` here and `Q = EL_4(L)` in the atlas lane, but
+not `U = St_5(L)` directly, because a finite quotient of the Steinberg cover
+need not kill `K_2(5, L)`.  It comes within one step of covering `U` as
+well — a finite quotient of `St_5` is central modulo a finite quotient of
+`EL_5`, hence abelian, hence trivial if `St_5` is perfect — which would give
+`leavitt-steinberg-hs-stable` a second derivation of its finite-index step,
+independent of minimal almost periodicity.  Perfectness of the Steinberg
+cover is not formalized here, so that is left as an observation for the atlas
+lane rather than wired as a route.
+
+**The Boone--Higman ring lane wants this exact ring, and nothing here helps
+it.**  `boone-higman-via-universal-leavitt-host` cites the same Lean files
+because `L_K(1,2)` is a finitely presented strongly simple ring with
+well-behaved elementary groups — precisely a Boone--Higman envelope's wish
+list.  That route is already dead at
+`weyl-algebra-blocks-a-universal-leavitt-host`.  The center computation
+imported here says `L_K(1,2)` is *central* simple over `K`, which looks like
+it should bear on which `K`-algebras embed, and does not: a unital embedding
+`A -> L_K(1,2)` puts no constraint on `Z(A)`, because a central element of
+`A` need only centralize the image of `A`.  Recorded as a dead end so nobody
+re-derives it.
+
+**Nothing here is wired toward `q3-4-resolved`, deliberately.**  The scope
+note on `leavitt-unit-group-algebra-not-directly-finite` keeps the Kaplansky
+lane out of the goal's route structure, because the implication connecting
+approximation properties to direct finiteness runs from soficity and `R^x` is
+announced nonsofic.  The new equivalence
+`leavitt-stable-finiteness-equals-direct-finiteness` ties Kaplansky to
+Gottschalk for this group and to nothing else; it does not create a path to
+the goal and no route should be built from it toward one.
+
 **Where this joins the rest of the graph.**  It joins exactly where the two
 2026-08-17 Leavitt audits left off.  `research/artifacts/kaplansky-direct-finiteness-audit-2026-08-17.md`
 closed with "computing that kernel — even to the point of deciding whether the
