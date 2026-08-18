@@ -5,7 +5,7 @@ kind: claim
 title: Units additively span the Leavitt algebra, so its group algebra surjects onto it
 distinct_from:
   leavitt-gl-equals-el-and-perfect-unit-group: that is a statement inside the unit group, identifying GL with EL and proving perfectness; this is a statement about the additive structure of the algebra, that unit values generate it as an abelian group.
-  openai-leavitt-unit-nonsofic: that is an external nonsoficity announcement about the same unit group; this is an internal, kernel-checked algebraic fact about how that group sits inside the algebra, and is independent of soficity.
+  openai-leavitt-unit-nonsofic: that is the nonsoficity of the same unit group; this is a kernel-checked algebraic fact about how that group sits inside the algebra, and is independent of soficity.
 artifacts:
   - GroupApproximation/Leavitt/UnitAdditiveSpan.lean
   - research/artifacts/kaplansky-direct-finiteness-audit-2026-08-17.md

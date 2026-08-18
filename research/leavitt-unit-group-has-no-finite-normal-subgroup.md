@@ -53,7 +53,7 @@ It is the group-side hypothesis of Connell's primality criterion, and its only
 consumer is `leavitt-unit-group-algebra-is-prime`.
 
 It is **not** a soficity or approximation statement, and it must not be read
-as one.  `openai-leavitt-unit-nonsofic` announces that this group is not
+as one.  `openai-leavitt-unit-nonsofic` says that this group is not
 sofic; part (1) says something in a different register — there is no residual
 structure at all for that failure to hide behind.  The two are consistent and
 neither implies the other.

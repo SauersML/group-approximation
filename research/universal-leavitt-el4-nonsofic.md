@@ -4,7 +4,7 @@ id: universal-leavitt-el4-nonsofic
 kind: claim
 title: The rank-four elementary group over the universal binary Leavitt algebra is nonsofic, with property (T)
 distinct_from:
-  openai-leavitt-unit-nonsofic: That is an unrefereed external announcement about the presented algebra `L_(F_2)(1,2)` and is deliberately not established here; this is this repository's own kernel-checked theorem about the universal binary Leavitt algebra built in the development, and nothing here depends on that announcement.
+  openai-leavitt-unit-nonsofic: That is the first nonsofic group, reached through a nine-leaf configuration with Thompson's `V` as the non-LEF witness; this is this repository's own kernel-checked theorem over the same algebra -- `BinaryLeavittAlgebra (ZMod 2)` IS `L_(F_2)(1,2)` -- at rank four, with a two-relator witness and proved property (T). The two proofs are independent, and this one does not depend on that one; it is one of that node's two routes.
   literal-group-not-sofic: That claim denies soficity of the manuscript's non-MF group E, which is a different group and a different mechanism; this is the one-sided-compression Kazhdan mechanism over a Leavitt algebra.
   wreath-not-sofic: That is the wreath candidate of the Kun-Thom lane; this is the elementary group of a Leavitt algebra, and the two mechanisms share only the words "not sofic".
   kun-thom-nonsofic-wreath: That is an external theorem about generalized wreath products over infranormal Kazhdan pairs, imported as established; this is about elementary groups over a Leavitt algebra. The two share the Kun and Kun-Thom inputs, which the development formalizes, but neither statement implies the other.

@@ -5,7 +5,7 @@ kind: claim
 title: Every d-ary Leavitt algebra over a finite field has nonsofic unit, GL and EL groups
 distinct_from:
   universal-leavitt-el4-nonsofic: That is the binary case for one explicit algebra over `F_2`, with the full property profile attached; this is the generic statement for every `d >= 2`, every finite field, and every algebra carrying a `d`-ary family, and asserts nonsoficity only.
-  openai-leavitt-unit-nonsofic: That is an unrefereed external announcement about the presented binary algebra and is deliberately not established here; this is proved in the development, for the universal algebras built here, and does not depend on it.
+  openai-leavitt-unit-nonsofic: That is the first nonsofic group, over the binary algebra alone; this is the `d`-ary family over every finite field, proved in the development, and neither result is used in the other's proof.
   finitely-presented-nonsofic-group-exists: That is an existence statement about finitely presented groups; every group here is finitely generated, and the finite-presentation step is not taken.
 artifacts:
   - GroupApproximation/Leavitt/AryEndpoints.lean

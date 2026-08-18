@@ -65,11 +65,10 @@ Kun--Thom example.
 
 - **The Leavitt unit group** `EL_4(L_(F_2)(1,2))` and its Steinberg cover.
   Their weak MF status is open (`docs/NOTEPAD.md:770-777`, with a failed
-  Fock/leaf finite-section attempt recorded at `:818-828`), but more
-  importantly their *nonsoficity* rests on `openai-leavitt-unit-nonsofic`,
-  which is ANNOUNCED and unrefereed and which nothing in this graph may depend
-  on. They therefore cannot enter a classification of *known* nonsofic groups
-  until that changes.
+  Fock/leaf finite-section attempt recorded at `:818-828`), so they cannot
+  enter a classification whose rows are weak-MF verdicts.  Their nonsoficity
+  is no longer the obstacle: `openai-leavitt-unit-nonsofic` is established,
+  and `universal-leavitt-el4-nonsofic` proves it here for `EL_4` outright.
 - **The reduced group C-star algebra** `C_r^*(G *_Gamma G)`. MF-ness of the
   algebra is a strictly stronger and separately open question
   (`docs/UNIQUE_TRACE_KUN_THOM_DOUBLE.md:166-176`), and the standard warning

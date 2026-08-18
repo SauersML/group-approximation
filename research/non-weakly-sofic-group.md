@@ -8,7 +8,7 @@ distinct_from:
   hyperlinear-nonsofic-group: that asks for a hyperlinear group failing soficity, one class down; this asks for a group failing the weakest finite approximation property of all, so it implies non-soficity, non-hyperlinearity in the finite-target sense, and non-MF simultaneously
   non-hyperlinear-group: that is one of this program's roots, a group with no normalized-Hilbert--Schmidt microstates; this is strictly stronger in the finite-group direction and strictly weaker in nothing, since weakly sofic and hyperlinear are incomparable classes as currently known
   weakly-sofic-not-sofic: that is the established separation of weak soficity from soficity, i.e. a group inside the weakly sofic class and outside the sofic one; this asks for a group outside the weakly sofic class entirely
-  kun-thom-nonsofic-wreath: that supplies unconditional nonsofic groups; those groups are provably weakly sofic, so they are counterexamples to the naive route here rather than candidates for it
+  kun-thom-nonsofic-wreath: that supplies nonsofic generalized wreath products; those groups are provably weakly sofic, so they are counterexamples to the naive route here rather than candidates for it
 artifacts:
   - research/artifacts/non-weakly-sofic-audit-2026-08-17.md
 ---
@@ -27,8 +27,9 @@ corpus is a candidate.
 ## Status, and why it is not settled by August 2026's nonsofic results
 
 Nonsofic groups now exist unconditionally, and the corpus carries them
-(`kun-thom-nonsofic-wreath`, `nonsofic_groups_exist` in
-`Endpoint/MainResults.lean`); Fournier-Facio, *A torsion-free non-sofic
+(`openai-leavitt-unit-nonsofic` first, then `kun-thom-nonsofic-wreath`, and
+`nonsofic_groups_exist` in `Endpoint/MainResults.lean` independently of
+both); Fournier-Facio, *A torsion-free non-sofic
 group*, arXiv:2608.02025 (2026-08-04), even gives a finitely presented
 torsion-free one.  **None of this bears on weak soficity**, and the corpus
 already proves why: `weakly-sofic-not-sofic` shows the Kun--Thom wreath

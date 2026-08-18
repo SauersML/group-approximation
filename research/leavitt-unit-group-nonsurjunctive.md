@@ -5,7 +5,7 @@ kind: claim
 title: The binary Leavitt unit group is not surjunctive
 root: true
 distinct_from:
-  openai-leavitt-unit-nonsofic: that is the announced nonsoficity of the same group, an external unrefereed input; this is a different property of it, neither implied by nonsoficity nor implying it, and nothing here depends on that announcement
+  openai-leavitt-unit-nonsofic: that is the nonsoficity of the same group; this is a different property of it, neither implied by nonsoficity nor implying it
   leavitt-unit-group-algebra-not-directly-finite: that is the Kaplansky question for the same group's modular group algebra, a statement about elements of a ring; this is a statement about cellular automata on a full shift, and while the first implies the second the converse is not available
   kl-violating-equation-over-leavitt-unit-group: that asks for a Kervaire--Laudenbach violation over the same group, which would refute its hyperlinearity; this asks for an injective non-surjective cellular automaton, which would refute Gottschalk's conjecture
 artifacts:

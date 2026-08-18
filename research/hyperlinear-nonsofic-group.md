@@ -21,9 +21,9 @@ second nonsoficity mechanism exists.
 
 **Status of that caution as of 2026-08-14 (literature scout).** It still
 holds literally: nonsofic groups now exist unconditionally, but every one of
-them — `kun-thom-nonsofic-wreath`, `openai-leavitt-unit-nonsofic`, and
-Fournier-Facio's torsion-free example (arXiv:2608.02025) — is the same
-pattern, namely one-sided compression `t Gamma t^(-1) <= Gamma` plus
+them — `openai-leavitt-unit-nonsofic` first, then `kun-thom-nonsofic-wreath`
+and Fournier-Facio's torsion-free example (arXiv:2608.02025), both of which
+build on it — is the same pattern, namely one-sided compression `t Gamma t^(-1) <= Gamma` plus
 property (T) plus a commuting non-LEF subgroup. Two qualifications:
 
 - A candidate second mechanism now exists in the literature, conditionally:

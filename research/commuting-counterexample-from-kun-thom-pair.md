@@ -71,7 +71,6 @@ Any sofic group with a nonsofic action would do, and by
 Bernoulli form (Corollary D) is *not* an alternative input: it is nonsoficity
 in Păunescu's measure-theoretic sense for `G ↷ (K,κ)^{G/Γ}`, not soficity of a
 set action, and the transfer principle is stated for set actions only. The
-OpenAI Leavitt unit group is not an alternative either — it is nonsofic as a
-*group* (and unrefereed, `openai-leavitt-unit-nonsofic`), which is the wrong
-kind of object here; the construction needs a **sofic** group carrying a bad
-action.
+Leavitt unit group of `openai-leavitt-unit-nonsofic` is not an alternative
+either — it is nonsofic as a *group*, which is the wrong kind of object here;
+the construction needs a **sofic** group carrying a bad action.

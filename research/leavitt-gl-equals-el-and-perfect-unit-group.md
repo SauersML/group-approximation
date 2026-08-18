@@ -6,7 +6,7 @@ title: Over a binary Leavitt algebra GL equals EL at every rank and the unit gro
 distinct_from:
   d-ary-leavitt-groups-nonsofic-over-finite-fields: That is a nonsoficity statement about the same groups; this is pure algebra -- an identification of GL with EL and perfectness -- with no approximation property in it, and it is what lets the nonsoficity statements move between ranks.
   universal-leavitt-el4-nonsofic: That is the rank-four nonsoficity endpoint; this is the rank transport underneath it, and it also closes the rank-two form.
-  openai-leavitt-unit-nonsofic: That is an unrefereed external announcement that the binary Leavitt unit group is not sofic; this asserts nothing about soficity -- it identifies GL with EL and proves the unit group perfect, both by internal algebra.
+  openai-leavitt-unit-nonsofic: That is the nonsoficity of the binary Leavitt unit group; this asserts nothing about soficity -- it identifies GL with EL and proves the unit group perfect, both by internal algebra -- and it is what carries property (T) between the ranks that node's configuration uses.
   kl-violating-equation-over-leavitt-unit-group: That asks for a Kervaire-Laudenbach-violating equation over the same unit group, which would refute its hyperlinearity and is open; this is the group-theoretic structure of that unit group and supplies no equation.
 artifacts:
   - GroupApproximation/KOne/AllRanksElementary.lean

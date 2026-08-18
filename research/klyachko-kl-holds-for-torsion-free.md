@@ -48,7 +48,7 @@ violation over a torsion-free group is wrong before it is read.
 ## It costs the existing route nothing
 
 `R^x = L_(F_2)(1,2)^x` contains a copy of Thompson's group `V`
-(`openai-leavitt-unit-nonsofic`), and `V` has torsion, so `R^x` is not
+(`leavitt-cylinder-swaps-generate-thompson-in-el`), and `V` has torsion, so `R^x` is not
 torsion-free and Klyachko does not apply to it at any degree.  The Kun--Thom
 wreath products contain their `Z/2Z` lamps, so they are not torsion-free
 either.

@@ -13,8 +13,10 @@ soficity for groups, i.e. the two approximation classes coincide (the converse,
 sofic-implies-hyperlinear, is formalized). Equivalently, by contraposition:
 every nonsofic group is non-hyperlinear.
 
-**Payoff.** Nonsofic groups now exist unconditionally
-(kun-thom-nonsofic-wreath), so this claim would immediately produce an
+**Payoff.** Nonsofic groups now exist unconditionally --- first
+openai-leavitt-unit-nonsofic (2026-08-01), then the later constructions that
+build on it, and independently universal-leavitt-el4-nonsofic here --- so this
+claim would immediately produce an
 explicit non-hyperlinear group — see the route
 non-hyperlinear-from-hyperlinear-implies-sofic into non-hyperlinear-group.
 That makes the affirmative answer at least as strong as the program's other

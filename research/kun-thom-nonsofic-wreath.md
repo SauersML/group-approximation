@@ -5,7 +5,7 @@ kind: claim
 title: Kun--Thom nonsofic generalized wreath products over infranormal Kazhdan pairs
 distinct_from:
   wreath-not-sofic: that node is about *this repository's* wreath candidate and stays open pending an identification check; this one is the external theorem about Kun--Thom's own explicit groups
-  openai-leavitt-unit-nonsofic: that is the announced, unrefereed OpenAI result about the binary Leavitt unit group; this is a refereeable arXiv preprint by named authors about wreath products
+  openai-leavitt-unit-nonsofic: that is the first nonsofic group, about the binary Leavitt unit group, and this paper's abstract says it builds on it; this is the later generalized-wreath theorem extracted from the same mechanism, and it is not an independent existence proof
   nonsofic-hyperbolic-group: that asks for a nonsofic group from a different mechanism entirely; this records the (T)-compression mechanism's strongest published output
 ---
 
@@ -46,12 +46,24 @@ and running it through the diagonal-coset construction closes GKP Question
 4.2 in the negative (`commuting-sofic-actions-need-not-combine`) — the first
 external open question this preprint settles through this repository.
 
-**Trust surface.** This is an arXiv preprint, not yet refereed.  It is
+**Priority. This paper is not the first nonsofic group and must never be
+cited as one.** Its own abstract opens: "This work builds on the breakthrough
+of OpenAI in finding the first nonsofic group. We analyze the underlying proof
+mechanism and find further applications." The first nonsofic group is
+`openai-leavitt-unit-nonsofic`, announced 2026-08-01; this preprint was posted
+2026-08-06. An earlier version of this node argued that the dependency was
+"only inspirational" because both inputs -- Kun's expander decomposition
+(arXiv:1606.04471, 2016) and Kun--Thom (arXiv:1901.03963, 2019) -- predate the
+announcement. That conflates the ingredients with the argument: infranormality
+is the compression-semigroup form of the selection step the OpenAI chapter
+introduced, and the authors say as much themselves. What makes this graph's
+nonsoficity independent of any external text is not this preprint but
+`one-sided-compression-nonsofic-criterion` and `universal-leavitt-el4-nonsofic`,
+both kernel-checked here.
+
+**Trust surface.** This is an arXiv preprint, not yet refereed. It is
 nevertheless imported as established because it is a self-contained
 mathematical argument by named authors in their own area, verified here
-from the PDF (not the HTML render, which returned wrong content), and
-because its own dependency on the announced OpenAI result is only
-inspirational: Theorem A is proved from Kun's expander decomposition
-(arXiv:1606.04471) and Kun--Thom (arXiv:1901.03963), both of which predate
-the announcement.  Note that the paper contains **no** operator-norm, MF, or
-corona content, so it raises no priority conflict with the non-MF manuscript.
+from the PDF (not the HTML render, which returned wrong content). Note that
+the paper contains **no** operator-norm, MF, or corona content, so it raises
+no priority conflict with the non-MF manuscript.

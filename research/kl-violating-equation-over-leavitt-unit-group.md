@@ -5,7 +5,7 @@ kind: claim
 title: A Kervaire--Laudenbach-violating equation over the binary Leavitt unit group
 distinct_from:
   kervaire-laudenbach-holds-for-hyperlinear: that is the established positive theorem for hyperlinear groups; this asks for a violation over one specific group, which would refute hyperlinearity of that group
-  openai-leavitt-unit-nonsofic: that is the announced nonsoficity of the same group; this concerns its hyperlinearity, which that result explicitly does not decide
+  openai-leavitt-unit-nonsofic: that is the nonsoficity of the same group; this concerns its hyperlinearity, which that result explicitly does not decide
 ---
 
 Exhibit a one-variable equation `w in Z * R^x`, where
