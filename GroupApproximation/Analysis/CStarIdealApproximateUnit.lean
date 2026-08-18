@@ -191,9 +191,9 @@ noncomputable def idealApproximateUnit : IdealApproximateUnit I where
     -- Spectral mapping for `1 - e`.
     have hshift : spectrum ℝ ((1 : R) - (e : R))
         = ({(1 : ℝ)} : Set ℝ) - spectrum ℝ (e : R) := by
-      have := spectrum.singleton_sub_eq (R := ℝ) (e : R) 1
-      rw [← this]
-      norm_num
+      have h := spectrum.singleton_sub_eq (R := ℝ) ((e : R)) 1
+      rw [map_one] at h
+      exact h.symm
     rw [hshift] at hs
     obtain ⟨u, hu, v, hv, huv⟩ := hs
     rw [Set.mem_singleton_iff] at hu

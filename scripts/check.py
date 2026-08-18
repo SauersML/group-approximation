@@ -383,8 +383,8 @@ _MANUSCRIPT_ONLY_TAGS = (
 def check_frozen_claim_roster(root: Path, f: Findings) -> None:
     """A claim map whose manuscript is missing still has to name real declarations.
 
-    `docs/CLAIM_DECLS.txt` is the list `scripts/Signatures.lean` elaborates and
-    pins in `docs/CLAIM_SIGNATURES.md`, so a name that leaves the library must
+    `metadata/CLAIM_DECLS.txt` is the list `scripts/Signatures.lean` elaborates and
+    pins in `metadata/CLAIM_SIGNATURES.md`, so a name that leaves the library must
     not leave this roster behind -- and with no manuscript to regenerate from,
     the roster can only be checked, not rebuilt.  Nothing here can tell whether
     the roster still *covers* what it should; only that what it lists exists.
@@ -612,7 +612,7 @@ PLANTS = [
              "A statement.\n\\end{lemma}\n")}),
     # The committed table left behind by an edit to either side.
     ("stale generated claim map",
-     {"docs/CLAIM_MAP.md": "# TeX map\n\nstale contents\n"}),
+     {"metadata/CLAIM_MAP.md": "# TeX map\n\nstale contents\n"}),
     # A green badge whose own note admits a prose remainder.
     ("status contract",
      {_TEX: ("\\begin{lemma}\\label{lem:demo}%\n"

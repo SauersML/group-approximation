@@ -6,7 +6,7 @@ and `check_property_tt_refs.py` resolve every `\\leanverified` badge in a
 manuscript; `check_manuscript_claims.py` resolves every `\\label` a Lean
 docstring cites.  Nothing resolves the other direction: a **declaration name**
 written in prose -- inside a Lean docstring, or inside a note in
-`docs/NON_MF_PROOF_LEDGER.md` -- is unchecked, in both of the ways it can be
+`metadata/NON_MF_PROOF_LEDGER.md` -- is unchecked, in both of the ways it can be
 wrong.
 
 On 2026-08-18 both ways were found in quantity, which is why this exists.
@@ -168,10 +168,10 @@ def main() -> int:
         for doc in DOCSTRING.findall(text):
             findings.extend(check_text(rel, doc, index, spaces, modules))
 
-    ledger = args.repo / "docs" / "NON_MF_PROOF_LEDGER.md"
+    ledger = args.repo / "metadata" / "NON_MF_PROOF_LEDGER.md"
     if ledger.exists():
         findings.extend(
-            check_text("docs/NON_MF_PROOF_LEDGER.md",
+            check_text("metadata/NON_MF_PROOF_LEDGER.md",
                        ledger.read_text(encoding="utf-8"), index, spaces,
                        modules))
 

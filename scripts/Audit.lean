@@ -16,7 +16,7 @@ It fails, with a nonzero exit code, if either check below fails:
 
 1. **Statement pinning.**  The `example`s restate the principal headline
    theorems verbatim.  The complete manuscript-mapped surface is pinned by
-   `scripts/Signatures.lean` and `docs/CLAIM_SIGNATURES.md`; if a mapped
+   `scripts/Signatures.lean` and `metadata/CLAIM_SIGNATURES.md`; if a mapped
    statement is weakened or gains a premise, that signature gate changes.
 2. **Transitive axiom closure.**  Every declaration in the
    `GroupApproximation` namespace is traversed through the *kernel*
@@ -759,6 +759,12 @@ def routeGuards : List (Name × Name) :=
      `GroupApproximation.PrintedCentralSign.manuscriptCentralSignCriterionPrinted),
     (`GroupApproximation.KazhdanCliffordConstruction.kazhdanCliffordConstruction,
      `GroupApproximation.KazhdanAsymptoticCommutant.manuscriptKazhdanTransport),
+    -- PA.05: the literal application of the criterion instantiates the printed
+    -- inhabitant of it, not the finite-stage one.  The row grades the
+    -- instantiation and its data, which the swap leaves untouched; this pins
+    -- which inhabitant is instantiated.
+    (`GroupApproximation.LiteralNonMFEndpoint.literal_centralSignCriterion,
+     `GroupApproximation.PrintedCentralSign.manuscriptCentralSignCriterionPrinted),
     -- ID.06: the printed reverse step of `cor:generaltransport` is the exact
     -- identity `P = VPV* ⟹ V*PV = P`, so the reverse-transport endpoint must
     -- depend on it and not only on the approximate leakage bound ...

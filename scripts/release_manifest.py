@@ -16,7 +16,7 @@ A reviewer holding the archive and the manifest can verify every file
 against it; a reviewer holding only the archive can at least see which
 commit to fetch and diff.  Run at release time:
 
-    python3 scripts/release_manifest.py --write   # writes docs/RELEASE_MANIFEST.json
+    python3 scripts/release_manifest.py --write   # writes metadata/RELEASE_MANIFEST.json
 """
 
 from __future__ import annotations
@@ -59,7 +59,7 @@ def build_manifest(*, commit: str | None = None,
 
     files = sorted(
         p for pattern in ("GroupApproximation/**/*.lean", "GroupApproximation.lean",
-                          "scripts/**/*", "docs/*", ".github/workflows/*.yml",
+                          "scripts/**/*", "docs/*", "metadata/*", ".github/workflows/*.yml",
                           "experiments/sl3-p13-reductions-complete.json",
                           "experiments/sl3-sos-radius0-certificate.json",
                           "experiments/sl3-sos-radius0-certificate.npz",
@@ -106,7 +106,7 @@ def build_manifest(*, commit: str | None = None,
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--write", action="store_true",
-                    help="write docs/RELEASE_MANIFEST.json instead of stdout")
+                    help="write metadata/RELEASE_MANIFEST.json instead of stdout")
     ap.add_argument("--commit", help="source commit recorded by CI")
     ap.add_argument("--kernel-audit-run-id",
                     help="workflow run that built and kernel-audited this revision")
@@ -129,7 +129,7 @@ def main() -> int:
                               texlive_image=args.texlive_image)
     text = json.dumps(manifest, indent=2, sort_keys=True) + "\n"
     if args.write or args.output:
-        out = args.output or (REPO / "docs" / "RELEASE_MANIFEST.json")
+        out = args.output or (REPO / "metadata" / "RELEASE_MANIFEST.json")
         if not out.is_absolute():
             out = REPO / out
         out.parent.mkdir(parents=True, exist_ok=True)

@@ -311,8 +311,8 @@ def to_markdown(claims: list[Claim], repo: Path | None = None) -> str:
     return "\n".join(out)
 
 
-GENERATED = Path("docs/CLAIM_MAP.md")
-GENERATED_DECLS = Path("docs/CLAIM_DECLS.txt")
+GENERATED = Path("metadata/CLAIM_MAP.md")
+GENERATED_DECLS = Path("metadata/CLAIM_DECLS.txt")
 
 HEADER = """# TeX \u2194 Lean claim map
 
@@ -346,7 +346,7 @@ def render_decls(repo: Path | None = None) -> str:
     """The mapped declarations, fully qualified, one per line.
 
     `scripts/Signatures.lean` reads this file after a build and writes each
-    declaration's elaborated type to `docs/CLAIM_SIGNATURES.md`; a name that
+    declaration's elaborated type to `metadata/CLAIM_SIGNATURES.md`; a name that
     stops existing fails there with the kernel's authority rather than this
     scan's.
     """

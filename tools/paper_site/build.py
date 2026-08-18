@@ -97,12 +97,12 @@ def extract_decl(module, decl):
 
 
 def parse_ledger():
-    """Step rows of docs/NON_MF_PROOF_LEDGER.md, grouped by anchor.
+    """Step rows of metadata/NON_MF_PROOF_LEDGER.md, grouped by anchor.
 
     The ledger is hand-authored audit metadata (its pin is machine-enforced
     in CI); each row grades one printed step's statement and proof route
     against the Lean development."""
-    path = REPO / 'docs' / 'NON_MF_PROOF_LEDGER.md'
+    path = REPO / 'metadata' / 'NON_MF_PROOF_LEDGER.md'
     if not path.exists():
         return {}
     txt = path.read_text(encoding='utf-8')
@@ -146,7 +146,7 @@ def main():
         '/*__BUILD_ID_JSON__*/', json.dumps(args.build_id))
     template = read(HERE / 'template.html')
     tex = read(REPO / 'non_mf_groups_exist.tex')
-    claims = read(REPO / 'docs' / 'NON_MF_NUMBERED_CLAIMS.json')
+    claims = read(REPO / 'metadata' / 'NON_MF_NUMBERED_CLAIMS.json')
 
     # inline the woff2 fonts into the KaTeX css; drop the woff/ttf fallbacks
     def font_uri(m):

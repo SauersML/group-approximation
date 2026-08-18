@@ -178,15 +178,15 @@ jobs:
 
       - name: Regenerate and compare exact signatures
         run: |
-          cp docs/CLAIM_SIGNATURES.md /tmp/CLAIM_SIGNATURES.expected.md
-          cp docs/NON_MF_CLAIM_SIGNATURES.md /tmp/NON_MF_CLAIM_SIGNATURES.expected.md
+          cp metadata/CLAIM_SIGNATURES.md /tmp/CLAIM_SIGNATURES.expected.md
+          cp metadata/NON_MF_CLAIM_SIGNATURES.md /tmp/NON_MF_CLAIM_SIGNATURES.expected.md
           lake env lean scripts/Signatures.lean
-          cmp -s /tmp/CLAIM_SIGNATURES.expected.md docs/CLAIM_SIGNATURES.md
+          cmp -s /tmp/CLAIM_SIGNATURES.expected.md metadata/CLAIM_SIGNATURES.md
           cmp -s /tmp/NON_MF_CLAIM_SIGNATURES.expected.md \
-            docs/NON_MF_CLAIM_SIGNATURES.md
-          mv /tmp/CLAIM_SIGNATURES.expected.md docs/CLAIM_SIGNATURES.md
+            metadata/NON_MF_CLAIM_SIGNATURES.md
+          mv /tmp/CLAIM_SIGNATURES.expected.md metadata/CLAIM_SIGNATURES.md
           mv /tmp/NON_MF_CLAIM_SIGNATURES.expected.md \
-            docs/NON_MF_CLAIM_SIGNATURES.md
+            metadata/NON_MF_CLAIM_SIGNATURES.md
 
       - name: Fresh kernel replay
         run: lake env leanchecker --fresh GroupApproximation

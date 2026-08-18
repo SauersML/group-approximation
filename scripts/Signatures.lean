@@ -28,8 +28,8 @@ Run after a build:
 
     lake env lean scripts/Signatures.lean
 
-then commit the regenerated `docs/CLAIM_SIGNATURES.md` and
-`docs/NON_MF_CLAIM_SIGNATURES.md`.  CI runs the same command and requires
+then commit the regenerated `metadata/CLAIM_SIGNATURES.md` and
+`metadata/NON_MF_CLAIM_SIGNATURES.md`.  CI runs the same command and requires
 both committed files to match.
 -/
 
@@ -72,8 +72,8 @@ the lexical index and the elaborated library disagree"
 run_cmd do
   let env ← getEnv
   let jobs : List (System.FilePath × System.FilePath) :=
-    [("docs" / "CLAIM_DECLS.txt", "docs" / "CLAIM_SIGNATURES.md"),
-     ("docs" / "NON_MF_CLAIM_DECLS.txt", "docs" / "NON_MF_CLAIM_SIGNATURES.md")]
+    [("metadata" / "CLAIM_DECLS.txt", "metadata" / "CLAIM_SIGNATURES.md"),
+     ("metadata" / "NON_MF_CLAIM_DECLS.txt", "metadata" / "NON_MF_CLAIM_SIGNATURES.md")]
   for (declsPath, outPath) in jobs do
     let count ← writeSignatures env declsPath outPath
     logInfo m!"wrote {outPath} ({count} declarations)"

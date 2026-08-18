@@ -868,15 +868,20 @@ function setupLeanPanels(root) {
     const ref = ev.target.closest('.lean-ref');
     if (ref) {
       ev.preventDefault();
-      const pre = ref.closest('pre, .ledger-step');
-      const next = pre && pre.nextElementSibling;
-      if (next && next.classList.contains('lean-ref-card')) {
-        const same = next.dataset.key === ref.dataset.key;
-        next.remove();
+      const host = ref.closest('pre, .ledger-step');
+      if (!host) return;
+      const inStep = host.classList.contains('ledger-step');
+      // a step row contains its expansion; a code block puts it just after
+      const existing = inStep
+        ? host.querySelector(':scope > .lean-ref-card')
+        : (host.nextElementSibling && host.nextElementSibling.classList.contains('lean-ref-card') ? host.nextElementSibling : null);
+      if (existing) {
+        const same = existing.dataset.key === ref.dataset.key;
+        existing.remove();
         if (same) return;
       }
       const rec = (window.LEAN_SIGS || {})[ref.dataset.key];
-      if (!rec || !pre) return;
+      if (!rec) return;
       const mod = ref.dataset.key.split('|')[0], nm = ref.dataset.key.split('|')[1];
       const card = document.createElement('div');
       card.className = 'lean-ref-card';
@@ -884,7 +889,7 @@ function setupLeanPanels(root) {
       card.innerHTML = '<pre class="lean-code">' + leanCodeHtml(rec.sig, mod, nm) + '</pre>' +
         '<a class="lean-mod" href="' + GITHUB_BLOB + escHtml(mod) + '.lean#L' + rec.line +
         '" target="_blank" rel="noopener">' + escHtml(mod) + '.lean:' + rec.line + '</a>';
-      pre.after(card);
+      if (inStep) host.appendChild(card); else host.after(card);
       return;
     }
     // a cross-reference chip inside the drawer navigates the paper: get out of the way

@@ -33,7 +33,7 @@ from lean_decls import build_index
 
 REPO = Path(__file__).resolve().parent.parent
 DEFAULT_TEX = REPO / "non_mf_groups_exist.tex"
-DEFAULT_MANIFEST = REPO / "docs" / "NON_MF_NUMBERED_CLAIMS.json"
+DEFAULT_MANIFEST = REPO / "metadata" / "NON_MF_NUMBERED_CLAIMS.json"
 
 RESULT_ENVS = (
     "mainthm",

@@ -906,8 +906,12 @@ import GroupApproximation.Analysis.CStarTensorProductConcrete
 import GroupApproximation.Analysis.CStarTensorProductAlgebra
 import GroupApproximation.Analysis.CStarStateSeparation
 import GroupApproximation.Analysis.CStarStateGNS
+import GroupApproximation.Analysis.CStarStatePullback
 import GroupApproximation.Analysis.CStarMinTensorNorm
 import GroupApproximation.Analysis.CStarMaxTensorNorm
+import GroupApproximation.Analysis.CStarMinTensorFunctorial
+import GroupApproximation.Analysis.CStarMinTensorQuotient
+import GroupApproximation.Analysis.CStarNonUnitalState
 import GroupApproximation.Analysis.CStarIdealQuotient
 import GroupApproximation.Analysis.CStarQuotientIdentity
 import GroupApproximation.Analysis.CStarIdealApproximateUnit
@@ -924,6 +928,7 @@ import GroupApproximation.Sofic.FiniteNormalAnyUniverse
 import GroupApproximation.Sofic.SoundIterateInstances
 import GroupApproximation.Sofic.ContinuumMultiplicityCore
 import GroupApproximation.Sofic.PrintedPreliminaryEstimates
+import GroupApproximation.Sofic.PrintedCentralSignCriterion
 import GroupApproximation.Sofic.PrintedNegativeCornerKill
 import GroupApproximation.Sofic.PrintedCentralSignCriterion
 import GroupApproximation.Sofic.PrintedReverseTransportRoute

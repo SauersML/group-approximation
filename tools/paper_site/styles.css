@@ -325,6 +325,7 @@ dl.bib { margin: 1em 0; }
 .hover-card .thm-tools { display: none; }
 .hover-card .hc-head { margin-bottom: 5px; display: flex; gap: 4px; }
 .hover-card .hc-sec { font-weight: 600; }
+.hover-card .hc-sec .secnum { margin-right: 8px; }
 .hover-card p:last-child { margin-bottom: 0; }
 .hover-card .eqno { display: none; }
 
@@ -390,6 +391,11 @@ details.proof > summary .badge-lean { font-size: 12px; padding: 0 8px; }
   border-left: 2px solid var(--rule);
 }
 .lean-ref-card .lean-code { margin: 0 0 4px; }
+.ledger-step .lean-ref-card {
+  flex: 1 1 100%;
+  margin: 2px 0 4px 10px;
+  background: var(--bg-inset); border-radius: 6px;
+}
 .claim-card .lean-code { max-height: 300px; overflow-y: auto; }
 .lean-decl { margin: 6px 0; }
 .lean-decl summary { cursor: pointer; overflow-wrap: anywhere; list-style-position: inside; font-size: 0.95em; }
