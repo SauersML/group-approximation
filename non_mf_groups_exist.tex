@@ -2178,18 +2178,24 @@ onto a Clifford quotient.
 
 \paragraph{Sharpness of the Kazhdan hypothesis.}
 Running the Clifford representation of the preceding proof over
-finite site sets gives finite-dimensional monomial models of the
-seven relators in which $w_{\mathrm{BS}}$ acts by the scalar $-1$.
-Assembling them gives
+finite site sets gives explicit finite-dimensional unitary asymptotic
+models of the seven relators in which $w_{\mathrm{BS}}$ acts by the
+scalar $-1$ exactly: every matrix is monomial or an equal-weight sum
+of two monomial matrices, five relators hold exactly, and the two
+remaining relators $t\gamma_0t^{-1}=\gamma_0^2$ and $[c,\gamma_0]=1$
+hold up to an operator-norm defect that vanishes as the site set
+grows.  Assembling the models gives
 $\Theta\colon E_{\mathrm{BS}}\to\U(\mathcal Q)$ with
 $\Theta(w_{\mathrm{BS}})\ne1$, and the image of $\Theta$ is MF
 because it embeds in $\U(\mathcal Q)$.  The realized Clifford
 quotient is in fact amenable --- a subgroup of the semidirect product
 of the locally finite Clifford group on the coset space by the
 solvable affine group
-$\mathrm{BS}(1,2)\cong\mathbb Z[1/2]\rtimes\mathbb Z$ --- and the
-monomial models exhibit its MF property directly, with no
-quasidiagonality input.  Thus the
+$\mathrm{BS}(1,2)\cong\mathbb Z[1/2]\rtimes\mathbb Z$ --- but the
+argument uses neither that fact nor any quasidiagonality input: what
+the models establish is that $w_{\mathrm{BS}}$ survives in the MF
+group $\Theta(E_{\mathrm{BS}})$, not that they separate the realized
+Clifford quotient.  Thus the
 property~\textup{(T)} hypothesis in the central involution
 obstruction is essential: with the cyclic base
 $\langle\gamma_0\rangle$ in place of a Kazhdan base, the
@@ -2245,7 +2251,7 @@ central-involution arguments are unchanged for every $m\ge2$.
 For a countable group $G_1$, the \emph{MF residual} is
 \[
   \operatorname{Res}_{\mathrm{MF}}(G_1)
-  \;=\;\bigcap_{(d_n)}\,\bigl\{\ker\Theta:\ \Theta\ \text{a homomorphism }G_1\to\U(\mathcal Q((d_n)))\bigr\},
+  \;=\;\bigcap_{(d_n)}\ \,\bigcap_{\Theta\colon G_1\to\U(\mathcal Q((d_n)))}\ker\Theta,
 \]
 a normal subgroup of $G_1$; the inner intersection is over all
 homomorphisms and the outer one over all sequences $(d_n)$ of positive
