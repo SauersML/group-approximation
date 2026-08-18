@@ -461,8 +461,20 @@ where the product is the bounded $C^*$-product and $\bigoplus_n$ is the
 $c_0$-sum, the ideal of sequences with $\opnorm{x_n}\to0$; equivalently,
 $\mathcal Q$ is the corona algebra of $\bigoplus_nM_{d_n}(\C)$.  Write
 $q\colon\prod_{n}M_{d_n}(\C)\to\mathcal Q$ for the quotient map.
+
 Following Blackadar--Kirchberg \cite{BK}, a separable $C^*$-algebra is
 \emph{MF} if it embeds into an algebra of the form \eqref{eq:corona}.
+
+\emph{Convention on the dimension sequence.}  Written without an
+argument, $\mathcal Q$ abbreviates $\mathcal Q((d_n)_{n\in\N})$ for a
+sequence $(d_n)$ that is either fixed by the surrounding discussion or,
+where none is, existentially quantified: a homomorphism, embedding or
+representation \emph{into $\mathcal Q$ or $\U(\mathcal Q)$} means one
+into $\mathcal Q((d_n))$ or $\U(\mathcal Q((d_n)))$ for some sequence
+$(d_n)$ of positive integers, and a quantification over all such maps
+ranges over the dimension sequences as well.  By
+Proposition~\ref{prop:mf-equivalences} nothing below changes if the
+sequences are further required to be strictly increasing.
 
 The following lifting lemmas are standard perturbation theory; see
 Loring \cite{Loring} for a systematic treatment.
@@ -1657,12 +1669,10 @@ along an exhaustion with errors tending to zero.  For each fixed pair
 $g,h$, the multiplicative defect tends to $0$, and for each fixed pair
 $g\ne h$, the separation is eventually at least $1$.  Hence the classes define an
 injective homomorphism into $\prod_n\U(r_n)/\mathcal N$, with no
-condition on the dimension sequence.  In particular every nonidentity
-element is separated by some homomorphism to a matrix quotient, so the
-MF residual of
-Definition~\ref{def:radical} is trivial, and
-Proposition~\ref{prop:univquot}(2) then combines these separating
-sequences into a single faithful homomorphism to $\U(\mathcal Q)$.
+condition on the dimension sequence.  Composing it with the isomorphism
+$\kappa_{(r_n)}$ of Lemma~\ref{lem:unitarycorona} gives an injective
+homomorphism $G\to\U(\mathcal Q((r_n)))$, which is the group-MF
+definition.
 
 \end{proof}
 
@@ -2055,27 +2065,53 @@ For $g\in\bar H$ the projection $\pi(g)P\pi(g)^{*}$ has range
 $\operatorname{Fix}\pi(g\bar Kg^{-1})=\operatorname{Fix}\pi(\bar K)$ by
 normality, so $P$ and $q$ commute with $\pi(\bar H)$ exactly.  Lift $q$
 to projections $q_n\in M_{d_n}(\C)$, nonzero along $\omega$ and with
-$\opnorm{[q_n,V_{g,n}]_{-}}\to_\omega0$ for every $g\in\bar H$.
+$\opnorm{[q_n,V_{g,n}]_{-}}\to_\omega0$ for every $g\in\bar H$, and lift
+$h$ to the self-adjoint coordinates
+\[
+ h_n=\frac1{2|S|}\sum_{a\in S}\bigl(V_{a,n}+V_{a,n}^{*}\bigr)
+ \in M_{d_n}(\C),
+\]
+which represent $h$ because $S$ is symmetric.  The compression of $h$
+to the corner satisfies $qhq\le\theta q$ in $B_\omega$, and, writing
+$x_{+}$ for the positive part of a self-adjoint $x$, the positive part
+is a continuous function of $x$ and the norm ultraproduct computes it
+coordinatewise, so that inequality is exactly the coordinate statement
+\begin{equation}\label{eq:corner-spectral}
+ \opnorm{\bigl(q_nh_nq_n-\theta q_n\bigr)_{+}}\to_\omega0 .
+\end{equation}
 
 To obtain ordinary convergence before compressing, pass to a
 subsequence.  Enumerate
 $\bar H=\{g_1,g_2,\dots\}$.  For each $j$ the set
 \[
- A_j=\{n\ :\ q_n\ne0\ \text{ and }\
- \opnorm{[q_n,V_{g_i,n}]_{-}}<1/j\ \text{ for all }i\le j\}
+ A_j=\Bigl\{n\ :\ q_n\ne0,\ \ \max_{i\le j}\opnorm{[q_n,V_{g_i,n}]_{-}}<1/j,\ \
+ \opnorm{\bigl(q_nh_nq_n-\theta q_n\bigr)_{+}}<1/j\Bigr\}
 \]
-is a finite intersection of sets in $\omega$, hence lies in $\omega$ and
+is again a finite intersection of sets in $\omega$ --- the last
+constraint by \eqref{eq:corner-spectral} --- hence lies in $\omega$ and
 in particular is infinite.  Choose $n_1<n_2<\cdots$ with $n_j\in A_j$
 and relabel along $(n_j)_j$.  On the relabelled sequence $q_n\ne0$ for
-every $n$ and $\opnorm{[q_n,V_{g,n}]_{-}}\to0$ in the ordinary sense for
+every $n$, $\opnorm{[q_n,V_{g,n}]_{-}}\to0$ in the ordinary sense for
 every fixed $g\in\bar H$, since $g=g_i$ lies in the constraint of $A_j$
-for all $j\ge i$.  Compressing every model to $q_nM_{d_n}(\C)q_n$ and
+for all $j\ge i$, and the left-hand side of \eqref{eq:corner-spectral}
+tends to $0$ in the ordinary sense as well: carrying the spectral
+estimate into the subsequence is what the last constraint is for.
+Compressing every model to $q_nM_{d_n}(\C)q_n$ and
 polar-correcting now yields an operator-norm asymptotic representation
 $(W_{g,n})$ of $\bar H$ on nonzero blocks.
 
-\emph{A $2$-norm separation on the corner.}  Equip each corner block
-with its renormalized trace.  The corner compression satisfies
-$qhq\le\theta q$, so at $\omega$-most coordinates the average over $S$
+\emph{A $2$-norm separation on the corner.}  Write
+$r_n=\operatorname{rank}q_n$ and equip the corner
+$q_nM_{d_n}(\C)q_n\cong M_{r_n}(\C)$ with its renormalized trace
+$\tr_{r_n}$.  Applying $\tr_{r_n}$ to the ordinary form of
+\eqref{eq:corner-spectral} gives
+\[
+ \frac1{|S|}\sum_{a\in S}\operatorname{Re}\tr_{r_n}\bigl(q_nV_{a,n}q_n\bigr)
+ \;=\;\tr_{r_n}\bigl(q_nh_nq_n\bigr)\;\le\;\theta+o(1),
+\]
+and polar correction moves each $q_nV_{a,n}q_n$ by $o(1)$ in operator
+norm, hence by $o(1)$ in $\tr_{r_n}$, so the same bound holds with
+$W_{a,n}$ in its place: the average over $S$
 of the real parts of the renormalized traces of the compressed models
 is at most $\theta+o(1)$.  For each $n$, at least one generator in
 $S$ therefore has compressed model with real renormalized trace at
@@ -2110,7 +2146,8 @@ composes with $\Theta$ to one of $H$, so every element of $\Theta(D)$
 is again $2$-norm trivial, while $\bar K=\Theta(K)\le\Theta(D)$ is
 normal, Kazhdan and nontrivial.  Repeat the Kazhdan-corner
 construction from the proof of Theorem~\ref{thm:normal-kazhdan} for
-$\bar K$: it produces a corner and an element $s_0\in\bar K$ that
+$\bar K$, including \eqref{eq:corner-spectral} among the constraints
+that select the subsequence: it produces a corner and an element $s_0\in\bar K$ that
 stays a positive $2$-norm distance from the corner identity.  Since
 $s_0\in\Theta(D)$ is $2$-norm trivial, this is a contradiction.
 \end{proof}
@@ -2314,9 +2351,12 @@ central-involution arguments are unchanged for every $m\ge2$.
 For a countable group $G_1$, the \emph{MF residual} is
 \[
   \operatorname{Res}_{\mathrm{MF}}(G_1)
-  \;=\;\bigcap\,\bigl\{\ker\Theta:\ \Theta\ \text{a homomorphism }G_1\to\U(\mathcal Q)\bigr\},
+  \;=\;\bigcap_{(d_n)}\,\bigl\{\ker\Theta:\ \Theta\ \text{a homomorphism }G_1\to\U(\mathcal Q((d_n)))\bigr\},
 \]
-a normal subgroup of $G_1$.  If $G_1/N$ is MF then composing
+a normal subgroup of $G_1$; the inner intersection is over all
+homomorphisms and the outer one over all sequences $(d_n)$ of positive
+integers, in accordance with the convention fixed after
+\eqref{eq:corona}.  If $G_1/N$ is MF then composing
 $G_1\to G_1/N$ with an injective homomorphism $G_1/N\to\U(\mathcal Q)$
 gives a homomorphism with kernel $N$, so
 $\operatorname{Res}_{\mathrm{MF}}(G_1)\le N$.  Thus the MF residual is
@@ -2391,8 +2431,9 @@ single block coming from $\Theta_{\bar g_i}$ already separates
 $\bar g_i$, and the sum therefore separates all of
 $\bar g_1,\dots,\bar g_k$ at once.  The resulting sequence is an
 operator-norm asymptotic representation separating every nonidentity
-element from the identity; its class, composed with the
-polar-correction isomorphism of Lemma~\ref{lem:unitarycorona}, is a
+element from the identity; its class, composed with the canonical
+unitary-corona isomorphism $\kappa_{(d_n)}$ of
+Lemma~\ref{lem:unitarycorona}, is a
 faithful homomorphism $Q\to\U(\mathcal Q)$.  This proves (2), and composing with
 $G_1\twoheadrightarrow Q$ proves (1).  Finally, if $G_1$ is MF then an
 injective homomorphism to $\U(\mathcal Q)$ gives $R=\{1\}$; if $R=\{1\}$ then
@@ -2736,7 +2777,11 @@ with $\Theta(L)$ and $\Theta([\gamma,k])=1$ for every $\gamma\in L$.
 Write $q\colon E\to E/\langle w\rangle$, $\bar d=q(d)$, and
 $\bar L=q(\iota(\mathcal B))$.  The element $\bar d$ is an involution
 because $c^2=1$, and $q(t)\bar Lq(t)^{-1}$ centralizes $\bar d$
-because $t\iota(\mathcal B)t^{-1}$ commutes with $c$ in $E$.
+because conjugating the relation $[c,\iota(\mathcal B)]=1$
+of \eqref{eq:E} by $t$ gives
+$[\,t\iota(\mathcal B)t^{-1},\,d\,]=1$ in $E$, where $d=tct^{-1}$.
+(Commuting with $c$ would not suffice: it is $d$, not $c$, that must be
+centralized.)
 Property~\textup{(T)} passes to $\bar L$, and $q(t)$ conjugates it into
 itself.
 Thus (W1) and (W2) of Definition~\ref{def:invwitness} hold, and only
@@ -2946,9 +2991,12 @@ Let $\mathcal G$ be the graph on $X$ whose edges are the $\Sigma$-orbit
 of the pair $\{\tau o,\,j(\bar v_1)\tau o\}$, whose entries are
 distinct by Lemma~\ref{lem:linear}.  Two sites are adjacent in
 $\mathcal G$ exactly when they are distinct and lie in a common block.
-Adjacent sites share a block because
-$(\tau o)^{-1}\bigl(j(\bar v_1)\tau o\bigr)=\tau^{-1}j(\bar
-v_1)\tau\in K$.  Conversely, the chart
+Adjacent sites share a block because the two sites are $gB$ and $hB$
+for the representatives $g=\tau$ and $h=j(\bar v_1)\tau$, and
+$g^{-1}h=\tau^{-1}j(\bar v_1)\tau\in K$ since $j(\bar v_1)\in B$ and
+$K=\tau^{-1}B\tau$; hence $gK=hK$.  (Sites are cosets, so the product
+and inverse have to be taken in $\Sigma$ on representatives, not on the
+sites themselves.)  Conversely, the chart
 $u\,\bar\alpha(\bar\Gamma)\mapsto\tau^{-1}j(u)\tau o$ identifies the
 block of $o$ with $\bar\Gamma/\bar\alpha(\bar\Gamma)$ and the
 generating edge with the pair
@@ -3402,7 +3450,7 @@ hyperlinear model.  This
 question concerns the CDE convention fixed above; for stronger
 trace-controlled MF conventions the implication is built into the definition.
 \item For which groups do the criteria of
-Theorems~\ref{thm:criterion}, \ref{thm:normal-kazhdan}
+Theorems~\ref{thm:criterion},~\ref{thm:normal-kazhdan}
 and~\ref{thm:projection-collapse} compute the residual exactly?
 \item Does the obstruction survive when the matrix blocks are replaced
 by other building blocks?  The proof of
@@ -3434,8 +3482,9 @@ direct product $P_1\times P_2$ with $P_i\cong P$.  Choosing an
 isomorphism $\alpha\colon P\to P_1\le P$ and any
 $a\in P_2\setminus\{1\}$ gives the input required by
 Theorem~\ref{thm:kazhdan-clifford}.  The group $E(P,\alpha,a)$ has
-torsion even though $P$ does not, since the construction adjoins the
-involution $c$.
+torsion even though $P$ does not: the theorem supplies a \emph{nontrivial}
+central involution $w$, whereas adjoining a generator with $c^2=1$ would
+on its own leave open that $c$ collapses in the presented quotient.
 \end{remark}
 
 
@@ -3771,11 +3820,6 @@ C.~Schafhauser,
 \emph{Finite dimensional approximations of certain amalgamated free
 products of groups},
 preprint, 2023, \arxiv{2306.02498}.
-
-\bibitem[Sc17]{SchafhauserCuntz}
-C.~Schafhauser,
-\emph{MF traces and the Cuntz semigroup},
-preprint, 2017, \arxiv{1705.06555}.
 
 \bibitem[Sh]{Shulman}
 T.~Shulman,
