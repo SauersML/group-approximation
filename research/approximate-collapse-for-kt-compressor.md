@@ -378,8 +378,25 @@ recorded from the fork's report, self-contained).**
    but cannot address the compressor: at `k = 2` the compressor is
    not yet faithfully present.  The corrected base compute target:
    build `EL_r(P/m^{δ_A+1})`, its quasi-regular rep on the separating
-   coset space, and test `χ_π(g) = χ_π(β_A(g))` — a finite character
-   identity deciding whether the base rep is `β_A`-fixed.
+   coset space, and test `χ_π(g) = χ_π(β_A(g))`.
+
+   *EXECUTED (2026-08-18, sioux, `k = 3`, shear `A` cols
+   `(1,0,0),(1,1,0),(1,0,1)`, `δ_A = 2`).*  Non-degeneracy confirmed
+   (`β(y) = xy ≠ 0`, `β(x) = x`).  Result: on the root `(R, +)`,
+   `dim β_A(R) = 5` of `10` — a proper subspace of codimension 5
+   (monomials `y, z, y², yz, z²` missed) — so `χ_π ≠ χ_π ∘ β_A`
+   already at `k = 3`.  **But this is not evidence either way for the
+   crux, and the computation proves WHY: every finite level shows
+   `β_A(R)` proper (that IS separation, `char-p` restated), while the
+   crux asks whether the intertwining DEFECT `→ 0` asymptotically.  A
+   single finite character identity can only ever reconfirm
+   separation; it cannot see defect decay.**  Method fence: "compute
+   at larger `k`" is DEAD as a route to the crux — the finite towers
+   are separated at every stage by construction, and the question
+   lives entirely in the `‖·‖₂`-rate at which approximate
+   intertwiners close that fixed gap.  Whatever decides it is
+   analytic (a uniform lower bound on the defect, or a construction
+   achieving decay), not a bigger finite model.
 
 **Stakes, stated once:** a proof refutes hyperlinearity of the
 Kun–Thom wreath group (first non-hyperlinear group; group-CEP
