@@ -21,8 +21,7 @@ what it costs.
 ## Manuscript location
 
 Navigate `non_mf_groups_exist.tex` by stable anchors only; the file is under
-concurrent edit and line numbers drift (at the time of writing the subsection
-occupies roughly lines 3251--3290).
+concurrent edit and every offset drifts within minutes of being written down.
 
 * `\subsection{Undecidability of MF recognition}` inside `sec:consequences`;
 * the corollary `\label{cor:undecidable}`;

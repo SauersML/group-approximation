@@ -5,19 +5,27 @@ import GroupApproximation.Sofic.LiteralBaseRotationRetract
 /-!
 # Step 3 of `prop:literal-base-T`, through the printed objects
 
-Manuscript target: Step 3 of the proof of Proposition `prop:literal-base-T`,
-`non_mf_groups_exist.tex` lines 1404–1449 (the proposition itself occupies
-lines 1322–1450).  The stable anchor is the label `prop:literal-base-T`,
-Step 3.
+Manuscript target: Step 3 of the printed proof of Proposition
+`\ref{prop:literal-base-T}`.
+
+**That proof no longer exists.**  Commit `3a45fa60` ("Editorial pass: rewrite
+orbit collapse, cut what nothing uses") replaced the three-step property-`(T)`
+argument with a one-paragraph citation of `\ref{rem:classical-base}` and
+`\cite[Example~1.7.4(i)]{BHV}`; the proposition's statement is unchanged and
+still badged, but every clause quoted below has been deleted from the
+manuscript, and `docs/P13_STEP_AUDIT.md` is graded against the deleted text.
+The quotations are kept verbatim so the audit rows stay readable, and the
+declarations are kept because they are correct and imported; none of them is
+badgeable any more.
 
 This module gives Lean counterparts to the Step-3 clauses that the
 step-for-step audit (`docs/P13_STEP_AUDIT.md`, §3) recorded as `MISMATCH` or
-`MISSING`, using the objects the manuscript names rather than the
+`MISSING`, using the objects the manuscript named rather than the
 equally-valid substitutes the existing development uses.
 
 * **T3.11** *"The orbit of `p` under the translation subgroup is bounded, so
   the Hilbert-space circumcenter argument gives a translation-fixed vector `q`
-  with `‖q-p‖ ≤ 1/8`"* (lines 1436–1438).  Routed through the genuine
+  with `‖q-p‖ ≤ 1/8`"* (item 3 of Step 3).  Routed through the genuine
   circumcenter — the centre of the smallest enclosing ball — of
   `Kazhdan/HilbertCircumcenter.lean`, via
   `P13CircumcenterRoute.exists_near_fixedSubspace_circumcenter`, instead of the
@@ -25,16 +33,17 @@ equally-valid substitutes the existing development uses.
 * **T3.04** *"The third basis translation needs no separate control:
   `v₁ = x v₂ x⁻¹` by the displayed `x`-action, and conjugation by the fixed
   unitary of `x` preserves displacements of vectors fixed by the linear
-  subgroup"* (lines 1415–1418).  Both halves are proved here.  (The existing
+  subgroup"* (item 1 of Step 3).  Both halves are proved here.  (The existing
   development omits `v₁` for a different, also correct, reason: the
   two-conjugate normal form of item 2 already covers it.)
 * **T3.02** *"every lattice element is a product of two linear-subgroup
   conjugates of basis translations … Hence every translation displaces `p` by
-  at most `1/8`"* (lines 1424–1435).  Stated with a displacement hypothesis on
+  at most `1/8`"* (item 2 of Step 3).  Stated with a displacement hypothesis on
   all three *basis* translations, which is what the printed item 2 assumes, so
   that T3.04 is a genuine input to it rather than an unused aside.
 * **T3.01** *"the generators `x,y,z` of `B` satisfy the relators of `R`, so
-  `R` maps to the linear subgroup of `B` they generate"* (lines 1404–1407).
+  `R` maps to the linear subgroup of `B` they generate"* (the opening of
+  Step 3).
   Property `(T)` is transported along that **surjection** onto the linear
   subgroup, by the quotient permanence the manuscript already invokes in
   Step 2 — not along the isomorphism `Rotation ≃* rotations`, which is a

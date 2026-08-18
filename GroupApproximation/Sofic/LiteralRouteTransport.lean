@@ -16,15 +16,20 @@ argument.
 
 `KazhdanAsymptoticCommutant.transport` cannot simply be repointed, because it
 is not only a consumer of the route — it is the *engine of the second printed
-proof*.  `ManuscriptKazhdanTransport.finiteStageKazhdanTransport`, which the
-manuscript announces at `\label{rem:finite-stage}` and proves at
-`\label{app:finite-stage}`, is built on `transport` (its line 208,
-`have hy_sq := transport B C x hx_sq hbound'`).  Rewiring `transport` onto the
-ultraproduct route would therefore leave the manuscript claiming two
-independent proofs of `thm:kazhdan-transport` while the corpus contained one,
-wearing two names.  That is the exact defect class this audit exists to catch,
-so the finite-stage engine is left alone and the literal route is added beside
-it.
+proof*.  `ManuscriptKazhdanTransport.finiteStageKazhdanTransport` is built on
+`transport` (search that module for `have hy_sq := transport B C x hx_sq`).
+Rewiring `transport` onto the
+ultraproduct route would therefore leave the corpus with one proof of
+`\ref{thm:kazhdan-transport}` wearing two names.  That is the exact defect
+class this audit exists to catch, so the finite-stage engine is left alone and
+the literal route is added beside it.
+
+Historical note: the manuscript used to announce the finite-stage proof in a
+remark and print it as an appendix, and both are gone -- commit `3a45fa60` cut
+them once the ultraproduct reading of the collapse step became their only
+consumer.  So the "two independent printed proofs" the paragraph above guards
+against is now a Lean-side fact only: what is printed is the single
+ultraproduct proof inside `\ref{sec:transport}`.
 
 The two are deliberately interchangeable: identical statement, identical
 hypotheses, different proof.  A consumer picks its route by picking its name.
@@ -128,10 +133,10 @@ theorem transport_literal
 
 Counterparts of `transport_both`, `compressionSet_transport_both` and
 `compressionGroup_transport_both`, differing from them in exactly one place:
-the forward half is `transport_literal` rather than `transport`.  The Appendix-B
-chain is left standing beside this one, so the two printed proofs remain two
-developments and a reader can tell which route a declaration traverses from its
-name.
+the forward half is `transport_literal` rather than `transport`.  The
+finite-stage chain is left standing beside this one, so the two routes remain
+two developments and a reader can tell which one a declaration traverses from
+its name.  (Only the first is printed; see the historical note above.)
 
 The reverse half is still `transport_star`, which reverses the *approximate*
 leakage bound.  That is deliberate and is the honest state: the printed reverse

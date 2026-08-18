@@ -4,15 +4,21 @@ import GroupApproximation.Kazhdan.KazhdanFixedSpace
 /-!
 # The Hilbert-space circumcenter route to a translation-fixed vector
 
-This module supplies the fixed-point engine that item 3 of Step 3 of
-Proposition `prop:literal-base-T` actually names:
+This module supplies the fixed-point engine that item 3 of Step 3 of the
+printed proof of Proposition `\ref{prop:literal-base-T}` named:
 
 > *"The orbit of `p` under the translation subgroup is bounded, so the
 > Hilbert-space circumcenter argument gives a translation-fixed vector `q`
 > with `‖q-p‖ ≤ 1/8`."*
 
-(`non_mf_groups_exist.tex`, lines 1436–1438, inside the proof of
-`prop:literal-base-T` at lines 1322–1450.)
+**That proof is no longer printed.**  Commit `3a45fa60` ("Editorial pass:
+rewrite orbit collapse, cut what nothing uses") replaced the three-step
+property-`(T)` argument with a citation: `\ref{prop:literal-base-T}` now proves
+its statement from `\ref{rem:classical-base}` and `\cite[Example~1.7.4(i)]{BHV}`
+in a single paragraph, and the proposition's own statement is untouched.  The
+quotation above is therefore a record of the deleted text.  The mathematics
+below is unaffected and still supports the badged bridge declaration, but no
+badge is owed on the circumcenter step itself, because no such step is printed.
 
 The *circumcenter* of a bounded set is the centre of its smallest enclosing
 ball — the unique minimizer of the covering radius.  That object, together
