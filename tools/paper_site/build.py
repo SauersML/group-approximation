@@ -11,6 +11,7 @@ push with no separate content pipeline.  Stdlib only; no toolchain.
 import argparse
 import base64
 import json
+import os
 import re
 import sys
 from pathlib import Path
@@ -52,13 +53,18 @@ def extract_decl(module, decl):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('--out', default=str(HERE / 'index.html'))
+    ap.add_argument('--build-id', default=os.environ.get('GITHUB_SHA', 'dev'))
     args = ap.parse_args()
 
     katex_css = read(HERE / 'katex' / 'katex.min.css')
     katex_js = read(HERE / 'katex' / 'katex.min.js')
     site_css = read(HERE / 'styles.css')
+    polish_css = read(HERE / 'polish.css')
     parser_js = read(HERE / 'parser.js')
     ui_js = read(HERE / 'ui.js')
+    enhance_js = read(HERE / 'enhance.js')
+    freshness_js = read(HERE / 'freshness.js').replace(
+        '/*__BUILD_ID_JSON__*/', json.dumps(args.build_id))
     template = read(HERE / 'template.html')
     tex = read(REPO / 'non_mf_groups_exist.tex')
     claims = read(REPO / 'docs' / 'NON_MF_NUMBERED_CLAIMS.json')
@@ -89,16 +95,19 @@ def main():
     )
 
     for name, payload in [
-        ('KATEX_JS', katex_js), ('PARSER_JS', parser_js), ('UI_JS', ui_js), ('DATA_JS', data_js),
+        ('FRESHNESS_JS', freshness_js), ('KATEX_JS', katex_js),
+        ('PARSER_JS', parser_js), ('UI_JS', ui_js), ('ENHANCE_JS', enhance_js),
+        ('DATA_JS', data_js),
     ]:
         if '</script' in payload.replace('<\\/script', ''):
             sys.exit(f'{name} contains a literal </script sequence')
 
     out = template
     for name, payload in [
-        ('KATEX_CSS', katex_css), ('SITE_CSS', site_css),
+        ('FRESHNESS_JS', freshness_js), ('KATEX_CSS', katex_css),
+        ('SITE_CSS', site_css), ('POLISH_CSS', polish_css),
         ('KATEX_JS', katex_js), ('DATA_JS', data_js),
-        ('PARSER_JS', parser_js), ('UI_JS', ui_js),
+        ('PARSER_JS', parser_js), ('UI_JS', ui_js), ('ENHANCE_JS', enhance_js),
     ]:
         marker = f'/*__{name}__*/'
         assert marker in out, marker
@@ -107,6 +116,15 @@ def main():
     dest = Path(args.out)
     dest.parent.mkdir(parents=True, exist_ok=True)
     dest.write_text(out, encoding='utf-8')
+
+    if re.fullmatch(r'[0-9a-fA-F]{7,64}', args.build_id):
+        version = args.build_id.lower()
+        (dest.parent / 'version.json').write_text(
+            json.dumps({'version': version}, separators=(',', ':')) + '\n', encoding='utf-8')
+        versioned = dest.parent / 'v' / version / 'index.html'
+        versioned.parent.mkdir(parents=True, exist_ok=True)
+        versioned.write_text(out, encoding='utf-8')
+
     print(f'wrote {dest} ({len(out)/1e6:.2f} MB)')
 
 

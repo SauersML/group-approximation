@@ -3,30 +3,48 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate, max-age=0">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
 <title>A finitely presented non-MF group</title>
+<style>
+.freshness-check body,.freshness-error body{visibility:hidden}
+.freshness-error::before{
+  content:"Unable to verify the latest version. Reload.";
+  position:fixed;inset:0;display:grid;place-items:center;
+  font:14px Arial,Helvetica,sans-serif;color:#50545b;background:#fff
+}
+</style>
+<script>
+/*__FRESHNESS_JS__*/
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=STIX+Two+Text:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
 <style>
 /*__KATEX_CSS__*/
 /*__SITE_CSS__*/
+/*__POLISH_CSS__*/
 </style>
 </head>
 <body>
 
 <div class="topbar">
+  <button class="topbar-btn toc-toggle" id="toc-toggle" aria-controls="paper-sidebar" aria-expanded="false">Contents</button>
   <div class="topbar-title">A finitely presented non-MF group</div>
-  <nav class="tabs" aria-label="Views">
-    <button class="tab is-on" data-view="paper">Paper</button>
-    <button class="tab" data-view="claims">Claims</button>
-    <button class="tab" data-view="graph">Graph</button>
+  <nav class="tabs" aria-label="Views" role="tablist">
+    <button class="tab is-on" id="tab-paper" data-view="paper" role="tab" aria-selected="true" aria-controls="view-paper">Paper</button>
+    <button class="tab" id="tab-claims" data-view="claims" role="tab" aria-selected="false" aria-controls="view-claims" tabindex="-1">Claims</button>
+    <button class="tab" id="tab-graph" data-view="graph" role="tab" aria-selected="false" aria-controls="view-graph" tabindex="-1">Graph</button>
   </nav>
+  <button class="topbar-btn proof-toggle" id="proof-toggle" aria-pressed="false">Hide proofs</button>
 </div>
 
+<button class="toc-scrim" id="toc-scrim" aria-label="Close contents" hidden></button>
 <div class="shell">
-  <aside class="sidebar"><div id="toc-slot"></div></aside>
+  <aside class="sidebar" id="paper-sidebar"><div id="toc-slot"></div></aside>
   <main class="main">
-    <div id="view-paper">
+    <div id="view-paper" role="tabpanel" aria-labelledby="tab-paper">
       <div class="content">
         <span id="top"></span>
         <header class="paper-head">
@@ -39,8 +57,8 @@
         <div id="paper-body"><p id="typesetting-note">Typesetting…</p><noscript>This edition needs JavaScript to typeset the paper.</noscript></div>
       </div>
     </div>
-    <div id="view-claims" hidden><div class="content" id="claims-content"></div></div>
-    <div id="view-graph" hidden><div class="content" id="graph-content"></div></div>
+    <div id="view-claims" role="tabpanel" aria-labelledby="tab-claims" hidden><div class="content" id="claims-content"></div></div>
+    <div id="view-graph" role="tabpanel" aria-labelledby="tab-graph" hidden><div class="content" id="graph-content"></div></div>
   </main>
 </div>
 
@@ -55,6 +73,9 @@
 </script>
 <script>
 /*__UI_JS__*/
+</script>
+<script>
+/*__ENHANCE_JS__*/
 </script>
 </body>
 </html>
