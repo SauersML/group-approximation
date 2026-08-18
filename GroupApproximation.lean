@@ -1148,6 +1148,7 @@ import GroupApproximation.Analysis.CStarTakesakiDense
 import GroupApproximation.Analysis.CStarTakesakiMinLe
 import GroupApproximation.Analysis.CStarTakesakiCyclic
 import GroupApproximation.Analysis.CStarTakesakiIdentification
+import GroupApproximation.Analysis.TracialStandardFormCommutation
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
