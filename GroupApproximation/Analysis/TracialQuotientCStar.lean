@@ -181,8 +181,8 @@ theorem exists_ideal_approximate_unit (j : ModelBoundedSequence X)
 -- The `set_option ... in` must precede the docstring: between a docstring and
 -- its declaration Lean expects the declaration itself, and a `set_option`
 -- there is a parse error rather than a scoping mistake.
-set_option synthInstance.maxHeartbeats 800000 in
-set_option maxHeartbeats 1000000 in
+set_option synthInstance.maxHeartbeats 2000000 in
+set_option maxHeartbeats 4000000 in
 /-- **The C⋆-identity for the tracial matrix quotient.**
 
 Only `‖x‖² ≤ ‖x⋆ x‖` is proved: it is mathlib's sole `CStarRing` field, and the
@@ -311,8 +311,8 @@ noncomputable instance tracialMatrixQuotientCStarAlgebra :
 
 -- The same two budgets as on `norm_mul_self_le_norm_star_mul`, for the same
 -- reason: the statement alone resolves `star`, `*` and `‖·‖` on the quotient.
-set_option synthInstance.maxHeartbeats 800000 in
-set_option maxHeartbeats 1000000 in
+set_option synthInstance.maxHeartbeats 2000000 in
+set_option maxHeartbeats 4000000 in
 /-- The C⋆-identity of the quotient in its two-sided, equational form.  The
 `CStarRing` field carries only `‖x‖ * ‖x‖ ≤ ‖x⋆ x‖`; mathlib assembles the
 reverse from submultiplicativity and the isometric involution, and this
@@ -323,8 +323,8 @@ theorem norm_tracialMatrixQuotient_star_mul_self
 
 /-! ## The quotient norm as an infimum -/
 
-set_option synthInstance.maxHeartbeats 800000 in
-set_option maxHeartbeats 1000000 in
+set_option synthInstance.maxHeartbeats 2000000 in
+set_option maxHeartbeats 4000000 in
 /-- **The approximate-unit formula for the quotient norm**:
 `‖a + J‖ = inf { ‖a - a e‖ : e ∈ J }`.
 
@@ -400,7 +400,6 @@ theorem norm_mk_eq_sInf (a : ModelBoundedSequence X) :
             exact norm_mul_le _ _
         _ ≤ ‖m‖ * 1 + ε / 2 := by
             gcongr
-            · exact norm_nonneg m
             · exact he_one_sub
             · exact he_move
         _ = ‖m‖ + ε / 2 := by rw [mul_one]
