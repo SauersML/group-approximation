@@ -28,9 +28,50 @@ DECL_HEAD = re.compile(
     r'^(?:@\[[^\]]*\]\s*)?(?:noncomputable\s+)?(?:private\s+)?'
     r'(theorem|lemma|def|abbrev|instance|structure|inductive)\s+(\S+)', re.M)
 
+# A line that starts a new top-level item ends the previous declaration.
+NEXT_TOP = re.compile(
+    r'^(?:@\[|/--|/-!|--|(?:noncomputable\s+|private\s+|protected\s+|partial\s+|unsafe\s+|scoped\s+)*'
+    r'(?:theorem|lemma|def|abbrev|instance|structure|inductive|class|example|open|end|namespace|'
+    r'section|variable|universe|set_option|attribute|omit|include|mutual|deriving|alias|export|'
+    r'notation|macro|syntax|elab|initialize|run_cmd|#)\b)', re.M)
+
+
+def split_signature(code):
+    """Index of the top-level `:=` (or a line starting with `| `, for
+    structures given by anonymous-constructor syntax); -1 if none."""
+    depth = 0
+    i, n = 0, len(code)
+    while i < n:
+        c = code[i]
+        if code.startswith('--', i):                 # line comment
+            j = code.find('\n', i)
+            i = n if j < 0 else j
+            continue
+        if code.startswith('/-', i):                 # block comment
+            j = code.find('-/', i + 2)
+            i = n if j < 0 else j + 2
+            continue
+        if c in '([{⟨':
+            depth += 1
+        elif c in ')]}⟩':
+            depth -= 1
+        elif depth == 0 and code.startswith(':=', i):
+            return i
+        i += 1
+    return -1
+
+
+def cap(text, max_lines, max_chars):
+    lines = text.splitlines()
+    trunc = len(lines) > max_lines or len(text) > max_chars
+    if len(lines) > max_lines:
+        text = '\n'.join(lines[:max_lines])
+    return text[:max_chars], trunc
+
 
 def extract_decl(module, decl):
-    """Best-effort: the statement of `decl` from <module>.lean, up to its `:=`."""
+    """Best-effort: the full declaration `decl` (statement and proof) from
+    <module>.lean, as {'sig','proof','line','trunc'}."""
     path = REPO / 'GroupApproximation' / (module + '.lean')
     if not path.exists():
         path = REPO / (module + '.lean')
@@ -39,14 +80,19 @@ def extract_decl(module, decl):
     src = path.read_text(encoding='utf-8')
     name = decl.split('.')[-1]
     for m in DECL_HEAD.finditer(src):
-        if m.group(2) == name:
-            tail = src[m.start(1):]
-            stop = re.search(r':=|\n\n\n', tail)
-            code = tail[:stop.start()].rstrip() if stop else tail
-            lines = code.splitlines()
-            if len(lines) > 40:
-                code = '\n'.join(lines[:40]) + '\n  …'
-            return code[:4000]
+        if m.group(2) != name:
+            continue
+        line = src.count('\n', 0, m.start(1)) + 1
+        stop = NEXT_TOP.search(src, m.end())
+        code = src[m.start(1):stop.start() if stop else len(src)].rstrip()
+        at = split_signature(code)
+        if at < 0:
+            sig, proof = code, ''
+        else:
+            sig, proof = code[:at].rstrip(), code[at:].rstrip()
+        sig, t1 = cap(sig, 60, 6000)
+        proof, t2 = cap(proof, 400, 24000)
+        return {'sig': sig, 'proof': proof, 'line': line, 'trunc': t1 or t2}
     return None
 
 
@@ -80,14 +126,20 @@ def main():
     if leftovers:
         sys.exit(f'unresolved font urls remain: {leftovers[:4]}')
 
-    lean_src = {}
+    wanted = []
     for c in json.loads(claims)['claims']:
         for l in c.get('lean', []):
-            key = l['module'] + '|' + l['declaration']
-            if key not in lean_src:
-                code = extract_decl(l['module'], l['declaration'])
-                if code:
-                    lean_src[key] = code
+            wanted.append((l['module'], l['declaration']))
+    # declarations cited only by in-tex \leanverified markers
+    for m in re.finditer(r'\\leanverified\{([^}]*)\}\{([^}]*)\}', tex):
+        wanted.append((m.group(1).strip(), m.group(2).strip()))
+    lean_src = {}
+    for module, declaration in wanted:
+        key = module + '|' + declaration
+        if key not in lean_src:
+            code = extract_decl(module, declaration)
+            if code:
+                lean_src[key] = code
     data_js = (
         'window.PAPER_TEX = ' + json.dumps(tex).replace('</', '<\\/') + ';\n'
         'window.CLAIMS = ' + json.dumps(json.loads(claims)).replace('</', '<\\/') + ';\n'

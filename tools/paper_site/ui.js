@@ -296,11 +296,56 @@ function renderNode(n, ctx, siblings, idx) {
 
 const GITHUB_BLOB = 'https://github.com/SauersML/group-approximation/blob/main/GroupApproximation/';
 function leanDeclHtml(l) {
-  const code = (window.LEAN_SRC || {})[l.module + '|' + l.declaration];
-  const link = '<a class="lean-mod" href="' + GITHUB_BLOB + escHtml(l.module) + '.lean" target="_blank" rel="noopener">' + escHtml(l.module) + '.lean</a>';
-  if (!code) return '<div class="lean-decl">' + link + escHtml(l.declaration) + '</div>';
-  return '<details class="lean-decl"><summary>' + escHtml(l.declaration) + '</summary>' +
-    '<pre class="lean-code">' + escHtml(code) + '</pre>' + link + '</details>';
+  const decl = l.declaration || l.decl;
+  const rec = (window.LEAN_SRC || {})[l.module + '|' + decl];
+  const short = decl.replace(/^GroupApproximation\./, '');
+  const line = rec && rec.line ? '#L' + rec.line : '';
+  const link = '<a class="lean-mod" href="' + GITHUB_BLOB + escHtml(l.module) + '.lean' + line +
+    '" target="_blank" rel="noopener">' + escHtml(l.module) + '.lean' + (rec && rec.line ? ':' + rec.line : '') + '</a>';
+  if (!rec) return '<div class="lean-decl"><code class="lean-name">' + escHtml(short) + '</code>' + link + '</div>';
+  let inner = '<pre class="lean-code">' + escHtml(rec.sig) + '</pre>';
+  if (rec.proof) {
+    inner += '<details class="lean-proof"><summary>Lean proof</summary>' +
+      '<pre class="lean-code">' + escHtml(rec.proof) + '</pre></details>';
+  }
+  // "the complete printed proposition" is the default and says nothing;
+  // only partial coverage is worth a line
+  if (l.covers && l.covers !== 'the complete printed proposition') {
+    inner += '<div class="lean-covers"><span class="meta-label">covers</span>' + escHtml(l.covers) + '</div>';
+  }
+  if (rec.trunc) inner += '<div class="lean-trunc">shortened here — full source on GitHub</div>';
+  inner += link;
+  return '<details class="lean-decl"><summary><code class="lean-name">' + escHtml(short) + '</code></summary>' + inner + '</details>';
+}
+
+/* The inline Lean panel under a theorem: the manifest's correspondence
+   metadata (status, object identity, covers, coverage gap) next to the
+   actual Lean statement, with the Lean proof one fold deeper. */
+function leanPanelHtml(claim, texLean) {
+  const entries = [];
+  const seen = new Set();
+  if (claim) for (const l of (claim.lean || [])) { entries.push(l); seen.add(l.module + '|' + l.declaration); }
+  for (const l of (texLean || [])) {
+    const k = l.module + '|' + l.decl;
+    if (!seen.has(k)) { entries.push(l); seen.add(k); }
+  }
+  if (!entries.length) return '';
+  const asText = x => typeof x === 'string' ? x : JSON.stringify(x);
+  // no header, no repeated boilerplate: the badge already says Lean ✓ —
+  // metadata appears only when it carries real information
+  let html = entries.map(leanDeclHtml).join('');
+  if (claim && claim.status && claim.status !== 'exact') html += '<div class="lean-gap"><span class="meta-label">status</span>' + escHtml(claim.status) + '</div>';
+  if (claim && claim.coverage_gap) html += '<div class="lean-gap"><span class="meta-label">coverage gap</span>' + escHtml(claim.coverage_gap) + '</div>';
+  if (claim && (claim.extra_assumptions || []).length) {
+    html += '<div class="lean-gap"><span class="meta-label">extra assumptions</span>' +
+      claim.extra_assumptions.map(x => escHtml(asText(x))).join('; ') + '</div>';
+  }
+  if (claim && (claim.external_inputs || []).length) {
+    html += '<div class="lean-gap"><span class="meta-label">external inputs</span>' +
+      claim.external_inputs.map(x => escHtml(asText(x))).join('; ') + '</div>';
+  }
+  if (claim) html += '<div class="lean-panel-deps" data-claim="' + escHtml(claim.id) + '"></div>';
+  return html;
 }
 
 function claimForThm(n) {
@@ -318,14 +363,16 @@ function renderThm(n, ctx) {
   let head = '<span class="thm-name">' + escHtml(n.name) + ' ' + escHtml(n.num) + '</span>';
   if (n.title) head += ' <span class="thm-title">(' + renderInline(n.title, ctx) + ')</span>';
   head += '<span class="thm-dot">.</span>';
+  const panel = leanPanelHtml(claim, n.lean);
   let badges = '<span class="thm-tools">';
-  if (claim) badges += '<button class="badge badge-lean" data-claim="' + escHtml(claim.id) + '" title="Machine-checked in Lean 4">Lean&thinsp;✓</button>';
+  if (panel) badges += '<button class="badge badge-lean" aria-expanded="false" title="Machine-checked in Lean 4 — click for the formal statement and proof">Lean&thinsp;✓</button>';
   badges += '</span>';
   const c = Object.assign({}, ctx, { env: n });
   const body = renderNodes(n.body, c);
   return '<section class="thm ' + style + ' thm-' + n.env + '" id="' + n.anchor + '" data-labels="' + escHtml(n.labels.join(' ')) + '">' +
     '<div class="thm-head">' + head + badges + '</div>' +
     '<div class="thm-stmt">' + body + '</div>' +
+    (panel ? '<div class="lean-panel" hidden>' + panel + '</div>' : '') +
     '</section>';
 }
 
@@ -333,9 +380,17 @@ function renderProof(n, ctx) {
   const c = Object.assign({}, ctx, { env: n });
   let body = renderNodes(n.body, c);
   const title = n.title ? renderInline(n.title, c) : 'Proof';
+  // \leanverified markers placed inside this proof: the formal counterpart
+  // of exactly this argument.  A single faint folded line — the manuscript
+  // text stays clean unless the reader asks for the Lean.
+  let leanStrip = '';
+  if (n.lean && n.lean.length) {
+    leanStrip = '<details class="proof-lean"><summary>formalized in Lean</summary>' +
+      n.lean.map(leanDeclHtml).join('') + '</details>';
+  }
   // tombstone
   body += '<span class="qed" title="end of proof">∎</span>';
-  return '<details class="proof" open><summary><span class="proof-label">' + title + '.</span></summary><div class="proof-body">' + body + '</div></details>';
+  return '<details class="proof"><summary><span class="proof-label">' + title + '.</span></summary><div class="proof-body">' + body + leanStrip + '</div></details>';
 }
 
 /* ---------- the figure (hand-converted from TikZ) ---------- */
@@ -590,93 +645,110 @@ function buildGraph() {
 
 /* ---------- hover preview ---------- */
 
-let hoverCard = null;
-function setupHoverPreviews(root) {
-  hoverCard = document.createElement('div');
-  hoverCard.className = 'hover-card';
-  hoverCard.hidden = true;
-  document.body.appendChild(hoverCard);
-  let hideTimer = null;
+/* A stack of cards: hovering a link inside a card opens a nested card on
+   top of it instead of replacing it.  Every mouseover decides how much of
+   the stack the pointer still justifies; anything deeper closes after a
+   grace period long enough to travel from a link into its card. */
+const hoverStack = [];
+let hoverTimer = null;
 
-  function show(target, html) {
-    clearTimeout(hideTimer);
-    hoverCard.innerHTML = html;
-    hoverCard.hidden = false;
-    const r = target.getBoundingClientRect();
-    const cw = Math.min(560, window.innerWidth - 24);
-    hoverCard.style.maxWidth = cw + 'px';
-    hoverCard.style.left = '0px'; hoverCard.style.top = '0px';
-    // measure then place
-    const hw = hoverCard.offsetWidth, hh = hoverCard.offsetHeight;
-    let x = Math.min(r.left, window.innerWidth - hw - 12);
-    let y = r.bottom + 8;
-    if (y + hh > window.innerHeight - 8) y = r.top - hh - 8;
-    hoverCard.style.left = Math.max(8, x) + 'px';
-    hoverCard.style.top = Math.max(8, y + window.scrollY) + 'px';
-  }
-  function hide() { hideTimer = setTimeout(() => { hoverCard.hidden = true; }, 120); }
-
-  root.addEventListener('mouseover', ev => {
-    const a = ev.target.closest('.xref, .cite');
-    if (!a) return;
-    let html = null;
-    if (a.classList.contains('cite')) {
-      const e = BIB.byKey[a.dataset.key];
-      if (e) html = '<div class="hc-bib">[' + escHtml(e.label) + '] ' + renderInline(e.src.replace(/\s+/g, ' '), {}) + '</div>';
-    } else {
-      const rec = LABELS[a.dataset.label];
-      if (rec) {
-        const tgt = document.getElementById(rec.anchor);
-        if (tgt) {
-          if (tgt.classList.contains('thm')) {
-            const head = tgt.querySelector('.thm-head');
-            const stmt = tgt.querySelector('.thm-stmt');
-            html = '<div class="hc-thm"><div class="hc-head">' + head.innerHTML + '</div>' + stmt.innerHTML + '</div>';
-          } else if (tgt.classList.contains('dmath')) {
-            html = '<div class="hc-eq">' + tgt.innerHTML + '</div>';
-          } else if (tgt.tagName === 'H2' || tgt.tagName === 'H3') {
-            html = '<div class="hc-sec">§ ' + tgt.innerHTML + '</div>';
-          } else if (tgt.classList.contains('paper-fig')) {
-            html = '<div class="hc-sec">Figure ' + escHtml(rec.num) + '</div>';
-          }
-        }
-      }
-    }
-    if (html) show(a, html);
-  });
-  root.addEventListener('mouseout', ev => {
-    if (ev.target.closest('.xref, .cite')) hide();
-  });
-  hoverCard.addEventListener('mouseenter', () => clearTimeout(hideTimer));
-  hoverCard.addEventListener('mouseleave', hide);
+function hoverLevelOf(node) {
+  for (let i = hoverStack.length - 1; i >= 0; i--) if (hoverStack[i].el.contains(node)) return i;
+  return -1;
+}
+function hoverCloseFrom(i) {
+  while (hoverStack.length > Math.max(0, i)) hoverStack.pop().el.remove();
 }
 
-/* ---------- lean badge popover ---------- */
+function hoverHtmlFor(a) {
+  if (a.classList.contains('cite')) {
+    const e = BIB.byKey[a.dataset.key];
+    return e ? '<div class="hc-bib">[' + escHtml(e.label) + '] ' + renderInline(e.src.replace(/\s+/g, ' '), {}) + '</div>' : null;
+  }
+  const rec = LABELS[a.dataset.label];
+  if (!rec) return null;
+  const tgt = document.getElementById(rec.anchor);
+  if (!tgt) return null;
+  if (tgt.classList.contains('thm')) {
+    const head = tgt.querySelector('.thm-head');
+    const stmt = tgt.querySelector('.thm-stmt');
+    return '<div class="hc-thm"><div class="hc-head">' + head.innerHTML + '</div>' + stmt.innerHTML + '</div>';
+  }
+  if (tgt.classList.contains('dmath')) return '<div class="hc-eq">' + tgt.innerHTML + '</div>';
+  if (tgt.tagName === 'H2' || tgt.tagName === 'H3') return '<div class="hc-sec">§ ' + tgt.innerHTML + '</div>';
+  if (tgt.classList.contains('paper-fig')) return '<div class="hc-sec">Figure ' + escHtml(rec.num) + '</div>';
+  return null;
+}
 
-function setupLeanPopovers(root) {
+function hoverShow(target, html) {
+  const parent = hoverLevelOf(target);
+  const above = hoverStack[parent + 1];
+  if (above && above.trigger === target) return;   // already open for this link
+  hoverCloseFrom(parent + 1);
+  const el = document.createElement('div');
+  el.className = 'hover-card';
+  el.innerHTML = html;
+  document.body.appendChild(el);
+  const r = target.getBoundingClientRect();
+  const cw = Math.min(560, window.innerWidth - 24);
+  el.style.maxWidth = cw + 'px';
+  const hw = el.offsetWidth, hh = el.offsetHeight;
+  let x = Math.min(r.left, window.innerWidth - hw - 12);
+  let y = r.bottom + 8;
+  if (y + hh > window.innerHeight - 8) y = r.top - hh - 8;
+  el.style.left = Math.max(8, x) + 'px';
+  el.style.top = Math.max(8, y + window.scrollY) + 'px';
+  hoverStack.push({ el, trigger: target });
+}
+
+function setupHoverPreviews(root) {
+  root.addEventListener('mouseover', ev => {
+    clearTimeout(hoverTimer);
+    const a = ev.target.closest('.xref, .cite, .chip-ref');
+    let keep = hoverLevelOf(ev.target);            // inside card k → cards 0..k stay
+    if (a) {
+      const html = hoverHtmlFor(a);
+      if (html) { hoverShow(a, html); keep = hoverStack.length - 1; }
+    }
+    hoverTimer = setTimeout(() => hoverCloseFrom(keep + 1), 320);
+  });
+  // pointer left the document entirely
+  document.addEventListener('mouseout', ev => {
+    if (ev.relatedTarget === null) {
+      clearTimeout(hoverTimer);
+      hoverTimer = setTimeout(() => hoverCloseFrom(0), 320);
+    }
+  });
+  // following a link inside a card dismisses the whole stack
+  root.addEventListener('click', ev => {
+    if (hoverLevelOf(ev.target) >= 0 && ev.target.closest('a')) hoverCloseFrom(0);
+  });
+  document.addEventListener('keydown', ev => { if (ev.key === 'Escape') hoverCloseFrom(0); });
+}
+
+/* ---------- inline lean panels ---------- */
+
+function setupLeanPanels(root) {
   root.addEventListener('click', ev => {
     const b = ev.target.closest('.badge-lean');
-    if (!b) { const p = document.querySelector('.lean-pop'); if (p && !ev.target.closest('.lean-pop')) p.remove(); return; }
+    if (!b) return;
     ev.preventDefault();
-    const old = document.querySelector('.lean-pop');
-    if (old) { old.remove(); if (old.dataset.for === b.dataset.claim) return; }
-    const c = CLAIMS.claims.find(c => c.id === b.dataset.claim);
-    if (!c) return;
-    const usedBy = buildUsedBy();
-    const pop = document.createElement('div');
-    pop.className = 'lean-pop';
-    pop.dataset.for = c.id;
-    let html = '';
-    for (const l of (c.lean || [])) html += leanDeclHtml(l);
-    const cdeps = (window.__graphDeps[c.id] || []);
-    if (cdeps.length) html += '<div class="claim-deps"><span class="meta-label">uses</span>' + cdeps.map(xrefClaimChip).join('') + '</div>';
-    if ((usedBy[c.id] || []).length) html += '<div class="claim-deps"><span class="meta-label">used by</span>' + usedBy[c.id].map(xrefClaimChip).join('') + '</div>';
-    pop.innerHTML = html;
-    document.body.appendChild(pop);
-    const r = b.getBoundingClientRect();
-    const pw = pop.offsetWidth;
-    pop.style.left = Math.max(8, Math.min(r.right - pw, window.innerWidth - pw - 12)) + 'px';
-    pop.style.top = (r.bottom + 6 + window.scrollY) + 'px';
+    const thm = b.closest('.thm');
+    const panel = thm && thm.querySelector('.lean-panel');
+    if (!panel) return;
+    panel.hidden = !panel.hidden;
+    b.setAttribute('aria-expanded', String(!panel.hidden));
+    // fill in uses/used-by once, after the dependency graph exists
+    const deps = panel.querySelector('.lean-panel-deps');
+    if (deps && !deps.dataset.filled && window.__graphDeps) {
+      deps.dataset.filled = '1';
+      const id = deps.dataset.claim;
+      const usedBy = buildUsedBy();
+      let html = '';
+      if ((window.__graphDeps[id] || []).length) html += '<div class="claim-deps"><span class="meta-label">uses</span>' + window.__graphDeps[id].map(xrefClaimChip).join('') + '</div>';
+      if ((usedBy[id] || []).length) html += '<div class="claim-deps"><span class="meta-label">used by</span>' + usedBy[id].map(xrefClaimChip).join('') + '</div>';
+      deps.innerHTML = html;
+    }
   });
 }
 
@@ -716,7 +788,7 @@ function init() {
   fitFigures();
   window.addEventListener('resize', fitFigures);
   setupHoverPreviews(document.body);
-  setupLeanPopovers(document.body);
+  setupLeanPanels(document.body);
   setupTabs();
   setupScrollSpy();
   setupClaimsFilter();
@@ -746,6 +818,7 @@ function scrollToCurrentFragment() {
 
   const target = document.getElementById(id);
   if (!target) return;
+  revealTarget(target);
 
   // Deep-link landing should be immediate even though normal in-page links
   // use smooth scrolling via CSS.  scroll-margin-top on the target still
@@ -757,8 +830,15 @@ function scrollToCurrentFragment() {
   root.style.scrollBehavior = previous;
 }
 
+function revealTarget(tgt) {
+  // a link target may sit inside a collapsed proof (or Lean fold)
+  for (let el = tgt; el; el = el.parentElement) {
+    if (el.tagName === 'DETAILS' && !el.open) el.open = true;
+  }
+}
+
 function setupTabs() {
-  const tabs = document.querySelectorAll('.tab');
+  const tabs = [...document.querySelectorAll('.tab')].filter(t => t.dataset.view);
   const views = { paper: document.getElementById('view-paper'), claims: document.getElementById('view-claims'), graph: document.getElementById('view-graph') };
   tabs.forEach(t => t.addEventListener('click', () => {
     tabs.forEach(x => x.classList.toggle('is-on', x === t));
@@ -776,6 +856,7 @@ function setupTabs() {
     if (document.getElementById('view-paper').contains(tgt) && document.body.dataset.view !== 'paper') {
       document.querySelector('.tab[data-view="paper"]').click();
     }
+    revealTarget(tgt);
     // flash target
     setTimeout(() => {
       tgt.classList.add('is-flash');

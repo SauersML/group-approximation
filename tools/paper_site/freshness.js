@@ -24,15 +24,30 @@
         if (current === BUILD_ID) {
           checking = false;
           html.classList.remove('freshness-check');
+          // fresh: canonicalize a leftover cache-bust query so the address
+          // bar always shows the stable /paper/ URL (fragment kept)
+          if (location.search.indexOf('?v=') === 0 && location.pathname.slice(-root.length) === root) {
+            history.replaceState(null, '', root + location.hash);
+          }
           return;
         }
-        const target = root + 'v/' + encodeURIComponent(current) + '/' + location.search + location.hash;
-        location.replace(target);
+        // Stale copy.  Reload the canonical page with a cache-busting query
+        // so the address bar keeps the stable, shareable /paper/ URL; the
+        // fragment survives.  If that exact query is already in the URL the
+        // cache ignored it, so fall back to the immutable snapshot path.
+        const q = '?v=' + encodeURIComponent(current);
+        if (location.search === q) {
+          location.replace(root + 'v/' + encodeURIComponent(current) + '/' + location.hash);
+        } else {
+          location.replace(root + q + location.hash);
+        }
       })
       .catch(() => {
+        // could not verify: show what we have rather than a blank page
         checking = false;
         html.classList.remove('freshness-check');
         html.classList.add('freshness-error');
+        try { console.warn('[paper] freshness check failed; showing the loaded copy'); } catch (_) {}
       });
   }
 

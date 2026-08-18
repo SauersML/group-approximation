@@ -94,7 +94,7 @@ body:not([data-view="paper"]) .toc-toggle { display: none !important; }
 }
 
 @media print {
-  .topbar, .sidebar, .toc-scrim, .hover-card, .lean-pop { display: none !important; }
+  .topbar, .sidebar, .toc-scrim, .hover-card { display: none !important; }
   .content { max-width: none; padding: 0; }
   .paper-head { padding-top: 0; }
   details.proof { display: block; }

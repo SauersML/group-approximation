@@ -9,7 +9,7 @@
 
   whenReady(() => {
     const body = document.body;
-    const tabs = [...document.querySelectorAll('.tab')];
+    const tabs = [...document.querySelectorAll('.tab')].filter(t => t.dataset.view);
     const tablist = document.querySelector('.tabs');
     const proofToggle = document.getElementById('proof-toggle');
     const tocToggle = document.getElementById('toc-toggle');
@@ -27,7 +27,7 @@
 
     tablist.addEventListener('click', ev => {
       const tab = ev.target.closest('.tab');
-      if (!tab) return;
+      if (!tab || !tab.dataset.view) return;
       const current = body.dataset.view || 'paper';
       const next = tab.dataset.view;
       if (ev.isTrusted && current !== next) {
@@ -57,26 +57,23 @@
     const proofs = [...document.querySelectorAll('details.proof')];
     if (!proofs.length) proofToggle.hidden = true;
 
-    function setProofMode(compact) {
-      proofs.forEach(proof => {
-        if (compact) {
-          proof.dataset.readerWasOpen = proof.open ? '1' : '0';
-          proof.open = false;
-        } else if (proof.dataset.readerWasOpen !== '0') {
-          proof.open = true;
-        }
-      });
+    function setProofMode(compact, persist) {
+      proofs.forEach(proof => { proof.open = !compact; });
       proofToggle.textContent = compact ? 'Show proofs' : 'Hide proofs';
       proofToggle.setAttribute('aria-pressed', String(compact));
-      try { localStorage.setItem('paper-proof-mode', compact ? 'compact' : 'full'); } catch (_) {}
+      if (persist) {
+        try { localStorage.setItem('paper-proof-mode', compact ? 'compact' : 'full'); } catch (_) {}
+      }
     }
 
-    let compact = false;
-    try { compact = localStorage.getItem('paper-proof-mode') === 'compact'; } catch (_) {}
-    setProofMode(compact);
+    // proofs start folded so the paper reads as statements first; a reader
+    // who opts into full proofs keeps that choice across visits
+    let compact = true;
+    try { if (localStorage.getItem('paper-proof-mode') === 'full') compact = false; } catch (_) {}
+    setProofMode(compact, false);
     proofToggle.addEventListener('click', () => {
       compact = !compact;
-      setProofMode(compact);
+      setProofMode(compact, true);
     });
 
     function openToc() {
