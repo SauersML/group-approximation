@@ -770,6 +770,7 @@ import GroupApproximation.Sofic.KazhdanCliffordEpsilon
 import GroupApproximation.Algebra.ZariskiClosedSubgroup
 import GroupApproximation.Algebra.ZariskiDescendingChain
 import GroupApproximation.Algebra.DyadicRationals
+import GroupApproximation.Algebra.DiagonalCosetAction
 import GroupApproximation.Algebra.WordMetric
 import GroupApproximation.Monsters.LiteralDyadicCalibration
 import GroupApproximation.Sofic.SoficByAmenablePermanence
@@ -1075,6 +1076,8 @@ import GroupApproximation.Analysis.VectorHilbertUltraproduct
 import GroupApproximation.Analysis.VectorHilbertComplete
 import GroupApproximation.Analysis.VectorOmegaAction
 import GroupApproximation.Analysis.VectorOmegaKazhdanGap
+import GroupApproximation.Analysis.FilterMatrixCStarCorona
+import GroupApproximation.Analysis.VectorOmegaCoronaAction
 import GroupApproximation.Analysis.UnitaryAverageFixedVector
 import GroupApproximation.Analysis.OmegaCoronaKazhdanProjection
 import GroupApproximation.Analysis.PolarLiftingMatrixBlocks
