@@ -907,6 +907,7 @@ import GroupApproximation.Analysis.CStarTensorProductAlgebra
 import GroupApproximation.Analysis.CStarStateSeparation
 import GroupApproximation.Analysis.CStarStateGNS
 import GroupApproximation.Analysis.CStarMinTensorNorm
+import GroupApproximation.Analysis.CStarMaxTensorNorm
 import GroupApproximation.Analysis.CStarIdealQuotient
 import GroupApproximation.Analysis.CStarQuotientIdentity
 import GroupApproximation.Analysis.CStarIdealApproximateUnit
