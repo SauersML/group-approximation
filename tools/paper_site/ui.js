@@ -722,6 +722,11 @@ function init() {
   setupClaimsFilter();
   setupGraphInteractions();
 
+  // The paper body is created client-side.  On a cold deep-link load the
+  // browser tries to resolve the URL fragment before this target exists, so
+  // it has nothing to scroll to.  Retry the fragment jump after rendering.
+  requestAnimationFrame(() => requestAnimationFrame(scrollToCurrentFragment));
+
   const t1 = performance.now();
   console.log('[paper] rendered in', Math.round(t1 - t0), 'ms;',
     DIAG.warnings.length, 'warnings;', DIAG.mathErrors.length, 'math errors');
@@ -731,6 +736,26 @@ function init() {
 }
 
 /* ---------- interactions ---------- */
+
+function scrollToCurrentFragment() {
+  if (!location.hash || location.hash === '#') return;
+
+  const raw = location.hash.slice(1);
+  let id = raw;
+  try { id = decodeURIComponent(raw); } catch (_) { /* keep raw fragment */ }
+
+  const target = document.getElementById(id);
+  if (!target) return;
+
+  // Deep-link landing should be immediate even though normal in-page links
+  // use smooth scrolling via CSS.  scroll-margin-top on the target still
+  // keeps it clear of the sticky top bar.
+  const root = document.documentElement;
+  const previous = root.style.scrollBehavior;
+  root.style.scrollBehavior = 'auto';
+  target.scrollIntoView({ block: 'start' });
+  root.style.scrollBehavior = previous;
+}
 
 function setupTabs() {
   const tabs = document.querySelectorAll('.tab');
