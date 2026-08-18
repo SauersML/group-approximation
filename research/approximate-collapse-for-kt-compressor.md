@@ -82,18 +82,23 @@ unitaries with clean spectral structure in congruence models.  The
 compressor `t` has disappeared from the statement; the torus carries
 the whole wall.
 
-**Enemy profile, further constrained.**  In the ultraproduct `σ` is a
-genuine representation of each root subgroup `(R,+)` — a locally
-finite abelian `p`-group — and for every FIXED finite subgroup the
-restriction is automatically near-genuine per coordinate (finite
-groups are HS-stable with constants depending only on the order).  So
-a counterexample must make the root images INFINITE — diffuse
-Cantor-type abelian algebras with no coordinate-uniform congruence
-ideal (the "Cantor escape"), the exact failure mode that
-`fd-invisibility-of-compression` proves impossible for genuine
-coordinates — while simultaneously respecting `G`'s property (T) on
-the global generating set.  The tension "locally finite roots vs
-global (T) vs torus normalization" is the whole question.
+**Enemy profile — CORRECTED (the Cantor limit is universal, not the
+discriminator).**  Trace-faithfulness forces `tr σ(e_ij(f)) = 0` for
+all `f ≠ 0`, so for EVERY `σ` (canonical congruence included) each
+root algebra is the full Haar–Cantor algebra:
+`σ(U_ij(R))'' ≅ L^∞(K)`, `K = dual of (R,+)`, with Haar trace — and
+likewise `L^∞(K₀)` for the compressed roots, the inclusion dual to
+`K ↠ K₀` with diffuse fibers.  Coordinatewise-genuine models have
+finite root images at every stage yet the same Cantor limit; and
+`ccr-for-coordinate-collapsing-models` + `fd-invisibility` prove the
+abelian-pair rigidity `L^∞(K₀)' ∩ M = L^∞(K)' ∩ M` holds for all of
+them DESPITE it.  So "roots going infinite" distinguishes nothing:
+the counterexample's ONLY possible distinguishing feature is honest
+quasi-regular (`ℓ²(M/M₀)`-type) content in the conjugation bimodule
+— the ambient-aware question below — and per-finite-subgroup
+near-genuineness (finite groups are HS-stable, constants depending
+only on the order) plus global (T) remain the constraints it must
+thread.
 
 **Two fences and the designated method (2026-08-18, final
 sharpening).**
