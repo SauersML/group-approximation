@@ -171,6 +171,48 @@ The discipline in one question: *is this a new proposition we must name
 (Claim), a new sufficient implication between named propositions (Route),
 or neither (notes/)?* A five-page failed exploration is notes, not a node.
 
+## External reconnaissance and computational claims
+
+Cairn's duplicate checker is deliberately repository-local.  Work on a named
+problem from the outside literature therefore needs an **external gate** before
+anything is promoted into the graph.  In particular, a promising search trace
+or an independently rediscovered lemma is not yet a Cairn theorem.
+
+Use the following discipline for external/open-problem work:
+
+1. **Search this repository first.** Run lexical and similarity searches over
+   canonical files and `--notes` before inventing a new statement.  The external
+   problem may already be solved here under different language, or an attempted
+   bridge may already be dead.
+2. **Recheck problem status at the time of the attack.** For anything whose
+   status could have changed, use a current authoritative problem page plus a
+   primary source when available; record the exact date checked.  Do not inherit
+   “open” or “solved” from an old benchmark list, cached snippet, or previous
+   session summary.
+3. **Audit novelty beyond theorem prose.** Search papers, appendices,
+   supplementary files, and released source code.  An algorithmic reduction
+   implemented in old code is prior art even if the paper's prose does not state
+   it in the same words.
+4. **State the certificate boundary exactly.** A positive finite construction
+   should carry the explicit witness and an exact verifier.  A computational
+   nonexistence result needs both a proof that the recursion/pruning is complete
+   and a replayable *full* exhaustion.  A bounded-depth search, heuristic run,
+   near-solution, or exhausted subfamily is evidence only; record its exact scope
+   in `notes/`, never as a `requires: []` route.
+5. **Keep graph relevance separate from mathematical interest.** If a sound
+   external result has no honest implication to a root or reusable claim in this
+   program, do not create an unrelated Cairn node merely to archive it.  Off-axis
+   reconnaissance belongs in `notes/`; move substantial material into
+   `research/artifacts/` only when it supports canonical research state (or a
+   maintained canonical audit already serves that role).
+6. **Correct aggressively.** If a freshness check or prior-art search overturns
+   an earlier assessment, record the correction and withdraw the stronger claim.
+   Provenance is more valuable than preserving a flattering narrative.
+
+This is the computational analogue of `check --changed`: a route enters the
+kernel only after both its mathematics **and its claim of novelty/status** have
+survived the relevant checks.
+
 ## Semantics notes
 
 - The fixpoint is least: cycles never self-justify (cycle lint warns).
