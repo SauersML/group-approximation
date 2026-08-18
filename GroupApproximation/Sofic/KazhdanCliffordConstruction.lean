@@ -4,6 +4,7 @@ import GroupApproximation.Sofic.CDEOperatorMF
 import GroupApproximation.Sofic.FiniteNormalCoronaObstruction
 import GroupApproximation.Sofic.KazhdanSignCriterion
 import GroupApproximation.Sofic.MarkedCompressionGroup
+import GroupApproximation.Sofic.PrintedCentralSignCriterion
 import GroupApproximation.Sofic.PrintedNegativeCornerKill
 import GroupApproximation.Kazhdan.KazhdanUniverse
 import GroupApproximation.Analysis.NaturalMatrixCoordinateEquiv
@@ -618,7 +619,16 @@ theorem kazhdanCliffordConstruction :
   -- Both analytic clauses are the central-sign criterion, instantiated at the
   -- constructed datum: `t` is the stable letter, `c` the root involution, and
   -- the marked word is the square of the pointwise compression defect at `a`.
-  have hcrit := KazhdanCompressionCore.manuscriptCentralSignCriterion
+  --
+  -- **By the printed route.**  The criterion used here is
+  -- `PrintedCentralSign.manuscriptCentralSignCriterionPrinted`, whose one
+  -- transport step is `\ref{thm:kazhdan-transport}` by the printed §3
+  -- ultraproduct argument.  It used to be
+  -- `KazhdanCompressionCore.manuscriptCentralSignCriterion`, which inhabits the
+  -- same closed proposition through the finite-stage corner; that route is
+  -- untouched and still proves the same statement.  Row `KC.02` is about which
+  -- of the two this theorem travels.
+  have hcrit := PrintedCentralSign.manuscriptCentralSignCriterionPrinted
     (Γ := Γ₀) (E := Extension alpha a) hTTextbook
     (iota alpha a) (stable alpha a) (lamp alpha a)
     (fun g ↦ ⟨alpha g, stable_compresses alpha a g⟩)

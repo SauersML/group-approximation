@@ -747,11 +747,17 @@ def routeGuards : List (Name × Name) :=
     (`GroupApproximation.ManuscriptExactWrappers.manuscriptUnitaryLifting,
      `GroupApproximation.PrintedLiftingSteps.exists_boundedLift_polarPatch),
     -- KC.02: the general Kazhdan-Clifford construction's negative corner
-    -- reaches its rigidity through the same printed transport.  The row's
-    -- headline `kazhdanCliffordConstruction` does not, and is deliberately
-    -- unpinned: its rigidity arrives through `manuscriptCentralSignCriterion`,
-    -- which the row's note records as still on the finite-stage route.
+    -- reaches its rigidity through the printed transport ...
     (`GroupApproximation.KazhdanCliffordConstruction.negativeCorner_kazhdanTransport_contradiction,
+     `GroupApproximation.KazhdanAsymptoticCommutant.manuscriptKazhdanTransport),
+    -- ... and so, now, does the row's cited headline.  Its rigidity arrives
+    -- through the central-sign criterion, and the criterion it travels is the
+    -- printed-route inhabitant of that closed proposition, not the
+    -- finite-stage one.  Both pins are kept: the second is the row's subject,
+    -- the first is the sentence the row quotes.
+    (`GroupApproximation.KazhdanCliffordConstruction.kazhdanCliffordConstruction,
+     `GroupApproximation.PrintedCentralSign.manuscriptCentralSignCriterionPrinted),
+    (`GroupApproximation.KazhdanCliffordConstruction.kazhdanCliffordConstruction,
      `GroupApproximation.KazhdanAsymptoticCommutant.manuscriptKazhdanTransport),
     -- ID.06: the printed reverse step of `cor:generaltransport` is the exact
     -- identity `P = VPV* ⟹ V*PV = P`, so the reverse-transport endpoint must
