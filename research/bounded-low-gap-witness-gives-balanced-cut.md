@@ -3,6 +3,8 @@ rg: 2
 id: bounded-low-gap-witness-gives-balanced-cut
 kind: claim
 title: A bounded low-adjoint-energy witness yields a balanced almost-invariant spectral cut
+distinct_from:
+  low-gap-witness-spike-or-balanced-cut: This assumes an operator-norm bound and produces one balanced cut; the other has no operator-norm hypothesis and instead proves a clipping dichotomy whose second outcome is a small-trace spectral spike.
 artifacts:
   - docs/TRUE_SPECTRAL_COAREA_INVARIANT_CUT.md
 ---
