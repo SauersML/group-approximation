@@ -3,6 +3,7 @@ rg: 2
 id: nonsofic-one-relator-group
 kind: claim
 title: A one-relator group that is not sofic
+root: true
 distinct_from:
   one-relator-groups-sofic: that is the affirmative answer to the same question of Pestov; this is the witness demanded by the negative answer. They cannot both be established.
   nonsofic-one-relator-relator-has-primitivity-rank-two: that is a necessary condition on any such group and is closed; this asks for one to exist and is open.

@@ -3,6 +3,7 @@ rg: 2
 id: one-relator-groups-sofic
 kind: claim
 title: "Pestov Question 4.9: every one-relator group is sofic"
+root: true
 distinct_from:
   nonsofic-one-relator-group: that is the negative answer to the same question and asks for a witness; this is the affirmative answer and asks for a proof covering all relators. They cannot both be established, and no route to either is a route to the other.
   residually-rationally-solvable-one-relator-sofic: that is this statement restricted to the residually rationally solvable subclass, and it is closed; this is the full question and is open.
