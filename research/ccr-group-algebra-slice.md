@@ -55,11 +55,18 @@ compressed subring `S` still contains the constants `𝔽_q`.
 2. *Transvection rigidity over a domain.*  Writing `g = (w, B)`,
    commutation with `e_ij(δ)` for `δ ∈ T` reads
    `w e_ij(β_B(δ)) w⁻¹ = e_ij(δ)`, forcing
-   `w E_ij w⁻¹ = (δ/β_B(δ)) E_ij` with a ratio independent of `δ`;
-   since `β_B` permutes monomials and `T` has finite codimension over
-   `𝔽_q`, a leading-monomial comparison forces `B = 1` and ratio `1`,
-   and then `w` commutes with every matrix unit, so `w` is scalar.
-3. Central scalars obviously have orbit size one, giving equality.
+   `w E_ij w⁻¹ = (δ/β_B(δ)) E_ij` with a ratio independent of `δ`
+   and of the slot; binomials `x^v − x^{v'} ∈ T` supplied by the
+   pigeonhole force the ratio to be a single monomial and (via
+   classes of size ≥ 3, characteristic-independently) the straight
+   matching `Bv = v − u` on a cofinite set of exponents, whence
+   `B = 1`, ratio `1`, and `w = λI` scalar.
+3. *Determinant step.*  `w ∈ EL_r(R) ⊆ SL_r(R)` gives `λ^r = 1`,
+   killing the monomial part: `λ ∈ 𝔽_q^×` constant, hence central in
+   all of `G`.  Central constants have orbit size one, giving
+   equality.  (The step is load-bearing: Laurent-monomial scalars are
+   `Λ`-fixed but not central — caught by the 2026-08-18 adversarial
+   audit.)
 
 No property (T), no trace condition, no ultraproduct structure is
 used: the slice is closed by ring-theoretic rigidity alone.

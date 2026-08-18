@@ -198,7 +198,22 @@ For genuine coordinates (AC) is the proved collapse (`E`-normality);
 a (CCR) counterexample needs approximate finite-dimensional
 representations of `G` that separate `Λ` from `Γ` in a way NO genuine
 finite quotient can — itself a new kind of object, whose existence
-would be notable independently.  Structural note worth carrying: this
+would be notable independently.
+
+*Honesty amendment (2026-08-18 audit):* (AC) is necessary-looking but
+NOT shown sufficient — for approximate coordinates, step 2's
+per-coordinate Kazhdan inequality is also unavailable (`Ad(π_n|_Λ)`
+is not a representation), and exact `Λ`-invariance in the ultraproduct
+controls fixed-`λ` sequences, not diagonals.  The residue is honestly
+TWO named questions — (AC) plus an approximate-Kazhdan uniformity
+lemma (almost-invariance under generators of an almost-representation
+propagates image-wide with word-length-free constants) — or ONE
+question if (AC) is restated in commutation-tolerant form, against
+`{u : ‖[x_n, u]‖₂ small}` rather than the bare image `π_n(Λ)`.  A
+second uncharted regime, between the proved theorem and (AC): genuine
+coordinate chains that SEPARATE `Λ` from `Γ` (if any exist for `G` —
+no congruence chain does); the collapsing-regime proof says nothing
+there.  Structural note worth carrying: this
 places the rigidity route's residue in the same normalized-HS
 stability nexus as the OTHER open fork
 (`leavitt-steinberg-hs-stability-fork`) — both now bottleneck on

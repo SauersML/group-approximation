@@ -46,43 +46,55 @@ w\,e_ij(β_B(δ))\,w^{-1} = e_ij(δ) .                          (★)
 `w (I + β_B(δ)E_ij) w^{-1} = I + δE_ij`, i.e.
 `w E_ij w^{-1} = (δ / β_B(δ)) E_ij` in `M_r(R)` (the ring is a domain
 and `β_B(δ) ≠ 0`).  The left side does not depend on `δ`, so the ratio
-is a constant `c_{ij} ∈ R^×`:
+is a constant `c_{ij} ∈ R`:
 
 ```text
-β_B(δ) = c_{ij}^{-1} δ     for all δ ∈ T .                   (†)
+β_B(δ) = c_{ij}^{-1} δ     for all δ ∈ T ∖ 0 .               (†)
 ```
 
-Comparing two index pairs sharing a slot (`r ≥ 3`) and using
-`[e_ik(δ), e_kj(1)] = e_ij(δ)` with `1 ∈ T` after passing to a further
-finite-index subgroup if needed, the constants agree: `c_{ij} = c`.
+The constants agree across slots at once: `β_B` does not depend on
+`(i, j)`, so (†) for two pairs gives `c_{ij}^{-1}δ = c_{kl}^{-1}δ`
+and the domain cancels `δ`: `c_{ij} = c` for all `i ≠ j`.  (The
+audit's correction: no commutator or `1 ∈ T` argument is available or
+needed here.)
 
-**Step 4 (killing `B` and `c`).**  `β_B` permutes the monomials of
-`R`, and `T` has finite `𝔽_q`-codimension in `S`, so for all but
-finitely many `v ∈ Aℕ^d` the subgroup `T` contains an element
-`τ_v = x^v + (terms with exponents in a fixed finite complement)`.
-Units of `R` are `c = c₀x^u`.  Apply (†) to `τ_v` and compare
-supports under the monomial bijection `x^μ ↦ x^{Bμ}`: the support of
-`β_B(τ_v)` is `B(supp τ_v)` with unchanged coefficients, while the
-support of `c^{-1}τ_v` is `supp(τ_v) − u` with coefficients scaled by
-`c₀^{-1}`.  Taking `v` outside the finite bad set and lexicographically
-extremal in its support forces `Bv = v − u` for cofinitely many
-`v ∈ Aℕ^d`; two such relations subtract to `B(v−v') = v−v'` on a
-spanning set of `ℤ^d` (the differences of `Aℕ^d` span, `A ∈ SL_d`),
-so `B = 1`, then `u = 0` and `c₀ = 1` (coefficients in `𝔽_q` match),
-i.e. `c = 1`.
+**Step 4 (killing `B`, and `c` with it — binomial pigeonhole).**
+`T` has finite `𝔽_q`-codimension `m` in `S`, so the map
+`v ↦ (x^v mod T)` on `Aℕ^d` takes at most `q^m` values; every class
+of that map with elements `v, v'` yields a **binomial**
+`x^v − x^{v'} ∈ T`.  Apply (†) to a binomial: `β_B` maps it to
+`x^{Bv} − x^{Bv'}` monomial-by-monomial, while `c^{-1}(x^v − x^{v'})`
+must match it in `R`.  Supports are two-element sets, so either
+`c·x^{Bv} = x^v` (straight) or `c·x^{Bv} = −x^{v'}` (crossed), and in
+particular `c` is a single monomial `c = c₀x^u` (this DERIVES the
+unit form rather than assuming it).  For any class of size ≥ 3 with
+elements `v, v', v''`, a crossed matching between two of them would
+force two distinct class elements equal, so the straight matching
+`Bv = v − u` holds on every class of size ≥ 3 — i.e. on a cofinite
+subset of `Aℕ^d` (at most `2q^m` exponents lie in smaller classes) —
+and this argument is characteristic-independent (no coefficient-sign
+test, safe in char 2).  Differences of a cofinite subset of `Aℕ^d`
+span `A(ℤ^d) = ℤ^d`, and subtracting two straight relations gives
+`B(v − v') = v − v'`: so `B = 1`, then `u = 0`, and matching
+coefficients gives `c₀ = 1`, i.e. `c = 1`.
 
-**Step 5 (killing `w`).**  With `B = 1`, `c = 1`, Step 3 reads
-`w E_ij w^{-1} = E_ij` for all `i ≠ j`; a matrix over a commutative
-ring commuting with all off-diagonal matrix units is scalar:
-`w = λI`, `λ ∈ R^×`.  Scalars are central in `GL_r(R)` and are fixed
-by the `SL_d(ℤ)`-action only up to `β`, but as elements of `G` the
-pair `(λI, 1)` has `Λ`-orbit `{(β-images…)}` — conjugation by
-`e_ij(s) ∈ Λ` fixes `(λI, 1)` exactly (same `EL_r(R)`-component
-computation with `B = 1`), and conjugation by all of `Λ ≤ EL_r(R)`
-leaves scalars fixed.  So `FC_Λ(G) = {(λI, 1)} = Z`, and every
-element of `Z` has orbit size one.  ∎ (Steps 3–4 are where `1 ∈ S`
-and the domain property carry the rigidity; no (T), no trace, no
-ultraproduct.)
+**Step 5 (killing `w`, with the determinant step).**  With `B = 1`,
+`c = 1`, Step 3 reads `w E_ij w^{-1} = E_ij` for all `i ≠ j`; a
+matrix over a commutative ring commuting with all off-diagonal matrix
+units is scalar: `w = λI`, `λ ∈ R^×`.  This alone is NOT enough:
+Laurent-monomial scalars `c₀x^u I` are fixed by `Λ`-conjugation yet
+are not central in `G` (the `SL_d(ℤ)`-action moves them), so `FC = Z`
+would fail without one more line.  The line: `w ∈ EL_r(R) ⊆ SL_r(R)`,
+so `λ^r = det(λI) = 1`; writing `λ = c₀x^u`, `λ^r = c₀^r x^{ru} = 1`
+forces `u = 0` and `c₀^r = 1`, i.e. `λ ∈ 𝔽_q^×` is a CONSTANT scalar
+— fixed by every `β_B` and central in `G`.  So
+`FC_Λ(G) = {λI : λ ∈ 𝔽_q^×, λ^r = 1} = Z`, and every element of `Z`
+has orbit size one.  ∎ (Steps 3–4 are where `1 ∈ S` and the domain
+property carry the rigidity; no (T), no trace, no ultraproduct.
+Even before the determinant step, the parent claim's CONSEQUENCE was
+never at risk: any scalar `λI` commutes with all of `EL_r(R)`, hence
+with the `σ(Γ)`-generators, so `σ(Λ)' ∩ L(G) ⊆ σ(Γ)' ∩ L(G)` holds
+for the scalar-supported part regardless.)
 
 **Scope note.**  Step 0 is the only place the ambient `M` appears,
 and it needs only that `σ` extends to an embedding of `L(G)` with
