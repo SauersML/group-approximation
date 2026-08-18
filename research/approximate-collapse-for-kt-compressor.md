@@ -271,6 +271,40 @@ recorded from the fork's report, self-contained).**
    tower `k → ∞`, (b) quasirandomness, and (c) the crux above, on
    which everything now rests.
 
+**Crux first results (2026-08-18, direct attack).**
+
+1. **Characters do not obstruct the crux — and the reason is the
+   two-point girth theorem.**  Approximate intertwining with defect
+   `ε` forces character agreement up to `ℓ·ε` on words of length
+   `ℓ`; the words separating `π_k` from its `β_A`-twist live in
+   congruence windows, and `congruence-transporter-girth` makes them
+   LONG (length `≳ k`), so characters force only `ε_k ≳ 1/k → 0`.
+   The lane's own girth theorem is precisely what keeps the flexible
+   crux alive against the character test.
+2. **Kazhdan-dimension obstruction (new, quantitative): the crux is
+   DEAD on bounded-commutant towers.**  If `T_k` implements the
+   compressor with defect `ε` on `H_k`, then `Ad T_k` maps the
+   commutant `π_k(Λ)'` (= exact invariants of `Ad(π_k ∘ β_A)`)
+   near-isometrically into the `(|S|ε/κ)`-neighborhood of
+   `π_k(Γ)'` — the Kazhdan constant `κ` of `(Γ, S)` applies to
+   `Ad π_k` uniformly in `k`.  Counting orthonormal families:
+   `N` orthonormal operators within `δ` of an `M`-dim space forces
+   `(1−δ)² ≤ M/N`.  With `D_Γ = dim π_k(Γ)'` bounded and
+   `D_Λ > D_Γ` (separation), the defect is bounded below by a
+   `k`-independent constant `~κ/|S| · (1 − √(D_Γ/(D_Γ+1)))`.
+   Consistent one level up with the vanguard's
+   finite-dimensional-commutant theorem: bounded commutant ⟹ rigid,
+   now quantitatively at every finite stage.
+3. **The exact battle line.**  Both obstructions provably fail
+   together only on towers where `dim π_k(Γ)'` GROWS — which is
+   exactly what the flexible seed's macroscopic orbit structure
+   supplies (its witness needs `D_Λ ≥` the orbit-pair count).  The
+   crux, final form: on separating towers with growing commutant
+   dimension, does the compressor admit approximate implementation?
+   Characters (girth), dimension counting (Kazhdan), and every
+   fenced shortcut are all neutral there; whatever decides it is
+   genuinely new.
+
 **Stakes, stated once:** a proof refutes hyperlinearity of the
 Kun–Thom wreath group (first non-hyperlinear group; group-CEP
 refuted; Pestov 3.9 falls).  A refutation kills the rigidity route
