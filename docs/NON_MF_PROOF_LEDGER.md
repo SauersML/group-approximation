@@ -7,9 +7,9 @@ Spec document: `non_mf_groups_exist.tex`.  Formal development: `GroupApproximati
 | | |
 | --- | --- |
 | commit | the external-audit repair wave of 2026-08-18 (this one) |
-| `git hash-object non_mf_groups_exist.tex` | `507bac6c1cdd3cb4fa7ada1a316dde3dceac33b1` |
-| sha256 of the file | `086fe11d5aa7106549a50b3647920f5501138f33ce43de48f6190943ac0ece08` |
-| `wc -l` | 3706 |
+| `git hash-object non_mf_groups_exist.tex` | `3dce8d54f44ee30347fef64a6afa0fe23f319816` |
+| sha256 of the file | `6f984416020de209e90a6bdddeb0e1f4556fb6ce221a9921bf4adf154e10f5d1` |
+| `wc -l` | 3710 |
 
 `git hash-object` of the file must reproduce the blob above for the rows below
 to be read as current.  The file has shrunk from 4768 lines to 3771 across the
@@ -1137,7 +1137,7 @@ everywhere: the TeX is the specification and does not move).
 | FN.15 | thm:criterion | contradiction with (∗), because operator-norm convergence dominates normalized HS convergence | `FiniteNormalAverageCorner.false_of_finite_sum_vanishing_of_hsTrivial` | EXACT | EXACT | literal | unconditional | - | NO | - |
 | FN.16 | thm:criterion | transport of the conclusion from the unitary-sequence corona to U(Q) by the polar-correction isomorphism | `KazhdanCompressionCore.finiteNormal_le_normMatrixCStarCoronaKernel` | EXACT | EXACT | literal | unconditional | - | NO | - |
 | CR.01 | p:conj-reynolds-only | the Reynolds corner uses only HS invisibility of every element of N_comp | `KazhdanCompressionCore.finiteNormal_le_normMFResidual_of_hyperlinear_killed` | EXACT | EXACT | literal | unconditional | - | NO | the abstracted hypothesis is exactly that |
-| CR.02 | p:conj-two-element | for F = {1,ε} the average is ½(1 + V_{ε,n}) and the corner is the negative spectral corner, where ε = −1 exactly | `KazhdanCompressorCorner.false_of_markedOpAlmostRepresentation`; `LiteralNonMFEndpoint.negativeCorner_kazhdanTransport_contradiction` | EXACT | EXACT | literal | unconditional | - | NO | - |
+| CR.02 | p:conj-two-element | for F = {1,w} the average is ½(1 + V_{w,n}) and the corner is the negative spectral corner, where the image of w is −1 exactly in the corona and the finite-stage compressions satisfy ‖W_{w,n}+1‖ → 0 | `KazhdanCompressorCorner.false_of_markedOpAlmostRepresentation`; `LiteralNonMFEndpoint.negativeCorner_kazhdanTransport_contradiction` | EXACT | EXACT | literal | unconditional | - | NO | REWORDED 2026-08-18 with the print (external audit item 5): the print and this cell previously said the corner model has w = −1 exactly, which conflated the corona corner (exact) with the finite-stage compressions (operator-norm convergence); the graded content and the cited declarations are unchanged |
 | CS.00 |thm:sign-criterion |Theorem 4.5 (central-sign criterion): ε = u² ≠ 1, ε² = 1, ε central ⇒ every corona representation kills ε and H is not MF | `KazhdanCompressionCore.manuscriptCentralSignCriterion_anyUniverse` | EXACT |EXACT |literal |unconditional |- |NO | CLOSED 2026-08-18 by badge repoint.  The universe restriction was the whole of the MISMATCH and it is gone: the declaration cited above states the printed sentence with the Kazhdan source at an arbitrary universe, which is what the print quantifies over, and property (T) supplies the countability the print states, so no hypothesis is added.  The manuscript badge and `CLAIM_TARGETS` now name this declaration; the Type-0 form it replaced is still in the tree and is what the any-universe form transfers through |
 | CS.01 | thm:sign-criterion | (Γ, ι, t, c) is a Kazhdan conjugation datum in H | `KazhdanCompressionCore` | EXACT | EXACT | literal | unconditional | - | NO | assembled inside the proof |
 | CS.02 | thm:sign-criterion | u = [d, ι(a)] is one of the displayed generators of N_comp, so ε = u² ∈ N_comp | `KazhdanCompressionCore.defect_mem_defectNormal` | EXACT | EXACT | literal | unconditional | - | NO | - |
