@@ -4,6 +4,7 @@ id: non-hyperlinear-group
 kind: claim
 title: Exhibit an explicit non-hyperlinear group
 root: true
+goal: true
 ---
 
 The primary target of the program (AGENDA.md header): an explicit group that
@@ -15,6 +16,21 @@ The organizing mechanism is (T)-compression: `Γ ≤ G` with a compressor `t`
 monotone size the compression collapses (invariant-size-collapse); the `II₁` branch survives
 because the trace is refinement-blind, and that failure is sharp (trace-blindness-sharpness).
 The obstruction, if there is one, can only be stability.
+
+## Marked `goal`
+
+Flagged `goal: true` on 2026-08-18, taking the single goal flag over from
+`q3-4-resolved`.  The grounds are impact: hyperlinearity is the weakest
+standard approximation notion, so this claim is the group-level Connes
+embedding problem; a witness subsumes nonsoficity outright (non-hyperlinear
+implies nonsofic) and connects to quantum complexity through the LinMIP*
+equivalence; and it is the question whose answer is genuinely uncertain,
+where Pestov 3.4 has one widely expected answer.  Post-nonsoficity the two
+questions are entangled: `hyperlinear-implies-sofic` — Pestov's "yes" —
+already routes here via `non-hyperlinear-from-hyperlinear-implies-sofic`,
+so even that side's machinery serves this goal.  The separation
+(`hyperlinear-nonsofic-group`) remains a root landmark the graph records
+and can close; it is deliberately off-goal.
 
 ## Ideas
 

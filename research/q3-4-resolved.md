@@ -7,10 +7,10 @@ distinct_from:
   hyperlinear-nonsofic-group: that claim is one specific answer (the separation); this is the question itself, which is also resolved by proving the opposite answer hyperlinear-implies-sofic
   hyperlinear-implies-sofic: that claim is the affirmative answer; this is the question, established by either answer
 root: true
-goal: true
 ---
 
-The program goal, stated as the question rather than one of its answers:
+A root question of the program, stated as the question rather than one of
+its answers:
 determine whether every hyperlinear group is sofic (Pestov, Question 3.4).
 Exactly two routes can establish this claim, one per answer:
 
@@ -24,6 +24,12 @@ targets: "no" is the separation itself, while "yes" combined with the
 unconditional nonsofic groups (kun-thom-nonsofic-wreath) immediately yields an
 explicit non-hyperlinear group — the other root target (non-hyperlinear-group).
 So resolving Q3.4 in *either* direction closes a root of this graph.
+
+(`goal: true` moved to `non-hyperlinear-group` on 2026-08-18: the program
+keeps one goal, chosen for impact — the group-level Connes embedding
+problem.  Nothing here changes in wiring: both answer routes stand, the
+"no" side closes this root, and the "yes" side both closes it and feeds
+the goal through `non-hyperlinear-from-hyperlinear-implies-sofic`.)
 
 **Graph discipline.** As a bare disjunction "(∃ hyperlinear nonsofic group) ∨
 (hyperlinear ⟹ sofic)" this statement is a classical tautology; its content is
