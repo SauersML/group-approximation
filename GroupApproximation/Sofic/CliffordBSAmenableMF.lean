@@ -72,8 +72,10 @@ spectrum.
   scalar it also satisfies, exactly, the four printed relators that make the
   mark a central involution.
 
-So all seven relators hold, six of them exactly, and the mark is `-1` in every
-model.  Its class in the cofinite norm-matrix corona is therefore nontrivial.
+So all seven relators hold, five of them exactly --- the doubling relator and
+the lamp commutation relator `[c, γ₀] = 1` hold only approximately, with
+vanishing defect --- and the mark is `-1` in every model.  Its class in the
+cofinite norm-matrix corona is therefore nontrivial.
 
 The `45°` angle is forced rather than convenient: a self-adjoint unitary whose
 conjugate by the spin sign anticommutes with it must weight its even and odd
@@ -1469,9 +1471,10 @@ theorem coronaGen_kills_relators :
     rw [hval]
     exact one_mem _
 
-/-- **The corona representation of `E_BS`.**  Every printed relator holds; six
-of the seven hold exactly, and the doubling relator holds with defect
-`O(1/m)`. -/
+/-- **The corona representation of `E_BS`.**  Every printed relator holds in
+the corona; five of the seven hold exactly at each stage, and the doubling
+relator `t γ₀ t⁻¹ = γ₀²` and the lamp commutation relator `[c, γ₀] = 1` hold
+with defect `O(1/m)`. -/
 noncomputable def coronaRep : LiteralGroup →* NormMatrixCoronaUnitary site :=
   PresentedGroup.toGroup coronaGen_kills_relators
 
