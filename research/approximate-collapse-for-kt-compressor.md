@@ -254,6 +254,23 @@ recorded from the fork's report, self-contained).**
    Flexible side: estimate the per-level intertwining defect —
    finite computations on small `P/m^k`.
 
+   *Condition (a) VERIFIED at the base level (2026-08-18, exact
+   512-point enumeration on sioux).*  At `k = 2` (`d = 3`, `q = 2`,
+   `r = 3`, shear compressor) the coset space `Q₂/π(Λ)` is exactly
+   `M₃(𝔽₂)`: the kernel `I + m̄M₃` is abelian (`m̄² = 0`),
+   `π(Λ) ∩ kernel = span(x₁,x₃)⊗M₃`, `Λ̄` acts by LEFT multiplication
+   (orbits = row spaces — 16 of them, sizes `1, 7×7, 42×6, 168`,
+   matching the subspace counts exactly), and the witness
+   `e_12(x̄₂)` acts by translation by `E_12`.  The enumeration:
+   344/512 points change orbit under the witness, and the best
+   union-of-orbits `E` (11 orbits, mass 0.41) has
+   `dens(γ₀E △ E) = 266/512 ≈ 0.52` — so the exactly-`Λ̄`-commuting
+   diagonal projection `1_E` has a `Θ(1)` commutator with
+   `π(γ₀)` at `k = 2`.  The `Γ`-level flexible seed is macroscopic
+   and real; conditions still open: (a) density stability along the
+   tower `k → ∞`, (b) quasirandomness, and (c) the crux above, on
+   which everything now rests.
+
 **Stakes, stated once:** a proof refutes hyperlinearity of the
 Kun–Thom wreath group (first non-hyperlinear group; group-CEP
 refuted; Pestov 3.9 falls).  A refutation kills the rigidity route
