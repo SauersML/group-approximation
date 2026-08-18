@@ -605,8 +605,22 @@ lands without its root import.
 | Row | Currently | Proposed once green |
 | --- | --- | --- |
 | MC.04 | CLEARED 2026-08-18 | EXACT/EXACT. Condition met by run 32122738761 on `c0f1e4e8`: `Build and audit` `completed/success`, `Zero-tolerance verdict` green, `602077dd` an ancestor |
-| CO.17 | MISMATCH/MISSING | `WreathWitnessW3.pauli_rank_identity_fails`, and a reworded claim |
+| CO.17 | RETIRED 2026-08-18 | Nothing is waiting: THIS ROW HAS NO STEP ROW. `CO.17` occurs in this file three times -- twice in prose and once here -- and never as an entry in the step table, in any of the last forty commits to touch the ledger. The reason is not a lost row but a cut sentence: the claim was the Step 2 cube identity behind `WreathWitnessW3.pauli_rank_identity_fails`, and the manuscript now contains the string `Pauli` zero times, so there is no printed sentence left to grade. The declaration is still in the tree and still true; it simply certifies nothing that is printed. Kept visible rather than deleted, because the prose below counts this row |
 | SO.17 | CLEARED 2026-08-18 | EXACT/EXACT on `SimpleSoficEnvelopeUnconditional.manuscript_simpleSoficEnvelope`, with `ElekSzaboHyper` out of `Source`. Both named modules are imported at `c0f1e4e8`, the commit the certificate covers |
+
+**The waiting table has no live entries as of 2026-08-18.**  `MC.04` and
+`SO.17` cleared on the first green `Build and audit` (run 32122738761 on
+`c0f1e4e8`, since completed `success` in every job), and `CO.17` is retired
+above for a different reason entirely -- its printed sentence is gone, so the
+row it was waiting to upgrade does not exist.
+
+**A gate blindspot found while clearing it, left for whoever wants it.**
+`scripts/check_non_mf_proof_ledger.py` validates the step table, the anchor
+table and the counts block against each other, but it does not check that a
+`Row` named in the waiting table is the id of an actual step.  `CO.17` sat here
+naming a step that had not existed for at least forty ledger commits, and every
+gate stayed green.  The check is one set difference and would have caught it the
+day the row was cut.
 
 **Six of the eight cleared on 2026-08-17: CY.04, CY.11, CY.12, CY.13, CO.02 and
 CO.14c**, leaving CO.17 and MC.04 above.  **MC.04 was cleared with them and has
