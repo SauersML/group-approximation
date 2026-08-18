@@ -144,7 +144,70 @@ defeq checks that reconcile the two spellings against the `FreeGroup.lift`
 form produced by `RelatorDefectBudget` are what exhausted the elaborator's
 budget when this file first compiled. -/
 
-/-! ## The obstruction on the printed relators -/
+/-! ## The obstruction on the printed relators
+
+The three lemmas below are separated out so that the budgets `pairBudget` and
+`markBudget` -- each a `Classical.choose` over a normal-closure membership
+proof for a forty-one element relator set -- never reach an arithmetic tactic
+as an *evaluable* term.  They enter the main proof only as opaque natural
+numbers obtained by `obtain`, which is what keeps the elaboration inside its
+default heartbeat budget: given the literal spelling, `positivity` and
+`nlinarith` try to normalise `(markBudget : ℝ)` and unfold the choice. -/
+
+/-- One derivation budget serves a whole finite set of pairs. -/
+theorem exists_pair_budget_bound (F : Finset MarkedGroup) :
+    ∃ N : ℕ, ∀ g ∈ F, ∀ h ∈ F, ∃ k : ℕ, k ≤ N ∧
+      IsRelatorProduct literalRelatorSet k
+        ((rep g * rep h)⁻¹ * rep (g * h)) := by
+  classical
+  refine ⟨(F ×ˢ F).sup (fun p ↦ pairBudget p.1 p.2), ?_⟩
+  intro g hg h hh
+  refine ⟨pairBudget g h, ?_, pairBudget_spec g h⟩
+  have hmem := Finset.le_sup
+    (f := fun p : MarkedGroup × MarkedGroup ↦ pairBudget p.1 p.2)
+    (Finset.mk_mem_product hg hh)
+  simpa using hmem
+
+/-- The multiplicative defect of the induced map at one pair, from a relator
+budget for that pair. -/
+theorem norm_defect_le {Y : FiniteModel}
+    (u : Generator → Matrix.unitaryGroup Y ℂ) {delta : ℝ}
+    (hu : ∀ r ∈ literalRelatorSet, opLength Y (FreeGroup.lift u r) ≤ delta)
+    {k : ℕ} {g h : MarkedGroup}
+    (hk : IsRelatorProduct literalRelatorSet k
+      ((rep g * rep h)⁻¹ * rep (g * h))) :
+    ‖((FreeGroup.lift u (rep (g * h)) : Matrix.unitaryGroup Y ℂ) :
+          Matrix Y Y ℂ) -
+        ((FreeGroup.lift u (rep g) : Matrix.unitaryGroup Y ℂ) : Matrix Y Y ℂ) *
+          ((FreeGroup.lift u (rep h) : Matrix.unitaryGroup Y ℂ) :
+            Matrix Y Y ℂ)‖
+      ≤ (k : ℝ) * delta := by
+  have hb := opLength_le_of_isRelatorProduct (FreeGroup.lift u) hu hk
+  rw [map_mul, map_inv, map_mul, opLength_inv_mul] at hb
+  have hcoe : ((FreeGroup.lift u (rep g) * FreeGroup.lift u (rep h) :
+        Matrix.unitaryGroup Y ℂ) : Matrix Y Y ℂ)
+      = ((FreeGroup.lift u (rep g) : Matrix.unitaryGroup Y ℂ) : Matrix Y Y ℂ) *
+        ((FreeGroup.lift u (rep h) : Matrix.unitaryGroup Y ℂ) :
+          Matrix Y Y ℂ) := rfl
+  rw [hcoe] at hb
+  exact hb
+
+/-- The chosen representative of the mark is within `M · δ` of the printed
+marked word. -/
+theorem norm_mark_le {Y : FiniteModel}
+    (u : Generator → Matrix.unitaryGroup Y ℂ) {delta : ℝ}
+    (hu : ∀ r ∈ literalRelatorSet, opLength Y (FreeGroup.lift u r) ≤ delta)
+    {M : ℕ}
+    (hM : IsRelatorProduct literalRelatorSet M ((rep mark)⁻¹ * markedWord)) :
+    opLength Y (FreeGroup.lift u markedWord)
+      ≤ opLength Y (FreeGroup.lift u (rep mark)) + (M : ℝ) * delta := by
+  have hb1 := opLength_le_of_isRelatorProduct (FreeGroup.lift u) hu hM
+  have hsplit : FreeGroup.lift u markedWord
+      = FreeGroup.lift u (rep mark) *
+        FreeGroup.lift u ((rep mark)⁻¹ * markedWord) := by
+    rw [← map_mul, mul_inv_cancel_left]
+  rw [hsplit]
+  exact (opLength_mul_le Y _ _).trans (add_le_add_left hb1 _)
 
 /-- **The uniform obstruction with the printed relators as its test set.**
 
@@ -170,9 +233,15 @@ theorem literal_relator_uniform_obstruction :
   obtain ⟨eps, F₀, heps, hobs⟩ :=
     uniform_invisibility LiteralNonMFEndpoint.literal_mark_normMFInvisible
       (1 / 2) (by norm_num)
-  set N : ℕ := (F₀ ×ˢ F₀).sup (fun p ↦ pairBudget p.1 p.2) with hN
+  obtain ⟨N, hN⟩ := exists_pair_budget_bound F₀
+  obtain ⟨M, hM⟩ : ∃ M : ℕ,
+      IsRelatorProduct literalRelatorSet M ((rep mark)⁻¹ * markedWord) :=
+    ⟨markBudget, markBudget_spec⟩
+  refine ⟨min (eps / ((N : ℝ) + 1)) (1 / (2 * ((M : ℝ) + 1))), ?_, ?_⟩
+  · exact lt_min (div_pos heps (by positivity)) (by positivity)
+  intro Y u hu
   set delta : ℝ :=
-    min (eps / ((N : ℝ) + 1)) (1 / (2 * ((markBudget : ℝ) + 1))) with hdelta
+    min (eps / ((N : ℝ) + 1)) (1 / (2 * ((M : ℝ) + 1))) with hdelta
   have hdpos : 0 < delta :=
     lt_min (div_pos heps (by positivity)) (by positivity)
   have hdnn : (0 : ℝ) ≤ delta := hdpos.le
@@ -180,12 +249,10 @@ theorem literal_relator_uniform_obstruction :
     have h1 : delta ≤ eps / ((N : ℝ) + 1) := min_le_left _ _
     rw [le_div_iff₀ (by positivity)] at h1
     nlinarith [hdnn, h1]
-  have hMbound : (markBudget : ℝ) * delta ≤ 1 / 2 := by
-    have h1 : delta ≤ 1 / (2 * ((markBudget : ℝ) + 1)) := min_le_right _ _
+  have hMbound : (M : ℝ) * delta ≤ 1 / 2 := by
+    have h1 : delta ≤ 1 / (2 * ((M : ℝ) + 1)) := min_le_right _ _
     rw [le_div_iff₀ (by positivity)] at h1
     nlinarith [hdnn, h1]
-  refine ⟨delta, hdpos, ?_⟩
-  intro Y u hu
   have hrel : ∀ r ∈ literalRelatorSet,
       opLength Y (FreeGroup.lift u r) ≤ delta := by
     intro r hr
@@ -200,40 +267,17 @@ theorem literal_relator_uniform_obstruction :
               Matrix Y Y ℂ)‖
         ≤ eps := by
     intro g hg h hh
-    have hb := opLength_le_of_isRelatorProduct (FreeGroup.lift u) hrel
-      (pairBudget_spec g h)
-    rw [map_mul, map_inv, map_mul, opLength_inv_mul] at hb
-    have hcoe : ((FreeGroup.lift u (rep g) * FreeGroup.lift u (rep h) :
-          Matrix.unitaryGroup Y ℂ) : Matrix Y Y ℂ)
-        = ((FreeGroup.lift u (rep g) : Matrix.unitaryGroup Y ℂ) :
-            Matrix Y Y ℂ) *
-          ((FreeGroup.lift u (rep h) : Matrix.unitaryGroup Y ℂ) :
-            Matrix Y Y ℂ) := rfl
-    rw [hcoe] at hb
-    have hns : pairBudget g h ≤ N := by
-      have hmem := Finset.le_sup
-        (f := fun p : MarkedGroup × MarkedGroup ↦ pairBudget p.1 p.2)
-        (Finset.mk_mem_product hg hh)
-      simpa [hN] using hmem
-    have hstep : (pairBudget g h : ℝ) * delta ≤ (N : ℝ) * delta :=
-      mul_le_mul_of_nonneg_right (Nat.cast_le.mpr hns) hdnn
-    exact hb.trans (hstep.trans hNbound)
+    obtain ⟨k, hkle, hkspec⟩ := hN g hg h hh
+    refine (norm_defect_le u hrel hkspec).trans ?_
+    have hstep : (k : ℝ) * delta ≤ (N : ℝ) * delta :=
+      mul_le_mul_of_nonneg_right (Nat.cast_le.mpr hkle) hdnn
+    exact hstep.trans hNbound
   -- compactness sends the mark into the ball of radius `1/2`
   have hmarkobs :
       ‖((FreeGroup.lift u (rep mark) : Matrix.unitaryGroup Y ℂ) :
           Matrix Y Y ℂ) - 1‖ < 1 / 2 :=
     hobs Y (fun g ↦ FreeGroup.lift u (rep g)) hmul
-  -- and the representative is within `1/2` of the printed word
-  have hb1 := opLength_le_of_isRelatorProduct (FreeGroup.lift u) hrel
-    markBudget_spec
-  have hsplit : FreeGroup.lift u markedWord
-      = FreeGroup.lift u (rep mark) *
-        FreeGroup.lift u ((rep mark)⁻¹ * markedWord) := by
-    rw [← map_mul, mul_inv_cancel_left]
-  have hfinal : opLength Y (FreeGroup.lift u markedWord)
-      ≤ opLength Y (FreeGroup.lift u (rep mark)) + (markBudget : ℝ) * delta := by
-    rw [hsplit]
-    exact (opLength_mul_le Y _ _).trans (add_le_add_left hb1 _)
+  have hfinal := norm_mark_le u hrel hM
   have hhalf : opLength Y (FreeGroup.lift u (rep mark)) < 1 / 2 := hmarkobs
   show ‖((FreeGroup.lift u markedWord : Matrix.unitaryGroup Y ℂ) :
       Matrix Y Y ℂ) - 1‖ < 1

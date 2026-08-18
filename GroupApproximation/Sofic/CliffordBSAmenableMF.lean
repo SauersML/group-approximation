@@ -1619,11 +1619,12 @@ theorem half2_ne_zero : half2 ≠ 0 := by
   rw [h, mul_zero] at hsq
   exact absurd hsq.symm (by norm_num)
 
-/-! The two spin coordinates are distinct, and the swap exchanges them.  These
-are stated as closed facts about `Fin 2` because the coordinate type of the
-model is `Fin 2 × ZMod (modulus m)`, whose second factor carries the free
-variable `m`: `decide` refuses a goal whose type mentions it, even when the
-decidable content is entirely in the first factor. -/
+/-! The two spin coordinates are distinct.  This is stated as a closed fact
+about `Fin 2`, separately from the entry computations that use it, because the
+coordinate type of the model is `Fin 2 × ZMod (modulus m)`, whose second factor
+carries the free variable `m`: `decide` refuses a goal whose type mentions `m`,
+even when the decidable content lies entirely in the first factor.
+`spinSwap_zero` above supplies the other half. -/
 
 theorem fin2_zero_ne_one : (0 : Fin 2) ≠ 1 := by decide
 
