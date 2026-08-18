@@ -32,6 +32,16 @@ so even that side's machinery serves this goal.  The separation
 (`hyperlinear-nonsofic-group`) remains a root landmark the graph records
 and can close; it is deliberately off-goal.
 
+The opposite world is a defined outcome, not a goal branch: a proof that
+every group is hyperlinear would be recorded as an established
+`every-group-hyperlinear` negation claim, refuting this goal — which per
+kernel doctrine is itself a program resolution (the universal question is
+answered, and Pestov 3.4 falls negatively for free, since the nonsofic
+groups would be hyperlinear).  It is not a branch here because no route
+class toward it exists, even speculatively, and partial results cannot
+accumulate to it — the same asymmetry `q3-4-resolved` records for its own
+affirmative side.
+
 ## Ideas
 
 Non-graph brainstorming for this goal goes here. Current periphery: free
