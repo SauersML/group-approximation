@@ -1075,6 +1075,7 @@ import GroupApproximation.Analysis.VectorHilbertUltraproduct
 import GroupApproximation.Analysis.VectorHilbertComplete
 import GroupApproximation.Analysis.VectorOmegaAction
 import GroupApproximation.Analysis.VectorOmegaKazhdanGap
+import GroupApproximation.Analysis.UnitaryAverageFixedVector
 import GroupApproximation.Monsters.NeumannSimpleSocle
 import GroupApproximation.Sofic.TransportShapeBridges
 import GroupApproximation.Sofic.GeneralModelKazhdanTransport
