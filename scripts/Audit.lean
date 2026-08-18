@@ -745,7 +745,27 @@ def routeGuards : List (Name × Name) :=
     -- PRE.11: the manuscript lifting wrapper travels the printed four-move
     -- patching route rather than the corona-quotient surjection.
     (`GroupApproximation.ManuscriptExactWrappers.manuscriptUnitaryLifting,
-     `GroupApproximation.PrintedLiftingSteps.exists_boundedLift_polarPatch) ]
+     `GroupApproximation.PrintedLiftingSteps.exists_boundedLift_polarPatch),
+    -- KC.02: the general Kazhdan-Clifford construction's negative corner
+    -- reaches its rigidity through the same printed transport.  The row's
+    -- headline `kazhdanCliffordConstruction` does not, and is deliberately
+    -- unpinned: its rigidity arrives through `manuscriptCentralSignCriterion`,
+    -- which the row's note records as still on the finite-stage route.
+    (`GroupApproximation.KazhdanCliffordConstruction.negativeCorner_kazhdanTransport_contradiction,
+     `GroupApproximation.KazhdanAsymptoticCommutant.manuscriptKazhdanTransport),
+    -- ID.06: the printed reverse step of `cor:generaltransport` is the exact
+    -- identity `P = VPV* ⟹ V*PV = P`, so the reverse-transport endpoint must
+    -- depend on it and not only on the approximate leakage bound ...
+    (`GroupApproximation.KazhdanAsymptoticCommutant.transport_star_printed,
+     `GroupApproximation.PrintedReverseTransport.star_conj_eq_of_conj_eq),
+    -- ... and the corollary's own shape, which a badge would cite, likewise.
+    (`GroupApproximation.KazhdanAsymptoticCommutant.compressionGroup_transport_both_printed,
+     `GroupApproximation.PrintedReverseTransport.star_conj_eq_of_conj_eq),
+    -- TR.05: the trace theorem's printed intermediate object is the tracial
+    -- quotient along a free ultrafilter, and the extension step is the printed
+    -- universal property rather than a second construction.
+    (`GroupApproximation.ShulmanTrace.canonicalMaximalTrace_factorsThrough_tracialUltraproduct,
+     `GroupApproximation.canonicalMaximalTrace_factorsThrough) ]
 
 /-- Does the dependency closure of `root` contain `target`?  A depth-first
 walk over `ConstantInfo.getUsedConstantsAsSet`, which visits types and proof
