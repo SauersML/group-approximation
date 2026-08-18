@@ -25,22 +25,23 @@ quotient must stay in `Type 0`.  It does, because `FiniteModel.carrier : Type`
 rather than `Type*`, and the `example` fails to elaborate if that ever
 changes.
 
-## What is *not* here, and is the one thing blocking the chain
+## What was *not* here, and no longer blocks the chain
 
-There is still no `CStarAlgebra (TracialMatrixQuotient X ω)` instance, so
-`maximalGroupCStar_existsUnique_lift` cannot fire and there is no
-`π : C*(G) → Mω` yet.  This is **not** an instance declaration waiting to be
+When this file was written there was no
+`CStarAlgebra (TracialMatrixQuotient X ω)` instance, so
+`maximalGroupCStar_existsUnique_lift` could not fire and there was no
+`π : C*(G) → Mω`.  That was **not** an instance declaration waiting to be
 typed out.  The C-star identity for the quotient norm
 `‖b + J‖ = inf {‖b + j‖ : j ∈ J}` is a genuine theorem: its standard proof
 runs through an approximate unit of `J` and the identity
 `‖b + J‖ = lim_λ ‖b - b e_λ‖`, and the pinned mathlib has no quotient C-star
-instance to inherit.  Two independent statements of this in the tree agree:
-the "What is *not* proved here" section of `Analysis/CStarSeminormQuotient.lean`
-and the "What is deliberately *not* claimed" section of
-`Analysis/TracialMatrixUltraproduct.lean`, the latter naming the exact missing
-lemma (for `j ∈ J₂ω` and `ε > 0` there is `e ∈ J₂ω` with `0 ≤ e ≤ 1` and
-`‖j - j e‖ < ε`) together with the spectral-projection witness that should
-prove it.
+instance to inherit.  `Analysis/TracialQuotientCStar.lean` has since closed
+exactly this gap: the per-element spectral-projection witness (for `j ∈ J₂ω`
+and `ε > 0` there is `e ∈ J₂ω` with `‖1 - e‖ ≤ 1` and `‖j - j e‖ ≤ ε` —
+the lemma the ambient docstring predicted), then the identity, the
+`CStarRing` and `CStarAlgebra` instances, and the exact formula
+`‖a + J‖ = inf {‖a - a e‖ : e ∈ J}`.  The lift can now fire at this
+target.
 
 ## A trap found by building this file
 
@@ -76,10 +77,11 @@ Note the contrast with `Analysis/NormMatrixCorona.lean`, which *does* carry a
 `‖·‖₂`-null ideal admits no such formula, which is precisely why that proof
 does not transfer.
 
-## The blocker may not need to be closed at all
+## A second route, which never needed the quotient closed
 
-There is a second route to a lift out of `C*(G)` which never forms the
-quotient.  Represent the *numerator* on the GNS space of the ultratrace:
+(Written while the blocker above was open; kept because the route is still
+live and cheaper for some consumers.)  There is a second route to a lift out
+of `C*(G)` which never forms the quotient.  Represent the *numerator* on the GNS space of the ultratrace:
 `PositiveLinearMap.gnsStarAlgHom` gives a unital ⋆-homomorphism of
 `ModelBoundedSequence X` into `f.GNS →L[ℂ] f.GNS`, bounded operators on a
 Hilbert space, which is already a C-star algebra in `Type 0` and is the
