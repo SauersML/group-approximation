@@ -710,6 +710,79 @@ namespace; the audit is not seeing the library"
 axioms: {bad.toList}"
   logInfo m!"audited {decls.size} declarations; no disallowed axioms"
 
+/-! ## 2b. Route guards: printed-route proofs must stay printed-route
+
+A ledger row that grades a proof `EXACT` is a claim about the *route*, not
+only the type: the cited endpoint traverses the manuscript's printed
+argument.  Nothing above checks that.  The axiom sweep would stay green, and
+every type-level gate would stay green, if a refactor re-proved an endpoint
+through an alternate route while leaving its statement byte-identical -- the
+exact silent regression the ledger's route rows exist to prevent, performed
+by accident.
+
+Each pair below pins an endpoint to a declaration its proof must reach: the
+dependency closure of the endpoint (types and proof terms, the same notion
+the kernel's axiom collector walks) must contain the pinned declaration.  A
+pair is added when a ledger row records that an endpoint travels a printed
+route through a named declaration, and retired only together with that row.
+The guard is one-sided by design: it cannot certify that a proof *is* the
+printed argument -- that judgment stays human, in the ledger -- but it makes
+the recorded judgment refutable by machine when the dependency disappears. -/
+
+/-- The pinned (endpoint, required-dependency) pairs.  Sources: the `FN.03`
+and `TA.11` ledger rows, whose notes record that these endpoints travel the
+printed ultraproduct transport rather than the finite-stage corner. -/
+def routeGuards : List (Name × Name) :=
+  [ -- FN.03: the pinning endpoint consumes the printed-route seam ...
+    (`GroupApproximation.LiteralNonMFEndpoint.kazhdanPinning,
+     `GroupApproximation.UltraproductRigidityRoute.compressionDefects_hsTrivial_literal),
+    -- ... and through it the printed `thm:kazhdan-transport` itself.
+    (`GroupApproximation.LiteralNonMFEndpoint.kazhdanPinning,
+     `GroupApproximation.KazhdanAsymptoticCommutant.manuscriptKazhdanTransport),
+    -- TA.11: the negative-corner contradiction shares that transport step.
+    (`GroupApproximation.LiteralNonMFEndpoint.negativeCorner_kazhdanTransport_contradiction,
+     `GroupApproximation.KazhdanAsymptoticCommutant.manuscriptKazhdanTransport),
+    -- PRE.11: the manuscript lifting wrapper travels the printed four-move
+    -- patching route rather than the corona-quotient surjection.
+    (`GroupApproximation.ManuscriptExactWrappers.manuscriptUnitaryLifting,
+     `GroupApproximation.PrintedLiftingSteps.exists_boundedLift_polarPatch) ]
+
+/-- Does the dependency closure of `root` contain `target`?  A depth-first
+walk over `ConstantInfo.getUsedConstantsAsSet`, which visits types and proof
+terms alike -- the same reachability the kernel's axiom collector uses. -/
+partial def closureContainsGo (env : Environment) (target : Name)
+    (visited : NameSet) : List Name → Bool
+  | [] => false
+  | n :: rest =>
+    if n == target then true
+    else if visited.contains n then closureContainsGo env target visited rest
+    else
+      let visited := visited.insert n
+      match env.find? n with
+      | some ci =>
+          closureContainsGo env target visited
+            (ci.getUsedConstantsAsSet.toList ++ rest)
+      | none => closureContainsGo env target visited rest
+
+def closureContains (env : Environment) (root target : Name) : Bool :=
+  closureContainsGo env target {} [root]
+
+run_cmd do
+  let env ← getEnv
+  for (endpoint, required) in routeGuards do
+    unless env.contains endpoint do
+      throwError "route guard: endpoint `{endpoint}` does not exist in the \
+environment"
+    unless env.contains required do
+      throwError "route guard: required dependency `{required}` does not \
+exist in the environment"
+    unless closureContains env endpoint required do
+      throwError "route guard: `{endpoint}` no longer depends on \
+`{required}`.  Its statement may be unchanged, but the proof no longer \
+travels the printed route the ledger records for it; restore the route, or \
+regrade the ledger row and retire this pair in the same commit"
+  logInfo m!"route guards: {routeGuards.length} dependency pin(s) hold"
+
 /-! ## 3. The environment scans
 
 `Audit.Scan` carries the detectors and `scripts/Calibrate.lean` proves they can

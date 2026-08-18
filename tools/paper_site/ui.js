@@ -269,7 +269,7 @@ function renderNode(n, ctx, siblings, idx) {
       const id = n.anchor ? ' id="' + n.anchor + '"' : '';
       const no = n.tag || n.num;
       const eqno = no ? '<span class="eqno">(' + escHtml(no) + ')</span>' : '';
-      return '<div class="dmath"' + id + '>' + eqno + '<div class="dmath-scroll">' + tex2html(n.katexSrc, true) + '</div></div>';
+      return '<div class="dmath' + (no ? ' has-no' : '') + '"' + id + '>' + eqno + '<div class="dmath-scroll">' + tex2html(n.katexSrc, true) + '</div></div>';
     }
     case 'list': {
       if (n.kind === 'itemize') {

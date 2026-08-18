@@ -58,6 +58,9 @@ jobs:
         run: |
           if python3 tools/paper_site/build.py --out .cairn/site/paper/index.html; then
             echo "paper edition built"
+            # Cross-link: a "paper" entry in the graph header.  This edits the
+            # generated page only -- bin/cairn and tools/cairn.py stay untouched.
+            sed -i 's|<header><span class="stats">|<header><a href="paper/">paper</a><span class="stats">|' .cairn/site/index.html
           else
             echo "::warning::paper edition build failed; publishing without /paper"
           fi

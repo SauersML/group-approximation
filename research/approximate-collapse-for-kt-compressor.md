@@ -364,6 +364,40 @@ recorded from the fork's report, self-contained).**
    the compressor automorphism have an approximate fixed point in
    the representation variety of `Γ` over separating needle towers?
 
+   *Compute constraint (2026-08-18, from setting up the base-level
+   test): `β_A` DEGENERATES on low m-adic quotients.*
+   `β_A(x_i) = x^{A e_i}` has total degree = the `i`-th column sum
+   of `A`; a strict compressor has some column sum `≥ 2`, so those
+   generators map into `m²` and VANISH in `P/m^k` for `k` at or
+   below the compression depth `δ_A = max_i |A e_i|₁` (e.g. the
+   shear `x↦x, y↦xy, z↦xz` kills `y, z` in `P/m²`).  The fixed-point
+   / twist-matching test is only non-degenerate for `k > δ_A` — so
+   the finite computation deciding the base case must run at
+   `k = δ_A + 1` at minimum, NOT at `k = 2`.  This is why the
+   `k = 2` enumeration settled transversality (a `Λ`-only quantity)
+   but cannot address the compressor: at `k = 2` the compressor is
+   not yet faithfully present.  The corrected base compute target:
+   build `EL_r(P/m^{δ_A+1})`, its quasi-regular rep on the separating
+   coset space, and test `χ_π(g) = χ_π(β_A(g))`.
+
+   *EXECUTED (2026-08-18, sioux, `k = 3`, shear `A` cols
+   `(1,0,0),(1,1,0),(1,0,1)`, `δ_A = 2`).*  Non-degeneracy confirmed
+   (`β(y) = xy ≠ 0`, `β(x) = x`).  Result: on the root `(R, +)`,
+   `dim β_A(R) = 5` of `10` — a proper subspace of codimension 5
+   (monomials `y, z, y², yz, z²` missed) — so `χ_π ≠ χ_π ∘ β_A`
+   already at `k = 3`.  **But this is not evidence either way for the
+   crux, and the computation proves WHY: every finite level shows
+   `β_A(R)` proper (that IS separation, `char-p` restated), while the
+   crux asks whether the intertwining DEFECT `→ 0` asymptotically.  A
+   single finite character identity can only ever reconfirm
+   separation; it cannot see defect decay.**  Method fence: "compute
+   at larger `k`" is DEAD as a route to the crux — the finite towers
+   are separated at every stage by construction, and the question
+   lives entirely in the `‖·‖₂`-rate at which approximate
+   intertwiners close that fixed gap.  Whatever decides it is
+   analytic (a uniform lower bound on the defect, or a construction
+   achieving decay), not a bigger finite model.
+
 **Stakes, stated once:** a proof refutes hyperlinearity of the
 Kun–Thom wreath group (first non-hyperlinear group; group-CEP
 refuted; Pestov 3.9 falls).  A refutation kills the rigidity route
