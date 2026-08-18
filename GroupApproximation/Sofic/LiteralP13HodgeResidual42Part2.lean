@@ -43,7 +43,10 @@ theorem chunk25 : initialChunk 4 2 25 = 361675723 := by
 mk_kernel_batched_theorem_except 9 7 check
 
 theorem check.case_7 : check 7 := by
-  simpa [check, expected] using chunk25
+  unfold check
+  rw [show finProdFinEquiv ((2 : Fin 4), (7 : Fin 9)) =
+      (25 : Fin 36) by decide +kernel]
+  simpa [expected] using chunk25
 
 theorem all : ∀ u : Fin 9, check u :=
   combine_kernel_batched_theorems% check 9

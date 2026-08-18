@@ -189,7 +189,10 @@ def emit_part(output, core_module, residual, i, k, part):
             "    _ = %d := by decide +kernel\n\n" % initial[25],
             "mk_kernel_batched_theorem_except 9 7 check\n\n",
             "theorem check.case_7 : check 7 := by\n",
-            "  simpa [check, expected] using chunk25\n\n",
+            "  unfold check\n",
+            "  rw [show finProdFinEquiv ((2 : Fin 4), (7 : Fin 9)) =\n",
+            "      (25 : Fin 36) by decide +kernel]\n",
+            "  simpa [expected] using chunk25\n\n",
         ])
     else:
         out.append("mk_kernel_batched_theorem 9 check\n\n")
