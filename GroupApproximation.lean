@@ -823,6 +823,8 @@ import GroupApproximation.Sofic.LiteralMFQuotientControls
 import GroupApproximation.Sofic.LiteralNonMFConsequences
 import GroupApproximation.Sofic.LiteralNonMFPresentation
 import GroupApproximation.Sofic.LiteralUniformObstruction
+import GroupApproximation.Sofic.RelatorDefectBudget
+import GroupApproximation.Sofic.LiteralRelatorObstruction
 import GroupApproximation.Sofic.ExactCoronaNegativeCorner
 import GroupApproximation.Sofic.LiteralTheoremAPackage
 import GroupApproximation.Sofic.ManuscriptExactWrappers
