@@ -80,6 +80,10 @@ CLAIM_TARGETS: dict[str, tuple[str, str]] = {
     "thm:exactfd": (
         "Sofic/ManuscriptExactWrappers",
         "GroupApproximation.ManuscriptExactWrappers.manuscriptTheoremB"),
+    "thm:exactfd-intrinsic": (
+        "Sofic/ManuscriptExactWrappers",
+        "GroupApproximation.ManuscriptExactWrappers.manuscriptTheoremB",
+    ),
     "thm:cyclic": (
         "Monsters/LiteralCyclicCalibration",
         "GroupApproximation.LiteralCyclicCalibration.manuscriptCyclicCalibration"),
@@ -234,6 +238,7 @@ DEPENDENCIES: dict[str, list[str]] = {
               "lem:unitarycorona", "lem:square"],
     "cor:scaling-family": ["thm:A", "thm:kazhdan-clifford"],
     "cor:uniform": ["thm:A"],
+    "thm:exactfd-intrinsic": ["thm:exactfd"],
     "thm:cyclic": ["thm:exactfd", "con:clifford"],
     "thm:reduced": ["thm:A", "lem:faithfultrace"],
     "thm:Esofic": ["def:E", "thm:A", "prop:blocknormalform", "lem:window"],

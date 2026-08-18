@@ -8,8 +8,9 @@ import Mathlib.Topology.Algebra.InfiniteSum.NatInt
 # `H_ω` is complete, hence a Hilbert space
 
 `Analysis/VectorHilbertUltraproduct.lean` builds the manuscript's `H_ω` -- the
-ultraproduct of the coordinate spaces `ℂ^{d_n}` that `\label{thm:normal-kazhdan}`
-names -- and gives it its inner product, positive definiteness included.  This
+ultraproduct of the coordinate spaces `ℂ^{d_n}` that the printed Kazhdan-corner
+proof (under `\label{thm:abstract-nk}` since 2026-08-18, previously under
+`thm:normal-kazhdan`) names -- and gives it its inner product, positive definiteness included.  This
 file supplies completeness, so that the printed
 
 > let `H_ω` be the Hilbert-space ultraproduct of the coordinate spaces `ℂ^{d_n}`
@@ -234,7 +235,8 @@ theorem exists_tendsto_sum_of_summable_norm (u : ℕ → VecOmega Y ω)
 
 With `vecOmegaInnerProductSpace` this makes the manuscript's `H_ω` a Hilbert
 space, so that the orthogonal complements, orthogonal projections and spectral
-theory the printed proof of `thm:normal-kazhdan` uses on it are available. -/
+theory the printed Kazhdan-corner proof (in `thm:abstract-nk`) uses on it are
+available. -/
 instance vecOmegaCompleteSpace : CompleteSpace (VecOmega Y ω) :=
   NormedAddCommGroup.completeSpace_of_summable_imp_tendsto
     fun u hu ↦ exists_tendsto_sum_of_summable_norm u hu

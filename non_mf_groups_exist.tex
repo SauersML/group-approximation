@@ -604,8 +604,6 @@ satisfies
 \[
   \pi\bigl(\bigl[\,tct^{-1},\;a(tct^{-1})a^{-1}\bigr]\bigr)\;=\;1 .
 \]
-More generally, every such $\pi$ is trivial on the subgroup
-$\mathfrak D(H,\Gamma)$ of \eqref{eq:intrinsicdefect}.
 \leanverified{Sofic/ManuscriptExactWrappers}{GroupApproximation.ManuscriptExactWrappers.manuscriptTheoremB}
 \end{theorem}
 
@@ -641,11 +639,8 @@ $a\in\Gamma$, the operator $\pi(tct^{-1})$ commutes with $\pi(a)$, so
 $\pi\bigl(a(tct^{-1})a^{-1}\bigr)=\pi(tct^{-1})$ and
 \[
   \pi\bigl(\bigl[\,tct^{-1},\;a(tct^{-1})a^{-1}\bigr]\bigr)
-  =\bigl[\,\pi(tct^{-1}),\;\pi(tct^{-1})\bigr]=1 .
+  =\bigl[\,\pi(tct^{-1}),\;\pi(tct^{-1})\bigr]=1 . \qedhere
 \]
-The subgroup-valued assertion follows by applying the same commutant
-argument to every one-sided conjugator; the details are given in
-Section~\ref{sec:findim}. \qedhere
 \end{proof}
 
 Every finite-dimensional linear representation of $E$ over any field
@@ -1899,38 +1894,28 @@ Kazhdan average replaces that operator for an arbitrary normal
 property-\textup{(T)} subgroup, which may be infinite, noncentral and
 torsion-free.
 
-\begin{theorem}[normal-Kazhdan obstruction]\label{thm:normal-kazhdan}
-Let $H$ be a countable group with a Kazhdan conjugation datum
-$(\Lambda,\iota,t,c)$, and let $K\trianglelefteq H$ be a normal
-subgroup with property~\textup{(T)} such that
-$K\subseteq N_{\mathrm{conj}}$.  Then every homomorphism $\Theta\colon H\to\U(\mathcal Q)$ satisfies $\Theta(k)=1$ for all
-$k\in K$.
-\leanverified{Sofic/NormalKazhdanAnyUniverse}{GroupApproximation.ManuscriptExactWrappers.manuscriptNormalKazhdanObstruction_anyUniverse}
+\begin{theorem}[obstruction from $2$-norm triviality]\label{thm:abstract-nk}
+Let $H$ be a countable group and let $D\le H$ be a subgroup every
+element of which is $2$-norm trivial
+(Definition~\ref{def:invisible}).  Let $K\trianglelefteq H$ be a normal subgroup with
+property~\textup{(T)} such that $K\le D$.  Then every homomorphism $\Theta\colon H\to\U(\mathcal Q)$ satisfies
+$\Theta(k)=1$ for all $k\in K$.
+\leanverified{Sofic/ManuscriptExactWrappers}{GroupApproximation.ManuscriptExactWrappers.manuscriptAbstractNormalKazhdanObstruction}
 \end{theorem}
 
-Since finite groups have property~\textup{(T)},
-Theorem~\ref{thm:criterion} is the finite case of
-Theorem~\ref{thm:normal-kazhdan}.
-\leanverified{Sofic/NormalKazhdanMFRadical}{GroupApproximation.hasKazhdanPropertyT_of_finite}
-
 \begin{proof}
-The containment $N_{\mathrm{conj}}\subseteq K_2$ from the proof of
-Theorem~\ref{thm:criterion} holds for any normal subgroup, so every
-element of $K$ is $2$-norm trivial in every operator-norm asymptotic
-representation of $H$.
-
-Suppose a homomorphism $\Theta$ to $\U(\mathcal Q)$ is nontrivial on $K$.  Its
-image $\bar H=\Theta(H)$ is countable, hence MF, and
+Suppose a homomorphism $\Theta$ to $\U(\mathcal Q)$ is nontrivial on
+$K$.  Its image $\bar H=\Theta(H)$ is countable, hence MF, and
 Proposition~\ref{prop:mf-equivalences}, applied along an exhaustion of
 $\bar H$, gives an operator-norm asymptotic representation
 $(V_{g,n})$ in which every fixed nontrivial element eventually stays
 at operator-norm distance at least $1$ from the identity.  These
 models provide operator-norm separation, but at growing dimension this
-yields no lower bound on normalized Hilbert--Schmidt distances.  The
-datum and the subgroup pass to their $\Theta$-images with normality
-and property~\textup{(T)} preserved, and $\bar K=\Theta(K)$ is
-nontrivial and lies in the subgroup $N_{\mathrm{conj}}$ determined by
-the image datum.  We now work in $\bar H$.
+yields no lower bound on normalized Hilbert--Schmidt distances.  Every
+operator-norm asymptotic representation of $\bar H$ composes with
+$\Theta$ to one of $H$, so every element of $\Theta(D)$ is again
+$2$-norm trivial, while $\bar K=\Theta(K)\le\Theta(D)$ is normal,
+Kazhdan and nontrivial.  We now work in $\bar H$.
 
 \emph{The Kazhdan corner.}  Fix a free ultrafilter $\omega$, let
 $H_\omega$ be the Hilbert-space ultraproduct of the coordinate spaces
@@ -2013,36 +1998,31 @@ least $\sqrt{2(1-\theta)}-o(1)$ from the corner identity.  Since $S$
 is finite, a subsequence realizes this at a single generator $s_0$.
 
 \emph{The contradiction.}  The corner models form an operator-norm
-asymptotic representation of $\bar H$, and $\bar K$ lies in the
-subgroup $N_{\mathrm{conj}}$ determined by the image datum.  Hence
-every element of $\bar K$, in particular $s_0$, is $2$-norm trivial in
-the corner models: $\hsnorm{W_{s_0,n}-1}\to0$, contradicting the
-positive lower bound above.
+asymptotic representation of $\bar H$, and $s_0$ lies in
+$\bar K\le\Theta(D)$.  Hence $s_0$ is $2$-norm trivial in the corner
+models: $\hsnorm{W_{s_0,n}-1}\to0$, contradicting the positive lower
+bound above.
 \end{proof}
 
-\begin{theorem}[obstruction from $2$-norm triviality]\label{thm:abstract-nk}
-Let $H$ be a countable group and let $D\le H$ be a subgroup every
-element of which is $2$-norm trivial
-(Definition~\ref{def:invisible}).  Let $K\trianglelefteq H$ be a normal subgroup with
-property~\textup{(T)} such that $K\le D$.  Then every homomorphism $\Theta\colon H\to\U(\mathcal Q)$ satisfies
-$\Theta(k)=1$ for all $k\in K$.
-\leanverified{Sofic/ManuscriptExactWrappers}{GroupApproximation.ManuscriptExactWrappers.manuscriptAbstractNormalKazhdanObstruction}
+\begin{theorem}[normal-Kazhdan obstruction]\label{thm:normal-kazhdan}
+Let $H$ be a countable group with a Kazhdan conjugation datum
+$(\Lambda,\iota,t,c)$, and let $K\trianglelefteq H$ be a normal
+subgroup with property~\textup{(T)} such that
+$K\subseteq N_{\mathrm{conj}}$.  Then every homomorphism $\Theta\colon H\to\U(\mathcal Q)$ satisfies $\Theta(k)=1$ for all
+$k\in K$.
+\leanverified{Sofic/NormalKazhdanAnyUniverse}{GroupApproximation.ManuscriptExactWrappers.manuscriptNormalKazhdanObstruction_anyUniverse}
 \end{theorem}
 
+Since finite groups have property~\textup{(T)},
+Theorem~\ref{thm:criterion} is the finite case of
+Theorem~\ref{thm:normal-kazhdan}.
+\leanverified{Sofic/NormalKazhdanMFRadical}{GroupApproximation.hasKazhdanPropertyT_of_finite}
+
 \begin{proof}
-Suppose a homomorphism $\Theta$ to $\U(\mathcal Q)$ is nontrivial on
-$K$.  The image $\bar H=\Theta(H)$ is countable and MF, and
-Proposition~\ref{prop:mf-equivalences} provides an operator-norm
-asymptotic representation of $\bar H$ separating every fixed nontrivial
-element.  Every operator-norm asymptotic representation of $\bar H$
-composes with $\Theta$ to one of $H$, so every element of $\Theta(D)$
-is again $2$-norm trivial, while $\bar K=\Theta(K)\le\Theta(D)$ is
-normal, Kazhdan and nontrivial.  Repeat the Kazhdan-corner
-construction from the proof of Theorem~\ref{thm:normal-kazhdan} for
-$\bar K$, including \eqref{eq:corner-spectral} among the constraints
-that select the subsequence: it produces a corner and an element $s_0\in\bar K$ that
-stays a positive $2$-norm distance from the corner identity.  Since
-$s_0\in\Theta(D)$ is $2$-norm trivial, this is a contradiction.
+The first step of the proof of Theorem~\ref{thm:criterion} shows that
+every element of $N_{\mathrm{conj}}$ is $2$-norm trivial
+(Definition~\ref{def:invisible}).  Theorem~\ref{thm:abstract-nk} with
+$D=N_{\mathrm{conj}}$ gives the conclusion.
 \end{proof}
 
 Every element of $\mathfrak D(H,L)$ is $2$-norm trivial, so
@@ -2086,11 +2066,20 @@ is a group of \emph{Deligne type} in the terminology of
 natural candidate counterexamples for all three remaining approximation
 problems, and $E$ is such a counterexample for the operator norm.
 
-For the subgroup-valued assertion of Theorem~\ref{thm:exactfd}, let
-$C$ be the commutant of $\pi(\Gamma)$.  The elements $g\in H$ for
+\begin{theorem}[the exact intrinsic obstruction]\label{thm:exactfd-intrinsic}
+Let $k$ be a field, $V$ a finite-dimensional $k$-vector space, $H$ a
+group, and $\Gamma\le H$ a subgroup.  Then every homomorphism
+$\pi\colon H\to\GL(V)$ is trivial on the subgroup
+$\mathfrak D(H,\Gamma)$ of \eqref{eq:intrinsicdefect}.
+\leanverified{Sofic/ManuscriptExactWrappers}{GroupApproximation.ManuscriptExactWrappers.manuscriptTheoremB}
+\end{theorem}
+
+\begin{proof}
+Let $C$ be the commutant of $\pi(\Gamma)$.  The elements $g\in H$ for
 which conjugation by $\pi(g)$ preserves $C$ in both directions form a
-subgroup.  The finite-dimensional argument above shows that every
-one-sided conjugator belongs to this subgroup, hence so does all of
+subgroup.  The commutant argument of Theorem~\ref{thm:exactfd} shows
+that every one-sided conjugator of $\Gamma$ belongs to this subgroup,
+hence so does all of
 $G^{+}(\Gamma)$.  Thus, for $g\in
 G^{+}(\Gamma)$ and $z\in C_H(\Gamma)$, the operator
 $\pi(gzg^{-1})$ still belongs to $C$ and commutes with every
@@ -2098,6 +2087,7 @@ $\pi(\ell)$, $\ell\in\Gamma$.  Hence every displayed generator in
 \eqref{eq:intrinsicdefect} lies in $\ker\pi$; since
 $\ker\pi\trianglelefteq H$, the whole normal closure
 $\mathfrak D(H,\Gamma)$ does as well.
+\end{proof}
 
 \begin{corollary}\label{cor:notRFD}
 Every finite-dimensional linear representation of the group $E$ of

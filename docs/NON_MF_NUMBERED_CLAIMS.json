@@ -140,7 +140,7 @@
       "id": "thm:exactfd",
       "environment": "theorem",
       "title": "the finite-dimensional case",
-      "statement_sha256": "fd6920b91037455e002cb1f3b7f54d81189ca8e01b99c44407e775763a55a113",
+      "statement_sha256": "1b89b962cc94424bacc8737d008a28d45400b0a7962507a89f5b6cff78c55bc1",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [],
@@ -666,6 +666,29 @@
       ]
     },
     {
+      "id": "thm:abstract-nk",
+      "environment": "theorem",
+      "title": "obstruction from $2$-norm triviality",
+      "statement_sha256": "d93135ce6813697c3808c8a0baee2c65d73085c4c397533a3c68ad1a1a699e3d",
+      "status": "exact",
+      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
+      "dependencies": [
+        "thm:normal-kazhdan",
+        "prop:mf-equivalences"
+      ],
+      "extra_assumptions": [],
+      "external_inputs": [],
+      "coverage_gap": "",
+      "lean": [
+        {
+          "role": "exact",
+          "module": "Sofic/ManuscriptExactWrappers",
+          "declaration": "GroupApproximation.ManuscriptExactWrappers.manuscriptAbstractNormalKazhdanObstruction",
+          "covers": "the complete printed proposition"
+        }
+      ]
+    },
+    {
       "id": "thm:normal-kazhdan",
       "environment": "theorem",
       "title": "normal-Kazhdan obstruction",
@@ -690,29 +713,6 @@
       ]
     },
     {
-      "id": "thm:abstract-nk",
-      "environment": "theorem",
-      "title": "obstruction from $2$-norm triviality",
-      "statement_sha256": "d93135ce6813697c3808c8a0baee2c65d73085c4c397533a3c68ad1a1a699e3d",
-      "status": "exact",
-      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
-      "dependencies": [
-        "thm:normal-kazhdan",
-        "prop:mf-equivalences"
-      ],
-      "extra_assumptions": [],
-      "external_inputs": [],
-      "coverage_gap": "",
-      "lean": [
-        {
-          "role": "exact",
-          "module": "Sofic/ManuscriptExactWrappers",
-          "declaration": "GroupApproximation.ManuscriptExactWrappers.manuscriptAbstractNormalKazhdanObstruction",
-          "covers": "the complete printed proposition"
-        }
-      ]
-    },
-    {
       "id": "cor:intrinsic-nk",
       "environment": "corollary",
       "title": "normal-Kazhdan form of the intrinsic residual",
@@ -731,6 +731,28 @@
           "role": "exact",
           "module": "Sofic/NormalKazhdanAnyUniverse",
           "declaration": "GroupApproximation.ManuscriptExactWrappers.manuscriptIntrinsicNormalKazhdanRadical_anyUniverse",
+          "covers": "the complete printed proposition"
+        }
+      ]
+    },
+    {
+      "id": "thm:exactfd-intrinsic",
+      "environment": "theorem",
+      "title": "the exact intrinsic obstruction",
+      "statement_sha256": "08b9b0b0dda2eb6a3bfc5dfd87e69121016499618c04fa5f5510d08efed84b21",
+      "status": "exact",
+      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
+      "dependencies": [
+        "thm:exactfd"
+      ],
+      "extra_assumptions": [],
+      "external_inputs": [],
+      "coverage_gap": "",
+      "lean": [
+        {
+          "role": "exact",
+          "module": "Sofic/ManuscriptExactWrappers",
+          "declaration": "GroupApproximation.ManuscriptExactWrappers.manuscriptTheoremB",
           "covers": "the complete printed proposition"
         }
       ]
