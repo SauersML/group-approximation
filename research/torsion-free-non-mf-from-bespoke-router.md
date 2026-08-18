@@ -4,7 +4,7 @@ id: torsion-free-non-mf-from-bespoke-router
 kind: route
 title: Feed the routed quotient to the frozen full-radical endpoint
 target: torsion-free-finitely-presented-non-mf
-requires: [bespoke-routing-lemma]
+requires: [bespoke-routing-lemma, concrete-compression-source, hnn-torsion-theorem]
 artifacts:
   - GroupApproximation/Sofic/FullMFRadicalEndpoint.lean
   - GroupApproximation/Sofic/SmallCancellationRouter.lean

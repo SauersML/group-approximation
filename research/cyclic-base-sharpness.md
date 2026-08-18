@@ -3,6 +3,7 @@ rg: 2
 id: cyclic-base-sharpness
 kind: claim
 title: Property (T) is essential to the central-sign obstruction
+root: true
 artifacts:
   - non_mf_groups_exist.tex
   - GroupApproximation/Monsters/LiteralCyclicCalibration.lean

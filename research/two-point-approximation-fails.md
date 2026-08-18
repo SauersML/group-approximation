@@ -3,6 +3,7 @@ rg: 2
 id: two-point-approximation-fails
 kind: claim
 title: The two-point approximation fails at the marked pair — the negation claim
+invalidates: [witness-yields-two-point-approximation]
 distinct_from:
   two-point-orbit-approximation: that is the assertion this claim negates; per kernel doctrine refutation is the establishment of the negation claim, and exactly one of the two can ever be established.
   exact-models-cannot-separate-marked-pair: that closes the exact-model subclass only; this asserts failure over ALL admissible models at some window and precision, which is strictly stronger and remains open.

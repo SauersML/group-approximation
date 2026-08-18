@@ -3,6 +3,7 @@ rg: 2
 id: commuting-lamp-mf-radical-is-level-even
 kind: claim
 title: The MF radical of the commuting-lamp quotient is the level-even lamp subgroup
+root: true
 distinct_from:
   commuting-lamp-quotient-not-mf: That established claim exhibits one nontrivial radical element; this one asks for the exact value of the whole radical.
   corona-hs-radical-is-finite-residual: That established claim computes the tracial-shadow set as `L_0`; this one asks whether the operator-norm radical is all of `L_0`, i.e. whether the two coincide on this group.

@@ -3,6 +3,7 @@ rg: 2
 id: two-point-orbit-approximation
 kind: claim
 title: The Kun–Thom coset action admits a two-point approximation at the marked pair
+root: true
 distinct_from:
   coordinate-action-not-sofic: that refutes the ORBIT approximation, which asks for an injective equivariant chart of every finite window on a density-(1−ε) set of states; this asks only that ONE prescribed pair of points stay distinct, quantified over no other window, and is not known to imply it
   lamp-character-orbit-separation: that computes what a Hilbert embeddable length does on the lamps once a model is given; this asks whether the underlying site data a model would need can exist at all, and mentions no length, no character and no lamp
