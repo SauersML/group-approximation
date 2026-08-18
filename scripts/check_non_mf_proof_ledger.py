@@ -13,6 +13,9 @@ the drift around it, so that the judgment stays attached to the text and the
 code it was made about:
 
 * the ledger parses, with the two tables in their declared shapes;
+* the audited-revision header's three checkable cells -- the manuscript's git
+  blob hash, its sha256, and its `wc -l` -- match the file on disk, so a
+  manuscript edit cannot land without a deliberate re-pin (`--repin-header`);
 * every step cites an anchor that the anchor table declares;
 * every `env` anchor's label still exists inside a labelled environment, and
   the printed statement still digests to the recorded value -- the same
@@ -492,6 +495,96 @@ ANCHOR_ROW_RE = re.compile(
     r"^\|\s*(?P<name>[^|]+?)\s*\|\s*env\s*\|\s*(?P<label>[^|]+?)\s*\|\s*"
     r"(?P<digest>[0-9a-f]{%d})\s*\|$" % DIGEST_WIDTH)
 
+# The audited-revision header of the ledger.  Three of its four cells are
+# recomputable from the manuscript file alone and are therefore checkable; the
+# `commit` cell names a commit by description and stays human.  The header
+# went stale twice in two days while nothing validated it, so these three rows
+# are now a gate, not documentation.
+HEADER_BLOB_RE = re.compile(
+    r"^\|\s*`git hash-object [^`|]*`\s*\|\s*`(?P<hex>[0-9a-f]{40})`\s*\|\s*$",
+    re.MULTILINE)
+HEADER_SHA256_RE = re.compile(
+    r"^\|\s*sha256 of the file\s*\|\s*`(?P<hex>[0-9a-f]{64})`\s*\|\s*$",
+    re.MULTILINE)
+HEADER_WC_RE = re.compile(
+    r"^\|\s*`wc -l`\s*\|\s*(?P<count>\d+)\s*\|\s*$", re.MULTILINE)
+
+
+def header_actuals(tex: Path) -> tuple[str, str, int]:
+    """The three checkable header values, recomputed from the file's bytes.
+
+    The blob hash is `git hash-object` without git: sha1 over the object
+    header `blob <size>\\0` followed by the raw bytes.  The line count is the
+    newline count, which is what `wc -l` reports.
+    """
+    data = tex.read_bytes()
+    blob = hashlib.sha1(b"blob %d\x00" % len(data) + data).hexdigest()
+    return blob, hashlib.sha256(data).hexdigest(), data.count(b"\n")
+
+
+def check_header_pin(tex: Path, ledger_text: str, problems: list[str]) -> None:
+    """Fail when the audited-revision header disagrees with the file on disk.
+
+    A mismatch means the manuscript moved without a re-pin, and every row
+    below the header is then unciteable until someone re-reads the rows the
+    edit touched and refreshes the header (`--repin-header`).  A header with a
+    missing checkable row is reported too: deleting the pin must not silence
+    the gate.
+    """
+    blob_m = HEADER_BLOB_RE.search(ledger_text)
+    sha_m = HEADER_SHA256_RE.search(ledger_text)
+    wc_m = HEADER_WC_RE.search(ledger_text)
+    if blob_m is None or sha_m is None or wc_m is None:
+        problems.append(
+            "header pin: the audited-revision table is missing one of its "
+            "three checkable rows (git blob, sha256, `wc -l`); without them "
+            "the rows below cannot be read as current")
+        return
+    blob, sha, count = header_actuals(tex)
+    if blob_m.group("hex") != blob:
+        problems.append(
+            f"header pin: ledger pins tex blob `{blob_m.group('hex')}` but "
+            f"the file is `{blob}` -- the manuscript moved without a re-pin; "
+            f"re-read the rows the edit touched, then run --repin-header")
+    if sha_m.group("hex") != sha:
+        problems.append(
+            f"header pin: ledger pins sha256 `{sha_m.group('hex')[:12]}...` "
+            f"but the file is `{sha[:12]}...`; run --repin-header after "
+            f"re-reading the rows the edit touched")
+    if int(wc_m.group("count")) != count:
+        problems.append(
+            f"header pin: ledger pins `wc -l` {wc_m.group('count')} but the "
+            f"file has {count} lines; run --repin-header after re-reading "
+            f"the rows the edit touched")
+
+
+def repin_header(tex: Path, ledger: Path) -> list[str]:
+    """Refresh the three checkable header cells to the file on disk.
+
+    Deliberate and logged, like `repin`: refreshing the header asserts that
+    the rows have been re-read against the manuscript as it now stands, so it
+    must never happen as a side effect of checking.  The `commit` cell is not
+    touched -- it names a commit by description, which cannot be recomputed.
+    """
+    blob, sha, count = header_actuals(tex)
+    text = ledger.read_text(encoding="utf-8")
+    changed: list[str] = []
+
+    def sub_hex(regex: re.Pattern[str], value: str, label: str,
+                text: str) -> str:
+        match = regex.search(text)
+        if match is None or match.group(1) == value:
+            return text
+        changed.append(f"{label}: {match.group(1)} -> {value}")
+        return text[:match.start(1)] + value + text[match.end(1):]
+
+    text = sub_hex(HEADER_BLOB_RE, blob, "blob", text)
+    text = sub_hex(HEADER_SHA256_RE, sha, "sha256", text)
+    text = sub_hex(HEADER_WC_RE, str(count), "wc -l", text)
+    if changed:
+        ledger.write_text(text, encoding="utf-8")
+    return changed
+
 
 def repin(tex: Path, ledger: Path) -> tuple[int, list[str]]:
     """Rewrite `env` anchor digests to the manuscript's current statements.
@@ -522,12 +615,15 @@ def repin(tex: Path, ledger: Path) -> tuple[int, list[str]]:
     return len(changed), changed
 
 
-def validate(repo: Path, tex: Path, ledger: Path) -> list[str]:
+def validate(repo: Path, tex: Path, ledger: Path,
+             require_header: bool = True) -> list[str]:
     problems: list[str] = []
     try:
         ledger_text = ledger.read_text(encoding="utf-8")
     except OSError as error:
         return [f"cannot read {ledger}: {error}"]
+    if require_header:
+        check_header_pin(tex, ledger_text, problems)
     try:
         tex_source = strip_comments(tex.read_text(encoding="utf-8"))
     except OSError as error:
@@ -620,7 +716,7 @@ def self_test() -> int:
         ledger = repo / "ledger.md"
         good = LEDGER_TEMPLATE.format(digest=digest)
         ledger.write_text(good, encoding="utf-8")
-        if problems := validate(repo, tex, ledger):
+        if problems := validate(repo, tex, ledger, require_header=False):
             print(f"self-test rejected a valid ledger: {problems}", file=sys.stderr)
             return 1
 
@@ -679,7 +775,7 @@ def self_test() -> int:
         ]
         for name, mutated, expected in cases:
             ledger.write_text(mutated, encoding="utf-8")
-            found = validate(repo, tex, ledger)
+            found = validate(repo, tex, ledger, require_header=False)
             if expected is None:
                 if found:
                     print(f"self-test rejected {name}: {found}", file=sys.stderr)
@@ -709,7 +805,7 @@ def self_test() -> int:
             "| proof | 1 | 0 | 0 | 0 | 1 |",
             "| proof | 1 | 0 | 1 | 0 | 2 |")
         ledger.write_text(prose, encoding="utf-8")
-        found = validate(repo, tex, ledger)
+        found = validate(repo, tex, ledger, require_header=False)
         if not any("prose probe occurs 2 times" in problem for problem in found):
             print(f"self-test missed prose drift: {found}", file=sys.stderr)
             return 1
@@ -732,7 +828,7 @@ def self_test() -> int:
         aliased = LEDGER_TEMPLATE.format(digest=digest).replace(
             "| thm:demo | env | thm:demo |", "| thm:demo | env | thm:alias |")
         ledger.write_text(aliased, encoding="utf-8")
-        found = validate(repo, tex, ledger)
+        found = validate(repo, tex, ledger, require_header=False)
         if not any("is a legacy alias of" in problem for problem in found):
             print(f"self-test missed an aliased anchor: {found}", file=sys.stderr)
             return 1
@@ -740,6 +836,47 @@ def self_test() -> int:
                or "printed statement changed" in problem for problem in found):
             print("self-test: an aliased anchor was reported as unpinned rather "
                   f"than as an alias: {found}", file=sys.stderr)
+            return 1
+
+        # The header pin: three checkable cells against the file on disk.  A
+        # matching header passes, a tampered blob fails loudly, a deleted
+        # header fails loudly, and `repin_header` restores a stale one.
+        blob, sha, count = header_actuals(tex)
+        header = (f"| `git hash-object non_mf_groups_exist.tex` | `{blob}` |\n"
+                  f"| sha256 of the file | `{sha}` |\n"
+                  f"| `wc -l` | {count} |\n\n")
+        digest = environment_digests(
+            strip_comments(tex.read_text(encoding="utf-8")))
+        pinned = header + LEDGER_TEMPLATE.format(
+            digest=digest["thm:demo"][:DIGEST_WIDTH])
+        ledger.write_text(pinned, encoding="utf-8")
+        if problems := validate(repo, tex, ledger):
+            print(f"self-test rejected a pinned ledger: {problems}",
+                  file=sys.stderr)
+            return 1
+        ledger.write_text(pinned.replace(blob, "0" * 40), encoding="utf-8")
+        found = validate(repo, tex, ledger)
+        if not any("header pin: ledger pins tex blob" in p for p in found):
+            print(f"self-test missed a stale header blob: {found}",
+                  file=sys.stderr)
+            return 1
+        ledger.write_text(
+            LEDGER_TEMPLATE.format(digest=digest["thm:demo"][:DIGEST_WIDTH]),
+            encoding="utf-8")
+        found = validate(repo, tex, ledger)
+        if not any("missing one of its three checkable rows" in p
+                   for p in found):
+            print(f"self-test missed a deleted header: {found}",
+                  file=sys.stderr)
+            return 1
+        ledger.write_text(pinned.replace(blob, "0" * 40), encoding="utf-8")
+        if not repin_header(tex, ledger):
+            print("self-test: repin_header refreshed nothing on a stale header",
+                  file=sys.stderr)
+            return 1
+        if problems := validate(repo, tex, ledger):
+            print(f"self-test: repin_header left problems: {problems}",
+                  file=sys.stderr)
             return 1
     print("non-MF proof ledger: self-test passed")
     return 0
@@ -754,6 +891,11 @@ def main() -> int:
         "--repin-digests", action="store_true",
         help="rewrite env anchor digests to the manuscript's current statements; "
              "use only after re-reading the rows on every anchor it reports")
+    parser.add_argument(
+        "--repin-header", action="store_true",
+        help="refresh the three checkable audited-revision header cells (git "
+             "blob, sha256, `wc -l`) to the manuscript on disk; use only after "
+             "re-reading the rows the manuscript edit touched")
     parser.add_argument("--self-test", action="store_true")
     args = parser.parse_args()
     if args.self_test:
@@ -766,6 +908,9 @@ def main() -> int:
         for entry in changed:
             print(f"repinned {entry}")
         print(f"check-non-mf-proof-ledger: repinned {count} anchor digest(s)")
+    if args.repin_header:
+        for entry in repin_header(tex, ledger):
+            print(f"repinned header {entry}")
     problems = validate(args.repo, tex, ledger)
     if problems:
         reread = [p for p in problems if is_reread(p)]
