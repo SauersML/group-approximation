@@ -72,7 +72,7 @@ theorem stinespringSesq_add_left (φ : A →ₗ[ℂ] (H →L[ℂ] H))
   classical
   unfold stinespringSesq
   exact Finsupp.sum_add_index' (fun a => by simp)
-    (fun a x₁ x₂ => by simp [inner_add_left, Finsupp.sum_add])
+    (fun a x₁ x₂ => by simp [Finsupp.sum_add])
 
 theorem stinespringSesq_smul_left (φ : A →ₗ[ℂ] (H →L[ℂ] H))
     (r : ℂ) (f g : A →₀ H) :
@@ -80,10 +80,15 @@ theorem stinespringSesq_smul_left (φ : A →ₗ[ℂ] (H →L[ℂ] H))
       = (starRingEnd ℂ) r * stinespringSesq φ f g := by
   classical
   unfold stinespringSesq
-  rw [Finsupp.sum_smul_index' (fun a => by simp), Finsupp.mul_sum]
-  refine Finsupp.sum_congr fun a _ => ?_
-  rw [Finsupp.mul_sum]
-  refine Finsupp.sum_congr fun b _ => ?_
+  rw [Finsupp.sum_smul_index' (fun a => by simp)]
+  show (∑ a ∈ f.support, ∑ b ∈ g.support,
+      ⟪r • f a, φ (star a * b) (g b)⟫_ℂ)
+    = (starRingEnd ℂ) r * ∑ a ∈ f.support, ∑ b ∈ g.support,
+        ⟪f a, φ (star a * b) (g b)⟫_ℂ
+  rw [Finset.mul_sum]
+  refine Finset.sum_congr rfl fun a _ => ?_
+  rw [Finset.mul_sum]
+  refine Finset.sum_congr rfl fun b _ => ?_
   rw [inner_smul_left]
 
 section WithComplete
@@ -96,24 +101,25 @@ theorem stinespringSesq_conj (hφ : IsCompletelyPositive φ)
     (f g : A →₀ H) :
     (starRingEnd ℂ) (stinespringSesq φ g f) = stinespringSesq φ f g := by
   classical
-  calc (starRingEnd ℂ) (stinespringSesq φ g f)
-      = g.sum fun b y => f.sum fun a x =>
-          (starRingEnd ℂ) ⟪y, φ (star b * a) x⟫_ℂ := by
-        unfold stinespringSesq
-        rw [map_finsuppSum]
-        exact Finsupp.sum_congr fun b _ => map_finsuppSum _ _ _
-    _ = g.sum fun b y => f.sum fun a x =>
-          ⟪x, φ (star a * b) y⟫_ℂ := by
-        refine Finsupp.sum_congr fun b _ => ?_
-        refine Finsupp.sum_congr fun a _ => ?_
+  show (starRingEnd ℂ) (∑ b ∈ g.support, ∑ a ∈ f.support,
+      ⟪g b, φ (star b * a) (f a)⟫_ℂ)
+    = ∑ a ∈ f.support, ∑ b ∈ g.support,
+        ⟪f a, φ (star a * b) (g b)⟫_ℂ
+  rw [map_sum]
+  calc (∑ b ∈ g.support, (starRingEnd ℂ) (∑ a ∈ f.support,
+        ⟪g b, φ (star b * a) (f a)⟫_ℂ))
+      = ∑ b ∈ g.support, ∑ a ∈ f.support,
+          ⟪f a, φ (star a * b) (g b)⟫_ℂ := by
+        refine Finset.sum_congr rfl fun b _ => ?_
+        rw [map_sum]
+        refine Finset.sum_congr rfl fun a _ => ?_
         rw [inner_conj_symm]
         have h1 : star (φ (star b * a)) = φ (star a * b) := by
           rw [← hφ.map_star, star_mul, star_star]
         rw [← h1, ContinuousLinearMap.star_eq_adjoint,
           ContinuousLinearMap.adjoint_inner_right]
-    _ = stinespringSesq φ f g := by
-        unfold stinespringSesq
-        exact Finsupp.sum_comm _ _ _
+    _ = ∑ a ∈ f.support, ∑ b ∈ g.support,
+          ⟪f a, φ (star a * b) (g b)⟫_ℂ := Finset.sum_comm
 
 /-- **Positivity of the form**: the finset form positivity applied to
 the support of `f`. -/
@@ -121,8 +127,6 @@ theorem stinespringSesq_self (hφ : IsCompletelyPositive φ) (f : A →₀ H) :
     0 ≤ (stinespringSesq φ f f).re ∧ (stinespringSesq φ f f).im = 0 := by
   classical
   exact hφ.form_nonneg_finset f.support fun a => f a
-
-end WithComplete
 
 /-! ## The pre-dilation space -/
 
@@ -152,10 +156,7 @@ def ofStinespringPre (φ : A →ₗ[ℂ] (H →L[ℂ] H))
     (hφ : IsCompletelyPositive φ) :
     StinespringPre φ hφ ≃ₗ[ℂ] (A →₀ H) := (toStinespringPre φ hφ).symm
 
-section WithComplete
-
-variable [CompleteSpace H]
-variable (φ : A →ₗ[ℂ] (H →L[ℂ] H)) (hφ : IsCompletelyPositive φ)
+variable (φ) (hφ : IsCompletelyPositive φ)
 
 /-- The Stinespring form as a semi-inner-product core on the
 pre-space. -/

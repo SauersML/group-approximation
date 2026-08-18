@@ -921,6 +921,7 @@ import GroupApproximation.Analysis.CStarStinespringSpace
 import GroupApproximation.Analysis.CStarStinespringBound
 import GroupApproximation.Analysis.CStarStinespringAct
 import GroupApproximation.Analysis.CStarStinespringDefect
+import GroupApproximation.Analysis.CStarStinespringMul
 import GroupApproximation.Analysis.LanceReiterMean
 import GroupApproximation.Analysis.CStarIdealQuotient
 import GroupApproximation.Analysis.CStarQuotientIdentity
@@ -1130,6 +1131,7 @@ import GroupApproximation.Analysis.PolarLiftingMatrixBlocks
 import GroupApproximation.Sofic.OmegaRouteManuscriptTransport
 import GroupApproximation.Sofic.LiteralProductMultiplicity
 import GroupApproximation.Sofic.SimpleSoficEnvelopeAnyUniverse
+import GroupApproximation.Sofic.PrintedTransportOpening
 import GroupApproximation.Sofic.KazhdanTransportFailureExtraction
 import GroupApproximation.Monsters.NeumannSimpleSocle
 import GroupApproximation.Sofic.TransportShapeBridges

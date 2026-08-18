@@ -184,6 +184,9 @@ theorem idealTensorSpan_subset_ker (z : MinTensorProduct B C)
   -- Pass to the closure by continuity.
   have hcont : Continuous (quotientMinTensorMap I) :=
     UniformSpace.Completion.continuous_extension
+      (f := ((minPreQuotientMap I :
+          MinPreTensor B C →⋆ₐ[ℂ] MinTensorProduct (B ⧸ I) C) :
+        MinPreTensor B C → MinTensorProduct (B ⧸ I) C))
   have hclosed : IsClosed {w : MinTensorProduct B C |
       quotientMinTensorMap I w = 0} :=
     isClosed_eq hcont continuous_const
