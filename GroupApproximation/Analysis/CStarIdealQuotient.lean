@@ -66,7 +66,7 @@ theorem quotient_norm_mk_lt (x : R ⧸ I) {ε : ℝ} (hε : 0 < ε) :
 
 /-- The quotient map does not increase norms. -/
 theorem quotient_norm_mk_le (r : R) : ‖Ideal.Quotient.mk I r‖ ≤ ‖r‖ :=
-  Submodule.Quotient.norm_mk_le r
+  Submodule.Quotient.norm_mk_le I r
 
 /-- **The quotient of a seminormed ring by a two-sided ideal is a seminormed
 ring.**  The submultiplicativity proof is Mathlib's commutative one verbatim
