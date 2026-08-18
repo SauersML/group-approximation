@@ -132,6 +132,8 @@ projections.  `NormMatrixCorona` avoids this by carrying its index types as
 instance-implicit section variables; here the index sequence is a
 `FiniteModel`-valued function -- which is what the Hilbert--Schmidt norm needs
 -- so the search is genuinely longer and does not fit the default budget. -/
+set_option synthInstance.maxHeartbeats 800000
+set_option maxHeartbeats 1000000
 
 /- The nonemptiness of the models is a standing hypothesis of the whole
 construction (without it the numerator is not a unital ring), but a dozen
@@ -451,53 +453,9 @@ noncomputable instance hilbertSchmidtNullIdeal_isClosed :
 /-! ## The quotient -/
 
 /-- **The tracial matrix quotient at the filter `l`.**  At a free ultrafilter
-this is the manuscript's tracial ultraproduct `∏_ω M_{X n}(ℂ)`.
-
-A plain `def` rather than an `abbrev`, and the difference is the whole reason
-this file elaborates inside the default proof budget.  While the name was
-reducible, every typeclass goal about the quotient unfolded to
-`ModelBoundedSequence X ⧸ hilbertSchmidtNullIdeal X l`, and the search then
-rebuilt the `lp` tower, rediscovered each model's `Fintype`/`DecidableEq`
-through the `FiniteModel` projections, and unfolded the transported L2
-operator norm on `Matrix` along the way -- `WithLp.equiv` and
-`FiniteModel.carrier` ten and twenty thousand times in a single goal.  One
-`NonAssocSemiring` search cost more than forty thousand heartbeats, twice the
-default, and the file used to raise its budget instead of paying the cost
-once.
-
-Opaque to instance search, the head symbol `TracialMatrixQuotient` matches the
-instances declared immediately below in one step, and every goal above them is
-back inside the default budget -- measured, not assumed: with these three
-cached, `NonAssocSemiring`, `NonUnitalNonAssocSemiring` and `Norm` on the
-quotient each resolve in under the default twenty thousand.
-
-Nothing is substituted.  Each cached instance is the one the reducible form
-found: `inferInstanceAs` at the underlying quotient, or the mathlib instance
-named outright. -/
-def TracialMatrixQuotient : Type :=
+this is the manuscript's tracial ultraproduct `∏_ω M_{X n}(ℂ)`. -/
+abbrev TracialMatrixQuotient :=
   ModelBoundedSequence X ⧸ hilbertSchmidtNullIdeal X l
-
-/-- The ring structure of the ideal quotient, cached on the wrapper. -/
-noncomputable instance tracialMatrixQuotientRing :
-    Ring (TracialMatrixQuotient X l) :=
-  inferInstanceAs (Ring (ModelBoundedSequence X ⧸ hilbertSchmidtNullIdeal X l))
-
-/-- The normed group structure of the quotient by a closed ideal, cached on
-the wrapper.  This is the instance `hilbertSchmidtNullIdeal_isClosed` exists
-to supply. -/
-noncomputable instance tracialMatrixQuotientNormedAddCommGroup :
-    NormedAddCommGroup (TracialMatrixQuotient X l) :=
-  inferInstanceAs
-    (NormedAddCommGroup (ModelBoundedSequence X ⧸ hilbertSchmidtNullIdeal X l))
-
-/-- The complex algebra structure, which the ideal carries because it is
-two-sided.  Naming `Ideal.Quotient.algebra` rather than searching for it is
-the second half of the budget repair: the search form has to rediscover
-`Semiring` of the quotient as a side condition, which is the expensive goal
-this file is removing. -/
-noncomputable instance tracialMatrixQuotientAlgebra :
-    Algebra ℂ (TracialMatrixQuotient X l) :=
-  Ideal.Quotient.algebra ℂ
 
 private theorem tracialQuot_exists_rep_norm_lt
     (x : TracialMatrixQuotient X l) {ε : ℝ} (hε : 0 < ε) :
@@ -544,7 +502,7 @@ noncomputable instance tracialMatrixQuotientSeminormedRing :
 noncomputable instance tracialMatrixQuotientNormedRing :
     NormedRing (TracialMatrixQuotient X l) :=
   { tracialMatrixQuotientSeminormedRing X l,
-    tracialMatrixQuotientNormedAddCommGroup X l with }
+    Submodule.Quotient.normedAddCommGroup (hilbertSchmidtNullIdeal X l) with }
 
 /-- The tracial matrix quotient is complete. -/
 noncomputable instance tracialMatrixQuotientCompleteSpace :
