@@ -1,54 +1,40 @@
 import GroupApproximation.Sofic.LiteralP13HodgeCertificateCore
+import GroupApproximation.Meta.BatchedKernelChecks
 
 namespace GroupApproximation
 namespace LiteralP13HodgeCertificate
 
-/-! Direct kernel checks 27--35 for residual block (5, 4). -/
+/-! Batched kernel checks 27--35 for residual block (5, 4). -/
 
-theorem residual_chunk_5_4_27 : initialChunk 5 4 27 = 214275699 := by
-  decide
+namespace Residual54Part3
 
-theorem residual_chunk_5_4_28 : initialChunk 5 4 28 = 151025248 := by
-  decide
+/-- Expected chunk totals; these numerals are data, not trusted equalities. -/
+def expected : Fin 9 → Nat := ![214275699, 151025248, 123257655, 264920376, 117399283, 277659501, 117715760, 181715960, 123061295]
 
-theorem residual_chunk_5_4_29 : initialChunk 5 4 29 = 123257655 := by
-  decide
+/-- One independently kernel-checked chunk equality. -/
+def check (u : Fin 9) : Prop :=
+  initialChunk 5 4 (finProdFinEquiv ((3 : Fin 4), u)) = expected u
 
-theorem residual_chunk_5_4_30 : initialChunk 5 4 30 = 264920376 := by
-  decide
+mk_kernel_batched_theorem 9 check
 
-theorem residual_chunk_5_4_31 : initialChunk 5 4 31 = 117399283 := by
-  decide
+theorem all : ∀ u : Fin 9, check u :=
+  combine_kernel_batched_theorems% check 9
 
-theorem residual_chunk_5_4_32 : initialChunk 5 4 32 = 277659501 := by
-  decide
+theorem final : finalChunk 5 4 = 59475969 := by
+  decide +kernel
 
-theorem residual_chunk_5_4_33 : initialChunk 5 4 33 = 117715760 := by
-  decide
-
-theorem residual_chunk_5_4_34 : initialChunk 5 4 34 = 181715960 := by
-  decide
-
-theorem residual_chunk_5_4_35 : initialChunk 5 4 35 = 123061295 := by
-  decide
-
-theorem residual_chunk_5_4_36 : finalChunk 5 4 = 59475969 := by
-  decide
+end Residual54Part3
 
 /-- Exact subtotal for this independently checked residual part. -/
 theorem residual_part_sum_5_4_3 : initialPart 5 4 3 + finalChunk 5 4 = 1630506746 := by
-  unfold initialPart
-  rw [sum_fin9_explicit]
-  rw [show finProdFinEquiv ((3 : Fin 4), (0 : Fin 9)) = (27 : Fin 36) by decide]
-  rw [show finProdFinEquiv ((3 : Fin 4), (1 : Fin 9)) = (28 : Fin 36) by decide]
-  rw [show finProdFinEquiv ((3 : Fin 4), (2 : Fin 9)) = (29 : Fin 36) by decide]
-  rw [show finProdFinEquiv ((3 : Fin 4), (3 : Fin 9)) = (30 : Fin 36) by decide]
-  rw [show finProdFinEquiv ((3 : Fin 4), (4 : Fin 9)) = (31 : Fin 36) by decide]
-  rw [show finProdFinEquiv ((3 : Fin 4), (5 : Fin 9)) = (32 : Fin 36) by decide]
-  rw [show finProdFinEquiv ((3 : Fin 4), (6 : Fin 9)) = (33 : Fin 36) by decide]
-  rw [show finProdFinEquiv ((3 : Fin 4), (7 : Fin 9)) = (34 : Fin 36) by decide]
-  rw [show finProdFinEquiv ((3 : Fin 4), (8 : Fin 9)) = (35 : Fin 36) by decide]
-  rw [residual_chunk_5_4_27, residual_chunk_5_4_28, residual_chunk_5_4_29, residual_chunk_5_4_30, residual_chunk_5_4_31, residual_chunk_5_4_32, residual_chunk_5_4_33, residual_chunk_5_4_34, residual_chunk_5_4_35, residual_chunk_5_4_36]
+  have hpart : initialPart 5 4 3 =
+      ∑ u : Fin 9, Residual54Part3.expected u := by
+    unfold initialPart
+    apply Finset.sum_congr rfl
+    intro u _
+    exact Residual54Part3.all u
+  rw [hpart, Residual54Part3.final]
+  decide +kernel
 
 end LiteralP13HodgeCertificate
 end GroupApproximation
