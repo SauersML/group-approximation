@@ -157,7 +157,16 @@ A residual chain gives the canonical faithful-trace sofic
    into control of exactly that excess.
 
 Net: for the canonical `σ`, (CCR) is a clean, self-contained question
-about excess commutants of Kazhdan images in sofic ultraproducts —
-decidable-feeling, still open, and the right first battlefield for the
-next campaign: refuting it there kills the route outright; proving it
-there is the template for the general case.
+about excess commutants of Kazhdan images in sofic ultraproducts.
+
+**2026-08-18c: the canonical case is PROVED.**  (CCR) holds for every
+coordinatewise ultraproduct of genuine finite-dimensional
+representations with image collapse `π_n(Γ) ⊆ π_n(Λ)` — in particular
+for the canonical congruence `σ` — by per-coordinate Kazhdan
+uniformity (ε-commutation with the generators of `Λ` is `2ε/κ`-
+commutation with EVERY element of `π_n(Λ)`, uniformly) composed with
+the collapse.  See `ccr-for-coordinate-collapsing-models(-proof)`.
+No groupoids, medians, or atomic invariants appear.  Consequences:
+congruence models can never refute the route, and the open remainder
+of THIS node is exactly the transport of that uniformity across the
+approximate-coordinate gap (the OP 6.2 locus) for arbitrary `σ`.
