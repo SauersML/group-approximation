@@ -95,7 +95,7 @@ CLAIM_TARGETS: dict[str, tuple[str, str]] = {
     "thm:trace": (
         "Sofic/TraceSeparationEndpoint",
         "GroupApproximation.LiteralTraceConsequence."
-        "markedGroup_canonicalTrace_isHyperlinearTrace_not_isMFTrace"),
+        "markedGroup_separable_canonicalTrace_hyperlinear_not_isMFTrace"),
     "prop:maximal-cstar": (
         "Analysis/MaximalGroupCStar",
         "GroupApproximation.manuscriptUniverseRelativeMaximalGroupCStar"),

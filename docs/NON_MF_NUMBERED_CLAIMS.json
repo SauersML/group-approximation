@@ -429,7 +429,7 @@
       "id": "thm:trace",
       "environment": "mainthm",
       "title": "a hyperlinear trace that is not MF",
-      "statement_sha256": "3c323dfa04fc60971af7f544c0af7d0b7bfc2c19cb45bd6138eb5fcf4e8b7032",
+      "statement_sha256": "cd165350bd758fae18809a4e70263beb6607f5caf23b8b66848e0e5a5c87612e",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [
@@ -445,20 +445,8 @@
         {
           "role": "exact",
           "module": "Sofic/TraceSeparationEndpoint",
-          "declaration": "GroupApproximation.LiteralTraceConsequence.markedGroup_canonicalTrace_isHyperlinearTrace_not_isMFTrace",
-          "covers": "the complete printed proposition"
-        },
-        {
-          "role": "exact",
-          "module": "Sofic/TraceSeparationEndpoint",
           "declaration": "GroupApproximation.LiteralTraceConsequence.markedGroup_separable_canonicalTrace_hyperlinear_not_isMFTrace",
-          "covers": "a printed conclusion of the proposition"
-        },
-        {
-          "role": "exact",
-          "module": "Analysis/SoficHyperlinearBridge",
-          "declaration": "GroupApproximation.ShulmanTrace.canonicalMaximalTrace_isHyperlinearTrace_of_isSofic",
-          "covers": "a printed conclusion of the proposition"
+          "covers": "the complete printed proposition"
         }
       ]
     },

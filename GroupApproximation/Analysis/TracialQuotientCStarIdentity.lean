@@ -1,15 +1,20 @@
 import GroupApproximation.Analysis.HilbertSchmidtApproximateUnit
 import GroupApproximation.Analysis.TracialMatrixUltraproduct
+import GroupApproximation.Analysis.TracialQuotientCStar
 
 /-!
-# The C-star identity for the tracial matrix quotient
+# The C-star identity for the tracial matrix quotient, proved a second way
 
-`Analysis/TracialMatrixUltraproduct.lean` builds the quotient of the bounded
-matrix sequences by the `‖·‖₂`-null ideal as a complete normed ring with an
-isometric involution, and deliberately does not assert the C-star identity
-for the quotient norm.  `Analysis/HilbertSchmidtApproximateUnit.lean` proves
-the one-matrix approximate-unit clauses for the spectral cut.  This file
-assembles the two into the missing identity and the missing instances:
+`Analysis/TracialQuotientCStar.lean` is the canonical home of the quotient's
+C-star structure: it proves the identity through a per-element approximate
+unit, installs the `CStarRing` and `CStarAlgebra` instances, and records the
+exact quotient-norm formula `‖a + J‖ = inf { ‖a - a e‖ : e ∈ J }`.  This
+file is the **independent second proof** of the identity's hard direction.
+The two were authored in parallel, same day, different sessions, sharing no
+proof text; the duplication was then kept deliberately, because independent
+derivations of the one lemma the trace-separation chain stands on are worth
+their weight, and because this route contributes a reusable sequence-level
+cut API the canonical file keeps inline:
 
 * `cutSeq`: the coordinatewise spectral cut of a bounded sequence, an
   orthogonal projection in every coordinate, uniformly bounded by `1`;
@@ -19,8 +24,13 @@ assembles the two into the missing identity and the missing instances:
 * `norm_sub_mul_cutSeq_le`: the cut moves its sequence by at most the square
   root of the threshold, uniformly — clause 1;
 * `norm_sq_le_norm_star_mul_self`: **the C-star identity**, hard direction,
-  for the quotient norm at an arbitrary filter;
-* `CStarRing` and `CStarAlgebra` instances for `TracialMatrixQuotient X l`.
+  for the quotient norm at an arbitrary filter.
+
+The instances themselves are declared once, in
+`Analysis/TracialQuotientCStar.lean`, and reach importers of this module
+(the hyperlinear bridge) through the import above; declaring them a second
+time here would put two defeq-but-distinct `CStarAlgebra` structures on the
+same type in every downstream file.
 
 ## The three-line estimate, honestly three lines
 
@@ -40,18 +50,20 @@ term.  Taking suprema, `‖x‖² ≤ ‖x⋆ x‖ + 2δ` for every `δ > 0`.
 
 ## Instance discipline
 
-The `CStarRing` instance is a **mixin over the existing structure**: the
-`NormedRing`, `StarRing`, `NormedAlgebra` and `CompleteSpace` instances are
-the ones `TracialMatrixUltraproduct` hand-built, and the `CStarAlgebra`
-bundle below is assembled from those same canonical parts.  A fresh
-`CStarAlgebra` carrying its own norm would fork `‖·‖` on the quotient and
-silently detach every existing lemma from the instance the lift sees.
+The `CStarRing` instance (in the canonical file) is a **mixin over the
+existing structure**: the `NormedRing`, `StarRing`, `NormedAlgebra` and
+`CompleteSpace` instances are the ones `TracialMatrixUltraproduct`
+hand-built, and the `CStarAlgebra` bundle is assembled from those same
+canonical parts.  A fresh `CStarAlgebra` carrying its own norm would fork
+`‖·‖` on the quotient and silently detach every existing lemma from the
+instance the lift sees.
 -/
 
 namespace GroupApproximation
 namespace TracialUltraproduct
 
-open Filter Matrix HilbertSchmidtApproximateUnit
+open Filter Matrix HilbertSchmidtApproximateUnit KazhdanCornerMatrices
+  ExactInvolutionLifts
 open scoped Matrix.Norms.L2Operator
 
 set_option synthInstance.maxHeartbeats 2000000
@@ -103,6 +115,7 @@ theorem norm_sub_mul_cutSeq_le (k : ModelBoundedSequence X) {t : ℝ}
     ‖k - k * cutSeq X k t‖ ≤ Real.sqrt t := by
   refine (lp.isLUB_norm (k - k * cutSeq X k t)).2 ?_
   rintro _ ⟨n, rfl⟩
+  show ‖(k - k * cutSeq X k t) n‖ ≤ Real.sqrt t
   have hfac : (k - k * cutSeq X k t) n = k n * (1 - cut (X n) (k n) t) := by
     show k n - k n * cut (X n) (k n) t = _
     rw [Matrix.mul_sub, Matrix.mul_one]
@@ -150,7 +163,7 @@ theorem norm_sq_le_norm_star_mul_self (x : TracialMatrixQuotient X l) :
       rw [map_sub, hbmk,
         (tracialMatrixQuotientMk_eq_zero_iff X l _).mpr hbeJ, sub_zero]
     calc ‖x‖ = ‖tracialMatrixQuotientMk X l (b - b * e)‖ := by rw [hmk]
-      _ ≤ ‖b - b * e‖ := Ideal.Quotient.norm_mk_le _
+      _ ≤ ‖b - b * e‖ := Submodule.Quotient.norm_mk_le _ _
   have hcoordb : ∀ n, ‖(b - b * e) n‖ * ‖(b - b * e) n‖
       ≤ ‖star x * x‖ + 2 * (ε / 2) := by
     intro n
@@ -227,6 +240,7 @@ theorem norm_sq_le_norm_star_mul_self (x : TracialMatrixQuotient X l) :
   have hbe : ‖b - b * e‖ ≤ Real.sqrt (‖star x * x‖ + 2 * (ε / 2)) := by
     refine (lp.isLUB_norm (b - b * e)).2 ?_
     rintro _ ⟨n, rfl⟩
+    show ‖(b - b * e) n‖ ≤ Real.sqrt (‖star x * x‖ + 2 * (ε / 2))
     have h := hcoordb n
     nlinarith [Real.mul_self_sqrt hnn,
       Real.sqrt_nonneg (‖star x * x‖ + 2 * (ε / 2)),
@@ -234,26 +248,6 @@ theorem norm_sq_le_norm_star_mul_self (x : TracialMatrixQuotient X l) :
   have h1 : ‖x‖ ≤ Real.sqrt (‖star x * x‖ + 2 * (ε / 2)) := hxle.trans hbe
   nlinarith [Real.mul_self_sqrt hnn, norm_nonneg x,
     Real.sqrt_nonneg (‖star x * x‖ + 2 * (ε / 2))]
-
-/-! ## The instances -/
-
-/-- **The tracial matrix quotient is a C-star ring**: the mixin over the
-hand-built normed structure, never a fresh norm. -/
-noncomputable instance tracialMatrixQuotientCStarRing :
-    CStarRing (TracialMatrixQuotient X l) where
-  norm_mul_self_le x := norm_sq_le_norm_star_mul_self X l x
-
-/-- **The tracial matrix quotient is a unital C-star algebra**, assembled
-from the canonical parts already installed by
-`Analysis/TracialMatrixUltraproduct.lean` plus the mixin above. -/
-noncomputable instance tracialMatrixQuotientCStarAlgebra :
-    CStarAlgebra (TracialMatrixQuotient X l) :=
-  { (inferInstance : NormedRing (TracialMatrixQuotient X l)),
-    (inferInstance : StarRing (TracialMatrixQuotient X l)),
-    (inferInstance : CompleteSpace (TracialMatrixQuotient X l)),
-    (inferInstance : CStarRing (TracialMatrixQuotient X l)),
-    (inferInstance : NormedAlgebra ℂ (TracialMatrixQuotient X l)),
-    (inferInstance : StarModule ℂ (TracialMatrixQuotient X l)) with }
 
 end
 

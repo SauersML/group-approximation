@@ -265,7 +265,7 @@ theorem mk_soficUnitarySeq_mem_unitary (g : G) :
         (star (soficUnitarySeq S g)) :=
     tracialMatrixQuotient_star_mk (fun n ↦ S.model n) atTop
       (soficUnitarySeq S g)
-  rw [unitary.mem_iff, hstar, ← map_mul, ← map_mul]
+  rw [Unitary.mem_iff, hstar, ← map_mul, ← map_mul]
   constructor
   · have hnull : IsHilbertSchmidtNull (fun n ↦ S.model n) atTop
         (star (soficUnitarySeq S g) * soficUnitarySeq S g - 1) := by
@@ -499,10 +499,10 @@ theorem tendsto_norm_trace_qrep
       _ < ‖τ‖ * δ + δ + 3 * δ := by
           linarith [hτab', h2, htr]
   have hεeq : ‖τ‖ * δ + δ + 3 * δ ≤ ε := by
-    have : (‖τ‖ + 4) * δ = ε := by
+    have hmul : (‖τ‖ + 4) * δ = ε := by
       rw [hδdef]
       field_simp
-    nlinarith [this]
+    linarith [hmul]
   exact lt_of_lt_of_le hfinal hεeq
 
 end Crossing
@@ -577,17 +577,18 @@ theorem isHyperlinearTrace_canonicalMaximalTrace_of_soficRepresentation
     rw [canonicalMaximalTrace_generator_one]
     have h1 : Tendsto (fun n ↦ (1 : ℂ)
         - normTrace (S.model n) (modelUnitary S n 1)) atTop (nhds 0) := by
-      have := (tendsto_const_nhds
-        (α := ℂ) (f := atTop) (x := (1 : ℂ))).sub
-        (tendsto_normTrace_modelUnitary_one S hpos)
+      have hc : Tendsto (fun _ : ℕ ↦ (1 : ℂ)) atTop (nhds (1 : ℂ)) :=
+        tendsto_const_nhds
+      have := hc.sub (tendsto_normTrace_modelUnitary_one S hpos)
       simpa using this
     refine h1.congr fun n ↦ ?_
     rw [soficUnitarySeq_apply]
   · rw [canonicalMaximalTrace_generator_of_ne_one G hg]
     have h0 : Tendsto (fun n ↦ (0 : ℂ)
         - normTrace (S.model n) (modelUnitary S n g)) atTop (nhds 0) := by
-      have := (tendsto_const_nhds
-        (α := ℂ) (f := atTop) (x := (0 : ℂ))).sub
+      have hc : Tendsto (fun _ : ℕ ↦ (0 : ℂ)) atTop (nhds (0 : ℂ)) :=
+        tendsto_const_nhds
+      have := hc.sub
         (tendsto_normTrace_modelUnitary_of_ne_one S hpos hg)
       simpa using this
     refine h0.congr fun n ↦ ?_

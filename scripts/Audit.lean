@@ -640,14 +640,19 @@ def zeroInputEndpoints : List Name :=
    ``LiteralUniformObstruction.literal_uniform_operatorNorm_obstruction,
    ``NonMFImpact.finiteNormal_obstruction_is_trivial_in_torsionFree_groups,
    ``NonMFImpact.sofic_nonMF_is_hyperlinear_nonMF,
-   -- The trace-class consequence.  `#print axioms` cannot see a premise that
-   -- lives in the *statement* rather than the proof term, so the endpoint that
-   -- the manuscript badges at `cor:mftrace` is routed through this semantic
-   -- check, which reads the elaborated type and so also catches a section
-   -- `variable` that the printed header does not show.
+   -- The trace-class consequences.  `#print axioms` cannot see a premise that
+   -- lives in the *statement* rather than the proof term, so the endpoints
+   -- that the manuscript badges at `lem:mftrace-group` and `thm:trace` are
+   -- routed through this semantic check, which reads the elaborated type and
+   -- so also catches a section `variable` that the printed header does not
+   -- show.
    ``LiteralTraceConsequence.markedGroup_canonicalMaximalTrace_not_isMFTrace,
    ``LiteralTraceConsequence.markedGroup_separable_tracialState_not_isMFTrace,
-   ``LiteralTraceConsequence.markedGroup_not_isMFRegularCharacter]
+   ``LiteralTraceConsequence.markedGroup_not_isMFRegularCharacter,
+   ``LiteralTraceConsequence.markedGroup_canonicalTrace_isHyperlinearTrace_not_isMFTrace,
+   ``LiteralTraceConsequence.markedGroup_separable_canonicalTrace_hyperlinear_not_isMFTrace,
+   ``GroupApproximation.manuscriptMFTraceGroupBridge,
+   ``ShulmanTrace.canonicalMaximalTrace_isHyperlinearTrace_of_isSofic]
 
 /-- Does an elaborated declaration type still expose an outer input? -/
 def hasLeadingInput : Expr → Bool
