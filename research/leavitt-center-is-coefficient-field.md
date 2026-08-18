@@ -54,3 +54,20 @@ and the whole content of the import is that none of them is central.
 
 Used only through `leavitt-unit-group-has-no-finite-normal-subgroup`, to get
 `Z(G) = 1` for `G = R^x`.  Nothing else in the graph depends on it.
+
+## A note for the Boone--Higman ring lane, mostly negative
+
+Together with simplicity, this says `L_K(1,2)` is a **central** simple
+`K`-algebra, which is the natural thing to reach for when asking which
+`K`-algebras embed in it — the question
+`weyl-algebra-blocks-a-universal-leavitt-host` answers negatively for the
+first Weyl algebra.
+
+It does not help there, and the reason is worth writing down so nobody spends
+an afternoon on it.  A unital embedding of `K`-algebras `A -> L_K(1,2)` puts
+no constraint on `Z(A)`: the image of a central element of `A` need only
+commute with the image of `A`, not with all of `L_K(1,2)`.  So centrality of
+the host is not an embedding obstruction, and the Bilich--Hazrat--Nam
+argument runs through Steinberg algebras and the Heisenberg relation instead,
+for good reason.  What this claim does constrain is the coefficient field of
+any *presentation* of the host, which is not what that lane needs.
