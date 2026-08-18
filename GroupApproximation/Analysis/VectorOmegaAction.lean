@@ -383,6 +383,105 @@ theorem norm_actQ_le (a : BoundedMatrixSequence (Idx Y)) (x : VecOmega Y ω) :
 
 end Bounded
 
+/-! ## Linearity in the algebra variable, and the bounded operator
+
+With `norm_actQ_le` the action of each class is a bounded operator, and with
+`actQ_smul` the assignment is `ℂ`-linear, so what is left before a
+⋆-homomorphism is the adjoint below. -/
+
+section Smul
+
+variable (Y) (ω : Ultrafilter ℕ)
+
+theorem actFam_smul_left (c : ℂ) (A : ∀ n, Matrix (Y n) (Y n) ℂ) (ξ : VecFam Y) :
+    actFam (fun n ↦ c • A n) ξ = c • actFam A ξ := by
+  funext n
+  exact Matrix.smul_mulVec c (A n) (ξ n)
+
+theorem actQ_smul (c : ℂ) (a : BoundedMatrixSequence (Idx Y)) :
+    actQ Y ω (c • a) = c • actQ Y ω a := by
+  refine vecOmega_linearMap_ext Y ω fun ξ ↦ ?_
+  rw [actQ_mkV]
+  show mkV Y ω (actSub Y (c • a) ξ) = c • actQ Y ω a (mkV Y ω ξ)
+  rw [actQ_mkV]
+  have hsm : actSub Y (c • a) ξ = c • actSub Y a ξ :=
+    Subtype.ext (actFam_smul_left Y c (fun n ↦ a n) (ξ : VecFam Y))
+  rw [hsm]
+  exact (Submodule.Quotient.mk_smul _ _ _)
+
+/-- **The action of a class, as a bounded operator on `H_ω`.** -/
+def actCLM (a : BoundedMatrixSequence (Idx Y)) :
+    VecOmega Y ω →L[ℂ] VecOmega Y ω :=
+  LinearMap.mkContinuous (actQ Y ω a) ‖a‖ (norm_actQ_le Y ω a)
+
+@[simp] theorem actCLM_apply (a : BoundedMatrixSequence (Idx Y))
+    (x : VecOmega Y ω) : actCLM Y ω a x = actQ Y ω a x := rfl
+
+end Smul
+
+/-! ## The adjoint
+
+`⟪a·ξ, η⟫ = ⟪ξ, a*·η⟫`, first at a coordinate and then in `H_ω`.  This is what
+makes the action a ⋆-map, and with `norm_actQ_le` it is everything a
+⋆-homomorphism into `B(H_ω)` needs beyond what is already above. -/
+
+section Adjoint
+
+variable {Z : FiniteModel}
+
+/-- The coordinate adjoint identity, by exchanging the order of summation.
+`(Aᴴ y)_j = ∑ᵢ conj(A i j) yᵢ` is what makes the two double sums the same. -/
+theorem inner_evec_mulVec (A : Matrix Z Z ℂ) (x y : Z → ℂ) :
+    (inner ℂ (evec (A *ᵥ x)) (evec y) : ℂ)
+      = inner ℂ (evec x) (evec (Aᴴ *ᵥ y)) := by
+  classical
+  rw [inner_evec, inner_evec]
+  have hl : ∀ i : Z, (starRingEnd ℂ) ((A *ᵥ x) i) * y i
+      = ∑ j : Z, (starRingEnd ℂ) (A i j) * (starRingEnd ℂ) (x j) * y i := by
+    intro i
+    show (starRingEnd ℂ) (∑ j : Z, A i j * x j) * y i = _
+    rw [map_sum, Finset.sum_mul]
+    exact Finset.sum_congr rfl fun j _ ↦ by rw [map_mul]
+  have hr : ∀ j : Z, (starRingEnd ℂ) (x j) * (Aᴴ *ᵥ y) j
+      = ∑ i : Z, (starRingEnd ℂ) (A i j) * (starRingEnd ℂ) (x j) * y i := by
+    intro j
+    show (starRingEnd ℂ) (x j) * (∑ i : Z, Aᴴ j i * y i) = _
+    rw [Finset.mul_sum]
+    refine Finset.sum_congr rfl fun i _ ↦ ?_
+    show (starRingEnd ℂ) (x j) * ((starRingEnd ℂ) (A i j) * y i) = _
+    ring
+  rw [Finset.sum_congr rfl fun i _ ↦ hl i, Finset.sum_congr rfl fun j _ ↦ hr j,
+    Finset.sum_comm]
+
+end Adjoint
+
+section AdjointOmega
+
+variable (Y) (ω : Ultrafilter ℕ)
+
+@[simp] theorem star_coord (a : BoundedMatrixSequence (Idx Y)) (n : ℕ) :
+    ((star a : BoundedMatrixSequence (Idx Y)) :
+        ∀ n, Matrix (Idx Y n) (Idx Y n) ℂ) n
+      = ((a : ∀ n, Matrix (Idx Y n) (Idx Y n) ℂ) n)ᴴ := rfl
+
+/-- **The adjoint identity in `H_ω`.**  Both sides are the ultralimit of the
+same coordinate pairing, so the identity is the coordinate one taken along `ω`
+and nothing else. -/
+theorem inner_actQ (a : BoundedMatrixSequence (Idx Y)) (x y : VecOmega Y ω) :
+    (inner ℂ (actQ Y ω a x) y : ℂ) = inner ℂ x (actQ Y ω (star a) y) := by
+  obtain ⟨ξ, rfl⟩ := mkV_surjective Y ω x
+  obtain ⟨η, rfl⟩ := mkV_surjective Y ω y
+  show uvinner (ω := ω) (actSub Y a ξ) η
+      = uvinner (ω := ω) ξ (actSub Y (star a) η)
+  refine congrArg (UltrafilterLimit.ulim ω) (funext fun n ↦ ?_)
+  show (inner ℂ (evec (((actSub Y a ξ : vecBounded Y) : VecFam Y) n))
+        (evec ((η : VecFam Y) n)) : ℂ)
+    = inner ℂ (evec ((ξ : VecFam Y) n))
+        (evec (((actSub Y (star a) η : vecBounded Y) : VecFam Y) n))
+  exact inner_evec_mulVec _ _ _
+
+end AdjointOmega
+
 /-! ## Coordinatewise unitaries act by isometries
 
 This is the half of the printed sentence that says *unitary* representation.
@@ -484,6 +583,82 @@ theorem actQ_eq_of_sub_null {a b : BoundedMatrixSequence (Idx Y)}
   simpa using hsub.symm
 
 end Algebra
+
+/-! ## The action as a continuous unital ⋆-homomorphism
+
+Everything above assembles: `actQ` is linear in the vector, linear and
+multiplicative and unital in the algebra variable, bounded by the corona norm,
+and carries `star` to the adjoint.  That is exactly a unital ⋆-homomorphism of
+complex algebras `∏_n B(ℂ^{d_n}) → B(H_ω)`, and it kills the `ω`-null sequences
+(`actQ_eq_zero_of_null`), so it is the action of `B_ω` written on
+representatives. -/
+
+section StarHom
+
+variable (Y) (ω : Ultrafilter ℕ) [∀ n, Nonempty (Y n)]
+
+omit [∀ n, Nonempty (Y n)] in
+theorem actQ_zero : actQ Y ω 0 = 0 := by
+  refine vecOmega_linearMap_ext Y ω fun ξ ↦ ?_
+  rw [actQ_mkV]
+  show mkV Y ω (actSub Y 0 ξ) = (0 : VecOmega Y ω →ₗ[ℂ] VecOmega Y ω) (mkV Y ω ξ)
+  have h0 : actSub Y (0 : BoundedMatrixSequence (Idx Y)) ξ = 0 :=
+    Subtype.ext (by
+      funext n
+      exact Matrix.zero_mulVec ((ξ : VecFam Y) n))
+  rw [h0]
+  simp
+
+omit [∀ n, Nonempty (Y n)] in
+/-- **`star` goes to the adjoint.** -/
+theorem actCLM_star (a : BoundedMatrixSequence (Idx Y)) :
+    actCLM Y ω (star a) = ContinuousLinearMap.adjoint (actCLM Y ω a) := by
+  refine (ContinuousLinearMap.eq_adjoint_iff _ _).2 fun x y ↦ ?_
+  have h := inner_actQ Y ω (star a) x y
+  rwa [star_star] at h
+
+/-- **The action of `∏_n B(ℂ^{d_n})` on `H_ω`, as a unital ⋆-homomorphism.**
+
+This is the object `NK.06`'s remaining clause needs: with it, the range is a
+unital ⋆-subalgebra of `B(H_ω)` containing the average `h`, and the question
+whether the spectral projection of `h` lies in the norm ultraproduct becomes the
+question whether that range is closed. -/
+def actStarAlgHom :
+    BoundedMatrixSequence (Idx Y) →⋆ₐ[ℂ] (VecOmega Y ω →L[ℂ] VecOmega Y ω) where
+  toFun := actCLM Y ω
+  map_one' := by
+    refine ContinuousLinearMap.ext fun x ↦ ?_
+    show actQ Y ω 1 x = x
+    rw [actQ_one]
+    rfl
+  map_mul' a b := by
+    refine ContinuousLinearMap.ext fun x ↦ ?_
+    show actQ Y ω (a * b) x = actQ Y ω a (actQ Y ω b x)
+    rw [actQ_mul]
+    rfl
+  map_zero' := by
+    refine ContinuousLinearMap.ext fun x ↦ ?_
+    show actQ Y ω 0 x = 0
+    rw [actQ_zero]
+    rfl
+  map_add' a b := by
+    refine ContinuousLinearMap.ext fun x ↦ ?_
+    show actQ Y ω (a + b) x = actQ Y ω a x + actQ Y ω b x
+    rw [actQ_add]
+    rfl
+  commutes' r := by
+    refine ContinuousLinearMap.ext fun x ↦ ?_
+    show actQ Y ω (algebraMap ℂ (BoundedMatrixSequence (Idx Y)) r) x
+      = (algebraMap ℂ (VecOmega Y ω →L[ℂ] VecOmega Y ω) r) x
+    rw [Algebra.algebraMap_eq_smul_one, Algebra.algebraMap_eq_smul_one,
+      actQ_smul, actQ_one]
+    rfl
+  map_star' a := actCLM_star Y ω a
+
+@[simp] theorem actStarAlgHom_apply (a : BoundedMatrixSequence (Idx Y)) :
+    actStarAlgHom Y ω a = actCLM Y ω a := rfl
+
+end StarHom
 
 /-! ## `π(g) = [V_{g,n}]_ω`
 
