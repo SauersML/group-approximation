@@ -1079,6 +1079,7 @@ import GroupApproximation.Analysis.UnitaryAverageFixedVector
 import GroupApproximation.Analysis.OmegaCoronaKazhdanProjection
 import GroupApproximation.Sofic.OmegaRouteManuscriptTransport
 import GroupApproximation.Sofic.LiteralProductMultiplicity
+import GroupApproximation.Sofic.SimpleSoficEnvelopeAnyUniverse
 import GroupApproximation.Monsters.NeumannSimpleSocle
 import GroupApproximation.Sofic.TransportShapeBridges
 import GroupApproximation.Sofic.GeneralModelKazhdanTransport
