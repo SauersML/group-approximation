@@ -13,6 +13,7 @@ import GroupApproximation.Sofic.LiteralBaseP13PropertyTBridge
 import GroupApproximation.Sofic.LiteralNonMFLinearWitness
 import GroupApproximation.Sofic.MFRepresentationVariants
 import GroupApproximation.Sofic.ManuscriptCentralSignCriterion
+import GroupApproximation.Sofic.PrintedNegativeCornerKill
 
 /-!
 # The literal eight-generator non-MF endpoint
@@ -117,13 +118,24 @@ theorem kazhdanPinning (B : OpAlmostRepresentation MarkedGroup) :
     inclusionData.toKazhdanCompressionCore B
 
 /-- A separated negative corner for the literal mark contradicts Kazhdan
-transport and the identity `mark = compressionDefect²`. -/
+transport and the identity `mark = compressionDefect²`.
+
+**By the printed route.**  The transport half is the pinning above, so this
+declaration and `kazhdanPinning` travel the same step,
+`KazhdanAsymptoticCommutant.manuscriptKazhdanTransport`, which is
+`\ref{thm:kazhdan-transport}` by the printed §3 ultraproduct proof.  What the
+negative corner adds is the printed "hence `w ~₂ 1`": the mark is the square of
+the pinned compression defect, and squaring at most quadruples the normalized
+Hilbert--Schmidt displacement.  It used to travel
+`KazhdanCompressorCorner.false_of_markedOpAlmostRepresentation`, whose transport
+step is the finite-stage corner argument instead; that route is unchanged and
+still proves the same statement. -/
 theorem negativeCorner_kazhdanTransport_contradiction :
     ∀ (_A : MarkedOpAlmostRepresentation MarkedGroup mark), False := by
   intro A
   rw [← inclusionData_word] at A
-  exact KazhdanCompressorCorner.false_of_markedOpAlmostRepresentation
-    inclusionData A
+  exact PrintedNegativeCornerKill.false_of_markedOpAlmostRepresentation_printed
+    inclusionData lamp_sq A
 
 /-! ## The explicit finite normal subgroup `{1, mark}` -/
 

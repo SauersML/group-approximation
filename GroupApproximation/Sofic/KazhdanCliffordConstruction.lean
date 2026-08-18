@@ -4,6 +4,7 @@ import GroupApproximation.Sofic.CDEOperatorMF
 import GroupApproximation.Sofic.FiniteNormalCoronaObstruction
 import GroupApproximation.Sofic.KazhdanSignCriterion
 import GroupApproximation.Sofic.MarkedCompressionGroup
+import GroupApproximation.Sofic.PrintedNegativeCornerKill
 import GroupApproximation.Kazhdan.KazhdanUniverse
 import GroupApproximation.Analysis.NaturalMatrixCoordinateEquiv
 import Mathlib.GroupTheory.FinitelyPresentedGroup
@@ -508,7 +509,15 @@ noncomputable def inclusionData :
 /-- The short negative-corner contradiction for the general conceptual
 construction.  A separated sign cuts to a nonzero corner on which the mark
 tends to `-1`; Kazhdan transport makes its compression-defect square tend to
-`1` in normalized Hilbert--Schmidt norm. -/
+`1` in normalized Hilbert--Schmidt norm.
+
+This is `p:constr-tietze`'s sentence "rigidity forces `u ~₂ 1` while the
+Clifford model makes `u² = -1`", and the rigidity is now the printed one: the
+pinning comes from `UltraproductRigidityRoute.compressionDefects_hsTrivial_literal`,
+whose transport step is `\ref{thm:kazhdan-transport}` by the §3 ultraproduct
+proof.  The finite-stage
+`KazhdanCompressorCorner.false_of_markedOpAlmostRepresentation` proves the same
+statement and is left standing. -/
 theorem negativeCorner_kazhdanTransport_contradiction :
     ∀ {Γ₀ : Type} [Group Γ₀] [Group.IsFinitelyPresented Γ₀]
       (alpha : Γ₀ →* Γ₀) (a : Γ₀)
@@ -517,8 +526,8 @@ theorem negativeCorner_kazhdanTransport_contradiction :
       False := by
   intro Γ₀ _ _ alpha a hT A
   rw [← inclusionData_word alpha a hT] at A
-  exact KazhdanCompressorCorner.false_of_markedOpAlmostRepresentation
-    (inclusionData alpha a hT) A
+  exact PrintedNegativeCornerKill.false_of_markedOpAlmostRepresentation_printed
+    (inclusionData alpha a hT) (lamp_sq alpha a) A
 
 theorem mark_eq_defect_sq :
     mark alpha a =
