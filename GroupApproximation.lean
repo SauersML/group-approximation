@@ -916,6 +916,7 @@ import GroupApproximation.Analysis.CStarNonUnitalState
 import GroupApproximation.Analysis.CStarCompletelyPositiveForm
 import GroupApproximation.Analysis.CStarCompletelyPositiveStar
 import GroupApproximation.Analysis.CStarStinespringForm
+import GroupApproximation.Analysis.LanceReiterMean
 import GroupApproximation.Analysis.CStarIdealQuotient
 import GroupApproximation.Analysis.CStarQuotientIdentity
 import GroupApproximation.Analysis.CStarIdealApproximateUnit
@@ -1128,6 +1129,7 @@ import GroupApproximation.Sofic.TransportShapeBridges
 import GroupApproximation.Sofic.GeneralModelKazhdanTransport
 import GroupApproximation.Sofic.LiteralRouteTransport
 import GroupApproximation.Sofic.SimpleSoficEnvelopeUnconditional
+import GroupApproximation.Analysis.CStarTakesakiCoefficient
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
