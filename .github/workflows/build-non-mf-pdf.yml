@@ -158,6 +158,8 @@ jobs:
           python3 scripts/check_non_mf_refs.py --self-test
           python3 scripts/check_non_mf_claim_manifest.py --self-test
           python3 scripts/check_non_mf_unconditional.py --self-test
+          python3 scripts/check_manuscript_claims.py --self-test
+          python3 scripts/check_non_mf_proof_ledger.py --self-test
           python3 scripts/check_non_mf_zero_input.py \
             --tex "$TEX_FILE"
           python3 scripts/regenerate_non_mf_claim_manifest.py \
@@ -181,6 +183,18 @@ jobs:
             --tex "$TEX_FILE" \
             --manifest docs/NON_MF_NUMBERED_CLAIMS.json \
             --signature-roster docs/NON_MF_CLAIM_DECLS.txt
+          # The two synchronization checkers close the drift the steps above
+          # cannot see: Lean docstrings citing manuscript labels that no
+          # longer exist (or locating text by line numbers that have moved),
+          # and a `\leanverified` badge with no row in the step-level proof
+          # ledger.  An external audit found both classes coexisting with a
+          # green release build because neither checker was gated here.
+          python3 scripts/check_manuscript_claims.py \
+            --tex "$TEX_FILE" \
+            --strict
+          python3 scripts/check_non_mf_proof_ledger.py \
+            --tex "$TEX_FILE" \
+            --ledger docs/NON_MF_PROOF_LEDGER.md
 
       # The step above certifies that every cited declaration is SOURCE-CLOSED:
       # its printed header ends at the colon.  That is a fact about where the
@@ -207,36 +221,6 @@ jobs:
           python3 scripts/check_non_mf_unconditional.py \
             --tex "$TEX_FILE" \
             --baseline docs/NON_MF_UNCONDITIONAL_BASELINE.txt
-
-      # ADDED 2026-08-18, after an external audit found both of these red on a
-      # revision this workflow would have published green.  The steps above ask
-      # whether every badge resolves, whether every numbered statement still
-      # digests to its manifest entry, and whether the cited declarations are
-      # unconditional and source-closed.  None of them asks the two questions
-      # below, and both had drifted:
-      #
-      #   * the step ledger had no row for either of the two trace badges, so a
-      #     newly badged claim had entered the manuscript with no recorded
-      #     grading -- exactly what the ledger's badge-coverage invariant is
-      #     for, running nowhere;
-      #   * fifteen Lean files cited manuscript labels that no longer existed
-      #     and forty-two located passages by line number, several of them
-      #     quoting sentences a prior editorial pass had deleted.
-      #
-      # Neither is a fact about the mathematics, which is why they went
-      # unnoticed; both are facts about whether the published document and the
-      # development it advertises still describe each other.  This workflow is
-      # the last place that can be checked before the PDF is attested.
-      - name: Proof-step ledger and manuscript-source synchronization
-        run: |
-          python3 scripts/check_non_mf_proof_ledger.py --self-test
-          python3 scripts/check_non_mf_proof_ledger.py \
-            --tex "$TEX_FILE" \
-            --ledger docs/NON_MF_PROOF_LEDGER.md
-          python3 scripts/check_manuscript_claims.py --self-test
-          python3 scripts/check_manuscript_claims.py \
-            --tex "$TEX_FILE" \
-            --strict
 
       - name: Install the pinned P13 generator runtime
         run: python3 -m pip install --disable-pip-version-check --no-deps numpy==2.3.2
