@@ -651,6 +651,33 @@ Fintype.card LiteralNonMFPresentation.Generator = 8 ∧
                                     (LiteralNonMFPresentation.baseMap g)
 ```
 
+## `GroupApproximation.LiteralProductMultiplicity.manuscriptInfiniteMultiplicity_literal`
+
+```lean
+∃ ι,
+  (∀ (k : ℕ), Function.Injective ⇑(ι k)) ∧
+    (∀ (k : ℕ), Group.IsFinitelyPresented (LiteralProductMultiplicity.LiteralFamily k)) ∧
+      (∀ (k : ℕ), ¬IsOperatorMF (LiteralProductMultiplicity.LiteralFamily k)) ∧
+        (∀ (k l : ℕ),
+            k ≠ l →
+              TorsionFreeRank.abelianizationRank (LiteralProductMultiplicity.LiteralFamily k) ≠
+                TorsionFreeRank.abelianizationRank
+                  (LiteralProductMultiplicity.LiteralFamily l)) ∧
+          (∀ (k l : ℕ),
+              k ≠ l →
+                Nat.card
+                    (LiteralProductMultiplicity.LiteralFamily k →*
+                      ProductMultiplicity.TwoGroup) ≠
+                  Nat.card
+                    (LiteralProductMultiplicity.LiteralFamily l →*
+                      ProductMultiplicity.TwoGroup)) ∧
+            ∀ (k l : ℕ),
+              Nonempty
+                  (LiteralProductMultiplicity.LiteralFamily k ≃*
+                    LiteralProductMultiplicity.LiteralFamily l) →
+                k = l
+```
+
 ## `GroupApproximation.LiteralSignFreeQuotient.commutator_not_zpow_mark`
 
 ```lean
@@ -1231,23 +1258,6 @@ Function.Injective ⇑LiteralNonMFPresentation.baseMap ∧
     HasKazhdanPropertyT LiteralNonMFPresentation.Base ∧
       ¬Amenability.IsAmenable LiteralNonMFPresentation.MarkedGroup ∧
         ¬Amenability.HasInvariantMean LiteralNonMFPresentation.MarkedGroup
-```
-
-## `GroupApproximation.ProductMultiplicity.manuscriptInfiniteMultiplicity`
-
-```lean
-∃ F x,
-  (∀ (k : ℕ), Group.IsFinitelyPresented (F k)) ∧
-    (∀ (k : ℕ), ¬IsOperatorMF (F k)) ∧
-      (∀ (k l : ℕ),
-          k ≠ l →
-            TorsionFreeRank.abelianizationRank (F k) ≠
-              TorsionFreeRank.abelianizationRank (F l)) ∧
-        (∀ (k l : ℕ),
-            k ≠ l →
-              Nat.card (F k →* ProductMultiplicity.TwoGroup) ≠
-                Nat.card (F l →* ProductMultiplicity.TwoGroup)) ∧
-          ∀ (k l : ℕ), Nonempty (F k ≃* F l) → k = l
 ```
 
 ## `GroupApproximation.ProjectionCompressionCollapse.corona_projection_collapse`
