@@ -1361,12 +1361,17 @@ By Theorem~\ref{thm:Esofic}, $E$ is sofic.  Let
 $\sigma_n\colon E\to\operatorname{Sym}(d_n)$ be a sofic approximation
 and $U_n(g)$ the associated permutation unitaries.  For a free
 ultrafilter $\omega$, the classes $[(U_n(g))_n]$ define a homomorphism
-of $E$ into the unitary group of
-$\prod_n M_{d_n}(\C)\big/\oplus_{2,\omega}M_{d_n}(\C)$, and sofic
-freeness gives $\operatorname{tr}_\omega([(U_n(g))_n])=\delta_{g,1}$,
-since the normalized trace of a permutation matrix is its proportion of
-fixed points.  By the universal property of $\Cmax(E)$ this extends to
-a $*$-homomorphism $\pi$ with
+\[
+E\longrightarrow
+\U\!\left(\prod_n M_{d_n}(\C)\big/\oplus_{2,\omega}M_{d_n}(\C)\right).
+\]
+Moreover, asymptotic freeness of the sofic approximation gives
+\[
+\operatorname{tr}_\omega([(U_n(g))_n])=\delta_{g,1},
+\]
+because the normalized trace of a permutation matrix is the proportion
+of its fixed points.  By the universal property of $\Cmax(E)$ this
+extends to a $*$-homomorphism $\pi$ with
 $\tau_E=\operatorname{tr}_\omega\circ\pi$, so $\tau_E$ is hyperlinear
 by Shulman's tracial-ultraproduct characterization
 \cite{ShulmanTraces}.
@@ -1377,7 +1382,7 @@ $\Cmax(E)$ follows from countability of $E$.
 \end{proof}
 
 \noindent
-Conceptually, the two halves differ only in the ideal: sofic
+The proof highlights the distinction between the two ideals: sofic
 permutation models become exact modulo $2$-norm-null sequences, whereas
 an MF model of the canonical trace would become exact modulo
 operator-norm-null sequences and hence yield an MF embedding of $E$.
