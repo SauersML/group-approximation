@@ -78,10 +78,23 @@ conjugation-coherent lifts converts (AC) to finite-dimensional form.
   matrix ultraproducts (does not exist yet; Peterson §6 is the
   free-product version and does not transport).
 - Alternative lever: the ∀∃-expressibility of (AC)-shaped statements
-  (Jekel remark) — model-theoretic transfer; needs finite
-  presentation of Γ (verify first, load-bearing twice).
-- Unverified secondary input: bounded elementary generation over
-  (Laurent) polynomial rings (Trost-type).
+  (Jekel remark) — model-theoretic transfer.  RANK WARNING
+  (verified): finite presentation of `EL_r(𝔽_q[x̄])` is FALSE at
+  `r = 3` (Krstić–McCool), open at `r = 4`, and holds for `r ≥ 5`
+  (synthesis; Tulenbaev abstract-only) — a campaign wanting this
+  lever must pin `r ≥ 5`; KT needs only `r, d ≥ 3`.
+- Secondary input, status verified: bounded elementary generation —
+  proved in one variable with explicit widths (Nica; KPV), OPEN both
+  directions for `d ≥ 2`; and in char `p` BEG never yields bounded
+  cyclic generation (Abért–Lubotzky–Pyber fence).
+- Relative-(T) attribution: cite Kassabov (Invent. Math. 170) and
+  the EJK Memoir (AMS 1186, Appendix A, Thms A.1/A.8/A.9) for the
+  module-pair forms; EJ 2010 imports, not proves, relative (T).
+  Confirmed alongside: `St₅(L_{𝔽₂}(1,2))` IS finitely presented
+  (Krstić–McCool Thm 3, rank 5 ≥ 4 — the fork's rank choice is
+  load-bearing), and `EL₃(L_{𝔽₂}(1,2)) ≅ L^×` has (T) outright
+  (in-repo Lean + Khanh–Thanh Cor. 4.4 — a combination nobody
+  spells out in print).
 
 ## Stakes and framing
 

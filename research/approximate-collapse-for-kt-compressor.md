@@ -110,9 +110,15 @@ sharpening).**
   the sandwich reproduces the IDENTICAL cone-subcone compression
   question one scale down.  The wall is scale-invariant; do not
   re-attempt subcone interpolation.
-- *Designated method — relative (T) on root pairs:* Ershov–Jaikin's
-  proof of (T) for `EL_r` runs through RELATIVE property (T) of
-  Steinberg pairs (`EL_2`-type acting on root modules `R²`).  That
+- *Designated method — relative (T) on root pairs* (attribution
+  corrected by the 2026-08-18 verification pass: EJ 2010 proves no
+  new relative-(T) theorem — it IMPORTS relative (T) from Kassabov
+  (Invent. Math. 170 (2007)); the finitely-generated-module pair
+  versions matching this node's shape are
+  Ershov–Jaikin-Zapirain–Kassabov, Memoirs AMS 1186 (2017),
+  Appendix A: Thm A.1 (`f.g. left module`), A.8
+  (`St_p(R) ⋉ M^p`), A.9 (bimodule form); cite the Memoir, and note
+  "Steinberg pair" is this graph's name, not the literature's):  That
   is the weapon whose shape matches the enemy: the Cantor escape
   lives entirely in the root subgroups' images going infinite, and
   relative (T) is precisely an almost-invariance upgrade TARGETED at
@@ -120,11 +126,27 @@ sharpening).**
   for the next campaign: relative (T) of the pairs forces the
   `Ad σ`-action on `L²(M)` to have its root-invariant structure
   controlled by the Λ-invariant structure, torus slot by torus slot
-  — which via the torus reduction is exactly (CCR).  Second
-  possible input, flagged UNVERIFIED: bounded elementary generation
-  of `EL_r` over (Laurent) polynomial rings (Trost-type results;
-  status for multivariate Laurent needs a source check) would give
-  uniform-width leverage on the same reduction.
+  — which via the torus reduction is exactly (CCR).  Second possible
+  input, status now VERIFIED: bounded elementary generation is
+  PROVED in one variable (`𝔽_q[t]`: Nica, width `½(3n²−n)+29`;
+  Laurent `𝔽_q[t,t⁻¹]`: KPV Cor. 7.6, width `½(3n²−n)`) and **OPEN
+  in both directions for `d ≥ 2`** — the van der Kallen/Erovenko
+  failure constructions need infinite transcendence degree and
+  cannot start over `𝔽_q`; KPV's pessimism is an expectation, not a
+  theorem.  Fence (Abért–Lubotzky–Pyber): in char `p`, BEG does NOT
+  yield bounded CYCLIC generation — never convert one into the
+  other.
+- *Rank warning (2026-08-18 verification):* any argument consuming
+  FINITE PRESENTATION of `EL_r(𝔽_q[x̄])` — the Jekel ∀∃-lever
+  included — is UNAVAILABLE at `r = 3`: Krstić–McCool prove `E₃`
+  and `St₃` over any ring surjecting onto `F[t]` are NOT finitely
+  presented (independently confirmed via the `𝔽_q[t]`-retract and
+  Behr).  `r = 4, d ≥ 2` is open (`⟺ K₂(4,·)` finitely generated);
+  `r ≥ 5` is fine (Splitthoff + van der Kallen + Tulenbaev +
+  `K₂ = 0` — a synthesis, Tulenbaev verified from abstract only).
+  Kun–Thom demands only `r, d ≥ 3`, so a campaign wanting the lever
+  must PIN `r ≥ 5` deliberately.  The core theorems of this lane
+  consume only finite GENERATION and are unaffected.
 - *The method's precise breaking point, found by attempted assembly —
   hence the campaign's OPENING LEMMA:* the classical relative-(T)
   pair `(EL₂(A) ⋉ M², M²)` needs `M` finitely generated over the
