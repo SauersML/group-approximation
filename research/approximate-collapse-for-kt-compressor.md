@@ -47,9 +47,17 @@ sibling claims):**
 - The ambient published frontier is Alekseev–Thom OP 6.2 (2026-08-05);
   its part (b) with conjugation-coherent lifts would convert this
   question to finite-dimensional form.  Peterson 2605.16669 does not
-  answer it (Gate 1 negative; residual flag: §6, "Asymptotic relative
-  commutants and intertwining in free products", could not be
-  retrieved and remains unread).
+  answer it (Gate 1 final, all sections now read from PDF): his §6 is
+  Popa intertwining adapted to ultraproducts of FREE PRODUCTS —
+  amenable-amalgam hypotheses throughout, conclusion shape "locate
+  the algebra", never "compare two commutants" — with no analogue for
+  matrix ultraproducts.  Two useful residues from his paper: the
+  printed (T)-interchange precedent and templates (see the route
+  node), and the SHAPE of his Prop 6.2 — rigidity-implies-confinement
+  (a rigid subalgebra's relative commutant cannot escape a
+  distinguished part of the ambient); no such theorem exists for
+  matrix ultraproducts, but a matrix-ambient analogue would constrain
+  where any counterexample to this claim could live.
 
 **Stakes, stated once:** a proof refutes hyperlinearity of the
 Kun–Thom wreath group (first non-hyperlinear group; group-CEP
