@@ -1081,6 +1081,7 @@ import GroupApproximation.Analysis.PolarLiftingMatrixBlocks
 import GroupApproximation.Sofic.OmegaRouteManuscriptTransport
 import GroupApproximation.Sofic.LiteralProductMultiplicity
 import GroupApproximation.Sofic.SimpleSoficEnvelopeAnyUniverse
+import GroupApproximation.Sofic.KazhdanTransportFailureExtraction
 import GroupApproximation.Monsters.NeumannSimpleSocle
 import GroupApproximation.Sofic.TransportShapeBridges
 import GroupApproximation.Sofic.GeneralModelKazhdanTransport
