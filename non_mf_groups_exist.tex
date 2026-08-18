@@ -521,7 +521,7 @@ the regular norms.
 
 \section{One-sided conjugation in matrix models}\label{sec:transport}
 
-One comparison drives this section, in three settings.  For a
+An inclusion whose two sides have the same size is an equality.  For a
 homomorphism $\pi$ to a finite group,
 $\pi(t\Gamma t^{-1})=\pi(\Gamma)$, since the left side is a conjugate
 of the right side contained in it and the two are finite of the same
@@ -779,7 +779,7 @@ of the ambient one, so the compressed and polar-corrected maps remain
 operator-norm asymptotically multiplicative, while the trace is the
 corner's own normalized trace $\tr_{r_n}$, not the restriction of
 $\tr_{d_n}$.  Hence $\lVert1-(-1)\rVert_{2,\tr_{r_n}}=2$ whatever the
-ratio $r_n/d_n$; Section~\ref{sec:limits} records why this
+ratio $r_n/d_n$; Section~\ref{sec:limits} explains why this
 renormalization is necessary.
 
 \begin{theorem}[central involution obstruction]\label{thm:sign-criterion}
@@ -1293,8 +1293,8 @@ otherwise.  If $\tau_G$ is an MF trace, then $G$ is MF\@.
 Let $\varphi_n\colon\Cmax(G)\to M_{k_n}(\C)$ witness that $\tau_G$ is MF
 and put $\mathcal Q=\prod_n M_{k_n}(\C)\big/\bigoplus_n M_{k_n}(\C)$,
 the quotient of the bounded product by the operator-norm $c_0$ ideal.
-Pointwise boundedness places $(\varphi_n(a))_n$ in the bounded product
-for every $a$, while the operator-norm defect conditions imply that
+Since the models are pointwise bounded, $(\varphi_n(a))_n$ lies in the
+bounded product for every $a$, while the operator-norm defect conditions imply that
 $\Phi(a)=[(\varphi_n(a))_n]$ is a $*$-homomorphism
 $\Phi\colon\Cmax(G)\to\mathcal Q$.  Set $p=\Phi(1)$, a projection with
 $\Phi(\Cmax(G))\subseteq p\mathcal Qp$.  Then
@@ -1366,7 +1366,7 @@ $\Cmax(E)$ follows from countability of $E$.
 \renewcommand{\thesection}{S\arabic{section}}
 \renewcommand{\theHsection}{supp.\arabic{section}}
 
-\section{The base, and a smaller presentation}\label{sec:group}
+\section{The base and a smaller presentation}\label{sec:group}
 
 The base $\mathcal B$ of \eqref{eq:gamma-presentation} is the affine
 group $\mathbb Z^3\rtimes\SL_3(\mathbb Z)$, for which
@@ -2488,8 +2488,8 @@ Lemma~\ref{lem:permanence}(2), while \(E\) is not MF by Theorem~\ref{thm:A}.
 
 \section{Commuting orbits and the MF residual}\label{subsec:collapse}
 
-Theorem~\ref{thm:sign-criterion} compresses to the negative spectral
-corner of a central involution.  The theorems of this section replace
+The proof of Theorem~\ref{thm:sign-criterion} compresses a
+representation to the negative spectral corner of a central involution.  The theorems of this section replace
 that corner by an arbitrary projection of $\mathcal Q$ whose
 conjugation orbit commutes.
 
@@ -3126,8 +3126,8 @@ finitely many words gives the finite-radius statement.
 
 \subsection{A finite universal Horn obstruction}
 
-The presentation of $E$ yields a finite quasi-identity --
-equivalently, a universal Horn sentence -- satisfied by every MF
+The presentation of $E$ yields a finite quasi-identity ---
+equivalently, a universal Horn sentence --- satisfied by every MF
 group.  Write $R$ for the forty-one relators of \eqref{eq:E},
 regarded as words in eight variables, and $w$ for the distinguished word in those
 variables.
@@ -3468,7 +3468,7 @@ it is stably finite, despite being non-MF
 
 \section*{Acknowledgements}
 We thank Caleb Eckhardt for discussions clarifying the finite-quotient
-analogy that organizes Section~\ref{sec:intro}.  We thank Francesco
+analogy that organizes Section~\ref{sec:transport}.  We thank Francesco
 Fournier-Facio for formulating the group-theoretic input as a Kazhdan
 group that is not co-Hopfian together with its ascending HNN
 extension, for the small-cancellation construction recorded in
