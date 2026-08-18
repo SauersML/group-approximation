@@ -43,9 +43,11 @@ open UltraproductModelConstruction OmegaOperatorUltraproduct
 open UltraproductKazhdanProjection KazhdanProjection
 open scoped Matrix.Norms.L2Operator
 
+universe u
+
 noncomputable section
 
-variable {H : Type} [Group H]
+variable {H : Type u} [Group H]
   (Y : ℕ → FiniteModel) [∀ n, Nonempty (Y n)] (hY : ∀ n, 0 < Fintype.card (Y n))
   (U : ∀ n, H → Matrix.unitaryGroup (Y n) ℂ)
 
@@ -288,7 +290,7 @@ end
 
 section Endpoint
 
-variable {H : Type} [Group H]
+variable {H : Type u} [Group H]
   (Y : ℕ → FiniteModel) [∀ n, Nonempty (Y n)] (hY : ∀ n, 0 < Fintype.card (Y n))
   (U : ∀ n, H → Matrix.unitaryGroup (Y n) ℂ)
   (hU : ∀ g h : H, ∀ ε : ℝ, 0 < ε → ∃ N, ∀ n ≥ N,

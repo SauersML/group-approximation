@@ -43,6 +43,8 @@ open UltraproductModelConstruction OmegaOperatorUltraproduct
 open UltraproductKazhdanProjection
 open scoped Matrix.Norms.L2Operator
 
+universe u
+
 noncomputable section
 
 variable (Y : ℕ → FiniteModel) [∀ n, Nonempty (Y n)] (ω : Ultrafilter ℕ)
@@ -62,7 +64,7 @@ instance omegaAdjointCorona_nontrivial : Nontrivial (OmegaAdjointCorona Y ω) :=
 /-- **The manuscript's bundle, over the manuscript's algebra.**  The
 representation is `π(g) = [Ad U_n(g)]_ω`; every other field is data about the
 groups and is independent of the algebra it is realized in. -/
-def omegaCompressionRep {Γ H : Type} [Group Γ] [Group H]
+def omegaCompressionRep {Γ : Type} {H : Type u} [Group Γ] [Group H]
     (A : OpAlmostRepresentation H) (hω : (ω : Filter ℕ) ≤ cofinite)
     (iota : Γ →* H) (s : H) (Q : Finset Γ) (kappa : ℝ)
     (kazhdan : IsKazhdanPair Γ Q kappa) (S : Finset Γ)
@@ -83,7 +85,7 @@ def omegaCompressionRep {Γ H : Type} [Group Γ] [Group H]
   generates := hgen
   compresses := hcomp
 
-@[simp] theorem omegaCompressionRep_pi {Γ H : Type} [Group Γ] [Group H]
+@[simp] theorem omegaCompressionRep_pi {Γ : Type} {H : Type u} [Group Γ] [Group H]
     (A : OpAlmostRepresentation H) (hω : (ω : Filter ℕ) ≤ cofinite)
     (iota : Γ →* H) (s : H) (Q : Finset Γ) (kappa : ℝ)
     (kazhdan : IsKazhdanPair Γ Q kappa) (S : Finset Γ)
@@ -102,7 +104,7 @@ instance, so this carries no `Prop` premise beyond the bundle.  This is the
 manuscript's "finiteness of `B_ω` makes `σ` unitary, and `σσ* = P + (1 - Q)`
 forces `Q = P`" -- on `B_ω` rather than on the cofinite corona standing in for
 it. -/
-theorem kt_10_omega_shift_conjugate_proj {Γ H : Type} [Group Γ] [Group H]
+theorem kt_10_omega_shift_conjugate_proj {Γ : Type} {H : Type u} [Group Γ] [Group H]
     (D : KazhdanCompressionRep Γ H (OmegaAdjointCorona Y ω)) :
     D.shift * D.proj * star D.shift = D.proj :=
   kt_10_shift_conjugate_proj D
