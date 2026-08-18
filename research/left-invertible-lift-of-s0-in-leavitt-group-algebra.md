@@ -44,10 +44,24 @@ four terms.  It is **not** an obstruction to the claim: by
 element of augmentation `1`, so parity is always repairable.
 
 *Support.*  The corresponding question for the explicit support-three lift of
-`t_0` carries a proved floor: any completing factor has support at least
-thirteen (`leavitt-rank-three-lift-inverse-support-thirteen`).  That bound is
-about `t~`, not about lifts of `s_0`, and it excludes small witnesses rather
+`t_0` carried a proved floor: any completing factor has support at least
+thirteen (`leavitt-rank-three-lift-inverse-support-thirteen`).  That bound was
+about `t~`, not about lifts of `s_0`, and it excluded small witnesses rather
 than all of them.
+
+*Location, which is stronger and does reach `s_0` (2026-08-18).*  The explicit
+support-three lift `s~ = [v_1]+[v_2]+[v_3]` of `s_0` is now **excluded
+outright** as the `a` of this claim: `<v_1,v_2,v_3> = (C_2 x C_2) * C_3`
+(`leavitt-rank-three-support-group-is-virtually-free`), so by
+`subgroup-supported-one-sided-inverse-rigidity` a left inverse would make
+`s_0` a unit of `R` — see
+`leavitt-rank-three-lift-has-no-one-sided-inverse` item 2.  The claim itself is
+untouched, since it quantifies over all lifts of `s_0`; what changed is that
+the obvious one is gone along with the four-unit lift the augmentation already
+killed, and the necessary condition to carry forward is now: **the support of
+`a` must generate a subgroup whose group algebra is not directly finite.**
+For a lift of `s_0` that is a condition on the lift, not on its partner, so it
+can be checked before any search for `b` begins.
 
 Equivalently, in element form: correct chosen lifts `a, b` of `s_0, t_0` by
 kernel elements `alpha, beta` so that `(b + beta)(a + alpha) = 1`, that is

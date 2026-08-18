@@ -71,7 +71,20 @@ and needs no work at all,
 so the second condition of the claim is automatic for any pair lying over
 `(t_0, s_0)` in that order — note the order matters, and the opposite
 assignment fails the first condition instead.  Everything therefore reduces
-to the single equation `a b = e`.  Applying `pi_e` gives only
+to the single equation `a b = e`.
+
+**REFUTED 2026-08-18 — this attempt is dead, not stuck.**  There is no `b` at
+all: `leavitt-rank-three-lift-has-no-one-sided-inverse` item 3 shows
+`a = e t~ e` has no one-sided inverse in `eAe`.  The reason is that the corner
+idempotent's own group element `g` is exactly the third unit `u_3` of the
+rank-three lift, so `e` and `t~` are both supported in the virtually free
+subgroup `K = (C_2 x C_2) * C_3`, where
+`subgroup-supported-one-sided-inverse-rigidity` forces any partner to collapse
+back in and make `t_0` a unit.  So the equation `ab - e in ker(pi_e)` below is
+not merely hard — it is unsatisfiable for this `a`, and no amount of
+kernel-element correction of `b` can help.  **The claim itself survives**: it
+quantifies over all pairs in `eAe`, and only candidates whose support
+generates a group with directly finite group algebra are excluded.  Applying `pi_e` gives only
 `t_0 s_0 = 1`, which is true, so what remains is
 
     a b - e  in  ker(pi_e),
@@ -122,3 +135,13 @@ machine.  A search would need a presentation of `e A e`, which nobody has
 written down; the only quantitative constraint available is
 `leavitt-rank-three-lift-inverse-support-thirteen`, and it is a statement
 about the whole algebra that is explicitly not known to transfer.
+
+*(2026-08-18.)*  A bounded corner search was run to radius 7 (4604 candidate
+group elements) with no solution, and is superseded by the proof above; it is
+recorded for the record and nothing depends on it.  The live constraint is no
+longer a support bound but a **support-location** bound: by
+`subgroup-supported-one-sided-inverse-rigidity`, any surviving `a` must have
+support generating a subgroup whose group algebra is not known to be directly
+finite — in particular not a sofic one.  A search that enumerates by support
+size inside `K` is therefore provably wasted, and the cheapest useful next
+step is to find candidates whose support leaves `K`.

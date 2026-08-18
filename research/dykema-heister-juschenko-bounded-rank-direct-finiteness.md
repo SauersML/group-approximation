@@ -33,6 +33,14 @@ any node depending on it inherits that.  It is used once, in
 `leavitt-rank-three-lift-inverse-support-thirteen`, and only in the negative
 direction — to rule out small completions, never to certify one.
 
+*(2026-08-18.)*  That single consumer no longer needs it: the route
+`support-thirteen-from-no-inverse` derives the same conclusion from
+`leavitt-rank-three-lift-has-no-one-sided-inverse`, which uses only coset
+bookkeeping and Nagao's theorem.  So nothing established now depends on the
+enumeration, and this node stands as a recorded literature fact rather than as
+load-bearing input.  It keeps one live use, the parity remark of Remark 2.8
+corroborating the augmentation argument.
+
 Two of their side remarks are worth having on hand.  Remark 2.8: over `F_2` a
 minimally realizable partition consists of pairs plus the singleton
 `{(0,0)}`, so both ranks are odd — an internal corroboration of the parity
