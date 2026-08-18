@@ -104,22 +104,25 @@ does not over-read either of them.
 
 ## Relation to `Sofic.CliffordBSPrintedRoute`
 
-The route this file takes is **not** the route the manuscript prints, and the
-two must not be conflated.  `Sofic.CliffordBSPrintedRoute` formalizes the
-printed chain instead --- solvable base, locally finite lamps, amenable
+The route this file takes is the one the manuscript's sharpness paragraph
+prints since the 2026-08-17 rewrite: the marked word survives in the MF image
+`Θ(E_BS)`, and the print no longer claims that the models separate the
+realized Clifford quotient.  `Sofic.CliffordBSPrintedRoute` formalizes the
+superseded paragraph instead --- solvable base, locally finite lamps, amenable
 extension, amenable subgroup, `⟹` MF, compose with a faithful representation of
 the quotient --- with the fifth link carried by the explicit hypothesis
-`CyclicBaseCalibration.AmenableImpliesMF` and appearing exactly once.  That is
-the 1:1 formalization of the paragraph as written; what is here is a *different*
-argument reaching the same endpoint with no hypothesis.
+`CyclicBaseCalibration.AmenableImpliesMF` and appearing exactly once.  That was
+the 1:1 formalization of the paragraph as it stood before the rewrite; what is
+here is a *different* argument reaching the same endpoint with no hypothesis.
 
-Consequently nothing in this file may be cited as certifying the printed
-sentence "the realized quotient ... is therefore amenable, hence MF": that
-sentence's subject is MF-ness of the realized Clifford quotient, which is
-`CliffordBSPrintedRoute.isOperatorMF_realizedQuotient` and carries the
-hypothesis.  No `\leanverified` badge in the manuscript points here, and this
-module is deliberately absent from the root import list, so no gate and no
-badged declaration depends on it.
+Nothing in this file may be cited as certifying MF-ness of the realized
+Clifford quotient: that statement is
+`CliffordBSPrintedRoute.isOperatorMF_realizedQuotient` and still carries its
+hypothesis.  The manuscript badges `manuscriptSharpnessOfKazhdanHypothesis` on
+the sharpness paragraph, and this module is in the root import closure
+(`GroupApproximation.lean`), so the badge is load-bearing: what it certifies is
+survival of the mark in an MF quotient of `E_BS`, which is exactly what the
+paragraph now claims, and no more.
 -/
 
 namespace GroupApproximation
