@@ -1051,6 +1051,7 @@ import GroupApproximation.Analysis.CollapseCoronaIsometry
 import GroupApproximation.Analysis.CollapseDelormeCorona
 import GroupApproximation.Analysis.CollapseRouteJoin
 import GroupApproximation.Analysis.CollapseCompressionBundle
+import GroupApproximation.Analysis.CollapseDiscardCoordinates
 import GroupApproximation.Analysis.CollapseLambdaCocycle
 import GroupApproximation.Analysis.CollapseProjectionLift
 import GroupApproximation.Monsters.NeumannTwoGenerator
