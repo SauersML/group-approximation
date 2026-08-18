@@ -256,7 +256,10 @@ function parseBlocks(src, C) {
         if (endAt < 0) throw new Error('unclosed proof');
         let inner = src.slice(j, endAt);
         i = endAt + endTok.length;
-        const le = extractLean(inner); inner = le.clean;
+        // collect the markers for the Proof-line badge, but leave them in
+        // the text: the inline renderer places a chip at the exact step
+        // each marker annotates
+        const le = extractLean(inner);
         const body = parseBlocks(inner, C);
         nodes.push({ t: 'proof', title, lean: le.lean, body });
         continue;

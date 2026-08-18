@@ -140,10 +140,32 @@ def main():
             code = extract_decl(module, declaration)
             if code:
                 lean_src[key] = code
+
+    # the statement of every declaration in a cited module, so the page can
+    # resolve identifiers a proof mentions into an expandable statement
+    lean_sigs = {}
+    for module in sorted({m for m, _ in wanted}):
+        path = REPO / 'GroupApproximation' / (module + '.lean')
+        if not path.exists():
+            path = REPO / (module + '.lean')
+        if not path.exists():
+            continue
+        srcm = path.read_text(encoding='utf-8')
+        for m2 in DECL_HEAD.finditer(srcm):
+            key = module + '|' + m2.group(2)
+            if key in lean_sigs:
+                continue
+            line = srcm.count('\n', 0, m2.start(1)) + 1
+            stop = NEXT_TOP.search(srcm, m2.end())
+            codem = srcm[m2.start(1):stop.start() if stop else len(srcm)]
+            at = split_signature(codem)
+            sig, _ = cap((codem[:at] if at >= 0 else codem).rstrip(), 30, 2500)
+            lean_sigs[key] = {'sig': sig, 'line': line}
     data_js = (
         'window.PAPER_TEX = ' + json.dumps(tex).replace('</', '<\\/') + ';\n'
         'window.CLAIMS = ' + json.dumps(json.loads(claims)).replace('</', '<\\/') + ';\n'
         'window.LEAN_SRC = ' + json.dumps(lean_src).replace('</', '<\\/') + ';\n'
+        'window.LEAN_SIGS = ' + json.dumps(lean_sigs).replace('</', '<\\/') + ';\n'
     )
 
     for name, payload in [

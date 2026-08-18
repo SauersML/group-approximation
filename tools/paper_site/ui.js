@@ -192,7 +192,16 @@ function renderInline(src, ctx) {
       case 'nolinkurl': { flush(); const a = takeGroup() || ''; out += escHtml(a); break; }
       case 'footnote': { flush(); const a = takeGroup() || ''; out += '<span class="fnote">(' + renderInline(a, ctx) + ')</span>'; break; }
       case 'qedhere': { if (ctx.env) ctx.env.qedhere = true; break; }
-      case 'leanverified': { takeGroup(); takeGroup(); break; }
+      case 'leanverified': {
+        // a marker in running text is positional: this exact step is
+        // machine-checked, so the chip sits right here
+        flush();
+        const mod = (takeGroup() || '').trim();
+        const dec = (takeGroup() || '').trim();
+        out += '<button class="lean-chip" data-module="' + escHtml(mod) + '" data-decl="' + escHtml(dec) +
+          '" title="This step is machine-checked in Lean 4 — click for the formal proof">Lean&thinsp;✓</button>';
+        break;
+      }
       case 'S': { flush(); out += '§'; break; }
       case 'dots': case 'ldots': { flush(); out += '…'; break; }
       case 'o': { plain += 'ø'; break; }
@@ -295,6 +304,44 @@ function renderNode(n, ctx, siblings, idx) {
 
 
 const GITHUB_BLOB = 'https://github.com/SauersML/group-approximation/blob/main/GroupApproximation/';
+
+/* Identifiers in Lean code that name a declaration in a cited module are
+   clickable: the referenced statement expands in place, so a wrapper proof
+   can be unfolded instead of read as a list of opaque names. */
+let LEAN_SIG_INDEX = null;
+function resolveLeanRef(tok, module, ownName) {
+  const sigs = window.LEAN_SIGS || {};
+  const last = tok.split('.').pop();
+  if (!last || last === ownName) return null;
+  if (sigs[module + '|' + last]) return module + '|' + last;
+  if (!LEAN_SIG_INDEX) {
+    // null prototype: decl names like `constructor` must not resolve to
+    // Object.prototype members
+    LEAN_SIG_INDEX = Object.create(null);
+    for (const k in sigs) {
+      const n = k.slice(k.indexOf('|') + 1);
+      LEAN_SIG_INDEX[n] = (n in LEAN_SIG_INDEX) ? null : k;   // null = ambiguous
+    }
+  }
+  const hit = LEAN_SIG_INDEX[last];
+  return typeof hit === 'string' ? hit : null;
+}
+
+function leanCodeHtml(code, module, ownName) {
+  let out = '', i = 0;
+  const re = /[A-Za-z_][A-Za-z0-9_.']*/g;
+  let m;
+  while ((m = re.exec(code))) {
+    out += escHtml(code.slice(i, m.index));
+    const key = resolveLeanRef(m[0], module, ownName);
+    out += key
+      ? '<a class="lean-ref" data-key="' + escHtml(key) + '" title="Show this declaration">' + escHtml(m[0]) + '</a>'
+      : escHtml(m[0]);
+    i = m.index + m[0].length;
+  }
+  return out + escHtml(code.slice(i));
+}
+
 function leanDeclHtml(l) {
   const decl = l.declaration || l.decl;
   const rec = (window.LEAN_SRC || {})[l.module + '|' + decl];
@@ -306,7 +353,7 @@ function leanDeclHtml(l) {
   // statement and proof as one block: a reader who opened the declaration
   // wants the whole thing, not another fold
   const code = rec.proof ? rec.sig + '\n' + rec.proof : rec.sig;
-  let inner = '<pre class="lean-code">' + escHtml(code) + '</pre>';
+  let inner = '<pre class="lean-code">' + leanCodeHtml(code, l.module, short.split('.').pop()) + '</pre>';
   // full coverage is the default and says nothing; partial coverage gets a
   // plain-language line (not the manifest's internal phrasing)
   if (l.covers && l.covers !== 'the complete printed proposition') {
@@ -729,6 +776,35 @@ function setupHoverPreviews(root) {
 }
 
 /* ---------- the lean drawer ---------- */
+
+function proofOwnerEl(p) {
+  // the statement this proof proves: a titled "Proof of X" names it, an
+  // untitled proof follows its statement directly
+  const t = p.querySelector(':scope > summary a.xref');
+  if (t && t.dataset.label && LABELS[t.dataset.label]) {
+    const el = document.getElementById(LABELS[t.dataset.label].anchor);
+    if (el && el.classList.contains('thm')) return el;
+  }
+  let el = p.previousElementSibling;
+  while (el && !el.classList.contains('thm') && el.tagName !== 'H2') el = el.previousElementSibling;
+  return el && el.classList.contains('thm') ? el : null;
+}
+
+/* Every proof of a formalized statement gets the badge: a proof without
+   markers of its own opens its theorem's formal statement and proof. */
+function addProofBadges() {
+  document.querySelectorAll('#paper-body details.proof').forEach(p => {
+    if (p.querySelector(':scope > summary .badge-lean')) return;
+    const owner = proofOwnerEl(p);
+    if (!owner || !owner.querySelector('.lean-panel-tpl')) return;
+    const b = document.createElement('button');
+    b.className = 'badge badge-lean';
+    b.setAttribute('aria-expanded', 'false');
+    b.title = 'The statement this proves is machine-checked in Lean 4 — click for the formal statement and proof';
+    b.innerHTML = 'Lean&thinsp;✓';
+    p.querySelector(':scope > summary').appendChild(b);
+  });
+}
 /* One fixed side panel for all formal counterparts: a badge opens it, the
    manuscript never reflows, and the declarations arrive already expanded —
    statement and proof visible with no further clicks. */
@@ -751,17 +827,63 @@ function setupLeanPanels(root) {
 
   root.addEventListener('click', ev => {
     if (ev.target.closest('.lean-drawer-close')) { close(); return; }
+    // an identifier inside Lean code: expand the referenced declaration in place
+    const ref = ev.target.closest('.lean-ref');
+    if (ref) {
+      ev.preventDefault();
+      const pre = ref.closest('pre');
+      const next = pre && pre.nextElementSibling;
+      if (next && next.classList.contains('lean-ref-card')) {
+        const same = next.dataset.key === ref.dataset.key;
+        next.remove();
+        if (same) return;
+      }
+      const rec = (window.LEAN_SIGS || {})[ref.dataset.key];
+      if (!rec || !pre) return;
+      const mod = ref.dataset.key.split('|')[0], nm = ref.dataset.key.split('|')[1];
+      const card = document.createElement('div');
+      card.className = 'lean-ref-card';
+      card.dataset.key = ref.dataset.key;
+      card.innerHTML = '<pre class="lean-code">' + leanCodeHtml(rec.sig, mod, nm) + '</pre>' +
+        '<a class="lean-mod" href="' + GITHUB_BLOB + escHtml(mod) + '.lean#L' + rec.line +
+        '" target="_blank" rel="noopener">' + escHtml(mod) + '.lean:' + rec.line + '</a>';
+      pre.after(card);
+      return;
+    }
     // a cross-reference chip inside the drawer navigates the paper: get out of the way
     if (ev.target.closest('.lean-drawer') && ev.target.closest('a[href^="#"]')) { close(); return; }
+    // clicking anywhere off the drawer closes it
+    if (!drawer.hidden && !ev.target.closest('.lean-drawer, .badge-lean, .lean-chip')) close();
+    // a positional chip in the running text: just that declaration
+    const chip = ev.target.closest('.lean-chip');
+    if (chip) {
+      ev.preventDefault();
+      if (openFor === chip) { close(); return; }
+      close();
+      drawer.innerHTML = '<div class="lean-drawer-head"><span class="lean-drawer-title">This step in Lean</span>' +
+        '<button class="lean-drawer-close" aria-label="Close">×</button></div>' +
+        leanDeclHtml({ module: chip.dataset.module, decl: chip.dataset.decl });
+      drawer.querySelectorAll('details.lean-decl').forEach(d => { d.open = true; });
+      drawer.hidden = false;
+      drawer.scrollTop = 0;
+      openFor = chip;
+      return;
+    }
     const b = ev.target.closest('.badge-lean');
     if (!b) return;
     ev.preventDefault();
     const owner = b.closest('.thm, details.proof');
-    const tpl = owner && owner.querySelector('.lean-panel-tpl');
+    let src = owner;
+    let tpl = owner && owner.querySelector('.lean-panel-tpl');
+    // a proof without markers of its own borrows its theorem's formalization
+    if (!tpl && owner && owner.matches('details.proof')) {
+      src = proofOwnerEl(owner);
+      tpl = src && src.querySelector('.lean-panel-tpl');
+    }
     if (!tpl) return;
     if (openFor === owner) { close(); return; }
     close();
-    const nameEl = owner.querySelector('.thm-name, .proof-label');
+    const nameEl = src.querySelector('.thm-name, .proof-label');
     const name = nameEl ? nameEl.textContent.replace(/\.$/, '') : 'Statement';
     drawer.innerHTML = '<div class="lean-drawer-head"><span class="lean-drawer-title">' + escHtml(name) + ' in Lean</span>' +
       '<button class="lean-drawer-close" aria-label="Close">×</button></div>' + tpl.innerHTML;
@@ -818,6 +940,7 @@ function init() {
 
   fitFigures();
   window.addEventListener('resize', fitFigures);
+  addProofBadges();
   setupHoverPreviews(document.body);
   setupLeanPanels(document.body);
   setupTabs();

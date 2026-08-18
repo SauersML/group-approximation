@@ -20,6 +20,10 @@ on:
       - 'non_mf_groups_exist.tex'
       - 'docs/NON_MF_NUMBERED_CLAIMS.json'
       - 'tools/paper_site/**'
+      # the paper edition embeds Lean sources, so Lean-only pushes must
+      # republish it too
+      - 'GroupApproximation/**'
+      - 'GroupApproximation.lean'
       - '.github/workflows/cairn-site.yml'
   workflow_dispatch:
 

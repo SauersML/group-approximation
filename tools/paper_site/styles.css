@@ -117,8 +117,9 @@ body[data-view="claims"] .sidebar, body[data-view="graph"] .sidebar { visibility
 .toc a.is-active { color: var(--ink); font-weight: 600; }
 .toc-num { color: var(--ink-faint); font-variant-numeric: tabular-nums; flex: 0 0 auto; min-width: 1.5em; font-size: 13px; }
 .toc-divider {
-  font-style: italic;
-  color: var(--ink-faint);
+  font-size: 11px; font-weight: 600;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--ink-soft);
   margin: 14px 0 4px 10px; padding-top: 10px;
   border-top: 1px solid var(--rule-soft);
 }
@@ -176,7 +177,9 @@ h3.subsec {
 .part-divider span {
   position: relative; top: -0.85em;
   background: var(--bg); padding: 0 18px;
-  font-style: italic; font-size: 1.05em; color: var(--ink-soft);
+  font-size: 0.82em; font-weight: 600;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--ink);
 }
 .vspace { height: 0.6em; }
 h4.para-head {
@@ -350,6 +353,25 @@ dl.bib { margin: 1em 0; }
 .lean-trunc { color: var(--ink-faint); font-style: italic; font-size: 0.9em; margin: 2px 0; }
 .lean-name { overflow-wrap: anywhere; }
 details.proof > summary .badge-lean { font-size: 12px; padding: 0 8px; }
+.lean-chip {
+  font-size: 11px; font-style: italic; font-family: inherit;
+  color: var(--verified); background: var(--verified-bg);
+  border: 1px solid rgba(14, 122, 111, 0.35); border-radius: 999px;
+  padding: 0 6px; margin: 0 3px; cursor: pointer;
+  vertical-align: 0.12em; line-height: 1.4;
+}
+.lean-chip:hover { border-color: var(--verified); }
+.lean-ref {
+  color: inherit; cursor: pointer;
+  border-bottom: 1px dotted var(--ink-faint);
+}
+.lean-ref:hover { color: var(--link); border-bottom-color: var(--link); text-decoration: none; }
+.lean-ref-card {
+  margin: 4px 0 8px 14px;
+  padding: 6px 8px;
+  border-left: 2px solid var(--rule);
+}
+.lean-ref-card .lean-code { margin: 0 0 4px; }
 .claim-card .lean-code { max-height: 300px; overflow-y: auto; }
 .lean-decl { margin: 6px 0; }
 .lean-decl summary { cursor: pointer; overflow-wrap: anywhere; list-style-position: inside; font-size: 0.95em; }
