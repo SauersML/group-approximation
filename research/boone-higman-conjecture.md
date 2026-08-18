@@ -31,7 +31,7 @@ because an external resolution attempt was audited against this repository on
 2026-08-17 and turned out to land squarely on machinery this repository
 already owns: the missing hypothesis of its near-solution is finite normal
 generation of a maximal kernel, which by
-`finitely-presented-quotient-iff-kernel-finitely-normally-generated` is
+`fp-quotient-iff-kernel-finitely-normally-generated` is
 *equivalent* to finite presentation of the resulting simple quotient — and
 the hard half of that equivalence is already formalized here, in
 `GroupApproximation/Algebra/FinitePresentationKernel.lean`.  The attempt also
@@ -74,10 +74,10 @@ an identified step.  `research/artifacts/boone-higman-audit-2026-08-17.md`
 carries the arguments.
 
 1. **Take a maximal normal quotient of the finitely presented envelope.**
-   *Dies* at `finitely-presented-quotient-iff-kernel-finitely-normally-generated`:
+   *Dies* at `fp-quotient-iff-kernel-finitely-normally-generated`:
    a quotient of a finitely presented group need not be finitely presented,
    and Zorn's lemma supplies a maximal kernel and nothing else.  Recorded as
-   `boone-higman-via-maximal-quotient-of-a-finitely-presented-envelope`.
+   `boone-higman-via-maximal-quotient-of-the-envelope`.
 2. **Zorn on the finitely normally generated proper normal subgroups.**
    *Dies* on chains: the union of an ascending chain of finitely normally
    generated normal subgroups need not be finitely normally generated, so the

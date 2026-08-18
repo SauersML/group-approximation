@@ -4,7 +4,7 @@ id: boone-higman-via-ck-maximal-kernel
 kind: route
 title: Compose the two envelope theorems and finitely normally generate one maximal kernel
 target: boone-higman-conjecture
-requires: [boone-higman-thompson-simple-envelope, chatterji-kassabov-normal-generator-embedding, proper-normal-subgroups-miss-the-normally-generating-core, ck-envelope-has-a-finitely-normally-generated-maximal-kernel, finitely-presented-quotient-iff-kernel-finitely-normally-generated]
+requires: [boone-higman-thompson-simple-envelope, chatterji-kassabov-normal-generator-embedding, proper-normal-subgroups-miss-the-normally-generating-core, ck-envelope-has-a-finitely-normally-generated-maximal-kernel, fp-quotient-iff-kernel-finitely-normally-generated]
 artifacts:
   - research/artifacts/boone-higman-audit-2026-08-17.md
 ---
@@ -23,7 +23,7 @@ maximal proper normal `M <| Gamma` that is finitely normally generated.
 Maximality makes `Gamma/M` simple.  By
 `proper-normal-subgroups-miss-the-normally-generating-core`, `M ∩ S = 1`, so
 `S` — and therefore `G` — embeds in `Gamma/M`.  By
-`finitely-presented-quotient-iff-kernel-finitely-normally-generated`,
+`fp-quotient-iff-kernel-finitely-normally-generated`,
 `Gamma/M` is finitely presented.
 
 So `G` embeds in a finitely presented simple group.
@@ -36,7 +36,7 @@ presented ambient group, so there is nothing to take a quotient of.  Drop the
 core-survival lemma and a maximal quotient is simple but possibly trivial on
 `G`.  Drop the kernel claim and the quotient is simple but not finitely
 presented — that is exactly the dead route
-`boone-higman-via-maximal-quotient-of-a-finitely-presented-envelope`.  Drop
+`boone-higman-via-maximal-quotient-of-the-envelope`.  Drop
 the Tietze equivalence and finite normal generation of `M` does not convert
 into a finite presentation of the quotient.
 

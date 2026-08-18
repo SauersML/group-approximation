@@ -4,7 +4,7 @@ id: bffhz-action-image-is-finitely-presented
 kind: claim
 title: The automorphism group of S free-producted with a free group, modulo its action kernel, is finitely presented for a computably presented simple S
 distinct_from:
-  relative-automorphism-action-on-a-simple-group-is-highly-transitive: that establishes the transitivity and stabilizer properties of the action, and is imported; this asks for finite presentability of the quotient by the action kernel, which is the one property that analysis does not supply and which the source paper poses as an open question in a weaker form.
+  relative-automorphism-action-is-highly-transitive: that establishes the transitivity and stabilizer properties of the action, and is imported; this asks for finite presentability of the quotient by the action kernel, which is the one property that analysis does not supply and which the source paper poses as an open question in a weaker form.
   ck-envelope-has-a-finitely-normally-generated-maximal-kernel: that is a finiteness statement about a maximal normal subgroup of an elementary matrix group; this is a finite-presentation statement about the image of an automorphism group acting on a homomorphism set. Both would close the conjecture, by different routes, and neither is known to bear on the other.
   twisted-brin-thompson-finite-presentation-criterion: that is the imported criterion this claim would feed; this is the missing hypothesis of that criterion for one specific action.
 artifacts:
@@ -48,7 +48,7 @@ special case of this claim, and the case it omits is exactly the hard one.
 ## Why the claim is nevertheless worth carrying
 
 Because the target is so sharply specified.  By
-`relative-automorphism-action-on-a-simple-group-is-highly-transitive`, the
+`relative-automorphism-action-is-highly-transitive`, the
 quotient `A/K` already acts faithfully and highly transitively on `X` with
 finitely generated point stabilizers, and the translation copy of `S` meets
 `K` trivially so the core survives.  Finite presentability is the only
@@ -62,7 +62,7 @@ infinitely many relators of `S` are absorbed by the automorphism structure.
 1. **Higman-embed `A` and induce the action.**  *Dies at oligomorphy and at
    the kernel.*  `A` is finitely generated and computably presented (see the
    effectivity remark on
-   `relative-automorphism-action-on-a-simple-group-is-highly-transitive`), so
+   `relative-automorphism-action-is-highly-transitive`), so
    Higman embeds it in a finitely presented `P`, and any `A`-set induces to a
    `P`-set — extending the action abstractly is not the difficulty.  But if
    `X ~= A/H` then the induced transitive `P`-set is `P/H`, whose pair-orbits

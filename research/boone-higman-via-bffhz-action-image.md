@@ -4,7 +4,7 @@ id: boone-higman-via-bffhz-action-image
 kind: route
 title: Quotient the relative automorphism group by its action kernel and take the twisted Brin-Thompson group
 target: boone-higman-conjecture
-requires: [boone-higman-thompson-simple-envelope, relative-automorphism-action-on-a-simple-group-is-highly-transitive, bffhz-action-image-is-finitely-presented, twisted-brin-thompson-finite-presentation-criterion]
+requires: [boone-higman-thompson-simple-envelope, relative-automorphism-action-is-highly-transitive, bffhz-action-image-is-finitely-presented, twisted-brin-thompson-finite-presentation-criterion]
 artifacts:
   - research/artifacts/boone-higman-audit-2026-08-17.md
 ---
@@ -20,7 +20,7 @@ simple.  Fix `n >= 2` and set
     A = Aut_S(S * F_n) ,   X = Hom_S(S * F_n, S) ,   K = ker(A on X) ,
     Abar = A/K .
 
-By `relative-automorphism-action-on-a-simple-group-is-highly-transitive` the
+By `relative-automorphism-action-is-highly-transitive` the
 action of `A` on `X` is highly transitive with finitely generated point
 stabilizers, and the translation copy of `S` inside `A` acts freely, so
 `K ∩ S = 1` and `S` embeds in `Abar`.  The induced action of `Abar` on `X` is

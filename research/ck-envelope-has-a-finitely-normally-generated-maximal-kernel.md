@@ -4,7 +4,7 @@ id: ck-envelope-has-a-finitely-normally-generated-maximal-kernel
 kind: claim
 title: The finitely presented normal-generator envelope has a maximal proper normal subgroup that is finitely normally generated
 distinct_from:
-  finitely-presented-quotient-iff-kernel-finitely-normally-generated: that is the general equivalence between finite presentability of a quotient and finite normal generation of its kernel, true for every finitely presented group; this asserts that one particular class of envelopes actually HAS such a kernel at a maximal element, which is the open existence statement the equivalence turns the conjecture into.
+  fp-quotient-iff-kernel-finitely-normally-generated: that is the general equivalence between finite presentability of a quotient and finite normal generation of its kernel, true for every finitely presented group; this asserts that one particular class of envelopes actually HAS such a kernel at a maximal element, which is the open existence statement the equivalence turns the conjecture into.
   boone-normal-closure-of-t-finitely-generated: that concerns the Boone HNN tower and finite generation of a normal closure AS A SUBGROUP; this concerns finite NORMAL generation of a maximal normal subgroup of an elementary matrix group, a different group, a different construction and a strictly weaker finiteness condition.
   every-nontrivial-core-element-normally-generates-the-envelope: that records how rigid the envelope is -- perfect, no finite quotients, every core element a normal generator; this asks for a compactness property of its normal lattice, and the audit found no implication from the rigidity clauses to this one.
 artifacts:
@@ -20,7 +20,7 @@ one maximal proper normal subgroup `M` that is finitely normally generated in
 
 Open.  This is the entire remaining content of
 `boone-higman-via-ck-maximal-kernel`, and by
-`finitely-presented-quotient-iff-kernel-finitely-normally-generated`
+`fp-quotient-iff-kernel-finitely-normally-generated`
 it is equivalent to: **some** maximal proper normal quotient of `Gamma` is
 finitely presented.
 

@@ -1,9 +1,9 @@
 ---
 rg: 2
-id: finitely-presented-quotient-iff-kernel-finitely-normally-generated-proof
+id: fp-quotient-kernel-equivalence-proof
 kind: route
 title: Adjoin the normal generators as relators, and read the converse off the formalized Tietze theorem
-target: finitely-presented-quotient-iff-kernel-finitely-normally-generated
+target: fp-quotient-iff-kernel-finitely-normally-generated
 requires: []
 artifacts:
   - GroupApproximation/Algebra/FinitePresentationKernel.lean

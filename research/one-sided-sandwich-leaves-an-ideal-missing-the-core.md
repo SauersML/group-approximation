@@ -47,6 +47,6 @@ noncommutative element such as `1 - g` to be invertible can collapse the
 embedded group ring, particularly in the presence of torsion, and injectivity
 of such a universal localization is a theorem to be proved case by case, not
 a formal consequence of the universal property.  The factorization argument
-of `universal-sandwich-ring-is-finitely-presented-and-injective-proof` does
+of `universal-sandwich-ring-proof` does
 not survive it: there is no longer a supplied target `B` in which both
 relations hold.

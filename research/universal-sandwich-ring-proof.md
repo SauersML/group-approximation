@@ -1,6 +1,6 @@
 ---
 rg: 2
-id: universal-sandwich-ring-is-finitely-presented-and-injective-proof
+id: universal-sandwich-ring-proof
 kind: route
 title: Factor the given sandwich through the universal one
 target: universal-sandwich-ring-is-finitely-presented-and-injective

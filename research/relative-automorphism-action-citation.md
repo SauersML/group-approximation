@@ -1,9 +1,9 @@
 ---
 rg: 2
-id: relative-automorphism-action-on-a-simple-group-is-highly-transitive-citation
+id: relative-automorphism-action-citation
 kind: route
 title: Import Belk-Fournier-Facio-Hyde-Zaremsky Propositions 2.3 and 2.6
-target: relative-automorphism-action-on-a-simple-group-is-highly-transitive
+target: relative-automorphism-action-is-highly-transitive
 requires: []
 artifacts:
   - research/artifacts/boone-higman-audit-2026-08-17.md

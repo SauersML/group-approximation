@@ -39,7 +39,7 @@ still embedded at the end.  **Every** maximal proper normal quotient works;
 there is no choice to make and no risk of the quotient killing the group one
 is trying to keep.  That is unusual, and it is what makes the remaining gap
 so narrow: only finite presentability of `Gamma/M` is missing, which by
-`finitely-presented-quotient-iff-kernel-finitely-normally-generated` is
+`fp-quotient-iff-kernel-finitely-normally-generated` is
 exactly finite normal generation of `M`.
 
 ## What it does not say

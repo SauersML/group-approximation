@@ -646,7 +646,7 @@ Root `boone-higman-conjecture`, open.  Three live routes into it:
   `finite-fullness-simulation-theorem-for-rings`.
 
 Three dead routes, each with a named established invalidator:
-`boone-higman-via-maximal-quotient-of-a-finitely-presented-envelope` (killed
+`boone-higman-via-maximal-quotient-of-the-envelope` (killed
 by the finite-presentation equivalence itself),
 `boone-higman-via-sandwich-ring-simplicity` (killed by the Toeplitz defect),
 `boone-higman-via-universal-leavitt-host` (killed by the Weyl-algebra

@@ -40,7 +40,7 @@ that the same relation delivers simplicity for free.
 granting a maximal two-sided ideal `I ⊂ U` with `I ∩ R = 0`, the quotient
 `U/I` is simple, but finite presentability of `U/I` is equivalent to finite
 generation of `I` as a two-sided ideal — the exact ring analogue of
-`finitely-presented-quotient-iff-kernel-finitely-normally-generated`.  So
+`fp-quotient-iff-kernel-finitely-normally-generated`.  So
 this route does not sidestep the obstruction; it restates it one category
 over.  The live successor is
 `boone-higman-via-finitely-presented-simple-ring-quotient`, which asks for

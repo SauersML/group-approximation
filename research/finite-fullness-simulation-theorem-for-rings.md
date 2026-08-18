@@ -73,7 +73,7 @@ positively and left open rather than recorded as an obstruction.
    `I ⊂ U` gives a simple `U/I`, but finite presentability of `U/I` is
    equivalent to finite generation of `I` as a two-sided ideal, which is the
    ring analogue of
-   `finitely-presented-quotient-iff-kernel-finitely-normally-generated` and
+   `fp-quotient-iff-kernel-finitely-normally-generated` and
    is no more available here than there.
 4. **Deny that effectivity is the obstacle** — worth recording because it
    removes a plausible excuse.  By Clapham's theorem a finitely generated

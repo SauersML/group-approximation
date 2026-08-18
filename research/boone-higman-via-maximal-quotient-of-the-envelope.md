@@ -1,6 +1,6 @@
 ---
 rg: 2
-id: boone-higman-via-maximal-quotient-of-a-finitely-presented-envelope
+id: boone-higman-via-maximal-quotient-of-the-envelope
 kind: route
 title: Build the finitely presented envelope, take any maximal normal quotient, and call it finitely presented
 target: boone-higman-conjecture
@@ -24,7 +24,7 @@ The argument that looks like it finishes, in four steps:
 Steps 1--3 are correct and are exactly the near-solution.  **Step 4 is
 false.**
 
-Dead at `finitely-presented-quotient-iff-kernel-finitely-normally-generated`.
+Dead at `fp-quotient-iff-kernel-finitely-normally-generated`.
 A quotient of a finitely presented group is finitely presented if and only if
 its kernel is finitely normally generated; for a general normal subgroup it
 is only finitely generated.  The standing counterexample is any surjection

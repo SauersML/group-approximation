@@ -1,6 +1,6 @@
 ---
 rg: 2
-id: normal-generation-makes-the-augmentation-ideal-one-generated-proof
+id: augmentation-ideal-one-generated-proof
 kind: route
 title: The elements with 1 minus them in the ideal form a normal subgroup
 target: normal-generation-makes-the-augmentation-ideal-one-generated

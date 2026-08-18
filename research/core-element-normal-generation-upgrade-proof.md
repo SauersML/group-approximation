@@ -1,6 +1,6 @@
 ---
 rg: 2
-id: every-nontrivial-core-element-normally-generates-the-envelope-proof
+id: core-element-normal-generation-upgrade-proof
 kind: route
 title: Push the normal closure through the simple core, then through the commutator subgroup
 target: every-nontrivial-core-element-normally-generates-the-envelope

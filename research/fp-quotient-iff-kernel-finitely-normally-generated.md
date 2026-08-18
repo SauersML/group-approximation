@@ -1,9 +1,9 @@
 ---
 rg: 2
-id: finitely-presented-quotient-iff-kernel-finitely-normally-generated
+id: fp-quotient-iff-kernel-finitely-normally-generated
 kind: claim
 title: A quotient of a finitely presented group is finitely presented exactly when the kernel is finitely normally generated
-invalidates: [boone-higman-via-maximal-quotient-of-a-finitely-presented-envelope]
+invalidates: [boone-higman-via-maximal-quotient-of-the-envelope]
 distinct_from:
   hnn-extension-finite-presentation-permanence: that is a permanence statement for one construction -- an HNN extension of a finitely presented base along finitely generated associated subgroups is finitely presented; this is the general kernel criterion for quotients, mentions no HNN extension, and is an equivalence rather than a one-way permanence.
   boone-normal-closure-of-t-finitely-generated: that says a normal closure in the Boone tower becomes finitely generated AS A SUBGROUP after finitely many stages; this is about finite normal generation in the ambient group, which is a strictly weaker condition on a strictly different object, and conflating the two is the specific error this node exists to prevent.
@@ -58,7 +58,7 @@ subgroup and supplies no finite normal generating set with it, so the
 four-step argument "build the envelope, take a maximal normal subgroup, the
 quotient is simple, quotients of finitely presented groups are finitely
 presented" fails at the last step and only there.  That argument is recorded
-as `boone-higman-via-maximal-quotient-of-a-finitely-presented-envelope` and
+as `boone-higman-via-maximal-quotient-of-the-envelope` and
 this claim is its invalidator.
 
 ## A distinction that costs people the argument

@@ -1,6 +1,6 @@
 ---
 rg: 2
-id: relative-automorphism-action-on-a-simple-group-is-highly-transitive
+id: relative-automorphism-action-is-highly-transitive
 kind: claim
 title: Automorphisms of S free-producted with a free group act highly transitively on the homomorphisms to S, with finitely generated stabilizers
 distinct_from:
