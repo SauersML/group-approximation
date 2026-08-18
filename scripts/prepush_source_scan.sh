@@ -17,6 +17,17 @@
 # always holds several lanes' half-finished files; a working-tree scan would
 # block every lane on every other lane's scratch.
 #
+# WHAT IT CHECKS BEYOND check.py.  `scripts/check.py` finds a module that
+# nothing imports (an orphan, never compiled, never audited).  It does NOT find
+# the mirror defect: an IMPORT NAMING A MODULE THAT IS NOT IN THE TREE.  Verified
+# by construction -- adding `import GroupApproximation.Analysis.ThisModuleDoesNotExist`
+# to the root and rescanning produces no new finding.  That defect is worse than
+# an orphan: it is a hard failure at the first import, so it does not merely stop
+# certification, it breaks every lane's build at once.  It is also live as this
+# lands -- the shared working tree's root module imports an UNTRACKED
+# `Analysis/CStarTensorProductAlgebra`, one careless `git add -A` away from main.
+# The two halves are one gate, so this scans for both.
+#
 # WHY IT COMPARES AGAINST A BASELINE RATHER THAN DEMANDING ZERO.  Absolute
 # "must be clean" turns any pre-existing red into a total push freeze for every
 # lane at once -- which is a worse outage than the red it guards, and it would
@@ -46,6 +57,29 @@ scan_tree() {  # <rev> <outfile> -> 0 scanned, 1 could not scan
   local rc=$?
   # 0 = clean, 1 = findings; anything else is the scanner itself breaking.
   [ "$rc" -le 1 ] || return 1
+  # The mirror check check.py does not do: a first-party import with no module.
+  ( cd "$dir" && python3 - <<'MISSING' ) >> "$out" || return 1
+import pathlib, re
+root = pathlib.Path(".")
+present = {"GroupApproximation"}
+for f in root.rglob("*.lean"):
+    if ".lake" in f.parts:
+        continue
+    present.add(str(f.with_suffix("")).replace("/", "."))
+imp = re.compile(r"^\s*import\s+(GroupApproximation(?:\.[A-Za-z0-9_']+)*)\s*$")
+for f in sorted(root.rglob("*.lean")):
+    if ".lake" in f.parts:
+        continue
+    try:
+        lines = f.read_text(encoding="utf-8", errors="replace").splitlines()
+    except OSError:
+        continue
+    for n, line in enumerate(lines, 1):
+        m = imp.match(line)
+        if m and m.group(1) not in present:
+            print(f"::error::[missing import target] {f}:{n}: imports {m.group(1)}, "
+                  f"which is not a module in this tree -- the build fails at this import")
+MISSING
   return 0
 }
 
