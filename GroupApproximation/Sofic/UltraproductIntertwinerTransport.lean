@@ -87,13 +87,15 @@ group `E` and the Kazhdan source `Γ`: a one-sided compressor of a Kazhdan
 image preserves every uniformly operator-norm-bounded normalized
 Hilbert--Schmidt asymptotic commutant.
 
-This is the statement whose *printed* proof (lines 639--735) is the
-ultraproduct argument: the adjoint model, the norm ultraproduct `B_ω`, the
-Kazhdan projection, one-sided compression, and finiteness of `B_ω`.
+This is the statement whose *printed* proof, inside `\ref{sec:transport}`, is
+the ultraproduct argument: the adjoint model, the norm ultraproduct `B_ω`, the
+projection onto the fixed subspace, the agreement of the two projections, and
+the conclusion.
 
 It is word-for-word the statement of `KazhdanAsymptoticCommutant.transport`,
-which this repository proves unconditionally by the *finite-stage* route of
-Appendix `app:finite-stage`.  So the hypothesis is satisfiable and anything
+which this repository proves unconditionally by the *finite-stage* route (a
+Lean-only route since commit `3a45fa60` cut the appendix that printed it).  So
+the hypothesis is satisfiable and anything
 assuming it is non-vacuous — but satisfying it that way reproves the
 alternate route already certified in
 `Sofic/IntertwinerKazhdanTransport.lean`, not the printed one. -/
@@ -106,10 +108,11 @@ abbrev UltraproductTransportFor (Γ E : Type) [Group Γ] [Group E] : Prop :=
         (B.map n C.t : Matrix (B.model n) (B.model n) ℂ)ᴴ)
 
 /-- **The IT.06 input — an UNPROVED hypothesis, not a theorem of this file.**
-Part (1) of `thm:transport-variants`: the same transport at an arbitrary
-nonnegative Hilbertian weight `w`, again by the ultraproduct argument (lines
-785--793: "the ultraproduct proof of Theorem~\ref{thm:kazhdan-transport}
-applies verbatim").
+Part (1) of `\ref{thm:transport-variants}`: the same transport at an arbitrary
+nonnegative Hilbertian weight `w`, again by the ultraproduct argument --- "the
+ultraproduct proof of Theorem `\ref{thm:kazhdan-transport}` applies with
+`\tr_{d_n}` replaced by `\operatorname{Tr}(\,\cdot\,)/\nu_n`", in the printed
+proof of part (1).
 
 As with the unweighted input, this is word-for-word the statement of
 `ScaledKazhdanTransport.scaled_transport`, proved unconditionally here by the
@@ -284,9 +287,10 @@ transport of asymptotic intertwiners.  The reduction itself is complete and
 rests only on the closed steps IT.01--IT.04.
 
 What is *not* proved: `hUP`.  The manuscript discharges it by the
-ultraproduct argument of lines 639--735, which is not yet available in this
+ultraproduct argument printed under `\ref{thm:kazhdan-transport}` in
+`\ref{sec:transport}`, which is not yet available in this
 repository.  Until it is, this declaration does not certify
-`thm:transport-variants`(2) and must not be badged. -/
+`\ref{thm:transport-variants}`(2) and must not be badged. -/
 theorem it_05_intertwiner_transport
     (hUP : UltraproductTransportFor Γ E)
     (B₁ B₂ : OpAlmostRepresentation E) (C : KazhdanCompressionCore Γ E)

@@ -12,8 +12,8 @@ The manuscript's paragraph *A simple sofic envelope* cites Elek--Szabó for
 
 > every countable sofic group embeds in a countable simple sofic group
 
-In `non_mf_groups_exist.tex` the paragraph is lines 3596--3610 as of this
-writing; the file is under concurrent edit, so the stable anchors are the
+In `non_mf_groups_exist.tex` the paragraph is located by its stable anchors --
+the file is under concurrent edit and no offset survives: the
 heading `\paragraph{A simple sofic envelope.}` and the citation key
 `ElekSzaboHyper`, Theorem 1.  That key is *not* the one on the Elek--Szabó
 amenable-extension theorem used elsewhere in the same section, which is

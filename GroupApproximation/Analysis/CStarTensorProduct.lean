@@ -9,9 +9,12 @@ import GroupApproximation.Analysis.CStarTensorProductConcrete
 merely unproved in this development but **unstatable** at the pinned Mathlib
 revision:
 
-* the reduced group C⋆-algebra of the witness group is **exact**
-  (lines 3053--3065), and
-* a certain algebra is **not nuclear** (Lance's theorem).
+* the reduced group C⋆-algebra of the witness group is **exact** --- located by
+  `The algebra is also exact, by the block normal form of` beneath
+  `\ref{thm:reduced}`, and again by `The same decomposition also proves that
+  $E$ is exact` inside `\ref{sec:algebras-sofic}` --- and
+* a certain algebra is **not nuclear**, located by `whence` … `is not nuclear
+  \cite{Lance}` (Lance's theorem).
 
 Both notions are defined through the minimal tensor product `⊗_min`, and
 Mathlib has no C⋆-tensor product of any kind.  The string `nuclear` does not
@@ -31,8 +34,10 @@ facts are recorded with file references:
   `@[simp] star_tmul : star (x ⊗ₜ y) = star x ⊗ₜ star y := rfl`, plus
   `InvolutiveStar`, `StarAddMonoid`, `StarModule R (A ⊗[R] B)`.
 * `Mathlib/RingTheory/TensorProduct/Basic.lean` --- `Semiring`, `Ring`,
-  `Algebra R (A ⊗[R] B)`, and (lines 743--757) `StarMul` and
-  `StarRing (A ⊗[R] B)`.  **The ⋆-algebra `A ⊙ B` therefore costs nothing.**
+  `Algebra R (A ⊗[R] B)`, and --- in the `Algebra.TensorProduct` namespace of
+  that file, found by `git grep -n 'StarRing (A ⊗' ` --- the `StarMul` and
+  `StarRing (A ⊗[R] B)` instances.
+  **The ⋆-algebra `A ⊙ B` therefore costs nothing.**
 * `Mathlib/RingTheory/TensorProduct/Maps.lean` --- `Algebra.TensorProduct.lift`,
   the universal property for a pair of algebra maps with commuting ranges.
 * `Mathlib/Analysis/InnerProductSpace/TensorProduct.lean` --- the inner product
@@ -190,12 +195,12 @@ anything below.
 ## Manuscript status
 
 `EXACT`: none --- no manuscript step is certified by this lane.
-`MISSING`: the exactness assertion of the paragraph opened by
-`\paragraph{An exact stably finite non-MF algebra.}`, and the nuclearity
-assertion, for the reasons above.  (Located by that string: an earlier version
-of this block cited "lines 3053--3065", which had already drifted --- the
-paragraph now begins near line 3419.  Cite manuscript passages by their opening
-string, never by line number.)
+`MISSING`: the exactness assertion and the nuclearity assertion, for the
+reasons above.  Both are located by the strings quoted at the top of this
+docstring.  (Two earlier versions of this block located them by line number and
+both had drifted by the time anyone read them; the paragraph they cited has
+since been retitled as well.  Cite manuscript passages by a `\label` or by
+their own words, never by line number.)
 -/
 
 namespace GroupApproximation

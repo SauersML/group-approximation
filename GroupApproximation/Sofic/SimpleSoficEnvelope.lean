@@ -6,10 +6,10 @@ import Mathlib.GroupTheory.Subgroup.Simple
 /-!
 # The simple sofic envelope: everything downstream of the embedding
 
-The manuscript's paragraph *A simple sofic envelope* reads as follows.  In
-`non_mf_groups_exist.tex` it is lines 3596--3610 as of this writing; the file
-is under concurrent edit, so the stable anchors are the heading
-`\paragraph{A simple sofic envelope.}` and the citation key `ElekSzaboHyper`
+The manuscript's paragraph *A simple sofic envelope* reads as follows.  The
+file is under concurrent edit, so it is located only by its stable anchors: the
+heading `\paragraph{A simple sofic envelope.}` and the citation key
+`ElekSzaboHyper`
 (which also distinguishes it from the Elek--Szabó *amenable-extension*
 theorem, cited elsewhere in the same section under the key `ElekSzabo`).
 

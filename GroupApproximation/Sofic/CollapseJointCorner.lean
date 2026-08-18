@@ -3,12 +3,22 @@ import GroupApproximation.Sofic.ExactInvolutionLifts
 /-!
 # Step 1 of the involutive collapse, run along the joint corner
 
-This file certifies Step 1 of the proof sketch of `thm:collapse` (*involutive
-collapse*) in `non_mf_groups_exist.tex`, lines 3020–3033, and specifically the
-sentence at lines 3024–3027:
+This file certifies Step 1 of a six-step proof sketch of `\ref{thm:collapse}`
+(*involutive collapse*) that `non_mf_groups_exist.tex` used to print in
+`\ref{subsec:collapse}`, and specifically its sentence
 
 > "block compression along the finite commutative corner structure of the
 > previously corrected microstates preserves exact commutation"
+
+**That sketch is no longer printed.**  Commit `3a45fa60` ("Editorial pass:
+rewrite orbit collapse, cut what nothing uses") moved the collapse mechanism
+inside the matrix corona: `\ref{thm:collapse}` is now three sentences of Fourier
+idempotents reducing to `\ref{thm:projection-collapse}`, and the microstate
+corrections, the rank pseudometric and the almost-cocycle estimate are all gone.
+The module is kept because the mathematics is correct and other modules consume
+it, but it transcribes a route the reader will not find; the divergence is what
+the proof ledger records at `CO.19`--`CO.22`, and `docs/COLLAPSE_STEP_AUDIT.md`
+is graded against the deleted text.  No badge is owed here.
 
 The manuscript describes **one** compression, taken along the corner structure
 of the *whole* previously corrected commuting family at once, followed by

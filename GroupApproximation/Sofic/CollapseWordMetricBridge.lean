@@ -9,8 +9,9 @@ at COL.17 and COL.19: the chosen-word length
 `InvolutionCollapseProfile.wordLen` against the genuine word length
 `WordMetric.wordNorm`, and the guarded vector
 `InvolutionCollapseProfile.bVec` against the printed
-`CollapseWordMetric.bVec` of Step 4 of `thm:collapse`
-(`non_mf_groups_exist.tex`, lines 3131–3135).
+`CollapseWordMetric.bVec` of Step 4 of the proof sketch of `\ref{thm:collapse}`
+that `non_mf_groups_exist.tex` printed until commit `3a45fa60` replaced it (see
+the header of `Sofic/CollapseJointCorner.lean`).
 
 * `wordNorm_le_wordLen` — the printed invariant is at most the chosen-word
   length, so the printed COL.17 bound implies the one previously proved

@@ -8,8 +8,9 @@ import Mathlib.Analysis.InnerProductSpace.Adjoint
 
 This is the first layer of the missing foundation for the *minimal (spatial)
 tensor product* of C⋆-algebras, which `non_mf_groups_exist.tex` needs twice:
-once for the exactness of a reduced group C⋆-algebra (lines 3053--3065) and
-once for the failure of nuclearity.  Neither statement is currently
+once for the exactness of a reduced group C⋆-algebra (`The algebra is also
+exact, by the block normal form of`, beneath `\ref{thm:reduced}`) and
+once for the failure of nuclearity (`is not nuclear \cite{Lance}`).  Neither statement is currently
 *expressible* in Mathlib: at the pinned revision there is no C⋆-tensor product
 of any kind, and no completed Hilbert-space tensor product either.
 

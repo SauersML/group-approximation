@@ -8,11 +8,10 @@ import Mathlib.RingTheory.Nullstellensatz
 # Zariski closed subgroups of `GL(V)`
 
 The manuscript's envelope remark — `non_mf_groups_exist.tex`,
-`\begin{remark}[chain conditions suffice]\label{rem:chaincondition}` inside
-`\section{The finite-dimensional obstruction}\label{sec:findim}`, lines
-2558--2573 as of 2026-08-16 (the file is under concurrent edit, so navigate by
-the labels, not the numbers) — takes the invariant of a subgroup to be *the
-Zariski closure of its image in* `GL(V)`, and appeals to the classical fact
+`\begin{remark}[chain conditions suffice]` inside
+`\section{The finite-dimensional obstruction}` (`\ref{sec:findim}`) — took the
+invariant of a subgroup to be *the
+Zariski closure of its image in* `GL(V)`, and appealed to the classical fact
 that
 
 > the closed subgroups of `GL(V)` in the Zariski topology satisfy the
@@ -23,6 +22,13 @@ than proves.  This file supplies the missing side of that badge: it defines the
 Zariski topology on `GL(V)` concretely and develops exactly the closure
 operations that the chain condition (proved in
 `Algebra/ZariskiDescendingChain`) and the envelope deduction need.
+
+**The remark is no longer printed.**  Commit `3a45fa60` ("Editorial pass:
+rewrite orbit collapse, cut what nothing uses") deleted it along with the other
+passages nothing consumed; the manuscript now says nothing about Zariski
+envelopes or chain conditions.  The mathematics below is unaffected and stands
+on its own, but it no longer discharges a printed claim, so no badge is owed
+and none should be added on its account.
 
 ## The definition
 

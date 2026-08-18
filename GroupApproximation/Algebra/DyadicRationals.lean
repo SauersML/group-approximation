@@ -13,12 +13,13 @@ import Mathlib.Tactic.Ring
 # The dyadic rationals `ℤ[1/2]` and the literal affine group `BS(1,2)`
 
 The manuscript's cyclic comparison --- `non_mf_groups_exist.tex`,
-`\section{The cyclic comparison}\label{sec:necessity}`, Theorem
-`\label{thm:C}`, its proof, and the paragraph
+`\section{The cyclic comparison}` (`\ref{sec:necessity}`), Theorem
+`\ref{thm:cyclic}`, its proof, and the paragraph
 `\paragraph{Sharpness of the Kazhdan hypothesis.}` --- realizes the marked
 word inside the coset action of the *affine* group `BS(1,2) ≅ ℤ[1/2] ⋊ ℤ`.
-(That section sat at lines 2509--2628 when this file was written, but the
-`.tex` is edited concurrently and line numbers drift; navigate by label.)
+(`thm:C` is a legacy alias for `thm:cyclic` and is no longer a `\label`; the
+manuscript's own note beside the theorem says so.  Navigate by label, never by
+line: the `.tex` is edited concurrently and every offset drifts.)
 The sentence this file discharges is
 `The affine group $\mathrm{BS}(1,2)\cong\mathbb Z[1/2]\rtimes\mathbb Z$ is
 solvable.`: the isomorphism is *asserted* there, so it is proved here rather

@@ -4,15 +4,23 @@ import GroupApproximation.Sofic.InvolutionCollapseCocycle
 /-!
 # The limiting profile is bounded by its generator values
 
-`non_mf_groups_exist.tex`, `\subsection{Orbit collapse and defect
-saturation}`, Step 5 of the proof sketch of `thm:collapse`
-(TeX lines 3170--3185; the assertion formalized here is printed at lines
-3172--3178):
+`non_mf_groups_exist.tex` used to prove orbit collapse through an
+approximate-cocycle estimate, and Step 5 of that proof sketch read:
 
 > the spectral gap of `(S,\kappa)` bounds the limiting profile
 > `\gamma \mapsto \lim_n \|b_n(\gamma)\|_{\mathrm F}^2` **by its
-> generator values** `\eqref{eq:generator-mass}` --- Delorme's argument
+> generator values** --- Delorme's argument
 > at the level of limiting seminorms.
+
+**The printed proof no longer takes that route.**  Commit `3a45fa60` moved the
+collapse mechanism entirely inside the matrix corona, and the approximate-cocycle
+estimate, the rank pseudometric on the orbit and the generator-mass display all
+went with it; `eq:generator-mass` is not a `\label` any more.  What
+`\ref{thm:collapse}` and `\ref{thm:projection-collapse}` print in
+`\ref{subsec:collapse}` is a rank-normalized Hilbertization followed by
+Delorme--Guichardet, which is the divergence the proof ledger records at
+`CO.19`--`CO.22`.  This module therefore formalizes a route the manuscript no
+longer prints; it is correct and it is kept, but no badge is owed on it.
 
 `Kazhdan.UltralimitGaussianBoundedness.profile_bounded_of_isKazhdanPair`
 proves only the existential form `∃ R, ∀ g, profile g ≤ R`, and

@@ -8,18 +8,20 @@ import Mathlib.RingTheory.SimpleModule.Basic
 /-!
 # The descending chain condition for Zariski closed subgroups of `GL(V)`
 
-`non_mf_groups_exist.tex`, in `\begin{remark}[chain conditions
-suffice]\label{rem:chaincondition}` of `\section{The finite-dimensional
-obstruction}\label{sec:findim}` — navigate by the labels, the file is under
-concurrent edit — says of the algebraic envelope:
+`non_mf_groups_exist.tex` carried, in a `\begin{remark}[chain conditions
+suffice]` of `\section{The finite-dimensional obstruction}`
+(`\ref{sec:findim}`), this sentence about the algebraic envelope:
 
 > the Zariski closures of `σ(Γ)` and `σ(tΓt⁻¹)` coincide, the descending chain
 > condition for Zariski-closed subgroups of `GL(V)` coming from the Hilbert
 > basis theorem.
 
-That is the whole of what the manuscript says about the chain condition here:
-it names the Hilbert basis theorem as its ground and asserts the conclusion
-without hypothesis.  (An earlier version of this docstring quoted the
+That was the whole of what the manuscript said about the chain condition:
+it named the Hilbert basis theorem as its ground and asserted the conclusion
+without hypothesis.  **The remark was deleted in commit `3a45fa60` ("Editorial
+pass: rewrite orbit collapse, cut what nothing uses"), so the quotation above
+is a record and not a live citation; `rem:chaincondition` is not a `\label` any
+more.**  (An earlier version of this docstring quoted the
 manuscript as adding that the chain condition "is the input the badge
 quantifies over rather than proves".  No such sentence occurs in
 `non_mf_groups_exist.tex`; it appears to have come from an early draft, and it

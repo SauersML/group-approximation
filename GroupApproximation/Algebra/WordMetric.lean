@@ -19,13 +19,16 @@ which is exactly the hypothesis making every element representable and
 the infimum attained.
 
 This is the object written `|\gamma|_S` in Step 3 and Step 4 of the proof
-sketch of the involutive collapse theorem `thm:collapse`
-(`non_mf_groups_exist.tex`, lines 3121–3135), where the displacement
+sketch of the involutive collapse theorem `\ref{thm:collapse}` that
+`non_mf_groups_exist.tex` printed until commit `3a45fa60`, where the
+displacement
 bound `d_n(1,\gamma) \le |\gamma|_S\,k_n` and the mass estimate
-`\|b_n(\gamma)\|_{\mathrm F}^2 \le 4|\gamma|_S` are both stated against
+`\|b_n(\gamma)\|_{\mathrm F}^2 \le 4|\gamma|_S` were both stated against
 the *minimum* over representing words, not against the length of some
 chosen word.  The collapse-side consequences are in
-`GroupApproximation/Sofic/CollapseWordMetric.lean`.
+`GroupApproximation/Sofic/CollapseWordMetric.lean`, whose header records that
+the sketch is no longer printed.  The word metric itself is a general-purpose
+object and stands independently of that.
 
 The development is deliberately general — `S` need not be finite and need
 not contain `1` — so that it is reusable elsewhere in the repository.

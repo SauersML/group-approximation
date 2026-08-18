@@ -8,17 +8,19 @@ import Mathlib.Tactic.FinCases
 /-!
 # The commutant does not separate `A₄ < S₄`
 
-This file formalizes the counterexample printed in `non_mf_groups_exist.tex`
-inside `\begin{remark}[...]\label{rem:invariantsize}`.  Grep the manuscript for
-the sentence
+This file formalizes a counterexample that `non_mf_groups_exist.tex` used to
+print inside an invariant-size remark:
 
 > The natural candidate size, the dimension `dim_k End_H(V)` of the commutant,
 > is order-reversing rather than order-preserving, and it does not separate
 > nested subgroups: `A₄ < S₄` in the standard three-dimensional representation
 > have the same commutant `k·1`.
 
+**That remark is no longer in the manuscript.**  It was cut in the pass that
+landed as `e6d76e07`, so `rem:invariantsize` is not a `\label` any more and the
+quotation above is a record rather than a citation.  Legacy ledger row `FD.20`.
 Line numbers are deliberately not cited: the manuscript is under concurrent
-edit.  Legacy ledger row `FD.20`.
+edit.
 
 Two assertions are made there and both are proved below.
 
@@ -40,17 +42,15 @@ Two assertions are made there and both are proved below.
 ## Why this file carries no badge
 
 **The absence of a `\leanverified` citation here is deliberate, not an
-oversight.**  `rem:invariantsize` contains exactly one badge slot, and it
-belongs to the invariant-size principle of the remark's *first* paragraph
-(`manuscriptInvariantSizePrinciple`, ledger rows `FD.18`/`FD.19`).  The
-`A₄ < S₄` sentence is in the second paragraph and has no slot of its own, so
-citing the results below would mean adding a `\leanverified` line to the
-manuscript.  The manuscript is frozen — all repair happens on the Lean side —
-so that edit is not available.  The terminal state of `FD.20` is therefore
-**formalized, unbadgeable without a manuscript edit**: the theorems below prove
-the printed sentence and are in the root import closure, and nothing further
-can be done from this side.  Anyone later given leave to touch the TeX should
-badge `commutant_does_not_separate`.
+oversight.**  While the remark was in print it contained exactly one badge
+slot, belonging to the invariant-size principle of its *first* paragraph
+(`manuscriptInvariantSizePrinciple`, ledger rows `FD.18`/`FD.19`); the
+`A₄ < S₄` sentence was in the second paragraph and had no slot of its own.
+Now that the remark is gone there is no printed sentence left to badge at all,
+so the terminal state of `FD.20` is **formalized, with no printed claim to
+attach to**.  The theorems below are correct and are in the root import
+closure; they simply no longer correspond to anything the reader sees, and a
+badge must not be invented for them.
 
 ## Characteristic
 

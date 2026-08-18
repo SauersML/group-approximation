@@ -16,26 +16,32 @@ in the manuscript: natural matrix dimensions, raw unitary-valued
 operator-norm almost representations, and normalized Hilbert--Schmidt
 commutators.
 
-`non_mf_groups_exist.tex` proves `\label{thm:kazhdan-transport}` **twice**,
-and the remark `\label{rem:finite-stage}` advertises both proofs.  Both are
-certified here:
+`non_mf_groups_exist.tex` prints one proof of `\ref{thm:kazhdan-transport}`;
+this file certifies two, and it is worth being explicit about which is which:
 
 * `manuscriptKazhdanTransport_ultraproduct` -- the *printed* proof, the one set
-  under the theorem in `\section{One-sided Kazhdan transport}`
-  (`\label{sec:transport}`): the adjoint model, the norm ultraproduct `B_ω`,
+  under the theorem in `\section{One-sided conjugation in matrix models}`
+  (`\ref{sec:transport}`): the adjoint model, the norm ultraproduct `B_ω`,
   the Kazhdan projection, one-sided compression, and finiteness of `B_ω`.  Its
   machinery lives in `Sofic/UltraproductKazhdanTransport.lean`, and the ambient
   it consumes is now built, from the theorem's own hypotheses and nothing else,
   by
   `Sofic/UltraproductModelConstructionAssembly.lean`
   (`UltraproductModelConstruction.ultraproductAdjointModel`).
-* `finiteStageKazhdanTransport` -- the quantitative proof of
-  `\section{The finite-stage transport proof}` (`\label{app:finite-stage}`),
-  run at each single coordinate with an almost-fixed spectral subspace in
-  place of the Kazhdan projection and the equal-rank reversal estimate in
-  place of finiteness of `B_ω`.  This is the reusable
+* `finiteStageKazhdanTransport` -- a quantitative proof with no printed
+  counterpart, run at each single coordinate with an almost-fixed spectral
+  subspace in place of the Kazhdan projection and the equal-rank reversal
+  estimate in place of finiteness of `B_ω`.  This is the reusable
   `KazhdanAsymptoticCommutant.transport` in manuscript coordinates.  Unlike the
   first, it gives an explicit rate.
+
+**The manuscript used to print both.**  A remark announced the second proof and
+an appendix carried it out; commit `3a45fa60` ("Editorial pass: rewrite orbit
+collapse, cut what nothing uses") deleted both, because the rewritten collapse
+step stopped consuming the finite-stage route and nothing else did.  Nothing
+below changed with them -- the Lean proof was never a transcription of the
+appendix -- but a reader looking for the printed second proof will not find
+one, and no badge is owed on `finiteStageKazhdanTransport`.
 
 `manuscriptKazhdanTransport` is the theorem statement itself, and it is the
 declaration the manuscript badges.  It is unconditional and it is derived by
@@ -129,9 +135,8 @@ theorem manuscriptKazhdanTransport_ultraproduct
   ultraproductKazhdanTransport iota s d hd U x hbound hx ambient
 
 /-- **Kazhdan transport, by the quantitative finite-stage proof.**
-This is the proof of `\section{The finite-stage transport proof}`
-(`\label{app:finite-stage}`), announced by the remark
-`\label{rem:finite-stage}`: it runs at each
+The manuscript printed this proof as an appendix until commit `3a45fa60` cut
+it for want of a consumer, so it now has no printed counterpart: it runs at each
 single coordinate `n`, with an explicit almost-fixed spectral subspace of the
 averaged adjoint action in place of the Kazhdan projection and the equal-rank
 reversal estimate in place of finiteness of the norm ultraproduct.  It gives
@@ -232,14 +237,13 @@ theorem finiteStageKazhdanTransport
     Real.sqrt_sq hε.le] using hsqrt
 
 /-- **Kazhdan transport in the exact manuscript coordinates**
-(`non_mf_groups_exist.tex`, `\label{thm:kazhdan-transport}`).
+(`non_mf_groups_exist.tex`, `\ref{thm:kazhdan-transport}`).
 
-This is the theorem statement; the manuscript proves it twice and both proofs
-are formalized.  The printed proof is `manuscriptKazhdanTransport_ultraproduct`
+This is the theorem statement.  The printed proof is
+`manuscriptKazhdanTransport_ultraproduct`
 (the norm ultraproduct `B_ω`, the Kazhdan projection, one-sided compression,
-and finiteness); the quantitative proof of `\label{app:finite-stage}`, which
-the remark `\label{rem:finite-stage}` announces as the second proof, is
-`finiteStageKazhdanTransport`.
+and finiteness); `finiteStageKazhdanTransport` is a second, quantitative proof
+whose printed appendix was cut in `3a45fa60`.
 
 The derivation below is the **printed** one.  The ambient of steps
 KT.01--KT.09 that it consumes is built at every free ultrafilter by

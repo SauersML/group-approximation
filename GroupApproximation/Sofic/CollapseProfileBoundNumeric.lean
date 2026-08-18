@@ -4,9 +4,9 @@ import Mathlib.Analysis.Complex.ExponentialBounds
 /-!
 # Numerical form of the collapse profile bound
 
-`non_mf_groups_exist.tex`, Step 5 of the sketch of `thm:collapse`
-(TeX lines 3170--3185), continued from
-`Sofic/CollapseProfileBound.lean`.
+Continued from `Sofic/CollapseProfileBound.lean`, whose header records that the
+Step-5 sentence both modules formalize was deleted from
+`non_mf_groups_exist.tex` in commit `3a45fa60`.
 
 `CollapseProfileBound.collapse_profile_le` bounds the limiting profile of
 the collapse family by `160 * Real.log 2 / κ ^ 2`.  This module records

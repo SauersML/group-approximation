@@ -12,14 +12,20 @@ the moving Kazhdan spectrum and the invariant eigenvalue `1`.
 
 ## The ultrafilter locus
 
-`non_mf_groups_exist.tex`, section `\label{app:finite-stage}` ("The
-finite-stage transport proof"; 1822-1937 at the time of writing, but the
-manuscript is under concurrent edit -- navigate by label) advertises a proof of
-the Kazhdan transport theorem "quantitatively at each single coordinate `n` and
-with no ultrafilter", and its estimate (i) carries a `\leanverified` badge
-pointing at `hermitianAverage_eventually_no_intermediate_eigenvalues` below.
-That proof *does* use an ultrafilter: a `Hyperreal` standard part is a limit
-along the hyperfilter on `ℕ`.  The contaminated declarations of this file are
+`non_mf_groups_exist.tex` used to carry a section titled "The finite-stage
+transport proof", advertising a proof of the Kazhdan transport theorem
+"quantitatively at each single coordinate `n` and with no ultrafilter", whose
+estimate (i) carried a `\leanverified` badge pointing at
+`hermitianAverage_eventually_no_intermediate_eigenvalues` below.  That proof
+*does* use an ultrafilter: a `Hyperreal` standard part is a limit
+along the hyperfilter on `ℕ`.
+
+**The section, and with it the badge, are gone** -- commit `3a45fa60`
+("Editorial pass: rewrite orbit collapse, cut what nothing uses") deleted the
+appendix and the remark announcing it.  The discrepancy recorded below is
+therefore no longer a live manuscript defect; it is kept because the
+declarations it names are still here and still carry the dependency, and a
+future badge on any of them would reintroduce the same false claim.  The contaminated declarations of this file are
 exactly
 
 * `correlationHyperreal`, `gramCorrelationHyperreal`, `limitingCorrelation`,

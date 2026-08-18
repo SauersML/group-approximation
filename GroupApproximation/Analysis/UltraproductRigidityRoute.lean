@@ -12,9 +12,19 @@ The introduction's rigidity paragraph (`p:abstract-mechanism`) says
 
 and then, in `E`, that this forces the commutator `u` to converge to `1` in
 normalized Hilbert--Schmidt norm.  The proof ledger records both rows as routed
-through the **finite-stage** proof of `\label{app:finite-stage}`: `INT.03` reads
+through the **finite-stage** proof: `INT.03` reads
 "the Lean route is Appendix B, not the printed §3 ultraproduct proof", and
 `INT.04` reads "route via Appendix B".
+
+**That appendix is no longer printed.**  Commit `3a45fa60` ("Editorial pass:
+rewrite orbit collapse, cut what nothing uses") deleted the finite-stage
+transport appendix and the remark announcing it, on the ground that the
+ultraproduct reading of the collapse step had become its only consumer.  The
+manuscript now proves `\ref{thm:kazhdan-transport}` once, inside
+`\ref{sec:transport}`.  The Lean chain below is unaffected -- it was never a
+transcription of that appendix, and the two routes remain interchangeable --
+but "Appendix B" in the ledger rows above names a passage the reader will not
+find, and is kept only because those rows are quoted verbatim.
 
 That is accurate.  `LiteralNonMFEndpoint.kazhdanPinning` unfolds to
 `KazhdanCompressionCore.compressionDefects_hsTrivial`, which unfolds to
@@ -116,10 +126,10 @@ normalized Hilbert--Schmidt norm:
 `‖V A V* − A‖₂ = ‖A V − V A‖₂`,
 
 because `A V − V A = (A − V A V*) V` and right multiplication by a unitary is a
-`‖·‖₂`-isometry.  The printed proof of `\label{thm:kazhdan-transport}` states its
-conclusion as a commutator; the corner chain of `\label{app:finite-stage}`
-states its as a displacement; this is the identity that makes them one
-statement. -/
+`‖·‖₂`-isometry.  The printed proof of `\ref{thm:kazhdan-transport}` states its
+conclusion as a commutator; the corner chain of the finite-stage route (Lean
+only, since `3a45fa60` cut the appendix that printed it) states its as a
+displacement; this is the identity that makes them one statement. -/
 theorem hsDistSq_conj_eq_hsNormSq_commutator (Y : FiniteModel)
     {V : Matrix Y Y ℂ} (hV : V ∈ Matrix.unitaryGroup Y ℂ) (A : Matrix Y Y ℂ) :
     hsDistSq Y (V * A * Vᴴ) A = hsNormSq Y (A * V - V * A) := by

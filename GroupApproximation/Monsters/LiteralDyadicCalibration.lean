@@ -9,10 +9,10 @@ import Mathlib.GroupTheory.Solvable
 /-!
 # The cyclic comparison in the literal affine group `ℤ[1/2] ⋊ ℤ`
 
-The manuscript's proof of Theorem `\label{thm:C}`, inside
-`\section{The cyclic comparison}\label{sec:necessity}` of
-`non_mf_groups_exist.tex` (lines 2509--2628 when this file was written; the
-`.tex` is edited concurrently, so navigate by label, not by line), reads:
+The manuscript's proof of Theorem `\ref{thm:cyclic}` (cited as `thm:C` in older
+notes; that alias is no longer a `\label`), inside
+`\section{The cyclic comparison}` (`\ref{sec:necessity}`) of
+`non_mf_groups_exist.tex`, reads:
 
 > For nontriviality, use the affine realization of `BS(1,2)` and its coset
 > action.  The root site is fixed by the cyclic base, while the two sites

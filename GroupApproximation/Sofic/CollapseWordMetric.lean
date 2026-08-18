@@ -6,9 +6,16 @@ import GroupApproximation.Sofic.InvolutionCollapseMetric
 
 This module reproves the generator-normalization bound of Step 3 and the
 displacement almost-cocycle of Step 4 of the proof sketch of
-`thm:collapse` (`non_mf_groups_exist.tex`, lines 3121–3170) against the
-objects the manuscript actually prints, repairing three recorded
-mismatches (`docs/COLLAPSE_STEP_AUDIT.md`, COL.17, COL.19, COL.20):
+`\ref{thm:collapse}` against the objects the manuscript printed at the time,
+repairing three recorded mismatches (`docs/COLLAPSE_STEP_AUDIT.md`, COL.17,
+COL.19, COL.20).
+
+**Read "the manuscript actually prints" historically.**  Commit `3a45fa60`
+replaced that six-step sketch with a corona argument, so the word metric, the
+displacement almost-cocycle and the generator-mass bound below no longer
+correspond to any printed step; the header of `Sofic/CollapseJointCorner.lean`
+records the change in full.  The three repairs are still repairs of what the
+audit graded, and nothing here is wrong; it is simply no longer badgeable.
 
 * **COL.17.**  The printed bound is `d_n(1,\gamma) \le |\gamma|_S k_n`
   for the *word length* `|\cdot|_S`, a minimum over all representing
@@ -37,7 +44,7 @@ mismatches (`docs/COLLAPSE_STEP_AUDIT.md`, COL.17, COL.19, COL.20):
 The nonvanishing anchor `eq:generator-mass` (COL.21) is reproved for the
 unguarded vector in `col21_sum_normSq_bVec_eq_four`; for the printed
 object it needs no capping hypothesis at all, only `k_n \ge 1`, which is
-what the manuscript says.
+what the manuscript said while it printed the display.
 
 One thing the guard was silently buying must be recovered: the ultralimit
 machinery consumes `Ultralimit.IsBoundedSeq`, a bound at *every* stage.
@@ -326,7 +333,8 @@ printed vector: whenever `k_n \ge 1` the generators carry total squared
 mass exactly four.
 
 For the unguarded object this needs no capping hypothesis — only
-`0 < k_n`, exactly as the manuscript states it. -/
+`0 < k_n`, exactly as the manuscript stated it before `3a45fa60` deleted the
+display. -/
 theorem col21_sum_normSq_bVec_eq_four
     (hVinv : ∀ n γ, ExactInvolutionLifts.IsExactInvolution (V n γ))
     (hVcomm : ∀ n γ₁ γ₂, V n γ₁ * V n γ₂ = V n γ₂ * V n γ₁)

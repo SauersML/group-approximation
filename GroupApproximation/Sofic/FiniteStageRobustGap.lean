@@ -3,19 +3,23 @@ import GroupApproximation.Sofic.KazhdanCornerMatrices
 /-!
 # Finite-stage quantitative estimates for the robust spectral gap
 
-`non_mf_groups_exist.tex`, section `\label{app:finite-stage}` ("The
-finite-stage transport proof"), proves Theorem `thm:kazhdan-transport` a
-second time "quantitatively at each single coordinate `n` and with no
-ultrafilter", and Remark `\label{rem:finite-stage}` ("The ultrafilter gives no
-rate") records that the error bookkeeping there is explicit in terms of the
+`non_mf_groups_exist.tex` used to prove `\ref{thm:kazhdan-transport}` a second
+time, in a section titled "The finite-stage transport proof",
+"quantitatively at each single coordinate `n` and with no
+ultrafilter", with a remark ("The ultrafilter gives no
+rate") recording that the error bookkeeping there is explicit in terms of the
 Kazhdan constant `κ`, the size `|S|` of the averaging set, the uniform bound
 `M` on the transported vectors, and the multiplicative defects of the
 microstates, *once the robust spectral-gap input stated there is granted at
 each stage*.
 
-Line numbers below are as of this writing (`app:finite-stage` = 1822-1937,
-`rem:finite-stage` = 738-748, `sec:limits` = 3777-3793) and the manuscript is
-under concurrent edit: **navigate by label, not by line**.
+**Neither the section nor the remark is printed any more.**  Commit `3a45fa60`
+("Editorial pass: rewrite orbit collapse, cut what nothing uses") deleted both,
+after the rewritten collapse step stopped consuming the finite-stage route.
+What the manuscript prints is the single ultraproduct proof inside
+`\ref{sec:transport}`.  Nothing in this file depended on that text, and nothing
+in it changed; it is now a Lean-side second route with no printed counterpart
+and no badge owed.
 
 This file supplies that explicit bookkeeping.  Every estimate below lives at
 one fixed coordinate `n`, is an inequality between real numbers with named
@@ -25,11 +29,13 @@ sequential limit occurs anywhere in the dependency chain of this module: its
 only project import is `GroupApproximation.Sofic.KazhdanCornerMatrices`, whose
 transitive import closure contains no hyperreals.
 
-**Operator norm, not Hilbert--Schmidt.**  Section `\label{sec:limits}`
-("Limitations of the operator-norm method", 3777-3793) insists that both
-transport proofs need operator-norm control and that the finite-stage proof
-needs it "for the spectral estimates": normalized Hilbert--Schmidt control
-does not suffice, since `Ad` is not Hilbert--Schmidt continuous.  That
+**Operator norm, not Hilbert--Schmidt.**  Section
+`\section{Limitations of the operator-norm method}` (`\ref{sec:limits}`)
+insists that transport needs operator-norm control -- "Operator-norm control is
+needed here to ensure that the classes `[Ad U_n(g)]_ω` are multiplicative;
+Hilbert--Schmidt control alone does not provide this" -- and the spectral
+estimates below need it for the same reason: `Ad` is not Hilbert--Schmidt
+continuous.  That
 hypothesis is live in every estimate below.  All operator hypotheses and
 conclusions here -- the residual `‖(H - 1) P‖ ≤ δ`, the displacement
 `‖(U(g) - 1) P‖`, the leakage `‖(1 - P) Q‖`, and every multiplicative defect
