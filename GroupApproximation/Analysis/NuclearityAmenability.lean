@@ -22,7 +22,7 @@ why it is out of reach and exactly how little of the paragraph depends on it.
 
 ## Input 1: injectivity of `\mathcal B → E` --- PROVED
 
-`GroupApproximation.Analysis.NuclearityBaseEmbedding.baseMap_injective` proves
+`GroupApproximation.NuclearityBaseEmbedding.baseMap_injective` proves
 the manuscript's opening clause at the literal group, by the manuscript's own
 route: compose with the affine--Clifford witness `E → W` of Section
 `sec:witness`, observe that the composite is the level-zero inclusion of the

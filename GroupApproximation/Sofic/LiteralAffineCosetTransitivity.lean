@@ -3,7 +3,8 @@ import GroupApproximation.Sofic.LiteralBaseDoublingIndex
 /-!
 # Transitivity on the nontrivial doubling cosets, over the affine carrier
 
-**UNBUILT — this module has never been compiled.**
+**Build status.**  This module is imported by `GroupApproximation.lean` and is
+therefore part of the repository's root build/audit closure.
 
 `Sofic/LiteralBlockGeometry.lean` reduces Proposition 4.2 of
 `docs/LITERAL_GROUP_BLOCK_AMALGAM_STRUCTURE_2026-08-14.md` — the blocks of the

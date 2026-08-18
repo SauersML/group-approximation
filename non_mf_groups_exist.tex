@@ -63,9 +63,10 @@
 }
 \newcommand{\doi}[1]{\href{https://doi.org/#1}{\nolinkurl{doi:#1}}}
 \newcommand{\arxiv}[1]{\href{https://arxiv.org/abs/#1}{\nolinkurl{arXiv:#1}}}
-% Hidden link from a numbered statement to the declaration of the
-% accompanying Lean~4 development that proves it.  Not typeset; the
-% audit tooling that reads these records is documented in the repository.
+% Hidden link from a numbered statement to an accompanying Lean~4
+% declaration whose proposition checks the stated claim.  This record does
+% not assert that the surrounding prose proof is a line-by-line transcription;
+% route-level correspondence is tracked separately by the audit metadata.
 \newcommand{\leanverified}[2]{\ignorespaces}
 % \leanstep{ID}: positional audit metadata, not typeset.  ID names a step
 % row of metadata/NON_MF_PROOF_LEDGER.md; the marker sits directly after
@@ -143,9 +144,12 @@
 \author{\paperauthor}
 \ifanonymous\else
   \ifx\coderepository\empty\else
-    \thanks{The numbered statements of this paper are machine-checked in an
-      accompanying Lean~4 development, at
-      \href{\coderepository}{\nolinkurl{\coderepositoryname}}.}%
+    \thanks{Numbered statements carrying verification records are linked to
+      accompanying Lean~4 declarations checking their stated claims, at
+      \href{\coderepository}{\nolinkurl{\coderepositoryname}}.  These
+      records certify statements, not line-by-line transcriptions of the prose
+      proofs; the repository's verification metadata records route-level
+      correspondence separately.}%
   \fi
 \fi
 \subjclass[2020]{Primary 46L05; Secondary 20F05, 22D25, 20E26}
@@ -1660,18 +1664,26 @@ conditions as well.
 \end{theorem}
 
 \begin{proof}
-For $\nu_n>0$, equip the $n$th coordinate space with the inner
-product $\langle x,y\rangle=\operatorname{Tr}(y^*x)/\nu_n$; an index
-with $\nu_n=0$ forces $x_n=0$.  Conjugation by a unitary remains
-unitary for this inner product.  The bound
-$\operatorname{Tr}(x_n^*x_n)\le C\nu_n$ makes $(x_n)$ a bounded
-ultraproduct vector, and the adjoint actions remain operator-norm
-almost multiplicative because the weight does not enter the operator
-norm.  Thus the ultraproduct proof of
-Theorem~\ref{thm:kazhdan-transport} applies with $\tr_{d_n}$ replaced
-by $\operatorname{Tr}(\,\cdot\,)/\nu_n$.  Finiteness of the norm
-ultraproduct again turns $P\le VPV^{*}$ into $P=VPV^{*}$, which gives
-both conjugation directions.
+Equip the $n$th coordinate space with the inner product
+\[
+ \langle x,y\rangle_n=
+ \begin{cases}
+  \operatorname{Tr}(y^*x)/\nu_n,&\nu_n>0,\\
+  \operatorname{Tr}(y^*x),&\nu_n=0.
+ \end{cases}
+\]
+If $\nu_n=0$, the bound $\operatorname{Tr}(x_n^*x_n)\le C\nu_n$
+forces $x_n=0$, so the harmless choice of the ordinary Hilbert--Schmidt
+inner product on that coordinate does not affect the distinguished
+vector.  Conjugation by a unitary is unitary for every one of these
+inner products.  The bound makes $(x_n)$ a bounded ultraproduct vector,
+and the adjoint actions remain operator-norm almost multiplicative
+because the scalar normalization of the Hilbert norm does not enter
+the operator norm.  Thus the ultraproduct proof of
+Theorem~\ref{thm:kazhdan-transport} applies with these weighted
+coordinate Hilbert spaces.  Finiteness of the norm ultraproduct again
+turns $P\le VPV^{*}$ into $P=VPV^{*}$, which gives both conjugation
+directions.
 \end{proof}
 
 Taking $\nu_n=k_n$, the rank of the
@@ -1870,13 +1882,13 @@ satisfy the preceding convergence for every $\lambda\in\Lambda$.
 
 \begin{proof}
 For a one-sided conjugator $s$, Theorem~\ref{thm:kazhdan-transport}
-gives the conclusion for $V_{g,n}x_nV_{g,n}^*$, and the equality
-$P=VPV^*$ established in its proof gives $V^*PV=P$, hence
-$V^*\operatorname{Fix}=\operatorname{Fix}$ and the conclusion for
-$V_{g,n}^*x_nV_{g,n}$.  The set of $g\in H$ for which conjugation by
-$V_{g,n}$ and by $V_{g,n}^*$ both preserve the asymptotic commutant is
-a subgroup, and it contains every one-sided conjugator; hence it
-contains $G^{+}(L)$.
+gives the conclusion for $V_{s,n}x_nV_{s,n}^*$.  The equality of the
+fixed-space projection with its conjugate established in that proof
+also gives invariance under the inverse conjugation, hence the
+conclusion for $V_{s,n}^*x_nV_{s,n}$.  The set of $g\in H$ for which
+conjugation by $V_{g,n}$ and by $V_{g,n}^*$ both preserve the
+asymptotic commutant is a subgroup, and it contains every one-sided
+conjugator; hence it contains $G^{+}(L)$.
 \end{proof}
 
 \begin{theorem}[the subgroup $\mathfrak D$ and the MF residual]
@@ -1926,9 +1938,10 @@ $\Theta(k)=1$ for all $k\in K$.
 
 \begin{proof}
 Suppose a homomorphism $\Theta$ to $\U(\mathcal Q)$ is nontrivial on
-$K$.  Its image $\bar H=\Theta(H)$ is countable, hence MF, and
-Proposition~\ref{prop:mf-equivalences}, applied along an exhaustion of
-$\bar H$, gives an operator-norm asymptotic representation
+$K$.  Its image $\bar H=\Theta(H)$ is countable and, as a subgroup of
+$\U(\mathcal Q)$, is MF by definition.  Proposition~\ref{prop:mf-equivalences},
+applied along an exhaustion of $\bar H$, gives an operator-norm
+asymptotic representation
 $(V_{g,n})$ in which every fixed nontrivial element eventually stays
 at operator-norm distance at least $1$ from the identity.  These
 models provide operator-norm separation, but at growing dimension this
@@ -2495,13 +2508,30 @@ every $a\in S$, then $d_g=0$ for every $g\in L$, contradicting
 $d_{g_0}\ne0$.  Thus $q\ne0$.
 
 \emph{The $q$-normalized Hilbert space.}  Take a self-adjoint bounded
-lift $(x_n)$ of $q$.  Then $\opnorm{x_n^{2}-x_n}\to0$, so the spectrum
-of $x_n$ clusters at $\{0,1\}$ and continuous functional calculus makes
-$Q_n=\chi_{[1/2,\infty)}(x_n)$ a projection with
-$\opnorm{Q_n-x_n}\to0$; the sequence $(Q_n)$ again lifts $q$.  Since
-$q\ne0$, $Q_n\ne0$ for infinitely many $n$; discard the remaining
-coordinates, relabel by $\N$, and put
-$k_n=\operatorname{rank}Q_n\ge1$.
+lift $(x_n)$ of $q$.  Since $\opnorm{x_n^{2}-x_n}\to0$, for all
+sufficiently large $n$ the spectrum of $x_n$ avoids $[1/4,3/4]$.
+Choose a continuous function $f\colon\mathbb R\to[0,1]$ with
+$f=0$ on $(-\infty,1/4]$ and $f=1$ on $[3/4,\infty)$.  Continuous
+functional calculus then gives, for all sufficiently large $n$, a
+projection $Q_n=f(x_n)$ with $\opnorm{Q_n-x_n}\to0$; define $Q_n=0$
+on the finitely many remaining coordinates.  Thus $(Q_n)$ is a
+projection lift of $q$.
+
+Let $J=\{n:Q_n\ne0\}$.  Because $q\ne0$, the set $J$ is infinite.
+Restriction of coordinates induces a $*$-homomorphism
+\[
+ \rho_J\colon
+ \prod_nM_{d_n}(\mathbb C)/\bigoplus_nM_{d_n}(\mathbb C)
+ \longrightarrow
+ \prod_{n\in J}M_{d_n}(\mathbb C)/\bigoplus_{n\in J}M_{d_n}(\mathbb C).
+\]
+Replace $\Theta$ by $\rho_J\circ\Theta$ and every element introduced
+above by its image under $\rho_J$.  All projection, commutation and
+cocycle identities are preserved, while the new image of $q$ is still
+nonzero because its lift consists of nonzero projections and therefore
+has norm $1$ at every coordinate of $J$.  Relabel $J$ by $\mathbb N$;
+then, without changing notation, we have
+$k_n=\operatorname{rank}Q_n\ge1$ for every $n$.
 
 Give $M_{d_n}(\C)$ the inner product
 $\langle x,y\rangle_n=\operatorname{Tr}(y^{*}x)/k_n$, write
@@ -2588,7 +2618,9 @@ Theorem~\ref{thm:transport-variants} gives the same projection
 comparison with the weight $k_n$ in place of $d_n$.  Hence
 $\pi(g)y=y$ and
 $\beta(g)=0$ for every $g\in L$, contradicting the previous paragraph.
-So $d_g=0$, that is, $p$ commutes with $\Theta(g)$, for every $g\in L$.
+This contradiction shows that the original assumption $d_{g_0}\ne0$ was
+impossible.  Thus, in the original corona, $d_g=0$ for every $g\in L$;
+equivalently, $p$ commutes with $\Theta(g)$ for every $g\in L$.
 \end{proof}
 
 Equivalently, every projection of $\Theta(sLs^{-1})'\cap\mathcal Q$
@@ -2824,8 +2856,11 @@ soficity is detected by finite targets \cite{GR}.
 \leanverified{Sofic/LiteralWitnessConsequences}{GroupApproximation.LiteralWitnessConsequences.literalWitness_locallyFiniteKernel_nonMF}
 
 \begin{proof}
-By Lemma~\ref{lem:permanence}(3), the Clifford group is locally
-finite, hence MF\@.  The group $\Sigma$ identifies with the subgroup of
+The Clifford group $\Cl(X)$ is locally finite: every finitely
+generated subgroup involves only finitely many sites, hence is contained
+in the corresponding finite Clifford group.  Therefore $\Cl(X)$ is MF
+by Lemma~\ref{lem:permanence}(3).  The group $\Sigma$ identifies with
+the subgroup of
 $\GL_4(\mathbb Q)$ generated by $\bar\Gamma$ and $D$: the levels
 are $D^{-n}\bar\Gamma D^{n}$, and the determinant gives the
 $\mathbb Z$-coordinate.  It is residually finite.  Modulo every odd
