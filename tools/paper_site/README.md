@@ -19,9 +19,16 @@ figure in the tex changes, that function must follow by hand.
 `build.py` also embeds the full Lean source of every declaration the
 manifest or an in-tex `\leanverified` marker names — statement and proof,
 split at the top-level `:=`, with the source line for a GitHub deep link.
-On the page: Lean badges (on theorem heads and on every Proof line whose
-statement is formalized) open a fixed side drawer — statement and proof
-shown together, the manuscript never reflows.  A `\leanverified` marker in
+`docs/NON_MF_PROOF_LEDGER.md` (hand-audited, pin-enforced in CI) is a
+fourth input: its step rows drive the Proof-line badges — `Lean ✓` only
+when every printed step's proof route is graded EXACT, a count like
+`Lean 9/14` when the Lean development diverges from the printed route,
+no badge without audited data — and the drawer lists each printed step
+with its grade and declarations.
+
+On the page: Lean badges (on theorem heads and on graded Proof lines)
+open a fixed side drawer — statement and proof shown together, the
+manuscript never reflows.  A `\leanverified` marker in
 running text renders as a chip at that exact spot, and identifiers inside
 drawer code expand the declaration they name (statements of every decl in
 the cited modules are embedded for this).  Manuscript proofs

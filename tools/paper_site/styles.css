@@ -353,6 +353,24 @@ dl.bib { margin: 1em 0; }
 .lean-trunc { color: var(--ink-faint); font-style: italic; font-size: 0.9em; margin: 2px 0; }
 .lean-name { overflow-wrap: anywhere; }
 details.proof > summary .badge-lean { font-size: 12px; padding: 0 8px; }
+.badge-lean-partial { color: var(--ink-soft); background: var(--bg-inset); border-color: var(--rule); }
+.badge-lean-partial:hover { border-color: var(--ink-soft); }
+
+/* per-step grading in the drawer, from the audited proof-step ledger */
+.ledger-head { margin: 16px 0 4px; font-weight: 700; }
+.ledger-src { font-weight: 400; font-style: italic; color: var(--ink-faint); font-size: 0.88em; }
+.ledger-step {
+  display: flex; gap: 8px; align-items: baseline; flex-wrap: wrap;
+  padding: 6px 0; border-top: 1px solid var(--rule-soft);
+  font-size: 13.5px;
+}
+.ls-grade { flex: 0 0 auto; font-size: 12px; border-radius: 999px; padding: 0 8px; white-space: nowrap; }
+.lg-exact { color: var(--verified); background: var(--verified-bg); }
+.lg-mismatch { color: #8a6100; background: #f7efdc; }
+.lg-missing, .lg-underspecified { color: var(--ink-faint); background: var(--bg-inset); }
+.ls-claim { flex: 1 1 260px; }
+.ls-decls { flex: 1 1 100%; padding-left: 2px; }
+.ls-decl { font-size: 0.85em; color: var(--ink-soft); overflow-wrap: anywhere; }
 .lean-chip {
   font-size: 11px; font-style: italic; font-family: inherit;
   color: var(--verified); background: var(--verified-bg);

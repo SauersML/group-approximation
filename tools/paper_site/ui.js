@@ -790,20 +790,57 @@ function proofOwnerEl(p) {
   return el && el.classList.contains('thm') ? el : null;
 }
 
-/* Every proof of a formalized statement gets the badge: a proof without
-   markers of its own opens its theorem's formal statement and proof. */
+/* Proof badges are driven by the audited proof-step ledger, never implied:
+   full check only when every printed step's proof route is graded EXACT,
+   a step count when the Lean development diverges from the printed route,
+   and no badge at all without audited step data. */
+function ledgerRowsFor(el) {
+  const L = window.LEDGER || {};
+  const out = [];
+  for (const lab of (el.dataset.labels || '').split(' ')) if (lab && L[lab]) out.push(...L[lab]);
+  return out;
+}
+
 function addProofBadges() {
   document.querySelectorAll('#paper-body details.proof').forEach(p => {
-    if (p.querySelector(':scope > summary .badge-lean')) return;
+    if (p.querySelector(':scope > summary .badge-lean')) return;   // marker-backed proofs keep their own
     const owner = proofOwnerEl(p);
     if (!owner || !owner.querySelector('.lean-panel-tpl')) return;
+    const rows = ledgerRowsFor(owner);
+    if (!rows.length) return;
+    const exact = rows.filter(r => r.proof === 'EXACT').length;
     const b = document.createElement('button');
     b.className = 'badge badge-lean';
     b.setAttribute('aria-expanded', 'false');
-    b.title = 'The statement this proves is machine-checked in Lean 4 — click for the formal statement and proof';
-    b.innerHTML = 'Lean&thinsp;✓';
+    if (exact === rows.length) {
+      b.innerHTML = 'Lean&thinsp;✓';
+      b.title = 'Every step of this printed proof matches the Lean development exactly (audited proof-step ledger)';
+    } else {
+      b.classList.add('badge-lean-partial');
+      b.textContent = 'Lean ' + exact + '/' + rows.length;
+      b.title = exact + ' of ' + rows.length + ' printed steps match the Lean development exactly; the statement itself is fully machine-checked. Click for the step-by-step grading.';
+    }
     p.querySelector(':scope > summary').appendChild(b);
   });
+}
+
+const GRADE_TXT = { 'EXACT': '✓ exact', 'MISMATCH': 'different route', 'MISSING': 'not formalized', 'UNDER-SPECIFIED': 'under-specified' };
+function ledgerHtml(rows) {
+  let html = '<div class="ledger-head">Printed steps, graded against Lean' +
+    ' <span class="ledger-src">from the audited proof-step ledger</span></div>';
+  for (const r of rows) {
+    const cls = 'lg-' + r.proof.toLowerCase().replace(/[^a-z]/g, '');
+    const decls = r.decls.map(d => {
+      const short = d.replace(/^GroupApproximation\./, '').replace(/^Mathlib:/, '');
+      const key = resolveLeanRef(short, '', '');
+      const code = '<code class="ls-decl">' + escHtml(short) + '</code>';
+      return key ? '<a class="lean-ref" data-key="' + escHtml(key) + '" title="Show this declaration">' + code + '</a>' : code;
+    }).join(' ');
+    html += '<div class="ledger-step"><span class="ls-grade ' + cls + '">' + (GRADE_TXT[r.proof] || escHtml(r.proof)) + '</span>' +
+      '<span class="ls-claim">' + escHtml(r.claim) + '</span>' +
+      (decls ? '<span class="ls-decls">' + decls + '</span>' : '') + '</div>';
+  }
+  return html;
 }
 /* One fixed side panel for all formal counterparts: a badge opens it, the
    manuscript never reflows, and the declarations arrive already expanded —
@@ -831,7 +868,7 @@ function setupLeanPanels(root) {
     const ref = ev.target.closest('.lean-ref');
     if (ref) {
       ev.preventDefault();
-      const pre = ref.closest('pre');
+      const pre = ref.closest('pre, .ledger-step');
       const next = pre && pre.nextElementSibling;
       if (next && next.classList.contains('lean-ref-card')) {
         const same = next.dataset.key === ref.dataset.key;
@@ -887,6 +924,8 @@ function setupLeanPanels(root) {
     const name = nameEl ? nameEl.textContent.replace(/\.$/, '') : 'Statement';
     drawer.innerHTML = '<div class="lean-drawer-head"><span class="lean-drawer-title">' + escHtml(name) + ' in Lean</span>' +
       '<button class="lean-drawer-close" aria-label="Close">×</button></div>' + tpl.innerHTML;
+    const rows = ledgerRowsFor(src);
+    if (rows.length) drawer.insertAdjacentHTML('beforeend', ledgerHtml(rows));
     drawer.querySelectorAll('details.lean-decl').forEach(d => { d.open = true; });
     const deps = drawer.querySelector('.lean-panel-deps');
     if (deps && window.__graphDeps) {

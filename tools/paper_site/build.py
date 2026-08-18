@@ -96,6 +96,39 @@ def extract_decl(module, decl):
     return None
 
 
+def parse_ledger():
+    """Step rows of docs/NON_MF_PROOF_LEDGER.md, grouped by anchor.
+
+    The ledger is hand-authored audit metadata (its pin is machine-enforced
+    in CI); each row grades one printed step's statement and proof route
+    against the Lean development."""
+    path = REPO / 'docs' / 'NON_MF_PROOF_LEDGER.md'
+    if not path.exists():
+        return {}
+    txt = path.read_text(encoding='utf-8')
+    m = re.search(r'<!-- LEDGER-STEPS -->(.*?)<!-- END-LEDGER-STEPS -->', txt, re.S)
+    if not m:
+        return {}
+    by_anchor = {}
+    for line in m.group(1).splitlines():
+        line = line.strip()
+        if not line.startswith('|'):
+            continue
+        cells = [c.strip() for c in line.strip('|').split('|')]
+        if len(cells) < 6 or cells[0] in ('Step', '') or set(cells[0]) <= set('- '):
+            continue
+        decls = [d.strip().strip('`') for d in cells[3].split(';')]
+        decls = [d for d in decls if d and d != '-']
+        by_anchor.setdefault(cells[1], []).append({
+            'step': cells[0],
+            'claim': cells[2][:240],
+            'decls': decls,
+            'stmt': cells[4],
+            'proof': cells[5],
+        })
+    return by_anchor
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('--out', default=str(HERE / 'index.html'))
@@ -166,6 +199,7 @@ def main():
         'window.CLAIMS = ' + json.dumps(json.loads(claims)).replace('</', '<\\/') + ';\n'
         'window.LEAN_SRC = ' + json.dumps(lean_src).replace('</', '<\\/') + ';\n'
         'window.LEAN_SIGS = ' + json.dumps(lean_sigs).replace('</', '<\\/') + ';\n'
+        'window.LEDGER = ' + json.dumps(parse_ledger()).replace('</', '<\\/') + ';\n'
     )
 
     for name, payload in [
