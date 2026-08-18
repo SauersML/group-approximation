@@ -2286,22 +2286,18 @@ For a countable group $G_1$, the \emph{MF residual} is
 a normal subgroup of $G_1$; the inner intersection is over all
 homomorphisms and the outer one over all sequences $(d_n)$ of positive
 integers, in accordance with the convention fixed after
-\eqref{eq:corona}.  If $G_1/N$ is MF then composing
-$G_1\to G_1/N$ with an injective homomorphism $G_1/N\to\U(\mathcal Q)$
-gives a homomorphism with kernel $N$, so
-$\operatorname{Res}_{\mathrm{MF}}(G_1)\le N$.  Thus the MF residual is
-contained in every normal subgroup whose quotient is MF, and
-Proposition~\ref{prop:univquot} shows that its own quotient is MF\@.
-This is the sense in which \emph{residual} is used here, as for the
-nilpotent and finite residuals.  The
-intersection is the same whether the dimension sequences are required
-to be strictly increasing or allowed to be arbitrary positive
-(Proposition~\ref{prop:mf-equivalences}).  This is the
-operator-norm analogue of
-the invisible subgroups of \cite[Definitions~2.5--2.7]{SlofstraCorrelations}
-and of the metric-ultraproduct approximation framework of \cite{NST}.
+\eqref{eq:corona}.
 \leanverified{Sofic/ManuscriptExactWrappers}{GroupApproximation.ManuscriptExactWrappers.manuscriptMFRadical}
 \end{definition}
+
+If $G_1/N$ is MF, then composing $G_1\to G_1/N$ with an injective
+homomorphism $G_1/N\to\U(\mathcal Q)$ gives a homomorphism with
+kernel $N$, so $\operatorname{Res}_{\mathrm{MF}}(G_1)\le N$: the MF
+residual is contained in every normal subgroup whose quotient is MF,
+and Proposition~\ref{prop:univquot} shows that its own quotient is
+MF\@.  It is the operator-norm analogue of the invisible subgroups
+of \cite[Definitions~2.5--2.7]{SlofstraCorrelations} and of the
+metric-ultraproduct approximation framework of \cite{NST}.
 
 \begin{lemma}[functoriality]\label{lem:portable}
 For every homomorphism $\varphi\colon G_1\to G_2$ of countable
@@ -2481,11 +2477,12 @@ displayed presentation.  The group \(F_8\) is residually finite, hence MF by
 Lemma~\ref{lem:permanence}(2), while \(E\) is not MF by Theorem~\ref{thm:A}.
 \end{proof}
 
-\section{Orbit collapse}\label{subsec:collapse}
+\section{Commuting orbits and the MF residual}\label{subsec:collapse}
 
-The argument of Theorem~\ref{thm:sign-criterion} extends from the
-negative spectral corner of a central involution to an arbitrary
-projection of $\mathcal Q$ with commuting conjugation orbit.
+Theorem~\ref{thm:sign-criterion} compresses to the negative spectral
+corner of a central involution.  The theorems of this section replace
+that corner by an arbitrary projection of $\mathcal Q$ whose
+conjugation orbit commutes.
 
 \begin{theorem}[a commuting orbit forces commutation]\label{thm:projection-collapse}
 Let $H$ be countable, let $L\le H$ have property~\textup{(T)}, let
@@ -2717,13 +2714,16 @@ itself.
 Thus (W1) and (W2) of Definition~\ref{def:invwitness} hold, and only
 (W3) remains.
 
-The linear generators $x,y,z$ commute with $d$, and $t$ carries each $v_i$ to
-$v_i^2$, so $\iota(v_i^2)$ commutes with $d$ as well.  Hence
-$\iota(g)\,d\,\iota(g)^{-1}$ depends only on the exponent vector of
-the translation part of $g$ modulo $2$.  Hence there are at most eight
-such conjugates, indexed by $(\Z/2)^3$.  By Theorem~\ref{thm:kazhdan-clifford} the
+The linear generators $x,y,z$ commute with $d$, and conjugation by
+$t$ sends each $v_i$ to $v_i^2$, so $\iota(v_i^2)$ commutes with $d$
+as well.  The conjugate $\iota(g)\,d\,\iota(g)^{-1}$ therefore
+depends only on the exponent vector of the translation part of $g$
+modulo $2$, so there are at most eight such conjugates, indexed by
+$(\Z/2)^3$.  By Theorem~\ref{thm:kazhdan-clifford} the
 distinguished word is $w=[d,\iota(v_1)\,d\,\iota(v_1)^{-1}]$, the commutator
-attached to the class of $v_1$.  The six words
+attached to the class of $v_1$.  The linear part acts through
+$\SL_3(\mathbb Z/2)$, which is transitive on the nonzero parity
+classes; the six words
 $x,x^2,z,yz,yx,y^2x$ in the linear generators send the class of $v_1$
 to the six remaining nonzero classes, and each commutes with $d$.
 Conjugating the displayed identity by the corresponding $\iota(r)$
@@ -2779,7 +2779,7 @@ from $H$ to an MF group factors through it.
 
 \subsection{The reduced group algebra of \texorpdfstring{$E$}{E}}
 
-The stable finiteness in Theorem~\ref{thm:reduced} comes from two standard
+The stable finiteness in Theorem~\ref{thm:reduced} rests on two
 facts.
 
 \begin{lemma}\label{lem:faithfultrace}
@@ -2926,7 +2926,7 @@ for the representatives $g=\tau$ and $h=j(\bar v_1)\tau$, and
 $g^{-1}h=\tau^{-1}j(\bar v_1)\tau\in K$ since $j(\bar v_1)\in B$ and
 $K=\tau^{-1}B\tau$; hence $gK=hK$.  (Sites are cosets, so the product
 and inverse have to be taken in $\Sigma$ on representatives, not on the
-sites themselves.)  Conversely, the chart
+sites themselves.)  Conversely, the bijection
 $u\,\bar\alpha(\bar\Gamma)\mapsto\tau^{-1}j(u)\tau o$ identifies the
 block of $o$ with $\bar\Gamma/\bar\alpha(\bar\Gamma)$ and the
 generating edge with the pair
@@ -3015,7 +3015,7 @@ finite.
 \end{lemma}
 
 \begin{proof}
-The quotient map by $\langle\zeta\rangle$ carries $C(\mathcal G)$ onto
+The quotient map by $\langle\zeta\rangle$ maps $C(\mathcal G)$ onto
 the free product of the elementary abelian $2$-groups of the blocks,
 and $M_S$ into the free product of the finitely many factors at blocks
 meeting $S$.  A free
@@ -3191,9 +3191,9 @@ not, and neither is the set of presentation codes of non-MF groups.
 \leanverified{Computability/AdianRabinVariantTransform}{GroupApproximation.AdianRabinVariantTransform.operatorMF_negative_side_not_re_of_wordProblem}
 
 \begin{proof}
-For the undecidability of $W$, take a modular machine whose
-configuration halting problem is undecidable and the finitely presented
-group built from it.  That group has a presentation code; the halting
+For the undecidability of $W$, take an Aanderaa--Cohen modular
+machine whose configuration halting problem is undecidable and the
+finitely presented group built from it.  That group has a presentation code; the halting
 word of a configuration is a computable function of the configuration in
 the numbering that code uses; and the code's word problem holds on that
 word exactly when the configuration halts.  A decision procedure for $W$
@@ -3209,9 +3209,9 @@ $E$ and is non-MF by Lemma~\ref{lem:permanence}(1).  Composing a
 decision procedure for MF recognition with this map would therefore
 decide $W$, so no such procedure exists.  For the last assertion, the
 positive instances of $W$ are exactly those carrying a finite
-certificate --- a list of conjugators and relators, written as raw
-data --- and whether a certificate works is decided by a search over
-raw words, so $W$ is recursively enumerable.  Were its complement
+certificate --- a product of conjugates of relators freely equal to
+the given word --- and whether a given certificate works is
+decidable, so $W$ is recursively enumerable.  Were its complement
 recursively enumerable as well, $W$ would be decidable, which it is
 not.  Finally, the preimage of the set of non-MF presentation codes
 under this computable map is exactly the set of pairs outside $W$, and
@@ -3219,46 +3219,10 @@ the preimage of a recursively enumerable set under a computable map is
 recursively enumerable.
 \end{proof}
 
-The reduction requires an effective coding of presentations and a
-computable transformation of codes; without these conditions it would
-not establish undecidability.
 \leanverified{Computability/AdianRabinVariantTransform}{GroupApproximation.AdianRabinVariantTransform.correct}
 \leanverified{Computability/AdianRabinVariantTransform}{GroupApproximation.AdianRabinVariantTransform.operatorMF_recognition_undecidable_of_wordProblem}
 
-The source of the undecidability is proved here as well.  Undecidability
-of $W$ is classical, and a finitely presented group carrying a sequence
-of words whose triviality is undecidable is available here, with no
-hypothesis and no literature input, by way of Aanderaa--Cohen modular
-machines instead of Boone--Britton.
 \leanverified{Computability/NovikovBoone}{GroupApproximation.BooneGroup.exists_finitelyPresented_wordProblem_undecidable}
-Matching that group to $W$ is a question of coordinates rather than of
-group theory --- $W$ is a predicate on codes, while the existence
-statement supplies a group and a sequence of words --- and the two sides
-are now matched, in four steps.  The words are written as raw data in
-the numbering the code uses, so no transport along a coding is needed to
-read them.  The map sending a configuration to its word is primitive
-recursive, hence computable, even though the generator indices it names
-are obtained by choice: for a fixed presentation those indices are fixed
-natural numbers, and the word is built from them by repetition and
-concatenation, so the map of the varying argument is computable whether
-or not the indices can be evaluated.  The code's word problem on that
-word is triviality of the halting element, a renumbering away from what
-the presentation already proves; and the halting element is trivial
-exactly when the configuration halts, which is what the group was built
-for.  Agreement with halting is therefore a theorem and not an
-assumption.  Joining these at the group of a machine whose configuration
-halting problem is undecidable leaves $W$ undecidable outright, and the
-corollary carries no hypothesis.
-
-The negative side needs one more ingredient, and it is the same
-coordinate discipline.  A certificate for $w=1$ is naturally a list of
-conjugators and relators in the free group on the code's generators,
-but that free group depends on the code, so no search can range over
-it; written instead as raw words, and with the equality test replaced
-by a deletion sequence witnessing free triviality, the certificates
-become data a single unbounded search can enumerate.  That makes $W$
-recursively enumerable, and an undecidable recursively enumerable
-predicate has a complement that is not.
 \leanverified{Computability/WordProblemRE}{GroupApproximation.WordProblemRE.rePred_wordProblemPred}
 \leanverified{Computability/WordProblemRE}{GroupApproximation.WordProblemRE.not_rePred_compl_wordProblemPred}
 
@@ -3288,7 +3252,7 @@ generated non-MF groups.
 
 \section{Limitations of the operator-norm method}\label{sec:limits}
 
-The proof is specific to the operator norm.  If multiplication is
+The argument requires operator-norm control.  If multiplication is
 controlled only in normalized Hilbert--Schmidt norm, the induced adjoint
 operators on the Hilbert--Schmidt spaces need not be close in operator
 norm: the estimate $\opnorm{\Ad(U)-\Ad(V)}\le2\opnorm{U-V}$ has no
@@ -3306,11 +3270,11 @@ pairwise normalized Hilbert--Schmidt distances can be made smaller
 than any prescribed positive bound.
 \leanverified{Sofic/NormTraceGap}{GroupApproximation.NormModel.exists_hs_collapse}
 Thus $2$-norm triviality of an element does not by itself prove a
-group non-MF\@.  The central-involution argument instead passes to an
-invariant corner and normalizes the trace on that corner, so the
-$2$-norm separation is independent of the corner's relative rank: the
-corner $q_nM_{d_n}(\C)q_n$ is untouched by padding while $d_n$ grows,
-and $r_n/d_n$ may tend to zero without affecting the contradiction.
+group non-MF\@.  The central-involution argument passes to an
+invariant corner and equips it with the trace normalized by its own
+rank $r_n$: the $2$-norm separation on the corner is measured against
+$r_n$ rather than $d_n$, so $r_n/d_n$ may tend to zero without
+affecting the contradiction.
 The spectral projection of Theorem~\ref{thm:normal-kazhdan} is
 normalized on its own range in the same way, and the proof of
 Theorem~\ref{thm:projection-collapse} normalizes by the rank $k_n$.
@@ -3353,10 +3317,9 @@ contains $\{1,w\}$ by Theorem~\ref{thm:signfree}, and
 Corollary~\ref{cor:collapsequot}, applied to $E/\langle w\rangle$ and
 its defect $D=D_{\mathrm{coll}}$, computes it from
 $\operatorname{Res}_{\mathrm{MF}}\bigl((E/\langle w\rangle)/D\bigr)$.
-These reductions give no further information about that last group,
-because the elements they detect have already been killed: $w$ is
-trivial in $E/\langle w\rangle$, and the commutators generating $D$
-are trivial in the quotient by $D$.  That quotient may still contain
+These reductions give no further information about that last group:
+$w=1$ in $E/\langle w\rangle$, and the generators of $D$ are trivial
+in the quotient by $D$.  That quotient may still contain
 a finite normal subgroup, a normal Kazhdan subgroup, or an orbit
 configuration to which the preceding criteria apply.
 \item Is there a torsion-free finitely presented non-MF group?  For
