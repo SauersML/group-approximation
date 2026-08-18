@@ -1,0 +1,27 @@
+<!doctype html><meta charset='utf-8'><title>hilbert-embeddable-is-representation-realized-proof</title><style>
+body{font:15px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;max-width:60em;margin:2em auto;padding:0 1em;color:#1c1e1c}
+a{color:#4f46e5;text-decoration:none}a:hover{text-decoration:underline}
+code,pre{font:13px/1.45 Menlo,monospace;background:#f4f4f2}
+pre{padding:.8em;overflow-x:auto;border:1px solid #e5e7e3}
+.badge{display:inline-block;padding:.1em .55em;border-radius:.8em;color:#fff;font:700 11px -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;letter-spacing:.04em}
+.node{font:13px Menlo,monospace}
+h1{font-size:1.4em}h2{font-size:1.05em;border-bottom:1px solid #e5e7e3;padding-bottom:.2em}
+ul.rel{list-style:none;padding-left:0}ul.rel li{margin:.25em 0}
+.muted{color:#8b9089}.tree{white-space:pre;font:13px/1.5 Menlo,monospace;background:#fafaf8;border:1px solid #e5e7e3;padding:1em;overflow-x:auto}
+table{border-collapse:collapse}td,th{border:1px solid #e5e7e3;padding:.25em .6em;font-size:.9em}
+</style><script>MathJax={tex:{inlineMath:[["$","$"],["\\(","\\)"]]}};</script><script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script><body><p><a href='index.html'>← index</a></p>
+<h1><span class='node'>hilbert-embeddable-is-representation-realized-proof</span> Expand the length in characters and recognize the elementary cone generators</h1>
+<p><span class="badge" style="background:#178a5e">COMPLETE</span> <span class='muted'>route · <code>research/hilbert-embeddable-is-representation-realized-proof.md</code></span></p>
+<h2>Target</h2><ul class='rel'>
+<li><a class="node" href="hilbert-embeddable-is-representation-realized.html">hilbert-embeddable-is-representation-realized</a> <span class="badge" style="background:#178a5e">ESTABLISHED</span> A Hilbert embeddable length is exactly the normalized-HS metric of a representation</li>
+</ul>
+<h2>Artifacts</h2><ul class='rel'>
+<li><code>docs/TRUE_HILBERT_EMBEDDABLE_IS_REPRESENTATION_REALIZED.md</code></li>
+</ul>
+<h2>Statement</h2>
+<h2>Expand in characters and recognize the cone generators</h2>
+<p>Direct establishment; the complete argument is §1 of the cited note. <code>requires: []</code> is a proof commitment.</p>
+<p><strong>The generators are squared Hilbert-space distances.</strong> For an irreducible <code>π_i</code>, unitary invariance of the Frobenius norm gives <code>ψ_i(a⁻¹b) = ½‖π_i(a⁻¹b) − 1‖_F² = ½‖π_i(b) − π_i(a)‖_F²</code>, a squared distance in the Hilbert space <code>(M_{d_i}(ℂ), ‖·‖_F)</code>. So each <code>ψ_i</code> is conditionally negative definite, and so is every nonnegative combination.</p>
+<p><strong>The cone is everything.</strong> Expand <code>ℓ = Σ_i b_i χ_i</code>. The character criterion (<code><a href="hilbert-embeddable-length-hyperlinearity.html">hilbert-embeddable-length-hyperlinearity</a></code>, item 1) gives <code>b_i ≤ 0</code> for nontrivial <code>i</code>; and <code>ℓ(1) = 0</code> gives <code>Σ_i b_i d_i = 0</code>, hence <code>b_triv = −Σ_{i≠triv} b_i d_i</code> and <code>ℓ(h) = Σ_{i≠triv}(−b_i)(d_i − χ_i(h))</code> with <code>−b_i ≥ 0</code>. Taking real parts is harmless since <code>ℓ</code> is real and conjugate characters pair up.</p>
+<p><strong>Realization.</strong> Frobenius norms add over direct sums, so integer multiplicities <code>a_i</code> give <code>ρ = ⊕ π_i^{⊕a_i}</code> with <code>½‖ρ(h) − 1‖_F² = ℓ(h)</code> on the nose; real multiplicities are handled by rational approximation and clearing denominators, which costs a positive scalar and an arbitrarily small uniform error — harmless because the witness constraints are strict inequalities with room.</p>
+<p><strong>The microstate.</strong> If <code>ρ</code> satisfies <code>‖ρ(x) − 1‖₂ ≤ ε</code> on the defect set and <code>‖ρ(y) − 1‖₂ ≥ c</code> on the target set, then <code>ρ ∘ φ</code> is <code>(Φ, ε)</code>-multiplicative and <code>(Φ, c)</code>-separating: <code>ρ</code> is a homomorphism, so every multiplicative defect of <code>ρ ∘ φ</code> is <code>ρ</code> of a defect of <code>φ</code>. The inclusion <code>sofic ⊆ 𝒞_FU</code> is the computation <code>‖σ − 1‖²_{2,norm} = 2 d_H(σ, 1)</code> for permutation matrices.</p></body>

@@ -1,0 +1,58 @@
+<!doctype html><meta charset='utf-8'><title>glebsky-fin-case-instantiation</title><style>
+body{font:15px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;max-width:60em;margin:2em auto;padding:0 1em;color:#1c1e1c}
+a{color:#4f46e5;text-decoration:none}a:hover{text-decoration:underline}
+code,pre{font:13px/1.45 Menlo,monospace;background:#f4f4f2}
+pre{padding:.8em;overflow-x:auto;border:1px solid #e5e7e3}
+.badge{display:inline-block;padding:.1em .55em;border-radius:.8em;color:#fff;font:700 11px -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;letter-spacing:.04em}
+.node{font:13px Menlo,monospace}
+h1{font-size:1.4em}h2{font-size:1.05em;border-bottom:1px solid #e5e7e3;padding-bottom:.2em}
+ul.rel{list-style:none;padding-left:0}ul.rel li{margin:.25em 0}
+.muted{color:#8b9089}.tree{white-space:pre;font:13px/1.5 Menlo,monospace;background:#fafaf8;border:1px solid #e5e7e3;padding:1em;overflow-x:auto}
+table{border-collapse:collapse}td,th{border:1px solid #e5e7e3;padding:.25em .6em;font-size:.9em}
+</style><script>MathJax={tex:{inlineMath:[["$","$"],["\\(","\\)"]]}};</script><script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script><body><p><a href='index.html'>← index</a></p>
+<h1><span class='node'>glebsky-fin-case-instantiation</span> In the Fin case the separated sets are finite-window projections, and the generic length is forced</h1>
+<p><span class="badge" style="background:#178a5e">ESTABLISHED</span> <span class='muted'>claim · <code>research/glebsky-fin-case-instantiation.md</code></span></p>
+<p class='muted'>via route glebsky-fin-case-instantiation-citation</p>
+<h2>Routes into this claim</h2><ul class='rel'>
+<li><a class="node" href="glebsky-fin-case-instantiation-citation.html">glebsky-fin-case-instantiation-citation</a> <span class="badge" style="background:#178a5e">COMPLETE</span> Read Glebsky 2017 Proposition 5, Corollary 6 and Lemmas 10-11 from the primary PDF</li>
+</ul>
+<h2>Distinct from</h2><ul class='rel'>
+<li><a class="node" href="glebsky-manufactured-invariant-length.html">glebsky-manufactured-invariant-length</a> <span class="badge" style="background:#178a5e">ESTABLISHED</span> The invariant length Glebsky manufactures is a truncated rescaled conjugation-invariant word metric<br><span class='muted'>that gives the general form of the manufactured length; this identifies what its two sets actually are for weak soficity, and why no better length is available there</span></li>
+<li><a class="node" href="glebsky-weak-soficity-is-metric-free.html">glebsky-weak-soficity-is-metric-free</a> <span class="badge" style="background:#178a5e">ESTABLISHED</span> Glebsky&#x27;s weak-soficity permanence produces no metric — the witness is algebraic<br><span class='muted'>that reports the 2023 permanence proof produces no metric; this pins the 2017 construction&#x27;s inputs in the case that permanence theorem uses</span></li>
+<li><a class="node" href="finite-window-decoder.html">finite-window-decoder</a> <span class="badge" style="background:#c08a00">OPEN</span> Finite-window endomorphism decoder<br><span class='muted'>that is a mixed-relator-route claim about decoding one-sided Leavitt maps on paired-radical label spaces in the atlas; this is an external-literature instantiation of Glebsky&#x27;s Proposition 5 and Lemma 3 for the class Fin. The shared vocabulary (&quot;finite window&quot;) is coincidental — that node&#x27;s windows are endomorphism decoding windows in the Leavitt atlas, these are truncation indices of a projection onto finitely many coordinates of a direct product of finite groups.</span></li>
+</ul>
+<h2>Statement</h2>
+<p>Read from arXiv:1506.06940v2 (J. Algebra 477 (2017) 147--162) on 2026-08-14, answering <code>cairn-survivor</code>'s question whether the construction's freedom reaches into the finite sub-product where they have localized the problem.</p>
+<h3>The hypothesis of Corollary 19 is free for <code>Fin</code></h3>
+<p>Corollary 19 needs <code>K subset of Fin</code> with <code>K.approx = (prod K).approx</code>, where <code>prod K</code> adjoins finite direct products.  For <code>K = Fin</code> that is automatic: finite direct products of finite groups are finite, so <code>prod Fin = Fin</code>. Corollary 6 records the same conclusion from the compactness side ("it is true for <code>K = Nil, Sol, Fin</code>, or class of all compact groups"), and line 67 of the paper fixes the terminology: "<code>Fin</code>-approximable groups are called weakly sofic".</p>
+<h3>The two sets are finite-window projections</h3>
+<p>Proposition 5 is where the approximation is produced.  Let <code>X</code> be a closed subgroup of <code>prod_(i in N) H_i</code> with each <code>Pr_i(X) in K</code>, and <code>N</code> normal in <code>X</code>; then <code>X/N</code> is <code>prod K</code>-approximable.  Its proof, given finite <code>Phi</code> in <code>X</code> and <code>n</code>:</p>
+<pre>
+Phi_N = Phi ∩ N,      Phi_0 = Phi \ N,      C_n(Phi_N, X) ∩ Phi_0 = ∅
+</pre>
+<p>(the intersection is empty because <code>C_n(Phi_N,X)</code> lies in <code>N</code>, <code>N</code> being normal).  Compactness of <code>C_n(Phi_N,X)</code> gives an open <code>U</code> containing <code>Phi_0</code> disjoint from it, and hence some <code>k</code> with</p>
+<pre>
+C_n(Pr_1^k(Phi_N), Pr_1^k(X)) ∩ Pr_1^k(Phi_0) = ∅.
+</pre>
+<p>So the approximating homomorphism is the <strong>finite-window projection</strong> <code>Pr_1^k : X -&gt; Pr_1^k(X)</code>, and feeding this into Lemma 3:</p>
+<pre>
+H  =  Pr_1^k(X)              the finite window
+X  =  Pr_1^k(Phi ∩ N)        the ERROR set   -&gt; length 1/n
+Y  =  Pr_1^k(Phi \ N)        the SEPARATED set -&gt; length 1
+</pre>
+<p><strong>The freedom reaches into the finite sub-product because the construction lives there.</strong>  What is <em>not</em> free: given <code>Phi</code> (forced by the test) and <code>n</code>, the error set is determined as <code>Pr_1^k(Phi ∩ N)</code>, and the length is then the capped conjugate-word-length of <code><a href="glebsky-manufactured-invariant-length.html">glebsky-manufactured-invariant-length</a></code> in that set.  The genuinely free parameters are <code>n</code> and <code>k</code> (<code>k</code> may always be enlarged).  So the design problem is not "choose a length" but "compute the character expansion of a determined one, as <code>n,k</code> vary".</p>
+<h3>Why <code>Fin</code> gets the generic length and soficity does not</h3>
+<p>For <code>K = Alt</code> or <code>Sym</code> the paper does <strong>not</strong> use Lemma 3's construction at all.  It uses the normalized Hamming length (Definition 8, <code>H</code> = the class of normalized Hamming length functions) together with two <code>Alt</code>-specific tools:</p>
+<p>&gt; <strong>Lemma 10.</strong> Let <code>A</code> be an alternating group, <code>X</code> in <code>A</code> and &gt; <code>y</code> not in <code>C_n(X,A)</code>.  Then <code>||y||/||x|| &gt;= (n-1)/16</code> for any <code>1 != x in X</code>.</p>
+<p>whose proof is "a manifestation of the fact that in a finite simple group powers of a conjugacy class cover the group 'almost as fast as possible'"; and <strong>Lemma 11</strong>, the amplification trick <code>h |-&gt; h^(⊗r)</code> on <code>[m]^r</code> with <code>1 - ||h^(⊗r)|| = (1 - ||h||)^r</code>, which boosts separation to <code>||psi(y)|| &gt;= 1/2</code> while keeping <code>||psi(x)|| &lt; 1 - (1/4)^(1/n)</code>.</p>
+<p><strong>Lemma 10 has no analogue for general finite groups</strong> — its proof consumes simplicity.  That is why weak soficity must fall back on the generic capped conjugate-word-length: the genericity is forced, not incidental.</p>
+<p><code>[MY INFERENCE]</code> This is a concrete form of the sofic/weakly-sofic gap, and it lines up with the Hilbert-embeddability criterion exactly:</p>
+<ul>
+<li><strong>sofic</strong>: the length is Hamming on <code>A_m</code>, which is Hilbert embeddable —</li>
+<p>recovering <code>sofic implies hyperlinear</code>;</p>
+<li><strong>weakly sofic</strong>: the length is a capped conjugate-word-length on an</li>
+<p>arbitrary finite group, with no covering theorem available to convert it into Hamming-comparable data.</p>
+</ul>
+<p>Glebsky's own remark in the 2023 paper — "not all bi-invariant metric on a finite group is a restriction of a corresponding Hamming metric" — is the abstract shadow of this concrete asymmetry: Lemma 10 is precisely the tool that would perform such a conversion, and it exists only for simple groups.</p>
+<h3>Note on separation, correcting an earlier reading</h3>
+<p>In the <code>Alt</code> case separation <code>&gt;= 1/2</code> is achieved by <strong>amplification</strong> (Lemma 11), not by truncation.  The truncation-is-the-separation-mechanism observation on <code><a href="glebsky-manufactured-invariant-length.html">glebsky-manufactured-invariant-length</a></code> is correct for the generic Lemma 3 construction, hence for <code>Fin</code>, but it is not how the sofic case gets its separation.  Both statements stand in their own case.</p></body>

@@ -1,0 +1,39 @@
+<!doctype html><meta charset='utf-8'><title>telescope-core-not-residually-finite-proof</title><style>
+body{font:15px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;max-width:60em;margin:2em auto;padding:0 1em;color:#1c1e1c}
+a{color:#4f46e5;text-decoration:none}a:hover{text-decoration:underline}
+code,pre{font:13px/1.45 Menlo,monospace;background:#f4f4f2}
+pre{padding:.8em;overflow-x:auto;border:1px solid #e5e7e3}
+.badge{display:inline-block;padding:.1em .55em;border-radius:.8em;color:#fff;font:700 11px -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;letter-spacing:.04em}
+.node{font:13px Menlo,monospace}
+h1{font-size:1.4em}h2{font-size:1.05em;border-bottom:1px solid #e5e7e3;padding-bottom:.2em}
+ul.rel{list-style:none;padding-left:0}ul.rel li{margin:.25em 0}
+.muted{color:#8b9089}.tree{white-space:pre;font:13px/1.5 Menlo,monospace;background:#fafaf8;border:1px solid #e5e7e3;padding:1em;overflow-x:auto}
+table{border-collapse:collapse}td,th{border:1px solid #e5e7e3;padding:.25em .6em;font-size:.9em}
+</style><script>MathJax={tex:{inlineMath:[["$","$"],["\\(","\\)"]]}};</script><script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script><body><p><a href='index.html'>← index</a></p>
+<h1><span class='node'>telescope-core-not-residually-finite-proof</span> Two-divisibility of the telescope collapses levels without a stable letter</h1>
+<p><span class="badge" style="background:#178a5e">COMPLETE</span> <span class='muted'>route · <code>research/telescope-core-not-residually-finite-proof.md</code></span></p>
+<h2>Target</h2><ul class='rel'>
+<li><a class="node" href="telescope-core-not-residually-finite.html">telescope-core-not-residually-finite</a> <span class="badge" style="background:#178a5e">ESTABLISHED</span> The telescope core is LEF but not residually finite</li>
+</ul>
+<h2>Requires</h2><ul class='rel'>
+<li><a class="node" href="literal-telescope-core-lef.html">literal-telescope-core-lef</a> <span class="badge" style="background:#178a5e">ESTABLISHED</span> The telescope core of the literal group is locally residually finite</li>
+<li><a class="node" href="literal-lamp-kernel-clifford-block-amalgam.html">literal-lamp-kernel-clifford-block-amalgam</a> <span class="badge" style="background:#178a5e">ESTABLISHED</span> The literal lamp kernel is a central amalgam of order-512 Clifford blocks</li>
+</ul>
+<h2>Artifacts</h2><ul class='rel'>
+<li><code>docs/LITERAL_GROUP_IS_SOFIC_2026-08-14.md</code></li>
+<li><code>docs/COMMUTING_LAMP_QUOTIENT_STRUCTURE_AND_MF_FORK_2026-08-14.md</code></li>
+</ul>
+<h2>Statement</h2>
+<h3>Direct proof</h3>
+<p>Found by <code>cairn-verify2</code> while stress-testing Lemma 3.1 of <code>docs/LITERAL_GROUP_IS_SOFIC_2026-08-14.md</code> against Theorem 9.1 of <code>docs/COMMUTING_LAMP_QUOTIENT_STRUCTURE_AND_MF_FORK_2026-08-14.md</code>.  The LEF half is <code><a href="literal-telescope-core-lef.html">literal-telescope-core-lef</a></code>; only the failure of residual finiteness is proved here.</p>
+<p><em>Step 1: every finite quotient of <code>T</code> alone collapses the levels.</em>  Let <code>phi : T -&gt; F</code> be a homomorphism to a finite group, and let <code>A = Z[1/2]^3 normal_in T</code> be the translation subgroup.  Then <code>phi(A)</code> is a finite abelian group and is 2-divisible, because <code>A = 2A</code>.  A finite 2-divisible abelian group has odd order: its 2-primary part <code>P</code> satisfies <code>2P = P</code>, and a finite abelian 2-group with that property is trivial.  So <code>2</code> is invertible on <code>phi(A)</code>, and for <code>u in Z^3</code> and <code>k &gt;= 0</code> the element <code>phi(2^{-k} u)</code> is the unique <code>y</code> with <code>2^k y = phi(u)</code>, namely <code>y = 2^{-k} phi(u) in &lt;phi(u)&gt; &lt;= phi(Z^3)</code>.  Hence <code>phi(Z[1/2]^3) = phi(Z^3)</code>, and since <code>T = Z[1/2]^3 semidirect SL_3(Z)</code> and <code>Gbar = Z^3 semidirect SL_3(Z)</code> share the <code>SL_3(Z)</code> factor,</p>
+<p>phi(T) = phi(Gbar) .</p>
+<p>No conjugation by <code>tau</code> is used, so the step is available inside <code>E_T</code>.</p>
+<p><em>Step 2: run the level-collapse verbatim.</em>  Now let <code>phi</code> be a homomorphism from <code>E_T</code> to a finite group.  Its restriction to <code>T</code> satisfies Step 1, so <code>T &lt;= Gbar . ker phi</code>.  Fix a site <code>x = g Gbar</code>; conjugating that inclusion by <code>g</code> and using normality of <code>ker phi</code> gives <code>T &lt;= Stab_V(x) . ker phi</code>.  Write <code>h in T</code> as <code>h = sigma k</code> with <code>sigma in Stab_V(x)</code> and <code>k in ker phi</code>.  Then</p>
+<p>phi(c_{hx}) = phi(sigma) phi(k c_x k^{-1}) phi(sigma)^{-1} = phi(sigma c_x sigma^{-1}) = phi(c_{sigma x}) = phi(c_x) .</p>
+<p>This is Theorem 9.1 of the cited note with its input <code>phi(T) = phi(Gbar)</code> supplied by Step 1 instead of by blindness.  <code>T</code> is transitive on each level (translations already are), so the levels are exactly the <code>T</code>-orbits of sites, and therefore all lamps of a common level have the same image.</p>
+<p><em>Step 3: conclude.</em>  The marked pair is <code>a = tau o = (1,[0])</code> and <code>b = v_1 tau o = (1,[e_1])</code> (<code><a href="literal-lamp-kernel-clifford-block-amalgam.html">literal-lamp-kernel-clifford-block-amalgam</a></code>), which lie in the same level <code>1</code>.  So <code>phi(c_a) = phi(c_b)</code> and</p>
+<p>phi(w) = phi([c_a, c_b]) = 1 .</p>
+<p>Both <code>c_a, c_b</code> and <code>w</code> lie in <code>N_E &lt;= E_T</code>, and <code>w != 1</code> in <code>E</code> by <code>prop:witness</code>, hence <code>w != 1</code> in <code>E_T</code>.  So no finite quotient of <code>E_T</code> separates <code>w</code> from the identity, and <code>E_T</code> is not residually finite. []</p>
+<h3>Why this does not touch Lemma 3.1</h3>
+<p>Step 1 consumes the whole telescope: <code>2^{-k}</code> must be available for every <code>k</code>. A single level <code>Gamma_n = 2^{-n} Z^3 semidirect SL_3(Z)</code> has a lattice translation subgroup, not a 2-divisible one, and <code>[Gamma_n : Gbar] = 8^n</code> is finite, so <code>Gbar</code> is separable in <code>Gamma_n</code> outright and finite quotients of <code>Gamma_n</code> do separate the levels below <code>n</code>.  The collapse is a property of the union, invisible in any single level — which is precisely why the block windows <code>M_J semidirect Gamma_n</code> of Lemma 3.1 are immune to it, and why the soficity proof must be local.</p></body>

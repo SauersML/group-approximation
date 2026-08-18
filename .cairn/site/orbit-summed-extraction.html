@@ -1,0 +1,26 @@
+<!doctype html><meta charset='utf-8'><title>orbit-summed-extraction</title><style>
+body{font:15px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;max-width:60em;margin:2em auto;padding:0 1em;color:#1c1e1c}
+a{color:#4f46e5;text-decoration:none}a:hover{text-decoration:underline}
+code,pre{font:13px/1.45 Menlo,monospace;background:#f4f4f2}
+pre{padding:.8em;overflow-x:auto;border:1px solid #e5e7e3}
+.badge{display:inline-block;padding:.1em .55em;border-radius:.8em;color:#fff;font:700 11px -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;letter-spacing:.04em}
+.node{font:13px Menlo,monospace}
+h1{font-size:1.4em}h2{font-size:1.05em;border-bottom:1px solid #e5e7e3;padding-bottom:.2em}
+ul.rel{list-style:none;padding-left:0}ul.rel li{margin:.25em 0}
+.muted{color:#8b9089}.tree{white-space:pre;font:13px/1.5 Menlo,monospace;background:#fafaf8;border:1px solid #e5e7e3;padding:1em;overflow-x:auto}
+table{border-collapse:collapse}td,th{border:1px solid #e5e7e3;padding:.25em .6em;font-size:.9em}
+</style><script>MathJax={tex:{inlineMath:[["$","$"],["\\(","\\)"]]}};</script><script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script><body><p><a href='index.html'>← index</a></p>
+<h1><span class='node'>orbit-summed-extraction</span> Orbit-summed whole-map extraction after same-orbit closure</h1>
+<p><span class="badge" style="background:#c08a00">OPEN</span> <span class='muted'>route · <code>research/orbit-summed-extraction.md</code></span></p>
+<h2>Target</h2><ul class='rel'>
+<li><a class="node" href="common-self-map-law.html">common-self-map-law</a> <span class="badge" style="background:#c08a00">OPEN</span> Common self-map law for the paired label spaces</li>
+</ul>
+<h2>Requires</h2><ul class='rel'>
+<li><a class="node" href="same-orbit-closure.html">same-orbit-closure</a> <span class="badge" style="background:#c08a00">OPEN</span> Same-orbit closure for the child translation images</li>
+<li><a class="node" href="transition-equivariance.html">transition-equivariance</a> <span class="badge" style="background:#c08a00">OPEN</span> Raw/comb transition unitary is equivariant for the named middle-root translations</li>
+</ul>
+<h2>Artifacts</h2><ul class='rel'>
+<li><code>docs/TRUE_EQUIVARIANT_TRANSITIONS_COARSEN_TO_WHOLE_MAPS.md</code></li>
+</ul>
+<h2>Statement</h2>
+<p>Claimed reduction (AGENDA 2026-08-14): once the raw/comb transition PVM is equivariant under the named middle-root translations (<a href="transition-equivariance.html">transition-equivariance</a>), pulling every source-conditioned response PVM to one base block and orbit-summing gives an exact whole-map PVM within <code>40ε</code> of the equivariance error, independently of orbit size, response alphabet, and matrix dimension (<a href="whole-map-coarsening.html">whole-map-coarsening</a>). Same-orbit closure (<a href="same-orbit-closure.html">same-orbit-closure</a>) excludes the rectangular target enlargement that <a href="rectangular-escape.html">rectangular-escape</a> exposed, so the orbit-summed law lands on ONE source-sized paired label space — exactly <a href="common-self-map-law.html">common-self-map-law</a>.</p></body>

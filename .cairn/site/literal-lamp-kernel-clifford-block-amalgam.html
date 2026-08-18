@@ -1,0 +1,43 @@
+<!doctype html><meta charset='utf-8'><title>literal-lamp-kernel-clifford-block-amalgam</title><style>
+body{font:15px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;max-width:60em;margin:2em auto;padding:0 1em;color:#1c1e1c}
+a{color:#4f46e5;text-decoration:none}a:hover{text-decoration:underline}
+code,pre{font:13px/1.45 Menlo,monospace;background:#f4f4f2}
+pre{padding:.8em;overflow-x:auto;border:1px solid #e5e7e3}
+.badge{display:inline-block;padding:.1em .55em;border-radius:.8em;color:#fff;font:700 11px -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;letter-spacing:.04em}
+.node{font:13px Menlo,monospace}
+h1{font-size:1.4em}h2{font-size:1.05em;border-bottom:1px solid #e5e7e3;padding-bottom:.2em}
+ul.rel{list-style:none;padding-left:0}ul.rel li{margin:.25em 0}
+.muted{color:#8b9089}.tree{white-space:pre;font:13px/1.5 Menlo,monospace;background:#fafaf8;border:1px solid #e5e7e3;padding:1em;overflow-x:auto}
+table{border-collapse:collapse}td,th{border:1px solid #e5e7e3;padding:.25em .6em;font-size:.9em}
+</style><script>MathJax={tex:{inlineMath:[["$","$"],["\\(","\\)"]]}};</script><script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script><body><p><a href='index.html'>← index</a></p>
+<h1><span class='node'>literal-lamp-kernel-clifford-block-amalgam</span> The literal lamp kernel is a central amalgam of order-512 Clifford blocks</h1>
+<p><span class="badge" style="background:#178a5e">ESTABLISHED</span> <span class='muted'>claim · <code>research/literal-lamp-kernel-clifford-block-amalgam.md</code></span></p>
+<p class='muted'>via route literal-lamp-kernel-clifford-block-amalgam-proof</p>
+<h2>Routes into this claim</h2><ul class='rel'>
+<li><a class="node" href="literal-lamp-kernel-clifford-block-amalgam-proof.html">literal-lamp-kernel-clifford-block-amalgam-proof</a> <span class="badge" style="background:#178a5e">COMPLETE</span> Compute the orbital graph of the marked pair and read off the amalgam</li>
+</ul>
+<h2>Needed by routes</h2><ul class='rel'>
+<li><a class="node" href="literal-mark-quotient-finite-residual-proof.html">literal-mark-quotient-finite-residual-proof</a> <span class="badge" style="background:#178a5e">COMPLETE</span> Level collapse in finite quotients plus folding of the free lamplighter</li>
+<li><a class="node" href="literal-mark-quotient-sofic-proof.html">literal-mark-quotient-sofic-proof</a> <span class="badge" style="background:#178a5e">COMPLETE</span> Rerun the block tower without the central sign</li>
+<li><a class="node" href="literal-mark-quotient-via-shulman-amalgam.html">literal-mark-quotient-via-shulman-amalgam</a> <span class="badge" style="background:#c08a00">OPEN</span> Route the literal marked quotient through Shulman&#x27;s amalgam criterion</li>
+<li><a class="node" href="literal-structure-from-block-amalgam.html">literal-structure-from-block-amalgam</a> <span class="badge" style="background:#178a5e">COMPLETE</span> Assemble the literal structure question from the block amalgam</li>
+<li><a class="node" href="literal-telescope-core-lef-proof.html">literal-telescope-core-lef-proof</a> <span class="badge" style="background:#178a5e">COMPLETE</span> Finite block windows give residually finite level models</li>
+<li><a class="node" href="literal-witness-kernel-free-proof.html">literal-witness-kernel-free-proof</a> <span class="badge" style="background:#178a5e">COMPLETE</span> Free action on the block tree computes the witness kernel</li>
+<li><a class="node" href="literal-word-problem-solvable-proof.html">literal-word-problem-solvable-proof</a> <span class="badge" style="background:#178a5e">COMPLETE</span> Decide triviality by telescope matrices plus block-amalgam reduction</li>
+<li><a class="node" href="telescope-core-not-residually-finite-proof.html">telescope-core-not-residually-finite-proof</a> <span class="badge" style="background:#178a5e">COMPLETE</span> Two-divisibility of the telescope collapses levels without a stable letter</li>
+</ul>
+<h2>Distinct from</h2><ul class='rel'>
+<li><a class="node" href="literal-telescope-split-normal-form.html">literal-telescope-split-normal-form</a> <span class="badge" style="background:#178a5e">ESTABLISHED</span> The literal group splits as lamp-by-telescope over an explicit linear quotient<br><span class='muted'>That claim gives the splitting and identifies the quotient `V`; this one identifies the isomorphism type of the lamp kernel and the orbital block structure.</span></li>
+<li><a class="node" href="finite-site-orbits-invariant-clifford-kernel.html">finite-site-orbits-invariant-clifford-kernel</a> <span class="badge" style="background:#178a5e">ESTABLISHED</span> Finite site orbits yield finite invariant Clifford-lamp kernels<br><span class='muted'>That established claim is a general finite-orbit criterion producing finite invariant subgroups; this one computes the concrete literal lamp group, which is infinite and contains free subgroups.</span></li>
+</ul>
+<h2>Artifacts</h2><ul class='rel'>
+<li><code>docs/LITERAL_GROUP_BLOCK_AMALGAM_STRUCTURE_2026-08-14.md</code></li>
+<li><code>non_mf_groups_exist.tex</code></li>
+</ul>
+<h2>Statement</h2>
+<p>Coordinatize the site set of the literal group as <code>X = V/B = disjoint_union_{n in Z} Z[1/2]^3 / 2^n Z^3</code>, the class of <code>t tau^n B</code> being <code>(n, [u] mod 2^n Z^3)</code>.  The <code>V</code>-orbit of the marked pair <code>{tau o, v_1 tau o} = {(1,[0]), (1,[e_1])}</code> is the edge set of a 7-regular graph whose connected components ("blocks") are the cosets of <code>2^(n-1) Z^3 / 2^n Z^3</code>, each a complete graph on eight sites; the block set is <code>V</code>-isomorphic to <code>X</code> itself, with block stabilizers the telescope levels.</p>
+<p>Consequently the lamp kernel of the literal group is</p>
+<p>N_E = free product over i in I of ClLamp(8), amalgamated over the common central involution &lt;w&gt; = Z/2,</p>
+<p>with <code>I</code> countably infinite, each block group of order <code>2^9 = 512</code>, and</p>
+<p>E = (V x &lt;w&gt;) *_{B_1 x &lt;w&gt;} (ClLamp(8) semidirect_product B_1), E/&lt;w&gt; = (*_{i in I} (Z/2)^8) semidirect_product V,</p>
+<p>where <code>B_1</code> is the level containing <code>B</code> with index eight and acts on the eight block sites through the finite affine group <code>AGL_3(F_2)</code>.</p></body>

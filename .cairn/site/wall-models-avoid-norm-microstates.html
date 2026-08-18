@@ -1,0 +1,28 @@
+<!doctype html><meta charset='utf-8'><title>wall-models-avoid-norm-microstates</title><style>
+body{font:15px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;max-width:60em;margin:2em auto;padding:0 1em;color:#1c1e1c}
+a{color:#4f46e5;text-decoration:none}a:hover{text-decoration:underline}
+code,pre{font:13px/1.45 Menlo,monospace;background:#f4f4f2}
+pre{padding:.8em;overflow-x:auto;border:1px solid #e5e7e3}
+.badge{display:inline-block;padding:.1em .55em;border-radius:.8em;color:#fff;font:700 11px -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;letter-spacing:.04em}
+.node{font:13px Menlo,monospace}
+h1{font-size:1.4em}h2{font-size:1.05em;border-bottom:1px solid #e5e7e3;padding-bottom:.2em}
+ul.rel{list-style:none;padding-left:0}ul.rel li{margin:.25em 0}
+.muted{color:#8b9089}.tree{white-space:pre;font:13px/1.5 Menlo,monospace;background:#fafaf8;border:1px solid #e5e7e3;padding:1em;overflow-x:auto}
+table{border-collapse:collapse}td,th{border:1px solid #e5e7e3;padding:.25em .6em;font-size:.9em}
+</style><script>MathJax={tex:{inlineMath:[["$","$"],["\\(","\\)"]]}};</script><script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script><body><p><a href='index.html'>← index</a></p>
+<h1><span class='node'>wall-models-avoid-norm-microstates</span> Wall models stay flexibly far from the whole norm-microstate sector</h1>
+<p><span class="badge" style="background:#178a5e">ESTABLISHED</span> <span class='muted'>claim · <code>research/wall-models-avoid-norm-microstates.md</code></span></p>
+<p class='muted'>via route wall-models-avoid-norm-microstates-proof</p>
+<h2>Routes into this claim</h2><ul class='rel'>
+<li><a class="node" href="wall-models-avoid-norm-microstates-proof.html">wall-models-avoid-norm-microstates-proof</a> <span class="badge" style="background:#178a5e">COMPLETE</span> Pad the wall, transport in the norm sector, then compress back</li>
+</ul>
+<h2>Distinct from</h2><ul class='rel'>
+<li><a class="node" href="kazhdan-asymptotic-commutant-transport.html">kazhdan-asymptotic-commutant-transport</a> <span class="badge" style="background:#178a5e">ESTABLISHED</span> One-sided Kazhdan transport of asymptotic commutants<br><span class='muted'>That claim is the transport statement itself, for one operator-norm asymptotic representation; this one is its flexible consequence for the wall, namely that a wall family cannot be corner-approximated in normalized Hilbert--Schmidt norm by any operator-norm asymptotic representation even after o(d_n) padding.</span></li>
+</ul>
+<h2>Artifacts</h2><ul class='rel'>
+<li><code>docs/TRUE_RELATIVE_WALL_IS_COMMUTANT_GROWTH.md</code></li>
+</ul>
+<h2>Statement</h2>
+<p>If <code>(pi_n,v_n)</code> is a relative wall, there is no operator-norm asymptotic representation <code>rho_n:G-&gt;U(D_n)</code> with <code>D_n/d_n-&gt;1</code> and <code>||p_n rho_n(g) p_n-pi_n(g)||_(2,d_n)-&gt;0</code> for every fixed <code>g</code>.</p>
+<p>Consequently a wall model must carry multiplicative defect of order one in <strong>operator</strong> norm on a corner of vanishing normalized trace, and must keep doing so under every flexible correction.</p>
+<p><strong>Independent confirmation.</strong>  <code><a href="kun-thom-clifford-extension-not-weak-mf.html">kun-thom-clifford-extension-not-weak-mf</a></code> proves, by an unrelated route, that the Kun--Thom Clifford extension has no operator-norm microstates at all.  That is the strongest possible form of the present claim on that particular group: not merely that a wall model must avoid the norm sector, but that the sector is empty there.  The two results are in different categories and neither uses the other, so this is a genuine cross-check rather than a restatement -- and it coexists with <code><a href="kun-thom-clifford-cover-weakly-sofic.html">kun-thom-clifford-cover-weakly-sofic</a></code>, since finite groups with bi-invariant metrics are not matrix microstates.  This strictly strengthens the conclusion of <code>docs/TRUE_CLIFFORD_HYPERLINEARITY_FORCES_AMBIENT_HS_INSTABILITY.md</code>, whose target class is only the exact finite-dimensional representations, i.e. the zero-defect members of the same sector.</p></body>

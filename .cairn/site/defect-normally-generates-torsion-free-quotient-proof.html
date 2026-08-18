@@ -1,0 +1,43 @@
+<!doctype html><meta charset='utf-8'><title>defect-normally-generates-torsion-free-quotient-proof</title><style>
+body{font:15px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;max-width:60em;margin:2em auto;padding:0 1em;color:#1c1e1c}
+a{color:#4f46e5;text-decoration:none}a:hover{text-decoration:underline}
+code,pre{font:13px/1.45 Menlo,monospace;background:#f4f4f2}
+pre{padding:.8em;overflow-x:auto;border:1px solid #e5e7e3}
+.badge{display:inline-block;padding:.1em .55em;border-radius:.8em;color:#fff;font:700 11px -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;letter-spacing:.04em}
+.node{font:13px Menlo,monospace}
+h1{font-size:1.4em}h2{font-size:1.05em;border-bottom:1px solid #e5e7e3;padding-bottom:.2em}
+ul.rel{list-style:none;padding-left:0}ul.rel li{margin:.25em 0}
+.muted{color:#8b9089}.tree{white-space:pre;font:13px/1.5 Menlo,monospace;background:#fafaf8;border:1px solid #e5e7e3;padding:1em;overflow-x:auto}
+table{border-collapse:collapse}td,th{border:1px solid #e5e7e3;padding:.25em .6em;font-size:.9em}
+</style><script>MathJax={tex:{inlineMath:[["$","$"],["\\(","\\)"]]}};</script><script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script><body><p><a href='index.html'>← index</a></p>
+<h1><span class='node'>defect-normally-generates-torsion-free-quotient-proof</span> Draw Hull&#x27;s small-cancellation target words from the normal closure of the simple factor</h1>
+<p><span class="badge" style="background:#178a5e">COMPLETE</span> <span class='muted'>route · <code>research/defect-normally-generates-torsion-free-quotient-proof.md</code></span></p>
+<h2>Target</h2><ul class='rel'>
+<li><a class="node" href="defect-normally-generates-torsion-free-quotient.html">defect-normally-generates-torsion-free-quotient</a> <span class="badge" style="background:#178a5e">ESTABLISHED</span> The simple factor can be made to normally generate a Kazhdan subgroup of the quotient</li>
+</ul>
+<h2>Artifacts</h2><ul class='rel'>
+<li><code>docs/TORSION_FREE_NORMAL_GENERATION_HULL_QUOTIENT.md</code></li>
+</ul>
+<h2>Statement</h2>
+<h3>Why sufficient</h3>
+<p>Complete written argument in the artifact.  The established form is the extreme one: not finite index, but <code>&lt;&lt;pi(S)&gt;&gt;^G = G</code>, so property (T) of the normal closure is property (T) of <code>G</code> and no inheritance step is needed.</p>
+<p>The one new ingredient is a substitution inside Hull's own proof of [Hul16, Corollary 7.4].  That proof picks the two infinite-order elements <code>h_1, h_2</code> that generate the suitable subgroup by applying [Hul16, Corollary 5.7] to the free factor <code>G_2</code>.  Pick them instead from a prescribed infinite normal subgroup <code>D</code> of <code>G_2</code>.  The picking is licensed by</p>
+<ul>
+<li><strong>Lemma A</strong>: an infinite normal subgroup of a torsion-free <code>G in AH</code> is a</li>
+<p>suitable subgroup.  Proof: it is s-normal (<code>D^g = D</code> is infinite), so it acts non-elementarily by the published [Osi16, Lemma 7.1]; the finite-subgroup clause of Hull's Definition 1.4 is vacuous in a torsion-free group.</p>
+</ul>
+<p>and nothing else in Hull's proof uses any property of <code>h_1, h_2</code> beyond "infinite order, in <code>G_2</code>, non-commensurable, with <code>{&lt;h_1&gt;, &lt;h_2&gt;} ,-&gt;_h G_2</code>", all of which [Hul16, Corollary 5.7] delivers for <code>D</code> once <code>D</code> is suitable. The output is <strong>Theorem B</strong> of the artifact: a common quotient <code>Q</code> of <code>G_1</code> and <code>G_2</code>, injective on prescribed finite sets, torsion-free if the inputs are, finitely presented if the inputs are, with the extra clause <code>alpha_2(D) = Q</code>.</p>
+<p>Feeding <code>G_1 = H</code>, <code>G_2 = E</code>, <code>D = &lt;&lt;S&gt;&gt;^E</code> gives <code>G = pi(&lt;&lt;S&gt;&gt;^E)</code>, hence <code>G = &lt;&lt;pi(S)&gt;&gt;^G</code>.  The artifact also records <code>defectNormal = &lt;&lt;pi(S)&gt;&gt;^G</code> exactly (Lemma 0: <code>[t c t^{-1}, -]</code> generates the simple factor because <code>pi(S)</code> is non-abelian simple and <code>t_1 c t_1^{-1}</code> is a nontrivial element of it), so the defect is the whole group and <code>K = G</code> satisfies every hypothesis of <code><a href="normal-kazhdan-defect-non-mf.html">normal-kazhdan-defect-non-mf</a></code>.</p>
+<h3>Source-verified inputs</h3>
+<p>All quoted verbatim in §6 of the artifact, read from the arXiv PDFs:</p>
+<ul>
+<li>[Hul16] Hull, <em>Small cancellation in acylindrically hyperbolic groups</em>,</li>
+<p>arXiv:1308.4345v2: Definition 1.4, Lemma 3.5, Theorem 3.12, Corollary 5.7, Lemma 5.5, Lemma 5.8, Theorem 7.1 (including the torsion clause (e) and the relator shape in its proof), Corollary 7.4 (including the finitely generated case, which bypasses the direct limit of Corollary 7.3 and is what makes finite presentability available).</p>
+<li>[Osi16] Osin, <em>Acylindrically hyperbolic groups</em>, arXiv:1304.1246,</li>
+<p>Lemma 7.1 (s-normal subgroups act non-elementarily).</p>
+<li>[Osi10] Osin, *Small cancellations over relatively hyperbolic groups and</li>
+<p>embedding theorems*, arXiv:math/0411039, Theorem 2.4 clause 5 — the torsion-preservation clause Fournier-Facio cites as "Theorem 2.4.5" for the construction of <code>P</code>.  Verified to say what he uses it to say.</p>
+<li>Fournier-Facio, arXiv:2608.02025v1, §2, read in full.</li>
+</ul>
+<h3>Caveat carried forward</h3>
+<p>The group is a <em>modification</em> of the published one: the artifact does not claim that Fournier-Facio's <code>G</code> as published is normally generated by <code>pi(S)</code>, and §3 of the artifact shows the property cannot be inherited from <code>E</code> (always <code>E/&lt;&lt;S&gt;&gt;^E -&gt;&gt; F_2</code>), so it has to be created inside the small-cancellation step.  Nothing in this route is formalised; the analytic half it feeds is.</p></body>

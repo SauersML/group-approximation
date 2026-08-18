@@ -1,0 +1,58 @@
+<!doctype html><meta charset='utf-8'><title>kun-thom-clifford-relative-wall</title><style>
+body{font:15px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;max-width:60em;margin:2em auto;padding:0 1em;color:#1c1e1c}
+a{color:#4f46e5;text-decoration:none}a:hover{text-decoration:underline}
+code,pre{font:13px/1.45 Menlo,monospace;background:#f4f4f2}
+pre{padding:.8em;overflow-x:auto;border:1px solid #e5e7e3}
+.badge{display:inline-block;padding:.1em .55em;border-radius:.8em;color:#fff;font:700 11px -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;letter-spacing:.04em}
+.node{font:13px Menlo,monospace}
+h1{font-size:1.4em}h2{font-size:1.05em;border-bottom:1px solid #e5e7e3;padding-bottom:.2em}
+ul.rel{list-style:none;padding-left:0}ul.rel li{margin:.25em 0}
+.muted{color:#8b9089}.tree{white-space:pre;font:13px/1.5 Menlo,monospace;background:#fafaf8;border:1px solid #e5e7e3;padding:1em;overflow-x:auto}
+table{border-collapse:collapse}td,th{border:1px solid #e5e7e3;padding:.25em .6em;font-size:.9em}
+</style><script>MathJax={tex:{inlineMath:[["$","$"],["\\(","\\)"]]}};</script><script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script><body><p><a href='index.html'>← index</a></p>
+<h1><span class='node'>kun-thom-clifford-relative-wall</span> Finite normalized-HS Clifford wall for the Kun--Thom pair</h1>
+<p><span class="badge" style="background:#c08a00">OPEN</span> <span class='muted'>claim · <code>research/kun-thom-clifford-relative-wall.md</code></span></p>
+<h2>Routes into this claim</h2><ul class='rel'>
+<li><a class="node" href="kun-thom-clifford-wall-normal-form-route.html">kun-thom-clifford-wall-normal-form-route</a> <span class="badge" style="background:#c08a00">OPEN</span> Build the wall from one compressed-commutant Majorana</li>
+</ul>
+<h2>Needed by routes</h2><ul class='rel'>
+<li><a class="node" href="compressed-commutant-majorana-from-wall-route.html">compressed-commutant-majorana-from-wall-route</a> <span class="badge" style="background:#c08a00">OPEN</span> Push a Clifford wall forward to the compressed commutant</li>
+<li><a class="node" href="kun-thom-clifford-relative-wall-route.html">kun-thom-clifford-relative-wall-route</a> <span class="badge" style="background:#c08a00">OPEN</span> Use a finite Clifford wall instead of embedding the whole crossed product</li>
+</ul>
+<h2>Distinct from</h2><ul class='rel'>
+<li><a class="node" href="kun-thom-clifford-extension-not-weak-mf.html">kun-thom-clifford-extension-not-weak-mf</a> <span class="badge" style="background:#178a5e">ESTABLISHED</span> The Kun--Thom Clifford extension is not weak MF<br><span class='muted'>That settles the operator-norm question for the Clifford extension in the negative, so it is a completed no-go in the MF category; this asks for a normalized-Hilbert--Schmidt construction in the tracial category, which that result does not touch and in fact predicts must avoid the operator-norm sector entirely.</span></li>
+</ul>
+<h2>Artifacts</h2><ul class='rel'>
+<li><code>docs/TRUE_KUN_THOM_CLIFFORD_PHASE.md</code></li>
+<li><code>docs/TRUE_CLIFFORD_HYPERLINEARITY_FORCES_AMBIENT_HS_INSTABILITY.md</code></li>
+<li><code>docs/TRUE_RELATIVE_WALL_IS_COMMUTANT_GROWTH.md</code></li>
+<li><code>docs/FALSE_RELATIVE_WALL_FORCES_FLEXIBLE_HS_INSTABILITY.md</code></li>
+<li><code>docs/FALSE_ONE_INVOLUTION_INSTABILITY.md</code></li>
+<li><code>GroupApproximation/Sofic/CliffordPhaseExtraction.lean</code></li>
+<li><code>GroupApproximation/Sofic/AntipodalRadicalCollision.lean</code></li>
+</ul>
+<h2>Statement</h2>
+<p>Construct normalized-Hilbert--Schmidt almost-representations <code>rho_n:G-&gt;U(d_n)</code> and self-adjoint involutions <code>C_n</code> such that <code>C_n</code> asymptotically commutes with every fixed element of <code>Gamma</code>, while</p>
+<pre>
+C_(h,n)=rho_n(h) C_n rho_n(h)^*,
+||C_n C_(h,n)+C_(h,n) C_n||_2 -&gt; 0.
+</pre>
+<p>These two conditions extend the models to the free-lamp presentation and send the established sofic-radical word to <code>-1</code> with constant-one error.</p>
+<h3>Ideas and established structure (2026-08-14)</h3>
+<p><code>docs/TRUE_RELATIVE_WALL_IS_COMMUTANT_GROWTH.md</code> replaces the two displayed matrix conditions by exact algebra.  Write <code>N=M cap pi(Gamma)'</code> and <code>N_t=M cap pi(t Gamma t^(-1))'</code> for a homomorphism into any finite tracial <code>M</code>.</p>
+<ul>
+<li>The wall exists <strong>iff</strong> <code>N!=N_t</code> (<code><a href="relative-wall-commutant-growth.html">relative-wall-commutant-growth</a></code>).  The</li>
+<p>marked predecessor <code>h</code> is not data, and the Clifford strengthening is a self-adjoint involution in <code>N_t</code> anticommuting with its <code>Gamma</code>-conjugate (<code><a href="compressed-commutant-majorana.html">compressed-commutant-majorana</a></code>).  Passing to the tracial matrix ultraproduct makes the finite endpoint and this exact endpoint the same question, so there is no rate-sensitivity in <em>existence</em>; the rate criterion of <code>FALSE_ONE_NUMBER_RELATIVE_COMMUTANT_CRITERION.md</code> governs only construction from imperfect data.</p>
+<li>The growth index <code>lambda(s)=[Ad pi(s)(N):N]</code> is multiplicative on the</li>
+<p>compressor semigroup, so a wall forces <code>[M:N]=infinity</code> and an infinite strictly increasing compressor tower (<code><a href="compressor-growth-index-homomorphism.html">compressor-growth-index-homomorphism</a></code>).</p>
+<li>Because <code>P_Gamma</code> contains the positive elementary transvections and the</li>
+<p>Steinberg identity is a relation inside it, a wall at a commutator compressor needs <strong>infinite</strong> index growth at a factor compressor (<code><a href="commutator-compressor-carries-no-wall.html">commutator-compressor-carries-no-wall</a></code>).  This applies to the explicit Kun--Thom Theorem E pair and to this repository's explicit compressor <code>t=t_(u_12)</code>, since <code>u_12=[u_13,u_32]</code> with both factors nonnegative. Finite lamps over finite orbits are excluded.  The model-side mechanism is confirmed: <code><a href="compressor-fixed-site-growth-infinite.html">compressor-fixed-site-growth-infinite</a></code> proves that both <code>u_13</code> and <code>u_32</code> gain infinitely many <code>Gamma</code>-fixed sites, for every invariant graph, since the fixed-site set depends on the <code>G</code>-set alone.</p>
+<li>Any wall family stays flexibly far from the entire operator-norm</li>
+<p>asymptotic sector, not merely from exact representations (<code><a href="wall-models-avoid-norm-microstates.html">wall-models-avoid-norm-microstates</a></code>).</p>
+<li><strong>Calibration.</strong>  The normal form holds for an arbitrary target group, so</li>
+<p>it can be tested where the answer is known.  It is: <code><a href="kun-thom-clifford-cover-weakly-sofic.html">kun-thom-clifford-cover-weakly-sofic</a></code> proves the Clifford cover weakly sofic and nonsofic, so the entire algebraic content of this claim -- involution, <code>Gamma_1</code>-centrality, anticommutation, surviving radical word -- is already realized in a metric ultraproduct of finite groups with bi-invariant metrics.  Hence no group-theoretic argument can refute this claim, and the only thing separating it from a solved problem is the metric.  The growth index is a genuinely tracial tool precisely because a metric ultraproduct of finite groups carries no Pimsner--Popa index.</p>
+<li>Under Alekseev--Thom Open Problem 6.2 the whole question becomes a demand</li>
+<p>on two nested exact coordinate centralizers (<code><a href="wall-coordinate-reduction-under-at-op62.html">wall-coordinate-reduction-under-at-op62</a></code>).</p>
+</ul>
+<p>Dead ends recorded so they are not retried.</p>
+<p>1. <em>Ore/positivity.</em>  <code>P_Gamma</code> generates <code>G</code> as a group but its own semigroup relations never write <code>1</code> as a nontrivial positive product, so one-sided inclusions cannot be reversed by fractions.  Commutators, not fractions, are the usable relations.  See <code>FALSE_COMPRESSION_SEMIGROUP_ORE_NO_GO.md</code>. 2. <em>Site relaxation.</em>  The Clifford normal form only asks the involution to centralize the compressed group <code>Gamma_1</code>, which looks weaker than the <code>Gamma&lt;=K</code> condition of <code>FALSE_RELATIVE_BICOMMUTANT_ENDPOINT.md</code> <code>(RBE19)</code>.  It is not: conjugating the site subgroup by <code>t</code> returns the original condition, so the generalized-Bernoulli search space is unchanged. 3. <em>Semifinite comparison.</em>  In the tracial ultraproduct the Jones projection <code>e_N</code> and the compressor unitary <code>Ad pi(t)</code> do not lie in a common finite algebra -- <code>Ad pi(t)=u_t J u_t J</code> leaves the basic construction -- so the projection-comparison proof of the exact case has no direct analogue.  Only the index invariant survives, which is why <code>[M:N]=infinity</code> is the surviving necessary condition rather than a contradiction.</p></body>

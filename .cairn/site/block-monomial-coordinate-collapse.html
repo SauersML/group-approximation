@@ -1,0 +1,35 @@
+<!doctype html><meta charset='utf-8'><title>block-monomial-coordinate-collapse</title><style>
+body{font:15px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;max-width:60em;margin:2em auto;padding:0 1em;color:#1c1e1c}
+a{color:#4f46e5;text-decoration:none}a:hover{text-decoration:underline}
+code,pre{font:13px/1.45 Menlo,monospace;background:#f4f4f2}
+pre{padding:.8em;overflow-x:auto;border:1px solid #e5e7e3}
+.badge{display:inline-block;padding:.1em .55em;border-radius:.8em;color:#fff;font:700 11px -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;letter-spacing:.04em}
+.node{font:13px Menlo,monospace}
+h1{font-size:1.4em}h2{font-size:1.05em;border-bottom:1px solid #e5e7e3;padding-bottom:.2em}
+ul.rel{list-style:none;padding-left:0}ul.rel li{margin:.25em 0}
+.muted{color:#8b9089}.tree{white-space:pre;font:13px/1.5 Menlo,monospace;background:#fafaf8;border:1px solid #e5e7e3;padding:1em;overflow-x:auto}
+table{border-collapse:collapse}td,th{border:1px solid #e5e7e3;padding:.25em .6em;font-size:.9em}
+</style><script>MathJax={tex:{inlineMath:[["$","$"],["\\(","\\)"]]}};</script><script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script><body><p><a href='index.html'>← index</a></p>
+<h1><span class='node'>block-monomial-coordinate-collapse</span> Block-monomial fiber models collapse to permutation models</h1>
+<p><span class="badge" style="background:#178a5e">ESTABLISHED</span> <span class='muted'>claim · <code>research/block-monomial-coordinate-collapse.md</code></span></p>
+<p class='muted'>via route block-monomial-coordinate-collapse-proof</p>
+<h2>Routes into this claim</h2><ul class='rel'>
+<li><a class="node" href="block-monomial-coordinate-collapse-proof.html">block-monomial-coordinate-collapse-proof</a> <span class="badge" style="background:#178a5e">COMPLETE</span> Permutation parts survive the fiber; faithfulness is bought back by tensoring</li>
+</ul>
+<h2>Invalidates</h2><ul class='rel'>
+<li><a class="node" href="block-monomial-fiber-models.html">block-monomial-fiber-models</a> <span class="badge" style="background:#c43c2e">INVALIDATED</span> Block-monomial fiber models (lamps diagonal, group unitaries monomial in U(m))</li>
+</ul>
+<h2>Distinct from</h2><ul class='rel'>
+<li><a class="node" href="coordinate-action-not-sofic.html">coordinate-action-not-sofic</a> <span class="badge" style="background:#178a5e">ESTABLISHED</span> The coordinate action G ↷ G/Γ is not a sofic action<br><span class='muted'>that says the coset action is not sofic, imported by citation; this is a proved reduction sending a strictly larger class of models — block-monomial, not permutation — into that citation&#x27;s reach</span></li>
+<li><a class="node" href="diagonal-normalizer-rigidity.html">diagonal-normalizer-rigidity</a> <span class="badge" style="background:#178a5e">ESTABLISHED</span> Approximate normalizers of a full diagonal masa are monomial<br><span class='muted'>that concerns approximate normalizers of the FULL diagonal masa and is sharp there; this concerns exact block-monomiality over a COARSE decomposition, which that result explicitly does not cover</span></li>
+</ul>
+<h2>Artifacts</h2><ul class='rel'>
+<li><code>docs/TRUE_BLOCK_MONOMIAL_COORDINATE_COLLAPSE.md</code></li>
+<li><code>research/artifacts/kun-thom-2608-06222-verified.md</code></li>
+</ul>
+<h2>Statement</h2>
+<p>No <em>block-monomial fiber model</em> of <code>M_KT = L(W)</code> exists: no trace-preserving embedding <code>Θ : M_KT → ∏_𝒰 M_{d_n}</code> with <code>d_n = |Y_n|·m_n</code>, lamps in <code>∏_𝒰(D_{Y_n} ⊗ 1)</code>, and every <code>Θ(u_g)</code> represented by matrices that are block-monomial over <code>Y_n</code> (permutation of <code>Y_n</code> with arbitrary <code>U(m_n)</code> blocks). The fiber dimension <code>m_n</code> is unconstrained.</p>
+<p>The proof is three moves. A block-monomial matrix has a permutation part, and <code>‖A − B‖₂² ≥ 2 d_H(π(A), π(B))</code> uniformly in <code>m</code> — a mismatch of permutation parts moves a whole block, so growing the fiber dilutes traces but not mismatches. Hence multiplicativity of <code>Θ</code> descends to the permutation parts and <code>σ : G → 𝒮_𝒰</code> is a homomorphism, covariant for the lamps because conjugating a coarse diagonal by a block-monomial cancels the blocks exactly. <code>σ</code> need not be faithful — that is precisely what the fiber was meant to buy — but faithfulness is bought back for free by tensoring with a sofic representation of <code>G</code>, which exists because <code>G</code> is residually finite. The result is a genuine sofic-action witness, contradicting Kun–Thom Corollary D.</p>
+<p><strong>What this closes.</strong> The most natural reading of "the trace is blind to sizes": put the lamps on coordinates, hide the group's Hilbert–Schmidt separation in a growing unitary fiber, and escape Corollary D because the group unitaries are no longer permutations. The trace is indeed blind to the fiber. The obstruction is not in the fiber — it rides on the lamps, and the lamps are faithfully represented on the coordinates whatever the fiber does. Recorded as <code><a href="block-monomial-fiber-models.html">block-monomial-fiber-models</a></code>, now invalidated.</p>
+<p><strong>Why it is not covered by <code><a href="diagonal-normalizer-rigidity.html">diagonal-normalizer-rigidity</a></code>.</strong> That result needs the <strong>full</strong> diagonal masa, and says so: for a merely coarse subalgebra the Fourier-block unitary <code>⊕_j F_{m}</code> centralizes it while sitting at distance <code>√2</code> from every monomial, so no monomial approximation is available. This claim shows that gap is not a door. A Fourier-block unitary is still block-monomial over the coarse index set; its permutation part is still defined and still multiplicative; the lamps still ride on the coarse coordinates. Distance from monomials was never the relevant measurement — existence of a permutation part was.</p>
+<p><strong>Scope, and it is a real scope.</strong> Step 1 uses block-monomiality <em>exactly</em>, in the ultraproduct. Models whose group unitaries are only approximately block-monomial, with a defect bounded away from zero, are untouched — and that is the generic case, since a finite window of the lamp algebra has <code>2^k</code> atoms of equal trace, giving an approximate coarse decomposition whose defect is governed by the boundary of the window in <code>G/Γ</code>, which carries a constant fraction of the mass because property (T) and infinite index leave no Følner sets. Theorem 2 kills exact block structure; amplification (<code>docs/OBSTRUCTIONS.md</code> §3) kills the naive approximate one. Nothing here says <code>M_KT</code> is not Connes-embeddable.</p></body>

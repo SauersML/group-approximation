@@ -1,0 +1,31 @@
+<!doctype html><meta charset='utf-8'><title>coordinate-ultraproduct-transport</title><style>
+body{font:15px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;max-width:60em;margin:2em auto;padding:0 1em;color:#1c1e1c}
+a{color:#4f46e5;text-decoration:none}a:hover{text-decoration:underline}
+code,pre{font:13px/1.45 Menlo,monospace;background:#f4f4f2}
+pre{padding:.8em;overflow-x:auto;border:1px solid #e5e7e3}
+.badge{display:inline-block;padding:.1em .55em;border-radius:.8em;color:#fff;font:700 11px -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;letter-spacing:.04em}
+.node{font:13px Menlo,monospace}
+h1{font-size:1.4em}h2{font-size:1.05em;border-bottom:1px solid #e5e7e3;padding-bottom:.2em}
+ul.rel{list-style:none;padding-left:0}ul.rel li{margin:.25em 0}
+.muted{color:#8b9089}.tree{white-space:pre;font:13px/1.5 Menlo,monospace;background:#fafaf8;border:1px solid #e5e7e3;padding:1em;overflow-x:auto}
+table{border-collapse:collapse}td,th{border:1px solid #e5e7e3;padding:.25em .6em;font-size:.9em}
+</style><script>MathJax={tex:{inlineMath:[["$","$"],["\\(","\\)"]]}};</script><script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script><body><p><a href='index.html'>← index</a></p>
+<h1><span class='node'>coordinate-ultraproduct-transport</span> The compression defect is trivial on the Kazhdan-invariant subspace, in operator norm</h1>
+<p><span class="badge" style="background:#178a5e">ESTABLISHED</span> <span class='muted'>claim · <code>research/coordinate-ultraproduct-transport.md</code></span></p>
+<p class='muted'>via route coordinate-ultraproduct-transport-proof</p>
+<h2>Routes into this claim</h2><ul class='rel'>
+<li><a class="node" href="coordinate-ultraproduct-transport-proof.html">coordinate-ultraproduct-transport-proof</a> <span class="badge" style="background:#178a5e">COMPLETE</span> Kazhdan projection and one-sided compression on the coordinate ultraproduct</li>
+</ul>
+<h2>Needed by routes</h2><ul class='rel'>
+<li><a class="node" href="bounded-rank-corners-excluded-proof.html">bounded-rank-corners-excluded-proof</a> <span class="badge" style="background:#178a5e">COMPLETE</span> A bounded-rank corner is a genuine finite-dimensional representation</li>
+</ul>
+<h2>Distinct from</h2><ul class='rel'>
+<li><a class="node" href="kazhdan-asymptotic-commutant-transport.html">kazhdan-asymptotic-commutant-transport</a> <span class="badge" style="background:#178a5e">ESTABLISHED</span> One-sided Kazhdan transport of asymptotic commutants<br><span class='muted'>that theorem transports asymptotic commutants and concludes in normalized Hilbert--Schmidt norm on the adjoint Hilbert-space ultraproduct; this one works on the coordinate Hilbert-space ultraproduct and concludes an exact operator-norm identity on a subspace that may be zero.</span></li>
+</ul>
+<h2>Artifacts</h2><ul class='rel'>
+<li><code>non_mf_groups_exist.tex</code></li>
+</ul>
+<h2>Statement</h2>
+<p>Let <code>Gamma</code> have property (T), <code>iota: Gamma -&gt; H</code>, <code>t iota(Gamma) t^-1 &lt;= iota(Gamma)</code>, <code>[c, iota(Gamma)] = 1</code>, <code>d = t c t^-1</code>, <code>u = [d, iota(a)]</code>, and put <code>H_0 = &lt;iota(Gamma), c, t&gt;</code>. Let <code>U_n: H -&gt; U(d_n)</code> be an operator-norm asymptotic representation, let <code>H_omega = prod_omega C^{d_n}</code> be the Hilbert-space ultraproduct, and let <code>tilde U</code> be the induced map.  Then:</p>
+<p>1. <code>tilde U</code> is an <strong>honest</strong> unitary representation of <code>H</code> on <code>H_omega</code>, and <code>‖tilde U(h) - 1‖ = ‖Theta(h) - 1‖</code> for the associated corona representation <code>Theta</code>; 2. the projection <code>P</code> onto the <code>iota(Gamma)</code>-invariant vectors lies in the finite algebra <code>A_omega = prod_omega M_{d_n}</code>, commutes with <code>tilde U(H_0)</code>, and satisfies <code>P = tilde U(t) P tilde U(t)^*</code>; 3. every element of the normal closure of <code>u</code> <strong>in <code>H_0</code></strong> — in particular <code>eps = u^2</code> — acts as the identity on the range of <code>P</code>, exactly, in operator norm.</p>
+<p>The conclusion is an operator-norm statement, not a <code>2</code>-norm statement, and this is the only route out of <code><a href="hs-invisibility-inflation-no-go.html">hs-invisibility-inflation-no-go</a></code> that does not go through a corner of the corona.  Its price is that <code>P</code> may be zero: the coordinate ultraproduct has no canonical invariant vector, whereas on the adjoint side the unitary <code>U_n(c)</code> itself is one, which is what makes the manuscript's transport unconditional and simultaneously confines it to the <code>2</code>-norm.</p></body>

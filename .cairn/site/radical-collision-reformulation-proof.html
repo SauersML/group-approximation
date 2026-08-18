@@ -1,0 +1,50 @@
+<!doctype html><meta charset='utf-8'><title>radical-collision-reformulation-proof</title><style>
+body{font:15px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;max-width:60em;margin:2em auto;padding:0 1em;color:#1c1e1c}
+a{color:#4f46e5;text-decoration:none}a:hover{text-decoration:underline}
+code,pre{font:13px/1.45 Menlo,monospace;background:#f4f4f2}
+pre{padding:.8em;overflow-x:auto;border:1px solid #e5e7e3}
+.badge{display:inline-block;padding:.1em .55em;border-radius:.8em;color:#fff;font:700 11px -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;letter-spacing:.04em}
+.node{font:13px Menlo,monospace}
+h1{font-size:1.4em}h2{font-size:1.05em;border-bottom:1px solid #e5e7e3;padding-bottom:.2em}
+ul.rel{list-style:none;padding-left:0}ul.rel li{margin:.25em 0}
+.muted{color:#8b9089}.tree{white-space:pre;font:13px/1.5 Menlo,monospace;background:#fafaf8;border:1px solid #e5e7e3;padding:1em;overflow-x:auto}
+table{border-collapse:collapse}td,th{border:1px solid #e5e7e3;padding:.25em .6em;font-size:.9em}
+</style><script>MathJax={tex:{inlineMath:[["$","$"],["\\(","\\)"]]}};</script><script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script><body><p><a href='index.html'>← index</a></p>
+<h1><span class='node'>radical-collision-reformulation-proof</span> Close the converse of the collision criterion and read off the excluded certificates</h1>
+<p><span class="badge" style="background:#178a5e">COMPLETE</span> <span class='muted'>route · <code>research/radical-collision-reformulation-proof.md</code></span></p>
+<h2>Target</h2><ul class='rel'>
+<li><a class="node" href="radical-collision-reformulation.html">radical-collision-reformulation</a> <span class="badge" style="background:#178a5e">ESTABLISHED</span> The radical collision is a reformulation of Question 3.4, not a reduction</li>
+</ul>
+<h2>Requires</h2><ul class='rel'>
+<li><a class="node" href="sofic-radical-soficization.html">sofic-radical-soficization</a> <span class="badge" style="background:#178a5e">ESTABLISHED</span> The sofic radical is the kernel of soficization</li>
+<li><a class="node" href="radical-collision-criterion.html">radical-collision-criterion</a> <span class="badge" style="background:#178a5e">ESTABLISHED</span> A sofic-radical element with a hyperlinear detector yields a hyperlinear nonsofic group</li>
+</ul>
+<h2>Artifacts</h2><ul class='rel'>
+<li><code>GroupApproximation/Sofic/RadicalSeparation.lean</code></li>
+</ul>
+<h2>Statement</h2>
+<h3>Why sufficient</h3>
+<p><strong>1.</strong>  Let <code>q:H-&gt;Q</code> with <code>q(x)!=1</code>.  Functoriality of the radical gives <code>q(x) in Rad_sof(q(H))</code>, and it is nontrivial by hypothesis; by the established detection statement <code>Rad_sof(q(H))!=1</code> forces <code>q(H)</code> nonsofic. (Directly: if <code>q(H)</code> were sofic then <code>q</code> itself would be one of the homomorphisms defining <code>Rad_sof(H)</code>, so <code>q(x)=1</code>.)</p>
+<p><strong>2.</strong>  The forward implication is the established collision criterion. For the converse, let <code>Q</code> be a countable hyperlinear nonsofic group.  By the detection statement <code>Rad_sof(Q)!=1</code>; choose <code>1!=x in Rad_sof(Q)</code>, take <code>H=Q</code>, and take the identity of <code>Q</code> as the homomorphism to a hyperlinear group.  It does not kill <code>x</code>.  Hence the two existence statements are equivalent, and any instance of the second produces a witness for the first whose hyperlinearity is exactly the hyperlinearity supplied as input.</p>
+<p><strong>3.</strong>  By 1 the detecting range <code>q(H)</code> is nonsofic.  Therefore it cannot lie in any class <code>C</code> with <code>C ⊆ {sofic}</code>.  Each item of the list is such a class:</p>
+<ul>
+<li>subgroups, countable direct products, increasing unions of sofic groups,</li>
+<p>and locality of soficity — proved outright in <code><a href="sofic-radical-soficization-proof.html">sofic-radical-soficization-proof</a></code> (an increasing union is covered by locality), so no citation is load-bearing here;</p>
+<li>residually finite, residually amenable, residually sofic, LEF, LEA — all</li>
+<p>give trivial sofic radical by the same product argument (amenable groups are sofic; a residually-<code>C</code> group embeds in a product of <code>C</code> groups; LEF and LEA groups satisfy the local approximation definition directly);</p>
+<li>linear over a field — a finitely generated linear group is residually</li>
+<p>finite (Malcev), and soficity is local, so every linear group is sofic;</p>
+<li>sofic-by-amenable, i.e. <code>1-&gt;N-&gt;E-&gt;A-&gt;1</code> with <code>N</code> sofic and <code>A</code> amenable —</li>
+<p>the amenable-extension permanence theorem, proved in Elek--Szabó, arXiv:math/0305352 (J. Group Theory 9 (2006)); this pin is the one recorded in docs/ADVERSARIAL_AUDIT_NON_MF_2026-08-13.md, which separates it from the survey list in the other Elek--Szabó paper.  Note the opposite order, amenable-by-sofic, is exactly what Kun--Thom refute, and is not excluded here;</p>
+<li>amalgams of sofic groups over an amenable subgroup, free products being</li>
+<p>the trivial-subgroup case — Păunescu, <em>On sofic actions and equivalence relations</em>, arXiv:1002.0605 (abstract: "amalgamated product of sofic groups over an amenable subgroup is also sofic");</p>
+<li>generalized wreath products of sofic groups whose underlying group action</li>
+<p>on a set is sofic — Gao, Kunnawalkam Elayavalli and Patchell, <em>Soficity for group actions on sets and applications</em>, arXiv:2401.04945, which also recovers Hayes--Sale for the regular action.</p>
+</ul>
+<p>Each entry is a permanence theorem whose conclusion is soficity, so applying it to sofic inputs can only ever certify a sofic group.  Since no group is currently known to be hyperlinear and not sofic, a certificate of this shape cannot have a hyperlinear-but-not-sofic input either: the whole family is closed off, not merely unavailable today.</p>
+<p><strong>4.</strong>  Let <code>(M,tau)</code> be a von Neumann algebra with faithful normal tracial state, <code>Phi:H-&gt;U(M)</code> a homomorphism with <code>Phi(x)!=1</code>, and suppose <code>N=W*(Phi(H))</code> is Connes embeddable, i.e. there is a trace-preserving embedding <code>N -&gt; R^U</code>.  Then <code>Phi(H) &lt;= U(N) &lt;= U(R^U)</code> and <code>Phi(H)</code> is countable, so it is hyperlinear by definition; <code>Phi(x)!=1</code> in it.  This is the hypothesis of 2.</p>
+<p>For the finite-coordinate form, <code>M_{d_n}</code> embeds trace preservingly into <code>R</code>, hence <code>prod_U M_{d_n} &lt;= R^U</code>, and the unitary group of the left side is the normalized-Hilbert--Schmidt metric ultraproduct <code>prod_U U(d_n)</code>.  Asymptotic representations <code>rho_n</code> therefore define a homomorphism <code>H -&gt; U(R^U)</code>, and <code>liminf ||rho_n(x)-1||_2 &gt; 0</code> says exactly that <code>x</code> is not killed.  No amplification or trace-normalization step is needed for this direction; the tensor-power device is only required if one additionally wants the canonical trace, i.e. <code>L(Phi(H))</code> Connes embeddable.</p>
+<p><strong>5.</strong>  A union of a chain of normal subgroups avoiding <code>x</code> avoids <code>x</code>, so Zorn gives maximal elements <code>N</code>; in <code>H/N</code> every nontrivial normal subgroup contains the image of <code>x</code>, so the normal closure of that image is the monolith.  If <code>H</code> is just infinite and <code>N!=1</code>, then <code>H/N</code> is finite, hence sofic, hence <code>Rad_sof(H) &lt;= N</code> and <code>x in N</code>; so <code>N=1</code> is the only member and the criterion asks for a faithful hyperlinear model.  If <code>H</code> is torsion-free hyperbolic and nonsofic then <code>H</code> is nonelementary (elementary hyperbolic groups are virtually cyclic, hence amenable, hence sofic).  A nontrivial normal subgroup of a torsion-free group is infinite, and an infinite normal subgroup of a nonelementary hyperbolic group is nonelementary — otherwise its two-point limit set would be an invariant boundary pair, making <code>H</code> elementary — and a nonelementary subgroup of a hyperbolic group contains a free subgroup of rank two.</p>
+<p>This settles the <em>leverage</em> question only.  It does not say whether a hyperbolic nonsofic group would be hyperlinear: the mechanism behind <code><a href="nonsofic-hyperbolic-group.html">nonsofic-hyperbolic-group</a></code> is local testability of expander codes in the permutation metric, and whether it has a normalized-Hilbert--Schmidt analogue is untouched by this argument.</p>
+<h3>Scope</h3>
+<p>The claim measures the criterion; it does not weaken it.  What survives is the freedom in 4 to use a <em>non-faithful</em> <code>Phi</code>: the model has to see one word, not the whole group.  That is the only asymmetry between the collision route and the direct problem, and it is why a partial model — for instance one supported on a single central sign — is still worth chasing.</p></body>

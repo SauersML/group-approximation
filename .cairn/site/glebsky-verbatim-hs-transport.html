@@ -1,0 +1,29 @@
+<!doctype html><meta charset='utf-8'><title>glebsky-verbatim-hs-transport</title><style>
+body{font:15px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;max-width:60em;margin:2em auto;padding:0 1em;color:#1c1e1c}
+a{color:#4f46e5;text-decoration:none}a:hover{text-decoration:underline}
+code,pre{font:13px/1.45 Menlo,monospace;background:#f4f4f2}
+pre{padding:.8em;overflow-x:auto;border:1px solid #e5e7e3}
+.badge{display:inline-block;padding:.1em .55em;border-radius:.8em;color:#fff;font:700 11px -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;letter-spacing:.04em}
+.node{font:13px Menlo,monospace}
+h1{font-size:1.4em}h2{font-size:1.05em;border-bottom:1px solid #e5e7e3;padding-bottom:.2em}
+ul.rel{list-style:none;padding-left:0}ul.rel li{margin:.25em 0}
+.muted{color:#8b9089}.tree{white-space:pre;font:13px/1.5 Menlo,monospace;background:#fafaf8;border:1px solid #e5e7e3;padding:1em;overflow-x:auto}
+table{border-collapse:collapse}td,th{border:1px solid #e5e7e3;padding:.25em .6em;font-size:.9em}
+</style><script>MathJax={tex:{inlineMath:[["$","$"],["\\(","\\)"]]}};</script><script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script><body><p><a href='index.html'>← index</a></p>
+<h1><span class='node'>glebsky-verbatim-hs-transport</span> Rerun Glebsky&#x27;s permanence proof with U(n) and normalized HS in place of finite groups</h1>
+<p><span class="badge" style="background:#c43c2e">INVALIDATED</span> <span class='muted'>route · <code>research/glebsky-verbatim-hs-transport.md</code></span></p>
+<p class='muted'>invalidated by established claim glebsky-hs-transport-step-classification</p>
+<h2>Target</h2><ul class='rel'>
+<li><a class="node" href="hyperlinear-wreath-model.html">hyperlinear-wreath-model</a> <span class="badge" style="background:#c08a00">OPEN</span> Construct a hyperlinear model of the wreath candidate</li>
+</ul>
+<h2>Invalidated by</h2><ul class='rel'>
+<li><a class="node" href="glebsky-hs-transport-step-classification.html">glebsky-hs-transport-step-classification</a> <span class="badge" style="background:#178a5e">ESTABLISHED</span> Which steps of Glebsky&#x27;s permanence proof survive normalized-HS transport</li>
+</ul>
+<h2>Artifacts</h2><ul class='rel'>
+<li><code>docs/TRUE_GLEBSKY_HS_TRANSPORT_AUDIT.md</code></li>
+</ul>
+<h2>Statement</h2>
+<h2>Rerun Glebsky's proof in normalized Hilbert–Schmidt</h2>
+<p>The attractive reading of <code><a href="weakly-sofic-not-sofic.html">weakly-sofic-not-sofic</a></code>: Glebsky's permanence theorem has no hypothesis on the coset action, which is exactly the hypothesis Kun–Thom Corollary D denies to every hyperlinear wreath theorem, so transport the proof to <code>(U(n), ‖·‖₂)</code> and get hyperlinearity of <code>W</code> directly.</p>
+<p><strong>Dead</strong>, by <code><a href="glebsky-hs-transport-step-classification.html">glebsky-hs-transport-step-classification</a></code>. Four of the six steps do transport — Kaluzhnin–Krasner, the residual reduction, the locality lemma and the Tychonov limit are all metric-free and class-free. The two that do not are the equational characterization (Corollary 19 of arXiv:1506.06940, stated only for <code>K ⊆ Fin</code>) and the universal-solution lemma, which needs the system to be solvable in a specific <strong>finite</strong> auxiliary group. The system <code>x²a⁻¹</code> is solvable in every <code>U(n)</code> and not in <code>ℤ/2</code>, so the unitary system class does not supply what the universal solution consumes.</p>
+<p><strong>What the route is worth even though it is dead.</strong> It relocates the whole question, and the relocation is the useful output. Glebsky's freedom is not "metric surgery adapted to the extension" — his permanence proof contains no metric at all. His freedom is that the class <code>Fin</code> is closed under the auxiliary construction <code>D_N ⋊ G_N</code> and admits a length manufactured after the fact (Lemma 3 of the 2017 paper). Hyperlinearity has neither property. So the surviving formulation is not "redo the proof" but <code><a href="hilbert-embeddable-witness-for-kun-thom-wreath.html">hilbert-embeddable-witness-for-kun-thom-wreath</a></code>: take the witnesses Glebsky already produces and ask whether the length can be chosen conditionally negative definite. <code><a href="hilbert-embeddable-length-lp-feasibility.html">hilbert-embeddable-length-lp-feasibility</a></code> makes that a finite linear program.</p></body>

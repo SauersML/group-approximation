@@ -1,0 +1,34 @@
+<!doctype html><meta charset='utf-8'><title>hilbert-embeddable-amplification</title><style>
+body{font:15px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;max-width:60em;margin:2em auto;padding:0 1em;color:#1c1e1c}
+a{color:#4f46e5;text-decoration:none}a:hover{text-decoration:underline}
+code,pre{font:13px/1.45 Menlo,monospace;background:#f4f4f2}
+pre{padding:.8em;overflow-x:auto;border:1px solid #e5e7e3}
+.badge{display:inline-block;padding:.1em .55em;border-radius:.8em;color:#fff;font:700 11px -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;letter-spacing:.04em}
+.node{font:13px Menlo,monospace}
+h1{font-size:1.4em}h2{font-size:1.05em;border-bottom:1px solid #e5e7e3;padding-bottom:.2em}
+ul.rel{list-style:none;padding-left:0}ul.rel li{margin:.25em 0}
+.muted{color:#8b9089}.tree{white-space:pre;font:13px/1.5 Menlo,monospace;background:#fafaf8;border:1px solid #e5e7e3;padding:1em;overflow-x:auto}
+table{border-collapse:collapse}td,th{border:1px solid #e5e7e3;padding:.25em .6em;font-size:.9em}
+</style><script>MathJax={tex:{inlineMath:[["$","$"],["\\(","\\)"]]}};</script><script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script><body><p><a href='index.html'>← index</a></p>
+<h1><span class='node'>hilbert-embeddable-amplification</span> Separation is free in the Hilbert embeddable class, and Glebsky&#x27;s cap is replaceable</h1>
+<p><span class="badge" style="background:#178a5e">ESTABLISHED</span> <span class='muted'>claim · <code>research/hilbert-embeddable-amplification.md</code></span></p>
+<p class='muted'>via route hilbert-embeddable-amplification-proof</p>
+<h2>Routes into this claim</h2><ul class='rel'>
+<li><a class="node" href="hilbert-embeddable-amplification-proof.html">hilbert-embeddable-amplification-proof</a> <span class="badge" style="background:#178a5e">COMPLETE</span> Subordinate by a Bernstein function and tensor the realizing representation</li>
+</ul>
+<h2>Distinct from</h2><ul class='rel'>
+<li><a class="node" href="hilbert-embeddable-length-hyperlinearity.html">hilbert-embeddable-length-hyperlinearity</a> <span class="badge" style="background:#178a5e">ESTABLISHED</span> Weak soficity upgrades to hyperlinearity when the invariant lengths are Hilbert embeddable<br><span class='muted'>that converts a Hilbert embeddable witness into unitary microstates; this manipulates lengths inside the class before any conversion, and is what makes the separation constant a non-issue there.</span></li>
+<li><a class="node" href="hilbert-embeddable-witness-for-kun-thom-wreath.html">hilbert-embeddable-witness-for-kun-thom-wreath</a> <span class="badge" style="background:#c08a00">OPEN</span> A Hilbert embeddable weak-soficity witness for the Kun--Thom wreath<br><span class='muted'>that asks whether the wreath has such a witness; this removes two of the constraints that question was thought to carry.</span></li>
+<li><a class="node" href="glebsky-manufactured-invariant-length.html">glebsky-manufactured-invariant-length</a> <span class="badge" style="background:#178a5e">ESTABLISHED</span> The invariant length Glebsky manufactures is a truncated rescaled conjugation-invariant word metric<br><span class='muted'>that records what Glebsky&#x27;s Lemma 3 constructs; this says which parts of that construction are load bearing for embeddability and which are not.</span></li>
+</ul>
+<h2>Statement</h2>
+<p>Let <code>ell</code> be a Hilbert embeddable invariant length on a finite group, <code>0 &lt;= ell &lt;= 1</code>, and for an integer <code>r&gt;=1</code> put</p>
+<pre>
+ell_r = 1 - exp(-r ell).
+</pre>
+<p>1. <strong>Amplification.</strong>  <code>ell_r</code> is again a Hilbert embeddable invariant length bounded by <code>1</code>, with <code>ell_r &lt;= r ell</code> everywhere and <code>ell_r &gt;= 1 - exp(-rc)</code> wherever <code>ell &gt;= c</code>.  So a witness with defect <code>&lt;= delta</code> and separation <code>&gt;= c</code> becomes, on replacing <code>ell</code> by <code>ell_r</code> with <code>r = ceil(delta^(-1/2))</code>, a witness with defect <code>&lt;= sqrt(delta)</code> and separation <code>&gt;= 1 - exp(-c delta^(-1/2))</code>.  <strong>Any fixed positive separation amplifies to <code>1 - o(1)</code></strong>, so the separation constant in the definition of weak soficity carries no content for Hilbert embeddable witnesses; only <code>ell != 0</code> on the elements to be separated does. 2. <strong>This is exactly Glebsky's Lemma 11, transported.</strong>  If <code>exp(-ell) = tr rho</code> for a unitary representation <code>rho</code>, then <code>exp(-r ell) = tr(rho^(tensor r))</code>, so <code>ell_r</code> is the length of the <code>r</code>-th tensor power of the realizing representation.  Glebsky's amplification for the sofic case is the same identity for the permutation representation: <code>1 - ||h||_Hamming</code> is the normalized trace of the permutation matrix, and the product action on <code>[m]^r</code> multiplies it.  The trace here is real and positive by Schoenberg, so the phase collapse that defeats naive tensor amplification in the unitary group — equal powers for <code>1</code> and <code>i*1</code> — cannot occur. 3. <strong>The cap is replaceable.</strong>  Glebsky's manufactured length <code>min{d(1,h)/n, 1}</code> may be replaced throughout by</p>
+<pre>
+   1 - exp(-d(1,h)/n),
+</pre>
+<p>which is bounded by <code>1</code>, equals <code>1-exp(-1/n) ~ 1/n</code> on the error set, and is at least <code>1-exp(-1) &gt; 0.63</code> on the <code>n</code>-separated set — comfortably above the <code>1/2</code> the definition asks for.  Unlike <code>min{.,1}</code>, which is not a Bernstein function, <code>t |-&gt; 1-exp(-t)</code> is one, so this replacement <strong>preserves conditional negative definiteness</strong> from the underlying word metric. 4. <strong>Consequent reduction.</strong>  Glebsky's construction yields a Hilbert embeddable witness whenever the conjugation-invariant word metric <code>d_(Gamma(H,X^H))</code> is itself conditionally negative definite.  Neither the cap nor the separation constant obstructs; the whole question is the uncapped word metric.</p>
+<p>The cap is therefore not load bearing for separation and not load bearing for the diameter bound — only for the fact that it is not Bernstein.  What cannot be done is to <em>delete</em> it, leaving an unbounded length; what can be done is to replace it by a Bernstein cap with the same profile.</p></body>

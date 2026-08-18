@@ -1,0 +1,22 @@
+<!doctype html><meta charset='utf-8'><title>torsion-free-higman-embedding</title><style>
+body{font:15px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;max-width:60em;margin:2em auto;padding:0 1em;color:#1c1e1c}
+a{color:#4f46e5;text-decoration:none}a:hover{text-decoration:underline}
+code,pre{font:13px/1.45 Menlo,monospace;background:#f4f4f2}
+pre{padding:.8em;overflow-x:auto;border:1px solid #e5e7e3}
+.badge{display:inline-block;padding:.1em .55em;border-radius:.8em;color:#fff;font:700 11px -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;letter-spacing:.04em}
+.node{font:13px Menlo,monospace}
+h1{font-size:1.4em}h2{font-size:1.05em;border-bottom:1px solid #e5e7e3;padding-bottom:.2em}
+ul.rel{list-style:none;padding-left:0}ul.rel li{margin:.25em 0}
+.muted{color:#8b9089}.tree{white-space:pre;font:13px/1.5 Menlo,monospace;background:#fafaf8;border:1px solid #e5e7e3;padding:1em;overflow-x:auto}
+table{border-collapse:collapse}td,th{border:1px solid #e5e7e3;padding:.25em .6em;font-size:.9em}
+</style><script>MathJax={tex:{inlineMath:[["$","$"],["\\(","\\)"]]}};</script><script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script><body><p><a href='index.html'>← index</a></p>
+<h1><span class='node'>torsion-free-higman-embedding</span> Torsion-free Higman embedding</h1>
+<p><span class="badge" style="background:#c08a00">OPEN</span> <span class='muted'>claim · <code>research/torsion-free-higman-embedding.md</code></span></p>
+<h2>Needed by routes</h2><ul class='rel'>
+<li><a class="node" href="torsion-free-fp-from-countable-witness.html">torsion-free-fp-from-countable-witness</a> <span class="badge" style="background:#c08a00">OPEN</span> Embed a torsion-free countable non-MF group into a finitely presented one</li>
+</ul>
+<h2>Statement</h2>
+<p>Every recursively presented torsion-free group embeds into a finitely presented torsion-free group.</p>
+<p>A weaker statement is available and is enough for many purposes: there is a <strong>universal finitely presented torsion-free group</strong>, one that contains a copy of every finitely presented torsion-free group.  Fournier-Facio uses exactly this as the first input of arXiv:2608.02025 Section 2, citing Higman 1961, Belegradek--Szczepanski 2008, and Chiodo 2014; the repository carries <code>GroupApproximation/Monsters/UniversalFinitelyPresentedTorsionFreeGroup.lean</code> for the countable payload.  Verified at usage level (Fournier-Facio's text read in full this session), not at the level of the three cited sources. That form absorbs finitely presented torsion-free groups only, so it does not by itself discharge the claim below, which is about recursively presented ones.</p>
+<p>Status of the full statement: <strong>literature-plausible, not verified at theorem level in this repository.</strong>  The standard Higman construction proceeds by iterated HNN extensions and amalgamated free products over free groups, and torsion elements of an HNN extension are conjugate into the base while torsion elements of an amalgam are conjugate into a factor; so torsion-freeness is formally preserved by every step, provided the auxiliary groups are chosen torsion-free.  Verified at abstract level only: Chiodo--Hill, <em>Preserving torsion orders when embedding into groups with "small" finite presentations</em>, states that the Boone--Collins embedding of a <strong>finitely presented</strong> group into an 8-generator 26-relator group preserves the set of orders of torsion elements, and in particular torsion-freeness, and that there is a universal finitely presented torsion-free group.  That is the finitely-presented-to-finitely-presented statement, not the recursively presented one.  Belegradek is cited in the secondary literature for the torsion-free universal group; his theorem statement was <strong>not</strong> read in this session and must not be cited until it is.</p>
+<p>Do not treat this claim as established, and do not let a route depend on it silently: if it is only needed to shed finite presentation, say so.</p></body>

@@ -1,0 +1,47 @@
+<!doctype html><meta charset='utf-8'><title>clifford-ce-targets-are-equivalent</title><style>
+body{font:15px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;max-width:60em;margin:2em auto;padding:0 1em;color:#1c1e1c}
+a{color:#4f46e5;text-decoration:none}a:hover{text-decoration:underline}
+code,pre{font:13px/1.45 Menlo,monospace;background:#f4f4f2}
+pre{padding:.8em;overflow-x:auto;border:1px solid #e5e7e3}
+.badge{display:inline-block;padding:.1em .55em;border-radius:.8em;color:#fff;font:700 11px -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;letter-spacing:.04em}
+.node{font:13px Menlo,monospace}
+h1{font-size:1.4em}h2{font-size:1.05em;border-bottom:1px solid #e5e7e3;padding-bottom:.2em}
+ul.rel{list-style:none;padding-left:0}ul.rel li{margin:.25em 0}
+.muted{color:#8b9089}.tree{white-space:pre;font:13px/1.5 Menlo,monospace;background:#fafaf8;border:1px solid #e5e7e3;padding:1em;overflow-x:auto}
+table{border-collapse:collapse}td,th{border:1px solid #e5e7e3;padding:.25em .6em;font-size:.9em}
+</style><script>MathJax={tex:{inlineMath:[["$","$"],["\\(","\\)"]]}};</script><script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script><body><p><a href='index.html'>← index</a></p>
+<h1><span class='node'>clifford-ce-targets-are-equivalent</span> The full, even-core, and one-character Clifford CE targets are the same problem</h1>
+<p><span class="badge" style="background:#178a5e">ESTABLISHED</span> <span class='muted'>claim · <code>research/clifford-ce-targets-are-equivalent.md</code></span></p>
+<p class='muted'>via route clifford-ce-targets-are-equivalent-proof</p>
+<h2>Routes into this claim</h2><ul class='rel'>
+<li><a class="node" href="clifford-ce-targets-are-equivalent-proof.html">clifford-ce-targets-are-equivalent-proof</a> <span class="badge" style="background:#178a5e">COMPLETE</span> Crossed product by the parity flip, then compress to the negative central corner</li>
+</ul>
+<h2>Distinct from</h2><ul class='rel'>
+<li><a class="node" href="kun-thom-clifford-crossed-product-ce.html">kun-thom-clifford-crossed-product-ce</a> <span class="badge" style="background:#c08a00">OPEN</span> Connes embeddability of the Kun--Thom Clifford crossed product<br><span class='muted'>That is the open question of whether the Clifford crossed product is Connes embeddable; this says that three natural-looking reformulations of it are equivalent, so it is graph hygiene rather than progress on the question.</span></li>
+<li><a class="node" href="kun-thom-clifford-radical-phase.html">kun-thom-clifford-radical-phase</a> <span class="badge" style="background:#178a5e">ESTABLISHED</span> The Kun--Thom sofic-radical word has an exact Clifford phase detector<br><span class='muted'>That establishes the exact Clifford phase detector for the sofic-radical word; this compares the possible ambient algebras in which one might realize it.</span></li>
+</ul>
+<h2>Artifacts</h2><ul class='rel'>
+<li><code>docs/PERFECT_CORE_KUN_THOM_WREATH.md</code></li>
+</ul>
+<h2>Statement</h2>
+<p>Write <code>M_full = Cl(X) crossed_product G</code> for the negative full Clifford crossed product over <code>X = G/Gamma</code>, <code>A_CAR crossed_product G</code> for its even subalgebra crossed with <code>G</code>, <code>E_(Cl,0)</code> for the perfect even Clifford cover, and <code>tau_can</code> for the canonical trace on <code>A_CAR crossed_product G</code>. Then:</p>
+<pre>
+M_full Connes embeddable
+  &lt;=&gt; A_CAR crossed_product G Connes embeddable            (Prop 4)
+</pre>
+<p>and the following are equivalent (Theorem 6, "no character shortcut"):</p>
+<p>1. <code>E_(Cl,0)</code> has a Connes-embeddable character <code>chi</code> with <code>chi(z) != 1</code>; 2. it has a Connes-embeddable character <code>chi_-</code> with <code>chi_-(z) = -1</code>; 3. the canonical trace <code>tau_can</code> is Connes-embeddable.</p>
+<h3>Why this belongs in the graph</h3>
+<p>Three formulations of the Clifford CE problem look like independent attack surfaces and are not. The corpus states the hazard directly:</p>
+<p>&gt; Thus the full-Majorana formulation and the perfect even-core formulation &gt; are two presentations of the same CE problem.  The full formulation makes &gt; the relative wall \(C_o\in\pi(\Gamma)'\) visible; the even formulation keeps &gt; the nonsofic witness perfect and exposes the canonical CAR trace.  <strong>They &gt; must not be counted as independent construction routes.</strong></p>
+<p>Theorem 6 closes the third apparent surface: one might hope that producing <em>some</em> Connes-embeddable character merely nontrivial on <code>z</code> is cheaper than producing the canonical trace, since the former asks only for a nonzero negative corner rather than a specific trace value. It is not — compressing to the negative central corner and renormalizing upgrades any such character to one with <code>chi_-(z) = -1</code>, and Lemma 5 then pins it to <code>tau_can</code>.</p>
+<h3>What each formulation is still good for</h3>
+<p>The equivalences are about difficulty, not about usefulness. Each presentation exposes something different and is worth keeping as a <em>view</em>:</p>
+<ul>
+<li><code>M_full</code> makes the relative wall <code>C_o in pi(Gamma)'</code> visible, which is what</li>
+<p>connects to <code><a href="kun-thom-clifford-relative-wall.html">kun-thom-clifford-relative-wall</a></code>;</p>
+<li>the even core keeps the nonsofic witness perfect, which matters for the</li>
+<p>simple/perfect envelope consequences;</p>
+<li><code>tau_can</code> is the concrete object a construction would actually have to embed.</li>
+</ul>
+<p>What is not allowed is to treat progress on one as independent evidence about another, or to open three routes and count them as three chances.</p></body>

@@ -1,0 +1,28 @@
+<!doctype html><meta charset='utf-8'><title>literal-mark-quotient-corona-blindness-proof</title><style>
+body{font:15px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;max-width:60em;margin:2em auto;padding:0 1em;color:#1c1e1c}
+a{color:#4f46e5;text-decoration:none}a:hover{text-decoration:underline}
+code,pre{font:13px/1.45 Menlo,monospace;background:#f4f4f2}
+pre{padding:.8em;overflow-x:auto;border:1px solid #e5e7e3}
+.badge{display:inline-block;padding:.1em .55em;border-radius:.8em;color:#fff;font:700 11px -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;letter-spacing:.04em}
+.node{font:13px Menlo,monospace}
+h1{font-size:1.4em}h2{font-size:1.05em;border-bottom:1px solid #e5e7e3;padding-bottom:.2em}
+ul.rel{list-style:none;padding-left:0}ul.rel li{margin:.25em 0}
+.muted{color:#8b9089}.tree{white-space:pre;font:13px/1.5 Menlo,monospace;background:#fafaf8;border:1px solid #e5e7e3;padding:1em;overflow-x:auto}
+table{border-collapse:collapse}td,th{border:1px solid #e5e7e3;padding:.25em .6em;font-size:.9em}
+</style><script>MathJax={tex:{inlineMath:[["$","$"],["\\(","\\)"]]}};</script><script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script><body><p><a href='index.html'>← index</a></p>
+<h1><span class='node'>literal-mark-quotient-corona-blindness-proof</span> Transport across levels in the literal quotient</h1>
+<p><span class="badge" style="background:#178a5e">COMPLETE</span> <span class='muted'>route · <code>research/literal-mark-quotient-corona-blindness-proof.md</code></span></p>
+<h2>Target</h2><ul class='rel'>
+<li><a class="node" href="literal-mark-quotient-corona-blindness.html">literal-mark-quotient-corona-blindness</a> <span class="badge" style="background:#178a5e">ESTABLISHED</span> Corona trace-invisibility in the literal marked quotient is exactly the finite residual</li>
+</ul>
+<h2>Requires</h2><ul class='rel'>
+<li><a class="node" href="kazhdan-asymptotic-commutant-transport.html">kazhdan-asymptotic-commutant-transport</a> <span class="badge" style="background:#178a5e">ESTABLISHED</span> One-sided Kazhdan transport of asymptotic commutants</li>
+<li><a class="node" href="literal-mark-quotient-finite-residual.html">literal-mark-quotient-finite-residual</a> <span class="badge" style="background:#178a5e">ESTABLISHED</span> Exact finite residual of the literal marked quotient</li>
+</ul>
+<h2>Artifacts</h2><ul class='rel'>
+<li><code>docs/COMMUTING_LAMP_QUOTIENT_STRUCTURE_AND_MF_FORK_2026-08-14.md</code></li>
+</ul>
+<h2>Statement</h2>
+<h3>Direct proof</h3>
+<p>The transport identity <code>P = beta(tau) P beta(tau)^*</code> conjugated by <code>beta(tau)^{\pm 1}</code> gives <code>Fix(Gbar_k) = Fix(Gbar)</code> for every <code>k in Z</code>, hence <code>Fix(Gbar) = Fix(T)</code> since <code>T</code> is the union of the levels.  The lamp <code>c_o</code> commutes with <code>Gbar = Stab_V(o)</code>, so its Hilbert--Schmidt vector is <code>T</code>-fixed; translating by <code>beta(g)</code> and using normality of <code>T</code> in <code>V</code> makes every lamp vector <code>T</code>-fixed.  The <code>T</code>-orbits are the levels, so every same-level lamp pair lies in the kernel of the induced tracial representation, which is normal and therefore contains <code>R</code>.</p>
+<p>Conversely, an element outside <code>R</code> survives in a finite quotient by <code><a href="literal-mark-quotient-finite-residual.html">literal-mark-quotient-finite-residual</a></code>, and the left regular permutation representation of that finite quotient is a corona representation in which a nontrivial element sits at normalized Hilbert--Schmidt distance <code>sqrt 2</code> from the identity.  Section 9 of the cited note is the complete argument.</p></body>

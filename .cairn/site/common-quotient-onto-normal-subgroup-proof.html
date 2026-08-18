@@ -1,0 +1,26 @@
+<!doctype html><meta charset='utf-8'><title>common-quotient-onto-normal-subgroup-proof</title><style>
+body{font:15px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;max-width:60em;margin:2em auto;padding:0 1em;color:#1c1e1c}
+a{color:#4f46e5;text-decoration:none}a:hover{text-decoration:underline}
+code,pre{font:13px/1.45 Menlo,monospace;background:#f4f4f2}
+pre{padding:.8em;overflow-x:auto;border:1px solid #e5e7e3}
+.badge{display:inline-block;padding:.1em .55em;border-radius:.8em;color:#fff;font:700 11px -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;letter-spacing:.04em}
+.node{font:13px Menlo,monospace}
+h1{font-size:1.4em}h2{font-size:1.05em;border-bottom:1px solid #e5e7e3;padding-bottom:.2em}
+ul.rel{list-style:none;padding-left:0}ul.rel li{margin:.25em 0}
+.muted{color:#8b9089}.tree{white-space:pre;font:13px/1.5 Menlo,monospace;background:#fafaf8;border:1px solid #e5e7e3;padding:1em;overflow-x:auto}
+table{border-collapse:collapse}td,th{border:1px solid #e5e7e3;padding:.25em .6em;font-size:.9em}
+</style><script>MathJax={tex:{inlineMath:[["$","$"],["\\(","\\)"]]}};</script><script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script><body><p><a href='index.html'>← index</a></p>
+<h1><span class='node'>common-quotient-onto-normal-subgroup-proof</span> Hull&#x27;s Corollary 7.4 with the suitable subgroup drawn from the normal subgroup</h1>
+<p><span class="badge" style="background:#178a5e">COMPLETE</span> <span class='muted'>route · <code>research/common-quotient-onto-normal-subgroup-proof.md</code></span></p>
+<h2>Target</h2><ul class='rel'>
+<li><a class="node" href="common-quotient-onto-normal-subgroup.html">common-quotient-onto-normal-subgroup</a> <span class="badge" style="background:#178a5e">ESTABLISHED</span> A common quotient of two acylindrically hyperbolic groups onto a prescribed normal subgroup</li>
+</ul>
+<h2>Artifacts</h2><ul class='rel'>
+<li><code>docs/TORSION_FREE_NORMAL_GENERATION_HULL_QUOTIENT.md</code></li>
+</ul>
+<h2>Statement</h2>
+<h3>Why sufficient</h3>
+<p>Complete written argument in the artifact, §4 (Lemma A and Theorem B), with every cited statement quoted verbatim from the sources in §6.</p>
+<p>Two steps.</p>
+<p><strong>Lemma A.</strong>  An infinite normal subgroup <code>D</code> of a torsion-free <code>G in AH</code> is suitable with respect to any <code>A</code> for which <code>Gamma(G, A)</code> is hyperbolic and the action is acylindrical and non-elementary (such <code>A</code> exists by [Hul16, Theorem 3.12(4)]).  Normality gives <code>|D^g cap D| = |D| = infinity</code>, so <code>D</code> is s-normal, so it acts non-elementarily by [Osi16, Lemma 7.1]; and the third clause of Hull's Definition 1.4 is vacuous because a torsion-free group has no nontrivial finite subgroup ([Hul16, Lemma 5.5] restates suitability as <code>K_G(D) = {1}</code>).</p>
+<p><strong>Theorem B.</strong>  Hull's proof of [Hul16, Corollary 7.4] with <code>h_1, h_2</code> taken from <code>D</code> by [Hul16, Corollary 5.7] applied to <code>D</code> (which Lemma A now licenses) rather than to <code>G_2</code>.  Corollary 5.7 supplies exactly the properties his argument uses — infinite order, non-commensurable, <code>{&lt;h_1&gt;, &lt;h_2&gt;} ,-&gt;_h G_2</code> — so Lemma 3.5, Lemma 5.8, and both applications of Theorem 7.1 run verbatim. The first application gives <code>gamma(G_1) &lt;= gamma(S_{suit}) &lt;= gamma(D)</code>, the second gives <code>Q = eta(gamma(G_1))</code>, and chaining the two inclusions gives <code>alpha_2(D) = Q</code>.  Torsion (clause 3) is [Hul16, Theorem 7.1(e)] applied to each of the finitely many small-cancellation steps; finite presentability (clause 4) holds because the finitely generated case of Corollary 7.4 uses only two applications of Theorem 7.1, each adding one relator per prescribed element, and never the direct limit of Corollary 7.3.</p></body>

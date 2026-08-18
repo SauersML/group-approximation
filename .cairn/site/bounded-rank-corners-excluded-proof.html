@@ -1,0 +1,27 @@
+<!doctype html><meta charset='utf-8'><title>bounded-rank-corners-excluded-proof</title><style>
+body{font:15px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;max-width:60em;margin:2em auto;padding:0 1em;color:#1c1e1c}
+a{color:#4f46e5;text-decoration:none}a:hover{text-decoration:underline}
+code,pre{font:13px/1.45 Menlo,monospace;background:#f4f4f2}
+pre{padding:.8em;overflow-x:auto;border:1px solid #e5e7e3}
+.badge{display:inline-block;padding:.1em .55em;border-radius:.8em;color:#fff;font:700 11px -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;letter-spacing:.04em}
+.node{font:13px Menlo,monospace}
+h1{font-size:1.4em}h2{font-size:1.05em;border-bottom:1px solid #e5e7e3;padding-bottom:.2em}
+ul.rel{list-style:none;padding-left:0}ul.rel li{margin:.25em 0}
+.muted{color:#8b9089}.tree{white-space:pre;font:13px/1.5 Menlo,monospace;background:#fafaf8;border:1px solid #e5e7e3;padding:1em;overflow-x:auto}
+table{border-collapse:collapse}td,th{border:1px solid #e5e7e3;padding:.25em .6em;font-size:.9em}
+</style><script>MathJax={tex:{inlineMath:[["$","$"],["\\(","\\)"]]}};</script><script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script><body><p><a href='index.html'>← index</a></p>
+<h1><span class='node'>bounded-rank-corners-excluded-proof</span> A bounded-rank corner is a genuine finite-dimensional representation</h1>
+<p><span class="badge" style="background:#178a5e">COMPLETE</span> <span class='muted'>route · <code>research/bounded-rank-corners-excluded-proof.md</code></span></p>
+<h2>Target</h2><ul class='rel'>
+<li><a class="node" href="bounded-rank-corners-excluded.html">bounded-rank-corners-excluded</a> <span class="badge" style="background:#178a5e">ESTABLISHED</span> A corner detecting the mark cannot have bounded rank</li>
+</ul>
+<h2>Requires</h2><ul class='rel'>
+<li><a class="node" href="coordinate-ultraproduct-transport.html">coordinate-ultraproduct-transport</a> <span class="badge" style="background:#178a5e">ESTABLISHED</span> The compression defect is trivial on the Kazhdan-invariant subspace, in operator norm</li>
+</ul>
+<h2>Statement</h2>
+<h3>Why sufficient</h3>
+<p>Work on the coordinate ultraproduct <code>H_omega = prod_omega C^{d_n}</code>, where by <code><a href="coordinate-ultraproduct-transport.html">coordinate-ultraproduct-transport</a></code> clause 1 the models assemble into an honest unitary representation <code>tilde U</code> of <code>H</code> with the corona operator norms.</p>
+<p><strong>The corner is a finite-dimensional subrepresentation.</strong>  Write <code>q = [q_n]</code> with <code>rank q_n = r</code> along the ultrafilter (bounded ranks may be thinned to a constant one).  Choose orthonormal bases <code>e_n^1, ..., e_n^r</code> of <code>ran q_n</code>.  Any <code>x = [x_n]</code> with <code>q x = x</code> has <code>x_n = sum_i c_n^i e_n^i</code> with <code>|c_n^i| &lt;= ‖x_n‖</code>, so <code>x = sum_i (lim_omega c_n^i) [e^i]</code>.  Hence <code>ran q</code> is exactly the <code>r</code>-dimensional span of the <code>[e^i]</code>.  Since <code>q</code> lies in the relative commutant, <code>tilde U(h) q tilde U(h)^* = q</code> for every <code>h in H</code>, so <code>tilde U</code> restricts to a genuine unitary representation <code>H -&gt; U(ran q) = U(r)</code>.</p>
+<p><strong>The Kazhdan source acts trivially on it.</strong>  Restrict that representation to <code>iota(Gamma)</code>.  It has dimension at most <code>r</code>, so by hypothesis it is trivial: every vector of <code>ran q</code> is fixed by <code>iota(Gamma)</code>.  Therefore <code>ran q</code> is contained in the range of the Kazhdan projection <code>P</code> onto the <code>iota(Gamma)</code>-invariant vectors.</p>
+<p><strong>Contradiction.</strong>  By <code><a href="coordinate-ultraproduct-transport.html">coordinate-ultraproduct-transport</a></code> clause 3, every element of the normal closure of <code>u</code> in <code>H_0</code> — in particular <code>eps</code> — acts as the identity on <code>ran P</code>, hence on <code>ran q</code>.  But <code>‖(Theta(eps) - lambda) q‖ = 0</code> says <code>tilde U(eps)</code> acts on <code>ran q</code> as the scalar <code>lambda</code>.  So <code>lambda = 1</code>, contrary to hypothesis.  Hence no such <code>q</code> exists.</p>
+<p>Note which hypothesis does the work: not property (T), but the absence of low-dimensional representations of the Kazhdan source.  Property (T) enters only through <code><a href="coordinate-ultraproduct-transport.html">coordinate-ultraproduct-transport</a></code>, in the Kazhdan projection and the finiteness cancellation.</p></body>

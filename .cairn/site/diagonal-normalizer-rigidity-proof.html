@@ -1,0 +1,28 @@
+<!doctype html><meta charset='utf-8'><title>diagonal-normalizer-rigidity-proof</title><style>
+body{font:15px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;max-width:60em;margin:2em auto;padding:0 1em;color:#1c1e1c}
+a{color:#4f46e5;text-decoration:none}a:hover{text-decoration:underline}
+code,pre{font:13px/1.45 Menlo,monospace;background:#f4f4f2}
+pre{padding:.8em;overflow-x:auto;border:1px solid #e5e7e3}
+.badge{display:inline-block;padding:.1em .55em;border-radius:.8em;color:#fff;font:700 11px -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;letter-spacing:.04em}
+.node{font:13px Menlo,monospace}
+h1{font-size:1.4em}h2{font-size:1.05em;border-bottom:1px solid #e5e7e3;padding-bottom:.2em}
+ul.rel{list-style:none;padding-left:0}ul.rel li{margin:.25em 0}
+.muted{color:#8b9089}.tree{white-space:pre;font:13px/1.5 Menlo,monospace;background:#fafaf8;border:1px solid #e5e7e3;padding:1em;overflow-x:auto}
+table{border-collapse:collapse}td,th{border:1px solid #e5e7e3;padding:.25em .6em;font-size:.9em}
+</style><script>MathJax={tex:{inlineMath:[["$","$"],["\\(","\\)"]]}};</script><script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script><body><p><a href='index.html'>← index</a></p>
+<h1><span class='node'>diagonal-normalizer-rigidity-proof</span> Doubly stochastic rigidity plus untwisting and free amplification</h1>
+<p><span class="badge" style="background:#178a5e">COMPLETE</span> <span class='muted'>route · <code>research/diagonal-normalizer-rigidity-proof.md</code></span></p>
+<h2>Target</h2><ul class='rel'>
+<li><a class="node" href="diagonal-normalizer-rigidity.html">diagonal-normalizer-rigidity</a> <span class="badge" style="background:#178a5e">ESTABLISHED</span> Approximate normalizers of a full diagonal masa are monomial</li>
+</ul>
+<h2>Artifacts</h2><ul class='rel'>
+<li><code>docs/TRUE_DIAGONAL_NORMALIZER_RIGIDITY.md</code></li>
+</ul>
+<h2>Statement</h2>
+<h2>Doubly stochastic rigidity plus untwisting and free amplification</h2>
+<p>Direct establishment; the complete argument is Lemmas 3–5, Theorem 6 and Corollaries 7–8 of the cited note. <code>requires: []</code> is a proof commitment.</p>
+<p>The three moves:</p>
+<p>1. <strong>Doubly stochastic rigidity.</strong> For <code>u ∈ U(N)</code> and real diagonal <code>f</code>, the diagonal part of <code>u f u*</code> is <code>Af</code> for the doubly stochastic <code>A_ij = |u_ij|²</code>. Since <code>E_(D_N)</code> is the <code>‖·‖₂</code>-orthogonal projection and <code>u(·)u*</code> is a <code>‖·‖₂</code>-isometry, the defect is exactly <code>‖f‖₂² − ‖Af‖₂²</code>. Averaging over <code>f ∈ {−1,1}^N</code> — all of them contractions in <code>D_N</code> — gives <code>(1/N)Σ_ij A_ij² ≥ 1 − δ²</code>. Rows of <code>A</code> are probability vectors, so <code>Σ_j A_ij² ≤ max_j A_ij ≤ 1</code>, and Markov produces <code>(1−δ)N</code> rows with a column of mass <code>≥ 1 − δ</code>. Column sums equal <code>1</code>, so all but <code>2δN</code> of those choices are already injective; complete to a permutation and read off the phases. This is the finite-dimensional statement, with a constant independent of <code>N</code>, so it survives the ultraproduct verbatim: the supremum in the defect is attained by compactness, so a sequence violating it would give a single element of <code>D_𝒰</code> moved out of <code>D_𝒰</code>.</p>
+<p>2. <strong>Untwisting.</strong> Factor <code>Θ(u_g) = s_g c_g</code> uniquely in <code>𝒮_𝒰 ⋉ U(D_𝒰)</code>. Uniqueness makes <code>g ↦ s_g</code> a homomorphism, and <code>c_g</code> commutes with <code>Θ(L^∞(X)) ⊆ D_𝒰</code> because <code>D_𝒰</code> is abelian, so <code>s_g</code> alone implements the action. This is the point where the abelianness of the base is consumed.</p>
+<p>3. <strong>Free amplification.</strong> <code>s</code> need not satisfy <code>tr(s_g) = 0</code>, so <code>f u_g ↦ Θ(f)s_g</code> need not preserve the trace. Tensor with a free sofic representation <code>σ</code> of <code>G</code> on <code>Y'_n</code>: <code>ŝ_g = s_g ⊗ σ_g</code> is a permutation of <code>Y_n × Y'_n</code>, still implements the action on <code>Θ(L^∞(X)) ⊗ 1 ⊆ D̂_𝒰</code>, and <code>tr(Θ(f)s_g)·tr(σ_g) = 0</code> for <code>g ≠ 1</code>. This is the standard trace-amplification device, and it is where soficity of <code>G</code> (residual finiteness, Kun–Thom Theorem E) is used.</p>
+<p>Combining with <code><a href="coordinate-action-not-sofic.html">coordinate-action-not-sofic</a></code> (Kun–Thom Corollary D) gives the sharpened form of the boundary: for the Kun–Thom pair no embedding of <code>M_KT</code> can have the Bernoulli algebra in a diagonal ultraproduct <strong>and</strong> the group unitaries in its normalizer. Since the first half is always arrangeable (the diagonalization lemma of <code>docs/NOTEPAD.md</code>), the second half is the whole of the remaining question.</p></body>

@@ -1,0 +1,41 @@
+<!doctype html><meta charset='utf-8'><title>marked-double-coset-infinite-degree</title><style>
+body{font:15px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;max-width:60em;margin:2em auto;padding:0 1em;color:#1c1e1c}
+a{color:#4f46e5;text-decoration:none}a:hover{text-decoration:underline}
+code,pre{font:13px/1.45 Menlo,monospace;background:#f4f4f2}
+pre{padding:.8em;overflow-x:auto;border:1px solid #e5e7e3}
+.badge{display:inline-block;padding:.1em .55em;border-radius:.8em;color:#fff;font:700 11px -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;letter-spacing:.04em}
+.node{font:13px Menlo,monospace}
+h1{font-size:1.4em}h2{font-size:1.05em;border-bottom:1px solid #e5e7e3;padding-bottom:.2em}
+ul.rel{list-style:none;padding-left:0}ul.rel li{margin:.25em 0}
+.muted{color:#8b9089}.tree{white-space:pre;font:13px/1.5 Menlo,monospace;background:#fafaf8;border:1px solid #e5e7e3;padding:1em;overflow-x:auto}
+table{border-collapse:collapse}td,th{border:1px solid #e5e7e3;padding:.25em .6em;font-size:.9em}
+</style><script>MathJax={tex:{inlineMath:[["$","$"],["\\(","\\)"]]}};</script><script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script><body><p><a href='index.html'>← index</a></p>
+<h1><span class='node'>marked-double-coset-infinite-degree</span> The marked double coset of the Laurent Kun--Thom pair has infinite degree</h1>
+<p><span class="badge" style="background:#178a5e">ESTABLISHED</span> <span class='muted'>claim · <code>research/marked-double-coset-infinite-degree.md</code></span></p>
+<p class='muted'>via route marked-double-coset-infinite-degree-proof</p>
+<h2>Routes into this claim</h2><ul class='rel'>
+<li><a class="node" href="marked-double-coset-infinite-degree-proof.html">marked-double-coset-infinite-degree-proof</a> <span class="badge" style="background:#178a5e">COMPLETE</span> Cut a root subgroup against the denominator ideal</li>
+</ul>
+<h2>Distinct from</h2><ul class='rel'>
+<li><a class="node" href="invariant-graph-crossed-product-ce.html">invariant-graph-crossed-product-ce</a> <span class="badge" style="background:#c08a00">OPEN</span> Connes embeddability of one invariant-graph Clifford crossed product<br><span class='muted'>that asks for Connes embeddability of one member of the invariant-graph family; this is a group-theoretic index computation about the underlying G-set, and it deletes the finite-degree part of that family&#x27;s search space.</span></li>
+<li><a class="node" href="invariant-graph-clifford-phase.html">invariant-graph-clifford-phase</a> <span class="badge" style="background:#178a5e">ESTABLISHED</span> Invariant-graph central quotients carry the same sofic-radical phase, and only a sign<br><span class='muted'>that classifies which invariant graphs keep the marked word alive; this measures the degree of the smallest such graph and finds it infinite.</span></li>
+<li><a class="node" href="two-point-orbit-approximation.html">two-point-orbit-approximation</a> <span class="badge" style="background:#c08a00">OPEN</span> The Kun–Thom coset action admits a two-point approximation at the marked pair<br><span class='muted'>that is an approximation property of the G-set (a two-element-window weakening of a sofic action, with maps into finite symmetric groups); this is an exact index computation, [Gamma : Gamma cap h Gamma h^(-1)] infinite, with no approximation notion in it.</span></li>
+</ul>
+<h2>Artifacts</h2><ul class='rel'>
+<li><code>docs/COMMUTING_WREATH_SOFIC_RADICAL.md</code></li>
+</ul>
+<h2>Statement</h2>
+<p>Let <code>r,d&gt;=3</code>, <code>R_+=F_q[x_1,...,x_d]</code>, <code>R=F_q[x_1^(±1),...,x_d^(±1)]</code>, <code>Gamma=EL_r(R_+)</code> and <code>G=EL_r(R) semidirect SL_d(Z)</code> be the Kun--Thom Theorem E pair, and <code>X=G/Gamma</code>.</p>
+<p>1. <strong>Necessary condition for a finite double coset.</strong>  For <code>h in GL_r(R)</code>, if <code>[Gamma : Gamma cap h Gamma h^(-1)]</code> is finite then</p>
+<pre>
+   (h^(-1))_(p i) h_(j q) in R_+   for all p,q and all i != j.
+</pre>
+<p>2. <strong>The marked element fails it.</strong>  For <code>h=e_12(x^m)</code> with <code>m</code> not in <code>N^d</code> — in particular for the recorded marked element <code>h=e_12((x_1...x_d)^(-1))</code> of docs/COMMUTING_WREATH_SOFIC_RADICAL.md, Corollary 2 — one has <code>(h^(-1))_(12) h_(11) = -x^m</code> outside <code>R_+</code>. Hence</p>
+<pre>
+   [Gamma : Gamma cap h Gamma h^(-1)] = infinity,
+</pre>
+<p>so the <code>Gamma</code>-orbit of the marked coset <code>h Gamma</code> in <code>X</code> is infinite and the orbital graph of <code>Gamma h Gamma</code> has infinite degree at every vertex. 3. <strong>Consequence for the invariant-graph family.</strong>  A <code>G</code>-invariant graph on <code>X</code> that contains the marked edge contains the whole orbital graph of <code>Gamma h Gamma</code>, so <strong>no finite-degree <code>G</code>-invariant graph on <code>X</code> keeps the marked word alive</strong>.  The finite-degree, bounded-anticommutation regime of <code><a href="invariant-graph-crossed-product-ce.html">invariant-graph-crossed-product-ce</a></code> is therefore empty, and the freedom in that family is not freedom in the direction of locality. 4. <strong>The fixed set is nevertheless infinite, and its compressor translates are computable.</strong>  <code>X^Gamma = {y Gamma : y^(-1) Gamma y &lt;= Gamma}</code> is exactly <code>P_Gamma^(-1) Gamma / Gamma</code>, the coset set of the inverse compression semigroup, and it contains the whole ray <code>t^(-n) Gamma</code> because a strict compressor has no power in <code>Gamma</code> (the formalized <code><a href="ray-injectivity.html">ray-injectivity</a></code>).  More generally, for every <code>s in G</code>,</p>
+<pre>
+   X^(s Gamma s^(-1)) = s * X^Gamma,
+</pre>
+<p>and for <code>s=t</code> a compressor this contains <code>X^Gamma</code> and contains <code>t Gamma</code>, which is not in <code>X^Gamma</code>.  So the <code>Gamma</code>-fixed structure of <code>X</code> is infinite and grows strictly along the compressor, while the marked orbit is infinite: the model has no finite <code>Gamma</code>-invariant coordinates anywhere near the mark.</p></body>

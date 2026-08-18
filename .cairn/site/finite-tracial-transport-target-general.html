@@ -1,0 +1,69 @@
+<!doctype html><meta charset='utf-8'><title>finite-tracial-transport-target-general</title><style>
+body{font:15px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;max-width:60em;margin:2em auto;padding:0 1em;color:#1c1e1c}
+a{color:#4f46e5;text-decoration:none}a:hover{text-decoration:underline}
+code,pre{font:13px/1.45 Menlo,monospace;background:#f4f4f2}
+pre{padding:.8em;overflow-x:auto;border:1px solid #e5e7e3}
+.badge{display:inline-block;padding:.1em .55em;border-radius:.8em;color:#fff;font:700 11px -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;letter-spacing:.04em}
+.node{font:13px Menlo,monospace}
+h1{font-size:1.4em}h2{font-size:1.05em;border-bottom:1px solid #e5e7e3;padding-bottom:.2em}
+ul.rel{list-style:none;padding-left:0}ul.rel li{margin:.25em 0}
+.muted{color:#8b9089}.tree{white-space:pre;font:13px/1.5 Menlo,monospace;background:#fafaf8;border:1px solid #e5e7e3;padding:1em;overflow-x:auto}
+table{border-collapse:collapse}td,th{border:1px solid #e5e7e3;padding:.25em .6em;font-size:.9em}
+</style><script>MathJax={tex:{inlineMath:[["$","$"],["\\(","\\)"]]}};</script><script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script><body><p><a href='index.html'>← index</a></p>
+<h1><span class='node'>finite-tracial-transport-target-general</span> The central-sign and finite-normal obstructions over faithfully traced coordinates</h1>
+<p><span class="badge" style="background:#178a5e">COMPLETE</span> <span class='muted'>route · <code>research/finite-tracial-transport-target-general.md</code></span></p>
+<h2>Target</h2><ul class='rel'>
+<li><a class="node" href="finite-tracial-cstar-transport.html">finite-tracial-cstar-transport</a> <span class="badge" style="background:#178a5e">ESTABLISHED</span> Kazhdan transport for norm ultraproducts of finite traced C-star algebras</li>
+</ul>
+<h2>Requires</h2><ul class='rel'>
+<li><a class="node" href="faithfully-traced-unital-coordinates.html">faithfully-traced-unital-coordinates</a> <span class="badge" style="background:#178a5e">ESTABLISHED</span> Unital C-star algebras with a faithful trace are a corner-stable finite coordinate class</li>
+<li><a class="node" href="finite-traced-kazhdan-transport.html">finite-traced-kazhdan-transport</a> <span class="badge" style="background:#178a5e">ESTABLISHED</span> Kazhdan transport over arbitrary traced coordinates</li>
+</ul>
+<h2>Artifacts</h2><ul class='rel'>
+<li><code>GroupApproximation/Sofic/KazhdanSignCriterion.lean</code></li>
+<li><code>GroupApproximation/Sofic/FiniteNormalCoronaObstruction.lean</code></li>
+<li><code>GroupApproximation/Sofic/FiniteNormalCompressionObstruction.lean</code></li>
+<li><code>docs/NO_ONE_SIDED_GROWTH.md</code></li>
+<li><code>non_mf_groups_exist.tex</code></li>
+</ul>
+<h2>Statement</h2>
+<h3>The class</h3>
+<p><code>C_ftr</code>: unital C-star algebras with a faithful tracial state.  It contains the matrix coordinates <code>(M_d, tr_d)</code>, all finite-dimensional C-star algebras with a faithful trace, all UHF and AF algebras with a faithful trace, all finite von Neumann algebras with a faithful normal trace, and is closed under corners, finite direct sums and matrix amplification.  Write</p>
+<pre>
+Q_A = prod_k A_k / directSum_k A_k
+</pre>
+<p>for the corona of a sequence from <code>C_ftr</code>; the matrix corona is the case <code>A_k=M_(d_k)</code>.</p>
+<h3>Target-general theorem</h3>
+<p>Let <code>H</code> be a group with Kazhdan-compression data: <code>Gamma</code> with property <code>(T)</code>, <code>iota : Gamma -&gt; H</code>, an element <code>t</code> with <code>t iota(Gamma) t^(-1) &lt;= iota(Gamma)</code>, and <code>c</code> centralizing <code>iota(Gamma)</code>. Put <code>d = t c t^(-1)</code>.  Then every homomorphism <code>rho : H -&gt; U(Q_A)</code></p>
+<ul>
+<li>kills every central involution which is the square of a pointwise</li>
+<p>compression defect <code>[d, iota(gamma)]</code>, and</p>
+<li>kills every finite normal subgroup of <code>H</code> contained in the normal closure</li>
+<p>of those defects.</p>
+</ul>
+<p>Consequently a group carrying such data with a nontrivial mark embeds in the unitary group of <em>no</em> corona of faithfully traced unital C-star algebras, not merely of no matrix corona.</p>
+<h3>Why sufficient</h3>
+<p><strong>Unitary lifting.</strong>  A unitary of <code>Q_A</code> lifts to <code>x_k</code> with <code>||x_k^*x_k-1|| -&gt; 0</code>; polar decomposition gives isometries <code>u_k = x_k(x_k^*x_k)^(-1/2)</code>, which are unitary because each <code>A_k</code> is finite (item 1 of <code><a href="faithfully-traced-unital-coordinates.html">faithfully-traced-unital-coordinates</a></code>).  So <code>rho</code> is carried by an operator-norm asymptotic representation <code>U_k : H -&gt; U(A_k)</code>.</p>
+<p><strong>The corner.</strong>  Suppose the central involution <code>zeta</code> satisfies <code>rho(zeta) != 1</code>.  Since <code>zeta^2=1</code> and <code>zeta</code> is central, <code>rho(zeta)</code> is a self-adjoint unitary commuting with <code>rho(H)</code>, so</p>
+<pre>
+P = (1-rho(zeta))/2 != 0,   rho(h) P rho(h)^* = P.
+</pre>
+<p>By items 2 and 3 of <code><a href="faithfully-traced-unital-coordinates.html">faithfully-traced-unital-coordinates</a></code>, <code>P</code> lifts to projections <code>p_k</code>, nonzero along an infinite index set, and <code>P Q_A P</code> is the corona of <code>(p_kA_kp_k, tau_k(p_k . p_k)/tau_k(p_k))</code>, again a sequence from <code>C_ftr</code>.  Compression does not increase operator-norm defects, so <code>h |-&gt; P rho(h)</code> is carried by an operator-norm asymptotic representation in the corner coordinates, and there <code>rho(zeta) = -1</code>.  This is the step that is available only because operator-norm data survives compression by a projection of arbitrarily small trace.</p>
+<p><strong>Transport in the corner.</strong>  <code>c</code> centralizes <code>iota(Gamma)</code>, so in the corner <code>[U_k(c), U_k(iota gamma)] -&gt; 0</code> in operator norm, hence in <code>||.||_(2,tau_k)</code>.  By <code><a href="finite-traced-kazhdan-transport.html">finite-traced-kazhdan-transport</a></code> --- applicable because the corner coordinates carry tracial states --- the conjugates <code>U_k(t)U_k(c)U_k(t)^*</code> are again asymptotic commutants; asymptotic multiplicativity identifies them with <code>U_k(d)</code> up to a null sequence.  For unitaries <code>||AB-BA||_2 = ||A^(-1)B^(-1)AB-1||_2</code>, so</p>
+<pre>
+||U_k([d,iota gamma])-1||_(2,tau_k) -&gt; 0,
+</pre>
+<p>and <code>||u^2-1||_2 &lt;= 2||u-1||_2</code> gives the same for the square.  But the square is <code>zeta</code>, which in the corner is the scalar <code>-1</code>, at normalized <code>2</code>-distance exactly <code>2</code> from <code>1</code> because <code>tau_k</code> restricted to the corner is a state.  Contradiction; hence <code>rho(zeta)=1</code>.</p>
+<p><strong>Finite normal subgroups.</strong>  Let <code>F &lt;= H</code> be finite normal and contained in the normal closure of the defects <code>[d, iota(gamma)]</code>, and suppose <code>rho|_F != 1</code>.  Because <code>rho|_F</code> is a genuine unitary representation of a finite group inside <code>Q_A</code>, the averaged projection</p>
+<pre>
+P_triv = (1/|F|) sum_(f in F) rho(f),   P = 1-P_triv
+</pre>
+<p>is an honest projection, and <code>P</code> is <code>rho(H)</code>-invariant because <code>F</code> is normal. <code>P != 0</code>: otherwise <code>P_triv=1</code>, and <code>1</code> is an extreme point of the unit ball of a unital C-star algebra, so a convex combination of unitaries equal to <code>1</code> forces <code>rho(f)=1</code> for every <code>f</code>.  Compress to <code>P</code> as above; the corner lies in <code>C_ftr</code> and its trace is a state <code>tau</code>.  Since <code>rho|_F</code> has no trivial isotypic component there,</p>
+<pre>
+(1/|F|) sum_(f in F) tau(rho(f)) = tau(P_triv P)/tau(P) = 0.   (N1)
+</pre>
+<p>On the other hand each <code>f in F</code> is a <em>fixed</em> word in finitely many conjugates of the defect generators; conjugation preserves <code>||.||_2</code> and <code>||xy-1||_2 &lt;= ||x-1||_2+||y-1||_2</code>, so the transport conclusion <code>||U_k([d,iota gamma])-1||_(2,tau_k) -&gt; 0</code> propagates to <code>||U_k(f)-1||_(2,tau_k) -&gt; 0</code> for every one of the finitely many <code>f in F</code>, whence <code>tau(rho(f))=1</code> for all <code>f</code> and the left side of <code>(N1)</code> is <code>1</code>. Contradiction, so <code>rho|_F=1</code>.  This is the general-coordinate form of <code><a href="finite-normal-compression-obstruction.html">finite-normal-compression-obstruction</a></code>; finiteness of <code>F</code> is what bounds the word length, and the corner is what makes <code>(N1)</code> available.</p>
+<h3>What was matrix-bound before</h3>
+<p>The three companion pieces generalized here are, in the manuscript, the central-corner reduction (the spectral cut identifying <code>q_n M_(d_n) q_n</code> with <code>M_(r_n)</code>), the central-sign criterion, and the finite-normal cancellation; in Lean they are <code>KazhdanSignCriterion</code>, <code>FiniteNormalCoronaObstruction</code> and <code>FiniteNormalCompressionObstruction</code>, all stated over <code>Matrix (naturalFiniteModel (d n))</code>.  Each used matrices only through the identification of a corner with a smaller matrix algebra, which items 2 and 3 of <code><a href="faithfully-traced-unital-coordinates.html">faithfully-traced-unital-coordinates</a></code> supply in general.</p>
+<h3>Boundary</h3>
+<p>Every use of <code>C_ftr</code> beyond "has a tracial state" is a corner: faithfulness of <code>tau</code> is needed exactly so that a nonzero corner carries a state, and finiteness exactly so that corona unitaries lift to unitaries.  The class therefore cannot be widened to coordinates without faithful traces, and in particular not to tracial ultraproducts; see <code><a href="tracial-coordinate-transport-barrier.html">tracial-coordinate-transport-barrier</a></code>.</p></body>

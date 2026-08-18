@@ -1,0 +1,41 @@
+<!doctype html><meta charset='utf-8'><title>masa-normalizing-tracial-action</title><style>
+body{font:15px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;max-width:60em;margin:2em auto;padding:0 1em;color:#1c1e1c}
+a{color:#4f46e5;text-decoration:none}a:hover{text-decoration:underline}
+code,pre{font:13px/1.45 Menlo,monospace;background:#f4f4f2}
+pre{padding:.8em;overflow-x:auto;border:1px solid #e5e7e3}
+.badge{display:inline-block;padding:.1em .55em;border-radius:.8em;color:#fff;font:700 11px -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;letter-spacing:.04em}
+.node{font:13px Menlo,monospace}
+h1{font-size:1.4em}h2{font-size:1.05em;border-bottom:1px solid #e5e7e3;padding-bottom:.2em}
+ul.rel{list-style:none;padding-left:0}ul.rel li{margin:.25em 0}
+.muted{color:#8b9089}.tree{white-space:pre;font:13px/1.5 Menlo,monospace;background:#fafaf8;border:1px solid #e5e7e3;padding:1em;overflow-x:auto}
+table{border-collapse:collapse}td,th{border:1px solid #e5e7e3;padding:.25em .6em;font-size:.9em}
+</style><script>MathJax={tex:{inlineMath:[["$","$"],["\\(","\\)"]]}};</script><script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script><body><p><a href='index.html'>← index</a></p>
+<h1><span class='node'>masa-normalizing-tracial-action</span> HS-ify the Alekseev–Bradford sofic 𝒞-action (masa-normalizing tracial action)</h1>
+<p><span class="badge" style="background:#c43c2e">INVALIDATED</span> <span class='muted'>route · <code>research/masa-normalizing-tracial-action.md</code></span></p>
+<p class='muted'>invalidated by established claim diagonal-normalizer-rigidity</p>
+<h2>Target</h2><ul class='rel'>
+<li><a class="node" href="hyperlinear-wreath-model.html">hyperlinear-wreath-model</a> <span class="badge" style="background:#c08a00">OPEN</span> Construct a hyperlinear model of the wreath candidate</li>
+</ul>
+<h2>Invalidated by</h2><ul class='rel'>
+<li><a class="node" href="diagonal-normalizer-rigidity.html">diagonal-normalizer-rigidity</a> <span class="badge" style="background:#178a5e">ESTABLISHED</span> Approximate normalizers of a full diagonal masa are monomial</li>
+</ul>
+<h2>Artifacts</h2><ul class='rel'>
+<li><code>docs/FALSE_MASA_NORMALIZING_TRACIAL_ACTION.md</code></li>
+<li><code>docs/TRUE_DIAGONAL_NORMALIZER_RIGIDITY.md</code></li>
+</ul>
+<h2>Statement</h2>
+<h2>HS-ify the Alekseev–Bradford action model</h2>
+<p>Weaken Alekseev–Bradford Definition 4.23 by replacing the finite set <code>A</code> and <code>Sym(A)</code> with a diagonal masa <code>D_n ⊆ M_n(ℂ)</code> and a map <code>φ : G → U(n)</code> that approximately normalizes <code>D_n</code> in normalized Hilbert–Schmidt norm, then rerun their Theorem 5.1 in <code>‖·‖₂</code>, hoping to escape Kun–Thom because a unitary tuple has no generator graph. <strong>Dead, under both readings of "approximately normalizes".</strong></p>
+<p><strong>Reading (i), uniform defect</strong> — the only reading under which the masa is structural and under which the ultraproduct statement <code>u D_𝒰 u* = D_𝒰</code> is recovered. Then <code><a href="diagonal-normalizer-rigidity.html">diagonal-normalizer-rigidity</a></code> clause 1 puts each <code>φ(g)</code> at <code>‖·‖₂</code>-distance <code>3√δ</code> from a monomial, clause 3 makes the extracted permutations Hamming-multiplicative with a comparable defect, and the lamp covariance transfers because <code>φ(g)</code> and the monomial are close. The relaxed notion therefore <em>contains</em> a Definition-4.23 model of the same action: it is equivalent to a sofic action, not weaker, and <code><a href="coordinate-action-not-sofic.html">coordinate-action-not-sofic</a></code> kills it. The premise that "unitaries have no generator graph" is false for unitaries constrained against a full masa — clause 1 recovers the graph.</p>
+<p><strong>Reading (ii), defect tested only on the finitely many lamp elements.</strong> Then the rigidity lemma correctly does not apply, but the masa has been discarded and what remains is: maps <code>ρ : Δ → U(n)</code>, <code>V : Γ → U(n)</code>, multiplicative and separating on windows, with <code>‖V(g)ρ(h)V(g)* − ρ(β(g)[h])‖₂ &lt; ε</code>. By Alekseev–Bradford Lemma 3.4 plus a product map this is <em>equivalent</em> to hyperlinearity of <code>Δ ⋊_β Γ</code> — the converse is immediate from <code>φ(g)φ(h)φ(g)⁻¹ ≈ φ(ghg⁻¹)</code>. The permanence statement becomes the identity map on the problem.</p>
+<p><strong>Where the permutations are load-bearing in Theorem 5.1.</strong> A line-by-line audit (in the cited note) finds that Lemma 3.4, product-compatibility, the final amalgamation with a separating <code>θ : Γ → G_(i₃)</code>, condition (i) and the lamp separation all survive HS-ification verbatim. Exactly two steps break, conditions (ii) and (iv) of Lemma 3.4, and both break on the same object: the <em>acting map</em> <code>ψ : Sym(A) → G_(i₂)</code> of wreath-compatibility, whose condition (b) is Hamming-to-<code>d_(i₂)</code> uniform continuity and whose condition (c) is an <strong>exact</strong> conjugation identity <code>ψ(σ)τ(g)ψ(σ)⁻¹ = τ(σ·g)</code>. That interface is the entire content of the framework — it converts a combinatorial action model into a metric one. Remove it and no theorem remains; keep any masa-level version of it and reading (i) reinstates the combinatorial model.</p>
+<p>This refines, rather than repeats, <code><a href="sofic-action-permanence.html">sofic-action-permanence</a></code>: that route records that Alekseev–Bradford's <em>hypothesis</em> is unavailable. This one records that the hypothesis has no Hilbert–Schmidt weakening either.</p>
+<h3>Where label extraction fails, run explicitly</h3>
+<p>The single-lamp lemma of <code>docs/NOTEPAD.md</code> extracts injective set labels <code>j_s(z) = π_s(δ_z)</code> from the partial homomorphisms of Definition 4.23 and observes that the covariance equation <em>is</em> the orbit-approximation equation; <code>docs/FALSE_HALO_ACTION_AUDIT.md</code> adds that enriching the target class cannot help. Both keep <code>φ : G → Sym(A)</code>. Running the same extraction against a tracial model, where the labels would be the minimal projections of the masa and the would-be permutation is the one <code>Ad(φ(g))</code> induces on them:</p>
+<ul>
+<li>**Under reading (i) extraction goes through, and the coupling does not</li>
+<p>degrade.** The natural guess is that an approximately normalizing unitary permutes minimal projections only up to small corners, so that injective labels weaken to a sub-stochastic coupling. The coupling is exactly the doubly stochastic matrix <code>A_ij = |φ(g)_ij|²</code>, and <code><a href="diagonal-normalizer-rigidity.html">diagonal-normalizer-rigidity</a></code> shows the uniform defect bound forces <code>E_i[max_j A_ij] ≥ 1 − δ²</code>: the coupling is pinned to be nearly deterministic, with slack bounded by the defect and <em>independent of the dimension</em>. So the labels survive, they are Hamming-multiplicative, and the Kun–Thom obstruction applies unchanged. The difficulty is conserved exactly as the lamp lemma warns.</p>
+<li>**Under reading (ii) extraction fails, for a reason that is measured rather</li>
+<p>than hoped for.** The lamps only pin the coupling on the coordinates being tested. Writing <code>B_E = ⟨S_y : y ∈ E⟩</code> inside a larger window <code>E'</code>, the induced doubly stochastic matrix on the <code>2^{|E'|}</code> atoms of <code>B_{E'}</code> is deterministic on the <code>E</code>-coordinates and may be maximally mixing on <code>E' ∖ E</code>. The atoms of <code>B_E</code> have trace <code>2^{−|E|}</code>, a constant, while the masa's minimal projections have trace <code>1/N</code>; the gap between the two resolutions is the entire room, and it is exponential.</p>
+</ul>
+<p>So the extraction argument does not kill the tracial programme outright, but it does show the masa cannot be part of the definition — which is what leaves the formulation tautologous under reading (ii).</p></body>

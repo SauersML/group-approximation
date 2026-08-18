@@ -1242,6 +1242,8 @@ $\Cred(E)$ is not nuclear \cite{Lance}.  The nuclear form of the
 Blackadar--Kirchberg problem --- whether every stably finite separable
 nuclear $C^*$-algebra is quasidiagonal --- therefore remains open.
 \leanverified{Analysis/NuclearityAmenability}{GroupApproximation.NuclearityAmenability.manuscriptNotAmenableOfBaseEmbeds}
+By contrast, $\Cmax(E)$ is not stably finite and has no faithful
+tracial state (Remark~\ref{rem:maxinfinite}).
 
 \subsection*{A sofic example}
 
@@ -1620,19 +1622,16 @@ definition.
 
 \clearpage
 
-\section{Weights and intertwiners}\label{supp:transport-variants}
+\section{Transport at an arbitrary weight}\label{supp:transport-variants}
 
 Theorem~\ref{thm:kazhdan-transport} holds with an arbitrary weight
-$\nu_n$ in place of the dimension, and between two asymptotic
-representations in place of one.
+$\nu_n$ in place of the dimension.
 
-\begin{theorem}[one-sided conjugation at an arbitrary weight, and for intertwiners]
+\begin{theorem}[one-sided conjugation at an arbitrary weight]
 \label{thm:transport-variants}
 Let $\Gamma$, $H$, $\iota$, and $s$ be as in
-Theorem~\ref{thm:kazhdan-transport}.
-\begin{enumerate}
-\item Let $(U_n)$ be as there, let $(\nu_n)$ be nonnegative weights,
-and suppose there is $C$ with
+Theorem~\ref{thm:kazhdan-transport}, let $(U_n)$ be as there, let
+$(\nu_n)$ be nonnegative weights, and suppose there is $C$ with
 $\operatorname{Tr}(x_n^*x_n)\le C\,\nu_n$ for all $n$, and that for
 every $\gamma\in\Gamma$ and every $\varepsilon>0$, eventually
 \[
@@ -1641,28 +1640,12 @@ every $\gamma\in\Gamma$ and every $\varepsilon>0$, eventually
 \]
 Then $U_n(s)\,x_nU_n(s)^*$ and $U_n(s)^*\,x_nU_n(s)$ satisfy both
 conditions as well.
-\item Let $U^1_n\colon H\to\U(d^1_n)$ and
-$U^2_n\colon H\to\U(d^2_n)$ be operator-norm asymptotic
-representations and let $(x_n)$ be uniformly operator-norm bounded
-$d^1_n\times d^2_n$ matrices with
-\[
- \frac{\operatorname{Tr}\,\bigl|x_n-U^1_n(\iota(\gamma))\,x_n\,
-   U^2_n(\iota(\gamma))^*\bigr|^2}{d^1_n+d^2_n}\longrightarrow0
- \qquad(\gamma\in\Gamma).
-\]
-Then $U^1_n(s)\,x_n\,U^2_n(s)^*$ satisfies the same convergence for
-every $\gamma\in\Gamma$.
 \leanverified{Sofic/TransportVariantsAnyUniverse}{GroupApproximation.TransportVariantsAnyUniverse.scaled_transport_both_anyUniverse}
-\leanverified{Sofic/TransportVariantsAnyUniverse}{GroupApproximation.TransportVariantsAnyUniverse.manuscriptIntertwinerTransport_anyUniverse}
-\leanverified{Sofic/TransportVariantsAnyUniverse}{GroupApproximation.TransportVariantsAnyUniverse.scaled_intertwiner_transport_anyUniverse}
 \leanverified{Sofic/ScaledKazhdanTransport}{GroupApproximation.ScaledKazhdanTransport.scaled_transport_both}
-\leanverified{Sofic/IntertwinerKazhdanTransport}{GroupApproximation.IntertwinerKazhdanTransport.manuscriptIntertwinerTransport}
-\leanverified{Sofic/IntertwinerKazhdanTransport}{GroupApproximation.IntertwinerKazhdanTransport.scaled_intertwiner_transport}
-\end{enumerate}
 \end{theorem}
 
 \begin{proof}
-(1)  For $\nu_n>0$, equip the $n$th coordinate space with the inner
+For $\nu_n>0$, equip the $n$th coordinate space with the inner
 product $\langle x,y\rangle=\operatorname{Tr}(y^*x)/\nu_n$; an index
 with $\nu_n=0$ forces $x_n=0$.  Conjugation by a unitary remains
 unitary for this inner product.  The bound
@@ -1674,38 +1657,12 @@ Theorem~\ref{thm:kazhdan-transport} applies with $\tr_{d_n}$ replaced
 by $\operatorname{Tr}(\,\cdot\,)/\nu_n$.  Finiteness of the norm
 ultraproduct again turns $P\le VPV^{*}$ into $P=VPV^{*}$, which gives
 both conjugation directions.
-
-(2)  The block sum $U^{\oplus}_n=U^1_n\oplus U^2_n$ is an operator-norm
-asymptotic representation, since block-diagonal operator norms are
-maxima.  Embed $x_n$ in the off-diagonal corner of the block sum; this
-embedding preserves the operator norm.  Its commutator with
-$U^{\oplus}_n(\iota(\gamma))$ is the off-diagonal embedding of the
-intertwining defect, whose normalized Hilbert--Schmidt norm on the
-block space has denominator $d^1_n+d^2_n$.  Conjugation by
-$U^{\oplus}_n(s)$ acts on the embedded corner by
-$x_n\mapsto U^1_n(s)\,x_n\,U^2_n(s)^*$.
-Theorem~\ref{thm:kazhdan-transport} applied to $U^{\oplus}_n$ gives
-the conclusion for the embedded sequence.  Applying (1) to the block
-sum instead extends (2) to an arbitrary weight $\nu_n$ in place of
-$d^1_n+d^2_n$.
 \end{proof}
 
 Taking $\nu_n=k_n$, the rank of the
 projection lift in the proof of
 Theorem~\ref{thm:projection-collapse}, gives the normalization used
 there.
-
-Invariant tensors of type $(p,q)$ may be identified with
-Hilbert--Schmidt intertwiners from the $q$th to the $p$th tensor
-power.  Since
-$\opnorm{A^{\otimes p}-B^{\otimes p}}\le p\,\opnorm{A-B}$, tensor
-powers of an operator-norm asymptotic representation are again
-operator-norm asymptotic representations.
-Theorem~\ref{thm:transport-variants}(2) therefore applies to every
-pair of tensor powers: at each fixed tensor type and each weight, a
-sequence asymptotically invariant for the conjugate copy of the
-Kazhdan image is asymptotically invariant for the whole of it.
-\leanverified{Sofic/TensorPowerAnyUniverse}{GroupApproximation.TensorPowerTransport.manuscriptFixedTensorTransport_anyUniverse}
 
 \section{Obstructions from a one-sided conjugation datum}\label{sec:conj}
 
@@ -2255,10 +2212,7 @@ $E_{\mathrm{BS}}$ nor its Clifford quotient is LEF, and the latter is
 not residually finite.
 \leanverified{Monsters/CyclicBaseLEFObstruction}{GroupApproximation.CyclicBaseLEFObstruction.cyclicBase_exactModel_package}
 
-\clearpage
-
-\section{The scaling family}\label{supp:scaling}
-
+\paragraph{The scaling family.}
 For $m\ge2$, define $E_m$ by replacing the three relations
 $tv_i t^{-1}=v_i^2$ in the eight-generator presentation of $E$ with
 $tv_i t^{-1}=v_i^m$ and leaving every other relator unchanged.  Then
@@ -2612,7 +2566,7 @@ $Q=\pi(s)P\pi(s)^{*}$, whose range is
 $\operatorname{Fix}\pi(sLs^{-1})$, satisfy $P\le Q$ and $P\sim Q$ in
 the norm ultraproduct, which is finite, so $P=Q$ by
 Lemma~\ref{lem:finitecompare}.
-Theorem~\ref{thm:transport-variants}(1) gives the same projection
+Theorem~\ref{thm:transport-variants} gives the same projection
 comparison with the weight $k_n$ in place of $d_n$.  Hence
 $\pi(g)y=y$ and
 $\beta(g)=0$ for every $g\in L$, contradicting the previous paragraph.
@@ -2677,37 +2631,29 @@ $\gamma\in L$.  Kernels are normal, so $\Theta$ is trivial on
 $D_{\mathrm{coll}}(L,s)$.
 \end{proof}
 
-\begin{theorem}[the orbit of a finite-order witness]\label{thm:torsion-collapse}
-Let $H$ be countable, let $L\le H$ have property~\textup{(T)}, let
-$s\in H$ satisfy $s\gamma s^{-1}\in L$ for every $\gamma\in L$, and
-let $k\in H$ have finite order.  If the conjugate copy $sLs^{-1}$
-centralizes $k$ and the conjugates $\gamma k\gamma^{-1}$,
-$\gamma\in L$, commute pairwise, then every homomorphism
-$\Theta\colon H\to\U(\mathcal Q)$ satisfies $\Theta([\gamma,k])=1$ for
-every $\gamma\in L$; the
-normal closure of all such commutators, over all finite-order witnesses
-for $(L,s)$, lies in $\operatorname{Res}_{\mathrm{MF}}(H)$, with
-equality whenever the corresponding quotient of $H$ is MF.
+\begin{remark}[finite-order witnesses]\label{thm:torsion-collapse}
+Condition (W1) can be relaxed to finite order.  Let $H$ be countable,
+let $L\le H$ have property~\textup{(T)}, let $s\in H$ satisfy
+$s\gamma s^{-1}\in L$ for every $\gamma\in L$, and let $k\in H$ have
+finite order $m$.  If $sLs^{-1}$ centralizes $k$ and the conjugates
+$\gamma k\gamma^{-1}$, $\gamma\in L$, commute pairwise, then every
+homomorphism $\Theta\colon H\to\U(\mathcal Q)$ satisfies
+$\Theta([\gamma,k])=1$ for every $\gamma\in L$: the discrete Fourier
+idempotents
+$p_j=m^{-1}\sum_{t\in\mathbf{Z}/m}e^{-2\pi ijt/m}\Theta(k)^{t}$, for
+$j\in\mathbf{Z}/m$, are self-adjoint idempotents of $\mathcal Q$ and
+polynomials in $\Theta(k)$, so $\Theta(sLs^{-1})$ centralizes each and
+their $\Theta(L)$-conjugates commute pairwise;
+Theorem~\ref{thm:projection-collapse} makes every $p_j$ commute with
+$\Theta(L)$, and then so does
+$\Theta(k)=\sum_j e^{2\pi ij/m}p_j$ by Fourier reconstruction.  The
+normal closure of all such commutators, over all finite-order
+witnesses for $(L,s)$, lies in $\operatorname{Res}_{\mathrm{MF}}(H)$,
+with equality whenever the corresponding quotient of $H$ is MF.
 \leanverified{Sofic/TorsionSpectralCollapse}{GroupApproximation.TorsionSpectralCollapse.actualCoronaMFInvisible_of_torsionWitness}
 \leanverified{Sofic/TorsionSpectralCollapse}{GroupApproximation.TorsionSpectralCollapse.torsionCollapseDefect_le_actualCoronaMFResidual_of_kazhdan}
 \leanverified{Sofic/TorsionSpectralCollapse}{GroupApproximation.TorsionSpectralCollapse.actualCoronaMFResidual_eq_torsionCollapseDefect_of_kazhdan}
-\end{theorem}
-
-\begin{proof}
-Let $\Theta$ be a homomorphism to $\U(\mathcal Q)$, $m$ the order of
-$k$, and $u=\Theta(k)$, a unitary with $u^{m}=1$.  Its discrete Fourier
-idempotents
-$p_j=m^{-1}\sum_{t\in\mathbf{Z}/m}e^{-2\pi ijt/m}u^{t}$, for
-$j\in\mathbf{Z}/m$, are self-adjoint idempotents of $\mathcal Q$.  Each
-$p_j$ is a polynomial in $u$, so every element commuting with $u$
-commutes with every $p_j$.  Thus $\Theta(sLs^{-1})$ centralizes each
-$p_j$, and the $\Theta(L)$-conjugates of each $p_j$ commute pairwise
-because the conjugated witnesses do.  By
-Theorem~\ref{thm:projection-collapse}, every $p_j$ commutes with
-$\Theta(L)$, and Fourier
-reconstruction expresses $u=\sum_j e^{2\pi ij/m}p_j$, so $u$ commutes
-with $\Theta(L)$ and $\Theta([\gamma,k])=1$ for every $\gamma\in L$.
-\end{proof}
+\end{remark}
 
 \begin{proof}[Proof of Theorem~\ref{thm:signfree}]
 Write $q\colon E\to E/\langle w\rangle$, $\bar d=q(d)$, and
@@ -3154,21 +3100,13 @@ The canonical tuple of $E$ satisfies $R$ by definition, and its
 distinguished word is nontrivial by Theorem~\ref{thm:A}.
 \end{proof}
 
-\begin{corollary}[a basic clopen set of non-MF marked groups]\label{cor:cylinder}
-In the space of eight-generator marked groups --- quotients of the free
-group $F_8$, topologized so that a basic clopen set fixes the truth of
-finitely many equations among words in the generators --- the marked groups
-satisfying all relators of $R$ and $w\ne1$ form a nonempty clopen set
-consisting entirely of non-MF groups.
+In the space of eight-generator marked groups, the groups satisfying
+all relators of $R$ and $w\ne1$ therefore form a nonempty clopen set
+consisting entirely of non-MF groups: both conditions depend on
+finitely many word equalities and inequalities, the set contains the
+marked group $E$, and Proposition~\ref{prop:horn} excludes every MF
+point.
 \leanverified{Sofic/LiteralMarkedCylinder}{GroupApproximation.LiteralMarkedCylinder.literal_nonempty_clopen_nonMF_cylinder}
-\end{corollary}
-
-\begin{proof}
-Both conditions depend on finitely many word equalities and
-inequalities, so the set is clopen.  It contains the marked group $E$
-by Theorem~\ref{thm:A}, and Proposition~\ref{prop:horn} shows that
-none of its points is MF\@.
-\end{proof}
 
 \subsection{Undecidability of MF recognition}
 

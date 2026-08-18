@@ -1,0 +1,29 @@
+<!doctype html><meta charset='utf-8'><title>matrix-corona-k1-vanishes</title><style>
+body{font:15px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;max-width:60em;margin:2em auto;padding:0 1em;color:#1c1e1c}
+a{color:#4f46e5;text-decoration:none}a:hover{text-decoration:underline}
+code,pre{font:13px/1.45 Menlo,monospace;background:#f4f4f2}
+pre{padding:.8em;overflow-x:auto;border:1px solid #e5e7e3}
+.badge{display:inline-block;padding:.1em .55em;border-radius:.8em;color:#fff;font:700 11px -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;letter-spacing:.04em}
+.node{font:13px Menlo,monospace}
+h1{font-size:1.4em}h2{font-size:1.05em;border-bottom:1px solid #e5e7e3;padding-bottom:.2em}
+ul.rel{list-style:none;padding-left:0}ul.rel li{margin:.25em 0}
+.muted{color:#8b9089}.tree{white-space:pre;font:13px/1.5 Menlo,monospace;background:#fafaf8;border:1px solid #e5e7e3;padding:1em;overflow-x:auto}
+table{border-collapse:collapse}td,th{border:1px solid #e5e7e3;padding:.25em .6em;font-size:.9em}
+</style><script>MathJax={tex:{inlineMath:[["$","$"],["\\(","\\)"]]}};</script><script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script><body><p><a href='index.html'>← index</a></p>
+<h1><span class='node'>matrix-corona-k1-vanishes</span> Every norm matrix corona has vanishing K-one</h1>
+<p><span class="badge" style="background:#178a5e">ESTABLISHED</span> <span class='muted'>claim · <code>research/matrix-corona-k1-vanishes.md</code></span></p>
+<p class='muted'>via route matrix-corona-k1-vanishes-proof</p>
+<h2>Routes into this claim</h2><ul class='rel'>
+<li><a class="node" href="matrix-corona-k1-vanishes-proof.html">matrix-corona-k1-vanishes-proof</a> <span class="badge" style="background:#178a5e">COMPLETE</span> Six-term sequence for the matrix corona extension</li>
+</ul>
+<h2>Statement</h2>
+<p>For any sequence <code>(d_n)</code> of positive integers, <code>K_1(prod_n M_{d_n} / oplus_n M_{d_n}) = 0</code>.</p>
+<p>Consequence for the non-MF program: no winding-number or Bott-type index of the marked unitary alone can obstruct a corona representation.  A central mark of infinite order, forced near the scalars, carries no <code>K_1</code> class to be contradicted, so the "unwind the sign into a circle and count turns" route into <code><a href="torsion-free-finitely-presented-non-mf.html">torsion-free-finitely-presented-non-mf</a></code> is void.  Any surviving index argument must be relative — an invariant of the mark <strong>together with</strong> another almost-commuting operator, as in the Bott index of an almost commuting pair — and not of the mark by itself.</p>
+<h3>Priority check (2026-08-14 literature scout)</h3>
+<p><strong>No prior source located, and none is needed.</strong> A targeted sweep — arXiv full-text for corona algebras with K-theory, and for MF/matricial-field and quasidiagonality work 2008--2026 — turned up nothing computing <code>K_1</code> or <code>K_0</code> of <code>prod_n M_(d_n) / oplus_n M_(d_n)</code>. The nearby literature is about coronas of <em>stable</em> or non-simple C-star algebras (multiplier/corona real rank, projection lifting), which is a different object.</p>
+<p>Treat the statement as folklore and prove it in place; it is three lines from the six-term exact sequence of</p>
+<pre>
+0 -&gt; oplus_n M_(d_n) -&gt; prod_n M_(d_n) -&gt; corona -&gt; 0,
+</pre>
+<p>using <code>K_1(prod_n M_(d_n)) = 0</code> (each <code>U(d_n)</code> is connected, and <code>K_1</code> of a product of unital algebras is the product of the <code>K_1</code>s) together with injectivity of <code>K_0(oplus) = oplus Z -&gt; K_0(prod) = prod Z</code>. No novelty should be claimed for it.</p>
+<p>For the relative invariant this node calls for, see <code><a href="exel-loring-relative-quasirep-invariant.html">exel-loring-relative-quasirep-invariant</a></code>: the Exel--Loring pairing of quasi-representations against <code>H_2</code> of the group is the developed form of "Bott index of an almost commuting pair" at group level.</p></body>

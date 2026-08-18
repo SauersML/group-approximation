@@ -1,0 +1,38 @@
+<!doctype html><meta charset='utf-8'><title>map-matricial-stability-non-mf</title><style>
+body{font:15px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;max-width:60em;margin:2em auto;padding:0 1em;color:#1c1e1c}
+a{color:#4f46e5;text-decoration:none}a:hover{text-decoration:underline}
+code,pre{font:13px/1.45 Menlo,monospace;background:#f4f4f2}
+pre{padding:.8em;overflow-x:auto;border:1px solid #e5e7e3}
+.badge{display:inline-block;padding:.1em .55em;border-radius:.8em;color:#fff;font:700 11px -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;letter-spacing:.04em}
+.node{font:13px Menlo,monospace}
+h1{font-size:1.4em}h2{font-size:1.05em;border-bottom:1px solid #e5e7e3;padding-bottom:.2em}
+ul.rel{list-style:none;padding-left:0}ul.rel li{margin:.25em 0}
+.muted{color:#8b9089}.tree{white-space:pre;font:13px/1.5 Menlo,monospace;background:#fafaf8;border:1px solid #e5e7e3;padding:1em;overflow-x:auto}
+table{border-collapse:collapse}td,th{border:1px solid #e5e7e3;padding:.25em .6em;font-size:.9em}
+</style><script>MathJax={tex:{inlineMath:[["$","$"],["\\(","\\)"]]}};</script><script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script><body><p><a href='index.html'>← index</a></p>
+<h1><span class='node'>map-matricial-stability-non-mf</span> A minimally almost periodic matricially stable group is not MF</h1>
+<p><span class="badge" style="background:#178a5e">ESTABLISHED</span> <span class='muted'>claim · <code>research/map-matricial-stability-non-mf.md</code></span></p>
+<p class='muted'>via route map-matricial-stability-non-mf-proof</p>
+<h2>Routes into this claim</h2><ul class='rel'>
+<li><a class="node" href="map-matricial-stability-non-mf-proof.html">map-matricial-stability-non-mf-proof</a> <span class="badge" style="background:#178a5e">COMPLETE</span> Stable plus no finite-dimensional representations forces every model to be trivial</li>
+</ul>
+<h2>Needed by routes</h2><ul class='rel'>
+<li><a class="node" href="torsion-free-non-mf-from-matricial-stability.html">torsion-free-non-mf-from-matricial-stability</a> <span class="badge" style="background:#c08a00">OPEN</span> Stability plus no finite-dimensional representations on the torsion-free group</li>
+</ul>
+<h2>Distinct from</h2><ul class='rel'>
+<li><a class="node" href="normal-kazhdan-defect-non-mf.html">normal-kazhdan-defect-non-mf</a> <span class="badge" style="background:#178a5e">ESTABLISHED</span> A normal Kazhdan subgroup in the compression defect kills every corona representation<br><span class='muted'>that claim obtains non-MF-ness from a normal Kazhdan subgroup in the compression defect and proves its own rigidity; this one assumes a stability hypothesis outright and needs no compression data at all.</span></li>
+<li><a class="node" href="central-sign-corona-obstruction.html">central-sign-corona-obstruction</a> <span class="badge" style="background:#178a5e">ESTABLISHED</span> Central-sign obstruction to norm-matrix-corona embeddings<br><span class='muted'>that claim marks a central involution; this one has no mark and no torsion anywhere in its statement.</span></li>
+</ul>
+<h2>Statement</h2>
+<p>Let <code>G</code> be an infinite countable group that is <strong>minimally almost periodic</strong> — every finite-dimensional unitary representation is trivial — and <strong>matricially stable</strong> in Dadarlat's sense: for every asymptotic homomorphism <code>phi_n : G -&gt; U(k_n)</code>, not necessarily separating, there are homomorphisms <code>pi_n : G -&gt; U(k_n)</code> with <code>‖phi_n(s) - pi_n(s)‖ -&gt; 0</code> for each <code>s in G</code>.  Then <code>G</code> is not MF.</p>
+<p>The argument is two lines and is written out in the proof route.  What makes it worth a node is its shape: <strong>no torsion, no mark, no central element, no compression data</strong>.  It is the cleanest torsion-free-compatible non-MF criterion available, and its group-theoretic hypothesis is one this program is already forced into from two other directions (<code><a href="bounded-rank-corners-excluded.html">bounded-rank-corners-excluded</a></code>, <code><a href="finite-dimensional-models-break-coordinate-generation.html">finite-dimensional-models-break-coordinate-generation</a></code>).</p>
+<p>The price is the stability hypothesis, which is unproved for every candidate here and is the same wall the repository already records for its Steinberg group: proving operator-norm stability for <code>St_5(L)</code> would close the weak-MF lane negatively, while proving weak MF would exhibit an explicit failure of that stability.  This node states the implication cleanly so that the wall has a name in the graph.</p>
+<h3>Ideas</h3>
+<p><strong>A chain that would prove too much — FLAGGED, NOT ASSERTED.</strong>  Two statements reported from Dadarlat, arXiv:2007.12655, sit next to each other in a way that deserves checking before anyone relies on either:</p>
+<ul>
+<li>MF implies weak quasidiagonality;</li>
+<li>Proposition 3.19, attributed to Ozawa--Thom: an infinite property-(T)</li>
+<p>group that is weakly quasidiagonal has an infinite residually finite quotient.</p>
+</ul>
+<p>Chained, these give: <em>an infinite Kazhdan group with no infinite residually finite quotient is not MF</em> — a published, torsion-free-compatible, entirely unconditional non-MF criterion, needing no mark, no stability, and no compression data.</p>
+<p><strong>Treat this as probably wrong until checked.</strong>  If it were right, non-MF groups would have been available since the Ozawa--Thom result, whereas the manuscript records that no countable group was known whose group C-star algebra fails to be MF, and Bachner--Dogon--Lubotzky still called the MF question open in April 2026.  The likely failure points, in order of suspicion: the first statement may be false as summarized, or carry extra hypotheses (a <code>gamma</code>-element, or a reduced-algebra qualifier); Proposition 3.19 may carry hypotheses lost in transcription; or infinite Kazhdan groups with no infinite residually finite quotient may not be known to exist, which would make the criterion vacuous rather than false.  The question is out to cairn-scout, who has the primary text.  <strong>Nothing in this repository should depend on the chain until it comes back</strong>, and if it does come back valid it is a priority matter for the manuscript, not merely a new route.</p></body>

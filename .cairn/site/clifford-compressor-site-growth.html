@@ -1,0 +1,37 @@
+<!doctype html><meta charset='utf-8'><title>clifford-compressor-site-growth</title><style>
+body{font:15px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;max-width:60em;margin:2em auto;padding:0 1em;color:#1c1e1c}
+a{color:#4f46e5;text-decoration:none}a:hover{text-decoration:underline}
+code,pre{font:13px/1.45 Menlo,monospace;background:#f4f4f2}
+pre{padding:.8em;overflow-x:auto;border:1px solid #e5e7e3}
+.badge{display:inline-block;padding:.1em .55em;border-radius:.8em;color:#fff;font:700 11px -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;letter-spacing:.04em}
+.node{font:13px Menlo,monospace}
+h1{font-size:1.4em}h2{font-size:1.05em;border-bottom:1px solid #e5e7e3;padding-bottom:.2em}
+ul.rel{list-style:none;padding-left:0}ul.rel li{margin:.25em 0}
+.muted{color:#8b9089}.tree{white-space:pre;font:13px/1.5 Menlo,monospace;background:#fafaf8;border:1px solid #e5e7e3;padding:1em;overflow-x:auto}
+table{border-collapse:collapse}td,th{border:1px solid #e5e7e3;padding:.25em .6em;font-size:.9em}
+</style><script>MathJax={tex:{inlineMath:[["$","$"],["\\(","\\)"]]}};</script><script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script><body><p><a href='index.html'>← index</a></p>
+<h1><span class='node'>clifford-compressor-site-growth</span> The Clifford compressor index is infinite at every strict positive compressor</h1>
+<p><span class="badge" style="background:#178a5e">ESTABLISHED</span> <span class='muted'>claim · <code>research/clifford-compressor-site-growth.md</code></span></p>
+<p class='muted'>via route clifford-compressor-site-growth-proof</p>
+<h2>Routes into this claim</h2><ul class='rel'>
+<li><a class="node" href="clifford-compressor-site-growth-proof.html">clifford-compressor-site-growth-proof</a> <span class="badge" style="background:#178a5e">COMPLETE</span> Monoid divisibility, infinite site orbits, and a Pimsner--Popa test projection</li>
+</ul>
+<h2>Distinct from</h2><ul class='rel'>
+<li><a class="node" href="relative-wall-commutant-growth.html">relative-wall-commutant-growth</a> <span class="badge" style="background:#178a5e">ESTABLISHED</span> A relative wall is exactly compressor growth of the relative commutant<br><span class='muted'>That claim is the model-free equivalence between existence of a wall and properness of one relative-commutant inclusion; this one computes the actual Pimsner--Popa index in the explicit Clifford crossed product, for every element of the positive compression monoid at once.</span></li>
+<li><a class="node" href="commutant-no-growth.html">commutant-no-growth</a> <span class="badge" style="background:#178a5e">ESTABLISHED</span> Commutants do not grow under genuine f.d. representations<br><span class='muted'>That claim is the finite-dimensional collapse for a genuine representation, where the index is forced to be one; this one exhibits infinite index in a fixed II_1 model and identifies the new Clifford modes with a monoid divisibility complement.</span></li>
+<li><a class="node" href="commutator-compressor-carries-no-wall.html">commutator-compressor-carries-no-wall</a> <span class="badge" style="background:#178a5e">ESTABLISHED</span> Commutator compressors carry no wall unless a factor has infinite growth<br><span class='muted'>That claim excludes a wall whenever two factors of a commutator compressor have finite growth index; this one determines the indices for the monomial-cone pair and thereby shows that exclusion is vacuous in the Clifford model.</span></li>
+<li><a class="node" href="finite-site-orbits-invariant-clifford-kernel.html">finite-site-orbits-invariant-clifford-kernel</a> <span class="badge" style="background:#178a5e">ESTABLISHED</span> Finite site orbits yield finite invariant Clifford-lamp kernels<br><span class='muted'>That claim is about actions all of whose site orbits are finite; here every new site has an infinite orbit, which is what makes the Clifford monomials orthogonal to the commutant.</span></li>
+</ul>
+<h2>Artifacts</h2><ul class='rel'>
+<li><code>docs/TRUE_CLIFFORD_COMPRESSOR_SITE_GROWTH.md</code></li>
+</ul>
+<h2>Statement</h2>
+<p>For the monomial-cone Kun--Thom pair <code>Gamma=E_r(A[Lambda_+])</code>, <code>G=E_r(A[Lambda]) semidirect SL_3(Z)</code>, <code>X=G/Gamma</code>, in the Clifford crossed product <code>M_Cl=Cl(X) crossed_product G</code> with <code>N=M_Cl intersect pi(Gamma)'</code>, the growth index of every element of the positive monoid <code>L_+=SL_3(Z) intersect M_3(N)</code> is</p>
+<pre>
+lambda(s)=[Ad pi(s)(N):N]=1 if s is a permutation matrix,
+                          =infinity otherwise.
+</pre>
+<p>The <code>Gamma</code>-fixed site set contains an injective copy of <code>L_+</code> via <code>p |-&gt; p^(-1)Gamma</code>, the compressor acts on it by right division, and the new Clifford modes are indexed by <code>L_+ minus L_+ s</code> — infinite unless <code>s^(-1)</code> is again nonnegative, i.e. unless <code>s</code> is a unit.  Each new site has infinite <code>Gamma</code>-orbit, so the Kazhdan average kills its Clifford monomials and a Pimsner--Popa test projection of trace <code>2^(-k)</code> gives index at least <code>2^k</code>.</p>
+<p>This settles Section 7 item 3 of <code>docs/TRUE_RELATIVE_WALL_IS_COMMUTANT_ GROWTH.md</code> and strengthens its Corollary 7 from a disjunction to a determination.</p>
+<p>The relative commutant is computed alongside, as far as the external cosets go.  <code>N intersect Cl(X)=Cl(X)^Gamma=Cl(X_fin)^Gamma</code> where <code>X_fin</code> is the finite-orbit locus, and on the external cosets <code>ell Gamma</code> the orbit is a single point if <code>ell</code> is a permutation matrix and infinite otherwise — no middle ground — so that part of the fixed algebra is exactly <code>Cl(iota(L_+))</code>.  Under <code>p |-&gt; p^(-1)Gamma</code> the tower becomes right division by <code>s</code> on the compression monoid, adjoining the modes <code>L_+ minus L_+ s</code> at each step.  That system alone is the one-sided Clifford shift and is Connes embeddable inside <code>R</code>; the difficulty is the coupling to the higher Fourier degrees and to the rest of <code>G</code>, not the tower.  General cosets <code>(u,ell)Gamma</code> and the higher-degree part of <code>N</code> are not computed.</p>
+<p><strong>Scope, for reuse across the invariant-graph family.</strong>  The site count is graph independent — <code>X^Gamma</code> and its translates depend only on the <code>G</code>-set. The <em>index</em> statement is not: the test projection pairs new sites into factors <code>(1+i c c')/2</code>, which is a projection only when the two Majoranas anticommute, i.e. only when the two sites are adjacent in the graph.  In the complete graph every distinct pair is adjacent; for a general invariant graph <code>S</code> one needs <code>k</code> disjoint <code>S</code>-edges inside <code>s X^Gamma minus X^Gamma</code>, or a pairing of each new site with an <code>S</code>-adjacent old site, which also works because <code>E_N</code> is an <code>N</code>-bimodule map and old-site Majoranas lie in <code>N</code>. Neither has been checked for the sparse members.  It does not bear on Connes embeddability: the same infinite-index tower shape is realized by the one-sided Clifford shift inside the hyperfinite II_1 factor.</p></body>

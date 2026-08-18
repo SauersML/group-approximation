@@ -1,0 +1,27 @@
+<!doctype html><meta charset='utf-8'><title>glebsky-hs-transport-step-classification-proof</title><style>
+body{font:15px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;max-width:60em;margin:2em auto;padding:0 1em;color:#1c1e1c}
+a{color:#4f46e5;text-decoration:none}a:hover{text-decoration:underline}
+code,pre{font:13px/1.45 Menlo,monospace;background:#f4f4f2}
+pre{padding:.8em;overflow-x:auto;border:1px solid #e5e7e3}
+.badge{display:inline-block;padding:.1em .55em;border-radius:.8em;color:#fff;font:700 11px -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;letter-spacing:.04em}
+.node{font:13px Menlo,monospace}
+h1{font-size:1.4em}h2{font-size:1.05em;border-bottom:1px solid #e5e7e3;padding-bottom:.2em}
+ul.rel{list-style:none;padding-left:0}ul.rel li{margin:.25em 0}
+.muted{color:#8b9089}.tree{white-space:pre;font:13px/1.5 Menlo,monospace;background:#fafaf8;border:1px solid #e5e7e3;padding:1em;overflow-x:auto}
+table{border-collapse:collapse}td,th{border:1px solid #e5e7e3;padding:.25em .6em;font-size:.9em}
+</style><script>MathJax={tex:{inlineMath:[["$","$"],["\\(","\\)"]]}};</script><script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script><body><p><a href='index.html'>← index</a></p>
+<h1><span class='node'>glebsky-hs-transport-step-classification-proof</span> Read both Glebsky papers and exhibit the system that blocks the universal solution</h1>
+<p><span class="badge" style="background:#178a5e">COMPLETE</span> <span class='muted'>route · <code>research/glebsky-hs-transport-step-classification-proof.md</code></span></p>
+<h2>Target</h2><ul class='rel'>
+<li><a class="node" href="glebsky-hs-transport-step-classification.html">glebsky-hs-transport-step-classification</a> <span class="badge" style="background:#178a5e">ESTABLISHED</span> Which steps of Glebsky&#x27;s permanence proof survive normalized-HS transport</li>
+</ul>
+<h2>Artifacts</h2><ul class='rel'>
+<li><code>docs/TRUE_GLEBSKY_HS_TRANSPORT_AUDIT.md</code></li>
+</ul>
+<h2>Statement</h2>
+<h2>Read both Glebsky papers and exhibit the blocking system</h2>
+<p>Direct establishment; the complete argument is §§1–2 and §5 of the cited note. <code>requires: []</code> is a proof commitment.</p>
+<p>The classification of steps 1, 2, 5, 6 as type (a) is a reading of the proofs plus the standard fact that a metric approximation property is determined by finite subsets, hence passes to subgroups and to residual limits (Alekseev–Bradford Remark 3.3 states the finite-subset dependence).</p>
+<p>The classification of step 3 as type (b) is the hypothesis <code>K ⊆ Fin</code> printed in Corollary 19 of arXiv:1506.06940, together with the observation that the converse half of that paper's Lemma 3 — the half that manufactures an invariant length from an algebraic separation condition — is the only bridge from the length-free notion (Definition 6) back to the metric notion (Definition 3). The easy half of Lemma 3 does survive for <code>(U(n), ‖·‖₂)</code>, because the normalized Hilbert–Schmidt length is invariant and subadditive (<code>‖uv−1‖₂ ≤ ‖u−1‖₂ + ‖v−1‖₂</code>), so <code>n</code>-consequences of the <code>ε</code>-ball lie in the <code>nε</code>-ball. Only the manufacturing direction fails, and it fails because the length is prescribed rather than chosen.</p>
+<p>The refutation of step 4 is the explicit system <code>x²a⁻¹</code>, together with the observation that <code>ℤ/2</code> is a quotient of the auxiliary finite group <code>D_N ⋊ G_N = (∏_{M ∈ M_N}(H^{G_M})^m) ⋊ G_N</code> whenever the lamp <code>H</code> is <code>ℤ/2</code>.</p>
+<p>Sources read from the PDF on 2026-08-14: arXiv:1910.08631 in full; and from arXiv:1506.06940 the Definitions 1–8, Lemma 3, Propositions 1, 4, 5, 17, Corollaries 6, 7, 19, Theorem 16, Proposition 20. The DGLT norm conventions are §1.2 of arXiv:1711.10238, read directly.</p></body>

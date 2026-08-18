@@ -1,0 +1,52 @@
+<!doctype html><meta charset='utf-8'><title>marked-double-coset-infinite-degree-proof</title><style>
+body{font:15px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;max-width:60em;margin:2em auto;padding:0 1em;color:#1c1e1c}
+a{color:#4f46e5;text-decoration:none}a:hover{text-decoration:underline}
+code,pre{font:13px/1.45 Menlo,monospace;background:#f4f4f2}
+pre{padding:.8em;overflow-x:auto;border:1px solid #e5e7e3}
+.badge{display:inline-block;padding:.1em .55em;border-radius:.8em;color:#fff;font:700 11px -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;letter-spacing:.04em}
+.node{font:13px Menlo,monospace}
+h1{font-size:1.4em}h2{font-size:1.05em;border-bottom:1px solid #e5e7e3;padding-bottom:.2em}
+ul.rel{list-style:none;padding-left:0}ul.rel li{margin:.25em 0}
+.muted{color:#8b9089}.tree{white-space:pre;font:13px/1.5 Menlo,monospace;background:#fafaf8;border:1px solid #e5e7e3;padding:1em;overflow-x:auto}
+table{border-collapse:collapse}td,th{border:1px solid #e5e7e3;padding:.25em .6em;font-size:.9em}
+</style><script>MathJax={tex:{inlineMath:[["$","$"],["\\(","\\)"]]}};</script><script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script><body><p><a href='index.html'>← index</a></p>
+<h1><span class='node'>marked-double-coset-infinite-degree-proof</span> Cut a root subgroup against the denominator ideal</h1>
+<p><span class="badge" style="background:#178a5e">COMPLETE</span> <span class='muted'>route · <code>research/marked-double-coset-infinite-degree-proof.md</code></span></p>
+<h2>Target</h2><ul class='rel'>
+<li><a class="node" href="marked-double-coset-infinite-degree.html">marked-double-coset-infinite-degree</a> <span class="badge" style="background:#178a5e">ESTABLISHED</span> The marked double coset of the Laurent Kun--Thom pair has infinite degree</li>
+</ul>
+<h2>Requires</h2><ul class='rel'>
+<li><a class="node" href="kun-thom-nonsofic-wreath.html">kun-thom-nonsofic-wreath</a> <span class="badge" style="background:#178a5e">ESTABLISHED</span> Kun--Thom nonsofic generalized wreath products over infranormal Kazhdan pairs</li>
+</ul>
+<h2>Artifacts</h2><ul class='rel'>
+<li><code>docs/COMMUTING_WREATH_SOFIC_RADICAL.md</code></li>
+</ul>
+<h2>Statement</h2>
+<h3>Direct proof</h3>
+<p>Throughout, <code>Gamma=EL_r(R_+)</code> contains the root subgroups <code>U_(ij)={e_(ij)(a) : a in R_+}</code>, each isomorphic to the additive group of <code>R_+</code>, and every element of <code>Gamma</code> has all entries in <code>R_+</code>.</p>
+<p><strong>Denominator lemma.</strong>  Let <code>0!=f in R</code>.  Write <code>f=x^w P</code> with <code>w in Z^d</code> and <code>P in R_+</code> divisible by no variable; this is unique.  Then</p>
+<pre>
+{a in R_+ : a f in R_+} = x^(w^-) R_+,
+</pre>
+<p>where <code>w^-_k=max(0,-w_k)</code>.  Indeed <code>a x^w P in R_+</code> iff <code>x^(w^-)</code> divides <code>a x^(w^+) P</code>, and <code>w^+</code>, <code>w^-</code> have disjoint support, so this says <code>x^(w^-)</code> divides <code>a P</code>, hence divides <code>a</code> by unique factorization in <code>R_+</code> and coprimality of <code>P</code> to the variables.  If <code>w^- != 0</code>, say <code>w^-_1&gt;0</code>, then the monomials <code>x_2^s</code>, <code>s&gt;=0</code>, lie outside <code>x^(w^-)R_+</code> and no difference of two of them lies in it, so the additive index of <code>x^(w^-)R_+</code> in <code>R_+</code> is infinite.  This is where <code>d&gt;=2</code> is used.</p>
+<p><strong>1. Necessary condition.</strong>  Suppose <code>[Gamma : Gamma cap h Gamma h^(-1)]=n</code> is finite and fix <code>i!=j</code>.  The set</p>
+<pre>
+D_(ij) = {a in R_+ : e_(ij)(a) in h Gamma h^(-1)}
+</pre>
+<p>is a subgroup of <code>(R_+,+)</code>, since <code>a |-&gt; e_(ij)(a)</code> is a homomorphism and <code>h Gamma h^(-1)</code> is a group; and <code>[(R_+,+) : D_(ij)] = [U_(ij) : U_(ij) cap h Gamma h^(-1)] &lt;= n</code>, because the index of an intersection with a subgroup is at most the ambient index.</p>
+<p>For <code>a in D_(ij)</code> we have <code>h^(-1) e_(ij)(a) h in Gamma</code>, and</p>
+<pre>
+h^(-1)(I + a E_(ij))h = I + a * h^(-1)E_(ij)h,
+   (h^(-1)E_(ij)h)_(pq) = (h^(-1))_(pi) h_(jq),
+</pre>
+<p>so <code>a (h^(-1))_(pi) h_(jq) in R_+</code> for every <code>p,q</code>.  Hence <code>D_(ij)</code> is contained in the intersection over <code>p,q</code> of the sets of the denominator lemma.  If some <code>(h^(-1))_(pi)h_(jq)</code> were outside <code>R_+</code>, that intersection would already have infinite additive index, contradicting <code>[(R_+,+):D_(ij)] &lt;= n</code>.  So all these products lie in <code>R_+</code>.</p>
+<p><strong>2. The marked element.</strong>  For <code>h=e_12(x^m)=I+x^m E_12</code> one has <code>h^(-1)=I-x^m E_12</code>, so with <code>i=2</code>, <code>j=1</code>, <code>p=q=1</code>,</p>
+<pre>
+(h^(-1))_(12) h_(11) = -x^m,
+</pre>
+<p>which lies outside <code>R_+</code> exactly when <code>m</code> is not in <code>N^d</code>.  The recorded marked element has <code>m=-(1,...,1)</code>.  By 1 the index is infinite.  Since the <code>Gamma</code>-orbit of <code>h Gamma</code> in <code>X=G/Gamma</code> has cardinality <code>[Gamma : Gamma cap h Gamma h^(-1)]</code>, that orbit is infinite, and the orbital graph of the double coset <code>Gamma h Gamma</code> — whose degree at <code>y</code> is the size of the <code>Gamma_y</code>-orbit of the corresponding neighbour — has infinite degree.</p>
+<p><strong>3. Consequence.</strong>  A <code>G</code>-invariant graph is a union of <code>G</code>-orbits of unordered pairs.  If it contains <code>{Gamma, h Gamma}</code> it contains that whole orbit, whose degree at the base point is already infinite by 2.  So it has infinite degree.</p>
+<p><strong>4. The fixed set.</strong>  <code>y Gamma</code> is fixed by <code>Gamma</code> iff <code>y^(-1) Gamma y</code> is contained in <code>Gamma</code>, i.e. iff <code>y^(-1)</code> lies in the compression semigroup <code>P_Gamma</code>; so <code>X^Gamma = P_Gamma^(-1)Gamma/Gamma</code>.  For a strict compressor <code>t</code>, <code><a href="ray-injectivity.html">ray-injectivity</a></code> (formalized) says no positive power of <code>t</code> lies in <code>Gamma</code>, so the cosets <code>t^(-n)Gamma</code> are pairwise distinct and all lie in <code>X^Gamma</code>.</p>
+<p>For the translate identity, <code>y Gamma</code> is fixed by <code>s Gamma s^(-1)</code> iff <code>y^(-1)s Gamma s^(-1) y &lt;= Gamma</code>, i.e. iff <code>w=s^(-1)y</code> satisfies <code>w^(-1)Gamma w &lt;= Gamma</code>, i.e. iff <code>w in P_Gamma^(-1)</code>.  Hence <code>X^(s Gamma s^(-1)) = s P_Gamma^(-1)Gamma/Gamma = s * X^Gamma</code>.  If <code>t</code> is a compressor and <code>w^(-1) in P_Gamma</code>, then <code>(t^(-1)w)^(-1)Gamma(t^(-1)w) = w^(-1)(t Gamma t^(-1))w &lt;= w^(-1)Gamma w &lt;= Gamma</code>, so <code>X^Gamma &lt;= t X^Gamma</code>.  The inclusion is strict: <code>t Gamma in t X^Gamma</code>, while <code>t Gamma in X^Gamma</code> would give <code>t^(-1)Gamma t &lt;= Gamma</code> and hence <code>t Gamma t^(-1) = Gamma</code>, contradicting strictness.</p>
+<h3>Scope</h3>
+<p>This is a statement about the specific Laurent pair of Kun--Thom Theorem E and about elementary marked elements <code>h=e_12(x^m)</code>.  Condition 1 is only necessary, so it cannot be used to certify that some other double coset <em>is</em> finite; it is used here only in its contrapositive.  Nothing here says the invariant-graph family is empty — the complete graph and every other nondegenerate invariant graph remain available, all of infinite degree.</p></body>

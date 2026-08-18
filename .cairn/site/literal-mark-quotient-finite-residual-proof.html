@@ -1,0 +1,29 @@
+<!doctype html><meta charset='utf-8'><title>literal-mark-quotient-finite-residual-proof</title><style>
+body{font:15px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;max-width:60em;margin:2em auto;padding:0 1em;color:#1c1e1c}
+a{color:#4f46e5;text-decoration:none}a:hover{text-decoration:underline}
+code,pre{font:13px/1.45 Menlo,monospace;background:#f4f4f2}
+pre{padding:.8em;overflow-x:auto;border:1px solid #e5e7e3}
+.badge{display:inline-block;padding:.1em .55em;border-radius:.8em;color:#fff;font:700 11px -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;letter-spacing:.04em}
+.node{font:13px Menlo,monospace}
+h1{font-size:1.4em}h2{font-size:1.05em;border-bottom:1px solid #e5e7e3;padding-bottom:.2em}
+ul.rel{list-style:none;padding-left:0}ul.rel li{margin:.25em 0}
+.muted{color:#8b9089}.tree{white-space:pre;font:13px/1.5 Menlo,monospace;background:#fafaf8;border:1px solid #e5e7e3;padding:1em;overflow-x:auto}
+table{border-collapse:collapse}td,th{border:1px solid #e5e7e3;padding:.25em .6em;font-size:.9em}
+</style><script>MathJax={tex:{inlineMath:[["$","$"],["\\(","\\)"]]}};</script><script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script><body><p><a href='index.html'>← index</a></p>
+<h1><span class='node'>literal-mark-quotient-finite-residual-proof</span> Level collapse in finite quotients plus folding of the free lamplighter</h1>
+<p><span class="badge" style="background:#178a5e">COMPLETE</span> <span class='muted'>route · <code>research/literal-mark-quotient-finite-residual-proof.md</code></span></p>
+<h2>Target</h2><ul class='rel'>
+<li><a class="node" href="literal-mark-quotient-finite-residual.html">literal-mark-quotient-finite-residual</a> <span class="badge" style="background:#178a5e">ESTABLISHED</span> Exact finite residual of the literal marked quotient</li>
+</ul>
+<h2>Requires</h2><ul class='rel'>
+<li><a class="node" href="literal-lamp-kernel-clifford-block-amalgam.html">literal-lamp-kernel-clifford-block-amalgam</a> <span class="badge" style="background:#178a5e">ESTABLISHED</span> The literal lamp kernel is a central amalgam of order-512 Clifford blocks</li>
+<li><a class="node" href="finite-quotient-blindness.html">finite-quotient-blindness</a> <span class="badge" style="background:#178a5e">ESTABLISHED</span> Finite quotients are blind to the compression</li>
+</ul>
+<h2>Artifacts</h2><ul class='rel'>
+<li><code>docs/COMMUTING_LAMP_QUOTIENT_STRUCTURE_AND_MF_FORK_2026-08-14.md</code></li>
+</ul>
+<h2>Statement</h2>
+<h3>Direct proof</h3>
+<p><em>Level collapse.</em>  For <code>phi</code> into a finite group, blindness gives <code>phi(Gbar_k) = phi(Gbar)</code> for all <code>k</code>, hence <code>phi(T) = phi(Gbar)</code> and <code>T &lt;= Gbar . ker phi</code>.  Conjugating by <code>g</code> with <code>x = g Gbar</code> and using normality of <code>ker phi</code> gives <code>T &lt;= Stab_V(x) . ker phi</code>; writing <code>h = sigma k</code> accordingly, <code>phi(c_{hx}) = phi(sigma) phi(c_x) phi(sigma)^{-1} = phi(c_x)</code>.  Levels are <code>T</code>-orbits, so all same-level lamps agree and <code>R &lt;= ker phi</code>.  The argument never uses commutativity of the lamp kernel.</p>
+<p><em>The collapse quotient.</em>  Identifying the eight lamps of a block collapses <code>(Z/2)^8</code> to <code>Z/2</code>, and identifying blocks of a common level amalgamates those factors, so the free product becomes <code>*_{n in Z} Z/2</code>, with <code>T</code> acting trivially and <code>tau</code> shifting.</p>
+<p><em>Residual finiteness.</em>  Elements with nontrivial <code>V</code>-part are separated by Malcev, <code>V</code> being finitely generated linear.  A reduced word in the <code>xi_n</code> using levels within a window of width <code>&lt; m</code> stays reduced after folding <code>Z</code> to <code>Z/m</code>, and <code>( *_{Z/m} Z/2 ) semidirect Z/m</code> is finitely generated virtually free, hence residually finite.  Section 9 of the cited note is the complete argument.</p></body>

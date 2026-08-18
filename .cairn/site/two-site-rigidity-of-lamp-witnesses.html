@@ -1,0 +1,34 @@
+<!doctype html><meta charset='utf-8'><title>two-site-rigidity-of-lamp-witnesses</title><style>
+body{font:15px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;max-width:60em;margin:2em auto;padding:0 1em;color:#1c1e1c}
+a{color:#4f46e5;text-decoration:none}a:hover{text-decoration:underline}
+code,pre{font:13px/1.45 Menlo,monospace;background:#f4f4f2}
+pre{padding:.8em;overflow-x:auto;border:1px solid #e5e7e3}
+.badge{display:inline-block;padding:.1em .55em;border-radius:.8em;color:#fff;font:700 11px -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;letter-spacing:.04em}
+.node{font:13px Menlo,monospace}
+h1{font-size:1.4em}h2{font-size:1.05em;border-bottom:1px solid #e5e7e3;padding-bottom:.2em}
+ul.rel{list-style:none;padding-left:0}ul.rel li{margin:.25em 0}
+.muted{color:#8b9089}.tree{white-space:pre;font:13px/1.5 Menlo,monospace;background:#fafaf8;border:1px solid #e5e7e3;padding:1em;overflow-x:auto}
+table{border-collapse:collapse}td,th{border:1px solid #e5e7e3;padding:.25em .6em;font-size:.9em}
+</style><script>MathJax={tex:{inlineMath:[["$","$"],["\\(","\\)"]]}};</script><script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script><body><p><a href='index.html'>← index</a></p>
+<h1><span class='node'>two-site-rigidity-of-lamp-witnesses</span> A lamp-to-lamp weak-soficity witness separating the mark must be exactly covariant</h1>
+<p><span class="badge" style="background:#178a5e">ESTABLISHED</span> <span class='muted'>claim · <code>research/two-site-rigidity-of-lamp-witnesses.md</code></span></p>
+<p class='muted'>via route two-site-rigidity-of-lamp-witnesses-proof</p>
+<h2>Routes into this claim</h2><ul class='rel'>
+<li><a class="node" href="two-site-rigidity-of-lamp-witnesses-proof.html">two-site-rigidity-of-lamp-witnesses-proof</a> <span class="badge" style="background:#178a5e">COMPLETE</span> Conjugate the marked pair onto the error pair and telescope in the square root</li>
+</ul>
+<h2>Distinct from</h2><ul class='rel'>
+<li><a class="node" href="hilbert-embeddable-witness-for-kun-thom-wreath.html">hilbert-embeddable-witness-for-kun-thom-wreath</a> <span class="badge" style="background:#c08a00">OPEN</span> A Hilbert embeddable weak-soficity witness for the Kun--Thom wreath<br><span class='muted'>that asks whether a Hilbert embeddable witness exists; this proves necessary conditions on the shape of any witness, embeddable or not, and so constrains that search rather than answering it.</span></li>
+<li><a class="node" href="invariant-graph-clifford-phase.html">invariant-graph-clifford-phase</a> <span class="badge" style="background:#178a5e">ESTABLISHED</span> Invariant-graph central quotients carry the same sofic-radical phase, and only a sign<br><span class='muted'>that classifies invariant graphs on the infinite coset space; this shows a related structure is forced on the finite site sets of any witness.</span></li>
+<li><a class="node" href="marked-double-coset-infinite-degree.html">marked-double-coset-infinite-degree</a> <span class="badge" style="background:#178a5e">ESTABLISHED</span> The marked double coset of the Laurent Kun--Thom pair has infinite degree<br><span class='muted'>that computes an index in the infinite Kun--Thom pair; this is about the finite approximating groups.</span></li>
+</ul>
+<h2>Artifacts</h2><ul class='rel'>
+<li><code>docs/FALSE_FERMIONIC_KUN_THOM_ENDPOINT.md</code></li>
+</ul>
+<h2>Statement</h2>
+<p>Let <code>W = (directSum_(G/Gamma) Z/2Z) semidirect G</code>, let <code>w=a_o a_(h Gamma)</code> be the marked involution, and consider a weak-soficity witness <code>sigma:W-&gt;K_n</code> with bi-invariant length <code>ell_n</code>, defect tending to zero and <code>ell_n(sigma(w)) &gt;= c &gt; 0</code>.  Call the witness <strong>lamp-to-lamp</strong> if <code>K_n</code> has a normal subgroup <code>directSum_(Y_n) Z/2Z</code> with <code>sigma(a_u)=a_(j_n(u))</code> and the <code>sigma(g)</code> normalizing it by permuting sites.</p>
+<p>1. <strong>Two-site rigidity.</strong>  If the conjugation image of <code>K_n</code> on the site set <code>Y_n</code> is 2-transitive, then all elements <code>a_p a_q</code> with <code>p != q</code> are conjugate, so a bi-invariant length gives them <strong>one common value</strong>.  The mark and every covariance error are among them, so they cannot be separated from each other. 2. <strong>Forced exact covariance.</strong>  Consequently, under the hypotheses of 1, the witness must satisfy</p>
+<pre>
+   pi_n(g) j_n(u) = j_n(g u)
+</pre>
+<p>exactly for every <code>g,u</code> in the window — no covariance error is affordable at all.  The entire multiplicative defect must be carried off the lamp coordinates, by the acting part alone. 3. <strong>Corrected no-dilution bound.</strong>  <code>sqrt(ell_n)</code> is a conjugation-invariant pseudometric, because conditional negative definiteness writes <code>ell_n(a^(-1)b)=||f(a)-f(b)||^2</code>.  Since <code>w = a_o * g a_o g^(-1)</code>, the triangle inequality for <code>sqrt(ell_n)</code> gives <code>ell_n(a_o) &gt;= c/4</code>: every single lamp is expensive.</p>
+<p>So a witness of this shape must break 2-transitivity — the site sets must carry a nontrivial invariant relation distinguishing the marked pair from the error pairs.  That is the finite shadow of <code><a href="invariant-graph-clifford-phase.html">invariant-graph-clifford-phase</a></code>: the invariant graph structure classified there on <code>G/Gamma</code> is not optional decoration, it is forced on the finite approximations too.</p></body>

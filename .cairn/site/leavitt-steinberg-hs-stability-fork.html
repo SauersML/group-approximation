@@ -1,0 +1,44 @@
+<!doctype html><meta charset='utf-8'><title>leavitt-steinberg-hs-stability-fork</title><style>
+body{font:15px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;max-width:60em;margin:2em auto;padding:0 1em;color:#1c1e1c}
+a{color:#4f46e5;text-decoration:none}a:hover{text-decoration:underline}
+code,pre{font:13px/1.45 Menlo,monospace;background:#f4f4f2}
+pre{padding:.8em;overflow-x:auto;border:1px solid #e5e7e3}
+.badge{display:inline-block;padding:.1em .55em;border-radius:.8em;color:#fff;font:700 11px -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;letter-spacing:.04em}
+.node{font:13px Menlo,monospace}
+h1{font-size:1.4em}h2{font-size:1.05em;border-bottom:1px solid #e5e7e3;padding-bottom:.2em}
+ul.rel{list-style:none;padding-left:0}ul.rel li{margin:.25em 0}
+.muted{color:#8b9089}.tree{white-space:pre;font:13px/1.5 Menlo,monospace;background:#fafaf8;border:1px solid #e5e7e3;padding:1em;overflow-x:auto}
+table{border-collapse:collapse}td,th{border:1px solid #e5e7e3;padding:.25em .6em;font-size:.9em}
+</style><script>MathJax={tex:{inlineMath:[["$","$"],["\\(","\\)"]]}};</script><script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script><body><p><a href='index.html'>← index</a></p>
+<h1><span class='node'>leavitt-steinberg-hs-stability-fork</span> The Leavitt--Steinberg normalized-HS stability fork</h1>
+<p><span class="badge" style="background:#178a5e">ESTABLISHED</span> <span class='muted'>claim · <code>research/leavitt-steinberg-hs-stability-fork.md</code></span></p>
+<p class='muted'>via route leavitt-steinberg-hs-stability-fork-proof</p>
+<h2>Routes into this claim</h2><ul class='rel'>
+<li><a class="node" href="leavitt-steinberg-hs-stability-fork-proof.html">leavitt-steinberg-hs-stability-fork-proof</a> <span class="badge" style="background:#178a5e">COMPLETE</span> Convert stability or instability of the Steinberg cover into a frontier witness</li>
+</ul>
+<h2>Needed by routes</h2><ul class='rel'>
+<li><a class="node" href="hs-block-decomposition-to-steinberg-stable.html">hs-block-decomposition-to-steinberg-stable</a> <span class="badge" style="background:#c08a00">OPEN</span> Transcribe the one-sided-compression nonsoficity argument to normalized HS</li>
+<li><a class="node" href="leavitt-steinberg-stable-branch.html">leavitt-steinberg-stable-branch</a> <span class="badge" style="background:#c08a00">OPEN</span> Select the stable Steinberg branch</li>
+<li><a class="node" href="leavitt-steinberg-unstable-branch.html">leavitt-steinberg-unstable-branch</a> <span class="badge" style="background:#c08a00">OPEN</span> Select the unstable Steinberg branch</li>
+<li><a class="node" href="steinberg-hs-stability-equals-nonhyperlinearity-proof.html">steinberg-hs-stability-equals-nonhyperlinearity-proof</a> <span class="badge" style="background:#178a5e">COMPLETE</span> Close both converses of the fork using quasisimplicity</li>
+</ul>
+<h2>Distinct from</h2><ul class='rel'>
+<li><a class="node" href="wreath-flexible-hs-stability.html">wreath-flexible-hs-stability</a> <span class="badge" style="background:#c08a00">OPEN</span> The wreath candidate G is flexibly HS-stable<br><span class='muted'>That is an open stability claim for the wreath candidate; this is an established conditional dichotomy for the Leavitt--Steinberg cover.</span></li>
+<li><a class="node" href="non-hyperlinear-group.html">non-hyperlinear-group</a> <span class="badge" style="background:#c08a00">OPEN</span> Exhibit an explicit non-hyperlinear group<br><span class='muted'>This theorem gives a nonhyperlinear group only on its stable branch; it does not select that branch.</span></li>
+<li><a class="node" href="hyperlinear-nonsofic-group.html">hyperlinear-nonsofic-group</a> <span class="badge" style="background:#c08a00">OPEN</span> Pestov Question 3.4: produce a hyperlinear non-sofic group<br><span class='muted'>This theorem gives a hyperlinear nonsofic quotient only on its unstable branch; it does not select that branch.</span></li>
+<li><a class="node" href="leavitt-steinberg-hs-stable.html">leavitt-steinberg-hs-stable</a> <span class="badge" style="background:#c08a00">OPEN</span> The binary Leavitt Steinberg cover is normalized-HS stable<br><span class='muted'>This is the proved implication for either outcome; the other selects the stable outcome.</span></li>
+<li><a class="node" href="leavitt-steinberg-hs-unstable.html">leavitt-steinberg-hs-unstable</a> <span class="badge" style="background:#c08a00">OPEN</span> The binary Leavitt Steinberg cover is normalized-HS unstable<br><span class='muted'>This is the proved implication for either outcome; the other selects the unstable outcome.</span></li>
+</ul>
+<h2>Artifacts</h2><ul class='rel'>
+<li><code>docs/ATLAS_HS_CRITERION.md</code></li>
+<li><code>docs/NON_MF_TO_HYPERLINEAR_DIFFERENTIAL_AUDIT.md</code></li>
+<li><code>docs/NOTEPAD.md</code></li>
+</ul>
+<h2>Statement</h2>
+<p>Put <code>L=L_(F_2)(1,2)</code>, <code>U=St_5(L)</code>, and <code>Q=EL_4(L)</code>.  Exactly one of the following branches holds:</p>
+<ul>
+<li>if <code>U</code> is normalized Hilbert--Schmidt stable, then <code>U</code> is nonhyperlinear;</li>
+<li>if <code>U</code> is not normalized Hilbert--Schmidt stable, then a central quotient</li>
+<p>of <code>U</code> is hyperlinear and nonsofic (and central-quotient permanence makes the already nonsofic group <code>Q</code> hyperlinear).</p>
+</ul>
+<p>The inputs are finite presentability and minimal almost periodicity of <code>U</code>, quasisimplicity of <code>U</code>, and nonsoficity of the relevant central quotients. The fork is unconditional, but it does not decide which branch occurs.</p></body>

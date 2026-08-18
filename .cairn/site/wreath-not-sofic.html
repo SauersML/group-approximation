@@ -1,0 +1,57 @@
+<!doctype html><meta charset='utf-8'><title>wreath-not-sofic</title><style>
+body{font:15px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;max-width:60em;margin:2em auto;padding:0 1em;color:#1c1e1c}
+a{color:#4f46e5;text-decoration:none}a:hover{text-decoration:underline}
+code,pre{font:13px/1.45 Menlo,monospace;background:#f4f4f2}
+pre{padding:.8em;overflow-x:auto;border:1px solid #e5e7e3}
+.badge{display:inline-block;padding:.1em .55em;border-radius:.8em;color:#fff;font:700 11px -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;letter-spacing:.04em}
+.node{font:13px Menlo,monospace}
+h1{font-size:1.4em}h2{font-size:1.05em;border-bottom:1px solid #e5e7e3;padding-bottom:.2em}
+ul.rel{list-style:none;padding-left:0}ul.rel li{margin:.25em 0}
+.muted{color:#8b9089}.tree{white-space:pre;font:13px/1.5 Menlo,monospace;background:#fafaf8;border:1px solid #e5e7e3;padding:1em;overflow-x:auto}
+table{border-collapse:collapse}td,th{border:1px solid #e5e7e3;padding:.25em .6em;font-size:.9em}
+</style><script>MathJax={tex:{inlineMath:[["$","$"],["\\(","\\)"]]}};</script><script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script><body><p><a href='index.html'>← index</a></p>
+<h1><span class='node'>wreath-not-sofic</span> The wreath candidate is not sofic</h1>
+<p><span class="badge" style="background:#178a5e">ESTABLISHED</span> <span class='muted'>claim · <code>research/wreath-not-sofic.md</code></span></p>
+<p class='muted'>via route wreath-not-sofic-proof</p>
+<h2>Routes into this claim</h2><ul class='rel'>
+<li><a class="node" href="wreath-not-sofic-proof.html">wreath-not-sofic-proof</a> <span class="badge" style="background:#178a5e">COMPLETE</span> Identification of the candidate with Kun–Thom&#x27;s Theorem E pair</li>
+</ul>
+<h2>Needed by routes</h2><ul class='rel'>
+<li><a class="node" href="clifford-diagonal-lamp-subspace-proof.html">clifford-diagonal-lamp-subspace-proof</a> <span class="badge" style="background:#178a5e">COMPLETE</span> A trivial diagonal lamp subspace would embed W in a permutation ultraproduct</li>
+<li><a class="node" href="flexible-side-witness.html">flexible-side-witness</a> <span class="badge" style="background:#c08a00">OPEN</span> Flexible side — hyperlinear nonsofic witness from the wreath candidate</li>
+<li><a class="node" href="halo-locally-sofic-target-collapse-proof.html">halo-locally-sofic-target-collapse-proof</a> <span class="badge" style="background:#178a5e">COMPLETE</span> Shrink each finite witness to the subgroup its labels generate</li>
+</ul>
+<h2>Artifacts</h2><ul class='rel'>
+<li><code>research/artifacts/kun-thom-2608-06222-verified.md</code></li>
+</ul>
+<h2>Statement</h2>
+<p>Nonsoficity of the wreath candidate. <strong>Now ESTABLISHED by source-verified citation</strong> via <code><a href="wreath-not-sofic-proof.html">wreath-not-sofic-proof</a></code>, after the candidate was given a formula (below) and the two identification gaps recorded by the 2026-08-14 literature scout were discharged. The trust surface is one external unrefereed preprint and nothing else; it is stated in the route.</p>
+<h3>Available citation (2026-08-14 literature scout)</h3>
+<p>Kun--Thom, <em>Nonsofic wreath products of residually finite groups</em>, arXiv:2608.06222v1 (2026-08-06, 16 pp), read from the PDF, prove:</p>
+<p>&gt; <strong>Theorem A.</strong> Let <code>Gamma</code> be an infranormal but not normal subgroup of <code>G</code>, &gt; and suppose that both <code>Gamma</code> and <code>G</code> have Kazhdan's property (T).  Then &gt; <code>(Z/2Z) wr_(G/Gamma) G</code> is not sofic.</p>
+<p>with <code>Gamma</code> <em>infranormal</em> meaning that the compression semigroup <code>P_Gamma={g in G : g Gamma g^(-1) &lt;= Gamma}</code> generates <code>G</code>.  Their Theorem E supplies an explicit pair: for a prime power <code>q</code> and <code>r,d&gt;=3</code>, <code>R_+=F_q[x_1,...,x_d]</code>, <code>R=F_q[x_1^(±1),...,x_d^(±1)]</code> with <code>SL_d(Z)</code> acting by monomial substitutions, <code>Gamma=EL_r(R_+)</code> and <code>G=EL_r(R) semidirect SL_d(Z)</code> are residually finite Kazhdan groups with <code>Gamma</code> infranormal and not normal. Corollary D adds that the generalized Bernoulli action <code>G action (K,kappa)^(G/Gamma)</code> is not sofic.</p>
+<p>This is the same architecture as <code>docs/OBSTRUCTIONS.md</code> §4 (compressors from <code>SL_d(Z)</code> monomial substitutions), and <code>docs/FALSE_HALO_ACTION_AUDIT.md</code> already writes the candidate as <code>W=(directSum_(G/Gamma) C_2) semidirect G</code> and calls it the Kun--Thom group.</p>
+<p>Three independent reads now agree word for word on Theorem A, Theorem E and Theorem 4.1: the scout's PDF read, a 2026-08-08 fetch recorded in <code>docs/NOTEPAD.md</code>, and a 2026-08-14 fetch of the abstract page together with <code>arxiv.org/html/2608.06222v1</code>. Full verbatim transcription, with provenance and trust surface, is in the artifact.</p>
+<h3>The wreath candidate, pinned</h3>
+<p>The scout's two gaps were both gaps of <em>identification</em>, and identification was impossible because the graph had never given the candidate a formula: no <code>research/*.md</code> file and no section of <code>docs/OBSTRUCTIONS.md</code> defines it. It is fixed here, in the form the rest of the corpus already uses (<code>docs/COMMUTING_WREATH_SOFIC_RADICAL.md</code>, <code>docs/PERFECT_CORE_KUN_THOM_WREATH.md</code>, <code>docs/UNIQUE_TRACE_KUN_THOM_DOUBLE.md</code>), which is Kun--Thom's Theorem E pair verbatim. Let <code>q</code> be a prime power and <code>r, d ≥ 3</code>; put</p>
+<p>R₊ = 𝔽_q[x₁,…,x_d],   R = 𝔽_q[x₁^{±1},…,x_d^{±1}],</p>
+<p>with <code>SL_d(ℤ)</code> acting on <code>R</code> by monomial substitutions, and set</p>
+<p>Γ = EL_r(R₊),    G = EL_r(R) ⋊ SL_d(ℤ).</p>
+<p>The <strong>wreath candidate</strong> is</p>
+<p>W = (⊕_{G/Γ} ℤ/2ℤ) ⋊ G = (ℤ/2ℤ) ≀_{G/Γ} G,</p>
+<p>the generalized (permutational) wreath product of <code>ℤ/2ℤ</code> over the coset space <code>G/Γ</code>. The corpus's running instance is <code>q = 2</code>. The explicit compressor is <code>t = u₁₂ ∈ SL_d(ℤ)</code>, i.e. the substitution <code>x₂ ↦ x₁x₂</code>, with <code>tΓt⁻¹ = EL_r(𝔽_q[x₁, x₁x₂, x₃,…,x_d]) ⊊ Γ</code> of infinite index.</p>
+<p>With that definition both gaps close by inspection rather than by argument: the lamp is <code>ℤ/2ℤ</code>, and the pair is Theorem E's pair, so Theorem E supplies infranormality, non-normality and (T) on both sides. The scout's caution about <code>ℤ</code> lamps is correct and is preserved below as a scope boundary — it applies to a <em>different</em> node, not to this one.</p>
+<p><strong>Notation discipline.</strong> Throughout this graph <code>G</code> is the <em>acting</em> group above and <code>W</code> is the wreath product. <code>docs/OBSTRUCTIONS.md</code> §5 uses <code>G</code> in that sense ("If <code>G</code> is flexibly HS-stable then the wreath candidate is not hyperlinear"). <code>research/<a href="wreath-flexible-hs-stability.html">wreath-flexible-hs-stability</a>.md</code> currently reuses the letter <code>G</code> for the wreath itself; that node is owned elsewhere, but the two readings are not interchangeable and the rigidity route needs the acting-group reading.</p>
+<h3>Variants that are NOT this group</h3>
+<p>Four neighbours in the corpus are close enough to be confused with <code>W</code> and are <strong>not</strong> covered by the citation:</p>
+<ul>
+<li>the perfect index-two core <code>P₂ = I_X ⋊ G</code>, <code>I_X = ker(ε : ⊕_X 𝔽₂ → 𝔽₂)</code>,</li>
+<p>which is <code>[W,W]</code> (<code>docs/PERFECT_CORE_KUN_THOM_WREATH.md</code>);</p>
+<li>the Clifford central cover <code>H_Cl = C(X) ⋊ G</code> with anticommuting lamps, whose</li>
+<p>central quotient is <code>W</code>;</p>
+<li>the <strong>split integral wreath candidate</strong> <code>W_Y = ℤ^{(Y)} ⋊ Q</code> with</li>
+<p><code>Q = G *_N G</code>, <code>N = ⟨⟨Γ⟩⟩_G</code>, <code>Y = Q/Γ</code> — a different lamp (<code>ℤ</code>, not <code>ℤ/2</code>) over a different index set (<code>Q/Γ</code>, not <code>G/Γ</code>). This is the group the scout's first gap is about, and nonsoficity for it does <strong>not</strong> follow from Theorem A: soficity does not pass to quotients in the needed direction, so the lamp surjection <code>ℤ ↠ ℤ/2</code> transports nothing;</p>
+<li>the free-lamp group <code>H_K = G *_Γ (Γ × K)</code>, an amalgam, not a wreath product.</li>
+</ul>
+<h3>Why the claim is not a rewrite of the compression no-gos</h3>
+<p>Nonsoficity of <code>W</code> is <em>not</em> derived from the compression–centralizer criterion formalized in this repository. That criterion (<code>Criterion/CriterionAssembly.not_isSofic_of_not_isLEF</code>, which requires a <code>CompressionSetup G Γ J</code>, property (T) at both <code>G</code> and <code>Γ</code>, and a non-LEF commuting witness <code>J</code>) is instantiated only at elementary/GL/unit groups over Leavitt algebras — its universal witness is <code>EL₄(L_{𝔽₂}(1,2))</code> = <code>UniversalRankFour.Ambient</code>, and its general form is <code>Leavitt/GeneralCornerTheorem.corner_not_isSofic</code> for <code>EL_{m+1}(R)</code>. No wreath product, lamplighter, free-lamp amalgam or Kun--Thom candidate is proved nonsofic anywhere under <code>GroupApproximation/</code>; the wreath material there (<code>Sofic/MonomialModel.wreathPerm</code> and friends) is finite-model gadgetry plus explicit no-gos about proof routes. The mechanism is the same family; the theorem is not, and the substitution would have been exactly the kind of group-mismatch the doctrine exists to prevent.</p></body>

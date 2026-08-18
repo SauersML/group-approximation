@@ -1,0 +1,34 @@
+<!doctype html><meta charset='utf-8'><title>mf-implies-hyperlinear-via-invariant-corner</title><style>
+body{font:15px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;max-width:60em;margin:2em auto;padding:0 1em;color:#1c1e1c}
+a{color:#4f46e5;text-decoration:none}a:hover{text-decoration:underline}
+code,pre{font:13px/1.45 Menlo,monospace;background:#f4f4f2}
+pre{padding:.8em;overflow-x:auto;border:1px solid #e5e7e3}
+.badge{display:inline-block;padding:.1em .55em;border-radius:.8em;color:#fff;font:700 11px -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;letter-spacing:.04em}
+.node{font:13px Menlo,monospace}
+h1{font-size:1.4em}h2{font-size:1.05em;border-bottom:1px solid #e5e7e3;padding-bottom:.2em}
+ul.rel{list-style:none;padding-left:0}ul.rel li{margin:.25em 0}
+.muted{color:#8b9089}.tree{white-space:pre;font:13px/1.5 Menlo,monospace;background:#fafaf8;border:1px solid #e5e7e3;padding:1em;overflow-x:auto}
+table{border-collapse:collapse}td,th{border:1px solid #e5e7e3;padding:.25em .6em;font-size:.9em}
+</style><script>MathJax={tex:{inlineMath:[["$","$"],["\\(","\\)"]]}};</script><script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script><body><p><a href='index.html'>← index</a></p>
+<h1><span class='node'>mf-implies-hyperlinear-via-invariant-corner</span> Compress to an invariant corner and read its own trace</h1>
+<p><span class="badge" style="background:#c08a00">OPEN</span> <span class='muted'>route · <code>research/mf-implies-hyperlinear-via-invariant-corner.md</code></span></p>
+<h2>Target</h2><ul class='rel'>
+<li><a class="node" href="mf-implies-hyperlinear.html">mf-implies-hyperlinear</a> <span class="badge" style="background:#c08a00">OPEN</span> MF implies hyperlinear under the weak norm-corona convention</li>
+</ul>
+<h2>Requires</h2><ul class='rel'>
+<li><a class="node" href="hyperlinear-elementwise-visibility.html">hyperlinear-elementwise-visibility</a> <span class="badge" style="background:#178a5e">ESTABLISHED</span> Elementwise trace visibility is equivalent to hyperlinearity</li>
+<li><a class="node" href="mf-invariant-corner-visibility.html">mf-invariant-corner-visibility</a> <span class="badge" style="background:#c08a00">OPEN</span> Every MF-visible element is visible in an invariant corner</li>
+<li><a class="node" href="corner-renormalization-cost.html">corner-renormalization-cost</a> <span class="badge" style="background:#178a5e">ESTABLISHED</span> Corner compression is free in operator norm and costs the inverse root trace</li>
+<li><a class="node" href="countable-group-mf-conventions.html">countable-group-mf-conventions</a> <span class="badge" style="background:#178a5e">ESTABLISHED</span> Equivalent operator-MF formulations and stronger representation variants</li>
+</ul>
+<h2>Statement</h2>
+<h3>Why sufficient</h3>
+<p>Fix <code>g != 1</code> in the countable MF group <code>G</code> and take <code>u</code>, <code>P</code> as in <code><a href="mf-invariant-corner-visibility.html">mf-invariant-corner-visibility</a></code>.  By <code>(I1)</code> the map <code>a |-&gt; P u(a)</code> is a homomorphism <code>G -&gt; U(PQP)</code>.  A self-adjoint lift of <code>P</code> is asymptotically idempotent, so continuous functional calculus lifts <code>P</code> to projections <code>p_n</code>, nonzero along an infinite set of indices, and</p>
+<pre>
+PQP = prod_n M_(r_n) / directSum_n M_(r_n),   r_n = rank(p_n) &gt;= 1.
+</pre>
+<p>By <code><a href="countable-group-mf-conventions.html">countable-group-mf-conventions</a></code> this homomorphism is carried by operator-norm local models <code>v_n : G -&gt; U(r_n)</code> whose defect tends to <code>0</code> on every finite set --- by <code>(C1)</code> of <code><a href="corner-renormalization-cost.html">corner-renormalization-cost</a></code> the compression cost in operator norm is nil, which is the only reason the corner is usable no matter how small <code>r_n/d_n</code> is.  Operator-norm defects dominate normalized Hilbert--Schmidt defects, and <code>(I2)</code> bounds <code>Re tr_(r_n)(v_n(g))</code> away from <code>1</code>, so <code>g</code> is tracially visible.  Applying this to every <code>g != 1</code> and invoking <code><a href="hyperlinear-elementwise-visibility.html">hyperlinear-elementwise-visibility</a></code> makes <code>G</code> hyperlinear.</p>
+<h3>Not a restatement of the target</h3>
+<p>The prerequisite is strictly stronger than the target, so this route reduces rather than renames.  It can fail while <code><a href="mf-implies-hyperlinear.html">mf-implies-hyperlinear</a></code> holds: <code><a href="mf-invariant-corner-visibility.html">mf-invariant-corner-visibility</a></code> demands trace visibility <em>inside an operator-norm model</em>, which is elementwise trace-controlled MF, whereas the target is satisfied by any Hilbert--Schmidt models whatever.  The converse implication is unavailable because one cannot combine an operator-norm model with a Hilbert--Schmidt one: their tensor or direct sum is only Hilbert--Schmidt asymptotically multiplicative, so hyperlinearity never returns operator-norm data.  The genuine step performed here is the domination <code>||.||_2 &lt;= ||.||_op</code> together with elementwise assembly.</p>
+<h3>Relation to the other route</h3>
+<p>This route needs no rate: the corner supplies visibility structurally rather than by amplification.  Conversely <code><a href="mf-implies-hyperlinear-via-rank-profile.html">mf-implies-hyperlinear-via-rank-profile</a></code> needs no invariant projection.  The two are the only mechanisms known here for converting operator-norm separation into trace separation, and <code><a href="corner-renormalization-cost.html">corner-renormalization-cost</a></code> shows they are governed by the same constant <code>sqrt(d/r)</code>: an invariant corner pays it once, structurally, while a functor pays it in the defect.</p></body>

@@ -1,0 +1,34 @@
+<!doctype html><meta charset='utf-8'><title>mf-antipodal-sign-corner-visibility</title><style>
+body{font:15px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;max-width:60em;margin:2em auto;padding:0 1em;color:#1c1e1c}
+a{color:#4f46e5;text-decoration:none}a:hover{text-decoration:underline}
+code,pre{font:13px/1.45 Menlo,monospace;background:#f4f4f2}
+pre{padding:.8em;overflow-x:auto;border:1px solid #e5e7e3}
+.badge{display:inline-block;padding:.1em .55em;border-radius:.8em;color:#fff;font:700 11px -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;letter-spacing:.04em}
+.node{font:13px Menlo,monospace}
+h1{font-size:1.4em}h2{font-size:1.05em;border-bottom:1px solid #e5e7e3;padding-bottom:.2em}
+ul.rel{list-style:none;padding-left:0}ul.rel li{margin:.25em 0}
+.muted{color:#8b9089}.tree{white-space:pre;font:13px/1.5 Menlo,monospace;background:#fafaf8;border:1px solid #e5e7e3;padding:1em;overflow-x:auto}
+table{border-collapse:collapse}td,th{border:1px solid #e5e7e3;padding:.25em .6em;font-size:.9em}
+</style><script>MathJax={tex:{inlineMath:[["$","$"],["\\(","\\)"]]}};</script><script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script><body><p><a href='index.html'>← index</a></p>
+<h1><span class='node'>mf-antipodal-sign-corner-visibility</span> Antipodal elements are maximally visible in the sign corner of an MF group</h1>
+<p><span class="badge" style="background:#178a5e">ESTABLISHED</span> <span class='muted'>claim · <code>research/mf-antipodal-sign-corner-visibility.md</code></span></p>
+<p class='muted'>via route mf-antipodal-sign-corner-visibility-proof</p>
+<h2>Routes into this claim</h2><ul class='rel'>
+<li><a class="node" href="mf-antipodal-sign-corner-visibility-proof.html">mf-antipodal-sign-corner-visibility-proof</a> <span class="badge" style="background:#178a5e">COMPLETE</span> Cut the sign corner, then apply the antipodal certificate</li>
+</ul>
+<h2>Distinct from</h2><ul class='rel'>
+<li><a class="node" href="mf-finite-normal-tracially-visible.html">mf-finite-normal-tracially-visible</a> <span class="badge" style="background:#178a5e">ESTABLISHED</span> Finite normal subgroups of an MF group are tracially visible<br><span class='muted'>That claim makes the elements of a finite normal subgroup visible; this one makes visible elements of infinite order lying far outside it, using a relation rather than finiteness.</span></li>
+<li><a class="node" href="mf-invariant-corner-visibility.html">mf-invariant-corner-visibility</a> <span class="badge" style="background:#c08a00">OPEN</span> Every MF-visible element is visible in an invariant corner<br><span class='muted'>That open claim asks for a corner for an arbitrary element; this established one supplies the corner and the visibility whenever the group has a central involution and one antipodal relation.</span></li>
+</ul>
+<h2>Artifacts</h2><ul class='rel'>
+<li><code>GroupApproximation/Sofic/AntipodalTraceExtraction.lean</code></li>
+<li><code>docs/TRUE_ANTIPODAL_TRACE_EXTRACTION.md</code></li>
+</ul>
+<h2>Statement</h2>
+<p>Let <code>G</code> be a countable MF group with a central involution <code>z != 1</code>, and let <code>g in G</code> admit some <code>s in G</code> with</p>
+<pre>
+s g s^(-1) = z g.                                                 (A1)
+</pre>
+<p>Then <code>g</code> is tracially visible with constant <code>1</code>: there are models with multiplicative defect as small as desired on any prescribed finite set whose normalized trace at <code>g</code> tends to <code>0</code>, i.e. <code>||model(g)-1||_(2,norm)^2 -&gt; 2</code>.</p>
+<p>The mechanism is that the sign corner of an MF model of <code>G</code> manufactures, for free, exactly the antipodal conjugacy <code>S U S^<em> = -U</code> whose local trace-extraction certificate <code>4|tr_d(U)|^2 &lt;= ||S U S^</em> + U||_2^2</code> is already formalized.  <code>docs/TRUE_ANTIPODAL_TRACE_EXTRACTION.md</code> states the open half as "construct or recover, in compatible matrix coordinates, a unitary <code>S</code> and a marked unitary <code>U</code> whose antipodal defect tends to zero"; for an MF group with a central involution, <code>(A1)</code> is a sufficient group-theoretic condition.</p>
+<p>Consequently an MF group with a central involution <code>z != 1</code> is hyperlinear as soon as every nontrivial element is <code>z</code>-antipodal in the sense of <code>(A1)</code>, or lies in a finite normal subgroup, or survives in some hyperlinear quotient.</p></body>

@@ -1,0 +1,41 @@
+<!doctype html><meta charset='utf-8'><title>compressor-fixed-site-growth-infinite</title><style>
+body{font:15px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;max-width:60em;margin:2em auto;padding:0 1em;color:#1c1e1c}
+a{color:#4f46e5;text-decoration:none}a:hover{text-decoration:underline}
+code,pre{font:13px/1.45 Menlo,monospace;background:#f4f4f2}
+pre{padding:.8em;overflow-x:auto;border:1px solid #e5e7e3}
+.badge{display:inline-block;padding:.1em .55em;border-radius:.8em;color:#fff;font:700 11px -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;letter-spacing:.04em}
+.node{font:13px Menlo,monospace}
+h1{font-size:1.4em}h2{font-size:1.05em;border-bottom:1px solid #e5e7e3;padding-bottom:.2em}
+ul.rel{list-style:none;padding-left:0}ul.rel li{margin:.25em 0}
+.muted{color:#8b9089}.tree{white-space:pre;font:13px/1.5 Menlo,monospace;background:#fafaf8;border:1px solid #e5e7e3;padding:1em;overflow-x:auto}
+table{border-collapse:collapse}td,th{border:1px solid #e5e7e3;padding:.25em .6em;font-size:.9em}
+</style><script>MathJax={tex:{inlineMath:[["$","$"],["\\(","\\)"]]}};</script><script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script><body><p><a href='index.html'>← index</a></p>
+<h1><span class='node'>compressor-fixed-site-growth-infinite</span> Elementary compressors gain infinitely many Gamma-fixed sites</h1>
+<p><span class="badge" style="background:#178a5e">ESTABLISHED</span> <span class='muted'>claim · <code>research/compressor-fixed-site-growth-infinite.md</code></span></p>
+<p class='muted'>via route compressor-fixed-site-growth-infinite-proof</p>
+<h2>Routes into this claim</h2><ul class='rel'>
+<li><a class="node" href="compressor-fixed-site-growth-infinite-proof.html">compressor-fixed-site-growth-infinite-proof</a> <span class="badge" style="background:#178a5e">COMPLETE</span> Turn one matrix entry negative along a transvection family</li>
+</ul>
+<h2>Distinct from</h2><ul class='rel'>
+<li><a class="node" href="compressor-growth-index-homomorphism.html">compressor-growth-index-homomorphism</a> <span class="badge" style="background:#178a5e">ESTABLISHED</span> The commutant growth index is multiplicative on the compressor semigroup<br><span class='muted'>That is an operator-algebra invariant and its multiplicative law; this is a purely combinatorial fact about the Kun--Thom coset space and its translates, proved from nonnegativity of monomial substitutions, with no algebra in it.</span></li>
+<li><a class="node" href="finite-site-orbits-invariant-clifford-kernel.html">finite-site-orbits-invariant-clifford-kernel</a> <span class="badge" style="background:#178a5e">ESTABLISHED</span> Finite site orbits yield finite invariant Clifford-lamp kernels<br><span class='muted'>That concerns finite site orbits and the kernel they generate in an invariant Clifford model; this counts the Gamma-fixed sites gained under one compressor and shows the gain is infinite.</span></li>
+</ul>
+<h2>Artifacts</h2><ul class='rel'>
+<li><code>docs/TRUE_RELATIVE_WALL_IS_COMMUTANT_GROWTH.md</code></li>
+</ul>
+<h2>Statement</h2>
+<p>For the Kun--Thom Theorem E pair <code>Gamma=EL_r(F_q[x_1..x_d]) &lt; G=EL_r(F_q[x^(+-1)]) semidirect SL_d(Z)</code>, <code>d&gt;=3</code>, let <code>X=G/Gamma</code> and let</p>
+<pre>
+X^Gamma={g Gamma : g^(-1) in P_Gamma}
+</pre>
+<p>be the set of <code>Gamma</code>-fixed sites.  Then for the positive elementary transvections <code>u_13</code> and <code>u_32</code>,</p>
+<pre>
+#(u_13 X^Gamma \ X^Gamma)=#(u_32 X^Gamma \ X^Gamma)=infinity.
+</pre>
+<p>The proof needs only the elementary equivalence, for <code>nu in SL_d(Z)</code>,</p>
+<pre>
+(1,nu) in P_Gamma  &lt;=&gt;  nu has nonnegative entries,
+</pre>
+<p>together with the witnesses <code>g_n=(1,(I+n e_12)^(-1))</code>, respectively <code>g_n=(1,(I+n e_13)^(-1))</code>, whose images under the compressor leave <code>X^Gamma</code> because one matrix entry turns negative.</p>
+<p><strong>Use.</strong>  In a lamp model over the <code>G</code>-set <code>X</code>, a site operator <code>c_y</code> lies in <code>M cap pi(Gamma)'</code> exactly when <code>y in X^Gamma</code>, since <code>Ad u_gamma(c_y)=c_(gamma y)</code> and distinct sites carry distinct operators.  So the displayed difference sets say that <code>M cap pi(u_13 Gamma u_13^(-1))'</code> contains infinitely many site operators absent from <code>M cap pi(Gamma)'</code>, and likewise at <code>u_32</code>: the inclusion grows by an infinite tensor-independent family, not by a finite-dimensional amount.  This exhibits the model-side mechanism behind the infinite-index demand of <code><a href="commutator-compressor-carries-no-wall.html">commutator-compressor-carries-no-wall</a></code>.</p>
+<p>Two scope notes.  The identification of the growth index with <code>2^(#(s X^Gamma \ X^Gamma))</code> is <em>not</em> claimed: that would need the full relative commutant of the crossed product, which is not computed here, and index is not monotone under passing to intermediate subalgebras.  And the statement holds for every invariant graph, because the fixed-site set is determined by the <code>G</code>-set alone and does not involve the adjacency form.</p></body>

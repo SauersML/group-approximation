@@ -1,0 +1,29 @@
+<!doctype html><meta charset='utf-8'><title>tracial-coordinate-transport-barrier</title><style>
+body{font:15px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;max-width:60em;margin:2em auto;padding:0 1em;color:#1c1e1c}
+a{color:#4f46e5;text-decoration:none}a:hover{text-decoration:underline}
+code,pre{font:13px/1.45 Menlo,monospace;background:#f4f4f2}
+pre{padding:.8em;overflow-x:auto;border:1px solid #e5e7e3}
+.badge{display:inline-block;padding:.1em .55em;border-radius:.8em;color:#fff;font:700 11px -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;letter-spacing:.04em}
+.node{font:13px Menlo,monospace}
+h1{font-size:1.4em}h2{font-size:1.05em;border-bottom:1px solid #e5e7e3;padding-bottom:.2em}
+ul.rel{list-style:none;padding-left:0}ul.rel li{margin:.25em 0}
+.muted{color:#8b9089}.tree{white-space:pre;font:13px/1.5 Menlo,monospace;background:#fafaf8;border:1px solid #e5e7e3;padding:1em;overflow-x:auto}
+table{border-collapse:collapse}td,th{border:1px solid #e5e7e3;padding:.25em .6em;font-size:.9em}
+</style><script>MathJax={tex:{inlineMath:[["$","$"],["\\(","\\)"]]}};</script><script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script><body><p><a href='index.html'>← index</a></p>
+<h1><span class='node'>tracial-coordinate-transport-barrier</span> The traced coordinate class cannot be widened to tracial ultraproducts</h1>
+<p><span class="badge" style="background:#178a5e">ESTABLISHED</span> <span class='muted'>claim · <code>research/tracial-coordinate-transport-barrier.md</code></span></p>
+<p class='muted'>via route tracial-coordinate-transport-barrier-proof</p>
+<h2>Routes into this claim</h2><ul class='rel'>
+<li><a class="node" href="tracial-coordinate-transport-barrier-proof.html">tracial-coordinate-transport-barrier-proof</a> <span class="badge" style="background:#178a5e">COMPLETE</span> Established countermodel plus the localization of the corner step</li>
+</ul>
+<h2>Distinct from</h2><ul class='rel'>
+<li><a class="node" href="finite-tracial-cstar-transport.html">finite-tracial-cstar-transport</a> <span class="badge" style="background:#178a5e">ESTABLISHED</span> Kazhdan transport for norm ultraproducts of finite traced C-star algebras<br><span class='muted'>That root asks for the largest class where the machinery works; this claim fixes its outer boundary and localizes the failure at one step.</span></li>
+<li><a class="node" href="trace-blindness-sharpness.html">trace-blindness-sharpness</a> <span class="badge" style="background:#178a5e">ESTABLISHED</span> The trace-blindness of II₁ factors is sharp<br><span class='muted'>That claim rules out invariant-size arguments in II_1 factors; this one rules out the corner step of the compressor architecture in tracial coordinates, and does so by an explicit established countermodel.</span></li>
+</ul>
+<h2>Artifacts</h2><ul class='rel'>
+<li><code>docs/NON_MF_TO_HYPERLINEAR_DIFFERENTIAL_AUDIT.md</code></li>
+</ul>
+<h2>Statement</h2>
+<p>The coordinate class <code>C_ftr</code> of <code><a href="finite-tracial-cstar-transport.html">finite-tracial-cstar-transport</a></code> cannot be widened to normalized-Hilbert--Schmidt (tracial-ultraproduct) coordinates: no tracial analogue of the central-sign conclusion is true, and the failure is localized at exactly one step.</p>
+<p>1. <em>Transport is not the obstruction.</em>  <code><a href="finite-traced-kazhdan-transport.html">finite-traced-kazhdan-transport</a></code> holds with the asymptotic-commutant hypothesis taken in <code>||.||_2</code>, so the property-<code>(T)</code> fixed-space argument survives the passage to tracial coordinates unchanged. 2. <em>The corner is the obstruction.</em>  The architecture cuts to the negative spectral sector of the mark and renormalizes.  By <code><a href="corner-renormalization-cost.html">corner-renormalization-cost</a></code> this costs <code>tau(p)^(-1/2)</code> in the tracial world and nothing in the operator-norm world, and <code>tau(p)</code> may be <code>0</code>. 3. <em>This is not a technical gap.</em>  The conclusion itself is false tracially: the mark of the literal group lies in the MF residual but not in the hyperlinear residual, so no theorem of the form "every tracial matrix model kills the mark" can hold.</p>
+<p>Hence within this architecture the only tracial freedom left is a corner of positive trace, i.e. a mark whose spectral sector has positive density --- the same quantity as the effective-rank profile of <code><a href="mf-trace-gap-defect-ratio-models.html">mf-trace-gap-defect-ratio-models</a></code>.</p></body>

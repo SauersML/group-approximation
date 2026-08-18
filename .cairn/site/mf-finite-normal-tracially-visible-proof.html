@@ -1,0 +1,73 @@
+<!doctype html><meta charset='utf-8'><title>mf-finite-normal-tracially-visible-proof</title><style>
+body{font:15px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;max-width:60em;margin:2em auto;padding:0 1em;color:#1c1e1c}
+a{color:#4f46e5;text-decoration:none}a:hover{text-decoration:underline}
+code,pre{font:13px/1.45 Menlo,monospace;background:#f4f4f2}
+pre{padding:.8em;overflow-x:auto;border:1px solid #e5e7e3}
+.badge{display:inline-block;padding:.1em .55em;border-radius:.8em;color:#fff;font:700 11px -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;letter-spacing:.04em}
+.node{font:13px Menlo,monospace}
+h1{font-size:1.4em}h2{font-size:1.05em;border-bottom:1px solid #e5e7e3;padding-bottom:.2em}
+ul.rel{list-style:none;padding-left:0}ul.rel li{margin:.25em 0}
+.muted{color:#8b9089}.tree{white-space:pre;font:13px/1.5 Menlo,monospace;background:#fafaf8;border:1px solid #e5e7e3;padding:1em;overflow-x:auto}
+table{border-collapse:collapse}td,th{border:1px solid #e5e7e3;padding:.25em .6em;font-size:.9em}
+</style><script>MathJax={tex:{inlineMath:[["$","$"],["\\(","\\)"]]}};</script><script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script><body><p><a href='index.html'>← index</a></p>
+<h1><span class='node'>mf-finite-normal-tracially-visible-proof</span> Isotypic corner of the corona and its intrinsic trace</h1>
+<p><span class="badge" style="background:#178a5e">COMPLETE</span> <span class='muted'>route · <code>research/mf-finite-normal-tracially-visible-proof.md</code></span></p>
+<h2>Target</h2><ul class='rel'>
+<li><a class="node" href="mf-finite-normal-tracially-visible.html">mf-finite-normal-tracially-visible</a> <span class="badge" style="background:#178a5e">ESTABLISHED</span> Finite normal subgroups of an MF group are tracially visible</li>
+</ul>
+<h2>Requires</h2><ul class='rel'>
+<li><a class="node" href="countable-group-mf-conventions.html">countable-group-mf-conventions</a> <span class="badge" style="background:#178a5e">ESTABLISHED</span> Equivalent operator-MF formulations and stronger representation variants</li>
+</ul>
+<h2>Artifacts</h2><ul class='rel'>
+<li><code>GroupApproximation/Sofic/MFDefinitions.lean</code></li>
+<li><code>non_mf_groups_exist.tex</code></li>
+</ul>
+<h2>Statement</h2>
+<h3>Why sufficient</h3>
+<p>By <code><a href="countable-group-mf-conventions.html">countable-group-mf-conventions</a></code> the MF property of the countable group <code>G</code> is a faithful homomorphism</p>
+<pre>
+u : G -&gt; U(Q),   Q = prod_n M_(d_n) / directSum_n M_(d_n),   (T1)
+</pre>
+<p>and conversely a homomorphism into the unitary group of any such corona is the same thing as a sequence of operator-norm local models.  Everything below happens inside <code>Q</code>, where <code>u</code> is an <em>exact</em> homomorphism; no stability theorem for almost representations of finite groups is needed.</p>
+<h4>1. Isotypic projections</h4>
+<p>Because <code>K</code> is finite, <code>u|_K</code> is a genuine unitary representation of <code>K</code> in the C-star algebra <code>Q</code>.  For <code>sigma in dual(K)</code> put</p>
+<pre>
+P_sigma = (sigma(1)/|K|) sum_(h in K) conj(chi_sigma(h)) u(h) in Q.  (T2)
+</pre>
+<p>The central-idempotent identities of <code>C[K]</code> are algebraic consequences of <code>u(h)u(h')=u(hh')</code>, so the <code>P_sigma</code> are pairwise orthogonal projections summing to <code>1</code>, each commuting with <code>u(K)</code>.</p>
+<p><code>u</code> is injective, hence <code>u|_K</code> is faithful, hence <code>intersect{ker sigma : P_sigma != 0} = 1</code>.  Fix <code>g != 1</code> in <code>K</code> and choose <code>sigma</code> with <code>P_sigma != 0</code> and <code>sigma(g) != 1</code>.</p>
+<h4>2. An exactly invariant corner</h4>
+<p><code>K</code> is normal in <code>G</code>, so <code>G</code> acts on <code>dual(K)</code> by <code>sigma^a(h)=sigma(a h a^(-1))</code>, and <code>(T2)</code> gives the <em>exact</em> relation <code>u(a) P_sigma u(a)^* = P_(sigma^(a^(-1)))</code>. Let <code>O</code> be the <code>G</code>-orbit of <code>sigma</code> and</p>
+<pre>
+P = sum_(sigma&#x27; in O) P_(sigma&#x27;) != 0,   u(a) P u(a)^* = P  (a in G). (T3)
+</pre>
+<p>Thus <code>a |-&gt; P u(a)</code> is a homomorphism <code>G -&gt; U(PQP)</code>.</p>
+<h4>3. The corner is again a matrix corona</h4>
+<p><code>P</code> is a projection in a quotient of <code>prod_n M_(d_n)</code> by the ideal <code>directSum_n M_(d_n)</code>.  Any self-adjoint lift <code>x_n</code> satisfies <code>||x_n^2-x_n|| -&gt; 0</code>, so the spectrum of <code>x_n</code> is eventually contained in two shrinking neighbourhoods of <code>0</code> and <code>1</code>, and continuous functional calculus produces projections <code>p_n in M_(d_n)</code> lifting <code>P</code>.  Since <code>P != 0</code>, <code>p_n != 0</code> for infinitely many <code>n</code>; restrict to those indices and put <code>r_n = rank(p_n) &gt;= 1</code>.  Then</p>
+<pre>
+PQP = prod_n M_(r_n) / directSum_n M_(r_n),                     (T4)
+</pre>
+<p>so by <code><a href="countable-group-mf-conventions.html">countable-group-mf-conventions</a></code> the compressed homomorphism is carried by operator-norm local models <code>v_n : G -&gt; U(r_n)</code> whose multiplicative defect on any prescribed finite set tends to <code>0</code>.  Note that the corner is used with its <em>own</em> normalized trace <code>tr_(r_n)</code>: this renormalization is the entire content of the step.</p>
+<h4>4. The intrinsic trace of the corner</h4>
+<p>Let <code>omega</code> be a free ultrafilter and <code>tau(x) = lim_omega tr_(r_n)(x_n)</code>, a tracial state on <code>PQP</code>.</p>
+<p><em>Equal weights.</em>  For <code>sigma',sigma'' in O</code> there is <code>a in G</code> with <code>(Pu(a)) P_(sigma') (Pu(a))^* = P_(sigma'')</code>; <code>Pu(a)</code> is a unitary of the corner and <code>tau</code> is a trace, so <code>tau(P_(sigma'))=tau(P_(sigma''))</code>.  As <code>sum_(sigma' in O) P_(sigma') = P</code> is the unit of the corner,</p>
+<pre>
+tau(P_(sigma&#x27;)) = 1/|O| for every sigma&#x27; in O.                  (T5)
+</pre>
+<p><em>Character extraction.</em>  In the corner, <code>P_(sigma')(PQP)P_(sigma')</code> carries a <code>sigma'</code>-isotypic representation of <code>K</code>: the image of the group algebra is a copy of <code>M_(sigma'(1))</code> with <code>u(h)P_(sigma')</code> corresponding to <code>sigma'(h) tensor 1</code>.  A trace restricted to <code>M_k tensor 1</code> is the normalized matrix trace scaled by the total weight, so</p>
+<pre>
+tau(u(g) P_(sigma&#x27;)) = tau(P_(sigma&#x27;)) chi_(sigma&#x27;)(g)/sigma&#x27;(1).  (T6)
+</pre>
+<p>Summing <code>(T6)</code> over the orbit and using <code>(T5)</code>,</p>
+<pre>
+tau(P u(g)) = (1/|O|) sum_(sigma&#x27; in O) chi_(sigma&#x27;)(g)/sigma&#x27;(1). (T7)
+</pre>
+<p>Every term of <code>(T7)</code> has modulus at most <code>1</code>, and the term at <code>sigma'=sigma</code> has real part at most <code>1-c(K)</code> because <code>sigma(g) != 1</code>.  Hence</p>
+<pre>
+Re tau(P u(g)) &lt;= 1-c(K)/|O| &lt;= 1-c(K)/|K|.                     (T8)
+</pre>
+<p>The bound <code>(T8)</code> holds for every free ultrafilter, so the bounded sequence <code>Re tr_(r_n)(v_n(g))</code> has limit superior at most <code>1-c(K)/|K|</code>.</p>
+<h4>5. Conclusion</h4>
+<p>Discard finitely many indices so that <code>Re tr_(r_n)(v_n(g)) &lt;= 1-c(K)/(2|K|)</code> and the operator-norm defect of <code>v_n</code> on the prescribed finite set is at most the prescribed <code>delta</code>; the normalized Hilbert--Schmidt defect is dominated by the operator-norm defect. This is exactly tracial visibility of <code>g</code> with <code>c_g=c(K)/(2|K|)</code>, a constant depending only on <code>K</code>.  Finally, a tracially visible element is not in the hyperlinear residual: by <code><a href="hyperlinear-elementwise-visibility.html">hyperlinear-elementwise-visibility</a></code> (step 1--2 of its proof) the models above produce a homomorphism of <code>G</code> into the unitary group of a tracial matrix ultraproduct which does not kill <code>g</code>, and that image is a hyperlinear group.  End proof.</p>
+<h3>Scope</h3>
+<p>The proof uses two features of the norm corona that have no tracial analogue: a nonzero projection may be compressed to no matter how small its rank fraction is, and compression does not increase operator-norm defects. See <code><a href="corner-renormalization-cost.html">corner-renormalization-cost</a></code>.</p></body>

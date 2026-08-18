@@ -1,0 +1,41 @@
+<!doctype html><meta charset='utf-8'><title>telescope-core-not-residually-finite</title><style>
+body{font:15px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;max-width:60em;margin:2em auto;padding:0 1em;color:#1c1e1c}
+a{color:#4f46e5;text-decoration:none}a:hover{text-decoration:underline}
+code,pre{font:13px/1.45 Menlo,monospace;background:#f4f4f2}
+pre{padding:.8em;overflow-x:auto;border:1px solid #e5e7e3}
+.badge{display:inline-block;padding:.1em .55em;border-radius:.8em;color:#fff;font:700 11px -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;letter-spacing:.04em}
+.node{font:13px Menlo,monospace}
+h1{font-size:1.4em}h2{font-size:1.05em;border-bottom:1px solid #e5e7e3;padding-bottom:.2em}
+ul.rel{list-style:none;padding-left:0}ul.rel li{margin:.25em 0}
+.muted{color:#8b9089}.tree{white-space:pre;font:13px/1.5 Menlo,monospace;background:#fafaf8;border:1px solid #e5e7e3;padding:1em;overflow-x:auto}
+table{border-collapse:collapse}td,th{border:1px solid #e5e7e3;padding:.25em .6em;font-size:.9em}
+</style><script>MathJax={tex:{inlineMath:[["$","$"],["\\(","\\)"]]}};</script><script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script><body><p><a href='index.html'>← index</a></p>
+<h1><span class='node'>telescope-core-not-residually-finite</span> The telescope core is LEF but not residually finite</h1>
+<p><span class="badge" style="background:#178a5e">ESTABLISHED</span> <span class='muted'>claim · <code>research/telescope-core-not-residually-finite.md</code></span></p>
+<p class='muted'>via route telescope-core-not-residually-finite-proof</p>
+<h2>Routes into this claim</h2><ul class='rel'>
+<li><a class="node" href="telescope-core-not-residually-finite-proof.html">telescope-core-not-residually-finite-proof</a> <span class="badge" style="background:#178a5e">COMPLETE</span> Two-divisibility of the telescope collapses levels without a stable letter</li>
+</ul>
+<h2>Distinct from</h2><ul class='rel'>
+<li><a class="node" href="literal-telescope-core-lef.html">literal-telescope-core-lef</a> <span class="badge" style="background:#178a5e">ESTABLISHED</span> The telescope core of the literal group is locally residually finite<br><span class='muted'>That claim is the positive half — every finitely generated subgroup of `E_T` is residually finite; this one is the negative half, that `E_T` itself is not, which is exactly what makes the word &quot;locally&quot; there necessary rather than an artifact of the proof.</span></li>
+<li><a class="node" href="marked-quotients-not-lef.html">marked-quotients-not-lef</a> <span class="badge" style="background:#178a5e">ESTABLISHED</span> The marked quotients admit no exact finite models<br><span class='muted'>That claim rules out local embeddings for the four groups containing the stable letter, using the compression relations; this one is about `E_T`, which has no stable letter, is LEF, and fails only the global property.</span></li>
+<li><a class="node" href="literal-mark-quotient-finite-residual.html">literal-mark-quotient-finite-residual</a> <span class="badge" style="background:#178a5e">ESTABLISHED</span> Exact finite residual of the literal marked quotient<br><span class='muted'>That computes the finite residual of `E/&lt;w&gt;`, a quotient of the whole group containing the stable letter; this one records that the same collapse already happens in the stable-letter-free core, driven by 2-divisibility of the telescope rather than by conjugation by `tau`.</span></li>
+<li><a class="node" href="finite-quotient-blindness.html">finite-quotient-blindness</a> <span class="badge" style="background:#178a5e">ESTABLISHED</span> Finite quotients are blind to the compression<br><span class='muted'>That says a finite quotient normalizes the image of the base, and its mechanism is conjugation by the stable letter; this claim&#x27;s mechanism needs no stable letter at all and applies to a group that does not contain one.</span></li>
+<li><a class="node" href="literal-group-sofic.html">literal-group-sofic</a> <span class="badge" style="background:#178a5e">ESTABLISHED</span> Soficity of the literal finitely presented non-MF group<br><span class='muted'>That is soficity of `E`; this is a residual-finiteness failure one level down, and it is what forces the soficity proof to be local.</span></li>
+<li><a class="node" href="lamp-telescope-base-is-lef.html">lamp-telescope-base-is-lef</a> <span class="badge" style="background:#178a5e">ESTABLISHED</span> The lamp-by-telescope base is LEF<br><span class='muted'>That claim is the positive LEF property for the WITNESS bases `ClLamp(X) semidirect T` and `F_2[X] semidirect T`, whose lamp kernels are locally finite; this claim is about the LITERAL core `N_E semidirect T`, whose lamp kernel is a block amalgam containing free subgroups, and its content is the negative half — that LEF cannot be upgraded to residual finiteness.</span></li>
+</ul>
+<h2>Artifacts</h2><ul class='rel'>
+<li><code>docs/LITERAL_GROUP_IS_SOFIC_2026-08-14.md</code></li>
+<li><code>docs/COMMUTING_LAMP_QUOTIENT_STRUCTURE_AND_MF_FORK_2026-08-14.md</code></li>
+<li><code>non_mf_groups_exist.tex</code></li>
+</ul>
+<h2>Statement</h2>
+<p>Let <code>E_T = N_E semidirect T</code> be the telescope core of the literal group, the kernel of the stable-letter exponent <code>E -&gt; Z</code>.  Then <code>E_T</code> is LEF — every finitely generated subgroup is residually finite (<code><a href="literal-telescope-core-lef.html">literal-telescope-core-lef</a></code>) — but <code>E_T</code> is <strong>not</strong> residually finite: every homomorphism from <code>E_T</code> to a finite group kills the marked involution <code>w</code>, which is nontrivial by <code>prop:witness</code>.</p>
+<p>The mechanism needs no stable letter.  Level collapse in a finite quotient is usually derived from conjugation by <code>tau</code> (<code><a href="finite-quotient-blindness.html">finite-quotient-blindness</a></code>), and <code>tau</code> is not in <code>E_T</code>; but <code>phi(T) = phi(Gbar)</code> already holds in every finite quotient of <code>T</code> alone, because <code>Z[1/2]^3</code> is 2-divisible.</p>
+<p>Two consequences worth stating.</p>
+<ul>
+<li>The word "locally" in <code><a href="literal-telescope-core-lef.html">literal-telescope-core-lef</a></code> is necessary.  The</li>
+<p>positive half is optimal: one cannot strengthen it to residual finiteness of <code>E_T</code>.</p>
+<li>It makes the directed-union step of the soficity proof concrete rather than</li>
+<p>merely formally valid.  <code>w</code> is nontrivial in every block window <code>M_J</code>, and in every sufficiently fine finite quotient of every <code>M_J semidirect Gamma_n</code>, yet <code>w</code> dies in every finite quotient of the union <code>E_T</code>.  A directed union of residually finite groups need not be residually finite, and here it demonstrably is not — which is why the soficity argument approximates windows and never the whole core.</p>
+</ul></body>

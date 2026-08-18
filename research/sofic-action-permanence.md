@@ -46,3 +46,9 @@ of the difficulty in `hyperlinear-wreath-model` is concentrated in the
 cannot have. A model must therefore supply, by hand, something no permanence
 theorem can supply: an embedding of the Bernoulli lamp algebra that is not
 normalized by permutations.
+
+The same refuted hypothesis also cuts the other way: run through the
+diagonal-coset construction (`nonsofic-orbit-forces-commuting-counterexample`)
+it *answers* a published question rather than blocking a route — GKP
+Question 4.2 on commuting sofic actions is false
+(`commuting-sofic-actions-need-not-combine`).

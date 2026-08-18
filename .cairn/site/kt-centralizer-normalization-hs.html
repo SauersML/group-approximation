@@ -1,0 +1,45 @@
+<!doctype html><meta charset='utf-8'><title>kt-centralizer-normalization-hs</title><style>
+body{font:15px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;max-width:60em;margin:2em auto;padding:0 1em;color:#1c1e1c}
+a{color:#4f46e5;text-decoration:none}a:hover{text-decoration:underline}
+code,pre{font:13px/1.45 Menlo,monospace;background:#f4f4f2}
+pre{padding:.8em;overflow-x:auto;border:1px solid #e5e7e3}
+.badge{display:inline-block;padding:.1em .55em;border-radius:.8em;color:#fff;font:700 11px -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;letter-spacing:.04em}
+.node{font:13px Menlo,monospace}
+h1{font-size:1.4em}h2{font-size:1.05em;border-bottom:1px solid #e5e7e3;padding-bottom:.2em}
+ul.rel{list-style:none;padding-left:0}ul.rel li{margin:.25em 0}
+.muted{color:#8b9089}.tree{white-space:pre;font:13px/1.5 Menlo,monospace;background:#fafaf8;border:1px solid #e5e7e3;padding:1em;overflow-x:auto}
+table{border-collapse:collapse}td,th{border:1px solid #e5e7e3;padding:.25em .6em;font-size:.9em}
+</style><script>MathJax={tex:{inlineMath:[["$","$"],["\\(","\\)"]]}};</script><script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script><body><p><a href='index.html'>← index</a></p>
+<h1><span class='node'>kt-centralizer-normalization-hs</span> Hilbert–Schmidt analogue of Kun–Thom centralizer normalization</h1>
+<p><span class="badge" style="background:#c08a00">OPEN</span> <span class='muted'>claim · <code>research/kt-centralizer-normalization-hs.md</code></span></p>
+<h2>Needed by routes</h2><ul class='rel'>
+<li><a class="node" href="kt-pair-non-hyperlinear-commutant.html">kt-pair-non-hyperlinear-commutant</a> <span class="badge" style="background:#c08a00">OPEN</span> Refute hyperlinearity through the relative commutant instead of the masa</li>
+</ul>
+<h2>Invalidates</h2><ul class='rel'>
+<li><a class="node" href="growing-fiber-models.html">growing-fiber-models</a> <span class="badge" style="background:#c08a00">OPEN</span> Growing-fiber models with no surviving coarse index set</li>
+</ul>
+<h2>Distinct from</h2><ul class='rel'>
+<li><a class="node" href="invariant-cartan-completion.html">invariant-cartan-completion</a> <span class="badge" style="background:#c08a00">OPEN</span> Invariant Cartan completion for the Kun–Thom Bernoulli pair<br><span class='muted'>that asks for an invariant diagonal masa and routes through Corollary D; this asks for normalization of a relative commutant and routes through Theorem A&#x27;s endgame — no masa appears in it at all</span></li>
+<li><a class="node" href="hs-expander-block-decomposition.html">hs-expander-block-decomposition</a> <span class="badge" style="background:#c08a00">OPEN</span> Normalized-HS analogue of Kun&#x27;s expander decomposition<br><span class='muted'>that is the HS transcription of Kun&#x27;s decomposition, which is the INPUT to Kun–Thom Theorem 4.1; this is the transcription of Theorem 4.1 itself, and it needs the cluster groupoid and the two median arguments on top of any decomposition</span></li>
+</ul>
+<h2>Artifacts</h2><ul class='rel'>
+<li><code>docs/TRUE_DIAGONAL_NORMALIZER_RIGIDITY.md</code></li>
+</ul>
+<h2>Statement</h2>
+<p>Let <code>Γ &lt; G</code> be an infranormal, non-normal Kazhdan pair and let <code>σ : G → U(∏_𝒰 M_(d_n))</code> be a trace-preserving (hyperlinear) representation. Is the relative commutant <code>σ(Γ)' ∩ ∏_𝒰 M_(d_n)</code> normalized by <code>σ(G)</code>?</p>
+<p>This is Kun–Thom Theorem 4.1 with <code>𝒮_𝒰</code> replaced by the unitary group of the tracial ultraproduct. <strong>A positive answer refutes hyperlinearity of <code>W</code></strong>, by transcribing their proof of Theorem A verbatim: <code>Γ</code> fixes the coset <code>Γ</code>, so <code>ρ(a_Γ)</code> lies in the relative commutant; normalization puts every <code>ρ(a_(gΓ)) = ρ(g)ρ(a_Γ)ρ(g)⁻¹</code> there too; but for a strict compressor <code>t</code> and <code>γ ∈ Γ \ tΓt⁻¹</code> one has <code>σ(γ)ρ(a_(tΓ))σ(γ)⁻¹ = ρ(a_(γtΓ)) ≠ ρ(a_(tΓ))</code>, the two lamps being at <code>‖·‖₂</code>-distance <code>√2</code>.</p>
+<h3>Why it is not a corollary of the permutation version</h3>
+<p>Kun–Thom's proof of Theorem 4.1 runs on the finite cluster groupoid of almost equivariant partial bijections between the <code>Γ</code>-expander components: two median arguments, one on the <strong>vertex mass</strong> of a connected groupoid component and one on the <strong>order of its isotropy group</strong>, force a transported functor to be full. Both invariants are counting invariants of a permutation action on a point set. In the Hilbert–Schmidt category:</p>
+<ul>
+<li>property (T) still supplies the analogue of expansion for free — an action of</li>
+<p>a Kazhdan group on a tracial von Neumann algebra has a spectral gap on <code>L²(M) ⊖ L²(M^Γ)</code> — so the <em>expansion</em> input is not the obstacle;</p>
+<li>what is missing is the <em>component structure</em>. Kun–Thom's Lemma 2.3 identifies</li>
+<p><code>D_𝒰^(σ(Γ))</code> with <code>∏_𝒰 D(Q_n)</code>, an <strong>atomic</strong> partition algebra whose cells have sizes. The fixed algebra <code>σ(Γ)' ∩ ∏_𝒰 M_(d_n)</code> of a hyperlinear approximation need not be atomic — for <code>σ ⊗ 1</code> it contains a <code>II₁</code> factor — so there are no component sizes and no isotropy orders to run medians on.</p>
+</ul>
+<p>This is the decisive open sub-claim on the rigidity side. It is <em>a priori</em> independent of <code><a href="invariant-cartan-completion.html">invariant-cartan-completion</a></code>: that one goes through Corollary D and an invariant masa, this one through Theorem A and a relative commutant, and neither is known to imply the other. Both, if established, refute <code><a href="hyperlinear-wreath-model.html">hyperlinear-wreath-model</a></code>; both, if refuted, are consistent with either answer to Q3.4.</p>
+<p><code><a href="hs-expander-block-decomposition.html">hs-expander-block-decomposition</a></code> is the natural first input — it is the HS transcription of Kun's decomposition, which is what Kun–Thom feed into Theorem 4.1 — but it is not recorded as a <code>requires</code> here, because even with a decomposition in hand the two median arguments have no evident HS form: the quantities they compare are a component's vertex mass and its isotropy order, and neither survives when the blocks are matrix corners rather than orbits.</p>
+<h3>Position relative to Alekseev–Thom Open Problem 6.2</h3>
+<p>Open Problem 6.2 of arXiv:2608.05362 — statement checked against the full text in <code>docs/CREDIT_AND_PRIORITY_AUDIT.md</code> — asks whether the commutant of a Kazhdan representation into a tracial matrix ultraproduct is an ultraproduct of finite-dimensional subalgebras, i.e. whether it admits a <strong>coordinate description</strong> by centralizers of lifts. This claim asks a different question about the same object: not how the commutant is described, but whether it is <strong>normalized</strong> by the ambient group.</p>
+<p>The two are adjacent and the dependence runs one way. A positive answer to OP 6.2 would supply, in the Hilbert–Schmidt category, exactly the coordinate structure that Kun–Thom's proof consumes — components with masses and isotropy groups on which medians can be run — and would therefore be the natural first input here. A negative answer would say the coordinate picture fails already at the description stage, which is where the flexible side expects the room to be. Nothing here resolves OP 6.2, and this node must not be read as a claim on it: OP 6.2 is a published open problem of Alekseev and Thom, and the repository's interest is the downstream invariance question.</p>
+<p>The same adjacency holds one metric class over. In any metric ultraproduct of finite groups the ultraproduct commutant strictly contains the ultraproduct of the coordinate centralizers, because the coordinate maps are approximate rather than genuine homomorphisms; so OP 6.2's difficulty is present in the bi-invariant category too and is not an artefact of unitaries.</p>
+<p>Adjacent, and worth reading before attacking: Alekseev–Thom arXiv:2608.05362, whose conclusion is that the centralizer of a sofic embedding of a Kazhdan group is itself a metric ultraproduct of <strong>permutation</strong> groups. The permutation-specificity of that conclusion is exactly the point at issue here.</p></body>

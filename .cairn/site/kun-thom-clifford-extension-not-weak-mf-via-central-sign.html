@@ -1,0 +1,50 @@
+<!doctype html><meta charset='utf-8'><title>kun-thom-clifford-extension-not-weak-mf-via-central-sign</title><style>
+body{font:15px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;max-width:60em;margin:2em auto;padding:0 1em;color:#1c1e1c}
+a{color:#4f46e5;text-decoration:none}a:hover{text-decoration:underline}
+code,pre{font:13px/1.45 Menlo,monospace;background:#f4f4f2}
+pre{padding:.8em;overflow-x:auto;border:1px solid #e5e7e3}
+.badge{display:inline-block;padding:.1em .55em;border-radius:.8em;color:#fff;font:700 11px -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;letter-spacing:.04em}
+.node{font:13px Menlo,monospace}
+h1{font-size:1.4em}h2{font-size:1.05em;border-bottom:1px solid #e5e7e3;padding-bottom:.2em}
+ul.rel{list-style:none;padding-left:0}ul.rel li{margin:.25em 0}
+.muted{color:#8b9089}.tree{white-space:pre;font:13px/1.5 Menlo,monospace;background:#fafaf8;border:1px solid #e5e7e3;padding:1em;overflow-x:auto}
+table{border-collapse:collapse}td,th{border:1px solid #e5e7e3;padding:.25em .6em;font-size:.9em}
+</style><script>MathJax={tex:{inlineMath:[["$","$"],["\\(","\\)"]]}};</script><script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script><body><p><a href='index.html'>← index</a></p>
+<h1><span class='node'>kun-thom-clifford-extension-not-weak-mf-via-central-sign</span> Recognize the Clifford sign as a displaced-lamp commutator square</h1>
+<p><span class="badge" style="background:#178a5e">COMPLETE</span> <span class='muted'>route · <code>research/kun-thom-clifford-extension-not-weak-mf-via-central-sign.md</code></span></p>
+<h2>Target</h2><ul class='rel'>
+<li><a class="node" href="kun-thom-clifford-extension-not-weak-mf.html">kun-thom-clifford-extension-not-weak-mf</a> <span class="badge" style="background:#178a5e">ESTABLISHED</span> The Kun--Thom Clifford extension is not weak MF</li>
+</ul>
+<h2>Requires</h2><ul class='rel'>
+<li><a class="node" href="central-sign-corona-obstruction.html">central-sign-corona-obstruction</a> <span class="badge" style="background:#178a5e">ESTABLISHED</span> Central-sign obstruction to norm-matrix-corona embeddings</li>
+</ul>
+<h2>Artifacts</h2><ul class='rel'>
+<li><code>docs/FALSE_CLIFFORD_NORM_MF_STERILITY.md</code></li>
+<li><code>GroupApproximation/Sofic/KazhdanSignCriterion.lean</code></li>
+</ul>
+<h2>Statement</h2>
+<h2>Recognize the Clifford sign as a displaced-lamp commutator square</h2>
+<p>A second, shorter derivation of the same claim, observed by <code>cairn-ce</code>. Where <code><a href="kun-thom-clifford-extension-not-weak-mf-proof.html">kun-thom-clifford-extension-not-weak-mf-proof</a></code> runs the corner cut and the Kazhdan projection argument by hand, this route just checks that the Clifford sign satisfies the hypothesis of the already-established general criterion, and lets that criterion do the analytic work.</p>
+<p>Recording both derivations is deliberate: the hand proof is the one written out in the corpus and is self-contained, while this one connects the result to the machine-checked criterion in <code>GroupApproximation/Sofic/KazhdanSignCriterion.lean</code> and shows that no new analytic input was ever needed.</p>
+<h3>The criterion</h3>
+<p><code><a href="central-sign-corona-obstruction.html">central-sign-corona-obstruction</a></code>, verbatim:</p>
+<p>&gt; Under one-sided compression of a property-(T) subgroup, if a central &gt; involution is the square of the commutator of a displaced centralizer element &gt; with the Kazhdan subgroup, then every homomorphism to a norm matrix corona &gt; kills that involution.  If it is nontrivial, the ambient group is not MF.</p>
+<h3>Verifying the hypothesis</h3>
+<p>Write <code>o = Gamma in X = G/Gamma</code>. The lamp <code>c_o</code> is a <strong>centralizer element</strong>: <code>Gamma</code> stabilizes the base coset <code>o</code>, so <code>gamma c_o gamma^(-1) = c_o</code> for every <code>gamma in Gamma</code>. Its <strong>displacement</strong> by the compressor is <code>c_(to)</code>.</p>
+<p>Take any <code>gamma in Gamma</code> with <code>gamma t Gamma != t Gamma</code>, which exists exactly because the compression <code>t Gamma t^(-1) &lt; Gamma</code> is strict — the same choice the hand proof makes. With the commutator convention <code>[a,b] = a b a^(-1) b^(-1)</code>, and using that every lamp is an involution,</p>
+<pre>
+[c_(to), gamma] = c_(to) · gamma c_(to)^(-1) gamma^(-1)
+                = c_(to) c_(gamma t o).
+</pre>
+<p>Now square it, applying the Clifford relation <code>c_x c_y = z c_y c_x</code> at the distinct sites <code>x = gamma t o</code> and <code>y = t o</code>:</p>
+<pre>
+([c_(to), gamma])^2 = c_(to) c_(gamma t o) c_(to) c_(gamma t o)
+                    = c_(to) · z c_(to) c_(gamma t o) · c_(gamma t o)
+                    = z c_(to)^2 c_(gamma t o)^2
+                    = z.
+</pre>
+<p>So <code>z</code> is the square of the commutator of a displaced centralizer element with the Kazhdan subgroup, which is precisely the criterion's hypothesis. Distinctness of the two sites — the only place strictness is used — is what makes the Clifford relation apply rather than the trivial commuting case.</p>
+<h3>Conclusion</h3>
+<p>The criterion gives that every homomorphism from the Clifford extension to the unitary group of a norm matrix corona kills <code>z</code>. Since <code>z != 1</code> in both the complete and the sparse Clifford lamp groups, the extension is not weak MF.</p>
+<h3>Why this does not make the hand proof redundant</h3>
+<p>The hand proof is still worth keeping. It exhibits the contradiction concretely — two lamp unitaries at squared normalized distance <code>2</code> against a Kazhdan-fixed vector at distance <code>0</code> — and that concrete form is what makes the category contrast with the tracial setting legible: the identical corner cut appears in <code><a href="clifford-ce-targets-are-equivalent-proof.html">clifford-ce-targets-are-equivalent-proof</a></code> (Theorem 6, <code>1 =&gt; 2</code>) and there it is harmless, because a tracial ultraproduct does not supply the stable finiteness that the operator-norm corona does. A derivation that black-boxes the criterion hides exactly that step.</p></body>

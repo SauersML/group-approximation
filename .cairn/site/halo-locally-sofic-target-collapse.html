@@ -1,0 +1,45 @@
+<!doctype html><meta charset='utf-8'><title>halo-locally-sofic-target-collapse</title><style>
+body{font:15px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;max-width:60em;margin:2em auto;padding:0 1em;color:#1c1e1c}
+a{color:#4f46e5;text-decoration:none}a:hover{text-decoration:underline}
+code,pre{font:13px/1.45 Menlo,monospace;background:#f4f4f2}
+pre{padding:.8em;overflow-x:auto;border:1px solid #e5e7e3}
+.badge{display:inline-block;padding:.1em .55em;border-radius:.8em;color:#fff;font:700 11px -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;letter-spacing:.04em}
+.node{font:13px Menlo,monospace}
+h1{font-size:1.4em}h2{font-size:1.05em;border-bottom:1px solid #e5e7e3;padding-bottom:.2em}
+ul.rel{list-style:none;padding-left:0}ul.rel li{margin:.25em 0}
+.muted{color:#8b9089}.tree{white-space:pre;font:13px/1.5 Menlo,monospace;background:#fafaf8;border:1px solid #e5e7e3;padding:1em;overflow-x:auto}
+table{border-collapse:collapse}td,th{border:1px solid #e5e7e3;padding:.25em .6em;font-size:.9em}
+</style><script>MathJax={tex:{inlineMath:[["$","$"],["\\(","\\)"]]}};</script><script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script><body><p><a href='index.html'>← index</a></p>
+<h1><span class='node'>halo-locally-sofic-target-collapse</span> Halo witnesses with locally sofic targets collapse to sofic-class witnesses</h1>
+<p><span class="badge" style="background:#178a5e">ESTABLISHED</span> <span class='muted'>claim · <code>research/halo-locally-sofic-target-collapse.md</code></span></p>
+<p class='muted'>via route halo-locally-sofic-target-collapse-proof</p>
+<h2>Routes into this claim</h2><ul class='rel'>
+<li><a class="node" href="halo-locally-sofic-target-collapse-proof.html">halo-locally-sofic-target-collapse-proof</a> <span class="badge" style="background:#178a5e">COMPLETE</span> Shrink each finite witness to the subgroup its labels generate</li>
+</ul>
+<h2>Distinct from</h2><ul class='rel'>
+<li><a class="node" href="single-lamps-recover-set-action.html">single-lamps-recover-set-action</a> <span class="badge" style="background:#178a5e">ESTABLISHED</span> A sofic C-action on the C2 lamp group forces the underlying set action sofic<br><span class='muted'>That is class-agnostic and argues through the lamp coordinates; this argues through the finite generation of a single witness and applies to an arbitrary automorphism action, but only when the targets happen to be locally sofic.</span></li>
+<li><a class="node" href="coordinate-action-not-sofic.html">coordinate-action-not-sofic</a> <span class="badge" style="background:#178a5e">ESTABLISHED</span> The coordinate action G ↷ G/Γ is not a sofic action<br><span class='muted'>That refutes the sofic-action hypothesis for one action; this says that for a large family of target classes the hypothesis is not even a weaker condition than the sofic one.</span></li>
+</ul>
+<h2>Artifacts</h2><ul class='rel'>
+<li><code>docs/FALSE_HALO_ACTION_AUDIT.md</code></li>
+<li><code>research/artifacts/kun-thom-2608-06222-verified.md</code></li>
+</ul>
+<h2>Statement</h2>
+<p>If an automorphism action has Alekseev--Bradford witnesses whose target groups are <strong>locally sofic</strong>, then it is already a sofic sofic-action in their sense.</p>
+<p>Consequently, for the Kun--Thom coset action, no witness with locally sofic targets exists at all:</p>
+<pre>
+the Kun--Thom action has no locally-sofic target witnesses.      (HAA5)
+</pre>
+<h3>Which targets this covers</h3>
+<p>Every alphabet one would naturally reach for when trying to enrich a halo witness:</p>
+<ul>
+<li><strong>finite-dimensional unitary labels.</strong> Every finitely generated subgroup of</li>
+<p><code>U(n)</code> is a finitely generated linear group, hence residually finite by Malcev, hence sofic. So <code>U(n)</code> is locally sofic.</p>
+<li><strong>Pauli and Clifford labels.</strong> Finite Clifford groups are finite.</li>
+<li><strong>direct products and matrix amplifications</strong> of the above, which do not</li>
+<p>change the conclusion at any fixed finite action test.</p>
+</ul>
+<p>So the "richer labels" idea is not merely blocked; the labels are not richer.</p>
+<h3>Consequence</h3>
+<p>Both factors of <code>W = (directSum_(G/Gamma) C_2) semidirect G</code> are sofic — the lamp group is locally finite and <code>G</code> is residually finite. If the Kun--Thom action admitted witnesses of this kind, Alekseev--Bradford's semidirect-product theorem for the sofic class would make <code>W</code> sofic, contradicting <code><a href="wreath-not-sofic.html">wreath-not-sofic</a></code>. Hence <code>(HAA5)</code>.</p>
+<p>The audit draws the sharp conclusion: any genuine hyperlinear-action proof must have, at some finite test, a target <code>Lambda_0</code> that is itself a finitely generated hyperlinear nonsofic group — which is the main problem again. The halo framework is a good permanence result <em>after</em> a seed exists and cannot manufacture the first one.</p></body>

@@ -1,0 +1,37 @@
+<!doctype html><meta charset='utf-8'><title>weakly-sofic-not-sofic-proof</title><style>
+body{font:15px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;max-width:60em;margin:2em auto;padding:0 1em;color:#1c1e1c}
+a{color:#4f46e5;text-decoration:none}a:hover{text-decoration:underline}
+code,pre{font:13px/1.45 Menlo,monospace;background:#f4f4f2}
+pre{padding:.8em;overflow-x:auto;border:1px solid #e5e7e3}
+.badge{display:inline-block;padding:.1em .55em;border-radius:.8em;color:#fff;font:700 11px -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;letter-spacing:.04em}
+.node{font:13px Menlo,monospace}
+h1{font-size:1.4em}h2{font-size:1.05em;border-bottom:1px solid #e5e7e3;padding-bottom:.2em}
+ul.rel{list-style:none;padding-left:0}ul.rel li{margin:.25em 0}
+.muted{color:#8b9089}.tree{white-space:pre;font:13px/1.5 Menlo,monospace;background:#fafaf8;border:1px solid #e5e7e3;padding:1em;overflow-x:auto}
+table{border-collapse:collapse}td,th{border:1px solid #e5e7e3;padding:.25em .6em;font-size:.9em}
+</style><script>MathJax={tex:{inlineMath:[["$","$"],["\\(","\\)"]]}};</script><script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script><body><p><a href='index.html'>← index</a></p>
+<h1><span class='node'>weakly-sofic-not-sofic-proof</span> Combine Glebsky&#x27;s weak-soficity permanence with the Kun--Thom wreath</h1>
+<p><span class="badge" style="background:#178a5e">COMPLETE</span> <span class='muted'>route · <code>research/weakly-sofic-not-sofic-proof.md</code></span></p>
+<h2>Target</h2><ul class='rel'>
+<li><a class="node" href="weakly-sofic-not-sofic.html">weakly-sofic-not-sofic</a> <span class="badge" style="background:#178a5e">ESTABLISHED</span> Weakly sofic does not imply sofic</li>
+</ul>
+<h2>Requires</h2><ul class='rel'>
+<li><a class="node" href="kun-thom-nonsofic-wreath.html">kun-thom-nonsofic-wreath</a> <span class="badge" style="background:#178a5e">ESTABLISHED</span> Kun--Thom nonsofic generalized wreath products over infranormal Kazhdan pairs</li>
+</ul>
+<h2>Statement</h2>
+<p>Two verified primary sources compose.</p>
+<p><strong>Permanence.</strong> Glebsky, <em>Extensions of a residually finite group by a weakly sofic group are weakly sofic</em>, Rev. Mat. Iberoam. 39 (2023), no. 3, 1097--1104, doi:10.4171/RMI/1368 (open access; read from the published PDF):</p>
+<p>&gt; <strong>Theorem 1.1.</strong> Let <code>H</code> be a normal subgroup of a group <code>K</code>.  If <code>H</code> is &gt; weakly sofic and <code>G=K/H</code> is residually finite, then <code>K</code> is weakly sofic.</p>
+<p>The paper states the corollary explicitly: "In particular, residually-finite-by-residually-finite extensions are weakly sofic."  See also the earlier preprint arXiv:1910.08631, <em>Extension of a residually finite group by a residually finite group is weakly sofic</em>.</p>
+<p><strong>Application.</strong> Take <code>W=(directSum_(G/Gamma) Z/2Z) semidirect G</code> for the Kun--Thom pair.  Put <code>H=directSum_(G/Gamma) Z/2Z</code>, so <code>W/H = G</code>.</p>
+<ul>
+<li><code>H</code> is a restricted direct sum of finite groups, hence residually finite,</li>
+<p>hence sofic, hence weakly sofic.</p>
+<li><code>G=EL_r(R) semidirect SL_d(Z)</code> is residually finite by Kun--Thom</li>
+<p>Theorem E.</p>
+</ul>
+<p>Glebsky's Theorem 1.1 therefore makes <code>W</code> weakly sofic.  Kun--Thom Theorem A makes <code>W</code> nonsofic.  Hence weak soficity does not imply soficity.  End proof.</p>
+<h3>Provenance note</h3>
+<p>This deduction is recorded on Fournier-Facio's homepage (<code>https://www.fffmaths.com/</code>) as a consequence of the August 2026 results — "This also shows that there are weakly sofic groups that are not sofic, clarifying the relationship between soficity and the other approximation properties for which non-examples are still to be found" — without a proof or a citation for the permanence step.</p>
+<p>An exhaustive search (2026-08-14) found the deduction <strong>in no paper by anyone</strong>: "weakly sofic", "Glebsky", "hyperlinear" and "bi-invariant" all occur zero times in the full PDF of Fournier-Facio arXiv:2608.02025; "weakly sofic" and "bi-invariant" occur zero times in the full PDF of Kun--Thom arXiv:2608.06222; and none of Fournier-Facio's fifteen most recent arXiv abstracts (through 2026-08-03) mentions weak soficity.</p>
+<p>So the homepage sentence is an unsupported-in-the-literature remark and must not be cited as literature.  The claim it asserts is nevertheless true, and the composition above establishes it from two primary sources that were read: cite Glebsky (RMI 2023) and Kun--Thom Theorem A, never the homepage.</p></body>

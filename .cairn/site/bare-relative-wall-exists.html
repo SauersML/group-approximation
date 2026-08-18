@@ -1,0 +1,40 @@
+<!doctype html><meta charset='utf-8'><title>bare-relative-wall-exists</title><style>
+body{font:15px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;max-width:60em;margin:2em auto;padding:0 1em;color:#1c1e1c}
+a{color:#4f46e5;text-decoration:none}a:hover{text-decoration:underline}
+code,pre{font:13px/1.45 Menlo,monospace;background:#f4f4f2}
+pre{padding:.8em;overflow-x:auto;border:1px solid #e5e7e3}
+.badge{display:inline-block;padding:.1em .55em;border-radius:.8em;color:#fff;font:700 11px -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;letter-spacing:.04em}
+.node{font:13px Menlo,monospace}
+h1{font-size:1.4em}h2{font-size:1.05em;border-bottom:1px solid #e5e7e3;padding-bottom:.2em}
+ul.rel{list-style:none;padding-left:0}ul.rel li{margin:.25em 0}
+.muted{color:#8b9089}.tree{white-space:pre;font:13px/1.5 Menlo,monospace;background:#fafaf8;border:1px solid #e5e7e3;padding:1em;overflow-x:auto}
+table{border-collapse:collapse}td,th{border:1px solid #e5e7e3;padding:.25em .6em;font-size:.9em}
+</style><script>MathJax={tex:{inlineMath:[["$","$"],["\\(","\\)"]]}};</script><script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script><body><p><a href='index.html'>← index</a></p>
+<h1><span class='node'>bare-relative-wall-exists</span> One bare relative wall in a Connes-embeddable model</h1>
+<p><span class="badge" style="background:#c08a00">OPEN</span> <span class='muted'>claim · <code>research/bare-relative-wall-exists.md</code></span></p>
+<h2>Routes into this claim</h2><ul class='rel'>
+<li><a class="node" href="clifford-ce-gives-bare-wall.html">clifford-ce-gives-bare-wall</a> <span class="badge" style="background:#c08a00">OPEN</span> The Clifford crossed product already contains the bare wall</li>
+</ul>
+<h2>Needed by routes</h2><ul class='rel'>
+<li><a class="node" href="bare-wall-radical-collision-route.html">bare-wall-radical-collision-route</a> <span class="badge" style="background:#c08a00">OPEN</span> Collide a bare wall with the sofic radical of the free lamp</li>
+</ul>
+<h2>Distinct from</h2><ul class='rel'>
+<li><a class="node" href="kun-thom-clifford-relative-wall.html">kun-thom-clifford-relative-wall</a> <span class="badge" style="background:#c08a00">OPEN</span> Finite normalized-HS Clifford wall for the Kun--Thom pair<br><span class='muted'>That claim demands the Clifford wall — the compressed lamp must anticommute with the lamp — and is stated as a finite normalized-Hilbert--Schmidt target; this one asks only that the two be different, which is strictly weaker and already sufficient for Q3.4.</span></li>
+<li><a class="node" href="relative-wall-commutant-growth.html">relative-wall-commutant-growth</a> <span class="badge" style="background:#178a5e">ESTABLISHED</span> A relative wall is exactly compressor growth of the relative commutant<br><span class='muted'>That claim is the established equivalence between a wall and properness of a relative-commutant inclusion in an arbitrary finite tracial algebra; this one is the existence assertion in a Connes-embeddable one, which is the actual open problem.</span></li>
+<li><a class="node" href="hyperlinear-wreath-model.html">hyperlinear-wreath-model</a> <span class="badge" style="background:#c08a00">OPEN</span> Construct a hyperlinear model of the wreath candidate<br><span class='muted'>That claim asks for microstates of the whole wreath candidate; this one asks for a single unitary in one relative commutant and needs no faithful model of any group.</span></li>
+<li><a class="node" href="kt-centralizer-normalization-hs.html">kt-centralizer-normalization-hs</a> <span class="badge" style="background:#c08a00">OPEN</span> Hilbert–Schmidt analogue of Kun–Thom centralizer normalization<br><span class='muted'>That claim asks whether the relative commutant is normalized, and a positive answer to it refutes this one; the two are exact opposites and exactly one of them holds, so they are the two sides of the same fork rather than two problems.</span></li>
+</ul>
+<h2>Artifacts</h2><ul class='rel'>
+<li><code>docs/FALSE_RELATIVE_BICOMMUTANT_ENDPOINT.md</code></li>
+<li><code>docs/TRUE_RELATIVE_WALL_IS_COMMUTANT_GROWTH.md</code></li>
+</ul>
+<h2>Statement</h2>
+<p>Find a Connes-embeddable finite tracial von Neumann algebra <code>M</code>, a homomorphism <code>pi:G-&gt;U(M)</code> for the Kun--Thom infranormal Kazhdan pair <code>Gamma&lt;G</code>, and a unitary</p>
+<pre>
+v in M intersect pi(Gamma)&#x27;   with   [v,pi(h)]!=1,
+h=t^(-1) gamma t notin Gamma.
+</pre>
+<p>Equivalently (<code><a href="relative-wall-commutant-growth.html">relative-wall-commutant-growth</a></code>), make one relative commutant grow strictly under one compressor: <code>M intersect pi(Gamma)' != M intersect pi(t Gamma t^(-1))'</code>.</p>
+<p>Neither faithfulness, nor the Clifford sign, nor a prescribed trace energy is required: by <code><a href="wall-energy-amplification.html">wall-energy-amplification</a></code> the energy comes for free, and by the radical-collision endpoint the bare inequality already produces a hyperlinear nonsofic group.  This is the weakest known sufficient hypothesis in the whole Kun--Thom lane.</p>
+<p><strong>This is packaging, not a reduction of the difficulty.</strong>  Given a homomorphism <code>phi</code> of the free lamp <code>H_K=G *_Gamma (Gamma x K)</code> into a hyperlinear group with <code>phi(r)!=1</code>, put <code>pi=phi|_G</code> and <code>v=phi(k)</code>: that is a wall.  Conversely a wall defines such a <code>phi</code>.  So this claim is <em>equivalent</em> to the marked instance of the radical-collision criterion at <code>H=H_K</code>, and <code><a href="radical-collision-reformulation.html">radical-collision-reformulation</a></code> records that the criterion is a restatement of Question 3.4 at full strength rather than a reduction of it.  What is gained here is only the <strong>minimality of the data</strong> — no faithfulness, no Clifford sign, no trace energy, one unitary in one relative commutant — and that is a packaging gain, not a logical one.  What keeps this claim from being a rename of the root is that the root quantifies over all countable groups while this one fixes the Kun--Thom pair: it is strictly stronger, so <code><a href="bare-wall-radical-collision-route.html">bare-wall-radical-collision-route</a></code> is a specialization, not an equivalence.</p>
+<p>Its exact negation is <code><a href="kt-centralizer-normalization-hs.html">kt-centralizer-normalization-hs</a></code>, the tracial analogue of Kun--Thom Theorem 4.1; establishing that would make the explicit even Clifford cover a nonhyperlinear group.  Precisely one of the two holds, and the fork is not symmetric in difficulty: the counting invariants that carry the permutation proof — cell sizes and isotropy orders of an atomic partition algebra — have no informative normalized shadow here.  By <code><a href="commutant-density-trace-blind.html">commutant-density-trace-blind</a></code> the only such shadow is <code>lim_j sum_gamma mu_j(gamma)|chi(gamma)|^2</code>, which is conjugation invariant, hence identical for <code>Gamma</code> and <code>t Gamma t^(-1)</code>, and identically zero for every character supported at the identity.  The surviving invariant is the Pimsner--Popa index, which <code><a href="clifford-compressor-site-growth.html">clifford-compressor-site-growth</a></code> computes to be infinite at every strict positive compressor in the Clifford model.</p></body>

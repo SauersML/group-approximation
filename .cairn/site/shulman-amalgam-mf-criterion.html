@@ -1,0 +1,33 @@
+<!doctype html><meta charset='utf-8'><title>shulman-amalgam-mf-criterion</title><style>
+body{font:15px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;max-width:60em;margin:2em auto;padding:0 1em;color:#1c1e1c}
+a{color:#4f46e5;text-decoration:none}a:hover{text-decoration:underline}
+code,pre{font:13px/1.45 Menlo,monospace;background:#f4f4f2}
+pre{padding:.8em;overflow-x:auto;border:1px solid #e5e7e3}
+.badge{display:inline-block;padding:.1em .55em;border-radius:.8em;color:#fff;font:700 11px -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;letter-spacing:.04em}
+.node{font:13px Menlo,monospace}
+h1{font-size:1.4em}h2{font-size:1.05em;border-bottom:1px solid #e5e7e3;padding-bottom:.2em}
+ul.rel{list-style:none;padding-left:0}ul.rel li{margin:.25em 0}
+.muted{color:#8b9089}.tree{white-space:pre;font:13px/1.5 Menlo,monospace;background:#fafaf8;border:1px solid #e5e7e3;padding:1em;overflow-x:auto}
+table{border-collapse:collapse}td,th{border:1px solid #e5e7e3;padding:.25em .6em;font-size:.9em}
+</style><script>MathJax={tex:{inlineMath:[["$","$"],["\\(","\\)"]]}};</script><script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script><body><p><a href='index.html'>← index</a></p>
+<h1><span class='node'>shulman-amalgam-mf-criterion</span> Shulman&#x27;s necessary and sufficient condition for MF amalgams</h1>
+<p><span class="badge" style="background:#178a5e">ESTABLISHED</span> <span class='muted'>claim · <code>research/shulman-amalgam-mf-criterion.md</code></span></p>
+<p class='muted'>via route shulman-amalgam-criterion-import</p>
+<h2>Routes into this claim</h2><ul class='rel'>
+<li><a class="node" href="shulman-amalgam-criterion-import.html">shulman-amalgam-criterion-import</a> <span class="badge" style="background:#178a5e">COMPLETE</span> Import Shulman&#x27;s amalgam criterion from the primary source</li>
+</ul>
+<h2>Needed by routes</h2><ul class='rel'>
+<li><a class="node" href="literal-mark-quotient-via-shulman-amalgam.html">literal-mark-quotient-via-shulman-amalgam</a> <span class="badge" style="background:#c08a00">OPEN</span> Route the literal marked quotient through Shulman&#x27;s amalgam criterion</li>
+</ul>
+<h2>Distinct from</h2><ul class='rel'>
+<li><a class="node" href="symmetric-double-weak-mf.html">symmetric-double-weak-mf</a> <span class="badge" style="background:#178a5e">ESTABLISHED</span> Symmetric doubles of residually finite groups are weak MF<br><span class='muted'>That claim is this repository&#x27;s application of Shulman&#x27;s symmetric Theorem 10 to doubles of residually finite groups; this one imports the general Theorem 20 for non-symmetric amalgams, which the symmetric theorem does not contain.</span></li>
+<li><a class="node" href="central-extension-twisted-sector-criterion.html">central-extension-twisted-sector-criterion</a> <span class="badge" style="background:#178a5e">ESTABLISHED</span> MF of a central order-two extension is the twisted sector over the quotient<br><span class='muted'>That criterion is about central order-two extensions and is internal; this one is a published statement about amalgamated free products.</span></li>
+</ul>
+<h2>Artifacts</h2><ul class='rel'>
+<li><code>research/artifacts/shulman-2603-13564-verified.md</code></li>
+</ul>
+<h2>Statement</h2>
+<p>Shulman, <em>The MF property for amalgamated free products</em>, arXiv:2603.13564v2, <strong>Theorem 20</strong> (verbatim in the artifact): for separable C*-algebras <code>A, B, C</code> with inclusions <code>theta_A : C -&gt; A</code> and <code>theta_B : C -&gt; B</code>, the amalgam <code>A *_C B</code> is MF <strong>if and only if</strong> there are embeddings <code>phi_A : A -&gt; prod M_n / (+) M_n</code> and <code>phi_B : B -&gt; prod M_n / (+) M_n</code> with <code>phi_A o theta_A = phi_B o theta_B</code>.</p>
+<p><strong>Theorem 10</strong> is the symmetric case: <code>A <em>_C A</code> is MF whenever <code>A</code> is separable MF and <code>C &lt;= A</code> is any C</em>-subalgebra.</p>
+<p>Group bridge, also from the paper: <code>C*(G_1 <em>_H G_2) = C</em>(G_1) <em>_{C</em>(H)} C*(G_2)</code>, and if <code>C*(G)</code> or <code>C*_r(G)</code> is MF then the group <code>G</code> is MF.</p>
+<p><strong>Trust surface.</strong>  Source-verified from the PDF this session; the transcription is in the artifact.  Scope caution: Theorem 20 concerns C*-algebras, and MF of <code>C*(G)</code> is strictly stronger than group MF in the convention used here, so a route built on it must also carry MF of both vertex algebras.</p></body>

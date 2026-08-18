@@ -1,0 +1,29 @@
+<!doctype html><meta charset='utf-8'><title>corner-renormalization-cost-proof</title><style>
+body{font:15px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;max-width:60em;margin:2em auto;padding:0 1em;color:#1c1e1c}
+a{color:#4f46e5;text-decoration:none}a:hover{text-decoration:underline}
+code,pre{font:13px/1.45 Menlo,monospace;background:#f4f4f2}
+pre{padding:.8em;overflow-x:auto;border:1px solid #e5e7e3}
+.badge{display:inline-block;padding:.1em .55em;border-radius:.8em;color:#fff;font:700 11px -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;letter-spacing:.04em}
+.node{font:13px Menlo,monospace}
+h1{font-size:1.4em}h2{font-size:1.05em;border-bottom:1px solid #e5e7e3;padding-bottom:.2em}
+ul.rel{list-style:none;padding-left:0}ul.rel li{margin:.25em 0}
+.muted{color:#8b9089}.tree{white-space:pre;font:13px/1.5 Menlo,monospace;background:#fafaf8;border:1px solid #e5e7e3;padding:1em;overflow-x:auto}
+table{border-collapse:collapse}td,th{border:1px solid #e5e7e3;padding:.25em .6em;font-size:.9em}
+</style><script>MathJax={tex:{inlineMath:[["$","$"],["\\(","\\)"]]}};</script><script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script><body><p><a href='index.html'>← index</a></p>
+<h1><span class='node'>corner-renormalization-cost-proof</span> Two lines of trace bookkeeping and the recorded functorial bound</h1>
+<p><span class="badge" style="background:#178a5e">COMPLETE</span> <span class='muted'>route · <code>research/corner-renormalization-cost-proof.md</code></span></p>
+<h2>Target</h2><ul class='rel'>
+<li><a class="node" href="corner-renormalization-cost.html">corner-renormalization-cost</a> <span class="badge" style="background:#178a5e">ESTABLISHED</span> Corner compression is free in operator norm and costs the inverse root trace</li>
+</ul>
+<h2>Artifacts</h2><ul class='rel'>
+<li><code>docs/FALSE_FERMIONIC_AMPLIFICATION.md</code></li>
+<li><code>docs/FALSE_WEAK_MF_EFFECTIVE_RANK_PROFILE.md</code></li>
+</ul>
+<h2>Statement</h2>
+<h3>Direct proof</h3>
+<p><code>(C1)</code> is <code>||axb||&lt;=||a|| ||x|| ||b||</code> with <code>a=b=p</code>.</p>
+<p>For <code>(C2)</code>, traciality gives <code>||xb||_(2,tau)^2 = tau(b^<em> x^</em> x b) = tau(x^<em> x b b^</em>) &lt;= ||b||^2 ||x||_(2,tau)^2</code> and <code>||ax||_(2,tau)^2 = tau(x^<em> a^</em> a x) &lt;= ||a||^2 ||x||_(2,tau)^2</code>, so <code>||pxp||_(2,tau) &lt;= ||x||_(2,tau)</code>.  Since <code>||y||_(2,tau_p)^2 = tau(y^* y)/tau(p) = ||y||_(2,tau)^2/tau(p)</code> for <code>y in pAp</code>, this is <code>(C2)</code>.  If <code>x = pxp</code> both inequalities used are equalities, so the constant is attained.</p>
+<p><code>(C3)</code> is the chain <code>Tr(A^*A) &lt;= ||A||_op Tr(|A|) &lt;= 2 Tr(|A|)</code> divided by <code>r &gt;= 1</code>; it is stated in section 4 of <code>docs/TRUE_SCHATTEN_ONE_RADICAL_CORNER.md</code> as the scaling boundary of that theorem.</p>
+<p>The identification of the constant in the matrix case is arithmetic: <code>tau(p)=r/d</code> for a rank-<code>r</code> projection under the normalized trace.  The comparison with the functorial lower bound is the statement of Theorem 5 of <code>FALSE_FERMIONIC_AMPLIFICATION.md</code>, whose complete proof (Rademacher averaging over <code>floor(d/r)</code> orthogonal rank-<code>r</code> blocks against the <code>2</code>-norm Lipschitz constant of a continuous homomorphism <code>U(d)-&gt;U(N)</code>) is recorded in that artifact; and the profile <code>epsilon_n sqrt(d_n/r_eff)</code> is equation <code>(ERP4)</code> of <code>FALSE_WEAK_MF_EFFECTIVE_RANK_PROFILE.md</code>.  End proof.</p>
+<h3>Consequence</h3>
+<p>An operator-norm almost representation may be compressed to a corner of vanishing relative rank with no loss, and the corner is measured by its own normalized trace; this is what makes <code><a href="mf-finite-normal-tracially-visible.html">mf-finite-normal-tracially-visible</a></code>, the central-sign criterion, and the finite-normal cancellation work.  A normalized-Hilbert--Schmidt almost representation cannot be so compressed: the same step multiplies its defect by <code>tau(p)^(-1/2)</code>.  Every known attempt to move the non-MF architecture to the tracial side dies at exactly this factor.</p></body>

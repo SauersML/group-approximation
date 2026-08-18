@@ -1,0 +1,41 @@
+<!doctype html><meta charset='utf-8'><title>halo-target-class-enrichment</title><style>
+body{font:15px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;max-width:60em;margin:2em auto;padding:0 1em;color:#1c1e1c}
+a{color:#4f46e5;text-decoration:none}a:hover{text-decoration:underline}
+code,pre{font:13px/1.45 Menlo,monospace;background:#f4f4f2}
+pre{padding:.8em;overflow-x:auto;border:1px solid #e5e7e3}
+.badge{display:inline-block;padding:.1em .55em;border-radius:.8em;color:#fff;font:700 11px -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;letter-spacing:.04em}
+.node{font:13px Menlo,monospace}
+h1{font-size:1.4em}h2{font-size:1.05em;border-bottom:1px solid #e5e7e3;padding-bottom:.2em}
+ul.rel{list-style:none;padding-left:0}ul.rel li{margin:.25em 0}
+.muted{color:#8b9089}.tree{white-space:pre;font:13px/1.5 Menlo,monospace;background:#fafaf8;border:1px solid #e5e7e3;padding:1em;overflow-x:auto}
+table{border-collapse:collapse}td,th{border:1px solid #e5e7e3;padding:.25em .6em;font-size:.9em}
+</style><script>MathJax={tex:{inlineMath:[["$","$"],["\\(","\\)"]]}};</script><script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script><body><p><a href='index.html'>← index</a></p>
+<h1><span class='node'>halo-target-class-enrichment</span> Enrich the halo-witness target class so the coordinate action qualifies</h1>
+<p><span class="badge" style="background:#c43c2e">INVALIDATED</span> <span class='muted'>route · <code>research/halo-target-class-enrichment.md</code></span></p>
+<p class='muted'>invalidated by established claim single-lamps-recover-set-action</p>
+<h2>Target</h2><ul class='rel'>
+<li><a class="node" href="hyperlinear-wreath-model.html">hyperlinear-wreath-model</a> <span class="badge" style="background:#c08a00">OPEN</span> Construct a hyperlinear model of the wreath candidate</li>
+</ul>
+<h2>Invalidated by</h2><ul class='rel'>
+<li><a class="node" href="single-lamps-recover-set-action.html">single-lamps-recover-set-action</a> <span class="badge" style="background:#178a5e">ESTABLISHED</span> A sofic C-action on the C2 lamp group forces the underlying set action sofic</li>
+</ul>
+<h2>Artifacts</h2><ul class='rel'>
+<li><code>docs/NOTEPAD.md</code></li>
+<li><code>docs/FALSE_HALO_ACTION_AUDIT.md</code></li>
+<li><code>research/artifacts/kun-thom-2608-06222-verified.md</code></li>
+</ul>
+<h2>Statement</h2>
+<h2>Enrich the halo-witness target class so the coordinate action qualifies</h2>
+<p>The natural second attempt after <code><a href="sofic-action-permanence.html">sofic-action-permanence</a></code> dies, and the reason it also dies. Dead twice over, by two independent proofs.</p>
+<h3>The idea</h3>
+<p>Alekseev--Bradford Corollary 5.2 is not stated for one class but for a menu, verbatim from the source transcription:</p>
+<p>&gt; Let 𝒞 be one of the following: (a) The class of sofic groups; (b) The class &gt; of 𝕂-linear sofic groups, for 𝕂 a field; (c) The class of hyperlinear &gt; groups; (d) The class of weakly sofic groups. Let Γ, Δ ∈ 𝒞, and let &gt; β : Γ ↷ Δ be a sofic 𝒞-action by automorphisms. Then Δ ⋊_β Γ ∈ 𝒞.</p>
+<p><code><a href="coordinate-action-not-sofic.html">coordinate-action-not-sofic</a></code> refutes the hypothesis for class (a). But the hypothesis is "sofic <code>𝒞</code>-action", and for a larger class <code>𝒞</code> the partial homomorphisms in a witness may take values in a larger target group. So the obvious move is to take <code>𝒞</code> = hyperlinear (class (c)) and try to build a sofic hyperlinear-action witness for <code>G ↷ ⊕_{G/Γ} ℤ/2ℤ</code> using richer labels — finite-dimensional unitary, Pauli, or Clifford labels in place of coset labels. Both the lamp group and <code>G</code> are hyperlinear, so Corollary 5.2 would then hand over hyperlinearity of <code>W</code> for free.</p>
+<h3>Why it fails, twice</h3>
+<p><strong>Class-agnostically</strong> (<code><a href="single-lamps-recover-set-action.html">single-lamps-recover-set-action</a></code>). A sofic <code>𝒞</code>-action on the lamp group, for <em>any</em> class <code>𝒞</code> whatsoever, forces the underlying set action <code>G ↷ G/Γ</code> to be sofic — read the labels off the single-coordinate lamps <code>δ_z</code>, which are finitely many and injectively labelled, and the covariance equation becomes the orbit-approximation equation verbatim. The target class is never used. <code><a href="coordinate-action-not-sofic.html">coordinate-action-not-sofic</a></code> then closes it. This kills every enrichment simultaneously, including classes not on Alekseev--Bradford's menu.</p>
+<p><strong>Concretely, for the labels one would actually reach for</strong> (<code><a href="halo-locally-sofic-target-collapse.html">halo-locally-sofic-target-collapse</a></code>). Any witness whose targets are locally sofic collapses to a sofic-class witness, because each finite test only ever sees the finitely generated subgroup the labels generate. Finitely generated subgroups of <code>U(n)</code> are linear, hence residually finite by Malcev, hence sofic; finite Clifford and Pauli groups are finite. So the specific enrichments on offer are not enrichments at all.</p>
+<h3>What survives</h3>
+<p>The audit's own conclusion, from <code>docs/FALSE_HALO_ACTION_AUDIT.md</code>:</p>
+<p>&gt; If a hyperlinear-action proof exists, then for some finite test its target &gt; <code>Lambda_0</code> in <code>(HAA3)</code> must itself be a finitely generated hyperlinear &gt; nonsofic group. Producing that target already solves the main problem. &gt; &gt; Thus the halo-action theorem is an excellent permanence result once a &gt; hyperlinear-nonsofic seed is known, but it is circular as a method for &gt; constructing the first seed.</p>
+<p>That is the precise sense in which this route is dead: not blocked by a missing lemma, but circular. It is worth keeping in the graph for that reason — it prices the whole permanence toolkit, and it tells anyone reaching for richer labels that the label alphabet is not where the difficulty lives.</p>
+<p><strong>What a surviving variant would have to change.</strong> Both proofs above attack the <em>labels</em> while leaving the ambient approximation <code>phi : G -&gt; Sym(A)</code> a genuine permutation map. The label-extraction step is what converts a witness back into an orbit approximation, and it only ever uses that the <code>pi_s</code> are injective on a finite set. So a variant with any chance must replace <code>Sym(A)</code> itself — for instance by unitaries that normalize a MASA only approximately in normalized Hilbert--Schmidt distance — and must prove that label extraction genuinely fails in that setting. That is not a weakening of the hypothesis; it is the non-Cartan embedding problem of <code><a href="hyperlinear-wreath-model.html">hyperlinear-wreath-model</a></code> in different notation, so the difficulty is conserved and the circularity hazard remains.</p></body>

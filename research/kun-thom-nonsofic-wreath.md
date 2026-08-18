@@ -39,6 +39,13 @@ Two further statements from the same paper are used elsewhere in this graph:
 > generalized Bernoulli action `G action (K,kappa)^(G/Gamma)` is not sofic,
 > for every nontrivial standard probability space `(K,kappa)`.
 
+**Downstream in this graph.** Beyond the wreath program, Theorems A and E
+feed `commuting-counterexample-from-kun-thom-pair`: the coset action
+`G ↷ G/Γ` of Theorem E's pair is nonsofic (`coordinate-action-not-sofic`),
+and running it through the diagonal-coset construction closes GKP Question
+4.2 in the negative (`commuting-sofic-actions-need-not-combine`) — the first
+external open question this preprint settles through this repository.
+
 **Trust surface.** This is an arXiv preprint, not yet refereed.  It is
 nevertheless imported as established because it is a self-contained
 mathematical argument by named authors in their own area, verified here

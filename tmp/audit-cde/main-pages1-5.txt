@@ -1,0 +1,263 @@
+                                  Journal of Algebra 702 (2026) 235--243
+
+
+
+                                  Contents lists available at ScienceDirect
+
+
+                                       Journal of Algebra
+                            journal homepage: www.elsevier.com/locate/jalgebra
+
+
+Research Paper
+
+On L1 -approximation of groups
+Benjamin Bachner, Alon Dogon ∗ , Alexander Lubotzky
+Department of Mathematics, Weizmann Institute of Science, Israel
+
+
+
+a r t i c l e        i n f o                a b s t r a c t
+
+Article history:                            A longstanding open problem in the intersection of group
+Received 30 August 2025                     theory and operator algebras is whether all groups are MF,
+Available online 5 May 2026                 that is, approximated by asymptotic representations with
+Communicated by Tim Burness
+                                            respect to the operator norm. More generally, in his ICM
+Keywords:                                   address from 2018, Thom asked whether there exist groups
+Sofic groups                                that are not approximated with respect to the Schatten p­
+Hyperlinear groups                          norm for 1 ≤ p ≤ ∞. The cases of 1 < p < ∞ were
+Property (T )                               addressed in previous works of De Chiffre et al. and Lubotzky­
+MF groups                                   Oppenheim. Here we settle the case p = 1.
+p-Schatten norm                               © 2026 Elsevier Inc. All rights are reserved, including those
+                                                       for text and data mining, AI training, and similar
+                                                                                               technologies.
+
+
+
+
+1. Introduction
+
+
+   Let G = {(Gn , dn )} be a family of groups Gn equipped with bi-invariant metrics dn . A
+group Γ is called G -approximated if there exist maps (not necessarily homomorphisms)
+φn : Γ → Gn , such that:
+
+(1) The sequence φn is an asymptotic homomorphism, namely ∀g,h∈Γ, limn→∞ dn(φn (gh),
+    φn (g)φn (h)) = 0.
+
+
+ * Corresponding author.
+   E-mail addresses: benjamin.bachner@weizmann.ac.il (B. Bachner), alon.dogon@mail.huji.ac.il
+(A. Dogon), alex.lubotzky@mail.huji.ac.il (A. Lubotzky).
+
+https://doi.org/10.1016/j.jalgebra.2026.04.041
+0021-8693/© 2026 Elsevier Inc. All rights are reserved, including those for text and data mining, AI training,
+and similar technologies.
+236                B. Bachner et al. / Journal of Algebra 702 (2026) 235--243
+
+
+
+(2) φn asymptotically separates Γ, that is,
+
+                          ∀g ∈ Γ \ {1}, lim inf dn (φn (g), 1Gn ) > 0.
+                                             n
+
+
+The group Γ is said to be G -stable if for every asymptotic homomorphism φn : Γ → Gn
+(as in (1) above), there exist true homomorphisms ψn : Γ → Gn such that
+
+                           ∀g ∈ Γ, lim dn (φn (g), ψn (g)) = 0.
+                                     n→∞
+
+   The notions of approximation and stability have been studied quite intensively in
+recent years (cf. [20,9,17,7,8,12] and the references therein).
+   The main example of families of metric groups G studied are:
+
+(1) GHamm = {(Sym(n), dHamm
+                       n    )}n , where for σ, τ ∈ Sym(n),
+
+                                             1
+                           dHamm
+                            n    (σ, τ ) =     |{i ∈ [n]| σ(i) ̸= τ (i)}|.
+                                             n
+
+   In all the instances considered in this paper, we have Gn = U (n), and the metric dn
+will be defined by a unitarily invariant norm ∥ · ∥n on the√
+                                                           matrices Mn (ℂ) via dn (u, v) =
+∥u − v∥n for u, v ∈ U (n). For A ∈ Mn (ℂ), denote |A| = A∗ A, and now:
+
+                                                        1/2
+(2) GFrob : The Frobenius norm ∥A∥Frob = Tr (|A|2 ) .
+(3) GHS : The (normalized) Hilbert–Schmidt norm, or simply HS-norm, ∥A∥HS =
+    √1 ∥A∥Frob .
+      n
+(4) Gp : For 1 ≤ p < ∞, the Schatten p-norm defined by ∥A∥p = Tr(|A|p )1/p (for p = 2,
+    this is the Frobenius norm).
+(5) Gop : The operator norm ∥A∥op = supv∈ℂ n ,∥v∥=1 ∥Av∥. This is considered as the case
+    p = ∞ and we write ∥A∥∞ = ∥A∥op .
+
+Finding groups which are not G -approximated is notoriously hard. One of the motivations
+to study stability comes from the following observation (see [14,2] for GHamm , but valid
+in all the cases listed above).
+
+Proposition 1.1. Let G be a class as above, where Gn are linear groups, and Γ a finitely
+generated group. If Γ is G -approximated and G -stable, then it is residually finite.
+
+   This implies that if one found a finitely generated group Γ which is G -stable and
+not residually finite, then it is not G -approximated. This line of proof was implemented
+ﬁrst in [9] to give examples of non-Frobenius approximated groups, i.e. groups which
+are not G2 -approximated. Following this breakthrough, Thom asked in his ICM address
+[20, Question 3.11] about all 1 ≤ p ≤ ∞. In response, Lubotzky and Oppenheim [17]
+solved almost all cases and gave non-Gp -approximated groups for 1 < p < ∞. These
+                      B. Bachner et al. / Journal of Algebra 702 (2026) 235--243                     237
+
+
+
+examples are the so called ``ℓ-adic Deligne central extensions'', see [9, Section 5.2] for
+their construction. There are thus four cases left to handle: p = 1, the Hamming distance
+on permutation groups, the HS-norm and the operator norm.
+   We prove that ℓ-adic Deligne central extensions are not G1 -approximated, solving the
+case p = 1 in Thom’s question. Interestingly, our method is diﬀerent from the previous
+works -- using a short argument, we manage to establish that these groups are not
+G1 -approximated, without the need to show that they are G1 -stable. The question of
+G1 -stability for these groups remains open.
+   With that said, this is only modest progress as the last three cases are the holy-grail
+of the subject: Groups which are GHamm -approximated are called sofic, the ones which
+are GHS -approximated are called hyperlinear or Connes embeddable, and the ones which
+are Gop -approximated are called MF.1 Whether all groups are sofic, hyperlinear or MF
+are three major open problems in group theory. Given the previous works, it is natural
+to study whether the ℓ-adic Deligne central extensions are the much desired concrete
+counter examples to these three problems. The reader is referred to [7,8,15,6] for eﬀorts
+to prove they are not sofic, and to [12] for eﬀorts to prove that real Deligne central
+extensions are not hyperlinear.
+   The novelty in our approach is the use of at least two diﬀerent norms on U(n) to
+deduce inapproximability. Usually, when two diﬀerent bi-invariant metrics dn ≤ d′n are
+given on Gn , it is not clear that {Gn , d′n }-approximation (respectively, {Gn , d′n }-stability)
+implies {Gn , dn }-approximation (respectively, {Gn , dn }-stability), nor vice versa.
+   Denote by kerRF (Γ) the kernel of the map from Γ to its profinite completion Γ.          ˆ︁ In
+other words, kerRF (Γ) consists of elements in Γ that are trivial in all finite quotients.
+
+Deﬁnition 1.2. A finitely generated group Γ is said to be of Deligne-type if there is a
+central element J ∈ Γ of order 2 such that J ∈ kerRF (Γ).
+
+   See [11] and [9, Section 5] for examples, and many more in [19,16]. Our main theorem
+is a version of Proposition 1.1 which deals with two diﬀerent Schatten norms, that is
+applicable to groups of Deligne-type. This refines the previously taken route of proving
+stability in order to deduce inapproximability.
+
+Theorem 1.3. Let Γ be a group of Deligne-type, and let 1 ≤ p ≤ q ≤ ∞. If Γ is Gq ­
+stable, then it is not Gp -approximated. In particular, if Γ is Frobenius stable, then it is
+not Gp -approximated for any 1 ≤ p ≤ 2.
+
+   As a consequence of the construction of Deligne-type groups which are Frobenius
+stable obtained in [9, Proposition 5.6 and Theorem 5.1], we have:
+
+Corollary 1.4. There exist finitely presented groups which are not G1 -approximated.
+
+ 1
+    There are multiple, possibly inequivalent deﬁnitions for MF groups in the literature, this is the one
+introduced in [5], see [18] for the more C∗ -algebraic one.
+238                B. Bachner et al. / Journal of Algebra 702 (2026) 235--243
+
+
+
+   In fact, by the more recent work of [3, Theorem 1.3] and the original work of Deligne
+[11], it also follows that the degree 4-cover of Sp2g (ℤ), for g ≥ 3, is not G1 -approximated.
+   The interplay between two diﬀerent matrix norms, one dominated by the other, is also
+useful in the context of the normalized Hilbert–Schmidt norm and the operator norm.
+We again obtain a refinement to Proposition 1.1, which serves as a potential approach
+to tackle the MF question.
+
+Proposition 1.5. Let Γ be a group of Deligne type. Assume that the following holds:
+   (∗) For every ∥ · ∥op -asymptotic homomorphism φn : Γ → U(kn ), there exists a
+sequence of homomorphisms ψn : Γ → U(kn ) such that for all x ∈ Γ, limn ∥φn (x) −
+ψn (x)∥HS = 0.
+   Then Γ is not MF.
+
+  We will refer to condition (∗) above as operator-HS-stability (as in [13]).
+  Using a slightly more refined argument, we obtain the following monotonicity phe­
+nomena for approximability, which is of independent interest.
+
+Proposition 1.6. Let Γ be a finitely generated group with a finite normal subgroup N such
+that Γ/N is hyperlinear. If Γ is MF, then it is hyperlinear.
+
+Proposition 1.7. Let 1 ≤ p ≤ q ≤ ∞. Let Γ be a finitely generated group with a finite
+normal subgroup N such that Γ/N is Gq -approximated. If Γ is Gp -approximated, then it
+is Gq -approximated.
+
+  Let us end with suggesting the following conjecture:
+
+Conjecture 1.8. Let Γ be a finitely generated group such that H 2 (Γ, V ) = 0 for every
+unitary representation of Γ on a Hilbert space V , then Γ is operator-HS-stable.
+
+  Recall that the ℓ-adic Deligne central extensions of [9] satisfy the above cohomological
+vanishing condition (in fact, they have property [T2 ] of Bader and Sauer [4]), hence if
+Conjecture 1.8 is true, these groups are not MF.
+
+2. Preliminaries
+
+2.1. Unitarily invariant matrix norms
+
+   Throughout this subsection, for every d ∈ ℕ, we fix unitarily invariant norm ∥ · ∥ on
+Md (ℂ), meaning ∥uxv∥ = ∥x∥ for all u, v ∈ U(d), x ∈ Md (ℂ). Note that all the matrix
+norms mentioned in the introduction are instances of unitarily invariant norms. Let us
+recall some basic properties at this level of generality.
+
+Lemma 2.1 (Proposition 1.3 in [9]). Let A, B, C ∈ Md (ℂ), it holds that:
+                   B. Bachner et al. / Journal of Algebra 702 (2026) 235--243            239
+
+
+
+(1) ∥ABC∥ ≤ ∥A∥op ∥B∥∥C∥op ,
+(2) ∥A∥ = ∥A∗ ∥ = ∥|A|∥,
+(3) If A and B are positive semi-definite matrices and A ≤ B, then ∥A∥ ≤ ∥B∥.
+
+   The following lemma guarantees that any unitary which is close to being an involution
+is close to a unitary which is also an involution. This plays a key role in the proof of
+Theorem 1.3.
+
+Lemma 2.2 (Proposition 1.4 in [9]). Let A ∈ U(d). Then there is a unitary B ∈ U(d)
+such that B 2 = 1 and
+
+                                     ∥B − A∥≤ ∥1 − A2 ∥,
+
+for all unitarily invariant norms.
+
+  We will also need the following folklore lemma.
+
+Lemma 2.3. For every n ∈ ℕ and M ∈ Mn (ℂ), there exists R ∈ U(n) such that ∥M −
+R∥ ≤ ∥M ∗ M − 1∥ for all unitarily invariant norms.
+
+   The above Lemma is stated in the literature for various unitarily invariant norms
+separately. We note that it in fact has a uniform proof using the singular value decom­
+position that can be found in [1, Lemma 2.2], by simply observing that the proof carries
+over for arbitrary unitarily invariant norms.
+   Using this, we can prove the following regarding restriction of ∥ · ∥p -asymptotic ho­
+momorphisms to almost invariant subspaces.
+
+Proposition 2.4. Let 1 ≤ p ≤ ∞, and let φn : Γ → U(dn ) be a ∥ · ∥p -asymptotic
+homomorphism. Assume that there exist nonzero projections Pn ∈ Mn (ℂ) such that
+∥φn (g)Pn − Pn φn (g)∥p → 0 for all g ∈ Γ. Then there exists a ∥ · ∥p -asymptotic homo­
+morphism ψn : Γ → U(Im(Pn )) such that:
+
+                      lim ∥ψn (g) − Pn φn (g)Pn ∥p = 0 for all g ∈ Γ.
+                       n
+
+
+              ˜︁n (g) = Pn φn (g)Pn ∈ Mrank(Pn ) (ℂ). Observe that we have for all g, h ∈ Γ:
+Proof. Define φ
+
+       ∥φ
+        ˜︁n (g)φ
+               ˜︁n (h) − φ
+                         ˜︁n (gh)∥p = ∥Pn φn (g)Pn φn (h)Pn − Pn φn (gh)Pn ∥p
+               ≤ ∥Pn φn (g)φn (h)Pn − Pn φn (gh)Pn ∥p + ∥Pn [φn (g), Pn ]φn (h)Pn ∥p
+               ≤ ∥φn (g)φn (h) − φn (gh)∥p + ∥[φn (g), Pn ]∥p .
+
+Note that we used Lemma 2.1 and that ∥Pn ∥op = 1. Consequently, we have
+limn ∥φ
+      ˜︁n (g)φ
+             ˜︁n (h) − φ
+                       ˜︁n (gh)∥p = 0 for all g, h ∈ Γ. Since φn (g) is unitary, this also
+

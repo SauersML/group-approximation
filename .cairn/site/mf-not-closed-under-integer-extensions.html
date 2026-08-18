@@ -1,0 +1,32 @@
+<!doctype html><meta charset='utf-8'><title>mf-not-closed-under-integer-extensions</title><style>
+body{font:15px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;max-width:60em;margin:2em auto;padding:0 1em;color:#1c1e1c}
+a{color:#4f46e5;text-decoration:none}a:hover{text-decoration:underline}
+code,pre{font:13px/1.45 Menlo,monospace;background:#f4f4f2}
+pre{padding:.8em;overflow-x:auto;border:1px solid #e5e7e3}
+.badge{display:inline-block;padding:.1em .55em;border-radius:.8em;color:#fff;font:700 11px -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;letter-spacing:.04em}
+.node{font:13px Menlo,monospace}
+h1{font-size:1.4em}h2{font-size:1.05em;border-bottom:1px solid #e5e7e3;padding-bottom:.2em}
+ul.rel{list-style:none;padding-left:0}ul.rel li{margin:.25em 0}
+.muted{color:#8b9089}.tree{white-space:pre;font:13px/1.5 Menlo,monospace;background:#fafaf8;border:1px solid #e5e7e3;padding:1em;overflow-x:auto}
+table{border-collapse:collapse}td,th{border:1px solid #e5e7e3;padding:.25em .6em;font-size:.9em}
+</style><script>MathJax={tex:{inlineMath:[["$","$"],["\\(","\\)"]]}};</script><script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script><body><p><a href='index.html'>← index</a></p>
+<h1><span class='node'>mf-not-closed-under-integer-extensions</span> MF fails for extensions of LEF groups by the integers</h1>
+<p><span class="badge" style="background:#178a5e">ESTABLISHED</span> <span class='muted'>claim · <code>research/mf-not-closed-under-integer-extensions.md</code></span></p>
+<p class='muted'>via route mf-integer-extension-nonclosure-proof</p>
+<h2>Routes into this claim</h2><ul class='rel'>
+<li><a class="node" href="mf-integer-extension-nonclosure-proof.html">mf-integer-extension-nonclosure-proof</a> <span class="badge" style="background:#178a5e">COMPLETE</span> Combine the LEF base with the non-MF witness</li>
+</ul>
+<h2>Distinct from</h2><ul class='rel'>
+<li><a class="node" href="mf-extension-nonclosure.html">mf-extension-nonclosure</a> <span class="badge" style="background:#178a5e">ESTABLISHED</span> MF groups are not closed under extensions<br><span class='muted'>That claim uses the locally finite lamp kernel and the residually finite quotient `V`; this one shrinks the quotient to `Z` and strengthens the kernel from locally finite to LEF, which is what kills the operator-norm analogue of the Elek--Szabo permanence theorem.</span></li>
+</ul>
+<h2>Artifacts</h2><ul class='rel'>
+<li><code>docs/COMMUTING_LAMP_QUOTIENT_STRUCTURE_AND_MF_FORK_2026-08-14.md</code></li>
+</ul>
+<h2>Statement</h2>
+<p>There is a short exact sequence</p>
+<pre>
+1 -&gt; ClLamp(X) semidirect T -&gt; W -&gt; Z -&gt; 1
+</pre>
+<p>whose kernel is LEF (hence sofic and MF) and whose quotient is <code>Z</code>, while <code>W</code> is not MF.  So MF is not preserved by extensions with amenable quotient: the operator-norm analogue of the Elek--Szabo theorem for soficity is false.</p>
+<p>A second witness one level up, using <code><a href="literal-telescope-core-lef.html">literal-telescope-core-lef</a></code>: the telescope core <code>E_T = N_E semidirect T</code> of the literal group is LEF, and <code>E = E_T semidirect Z</code> is not MF.  So the failure is not an artefact of the Clifford witness; it happens for the literal presented group itself.</p>
+<p>Consequence for the frontier: no permanence theorem about <code>Z</code>-extensions can decide <code><a href="commuting-lamp-quotient-mf.html">commuting-lamp-quotient-mf</a></code> or <code><a href="literal-mark-quotient-mf.html">literal-mark-quotient-mf</a></code>.  All four groups <code>E</code>, <code>W</code>, <code>E/&lt;w&gt;</code>, <code>W/&lt;zeta&gt;</code> are <code>Z</code>-extensions of LEF cores; the first two are not MF and the last two are open, and they differ from their non-MF partners only by the central mark.  In particular "the core is MF, so only the stable letter is left" is not a partial proof of anything — the stable-letter step is the entire difficulty, and it is where the two known negative answers live.</p></body>

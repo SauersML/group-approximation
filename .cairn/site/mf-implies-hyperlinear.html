@@ -1,0 +1,47 @@
+<!doctype html><meta charset='utf-8'><title>mf-implies-hyperlinear</title><style>
+body{font:15px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;max-width:60em;margin:2em auto;padding:0 1em;color:#1c1e1c}
+a{color:#4f46e5;text-decoration:none}a:hover{text-decoration:underline}
+code,pre{font:13px/1.45 Menlo,monospace;background:#f4f4f2}
+pre{padding:.8em;overflow-x:auto;border:1px solid #e5e7e3}
+.badge{display:inline-block;padding:.1em .55em;border-radius:.8em;color:#fff;font:700 11px -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;letter-spacing:.04em}
+.node{font:13px Menlo,monospace}
+h1{font-size:1.4em}h2{font-size:1.05em;border-bottom:1px solid #e5e7e3;padding-bottom:.2em}
+ul.rel{list-style:none;padding-left:0}ul.rel li{margin:.25em 0}
+.muted{color:#8b9089}.tree{white-space:pre;font:13px/1.5 Menlo,monospace;background:#fafaf8;border:1px solid #e5e7e3;padding:1em;overflow-x:auto}
+table{border-collapse:collapse}td,th{border:1px solid #e5e7e3;padding:.25em .6em;font-size:.9em}
+</style><script>MathJax={tex:{inlineMath:[["$","$"],["\\(","\\)"]]}};</script><script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script><body><p><a href='index.html'>← index</a></p>
+<h1><span class='node'>mf-implies-hyperlinear</span> MF implies hyperlinear under the weak norm-corona convention</h1>
+<p><span class="badge" style="background:#c08a00">OPEN</span> <span class='muted'>claim · <code>research/mf-implies-hyperlinear.md</code></span></p>
+<h2>Routes into this claim</h2><ul class='rel'>
+<li><a class="node" href="mf-implies-hyperlinear-via-invariant-corner.html">mf-implies-hyperlinear-via-invariant-corner</a> <span class="badge" style="background:#c08a00">OPEN</span> Compress to an invariant corner and read its own trace</li>
+<li><a class="node" href="mf-implies-hyperlinear-via-rank-profile.html">mf-implies-hyperlinear-via-rank-profile</a> <span class="badge" style="background:#c08a00">OPEN</span> Phase-cancelled amplification of a rate-controlled MF model</li>
+</ul>
+<h2>Distinct from</h2><ul class='rel'>
+<li><a class="node" href="hyperlinear-not-imply-mf.html">hyperlinear-not-imply-mf</a> <span class="badge" style="background:#178a5e">ESTABLISHED</span> Hyperlinearity does not imply the MF property<br><span class='muted'>That established claim refutes the reverse implication; this claim asks whether norm-corona MF groups always admit faithful Hilbert--Schmidt models.</span></li>
+<li><a class="node" href="sofic-implies-hyperlinear.html">sofic-implies-hyperlinear</a> <span class="badge" style="background:#178a5e">ESTABLISHED</span> Soficity implies hyperlinearity<br><span class='muted'>Soficity supplies canonical traces through permutation models; a weak MF corona embedding need not make its coordinate traces faithful.</span></li>
+</ul>
+<h2>Artifacts</h2><ul class='rel'>
+<li><code>non_mf_groups_exist.tex</code></li>
+<li><code>docs/NON_MF_FINAL_REVIEW_AND_RESOLUTION_2026-08-14.md</code></li>
+</ul>
+<h2>Statement</h2>
+<p>Every MF group in the Carrión--Dadarlat--Eckhardt norm-matrix-corona sense is hyperlinear.</p>
+<p>Operator-norm multiplicativity controls normalized Hilbert--Schmidt defect, but the defining MF embedding alone does not ensure faithful coordinate traces, so the implication is not formal from the definitions.</p>
+<h3>Ideas</h3>
+<p><strong>What the gap is.</strong>  Operator-norm separation of <code>g</code> is a rank-one phenomenon: <code>||phi_n(g)-1||_op &gt;= 1</code> only forces the trace gap <code>1-Re tr(phi_n(g)) &gt;= 1/(2d_n)</code>.  Hyperlinearity needs that gap bounded below.  So the claim is exactly the assertion that operator-visible elements can always be made <em>macroscopically</em> visible.</p>
+<p><strong>No model-by-model proof can exist.</strong>  This is established, and formalized: <code><a href="weak-mf-embedding-not-reusable.html">weak-mf-embedding-not-reusable</a></code>.  Identity-block padding preserves every operator-norm distance and dilutes every Hilbert--Schmidt quantity by the relative dimension (<code>NormTraceGap</code>), the irrational-rotation representations of <code>Z</code> do the same with no multiplicative defect at all, and amplification drives distance to the scalars rather than deviation rank.  So any proof must select models and any refutation must rule out all of them.</p>
+<p><strong>The reduction is formalized.</strong>  <code>NormTraceGap.isHyperlinear_of_traced_normModels</code> already converts operator-norm models with separating traces into hyperlinear models: the trace clause is the entire remaining content.  What <code><a href="hyperlinear-elementwise-visibility.html">hyperlinear-elementwise-visibility</a></code> adds is that an arbitrarily small trace gap, one element at a time, suffices.</p>
+<p><strong>Elementwise reformulation.</strong>  By <code><a href="hyperlinear-elementwise-visibility.html">hyperlinear-elementwise-visibility</a></code> the claim is equivalent to the elementwise inclusion of residuals <code>Rad_hyp(G) &lt;= Rad_MF(G)</code> for every group, i.e. every MF-visible element is tracially visible.  Note <code><a href="mf-hyperlinear-radical-divergence.html">mf-hyperlinear-radical-divergence</a></code> establishes the <em>opposite</em> non-inclusion for one explicit word, which is consistent and shows the two radicals are genuinely different objects.</p>
+<p><strong>Established fragments.</strong>  <code><a href="mf-finite-normal-tracially-visible.html">mf-finite-normal-tracially-visible</a></code> (finite normal subgroups), <code><a href="mf-hyperlinear-of-finite-normal-quotient.html">mf-hyperlinear-of-finite-normal-quotient</a></code> (= arXiv:2508.17392v3, Proposition 1.6), and the structure of any counterexample in <code><a href="mf-nonhyperlinear-collapse-structure.html">mf-nonhyperlinear-collapse-structure</a></code>: its hyperlinear residual is infinite and contains no finite normal subgroup.  The torsion-central mechanism which produces the non-MF theorems therefore cannot be recycled.</p>
+<p><strong>Two live mechanisms, one constant.</strong>  Amplification (<code><a href="mf-implies-hyperlinear-via-rank-profile.html">mf-implies-hyperlinear-via-rank-profile</a></code>) and invariant corners (<code><a href="mf-implies-hyperlinear-via-invariant-corner.html">mf-implies-hyperlinear-via-invariant-corner</a></code>).  By <code><a href="corner-renormalization-cost.html">corner-renormalization-cost</a></code> both are governed by <code>sqrt(d/r)</code>; a functor pays it in the defect, a corner pays it structurally.</p>
+<p><strong>Dead ends already recorded.</strong>  Raw tensor powers accumulate a scalar phase and can return the trace to <code>1</code>; direct sums dilute one summand's visibility by the number of summands; and no continuous homomorphism <code>U(d)-&gt;U(N)</code> beats the <code>sqrt(d)</code> loss (<code>FALSE_FERMIONIC_AMPLIFICATION.md</code>, Theorem 5).  A proof must therefore use the group, not the matrices.</p>
+<p><strong>Cost of the negative branch.</strong>  <code><a href="mf-refutation-yields-nonhyperlinear-group.html">mf-refutation-yields-nonhyperlinear-group</a></code>: a counterexample is a nonhyperlinear group, so refutation is at least as hard as the program's primary target.</p>
+<p><strong>The trace-level dictionary.</strong>  Four statements, only one of which is open:</p>
+<pre>
+MF trace  =&gt; hyperlinear trace          trivial (||.||_2 &lt;= ||.||)
+hyperlinear trace =&gt; MF trace           REFUTED: <a href="hyperlinear-trace-not-mf-trace.html">hyperlinear-trace-not-mf-trace</a>
+hyperlinear group =&gt; MF group           REFUTED: <a href="hyperlinear-not-imply-mf.html">hyperlinear-not-imply-mf</a>
+MF group  =&gt; hyperlinear group          THIS CLAIM
+</pre>
+<p>The asymmetry is instructive.  At trace level the easy direction is the norm-to-trace one, because a trace is given; at group level the easy direction is the reverse, because a group model carries separation but no trace.  What this root asks for is exactly the missing trace.</p>
+<p><strong>Literature status (swept 2026-08-14).</strong>  No general converter is recorded. Bachner--Dogon--Lubotzky, arXiv:2508.17392v3, prove only the finite-normal kernel converters (Propositions 1.6 and 1.7) and the Deligne-type stability statement (Proposition 1.5); their abstract still calls "whether all groups are MF" a longstanding open problem.  Quasidiagonality of the <em>reduced</em> group C-star algebra implies amenability (Rosenberg, appendix to Hadwin, <em>Strongly quasidiagonal C-star algebras</em>, J. Operator Theory 18 (1987) 3--18) and hence hyperlinearity, but that hypothesis is far stronger than the weak norm-corona convention used here and gives nothing for it.</p></body>

@@ -1,0 +1,40 @@
+<!doctype html><meta charset='utf-8'><title>clifford-cover-hilbert-embeddable-route</title><style>
+body{font:15px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;max-width:60em;margin:2em auto;padding:0 1em;color:#1c1e1c}
+a{color:#4f46e5;text-decoration:none}a:hover{text-decoration:underline}
+code,pre{font:13px/1.45 Menlo,monospace;background:#f4f4f2}
+pre{padding:.8em;overflow-x:auto;border:1px solid #e5e7e3}
+.badge{display:inline-block;padding:.1em .55em;border-radius:.8em;color:#fff;font:700 11px -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;letter-spacing:.04em}
+.node{font:13px Menlo,monospace}
+h1{font-size:1.4em}h2{font-size:1.05em;border-bottom:1px solid #e5e7e3;padding-bottom:.2em}
+ul.rel{list-style:none;padding-left:0}ul.rel li{margin:.25em 0}
+.muted{color:#8b9089}.tree{white-space:pre;font:13px/1.5 Menlo,monospace;background:#fafaf8;border:1px solid #e5e7e3;padding:1em;overflow-x:auto}
+table{border-collapse:collapse}td,th{border:1px solid #e5e7e3;padding:.25em .6em;font-size:.9em}
+</style><script>MathJax={tex:{inlineMath:[["$","$"],["\\(","\\)"]]}};</script><script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script><body><p><a href='index.html'>← index</a></p>
+<h1><span class='node'>clifford-cover-hilbert-embeddable-route</span> Upgrade the Clifford cover&#x27;s weak-soficity witness to a hyperlinear one</h1>
+<p><span class="badge" style="background:#c08a00">OPEN</span> <span class='muted'>route · <code>research/clifford-cover-hilbert-embeddable-route.md</code></span></p>
+<h2>Target</h2><ul class='rel'>
+<li><a class="node" href="hyperlinear-nonsofic-group.html">hyperlinear-nonsofic-group</a> <span class="badge" style="background:#c08a00">OPEN</span> Pestov Question 3.4: produce a hyperlinear non-sofic group</li>
+</ul>
+<h2>Requires</h2><ul class='rel'>
+<li><a class="node" href="kun-thom-clifford-cover-weakly-sofic.html">kun-thom-clifford-cover-weakly-sofic</a> <span class="badge" style="background:#178a5e">ESTABLISHED</span> The Kun--Thom Clifford cover is weakly sofic and not sofic</li>
+<li><a class="node" href="hilbert-embeddable-length-hyperlinearity.html">hilbert-embeddable-length-hyperlinearity</a> <span class="badge" style="background:#178a5e">ESTABLISHED</span> Weak soficity upgrades to hyperlinearity when the invariant lengths are Hilbert embeddable</li>
+<li><a class="node" href="hilbert-embeddable-witness-for-kun-thom-wreath.html">hilbert-embeddable-witness-for-kun-thom-wreath</a> <span class="badge" style="background:#c08a00">OPEN</span> A Hilbert embeddable weak-soficity witness for the Kun--Thom wreath</li>
+</ul>
+<h2>Artifacts</h2><ul class='rel'>
+<li><code>docs/TRUE_RELATIVE_WALL_IS_COMMUTANT_GROWTH.md</code></li>
+</ul>
+<h2>Statement</h2>
+<p><code><a href="kun-thom-clifford-cover-weakly-sofic.html">kun-thom-clifford-cover-weakly-sofic</a></code> proves the Clifford cover <code>E_S=Vtilde_S semidirect G</code> weakly sofic and <strong>not sofic</strong>. <code><a href="hilbert-embeddable-length-hyperlinearity.html">hilbert-embeddable-length-hyperlinearity</a></code> converts a weak-soficity witness with conditionally negative definite lengths into a hyperlinear one. <code><a href="hilbert-embeddable-witness-for-kun-thom-wreath.html">hilbert-embeddable-witness-for-kun-thom-wreath</a></code> is the open input: that the witnesses for <code>W</code> or for its Clifford cover admit a uniform Hilbert embeddable reparametrization.  Composing the three gives a hyperlinear nonsofic group.</p>
+<h3>Scope, which is load bearing</h3>
+<ul>
+<li>The criterion is <strong>sufficient only</strong>.  A negative answer to the open input</li>
+<p>would not show <code>E_S</code> nonhyperlinear, since hyperlinearity is not known to return a weak-soficity witness.  This route can close the target but cannot refute it.</p>
+<li>The reparametrization is now <strong>named</strong>, so this scope condition is</li>
+<p>discharged rather than existential: <code><a href="hilbert-embeddable-amplification.html">hilbert-embeddable-amplification</a></code> supplies <code>f(t)=1-e^(-t)</code>, which is Bernstein and so preserves conditional negative definiteness, reproduces Glebsky's cap <code>min{t,1}</code> within absolute constants so the cap is not load bearing, and whose powers <code>1-e^(-rt)</code> amplify a fixed positive separation to <code>1-o(1)</code> via <code>tr(rho^(tensor r))=(tr rho)^r</code>.  What remains open is only whether the witnessing lengths for this group admit it, not which <code>f</code> to use.</p>
+<li><strong>Proved constraint on the witness family.</strong>  The finite groups carrying</li>
+<p>the witness cannot have a uniform character ratio bound <code>|chi(x)|/chi(1)&lt;=c&lt;1</code>: on such a family every Hilbert embeddable invariant length is uniformly bi-Lipschitz to the discrete length, so the witness would be an LEF witness and <code>E_S</code> would be LEF, hence sofic, contradicting <code><a href="kun-thom-clifford-cover-weakly-sofic.html">kun-thom-clifford-cover-weakly-sofic</a></code>.  The same applies to <code>W</code>.  Glebsky's groups are projections of closed subgroups of products of finite groups and carry large abelian quotients, so the constraint looks satisfiable, but it rules out quasirandom carriers.  It is a <strong>filter, not a potential refutation</strong>: the hoped-for upgrade of it into an obstruction was closed negatively by the lamp lane, since the character-gap interaction bounds only on the lamp subgroup and rigidity places the defect elsewhere.</p>
+<li>Lamp dilution is <strong>not</strong> a hurdle for this route and is not cited as one.</li>
+<p>The normalized separation of a two-site element is twice the fraction of the character orbit meeting exactly one of the two sites, which for a generic orbit tends to <code>1/2</code>, so the mark stays separated by an absolute constant however many sites there are; the <code>2/#A</code> decay came from averaging over singleton orbits.</p>
+</ul>
+<h3>Consistency with the wall lane</h3>
+<p>The models produced here are <code>rho_n o phi_n</code> with <code>rho_n</code> an honest representation of a finite group.  They are normalized-Hilbert--Schmidt almost multiplicative, because <code>||rho_n(d)-1||_2^2=2(1-Re tr rho_n(d))-&gt;0</code> for a defect element <code>d</code> of vanishing length, but they need <strong>not</strong> be operator-norm almost multiplicative, since a unitary of trace near one may have eigenvalues near <code>-1</code> on a corner of vanishing normalized rank.  That is exactly the defect profile forced by <code><a href="wall-models-avoid-norm-microstates.html">wall-models-avoid-norm-microstates</a></code>, so this route and the relative-wall lane are consistent and describe the same seam from opposite ends.</p></body>

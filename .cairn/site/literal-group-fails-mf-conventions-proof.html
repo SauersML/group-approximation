@@ -1,0 +1,31 @@
+<!doctype html><meta charset='utf-8'><title>literal-group-fails-mf-conventions-proof</title><style>
+body{font:15px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;max-width:60em;margin:2em auto;padding:0 1em;color:#1c1e1c}
+a{color:#4f46e5;text-decoration:none}a:hover{text-decoration:underline}
+code,pre{font:13px/1.45 Menlo,monospace;background:#f4f4f2}
+pre{padding:.8em;overflow-x:auto;border:1px solid #e5e7e3}
+.badge{display:inline-block;padding:.1em .55em;border-radius:.8em;color:#fff;font:700 11px -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;letter-spacing:.04em}
+.node{font:13px Menlo,monospace}
+h1{font-size:1.4em}h2{font-size:1.05em;border-bottom:1px solid #e5e7e3;padding-bottom:.2em}
+ul.rel{list-style:none;padding-left:0}ul.rel li{margin:.25em 0}
+.muted{color:#8b9089}.tree{white-space:pre;font:13px/1.5 Menlo,monospace;background:#fafaf8;border:1px solid #e5e7e3;padding:1em;overflow-x:auto}
+table{border-collapse:collapse}td,th{border:1px solid #e5e7e3;padding:.25em .6em;font-size:.9em}
+</style><script>MathJax={tex:{inlineMath:[["$","$"],["\\(","\\)"]]}};</script><script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script><body><p><a href='index.html'>← index</a></p>
+<h1><span class='node'>literal-group-fails-mf-conventions-proof</span> Central-involution proof of simultaneous MF failure</h1>
+<p><span class="badge" style="background:#178a5e">COMPLETE</span> <span class='muted'>route · <code>research/literal-group-fails-mf-conventions-proof.md</code></span></p>
+<h2>Target</h2><ul class='rel'>
+<li><a class="node" href="literal-group-fails-mf-conventions.html">literal-group-fails-mf-conventions</a> <span class="badge" style="background:#178a5e">ESTABLISHED</span> The literal finitely presented group fails every formalized MF convention</li>
+</ul>
+<h2>Requires</h2><ul class='rel'>
+<li><a class="node" href="countable-group-mf-conventions.html">countable-group-mf-conventions</a> <span class="badge" style="background:#178a5e">ESTABLISHED</span> Equivalent operator-MF formulations and stronger representation variants</li>
+<li><a class="node" href="literal-central-mark-corona-invisible.html">literal-central-mark-corona-invisible</a> <span class="badge" style="background:#178a5e">ESTABLISHED</span> Literal finitely presented group has a universal invisible central mark</li>
+</ul>
+<h2>Artifacts</h2><ul class='rel'>
+<li><code>non_mf_groups_exist.tex</code></li>
+<li><code>docs/NON_MF_FINAL_REVIEW_AND_RESOLUTION_2026-08-14.md</code></li>
+<li><code>GroupApproximation/Sofic/LiteralNonMFPresentation.lean</code></li>
+<li><code>GroupApproximation/Sofic/LiteralNonMFEndpoint.lean</code></li>
+<li><code>GroupApproximation/Sofic/MFRepresentationVariants.lean</code></li>
+</ul>
+<h2>Statement</h2>
+<h3>Why sufficient</h3>
+<p>The claim <code><a href="literal-central-mark-corona-invisible.html">literal-central-mark-corona-invisible</a></code> gives a nontrivial marked element killed by every genuine positive natural-dimension norm-matrix C-star-corona representation, so <code>E</code> is not operator MF.  The equivalent MF formulations fail by <code><a href="countable-group-mf-conventions.html">countable-group-mf-conventions</a></code>; every listed stronger convention fails because its approximation data has a proved forgetful implication to operator MF.  The complete conjunction is exposed by <code>literal_failsEveryStandardMFConvention</code>.</p></body>

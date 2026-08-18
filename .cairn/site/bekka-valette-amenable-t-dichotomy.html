@@ -1,0 +1,52 @@
+<!doctype html><meta charset='utf-8'><title>bekka-valette-amenable-t-dichotomy</title><style>
+body{font:15px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;max-width:60em;margin:2em auto;padding:0 1em;color:#1c1e1c}
+a{color:#4f46e5;text-decoration:none}a:hover{text-decoration:underline}
+code,pre{font:13px/1.45 Menlo,monospace;background:#f4f4f2}
+pre{padding:.8em;overflow-x:auto;border:1px solid #e5e7e3}
+.badge{display:inline-block;padding:.1em .55em;border-radius:.8em;color:#fff;font:700 11px -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;letter-spacing:.04em}
+.node{font:13px Menlo,monospace}
+h1{font-size:1.4em}h2{font-size:1.05em;border-bottom:1px solid #e5e7e3;padding-bottom:.2em}
+ul.rel{list-style:none;padding-left:0}ul.rel li{margin:.25em 0}
+.muted{color:#8b9089}.tree{white-space:pre;font:13px/1.5 Menlo,monospace;background:#fafaf8;border:1px solid #e5e7e3;padding:1em;overflow-x:auto}
+table{border-collapse:collapse}td,th{border:1px solid #e5e7e3;padding:.25em .6em;font-size:.9em}
+</style><script>MathJax={tex:{inlineMath:[["$","$"],["\\(","\\)"]]}};</script><script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script><body><p><a href='index.html'>← index</a></p>
+<h1><span class='node'>bekka-valette-amenable-t-dichotomy</span> Bekka--Valette collapses amenable GENUINE representations of a (T) group, and only genuine ones</h1>
+<p><span class="badge" style="background:#178a5e">ESTABLISHED</span> <span class='muted'>claim · <code>research/bekka-valette-amenable-t-dichotomy.md</code></span></p>
+<p class='muted'>via route bekka-valette-amenable-t-dichotomy-citation</p>
+<h2>Routes into this claim</h2><ul class='rel'>
+<li><a class="node" href="bekka-valette-amenable-t-dichotomy-citation.html">bekka-valette-amenable-t-dichotomy-citation</a> <span class="badge" style="background:#178a5e">COMPLETE</span> Import Bekka--Valette Theorem 1 through its verbatim use in Li--Ng</li>
+</ul>
+<h2>Distinct from</h2><ul class='rel'>
+<li><a class="node" href="hyperlinear-near-representation-criterion.html">hyperlinear-near-representation-criterion</a> <span class="badge" style="background:#178a5e">ESTABLISHED</span> Hyperlinearity is equivalent to an essentially free amenable near representation<br><span class='muted'>that is the Kahl--Schneider characterization of hyperlinearity by amenable NEAR representations; this is the older rigidity theorem about genuine ones, and the point of recording it is that it does not apply to near representations</span></li>
+<li><a class="node" href="finite-quotient-blindness.html">finite-quotient-blindness</a> <span class="badge" style="background:#178a5e">ESTABLISHED</span> Finite quotients are blind to the compression<br><span class='muted'>that concerns finite quotients of the compression pattern; this is a representation-theoretic dichotomy for Kazhdan groups</span></li>
+</ul>
+<h2>Statement</h2>
+<p>Requested by <code>cairn-wreath</code>: does the amenable-charge lane collapse into the rigidity branch?  <strong>Not by this theorem — but read the two qualifications before quoting that as "the lanes are independent".</strong></p>
+<p>1. What is established here is only that Bekka--Valette does not <em>apply</em>: it is about genuine representations, and a near representation is not one.  That leaves open whether some <em>repair</em> bridges the gap. <code>cairn-wreath</code> supplied the stronger reason, recorded in the next section: no repair is available, because the two notions live at different metric scales. 2. Whether a <strong>near-representation analogue</strong> of the dichotomy holds is open, and nothing read here bears on it either way.  If one were established the lane closes.  That question is tracked as <code><a href="near-representation-amenability-dichotomy.html">near-representation-amenability-dichotomy</a></code>; it is the single question deciding whether the charge route is a separate attack or the rigidity fork in different notation, so this node's conclusion is conditional on it and should never be cited without it.</p>
+<h3>The theorem</h3>
+<p>Bekka--Valette, <em>Kazhdan's property (T) and amenable representations</em>, Math. Z. 212 (1993), 293--299, Theorem 1.  The article is behind a Springer paywall; the statement is recorded here <strong>as used verbatim</strong> by Li--Ng, <em>Spectral gap actions and invariant states</em>, arXiv:1304.7051, in the proof of their Theorem 4.1, step (T5) implies (T1):</p>
+<p>&gt; "Suppose that <code>Gamma</code> does not have property (T).  By [4, Theorem 1], there &gt; is a unitary representation <code>mu : Gamma -&gt; L(K)</code> such that <code>mu</code> does not &gt; have a nonzero finite dimensional subrepresentation and &gt; <code>pi := mu ⊗ conj(mu)</code> weakly contains <code>1_Gamma</code>."</p>
+<p>with their [4] being Bekka--Valette.  Since <code>pi ⊗ conj(pi)</code> weakly containing the trivial representation is Bekka's amenability of <code>pi</code> (Bekka, <em>Amenable unitary representations of locally compact groups</em>, Invent. Math. 100 (1990) 383--401; Li--Ng use the same equivalence in their Remark 4.2 via Bekka's Theorem 5.1), this says:</p>
+<pre>
+Gamma lacks (T)  =&gt;  some AMENABLE unitary representation of Gamma has
+                     no nonzero finite-dimensional subrepresentation.
+</pre>
+<p>equivalently, in the direction that matters here:</p>
+<pre>
+Gamma has (T)  =&gt;  every AMENABLE unitary representation of Gamma contains
+                   a nonzero finite-dimensional subrepresentation.
+</pre>
+<h3>Why it does not collapse the Kahl--Schneider lane</h3>
+<p><code><a href="hyperlinear-near-representation-criterion.html">hyperlinear-near-representation-criterion</a></code> records Kahl--Schneider's Theorem B: <code>G</code> is hyperlinear iff there are a set <code>X</code>, a probability charge <code>mu</code> on <code>P(X)</code> and a <code>mu</code>-<strong>near</strong> representation <code>pi : G -&gt; U(l^2(X))</code> with <code>mu({x : |&lt;x, pi(g)x&gt;| &lt;= eps}) = 1</code> for every <code>g != e</code> and every <code>eps &gt; 0</code>. Their Definition 6.2: a <code>mu</code>-near representation is a map <code>pi : G -&gt; U(H)</code> with <code>mu_bullet</code> invariant under <code>pi(G)</code> and</p>
+<pre>
+mu({x in X : ||pi(gh)x - pi(g)pi(h)x|| &lt;= eps}) = 1   for all g,h and eps&gt;0.
+</pre>
+<p><strong><code>pi</code> is not a homomorphism.</strong>  Multiplicativity holds only <code>mu</code>-almost-everywhere, to within every <code>eps</code>.  Bekka--Valette is a statement about genuine unitary representations — "subrepresentation" presupposes an actual homomorphism — so it simply does not apply to these objects.</p>
+<h3>The stronger reason (<code>cairn-wreath</code>): a scale mismatch, not a parsing failure</h3>
+<p>Non-applicability alone would leave room for a repair — convert an amenable near representation into an amenable genuine one, then apply the theorem. <code>cairn-wreath</code> observed that no such repair is available on this branch, and the reason is metric rather than syntactic:</p>
+<p>&gt; amenability is the existence of an invariant <strong>state on <code>B(H)</code></strong>, and states &gt; are continuous for the <strong>operator norm</strong>; flexible HS-stability supplies &gt; only <code>||.||_2</code> closeness.  So invariance of the state does not transfer &gt; along the perturbation, at any stability hypothesis available here.</p>
+<p>Amenability lives at the operator-norm scale and near-ness at the trace scale, and the collapse cannot cross between them.  That is why the routes are genuinely separate rather than merely not-yet-shown-dependent — and, as they note, it is also why the amenable-charge route does not share a failure mode with the trace-scale routes (<code><a href="growing-fiber-models.html">growing-fiber-models</a></code>, <code><a href="positive-core-dilation-splice.html">positive-core-dilation-splice</a></code>).</p>
+<p>This is a better argument than the one above and supersedes it as the reason; the parsing point survives only as the observation that the theorem's statement does not even typecheck against a near representation.</p>
+<p><code>[MY INFERENCE]</code> The two lanes are therefore <strong>independent</strong>, and the near-ness is load-bearing rather than a technical convenience.  If genuine amenable representations had sufficed for the criterion, then for a Kazhdan group hyperlinearity would reduce by Bekka--Valette to possessing a nonzero finite-dimensional subrepresentation — which would make every minimally almost periodic Kazhdan group nonhyperlinear, a conclusion nobody has and which would settle far more than is settled.  So the charge-based witness evades the rigidity collapse <em>by construction</em>, which is consistent with the reason <code><a href="hyperlinear-near-representation-criterion.html">hyperlinear-near-representation-criterion</a></code> was recorded as evading the eight dead finite-carrier architectures.</p>
+<h3>Trust surface</h3>
+<p>Bekka--Valette Theorem 1 was <strong>not</strong> read in the original (Springer paywall, the wall <code>cairn-wreath</code> flagged).  It is imported on Li--Ng's verbatim use of it, which is a primary source for the phrasing quoted above but not for the theorem's full statement — in particular the converse direction and any hypotheses on <code>Gamma</code> beyond countability/discreteness are not established here.  The identification "amenable = <code>pi ⊗ conj(pi)</code> weakly contains 1" is standard and was read in use rather than as a displayed theorem.  Anyone needing the full biconditional or the locally compact version should obtain the Math. Z. article.</p></body>

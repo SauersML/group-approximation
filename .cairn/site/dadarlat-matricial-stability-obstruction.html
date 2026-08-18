@@ -1,0 +1,39 @@
+<!doctype html><meta charset='utf-8'><title>dadarlat-matricial-stability-obstruction</title><style>
+body{font:15px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;max-width:60em;margin:2em auto;padding:0 1em;color:#1c1e1c}
+a{color:#4f46e5;text-decoration:none}a:hover{text-decoration:underline}
+code,pre{font:13px/1.45 Menlo,monospace;background:#f4f4f2}
+pre{padding:.8em;overflow-x:auto;border:1px solid #e5e7e3}
+.badge{display:inline-block;padding:.1em .55em;border-radius:.8em;color:#fff;font:700 11px -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;letter-spacing:.04em}
+.node{font:13px Menlo,monospace}
+h1{font-size:1.4em}h2{font-size:1.05em;border-bottom:1px solid #e5e7e3;padding-bottom:.2em}
+ul.rel{list-style:none;padding-left:0}ul.rel li{margin:.25em 0}
+.muted{color:#8b9089}.tree{white-space:pre;font:13px/1.5 Menlo,monospace;background:#fafaf8;border:1px solid #e5e7e3;padding:1em;overflow-x:auto}
+table{border-collapse:collapse}td,th{border:1px solid #e5e7e3;padding:.25em .6em;font-size:.9em}
+</style><script>MathJax={tex:{inlineMath:[["$","$"],["\\(","\\)"]]}};</script><script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script><body><p><a href='index.html'>← index</a></p>
+<h1><span class='node'>dadarlat-matricial-stability-obstruction</span> Dadarlat&#x27;s matricial-stability obstruction — exact hypotheses, norm, and cohomology</h1>
+<p><span class="badge" style="background:#178a5e">ESTABLISHED</span> <span class='muted'>claim · <code>research/dadarlat-matricial-stability-obstruction.md</code></span></p>
+<p class='muted'>via route dadarlat-matricial-stability-obstruction-citation</p>
+<h2>Routes into this claim</h2><ul class='rel'>
+<li><a class="node" href="dadarlat-matricial-stability-obstruction-citation.html">dadarlat-matricial-stability-obstruction-citation</a> <span class="badge" style="background:#178a5e">COMPLETE</span> Read Dadarlat 2007.12655 for hypotheses, stability notion and cohomology</li>
+</ul>
+<h2>Distinct from</h2><ul class='rel'>
+<li><a class="node" href="exel-loring-relative-quasirep-invariant.html">exel-loring-relative-quasirep-invariant</a> <span class="badge" style="background:#178a5e">ESTABLISHED</span> Exel--Loring two-homology invariants of quasi-representations survive where K-one dies<br><span class='muted'>that records the two-homology quasi-representation invariant from the companion paper; this pins the stability-obstruction theorem&#x27;s hypotheses, its stability notion, and its cohomological conclusion</span></li>
+<li><a class="node" href="matrix-corona-k1-vanishes.html">matrix-corona-k1-vanishes</a> <span class="badge" style="background:#178a5e">ESTABLISHED</span> Every norm matrix corona has vanishing K-one<br><span class='muted'>that is a K-theory computation for the norm matrix corona; this is a cohomological obstruction to matricial stability of a group</span></li>
+</ul>
+<h2>Statement</h2>
+<p>Read from the PDF of arXiv:2007.12655v2 (Dadarlat, <em>Obstructions to matricial stability of discrete groups and almost flat K-theory</em>) on 2026-08-14, on demand for <code>cairn-torsionfree</code>'s mutual-exclusivity paragraph.  Three questions, three answers.</p>
+<h3>1. The stability notion is point-norm, exactly as hoped</h3>
+<p>&gt; "A group <code>G</code> is called <code>(U(k_n), ||.||)_n</code>-stable [34] or <strong>matricially &gt; stable</strong> [38] if for any asymptotic homomorphism &gt; <code>{phi_n : G -&gt; U(k_n)}_(n in N)</code> (not necessarily a separating one) there is &gt; a sequence of homomorphisms <code>{pi_n : G -&gt; U(k_n)}_(n in N)</code> such that &gt; <code>lim_(n-&gt;infinity) ||phi_n(s) - pi_n(s)|| = 0</code> for all <code>s in G</code>."</p>
+<p>Operator norm on <code>U(k_n)</code>, and the limit is required <strong>for each <code>s</code> separately</strong> — pointwise on the group, not uniformly over it, and not in any Schatten norm.  So it is point-norm in the intended sense.</p>
+<p><strong>Weakly matricially stable</strong> is the padded variant: for any sequence of ucp maps <code>phi_n : G -&gt; M_(k_n)</code> satisfying his condition (1), there are homomorphisms <code>pi_n^(0), pi_n^(1)</code> with <code>lim ||phi_n(s) ⊕ pi_n^(0)(s) - pi_n^(1)(s)|| = 0</code> for all <code>s in G</code>. Matricial stability implies weak matricial stability; MF implies weak quasidiagonality.</p>
+<h3>2. The cohomological conclusion is rational cohomology, all nonzero even degrees</h3>
+<p>&gt; <strong>Theorem 1.1.</strong> Let <code>G</code> be a countable discrete MF-group that admits a &gt; <code>gamma</code>-element (e.g. <code>G</code> is uniformly embeddable in a Hilbert space).  If &gt; <code>H^(2k)(G, Q) != 0</code> for some <code>k &gt;= 1</code>, then <code>G</code> is not matricially stable.</p>
+<p>&gt; <strong>Theorem 1.2.</strong> Let <code>G</code> be a countable discrete weakly quasidiagonal group &gt; that admits a <code>gamma</code>-element.  If <code>G</code> is weakly matricially stable, then &gt; <code>G</code> is MAP and <code>H^(2k)(G, Q) = 0</code> for all <code>k &gt;= 1</code>.</p>
+<p>Group <strong>cohomology</strong> with <strong>rational</strong> coefficients, in <strong>all</strong> nonzero even degrees — not homology, not integral, and it is the cohomology of the whole group, not of an almost-flat part.  The MAP conclusion comes along with it.</p>
+<h3>3. Which classes — Kazhdan groups are neither blanket-in nor blanket-out</h3>
+<p>Two hypotheses carry the theorems: <strong>weak quasidiagonality</strong> (implied by MF) and existence of a <strong><code>gamma</code>-element</strong> (satisfied by uniformly embeddable groups, so in practice rarely the binding one).  The binding constraint is weak quasidiagonality, and for Kazhdan groups it is governed by:</p>
+<p>&gt; <strong>Proposition 3.19 (Ozawa-Thom).</strong> If an infinite property (T) group <code>G</code> is &gt; weakly quasidiagonal, then <code>G</code> has an infinite residually finite quotient.</p>
+<p><strong>Contrapositive, and this is the operative fact:</strong> an infinite property-(T) group with <em>no</em> infinite residually finite quotient is <strong>not</strong> weakly quasidiagonal, hence falls outside Theorem 1.2 entirely.  That is exactly the minimally-almost-periodic regime this program's compression bases live in.</p>
+<p>But the exclusion is not blanket, because of:</p>
+<p>&gt; <strong>Corollary 1.3.</strong> If <code>G</code> is a countable <strong>linear</strong> group such that &gt; <code>H^(2k)(G, Q) != 0</code> for some <code>k &gt;= 1</code>, then <code>G</code> is not weakly matricially &gt; stable.</p>
+<p>Linear groups are uniformly embeddable and quasidiagonal enough for the machinery, so <strong>linear Kazhdan groups are covered</strong> — and the bases used here (<code>SL_3(Z)</code>, <code>Z^3 ⋊ SL_3(Z)</code>) are linear.  So the right statement is: the theorem applies to a Kazhdan base iff that base is weakly quasidiagonal, which for linear bases it is, and which for an infinite (T) group with no infinite residually finite quotient it provably is not.</p></body>

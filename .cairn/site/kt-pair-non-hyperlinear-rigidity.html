@@ -1,0 +1,35 @@
+<!doctype html><meta charset='utf-8'><title>kt-pair-non-hyperlinear-rigidity</title><style>
+body{font:15px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;max-width:60em;margin:2em auto;padding:0 1em;color:#1c1e1c}
+a{color:#4f46e5;text-decoration:none}a:hover{text-decoration:underline}
+code,pre{font:13px/1.45 Menlo,monospace;background:#f4f4f2}
+pre{padding:.8em;overflow-x:auto;border:1px solid #e5e7e3}
+.badge{display:inline-block;padding:.1em .55em;border-radius:.8em;color:#fff;font:700 11px -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;letter-spacing:.04em}
+.node{font:13px Menlo,monospace}
+h1{font-size:1.4em}h2{font-size:1.05em;border-bottom:1px solid #e5e7e3;padding-bottom:.2em}
+ul.rel{list-style:none;padding-left:0}ul.rel li{margin:.25em 0}
+.muted{color:#8b9089}.tree{white-space:pre;font:13px/1.5 Menlo,monospace;background:#fafaf8;border:1px solid #e5e7e3;padding:1em;overflow-x:auto}
+table{border-collapse:collapse}td,th{border:1px solid #e5e7e3;padding:.25em .6em;font-size:.9em}
+</style><script>MathJax={tex:{inlineMath:[["$","$"],["\\(","\\)"]]}};</script><script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script><body><p><a href='index.html'>← index</a></p>
+<h1><span class='node'>kt-pair-non-hyperlinear-rigidity</span> Refute hyperlinearity of the Kun–Thom wreath group by a rigidity theorem</h1>
+<p><span class="badge" style="background:#c08a00">OPEN</span> <span class='muted'>route · <code>research/kt-pair-non-hyperlinear-rigidity.md</code></span></p>
+<h2>Target</h2><ul class='rel'>
+<li><a class="node" href="non-hyperlinear-group.html">non-hyperlinear-group</a> <span class="badge" style="background:#c08a00">OPEN</span> Exhibit an explicit non-hyperlinear group</li>
+</ul>
+<h2>Requires</h2><ul class='rel'>
+<li><a class="node" href="invariant-cartan-completion.html">invariant-cartan-completion</a> <span class="badge" style="background:#c08a00">OPEN</span> Invariant Cartan completion for the Kun–Thom Bernoulli pair</li>
+</ul>
+<h2>Artifacts</h2><ul class='rel'>
+<li><code>docs/TRUE_DIAGONAL_NORMALIZER_RIGIDITY.md</code></li>
+</ul>
+<h2>Statement</h2>
+<h2>Refute hyperlinearity of the Kun–Thom wreath group</h2>
+<p>The rigidity-side twin of <code><a href="growing-fiber-models.html">growing-fiber-models</a></code>, carried so that the graph records both outcomes of the same fork rather than only the one the programme wants.</p>
+<p><code>W = (⊕_(G/Γ) ℤ/2ℤ) ⋊ G</code> for Kun–Thom's Theorem E pair is a <em>specific, finitely generated, explicitly presented</em> group. If <code><a href="invariant-cartan-completion.html">invariant-cartan-completion</a></code> holds, then every trace-preserving embedding of <code>M_KT = L^∞({±1}^(G/Γ)) ⋊ G</code> into a matrix tracial ultraproduct can be conjugated to have an invariant diagonal ultraproduct containing the Bernoulli algebra; <code><a href="diagonal-normalizer-rigidity.html">diagonal-normalizer-rigidity</a></code> clause 4 converts that into a Păunescu-sofic embedding of the generalized Bernoulli action; and <code><a href="coordinate-action-not-sofic.html">coordinate-action-not-sofic</a></code> (Kun–Thom Corollary D) says none exists. Hence no embedding exists at all, <code>M_KT</code> is not Connes embeddable, and <code>W</code> is not hyperlinear.</p>
+<p>Two consequences worth stating so the stakes are visible, and so that nobody reaches for this route casually:</p>
+<ul>
+<li>it would exhibit the first non-hyperlinear group, hence the first group von</li>
+<p>Neumann algebra refuting the Connes embedding problem — an object the post-MIP\* literature explicitly records as not yet produced;</p>
+<li>it would simultaneously refute <code><a href="hyperlinear-wreath-model.html">hyperlinear-wreath-model</a></code> and close the</li>
+<p>flexible branch of <code><a href="hyperlinear-nonsofic-group.html">hyperlinear-nonsofic-group</a></code> at this candidate.</p>
+</ul>
+<p>The route is listed with <code>requires: [<a href="invariant-cartan-completion.html">invariant-cartan-completion</a>]</code> and not as a direct proof: the conversion step is proved (cited note, Theorem 6 and Corollary 7), the completion step is open, and nothing in the cited literature supplies it. <code><a href="kt-centralizer-normalization-hs.html">kt-centralizer-normalization-hs</a></code> is a second, independent sufficient input for the same conclusion, through Theorem A's endgame rather than through Corollary D; it is carried as its own claim.</p></body>

@@ -1,0 +1,30 @@
+<!doctype html><meta charset='utf-8'><title>lamp-character-orbit-separation-proof</title><style>
+body{font:15px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;max-width:60em;margin:2em auto;padding:0 1em;color:#1c1e1c}
+a{color:#4f46e5;text-decoration:none}a:hover{text-decoration:underline}
+code,pre{font:13px/1.45 Menlo,monospace;background:#f4f4f2}
+pre{padding:.8em;overflow-x:auto;border:1px solid #e5e7e3}
+.badge{display:inline-block;padding:.1em .55em;border-radius:.8em;color:#fff;font:700 11px -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;letter-spacing:.04em}
+.node{font:13px Menlo,monospace}
+h1{font-size:1.4em}h2{font-size:1.05em;border-bottom:1px solid #e5e7e3;padding-bottom:.2em}
+ul.rel{list-style:none;padding-left:0}ul.rel li{margin:.25em 0}
+.muted{color:#8b9089}.tree{white-space:pre;font:13px/1.5 Menlo,monospace;background:#fafaf8;border:1px solid #e5e7e3;padding:1em;overflow-x:auto}
+table{border-collapse:collapse}td,th{border:1px solid #e5e7e3;padding:.25em .6em;font-size:.9em}
+</style><script>MathJax={tex:{inlineMath:[["$","$"],["\\(","\\)"]]}};</script><script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script><body><p><a href='index.html'>← index</a></p>
+<h1><span class='node'>lamp-character-orbit-separation-proof</span> Split the cone along the lamp kernel and apply Clifford&#x27;s theorem</h1>
+<p><span class="badge" style="background:#178a5e">COMPLETE</span> <span class='muted'>route · <code>research/lamp-character-orbit-separation-proof.md</code></span></p>
+<h2>Target</h2><ul class='rel'>
+<li><a class="node" href="lamp-character-orbit-separation.html">lamp-character-orbit-separation</a> <span class="badge" style="background:#178a5e">ESTABLISHED</span> Lamp separation by a Hilbert embeddable length is an orbit-counting number</li>
+</ul>
+<h2>Requires</h2><ul class='rel'>
+<li><a class="node" href="hilbert-embeddable-is-representation-realized.html">hilbert-embeddable-is-representation-realized</a> <span class="badge" style="background:#178a5e">ESTABLISHED</span> A Hilbert embeddable length is exactly the normalized-HS metric of a representation</li>
+</ul>
+<h2>Artifacts</h2><ul class='rel'>
+<li><code>docs/TRUE_LAMP_CHARACTER_ORBIT_SEPARATION.md</code></li>
+</ul>
+<h2>Statement</h2>
+<h2>Split the cone along the lamp kernel and apply Clifford</h2>
+<p>The complete argument is §§1–2 of the cited note.</p>
+<p><strong>The splitting.</strong> By <code><a href="hilbert-embeddable-is-representation-realized.html">hilbert-embeddable-is-representation-realized</a></code> every Hilbert embeddable invariant length with <code>ℓ(1) = 0</code> is a nonnegative combination of the generators <code>ψ_χ(h) = χ(1) − Re χ(h)</code>, one per nontrivial irreducible. Partitioning the index set by whether <code>L ⊆ ker χ</code> splits <code>ℓ</code> into <code>ℓ_I + ℓ_II</code> with both summands nonnegative and conditionally negative definite, and <code>ψ_χ|_L ≡ 0</code> for <code>χ ∈ Irr_I</code> because <code>χ(h) = χ(1)</code> there.</p>
+<p><strong>Clifford's theorem.</strong> For <code>χ ∈ Irr_II</code>, <code>χ|_L</code> is <code>e</code> times the sum over a single <code>K</code>-orbit of irreducible characters of <code>L</code>. Abelianness of <code>L</code> makes those linear, so <code>χ(1) = et</code>; and if the orbit contained the trivial character it would be the whole orbit, forcing <code>L ⊆ ker χ</code>, i.e. <code>χ ∈ Irr_I</code>. Evaluating <code>ψ_χ</code> at <code>h ∈ L</code> and dividing by <code>χ(1) = et</code> cancels <code>e</code> and leaves <code>1 − (1/t)Σ_i θ_i(h)</code>.</p>
+<p><strong>The hypercube computation.</strong> For <code>L = (ℤ/2)^Sites</code>, <code>θ_S(a) = (−1)^{|S ∩ supp(a)|}</code>, so <code>(1/t)Σ_S θ_S(a) = 1 − 2f</code> with <code>f</code> the fraction of the orbit meeting <code>supp(a)</code> in an odd number of sites; hence <code>ψ_χ(a)/χ(1) = 2f</code>. Taking <code>supp(a) = {p, q}</code> gives the two-site mark and <code>supp(a) = {p}</code> the single lamp.</p>
+<p><strong>The three conclusions.</strong> Genericity of orbits gives the non-dilution statement; identification of the two marked cosets in a genuine finite quotient sends every <code>f</code> to zero, reproducing <code><a href="finite-quotient-blindness.html">finite-quotient-blindness</a></code>; and the relative gap bounds <code>ψ_χ</code> from below only on <code>L</code>, so it cannot see a defect that the two-site rigidity theorem places off <code>L</code>.</p></body>

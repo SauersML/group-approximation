@@ -7,9 +7,13 @@ canonical statements live in the graph as
 `gkp-sofic-action-toolkit`.
 
 **Status.** Complete proof from two external inputs, one refereed (GKP) and
-one an unrefereed preprint eleven days old (Kun–Thom). Not formalized. A
-priority search on the date above found no prior resolution; external
-confirmation from the authors is outstanding. See the closing section.
+one an unrefereed preprint eleven days old (Kun–Thom). The group-theoretic
+core of §3 — freeness of both coordinate actions, their commutation, and the
+diagonal orbit being `G/H` with stabilizer `H` — is machine-checked in
+`GroupApproximation/Algebra/DiagonalCosetAction.lean` (2026-08-18); the
+soficity transfers are not formalized. A priority search on the date above
+found no prior resolution; external confirmation from the authors is
+outstanding. See the closing section.
 
 ---
 

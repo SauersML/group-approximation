@@ -1,0 +1,25 @@
+<!doctype html><meta charset='utf-8'><title>cocycle-stability-nonsofic-route</title><style>
+body{font:15px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;max-width:60em;margin:2em auto;padding:0 1em;color:#1c1e1c}
+a{color:#4f46e5;text-decoration:none}a:hover{text-decoration:underline}
+code,pre{font:13px/1.45 Menlo,monospace;background:#f4f4f2}
+pre{padding:.8em;overflow-x:auto;border:1px solid #e5e7e3}
+.badge{display:inline-block;padding:.1em .55em;border-radius:.8em;color:#fff;font:700 11px -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;letter-spacing:.04em}
+.node{font:13px Menlo,monospace}
+h1{font-size:1.4em}h2{font-size:1.05em;border-bottom:1px solid #e5e7e3;padding-bottom:.2em}
+ul.rel{list-style:none;padding-left:0}ul.rel li{margin:.25em 0}
+.muted{color:#8b9089}.tree{white-space:pre;font:13px/1.5 Menlo,monospace;background:#fafaf8;border:1px solid #e5e7e3;padding:1em;overflow-x:auto}
+table{border-collapse:collapse}td,th{border:1px solid #e5e7e3;padding:.25em .6em;font-size:.9em}
+</style><script>MathJax={tex:{inlineMath:[["$","$"],["\\(","\\)"]]}};</script><script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script><body><p><a href='index.html'>← index</a></p>
+<h1><span class='node'>cocycle-stability-nonsofic-route</span> Build a nonsofic hyperbolic group from cocycle stability of random complexes</h1>
+<p><span class="badge" style="background:#c08a00">OPEN</span> <span class='muted'>route · <code>research/cocycle-stability-nonsofic-route.md</code></span></p>
+<h2>Target</h2><ul class='rel'>
+<li><a class="node" href="nonsofic-hyperbolic-group.html">nonsofic-hyperbolic-group</a> <span class="badge" style="background:#c08a00">OPEN</span> A nonsofic hyperbolic group — the second nonsoficity mechanism</li>
+</ul>
+<h2>Requires</h2><ul class='rel'>
+<li><a class="node" href="random-complex-linear-cocycle-stability.html">random-complex-linear-cocycle-stability</a> <span class="badge" style="background:#c08a00">OPEN</span> Linear cocycle stability rate for random 2-dimensional Linial--Meshulam complexes</li>
+</ul>
+<h2>Statement</h2>
+<p>Chapman--Peled, <em>Cocycle stability in permutations of random simplicial complexes</em>, arXiv:2509.21566, prove the implication</p>
+<p>&gt; if, in a middle triangle density range, random 2-dimensional &gt; Linial--Meshulam complexes typically have a linear cocycle stability rate, &gt; then there exists a nonsofic hyperbolic group.</p>
+<p>The implication is theirs and is proved; only its hypothesis is open, which is why this route reduces to the single claim it requires.  Their method is modelled on the non-local-testability of Sipser--Spielman expander codes.</p>
+<p>This is the reason the route is worth recording here rather than only in <code>notes/</code>: the obstruction is imported from coding theory, not from the expander decomposition of sofic approximations of property-(T) groups.  The no-gos catalogued in <code>docs/OBSTRUCTIONS.md</code> are all attacks on the latter, so none of them evidently applies to whatever group this route produces.</p></body>

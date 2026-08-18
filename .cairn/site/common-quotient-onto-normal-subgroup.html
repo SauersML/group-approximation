@@ -1,0 +1,31 @@
+<!doctype html><meta charset='utf-8'><title>common-quotient-onto-normal-subgroup</title><style>
+body{font:15px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;max-width:60em;margin:2em auto;padding:0 1em;color:#1c1e1c}
+a{color:#4f46e5;text-decoration:none}a:hover{text-decoration:underline}
+code,pre{font:13px/1.45 Menlo,monospace;background:#f4f4f2}
+pre{padding:.8em;overflow-x:auto;border:1px solid #e5e7e3}
+.badge{display:inline-block;padding:.1em .55em;border-radius:.8em;color:#fff;font:700 11px -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;letter-spacing:.04em}
+.node{font:13px Menlo,monospace}
+h1{font-size:1.4em}h2{font-size:1.05em;border-bottom:1px solid #e5e7e3;padding-bottom:.2em}
+ul.rel{list-style:none;padding-left:0}ul.rel li{margin:.25em 0}
+.muted{color:#8b9089}.tree{white-space:pre;font:13px/1.5 Menlo,monospace;background:#fafaf8;border:1px solid #e5e7e3;padding:1em;overflow-x:auto}
+table{border-collapse:collapse}td,th{border:1px solid #e5e7e3;padding:.25em .6em;font-size:.9em}
+</style><script>MathJax={tex:{inlineMath:[["$","$"],["\\(","\\)"]]}};</script><script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script><body><p><a href='index.html'>← index</a></p>
+<h1><span class='node'>common-quotient-onto-normal-subgroup</span> A common quotient of two acylindrically hyperbolic groups onto a prescribed normal subgroup</h1>
+<p><span class="badge" style="background:#178a5e">ESTABLISHED</span> <span class='muted'>claim · <code>research/common-quotient-onto-normal-subgroup.md</code></span></p>
+<p class='muted'>via route common-quotient-onto-normal-subgroup-proof</p>
+<h2>Routes into this claim</h2><ul class='rel'>
+<li><a class="node" href="common-quotient-onto-normal-subgroup-proof.html">common-quotient-onto-normal-subgroup-proof</a> <span class="badge" style="background:#178a5e">COMPLETE</span> Hull&#x27;s Corollary 7.4 with the suitable subgroup drawn from the normal subgroup</li>
+</ul>
+<h2>Distinct from</h2><ul class='rel'>
+<li><a class="node" href="defect-normally-generates-torsion-free-quotient.html">defect-normally-generates-torsion-free-quotient</a> <span class="badge" style="background:#178a5e">ESTABLISHED</span> The simple factor can be made to normally generate a Kazhdan subgroup of the quotient<br><span class='muted'>that claim is about the Fournier-Facio group and its compression defect; this one is a general statement about acylindrically hyperbolic groups and mentions no compression, no defect, and no simple factor.</span></li>
+<li><a class="node" href="torsion-free-higman-embedding.html">torsion-free-higman-embedding</a> <span class="badge" style="background:#c08a00">OPEN</span> Torsion-free Higman embedding<br><span class='muted'>that claim embeds recursively presented torsion-free groups into finitely presented ones; this one is a small-cancellation common-quotient theorem and embeds nothing.</span></li>
+<li><a class="node" href="finite-infranormal-subgroup-is-normal.html">finite-infranormal-subgroup-is-normal</a> <span class="badge" style="background:#178a5e">ESTABLISHED</span> A finite infranormal subgroup is normal<br><span class='muted'>that is an established structural theorem about finite infranormal subgroups being normal; this is a small-cancellation construction of common quotients of acylindrically hyperbolic groups — the shared normal-subgroup vocabulary is coincidental.</span></li>
+</ul>
+<h2>Artifacts</h2><ul class='rel'>
+<li><code>docs/TORSION_FREE_NORMAL_GENERATION_HULL_QUOTIENT.md</code></li>
+</ul>
+<h2>Statement</h2>
+<p>Let <code>G_1, G_2</code> be finitely generated acylindrically hyperbolic groups with trivial finite radical, let <code>D</code> be an <strong>infinite normal subgroup of <code>G_2</code></strong>, and let <code>F_i subset G_i</code> be finite.  Then there are <code>Q in AH_0</code> and surjections <code>alpha_i : G_i -&gt;&gt; Q</code> with</p>
+<p>1. <code>alpha_i|_{F_i}</code> injective; 2. <strong><code>alpha_2(D) = Q</code></strong> — the prescribed normal subgroup already surjects; 3. every finite-order element of <code>Q</code> lifts to one of the same order in <code>G_1 * G_2</code>, so <code>Q</code> is torsion-free when <code>G_1, G_2</code> are; 4. <code>Q</code> finitely presented when <code>G_1, G_2</code> are.</p>
+<p>Clause 2 is the whole content; without it this is [Hul16, Corollary 7.4]. The proof is Hull's, with the two elements generating his suitable subgroup drawn from <code>D</code> instead of from <code>G_2</code> — legitimate because an infinite normal subgroup of a torsion-free acylindrically hyperbolic group is suitable, which follows from [Osi16, Lemma 7.1] on s-normal subgroups.</p>
+<p>The reusable content: <strong>in Hull's machinery, the reservoir of small-cancellation target words may be confined to any prescribed infinite normal subgroup, at no cost.</strong>  Any construction that needs a common quotient to be normally generated by the image of a designated subgroup can take it from here, by feeding <code>D</code> the normal closure of that subgroup.</p></body>

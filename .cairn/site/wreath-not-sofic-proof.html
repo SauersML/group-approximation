@@ -1,0 +1,36 @@
+<!doctype html><meta charset='utf-8'><title>wreath-not-sofic-proof</title><style>
+body{font:15px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;max-width:60em;margin:2em auto;padding:0 1em;color:#1c1e1c}
+a{color:#4f46e5;text-decoration:none}a:hover{text-decoration:underline}
+code,pre{font:13px/1.45 Menlo,monospace;background:#f4f4f2}
+pre{padding:.8em;overflow-x:auto;border:1px solid #e5e7e3}
+.badge{display:inline-block;padding:.1em .55em;border-radius:.8em;color:#fff;font:700 11px -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;letter-spacing:.04em}
+.node{font:13px Menlo,monospace}
+h1{font-size:1.4em}h2{font-size:1.05em;border-bottom:1px solid #e5e7e3;padding-bottom:.2em}
+ul.rel{list-style:none;padding-left:0}ul.rel li{margin:.25em 0}
+.muted{color:#8b9089}.tree{white-space:pre;font:13px/1.5 Menlo,monospace;background:#fafaf8;border:1px solid #e5e7e3;padding:1em;overflow-x:auto}
+table{border-collapse:collapse}td,th{border:1px solid #e5e7e3;padding:.25em .6em;font-size:.9em}
+</style><script>MathJax={tex:{inlineMath:[["$","$"],["\\(","\\)"]]}};</script><script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script><body><p><a href='index.html'>← index</a></p>
+<h1><span class='node'>wreath-not-sofic-proof</span> Identification of the candidate with Kun–Thom&#x27;s Theorem E pair</h1>
+<p><span class="badge" style="background:#178a5e">COMPLETE</span> <span class='muted'>route · <code>research/wreath-not-sofic-proof.md</code></span></p>
+<h2>Target</h2><ul class='rel'>
+<li><a class="node" href="wreath-not-sofic.html">wreath-not-sofic</a> <span class="badge" style="background:#178a5e">ESTABLISHED</span> The wreath candidate is not sofic</li>
+</ul>
+<h2>Requires</h2><ul class='rel'>
+<li><a class="node" href="kun-thom-nonsofic-wreath.html">kun-thom-nonsofic-wreath</a> <span class="badge" style="background:#178a5e">ESTABLISHED</span> Kun--Thom nonsofic generalized wreath products over infranormal Kazhdan pairs</li>
+</ul>
+<h2>Artifacts</h2><ul class='rel'>
+<li><code>research/artifacts/kun-thom-2608-06222-verified.md</code></li>
+</ul>
+<h2>Statement</h2>
+<h2>Identification of the candidate with Kun–Thom's Theorem E pair</h2>
+<p>The external theorem lives in <code><a href="kun-thom-nonsofic-wreath.html">kun-thom-nonsofic-wreath</a></code>, which holds Theorems A, C, E and Corollary D verbatim with their own trust paragraph. This route does not restate them. It does the one thing a citation cannot do for itself: check that <em>this</em> graph's candidate is literally a group Theorem A covers.</p>
+<h3>The two gaps, and why they were unclosable before</h3>
+<p>The scout left this node open on two identification gaps — the lamp group (<code>ℤ/2ℤ</code> in Theorem A, possibly <code>ℤ</code> for us) and whether our pair is infranormal, non-normal and Kazhdan on both sides. Neither could be closed as posed, because "the wreath candidate" had never been bound to a group. A full-corpus grep finds the phrase outside <code>research/</code> in exactly two places: <code>docs/OBSTRUCTIONS.md:123</code>, which uses it substantively but never defines it, and <code>docs/NOTEPAD.md:31454</code>, which is a <em>different</em> object — the split integral wreath candidate. Everything else is downstream restatement. The symbol was free.</p>
+<h3>The binding</h3>
+<p>It is bound in <code><a href="wreath-not-sofic.html">wreath-not-sofic</a></code> to Kun–Thom's Theorem E pair, which is the reading the whole <code>docs/</code> corpus already uses: <code>docs/UNIQUE_TRACE_KUN_THOM_DOUBLE.md</code> fixes <code>q = 2</code>, <code>r,d ≥ 3</code>, <code>Γ = EL_r(R₊)</code>, <code>G = EL_r(R) ⋊ SL_d(ℤ)</code>; <code>docs/COMMUTING_WREATH_SOFIC_RADICAL.md</code> and <code>docs/PERFECT_CORE_KUN_THOM_WREATH.md</code> write the candidate as <code>W = (⊕_{G/Γ} C₂) ⋊ G</code> and call it the Kun–Thom group; <code>docs/OBSTRUCTIONS.md</code> §3–§4 uses the matching notation (<code>e_{ij}(x^v)</code>, "compressors come from <code>SL_d(ℤ)</code> monomial substitutions"). The archivist's sweep confirms the corpus asserts nonsoficity of that group about six times as a Kun–Thom citation, and that no <code>docs/</code> file states the identification — which is precisely why it had to be made here rather than found.</p>
+<p>With the binding in place both gaps close by inspection, not by argument:</p>
+<p>1. <strong>Lamp group.</strong> <code>ℤ/2ℤ</code>. The scout's caution is correct and is preserved in <code><a href="wreath-not-sofic.html">wreath-not-sofic</a></code> as a scope boundary: the split integral candidate <code>W_Y = ℤ^{(Y)} ⋊ Q</code> has <code>ℤ</code> lamps over <code>Q/Γ</code> for the amalgam <code>Q = G *_N G</code>, and nonsoficity does not pass along the lamp surjection <code>ℤ ↠ ℤ/2ℤ</code> in the needed direction. That group is a different node and is <strong>not</strong> covered. 2. <strong>The pair.</strong> Theorem E's own pair, so Theorem E supplies infranormality, non-normality and property (T) on both sides directly.</p>
+<p>Nothing downstream needs <code>ℤ</code> lamps. <code><a href="flexible-side-witness.html">flexible-side-witness</a></code>, <code><a href="hyperlinear-wreath-model.html">hyperlinear-wreath-model</a></code>, <code><a href="growing-fiber-models.html">growing-fiber-models</a></code> and the rigidity route all read the candidate as the <code>ℤ/2ℤ</code> Bernoulli crossed product <code>M_KT = L^∞({±1}^{G/Γ}) ⋊ G</code>, so the binding is free rather than a restriction — the swap the coordinator asked me to evaluate costs nothing.</p>
+<h3>Corpus check for an existing proof</h3>
+<p>Route (i) — an in-repo proof — is not available, and this was verified rather than assumed. Every unconditional <code>¬ IsSofic</code> theorem under <code>GroupApproximation/</code> is about elementary, GL or unit groups over Leavitt algebras: <code>Endpoint/MainResults.universalLeavittEL4_not_isSofic</code> at <code>EL₄(L_{𝔽₂}(1,2))</code>, its rank and arity variants, and the general form <code>Leavitt/GeneralCornerTheorem.corner_not_isSofic</code> at <code>EL_{m+1}(R)</code>. The criterion behind them, <code>Criterion/CriterionAssembly.not_isSofic_of_not_isLEF</code>, needs a <code>CompressionSetup G Γ J</code> plus (T) at both <code>G</code> and <code>Γ</code> plus a non-LEF commuting witness <code>J</code>, and is instantiated nowhere near a wreath product. The wreath material in Lean (<code>Sofic/MonomialModel.wreathPerm</code> and its metric lemmas) is finite-model gadgetry; <code>Sofic/CoordinateTransfer.lean</code> and <code>Sofic/ImplementerCocycle.lean</code> are explicit no-gos about routes and say in their own docstrings that they do not bear on the wreath product's status. The archivist's independent sweep reaches the same conclusion: "Lean has an interface but no inhabitant."</p>
+<p>So the establishment is by citation, and the trust surface is exactly the one recorded in <code><a href="kun-thom-nonsofic-wreath.html">kun-thom-nonsofic-wreath</a></code> — one unrefereed preprint, statements read but proofs not audited — inherited here unchanged.</p></body>

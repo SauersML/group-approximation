@@ -1,0 +1,43 @@
+<!doctype html><meta charset='utf-8'><title>compressed-commutant-majorana</title><style>
+body{font:15px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;max-width:60em;margin:2em auto;padding:0 1em;color:#1c1e1c}
+a{color:#4f46e5;text-decoration:none}a:hover{text-decoration:underline}
+code,pre{font:13px/1.45 Menlo,monospace;background:#f4f4f2}
+pre{padding:.8em;overflow-x:auto;border:1px solid #e5e7e3}
+.badge{display:inline-block;padding:.1em .55em;border-radius:.8em;color:#fff;font:700 11px -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;letter-spacing:.04em}
+.node{font:13px Menlo,monospace}
+h1{font-size:1.4em}h2{font-size:1.05em;border-bottom:1px solid #e5e7e3;padding-bottom:.2em}
+ul.rel{list-style:none;padding-left:0}ul.rel li{margin:.25em 0}
+.muted{color:#8b9089}.tree{white-space:pre;font:13px/1.5 Menlo,monospace;background:#fafaf8;border:1px solid #e5e7e3;padding:1em;overflow-x:auto}
+table{border-collapse:collapse}td,th{border:1px solid #e5e7e3;padding:.25em .6em;font-size:.9em}
+</style><script>MathJax={tex:{inlineMath:[["$","$"],["\\(","\\)"]]}};</script><script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script><body><p><a href='index.html'>← index</a></p>
+<h1><span class='node'>compressed-commutant-majorana</span> A Majorana in the compressed relative commutant moved anticommutingly by Gamma</h1>
+<p><span class="badge" style="background:#c08a00">OPEN</span> <span class='muted'>claim · <code>research/compressed-commutant-majorana.md</code></span></p>
+<h2>Routes into this claim</h2><ul class='rel'>
+<li><a class="node" href="compressed-commutant-majorana-from-wall-route.html">compressed-commutant-majorana-from-wall-route</a> <span class="badge" style="background:#c08a00">OPEN</span> Push a Clifford wall forward to the compressed commutant</li>
+</ul>
+<h2>Needed by routes</h2><ul class='rel'>
+<li><a class="node" href="kun-thom-clifford-wall-normal-form-route.html">kun-thom-clifford-wall-normal-form-route</a> <span class="badge" style="background:#c08a00">OPEN</span> Build the wall from one compressed-commutant Majorana</li>
+</ul>
+<h2>Distinct from</h2><ul class='rel'>
+<li><a class="node" href="kun-thom-clifford-relative-wall.html">kun-thom-clifford-relative-wall</a> <span class="badge" style="background:#c08a00">OPEN</span> Finite normalized-HS Clifford wall for the Kun--Thom pair<br><span class='muted'>That is the finite matrix endpoint stated with two normalized-Hilbert--Schmidt conditions on a family of almost representations; this is its exact algebraic content after the compressor automorphism has been divided out, a single involution in one relative commutant with a one-step Gamma-conjugation.</span></li>
+<li><a class="node" href="kun-thom-clifford-crossed-product-ce.html">kun-thom-clifford-crossed-product-ce</a> <span class="badge" style="background:#c08a00">OPEN</span> Connes embeddability of the Kun--Thom Clifford crossed product<br><span class='muted'>That asks for Connes embeddability of the whole Clifford crossed product; this asks only for one involution in one relative commutant of an arbitrary Connes-embeddable model.</span></li>
+</ul>
+<h2>Artifacts</h2><ul class='rel'>
+<li><code>docs/TRUE_RELATIVE_WALL_IS_COMMUTANT_GROWTH.md</code></li>
+</ul>
+<h2>Statement</h2>
+<p>Find a Connes-embeddable finite tracial von Neumann algebra <code>M</code>, a homomorphism <code>pi:G-&gt;U(M)</code>, an element <code>gamma in Gamma</code>, and a self-adjoint involution</p>
+<pre>
+w in M cap pi(t Gamma t^(-1))&#x27;
+</pre>
+<p>such that <code>w</code> anticommutes with <code>pi(gamma) w pi(gamma)^*</code>.</p>
+<p>The compressor <code>t</code> enters only through the subgroup <code>Gamma_1=t Gamma t^(-1)</code>, whose <code>Gamma</code>-coset space is the orbit <code>Gamma/Gamma_1</code> of the distinguished site.  By <code><a href="commutator-compressor-carries-no-wall.html">commutator-compressor-carries-no-wall</a></code> the resulting commutant growth must have infinite index at some positive elementary transvection compressor, so <code>w</code> cannot be a finite lamp over a finite orbit.  The model-side mechanism is available: <code><a href="compressor-fixed-site-growth-infinite.html">compressor-fixed-site-growth-infinite</a></code> shows both candidate compressors gain infinitely many <code>Gamma</code>-fixed sites, for every invariant graph.</p>
+<h3>Acceptance test for block-monomial candidates</h3>
+<p>I asked the wreath lane whether <code><a href="block-monomial-coordinate-collapse.html">block-monomial-coordinate-collapse</a></code> extends from abelian lamps in a coarse diagonal to Clifford lamps.  It was answered (<code><a href="clifford-diagonal-lamp-subspace.html">clifford-diagonal-lamp-subspace</a></code>, proof in <code>docs/TRUE_CLIFFORD_BLOCK_MONOMIAL_LAMP_SUBSPACE.md</code>): <strong>half extends, and the half that fails is the informative one.</strong>  The result is a constraint on this target, not a refutation of it.</p>
+<p><em>What extends.</em>  The permutation-part estimate never uses commutativity, so permutation parts still form a homomorphism, and since the Clifford sign is scalar hence diagonal it factors through the wreath.  The site action is recoverable that far.</p>
+<p><em>What fails.</em>  In the abelian case faithfulness on the lamps was free, because the lamps <em>were</em> diagonal and their permutation parts trivial. Clifford lamps are monomial with <strong>nontrivial</strong> permutation parts, so the permutation-part map can kill lamp words and no separated pair survives to contradict anything.  Under Jordan--Wigner this is structural, not a bad choice of coordinates: the two Majoranas at a site differ by <code>X</code> versus <code>Y</code> against a common <code>Z</code>-tail, so they share a permutation part and their product is killed.</p>
+<p><em>The test.</em>  The obstruction is the single computable invariant</p>
+<pre>
+S = {finite F &lt;= X : the product of the lamp images over F is diagonal},
+</pre>
+<p>a <code>G</code>-submodule of <code>F_2[X]</code> under symmetric difference.  Every block-monomial Clifford model has <code>S != 0</code>.  If <code>S</code> contains a singleton it is everything, by transitivity; and the augmentation kernel is the natural proper candidate, in which case the induced map factors through <code>C_2 x G</code> and is again lamp-blind. So a candidate model of this kind must be checked by computing <code>S</code>, and in both structurally available cases the permutation part carries no lamp information — meaning whatever hyperlinearity such a model witnesses is carried entirely by the fiber unitaries, which returns the question to <code><a href="fiber-masa-free-cocycle.html">fiber-masa-free-cocycle</a></code> one level up.</p></body>

@@ -1,0 +1,27 @@
+<!doctype html><meta charset='utf-8'><title>compressed-commutant-majorana-from-wall-route</title><style>
+body{font:15px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;max-width:60em;margin:2em auto;padding:0 1em;color:#1c1e1c}
+a{color:#4f46e5;text-decoration:none}a:hover{text-decoration:underline}
+code,pre{font:13px/1.45 Menlo,monospace;background:#f4f4f2}
+pre{padding:.8em;overflow-x:auto;border:1px solid #e5e7e3}
+.badge{display:inline-block;padding:.1em .55em;border-radius:.8em;color:#fff;font:700 11px -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;letter-spacing:.04em}
+.node{font:13px Menlo,monospace}
+h1{font-size:1.4em}h2{font-size:1.05em;border-bottom:1px solid #e5e7e3;padding-bottom:.2em}
+ul.rel{list-style:none;padding-left:0}ul.rel li{margin:.25em 0}
+.muted{color:#8b9089}.tree{white-space:pre;font:13px/1.5 Menlo,monospace;background:#fafaf8;border:1px solid #e5e7e3;padding:1em;overflow-x:auto}
+table{border-collapse:collapse}td,th{border:1px solid #e5e7e3;padding:.25em .6em;font-size:.9em}
+</style><script>MathJax={tex:{inlineMath:[["$","$"],["\\(","\\)"]]}};</script><script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script><body><p><a href='index.html'>← index</a></p>
+<h1><span class='node'>compressed-commutant-majorana-from-wall-route</span> Push a Clifford wall forward to the compressed commutant</h1>
+<p><span class="badge" style="background:#c08a00">OPEN</span> <span class='muted'>route · <code>research/compressed-commutant-majorana-from-wall-route.md</code></span></p>
+<h2>Target</h2><ul class='rel'>
+<li><a class="node" href="compressed-commutant-majorana.html">compressed-commutant-majorana</a> <span class="badge" style="background:#c08a00">OPEN</span> A Majorana in the compressed relative commutant moved anticommutingly by Gamma</li>
+</ul>
+<h2>Requires</h2><ul class='rel'>
+<li><a class="node" href="relative-wall-commutant-growth.html">relative-wall-commutant-growth</a> <span class="badge" style="background:#178a5e">ESTABLISHED</span> A relative wall is exactly compressor growth of the relative commutant</li>
+<li><a class="node" href="kun-thom-clifford-relative-wall.html">kun-thom-clifford-relative-wall</a> <span class="badge" style="background:#c08a00">OPEN</span> Finite normalized-HS Clifford wall for the Kun--Thom pair</li>
+</ul>
+<h2>Artifacts</h2><ul class='rel'>
+<li><code>docs/TRUE_RELATIVE_WALL_IS_COMMUTANT_GROWTH.md</code></li>
+</ul>
+<h2>Statement</h2>
+<p>The converse direction of <code><a href="kun-thom-clifford-wall-normal-form-route.html">kun-thom-clifford-wall-normal-form-route</a></code>.  Given a Clifford wall <code>C</code> in the original coordinates, the trace-preserving automorphism <code>Ad pi(t)</code> carries it to <code>w=Ad pi(t)(C)</code>, which lies in <code>M cap pi(t Gamma t^(-1))'</code> by the compressor lemma, is again a self-adjoint involution, and satisfies the anticommutation with <code>Ad pi(gamma)(w)</code> because <code>t h t^(-1)=gamma</code>.  Complete argument in the cited note, Theorem 3, which is stated and proved as an equivalence.</p>
+<p><strong>Why this route exists.</strong>  Together with the forward route it encodes an <strong>equivalence</strong> in the kernel's two-route form, which is the honest representation of Theorem 3.  Recording only the forward direction made a restatement look like a reduction with an open hole -- the trap named by the team as "restatement dressed as reduction", which the gate cannot detect. The pair makes the renaming visible.  Consequently the resulting cycle between the two claims is intentional: neither can ever establish the other, which is exactly right, since they are the same open question in two coordinate systems.</p></body>

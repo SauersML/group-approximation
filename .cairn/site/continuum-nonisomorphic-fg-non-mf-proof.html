@@ -1,0 +1,41 @@
+<!doctype html><meta charset='utf-8'><title>continuum-nonisomorphic-fg-non-mf-proof</title><style>
+body{font:15px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;max-width:60em;margin:2em auto;padding:0 1em;color:#1c1e1c}
+a{color:#4f46e5;text-decoration:none}a:hover{text-decoration:underline}
+code,pre{font:13px/1.45 Menlo,monospace;background:#f4f4f2}
+pre{padding:.8em;overflow-x:auto;border:1px solid #e5e7e3}
+.badge{display:inline-block;padding:.1em .55em;border-radius:.8em;color:#fff;font:700 11px -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;letter-spacing:.04em}
+.node{font:13px Menlo,monospace}
+h1{font-size:1.4em}h2{font-size:1.05em;border-bottom:1px solid #e5e7e3;padding-bottom:.2em}
+ul.rel{list-style:none;padding-left:0}ul.rel li{margin:.25em 0}
+.muted{color:#8b9089}.tree{white-space:pre;font:13px/1.5 Menlo,monospace;background:#fafaf8;border:1px solid #e5e7e3;padding:1em;overflow-x:auto}
+table{border-collapse:collapse}td,th{border:1px solid #e5e7e3;padding:.25em .6em;font-size:.9em}
+</style><script>MathJax={tex:{inlineMath:[["$","$"],["\\(","\\)"]]}};</script><script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script><body><p><a href='index.html'>← index</a></p>
+<h1><span class='node'>continuum-nonisomorphic-fg-non-mf-proof</span> Subgroup heredity plus abelianization rank, then Neumann&#x27;s continuum family</h1>
+<p><span class="badge" style="background:#178a5e">COMPLETE</span> <span class='muted'>route · <code>research/continuum-nonisomorphic-fg-non-mf-proof.md</code></span></p>
+<h2>Target</h2><ul class='rel'>
+<li><a class="node" href="continuum-nonisomorphic-fg-non-mf.html">continuum-nonisomorphic-fg-non-mf</a> <span class="badge" style="background:#178a5e">ESTABLISHED</span> Continuum many non-isomorphic finitely generated non-MF groups</li>
+</ul>
+<h2>Requires</h2><ul class='rel'>
+<li><a class="node" href="mf-positive-controls.html">mf-positive-controls</a> <span class="badge" style="background:#178a5e">ESTABLISHED</span> Basic positive controls for the MF property</li>
+<li><a class="node" href="literal-group-fails-mf-conventions.html">literal-group-fails-mf-conventions</a> <span class="badge" style="background:#178a5e">ESTABLISHED</span> The literal finitely presented group fails every formalized MF convention</li>
+</ul>
+<h2>Artifacts</h2><ul class='rel'>
+<li><code>docs/CREDIT_AND_PRIORITY_AUDIT.md</code></li>
+</ul>
+<h2>Statement</h2>
+<h2>Subgroup heredity plus abelianization rank, then Neumann's continuum family</h2>
+<p>Recovered proof, transcribed verbatim from the deleted manuscript subsection at <code>git show c3501887:non_mf_groups_exist.tex</code>, lines 2095-2129. The two <code>requires</code> are the graph nodes supplying its two inputs: subgroup heredity of MF (<code><a href="mf-positive-controls.html">mf-positive-controls</a></code>) and non-MF-ness of <code>E</code> (<code><a href="literal-group-fails-mf-conventions.html">literal-group-fails-mf-conventions</a></code>).</p>
+<h3>The two inputs</h3>
+<p>Subgroup heredity, still live in the manuscript at line 1907 and Lean-verified:</p>
+<p>&gt; <strong>Lemma (subgroups).</strong> Every subgroup of an MF group is MF. &gt; <code>\leanverified{Sofic/OperatorMFPositiveControls}{GroupApproximation.IsOperatorMF.subgroup}</code> &gt; &gt; <em>Proof.</em> Restrict an injective corona representation to the subgroup: &gt; injectivity and the homomorphism law are preserved.</p>
+<p>Equivalently: a group containing a non-MF subgroup is not MF. Combined with <code>E</code> non-MF, every group containing an isomorphic copy of <code>E</code> is non-MF.</p>
+<h3>The proof, verbatim</h3>
+<p>&gt; Every group in sight contains an isomorphic copy of $E$, hence is &gt; non-MF by Theorem~\ref{thm:A} and Lemma~\ref{lem:subgroupMF}. &gt; &gt; (1) $E\times\Z^k$ is finitely presented because $E$ is.  Its &gt; abelianization is $E^{\mathrm{ab}}\times\Z^k$; since $E$ is finitely &gt; generated, $E^{\mathrm{ab}}$ is a finitely generated abelian group, &gt; of some torsion-free rank $r_0&lt;\infty$, so the abelianization of &gt; $E\times\Z^k$ has torsion-free rank $r_0+k$, an isomorphism &gt; invariant that separates distinct $k$. &gt; &gt; (2) By a classical construction of B.\,H.~Neumann \cite{Neumann} &gt; there is a family $(N_i)_{i\in I}$ with $|I|=2^{\aleph_0}$ of &gt; pairwise non-isomorphic $2$-generator groups.  Put &gt; $G_i=E\times N_i$, a finitely generated non-MF group.  For a fixed &gt; countable group $G_1$, the set $\{i\in I:G_i\cong G_1\}$ is &gt; countable: a countable group has only countably many finitely &gt; generated subgroups (each is determined by a finite generating &gt; subset), hence countably many isomorphism classes of such; if &gt; $G_i\cong G_1$ then $N_i$ embeds into $G_1$ as $\{1\}\times N_i$; &gt; and the $N_i$ are pairwise non-isomorphic, so &gt; $i\mapsto[N_i]$ is injective on the set in question.  A map from a &gt; set of cardinality $2^{\aleph_0}$ with countable fibres has image of &gt; cardinality $2^{\aleph_0}$; apply this to $i\mapsto[G_i]$.</p>
+<h3>The external citation, verified</h3>
+<p>B. H. Neumann, <em>Some remarks on infinite groups</em>, J. London Math. Soc. <strong>s1-12</strong> (1937) 120-127 — continuum many pairwise non-isomorphic 2-generator groups.</p>
+<p>Verification status from <code>docs/CREDIT_AND_PRIORITY_AUDIT.md:440-441</code>, which is the repository's definitive citation audit:</p>
+<p>&gt; * B. H. Neumann JLMS s1-12 (1937) 120–127: verified incl. continuum &gt;   family content.</p>
+<p>So the one external input has been read against the primary source for exactly the content used here, not merely for existence of the reference.</p>
+<h3>Remarks on the argument</h3>
+<p>The cardinality step is the only delicate one, and it is elementary: it shows the fibres of <code>i |-&gt; [G_i]</code> are countable, not that the map is injective. Two distinct <code>N_i</code> can in principle give isomorphic products; what cannot happen is that uncountably many do, because all of them would then embed as finitely generated subgroups of one fixed countable group, of which there are only countably many up to isomorphism.</p>
+<p>Part (1) is strictly stronger than part (2) in one respect and strictly weaker in another: its witnesses are finitely <em>presented</em> (since <code>E</code> is), but there are only countably many of them. Part (2) reaches the continuum at the cost of dropping to finitely generated, because Neumann's family is not a family of finitely presented groups — there are only countably many finite presentations. No argument in the corpus produces continuum many finitely presented non-MF groups, and none can: that cardinality is an absolute bound.</p></body>

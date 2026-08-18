@@ -1,0 +1,45 @@
+<!doctype html><meta charset='utf-8'><title>literal-mark-quotient-finite-residual</title><style>
+body{font:15px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;max-width:60em;margin:2em auto;padding:0 1em;color:#1c1e1c}
+a{color:#4f46e5;text-decoration:none}a:hover{text-decoration:underline}
+code,pre{font:13px/1.45 Menlo,monospace;background:#f4f4f2}
+pre{padding:.8em;overflow-x:auto;border:1px solid #e5e7e3}
+.badge{display:inline-block;padding:.1em .55em;border-radius:.8em;color:#fff;font:700 11px -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;letter-spacing:.04em}
+.node{font:13px Menlo,monospace}
+h1{font-size:1.4em}h2{font-size:1.05em;border-bottom:1px solid #e5e7e3;padding-bottom:.2em}
+ul.rel{list-style:none;padding-left:0}ul.rel li{margin:.25em 0}
+.muted{color:#8b9089}.tree{white-space:pre;font:13px/1.5 Menlo,monospace;background:#fafaf8;border:1px solid #e5e7e3;padding:1em;overflow-x:auto}
+table{border-collapse:collapse}td,th{border:1px solid #e5e7e3;padding:.25em .6em;font-size:.9em}
+</style><script>MathJax={tex:{inlineMath:[["$","$"],["\\(","\\)"]]}};</script><script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script><body><p><a href='index.html'>← index</a></p>
+<h1><span class='node'>literal-mark-quotient-finite-residual</span> Exact finite residual of the literal marked quotient</h1>
+<p><span class="badge" style="background:#178a5e">ESTABLISHED</span> <span class='muted'>claim · <code>research/literal-mark-quotient-finite-residual.md</code></span></p>
+<p class='muted'>via route literal-mark-quotient-finite-residual-proof</p>
+<h2>Routes into this claim</h2><ul class='rel'>
+<li><a class="node" href="literal-mark-quotient-finite-residual-proof.html">literal-mark-quotient-finite-residual-proof</a> <span class="badge" style="background:#178a5e">COMPLETE</span> Level collapse in finite quotients plus folding of the free lamplighter</li>
+</ul>
+<h2>Needed by routes</h2><ul class='rel'>
+<li><a class="node" href="literal-mark-quotient-corona-blindness-proof.html">literal-mark-quotient-corona-blindness-proof</a> <span class="badge" style="background:#178a5e">COMPLETE</span> Transport across levels in the literal quotient</li>
+<li><a class="node" href="literal-mark-quotient-not-stable-in-finite-actions-proof.html">literal-mark-quotient-not-stable-in-finite-actions-proof</a> <span class="badge" style="background:#178a5e">COMPLETE</span> Combine soficity of the marked quotient with its nontrivial finite residual</li>
+</ul>
+<h2>Distinct from</h2><ul class='rel'>
+<li><a class="node" href="commuting-lamp-quotient-finite-residual.html">commuting-lamp-quotient-finite-residual</a> <span class="badge" style="background:#178a5e">ESTABLISHED</span> Exact finite residual of the commuting-lamp quotient<br><span class='muted'>Same mechanism, different group and different answer: there the finite residual is a locally finite elementary abelian 2-group and the level-collapse quotient is a lamplighter; here it contains infinite-order elements and the level-collapse quotient is a free lamplighter.</span></li>
+<li><a class="node" href="marked-quotients-not-lef.html">marked-quotients-not-lef</a> <span class="badge" style="background:#178a5e">ESTABLISHED</span> The marked quotients admit no exact finite models<br><span class='muted'>That claim rules out exact finite models qualitatively; this one computes the finite residual exactly.</span></li>
+<li><a class="node" href="literal-telescope-split-normal-form.html">literal-telescope-split-normal-form</a> <span class="badge" style="background:#178a5e">ESTABLISHED</span> The literal group splits as lamp-by-telescope over an explicit linear quotient<br><span class='muted'>That claim is the algebraic splitting of `E`; this one computes an approximation-theoretic invariant of `E/&lt;w&gt;`.</span></li>
+<li><a class="node" href="literal-mark-quotient-sofic.html">literal-mark-quotient-sofic</a> <span class="badge" style="background:#178a5e">ESTABLISHED</span> The literal marked quotient is sofic<br><span class='muted'>That claim builds permutation microstates for the same group; this one computes which of its elements no finite quotient can see, and the two combine to refute permutation stability.</span></li>
+<li><a class="node" href="literal-mark-quotient-mf.html">literal-mark-quotient-mf</a> <span class="badge" style="background:#c08a00">OPEN</span> MF property of the literal marked quotient<br><span class='muted'>That open claim is about operator-norm corona models; this proved claim computes finite quotients, which by themselves decide nothing about MF.</span></li>
+<li><a class="node" href="literal-mark-quotient-flexibly-stable.html">literal-mark-quotient-flexibly-stable</a> <span class="badge" style="background:#c08a00">OPEN</span> Flexible permutation stability of the literal marked quotient<br><span class='muted'>That open claim is about permutation almost-actions and flexible enlargement; this proved claim is about honest homomorphisms to finite groups, and it settles the residual-finiteness disjunct appearing in that claim&#x27;s status note.</span></li>
+</ul>
+<h2>Artifacts</h2><ul class='rel'>
+<li><code>docs/COMMUTING_LAMP_QUOTIENT_STRUCTURE_AND_MF_FORK_2026-08-14.md</code></li>
+<li><code>docs/LITERAL_GROUP_BLOCK_AMALGAM_STRUCTURE_2026-08-14.md</code></li>
+</ul>
+<h2>Statement</h2>
+<p>Every homomorphism from <code>E/&lt;w&gt;</code> to a finite group gives all lamps of a common telescope level the same image.  The finite residual of <code>E/&lt;w&gt;</code> is exactly</p>
+<pre>
+R = normal closure of { c_x c_{x&#x27;} : level(x) = level(x&#x27;) } ,
+</pre>
+<p>and the level-collapse quotient is</p>
+<pre>
+(E/&lt;w&gt;) / R  =  ( *_{n in Z} Z/2 ) semidirect V ,
+</pre>
+<p>with <code>V</code> acting through <code>level : V -&gt; Z</code>; that group is residually finite, hence LEF, hence MF.</p>
+<p><code>R</code> is not locally finite: two same-level lamps in different blocks generate an infinite dihedral group whose generator product lies in <code>R</code>.  This is the one structural asymmetry with the commuting-lamp quotient, where the corresponding subgroup is elementary abelian.</p></body>

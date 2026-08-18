@@ -1,0 +1,36 @@
+<!doctype html><meta charset='utf-8'><title>non-hyperlinear-group</title><style>
+body{font:15px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;max-width:60em;margin:2em auto;padding:0 1em;color:#1c1e1c}
+a{color:#4f46e5;text-decoration:none}a:hover{text-decoration:underline}
+code,pre{font:13px/1.45 Menlo,monospace;background:#f4f4f2}
+pre{padding:.8em;overflow-x:auto;border:1px solid #e5e7e3}
+.badge{display:inline-block;padding:.1em .55em;border-radius:.8em;color:#fff;font:700 11px -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;letter-spacing:.04em}
+.node{font:13px Menlo,monospace}
+h1{font-size:1.4em}h2{font-size:1.05em;border-bottom:1px solid #e5e7e3;padding-bottom:.2em}
+ul.rel{list-style:none;padding-left:0}ul.rel li{margin:.25em 0}
+.muted{color:#8b9089}.tree{white-space:pre;font:13px/1.5 Menlo,monospace;background:#fafaf8;border:1px solid #e5e7e3;padding:1em;overflow-x:auto}
+table{border-collapse:collapse}td,th{border:1px solid #e5e7e3;padding:.25em .6em;font-size:.9em}
+</style><script>MathJax={tex:{inlineMath:[["$","$"],["\\(","\\)"]]}};</script><script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script><body><p><a href='index.html'>← index</a></p>
+<h1><span class='node'>non-hyperlinear-group</span> Exhibit an explicit non-hyperlinear group</h1>
+<p><span class="badge" style="background:#c08a00">OPEN</span> <span class='muted'>claim · <code>research/non-hyperlinear-group.md</code></span></p>
+<h2>Routes into this claim</h2><ul class='rel'>
+<li><a class="node" href="additive-index-transducer.html">additive-index-transducer</a> <span class="badge" style="background:#c43c2e">INVALIDATED</span> Additive-index-to-finite-phase transducer</li>
+<li><a class="node" href="exceptional-mixed-unilateral-shift-route.html">exceptional-mixed-unilateral-shift-route</a> <span class="badge" style="background:#c43c2e">INVALIDATED</span> Turn the first infinite raw/comb commutator into a unilateral index defect</li>
+<li><a class="node" href="full-packet-bicommutant-route.html">full-packet-bicommutant-route</a> <span class="badge" style="background:#c08a00">OPEN</span> Contradict the full-packet commutant witness</li>
+<li><a class="node" href="invariant-size-argument.html">invariant-size-argument</a> <span class="badge" style="background:#c43c2e">INVALIDATED</span> Conjugation-invariant size argument in the II₁ factor</li>
+<li><a class="node" href="iwahori-sector-closure.html">iwahori-sector-closure</a> <span class="badge" style="background:#c08a00">OPEN</span> Dogon–Vigdorovich sector closure via the Iwahori endpoint</li>
+<li><a class="node" href="kl-violation-refutes-hyperlinearity-route.html">kl-violation-refutes-hyperlinearity-route</a> <span class="badge" style="background:#c08a00">OPEN</span> Refute hyperlinearity of the Leavitt unit group by violating Kervaire--Laudenbach</li>
+<li><a class="node" href="kt-pair-non-hyperlinear-commutant.html">kt-pair-non-hyperlinear-commutant</a> <span class="badge" style="background:#c08a00">OPEN</span> Refute hyperlinearity through the relative commutant instead of the masa</li>
+<li><a class="node" href="kt-pair-non-hyperlinear-rigidity.html">kt-pair-non-hyperlinear-rigidity</a> <span class="badge" style="background:#c08a00">OPEN</span> Refute hyperlinearity of the Kun–Thom wreath group by a rigidity theorem</li>
+<li><a class="node" href="leavitt-steinberg-stable-branch.html">leavitt-steinberg-stable-branch</a> <span class="badge" style="background:#c08a00">OPEN</span> Select the stable Steinberg branch</li>
+<li><a class="node" href="mixed-relator-route.html">mixed-relator-route</a> <span class="badge" style="background:#c08a00">OPEN</span> Mixed-relator route through the Leavitt atlas</li>
+<li><a class="node" href="non-hyperlinear-from-hyperlinear-implies-sofic.html">non-hyperlinear-from-hyperlinear-implies-sofic</a> <span class="badge" style="background:#c08a00">OPEN</span> Non-hyperlinear group from the affirmative answer to Q3.4</li>
+<li><a class="node" href="pauli-binary-membership-route.html">pauli-binary-membership-route</a> <span class="badge" style="background:#c08a00">OPEN</span> Close nonhyperlinearity with one Pauli binary-membership estimate</li>
+<li><a class="node" href="rigidity-route.html">rigidity-route</a> <span class="badge" style="background:#c08a00">OPEN</span> Rigidity route via flexible HS-stability</li>
+<li><a class="node" href="scale-index-route.html">scale-index-route</a> <span class="badge" style="background:#c08a00">OPEN</span> Scale-index route through commutant reconstruction</li>
+<li><a class="node" href="separate-commutant-recovery.html">separate-commutant-recovery</a> <span class="badge" style="background:#c43c2e">INVALIDATED</span> Separate elementwise coordinate-commutant recovery</li>
+</ul>
+<h2>Statement</h2>
+<p>The primary target of the program (AGENDA.md header): an explicit group that is not hyperlinear, i.e. admits no asymptotic embedding into unitary matrices with the normalized Hilbert-Schmidt metric.</p>
+<p>The organizing mechanism is (T)-compression: <code>Γ ≤ G</code> with a compressor <code>t</code> (<code>tΓt⁻¹ ⪇ Γ</code>). In every category with a conjugation-invariant strictly monotone size the compression collapses (<a href="invariant-size-collapse.html">invariant-size-collapse</a>); the <code>II₁</code> branch survives because the trace is refinement-blind, and that failure is sharp (<a href="trace-blindness-sharpness.html">trace-blindness-sharpness</a>). The obstruction, if there is one, can only be stability.</p>
+<h3>Ideas</h3>
+<p>Non-graph brainstorming for this goal goes here. Current periphery: free independence between branch algebras is NOT excluded by the cross-branch commutator identity (see docs/OBSTRUCTIONS.md §3, "No commuting branches").</p></body>

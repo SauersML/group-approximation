@@ -1,0 +1,36 @@
+<!doctype html><meta charset='utf-8'><title>openai-leavitt-unit-nonsofic</title><style>
+body{font:15px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;max-width:60em;margin:2em auto;padding:0 1em;color:#1c1e1c}
+a{color:#4f46e5;text-decoration:none}a:hover{text-decoration:underline}
+code,pre{font:13px/1.45 Menlo,monospace;background:#f4f4f2}
+pre{padding:.8em;overflow-x:auto;border:1px solid #e5e7e3}
+.badge{display:inline-block;padding:.1em .55em;border-radius:.8em;color:#fff;font:700 11px -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;letter-spacing:.04em}
+.node{font:13px Menlo,monospace}
+h1{font-size:1.4em}h2{font-size:1.05em;border-bottom:1px solid #e5e7e3;padding-bottom:.2em}
+ul.rel{list-style:none;padding-left:0}ul.rel li{margin:.25em 0}
+.muted{color:#8b9089}.tree{white-space:pre;font:13px/1.5 Menlo,monospace;background:#fafaf8;border:1px solid #e5e7e3;padding:1em;overflow-x:auto}
+table{border-collapse:collapse}td,th{border:1px solid #e5e7e3;padding:.25em .6em;font-size:.9em}
+</style><script>MathJax={tex:{inlineMath:[["$","$"],["\\(","\\)"]]}};</script><script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script><body><p><a href='index.html'>← index</a></p>
+<h1><span class='node'>openai-leavitt-unit-nonsofic</span> The binary Leavitt unit group is nonsofic (ANNOUNCED, unrefereed)</h1>
+<p><span class="badge" style="background:#c08a00">OPEN</span> <span class='muted'>claim · <code>research/openai-leavitt-unit-nonsofic.md</code></span></p>
+<h2>Distinct from</h2><ul class='rel'>
+<li><a class="node" href="kun-thom-nonsofic-wreath.html">kun-thom-nonsofic-wreath</a> <span class="badge" style="background:#178a5e">ESTABLISHED</span> Kun--Thom nonsofic generalized wreath products over infranormal Kazhdan pairs<br><span class='muted'>that is a refereeable arXiv preprint by named authors about wreath products, imported as established; this is an unrefereed corporate announcement about the Leavitt unit group and is deliberately not established here</span></li>
+<li><a class="node" href="leavitt-steinberg-hs-stability-fork.html">leavitt-steinberg-hs-stability-fork</a> <span class="badge" style="background:#178a5e">ESTABLISHED</span> The Leavitt--Steinberg normalized-HS stability fork<br><span class='muted'>that is this repository&#x27;s own dichotomy for the Steinberg cover St_5(L_(F_2)(1,2)); this is an external nonsoficity claim about the unit group of the same algebra</span></li>
+</ul>
+<h2>Statement</h2>
+<p><em>Marked <code>root</code> only so that the graph does not report it as unreachable. It is a recorded external fact, not a program target: no route should be built toward it and nothing should depend on it. See the status note below.</em></p>
+<p><strong>Status: ANNOUNCED, not established at this repository's standard.</strong> <code>OPEN</code> here does not mean "believed false" or "worth attacking" — it means the source is unrefereed and carries a visible trust surface, per repository doctrine on conditional and unattested inputs.  Nothing in this graph should depend on it.</p>
+<p>The claim, as announced by OpenAI on 2026-08-01:</p>
+<p>&gt; <strong>Theorem 1.1.</strong> The unit group <code>L_(F_2)(1,2)^x</code> is not sofic.</p>
+<p>for the binary Leavitt algebra <code>R = L_(F_2)(1,2) = F_2&lt;s_0,s_1,t_0,t_1 | t_i s_j = delta_ij, s_0t_0+s_1t_1=1&gt;</code>. What is actually proved is that the finitely generated subgroup <code>G = EL_D(R) = Theta_D(EL_9(R)) &lt;= R^x</code> is nonsofic, for an explicit nine-word complete prefix code <code>D</code>; property (T) comes from Ershov--Jaikin-Zapirain (arXiv:0809.4095) and the non-LEF witness is Thompson's group <code>V</code>.  Soficity passes to subgroups.</p>
+<h3>Version trap</h3>
+<p>The chapter exists in two versions with the <strong>same proposition numbers and different hypotheses</strong>.  Always state which one is meant.</p>
+<p>| | original | current | |---|---|---| | URL | <code>cdn.openai.com/pdf/ten-proofs-oai-original.pdf</code> | <code>cdn.openai.com/pdf/ten-proofs-oai.pdf</code> | | Ch. 3 title | "A Counterexample to the Soficity Conjecture" | "Nonsofic groups exist" | | pages | 77--93 | 78--95 | | dated | announced 2026-08-01 | "Updated August 6, 2026" |</p>
+<p><strong>Proposition 2.3, original:</strong> <code>Gamma &lt;= G</code> infinite <strong>finitely generated groups with property (T)</strong>; <code>G=&lt;Gamma,t_1,...,t_m&gt;</code>, <code>t_i Gamma t_i^(-1)&lt;=Gamma</code>; <code>J&lt;=G</code> finitely generated with <code>[Gamma,J]=1</code>, <code>Gamma cap J={1}</code>, <code>t_1 J t_1^(-1)&lt;=Gamma</code>; then <strong>soficity of <code>G</code></strong> implies <code>J</code> is LEF.</p>
+<p><strong>Proposition 2.3, current:</strong> (T) is required <strong>only of <code>Gamma</code></strong>, and the conclusion is conditioned on an explicit hypothesis rather than on bare soficity — <code>G</code> must admit a sofic approximation whose generator graphs differ in <code>o(|Y_n|)</code> edges from uniformly bounded-degree graphs with a uniform positive expansion constant.  The current text adds: "Property (T) is required only of <code>Gamma</code>.  In our application, property (T) for <code>G</code> serves only to obtain the expanding approximation assumed in the proposition."</p>
+<p>The revision therefore moved the passage from soficity to a <em>single</em> expanding approximation out of Proposition 2.3 and into the consequences of Theorem 2.1.  Read that as the repair of the delicate step, and cite the current version.</p>
+<h3>Independent expert engagement</h3>
+<p>Kun--Thom, arXiv:1901.03963v3 (2026-08-04), write in their added introduction: "On August 1, 2026, we learned about the breakthrough result of OpenAI.  The proof of their key Proposition 2.3 in [20] is a creative and effective application of the results and techniques of this paper and the ones in [18]."  Fournier-Facio (arXiv:2608.02025) and Kun--Thom (arXiv:2608.06222) both build on the criterion.  This is meaningful corroboration by the people whose theorems are being applied; it is not refereeing, and it does not move the status above.</p>
+<h3>The sentence this program cares about</h3>
+<p>Verbatim, and <strong>identical in both versions</strong>:</p>
+<p>&gt; "Thus every sofic group is hyperlinear [Pes08, Theorem 3.3], but Theorem &gt; 1.1 does not determine whether <code>L_(F_2)(1,2)^x</code> is hyperlinear."</p>
+<p>The same passage records that Kervaire--Laudenbach holds for every hyperlinear group (Nitsche--Thom, J. Group Theory 25 (2022) 1--10, arXiv:1811.07737, Theorem 1.3), so a one-variable equation over <code>R^x</code> with nonzero total exponent and no solution in any overgroup would refute hyperlinearity of <code>R^x</code> — a cheap falsification test.</p></body>

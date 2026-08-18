@@ -1,0 +1,76 @@
+<!doctype html><meta charset='utf-8'><title>hilbert-embeddable-length-hyperlinearity</title><style>
+body{font:15px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;max-width:60em;margin:2em auto;padding:0 1em;color:#1c1e1c}
+a{color:#4f46e5;text-decoration:none}a:hover{text-decoration:underline}
+code,pre{font:13px/1.45 Menlo,monospace;background:#f4f4f2}
+pre{padding:.8em;overflow-x:auto;border:1px solid #e5e7e3}
+.badge{display:inline-block;padding:.1em .55em;border-radius:.8em;color:#fff;font:700 11px -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;letter-spacing:.04em}
+.node{font:13px Menlo,monospace}
+h1{font-size:1.4em}h2{font-size:1.05em;border-bottom:1px solid #e5e7e3;padding-bottom:.2em}
+ul.rel{list-style:none;padding-left:0}ul.rel li{margin:.25em 0}
+.muted{color:#8b9089}.tree{white-space:pre;font:13px/1.5 Menlo,monospace;background:#fafaf8;border:1px solid #e5e7e3;padding:1em;overflow-x:auto}
+table{border-collapse:collapse}td,th{border:1px solid #e5e7e3;padding:.25em .6em;font-size:.9em}
+</style><script>MathJax={tex:{inlineMath:[["$","$"],["\\(","\\)"]]}};</script><script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script><body><p><a href='index.html'>← index</a></p>
+<h1><span class='node'>hilbert-embeddable-length-hyperlinearity</span> Weak soficity upgrades to hyperlinearity when the invariant lengths are Hilbert embeddable</h1>
+<p><span class="badge" style="background:#178a5e">ESTABLISHED</span> <span class='muted'>claim · <code>research/hilbert-embeddable-length-hyperlinearity.md</code></span></p>
+<p class='muted'>via route hilbert-embeddable-length-hyperlinearity-proof</p>
+<h2>Routes into this claim</h2><ul class='rel'>
+<li><a class="node" href="hilbert-embeddable-length-hyperlinearity-proof.html">hilbert-embeddable-length-hyperlinearity-proof</a> <span class="badge" style="background:#178a5e">COMPLETE</span> Schoenberg transform of an invariant length, realized by a genuine character</li>
+</ul>
+<h2>Needed by routes</h2><ul class='rel'>
+<li><a class="node" href="clifford-cover-hilbert-embeddable-route.html">clifford-cover-hilbert-embeddable-route</a> <span class="badge" style="background:#c08a00">OPEN</span> Upgrade the Clifford cover&#x27;s weak-soficity witness to a hyperlinear one</li>
+<li><a class="node" href="hilbert-embeddable-witness-route.html">hilbert-embeddable-witness-route</a> <span class="badge" style="background:#c08a00">OPEN</span> Convert a Hilbert embeddable weak-soficity witness into unitary microstates</li>
+</ul>
+<h2>Distinct from</h2><ul class='rel'>
+<li><a class="node" href="sofic-implies-hyperlinear.html">sofic-implies-hyperlinear</a> <span class="badge" style="background:#178a5e">ESTABLISHED</span> Soficity implies hyperlinearity<br><span class='muted'>that is the permutation instance, with the Hamming length; this identifies the property of a general bi-invariant length that makes the same conversion work, and shows the property can fail.</span></li>
+<li><a class="node" href="weakly-sofic-not-sofic.html">weakly-sofic-not-sofic</a> <span class="badge" style="background:#178a5e">ESTABLISHED</span> Weakly sofic does not imply sofic<br><span class='muted'>that separates weak soficity from soficity using Glebsky permanence; this says what a weak-soficity witness must additionally satisfy to give hyperlinearity, and is what turns that separation into a Question 3.4 attack.</span></li>
+<li><a class="node" href="hyperlinear-near-representation-criterion.html">hyperlinear-near-representation-criterion</a> <span class="badge" style="background:#178a5e">ESTABLISHED</span> Hyperlinearity is equivalent to an essentially free amenable near representation<br><span class='muted'>that is Kahl--Schneider&#x27;s abstract characterization by amenable near representations; this is a finite-group, character-theoretic criterion applied to weak-soficity witnesses.</span></li>
+<li><a class="node" href="hilbert-embeddable-witness-for-kun-thom-wreath.html">hilbert-embeddable-witness-for-kun-thom-wreath</a> <span class="badge" style="background:#c08a00">OPEN</span> A Hilbert embeddable weak-soficity witness for the Kun--Thom wreath<br><span class='muted'>that asks whether one explicit group&#x27;s witnesses have the property; this is the general theorem that the property suffices, proved for all groups and calibrated by examples on both sides.</span></li>
+</ul>
+<h2>Artifacts</h2><ul class='rel'>
+<li><code>docs/NOTEPAD.md</code></li>
+<li><code>GroupApproximation/Sofic/Hyperlinear.lean</code></li>
+</ul>
+<h2>Statement</h2>
+<p>Call a conjugation-invariant length <code>ell</code> on a finite group <code>K</code> (real, symmetric, <code>ell(k)=0</code> iff <code>k=1</code>) <strong>Hilbert embeddable</strong> when the kernel <code>(a,b) |-&gt; ell(a^(-1)b)</code> is conditionally negative definite.</p>
+<p>1. <strong>Character criterion.</strong>  Expanding <code>ell</code> in irreducible characters, <code>ell = sum_i b_i chi_i</code>, the length is Hilbert embeddable if and only if</p>
+<pre>
+   b_i &lt;= 0   for every nontrivial irreducible chi_i.
+</pre>
+<p>2. <strong>Realization.</strong>  If <code>ell</code> is Hilbert embeddable then for every <code>t&gt;0</code> and <code>epsilon&gt;0</code> there is a unitary representation <code>rho</code> of <code>K</code> with <code>|tr rho(k) - exp(-t ell(k))| &lt; epsilon</code> for all <code>k</code>; consequently the normalized-Hilbert--Schmidt distance satisfies <code>||rho(a)-rho(b)||_2^2 = 2(1-exp(-t ell(a^(-1)b))) + O(epsilon)</code>, which for <code>ell</code> bounded by <code>1</code> is comparable to <code>ell(a^(-1)b)</code> with constants depending only on <code>t</code>. 3. <strong>Criterion.</strong>  A countable group which is weakly sofic <em>with Hilbert embeddable witnessing lengths</em> is hyperlinear.  The normalization is the one already in the definition of weak soficity (recorded, with its numbering, in <code><a href="glebsky-weak-soficity-is-metric-free.html">glebsky-weak-soficity-is-metric-free</a></code>): lengths bounded by <code>1</code>, defect tending to zero, separation bounded below by a constant not depending on the defect.  All comparison constants in 2 are then absolute — they come from concavity of <code>s |-&gt; 2(1-e^(-s))</code> on <code>[0,1]</code> — so no uniformity is lost along the witness family.  What the normalization is doing is genuine and not bookkeeping: if the diameters were allowed to grow, rescaling to diameter <code>1</code> would drive the separation to zero.  The conclusion is hyperlinearity in the maximal-separation sense of <code>Sofic/Hyperlinear.HyperlinearModel</code>; the upgrade from constant to maximal separation is <em>not</em> free for unitary models (<code>HyperlinearAmplification.tensorPow_phase_collapse</code>), and it is available here only because the Schoenberg traces are approximately the real positive numbers <code>exp(-ell)</code>, which is exactly the scalar-freeness hypothesis of <code>exists_conjDouble_separation</code>. 4. <strong>Calibration.</strong>  Sufficiency has content on both sides:</p>
+<ul>
+<li>the normalized Hamming length on <code>Sym(n)</code> is Hilbert embeddable, and 3</li>
+<p>then reproduces the formalized <code><a href="sofic-implies-hyperlinear.html">sofic-implies-hyperlinear</a></code>;</p>
+<li>the discrete length is Hilbert embeddable, reproducing</li>
+<p>"residually finite (or LEF) implies hyperlinear";</p>
+<li>on any family with a uniform character ratio bound</li>
+<p><code>|chi(x)|/chi(1)&lt;=c&lt;1</code> (Gluck, finite Lie type), <em>every</em> Hilbert embeddable invariant length is uniformly bi-Lipschitz to the discrete length, so witnesses through such groups collapse to LEF witnesses. This is where the asymptotic content lives, and it subsumes the recorded rank/Schoenberg no-go;</p>
+<li>the <code>F_2</code>-rank length on <code>GL_2(F_2)</code> is <strong>not</strong> Hilbert embeddable —</li>
+<p>the sign character carries coefficient <code>1/6</code> — but this single-group computation has no asymptotic content on its own, since <code>rank^s</code> on the same group <em>is</em> Hilbert embeddable for every <code>s &lt;= log_2(3/2)</code>. Conditional negativity is parametrization-sensitive in both directions (<code>d_H</code> is, <code>d_H^2</code> is not), so any candidate-witness question must name the function that carries the defect and separation bookkeeping.</p>
+</ul>
+<p>5. <strong>Normalized-character form, and why the normalization must stay.</strong>  The cone of Hilbert embeddable invariant lengths is generated by the <code>psi_i(h)=d_i-Re chi_i(h)</code>, <code>i</code> nontrivial (cairn-bernoulli, <code><a href="hilbert-embeddable-is-representation-realized.html">hilbert-embeddable-is-representation-realized</a></code>), equivalently by the normalized <code>1-Re chi_i/d_i</code>.  That gives the exact identity <code>psi_rho(h)=(1/2)||rho(h)-1||_F^2</code> for a representation <code>rho</code> with the matching multiplicities.  It does <strong>not</strong> replace item 2, because the conversion this criterion needs is to the <em>normalized</em> Hilbert--Schmidt metric, and</p>
+<pre>
+   ||rho(a)-rho(b)||_(2,norm)^2 = 2 psi_rho(a^(-1)b) / dim(rho),
+</pre>
+<p>whose scalar <code>1/dim(rho)</code> is not bounded below along a family — the Frobenius identity is exact but the separation it delivers can decay like <code>1/dim</code>.  What item 2 produces instead is a representation whose <em>normalized</em> trace realizes the length, which is dimension free.  So the right object to design is a <strong>normalized character</strong> <code>phi = sum_i lambda_i chi_i/d_i</code>, <code>lambda_i&gt;=0</code>, <code>sum_i lambda_i = 1</code>, with</p>
+<pre>
+   phi ~ 1 on the error set,     |phi| bounded away from 1 on the targets,
+</pre>
+<p>after which <code>rho o sigma</code> <em>is</em> the microstate, since <code>rho</code> is a genuine homomorphism.  The two formulations correspond by <code>ell = 1 - Re phi</code>.</p>
+<p><strong>Three descriptions, one object.</strong>  For a countable group the following coincide, and this is the canonical form the weak-soficity lanes compute against:</p>
+<ul>
+<li>it is weakly sofic with Hilbert embeddable witnessing lengths (this</li>
+<p>claim);</p>
+<li>it lies in cairn-bernoulli's class <code>C_FU</code> — approximable by *finite</li>
+<p>subgroups of unitary groups* in normalized Hilbert--Schmidt, equivalently its microstates factor as <code>Phi -&gt; K -&gt; U(m)</code> with the second arrow a homomorphism;</p>
+<li>the normalized-multiplicity linear program of</li>
+<p><code><a href="hilbert-embeddable-length-lp-feasibility.html">hilbert-embeddable-length-lp-feasibility</a></code> is feasible along the family.</p>
+</ul>
+<p>The identification is <code>ell = 1 - Re phi</code> in one direction and item 2 in the other.  <strong>The normalization caveat travels with it</strong>: the LP must be run on the simplex <code>lambda_i &gt;= 0</code>, <code>sum_i lambda_i = 1</code> in the normalized generators <code>1 - Re chi_i/d_i</code>, not on an unconstrained multiplicity vector in the <code>psi_i</code>.  The two span the same cone, so ratios of linear functionals are unaffected, but the <em>conversion</em> to microstates is not: an exact unnormalized realization <code>psi_rho = ell</code> yields normalized separation <code>2c/dim(rho)</code>, which decays along a family. In these coordinates the collapse in item 4 is one line: if no nontrivial normalized character comes near <code>1</code> anywhere, then <code>phi ~ 1</code> on the error set forces <code>lambda_triv ~ 1</code>, hence <code>phi ~ 1</code> everywhere, hence no separation. 6. <strong>Calibration against Glebsky's own construction.</strong>  The lengths his Lemma 3 manufactures are conjugation-invariant word metrics, so the criterion can be run against them directly, and it cuts both ways.</p>
+<ul>
+<li><em>The smallest nonabelian instance fails.</em>  On <code>H=S_3</code> with the</li>
+<p>transposition class as generating set the word metric is <code>(0,1,1,1,2,2)</code>, which <strong>is</strong> the <code>F_2</code>-rank length on <code>GL_2(F_2)=S_3</code> of item 4 — so the recorded non-embeddable example is not merely analogous to that family, it is a member of it.</p>
+<li><em>The lamp direction passes.</em>  On <code>(Z/2)^A</code> with the coordinate</li>
+<p>generators the word metric is the Hamming weight <code>sum_alpha (1-epsilon_alpha)/2</code>, a nonnegative combination of <code>1 - character</code>, hence Hilbert embeddable outright.</p>
+</ul>
+<p>So generic parameter choices fail while the lamp direction is free: for a lamp-and-acting-part witness the question is entirely about the acting part's contribution.</p>
+<p>This is a <strong>sufficient</strong> condition only.  Hyperlinearity is not known to return a weak-soficity witness — hyperlinear approximations live in <code>U(n)</code>, not in finite groups — so a negative answer for Glebsky's construction would not show the Kun--Thom wreath non-hyperlinear.  What the criterion does give is one finite, mechanical route from the settled statement "the Kun--Thom wreath is weakly sofic and not sofic" to Question 3.4: whether Glebsky's witnesses admit a uniformly Hilbert embeddable reparametrization.</p></body>

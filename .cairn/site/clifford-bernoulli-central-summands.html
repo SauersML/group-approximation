@@ -1,0 +1,36 @@
+<!doctype html><meta charset='utf-8'><title>clifford-bernoulli-central-summands</title><style>
+body{font:15px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;max-width:60em;margin:2em auto;padding:0 1em;color:#1c1e1c}
+a{color:#4f46e5;text-decoration:none}a:hover{text-decoration:underline}
+code,pre{font:13px/1.45 Menlo,monospace;background:#f4f4f2}
+pre{padding:.8em;overflow-x:auto;border:1px solid #e5e7e3}
+.badge{display:inline-block;padding:.1em .55em;border-radius:.8em;color:#fff;font:700 11px -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;letter-spacing:.04em}
+.node{font:13px Menlo,monospace}
+h1{font-size:1.4em}h2{font-size:1.05em;border-bottom:1px solid #e5e7e3;padding-bottom:.2em}
+ul.rel{list-style:none;padding-left:0}ul.rel li{margin:.25em 0}
+.muted{color:#8b9089}.tree{white-space:pre;font:13px/1.5 Menlo,monospace;background:#fafaf8;border:1px solid #e5e7e3;padding:1em;overflow-x:auto}
+table{border-collapse:collapse}td,th{border:1px solid #e5e7e3;padding:.25em .6em;font-size:.9em}
+</style><script>MathJax={tex:{inlineMath:[["$","$"],["\\(","\\)"]]}};</script><script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script><body><p><a href='index.html'>← index</a></p>
+<h1><span class='node'>clifford-bernoulli-central-summands</span> The Bernoulli and Clifford crossed products are the two central summands of one lamp group</h1>
+<p><span class="badge" style="background:#178a5e">ESTABLISHED</span> <span class='muted'>claim · <code>research/clifford-bernoulli-central-summands.md</code></span></p>
+<p class='muted'>via route clifford-bernoulli-central-summands-proof</p>
+<h2>Routes into this claim</h2><ul class='rel'>
+<li><a class="node" href="clifford-bernoulli-central-summands-proof.html">clifford-bernoulli-central-summands-proof</a> <span class="badge" style="background:#178a5e">COMPLETE</span> Cut the Clifford lamp group algebra by the central sign projection</li>
+</ul>
+<h2>Distinct from</h2><ul class='rel'>
+<li><a class="node" href="kun-thom-clifford-crossed-product-ce.html">kun-thom-clifford-crossed-product-ce</a> <span class="badge" style="background:#c08a00">OPEN</span> Connes embeddability of the Kun--Thom Clifford crossed product<br><span class='muted'>that asks whether the Clifford summand is Connes embeddable; this is the structural identity that places it and the Bernoulli summand inside one group von Neumann algebra, and it decides neither</span></li>
+<li><a class="node" href="kun-thom-clifford-radical-phase.html">kun-thom-clifford-radical-phase</a> <span class="badge" style="background:#178a5e">ESTABLISHED</span> The Kun--Thom sofic-radical word has an exact Clifford phase detector<br><span class='muted'>that is the sofic-radical phase detector inside the Clifford crossed product; this is a decomposition of the ambient algebra with no radical or phase in it</span></li>
+</ul>
+<h2>Artifacts</h2><ul class='rel'>
+<li><code>docs/TRUE_CLIFFORD_LAMP_CENTRAL_SUMMANDS.md</code></li>
+</ul>
+<h2>Statement</h2>
+<p>Let <code>X</code> be a <code>G</code>-set and let the <strong>Clifford lamp group</strong> be</p>
+<pre>
+C(X) = ⟨ c_x (x ∈ X), z | z² = 1, z central, c_x² = 1, c_x c_y = z c_y c_x (x ≠ y) ⟩,
+</pre>
+<p>a central <code>ℤ/2</code>-extension of <code>⊕_X ℤ/2</code> on which <code>G</code> acts by <code>g·c_x = c_(gx)</code>, <code>g·z = z</code>. Put <code>W̃ = C(X) ⋊ G</code>, so <code>W̃/⟨z⟩ = W</code>. Then <code>p_± = (1 ± z)/2</code> are <code>G</code>-fixed central projections of trace <code>1/2</code> and</p>
+<pre>
+L(W̃) = ( L^∞({±1}^X) ⋊ G ) ⊕ ( Cl(X) ⋊ G ).
+</pre>
+<p>Consequences:</p>
+<p>1. <code>W̃</code> is hyperlinear <strong>iff both</strong> <code>L(W) = M_KT</code> and <code>Cl(X) ⋊ G</code> are Connes embeddable, so jointly they are hyperlinearity of the single group <code>W̃</code>. They are <strong>not</strong> independent, however, and an earlier version of this line said they were: <code><a href="clifford-ce-implies-bernoulli-ce.html">clifford-ce-implies-bernoulli-ce</a></code> proves that Connes embeddability of <code>Cl(X) ⋊ G</code> implies Connes embeddability of <code>M_KT</code>, by diagonal doubling <code>c_x ⊗ c_x</code> inside a tensor square (<code>TRUE_DOUBLE_CLIFFORD_KUN_THOM_REDUCTION.md</code>, <code>(DCK11)</code>–<code>(DCK14)</code>) — a cross-summand argument the direct-sum picture does not see. Hence <code><a href="kun-thom-clifford-crossed-product-ce.html">kun-thom-clifford-crossed-product-ce</a></code> is by itself equivalent to hyperlinearity of <code>W̃</code>, and it implies <code><a href="hyperlinear-wreath-model.html">hyperlinear-wreath-model</a></code>. No converse is known. 2. <code>W</code> is hyperlinear as soon as <code>W̃</code> is, although <code>W</code> is a <strong>quotient</strong> of <code>W̃</code>. Hyperlinearity does not pass to quotients in general; it does here because a central <code>ℤ/2</code> makes the quotient's group algebra a direct summand rather than a quotient algebra. 3. <code><a href="diagonal-normalizer-rigidity.html">diagonal-normalizer-rigidity</a></code> and <code><a href="invariant-cartan-completion.html">invariant-cartan-completion</a></code> apply to the Bernoulli summand <strong>only</strong>. Their engine is the abelian diagonalization lemma, and <code>Cl(X)</code> is a <code>II₁</code> factor, so no conjugation puts it in a diagonal ultraproduct. Kun–Thom Definition 2.2 and Corollary D are statements about p.m.p. actions and have no purchase on the Clifford summand; it is obstructed only through the repository's own radical-phase detector. 4. Conversely Kun–Thom Theorem A's endgame transcribes verbatim to <code>W̃</code>, since <code>Γ</code> fixes the base coset and distinct Majoranas are distinct: <code>W̃</code> is nonsofic for the same reason <code>W</code> is.</p></body>

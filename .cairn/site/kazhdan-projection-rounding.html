@@ -1,0 +1,33 @@
+<!doctype html><meta charset='utf-8'><title>kazhdan-projection-rounding</title><style>
+body{font:15px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;max-width:60em;margin:2em auto;padding:0 1em;color:#1c1e1c}
+a{color:#4f46e5;text-decoration:none}a:hover{text-decoration:underline}
+code,pre{font:13px/1.45 Menlo,monospace;background:#f4f4f2}
+pre{padding:.8em;overflow-x:auto;border:1px solid #e5e7e3}
+.badge{display:inline-block;padding:.1em .55em;border-radius:.8em;color:#fff;font:700 11px -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;letter-spacing:.04em}
+.node{font:13px Menlo,monospace}
+h1{font-size:1.4em}h2{font-size:1.05em;border-bottom:1px solid #e5e7e3;padding-bottom:.2em}
+ul.rel{list-style:none;padding-left:0}ul.rel li{margin:.25em 0}
+.muted{color:#8b9089}.tree{white-space:pre;font:13px/1.5 Menlo,monospace;background:#fafaf8;border:1px solid #e5e7e3;padding:1em;overflow-x:auto}
+table{border-collapse:collapse}td,th{border:1px solid #e5e7e3;padding:.25em .6em;font-size:.9em}
+</style><script>MathJax={tex:{inlineMath:[["$","$"],["\\(","\\)"]]}};</script><script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script><body><p><a href='index.html'>← index</a></p>
+<h1><span class='node'>kazhdan-projection-rounding</span> Almost-invariant projections round into the relative commutant</h1>
+<p><span class="badge" style="background:#178a5e">ESTABLISHED</span> <span class='muted'>claim · <code>research/kazhdan-projection-rounding.md</code></span></p>
+<p class='muted'>via route kazhdan-projection-rounding-proof</p>
+<h2>Routes into this claim</h2><ul class='rel'>
+<li><a class="node" href="kazhdan-projection-rounding-proof.html">kazhdan-projection-rounding-proof</a> <span class="badge" style="background:#178a5e">COMPLETE</span> Kazhdan gap, bimodule identity, spectral rounding at one half</li>
+</ul>
+<h2>Distinct from</h2><ul class='rel'>
+<li><a class="node" href="kazhdan-asymptotic-commutant-transport.html">kazhdan-asymptotic-commutant-transport</a> <span class="badge" style="background:#178a5e">ESTABLISHED</span> One-sided Kazhdan transport of asymptotic commutants<br><span class='muted'>That transports asymptotic commutants along a compressor in an operator-norm asymptotic representation; this is a single-step quantitative rounding inside one finite tracial algebra, with no compressor and no asymptotics.</span></li>
+<li><a class="node" href="commutant-projection-extraction.html">commutant-projection-extraction</a> <span class="badge" style="background:#c08a00">OPEN</span> Corner-invisible central unitaries in a matrix corona are trivial<br><span class='muted'>That asks for projections inside the relative commutant of a central mark; this produces one from an almost-invariant projection anywhere in the algebra, with a constant depending only on the Kazhdan constant.</span></li>
+<li><a class="node" href="invariant-size-collapse.html">invariant-size-collapse</a> <span class="badge" style="background:#178a5e">ESTABLISHED</span> No strict compression under a conjugation-invariant monotone size<br><span class='muted'>That is the collapse principle for a conjugation-invariant monotone size; this is an analytic approximation statement and says nothing about compressions.</span></li>
+</ul>
+<h2>Artifacts</h2><ul class='rel'>
+<li><code>docs/TRUE_RELATIVE_WALL_IS_COMMUTANT_GROWTH.md</code></li>
+</ul>
+<h2>Statement</h2>
+<p>Let <code>Gamma</code> have property <code>(T)</code> with Kazhdan set <code>S</code> and constant <code>kappa</code>, let <code>pi:G-&gt;U(M)</code> with <code>M</code> finite tracial, and <code>N=M cap pi(Gamma)'</code>.  For every projection <code>p in M</code> there is a projection <code>q in N</code> with</p>
+<pre>
+||p-q||_2 &lt;= (1+sqrt2) kappa^(-1) max_(s in S) ||[pi(s),p]||_2.
+</pre>
+<p>The proof is three exact steps: property <code>(T)</code> applied to the trace-preserving action on <code>L^2(M)</code>, whose fixed space is <code>L^2(N)</code> and whose orthogonal projection is the conditional expectation <code>E_N</code>; the identity <code>||p-E_N(p)||_2^2 = tau(a(1-a))</code> for <code>a=E_N(p)</code>, which uses only that <code>E_N</code> is a trace-preserving <code>N</code>-bimodule map; and spectral rounding of <code>a</code> at <code>1/2</code>, using <code>(t-chi_([1/2,1])(t))^2 &lt;= 2t(1-t)</code> on <code>[0,1]</code>.</p>
+<p><strong>Scope, which is the point.</strong>  This is the conditional-expectation form of the gap, and it does <em>not</em> give a trace dichotomy.  Concluding that <code>tau(p)</code> is near <code>0</code> or <code>1</code> needs <code>N</code> to have no projection of intermediate trace, and a diffuse <code>N</code> carries projections of every trace in <code>[0,1]</code>.  So the obstacle in converting spectral gap into "small commutator energy implies small trace on one side" is not the vector-state form of <code>(T)</code> -- that upgrades cleanly -- but the structure of the relative commutant, which is the same missing input recorded by <code><a href="invariant-size-collapse.html">invariant-size-collapse</a></code>.</p></body>

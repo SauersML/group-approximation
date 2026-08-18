@@ -1,0 +1,27 @@
+<!doctype html><meta charset='utf-8'><title>pauli-carrier-membership-decoder</title><style>
+body{font:15px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;max-width:60em;margin:2em auto;padding:0 1em;color:#1c1e1c}
+a{color:#4f46e5;text-decoration:none}a:hover{text-decoration:underline}
+code,pre{font:13px/1.45 Menlo,monospace;background:#f4f4f2}
+pre{padding:.8em;overflow-x:auto;border:1px solid #e5e7e3}
+.badge{display:inline-block;padding:.1em .55em;border-radius:.8em;color:#fff;font:700 11px -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;letter-spacing:.04em}
+.node{font:13px Menlo,monospace}
+h1{font-size:1.4em}h2{font-size:1.05em;border-bottom:1px solid #e5e7e3;padding-bottom:.2em}
+ul.rel{list-style:none;padding-left:0}ul.rel li{margin:.25em 0}
+.muted{color:#8b9089}.tree{white-space:pre;font:13px/1.5 Menlo,monospace;background:#fafaf8;border:1px solid #e5e7e3;padding:1em;overflow-x:auto}
+table{border-collapse:collapse}td,th{border:1px solid #e5e7e3;padding:.25em .6em;font-size:.9em}
+</style><script>MathJax={tex:{inlineMath:[["$","$"],["\\(","\\)"]]}};</script><script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script><body><p><a href='index.html'>← index</a></p>
+<h1><span class='node'>pauli-carrier-membership-decoder</span> Decode the transported Pauli carrier inside the raw binary algebra</h1>
+<p><span class="badge" style="background:#c08a00">OPEN</span> <span class='muted'>claim · <code>research/pauli-carrier-membership-decoder.md</code></span></p>
+<h2>Needed by routes</h2><ul class='rel'>
+<li><a class="node" href="pauli-binary-membership-route.html">pauli-binary-membership-route</a> <span class="badge" style="background:#c08a00">OPEN</span> Close nonhyperlinearity with one Pauli binary-membership estimate</li>
+</ul>
+<h2>Distinct from</h2><ul class='rel'>
+<li><a class="node" href="finite-window-decoder.html">finite-window-decoder</a> <span class="badge" style="background:#c08a00">OPEN</span> Finite-window endomorphism decoder<br><span class='muted'>This asks only for one binary-algebra membership estimate on the fixed Pauli carrier; the other reconstructs the four finite-window endomorphisms.</span></li>
+<li><a class="node" href="outer-pvm-synchronization.html">outer-pvm-synchronization</a> <span class="badge" style="background:#c08a00">OPEN</span> Synchronize the two outer transition PVMs on a common carrier<br><span class='muted'>This is the coefficient-space membership endpoint after the common carrier is selected; the other constructs a joint transition PVM.</span></li>
+</ul>
+<h2>Statement</h2>
+<p>In every asymptotically multiplicative normalized-HS model of the fixed Leavitt atlas packet, recover the trace-<code>1/8</code> raw Pauli projection <code>E</code> and the trace-<code>1/4</code> transported projection <code>F</code> in common finite multiplicity coordinates and prove</p>
+<pre>
+dist_2(F, W*(E)) -&gt; 0.
+</pre>
+<p>This is the shortest remaining fixed-packet synchronization statement.  It must use the mixed compressor/root relations: finite subgroup moments alone admit exact Pauli countermodels.</p></body>

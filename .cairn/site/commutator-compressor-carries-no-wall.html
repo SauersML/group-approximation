@@ -1,0 +1,29 @@
+<!doctype html><meta charset='utf-8'><title>commutator-compressor-carries-no-wall</title><style>
+body{font:15px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;max-width:60em;margin:2em auto;padding:0 1em;color:#1c1e1c}
+a{color:#4f46e5;text-decoration:none}a:hover{text-decoration:underline}
+code,pre{font:13px/1.45 Menlo,monospace;background:#f4f4f2}
+pre{padding:.8em;overflow-x:auto;border:1px solid #e5e7e3}
+.badge{display:inline-block;padding:.1em .55em;border-radius:.8em;color:#fff;font:700 11px -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;letter-spacing:.04em}
+.node{font:13px Menlo,monospace}
+h1{font-size:1.4em}h2{font-size:1.05em;border-bottom:1px solid #e5e7e3;padding-bottom:.2em}
+ul.rel{list-style:none;padding-left:0}ul.rel li{margin:.25em 0}
+.muted{color:#8b9089}.tree{white-space:pre;font:13px/1.5 Menlo,monospace;background:#fafaf8;border:1px solid #e5e7e3;padding:1em;overflow-x:auto}
+table{border-collapse:collapse}td,th{border:1px solid #e5e7e3;padding:.25em .6em;font-size:.9em}
+</style><script>MathJax={tex:{inlineMath:[["$","$"],["\\(","\\)"]]}};</script><script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script><body><p><a href='index.html'>← index</a></p>
+<h1><span class='node'>commutator-compressor-carries-no-wall</span> Commutator compressors carry no wall unless a factor has infinite growth</h1>
+<p><span class="badge" style="background:#178a5e">ESTABLISHED</span> <span class='muted'>claim · <code>research/commutator-compressor-carries-no-wall.md</code></span></p>
+<p class='muted'>via route commutator-compressor-carries-no-wall-proof</p>
+<h2>Routes into this claim</h2><ul class='rel'>
+<li><a class="node" href="commutator-compressor-carries-no-wall-proof.html">commutator-compressor-carries-no-wall-proof</a> <span class="badge" style="background:#178a5e">COMPLETE</span> Cancel the growth index across a Steinberg factorization</li>
+</ul>
+<h2>Distinct from</h2><ul class='rel'>
+<li><a class="node" href="relative-wall-commutant-growth.html">relative-wall-commutant-growth</a> <span class="badge" style="background:#178a5e">ESTABLISHED</span> A relative wall is exactly compressor growth of the relative commutant<br><span class='muted'>That claim is an equivalence with no hypothesis on the compressor; this one is an obstruction that applies only to compressors expressible as commutators inside the compressor semigroup, and its conclusion is a quantitative infinite-index demand on the factors.</span></li>
+<li><a class="node" href="compressor-growth-index-homomorphism.html">compressor-growth-index-homomorphism</a> <span class="badge" style="background:#178a5e">ESTABLISHED</span> The commutant growth index is multiplicative on the compressor semigroup<br><span class='muted'>That claim states the multiplicative law of the growth index; this one is the group-theoretic consequence obtained by cancelling that law across a Steinberg relation, together with its concrete form for the monomial-cone pair.</span></li>
+</ul>
+<h2>Artifacts</h2><ul class='rel'>
+<li><code>docs/TRUE_RELATIVE_WALL_IS_COMMUTANT_GROWTH.md</code></li>
+</ul>
+<h2>Statement</h2>
+<p>If <code>a,b</code> and <code>s=[a,b]</code> all lie in <code>P_Gamma</code> and <code>lambda(a),lambda(b)</code> are finite, then <code>lambda(s)=1</code> and there is no relative wall for the compressor <code>s</code>.  Reason: <code>ab=s b a</code> is one element with two factorizations inside <code>P_Gamma</code>, and a multiplicative invariant with values in an abelian monoid cannot survive the cancellation.</p>
+<p>For the explicit Kun--Thom Theorem E pair <code>Gamma=EL_r(F_q[x_1..x_d]) &lt; G=EL_r(F_q[x^(+-1)]) semidirect SL_d(Z)</code> (<code>r,d&gt;=3</code>), every nonnegative matrix in <code>SL_d(Z)</code> is a compressor, so the positive elementary transvections <code>u_(ij)(c)=I+c e_(ij)</code> lie in <code>P_Gamma</code> and satisfy <code>[u_(ik)(a),u_(kj)(b)]=u_(ij)(ab)</code>.  This repository's explicit compressor is <code>t=t_(u_12)</code> with ring image <code>F_q[x_1,x_1x_2,x_3,...,x_d]</code>, and <code>u_12=[u_13,u_32]</code>.  Hence a wall there forces <code>lambda(u_13)=infinity</code> or <code>lambda(u_32)=infinity</code>; and if every positive elementary transvection has finite growth index then all have index <code>1</code> and no compressor in the monoid they generate carries a wall.</p>
+<p>This is the substitute for the Ore argument refuted by <code>FALSE_COMPRESSION_SEMIGROUP_ORE_NO_GO.md</code>: the compressor semigroup has no fractions, but it does have commutators.</p></body>

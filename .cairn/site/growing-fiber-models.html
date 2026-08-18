@@ -1,0 +1,48 @@
+<!doctype html><meta charset='utf-8'><title>growing-fiber-models</title><style>
+body{font:15px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;max-width:60em;margin:2em auto;padding:0 1em;color:#1c1e1c}
+a{color:#4f46e5;text-decoration:none}a:hover{text-decoration:underline}
+code,pre{font:13px/1.45 Menlo,monospace;background:#f4f4f2}
+pre{padding:.8em;overflow-x:auto;border:1px solid #e5e7e3}
+.badge{display:inline-block;padding:.1em .55em;border-radius:.8em;color:#fff;font:700 11px -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;letter-spacing:.04em}
+.node{font:13px Menlo,monospace}
+h1{font-size:1.4em}h2{font-size:1.05em;border-bottom:1px solid #e5e7e3;padding-bottom:.2em}
+ul.rel{list-style:none;padding-left:0}ul.rel li{margin:.25em 0}
+.muted{color:#8b9089}.tree{white-space:pre;font:13px/1.5 Menlo,monospace;background:#fafaf8;border:1px solid #e5e7e3;padding:1em;overflow-x:auto}
+table{border-collapse:collapse}td,th{border:1px solid #e5e7e3;padding:.25em .6em;font-size:.9em}
+</style><script>MathJax={tex:{inlineMath:[["$","$"],["\\(","\\)"]]}};</script><script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script><body><p><a href='index.html'>← index</a></p>
+<h1><span class='node'>growing-fiber-models</span> Growing-fiber models with no surviving coarse index set</h1>
+<p><span class="badge" style="background:#c08a00">OPEN</span> <span class='muted'>route · <code>research/growing-fiber-models.md</code></span></p>
+<h2>Target</h2><ul class='rel'>
+<li><a class="node" href="hyperlinear-wreath-model.html">hyperlinear-wreath-model</a> <span class="badge" style="background:#c08a00">OPEN</span> Construct a hyperlinear model of the wreath candidate</li>
+</ul>
+<h2>Requires</h2><ul class='rel'>
+<li><a class="node" href="fiber-masa-free-cocycle.html">fiber-masa-free-cocycle</a> <span class="badge" style="background:#c08a00">OPEN</span> A lamp embedding with no invariant coarse block decomposition</li>
+</ul>
+<h2>Artifacts</h2><ul class='rel'>
+<li><code>docs/TRUE_BLOCK_MONOMIAL_COORDINATE_COLLAPSE.md</code></li>
+<li><code>research/artifacts/kun-thom-2608-06222-verified.md</code></li>
+</ul>
+<h2>Statement</h2>
+<h2>Growing-fiber models with no surviving coarse index set</h2>
+<p>The architecture that survives <code><a href="coordinate-action-not-sofic.html">coordinate-action-not-sofic</a></code>, stated in the only form the demolition below leaves standing.</p>
+<h3>Where the room is</h3>
+<p><code><a href="coordinate-action-not-sofic.html">coordinate-action-not-sofic</a></code> says a hyperlinear model of <code>W</code> cannot have permutation normalizers for the lamp algebra. It does <strong>not</strong> say the lamps cannot sit in a diagonal: Kun–Thom Corollary D forbids the pair (diagonal lamps, permutation group unitaries), not the first half alone. And the first half is free — the repository's diagonalization lemma conjugates any separable abelian trace-preserving image into the diagonal ultraproduct, since it has a self-adjoint generator whose representing matrices can be diagonalized one at a time.</p>
+<p>So the only thing a model must avoid is permutation-ness of the <code>Θ(u_g)</code>. The natural currency is a fiber the lamps cannot see: model space <code>ℂ^{Y_n} ⊗ ℂ^{m_n}</code> with <code>m_n → ∞</code>, lamps in <code>D_{Y_n} ⊗ 1</code>, and the group's Hilbert–Schmidt separation stored in the <code>U(m_n)</code> part. Trace is additive under refinement, so it cannot tell a block from a point — this is precisely the trace-blindness the flexible branch has been looking for, and <code>τ(Θ(u_g))</code> genuinely bears no relation to the fixed-point fraction of any coordinate permutation.</p>
+<h3>The demolition, and why it fixes the specification</h3>
+<p>The naive version of that idea is dead, unconditionally (<code><a href="block-monomial-coordinate-collapse.html">block-monomial-coordinate-collapse</a></code>, proved in the artifact). If the <code>Θ(u_g)</code> are exactly block-monomial over <code>Y_n</code>, then:</p>
+<ul>
+<li>permutation parts exist and are a homomorphism on <code>U(m) ≀ Sym(Y)</code>;</li>
+<li><code>‖A − B‖₂² ≥ 2 d_H(π(A), π(B))</code> <strong>uniformly in <code>m</code></strong>, because a mismatch of</li>
+<p>permutation parts displaces a whole unitary block, so multiplicativity of <code>Θ</code> descends to the permutation parts;</p>
+<li>conjugating <code>D_{Y_n} ⊗ 1</code> by a block-monomial cancels the blocks exactly, so</li>
+<p>the lamps stay covariant for those permutations, and faithfully so;</p>
+<li>the one thing the fiber bought — non-faithfulness on <code>G</code> — is bought back</li>
+<p>for free by tensoring with a sofic representation of <code>G</code>, which exists because <code>G</code> is residually finite.</p>
+</ul>
+<p>What comes out is a genuine sofic-action witness, contradicting Corollary D. The trace really is blind to the fiber; the obstruction simply does not live there. It rides on the lamps, and the lamps are on the coordinates.</p>
+<p>That is why this route requires <code><a href="fiber-masa-free-cocycle.html">fiber-masa-free-cocycle</a></code> rather than "build a fiber model". The requirement is not that no <em>masa</em> be invariant — that would be the weaker condition <code><a href="diagonal-normalizer-rigidity.html">diagonal-normalizer-rigidity</a></code> already handles, and its own sharpness note (the Fourier block <code>⊕_j F_m</code> centralizes a coarse subalgebra at distance <code>√2</code> from every monomial) is exactly the case the collapse shows is not a door. The requirement is that no <strong>coarse index set</strong> survive: no splitting <code>ℂ^{d_n} ≅ ℂ^{Y_n} ⊗ ℂ^{m_n}</code> carrying the lamps on <code>Y_n</code> may be preserved, and since such a splitting is always present approximately — a window of <code>k</code> lamps has <code>2^k</code> atoms of equal trace — the content is that its defect stay bounded away from zero.</p>
+<h3>Why the defect could be non-zero, and where that leaves things</h3>
+<p>The defect for the atom decomposition of a window <code>E ⊆ G/Γ</code> is controlled by the boundary of <code>E</code> under the <code>G</code>-action, and <code>G ↷ G/Γ</code> has no Følner sets: property (T) with infinite index. So the boundary carries a constant fraction, and one mismatched coordinate costs a configuration-space defect of order one. That is the amplification obstruction of <code>docs/OBSTRUCTIONS.md</code> §3, and on this reading it changes sign: it has always been recorded as an argument against models, and it is the only known <em>source</em> of the non-vanishing defect a model now has to exhibit. The open question is whether amplification supplies the defect or destroys the model first. That is one quantitative question about one number, which is a considerably better position than a search for an architecture.</p>
+<h3>Not a variation on the recorded dead architectures</h3>
+<p>Not a finite quotient of <code>G</code> — the coordinate part no longer carries separation, but it still cannot come from a finite quotient, since finite quotients collapse <code>G/Γ</code> to <code>G/⟨⟨Γ⟩⟩</code> and take the lamps with them. Not a free-probability carrier — the carrier is <code>∏_𝒰 M_{d_n}</code>, which contains <code>L(G) ⊇ L(Γ)</code>, a diffuse (T) algebra, with no Haagerup property in sight. Not a half-space tensor model — the fiber is not a one-sided shift and there is no tail to fall into. Not a one-variable Laurent fiber, and not a graded tower — nothing is graded and nothing shifts levels.</p>
+<p>Both standing diagnostics pass. <code>no_strict_compression_of_invariantSize</code> does not bite: the carrier is a <code>II₁</code> ultraproduct whose only conjugation-invariant size is the trace, and <code>docs/OBSTRUCTIONS.md</code> §1 shows the blindness of the trace to refinement is sharp, so no invariant argument can settle this branch. (T)-compatibility costs nothing: <code>G</code> is residually finite, hence sofic, hence hyperlinear, so <code>L(G)</code> is already Connes-embeddable. The entire difficulty is the lamps, and the entire difficulty in the lamps is now one defect estimate.</p></body>

@@ -1,0 +1,54 @@
+<!doctype html><meta charset='utf-8'><title>tracial-median-concentration</title><style>
+body{font:15px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;max-width:60em;margin:2em auto;padding:0 1em;color:#1c1e1c}
+a{color:#4f46e5;text-decoration:none}a:hover{text-decoration:underline}
+code,pre{font:13px/1.45 Menlo,monospace;background:#f4f4f2}
+pre{padding:.8em;overflow-x:auto;border:1px solid #e5e7e3}
+.badge{display:inline-block;padding:.1em .55em;border-radius:.8em;color:#fff;font:700 11px -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;letter-spacing:.04em}
+.node{font:13px Menlo,monospace}
+h1{font-size:1.4em}h2{font-size:1.05em;border-bottom:1px solid #e5e7e3;padding-bottom:.2em}
+ul.rel{list-style:none;padding-left:0}ul.rel li{margin:.25em 0}
+.muted{color:#8b9089}.tree{white-space:pre;font:13px/1.5 Menlo,monospace;background:#fafaf8;border:1px solid #e5e7e3;padding:1em;overflow-x:auto}
+table{border-collapse:collapse}td,th{border:1px solid #e5e7e3;padding:.25em .6em;font-size:.9em}
+</style><script>MathJax={tex:{inlineMath:[["$","$"],["\\(","\\)"]]}};</script><script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script><body><p><a href='index.html'>← index</a></p>
+<h1><span class='node'>tracial-median-concentration</span> Tracial median concentration of the block-size observable</h1>
+<p><span class="badge" style="background:#c08a00">OPEN</span> <span class='muted'>claim · <code>research/tracial-median-concentration.md</code></span></p>
+<h2>Routes into this claim</h2><ul class='rel'>
+<li><a class="node" href="tracial-median-from-block-decomposition.html">tracial-median-from-block-decomposition</a> <span class="badge" style="background:#c08a00">OPEN</span> Pin the size observable by spectral coarea against uniform block expansion</li>
+</ul>
+<h2>Needed by routes</h2><ul class='rel'>
+<li><a class="node" href="hs-block-decomposition-to-steinberg-stable.html">hs-block-decomposition-to-steinberg-stable</a> <span class="badge" style="background:#c08a00">OPEN</span> Transcribe the one-sided-compression nonsoficity argument to normalized HS</li>
+</ul>
+<h2>Distinct from</h2><ul class='rel'>
+<li><a class="node" href="hs-expander-block-decomposition.html">hs-expander-block-decomposition</a> <span class="badge" style="background:#c08a00">OPEN</span> Normalized-HS analogue of Kun&#x27;s expander decomposition<br><span class='muted'>That produces the blocks; this concentrates their traces once they exist, and is the step the permutation argument spends its median device on.</span></li>
+<li><a class="node" href="leavitt-steinberg-hs-stable.html">leavitt-steinberg-hs-stable</a> <span class="badge" style="background:#c08a00">OPEN</span> The binary Leavitt Steinberg cover is normalized-HS stable<br><span class='muted'>That is the branch selection; this is one of the two inputs a transcription of the nonsoficity argument would need.</span></li>
+<li><a class="node" href="invariant-size-collapse.html">invariant-size-collapse</a> <span class="badge" style="background:#178a5e">ESTABLISHED</span> No strict compression under a conjugation-invariant monotone size<br><span class='muted'>That is the exact algebraic statement that a conjugation-invariant strictly monotone size makes a compression an equality; this is the quantitative approximate substitute, needed precisely because the trace is refinement-blind and supplies no such size.</span></li>
+</ul>
+<h2>Artifacts</h2><ul class='rel'>
+<li><code>official/counterexample.tex</code></li>
+<li><code>docs/TRUE_SPECTRAL_COAREA_INVARIANT_CUT.md</code></li>
+</ul>
+<h2>Statement</h2>
+<p>Given a nested pair of almost-invariant block algebras as in <code><a href="hs-expander-block-decomposition.html">hs-expander-block-decomposition</a></code> -- coarse ambient blocks <code>q_A</code> almost invariant under <code>G</code>, fine blocks <code>p_i</code> almost invariant under <code>Gamma</code>, all inside one abelian algebra -- put</p>
+<pre>
+M = sum_i tau(p_i) p_i,
+f = sum_A q_A * M (M + m_A)^(-1) q_A,
+</pre>
+<p>where <code>m_A</code> is a median of the distribution of <code>M</code> in the corner <code>q_A</code> normalized by <code>tau(q_A)</code>.  Ask for: <code>‖f - 1/2‖_1 -&gt; 0</code>, hence a projection <code>e</code> of trace <code>-&gt; 1</code> such that any two fine blocks meeting <code>e</code> inside a common ambient block have traces differing by a factor tending to <code>1</code>.</p>
+<p>That last sentence is the operative output.  It says the fine blocks are <strong>asymptotically of equal trace</strong>, which is why this node exists: the unequal-trace case of the transcription is not a case to be handled separately, it is this statement.</p>
+<h3>Why this is the right unit</h3>
+<p>Reading <code>official/counterexample.tex:310-371</code> settles what the median device is for.  It is not a technique for coping with unequal component sizes; it is the proof that they are asymptotically equal.  The manuscript's <code>M(z)</code> is the size of the <code>Gamma</code>-component of <code>z</code>, and the paragraph at <code>:310</code> says plainly why raw sizes cannot be used -- "The values of <code>M</code> need not be uniformly bounded, so these exceptional sets cannot control its total variation" -- so <code>M</code> is renormalized to <code>f=M/(M+m_A)</code>, for which <code>1/2</code> is a median on every ambient component <code>A</code>.  Its conclusion <code>(8)</code> at <code>:365-370</code> is</p>
+<pre>
+rho_n^(-1) &lt;= M(w)/M(z) &lt;= rho_n,     rho_n -&gt; 1,
+</pre>
+<p>for <code>z,w</code> in the same <code>A</code> off a set of size <code>o(N)</code>, glossed at <code>:371</code> as "the sizes of original components meeting the same set <code>A \ E_n</code> differ by a factor tending uniformly to one".  Step 3 then consumes exactly that: <code>(8)</code> gives <code>|P triangle Q(P)| = o(|P|)</code>, hence <code>|P cap Q(P)| &gt; |Q(P)|/2</code>, hence an injective matching.</p>
+<p>Tracially the boundedness worry is void -- <code>M &lt;= 1</code> by construction, since <code>tau(p_i) &lt;= 1</code> -- so the normalization is a continuous functional calculus of a bounded positive operator.  What survives as real content is the concentration, and the demand that <code>m_A</code> be a <strong>fiberwise</strong> median over the ambient blocks, which is why the pair must be nested.</p>
+<h3>The obstruction is inherited, not new</h3>
+<p>The manuscript proves concentration by coarea plus Cheeger (<code>:342-355</code>): the identity <code>integral_0^1 |bd_A{f&gt;t}| dt = sum_{edges in A} |f(z)-f(w)|</code>, then expansion applied to sublevel and superlevel sets -- each of which has at most <code>|A|/2</code> vertices on the relevant side precisely because <code>1/2</code> is a median of <code>f</code> on <code>A</code> -- giving <code>gamma_G sum_{z in A} |f(z)-1/2| &lt;= sum_{edges} |f(z)-f(w)|</code>.</p>
+<p>The two halves have very different status in the normalized-HS metric.</p>
+<ul>
+<li><strong>Coarea transcribes, and is already proved.</strong></li>
+<p><code>docs/TRUE_SPECTRAL_COAREA_INVARIANT_CUT.md</code> <code>(SCI2)</code>: <code>integral_0^1 ‖[P_t,A]‖_2^2 dt &lt;= ‖[H,A]‖_2 ‖A‖_2</code> for the spectral projections <code>P_t</code> of a positive contraction <code>H</code>, with a common-threshold form <code>(SCI5)</code> for finitely many arrows.  This is the exact analogue of the finite coarea identity the manuscript uses.</p>
+<li><strong>Cheeger expansion does not, and is the same missing input.</strong>  The</li>
+<p>inequality <code>|bd_A U| &gt;= gamma_G min(|U|,|A \ U|)</code> is uniform expansion of the ambient blocks, which is Kun's theorem and hence <code><a href="hs-expander-block-decomposition.html">hs-expander-block-decomposition</a></code> again.</p>
+</ul>
+<p>So this node does not add a second independent obstruction.  It shows the one missing input is consumed <strong>twice</strong> -- once to produce the blocks, once to pin the size observable -- and that the other half of the pinning step is already available.  A proof that produced blocks without uniform gap would still stall here.</p></body>

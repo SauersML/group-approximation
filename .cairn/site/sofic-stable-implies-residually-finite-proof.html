@@ -1,0 +1,26 @@
+<!doctype html><meta charset='utf-8'><title>sofic-stable-implies-residually-finite-proof</title><style>
+body{font:15px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;max-width:60em;margin:2em auto;padding:0 1em;color:#1c1e1c}
+a{color:#4f46e5;text-decoration:none}a:hover{text-decoration:underline}
+code,pre{font:13px/1.45 Menlo,monospace;background:#f4f4f2}
+pre{padding:.8em;overflow-x:auto;border:1px solid #e5e7e3}
+.badge{display:inline-block;padding:.1em .55em;border-radius:.8em;color:#fff;font:700 11px -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;letter-spacing:.04em}
+.node{font:13px Menlo,monospace}
+h1{font-size:1.4em}h2{font-size:1.05em;border-bottom:1px solid #e5e7e3;padding-bottom:.2em}
+ul.rel{list-style:none;padding-left:0}ul.rel li{margin:.25em 0}
+.muted{color:#8b9089}.tree{white-space:pre;font:13px/1.5 Menlo,monospace;background:#fafaf8;border:1px solid #e5e7e3;padding:1em;overflow-x:auto}
+table{border-collapse:collapse}td,th{border:1px solid #e5e7e3;padding:.25em .6em;font-size:.9em}
+</style><script>MathJax={tex:{inlineMath:[["$","$"],["\\(","\\)"]]}};</script><script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script><body><p><a href='index.html'>← index</a></p>
+<h1><span class='node'>sofic-stable-implies-residually-finite-proof</span> Cycle-parity separating set plus weak containment in finite actions</h1>
+<p><span class="badge" style="background:#178a5e">COMPLETE</span> <span class='muted'>route · <code>research/sofic-stable-implies-residually-finite-proof.md</code></span></p>
+<h2>Target</h2><ul class='rel'>
+<li><a class="node" href="sofic-stable-implies-residually-finite.html">sofic-stable-implies-residually-finite</a> <span class="badge" style="background:#178a5e">ESTABLISHED</span> A sofic group that is stable in finite actions is residually finite</li>
+</ul>
+<h2>Artifacts</h2><ul class='rel'>
+<li><code>docs/SOFIC_STABLE_IMPLIES_RESIDUALLY_FINITE_2026-08-14.md</code></li>
+</ul>
+<h2>Statement</h2>
+<h3>Direct proof</h3>
+<p><code>docs/SOFIC_STABLE_IMPLIES_RESIDUALLY_FINITE_2026-08-14.md</code>, Theorem 3.1. Let <code>G</code> be countable, sofic, and stable in finite actions, and let <code>g != 1</code>.</p>
+<p>Fix a sofic approximation <code>sigma_n : G -&gt; Sym(Omega_n)</code>.  In each permutation <code>sigma_n(g)</code>, discard the fixed points and take alternate points along every remaining cycle: that gives <code>A_n</code> with <code>sigma_n(g)A_n</code> disjoint from <code>A_n</code> and <code>|A_n| &gt;= (|Omega_n| - |Fix(sigma_n(g))|)/3</code> (Lemma 2.1).  Asymptotic freeness makes the fixed-point fraction vanish, so in the limit action on the ultraproduct the set <code>A = [A_n]</code> has <code>mu(A) &gt;= 1/3</code> and <code>mu(gA intersect A) = 0</code> (Corollary 2.2).</p>
+<p>Stability in finite actions says that limit action is weakly contained in the finite <code>G</code>-actions, so with the partition <code>{A, complement}</code> and <code>eps = 1/12</code> there are a finite <code>G</code>-set <code>Y</code> with uniform measure and <code>B &lt;= Y</code> with <code>nu(B) &gt; 1/4</code> and <code>nu(gB intersect B) &lt; 1/12</code>.  Fixed points of <code>g</code> in <code>B</code> lie in <code>gB intersect B</code>, so <code>g</code> moves a point of <code>Y</code>; the kernel of <code>G -&gt; Sym(Y)</code> has finite index and misses <code>g</code>.  Every nonidentity element therefore survives a finite quotient.</p>
+<p>Only asymptotic freeness, the statistic-matching consequence of weak containment, and finiteness of <code>Sym(Y)</code> are used — no cohomology, no expansion, no standardness of the limit space.  The published statements of this fact (Gohla--Thom section 3.2; Chapman--Dikstein--Lubotzky, crediting Glebsky--Rivera 2009) now corroborate the node instead of supporting it.</p></body>

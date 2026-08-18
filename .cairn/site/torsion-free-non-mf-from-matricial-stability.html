@@ -1,0 +1,29 @@
+<!doctype html><meta charset='utf-8'><title>torsion-free-non-mf-from-matricial-stability</title><style>
+body{font:15px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;max-width:60em;margin:2em auto;padding:0 1em;color:#1c1e1c}
+a{color:#4f46e5;text-decoration:none}a:hover{text-decoration:underline}
+code,pre{font:13px/1.45 Menlo,monospace;background:#f4f4f2}
+pre{padding:.8em;overflow-x:auto;border:1px solid #e5e7e3}
+.badge{display:inline-block;padding:.1em .55em;border-radius:.8em;color:#fff;font:700 11px -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;letter-spacing:.04em}
+.node{font:13px Menlo,monospace}
+h1{font-size:1.4em}h2{font-size:1.05em;border-bottom:1px solid #e5e7e3;padding-bottom:.2em}
+ul.rel{list-style:none;padding-left:0}ul.rel li{margin:.25em 0}
+.muted{color:#8b9089}.tree{white-space:pre;font:13px/1.5 Menlo,monospace;background:#fafaf8;border:1px solid #e5e7e3;padding:1em;overflow-x:auto}
+table{border-collapse:collapse}td,th{border:1px solid #e5e7e3;padding:.25em .6em;font-size:.9em}
+</style><script>MathJax={tex:{inlineMath:[["$","$"],["\\(","\\)"]]}};</script><script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script><body><p><a href='index.html'>← index</a></p>
+<h1><span class='node'>torsion-free-non-mf-from-matricial-stability</span> Stability plus no finite-dimensional representations on the torsion-free group</h1>
+<p><span class="badge" style="background:#c08a00">OPEN</span> <span class='muted'>route · <code>research/torsion-free-non-mf-from-matricial-stability.md</code></span></p>
+<h2>Target</h2><ul class='rel'>
+<li><a class="node" href="torsion-free-finitely-presented-non-mf.html">torsion-free-finitely-presented-non-mf</a> <span class="badge" style="background:#178a5e">ESTABLISHED</span> Torsion-free finitely presented non-MF group</li>
+</ul>
+<h2>Requires</h2><ul class='rel'>
+<li><a class="node" href="map-matricial-stability-non-mf.html">map-matricial-stability-non-mf</a> <span class="badge" style="background:#178a5e">ESTABLISHED</span> A minimally almost periodic matricially stable group is not MF</li>
+<li><a class="node" href="fournier-facio-group-finite-dimensional-shadow.html">fournier-facio-group-finite-dimensional-shadow</a> <span class="badge" style="background:#178a5e">ESTABLISHED</span> Every finite-dimensional representation of the Fournier-Facio group kills the simple factor</li>
+<li><a class="node" href="defect-normally-generates-torsion-free-quotient.html">defect-normally-generates-torsion-free-quotient</a> <span class="badge" style="background:#178a5e">ESTABLISHED</span> The simple factor can be made to normally generate a Kazhdan subgroup of the quotient</li>
+<li><a class="node" href="fournier-facio-group-matricially-stable.html">fournier-facio-group-matricially-stable</a> <span class="badge" style="background:#c08a00">OPEN</span> Matricial stability of the Fournier-Facio torsion-free group</li>
+</ul>
+<h2>Statement</h2>
+<h3>Why sufficient</h3>
+<p>Let <code>G</code> be the Fournier-Facio group: finitely presented, torsion-free, Kazhdan, infinite.</p>
+<p><code><a href="defect-normally-generates-torsion-free-quotient.html">defect-normally-generates-torsion-free-quotient</a></code> in its strong form gives <code>&lt;&lt;pi(S)&gt;&gt; = G</code>, and then <code><a href="fournier-facio-group-finite-dimensional-shadow.html">fournier-facio-group-finite-dimensional-shadow</a></code> clause 3 makes <code>G</code> minimally almost periodic.  With <code><a href="fournier-facio-group-matricially-stable.html">fournier-facio-group-matricially-stable</a></code>, <code><a href="map-matricial-stability-non-mf.html">map-matricial-stability-non-mf</a></code> applies and <code>G</code> is not MF — indeed every corona representation of <code>G</code> is trivial.</p>
+<p>This route shares its group-theoretic prerequisite with the primary route <code><a href="torsion-free-non-mf-from-normal-kazhdan-defect.html">torsion-free-non-mf-from-normal-kazhdan-defect</a></code> and differs only in the analytic one, where it substitutes a named stability property for the repository's own normal-Kazhdan obstruction.  It is therefore a genuine alternative rather than a variant: if the small-cancellation prerequisite lands and the normal-Kazhdan obstruction turns out to have a gap, this route still reaches the root, and vice versa.</p>
+<p>The cost is that its analytic prerequisite is strictly stronger than necessary — matricial stability of <code>G</code> would prove far more than non-MF-ness — and that it is unproved for every candidate.  The primary route remains the one to back, because its analytic half is already machine-checked.</p></body>

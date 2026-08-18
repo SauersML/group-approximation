@@ -1,0 +1,38 @@
+<!doctype html><meta charset='utf-8'><title>kun-thom-clifford-extension-not-weak-mf-proof</title><style>
+body{font:15px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;max-width:60em;margin:2em auto;padding:0 1em;color:#1c1e1c}
+a{color:#4f46e5;text-decoration:none}a:hover{text-decoration:underline}
+code,pre{font:13px/1.45 Menlo,monospace;background:#f4f4f2}
+pre{padding:.8em;overflow-x:auto;border:1px solid #e5e7e3}
+.badge{display:inline-block;padding:.1em .55em;border-radius:.8em;color:#fff;font:700 11px -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;letter-spacing:.04em}
+.node{font:13px Menlo,monospace}
+h1{font-size:1.4em}h2{font-size:1.05em;border-bottom:1px solid #e5e7e3;padding-bottom:.2em}
+ul.rel{list-style:none;padding-left:0}ul.rel li{margin:.25em 0}
+.muted{color:#8b9089}.tree{white-space:pre;font:13px/1.5 Menlo,monospace;background:#fafaf8;border:1px solid #e5e7e3;padding:1em;overflow-x:auto}
+table{border-collapse:collapse}td,th{border:1px solid #e5e7e3;padding:.25em .6em;font-size:.9em}
+</style><script>MathJax={tex:{inlineMath:[["$","$"],["\\(","\\)"]]}};</script><script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script><body><p><a href='index.html'>← index</a></p>
+<h1><span class='node'>kun-thom-clifford-extension-not-weak-mf-proof</span> Cut the negative central corner and anticommute two Clifford lamps</h1>
+<p><span class="badge" style="background:#178a5e">COMPLETE</span> <span class='muted'>route · <code>research/kun-thom-clifford-extension-not-weak-mf-proof.md</code></span></p>
+<h2>Target</h2><ul class='rel'>
+<li><a class="node" href="kun-thom-clifford-extension-not-weak-mf.html">kun-thom-clifford-extension-not-weak-mf</a> <span class="badge" style="background:#178a5e">ESTABLISHED</span> The Kun--Thom Clifford extension is not weak MF</li>
+</ul>
+<h2>Artifacts</h2><ul class='rel'>
+<li><code>docs/FALSE_CLIFFORD_NORM_MF_STERILITY.md</code></li>
+</ul>
+<h2>Statement</h2>
+<h2>Cut the negative central corner and anticommute two Clifford lamps</h2>
+<p>Internal proof, transcribed from <code>docs/FALSE_CLIFFORD_NORM_MF_STERILITY.md</code> (2026-08-12), sections 2 and 3. <code>requires: []</code> is a proof commitment: the argument uses only property <code>(T)</code> of <code>Gamma</code>, strictness of the compressor, stable finiteness of a norm matrix quotient, and the Clifford relations.</p>
+<h3>Step 1 — cut to the negative central corner</h3>
+<p>Suppose <code>Theta(z) != 1</code> and put <code>e = (1-Theta(z))/2</code>, a nonzero central projection.</p>
+<p>&gt; Projections lift through the norm matrix quotient, so after restricting to a &gt; subsequence and cutting by nonzero lifts <code>e_n</code>, the corner is again a norm &gt; matrix quotient &gt; &gt; <code>e A e = product_n M_(r_n) / directSum_n M_(r_n),</code> &gt; &gt; with unit <code>e</code>, and the corner representation sends <code>z</code> to <code>-e</code>.  No lower &gt; bound on <code>r_n/d_n</code> is required.</p>
+<p>The absence of a rank hypothesis is what makes the argument work against an arbitrary model: the corner may be vanishingly thin.</p>
+<h3>Step 2 — pass to the adjoint representation</h3>
+<p>&gt; Choose unitary lifts <code>U_(g,n)</code> for the corner images.  On &gt; <code>K_n = L2(M_(r_n), tr_(r_n))</code> form the adjoint maps &gt; <code>beta_n(g)(x) = U_(g,n) x U_(g,n)^*</code>. &gt; Operator-norm multiplicative defect for the lifts gives operator-norm &gt; multiplicative defect for the adjoint maps.  Hence they define an honest &gt; representation of <code>G</code> in the corresponding norm quotient of the <code>B(K_n)</code>.</p>
+<p>Passing to <code>Ad</code> is what removes the lift ambiguity: scalar phase errors in the <code>U_(g,n)</code> cancel, so <code>beta</code> is a genuine representation even though the lifts are only approximately multiplicative.</p>
+<h3>Step 3 — property (T) forces the compression to be an equality</h3>
+<p>&gt; Let <code>p_Gamma</code> be the Kazhdan projection of <code>Gamma</code>, and let <code>P = beta(p_Gamma)</code>. &gt; The inclusion <code>t Gamma t^(-1) &lt;= Gamma</code> gives &gt; <code>P &lt;= beta(t) P beta(t)^<em>.</code> &gt; The two projections are unitarily equivalent.  A norm quotient of finite &gt; matrix algebras is stably finite, so the inequality is equality: &gt; <code>P = beta(t) P beta(t)^</em>.</code> &gt; Therefore <code>beta(t)</code> preserves the <code>Gamma</code>-fixed subspace.</p>
+<p>This is the one-sided Kazhdan transport step, in its operator-norm form: a one-sided containment between unitarily equivalent projections in a finite algebra is forced to be an equality.</p>
+<h3>Step 4 — the contradiction from two distinct lamps</h3>
+<p>&gt; Let <code>o=Gamma</code>.  The matrix vector represented by the lamp <code>c_o</code> is &gt; <code>Gamma</code>-fixed.  Consequently the vector represented by <code>c_(t o)</code> is also &gt; <code>Gamma</code>-fixed.  Choose &gt; <code>gamma in Gamma with gamma t Gamma != t Gamma,</code> &gt; which exists because the compression is strict.  Fixedness gives &gt; <code>||Theta_-(c_(gamma t Gamma))-Theta_-(c_(t Gamma))||_(2,omega)=0.</code> &gt; But the two sites are distinct, and <code>Theta_-(z)=-e</code>, so the two &gt; self-adjoint lamp unitaries anticommute.  In the normalized corner trace, &gt; &gt; <code>||C_x-C_y||_2^2 = tr(2-C_x C_y-C_y C_x) = 2.</code> &gt; &gt; This is a contradiction.  Hence <code>Theta(z)=1</code>.</p>
+<p>The two halves of the contradiction are exactly the two hypotheses: strictness of the compressor supplies a <code>gamma</code> moving the coset <code>tGamma</code>, so the sites are distinct and the lamps anticommute in the <code>z=-1</code> sector, giving squared distance <code>2</code>; while Kazhdan fixedness forces distance <code>0</code>.</p>
+<h3>Scope</h3>
+<p>The conclusion is about the <strong>operator-norm</strong> corona only. It says nothing about normalized-Hilbert--Schmidt models, and in particular it does not bear on <code><a href="kun-thom-clifford-crossed-product-ce.html">kun-thom-clifford-crossed-product-ce</a></code>, where the sign is required to survive in a <em>tracial</em> ultraproduct — a different category in which no analogous sterility is known. Confusing the two would misread a negative operator-norm result as evidence against the tracial program.</p></body>

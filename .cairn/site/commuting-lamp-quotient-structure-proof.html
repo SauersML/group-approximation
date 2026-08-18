@@ -1,0 +1,24 @@
+<!doctype html><meta charset='utf-8'><title>commuting-lamp-quotient-structure-proof</title><style>
+body{font:15px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;max-width:60em;margin:2em auto;padding:0 1em;color:#1c1e1c}
+a{color:#4f46e5;text-decoration:none}a:hover{text-decoration:underline}
+code,pre{font:13px/1.45 Menlo,monospace;background:#f4f4f2}
+pre{padding:.8em;overflow-x:auto;border:1px solid #e5e7e3}
+.badge{display:inline-block;padding:.1em .55em;border-radius:.8em;color:#fff;font:700 11px -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;letter-spacing:.04em}
+.node{font:13px Menlo,monospace}
+h1{font-size:1.4em}h2{font-size:1.05em;border-bottom:1px solid #e5e7e3;padding-bottom:.2em}
+ul.rel{list-style:none;padding-left:0}ul.rel li{margin:.25em 0}
+.muted{color:#8b9089}.tree{white-space:pre;font:13px/1.5 Menlo,monospace;background:#fafaf8;border:1px solid #e5e7e3;padding:1em;overflow-x:auto}
+table{border-collapse:collapse}td,th{border:1px solid #e5e7e3;padding:.25em .6em;font-size:.9em}
+</style><script>MathJax={tex:{inlineMath:[["$","$"],["\\(","\\)"]]}};</script><script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script><body><p><a href='index.html'>← index</a></p>
+<h1><span class='node'>commuting-lamp-quotient-structure-proof</span> Kill the sign and coordinatize the telescope coset space</h1>
+<p><span class="badge" style="background:#178a5e">COMPLETE</span> <span class='muted'>route · <code>research/commuting-lamp-quotient-structure-proof.md</code></span></p>
+<h2>Target</h2><ul class='rel'>
+<li><a class="node" href="commuting-lamp-quotient-structure.html">commuting-lamp-quotient-structure</a> <span class="badge" style="background:#178a5e">ESTABLISHED</span> Structure of the commuting-lamp quotient</li>
+</ul>
+<h2>Artifacts</h2><ul class='rel'>
+<li><code>docs/COMMUTING_LAMP_QUOTIENT_STRUCTURE_AND_MF_FORK_2026-08-14.md</code></li>
+</ul>
+<h2>Statement</h2>
+<h3>Direct proof</h3>
+<p><code>zeta</code> is central and lies in the lamp kernel, so the quotient splits as <code>(ClLamp(X)/&lt;zeta&gt;) semidirect V</code>, and the Clifford presentation modulo the sign is the presentation of the elementary abelian <code>2</code>-group on the basis <code>X</code>; distinctness of sites survives because a finite Clifford subgroup on <code>|F|</code> sites has order <code>2^{|F|+1}</code>.</p>
+<p>For the coordinates, the <code>tau</code>-exponent gives <code>level : X -&gt; Z</code> with fibre <code>T/Gbar_{-n}</code>, and <code>SL_3(Z)</code> preserves <code>2^n Z^3</code>, so <code>(v,A)Gbar_{-n} |-&gt; v + 2^n Z^3</code> is a bijection onto <code>Z[1/2]^3/2^n Z^3</code> intertwining the affine action.  Rescaling by <code>y = 2^{-n} w</code> normalizes every fibre to <code>(Z[1/2]/Z)^3</code> and turns the translation action at level <code>n</code> into translation by <code>2^{-n} v</code>; <code>tau</code> doubles representatives and shifts the level, hence acts as the identity in the rescaled coordinate.  Section 2 of the cited note carries out both computations.</p></body>

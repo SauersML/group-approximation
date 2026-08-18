@@ -1,0 +1,32 @@
+<!doctype html><meta charset='utf-8'><title>clifford-ce-targets-are-equivalent-proof</title><style>
+body{font:15px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;max-width:60em;margin:2em auto;padding:0 1em;color:#1c1e1c}
+a{color:#4f46e5;text-decoration:none}a:hover{text-decoration:underline}
+code,pre{font:13px/1.45 Menlo,monospace;background:#f4f4f2}
+pre{padding:.8em;overflow-x:auto;border:1px solid #e5e7e3}
+.badge{display:inline-block;padding:.1em .55em;border-radius:.8em;color:#fff;font:700 11px -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;letter-spacing:.04em}
+.node{font:13px Menlo,monospace}
+h1{font-size:1.4em}h2{font-size:1.05em;border-bottom:1px solid #e5e7e3;padding-bottom:.2em}
+ul.rel{list-style:none;padding-left:0}ul.rel li{margin:.25em 0}
+.muted{color:#8b9089}.tree{white-space:pre;font:13px/1.5 Menlo,monospace;background:#fafaf8;border:1px solid #e5e7e3;padding:1em;overflow-x:auto}
+table{border-collapse:collapse}td,th{border:1px solid #e5e7e3;padding:.25em .6em;font-size:.9em}
+</style><script>MathJax={tex:{inlineMath:[["$","$"],["\\(","\\)"]]}};</script><script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script><body><p><a href='index.html'>← index</a></p>
+<h1><span class='node'>clifford-ce-targets-are-equivalent-proof</span> Crossed product by the parity flip, then compress to the negative central corner</h1>
+<p><span class="badge" style="background:#178a5e">COMPLETE</span> <span class='muted'>route · <code>research/clifford-ce-targets-are-equivalent-proof.md</code></span></p>
+<h2>Target</h2><ul class='rel'>
+<li><a class="node" href="clifford-ce-targets-are-equivalent.html">clifford-ce-targets-are-equivalent</a> <span class="badge" style="background:#178a5e">ESTABLISHED</span> The full, even-core, and one-character Clifford CE targets are the same problem</li>
+</ul>
+<h2>Artifacts</h2><ul class='rel'>
+<li><code>docs/PERFECT_CORE_KUN_THOM_WREATH.md</code></li>
+</ul>
+<h2>Statement</h2>
+<h2>Crossed product by the parity flip, then compress to the negative central corner</h2>
+<p>Internal proofs, transcribed from <code>docs/PERFECT_CORE_KUN_THOM_WREATH.md</code>, Proposition 4 and Theorem 6. <code>requires: []</code> is a proof commitment; both arguments are elementary given the Clifford relations, and neither uses any open input.</p>
+<h3>Proposition 4 — full versus even core</h3>
+<p>&gt; <strong>Proposition 4.</strong>  One has &gt; \[ M_{\mathrm{full}}\cong (A_{\mathrm{CAR}}\rtimes G)\rtimes_{\operatorname{Ad}(C_o)}\mathbb Z/2 \] &gt; for any fixed Majorana generator \(C_o\).  Consequently &gt; \[ M_{\mathrm{full}}\text{ is Connes-embeddable} \iff A_{\mathrm{CAR}}\rtimes G\text{ is Connes-embeddable.} \] &gt; &gt; <strong>Proof.</strong>  The odd Majorana \(C_o\) normalizes the even Clifford algebra. &gt; It also normalizes the crossed-product unitaries modulo the even algebra, &gt; because &gt; \[ C_o u_g C_o=(C_oC_{go})u_g \] &gt; and \(C_oC_{go}\) is even.  Moreover \(C_o^2=1\), and the even crossed &gt; product together with \(C_o\) generates \(M_{\mathrm{full}}\).  The parity &gt; automorphism fixes the even crossed product and sends \(C_o\) to \(-C_o\), &gt; so its conditional expectation proves that the two homogeneous summands &gt; are linearly independent.  This proves <code>(19a)</code>. &gt; &gt; Connes embeddability passes to von Neumann subalgebras, giving the forward &gt; implication in <code>(19b)</code>.  Conversely, the regular covariant representation &gt; embeds a crossed product by the finite group \(\mathbb Z/2\) into &gt; \(M_2(A_{\mathrm{CAR}}\rtimes G)\).  Matrix amplification preserves Connes &gt; embeddability, giving the reverse implication.</p>
+<p>Both directions of the equivalence are cheap for the same reason: the extension is by the <em>finite</em> group <code>Z/2</code>, so one direction is subalgebra heredity and the other is a two-by-two amplification. No permanence theorem for infinite groups is involved, which is why this equivalence is safe while general crossed-product CE permanence is not.</p>
+<h3>Theorem 6 — no character shortcut</h3>
+<p>&gt; <strong>Theorem 6 (no character shortcut).</strong>  The following are equivalent: &gt; 1. \(E_{\mathrm{Cl},0}\) has a Connes-embeddable character \(\chi\) with \(\chi(z)\ne1\); &gt; 2. it has a Connes-embeddable character \(\chi_-\) with \(\chi_-(z)=-1\); &gt; 3. the canonical trace \(\tau_{\mathrm{can}}\) in (24) is Connes-embeddable. &gt; &gt; <strong>Proof.</strong>  The implication \(3\Rightarrow2\Rightarrow1\) is immediate. &gt; For \(1\Rightarrow2\), realize \(\chi\) in a tracial matrix ultraproduct. &gt; The central involution \(z\) has spectral projections &gt; \[ e_+=(1+z)/2,\qquad e_-=(1-z)/2. \] &gt; The inequality \(\chi(z)\ne1\) says that \(e_-\) has positive trace. &gt; Compressing to this central corner and normalizing the trace gives a &gt; Connes-embeddable character \(\chi_-\) with \(\chi_-(z)=-1\).</p>
+<p>The step <code>2 =&gt; 3</code> is Lemma 5 of the same document, which computes that in the <code>z = -1</code> sector the Pauli monomials other than the identity have trace zero, forcing the character to be <code>tau_can</code>.</p>
+<p>The load-bearing move is the compression in <code>1 =&gt; 2</code>. It works because <code>z</code> is <strong>central</strong>, so its spectral projections are central and the corner is again a tracial von Neumann algebra with a Connes-embeddable trace after renormalization. Note the contrast with the operator-norm setting of <code><a href="kun-thom-clifford-extension-not-weak-mf.html">kun-thom-clifford-extension-not-weak-mf</a></code>, where exactly the same corner cut is performed and there it <em>leads to a contradiction</em> — the difference being that the operator-norm corona is stably finite and supports the Kazhdan projection argument, while a tracial ultraproduct does not obstruct the corner.</p>
+<h3>Scope</h3>
+<p>This is a statement about the relationships between targets, not about whether any of them holds. It closes no open question and should not be read as evidence in either direction on <code><a href="kun-thom-clifford-crossed-product-ce.html">kun-thom-clifford-crossed-product-ce</a></code>.</p></body>

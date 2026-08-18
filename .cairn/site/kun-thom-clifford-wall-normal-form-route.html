@@ -1,0 +1,29 @@
+<!doctype html><meta charset='utf-8'><title>kun-thom-clifford-wall-normal-form-route</title><style>
+body{font:15px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;max-width:60em;margin:2em auto;padding:0 1em;color:#1c1e1c}
+a{color:#4f46e5;text-decoration:none}a:hover{text-decoration:underline}
+code,pre{font:13px/1.45 Menlo,monospace;background:#f4f4f2}
+pre{padding:.8em;overflow-x:auto;border:1px solid #e5e7e3}
+.badge{display:inline-block;padding:.1em .55em;border-radius:.8em;color:#fff;font:700 11px -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;letter-spacing:.04em}
+.node{font:13px Menlo,monospace}
+h1{font-size:1.4em}h2{font-size:1.05em;border-bottom:1px solid #e5e7e3;padding-bottom:.2em}
+ul.rel{list-style:none;padding-left:0}ul.rel li{margin:.25em 0}
+.muted{color:#8b9089}.tree{white-space:pre;font:13px/1.5 Menlo,monospace;background:#fafaf8;border:1px solid #e5e7e3;padding:1em;overflow-x:auto}
+table{border-collapse:collapse}td,th{border:1px solid #e5e7e3;padding:.25em .6em;font-size:.9em}
+</style><script>MathJax={tex:{inlineMath:[["$","$"],["\\(","\\)"]]}};</script><script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script><body><p><a href='index.html'>← index</a></p>
+<h1><span class='node'>kun-thom-clifford-wall-normal-form-route</span> Build the wall from one compressed-commutant Majorana</h1>
+<p><span class="badge" style="background:#c08a00">OPEN</span> <span class='muted'>route · <code>research/kun-thom-clifford-wall-normal-form-route.md</code></span></p>
+<h2>Target</h2><ul class='rel'>
+<li><a class="node" href="kun-thom-clifford-relative-wall.html">kun-thom-clifford-relative-wall</a> <span class="badge" style="background:#c08a00">OPEN</span> Finite normalized-HS Clifford wall for the Kun--Thom pair</li>
+</ul>
+<h2>Requires</h2><ul class='rel'>
+<li><a class="node" href="relative-wall-commutant-growth.html">relative-wall-commutant-growth</a> <span class="badge" style="background:#178a5e">ESTABLISHED</span> A relative wall is exactly compressor growth of the relative commutant</li>
+<li><a class="node" href="compressed-commutant-majorana.html">compressed-commutant-majorana</a> <span class="badge" style="background:#c08a00">OPEN</span> A Majorana in the compressed relative commutant moved anticommutingly by Gamma</li>
+</ul>
+<h2>Artifacts</h2><ul class='rel'>
+<li><code>docs/TRUE_RELATIVE_WALL_IS_COMMUTANT_GROWTH.md</code></li>
+<li><code>docs/TRUE_KUN_THOM_CLIFFORD_PHASE.md</code></li>
+</ul>
+<h2>Statement</h2>
+<p><strong>This route is one direction of an EQUIVALENCE, not a reduction.  It renames the problem; it does not shrink it.</strong>  Read with <code><a href="compressed-commutant-majorana-from-wall-route.html">compressed-commutant-majorana-from-wall-route</a></code>, which is the other direction.  Flagged explicitly after the team's "restatement dressed as reduction" catch: given the established <code><a href="relative-wall-commutant-growth.html">relative-wall-commutant-growth</a></code>, the prerequisite <code><a href="compressed-commutant-majorana.html">compressed-commutant-majorana</a></code> is <em>logically equivalent</em> to the target, so nothing here is closer to a construction than the target was.</p>
+<p>What the equivalence buys is not progress on the target but a better coordinate system for attacking it: the marked element <code>h</code> disappears, the demand moves to the compressed subgroup <code>t Gamma t^(-1)</code>, and the anticommutation becomes a single <code>Gamma</code>-conjugation.  That reformulation is what makes the growth index of <code><a href="compressor-growth-index-homomorphism.html">compressor-growth-index-homomorphism</a></code> applicable, and hence what yields <code><a href="commutator-compressor-carries-no-wall.html">commutator-compressor-carries-no-wall</a></code> -- which <em>is</em> new information.  The value is downstream of the restatement, not in it.</p>
+<p>Mechanically: the wall normal form turns the two normalized-Hilbert--Schmidt conditions into one exact algebraic demand; pulling the involution back by <code>Ad pi(t)^(-1)</code> produces a Clifford wall in the original coordinates, and matrix representatives of a Connes-embeddable model give the finite endpoint <code>(KCP12)--(KCP13)</code> with constant-one error.  Passing from an almost-representation family to an exact homomorphism into a tracial matrix ultraproduct, and back, loses nothing.</p></body>

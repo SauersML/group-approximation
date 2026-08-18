@@ -1,0 +1,39 @@
+<!doctype html><meta charset='utf-8'><title>regular-character-mf-trace-implies-group-mf</title><style>
+body{font:15px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;max-width:60em;margin:2em auto;padding:0 1em;color:#1c1e1c}
+a{color:#4f46e5;text-decoration:none}a:hover{text-decoration:underline}
+code,pre{font:13px/1.45 Menlo,monospace;background:#f4f4f2}
+pre{padding:.8em;overflow-x:auto;border:1px solid #e5e7e3}
+.badge{display:inline-block;padding:.1em .55em;border-radius:.8em;color:#fff;font:700 11px -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;letter-spacing:.04em}
+.node{font:13px Menlo,monospace}
+h1{font-size:1.4em}h2{font-size:1.05em;border-bottom:1px solid #e5e7e3;padding-bottom:.2em}
+ul.rel{list-style:none;padding-left:0}ul.rel li{margin:.25em 0}
+.muted{color:#8b9089}.tree{white-space:pre;font:13px/1.5 Menlo,monospace;background:#fafaf8;border:1px solid #e5e7e3;padding:1em;overflow-x:auto}
+table{border-collapse:collapse}td,th{border:1px solid #e5e7e3;padding:.25em .6em;font-size:.9em}
+</style><script>MathJax={tex:{inlineMath:[["$","$"],["\\(","\\)"]]}};</script><script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script><body><p><a href='index.html'>← index</a></p>
+<h1><span class='node'>regular-character-mf-trace-implies-group-mf</span> An MF regular character forces the group to be operator MF</h1>
+<p><span class="badge" style="background:#178a5e">ESTABLISHED</span> <span class='muted'>claim · <code>research/regular-character-mf-trace-implies-group-mf.md</code></span></p>
+<p class='muted'>via route regular-character-mf-trace-implies-group-mf-proof</p>
+<h2>Routes into this claim</h2><ul class='rel'>
+<li><a class="node" href="regular-character-mf-trace-implies-group-mf-proof.html">regular-character-mf-trace-implies-group-mf-proof</a> <span class="badge" style="background:#178a5e">COMPLETE</span> Unit corner, polar correction, and trace separation</li>
+</ul>
+<h2>Needed by routes</h2><ul class='rel'>
+<li><a class="node" href="hyperlinear-trace-not-mf-trace-proof.html">hyperlinear-trace-not-mf-trace-proof</a> <span class="badge" style="background:#178a5e">COMPLETE</span> Soficity gives the hyperlinear trace, the non-MF theorem forbids the MF one</li>
+</ul>
+<h2>Distinct from</h2><ul class='rel'>
+<li><a class="node" href="countable-group-mf-conventions.html">countable-group-mf-conventions</a> <span class="badge" style="background:#178a5e">ESTABLISHED</span> Equivalent operator-MF formulations and stronger representation variants<br><span class='muted'>That claim compares group-level MF formulations at fixed accuracy; this one converts a trace-level property of the full group C-star algebra into the group-level one.</span></li>
+<li><a class="node" href="mf-implies-hyperlinear.html">mf-implies-hyperlinear</a> <span class="badge" style="background:#c08a00">OPEN</span> MF implies hyperlinear under the weak norm-corona convention<br><span class='muted'>That root asks the converse-flavoured question, whether operator-norm models can be given faithful traces; this claim says that if the canonical trace already has norm microstates then the group is MF.</span></li>
+</ul>
+<h2>Artifacts</h2><ul class='rel'>
+<li><code>GroupApproximation/Sofic/MFDefinitions.lean</code></li>
+</ul>
+<h2>Statement</h2>
+<p>Let <code>G</code> be a countable group, <code>A = C^*(G)</code> its full group C-star algebra and <code>tau</code> its canonical trace (<code>tau(u_g) = 1</code> if <code>g=1</code>, else <code>0</code>).  If <code>tau</code> is an <strong>MF trace</strong> in the sense of Shulman, arXiv:2507.22783v3 --- maps <code>phi_n : A -&gt; M_(k_n)</code> with</p>
+<pre>
+||phi_n(ab)-phi_n(a)phi_n(b)|| -&gt; 0,
+||phi_n(la+mb)-l phi_n(a)-m phi_n(b)|| -&gt; 0,
+||phi_n(a^*)-phi_n(a)^*|| -&gt; 0,
+sup_n ||phi_n(a)|| &lt; infinity,
+|tau(a)-tr(phi_n(a))| -&gt; 0,
+</pre>
+<p>all norms being the operator norm --- then <code>G</code> is operator MF in the weak Carrion--Dadarlat--Eckhardt sense.</p>
+<p>The point is that the trace normalization does all the work that the weak MF definition cannot do by itself: <code>tr(phi_n(1)) -&gt; 1</code> pins the unit corner at relative dimension <code>1</code>, and <code>tr(phi_n(u_g)) -&gt; 0</code> gives separation automatically, with constant <code>sqrt 2</code>.  Equivalently: an MF regular character is exactly a trace-controlled MF model in Schafhauser's sense, and those do give both the norm and the trace clause.</p></body>

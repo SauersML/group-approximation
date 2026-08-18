@@ -1,0 +1,48 @@
+<!doctype html><meta charset='utf-8'><title>regular-character-mf-trace-implies-group-mf-proof</title><style>
+body{font:15px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;max-width:60em;margin:2em auto;padding:0 1em;color:#1c1e1c}
+a{color:#4f46e5;text-decoration:none}a:hover{text-decoration:underline}
+code,pre{font:13px/1.45 Menlo,monospace;background:#f4f4f2}
+pre{padding:.8em;overflow-x:auto;border:1px solid #e5e7e3}
+.badge{display:inline-block;padding:.1em .55em;border-radius:.8em;color:#fff;font:700 11px -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;letter-spacing:.04em}
+.node{font:13px Menlo,monospace}
+h1{font-size:1.4em}h2{font-size:1.05em;border-bottom:1px solid #e5e7e3;padding-bottom:.2em}
+ul.rel{list-style:none;padding-left:0}ul.rel li{margin:.25em 0}
+.muted{color:#8b9089}.tree{white-space:pre;font:13px/1.5 Menlo,monospace;background:#fafaf8;border:1px solid #e5e7e3;padding:1em;overflow-x:auto}
+table{border-collapse:collapse}td,th{border:1px solid #e5e7e3;padding:.25em .6em;font-size:.9em}
+</style><script>MathJax={tex:{inlineMath:[["$","$"],["\\(","\\)"]]}};</script><script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script><body><p><a href='index.html'>← index</a></p>
+<h1><span class='node'>regular-character-mf-trace-implies-group-mf-proof</span> Unit corner, polar correction, and trace separation</h1>
+<p><span class="badge" style="background:#178a5e">COMPLETE</span> <span class='muted'>route · <code>research/regular-character-mf-trace-implies-group-mf-proof.md</code></span></p>
+<h2>Target</h2><ul class='rel'>
+<li><a class="node" href="regular-character-mf-trace-implies-group-mf.html">regular-character-mf-trace-implies-group-mf</a> <span class="badge" style="background:#178a5e">ESTABLISHED</span> An MF regular character forces the group to be operator MF</li>
+</ul>
+<h2>Requires</h2><ul class='rel'>
+<li><a class="node" href="countable-group-mf-conventions.html">countable-group-mf-conventions</a> <span class="badge" style="background:#178a5e">ESTABLISHED</span> Equivalent operator-MF formulations and stronger representation variants</li>
+</ul>
+<h2>Statement</h2>
+<h3>Why sufficient</h3>
+<p>Write <code>v_n(g) = phi_n(u_g)</code> for <code>g in G</code>, all estimates being in operator norm and all limits as <code>n -&gt; infinity</code> with <code>g,h</code> fixed.</p>
+<p><strong>1. The unit corner.</strong>  Approximate multiplicativity and <code>1^<em>=1=1.1</code> give <code>||phi_n(1)^2-phi_n(1)|| -&gt; 0</code> and <code>||phi_n(1)-phi_n(1)^</em>|| -&gt; 0</code>, while <code>sup_n||phi_n(1)|| &lt; infinity</code> by hypothesis.  So the self-adjoint part <code>h_n = (phi_n(1)+phi_n(1)^*)/2</code> satisfies <code>||h_n^2-h_n|| -&gt; 0</code> with bounded norm; its spectrum is therefore contained in shrinking neighbourhoods of <code>{0,1}</code>, and <code>p_n = 1_([1/2,infinity))(h_n)</code> is a projection with <code>||p_n-phi_n(1)|| -&gt; 0</code>.  Since traces are <code>1</code>-Lipschitz for the operator norm and <code>tr(phi_n(1)) -&gt; tau(1) = 1</code>,</p>
+<pre>
+tr(p_n) -&gt; 1,   in particular p_n != 0 eventually.               (R1)
+</pre>
+<p><strong>2. Everything lives in the corner.</strong>  Multiplicativity at the pairs <code>(1,u_g)</code> and <code>(u_g,1)</code> gives <code>phi_n(1)v_n(g) - v_n(g) -&gt; 0</code> and <code>v_n(g)phi_n(1) - v_n(g) -&gt; 0</code>, so with <code>w_n(g) = p_n v_n(g) p_n</code>,</p>
+<pre>
+||w_n(g)-v_n(g)|| -&gt; 0.                                          (R2)
+</pre>
+<p><strong>3. Near unitarity.</strong>  From <code>||phi_n(u_g^<em>)-v_n(g)^</em>|| -&gt; 0</code> and multiplicativity at <code>(u_g^*,u_g)</code>, <code>v_n(g)^*v_n(g) - phi_n(1) -&gt; 0</code>; with <code>(R2)</code> and <code>||p_n-phi_n(1)|| -&gt; 0</code>,</p>
+<pre>
+||w_n(g)^*w_n(g)-p_n|| -&gt; 0,   ||w_n(g)w_n(g)^*-p_n|| -&gt; 0.      (R3)
+</pre>
+<p>For large <code>n</code> the element <code>w_n(g)</code> is therefore invertible in the corner <code>p_n M_(k_n) p_n</code>, and its polar part <code>V_n(g)</code> is a unitary of that corner with <code>||V_n(g)-w_n(g)|| -&gt; 0</code>.</p>
+<p><strong>4. Multiplicativity of the corrected unitaries.</strong>  Combining <code>(R2)</code>, <code>(R3)</code> and multiplicativity at <code>(u_g,u_h)</code>,</p>
+<pre>
+||V_n(g)V_n(h)-V_n(gh)|| -&gt; 0   (g,h in G).                      (R4)
+</pre>
+<p><strong>5. Separation.</strong>  Let <code>tr_(r_n)</code> be the normalized trace of the corner, <code>r_n = rank(p_n)</code>.  By <code>(R1)</code>, <code>(R2)</code> and Lipschitz continuity of <code>tr</code>,</p>
+<pre>
+tr_(r_n)(V_n(g)) = tr(v_n(g))/tr(p_n) + o(1) -&gt; tau(u_g),
+</pre>
+<p>which is <code>0</code> for <code>g != 1</code>.  Hence for <code>g != h</code> in any finite set, <code>||V_n(g)-V_n(h)||_op &gt;= ||V_n(g)-V_n(h)||_(2,r_n) -&gt; sqrt 2 &gt; 1</code>, using <code>(R4)</code> to replace <code>V_n(g)^*V_n(h)</code> by <code>V_n(g^(-1)h)</code> up to a null sequence.</p>
+<p><strong>6. Conclusion.</strong>  <code>(R4)</code> and step 5 say that for every finite <code>F</code> and every <code>epsilon &gt; 0</code> some <code>V_n</code> is an operator-norm local model of <code>G</code> with defect <code>epsilon</code> and separation constant <code>1</code>.  By <code><a href="countable-group-mf-conventions.html">countable-group-mf-conventions</a></code> that is exactly operator MF.  End proof.</p>
+<h3>Remark</h3>
+<p>Only the trace clause is doing work beyond the weak MF definition, and it does it twice: at <code>1</code>, to make the corner macroscopic, and at <code>g != 1</code>, to make separation automatic rather than assumed.</p></body>

@@ -1,0 +1,35 @@
+<!doctype html><meta charset='utf-8'><title>sofic-radical-soficization-proof</title><style>
+body{font:15px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;max-width:60em;margin:2em auto;padding:0 1em;color:#1c1e1c}
+a{color:#4f46e5;text-decoration:none}a:hover{text-decoration:underline}
+code,pre{font:13px/1.45 Menlo,monospace;background:#f4f4f2}
+pre{padding:.8em;overflow-x:auto;border:1px solid #e5e7e3}
+.badge{display:inline-block;padding:.1em .55em;border-radius:.8em;color:#fff;font:700 11px -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;letter-spacing:.04em}
+.node{font:13px Menlo,monospace}
+h1{font-size:1.4em}h2{font-size:1.05em;border-bottom:1px solid #e5e7e3;padding-bottom:.2em}
+ul.rel{list-style:none;padding-left:0}ul.rel li{margin:.25em 0}
+.muted{color:#8b9089}.tree{white-space:pre;font:13px/1.5 Menlo,monospace;background:#fafaf8;border:1px solid #e5e7e3;padding:1em;overflow-x:auto}
+table{border-collapse:collapse}td,th{border:1px solid #e5e7e3;padding:.25em .6em;font-size:.9em}
+</style><script>MathJax={tex:{inlineMath:[["$","$"],["\\(","\\)"]]}};</script><script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script><body><p><a href='index.html'>← index</a></p>
+<h1><span class='node'>sofic-radical-soficization-proof</span> Residual soficity of the radical quotient from products and locality</h1>
+<p><span class="badge" style="background:#178a5e">COMPLETE</span> <span class='muted'>route · <code>research/sofic-radical-soficization-proof.md</code></span></p>
+<h2>Target</h2><ul class='rel'>
+<li><a class="node" href="sofic-radical-soficization.html">sofic-radical-soficization</a> <span class="badge" style="background:#178a5e">ESTABLISHED</span> The sofic radical is the kernel of soficization</li>
+</ul>
+<h2>Statement</h2>
+<h3>Direct proof</h3>
+<p>Use the standard definition: <code>G</code> is sofic when for every finite <code>F &lt;= G</code> and every <code>epsilon&gt;0</code> there are a nonempty finite set <code>V</code> and a map <code>sigma:G-&gt;Sym(V)</code> with</p>
+<pre>
+d_H(sigma(g)sigma(h),sigma(gh)) &lt; epsilon        (g,h,gh in F),
+d_H(sigma(g),id) &gt; 1-epsilon                     (g in F\{1}),
+</pre>
+<p><code>d_H</code> the normalized Hamming distance.</p>
+<p><strong>1. Functoriality.</strong>  Let <code>phi:H-&gt;Q</code> and let <code>psi:Q-&gt;S</code> have sofic target. Then <code>psi phi:H-&gt;S</code> has sofic target, so <code>Rad_sof(H) &lt;= ker(psi phi)</code>, i.e. <code>psi(phi(Rad_sof(H)))=1</code>.  Intersecting over <code>psi</code> gives <code>phi(Rad_sof(H)) &lt;= Rad_sof(Q)</code>.  No surjectivity is used.</p>
+<p><strong>2. Finite direct products.</strong>  If <code>G_1,...,G_m</code> are sofic, so is <code>G_1 x ... x G_m</code>: given <code>F</code> and <code>epsilon</code>, take approximations <code>sigma_i:G_i-&gt;Sym(V_i)</code> for the coordinate projections of <code>F</code>, and put <code>sigma(g_1,...,g_m)=sigma_1(g_1) x ... x sigma_m(g_m)</code> on <code>V_1 x ... x V_m</code>. Multiplicative defects add, so they stay below <code>m*epsilon</code>; and if <code>g!=1</code> then some <code>g_i!=1</code>, and a permutation which is a product moves at least the fraction that its <code>i</code>-th factor moves, so <code>d_H(sigma(g),id) &gt; 1-epsilon</code>.  Rescaling <code>epsilon</code> gives the claim.</p>
+<p><strong>3. Countable direct products.</strong>  Let <code>S_1,S_2,...</code> be sofic and <code>P=prod_n S_n</code>.  Fix finite <code>F &lt;= P</code> and <code>epsilon&gt;0</code>.  Every <code>f in F\{1}</code> has a coordinate <code>n_f</code> with <code>f_{n_f}!=1</code>; let <code>pi</code> be the projection of <code>P</code> onto the finitely many coordinates <code>{n_f : f in F\{1}}</code>.  Then <code>pi</code> is a homomorphism into a finite product of sofic groups, sofic by step 2, and <code>pi</code> is injective on <code>F</code>.  Composing <code>pi</code> with an <code>(pi(F),epsilon)</code>- approximation of the target gives an <code>(F,epsilon)</code>-approximation of <code>P</code>: multiplicativity is inherited because <code>pi</code> is an exact homomorphism, and separation because <code>pi(f)!=1</code> for <code>f in F\{1}</code>.  Hence <code>P</code> is sofic.  (The same computation shows soficity is a local property, since <code>F</code> only ever meets the finitely generated subgroup it generates.)</p>
+<p><strong>4. The radical quotient.</strong>  Put <code>Q=H/Rad_sof(H)</code>.  For each <code>1!=q in Q</code> choose a homomorphism <code>phi_q:H-&gt;S_q</code> with sofic target and <code>phi_q(q)!=1</code> — one exists by the definition of the radical, since <code>q</code> has a representative outside <code>Rad_sof(H)</code>.  As <code>H</code> is countable this is a countable family, and each <code>phi_q</code> factors through <code>Q</code>.  The product map</p>
+<pre>
+Q --&gt; prod_q S_q
+</pre>
+<p>is injective.  Its target is sofic by step 3, and soficity passes to subgroups (restrict the approximations).  Hence <code>Q</code> is sofic.</p>
+<p><strong>5. Consequences.</strong>  If <code>N &lt;| H</code> has <code>H/N</code> sofic then the quotient map is one of the homomorphisms defining the radical, so <code>Rad_sof(H) &lt;= N</code>; together with step 4 this makes <code>Rad_sof(H)</code> the smallest normal subgroup with sofic quotient.  If <code>Rad_sof(H)=1</code> then <code>H = H/Rad_sof(H)</code> is sofic by step 4; conversely if <code>H</code> is sofic then the identity is an admissible homomorphism and the radical is trivial.  This proves the displayed equivalence.</p>
+<p>Nothing beyond the definition of soficity, closure under subgroups, and countability of <code>H</code> is used.</p></body>

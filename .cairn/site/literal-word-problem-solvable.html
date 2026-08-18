@@ -1,0 +1,30 @@
+<!doctype html><meta charset='utf-8'><title>literal-word-problem-solvable</title><style>
+body{font:15px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;max-width:60em;margin:2em auto;padding:0 1em;color:#1c1e1c}
+a{color:#4f46e5;text-decoration:none}a:hover{text-decoration:underline}
+code,pre{font:13px/1.45 Menlo,monospace;background:#f4f4f2}
+pre{padding:.8em;overflow-x:auto;border:1px solid #e5e7e3}
+.badge{display:inline-block;padding:.1em .55em;border-radius:.8em;color:#fff;font:700 11px -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;letter-spacing:.04em}
+.node{font:13px Menlo,monospace}
+h1{font-size:1.4em}h2{font-size:1.05em;border-bottom:1px solid #e5e7e3;padding-bottom:.2em}
+ul.rel{list-style:none;padding-left:0}ul.rel li{margin:.25em 0}
+.muted{color:#8b9089}.tree{white-space:pre;font:13px/1.5 Menlo,monospace;background:#fafaf8;border:1px solid #e5e7e3;padding:1em;overflow-x:auto}
+table{border-collapse:collapse}td,th{border:1px solid #e5e7e3;padding:.25em .6em;font-size:.9em}
+</style><script>MathJax={tex:{inlineMath:[["$","$"],["\\(","\\)"]]}};</script><script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script><body><p><a href='index.html'>← index</a></p>
+<h1><span class='node'>literal-word-problem-solvable</span> The literal forty-one-relator presentation has solvable word problem</h1>
+<p><span class="badge" style="background:#178a5e">ESTABLISHED</span> <span class='muted'>claim · <code>research/literal-word-problem-solvable.md</code></span></p>
+<p class='muted'>via route literal-word-problem-solvable-proof</p>
+<h2>Routes into this claim</h2><ul class='rel'>
+<li><a class="node" href="literal-word-problem-solvable-proof.html">literal-word-problem-solvable-proof</a> <span class="badge" style="background:#178a5e">COMPLETE</span> Decide triviality by telescope matrices plus block-amalgam reduction</li>
+</ul>
+<h2>Needed by routes</h2><ul class='rel'>
+<li><a class="node" href="literal-structure-from-block-amalgam.html">literal-structure-from-block-amalgam</a> <span class="badge" style="background:#178a5e">COMPLETE</span> Assemble the literal structure question from the block amalgam</li>
+</ul>
+<h2>Distinct from</h2><ul class='rel'>
+<li><a class="node" href="literal-telescope-split-normal-form.html">literal-telescope-split-normal-form</a> <span class="badge" style="background:#178a5e">ESTABLISHED</span> The literal group splits as lamp-by-telescope over an explicit linear quotient<br><span class='muted'>That claim records the split structure and the identification of the telescope quotient; this one records the resulting decision procedure.</span></li>
+</ul>
+<h2>Artifacts</h2><ul class='rel'>
+<li><code>docs/LITERAL_GROUP_BLOCK_AMALGAM_STRUCTURE_2026-08-14.md</code></li>
+</ul>
+<h2>Statement</h2>
+<p>There is an algorithm deciding whether a word in the eight literal generators is trivial in <code>E</code>.  Push the lamp letters left, recording each as a site of <code>X = disjoint_union_n Z[1/2]^3/2^n Z^3</code> computed by rational matrix arithmetic in <code>GL_4(Q)</code>; site equality and block membership are finite rational tests. Reduce the resulting lamp word inside the block amalgam by multiplying maximal same-block runs in the explicit group of order 512 and moving the central sign to the front.  The word is trivial iff the telescope part is the identity matrix with zero stable-letter exponent and the reduced lamp word is empty with trivial sign.</p>
+<p>So the literal group has solvable word problem although it is neither residually finite nor MF: the Theorem A obstruction is analytic, not algorithmic.</p></body>

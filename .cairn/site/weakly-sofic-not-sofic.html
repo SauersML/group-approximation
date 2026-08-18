@@ -1,0 +1,38 @@
+<!doctype html><meta charset='utf-8'><title>weakly-sofic-not-sofic</title><style>
+body{font:15px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;max-width:60em;margin:2em auto;padding:0 1em;color:#1c1e1c}
+a{color:#4f46e5;text-decoration:none}a:hover{text-decoration:underline}
+code,pre{font:13px/1.45 Menlo,monospace;background:#f4f4f2}
+pre{padding:.8em;overflow-x:auto;border:1px solid #e5e7e3}
+.badge{display:inline-block;padding:.1em .55em;border-radius:.8em;color:#fff;font:700 11px -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;letter-spacing:.04em}
+.node{font:13px Menlo,monospace}
+h1{font-size:1.4em}h2{font-size:1.05em;border-bottom:1px solid #e5e7e3;padding-bottom:.2em}
+ul.rel{list-style:none;padding-left:0}ul.rel li{margin:.25em 0}
+.muted{color:#8b9089}.tree{white-space:pre;font:13px/1.5 Menlo,monospace;background:#fafaf8;border:1px solid #e5e7e3;padding:1em;overflow-x:auto}
+table{border-collapse:collapse}td,th{border:1px solid #e5e7e3;padding:.25em .6em;font-size:.9em}
+</style><script>MathJax={tex:{inlineMath:[["$","$"],["\\(","\\)"]]}};</script><script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script><body><p><a href='index.html'>← index</a></p>
+<h1><span class='node'>weakly-sofic-not-sofic</span> Weakly sofic does not imply sofic</h1>
+<p><span class="badge" style="background:#178a5e">ESTABLISHED</span> <span class='muted'>claim · <code>research/weakly-sofic-not-sofic.md</code></span></p>
+<p class='muted'>via route weakly-sofic-not-sofic-proof</p>
+<h2>Routes into this claim</h2><ul class='rel'>
+<li><a class="node" href="weakly-sofic-not-sofic-proof.html">weakly-sofic-not-sofic-proof</a> <span class="badge" style="background:#178a5e">COMPLETE</span> Combine Glebsky&#x27;s weak-soficity permanence with the Kun--Thom wreath</li>
+</ul>
+<h2>Distinct from</h2><ul class='rel'>
+<li><a class="node" href="hyperlinear-nonsofic-group.html">hyperlinear-nonsofic-group</a> <span class="badge" style="background:#c08a00">OPEN</span> Pestov Question 3.4: produce a hyperlinear non-sofic group<br><span class='muted'>that separates *hyperlinearity* from soficity and is open; this separates *weak soficity* from soficity and is now settled</span></li>
+<li><a class="node" href="kun-thom-nonsofic-wreath.html">kun-thom-nonsofic-wreath</a> <span class="badge" style="background:#178a5e">ESTABLISHED</span> Kun--Thom nonsofic generalized wreath products over infranormal Kazhdan pairs<br><span class='muted'>that is the nonsoficity input; this is the separation of approximation classes obtained by combining it with a weak-soficity permanence theorem</span></li>
+</ul>
+<h2>Statement</h2>
+<p>The class of weakly sofic groups strictly contains the class of sofic groups.  A witness is the Kun--Thom wreath product <code>W=(directSum_(G/Gamma) Z/2Z) semidirect G</code> for the explicit residually finite Kazhdan pair of <code><a href="kun-thom-nonsofic-wreath.html">kun-thom-nonsofic-wreath</a></code> Theorem E.</p>
+<p>This answers the inclusion question that Glebsky recorded as open in 2023: "It is an easy fact that all sofic groups are weakly sofic.  The other inclusion is an open question."</p>
+<h3>Why this belongs in this graph</h3>
+<p>It is the <strong>first separation of any metric approximation class from soficity</strong>, and it is the exact shape of the statement Question 3.4 asks for with <code>hyperlinear</code> in place of <code>weakly sofic</code>.  The permanence theorem that supplies it (Glebsky, below) has <strong>no hypothesis on the coset action</strong> — in contrast to every wreath-product permanence theorem available on the hyperlinear side, each of which requires the action to be modelled by permutations of a finite set:</p>
+<ul>
+<li>Hayes--Sale, arXiv:1608.02610 — standard wreath products, acting group</li>
+<p>must be sofic even when the conclusion is only hyperlinearity;</p>
+<li>Holt--Rees, Pacific J. Math. 287 (2017) 393--409, arXiv:1601.01836 —</li>
+<p>wreath closure proved for weakly sofic and separately for sofic, explicitly <strong>not</strong> for hyperlinear;</p>
+<li>Gao--Kunnawalkam Elayavalli--Patchell, arXiv:2401.04945 — generalized</li>
+<p>wreath products, requires the underlying set action to be sofic;</p>
+<li>Alekseev--Bradford, arXiv:2601.18742, Definition 4.23 — even for the</li>
+<p>hyperlinear class the action is modelled by <code>phi:Gamma-&gt;Sym(A)</code>.</p>
+</ul>
+<p>So the live question for <code><a href="hyperlinear-nonsofic-group.html">hyperlinear-nonsofic-group</a></code> is sharp: does Glebsky's residually-finite-by-weakly-sofic permanence have a normalized-Hilbert--Schmidt analogue?  If "hyperlinear" could replace "weakly sofic" in his Theorem 1.1, then <code>W</code> would be hyperlinear and nonsofic, and Question 3.4 would be answered.</p></body>

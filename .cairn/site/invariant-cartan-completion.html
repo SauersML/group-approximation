@@ -1,0 +1,34 @@
+<!doctype html><meta charset='utf-8'><title>invariant-cartan-completion</title><style>
+body{font:15px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;max-width:60em;margin:2em auto;padding:0 1em;color:#1c1e1c}
+a{color:#4f46e5;text-decoration:none}a:hover{text-decoration:underline}
+code,pre{font:13px/1.45 Menlo,monospace;background:#f4f4f2}
+pre{padding:.8em;overflow-x:auto;border:1px solid #e5e7e3}
+.badge{display:inline-block;padding:.1em .55em;border-radius:.8em;color:#fff;font:700 11px -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;letter-spacing:.04em}
+.node{font:13px Menlo,monospace}
+h1{font-size:1.4em}h2{font-size:1.05em;border-bottom:1px solid #e5e7e3;padding-bottom:.2em}
+ul.rel{list-style:none;padding-left:0}ul.rel li{margin:.25em 0}
+.muted{color:#8b9089}.tree{white-space:pre;font:13px/1.5 Menlo,monospace;background:#fafaf8;border:1px solid #e5e7e3;padding:1em;overflow-x:auto}
+table{border-collapse:collapse}td,th{border:1px solid #e5e7e3;padding:.25em .6em;font-size:.9em}
+</style><script>MathJax={tex:{inlineMath:[["$","$"],["\\(","\\)"]]}};</script><script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script><body><p><a href='index.html'>← index</a></p>
+<h1><span class='node'>invariant-cartan-completion</span> Invariant Cartan completion for the Kun–Thom Bernoulli pair</h1>
+<p><span class="badge" style="background:#c08a00">OPEN</span> <span class='muted'>claim · <code>research/invariant-cartan-completion.md</code></span></p>
+<h2>Needed by routes</h2><ul class='rel'>
+<li><a class="node" href="kt-pair-non-hyperlinear-rigidity.html">kt-pair-non-hyperlinear-rigidity</a> <span class="badge" style="background:#c08a00">OPEN</span> Refute hyperlinearity of the Kun–Thom wreath group by a rigidity theorem</li>
+</ul>
+<h2>Invalidates</h2><ul class='rel'>
+<li><a class="node" href="growing-fiber-models.html">growing-fiber-models</a> <span class="badge" style="background:#c08a00">OPEN</span> Growing-fiber models with no surviving coarse index set</li>
+</ul>
+<h2>Distinct from</h2><ul class='rel'>
+<li><a class="node" href="fiber-masa-free-cocycle.html">fiber-masa-free-cocycle</a> <span class="badge" style="background:#c08a00">OPEN</span> A lamp embedding with no invariant coarse block decomposition<br><span class='muted'>that asks to CONSTRUCT a model with no invariant masa; this asserts that every model has one — they are the two sides of the same coin and the graph should carry both</span></li>
+<li><a class="node" href="coordinate-action-not-sofic.html">coordinate-action-not-sofic</a> <span class="badge" style="background:#178a5e">ESTABLISHED</span> The coordinate action G ↷ G/Γ is not a sofic action<br><span class='muted'>that is the imported Kun–Thom fact about the coset action; this is the missing lifting theorem which converts an abstract embedding into one to which that fact applies</span></li>
+</ul>
+<h2>Artifacts</h2><ul class='rel'>
+<li><code>docs/TRUE_DIAGONAL_NORMALIZER_RIGIDITY.md</code></li>
+</ul>
+<h2>Statement</h2>
+<p>Given a trace-preserving embedding <code>Θ : M_KT → ∏_𝒰 M_(d_n)</code>, prove that after conjugation there is a <strong>diagonal ultraproduct</strong> <code>D_𝒰</code> with <code>Θ(A_KT) ⊆ D_𝒰</code> and <code>Θ(u_g) D_𝒰 Θ(u_g)* = D_𝒰</code> for every <code>g ∈ G</code>.</p>
+<p><strong>Establishing this refutes <code><a href="hyperlinear-wreath-model.html">hyperlinear-wreath-model</a></code></strong> and produces the first non-hyperlinear group. By <code><a href="diagonal-normalizer-rigidity.html">diagonal-normalizer-rigidity</a></code> clause 4, an invariant diagonal ultraproduct forces <code>Θ(u_g) ∈ 𝒮_𝒰 ⋉ U(D_𝒰)</code>, untwisting plus free amplification then yields a Păunescu-sofic embedding, and <code><a href="coordinate-action-not-sofic.html">coordinate-action-not-sofic</a></code> (Kun–Thom Corollary D) forbids one. Because the containment half is free (abelian diagonalization), this claim is <em>equivalent</em> to non-Connes-embeddability of <code>M_KT</code>, not merely sufficient for it.</p>
+<h3>Two scope corrections worth carrying</h3>
+<p>1. <strong>Diagonal, not merely maximal abelian.</strong> The invariance must be asked of a <em>diagonal</em> ultraproduct <code>∏_𝒰 D_(d_n)</code>. An invariant masa of <code>∏_𝒰 M_(d_n)</code> that is not of that form yields no permutations: <code><a href="diagonal-normalizer-rigidity.html">diagonal-normalizer-rigidity</a></code> runs on the doubly stochastic matrix of <code>|u_ij|²</code> in a fixed matrix unit system, and a singular masa supplies none. So the constructive negation (<code><a href="fiber-masa-free-cocycle.html">fiber-masa-free-cocycle</a></code> clause 3) only has to defeat diagonal ultraproducts, which is strictly easier than defeating all masas. 2. <strong>Normalizers, not permutations.</strong> No <code>Θ(u_g)</code> may even <em>normalize</em> such a <code>D_𝒰</code>; requiring them to be permutations is not needed. This is what <code><a href="diagonal-normalizer-rigidity.html">diagonal-normalizer-rigidity</a></code> clause 4 buys over the literal statement of Kun–Thom Definition 2.2, and it is what makes the negation the exact remaining freedom rather than an artefact of Păunescu's formulation.</p>
+<h3>Why no cited result gives it</h3>
+<p>Kun–Thom start <em>inside</em> a permutation ultraproduct and prove a normalization theorem there; they do not upgrade arbitrary unitary normalizers. The Fourier-block calculation shows the upgrade cannot follow from abelianness or from finite-dimensional simultaneous diagonalization alone: all possible exoticity is stored in growing multiplicity fibers, which are invisible to the lamp algebra and to the trace.</p></body>

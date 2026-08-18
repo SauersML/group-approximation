@@ -1,0 +1,38 @@
+<!doctype html><meta charset='utf-8'><title>witness-yields-two-point-approximation</title><style>
+body{font:15px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;max-width:60em;margin:2em auto;padding:0 1em;color:#1c1e1c}
+a{color:#4f46e5;text-decoration:none}a:hover{text-decoration:underline}
+code,pre{font:13px/1.45 Menlo,monospace;background:#f4f4f2}
+pre{padding:.8em;overflow-x:auto;border:1px solid #e5e7e3}
+.badge{display:inline-block;padding:.1em .55em;border-radius:.8em;color:#fff;font:700 11px -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;letter-spacing:.04em}
+.node{font:13px Menlo,monospace}
+h1{font-size:1.4em}h2{font-size:1.05em;border-bottom:1px solid #e5e7e3;padding-bottom:.2em}
+ul.rel{list-style:none;padding-left:0}ul.rel li{margin:.25em 0}
+.muted{color:#8b9089}.tree{white-space:pre;font:13px/1.5 Menlo,monospace;background:#fafaf8;border:1px solid #e5e7e3;padding:1em;overflow-x:auto}
+table{border-collapse:collapse}td,th{border:1px solid #e5e7e3;padding:.25em .6em;font-size:.9em}
+</style><script>MathJax={tex:{inlineMath:[["$","$"],["\\(","\\)"]]}};</script><script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script><body><p><a href='index.html'>← index</a></p>
+<h1><span class='node'>witness-yields-two-point-approximation</span> A Hilbert embeddable witness yields a two-point approximation</h1>
+<p><span class="badge" style="background:#c08a00">OPEN</span> <span class='muted'>route · <code>research/witness-yields-two-point-approximation.md</code></span></p>
+<h2>Target</h2><ul class='rel'>
+<li><a class="node" href="two-point-orbit-approximation.html">two-point-orbit-approximation</a> <span class="badge" style="background:#c08a00">OPEN</span> The Kun–Thom coset action admits a two-point approximation at the marked pair</li>
+</ul>
+<h2>Requires</h2><ul class='rel'>
+<li><a class="node" href="hilbert-embeddable-witness-for-kun-thom-wreath.html">hilbert-embeddable-witness-for-kun-thom-wreath</a> <span class="badge" style="background:#c08a00">OPEN</span> A Hilbert embeddable weak-soficity witness for the Kun--Thom wreath</li>
+</ul>
+<h2>Artifacts</h2><ul class='rel'>
+<li><code>docs/TRUE_LAMP_CHARACTER_ORBIT_SEPARATION.md</code></li>
+<li><code>docs/TRUE_HILBERT_EMBEDDABLE_IS_REPRESENTATION_REALIZED.md</code></li>
+</ul>
+<h2>Statement</h2>
+<h2>A Hilbert embeddable witness yields a two-point approximation</h2>
+<p>The direction that makes <code><a href="two-point-orbit-approximation.html">two-point-orbit-approximation</a></code> load-bearing: it is a <strong>necessary condition</strong> for a witness, so refuting it closes the lane. The route is recorded in this direction and not the other; nothing here claims that a two-point approximation suffices.</p>
+<p>Let <code>K = L ⋊ A</code> be a witness group with <code>L = (ℤ/2)^Sites</code> the lamps and <code>A</code> the acting part, and let <code>ρ</code> be the realizing representation supplied by <code><a href="hilbert-embeddable-is-representation-realized.html">hilbert-embeddable-is-representation-realized</a></code>. Decompose <code>ρ</code> into irreducibles; by <code><a href="lamp-character-orbit-separation.html">lamp-character-orbit-separation</a></code> only the constituents nontrivial on <code>L</code> can separate the mark, and by Mackey's construction for a semidirect product with abelian normal subgroup each such constituent is induced from a lamp character <code>θ</code> with <code>A</code>-orbit <code>𝒪 ≅ A/A_θ</code>, of degree <code>|𝒪|·ψ(1)</code>.</p>
+<p><strong>The defect condition becomes a Hamming condition on <code>𝒪</code>.</strong> For <code>g</code> in the acting part, the induced-character formula gives <code>χ(g) = Σ_{aA_θ : a⁻¹ga ∈ A_θ} ψ(a⁻¹ga)</code>, and the cosets <code>aA_θ</code> with <code>a⁻¹ga ∈ A_θ</code> are exactly the points of <code>𝒪</code> fixed by <code>g</code>. Hence</p>
+<pre>
+|φ(g)| = |χ(g)|/χ(1) ≤ |Fix_𝒪(g)| / |𝒪|.
+</pre>
+<p>So <code>φ(g) ≈ 1</code> — small defect at <code>g</code> — forces <code>g</code> to fix all but an <code>ε</code>-fraction of <code>𝒪</code>. Applied to the multiplicative defects of the witness, this says the composite <code>Φ → K → A → Sym(𝒪)</code> is <code>(F,ε)</code>-multiplicative in the normalized Hamming metric: a genuine approximate action on a finite set.</p>
+<p><strong>The separation condition becomes two-point resolution.</strong> By <code><a href="lamp-character-orbit-separation.html">lamp-character-orbit-separation</a></code>, the mark <code>w = a_p a_q</code> has normalized separation <code>2·|{θ' ∈ 𝒪 : |supp(θ') ∩ {p,q}| odd}| / |𝒪|</code>. Separation bounded below therefore forces a constant fraction of <code>𝒪</code> to contain exactly one of <code>p</code>, <code>q</code>; taking <code>B = {0,1}</code> and <code>j_{θ'}(x) = [x ∈ supp(θ')]</code> on that fraction gives <code>j_{θ'}(p) ≠ j_{θ'}(q)</code>, and the <code>A</code>-equivariance of the orbit gives the covariance clause. That is the data of <code><a href="two-point-orbit-approximation.html">two-point-orbit-approximation</a></code>.</p>
+<h3>The step this route commits to, stated plainly</h3>
+<p>The equivariance clause transports along <code>𝒪</code> because <code>𝒪</code> is an <code>A</code>-set of lamp characters and the labels <code>j</code> are read off supports; the density condition comes from the constant fraction above after the standard shrinking (Alekseev–Bradford Lemma 4.19) to make the <code>F</code>-translates stay inside the good set. <code>requires</code> is the witness claim alone, which is the honest accounting: everything else here is computation from the two cited established claims.</p>
+<h3>What is NOT claimed</h3>
+<p>That a two-point approximation suffices for a witness. The converse needs the finite group and the representation to be built from the set data, and the resolution question — whether an approximate action fixing most of an orbit of <strong>subsets</strong> forces an approximate action on the <strong>sites</strong> — is open and is tracked separately. Without it, refuting <code><a href="two-point-orbit-approximation.html">two-point-orbit-approximation</a></code> closes the lane but establishing it does not open it.</p></body>

@@ -1,0 +1,37 @@
+<!doctype html><meta charset='utf-8'><title>normal-kazhdan-defect-non-mf</title><style>
+body{font:15px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;max-width:60em;margin:2em auto;padding:0 1em;color:#1c1e1c}
+a{color:#4f46e5;text-decoration:none}a:hover{text-decoration:underline}
+code,pre{font:13px/1.45 Menlo,monospace;background:#f4f4f2}
+pre{padding:.8em;overflow-x:auto;border:1px solid #e5e7e3}
+.badge{display:inline-block;padding:.1em .55em;border-radius:.8em;color:#fff;font:700 11px -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;letter-spacing:.04em}
+.node{font:13px Menlo,monospace}
+h1{font-size:1.4em}h2{font-size:1.05em;border-bottom:1px solid #e5e7e3;padding-bottom:.2em}
+ul.rel{list-style:none;padding-left:0}ul.rel li{margin:.25em 0}
+.muted{color:#8b9089}.tree{white-space:pre;font:13px/1.5 Menlo,monospace;background:#fafaf8;border:1px solid #e5e7e3;padding:1em;overflow-x:auto}
+table{border-collapse:collapse}td,th{border:1px solid #e5e7e3;padding:.25em .6em;font-size:.9em}
+</style><script>MathJax={tex:{inlineMath:[["$","$"],["\\(","\\)"]]}};</script><script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script><body><p><a href='index.html'>← index</a></p>
+<h1><span class='node'>normal-kazhdan-defect-non-mf</span> A normal Kazhdan subgroup in the compression defect kills every corona representation</h1>
+<p><span class="badge" style="background:#178a5e">ESTABLISHED</span> <span class='muted'>claim · <code>research/normal-kazhdan-defect-non-mf.md</code></span></p>
+<p class='muted'>via route normal-kazhdan-defect-non-mf-proof</p>
+<h2>Routes into this claim</h2><ul class='rel'>
+<li><a class="node" href="normal-kazhdan-defect-non-mf-proof.html">normal-kazhdan-defect-non-mf-proof</a> <span class="badge" style="background:#178a5e">COMPLETE</span> Cut the corner with the Kazhdan projection of the normal subgroup</li>
+</ul>
+<h2>Needed by routes</h2><ul class='rel'>
+<li><a class="node" href="torsion-free-non-mf-from-normal-kazhdan-defect.html">torsion-free-non-mf-from-normal-kazhdan-defect</a> <span class="badge" style="background:#178a5e">COMPLETE</span> Apply the normal-Kazhdan obstruction to the Fournier-Facio torsion-free group</li>
+</ul>
+<h2>Distinct from</h2><ul class='rel'>
+<li><a class="node" href="finite-normal-compression-obstruction.html">finite-normal-compression-obstruction</a> <span class="badge" style="background:#178a5e">ESTABLISHED</span> Finite-normal obstruction from the compression radical<br><span class='muted'>that claim needs the subgroup finite and cancels by averaging over it; this one needs property (T) of the subgroup instead and needs no finiteness, centrality, or torsion.</span></li>
+<li><a class="node" href="central-sign-corona-obstruction.html">central-sign-corona-obstruction</a> <span class="badge" style="background:#178a5e">ESTABLISHED</span> Central-sign obstruction to norm-matrix-corona embeddings<br><span class='muted'>that claim marks a central involution and cuts the corner from its own two-point spectrum; this one cuts the corner from the Kazhdan fixed-space projection of a normal subgroup.</span></li>
+<li><a class="node" href="corona-corner-detection-criterion.html">corona-corner-detection-criterion</a> <span class="badge" style="background:#178a5e">ESTABLISHED</span> Corner-detection criterion for a central defect square of any order<br><span class='muted'>that claim analyses which corners a central mark of arbitrary order can supply; this one obtains the corner from property (T) of the marked subgroup and reaches the non-MF conclusion outright.</span></li>
+<li><a class="node" href="finite-infranormal-subgroup-is-normal.html">finite-infranormal-subgroup-is-normal</a> <span class="badge" style="background:#178a5e">ESTABLISHED</span> A finite infranormal subgroup is normal<br><span class='muted'>that claim is a group-theoretic normality statement about finite infranormal subgroups; this one is an analytic non-MF obstruction whose subgroup is assumed normal and Kazhdan and may be infinite.</span></li>
+</ul>
+<h2>Artifacts</h2><ul class='rel'>
+<li><code>GroupApproximation/Sofic/NormalKazhdanCompressionObstruction.lean</code></li>
+<li><code>GroupApproximation/Sofic/NormalKazhdanMFRadical.lean</code></li>
+<li><code>GroupApproximation/Sofic/InternalRadicalGap.lean</code></li>
+<li><code>GroupApproximation/Sofic/KazhdanCompressionCore.lean</code></li>
+</ul>
+<h2>Statement</h2>
+<p>Let <code>C : KazhdanCompressionCore Gamma E</code> with <code>E</code> countable — that is, <code>iota : Gamma -&gt; E</code> with <code>Gamma</code> Kazhdan, <code>t</code> compressing <code>iota(Gamma)</code> into itself, and <code>c</code> centralizing <code>iota(Gamma)</code> — and put <code>defectNormal = normalClosure {[t c t^-1, iota gamma]}</code>.  If <code>K</code> is a <strong>nontrivial normal subgroup of <code>E</code> with property (T)</strong> and <code>K &lt;= defectNormal</code>, then every homomorphism from <code>E</code> to the unitary group of a norm matrix corona kills <code>K</code> elementwise.  Consequently <code>E</code> is not MF.</p>
+<p><strong>Finiteness, centrality and torsion are all unnecessary.</strong>  This is the second killing theorem in the repository, it is machine-checked, and it is the one that survives the passage to torsion-free groups.  The corner that the finite-normal branch obtains by averaging, and the central branch obtains from a two-point spectrum, is here the fixed-space projection of the Kazhdan projection of <code>K</code>; normality of <code>K</code> is exactly what makes that projection invariant under the ambient group, hence a legitimate corner.</p>
+<p>The root <code><a href="torsion-free-finitely-presented-non-mf.html">torsion-free-finitely-presented-non-mf</a></code> therefore has no remaining analytic obstacle on this branch.  What it needs is a torsion-free finitely presented group whose compression defect contains a nontrivial normal Kazhdan subgroup — a question of combinatorial group theory.</p></body>

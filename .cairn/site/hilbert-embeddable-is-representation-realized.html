@@ -1,0 +1,52 @@
+<!doctype html><meta charset='utf-8'><title>hilbert-embeddable-is-representation-realized</title><style>
+body{font:15px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;max-width:60em;margin:2em auto;padding:0 1em;color:#1c1e1c}
+a{color:#4f46e5;text-decoration:none}a:hover{text-decoration:underline}
+code,pre{font:13px/1.45 Menlo,monospace;background:#f4f4f2}
+pre{padding:.8em;overflow-x:auto;border:1px solid #e5e7e3}
+.badge{display:inline-block;padding:.1em .55em;border-radius:.8em;color:#fff;font:700 11px -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;letter-spacing:.04em}
+.node{font:13px Menlo,monospace}
+h1{font-size:1.4em}h2{font-size:1.05em;border-bottom:1px solid #e5e7e3;padding-bottom:.2em}
+ul.rel{list-style:none;padding-left:0}ul.rel li{margin:.25em 0}
+.muted{color:#8b9089}.tree{white-space:pre;font:13px/1.5 Menlo,monospace;background:#fafaf8;border:1px solid #e5e7e3;padding:1em;overflow-x:auto}
+table{border-collapse:collapse}td,th{border:1px solid #e5e7e3;padding:.25em .6em;font-size:.9em}
+</style><script>MathJax={tex:{inlineMath:[["$","$"],["\\(","\\)"]]}};</script><script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script><body><p><a href='index.html'>← index</a></p>
+<h1><span class='node'>hilbert-embeddable-is-representation-realized</span> A Hilbert embeddable length is exactly the normalized-HS metric of a representation</h1>
+<p><span class="badge" style="background:#178a5e">ESTABLISHED</span> <span class='muted'>claim · <code>research/hilbert-embeddable-is-representation-realized.md</code></span></p>
+<p class='muted'>via route hilbert-embeddable-is-representation-realized-proof</p>
+<h2>Routes into this claim</h2><ul class='rel'>
+<li><a class="node" href="hilbert-embeddable-is-representation-realized-proof.html">hilbert-embeddable-is-representation-realized-proof</a> <span class="badge" style="background:#178a5e">COMPLETE</span> Expand the length in characters and recognize the elementary cone generators</li>
+</ul>
+<h2>Needed by routes</h2><ul class='rel'>
+<li><a class="node" href="lamp-character-orbit-separation-proof.html">lamp-character-orbit-separation-proof</a> <span class="badge" style="background:#178a5e">COMPLETE</span> Split the cone along the lamp kernel and apply Clifford&#x27;s theorem</li>
+</ul>
+<h2>Distinct from</h2><ul class='rel'>
+<li><a class="node" href="hilbert-embeddable-length-hyperlinearity.html">hilbert-embeddable-length-hyperlinearity</a> <span class="badge" style="background:#178a5e">ESTABLISHED</span> Weak soficity upgrades to hyperlinearity when the invariant lengths are Hilbert embeddable<br><span class='muted'>that proves the conversion is possible, via Schoenberg and a character realization with constants depending on the parameter t; this identifies the length with a representation metric exactly, on the nose, and so replaces the asymptotic realization by an identity</span></li>
+<li><a class="node" href="hilbert-embeddable-length-lp-feasibility.html">hilbert-embeddable-length-lp-feasibility</a> <span class="badge" style="background:#178a5e">ESTABLISHED</span> The Hilbert embeddable witness question is a finite linear program over class functions<br><span class='muted'>that says the witness question is a finite linear program; this identifies what the program&#x27;s variables mean — the multiplicity vector of a unitary representation — and turns the whole design problem into a membership question about approximation by finite subgroups of unitary groups</span></li>
+<li><a class="node" href="hilbert-embeddable-witness-for-kun-thom-wreath.html">hilbert-embeddable-witness-for-kun-thom-wreath</a> <span class="badge" style="background:#c08a00">OPEN</span> A Hilbert embeddable weak-soficity witness for the Kun--Thom wreath<br><span class='muted'>that asks the design question for one group; this is the general structure theorem that removes the design step from it</span></li>
+</ul>
+<h2>Artifacts</h2><ul class='rel'>
+<li><code>docs/TRUE_HILBERT_EMBEDDABLE_IS_REPRESENTATION_REALIZED.md</code></li>
+</ul>
+<h2>Statement</h2>
+<p>Let <code>H</code> be finite and <code>ℓ</code> a real conjugation-invariant function with <code>ℓ(1) = 0</code>, <code>ℓ ≥ 0</code>. Put <code>ψ_i(h) = d_i − Re χ_i(h) = ½‖π_i(h) − 1‖_F²</code>. Then <code>ℓ</code> is Hilbert embeddable <strong>iff</strong> <code>ℓ = Σ_{i ≠ triv} a_i ψ_i</code> with <code>a_i ≥ 0</code>, <strong>iff</strong> <code>ℓ(h) = ½‖ρ(h) − 1‖_F²</code> for a finite-dimensional unitary representation <code>ρ</code> without trivial subrepresentation (exactly for integer multiplicities; up to a positive scalar and arbitrarily small uniform error in general). Normalizing, <code>ℓ(a⁻¹b) ∝ ‖ρ(a) − ρ(b)‖²_{2,norm}</code>.</p>
+<p><strong>Consequence A — corrected twice; read the second correction.</strong> The first version of this node claimed the identity removes the uniformity-of-constants exposure in <code><a href="hilbert-embeddable-length-hyperlinearity.html">hilbert-embeddable-length-hyperlinearity</a></code> item 2, with no reason given. The correction that replaced it asserted the opposite — that <code>dim ρ</code> is "unbounded", so an exact realization gives normalized separation <code>2ℓ(w)/dim ρ → 0</code> along a family. <strong>That failure mode cannot occur</strong> (<code>cairn-verify</code>, audit 2026-08-14), and the corrected text is:</p>
+<ul>
+<li><code>mean_H(ψ_i) = d_i</code> for every nontrivial <code>i</code>, since <code>Σ_h χ_i(h) = 0</code>.</li>
+<p>Hence in the trivial-free decomposition <strong><code>dim ρ = mean_H(ℓ)</code></strong> — the dimension of the realizing representation <em>is</em> the average of the length, not a free parameter.</p>
+<li><code>ψ_i ≤ 2d_i</code> pointwise, hence <strong><code>max ℓ ≤ 2·mean_H(ℓ)</code></strong> for every Hilbert</li>
+<p>embeddable <code>ℓ</code>.</p>
+</ul>
+<p>So for a witness normalized to <code>ℓ ≤ 1</code> with separation <code>c</code>, <code>mean_H(ℓ)</code> is pinned into <code>[c/2, 1]</code>: the scalar <code>2/dim ρ</code> is bounded above and below by absolute functions of <code>c</code>, the normalized-HS defect is at most <code>4δ/c</code> and the normalized-HS separation at least <code>2c</code>. Far from being unbounded, <code>dim ρ ≤ 1</code> whenever <code>ℓ ≤ 1</code>, which is exactly why exact integral realization of a normalized length essentially never exists and the theorem says "up to a positive scalar". The discrete-length calibration does not show otherwise: the regular representation realizes <code>|K|·ℓ</code>, not <code>ℓ</code>, and <code>mean(|K|·ℓ) = |K|−1 = dim(λ ⊖ triv)</code>, consistent with the identity.</p>
+<p>Equivalently, in the <strong>normalized character</strong> <code>φ = χ_ρ/dim ρ</code>: <code>½‖ρ(a) − ρ(b)‖²_{2,norm} = 1 − Re φ(a⁻¹b)</code>, and <code>1 − Re φ = Σ_i λ_i g_i</code> with <code>g_i = 1 − Re χ_i/d_i</code> and <code>λ</code> on the <strong>simplex</strong>. Since <code>mean_H(g_i) = 1</code>, the simplex constraint and <code>dim ρ = mean_H(ℓ)</code> are the same fact.</p>
+<p><strong>Nevertheless item 2 of the criterion stands, for a different reason: scalar-freeness.</strong> The identity controls only <code>Re τ(ρ(h)) = 1 − ℓ(h)/dim ρ</code> and leaves <code>|τ|</code> free; <code>|τ| = 1</code> exactly on scalars, where the upgrade to maximal separation (<code>HyperlinearAmplification.exists_conjDouble_separation</code>, and equally plain tensor powers) is unavailable at any number of copies. The obstruction is realized, not hypothetical: on <code>Z/N</code>, <code>ℓ(h) = ½(1 − cos(2πh/N))</code> is a Hilbert embeddable invariant length (kernel test: conditionally negative definite, vanishing only at <code>0</code>) whose exact realizer is the one-dimensional character <code>χ₁</code>, so every <code>ρ(h)</code> is a <strong>scalar</strong> and <code>|τ(ρ(h))| = 1</code> for all <code>h ≠ 0</code>. On the same data the Schoenberg trace <code>exp(−ℓ)</code> is real, positive and bounded away from <code>1</code>. So the identity and item 2 compose; the identity does not replace it.</p>
+<p>What survives, and is the reusable content, is the <strong>cone description</strong>: the Hilbert embeddable invariant lengths are exactly the nonnegative combinations of the <code>ψ_i</code>, equivalently of the <code>g_i</code>. Since <code>ψ_i = d_i g_i</code> with <code>d_i &gt; 0</code> the two generating sets span the same cone, so every ratio or feasibility statement over the cone is independent of the choice.</p>
+<p><strong>Consequence B — the design problem becomes a membership question.</strong> For a weak-soficity witness <code>φ : Φ → H</code> with defect set <code>X</code> and target set <code>T</code>, asking for a Hilbert embeddable witnessing length is asking for a finite-dimensional unitary representation <code>ρ</code> of <code>H</code> with <code>‖ρ(x) − 1‖₂</code> small on <code>X</code> and <code>‖ρ(y) − 1‖₂ ≥ c</code> on <code>T</code>; and then <code>ρ ∘ φ</code> <strong>is</strong> the hyperlinear microstate, since <code>ρ</code> is a homomorphism and all defects of <code>ρ ∘ φ</code> are <code>ρ(X)</code>. Hence for a countable group <code>K</code> the following coincide:</p>
+<ul>
+<li><code>K</code> is weakly sofic with Hilbert embeddable witnessing lengths;</li>
+<li><code>K</code> has hyperlinear microstates factoring as <code>Φ → H → U(m)</code> with the second</li>
+<p>arrow a homomorphism;</p>
+<li><code>K</code> is approximable by <strong>finite subgroups of unitary groups</strong> in normalized</li>
+<p>Hilbert–Schmidt. Call this class <code>𝒞_FU</code>.</p>
+</ul>
+<p><code>sofic ⊆ 𝒞_FU ⊆ hyperlinear</code>, the first inclusion because permutation matrices give <code>‖σ − 1‖²_{2,norm} = 2 d_H(σ, 1)</code>.</p>
+<p>So <code><a href="hilbert-embeddable-witness-for-kun-thom-wreath.html">hilbert-embeddable-witness-for-kun-thom-wreath</a></code> is exactly the membership question <code>W ∈ 𝒞_FU</code>, with no metric left to design, and the linear program of <code><a href="hilbert-embeddable-length-lp-feasibility.html">hilbert-embeddable-length-lp-feasibility</a></code> is a program in the multiplicity vector of <code>ρ</code>, readable off the character table. Whether <code>𝒞_FU</code> equals the class of hyperlinear groups is a separate open question and is not needed: <code>W ∈ 𝒞_FU</code> suffices for Question 3.4.</p></body>

@@ -1,0 +1,64 @@
+<!doctype html><meta charset='utf-8'><title>kun-thom-clifford-crossed-product-ce</title><style>
+body{font:15px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;max-width:60em;margin:2em auto;padding:0 1em;color:#1c1e1c}
+a{color:#4f46e5;text-decoration:none}a:hover{text-decoration:underline}
+code,pre{font:13px/1.45 Menlo,monospace;background:#f4f4f2}
+pre{padding:.8em;overflow-x:auto;border:1px solid #e5e7e3}
+.badge{display:inline-block;padding:.1em .55em;border-radius:.8em;color:#fff;font:700 11px -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;letter-spacing:.04em}
+.node{font:13px Menlo,monospace}
+h1{font-size:1.4em}h2{font-size:1.05em;border-bottom:1px solid #e5e7e3;padding-bottom:.2em}
+ul.rel{list-style:none;padding-left:0}ul.rel li{margin:.25em 0}
+.muted{color:#8b9089}.tree{white-space:pre;font:13px/1.5 Menlo,monospace;background:#fafaf8;border:1px solid #e5e7e3;padding:1em;overflow-x:auto}
+table{border-collapse:collapse}td,th{border:1px solid #e5e7e3;padding:.25em .6em;font-size:.9em}
+</style><script>MathJax={tex:{inlineMath:[["$","$"],["\\(","\\)"]]}};</script><script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script><body><p><a href='index.html'>← index</a></p>
+<h1><span class='node'>kun-thom-clifford-crossed-product-ce</span> Connes embeddability of the Kun--Thom Clifford crossed product</h1>
+<p><span class="badge" style="background:#c08a00">OPEN</span> <span class='muted'>claim · <code>research/kun-thom-clifford-crossed-product-ce.md</code></span></p>
+<h2>Routes into this claim</h2><ul class='rel'>
+<li><a class="node" href="compact-bogoliubov-clifford-model.html">compact-bogoliubov-clifford-model</a> <span class="badge" style="background:#c43c2e">INVALIDATED</span> Approximate the Kun--Thom coset mode by honest finite-dimensional representations</li>
+<li><a class="node" href="halo-chart-clifford-model.html">halo-chart-clifford-model</a> <span class="badge" style="background:#c43c2e">INVALIDATED</span> Get the Clifford crossed product from halo-product / sofic-action permanence</li>
+<li><a class="node" href="profinite-clifford-filtration.html">profinite-clifford-filtration</a> <span class="badge" style="background:#c43c2e">INVALIDATED</span> Build the Clifford crossed product from an exact G-invariant finite-dimensional filtration</li>
+</ul>
+<h2>Needed by routes</h2><ul class='rel'>
+<li><a class="node" href="clifford-ce-gives-bare-wall.html">clifford-ce-gives-bare-wall</a> <span class="badge" style="background:#c08a00">OPEN</span> The Clifford crossed product already contains the bare wall</li>
+<li><a class="node" href="kun-thom-clifford-ce-route.html">kun-thom-clifford-ce-route</a> <span class="badge" style="background:#c08a00">OPEN</span> Realize the sofic-radical Clifford phase in a matrix tracial ultraproduct</li>
+</ul>
+<h2>Artifacts</h2><ul class='rel'>
+<li><code>docs/TRUE_KUN_THOM_CLIFFORD_PHASE.md</code></li>
+<li><code>docs/FALSE_FERMIONIC_KUN_THOM_ENDPOINT.md</code></li>
+</ul>
+<h2>Statement</h2>
+<p>For the explicit residually finite nonnormal infranormal Kazhdan pair <code>Gamma&lt;G</code>, prove that the canonical tracial algebra</p>
+<pre>
+Cl(G/Gamma) crossed_product G
+</pre>
+<p>is Connes embeddable.  The Clifford base is hyperfinite, but arbitrary crossed-product permanence is unavailable and the coset action is the nonsofic action at the heart of the Kun--Thom theorem.</p>
+<h3>Ideas</h3>
+<p><strong>Position in the lane.</strong>  This claim is the <em>strongest</em> member of a chain whose weakest member already answers Q3.4:</p>
+<pre>
+<a href="kun-thom-clifford-crossed-product-ce.html">kun-thom-clifford-crossed-product-ce</a>
+  =&gt; <a href="kun-thom-clifford-relative-wall.html">kun-thom-clifford-relative-wall</a>   (anticommuting wall)
+  =&gt; <a href="bare-relative-wall-exists.html">bare-relative-wall-exists</a>          (v != pi(h) v pi(h)^*)
+  =&gt; <a href="hyperlinear-nonsofic-group.html">hyperlinear-nonsofic-group</a>
+</pre>
+<p>and, by the diagonal doubling <code>c_x tensor c_x</code> of <code>TRUE_DOUBLE_CLIFFORD_KUN_THOM_REDUCTION.md</code>, it also implies Connes embeddability of <code>L(W)=L^infinity({-1,1}^(G/Gamma)) crossed_product G</code>, i.e. hyperlinearity of the Kun--Thom wreath group itself.  No reduction runs backwards.  Effort spent here buys everything, but it is priced accordingly; <code><a href="bare-relative-wall-exists.html">bare-relative-wall-exists</a></code> is the cheapest sufficient statement in the lane and is now a first-class node.</p>
+<p>Two of the apparent extra costs are now known to be illusory or real:</p>
+<ul>
+<li>the <em>trace energy</em> of the wall is free (<code><a href="wall-energy-amplification.html">wall-energy-amplification</a></code>:</li>
+<p>diagonal tensor powers push any wall to squared energy <code>&gt;=2</code>);</p>
+<li>the <em>anticommutation</em> is not free.  Amplification gives</li>
+<p><code>v_k w_k=(vw)^(tensor k)</code>, so the Clifford sign is a genuine strengthening. The precise gap between <code><a href="bare-relative-wall-exists.html">bare-relative-wall-exists</a></code> and the Clifford wall is: can a bare wall be "Clifford-ified"?  That is the one question whose answer would collapse this claim's lane onto the cheapest one.</p>
+</ul>
+<p><strong>Why the Clifford lane exists at all.</strong>  Kun--Thom Corollary D says the generalized Bernoulli p.m.p. action <code>G -&gt; (K,kappa)^(G/Gamma)</code> is not sofic, and the Cartan/chart reverse-transfer kills every coordinate model of <code>L(W)</code>. <code>Cl(X)</code> is a factor with no <code>G</code>-invariant Cartan, so there are no coordinates to pull the chart obstruction back along.  That is a constructive advantage only; logically the Clifford claim is above the Bernoulli one.</p>
+<p><strong>Status of the trace-blindness question.</strong>  Yes, trace-blindness works <em>for</em> this program, but only defensively and only so far:</p>
+<ul>
+<li>the finite-dimensional/profinite route is dead</li>
+<p>(<code><a href="infranormal-compact-closure-normal.html">infranormal-compact-closure-normal</a></code>): in every compact image the closure of <code>Gamma</code> is normal, so the quasi-regular first chaos is not even a pointed weak limit of finite-dimensional representations;</p>
+<li>the mechanism that kills it is a cardinality count — isotropy orders and</li>
+<p>orbit cardinalities in Kun--Thom Theorem 4.1, linear dimension in <code><a href="commutant-no-growth.html">commutant-no-growth</a></code> — and that count has <em>no informative normalized shadow</em> (<code><a href="commutant-density-trace-blind.html">commutant-density-trace-blind</a></code>: the normalized commutant density is a character invariant, hence exactly equal for <code>Gamma</code> and <code>t Gamma t^(-1)</code>, and identically <code>0</code> for every model in play);</p>
+<li>the surviving II_1 substitute is the Pimsner--Popa index</li>
+<p>(<code><a href="relative-wall-commutant-growth.html">relative-wall-commutant-growth</a></code>, Corollary 5), and <code><a href="clifford-compressor-site-growth.html">clifford-compressor-site-growth</a></code> computes it inside <code>M_Cl</code>: infinite at every strict positive compressor, with the new Clifford modes indexed by <code>L_+ minus L_+ s</code>, the failure of right divisibility in the compression monoid.</p>
+</ul>
+<p>So no counting invariant can refute this claim; a refutation must come from flexible normalized-Hilbert--Schmidt stability of <code>G</code> (or already of the ascending HNN subgroup <code>&lt;Gamma,t&gt;</code>), which restores an exact representation and with it the exact count.  That is the fork, and it is genuinely open: the known 2-Kazhdan/cohomological results give <em>unnormalized Frobenius</em> stability, which is on the wrong side of the normalization firewall (<code>TRUE_CLIFFORD_HYPERLINEARITY_FORCES_AMBIENT_HS_INSTABILITY.md</code>, Section 4).</p>
+<p><strong>What the shape of the required model is.</strong>  The tower <code>N &lt; Ad pi(t)(N) &lt; Ad pi(t)^2(N) &lt; ...</code> demanded by Corollary 5 has infinite index at every step in <code>M_Cl</code>.  That shape is harmless on its own: the one-sided Clifford shift <code>c_n |-&gt; c_(n+1)</code> is an infinite-index endomorphism of the hyperfinite II_1 factor, so an infinite-index compressor tower already exists inside <code>R</code>.  What is missing is coherence of the tower with the whole property-<code>(T)</code> group, i.e. the coherent Bogoliubov-innerness problem <code>(DCK15)</code>.  Any construction attempt should start from a shift on a one-sided Clifford half-space carrying the <code>L_+</code>-indexed site set of <code><a href="clifford-compressor-site-growth.html">clifford-compressor-site-growth</a></code>, and the difficulty should be located exactly at the elements of <code>L</code> that leave <code>L_+</code>.</p>
+<p><strong>Dead, do not redo:</strong> honest finite-dimensional/compact Bogoliubov models (<code><a href="infranormal-compact-closure-normal.html">infranormal-compact-closure-normal</a></code>); Gaussian second quantization of <code>lambda_(G/Gamma)</code> (the Gaussian action <em>is</em> a generalized Bernoulli action, so Kun--Thom Corollary D plus the Hayes entropy computation excludes full Wick-moment models); Definition-4.23 chart models with any target class (<code><a href="lamp-charts-recover-set-action.html">lamp-charts-recover-set-action</a></code>, route <code><a href="halo-chart-clifford-model.html">halo-chart-clifford-model</a></code>); exact <code>G</code>-invariant AF/profinite filtrations (<code><a href="profinite-action-fixed-algebra-invariant.html">profinite-action-fixed-algebra-invariant</a></code>, route <code><a href="profinite-clifford-filtration.html">profinite-clifford-filtration</a></code>); operator-norm/weak-MF certificates (the central sign is invisible there — <code><a href="central-sign-corona-obstruction.html">central-sign-corona-obstruction</a></code>, Proposition 8 of the perfect-core note); any model whose commutant growth is finite index at a positive elementary transvection (Corollary 7 of the wall note, and <code><a href="clifford-compressor-site-growth.html">clifford-compressor-site-growth</a></code> for the values).</p>
+<p><strong>Do not re-open as separate routes:</strong> the full Majorana crossed product, the even CAR core, and a Connes-embeddable character seeing <code>z</code> are one problem (<code><a href="clifford-ce-targets-are-equivalent.html">clifford-ce-targets-are-equivalent</a></code>), and an operator-norm certificate for them is impossible, not merely unavailable (<code><a href="kun-thom-clifford-extension-not-weak-mf.html">kun-thom-clifford-extension-not-weak-mf</a></code>).  The Bernoulli corner is <em>implied</em> by this one (<code><a href="clifford-ce-implies-bernoulli-ce.html">clifford-ce-implies-bernoulli-ce</a></code>), so this claim is equivalent to hyperlinearity of the whole cover <code>Wtilde</code>, and the deduction chain down to Q3.4 is <code><a href="thom-central-corner-criterion.html">thom-central-corner-criterion</a></code> (Thom Lemma 3.3 and Remark 3.4, source-verified) or, more cheaply, the radical collision, which needs no central-quotient theorem at all.</p>
+<p><strong>Cheaper instances worth preferring.</strong>  <code><a href="invariant-graph-crossed-product-ce.html">invariant-graph-crossed-product-ce</a></code> asks only for <em>some</em> nondegenerate <code>G</code>-invariant graph, not the complete one; <code>docs/NOTEPAD.md</code> (near line 9969) gives the concrete sparse instance, the orbital graph of one symmetric double coset, whose <code>z=-1</code> lamp algebra is the AF twisted algebra <code>C_r^<em>(directSum_X F_2,(-1)^(B_</em>))</code> and whose Bogoliubov action is far more local than the complete one.  If a construction is going to be attempted at all, attempt it there.</p></body>

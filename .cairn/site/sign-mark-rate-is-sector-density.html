@@ -1,0 +1,48 @@
+<!doctype html><meta charset='utf-8'><title>sign-mark-rate-is-sector-density</title><style>
+body{font:15px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;max-width:60em;margin:2em auto;padding:0 1em;color:#1c1e1c}
+a{color:#4f46e5;text-decoration:none}a:hover{text-decoration:underline}
+code,pre{font:13px/1.45 Menlo,monospace;background:#f4f4f2}
+pre{padding:.8em;overflow-x:auto;border:1px solid #e5e7e3}
+.badge{display:inline-block;padding:.1em .55em;border-radius:.8em;color:#fff;font:700 11px -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;letter-spacing:.04em}
+.node{font:13px Menlo,monospace}
+h1{font-size:1.4em}h2{font-size:1.05em;border-bottom:1px solid #e5e7e3;padding-bottom:.2em}
+ul.rel{list-style:none;padding-left:0}ul.rel li{margin:.25em 0}
+.muted{color:#8b9089}.tree{white-space:pre;font:13px/1.5 Menlo,monospace;background:#fafaf8;border:1px solid #e5e7e3;padding:1em;overflow-x:auto}
+table{border-collapse:collapse}td,th{border:1px solid #e5e7e3;padding:.25em .6em;font-size:.9em}
+</style><script>MathJax={tex:{inlineMath:[["$","$"],["\\(","\\)"]]}};</script><script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script><body><p><a href='index.html'>← index</a></p>
+<h1><span class='node'>sign-mark-rate-is-sector-density</span> For a sign mark the amplification rate is exactly the negative sector density</h1>
+<p><span class="badge" style="background:#178a5e">ESTABLISHED</span> <span class='muted'>claim · <code>research/sign-mark-rate-is-sector-density.md</code></span></p>
+<p class='muted'>via route sign-mark-rate-is-sector-density-proof</p>
+<h2>Routes into this claim</h2><ul class='rel'>
+<li><a class="node" href="sign-mark-rate-is-sector-density-proof.html">sign-mark-rate-is-sector-density-proof</a> <span class="badge" style="background:#178a5e">COMPLETE</span> Evaluate the stopping statistic on an involution and read the three families</li>
+</ul>
+<h2>Distinct from</h2><ul class='rel'>
+<li><a class="node" href="corner-renormalization-cost.html">corner-renormalization-cost</a> <span class="badge" style="background:#178a5e">ESTABLISHED</span> Corner compression is free in operator norm and costs the inverse root trace<br><span class='muted'>That claim is the general norm bookkeeping for compression; this one evaluates the effective-rank stopping statistic for a specific shape of mark and reads off which candidate families are rate-blocked.</span></li>
+<li><a class="node" href="mf-trace-gap-defect-ratio-models.html">mf-trace-gap-defect-ratio-models</a> <span class="badge" style="background:#c08a00">OPEN</span> MF groups admit models whose squared defect beats their trace gap<br><span class='muted'>That open claim asks for models achieving the profile; this established one computes what the profile says for a central involution, and identifies where it is free and where it provably fails.</span></li>
+</ul>
+<h2>Artifacts</h2><ul class='rel'>
+<li><code>docs/FALSE_WEAK_MF_EFFECTIVE_RANK_PROFILE.md</code></li>
+<li><code>docs/CENTRAL_RADICAL_SHEAR_GADGET.md</code></li>
+<li><code>docs/NON_MF_TO_HYPERLINEAR_DIFFERENTIAL_AUDIT.md</code></li>
+</ul>
+<h2>Statement</h2>
+<p>Let <code>z</code> be a central involution and <code>phi_n</code> operator-norm models with defect <code>epsilon_n</code> in which <code>phi_n(z)</code> is (asymptotically) a self-adjoint involution with negative spectral sector of relative dimension</p>
+<pre>
+delta_n = r_n/d_n.
+</pre>
+<p>Then the effective-rank stopping statistic <code>(ERP11)</code> of <code>FALSE_WEAK_MF_EFFECTIVE_RANK_PROFILE.md</code> is</p>
+<pre>
+epsilon_n^2 d_n / ||phi_n(z)-1||_F^2 = epsilon_n^2/(4 delta_n),   (SD1)
+</pre>
+<p>so the whole profile collapses to one number, the sector density, and:</p>
+<p>1. if <code>liminf delta_n &gt; 0</code> the mark is already Hilbert--Schmidt visible, <code>1-Re tr(phi_n(z)) = 2 delta_n</code>, and <strong>no amplification is needed at all</strong>; 2. otherwise the profile is exactly <code>epsilon_n = o(sqrt(delta_n))</code>, which is the corner-renormalization cost <code>tau(p_n)^(-1/2) = delta_n^(-1/2)</code> of <code><a href="corner-renormalization-cost.html">corner-renormalization-cost</a></code> in rate form.</p>
+<p>Reading the two candidate families through <code>(SD1)</code>:</p>
+<ul>
+<li><strong>Clifford family.</strong>  The Connes-embeddable Clifford detector sends the mark</li>
+<p>to the scalar <code>-1</code>, so <code>delta_n = 1</code> and the statistic is <code>epsilon_n^2/4</code>. The rate is free; that family's difficulty was never the rate.</p>
+<li><strong>Cyclic-shear family.</strong>  <code>J(H,x) = (H x &lt;z&gt;) *_A K</code> amalgamates over the</li>
+<p>finite <code>A = &lt;x,z&gt; = C_2 x C_2</code>, and <code>alpha(x)=xz</code> makes the compressor swap the two characters with <code>chi(z) = -1</code>, so those two sectors have equal rank.  In any splice matching the vertex models along a multiple of the regular representation of <code>A</code> --- which is what an amalgam criterion asks for --- <code>delta_n = 1/2</code> and the statistic is <code>epsilon_n^2/2</code>.  The rate is free; the blocker is existence of the total-group model, the projective-sector splice.</p>
+<li><strong>Free-lamp family with exact ambient letters.</strong>  Here property <code>(T)</code></li>
+<p>rigidity forces <code>||phi_n(q)-1||_(2,d_n) &lt;= C epsilon_n</code>, i.e. <code>delta_n &lt;= C^2 epsilon_n^2/2</code>, and <code>(SD1)</code> is bounded below by <code>1/(2C^2)</code>. The rate provably fails.</p>
+</ul>
+<p>So the rate is not the blocker in either named candidate family; it is the blocker exactly where property <code>(T)</code> squeezes the mark onto a vanishing sector, and there it fails rather than being unknown.</p></body>

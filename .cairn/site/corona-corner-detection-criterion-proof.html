@@ -1,0 +1,29 @@
+<!doctype html><meta charset='utf-8'><title>corona-corner-detection-criterion-proof</title><style>
+body{font:15px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;max-width:60em;margin:2em auto;padding:0 1em;color:#1c1e1c}
+a{color:#4f46e5;text-decoration:none}a:hover{text-decoration:underline}
+code,pre{font:13px/1.45 Menlo,monospace;background:#f4f4f2}
+pre{padding:.8em;overflow-x:auto;border:1px solid #e5e7e3}
+.badge{display:inline-block;padding:.1em .55em;border-radius:.8em;color:#fff;font:700 11px -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;letter-spacing:.04em}
+.node{font:13px Menlo,monospace}
+h1{font-size:1.4em}h2{font-size:1.05em;border-bottom:1px solid #e5e7e3;padding-bottom:.2em}
+ul.rel{list-style:none;padding-left:0}ul.rel li{margin:.25em 0}
+.muted{color:#8b9089}.tree{white-space:pre;font:13px/1.5 Menlo,monospace;background:#fafaf8;border:1px solid #e5e7e3;padding:1em;overflow-x:auto}
+table{border-collapse:collapse}td,th{border:1px solid #e5e7e3;padding:.25em .6em;font-size:.9em}
+</style><script>MathJax={tex:{inlineMath:[["$","$"],["\\(","\\)"]]}};</script><script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script><body><p><a href='index.html'>← index</a></p>
+<h1><span class='node'>corona-corner-detection-criterion-proof</span> Run transport inside an arbitrary commutant corner and cut the spectrum</h1>
+<p><span class="badge" style="background:#178a5e">COMPLETE</span> <span class='muted'>route · <code>research/corona-corner-detection-criterion-proof.md</code></span></p>
+<h2>Target</h2><ul class='rel'>
+<li><a class="node" href="corona-corner-detection-criterion.html">corona-corner-detection-criterion</a> <span class="badge" style="background:#178a5e">ESTABLISHED</span> Corner-detection criterion for a central defect square of any order</li>
+</ul>
+<h2>Requires</h2><ul class='rel'>
+<li><a class="node" href="kazhdan-asymptotic-commutant-transport.html">kazhdan-asymptotic-commutant-transport</a> <span class="badge" style="background:#178a5e">ESTABLISHED</span> One-sided Kazhdan transport of asymptotic commutants</li>
+</ul>
+<h2>Artifacts</h2><ul class='rel'>
+<li><code>non_mf_groups_exist.tex</code></li>
+</ul>
+<h2>Statement</h2>
+<h3>Why sufficient</h3>
+<p><strong>Clause 1.</strong>  The central-corner reduction of the manuscript (<code>sec:transport</code>, the paragraph before <code>thm:sign-criterion</code>) needs only that <code>q</code> be a nonzero projection commuting with <code>Theta(H)</code>: a spectral cut at <code>1/2</code> of a self-adjoint lift gives coordinate projections <code>(q_n)</code>, <code>r_n = rank q_n</code> is positive on an infinite set, and <code>q Q q</code> is again a norm matrix corona with unit <code>q</code>, on which <code>Theta_q(g) = q Theta(g) q</code> is a homomorphism with unitary coordinate lifts.  Nothing there uses <code>eps</code>.</p>
+<p>Inside that corner, <code>c</code> still centralizes <code>iota(Gamma)</code> and <code>t</code> still compresses it, because these are identities in <code>H</code> and <code>Theta_q</code> is a homomorphism.  So <code>Theta_q(c)</code> is an asymptotic commutant of <code>Theta_q(iota(Gamma))</code>, <code><a href="kazhdan-asymptotic-commutant-transport.html">kazhdan-asymptotic-commutant-transport</a></code> puts <code>Theta_q(d) = Theta_q(t) Theta_q(c) Theta_q(t)^-1</code> there as well, and therefore <code>u ~_2 q</code> <strong>in the corner's normalized Hilbert--Schmidt norm</strong>. For unitaries, <code>‖ab - 1‖_2 &lt;= ‖a - 1‖_2 + ‖b - 1‖_2</code>, <code>‖a^-1 - 1‖_2 = ‖a - 1‖_2</code>, and the normalized <code>2</code>-norm is conjugation invariant, so <code>{x : ‖Theta_q(x) - q‖_2 = 0}</code> is a normal subgroup of <code>H</code>; it contains <code>u</code>, hence the whole normal closure of <code>u</code>, hence <code>eps = u^2</code>.</p>
+<p><strong>Clause 2.</strong>  Let <code>S</code> be a clopen subset of <code>sp(Theta(eps))</code> with <code>1 not in S</code>.  Then <code>1_S</code> is continuous on the spectrum, so <code>q = 1_S(Theta(eps))</code> lies in <code>C*(Theta(eps))</code>; since <code>eps</code> is central in <code>H</code>, <code>Theta(eps)</code> commutes with <code>Theta(H)</code>, hence so does <code>q</code>.  If <code>S</code> is nonempty then <code>q != 0</code>, and <code>delta = dist(1, S) &gt; 0</code> gives <code>(q Theta(eps) q - q)^* (q Theta(eps) q - q) &gt;= delta^2 q</code>, so <code>‖q Theta(eps) q - q‖_2 &gt;= delta</code> because the corner trace is normalized (<code>tau_q(q) = 1</code>).  This contradicts clause 1, so <code>S</code> is empty.  A nonempty closed subset of the circle with no nonempty clopen piece missing <code>1</code> contains <code>1</code> (take <code>S</code> to be the whole spectrum) and is connected (a disconnection has a clopen piece missing <code>1</code>).</p>
+<p><strong>Clause 3.</strong>  Given such <code>q</code> and <code>lambda</code>, put <code>eta = ‖(Theta(eps) - lambda) q‖</code>. In the corner, <code>‖q Theta(eps) q - lambda q‖ &lt;= eta</code>, so <code>‖q Theta(eps) q - q‖_2 &gt;= |lambda - 1| - eta &gt; 0</code>, contradicting clause 1 unless no such pair exists.  A unitary whose spectrum is <code>{1}</code> is <code>1</code>; combined with clause 2, if <code>Theta(eps) != 1</code> then <code>sp(Theta(eps))</code> contains a point <code>lambda</code> with <code>|lambda - 1| &gt; 0</code>, and clause 3 says no commutant projection localizes there.  For <code>eps</code> of order <code>n</code> the spectrum lies in the <code>n</code>-th roots of unity, so it is finite; being connected it is <code>{1}</code>, i.e. <code>Theta(eps) = 1</code>, which is <code><a href="central-sign-corona-obstruction.html">central-sign-corona-obstruction</a></code> (there <code>n = 2</code> and <code>q = (1 - Theta(eps))/2</code>).</p></body>

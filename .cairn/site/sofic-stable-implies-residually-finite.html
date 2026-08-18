@@ -1,0 +1,39 @@
+<!doctype html><meta charset='utf-8'><title>sofic-stable-implies-residually-finite</title><style>
+body{font:15px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;max-width:60em;margin:2em auto;padding:0 1em;color:#1c1e1c}
+a{color:#4f46e5;text-decoration:none}a:hover{text-decoration:underline}
+code,pre{font:13px/1.45 Menlo,monospace;background:#f4f4f2}
+pre{padding:.8em;overflow-x:auto;border:1px solid #e5e7e3}
+.badge{display:inline-block;padding:.1em .55em;border-radius:.8em;color:#fff;font:700 11px -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;letter-spacing:.04em}
+.node{font:13px Menlo,monospace}
+h1{font-size:1.4em}h2{font-size:1.05em;border-bottom:1px solid #e5e7e3;padding-bottom:.2em}
+ul.rel{list-style:none;padding-left:0}ul.rel li{margin:.25em 0}
+.muted{color:#8b9089}.tree{white-space:pre;font:13px/1.5 Menlo,monospace;background:#fafaf8;border:1px solid #e5e7e3;padding:1em;overflow-x:auto}
+table{border-collapse:collapse}td,th{border:1px solid #e5e7e3;padding:.25em .6em;font-size:.9em}
+</style><script>MathJax={tex:{inlineMath:[["$","$"],["\\(","\\)"]]}};</script><script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script><body><p><a href='index.html'>← index</a></p>
+<h1><span class='node'>sofic-stable-implies-residually-finite</span> A sofic group that is stable in finite actions is residually finite</h1>
+<p><span class="badge" style="background:#178a5e">ESTABLISHED</span> <span class='muted'>claim · <code>research/sofic-stable-implies-residually-finite.md</code></span></p>
+<p class='muted'>via route sofic-stable-implies-residually-finite-proof</p>
+<h2>Routes into this claim</h2><ul class='rel'>
+<li><a class="node" href="sofic-stable-implies-residually-finite-proof.html">sofic-stable-implies-residually-finite-proof</a> <span class="badge" style="background:#178a5e">COMPLETE</span> Cycle-parity separating set plus weak containment in finite actions</li>
+</ul>
+<h2>Needed by routes</h2><ul class='rel'>
+<li><a class="node" href="literal-group-not-stable-in-finite-actions-proof.html">literal-group-not-stable-in-finite-actions-proof</a> <span class="badge" style="background:#178a5e">COMPLETE</span> Contrapose the stability principle against literal soficity</li>
+<li><a class="node" href="literal-mark-quotient-not-stable-in-finite-actions-proof.html">literal-mark-quotient-not-stable-in-finite-actions-proof</a> <span class="badge" style="background:#178a5e">COMPLETE</span> Combine soficity of the marked quotient with its nontrivial finite residual</li>
+</ul>
+<h2>Distinct from</h2><ul class='rel'>
+<li><a class="node" href="gohla-thom-stable-base-nonsofic-extension.html">gohla-thom-stable-base-nonsofic-extension</a> <span class="badge" style="background:#178a5e">ESTABLISHED</span> Gohla--Thom — cosystolic base stable in finite actions forces a nonsofic central extension<br><span class='muted'>That is the cohomological Theorem 3.13, needing a cosystolic inequality and a non-residually-finite central extension; this is the elementary principle their section 3.2 states, with no expansion hypothesis and no central extension.</span></li>
+<li><a class="node" href="finite-quotient-blindness.html">finite-quotient-blindness</a> <span class="badge" style="background:#178a5e">ESTABLISHED</span> Finite quotients are blind to the compression<br><span class='muted'>That says finite quotients of the compression pattern cannot see the mark; this is a general permanence statement about stability and soficity.</span></li>
+</ul>
+<h2>Artifacts</h2><ul class='rel'>
+<li><code>docs/SOFIC_STABLE_IMPLIES_RESIDUALLY_FINITE_2026-08-14.md</code></li>
+<li><code>docs/LITERAL_GROUP_IS_SOFIC_2026-08-14.md</code></li>
+</ul>
+<h2>Statement</h2>
+<p>A group that is sofic and stable in finite actions is residually finite. "Stable in finite actions" is Gohla--Thom Definition 3.7: the limit action of any sofic approximation is weakly contained in the family of finite actions of the group.  Any group stable in a stronger sense — flexibly, weakly flexibly, or <code>rho</code>-stable in permutations — is stable in finite actions, so the implication applies to all of those notions.</p>
+<p><strong>PROVED IN REPO</strong> — <code>docs/SOFIC_STABLE_IMPLIES_RESIDUALLY_FINITE_2026-08-14.md</code>. The derivation is elementary and needs no ergodic machinery: inside any sofic approximation, choosing alternate points along each nontrivial cycle of <code>sigma_n(g)</code> gives <code>A_n</code> with <code>sigma_n(g)A_n</code> disjoint from <code>A_n</code> and <code>|A_n| &gt;= (|Omega_n| - |Fix|)/3</code>, so the limit action has a set <code>A</code> with <code>mu(A) &gt;= 1/3</code> and <code>mu(gA intersect A) = 0</code>.  Weak containment in finite actions then supplies a finite action and a set <code>B</code> with <code>nu(B) &gt; 1/4</code> and <code>nu(gB intersect B) &lt; 1/12</code>, so <code>g</code> moves a point of a finite <code>G</code>-set and survives the finite-index kernel of that action.  The cycle-parity step is what replaces a Rokhlin argument, and it sidesteps the fact that the ultraproduct space is not standard.</p>
+<p><strong>Citation, now corroboration rather than support.</strong>  The statement is asserted by Gohla--Thom, <code>arXiv:2403.09582v2</code> section 3.2 ("any sofic group which is stable in finite actions must be residually finite") and by Chapman--Dikstein--Lubotzky, <code>arXiv:2410.02913v2</code> ("as sofic stable groups are residually finite [GR09]"), both crediting Glebsky--Rivera, <em>Almost solutions of equations in permutations</em>, Taiwanese J. Math. 13 (2009) 493--500, <code>arXiv:0709.1134</code>.  Both secondary statements were read from the PDFs by <code>cairn-scout</code>.</p>
+<p><strong>Primary now read (2026-08-14 scout) — and the attribution is too generous.</strong> Glebsky--Rivera prove:</p>
+<p>&gt; <strong>Proposition 3.</strong> If <code>G = &lt;x_1,...,x_k | w_i(x_1,...,x_k) = u_i(x_1,...,x_k), &gt; i = 1,...,r&gt;</code> is sofic and System 2 is stable, then <code>G</code> is residually finite.</p>
+<p>with the contrapositive as the second bullet of their Theorem 2: "If the group <code>G</code> is sofic but not residually finite, then the system (2) is unstable in permutations."</p>
+<p>Their "stable" is Definition 1.3: stability <em>of a system of equations</em>, with a rate <code>delta_eps -&gt; 0</code> independent of <code>n</code>, and the exact solution required to lie in the <strong>same</strong> <code>S_n</code>.  So it is <strong>strict</strong> permutation stability — no enlargement, hence not flexible — and it is a property of a <strong>finite presentation</strong>, not of an abstract countable group.  Glebsky--Rivera therefore do not prove the statement in this node's title; the Gohla--Thom form (weaker stability notion, arbitrary countable group) is strictly stronger, and they assert it in section 3.2 as their own observation, without proof and without a pinpoint into Glebsky--Rivera.</p>
+<p>This is now harmless, because the in-repo proof above discharges it.  Two things worth keeping from the primary anyway: for a finitely presented group, "sofic and not residually finite implies the defining system is unstable in permutations (strict sense)" is available with <strong>no</strong> second-hand step at all; and the worked example printed after their Theorem 2 calls a system "unstable in permutations, because the corresponding group is finite", contradicting their own first bullet — a typo in the source, so do not quote that sentence.</p></body>

@@ -5935,3 +5935,23 @@ be a mixed multiplication-to-variance estimate: the nested middle-root
 Leavitt table must bound the two outer fiber variances with constants
 independent of packet size and matrix dimension.  Pure covariance energy is
 zero in the countermodel and cannot appear as the missing term.
+
+### 2026-08-18: commuting sofic actions do not combine — GKP Question 4.2 closed
+
+Question 4.2 of Gao--Kunnawalkam Elayavalli--Patchell (arXiv:2401.04945,
+*Res. Math. Sci.* 12 (2025), 48) has a negative answer: there are two
+commuting **free sofic** actions of one sofic group whose combined
+`G x G`-action is not sofic.  The construction is the diagonal coset space
+`X = (G x G)/(Delta Gamma)` over the Kun--Thom pair
+`Gamma = EL_r(R_+) <= G = EL_r(R) : SL_d(Z)` — each coordinate action is free
+(a diagonal element with a trivial coordinate is trivial), while the diagonal
+copy of `G` cuts out an orbit isomorphic to the nonsofic coset `G`-set
+`G/Gamma`.  Graph: `commuting-sofic-actions-need-not-combine` (root, ESTABLISHED)
+via `commuting-counterexample-from-kun-thom-pair` and
+`nonsofic-orbit-forces-commuting-counterexample`; circulation note at
+`research/artifacts/commuting-sofic-actions-note-2026-08-17.md`.  The
+group-theoretic core is kernel-checked in
+`GroupApproximation/Algebra/DiagonalCosetAction.lean`; the soficity transfers
+(GKP Thm 2.14, Props 2.15/2.16) and the Kun--Thom input remain the cited
+trust surface.  Priority search 2026-08-17 found no prior resolution; author
+confirmation outstanding.

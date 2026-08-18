@@ -1,0 +1,44 @@
+<!doctype html><meta charset='utf-8'><title>positive-core-bernoulli-ce</title><style>
+body{font:15px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;max-width:60em;margin:2em auto;padding:0 1em;color:#1c1e1c}
+a{color:#4f46e5;text-decoration:none}a:hover{text-decoration:underline}
+code,pre{font:13px/1.45 Menlo,monospace;background:#f4f4f2}
+pre{padding:.8em;overflow-x:auto;border:1px solid #e5e7e3}
+.badge{display:inline-block;padding:.1em .55em;border-radius:.8em;color:#fff;font:700 11px -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;letter-spacing:.04em}
+.node{font:13px Menlo,monospace}
+h1{font-size:1.4em}h2{font-size:1.05em;border-bottom:1px solid #e5e7e3;padding-bottom:.2em}
+ul.rel{list-style:none;padding-left:0}ul.rel li{margin:.25em 0}
+.muted{color:#8b9089}.tree{white-space:pre;font:13px/1.5 Menlo,monospace;background:#fafaf8;border:1px solid #e5e7e3;padding:1em;overflow-x:auto}
+table{border-collapse:collapse}td,th{border:1px solid #e5e7e3;padding:.25em .6em;font-size:.9em}
+</style><script>MathJax={tex:{inlineMath:[["$","$"],["\\(","\\)"]]}};</script><script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script><body><p><a href='index.html'>← index</a></p>
+<h1><span class='node'>positive-core-bernoulli-ce</span> The positive core of the Bernoulli crossed product is Connes embeddable</h1>
+<p><span class="badge" style="background:#178a5e">ESTABLISHED</span> <span class='muted'>claim · <code>research/positive-core-bernoulli-ce.md</code></span></p>
+<p class='muted'>via route positive-core-bernoulli-ce-proof</p>
+<h2>Routes into this claim</h2><ul class='rel'>
+<li><a class="node" href="positive-core-bernoulli-ce-proof.html">positive-core-bernoulli-ce-proof</a> <span class="badge" style="background:#178a5e">COMPLETE</span> Separable positive stabilizers give Schreier approximations, then GKP Theorem A</li>
+</ul>
+<h2>Needed by routes</h2><ul class='rel'>
+<li><a class="node" href="positive-core-dilation-splice.html">positive-core-dilation-splice</a> <span class="badge" style="background:#c08a00">OPEN</span> Extend the sofic positive core over the compressors</li>
+</ul>
+<h2>Distinct from</h2><ul class='rel'>
+<li><a class="node" href="coordinate-action-not-sofic.html">coordinate-action-not-sofic</a> <span class="badge" style="background:#178a5e">ESTABLISHED</span> The coordinate action G ↷ G/Γ is not a sofic action<br><span class='muted'>that says the FULL coset action G ↷ G/Γ is not sofic; this says the POSITIVE sub-action Γ ↷ TΓ/Γ is sofic — the contrast is the whole content, and the separating property is separability of stabilizers</span></li>
+<li><a class="node" href="hyperlinear-wreath-model.html">hyperlinear-wreath-model</a> <span class="badge" style="background:#c08a00">OPEN</span> Construct a hyperlinear model of the wreath candidate<br><span class='muted'>that asks for microstates for the whole candidate W; this supplies them for a proper subgroup W₀ and leaves the compressors undilated</span></li>
+<li><a class="node" href="fiber-masa-free-cocycle.html">fiber-masa-free-cocycle</a> <span class="badge" style="background:#c08a00">OPEN</span> A lamp embedding with no invariant coarse block decomposition<br><span class='muted'>that is a structural demand on a putative model of the whole algebra; this is an existing model of a subalgebra</span></li>
+</ul>
+<h2>Artifacts</h2><ul class='rel'>
+<li><code>docs/FALSE_POSITIVE_CORE_IS_SOFIC.md</code></li>
+<li><code>research/artifacts/kun-thom-2608-06222-verified.md</code></li>
+</ul>
+<h2>Statement</h2>
+<p>For the regular finite-field Kun–Thom pair — <code>k = 𝔽_q</code>, <code>d, r ≥ 3</code>, <code>R₊ = k[x₁,…,x_d]</code>, <code>R = k[x₁^{±1},…,x_d^{±1}]</code>, <code>Γ = E_r(R₊)</code>, <code>G = E_r(R) ⋊ SL_d(ℤ)</code> — put</p>
+<p>L₊ = SL_d(ℤ) ∩ M_d(ℕ),   T = Γ L₊ ⊆ G,   X₀ = TΓ/Γ ⊆ G/Γ.</p>
+<p>Then <code>Γ ↷ X₀</code> is a <strong>sofic action</strong>, the generalized wreath product <code>W₀ = (⊕_{X₀} C₂) ⋊ Γ</code> is <strong>sofic</strong>, and therefore</p>
+<p>N₀ = L(W₀) = L^∞({±1}^{X₀}) ⋊ Γ</p>
+<p>is <strong>Connes embeddable</strong>.</p>
+<p>This is the flexible side's only positive foothold, and it has never been in the graph. Every other node on this branch either demands a model or refutes a way of getting one; this one exhibits genuine matrix microstates for a genuine piece of the target algebra.</p>
+<h3>Why the positive part escapes what the full action cannot</h3>
+<p><code><a href="coordinate-action-not-sofic.html">coordinate-action-not-sofic</a></code> establishes that <code>G ↷ G/Γ</code> is not a sofic action. The mechanism separating the two is stabilizer separability, and it is worth stating precisely because it is the sharpest structural fact known about this pair.</p>
+<p>For <code>ℓ ∈ L₊</code> the stabilizer of <code>ℓΓ ∈ X₀</code> in <code>Γ</code> is <code>H_ℓ = Γ ∩ ℓΓℓ⁻¹ = ℓΓℓ⁻¹</code>. Since <code>ℓ</code> preserves <code>ℕ^d</code>, the monoid <code>ℓℕ^d</code> is freely generated by the columns of <code>ℓ</code>, so <code>R_ℓ = k[ℓℕ^d]</code> is again a polynomial ring and Suslin stability gives <code>H_ℓ = E_r(R_ℓ) = SL_r(R_ℓ)</code>. Truncating <code>R₊</code> by the monomial ideal of elements of degree <code>&gt; N</code> gives finite rings <code>Q_N</code>, and for <code>g ∈ Γ \ H_ℓ</code> some entry of <code>g</code> has a monomial whose exponent is outside <code>ℓℕ^d</code>, so <code>g</code> survives in <code>SL_r(Q_N)</code> outside the image of <code>H_ℓ</code>. Every positive stabilizer is therefore separable in <code>Γ</code> by finite ring congruences.</p>
+<p>A transitive action of a residually finite group on <code>Γ/H</code> with <code>H</code> separable has exact finite Schreier approximations, <code>X₀</code> is a countable union of such orbits, and any finite window meets finitely many — so <code>Γ ↷ X₀</code> is sofic. Soficity of <code>W₀</code> then follows from Gao–Kunnawalkam Elayavalli–Patchell Theorem A (<code>Γ</code> sofic since residually finite, <code>C₂</code> finite, action sofic), the same theorem that <code><a href="coordinate-action-not-sofic.html">coordinate-action-not-sofic</a></code> runs in contrapositive against the full action. One theorem, both directions, and the input that flips the sign is separability.</p>
+<p>This also fixes what the LERF observation does and does not buy. Since all actions of a LERF group on sets are sofic (arXiv:2402.17150), <code>G</code> is not LERF and <code>Γ</code> is not separable in <code>G</code>. But LERF is far more than needed: only the <em>positive</em> stabilizers have to be separable, and they are.</p>
+<h3>What is not proved</h3>
+<p><code>W₀</code> is a proper subgroup of <code>W</code>, generated together with the positive external matrices <code>L₊</code>. Nothing here dilates those. The gap is <code><a href="simultaneous-dilation-splice.html">simultaneous-dilation-splice</a></code>, and the route that would use this foothold is <code><a href="positive-core-dilation-splice.html">positive-core-dilation-splice</a></code>.</p></body>

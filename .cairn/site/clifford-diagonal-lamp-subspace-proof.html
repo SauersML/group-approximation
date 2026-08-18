@@ -1,0 +1,29 @@
+<!doctype html><meta charset='utf-8'><title>clifford-diagonal-lamp-subspace-proof</title><style>
+body{font:15px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;max-width:60em;margin:2em auto;padding:0 1em;color:#1c1e1c}
+a{color:#4f46e5;text-decoration:none}a:hover{text-decoration:underline}
+code,pre{font:13px/1.45 Menlo,monospace;background:#f4f4f2}
+pre{padding:.8em;overflow-x:auto;border:1px solid #e5e7e3}
+.badge{display:inline-block;padding:.1em .55em;border-radius:.8em;color:#fff;font:700 11px -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;letter-spacing:.04em}
+.node{font:13px Menlo,monospace}
+h1{font-size:1.4em}h2{font-size:1.05em;border-bottom:1px solid #e5e7e3;padding-bottom:.2em}
+ul.rel{list-style:none;padding-left:0}ul.rel li{margin:.25em 0}
+.muted{color:#8b9089}.tree{white-space:pre;font:13px/1.5 Menlo,monospace;background:#fafaf8;border:1px solid #e5e7e3;padding:1em;overflow-x:auto}
+table{border-collapse:collapse}td,th{border:1px solid #e5e7e3;padding:.25em .6em;font-size:.9em}
+</style><script>MathJax={tex:{inlineMath:[["$","$"],["\\(","\\)"]]}};</script><script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script><body><p><a href='index.html'>← index</a></p>
+<h1><span class='node'>clifford-diagonal-lamp-subspace-proof</span> A trivial diagonal lamp subspace would embed W in a permutation ultraproduct</h1>
+<p><span class="badge" style="background:#178a5e">COMPLETE</span> <span class='muted'>route · <code>research/clifford-diagonal-lamp-subspace-proof.md</code></span></p>
+<h2>Target</h2><ul class='rel'>
+<li><a class="node" href="clifford-diagonal-lamp-subspace.html">clifford-diagonal-lamp-subspace</a> <span class="badge" style="background:#178a5e">ESTABLISHED</span> Block-monomial Clifford models must diagonalize a nonzero invariant lamp subspace</li>
+</ul>
+<h2>Requires</h2><ul class='rel'>
+<li><a class="node" href="wreath-not-sofic.html">wreath-not-sofic</a> <span class="badge" style="background:#178a5e">ESTABLISHED</span> The wreath candidate is not sofic</li>
+</ul>
+<h2>Artifacts</h2><ul class='rel'>
+<li><code>docs/TRUE_CLIFFORD_BLOCK_MONOMIAL_LAMP_SUBSPACE.md</code></li>
+<li><code>docs/TRUE_BLOCK_MONOMIAL_COORDINATE_COLLAPSE.md</code></li>
+</ul>
+<h2>Statement</h2>
+<h2>A trivial diagonal lamp subspace would embed W in a permutation ultraproduct</h2>
+<p>The complete argument is in <code>docs/TRUE_CLIFFORD_BLOCK_MONOMIAL_LAMP_SUBSPACE.md</code>. In outline: Lemma 1 of the companion note gives <code>‖A − B‖₂² ≥ 2 d_H(π(A), π(B))</code> for block-monomials, uniformly in the fiber dimension and with no use of commutativity, so permutation parts form a homomorphism <code>ϖ = π ∘ Θ : H_Cl → 𝒮_𝒰</code>; since <code>Θ(z) = −1</code> is scalar it factors through <code>W = H_Cl/⟨z⟩</code>. The set <code>𝒮</code> of lamp words with diagonal image is a <code>G</code>-submodule of <code>𝔽₂[G/Γ]</code>, closed under symmetric difference because <code>(∏_S)(∏_T) = z^ε ∏_{SΔT}</code> with <code>z</code> scalar, and <code>G</code>-invariant because block-monomials carry diagonals to diagonals. If <code>𝒮 = 0</code>, then tensoring with a sofic representation of <code>G</code> — available since <code>G</code> is residually finite by Kun–Thom Theorem E — gives a homomorphism <code>W → 𝒮_𝒰''</code> with kernel <code>𝒮 = 0</code>, so <code>W</code> embeds in a permutation ultraproduct and is sofic. That contradicts <code><a href="wreath-not-sofic.html">wreath-not-sofic</a></code>, whence <code>𝒮 ≠ 0</code>.</p>
+<p>This route requires <code><a href="wreath-not-sofic.html">wreath-not-sofic</a></code> rather than restating Kun–Thom, so the trust surface is inherited through that node and not duplicated. The remaining inputs are the standard equivalence between embedding in <code>𝒮_𝒰</code> and soficity (<code>Sofic/SoficUltraproduct.lean</code> with the separation-constant amplification of <code>Sofic/SoficAmplification.lean</code>) and residual finiteness of <code>G</code> feeding <code>Sofic/LEFSofic.isSofic_of_isLEF</code>.</p>
+<p><strong>Scope.</strong> The conclusion is a constraint on models, not a non-existence result. It is strictly weaker than the abelian <code><a href="block-monomial-coordinate-collapse.html">block-monomial-coordinate-collapse</a></code>, and the weakening is forced: the Jordan–Wigner computation in the artifact exhibits <code>𝒮 ≠ 0</code> in the standard Majorana representation, so no argument of this shape can refute block-monomial Clifford models outright.</p></body>

@@ -1,0 +1,45 @@
+<!doctype html><meta charset='utf-8'><title>mf-trace-gap-defect-ratio-models</title><style>
+body{font:15px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;max-width:60em;margin:2em auto;padding:0 1em;color:#1c1e1c}
+a{color:#4f46e5;text-decoration:none}a:hover{text-decoration:underline}
+code,pre{font:13px/1.45 Menlo,monospace;background:#f4f4f2}
+pre{padding:.8em;overflow-x:auto;border:1px solid #e5e7e3}
+.badge{display:inline-block;padding:.1em .55em;border-radius:.8em;color:#fff;font:700 11px -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;letter-spacing:.04em}
+.node{font:13px Menlo,monospace}
+h1{font-size:1.4em}h2{font-size:1.05em;border-bottom:1px solid #e5e7e3;padding-bottom:.2em}
+ul.rel{list-style:none;padding-left:0}ul.rel li{margin:.25em 0}
+.muted{color:#8b9089}.tree{white-space:pre;font:13px/1.5 Menlo,monospace;background:#fafaf8;border:1px solid #e5e7e3;padding:1em;overflow-x:auto}
+table{border-collapse:collapse}td,th{border:1px solid #e5e7e3;padding:.25em .6em;font-size:.9em}
+</style><script>MathJax={tex:{inlineMath:[["$","$"],["\\(","\\)"]]}};</script><script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script><body><p><a href='index.html'>← index</a></p>
+<h1><span class='node'>mf-trace-gap-defect-ratio-models</span> MF groups admit models whose squared defect beats their trace gap</h1>
+<p><span class="badge" style="background:#c08a00">OPEN</span> <span class='muted'>claim · <code>research/mf-trace-gap-defect-ratio-models.md</code></span></p>
+<h2>Routes into this claim</h2><ul class='rel'>
+<li><a class="node" href="corner-visibility-gives-rate-profile.html">corner-visibility-gives-rate-profile</a> <span class="badge" style="background:#c08a00">OPEN</span> Bounded trace gap makes the rate profile automatic</li>
+</ul>
+<h2>Needed by routes</h2><ul class='rel'>
+<li><a class="node" href="mf-implies-hyperlinear-via-rank-profile.html">mf-implies-hyperlinear-via-rank-profile</a> <span class="badge" style="background:#c08a00">OPEN</span> Phase-cancelled amplification of a rate-controlled MF model</li>
+</ul>
+<h2>Distinct from</h2><ul class='rel'>
+<li><a class="node" href="mf-implies-hyperlinear.html">mf-implies-hyperlinear</a> <span class="badge" style="background:#c08a00">OPEN</span> MF implies hyperlinear under the weak norm-corona convention<br><span class='muted'>This is one explicit analytic profile sufficient for the root claim, not the root claim; it asks for a rate relating the multiplicative defect, the dimension, and the visibility of one element.</span></li>
+<li><a class="node" href="countable-group-mf-conventions.html">countable-group-mf-conventions</a> <span class="badge" style="background:#178a5e">ESTABLISHED</span> Equivalent operator-MF formulations and stronger representation variants<br><span class='muted'>That established claim compares MF formulations at fixed accuracy; this one asks for a quantitative dimension-versus-defect rate that no formulation supplies for free.</span></li>
+</ul>
+<h2>Artifacts</h2><ul class='rel'>
+<li><code>docs/FALSE_WEAK_MF_EFFECTIVE_RANK_PROFILE.md</code></li>
+<li><code>docs/FALSE_ONE_NUMBER_RELATIVE_COMMUTANT_CRITERION.md</code></li>
+<li><code>docs/NOTEPAD.md</code></li>
+<li><code>GroupApproximation/Sofic/ExteriorMFProfile.lean</code></li>
+<li><code>GroupApproximation/Sofic/NormTraceGap.lean</code></li>
+</ul>
+<h2>Statement</h2>
+<p>Let <code>G</code> be a countable MF group and <code>g != 1</code>.  Then there exist operator-norm local models <code>phi_n : G -&gt; U(d_n)</code> on exhausting multiplication windows, with defects <code>epsilon_n</code> and trace gaps</p>
+<pre>
+kappa_n = 1-Re tr_(d_n)(phi_n(g)),
+</pre>
+<p>such that</p>
+<pre>
+epsilon_n^2/kappa_n -&gt; 0.                                        (P1)
+</pre>
+<p>Two remarks fix the scale.  Operator separation with constant <code>1</code> forces <code>kappa_n &gt;= 1/(2 d_n)</code> for free, so <code>(P1)</code> is implied by <code>epsilon_n sqrt(d_n) -&gt; 0</code>; and if the deviation <code>phi_n(g)-1</code> has effective rank <code>Omega(d_n)</code> then <code>kappa_n = Omega(1)</code> and <code>(P1)</code> is implied by <code>epsilon_n -&gt; 0</code>, which is automatic.  <code>(P1)</code> interpolates between these: either the defect is small relative to the dimension, or the witness is spread over positive density, or any trade-off between the two.</p>
+<p>The gap is stated in terms of the <em>trace gap</em> <code>kappa_n</code> rather than the rank of <code>phi_n(g)-1</code> deliberately: <code>NormTraceGap.phase_deviation_no_amplification</code> shows a full-rank deviation (<code>i . 1</code>) can be amplification-invisible, so the rank is the wrong invariant and the trace gap is the right one.</p>
+<p><strong>This is the weaker of the cluster's two holes.</strong>  By <code><a href="corner-visibility-gives-rate-profile.html">corner-visibility-gives-rate-profile</a></code> it is implied by <code><a href="mf-invariant-corner-visibility.html">mf-invariant-corner-visibility</a></code>, which demands <code>kappa_n</code> bounded below, whereas <code>(P1)</code> tolerates <code>kappa_n -&gt; 0</code> provided <code>epsilon_n^2</code> decays faster. Attack this one.</p>
+<p><strong>Where it fails, and where it is free.</strong>  By <code><a href="sign-mark-rate-is-sector-density.html">sign-mark-rate-is-sector-density</a></code>, for a central involution mark the statistic is <code>epsilon_n^2/(4 delta_n)</code> with <code>delta_n</code> the density of the negative sector, so the profile is free whenever the mark occupies positive density and is <em>refuted</em> whenever property <code>(T)</code> squeezes the mark onto a sector of density <code>O(epsilon_n^2)</code> --- which is exactly what happens with exact finite-dimensional ambient letters.  Any attempt on this claim should therefore target models whose ambient sector is genuinely approximate; a family with <code>(T)</code>-rigid exact ambients cannot satisfy it.</p>
+<p>Nothing in the MF property relates <code>epsilon_n</code> to <code>d_n</code>; this claim is the exact analytic content missing from <code><a href="mf-implies-hyperlinear.html">mf-implies-hyperlinear</a></code> along the amplification route.  It is the repository's own stated subproblem: the square-root-profile entry of <code>docs/NOTEPAD.md</code> (2026-08-08) closes with "extracting or disproving this profile is now a concrete quantitative subproblem", after observing that Shulman's qualitative MF theorem states no such rate.  The special case <code>epsilon_n sqrt(d_n) -&gt; 0</code> for a group already known to be weak MF is that entry verbatim.</p></body>

@@ -1,0 +1,28 @@
+<!doctype html><meta charset='utf-8'><title>kl-violating-equation-over-leavitt-unit-group</title><style>
+body{font:15px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;max-width:60em;margin:2em auto;padding:0 1em;color:#1c1e1c}
+a{color:#4f46e5;text-decoration:none}a:hover{text-decoration:underline}
+code,pre{font:13px/1.45 Menlo,monospace;background:#f4f4f2}
+pre{padding:.8em;overflow-x:auto;border:1px solid #e5e7e3}
+.badge{display:inline-block;padding:.1em .55em;border-radius:.8em;color:#fff;font:700 11px -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;letter-spacing:.04em}
+.node{font:13px Menlo,monospace}
+h1{font-size:1.4em}h2{font-size:1.05em;border-bottom:1px solid #e5e7e3;padding-bottom:.2em}
+ul.rel{list-style:none;padding-left:0}ul.rel li{margin:.25em 0}
+.muted{color:#8b9089}.tree{white-space:pre;font:13px/1.5 Menlo,monospace;background:#fafaf8;border:1px solid #e5e7e3;padding:1em;overflow-x:auto}
+table{border-collapse:collapse}td,th{border:1px solid #e5e7e3;padding:.25em .6em;font-size:.9em}
+</style><script>MathJax={tex:{inlineMath:[["$","$"],["\\(","\\)"]]}};</script><script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script><body><p><a href='index.html'>← index</a></p>
+<h1><span class='node'>kl-violating-equation-over-leavitt-unit-group</span> A Kervaire--Laudenbach-violating equation over the binary Leavitt unit group</h1>
+<p><span class="badge" style="background:#c08a00">OPEN</span> <span class='muted'>claim · <code>research/kl-violating-equation-over-leavitt-unit-group.md</code></span></p>
+<h2>Needed by routes</h2><ul class='rel'>
+<li><a class="node" href="kl-violation-refutes-hyperlinearity-route.html">kl-violation-refutes-hyperlinearity-route</a> <span class="badge" style="background:#c08a00">OPEN</span> Refute hyperlinearity of the Leavitt unit group by violating Kervaire--Laudenbach</li>
+</ul>
+<h2>Distinct from</h2><ul class='rel'>
+<li><a class="node" href="kervaire-laudenbach-holds-for-hyperlinear.html">kervaire-laudenbach-holds-for-hyperlinear</a> <span class="badge" style="background:#178a5e">ESTABLISHED</span> The Kervaire--Laudenbach conjecture holds for hyperlinear groups<br><span class='muted'>that is the established positive theorem for hyperlinear groups; this asks for a violation over one specific group, which would refute hyperlinearity of that group</span></li>
+<li><a class="node" href="openai-leavitt-unit-nonsofic.html">openai-leavitt-unit-nonsofic</a> <span class="badge" style="background:#c08a00">OPEN</span> The binary Leavitt unit group is nonsofic (ANNOUNCED, unrefereed)<br><span class='muted'>that is the announced nonsoficity of the same group; this concerns its hyperlinearity, which that result explicitly does not decide</span></li>
+</ul>
+<h2>Statement</h2>
+<p>Exhibit a one-variable equation <code>w in Z * R^x</code>, where <code>R^x = L_(F_2)(1,2)^x</code> is the binary Leavitt unit group, with nonzero total exponent <code>epsilon(w) != 0</code>, that has <strong>no</strong> solution in any group containing <code>R^x</code>.</p>
+<p>By <code><a href="kervaire-laudenbach-holds-for-hyperlinear.html">kervaire-laudenbach-holds-for-hyperlinear</a></code> such an equation cannot exist over a hyperlinear group, so producing one would prove <code>R^x</code> nonhyperlinear.</p>
+<p><strong>Explicitly conjectural, and hard for a reason that must be stated.</strong>  No Kervaire--Laudenbach-violating equation is known over <strong>any</strong> group at all. Nitsche--Thom record that the conjecture is one "to which to date no counterexamples are known".  So this claim does not merely ask for a computation over a particular group: it asks to refute the Kervaire--Laudenbach conjecture itself, and to do so over a group whose hyperlinearity is exactly what is in question.  Nobody should treat it as a tractable target.</p>
+<p><strong>Its real value is as an instrument, in two directions.</strong></p>
+<p>1. <em>Falsification.</em>  It is a cheap sanity check on any candidate: before investing in a nonhyperlinearity argument for a group, one may look for an obvious KL obstruction, and finding none costs little. 2. <em>Structural constraint.</em>  Contrapositively, any proof that a group is nonhyperlinear must be consistent with KL-solvability over it — every one-variable equation of nonzero total exponent must still be solvable in some overgroup, or else the argument has proved something far stronger than intended and should be suspected.  This is a standing consistency condition on the whole <code><a href="non-hyperlinear-group.html">non-hyperlinear-group</a></code> programme, not only on this route.</p>
+<p>The binary Leavitt unit group is a reasonable place to look only because it is unusually concrete for equation-solving — explicit generators and relations, a prefix-code normal form — and because it is the one group now known to be nonsofic whose hyperlinearity is open.</p></body>

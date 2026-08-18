@@ -1,0 +1,27 @@
+<!doctype html><meta charset='utf-8'><title>hilbert-embeddable-length-lp-feasibility-proof</title><style>
+body{font:15px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;max-width:60em;margin:2em auto;padding:0 1em;color:#1c1e1c}
+a{color:#4f46e5;text-decoration:none}a:hover{text-decoration:underline}
+code,pre{font:13px/1.45 Menlo,monospace;background:#f4f4f2}
+pre{padding:.8em;overflow-x:auto;border:1px solid #e5e7e3}
+.badge{display:inline-block;padding:.1em .55em;border-radius:.8em;color:#fff;font:700 11px -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;letter-spacing:.04em}
+.node{font:13px Menlo,monospace}
+h1{font-size:1.4em}h2{font-size:1.05em;border-bottom:1px solid #e5e7e3;padding-bottom:.2em}
+ul.rel{list-style:none;padding-left:0}ul.rel li{margin:.25em 0}
+.muted{color:#8b9089}.tree{white-space:pre;font:13px/1.5 Menlo,monospace;background:#fafaf8;border:1px solid #e5e7e3;padding:1em;overflow-x:auto}
+table{border-collapse:collapse}td,th{border:1px solid #e5e7e3;padding:.25em .6em;font-size:.9em}
+</style><script>MathJax={tex:{inlineMath:[["$","$"],["\\(","\\)"]]}};</script><script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script><body><p><a href='index.html'>← index</a></p>
+<h1><span class='node'>hilbert-embeddable-length-lp-feasibility-proof</span> Schoenberg detruncation, maximality of the word length, and the S3 character expansion</h1>
+<p><span class="badge" style="background:#178a5e">COMPLETE</span> <span class='muted'>route · <code>research/hilbert-embeddable-length-lp-feasibility-proof.md</code></span></p>
+<h2>Target</h2><ul class='rel'>
+<li><a class="node" href="hilbert-embeddable-length-lp-feasibility.html">hilbert-embeddable-length-lp-feasibility</a> <span class="badge" style="background:#178a5e">ESTABLISHED</span> The Hilbert embeddable witness question is a finite linear program over class functions</li>
+</ul>
+<h2>Artifacts</h2><ul class='rel'>
+<li><code>docs/TRUE_GLEBSKY_HS_TRANSPORT_AUDIT.md</code></li>
+</ul>
+<h2>Statement</h2>
+<h2>Detruncation, maximality, and the S3 expansion</h2>
+<p>Direct establishment; the complete argument is §7 of the cited note. <code>requires: []</code> is a proof commitment.</p>
+<p><strong>Detruncation.</strong> For <code>ψ ≥ 0</code> conditionally negative definite, <code>exp(−tψ)</code> is positive definite (Schoenberg) and normalized at the identity, so <code>1 − exp(−tψ)</code> is conditionally negative definite. Apply with <code>ψ = d(1,·)</code> and <code>t = 1/n</code>, and compare values: <code>1 − e^{−1/n} ≤ 1/n</code> on the defect set, and <code>1 − e^{−d/n} ≥ 1 − e⁻¹</code> once <code>d ≥ n</code>.</p>
+<p><strong>Maximality.</strong> An invariant length is subadditive and constant on conjugacy classes, so <code>ℓ(x₁^{g₁}···x_k^{g_k}) ≤ Σ ℓ(x_i) ≤ k·max_X ℓ</code>. Taking the shortest such expression gives <code>ℓ ≤ max_X ℓ · d(1,·)</code>, and <code>d(1,·)/n</code> is itself an admissible invariant length, so it is the pointwise maximum.</p>
+<p><strong>The <code>S₃</code> expansion.</strong> Classes <code>{e}</code>, the three transpositions, the two 3-cycles; irreducibles <code>1</code>, <code>sgn</code>, <code>χ</code> with <code>χ(e) = 2</code>, <code>χ(τ) = 0</code>, <code>χ(σ) = −1</code>. The word metric of the transposition class takes values <code>0, 1, 2</code>. Solving <code>a + b + 2c = 0</code>, <code>a − b = 1</code>, <code>a + b − c = 2</code> gives <code>c = −2/3</code>, <code>a = 7/6</code>, <code>b = 1/6</code>. The coefficient on the nontrivial character <code>sgn</code> is positive, so the kernel is not conditionally negative definite. Identifying this metric with the <code>𝔽₂</code>-rank length on <code>GL₂(𝔽₂) ≅ S₃</code> — <code>rank(g−1)</code> is <code>1</code> on transvections and <code>2</code> on the order-3 elements — reproduces the calibrating failure already recorded in <code><a href="hilbert-embeddable-length-hyperlinearity.html">hilbert-embeddable-length-hyperlinearity</a></code> and shows it lies in Glebsky's family.</p>
+<p><strong>Linearity of the constraints.</strong> Class functions on <code>H</code> form a finite dimensional real vector space with the irreducible characters as a basis; conditional negative definiteness of <code>(a,b) ↦ ℓ(a⁻¹b)</code> for an invariant <code>ℓ</code> with <code>ℓ(1) = 0</code> is equivalent to nonpositivity of the coefficients at nontrivial irreducibles, which is a system of linear inequalities in that basis. Subadditivity, the defect bound and the separation bound are linear by inspection.</p></body>

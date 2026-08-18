@@ -1,0 +1,29 @@
+<!doctype html><meta charset='utf-8'><title>coordinate-ultraproduct-transport-proof</title><style>
+body{font:15px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;max-width:60em;margin:2em auto;padding:0 1em;color:#1c1e1c}
+a{color:#4f46e5;text-decoration:none}a:hover{text-decoration:underline}
+code,pre{font:13px/1.45 Menlo,monospace;background:#f4f4f2}
+pre{padding:.8em;overflow-x:auto;border:1px solid #e5e7e3}
+.badge{display:inline-block;padding:.1em .55em;border-radius:.8em;color:#fff;font:700 11px -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;letter-spacing:.04em}
+.node{font:13px Menlo,monospace}
+h1{font-size:1.4em}h2{font-size:1.05em;border-bottom:1px solid #e5e7e3;padding-bottom:.2em}
+ul.rel{list-style:none;padding-left:0}ul.rel li{margin:.25em 0}
+.muted{color:#8b9089}.tree{white-space:pre;font:13px/1.5 Menlo,monospace;background:#fafaf8;border:1px solid #e5e7e3;padding:1em;overflow-x:auto}
+table{border-collapse:collapse}td,th{border:1px solid #e5e7e3;padding:.25em .6em;font-size:.9em}
+</style><script>MathJax={tex:{inlineMath:[["$","$"],["\\(","\\)"]]}};</script><script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script><body><p><a href='index.html'>← index</a></p>
+<h1><span class='node'>coordinate-ultraproduct-transport-proof</span> Kazhdan projection and one-sided compression on the coordinate ultraproduct</h1>
+<p><span class="badge" style="background:#178a5e">COMPLETE</span> <span class='muted'>route · <code>research/coordinate-ultraproduct-transport-proof.md</code></span></p>
+<h2>Target</h2><ul class='rel'>
+<li><a class="node" href="coordinate-ultraproduct-transport.html">coordinate-ultraproduct-transport</a> <span class="badge" style="background:#178a5e">ESTABLISHED</span> The compression defect is trivial on the Kazhdan-invariant subspace, in operator norm</li>
+</ul>
+<h2>Artifacts</h2><ul class='rel'>
+<li><code>non_mf_groups_exist.tex</code></li>
+</ul>
+<h2>Statement</h2>
+<h3>Why sufficient</h3>
+<p><strong>Clause 1.</strong>  <code>‖U_n(g) U_n(h) - U_n(gh)‖_op -&gt; 0</code> means the defect is <code>omega</code>-null, so on <code>H_omega = prod_omega C^{d_n}</code> the induced unitaries compose exactly: <code>tilde U(g) tilde U(h) = tilde U(gh)</code>.  This is an honest unitary representation of <code>H</code>.  The natural action of <code>A_omega = prod_omega M_{d_n}</code> on <code>H_omega</code> is isometric and faithful — choose coordinate unit vectors almost attaining the operator norms, as in the manuscript's argument for <code>B_omega</code> — so <code>‖tilde U(h) - 1‖ = lim_omega ‖U_n(h) - 1‖_op</code>, which is the corona operator norm.</p>
+<p><strong>Clause 2.</strong>  <code>tilde U circ iota</code> is an honest unitary representation of <code>Gamma</code>, so its integrated form is a <code>*</code>-homomorphism <code>C^*_max(Gamma) -&gt; A_omega</code>; the image <code>P</code> of the Kazhdan projection (Bekka--de la Harpe--Valette, as used in the manuscript's transport proof) is the projection onto the invariant vectors of that representation, and it lies in <code>A_omega</code>.  Being an invariant projection, <code>P</code> commutes with <code>tilde U(iota(Gamma))</code>; <code>c</code> centralizes <code>iota(Gamma)</code>, so <code>tilde U(c)</code> preserves the invariant subspace and its orthocomplement and therefore commutes with <code>P</code>.  For <code>V = tilde U(t)</code>, one-sided compression gives</p>
+<p>P H_omega = H_omega^{iota(Gamma)} &lt;= H_omega^{t iota(Gamma) t^-1} = V P H_omega,</p>
+<p>so <code>P &lt;= V P V^<em></code>.  <code>A_omega</code> is finite: if <code>v^</em> v = 1</code>, polar correction replaces a representing sequence by unitaries along <code>omega</code>, so <code>v v^<em> = 1</code>. The manuscript's cancellation then upgrades <code>P &lt;= VPV^</em></code> to <code>P = VPV^*</code>; hence <code>PV = VP</code> and <code>P</code> commutes with <code>tilde U(t)</code>, so with all of <code>H_0</code>.</p>
+<p><strong>Clause 3.</strong>  <code>tilde U(d) = V tilde U(c) V^*</code> commutes with <code>P</code>, and <code>tilde U(iota(gamma)) P = P</code> for all <code>gamma</code>.  Therefore</p>
+<p>tilde U(u) P = tilde U(d) tilde U(iota(a)) tilde U(d)^-1 tilde U(iota(a))^-1 P = tilde U(d) tilde U(iota(a)) tilde U(d)^-1 P = tilde U(d) tilde U(iota(a)) P tilde U(d)^-1 = tilde U(d) P tilde U(d)^-1 = P.</p>
+<p>So <code>tilde U(u)</code> fixes <code>ran P</code> pointwise.  The set <code>{h in H_0 : tilde U(h) P = P}</code> is a subgroup, and it is normal in <code>H_0</code> because every <code>tilde U(h)</code> with <code>h in H_0</code> commutes with <code>P</code>; it contains <code>u</code>, hence the normal closure of <code>u</code> in <code>H_0</code>, hence <code>eps = u^2</code>.</p></body>

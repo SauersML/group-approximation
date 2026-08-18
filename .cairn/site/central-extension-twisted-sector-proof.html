@@ -1,0 +1,27 @@
+<!doctype html><meta charset='utf-8'><title>central-extension-twisted-sector-proof</title><style>
+body{font:15px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;max-width:60em;margin:2em auto;padding:0 1em;color:#1c1e1c}
+a{color:#4f46e5;text-decoration:none}a:hover{text-decoration:underline}
+code,pre{font:13px/1.45 Menlo,monospace;background:#f4f4f2}
+pre{padding:.8em;overflow-x:auto;border:1px solid #e5e7e3}
+.badge{display:inline-block;padding:.1em .55em;border-radius:.8em;color:#fff;font:700 11px -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;letter-spacing:.04em}
+.node{font:13px Menlo,monospace}
+h1{font-size:1.4em}h2{font-size:1.05em;border-bottom:1px solid #e5e7e3;padding-bottom:.2em}
+ul.rel{list-style:none;padding-left:0}ul.rel li{margin:.25em 0}
+.muted{color:#8b9089}.tree{white-space:pre;font:13px/1.5 Menlo,monospace;background:#fafaf8;border:1px solid #e5e7e3;padding:1em;overflow-x:auto}
+table{border-collapse:collapse}td,th{border:1px solid #e5e7e3;padding:.25em .6em;font-size:.9em}
+</style><script>MathJax={tex:{inlineMath:[["$","$"],["\\(","\\)"]]}};</script><script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script><body><p><a href='index.html'>← index</a></p>
+<h1><span class='node'>central-extension-twisted-sector-proof</span> Cut by the central spectral projection, and direct-sum back</h1>
+<p><span class="badge" style="background:#178a5e">COMPLETE</span> <span class='muted'>route · <code>research/central-extension-twisted-sector-proof.md</code></span></p>
+<h2>Target</h2><ul class='rel'>
+<li><a class="node" href="central-extension-twisted-sector-criterion.html">central-extension-twisted-sector-criterion</a> <span class="badge" style="background:#178a5e">ESTABLISHED</span> MF of a central order-two extension is the twisted sector over the quotient</li>
+</ul>
+<h2>Artifacts</h2><ul class='rel'>
+<li><code>docs/COMMUTING_LAMP_QUOTIENT_STRUCTURE_AND_MF_FORK_2026-08-14.md</code></li>
+<li><code>docs/NOTEPAD.md</code></li>
+</ul>
+<h2>Statement</h2>
+<h3>Direct proof</h3>
+<p>Provenance: <code>docs/NOTEPAD.md:39199-39232</code> (2026-08-10), recorded there for a different candidate and never applied to the marked quotients.  Both directions were re-derived in Section 10 of the cited note.</p>
+<p><em>Necessity.</em>  An injective corona representation <code>Theta</code> of <code>G</code> has <code>Theta(z) != 1</code> for the central generator, and <code>Theta(z)^2 = 1</code>, so the spectral projection at <code>-1</code> is a nonzero projection commuting with <code>Theta(G)</code>.  Cutting by it gives a corona representation with <code>Theta(z) = -1</code>; its values on a section satisfy the twisted relation.</p>
+<p><em>Sufficiency.</em>  Given <code>v_n</code> and a faithful MF model <code>pi</code> of <code>K</code>, put <code>V_n(s(k)c) = chi(c) v_n(k) (+) pi_n(k)</code>.  Block-diagonal multiplicativity is the cocycle identity, the second block separates elements with nontrivial image in <code>K</code>, and the first separates the central generator, since <code>chi(z) = -1</code>.</p>
+<p>Stated for order two, which is the case used here; for a cyclic kernel of prime order <code>p</code> the same argument gives the equivalence for some nontrivial character, and fixing the character in advance needs an extra step not verified here.</p></body>

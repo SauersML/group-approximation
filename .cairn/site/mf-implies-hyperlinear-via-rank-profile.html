@@ -1,0 +1,46 @@
+<!doctype html><meta charset='utf-8'><title>mf-implies-hyperlinear-via-rank-profile</title><style>
+body{font:15px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;max-width:60em;margin:2em auto;padding:0 1em;color:#1c1e1c}
+a{color:#4f46e5;text-decoration:none}a:hover{text-decoration:underline}
+code,pre{font:13px/1.45 Menlo,monospace;background:#f4f4f2}
+pre{padding:.8em;overflow-x:auto;border:1px solid #e5e7e3}
+.badge{display:inline-block;padding:.1em .55em;border-radius:.8em;color:#fff;font:700 11px -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;letter-spacing:.04em}
+.node{font:13px Menlo,monospace}
+h1{font-size:1.4em}h2{font-size:1.05em;border-bottom:1px solid #e5e7e3;padding-bottom:.2em}
+ul.rel{list-style:none;padding-left:0}ul.rel li{margin:.25em 0}
+.muted{color:#8b9089}.tree{white-space:pre;font:13px/1.5 Menlo,monospace;background:#fafaf8;border:1px solid #e5e7e3;padding:1em;overflow-x:auto}
+table{border-collapse:collapse}td,th{border:1px solid #e5e7e3;padding:.25em .6em;font-size:.9em}
+</style><script>MathJax={tex:{inlineMath:[["$","$"],["\\(","\\)"]]}};</script><script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script><body><p><a href='index.html'>← index</a></p>
+<h1><span class='node'>mf-implies-hyperlinear-via-rank-profile</span> Phase-cancelled amplification of a rate-controlled MF model</h1>
+<p><span class="badge" style="background:#c08a00">OPEN</span> <span class='muted'>route · <code>research/mf-implies-hyperlinear-via-rank-profile.md</code></span></p>
+<h2>Target</h2><ul class='rel'>
+<li><a class="node" href="mf-implies-hyperlinear.html">mf-implies-hyperlinear</a> <span class="badge" style="background:#c08a00">OPEN</span> MF implies hyperlinear under the weak norm-corona convention</li>
+</ul>
+<h2>Requires</h2><ul class='rel'>
+<li><a class="node" href="hyperlinear-elementwise-visibility.html">hyperlinear-elementwise-visibility</a> <span class="badge" style="background:#178a5e">ESTABLISHED</span> Elementwise trace visibility is equivalent to hyperlinearity</li>
+<li><a class="node" href="mf-trace-gap-defect-ratio-models.html">mf-trace-gap-defect-ratio-models</a> <span class="badge" style="background:#c08a00">OPEN</span> MF groups admit models whose squared defect beats their trace gap</li>
+</ul>
+<h2>Artifacts</h2><ul class='rel'>
+<li><code>docs/FALSE_ONE_NUMBER_RELATIVE_COMMUTANT_CRITERION.md</code></li>
+<li><code>docs/FALSE_FERMIONIC_AMPLIFICATION.md</code></li>
+<li><code>docs/NOTEPAD.md</code></li>
+<li><code>GroupApproximation/Sofic/ExteriorMFProfile.lean</code></li>
+</ul>
+<h2>Statement</h2>
+<h3>Why sufficient</h3>
+<p>Fix <code>g != 1</code> in the countable MF group <code>G</code> and take models <code>phi_n</code> with <code>(P1)</code> from <code><a href="mf-trace-gap-defect-ratio-models.html">mf-trace-gap-defect-ratio-models</a></code>.  Apply the trace-gap/defect amplifier of <code>FALSE_ONE_NUMBER_RELATIVE_COMMUTANT_CRITERION.md</code>, Lemma 1: the phase-cancelled model</p>
+<pre>
+theta_n(g)=phi_n(g) directSum conjugate(phi_n(g))
+           directSum 1 directSum 1,   Psi_n = theta_n^(tensor L_n),
+</pre>
+<p>with <code>L_n eta_n^2 -&gt; 0</code> and <code>L_n kappa_n -&gt; infinity</code> (possible exactly by <code>(P1)</code>, since the normalized Hilbert--Schmidt defect <code>eta_n</code> is dominated by the operator-norm defect <code>epsilon_n</code>), satisfies</p>
+<pre>
+||Psi_n(a)Psi_n(b)-Psi_n(ab)||_(2,norm)^2 &lt;= L_n eta_n^2/2 -&gt; 0,
+tr(Psi_n(g)) = (1-kappa_n/2)^(L_n) &lt;= exp(-L_n kappa_n/2) -&gt; 0.
+</pre>
+<p>So <code>g</code> is tracially visible with any constant <code>c_g&lt;1</code>.  Doing this for each <code>g != 1</code> and invoking <code><a href="hyperlinear-elementwise-visibility.html">hyperlinear-elementwise-visibility</a></code> --- which is what lets each element be handled by its own model --- makes <code>G</code> hyperlinear.</p>
+<h3>Why the amplifier cannot be improved away</h3>
+<p>The rank-one case of <code>(P1)</code> is <code>epsilon_n sqrt(d_n) -&gt; 0</code>, matching the full exterior/Fock amplifier <code>G_d</code> of <code>FALSE_FERMIONIC_AMPLIFICATION.md</code> (Lemma 3: <code>||G_d(U)-G_d(V)||_2 &lt;= sqrt(d/2)||U-V||_op</code>; Lemma 2: <code>|tr G_d(U)| &lt;= 1-c^2/4</code> whenever <code>||U-I||_op &gt;= c</code>, rank-free).  Theorem 5 of the same note proves the <code>sqrt(d)</code> loss is optimal among <em>all</em> continuous homomorphisms <code>U(d)-&gt;U(N)</code>.  Hence no better universal matrix functor exists and this route cannot be completed by improving the amplifier: only <code><a href="mf-trace-gap-defect-ratio-models.html">mf-trace-gap-defect-ratio-models</a></code> can complete it.</p>
+<h3>Not a restatement of the target</h3>
+<p>The prerequisite is strictly stronger than <code><a href="mf-implies-hyperlinear.html">mf-implies-hyperlinear</a></code> and can fail while the target holds.  It constrains <em>operator-norm</em> models by a rate, and hyperlinearity supplies no operator-norm data at all: the Hilbert--Schmidt models it provides cannot be combined with an MF model to produce one, since tensor products and direct sums of the two are only Hilbert--Schmidt asymptotically multiplicative.  It is moreover known to be false for some model families --- by <code><a href="sign-mark-rate-is-sector-density.html">sign-mark-rate-is-sector-density</a></code> it fails whenever <code>(T)</code> squeezes a sign mark onto a sector of density <code>O(epsilon_n^2)</code> --- which a reformulation of the target could not be.  The genuine step is the amplifier below.</p>
+<h3>Formalization status of the amplifier</h3>
+<p>The rank-one branch is essentially kernel-checked already, in <code>GroupApproximation/Sofic/ExteriorMFProfile.lean</code>: exact multiplicativity and unitarity of the phase-free amplifier (<code>exteriorAdMatrix_mul</code>, <code>exteriorAdMatrix_mem_unitaryGroup</code>), the character identity (<code>normTrace_exteriorAdMatrix</code>, <code>trace_fockMatrix</code>), the defect bound <code>hsDistSq_exteriorAdMatrix_le</code> (<code>&lt;= d eps^2/2</code>), the dimension-free separation bound <code>sq_div_two_le_hsDistSq_exteriorAdMatrix</code> (<code>&gt;= c^2/2</code>), and the tensor-power versions used for boosting (<code>hsDistSq_exteriorTensorMatrix_le</code>).  So the machine half of this route is built; only the input rate is missing.</p></body>

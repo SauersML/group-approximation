@@ -1,0 +1,35 @@
+<!doctype html><meta charset='utf-8'><title>no-invariant-mean-on-coset-space</title><style>
+body{font:15px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;max-width:60em;margin:2em auto;padding:0 1em;color:#1c1e1c}
+a{color:#4f46e5;text-decoration:none}a:hover{text-decoration:underline}
+code,pre{font:13px/1.45 Menlo,monospace;background:#f4f4f2}
+pre{padding:.8em;overflow-x:auto;border:1px solid #e5e7e3}
+.badge{display:inline-block;padding:.1em .55em;border-radius:.8em;color:#fff;font:700 11px -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;letter-spacing:.04em}
+.node{font:13px Menlo,monospace}
+h1{font-size:1.4em}h2{font-size:1.05em;border-bottom:1px solid #e5e7e3;padding-bottom:.2em}
+ul.rel{list-style:none;padding-left:0}ul.rel li{margin:.25em 0}
+.muted{color:#8b9089}.tree{white-space:pre;font:13px/1.5 Menlo,monospace;background:#fafaf8;border:1px solid #e5e7e3;padding:1em;overflow-x:auto}
+table{border-collapse:collapse}td,th{border:1px solid #e5e7e3;padding:.25em .6em;font-size:.9em}
+</style><script>MathJax={tex:{inlineMath:[["$","$"],["\\(","\\)"]]}};</script><script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script><body><p><a href='index.html'>← index</a></p>
+<h1><span class='node'>no-invariant-mean-on-coset-space</span> A Kazhdan group has no invariant mean on an infinite-index coset space</h1>
+<p><span class="badge" style="background:#178a5e">ESTABLISHED</span> <span class='muted'>claim · <code>research/no-invariant-mean-on-coset-space.md</code></span></p>
+<p class='muted'>via route no-invariant-mean-on-coset-space-proof</p>
+<h2>Routes into this claim</h2><ul class='rel'>
+<li><a class="node" href="no-invariant-mean-on-coset-space-proof.html">no-invariant-mean-on-coset-space-proof</a> <span class="badge" style="background:#178a5e">COMPLETE</span> Day&#x27;s trick plus property (T) on the quasi-regular representation</li>
+</ul>
+<h2>Invalidates</h2><ul class='rel'>
+<li><a class="node" href="induced-charge-extension.html">induced-charge-extension</a> <span class="badge" style="background:#c43c2e">INVALIDATED</span> Induce the positive core&#x27;s invariant charge up to the whole group</li>
+</ul>
+<h2>Distinct from</h2><ul class='rel'>
+<li><a class="node" href="coordinate-action-not-sofic.html">coordinate-action-not-sofic</a> <span class="badge" style="background:#178a5e">ESTABLISHED</span> The coordinate action G ↷ G/Γ is not a sofic action<br><span class='muted'>that says the coset action admits no finite permutation approximation and is imported by citation; this says it admits no invariant finitely additive measure at all, and is proved here from property (T)</span></li>
+<li><a class="node" href="finite-quotient-blindness.html">finite-quotient-blindness</a> <span class="badge" style="background:#178a5e">ESTABLISHED</span> Finite quotients are blind to the compression<br><span class='muted'>that is about exact finite quotients normalizing the image of Γ; this is about means on the coset space, with no quotient in sight</span></li>
+<li><a class="node" href="haagerup-t-exclusion.html">haagerup-t-exclusion</a> <span class="badge" style="background:#178a5e">ESTABLISHED</span> (T)-compatibility excludes Haagerup carriers<br><span class='muted'>that excludes Haagerup carriers because they contain no diffuse (T) subalgebra; this excludes invariant means because (T) upgrades almost invariant vectors to invariant ones</span></li>
+</ul>
+<h2>Artifacts</h2><ul class='rel'>
+<li><code>docs/TRUE_CHARGE_EXTENSION_NEEDS_COAMENABILITY.md</code></li>
+</ul>
+<h2>Statement</h2>
+<p>Let <code>G</code> have property (T) and <code>Γ ≤ G</code> have infinite index. Then there is no <code>G</code>-invariant finitely additive probability measure on <code>G/Γ</code>: <code>Γ</code> is not co-amenable in <code>G</code>.</p>
+<p>Proof (Proposition 1 of the artifact): a mean gives, via Day's trick, finitely supported probability densities <code>f_i</code> with <code>‖g·f_i − f_i‖₁ → 0</code>; then <code>ξ_i = f_i^{1/2}</code> are almost invariant unit vectors in <code>ℓ²(G/Γ)</code> by <code>|√a − √b|² ≤ |a − b|</code>; property (T) produces a nonzero invariant vector, which by transitivity is a constant function, and a nonzero constant is square summable only if <code>G/Γ</code> is finite.</p>
+<p>This is <code>docs/OBSTRUCTIONS.md</code> §3's "<code>G ↷ G/Γ</code> has no Følner sets" in the form the charge language needs, and it is what kills <code><a href="induced-charge-extension.html">induced-charge-extension</a></code>.</p>
+<h3>Why it matters beyond that route</h3>
+<p>It settles, negatively, the asymmetry that motivated the Kahl–Schneider lane. The hope was that an invariant charge might extend over the compressors where Connes embeddability does not, since extending finitely additive measures is Hahn–Banach's home ground while extending CE across an amalgamated free product over a nonamenable base is a named open problem (Gao–Junge). The comparison was mis-drawn: Hahn–Banach extends a charge from a smaller family of sets to a larger one <em>with the same invariance group</em>, and does not extend an invariant charge along a group inclusion. On this comparison the charge side is strictly worse off than the algebra side, because this claim is a theorem while Gao–Junge Problem 1 is open.</p></body>

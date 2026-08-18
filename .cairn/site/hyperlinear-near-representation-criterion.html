@@ -1,0 +1,32 @@
+<!doctype html><meta charset='utf-8'><title>hyperlinear-near-representation-criterion</title><style>
+body{font:15px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;max-width:60em;margin:2em auto;padding:0 1em;color:#1c1e1c}
+a{color:#4f46e5;text-decoration:none}a:hover{text-decoration:underline}
+code,pre{font:13px/1.45 Menlo,monospace;background:#f4f4f2}
+pre{padding:.8em;overflow-x:auto;border:1px solid #e5e7e3}
+.badge{display:inline-block;padding:.1em .55em;border-radius:.8em;color:#fff;font:700 11px -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;letter-spacing:.04em}
+.node{font:13px Menlo,monospace}
+h1{font-size:1.4em}h2{font-size:1.05em;border-bottom:1px solid #e5e7e3;padding-bottom:.2em}
+ul.rel{list-style:none;padding-left:0}ul.rel li{margin:.25em 0}
+.muted{color:#8b9089}.tree{white-space:pre;font:13px/1.5 Menlo,monospace;background:#fafaf8;border:1px solid #e5e7e3;padding:1em;overflow-x:auto}
+table{border-collapse:collapse}td,th{border:1px solid #e5e7e3;padding:.25em .6em;font-size:.9em}
+</style><script>MathJax={tex:{inlineMath:[["$","$"],["\\(","\\)"]]}};</script><script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script><body><p><a href='index.html'>← index</a></p>
+<h1><span class='node'>hyperlinear-near-representation-criterion</span> Hyperlinearity is equivalent to an essentially free amenable near representation</h1>
+<p><span class="badge" style="background:#178a5e">ESTABLISHED</span> <span class='muted'>claim · <code>research/hyperlinear-near-representation-criterion.md</code></span></p>
+<p class='muted'>via route hyperlinear-near-representation-criterion-citation</p>
+<h2>Routes into this claim</h2><ul class='rel'>
+<li><a class="node" href="hyperlinear-near-representation-criterion-citation.html">hyperlinear-near-representation-criterion-citation</a> <span class="badge" style="background:#178a5e">COMPLETE</span> Import the Kahl--Schneider hyperlinearity characterization</li>
+</ul>
+<h2>Needed by routes</h2><ul class='rel'>
+<li><a class="node" href="amenable-charge-route.html">amenable-charge-route</a> <span class="badge" style="background:#c08a00">OPEN</span> Build a charge, not a carrier — Kahl–Schneider applied to the wreath candidate</li>
+</ul>
+<h2>Distinct from</h2><ul class='rel'>
+<li><a class="node" href="hyperlinear-wreath-model.html">hyperlinear-wreath-model</a> <span class="badge" style="background:#c08a00">OPEN</span> Construct a hyperlinear model of the wreath candidate<br><span class='muted'>that asks to construct microstates for a specific candidate; this is a general external criterion that could be used to do so</span></li>
+<li><a class="node" href="mf-implies-hyperlinear.html">mf-implies-hyperlinear</a> <span class="badge" style="background:#c08a00">OPEN</span> MF implies hyperlinear under the weak norm-corona convention<br><span class='muted'>that concerns the norm-corona-to-tracial implication under this repository&#x27;s conventions; this is an intrinsic characterization of hyperlinearity</span></li>
+</ul>
+<h2>Statement</h2>
+<p>Kahl--Schneider, <em>Hyperlinearity via amenable near representations</em>, arXiv:2504.10988 (submitted 2025-04-15, revised 2026-01-05), prove:</p>
+<p>&gt; a group is hyperlinear if and only if it admits an essentially free &gt; amenable near representation.</p>
+<p>Amenability of a unitary representation is in Bekka's sense, and the paper first characterizes it via the existence of an orthonormal basis supporting an invariant probability charge.  The result is the Hilbert-space analogue of Elek--Szabo's characterization of soficity by essentially free amenable actions, and the authors state that it answers a question of Pestov and Kwiatkowska.  The same paper gives parallel characterizations of Kirchberg's factorization property and of Haagerup's property.</p>
+<h3>Why this is recorded</h3>
+<p><code><a href="hyperlinear-wreath-model.html">hyperlinear-wreath-model</a></code> records that "the tools for proving <code>R^U</code>-embeddability abstractly are thin".  This is a genuinely different tool, and its witness is soft in exactly the way the dead architectures were not: an invariant <strong>finitely additive charge</strong> on an orthonormal basis, rather than a finite equivariant partition.  Every one of the eight refuted architectures in <code>docs/OBSTRUCTIONS.md</code> §5 tried to build a finite carrier, and <code>docs/FALSE_HALO_ACTION_AUDIT.md</code> shows why finite carriers with locally sofic labels are circular here.  A charge can exist where no finite carrier does, so the criterion is not obviously subject to the same collapse.</p>
+<p>Recorded as a reusable external criterion, not as progress on any candidate.</p></body>

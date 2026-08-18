@@ -1,0 +1,24 @@
+<!doctype html><meta charset='utf-8'><title>matrix-corona-k1-vanishes-proof</title><style>
+body{font:15px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;max-width:60em;margin:2em auto;padding:0 1em;color:#1c1e1c}
+a{color:#4f46e5;text-decoration:none}a:hover{text-decoration:underline}
+code,pre{font:13px/1.45 Menlo,monospace;background:#f4f4f2}
+pre{padding:.8em;overflow-x:auto;border:1px solid #e5e7e3}
+.badge{display:inline-block;padding:.1em .55em;border-radius:.8em;color:#fff;font:700 11px -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;letter-spacing:.04em}
+.node{font:13px Menlo,monospace}
+h1{font-size:1.4em}h2{font-size:1.05em;border-bottom:1px solid #e5e7e3;padding-bottom:.2em}
+ul.rel{list-style:none;padding-left:0}ul.rel li{margin:.25em 0}
+.muted{color:#8b9089}.tree{white-space:pre;font:13px/1.5 Menlo,monospace;background:#fafaf8;border:1px solid #e5e7e3;padding:1em;overflow-x:auto}
+table{border-collapse:collapse}td,th{border:1px solid #e5e7e3;padding:.25em .6em;font-size:.9em}
+</style><script>MathJax={tex:{inlineMath:[["$","$"],["\\(","\\)"]]}};</script><script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script><body><p><a href='index.html'>← index</a></p>
+<h1><span class='node'>matrix-corona-k1-vanishes-proof</span> Six-term sequence for the matrix corona extension</h1>
+<p><span class="badge" style="background:#178a5e">COMPLETE</span> <span class='muted'>route · <code>research/matrix-corona-k1-vanishes-proof.md</code></span></p>
+<h2>Target</h2><ul class='rel'>
+<li><a class="node" href="matrix-corona-k1-vanishes.html">matrix-corona-k1-vanishes</a> <span class="badge" style="background:#178a5e">ESTABLISHED</span> Every norm matrix corona has vanishing K-one</li>
+</ul>
+<h2>Statement</h2>
+<h3>Why sufficient</h3>
+<p>Apply the six-term exact sequence to <code>0 -&gt; oplus M_{d_n} -&gt; prod M_{d_n} -&gt; Q -&gt; 0</code>:</p>
+<p>K_1(prod) -&gt; K_1(Q) -&gt; K_0(oplus) -&gt; K_0(prod).</p>
+<p><code>prod_n M_{d_n}</code> is a von Neumann algebra, and so is each matrix amplification <code>M_k(prod_n M_{d_n}) = prod_n M_{k d_n}</code>; every unitary in a von Neumann algebra is <code>exp(i h)</code> for a self-adjoint <code>h</code> by Borel functional calculus, so all these unitary groups are norm-connected and <code>K_1(prod) = 0</code>.</p>
+<p><code>K_0(oplus_n M_{d_n}) = oplus_n Z</code> and <code>K_0(prod_n M_{d_n}) = prod_n Z</code>, both by coordinatewise rank: a projection in the product is a sequence of projections, and two such are Murray--von Neumann equivalent exactly when their ranks agree coordinatewise, the intertwining partial isometries being assembled coordinatewise with norm one.  Under these identifications the map <code>K_0(oplus) -&gt; K_0(prod)</code> is the inclusion <code>oplus Z &lt;= prod Z</code>, which is injective.</p>
+<p>Exactness at <code>K_1(Q)</code> makes the index map injective, and exactness at <code>K_0(oplus)</code> identifies its image with the kernel of an injective map, hence <code>K_1(Q) = 0</code>.</p></body>

@@ -1,0 +1,27 @@
+<!doctype html><meta charset='utf-8'><title>kazhdan-projection-not-in-l1-proof</title><style>
+body{font:15px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;max-width:60em;margin:2em auto;padding:0 1em;color:#1c1e1c}
+a{color:#4f46e5;text-decoration:none}a:hover{text-decoration:underline}
+code,pre{font:13px/1.45 Menlo,monospace;background:#f4f4f2}
+pre{padding:.8em;overflow-x:auto;border:1px solid #e5e7e3}
+.badge{display:inline-block;padding:.1em .55em;border-radius:.8em;color:#fff;font:700 11px -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;letter-spacing:.04em}
+.node{font:13px Menlo,monospace}
+h1{font-size:1.4em}h2{font-size:1.05em;border-bottom:1px solid #e5e7e3;padding-bottom:.2em}
+ul.rel{list-style:none;padding-left:0}ul.rel li{margin:.25em 0}
+.muted{color:#8b9089}.tree{white-space:pre;font:13px/1.5 Menlo,monospace;background:#fafaf8;border:1px solid #e5e7e3;padding:1em;overflow-x:auto}
+table{border-collapse:collapse}td,th{border:1px solid #e5e7e3;padding:.25em .6em;font-size:.9em}
+</style><script>MathJax={tex:{inlineMath:[["$","$"],["\\(","\\)"]]}};</script><script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script><body><p><a href='index.html'>← index</a></p>
+<h1><span class='node'>kazhdan-projection-not-in-l1-proof</span> The regular representation is injective on the convolution algebra</h1>
+<p><span class="badge" style="background:#178a5e">COMPLETE</span> <span class='muted'>route · <code>research/kazhdan-projection-not-in-l1-proof.md</code></span></p>
+<h2>Target</h2><ul class='rel'>
+<li><a class="node" href="kazhdan-projection-not-in-l1.html">kazhdan-projection-not-in-l1</a> <span class="badge" style="background:#178a5e">ESTABLISHED</span> The Kazhdan projection is not integrable, so averaging cannot reach the operator norm</li>
+</ul>
+<h2>Artifacts</h2><ul class='rel'>
+<li><code>docs/COMMUTING_LAMP_QUOTIENT_STRUCTURE_AND_MF_FORK_2026-08-14.md</code></li>
+</ul>
+<h2>Statement</h2>
+<h3>Direct proof</h3>
+<p>The left regular representation is injective on <code>l^1(Gamma)</code>: for <code>a in l^1(Gamma)</code>, <code>lambda(a) delta_e = a</code> as an element of <code>l^2(Gamma)</code>, so <code>lambda(a) = 0</code> forces <code>a = 0</code>.  It factors through <code>C*_max(Gamma)</code>.</p>
+<p>The Kazhdan projection satisfies <code>pi(p) = </code> the orthogonal projection onto the <code>pi</code>-invariant vectors, in every unitary representation <code>pi</code>.  For the regular representation of an infinite group there are no invariant vectors — an invariant <code>l^2</code> function is constant, hence zero — so <code>lambda(p) = 0</code>.  For the trivial representation <code>epsilon(p) = 1</code>, so <code>p != 0</code>.</p>
+<p>If <code>p</code> were the image of some <code>a in l^1(Gamma)</code>, then <code>lambda(a) = 0</code>, hence <code>a = 0</code>, hence <code>p = 0</code>, contradicting <code>epsilon(p) = 1</code>.</p>
+<p>For the averages: <code>|| . ||_{C*_max} &lt;= || . ||_{l^1}</code>, so an <code>l^1</code>-Cauchy sequence has an <code>l^1</code> limit whose image is the <code>C*_max</code> limit.  Since <code>mu^{*n} -&gt; p</code> in <code>C*_max</code> by the spectral gap, <code>l^1</code>-Cauchyness would put <code>p</code> in the image of <code>l^1</code>, which the previous paragraph forbids.</p>
+<p>Finally, an isometric action <code>alpha</code> of <code>Gamma</code> on a Banach space <code>A</code> gives <code>|| alpha(a) ||_{B(A)} &lt;= || a ||_{l^1}</code> and nothing sharper without a Hilbertian structure; so <code>alpha(mu^{*n})</code> need not converge and <code>alpha(p)</code> is undefined.  On a Hilbert space the <code>C*_max</code> bound is available and both exist, which is exactly the passage the transport argument makes.</p></body>

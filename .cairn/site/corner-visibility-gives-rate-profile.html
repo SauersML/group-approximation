@@ -1,0 +1,35 @@
+<!doctype html><meta charset='utf-8'><title>corner-visibility-gives-rate-profile</title><style>
+body{font:15px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;max-width:60em;margin:2em auto;padding:0 1em;color:#1c1e1c}
+a{color:#4f46e5;text-decoration:none}a:hover{text-decoration:underline}
+code,pre{font:13px/1.45 Menlo,monospace;background:#f4f4f2}
+pre{padding:.8em;overflow-x:auto;border:1px solid #e5e7e3}
+.badge{display:inline-block;padding:.1em .55em;border-radius:.8em;color:#fff;font:700 11px -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;letter-spacing:.04em}
+.node{font:13px Menlo,monospace}
+h1{font-size:1.4em}h2{font-size:1.05em;border-bottom:1px solid #e5e7e3;padding-bottom:.2em}
+ul.rel{list-style:none;padding-left:0}ul.rel li{margin:.25em 0}
+.muted{color:#8b9089}.tree{white-space:pre;font:13px/1.5 Menlo,monospace;background:#fafaf8;border:1px solid #e5e7e3;padding:1em;overflow-x:auto}
+table{border-collapse:collapse}td,th{border:1px solid #e5e7e3;padding:.25em .6em;font-size:.9em}
+</style><script>MathJax={tex:{inlineMath:[["$","$"],["\\(","\\)"]]}};</script><script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script><body><p><a href='index.html'>← index</a></p>
+<h1><span class='node'>corner-visibility-gives-rate-profile</span> Bounded trace gap makes the rate profile automatic</h1>
+<p><span class="badge" style="background:#c08a00">OPEN</span> <span class='muted'>route · <code>research/corner-visibility-gives-rate-profile.md</code></span></p>
+<h2>Target</h2><ul class='rel'>
+<li><a class="node" href="mf-trace-gap-defect-ratio-models.html">mf-trace-gap-defect-ratio-models</a> <span class="badge" style="background:#c08a00">OPEN</span> MF groups admit models whose squared defect beats their trace gap</li>
+</ul>
+<h2>Requires</h2><ul class='rel'>
+<li><a class="node" href="mf-invariant-corner-visibility.html">mf-invariant-corner-visibility</a> <span class="badge" style="background:#c08a00">OPEN</span> Every MF-visible element is visible in an invariant corner</li>
+</ul>
+<h2>Statement</h2>
+<h3>Why sufficient</h3>
+<p><code><a href="mf-invariant-corner-visibility.html">mf-invariant-corner-visibility</a></code>, in its corner-free form <code>(I')</code>, gives for each finite <code>F</code> and each <code>delta&gt;0</code> an operator-norm local model of <code>G</code> on <code>F</code> with defect at most <code>delta</code> and <code>Re tr(phi(g)) &lt;= 1-c_g</code>, the constant depending only on <code>g</code>.  Diagonalize over an exhausting sequence of finite sets with <code>delta_n = 1/n</code>: the resulting single sequence has <code>epsilon_n &lt;= 1/n -&gt; 0</code> and trace gaps</p>
+<pre>
+kappa_n = 1-Re tr(phi_n(g)) &gt;= c_g &gt; 0,
+</pre>
+<p>so <code>epsilon_n^2/kappa_n &lt;= 1/(n^2 c_g) -&gt; 0</code>, which is <code>(P1)</code>.  End proof.</p>
+<h3>Consequence for the frontier</h3>
+<p>The two open holes of the <code><a href="mf-implies-hyperlinear.html">mf-implies-hyperlinear</a></code> cluster are therefore <em>ordered</em>, not independent:</p>
+<pre>
+<a href="mf-invariant-corner-visibility.html">mf-invariant-corner-visibility</a>  =&gt;  <a href="mf-trace-gap-defect-ratio-models.html">mf-trace-gap-defect-ratio-models</a>
+                                =&gt;  <a href="mf-implies-hyperlinear.html">mf-implies-hyperlinear</a>.
+</pre>
+<p>The rate claim is the strictly weaker hypothesis --- it tolerates <code>kappa_n -&gt; 0</code> provided <code>epsilon_n^2</code> decays faster, whereas corner visibility demands <code>kappa_n</code> bounded below --- so it is the better target of the two, and <code><a href="mf-implies-hyperlinear-via-invariant-corner.html">mf-implies-hyperlinear-via-invariant-corner</a></code> factors through <code><a href="mf-implies-hyperlinear-via-rank-profile.html">mf-implies-hyperlinear-via-rank-profile</a></code>.  Keeping both routes is deliberate: they record two different mechanisms for producing the trace (structural corner versus amplification rate), and the weaker hypothesis is the one to attack.</p>
+<p>The ordering also transfers the sector-density verdict.  By <code><a href="sign-mark-rate-is-sector-density.html">sign-mark-rate-is-sector-density</a></code> the rate fails whenever property <code>(T)</code> squeezes a sign mark onto a sector of density <code>O(epsilon_n^2)</code>; since corner visibility implies the rate, it fails for those same model families --- as it must, since a trace tending to <code>1</code> is exactly invisibility.</p></body>

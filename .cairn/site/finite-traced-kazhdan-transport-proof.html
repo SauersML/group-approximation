@@ -1,0 +1,56 @@
+<!doctype html><meta charset='utf-8'><title>finite-traced-kazhdan-transport-proof</title><style>
+body{font:15px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;max-width:60em;margin:2em auto;padding:0 1em;color:#1c1e1c}
+a{color:#4f46e5;text-decoration:none}a:hover{text-decoration:underline}
+code,pre{font:13px/1.45 Menlo,monospace;background:#f4f4f2}
+pre{padding:.8em;overflow-x:auto;border:1px solid #e5e7e3}
+.badge{display:inline-block;padding:.1em .55em;border-radius:.8em;color:#fff;font:700 11px -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;letter-spacing:.04em}
+.node{font:13px Menlo,monospace}
+h1{font-size:1.4em}h2{font-size:1.05em;border-bottom:1px solid #e5e7e3;padding-bottom:.2em}
+ul.rel{list-style:none;padding-left:0}ul.rel li{margin:.25em 0}
+.muted{color:#8b9089}.tree{white-space:pre;font:13px/1.5 Menlo,monospace;background:#fafaf8;border:1px solid #e5e7e3;padding:1em;overflow-x:auto}
+table{border-collapse:collapse}td,th{border:1px solid #e5e7e3;padding:.25em .6em;font-size:.9em}
+</style><script>MathJax={tex:{inlineMath:[["$","$"],["\\(","\\)"]]}};</script><script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script><body><p><a href='index.html'>← index</a></p>
+<h1><span class='node'>finite-traced-kazhdan-transport-proof</span> Kazhdan projection in the conjugation algebra of the tracial ultraproduct</h1>
+<p><span class="badge" style="background:#178a5e">COMPLETE</span> <span class='muted'>route · <code>research/finite-traced-kazhdan-transport-proof.md</code></span></p>
+<h2>Target</h2><ul class='rel'>
+<li><a class="node" href="finite-traced-kazhdan-transport.html">finite-traced-kazhdan-transport</a> <span class="badge" style="background:#178a5e">ESTABLISHED</span> Kazhdan transport over arbitrary traced coordinates</li>
+</ul>
+<h2>Requires</h2><ul class='rel'>
+<li><a class="node" href="faithfully-traced-unital-coordinates.html">faithfully-traced-unital-coordinates</a> <span class="badge" style="background:#178a5e">ESTABLISHED</span> Unital C-star algebras with a faithful trace are a corner-stable finite coordinate class</li>
+</ul>
+<h2>Artifacts</h2><ul class='rel'>
+<li><code>non_mf_groups_exist.tex</code></li>
+<li><code>docs/NO_ONE_SIDED_GROWTH.md</code></li>
+<li><code>GroupApproximation/Sofic/KazhdanAsymptoticCommutant.lean</code></li>
+</ul>
+<h2>Statement</h2>
+<h3>Why sufficient</h3>
+<p>Fix a free ultrafilter <code>omega</code> and let <code>M</code> be the tracial ultraproduct of <code>(A_k,tau_k)</code>; by item 4 of <code><a href="faithfully-traced-unital-coordinates.html">faithfully-traced-unital-coordinates</a></code> it is a finite von Neumann algebra with trace <code>tau_omega</code>, and <code>M or JMJ</code> acting on <code>L^2(M,tau_omega)</code> is finite.  (Only item 4 is used here, and its proof does not use faithfulness of the <code>tau_k</code>.)</p>
+<p><strong>Step 1: an honest homomorphism.</strong>  Asymptotic multiplicativity in either norm kills the defect in <code>M</code>, so <code>g |-&gt; u(g) = [U_k(g)]</code> is a group homomorphism <code>H -&gt; U(M)</code>.  Uniform boundedness makes <code>x=[x_k]</code> an element of <code>M</code>, and the hypothesis says exactly <code>[x,u(iota gamma)]=0</code> for all <code>gamma</code>.</p>
+<p><strong>Step 2: the fixed-space projection lies in the algebra.</strong>  <code>Gamma</code> acts on <code>L^2(M,tau_omega)</code> by the unitaries <code>Ad(u(iota gamma)) = u JuJ</code>, which lie in <code>M or JMJ</code>.  Property <code>(T)</code> gives a Kazhdan projection <code>p</code> in <code>C^*_max(Gamma)</code> whose image in every unitary representation is the projection onto the fixed vectors.  Hence</p>
+<pre>
+P = projection onto Fix(Ad(u(iota Gamma))) in C^*(Ad(u(iota Gamma)))
+                                           &lt;= M or JMJ.        (K1)
+</pre>
+<p>This is the only use of <code>(T)</code>: without it the fixed-space projection is only known to lie in <code>B(L^2)</code>, which is not finite, and Step 4 collapses.</p>
+<p><strong>Step 3: one-sided compression.</strong>  Put <code>W=u(s) in U(M)</code>, so <code>Ad(W) in M or JMJ</code>.  For any <code>xi</code>,</p>
+<pre>
+Ad(W) xi is Ad(u(iota gamma))-fixed  &lt;=&gt;  xi is
+Ad(u(s^(-1) iota(gamma) s))-fixed,
+</pre>
+<p>so <code>Ad(W) P Ad(W)^*</code> is the fixed-space projection of the subgroup <code>s iota(Gamma) s^(-1)</code> (a <code>(T)</code> group, being a homomorphic image of <code>Gamma</code>). A subgroup has a larger fixed space, and by hypothesis <code>s iota(Gamma) s^(-1) &lt;= iota(Gamma)</code>, hence</p>
+<pre>
+Ad(W) P Ad(W)^* &gt;= P.                                          (K2)
+</pre>
+<p><strong>Step 4: finiteness closes it.</strong>  <code>(K2)</code> exhibits <code>P</code> and its unitary conjugate, which are Murray--von Neumann equivalent inside <code>M or JMJ</code>, in a one-sided inclusion.  In a finite von Neumann algebra <code>Q ~ P &lt;= Q</code> forces <code>P=Q</code>, so</p>
+<pre>
+Ad(W) P Ad(W)^* = P.                                           (K3)
+</pre>
+<p><strong>Step 5: transport and desultrafiltration.</strong>  <code>Px=x</code> by Step 1, so by <code>(K3)</code> <code>Ad(W)x</code> is again fixed, i.e. <code>[WxW^*, u(iota gamma)]=0</code> in <code>M</code>, i.e.</p>
+<pre>
+lim_omega ||[U_k(s)x_kU_k(s)^*, U_k(iota gamma)]||_(2,tau_k) = 0.
+</pre>
+<p>The sequence is bounded, and the conclusion holds for every free ultrafilter, so its ordinary limit is <code>0</code>: otherwise some subsequence stays above <code>epsilon&gt;0</code> and any ultrafilter containing it would contradict the above.  End proof.</p>
+<h3>What this does and does not generalize</h3>
+<p>Steps 3 and 4 are the corona formulation the corpus already uses (<code>docs/NO_ONE_SIDED_GROWTH.md</code>: <code>P &lt;= VPV^<em></code>, <code>P ~ VPV^</em></code>, finiteness gives equality, "a one-sided group-theoretic compression therefore becomes a two-sided symmetry of the entire bounded asymptotic commutant"); what is new here is that the ambient may be any traced coordinates and that the hypothesis may be taken in <code>||.||_2</code>.</p>
+<p>The matrix proof in <code>KazhdanAsymptoticCommutant.lean</code> is a finite-stage substitute for this argument, deliberately avoiding ultrafilters: it replaces <code>(K1)</code> by the spectral projection of the Hermitian Kazhdan average above the threshold <code>theta = (1 + (1 - kappa^2/(4|S|)))/2</code> and <code>(K3)</code> by the equal-rank projection flip (<code>||(1-q)p|| &lt;= eps &lt; 1</code> with <code>rank p = rank q</code> gives <code>||(1-p)q|| &lt;= eps/sqrt(1-eps^2)</code>), and thereby obtains uniform quantitative bounds.  Reproducing <em>that</em> in general coordinates would additionally need spectral projections at an arbitrary threshold (real rank zero) and a uniform comparison modulus.  The ultraproduct form above needs neither, at the cost of giving no modulus.</p></body>

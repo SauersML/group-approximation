@@ -1,0 +1,34 @@
+<!doctype html><meta charset='utf-8'><title>mf-nonhyperlinear-collapse-structure</title><style>
+body{font:15px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;max-width:60em;margin:2em auto;padding:0 1em;color:#1c1e1c}
+a{color:#4f46e5;text-decoration:none}a:hover{text-decoration:underline}
+code,pre{font:13px/1.45 Menlo,monospace;background:#f4f4f2}
+pre{padding:.8em;overflow-x:auto;border:1px solid #e5e7e3}
+.badge{display:inline-block;padding:.1em .55em;border-radius:.8em;color:#fff;font:700 11px -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;letter-spacing:.04em}
+.node{font:13px Menlo,monospace}
+h1{font-size:1.4em}h2{font-size:1.05em;border-bottom:1px solid #e5e7e3;padding-bottom:.2em}
+ul.rel{list-style:none;padding-left:0}ul.rel li{margin:.25em 0}
+.muted{color:#8b9089}.tree{white-space:pre;font:13px/1.5 Menlo,monospace;background:#fafaf8;border:1px solid #e5e7e3;padding:1em;overflow-x:auto}
+table{border-collapse:collapse}td,th{border:1px solid #e5e7e3;padding:.25em .6em;font-size:.9em}
+</style><script>MathJax={tex:{inlineMath:[["$","$"],["\\(","\\)"]]}};</script><script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script><body><p><a href='index.html'>← index</a></p>
+<h1><span class='node'>mf-nonhyperlinear-collapse-structure</span> Structure forced on a counterexample to MF implies hyperlinear</h1>
+<p><span class="badge" style="background:#178a5e">ESTABLISHED</span> <span class='muted'>claim · <code>research/mf-nonhyperlinear-collapse-structure.md</code></span></p>
+<p class='muted'>via route mf-nonhyperlinear-collapse-structure-proof</p>
+<h2>Routes into this claim</h2><ul class='rel'>
+<li><a class="node" href="mf-nonhyperlinear-collapse-structure-proof.html">mf-nonhyperlinear-collapse-structure-proof</a> <span class="badge" style="background:#178a5e">COMPLETE</span> Read the hyperlinear residual through elementwise visibility</li>
+</ul>
+<h2>Distinct from</h2><ul class='rel'>
+<li><a class="node" href="mf-implies-hyperlinear.html">mf-implies-hyperlinear</a> <span class="badge" style="background:#c08a00">OPEN</span> MF implies hyperlinear under the weak norm-corona convention<br><span class='muted'>That root asks whether a counterexample exists; this claim describes what one would have to look like.</span></li>
+<li><a class="node" href="mf-hyperlinear-radical-divergence.html">mf-hyperlinear-radical-divergence</a> <span class="badge" style="background:#178a5e">ESTABLISHED</span> The MF and hyperlinear radicals diverge on one explicit marked group<br><span class='muted'>That established claim exhibits an MF-invisible word which is tracially visible, i.e. the inclusion in the opposite direction; this one constrains the hyperlinear residual of a group whose MF residual is trivial.</span></li>
+</ul>
+<h2>Artifacts</h2><ul class='rel'>
+<li><code>GroupApproximation/Sofic/RadicalSeparation.lean</code></li>
+</ul>
+<h2>Statement</h2>
+<p>For a countable group <code>G</code>, <code>hyperlinearResidual G</code> is exactly the set of elements which are not tracially visible; consequently</p>
+<pre>
+G is hyperlinear  &lt;=&gt;  hyperlinearResidual G = 1,
+</pre>
+<p>both directions, not only the direction already formalized.</p>
+<p>If in addition <code>G</code> is MF and not hyperlinear, then <code>R = hyperlinearResidual G</code> satisfies:</p>
+<p>1. <code>R != 1</code> and <code>G/R</code> is hyperlinear; 2. <code>R</code> contains no nontrivial finite normal subgroup of <code>G</code>; in particular <code>R</code> is infinite and <code>G</code> has no nontrivial finite normal subgroup with hyperlinear quotient.</p>
+<p>So the torsion-critical architecture that produces non-MF groups --- a finite central mark killed by every model --- is provably unavailable for nonhyperlinearity of an MF group.</p></body>

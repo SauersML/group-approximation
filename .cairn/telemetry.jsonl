@@ -1,0 +1,1020 @@
+{"ts": "2026-08-14T15:09:36", "agent": "agent-7", "cmd": "frontier", "argv": ["frontier"], "exit": 0, "ms": 13}
+{"ts": "2026-08-14T15:09:36", "agent": "agent-7", "cmd": "context", "argv": ["context", "same-orbit-closure"], "exit": 0, "ms": 4}
+{"ts": "2026-08-14T15:09:36", "agent": "agent-7", "cmd": "why", "argv": ["why", "unknown-thing"], "exit": 1, "ms": 3}
+{"ts": "2026-08-14T15:09:36", "agent": "agent-7", "cmd": "lock", "argv": ["lock", "same-orbit-closure", "--ttl", "2m"], "exit": 0, "ms": 0}
+{"ts": "2026-08-14T15:09:36", "agent": "agent-12", "cmd": "lock", "argv": ["lock", "same-orbit-closure"], "exit": 3, "ms": 0}
+{"ts": "2026-08-14T15:09:36", "agent": "agent-12", "cmd": "search", "argv": ["search", "orbit closure"], "exit": 0, "ms": 5}
+{"ts": "2026-08-14T15:09:36", "agent": "agent-7", "cmd": "unlock", "argv": ["unlock", "same-orbit-closure"], "exit": 0, "ms": 0}
+{"ts": "2026-08-14T15:09:37", "agent": "user", "cmd": "build", "argv": ["build"], "exit": 0, "ms": 6}
+{"ts": "2026-08-14T15:09:53", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 0, "ms": 18}
+{"ts": "2026-08-14T15:11:14", "agent": "user", "cmd": "check", "argv": ["check", "--changed"], "exit": 0, "ms": 50}
+{"ts": "2026-08-14T15:12:37", "agent": "user", "cmd": "frontier", "argv": ["frontier"], "exit": 0, "ms": 21}
+{"ts": "2026-08-14T15:12:37", "agent": "user", "cmd": "search", "argv": ["search", "sofic Clifford witness MF zero input", "--notes"], "exit": 0, "ms": 9}
+{"ts": "2026-08-14T15:12:37", "agent": "user", "cmd": "status", "argv": ["status"], "exit": 0, "ms": 3}
+{"ts": "2026-08-14T15:13:05", "agent": "user", "cmd": "why", "argv": ["why", "sofic-implies-hyperlinear"], "exit": 0, "ms": 12}
+{"ts": "2026-08-14T15:13:05", "agent": "user", "cmd": "relevant", "argv": ["relevant", "sofic-implies-hyperlinear"], "exit": 0, "ms": 5}
+{"ts": "2026-08-14T15:13:05", "agent": "user", "cmd": "preview", "argv": ["preview"], "exit": 0, "ms": 62}
+{"ts": "2026-08-14T15:13:05", "agent": "user", "cmd": "check", "argv": ["check", "--changed"], "exit": 0, "ms": 37}
+{"ts": "2026-08-14T15:14:00", "agent": "user", "cmd": "check", "argv": ["check", "--changed"], "exit": 0, "ms": 171}
+{"ts": "2026-08-14T15:14:00", "agent": "user", "cmd": "status", "argv": ["status"], "exit": 0, "ms": 7}
+{"ts": "2026-08-14T15:14:01", "agent": "user", "cmd": "search", "argv": ["search", "non-MF group", "--notes"], "exit": 0, "ms": 8}
+{"ts": "2026-08-14T15:14:01", "agent": "user", "cmd": "relevant", "argv": ["relevant", "non-mf-group"], "exit": 1, "ms": 4}
+{"ts": "2026-08-14T15:15:23", "agent": "user", "cmd": "search", "argv": ["search", "operator MF", "--json"], "exit": 0, "ms": 15}
+{"ts": "2026-08-14T15:15:26", "agent": "user", "cmd": "check", "argv": ["check", "--changed", "--strict"], "exit": 0, "ms": 60}
+{"ts": "2026-08-14T15:15:34", "agent": "user", "cmd": "check", "argv": ["check", "--changed", "--strict"], "exit": 0, "ms": 31}
+{"ts": "2026-08-14T15:15:34", "agent": "user", "cmd": "search", "argv": ["search", "literal non-MF", "--json"], "exit": 0, "ms": 4}
+{"ts": "2026-08-14T15:15:34", "agent": "user", "cmd": "context", "argv": ["context", "literal-mf-radical-exact", "--budget", "1800"], "exit": 0, "ms": 6}
+{"ts": "2026-08-14T15:15:34", "agent": "user", "cmd": "why", "argv": ["why", "literal-mf-radical-exact"], "exit": 0, "ms": 3}
+{"ts": "2026-08-14T15:15:34", "agent": "user", "cmd": "impact", "argv": ["impact", "literal-mark-quotient-mf"], "exit": 0, "ms": 3}
+{"ts": "2026-08-14T15:15:57", "agent": "user", "cmd": "search", "argv": ["search", "Clifford", "--notes"], "exit": 0, "ms": 12}
+{"ts": "2026-08-14T15:15:57", "agent": "user", "cmd": "search", "argv": ["search", "finite coset", "--notes"], "exit": 0, "ms": 4}
+{"ts": "2026-08-14T15:16:11", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 0, "ms": 11}
+{"ts": "2026-08-14T15:16:11", "agent": "user", "cmd": "context", "argv": ["context", "commuting-lamp-quotient-mf", "--budget", "16000"], "exit": 0, "ms": 4}
+{"ts": "2026-08-14T15:16:11", "agent": "user", "cmd": "impact", "argv": ["impact", "commuting-lamp-quotient-mf"], "exit": 0, "ms": 3}
+{"ts": "2026-08-14T15:16:11", "agent": "user", "cmd": "preview", "argv": ["preview"], "exit": 0, "ms": 37}
+{"ts": "2026-08-14T15:16:12", "agent": "user", "cmd": "check", "argv": ["check", "--changed"], "exit": 0, "ms": 30}
+{"ts": "2026-08-14T15:16:14", "agent": "user", "cmd": "preview", "argv": ["preview", "--json"], "exit": 0, "ms": 30}
+{"ts": "2026-08-14T15:16:34", "agent": "user", "cmd": "search", "argv": ["search", "witness sofic", "--notes"], "exit": 0, "ms": 42}
+{"ts": "2026-08-14T15:16:34", "agent": "user", "cmd": "search", "argv": ["search", "finite-coset tower", "--notes"], "exit": 0, "ms": 7}
+{"ts": "2026-08-14T15:16:34", "agent": "user", "cmd": "frontier", "argv": ["frontier"], "exit": 0, "ms": 4}
+{"ts": "2026-08-14T15:16:52", "agent": "user", "cmd": "site", "argv": ["site"], "exit": 0, "ms": 43}
+{"ts": "2026-08-14T15:16:52", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 0, "ms": 13}
+{"ts": "2026-08-14T15:17:12", "agent": "user", "cmd": "check", "argv": ["check", "--changed", "--strict"], "exit": 0, "ms": 120}
+{"ts": "2026-08-14T15:18:14", "agent": "user", "cmd": "frontier", "argv": ["frontier"], "exit": 0, "ms": 28}
+{"ts": "2026-08-14T15:18:49", "agent": "user", "cmd": "preview", "argv": ["preview", "--json"], "exit": 0, "ms": 213}
+{"ts": "2026-08-14T15:19:08", "agent": "user", "cmd": "check", "argv": ["check", "--changed"], "exit": 0, "ms": 38}
+{"ts": "2026-08-14T15:19:10", "agent": "user", "cmd": "preview", "argv": ["preview"], "exit": 0, "ms": 2212}
+{"ts": "2026-08-14T15:19:19", "agent": "user", "cmd": "preview", "argv": ["preview", "--json"], "exit": 0, "ms": 1660}
+{"ts": "2026-08-14T15:19:44", "agent": "user", "cmd": "check", "argv": ["check", "--changed", "--strict"], "exit": 0, "ms": 38}
+{"ts": "2026-08-14T15:19:46", "agent": "user", "cmd": "preview", "argv": ["preview"], "exit": 0, "ms": 1378}
+{"ts": "2026-08-14T15:21:10", "agent": "user", "cmd": "search", "argv": ["search", "Kun Thom Clifford", "--notes"], "exit": 0, "ms": 30}
+{"ts": "2026-08-14T15:21:10", "agent": "user", "cmd": "search", "argv": ["search", "CE visible", "--notes"], "exit": 0, "ms": 7}
+{"ts": "2026-08-14T15:21:35", "agent": "user", "cmd": "check", "argv": ["check", "--changed"], "exit": 0, "ms": 48}
+{"ts": "2026-08-14T15:21:36", "agent": "user", "cmd": "frontier", "argv": ["frontier"], "exit": 0, "ms": 4}
+{"ts": "2026-08-14T15:21:49", "agent": "user", "cmd": "search", "argv": ["search", "non-MF sofic witness", "--json"], "exit": 0, "ms": 13}
+{"ts": "2026-08-14T15:22:00", "agent": "user", "cmd": "site", "argv": ["site"], "exit": 0, "ms": 63}
+{"ts": "2026-08-14T15:22:05", "agent": "user", "cmd": "search", "argv": ["search", "literal non-MF", "--json"], "exit": 0, "ms": 20}
+{"ts": "2026-08-14T15:22:05", "agent": "user", "cmd": "search", "argv": ["search", "MF definitions", "--json"], "exit": 0, "ms": 5}
+{"ts": "2026-08-14T15:22:06", "agent": "user", "cmd": "search", "argv": ["search", "MF quotient", "--json"], "exit": 0, "ms": 6}
+{"ts": "2026-08-14T15:22:07", "agent": "user", "cmd": "search", "argv": ["search", "universal MF", "--json"], "exit": 0, "ms": 6}
+{"ts": "2026-08-14T15:22:07", "agent": "user", "cmd": "search", "argv": ["search", "stably finite non-MF", "--json"], "exit": 0, "ms": 5}
+{"ts": "2026-08-14T15:22:08", "agent": "user", "cmd": "search", "argv": ["search", "group C-star", "--json"], "exit": 0, "ms": 5}
+{"ts": "2026-08-14T15:22:10", "agent": "user", "cmd": "search", "argv": ["search", "literal non-MF", "--json"], "exit": 0, "ms": 5}
+{"ts": "2026-08-14T15:22:10", "agent": "user", "cmd": "search", "argv": ["search", "sofic radical", "--json"], "exit": 0, "ms": 5}
+{"ts": "2026-08-14T15:22:11", "agent": "user", "cmd": "search", "argv": ["search", "Clifford", "--json"], "exit": 0, "ms": 5}
+{"ts": "2026-08-14T15:23:02", "agent": "user", "cmd": "context", "argv": ["context", "hyperlinear-nonsofic-group", "--budget", "12000", "--json"], "exit": 0, "ms": 9}
+{"ts": "2026-08-14T15:23:02", "agent": "user", "cmd": "context", "argv": ["context", "literal-mark-quotient-mf", "--budget", "12000", "--json"], "exit": 0, "ms": 4}
+{"ts": "2026-08-14T15:23:54", "agent": "user", "cmd": "search", "argv": ["search", "sofic visibility literal mark", "--json"], "exit": 0, "ms": 34}
+{"ts": "2026-08-14T15:23:54", "agent": "user", "cmd": "search", "argv": ["search", "sofic non-MF Clifford witness", "--json"], "exit": 0, "ms": 6}
+{"ts": "2026-08-14T15:23:54", "agent": "user", "cmd": "search", "argv": ["search", "radical collision visible mark", "--json"], "exit": 0, "ms": 8}
+{"ts": "2026-08-14T15:25:29", "agent": "user", "cmd": "check", "argv": ["check", "--changed", "--strict"], "exit": 2, "ms": 134}
+{"ts": "2026-08-14T15:25:33", "agent": "user", "cmd": "preview", "argv": ["preview"], "exit": 2, "ms": 3226}
+{"ts": "2026-08-14T15:26:19", "agent": "user", "cmd": "search", "argv": ["search", "finite action moved fraction relator defect", "--json"], "exit": 0, "ms": 33}
+{"ts": "2026-08-14T15:26:19", "agent": "user", "cmd": "search", "argv": ["search", "linear finite action inequality sofic radical", "--json"], "exit": 0, "ms": 23}
+{"ts": "2026-08-14T15:27:30", "agent": "user", "cmd": "check", "argv": ["check", "--changed", "--strict"], "exit": 2, "ms": 215}
+{"ts": "2026-08-14T15:27:33", "agent": "user", "cmd": "preview", "argv": ["preview"], "exit": 2, "ms": 2049}
+{"ts": "2026-08-14T15:27:58", "agent": "user", "cmd": "site", "argv": ["site"], "exit": 0, "ms": 107}
+{"ts": "2026-08-14T15:28:41", "agent": "user", "cmd": "site", "argv": ["site"], "exit": 0, "ms": 176}
+{"ts": "2026-08-14T15:28:57", "agent": "user", "cmd": "check", "argv": ["check", "--changed", "--strict"], "exit": 2, "ms": 91}
+{"ts": "2026-08-14T15:52:28", "agent": "user", "cmd": "site", "argv": ["site"], "exit": 0, "ms": 52}
+{"ts": "2026-08-14T15:52:50", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 4, "ms": 50}
+{"ts": "2026-08-14T15:53:01", "agent": "user", "cmd": "check", "argv": ["check", "--changed", "--strict"], "exit": 4, "ms": 91}
+{"ts": "2026-08-14T15:53:12", "agent": "user", "cmd": "check", "argv": ["check", "--changed"], "exit": 4, "ms": 67}
+{"ts": "2026-08-14T15:54:36", "agent": "user", "cmd": "site", "argv": ["site"], "exit": 0, "ms": 27}
+{"ts": "2026-08-14T15:54:46", "agent": "user", "cmd": "check", "argv": ["check", "--changed", "--strict"], "exit": 4, "ms": 46}
+{"ts": "2026-08-14T15:56:08", "agent": "user", "cmd": "check", "argv": ["check", "--changed"], "exit": 4, "ms": 107}
+{"ts": "2026-08-14T15:56:45", "agent": "user", "cmd": "check", "argv": ["check", "--changed"], "exit": 2, "ms": 51}
+{"ts": "2026-08-14T15:57:15", "agent": "user", "cmd": "check", "argv": ["check", "--changed"], "exit": 0, "ms": 50}
+{"ts": "2026-08-14T15:57:16", "agent": "user", "cmd": "preview", "argv": ["preview"], "exit": 0, "ms": 1336}
+{"ts": "2026-08-14T15:57:28", "agent": "user", "cmd": "check", "argv": ["check", "--changed", "--strict"], "exit": 0, "ms": 110}
+{"ts": "2026-08-14T15:57:40", "agent": "user", "cmd": "preview", "argv": ["preview"], "exit": 0, "ms": 2300}
+{"ts": "2026-08-14T15:57:45", "agent": "user", "cmd": "check", "argv": ["check", "--changed"], "exit": 0, "ms": 65}
+{"ts": "2026-08-14T15:58:11", "agent": "user", "cmd": "context", "argv": ["context", "countable-group-mf-conventions", "--budget", "2000", "--json"], "exit": 0, "ms": 22}
+{"ts": "2026-08-14T15:58:12", "agent": "user", "cmd": "context", "argv": ["context", "literal-group-fails-mf-conventions", "--budget", "2000", "--json"], "exit": 0, "ms": 6}
+{"ts": "2026-08-14T15:58:12", "agent": "user", "cmd": "context", "argv": ["context", "literal-no-faithful-corona-subalgebra-representation", "--budget", "2000", "--json"], "exit": 0, "ms": 6}
+{"ts": "2026-08-14T15:58:13", "agent": "user", "cmd": "context", "argv": ["context", "universal-mf-quotient", "--budget", "2000", "--json"], "exit": 0, "ms": 8}
+{"ts": "2026-08-14T15:58:14", "agent": "user", "cmd": "context", "argv": ["context", "literal-stably-finite-non-mf-reduced-group-algebra", "--budget", "2000", "--json"], "exit": 0, "ms": 7}
+{"ts": "2026-08-14T15:58:38", "agent": "user", "cmd": "check", "argv": ["check", "--changed", "--strict"], "exit": 0, "ms": 42}
+{"ts": "2026-08-14T15:58:41", "agent": "user", "cmd": "preview", "argv": ["preview"], "exit": 0, "ms": 2575}
+{"ts": "2026-08-14T15:58:52", "agent": "user", "cmd": "check", "argv": ["check", "--changed", "--strict"], "exit": 0, "ms": 28}
+{"ts": "2026-08-14T15:58:55", "agent": "user", "cmd": "preview", "argv": ["preview"], "exit": 0, "ms": 2450}
+{"ts": "2026-08-14T15:59:18", "agent": "user", "cmd": "check", "argv": ["check", "--changed"], "exit": 0, "ms": 28}
+{"ts": "2026-08-14T15:59:47", "agent": "user", "cmd": "check", "argv": ["check", "--changed"], "exit": 0, "ms": 42}
+{"ts": "2026-08-14T15:59:47", "agent": "user", "cmd": "frontier", "argv": ["frontier"], "exit": 0, "ms": 7}
+{"ts": "2026-08-14T15:59:48", "agent": "user", "cmd": "preview", "argv": ["preview", "--json"], "exit": 0, "ms": 2623}
+{"ts": "2026-08-14T16:00:03", "agent": "user", "cmd": "search", "argv": ["search", "quotients", "--json"], "exit": 0, "ms": 8}
+{"ts": "2026-08-14T16:00:03", "agent": "user", "cmd": "search", "argv": ["search", "free group", "--json"], "exit": 0, "ms": 8}
+{"ts": "2026-08-14T16:00:44", "agent": "user", "cmd": "check", "argv": ["check", "--changed", "--strict"], "exit": 2, "ms": 69}
+{"ts": "2026-08-14T16:00:52", "agent": "user", "cmd": "frontier", "argv": ["frontier"], "exit": 0, "ms": 8}
+{"ts": "2026-08-14T16:01:12", "agent": "user", "cmd": "check", "argv": ["check", "--changed"], "exit": 0, "ms": 45}
+{"ts": "2026-08-14T16:01:14", "agent": "user", "cmd": "preview", "argv": ["preview"], "exit": 0, "ms": 2198}
+{"ts": "2026-08-14T16:01:17", "agent": "user", "cmd": "check", "argv": ["check", "--changed", "--strict"], "exit": 0, "ms": 31}
+{"ts": "2026-08-14T16:01:19", "agent": "user", "cmd": "preview", "argv": ["preview", "--json"], "exit": 0, "ms": 2317}
+{"ts": "2026-08-14T16:05:29", "agent": "user", "cmd": "site", "argv": ["site"], "exit": 0, "ms": 65}
+{"ts": "2026-08-14T16:06:29", "agent": "user", "cmd": "check", "argv": ["check", "--changed", "--strict"], "exit": 0, "ms": 45}
+{"ts": "2026-08-14T16:06:32", "agent": "user", "cmd": "preview", "argv": ["preview", "--json"], "exit": 0, "ms": 2321}
+{"ts": "2026-08-14T16:09:22", "agent": "user", "cmd": "site", "argv": ["site"], "exit": 0, "ms": 59}
+{"ts": "2026-08-14T16:10:22", "agent": "user", "cmd": "site", "argv": ["site"], "exit": 0, "ms": 71}
+{"ts": "2026-08-14T16:22:58", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 0, "ms": 26}
+{"ts": "2026-08-14T16:24:12", "agent": "user", "cmd": "search", "argv": ["search", "radical collision hyperlinear sofic radical", "--limit", "12", "--notes"], "exit": 0, "ms": 55}
+{"ts": "2026-08-14T16:24:12", "agent": "user", "cmd": "search", "argv": ["search", "Leavitt finite multiplicity decoder synchronization trace floor", "--limit", "12", "--notes"], "exit": 0, "ms": 10}
+{"ts": "2026-08-14T16:24:13", "agent": "user", "cmd": "search", "argv": ["search", "Connes embeddable Clifford sign spin reduction", "--limit", "12", "--notes"], "exit": 0, "ms": 10}
+{"ts": "2026-08-14T16:25:25", "agent": "user", "cmd": "site", "argv": ["site"], "exit": 0, "ms": 108}
+{"ts": "2026-08-14T16:26:24", "agent": "user", "cmd": "context", "argv": ["context", "non-hyperlinear-group", "--budget", "12000"], "exit": 0, "ms": 8}
+{"ts": "2026-08-14T16:26:24", "agent": "user", "cmd": "context", "argv": ["context", "hyperlinear-nonsofic-group", "--budget", "12000"], "exit": 0, "ms": 12}
+{"ts": "2026-08-14T16:27:36", "agent": "user", "cmd": "check", "argv": ["check", "--changed", "--strict"], "exit": 0, "ms": 53}
+{"ts": "2026-08-14T16:29:35", "agent": "user", "cmd": "preview", "argv": ["preview"], "exit": 2, "ms": 2867}
+{"ts": "2026-08-14T16:29:36", "agent": "user", "cmd": "check", "argv": ["check", "--changed"], "exit": 2, "ms": 49}
+{"ts": "2026-08-14T16:29:39", "agent": "user", "cmd": "check", "argv": ["check", "--changed", "--strict"], "exit": 2, "ms": 105}
+{"ts": "2026-08-14T16:30:20", "agent": "user", "cmd": "preview", "argv": ["preview"], "exit": 0, "ms": 2310}
+{"ts": "2026-08-14T16:30:21", "agent": "user", "cmd": "check", "argv": ["check", "--changed"], "exit": 0, "ms": 30}
+{"ts": "2026-08-14T16:30:21", "agent": "user", "cmd": "frontier", "argv": ["frontier"], "exit": 0, "ms": 7}
+{"ts": "2026-08-14T16:31:03", "agent": "user", "cmd": "search", "argv": ["search", "Steinberg Leavitt stability unstable hyperlinear nonsofic fork", "--limit", "20", "--notes"], "exit": 0, "ms": 29}
+{"ts": "2026-08-14T16:32:13", "agent": "user", "cmd": "preview", "argv": ["preview"], "exit": 2, "ms": 2249}
+{"ts": "2026-08-14T16:32:33", "agent": "user", "cmd": "preview", "argv": ["preview"], "exit": 0, "ms": 2417}
+{"ts": "2026-08-14T16:32:33", "agent": "user", "cmd": "check", "argv": ["check", "--changed"], "exit": 0, "ms": 34}
+{"ts": "2026-08-14T16:34:20", "agent": "user", "cmd": "context", "argv": ["context", "pauli-carrier-membership-decoder", "--budget", "18000"], "exit": 0, "ms": 29}
+{"ts": "2026-08-14T16:34:20", "agent": "user", "cmd": "impact", "argv": ["impact", "pauli-carrier-membership-decoder"], "exit": 0, "ms": 42}
+{"ts": "2026-08-14T16:34:29", "agent": "user", "cmd": "lock", "argv": ["lock", "pauli-carrier-membership-decoder", "--agent", "codex-root", "--ttl", "120"], "exit": 0, "ms": 0}
+{"ts": "2026-08-14T16:42:36", "agent": "user", "cmd": "preview", "argv": ["preview"], "exit": 0, "ms": 2668}
+{"ts": "2026-08-14T16:42:36", "agent": "user", "cmd": "check", "argv": ["check", "--changed"], "exit": 0, "ms": 33}
+{"ts": "2026-08-14T16:42:36", "agent": "user", "cmd": "impact", "argv": ["impact", "full-packet-bicommutant-synchronization"], "exit": 0, "ms": 7}
+{"ts": "2026-08-14T16:45:44", "agent": "user", "cmd": "preview", "argv": ["preview"], "exit": 2, "ms": 2863}
+{"ts": "2026-08-14T16:45:53", "agent": "user", "cmd": "check", "argv": ["check", "--changed"], "exit": 2, "ms": 35}
+{"ts": "2026-08-14T16:46:19", "agent": "user", "cmd": "check", "argv": ["check", "--changed"], "exit": 0, "ms": 82}
+{"ts": "2026-08-14T16:46:55", "agent": "user", "cmd": "context", "argv": ["context", "full-packet-bicommutant-synchronization"], "exit": 0, "ms": 28}
+{"ts": "2026-08-14T16:50:02", "agent": "user", "cmd": "search", "argv": ["search", "mixed commutator dihedral"], "exit": 0, "ms": 10}
+{"ts": "2026-08-14T16:51:42", "agent": "user", "cmd": "preview", "argv": ["preview"], "exit": 0, "ms": 2953}
+{"ts": "2026-08-14T16:51:42", "agent": "user", "cmd": "check", "argv": ["check", "--changed"], "exit": 0, "ms": 39}
+{"ts": "2026-08-14T16:56:06", "agent": "user", "cmd": "search", "argv": ["search", "compact Bogoliubov infranormal"], "exit": 0, "ms": 38}
+{"ts": "2026-08-14T16:56:06", "agent": "user", "cmd": "search", "argv": ["search", "Clifford crossed product"], "exit": 0, "ms": 12}
+{"ts": "2026-08-14T16:56:07", "agent": "user", "cmd": "search", "argv": ["search", "ambient HS instability"], "exit": 0, "ms": 11}
+{"ts": "2026-08-14T16:57:27", "agent": "user", "cmd": "preview", "argv": ["preview"], "exit": 2, "ms": 2854}
+{"ts": "2026-08-14T16:57:27", "agent": "user", "cmd": "check", "argv": ["check", "--changed"], "exit": 2, "ms": 33}
+{"ts": "2026-08-14T16:57:47", "agent": "user", "cmd": "check", "argv": ["check", "--changed"], "exit": 0, "ms": 60}
+{"ts": "2026-08-14T16:58:37", "agent": "user", "cmd": "unlock", "argv": ["unlock", "pauli-carrier-membership-decoder"], "exit": 3, "ms": 0}
+{"ts": "2026-08-14T16:58:37", "agent": "user", "cmd": "frontier", "argv": ["frontier"], "exit": 0, "ms": 30}
+{"ts": "2026-08-14T16:58:46", "agent": "user", "cmd": "unlock", "argv": ["unlock", "pauli-carrier-membership-decoder", "--force"], "exit": 0, "ms": 0}
+{"ts": "2026-08-14T16:58:46", "agent": "user", "cmd": "check", "argv": ["check", "--changed"], "exit": 0, "ms": 49}
+{"ts": "2026-08-14T17:10:03", "agent": "user", "cmd": "preview", "argv": ["preview"], "exit": 0, "ms": 2930}
+{"ts": "2026-08-14T17:10:03", "agent": "user", "cmd": "check", "argv": ["check", "--changed"], "exit": 0, "ms": 30}
+{"ts": "2026-08-14T17:10:03", "agent": "user", "cmd": "frontier", "argv": ["frontier"], "exit": 0, "ms": 8}
+{"ts": "2026-08-14T17:10:24", "agent": "user", "cmd": "search", "argv": ["search", "hyperlinear non-MF witness"], "exit": 0, "ms": 31}
+{"ts": "2026-08-14T17:10:24", "agent": "user", "cmd": "search", "argv": ["search", "sofic non-MF witness"], "exit": 0, "ms": 10}
+{"ts": "2026-08-14T17:11:26", "agent": "user", "cmd": "preview", "argv": ["preview"], "exit": 0, "ms": 3710}
+{"ts": "2026-08-14T17:11:26", "agent": "user", "cmd": "check", "argv": ["check", "--changed"], "exit": 0, "ms": 39}
+{"ts": "2026-08-14T17:38:29", "agent": "user", "cmd": "lock", "argv": ["lock", "kun-thom-clifford-relative-wall", "--agent", "cairn-wall", "--ttl", "10800"], "exit": 0, "ms": 0}
+{"ts": "2026-08-14T17:38:32", "agent": "user", "cmd": "context", "argv": ["context", "kun-thom-clifford-relative-wall", "--budget", "6000"], "exit": 0, "ms": 33}
+{"ts": "2026-08-14T17:38:50", "agent": "user", "cmd": "lock", "argv": ["lock", "kun-thom-clifford-crossed-product-ce", "--agent", "cairn-ce", "--ttl", "10800"], "exit": 0, "ms": 0}
+{"ts": "2026-08-14T17:38:51", "agent": "user", "cmd": "context", "argv": ["context", "kun-thom-clifford-crossed-product-ce", "--budget", "6000"], "exit": 0, "ms": 31}
+{"ts": "2026-08-14T17:39:16", "agent": "user", "cmd": "lock", "argv": ["lock", "leavitt-steinberg-hs-stable", "--agent", "cairn-fork", "--ttl", "10800"], "exit": 0, "ms": 0}
+{"ts": "2026-08-14T17:39:16", "agent": "user", "cmd": "lock", "argv": ["lock", "leavitt-steinberg-hs-unstable", "--agent", "cairn-fork", "--ttl", "10800"], "exit": 0, "ms": 0}
+{"ts": "2026-08-14T17:39:20", "agent": "user", "cmd": "context", "argv": ["context", "leavitt-steinberg-hs-stability-fork", "--budget", "6000"], "exit": 0, "ms": 30}
+{"ts": "2026-08-14T17:39:42", "agent": "user", "cmd": "lock", "argv": ["lock", "sofic-radical-hyperlinear-survivor", "--agent", "cairn-survivor", "--ttl", "10800"], "exit": 0, "ms": 0}
+{"ts": "2026-08-14T17:39:45", "agent": "user", "cmd": "context", "argv": ["context", "sofic-radical-hyperlinear-survivor", "--budget", "6000"], "exit": 0, "ms": 32}
+{"ts": "2026-08-14T17:40:08", "agent": "user", "cmd": "lock", "argv": ["lock", "wreath-not-sofic", "--agent", "cairn-wreath", "--ttl", "10800"], "exit": 0, "ms": 0}
+{"ts": "2026-08-14T17:40:08", "agent": "user", "cmd": "lock", "argv": ["lock", "hyperlinear-wreath-model", "--agent", "cairn-wreath", "--ttl", "10800"], "exit": 0, "ms": 0}
+{"ts": "2026-08-14T17:40:12", "agent": "user", "cmd": "context", "argv": ["context", "wreath-not-sofic", "--budget", "6000"], "exit": 0, "ms": 31}
+{"ts": "2026-08-14T17:40:18", "agent": "user", "cmd": "context", "argv": ["context", "hyperlinear-wreath-model", "--budget", "6000"], "exit": 0, "ms": 31}
+{"ts": "2026-08-14T17:42:27", "agent": "user", "cmd": "lock", "argv": ["lock", "commuting-lamp-quotient-mf", "--agent", "cairn-quotient-mf", "--ttl", "10800"], "exit": 0, "ms": 0}
+{"ts": "2026-08-14T17:42:27", "agent": "user", "cmd": "lock", "argv": ["lock", "literal-mark-quotient-mf", "--agent", "cairn-quotient-mf", "--ttl", "10800"], "exit": 0, "ms": 0}
+{"ts": "2026-08-14T17:42:31", "agent": "user", "cmd": "context", "argv": ["context", "commuting-lamp-quotient-mf", "--budget", "6000"], "exit": 0, "ms": 31}
+{"ts": "2026-08-14T17:42:31", "agent": "user", "cmd": "context", "argv": ["context", "literal-mark-quotient-mf", "--budget", "6000"], "exit": 0, "ms": 9}
+{"ts": "2026-08-14T17:42:49", "agent": "user", "cmd": "lock", "argv": ["lock", "literal-group-structural-normal-form", "--agent", "cairn-literal", "--ttl", "10800"], "exit": 0, "ms": 0}
+{"ts": "2026-08-14T17:42:49", "agent": "user", "cmd": "lock", "argv": ["lock", "literal-witness-kernel-amenable", "--agent", "cairn-literal", "--ttl", "10800"], "exit": 0, "ms": 0}
+{"ts": "2026-08-14T17:42:53", "agent": "user", "cmd": "context", "argv": ["context", "literal-group-structural-normal-form", "--budget", "6000"], "exit": 0, "ms": 33}
+{"ts": "2026-08-14T17:42:53", "agent": "user", "cmd": "context", "argv": ["context", "literal-witness-kernel-amenable", "--budget", "6000"], "exit": 0, "ms": 8}
+{"ts": "2026-08-14T17:43:12", "agent": "user", "cmd": "lock", "argv": ["lock", "mf-implies-hyperlinear", "--agent", "cairn-bridge", "--ttl", "10800"], "exit": 0, "ms": 0}
+{"ts": "2026-08-14T17:43:12", "agent": "user", "cmd": "lock", "argv": ["lock", "finite-tracial-cstar-transport", "--agent", "cairn-bridge", "--ttl", "10800"], "exit": 0, "ms": 0}
+{"ts": "2026-08-14T17:43:16", "agent": "user", "cmd": "context", "argv": ["context", "mf-implies-hyperlinear", "--budget", "6000"], "exit": 0, "ms": 32}
+{"ts": "2026-08-14T17:43:16", "agent": "user", "cmd": "context", "argv": ["context", "finite-tracial-cstar-transport", "--budget", "6000"], "exit": 0, "ms": 8}
+{"ts": "2026-08-14T17:43:35", "agent": "user", "cmd": "lock", "argv": ["lock", "torsion-free-finitely-presented-non-mf", "--agent", "cairn-torsionfree", "--ttl", "10800"], "exit": 0, "ms": 0}
+{"ts": "2026-08-14T17:43:35", "agent": "user", "cmd": "context", "argv": ["context", "torsion-free-finitely-presented-non-mf", "--budget", "6000"], "exit": 0, "ms": 10}
+{"ts": "2026-08-14T17:54:17", "agent": "user", "cmd": "impact", "argv": ["impact", "literal-witness-kernel-amenable"], "exit": 0, "ms": 8}
+{"ts": "2026-08-14T17:55:34", "agent": "user", "cmd": "search", "argv": ["search", "amalgam free product"], "exit": 0, "ms": 37}
+{"ts": "2026-08-14T17:55:34", "agent": "user", "cmd": "search", "argv": ["search", "normal form kernel"], "exit": 0, "ms": 12}
+{"ts": "2026-08-14T17:57:30", "agent": "user", "cmd": "search", "argv": ["search", "sofic radical"], "exit": 0, "ms": 10}
+{"ts": "2026-08-14T18:01:09", "agent": "user", "cmd": "lock", "argv": ["lock", "hyperlinear-wreath-model", "--agent", "cairn-bernoulli", "--ttl", "10800"], "exit": 3, "ms": 0}
+{"ts": "2026-08-14T18:02:34", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 0, "ms": 67}
+{"ts": "2026-08-14T18:02:46", "agent": "user", "cmd": "check", "argv": ["check", "--changed"], "exit": 2, "ms": 39}
+{"ts": "2026-08-14T18:02:47", "agent": "user", "cmd": "lock", "argv": ["lock", "kun-thom-clifford-relative-wall", "--agent", "cairn-wall", "--ttl", "10800"], "exit": 0, "ms": 1}
+{"ts": "2026-08-14T18:02:56", "agent": "user", "cmd": "context", "argv": ["context", "relative-wall-commutant-growth", "--budget", "300"], "exit": 0, "ms": 9}
+{"ts": "2026-08-14T18:02:56", "agent": "user", "cmd": "context", "argv": ["context", "compressor-growth-index-homomorphism", "--budget", "300"], "exit": 0, "ms": 9}
+{"ts": "2026-08-14T18:02:56", "agent": "user", "cmd": "context", "argv": ["context", "commutator-compressor-carries-no-wall", "--budget", "300"], "exit": 0, "ms": 9}
+{"ts": "2026-08-14T18:02:57", "agent": "user", "cmd": "context", "argv": ["context", "wall-models-avoid-norm-microstates", "--budget", "300"], "exit": 0, "ms": 9}
+{"ts": "2026-08-14T18:02:57", "agent": "user", "cmd": "context", "argv": ["context", "compressed-commutant-majorana", "--budget", "300"], "exit": 0, "ms": 9}
+{"ts": "2026-08-14T18:03:26", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 0, "ms": 65}
+{"ts": "2026-08-14T18:03:29", "agent": "user", "cmd": "unlock", "argv": ["unlock", "kun-thom-clifford-relative-wall", "--agent", "cairn-wall"], "exit": 0, "ms": 0}
+{"ts": "2026-08-14T18:03:32", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 0, "ms": 45}
+{"ts": "2026-08-14T18:03:41", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 0, "ms": 44}
+{"ts": "2026-08-14T18:05:00", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 0, "ms": 69}
+{"ts": "2026-08-14T18:05:03", "agent": "user", "cmd": "preview", "argv": ["preview"], "exit": 2, "ms": 2895}
+{"ts": "2026-08-14T18:05:54", "agent": "user", "cmd": "check", "argv": ["check", "--changed"], "exit": 2, "ms": 62}
+{"ts": "2026-08-14T18:06:21", "agent": "user", "cmd": "check", "argv": ["check", "--changed"], "exit": 4, "ms": 76}
+{"ts": "2026-08-14T18:06:31", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 4, "ms": 70}
+{"ts": "2026-08-14T18:06:31", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 4, "ms": 47}
+{"ts": "2026-08-14T18:06:37", "agent": "user", "cmd": "context", "argv": ["context", "sofic-radical-soficization", "--budget", "400"], "exit": 0, "ms": 11}
+{"ts": "2026-08-14T18:06:37", "agent": "user", "cmd": "context", "argv": ["context", "radical-collision-reformulation", "--budget", "400"], "exit": 0, "ms": 9}
+{"ts": "2026-08-14T18:06:37", "agent": "user", "cmd": "context", "argv": ["context", "invariant-graph-clifford-phase", "--budget", "400"], "exit": 0, "ms": 9}
+{"ts": "2026-08-14T18:06:37", "agent": "user", "cmd": "context", "argv": ["context", "invariant-graph-crossed-product-ce", "--budget", "400"], "exit": 0, "ms": 9}
+{"ts": "2026-08-14T18:07:15", "agent": "user", "cmd": "check", "argv": ["check", "--changed"], "exit": 0, "ms": 68}
+{"ts": "2026-08-14T18:07:18", "agent": "user", "cmd": "preview", "argv": ["preview"], "exit": 0, "ms": 2808}
+{"ts": "2026-08-14T18:07:31", "agent": "user", "cmd": "preview", "argv": ["preview"], "exit": 0, "ms": 2746}
+{"ts": "2026-08-14T18:08:06", "agent": "user", "cmd": "frontier", "argv": ["frontier"], "exit": 0, "ms": 37}
+{"ts": "2026-08-14T18:08:14", "agent": "user", "cmd": "check", "argv": ["check", "--changed"], "exit": 2, "ms": 43}
+{"ts": "2026-08-14T18:08:16", "agent": "user", "cmd": "check", "argv": ["check", "--changed"], "exit": 2, "ms": 41}
+{"ts": "2026-08-14T18:08:22", "agent": "user", "cmd": "unlock", "argv": ["unlock", "sofic-radical-hyperlinear-survivor", "--agent", "cairn-survivor"], "exit": 0, "ms": 0}
+{"ts": "2026-08-14T18:08:37", "agent": "user", "cmd": "check", "argv": ["check", "--changed"], "exit": 2, "ms": 42}
+{"ts": "2026-08-14T18:08:53", "agent": "user", "cmd": "check", "argv": ["check", "--changed"], "exit": 0, "ms": 42}
+{"ts": "2026-08-14T18:08:56", "agent": "user", "cmd": "preview", "argv": ["preview"], "exit": 0, "ms": 2785}
+{"ts": "2026-08-14T18:09:21", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 0, "ms": 55}
+{"ts": "2026-08-14T18:09:29", "agent": "user", "cmd": "context", "argv": ["context", "literal-group-structural-normal-form", "--budget", "1500"], "exit": 0, "ms": 12}
+{"ts": "2026-08-14T18:09:29", "agent": "user", "cmd": "impact", "argv": ["impact", "literal-witness-kernel-amenable"], "exit": 0, "ms": 10}
+{"ts": "2026-08-14T18:09:29", "agent": "user", "cmd": "impact", "argv": ["impact", "literal-witness-kernel-free"], "exit": 0, "ms": 10}
+{"ts": "2026-08-14T18:09:29", "agent": "user", "cmd": "context", "argv": ["context", "literal-group-sofic", "--budget", "1200"], "exit": 0, "ms": 11}
+{"ts": "2026-08-14T18:10:10", "agent": "user", "cmd": "unlock", "argv": ["unlock", "literal-group-structural-normal-form"], "exit": 3, "ms": 0}
+{"ts": "2026-08-14T18:10:10", "agent": "user", "cmd": "unlock", "argv": ["unlock", "literal-witness-kernel-amenable"], "exit": 3, "ms": 0}
+{"ts": "2026-08-14T18:10:10", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 4, "ms": 84}
+{"ts": "2026-08-14T18:10:21", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 4, "ms": 57}
+{"ts": "2026-08-14T18:10:30", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 4, "ms": 58}
+{"ts": "2026-08-14T18:10:39", "agent": "user", "cmd": "check", "argv": ["check", "--changed"], "exit": 4, "ms": 47}
+{"ts": "2026-08-14T18:10:39", "agent": "user", "cmd": "unlock", "argv": ["unlock", "literal-group-structural-normal-form", "--agent", "cairn-literal"], "exit": 0, "ms": 0}
+{"ts": "2026-08-14T18:10:40", "agent": "user", "cmd": "unlock", "argv": ["unlock", "literal-witness-kernel-amenable", "--agent", "cairn-literal"], "exit": 0, "ms": 0}
+{"ts": "2026-08-14T18:10:46", "agent": "user", "cmd": "check", "argv": ["check", "--changed"], "exit": 4, "ms": 44}
+{"ts": "2026-08-14T18:10:46", "agent": "user", "cmd": "check", "argv": ["check", "--changed"], "exit": 4, "ms": 43}
+{"ts": "2026-08-14T18:10:47", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 4, "ms": 57}
+{"ts": "2026-08-14T18:10:55", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 0, "ms": 58}
+{"ts": "2026-08-14T18:11:03", "agent": "user", "cmd": "context", "argv": ["context", "corona-corner-detection-criterion", "--budget", "800"], "exit": 0, "ms": 14}
+{"ts": "2026-08-14T18:11:29", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 0, "ms": 90}
+{"ts": "2026-08-14T18:11:29", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 0, "ms": 60}
+{"ts": "2026-08-14T18:11:47", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 0, "ms": 90}
+{"ts": "2026-08-14T18:11:47", "agent": "user", "cmd": "context", "argv": ["context", "hs-invisibility-inflation-no-go", "--budget", "300"], "exit": 0, "ms": 12}
+{"ts": "2026-08-14T18:11:47", "agent": "user", "cmd": "context", "argv": ["context", "matrix-corona-k1-vanishes", "--budget", "300"], "exit": 0, "ms": 12}
+{"ts": "2026-08-14T18:11:50", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 0, "ms": 62}
+{"ts": "2026-08-14T18:12:02", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 0, "ms": 61}
+{"ts": "2026-08-14T18:12:02", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 0, "ms": 60}
+{"ts": "2026-08-14T18:12:02", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 0, "ms": 62}
+{"ts": "2026-08-14T18:12:41", "agent": "user", "cmd": "frontier", "argv": ["frontier"], "exit": 0, "ms": 34}
+{"ts": "2026-08-14T18:12:56", "agent": "user", "cmd": "frontier", "argv": ["frontier"], "exit": 0, "ms": 38}
+{"ts": "2026-08-14T18:13:05", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 0, "ms": 63}
+{"ts": "2026-08-14T18:16:04", "agent": "user", "cmd": "context", "argv": ["context", "invariant-graph-clifford-phase", "--budget", "200"], "exit": 0, "ms": 16}
+{"ts": "2026-08-14T18:16:04", "agent": "user", "cmd": "context", "argv": ["context", "kun-thom-clifford-radical-phase", "--budget", "200"], "exit": 0, "ms": 12}
+{"ts": "2026-08-14T18:16:04", "agent": "user", "cmd": "context", "argv": ["context", "weakly-sofic-not-sofic", "--budget", "200"], "exit": 0, "ms": 12}
+{"ts": "2026-08-14T18:16:04", "agent": "user", "cmd": "context", "argv": ["context", "kun-thom-nonsofic-wreath", "--budget", "200"], "exit": 0, "ms": 12}
+{"ts": "2026-08-14T18:16:07", "agent": "user", "cmd": "context", "argv": ["context", "invariant-graph-clifford-phase", "--budget", "200"], "exit": 0, "ms": 12}
+{"ts": "2026-08-14T18:16:07", "agent": "user", "cmd": "context", "argv": ["context", "kun-thom-clifford-radical-phase", "--budget", "200"], "exit": 0, "ms": 12}
+{"ts": "2026-08-14T18:16:07", "agent": "user", "cmd": "context", "argv": ["context", "weakly-sofic-not-sofic", "--budget", "200"], "exit": 0, "ms": 12}
+{"ts": "2026-08-14T18:16:07", "agent": "user", "cmd": "context", "argv": ["context", "kun-thom-nonsofic-wreath", "--budget", "200"], "exit": 0, "ms": 12}
+{"ts": "2026-08-14T18:16:21", "agent": "user", "cmd": "search", "argv": ["search", "literal kernel amenable normal form", "--notes"], "exit": 0, "ms": 20}
+{"ts": "2026-08-14T18:17:02", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 4, "ms": 71}
+{"ts": "2026-08-14T18:17:02", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 4, "ms": 70}
+{"ts": "2026-08-14T18:17:12", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 4, "ms": 69}
+{"ts": "2026-08-14T18:17:23", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 4, "ms": 97}
+{"ts": "2026-08-14T18:17:52", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 4, "ms": 98}
+{"ts": "2026-08-14T18:17:59", "agent": "user", "cmd": "unlock", "argv": ["unlock", "torsion-free-finitely-presented-non-mf", "--agent", "cairn-torsionfree"], "exit": 0, "ms": 0}
+{"ts": "2026-08-14T18:18:02", "agent": "user", "cmd": "search", "argv": ["search", "weakly sofic"], "exit": 0, "ms": 21}
+{"ts": "2026-08-14T18:18:02", "agent": "user", "cmd": "search", "argv": ["search", "near representation"], "exit": 0, "ms": 19}
+{"ts": "2026-08-14T18:18:26", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 4, "ms": 112}
+{"ts": "2026-08-14T18:18:45", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 4, "ms": 110}
+{"ts": "2026-08-14T18:19:06", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 0, "ms": 112}
+{"ts": "2026-08-14T18:19:06", "agent": "user", "cmd": "context", "argv": ["context", "kun-thom-clifford-cover-weakly-sofic", "--budget", "200"], "exit": 0, "ms": 15}
+{"ts": "2026-08-14T18:19:06", "agent": "user", "cmd": "context", "argv": ["context", "wall-coordinate-reduction-under-at-op62", "--budget", "200"], "exit": 0, "ms": 13}
+{"ts": "2026-08-14T18:19:10", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 0, "ms": 76}
+{"ts": "2026-08-14T18:19:20", "agent": "user", "cmd": "context", "argv": ["context", "leavitt-steinberg-hs-stable", "--budget", "2500"], "exit": 0, "ms": 21}
+{"ts": "2026-08-14T18:19:24", "agent": "user", "cmd": "context", "argv": ["context", "hs-expander-block-decomposition", "--budget", "1200"], "exit": 0, "ms": 13}
+{"ts": "2026-08-14T18:19:24", "agent": "user", "cmd": "context", "argv": ["context", "leavitt-steinberg-hs-stable", "--budget", "9000"], "exit": 0, "ms": 13}
+{"ts": "2026-08-14T18:19:36", "agent": "user", "cmd": "unlock", "argv": ["unlock", "leavitt-steinberg-hs-stable", "--agent", "cairn-fork"], "exit": 0, "ms": 0}
+{"ts": "2026-08-14T18:19:36", "agent": "user", "cmd": "unlock", "argv": ["unlock", "leavitt-steinberg-hs-unstable", "--agent", "cairn-fork"], "exit": 0, "ms": 1}
+{"ts": "2026-08-14T18:20:10", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 4, "ms": 111}
+{"ts": "2026-08-14T18:20:27", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 0, "ms": 117}
+{"ts": "2026-08-14T18:20:27", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 0, "ms": 117}
+{"ts": "2026-08-14T18:20:37", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 4, "ms": 85}
+{"ts": "2026-08-14T18:20:37", "agent": "user", "cmd": "impact", "argv": ["impact", "bare-relative-wall-exists"], "exit": 0, "ms": 12}
+{"ts": "2026-08-14T18:20:44", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 4, "ms": 86}
+{"ts": "2026-08-14T18:20:45", "agent": "user", "cmd": "context", "argv": ["context", "clifford-compressor-site-growth", "--budget", "400"], "exit": 0, "ms": 14}
+{"ts": "2026-08-14T18:20:46", "agent": "user", "cmd": "context", "argv": ["context", "wall-energy-amplification", "--budget", "400"], "exit": 0, "ms": 13}
+{"ts": "2026-08-14T18:20:46", "agent": "user", "cmd": "context", "argv": ["context", "commutant-density-trace-blind", "--budget", "400"], "exit": 0, "ms": 13}
+{"ts": "2026-08-14T18:20:50", "agent": "user", "cmd": "lock", "argv": ["lock", "leavitt-steinberg-hs-stable", "--agent", "cairn-fork", "--ttl", "10800"], "exit": 0, "ms": 0}
+{"ts": "2026-08-14T18:20:50", "agent": "user", "cmd": "lock", "argv": ["lock", "leavitt-steinberg-hs-unstable", "--agent", "cairn-fork", "--ttl", "10800"], "exit": 0, "ms": 0}
+{"ts": "2026-08-14T18:20:58", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 4, "ms": 125}
+{"ts": "2026-08-14T18:21:05", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 4, "ms": 121}
+{"ts": "2026-08-14T18:21:09", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 4, "ms": 88}
+{"ts": "2026-08-14T18:21:23", "agent": "user", "cmd": "check", "argv": ["check", "--changed"], "exit": 4, "ms": 80}
+{"ts": "2026-08-14T18:21:23", "agent": "user", "cmd": "check", "argv": ["check", "--changed"], "exit": 4, "ms": 68}
+{"ts": "2026-08-14T18:21:25", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 4, "ms": 89}
+{"ts": "2026-08-14T18:21:33", "agent": "user", "cmd": "context", "argv": ["context", "hyperlinear-elementwise-visibility", "--budget", "400"], "exit": 0, "ms": 14}
+{"ts": "2026-08-14T18:21:33", "agent": "user", "cmd": "context", "argv": ["context", "mf-finite-normal-tracially-visible", "--budget", "400"], "exit": 0, "ms": 14}
+{"ts": "2026-08-14T18:21:33", "agent": "user", "cmd": "context", "argv": ["context", "mf-hyperlinear-of-finite-normal-quotient", "--budget", "400"], "exit": 0, "ms": 14}
+{"ts": "2026-08-14T18:21:34", "agent": "user", "cmd": "context", "argv": ["context", "mf-nonhyperlinear-collapse-structure", "--budget", "400"], "exit": 0, "ms": 14}
+{"ts": "2026-08-14T18:21:34", "agent": "user", "cmd": "context", "argv": ["context", "corner-renormalization-cost", "--budget", "400"], "exit": 0, "ms": 14}
+{"ts": "2026-08-14T18:21:34", "agent": "user", "cmd": "context", "argv": ["context", "faithfully-traced-unital-coordinates", "--budget", "400"], "exit": 0, "ms": 14}
+{"ts": "2026-08-14T18:21:34", "agent": "user", "cmd": "context", "argv": ["context", "finite-traced-kazhdan-transport", "--budget", "400"], "exit": 0, "ms": 16}
+{"ts": "2026-08-14T18:21:34", "agent": "user", "cmd": "context", "argv": ["context", "tracial-coordinate-transport-barrier", "--budget", "400"], "exit": 0, "ms": 14}
+{"ts": "2026-08-14T18:21:34", "agent": "user", "cmd": "context", "argv": ["context", "mf-refutation-yields-nonhyperlinear-group", "--budget", "400"], "exit": 0, "ms": 14}
+{"ts": "2026-08-14T18:21:34", "agent": "user", "cmd": "context", "argv": ["context", "countable-group-mf-conventions", "--budget", "400"], "exit": 0, "ms": 14}
+{"ts": "2026-08-14T18:21:34", "agent": "user", "cmd": "context", "argv": ["context", "mf-hyperlinear-radical-divergence", "--budget", "400"], "exit": 0, "ms": 14}
+{"ts": "2026-08-14T18:21:34", "agent": "user", "cmd": "context", "argv": ["context", "finite-tracial-cstar-transport", "--budget", "400"], "exit": 0, "ms": 14}
+{"ts": "2026-08-14T18:21:34", "agent": "user", "cmd": "context", "argv": ["context", "mf-implies-hyperlinear", "--budget", "400"], "exit": 0, "ms": 14}
+{"ts": "2026-08-14T18:21:43", "agent": "user", "cmd": "context", "argv": ["context", "clifford-compressor-site-growth", "--budget", "500"], "exit": 0, "ms": 14}
+{"ts": "2026-08-14T18:21:43", "agent": "user", "cmd": "unlock", "argv": ["unlock", "kun-thom-clifford-crossed-product-ce", "--agent", "cairn-ce"], "exit": 0, "ms": 1}
+{"ts": "2026-08-14T18:21:55", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 4, "ms": 91}
+{"ts": "2026-08-14T18:21:55", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 4, "ms": 92}
+{"ts": "2026-08-14T18:22:04", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 4, "ms": 97}
+{"ts": "2026-08-14T18:22:04", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 4, "ms": 93}
+{"ts": "2026-08-14T18:22:23", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 4, "ms": 95}
+{"ts": "2026-08-14T18:22:36", "agent": "user", "cmd": "check", "argv": ["check", "--changed"], "exit": 4, "ms": 80}
+{"ts": "2026-08-14T18:22:36", "agent": "user", "cmd": "check", "argv": ["check", "--changed"], "exit": 4, "ms": 75}
+{"ts": "2026-08-14T18:22:46", "agent": "user", "cmd": "check", "argv": ["check", "--changed"], "exit": 2, "ms": 92}
+{"ts": "2026-08-14T18:22:46", "agent": "user", "cmd": "context", "argv": ["context", "hilbert-embeddable-length-hyperlinearity", "--budget", "200"], "exit": 0, "ms": 15}
+{"ts": "2026-08-14T18:22:49", "agent": "user", "cmd": "check", "argv": ["check", "--changed"], "exit": 2, "ms": 74}
+{"ts": "2026-08-14T18:22:49", "agent": "user", "cmd": "check", "argv": ["check", "--changed"], "exit": 2, "ms": 73}
+{"ts": "2026-08-14T18:22:59", "agent": "user", "cmd": "context", "argv": ["context", "literal-group-sofic", "--budget", "900"], "exit": 0, "ms": 18}
+{"ts": "2026-08-14T18:22:59", "agent": "user", "cmd": "context", "argv": ["context", "finitely-presented-sofic-non-mf", "--budget", "700"], "exit": 0, "ms": 15}
+{"ts": "2026-08-14T18:23:03", "agent": "user", "cmd": "check", "argv": ["check", "--changed"], "exit": 2, "ms": 84}
+{"ts": "2026-08-14T18:23:06", "agent": "user", "cmd": "preview", "argv": ["preview"], "exit": 2, "ms": 2912}
+{"ts": "2026-08-14T18:23:21", "agent": "user", "cmd": "lock", "argv": ["lock", "kun-thom-clifford-crossed-product-ce", "--agent", "cairn-ce", "--ttl", "10800"], "exit": 0, "ms": 0}
+{"ts": "2026-08-14T18:23:27", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 0, "ms": 97}
+{"ts": "2026-08-14T18:23:31", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 0, "ms": 94}
+{"ts": "2026-08-14T18:23:32", "agent": "user", "cmd": "check", "argv": ["check", "--changed"], "exit": 2, "ms": 76}
+{"ts": "2026-08-14T18:23:32", "agent": "user", "cmd": "check", "argv": ["check", "--changed"], "exit": 2, "ms": 75}
+{"ts": "2026-08-14T18:23:34", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 0, "ms": 95}
+{"ts": "2026-08-14T18:23:37", "agent": "user", "cmd": "preview", "argv": ["preview"], "exit": 2, "ms": 2772}
+{"ts": "2026-08-14T18:23:37", "agent": "user", "cmd": "check", "argv": ["check", "--changed"], "exit": 2, "ms": 81}
+{"ts": "2026-08-14T18:23:47", "agent": "user", "cmd": "context", "argv": ["context", "invariant-size-collapse", "--budget", "200"], "exit": 0, "ms": 15}
+{"ts": "2026-08-14T18:24:06", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 4, "ms": 99}
+{"ts": "2026-08-14T18:24:24", "agent": "user", "cmd": "context", "argv": ["context", "literal-group-sofic", "--budget", "200"], "exit": 0, "ms": 17}
+{"ts": "2026-08-14T18:24:25", "agent": "user", "cmd": "context", "argv": ["context", "finitely-presented-sofic-non-mf", "--budget", "200"], "exit": 0, "ms": 16}
+{"ts": "2026-08-14T18:24:25", "agent": "user", "cmd": "context", "argv": ["context", "literal-telescope-core-lef", "--budget", "200"], "exit": 0, "ms": 16}
+{"ts": "2026-08-14T18:24:25", "agent": "user", "cmd": "context", "argv": ["context", "literal-group-structural-normal-form", "--budget", "200"], "exit": 0, "ms": 16}
+{"ts": "2026-08-14T18:24:25", "agent": "user", "cmd": "context", "argv": ["context", "literal-witness-kernel-free", "--budget", "200"], "exit": 0, "ms": 16}
+{"ts": "2026-08-14T18:24:25", "agent": "user", "cmd": "context", "argv": ["context", "literal-lamp-kernel-clifford-block-amalgam", "--budget", "200"], "exit": 0, "ms": 16}
+{"ts": "2026-08-14T18:24:25", "agent": "user", "cmd": "context", "argv": ["context", "literal-telescope-split-normal-form", "--budget", "200"], "exit": 0, "ms": 15}
+{"ts": "2026-08-14T18:24:25", "agent": "user", "cmd": "context", "argv": ["context", "literal-word-problem-solvable", "--budget", "200"], "exit": 0, "ms": 16}
+{"ts": "2026-08-14T18:24:36", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 0, "ms": 100}
+{"ts": "2026-08-14T18:24:56", "agent": "user", "cmd": "context", "argv": ["context", "literal-mark-quotient-mf", "--budget", "3000"], "exit": 0, "ms": 18}
+{"ts": "2026-08-14T18:24:56", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 0, "ms": 101}
+{"ts": "2026-08-14T18:24:56", "agent": "user", "cmd": "context", "argv": ["context", "mf-implies-hyperlinear", "--budget", "1200"], "exit": 0, "ms": 15}
+{"ts": "2026-08-14T18:25:08", "agent": "user", "cmd": "unlock", "argv": ["unlock", "mf-implies-hyperlinear"], "exit": 3, "ms": 0}
+{"ts": "2026-08-14T18:25:08", "agent": "user", "cmd": "unlock", "argv": ["unlock", "finite-tracial-cstar-transport"], "exit": 3, "ms": 0}
+{"ts": "2026-08-14T18:25:08", "agent": "user", "cmd": "impact", "argv": ["impact", "mf-trace-gap-defect-ratio-models"], "exit": 0, "ms": 17}
+{"ts": "2026-08-14T18:25:11", "agent": "cairn-bridge", "cmd": "unlock", "argv": ["unlock", "mf-implies-hyperlinear"], "exit": 0, "ms": 0}
+{"ts": "2026-08-14T18:25:11", "agent": "cairn-bridge", "cmd": "unlock", "argv": ["unlock", "finite-tracial-cstar-transport"], "exit": 0, "ms": 0}
+{"ts": "2026-08-14T18:26:07", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 4, "ms": 104}
+{"ts": "2026-08-14T18:26:13", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 4, "ms": 102}
+{"ts": "2026-08-14T18:26:13", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 4, "ms": 103}
+{"ts": "2026-08-14T18:26:20", "agent": "user", "cmd": "context", "argv": ["context", "non-hyperlinear-group"], "exit": 0, "ms": 15}
+{"ts": "2026-08-14T18:26:20", "agent": "user", "cmd": "impact", "argv": ["impact", "diagonal-normalizer-rigidity"], "exit": 0, "ms": 15}
+{"ts": "2026-08-14T18:26:22", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 4, "ms": 104}
+{"ts": "2026-08-14T18:26:27", "agent": "user", "cmd": "context", "argv": ["context", "diagonal-normalizer-rigidity"], "exit": 0, "ms": 16}
+{"ts": "2026-08-14T18:26:27", "agent": "user", "cmd": "context", "argv": ["context", "masa-normalizing-tracial-action"], "exit": 0, "ms": 15}
+{"ts": "2026-08-14T18:26:27", "agent": "user", "cmd": "context", "argv": ["context", "clifford-bernoulli-central-summands"], "exit": 0, "ms": 15}
+{"ts": "2026-08-14T18:26:29", "agent": "cairn-bridge", "cmd": "lock", "argv": ["lock", "mf-implies-hyperlinear", "--agent", "cairn-bridge", "--ttl", "7200"], "exit": 0, "ms": 0}
+{"ts": "2026-08-14T18:26:29", "agent": "cairn-bridge", "cmd": "lock", "argv": ["lock", "finite-tracial-cstar-transport", "--agent", "cairn-bridge", "--ttl", "7200"], "exit": 0, "ms": 0}
+{"ts": "2026-08-14T18:26:35", "agent": "user", "cmd": "context", "argv": ["context", "commuting-lamp-quotient-mf", "--budget", "2500"], "exit": 0, "ms": 15}
+{"ts": "2026-08-14T18:26:39", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 4, "ms": 104}
+{"ts": "2026-08-14T18:26:39", "agent": "user", "cmd": "context", "argv": ["context", "commuting-lamp-quotient-structure", "--budget", "300"], "exit": 0, "ms": 16}
+{"ts": "2026-08-14T18:26:39", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 4, "ms": 109}
+{"ts": "2026-08-14T18:26:39", "agent": "user", "cmd": "context", "argv": ["context", "marked-quotients-not-lef", "--budget", "300"], "exit": 0, "ms": 16}
+{"ts": "2026-08-14T18:26:39", "agent": "user", "cmd": "context", "argv": ["context", "commuting-lamp-quotient-finite-residual", "--budget", "300"], "exit": 0, "ms": 16}
+{"ts": "2026-08-14T18:26:39", "agent": "user", "cmd": "context", "argv": ["context", "lamp-telescope-base-is-lef", "--budget", "300"], "exit": 0, "ms": 16}
+{"ts": "2026-08-14T18:26:39", "agent": "user", "cmd": "context", "argv": ["context", "mf-not-closed-under-integer-extensions", "--budget", "300"], "exit": 0, "ms": 15}
+{"ts": "2026-08-14T18:26:39", "agent": "user", "cmd": "context", "argv": ["context", "corona-hs-radical-is-finite-residual", "--budget", "300"], "exit": 0, "ms": 16}
+{"ts": "2026-08-14T18:26:52", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 4, "ms": 105}
+{"ts": "2026-08-14T18:26:52", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 4, "ms": 105}
+{"ts": "2026-08-14T18:27:01", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 4, "ms": 104}
+{"ts": "2026-08-14T18:27:08", "agent": "user", "cmd": "lock", "argv": ["lock", "invariant-graph-crossed-product-ce", "--agent", "cairn-survivor", "--ttl", "10800"], "exit": 0, "ms": 0}
+{"ts": "2026-08-14T18:27:13", "agent": "user", "cmd": "unlock", "argv": ["unlock", "commuting-lamp-quotient-mf", "--agent", "cairn-quotient-mf"], "exit": 0, "ms": 0}
+{"ts": "2026-08-14T18:27:13", "agent": "user", "cmd": "unlock", "argv": ["unlock", "literal-mark-quotient-mf", "--agent", "cairn-quotient-mf"], "exit": 0, "ms": 0}
+{"ts": "2026-08-14T18:27:23", "agent": "user", "cmd": "context", "argv": ["context", "clifford-bernoulli-central-summands", "--budget", "300"], "exit": 0, "ms": 19}
+{"ts": "2026-08-14T18:27:23", "agent": "user", "cmd": "frontier", "argv": ["frontier"], "exit": 0, "ms": 15}
+{"ts": "2026-08-14T18:28:19", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 4, "ms": 152}
+{"ts": "2026-08-14T18:28:37", "agent": "user", "cmd": "check", "argv": ["check", "--changed"], "exit": 4, "ms": 91}
+{"ts": "2026-08-14T18:28:40", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 4, "ms": 111}
+{"ts": "2026-08-14T18:28:40", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 4, "ms": 112}
+{"ts": "2026-08-14T18:28:49", "agent": "user", "cmd": "check", "argv": ["check", "--changed"], "exit": 4, "ms": 92}
+{"ts": "2026-08-14T18:28:49", "agent": "user", "cmd": "check", "argv": ["check", "--changed"], "exit": 4, "ms": 91}
+{"ts": "2026-08-14T18:28:49", "agent": "user", "cmd": "context", "argv": ["context", "literal-group-not-stable-in-finite-actions", "--budget", "150"], "exit": 0, "ms": 18}
+{"ts": "2026-08-14T18:28:49", "agent": "user", "cmd": "context", "argv": ["context", "sofic-stable-implies-residually-finite", "--budget", "150"], "exit": 0, "ms": 16}
+{"ts": "2026-08-14T18:28:49", "agent": "user", "cmd": "context", "argv": ["context", "literal-group-sofic", "--budget", "150"], "exit": 0, "ms": 17}
+{"ts": "2026-08-14T18:28:49", "agent": "user", "cmd": "context", "argv": ["context", "finitely-presented-sofic-non-mf", "--budget", "150"], "exit": 0, "ms": 17}
+{"ts": "2026-08-14T18:28:54", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 0, "ms": 115}
+{"ts": "2026-08-14T18:28:54", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 0, "ms": 114}
+{"ts": "2026-08-14T18:28:55", "agent": "user", "cmd": "context", "argv": ["context", "invariant-cartan-completion"], "exit": 0, "ms": 19}
+{"ts": "2026-08-14T18:28:56", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 0, "ms": 118}
+{"ts": "2026-08-14T18:28:56", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 0, "ms": 114}
+{"ts": "2026-08-14T18:28:57", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 0, "ms": 115}
+{"ts": "2026-08-14T18:28:58", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 0, "ms": 115}
+{"ts": "2026-08-14T18:28:58", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 0, "ms": 116}
+{"ts": "2026-08-14T18:29:06", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 0, "ms": 118}
+{"ts": "2026-08-14T18:29:06", "agent": "user", "cmd": "context", "argv": ["context", "wreath-not-sofic", "--budget", "200"], "exit": 0, "ms": 17}
+{"ts": "2026-08-14T18:29:06", "agent": "user", "cmd": "context", "argv": ["context", "coordinate-action-not-sofic", "--budget", "200"], "exit": 0, "ms": 17}
+{"ts": "2026-08-14T18:29:06", "agent": "user", "cmd": "context", "argv": ["context", "block-monomial-coordinate-collapse", "--budget", "200"], "exit": 0, "ms": 17}
+{"ts": "2026-08-14T18:29:06", "agent": "user", "cmd": "context", "argv": ["context", "hyperlinear-wreath-model", "--budget", "200"], "exit": 0, "ms": 17}
+{"ts": "2026-08-14T18:29:06", "agent": "user", "cmd": "context", "argv": ["context", "fiber-masa-free-cocycle", "--budget", "200"], "exit": 0, "ms": 17}
+{"ts": "2026-08-14T18:29:14", "agent": "user", "cmd": "context", "argv": ["context", "hyperlinear-wreath-model", "--budget", "2500"], "exit": 0, "ms": 19}
+{"ts": "2026-08-14T18:29:14", "agent": "user", "cmd": "context", "argv": ["context", "wreath-not-sofic", "--budget", "800"], "exit": 0, "ms": 17}
+{"ts": "2026-08-14T18:29:26", "agent": "user", "cmd": "context", "argv": ["context", "diagonal-normalizer-rigidity", "--budget", "200"], "exit": 0, "ms": 17}
+{"ts": "2026-08-14T18:29:40", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 4, "ms": 121}
+{"ts": "2026-08-14T18:29:41", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 4, "ms": 122}
+{"ts": "2026-08-14T18:29:41", "agent": "user", "cmd": "context", "argv": ["context", "compressor-fixed-site-growth-infinite", "--budget", "200"], "exit": 0, "ms": 18}
+{"ts": "2026-08-14T18:29:45", "agent": "user", "cmd": "unlock", "argv": ["unlock", "wreath-not-sofic", "--agent", "cairn-wreath"], "exit": 0, "ms": 0}
+{"ts": "2026-08-14T18:29:45", "agent": "user", "cmd": "unlock", "argv": ["unlock", "hyperlinear-wreath-model", "--agent", "cairn-wreath"], "exit": 0, "ms": 0}
+{"ts": "2026-08-14T18:29:51", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 4, "ms": 121}
+{"ts": "2026-08-14T18:29:51", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 4, "ms": 121}
+{"ts": "2026-08-14T18:30:01", "agent": "user", "cmd": "context", "argv": ["context", "lamp-charts-recover-set-action", "--budget", "150"], "exit": 0, "ms": 20}
+{"ts": "2026-08-14T18:30:06", "agent": "user", "cmd": "search", "argv": ["search", "--notes", "quotient"], "exit": 0, "ms": 38}
+{"ts": "2026-08-14T18:30:11", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 4, "ms": 124}
+{"ts": "2026-08-14T18:30:16", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 0, "ms": 132}
+{"ts": "2026-08-14T18:30:23", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 0, "ms": 127}
+{"ts": "2026-08-14T18:30:30", "agent": "user", "cmd": "context", "argv": ["context", "hyperlinear-wreath-model", "--budget", "3000"], "exit": 0, "ms": 21}
+{"ts": "2026-08-14T18:30:33", "agent": "user", "cmd": "search", "argv": ["search", "--notes", "torsion"], "exit": 0, "ms": 35}
+{"ts": "2026-08-14T18:30:45", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 0, "ms": 132}
+{"ts": "2026-08-14T18:30:45", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 0, "ms": 128}
+{"ts": "2026-08-14T18:30:46", "agent": "user", "cmd": "check", "argv": ["check", "--changed"], "exit": 2, "ms": 108}
+{"ts": "2026-08-14T18:30:46", "agent": "user", "cmd": "context", "argv": ["context", "marked-double-coset-infinite-degree", "--budget", "150"], "exit": 0, "ms": 17}
+{"ts": "2026-08-14T18:30:48", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 0, "ms": 126}
+{"ts": "2026-08-14T18:30:48", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 0, "ms": 125}
+{"ts": "2026-08-14T18:30:58", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 0, "ms": 131}
+{"ts": "2026-08-14T18:31:27", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 0, "ms": 134}
+{"ts": "2026-08-14T18:31:28", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 0, "ms": 143}
+{"ts": "2026-08-14T18:31:48", "agent": "user", "cmd": "check", "argv": ["check", "--changed"], "exit": 2, "ms": 153}
+{"ts": "2026-08-14T18:31:48", "agent": "user", "cmd": "unlock", "argv": ["unlock", "invariant-graph-crossed-product-ce", "--agent", "cairn-survivor"], "exit": 0, "ms": 0}
+{"ts": "2026-08-14T18:31:49", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 0, "ms": 130}
+{"ts": "2026-08-14T18:31:56", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 0, "ms": 132}
+{"ts": "2026-08-14T18:31:56", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 0, "ms": 129}
+{"ts": "2026-08-14T18:32:00", "agent": "user", "cmd": "check", "argv": ["check", "--changed"], "exit": 2, "ms": 115}
+{"ts": "2026-08-14T18:32:00", "agent": "user", "cmd": "check", "argv": ["check", "--changed"], "exit": 2, "ms": 109}
+{"ts": "2026-08-14T18:32:00", "agent": "user", "cmd": "check", "argv": ["check", "--changed"], "exit": 2, "ms": 114}
+{"ts": "2026-08-14T18:32:01", "agent": "user", "cmd": "check", "argv": ["check", "--changed"], "exit": 2, "ms": 111}
+{"ts": "2026-08-14T18:32:03", "agent": "user", "cmd": "search", "argv": ["search", "schatten"], "exit": 0, "ms": 31}
+{"ts": "2026-08-14T18:32:03", "agent": "user", "cmd": "search", "argv": ["search", "sign corner"], "exit": 0, "ms": 31}
+{"ts": "2026-08-14T18:32:23", "agent": "user", "cmd": "search", "argv": ["search", "hyperlinear nonsofic"], "exit": 0, "ms": 35}
+{"ts": "2026-08-14T18:32:23", "agent": "user", "cmd": "search", "argv": ["search", "detector"], "exit": 0, "ms": 32}
+{"ts": "2026-08-14T18:32:47", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 0, "ms": 134}
+{"ts": "2026-08-14T18:32:47", "agent": "user", "cmd": "impact", "argv": ["impact", "hilbert-embeddable-length-hyperlinearity"], "exit": 0, "ms": 18}
+{"ts": "2026-08-14T18:32:53", "agent": "user", "cmd": "context", "argv": ["context", "hilbert-embeddable-length-hyperlinearity"], "exit": 0, "ms": 19}
+{"ts": "2026-08-14T18:33:01", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 0, "ms": 137}
+{"ts": "2026-08-14T18:33:01", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 0, "ms": 134}
+{"ts": "2026-08-14T18:33:03", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 0, "ms": 136}
+{"ts": "2026-08-14T18:33:09", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 0, "ms": 135}
+{"ts": "2026-08-14T18:33:10", "agent": "user", "cmd": "context", "argv": ["context", "clifford-ce-implies-bernoulli-ce", "--budget", "200"], "exit": 0, "ms": 18}
+{"ts": "2026-08-14T18:33:10", "agent": "user", "cmd": "context", "argv": ["context", "thom-central-corner-criterion", "--budget", "200"], "exit": 0, "ms": 18}
+{"ts": "2026-08-14T18:33:10", "agent": "user", "cmd": "context", "argv": ["context", "lamp-charts-recover-set-action", "--budget", "200"], "exit": 0, "ms": 18}
+{"ts": "2026-08-14T18:33:10", "agent": "user", "cmd": "context", "argv": ["context", "profinite-action-fixed-algebra-invariant", "--budget", "200"], "exit": 0, "ms": 18}
+{"ts": "2026-08-14T18:33:10", "agent": "user", "cmd": "context", "argv": ["context", "clifford-ce-formulations-coincide", "--budget", "200"], "exit": 0, "ms": 18}
+{"ts": "2026-08-14T18:33:10", "agent": "user", "cmd": "unlock", "argv": ["unlock", "kun-thom-clifford-crossed-product-ce", "--agent", "cairn-ce"], "exit": 0, "ms": 0}
+{"ts": "2026-08-14T18:33:10", "agent": "user", "cmd": "context", "argv": ["context", "steinberg-hyperfinite-hs-stable", "--budget", "400"], "exit": 0, "ms": 18}
+{"ts": "2026-08-14T18:33:10", "agent": "user", "cmd": "context", "argv": ["context", "pointwise-hs-stability-from-no-hyperlinear-quotient", "--budget", "400"], "exit": 0, "ms": 18}
+{"ts": "2026-08-14T18:33:11", "agent": "user", "cmd": "context", "argv": ["context", "hs-expander-block-decomposition", "--budget", "400"], "exit": 0, "ms": 18}
+{"ts": "2026-08-14T18:33:11", "agent": "user", "cmd": "unlock", "argv": ["unlock", "leavitt-steinberg-hs-stable", "--agent", "cairn-fork"], "exit": 0, "ms": 1}
+{"ts": "2026-08-14T18:33:11", "agent": "user", "cmd": "unlock", "argv": ["unlock", "leavitt-steinberg-hs-unstable", "--agent", "cairn-fork"], "exit": 0, "ms": 1}
+{"ts": "2026-08-14T18:33:13", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 0, "ms": 136}
+{"ts": "2026-08-14T18:33:14", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 0, "ms": 135}
+{"ts": "2026-08-14T18:33:55", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 0, "ms": 182}
+{"ts": "2026-08-14T18:34:00", "agent": "user", "cmd": "context", "argv": ["context", "weak-mf-embedding-not-reusable", "--budget", "300"], "exit": 0, "ms": 20}
+{"ts": "2026-08-14T18:34:00", "agent": "user", "cmd": "context", "argv": ["context", "mf-antipodal-sign-corner-visibility", "--budget", "300"], "exit": 0, "ms": 19}
+{"ts": "2026-08-14T18:34:00", "agent": "user", "cmd": "context", "argv": ["context", "schatten-one-corner-detector", "--budget", "300"], "exit": 0, "ms": 19}
+{"ts": "2026-08-14T18:34:01", "agent": "user", "cmd": "context", "argv": ["context", "schatten-one-models-retaining-mark", "--budget", "300"], "exit": 0, "ms": 19}
+{"ts": "2026-08-14T18:34:01", "agent": "user", "cmd": "context", "argv": ["context", "mf-implies-hyperlinear", "--budget", "300"], "exit": 0, "ms": 19}
+{"ts": "2026-08-14T18:34:01", "agent": "user", "cmd": "context", "argv": ["context", "finite-tracial-cstar-transport", "--budget", "300"], "exit": 0, "ms": 18}
+{"ts": "2026-08-14T18:34:01", "agent": "user", "cmd": "context", "argv": ["context", "sofic-radical-hyperlinear-survivor", "--budget", "300"], "exit": 0, "ms": 19}
+{"ts": "2026-08-14T18:34:01", "agent": "cairn-bridge", "cmd": "unlock", "argv": ["unlock", "mf-implies-hyperlinear"], "exit": 0, "ms": 0}
+{"ts": "2026-08-14T18:34:01", "agent": "cairn-bridge", "cmd": "unlock", "argv": ["unlock", "finite-tracial-cstar-transport"], "exit": 0, "ms": 0}
+{"ts": "2026-08-14T18:34:03", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 0, "ms": 141}
+{"ts": "2026-08-14T18:34:11", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 0, "ms": 146}
+{"ts": "2026-08-14T18:34:11", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 0, "ms": 147}
+{"ts": "2026-08-14T18:34:17", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 0, "ms": 146}
+{"ts": "2026-08-14T18:34:17", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 0, "ms": 145}
+{"ts": "2026-08-14T18:34:31", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 0, "ms": 149}
+{"ts": "2026-08-14T18:34:37", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 0, "ms": 145}
+{"ts": "2026-08-14T18:34:48", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 0, "ms": 147}
+{"ts": "2026-08-14T18:35:11", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 0, "ms": 186}
+{"ts": "2026-08-14T18:35:12", "agent": "user", "cmd": "context", "argv": ["context", "positive-core-bernoulli-ce", "--budget", "150"], "exit": 0, "ms": 20}
+{"ts": "2026-08-14T18:35:15", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 0, "ms": 144}
+{"ts": "2026-08-14T18:35:19", "agent": "user", "cmd": "context", "argv": ["context", "hs-expander-block-decomposition", "--budget", "200"], "exit": 0, "ms": 20}
+{"ts": "2026-08-14T18:35:19", "agent": "user", "cmd": "context", "argv": ["context", "hs-block-decomposition-to-steinberg-stable", "--budget", "200"], "exit": 0, "ms": 21}
+{"ts": "2026-08-14T18:35:19", "agent": "user", "cmd": "context", "argv": ["context", "steinberg-hyperfinite-hs-stable", "--budget", "200"], "exit": 0, "ms": 19}
+{"ts": "2026-08-14T18:35:19", "agent": "user", "cmd": "context", "argv": ["context", "pointwise-hs-stability-from-no-hyperlinear-quotient", "--budget", "200"], "exit": 0, "ms": 19}
+{"ts": "2026-08-14T18:35:19", "agent": "user", "cmd": "context", "argv": ["context", "leavitt-steinberg-hs-stable", "--budget", "200"], "exit": 0, "ms": 19}
+{"ts": "2026-08-14T18:35:19", "agent": "user", "cmd": "context", "argv": ["context", "leavitt-steinberg-hs-unstable", "--budget", "200"], "exit": 0, "ms": 20}
+{"ts": "2026-08-14T18:35:26", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 0, "ms": 145}
+{"ts": "2026-08-14T18:35:29", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 0, "ms": 143}
+{"ts": "2026-08-14T18:35:35", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 0, "ms": 147}
+{"ts": "2026-08-14T18:35:35", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 0, "ms": 144}
+{"ts": "2026-08-14T18:35:38", "agent": "user", "cmd": "context", "argv": ["context", "exel-loring-relative-quasirep-invariant", "--budget", "200"], "exit": 0, "ms": 19}
+{"ts": "2026-08-14T18:35:56", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 0, "ms": 143}
+{"ts": "2026-08-14T18:35:56", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 0, "ms": 142}
+{"ts": "2026-08-14T18:35:59", "agent": "user", "cmd": "check", "argv": ["check", "--changed"], "exit": 2, "ms": 114}
+{"ts": "2026-08-14T18:35:59", "agent": "user", "cmd": "check", "argv": ["check", "--changed"], "exit": 2, "ms": 115}
+{"ts": "2026-08-14T18:35:59", "agent": "user", "cmd": "context", "argv": ["context", "sofic-stable-implies-residually-finite", "--budget", "150"], "exit": 0, "ms": 19}
+{"ts": "2026-08-14T18:36:00", "agent": "user", "cmd": "context", "argv": ["context", "literal-group-not-stable-in-finite-actions", "--budget", "150"], "exit": 0, "ms": 19}
+{"ts": "2026-08-14T18:36:04", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 0, "ms": 142}
+{"ts": "2026-08-14T18:36:15", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 0, "ms": 146}
+{"ts": "2026-08-14T18:36:16", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 0, "ms": 142}
+{"ts": "2026-08-14T18:36:19", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 0, "ms": 147}
+{"ts": "2026-08-14T18:36:26", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 0, "ms": 144}
+{"ts": "2026-08-14T18:36:27", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 0, "ms": 144}
+{"ts": "2026-08-14T18:37:13", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 0, "ms": 149}
+{"ts": "2026-08-14T18:37:13", "agent": "user", "cmd": "check", "argv": ["check", "--changed"], "exit": 2, "ms": 126}
+{"ts": "2026-08-14T18:37:14", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 0, "ms": 150}
+{"ts": "2026-08-14T18:37:29", "agent": "user", "cmd": "context", "argv": ["context", "hilbert-embeddable-length-hyperlinearity", "--budget", "200"], "exit": 0, "ms": 21}
+{"ts": "2026-08-14T18:37:31", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 0, "ms": 148}
+{"ts": "2026-08-14T18:37:33", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 0, "ms": 151}
+{"ts": "2026-08-14T18:37:35", "agent": "user", "cmd": "check", "argv": ["check", "--changed"], "exit": 2, "ms": 124}
+{"ts": "2026-08-14T18:37:35", "agent": "user", "cmd": "check", "argv": ["check", "--changed"], "exit": 2, "ms": 123}
+{"ts": "2026-08-14T18:37:44", "agent": "user", "cmd": "lock", "argv": ["lock", "leavitt-steinberg-hs-stable", "--agent", "cairn-fork", "--ttl", "7200"], "exit": 0, "ms": 0}
+{"ts": "2026-08-14T18:37:44", "agent": "user", "cmd": "lock", "argv": ["lock", "leavitt-steinberg-hs-unstable", "--agent", "cairn-fork", "--ttl", "7200"], "exit": 0, "ms": 0}
+{"ts": "2026-08-14T18:37:57", "agent": "user", "cmd": "check", "argv": ["check", "--changed"], "exit": 2, "ms": 126}
+{"ts": "2026-08-14T18:37:57", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 0, "ms": 149}
+{"ts": "2026-08-14T18:38:02", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 0, "ms": 149}
+{"ts": "2026-08-14T18:38:09", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 0, "ms": 148}
+{"ts": "2026-08-14T18:38:10", "agent": "user", "cmd": "check", "argv": ["check", "--changed"], "exit": 2, "ms": 121}
+{"ts": "2026-08-14T18:38:10", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 0, "ms": 152}
+{"ts": "2026-08-14T18:38:10", "agent": "user", "cmd": "context", "argv": ["context", "hyperlinear-wreath-model", "--budget", "4000"], "exit": 0, "ms": 21}
+{"ts": "2026-08-14T18:38:29", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 0, "ms": 150}
+{"ts": "2026-08-14T18:38:29", "agent": "user", "cmd": "check", "argv": ["check", "--changed"], "exit": 2, "ms": 124}
+{"ts": "2026-08-14T18:38:43", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 0, "ms": 149}
+{"ts": "2026-08-14T18:38:52", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 0, "ms": 153}
+{"ts": "2026-08-14T18:38:53", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 0, "ms": 151}
+{"ts": "2026-08-14T18:38:53", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 0, "ms": 150}
+{"ts": "2026-08-14T18:39:14", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 0, "ms": 155}
+{"ts": "2026-08-14T18:39:14", "agent": "user", "cmd": "context", "argv": ["context", "wreath-not-sofic", "--budget", "120"], "exit": 0, "ms": 20}
+{"ts": "2026-08-14T18:39:14", "agent": "user", "cmd": "context", "argv": ["context", "positive-core-bernoulli-ce", "--budget", "120"], "exit": 0, "ms": 19}
+{"ts": "2026-08-14T18:39:14", "agent": "user", "cmd": "context", "argv": ["context", "block-monomial-coordinate-collapse", "--budget", "120"], "exit": 0, "ms": 19}
+{"ts": "2026-08-14T18:39:14", "agent": "user", "cmd": "context", "argv": ["context", "coordinate-action-not-sofic", "--budget", "120"], "exit": 0, "ms": 19}
+{"ts": "2026-08-14T18:39:14", "agent": "user", "cmd": "context", "argv": ["context", "hyperlinear-wreath-model", "--budget", "120"], "exit": 0, "ms": 19}
+{"ts": "2026-08-14T18:39:14", "agent": "user", "cmd": "context", "argv": ["context", "simultaneous-dilation-splice", "--budget", "120"], "exit": 0, "ms": 19}
+{"ts": "2026-08-14T18:39:14", "agent": "user", "cmd": "context", "argv": ["context", "wreath-amenable-near-representation", "--budget", "120"], "exit": 0, "ms": 19}
+{"ts": "2026-08-14T18:39:14", "agent": "user", "cmd": "context", "argv": ["context", "fiber-masa-free-cocycle", "--budget", "120"], "exit": 0, "ms": 19}
+{"ts": "2026-08-14T18:39:23", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 0, "ms": 155}
+{"ts": "2026-08-14T18:39:23", "agent": "user", "cmd": "context", "argv": ["context", "steinberg-hs-stability-equals-nonhyperlinearity", "--budget", "200"], "exit": 0, "ms": 20}
+{"ts": "2026-08-14T18:39:23", "agent": "user", "cmd": "unlock", "argv": ["unlock", "leavitt-steinberg-hs-stable", "--agent", "cairn-fork"], "exit": 0, "ms": 0}
+{"ts": "2026-08-14T18:39:23", "agent": "user", "cmd": "unlock", "argv": ["unlock", "leavitt-steinberg-hs-unstable", "--agent", "cairn-fork"], "exit": 0, "ms": 0}
+{"ts": "2026-08-14T18:39:27", "agent": "user", "cmd": "check", "argv": ["check", "--changed"], "exit": 2, "ms": 135}
+{"ts": "2026-08-14T18:39:27", "agent": "user", "cmd": "context", "argv": ["context", "free-lamp-radical-is-free", "--budget", "120"], "exit": 0, "ms": 19}
+{"ts": "2026-08-14T18:39:37", "agent": "user", "cmd": "check", "argv": ["check", "--changed"], "exit": 2, "ms": 136}
+{"ts": "2026-08-14T18:39:37", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 0, "ms": 157}
+{"ts": "2026-08-14T18:39:37", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 0, "ms": 154}
+{"ts": "2026-08-14T18:39:38", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 0, "ms": 151}
+{"ts": "2026-08-14T18:39:53", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 0, "ms": 157}
+{"ts": "2026-08-14T18:39:53", "agent": "user", "cmd": "context", "argv": ["context", "hilbert-embeddable-length-hyperlinearity"], "exit": 0, "ms": 24}
+{"ts": "2026-08-14T18:39:57", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 0, "ms": 155}
+{"ts": "2026-08-14T18:39:57", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 0, "ms": 152}
+{"ts": "2026-08-14T18:40:14", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 0, "ms": 159}
+{"ts": "2026-08-14T18:40:44", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 0, "ms": 214}
+{"ts": "2026-08-14T18:40:54", "agent": "user", "cmd": "check", "argv": ["check", "--changed"], "exit": 2, "ms": 185}
+{"ts": "2026-08-14T18:40:54", "agent": "user", "cmd": "check", "argv": ["check", "--changed"], "exit": 2, "ms": 133}
+{"ts": "2026-08-14T18:40:54", "agent": "user", "cmd": "context", "argv": ["context", "literal-mark-quotient-sofic", "--budget", "150"], "exit": 0, "ms": 21}
+{"ts": "2026-08-14T18:40:54", "agent": "user", "cmd": "context", "argv": ["context", "lef-implies-operator-mf", "--budget", "150"], "exit": 0, "ms": 20}
+{"ts": "2026-08-14T18:41:05", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 4, "ms": 168}
+{"ts": "2026-08-14T18:41:05", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 4, "ms": 167}
+{"ts": "2026-08-14T18:41:35", "agent": "user", "cmd": "context", "argv": ["context", "literal-mark-quotient-finite-residual", "--budget", "300"], "exit": 0, "ms": 46}
+{"ts": "2026-08-14T18:41:36", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 0, "ms": 174}
+{"ts": "2026-08-14T18:41:47", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 0, "ms": 172}
+{"ts": "2026-08-14T18:42:09", "agent": "user", "cmd": "check", "argv": ["check", "--changed"], "exit": 2, "ms": 207}
+{"ts": "2026-08-14T18:42:09", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 0, "ms": 184}
+{"ts": "2026-08-14T18:42:09", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 0, "ms": 177}
+{"ts": "2026-08-14T18:42:26", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 0, "ms": 180}
+{"ts": "2026-08-14T18:42:33", "agent": "user", "cmd": "check", "argv": ["check", "--changed"], "exit": 2, "ms": 153}
+{"ts": "2026-08-14T18:42:34", "agent": "user", "cmd": "check", "argv": ["check", "--changed"], "exit": 2, "ms": 144}
+{"ts": "2026-08-14T18:42:34", "agent": "user", "cmd": "check", "argv": ["check", "--changed"], "exit": 2, "ms": 142}
+{"ts": "2026-08-14T18:42:34", "agent": "user", "cmd": "context", "argv": ["context", "literal-mark-quotient-not-stable-in-finite-actions", "--budget", "150"], "exit": 0, "ms": 22}
+{"ts": "2026-08-14T18:42:36", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 0, "ms": 178}
+{"ts": "2026-08-14T18:42:36", "agent": "user", "cmd": "context", "argv": ["context", "marked-quotient-mf-forces-commutant-growth", "--budget", "200"], "exit": 0, "ms": 21}
+{"ts": "2026-08-14T18:42:36", "agent": "user", "cmd": "context", "argv": ["context", "shulman-amalgam-mf-criterion", "--budget", "200"], "exit": 0, "ms": 21}
+{"ts": "2026-08-14T18:42:36", "agent": "user", "cmd": "context", "argv": ["context", "literal-mark-quotient-finite-residual", "--budget", "200"], "exit": 0, "ms": 21}
+{"ts": "2026-08-14T18:42:36", "agent": "user", "cmd": "context", "argv": ["context", "literal-mark-quotient-corona-blindness", "--budget", "200"], "exit": 0, "ms": 22}
+{"ts": "2026-08-14T18:42:36", "agent": "user", "cmd": "context", "argv": ["context", "central-extension-twisted-sector-criterion", "--budget", "200"], "exit": 0, "ms": 21}
+{"ts": "2026-08-14T18:42:37", "agent": "user", "cmd": "context", "argv": ["context", "amalgam-edge-compatible-corona-embeddings", "--budget", "200"], "exit": 0, "ms": 21}
+{"ts": "2026-08-14T18:42:39", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 0, "ms": 179}
+{"ts": "2026-08-14T18:42:39", "agent": "user", "cmd": "context", "argv": ["context", "hyperlinear-trace-not-mf-trace", "--budget", "250"], "exit": 0, "ms": 24}
+{"ts": "2026-08-14T18:42:39", "agent": "user", "cmd": "context", "argv": ["context", "regular-character-mf-trace-implies-group-mf", "--budget", "250"], "exit": 0, "ms": 22}
+{"ts": "2026-08-14T18:42:39", "agent": "user", "cmd": "context", "argv": ["context", "sofic-non-mf-witness", "--budget", "250"], "exit": 0, "ms": 21}
+{"ts": "2026-08-14T18:42:40", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 0, "ms": 177}
+{"ts": "2026-08-14T18:42:40", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 0, "ms": 174}
+{"ts": "2026-08-14T18:42:40", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 0, "ms": 175}
+{"ts": "2026-08-14T18:42:40", "agent": "user", "cmd": "context", "argv": ["context", "glebsky-hs-transport-step-classification"], "exit": 0, "ms": 21}
+{"ts": "2026-08-14T18:42:40", "agent": "user", "cmd": "context", "argv": ["context", "glebsky-verbatim-hs-transport"], "exit": 0, "ms": 20}
+{"ts": "2026-08-14T18:42:40", "agent": "user", "cmd": "context", "argv": ["context", "hilbert-embeddable-length-lp-feasibility"], "exit": 0, "ms": 22}
+{"ts": "2026-08-14T18:43:03", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 0, "ms": 184}
+{"ts": "2026-08-14T18:43:04", "agent": "user", "cmd": "context", "argv": ["context", "kun-thom-clifford-crossed-product-ce", "--budget", "200"], "exit": 0, "ms": 21}
+{"ts": "2026-08-14T18:43:08", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 0, "ms": 174}
+{"ts": "2026-08-14T18:43:16", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 0, "ms": 184}
+{"ts": "2026-08-14T18:43:33", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 0, "ms": 182}
+{"ts": "2026-08-14T18:43:33", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 0, "ms": 177}
+{"ts": "2026-08-14T18:43:44", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 0, "ms": 224}
+{"ts": "2026-08-14T18:43:44", "agent": "user", "cmd": "context", "argv": ["context", "clifford-diagonal-lamp-subspace", "--budget", "120"], "exit": 0, "ms": 22}
+{"ts": "2026-08-14T18:44:13", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 0, "ms": 180}
+{"ts": "2026-08-14T18:44:13", "agent": "user", "cmd": "context", "argv": ["context", "wreath-not-sofic", "--budget", "120"], "exit": 0, "ms": 22}
+{"ts": "2026-08-14T18:44:13", "agent": "user", "cmd": "context", "argv": ["context", "coordinate-action-not-sofic", "--budget", "120"], "exit": 0, "ms": 21}
+{"ts": "2026-08-14T18:44:13", "agent": "user", "cmd": "context", "argv": ["context", "block-monomial-coordinate-collapse", "--budget", "120"], "exit": 0, "ms": 21}
+{"ts": "2026-08-14T18:44:14", "agent": "user", "cmd": "context", "argv": ["context", "positive-core-bernoulli-ce", "--budget", "120"], "exit": 0, "ms": 21}
+{"ts": "2026-08-14T18:44:14", "agent": "user", "cmd": "context", "argv": ["context", "clifford-diagonal-lamp-subspace", "--budget", "120"], "exit": 0, "ms": 21}
+{"ts": "2026-08-14T18:44:21", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 0, "ms": 180}
+{"ts": "2026-08-14T18:44:28", "agent": "user", "cmd": "context", "argv": ["context", "hilbert-embeddable-witness-for-kun-thom-wreath", "--budget", "200"], "exit": 0, "ms": 24}
+{"ts": "2026-08-14T18:44:30", "agent": "user", "cmd": "check", "argv": ["check", "--changed"], "exit": 2, "ms": 145}
+{"ts": "2026-08-14T18:44:37", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 4, "ms": 180}
+{"ts": "2026-08-14T18:44:38", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 4, "ms": 177}
+{"ts": "2026-08-14T18:44:38", "agent": "user", "cmd": "context", "argv": ["context", "marked-quotients-not-lef", "--budget", "150"], "exit": 0, "ms": 21}
+{"ts": "2026-08-14T18:44:38", "agent": "user", "cmd": "context", "argv": ["context", "commuting-lamp-quotient-structure", "--budget", "150"], "exit": 0, "ms": 21}
+{"ts": "2026-08-14T18:44:38", "agent": "user", "cmd": "context", "argv": ["context", "commuting-lamp-quotient-finite-residual", "--budget", "150"], "exit": 0, "ms": 21}
+{"ts": "2026-08-14T18:44:38", "agent": "user", "cmd": "context", "argv": ["context", "lamp-telescope-base-is-lef", "--budget", "150"], "exit": 0, "ms": 21}
+{"ts": "2026-08-14T18:44:38", "agent": "user", "cmd": "context", "argv": ["context", "mf-not-closed-under-integer-extensions", "--budget", "150"], "exit": 0, "ms": 21}
+{"ts": "2026-08-14T18:44:38", "agent": "user", "cmd": "context", "argv": ["context", "corona-hs-radical-is-finite-residual", "--budget", "150"], "exit": 0, "ms": 21}
+{"ts": "2026-08-14T18:44:38", "agent": "user", "cmd": "context", "argv": ["context", "literal-mark-quotient-finite-residual", "--budget", "150"], "exit": 0, "ms": 21}
+{"ts": "2026-08-14T18:44:39", "agent": "user", "cmd": "context", "argv": ["context", "literal-mark-quotient-corona-blindness", "--budget", "150"], "exit": 0, "ms": 21}
+{"ts": "2026-08-14T18:44:39", "agent": "user", "cmd": "context", "argv": ["context", "central-extension-twisted-sector-criterion", "--budget", "150"], "exit": 0, "ms": 22}
+{"ts": "2026-08-14T18:44:39", "agent": "user", "cmd": "context", "argv": ["context", "shulman-amalgam-mf-criterion", "--budget", "150"], "exit": 0, "ms": 21}
+{"ts": "2026-08-14T18:44:39", "agent": "user", "cmd": "context", "argv": ["context", "marked-quotient-mf-forces-commutant-growth", "--budget", "150"], "exit": 0, "ms": 21}
+{"ts": "2026-08-14T18:44:39", "agent": "user", "cmd": "context", "argv": ["context", "corona-commutant-no-growth", "--budget", "150"], "exit": 0, "ms": 21}
+{"ts": "2026-08-14T18:44:39", "agent": "user", "cmd": "context", "argv": ["context", "amalgam-edge-compatible-corona-embeddings", "--budget", "150"], "exit": 0, "ms": 21}
+{"ts": "2026-08-14T18:44:43", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 4, "ms": 178}
+{"ts": "2026-08-14T18:44:45", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 4, "ms": 186}
+{"ts": "2026-08-14T18:44:45", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 4, "ms": 182}
+{"ts": "2026-08-14T18:44:46", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 4, "ms": 179}
+{"ts": "2026-08-14T18:44:49", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 4, "ms": 184}
+{"ts": "2026-08-14T18:44:50", "agent": "user", "cmd": "lock", "argv": ["lock", "defect-normally-generates-torsion-free-quotient", "--agent", "cairn-smallcancel", "--ttl", "10800"], "exit": 0, "ms": 0}
+{"ts": "2026-08-14T18:44:53", "agent": "user", "cmd": "check", "argv": ["check", "--changed"], "exit": 4, "ms": 146}
+{"ts": "2026-08-14T18:45:08", "agent": "user", "cmd": "check", "argv": ["check", "--changed"], "exit": 2, "ms": 154}
+{"ts": "2026-08-14T18:45:08", "agent": "user", "cmd": "check", "argv": ["check", "--changed"], "exit": 2, "ms": 149}
+{"ts": "2026-08-14T18:45:08", "agent": "user", "cmd": "context", "argv": ["context", "literal-group-sofic", "--budget", "150"], "exit": 0, "ms": 21}
+{"ts": "2026-08-14T18:45:08", "agent": "user", "cmd": "context", "argv": ["context", "finitely-presented-sofic-non-mf", "--budget", "150"], "exit": 0, "ms": 21}
+{"ts": "2026-08-14T18:45:08", "agent": "user", "cmd": "context", "argv": ["context", "literal-mark-quotient-not-stable-in-finite-actions", "--budget", "150"], "exit": 0, "ms": 21}
+{"ts": "2026-08-14T18:45:09", "agent": "user", "cmd": "context", "argv": ["context", "literal-group-not-stable-in-finite-actions", "--budget", "150"], "exit": 0, "ms": 21}
+{"ts": "2026-08-14T18:45:16", "agent": "user", "cmd": "context", "argv": ["context", "defect-normally-generates-torsion-free-quotient", "--budget", "6000"], "exit": 0, "ms": 21}
+{"ts": "2026-08-14T18:45:16", "agent": "user", "cmd": "check", "argv": ["check", "--changed"], "exit": 2, "ms": 148}
+{"ts": "2026-08-14T18:45:16", "agent": "user", "cmd": "check", "argv": ["check", "--changed"], "exit": 2, "ms": 147}
+{"ts": "2026-08-14T18:45:24", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 0, "ms": 185}
+{"ts": "2026-08-14T18:45:24", "agent": "user", "cmd": "context", "argv": ["context", "mf-implies-hyperlinear", "--budget", "250"], "exit": 0, "ms": 21}
+{"ts": "2026-08-14T18:45:24", "agent": "user", "cmd": "context", "argv": ["context", "finite-tracial-cstar-transport", "--budget", "250"], "exit": 0, "ms": 21}
+{"ts": "2026-08-14T18:45:27", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 0, "ms": 185}
+{"ts": "2026-08-14T18:45:28", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 0, "ms": 185}
+{"ts": "2026-08-14T18:45:31", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 0, "ms": 183}
+{"ts": "2026-08-14T18:45:36", "agent": "user", "cmd": "context", "argv": ["context", "hyperlinear-nonsofic-group", "--budget", "900"], "exit": 0, "ms": 26}
+{"ts": "2026-08-14T18:45:37", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 0, "ms": 184}
+{"ts": "2026-08-14T18:45:37", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 0, "ms": 179}
+{"ts": "2026-08-14T18:45:39", "agent": "user", "cmd": "context", "argv": ["context", "clifford-cover-hilbert-embeddable-route", "--budget", "600"], "exit": 0, "ms": 20}
+{"ts": "2026-08-14T18:45:50", "agent": "user", "cmd": "check", "argv": ["check", "--changed"], "exit": 2, "ms": 213}
+{"ts": "2026-08-14T18:45:51", "agent": "user", "cmd": "check", "argv": ["check", "--changed"], "exit": 2, "ms": 150}
+{"ts": "2026-08-14T18:45:52", "agent": "user", "cmd": "check", "argv": ["check", "--changed"], "exit": 2, "ms": 148}
+{"ts": "2026-08-14T18:45:52", "agent": "user", "cmd": "lock", "argv": ["lock", "commuting-lamp-quotient-mf", "--agent", "cairn-quotient-mf", "--ttl", "10800"], "exit": 0, "ms": 0}
+{"ts": "2026-08-14T18:45:53", "agent": "user", "cmd": "lock", "argv": ["lock", "literal-mark-quotient-mf", "--agent", "cairn-quotient-mf", "--ttl", "10800"], "exit": 0, "ms": 0}
+{"ts": "2026-08-14T18:46:04", "agent": "user", "cmd": "check", "argv": ["check", "--changed"], "exit": 2, "ms": 155}
+{"ts": "2026-08-14T18:46:04", "agent": "user", "cmd": "context", "argv": ["context", "two-site-rigidity-of-lamp-witnesses", "--budget", "120"], "exit": 0, "ms": 23}
+{"ts": "2026-08-14T18:46:25", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 0, "ms": 189}
+{"ts": "2026-08-14T18:46:48", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 0, "ms": 190}
+{"ts": "2026-08-14T18:46:48", "agent": "user", "cmd": "context", "argv": ["context", "tracial-median-concentration", "--budget", "6000"], "exit": 0, "ms": 24}
+{"ts": "2026-08-14T18:47:16", "agent": "user", "cmd": "check", "argv": ["check", "--changed"], "exit": 4, "ms": 214}
+{"ts": "2026-08-14T18:47:16", "agent": "user", "cmd": "context", "argv": ["context", "mf-not-closed-under-integer-extensions", "--budget", "150"], "exit": 0, "ms": 23}
+{"ts": "2026-08-14T18:47:16", "agent": "user", "cmd": "context", "argv": ["context", "lamp-telescope-base-is-lef", "--budget", "150"], "exit": 0, "ms": 22}
+{"ts": "2026-08-14T18:47:16", "agent": "user", "cmd": "context", "argv": ["context", "commuting-lamp-quotient-structure", "--budget", "150"], "exit": 0, "ms": 22}
+{"ts": "2026-08-14T18:47:21", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 4, "ms": 180}
+{"ts": "2026-08-14T18:47:21", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 4, "ms": 181}
+{"ts": "2026-08-14T18:47:26", "agent": "user", "cmd": "check", "argv": ["check", "--changed"], "exit": 4, "ms": 153}
+{"ts": "2026-08-14T18:47:32", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 0, "ms": 182}
+{"ts": "2026-08-14T18:47:32", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 0, "ms": 182}
+{"ts": "2026-08-14T18:47:48", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 0, "ms": 231}
+{"ts": "2026-08-14T18:47:49", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 0, "ms": 186}
+{"ts": "2026-08-14T18:47:58", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 0, "ms": 189}
+{"ts": "2026-08-14T18:47:59", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 0, "ms": 186}
+{"ts": "2026-08-14T18:48:14", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 0, "ms": 184}
+{"ts": "2026-08-14T18:48:14", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 0, "ms": 181}
+{"ts": "2026-08-14T18:48:15", "agent": "user", "cmd": "check", "argv": ["check", "--changed"], "exit": 2, "ms": 152}
+{"ts": "2026-08-14T18:48:15", "agent": "user", "cmd": "check", "argv": ["check", "--changed"], "exit": 2, "ms": 151}
+{"ts": "2026-08-14T18:48:22", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 0, "ms": 188}
+{"ts": "2026-08-14T18:48:37", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 0, "ms": 187}
+{"ts": "2026-08-14T18:48:50", "agent": "user", "cmd": "check", "argv": ["check", "--changed"], "exit": 2, "ms": 156}
+{"ts": "2026-08-14T18:48:50", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 0, "ms": 187}
+{"ts": "2026-08-14T18:48:57", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 0, "ms": 190}
+{"ts": "2026-08-14T18:48:58", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 0, "ms": 192}
+{"ts": "2026-08-14T18:48:58", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 0, "ms": 187}
+{"ts": "2026-08-14T18:48:58", "agent": "user", "cmd": "context", "argv": ["context", "hilbert-embeddable-is-representation-realized"], "exit": 0, "ms": 24}
+{"ts": "2026-08-14T18:49:01", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 0, "ms": 187}
+{"ts": "2026-08-14T18:49:01", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 0, "ms": 188}
+{"ts": "2026-08-14T18:49:01", "agent": "user", "cmd": "context", "argv": ["context", "bounded-rank-corners-excluded", "--budget", "120"], "exit": 0, "ms": 22}
+{"ts": "2026-08-14T18:49:01", "agent": "user", "cmd": "check", "argv": ["check", "--changed"], "exit": 2, "ms": 157}
+{"ts": "2026-08-14T18:49:49", "agent": "user", "cmd": "check", "argv": ["check", "--changed"], "exit": 2, "ms": 210}
+{"ts": "2026-08-14T18:49:49", "agent": "user", "cmd": "context", "argv": ["context", "hilbert-embeddable-amplification", "--budget", "120"], "exit": 0, "ms": 23}
+{"ts": "2026-08-14T18:50:00", "agent": "user", "cmd": "check", "argv": ["check", "--changed"], "exit": 2, "ms": 154}
+{"ts": "2026-08-14T18:50:11", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 0, "ms": 190}
+{"ts": "2026-08-14T18:50:11", "agent": "user", "cmd": "context", "argv": ["context", "sign-mark-rate-is-sector-density", "--budget", "250"], "exit": 0, "ms": 24}
+{"ts": "2026-08-14T18:50:12", "agent": "user", "cmd": "check", "argv": ["check", "--changed"], "exit": 2, "ms": 154}
+{"ts": "2026-08-14T18:50:13", "agent": "user", "cmd": "check", "argv": ["check", "--changed"], "exit": 2, "ms": 155}
+{"ts": "2026-08-14T18:50:16", "agent": "user", "cmd": "context", "argv": ["context", "compressor-growth-index-homomorphism", "--budget", "150"], "exit": 0, "ms": 22}
+{"ts": "2026-08-14T18:50:16", "agent": "user", "cmd": "context", "argv": ["context", "commutator-compressor-carries-no-wall", "--budget", "150"], "exit": 0, "ms": 22}
+{"ts": "2026-08-14T18:50:16", "agent": "user", "cmd": "context", "argv": ["context", "compressor-fixed-site-growth-infinite", "--budget", "150"], "exit": 0, "ms": 22}
+{"ts": "2026-08-14T18:50:17", "agent": "user", "cmd": "context", "argv": ["context", "invariant-size-collapse", "--budget", "150"], "exit": 0, "ms": 22}
+{"ts": "2026-08-14T18:50:50", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 0, "ms": 201}
+{"ts": "2026-08-14T18:50:50", "agent": "user", "cmd": "context", "argv": ["context", "kazhdan-projection-rounding", "--budget", "200"], "exit": 0, "ms": 25}
+{"ts": "2026-08-14T18:50:54", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 0, "ms": 192}
+{"ts": "2026-08-14T18:51:18", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 0, "ms": 195}
+{"ts": "2026-08-14T18:51:27", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 0, "ms": 195}
+{"ts": "2026-08-14T18:51:28", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 0, "ms": 191}
+{"ts": "2026-08-14T18:51:35", "agent": "user", "cmd": "check", "argv": ["check", "--changed"], "exit": 2, "ms": 167}
+{"ts": "2026-08-14T18:51:46", "agent": "user", "cmd": "check", "argv": ["check", "--changed"], "exit": 2, "ms": 222}
+{"ts": "2026-08-14T18:51:46", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 0, "ms": 196}
+{"ts": "2026-08-14T18:52:53", "agent": "user", "cmd": "check", "argv": ["check", "--changed"], "exit": 2, "ms": 213}
+{"ts": "2026-08-14T18:52:53", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 0, "ms": 195}
+{"ts": "2026-08-14T18:52:55", "agent": "user", "cmd": "check", "argv": ["check", "--changed"], "exit": 2, "ms": 171}
+{"ts": "2026-08-14T18:52:55", "agent": "user", "cmd": "check", "argv": ["check", "--changed"], "exit": 2, "ms": 160}
+{"ts": "2026-08-14T18:53:05", "agent": "user", "cmd": "check", "argv": ["check", "--changed"], "exit": 2, "ms": 162}
+{"ts": "2026-08-14T18:53:05", "agent": "user", "cmd": "context", "argv": ["context", "no-invariant-mean-on-coset-space", "--budget", "120"], "exit": 0, "ms": 25}
+{"ts": "2026-08-14T18:53:05", "agent": "user", "cmd": "context", "argv": ["context", "amenable-rep-of-kazhdan-has-fd-subrep", "--budget", "120"], "exit": 0, "ms": 22}
+{"ts": "2026-08-14T18:53:05", "agent": "user", "cmd": "context", "argv": ["context", "wreath-amenable-near-representation", "--budget", "900"], "exit": 0, "ms": 22}
+{"ts": "2026-08-14T18:53:10", "agent": "user", "cmd": "context", "argv": ["context", "kazhdan-projection-rounding", "--budget", "300"], "exit": 0, "ms": 22}
+{"ts": "2026-08-14T18:53:16", "agent": "user", "cmd": "context", "argv": ["context", "wreath-amenable-near-representation", "--budget", "3000"], "exit": 0, "ms": 23}
+{"ts": "2026-08-14T18:53:16", "agent": "user", "cmd": "context", "argv": ["context", "wreath-amenable-near-representation", "--budget", "120"], "exit": 0, "ms": 23}
+{"ts": "2026-08-14T18:53:16", "agent": "user", "cmd": "context", "argv": ["context", "hyperlinear-wreath-model", "--budget", "120"], "exit": 0, "ms": 23}
+{"ts": "2026-08-14T18:53:16", "agent": "user", "cmd": "context", "argv": ["context", "flexible-side-witness", "--budget", "120"], "exit": 0, "ms": 21}
+{"ts": "2026-08-14T18:53:16", "agent": "user", "cmd": "context", "argv": ["context", "hyperlinear-nonsofic-group", "--budget", "120"], "exit": 0, "ms": 23}
+{"ts": "2026-08-14T18:53:17", "agent": "user", "cmd": "check", "argv": ["check", "--changed"], "exit": 2, "ms": 166}
+{"ts": "2026-08-14T18:53:18", "agent": "user", "cmd": "check", "argv": ["check", "--changed"], "exit": 2, "ms": 166}
+{"ts": "2026-08-14T18:53:18", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 0, "ms": 201}
+{"ts": "2026-08-14T18:53:23", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 0, "ms": 199}
+{"ts": "2026-08-14T18:53:23", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 0, "ms": 201}
+{"ts": "2026-08-14T18:53:23", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 0, "ms": 203}
+{"ts": "2026-08-14T18:53:23", "agent": "user", "cmd": "context", "argv": ["context", "lamp-character-orbit-separation"], "exit": 0, "ms": 23}
+{"ts": "2026-08-14T18:53:28", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 0, "ms": 199}
+{"ts": "2026-08-14T18:53:28", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 0, "ms": 199}
+{"ts": "2026-08-14T18:53:29", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 0, "ms": 199}
+{"ts": "2026-08-14T18:53:55", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 0, "ms": 252}
+{"ts": "2026-08-14T18:53:59", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 0, "ms": 199}
+{"ts": "2026-08-14T18:54:08", "agent": "user", "cmd": "check", "argv": ["check", "--changed"], "exit": 2, "ms": 170}
+{"ts": "2026-08-14T18:54:08", "agent": "user", "cmd": "check", "argv": ["check", "--changed"], "exit": 2, "ms": 165}
+{"ts": "2026-08-14T18:54:08", "agent": "user", "cmd": "check", "argv": ["check", "--changed"], "exit": 2, "ms": 167}
+{"ts": "2026-08-14T18:54:17", "agent": "user", "cmd": "check", "argv": ["check", "--changed"], "exit": 2, "ms": 169}
+{"ts": "2026-08-14T18:54:33", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 0, "ms": 203}
+{"ts": "2026-08-14T18:54:58", "agent": "user", "cmd": "check", "argv": ["check", "--changed"], "exit": 0, "ms": 246}
+{"ts": "2026-08-14T18:54:58", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 0, "ms": 204}
+{"ts": "2026-08-14T18:54:59", "agent": "user", "cmd": "check", "argv": ["check", "--changed"], "exit": 0, "ms": 167}
+{"ts": "2026-08-14T18:54:59", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 0, "ms": 201}
+{"ts": "2026-08-14T18:55:26", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 0, "ms": 203}
+{"ts": "2026-08-14T18:55:26", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 0, "ms": 199}
+{"ts": "2026-08-14T18:55:26", "agent": "user", "cmd": "context", "argv": ["context", "finite-dimensional-models-break-coordinate-generation", "--budget", "100"], "exit": 0, "ms": 25}
+{"ts": "2026-08-14T18:55:35", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 0, "ms": 207}
+{"ts": "2026-08-14T18:55:36", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 0, "ms": 206}
+{"ts": "2026-08-14T18:55:40", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 0, "ms": 198}
+{"ts": "2026-08-14T18:55:53", "agent": "user", "cmd": "check", "argv": ["check", "--changed"], "exit": 0, "ms": 174}
+{"ts": "2026-08-14T18:55:54", "agent": "user", "cmd": "context", "argv": ["context", "literal-mark-quotient-sofic", "--budget", "150"], "exit": 0, "ms": 24}
+{"ts": "2026-08-14T18:55:54", "agent": "user", "cmd": "context", "argv": ["context", "literal-mark-quotient-not-stable-in-finite-actions", "--budget", "150"], "exit": 0, "ms": 23}
+{"ts": "2026-08-14T18:55:54", "agent": "user", "cmd": "context", "argv": ["context", "literal-group-sofic", "--budget", "150"], "exit": 0, "ms": 23}
+{"ts": "2026-08-14T18:55:54", "agent": "user", "cmd": "check", "argv": ["check", "--changed"], "exit": 0, "ms": 178}
+{"ts": "2026-08-14T18:55:54", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 0, "ms": 205}
+{"ts": "2026-08-14T18:56:11", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 0, "ms": 204}
+{"ts": "2026-08-14T18:56:11", "agent": "user", "cmd": "check", "argv": ["check", "--changed"], "exit": 0, "ms": 189}
+{"ts": "2026-08-14T18:56:32", "agent": "user", "cmd": "check", "argv": ["check", "--changed"], "exit": 0, "ms": 224}
+{"ts": "2026-08-14T18:56:32", "agent": "user", "cmd": "check", "argv": ["check", "--changed"], "exit": 0, "ms": 170}
+{"ts": "2026-08-14T18:56:35", "agent": "user", "cmd": "check", "argv": ["check", "--changed"], "exit": 0, "ms": 171}
+{"ts": "2026-08-14T18:56:42", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 0, "ms": 206}
+{"ts": "2026-08-14T18:56:43", "agent": "user", "cmd": "check", "argv": ["check", "--changed"], "exit": 0, "ms": 167}
+{"ts": "2026-08-14T18:56:43", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 0, "ms": 205}
+{"ts": "2026-08-14T18:56:50", "agent": "user", "cmd": "check", "argv": ["check", "--changed"], "exit": 0, "ms": 168}
+{"ts": "2026-08-14T18:56:57", "agent": "user", "cmd": "check", "argv": ["check", "--changed"], "exit": 0, "ms": 173}
+{"ts": "2026-08-14T18:56:57", "agent": "user", "cmd": "context", "argv": ["context", "hyperlinear-wreath-model", "--budget", "3500"], "exit": 0, "ms": 25}
+{"ts": "2026-08-14T18:57:01", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 0, "ms": 207}
+{"ts": "2026-08-14T18:57:08", "agent": "user", "cmd": "context", "argv": ["context", "marked-quotients-not-lef", "--budget", "400"], "exit": 0, "ms": 23}
+{"ts": "2026-08-14T18:57:29", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 0, "ms": 207}
+{"ts": "2026-08-14T18:57:49", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 0, "ms": 256}
+{"ts": "2026-08-14T18:57:50", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 0, "ms": 206}
+{"ts": "2026-08-14T18:57:50", "agent": "user", "cmd": "context", "argv": ["context", "fournier-facio-group-finite-dimensional-shadow", "--budget", "100"], "exit": 0, "ms": 25}
+{"ts": "2026-08-14T18:57:57", "agent": "user", "cmd": "check", "argv": ["check", "--changed"], "exit": 0, "ms": 181}
+{"ts": "2026-08-14T18:57:57", "agent": "user", "cmd": "context", "argv": ["context", "literal-group-not-stable-in-finite-actions", "--budget", "200"], "exit": 0, "ms": 30}
+{"ts": "2026-08-14T18:57:57", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 0, "ms": 213}
+{"ts": "2026-08-14T18:57:57", "agent": "user", "cmd": "check", "argv": ["check", "--changed"], "exit": 0, "ms": 177}
+{"ts": "2026-08-14T18:57:58", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 0, "ms": 209}
+{"ts": "2026-08-14T18:57:58", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 0, "ms": 206}
+{"ts": "2026-08-14T18:58:43", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 0, "ms": 209}
+{"ts": "2026-08-14T18:58:54", "agent": "user", "cmd": "check", "argv": ["check", "--changed"], "exit": 2, "ms": 185}
+{"ts": "2026-08-14T18:58:55", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 0, "ms": 207}
+{"ts": "2026-08-14T18:59:08", "agent": "user", "cmd": "check", "argv": ["check", "--changed"], "exit": 2, "ms": 207}
+{"ts": "2026-08-14T18:59:18", "agent": "user", "cmd": "context", "argv": ["context", "bounded-rank-corners-excluded", "--budget", "150"], "exit": 0, "ms": 76}
+{"ts": "2026-08-14T18:59:18", "agent": "user", "cmd": "context", "argv": ["context", "coordinate-ultraproduct-transport", "--budget", "150"], "exit": 0, "ms": 23}
+{"ts": "2026-08-14T18:59:19", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 0, "ms": 207}
+{"ts": "2026-08-14T18:59:21", "agent": "user", "cmd": "check", "argv": ["check", "--changed"], "exit": 0, "ms": 177}
+{"ts": "2026-08-14T18:59:31", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 0, "ms": 207}
+{"ts": "2026-08-14T18:59:32", "agent": "user", "cmd": "impact", "argv": ["impact", "mf-trace-gap-defect-ratio-models"], "exit": 0, "ms": 22}
+{"ts": "2026-08-14T18:59:56", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 0, "ms": 256}
+{"ts": "2026-08-14T19:00:28", "agent": "user", "cmd": "context", "argv": ["context", "hilbert-embeddable-is-representation-realized"], "exit": 0, "ms": 76}
+{"ts": "2026-08-14T19:00:28", "agent": "user", "cmd": "context", "argv": ["context", "hilbert-embeddable-amplification"], "exit": 0, "ms": 24}
+{"ts": "2026-08-14T19:00:28", "agent": "user", "cmd": "context", "argv": ["context", "glebsky-manufactured-invariant-length"], "exit": 0, "ms": 24}
+{"ts": "2026-08-14T19:00:30", "agent": "user", "cmd": "check", "argv": ["check", "--changed"], "exit": 2, "ms": 186}
+{"ts": "2026-08-14T19:00:39", "agent": "user", "cmd": "check", "argv": ["check", "--changed"], "exit": 2, "ms": 237}
+{"ts": "2026-08-14T19:00:40", "agent": "user", "cmd": "check", "argv": ["check", "--changed"], "exit": 2, "ms": 176}
+{"ts": "2026-08-14T19:00:40", "agent": "user", "cmd": "context", "argv": ["context", "literal-telescope-core-not-residually-finite", "--budget", "150"], "exit": 0, "ms": 25}
+{"ts": "2026-08-14T19:00:40", "agent": "user", "cmd": "check", "argv": ["check", "--changed"], "exit": 2, "ms": 177}
+{"ts": "2026-08-14T19:00:59", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 0, "ms": 269}
+{"ts": "2026-08-14T19:01:01", "agent": "user", "cmd": "check", "argv": ["check", "--changed"], "exit": 2, "ms": 204}
+{"ts": "2026-08-14T19:01:01", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 0, "ms": 236}
+{"ts": "2026-08-14T19:01:06", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 0, "ms": 218}
+{"ts": "2026-08-14T19:01:06", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 0, "ms": 217}
+{"ts": "2026-08-14T19:01:08", "agent": "user", "cmd": "context", "argv": ["context", "telescope-core-not-residually-finite", "--budget", "150"], "exit": 0, "ms": 27}
+{"ts": "2026-08-14T19:01:13", "agent": "user", "cmd": "check", "argv": ["check", "--changed"], "exit": 2, "ms": 185}
+{"ts": "2026-08-14T19:01:14", "agent": "user", "cmd": "check", "argv": ["check", "--changed"], "exit": 2, "ms": 178}
+{"ts": "2026-08-14T19:01:14", "agent": "user", "cmd": "context", "argv": ["context", "telescope-core-not-residually-finite", "--budget", "150"], "exit": 0, "ms": 24}
+{"ts": "2026-08-14T19:01:15", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 0, "ms": 215}
+{"ts": "2026-08-14T19:01:15", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 0, "ms": 221}
+{"ts": "2026-08-14T19:01:19", "agent": "user", "cmd": "check", "argv": ["check", "--changed"], "exit": 2, "ms": 185}
+{"ts": "2026-08-14T19:01:22", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 0, "ms": 232}
+{"ts": "2026-08-14T19:01:22", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 0, "ms": 238}
+{"ts": "2026-08-14T19:01:22", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 0, "ms": 232}
+{"ts": "2026-08-14T19:01:23", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 0, "ms": 217}
+{"ts": "2026-08-14T19:01:40", "agent": "user", "cmd": "check", "argv": ["check", "--changed"], "exit": 0, "ms": 249}
+{"ts": "2026-08-14T19:01:40", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 0, "ms": 220}
+{"ts": "2026-08-14T19:01:41", "agent": "user", "cmd": "context", "argv": ["context", "corona-defect-is-not-uniform", "--budget", "150"], "exit": 0, "ms": 25}
+{"ts": "2026-08-14T19:01:41", "agent": "user", "cmd": "context", "argv": ["context", "kazhdan-projection-not-in-l1", "--budget", "150"], "exit": 0, "ms": 25}
+{"ts": "2026-08-14T19:01:41", "agent": "user", "cmd": "context", "argv": ["context", "corona-commutant-no-growth", "--budget", "150"], "exit": 0, "ms": 27}
+{"ts": "2026-08-14T19:01:44", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 0, "ms": 217}
+{"ts": "2026-08-14T19:01:44", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 0, "ms": 213}
+{"ts": "2026-08-14T19:01:45", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 0, "ms": 219}
+{"ts": "2026-08-14T19:01:45", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 0, "ms": 214}
+{"ts": "2026-08-14T19:01:49", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 0, "ms": 223}
+{"ts": "2026-08-14T19:01:49", "agent": "user", "cmd": "check", "argv": ["check", "--changed"], "exit": 0, "ms": 185}
+{"ts": "2026-08-14T19:02:23", "agent": "user", "cmd": "check", "argv": ["check", "--changed"], "exit": 2, "ms": 186}
+{"ts": "2026-08-14T19:02:24", "agent": "user", "cmd": "check", "argv": ["check", "--changed"], "exit": 2, "ms": 183}
+{"ts": "2026-08-14T19:02:27", "agent": "user", "cmd": "check", "argv": ["check", "--changed"], "exit": 2, "ms": 182}
+{"ts": "2026-08-14T19:02:31", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 0, "ms": 219}
+{"ts": "2026-08-14T19:02:31", "agent": "user", "cmd": "context", "argv": ["context", "hilbert-embeddable-amplification"], "exit": 0, "ms": 26}
+{"ts": "2026-08-14T19:02:32", "agent": "user", "cmd": "context", "argv": ["context", "hilbert-embeddable-is-representation-realized"], "exit": 0, "ms": 24}
+{"ts": "2026-08-14T19:02:32", "agent": "user", "cmd": "context", "argv": ["context", "hilbert-embeddable-length-hyperlinearity"], "exit": 0, "ms": 25}
+{"ts": "2026-08-14T19:03:35", "agent": "user", "cmd": "lock", "argv": ["lock", "leavitt-steinberg-hs-unstable", "--agent", "cairn-fork", "--ttl", "3600"], "exit": 0, "ms": 0}
+{"ts": "2026-08-14T19:24:48", "agent": "user", "cmd": "context", "argv": ["context", "defect-normally-generates-torsion-free-quotient", "--budget", "120"], "exit": 0, "ms": 76}
+{"ts": "2026-08-14T19:24:48", "agent": "user", "cmd": "context", "argv": ["context", "torsion-free-finitely-presented-non-mf", "--budget", "120"], "exit": 0, "ms": 24}
+{"ts": "2026-08-14T19:27:59", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 0, "ms": 286}
+{"ts": "2026-08-14T19:27:59", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 0, "ms": 222}
+{"ts": "2026-08-14T19:27:59", "agent": "user", "cmd": "check", "argv": ["check", "--changed"], "exit": 0, "ms": 68}
+{"ts": "2026-08-14T22:26:24", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 0, "ms": 270}
+{"ts": "2026-08-14T22:39:34", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 0, "ms": 267}
+{"ts": "2026-08-14T22:50:42", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 0, "ms": 277}
+{"ts": "2026-08-14T23:34:23", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 0, "ms": 288}
+{"ts": "2026-08-14T23:44:49", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 0, "ms": 285}
+{"ts": "2026-08-14T23:57:43", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 0, "ms": 286}
+{"ts": "2026-08-15T00:18:19", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 0, "ms": 290}
+{"ts": "2026-08-15T00:18:20", "agent": "user", "cmd": "site", "argv": ["site"], "exit": 0, "ms": 930}
+{"ts": "2026-08-15T00:18:26", "agent": "user", "cmd": "context", "argv": ["context", "hyperlinear-nonsofic-group", "--budget", "300"], "exit": 0, "ms": 29}
+{"ts": "2026-08-15T04:39:09", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 0, "ms": 280}
+{"ts": "2026-08-15T06:19:07", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 0, "ms": 283}
+{"ts": "2026-08-15T09:03:04", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 0, "ms": 320}
+{"ts": "2026-08-15T09:03:25", "agent": "user", "cmd": "check", "argv": ["check"], "exit": 0, "ms": 277}
+{"ts": "2026-08-15T09:03:39", "agent": "user", "cmd": "context", "argv": ["context", "q3-4-resolved", "--budget", "1500"], "exit": 0, "ms": 75}
+{"ts": "2026-08-15T09:03:41", "agent": "user", "cmd": "site", "argv": ["site"], "exit": 0, "ms": 949}
+{"ts": "2026-08-15T11:14:47", "agent": "user", "cmd": "check", "argv": ["check", "--changed"], "exit": 0, "ms": 124}
+{"ts": "2026-08-15T11:15:06", "agent": "user", "cmd": "preview", "argv": ["preview"], "exit": 0, "ms": 8003}
+{"ts": "2026-08-15T11:15:39", "agent": "user", "cmd": "context", "argv": ["context", "mf-relation-closure", "--budget", "3000"], "exit": 0, "ms": 95}
+{"ts": "2026-08-15T11:15:49", "agent": "user", "cmd": "context", "argv": ["context", "sound-rule-transfinite-closure", "--budget", "400"], "exit": 0, "ms": 78}
+{"ts": "2026-08-15T11:15:50", "agent": "user", "cmd": "context", "argv": ["context", "noetherian-invariant-compression-rigidity", "--budget", "400"], "exit": 0, "ms": 29}
+{"ts": "2026-08-15T11:15:50", "agent": "user", "cmd": "context", "argv": ["context", "zariski-envelope-compression-rigidity", "--budget", "400"], "exit": 0, "ms": 26}
+{"ts": "2026-08-15T11:15:50", "agent": "user", "cmd": "context", "argv": ["context", "invariant-tensor-compression-rigidity", "--budget", "400"], "exit": 0, "ms": 27}
+{"ts": "2026-08-15T11:15:50", "agent": "user", "cmd": "context", "argv": ["context", "matricial-stability-identifies-radicals", "--budget", "400"], "exit": 0, "ms": 26}
+{"ts": "2026-08-15T11:15:50", "agent": "user", "cmd": "context", "argv": ["context", "kazhdan-tensor-type-transport", "--budget", "400"], "exit": 0, "ms": 26}
+{"ts": "2026-08-15T11:15:50", "agent": "user", "cmd": "context", "argv": ["context", "semisimple-packet-multiplicity-collapse", "--budget", "400"], "exit": 0, "ms": 27}
+{"ts": "2026-08-15T12:06:38", "agent": "user", "cmd": "check", "argv": ["check", "--changed"], "exit": 4, "ms": 146}
+{"ts": "2026-08-15T12:06:50", "agent": "user", "cmd": "check", "argv": ["check", "--changed"], "exit": 4, "ms": 124}
+{"ts": "2026-08-15T12:07:33", "agent": "user", "cmd": "check", "argv": ["check", "--changed"], "exit": 2, "ms": 134}
+{"ts": "2026-08-15T12:07:51", "agent": "user", "cmd": "check", "argv": ["check", "--changed"], "exit": 0, "ms": 138}
+{"ts": "2026-08-15T12:07:59", "agent": "user", "cmd": "preview", "argv": ["preview"], "exit": 0, "ms": 8502}
+{"ts": "2026-08-15T12:38:17", "cmd": "check", "argv": ["check", "--changed"], "exit": 2, "ms": 144}
+{"ts": "2026-08-15T12:38:38", "cmd": "check", "argv": ["check", "--changed"], "exit": 0, "ms": 128}
+{"ts": "2026-08-15T13:15:07", "cmd": "status", "argv": ["status"], "exit": 0, "ms": 85}
+{"ts": "2026-08-15T13:15:08", "cmd": "frontier", "argv": ["frontier"], "exit": 0, "ms": 28}
+{"ts": "2026-08-15T13:15:44", "cmd": "why", "argv": ["why", "q3-4-resolved"], "exit": 0, "ms": 30}
+{"ts": "2026-08-15T13:16:29", "cmd": "why", "argv": ["why", "kun-thom-clifford-radical-phase"], "exit": 0, "ms": 26}
+{"ts": "2026-08-15T13:16:29", "cmd": "why", "argv": ["why", "bare-relative-wall-exists"], "exit": 0, "ms": 26}
+{"ts": "2026-08-15T13:16:29", "cmd": "why", "argv": ["why", "kun-thom-clifford-cover-weakly-sofic"], "exit": 0, "ms": 25}
+{"ts": "2026-08-15T13:16:29", "cmd": "why", "argv": ["why", "hilbert-embeddable-length-hyperlinearity"], "exit": 0, "ms": 27}
+{"ts": "2026-08-15T13:16:30", "cmd": "why", "argv": ["why", "hilbert-embeddable-witness-for-kun-thom-wreath"], "exit": 0, "ms": 26}
+{"ts": "2026-08-15T13:16:30", "cmd": "why", "argv": ["why", "hyperlinear-wreath-model"], "exit": 0, "ms": 26}
+{"ts": "2026-08-15T13:16:30", "cmd": "why", "argv": ["why", "wreath-not-sofic"], "exit": 0, "ms": 26}
+{"ts": "2026-08-15T13:16:30", "cmd": "why", "argv": ["why", "kun-thom-nonsofic-wreath"], "exit": 0, "ms": 26}
+{"ts": "2026-08-15T13:16:30", "cmd": "why", "argv": ["why", "invariant-graph-clifford-phase"], "exit": 0, "ms": 26}
+{"ts": "2026-08-15T13:16:30", "cmd": "why", "argv": ["why", "invariant-graph-crossed-product-ce"], "exit": 0, "ms": 25}
+{"ts": "2026-08-15T13:16:30", "cmd": "why", "argv": ["why", "kun-thom-clifford-crossed-product-ce"], "exit": 0, "ms": 25}
+{"ts": "2026-08-15T13:16:30", "cmd": "why", "argv": ["why", "kun-thom-clifford-relative-wall"], "exit": 0, "ms": 26}
+{"ts": "2026-08-15T13:16:30", "cmd": "why", "argv": ["why", "leavitt-steinberg-hs-stability-fork"], "exit": 0, "ms": 26}
+{"ts": "2026-08-15T13:16:31", "cmd": "why", "argv": ["why", "leavitt-steinberg-hs-unstable"], "exit": 0, "ms": 26}
+{"ts": "2026-08-15T13:16:31", "cmd": "why", "argv": ["why", "radical-collision-criterion"], "exit": 0, "ms": 26}
+{"ts": "2026-08-15T13:16:31", "cmd": "why", "argv": ["why", "sofic-radical-hyperlinear-survivor"], "exit": 0, "ms": 25}
+{"ts": "2026-08-15T13:17:10", "cmd": "lock", "argv": ["lock", "hilbert-embeddable-witness-for-kun-thom-wreath", "--ttl", "6h"], "exit": 0, "ms": 0}
+{"ts": "2026-08-15T13:17:12", "cmd": "why", "argv": ["why", "lamp-character-orbit-separation"], "exit": 0, "ms": 82}
+{"ts": "2026-08-15T13:17:12", "cmd": "why", "argv": ["why", "hilbert-embeddable-length-lp-feasibility"], "exit": 0, "ms": 28}
+{"ts": "2026-08-15T13:17:12", "cmd": "why", "argv": ["why", "glebsky-weak-soficity-is-metric-free"], "exit": 0, "ms": 28}
+{"ts": "2026-08-15T13:17:12", "cmd": "why", "argv": ["why", "hilbert-embeddable-amplification"], "exit": 0, "ms": 27}
+{"ts": "2026-08-15T13:17:12", "cmd": "why", "argv": ["why", "marked-double-coset-infinite-degree"], "exit": 0, "ms": 27}
+{"ts": "2026-08-15T13:17:12", "cmd": "why", "argv": ["why", "hilbert-embeddable-is-representation-realized"], "exit": 0, "ms": 27}
+{"ts": "2026-08-15T13:21:48", "cmd": "search", "argv": ["search", "defect off the lamp subgroup induced character orbit fixed points", "--similar"], "exit": 0, "ms": 37}
+{"ts": "2026-08-15T13:37:42", "cmd": "check", "argv": ["check"], "exit": 0, "ms": 357}
+{"ts": "2026-08-15T13:37:46", "cmd": "check", "argv": ["check"], "exit": 0, "ms": 293}
+{"ts": "2026-08-15T13:37:55", "cmd": "why", "argv": ["why", "compressor-coset-two-point-exact"], "exit": 0, "ms": 27}
+{"ts": "2026-08-15T13:42:27", "cmd": "check", "argv": ["check", "--changed"], "exit": 0, "ms": 142}
+{"ts": "2026-08-15T13:42:27", "cmd": "why", "argv": ["why", "pair-constraint-graph-criterion"], "exit": 0, "ms": 26}
+{"ts": "2026-08-15T13:42:27", "cmd": "why", "argv": ["why", "congruence-transporter-girth"], "exit": 0, "ms": 26}
+{"ts": "2026-08-15T13:43:03", "cmd": "search", "argv": ["search", "approximate action on subsets forces approximate action on sites resolution", "--similar"], "exit": 0, "ms": 51}
+{"ts": "2026-08-15T13:43:30", "cmd": "check", "argv": ["check", "--changed"], "exit": 0, "ms": 120}
+{"ts": "2026-08-15T13:43:32", "cmd": "unlock", "argv": ["unlock", "hilbert-embeddable-witness-for-kun-thom-wreath"], "exit": 0, "ms": 0}
+{"ts": "2026-08-15T13:51:47", "cmd": "check", "argv": ["check", "--changed"], "exit": 4, "ms": 127}
+{"ts": "2026-08-15T13:55:15", "cmd": "check", "argv": ["check", "--changed"], "exit": 4, "ms": 127}
+{"ts": "2026-08-15T14:11:09", "cmd": "check", "argv": ["check", "--changed"], "exit": 0, "ms": 133}
+{"ts": "2026-08-15T14:30:04", "cmd": "check", "argv": ["check", "--changed"], "exit": 1, "ms": 355}
+{"ts": "2026-08-15T14:30:13", "cmd": "check", "argv": ["check", "--changed"], "exit": 1, "ms": 294}
+{"ts": "2026-08-15T14:31:48", "cmd": "check", "argv": ["check", "--changed"], "exit": 4, "ms": 338, "extra": {"unlocked": 2, "parked": 0, "hints": 0}}
+{"ts": "2026-08-15T14:31:50", "cmd": "check", "argv": ["check"], "exit": 4, "ms": 513, "extra": {"unlocked": 2, "parked": 0, "hints": 0}}
+{"ts": "2026-08-15T14:31:50", "cmd": "status", "argv": ["status"], "exit": 0, "ms": 30}
+{"ts": "2026-08-15T14:31:51", "cmd": "why", "argv": ["why", "leavitt-steinberg-hs-unstable"], "exit": 0, "ms": 28}
+{"ts": "2026-08-15T14:32:05", "cmd": "check", "argv": ["check", "--changed"], "exit": 4, "ms": 324, "extra": {"unlocked": 2, "parked": 0, "hints": 0}}
+{"ts": "2026-08-15T14:32:29", "cmd": "check", "argv": ["check", "--changed"], "exit": 2, "ms": 417, "extra": {"unlocked": 2, "parked": 2, "hints": 0}}
+{"ts": "2026-08-15T14:33:12", "cmd": "check", "argv": ["check", "--changed"], "exit": 2, "ms": 454, "extra": {"unlocked": 2, "parked": 1, "hints": 0}}
+{"ts": "2026-08-15T14:34:16", "cmd": "check", "argv": ["check", "--changed"], "exit": 0, "ms": 428, "extra": {"unlocked": 2, "parked": 0, "hints": 0}}
+{"ts": "2026-08-15T14:38:33", "cmd": "check", "argv": ["check", "--changed"], "exit": 0, "ms": 437, "extra": {"unlocked": 3, "parked": 0, "hints": 0}}
+{"ts": "2026-08-15T14:39:05", "cmd": "search", "argv": ["search", "expander"], "exit": 0, "ms": 57}
+{"ts": "2026-08-15T14:39:10", "cmd": "why", "argv": ["why", "leavitt-steinberg-hs-unstable"], "exit": 0, "ms": 32}
+{"ts": "2026-08-15T14:39:10", "cmd": "status", "argv": ["status"], "exit": 0, "ms": 27}
+{"ts": "2026-08-15T15:06:42", "cmd": "check", "argv": ["check", "--changed"], "exit": 2, "ms": 500, "extra": {"unlocked": 5, "parked": 0, "hints": 0}}
+{"ts": "2026-08-15T15:06:58", "cmd": "check", "argv": ["check", "--changed"], "exit": 0, "ms": 444, "extra": {"unlocked": 5, "parked": 0, "hints": 0}}
+{"ts": "2026-08-15T15:13:57", "cmd": "check", "argv": ["check", "--changed"], "exit": 0, "ms": 518, "extra": {"unlocked": 5, "parked": 0, "hints": 0}}
+{"ts": "2026-08-15T15:17:16", "cmd": "search", "argv": ["search", "cohomology vanishing HS stability Kazhdan almost representation correction", "--similar"], "exit": 0, "ms": 92}
+{"ts": "2026-08-15T15:17:42", "cmd": "unlock", "argv": ["unlock", "leavitt-steinberg-hs-unstable"], "exit": 0, "ms": 0}
+{"ts": "2026-08-15T15:17:42", "cmd": "lock", "argv": ["lock", "leavitt-steinberg-hs-unstable", "--ttl", "12h"], "exit": 0, "ms": 1}
+{"ts": "2026-08-15T15:18:25", "cmd": "why", "argv": ["why", "pointwise-hs-stability-from-no-hyperlinear-quotient"], "exit": 0, "ms": 81}
+{"ts": "2026-08-15T15:21:12", "cmd": "check", "argv": ["check", "--changed"], "exit": 0, "ms": 515, "extra": {"unlocked": 4, "parked": 0, "hints": 0}}
+{"ts": "2026-08-15T15:23:25", "cmd": "check", "argv": ["check", "--changed"], "exit": 0, "ms": 486, "extra": {"unlocked": 3, "parked": 0, "hints": 0}}
+{"ts": "2026-08-15T15:38:17", "cmd": "check", "argv": ["check", "--changed"], "exit": 4, "ms": 615, "extra": {"unlocked": 9, "parked": 0, "hints": 0}}
+{"ts": "2026-08-15T15:38:29", "cmd": "search", "argv": ["search", "Kun Thom Theorem 4.1 centralizer normalized derive Theorem A"], "exit": 0, "ms": 63}
+{"ts": "2026-08-15T15:38:48", "cmd": "check", "argv": ["check", "--changed"], "exit": 0, "ms": 558, "extra": {"unlocked": 9, "parked": 0, "hints": 0}}
+{"ts": "2026-08-15T15:39:45", "cmd": "status", "argv": ["status"], "exit": 0, "ms": 83}
+{"ts": "2026-08-15T15:40:21", "cmd": "why", "argv": ["why", "clifford-ce-implies-bernoulli-ce"], "exit": 0, "ms": 83}
+{"ts": "2026-08-15T15:43:49", "cmd": "check", "argv": ["check", "--changed"], "exit": 4, "ms": 577, "extra": {"unlocked": 6, "parked": 0, "hints": 1}}
+{"ts": "2026-08-15T15:44:00", "cmd": "check", "argv": ["check", "--changed"], "exit": 0, "ms": 506, "extra": {"unlocked": 6, "parked": 0, "hints": 1}}
+{"ts": "2026-08-15T15:47:30", "cmd": "check", "argv": ["check", "--changed"], "exit": 0, "ms": 473, "extra": {"unlocked": 3, "parked": 0, "hints": 0}}
+{"ts": "2026-08-15T16:06:19", "cmd": "check", "argv": ["check", "--changed"], "exit": 0, "ms": 527, "extra": {"unlocked": 4, "parked": 0, "hints": 0}}
+{"ts": "2026-08-15T16:12:19", "cmd": "check", "argv": ["check", "--changed"], "exit": 0, "ms": 504, "extra": {"unlocked": 4, "parked": 0, "hints": 0}}
+{"ts": "2026-08-15T16:17:04", "cmd": "check", "argv": ["check", "--changed"], "exit": 0, "ms": 477, "extra": {"unlocked": 3, "parked": 0, "hints": 0}}
+{"ts": "2026-08-15T16:20:45", "cmd": "check", "argv": ["check", "--changed"], "exit": 0, "ms": 472, "extra": {"unlocked": 3, "parked": 0, "hints": 0}}
+{"ts": "2026-08-15T16:22:58", "cmd": "check", "argv": ["check", "--changed"], "exit": 4, "ms": 341, "extra": {"unlocked": 1, "parked": 0, "hints": 0}}
+{"ts": "2026-08-15T16:24:49", "cmd": "check", "argv": ["check", "--changed"], "exit": 2, "ms": 342, "extra": {"unlocked": 1, "parked": 0, "hints": 0}}
+{"ts": "2026-08-15T16:36:33", "cmd": "check", "argv": ["check", "--changed"], "exit": 0, "ms": 430, "extra": {"unlocked": 1, "parked": 0, "hints": 0}}
+{"ts": "2026-08-15T17:03:27", "cmd": "check", "argv": ["check", "--changed"], "exit": 0, "ms": 384, "extra": {"unlocked": 2, "parked": 0, "hints": 0}}
+{"ts": "2026-08-15T17:04:59", "cmd": "check", "argv": ["check", "--changed"], "exit": 0, "ms": 296, "extra": {"unlocked": 0, "parked": 0, "hints": 0}}
+{"ts": "2026-08-15T17:07:16", "cmd": "check", "argv": ["check", "--changed"], "exit": 0, "ms": 365, "extra": {"unlocked": 0, "parked": 0, "hints": 0}}
+{"ts": "2026-08-15T17:12:37", "cmd": "check", "argv": ["check"], "exit": 0, "ms": 446, "extra": {"unlocked": 0, "parked": 0, "hints": 0}}
+{"ts": "2026-08-15T17:14:00", "cmd": "check", "argv": ["check", "--changed"], "exit": 0, "ms": 320, "extra": {"unlocked": 1, "parked": 0, "hints": 0}}
+{"ts": "2026-08-15T17:23:16", "cmd": "check", "argv": ["check", "--changed"], "exit": 2, "ms": 405, "extra": {"unlocked": 0, "parked": 1, "hints": 0}}
+{"ts": "2026-08-15T17:23:54", "cmd": "check", "argv": ["check", "--changed"], "exit": 0, "ms": 387, "extra": {"unlocked": 0, "parked": 0, "hints": 0}}
+{"ts": "2026-08-15T17:30:38", "cmd": "check", "argv": ["check", "--changed"], "exit": 0, "ms": 394, "extra": {"unlocked": 0, "parked": 0, "hints": 0}}
+{"ts": "2026-08-15T17:45:05", "cmd": "check", "argv": ["check", "--changed"], "exit": 2, "ms": 435, "extra": {"unlocked": 1, "parked": 0, "hints": 0}}
+{"ts": "2026-08-15T17:45:50", "cmd": "why", "argv": ["why", "wreath-not-sofic"], "exit": 0, "ms": 96}
+{"ts": "2026-08-15T17:45:50", "cmd": "why", "argv": ["why", "literal-group-sofic"], "exit": 0, "ms": 29}
+{"ts": "2026-08-15T17:45:50", "cmd": "search", "argv": ["search", "sofic wreath MF"], "exit": 0, "ms": 63}
+{"ts": "2026-08-15T17:46:27", "cmd": "search", "argv": ["search", "commuting lamp quotient sofic", "--similar"], "exit": 0, "ms": 103}
+{"ts": "2026-08-15T17:46:49", "cmd": "why", "argv": ["why", "sign-free-quotient-sofic"], "exit": 0, "ms": 94}
+{"ts": "2026-08-15T17:46:49", "cmd": "why", "argv": ["why", "commuting-lamp-quotient-not-mf"], "exit": 0, "ms": 29}
+{"ts": "2026-08-15T17:47:18", "cmd": "search", "argv": ["search", "sofic group not MF exists headline"], "exit": 0, "ms": 123}
+{"ts": "2026-08-15T18:00:23", "cmd": "check", "argv": ["check", "--changed"], "exit": 2, "ms": 504, "extra": {"unlocked": 1, "parked": 0, "hints": 0}}
+{"ts": "2026-08-15T18:01:06", "cmd": "check", "argv": ["check", "--changed"], "exit": 2, "ms": 511, "extra": {"unlocked": 1, "parked": 0, "hints": 0}}
+{"ts": "2026-08-15T18:03:45", "cmd": "check", "argv": ["check", "--changed"], "exit": 2, "ms": 506, "extra": {"unlocked": 1, "parked": 1, "hints": 1}}
+{"ts": "2026-08-15T18:03:55", "cmd": "check", "argv": ["check", "--changed"], "exit": 2, "ms": 521, "extra": {"unlocked": 2, "parked": 0, "hints": 0}}
+{"ts": "2026-08-15T18:04:21", "cmd": "check", "argv": ["check", "--changed"], "exit": 2, "ms": 422, "extra": {"unlocked": 2, "parked": 0, "hints": 0}}
+{"ts": "2026-08-15T18:04:30", "cmd": "check", "argv": ["check", "--changed"], "exit": 2, "ms": 426, "extra": {"unlocked": 2, "parked": 0, "hints": 0}}
+{"ts": "2026-08-15T18:04:32", "cmd": "why", "argv": ["why", "finitely-presented-sofic-non-mf"], "exit": 0, "ms": 40}
+{"ts": "2026-08-15T18:05:02", "cmd": "check", "argv": ["check", "--changed"], "exit": 2, "ms": 447, "extra": {"unlocked": 2, "parked": 0, "hints": 0}}
+{"ts": "2026-08-15T18:06:10", "cmd": "check", "argv": ["check", "--changed"], "exit": 0, "ms": 461, "extra": {"unlocked": 2, "parked": 0, "hints": 0}}
+{"ts": "2026-08-15T18:08:10", "cmd": "check", "argv": ["check"], "exit": 0, "ms": 629, "extra": {"unlocked": 0, "parked": 0, "hints": 0}}
+{"ts": "2026-08-15T18:08:10", "cmd": "why", "argv": ["why", "wreath-sofic-not-mf"], "exit": 0, "ms": 33}
+{"ts": "2026-08-16T08:51:07", "cmd": "status", "argv": ["status"], "exit": 0, "ms": 107}
+{"ts": "2026-08-16T08:51:16", "cmd": "search", "argv": ["search", "MF radical exact telescope kernel"], "exit": 0, "ms": 140}
+{"ts": "2026-08-16T08:51:17", "cmd": "search", "argv": ["search", "finite index subgroup induction corona"], "exit": 0, "ms": 137}
+{"ts": "2026-08-16T08:52:39", "cmd": "why", "argv": ["why", "wreath-compression-mf-radical"], "exit": 0, "ms": 111}
+{"ts": "2026-08-16T08:52:39", "cmd": "why", "argv": ["why", "mf-radical-functoriality"], "exit": 0, "ms": 40}
+{"ts": "2026-08-16T08:52:39", "cmd": "why", "argv": ["why", "scaled-kazhdan-transport"], "exit": 0, "ms": 30}
+{"ts": "2026-08-16T08:52:39", "cmd": "why", "argv": ["why", "compression-torsion-collapse-assembly"], "exit": 0, "ms": 29}
+{"ts": "2026-08-16T08:52:39", "cmd": "why", "argv": ["why", "multi-mover-collapse-criterion"], "exit": 0, "ms": 34}
+{"ts": "2026-08-16T08:52:40", "cmd": "why", "argv": ["why", "literal-quotient-computes-mf-radical"], "exit": 0, "ms": 31}
+{"ts": "2026-08-16T08:52:40", "cmd": "why", "argv": ["why", "corona-hs-radical-is-finite-residual"], "exit": 0, "ms": 29}
+{"ts": "2026-08-16T09:04:09", "cmd": "why", "argv": ["why", "torsion-free-finitely-presented-non-mf"], "exit": 0, "ms": 102}
+{"ts": "2026-08-16T09:08:02", "cmd": "check", "argv": ["check"], "exit": 0, "ms": 1138, "extra": {"unlocked": 13, "parked": 0, "hints": 0}}
+{"ts": "2026-08-16T09:08:15", "cmd": "check", "argv": ["check"], "exit": 0, "ms": 1098, "extra": {"unlocked": 13, "parked": 0, "hints": 0}}
+{"ts": "2026-08-16T09:09:31", "cmd": "check", "argv": ["check", "--changed"], "exit": 0, "ms": 742, "extra": {"unlocked": 13, "parked": 0, "hints": 0}}
+{"ts": "2026-08-16T09:09:39", "cmd": "check", "argv": ["check", "--changed"], "exit": 0, "ms": 672, "extra": {"unlocked": 13, "parked": 0, "hints": 0}}
+{"ts": "2026-08-16T09:09:39", "cmd": "check", "argv": ["check", "--changed"], "exit": 0, "ms": 660, "extra": {"unlocked": 13, "parked": 0, "hints": 0}}
+{"ts": "2026-08-16T09:09:50", "cmd": "why", "argv": ["why", "alternating-lamp-noncommensurable-family"], "exit": 0, "ms": 95}
+{"ts": "2026-08-16T09:09:50", "cmd": "why", "argv": ["why", "multi-mover-collapse-criterion"], "exit": 0, "ms": 31}
+{"ts": "2026-08-16T09:10:23", "cmd": "check", "argv": ["check", "--changed"], "exit": 0, "ms": 744, "extra": {"unlocked": 13, "parked": 0, "hints": 0}}
+{"ts": "2026-08-16T09:10:23", "cmd": "status", "argv": ["status"], "exit": 0, "ms": 36}
+{"ts": "2026-08-17T14:18:14", "cmd": "status", "argv": ["status"], "exit": 0, "ms": 173}
+{"ts": "2026-08-17T14:18:15", "cmd": "search", "argv": ["search", "Pestov Question"], "exit": 0, "ms": 113}
+{"ts": "2026-08-17T14:18:15", "cmd": "search", "argv": ["search", "open problem named"], "exit": 0, "ms": 114}
+{"ts": "2026-08-17T14:18:36", "cmd": "search", "argv": ["search", "MF conjecture Kirchberg countable group MF"], "exit": 0, "ms": 205}
+{"ts": "2026-08-17T14:18:36", "cmd": "why", "argv": ["why", "pestov-question-5-3-negative"], "exit": 0, "ms": 54}
+{"ts": "2026-08-17T14:18:53", "cmd": "status", "argv": ["status"], "exit": 0, "ms": 147}
+{"ts": "2026-08-17T14:26:27", "cmd": "search", "argv": ["search", ""], "exit": 0, "ms": 254}
+{"ts": "2026-08-17T14:28:10", "cmd": "why", "argv": ["why", "weakly-sofic-not-sofic"], "exit": 0, "ms": 112}
+{"ts": "2026-08-17T14:28:27", "cmd": "why", "argv": ["why", "hyperlinear-trace-not-mf-trace"], "exit": 0, "ms": 146}
+{"ts": "2026-08-17T14:28:27", "cmd": "why", "argv": ["why", "kun-thom-clifford-cover-weakly-sofic"], "exit": 0, "ms": 54}
+{"ts": "2026-08-17T14:33:33", "cmd": "check", "argv": ["check"], "exit": 0, "ms": 461, "extra": {"unlocked": 0, "parked": 0, "hints": 0}}
+{"ts": "2026-08-17T14:33:34", "cmd": "check", "argv": ["check"], "exit": 0, "ms": 385, "extra": {"unlocked": 0, "parked": 0, "hints": 0}}
+{"ts": "2026-08-17T14:33:34", "cmd": "check", "argv": ["check"], "exit": 0, "ms": 326, "extra": {"unlocked": 0, "parked": 0, "hints": 0}}
+{"ts": "2026-08-17T14:35:52", "cmd": "check", "argv": ["check"], "exit": 0, "ms": 380, "extra": {"unlocked": 0, "parked": 0, "hints": 0}}
+{"ts": "2026-08-17T14:35:53", "cmd": "check", "argv": ["check"], "exit": 0, "ms": 277, "extra": {"unlocked": 0, "parked": 0, "hints": 0}}
+{"ts": "2026-08-17T14:37:44", "cmd": "status", "argv": ["status"], "exit": 0, "ms": 159}
+{"ts": "2026-08-17T14:42:54", "cmd": "check", "argv": ["check"], "exit": 0, "ms": 945, "extra": {"unlocked": 0, "parked": 0, "hints": 0}}
+{"ts": "2026-08-17T14:42:55", "cmd": "check", "argv": ["check"], "exit": 0, "ms": 622, "extra": {"unlocked": 0, "parked": 0, "hints": 0}}
+{"ts": "2026-08-17T14:43:44", "cmd": "check", "argv": ["check"], "exit": 0, "ms": 680, "extra": {"unlocked": 0, "parked": 0, "hints": 0}}
+{"ts": "2026-08-17T14:44:34", "cmd": "check", "argv": ["check"], "exit": 0, "ms": 1055, "extra": {"unlocked": 0, "parked": 0, "hints": 0}}

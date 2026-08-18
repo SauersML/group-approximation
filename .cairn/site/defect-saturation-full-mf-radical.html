@@ -1,0 +1,21 @@
+<!doctype html><meta charset='utf-8'><title>defect-saturation-full-mf-radical</title><style>
+body{font:15px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;max-width:60em;margin:2em auto;padding:0 1em;color:#1c1e1c}
+a{color:#4f46e5;text-decoration:none}a:hover{text-decoration:underline}
+code,pre{font:13px/1.45 Menlo,monospace;background:#f4f4f2}
+pre{padding:.8em;overflow-x:auto;border:1px solid #e5e7e3}
+.badge{display:inline-block;padding:.1em .55em;border-radius:.8em;color:#fff;font:700 11px -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;letter-spacing:.04em}
+.node{font:13px Menlo,monospace}
+h1{font-size:1.4em}h2{font-size:1.05em;border-bottom:1px solid #e5e7e3;padding-bottom:.2em}
+ul.rel{list-style:none;padding-left:0}ul.rel li{margin:.25em 0}
+.muted{color:#8b9089}.tree{white-space:pre;font:13px/1.5 Menlo,monospace;background:#fafaf8;border:1px solid #e5e7e3;padding:1em;overflow-x:auto}
+table{border-collapse:collapse}td,th{border:1px solid #e5e7e3;padding:.25em .6em;font-size:.9em}
+</style><script>MathJax={tex:{inlineMath:[["$","$"],["\\(","\\)"]]}};</script><script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script><body><p><a href='index.html'>← index</a></p>
+<h1><span class='node'>defect-saturation-full-mf-radical</span> Defect saturation gives groups with full MF radical</h1>
+<p><span class="badge" style="background:#c08a00">OPEN</span> <span class='muted'>claim · <code>research/defect-saturation-full-mf-radical.md</code></span></p>
+<h2>Artifacts</h2><ul class='rel'>
+<li><code>docs/COMPRESSION_COLLAPSE_MF_RADICAL.md</code></li>
+<li><code>GroupApproximation/Sofic/DefectSaturation.lean</code></li>
+</ul>
+<h2>Statement</h2>
+<p>Credit: the small-cancellation route is Fournier-Facio's suggestion (personal communication 2026-08-14, "analogously to what I do in arXiv:2608.02025"); the saturation/full-radical framing is a session development of that idea (GPT-5.6-assisted), unrefereed.</p>
+<p>Claim: there is a 2-generated finitely presented torsion-free property-(T) acylindrically hyperbolic group G whose compression defect is all of G, so that (by the in-repo normalKazhdan_le_normMFResidual) Rad_MF(G) = G: every homomorphism to an MF group is trivial and every nontrivial quotient is non-MF.  Route: FF's arXiv:2608.02025 compression configuration + a Hull Theorem 7.1 quotient making the surviving simple subgroup normally generate.  The Lean plumbing (saturation implies full radical, black-hole quotient triviality, non-MF-ness) is now machine-checked unconditionally in GroupApproximation/Sofic/DefectSaturation.lean; the existence input still needs a Hull/Osin small-cancellation formalization program.</p></body>

@@ -1,0 +1,32 @@
+<!doctype html><meta charset='utf-8'><title>corona-corner-detection-criterion</title><style>
+body{font:15px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;max-width:60em;margin:2em auto;padding:0 1em;color:#1c1e1c}
+a{color:#4f46e5;text-decoration:none}a:hover{text-decoration:underline}
+code,pre{font:13px/1.45 Menlo,monospace;background:#f4f4f2}
+pre{padding:.8em;overflow-x:auto;border:1px solid #e5e7e3}
+.badge{display:inline-block;padding:.1em .55em;border-radius:.8em;color:#fff;font:700 11px -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;letter-spacing:.04em}
+.node{font:13px Menlo,monospace}
+h1{font-size:1.4em}h2{font-size:1.05em;border-bottom:1px solid #e5e7e3;padding-bottom:.2em}
+ul.rel{list-style:none;padding-left:0}ul.rel li{margin:.25em 0}
+.muted{color:#8b9089}.tree{white-space:pre;font:13px/1.5 Menlo,monospace;background:#fafaf8;border:1px solid #e5e7e3;padding:1em;overflow-x:auto}
+table{border-collapse:collapse}td,th{border:1px solid #e5e7e3;padding:.25em .6em;font-size:.9em}
+</style><script>MathJax={tex:{inlineMath:[["$","$"],["\\(","\\)"]]}};</script><script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script><body><p><a href='index.html'>← index</a></p>
+<h1><span class='node'>corona-corner-detection-criterion</span> Corner-detection criterion for a central defect square of any order</h1>
+<p><span class="badge" style="background:#178a5e">ESTABLISHED</span> <span class='muted'>claim · <code>research/corona-corner-detection-criterion.md</code></span></p>
+<p class='muted'>via route corona-corner-detection-criterion-proof</p>
+<h2>Routes into this claim</h2><ul class='rel'>
+<li><a class="node" href="corona-corner-detection-criterion-proof.html">corona-corner-detection-criterion-proof</a> <span class="badge" style="background:#178a5e">COMPLETE</span> Run transport inside an arbitrary commutant corner and cut the spectrum</li>
+</ul>
+<h2>Distinct from</h2><ul class='rel'>
+<li><a class="node" href="central-sign-corona-obstruction.html">central-sign-corona-obstruction</a> <span class="badge" style="background:#178a5e">ESTABLISHED</span> Central-sign obstruction to norm-matrix-corona embeddings<br><span class='muted'>that claim is the order-two case and concludes that the mark dies; this one drops the order hypothesis, concludes only a corner-detection dichotomy, and isolates the single step where finite order was used.</span></li>
+<li><a class="node" href="finite-normal-compression-obstruction.html">finite-normal-compression-obstruction</a> <span class="badge" style="background:#178a5e">ESTABLISHED</span> Finite-normal obstruction from the compression radical<br><span class='muted'>that claim averages over a finite normal subgroup; this one keeps a single central element and replaces finiteness by a spectral-gap request.</span></li>
+<li><a class="node" href="thom-central-corner-criterion.html">thom-central-corner-criterion</a> <span class="badge" style="background:#178a5e">ESTABLISHED</span> Thom&#x27;s central-corner criterion and central-quotient descent<br><span class='muted'>that is a published positive criterion characterising hyperlinearity by embeddability of every twisted central corner; this one is a negative criterion about corona corners of a compression defect square and says nothing about traces being faithful.</span></li>
+<li><a class="node" href="normal-kazhdan-defect-non-mf.html">normal-kazhdan-defect-non-mf</a> <span class="badge" style="background:#178a5e">ESTABLISHED</span> A normal Kazhdan subgroup in the compression defect kills every corona representation<br><span class='muted'>that claim gets its corner from the Kazhdan projection of a normal subgroup and concludes non-MF outright; this one analyses what corners the mark itself can supply and stops at a dichotomy.</span></li>
+</ul>
+<h2>Artifacts</h2><ul class='rel'>
+<li><code>non_mf_groups_exist.tex</code></li>
+</ul>
+<h2>Statement</h2>
+<p>Let <code>Gamma</code> have property (T), let <code>iota: Gamma -&gt; H</code>, let <code>t iota(Gamma) t^-1 &lt;= iota(Gamma)</code> and <code>[c, iota(Gamma)] = 1</code>, put <code>d = t c t^-1</code>, <code>u = [d, iota(a)]</code> for <code>a in Gamma</code>, and let <code>eps = u^2</code> lie in <code>Z(H)</code>.  <strong>No order hypothesis on <code>eps</code>.</strong>  Let <code>Theta: H -&gt; U(Q)</code> be any corona representation and let <code>B = Theta(H)' cap Q</code> be the relative commutant.  Then:</p>
+<p>1. for every nonzero projection <code>q in B</code>, the corner representation satisfies <code>‖q Theta(x) q - q‖_2 = 0</code> in the corner's own normalized trace, for every <code>x</code> in the normal closure of <code>u</code> — in particular for <code>x = eps</code>; 2. hence <code>sp(Theta(eps))</code> is a connected closed subset of the circle containing <code>1</code> — a closed arc through <code>1</code>, or the whole circle, or <code>{1}</code>; 3. hence <code>Theta(eps) = 1</code> as soon as there are a nonzero projection <code>q in B</code> and a scalar <code>lambda</code> with <code>‖(Theta(eps) - lambda) q‖ &lt; |lambda - 1|</code>.</p>
+<p>Clause 3 with <code>eps</code> of finite order is the central-sign criterion: a finite-order unitary has finite spectrum, so the required <code>q</code> is the spectral projection of <code>Theta(eps)</code> at any <code>lambda != 1</code> in its spectrum, and it lies in <code>C*(Theta(eps)) &lt;= B</code>.</p>
+<p><strong>This is the exact place, and the only place, where torsion enters the mechanism.</strong>  Everything preceding clause 3 — the presentation, property (T), one-sided compression, Kazhdan transport, the corner reduction — is insensitive to the order of <code>eps</code>.  Finite order is consumed solely as a supply of projections in <code>B</code> that separate <code>Theta(eps)</code> from <code>1</code>; see <code><a href="commutant-projection-extraction.html">commutant-projection-extraction</a></code> for the residual question, and <code><a href="hs-invisibility-inflation-no-go.html">hs-invisibility-inflation-no-go</a></code> for why some corner is mandatory.</p></body>

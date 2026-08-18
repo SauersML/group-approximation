@@ -1,0 +1,32 @@
+<!doctype html><meta charset='utf-8'><title>two-site-rigidity-of-lamp-witnesses-proof</title><style>
+body{font:15px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;max-width:60em;margin:2em auto;padding:0 1em;color:#1c1e1c}
+a{color:#4f46e5;text-decoration:none}a:hover{text-decoration:underline}
+code,pre{font:13px/1.45 Menlo,monospace;background:#f4f4f2}
+pre{padding:.8em;overflow-x:auto;border:1px solid #e5e7e3}
+.badge{display:inline-block;padding:.1em .55em;border-radius:.8em;color:#fff;font:700 11px -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;letter-spacing:.04em}
+.node{font:13px Menlo,monospace}
+h1{font-size:1.4em}h2{font-size:1.05em;border-bottom:1px solid #e5e7e3;padding-bottom:.2em}
+ul.rel{list-style:none;padding-left:0}ul.rel li{margin:.25em 0}
+.muted{color:#8b9089}.tree{white-space:pre;font:13px/1.5 Menlo,monospace;background:#fafaf8;border:1px solid #e5e7e3;padding:1em;overflow-x:auto}
+table{border-collapse:collapse}td,th{border:1px solid #e5e7e3;padding:.25em .6em;font-size:.9em}
+</style><script>MathJax={tex:{inlineMath:[["$","$"],["\\(","\\)"]]}};</script><script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script><body><p><a href='index.html'>← index</a></p>
+<h1><span class='node'>two-site-rigidity-of-lamp-witnesses-proof</span> Conjugate the marked pair onto the error pair and telescope in the square root</h1>
+<p><span class="badge" style="background:#178a5e">COMPLETE</span> <span class='muted'>route · <code>research/two-site-rigidity-of-lamp-witnesses-proof.md</code></span></p>
+<h2>Target</h2><ul class='rel'>
+<li><a class="node" href="two-site-rigidity-of-lamp-witnesses.html">two-site-rigidity-of-lamp-witnesses</a> <span class="badge" style="background:#178a5e">ESTABLISHED</span> A lamp-to-lamp weak-soficity witness separating the mark must be exactly covariant</li>
+</ul>
+<h2>Statement</h2>
+<h3>Direct proof</h3>
+<p>Throughout, <code>ell</code> is a bi-invariant length on a group <code>K</code>: conjugation invariant, symmetric, vanishing only at <code>1</code>.</p>
+<p><strong>1.</strong>  Two-transitivity of the conjugation action on <code>Y_n</code> gives, for any <code>p!=q</code> and <code>p'!=q'</code>, an element <code>k</code> with <code>k p = p'</code> and <code>k q = q'</code> as sites. Conjugation permutes the lamps accordingly, so <code>k (a_p a_q) k^(-1) = a_(p') a_(q')</code>, and invariance gives <code>ell_n(a_p a_q)=ell_n(a_(p') a_(q'))</code>.  Call the common value <code>lambda_n</code>. The mark has <code>sigma(w)=a_(j(o)) a_(j(h Gamma))</code>, which is a two-site element once <code>j(o) != j(h Gamma)</code> — and if those two sites coincided then <code>sigma(w)=1</code>, contradicting the separation.  So <code>lambda_n &gt;= c</code>.</p>
+<p><strong>2.</strong>  Write <code>e = sigma(g) sigma(a_u) sigma(g)^(-1) sigma(a_(gu))^(-1)</code>. Because the <code>sigma(g)</code> normalize the lamp subgroup by permuting sites, <code>sigma(g)sigma(a_u)sigma(g)^(-1) = a_(pi_n(g) j_n(u))</code>, so <code>e = a_(pi_n(g) j_n(u)) a_(j_n(gu))</code>.  If the two sites differ, <code>e</code> is a two-site element and <code>ell_n(e)=lambda_n &gt;= c</code>.</p>
+<p>On the other hand <code>g a_u g^(-1) a_(gu)^(-1) = 1</code> holds in <code>W</code>, so <code>e</code> is the discrepancy of <code>sigma</code> along a word of length four in the window.  Now <code>sqrt(ell_n)</code> satisfies the triangle inequality: conditional negative definiteness of the kernel <code>ell_n(a^(-1)b)</code> means it equals <code>||f(a)-f(b)||^2</code> for some map <code>f</code> into a Hilbert space, so <code>sqrt(ell_n)(a^(-1)b)=||f(a)-f(b)||</code> is a pseudometric, and it is bi-invariant because <code>ell_n</code> is.  Telescoping the four multiplications, each contributing at most <code>sqrt(delta)</code>, gives <code>sqrt(ell_n(e)) &lt;= 3 sqrt(delta)</code>, hence <code>ell_n(e) &lt;= 9 delta -&gt; 0</code>.  This contradicts <code>ell_n(e) &gt;= c</code> unless the two sites agree, which is the asserted exact covariance.</p>
+<p><strong>3.</strong>  <code>w = a_o (g a_o g^(-1))</code> for any <code>g</code> with <code>g o = h Gamma</code>.  Applying the triangle inequality for <code>sqrt(ell_n)</code> to this product and using conjugation invariance,</p>
+<pre>
+sqrt(ell_n(sigma(w))) &lt;= 2 sqrt(ell_n(sigma(a_o))) + O(sqrt(delta)),
+</pre>
+<p>so <code>ell_n(sigma(a_o)) &gt;= c/4</code> in the limit.  All lamps are conjugate, so this holds for every lamp.</p>
+<h3>Scope</h3>
+<p>Step 1 and step 3 need only bi-invariance and, for step 3, the conditional negative definiteness that makes <code>sqrt(ell_n)</code> a pseudometric — so step 3 applies to exactly the witnesses the Hilbert embeddability question is about, while a general weakly sofic witness has the triangle inequality outright and gets the better constant <code>c/2</code>.</p>
+<p>What is <em>not</em> proved here: that no such witness exists.  Exact covariance on a finite window is cheap to arrange on its own — take the site set to be the window and extend the partial permutations arbitrarily — so step 2 is a constraint on the shape of a witness, not a refutation.</p>
+<p><strong>The refutation route I flagged here is now closed, negatively.</strong>  It was that the character-gap corollary of <code><a href="hilbert-embeddable-length-hyperlinearity.html">hilbert-embeddable-length-hyperlinearity</a></code> might apply to the acting part, which by step 2 carries the whole defect, and force an exact local homomorphism.  <code><a href="lamp-character-orbit-separation.html">lamp-character-orbit-separation</a></code> settles it: splitting the cone by whether an irreducible is inflated from the acting quotient, Clifford theory bounds the non-inflated part from below <strong>only on the lamp subgroup</strong>, and step 2 says there is no defect there.  So the two theorems are consistent and their combination yields no obstruction at all. The gap I recorded — that <code>K_n</code> has no character gap because inflated characters die on the lamps — turned out to be a decomposition rather than a defect in the argument, and the argument still does not close.  Recording that as a negative rather than leaving the direction looking promising is the point of this paragraph.</p></body>
