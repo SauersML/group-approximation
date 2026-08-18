@@ -42,6 +42,17 @@ those produce permutation normalizers and Corollary D forbids those. That is
 the exact content of the open quadrant in `hyperlinear-wreath-model`, and it is
 now a derived boundary rather than an impression.
 
+## A published question this closes
+
+This node is not only an internal obstruction. Fed through the diagonal-coset
+construction (`nonsofic-orbit-forces-commuting-counterexample`, instantiated
+by `commuting-counterexample-from-kun-thom-pair`), it answers **Question 4.2**
+of Gao–Kunnawalkam Elayavalli–Patchell in the negative:
+`commuting-sofic-actions-need-not-combine` — two commuting free sofic actions
+of the sofic group `G` on `(G × G)/ΔΓ` whose combined `G × G`-action is not
+sofic. That is the first published consequence of this fact outside the
+wreath-product program it was built for.
+
 ## Note on the escape hatch that does not exist
 
 The one known sufficient condition for an action to be sofic is amenable point

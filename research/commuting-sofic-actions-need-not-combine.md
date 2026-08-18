@@ -77,7 +77,13 @@ Two layers, and they are not the same strength.
   or Theorem E falls, this claim falls with it and the transfer principle
   survives untouched.
 
-Nothing here is formalized in Lean.
+The group-theoretic core of the construction — freeness of both coordinate
+actions for every subgroup, their commutation and combination, and the
+diagonal orbit being `G/H` with stabilizer exactly `H` — is kernel-checked in
+`GroupApproximation/Algebra/DiagonalCosetAction.lean`. The soficity transfers
+(GKP Theorem 2.14, Propositions 2.15 and 2.16) and the Kun–Thom input are
+cited, not formalized, so the claim's trust surface is exactly the two papers
+above.
 
 ## Priority
 
@@ -112,3 +118,5 @@ is not on the critical path of `q3-4-resolved`: nothing in the hyperlinear/MF
 program depends on it, and it should not be wired into that cone. What it does
 is convert `coordinate-action-not-sofic` from an obstruction that only closes
 this repository's own routes into a fact with a published consequence.
+(`goal: true` was briefly considered on 2026-08-18 and rejected: goals are
+the program's open targets, and this is a closed external question — a root.)

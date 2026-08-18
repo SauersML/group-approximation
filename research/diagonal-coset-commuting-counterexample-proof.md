@@ -9,6 +9,7 @@ requires:
 artifacts:
   - research/artifacts/gkp-2401-04945-verified.md
   - research/artifacts/commuting-sofic-actions-note-2026-08-17.md
+  - GroupApproximation/Algebra/DiagonalCosetAction.lean
 ---
 
 # Split the bad coset space into two free coordinate actions
@@ -105,6 +106,22 @@ Suppose the combined action `α : G × G ↷ X` were sofic.
 
 Hence `G ↷ G/H` is sofic, contradicting the hypothesis. Therefore `α` is not
 sofic, while `α_1` and `α_2` are. `□`
+
+## The bookkeeping is kernel-checked
+
+Every group-theoretic step of this route is formalized in
+`GroupApproximation/Algebra/DiagonalCosetAction.lean` (2026-08-18, in the
+root import closure, axiom-clean): Step 1 is `eq_one_of_fst_smul_fixed` /
+`eq_one_of_snd_smul_fixed` — freeness for **every** subgroup `H`, the
+trivial-coordinate trick included; the commutation and combination identities
+of the Setup are `fst_smul_snd_smul_comm` / `fst_smul_snd_smul` /
+`snd_smul_fst_smul`; Step 3 is `diagOrbitMap` with `diagOrbitMap_injective`,
+`diagOrbitMap_smul`, `mem_range_diagOrbitMap` and
+`diag_smul_base_eq_base_iff` (stabilizer of the base coset is exactly `H`).
+What is *not* formalized is every appeal to soficity: Theorem 2.14,
+Propositions 2.15(2)(3), 2.16 and the isomorphism-invariance of sofic
+actions remain cited from `gkp-sofic-action-toolkit`. So the machine checks
+the construction, and the two papers carry the transfer.
 
 ## Where the strength sits
 
