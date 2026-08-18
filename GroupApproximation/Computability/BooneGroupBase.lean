@@ -308,7 +308,7 @@ theorem shiftAut_of (h p : ℤ × ℤ) :
   rfl
 
 /-- The action of `ℤ²` on `T`, as a homomorphism into `MulAut T`.  The pattern
-follows `GroupApproximation.PermutationalWreath.lampActionHom`. -/
+follows `GroupApproximation.lampActionHom`. -/
 def shiftHom : Multiplicative (ℤ × ℤ) →* MulAut (FreeGroup (ℤ × ℤ)) where
   toFun h := shiftAut (Multiplicative.toAdd h)
   map_one' := by
