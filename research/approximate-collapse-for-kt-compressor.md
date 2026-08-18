@@ -295,15 +295,37 @@ recorded from the fork's report, self-contained).**
    Consistent one level up with the vanguard's
    finite-dimensional-commutant theorem: bounded commutant ⟹ rigid,
    now quantitatively at every finite stage.
-3. **The exact battle line.**  Both obstructions provably fail
-   together only on towers where `dim π_k(Γ)'` GROWS — which is
-   exactly what the flexible seed's macroscopic orbit structure
-   supplies (its witness needs `D_Λ ≥` the orbit-pair count).  The
-   crux, final form: on separating towers with growing commutant
-   dimension, does the compressor admit approximate implementation?
-   Characters (girth), dimension counting (Kazhdan), and every
-   fenced shortcut are all neutral there; whatever decides it is
-   genuinely new.
+3. **The obstruction in ratio form, and the seed's base level is
+   REFUTED by it.**  Bessel over an orthonormal basis of the twist's
+   invariants gives `D_Λ(1−δ)² ≤ D_Γ`, i.e.
+
+   ```text
+   defect ε ≥ (κ/|S|)·(1 − √(D_Γ/D_Λ)) :
+   ```
+
+   the compressor is unimplementable unless the commutant-dimension
+   RATIO `D_Λ/D_Γ → 1`.  On the seed's own space
+   `ℓ²(Q₂/π(Λ))`: `D_Γ = #(P\Q/P) = 16` (the computed orbit count)
+   while `D_Λ = Σ_{i,j} #(P`-orbits on `O_i × O_j) ≥ 168` (the free
+   orbit alone contributes ≥ 168), ratio ≥ 10, so ANY `T₂` on that
+   space has defect `≥ (1 − √(16/168))·κ/|S| ≈ 0.69·κ/|S|`.  The
+   m-adic quasi-regular seed AS CONSTRUCTED is dead at its base
+   level; whether the ratio stays `≫ 1` along the tower is a finite
+   computation expected to confirm (both dimensions are double-coset
+   counts, and the free part grows).
+4. **The needle, final form.**  A flexible construction must supply
+   separating towers with `D_Λ/D_Γ → 1` — vanishing RELATIVE
+   commutant excess in dimension — while a mass-`Θ(1)` element sits
+   in the excess (one extra dimension may carry macroscopic mass, so
+   the trio is not self-contradictory, but every natural
+   quasi-regular construction fails it).  Rigid side: prove
+   separation forces the ratio bounded away from 1 — a
+   representation-theoretic statement about the pair `(Γ, Λ)` on
+   finite quotient towers, now the sharpest known sufficient
+   condition for (CCR) on genuine towers, and plausibly attackable
+   with double-coset combinatorics.  Characters (girth-neutralized),
+   plain dimension counting, and all fences are otherwise neutral;
+   this ratio dichotomy is the live front.
 
 **Stakes, stated once:** a proof refutes hyperlinearity of the
 Kun–Thom wreath group (first non-hyperlinear group; group-CEP
