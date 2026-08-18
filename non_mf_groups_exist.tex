@@ -225,39 +225,24 @@ MF $C^*$-algebra.
 
 \subsection*{Outline of the proof}
 
-All approximation errors are measured in operator norm.  The
-normalized Hilbert--Schmidt norm is used for the Hilbert spaces on
-which the conjugation representations act.
-
-Regard
-$M_d(\C)$ as the Hilbert space $L^2(M_d(\C),\tr_d)$, on which
-conjugation by a unitary acts unitarily.  For unitaries $u_1,u_2$,
-uniformly in $d$,
-\[
- \bigl\lVert\Ad u_1-\Ad u_2\bigr\rVert_{B(L^2(M_d(\C),\tr_d))}
- \;\le\;2\,\opnorm{u_1-u_2},
-\]
-so conjugation turns an operator-norm asymptotic representation into an
-operator-norm asymptotic representation on the Hilbert--Schmidt spaces.
-
-Let $\Gamma$ have property~\textup{(T)}, let $\iota\colon\Gamma\to H$ be
-a homomorphism, and let $t,c\in H$ satisfy
+All approximation errors are measured in operator norm.  Let $\Gamma$
+have property~\textup{(T)}, let $\iota\colon\Gamma\to H$ be a
+homomorphism, and let $t,c\in H$ satisfy
 \[
  t\,\iota(\Gamma)\,t^{-1}\subseteq\iota(\Gamma),\qquad
  [c,\iota(\Gamma)]=1 .
 \]
-In a norm ultraproduct $B_\omega$ of the blocks, the classes
-$\pi(g)=[\Ad U_n(g)]_\omega$ define a unitary representation of $H$.
-Property~\textup{(T)} gives a spectral gap for the Hermitian average
-$h$ of the generators on the orthogonal complement of the
-$\iota(\Gamma)$-invariant vectors.  Thus the spectral projection
-$P=\chi_{\{1\}}(h)$ belongs to $B_\omega$ and projects onto the
-invariant subspace.  Writing
-$V=\pi(t)$, the inclusion above implies $P\le VPV^*$; the two
-projections are Murray--von Neumann equivalent, and $B_\omega$ is
-finite, so $P=VPV^*$.  Hence conjugation by $t$ preserves
-the asymptotic commutant of $\iota(\Gamma)$ in normalized
-Hilbert--Schmidt norm (Theorem~\ref{thm:kazhdan-transport}).
+Conjugation by unitaries turns an operator-norm asymptotic
+representation $(U_n)$ of $H$ into one on the Hilbert--Schmidt spaces
+$L^2(M_{d_n}(\C),\tr_{d_n})$.  In a norm ultraproduct of these
+actions, property~\textup{(T)} realizes the projection $P$ onto the
+$\iota(\Gamma)$-invariant vectors as a spectral projection lying in
+the ultraproduct algebra; the inclusion above gives $P\le VPV^*$ for
+$V=[\Ad U_n(t)]_\omega$, the two projections are Murray--von Neumann
+equivalent, and the ultraproduct is a finite $C^*$-algebra, so they
+are equal.  Hence conjugation by $t$ preserves the asymptotic
+commutant of $\iota(\Gamma)$ in normalized Hilbert--Schmidt norm
+(Theorem~\ref{thm:kazhdan-transport}).
 
 Put $d=tct^{-1}$ and $u=[\,d,\iota(a)\,]$ for $a\in\Gamma$.  Since $c$
 commutes with $\iota(\Gamma)$, the sequence $(U_n(c))$ lies in that
@@ -302,36 +287,18 @@ Taking
 \]
 gives the group $E$ of Theorem~\ref{thm:A}.
 
-The same one-sided inclusion also yields exact finite-dimensional
-statements.  For a homomorphism $\pi$ to a finite
-group, $\pi(t\Gamma t^{-1})=\pi(\Gamma)$, since the left side is a
-conjugate of the right side contained in it and the two are finite of
-the same cardinality; so $\pi(tct^{-1})$ centralizes $\pi(\Gamma)$ and
-every commutator $[\,tct^{-1},a\,]$ with $a\in\Gamma$ lies in
-$\ker\pi$.  For a finite-dimensional representation over any field the
-same conclusion holds with the commutant $C$ of $\pi(\Gamma)$ in place
-of the subgroup: the inclusion gives $C\subseteq\pi(t)\,C\,\pi(t)^{-1}$
-between subspaces of equal finite dimension, hence equality, and
-$\pi(c)\in C$ then puts $\pi(tct^{-1})$ in $C$
-(Theorem~\ref{thm:exactfd}).  In the norm-ultraproduct argument,
-finiteness gives the corresponding conclusion: the equivalent
-projections $P\le VPV^*$ are equal.
+Property~\textup{(T)} is used only for the subgroup $\iota(\Gamma)$:
+the group $E$ itself maps onto $\mathbb Z$ by sending $t$ to $1$ and
+every other generator to $0$, and therefore does not have
+property~\textup{(T)}.  An exact finite-dimensional counterpart of
+the commutant argument, with equality of dimensions in place of
+finiteness of the ultraproduct, is Theorem~\ref{thm:exactfd}.
 
-The argument uses property~\textup{(T)} for the subgroup
-$\iota(\Gamma)$.  The group $E$ itself maps onto $\mathbb Z$ by
-sending $t$ to $1$ and every other generator to $0$, and therefore
-does not have property~\textup{(T)}.
-
-The reduced group
-$C^*$-algebra $\Cred(E)$ is separable and stably finite but not MF
-(Theorem~\ref{thm:reduced}); it is also exact.  The group $E$ is sofic
-(Theorem~\ref{thm:Esofic}), so neither soficity nor hyperlinearity
-implies the MF property.  Moreover, the canonical trace on $\Cmax(E)$
-is hyperlinear but not MF (Theorem~\ref{thm:trace}), giving a negative
-answer to Shulman's question whether every hyperlinear trace is MF
-\cite{ShulmanTraces}.  The
-quotient $E/\langle w\rangle$ is not MF either, so $\{1,w\}$ is a proper
-subgroup of the MF residual of $E$ (Theorem~\ref{thm:signfree}).
+The group $E$ is sofic (Theorem~\ref{thm:Esofic}), so neither
+soficity nor hyperlinearity implies the MF property, and the
+canonical trace on $\Cmax(E)$ is hyperlinear but not MF
+(Theorem~\ref{thm:trace}).  Section~\ref{sec:position} develops these
+and the remaining consequences.
 
 \subsection*{Relation to prior work}
 
@@ -371,10 +338,11 @@ group was constructed in \cite{OAI}, Fournier-Facio then gave a
 torsion-free example \cite{FFF}, and Kun--Thom developed further
 wreath-product examples \cite{KT}.  The present paper answers the third
 negatively; at the time of writing the hyperlinear problem is open.
-Our construction likewise uses a property-\textup{(T)} subgroup
-$\Gamma$ with $t\Gamma t^{-1}\subseteq\Gamma$.  In the operator-norm
-setting, conjugation by $t$ preserves the asymptotic commutant of
-$\Gamma$ in normalized Hilbert--Schmidt norm.
+The present construction shares one ingredient with those works, a
+property-\textup{(T)} subgroup $\Gamma$ with
+$t\Gamma t^{-1}\subseteq\Gamma$; the analytic mechanism is different,
+because in the operator-norm setting conjugation by $t$ preserves the
+asymptotic commutant of $\Gamma$ in normalized Hilbert--Schmidt norm.
 Throughout, ``MF'' is the operator-norm property of
 Carri\'on--Dadarlat--Eckhardt \cite{CDE}, in the form used by Shulman
 and by Bachner--Dogon--Lubotzky \cite{Shulman,BDL};
