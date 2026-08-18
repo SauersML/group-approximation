@@ -5,6 +5,7 @@ kind: claim
 title: Every finitely generated group with solvable word problem embeds in a finitely presented simple group
 root: true
 distinct_from:
+  boone-final-group-finitely-presented: that is one established fact about one constructed group -- the Boone tower's final group has a finite presentation; this is a universal embedding conjecture over all finitely generated groups with solvable word problem, and it requires the target to be SIMPLE, which that tower's final group is not.
   countable-group-embeds-in-two-generator-simple-group: that is Schupp's classical theorem, which is true and imposes no finiteness on the presentation of the envelope; this asks for the envelope to be finitely PRESENTED, which is exactly the part Schupp does not give and which fifty years of work have not supplied.
   simple-sofic-total-mf-radical: that asks for a countable simple sofic group whose MF radical is everything -- an approximation property of one constructed group; this is a universal embedding statement with no approximation content, and neither implies anything about the other.
   literal-word-problem-solvable: that computes the word problem of one specific group E built in this repository; this quantifies over all finitely generated groups with solvable word problem and asserts an envelope exists for each.

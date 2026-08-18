@@ -4,6 +4,9 @@ id: proper-normal-subgroups-miss-the-normally-generating-core
 kind: claim
 title: If a simple subgroup contains a normal generator of the ambient group, every proper normal subgroup meets it trivially
 distinct_from:
+  countable-group-embeds-in-two-generator-simple-group: that is an embedding theorem producing simple groups; this takes a simple subgroup as given and deduces that the ambient group's proper normal subgroups all avoid it, constructing nothing.
+  finite-infranormal-subgroup-is-normal: that is about finite subgroups and their normalizers; this is about intersections of arbitrary proper normal subgroups with a simple subgroup that is typically infinite, and uses no finiteness anywhere.
+  mf-finite-normal-tracially-visible: that says finite normal subgroups of an MF group are visible to traces, an approximation statement about finite subgroups; this says proper normal subgroups meet a simple core trivially, with no trace, no MF hypothesis and no finite subgroup.
   simple-lamp-radical-one-relation: that computes the MF radical of one concrete wreath group and shows it is the normal closure of a single lamp; this is a general lattice statement about ANY simple subgroup containing a normal generator, has no radical, no approximation property and no particular group in it.
   defect-normally-generates-torsion-free-quotient: that makes one specific compression defect normally generate a Kazhdan subgroup of a constructed quotient; this starts FROM a normal generator and deduces that the whole proper normal lattice avoids the simple subgroup containing it.
   boone-higman-thompson-simple-envelope: that is an embedding theorem producing a simple envelope; this is a lattice consequence of having such a core sitting inside a larger group, and it constructs nothing.

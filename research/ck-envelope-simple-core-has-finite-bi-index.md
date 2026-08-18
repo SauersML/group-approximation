@@ -4,6 +4,7 @@ id: ck-envelope-simple-core-has-finite-bi-index
 kind: claim
 title: The normal-generator envelope can be chosen so that the simple core has finitely many double cosets
 distinct_from:
+  finite-infranormal-subgroup-is-normal: that concerns finite subgroups and their normalizers; this concerns finiteness of a DOUBLE COSET SPACE of an infinite, non-normal subgroup, where neither the subgroup nor its index is finite.
   ck-envelope-has-a-finitely-normally-generated-maximal-kernel: that asks for a compactness property of the normal lattice of the envelope; this asks for a finiteness property of the double coset space of one subgroup pair. Neither implies the other by any argument found in this audit, and they feed different routes into the same target.
   simple-core-bi-index-counts-coset-action-pair-orbits: that PROVES the coset action is faithful and identifies its pair-orbits with double cosets, for any envelope; this asserts that the count can be made finite, which is the open part and is a statement about the construction rather than about the action.
 artifacts:
