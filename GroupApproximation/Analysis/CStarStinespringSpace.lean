@@ -45,7 +45,7 @@ open Finsupp
 
 universe u w
 
-variable {A : Type u} [NonUnitalCStarAlgebra A]
+variable {A : Type u} [CStarAlgebra A]
 variable {H : Type w} [NormedAddCommGroup H] [InnerProductSpace ℂ H]
 variable {φ : A →ₗ[ℂ] (H →L[ℂ] H)}
 
@@ -134,16 +134,17 @@ theorem stinespringSesq_self (hφ : IsCompletelyPositive φ) (f : A →₀ H) :
 finitely supported families `A →₀ H`, as a type synonym carrying the
 Stinespring form.  The parameters record which map (and which proof of
 its complete positivity) induces the geometry. -/
+set_option linter.unusedVariables false in
 @[nolint unusedArguments]
 def StinespringPre (φ : A →ₗ[ℂ] (H →L[ℂ] H))
     (hφ : IsCompletelyPositive φ) := A →₀ H
 
 variable (hφ : IsCompletelyPositive φ) in
-instance : AddCommGroup (StinespringPre φ hφ) :=
+noncomputable instance : AddCommGroup (StinespringPre φ hφ) :=
   inferInstanceAs (AddCommGroup (A →₀ H))
 
 variable (hφ : IsCompletelyPositive φ) in
-instance : Module ℂ (StinespringPre φ hφ) :=
+noncomputable instance : Module ℂ (StinespringPre φ hφ) :=
   inferInstanceAs (Module ℂ (A →₀ H))
 
 /-- The identification of the free model with the pre-space. -/
