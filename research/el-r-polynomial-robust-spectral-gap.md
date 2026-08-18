@@ -2,71 +2,69 @@
 rg: 2
 id: el-r-polynomial-robust-spectral-gap
 kind: claim
-title: Robust asymptotic spectral gap (or character rigidity) for the elementary group over the polynomial ring
+title: Robust asymptotic spectral gap for the elementary group over the polynomial ring
 distinct_from:
-  kt-centralizer-normalization-hs: that is the normalization/(CCR) question about commutants in ultraproducts; this is a representation-theoretic property of the single group Γ = EL_r(𝔽_q[x₁…x_d]) which, if established, would close that question's residue via published intertwiner-transport machinery.
-  leavitt-steinberg-hs-stable: that is normalized-HS stability of the Steinberg cover of the Leavitt unit group (the other fork); this is a strictly weaker-flavored robustness property of a different group, and Becker–Lubotzky FORBIDS full HS-stability for this Γ, so the two must not be conflated.
+  kt-centralizer-normalization-hs: that is the normalization/(CCR) question about commutants in ultraproducts; this is a representation-theoretic property of the single group Γ = EL_r(𝔽_q[x₁…x_d]), now closed by citation, which discharges that question's uniformity gap but not (AC) proper.
+  leavitt-steinberg-hs-stable: that is normalized-HS stability of the Steinberg cover (the other fork); this property is strictly weaker than stability — Becker–Lubotzky FORBIDS HS-stability for this Γ while (T) grants robustness for free, and Dogon–Vigdorovich print an explicit separation (𝔽₂×𝔽₂ is hyperfinitely HS-stable but not HS-stable).
 artifacts:
   - research/kt-centralizer-normalization-hs.md
 ---
 
-**Question (OPEN).**  Does `Γ = EL_r(𝔽_q[x₁…x_d])` (`r ≥ 3`, Kazhdan)
-have robust asymptotic spectral gap — Dogon–Vigdorovich `(T;FD)^rob`,
-arXiv:2506.20843: finite-dimensional ASYMPTOTIC representations have
-uniform spectral gap — or character rigidity?
+**Established (by citation — route
+`el-r-polynomial-robust-spectral-gap-citation`).**
+`Γ = EL_r(𝔽_q[x₁…x_d])` (`r ≥ 3`) has Dogon–Vigdorovich property
+`(T;FD)_rob` (arXiv:2506.20843v2, Def 7.5 / Prop 7.6): its
+finite-dimensional `‖·‖₂`-almost representations have uniform
+approximate spectral gap for the generator Laplacian `Δ_S`.
 
-**Why this is the named target.**  The 2026-08-18 literature sweep
-(verification ledger in `kt-centralizer-normalization-hs`, addendum h)
-found exactly one transportable proof mechanism for the (AC)/(CCR)
-residue, and it is NOT the sofic side's: Dogon–Vigdorovich's
-intertwiner transport (2506.20843 Lem 3.1 — exact intertwiners from
-generator-closeness — and Prop 3.3, its asymptotic version) plus
-de la Salle's quantitative spectral-gap Poincaré inequality
-(2204.07084, Lem 2.2, which runs through conditional expectations
-onto relative commutants).  Establishing `(T;FD)^rob` or character
-rigidity for this Γ would close (AC), completing
-`kt-centralizer-normalization-hs` and with it the rigidity route to a
-non-hyperlinear group.  Nobody has attempted it: Γ is not a lattice,
-so Bekka-type character rigidity (math/0609102), Peterson's methods,
-and the 2507.21862 higher-rank results do not reach it, and the
-literature contains NOTHING on HS-type stability of `EL_n`/Steinberg
-groups over polynomial rings (searches return only K-theoretic false
-friends).
+The point that makes this a citation and not a campaign: **property
+(T) implies `(T;FD)_rob` unconditionally** — DV Corollary 7.7,
 
-**Hard fence (Becker–Lubotzky, arXiv:1809.00632).**  Γ is infinite,
-residually finite (hence sofic, hence hyperlinear) and Kazhdan, so Γ
-is provably NOT stable in normalized HS, and (having infinitely many
-finite-index subgroups) fails their Thm 1.4 criterion as well.
-Asymptotic representations far from every genuine one are GUARANTEED
-to exist for Γ.  Consequences: (i) never route (AC) through
-HS-stability of Γ — foreclosed; (ii) the liftable case of (AC) is
-true but vacuous — the entire content is non-liftable approximate
-representations; (iii) `(T;FD)^rob` asks for spectral gap OF the
-far-from-genuine representations, not their absence — the two
-properties are compatible on their face, BUT:
+```text
+(T) ⟹ (T;W*)_rob ⟺ (T;W*) ⟹ (T;CE) ⟺ (T;FD)_rob ⟹ (T;FD) ⟹ (τ),
+```
 
-**Unresolved consistency check (flagged, do not skip).**
-Dogon–Vigdorovich's equivalence (their Thm 1.6, for irreducible
-higher-rank lattices) includes *hyperfinite* HS-stability.  If
-`(T;FD)^rob` implied ORDINARY HS-stability for a residually finite
-(T) group, Becker–Lubotzky would refute `(T;FD)^rob` for Γ outright
-and this route would collapse.  The sweep did not verify DV's
-definition of hyperfinite HS-stability; whether the implication holds
-for non-lattices is the first thing any campaign on this claim must
-settle — a definition-reading task, hours not months.
+whose derivation lives entirely in their §7 with **no lattice input**
+(the lattice/charmenability machinery is confined to §8/Thm 1.6 and is
+neither available nor needed for Γ).  Γ has (T) by
+Ershov–Jaikin-Zapirain (the program's recorded Kazhdan input for the
+Kun–Thom pair), so the property holds outright.  Character rigidity —
+the first sweep's guess at the needed hypothesis — is NOT needed; that
+guess is superseded.
 
-**Counterexample side.**  The only known engine manufacturing
-asymptotic HS-representations provably far from genuine ones with
-controlled structure is Ioana's (2108.09589), whose property (τ)
-asymmetry across commuting factors is blocked when a factor has (T)
-(de la Salle 2204.07084 Thm 0.1).  Γ is Kazhdan.  No applicable
-counterexample mechanism is in the literature.
+**What it discharges downstream.**  The approximate-Kazhdan uniformity
+gap of `kt-centralizer-normalization-hs` (audit item 5 /
+addendum 18f): `Ad π_n = π_n ⊗ π̄_n` lands in `U(M_{d_n²})`, is a
+`‖·‖₂`-almost representation when `π_n` is, and `(T;FD)_rob` applies to
+it directly — the `π ⊗ π̄` application template is in print (DV
+Lem 8.2).  It does NOT touch (AC) proper
+(`approximate-collapse-for-kt-compressor`), which is now the route's
+sole open requirement.
 
-**Adjacent reduction, recorded.**  Alekseev–Thom Open Problem 6.2(b)
-(arXiv:2608.05362, §6, posted 2026-08-05) with a conjugation-coherence
-strengthening would convert (AC) into a finite-dimensional statement:
-with lifts `g_{s,n}` of `σ(s)` defining `A_n^Γ` and a lift `h_n` of
-`σ(t)`, the conjugates `h_n g_{s,n} h_n^*` lift Λ's generators, so
-(AC) becomes `∏_𝒰 h_n A_n^Γ h_n^* = ∏_𝒰 A_n^Γ` — exactly where the
-congruence collapse lives.  The gap between 6.2(b) as stated and the
-coherent-lift version is a uniqueness question, not a new theory.
+**Fences and residuals.**
+
+- *Cite the right formulation:* Def 7.5 says "finitely presented" but
+  Prop 7.6/Cor 7.7 (and Bader's Thm 7.10) need only a finitely
+  generated group with finite symmetric generating set — cite those.
+- *Full (T) is load-bearing:* DV Rem 7.8 — `(T;FD)` does NOT imply
+  `(T;FD)_rob` in general; it is full (T) that buys robustness.  Never
+  weaken the citation to `(T;FD)`.
+- *Effective constants are asserted, not proved:* the quantitative
+  operator-norm form is Bader's Thm 7.10 (Ozawa characterization +
+  spectral mapping); DV Rem 7.11 asserts the Hilbert–Schmidt effective
+  version without proof.  Any downstream argument needing explicit
+  constants must extract them or make do with the qualitative form —
+  the one open sub-item left here.
+- *Consistency with Becker–Lubotzky resolved:* `(T;FD)_rob` does not
+  imply HS-stability — DV print the `𝔽₂ × 𝔽₂` separation, and the
+  hyperfinite weakening is on the INPUT class (only asymptotic
+  representations with hyperfinite limiting algebra need correcting;
+  corrections are honest finite-dimensional representations), not on
+  the output.  Becker–Lubotzky's far-from-genuine representations are
+  globally-far by irreducibility, not spectral-gap-violating, so they
+  do not obstruct robustness.
+
+Trust surface: DV 2506.20843v2 read from PDF by the sweep agent
+(Defs 7.2/7.4/7.5/7.9, Prop 7.6, Cor 7.7 — chain independently
+re-derived from Prop 7.6 — Thms 6.2/7.10, Rems 7.8/7.11, Lem 8.2);
+Ershov–Jaikin-Zapirain (T) as already recorded by the program.

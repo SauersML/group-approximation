@@ -184,13 +184,20 @@ complete; verification ledger below).**
    subagent-verified).  Never route (AC) through HS-stability of Γ;
    the liftable case is vacuous — far-from-genuine asymptotic
    representations are guaranteed to exist.
-4. **One transportable mechanism exists, and it is new to this
-   node:** Dogon–Vigdorovich robust asymptotic spectral gap /
-   character rigidity (arXiv:2506.20843) + de la Salle's quantitative
-   Poincaré (arXiv:2204.07084) — recorded as
-   `el-r-polynomial-robust-spectral-gap` (open claim) and
-   `hs-normalization-via-robust-spectral-gap` (route, with Gate 0 the
-   unresolved hyperfinite-stability consistency check).
+4. **One transportable mechanism exists — and its hypothesis turned
+   out to be FREE (second sweep pass, Gate 0):** property (T) implies
+   Dogon–Vigdorovich `(T;FD)_rob` unconditionally (2506.20843
+   Cor 7.7, no lattice input), so
+   `el-r-polynomial-robust-spectral-gap` is CLOSED BY CITATION, the
+   approximate-Kazhdan uniformity gap of 18f is discharged in print
+   (`Ad π_n = π_n ⊗ π̄_n` + DV Lem 8.2 template), and the route
+   `hs-normalization-via-robust-spectral-gap` now rests on exactly
+   one open requirement: (AC) proper, promoted to the claim
+   `approximate-collapse-for-kt-compressor`.  Consistency with
+   Becker–Lubotzky resolved (printed `𝔽₂×𝔽₂` separation; the
+   hyperfinite weakening is on the input class).  Gate 1 (Peterson
+   2605.16669) negative, with his unretrieved §6 flagged as the one
+   residual.
 5. **No applicable counterexample mechanism:** Ioana's 2108.09589
    engine (the only one producing controlled far-from-genuine
    asymptotic reps) is blocked when a factor has (T) (de la Salle
