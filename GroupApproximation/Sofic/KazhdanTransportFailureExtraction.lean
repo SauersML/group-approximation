@@ -1,4 +1,5 @@
 import GroupApproximation.Sofic.ManuscriptKazhdanTransport
+import GroupApproximation.Sofic.PrintedTransportOpening
 import GroupApproximation.Sofic.UltrafilterSubsequence
 
 /-!
@@ -31,12 +32,19 @@ of `S` is what bounds the constant.  Instantiating at a singleton is therefore
 not a weakening of the general lemma but the shape the printed sentence actually
 has.
 
-## What this does not do
+## The step is now consumed
 
-It does not make the step *consumed*.  The Lean transport proof runs directly
-rather than by contradiction, so this is the printed opening available as a
-declaration, not the route the badged theorem travels — exactly as the row's
-note records for the proof column.
+It was not, when this file was written, and the reason was structural rather
+than mathematical.  The hypothesis here is spelled with
+`NaturalHSCommutatorVanishing`, which `Sofic/ManuscriptKazhdanTransport.lean`
+defines, so this file sits *above* the transport proof in the import graph and
+the printed opening could be read but not used.
+
+`Sofic/PrintedTransportOpening.lean` is the same sentence with that hypothesis
+written out instead — which is what the predicate unfolds to — so it sits below
+`Sofic/UltraproductKazhdanTransport.lean`, and `ultraproductKazhdanTransport`
+now opens with it.  The statement below is that one re-spelled with the
+predicate, so there is one proof and not two.
 -/
 
 namespace GroupApproximation
@@ -83,37 +91,9 @@ theorem exists_gamma_infinite_commutator_defect
               ((U n s : Matrix (naturalFiniteModel (d n))
                 (naturalFiniteModel (d n)) ℂ) * x n *
                 (U n s : Matrix (naturalFiniteModel (d n))
-                  (naturalFiniteModel (d n)) ℂ)ᴴ)))}.Infinite := by
-  classical
-  -- The conclusion is universally quantified, so its failure names `γ₀`.
-  push Not at hfail
-  obtain ⟨γ₀, hγ⟩ := hfail
-  refine ⟨γ₀, ?_⟩
-  -- What is left is the printed `δ` and the infinite set, which is the general
-  -- extraction at the singleton `{γ₀}`.
-  have hsing : ¬ ∀ ε : ℝ, 0 < ε → ∀ᶠ n in atTop, ∀ γ ∈ ({γ₀} : Finset Γ),
-      Real.sqrt (hsNormSq (naturalFiniteModel (d n))
-        (((U n s : Matrix (naturalFiniteModel (d n))
-            (naturalFiniteModel (d n)) ℂ) * x n *
-            (U n s : Matrix (naturalFiniteModel (d n))
-              (naturalFiniteModel (d n)) ℂ)ᴴ) *
-              (U n (iota γ) : Matrix (naturalFiniteModel (d n))
-                (naturalFiniteModel (d n)) ℂ) -
-            (U n (iota γ) : Matrix (naturalFiniteModel (d n))
-              (naturalFiniteModel (d n)) ℂ) *
-              ((U n s : Matrix (naturalFiniteModel (d n))
-                (naturalFiniteModel (d n)) ℂ) * x n *
-                (U n s : Matrix (naturalFiniteModel (d n))
-                  (naturalFiniteModel (d n)) ℂ)ᴴ))) ≤ ε := by
-    intro hall
-    refine hγ fun ε hε ↦ ?_
-    obtain ⟨N, hN⟩ := eventually_atTop.mp (hall ε hε)
-    exact ⟨N, fun n hn ↦ hN n hn γ₀ (Finset.mem_singleton_self γ₀)⟩
-  obtain ⟨γ₁, hγ₁, δ, hδ, hinf⟩ :=
-    UltrafilterSubsequence.exists_index_infinite_defect ({γ₀} : Finset Γ) _ hsing
-  rw [Finset.mem_singleton] at hγ₁
-  subst hγ₁
-  exact ⟨δ, hδ, hinf⟩
+                  (naturalFiniteModel (d n)) ℂ)ᴴ)))}.Infinite :=
+  PrintedTransportOpening.exists_gamma_infinite_commutator_defect d U x iota s
+    hfail
 
 end
 

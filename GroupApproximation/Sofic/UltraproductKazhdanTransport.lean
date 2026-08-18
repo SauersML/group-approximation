@@ -3,6 +3,7 @@ import GroupApproximation.Analysis.NaturalMatrixCoordinateEquiv
 import GroupApproximation.Analysis.ProperIsometryFromCompression
 import GroupApproximation.Sofic.LeavittTraceFloor
 import GroupApproximation.Sofic.UltraproductDedekindFinite
+import GroupApproximation.Sofic.PrintedTransportOpening
 import GroupApproximation.Sofic.UltraproductKazhdanProjection
 import Mathlib.Order.Filter.Ultrafilter.Defs
 
@@ -57,6 +58,17 @@ the conclusion fails on an infinite set `I`, a free ultrafilter `ω` with
 `I ∈ ω` is fixed, KT.11 makes the commutators vanish along `ω`, and `I ∈ ω`
 is contradicted.
 
+That sentence was aspirational until 2026-08-18 and is now literal, which is
+worth being precise about because ledger row `KT.01` turned on the difference.
+The proof used to reach the conclusion *directly*: it proved vanishing along
+every free ultrafilter and handed that to `tendsto_along_free_ultrafilters`,
+which is where the contradiction happened -- for an arbitrary nonnegative
+sequence, with `ω` produced from a cofinal selection rather than chosen to
+contain the printed `I`.  The opening is now taken at the printed objects,
+through `PrintedTransportOpening.exists_gamma_infinite_commutator_defect` and
+`UltrafilterLimit.exists_freeUltrafilter_mem`, so the route and the printed
+proof are the same argument and not merely the same theorem.
+
 **Status, stated plainly.**  `UltraproductAdjointModel` now has a constructor:
 `Sofic/UltraproductModelConstructionAssembly.lean` builds one at every free
 ultrafilter from the hypotheses of `thm:kazhdan-transport` itself, assembling
@@ -70,7 +82,9 @@ a statement about an ambient that exists, and
 chain.  Unconditional here with no interface at all, as before: all the
 Hilbert--Schmidt lemmas, both KT.10 theorems on the real objects
 (`kt_10_shift_conjugate_proj`, `kt_10_corona_shift_conjugate_proj`), and the
-ultrafilter skeleton `tendsto_along_free_ultrafilters`.
+ultrafilter skeleton `tendsto_along_free_ultrafilters` -- which the transport
+proof no longer travels, and which ledger row `KT.28` cites for a step of its
+own.
 
 **What is still *not* the printed argument.**  This is the canonical record;
 `docs/NON_MF_PROOF_LEDGER.md` tracks the same three items as UF.01, UF.02 and
@@ -783,17 +797,47 @@ theorem ultraproductKazhdanTransport
         (x n * natU U n (iota γ) - natU U n (iota γ) * x n))
       Filter.atTop (nhds 0) := fun γ ↦
     tendsto_of_sqrt_le (fun n ↦ hsNormSq_nonneg _ _) (hx γ)
-  intro γ
-  refine tendsto_along_free_ultrafilters
-    (f := fun n ↦ hsNormSq (naturalFiniteModel (d n))
-      ((natU U n s * x n * (natU U n s)ᴴ) * natU U n (iota γ)
-        - natU U n (iota γ) * (natU U n s * x n * (natU U n s)ᴴ)))
-    (fun n ↦ hsNormSq_nonneg _ _) ?_
-  intro ω hωcof
+  -- The printed proof is by contradiction, and this is its opening sentence.
+  by_contra hfail
+  obtain ⟨γ₀, δ, hδ, hinf⟩ :=
+    PrintedTransportOpening.exists_gamma_infinite_commutator_defect d U x iota s
+      hfail
+  -- `natU` is reducibly the coercion, so the bad set is the same set written
+  -- in the spelling `kt_11_descend` uses.
+  have hinf' : {n : ℕ | δ ≤ Real.sqrt (hsNormSq (naturalFiniteModel (d n))
+      ((natU U n s * x n * (natU U n s)ᴴ) * natU U n (iota γ₀)
+        - natU U n (iota γ₀) * (natU U n s * x n * (natU U n s)ᴴ)))}.Infinite :=
+    hinf
+  -- "Fix a free ultrafilter `ω` on `ℕ` with `I ∈ ω`."
+  obtain ⟨ω, hIω, hωcof⟩ := UltrafilterLimit.exists_freeUltrafilter_mem hinf'
   have hωtop : (ω : Filter ℕ) ≤ Filter.atTop := by
     rw [← Nat.cofinite_eq_atTop]
     exact hωcof
-  exact (ambient ω hωcof).kt_11_descend hd (M * M) x hxb
-    (fun γ' ↦ (hxtend γ').mono_left hωtop) γ
+  -- KT.11 makes the conjugated commutators vanish along `ω`.
+  have hvanish := (ambient ω hωcof).kt_11_descend hd (M * M) x hxb
+    (fun γ' ↦ (hxtend γ').mono_left hωtop) γ₀
+  have hsmall : ∀ᶠ n in (ω : Filter ℕ),
+      hsNormSq (naturalFiniteModel (d n))
+        ((natU U n s * x n * (natU U n s)ᴴ) * natU U n (iota γ₀)
+          - natU U n (iota γ₀) * (natU U n s * x n * (natU U n s)ᴴ)) < δ ^ 2 := by
+    have h := Metric.tendsto_nhds.mp hvanish (δ ^ 2) (by positivity)
+    filter_upwards [h] with n hn
+    rwa [Real.dist_eq, sub_zero, abs_of_nonneg (hsNormSq_nonneg _ _)] at hn
+  -- and `I ∈ ω` says it is bounded below there, which is the contradiction.
+  have hbig : ∀ᶠ n in (ω : Filter ℕ),
+      δ ≤ Real.sqrt (hsNormSq (naturalFiniteModel (d n))
+        ((natU U n s * x n * (natU U n s)ᴴ) * natU U n (iota γ₀)
+          - natU U n (iota γ₀) * (natU U n s * x n * (natU U n s)ᴴ))) := hIω
+  obtain ⟨n, hnbig, hnsmall⟩ := (hbig.and hsmall).exists
+  have hsq : δ ^ 2 ≤ hsNormSq (naturalFiniteModel (d n))
+      ((natU U n s * x n * (natU U n s)ᴴ) * natU U n (iota γ₀)
+        - natU U n (iota γ₀) * (natU U n s * x n * (natU U n s)ᴴ)) := by
+    calc δ ^ 2 ≤ (Real.sqrt (hsNormSq (naturalFiniteModel (d n))
+            ((natU U n s * x n * (natU U n s)ᴴ) * natU U n (iota γ₀)
+              - natU U n (iota γ₀)
+                * (natU U n s * x n * (natU U n s)ᴴ)))) ^ 2 :=
+          (sq_le_sq₀ hδ.le (Real.sqrt_nonneg _)).2 hnbig
+      _ = _ := Real.sq_sqrt (hsNormSq_nonneg _ _)
+  linarith
 
 end GroupApproximation
