@@ -1,6 +1,7 @@
 import GroupApproximation.Analysis.VectorOmegaAction
 import GroupApproximation.Analysis.AbstractSpectralGap
 import GroupApproximation.Sofic.UltraproductKazhdanProjection
+import GroupApproximation.Analysis.UnitaryAverageFixedVector
 import Mathlib.Analysis.CStarAlgebra.ContinuousLinearMap
 import Mathlib.Analysis.InnerProductSpace.StarOrder
 
@@ -210,6 +211,54 @@ theorem manuscriptNormalKazhdanSpectralGap
     spectrum ℝ (AbstractSpectralGap.unitaryAverage (repUnitary' Y ω R) S)
       ⊆ Set.Icc (-1 : ℝ) (1 - ε ^ 2 / (4 * S.card)) ∪ {(1 : ℝ)} :=
   manuscriptSpectrumInclusion_hOmega Y ω R.rep' hQ S hS hQS hone hsymm hεone
+
+/-! ## `NK.06`, first clause: `ran P = Fix π` on `H_ω` -/
+
+section FixedSpace
+
+omit [∀ n, Nonempty (Y n)] [Group G] in
+/-- The gap constant `θ = 1 − ε²/(4·card S)` is below `1`, which is what makes
+the spectral point `1` isolated and the functional calculus available. -/
+theorem gapConstant_lt_one {ε : ℝ} (hε : 0 < ε) {S : Finset G} (hS : S.Nonempty) :
+    1 - ε ^ 2 / (4 * S.card) < 1 := by
+  have hcard : (0 : ℝ) < S.card := by exact_mod_cast Finset.card_pos.mpr hS
+  have : 0 < ε ^ 2 / (4 * S.card) := by positivity
+  linarith
+
+/-- **`NK.06`, first clause, on the printed objects.**
+
+> `P = χ_{{1}}(h)` … with range `Fix π(K̄)`.
+
+For the representation `π(g) = [V_{g,n}]_ω` on `H_ω` built from an
+`ω`-multiplicative family, a vector of `H_ω` is fixed by the spectral projection
+of `h` at the isolated point exactly when it is fixed by every `π(a)`, `a ∈ S`.
+Both inclusions are `UnitaryAverageFixedVector`, and the gap they consume is
+`manuscriptNormalKazhdanSpectralGap`. -/
+theorem manuscriptNormalKazhdanFixedSpace
+    (R : OmegaUnitaryRep Y ω G)
+    {Q : Finset G} {ε : ℝ} (hQ : IsKazhdanPair.{u, 0} G Q ε)
+    (S : Finset G) (hS : S.Nonempty) (hQS : Q ⊆ S) (hone : 1 ∈ S)
+    (hsymm : ∀ g ∈ S, g⁻¹ ∈ S) (hεone : ε ≤ 1) (x : VecOmega Y ω) :
+    (CStarSpectralProjection.spectralProjection
+          (AbstractSpectralGap.unitaryAverage (repUnitary' Y ω R) S)
+          (1 - ε ^ 2 / (4 * S.card)) :
+        VecOmega Y ω →L[ℂ] VecOmega Y ω) x = x
+      ↔ ∀ g ∈ S, ((repUnitary' Y ω R g :
+          unitary (VecOmega Y ω →L[ℂ] VecOmega Y ω)) :
+          VecOmega Y ω →L[ℂ] VecOmega Y ω) x = x := by
+  have hc : 1 - ε ^ 2 / (4 * S.card) < 1 := gapConstant_lt_one hQ.1 hS
+  have hgap : ∀ μ ∈ spectrum ℝ
+      (AbstractSpectralGap.unitaryAverage (repUnitary' Y ω R) S),
+      μ ≤ 1 - ε ^ 2 / (4 * S.card) ∨ μ = 1 := by
+    intro μ hμ
+    rcases manuscriptNormalKazhdanSpectralGap Y ω R hQ S hS hQS hone hsymm hεone hμ
+      with h | h
+    · exact Or.inl h.2
+    · exact Or.inr h
+  exact UnitaryAverageFixedVector.spectralProjection_apply_eq_self_iff
+    (repUnitary' Y ω R) hS hsymm hc hgap x
+
+end FixedSpace
 
 end
 

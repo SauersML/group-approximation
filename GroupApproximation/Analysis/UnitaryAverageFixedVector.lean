@@ -1,5 +1,6 @@
 import GroupApproximation.Analysis.AbstractSpectralGap
 import GroupApproximation.Analysis.CStarSpectralProjection
+import GroupApproximation.Analysis.KazhdanProjectionAbsorption
 import Mathlib.Analysis.CStarAlgebra.ContinuousLinearMap
 import Mathlib.Analysis.InnerProductSpace.StarOrder
 
@@ -166,6 +167,74 @@ theorem forall_apply_eq_of_spectralProjection
     have := congrArg (fun T : E →L[ℂ] E ↦ T y) habs
     simpa using this
   exact forall_apply_eq_of_unitaryAverage_apply_eq ρ hS hfix g hg
+
+/-- The average fixes a vector that every member of the set fixes. -/
+theorem unitaryAverage_apply_eq_self
+    (ρ : G →* unitary (E →L[ℂ] E)) {S : Finset G} (hS : S.Nonempty) {x : E}
+    (hx : ∀ g ∈ S, ((ρ g : unitary (E →L[ℂ] E)) : E →L[ℂ] E) x = x) :
+    (unitaryAverage ρ S : E →L[ℂ] E) x = x := by
+  classical
+  have hcardne : ((S.card : ℂ)) ≠ 0 := by
+    simpa using (Nat.cast_ne_zero (R := ℂ)).2 (Finset.card_ne_zero_of_mem hS.choose_spec)
+  rw [unitaryAverage_apply ρ S x]
+  have hsum : ∑ g ∈ S, ((ρ g : unitary (E →L[ℂ] E)) : E →L[ℂ] E) x
+      = ((S.card : ℂ)) • x := by
+    rw [Finset.sum_congr rfl fun g hg ↦ hx g hg, Finset.sum_const]
+    exact (Nat.cast_smul_eq_nsmul ℂ S.card x).symm
+  rw [hsum, smul_smul, inv_mul_cancel₀ hcardne, one_smul]
+
+/-- **`Fix ⊆ ran P`, the converse inclusion.**
+
+The printed `P = χ_{{1}}(h)` "projects onto `Fix`" has two halves.  The other one
+is above; this is the one that consumes the spectral gap, through the resolvent
+factorisation `1 − P = cfc (gapResolvent c) h · (1 − h)` of
+`KazhdanProjectionAbsorption.one_sub_spectralProjection_eq`.  A vector fixed by
+every `π(a)` is fixed by `h`, so `(1 − h) x = 0`, so `(1 − P) x = 0`.
+
+Note where the gap is spent: not in this calculation, which is one application of
+a factorisation, but in the factorisation's own hypothesis that the spectrum
+meets `(c, ∞)` only in `{1}` — which is what makes `gapResolvent c` continuous on
+the spectrum and the functional calculus available at all. -/
+theorem spectralProjection_apply_eq_of_forall_apply_eq
+    (ρ : G →* unitary (E →L[ℂ] E)) {S : Finset G} (hS : S.Nonempty)
+    (hsymm : ∀ g ∈ S, g⁻¹ ∈ S) {c : ℝ} (hc : c < 1)
+    (hgap : ∀ μ ∈ spectrum ℝ (unitaryAverage ρ S), μ ≤ c ∨ μ = 1)
+    {x : E} (hx : ∀ g ∈ S, ((ρ g : unitary (E →L[ℂ] E)) : E →L[ℂ] E) x = x) :
+    (CStarSpectralProjection.spectralProjection (unitaryAverage ρ S) c :
+      E →L[ℂ] E) x = x := by
+  set m := unitaryAverage ρ S with hm
+  have hsa : IsSelfAdjoint m := isSelfAdjoint_unitaryAverage ρ hsymm
+  have hmx : (m : E →L[ℂ] E) x = x := unitaryAverage_apply_eq_self ρ hS hx
+  have hfac : (1 : E →L[ℂ] E) - CStarSpectralProjection.spectralProjection m c
+      = cfc (KazhdanProjectionAbsorption.gapResolvent c) m * ((1 : E →L[ℂ] E) - m) :=
+    KazhdanProjectionAbsorption.one_sub_spectralProjection_eq m hsa hc hgap
+  have hzero : ((1 : E →L[ℂ] E) - m) x = 0 := by
+    simp [hmx]
+  have happ := congrArg (fun T : E →L[ℂ] E ↦ T x) hfac
+  simp only [sub_apply, one_apply_eq_self, mul_apply_eq_comp, hzero, map_zero] at happ
+  exact (sub_eq_zero.mp happ).symm
+
+/-- **`ran P = Fix`, as the printed sentence.**
+
+> the spectral projection `P` of `h` at the isolated point `1` … projects onto
+> `Fix`.
+
+A vector is fixed by `P` exactly when it is fixed by every member of the Kazhdan
+set.  Left to right is the equality case of Cauchy--Schwarz through the
+absorption `h P = P`; right to left is the resolvent factorisation of `1 − P`,
+and it is where the gap is spent. -/
+theorem spectralProjection_apply_eq_self_iff
+    (ρ : G →* unitary (E →L[ℂ] E)) {S : Finset G} (hS : S.Nonempty)
+    (hsymm : ∀ g ∈ S, g⁻¹ ∈ S) {c : ℝ} (hc : c < 1)
+    (hgap : ∀ μ ∈ spectrum ℝ (unitaryAverage ρ S), μ ≤ c ∨ μ = 1) (x : E) :
+    (CStarSpectralProjection.spectralProjection (unitaryAverage ρ S) c :
+        E →L[ℂ] E) x = x
+      ↔ ∀ g ∈ S, ((ρ g : unitary (E →L[ℂ] E)) : E →L[ℂ] E) x = x := by
+  constructor
+  · intro hPx g hg
+    have h := forall_apply_eq_of_spectralProjection ρ hS hsymm hc hgap x g hg
+    rwa [hPx] at h
+  · exact spectralProjection_apply_eq_of_forall_apply_eq ρ hS hsymm hc hgap
 
 end
 
