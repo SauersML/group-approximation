@@ -134,12 +134,10 @@ its complete positivity) induces the geometry. -/
 def StinespringPre (φ : A →ₗ[ℂ] (H →L[ℂ] H))
     (hφ : IsCompletelyPositive φ) := A →₀ H
 
-variable (φ) in
 variable (hφ : IsCompletelyPositive φ) in
 instance : AddCommGroup (StinespringPre φ hφ) :=
   inferInstanceAs (AddCommGroup (A →₀ H))
 
-variable (φ) in
 variable (hφ : IsCompletelyPositive φ) in
 instance : Module ℂ (StinespringPre φ hφ) :=
   inferInstanceAs (Module ℂ (A →₀ H))
