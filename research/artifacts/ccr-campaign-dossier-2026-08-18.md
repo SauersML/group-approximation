@@ -96,6 +96,20 @@ conjugation-coherent lifts converts (AC) to finite-dimensional form.
   (in-repo Lean + Khanh–Thanh Cor. 4.4 — a combination nobody
   spells out in print).
 
+## One delimitation for the successor's first day
+
+Commutants of honest ULTRAPRODUCT subalgebras interchange freely:
+`(∏B_n)' ∩ ∏M_{d_n} = ∏(B_n' ∩ M_{d_n})` — if the sup over the unit
+ball of `B_n` of the commutator norm stayed bounded below, the
+adversarial maximizer sequence would witness non-commutation in the
+ultraproduct.  No (T) needed.  So the entire difficulty of OP 6.2 and
+of (AC) sits in the gap between GROUP-GENERATED subalgebras (constant
+sequences — countably many elements, no ultraproduct structure) and
+ultraproduct subalgebras: Peterson's Prop 7.8 bridges it using (T) +
+genuine coordinates; (AC) is the same bridge for approximate
+coordinates.  Every formulation in this dossier is a face of that one
+gap.
+
 ## Stakes and framing
 
 Whichever way (AC) resolves: proof ⟹ first non-hyperlinear group,
