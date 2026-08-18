@@ -1,6 +1,7 @@
 import GroupApproximation.Analysis.VectorOmegaAction
 import GroupApproximation.Analysis.FilterMatrixCStarCorona
 import GroupApproximation.Analysis.CStarSpectralProjection
+import Mathlib.Analysis.CStarAlgebra.ContinuousLinearMap
 
 /-!
 # `B_ω` itself acting on `H_ω`, as a unital ⋆-homomorphism
@@ -122,22 +123,13 @@ the representation are needed. -/
 
 section Calculus
 
-/-- `B(H_ω)` as a bundled unital complex C⋆-algebra.
-
-Every parent is already an instance — the ultraproduct is complete, so the
-operator algebra on it is a C⋆-algebra — and only the assembly was missing, the
-same gap `Analysis/PolarLiftingMatrixBlocks.lean` records for matrix blocks.  It
-is `local` for the same reason it is there: registering it globally would decide
-the bundled structure on continuous linear maps for every file that mentions
-them. -/
-local instance vecOmegaOperatorCStarAlgebra :
-    CStarAlgebra (VecOmega Y ω →L[ℂ] VecOmega Y ω) where
-  toNormedRing := inferInstance
-  toStarRing := inferInstance
-  toCompleteSpace := inferInstance
-  toCStarRing := inferInstance
-  toNormedAlgebra := inferInstance
-  toStarModule := inferInstance
+/-! `B(H_ω)` is a bundled unital complex C⋆-algebra by mathlib's instance on
+`E →L[ℂ] E` for a complex Hilbert space `E`, which
+`Mathlib.Analysis.CStarAlgebra.ContinuousLinearMap` supplies and which
+`Analysis/VectorOmegaKazhdanGap.lean` already uses.  Assembling a second one
+here would be worse than redundant: the two would be different terms for the
+same structure, and the projection this file produces would then not be
+syntactically the projection that file's range identification is about. -/
 
 omit [∀ n, Nonempty (Y n)] in
 /-- The action of a bounded sequence is contractive: this is `norm_actQ_le`
