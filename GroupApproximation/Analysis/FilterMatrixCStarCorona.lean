@@ -92,6 +92,17 @@ noncomputable instance filterMatrixCStarCoronaStarModule :
   unfold FilterMatrixCStarCorona
   exact filterMatrixCoronaAlgebraStarModule X l
 
+/-- The real scalars sit under the complex ones.  This is the ONE structure that
+does not transport by itself: `Algebra ℝ` is found on the opaque type through
+`NormedAlgebra.complexToReal`, but the tower relating it to the complex action is
+not, and `StarAlgHom.map_cfc` needs it because the calculus is taken over `ℝ`
+while the algebra is over `ℂ`. -/
+private theorem coronaIsScalarTowerReal :
+    IsScalarTower ℝ ℂ (FilterMatrixCoronaAlgebra X l) := inferInstance
+
+instance filterMatrixCStarCoronaIsScalarTowerReal :
+    IsScalarTower ℝ ℂ (FilterMatrixCStarCorona X l) := coronaIsScalarTowerReal X l
+
 noncomputable instance filterMatrixCStarCoronaCStarRing [l.NeBot] :
     CStarRing (FilterMatrixCStarCorona X l) := by
   unfold FilterMatrixCStarCorona
@@ -196,5 +207,99 @@ noncomputable def filterMatrixCStarCoronaLift {B : Type v} [Ring B] [StarRing B]
     (a : BoundedMatrixSequence X) :
     filterMatrixCStarCoronaLift X l f hf (filterMatrixCStarCoronaMk X l a) =
       f a := rfl
+
+/-! ## The lift is contractive, hence continuous
+
+`StarAlgHom.map_cfc` -- the naturality that lets the functional calculus be
+computed on either side of a ⋆-homomorphism -- takes `Continuous ⇑φ` as a
+hypothesis.  For a ⋆-homomorphism between C⋆-algebras that is automatic
+mathematically, but it is not a `fun_prop` fact about a map built by a lift, so
+it is proved here once, from the only estimate the quotient norm supplies. -/
+
+section Bound
+
+variable {B : Type v} [NormedRing B] [StarRing B] [NormedAlgebra ℂ B]
+
+/-- **A contractive ⋆-homomorphism descends to a contractive one.**
+
+The quotient norm is an infimum over representatives, so the bound transfers by
+choosing a representative within `ε` of it. -/
+theorem norm_filterMatrixCoronaStarLift_le
+    (f : BoundedMatrixSequence X →⋆ₐ[ℂ] B)
+    (hf : ∀ a : BoundedMatrixSequence X, IsNullMatrixSequence X l a → f a = 0)
+    (hb : ∀ a : BoundedMatrixSequence X, ‖f a‖ ≤ ‖a‖)
+    (x : FilterMatrixCoronaAlgebra X l) :
+    ‖filterMatrixCoronaStarLift X l f hf x‖ ≤ ‖x‖ := by
+  refine le_of_forall_pos_le_add fun ε hε ↦ ?_
+  obtain ⟨a, ha, hlt⟩ := Submodule.Quotient.norm_mk_lt x hε
+  have hmk : (Submodule.Quotient.mk a : FilterMatrixCoronaAlgebra X l)
+      = Ideal.Quotient.mk (nullMatrixSequenceIdeal X l) a := rfl
+  rw [hmk] at ha
+  calc ‖filterMatrixCoronaStarLift X l f hf x‖
+      = ‖f a‖ := by rw [← ha, filterMatrixCoronaStarLift_mk]
+    _ ≤ ‖a‖ := hb a
+    _ ≤ ‖x‖ + ε := hlt.le
+
+/-- The same bound at the opaque corona.  The two types are definitionally
+equal and their norms are the transported ones, so this is the lemma above. -/
+theorem norm_filterMatrixCStarCoronaLift_le
+    (f : BoundedMatrixSequence X →⋆ₐ[ℂ] B)
+    (hf : ∀ a : BoundedMatrixSequence X, IsNullMatrixSequence X l a → f a = 0)
+    (hb : ∀ a : BoundedMatrixSequence X, ‖f a‖ ≤ ‖a‖)
+    (x : FilterMatrixCStarCorona X l) :
+    ‖filterMatrixCStarCoronaLift X l f hf x‖ ≤ ‖x‖ :=
+  norm_filterMatrixCoronaStarLift_le X l f hf hb x
+
+/-- **The lift of a contractive ⋆-homomorphism is continuous.**  This is the
+hypothesis `StarAlgHom.map_cfc` asks for. -/
+theorem continuous_filterMatrixCStarCoronaLift
+    (f : BoundedMatrixSequence X →⋆ₐ[ℂ] B)
+    (hf : ∀ a : BoundedMatrixSequence X, IsNullMatrixSequence X l a → f a = 0)
+    (hb : ∀ a : BoundedMatrixSequence X, ‖f a‖ ≤ ‖a‖) :
+    Continuous (filterMatrixCStarCoronaLift X l f hf) :=
+  AddMonoidHomClass.continuous_of_bound (filterMatrixCStarCoronaLift X l f hf) 1
+    (fun x ↦ by simpa using norm_filterMatrixCStarCoronaLift_le X l f hf hb x)
+
+end Bound
+
+/-! ## Classes of unitary sequences
+
+`Analysis/NormMatrixCoronaUnitary.lean` sends a coordinatewise-unitary sequence
+to a unitary of the corona, at `cofinite` and for a family that is
+**strictly** multiplicative.  The manuscript's family is neither: it lives at a
+free `ω` and is only `ω`-multiplicative.  The unitarity half generalizes
+verbatim, and is separated out here; multiplicativity is a different argument
+and belongs with the family that supplies it. -/
+
+section Unitary
+
+/-- The class of a sequence is zero exactly when the sequence is `l`-null. -/
+theorem filterMatrixCStarCoronaMk_eq_zero_iff (a : BoundedMatrixSequence X) :
+    filterMatrixCStarCoronaMk X l a = 0 ↔ IsNullMatrixSequence X l a := by
+  unfold filterMatrixCStarCoronaMk FilterMatrixCStarCorona
+  exact filterMatrixCoronaMk_eq_zero_iff X l a
+
+/-- **A sequence that is unitary on the nose has a unitary class.**
+
+The hypotheses are the exact identities, not approximate ones: for a
+coordinatewise-unitary family they hold at every stage, so nothing is lost by
+asking for them, and the quotient does the rest. -/
+theorem filterMatrixCStarCoronaMk_mem_unitary (a : BoundedMatrixSequence X)
+    (h₁ : star a * a = 1) (h₂ : a * star a = 1) :
+    filterMatrixCStarCoronaMk X l a ∈
+      unitary (FilterMatrixCStarCorona X l) := by
+  constructor
+  · rw [filterMatrixCStarCorona_star_mk, ← map_mul, h₁, map_one]
+  · rw [filterMatrixCStarCorona_star_mk, ← map_mul, h₂, map_one]
+
+/-- Two sequences have the same class exactly when they differ by an `l`-null
+one.  This is what turns `ω`-multiplicativity of a family into genuine
+multiplicativity of its classes. -/
+theorem filterMatrixCStarCoronaMk_eq_iff (a b : BoundedMatrixSequence X) :
+    filterMatrixCStarCoronaMk X l a = filterMatrixCStarCoronaMk X l b ↔
+      IsNullMatrixSequence X l (a - b) := by
+  rw [← filterMatrixCStarCoronaMk_eq_zero_iff, map_sub, sub_eq_zero]
+
+end Unitary
 
 end GroupApproximation

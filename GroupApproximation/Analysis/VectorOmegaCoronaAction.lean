@@ -1,5 +1,6 @@
 import GroupApproximation.Analysis.VectorOmegaAction
 import GroupApproximation.Analysis.FilterMatrixCStarCorona
+import GroupApproximation.Analysis.CStarSpectralProjection
 
 /-!
 # `B_ω` itself acting on `H_ω`, as a unital ⋆-homomorphism
@@ -104,6 +105,81 @@ def actCoronaRange : StarSubalgebra ℂ (VecOmega Y ω →L[ℂ] VecOmega Y ω) 
 
 @[simp] theorem mem_actCoronaRange_iff (T : VecOmega Y ω →L[ℂ] VecOmega Y ω) :
     T ∈ actCoronaRange Y ω ↔ ∃ b, actCorona Y ω b = T := Iff.rfl
+
+/-! ## The calculus runs inside `B_ω`
+
+`\label{thm:normal-kazhdan}` puts `P = χ_{{1}}(h)` **in the norm ultraproduct**.
+`Analysis/VectorOmegaKazhdanGap.lean` produces it in `B(H_ω)` instead, and
+`NK.06`'s note says precisely what closes the difference: "what is wanted is the
+calculus run inside `B_ω`, a C⋆-subalgebra of `B(H_ω)` containing `h`".
+
+That is now a one-step consequence rather than a programme.  `B_ω` is a
+C⋆-algebra, `actCorona` is a continuous unital ⋆-homomorphism, and the
+functional calculus commutes with such a map — so a projection produced by the
+calculus from an element of `B_ω` is the image of a projection produced by the
+same calculus **inside** `B_ω`.  No closed-range theorem and no injectivity of
+the representation are needed. -/
+
+section Calculus
+
+/-- `B(H_ω)` as a bundled unital complex C⋆-algebra.
+
+Every parent is already an instance — the ultraproduct is complete, so the
+operator algebra on it is a C⋆-algebra — and only the assembly was missing, the
+same gap `Analysis/PolarLiftingMatrixBlocks.lean` records for matrix blocks.  It
+is `local` for the same reason it is there: registering it globally would decide
+the bundled structure on continuous linear maps for every file that mentions
+them. -/
+local instance vecOmegaOperatorCStarAlgebra :
+    CStarAlgebra (VecOmega Y ω →L[ℂ] VecOmega Y ω) where
+  toNormedRing := inferInstance
+  toStarRing := inferInstance
+  toCompleteSpace := inferInstance
+  toCStarRing := inferInstance
+  toNormedAlgebra := inferInstance
+  toStarModule := inferInstance
+
+omit [∀ n, Nonempty (Y n)] in
+/-- The action of a bounded sequence is contractive: this is `norm_actQ_le`
+packaged as a bound on the operator norm. -/
+theorem norm_actCLM_le (a : BoundedMatrixSequence (Idx Y)) :
+    ‖actCLM Y ω a‖ ≤ ‖a‖ :=
+  LinearMap.mkContinuous_norm_le _ (norm_nonneg a) _
+
+/-- **The action of `B_ω` on `H_ω` is continuous.**  A ⋆-homomorphism between
+C⋆-algebras is contractive, and here the bound descends from the representatives
+through the quotient norm. -/
+theorem continuous_actCorona : Continuous (actCorona Y ω) :=
+  continuous_filterMatrixCStarCoronaLift (Idx Y) (ω : Filter ℕ)
+    (actStarAlgHom Y ω) (actCLM_eq_zero_of_null Y ω) (norm_actCLM_le Y ω)
+
+/-- **The functional calculus commutes with the action.** -/
+theorem actCorona_cfc (f : ℝ → ℝ)
+    (b : FilterMatrixCStarCorona (Idx Y) (ω : Filter ℕ)) (hb : IsSelfAdjoint b)
+    (hf : ContinuousOn f (spectrum ℝ b)) :
+    actCorona Y ω (cfc f b) = cfc f (actCorona Y ω b) := by
+  have hsa : IsSelfAdjoint (actCorona Y ω b) := by
+    have := congrArg (actCorona Y ω) hb.star_eq
+    rwa [map_star] at this
+  exact StarAlgHom.map_cfc (actCorona Y ω) f b hf (continuous_actCorona Y ω) hb hsa
+
+/-- **`NK.06`'s remaining clause: `P` lies in the norm ultraproduct.**
+
+> `P = χ_{{1}}(h)` **lies in the norm ultraproduct**
+
+For any `h` that is the action of an element of `B_ω` — which is what the
+printed `h` is, being an average of the classes `π(a) = [V_{a,n}]_ω` — the
+spectral projection produced by the functional calculus is again the action of
+an element of `B_ω`.  The witness is the same calculus run inside `B_ω`. -/
+theorem spectralProjection_mem_range_actCorona (c : ℝ)
+    (b : FilterMatrixCStarCorona (Idx Y) (ω : Filter ℕ)) (hb : IsSelfAdjoint b)
+    (hf : ContinuousOn (CStarSpectralProjection.gapIndicator c) (spectrum ℝ b)) :
+    CStarSpectralProjection.spectralProjection (actCorona Y ω b) c ∈
+      Set.range (actCorona Y ω) :=
+  ⟨cfc (CStarSpectralProjection.gapIndicator c) b,
+    actCorona_cfc Y ω _ b hb hf⟩
+
+end Calculus
 
 end
 
