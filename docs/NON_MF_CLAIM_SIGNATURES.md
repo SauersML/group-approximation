@@ -715,6 +715,16 @@ IsSofic LiteralNonMFPresentation.MarkedGroup ∧
         e (PresentedGroup.of i) = LiteralSixGenerator.sixGenerator i
 ```
 
+## `GroupApproximation.LiteralTraceConsequence.markedGroup_separable_canonicalTrace_hyperlinear_not_isMFTrace`
+
+```lean
+TopologicalSpace.SeparableSpace (MaximalGroupCStar LiteralNonMFPresentation.MarkedGroup) ∧
+  (ShulmanTrace.IsHyperlinearTrace fun a =>
+      (canonicalMaximalTrace LiteralNonMFPresentation.MarkedGroup) a) ∧
+    ¬ShulmanTrace.IsMFTrace fun a =>
+        (canonicalMaximalTrace LiteralNonMFPresentation.MarkedGroup) a
+```
+
 ## `GroupApproximation.LiteralUniformObstruction.literal_uniform_operatorNorm_obstruction`
 
 ```lean
@@ -1515,6 +1525,12 @@ REPred AdianRabinWordProblem.wordProblemPred
   (∀ (x : A), star x * x = 1 → x * star x = 1) →
     ∀ {p q : A},
       IsStarProjection p → IsStarProjection q → p ≤ q → MurrayVonNeumannEquiv p q → p = q
+```
+
+## `GroupApproximation.manuscriptMFTraceGroupBridge`
+
+```lean
+MFTraceGroupBridge
 ```
 
 ## `GroupApproximation.manuscriptUniverseRelativeMaximalGroupCStar`
