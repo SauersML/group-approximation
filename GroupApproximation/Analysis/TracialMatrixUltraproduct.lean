@@ -132,6 +132,8 @@ projections.  `NormMatrixCorona` avoids this by carrying its index types as
 instance-implicit section variables; here the index sequence is a
 `FiniteModel`-valued function -- which is what the Hilbert--Schmidt norm needs
 -- so the search is genuinely longer and does not fit the default budget. -/
+set_option synthInstance.maxHeartbeats 800000
+set_option maxHeartbeats 1000000
 
 /- The nonemptiness of the models is a standing hypothesis of the whole
 construction (without it the numerator is not a unital ring), but a dozen
@@ -247,72 +249,7 @@ dimensional" -- and not for convenience: `lp.inftyRing` needs
 `NormOneClass (Matrix (X n) (X n) ℂ)`, and `‖1‖ = 1` fails for the empty
 model, where the identity matrix is `0`.  Without it the numerator is not even
 a unital ring. -/
-def ModelBoundedSequence : Type := BoundedMatrixSequence (fun n ↦ X n)
-
-/-! ### Instances of the numerator, cached once
-
-`ModelBoundedSequence` is a plain `def` and not an `abbrev`, and every
-instance the development uses on it is named below.  The reason is
-proof budget, and it is the reason this file and the seven above it set no
-heartbeat option.
-
-While the name was reducible, every typeclass goal mentioning it -- and every
-goal about the quotient by the null ideal, which is a goal about this type
-with a small wrapper around it -- unfolded to
-`lp (fun n ↦ Matrix (X n) (X n) ℂ) ∞` and the search rebuilt that tower from
-the bottom: in one `NonAssocSemiring` goal on the quotient,
-`FiniteModel.carrier` was unfolded 21109 times and `WithLp.equiv` 10048, the
-latter because the L2 operator norm on `Matrix` is transported through
-`NormedAddCommGroup.induced` and has to be walked to compare two paths to the
-same `AddCommGroup`.  That goal failed at 20000 heartbeats and at 40000, and
-succeeded at 80000.
-
-Opaque, the name is its own discrimination key: each goal below matches one of
-these instances in a single step and the tower is never re-entered.  Nothing
-is substituted -- every instance here is `inferInstanceAs` at
-`BoundedMatrixSequence`, which is exactly what the search was finding.  The
-coercion to a function is marked `@[reducible]` so that mathlib's `lp` simp
-lemmas, which are stated against `lp.instFunLike`, still match through it. -/
-
-@[reducible] noncomputable instance modelBoundedSequenceFunLike :
-    FunLike (ModelBoundedSequence X) ℕ (fun n ↦ Matrix (X n) (X n) ℂ) :=
-  inferInstanceAs (FunLike (BoundedMatrixSequence (fun n ↦ X n)) ℕ _)
-
-noncomputable instance modelBoundedSequenceNormedAddCommGroup :
-    NormedAddCommGroup (ModelBoundedSequence X) :=
-  inferInstanceAs (NormedAddCommGroup (BoundedMatrixSequence (fun n ↦ X n)))
-
-noncomputable instance modelBoundedSequenceNormedRing :
-    NormedRing (ModelBoundedSequence X) :=
-  inferInstanceAs (NormedRing (BoundedMatrixSequence (fun n ↦ X n)))
-
-noncomputable instance modelBoundedSequenceNormOneClass :
-    NormOneClass (ModelBoundedSequence X) :=
-  inferInstanceAs (NormOneClass (BoundedMatrixSequence (fun n ↦ X n)))
-
-noncomputable instance modelBoundedSequenceStarRing :
-    StarRing (ModelBoundedSequence X) :=
-  inferInstanceAs (StarRing (BoundedMatrixSequence (fun n ↦ X n)))
-
-noncomputable instance modelBoundedSequenceCStarRing :
-    CStarRing (ModelBoundedSequence X) :=
-  inferInstanceAs (CStarRing (BoundedMatrixSequence (fun n ↦ X n)))
-
-noncomputable instance modelBoundedSequenceNormedStarGroup :
-    NormedStarGroup (ModelBoundedSequence X) :=
-  inferInstanceAs (NormedStarGroup (BoundedMatrixSequence (fun n ↦ X n)))
-
-noncomputable instance modelBoundedSequenceNormedAlgebra :
-    NormedAlgebra ℂ (ModelBoundedSequence X) :=
-  inferInstanceAs (NormedAlgebra ℂ (BoundedMatrixSequence (fun n ↦ X n)))
-
-noncomputable instance modelBoundedSequenceStarModule :
-    StarModule ℂ (ModelBoundedSequence X) :=
-  inferInstanceAs (StarModule ℂ (BoundedMatrixSequence (fun n ↦ X n)))
-
-noncomputable instance modelBoundedSequenceCompleteSpace :
-    CompleteSpace (ModelBoundedSequence X) :=
-  inferInstanceAs (CompleteSpace (BoundedMatrixSequence (fun n ↦ X n)))
+abbrev ModelBoundedSequence := BoundedMatrixSequence (fun n ↦ X n)
 
 omit [∀ n, Nonempty (X n)] in
 /-- Every coordinate Hilbert--Schmidt norm is bounded by the uniform operator

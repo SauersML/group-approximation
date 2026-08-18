@@ -60,6 +60,8 @@ open Filter Matrix HilbertSchmidtApproximateUnit KazhdanCornerMatrices
   ExactInvolutionLifts
 open scoped Matrix.Norms.L2Operator
 
+set_option synthInstance.maxHeartbeats 2000000
+set_option maxHeartbeats 4000000
 set_option linter.unusedSectionVars false
 
 noncomputable section
