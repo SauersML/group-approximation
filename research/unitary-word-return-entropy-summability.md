@@ -5,6 +5,7 @@ kind: claim
 title: Random word return is summably dominated by representation-stratum entropy
 artifacts:
   - research/artifacts/nonhyperlinear-random-presentation-and-matricial-separator-2026-08-18.md
+  - experiments/random_word_return_strata.py
 ---
 
 There are finite parameters `k,R,L,m`, constants `delta,eps,eta>0`, and a
@@ -54,8 +55,9 @@ while genuinely irreducible high-complexity strata are expected to have
   joint eigenphases.  Prove toral Littlewood--Offord/local-CLT bounds in terms
   of the number of phase parameters, not ambient matrix size, and extend by
   finite direct sums of bounded-size blocks.
-- **Falsification experiment.**  In small dimensions, bin tuples by approximate
-  commutant dimension and block type, estimate word-return probabilities, and
-  compare `-log p` with local quotient-moduli entropy.  A family with both high
-  return and genuinely large quotient entropy would directly refute the
-  proposed stratification mechanism.
+- **Falsification experiment.**  `experiments/random_word_return_strata.py`
+  bins tuples by generated *-algebra dimension, commutant dimension and block
+  type, estimates word-return probabilities, and explicitly checks that
+  repeated-block normalized-HS distances are multiplicity-invariant.  A family
+  with both high return and genuinely large quotient entropy would directly
+  refute the proposed stratification mechanism.

@@ -1038,6 +1038,7 @@ import GroupApproximation.Analysis.RankNormalizedLambda
 import GroupApproximation.Analysis.CollapseDisplacementIdeal
 import GroupApproximation.Analysis.CollapseTransportEndpoint
 import GroupApproximation.Analysis.CollapseCoronaIsometry
+import GroupApproximation.Analysis.CollapseDelormeCorona
 import GroupApproximation.Analysis.CollapseLambdaCocycle
 import GroupApproximation.Analysis.CollapseProjectionLift
 import GroupApproximation.Monsters.NeumannTwoGenerator
