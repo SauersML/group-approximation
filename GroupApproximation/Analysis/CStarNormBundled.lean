@@ -120,12 +120,17 @@ noncomputable instance normedAlgebra (h : IsCStarNorm p) :
 /-! ### Crossing the retagging
 
 The synonym is `A` itself, so the identity is a ⋆-algebra homomorphism in each
-direction, and every field is `rfl`.  Both directions are needed: an assembly
-maps *into* the synonym to install the norm, and maps a homomorphism defined on
-`A` *out of* it to feed the completion. -/
+direction and every field is `rfl`.  Only the *inverse* direction is added
+here.  The forward one is `WithCStarNorm.retagStarAlgHom`, in
+`Analysis/CStarTensorProductAlgebra` — same name, same namespace as this — and
+duplicating it would put two names for one arrow in one namespace.  That
+module has no counterpart for the direction below, which is what a
+homomorphism defined on `A` needs in order to be fed to the completion. -/
 
-/-- The retagging, as a ⋆-algebra homomorphism. -/
-def toStarAlgHom (h : IsCStarNorm p) : A →⋆ₐ[ℂ] WithCStarNorm h where
+/-- The retagging read backwards, as a ⋆-algebra homomorphism.  The partner of
+`retagStarAlgHom`; a homomorphism out of the retagged algebra is a
+homomorphism out of `A` composed with this. -/
+def unretagStarAlgHom (h : IsCStarNorm p) : WithCStarNorm h →⋆ₐ[ℂ] A where
   toFun := id
   map_one' := rfl
   map_mul' _ _ := rfl
@@ -134,31 +139,8 @@ def toStarAlgHom (h : IsCStarNorm p) : A →⋆ₐ[ℂ] WithCStarNorm h where
   commutes' _ := rfl
   map_star' _ := rfl
 
-/-- The retagging back, as a ⋆-algebra homomorphism. -/
-def ofStarAlgHom (h : IsCStarNorm p) : WithCStarNorm h →⋆ₐ[ℂ] A where
-  toFun := id
-  map_one' := rfl
-  map_mul' _ _ := rfl
-  map_zero' := rfl
-  map_add' _ _ := rfl
-  commutes' _ := rfl
-  map_star' _ := rfl
-
-@[simp] theorem toStarAlgHom_apply (h : IsCStarNorm p) (a : A) :
-    toStarAlgHom h a = a := rfl
-
-@[simp] theorem ofStarAlgHom_apply (h : IsCStarNorm p) (a : WithCStarNorm h) :
-    ofStarAlgHom h a = a := rfl
-
-theorem toStarAlgHom_surjective (h : IsCStarNorm p) :
-    Function.Surjective (toStarAlgHom h) := fun a ↦ ⟨a, rfl⟩
-
-/-- The retagging carries the chosen norm, by construction.  Marked `simp`
-alongside `norm_eq`, of which it is the homomorphism-level form; the kernel
-audit rejects a non-`simp` theorem whose proof term is `Eq.refl`, and rightly,
-since such a statement earns its place only by being available to rewriting. -/
-@[simp] theorem norm_toStarAlgHom (h : IsCStarNorm p) (a : A) :
-    ‖toStarAlgHom h a‖ = p a := rfl
+@[simp] theorem unretagStarAlgHom_apply (h : IsCStarNorm p)
+    (a : WithCStarNorm h) : unretagStarAlgHom h a = a := rfl
 
 end WithCStarNorm
 

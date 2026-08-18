@@ -89,11 +89,21 @@ instance seminormCompletionCStarAlgebra [StarModule ℂ A] (h : IsCStarSeminorm 
     (UniformSpace.Completion (WithCStarNorm h.isCStarNorm_quotientNorm)))
 
 /-- The pre-C⋆-algebra the completion is taken of: the quotient by the null
-ideal, retagged so that the descended seminorm is its norm. -/
+ideal, retagged so that the descended seminorm is its norm.
+
+This is the quotient map read into the retagged copy, which is the same type,
+so the field proofs are `quotientStarMk`'s.  Composing with a generic retagging
+arrow would say the same thing at the cost of a dependency on the module that
+owns it. -/
 def toPreCompletion (h : IsCStarSeminorm p) :
-    A →⋆ₐ[ℂ] WithCStarNorm h.isCStarNorm_quotientNorm :=
-  (WithCStarNorm.toStarAlgHom h.isCStarNorm_quotientNorm).comp
-    (quotientStarMk h.nullIdeal)
+    A →⋆ₐ[ℂ] WithCStarNorm h.isCStarNorm_quotientNorm where
+  toFun := Ideal.Quotient.mk h.nullIdeal
+  map_one' := map_one _
+  map_mul' _ _ := map_mul _ _ _
+  map_zero' := map_zero _
+  map_add' _ _ := map_add _ _ _
+  commutes' _ := rfl
+  map_star' a := quotient_star_mk h.nullIdeal a
 
 /-- The quotient map is surjective and the retagging is the identity, so `A`
 exhausts the pre-C⋆-algebra.  This is what makes the image of `A` dense in the
@@ -182,7 +192,7 @@ def preLift (h : IsCStarSeminorm p) (f : A →⋆ₐ[ℂ] B) (hf : ∀ a : A, �
     WithCStarNorm h.isCStarNorm_quotientNorm →⋆ₐ[ℂ] B :=
   (quotientStarLift h.nullIdeal f
       (fun _ ha ↦ eq_zero_of_mem_nullIdeal h f hf ha)).comp
-    (WithCStarNorm.ofStarAlgHom h.isCStarNorm_quotientNorm)
+    (WithCStarNorm.unretagStarAlgHom h.isCStarNorm_quotientNorm)
 
 @[simp] theorem preLift_apply (h : IsCStarSeminorm p) (f : A →⋆ₐ[ℂ] B)
     (hf : ∀ a : A, ‖f a‖ ≤ p a) (a : A) :
