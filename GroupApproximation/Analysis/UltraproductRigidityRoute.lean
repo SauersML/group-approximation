@@ -12,22 +12,11 @@ The introduction's rigidity paragraph (`p:abstract-mechanism`) says
 
 and then, in `E`, that this forces the commutator `u` to converge to `1` in
 normalized Hilbert--Schmidt norm.  The proof ledger records both rows as routed
-through the **finite-stage** proof: `INT.03` reads
+through the **finite-stage** proof of `\label{app:finite-stage}`: `INT.03` reads
 "the Lean route is Appendix B, not the printed §3 ultraproduct proof", and
 `INT.04` reads "route via Appendix B".
 
-**That appendix is no longer printed.**  Commit `3a45fa60` ("Editorial pass:
-rewrite orbit collapse, cut what nothing uses") deleted the finite-stage
-transport appendix and the remark announcing it, on the ground that the
-ultraproduct reading of the collapse step had become its only consumer.  The
-manuscript now proves `\ref{thm:kazhdan-transport}` once, inside
-`\ref{sec:transport}`.  The Lean chain below is unaffected -- it was never a
-transcription of that appendix, and the two routes remain interchangeable --
-but "Appendix B" in the ledger rows above names a passage the reader will not
-find, and is kept only because those rows are quoted verbatim.
-
-That was accurate when it was written, and is now the description of the route
-this file replaced.  `LiteralNonMFEndpoint.kazhdanPinning` used to unfold to
+That is accurate.  `LiteralNonMFEndpoint.kazhdanPinning` unfolds to
 `KazhdanCompressionCore.compressionDefects_hsTrivial`, which unfolds to
 `KazhdanCompressorCorner.compressionDefect_hsDistSq_vanishing`, and the *only*
 step of that chain which is transport rather than operator-norm bookkeeping is
@@ -38,15 +27,8 @@ proved with an almost-fixed spectral corner, `root_capture_vanishing` and the
 reversal estimate -- Appendix B, with explicit constants `ε/6`, `ε/48` and
 `θ = (c₀+1)/2`.  Meanwhile `KazhdanAsymptoticCommutant.manuscriptKazhdanTransport`,
 which *is* derived by the printed §3 ultraproduct proof
-(`ultraproductKazhdanTransport`), had no mathematical consumer anywhere in the
-development: it was only re-exported and audited.
-
-**Both halves of that are now false, and this file is why.**  The consumers at
-the end of this file put the printed transport under `kazhdanPinning`, so
-`manuscriptKazhdanTransport` is what the endpoint travels and the finite-stage
-corner is the alternative rather than the route.  The sentences above are kept
-because they say what the situation was, and because the two routes remain
-interchangeable -- which is the fact that made the exchange safe.
+(`ultraproductKazhdanTransport`), has no mathematical consumer anywhere in the
+development: it is only re-exported and audited.
 
 ## What this file supplies
 
@@ -134,10 +116,10 @@ normalized Hilbert--Schmidt norm:
 `‖V A V* − A‖₂ = ‖A V − V A‖₂`,
 
 because `A V − V A = (A − V A V*) V` and right multiplication by a unitary is a
-`‖·‖₂`-isometry.  The printed proof of `\ref{thm:kazhdan-transport}` states its
-conclusion as a commutator; the corner chain of the finite-stage route (Lean
-only, since `3a45fa60` cut the appendix that printed it) states its as a
-displacement; this is the identity that makes them one statement. -/
+`‖·‖₂`-isometry.  The printed proof of `\label{thm:kazhdan-transport}` states its
+conclusion as a commutator; the corner chain of `\label{app:finite-stage}`
+states its as a displacement; this is the identity that makes them one
+statement. -/
 theorem hsDistSq_conj_eq_hsNormSq_commutator (Y : FiniteModel)
     {V : Matrix Y Y ℂ} (hV : V ∈ Matrix.unitaryGroup Y ℂ) (A : Matrix Y Y ℂ) :
     hsDistSq Y (V * A * Vᴴ) A = hsNormSq Y (A * V - V * A) := by
@@ -444,48 +426,6 @@ theorem transportedRoot_displacement_ultraproduct
       natRep_coe]
   rw [key]
   exact hN n hn
-
-/-! ## The consumers, on the printed route
-
-`transportedRoot_displacement_ultraproduct` above is the only transport step in
-the chain, so exchanging it exchanges the route of everything downstream.  The
-two declarations here are that chain re-formed on the printed proof: same
-statements, same corner bookkeeping, `\ref{thm:kazhdan-transport}` in place of
-the finite-stage appendix.
-
-`Sofic/MarkedCompressionRootCapture.lean` promised this under the name
-`KazhdanAsymptoticCommutant.compressionDefect_hsDistSq_vanishing_literal`.  It
-lives here instead, because the printed route is only available below
-`Analysis/UltraproductRigidityRoute`, and that docstring now names the real
-declaration -- it named one that did not exist. -/
-
-/-- **The compression defect vanishes, by the printed route.**  Statement
-character-for-character `KazhdanCompressorCorner.compressionDefect_hsDistSq_vanishing`,
-with its one transport step supplied by `\ref{thm:kazhdan-transport}` rather
-than by the finite-stage appendix.  The corner bookkeeping is shared: both go
-through `compressionDefect_hsDistSq_vanishing_of`, which takes the transport as
-a hypothesis and is the seam the two routes meet at. -/
-theorem compressionDefect_hsDistSq_vanishing_literal
-    (B : OpAlmostRepresentation E) (C : KazhdanCompressionCore Γ E) (γ : Γ) :
-    ∀ ε : ℝ, 0 < ε → ∃ N, ∀ n ≥ N,
-      hsDistSq (B.model n)
-        (B.map n ⁅C.t * C.c * C.t⁻¹, C.iota γ⁆)
-        (B.map n 1) ≤ ε :=
-  KazhdanCompressorCorner.compressionDefect_hsDistSq_vanishing_of B C γ
-    (transportedRoot_displacement_ultraproduct B C γ)
-
-/-- **`thm:criterion`'s transport step, on the printed route.**  The printed
-proof says "apply Theorem 3.1 with `x_n = U_{c,n}` to put the lifts of
-`d = t c t⁻¹` in the commutant", and this is that sentence: the same
-`CompressionDefectsHSTrivial` that
-`KazhdanCompressionCore.compressionDefects_hsTrivial` proves, reached through
-`KazhdanAsymptoticCommutant.manuscriptKazhdanTransport`. -/
-theorem compressionDefects_hsTrivial_literal
-    (C : KazhdanCompressionCore Γ E) (B : OpAlmostRepresentation E) :
-    KazhdanCompressionCore.CompressionDefectsHSTrivial C B := by
-  intro γ ε hε
-  simpa [KazhdanCompressionCore.transported] using
-    compressionDefect_hsDistSq_vanishing_literal B C γ ε hε
 
 end Rewire
 

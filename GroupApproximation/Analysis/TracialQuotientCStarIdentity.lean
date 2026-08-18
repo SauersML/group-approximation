@@ -60,6 +60,8 @@ open Filter Matrix HilbertSchmidtApproximateUnit KazhdanCornerMatrices
   ExactInvolutionLifts
 open scoped Matrix.Norms.L2Operator
 
+set_option synthInstance.maxHeartbeats 2000000
+set_option maxHeartbeats 4000000
 set_option linter.unusedSectionVars false
 
 noncomputable section
@@ -75,7 +77,6 @@ def cutSeq (k : ModelBoundedSequence X) (t : ℝ) : ModelBoundedSequence X :=
     rintro _ ⟨n, rfl⟩
     exact norm_cut_le_one (X n) (k n) t⟩⟩
 
-omit [∀ n, Nonempty (X n)] in
 @[simp] theorem cutSeq_apply (k : ModelBoundedSequence X) (t : ℝ) (n : ℕ) :
     cutSeq X k t n = cut (X n) (k n) t := rfl
 
@@ -101,7 +102,6 @@ theorem isHilbertSchmidtNull_cutSeq {k : ModelBoundedSequence X}
     (Eventually.of_forall fun n ↦ hsNormSq_nonneg (X n) _)
     (Eventually.of_forall hb) hlim
 
-omit [∀ n, Nonempty (X n)] in
 /-- **Clause 1, sequence level.**  The cut moves its own sequence by at most
 the square root of the threshold, uniformly over the coordinates. -/
 theorem norm_sub_mul_cutSeq_le (k : ModelBoundedSequence X) {t : ℝ}
@@ -130,7 +130,7 @@ theorem norm_sq_le_norm_star_mul_self (x : TracialMatrixQuotient X l) :
   have hδpos : 0 < ε / 2 := by positivity
   obtain ⟨b, hbmk⟩ := tracialMatrixQuotientMk_surjective X l x
   obtain ⟨r, hrmk, hrn⟩ :=
-    tracialQuot_exists_rep_norm_lt X l (star x * x) hδpos
+    Submodule.Quotient.norm_mk_lt (star x * x) hδpos
   have hrmk' : tracialMatrixQuotientMk X l r = star x * x := hrmk
   have hkmk : tracialMatrixQuotientMk X l (star b * b) = star x * x := by
     -- The spelling bridge is done by defeq type ascription, exactly as in
@@ -161,7 +161,7 @@ theorem norm_sq_le_norm_star_mul_self (x : TracialMatrixQuotient X l) :
       rw [map_sub, hbmk,
         (tracialMatrixQuotientMk_eq_zero_iff X l _).mpr hbeJ, sub_zero]
     calc ‖x‖ = ‖tracialMatrixQuotientMk X l (b - b * e)‖ := by rw [hmk]
-      _ ≤ ‖b - b * e‖ := tracialQuot_norm_mk_le X l _
+      _ ≤ ‖b - b * e‖ := Submodule.Quotient.norm_mk_le _ _
   have hcoordb : ∀ n, ‖(b - b * e) n‖ * ‖(b - b * e) n‖
       ≤ ‖star x * x‖ + 2 * (ε / 2) := by
     intro n

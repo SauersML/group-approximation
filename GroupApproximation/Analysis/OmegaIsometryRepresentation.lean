@@ -1,5 +1,4 @@
 import GroupApproximation.Analysis.OmegaCommutatorFixes
-import GroupApproximation.Sofic.KOmegaHilbert
 
 /-!
 # `π` as a bundled unitary representation on `K_ω`

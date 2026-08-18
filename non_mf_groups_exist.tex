@@ -220,6 +220,7 @@ The element $w$ is central and satisfies $w^2=1$.
 In particular $E$ is not MF, and neither $\Cmax(E)$ nor $\Cred(E)$ is an
 MF $C^*$-algebra.
 \leanverified{Sofic/LiteralNonMFEndpoint}{GroupApproximation.LiteralNonMFEndpoint.manuscriptTheoremA}
+\leanverified{Sofic/LiteralTietzePresentation}{GroupApproximation.LiteralTietzePresentation.exists_sixGenerator_thirtyTwo_presentation}
 \end{mainthm}
 
 \subsection*{Outline of the proof}
@@ -521,7 +522,7 @@ the regular norms.
 
 \section{One-sided conjugation in matrix models}\label{sec:transport}
 
-An inclusion whose two sides have the same size is an equality.  For a
+One comparison drives this section, in three settings.  For a
 homomorphism $\pi$ to a finite group,
 $\pi(t\Gamma t^{-1})=\pi(\Gamma)$, since the left side is a conjugate
 of the right side contained in it and the two are finite of the same
@@ -779,7 +780,7 @@ of the ambient one, so the compressed and polar-corrected maps remain
 operator-norm asymptotically multiplicative, while the trace is the
 corner's own normalized trace $\tr_{r_n}$, not the restriction of
 $\tr_{d_n}$.  Hence $\lVert1-(-1)\rVert_{2,\tr_{r_n}}=2$ whatever the
-ratio $r_n/d_n$; Section~\ref{sec:limits} explains why this
+ratio $r_n/d_n$; Section~\ref{sec:limits} records why this
 renormalization is necessary.
 
 \begin{theorem}[central involution obstruction]\label{thm:sign-criterion}
@@ -794,7 +795,7 @@ Put $d=tct^{-1}$ and $u=[d,\iota(a)]$ for some $a\in\Gamma$.
 If $w:=u^2$ is a nontrivial central involution of $H$, then every
 homomorphism $H\to\U(\mathcal Q)$ maps
 $w$ to the identity, and $H$ is not MF.
-\leanverified{Sofic/CentralSignAnyUniverse}{GroupApproximation.KazhdanCompressionCore.manuscriptCentralSignCriterion_anyUniverse}
+\leanverified{Sofic/KazhdanSignCriterion}{GroupApproximation.KazhdanCompressionCore.manuscriptCentralSignCriterion}
 \end{theorem}
 
 \begin{proof}
@@ -1293,8 +1294,8 @@ otherwise.  If $\tau_G$ is an MF trace, then $G$ is MF\@.
 Let $\varphi_n\colon\Cmax(G)\to M_{k_n}(\C)$ witness that $\tau_G$ is MF
 and put $\mathcal Q=\prod_n M_{k_n}(\C)\big/\bigoplus_n M_{k_n}(\C)$,
 the quotient of the bounded product by the operator-norm $c_0$ ideal.
-Since the models are pointwise bounded, $(\varphi_n(a))_n$ lies in the
-bounded product for every $a$, while the operator-norm defect conditions imply that
+Pointwise boundedness places $(\varphi_n(a))_n$ in the bounded product
+for every $a$, while the operator-norm defect conditions imply that
 $\Phi(a)=[(\varphi_n(a))_n]$ is a $*$-homomorphism
 $\Phi\colon\Cmax(G)\to\mathcal Q$.  Set $p=\Phi(1)$, a projection with
 $\Phi(\Cmax(G))\subseteq p\mathcal Qp$.  Then
@@ -1322,7 +1323,7 @@ MF\@.  Consequently, there is a separable unital $C^*$-algebra carrying
 a hyperlinear non-MF trace.  In particular, this gives a negative
 answer to Shulman's question whether every hyperlinear trace is MF
 \cite{ShulmanTraces}.
-\leanverified{Sofic/TraceSeparationEndpoint}{GroupApproximation.manuscriptTraceSeparation}
+\leanverified{Sofic/TraceSeparationEndpoint}{GroupApproximation.LiteralTraceConsequence.markedGroup_separable_canonicalTrace_hyperlinear_not_isMFTrace}
 \end{mainthm}
 
 \begin{proof}
@@ -1366,7 +1367,7 @@ $\Cmax(E)$ follows from countability of $E$.
 \renewcommand{\thesection}{S\arabic{section}}
 \renewcommand{\theHsection}{supp.\arabic{section}}
 
-\section{The base and a smaller presentation}\label{sec:group}
+\section{The base, and a smaller presentation}\label{sec:group}
 
 The base $\mathcal B$ of \eqref{eq:gamma-presentation} is the affine
 group $\mathbb Z^3\rtimes\SL_3(\mathbb Z)$, for which
@@ -1705,7 +1706,7 @@ Theorem~\ref{thm:transport-variants}(2) therefore applies to every
 pair of tensor powers: at each fixed tensor type and each weight, a
 sequence asymptotically invariant for the conjugate copy of the
 Kazhdan image is asymptotically invariant for the whole of it.
-\leanverified{Sofic/TensorPowerAnyUniverse}{GroupApproximation.TensorPowerTransport.manuscriptFixedTensorTransport_anyUniverse}
+\leanverified{Sofic/TensorPowerTransport}{GroupApproximation.TensorPowerTransport.manuscriptFixedTensorTransport}
 
 \section{Obstructions from a one-sided conjugation datum}\label{sec:conj}
 
@@ -1743,7 +1744,7 @@ subject to
     $\lambda\in\Lambda$.
 \end{enumerate}
 Write $d:=tct^{-1}$.  The datum determines the normal closure
-\leanverified{Sofic/ConjugationDatumAnyUniverse}{GroupApproximation.ManuscriptExactWrappers.manuscriptMarkedKazhdanPattern_anyUniverse}
+\leanverified{Sofic/ManuscriptExactWrappers}{GroupApproximation.ManuscriptExactWrappers.manuscriptMarkedKazhdanPattern}
 \[
   N_{\mathrm{conj}}
   \;=\;\bigl\langle\!\bigl\langle\,
@@ -1780,7 +1781,7 @@ $(\Lambda,\iota,t,c)$, and let $F\trianglelefteq H$ be a finite
 normal subgroup with $F\subseteq N_{\mathrm{conj}}$.  Then every
 homomorphism $\Theta\colon H\to\U(\mathcal Q)$ satisfies
 $\Theta(f)=1$ for all $f\in F$.
-\leanverified{Sofic/FiniteNormalAnyUniverse}{GroupApproximation.ManuscriptExactWrappers.manuscriptFiniteNormalObstructionCriterion_anyUniverse}
+\leanverified{Sofic/ManuscriptExactWrappers}{GroupApproximation.ManuscriptExactWrappers.manuscriptFiniteNormalObstructionCriterion}
 \end{theorem}
 
 \begin{proof}
@@ -1892,7 +1893,7 @@ both preserve that asymptotic commutant.  Explicitly, both
  V_{g,n}^*x_nV_{g,n}
 \]
 satisfy the preceding convergence for every $\lambda\in\Lambda$.
-\leanverified{Sofic/DefectActionAnyUniverse}{GroupApproximation.KazhdanAsymptoticCommutant.compressionGroup_transport_both_anyUniverse}
+\leanverified{Sofic/KazhdanAsymptoticCommutant}{GroupApproximation.KazhdanAsymptoticCommutant.compressionGroup_transport_both}
 \end{corollary}
 
 \begin{proof}
@@ -1913,7 +1914,7 @@ property~\textup{(T)}, let
 $\iota\colon\Gamma\to H$ be a homomorphism, and put
 $L=\iota(\Gamma)$.  If $F\trianglelefteq H$ is finite and
 $F\le\mathfrak D(H,L)$, then every homomorphism $H\to\U(\mathcal Q)$ maps every element of $F$ to the identity.
-\leanverified{Sofic/DefectRadicalAnyUniverse}{GroupApproximation.KazhdanAsymptoticCommutant.manuscriptCompressionRadical_anyUniverse}
+\leanverified{Sofic/ManuscriptKazhdanTransport}{GroupApproximation.KazhdanAsymptoticCommutant.manuscriptCompressionRadical}
 \end{theorem}
 
 \begin{proof}
@@ -1948,7 +1949,7 @@ $(\Lambda,\iota,t,c)$, and let $K\trianglelefteq H$ be a normal
 subgroup with property~\textup{(T)} such that
 $K\subseteq N_{\mathrm{conj}}$.  Then every homomorphism $\Theta\colon H\to\U(\mathcal Q)$ satisfies $\Theta(k)=1$ for all
 $k\in K$.
-\leanverified{Sofic/NormalKazhdanAnyUniverse}{GroupApproximation.ManuscriptExactWrappers.manuscriptNormalKazhdanObstruction_anyUniverse}
+\leanverified{Sofic/ManuscriptExactWrappers}{GroupApproximation.ManuscriptExactWrappers.manuscriptNormalKazhdanObstruction}
 \end{theorem}
 
 Since finite groups have property~\textup{(T)},
@@ -2099,7 +2100,7 @@ and put $L=\iota(\Gamma)$.  If $K\trianglelefteq H$ is a normal
 subgroup with property~\textup{(T)} and $K\le\mathfrak D(H,L)$, then
 every homomorphism $H\to\U(\mathcal Q)$ maps every
 element of $K$ to the identity.
-\leanverified{Sofic/NormalKazhdanAnyUniverse}{GroupApproximation.ManuscriptExactWrappers.manuscriptIntrinsicNormalKazhdanRadical_anyUniverse}
+\leanverified{Sofic/ManuscriptExactWrappers}{GroupApproximation.ManuscriptExactWrappers.manuscriptIntrinsicNormalKazhdanRadical}
 \end{corollary}
 
 \begin{proof}
@@ -2112,7 +2113,7 @@ Theorem~\ref{thm:abstract-nk} with $D=\mathfrak D(H,L)$.
 The subgroup generated by \emph{all} normal property-\textup{(T)}
 subgroups of $\mathfrak D(H,L)$ therefore also lies in the kernel of
 every homomorphism to $\U(\mathcal Q)$.
-\leanverified{Sofic/NormalKazhdanAnyUniverse}{GroupApproximation.ManuscriptExactWrappers.manuscriptIntrinsicNormalKazhdanPart_anyUniverse}
+\leanverified{Sofic/ManuscriptExactWrappers}{GroupApproximation.ManuscriptExactWrappers.manuscriptIntrinsicNormalKazhdanPart}
 
 \section{The finite-dimensional obstruction}\label{sec:findim}
 
@@ -2488,8 +2489,8 @@ Lemma~\ref{lem:permanence}(2), while \(E\) is not MF by Theorem~\ref{thm:A}.
 
 \section{Commuting orbits and the MF residual}\label{subsec:collapse}
 
-The proof of Theorem~\ref{thm:sign-criterion} compresses a
-representation to the negative spectral corner of a central involution.  The theorems of this section replace
+Theorem~\ref{thm:sign-criterion} compresses to the negative spectral
+corner of a central involution.  The theorems of this section replace
 that corner by an arbitrary projection of $\mathcal Q$ whose
 conjugation orbit commutes.
 
@@ -3126,8 +3127,8 @@ finitely many words gives the finite-radius statement.
 
 \subsection{A finite universal Horn obstruction}
 
-The presentation of $E$ yields a finite quasi-identity ---
-equivalently, a universal Horn sentence --- satisfied by every MF
+The presentation of $E$ yields a finite quasi-identity --
+equivalently, a universal Horn sentence -- satisfied by every MF
 group.  Write $R$ for the forty-one relators of \eqref{eq:E},
 regarded as words in eight variables, and $w$ for the distinguished word in those
 variables.
@@ -3246,7 +3247,7 @@ finitely presented, pairwise nonisomorphic, and non-MF, each containing
 $E$ (Lemma~\ref{lem:permanence}(1)).  They are pairwise nonisomorphic
 because their abelianizations have distinct torsion-free ranks; the
 number of homomorphisms to $\mathbb Z/2$ separates them as well.
-\leanverified{Sofic/LiteralProductMultiplicity}{GroupApproximation.LiteralProductMultiplicity.manuscriptInfiniteMultiplicity_literal}
+\leanverified{Sofic/ProductMultiplicity}{GroupApproximation.ProductMultiplicity.manuscriptInfiniteMultiplicity}
 For finitely generated examples, choose continuum many pairwise
 nonisomorphic finitely generated groups $N$, for instance Neumann's
 two-generator groups \cite{Neumann37}.  Each product $E\times N$ is
@@ -3418,7 +3419,9 @@ Let $A$ be a unital $C^*$-algebra containing a projection $p$ and a
 unitary $u$ with $p<upu^{*}$.  Then $A$
 contains an isometry that is not a unitary; consequently $A$ is not
 stably finite and has no faithful tracial state.
-\leanverified{Analysis/ProperIsometryStrictOrder}{GroupApproximation.manuscriptProperIsometryStrictOrder}
+\leanverified{Analysis/ProperIsometryFromCompression}{GroupApproximation.ProperProjectionCompression.isometry_not_isUnit}
+\leanverified{Analysis/ProperIsometryFromCompression}{GroupApproximation.ProperProjectionCompression.not_isStablyFiniteRing}
+\leanverified{Analysis/ProperIsometryFromCompression}{GroupApproximation.ProperProjectionCompression.no_faithfulTracialState}
 \end{proposition}
 
 \begin{proof}
@@ -3468,7 +3471,7 @@ it is stably finite, despite being non-MF
 
 \section*{Acknowledgements}
 We thank Caleb Eckhardt for discussions clarifying the finite-quotient
-analogy that organizes Section~\ref{sec:transport}.  We thank Francesco
+analogy that organizes Section~\ref{sec:intro}.  We thank Francesco
 Fournier-Facio for formulating the group-theoretic input as a Kazhdan
 group that is not co-Hopfian together with its ascending HNN
 extension, for the small-cancellation construction recorded in

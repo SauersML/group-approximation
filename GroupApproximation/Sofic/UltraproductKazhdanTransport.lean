@@ -10,24 +10,23 @@ import Mathlib.Order.Filter.Ultrafilter.Defs
 # The printed ultraproduct proof of Kazhdan transport: steps KT.10 and KT.11
 
 This file certifies the last two steps of the **printed** proof of
-`\ref{thm:kazhdan-transport}` in `non_mf_groups_exist.tex`, together with
-the by-contradiction skeleton that the printed proof runs.  A second,
-quantitative finite-stage proof is formalized in
-`Sofic/ManuscriptKazhdanTransport.lean`; the manuscript printed it as an
-appendix until commit `3a45fa60` cut it, and what is replayed here is the
-ultraproduct proof, which is the one still in print.
+`\label{thm:kazhdan-transport}` in `non_mf_groups_exist.tex`, together with
+the by-contradiction skeleton that the printed proof runs.  The manuscript
+proves the theorem twice; the proof replayed here is the ultraproduct one,
+not the quantitative finite-stage one of `\label{app:finite-stage}`.
 
 Anchors in the TeX, in decreasing stability: the label
 `thm:kazhdan-transport`; the enclosing
-`\section{One-sided conjugation in matrix models}` (`\ref{sec:transport}`); and
-the five italicized paragraph headings of the printed proof, which are the
+`\section{One-sided Kazhdan transport}` (`\label{sec:transport}`); and the
+five italicized paragraph headings of the printed proof, which are the
 step boundaries used below --
 `\emph{The adjoint model.}`, `\emph{The ultraproduct.}`,
-`\emph{The projection onto the fixed subspace.}`,
-`\emph{The two projections agree.}`, `\emph{Conclusion.}`.
+`\emph{The Kazhdan projection.}`,
+`\emph{One-sided compression and finiteness.}`, `\emph{Conclusion.}`.
 Line numbers are deliberately not cited: the manuscript is under concurrent
 edit and every offset in this repository's notes is stale within minutes.
-Re-grep the labels and the headings rather than trusting any offset.
+As of the 4011-line revision the section ran 564--727, but re-grep the
+labels rather than trusting that.
 
 The manuscript's proof ledger is
 

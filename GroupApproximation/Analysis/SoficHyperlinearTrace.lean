@@ -66,14 +66,14 @@ namespace ShulmanTrace
 open Filter Matrix TracialUltraproduct SoficPermutationTrace
 open scoped Matrix.Norms.L2Operator
 
-/- This file once carried the largest budget in the development: from a foreign
-file every use of `*` on the quotient re-ran the search through
-`Ideal.Quotient.ring` and the `lp.inftyRing` chain, rediscovering each model's
-`Fintype`/`DecidableEq` through the `FiniteModel` projections, and its first
-build timed out at 1,000,000 exactly there (`soficUnitaryHom`, and `map_mul π`
-in the assembly).  That was a property of the defining file and is fixed there:
-the quotient is opaque, so `*` on it resolves in one step from here as readily
-as from its own file. -/
+/- Above the budget of `TracialMatrixUltraproduct` itself: from a foreign file
+every use of `*` on the quotient re-runs the search through
+`Ideal.Quotient.ring` and the `lp.inftyRing` chain, which rediscovers each
+model's `Fintype`/`DecidableEq` through the `FiniteModel` projections.  The
+first build of this file timed out at 1,000,000 exactly there
+(`soficUnitaryHom`, and `map_mul π` in the assembly). -/
+set_option synthInstance.maxHeartbeats 2000000
+set_option maxHeartbeats 4000000
 set_option linter.unusedSectionVars false
 
 noncomputable section
@@ -88,15 +88,12 @@ section CoordinateProbes
 
 variable {X : ℕ → FiniteModel} [∀ n, Nonempty (X n)]
 
-omit [∀ n, Nonempty (X n)] in
 @[simp] theorem modelSeq_add_apply (p q : ModelBoundedSequence X) (n : ℕ) :
     (p + q) n = p n + q n := rfl
 
-omit [∀ n, Nonempty (X n)] in
 @[simp] theorem modelSeq_sub_apply (p q : ModelBoundedSequence X) (n : ℕ) :
     (p - q) n = p n - q n := rfl
 
-omit [∀ n, Nonempty (X n)] in
 @[simp] theorem modelSeq_mul_apply (p q : ModelBoundedSequence X) (n : ℕ) :
     (p * q) n = p n * q n := rfl
 
@@ -106,16 +103,13 @@ omit [∀ n, Nonempty (X n)] in
 @[simp] theorem modelSeq_one_apply (n : ℕ) :
     (1 : ModelBoundedSequence X) n = 1 := rfl
 
-omit [∀ n, Nonempty (X n)] in
 @[simp] theorem modelSeq_zero_apply (n : ℕ) :
     (0 : ModelBoundedSequence X) n = 0 := rfl
 
-omit [∀ n, Nonempty (X n)] in
 @[simp] theorem modelSeq_star_apply (p : ModelBoundedSequence X) (n : ℕ) :
     (star p) n = star (p n) := by
   simp [lp.star_apply]
 
-omit [∀ n, Nonempty (X n)] in
 /-- A sequence vanishing in every coordinate is `‖·‖₂`-null along any filter. -/
 theorem isHilbertSchmidtNull_of_forall_eq_zero {l : Filter ℕ}
     {a : ModelBoundedSequence X} (h : ∀ n, a n = 0) :
@@ -123,6 +117,16 @@ theorem isHilbertSchmidtNull_of_forall_eq_zero {l : Filter ℕ}
   show Tendsto (fun n ↦ hsNorm (X n) (a n)) l (nhds 0)
   refine tendsto_const_nhds.congr fun n ↦ ?_
   rw [h n, hsNorm_zero]
+
+/-- The normalized trace subtracts. -/
+theorem normTrace_sub (Y : FiniteModel) (A B : Matrix Y Y ℂ) :
+    normTrace Y (A - B) = normTrace Y A - normTrace Y B := by
+  have hneg : normTrace Y (-B) = -normTrace Y B := by
+    have h := normTrace_smul Y (-1 : ℂ) B
+    rw [neg_one_smul] at h
+    rw [h]
+    ring
+  rw [sub_eq_add_neg, normTrace_add, hneg, sub_eq_add_neg]
 
 end CoordinateProbes
 
@@ -151,7 +155,6 @@ def soficUnitarySeq (g : G) : ModelBoundedSequence (fun n ↦ S.model n) :=
 @[simp] theorem soficUnitarySeq_apply (g : G) (n : ℕ) :
     soficUnitarySeq S g n = modelUnitary S n g := rfl
 
-omit [∀ n, Nonempty (S.model n)] in
 /-- The Hamming multiplicativity defect of the approximation, as an ordinary
 limit. -/
 theorem tendsto_hamming_mul (g h : G) :
@@ -163,7 +166,6 @@ theorem tendsto_hamming_mul (g h : G) :
   obtain ⟨N, hN⟩ := S.asymptoticallyMultiplicative g h ε hε
   exact Filter.eventually_atTop.mpr ⟨N, hN⟩
 
-omit [∀ n, Nonempty (S.model n)] in
 /-- The Hamming distance of the identity model to the identity, as an ordinary
 limit. -/
 theorem tendsto_hamming_one :

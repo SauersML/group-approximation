@@ -29,6 +29,12 @@
           "module": "Sofic/LiteralNonMFEndpoint",
           "declaration": "GroupApproximation.LiteralNonMFEndpoint.manuscriptTheoremA",
           "covers": "the complete printed proposition"
+        },
+        {
+          "role": "exact",
+          "module": "Sofic/LiteralTietzePresentation",
+          "declaration": "GroupApproximation.LiteralTietzePresentation.exists_sixGenerator_thirtyTwo_presentation",
+          "covers": "a printed conclusion of the proposition"
         }
       ]
     },
@@ -198,8 +204,8 @@
       "lean": [
         {
           "role": "exact",
-          "module": "Sofic/CentralSignAnyUniverse",
-          "declaration": "GroupApproximation.KazhdanCompressionCore.manuscriptCentralSignCriterion_anyUniverse",
+          "module": "Sofic/KazhdanSignCriterion",
+          "declaration": "GroupApproximation.KazhdanCompressionCore.manuscriptCentralSignCriterion",
           "covers": "the complete printed proposition"
         }
       ]
@@ -439,7 +445,7 @@
         {
           "role": "exact",
           "module": "Sofic/TraceSeparationEndpoint",
-          "declaration": "GroupApproximation.manuscriptTraceSeparation",
+          "declaration": "GroupApproximation.LiteralTraceConsequence.markedGroup_separable_canonicalTrace_hyperlinear_not_isMFTrace",
           "covers": "the complete printed proposition"
         }
       ]
@@ -596,8 +602,8 @@
       "lean": [
         {
           "role": "exact",
-          "module": "Sofic/ConjugationDatumAnyUniverse",
-          "declaration": "GroupApproximation.ManuscriptExactWrappers.manuscriptMarkedKazhdanPattern_anyUniverse",
+          "module": "Sofic/ManuscriptExactWrappers",
+          "declaration": "GroupApproximation.ManuscriptExactWrappers.manuscriptMarkedKazhdanPattern",
           "covers": "the complete printed proposition"
         }
       ]
@@ -639,8 +645,8 @@
       "lean": [
         {
           "role": "exact",
-          "module": "Sofic/FiniteNormalAnyUniverse",
-          "declaration": "GroupApproximation.ManuscriptExactWrappers.manuscriptFiniteNormalObstructionCriterion_anyUniverse",
+          "module": "Sofic/ManuscriptExactWrappers",
+          "declaration": "GroupApproximation.ManuscriptExactWrappers.manuscriptFiniteNormalObstructionCriterion",
           "covers": "the complete printed proposition"
         }
       ]
@@ -661,8 +667,8 @@
       "lean": [
         {
           "role": "exact",
-          "module": "Sofic/DefectActionAnyUniverse",
-          "declaration": "GroupApproximation.KazhdanAsymptoticCommutant.compressionGroup_transport_both_anyUniverse",
+          "module": "Sofic/KazhdanAsymptoticCommutant",
+          "declaration": "GroupApproximation.KazhdanAsymptoticCommutant.compressionGroup_transport_both",
           "covers": "the complete printed proposition"
         }
       ]
@@ -683,8 +689,8 @@
       "lean": [
         {
           "role": "exact",
-          "module": "Sofic/DefectRadicalAnyUniverse",
-          "declaration": "GroupApproximation.KazhdanAsymptoticCommutant.manuscriptCompressionRadical_anyUniverse",
+          "module": "Sofic/ManuscriptKazhdanTransport",
+          "declaration": "GroupApproximation.KazhdanAsymptoticCommutant.manuscriptCompressionRadical",
           "covers": "the complete printed proposition"
         }
       ]
@@ -707,8 +713,8 @@
       "lean": [
         {
           "role": "exact",
-          "module": "Sofic/NormalKazhdanAnyUniverse",
-          "declaration": "GroupApproximation.ManuscriptExactWrappers.manuscriptNormalKazhdanObstruction_anyUniverse",
+          "module": "Sofic/ManuscriptExactWrappers",
+          "declaration": "GroupApproximation.ManuscriptExactWrappers.manuscriptNormalKazhdanObstruction",
           "covers": "the complete printed proposition"
         }
       ]
@@ -753,8 +759,8 @@
       "lean": [
         {
           "role": "exact",
-          "module": "Sofic/NormalKazhdanAnyUniverse",
-          "declaration": "GroupApproximation.ManuscriptExactWrappers.manuscriptIntrinsicNormalKazhdanRadical_anyUniverse",
+          "module": "Sofic/ManuscriptExactWrappers",
+          "declaration": "GroupApproximation.ManuscriptExactWrappers.manuscriptIntrinsicNormalKazhdanRadical",
           "covers": "the complete printed proposition"
         }
       ]
@@ -1396,9 +1402,21 @@
       "lean": [
         {
           "role": "exact",
-          "module": "Analysis/ProperIsometryStrictOrder",
-          "declaration": "GroupApproximation.manuscriptProperIsometryStrictOrder",
+          "module": "Analysis/ProperIsometryFromCompression",
+          "declaration": "GroupApproximation.ProperProjectionCompression.isometry_not_isUnit",
           "covers": "the complete printed proposition"
+        },
+        {
+          "role": "exact",
+          "module": "Analysis/ProperIsometryFromCompression",
+          "declaration": "GroupApproximation.ProperProjectionCompression.not_isStablyFiniteRing",
+          "covers": "a printed conclusion of the proposition"
+        },
+        {
+          "role": "exact",
+          "module": "Analysis/ProperIsometryFromCompression",
+          "declaration": "GroupApproximation.ProperProjectionCompression.no_faithfulTracialState",
+          "covers": "a printed conclusion of the proposition"
         }
       ]
     }

@@ -4,20 +4,11 @@ import GroupApproximation.Sofic.UltraproductKazhdanTransport
 /-!
 # Transport at every Hilbertian scale: the printed proof of `thm:transport-variants`(1)
 
-This file replays part **(1)** of Theorem `\ref{thm:transport-variants}`
-("transport at every scale, and of intertwiners") of `non_mf_groups_exist.tex`,
-inside `\section{Weights and intertwiners}` (`\ref{supp:transport-variants}`).
-The route is the one the manuscript prints: "the ultraproduct proof of Theorem
-`\ref{thm:kazhdan-transport}` applies with `\tr_{d_n}` replaced by
-`\operatorname{Tr}(\,\cdot\,)/\nu_n`".
-
-The manuscript writes the weight `\nu_n` where this file writes `w`.  It also
-used to close the section with a remark specializing the weight to the
-dimension; commit `fd45b050` deleted that remark as an unused application, so
-the dimension-weight material below (`## The dimension weight`) now has no
-printed counterpart.  What survives of the specializations is
-`Taking $\nu_n=k_n$`, the rank of the projection lift in the proof of
-`\ref{thm:projection-collapse}`.
+This file replays part **(1)** of Theorem `thm:transport-variants`
+("transport at every scale, and of intertwiners") of `non_mf_groups_exist.tex`
+--- statement at lines 752--782, printed proof at lines 784--806, and the
+trailing remark identifying the dimension weight at lines 808--813 --- by the
+proof the manuscript actually prints for it.
 
 ## STATUS: THE ROUTE IS NOT YET CLOSED
 
@@ -48,7 +39,7 @@ KT.10 and KT.11 at an arbitrary weight in both directions.
 
 ## The printed statement
 
-Let `Γ`, `H`, `ι`, `s` be as in `\ref{thm:kazhdan-transport}`, let
+Let `Γ`, `H`, `ι`, `s` be as in `thm:kazhdan-transport` (lines 615--637), let
 `(U_n)` be as there, let `(w_n)` be nonnegative weights, suppose there is `C`
 with `Tr(x_n* x_n) ≤ C w_n` for all `n`, and suppose that for every `γ ∈ Γ`
 and every `ε > 0`, eventually
@@ -117,9 +108,8 @@ is not derivable from its own `w n = card (Y n)` instance.**  Since
 null at `w` when `w n ≪ card (Y n)`; there is a natural map
 `K_ω^w → K_ω^card` and none back.  Building the Hilbert-space half at the
 dimension weight and retrofitting would build it twice.  Equivalently, and this
-was the manuscript's own closing remark until `fd45b050` deleted it, the
-dimension weight recovers
-`\ref{thm:kazhdan-transport}` *with the operator-norm bound relaxed to mass
+is the manuscript's own remark at lines 808--813, the dimension weight recovers
+`thm:kazhdan-transport` *with the operator-norm bound relaxed to mass
 boundedness*, so the weighted statement is strictly stronger and cannot be got
 from the unweighted one by rescaling: `y_n = x_n √(d_n/w_n)` is
 Hilbert--Schmidt bounded but not operator-norm bounded.
@@ -588,8 +578,8 @@ theorem weightNull_atTop_of_forall_free_ultrafilter
 /-! ## The printed statement of `thm:transport-variants`(1) -/
 
 /-- **Transport at every Hilbertian scale.**
-`non_mf_groups_exist.tex`, Theorem `\ref{thm:transport-variants}`, part (1),
-with its printed proof.
+`non_mf_groups_exist.tex`, Theorem `thm:transport-variants`, part (1)
+(statement lines 752--782, proof lines 784--806).
 
 Let `Γ`, `H`, `ι`, `s` be as in `thm:kazhdan-transport`, let `(U_n)` be as
 there, let `(w_n)` be nonnegative weights, suppose `Tr(x_n* x_n) ≤ C w_n` for
@@ -689,8 +679,8 @@ theorem weightNull_atTop_iff_scaledMassVanishing
 of a Kazhdan image acts in both directions on the `w`-mass-bounded, `w`-scaled
 asymptotic commutant, for every nonnegative weight, by the printed ultraproduct
 proof.  This is the same assertion as
-`ScaledKazhdanTransport.scaled_transport_both`, by the printed ultraproduct
-route rather than by the finite-stage equal-rank route.
+`ScaledKazhdanTransport.scaled_transport_both`, by the ultraproduct route of
+lines 784--806 rather than by the finite-stage equal-rank route.
 
 This is the shape specified for the collapse proof by
 `docs/COLLAPSE_STEP_AUDIT.md` §4, route (b): the qualitative `∀ ε` form at an
@@ -725,13 +715,9 @@ theorem scaled_transport_both_of_ambient
 
 /-! ## The dimension weight
 
-A Lean-side specialization with no printed counterpart.  The manuscript closed
-`\ref{supp:transport-variants}` with a remark taking the weight to be the
-dimension, and commit `fd45b050` deleted it as an unused application; the
-surviving specialization is to the rank `k_n` of the projection lift, not to
-`d_n`.  The declarations here are kept because the weight dictionary they
-supply is used throughout this file, and because the fact is true and cheap --
-but no badge is owed on any of them. -/
+`non_mf_groups_exist.tex` lines 808--813: "The dimension weight `w_n = d_n`
+recovers Theorem `thm:kazhdan-transport` with the uniform operator-norm bound
+relaxed to mass boundedness." -/
 
 /-- At the dimension weight the printed mass bound is the normalized
 Hilbert--Schmidt bound. -/
@@ -779,9 +765,9 @@ theorem hsNormSq_displacement_eq_commutator (Z : FiniteModel)
   have h2 : A - W * A * Wᴴ = -(W * A * Wᴴ - A) := by abel
   rw [← h1, h2, hsNormSq_neg]
 
-/-- **The dimension weight recovers `\ref{thm:kazhdan-transport}`, with the
-uniform operator-norm bound relaxed to mass boundedness.**  Not a printed
-statement: see the note under `## The dimension weight` above.
+/-- **The dimension weight recovers `thm:kazhdan-transport`, with the uniform
+operator-norm bound relaxed to mass boundedness.**
+`non_mf_groups_exist.tex` lines 808--810.
 
 Taking `w n = card (Y n)` in `transport_variants_one` gives back the conclusion
 of `thm:kazhdan-transport` --- normalized Hilbert--Schmidt vanishing of the

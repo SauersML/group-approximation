@@ -496,16 +496,7 @@ every operator-norm almost representation.
 Statement and consumers are unchanged; the proof now names the transport step
 it uses, which is the Appendix-B one.  Rows `INT.03` and `INT.04` are about
 that choice, and the alternative is
-`UltraproductRigidityRoute.compressionDefect_hsDistSq_vanishing_literal`,
-which proves this same statement through `\ref{thm:kazhdan-transport}`.
-
-That name is corrected, not renamed: this sentence used to promise the
-alternative as `KazhdanAsymptoticCommutant.compressionDefect_hsDistSq_vanishing_literal`,
-and no such declaration existed anywhere in the corpus.  It lives in
-`Analysis/UltraproductRigidityRoute` because the printed route is only
-available below that module, and it could not be named here in any case --
-this file is one of that module's imports, so the exchange has to happen
-downstream rather than in place. -/
+`KazhdanAsymptoticCommutant.compressionDefect_hsDistSq_vanishing_literal`. -/
 theorem compressionDefect_hsDistSq_vanishing
     (B : OpAlmostRepresentation E)
     (C : KazhdanCompressionCore Gamma E) (gamma : Gamma) :
