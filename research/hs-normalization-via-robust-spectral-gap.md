@@ -54,14 +54,25 @@ Gate outcomes (2026-08-18, second sweep pass — both executed):
   character rigidity or `(T;FD)^rob` … would close (AC)" is
   SUPERSEDED twice over: the property is free, and it closes only
   the uniformity gap, not (AC) proper.
-- **Gate 1 NEGATIVE:** Peterson 2605.16669 contains no
-  varying-dimension relative-commutant structure, no normalizers, no
-  conjugate-comparison; his Thm 1.3 puts the (T) ALGEBRA (not its
-  commutant) in an f.d. ultraproduct, inside an ultrapower of
-  `L𝔽_n`, under Popa's factorial-relative-commutant hypothesis; and
-  matricial approximability is vacuous in our matrix ambient.
-  Residual: his §6 ("Asymptotic relative commutants and intertwining
-  in free products") could not be retrieved and is unread.
+- **Gate 1 PARTIAL POSITIVE (corrected after the §6 residual was
+  closed by a full PDF read):** Peterson contains no answer to
+  OP 6.2 and not the (CCR) shape — but he supplies (i) the printed
+  (T)-interchange formula in the varying-dimension matrix ambient
+  (proof of Prop 7.8) — cite it as precedent for
+  `ccr-for-coordinate-collapsing-models`; (ii) the conjugated-family
+  interchange under uniform weak spectral gap (𝒞_T remark) — the
+  right template for any (CCR) drafting; (iii) Thm 5.2,
+  coordinatewise deformations of (T) subfactors with factorial
+  relative commutant are inner — a second intertwiner mechanism for
+  the assembly, closer to the compressor picture than DV Lem 3.1
+  (note its factorial-relative-commutant hypothesis is load-bearing);
+  (iv) ∀∃-expressibility of relative-commutant statements for
+  finitely presented (T) groups (Jekel remark) — a model-theoretic
+  lever: such statements transfer along elementary equivalence, so
+  (AC)-shaped facts proved for one ultraproduct transfer to
+  elementarily equivalent ones.  FLAG: finite presentation of
+  `EL_r(𝔽_q[x₁…x_d])` is now load-bearing twice (DV Def 7.5; the
+  Jekel remark) — settle it before pulling either lever.
 - **Gate 2 resolved by the above:** the direct attack on the
   `requires` is unnecessary; all remaining force goes to
   `approximate-collapse-for-kt-compressor` — via the assembly sketch

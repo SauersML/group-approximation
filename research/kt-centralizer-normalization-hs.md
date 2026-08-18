@@ -196,8 +196,30 @@ complete; verification ledger below).**
    `approximate-collapse-for-kt-compressor`.  Consistency with
    Becker–Lubotzky resolved (printed `𝔽₂×𝔽₂` separation; the
    hyperfinite weakening is on the input class).  Gate 1 (Peterson
-   2605.16669) negative, with his unretrieved §6 flagged as the one
-   residual.
+   2605.16669), CORRECTED after the §6 residual was closed by a full
+   PDF read (pp. 18–26): **partial positive**, not negative.  No
+   partial answer to OP 6.2 and no (CCR) shape (no normalizers of
+   commutants, no `N' vs (uNu*)'` comparison) — but four citable
+   items: (i) the proof of his Prop 7.8 contains the (T)-licensed
+   interchange formula `π(Γ)' ∩ ∏_𝒰 M_{n_ι} = ∏_𝒰 (π_{n_ι}(Γ)' ∩
+   M_{n_ι})` IN PRINT, in the varying-dimension matrix ambient — the
+   printed precedent for `ccr-for-coordinate-collapsing-models`'s
+   steps 1–2; (ii) his class-𝒞_T remark proves the conjugated-family
+   interchange `α(P)' ∩ N^𝒰 = ∏_𝒰 (α_ι(P)' ∩ N)` under UNIFORM WEAK
+   SPECTRAL GAP of the embedding family — the closest published
+   statement to the (CCR) shape, genuine coordinates; (iii) his
+   Thm 5.2: coordinatewise deformations of a (T) subfactor with
+   factorial relative commutant are INNER (Connes rigidity in the
+   ultraproduct) — a second intertwiner-transport mechanism, closer
+   to the compressor picture than DV Lem 3.1; (iv) the Jekel remark:
+   relative-commutant statements about images of finitely presented
+   (T) groups in ultraproducts are ∀∃-expressible, hence transfer
+   along elementary equivalence — a model-theoretic attack surface on
+   (AC) not previously considered.  FLAG now load-bearing twice
+   (here and DV Def 7.5): whether `EL_r(𝔽_q[x₁…x_d])` is finitely
+   presented must be settled before either lever is pulled — verify,
+   do not assume.  All four items live in the genuine-coordinate
+   regime; (AC) proper remains the sole open requirement.
 5. **No applicable counterexample mechanism:** Ioana's 2108.09589
    engine (the only one producing controlled far-from-genuine
    asymptotic reps) is blocked when a factor has (T) (de la Salle

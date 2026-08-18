@@ -62,6 +62,16 @@ regular representations: `σ` is trace-faithful (`tr σ(g) → 0`,
 `compressor-coset-two-point-exact`).  All hypotheses check; (CCR)
 holds for this `σ`.
 
+**Printed precedent (added 2026-08-18, second sweep).**  The
+interchange identity that Steps 1–2 implement — `π(Γ)' ∩ ∏_𝒰 M_{n_ι}
+= ∏_𝒰 (π_{n_ι}(Γ)' ∩ M_{n_ι})` for a coordinate-given representation
+of a property (T) group into a varying-dimension matrix ultraproduct —
+appears in print inside the proof of Peterson arXiv:2605.16669
+Prop 7.8 (for `SL₃(ℤ)`), with property (T) as the license.  This
+route's contribution beyond the precedent is Step 3 (the image
+collapse converting `Γ`-conjugation to `Λ`-conjugation) and the
+uniformity-in-`λ` bookkeeping it consumes.
+
 **Why this does not close `kt-centralizer-normalization-hs`.**  Steps
 1–2 survive for arbitrary `σ` (indeed `x ∈ σ(Λ)'` is exactly
 `Λ`-invariant, no Kazhdan needed at the ultraproduct level).  Step 3
