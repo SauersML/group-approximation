@@ -100,6 +100,42 @@ to arrange in isolation -- together with a proof that non-separability really
 obstructs the action models rather than merely this route to them.  That
 converse is the remaining gap: separability is proved sufficient, not necessary.
 
+## 2026-08-18 exact reduction and correction
+
+The previous “base copy separable in the HNN group” discussion overstates that
+route.  The implication formalized in `AscendingHNNSeparableCosetAction.lean`
+is correct, but [[ascending-hnn-base-profinite-closure-telescope]] now proves
+that for a **proper** ascending HNN extension
+
+`cl_prof^G(Gamma) = N = union_n t^-n Gamma t^n`.
+
+Hence the base copy `Gamma` is never a separable subgroup of `G` in the proper
+case.  The conditional separable-base theorem is therefore vacuous on the
+actual non-co-Hopfian skeletons.  In particular, the preceding paragraph's
+suggestion that an LERF base makes that finite-index-overgroup tower work
+inside `G` should not be used: LERF/UAS gives action soficity by the separate
+subgroup-cover/action theorem, not by separability of the base copy in the HNN
+group.
+
+The useful replacement is the unconditional structural theorem
+[[ascending-hnn-action-iff-iterated-cosets]]:
+
+`G ↷ G/Gamma` is sofic iff every `Gamma ↷ Gamma/alpha^m(Gamma)` is sofic.
+
+Thus the unrestricted residual-finite/sofic question remains open, but its
+exact residue is now downstairs in the base group: does the desired hypothesis
+force all iterated self-image coset actions to be sofic?  There is no further
+HNN/cyclic obstruction.
+
+One important infinite-index family is now closed positively.
+[[monomial-ascending-hnn-coset-action-sofic]] proves the action sofic for
+injective monomial self-embeddings of elementary polynomial groups by showing
+that every iterate `alpha^m(Gamma)` is separable in `Gamma` via finite monomial
+ring truncations.  This includes Caleb Eckhardt's one-compressor map
+`F_2[x,y] -> F_2[x,y]`, `x |-> x`, `y |-> xy`, so Francesco's concrete
+one-compressor question has an affirmative answer even though the general RF
+case is still open.
+
 ## Why this sits off the root graph
 
 Nothing in the graph requires this card any more, and that is a result rather
