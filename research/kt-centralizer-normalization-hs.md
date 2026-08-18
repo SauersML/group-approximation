@@ -85,3 +85,43 @@ Adjacent, and worth reading before attacking: Alekseev–Thom arXiv:2608.05362,
 whose conclusion is that the centralizer of a sofic embedding of a Kazhdan
 group is itself a metric ultraproduct of **permutation** groups. The
 permutation-specificity of that conclusion is exactly the point at issue here.
+
+## Attempts
+
+**2026-08-18 (sharpening, no resolution).**  Two reductions that shrink
+what must be proved, recorded after re-reading the endgame:
+
+1. **The minimal sufficient kernel is one containment for one
+   compressor.**  Unwinding `σ(g)(σ(Γ)' ∩ M)σ(g)* = σ(gΓg⁻¹)' ∩ M`, the
+   Theorem-A endgame does not consume full `σ(G)`-normalization: the
+   contradiction only needs `ρ(a_{tΓ}) ∈ σ(Γ)'`, i.e.
+
+   ```text
+   (CCR)   σ(tΓt⁻¹)' ∩ M  ⊆  σ(Γ)' ∩ M
+   ```
+
+   for ONE strict compressor `t` and every trace-preserving
+   `σ : G → U(M)`, `M` a matrix ultraproduct.  The reverse containment
+   is free from `tΓt⁻¹ ⊆ Γ`.  Slogan: *compressing the Kazhdan group
+   must not grow its relative commutant.*  This is strictly weaker than
+   the normalization question in the header (which quantifies over all
+   `g`, including the incomparable `SL_d(ℤ)`-twisted copies), so a
+   proof may attack (CCR) directly; a refutation of (CCR) kills the
+   route while a refutation of full normalization would not.
+
+2. **Amplification cannot refute it.**  The `σ ⊗ 1` example above
+   breaks only the atomic *proof technique*, not the *statement*:
+   `(σ ⊗ 1)(Γ)' ∩ (M ⊗ M_k) = (σ(Γ)' ∩ M) ⊗ M_k` and conjugation by
+   `σ(g) ⊗ 1` acts componentwise, so normalization (and (CCR)) for
+   `σ ⊗ 1` is equivalent to that for `σ`.  Any genuine counterexample
+   must entangle the multiplicity space with the group image — plain
+   multiplicity is invisible to the question.
+
+Status after both: the hole is unchanged in kind — (CCR) is a new
+rigidity statement with no known proof mechanism once atomicity is
+gone — but its surface is smaller and better named than "transcribe
+Theorem 4.1".  Adjacent recorded fact pointing the same direction:
+`t ∈ Γ*` is REFUTED for KT pairs (the compressor lies outside the
+profinite-closure skeleton), so (CCR) cannot be reached through
+finite-quotient approximations of `t`; whatever proves it must use the
+ultraproduct structure itself.
