@@ -1,5 +1,6 @@
 import GroupApproximation.Analysis.CStarExactness
 import Mathlib.Analysis.InnerProductSpace.Adjoint
+import Mathlib.Analysis.CStarAlgebra.ContinuousLinearMap
 
 /-!
 # The sesquilinear form of a completely positive map
@@ -101,10 +102,10 @@ theorem sum_inner_star_mul_self {n : ℕ}
         refine Finset.sum_congr rfl fun i _ => ?_
         refine Finset.sum_congr rfl fun j _ => ?_
         show ⟪h i, (∑ k, star (P k i) * P k j) (h j)⟫_ℂ = _
-        rw [ContinuousLinearMap.sum_apply, inner_sum]
+        rw [_root_.sum_apply, inner_sum]
         refine Finset.sum_congr rfl fun k _ => ?_
-        rw [ContinuousLinearMap.mul_apply,
-          ContinuousLinearMap.star_eq_adjoint,
+        show ⟪h i, (star (P k i)) ((P k j) (h j))⟫_ℂ = _
+        rw [ContinuousLinearMap.star_eq_adjoint,
           ContinuousLinearMap.adjoint_inner_right]
     _ = ∑ k, ∑ i, ∑ j, ⟪P k i (h i), P k j (h j)⟫_ℂ := by
         have h1 : ∀ i : Fin n,
@@ -115,9 +116,9 @@ theorem sum_inner_star_mul_self {n : ℕ}
         exact Finset.sum_comm
     _ = ∑ k, ⟪∑ i, P k i (h i), ∑ j, P k j (h j)⟫_ℂ := by
         refine Finset.sum_congr rfl fun k _ => ?_
-        rw [inner_sum]
-        refine Finset.sum_congr rfl fun j _ => ?_
         rw [sum_inner]
+        refine Finset.sum_congr rfl fun i _ => ?_
+        rw [inner_sum]
     _ = ∑ k, ((‖∑ j, P k j (h j)‖ : ℝ) : ℂ) ^ 2 := by
         refine Finset.sum_congr rfl fun k _ => ?_
         exact inner_self_eq_norm_sq_to_K _

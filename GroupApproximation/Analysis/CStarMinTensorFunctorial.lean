@@ -62,11 +62,13 @@ noncomputable def gnsCompRep (ψ : State Q) (q : B →⋆ₐ[ℂ] Q) :
     rw [map_star]
     exact (ψ.gnsRep).isAdjoint_star (q b)
 
+omit [Nontrivial B] in
 @[simp] theorem gnsCompRep_hom_apply (ψ : State Q) (q : B →⋆ₐ[ℂ] Q) (b : B) :
     (gnsCompRep ψ q).hom b = (ψ.gnsRep).hom (q b) := rfl
 
 /-- Composing the spatial representation with `q ⊗ id` is the spatial
 representation of the composite. -/
+omit [Nontrivial B] in
 theorem spatialHom_map_eq (ψ : State Q) (ρ : State C) (q : B →⋆ₐ[ℂ] Q)
     (x : B ⊗[ℂ] C) :
     spatialHom ψ.gnsRep ρ.gnsRep
@@ -134,10 +136,11 @@ theorem tensorCompIsometry_surjective (hq : Function.Surjective q) :
     Function.Surjective (tensorCompIsometry ψ ρ q) := by
   have h1 : Function.Surjective (gnsComp ψ q) := gnsComp_surjective ψ q hq
   have h := TensorProduct.map_surjective
-    (f := ((gnsComp ψ q).toLinearMap : (ψ.comp q).GNSSpace →ₗ[ℂ] ψ.GNSSpace))
-    (g := (LinearMap.id : ρ.GNSSpace →ₗ[ℂ] ρ.GNSSpace))
+    (g := ((gnsComp ψ q).toLinearMap : (ψ.comp q).GNSSpace →ₗ[ℂ] ψ.GNSSpace))
+    (g' := (LinearMap.id : ρ.GNSSpace →ₗ[ℂ] ρ.GNSSpace))
+    h1 Function.surjective_id
   intro η
-  obtain ⟨ξ, hξ⟩ := h h1 Function.surjective_id η
+  obtain ⟨ξ, hξ⟩ := h η
   refine ⟨ξ, ?_⟩
   show TensorProduct.mapIsometry _ _ ξ = η
   rw [TensorProduct.mapIsometry_apply]
@@ -162,11 +165,9 @@ theorem tensorCompIsometry_intertwines (x : B ⊗[ℂ] C)
             tensorCompIsometry_tmul]
           rw [gnsCompRep_hom_apply]
           rw [gnsComp_intertwines]
-      | add ζ₁ ζ₂ h₁ h₂ =>
-          rw [map_add, map_add, h₁, h₂, map_add]
+      | add ζ₁ ζ₂ h₁ h₂ => simp only [map_add, h₁, h₂]
   | add y z hy hz =>
-      rw [map_add, map_add, ContinuousLinearMap.add_apply,
-        ContinuousLinearMap.add_apply, hy, hz, map_add]
+      rw [map_add, map_add, add_apply, add_apply, hy, hz, map_add]
 
 /-- Per state pair, the spatial seminorm of the image equals the spatial
 seminorm of the original at the pulled-back pair. -/
