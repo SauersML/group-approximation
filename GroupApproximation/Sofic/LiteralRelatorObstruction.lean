@@ -192,19 +192,25 @@ theorem norm_defect_le {Y : FiniteModel}
   rw [hcoe] at hb
   exact hb
 
-/-- The chosen representative of the mark is within `M · δ` of the printed
-marked word. -/
-theorem norm_mark_le {Y : FiniteModel}
+/-- Two words with a relator budget between them are that far apart in
+operator-norm displacement.
+
+The two words are variables rather than `rep mark` and `markedWord`.  Spelling
+them out makes `markedWord` -- a closed twelve-letter word in the free group --
+available to `whnf`, and evaluating `FreeGroup.lift u markedWord` through the
+quotient by word reduction is what exhausted the heartbeat budget here; with
+variables there is nothing to evaluate.  The instance the caller needs is
+recovered by unifying `?v⁻¹ * ?w` against the budget's own statement. -/
+theorem norm_le_of_budget {Y : FiniteModel}
     (u : Generator → Matrix.unitaryGroup Y ℂ) {delta : ℝ}
     (hu : ∀ r ∈ literalRelatorSet, opLength Y (FreeGroup.lift u r) ≤ delta)
-    {M : ℕ}
-    (hM : IsRelatorProduct literalRelatorSet M ((rep mark)⁻¹ * markedWord)) :
-    opLength Y (FreeGroup.lift u markedWord)
-      ≤ opLength Y (FreeGroup.lift u (rep mark)) + (M : ℝ) * delta := by
+    {M : ℕ} {v w : FreeGroup Generator}
+    (hM : IsRelatorProduct literalRelatorSet M (v⁻¹ * w)) :
+    opLength Y (FreeGroup.lift u w)
+      ≤ opLength Y (FreeGroup.lift u v) + (M : ℝ) * delta := by
   have hb1 := opLength_le_of_isRelatorProduct (FreeGroup.lift u) hu hM
-  have hsplit : FreeGroup.lift u markedWord
-      = FreeGroup.lift u (rep mark) *
-        FreeGroup.lift u ((rep mark)⁻¹ * markedWord) := by
+  have hsplit : FreeGroup.lift u w
+      = FreeGroup.lift u v * FreeGroup.lift u (v⁻¹ * w) := by
     rw [← map_mul, mul_inv_cancel_left]
   rw [hsplit]
   exact (opLength_mul_le Y _ _).trans (add_le_add_left hb1 _)
@@ -277,7 +283,7 @@ theorem literal_relator_uniform_obstruction :
       ‖((FreeGroup.lift u (rep mark) : Matrix.unitaryGroup Y ℂ) :
           Matrix Y Y ℂ) - 1‖ < 1 / 2 :=
     hobs Y (fun g ↦ FreeGroup.lift u (rep g)) hmul
-  have hfinal := norm_mark_le u hrel hM
+  have hfinal := norm_le_of_budget u hrel hM
   have hhalf : opLength Y (FreeGroup.lift u (rep mark)) < 1 / 2 := hmarkobs
   show ‖((FreeGroup.lift u markedWord : Matrix.unitaryGroup Y ℂ) :
       Matrix Y Y ℂ) - 1‖ < 1
