@@ -823,6 +823,8 @@ import GroupApproximation.Sofic.LiteralMFQuotientControls
 import GroupApproximation.Sofic.LiteralNonMFConsequences
 import GroupApproximation.Sofic.LiteralNonMFPresentation
 import GroupApproximation.Sofic.LiteralUniformObstruction
+import GroupApproximation.Sofic.ExactCoronaNegativeCorner
+import GroupApproximation.Sofic.LiteralTheoremAPackage
 import GroupApproximation.Sofic.ManuscriptExactWrappers
 import GroupApproximation.Sofic.TorsionFreeFiniteNormalLimit
 
@@ -900,6 +902,10 @@ import GroupApproximation.Analysis.CStarTensorProductSeminorm
 import GroupApproximation.Analysis.CStarTensorProductSpatial
 import GroupApproximation.Analysis.CStarTensorProductConcrete
 import GroupApproximation.Analysis.CStarTensorProductAlgebra
+import GroupApproximation.Analysis.CStarStateSeparation
+import GroupApproximation.Analysis.CStarStateGNS
+import GroupApproximation.Analysis.CStarMinTensorNorm
+import GroupApproximation.Analysis.CStarIdealQuotient
 import GroupApproximation.Analysis.CStarTensorProduct
 import GroupApproximation.Algebra.ZariskiEnvelopeEndpoint
 import GroupApproximation.Criterion.ClosedEnvelopeCompressionCore
@@ -1016,9 +1022,9 @@ import GroupApproximation.Analysis.NormalKazhdanUltraproduct
 import GroupApproximation.Analysis.OmegaConjugationOperators
 import GroupApproximation.Analysis.OmegaCommutatorFixes
 import GroupApproximation.Analysis.RankNormalizedHilbertization
+import GroupApproximation.Analysis.RankNormalizedLambda
 import GroupApproximation.Analysis.CollapseLambdaCocycle
 import GroupApproximation.Analysis.CollapseProjectionLift
-import GroupApproximation.Analysis.RankNormalizedLambda
 import GroupApproximation.Monsters.NeumannTwoGenerator
 import GroupApproximation.Sofic.CollapseRankWeightTransport
 import GroupApproximation.Sofic.StableLetterLEFRoute

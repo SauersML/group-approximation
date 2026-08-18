@@ -69,6 +69,8 @@ code { font-family: inherit; font-size: inherit; }
 }
 .tab:hover { color: var(--ink); background: var(--bg-inset); }
 .tab.is-on { color: var(--ink); background: var(--bg-inset); border-color: var(--rule); font-weight: 600; }
+a.tab-link { text-decoration: none; }
+a.tab-link:hover { text-decoration: none; }
 .topbar-btn {
   font: inherit; font-style: italic; color: var(--ink-soft);
   background: none; border: 1px solid var(--rule); border-radius: 7px;
@@ -188,10 +190,11 @@ h4.para-head {
 .dmath-scroll { overflow-x: auto; overflow-y: hidden; padding: 2px 0; }
 .dmath .katex-display { margin: 0.35em 0; }
 .eqno {
-  position: absolute; right: 0; top: 50%; transform: translateY(-50%);
+  position: absolute; left: 0; top: 50%; transform: translateY(-50%);
   color: var(--ink-soft); font-variant-numeric: tabular-nums;
   user-select: none;
 }
+.dmath.has-no .dmath-scroll { padding-left: 3.4em; }
 .dmath.is-flash, .thm.is-flash, .bib-row.is-flash, h2.is-flash, h3.is-flash {
   animation: flash 1.6s ease-out;
 }

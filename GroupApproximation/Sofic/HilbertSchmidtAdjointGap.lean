@@ -298,6 +298,38 @@ theorem exists_hsClose_adjointFar :
     exact two_le_l2_opNorm_conjDouble_sub
       (i₁ := (⟨1, hone⟩ : Fin (d + 2))) hne
 
+/-- **No vanishing modulus controls the adjoint defect from Hilbert--Schmidt
+closeness.**  There is no function `m` with `m δ → 0` as `δ → 0⁺` such that
+every pair of unitaries of every finite model satisfies
+`‖conjDouble U - conjDouble V‖ ≤ m δ` whenever its normalized
+Hilbert--Schmidt distance is at most `δ`: by `exists_hsClose_adjointFar` the
+adjoint defect stays at `2` at every tolerance, while a vanishing modulus is
+eventually below `2`.
+
+This is the manuscript's sentence about the *method*, not only about a pair
+of witnesses: the adjoint spectral estimates require operator-norm
+multiplicative control, and no estimate through the normalized
+Hilbert--Schmidt distance alone -- however weak its modulus -- can supply
+it. -/
+theorem no_vanishing_modulus_controls_adjoint :
+    ¬ ∃ m : ℝ → ℝ,
+      Filter.Tendsto m (nhdsWithin 0 (Set.Ioi 0)) (nhds 0) ∧
+      ∀ (Y : FiniteModel) (U V : Matrix Y Y ℂ),
+        U ∈ Matrix.unitaryGroup Y ℂ → V ∈ Matrix.unitaryGroup Y ℂ →
+        ∀ δ : ℝ, 0 < δ → Real.sqrt (hsNormSq Y (U - V)) ≤ δ →
+          ‖conjDouble U - conjDouble V‖ ≤ m δ := by
+  rintro ⟨m, hm, hcontrol⟩
+  have hIio : ∀ᶠ s in nhds (0 : ℝ), s < 2 := by
+    filter_upwards [Iio_mem_nhds (by norm_num : (0 : ℝ) < 2)] with s hs
+    exact hs
+  have h2 : ∀ᶠ δ in nhdsWithin 0 (Set.Ioi 0), m δ < 2 := hm.eventually hIio
+  obtain ⟨δ, hδ2, hδmem⟩ :=
+    (h2.and eventually_mem_nhdsWithin).exists
+  have hδpos : 0 < δ := Set.mem_Ioi.mp hδmem
+  obtain ⟨Y, U, V, hU, hV, hdist, hfar⟩ := exists_hsClose_adjointFar δ hδpos
+  have := hcontrol Y U V hU hV δ hδpos hdist
+  linarith
+
 end
 
 end HilbertSchmidtAdjointGap

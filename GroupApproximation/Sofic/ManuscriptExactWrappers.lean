@@ -1,5 +1,6 @@
 import GroupApproximation.Analysis.FaithfulTracialMatrix
 import GroupApproximation.Analysis.NormMatrixCoronaUnitary
+import GroupApproximation.Analysis.PrintedLiftingSteps
 import GroupApproximation.Analysis.ReducedGroupCStarMFObstruction
 import GroupApproximation.Analysis.ReducedGroupCStarSeparable
 import GroupApproximation.Analysis.ReducedGroupCStarTraceFaithful
@@ -184,7 +185,18 @@ theorem manuscriptLinearModel :
 
 /-! ## Corona and marked-pattern packages -/
 
-/-- Exact natural-dimension form of the manuscript's unitary lifting lemma. -/
+/-- Exact natural-dimension form of the manuscript's unitary lifting lemma.
+
+**By the printed route.**  The witnessing sequence is
+`PrintedLiftingSteps.polarPatch` of a bounded lift: the four moves the proof
+of `lem:lift` prints -- take a bounded lift, observe its Gram defect is
+eventually below `1/2`, polar-correct there and set `uₙ = 1` at the finitely
+many remaining indices, and check the class is unchanged -- are exactly the
+four conjuncts of `PrintedLiftingSteps.exists_boundedLift_polarPatch`, which
+this wrapper now consumes.  It used to travel
+`unitaryCoronaToCStarCoronaUnitary_surjective`, whose proof reaches the same
+statement through the corona--unitary quotient description instead; that
+route is unchanged and still proves the same statement. -/
 theorem manuscriptUnitaryLifting :
     ∀ (d : ℕ → ℕ) (hd : ∀ n, 0 < d n),
     letI : ∀ n, Nonempty (naturalFiniteModel (d n)) :=
@@ -199,10 +211,11 @@ theorem manuscriptUnitaryLifting :
     fun n ↦ Fintype.card_pos_iff.mp (by simpa using hd n)
   dsimp only
   intro x
-  obtain ⟨q, hq⟩ := unitaryCoronaToCStarCoronaUnitary_surjective
-    (fun n ↦ naturalFiniteModel (d n)) x
-  induction q using Quotient.inductionOn with
-  | _ u => exact ⟨u, by simpa using hq⟩
+  obtain ⟨a, -, -, hpatch⟩ :=
+    PrintedLiftingSteps.exists_boundedLift_polarPatch
+      (fun n ↦ naturalFiniteModel (d n)) x
+  exact ⟨PrintedLiftingSteps.polarPatch (fun n ↦ naturalFiniteModel (d n)) a,
+    hpatch⟩
 
 /-- The canonical unitary-sequence/C-star-corona isomorphism, including its
 formula on every represented sequence. -/

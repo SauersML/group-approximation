@@ -72,10 +72,25 @@ spectrum.
   scalar it also satisfies, exactly, the four printed relators that make the
   mark a central involution.
 
-So all seven relators hold, five of them exactly --- the doubling relator and
-the lamp commutation relator `[c, γ₀] = 1` hold only approximately, with
-vanishing defect --- and the mark is `-1` in every model.  Its class in the
-cofinite norm-matrix corona is therefore nontrivial.
+So all seven relators hold in the corona and the mark is `-1` in every model;
+its class in the cofinite norm-matrix corona is therefore nontrivial.  At each
+single stage `m` exactly **five** of the seven hold on the nose -- the lamp
+involution and the four centrality relators of the mark -- while **two** hold
+only approximately: the doubling relator `t γ₀ t⁻¹ = γ₀²` with defect
+`‖ζ^{m+1} + 1‖`, and the lamp relator `[c, γ₀] = 1` with defect at most twice
+that.  The second is approximate even though `D` commutes with `γ₀²` exactly,
+because the relator is a commutator with `γ₀` and not with `γ₀²`; it inherits
+the doubling defect through the transport, which is what "inherits the doubling
+defect and nothing else" above means.  `finiteStageSpecification` states all
+eight facts at one stage, in one theorem, so that the split cannot be
+misreported.
+
+Note also that the model is not a monomial-matrix model in the strict sense:
+`γ₀` and `t` are monomial, but `D = 2^{-1/2}(X + Z)`, and therefore the lamp
+`c = t⁻¹ D t`, is a *sum of two* monomial matrices.  That is exactly the room
+the permutation-matrix dichotomy of `Analysis.AmenableQuasidiagonal` leaves
+open, and `finiteStageSpecification` records the decomposition rather than
+leaving "monomial" to be read as a property of every matrix in the file.
 
 The `45°` angle is forced rather than convenient: a self-adjoint unitary whose
 conjugate by the spin sign anticommutes with it must weight its even and odd
@@ -1472,9 +1487,9 @@ theorem coronaGen_kills_relators :
     exact one_mem _
 
 /-- **The corona representation of `E_BS`.**  Every printed relator holds in
-the corona; five of the seven hold exactly at each stage, and the doubling
-relator `t γ₀ t⁻¹ = γ₀²` and the lamp commutation relator `[c, γ₀] = 1` hold
-with defect `O(1/m)`. -/
+the corona.  At each single stage five of the seven hold exactly, and the two
+others -- the doubling relator and the lamp commutator -- hold with defect
+`O(1/m)`; `finiteStageSpecification` is the stagewise statement. -/
 noncomputable def coronaRep : LiteralGroup →* NormMatrixCoronaUnitary site :=
   PresentedGroup.toGroup coronaGen_kills_relators
 
@@ -1489,6 +1504,231 @@ theorem coronaRep_mark_ne_one : coronaRep mark ≠ 1 := by
   rw [coronaRep_mark]
   intro h
   exact negOneSeq_not_null ((QuotientGroup.eq_one_iff _).mp h)
+
+/-! ## The finite-stage specification
+
+Everything above the corona is a limit statement: `coronaGen_kills_relators`
+says the seven printed relators hold *in the corona*, and
+`coronaRep_mark_ne_one` that the mark survives there.  Neither records what
+happens at one stage, and the split between the exact and the approximate
+relators is a stagewise fact that a prose summary can get wrong -- as the
+module docstring of this file did, for "six of the seven".
+
+`finiteStageSpecification` states every stagewise fact at once. -/
+
+/-- The generator assignment of the `m`-th model. -/
+noncomputable def stageGen (m : ℕ) (i : Generator) :
+    Matrix.unitaryGroup (site m) ℂ :=
+  genSeq i m
+
+@[simp] theorem stageGen_gamma (m : ℕ) : stageGen m gammaIndex = gammaU m := rfl
+@[simp] theorem stageGen_stable (m : ℕ) :
+    stageGen m stableIndex = stableU m := rfl
+@[simp] theorem stageGen_lamp (m : ℕ) : stageGen m lampIndex = lampU m := rfl
+
+/-- **The marked word is the scalar `-1` at every single stage**, not merely
+in the limit. -/
+theorem lift_stageGen_marked (m : ℕ) :
+    FreeGroup.lift (stageGen m) markedWord = negOneU m := by
+  rw [CyclicBaseLEFObstruction.lift_markedWord, stageGen_stable, stageGen_gamma,
+    stageGen_lamp]
+  exact marked_value m
+
+/-! ### The five exact relators -/
+
+theorem lift_stageGen_lampSq (m : ℕ) :
+    FreeGroup.lift (stageGen m) lampSqRelator = 1 := by
+  have hlift : FreeGroup.lift (stageGen m) lampSqRelator
+      = (stageGen m lampIndex) ^ 2 := by
+    simp only [lampSqRelator, lampWord, map_pow, FreeGroup.lift_apply_of]
+  rw [hlift, stageGen_lamp, pow_two]
+  exact lampU_mul_self m
+
+theorem lift_stageGen_markedSq (m : ℕ) :
+    FreeGroup.lift (stageGen m) markedSqRelator = 1 := by
+  have hlift : FreeGroup.lift (stageGen m) markedSqRelator
+      = (FreeGroup.lift (stageGen m) markedWord) ^ 2 := by
+    simp only [markedSqRelator, map_pow]
+  rw [hlift, lift_stageGen_marked, pow_two]
+  exact negOneU_mul_self m
+
+theorem lift_stageGen_markedGamma (m : ℕ) :
+    FreeGroup.lift (stageGen m) markedGammaRelator = 1 := by
+  have hlift : FreeGroup.lift (stageGen m) markedGammaRelator
+      = ⁅FreeGroup.lift (stageGen m) markedWord, stageGen m gammaIndex⁆ := by
+    simp only [markedGammaRelator, commutatorWord, gammaWord,
+      commutatorElement_def, map_mul, map_inv, FreeGroup.lift_apply_of]
+  rw [hlift, lift_stageGen_marked]
+  exact commutatorElement_eq_one_iff_commute.mpr (negOneU_commute m _)
+
+theorem lift_stageGen_markedStable (m : ℕ) :
+    FreeGroup.lift (stageGen m) markedStableRelator = 1 := by
+  have hlift : FreeGroup.lift (stageGen m) markedStableRelator
+      = ⁅FreeGroup.lift (stageGen m) markedWord, stageGen m stableIndex⁆ := by
+    simp only [markedStableRelator, commutatorWord, stableWord,
+      commutatorElement_def, map_mul, map_inv, FreeGroup.lift_apply_of]
+  rw [hlift, lift_stageGen_marked]
+  exact commutatorElement_eq_one_iff_commute.mpr (negOneU_commute m _)
+
+theorem lift_stageGen_markedLamp (m : ℕ) :
+    FreeGroup.lift (stageGen m) markedLampRelator = 1 := by
+  have hlift : FreeGroup.lift (stageGen m) markedLampRelator
+      = ⁅FreeGroup.lift (stageGen m) markedWord, stageGen m lampIndex⁆ := by
+    simp only [markedLampRelator, commutatorWord, lampWord,
+      commutatorElement_def, map_mul, map_inv, FreeGroup.lift_apply_of]
+  rw [hlift, lift_stageGen_marked]
+  exact commutatorElement_eq_one_iff_commute.mpr (negOneU_commute m _)
+
+/-! ### The two approximate relators -/
+
+theorem opLength_stageGen_stableRelator (m : ℕ) :
+    opLength (site m) (FreeGroup.lift (stageGen m) stableRelator)
+      ≤ ‖defectPhase m + 1‖ := by
+  rw [CyclicBaseLEFObstruction.lift_stableRelator, stageGen_stable,
+    stageGen_gamma, pow_two]
+  exact opLength_stable_le m
+
+theorem opLength_stageGen_lampGammaRelator (m : ℕ) :
+    opLength (site m) (FreeGroup.lift (stageGen m) lampGammaRelator)
+      ≤ 2 * ‖defectPhase m + 1‖ := by
+  rw [CyclicBaseLEFObstruction.lift_lampGammaRelator, stageGen_lamp,
+    stageGen_gamma]
+  exact opLength_lampGamma_le m
+
+/-- Both approximate relators have defect tending to zero.  The marked word
+does not: it is the scalar `-1` at every stage. -/
+theorem finiteStage_defects_vanish (ε : ℝ) (hε : 0 < ε) :
+    ∀ᶠ m in Filter.cofinite,
+      opLength (site m) (FreeGroup.lift (stageGen m) stableRelator) < ε ∧
+        opLength (site m) (FreeGroup.lift (stageGen m) lampGammaRelator) < ε := by
+  filter_upwards [eventually_defect_lt ε hε] with m hm
+  have h0 : (0 : ℝ) ≤ ‖defectPhase m + 1‖ := norm_nonneg _
+  exact ⟨lt_of_le_of_lt (opLength_stageGen_stableRelator m) (by linarith),
+    lt_of_le_of_lt (opLength_stageGen_lampGammaRelator m) hm⟩
+
+/-! ### The lamp is not a monomial matrix
+
+The module docstring calls the models monomial, and `γ₀` and `t` are.  The
+lamp is not: `D = 2^{-1/2}(X + Z)` has two nonzero entries in every row, which
+is exactly the room the permutation dichotomy of
+`Analysis.AmenableQuasidiagonal` leaves open. -/
+
+theorem half2_ne_zero : half2 ≠ 0 := by
+  intro h
+  have hsq := half2_mul_half2
+  rw [h, mul_zero] at hsq
+  exact absurd hsq.symm (by norm_num)
+
+theorem monomialMatrix_row_unique (Y : FiniteModel) (d : Y → ℂ)
+    (σ : Equiv.Perm Y) {i j j' : Y}
+    (hj : monomialMatrix Y d σ i j ≠ 0)
+    (hj' : monomialMatrix Y d σ i j' ≠ 0) : j = j' := by
+  have h1 : σ i = j := by
+    by_contra hc
+    exact hj (by rw [monomialMatrix_apply, if_neg hc])
+  have h2 : σ i = j' := by
+    by_contra hc
+    exact hj' (by rw [monomialMatrix_apply, if_neg hc])
+  rw [← h1, ← h2]
+
+theorem lampBase_apply (m : ℕ) (i j : site m) :
+    lampBase m i j = half2 * (flipMatrix m i j + spinMatrix m i j) := by
+  show (half2 • (flipMatrix m + spinMatrix m)) i j = _
+  rw [Matrix.smul_apply, Matrix.add_apply, smul_eq_mul]
+
+theorem lampBase_apply_diag (m : ℕ) :
+    lampBase m ((0 : Fin 2), (0 : ZMod (modulus m)))
+      ((0 : Fin 2), (0 : ZMod (modulus m))) = half2 := by
+  have hf : flipMatrix m ((0 : Fin 2), (0 : ZMod (modulus m)))
+      ((0 : Fin 2), (0 : ZMod (modulus m))) = 0 := by
+    rw [flipMatrix, monomialMatrix_apply, if_neg]
+    intro hc
+    rw [flipPerm_apply, Prod.ext_iff] at hc
+    exact absurd hc.1 (by decide)
+  have hs : spinMatrix m ((0 : Fin 2), (0 : ZMod (modulus m)))
+      ((0 : Fin 2), (0 : ZMod (modulus m))) = 1 := by
+    rw [spinMatrix, monomialMatrix_apply, if_pos rfl]
+    exact spin_zero
+  rw [lampBase_apply, hf, hs, zero_add, mul_one]
+
+theorem lampBase_apply_offdiag (m : ℕ) :
+    lampBase m ((0 : Fin 2), (0 : ZMod (modulus m)))
+      ((1 : Fin 2), (0 : ZMod (modulus m))) = half2 := by
+  have hf : flipMatrix m ((0 : Fin 2), (0 : ZMod (modulus m)))
+      ((1 : Fin 2), (0 : ZMod (modulus m))) = 1 := by
+    rw [flipMatrix, monomialMatrix_apply, if_pos]
+    rw [flipPerm_apply, Prod.ext_iff]
+    exact ⟨by decide, rfl⟩
+  have hs : spinMatrix m ((0 : Fin 2), (0 : ZMod (modulus m)))
+      ((1 : Fin 2), (0 : ZMod (modulus m))) = 0 := by
+    rw [spinMatrix, monomialMatrix_apply, if_neg]
+    intro hc
+    rw [Equiv.Perm.coe_one, id_eq, Prod.ext_iff] at hc
+    exact absurd hc.1 (by decide)
+  rw [lampBase_apply, hf, hs, add_zero, mul_one]
+
+/-- **The lamp is not a monomial matrix.**  Two entries of one row are
+nonzero, and a monomial matrix has at most one. -/
+theorem lampBase_not_monomial (m : ℕ) (d : site m → ℂ)
+    (σ : Equiv.Perm (site m)) :
+    lampBase m ≠ monomialMatrix (site m) d σ := by
+  intro hEq
+  have h1 : monomialMatrix (site m) d σ
+      ((0 : Fin 2), (0 : ZMod (modulus m)))
+      ((0 : Fin 2), (0 : ZMod (modulus m))) ≠ 0 := by
+    rw [← hEq, lampBase_apply_diag]
+    exact half2_ne_zero
+  have h2 : monomialMatrix (site m) d σ
+      ((0 : Fin 2), (0 : ZMod (modulus m)))
+      ((1 : Fin 2), (0 : ZMod (modulus m))) ≠ 0 := by
+    rw [← hEq, lampBase_apply_offdiag]
+    exact half2_ne_zero
+  have := monomialMatrix_row_unique (site m) d σ h1 h2
+  rw [Prod.ext_iff] at this
+  exact absurd this.1 (by decide)
+
+/-! ### The specification -/
+
+/-- **The finite-stage specification of the cyclic models.**
+
+At one fixed stage `m`, in one statement:
+
+* the lamp involution and the four centrality relators of the mark hold
+  **exactly**;
+* the doubling relator and the lamp commutator hold only **approximately**,
+  with defects `‖ζ^{m+1} + 1‖` and at most twice that
+  (`finiteStage_defects_vanish` sends both to zero);
+* the marked word is **exactly** the scalar `-1`;
+* the lamp is a sum of two monomial matrices and is not itself monomial.
+
+Read this together with `Monsters.CyclicBaseLEFObstruction`, which proves that
+no *exact* finite model can do this: the two approximate relators are not slack
+in the construction, they are forced.
+
+Nothing here says that the realized Clifford quotient is MF, and nothing here
+may be read as saying it.  What the models certify is the survival of the
+marked word in one corona, which is all the sharpness paragraph consumes; MF of
+the quotient is `CliffordBSPrintedRoute.isOperatorMF_realizedQuotient` and
+still carries its hypothesis. -/
+theorem finiteStageSpecification (m : ℕ) :
+    (FreeGroup.lift (stageGen m) lampSqRelator = 1 ∧
+        FreeGroup.lift (stageGen m) markedSqRelator = 1 ∧
+        FreeGroup.lift (stageGen m) markedGammaRelator = 1 ∧
+        FreeGroup.lift (stageGen m) markedStableRelator = 1 ∧
+        FreeGroup.lift (stageGen m) markedLampRelator = 1) ∧
+      opLength (site m) (FreeGroup.lift (stageGen m) stableRelator)
+          ≤ ‖defectPhase m + 1‖ ∧
+      opLength (site m) (FreeGroup.lift (stageGen m) lampGammaRelator)
+          ≤ 2 * ‖defectPhase m + 1‖ ∧
+      FreeGroup.lift (stageGen m) markedWord = negOneU m ∧
+      lampBase m = half2 • (flipMatrix m + spinMatrix m) ∧
+      (∀ (d : site m → ℂ) (σ : Equiv.Perm (site m)),
+        lampBase m ≠ monomialMatrix (site m) d σ) :=
+  ⟨⟨lift_stageGen_lampSq m, lift_stageGen_markedSq m,
+      lift_stageGen_markedGamma m, lift_stageGen_markedStable m,
+      lift_stageGen_markedLamp m⟩,
+    opLength_stageGen_stableRelator m, opLength_stageGen_lampGammaRelator m,
+    lift_stageGen_marked m, rfl, lampBase_not_monomial m⟩
 
 /-! ## The concrete group, and why no elementary route reaches it
 
