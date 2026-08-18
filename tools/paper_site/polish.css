@@ -36,7 +36,6 @@ body[data-view="graph"] .sidebar { display: none; }
 body:not([data-view="paper"]) .proof-toggle,
 body:not([data-view="paper"]) .toc-toggle { display: none !important; }
 
-.claims-grid { grid-template-columns: repeat(auto-fill, minmax(min(330px, 100%), 1fr)); }
 .claim-card { border-color: var(--rule); }
 .graph-wrap { overflow: auto; overscroll-behavior: contain; }
 
@@ -83,7 +82,7 @@ body:not([data-view="paper"]) .toc-toggle { display: none !important; }
   .paper-head { padding-top: 38px; }
   h1.paper-title { font-size: 1.8rem; }
   .claims-bar { margin-top: 20px; }
-  .claims-grid { grid-template-columns: minmax(0, 1fr); }
+  .claims-grid { columns: 1; }
   #depgraph { min-width: 760px; height: calc(100dvh - 190px); }
 }
 

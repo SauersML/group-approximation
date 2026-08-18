@@ -18,8 +18,8 @@
 }
 
 /* ============ base ============ */
-html { scroll-behavior: smooth; }
-@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+/* jumps are instant: smooth scrolling across a document this long is
+   slow, and the flash highlight already orients the reader on landing */
 body {
   background: var(--bg);
   color: var(--ink);
@@ -410,13 +410,17 @@ a.chip:hover { text-decoration: none; color: var(--link); border-color: var(--li
 .chip-filter { cursor: pointer; opacity: 0.45; font-size: 13.5px; padding: 2px 12px; }
 .chip-filter.is-on { opacity: 1; color: var(--ink); border-color: var(--ink-soft); }
 .claims-count { font-style: italic; font-size: 0.85em; color: var(--ink-faint); margin: 0 0 14px; }
-.claims-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(330px, 1fr)); gap: 14px; }
+/* column packing, not grid: cards keep their natural height instead of
+   stretching to the tallest card in the row */
+.claims-grid { columns: 330px; column-gap: 14px; }
 .claim-card {
   background: var(--bg);
   border: 1px solid var(--rule-soft); border-radius: 10px;
   padding: 14px 16px;
   display: flex; flex-direction: column; gap: 8px;
   min-width: 0;
+  break-inside: avoid;
+  margin-bottom: 14px;
 }
 .claim-card header { display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap; }
 .claim-name { font-weight: 700; font-size: 15px; color: var(--ink); }
