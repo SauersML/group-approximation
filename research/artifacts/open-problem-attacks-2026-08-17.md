@@ -112,7 +112,7 @@ collapses that step.
 See `cairn why hyperlinear-trace-not-mf-trace` and
 `GroupApproximation/Sofic/TraceSeparationEndpoint.lean`.
 
-## 8. Dadarlat, Gorfine/Glasner, Scott Sauers
+## 8. Dadarlat, Gorfine/Glasner, and the unmatched roster entry
 
 No additional current named problem attached to these entries was closed in
 this pass.  I did not manufacture a “solution” from thematic proximity.
