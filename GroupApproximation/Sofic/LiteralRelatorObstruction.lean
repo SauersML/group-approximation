@@ -209,11 +209,18 @@ theorem norm_le_of_budget {Y : FiniteModel}
     opLength Y (FreeGroup.lift u w)
       ≤ opLength Y (FreeGroup.lift u v) + (M : ℝ) * delta := by
   have hb1 := opLength_le_of_isRelatorProduct (FreeGroup.lift u) hu hM
+  -- `map_mul` is applied with all three arguments given.  Rewriting backwards
+  -- with it instead leaves `f` and its `MonoidHomClass` instance as
+  -- metavariables, and resolving them is what overran the heartbeat budget.
   have hsplit : FreeGroup.lift u w
       = FreeGroup.lift u v * FreeGroup.lift u (v⁻¹ * w) := by
-    rw [← map_mul, mul_inv_cancel_left]
+    have hmm : FreeGroup.lift u (v * (v⁻¹ * w))
+        = FreeGroup.lift u v * FreeGroup.lift u (v⁻¹ * w) :=
+      map_mul (FreeGroup.lift u) v (v⁻¹ * w)
+    rwa [mul_inv_cancel_left] at hmm
   rw [hsplit]
-  exact (opLength_mul_le Y _ _).trans (add_le_add_left hb1 _)
+  refine (opLength_mul_le Y _ _).trans ?_
+  linarith [hb1]
 
 /-- **The uniform obstruction with the printed relators as its test set.**
 
