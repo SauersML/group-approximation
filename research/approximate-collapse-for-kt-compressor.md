@@ -214,6 +214,46 @@ proofs one-line-checkable, recorded from the fork's report).**
    deformations of ONE embedding).  The transport strategy is dead;
    only direct spectral/bimodule arguments remain.
 
+**Flexible-side vanguard (2026-08-18, second opening pass — proofs
+recorded from the fork's report, self-contained).**
+
+1. **The dichotomy is exact, and refutation is the easier half:** in
+   `W` the lamp `a_{tΓ}` has `Γ`-stabilizer exactly `Λ`, so ANY
+   trace-faithful embedding of `L(W)` hands over
+   `x = Θ(a_{tΓ}) ∈ σ(Λ)' ∖ σ(Γ)'` at distance `√2` — i.e.
+   `W` hyperlinear ⟹ ¬(CCR).  A (CCR)-counterexample needs none of
+   `L(W)`'s structure: one contraction with two commutation
+   properties.
+2. **PROPOSITION (proved): separating genuine chains exist inside
+   `Γ`.**  For every strict compressor and `k ≥ 2`, the m-adic
+   quotient `EL_r(P/m^k)` (`m = (x₁…x_d)`) has `π(Λ) ⊊ π(Γ)`,
+   witness `e_ij(x̄_{i₀})`: strictness forces some coordinate ray
+   `e_{i₀} ∉ cone(A)` (else the cone would contain `ℕ^d`), every
+   element of `S̄_Λ` has degree-1 `x_{i₀}`-coefficient zero, and
+   elementaries over a subring have entries in the subring.  So the
+   audit's "uncharted middle ground" is INHABITED — and
+   `fd-invisibility-of-compression` is thereby revealed as a
+   `G`-phenomenon, not a `Γ`-phenomenon: the Laurent-unit trick is
+   essential, and these separating `Γ`-representations provably
+   never extend to genuine representations of `G`.  Any (CCR) proof
+   must exploit exactly that non-extendability; the m-adic chains
+   are the extremal case its argument must defeat.
+3. **The flexible program, reduced to finite terms:** macroscopic
+   `Λ̄`-orbit-union diagonal projections in `ℓ²(EL_r(P/m^k)/π(Λ))`
+   commute with `π(Λ)` exactly and beat the mass fence; what remains
+   is (a) an orbit-transversality density bound against the witness
+   (finite, computable, unverified), (b) quasirandomness of the
+   coset tower for trace-faithfulness (finite, computable,
+   unverified), and (c) THE CRUX: an approximate unitary intertwiner
+   implementing the compressor — `T_k π_k(γ) T_k⁻¹ ≈ π_k(β_A(γ))` —
+   on the m-adic tower, which is `β_A`-compatible
+   (`β_A(m^k) ⊆ m^k`) with matching limiting characters, where
+   Jung's dichotomy leaves freedom in BOTH directions.  The goal's
+   main gate is now: does the approximate compressor implementation
+   exist on the separating tower?  Rigid side: prove it cannot.
+   Flexible side: estimate the per-level intertwining defect —
+   finite computations on small `P/m^k`.
+
 **Stakes, stated once:** a proof refutes hyperlinearity of the
 Kun–Thom wreath group (first non-hyperlinear group; group-CEP
 refuted; Pestov 3.9 falls).  A refutation kills the rigidity route

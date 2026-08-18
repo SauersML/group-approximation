@@ -75,3 +75,15 @@ Fence: infinite-dimensional representations distinguish `Λ` from `E`
 (quasi-regular `ℓ²(E/Λ)`), so this is strictly a finite-dimensional
 rigidity phenomenon — which is precisely the shape the
 matrix-ultraproduct question consumes.
+
+Scope sharpening (2026-08-18 flexible-side pass): this is a
+`G`-phenomenon, NOT a `Γ`-phenomenon.  Inside `Γ = EL_r(P)` alone the
+collapse genuinely FAILS: the m-adic quotients `EL_r(P/m^k)`
+separate `π(Λ) ⊊ π(Γ)` (proved — witness `e_ij(x̄_{i₀})` for a
+coordinate ray outside the compression cone; see the flexible-side
+vanguard section of `approximate-collapse-for-kt-compressor`).  The
+Laurent-unit step (`x̄_i` invertible in `R/J`) is load-bearing: over
+`P/m^k` the variables are nilpotent and the unit trick cannot start.
+Those separating `Γ`-representations never extend to genuine
+representations of `G` — which is this theorem restated — and that
+non-extendability is what any (CCR) proof must exploit.
