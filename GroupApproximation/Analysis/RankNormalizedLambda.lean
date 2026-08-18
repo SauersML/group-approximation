@@ -191,7 +191,7 @@ def lambdaBounded (P : MatFam Y) (ω : Ultrafilter ℕ) :
     rankControlled Y P →ₗ[ℂ] KRank Y P ω :=
   (mkKLin Y P ω).comp (coordRC Y P)
 
-theorem lambdaBounded_apply (P : MatFam Y) (ω : Ultrafilter ℕ)
+@[simp] theorem lambdaBounded_apply (P : MatFam Y) (ω : Ultrafilter ℕ)
     (a : rankControlled Y P) :
     lambdaBounded Y P ω a
       = mkK Y (rankWeight Y P) ω (rankWeight_nonneg Y P) (coordRC Y P a) :=
