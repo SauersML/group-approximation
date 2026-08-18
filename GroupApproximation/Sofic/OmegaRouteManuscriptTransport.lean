@@ -1,5 +1,6 @@
 import GroupApproximation.Sofic.ManuscriptKazhdanTransport
 import GroupApproximation.Sofic.OmegaWeightedAmbient
+import GroupApproximation.Sofic.KazhdanTransportAnyUniverse
 
 /-!
 # `thm:kazhdan-transport` in its badged shape, through `∏_ω B(K_n)`
@@ -45,9 +46,21 @@ hypotheses, different ambient — and a consumer picks its route by picking its
 name, exactly as `Sofic/LiteralRouteTransport.lean` does for the finite-stage
 engine.
 
-The ambient group is at `Type 0` here, because `Sofic/OmegaWeightedAmbient.lean`
-is; the badged form is universe-polymorphic in it.  That is a real difference
-and it is not repaired here.
+## The universes
+
+`Sofic/OmegaWeightedAmbient.lean` carries the ambient group at an arbitrary
+universe, and so does this file.  The Kazhdan source is a different matter: the
+`ω`-route chain consumes property `(T)` in its `Type 0` real form, and freeing
+it by generalizing that chain would mean re-elaborating the whole compression
+bundle.  It does not need to be freed there, for the same reason
+`Sofic/KazhdanTransportAnyUniverse.lean` records for the cofinite route:
+**property `(T)` implies countability**, so a Kazhdan source at any universe has
+a `Type 0` model that still has property `(T)`, and the theorem transfers along
+the isomorphism.  `manuscriptKazhdanTransport_omegaRoute_anyUniverse` below is
+that closure: both groups at arbitrary universes, no hypothesis the print does
+not state, and the proof running through `B_ω = ∏_ω B(K_n)`.  It is the single
+declaration the `INT.03` ledger row asked for — the any-universe statement and
+the printed §3 route no longer live in different theorems.
 -/
 
 namespace GroupApproximation
@@ -83,15 +96,19 @@ theorem tendsto_iff_sqrt_le {a : ℕ → ℝ} (ha : ∀ n, 0 ≤ a n) :
     rw [Real.dist_eq, sub_zero, abs_of_nonneg (ha n)]
     linarith
 
-variable {H : Type} [Group H]
+universe u v w
+
+variable {H : Type u} [Group H]
 
 /-- **`thm:kazhdan-transport`, badged shape, printed ambient.**
 
 Character for character the statement of
 `KazhdanAsymptoticCommutant.manuscriptKazhdanTransport`, with the ambient group
-at `Type 0`, and proved through `B_ω = ∏_ω B(K_n)` acting on `K_ω` rather than
-through the cofinite corona.  The ambient is not a hypothesis: it is built from
-the theorem's own data by `OmegaWeightedAmbient.omegaWeightedAmbient`. -/
+at an arbitrary universe and the Kazhdan source at `Type 0`, and proved through
+`B_ω = ∏_ω B(K_n)` acting on `K_ω` rather than through the cofinite corona.
+The ambient is not a hypothesis: it is built from the theorem's own data by
+`OmegaWeightedAmbient.omegaWeightedAmbient`.  The source universe is freed in
+`manuscriptKazhdanTransport_omegaRoute_anyUniverse` below. -/
 theorem manuscriptKazhdanTransport_omegaRoute
     {Γ : Type} [Group Γ]
     (hT : HasKazhdanPropertyT.{0, 0} Γ)
@@ -139,6 +156,73 @@ theorem manuscriptKazhdanTransport_omegaRoute
   refine (tendsto_iff_sqrt_le (fun n ↦ hsNormSq_nonneg (Y n) _)).1 ?_
   exact OmegaWeightedAmbient.omega_route_kazhdan_transport Y hY U hU hT iota s hs
     (M * M) x hmass hcomm γ
+
+/-- **`thm:kazhdan-transport` with both groups at arbitrary universes, proved
+through the printed ambient `B_ω = ∏_ω B(K_n)`.**
+
+Statement for statement this is
+`KazhdanAsymptoticCommutant.manuscriptKazhdanTransport_anyUniverse`: property
+`(T)` for the source, a homomorphism into the ambient, a compressing element,
+positive dimensions, an operator-norm asymptotic representation, a uniform
+operator-norm bound on `x`, asymptotic commutation with the image of `Γ`, and
+no countability hypothesis on either group.  What differs is the proof: the
+route is the `ω`-ultraproduct one, with the ambient constructed from the
+theorem's own data by `OmegaWeightedAmbient.omegaWeightedAmbient`, not the
+cofinite corona.
+
+The source is moved to its `Type 0` model exactly as the any-universe closure
+of the cofinite route moves it: property `(T)` implies countability
+(`countable_of_hasKazhdanPropertyTComplex`), the model still has property `(T)`
+(`HasKazhdanPropertyTComplex.mulEquiv`), the textbook equivalence turns the
+complex form into the real `Type 0` form the compression bundle consumes, and
+the conclusion mentions only `U n s` and `U n (ι γ)`, so it pushes forward
+along the isomorphism unchanged.
+
+Every binder is after the colon, as the badged declarations have it: the
+zero-input gate rejects a badged declaration with header binders. -/
+theorem manuscriptKazhdanTransport_omegaRoute_anyUniverse :
+    ∀ {Γ : Type w} {H : Type u} [Group Γ] [Group H]
+      (_hT : HasKazhdanPropertyTComplex.{w, max w v} Γ)
+      (iota : Γ →* H) (s : H)
+      (_hs : ∀ γ : Γ, ∃ δ : Γ, s * iota γ * s⁻¹ = iota δ)
+      (d : ℕ → ℕ) (_hd : ∀ n, 0 < d n)
+      (U : ∀ n, H → Matrix.unitaryGroup (naturalFiniteModel (d n)) ℂ)
+      (_hU : ∀ g h : H, ∀ ε : ℝ, 0 < ε → ∃ N, ∀ n ≥ N,
+        ‖(U n (g * h) : Matrix (naturalFiniteModel (d n))
+            (naturalFiniteModel (d n)) ℂ) -
+          (U n g : Matrix (naturalFiniteModel (d n))
+            (naturalFiniteModel (d n)) ℂ) * U n h‖ ≤ ε)
+      (x : ∀ n, Matrix (naturalFiniteModel (d n)) (naturalFiniteModel (d n)) ℂ)
+      (_hbound : ∃ M : ℝ, 0 ≤ M ∧ ∀ n, ‖x n‖ ≤ M)
+      (_hx : ∀ γ : Γ, NaturalHSCommutatorVanishing d U x (iota γ)),
+    ∀ γ : Γ, NaturalHSCommutatorVanishing d U (fun n ↦
+      (U n s : Matrix (naturalFiniteModel (d n))
+        (naturalFiniteModel (d n)) ℂ) * x n *
+        (U n s : Matrix (naturalFiniteModel (d n))
+          (naturalFiniteModel (d n)) ℂ)ᴴ) (iota γ) := by
+  intro Γ H _ _ hT iota s hs d hd U hU x hbound hx γ
+  haveI : Countable Γ := countable_of_hasKazhdanPropertyTComplex.{w, v} hT
+  obtain ⟨Γ₀, _, ⟨e⟩⟩ := Type0Transfer.exists_type0_model Γ
+  have hT₀c : HasKazhdanPropertyTComplex.{0, max w v} Γ₀ := hT.mulEquiv e
+  have hT₀ : HasKazhdanPropertyT.{0, 0} Γ₀ :=
+    (hasKazhdanPropertyT_iff_textbook.{0, max w v}).mpr hT₀c
+  have hpull : ∀ γ₀ : Γ₀, (iota.comp e.symm.toMonoidHom) γ₀ = iota (e.symm γ₀) :=
+    fun γ₀ ↦ rfl
+  have hs₀ : ∀ γ₀ : Γ₀, ∃ δ₀ : Γ₀,
+      s * (iota.comp e.symm.toMonoidHom) γ₀ * s⁻¹
+        = (iota.comp e.symm.toMonoidHom) δ₀ := by
+    intro γ₀
+    obtain ⟨δ, hδ⟩ := hs (e.symm γ₀)
+    refine ⟨e δ, ?_⟩
+    rw [hpull, hpull, e.symm_apply_apply]
+    exact hδ
+  have hx₀ : ∀ γ₀ : Γ₀,
+      NaturalHSCommutatorVanishing d U x ((iota.comp e.symm.toMonoidHom) γ₀) :=
+    fun γ₀ ↦ by rw [hpull]; exact hx (e.symm γ₀)
+  have hconc := manuscriptKazhdanTransport_omegaRoute hT₀
+    (iota.comp e.symm.toMonoidHom) s hs₀ d hd U hU x hbound hx₀ (e γ)
+  rw [hpull, e.symm_apply_apply] at hconc
+  exact hconc
 
 end
 
