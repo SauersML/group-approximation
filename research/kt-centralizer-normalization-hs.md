@@ -159,6 +159,35 @@ A residual chain gives the canonical faithful-trace sofic
 Net: for the canonical `σ`, (CCR) is a clean, self-contained question
 about excess commutants of Kazhdan images in sofic ultraproducts.
 
+**2026-08-18f: the residue is an approximate-collapse question, and
+both program forks meet there.**  Re-running the coordinate proof
+against an arbitrary `σ` (approximate coordinates `π_n`): steps 1–2
+survive — in the ultraproduct `x ∈ σ(Λ)'` is EXACTLY `Λ`-invariant,
+no per-coordinate Kazhdan inequality needed — and the sole failure
+point is step 3.  The residue of (CCR) is therefore precisely:
+
+```text
+(AC)  for trace-faithful ultraproduct representations of G, does
+      dist₂(π_n(γ), π_n(Λ)) → 0 hold in some coordinatization —
+      i.e. does the congruence collapse π(Γ) ⊆ π(Λ) survive the
+      passage from genuine quotients to approximate ones?
+```
+
+For genuine coordinates (AC) is the proved collapse (`E`-normality);
+a (CCR) counterexample needs approximate finite-dimensional
+representations of `G` that separate `Λ` from `Γ` in a way NO genuine
+finite quotient can — itself a new kind of object, whose existence
+would be notable independently.  Structural note worth carrying: this
+places the rigidity route's residue in the same normalized-HS
+stability nexus as the OTHER open fork
+(`leavitt-steinberg-hs-stability-fork`) — both now bottleneck on
+whether approximate representations of specific (T) groups can evade
+behavior that all their genuine representations share.  Literature
+adjacent to any future attack: De Chiffre–Glebsky–Lubotzky–Thom
+cohomology-vanishing stability (unnormalized Frobenius — the
+normalized case is the chasm), and Popa rigidity for the bimodule
+formulation of 2026-08-18e.
+
 **2026-08-18e: the coarse slice is clean, and the enemy now has a
 name.**  Decompose `L²(M) = L²(L(G)) ⊕ H` as `Ad G`-representations
 (`L(G)` is conjugation-invariant).  The `L(G)`-slice is closed by
