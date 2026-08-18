@@ -37,9 +37,16 @@ FOUNDATION_CORE_MODULE = (
 FOUNDATION_COMPOSITION_MODULE = (
     "GroupApproximation.Sofic.LiteralP13HodgeResidualComposition"
 )
+FOUNDATION_BATCHED_CHECKS_MODULE = (
+    "GroupApproximation.Meta.BatchedKernelChecks"
+)
 FOUNDATION_MODULES = (
     FOUNDATION_CORE_MODULE,
     FOUNDATION_COMPOSITION_MODULE,
+    # Every P13 block imports the batched kernel checker, so its artifacts
+    # must travel with the foundation or the sealed no-build pass finds the
+    # blocks stale on the restore side.
+    FOUNDATION_BATCHED_CHECKS_MODULE,
 )
 RESIDUAL_AGGREGATOR_MODULE = (
     "GroupApproximation.Sofic.LiteralP13HodgeResidual"

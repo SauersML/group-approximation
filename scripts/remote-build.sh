@@ -100,6 +100,14 @@ rsync -rlptz --delete \
   --exclude='*' \
   "$LOCAL/docs/" "$USER_MSI@$LOGIN_IP:$REMOTE/docs/" || exit $?
 
+# The proof ledger and its gate inputs live under metadata/; without this
+# stanza the ledger checker cannot run on the remote at all.
+rsync -rlptz --delete \
+  -e "ssh -S $SOCK -o HostKeyAlias=$ALIAS -o LogLevel=ERROR" \
+  --include='*/' --include='*.md' --include='*.txt' --include='*.json' \
+  --exclude='*' \
+  "$LOCAL/metadata/" "$USER_MSI@$LOGIN_IP:$REMOTE/metadata/" || exit $?
+
 rsync -rlptz --delete \
   -e "ssh -S $SOCK -o HostKeyAlias=$ALIAS -o LogLevel=ERROR" \
   --include='*/' --include='*.lean' --include='*.py' --exclude='*' \
