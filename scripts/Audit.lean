@@ -777,7 +777,18 @@ def routeGuards : List (Name × Name) :=
     -- quotient along a free ultrafilter, and the extension step is the printed
     -- universal property rather than a second construction.
     (`GroupApproximation.ShulmanTrace.canonicalMaximalTrace_factorsThrough_tracialUltraproduct,
-     `GroupApproximation.canonicalMaximalTrace_factorsThrough) ]
+     `GroupApproximation.canonicalMaximalTrace_factorsThrough),
+    -- INT.03: the row's complaint was that no single declaration carried both
+    -- the printed `ω` route and the any-universe statement, so one declaration
+    -- is pinned to both properties.  The route: its ambient is the weighted
+    -- `B_ω` model built from the theorem's own data, not the cofinite corona ...
+    (`GroupApproximation.OmegaRouteManuscriptTransport.manuscriptKazhdanTransport_omegaRoute_anyUniverse,
+     `GroupApproximation.OmegaWeightedAmbient.omegaWeightedAmbient),
+    -- ... and the universes: the Kazhdan source is freed through countability
+    -- of a property-`(T)` group, which is what lets it be moved to its `Type 0`
+    -- model rather than assumed to live there.
+    (`GroupApproximation.OmegaRouteManuscriptTransport.manuscriptKazhdanTransport_omegaRoute_anyUniverse,
+     `GroupApproximation.countable_of_hasKazhdanPropertyTComplex) ]
 
 /-- Does the dependency closure of `root` contain `target`?  A depth-first
 walk over `ConstantInfo.getUsedConstantsAsSet`, which visits types and proof
