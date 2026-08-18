@@ -4,7 +4,7 @@ import GroupApproximation.Sofic.LiteralNonMFEndpoint
 /-!
 # The multiplicity family over the literal `E`
 
-`\label{p:mult-products}` prints
+The multiplicity paragraph of `\ref{sec:marked-horn}` prints
 
 > the groups `E × ℤ^k` for `k ≥ 0` are finitely presented, pairwise
 > nonisomorphic and non-MF, each containing `E` (Lemma
