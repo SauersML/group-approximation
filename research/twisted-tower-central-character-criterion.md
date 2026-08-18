@@ -71,23 +71,41 @@ Two hard facts about the target:
   ≤ 2, so `coker ⊇ (ℤ/2)²` and **`SK₁(R,J) ≠ 0`**.  For the actual
   KT ring (`d = 3`, since `G ↠ SL_d(ℤ)` Kazhdan needs `d ≥ 3`):
   compose with `x₃ ↦ 1` — the symbols `{x_i, x₃}` die on the
-  trivial unit, the image is again `≤ ℤ/2`, and `coker ⊇ (ℤ/2)²`
-  survives (this composition is THIS node's inference, one line, on
-  top of the sweep's verified construction).
+  trivial unit (`{u,1} = 1` by bilinearity), the image is again
+  `≤ ℤ/2`, and the cokernel survives.  All VERIFIED (third sweep
+  pass), with two sharpenings: the image is exactly `ℤ/2`
+  (`⟨x,y⟩ = ⟨y,x⟩ ≠ 0` in Zhang's basis — skew-symmetry, not
+  vanishing — modulo the sweep's flagged reading of Zhang's
+  generator correspondence), so **`coker ≅ (ℤ/2)² exactly, order
+  4`**; and the compatibility the collapse step needs HOLDS: the
+  COMPRESSED subring also surjects onto `S`, since monomials map
+  through exponent parities and `A ∈ SL_d(ℤ)` is invertible mod 2 —
+  so `π̄(Λ) = π̄(Γ) = π̄(E)` for this `J`, as
+  `char-p-root-torsion-collapse-proof` requires.
 
 So the modulo clause of `char-p-root-torsion-collapse` is NOT
 removable: nontrivial central pieces exist for the KT ring itself,
 and (CC) is genuinely the decisive question.
 
-**Compute target (in-program, finite, revised).**  Build the central
-extension `Ē` over `EL_r(S)`, `S = 𝔽_2[x,y]/(x²,y²)` (`|S| = 16`;
-`|SL₃(S)| = 168·2^{17±1}`-scale — sizable but finite), with its
-central `(ℤ/2)²`-at-least relative-`SK₁` subgroup, and decide (CC):
-do two irreps with distinct central characters restrict isomorphically
-to the compressed copy's image?  Character-theoretic; MSI-scale; the
-opening computation of the next campaign.  A YES does not yet refute
-(CCR) (trace-faithful assembly remains); a NO across the natural
-family is strong evidence the coordinate regime closes.
+**Compute target (finite, size CORRECTED — enumeration is out).**
+The true scale: `|S| = 16`, `|m| = 8` (the maximal ideal is
+3-dimensional: `x, y, xy`), `ker(GL₃(S) → GL₃(𝔽₂)) = 1 + M₃(m)` has
+order `8⁹ = 2²⁷`, `det` is onto `S^×` of order `2³`, so
+`|SL₃(S)| = 168·2²⁴ ≈ 2.8 × 10⁹` — 128× the node's earlier
+`2^{17}`-scale estimate (caught by the sweep's recomputation) — and
+`|Ē| ≈ 1.1 × 10¹⁰` with the central `(ℤ/2)²`.  Brute-force character
+tables are NOT feasible; and no cheaper testbed exists (`r ≥ 3`
+forced twice — HVZ centrality, Suslin `SK₁ = 0` — and the whole
+`𝔽_q[x]/(x^e)` family is dead), so the size is intrinsic.  The
+honest approach is STRUCTURAL: decide (CC) by Clifford theory
+relative to the order-4 central subgroup — per central character `χ`,
+the `χ`-isotypic blocks are projective representations of `EL₃(S)`
+with the corresponding cocycle class, and the congruence filtration
+`1 + M₃(m) ⊇ 1 + M₃(m²)` (abelian successive quotients) gives a
+handle with no enumeration.  (Approach = sweep's proposal, flagged
+as proposal.)  A YES does not yet refute (CCR) (trace-faithful
+assembly remains); a NO across the natural family is strong evidence
+the coordinate regime closes.
 
 **Fences.**  Nothing here touches
 `approximate-collapse-for-kt-compressor` (Becker–Lubotzky's
