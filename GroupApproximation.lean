@@ -912,6 +912,7 @@ import GroupApproximation.Analysis.CStarMaxTensorNorm
 import GroupApproximation.Analysis.CStarMinTensorFunctorial
 import GroupApproximation.Analysis.CStarMinTensorQuotient
 import GroupApproximation.Analysis.CStarNonUnitalState
+import GroupApproximation.Analysis.CStarCompletelyPositiveForm
 import GroupApproximation.Analysis.CStarIdealQuotient
 import GroupApproximation.Analysis.CStarQuotientIdentity
 import GroupApproximation.Analysis.CStarIdealApproximateUnit
