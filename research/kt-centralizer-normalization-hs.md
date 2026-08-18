@@ -159,6 +159,58 @@ A residual chain gives the canonical faithful-trace sofic
 Net: for the canonical `σ`, (CCR) is a clean, self-contained question
 about excess commutants of Kazhdan images in sofic ultraproducts.
 
+**2026-08-18h: literature position (agent sweep, all five threads
+complete; verification ledger below).**
+
+1. **(AC) is the per-compressor core of the tracial-ultraproduct
+   analogue of Kun–Thom Theorem 4.1** (statement verified verbatim
+   from arXiv:2608.06222), and the ambient unitary question for the
+   FULL group's commutant is Alekseev–Thom **Open Problem 6.2**
+   (arXiv:2608.05362 §6, verified verbatim, posted 2026-08-05 —
+   thirteen days before this entry).  Nobody has attempted either;
+   2608.06222 has exactly one citing paper (2608.02025, which uses
+   only the weak-sofic corollary).  This node is ahead of the
+   published frontier, not behind it.
+2. **The KT 4.1 proof is structurally non-transportable — full
+   census.**  Operator algebras enter their proof only as a
+   container; after the crossed-product embedding the argument lives
+   in the diagonal subalgebra, and the objects it runs on (expander
+   components, cluster groupoid, orbit counts, Cheeger constants)
+   do not exist for a unitary in `M_{d_n}` — no set is acted on.
+   Confirms 2026-08-18's "no atomicity" analysis at reference level.
+3. **Hard prohibition (Becker–Lubotzky arXiv:1809.00632):** Γ is
+   infinite, hyperlinear, Kazhdan ⟹ NOT normalized-HS-stable (their
+   theorem, verified from abstract; Thm 1.4 numbering
+   subagent-verified).  Never route (AC) through HS-stability of Γ;
+   the liftable case is vacuous — far-from-genuine asymptotic
+   representations are guaranteed to exist.
+4. **One transportable mechanism exists, and it is new to this
+   node:** Dogon–Vigdorovich robust asymptotic spectral gap /
+   character rigidity (arXiv:2506.20843) + de la Salle's quantitative
+   Poincaré (arXiv:2204.07084) — recorded as
+   `el-r-polynomial-robust-spectral-gap` (open claim) and
+   `hs-normalization-via-robust-spectral-gap` (route, with Gate 0 the
+   unresolved hyperfinite-stability consistency check).
+5. **No applicable counterexample mechanism:** Ioana's 2108.09589
+   engine (the only one producing controlled far-from-genuine
+   asymptotic reps) is blocked when a factor has (T) (de la Salle
+   2204.07084 Thm 0.1).
+6. **Framing fact for the program:** the non-sofic groups now in
+   print are either hyperlinear (Pestov 3.4 = NO) or non-hyperlinear
+   (Pestov 3.9 = NO and group-CEP refuted); whichever way this
+   node's question resolves, one of Pestov's two remaining questions
+   falls (numbering verified from arXiv:0804.3968).  As of
+   2026-08-18 no non-hyperlinear group exists in print (stated
+   explicitly in the OpenAI chapter, p. 80, subagent-verified).
+
+   *Ledger:* items marked "verified verbatim"/"census" were read from
+   source HTML by the sweep agent; DV internals, the OpenAI page, and
+   Pestov numbering were verified by its subagents; the
+   (AC)-to-4.1-core identification, the 6.2(b) coherent-lift
+   reduction, and the Becker–Lubotzky application to Γ are the
+   sweep's own inferences, adopted here after checking their logic
+   against this node's records.
+
 **2026-08-18g: two trap-fences for the next campaign.**
 
 1. **The bicommutant shortcut is impossible.**  `σ(γ) ∈ σ(Λ)''` would
