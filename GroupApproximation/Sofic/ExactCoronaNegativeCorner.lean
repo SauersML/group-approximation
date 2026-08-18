@@ -79,7 +79,9 @@ theorem coronaMk_eq_coronaNegOne_of_tendsto {X : ℕ → FiniteModel}
     (hv : ∀ ε : ℝ, 0 < ε → ∃ N, ∀ n ≥ N,
       ‖(v n : Matrix (X n) (X n) ℂ) + 1‖ ≤ ε) :
     (QuotientGroup.mk v : NormMatrixCoronaUnitary X) = coronaNegOne X := by
-  rw [coronaNegOne, QuotientGroup.eq]
+  show (QuotientGroup.mk v : NormMatrixCoronaUnitary X)
+      = QuotientGroup.mk (negOneSeq X)
+  rw [QuotientGroup.eq]
   intro ε hε
   obtain ⟨N, hN⟩ := hv (ε / 2) (by linarith)
   rw [Nat.cofinite_eq_atTop]
