@@ -281,6 +281,75 @@ theorem one_sub_spectralProjection_ne_zero_iff
         exact this
       exact this.symm) g hg)
 
+/-! ## The commutation step, unconditionally
+
+`thm:normal-kazhdan` continues "normality gives `π(g)Pπ(g)* = P`, so `P` and `q`
+commute with `π(H̄)` exactly".  Two facts underlie that, and neither needs
+normality, ultraproducts, or the Kazhdan gap; normality enters only to supply
+the hypothesis of the second.
+
+* a self-adjoint idempotent is determined by the vectors it fixes;
+* conjugating one by a unitary conjugates the fixed set.
+
+So the printed step is: normality says `π(g)` preserves `Fix`, hence `π(g)Pπ(g)*`
+and `P` fix the same vectors, hence they are equal. -/
+
+section Commutation
+
+/-- **A self-adjoint idempotent is determined by what it fixes.**
+
+Purely algebraic, and shorter than the orthogonal-projection route: if the two
+agree on which vectors they fix then `Q P = P`, taking adjoints gives
+`P Q = P`, and the symmetric argument gives `P Q = Q`. -/
+theorem eq_of_isSelfAdjoint_idempotent_of_fix_iff {P Q : E →L[ℂ] E}
+    (hP : IsSelfAdjoint P) (hQ : IsSelfAdjoint Q)
+    (hPi : P * P = P) (hQi : Q * Q = Q)
+    (hfix : ∀ x : E, P x = x ↔ Q x = x) : P = Q := by
+  have hQP : Q * P = P := by
+    refine ContinuousLinearMap.ext fun x ↦ ?_
+    have hPx : P (P x) = P x := by
+      have := congrArg (fun T : E →L[ℂ] E ↦ T x) hPi
+      simpa [mul_apply_eq_comp] using this
+    have := (hfix (P x)).1 hPx
+    simpa [mul_apply_eq_comp] using this
+  have hPQ : P * Q = Q := by
+    refine ContinuousLinearMap.ext fun x ↦ ?_
+    have hQx : Q (Q x) = Q x := by
+      have := congrArg (fun T : E →L[ℂ] E ↦ T x) hQi
+      simpa [mul_apply_eq_comp] using this
+    have := (hfix (Q x)).2 hQx
+    simpa [mul_apply_eq_comp] using this
+  -- `star (Q * P) = star P * star Q = P * Q`, and the left side is `star P = P`.
+  have hstar : P * Q = P := by
+    have := congrArg star hQP
+    rwa [star_mul, hP.star_eq, hQ.star_eq] at this
+  rw [← hstar, hPQ]
+
+/-- **Conjugating by a unitary conjugates the fixed set.** -/
+theorem conj_apply_eq_self_iff (u : unitary (E →L[ℂ] E)) (P : E →L[ℂ] E) (x : E) :
+    ((u : E →L[ℂ] E) * P * star (u : E →L[ℂ] E)) x = x
+      ↔ P ((star (u : E →L[ℂ] E)) x) = (star (u : E →L[ℂ] E)) x := by
+  constructor
+  · intro h
+    have := congrArg (fun y ↦ (star (u : E →L[ℂ] E)) y) h
+    simp only [mul_apply_eq_comp] at this ⊢
+    have hstar : (star (u : E →L[ℂ] E)) ((u : E →L[ℂ] E)
+        (P ((star (u : E →L[ℂ] E)) x))) = P ((star (u : E →L[ℂ] E)) x) := by
+      have hu : (star (u : E →L[ℂ] E) * (u : E →L[ℂ] E))
+          (P ((star (u : E →L[ℂ] E)) x))
+          = (1 : E →L[ℂ] E) (P ((star (u : E →L[ℂ] E)) x)) := by rw [u.2.1]
+      exact hu
+    rw [hstar] at this
+    exact this
+  · intro h
+    simp only [mul_apply_eq_comp]
+    rw [h]
+    have hu : ((u : E →L[ℂ] E) * star (u : E →L[ℂ] E)) x
+        = (1 : E →L[ℂ] E) x := by rw [u.2.2]
+    exact hu
+
+end Commutation
+
 end
 
 end UnitaryAverageFixedVector
