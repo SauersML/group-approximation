@@ -128,10 +128,29 @@ sharpening).**
   finite.  What the method needs first is a **uniform (directed)
   relative property (T) along the monomial exhaustion**: one Kazhdan
   pair `(Q, κ)` with `Q` inside the compressed part, valid
-  simultaneously at every stage of the union.  Well-posed and
-  quantitative — the right first target for the Ershov–Jaikin
-  toolkit — but not in the literature and not provable by this
-  session's methods.
+  simultaneously at every stage of the union.  Two facts about it,
+  found by pressure-testing (2026-08-18, final):
+  (i) *the stages are all isomorphic as pairs* — `x^{−Nw₀}S_Λ` is a
+  free rank-one `S_Λ`-module, so every stage is the single
+  Ershov–Jaikin pair `(EL₂(S_Λ) ⋉ S_Λ², S_Λ²)`, and stage-wise
+  relative (T) with a COMMON constant is free; the entire difficulty
+  is that the stage-`N` test set contains deep-monomial module
+  generators that `Λ`-invariance does not control.  (ii) *The naive
+  upgrade is REFUTED as pure representation theory:* since
+  `EL₂(S_Λ)` acts `S_Λ`-linearly it PRESERVES the stage-0 module, so
+  in `ℓ²(M/M₀)` the vector `δ_{M₀}` is invariant under the whole
+  group-and-stage-0 part yet at distance 1 from the (zero)
+  `M`-invariant vectors — no relative-(T)-type theorem can conclude
+  full-module invariance from compressed invariance in a general
+  unitary representation.  The opening lemma therefore MUST carry
+  the matricial-ambient hypothesis (trace-faithful matrix
+  ultraproduct): the question is whether `ℓ²(M/M₀)`-type
+  quasi-regular content can occur inside `Ad σ` on `L²(M)` — the
+  root-module specialization of the 18e bimodule formulation.  Deep
+  consistency check: the sofic proof was likewise impossible as pure
+  (T) and consumed the permutation ambient (Kun's decomposition);
+  the unitary proof must consume the matricial ambient.  The
+  pure-representation shortcut is CLOSED; do not re-attempt.
 
 **Stakes, stated once:** a proof refutes hyperlinearity of the
 Kun–Thom wreath group (first non-hyperlinear group; group-CEP
