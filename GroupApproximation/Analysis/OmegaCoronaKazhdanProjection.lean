@@ -513,6 +513,142 @@ theorem manuscriptComplementProjectionLift (R : OmegaUnitaryRep Y ω G)
 
 end Normality
 
+/-! ## The coordinate lift of `h`, and the compression to the corner
+
+`thm:abstract-nk` continues:
+
+> and lift `h` to the self-adjoint coordinates
+> `h_n = (2|S|)⁻¹ ∑_{a∈S} (V_{a,n} + V_{a,n}*) ∈ M_{d_n}(ℂ)`, which represent
+> `h` because `S` is symmetric.  The compression of `h` to the corner satisfies
+> `q h q ≤ θ q` in `B_ω`.
+
+Both sentences are here.  `hermitianAverageSeq` is the printed formula on the
+nose, and `mk_hermitianAverageSeq` is the printed reason it represents `h`:
+symmetry of `S` makes the average self-adjoint, so adding the adjoint changes
+nothing at the level of classes. -/
+
+section Compression
+
+/-- **The printed coordinate lift of `h`**:
+`h_n = (2|S|)⁻¹ ∑_{a∈S} (V_{a,n} + V_{a,n}*)`, as a bounded sequence. -/
+def hermitianAverageSeq (R : OmegaUnitaryRep Y ω G) (S : Finset G) :
+    BoundedMatrixSequence (Idx Y) :=
+  (2 * (S.card : ℂ))⁻¹ •
+    ∑ a ∈ S, (unitarySeq Y R.V a + star (unitarySeq Y R.V a))
+
+/-- The coordinates are self-adjoint at every stage, not merely along `ω`.
+This is what the printed "self-adjoint coordinates" asserts. -/
+theorem hermitianAverageSeq_selfAdjoint (R : OmegaUnitaryRep Y ω G)
+    (S : Finset G) :
+    star (hermitianAverageSeq Y ω R S) = hermitianAverageSeq Y ω R S := by
+  have hstar2 : star ((2 * (S.card : ℂ))⁻¹) = (2 * (S.card : ℂ))⁻¹ := by
+    rw [star_inv₀]
+    simp
+  rw [hermitianAverageSeq, star_smul, star_sum, hstar2]
+  congr 1
+  refine Finset.sum_congr rfl fun a _ ↦ ?_
+  rw [star_add, star_star, add_comm]
+
+/-- The scalar bookkeeping of the printed halving, isolated because the opaque
+corona's scalar action reaches `rw` through a different path than the `Module`
+lemmas are stated for; `exact` sees through it and `rw` does not. -/
+private theorem inv_two_mul_smul_add_self {M : Type*} [AddCommGroup M]
+    [Module ℂ M] (x : M) (c : ℂ) : (2 * c)⁻¹ • (x + x) = c⁻¹ • x := by
+  rw [smul_add, ← add_smul]
+  congr 1
+  rw [mul_inv, ← two_mul, ← mul_assoc,
+    mul_inv_cancel₀ (by norm_num : (2 : ℂ) ≠ 0), one_mul]
+
+/-- **They represent `h`, because `S` is symmetric.**  The average of the
+classes is already self-adjoint, so adding its adjoint and halving returns
+it. -/
+theorem mk_hermitianAverageSeq (R : OmegaUnitaryRep Y ω G) {S : Finset G}
+    (hsymm : ∀ g ∈ S, g⁻¹ ∈ S) :
+    filterMatrixCStarCoronaMk (Idx Y) (ω : Filter ℕ)
+        (hermitianAverageSeq Y ω R S)
+      = unitaryAverage (coronaRep Y ω R) S := by
+  classical
+  have hstep : ∀ a ∈ S,
+      filterMatrixCStarCoronaQuotient (Idx Y) (ω : Filter ℕ)
+        (unitarySeq Y R.V a + star (unitarySeq Y R.V a))
+      = ((coronaRep Y ω R a :
+            unitary (FilterMatrixCStarCorona (Idx Y) (ω : Filter ℕ))) :
+            FilterMatrixCStarCorona (Idx Y) (ω : Filter ℕ))
+        + star ((coronaRep Y ω R a :
+            unitary (FilterMatrixCStarCorona (Idx Y) (ω : Filter ℕ))) :
+            FilterMatrixCStarCorona (Idx Y) (ω : Filter ℕ)) := by
+    intro a _
+    rw [map_add, map_star]
+    rfl
+  have hTsa : star (∑ a ∈ S, ((coronaRep Y ω R a :
+        unitary (FilterMatrixCStarCorona (Idx Y) (ω : Filter ℕ))) :
+        FilterMatrixCStarCorona (Idx Y) (ω : Filter ℕ)))
+      = ∑ a ∈ S, ((coronaRep Y ω R a :
+        unitary (FilterMatrixCStarCorona (Idx Y) (ω : Filter ℕ))) :
+        FilterMatrixCStarCorona (Idx Y) (ω : Filter ℕ)) := by
+    rw [star_sum, show (∑ a ∈ S, star ((coronaRep Y ω R a :
+          unitary (FilterMatrixCStarCorona (Idx Y) (ω : Filter ℕ))) :
+          FilterMatrixCStarCorona (Idx Y) (ω : Filter ℕ)))
+        = ∑ a ∈ S, ((coronaRep Y ω R a⁻¹ :
+          unitary (FilterMatrixCStarCorona (Idx Y) (ω : Filter ℕ))) :
+          FilterMatrixCStarCorona (Idx Y) (ω : Filter ℕ)) from
+      Finset.sum_congr rfl fun a _ ↦ star_unitary_coe (coronaRep Y ω R) a]
+    refine Finset.sum_nbij' (fun g ↦ g⁻¹) (fun g ↦ g⁻¹) ?_ ?_ ?_ ?_ ?_
+    · intro g hg; exact hsymm g hg
+    · intro g hg; exact hsymm g hg
+    · intro g _; exact inv_inv g
+    · intro g _; exact inv_inv g
+    · intro g _; rfl
+  show filterMatrixCStarCoronaQuotient (Idx Y) (ω : Filter ℕ)
+      (hermitianAverageSeq Y ω R S) = _
+  rw [hermitianAverageSeq, map_smul, map_sum, Finset.sum_congr rfl hstep,
+    Finset.sum_add_distrib, ← star_sum, hTsa]
+  exact inv_two_mul_smul_add_self _ _
+
+/-! ### The order on `B_ω`
+
+The compression statement is an *order* statement, so the ambient needs the
+C*-order.  It is installed here rather than globally, and by the repository's
+standard idiom: the spectral order of a C*-algebra, which is the only order the
+inequality could mean. -/
+
+local instance coronaPartialOrder :
+    PartialOrder (FilterMatrixCStarCorona (Idx Y) (ω : Filter ℕ)) :=
+  CStarAlgebra.spectralOrder (FilterMatrixCStarCorona (Idx Y) (ω : Filter ℕ))
+
+local instance coronaStarOrderedRing :
+    StarOrderedRing (FilterMatrixCStarCorona (Idx Y) (ω : Filter ℕ)) :=
+  CStarAlgebra.spectralOrderedRing
+    (FilterMatrixCStarCorona (Idx Y) (ω : Filter ℕ))
+
+/-- **`q h q ≤ θ q` in `B_ω`**, for the printed `h`, `q` and `θ`.
+
+The gap cashed as an order statement.  It is algebra-internal:
+`KazhdanProjectionAbsorption.compression_le_gap` proves it for the spectral
+projection at an isolated top of the spectrum in any C*-algebra, from the
+pointwise inequality of two continuous functions on the spectrum, and the
+ultraproduct contributes only the gap. -/
+theorem manuscriptCornerCompression (R : OmegaUnitaryRep Y ω G)
+    {Q : Finset G} {ε : ℝ} (hQ : IsKazhdanPair.{u, 0} G Q ε)
+    (S : Finset G) (hS : S.Nonempty) (hQS : Q ⊆ S) (hone : 1 ∈ S)
+    (hsymm : ∀ g ∈ S, g⁻¹ ∈ S) (hεone : ε ≤ 1) :
+    ((1 : FilterMatrixCStarCorona (Idx Y) (ω : Filter ℕ))
+          - manuscriptKazhdanProjection Y ω R S (1 - ε ^ 2 / (4 * S.card)))
+        * unitaryAverage (coronaRep Y ω R) S
+        * ((1 : FilterMatrixCStarCorona (Idx Y) (ω : Filter ℕ))
+          - manuscriptKazhdanProjection Y ω R S (1 - ε ^ 2 / (4 * S.card)))
+      ≤ algebraMap ℝ (FilterMatrixCStarCorona (Idx Y) (ω : Filter ℕ))
+            (1 - ε ^ 2 / (4 * S.card))
+        * ((1 : FilterMatrixCStarCorona (Idx Y) (ω : Filter ℕ))
+          - manuscriptKazhdanProjection Y ω R S (1 - ε ^ 2 / (4 * S.card))) :=
+  KazhdanProjectionAbsorption.compression_le_gap
+    (unitaryAverage (coronaRep Y ω R) S)
+    (isSelfAdjoint_unitaryAverage (coronaRep Y ω R) hsymm)
+    (gapConstant_lt_one hQ.1 hS)
+    (coronaGap Y ω R hQ S hS hQS hone hsymm hεone)
+
+end Compression
+
 end
 
 end OmegaCoronaKazhdanProjection

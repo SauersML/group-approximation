@@ -469,6 +469,68 @@ theorem commute_one_sub_spectralProjection_of_normal (ρ : G →* unitary A)
 
 end Normality
 
+/-! ## The compression of the average to the complementary corner
+
+`thm:abstract-nk`, in the compression paragraph:
+
+> The compression of `h` to the corner satisfies `q h q ≤ θ q` in `B_ω`.
+
+This is where the gap is cashed as an *order* statement rather than a spectral
+one, and it is what the coordinate estimate of the next step is the image of.
+It is algebra-internal: `q = 1 − χ_{{1}}(h)` is itself a continuous function of
+`h`, so both sides are, and the inequality is the pointwise inequality of the
+two functions on the spectrum.  On the spectrum the gap indicator takes only the
+values `0` and `1`, so `q` is idempotent there and the difference collapses to
+`(1 − χ)(t)·(θ − t)`: at `t ≤ θ` that is `θ − t ≥ 0`, and at the isolated point
+`t = 1` it is `0`. -/
+
+section Compression
+
+variable [PartialOrder A] [StarOrderedRing A]
+
+/-- **`q h q ≤ θ q`**, for the complementary corner of the spectral projection
+at an isolated top of the spectrum. -/
+theorem compression_le_gap (m : A) {c : ℝ} (hm : IsSelfAdjoint m) (hc : c < 1)
+    (hgap : ∀ μ ∈ spectrum ℝ m, μ ≤ c ∨ μ = 1) :
+    ((1 : A) - spectralProjection m c) * m * ((1 : A) - spectralProjection m c)
+      ≤ algebraMap ℝ A c * ((1 : A) - spectralProjection m c) := by
+  have hcont : ContinuousOn (gapIndicator c) (spectrum ℝ m) :=
+    continuousOn_gapIndicator hc hgap
+  have hFcont : ContinuousOn (fun t : ℝ ↦ 1 - gapIndicator c t)
+      (spectrum ℝ m) := continuousOn_const.sub hcont
+  have hone : (1 : A) = cfc (fun _ : ℝ ↦ (1 : ℝ)) m := (cfc_one ℝ m).symm
+  have hq : cfc (fun t : ℝ ↦ 1 - gapIndicator c t) m
+      = (1 : A) - spectralProjection m c := by
+    rw [cfc_sub (fun _ : ℝ ↦ (1 : ℝ)) (gapIndicator c) m continuousOn_const hcont,
+      spectralProjection]
+    conv_rhs => rw [hone]
+  have hprod : cfc (fun t : ℝ ↦ (1 - gapIndicator c t) * t
+        * (1 - gapIndicator c t)) m
+      = cfc (fun t : ℝ ↦ 1 - gapIndicator c t) m * m
+        * cfc (fun t : ℝ ↦ 1 - gapIndicator c t) m := by
+    rw [cfc_mul (fun t : ℝ ↦ (1 - gapIndicator c t) * t)
+        (fun t : ℝ ↦ 1 - gapIndicator c t) m
+        (hFcont.mul (continuousOn_id' _)) hFcont,
+      cfc_mul (fun t : ℝ ↦ 1 - gapIndicator c t) (fun t : ℝ ↦ t) m
+        hFcont (continuousOn_id' _), cfc_id' ℝ m]
+  have hscal : cfc (fun t : ℝ ↦ c * (1 - gapIndicator c t)) m
+      = algebraMap ℝ A c * cfc (fun t : ℝ ↦ 1 - gapIndicator c t) m := by
+    rw [cfc_mul (fun _ : ℝ ↦ c) (fun t : ℝ ↦ 1 - gapIndicator c t) m
+      continuousOn_const hFcont, cfc_const c m hm]
+  rw [← sub_nonneg, ← hq, ← hprod, ← hscal,
+    ← cfc_sub (fun t : ℝ ↦ c * (1 - gapIndicator c t))
+      (fun t : ℝ ↦ (1 - gapIndicator c t) * t * (1 - gapIndicator c t)) m
+      (continuousOn_const.mul hFcont)
+      ((hFcont.mul (continuousOn_id' _)).mul hFcont)]
+  refine cfc_nonneg fun t ht ↦ ?_
+  rcases hgap t ht with hle | h1
+  · rw [gapIndicator_of_le hle]
+    nlinarith
+  · rw [h1, gapIndicator_one hc]
+    norm_num
+
+end Compression
+
 end
 
 end KazhdanProjectionAbsorption
