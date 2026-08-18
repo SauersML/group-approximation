@@ -34,6 +34,7 @@ variable {A : Type u} [NonUnitalCStarAlgebra A]
 variable {H : Type w} [NormedAddCommGroup H] [InnerProductSpace ℂ H]
   [CompleteSpace H]
 
+omit [NonUnitalCStarAlgebra A] in
 /-- Reindex a finset double sum through `s.equivFin`. -/
 theorem double_sum_equivFin (s : Finset A) (F : A → A → ℂ) :
     (∑ a ∈ s, ∑ b ∈ s, F a b)

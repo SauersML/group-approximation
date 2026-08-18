@@ -1,5 +1,6 @@
 import GroupApproximation.Analysis.CStarMinTensorFunctorial
 import GroupApproximation.Analysis.CStarIdealApproximateUnit
+import GroupApproximation.Analysis.CStarCompletionHom
 
 /-!
 # The quotient map on minimal tensor products, and exactness as a statement
@@ -73,18 +74,23 @@ noncomputable def tensorStarAlgHomMap (q : B →⋆ₐ[ℂ] Q) :
             = star (Algebra.TensorProduct.map q.toAlgHom (AlgHom.id ℂ C)
                 (b ⊗ₜ[ℂ] c))
           rw [TensorProduct.star_tmul, Algebra.TensorProduct.map_tmul,
-            Algebra.TensorProduct.map_tmul, TensorProduct.star_tmul,
-            map_star]
-          rfl
+            Algebra.TensorProduct.map_tmul, TensorProduct.star_tmul]
+          show (q (star b)) ⊗ₜ[ℂ] (star c) = (star (q b)) ⊗ₜ[ℂ] (star c)
+          rw [map_star]
       | add y z hy hz =>
+          have hy' : Algebra.TensorProduct.map q.toAlgHom (AlgHom.id ℂ C)
+              (star y)
+              = star (Algebra.TensorProduct.map q.toAlgHom
+                  (AlgHom.id ℂ C) y) := hy
+          have hz' : Algebra.TensorProduct.map q.toAlgHom (AlgHom.id ℂ C)
+              (star z)
+              = star (Algebra.TensorProduct.map q.toAlgHom
+                  (AlgHom.id ℂ C) z) := hz
           show Algebra.TensorProduct.map q.toAlgHom (AlgHom.id ℂ C)
-              (star (y + z)) = _
-          rw [star_add, map_add]
-          rw [show Algebra.TensorProduct.map q.toAlgHom (AlgHom.id ℂ C)
-              (star y) = _ from hy,
-            show Algebra.TensorProduct.map q.toAlgHom (AlgHom.id ℂ C)
-              (star z) = _ from hz]
-          rw [map_add, star_add] }
+              (star (y + z))
+            = star (Algebra.TensorProduct.map q.toAlgHom (AlgHom.id ℂ C)
+                (y + z))
+          rw [star_add, map_add, hy', hz', map_add, star_add] }
 
 @[simp] theorem tensorStarAlgHomMap_apply (q : B →⋆ₐ[ℂ] Q) (x : B ⊗[ℂ] C) :
     tensorStarAlgHomMap q x
@@ -99,6 +105,7 @@ variable {B : Type u} {C : Type w} [CStarAlgebra B] [CStarAlgebra C]
   (I : Ideal B) [I.IsTwoSided] [IsStarStable I] [IsClosed (I : Set B)]
   [Nontrivial (B ⧸ I)]
 
+omit [Nontrivial B] [IsClosed (I : Set B)] [Nontrivial (B ⧸ I)] in
 /-- The quotient ⋆-homomorphism is surjective. -/
 theorem quotientStarMk_surjective :
     Function.Surjective (quotientStarMk I) := by
@@ -146,7 +153,7 @@ theorem quotientMinTensorMap_minTensorIn (x : B ⊗[ℂ] C) :
 /-! ## The provable inclusion -/
 
 /-- The span of the image of `I ⊙ C` inside `B ⊗_min C`. -/
-def idealTensorSpan : Submodule ℂ (MinTensorProduct B C) :=
+noncomputable def idealTensorSpan : Submodule ℂ (MinTensorProduct B C) :=
   Submodule.span ℂ
     {z | ∃ b c, b ∈ I ∧ z = minTensorIn B C (b ⊗ₜ[ℂ] c)}
 
@@ -175,10 +182,8 @@ theorem idealTensorSpan_subset_ker (z : MinTensorProduct B C)
     · intro a x _ hx
       rw [map_smul, hx, smul_zero]
   -- Pass to the closure by continuity.
-  have hcont : Continuous (quotientMinTensorMap I) := by
-    have := CStarCompletion.uniformContinuous_of_norm_le
-      (minPreQuotientMap I) (norm_minPreQuotientMap_le I)
-    exact UniformSpace.Completion.continuous_extension
+  have hcont : Continuous (quotientMinTensorMap I) :=
+    UniformSpace.Completion.continuous_extension
   have hclosed : IsClosed {w : MinTensorProduct B C |
       quotientMinTensorMap I w = 0} :=
     isClosed_eq hcont continuous_const
