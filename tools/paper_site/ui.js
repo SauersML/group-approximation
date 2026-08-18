@@ -62,6 +62,14 @@ function typographize(s) {
     .replace(/~/g, ' ');
 }
 
+
+function glueAfterMath(src, i, mathHtml) {
+  // punctuation or a -suffix straight after math must not wrap to the next line
+  const m = src.slice(i).match(/^([,.;:!?)\]]+|-[a-zA-Z]+)/);
+  if (!m) return { html: mathHtml, next: i };
+  return { html: '<span class="nobr">' + mathHtml + typographize(escHtml(m[1])) + '</span>', next: i + m[1].length };
+}
+
 function renderInline(src, ctx) {
   ctx = ctx || {};
   let out = '';
@@ -81,8 +89,9 @@ function renderInline(src, ctx) {
         if (src[j] === '$') break;
       }
       const math = src.slice(i + 1, j);
-      out += tex2html(math, false);
-      i = j + 1;
+      const glued = glueAfterMath(src, j + 1, tex2html(math, false));
+      out += glued.html;
+      i = glued.next;
       continue;
     }
 
@@ -115,8 +124,9 @@ function renderInline(src, ctx) {
         flush();
         const j = src.indexOf('\\)', i + 2);
         if (j < 0) { warn('unclosed \\('); plain += '('; i += 2; continue; }
-        out += tex2html(src.slice(i + 2, j), false);
-        i = j + 2;
+        const glued = glueAfterMath(src, j + 2, tex2html(src.slice(i + 2, j), false));
+        out += glued.html;
+        i = glued.next;
         continue;
       }
       if (ch === '\\') { flush(); out += '<br>'; i += 2; continue; }
@@ -283,6 +293,16 @@ function renderNode(n, ctx, siblings, idx) {
   }
 }
 
+
+const GITHUB_BLOB = 'https://github.com/SauersML/group-approximation/blob/main/GroupApproximation/';
+function leanDeclHtml(l) {
+  const code = (window.LEAN_SRC || {})[l.module + '|' + l.declaration];
+  const link = '<a class="lean-mod" href="' + GITHUB_BLOB + escHtml(l.module) + '.lean" target="_blank" rel="noopener">' + escHtml(l.module) + '.lean</a>';
+  if (!code) return '<div class="lean-decl">' + link + escHtml(l.declaration) + '</div>';
+  return '<details class="lean-decl"><summary>' + escHtml(l.declaration) + '</summary>' +
+    '<pre class="lean-code">' + escHtml(code) + '</pre>' + link + '</details>';
+}
+
 function claimForThm(n) {
   if (!window.CLAIMS) return null;
   for (const lab of n.labels) {
@@ -300,7 +320,7 @@ function renderThm(n, ctx) {
   head += '<span class="thm-dot">.</span>';
   let badges = '<span class="thm-tools">';
   if (claim) badges += '<button class="badge badge-lean" data-claim="' + escHtml(claim.id) + '" title="Machine-checked in Lean 4">Lean&thinsp;✓</button>';
-  badges += '<a class="anchor-link" href="#' + n.anchor + '" title="Link to this statement">¶</a></span>';
+  badges += '</span>';
   const c = Object.assign({}, ctx, { env: n });
   const body = renderNodes(n.body, c);
   return '<section class="thm ' + style + ' thm-' + n.env + '" id="' + n.anchor + '" data-labels="' + escHtml(n.labels.join(' ')) + '">' +
@@ -405,7 +425,7 @@ function buildToc(nodes) {
     if (n.t === 'section') items.push({ kind: 'sec', num: n.num, title: n.title, anchor: n.anchor });
     if (n.t === 'thm' && n.env === 'mainthm') items.push({ kind: 'mainthm', num: n.num, title: n.title, anchor: n.anchor });
   }
-  let html = '<nav class="toc" aria-label="Contents"><div class="toc-head">Contents</div><ul>';
+  let html = '<nav class="toc" aria-label="Contents"><ul>';
   html += '<li class="toc-sec"><a href="#top" data-anchor="top">Abstract</a></li>';
   for (const it of items) {
     if (it.kind === 'divider') { html += '<li class="toc-divider">Supplement</li>'; continue; }
@@ -425,9 +445,8 @@ function claimNum(id) { return LABELS[id] ? LABELS[id].num : null; }
 
 function buildUsedBy() {
   const used = {};
-  for (const c of CLAIMS.claims) for (const d of (c.dependencies || [])) {
-    (used[d] = used[d] || []).push(c.id);
-  }
+  const deps = window.__graphDeps || {};
+  for (const id in deps) for (const d of deps[id]) (used[d] = used[d] || []).push(id);
   return used;
 }
 
@@ -436,7 +455,7 @@ function envOfClaim(c) { return c.environment === 'mainthm' ? 'theorem' : c.envi
 function buildClaimsView() {
   const usedBy = buildUsedBy();
   const kinds = [...new Set(CLAIMS.claims.map(envOfClaim))].sort();
-  let html = '<div class="claims-bar"><input id="claims-search" type="search" placeholder="Filter claims… (statement text, id, Lean name)" aria-label="Filter claims">' +
+  let html = '<div class="claims-bar"><input id="claims-search" type="search" placeholder="Filter" aria-label="Filter claims">' +
     '<div class="claims-filters">' + kinds.map(k =>
       '<button class="chip chip-filter is-on" data-kind="' + k + '">' + k + '</button>').join('') + '</div></div>';
   html += '<div class="claims-count" id="claims-count"></div><div class="claims-grid">';
@@ -444,14 +463,13 @@ function buildClaimsView() {
     const num = claimNum(c.id);
     const name = (c.environment === 'mainthm' ? 'Theorem' : c.environment[0].toUpperCase() + c.environment.slice(1)) + ' ' + (num || '?');
     const anchor = LABELS[c.id] ? LABELS[c.id].anchor : '';
-    const deps = (c.dependencies || []).map(d => xrefClaimChip(d)).join('');
+    const deps = (window.__graphDeps[c.id] || []).map(d => xrefClaimChip(d)).join('');
     const ub = (usedBy[c.id] || []).map(d => xrefClaimChip(d)).join('');
-    const decls = (c.lean || []).map(l =>
-      '<div class="lean-decl"><span class="lean-mod">' + escHtml(l.module) + '</span><code>' + escHtml(l.declaration) + '</code></div>').join('');
+    const decls = (c.lean || []).map(leanDeclHtml).join('');
     html += '<article class="claim-card" data-kind="' + envOfClaim(c) + '" data-id="' + escHtml(c.id) + '">' +
       '<header><a class="claim-name" href="#' + anchor + '">' + escHtml(name) + '</a>' +
       (c.title ? '<span class="claim-title">' + escHtml(c.title) + '</span>' : '') +
-      '<span class="badge badge-lean-sm" title="' + escHtml(c.status) + '">' + escHtml(c.status) + '</span></header>' +
+      '</header>' +
       '<div class="claim-stmt" data-anchor="' + anchor + '"></div>' +
       '<div class="claim-meta">' +
       (deps ? '<div class="claim-deps"><span class="meta-label">uses</span>' + deps + '</div>' : '') +
@@ -474,11 +492,38 @@ function xrefClaimChip(id) {
 
 /* ---------- dependency graph ---------- */
 
+function computeGraphDeps() {
+  const idset = new Set(CLAIMS.claims.map(c => c.id));
+  const deps = {};
+  for (const c of CLAIMS.claims) deps[c.id] = new Set((c.dependencies || []).filter(d => idset.has(d)));
+  // a proof's cross-references are dependencies of the claim it proves
+  document.querySelectorAll('#paper-body details.proof').forEach(p => {
+    let owner = null;
+    const t = p.querySelector('summary a.xref');
+    if (t && idset.has(t.dataset.label)) owner = t.dataset.label;
+    if (!owner) {
+      let el = p.previousElementSibling;
+      while (el && !el.classList.contains('thm') && el.tagName !== 'H2') el = el.previousElementSibling;
+      if (el && el.classList.contains('thm')) {
+        const lab = (el.dataset.labels || '').split(' ').find(l => idset.has(l));
+        if (lab) owner = lab;
+      }
+    }
+    if (!owner) return;
+    p.querySelectorAll('.proof-body a.xref').forEach(a => {
+      const l = a.dataset.label;
+      if (idset.has(l) && l !== owner) deps[owner].add(l);
+    });
+  });
+  const out = {};
+  for (const k in deps) out[k] = [...deps[k]];
+  return out;
+}
+
+
 function buildGraph() {
   const ids = CLAIMS.claims.map(c => c.id);
-  const idset = new Set(ids);
-  const deps = {};
-  for (const c of CLAIMS.claims) deps[c.id] = (c.dependencies || []).filter(d => idset.has(d));
+  const deps = window.__graphDeps;
   // longest-path layering
   const layer = {};
   const depth = id => {
@@ -509,7 +554,7 @@ function buildGraph() {
   function bary(id) { const ds = deps[id]; return ds.length ? ds.reduce((s, d) => s + pos[d], 0) / ds.length : pos[id]; }
   function baryK(id, kids) { const ks = kids[id] || []; return ks.length ? ks.reduce((s, d) => s + pos[d], 0) / ks.length : pos[id]; }
 
-  const CW = 168, RH = 46, PADX = 30, PADY = 26;
+  const CW = 152, RH = 40, PADX = 24, PADY = 20;
   const maxRows = Math.max(...cols.map(c => c.length));
   const W = PADX * 2 + (maxL + 1) * CW;
   const H = PADY * 2 + maxRows * RH;
@@ -520,7 +565,7 @@ function buildGraph() {
   });
 
   let edges = '';
-  for (const c of CLAIMS.claims) for (const d of deps[c.id]) {
+  for (const c of CLAIMS.claims) for (const d of (deps[c.id] || [])) {
     const a = xy[d], b = xy[c.id];
     const mx = (a.x + b.x) / 2;
     edges += '<path class="g-edge" data-from="' + escHtml(d) + '" data-to="' + escHtml(c.id) + '" d="M ' + (a.x + 52) + ' ' + a.y +
@@ -537,10 +582,9 @@ function buildGraph() {
       '<text text-anchor="middle" dy="4">' + escHtml(short + ' ' + num) + '</text>' +
       '<title>' + escHtml((c.title || c.id)) + '</title></g>';
   }
-  return '<div class="graph-help">Dependency graph of the ' + CLAIMS.claims.length + ' numbered claims (edges point from what a claim <em>uses</em> to the claim). ' +
-    'Click a node to highlight everything it depends on and everything built on it; click it again to jump to the statement.</div>' +
+  return '<div class="graph-help">Edges run from what a claim uses to the claim. Click a node to trace it; click it again to open the statement.</div>' +
     '<div class="graph-legend"><span class="lg lg-main"></span> main paper <span class="lg lg-supp"></span> supplement</div>' +
-    '<div class="graph-wrap"><svg id="depgraph" viewBox="0 0 ' + W + ' ' + H + '" width="' + W + '" height="' + H + '">' + edges + nodesHtml + '</svg></div>' +
+    '<div class="graph-wrap"><svg id="depgraph" viewBox="0 0 ' + W + ' ' + H + '" preserveAspectRatio="xMidYMid meet">' + edges + nodesHtml + '</svg></div>' +
     '<aside class="graph-panel" id="graph-panel" hidden></aside>';
 }
 
@@ -622,13 +666,10 @@ function setupLeanPopovers(root) {
     const pop = document.createElement('div');
     pop.className = 'lean-pop';
     pop.dataset.for = c.id;
-    let html = '<div class="lp-head">Machine-checked <span class="lp-status">' + escHtml(c.status) + '</span></div>';
-    html += '<div class="lp-note">' + escHtml(c.object_identity || '') + '</div>';
-    for (const l of (c.lean || [])) {
-      html += '<div class="lean-decl"><span class="lean-mod">' + escHtml(l.module) + '.lean</span><code>' + escHtml(l.declaration) + '</code>' +
-        (l.covers ? '<span class="lp-covers">covers ' + escHtml(l.covers) + '</span>' : '') + '</div>';
-    }
-    if ((c.dependencies || []).length) html += '<div class="claim-deps"><span class="meta-label">uses</span>' + c.dependencies.map(xrefClaimChip).join('') + '</div>';
+    let html = '';
+    for (const l of (c.lean || [])) html += leanDeclHtml(l);
+    const cdeps = (window.__graphDeps[c.id] || []);
+    if (cdeps.length) html += '<div class="claim-deps"><span class="meta-label">uses</span>' + cdeps.map(xrefClaimChip).join('') + '</div>';
     if ((usedBy[c.id] || []).length) html += '<div class="claim-deps"><span class="meta-label">used by</span>' + usedBy[c.id].map(xrefClaimChip).join('') + '</div>';
     pop.innerHTML = html;
     document.body.appendChild(pop);
@@ -659,6 +700,7 @@ function init() {
   document.getElementById('toc-slot').innerHTML = buildToc(parsed.nodes);
 
   // ----- claims + graph views -----
+  window.__graphDeps = computeGraphDeps();
   document.getElementById('claims-content').innerHTML = buildClaimsView();
   document.getElementById('graph-content').innerHTML = buildGraph();
 
@@ -676,7 +718,6 @@ function init() {
   setupHoverPreviews(document.body);
   setupLeanPopovers(document.body);
   setupTabs();
-  setupProofToggle();
   setupScrollSpy();
   setupClaimsFilter();
   setupGraphInteractions();
@@ -715,17 +756,6 @@ function setupTabs() {
       tgt.classList.add('is-flash');
       setTimeout(() => tgt.classList.remove('is-flash'), 1600);
     }, 60);
-  });
-}
-
-function setupProofToggle() {
-  const btn = document.getElementById('proofs-toggle');
-  let shown = true;
-  btn.addEventListener('click', () => {
-    shown = !shown;
-    document.querySelectorAll('details.proof').forEach(d => d.open = shown);
-    btn.textContent = shown ? 'Hide proofs' : 'Show proofs';
-    btn.setAttribute('aria-pressed', String(!shown));
   });
 }
 
@@ -769,7 +799,7 @@ function setupClaimsFilter() {
       c.hidden = !on;
       if (on) n++;
     }
-    count.textContent = n + ' of ' + cards.length + ' claims';
+    count.textContent = n === cards.length ? '' : n + ' of ' + cards.length;
   }
   input.addEventListener('input', apply);
   filters.forEach(f => f.addEventListener('click', () => { f.classList.toggle('is-on'); apply(); }));
@@ -785,10 +815,7 @@ function setupGraphInteractions() {
   const svg = document.getElementById('depgraph');
   if (!svg) return;
   const panel = document.getElementById('graph-panel');
-  const deps = {}, kids = {};
-  for (const c of CLAIMS.claims) {
-    deps[c.id] = (c.dependencies || []).filter(d => CLAIMS.claims.some(x => x.id === d));
-  }
+  const deps = window.__graphDeps, kids = {};
   for (const id in deps) for (const d of deps[id]) (kids[d] = kids[d] || []).push(id);
   const closure = (start, rel) => {
     const seen = new Set(); const st = [start];
@@ -826,8 +853,7 @@ function setupGraphInteractions() {
     const rec = LABELS[id];
     panel.hidden = false;
     panel.innerHTML = '<div class="gp-name">' + escHtml((rec ? rec.kind + ' ' + rec.num : id)) + (c.title ? ' <span class="claim-title">(' + escHtml(c.title) + ')</span>' : '') + '</div>' +
-      '<div class="gp-counts">' + up.size + ' upstream · ' + down.size + ' downstream</div>' +
-      '<div class="gp-hint">Click the node again to open the statement.</div>';
+      '<div class="gp-counts">' + up.size + ' upstream · ' + down.size + ' downstream</div>';
   });
   function clearSel() {
     selected = null;

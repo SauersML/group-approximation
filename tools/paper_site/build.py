@@ -23,6 +23,32 @@ def read(p):
     return Path(p).read_text(encoding='utf-8')
 
 
+DECL_HEAD = re.compile(
+    r'^(?:@\[[^\]]*\]\s*)?(?:noncomputable\s+)?(?:private\s+)?'
+    r'(theorem|lemma|def|abbrev|instance|structure|inductive)\s+(\S+)', re.M)
+
+
+def extract_decl(module, decl):
+    """Best-effort: the statement of `decl` from <module>.lean, up to its `:=`."""
+    path = REPO / 'GroupApproximation' / (module + '.lean')
+    if not path.exists():
+        path = REPO / (module + '.lean')
+    if not path.exists():
+        return None
+    src = path.read_text(encoding='utf-8')
+    name = decl.split('.')[-1]
+    for m in DECL_HEAD.finditer(src):
+        if m.group(2) == name:
+            tail = src[m.start(1):]
+            stop = re.search(r':=|\n\n\n', tail)
+            code = tail[:stop.start()].rstrip() if stop else tail
+            lines = code.splitlines()
+            if len(lines) > 40:
+                code = '\n'.join(lines[:40]) + '\n  …'
+            return code[:4000]
+    return None
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('--out', default=str(HERE / 'index.html'))
@@ -48,9 +74,18 @@ def main():
     if leftovers:
         sys.exit(f'unresolved font urls remain: {leftovers[:4]}')
 
+    lean_src = {}
+    for c in json.loads(claims)['claims']:
+        for l in c.get('lean', []):
+            key = l['module'] + '|' + l['declaration']
+            if key not in lean_src:
+                code = extract_decl(l['module'], l['declaration'])
+                if code:
+                    lean_src[key] = code
     data_js = (
         'window.PAPER_TEX = ' + json.dumps(tex).replace('</', '<\\/') + ';\n'
         'window.CLAIMS = ' + json.dumps(json.loads(claims)).replace('</', '<\\/') + ';\n'
+        'window.LEAN_SRC = ' + json.dumps(lean_src).replace('</', '<\\/') + ';\n'
     )
 
     for name, payload in [

@@ -42,6 +42,7 @@ code { font-family: inherit; font-size: inherit; }
 .x-it { font-style: italic; }
 .x-sc { font-variant: small-caps; }
 .x-up { font-style: normal; }
+.nobr { white-space: nowrap; }
 .unk { color: #b4443c; background: var(--bg-inset); padding: 0 3px; border-radius: 3px; }
 .katex { font-size: 1.06em; }
 
@@ -216,14 +217,9 @@ h4.para-head {
 .thm-dot { margin-left: -3px; font-weight: 700; }
 .thm-plain .thm-stmt { font-style: italic; }
 .thm-plain .thm-stmt .katex, .thm-plain .thm-stmt .x-up { font-style: normal; }
+.nobr { white-space: nowrap; }
 .thm-stmt p:last-child { margin-bottom: 0.3em; }
 .thm-tools { margin-left: auto; display: flex; gap: 8px; align-items: center; }
-.anchor-link {
-  color: var(--ink-faint); font-size: 0.95em;
-  opacity: 0; transition: opacity 0.15s;
-}
-.thm:hover .anchor-link, .anchor-link:focus-visible { opacity: 1; }
-
 .badge {
   font-size: 13px; font-style: italic;
   border: 1px solid transparent; border-radius: 999px;
@@ -259,7 +255,11 @@ details.proof > summary::before {
 details.proof[open] > summary::before { transform: rotate(90deg); }
 details.proof:not([open]) > summary { color: var(--ink-faint); }
 details.proof:not([open]) > summary:hover { color: var(--ink-soft); }
-details.proof .proof-body { padding-top: 0.35em; }
+details.proof .proof-body {
+  padding: 0.35em 0 0 14px;
+  border-left: 1px solid var(--rule-soft);
+  margin-left: 3px;
+}
 .qed { float: right; color: var(--ink-soft); }
 
 /* ============ lists ============ */
@@ -337,9 +337,16 @@ dl.bib { margin: 1em 0; }
 .lp-status { color: var(--verified); font-style: italic; font-weight: 400; border: 1px solid var(--verified); border-radius: 999px; padding: 0 8px; margin-left: 5px; font-size: 0.9em; }
 .lp-note { color: var(--ink-soft); font-size: 0.95em; margin-bottom: 8px; }
 .lean-decl { margin: 6px 0; }
-.lean-decl .lean-mod { display: block; color: var(--ink-faint); font-size: 0.85em; }
-.lean-decl code { overflow-wrap: anywhere; font-size: 0.95em; }
-.lp-covers { display: block; color: var(--ink-soft); font-size: 0.9em; font-style: italic; }
+.lean-decl summary { cursor: pointer; overflow-wrap: anywhere; list-style-position: inside; font-size: 0.95em; }
+.lean-code {
+  font-family: inherit; font-size: 0.92em; line-height: 1.45;
+  background: var(--bg-inset); border-radius: 6px;
+  padding: 8px 10px; margin: 6px 0;
+  white-space: pre-wrap; overflow-wrap: anywhere;
+}
+a.lean-mod { color: var(--ink-faint); }
+a.lean-mod:hover { color: var(--link); }
+.lean-decl .lean-mod { display: block; font-size: 0.85em; }
 .meta-label {
   font-style: italic;
   color: var(--ink-faint); margin-right: 6px;
@@ -379,14 +386,7 @@ a.chip:hover { text-decoration: none; color: var(--link); border-color: var(--li
 .claim-name:hover { color: var(--link); }
 .claim-title { color: var(--ink-soft); font-size: 14px; font-style: italic; }
 .claim-card header .badge-lean-sm { margin-left: auto; }
-.claim-stmt {
-  font-size: 14.5px; line-height: 1.55;
-  max-height: 180px; overflow: hidden; position: relative;
-}
-.claim-stmt::after {
-  content: ""; position: absolute; inset: auto 0 0 0; height: 34px;
-  background: linear-gradient(rgba(255,255,255,0), var(--bg));
-}
+.claim-stmt { font-size: 14.5px; line-height: 1.55; }
 .claim-stmt .dmath-scroll { overflow-x: auto; }
 .claim-meta { font-size: 13.5px; margin-top: auto; }
 .claim-meta .lean-decl { margin: 4px 0 0; }
@@ -396,12 +396,8 @@ a.chip:hover { text-decoration: none; color: var(--link); border-color: var(--li
 .graph-legend { font-size: 14px; color: var(--ink-soft); display: flex; gap: 14px; align-items: center; margin-bottom: 10px; }
 .lg { display: inline-block; width: 14px; height: 10px; border-radius: 3px; border: 1.4px solid var(--ink-soft); }
 .lg-supp { border-style: dashed; }
-.graph-wrap {
-  overflow: auto; border: 1px solid var(--rule-soft); border-radius: 12px;
-  background: var(--bg);
-  max-height: calc(100vh - 220px);
-}
-#depgraph { display: block; }
+.graph-wrap { overflow: hidden; }
+#depgraph { display: block; width: 100%; height: calc(100vh - 200px); }
 #depgraph .g-edge {
   fill: none; stroke: var(--ink-faint); stroke-width: 1; opacity: 0.4;
 }
