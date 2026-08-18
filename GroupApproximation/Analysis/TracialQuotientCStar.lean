@@ -301,7 +301,7 @@ theorem norm_mk_eq_sInf (a : ModelBoundedSequence X) :
               + ‖(m - a) - (m - a) * e‖ := norm_sub_le _ _
         _ ≤ ‖m‖ * ‖(1 : ModelBoundedSequence X) - e‖
               + ‖(m - a) - (m - a) * e‖ :=
-            add_le_add_right (norm_mul_le _ _) _
+            add_le_add (norm_mul_le _ _) le_rfl
         _ ≤ ‖m‖ * 1 + ε / 2 :=
             add_le_add
               (mul_le_mul_of_nonneg_left he_one_sub (norm_nonneg m)) he_move
