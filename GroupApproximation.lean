@@ -1091,6 +1091,7 @@ import GroupApproximation.Analysis.OmegaFiniteComparison
 import GroupApproximation.Analysis.OmegaFixRange
 import GroupApproximation.Analysis.PolarLiftingGeneralCStar
 import GroupApproximation.Analysis.StablyFiniteAmplification
+import GroupApproximation.Analysis.MatrixCoronaDedekindFinite
 import GroupApproximation.Analysis.VectorHilbertUltraproduct
 import GroupApproximation.Analysis.VectorHilbertComplete
 import GroupApproximation.Analysis.VectorOmegaAction

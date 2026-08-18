@@ -18,7 +18,7 @@ sentence about the target: *every one-sided inverse in it is two-sided*.  For
 proved by lifting to coordinates, correcting there with the Neumann series, and
 pushing back through the quotient.  The same three steps work one level up
 without any isomorphism, because the coordinates of `M_I(Q_X)` are the
-*amplified* finite matrices `M_{I × X n}` and the coordinate correction
+*amplified* finite matrices `M_{I × X n}`, and the coordinate correction
 `UltraproductDedekindFinite.norm_swap_sub_one_le` is already stated at an
 arbitrary finite index type.
 
@@ -33,18 +33,19 @@ since the reduction quantifies over an arbitrary `I`.
 
 ## What is proved
 
-* `mul_eq_one_symm_matrixCorona` — in `Matrix I I (NormMatrixCStarCorona X)`,
-  `x y = 1` implies `y x = 1`.
+`mul_eq_one_symm_matrixCorona`: in `Matrix I I (NormMatrixCStarCorona X)`,
+`x y = 1` implies `y x = 1`.
 
-The empty index type is not special-cased here: the argument needs a nonempty
-coordinate space only to invoke the finite-dimensional correction, and the
-consumers below supply it or dispatch the subsingleton case directly.
+Nonemptiness of `I` is a hypothesis rather than a case split: it is what makes
+the amplified coordinate space nonempty, which is what the finite-dimensional
+correction asks for.  A consumer with an empty index has a subsingleton and
+needs no theorem.
 -/
 
 namespace GroupApproximation
 namespace MatrixCoronaFinite
 
-open Filter Matrix
+open Filter Matrix KazhdanCornerMatrices
 open scoped Matrix.Norms.L2Operator
 
 universe u
@@ -54,33 +55,35 @@ universe u
 `Analysis/StablyFiniteAmplification.lean` proves these four statements for the
 index `Fin m × Y` of `ampModel`.  The reduction quantifies over an arbitrary
 finite `I`, so they are restated here at `I × Y`; the proofs are that file's,
-with `Fin m` replaced by `I`. -/
+with `Fin m` replaced by `I`.  Binders are per-declaration rather than section
+variables, so that the two purely definitional lemmas carry no instances they
+do not use. -/
 
 section Blocks
 
-variable {I : Type} [Fintype I] [DecidableEq I]
-variable {Y : Type} [Fintype Y] [DecidableEq Y]
-
 /-- The `(i, j)` block of a matrix over a product index type. -/
-def block (i j : I) (A : Matrix (I × Y) (I × Y) ℂ) : Matrix Y Y ℂ :=
+def block {I Y : Type} (i j : I) (A : Matrix (I × Y) (I × Y) ℂ) :
+    Matrix Y Y ℂ :=
   A.submatrix (fun y : Y ↦ ((i, y) : I × Y)) (fun y : Y ↦ ((j, y) : I × Y))
 
-@[simp] theorem block_apply (i j : I) (A : Matrix (I × Y) (I × Y) ℂ)
-    (x y : Y) : block i j A x y = A (i, x) (j, y) := rfl
+@[simp] theorem block_apply {I Y : Type} (i j : I)
+    (A : Matrix (I × Y) (I × Y) ℂ) (x y : Y) :
+    block i j A x y = A (i, x) (j, y) := rfl
 
 /-- The pattern carrying the `(i, j)` block of `A` and nothing else. -/
-def singleBlock (i j : I) (A : Matrix (I × Y) (I × Y) ℂ) :
-    Matrix (I × Y) (I × Y) ℂ :=
+def singleBlock {I Y : Type} [DecidableEq I] (i j : I)
+    (A : Matrix (I × Y) (I × Y) ℂ) : Matrix (I × Y) (I × Y) ℂ :=
   Matrix.of fun p q ↦ if p.1 = i ∧ q.1 = j then A p q else 0
 
-@[simp] theorem singleBlock_apply (i j : I) (A : Matrix (I × Y) (I × Y) ℂ)
-    (p q : I × Y) :
+@[simp] theorem singleBlock_apply {I Y : Type} [DecidableEq I] (i j : I)
+    (A : Matrix (I × Y) (I × Y) ℂ) (p q : I × Y) :
     singleBlock i j A p q = if p.1 = i ∧ q.1 = j then A p q else 0 := rfl
 
 /-- **Block bound.**  Feeding the matrix a vector supported in the `j`-th
 coordinate block and reading the `i`-th coordinate block of the answer computes
-the `(i, j)` block exactly. -/
-theorem norm_block_le (i j : I) (A : Matrix (I × Y) (I × Y) ℂ) :
+the `(i, j)` block exactly, so that block is no larger than the whole. -/
+theorem norm_block_le {I Y : Type} [Fintype I] [DecidableEq I] [Fintype Y]
+    [DecidableEq Y] (i j : I) (A : Matrix (I × Y) (I × Y) ℂ) :
     ‖block i j A‖ ≤ ‖A‖ := by
   classical
   refine l2_opNorm_le_of_sum_normSq_general _ (norm_nonneg A) fun v ↦ ?_
@@ -123,8 +126,11 @@ theorem norm_block_le (i j : I) (A : Matrix (I × Y) (I × Y) ℂ) :
       exact absurd (Finset.mem_univ _) hcon
   rw [hwsum]
 
-/-- **Single-block bound.** -/
-theorem norm_singleBlock_le (i j : I) (A : Matrix (I × Y) (I × Y) ℂ) :
+/-- **Single-block bound.**  The pattern carrying only the `(i, j)` block reads
+the `j`-th coordinate block of the input, applies the block, and writes the
+answer into the `i`-th coordinate block. -/
+theorem norm_singleBlock_le {I Y : Type} [Fintype I] [DecidableEq I]
+    [Fintype Y] [DecidableEq Y] (i j : I) (A : Matrix (I × Y) (I × Y) ℂ) :
     ‖singleBlock i j A‖ ≤ ‖block i j A‖ := by
   classical
   refine l2_opNorm_le_of_sum_normSq_general _ (norm_nonneg _) fun v ↦ ?_
@@ -170,7 +176,8 @@ theorem norm_singleBlock_le (i j : I) (A : Matrix (I × Y) (I × Y) ℂ) :
 
 /-- A matrix over a product index type is the sum of its single-block
 patterns. -/
-theorem sum_singleBlock (A : Matrix (I × Y) (I × Y) ℂ) :
+theorem sum_singleBlock {I Y : Type} [Fintype I] [DecidableEq I]
+    (A : Matrix (I × Y) (I × Y) ℂ) :
     ∑ i : I, ∑ j : I, singleBlock i j A = A := by
   classical
   ext p q
@@ -189,7 +196,8 @@ theorem sum_singleBlock (A : Matrix (I × Y) (I × Y) ℂ) :
     exact absurd (Finset.mem_univ _) hcon
 
 /-- **The whole is no larger than the sum of the blocks.** -/
-theorem norm_le_sum_blocks (A : Matrix (I × Y) (I × Y) ℂ) :
+theorem norm_le_sum_blocks {I Y : Type} [Fintype I] [DecidableEq I] [Fintype Y]
+    [DecidableEq Y] (A : Matrix (I × Y) (I × Y) ℂ) :
     ‖A‖ ≤ ∑ i : I, ∑ j : I, ‖block i j A‖ := by
   calc ‖A‖ = ‖∑ i : I, ∑ j : I, singleBlock i j A‖ := by
         rw [sum_singleBlock]
@@ -206,46 +214,62 @@ end Blocks
 
 section Assemble
 
-variable {I : Type} [Fintype I] [DecidableEq I]
-variable (X : ℕ → FiniteModel) [∀ n, Nonempty (X n)]
+/-- The numerator's multiplication is coordinatewise. -/
+theorem coord_mul (X : ℕ → FiniteModel)
+    (x y : BoundedMatrixSequence (fun n ↦ X n)) (n : ℕ) :
+    (x * y) n = x n * y n := rfl
+
+/-- Evaluating a finite sum of bounded sequences at a coordinate is the sum of
+the evaluations: the algebra of the numerator is coordinatewise. -/
+theorem coord_sum {I : Type} [DecidableEq I] (X : ℕ → FiniteModel)
+    (f : I → BoundedMatrixSequence (fun n ↦ X n)) (s : Finset I) (n : ℕ) :
+    (∑ k ∈ s, f k) n = ∑ k ∈ s, (f k) n := by
+  classical
+  induction s using Finset.induction_on with
+  | empty => rfl
+  | insert k s hk ih =>
+      rw [Finset.sum_insert hk, Finset.sum_insert hk]
+      show (f k) n + ((∑ m ∈ s, f m) n) = (f k) n + ∑ m ∈ s, (f m) n
+      rw [ih]
 
 /-- The amplified coordinate matrix of a matrix of bounded sequences: its
 `(i, j)` block at coordinate `n` is the `n`-th coordinate of the `(i, j)`
 entry. -/
-noncomputable def assemble (a : I → I → BoundedMatrixSequence (fun n ↦ X n))
-    (n : ℕ) : Matrix (I × X n) (I × X n) ℂ :=
+noncomputable def assemble {I : Type} (X : ℕ → FiniteModel)
+    (a : I → I → BoundedMatrixSequence (fun n ↦ X n)) (n : ℕ) :
+    Matrix (I × X n) (I × X n) ℂ :=
   Matrix.of fun p q ↦ (a p.1 q.1) n p.2 q.2
 
-@[simp] theorem block_assemble
+@[simp] theorem block_assemble {I : Type} (X : ℕ → FiniteModel)
     (a : I → I → BoundedMatrixSequence (fun n ↦ X n)) (i j : I) (n : ℕ) :
     block i j (assemble X a n) = (a i j) n := rfl
 
-theorem norm_assemble_le (a : I → I → BoundedMatrixSequence (fun n ↦ X n))
-    (n : ℕ) : ‖assemble X a n‖ ≤ ∑ i : I, ∑ j : I, ‖a i j‖ := by
+theorem norm_assemble_le {I : Type} [Fintype I] [DecidableEq I]
+    (X : ℕ → FiniteModel)
+    (a : I → I → BoundedMatrixSequence (fun n ↦ X n)) (n : ℕ) :
+    ‖assemble X a n‖ ≤ ∑ i : I, ∑ j : I, ‖a i j‖ := by
   refine le_trans (norm_le_sum_blocks (assemble X a n)) ?_
   refine Finset.sum_le_sum fun i _ ↦ Finset.sum_le_sum fun j _ ↦ ?_
   rw [block_assemble]
   exact boundedMatrixSequence_coord_norm_le (fun n ↦ X n) (a i j) n
 
-theorem assemble_mul (a b : I → I → BoundedMatrixSequence (fun n ↦ X n))
-    (n : ℕ) :
+theorem assemble_mul {I : Type} [Fintype I] [DecidableEq I]
+    (X : ℕ → FiniteModel)
+    (a b : I → I → BoundedMatrixSequence (fun n ↦ X n)) (n : ℕ) :
     assemble X a n * assemble X b n
       = assemble X (fun i j ↦ ∑ k : I, a i k * b k j) n := by
   classical
   ext p q
   show ∑ r : I × X n, (a p.1 r.1) n p.2 r.2 * (b r.1 q.1) n r.2 q.2
     = ((∑ k : I, a p.1 k * b k q.1) n) p.2 q.2
-  rw [Fintype.sum_prod_type]
-  have hcoord : ((∑ k : I, a p.1 k * b k q.1) n) p.2 q.2
-      = ∑ k : I, ((a p.1 k) n * (b k q.1) n) p.2 q.2 := by
-    classical
-    induction (Finset.univ : Finset I) using Finset.induction_on with
-    | empty => simp
-    | insert k s hk ih => simp [Finset.sum_insert hk, ih]
-  rw [hcoord]
-  exact Finset.sum_congr rfl fun k _ ↦ (Matrix.mul_apply).symm ▸ rfl
+  rw [coord_sum, Matrix.sum_apply, Fintype.sum_prod_type]
+  refine Finset.sum_congr rfl fun k _ ↦ ?_
+  show ∑ z : X n, (a p.1 k) n p.2 z * (b k q.1) n z q.2
+    = ((a p.1 k) n * (b k q.1) n) p.2 q.2
+  rw [Matrix.mul_apply]
 
-theorem assemble_one (n : ℕ) :
+theorem assemble_one {I : Type} [DecidableEq I] (X : ℕ → FiniteModel)
+    [∀ n, Nonempty (X n)] (n : ℕ) :
     assemble X (fun i j : I ↦ if i = j then (1 : BoundedMatrixSequence
       (fun n ↦ X n)) else 0) n = 1 := by
   classical
@@ -270,27 +294,33 @@ end Assemble
 
 section Corona
 
-variable {I : Type} [Fintype I] [DecidableEq I]
-variable (X : ℕ → FiniteModel) [∀ n, Nonempty (X n)]
-
-/-- The blockwise reading of a matrix product of assembled sequences. -/
-theorem block_assemble_mul_sub_one
+/-- The blockwise reading of the multiplicative defect of two assembled
+sequences. -/
+theorem block_assemble_mul_sub_one {I : Type} [Fintype I] [DecidableEq I]
+    (X : ℕ → FiniteModel) [∀ n, Nonempty (X n)]
     (a b : I → I → BoundedMatrixSequence (fun n ↦ X n)) (i j : I) (n : ℕ) :
     block i j (assemble X a n * assemble X b n - 1)
       = ((∑ k : I, a i k * b k j) -
           (if i = j then (1 : BoundedMatrixSequence (fun n ↦ X n))
             else 0)) n := by
+  have h1 : block i j (assemble X a n * assemble X b n)
+      = (∑ k : I, a i k * b k j) n := by
+    rw [assemble_mul, block_assemble]
+  have h2 : block i j (1 : Matrix (I × X n) (I × X n) ℂ)
+      = (if i = j then (1 : BoundedMatrixSequence (fun n ↦ X n))
+          else 0) n := by
+    rw [← assemble_one (I := I) X n, block_assemble]
   have h3 : block i j (assemble X a n * assemble X b n - 1)
       = block i j (assemble X a n * assemble X b n)
         - block i j (1 : Matrix (I × X n) (I × X n) ℂ) := by
     ext p q
     simp [block]
-  rw [h3, assemble_mul, block_assemble, ← assemble_one (I := I) X n,
-    block_assemble]
+  rw [h3, h1, h2]
   rfl
 
-/-- The corona class of a matrix product of lifts. -/
-theorem mk_sum_mul
+/-- The corona class of an entry of a matrix product of lifts. -/
+theorem mk_sum_mul {I : Type} [Fintype I] (X : ℕ → FiniteModel)
+    [∀ n, Nonempty (X n)]
     {a b : I → I → BoundedMatrixSequence (fun n ↦ X n)}
     {x y : Matrix I I (NormMatrixCStarCorona (fun n ↦ X n))}
     (ha : ∀ i j, normMatrixCStarCoronaMk (fun n ↦ X n) (a i j) = x i j)
@@ -301,8 +331,9 @@ theorem mk_sum_mul
   rw [map_sum, Matrix.mul_apply]
   exact Finset.sum_congr rfl fun k _ ↦ by rw [map_mul, ha, hb]
 
-/-- The corona class of the identity's entries. -/
-theorem mk_one_entry (i j : I) :
+/-- The corona class of an entry of the identity. -/
+theorem mk_one_entry {I : Type} [DecidableEq I] (X : ℕ → FiniteModel)
+    [∀ n, Nonempty (X n)] (i j : I) :
     normMatrixCStarCoronaMk (fun n ↦ X n)
         (if i = j then (1 : BoundedMatrixSequence (fun n ↦ X n)) else 0)
       = (1 : Matrix I I (NormMatrixCStarCorona (fun n ↦ X n))) i j := by
@@ -318,7 +349,8 @@ The coordinates of a matrix over `Q_X` are the amplified finite matrices
 `UltraproductDedekindFinite.norm_swap_sub_one_le` applies there verbatim, and
 the two block comparisons carry the hypothesis down to the coordinates and the
 conclusion back up. -/
-theorem mul_eq_one_symm_matrixCorona [Nonempty I]
+theorem mul_eq_one_symm_matrixCorona {I : Type} [Fintype I] [DecidableEq I]
+    [Nonempty I] (X : ℕ → FiniteModel) [∀ n, Nonempty (X n)]
     {x y : Matrix I I (NormMatrixCStarCorona (fun n ↦ X n))} (hxy : x * y = 1) :
     y * x = 1 := by
   classical
@@ -357,8 +389,6 @@ theorem mul_eq_one_symm_matrixCorona [Nonempty I]
   -- the coordinate correction
   have hMa0 : (0 : ℝ) ≤ ∑ i : I, ∑ j : I, ‖a i j‖ :=
     Finset.sum_nonneg fun i _ ↦ Finset.sum_nonneg fun j _ ↦ norm_nonneg _
-  have hMb0 : (0 : ℝ) ≤ ∑ i : I, ∑ j : I, ‖b i j‖ :=
-    Finset.sum_nonneg fun i _ ↦ Finset.sum_nonneg fun j _ ↦ norm_nonneg _
   have hhalf : ∀ᶠ n in (cofinite : Filter ℕ),
       ‖assemble X a n * assemble X b n - 1‖ ≤ (1 / 2 : ℝ) := by
     have hnear := (Metric.tendsto_nhds.mp hAB) (1 / 2 : ℝ) (by norm_num)
@@ -366,11 +396,15 @@ theorem mul_eq_one_symm_matrixCorona [Nonempty I]
     simpa only [Real.dist_eq, sub_zero, abs_norm] using hn.le
   have hBA : Tendsto (fun n ↦ ‖assemble X b n * assemble X a n - 1‖) cofinite
       (nhds 0) := by
-    refine squeeze_zero' (Eventually.of_forall fun n ↦ norm_nonneg _) ?_ ?_
+    refine squeeze_zero'
+      (g := fun n ↦ 2 * ((∑ i : I, ∑ j : I, ‖a i j‖) *
+        (∑ i : I, ∑ j : I, ‖b i j‖)) *
+        ‖assemble X a n * assemble X b n - 1‖)
+      (Eventually.of_forall fun n ↦ norm_nonneg _) ?_ ?_
     · filter_upwards [hhalf] with n hn
       refine le_trans
-        (UltraproductDedekindFinite.norm_swap_sub_one_le
-          (Y := I × X n) inferInstance (assemble X a n) (assemble X b n) hn) ?_
+        (norm_swap_sub_one_le (Y := I × X n) inferInstance
+          (assemble X a n) (assemble X b n) hn) ?_
       have h1 : ‖assemble X a n‖ * ‖assemble X b n‖ ≤
           (∑ i : I, ∑ j : I, ‖a i j‖) * (∑ i : I, ∑ j : I, ‖b i j‖) :=
         mul_le_mul (norm_assemble_le X a n) (norm_assemble_le X b n)
@@ -378,7 +412,7 @@ theorem mul_eq_one_symm_matrixCorona [Nonempty I]
       nlinarith [norm_nonneg (assemble X a n), norm_nonneg (assemble X b n),
         norm_nonneg (assemble X a n * assemble X b n - 1)]
     · have hc := hAB.const_mul
-        (2 * (∑ i : I, ∑ j : I, ‖a i j‖) * (∑ i : I, ∑ j : I, ‖b i j‖))
+        (2 * ((∑ i : I, ∑ j : I, ‖a i j‖) * (∑ i : I, ∑ j : I, ‖b i j‖)))
       simpa using hc
   -- read the conclusion off the blocks
   ext i j
@@ -398,6 +432,90 @@ theorem mul_eq_one_symm_matrixCorona [Nonempty I]
   exact hmk
 
 end Corona
+
+/-! ## Every MF algebra is stably finite -/
+
+section StablyFinite
+
+/-- **Every MF algebra is stably finite**, which is the printed sentence of
+`p:D-preamble` taken whole.
+
+The `k = 1` case is `MFStablyFinite.mul_star_eq_one_of_hasMFEmbedding`, and this
+is that argument with the amplification in place of the algebra: the embedding
+`e` is applied entrywise, which is a non-unital `⋆`-homomorphism of matrix
+algebras, so `E 1` is a projection of `M_I(Q_X)` and the manuscript's
+`σ = v + (1 - E 1)` computation runs in its corner.  The one input the corner
+computation needs about the target -- that every isometry there is a unitary --
+is `mul_eq_one_symm_matrixCorona` above.
+
+Nothing is assumed about `I` beyond finiteness: the empty index gives a
+subsingleton, where the conclusion holds for want of an entry to check. -/
+theorem cstarMatrix_mul_star_eq_one_of_hasMFEmbedding
+    {A : Type u} [CStarAlgebra A] [PartialOrder A] [StarOrderedRing A]
+    (hA : HasMFEmbedding A) (I : Type) [Fintype I] [DecidableEq I]
+    {v : CStarMatrix I I A} (hv : star v * v = 1) : v * star v = 1 := by
+  classical
+  rcases isEmpty_or_nonempty I with hI | hI
+  · ext i j
+    exact hI.elim i
+  · rcases hA with ⟨X, hne, _hX, _hmono, e, he⟩
+    letI : ∀ n, Nonempty (X n) := hne
+    set E : CStarMatrix I I A →⋆ₙₐ[ℂ]
+        CStarMatrix I I (NormMatrixCStarCorona (fun n ↦ X n)) :=
+      CStarMatrix.mapₙₐ e with hEdef
+    have hEapply : ∀ (M : CStarMatrix I I A) (i j : I), E M i j = e (M i j) :=
+      fun _ _ _ ↦ rfl
+    have hEinj : Function.Injective E := by
+      intro M N h
+      ext i j
+      have hij : E M i j = E N i j := by rw [h]
+      rw [hEapply, hEapply] at hij
+      exact he hij
+    have hfinite : ∀ z : CStarMatrix I I (NormMatrixCStarCorona (fun n ↦ X n)),
+        star z * z = 1 → z * star z = 1 := fun z hz ↦
+      mul_eq_one_symm_matrixCorona X hz
+    have hPidem : E 1 * E 1 = E 1 := by
+      rw [← map_mul, one_mul]
+    have hPsa : star (E 1) = E 1 := by
+      rw [← map_star, star_one]
+    have hP : IsStarProjection (E 1) := ⟨hPidem, hPsa⟩
+    have hPv : E 1 * E v = E v := by
+      rw [← map_mul, one_mul]
+    have hvP : E v * E 1 = E v := by
+      rw [← map_mul, mul_one]
+    have hstarv : star (E v) = E (star v) := (map_star E v).symm
+    have hev : star (E v) * E v = E 1 := by
+      rw [hstarv, ← map_mul, hv]
+    have hmain : E v * star (E v) = E 1 :=
+      mul_star_eq_of_corner_isometry hfinite hP hPv hvP hev
+    have hcomp : E (v * star v) = E v * star (E v) := by
+      rw [map_mul, hstarv]
+    exact hEinj (hcomp.trans hmain)
+
+/-- The same statement in the manuscript's `k ≥ 1` indexing: for an MF algebra
+`A` and every `k`, every isometry of `M_k(A)` is a unitary. -/
+theorem fin_mul_star_eq_one_of_hasMFEmbedding
+    {A : Type u} [CStarAlgebra A] [PartialOrder A] [StarOrderedRing A]
+    (hA : HasMFEmbedding A) (k : ℕ)
+    {v : CStarMatrix (Fin k) (Fin k) A} (hv : star v * v = 1) :
+    v * star v = 1 :=
+  cstarMatrix_mul_star_eq_one_of_hasMFEmbedding hA (Fin k) hv
+
+/-- **`p:D-preamble`'s opening sentence, as a closed proposition.**  Every MF
+algebra is stably finite, with stable finiteness in the shape
+`lem:faithfultrace`(2) states it. -/
+def MFAlgebraIsStablyFinite : Prop :=
+  ∀ (A : Type u) [CStarAlgebra A] [PartialOrder A] [StarOrderedRing A],
+    HasMFEmbedding A →
+      ∀ (I : Type) [Fintype I] [DecidableEq I]
+        (v : CStarMatrix I I A), star v * v = 1 → v * star v = 1
+
+/-- **Every MF algebra is stably finite.** -/
+theorem mfAlgebra_isStablyFinite : MFAlgebraIsStablyFinite.{u} := by
+  intro A _ _ _ hA I _ _ v hv
+  exact cstarMatrix_mul_star_eq_one_of_hasMFEmbedding hA I hv
+
+end StablyFinite
 
 end MatrixCoronaFinite
 end GroupApproximation
