@@ -1087,6 +1087,7 @@ import GroupApproximation.Analysis.VectorOmegaAction
 import GroupApproximation.Analysis.VectorOmegaKazhdanGap
 import GroupApproximation.Analysis.FilterMatrixCStarCorona
 import GroupApproximation.Analysis.VectorOmegaCoronaAction
+import GroupApproximation.Analysis.CoronaProjectionLifting
 import GroupApproximation.Analysis.UnitaryAverageFixedVector
 import GroupApproximation.Analysis.OmegaCoronaKazhdanProjection
 import GroupApproximation.Analysis.PolarLiftingMatrixBlocks

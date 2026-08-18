@@ -1,5 +1,6 @@
 import GroupApproximation.Analysis.VectorOmegaCoronaAction
 import GroupApproximation.Analysis.VectorOmegaKazhdanGap
+import GroupApproximation.Analysis.CoronaProjectionLifting
 import GroupApproximation.Sofic.UltraproductKazhdanProjection
 
 /-!
@@ -291,6 +292,37 @@ theorem actCorona_manuscriptKazhdanProjection (R : OmegaUnitaryRep Y ω G)
   rw [actCorona_cfc Y ω _ _ hsa hcont, actCorona_unitaryAverage]
   rfl
 
+/-- **`q = 1 − P` is nonzero, in `B_ω`.**
+
+> `q = 1 − P` is nonzero because `q = 0` would make `π` trivial on `K̄`, against
+> the operator-norm separation.
+
+The printed direction: nontriviality of `π` on the Kazhdan set forces `1 − p ≠
+0`.  It transfers from `B(H_ω)`, where the fixed-space characterisation lives,
+because `p = 0` there would make its action zero.  The converse would need the
+action to be injective. -/
+theorem manuscriptKazhdanProjection_one_sub_ne_zero (R : OmegaUnitaryRep Y ω G)
+    {Q : Finset G} {ε : ℝ} (hQ : IsKazhdanPair.{u, 0} G Q ε)
+    (S : Finset G) (hS : S.Nonempty) (hQS : Q ⊆ S) (hone : 1 ∈ S)
+    (hsymm : ∀ g ∈ S, g⁻¹ ∈ S) (hεone : ε ≤ 1)
+    (hnt : ∃ g ∈ S, ((repUnitary' Y ω R g :
+      unitary (VecOmega Y ω →L[ℂ] VecOmega Y ω)) :
+      VecOmega Y ω →L[ℂ] VecOmega Y ω) ≠ 1) :
+    (1 : FilterMatrixCStarCorona (Idx Y) (ω : Filter ℕ))
+        - manuscriptKazhdanProjection Y ω R S (1 - ε ^ 2 / (4 * S.card))
+      ≠ 0 := by
+  intro hzero
+  have hP : (1 : VecOmega Y ω →L[ℂ] VecOmega Y ω)
+      - CStarSpectralProjection.spectralProjection
+          (unitaryAverage (repUnitary' Y ω R) S)
+          (1 - ε ^ 2 / (4 * S.card)) = 0 := by
+    have h := congrArg (actCorona Y ω) hzero
+    rwa [map_sub, map_one, map_zero,
+      actCorona_manuscriptKazhdanProjection Y ω R hQ S hS hQS hone hsymm
+        hεone] at h
+  exact (manuscriptNormalKazhdanComplementNeZero Y ω R hQ S hS hQS hone hsymm
+    hεone).2 hnt hP
+
 /-- **`NK.06`, as the printed sentence, with one `P`.**
 
 > `P = χ_{{1}}(h)` lies in the norm ultraproduct with range `Fix π(K̄)`, and
@@ -338,17 +370,148 @@ theorem manuscriptNormalKazhdanProjectionInBOmega (R : OmegaUnitaryRep Y ω G)
   · intro x
     rw [hact]
     exact manuscriptNormalKazhdanFixedSpace Y ω R hQ S hS hQS hone hsymm hεone x
-  · rintro hne hzero
-    have hP : (1 : VecOmega Y ω →L[ℂ] VecOmega Y ω)
-        - CStarSpectralProjection.spectralProjection
-            (unitaryAverage (repUnitary' Y ω R) S)
-            (1 - ε ^ 2 / (4 * S.card)) = 0 := by
-      have := congrArg (actCorona Y ω) hzero
-      rwa [map_sub, map_one, map_zero, hact] at this
-    exact (manuscriptNormalKazhdanComplementNeZero Y ω R hQ S hS hQS hone hsymm
-      hεone).2 hne hP
+  · exact manuscriptKazhdanProjection_one_sub_ne_zero Y ω R hQ S hS hQS hone
+      hsymm hεone
 
 end Projection
+
+/-! ## `NK.07` in the norm ultraproduct: commutation, and the lift of `q`
+
+`thm:abstract-nk` continues:
+
+> normality gives `π(g)Pπ(g)* = P`, so `P` and `q` commute with `π(H̄)` exactly.
+> Lift `q` to projections `q_n ∈ M_{d_n}(ℂ)`, nonzero along `ω` and with
+> `‖[q_n, V_{g,n}]‖ →_ω 0` for every `g ∈ H̄`.
+
+Both sentences are about `B_ω`, and both are proved here about the `p` of
+`manuscriptKazhdanProjection`. -/
+
+section Normality
+
+/-- **The conjugation identity in the printed ambient.**
+
+`Analysis/VectorOmegaKazhdanGap.lean` proves it on `H_ω`, through the fixed
+spaces, which is the printed argument.  This is the same identity inside `B_ω`,
+where the printed `P` lives, and it is what the lift below consumes: an equality
+of *classes* is what makes a commutator of representatives vanish, and an
+equality of the operators they act by would not.
+
+`Analysis/KazhdanProjectionAbsorption.lean` carries the argument, and it uses no
+vectors: the absorption identities of the spectral projection make every unitary
+of the Kazhdan set fix `P`, that extends to the subgroup the set generates --
+the printed `K̄` -- and normality says the conjugated average still fixes `P`. -/
+theorem manuscriptNormalKazhdanConjugationInBOmega (R : OmegaUnitaryRep Y ω G)
+    {Q : Finset G} {ε : ℝ} (hQ : IsKazhdanPair.{u, 0} G Q ε)
+    (S : Finset G) (hS : S.Nonempty) (hQS : Q ⊆ S) (hone : 1 ∈ S)
+    (hsymm : ∀ g ∈ S, g⁻¹ ∈ S) (hεone : ε ≤ 1)
+    (hnorm : ∀ g : G, ∀ k ∈ Subgroup.closure (S : Set G),
+      g * k * g⁻¹ ∈ Subgroup.closure (S : Set G)) (g : G) :
+    ((coronaRep Y ω R g :
+          unitary (FilterMatrixCStarCorona (Idx Y) (ω : Filter ℕ))) :
+          FilterMatrixCStarCorona (Idx Y) (ω : Filter ℕ))
+        * manuscriptKazhdanProjection Y ω R S (1 - ε ^ 2 / (4 * S.card))
+        * star ((coronaRep Y ω R g :
+            unitary (FilterMatrixCStarCorona (Idx Y) (ω : Filter ℕ))) :
+            FilterMatrixCStarCorona (Idx Y) (ω : Filter ℕ))
+      = manuscriptKazhdanProjection Y ω R S (1 - ε ^ 2 / (4 * S.card)) := by
+  letI : PartialOrder (FilterMatrixCStarCorona (Idx Y) (ω : Filter ℕ)) :=
+    CStarAlgebra.spectralOrder (FilterMatrixCStarCorona (Idx Y) (ω : Filter ℕ))
+  letI : StarOrderedRing (FilterMatrixCStarCorona (Idx Y) (ω : Filter ℕ)) :=
+    CStarAlgebra.spectralOrderedRing
+      (FilterMatrixCStarCorona (Idx Y) (ω : Filter ℕ))
+  exact KazhdanProjectionAbsorption.conj_spectralProjection_eq_of_normal
+    (coronaRep Y ω R) hS hsymm (gapConstant_lt_one hQ.1 hS)
+    (coronaGap Y ω R hQ S hS hQS hone hsymm hεone) hnorm g
+
+/-- **`q = 1 − P` commutes with `π(H̄)` exactly, in `B_ω`.** -/
+theorem manuscriptNormalKazhdanCommutationInBOmega (R : OmegaUnitaryRep Y ω G)
+    {Q : Finset G} {ε : ℝ} (hQ : IsKazhdanPair.{u, 0} G Q ε)
+    (S : Finset G) (hS : S.Nonempty) (hQS : Q ⊆ S) (hone : 1 ∈ S)
+    (hsymm : ∀ g ∈ S, g⁻¹ ∈ S) (hεone : ε ≤ 1)
+    (hnorm : ∀ g : G, ∀ k ∈ Subgroup.closure (S : Set G),
+      g * k * g⁻¹ ∈ Subgroup.closure (S : Set G)) (g : G) :
+    ((coronaRep Y ω R g :
+          unitary (FilterMatrixCStarCorona (Idx Y) (ω : Filter ℕ))) :
+          FilterMatrixCStarCorona (Idx Y) (ω : Filter ℕ))
+        * ((1 : FilterMatrixCStarCorona (Idx Y) (ω : Filter ℕ))
+          - manuscriptKazhdanProjection Y ω R S (1 - ε ^ 2 / (4 * S.card)))
+      = ((1 : FilterMatrixCStarCorona (Idx Y) (ω : Filter ℕ))
+          - manuscriptKazhdanProjection Y ω R S (1 - ε ^ 2 / (4 * S.card)))
+        * ((coronaRep Y ω R g :
+            unitary (FilterMatrixCStarCorona (Idx Y) (ω : Filter ℕ))) :
+            FilterMatrixCStarCorona (Idx Y) (ω : Filter ℕ)) := by
+  letI : PartialOrder (FilterMatrixCStarCorona (Idx Y) (ω : Filter ℕ)) :=
+    CStarAlgebra.spectralOrder (FilterMatrixCStarCorona (Idx Y) (ω : Filter ℕ))
+  letI : StarOrderedRing (FilterMatrixCStarCorona (Idx Y) (ω : Filter ℕ)) :=
+    CStarAlgebra.spectralOrderedRing
+      (FilterMatrixCStarCorona (Idx Y) (ω : Filter ℕ))
+  exact KazhdanProjectionAbsorption.commute_one_sub_spectralProjection_of_normal
+    (coronaRep Y ω R) hS hsymm (gapConstant_lt_one hQ.1 hS)
+    (coronaGap Y ω R hQ S hS hQS hone hsymm hεone) hnorm g
+
+/-- **The printed lift of `q`.**
+
+> Lift `q` to projections `q_n ∈ M_{d_n}(ℂ)`, nonzero along `ω` and with
+> `‖[q_n, V_{g,n}]‖ →_ω 0` for every `g ∈ H̄`.
+
+All three clauses, for the printed `q = 1 − P` with `P` the projection formed in
+`B_ω`.  The projections are genuine, not approximate; the nonvanishing is the
+printed "nonzero along `ω`" and comes from the operator-norm separation through
+the nontriviality hypothesis, exactly as the print has it; and the commutator
+estimate is exact commutation in `B_ω` read on representatives, with no estimate
+of its own.
+
+What this does *not* do is the rest of the compression paragraph: the lift of
+`h` to coordinates, the corner spectral inequality `q h q ≤ θ q` in its
+coordinate form, the diagonal subsequence, and the polar-corrected compression.
+See the ledger row. -/
+theorem manuscriptComplementProjectionLift (R : OmegaUnitaryRep Y ω G)
+    {Q : Finset G} {ε : ℝ} (hQ : IsKazhdanPair.{u, 0} G Q ε)
+    (S : Finset G) (hS : S.Nonempty) (hQS : Q ⊆ S) (hone : 1 ∈ S)
+    (hsymm : ∀ g ∈ S, g⁻¹ ∈ S) (hεone : ε ≤ 1)
+    (hnorm : ∀ g : G, ∀ k ∈ Subgroup.closure (S : Set G),
+      g * k * g⁻¹ ∈ Subgroup.closure (S : Set G))
+    (hnt : ∃ g ∈ S, ((repUnitary' Y ω R g :
+      unitary (VecOmega Y ω →L[ℂ] VecOmega Y ω)) :
+      VecOmega Y ω →L[ℂ] VecOmega Y ω) ≠ 1) :
+    ∃ qn : BoundedMatrixSequence (Idx Y),
+      (∀ n, KazhdanCornerMatrices.IsOrthogonalProjectionMatrix
+          ((qn : ∀ n, Matrix (Idx Y n) (Idx Y n) ℂ) n))
+        ∧ filterMatrixCStarCoronaMk (Idx Y) (ω : Filter ℕ) qn
+            = (1 : FilterMatrixCStarCorona (Idx Y) (ω : Filter ℕ))
+              - manuscriptKazhdanProjection Y ω R S (1 - ε ^ 2 / (4 * S.card))
+        ∧ {n | (qn : ∀ n, Matrix (Idx Y n) (Idx Y n) ℂ) n ≠ 0}
+            ∈ (ω : Filter ℕ)
+        ∧ ∀ g : G, IsNullMatrixSequence (Idx Y) (ω : Filter ℕ)
+            (unitarySeq Y R.V g * qn - qn * unitarySeq Y R.V g) := by
+  have hsa : IsSelfAdjoint (unitaryAverage (coronaRep Y ω R) S) :=
+    isSelfAdjoint_unitaryAverage (coronaRep Y ω R) hsymm
+  have hc : 1 - ε ^ 2 / (4 * S.card) < 1 := gapConstant_lt_one hQ.1 hS
+  have hgap := coronaGap Y ω R hQ S hS hQS hone hsymm hεone
+  have hPsa : IsSelfAdjoint
+      (manuscriptKazhdanProjection Y ω R S (1 - ε ^ 2 / (4 * S.card))) :=
+    CStarSpectralProjection.isSelfAdjoint_spectralProjection _
+  have hPi : IsIdempotentElem
+      (manuscriptKazhdanProjection Y ω R S (1 - ε ^ 2 / (4 * S.card))) :=
+    CStarSpectralProjection.isIdempotentElem_spectralProjection _ hsa hc hgap
+  obtain ⟨qn, hproj, hmk⟩ :=
+    CoronaProjectionLifting.exists_projection_lift (Idx Y) (ω : Filter ℕ)
+      ((1 : FilterMatrixCStarCorona (Idx Y) (ω : Filter ℕ))
+        - manuscriptKazhdanProjection Y ω R S (1 - ε ^ 2 / (4 * S.card)))
+      (by rw [IsSelfAdjoint, star_sub, star_one, hPsa.star_eq]) hPi.one_sub
+  refine ⟨qn, hproj, hmk, ?_, ?_⟩
+  · refine CoronaProjectionLifting.mem_of_mk_ne_zero (Idx Y) ω ?_
+    rw [hmk]
+    exact manuscriptKazhdanProjection_one_sub_ne_zero Y ω R hQ S hS hQS hone
+      hsymm hεone hnt
+  · intro g
+    refine CoronaProjectionLifting.isNullMatrixSequence_commutator_of_commute
+      (Idx Y) (ω : Filter ℕ) ?_
+    rw [hmk]
+    exact manuscriptNormalKazhdanCommutationInBOmega Y ω R hQ S hS hQS hone
+      hsymm hεone hnorm g
+
+end Normality
 
 end
 
