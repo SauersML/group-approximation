@@ -159,6 +159,26 @@ A residual chain gives the canonical faithful-trace sofic
 Net: for the canonical `σ`, (CCR) is a clean, self-contained question
 about excess commutants of Kazhdan images in sofic ultraproducts.
 
+**2026-08-18e: the coarse slice is clean, and the enemy now has a
+name.**  Decompose `L²(M) = L²(L(G)) ⊕ H` as `Ad G`-representations
+(`L(G)` is conjugation-invariant).  The `L(G)`-slice is closed by
+2026-08-18d.  Inside `H`: any sub-bimodule isomorphic to a multiple of
+the coarse bimodule contributes NO `Λ`-fixed vectors — the conjugation
+action on `ℓ²(G×G)`, `g·(a,b) = (ga, bg⁻¹)`, is free, and `ℓ²`
+functions constant on infinite orbits vanish.  And since `Λ` has (T),
+weak containment of `triv_Λ` upgrades to actual containment, so a
+counterexample to (CCR) must be an HONEST `Λ`-spherical,
+non-`G`-trivial sub-bimodule of `H` for a matrix ultraproduct `M` —
+quasi-regular-shaped (`ℓ²(Γ/Λ)`-type) bimodule content actually
+embedded, not just weakly approximated.  The same (T) fact helps the
+refutation side too: to refute (CCR) it suffices to produce
+almost-`Λ`-central elements of `M ⊖ L(G)` that are uniformly far from
+`Γ`-central — (T) then converts them to an exact `Λ`-fixed,
+non-`Γ`-fixed vector.  Both attack surfaces are now stated in
+bimodule language; the question "which `L(G)`-bimodules are
+matrix-ultraproduct-realizable with actual (not weak) spherical
+content" is the precise residue.
+
 **2026-08-18d: the group-algebra slice is PROVED, for every σ.**
 `FC_Λ(G) = Z` (finite-orbit pigeonhole + transvection rigidity over
 the compressed subring, which retains the constants), hence
