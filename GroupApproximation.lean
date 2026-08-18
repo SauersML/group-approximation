@@ -917,6 +917,7 @@ import GroupApproximation.Analysis.CStarNonUnitalState
 import GroupApproximation.Analysis.CStarCompletelyPositiveForm
 import GroupApproximation.Analysis.CStarCompletelyPositiveStar
 import GroupApproximation.Analysis.CStarStinespringForm
+import GroupApproximation.Analysis.CStarStinespringSpace
 import GroupApproximation.Analysis.LanceReiterMean
 import GroupApproximation.Analysis.CStarIdealQuotient
 import GroupApproximation.Analysis.CStarQuotientIdentity

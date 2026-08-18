@@ -102,8 +102,7 @@ theorem IsCompletelyPositive.isSelfAdjoint_map
   have hs1 := hφ.isSelfAdjoint_map_star_mul_self (h + 1)
   have hs2 := hφ.isSelfAdjoint_map_star_mul_self (h - 1)
   have hreal : ((4 : ℂ)⁻¹) = star ((4 : ℂ)⁻¹) := by
-    rw [Complex.star_def]
-    norm_num
+    rw [Complex.star_def, map_inv₀, map_ofNat]
   refine IsSelfAdjoint.sub ?_ ?_
   · show IsSelfAdjoint (((4 : ℂ)⁻¹) • φ (star (h + 1) * (h + 1)))
     rw [IsSelfAdjoint, star_smul, ← hreal, hs1.star_eq]
@@ -121,7 +120,7 @@ theorem IsCompletelyPositive.map_star
     rw [hre_def, IsSelfAdjoint, star_smul, star_add, star_star,
       Complex.star_def]
     rw [show (starRingEnd ℂ) ((2 : ℂ)⁻¹) = ((2 : ℂ)⁻¹) by
-      rw [map_inv₀]; norm_num]
+      rw [map_inv₀, map_ofNat]]
     rw [add_comm]
   have him_sa : IsSelfAdjoint him := by
     rw [him_def, IsSelfAdjoint, star_smul, star_sub, star_star,
@@ -129,7 +128,7 @@ theorem IsCompletelyPositive.map_star
     rw [show (starRingEnd ℂ) (((2 : ℂ) * Complex.I)⁻¹)
         = -(((2 : ℂ) * Complex.I)⁻¹) by
       rw [map_inv₀, map_mul, Complex.conj_I]
-      rw [show (starRingEnd ℂ) (2 : ℂ) = 2 by norm_num]
+      rw [show (starRingEnd ℂ) (2 : ℂ) = 2 from map_ofNat _ 2]
       rw [show (2 : ℂ) * -Complex.I = -(2 * Complex.I) by ring]
       rw [inv_neg]]
     rw [neg_smul, ← smul_neg, neg_sub]
@@ -153,10 +152,10 @@ theorem IsCompletelyPositive.map_star
   have hstar : star x = hre - Complex.I • him := by
     rw [hx, star_add, hre_sa.star_eq, star_smul, him_sa.star_eq,
       Complex.star_def, Complex.conj_I, neg_smul, ← sub_eq_add_neg]
-  rw [hstar, hx, map_sub, map_add, map_smul, map_smul, star_add, star_smul,
-    Complex.star_def, Complex.conj_I, neg_smul,
+  rw [hstar, hx, map_sub, map_add, star_add,
     (hφ.isSelfAdjoint_map hre_sa).star_eq,
-    (hφ.isSelfAdjoint_map him_sa).star_eq, ← sub_eq_add_neg]
+    map_smul, star_smul, Complex.star_def, Complex.conj_I,
+    (hφ.isSelfAdjoint_map him_sa).star_eq, neg_smul, ← sub_eq_add_neg]
 
 end CStarExactness
 end GroupApproximation
