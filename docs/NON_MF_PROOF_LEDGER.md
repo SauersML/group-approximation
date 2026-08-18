@@ -811,14 +811,14 @@ once in the comment-stripped manuscript; the probe is the drift detector.
 | thm:abstract-nk | env | thm:abstract-nk | d93135ce6813697c |
 | cor:intrinsic-nk | env | cor:intrinsic-nk | 74911f7eaffe314f |
 | thm:kazhdan-clifford | env | thm:kazhdan-clifford | b4e0d1c3ccbbbcc3 |
-| rem:ff-realization | env | rem:ff-realization | b410f6c308460598 |
+| rem:ff-realization | env | rem:ff-realization | 99600546f98872af |
 | thm:A | env | thm:A | 3073242b8e939a98 |
 | cor:uniform | env | cor:uniform | 127963fa65d9be4e |
 | cor:scaling-family | env | cor:scaling-family | 9370bcd0aa550f6e |
 | thm:exactfd | env | thm:exactfd | fd6920b91037455e |
-| cor:notRFD | env | cor:notRFD | 754e7536fa06cde2 |
-| def:E | env | def:E | c90243450781f9e7 |
-| fig:compression-pattern | env | fig:compression-pattern | b198b91ff511bbbe |
+| cor:notRFD | env | cor:notRFD | de48999e57c91577 |
+| def:E | env | def:E | e3cc332cc27791b4 |
+| fig:compression-pattern | env | fig:compression-pattern | 11557eed7a1e4bd7 |
 | prop:literal-base-T | env | prop:literal-base-T | 4955bce3c162ac27 |
 | prop:blocknormalform | env | prop:blocknormalform | 4e271fd389e7e29d |
 | lem:window | env | lem:window | ffcad9af5c739fc4 |
@@ -828,7 +828,7 @@ once in the comment-stripped manuscript; the probe is the drift detector.
 | prop:witness | env | prop:witness | 1a168e6eb3a8fb32 |
 | lem:square | env | lem:square | 36940cc67e41844e |
 | thm:cyclic | env | thm:cyclic | 08ab17486524f52a |
-| def:radical | env | def:radical | 5b0001b1a72e5a73 |
+| def:radical | env | def:radical | b2b88958e09d26e4 |
 | lem:portable | env | lem:portable | ad40116ce5cb86dd |
 | prop:univquot | env | prop:univquot | bf0e863dc76ab01d |
 | cor:exactradical | env | cor:exactradical | 3534e895b8bf93de |
@@ -867,10 +867,11 @@ once in the comment-stripped manuscript; the probe is the drift detector.
 | p:intro-final | prose | `therefore leaves open whether the group itself embeds` | - |
 | p:prelim-complement | prose | `is an injective homomorphism $\U(A)\to\U(\mathcal Q)$` | - |
 | p:prelim-notation | prose | `We repeatedly use the inequalities` | - |
+| p:prelim-dim-convention | prose | `nothing below changes if the sequences are further required to be strictly increasing` | - |
 | p:prelim-defs | prose | `An \emph{operator-norm asymptotic representation} of $H$` | - |
 | p:prelim-unit | prose | `Taking $g=h=1$ gives` | - |
 | p:prelim-cmax | prose | `the maximal group $C^*$-algebra $\Cmax(H)$ is` | - |
-| p:transport-display | prose | `between subspaces of equal finite dimension, hence equality` | - |
+| p:transport-display | prose | `equality follows because the two spaces have the same finite dimension` | - |
 | p:transport-weights | prose | `Taking $\nu_n=k_n$, the rank of` | - |
 | p:transport-tensors | prose | `Invariant tensors of type $(p,q)$ may be identified with Hilbert--Schmidt intertwiners` | - |
 | p:conj-datum-remark | prose | `conditions (M1)--(M2) are imposed by` | - |
@@ -882,7 +883,7 @@ once in the comment-stripped manuscript; the probe is the drift detector.
 | p:constr-tietze | prose | `The endomorphism $\alpha$ is injective because` | - |
 | p:constr-role-of-a | prose | `it is not surjective because $e_1\notin2\mathbb Z^3$` | - |
 | p:A-defect-square | prose | `Let $H_1$ be a group and $d,a_1\in H_1$ with $d^2=1$` | - |
-| p:A-consequences | prose | `They impose no relation requiring $d$ to commute with` | - |
+| p:A-consequences | prose | `The element $\iota(v_1)$ lies outside that conjugate subgroup` | - |
 | p:B-applied | prose | `finite-dimensional linear representations do not separate the points` | - |
 | p:B-deligne | prose | `Such groups were proposed there as the natural candidate counterexamples` | - |
 | p:B-subgroup-valued | prose | `For the subgroup-valued assertion of Theorem~\ref{thm:exactfd}` | - |
@@ -894,7 +895,7 @@ once in the comment-stripped manuscript; the probe is the drift detector.
 | p:witness-scope | prose | `involve only finitely many lamp generators` | - |
 | p:A-marked-radical | prose | `In $E$ the pairwise commutators of those conjugates of $d$ lie in` | - |
 | p:A-corner-ranks | prose | `all estimates below are relative to` | - |
-| p:C-sharpness | prose | `The Clifford attachment of the preceding proof` | - |
+| p:C-sharpness | prose | `Running the Clifford representation of the preceding proof` | - |
 | p:C-approx | prose | `In a finite image, the doubling relation gives` | - |
 | p:collapse-wreath | prose | `In a permutational wreath product` | - |
 | p:collapse-relcomm | prose | `already lies in` | - |
@@ -910,7 +911,7 @@ once in the comment-stripped manuscript; the probe is the drift detector.
 | p:undec-adianrabin | prose | `The Adian--Rabin theorem therefore implies that MF recognition is undecidable` | - |
 | p:mult-products | prose | `The groups $E\times\mathbb Z^{k}$ for $k\ge0$ are` | - |
 | p:mult-continuum | prose | `For finitely generated examples, choose continuum many pairwise` | - |
-| p:limits-opnorm | prose | `The proof is specific to the operator norm.` | - |
+| p:limits-opnorm | prose | `The argument requires operator-norm control.` | - |
 | p:limits-dilution | prose | `Adding an identity block leaves operator-norm multiplicative defects` | - |
 | p:limits-alekseev | prose | `Their question concerns Hamming and tracial models` | - |
 | p:limits-trace | prose | `Stable finiteness and faithful traces on the coordinate algebras` | - |
@@ -1219,7 +1220,7 @@ everywhere: the TeX is the specification and does not move).
 | CY.14 | p:C-approx | in every finite group the doubling relation identifies the images of ⟨γ₀²⟩ and ⟨γ₀⟩, so the marked word dies and neither group is residually finite | `CyclicBaseLEFObstruction.cyclicBase_exactModel_package` | EXACT | EXACT | literal | unconditional | - | NO | includes `¬ Group.ResiduallyFinite RealizedQuotient` |
 | CY.15 | p:C-approx | the same equations transport through any exact local embedding, so neither group is LEF | `CyclicBaseLEFObstruction.cyclicBase_exactModel_package` | EXACT | EXACT | literal | unconditional | - | NO | both `¬ IsLEF` clauses |
 | RA.01 | def:radical | Res_MF(G₁) = ∩ ker Θ over corona representations, a normal subgroup | `ManuscriptExactWrappers.manuscriptMFRadical` | EXACT | EXACT | literal | unconditional | - | NO | universe-polymorphic |
-| RA.02 | def:radical | the intersection does not change if arbitrary positive dimension sequences are allowed | `manuscriptCoronaMFInvisible_iff_actualCoronaMFInvisible` | EXACT | EXACT | literal | unconditional | - | NO | - |
+| RA.02 | p:prelim-dim-convention | the intersection does not change if arbitrary positive dimension sequences are allowed | `manuscriptCoronaMFInvisible_iff_actualCoronaMFInvisible` | EXACT | EXACT | literal | unconditional | - | NO | RE-ANCHORED 2026-08-17: the sentence stating this inside `def:radical` was deleted as redundant once the global dimension-sequence convention after `eq:corona` was added; the claim is now printed once, in that convention paragraph, which this anchor pins.  The declaration is unchanged |
 | RA.03 | lem:portable | functoriality: φ(Res_MF(G₁)) ⊆ Res_MF(G₂) | `ManuscriptExactWrappers.manuscriptRadicalPortability` | EXACT | EXACT | literal | unconditional | - | NO | universe-polymorphic in both groups |
 | RA.04 | lem:portable | in particular φ : E → G₂ with φ(w) ≠ 1 forces G₂ non-MF | `ManuscriptExactWrappers.manuscriptRadicalPortability` | EXACT | EXACT | literal | unconditional | - | NO | - |
 | RA.05 | lem:portable | proof: Θ∘φ is a corona representation of G₁; for the second statement use w ∈ Res_MF(E) and injectivity | `map_manuscriptCoronaMFResidual_le` | EXACT | EXACT | literal | unconditional | - | NO | - |
