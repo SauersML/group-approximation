@@ -1,5 +1,6 @@
 import GroupApproximation.Analysis.CollapseUltraproductRepresentation
 import GroupApproximation.Analysis.NormMatrixCoronaUnitary
+import GroupApproximation.Analysis.OmegaConjQCompatibility
 import GroupApproximation.Analysis.RankNormalizedLambda
 
 /-!
@@ -56,9 +57,18 @@ telescoping directly on coordinate families and needed the one-sided kernel
 stability to do it.  With `Λ` in hand the argument is linearity, which is what
 the printed sentence actually says.
 
-`Θ` is taken exactly multiplicative, as `conjRep` requires; the printed lift of
-`lem:unitarycorona` is only asymptotically multiplicative, and generalizing
-`conjRep` to such a lift is a separate step, not attempted here.
+## The printed lift is only asymptotically multiplicative
+
+`conjRep` requires an exactly multiplicative coordinate lift, while the lift of
+`lem:unitarycorona` is only asymptotically multiplicative.  That gap does not
+need closing: `Analysis/OmegaIsometryRepresentation.rep` already builds an
+honest homomorphism `H →* (K_ω ≃ₗᵢ[ℂ] K_ω)` from an operator-norm *almost*
+representation — freeness of `ω` is what turns the asymptotic identity into an
+exact one on classes — and
+`OmegaConjQCompatibility.repEquiv_eq_conjIsometryEquiv` identifies its values
+with conjugation of representatives.  `lambda_cocycle_almost` is therefore the
+cocycle at the printed generality, and `lambda_cocycle` is the special case
+that `collapse_contradiction_kOmega` consumes as stated.
 -/
 
 namespace GroupApproximation
@@ -259,6 +269,64 @@ theorem not_all_lambda_eq_zero (Q : BoundedMatrixSequence (fun n ↦ Y n))
     norm_lambda_projection Y Q ω hω hproj hrk qz hqz
   rw [lambda_sum_eq_zero Y (coord Y Q) ω hω m e qz hq he, norm_zero] at h1
   exact zero_ne_one h1
+
+/-! ## The cocycle at the printed generality -/
+
+section Almost
+
+variable {H : Type u} [Group H] (A : OpAlmostRepresentation H)
+
+/-- The coordinate models of an almost representation are nonempty, so the
+instance the corona construction needs is never a restriction. -/
+theorem nonempty_model (n : ℕ) : Nonempty (A.model n) :=
+  Fintype.card_pos_iff.mp (A.modelNonempty n)
+
+variable [∀ n, Nonempty (A.model n)]
+
+/-- **`CO.21` at the printed generality.**  The same cocycle identity for the
+representation built from an operator-norm *almost* representation, which is
+what `lem:unitarycorona` supplies: the printed unitary coordinate lifts
+`U_n(h)` of `Θ(h)` are only asymptotically multiplicative, and freeness of `ω`
+makes `π(h) = [Ad U_n(h)]_ω` a homomorphism all the same.
+
+The bridge is `OmegaConjQCompatibility.repEquiv_eq_conjIsometryEquiv`: the
+bundled corona representation acts on a class by conjugating a representative,
+which is exactly the map `conjIsometryEquiv_lambda` is stated for. -/
+theorem lambda_cocycle_almost (P : MatFam A.model) (ω : Ultrafilter ℕ)
+    (hω : (ω : Filter ℕ) ≤ cofinite) (d : H → rankIdeal A.model P)
+    (hd : ∀ g h : H,
+      (d (g * h) : NormMatrixCStarCorona (fun n ↦ A.model n))
+        = (d g : NormMatrixCStarCorona (fun n ↦ A.model n))
+          + coronaLinear A.model
+              (unitarySequenceBounded A.model (fun n ↦ A.map n g)) *
+            (d h : NormMatrixCStarCorona (fun n ↦ A.model n)) *
+            star (coronaLinear A.model
+              (unitarySequenceBounded A.model (fun n ↦ A.map n g))))
+    (g h : H) :
+    lambda A.model P ω hω (d (g * h))
+      = lambda A.model P ω hω (d g)
+        + OmegaIsometryRepresentation.rep A (rankWeight A.model P) ω hω
+            (rankWeight_nonneg A.model P) g (lambda A.model P ω hω (d h)) := by
+  have hmem : coronaLinear A.model
+      (unitarySequenceBounded A.model (fun n ↦ A.map n g)) *
+      (d h : NormMatrixCStarCorona (fun n ↦ A.model n)) *
+      star (coronaLinear A.model
+        (unitarySequenceBounded A.model (fun n ↦ A.map n g)))
+      ∈ rankIdeal A.model P :=
+    mul_mem_rankIdeal A.model P _ _ (d h).2
+  have heq : OmegaIsometryRepresentation.rep A (rankWeight A.model P) ω hω
+      (rankWeight_nonneg A.model P) g (lambda A.model P ω hω (d h))
+      = lambda A.model P ω hω ⟨_, hmem⟩ := by
+    show OmegaIsometryRepresentation.repEquiv A (rankWeight A.model P) ω hω
+        (rankWeight_nonneg A.model P) g (lambda A.model P ω hω (d h)) = _
+    rw [OmegaConjQCompatibility.repEquiv_eq_conjIsometryEquiv A
+      (rankWeight A.model P) ω hω (rankWeight_nonneg A.model P) g]
+    exact conjIsometryEquiv_lambda A.model P ω hω (fun n ↦ A.map n g) (d h)
+      ⟨_, hmem⟩ rfl
+  have hsum : d (g * h) = d g + ⟨_, hmem⟩ := Subtype.ext (hd g h)
+  rw [heq, hsum, map_add]
+
+end Almost
 
 end
 
