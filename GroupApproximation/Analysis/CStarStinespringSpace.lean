@@ -130,11 +130,11 @@ theorem stinespringSesq_self (hφ : IsCompletelyPositive φ) (f : A →₀ H) :
 
 /-! ## The pre-dilation space -/
 
+set_option linter.unusedVariables false in
 /-- The **Stinespring pre-space** of a completely positive map: the
 finitely supported families `A →₀ H`, as a type synonym carrying the
 Stinespring form.  The parameters record which map (and which proof of
 its complete positivity) induces the geometry. -/
-set_option linter.unusedVariables false in
 @[nolint unusedArguments]
 def StinespringPre (φ : A →ₗ[ℂ] (H →L[ℂ] H))
     (hφ : IsCompletelyPositive φ) := A →₀ H
@@ -148,12 +148,12 @@ noncomputable instance : Module ℂ (StinespringPre φ hφ) :=
   inferInstanceAs (Module ℂ (A →₀ H))
 
 /-- The identification of the free model with the pre-space. -/
-def toStinespringPre (φ : A →ₗ[ℂ] (H →L[ℂ] H))
+noncomputable def toStinespringPre (φ : A →ₗ[ℂ] (H →L[ℂ] H))
     (hφ : IsCompletelyPositive φ) :
     (A →₀ H) ≃ₗ[ℂ] StinespringPre φ hφ := LinearEquiv.refl ℂ _
 
 /-- The identification of the pre-space with the free model. -/
-def ofStinespringPre (φ : A →ₗ[ℂ] (H →L[ℂ] H))
+noncomputable def ofStinespringPre (φ : A →ₗ[ℂ] (H →L[ℂ] H))
     (hφ : IsCompletelyPositive φ) :
     StinespringPre φ hφ ≃ₗ[ℂ] (A →₀ H) := (toStinespringPre φ hφ).symm
 
@@ -165,10 +165,10 @@ noncomputable abbrev stinespringCore :
     PreInnerProductSpace.Core ℂ (StinespringPre φ hφ) where
   inner f g :=
     stinespringSesq φ (ofStinespringPre φ hφ f) (ofStinespringPre φ hφ g)
-  conj_inner_symm f g := stinespringSesq_conj hφ _ _
-  re_inner_nonneg f := (stinespringSesq_self hφ _).1
-  add_left f₁ f₂ g := stinespringSesq_add_left φ _ _ _
-  smul_left f g r := stinespringSesq_smul_left φ r _ _
+  conj_inner_symm f g := stinespringSesq_conj hφ f g
+  re_inner_nonneg f := (stinespringSesq_self hφ f).1
+  add_left f₁ f₂ g := stinespringSesq_add_left φ f₁ f₂ g
+  smul_left f g r := stinespringSesq_smul_left φ r f g
 
 noncomputable instance : SeminormedAddCommGroup (StinespringPre φ hφ) :=
   InnerProductSpace.Core.toSeminormedAddCommGroup (c := stinespringCore φ hφ)
