@@ -60,29 +60,42 @@ at sufficiently small atlas defect.
 
 ## Attempts
 
-- **First compile away all approximate local group laws.**
-  `atlas-a4-context-network-simultaneous-hs-exactification` turns the two A8
-  charts plus all thirty A4 contexts into one exact representation of a fixed
-  virtually-free graph of finite groups.  The non-tree stable letters remain
-  `o(1)` from identity.  Thus the remaining theorem may be attacked entirely
-  on exact finite-group representation data plus a finite set of small
-  holonomy matrices; there is no need to coordinate thirty independent
-  Gowers--Hatami perturbations.
-- **Use the integer representation cone.**  In a graph of finite groups the
-  vertex irreducible multiplicity vectors satisfy finite linear restriction
-  equations on the `C2/C3` edges, and every positive integer solution is
-  realizable.  Normalize these vectors to a fixed rational polytope and search
-  its faces for the worst binary consistency budget compatible with the
-  collision-19243 centrality inequality.
-- **Agreement-test formulation.**  Regard the exactified A4 contexts as a
-  finite synchronization/unique-games instance on multiplicity spaces.
-  Overlap disagreement is the consistency defect, and the exact binary identity
-  above means the total budget to beat is the concrete constant `1/512`.
-- **Use finite expansion, not a classical alignment.**  External multiplicity
-  can mix locally valid sectors.  Bound the two binary consistency defects
-  through an expansion/Poincare inequality on the finite context/edge graph,
-  with the small stable-letter holonomies as the only continuous error terms.
+- **Compile to exact regular vertex types first.**
+  `atlas-a4-context-network-simultaneous-hs-exactification` simultaneously
+  exactifies the two A8 charts and all thirty A4 contexts.  The stronger
+  `atlas-a4-context-exact-regular-normalization` now removes the `o(d)` type
+  residuals coherently on the same matrix spaces: every chart is exactly
+  `k Reg(A8)`, every context exactly `1680 k Reg(A4)`, and the non-tree
+  holonomies remain `o(1)` from identity.  Thus no local representation-type
+  optimization survives.  The hard object is a finite network of exact
+  regular blocks plus small unitary holonomy and the collision-19243
+  constraint.
+- **Scalar character-message passing is a dead end.**
+  `a4-regular-c3-c2-character-overlap-is-flat` proves that every regular A4
+  context has `tau(P_chi Q_eps)=1/6`.  Its classical `C3 -> C2` character
+  channel therefore has rank one: it erases the incoming label exactly.  A
+  Poincare or unique-games proof using only scalar spectral-overlap
+  probabilities cannot yield `(A4-CONS-CEIL)` regardless of how well the
+  context graph expands.
+- **The missing information is operator-valued and is explicit.**
+  `a4-regular-line-sector-spectral-split` exposes three trace-`1/12` line
+  carriers with a fixed `2/3` spectral gap;
+  `a4-line-carriers-explicit-idempotents` writes them as fixed finite A4
+  character averages; and `a4-alternating-projections-amplify-line-carrier`
+  isolates them by the bounded-depth formula
+  `(PQP)^m=E+3^(-m)(P-E)`.
+  These give a dimension-free way to transport the hidden labels through the
+  exactified atlas without dimension-dependent functional calculus.
+- **Use the lossless coherence channel, not the flat stochastic channel.**
+  `a4-regular-three-way-coherence-transducer` shows that on the trace-`3/4`
+  three-dimensional sector the off-diagonal `C3` blocks of the involution are
+  partial unitaries: after the fixed factor `3/2` they identify the three
+  `C3` sectors losslessly through a common trace-`1/4` `C2` carrier.  A viable
+  agreement proof should propagate these matrix-valued phase blocks around
+  the finite context network and use near-identity cycle holonomies plus
+  collision 19243 to force a global phase inconsistency.  This is the current
+  highest-value finite compiler formulation.
 - **Only beat the threshold.**  The old target `a^2+b^2->0` spends far more
-  rigidity than the contradiction needs.  Even a coarse certificate such as
-  `D_a+D_b<=1/1024` would close the hyperlinearity problem through the
-  packet-only 19243 lower wall.
+  rigidity than the contradiction needs.  A finite coherence certificate
+  giving even `D_a+D_b<=1/1024` would close the explicit nonhyperlinear route
+  through the packet-only 19243 lower wall.
