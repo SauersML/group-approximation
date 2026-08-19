@@ -5,6 +5,7 @@ kind: claim
 title: The robust A4 atlas packet keeps two-generator S3 covariance energy strictly below the 19243 floor
 artifacts:
   - research/artifacts/a4-hs-regularity-compiler-2026-08-19.md
+  - research/artifacts/a4-context-virtually-free-compiler-2026-08-19.md
 distinct_from:
   atlas-two-s3-covariance-collapse: that asks the two covariance defects to vanish; this only asks for any asymptotic upper bound strictly below the packet-forced value 1/128.
   atlas-packet-forces-two-s3-covariance-energy: that supplies the opposite lower bound directly from collision-19243 centrality.
@@ -52,28 +53,35 @@ a^2+b^2=4(D_a+D_b).
 Hence it is enough to prove the fixed numerical inequality
 
 ```text
-D_a+D_b < 1/512                                        (A4-CONS-CEIL)
+D_a+D_b < 1/512.                                       (A4-CONS-CEIL)
 ```
 
 at sufficiently small atlas defect.
 
 ## Attempts
 
-- **Exploit the thirty robust A4 cores, not a global chart perturbation.**
-  `atlas-a4-packet-hs-regular-cores` says every shortest triangle is regular
-  off a vanishing local residual.  The missing step is only to aggregate those
-  local regular pieces strongly enough to control the two named `S3`
-  directions.
-- **Agreement-test formulation.**  Regard the thirty A4 contexts as a finite
-  synchronization/unique-games instance on multiplicity spaces.  Local
-  exactifications supply the labels; overlap disagreement is the consistency
-  defect.  The exact binary identity above means the required global agreement
-  budget is now the concrete constant `1/512`.
+- **First compile away all approximate local group laws.**
+  `atlas-a4-context-network-simultaneous-hs-exactification` turns the two A8
+  charts plus all thirty A4 contexts into one exact representation of a fixed
+  virtually-free graph of finite groups.  The non-tree stable letters remain
+  `o(1)` from identity.  Thus the remaining theorem may be attacked entirely
+  on exact finite-group representation data plus a finite set of small
+  holonomy matrices; there is no need to coordinate thirty independent
+  Gowers--Hatami perturbations.
+- **Use the integer representation cone.**  In a graph of finite groups the
+  vertex irreducible multiplicity vectors satisfy finite linear restriction
+  equations on the `C2/C3` edges, and every positive integer solution is
+  realizable.  Normalize these vectors to a fixed rational polytope and search
+  its faces for the worst binary consistency budget compatible with the
+  collision-19243 centrality inequality.
+- **Agreement-test formulation.**  Regard the exactified A4 contexts as a
+  finite synchronization/unique-games instance on multiplicity spaces.
+  Overlap disagreement is the consistency defect, and the exact binary identity
+  above means the total budget to beat is the concrete constant `1/512`.
 - **Use finite expansion, not a classical alignment.**  External multiplicity
-  can mix locally valid sectors.  A successful argument should bound the two
-  binary consistency defects through an expansion/Poincare inequality on the
-  finite context-overlap graph.  This is compatible with operator-valued local
-  labels and does not require selecting one automorphism sector.
+  can mix locally valid sectors.  Bound the two binary consistency defects
+  through an expansion/Poincare inequality on the finite context/edge graph,
+  with the small stable-letter holonomies as the only continuous error terms.
 - **Only beat the threshold.**  The old target `a^2+b^2->0` spends far more
   rigidity than the contradiction needs.  Even a coarse certificate such as
   `D_a+D_b<=1/1024` would close the hyperlinearity problem through the
