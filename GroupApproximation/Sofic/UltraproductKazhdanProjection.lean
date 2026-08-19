@@ -280,22 +280,6 @@ theorem unitaryAverage_spectrum_le_manuscript
       _ = μ • ξ := hsmulR μ ξ
   exact manuscript_eigenvalue_le_of_ne_one hQ S hQS hone σ hξne hμ1 havg
 
-/-- **The Kazhdan spectral gap, in the shape the manuscript prints.**  The
-statement quantifies inside the proposition, so it is a closed endpoint for the
-manuscript badge on the spectral-gap lemma; the content is
-`unitaryAverage_spectrum_le_manuscript`. -/
-theorem manuscriptKazhdanSpectralGap :
-    ∀ {G : Type u} [Group G] {A : Type v} [CStarAlgebra A] [PartialOrder A]
-      [StarOrderedRing A] [NonnegSpectrumClass ℝ A]
-      (ρ : G →* unitary A) {Q : Finset G} {ε : ℝ},
-      IsKazhdanPair.{u, v} G Q ε →
-      ∀ S : Finset G, Q ⊆ S → (1 : G) ∈ S → (∀ g ∈ S, g⁻¹ ∈ S) →
-        ∀ {μ : ℝ}, (μ : ℂ) ∈ spectrum ℂ (unitaryAverage ρ S) → μ ≠ 1 →
-          μ ≤ 1 - ε ^ 2 / (2 * S.card) :=
-  by
-  intro G _ A _ _ _ _ ρ Q ε hQ S hQS hone hsymm μ hμ hμ1
-  exact unitaryAverage_spectrum_le_manuscript ρ hQ S hQS hone hsymm hμ hμ1
-
 end AbstractGap
 
 /-! ### Unitary bookkeeping

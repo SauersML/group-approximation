@@ -561,6 +561,7 @@ jobs:
           python3 scripts/test_claim_map.py
           python3 scripts/check_non_mf_refs.py --self-test
           python3 scripts/check_non_mf_claim_manifest.py --self-test
+          python3 scripts/check_palomar_submission.py --self-test
 
       # The finite P13 tables are committed Lean source, but their discovery
       # inputs and emitters are committed too.  Regenerate into a temporary
@@ -596,7 +597,7 @@ jobs:
           # block, the challenge's Mathlib-only imports, and the comparator
           # configuration.  All three are invisible in a green build and each
           # of them breaks the registry submission after the commit is public.
-          python3 scripts/check_palomar_shared_block.py
+          python3 scripts/check_palomar_submission.py
           # cairn check validates the research graph; the regenerated
           # FRONTIER.md is not diffed because it embeds lock countdowns
           # and mtime-derived sections that are time-dependent by design.
@@ -687,6 +688,18 @@ jobs:
       # instrumentation can never take the corpus build down with it.
       - name: Build the audit library
         run: lake build Audit
+
+      # The Palomar submission is decided by comparing the compared theorem's
+      # exported `ConstantVal` STRUCTURALLY between the challenge and the
+      # solution, and then walking every constant that type mentions.  The
+      # source scan compares the two files as text, which cannot see a
+      # difference that appears only after elaboration -- a different instance
+      # resolved on one side, a coercion inserted on one side.  Both files
+      # still compile; the registry is the first thing that notices, after the
+      # commit is public.  This needs the built environment, so it runs here
+      # rather than in the scan.
+      - name: Palomar statement match
+        run: bash scripts/check_palomar_statement_match.sh
 
       # CALIBRATION BEFORE VERDICT, the third time in this file.  The scans in
       # Audit.Scan report nothing on a clean corpus, and a scan that reports
@@ -1053,6 +1066,7 @@ jobs:
           python3 scripts/test_claim_map.py
           python3 scripts/check_non_mf_refs.py --self-test
           python3 scripts/check_non_mf_claim_manifest.py --self-test
+          python3 scripts/check_palomar_submission.py --self-test
 
       - name: Source scan
         run: |
@@ -1061,7 +1075,7 @@ jobs:
           # block, the challenge's Mathlib-only imports, and the comparator
           # configuration.  All three are invisible in a green build and each
           # of them breaks the registry submission after the commit is public.
-          python3 scripts/check_palomar_shared_block.py
+          python3 scripts/check_palomar_submission.py
           # cairn check validates the research graph; the regenerated
           # FRONTIER.md is not diffed because it embeds lock countdowns
           # and mtime-derived sections that are time-dependent by design.

@@ -133,9 +133,13 @@ rsync -rlptz --delete \
   --exclude='*' \
   "$LOCAL/metadata/" "$USER_MSI@$LOGIN_IP:$REMOTE/metadata/" || exit $?
 
+# `*.sh` too: the Palomar statement-match check is a shell script that runs
+# `lake env lean` on the node, and a checker that cannot reach the node is a
+# checker that never runs.
 rsync -rlptz --delete \
   -e "ssh -S $SOCK -o HostKeyAlias=$ALIAS -o LogLevel=ERROR" \
-  --include='*/' --include='*.lean' --include='*.py' --exclude='*' \
+  --include='*/' --include='*.lean' --include='*.py' --include='*.sh' \
+  --exclude='*' \
   "$LOCAL/scripts/" "$USER_MSI@$LOGIN_IP:$REMOTE/scripts/" || exit $?
 
 # rsync -t preserves each session's LOCAL mtimes, so a synced file can land

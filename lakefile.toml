@@ -37,7 +37,7 @@ roots = ["Audit.DeclFilter", "Audit.Scan", "Audit.Plants"]
 # compares the exported statements SYNTACTICALLY, and recursively requires
 # every constant they mention to be identical in both environments, so the
 # copy cannot be replaced by an import -- and then proves the theorem from
-# the development.  `scripts/check_palomar_shared_block.py` gates the copy.
+# the development.  `scripts/check_palomar_submission.py` gates the copy.
 #
 # No `warningAsError` here: the challenge's hole is a deliberate warning.
 

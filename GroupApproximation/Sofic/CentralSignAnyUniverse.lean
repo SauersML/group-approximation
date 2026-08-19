@@ -8,7 +8,7 @@ The printed statement is
 
 > Let `H` and `Γ` be countable groups, let `Γ` have property (T), let
 > `ι : Γ → H` be a homomorphism, and suppose `tι(Γ)t⁻¹ ⊆ ι(Γ)`,
-> `[c, ι(Γ)] = 1`.  Put `ĉ = tct⁻¹` and `u = [ĉ, ι(a)]` for some `a ∈ Γ`.  If
+> `[c, ι(Γ)] = 1`.  Put `d = tct⁻¹` and `u = [d, ι(a)]` for some `a ∈ Γ`.  If
 > `w := u²` is a nontrivial central involution of `H`, then every homomorphism
 > `H → U(Q)` maps `w` to the identity, and `H` is not MF.
 

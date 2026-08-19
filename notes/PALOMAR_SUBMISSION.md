@@ -21,7 +21,9 @@ TODO: what the theorem says, clause by clause, in English.
 | `Palomar/comparator.json` | names the two modules and the compared theorem |
 | `formalization.yaml` | registry metadata; `project.description` is the published abstract |
 | `LICENSE` | Apache-2.0 at the repository root, matching `project.license` |
-| `scripts/check_palomar_shared_block.py` | the gate on all of the above |
+| `scripts/check_palomar_submission.py` | the source-level gate on all of the above (self-calibrating) |
+| `scripts/check_palomar_statement_match.sh` | compares the compared statement as ELABORATED in the two modules |
+| `scripts/Palomar{Challenge,Solution}Type.lean` | the two drivers that dump it |
 
 ## Why the two files duplicate the definition block
 
@@ -52,7 +54,7 @@ endpoint is `manuscriptTheoremA`.
 | no Git submodules, no LFS pointers | none |
 | no committed compiled artifacts outside `.lake` | none |
 | checkout at most 500 MiB excluding `.git` | about 56 MB tracked |
-| challenge at most 100 KiB and 1000 lines | 319 lines |
+| challenge at most 100 KiB and 1000 lines | 314 lines (over the preferred 300-line surface, so the report carries an advisory) |
 | `permitted_axioms` exactly the three classical axioms, and the proof's closure matching | yes; `#audit_axioms` reports `[propext, Classical.choice, Quot.sound]` |
 | `formalization.yaml` accepted by `PalomarSubmission/scripts/submission_contract.py` | yes; derived `result_origin: original`, `repository_role: substantive-development` |
 
