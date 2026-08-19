@@ -21,8 +21,8 @@ to have, and the whole point of the number is what is left over.
 Definitions are unfolded and theorems are not: a definition appearing in a
 statement changes what the statement means, whereas the proof of a lemma
 appearing in it does not.  That is the difference between this closure and the
-axiom closure, which traverses proofs precisely because it is asking the other
-question.
+one `scripts/Audit.lean` computes, which traverses proofs precisely because it
+is asking the other question.
 
 Run after a build:
 
