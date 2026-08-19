@@ -1,0 +1,111 @@
+name: Leanstral runner smoke proof
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - '.github/workflows/leanstral-smoke-pr.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  smoke:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
+        with:
+          fetch-depth: 1
+          persist-credentials: false
+
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6.3.0
+        with:
+          python-version: '3.12'
+          check-latest: false
+
+      - name: Restore elan
+        id: elan-cache
+        uses: actions/cache/restore@0057852bfaa89a56745cba8c7296529d2fc39830 # v4
+        with:
+          path: ~/.elan
+          key: ${{ runner.os }}-elan-${{ hashFiles('lean-toolchain') }}
+          restore-keys: |
+            ${{ runner.os }}-elan-
+
+      - name: Install elan if needed
+        if: steps.elan-cache.outputs.cache-hit != 'true'
+        run: curl https://raw.githubusercontent.com/leanprover/elan/464c9d28395000a2a0128e07081e4956d50eced2/elan-init.sh -sSf | sh -s -- -y
+
+      - name: Put Lean on PATH
+        run: echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+
+      - name: Install published Leanstral tooling
+        run: |
+          set -euo pipefail
+          python -m venv "$RUNNER_TEMP/leanstral-smoke-venv"
+          "$RUNNER_TEMP/leanstral-smoke-venv/bin/python" -m pip install \
+            --disable-pip-version-check \
+            'mistral-vibe==2.23.1' \
+            'lean-lsp-mcp==0.28.1'
+          echo "$RUNNER_TEMP/leanstral-smoke-venv/bin" >> "$GITHUB_PATH"
+
+      - name: Verify Vibe, MCP, Python, and Lean
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import importlib.metadata as md
+          import sys
+          assert sys.version_info >= (3, 12), sys.version
+          assert md.version('mistral-vibe') == '2.23.1'
+          assert md.version('lean-lsp-mcp') == '0.28.1'
+          print('python', sys.version)
+          print('mistral-vibe', md.version('mistral-vibe'))
+          print('lean-lsp-mcp', md.version('lean-lsp-mcp'))
+          PY
+          vibe --version
+          command -v lean-lsp-mcp
+          lake --version
+
+      - name: Parse production Leanstral config shape
+        run: |
+          set -euo pipefail
+          cat > "$RUNNER_TEMP/leanstral-config.toml" <<'TOML'
+          installed_agents = ["lean"]
+          bypass_tool_permissions = true
+          active_model = "leanstral"
+
+          [[providers]]
+          name = "mistral-testing"
+          api_base = "https://api.mistral.ai/v1"
+          api_key_env_var = "MISTRAL_API_KEY"
+          backend = "mistral"
+
+          [[models]]
+          name = "labs-leanstral-1-5"
+          provider = "mistral-testing"
+          alias = "leanstral"
+          input_price = 0.0
+          output_price = 0.0
+          thinking = "high"
+          temperature = 1.0
+          auto_compact_threshold = 200000
+
+          [session_logging]
+          enabled = true
+
+          [[mcp_servers]]
+          name = "lean-lsp"
+          transport = "stdio"
+          command = "lean-lsp-mcp"
+          tool_timeout_sec = 600
+          TOML
+          python - <<'PY'
+          from pathlib import Path
+          import tomllib
+          cfg = tomllib.loads(Path(__import__('os').environ['RUNNER_TEMP'] + '/leanstral-config.toml').read_text())
+          assert cfg['installed_agents'] == ['lean']
+          assert cfg['models'][0]['name'] == 'labs-leanstral-1-5'
+          assert cfg['mcp_servers'][0]['command'] == 'lean-lsp-mcp'
+          print('production config shape is valid TOML')
+          PY
