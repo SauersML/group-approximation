@@ -3,7 +3,7 @@ rg: 2
 id: unitary-trace-energy-transfer-proof
 kind: route
 title: Expand Hilbert--Schmidt distance through the trace
- target: unitary-trace-energy-transfer
+target: unitary-trace-energy-transfer
 requires: []
 ---
 
