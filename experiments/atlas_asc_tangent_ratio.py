@@ -97,13 +97,28 @@ def run(args):
     packet = Packet(args.npz, args.k, device, set(args.packet.split(",")),
                     args.word_batch)
     n = packet.n
+    # A word that is NOT already trivial at U = I contributes an O(1) term to
+    # its own defect, not an O(eps^2) one, so it has no quadratic form at the
+    # fold and must not sit in the denominator.  The interior separator
+    # c_19243 is exactly such a word (defect sqrt(2) at U = I), which is why
+    # the local constant below is a statement about the boundary sub-packet.
+    trivial = {str(name) for name, flag
+               in zip(np.load(args.npz, allow_pickle=True)["names"],
+                      np.load(args.npz, allow_pickle=True)["fold_trivial"])
+               if bool(flag)}
+    dropped = [name for name in packet.names[:packet.packet_words]
+               if name not in trivial]
     cov_chunks = sorted({packet.by_position[packet.names.index("cov:a")],
                          packet.by_position[packet.names.index("cov:b")]})
     body_chunks = [index for index, chunk in enumerate(packet.chunks)
                    if all(position < packet.packet_words
+                          and packet.names[position] in trivial
                           for position in chunk[0])]
 
-    theta = torch.randn(2, n, n, device=device, generator=generator)
+    if args.load_direction:
+        theta = torch.load(args.load_direction, map_location=device).float()
+    else:
+        theta = torch.randn(2, n, n, device=device, generator=generator)
     theta = torch.stack((theta[0] - theta[0].t(), theta[1] + theta[1].t()))
     theta = theta * (math.sqrt(n) / theta.norm())
     theta.requires_grad_(True)
@@ -119,7 +134,8 @@ def run(args):
             log.write(line + "\n")
 
     emit({"event": "start", "n": n, "k": args.k, "packet": args.packet,
-          "words": packet.packet_words, "probes": args.probes,
+          "words": packet.packet_words, "dropped_nontrivial_at_fold": dropped,
+          "probes": args.probes,
           "word_batch": args.word_batch, "lr": args.lr,
           "iterations": args.iterations,
           "device": torch.cuda.get_device_name(0)
@@ -130,16 +146,18 @@ def run(args):
             probe = probes_of(n, probes, device, generator)
             body = 0.0
             worst = ("", 0.0)
+            count = 0
             for index in body_chunks:
                 values = word_forms(packet, packet.chunks[index], theta, probe)
                 body += float(values.sum())
+                count += int(values.numel())
                 position = int(values.argmax())
                 if float(values[position]) > worst[1]:
                     worst = (packet.names[packet.chunks[index][0][position]],
                              float(values[position]))
             cov = sum(float(word_forms(packet, packet.chunks[which], theta,
                                        probe).sum()) for which in cov_chunks)
-        return body, cov, worst
+        return body, cov, worst, count
 
     velocity = None
     picker = np.random.RandomState(args.seed)
@@ -177,15 +195,18 @@ def run(args):
                   "batch_body": float(body.detach()),
                   "batch_cov": float(cov.detach())})
         if args.eval_every and step % args.eval_every == 0:
-            body_all, cov_all, worst = exact_ratio(args.eval_probes)
+            body_all, cov_all, worst, count = exact_ratio(args.eval_probes)
             emit({"event": "eval", "step": step, "packet_energy": body_all,
-                  "cov_energy": cov_all,
-                  "ratio": cov_all / body_all if body_all else float("inf"),
+                  "cov_energy": cov_all, "words_in_form": count,
+                  "ratio_sum": cov_all / body_all if body_all else float("inf"),
+                  "ratio_max": cov_all / worst[1] if worst[1] else float("inf"),
                   "worst_word": worst[0], "worst_word_energy": worst[1]})
 
-    body_all, cov_all, worst = exact_ratio(args.final_probes)
+    body_all, cov_all, worst, count = exact_ratio(args.final_probes)
     emit({"event": "final", "packet_energy": body_all, "cov_energy": cov_all,
-          "ratio": cov_all / body_all if body_all else float("inf"),
+          "words_in_form": count,
+          "ratio_sum": cov_all / body_all if body_all else float("inf"),
+          "ratio_max": cov_all / worst[1] if worst[1] else float("inf"),
           "worst_word": worst[0], "worst_word_energy": worst[1]})
     if args.save_direction:
         torch.save(theta.detach().cpu().clone(), args.save_direction)
@@ -214,6 +235,7 @@ def main():
     parser.add_argument("--tf32", type=int, default=1)
     parser.add_argument("--out", default="")
     parser.add_argument("--save-direction", default="")
+    parser.add_argument("--load-direction", default="")
     run(parser.parse_args())
 
 
