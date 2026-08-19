@@ -823,7 +823,22 @@ def routeGuards : List (Name × Name) :=
     -- finite-stage involutive endpoint, so the printed logical order is the
     -- formal dependency order.
     (`GroupApproximation.ManuscriptExactWrappers.manuscriptInvolutiveCollapse,
-     `GroupApproximation.ProjectionCompressionCollapse.corona_projection_collapse) ]
+     `GroupApproximation.ProjectionCompressionCollapse.corona_projection_collapse),
+    -- LI.19: the printed sentence "thm:kazhdan-transport uses finite
+    -- dimensionality of M_d twice, for the conjugation action on
+    -- L²(M_d, tr_d) and for finiteness of the norm ultraproduct".  Which
+    -- facts a proof consumes is not a proposition, so it is pinned rather than
+    -- stated: these two pairs are that sentence, machine-checked, and a
+    -- re-route turns the audit red instead of leaving the sentence asserted.
+    -- The conjugation action, realized at the doubled index that is finite
+    -- exactly because the stage is ...
+    (`GroupApproximation.KazhdanAsymptoticCommutant.manuscriptKazhdanTransport,
+     `GroupApproximation.UltraproductModelConstruction.rowMat_conjDouble_mulVec),
+    -- ... and finiteness, consumed where the compression step needs a
+    -- Dedekind-finite ambient.  `Analysis/PrintedFiniteDimensionalUses` proves
+    -- that neither survives the replacement Question 5 proposes.
+    (`GroupApproximation.KazhdanAsymptoticCommutant.manuscriptKazhdanTransport,
+     `GroupApproximation.ProperProjectionCompression.unitary_conjugate_eq_of_absorbs) ]
 
 /-- Does the dependency closure of `root` contain `target`?  A depth-first
 walk over `ConstantInfo.getUsedConstantsAsSet`, which visits types and proof
