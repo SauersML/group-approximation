@@ -946,6 +946,7 @@ import GroupApproximation.Analysis.CStarStateGNS
 import GroupApproximation.Analysis.CStarStatePullback
 import GroupApproximation.Analysis.CStarMinTensorNorm
 import GroupApproximation.Analysis.CStarSliceBound
+import GroupApproximation.Analysis.CStarSliceIdeal
 import GroupApproximation.Analysis.CStarMaxTensorNorm
 import GroupApproximation.Analysis.CStarTensorComparison
 import GroupApproximation.Analysis.CStarNuclearity
