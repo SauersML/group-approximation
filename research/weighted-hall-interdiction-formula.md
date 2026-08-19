@@ -3,6 +3,10 @@ rg: 2
 id: weighted-hall-interdiction-formula
 kind: claim
 title: The cheapest support deletion creating a weighted Hall deficit is an explicit cut-interdiction minimum
+artifacts:
+  - experiments/weighted_hall_interdiction.py
+  - experiments/weighted-hall-interdiction-smoke.json
+  - experiments/weighted-hall-interdiction-smoke.out.json
 ---
 
 Let `G=(L,R,E)` be a finite bipartite graph with nonnegative rational vertex
