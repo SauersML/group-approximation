@@ -1,6 +1,6 @@
 name = "GroupApproximation"
 version = "0.1.0"
-defaultTargets = ["GroupApproximation"]
+defaultTargets = ["GroupApproximation", "PalomarChallenge", "PalomarSolution"]
 
 [[require]]
 name = "mathlib"
@@ -22,3 +22,29 @@ moreLeanArgs = ["-DwarningAsError=true"]
 name = "Audit"
 srcDir = "scripts"
 roots = ["Audit.DeclFilter", "Audit.Scan", "Audit.Plants"]
+
+# The Palomar registry submission surface (`leanprover/comparator` protocol).
+#
+# `Palomar/Challenge.lean` is the small, human-auditable statement of record.
+# It imports Mathlib and NOTHING from this development -- that is a hard
+# requirement of the registry, which recompiles the challenge against a frozen
+# canonical Mathlib and rejects any project-local source in its transitive
+# import closure.  It therefore carries its own copy of the presentation and
+# of the three approximation notions, and states the theorem with a
+# deliberate hole.
+#
+# `Palomar/Solution.lean` repeats that block byte-for-byte -- Comparator
+# compares the exported statements SYNTACTICALLY, and recursively requires
+# every constant they mention to be identical in both environments, so the
+# copy cannot be replaced by an import -- and then proves the theorem from
+# the development.  `scripts/check_palomar_shared_block.py` gates the copy.
+#
+# No `warningAsError` here: the challenge's hole is a deliberate warning.
+
+[[lean_lib]]
+name = "PalomarChallenge"
+roots = ["Palomar.Challenge"]
+
+[[lean_lib]]
+name = "PalomarSolution"
+roots = ["Palomar.Solution"]

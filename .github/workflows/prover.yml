@@ -600,6 +600,11 @@ jobs:
         continue-on-error: true
         run: |
           python3 scripts/check.py
+          # The Palomar submission surface: the challenge/solution shared
+          # block, the challenge's Mathlib-only imports, and the comparator
+          # configuration.  All three are invisible in a green build and each
+          # of them breaks the registry submission after the commit is public.
+          python3 scripts/check_palomar_shared_block.py
           # cairn check validates the research graph; the regenerated
           # FRONTIER.md is not diffed because it embeds lock countdowns
           # and mtime-derived sections that are time-dependent by design.
@@ -1060,6 +1065,11 @@ jobs:
       - name: Source scan
         run: |
           python3 scripts/check.py
+          # The Palomar submission surface: the challenge/solution shared
+          # block, the challenge's Mathlib-only imports, and the comparator
+          # configuration.  All three are invisible in a green build and each
+          # of them breaks the registry submission after the commit is public.
+          python3 scripts/check_palomar_shared_block.py
           # cairn check validates the research graph; the regenerated
           # FRONTIER.md is not diffed because it embeds lock countdowns
           # and mtime-derived sections that are time-dependent by design.

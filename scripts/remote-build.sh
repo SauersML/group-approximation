@@ -115,6 +115,16 @@ rsync -rlptz --delete \
   --exclude='*' \
   "$LOCAL/docs/" "$USER_MSI@$LOGIN_IP:$REMOTE/docs/" || exit $?
 
+# The Palomar submission surface is two Lean libraries in the default target
+# set (`PalomarChallenge`, `PalomarSolution`), so without this stanza the
+# default build fails on the node with "some modules have bad imports" -- the
+# module files simply are not there.  The `.json` include carries
+# `comparator.json` along, which is what names those two modules.
+rsync -rlptz --delete \
+  -e "ssh -S $SOCK -o HostKeyAlias=$ALIAS -o LogLevel=ERROR" \
+  --include='*/' --include='*.lean' --include='*.json' --exclude='*' \
+  "$LOCAL/Palomar/" "$USER_MSI@$LOGIN_IP:$REMOTE/Palomar/" || exit $?
+
 # The proof ledger and its gate inputs live under metadata/; without this
 # stanza the ledger checker cannot run on the remote at all.
 rsync -rlptz --delete \
@@ -134,7 +144,7 @@ rsync -rlptz --delete \
 # (Diagnosed 2026-08-14: 60+ phantom errors from a pre-ef97ae1e olean that
 # lake believed current.)  Touch every synced source so lake re-hashes them;
 # unchanged content hashes rebuild nothing, so this costs seconds.
-"$MSI" "cd $REMOTE && find GroupApproximation scripts -name '*.lean' -exec touch {} + && \
+"$MSI" "cd $REMOTE && find GroupApproximation scripts Palomar -name '*.lean' -exec touch {} + && \
   touch GroupApproximation.lean lean-toolchain lakefile.toml lake-manifest.json" \
   || exit $?
 

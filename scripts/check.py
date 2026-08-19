@@ -79,9 +79,19 @@ FORBIDDEN = [
 # is the only exception to the repository-wide lexical prohibition, pinned to
 # its exact path, line, tag, and source text so it cannot become a general
 # escape hatch.
+# The environment-scan calibration corpus must contain one real defect, and
+# the Palomar challenge file must contain exactly one deliberate hole: the
+# `leanprover/comparator` protocol states the advertised theorem WITHOUT a
+# proof in `Challenge.lean` and requires `Solution.lean` to supply one with
+# the same statement.  A challenge that proved its own theorem would be
+# comparing nothing.  Both are pinned to their exact path, line, tag and
+# source text so neither can become a general escape hatch; editing the file
+# above either line moves the line number and fails this scan, which is the
+# intended behaviour.
 FORBIDDEN_ALLOWLIST = {
     ("hand-declared axiom", "scripts/Audit/Plants.lean", 28,
      "axiom plantedAxiom : True"),
+    ("sorry / sorryAx", "Palomar/Challenge.lean", 424, "sorry"),
 }
 
 # Strings known to have been fabricated in earlier edits and purged from the

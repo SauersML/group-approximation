@@ -1,0 +1,8 @@
+{
+  "challenge_module": "Palomar.Challenge",
+  "solution_module": "Palomar.Solution",
+  "theorem_names": ["ExplicitNonMF.explicit_fp_sofic_hyperlinear_not_MF"],
+  "definition_names": [],
+  "permitted_axioms": ["propext", "Quot.sound", "Classical.choice"],
+  "enable_nanoda": true
+}
