@@ -677,6 +677,7 @@ import GroupApproximation.Sofic.HyperlinearUltraproduct
 import GroupApproximation.Sofic.NormTraceGap
 import GroupApproximation.Sofic.FaithfullyTracedCoordinateNoGo
 import GroupApproximation.Sofic.HilbertSchmidtAdjointGap
+import GroupApproximation.Sofic.PermutationAdjointGap
 import GroupApproximation.Sofic.WeakMFUltraproduct
 import GroupApproximation.Sofic.OpAlmostRepresentation
 import GroupApproximation.Sofic.NormMFResidualDetector
