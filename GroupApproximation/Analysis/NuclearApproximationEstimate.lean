@@ -31,8 +31,10 @@ while `norm_apply_le_of_unital` covers `up`.
 `IsNuclearMap` quantifies over `FinDimCStarAlgebra`, and **nothing in this
 corpus had ever built one** --- the definition existed with no inhabitant, so no
 map had ever been shown nuclear for want of a target to factor through.
-`finDimMatrixBlock` is the first: square matrices at the L2 operator norm, whose
-C⋆-structure is six field assignments each of which is an instance already.  It
+`finDimMatrixBlock` and `finDimOperatorBlock` are the first two: square matrices
+at the L2 operator norm, and the operators on `ℂᵏ` that the CPAP actually
+factors through.  Each C⋆-structure is six field assignments, every one of them
+an instance already.  It
 is kept a `def` rather than an `instance` for the reason
 `Analysis/PolarLiftingMatrixBlocks` keeps its copy `local`: the norm is scoped,
 and registering the bundle globally would put it in competition with the
@@ -76,6 +78,33 @@ def finDimMatrixBlock (k : ℕ) [NeZero k] : FinDimCStarAlgebra where
 
 @[simp] theorem finDimMatrixBlock_carrier (k : ℕ) [NeZero k] :
     (finDimMatrixBlock k).carrier = Matrix (Fin k) (Fin k) ℂ := rfl
+
+/-- The same bundle at the *operator* block.  This is the one the Lance
+approximation needs: `NuclearReducedCPAP` factors through
+`EuclideanSpace ℂ (Fin k) →L[ℂ] EuclideanSpace ℂ (Fin k)`, not through matrices,
+and the two are isometrically `⋆`-isomorphic but not the same type.
+
+`NeZero k` again buys `‖1‖ = 1`, which is what separates a C⋆-algebra from a
+C⋆-ring here. -/
+def operatorBlockCStarAlgebra (k : ℕ) [NeZero k] :
+    CStarAlgebra (EuclideanSpace ℂ (Fin k) →L[ℂ] EuclideanSpace ℂ (Fin k)) where
+  toNormedRing := inferInstance
+  toStarRing := inferInstance
+  toCompleteSpace := inferInstance
+  toCStarRing := inferInstance
+  toNormedAlgebra := inferInstance
+  toStarModule := inferInstance
+
+/-- **The finite-dimensional target the Lance approximation factors through.**
+-/
+def finDimOperatorBlock (k : ℕ) [NeZero k] : FinDimCStarAlgebra where
+  carrier := EuclideanSpace ℂ (Fin k) →L[ℂ] EuclideanSpace ℂ (Fin k)
+  algebra := operatorBlockCStarAlgebra k
+  findim := inferInstance
+
+@[simp] theorem finDimOperatorBlock_carrier (k : ℕ) [NeZero k] :
+    (finDimOperatorBlock k).carrier
+      = (EuclideanSpace ℂ (Fin k) →L[ℂ] EuclideanSpace ℂ (Fin k)) := rfl
 
 /-! ## Three epsilons -/
 
