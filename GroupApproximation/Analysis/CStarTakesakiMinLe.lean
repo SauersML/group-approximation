@@ -88,7 +88,7 @@ end Massage
 
 section LegLeft
 
-variable {A : Type u} [CStarAlgebra A]
+variable {A : Type u} [CStarAlgebra A] [Nontrivial A]
 variable {B : Type v} [Ring B] [StarRing B] [Algebra ℂ B] [StarModule ℂ B]
 variable {H : Type w} [NormedAddCommGroup H] [InnerProductSpace ℂ H]
   [CompleteSpace H]
@@ -240,7 +240,7 @@ end LegLeft
 section LegRight
 
 variable {A : Type u} [Ring A] [StarRing A] [Algebra ℂ A] [StarModule ℂ A]
-variable {B : Type v} [CStarAlgebra B]
+variable {B : Type v} [CStarAlgebra B] [Nontrivial B]
 variable {H : Type w} [NormedAddCommGroup H] [InnerProductSpace ℂ H]
 variable {K : Type x} [NormedAddCommGroup K] [InnerProductSpace ℂ K]
   [CompleteSpace K]
