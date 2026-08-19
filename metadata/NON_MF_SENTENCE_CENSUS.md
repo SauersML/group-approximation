@@ -7,16 +7,16 @@ The proof ledger grades claims; this census grades **sentences**, which is the g
 | status | sentences |
 | --- | --- |
 | `ledger` | 666 |
-| `formalized` | 205 |
-| `unassigned` | 71 |
-| `definition` | 30 |
-| `attribution` | 14 |
+| `formalized` | 251 |
+| `definition` | 42 |
+| `attribution` | 20 |
 | `provenance` | 14 |
-| `open` | 2 |
+| `structural` | 5 |
+| `open` | 4 |
 | `partial` | 1 |
 | **total** | **1003** |
 
-Carrying a declaration or a ledger row: **902/1003** (89.9%).
+Carrying a declaration or a ledger row: **960/1003** (95.7%).
 
 Of the `ledger` sentences, 294 name a single row and 372 name every row of their anchor.  Of the single-row ones, 166 were narrowed from a multi-row anchor by claim-text overlap rather than by hand, and their note says so; the rest sit under an anchor the ledger grades with one row, where the pairing is forced.  The census never pretends to know which row is which sentence: where the text does not decide, it names them all.
 
@@ -30,77 +30,10 @@ These are the sentences the development does not settle, verbatim.  `open` sente
   * asserts that converses are open; an open-status claim, which no declaration settles
 * **`open`**, line 412 --- MF for a group $C^*$-algebra implies MF for the underlying group, but the converse implication does not follow formally, and we know of no theorem establishing it or refuting it.
   * records that no theorem is known either way; an open-status claim
-* **`unassigned`**, line 1351 --- The base $\mathcal B$ of \eqref{eq:gamma-presentation} is the affine group $\mathbb Z^3\rtimes\SL_3(\mathbb Z)$, for which property~\textup{(T)} is classical \cite[Example~1.7.4(i)]{BHV}.
-* **`unassigned`**, line 1367 --- After these Tietze transformations, the remaining relations still imply $[\,\hat c,\,t\iota(\mathcal B)t^{-1}]=1$ for $\hat c=tct^{-1}$, and the distinguished word $[\,\hat c,\ \iota(v_1)\,\hat c\,\iota(v_1)^{-1}]$, computed in the same group, is unchanged.
-* **`unassigned`**, line 1504 --- Throughout, $\hat c=tct^{-1}$ and $u=[\hat c,\iota(v_1)]$, so that $w=u^2$.
-* **`unassigned`**, line 1504 --- For a countable group $G$, write $\operatorname{Res}_{\mathrm{MF}}(G)$ for its \emph{MF residual}: the intersection of the kernels of all its homomorphisms to $\U(\mathcal Q)$ (Definition~\ref{def:radical}).
-* **`unassigned`**, line 1504 --- Proposition~\ref{prop:univquot} shows that $G$ is MF exactly when this subgroup is trivial. By Theorem~\ref{thm:A}, $1\ne w\in\operatorname{Res}_{\mathrm{MF}}(E)$.
-* **`unassigned`**, line 1615 --- We use Shulman's terminology \cite{ShulmanTraces}.
-* **`unassigned`**, line 1615 --- Hyperlinear and MF traces are defined by the same pointwise bounded, trace-correct matrix models, with the algebraic defects measured in normalized Hilbert--Schmidt norm and operator norm, respectively.
-* **`unassigned`**, line 1615 --- The approximating maps themselves need not be linear, positive, unital, or completely positive.
-* **`unassigned`**, line 1615 --- Every MF trace is hyperlinear; Shulman asks whether the converse holds.
-* **`unassigned`**, line 1836 --- Theorem~\ref{thm:kazhdan-transport} holds with an arbitrary weight $\nu_n$ in place of the dimension.
-* **`unassigned`**, line 1887 --- By Theorem~\ref{thm:kazhdan-transport}, the normal closure $N_{\mathrm{conj}}$ of the commutators $[tct^{-1},\iota(\lambda)]$ is contained in $K_2^{\omega}(U)$ for every operator-norm asymptotic representation $U$ of $H$.
-* **`unassigned`**, line 1887 --- For a finite normal subgroup of $N_{\mathrm{conj}}$, the corner of Lemma~\ref{lem:corner} is the complement of a projection obtained from its averaging operators (Theorem~\ref{thm:criterion}), and the central involution of Section~\ref{sec:sign} is the case $F=\{1,w\}$.
-* **`unassigned`**, line 1887 --- For a normal property-\textup{(T)} subgroup, which may be infinite, noncentral and torsion-free, the corner is a spectral projection of a Kazhdan average (Theorems~\ref{thm:abstract-nk} and~\ref{thm:normal-kazhdan}).
-* **`unassigned`**, line 1887 --- Corollary~\ref{cor:intrinsic-nk} replaces $N_{\mathrm{conj}}$ by the subgroup $\mathfrak D(H,L)$ of \eqref{eq:intrinsicdefect}, which depends on $L$ alone and not on a choice of $t$ and $c$.
-* **`unassigned`**, line 2033 --- For a subgroup $L\le H$, let
-* **`unassigned`**, line 2037 --- the \emph{compression semigroup} of $L$ in the terminology of Kun--Thom \cite{KT}, and put $G^{+}(L)=\langle P_L\rangle$.
-* **`unassigned`**, line 2037 --- Then set
-* **`unassigned`**, line 2110 --- A finite group has property~\textup{(T)}, and its averaging operator is the projection onto its fixed space.
-* **`unassigned`**, line 2110 --- The spectral projection of a Kazhdan average replaces that operator for an arbitrary normal property-\textup{(T)} subgroup, which may be infinite, noncentral and torsion-free.
-* **`unassigned`**, line 2272 --- Every finite-dimensional representation of $E$ over any field maps $w$ to the identity (Theorem~\ref{thm:exactfd} with $H=E$).
-* **`unassigned`**, line 2272 --- Consequently finite-dimensional linear representations do not separate the points of $E$, and every finite quotient maps $w$ to the identity.
-* **`unassigned`**, line 2272 --- Since the Clifford quotient of Section~\ref{sec:witness} sends $w$ to a nontrivial element, that quotient is infinite.
-* **`unassigned`**, line 2272 --- The central involution $w$ lies in the kernel of every homomorphism to a finite group, so $E$ is a group of \emph{Deligne type} in the terminology of \cite[Definition~1.2]{BDL}.
-* **`unassigned`**, line 2272 --- Such groups were proposed there as the natural candidate counterexamples for all three remaining approximation problems, and $E$ is such a counterexample for the operator norm.
-* **`unassigned`**, line 2332 --- Fritz's marked $\mathrm{BS}(2,3)$ example is the context for this comparison \cite{Fritz,SlofstraVidick}.
-* **`unassigned`**, line 2692 --- In Theorem~\ref{thm:sign-criterion} the corner is the negative spectral corner of a central involution.
-* **`unassigned`**, line 2692 --- Here it is an arbitrary projection of $\mathcal Q$ whose conjugation orbit commutes.
-* **`unassigned`**, line 3053 --- The map $E\to W$ of Proposition~\ref{prop:witness} is surjective: its image contains $\Sigma$ and the generator $c_o$ at the base point, hence every Clifford generator by transitivity of the $\Sigma$-action on $X$.
-* **`unassigned`**, line 3053 --- Since $E$ is generated by $v_1,x,y,z,t,c$ (Section~\ref{sec:group}), their six images generate $W$.
-* **`unassigned`**, line 3053 --- The map sends $w\in\operatorname{Res}_{\mathrm{MF}}(E)$ to the nontrivial sign $\zeta$, so $\zeta\in\operatorname{Res}_{\mathrm{MF}}(W)$ by Lemma~\ref{lem:portable}.
-* **`unassigned`**, line 3053 --- Hence the finitely generated group $W$ is not MF\@.
-* **`unassigned`**, line 3053 --- Neither is $\Cred(W)$: if $\Cred(W)$ embedded in a matrix quotient, the map $u\mapsto e(u)+1-e(1)$ would give an injective homomorphism $W\to\U(\mathcal Q)$, as in the proof of Theorem~\ref{thm:A}.
-* **`unassigned`**, line 3074 --- whose kernel is locally finite --- hence LEF, sofic and MF --- and whose quotient is MF, while $W$ itself is finitely generated and not MF\@.
-* **`unassigned`**, line 3074 --- For comparison, an extension of a residually finite group by a residually finite group is weakly sofic \cite{Gl19}, and weak soficity is detected by finite targets \cite{GR}.
-* **`unassigned`**, line 3082 --- The Clifford group $\Cl(X)$ is locally finite: every finitely generated subgroup involves only finitely many sites, hence is contained in the corresponding finite Clifford group.
-* **`unassigned`**, line 3082 --- Therefore $\Cl(X)$ is MF by Lemma~\ref{lem:permanence}(3).
-* **`unassigned`**, line 3082 --- The group $\Sigma$ identifies with the subgroup of $\GL_4(\mathbb Q)$ generated by $\bar\Gamma$ and $D$: the levels are $D^{-n}\bar\Gamma D^{n}$, and the determinant gives the $\mathbb Z$-coordinate.
-* **`unassigned`**, line 3082 --- It is residually finite.
-* **`unassigned`**, line 3082 --- Modulo every odd integer, the dilation matrix is invertible because its determinant is $8$; hence the congruence reduction of the integral affine model is compatible with the dilation and extends over the direct limit and its shift.
-* **`unassigned`**, line 3082 --- These finite quotients separate every nontrivial element of $\Sigma$, consistent with Mal'cev's theorem for finitely generated linear groups \cite{Malcev}.
-* **`unassigned`**, line 3082 --- Thus $\Sigma$ is MF by Lemma~\ref{lem:permanence}(2), whereas $W$ is not MF by the preceding construction.
-* **`unassigned`**, line 3117 --- Equivalently, every homomorphism from $S_{\mathrm{simp}}$ to an MF group is trivial.
-* **`unassigned`**, line 3132 --- Deleting the letter $c$ and the families \textup{(C)} and \textup{(W)} from \eqref{eq:E} leaves the presentation $\langle\,\mathcal B,t\mid tut^{-1}=\bar\alpha(u)\,\rangle$ of the ascending HNN extension of the base along the doubling endomorphism.
-* **`unassigned`**, line 3132 --- By Remark~\ref{rem:classical-base} the base is $\bar\Gamma$, so
-* **`unassigned`**, line 3140 --- for the group $\Sigma=T\rtimes\Z$ of Section~\ref{sec:witness}, with its site set $X=\Sigma/B$, base point $o$, shift $\tau$ and level-zero base $B=j(\bar\Gamma)$.
-* **`unassigned`**, line 3140 --- The levels
-* **`unassigned`**, line 3146 --- form an ascending chain of copies of $\bar\Gamma$ with union $T$.
-* **`unassigned`**, line 3146 --- Put $K=\tau^{-1}B\tau$; then $B\le K$ and $[K:B]=[\bar\Gamma:\bar\alpha(\bar\Gamma)]$, at most eight.
-* **`unassigned`**, line 3146 --- The cosets $\Sigma/K$ are the \emph{blocks}, and each block, as a set of sites, has $[K:B]$ elements.
-* **`unassigned`**, line 3152 --- Let $\mathcal G$ be the graph on $X$ whose edges are the $\Sigma$-orbit of the pair $\{\tau o,\,j(\bar v_1)\tau o\}$, whose entries are distinct by Lemma~\ref{lem:linear}.
-* **`unassigned`**, line 3152 --- Two sites are adjacent in $\mathcal G$ exactly when they are distinct and lie in a common block.
-* **`unassigned`**, line 3152 --- Adjacent sites share a block because the two sites are $gB$ and $hB$ for the representatives $g=\tau$ and $h=j(\bar v_1)\tau$, and $g^{-1}h=\tau^{-1}j(\bar v_1)\tau\in K$ since $j(\bar v_1)\in B$ and $K=\tau^{-1}B\tau$; hence $gK=hK$.
-* **`unassigned`**, line 3152 --- (Sites are cosets, so the product and inverse have to be taken in $\Sigma$ on representatives, not on the sites themselves.
-* **`unassigned`**, line 3152 --- Conversely, the bijection $u\,\bar\alpha(\bar\Gamma)\mapsto\tau^{-1}j(u)\tau o$ identifies the block of $o$ with $\bar\Gamma/\bar\alpha(\bar\Gamma)$ and the generating edge with the pair $\{\bar\alpha(\bar\Gamma),\,\bar v_1\bar\alpha(\bar\Gamma)\}$.
-* **`unassigned`**, line 3152 --- Left multiplication by $\bar\alpha(\bar\Gamma)$ on the coset space $\bar\Gamma/\bar\alpha(\bar\Gamma)$ is transitive on the nontrivial cosets, so every pair of distinct sites of a block is the image of the generating pair.
-* **`unassigned`**, line 3152 --- Writing $L=\langle x,y,z\rangle$ for the linear part, $\bar\Gamma=\Z^3\rtimes L$; since $\bar\alpha$ squares the three translations and fixes $x,y,z$ (Lemma~\ref{lem:linear}), its image is $(2\Z^3)\rtimes L$, and reduction of the translation coordinate modulo~$2$ identifies $\bar\Gamma/\bar\alpha(\bar\Gamma)$ with $(\Z/2)^3$.
-* **`unassigned`**, line 3152 --- Under that identification left multiplication by an element of $\bar\alpha(\bar\Gamma)$ with linear part $N$ and (necessarily even) translation part sends a class $\bar u$ to $\bar N\bar u$, so the action factors through the linear action of the reduction $\bar L\le\GL_3(\mathbb F_2)$ of $L$.
-* **`unassigned`**, line 3152 --- The seven words
-* **`unassigned`**, line 3182 --- carry $\bar e_1$ to $\bar e_1$, $\bar e_3$, $\bar e_2$, $(0,1,1)$, $(1,1,0)$, $(1,1,1)$, $(1,0,1)$ --- the seven nonzero classes --- which is the transitivity used. Only the reduction $\bar L$ enters, so this step is independent of the identification of the linear part with $\SL_3(\Z)$ in Remark~\ref{rem:classical-base}.
-* **`unassigned`**, line 3190 --- For a graph $\mathcal G$ on $X$, let $C(\mathcal G)$ be the group presented by generators $\zeta$ and $c_\xi$ $(\xi\in X)$ and relations
-* **`unassigned`**, line 3197 --- For the complete graph on $X$ this is $\Cl(X)$ of Construction~\ref{con:clifford}, and adjoining the anticommutation relations at the remaining pairs gives a surjection $C(\mathcal G)\to\Cl(X)$.
-* **`unassigned`**, line 3419 --- Lemma~\ref{lem:permanence}(1) and Theorem~\ref{thm:A} show that MF is a Markov property of finitely presented groups: the trivial group is MF, while by subgroup heredity the finitely presented group $E$ embeds in no MF group.
-* **`unassigned`**, line 3419 --- The Adian--Rabin theorem therefore implies that MF recognition is undecidable \cite{Rabin58}.
-* **`unassigned`**, line 3425 --- Fix an effective coding of finite presentations by natural numbers, under which a code determines computably its number of generators and its finite list of relator words, and write $G_e$ for the group presented by the code $e$.
-* **`unassigned`**, line 3574 --- the element $c$ centralizes the Kazhdan base there, and conjugation by $t$ produces $tct^{-1}$, whose commutator with the base is the element $u$ with $u^2=w\ne1$ of Theorem~\ref{thm:A}.
-* **`unassigned`**, line 3574 --- Hence Theorem~\ref{thm:kazhdan-transport} fails when its matrix coordinates are replaced by stably finite unital $C^*$-algebras carrying faithful tracial states and its normalized Hilbert--Schmidt norm by the trace $2$-norm, with all its remaining hypotheses unchanged.
-* **`unassigned`**, line 3584 --- Alekseev--Thom ask whether commutants arising in sofic approximations of Kazhdan groups can be recovered from finite-dimensional coordinate subalgebras \cite[Open Problem~6.2]{AlekseevThom}.
-* **`unassigned`**, line 3584 --- Their question concerns Hamming and tracial models, whereas the adjoint spectral estimates here require operator-norm multiplicative control, which permutation and Hilbert--Schmidt models do not supply.
-* **`unassigned`**, line 3584 --- The soficity of $E$ is proved separately, from its normal form (Theorem~\ref{thm:Esofic}).
-* **`unassigned`**, line 3682 --- the supremum taken over unitary representations of $H$; the supremum is finite because $\lVert\pi(\sum_h\lambda_hh)\rVert\le\sum_h|\lambda_h|$.
-* **`unassigned`**, line 3682 --- Write $u_h$ for the canonical unitary of $h\in H$.
+* **`open`**, line 1615 --- Every MF trace is hyperlinear; Shulman asks whether the converse holds.
+  * the converse is the question Shulman asks; an open-status claim no declaration settles
+* **`open`**, line 3584 --- Their question concerns Hamming and tracial models, whereas the adjoint spectral estimates here require operator-norm multiplicative control, which permutation and Hilbert--Schmidt models do not supply.
+  * compares two questions and records what the estimates here require; an open-status claim
 
 ## By section
 
@@ -117,32 +50,32 @@ These are the sentences the development does not settle, verbatim.  `open` sente
 | The central involution obstruction | 40 | 0 |
 | The Kazhdan--Clifford construction | 30 | 0 |
 | A finitely presented non-MF group | 50 | 0 |
-| The base and a smaller presentation | 5 | 2 |
+| The base and a smaller presentation | 5 | 0 |
 | Property~\textup{(T) | 5 | 0 |
 | Nontriviality of \texorpdfstring{$w$ | 32 | 0 |
-| Consequences of the example | 3 | 3 |
+| Consequences of the example | 3 | 0 |
 | The quotient by the central involution | 5 | 0 |
 | A stably finite non-MF group algebra | 14 | 0 |
 | A sofic example | 8 | 0 |
-| A hyperlinear non-MF trace | 32 | 4 |
+| A hyperlinear non-MF trace | 32 | 0 |
 | The MF equivalences | 30 | 0 |
-| Weighted asymptotic-commutant invariance | 10 | 1 |
-| Obstructions from a one-sided conjugation datum | 39 | 4 |
-| An intrinsic form | 19 | 3 |
-| The normal-Kazhdan form of the obstruction | 43 | 2 |
-| The finite-dimensional obstruction | 18 | 5 |
-| The cyclic comparison | 46 | 1 |
+| Weighted asymptotic-commutant invariance | 10 | 0 |
+| Obstructions from a one-sided conjugation datum | 39 | 0 |
+| An intrinsic form | 19 | 0 |
+| The normal-Kazhdan form of the obstruction | 43 | 0 |
+| The finite-dimensional obstruction | 18 | 0 |
+| The cyclic comparison | 46 | 0 |
 | The MF residual | 43 | 0 |
 | Permanence and its failure | 15 | 0 |
-| Commuting orbits and the MF residual | 99 | 2 |
+| Commuting orbits and the MF residual | 99 | 0 |
 | The reduced group algebra of \texorpdfstring{$E$ | 11 | 0 |
-| The Clifford quotient and permanence | 25 | 15 |
-| Soficity of $E$ | 68 | 19 |
+| The Clifford quotient and permanence | 25 | 0 |
+| Soficity of $E$ | 68 | 0 |
 | Marked-limit closure | 9 | 0 |
 | A finite universal Horn obstruction | 8 | 0 |
-| Undecidability of MF recognition | 25 | 3 |
-| Limitations of the operator-norm method | 21 | 5 |
+| Undecidability of MF recognition | 25 | 0 |
+| Limitations of the operator-norm method | 21 | 0 |
 | Questions | 21 | 0 |
-| The maximal group \texorpdfstring{$C^*$ | 22 | 2 |
+| The maximal group \texorpdfstring{$C^*$ | 22 | 0 |
 | Acknowledgements | 3 | 0 |
 | AI and computational resource usage | 14 | 0 |

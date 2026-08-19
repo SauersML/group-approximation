@@ -119,3 +119,74 @@ d36f7b8fc131	provenance	-	resource-usage disclosure
 63db252913ed	provenance	-	resource-usage disclosure
 b960d0c1c1d9	provenance	-	resource-usage disclosure; introduces a quotation
 6ec65176462a	provenance	-	resource-usage disclosure; introduces a quotation
+663dc0b2f169	formalized	GroupApproximation.LiteralBaseP13PropertyTBridge.manuscriptBaseHasKazhdanPropertyT GroupApproximation.LiteralBaseCompleteness.baseAffineEquiv	the base is the affine group and has property (T); both proved in-tree, the citation gives the classical statement
+77f789faa224	formalized	GroupApproximation.LiteralTietzePresentation.exists_sixGenerator_thirtyTwo_presentation GroupApproximation.LiteralSixGenerator.literal_sixGenerated_finitelyPresented_nonMF	the Tietze-equivalent presentation, and that the distinguished word survives it
+568cfd9974e7	definition	GroupApproximation.commutator_conjugate_eq_commutator_sq_of_sq_eq_one	fixes the notation and records w = u^2, which is the squaring identity
+5227eba26ca1	definition	GroupApproximation.ManuscriptExactWrappers.manuscriptMFRadical	defines the MF residual
+b77f68beb154	formalized	GroupApproximation.ManuscriptExactWrappers.manuscriptUniversalMFQuotient GroupApproximation.LiteralNonMFEndpoint.manuscriptTheoremA	restates prop:univquot and thm:A
+6d4f01a97ec1	attribution	-	adopts Shulman's terminology; asserts nothing
+6f99d07658c8	definition	GroupApproximation.manuscriptMFTraceGroupBridge	the two trace notions, defined by the same models under two norms
+0354983bc66a	definition	GroupApproximation.manuscriptMFTraceGroupBridge	what the definition does not require of the approximating maps
+8195ebf3d78b	open	-	the converse is the question Shulman asks; an open-status claim no declaration settles
+8a02039ba7aa	formalized	GroupApproximation.TransportVariantsAnyUniverse.scaled_transport_both_anyUniverse GroupApproximation.ScaledKazhdanTransport.scaled_transport_both	the transport theorem with an arbitrary weight in place of the dimension
+95676362c3f9	formalized	GroupApproximation.KazhdanAsymptoticCommutant.manuscriptKazhdanTransport_anyUniverse GroupApproximation.KazhdanAsymptoticCommutant.manuscriptKazhdanTransport	the containment of the conjugation defect, read off the transport theorem
+5a94e55771f6	formalized	GroupApproximation.PrintedCornerCompression.manuscriptCornerAsymptoticRepresentation GroupApproximation.ManuscriptExactWrappers.manuscriptFiniteNormalObstructionCriterion_anyUniverse	the finite-normal case of the corner, with the central involution as its instance
+5a4784fc5afb	formalized	GroupApproximation.ManuscriptExactWrappers.manuscriptAbstractNormalKazhdanObstruction GroupApproximation.ManuscriptExactWrappers.manuscriptNormalKazhdanObstruction_anyUniverse	the normal property-(T) case of the corner
+1e5cfb63a8fd	formalized	GroupApproximation.ManuscriptExactWrappers.manuscriptIntrinsicNormalKazhdanRadical_anyUniverse	the intrinsic defect subgroup replacing the conjugation defect
+1e559b504afb	structural	-	introduces the display that follows
+69e2292704e8	definition	GroupApproximation.ManuscriptExactWrappers.manuscriptIntrinsicNormalKazhdanPart_anyUniverse	names the compression semigroup and the group it generates
+ac10c15943c7	structural	-	introduces the display that follows
+d2ec93867111	formalized	GroupApproximation.hasKazhdanPropertyT_of_finite	a finite group has property (T); its averaging operator is the fixed-space projection
+b346b9f26d4e	formalized	GroupApproximation.UltraproductKazhdanProjection.manuscriptKazhdanSpectralGap	the spectral projection of a Kazhdan average, standing where the finite averaging operator stood
+7f8ae09b385c	formalized	GroupApproximation.ManuscriptExactWrappers.manuscriptTheoremB	thm:exactfd at H = E
+21b21313131c	formalized	GroupApproximation.LiteralFiniteDimensionalObstruction.manuscriptFiniteDimensionalConsequences	the two consequences drawn from it
+1d42c5a11d85	formalized	GroupApproximation.LiteralNonMFLinearWitness.literal_mark_ne_one GroupApproximation.LiteralFiniteDimensionalObstruction.manuscriptFiniteDimensionalConsequences	the Clifford quotient is infinite because it does not kill w
+297edc8aef5c	formalized	GroupApproximation.LiteralFiniteDimensionalObstruction.manuscriptFiniteDimensionalConsequences	w dies in every homomorphism to a finite group; Deligne type is BDL terminology for that
+53efb9010d8d	attribution	-	records BDL's proposal; the mathematics is the sentence before it
+84a0b270eae7	attribution	-	names Fritz's example as the context for the comparison
+8fa99e04bde8	formalized	GroupApproximation.KazhdanCompressionCore.manuscriptCentralSignCriterion_anyUniverse	the corner in thm:sign-criterion is the negative spectral corner
+02e0194a0f49	formalized	GroupApproximation.ProjectionCompressionCollapse.corona_projection_collapse	the corner here is an arbitrary projection with commuting orbit
+d990efc8ea47	formalized	GroupApproximation.LiteralBlockNormalForm.manuscriptSiteLampImage GroupApproximation.LiteralVerticalBridge.verticalEquiv	surjectivity of E -> W, from the site-lamp image and transitivity
+7a21e4e817ea	formalized	GroupApproximation.LiteralSixGenerator.literal_sixGenerated_finitelyPresented_nonMF	the six generators of E, whose images generate W
+b10e2651aa3d	formalized	GroupApproximation.ManuscriptExactWrappers.manuscriptRadicalPortability GroupApproximation.LiteralNonMFLinearWitness.literal_mark_ne_one	the residual travels along the quotient and w goes to a nontrivial sign
+9c01cdbdedb9	formalized	GroupApproximation.LiteralSignFreeQuotient.signFreeQuotient_not_isCDEOperatorMF	W is finitely generated and not MF
+68e703e54895	formalized	GroupApproximation.LiteralNonMFEndpoint.manuscriptTheoremD	the algebra of a non-MF group is not MF, by the complement correction used for thm:A
+ca2ea7142a2c	formalized	GroupApproximation.isOperatorMF_of_locallyFinite GroupApproximation.LiteralSignFreeQuotient.signFreeQuotient_not_isCDEOperatorMF	MF is not closed under extensions: locally finite kernel, MF quotient, non-MF middle
+ce452d1007d0	attribution	-	records the weak-soficity comparison from Gl19 and GR
+cc802ebfd380	formalized	GroupApproximation.LiteralBlockNormalForm.manuscriptFiniteLevelSiteOrbit	the Clifford group is locally finite: a finitely generated subgroup meets finitely many sites
+6457a3bee04c	formalized	GroupApproximation.isOperatorMF_of_locallyFinite	a locally finite group is MF
+c4e26bee137c	formalized	GroupApproximation.LiteralVerticalBridge.verticalEquiv GroupApproximation.LiteralBaseCompleteness.baseAffineEquiv	the identification of Sigma inside GL_4(Q), with the levels as conjugates of the base
+4fe39d0d89c6	formalized	GroupApproximation.isOperatorMF_of_residuallyFinite	Sigma is residually finite
+a5687bd1be42	formalized	GroupApproximation.LiteralCyclicCalibration.manuscriptCyclicCalibration	the congruence reduction is compatible with the dilation and extends over the limit
+6f4d608fbaaa	attribution	-	records that the separation is consistent with Mal'cev's theorem
+b5bfa568f705	formalized	GroupApproximation.isOperatorMF_of_residuallyFinite GroupApproximation.LiteralSignFreeQuotient.signFreeQuotient_not_isCDEOperatorMF	Sigma is MF while W is not
+4a4e56290506	formalized	GroupApproximation.ManuscriptExactWrappers.manuscriptUniversalMFQuotient	the universal-quotient form of the same statement
+4341cfb08c54	formalized	GroupApproximation.LiteralBlockNormalForm.markedGroupEquivModel	deleting c and the (C),(W) families leaves the ascending HNN extension
+6195e1ad2b30	formalized	GroupApproximation.LiteralBaseCompleteness.baseAffineEquiv	the base of that presentation is the classical one
+2f823c3b84b3	definition	GroupApproximation.LiteralVerticalBridge.verticalEquiv	names Sigma, its site set, base point, shift and level-zero base
+4133bc3c651d	structural	-	introduces the display that follows
+e879e30a95dc	formalized	GroupApproximation.LiteralVerticalBridge.verticalEquiv	the levels form an ascending chain with union T
+4dd8f9a06351	formalized	GroupApproximation.LiteralBlockNormalForm.lampKernelEquiv	the block subgroup K, its containment of B and the index bound
+518865b0c32e	definition	GroupApproximation.LiteralBlockNormalForm.lampKernelEquiv	names the blocks and records their size
+571c7db4aafa	definition	GroupApproximation.ManuscriptExactWrappers.manuscriptLinearModel	names the orbital graph; distinctness of its generating pair is the linear model
+2a89d7a813db	formalized	GroupApproximation.LiteralBlockNormalForm.manuscriptSiteLampImage	adjacency in the graph is exactly distinctness within a block
+29114900bb0a	formalized	GroupApproximation.LiteralBlockNormalForm.lampKernelEquiv	adjacent sites share a block, by the coset computation
+90da85fee40f	structural	-	a parenthetical warning about where products of representatives are taken
+7498fd9293a3	formalized	GroupApproximation.LiteralBlockNormalForm.lampKernelEquiv	the bijection identifying the block of the base point with the coset space
+8e35d2c90663	formalized	GroupApproximation.LiteralAffineCosetTransitivity.conjD_cosetTransitive	transitivity on the nontrivial cosets
+f2078d493298	formalized	GroupApproximation.ManuscriptExactWrappers.manuscriptLinearModel	the linear model of the base and the image of the doubling endomorphism
+4da22581672f	formalized	GroupApproximation.ManuscriptExactWrappers.manuscriptLinearModel	the action factors through the reduction of the linear part
+98918d3e060e	structural	-	introduces the display that follows
+f51a929e6e31	formalized	GroupApproximation.LiteralAffineCosetTransitivity.conjD_cosetTransitive	the seven words carry one class onto the seven nonzero classes
+865bcdff04ad	definition	GroupApproximation.ManuscriptExactWrappers.manuscriptCliffordConstruction	presents the graph Clifford group
+d8d4f7026165	formalized	GroupApproximation.ManuscriptExactWrappers.manuscriptCliffordConstruction	the complete graph gives Cl(X), and the extra relations give the surjection
+0c54cabd67cd	formalized	GroupApproximation.IsOperatorMF.subgroup GroupApproximation.LiteralNonMFEndpoint.manuscriptTheoremA	MF is a Markov property: the trivial group is MF and E embeds in no MF group
+2e4175a01108	formalized	GroupApproximation.MarkovMFConsequences.operatorMF_recognition_undecidable	Adian--Rabin applied to that Markov property
+98e48e94853a	definition	GroupApproximation.AdianRabinVariantTransform.correct	fixes the coding of finite presentations
+abe2b7294e8e	formalized	GroupApproximation.LiteralNonMFEndpoint.manuscriptTheoremA GroupApproximation.LiteralNonMFPresentation.manuscriptLiteralPresentation	the conjugation datum in E and the element u with u^2 = w
+d10623f430a3	formalized	GroupApproximation.CliffordBSAmenableMF.manuscriptSharpnessOfKazhdanHypothesis	the transport theorem fails over stably finite tracial coordinates
+625ccdefb004	attribution	-	states Alekseev--Thom's open problem; asserts nothing of its own
+2471490ba475	open	-	compares two questions and records what the estimates here require; an open-status claim
+e04fc3a89c47	formalized	GroupApproximation.LiteralSoficAssembly.markedGroup_isSofic	soficity of E is proved from the normal form
+fcd3b40cd949	definition	GroupApproximation.manuscriptMaximalGroupCStarUniversalProperty	the supremum defining the maximal norm, and why it is finite
+897ac1c43a2e	definition	GroupApproximation.manuscriptMaximalGroupCStarUniversalProperty	names the canonical unitaries

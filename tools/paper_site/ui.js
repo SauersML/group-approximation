@@ -689,9 +689,14 @@ function buildFormalView() {
     ' numbered results, and ' + exact + ' of the ' + rows.length +
     ' printed proof steps, are proved in Lean&nbsp;4.</p>';
   const unproved = (tally.unproved || 0) + (tally.open || 0) + (tally.partial || 0);
+  const rest = [];
+  if (unproved) rest.push(unproved + ' are not proved');
+  if (tally.cited) rest.push(tally.cited + ' cite other people\u2019s work');
+  if (tally.ungraded) rest.push(tally.ungraded + ' have not been graded');
   html += '<p class="formal-lede">The manuscript has ' + sent.length + ' sentences. Lean proves ' +
-    (tally.proved || 0) + ' of them. ' + unproved + ' are not proved, ' + (tally.cited || 0) +
-    ' cite other people\u2019s work, and ' + (tally.ungraded || 0) + ' have not been graded.</p>';
+    (tally.proved || 0) + ' of them.' +
+    (rest.length ? ' Of the rest, ' + rest.slice(0, -1).join(', ') +
+      (rest.length > 1 ? ' and ' : '') + rest[rest.length - 1] + '.' : '') + '</p>';
 
   /* Seventeen sentences in a sixty-page manuscript are not something a
      reader can be sent to hunt for.  They are printed here, each linked to
@@ -712,12 +717,29 @@ function buildFormalView() {
     }
     return out;
   };
+  // where the sentence stands, which is worth a word; "in the manuscript"
+  // is not, eighty-eight times over
+  const whereOf = el => {
+    let n = el.closest('.thm, details.proof, p, li') || el;
+    while (n && !(n.tagName === 'H2' || n.tagName === 'H3')) {
+      n = n.previousElementSibling || n.parentElement;
+      if (n === document.body) return '';
+    }
+    if (!n) return '';
+    const num = n.querySelector('.secnum');
+    if (num) return '\u00a7' + num.textContent.trim();
+    const t = (n.textContent || '').trim();
+    return t ? t.slice(0, 40) : '';
+  };
   const section = (title, blurb, els) => els.length
     ? '<section class="formal-group"><h3>' + escHtml(title) + '</h3>' +
       (blurb ? '<p class="formal-blurb">' + escHtml(blurb) + '</p>' : '') +
-      els.map(el => '<div class="formal-item"><div class="formal-claim">' + el.innerHTML +
-        '</div>' + extras(el) + '<div class="formal-meta"><a class="chip chip-ref" href="#' + el.id +
-        '">in the manuscript</a></div></div>').join('') + '</section>'
+      els.map(el => {
+        const where = whereOf(el);
+        return '<div class="formal-item"><div class="formal-claim">' + el.innerHTML +
+          '</div>' + extras(el) + '<div class="formal-meta"><a class="chip chip-ref" href="#' + el.id +
+          '">' + escHtml(where || 'go to it') + '</a></div></div>';
+      }).join('') + '</section>'
     : '';
   html += section('Sentences Lean does not prove', '',
     listOf(['unproved', 'open', 'partial']));
