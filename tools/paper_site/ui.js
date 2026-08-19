@@ -302,6 +302,7 @@ function sentencedHtml(src, ctx) {
     const at = rest.indexOf(sent);
     if (at < 0) { out += renderInline(rest, ctx); rest = ''; break; }
     out += renderInline(rest.slice(0, at), ctx);
+    if (!isAssertion(sent)) { out += renderInline(sent, ctx); rest = rest.slice(at + sent.length); continue; }
     const state = S[sentenceKey(sent)] || 'ungraded';
     out += '<span class="sent" data-state="' + state + '">' + renderInline(sent, ctx) + '</span>';
     rest = rest.slice(at + sent.length);
@@ -700,12 +701,23 @@ function buildFormalView() {
   let html = '<p class="formal-lede">' + withLean + ' of the ' + thms.length +
     ' numbered results, and ' + exact + ' of the ' + rows.length +
     ' printed proof steps, are proved in Lean&nbsp;4.</p>';
+  const unproved = (tally.unproved || 0) + (tally.open || 0) + (tally.partial || 0);
   html += '<p class="formal-lede">Sentence by sentence: of the ' + sent.length +
     ' sentences in the manuscript\u2019s paragraphs, ' + (tally.proved || 0) +
-    ' are proved, ' + ((tally.unproved || 0) + (tally.open || 0) + (tally.partial || 0)) +
-    ' are not, ' + (tally.cited || 0) + ' credit other people\u2019s work, and ' +
-    (tally.ungraded || 0) + ' have not been graded either way. ' +
-    '<button class="key-link" data-mark="ungraded">Show the ungraded ones</button></p>';
+    ' are proved, ' + unproved + ' are not, ' + (tally.cited || 0) +
+    ' credit other people\u2019s work, and ' + (tally.ungraded || 0) +
+    ' have not been graded either way.</p>';
+  html += '<p class="formal-controls">' +
+    '<button class="key-link" data-mark="unproved">Show the ' + unproved + ' the development does not prove</button>' +
+    '<button class="key-link" data-mark="ungraded">Show the ' + (tally.ungraded || 0) + ' nobody has graded</button></p>';
+
+  const listed = sent.filter(el => el.dataset.state !== 'proved' && el.dataset.state !== 'cited'
+    && el.dataset.state !== 'ungraded');
+  if (listed.length) {
+    html += '<section class="formal-group"><h3>Sentences the development does not prove</h3>' +
+      listed.map(el => '<div class="formal-item"><div class="formal-claim">' +
+        el.innerHTML + '</div></div>').join('') + '</section>';
+  }
 
   const missing = rows.filter(r => r.proof === 'MISSING');
   const other = rows.filter(r => r.proof !== 'EXACT' && r.proof !== 'MISSING');
@@ -1351,7 +1363,7 @@ function setupTabs() {
     const m = ev.target.closest('[data-mark]');
     if (m) {
       const on = document.body.classList.toggle('show-' + m.dataset.mark);
-      m.textContent = (on ? 'Stop showing' : 'Show') + ' the ungraded ones';
+      m.textContent = m.textContent.replace(/^(Show|Hide)/, on ? 'Hide' : 'Show');
       if (on) document.querySelector('.tab[data-view="paper"]').click();
     }
   });

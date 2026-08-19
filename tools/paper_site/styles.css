@@ -539,17 +539,18 @@ a.chip:hover { text-decoration: none; color: var(--link); border-color: var(--li
 
 
 /* ============ sentence states ============ */
-/* A sentence the development proves needs no mark: that is the ordinary case
-   and marking it would say nothing.  A sentence it does not prove is marked,
-   and so is a sentence nobody has graded -- silence there would read as the
-   ordinary case, which is the one thing it is not. */
-.sent[data-state="unproved"],
-.sent[data-state="open"],
-.sent[data-state="partial"] {
-  background: linear-gradient(transparent 82%, #f2dfb8 82%);
-}
-.sent[data-state="cited"] { color: var(--ink-soft); }
+/* Nothing is coloured by default.  A colour with no key beside it tells a
+   reader that something is different and not what, which is worse than
+   silence; the sentences that are not proved are listed where they can be
+   named.  The two controls that do tint say in their own label what they
+   are about to show. */
+body.show-unproved .sent[data-state="unproved"],
+body.show-unproved .sent[data-state="open"],
+body.show-unproved .sent[data-state="partial"],
 body.show-ungraded .sent[data-state="ungraded"] {
-  background: linear-gradient(transparent 82%, var(--bg-inset) 82%);
-  outline: 1px dotted var(--rule);
+  background: var(--verified-bg);
+  box-shadow: 0 0 0 2px var(--verified-bg);
+  border-radius: 2px;
 }
+
+.formal-controls { display: flex; flex-wrap: wrap; gap: 18px; margin: 0 0 30px; font-size: 13.5px; }

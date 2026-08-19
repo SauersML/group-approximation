@@ -353,7 +353,14 @@ def parse_census():
                 plain = 'proved' if all(grades[d] == 'EXACT' for d in real) else 'unproved'
         else:
             plain = PLAIN.get(status, 'ungraded')
-        out[js_hash(re.sub(r'\s+', ' ', sentence).strip())] = plain
+        norm = re.sub(r'\s+', ' ', sentence).strip()
+        out[js_hash(norm)] = plain
+        # the census keeps a layout macro in front of the sentence it precedes;
+        # the renderer emits that macro as its own node, so key both forms
+        bare = re.sub(r'^(?:\s*\\(?:noindent|paragraph|medskip|smallskip|bigskip|centering|par)\b(?:\{[^{}]*\})?)+',
+                      '', norm).strip()
+        if bare and bare != norm:
+            out.setdefault(js_hash(bare), plain)
     return out
 
 

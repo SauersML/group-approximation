@@ -149,6 +149,15 @@ function protectPeriods(text) {
   return text;
 }
 
+/* A run of markers left over after the sentence they annotate is metadata,
+   not an assertion; the census drops anything with no letter in it. */
+function isAssertion(sentence) {
+  const bare = sentence
+    .replace(/\\leanverified\s*\{[^{}]*\}\s*\{[^{}]*\}/g, '')
+    .replace(/\\leanstep\s*\{[^{}]*\}/g, '');
+  return /[A-Za-z]/.test(bare);
+}
+
 function splitSentences(paragraph) {
   const guarded = protectPeriods(paragraph);
   return guarded.split(/(?<=[.!?])["'\)\}]?\s+/)
@@ -159,10 +168,12 @@ function splitSentences(paragraph) {
 /* FNV-1a over UTF-8 of the whitespace-collapsed sentence: the same key the
    build computes from the census. */
 function sentenceKey(sentence) {
-  // the badges are metadata sitting inside the sentence, not part of it
+  // the badges are metadata sitting inside the sentence, not part of it, and
+  // a layout macro in front of it belongs to the page, not to the assertion
   const bare = sentence
     .replace(/\\leanverified\s*\{[^{}]*\}\s*\{[^{}]*\}/g, '')
-    .replace(/\\leanstep\s*\{[^{}]*\}/g, '');
+    .replace(/\\leanstep\s*\{[^{}]*\}/g, '')
+    .replace(/^(?:\s*\\(?:noindent|medskip|smallskip|bigskip|centering|par)\b)+/, '');
   const norm = bare.replace(/\s+/g, ' ').trim();
   const bytes = new TextEncoder().encode(norm);
   let h = 0x811c9dc5;
