@@ -383,7 +383,7 @@ theorem levelZero_stabilizer_at_iterate_site (m : ℕ) :
     · rintro ⟨δ, hδ, hEq⟩
       have hδγ : δ = γ := e0.injective hEq
       simpa [hδγ] using hδ
-  simpa using hfix.trans hmap
+  simpa [map_one, one_mul] using hfix.trans hmap
 
 include hα in
 /-- **Necessity.**  Soficity of the ascending-HNN coset action forces every
