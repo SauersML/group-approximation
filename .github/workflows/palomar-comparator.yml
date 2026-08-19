@@ -112,13 +112,17 @@ jobs:
         run: lake build PalomarChallenge PalomarSolution
 
       # Comparator's sandbox.  Landrun is Go; the runner ships a toolchain.
-      # The module path is lowercase `zouuup` even though the GitHub owner
-      # renders as `Zouuup`, and `go install` is case-sensitive.
+      # Two things about the path, both learned the hard way: the module is
+      # lowercase `zouuup` even though the GitHub owner renders capitalised
+      # and `go install` is case-sensitive, and the `main` package lives in
+      # `cmd/landrun`, not at the module root -- installing the root gets
+      # "module found, but does not contain package".
       - name: Build landrun
         run: |
-          go install github.com/zouuup/landrun@main
+          go install github.com/zouuup/landrun/cmd/landrun@main
           echo "$HOME/go/bin" >> "$GITHUB_PATH"
           "$HOME/go/bin/landrun" --version || true
+          test -x "$HOME/go/bin/landrun"
 
       # `lean4export` must match the toolchain of the project being exported,
       # which is this repository's, NOT comparator's.  Palomar derives the
