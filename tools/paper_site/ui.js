@@ -1024,7 +1024,9 @@ function proofOwnerEl(p) {
 function stepsFor(el) {
   const L = window.STEPS || {};
   const out = [];
-  for (const lab of (el.dataset.labels || '').split(' ')) if (lab && L[lab]) out.push(...L[lab]);
+  for (const lab of (el.dataset.labels || '').split(' ')) if (lab && L[lab]) {
+    for (const r of L[lab]) out.push(Object.assign({ anchor: lab }, r));
+  }
   return out;
 }
 
@@ -1075,21 +1077,42 @@ function stepById(id) {
 }
 
 const GRADE_TXT = { 'EXACT': '✓ exact', 'MISMATCH': 'different route', 'MISSING': 'not formalized', 'UNDER-SPECIFIED': 'under-specified' };
+function stepDeclsHtml(r) {
+  return r.decls.map(d => {
+    const short = d.replace(/^GroupApproximation\./, '').replace(/^Mathlib:/, '');
+    const key = resolveLeanRef(short, '', '');
+    const code = '<code class="ls-decl">' + escHtml(short) + '</code>';
+    return key ? '<a class="lean-ref" data-key="' + escHtml(key) + '" title="Show this declaration">' + code + '</a>' : code;
+  }).join(' ');
+}
+
+/* A step whose grade is EXACT has nothing to say that the mark opening this
+   drawer has not said already, and saying it costs a line of the table's own
+   shorthand -- `‖x_n*x_n − 1‖ → 0`, `C*_red(E)`, `proof step:` -- which is
+   written for a table and is not the mathematics of the manuscript.  Only the
+   steps that fall short are printed, and those are restated as TeX. */
 function stepsHtml(rows) {
-  let html = '';
-  for (const r of rows) {
-    const cls = 'lg-' + r.proof.toLowerCase().replace(/[^a-z]/g, '');
-    const decls = r.decls.map(d => {
-      const short = d.replace(/^GroupApproximation\./, '').replace(/^Mathlib:/, '');
-      const key = resolveLeanRef(short, '', '');
-      const code = '<code class="ls-decl">' + escHtml(short) + '</code>';
-      return key ? '<a class="lean-ref" data-key="' + escHtml(key) + '" title="Show this declaration">' + code + '</a>' : code;
-    }).join(' ');
-    html += '<div class="step-row"><span class="ls-grade ' + cls + '">' + (GRADE_TXT[r.proof] || escHtml(r.proof)) + '</span>' +
-      '<span class="ls-claim">' + escHtml(r.claim) + '</span>' +
+  const open = rows.filter(r => r.proof !== 'EXACT');
+  if (!open.length) return '';
+  let html = '<div class="steps-open"><div class="steps-open-head">Steps with no Lean proof</div>';
+  for (const r of open) {
+    const tex = NOT_IN_LEAN[r.step];
+    const body = tex ? renderInline(tex, {}) : escHtml(r.claim);
+    const decls = stepDeclsHtml(r);
+    html += '<div class="step-row"><span class="ls-claim">' + body + '</span>' +
       (decls ? '<span class="ls-decls">' + decls + '</span>' : '') + '</div>';
   }
-  return html;
+  return html + '</div>';
+}
+
+/* One graded step, opened from a mark that names it. */
+function stepRowHtml(r) {
+  const decls = stepDeclsHtml(r);
+  if (r.proof === 'EXACT') return decls ? '<div class="step-row"><span class="ls-decls">' + decls + '</span></div>' : '';
+  const tex = NOT_IN_LEAN[r.step];
+  const body = tex ? renderInline(tex, {}) : escHtml(r.claim);
+  return '<div class="step-row"><span class="ls-claim">' + body + '</span>' +
+    (decls ? '<span class="ls-decls">' + decls + '</span>' : '') + '</div>';
 }
 /* One fixed side panel for all formal counterparts: a badge opens it, the
    manuscript never reflows, and the declarations arrive already expanded —
@@ -1158,7 +1181,7 @@ function setupLeanPanels(root) {
       if (!row && chip.dataset.lean) {
         try { run = JSON.parse(chip.dataset.lean); } catch (e) { warn('unreadable chip payload'); }
       }
-      const content = row ? stepsHtml([row]) : run.map(leanDeclHtml).join('');
+      const content = row ? stepRowHtml(row) : run.map(leanDeclHtml).join('');
       const title = run.length > 1 ? 'This step in Lean — ' + run.length + ' declarations' : 'This step in Lean';
       drawer.innerHTML = '<div class="lean-drawer-head"><span class="lean-drawer-title">' + escHtml(title) + '</span>' +
         '<button class="lean-drawer-close" aria-label="Close">×</button></div>' + content;

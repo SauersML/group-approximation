@@ -367,7 +367,8 @@ details.proof > summary .badge-lean { font-size: 12px; padding: 0 8px; }
 .badge-lean-partial:hover { border-color: var(--ink-soft); }
 
 /* per-step grading in the drawer */
-.step-row:first-of-type { margin-top: 16px; }
+.steps-open { margin-top: 18px; }
+.steps-open-head { font-weight: 700; font-size: 13px; margin-bottom: 2px; }
 .step-row {
   display: flex; gap: 8px; align-items: baseline; flex-wrap: wrap;
   padding: 6px 0; border-top: 1px solid var(--rule-soft);
