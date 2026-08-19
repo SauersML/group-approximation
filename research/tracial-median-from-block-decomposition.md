@@ -2,98 +2,125 @@
 rg: 2
 id: tracial-median-from-block-decomposition
 kind: route
-title: Pin the size observable by spectral coarea against uniform block expansion
-target: tracial-median-concentration
-requires: [hs-expander-block-decomposition]
+title: Pin the size observable directly with the block Poincare gap
+ target: tracial-median-concentration
+requires: [hs-expander-block-decomposition, median-poincare-concentration]
 artifacts:
-  - docs/TRUE_SPECTRAL_COAREA_INVARIANT_CUT.md
   - official/counterexample.tex
 ---
 
-Assume the nested pair of block algebras, with uniform gap constant
-`kappa'` on each block.  Build `M` and `f` as in the target claim; `f` is a
-positive contraction lying in the same abelian algebra, so its spectral
-projections `P_t = 1_[t,infinity)(f)` lie there too and commute with every
-`q_A`.
+Assume the nested pair of block algebras from
+`hs-expander-block-decomposition`, with a uniform gap constant `kappa'` on
+each coarse ambient block.  Build `M` and `f` as in the target claim.  Thus
+`0 <= f <= p`, `f` commutes with every coarse block `q_A`, and `1/2` is a
+median of the spectral distribution of `f_A = q_A f` for the normalized
+trace on every nonzero `q_A`.
 
-**One-sided drift.**  For `s` a `Gamma`-generator, `f` is almost invariant
-because `M` is.  For a compressor `t_i`, the compression `t_i Gamma t_i^(-1)
-<= Gamma` makes `phi(t_i) p_j phi(t_i)^*` almost supported in a single fine
-block whose trace is at least `tau(p_j)` up to the decomposition error, so
-`M` almost increases along `t_i`; the manuscript's elementary inequality
-`(1-eta)x/((1-eta)x+a) >= x/(x+a) - eta` (`official/counterexample.tex:322`)
-transfers verbatim by functional calculus, since both sides are increasing
-scalar functions applied to commuting positive operators.  This yields
-`phi(s) f phi(s)^* >= f - eta` modulo a corner of small trace, for every
-positive `G`-generator `s`.
+The old route converted the block Poincare inequality to a Cheeger inequality,
+then used spectral coarea, and therefore inherited an irrelevant genuine-
+unitary hypothesis in that conversion.  The claim
+`median-poincare-concentration` shows that none of this is needed: apply the
+Poincare inequality to `f` itself.
 
-**Conservation.**  `tau(u f u^* - f) = 0` for `u` unitary, so by the lemma
-in `hs-block-decomposition-to-steinberg-stable` the one-sided bound upgrades
-to `‖phi(s) f phi(s)^* - f‖_1 = o(1)`, summed over `S_G`.
+**One-sided drift.**  For a `Gamma` generator, `f` is almost invariant because
+the fine block-size observable `M` is.  For a compressor `t_i`, the clause
 
-**Coarea.**  Apply `(SCI2)` of `docs/TRUE_SPECTRAL_COAREA_INVARIANT_CUT.md`
-with `H = f` and the arrows `A = phi(s)`, `s in S_G`.  The integral over
-thresholds of the commutator energy of the spectral cuts is bounded by the
-commutator energy of `f` itself, which the previous step made `o(1)`.
+```text
+phi(t_i) p_j phi(t_i)^*  ~=  p_(sigma(j)),
+tau(p_(sigma(j))) >= tau(p_j) - eps(delta)
+```
 
-**Cheeger.**  This step is a computation, not a hypothesis.  The gap in the
-form demanded by `hs-expander-block-decomposition` yields a tracial Cheeger
-inequality for every cut inside a block.
+makes `M` almost increase along `t_i`.  The scalar inequality used in the
+manuscript,
 
-> **Lemma (tracial Cheeger from a block gap).**  Let `q` be a projection in
-> a finite von Neumann algebra `(M,tau)`, let `tau_q = tau(.)/tau(q)`, let
-> `u_s in U(qMq)` for `s` in a finite set `S`, and suppose
-> `sum_s ‖u_s x - x u_s‖_(2,q)^2 >= kappa'^2 ‖x - tau_q(x)q‖_(2,q)^2` for
-> every `x=x^*` in `qMq`.  Then for every projection `P <= q`,
->
-> ```text
-> sum_(s in S) ‖(q-P) u_s P‖_(2,q)^2
->   >= (kappa'^2/2) tau_q(P) tau_q(q-P)
->   >= (kappa'^2/4) min(tau_q(P), tau_q(q-P)).
-> ```
+```text
+(1-eta)x / ((1-eta)x+a) >= x/(x+a) - eta,
+```
 
-*Proof.*  Put `A_s=(q-P)u_sP` and `B_s=Pu_s(q-P)`, so `[u_s,P]=A_s-B_s`.
-They are orthogonal, since `tau(B_s^*A_s)=tau((q-P)u_s^*P(q-P)u_sP)=0`, and
-they have equal norm: `tau(A_s^*A_s)=tau(u_sPu_s^*)-tau(Pu_sPu_s^*)` and
-`tau(B_s^*B_s)=tau(P)-tau(Pu_sPu_s^*)`, and `tau(u_sPu_s^*)=tau(P)`.  Hence
-`sum_s ‖[u_s,P]‖^2 = 2 sum_s ‖A_s‖^2`.  Apply the gap to `x=P`, using
-`‖P-tau_q(P)q‖_(2,q)^2 = tau_q(P)-tau_q(P)^2`.  The last inequality holds
-because the larger of `tau_q(P)` and `tau_q(q-P)` is at least `1/2`.  QED
+passes through the commuting functional calculus defining `f`.  Hence, up to
+the small discarded corner supplied by the decomposition,
 
-So the gap hypothesis IS the Cheeger inequality, with `gamma = kappa'^2/4`,
-and no separate expansion input is required.  Median normalization supplies
-the side condition the manuscript needs: because `1/2` is a fiberwise median
-of `f`, for `t<1/2` the sublevel set is the smaller side inside `q_A` and
-for `t>1/2` the superlevel set is, so the `min` above is the side being
-bounded.  Splitting the threshold integral at `1/2` gives
-`kappa'^2 * ‖f - 1/2‖_1 = o(1)` up to absolute constants.
+```text
+phi(s) f phi(s)^* >= f - o(1)
+```
 
-Inverting `M = m_A f (1-f)^(-1)` on the corner where `|f - 1/2| <= delta`
-then gives the trace-ratio bound with `rho -> 1`, which is the target.
+for every generator `s` used by the coarse block gap.
 
-**Status.**  The drift clause used in the first step is now part of the
-statement of `hs-expander-block-decomposition` rather than a caveat carried
-here.  That change was made because a route asserts its implication, and
-this route previously flagged a hole in prose while presenting itself as a
-derivation -- the same failure the graph records as restatement dressed as
-reduction, in its other common form.  With the drift clause in the
-prerequisite and the Cheeger lemma proved above, the chain from the
-prerequisite to the target is complete except for the error bookkeeping
-noted at the end.
+**Trace conservation turns the one-sided inequality into `L^2`
+invariance.**  Since `phi(s)` is unitary in the ambient matrix algebra,
+`tau(phi(s) f phi(s)^*) = tau(f)`.  The elementary positive/negative-part
+argument already used in `hs-block-decomposition-to-steinberg-stable`
+therefore gives
 
-Two things this route does **not** need, contrary to how the step was first
-scoped.  It needs no separate expansion or Cheeger hypothesis beyond the
-block gap, by the lemma.  And it needs no boundedness argument for the size
-observable: the manuscript renormalizes because "the values of `M` need not
-be uniformly bounded" (`official/counterexample.tex:310`), whereas tracially
-`M = sum_i tau(p_i) p_i <= 1` by construction, so `M(M+m_A)^(-1)` is
-continuous functional calculus of a positive contraction.  The median
-normalization survives for a different reason -- it is what places the
-median at `1/2` fiberwise, which is what makes the `min` in the lemma land
-on the side being estimated.
+```text
+||phi(s) f phi(s)^* - f||_1 = o(1).
+```
 
-One caveat on the lemma's hypotheses in the intended application.  It is
-stated for genuine unitaries `u_s in U(qMq)`, while the compressions
-`q phi(s) q` of an almost-representation are only almost unitary in `qMq`.
-The defect is controlled by `‖[phi(s),q]‖_2`, which the decomposition makes
-small, but the resulting error term has not been tracked here.
+Both terms are positive contractions, so their difference has operator norm
+at most `1`.  Consequently
+
+```text
+||phi(s) f phi(s)^* - f||_2^2
+ <= ||phi(s) f phi(s)^* - f||_1
+ = o(1),
+```
+
+and, by unitary invariance,
+`||[phi(s),f]||_2 = o(1)`.
+
+**Apply the gap blockwise, without unitary compression bookkeeping.**  Put
+`a_(A,s) = q_A phi(s) q_A`.  Because `q_A` commutes with `f`,
+
+```text
+[a_(A,s), f_A] = q_A [phi(s),f] q_A.
+```
+
+The coarse-block clause of `hs-expander-block-decomposition` assumes the
+Poincare inequality for these very compressed operators.  It does not merely
+assert that they are close to some genuine unitary.  Thus
+`median-poincare-concentration` applies to each `q_A` even though
+`a_(A,s)` is only an almost-unitary.  With `C=(1+sqrt(2))^2`, it gives
+
+```text
+tau(q_A) ||f_A-(1/2)q_A||_(2,A)^2
+ <= (C/kappa'^2) sum_s ||q_A[phi(s),f]q_A||_2^2.
+```
+
+Sum over `A`.  Orthogonal block compression is contractive in `L^2`, so
+
+```text
+||p f-(1/2)p||_2^2
+ <= (C/kappa'^2) sum_s ||[phi(s),f]||_2^2
+ = o(1).
+```
+
+The discarded complement has `tau(1-p)=o(1)`, hence normalized
+Cauchy--Schwarz yields the target conclusion
+
+```text
+||f-1/2||_1 = o(1).
+```
+
+Finally choose `delta_n -> 0` slowly enough that the spectral projection
+
+```text
+e_n = 1_[1/2-delta_n, 1/2+delta_n](f)
+```
+
+has trace tending to `1`.  On a fine block `p_i <= q_A`, `f` has the scalar
+value
+
+```text
+tau(p_i)/(tau(p_i)+m_A).
+```
+
+Solving for `tau(p_i)` shows that two fine blocks meeting `e_n` in the same
+`q_A` have trace ratio trapped between quantities tending to `1`.  This is
+exactly the operative output of `tracial-median-concentration`.
+
+**What disappeared.**  There is no coarea step, no Cheeger conversion, and no
+need to prove that `q_A phi(s) q_A` is close enough to a genuine unitary for a
+projection-boundary calculation.  The spectral-gap inequality demanded by
+the prerequisite is already the stronger analytic object.  The previously
+recorded almost-unitary bookkeeping debt was an artefact of taking an
+unnecessary detour through cuts.
