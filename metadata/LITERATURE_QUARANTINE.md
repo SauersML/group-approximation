@@ -82,9 +82,51 @@ statement that names one is conditional all the same:
 What is left is **ten** independent inputs, and only eight of them are other
 people's theorems: TWW, Lance, Tu, Chiodo/Belegradek, Osin, a torsion-free
 hyperbolic Kazhdan group, Hull, Kun–Thom/Shulman, Adian–Rabin.  **Two are
-proofs this repository could finish** — `UCPSelfAdjointContractive`, two steps
-from its own Stinespring chain, and `GreendlingerGate`.  Those two are where
-work belongs; the rest is not a task list.
+proofs this repository could finish** — `UCPSelfAdjointContractive` and
+`GreendlingerGate`.  Those two are where work belongs; the rest is not a task
+list.  Both turned out to rest on a statement that is wrong as written, which
+is the substance of the two sections below: neither is an unproved case, each
+is a target that has to be restated before it can be hit.
+
+## `UCPSelfAdjointContractive` is not two bookkeeping steps away
+
+`Analysis/QuasidiagonalTrace` recorded this input as dischargeable, missing only
+(i) transport of its form-sense complete positivity into
+`CStarExactness.IsCompletelyPositive` and (ii) the identification of
+`Matrix Y Y ℂ` with `B(ℂᵏ)`.  Step (ii) is bookkeeping.  **Step (i) is false.**
+
+`IsCompletelyPositiveOnMatrices` asks only that the *real part* of the form be
+nonnegative.  Writing a matrix as `H + iK` with `H, K` Hermitian,
+`Re ⟪W, T W⟫ = ⟪W, H W⟫`, so the predicate constrains `H` and says nothing at
+all about `K`.  It is therefore strictly weaker than complete positivity, and
+both clauses of `UCPSelfAdjointContractive` fail over it.
+
+Counterexample, two-by-two.  With `N = !![0, 1; -1, 0]` (so `Nᴴ = −N`, and
+`⟪W, N W⟫` purely imaginary), take `A = ℂ × ℂ`, `Y = Fin 2`, and
+
+```text
+    φ (z, w)  =  z • (½ • 1 + N)  +  w • (½ • 1 − N).
+```
+
+Linear, unital, and completely positive *in the repository's sense* — the
+double sum collapses to `Re ⟪U, (½ + N) U⟫ + Re ⟪V, (½ − N) V⟫`, each term
+`½‖·‖²`.  But `φ (star (z, w)) ≠ (φ (z, w))ᴴ` whenever `z ≠ w`, and
+`‖φ (1, 0)‖ = √5 / 2 > 1`.
+
+**The fix, and what it buys.**  Add to the predicate the clause that the form's
+imaginary part vanishes.  That is what complete positivity means and what
+Tikuisis–White–Winter supplies, so the input does not become stronger than the
+theorem — the current definition is an accidental weakening, not a deliberate
+one.  With the clause, the `⋆`-preservation half falls out with no dilation at
+all: the two-element tuple `a = (μ • 1, b)` has form
+
+```text
+    |μ|²‖u‖² + conj μ ⟪u, φ b v⟫ + μ ⟪v, φ (star b) u⟫ + ⟪v, φ (star b ⋆ b) v⟫,
+```
+
+and reality at `μ = 0, 1, i` forces `⟪v, φ (star b) u⟫ = conj ⟪u, φ b v⟫`, which
+is `φ (star b) = (φ b)ᴴ`.  Contractivity still wants Stinespring, or
+Kadison–Schwarz for two-positive maps.
 
 ## The one citation that is not a research programme
 
