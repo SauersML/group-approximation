@@ -111,5 +111,26 @@ theorem greendlinger_of_isConj_inv {R : Set (List (α × Bool))}
     (invRev_mem_symmetrization (subset_symmetrization R hr)) hw ?_
   rwa [FreeGroup.inv_mk] at hconj
 
+/-- **The shape the router consumes, in the one-relator case.**  A element that
+is a single conjugate of a symmetrized relator is *long*: some symmetrized
+relator is shorter than twice its norm.
+
+This is exactly the conclusion of `norm_bound_of_greendlinger`, obtained without
+the gate whenever the element is a single conjugate -- which is what a minimal
+expression with one factor gives.  The remaining work in the gate is precisely
+to descend from a minimal expression with several factors to this case. -/
+theorem norm_bound_of_isConj {R : Set (List (α × Bool))}
+    (hR : ∀ r ∈ R, FreeGroup.IsCyclicallyReduced r) (hRne : ∀ r ∈ R, r ≠ [])
+    {s : List (α × Bool)} (hs : s ∈ symmetrization R)
+    {g : FreeGroup α} (hconj : IsConj (FreeGroup.mk s) g) :
+    ∃ t ∈ symmetrization R, t.length < 2 * FreeGroup.norm g := by
+  have hmk : FreeGroup.mk g.toWord = g := FreeGroup.mk_toWord
+  obtain ⟨t, ht, u, huinf, -, hlt⟩ :=
+    greendlinger_of_isConj hR hRne hs FreeGroup.isReduced_toWord (by rwa [hmk])
+  refine ⟨t, ht, ?_⟩
+  have h1 : u.length ≤ g.toWord.length := huinf.sublist.length_le
+  have h2 : FreeGroup.norm g = g.toWord.length := rfl
+  omega
+
 end SmallCancellationRouter
 end GroupApproximation
