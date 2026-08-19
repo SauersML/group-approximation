@@ -72,12 +72,24 @@ of them is a mismatch, not a match.  So the block is copied byte for byte, and
 `scripts/check_palomar_submission.py` fails the build if the two copies ever
 differ.
 
-Text comparison cannot see a difference that appears only after elaboration —
-a different instance resolved on one side, a coercion inserted on one side.
-`scripts/check_palomar_statement_match.sh` covers that: it dumps the compared
-declaration's level parameters, structural type hash, sorted used-constant
-list and `pp.all` type from each module's own environment and diffs them.  On
-this tree both sides give type hash `2455476343` over 110 used constants.
+Text comparison cannot see a difference that appears only after elaboration,
+and this is not hypothetical — it happened here.  With byte-identical source
+in both files, `ExplicitNonMF.relators` elaborated to *different values*: the
+Challenge resolved `DecidableEq (FreeGroup Generator)` to its own catch-all
+instance, while the Solution resolved it to Mathlib's
+`FreeGroup.instDecidableEq`, which exists there only because the development
+imports `Mathlib.GroupTheory.FreeGroup.Reduce`.  The compared theorem's *type*
+matched on both sides; the constant that type mentions did not, and the real
+Comparator rejected the submission with
+
+    Const does not match between challenge and target 'ExplicitNonMF.relators'
+
+The fix is the import, so both environments resolve the same instance.  The
+lesson is the gate: `scripts/check_palomar_statement_match.sh` now walks the
+same transitive closure Comparator walks and prints, for every constant in it,
+the structural hash of its **type and its value**.  On this tree the two sides
+agree on all 5,448 constants.  Calibrated by rebuilding the pre-fix challenge
+as a twin: it produces 275 differing lines, `relators` among them.
 
 The bridge from the copy to the development is definitional, not
 propositional: the copied definitions elaborate to the same terms as
@@ -149,7 +161,33 @@ the definition-fidelity check, which is mandatory and scored.
 | challenge at most 100 KiB and 1000 lines | 532 lines / 25,669 bytes |
 | `permitted_axioms` exactly the three classical axioms, and the proof's closure matching | yes; `#audit_axioms` reports `[propext, Classical.choice, Quot.sound]` |
 | `formalization.yaml` accepted by `PalomarSubmission/scripts/submission_contract.py` | yes; derived `result_origin: original`, `repository_role: substantive-development` |
-| challenge and solution elaborate the same statement | yes; type hash `2455476343`, 110 used constants |
+| challenge and solution elaborate the same statement | yes; identical type and value hashes across the whole 5,448-constant closure |
+| **the real `leanprover/comparator` accepts the solution against the challenge** | yes — run on the compute node against this configuration, exit 0, no failure marker |
+
+## Running Comparator yourself
+
+Two routes.  `.github/workflows/palomar-comparator.yml` is manual dispatch and
+gets the real landrun sandbox and the NanoDa replay, which is what Palomar
+runs.  The compute nodes can also do it, which is worth recording because the
+first attempt looked impossible: they are Rocky 8.10 with glibc 2.28, and
+Lean's *bundled* clang cannot link an executable there, so `lean4export` and
+`comparator` fail to build while ordinary library builds are fine.  The way
+through is `LEAN_CC` pointed at a wrapper script — it must be a single
+executable, not a command line:
+
+```sh
+#!/bin/sh
+exec gcc -L$TOOLCHAIN/lib -L$TOOLCHAIN/lib/lean \
+         -Wl,-rpath,$TOOLCHAIN/lib -Wl,-rpath,$TOOLCHAIN/lib/lean "$@"
+```
+
+`lean4export` must be built at the tag matching *this* repository's
+`lean-toolchain`, and `comparator` at its own, which is what Palomar's
+verifier derives too.  Real landrun is still impossible there — the node
+kernel is 4.18 and Landlock needs 5.13 — so use comparator's own
+`scripts/fake-landrun.sh`, which is the right trade for checking one's own
+code.  A full run took about fifty minutes, almost all of it exporting and
+kernel-replaying the proof closure.
 
 ## How to submit
 

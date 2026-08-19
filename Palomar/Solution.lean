@@ -6,6 +6,7 @@ import Mathlib.Analysis.CStarAlgebra.Matrix
 import Mathlib.GroupTheory.FinitelyPresentedGroup
 import Mathlib.GroupTheory.PresentedGroup
 import Mathlib.GroupTheory.FreeGroup.Basic
+import Mathlib.GroupTheory.FreeGroup.Reduce
 import Mathlib.GroupTheory.Perm.Basic
 import Mathlib.LinearAlgebra.UnitaryGroup
 import Mathlib.Order.Filter.AtTopBot.Defs
