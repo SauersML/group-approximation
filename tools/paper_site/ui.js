@@ -303,8 +303,13 @@ function sentencedHtml(src, ctx) {
     if (at < 0) { out += renderInline(rest, ctx); rest = ''; break; }
     out += renderInline(rest.slice(0, at), ctx);
     if (!isAssertion(sent)) { out += renderInline(sent, ctx); rest = rest.slice(at + sent.length); continue; }
-    const state = S[sentenceKey(sent)] || 'ungraded';
-    out += '<span class="sent" data-state="' + state + '">' + renderInline(sent, ctx) + '</span>';
+    const raw = S[sentenceKey(sent)] || 'ungraded';
+    const bar = raw.indexOf('|');
+    const state = bar < 0 ? raw : raw.slice(0, bar);
+    const rows = bar < 0 ? '' : raw.slice(bar + 1);
+    const id = state === 'proved' || state === 'cited' ? '' : ' id="s-' + sentenceKey(sent) + '"';
+    out += '<span class="sent" data-state="' + state + '"' + id +
+      (rows ? ' data-rows="' + escAttr(rows) + '"' : '') + '>' + renderInline(sent, ctx) + '</span>';
     rest = rest.slice(at + sent.length);
   }
   return out + renderInline(rest, ctx);
@@ -667,24 +672,6 @@ const LEAN_PROVES = {
   'LI.14': 'Lean proves the reduction. Whether such a group exists is Question 2.',
 };
 
-function formalItemHtml(r) {
-  const body = renderInline(r.claim || '', {});
-  const cites = (r.source || [])
-    .filter(k => !body.includes('data-key="' + k + '"'))
-    .map(k => BIB.byKey[k]
-      ? '<a class="cite" href="#bib-' + escHtml(k) + '" data-key="' + escHtml(k) + '">' + escHtml(BIB.byKey[k].label) + '</a>'
-      : escHtml(k)).join(', ');
-  const where = LABELS[r.anchor];
-  const link = where
-    ? '<a class="chip chip-ref" href="#' + where.anchor + '">' + escHtml((where.kind || '') + ' ' + (where.num || '')) + '</a>'
-    : '';
-  const meta = (cites ? '<span class="fcite">' + cites + '</span>' : '') + link;
-  const instead = LEAN_PROVES[r.step]
-    ? '<div class="formal-instead">' + renderInline(LEAN_PROVES[r.step], {}) + '</div>' : '';
-  return '<div class="formal-item"><div class="formal-claim">' + body + '</div>' + instead +
-    (meta ? '<div class="formal-meta">' + meta + '</div>' : '') + '</div>';
-}
-
 function buildFormalView() {
   const S = window.STEPS || {};
   const rows = [];
@@ -705,28 +692,38 @@ function buildFormalView() {
   html += '<p class="formal-lede">The manuscript has ' + sent.length + ' sentences. Lean proves ' +
     (tally.proved || 0) + ' of them. ' + unproved + ' are not proved, ' + (tally.cited || 0) +
     ' cite other people\u2019s work, and ' + (tally.ungraded || 0) + ' have not been graded.</p>';
-  html += '<p class="formal-controls">' +
-    '<button class="key-link" data-mark="unproved">Highlight the ' + unproved + ' unproved sentences</button>' +
-    '<button class="key-link" data-mark="ungraded">Highlight the ' + (tally.ungraded || 0) + ' ungraded sentences</button></p>';
 
-  const listed = sent.filter(el => el.dataset.state !== 'proved' && el.dataset.state !== 'cited'
-    && el.dataset.state !== 'ungraded');
-  if (listed.length) {
-    html += '<section class="formal-group"><h3>Sentences the development does not prove</h3>' +
-      listed.map(el => '<div class="formal-item"><div class="formal-claim">' +
-        el.innerHTML + '</div></div>').join('') + '</section>';
-  }
-
-  const missing = rows.filter(r => r.proof === 'MISSING');
-  const other = rows.filter(r => r.proof !== 'EXACT' && r.proof !== 'MISSING');
-  if (missing.length) {
-    html += '<section class="formal-group"><h3>Not proved in Lean</h3>' +
-      missing.map(formalItemHtml).join('') + '</section>';
-  }
-  if (other.length) {
-    html += '<section class="formal-group"><h3>Lean proves a different statement</h3>' +
-      other.map(formalItemHtml).join('') + '</section>';
-  }
+  /* Seventeen sentences in a sixty-page manuscript are not something a
+     reader can be sent to hunt for.  They are printed here, each linked to
+     where it stands. */
+  const byStep = {};
+  for (const r of rows) byStep[r.step] = r;
+  const listOf = states => sent.filter(el => states.includes(el.dataset.state));
+  const extras = el => {
+    let out = '';
+    for (const step of (el.dataset.rows || '').split(' ').filter(Boolean)) {
+      const r = byStep[step];
+      if (!r) continue;
+      if (LEAN_PROVES[step]) out += '<div class="formal-instead">' + renderInline(LEAN_PROVES[step], {}) + '</div>';
+      const cites = (r.source || []).map(k => BIB.byKey[k]
+        ? '<a class="cite" href="#bib-' + escHtml(k) + '" data-key="' + escHtml(k) + '">' + escHtml(BIB.byKey[k].label) + '</a>'
+        : escHtml(k)).join(', ');
+      if (cites) out += '<div class="formal-meta"><span class="fcite">' + cites + '</span></div>';
+    }
+    return out;
+  };
+  const section = (title, blurb, els) => els.length
+    ? '<section class="formal-group"><h3>' + escHtml(title) + '</h3>' +
+      (blurb ? '<p class="formal-blurb">' + escHtml(blurb) + '</p>' : '') +
+      els.map(el => '<div class="formal-item"><div class="formal-claim">' + el.innerHTML +
+        '</div>' + extras(el) + '<div class="formal-meta"><a class="chip chip-ref" href="#' + el.id +
+        '">in the manuscript</a></div></div>').join('') + '</section>'
+    : '';
+  html += section('Sentences Lean does not prove', '',
+    listOf(['unproved', 'open', 'partial']));
+  html += section('Sentences nobody has graded',
+    'The census has not assigned these a declaration or a proof step.',
+    listOf(['ungraded']));
   return html;
 }
 
@@ -1358,12 +1355,6 @@ function setupTabs() {
   document.body.addEventListener('click', ev => {
     const g = ev.target.closest('[data-goto]');
     if (g) document.querySelector('.tab[data-view="' + g.dataset.goto + '"]').click();
-    const m = ev.target.closest('[data-mark]');
-    if (m) {
-      const on = document.body.classList.toggle('show-' + m.dataset.mark);
-      m.textContent = m.textContent.replace(/^(Highlight|Clear)/, on ? 'Clear' : 'Highlight');
-      if (on) document.querySelector('.tab[data-view="paper"]').click();
-    }
   });
   // cross-view jumps: clicking an xref/chip while in claims/graph view switches to paper
   document.body.addEventListener('click', ev => {

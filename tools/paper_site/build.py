@@ -354,6 +354,10 @@ def parse_census():
         else:
             plain = PLAIN.get(status, 'ungraded')
         norm = re.sub(r'\s+', ' ', sentence).strip()
+        if plain != 'proved' and status == 'ledger':
+            # which rows grade a sentence the development does not prove, so
+            # the page can show what those rows rest on
+            plain = plain + '|' + ' '.join(d for d in decls.split() if d in grades)
         out[js_hash(norm)] = plain
         # the census keeps a layout macro in front of the sentence it precedes;
         # the renderer emits that macro as its own node, so key both forms
