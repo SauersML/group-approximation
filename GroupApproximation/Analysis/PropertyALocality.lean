@@ -127,7 +127,9 @@ theorem transportWeight_rep_mul (W : PropertyAWitness H RH ε) (g : G) (y : H) :
     exact y.2
   rw [transportWeight_of_mem W hx]
   congr 1
-  exact Subtype.ext (by rw [inv_mul_cancel_left])
+  refine Subtype.ext ?_
+  show (rep H g)⁻¹ * (rep H g * (y : G)) = (y : G)
+  rw [inv_mul_cancel_left]
 
 /-- Everything the translated system charges sits on the coset of `g`, at a
 point the subgroup's system charges. -/
@@ -163,8 +165,8 @@ theorem nonempty_propertyAWitness_of_subgroup {H : Subgroup G}
   classical
   -- the same scale, read inside `H`
   obtain ⟨W⟩ :=
-    hHA (R.attach.image fun x ↦ (⟨(x : G), hR (x : G) x.2⟩ : H)) ε hε
-  have hRH : ∀ a ∈ R, ∃ y ∈ (R.attach.image fun x ↦ (⟨(x : G), hR (x : G) x.2⟩ : H)),
+    hHA (R.attach.image fun x : {a // a ∈ R} ↦ (⟨(x : G), hR (x : G) x.2⟩ : ↥H)) ε hε
+  have hRH : ∀ a ∈ R, ∃ y ∈ (R.attach.image fun x : {a // a ∈ R} ↦ (⟨(x : G), hR (x : G) x.2⟩ : ↥H)),
       ((y : H) : G) = a := by
     intro a ha
     exact ⟨⟨a, hR a ha⟩, Finset.mem_image.mpr ⟨⟨a, ha⟩, Finset.mem_attach _ _, rfl⟩, rfl⟩
@@ -207,7 +209,7 @@ theorem nonempty_propertyAWitness_of_subgroup {H : Subgroup G}
       rw [part_coe, part_coe, hrep]
       group
     have hpartRH : (part H g)⁻¹ * part H h ∈
-        (R.attach.image fun x ↦ (⟨(x : G), hR (x : G) x.2⟩ : H)) := by
+        (R.attach.image fun x : {a // a ∈ R} ↦ (⟨(x : G), hR (x : G) x.2⟩ : ↥H)) := by
       have heq : (part H g)⁻¹ * part H h = y0 :=
         Subtype.ext (by rw [hpartcoe, hy0])
       rw [heq]
