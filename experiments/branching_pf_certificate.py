@@ -1,22 +1,24 @@
 #!/usr/bin/env python3
-"""Find exact rational supercriticality certificates for finite branch automata.
+"""Find exact rational pressure certificates for finite branch automata.
 
 Matrix convention: A[j][i] is the number of branches from source i to
-target j. A certificate is a positive rational vector y and lambda > 1 with
+target j.  For a strongly connected component containing a genuine branch,
+this script constructs, using integer path counts only, a positive integer
+vector y and rational lambda > 1 with
 
     A^T y >= lambda y.
 
-Combined with a Cairn branch-capacity inequality x >= A x - e, this certifies
+Combined with a Cairn branch-capacity inequality x >= A x - e, the certificate
+gives
 
-    (lambda - 1) y.x <= y.e,
+    (lambda - 1) y.x <= y.e.
 
-so positive y-weighted carrier mass is incompatible with vanishing error.
-
-The floating-point power iteration below is proposal-only. Every emitted
-certificate is rechecked exactly with fractions.Fraction.
+There is no numerical spectral-radius computation.  The certificate itself and
+the search that constructs it are exact.
 """
 
 import argparse
+from collections import deque
 from fractions import Fraction
 import json
 import sys
@@ -101,25 +103,69 @@ def _submatrix(matrix, component):
     ]
 
 
-def propose_integer_weights(matrix, iterations=256, scale=1_000_000):
-    """Power iterate (I+A)^T only to propose an integer positive vector."""
+def _integer_transpose_mul(matrix, vector):
     n = len(matrix)
-    y = [1.0] * n
-    for _ in range(iterations):
-        z = []
-        for i in range(n):
-            z.append(y[i] + sum(matrix[j][i] * y[j] for j in range(n)))
-        maximum = max(z, default=0.0)
-        if maximum <= 0:
-            break
-        y = [value / maximum for value in z]
-    return [max(1, int(round(value * scale))) for value in y]
+    return [
+        sum(matrix[j][i] * vector[j] for j in range(n))
+        for i in range(n)
+    ]
 
 
-def exact_lambda_lower(matrix, weights):
-    weights = [Fraction(v) for v in weights]
-    lhs = transpose_mul(matrix, weights)
-    return min(lhs[i] / weights[i] for i in range(len(weights)))
+def path_count_certificate(block):
+    """Construct the explicit certificate from recurrent path counting.
+
+    The block is assumed strongly connected.  If every state has exactly one
+    outgoing edge counting multiplicity, it is a directed cycle and there is
+    no pressure above one.  Otherwise choose all branching states, compute the
+    largest distance to them, and use y=sum_{t<N}(A^T)^t 1.
+    """
+    n = len(block)
+    branching = [
+        i for i in range(n)
+        if sum(block[j][i] for j in range(n)) >= 2
+    ]
+    if not branching:
+        return None
+
+    # Reverse graph distances compute the shortest forward distance from each
+    # state to any branching state.
+    reverse = [[] for _ in range(n)]
+    for source in range(n):
+        for target in range(n):
+            if block[target][source] > 0:
+                reverse[target].append(source)
+
+    distance = [None] * n
+    queue = deque()
+    for vertex in branching:
+        distance[vertex] = 0
+        queue.append(vertex)
+    while queue:
+        vertex = queue.popleft()
+        for predecessor in reverse[vertex]:
+            if distance[predecessor] is None:
+                distance[predecessor] = distance[vertex] + 1
+                queue.append(predecessor)
+    if any(value is None for value in distance):
+        raise AssertionError("component passed as strongly connected is not")
+
+    steps = max(value + 1 for value in distance)
+    current = [1] * n
+    weights = [0] * n
+    for _ in range(steps):
+        weights = [weights[i] + current[i] for i in range(n)]
+        current = _integer_transpose_mul(block, current)
+
+    # current=(A^T)^steps 1 counts paths of the chosen length.  Every starting
+    # state has reached a branching vertex and split, so all counts are >=2.
+    if any(value < 2 for value in current):
+        raise AssertionError("path-count branching certificate failed")
+
+    maximum = max(weights)
+    lam = Fraction(maximum + 1, maximum)
+    if not verify_certificate(block, weights, lam):
+        raise AssertionError("internal exact verification failed")
+    return weights, lam, steps
 
 
 def find_certificate(matrix):
@@ -133,17 +179,16 @@ def find_certificate(matrix):
         if len(component) == 1 and matrix[component[0]][component[0]] == 0:
             continue
         block = _submatrix(matrix, component)
-        weights = propose_integer_weights(block)
-        lam = exact_lambda_lower(block, weights)
-        if lam <= 1:
+        result = path_count_certificate(block)
+        if result is None:
             continue
-        if not verify_certificate(block, weights, lam):
-            raise AssertionError("internal exact verification failed")
+        weights, lam, steps = result
         return {
             "component": component,
             "weights": [str(v) for v in weights],
             "lambda_lower": str(lam),
             "kappa": str(lam - 1),
+            "path_count_steps": steps,
         }
     return None
 
@@ -152,10 +197,12 @@ def self_test():
     doubled_two_cycle = [[0, 1], [2, 0]]
     neutral_two_cycle = [[0, 1], [1, 0]]
     one_state_double = [[2]]
+    doubled_three_cycle = [[0, 1, 0], [0, 0, 1], [2, 0, 0]]
 
     certificate = find_certificate(doubled_two_cycle)
     assert certificate is not None
-    assert _fraction(certificate["lambda_lower"]) > 1
+    assert certificate["weights"] == ["3", "2"]
+    assert _fraction(certificate["lambda_lower"]) == Fraction(4, 3)
     assert verify_certificate(
         _submatrix(doubled_two_cycle, certificate["component"]),
         certificate["weights"],
@@ -168,6 +215,11 @@ def self_test():
     assert certificate is not None
     assert _fraction(certificate["lambda_lower"]) == 2
     assert _fraction(certificate["kappa"]) == 1
+
+    certificate = find_certificate(doubled_three_cycle)
+    assert certificate is not None
+    assert certificate["weights"] == ["5", "4", "3"]
+    assert _fraction(certificate["lambda_lower"]) == Fraction(6, 5)
 
     print("branching_pf_certificate self-test: ok")
 
