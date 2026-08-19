@@ -6,10 +6,12 @@
 # The speed comes from keeping three caches at different invalidation scales:
 #   * ~/.elan        — invalidated only by lean-toolchain
 #   * .lake/packages — invalidated only by toolchain/manifest
-#   * .lake/build    — rolling per-commit project oleans, restored from the
-#                      newest commit with the same dependency lock
-# The first two intentionally use the same keys as p13-sharded-build.yml so a
-# development compile can reuse caches the repository already warmed.
+#   * .lake/build    — rolling per-commit project oleans
+# The first two intentionally use the same keys as p13-sharded-build.yml. The
+# project cache first prefers prior dev checkpoints, then bootstraps from the
+# full prover's existing nonsofic-build cache family. Dev checkpoints stay in a
+# separate namespace so a targeted/partial build is never advertised as a full
+# certification checkpoint.
 name: Lean dev compile (fast)
 
 on:
@@ -230,7 +232,7 @@ jobs:
         uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4
         with:
           path: .lake/packages
-          # Exact key shared with p13-sharded-build.yml.
+          # Exact key shared with p13-sharded-build.yml and prover.yml.
           key: ${{ runner.os }}-lake-deps-${{ hashFiles('lean-toolchain', 'lake-manifest.json') }}
           restore-keys: |
             ${{ runner.os }}-lake-deps-
@@ -240,24 +242,27 @@ jobs:
         uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4
         with:
           path: ~/.cache/mathlib
-          # Exact key shared with p13-sharded-build.yml.
+          # Exact key shared with p13-sharded-build.yml and prover.yml.
           key: ${{ runner.os }}-mathlib-archives-${{ hashFiles('lean-toolchain', 'lake-manifest.json') }}
 
       - name: Fetch precompiled Mathlib only when dependencies are cold
         if: steps.targets.outputs.skip != 'true' && steps.lake-packages-cache.outputs.cache-hit != 'true'
         run: lake exe cache get
 
-      # Project oleans change on almost every Lean edit, so use a commit-specific
-      # primary key but restore the newest cache with the same dependency lock.
-      # Lake's content/trace checks decide which restored modules are reusable.
+      # Prefer a dev checkpoint. If none exists yet, bootstrap from the full
+      # prover cache. The content-specific prover prefix is especially useful
+      # when this workflow itself changes but Lean sources do not.
       - name: Restore rolling project build cache
         if: steps.targets.outputs.skip != 'true'
-        uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4
+        id: project-cache
+        uses: actions/cache/restore@0057852bfaa89a56745cba8c7296529d2fc39830 # v4
         with:
           path: .lake/build
-          key: ${{ runner.os }}-${{ runner.arch }}-groupapprox-build-v2-${{ hashFiles('lean-toolchain', 'lake-manifest.json') }}-${{ github.sha }}
+          key: ${{ runner.os }}-${{ runner.arch }}-groupapprox-dev-build-v3-${{ hashFiles('lean-toolchain', 'lake-manifest.json') }}-${{ github.sha }}
           restore-keys: |
-            ${{ runner.os }}-${{ runner.arch }}-groupapprox-build-v2-${{ hashFiles('lean-toolchain', 'lake-manifest.json') }}-
+            ${{ runner.os }}-${{ runner.arch }}-groupapprox-dev-build-v3-${{ hashFiles('lean-toolchain', 'lake-manifest.json') }}-
+            ${{ runner.os }}-nonsofic-build-${{ hashFiles('lean-toolchain', 'lake-manifest.json', 'lakefile.toml', 'GroupApproximation.lean', 'GroupApproximation/**/*.lean') }}-
+            ${{ runner.os }}-nonsofic-build-
 
       - name: Compile selected modules
         if: steps.targets.outputs.skip != 'true'
@@ -269,6 +274,17 @@ jobs:
           printf ' %q' "${targets[@]}"
           printf '\n'
           time lake build "${targets[@]}"
+
+      # Save even on a red compile. Lake may already have produced many valid
+      # oleans before the first failing target; the next edit should not throw
+      # that work away. The namespace is dev-only, so partial checkpoints never
+      # masquerade as prover certificates.
+      - name: Save rolling project build cache
+        if: always() && steps.targets.outputs.skip != 'true'
+        uses: actions/cache/save@0057852bfaa89a56745cba8c7296529d2fc39830 # v4
+        with:
+          path: .lake/build
+          key: ${{ steps.project-cache.outputs.cache-primary-key }}
 
       - name: Nothing Lean-relevant changed
         if: steps.targets.outputs.skip == 'true'
