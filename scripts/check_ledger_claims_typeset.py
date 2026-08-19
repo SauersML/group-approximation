@@ -8,9 +8,9 @@ result and `\\cite` for a source.  A cell written the way a table is written --
 word in capitals for emphasis, a `proof step:` prefix -- reaches the page as
 itself.
 
-Rows the page prints are a hard failure.  The rest are counted against a
-baseline that may fall and may not rise, so a cell touched today is written
-for a reader and the backlog drains rather than grows.
+Every row is a hard failure.  A row graded EXACT today can be downgraded
+tomorrow, and then its cell is what a reader sees, so there is no row this
+may be relaxed for.
 """
 import argparse
 import re
@@ -19,10 +19,6 @@ from pathlib import Path
 
 REPO = Path(__file__).resolve().parent.parent
 LEDGER = REPO / "metadata" / "NON_MF_PROOF_LEDGER.md"
-
-# how many rows the page does not print are still written for the table; this
-# may fall and may not rise
-BACKLOG = 270
 
 MATH_CHARS = "‖⟨⟩→←↦≤≥≠∈∉⊆⊇⊗⊕∘∀∃±∓·×⋊⋉≅≃≈∗†√∞∏∑αβγδεζηθκλμνξπρστφχψωΓΔΘΛΞΠΣΦΨΩ₀₁₂₃₄₅₆₇₈₉ℂℕℚℝℤ𝒩𝒬"
 
@@ -62,36 +58,25 @@ def rows():
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--print-backlog", action="store_true",
-                    help="report the current count and exit, to reset the baseline")
-    args = ap.parse_args()
+    ap.parse_args()
 
-    printed, backlog = [], []
+    bad = []
+    total = [0]
     for c in rows():
         if c[2].startswith("MOVED to"):
             continue                       # not a step; never reaches the page
-        bad = faults(c[2])
-        if not bad:
-            continue
-        (printed if c[5] != "EXACT" else backlog).append((c[0], c[1], bad, c[2]))
+        found = faults(c[2])
+        if found:
+            bad.append((c[0], c[1], found, c[2]))
+        total[0] += 1
 
-    for step, anchor, bad, cell in printed:
-        print(f"{step} ({anchor}): {', '.join(bad)}\n    {cell[:110]}", file=sys.stderr)
-
-    if args.print_backlog:
-        print(len(backlog))
-        return 0
-    if printed:
-        print(f"check-ledger-claims-typeset: {len(printed)} printed row(s) are not TeX",
+    for step, anchor, found, cell in bad:
+        print(f"{step} ({anchor}): {', '.join(found)}\n    {cell[:110]}", file=sys.stderr)
+    if bad:
+        print(f"check-ledger-claims-typeset: {len(bad)} of {total[0]} claims are not TeX",
               file=sys.stderr)
         return 1
-    if len(backlog) > BACKLOG:
-        print(f"check-ledger-claims-typeset: {len(backlog)} rows are not TeX, "
-              f"baseline is {BACKLOG}; a row written for the table was added or edited",
-              file=sys.stderr)
-        return 1
-    print(f"check-ledger-claims-typeset: every printed claim is TeX "
-          f"({len(backlog)} unprinted rows still to convert, baseline {BACKLOG})")
+    print(f"check-ledger-claims-typeset: all {total[0]} claims are TeX")
     return 0
 
 
