@@ -457,6 +457,7 @@ import GroupApproximation.Sofic.KazhdanCompressionFunctorial
 import GroupApproximation.Sofic.NormalKazhdanMFRadical
 import GroupApproximation.Sofic.NormalKazhdanHyperlinearKilled
 import GroupApproximation.Sofic.CoronaImageNormalKazhdan
+import GroupApproximation.Sofic.QuestionTwoReduction
 import GroupApproximation.Sofic.TorsionFreeFullMFRadical
 import GroupApproximation.Sofic.TorsionFreeFullMFConsequences
 import GroupApproximation.Sofic.TensorPowerAmplification
@@ -944,6 +945,8 @@ import GroupApproximation.Analysis.CStarStateSeparation
 import GroupApproximation.Analysis.CStarStateGNS
 import GroupApproximation.Analysis.CStarStatePullback
 import GroupApproximation.Analysis.CStarMinTensorNorm
+import GroupApproximation.Analysis.CStarSliceBound
+import GroupApproximation.Analysis.CStarSliceIdeal
 import GroupApproximation.Analysis.CStarMaxTensorNorm
 import GroupApproximation.Analysis.CStarTensorComparison
 import GroupApproximation.Analysis.CStarNuclearity
@@ -1215,6 +1218,27 @@ import GroupApproximation.Sofic.CliffordAsideInert
 import GroupApproximation.Sofic.ContainsSquareWitness
 import GroupApproximation.Analysis.CStarMinTensorInjective
 import GroupApproximation.Analysis.CStarExactComplex
+import GroupApproximation.Algebra.WordMetricBall
+import GroupApproximation.Analysis.CoarseCompression
+import GroupApproximation.Analysis.SchoenbergKernel
+import GroupApproximation.Analysis.GuentnerKaminker
+import GroupApproximation.Analysis.PropertyASquareWitness
+import GroupApproximation.Manuscript.NonMF.QuestionOneOpenness
+import GroupApproximation.Manuscript.NonMF.QuestionTwoRemainder
+import GroupApproximation.Sofic.FournierFacioUniversalGroup
+import GroupApproximation.Sofic.GreendlingerInduction
+import GroupApproximation.Sofic.GreendlingerMinimal
+import GroupApproximation.Sofic.GreendlingerMirror
+import GroupApproximation.Sofic.GreendlingerOverlap
+import GroupApproximation.Sofic.GreendlingerRegime
+import GroupApproximation.Sofic.GreendlingerSlide
+import GroupApproximation.Sofic.GreendlingerWeight
+import GroupApproximation.Sofic.GreendlingerTwoPieceRegime
+import GroupApproximation.Sofic.SmallCancellationKazhdanEnvelope
+import GroupApproximation.Analysis.MFTracePullback
+import GroupApproximation.Analysis.QuasidiagonalTrace
+import GroupApproximation.Analysis.TikuisisWhiteWinter
+import GroupApproximation.Sofic.TikuisisWhiteWinterSites
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group

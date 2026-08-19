@@ -881,6 +881,140 @@ travels the printed route the ledger records for it; restore the route, or \
 regrade the ledger row and retire this pair in the same commit"
   logInfo m!"route guards: {routeGuards.length} dependency pin(s) hold"
 
+/-! ### The literature quarantine
+
+`literatureInputNames` refuses a *tagged* premise anywhere in the corpus, and
+it is empty because nothing in the corpus is tagged.  It cannot express the
+rule that actually governs here.  Several modules formalize a printed route by
+taking the external theorem it cites as a typed **package** -- a structure, or
+a `Prop`, whose content is a theorem this repository does not prove -- and
+proving everything downstream of it.  `Sofic/FournierFacioUniversalGroup`
+takes Fournier-Facio's group apart into two such packages and proves the step
+that joins them; that is worth more than an opaque citation, not less, and
+tagging the packages would make it illegal.  The rule is narrower and sharper:
+such a package may exist in the tree, and must never appear in the *statement*
+of anything this development advertises as a result.
+
+That is what the roster and the walk below enforce.  The walk is over the
+**type**, not the proof term, and this is the load-bearing choice.  Reaching a
+package from a proof term is not a defect: a closed theorem whose proof
+mentions one must have *built* one, and the kernel already guarantees the
+conclusion.  Reaching one from a statement is the defect, because that is a
+conditional result wearing a clean axiom report -- the implication is
+genuinely proved, and it assumes the citation anyway.
+
+What this catches that `zeroInputEndpoints` does not: that check refuses a
+leading binder, so it sees `DefectRoutingData D -> P` and does not see a
+statement that mentions a *named* `Prop` which itself quantifies over one.
+The walk unfolds through definitions, so the name buys no cover. -/
+
+/-- Corpus-defined packages whose content is a theorem of the literature this
+repository does not prove.  Each entry names the paper it transcribes.
+
+The roster is under the same custody as `allowedAxioms` and
+`literatureInputNames`: it lives in the lint, so the corpus cannot quietly
+remove its own quarantine.  **An entry is retired only by proving it**, in
+which case the same commit deletes the line; an entry that stops existing in
+the environment fails the run rather than being skipped. -/
+def literaturePackages : List Name :=
+  [-- Tikuisis--White--Winter, Ann. of Math. (2) 185 (2017) 229--284, and the
+   -- two inputs its group-level corollary needs: Lance (nuclearity of the
+   -- reduced algebra of an amenable group) and Tu (the UCT for it).
+   ``QuasidiagonalMF.TikuisisWhiteWinterInput,
+   ``QuasidiagonalMF.AmenableNuclearInput,
+   ``QuasidiagonalMF.AmenableUCTInput,
+   ``QuasidiagonalMF.AmenableMFInput,
+   ``CyclicBaseCalibration.AmenableImpliesMF,
+   -- Fournier-Facio's universal finitely presented torsion-free property-(T)
+   -- group, arXiv:2608.02025 sec. 2, and the two theorems it is built from:
+   -- Chiodo/Belegradek (the universal torsion-free host) and Osin (small
+   -- cancellation over a relatively hyperbolic pair).
+   ``ContainsSquareWitness.UniversalFPTorsionFree,
+   ``FournierFacioUniversal.UniversalKazhdanGroup,
+   ``FournierFacioUniversal.UniversalTorsionFreeHost,
+   ``FournierFacioUniversal.KazhdanEnvelope,
+   ``SmallCancellationEnvelope.HyperbolicKazhdanPartner,
+   -- Greendlinger's lemma for C'(1/6).  The one entry here that is a
+   -- self-contained combinatorial theorem rather than a research programme:
+   -- `Sofic/Greendlinger*` proves it for expressions with at most two
+   -- conjugate factors, and the three-factor induction is what is left.
+   ``SmallCancellationRouter.GreendlingerGate,
+   ``SmallCancellationRouter.RoutingLemmaData,
+   -- Hull's common-quotient theorem (Groups Geom. Dyn. 10 (2016) 1077--1119)
+   -- and Osin (Trans. AMS 368 (2016) 851--888), as the routing data the
+   -- full-MF-radical endpoints quantify over.
+   ``DefectRoutingData,
+   ``OrderPreservingRoutingData,
+   ``FiveConditionRoutingData,
+   ``RelativeCommonQuotientData,
+   ``FournierFacioDefectData,
+   -- Kun--Thom and Shulman, as the double-construction datum.
+   ``KunThomShulmanDoubleData,
+   -- Adian--Rabin, as reduction data for the C*-recognition consequences.
+   ``CStarRecognitionConsequences.GroupCStarAdianRabinReductions]
+
+/-- Every constant reachable from `seeds`, unfolding through the type *and*
+the value of everything it meets.  Same reachability as `closureContainsGo`;
+what differs is where the quarantine seeds it -- see `statementConstants`. -/
+partial def reachableFrom (env : Environment) (visited : NameSet) :
+    List Name → NameSet
+  | [] => visited
+  | n :: rest =>
+    if visited.contains n then reachableFrom env visited rest
+    else
+      let visited := visited.insert n
+      match env.find? n with
+      | some ci =>
+          -- A structure's own `ConstantInfo` mentions only the constants of
+          -- its *sort*, so a package reached only through a field would be
+          -- invisible without this: the fields live in the constructor's
+          -- type.  `MainTheoremData D` names `FournierFacioDefectData` this
+          -- way and no other.
+          let ctors := match ci with
+            | .inductInfo iv => iv.ctors
+            | _ => []
+          reachableFrom env visited
+            (ci.getUsedConstantsAsSet.toList ++ ctors ++ rest)
+      | none => reachableFrom env visited rest
+
+/-- The constants of a declaration's **type**, which is where the quarantine
+walk starts.  Seeding at the declaration itself would drag in its proof term,
+and a proof term is allowed to mention a package: it would have had to build
+one, and the kernel has already checked the conclusion. -/
+def statementConstants (env : Environment) (n : Name) : List Name :=
+  match env.find? n with
+  | some ci => ci.type.getUsedConstants.toList
+  | none => []
+
+run_cmd do
+  let env ← getEnv
+  for pkg in literaturePackages do
+    unless env.contains pkg do
+      throwError "literature quarantine: `{pkg}` does not exist in the \
+environment.  A quarantine roster cannot outlive the name it quarantines: \
+either restore the package, or delete this line together with whatever \
+replaced it"
+  let roots := headlineTheorems ++ zeroInputEndpoints
+  let mut breaches : Array String := #[]
+  for r in roots do
+    unless env.contains r do
+      throwError "literature quarantine: advertised result `{r}` does not \
+exist in the environment"
+    let reachable := reachableFrom env {} (statementConstants env r)
+    let hits := literaturePackages.filter (fun p => reachable.contains p)
+    unless hits.isEmpty do
+      breaches := breaches.push s!"{r} states: {hits}"
+  unless breaches.isEmpty do
+    throwError "literature quarantine breached: the statement of an \
+advertised result mentions a package this repository does not prove.  Such a \
+result is conditional on a citation however clean its axiom report; either it \
+must stop being advertised, or its premise must be proved in the corpus and \
+removed from the statement:{Format.line}\
+{Format.joinSep breaches.toList Format.line}"
+  logInfo m!"literature quarantine: {literaturePackages.length} unproved \
+package(s), none named by the statement of any of the {roots.length} \
+advertised result(s)"
+
 /-! ## 3. The environment scans
 
 `Audit.Scan` carries the detectors and `scripts/Calibrate.lean` proves they can
