@@ -331,7 +331,7 @@ def parse_census():
         'formalized': 'proved', 'definition': 'proved',
         'partial': 'partial', 'open': 'open',
         'attribution': 'cited', 'provenance': 'cited',
-        'structural': 'proved', 'unassigned': 'untriaged',
+        'structural': 'proved', 'unassigned': 'ungraded',
     }
     out = {}
     for line in path.read_text(encoding='utf-8').splitlines():
@@ -346,13 +346,13 @@ def parse_census():
             steps = [d for d in decls.split() if d in grades]
             real = [d for d in steps if grades[d] != 'TOMBSTONE']
             if not steps:
-                plain = 'untriaged'
+                plain = 'ungraded'
             elif not real:
                 plain = 'cited'
             else:
                 plain = 'proved' if all(grades[d] == 'EXACT' for d in real) else 'unproved'
         else:
-            plain = PLAIN.get(status, 'untriaged')
+            plain = PLAIN.get(status, 'ungraded')
         out[js_hash(re.sub(r'\s+', ' ', sentence).strip())] = plain
     return out
 

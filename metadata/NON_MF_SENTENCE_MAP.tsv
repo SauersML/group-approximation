@@ -19,7 +19,7 @@ c4a439c10b33	definition	GroupApproximation.KazhdanCliffordConstruction.kazhdanCl
 4609a24e31d5	formalized	GroupApproximation.PrintedCornerCompression.manuscriptCornerAsymptoticRepresentation GroupApproximation.LiteralNonMFEndpoint.negativeCorner_kazhdanTransport_contradiction	the compression to the negative corner and the contradiction there
 00f89beb85bc	formalized	GroupApproximation.LiteralNonMFPresentation.manuscriptLiteralPresentation	the eight-generator presentation, literally
 71b4b6a84e09	formalized	GroupApproximation.LiteralSoficAssembly.markedGroup_finitelyPresented_sofic_nonMF GroupApproximation.LiteralSoficAssembly.markedGroup_finitelyPresented_hyperlinear_nonMF	soficity and hyperlinearity of E against its non-MF-ness
-6be5f4abf8e4	partial	GroupApproximation.LiteralNonMFEndpoint.manuscriptTheoremD GroupApproximation.manuscriptTraceSeparation GroupApproximation.CStarTensor.isExactCStar_of_hasSliceMapProperty	every clause but exactness is proved; exactness of Cred(E) is ledger row SO.16, graded MISMATCH.  The reduction is formal -- exactness follows from the slice map property, and the kernel half of that is proved -- but the slice map property itself is proved for no algebra here
+6be5f4abf8e4	partial	GroupApproximation.LiteralNonMFEndpoint.manuscriptTheoremD GroupApproximation.manuscriptTraceSeparation	every clause but exactness is proved; exactness of Cred(E) is ledger row SO.16, graded MISMATCH.  The reduction `isExactCStar_of_hasSliceMapProperty` is deliberately NOT named here: it is conditional on the slice map property, which nothing in the corpus produces, and a conditional formalization does not count
 ec0ae8ad82fa	formalized	GroupApproximation.LiteralSignFreeQuotient.signFreeQuotient_not_isCDEOperatorMF	the sign-free quotient is non-MF
 ab4a96635322	definition	GroupApproximation.ManuscriptExactWrappers.manuscriptMFDefinitionEquivalences	the operator-norm convention, which is the norm the formal definition uses
 04f14a98e39a	definition	GroupApproximation.KazhdanAsymptoticCommutant.manuscriptKazhdanTransport GroupApproximation.KazhdanAsymptoticCommutant.manuscriptKazhdanTransport_anyUniverse	the hypotheses of the transport theorem, as its binders
@@ -108,3 +108,14 @@ ac0077e6ab86	provenance		a verbatim quotation of a prompt in the resource-usage 
 e2c594ecdbd9	provenance		a verbatim quotation of a prompt in the resource-usage disclosure; not a mathematical assertion
 affaea4e80cb	provenance		a verbatim quotation of a prompt in the resource-usage disclosure; not a mathematical assertion
 54e6f4dcc230	provenance		a verbatim quotation of a prompt in the resource-usage disclosure; not a mathematical assertion
+88d7a517f6b0	attribution	-	credits a colleague; asserts nothing mathematical
+8a89415897c7	attribution	-	credits a colleague; asserts nothing mathematical
+8a74c1b17394	attribution	-	credits a colleague; asserts nothing mathematical
+d36f7b8fc131	provenance	-	resource-usage disclosure
+8cc79d8c6ba2	provenance	-	resource-usage disclosure
+2d51b5c93fc8	provenance	-	resource-usage disclosure
+8c1643a3851e	provenance	-	resource-usage disclosure
+93c5a2026493	provenance	-	resource-usage disclosure
+63db252913ed	provenance	-	resource-usage disclosure
+b960d0c1c1d9	provenance	-	resource-usage disclosure; introduces a quotation
+6ec65176462a	provenance	-	resource-usage disclosure; introduces a quotation

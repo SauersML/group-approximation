@@ -217,6 +217,13 @@ def extract(path: str) -> list[dict]:
     for n, rawline in enumerate(raw, start=1):
         line = strip_comments(rawline).rstrip("\n")
 
+        # `\\[2pt]` is a line break carrying vertical space, not the start of
+        # an unnumbered display.  Reading it as one opens a display that never
+        # closes: the `\end{tikzpicture}` after it is swallowed, its `figure`
+        # stays open to the end of the document, and every paragraph from
+        # there on is skipped as display material.
+        line = re.sub(r"\\\\\[[^\]]*\]", " ", line)
+
         # An unnumbered display that spans a paragraph break cannot be removed
         # by a regex over one paragraph, so it is tracked here instead.
         if in_display:
@@ -449,6 +456,14 @@ def join(records: list[dict], assignments: dict[str, dict],
     return records
 
 
+# The detectors that mean *the theorem is not available unconditionally*: a
+# premise nothing in the corpus produces, or a transcription of a literature
+# theorem.  The standing order is that neither counts as formalization.
+CONDITIONAL_DETECTORS = {
+    "buried-conditional", "conditional-data", "known-conditional",
+    "literature-input", "open-predicate",
+}
+
 STOPWORDS = set(
     "the a an of to in for and or is are be that this which with by on as it "
     "its at from we our not no all any each every some there here then than "
@@ -627,6 +642,47 @@ def verify_decls(records: list[dict]) -> list[str]:
     return bad
 
 
+def verify_unconditional(records: list[dict]) -> list[str]:
+    """Declarations the census names that are conditional or literature-fed.
+
+    The standing order is that a conditional formalization does not count and
+    neither does a literature input: a theorem available only to a caller who
+    supplies an unprovable premise formalizes nothing about the manuscript's
+    sentence.  `scripts/check_non_mf_unconditional.py` already enforces that on
+    the badge surface, where the manuscript itself does the citing.  The census
+    names declarations the badges do not, so it runs the same classifier over
+    its own assignments.
+    """
+    sys.path.insert(0, HERE)
+    import importlib
+    from pathlib import Path
+    m = importlib.import_module("check_non_mf_unconditional")
+    corpus = m.build_corpus(Path(ROOT))
+    roster, _ = m.read_roster(Path(ROOT) / m.DEFAULT_ROSTER)
+    bad: list[str] = []
+    for r in records:
+        if r["status"] not in {"formalized", "definition", "partial"}:
+            continue
+        for name in r["decls"].split():
+            # the corpus indexes declarations by the name their module writes,
+            # which is the short one inside a namespace
+            decl = (corpus.by_name.get(name)
+                    or corpus.by_name.get(name.rsplit(".", 1)[-1]))
+            if decl is None:
+                continue
+            for detector, detail in m.classify(corpus, decl, roster, name):
+                if detector not in CONDITIONAL_DETECTORS:
+                    # `header-binder`, `open-variable` and `definition-only`
+                    # are badge-surface hygiene: a printed badge must sit over
+                    # a binder-free statement.  A census assignment is not a
+                    # badge, and a theorem whose binders are its own subject
+                    # matter -- a group, a homomorphism, a hypothesis about
+                    # them -- is unconditional whatever its header looks like.
+                    continue
+                bad.append(f"{r['key']}\t{name}\t{detector}\t{detail[:140]}")
+    return bad
+
+
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--check", action="store_true",
@@ -636,6 +692,8 @@ def main() -> int:
     ap.add_argument("--json", action="store_true")
     ap.add_argument("--verify-decls", action="store_true",
                     help="check that every named declaration exists")
+    ap.add_argument("--verify-unconditional", action="store_true",
+                    help="check that no named declaration is conditional")
     args = ap.parse_args()
 
     rows, grades, probes = load_ledger()
@@ -648,6 +706,13 @@ def main() -> int:
     if args.json:
         print(json.dumps(records, indent=1))
         return 0
+
+    if args.verify_unconditional:
+        bad = verify_unconditional(records)
+        for b in bad:
+            print("CONDITIONAL\t" + b)
+        print(f"{len(bad)} conditional or literature-fed assignment(s)")
+        return 1 if bad else 0
 
     if args.verify_decls:
         bad = verify_decls(records)
