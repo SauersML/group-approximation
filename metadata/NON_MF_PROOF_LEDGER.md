@@ -7,9 +7,9 @@ Spec document: `non_mf_groups_exist.tex`.  Formal development: `GroupApproximati
 | | |
 | --- | --- |
 | commit | the external literature-review pass of 2026-08-19 (this one) |
-| `git hash-object non_mf_groups_exist.tex` | `e078a36cce16ffc8319a522944caedb9f4146b8c` |
-| sha256 of the file | `41df150ec5dd40a919fa1fd09c294d347f5ea000183589770d7ab625e9f03189` |
-| `wc -l` | 3933 |
+| `git hash-object non_mf_groups_exist.tex` | `fbcd9d54f5607d9b4bf3888faeba1599e8a65cf5` |
+| sha256 of the file | `e29b8d2f6f99998ab6c93e3fc0811fee4f2b4c7400b31a28add5ed2e0af82fd9` |
+| `wc -l` | 3937 |
 
 `git hash-object` of the file must reproduce the blob above for the rows below
 to be read as current.  The file has shrunk from 4768 lines to 3771 across the
@@ -883,13 +883,22 @@ Four changes landed in proofs and free prose, where no digest reaches:
   seven nonzero classes.  This is what
   `LiteralAffineCosetTransitivity.conjD_cosetTransitive` proves, and printing it
   matters for a second reason: the reviewer's suggested gloss -- "the linear
-  `SL₃(𝔽₂)`-part acts transitively on the seven nonzero vectors" -- would import
-  the conditional literature input `\cite{CRW}` Theorem 2 that the manuscript
-  and that module both refuse.  The printed sentence now says so explicitly.
+  `SL₃(𝔽₂)`-part acts transitively on the seven nonzero vectors" -- would route
+  the step through `\cite[Theorem~2]{CRW}`, the identification of the linear
+  part with `SL₃(ℤ)` that `rem:classical-base` prints and that
+  `LiteralAffineCosetTransitivity` deliberately avoids.  The printed sentence
+  now records that this step is independent of that input; the identification
+  itself stays where it is, in `rem:classical-base`, which does cite CRW.
 * The `Exactness` paragraph no longer claims Dykema's theorem "for free products
-  of arbitrary families"; it uses finite factors, the finitely-generated-subgroup
-  reduction and `\cite{KWPermanence}`.  SO.16 is unaffected -- it is a
-  `MISMATCH` on the crossover link, which this does not touch.
+  of arbitrary families".  It now exhibits the chain `Qₙ` of free products of the
+  first `n` blocks -- finite factors, so each `Qₙ` is exact by Dykema -- and
+  concludes with the increasing-union criterion, which is
+  `\cite[Lemma~2.5]{KWExact}` and **not** `KWPermanence`: the union result is
+  stated in the earlier Math. Ann. paper and only quoted in the Doc. Math. one
+  ("In [KW, Lemma 2.5] we showed that a group which has an increasing family of
+  exact open subgroups with union the whole group is itself exact"), which is
+  why the citation moved.  SO.16 is unaffected -- it is a `MISMATCH` on the
+  crossover link, which this does not touch.
 * `\cite{ShulmanTraces}` and `\cite{FFF}` are now version-pinned in the
   bibliography (v5, 31 July 2026; v2, 14 August 2026).  The trace definitions in
   Shulman's source have moved between versions; the printed sentence "the

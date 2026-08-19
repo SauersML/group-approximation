@@ -3008,10 +3008,33 @@ sites themselves.)  Conversely, the bijection
 $u\,\bar\alpha(\bar\Gamma)\mapsto\tau^{-1}j(u)\tau o$ identifies the
 block of $o$ with $\bar\Gamma/\bar\alpha(\bar\Gamma)$ and the
 generating edge with the pair
-$\{\bar\alpha(\bar\Gamma),\,\bar v_1\bar\alpha(\bar\Gamma)\}$; since
-$\bar\alpha(\bar\Gamma)$ acts transitively on the nontrivial cosets of
-$\bar\alpha(\bar\Gamma)$, every pair of distinct sites of a block is
-the image of the generating pair.
+$\{\bar\alpha(\bar\Gamma),\,\bar v_1\bar\alpha(\bar\Gamma)\}$.  Left
+multiplication by $\bar\alpha(\bar\Gamma)$ on the coset space
+$\bar\Gamma/\bar\alpha(\bar\Gamma)$ is transitive on the nontrivial
+cosets, and that is what makes every pair of distinct sites of a block
+the image of the generating pair.  This is not the vacuous statement
+that a subgroup acts transitively on its own coset space, so we spell
+out the mechanism.  Writing $L=\langle x,y,z\rangle$ for the linear
+part, $\bar\Gamma=\Z^3\rtimes L$; since $\bar\alpha$ squares the three
+translations and fixes $x,y,z$ (Lemma~\ref{lem:linear}), its image is
+$(2\Z^3)\rtimes L$, and reduction of the translation coordinate
+modulo~$2$ identifies $\bar\Gamma/\bar\alpha(\bar\Gamma)$ with
+$(\Z/2)^3$.  Under that identification left multiplication by an
+element of $\bar\alpha(\bar\Gamma)$ with linear part $N$ and
+(necessarily even) translation part sends a class $\bar u$ to
+$\bar N\bar u$, so the action factors through the linear action of the
+reduction $\bar L\le\GL_3(\mathbb F_2)$ of $L$.  The seven words
+\[
+ 1,\quad x,\quad x^2,\quad z,\quad yx,\quad y^2x,\quad xyx
+\]
+carry $\bar e_1$ to
+$\bar e_1$, $\bar e_3$, $\bar e_2$, $(0,1,1)$, $(1,1,0)$, $(1,1,1)$,
+$(1,0,1)$ --- the seven nonzero classes --- which is the transitivity
+used.  Only the subgroup $\bar L$ enters: this step does not use the
+identification of the linear part with $\SL_3(\Z)$ from
+Remark~\ref{rem:classical-base}, so it does not rest on
+\cite[Theorem~2]{CRW}, and the accompanying formal proof is likewise
+free of that input.
 \leanverified{Sofic/LiteralAffineCosetTransitivity}{GroupApproximation.LiteralAffineCosetTransitivity.conjD_cosetTransitive}
 
 For a graph $\mathcal G$ on $X$, let $C(\mathcal G)$ be the group
@@ -3150,9 +3173,16 @@ either.
 The same decomposition also proves that $E$ is exact.  The quotient
 $C(\mathcal G)/\langle\zeta\rangle$ is the free product of the
 elementary abelian $2$-groups attached to the blocks, each of order at
-most $2^{8}$.  Dykema's theorem applies to free products of arbitrary
-families of exact discrete groups, so this quotient is exact
-\cite{DykemaExact}.  Since $\langle\zeta\rangle$ is finite, extension
+most $2^{8}$.  There are countably many blocks; enumerate them, and let
+$Q_n$ be the free product of the factors attached to the first $n$.
+Each factor is finite, hence exact, so each $Q_n$ is a free product of
+finitely many exact groups and is exact by Dykema's theorem
+\cite{DykemaExact}.  The $Q_n$ increase with union the whole quotient,
+and a group with an increasing family of exact open subgroups whose
+union it is is itself exact \cite[Lemma~2.5]{KWExact} --- in a discrete
+group every subgroup is open --- so this quotient is exact.  Only this
+one countable free product is needed; no statement about free products
+of arbitrary families is used.  Since $\langle\zeta\rangle$ is finite, extension
 permanence \cite{KWPermanence} then gives exactness of
 $C(\mathcal G)$.  The group $\Sigma\le\GL_4(\mathbb Q)$ is exact by
 Guentner--Higson--Weinberger \cite{GHW}.  Finally
@@ -3271,19 +3301,41 @@ set of presentation codes of non-MF groups are not.
 \begin{proof}
 For the undecidability of $W$, take an Aanderaa--Cohen modular
 machine whose configuration halting problem is undecidable and the
-finitely presented group built from it.  That group has a presentation code; the halting
+finitely presented group built from it \cite{AanderaaCohen}; that
+paper is where modular machines are introduced and where the halting
+problem of such a machine is converted into the word problem of a
+finitely presented group.  That group has a presentation code; the halting
 word of a configuration is a computable function of the configuration in
 the numbering that code uses; and the code's word problem holds on that
 word exactly when the configuration halts.  A decision procedure for $W$
 would compose with that map to decide halting.
 
-For the reduction, take the free product of the input presentation
-with a fixed presentation of $E$, and apply the Adian--Rabin
-construction to the input word.  The resulting presentation code is
-computable from the pair and presents an MF group exactly when the
-input word is trivial: in the trivial case the output group is the
-trivial group, and in the nontrivial case the output group contains
-$E$ and is non-MF by Lemma~\ref{lem:permanence}(1).  Composing a
+For the reduction, what is used is not the bare statement that a
+Markov property is undecidable but the effective form of the
+Adian--Rabin construction, so we record it.  It supplies a computable
+map $\Delta$ from pairs (a presentation code $e$, a word $u$ in its
+generators) to presentation codes such that
+
+\begin{itemize}
+\item if $u=1$ in $G_e$, then $\Delta(e,u)$ presents an MF group: the
+trivial group in the classical form, and a free group in the variant
+used here and in the accompanying formal development, a free group
+being residually finite and so MF by Lemma~\ref{lem:permanence}(2); and
+\item if $u\ne1$ in $G_e$, then $G_e$ embeds in the group presented by
+$\Delta(e,u)$.
+\end{itemize}
+
+\noindent
+This is Rabin's theorem \cite{Rabin58} and, in the form with the
+explicit computable output presentation, Adian's \cite{Adian55}; an
+English translation of Adian's papers with the construction written out
+is \cite{NybergBrodda}.  Apply $\Delta$ to the free product of the
+input presentation with a fixed presentation of $E$ and to the input
+word.  The resulting presentation code is computable from the pair and
+presents an MF group exactly when the input word is trivial: in the
+trivial case the output group is free, hence MF, and in the nontrivial
+case the free product --- and so $E$ --- embeds in the output group,
+which is therefore non-MF by Lemma~\ref{lem:permanence}(1).  Composing a
 decision procedure for MF recognition with this map would therefore
 decide $W$, so no such procedure exists.  For the last assertion, the
 positive instances of $W$ are exactly those carrying a finite
@@ -3451,12 +3503,17 @@ identity?
 
 \begin{remark}[a small-cancellation realization]
 \label{rem:ff-realization}
-Fournier-Facio has pointed out (personal communication, 2026) that the
-affine base of Sections~\ref{sec:group}--\ref{sec:witness} can be
-replaced by a small-cancellation construction as in \cite{FFF}.  His
-finitely presented torsion-free property-\textup{(T)} group $P$
+The affine base of Sections~\ref{sec:group}--\ref{sec:witness} can be
+replaced by a small-cancellation construction, as Fournier-Facio
+pointed out to us and as \cite[\S2]{FFF} now records publicly.  There a
+universal finitely presented torsion-free group --- one containing a
+copy of every finitely presented torsion-free group --- is embedded by
+small cancellation in a finitely presented torsion-free
+property-\textup{(T)} group $P$.  Hence that $P$
 contains every finitely presented torsion-free group, in particular a
-direct product $P_1\times P_2$ with $P_i\cong P$.  Choosing an
+direct product $P_1\times P_2$ with $P_i\cong P$; loc.\ cit.\ states
+this as $P_1\times P_2\times S\le P$ with $S$ finitely presented simple,
+and the third factor is not needed here.  Choosing an
 isomorphism $\alpha\colon P\to P_1\le P$ and any
 $a\in P_2\setminus\{1\}$ gives the input required by
 Theorem~\ref{thm:kazhdan-clifford}.  The group $E(P,\alpha,a)$ has
@@ -3556,6 +3613,22 @@ norms also occurs in the earlier approach of Bachner--Dogon--Lubotzky
 
 \begin{thebibliography}{GKEMP}
 
+\bibitem[AC]{AanderaaCohen}
+S.~Aanderaa and D.~E. Cohen,
+\emph{Modular machines, the word problem for finitely presented groups
+and Collins' theorem},
+in \emph{Word Problems II: The Oxford Book}
+(S.~I. Adian, W.~W. Boone and G.~Higman, eds.),
+Stud. Logic Found. Math. \textbf{95}, North-Holland, Amsterdam, 1980, 1--16,
+\doi{10.1016/S0049-237X(08)71327-2}.
+
+\bibitem[Ad]{Adian55}
+S.~I.~Adian,
+\emph{Algorithmic unsolvability of problems of recognition of certain
+properties of groups} (Russian),
+Dokl. Akad. Nauk SSSR \textbf{103} (1955), 533--535;
+English translation in Nyberg-Brodda's collection below.
+
 \bibitem[AT]{AlekseevThom}
 V.~Alekseev and A.~Thom,
 \emph{Centralizers of sofic approximations of Kazhdan groups},
@@ -3654,7 +3727,7 @@ J. Group Theory \textbf{9} (2006), no.~2, 161--171,
 \bibitem[FFF]{FFF}
 F.~Fournier-Facio,
 \emph{A torsion-free non-sofic group},
-preprint, 2026, \arxiv{2608.02025}.
+preprint, \arxiv{2608.02025}; cited in version~v2 (14 August 2026).
 
 \bibitem[FGH]{FGH}
 A.~Fox, I.~Goldbring, and B.~Hart,
@@ -3780,6 +3853,11 @@ J. London Math. Soc. \textbf{12} (1937), 120--127,
 \doi{10.1112/jlms/s1-12.46.120}.
 
 
+\bibitem[NB]{NybergBrodda}
+C.-F. Nyberg-Brodda,
+\emph{The Adian--Rabin theorem --- an English translation},
+preprint, \arxiv{2208.08560}; cited in version~v3 (23 October 2024).
+
 \bibitem[OAI]{OAI}
 OpenAI,
 \emph{Nonsofic groups exist},
@@ -3819,7 +3897,10 @@ preprint, 2025, \arxiv{2507.22783}.
 \bibitem[ShT]{ShulmanTraces}
 T.~Shulman,
 \emph{Homotopy lifting, asymptotic homomorphisms, and traces},
-preprint, 2025, \arxiv{2508.00125}.
+preprint, \arxiv{2508.00125}.
+Cited throughout in version~v5 (31 July 2026); the definitions of
+hyperlinear and MF trace have moved between versions, so the version is
+part of the citation.
 
 \bibitem[Slo17]{SlofstraCorrelations}
 W.~Slofstra,

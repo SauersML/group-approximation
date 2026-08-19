@@ -41,7 +41,13 @@ corona
 ```
 
 Building this manuscript requires LaTeX2e dated 2025-06-01 or newer, and
-the release workflow uses a digest-pinned TeX Live 2026 image.
+the release and draft workflows both compile inside the same digest-pinned
+TeX Live **2025** image (`TEXLIVE_IMAGE` in
+`.github/workflows/build-non-mf-pdf.yml`, `draft-non-mf-pdf.yml` and
+`refresh-non-mf-pdf.yml`).  The 2026 image is deliberately not used: its
+`tagpdf` aborts at `\tableofcontents` on this source and garbles the
+contents page.  The header comment at the top of the manuscript records the
+same constraint.
 
 Tagging is **enabled**: the source sets
 `\DocumentMetadata{lang=en-US,pdfversion=2.0,tagging=on}`, and the TikZ
@@ -194,6 +200,22 @@ At a completed formal checkpoint, the headline declarations must be included
 in the kernel audit roster with axiom closure restricted to `propext`,
 `Classical.choice`, and `Quot.sound`; no literature theorem is introduced as a
 Lean axiom.
+
+**What the verification does and does not claim.** Two different statements
+are checked by two different artefacts, and they are not interchangeable.
+Every numbered claim of the manuscript has a Lean declaration whose
+proposition is that claim: `scripts/check_non_mf_claim_manifest.py`,
+`check_non_mf_refs.py` and `check_non_mf_zero_input.py` gate that, and the tree
+contains no `sorry` and no project axiom. The *prose proofs* are a separate
+question, tracked step by step in
+[`metadata/NON_MF_PROOF_LEDGER.md`](metadata/NON_MF_PROOF_LEDGER.md); at the
+current revision that ledger grades 429 steps and not all of them are `EXACT`
+on both columns, so "every numbered result has a checked formal counterpart"
+is accurate while "the manuscript proof has been formalized line by line" is
+not. The ledger is also a *correspondence* audit, by its own stated policy: it
+asks whether Lean says what the manuscript says, and classifies every
+discrepancy as a Lean-side or matching issue. It is not an adversarial referee
+of the mathematics, and no claim here should be read as one.
 
 ## Property (TT)/T and the binary Leavitt algebra
 
