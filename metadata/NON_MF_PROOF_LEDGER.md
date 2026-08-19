@@ -7,9 +7,9 @@ Spec document: `non_mf_groups_exist.tex`.  Formal development: `GroupApproximati
 | | |
 | --- | --- |
 | commit | the external literature-review pass of 2026-08-19 (this one) |
-| `git hash-object non_mf_groups_exist.tex` | `d4c1a3ed8ee0fe5fafaf638ea4144157a7aecde7` |
-| sha256 of the file | `46fcd42a8fcd9953d626ca6918a5653bfd45b7ced0295a8484e915e26d964cb2` |
-| `wc -l` | 4130 |
+| `git hash-object non_mf_groups_exist.tex` | `c34ceede0a6d4cd976297fd8a148382da2080c4d` |
+| sha256 of the file | `a0c1c006c5023a6985689cf3a6fcf4e73df2089cbd0433a39d0e49465dc13581` |
+| `wc -l` | 4122 |
 
 `git hash-object` of the file must reproduce the blob above for the rows below
 to be read as current.  The file has shrunk from 4768 lines to 3771 across the
@@ -1016,7 +1016,7 @@ once in the comment-stripped manuscript; the probe is the drift detector.
 | lem:linear | env | lem:linear | f475a90d8ab3f621 |
 | prop:witness | env | prop:witness | 1a168e6eb3a8fb32 |
 | lem:square | env | lem:square | fee8f829203ad9be |
-| thm:cyclic | env | thm:cyclic | 08ab17486524f52a |
+| thm:cyclic | env | thm:cyclic | 2bfd53c90eb9489c |
 | def:radical | env | def:radical | e74535968f545020 |
 | lem:portable | env | lem:portable | ad40116ce5cb86dd |
 | prop:univquot | env | prop:univquot | bf0e863dc76ab01d |
