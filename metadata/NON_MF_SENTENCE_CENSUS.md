@@ -26,13 +26,13 @@ These are the sentences the development does not settle, verbatim.  `open` sente
 
 * **`partial`**, line 167 --- Its reduced $C^*$-algebra $\Cred(E)$ is separable, exact and stably finite but not MF, and the canonical trace on $\Cmax(E)$ is hyperlinear but not MF, which answers a question of Shulman negatively.
   * every clause but exactness is proved; exactness of Cred(E) is ledger row SO.16, graded MISMATCH.  The reduction `isExactCStar_of_hasSliceMapProperty` is deliberately NOT named here: it is conditional on the slice map property, which nothing in the corpus produces, and a conditional formalization does not count
-* **`open`**, line 319 --- The converse of each arrow is open, as is \textup{MF}$\,\Rightarrow\,$\textup{hyperlinear} (Question~2 of Section~\ref{sec:limits}).
+* **`open`**, line 322 --- The converse of each arrow is open, as is \textup{MF}$\,\Rightarrow\,$\textup{hyperlinear} (Question~2 of Section~\ref{sec:limits}).
   * asserts that converses are open; an open-status claim, which no declaration settles
-* **`open`**, line 412 --- MF for a group $C^*$-algebra implies MF for the underlying group, but the converse implication does not follow formally, and we know of no theorem establishing it or refuting it.
+* **`open`**, line 415 --- MF for a group $C^*$-algebra implies MF for the underlying group, but the converse implication does not follow formally, and we know of no theorem establishing it or refuting it.
   * records that no theorem is known either way; an open-status claim
-* **`open`**, line 1615 --- Every MF trace is hyperlinear; Shulman asks whether the converse holds.
+* **`open`**, line 1618 --- Every MF trace is hyperlinear; Shulman asks whether the converse holds.
   * the converse is the question Shulman asks; an open-status claim no declaration settles
-* **`open`**, line 3584 --- Their question concerns Hamming and tracial models, whereas the adjoint spectral estimates here require operator-norm multiplicative control, which permutation and Hilbert--Schmidt models do not supply.
+* **`open`**, line 3589 --- Their question concerns Hamming and tracial models, whereas the adjoint spectral estimates here require operator-norm multiplicative control, which permutation and Hilbert--Schmidt models do not supply.
   * compares two questions and records what the estimates here require; an open-status claim
 
 ## By section
