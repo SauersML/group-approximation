@@ -1,4 +1,5 @@
 import GroupApproximation.Analysis.LanceReiterMean
+import Mathlib.Algebra.BigOperators.Fin
 import Mathlib.Data.Complex.BigOperators
 import Mathlib.Analysis.Complex.Norm
 import Mathlib.Analysis.Real.Sqrt
@@ -129,9 +130,12 @@ theorem starInner_self (ξ : G →₀ ℂ) :
 
 theorem starInner_comm (ξ η : G →₀ ℂ) :
     starInner η ξ = (starRingEnd ℂ) (starInner ξ η) := by
-  rw [Complex.ofReal_sum]
+  classical
+  rw [starInner_eq_sum (s := ξ.support ∪ η.support) Finset.subset_union_right,
+    starInner_eq_sum (s := ξ.support ∪ η.support) Finset.subset_union_left,
+    map_sum]
   refine Finset.sum_congr rfl fun x _ ↦ ?_
-  rw [mul_comm, Complex.mul_conj, Complex.normSq_eq_norm_sq]
+  rw [map_mul, Complex.conj_conj, mul_comm]
 
 omit [Group G] in
 theorem starInner_sub_left (ξ ξ' η : G →₀ ℂ) :
@@ -248,8 +252,7 @@ nonnegative. -/
 theorem IsPositiveDefinite.one_nonneg {φ : G → ℂ}
     (h : IsPositiveDefinite φ) : 0 ≤ (φ 1).re ∧ (φ 1).im = 0 := by
   have h1 := h 1 (fun _ ↦ 1) (fun _ ↦ 1)
-  simp only [Fin.sum_univ_succ, Fin.sum_univ_zero, add_zero, map_one, one_mul,
-    inv_one, mul_one] at h1
+  simp only [Fin.sum_univ_one, map_one, one_mul, inv_one, mul_one] at h1
   exact h1
 
 /-- **Matrix coefficients of the translation action are positive

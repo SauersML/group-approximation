@@ -152,17 +152,17 @@ theorem spatialNorm_gnsRep_le_left (π₀ : A →⋆ₐ[ℂ] (H →L[ℂ] H))
     have n1 : (⟪coeffVector (StarRep.ofStarAlgHom π₀) ζ a η,
         coeffVector (StarRep.ofStarAlgHom π₀) ζ a η⟫_ℂ).re
         = ‖coeffVector (StarRep.ofStarAlgHom π₀) ζ a η‖ ^ 2 :=
-      re_inner_self _
+      by apply re_inner_self
     have n1im : (⟪coeffVector (StarRep.ofStarAlgHom π₀) ζ a η,
         coeffVector (StarRep.ofStarAlgHom π₀) ζ a η⟫_ℂ).im = 0 :=
-      im_inner_self _
+      by apply im_inner_self
     have n2 : (⟪spatialHom (StarRep.ofStarAlgHom π₀) ρ x
           (coeffVector (StarRep.ofStarAlgHom π₀) ζ a η),
         spatialHom (StarRep.ofStarAlgHom π₀) ρ x
           (coeffVector (StarRep.ofStarAlgHom π₀) ζ a η)⟫_ℂ).re
         = ‖spatialHom (StarRep.ofStarAlgHom π₀) ρ x
             (coeffVector (StarRep.ofStarAlgHom π₀) ζ a η)‖ ^ 2 :=
-      re_inner_self _
+      by apply re_inner_self
     have hb : ‖spatialHom (StarRep.ofStarAlgHom π₀) ρ x
           (coeffVector (StarRep.ofStarAlgHom π₀) ζ a η)‖
         ≤ c * ‖coeffVector (StarRep.ofStarAlgHom π₀) ζ a η‖ := by
@@ -301,17 +301,17 @@ theorem spatialNorm_gnsRep_le_right (ρ₀ : B →⋆ₐ[ℂ] (K →L[ℂ] K))
     have n1 : (⟪rightCoeffVector (StarRep.ofStarAlgHom ρ₀) ζ b ξ,
         rightCoeffVector (StarRep.ofStarAlgHom ρ₀) ζ b ξ⟫_ℂ).re
         = ‖rightCoeffVector (StarRep.ofStarAlgHom ρ₀) ζ b ξ‖ ^ 2 :=
-      re_inner_self _
+      by apply re_inner_self
     have n1im : (⟪rightCoeffVector (StarRep.ofStarAlgHom ρ₀) ζ b ξ,
         rightCoeffVector (StarRep.ofStarAlgHom ρ₀) ζ b ξ⟫_ℂ).im = 0 :=
-      im_inner_self _
+      by apply im_inner_self
     have n2 : (⟪spatialHom π (StarRep.ofStarAlgHom ρ₀) x
           (rightCoeffVector (StarRep.ofStarAlgHom ρ₀) ζ b ξ),
         spatialHom π (StarRep.ofStarAlgHom ρ₀) x
           (rightCoeffVector (StarRep.ofStarAlgHom ρ₀) ζ b ξ)⟫_ℂ).re
         = ‖spatialHom π (StarRep.ofStarAlgHom ρ₀) x
             (rightCoeffVector (StarRep.ofStarAlgHom ρ₀) ζ b ξ)‖ ^ 2 :=
-      re_inner_self _
+      by apply re_inner_self
     have hb : ‖spatialHom π (StarRep.ofStarAlgHom ρ₀) x
           (rightCoeffVector (StarRep.ofStarAlgHom ρ₀) ζ b ξ)‖
         ≤ c * ‖rightCoeffVector (StarRep.ofStarAlgHom ρ₀) ζ b ξ‖ := by
