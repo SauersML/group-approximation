@@ -1,5 +1,6 @@
 import GroupApproximation.Sofic.CliffordLampGraphLocalFiniteness
 import Mathlib.GroupTheory.CoprodI
+import Mathlib.GroupTheory.Commutator.Basic
 
 /-!
 # Three blocks give a nonabelian free subgroup of `C(𝒢)`
@@ -413,7 +414,7 @@ theorem threeLamp_braiding {ξ η θ : Site} (hξη : ¬ Adjacent ξ η)
       s = ξ ∨ s = η ∨ s = θ := by
     intro s hs
     by_contra hcon
-    push_neg at hcon
+    push Not at hcon
     exact hs (threeLamp_other hcon.1 hcon.2.1 hcon.2.2)
   intro a b hab
   by_cases ha : threeLamp ξ η θ a = 1
