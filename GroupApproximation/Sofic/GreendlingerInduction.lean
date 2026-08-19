@@ -36,6 +36,15 @@ proves, and classically it is proved from a reduced diagram: a simply-connected
 reduced diagram with at least two regions has at least two regions meeting the
 boundary in more than half their own boundary.
 
+**Warning, established after this file was written: `GreendlingerTwoPiece` is
+false.**  Greendlinger's lemma gives two regions each meeting the boundary in a
+part consecutive along *its own* boundary; `TwoPieceConclusion` asks for two
+subwords consecutive along `w`, and when the second region's arc wraps past the
+basepoint those differ.  `Sofic/GreendlingerTwoPieceRegime` carries the witness
+and the cyclic statement that replaces it.  What is below is still correct --
+the strengthened statement does imply the gate -- it is simply not reachable, so
+do not spend the induction on it.
+
 `TwoPieceConclusion` states it, `greendlinger_of_twoPieceConclusion` shows it is
 stronger than what the gate asks, and
 `greendlingerConclusion_of_greendlingerTwoPiece` runs the base cases: the gate
@@ -106,7 +115,7 @@ theorem IsMinimalConjExpr.leadingPair [DecidableEq α]
     conjValid_nil R⟩⟩, hpair, ?_, ?_⟩
   · intro e' hv' he'
     by_contra hcon
-    push_neg at hcon
+    push Not at hcon
     have hval : ConjValid R (e' ++ e) := conjValid_append hv' hv2
     have heval : conjEval (e' ++ e) = g := by
       rw [conjEval_append, he', ← hpair, ← conjEval_append]
@@ -121,7 +130,7 @@ theorem IsMinimalConjExpr.leadingPair [DecidableEq α]
     omega
   · intro e' hv' he' hlen'
     by_contra hcon
-    push_neg at hcon
+    push Not at hcon
     have hval : ConjValid R (e' ++ e) := conjValid_append hv' hv2
     have heval : conjEval (e' ++ e) = g := by
       rw [conjEval_append, he', ← hpair, ← conjEval_append]
@@ -132,7 +141,8 @@ theorem IsMinimalConjExpr.leadingPair [DecidableEq α]
       exact heq
     have hb3 := hw (e' ++ e) hval heval (by
       rw [List.length_append, hlen']
-      simp)
+      simp only [List.length_cons, List.length_nil]
+      omega)
     rw [conjWeight_append] at hb3
     have hb4 : conjWeight ((A, a) :: (B, b) :: e)
         = conjWeight [(A, a), (B, b)] + conjWeight e := by
