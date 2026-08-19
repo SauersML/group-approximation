@@ -3,7 +3,7 @@ rg: 2
 id: a4-triangle-hs-regular-core-proof
 kind: route
 title: Flexible finite-group stability plus the A4 character table
- target: a4-triangle-hs-regular-core
+target: a4-triangle-hs-regular-core
 requires:
   - a4-triangle-zero-traces-force-regular
 artifacts:
