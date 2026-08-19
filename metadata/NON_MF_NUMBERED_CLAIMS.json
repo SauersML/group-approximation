@@ -7,7 +7,7 @@
       "id": "thm:A",
       "environment": "mainthm",
       "title": "an explicit finitely presented non-MF group",
-      "statement_sha256": "3073242b8e939a9857e80110e4e0aa13634c4bbf6be252bf7a7929743f4b1be1",
+      "statement_sha256": "42d22224247189d9fad0952a7de07d1d053ca7ad42a058cb93edf3c63d7ed95f",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [
@@ -158,6 +158,26 @@
           "role": "exact",
           "module": "Sofic/ManuscriptExactWrappers",
           "declaration": "GroupApproximation.ManuscriptExactWrappers.manuscriptTheoremB",
+          "covers": "the complete printed proposition"
+        }
+      ]
+    },
+    {
+      "id": "lem:kazhdan-gap",
+      "environment": "lemma",
+      "title": "Kazhdan spectral gap",
+      "statement_sha256": "88edd2899a12ce01718448347b8325c62c025e7b24913be49df7763b8370ba33",
+      "status": "exact",
+      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
+      "dependencies": [],
+      "extra_assumptions": [],
+      "external_inputs": [],
+      "coverage_gap": "",
+      "lean": [
+        {
+          "role": "exact",
+          "module": "Sofic/UltraproductKazhdanProjection",
+          "declaration": "GroupApproximation.UltraproductKazhdanProjection.manuscriptKazhdanSpectralGap",
           "covers": "the complete printed proposition"
         }
       ]

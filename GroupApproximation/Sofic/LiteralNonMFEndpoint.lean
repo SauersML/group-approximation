@@ -107,7 +107,7 @@ representation.
 `UltraproductRigidityRoute.compressionDefects_hsTrivial_literal` and
 `KazhdanAsymptoticCommutant.manuscriptKazhdanTransport`, which is the proof
 `\ref{thm:criterion}` prints: "apply Theorem 3.1 with `x_n = U_{c,n}` to put
-the lifts of `d = t c t⁻¹` in the commutant".  It used to travel
+the lifts of `ĉ = t c t⁻¹` in the commutant".  It used to travel
 `KazhdanCompressionCore.compressionDefects_hsTrivial`, whose one transport
 step is the finite-stage corner argument instead; that route is unchanged and
 still proves the same statement, and the corner bookkeeping below the

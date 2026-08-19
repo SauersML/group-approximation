@@ -8,7 +8,7 @@ The manuscript's first open question (`\subsection*{Questions}`, item 1) does
 not merely cite the two reduction corollaries; it *applies* them to a named
 group with a named witness:
 
-> Write `q₁ : E → E/⟨w⟩`, let `D = D_coll(L̄, q₁(t))` for the witness `d̄` of
+> Write `q₁ : E → E/⟨w⟩`, let `D = D_coll(L̄, q₁(t))` for the witness `c̄` of
 > that proof, and let `q₂ : E/⟨w⟩ → (E/⟨w⟩)/D`.  By
 > Corollary `\ref{cor:collapsequot}` applied to `E/⟨w⟩` and then
 > Corollary `\ref{cor:pullback}`,

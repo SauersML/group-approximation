@@ -159,6 +159,11 @@ CLAIM_TARGETS: dict[str, tuple[str, str]] = {
         "Analysis/ProperIsometryStrictOrder",
         "GroupApproximation.manuscriptProperIsometryStrictOrder",
     ),
+    "lem:kazhdan-gap": (
+        "Sofic/UltraproductKazhdanProjection",
+        "GroupApproximation.UltraproductKazhdanProjection."
+        "manuscriptKazhdanSpectralGap",
+    ),
     "lem:corner": (
         "Analysis/PrintedCornerCompression",
         "GroupApproximation.PrintedCornerCompression."
@@ -288,6 +293,7 @@ DEPENDENCIES: dict[str, list[str]] = {
     "cor:exactradical": ["def:radical"],
     "cor:nofaithful": ["thm:A"],
     "lem:corner": ["lem:lift"],
+    "lem:kazhdan-gap": [],
     "rem:maxinfinite": ["prop:proper-isometry", "prop:maximal-cstar"],
     "prop:horn": ["thm:A", "lem:portable"],
     "cor:quotclosure": ["thm:A", "lem:permanence"],

@@ -1,20 +1,17 @@
-% BUILD REQUIREMENT.  This file needs a LaTeX kernel of 2025-06-01 or later:
-% \DocumentMetadata's `tagging=on` key is rejected outright by older kernels
-% (TeX Live 2024 and earlier abort with an unknown `document/metadata/tagging`
-% key), so the failure is a hard error and not a degraded build.  Both the
-% release and the draft workflow compile inside the same digest-pinned TeX
-% Live 2025 image -- see TEXLIVE_IMAGE in .github/workflows/build-non-mf-pdf.yml
-% and draft-non-mf-pdf.yml -- which is the reproducible environment for this
-% source.  The 2026 image is deliberately NOT used: its tagpdf aborts at
+% PDF tagging.  `\DocumentMetadata`'s `tagging=on` key is rejected outright by
+% kernels before 2025-06-01 (TeX Live 2024 and earlier abort with an unknown
+% `document/metadata/tagging` key), so the line below is guarded and the source
+% compiles either way: on a 2025 kernel the PDF is tagged, on an older one it
+% is not.  The four tagging commands around the figure in
+% Section~\ref{sec:group} are guarded by \providecommand there and degrade to
+% no-ops.  Release and draft workflows both use the digest-pinned TeX Live 2025
+% image -- TEXLIVE_IMAGE in .github/workflows/build-non-mf-pdf.yml and
+% draft-non-mf-pdf.yml -- which is the reproducible environment for this
+% source.  The 2026 image is deliberately not used: its tagpdf aborts at
 % \tableofcontents on this source and garbles the contents page.
-% To compile on an older stack, delete BOTH the \NeedsTeXFormat line and the
-% \DocumentMetadata line.  That is a complete fallback: the only tagging
-% commands in the body are the four around the figure in
-% Section~\ref{sec:group}, and they are guarded by \providecommand there,
-% so on a kernel without them they degrade to no-ops.  The PDF is then
-% untagged.
-\NeedsTeXFormat{LaTeX2e}[2025-06-01]
-\DocumentMetadata{lang=en-US,pdfversion=2.0,tagging=on}
+\IfFormatAtLeastTF{2025-06-01}
+  {\DocumentMetadata{lang=en-US,pdfversion=2.0,tagging=on}}
+  {}
 \documentclass[11pt]{amsart}
 
 \usepackage[T1]{fontenc}
@@ -213,7 +210,8 @@ Let $E$ be the group on the eight generators
 $v_1,v_2,v_3,x,y,z,t,c$ with the forty-one relators displayed in
 Definition~\ref{def:E}, and put
 \[
- w=[tct^{-1},\,v_1(tct^{-1})v_1^{-1}].
+ \hat c=tct^{-1},\qquad u=[\,\hat c,v_1],\qquad w=u^{2}
+ =[\,\hat c,\,v_1\hat cv_1^{-1}].
 \]
 The element $w$ is central and satisfies $w^2=1$.
 \begin{enumerate}
@@ -406,18 +404,6 @@ representation and those sent to the identity by every approximate
 representation \cite[Definitions~2.5--2.7]{SlofstraCorrelations}; the two subgroups
 they form are the exact and the approximate analogues of the MF
 residual used below.
-Negative-eigenspace
-compression appears in Slofstra--Vidick
-\cite[proof of Proposition~2.7]{SlofstraVidick}, and Fritz's marked
-$\mathrm{BS}(2,3)$ example is the context for the cyclic comparison of
-Section~\ref{sec:necessity} \cite{Fritz,SlofstraVidick}.
-Bachner--Dogon--Lubotzky develop the operator-norm rounding,
-compression, and polar-correction procedures used in
-Section~\ref{sec:conj} \cite[Lemmas~2.2--2.3, Proposition~2.4, and the
-proof of Proposition~1.5]{BDL}, and handle a finite normal subgroup by
-a character-isotypic corner \cite[proof of Proposition~1.6]{BDL};
-Theorem~\ref{thm:criterion} uses that corner together with one-sided
-conjugation of a property-\textup{(T)} subgroup.
 
 Bekka and Bekka--Valette study property~\textup{(T)} through the
 conjugation representation $\pi\otimes\bar\pi$ on Hilbert--Schmidt
@@ -489,12 +475,14 @@ which sequences they annihilate:
  \eqref{eq:corona}, and the target of an MF embedding;
 \item $B_\omega$, where $\lim_\omega\opnorm{x_n}=0$: the norm
  ultraproduct of Section~\ref{sec:transport}, a finite $C^*$-algebra,
- in which the Kazhdan projection lives;
+ which contains the Kazhdan projection;
 \item the tracial ultraproduct, where $\lim_\omega\hsnorm{x_n}=0$: the
  target for hyperlinearity.
 \end{itemize}
-The first two see the operator norm and the third does not, which is
-why the argument below fails in the third (Section~\ref{sec:limits}).
+The ideals defining $\mathcal Q$ and $B_\omega$ are given by
+operator-norm convergence, the third by normalized Hilbert--Schmidt
+convergence; Section~\ref{sec:limits} identifies the step that needs
+the operator norm.
 
 The following lifting lemmas are standard perturbation theory; see
 Loring \cite{Loring} for a systematic treatment.
@@ -587,8 +575,8 @@ the regular norms.
 
 \section{One-sided conjugation in matrix models}\label{sec:transport}
 
-An inclusion whose two sides have the same size is an equality.  For a
-homomorphism $\pi$ to a finite group,
+The same step occurs three times below, at three levels of
+generality.  For a homomorphism $\pi$ to a finite group,
 $\pi(t\Gamma t^{-1})=\pi(\Gamma)$, since the left side is a conjugate
 of the right side contained in it and the two are finite of the same
 cardinality.  In finite dimensions, the commutant $C$ of the base
@@ -718,14 +706,45 @@ In an MF model, multiplicativity is only asymptotic, so the coordinate
 fixed spaces need not be invariant.  Because the multiplicative
 defects tend to $0$ in operator norm, the adjoint actions on the
 Hilbert--Schmidt spaces are asymptotically multiplicative, and the
-Kazhdan projection they carry lies in a finite norm ultraproduct, where
-$P\le VPV^*$ and $P\sim VPV^*$ imply $P=VPV^*$.
+corresponding Kazhdan projection belongs to a finite norm ultraproduct,
+where $P\le VPV^*$ and $P\sim VPV^*$ imply $P=VPV^*$.
 The property~\textup{(T)} hypothesis is
 essential: the group $E_{\mathrm{BS}}$ of
 Section~\ref{sec:necessity} has cyclic base, its distinguished word is trivial
 in every finite-dimensional representation over every field, and some
 homomorphism $E_{\mathrm{BS}}\to\U(\mathcal Q)$ maps that word to a
 nontrivial element.
+
+\begin{lemma}[Kazhdan spectral gap]\label{lem:kazhdan-gap}
+Let $L$ be a group with property~\textup{(T)}, let $S\subseteq L$ be a
+finite symmetric Kazhdan set containing $1$ with Kazhdan constant
+$\kappa\in(0,1]$, and let $\pi$ be a unitary representation of $L$ in a
+unital $C^*$-algebra.  Then the average
+$h=\frac1{|S|}\sum_{a\in S}\pi(a)$ is self-adjoint and
+\[
+ \operatorname{sp}(h)\subseteq
+ \Bigl[-1,\;1-\frac{\kappa^{2}}{2|S|}\Bigr]\cup\{1\}.
+\]
+\leanverified{Sofic/UltraproductKazhdanProjection}{GroupApproximation.UltraproductKazhdanProjection.manuscriptKazhdanSpectralGap}
+\end{lemma}
+
+\begin{proof}
+Symmetry of $S$ makes $h$ self-adjoint, and $\opnorm h\le1$ puts its
+spectrum in $[-1,1]$.  Let $\mu\in\operatorname{sp}(h)$ with $\mu\ne1$
+and choose a state annihilating $h-\mu$; in its GNS representation the
+cyclic vector $\xi$ is a unit vector with $h\xi=\mu\xi$.  Split
+$\xi=\xi_0+\xi_1$ along the $\pi(L)$-invariant vectors and their
+orthocomplement, both invariant under $h$.  On the first summand
+$h=1$, so $\mu\ne1$ forces $\xi_0=0$.  Now
+\[
+ 1-\mu=\frac1{|S|}\sum_{a\in S}
+  \bigl(1-\operatorname{Re}\langle\pi(a)\xi,\xi\rangle\bigr)
+ =\frac1{2|S|}\sum_{a\in S}\lVert\pi(a)\xi-\xi\rVert^{2},
+\]
+and $\pi$ has no nonzero invariant vector on the orthocomplement, so
+$\lVert\pi(a)\xi-\xi\rVert\ge\kappa$ for some $a\in S$ and
+$1-\mu\ge\kappa^{2}/(2|S|)$.
+\end{proof}
 
 \begin{theorem}[one-sided conjugation preserves asymptotic commutants]
 \label{thm:kazhdan-transport}
@@ -780,26 +799,13 @@ a homomorphism.
 
 \emph{The projection onto the fixed subspace.}  Choose a finite
 symmetric Kazhdan set $S\subseteq\Gamma$ containing $1$, with Kazhdan
-constant $\kappa\in(0,1]$.  Let $h$ be the
-Hermitian part of $\frac1{|S|}\sum_{s'\in S}\pi(\iota(s'))$ and let
-$\mathrm{Fix}\subseteq K_\omega$ be the subspace of vectors fixed by
-every $\pi(\iota(\gamma))$.  Both $\mathrm{Fix}$ and its
-orthocomplement are invariant under each unitary $\pi(\iota(s'))$,
-hence under $h$.  On $\mathrm{Fix}$, $h=1$.  The restriction of
-$\pi\circ\iota$ to $\mathrm{Fix}^\perp$ has no nonzero invariant
-vector, so a unit vector $\xi\in\mathrm{Fix}^\perp$ satisfies
-$\lVert\pi(\iota(s'))\xi-\xi\rVert\ge\kappa$ for some $s'\in S$.
-For this $s'$
-$\operatorname{Re}\langle\pi(\iota(s'))\xi,\xi\rangle\le1-\kappa^2/2$,
-while every other term is at most $1$.  Averaging gives
-$\langle h\xi,\xi\rangle\le1-\kappa^2/(2|S|)$.  Consequently
-\[
- \operatorname{sp}(h)\subseteq
- \Bigl[-1,\,1-\tfrac{\kappa^2}{2|S|}\Bigr]\cup\{1\},
-\]
-and the spectral projection $P$ of $h$ at the isolated point $1$
-belongs to $B_\omega$ by continuous functional calculus and projects
-onto $\mathrm{Fix}$.
+constant $\kappa\in(0,1]$, put $h=\frac1{|S|}\sum_{s'\in S}\pi(\iota(s'))$,
+and let $\mathrm{Fix}\subseteq K_\omega$ be the subspace of vectors
+fixed by every $\pi(\iota(\gamma))$.  By Lemma~\ref{lem:kazhdan-gap},
+$1$ is isolated in $\operatorname{sp}(h)$, so the spectral projection
+$P$ of $h$ at $1$ belongs to $B_\omega$ by continuous functional
+calculus; since $h=1$ exactly on $\mathrm{Fix}$, its range is
+$\mathrm{Fix}$.
 
 \emph{The two projections agree.}  Let $V=\pi(s)$ and $Q=VPV^*$.  Since
 $s\iota(\Gamma)s^{-1}\subseteq\iota(\Gamma)$, every vector of
@@ -885,6 +891,16 @@ which tends to $0$.  Adding the three polar corrections gives
  \opnorm{W_{g,n}W_{h,n}-W_{gh,n}}\longrightarrow0 . \qedhere
 \]
 \end{proof}
+
+The rounding, compression and polar-correction estimates of
+Lemma~\ref{lem:corner} follow Bachner--Dogon--Lubotzky
+\cite[Lemmas~2.2--2.3, Proposition~2.4, and the proof of
+Proposition~1.5]{BDL}, and compression to a negative eigenspace
+appears in Slofstra--Vidick \cite[proof of
+Proposition~2.7]{SlofstraVidick}.  The finite normal case,
+Theorem~\ref{thm:criterion}, uses the character-isotypic corner of
+\cite[proof of Proposition~1.6]{BDL} together with one-sided
+conjugation of a property-\textup{(T)} subgroup.
 
 Each corner block is given its own normalized trace $\tr_{r_n}$, not
 the restriction of $\tr_{d_n}$, so that
@@ -1137,11 +1153,7 @@ and~\textup{(C)} give, respectively,
 \]
 \end{definition}
 
-Family~\textup{(B)} presents the Kazhdan base, family~\textup{(T)}
-imposes $t\iota(\mathcal B)t^{-1}\subseteq\iota(\mathcal B)$,
-family~\textup{(C)} makes $c$ an involution centralizing the base, and
-family~\textup{(W)} makes $w$ central; these are the hypotheses of
-Theorem~\ref{thm:sign-criterion}.
+These are the hypotheses of Theorem~\ref{thm:sign-criterion}.
 Families~\textup{(T)} and~\textup{(C)} imply that $\hat c=tct^{-1}$
 commutes with $t\iota(\mathcal B)t^{-1}$.  The element $\iota(v_1)$ lies outside
 that conjugate subgroup, and the commutator $[\,\hat c,\iota(v_1)]$ is
@@ -1219,13 +1231,13 @@ A Tietze reduction removes two generators and nine relators
   \draw[figarr] (mark.east) -- ++(0.5,0) |- (algebraic.east);
 \end{tikzpicture}%
 \tagmcend\tagstructend
-\caption{The distinguished word has two values.  The relations of
-\eqref{eq:E} give $t\iota(\mathcal B)t^{-1}\subseteq\iota(\mathcal B)$
-and $[c,\iota(\mathcal B)]=1$, hence
+\caption{The relations of \eqref{eq:E} give
+$t\iota(\mathcal B)t^{-1}\subseteq\iota(\mathcal B)$ and
+$[c,\iota(\mathcal B)]=1$, hence
 $[\,\hat c,\,t\iota(\mathcal B)t^{-1}]=1$ for $\hat c=tct^{-1}$.  Every
-homomorphism to $\U(\mathcal Q)$ sends $w$ to the identity, while the
-Clifford quotient of Section~\ref{sec:witness} sends it to the
-nontrivial sign $\zeta$; the two together are Theorem~\ref{thm:A}.}
+homomorphism $\Theta\colon E\to\U(\mathcal Q)$ has $\Theta(w)=1$;
+the Clifford quotient of Section~\ref{sec:witness} maps $w$ to
+$\zeta\ne1$.}
 \label{fig:compression-pattern}
 \end{figure}
 
@@ -1251,9 +1263,7 @@ and
 The group $E$ is the specialization of
 Theorem~\ref{thm:kazhdan-clifford} to the data
 \eqref{eq:affine-data}, and $w\ne1$ by
-Proposition~\ref{prop:witness}.  We check the hypotheses of the
-central involution obstruction on the presentation \eqref{eq:E}
-itself, so that the argument reads off the displayed relations.
+Proposition~\ref{prop:witness}.
 
 Let $(d_n)$ be given, write $\mathcal Q=\mathcal Q((d_n))$, and let
 $\Theta\colon E\to\U(\mathcal Q)$ be a homomorphism.  Apply the central
@@ -1477,8 +1487,8 @@ Define a map on the generators of \eqref{eq:E} by
   t\mapsto\tau,\qquad c\mapsto c_o .
 \end{gathered}
 \]
-The exact checks in Lemma~\ref{lem:linear} give the twenty base and six
-stable-letter relations.  The level-zero subgroup fixes $o$, so $c_o$
+Lemma~\ref{lem:linear} gives the twenty base and six stable-letter
+relations.  The level-zero subgroup fixes $o$, so $c_o$
 commutes with every base generator, and $c_o^2=1$.
 Under this assignment,
 \[
@@ -1565,12 +1575,12 @@ By Lance's theorem, nonamenability of a discrete group is equivalent
 to nonnuclearity of its reduced group $C^*$-algebra, so
 $\Cred(E)$ is not nuclear \cite{Lance}.  In the direction used here,
 nuclearity is read as the completely positive approximation property:
-a discrete group whose reduced algebra has that property carries an
+a discrete group whose reduced algebra has that property admits an
 invariant mean, and $E$ does not.
 \leanverified{Analysis/LanceNuclearity}{GroupApproximation.CStarExactness.reducedGroupCStar_not_nuclear}
-So $\Cred(E)$ says nothing about the nuclear form of the
-Blackadar--Kirchberg problem, whether every stably finite separable
-nuclear $C^*$-algebra is quasidiagonal.
+Since $\Cred(E)$ is nonnuclear, this example does not address the
+nuclear form of the Blackadar--Kirchberg problem, whether every stably
+finite separable nuclear $C^*$-algebra is quasidiagonal.
 
 The maximal algebra behaves differently: $\Cmax(E)$ is not stably
 finite and has no faithful tracial state.  This holds for every group
@@ -1880,20 +1890,16 @@ there.
 
 \section{Obstructions from a one-sided conjugation datum}\label{sec:conj}
 
-Theorem~\ref{thm:kazhdan-transport} puts the normal closure
-$N_{\mathrm{conj}}$ of the commutators $[tct^{-1},\iota(\lambda)]$
-inside the $2$-norm kernel of every operator-norm asymptotic
-representation of $H$.  Each result below combines that fact with
-Lemma~\ref{lem:corner} for a different choice of corner, on which the
-subgroup at issue stays a definite $2$-norm distance from the
-identity, and so lands in the kernel of every homomorphism
-$H\to\U(\mathcal Q)$.  For a finite normal subgroup of
-$N_{\mathrm{conj}}$ the corner is the complement of a projection
-obtained from its averaging operators
-(Theorem~\ref{thm:criterion}); the central involution of
+By Theorem~\ref{thm:kazhdan-transport}, the normal closure
+$N_{\mathrm{conj}}$ of the commutators $[tct^{-1},\iota(\lambda)]$ is
+contained in $K_2^{\omega}(U)$ for every operator-norm asymptotic
+representation $U$ of $H$.  For a finite normal subgroup of
+$N_{\mathrm{conj}}$, the corner of Lemma~\ref{lem:corner} is the
+complement of a projection obtained from its averaging operators
+(Theorem~\ref{thm:criterion}), and the central involution of
 Section~\ref{sec:sign} is the case $F=\{1,w\}$.  For a normal
-property-\textup{(T)} subgroup --- possibly infinite, noncentral and
-torsion-free --- the corner is a spectral projection of a Kazhdan
+property-\textup{(T)} subgroup, which may be infinite, noncentral and
+torsion-free, the corner is a spectral projection of a Kazhdan
 average (Theorems~\ref{thm:abstract-nk}
 and~\ref{thm:normal-kazhdan}).  Corollary~\ref{cor:intrinsic-nk}
 replaces $N_{\mathrm{conj}}$ by the subgroup
@@ -2143,19 +2149,16 @@ $\C^{d_n}$, and let $B_\omega=\prod_\omega B(\C^{d_n})$ act on it as in
 Section~\ref{sec:transport}, so that the classes
 $\pi(g)=[V_{g,n}]_\omega$ define a unitary representation of $\bar H$
 on $H_\omega$.  Fix a finite symmetric generating Kazhdan set
-$S\subseteq\bar K$ with constant $\varepsilon_0$, put
+$S\subseteq\bar K$ containing $1$, with constant $\varepsilon_0$, put
 $\theta=1-\varepsilon_0^{2}/(4|S|)$, and let
 \[
- h=\frac1{|S|}\sum_{a\in S}\pi(a)\in B_\omega ,
+ h=\frac1{|S|}\sum_{a\in S}\pi(a)\in B_\omega .
 \]
-self-adjoint because $S$ is symmetric.  A unit vector $\xi$ has
-$\langle h\xi,\xi\rangle=1$ exactly when $\pi(a)\xi=\xi$ for every
-$a\in S$, while the Kazhdan pair bounds $\langle h\xi,\xi\rangle$ by
-$\theta$ on the orthogonal complement of
-$\operatorname{Fix}\pi(\bar K)$.  The spectrum of $h$ therefore lies in
-$[-1,\theta]\cup\{1\}$, the spectral projection $P=\chi_{\{1\}}(h)$
-belongs to $B_\omega$, and its range is
-$\operatorname{Fix}\pi(\bar K)$.  Put $q=1-P$.
+By Lemma~\ref{lem:kazhdan-gap} the spectrum of $h$ lies in
+$[-1,1-\varepsilon_0^{2}/(2|S|)]\cup\{1\}$ and hence in
+$[-1,\theta]\cup\{1\}$, so the spectral projection $P=\chi_{\{1\}}(h)$
+belongs to $B_\omega$; its range is $\operatorname{Fix}\pi(\bar K)$,
+where $h=1$.  Put $q=1-P$.
 
 If $q=0$ then $\pi(k)=1$ for every $k\in\bar K$, against the
 operator-norm separation of a fixed nontrivial element of $\bar K$.
@@ -2332,6 +2335,9 @@ homomorphism also maps $w$ to the identity.
 
 \section{The cyclic comparison}\label{sec:necessity}
 
+Fritz's marked $\mathrm{BS}(2,3)$ example is the context for this
+comparison \cite{Fritz,SlofstraVidick}.
+
 % Not the lettered Theorem C: an ordinary numbered theorem.  Cite
 % \ref{thm:cyclic}; `thm:C` is a legacy alias.  See the note at thm:exactfd.
 \begin{theorem}[the cyclic comparison]\label{thm:cyclic}
@@ -2389,8 +2395,8 @@ Running the Clifford representation of the preceding proof over
 finite site sets gives explicit unitary models of the seven relators
 in which $w_{\mathrm{BS}}$ is the scalar $-1$.  Fix $m\ge0$, put
 $M=2m+3$ and $\zeta=e^{2\pi i/M}$, and take the coordinates
-$\mathbb Z/2\times\mathbb Z/M$: the first carries the Clifford sign,
-the second the spectrum of the base.  Let $X$ and $Z$ be the flip and
+$\mathbb Z/2\times\mathbb Z/M$, the first for the Clifford sign and
+the second for the spectrum of the base.  Let $X$ and $Z$ be the flip and
 the sign on the first coordinate, put $D=2^{-1/2}(X+Z)$, a
 self-adjoint unitary, and set
 \[
@@ -2402,8 +2408,8 @@ where $\gamma_0$ is the displayed diagonal unitary, $b_0=0$,
 $b_1=m+1$, and $t$ is the permutation unitary of the displayed map,
 which is a permutation because $M$ is odd.  Here $\gamma_0$ and $t$
 are monomial and $c$ is an equal-weight sum of two monomial matrices.
-Since $tct^{-1}=D$ and $\gamma_0^2(s,k)=\zeta^{2k}$ does not see the
-spin coordinate, the marked word is
+Since $tct^{-1}=D$ and $\gamma_0^2(s,k)=\zeta^{2k}$ is independent of
+the spin coordinate, the distinguished word is
 \[
  w_{\mathrm{BS}}=\bigl[\,D,\;ZDZ\,\bigr]=(D\cdot ZDZ)^2=-1 ,
 \]
@@ -2425,11 +2431,12 @@ the doubling defect and nothing else.  Both are $O(1/m)$.  Assembling
 the models over $m$ gives
 $\Theta\colon E_{\mathrm{BS}}\to\U(\mathcal Q)$ with
 $\Theta(w_{\mathrm{BS}})\ne1$, and the image of $\Theta$ is MF
-because it embeds in $\U(\mathcal Q)$.  Thus the
+because it embeds in $\U(\mathcal Q)$.  So the
 property~\textup{(T)} hypothesis in the central involution
 obstruction is essential: with the cyclic base
-$\langle\gamma_0\rangle$ in place of a Kazhdan base, the
-distinguished word survives in a matrix quotient.  Equivalently, in
+$\langle\gamma_0\rangle$ in place of a Kazhdan base, some
+homomorphism to $\U(\mathcal Q)$ is nontrivial on the distinguished
+word.  Equivalently, in
 the residual language of Section~\ref{sec:consequences},
 $w_{\mathrm{BS}}\notin\operatorname{Res}_{\mathrm{MF}}(E_{\mathrm{BS}})$.
 \leanverified{Sofic/CliffordBSAmenableMF}{GroupApproximation.CliffordBSAmenableMF.manuscriptSharpnessOfKazhdanHypothesis}
@@ -2439,8 +2446,8 @@ the semidirect product of the locally finite Clifford group on the
 coset space by the solvable affine group
 $\mathrm{BS}(1,2)\cong\mathbb Z[1/2]\rtimes\mathbb Z$ --- and
 therefore MF, by quasidiagonality of amenable groups \cite{TWW}.  The
-models above establish only that $w_{\mathrm{BS}}$ survives in the MF
-group $\Theta(E_{\mathrm{BS}})$, and use neither amenability nor
+models above give $\Theta(w_{\mathrm{BS}})\ne1$ for an MF image
+$\Theta(E_{\mathrm{BS}})$, and use neither amenability nor
 quasidiagonality.
 
 The preceding homomorphism to $\U(\mathcal Q)$ does not arise from
@@ -3164,8 +3171,8 @@ generating edge with the pair
 $\{\bar\alpha(\bar\Gamma),\,\bar v_1\bar\alpha(\bar\Gamma)\}$.  Left
 multiplication by $\bar\alpha(\bar\Gamma)$ on the coset space
 $\bar\Gamma/\bar\alpha(\bar\Gamma)$ is transitive on the nontrivial
-cosets, and that is what makes every pair of distinct sites of a block
-the image of the generating pair.  Writing $L=\langle x,y,z\rangle$ for the linear
+cosets, so every pair of distinct sites of a block is the image of
+the generating pair.  Writing $L=\langle x,y,z\rangle$ for the linear
 part, $\bar\Gamma=\Z^3\rtimes L$; since $\bar\alpha$ squares the three
 translations and fixes $x,y,z$ (Lemma~\ref{lem:linear}), its image is
 $(2\Z^3)\rtimes L$, and reduction of the translation coordinate
@@ -3739,7 +3746,7 @@ residually finite-dimensional nor MF\@.
 \begin{proof}
 Let $P\in\Cmax(G)$ be the spectral projection at $1$ of
 the Hermitian Kazhdan average $\tfrac1{2|S|}\sum_{s\in S}(u_s+u_s^{*})$,
-which exists by the spectral gap of Section~\ref{sec:transport}.  Then
+which exists by Lemma~\ref{lem:kazhdan-gap}.  Then
 $P\le u_tPu_t^{*}$, and the inequality is strict: in the quasi-regular
 representation on $\ell^2(G/t\Gamma t^{-1})$ the point mass at the
 base coset is fixed by $t\Gamma t^{-1}$ but moved by every element of
@@ -3789,7 +3796,6 @@ in such a way that it archives our goals and ends everything, or,
 possibly, a different breakthrough, leading to achieving the final
 result.  You got this!''
 \end{quote}
-\noindent
 The preceding suggestion to work on MF groups was:
 \begin{quote}
 ``Anyway.  Are we closer to are all groups hyperlinear or are all
