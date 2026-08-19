@@ -7,9 +7,9 @@ Spec document: `non_mf_groups_exist.tex`.  Formal development: `GroupApproximati
 | | |
 | --- | --- |
 | commit | the external literature-review pass of 2026-08-19 (this one) |
-| `git hash-object non_mf_groups_exist.tex` | `b56182737da95c15c46ac255dcd274c3dfb754a8` |
-| sha256 of the file | `280c34bebfa043ce9dc769262b777f9ca623f13032a86a422de16971cc43e55f` |
-| `wc -l` | 4128 |
+| `git hash-object non_mf_groups_exist.tex` | `d4c1a3ed8ee0fe5fafaf638ea4144157a7aecde7` |
+| sha256 of the file | `46fcd42a8fcd9953d626ca6918a5653bfd45b7ced0295a8484e915e26d964cb2` |
+| `wc -l` | 4130 |
 
 `git hash-object` of the file must reproduce the blob above for the rows below
 to be read as current.  The file has shrunk from 4768 lines to 3771 across the

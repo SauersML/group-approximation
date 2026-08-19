@@ -146,10 +146,12 @@ conjecture that every countable group is MF.
 
 More generally, let $\Gamma$ be a finitely presented
 property-\textup{(T)} group with a proper injective endomorphism
-$\alpha$.  From $(\Gamma,\alpha)$ we build a finitely presented group
-carrying a central involution $w=u^2$, nontrivial because an explicit
-Clifford-group quotient sends $w$ to $-1$, and we prove that
-$\Theta(w)=1$ for every homomorphism $\Theta$ to $\U(\mathcal Q)$.
+$\alpha$, and choose $a\in\Gamma\setminus\alpha(\Gamma)$.  From these we
+build a finitely presented group with a central involution $w=u^2$, and
+we prove that $\Theta(w)=1$ for every homomorphism $\Theta$ to
+$\U(\mathcal Q)$.  That $a$ lies outside $\alpha(\Gamma)$ separates two
+cosets, whose Clifford generators anticommute, so an explicit Clifford
+quotient sends $w$ to $-1$ and $w\ne1$.
 In every operator-norm asymptotic representation $(U_n)$, one-sided
 conjugation preserves the asymptotic commutant of $\Gamma$ in
 normalized Hilbert--Schmidt norm; the commutator $u$ lies in that
@@ -3233,13 +3235,14 @@ $[c_{\tau o},c_{j(\bar v_1)\tau o}]=\zeta$, which is central in
 $C(\mathcal G)$ and fixed by $\Sigma$.  This defines
 $E\to C(\mathcal G)\rtimes\Sigma$.
 
-In the other direction, $\zeta\mapsto w$ and $c_{gB}\mapsto gcg^{-1}$
-respects the defining relations of $C(\mathcal G)$: the assignment is
-independent of the coset representative because the base centralizes
-$c$; the images are involutions; $w$ is central of order two; and along
-an edge $g\{\tau o,\,j(\bar v_1)\tau o\}$ the commutator of the two
-images is $gwg^{-1}=w$; the presentation imposes relations only along
-edges.
+In the other direction, send $\zeta$ to $w$ and $c_{gB}$ to
+$gcg^{-1}$.  The assignment is independent of the coset representative,
+because the base centralizes $c$.  The images are involutions, and $w$
+is central of order two.  Along an edge
+$g\{\tau o,\,j(\bar v_1)\tau o\}$ the commutator of the two images is
+$gwg^{-1}=w$, and $C(\mathcal G)$ imposes relations only along edges.
+So the assignment respects the defining relations of
+$C(\mathcal G)$.
 Combined with the splitting $\Sigma\to E$ on the seven
 remaining letters, this gives $C(\mathcal G)\rtimes\Sigma\to E$.  The
 two composites fix the eight letters of $E$ and the generators
@@ -3331,15 +3334,14 @@ $C(\mathcal G)/\langle\zeta\rangle$ is the free product of the
 elementary abelian $2$-groups attached to the blocks, each of order at
 most $2^{8}$.  There are countably many blocks; enumerate them, and let
 $Q_n$ be the free product of the factors attached to the first $n$.
-Each factor is finite, hence exact, so each $Q_n$ is a free product of
+Each factor is finite, hence exact, so $Q_n$ is a free product of
 finitely many exact groups and is exact by Dykema's theorem
-\cite{DykemaExact}.  The $Q_n$ increase with union the whole quotient,
-and a group with an increasing family of exact open subgroups whose
-union it is is itself exact \cite[Lemma~2.5]{KWExact} --- in a discrete
-group every subgroup is open --- so this quotient is exact.  Since
-$\langle\zeta\rangle$ is finite, extension
-permanence \cite{KWPermanence} then gives exactness of
-$C(\mathcal G)$.  The group $\Sigma\le\GL_4(\mathbb Q)$ is exact by
+\cite{DykemaExact}.  The $Q_n$ increase with union the whole quotient.
+In a discrete group every subgroup is open, so a group that is the
+union of an increasing family of exact subgroups is exact
+\cite[Lemma~2.5]{KWExact}, and the quotient is exact.  Since
+$\langle\zeta\rangle$ is finite, extension permanence
+\cite{KWPermanence} gives exactness of $C(\mathcal G)$.  The group $\Sigma\le\GL_4(\mathbb Q)$ is exact by
 Guentner--Higson--Weinberger \cite{GHW}.  Finally
 $E\cong C(\mathcal G)\rtimes\Sigma$ is an extension, hence is exact by
 \cite{KWPermanence}.  For a discrete group, group exactness is
