@@ -1,16 +1,17 @@
-# 2026-08-18 — Pairwise selector overlap is the only nonlinear mass in predicated ZPC compilation
+# 2026-08-18 — Pairwise selector overlap quantitatively rounds predicated control
 
 **Status:** two elementary operator lemmas are proved below.  No nonhyperlinear
-group is claimed here.  The consequence is a substantial narrowing of the
-perfect-ZPC-to-LCS route: once a compiler makes pairwise selector overlap pay
-for LCS relator energy, one-hot rounding and branchwise decoding are automatic
-with dimension-free constants.
+group is claimed here.  They substantially narrow one part of the
+perfect-ZPC-to-LCS route: within any common selector context, pairwise selector
+overlap is the only obstruction to a large one-hot corner, and branch-specific
+gated copies decode there by direct sum with dimension-free constants.
 
 This note complements the existing affine and finite-group selector no-gos.
 Those results say one-hot selector semantics cannot be imposed exactly by a
 standalone finite group gadget.  The statements here go in the other direction:
-they show that **exact one-hot semantics is unnecessary**.  Quantitative
-suppression of pairwise overlap is enough.
+they show that **exact one-hot semantics is unnecessary** once an output
+construction has supplied a common selector context and quantitative overlap
+control.
 
 ## 1. Selector overlap rounding
 
@@ -92,19 +93,12 @@ Summing over `a`, the joint-atom contribution is `h` when `h!=1` and zero when
 h <= 2 binom(h,2),
 ```
 
-and for `h=0` both sides vanish.  This proves (O2).
-
-The important feature is what is absent: there is no factor depending on
-matrix dimension.
+and for `h=0` both sides vanish.  This proves (O2).  There is no matrix-dimension
+factor.
 
 ## 2. Direct-sum predication decoder
 
-The existing `controlled-linear-predication-normal-form` introduces a gated
-copy `G_(a,i)` of an unreadable involution for every branch `a` and variable
-`i`.  A previous formulation also linked all gated copies back to one common
-operator.  That link is not needed for sound decoding.
-
-Assume the selector family above and suppose every `G_(a,i)` is a
+Assume the selector family above and suppose every branch copy `G_(a,i)` is a
 self-adjoint involution commuting with every selector `Z_b`.  On the good
 corner `Q M Q`, define
 
@@ -127,13 +121,7 @@ and suppose the compiled predicated relation is
 H_(a,I) := product_(i in I) G_(a,i) ~= Z_a^b.      (D1)
 ```
 
-On `Q_a`, exactly one selector is hot, so
-
-```text
-Q_a Z_a^b = (-1)^b Q_a.
-```
-
-Moreover
+On `Q_a`, exactly one selector is hot, so `Q_a Z_a^b=(-1)^b Q_a`, and
 
 ```text
 Q_a product_(i in I) U_i = Q_a H_(a,I).
@@ -146,64 +134,59 @@ Therefore
     <= ||H_(a,I)-Z_a^b||_2.                        (D2)
 ```
 
-After normalizing the trace on the good corner, the squared defect is enlarged
-by at most the factor `1/tau(Q)`.  Hence if
+After normalizing the trace on the good corner, squared defects enlarge by at
+most `1/tau(Q)`.  Hence if
 
 ```text
 r := (1/4)||W+1||_2^2 + S < 1,
 ```
 
-then `tau(Q)>=1-r`, and every weighted sum of branch-equation squared defects
-for the decoded controlled-linear strategy is at most
+then `tau(Q)>=1-r`, and a weighted sum of decoded branch-equation squared
+defects is bounded by the corresponding compiled sum divided by `1-r`.
 
-```text
-(compiled weighted squared defect)/(1-r).           (D3)
-```
+No relation `product_a G_(a,i)=U_i`, and no requirement that inactive gated
+copies equal one, is needed **inside this common selector context**.
 
-Crucially, the decoder does **not** need relations of the form
-`product_a G_(a,i)=U_i`, nor does it need inactive gated copies to equal one.
-It simply uses the correct gated copy on each selector sector and takes their
-direct sum.
+## 3. The remaining ZPC issue: contexts have to glue
 
-## 3. Consequence for the ZPC compiler
+For a generic TailoredMIP ZPC strategy, unreadable operators at a question are
+known to commute with readable operators at that question and across incident
+edges, not with every remote readable bit.  Consequently the natural
+predication contexts are local (typically one edge and its two readable
+answers), not one global readable assignment.  Applying Sections 1–2
+independently on every edge can therefore produce different decoded copies of
+the same unreadable question variable on different incident edges.
 
-For the fixed separated game supplied by `perfect-zpc-irs-quantum-gap-game`,
-all the following are already available in Cairn:
+That is a genuine remaining soundness condition.  The two lemmas here do **not**
+prove `zpc-selector-robust-lcs-compiler` on their own.  They split its analytic
+burden into two explicit quantities:
 
-1. perfect ZPC-IRS completeness and source quantum value `<1/2`;
-2. exact lowering of every controlled-linear branch relation to a predicated
-   parity relation (`controlled-linear-predication-normal-form`);
-3. exact compilation of finite affine equations plus prescribed commutations
-   into LCS syntax (`finite-linear-commutation-system-to-lcs`).
+1. **selector overlap energy** in each local context, measured by
+   `sum_(a<b) tau(P_a P_b)` plus the odd-parity defect; and
+2. **context consistency energy**, measuring the mismatch between decoded
+   copies of the same question observable across its incident edge contexts.
 
-The two lemmas above show that the remaining nonlinear task can be stated as
-one quantitative inequality:
+Once both are bounded by a dimension-free constant times output LCS loss, a
+finite spanning-tree gluing argument chooses one reference context per question,
+transports all edge equations to those references, and yields a legitimate
+source strategy with loss tending to zero.
 
-> build a payload-coupled LCS selector system for which the odd-parity defect
-> and the total pairwise overlap
-> `sum_(a<b) tau(P_a P_b)` are bounded by a universal constant times the total
-> output relator/game loss.
+This is still a major simplification: the compiler need not classify selector
+representations or enforce exact one-hot.  It needs two positive energy
+inequalities that are local and quantitative.
 
-If that holds, near-perfect output strategies have `tau(Q)->1`; (D3) decodes
-them to source strategies with value tending to one, contradicting the fixed
-source bound `<1/2`.  Thus this **pairwise-overlap transducer** is sufficient
-for the robust compiler and hence for an explicit nonhyperlinear solution
-group.
-
-This target is strictly weaker than enforcing one-hot exactly.  It is also
-compatible with the new extensive-syndrome accounting lane: pairwise overlap
-mass is a positive spectral carrier, and a successful local transducer only
-has to make that carrier pay bounded-overlap relator energy.
-
-## 4. What this rules out and what it opens
+## 4. Why the overlap quantity is a promising syndrome target
 
 The affine and finite-group induction barriers remain valid.  A successful
-transducer cannot be a standalone finite selector gadget whose only visible
+mechanism cannot be a standalone finite selector gadget whose only visible
 boundary is the commuting selector subgroup.  It must couple invalid overlap
-sectors to the payload or to an infinite/stable syndrome mechanism.
+sectors to payload/context relations or to an infinite/stable syndrome
+mechanism.
 
-But the compiler no longer owes a representation-theoretic classification of
-all selector sectors.  It owes one dimension-free energy inequality.  That is
-a substantially smaller target, and it can be attacked using stability,
-local-testability, spectral-carrier, or code-syndrome methods without changing
-the downstream LCS/nonhyperlinear argument.
+Pairwise overlap mass is nevertheless a particularly tractable target: it is a
+sum of traces of positive spectral carriers.  The repository's new
+bounded-overlap syndrome accounting shows exactly how positive carrier density
+can be charged to a finite relator-energy budget once a local transducer is
+available.  The next theorem should therefore be sought as a
+**context-coupled overlap/mismatch transducer**, not as another exact selector
+presentation.
