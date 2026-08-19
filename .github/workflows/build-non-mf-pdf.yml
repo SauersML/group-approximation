@@ -238,6 +238,18 @@ jobs:
             --tex "$TEX_FILE" \
             --strict
 
+      # The ledger grades claims and the manifest reads numbered environments,
+      # so a claim asserted in a paragraph and in no theorem is invisible to
+      # both.  The census descends to the sentence: every sentence of the
+      # manuscript carries either the declarations that prove it, the ledger
+      # row that grades it, or a reason no declaration can.  A manuscript edit
+      # that adds a sentence turns this step red until the sentence is
+      # assigned, which is the whole point of it.
+      - name: Sentence-level census
+        run: |
+          python3 scripts/sentence_census.py --check
+          python3 scripts/sentence_census.py --verify-decls
+
       - name: Install the pinned P13 generator runtime
         run: python3 -m pip install --disable-pip-version-check --no-deps numpy==2.3.2
 
