@@ -80,6 +80,12 @@ variable {A : Type u} [CStarAlgebra A]
 
 /-! ## Matrices over a finite model, as operators on `ℓ²` -/
 
+/-- The canonical enumeration of a finite model.  Named rather than written
+inline so that every occurrence is the same term: `rw` matches syntactically,
+and `Fintype.equivFin Y` appearing in one place and an abbreviation in another
+is the difference between a rewrite that fires and one that does not. -/
+def enum (Y : FiniteModel) : Y ≃ Fin (Fintype.card Y) := Fintype.equivFin Y
+
 /-- Reindex to `Fin (card Y)` and view the result as an operator.  Both halves
 are `⋆`-algebra equivalences, so the composite is linear. -/
 def euclideanize (Y : FiniteModel) :
@@ -87,14 +93,14 @@ def euclideanize (Y : FiniteModel) :
       EuclideanSpace ℂ (Fin (Fintype.card Y))) where
   toFun M := Matrix.toEuclideanCLM (𝕜 := ℂ)
     (matrixReindexStarAlgEquiv
-      (Fintype.equivFin Y) M)
+      (enum Y) M)
   map_add' M N := by simp
   map_smul' c M := by simp
 
 @[simp] theorem euclideanize_apply (Y : FiniteModel) (M : Matrix Y Y ℂ) :
     euclideanize Y M = Matrix.toEuclideanCLM (𝕜 := ℂ)
       (matrixReindexStarAlgEquiv
-        (Fintype.equivFin Y) M) := rfl
+        (enum Y) M) := rfl
 
 /-- **Neither move changes a norm.** -/
 theorem norm_euclideanize (Y : FiniteModel) (M : Matrix Y Y ℂ) :
@@ -117,7 +123,6 @@ theorem ucp_norm_le {Y : FiniteModel} (φ : A →ₗ[ℂ] Matrix Y Y ℂ)
     (h1 : φ 1 = 1) (hcp : IsCompletelyPositiveOnMatrices Y ⇑φ) (b : A) :
     ‖φ b‖ ≤ ‖b‖ := by
   classical
-  set e := Fintype.equivFin Y with he
   set ψ : A →ₗ[ℂ] (EuclideanSpace ℂ (Fin (Fintype.card Y)) →L[ℂ]
       EuclideanSpace ℂ (Fin (Fintype.card Y))) :=
     (euclideanize Y).comp φ with hψ
@@ -135,35 +140,36 @@ theorem ucp_norm_le {Y : FiniteModel} (φ : A →ₗ[ℂ] Matrix Y Y ℂ)
     intro m a v
     have hentry : ∀ i j : Fin m,
         ⟪v i, ψ (star (a i) * a j) (v j)⟫_ℂ
-          = ∑ x : Y, ∑ y : Y, (starRingEnd ℂ) (v i (e x))
-              * (φ (star (a i) * a j) x y * v j (e y)) := by
+          = ∑ x : Y, ∑ y : Y, (starRingEnd ℂ) (v i (enum Y x))
+              * (φ (star (a i) * a j) x y * v j (enum Y y)) := by
       intro i j
       rw [hψ, LinearMap.comp_apply, euclideanize_apply,
         CStarExactness.inner_toEuclideanCLM_expand]
-      rw [← Equiv.sum_comp e (fun p ↦ ∑ q : Fin (Fintype.card Y),
-        (starRingEnd ℂ) (v i p)
-          * (matrixReindexStarAlgEquiv e
+      rw [← Equiv.sum_comp (enum Y)
+        (fun p ↦ ∑ q : Fin (Fintype.card Y), (starRingEnd ℂ) (v i p)
+          * (matrixReindexStarAlgEquiv (enum Y)
               (φ (star (a i) * a j)) p q * v j q))]
       refine Finset.sum_congr rfl fun x _ ↦ ?_
-      rw [← Equiv.sum_comp e (fun q ↦ (starRingEnd ℂ) (v i (e x))
-        * (matrixReindexStarAlgEquiv e
-            (φ (star (a i) * a j)) (e x) q * v j q))]
+      rw [← Equiv.sum_comp (enum Y)
+        (fun q ↦ (starRingEnd ℂ) (v i (enum Y x))
+          * (matrixReindexStarAlgEquiv (enum Y)
+              (φ (star (a i) * a j)) (enum Y x) q * v j q))]
       refine Finset.sum_congr rfl fun y _ ↦ ?_
       congr 2
       simp [matrixReindexStarAlgEquiv]
     rw [Finset.sum_congr rfl fun i _ ↦
       Finset.sum_congr rfl fun j _ ↦ hentry i j]
     have hassoc : ∀ i j : Fin m,
-        (∑ x : Y, ∑ y : Y, (starRingEnd ℂ) (v i (e x))
-            * (φ (star (a i) * a j) x y * v j (e y)))
-          = ∑ x : Y, ∑ y : Y, (starRingEnd ℂ) (v i (e x))
-              * φ (star (a i) * a j) x y * v j (e y) := by
+        (∑ x : Y, ∑ y : Y, (starRingEnd ℂ) (v i (enum Y x))
+            * (φ (star (a i) * a j) x y * v j (enum Y y)))
+          = ∑ x : Y, ∑ y : Y, (starRingEnd ℂ) (v i (enum Y x))
+              * φ (star (a i) * a j) x y * v j (enum Y y) := by
       intro i j
       refine Finset.sum_congr rfl fun x _ ↦ Finset.sum_congr rfl fun y _ ↦ ?_
       rw [mul_assoc]
     rw [Finset.sum_congr rfl fun i _ ↦
       Finset.sum_congr rfl fun j _ ↦ hassoc i j]
-    exact (hcp m a (fun i x ↦ v i (e x))).2
+    exact (hcp m a (fun i x ↦ v i (enum Y x))).2
   have hCP : CStarExactness.IsCompletelyPositive ψ :=
     CStarExactness.isCompletelyPositive_of_form ψ hψstar hψform
   have hbound := hCP.norm_apply_le_of_unital hψ1 b
