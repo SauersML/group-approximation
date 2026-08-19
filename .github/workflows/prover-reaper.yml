@@ -24,9 +24,32 @@
 # that stays as the fail-closed path -- it just arrives on time.
 name: Reap superseded prover runs
 
+# Three ways in, because a push-only reaper is silent exactly when it is needed.
+#
+# `push` is the original trigger and stays. Its weakness is structural: GitHub
+# keeps at most one PENDING run per concurrency group, so during the bursts that
+# create the backlog most reapers are collected before reaching a runner --
+# measured 2026-08-19, 27 of the last 30 reaper runs `cancelled`, one executed.
+#
+# `workflow_run` is the targeted one. The backlog only ever HURTS at one moment:
+# when a certificate goes green and `verified-promote` needs a runner to promote
+# it. Measured that day: promotion sat `queued` 17 minutes behind the prover
+# backlog and again 9 minutes on the next certificate, both times landing only
+# after the queue was reaped by hand. Firing a reaper on Prover CI completion
+# puts the cleanup exactly there. The job's `if` below keeps it to genuinely
+# green runs, and a skipped job costs no runner, so the other completions -- the
+# cancelled ones, which are the majority -- are free.
+#
+# `schedule` is the floor, so a quiet period still drains a backlog that the
+# last burst left behind, with no push to carry it.
 on:
   push:
     branches: [main]
+  workflow_run:
+    workflows: ["Lean Prover CI"]
+    types: [completed]
+  schedule:
+    - cron: '*/15 * * * *'
   workflow_dispatch:
 
 # One reaper at a time, and it must be allowed to FINISH.
@@ -52,6 +75,15 @@ permissions:
 jobs:
   reap:
     name: Dismiss prover runs parked at the gate
+    # On `workflow_run`, reap only behind a run that actually certified
+    # something: that is the moment `verified-promote` is about to need a
+    # runner. Every other completion -- overwhelmingly cancellations -- skips
+    # here, and a skipped job never takes a runner, so the extra trigger adds
+    # queue pressure only when it is buying something. Other events are
+    # unaffected and reap as before.
+    if: >-
+      github.event_name != 'workflow_run' ||
+      github.event.workflow_run.conclusion == 'success'
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
