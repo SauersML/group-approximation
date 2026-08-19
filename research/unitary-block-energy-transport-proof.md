@@ -7,28 +7,30 @@ requires: []
 target: unitary-block-energy-transport
 ---
 
-Fix `i`.  Because the `Q_j` are pairwise orthogonal and sum to one, the
-operators `Q_j U P_i` are orthogonal in Hilbert--Schmidt inner product.  Hence
+The Hilbert space `L^2(M,tau)` gives the same finite Pythagoras calculation as
+in matrices.  Fix `i`.  Because the `Q_j` are pairwise orthogonal and sum to
+one, the operators `Q_j U P_i` are orthogonal in the tracial `L^2` inner
+product.  Hence
 
 ```text
 sum_j ||Q_j U P_i||_2^2
  = ||U P_i||_2^2
- = tr_D(P_i)
+ = tau(P_i)
  = alpha_i.                                            (T1)
 ```
 
-Similarly, for fixed `j`, the operators `Q_j U P_i` are Hilbert--Schmidt
-orthogonal as `i` varies, so
+Similarly, for fixed `j`, the operators `Q_j U P_i` are `L^2`-orthogonal as
+`i` varies, so
 
 ```text
 sum_i ||Q_j U P_i||_2^2
  = ||Q_j U||_2^2
- = tr_D(U^* Q_j U)
- = tr_D(Q_j)
+ = tau(U^* Q_j U)
+ = tau(Q_j)
  = beta_j.                                             (T2)
 ```
 
-This proves `(UBE2)`.
+This proves `(UBE2)` in every finite tracial von Neumann algebra.
 
 Now multiply `(UBE3)` by the nonnegative number `m_(j,i)` and sum over all
 pairs.  Using `(T1)` and `(T2)`,
