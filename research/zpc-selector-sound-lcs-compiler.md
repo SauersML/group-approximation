@@ -21,31 +21,41 @@ finite binary LCS `L(G)` with the following two properties.
 It is enough for the transformation to work on the fixed finite game supplied
 by `perfect-zpc-irs-quantum-gap-game`.
 
-The established `controlled-linear-predication-normal-form` lowers every
-controlled branch relation to parity equations in gated involutions. The
-remaining problem is selector soundness: the compiler must express enough of
-the mutually-exclusive/exhaustive readable-branch semantics that a perfect
-finite-dimensional LCS solution cannot satisfy incompatible branches or evade
-all branches. `one-hot-selector-parity-barrier` shows that, once an edge has
-three or more alternatives, commuting selector bits plus affine parity rows
-alone cannot enforce this invariant.
+The established `controlled-linear-predication-normal-form` gives an exact
+operator-level predicated normal form for each controlled branch relation. An
+actual LCS compiler must additionally present enough consistency among the
+gated copies and enough mutually-exclusive/exhaustive selector semantics that a
+perfect finite-dimensional LCS solution cannot satisfy incompatible branches,
+evade all branches, or assign unrelated operators to the gated copies.
+
+Two established barriers delimit the purely affine approach.
+`one-hot-selector-parity-barrier` rules out direct parity enforcement of a
+three-or-more-way one-hot selector, while `affine-auxiliary-control-flow-barrier`
+shows that adding arbitrarily many existential **commuting affine auxiliaries**
+does not help: projections of affine solution sets stay affine, so neither
+multiway one-hot control nor a path-activation bit `t=a AND b` can be encoded
+that way.
 
 ## Attempts
 
 - **Predicated SSA form.** Use the gated involutions `G_(a,i)` and link copies
   back to each original unreadable variable with `prod_a G_(a,i)=U_i`. This
-  gives exact local completeness. The failed step is enforcing the projection
-  partition on selector variables by LCS parity alone.
-- **Binary decision DAG.** Keep the verifier's control flow as a binary DAG
-  rather than flattening leaves into an `m`-way one-hot vector. Seek a local
-  consistency gadget whose perfect representations force one path while still
-  permitting the ZPC direct-sum strategy.
+  gives exact local completeness. The failed step is a sound LCS presentation
+  of the gating/partition semantics; parity equations alone admit spurious
+  representations.
+- **Binary decision DAG with affine path bits — ruled out.** Replacing one
+  multiway selector by binary choices does not solve the problem if a deeper
+  path is represented by a classical auxiliary bit: path activation requires
+  `t=a AND b`, which has no existential affine encoding. A useful binary DAG
+  must avoid materializing conjunctions affinely or get the needed
+  nonlinearity from operator structure.
 - **Noncommutative selector code.** Allow a small noncommuting gadget whose
   representation theory has exactly the required branch sectors; then attach
   the predicated parity equations to those sectors. Soundness must prove that
   any finite-dimensional perfect representation decomposes into valid tailored
   branches.
 - **Verifier-specific specialization.** Extract the actual readable decision
-  DAG of the fixed TailoredMIP witness and minimize it before designing a
-  general gadget. The barrier only rules out the naive affine one-hot encoding,
-  not a structured binary compiler.
+  structure of the fixed TailoredMIP witness and minimize it before designing a
+  general gadget. The affine barriers rule out a whole compiler class but do
+  not rule out a source-specific identity that eliminates branch conjunctions
+  or a genuinely noncommutative gadget.
