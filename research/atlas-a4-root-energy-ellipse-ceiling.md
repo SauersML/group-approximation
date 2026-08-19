@@ -39,6 +39,23 @@ root-energy coordinates `(S_n,x_12)`.
 
 ## Attempts
 
+- **Use the corrected shifted-double-coset compiler.**  The local A4
+  centralizer-product theorem cannot be applied to the two raw chart alphabets
+  as if they were already aligned: some same-chart packet pairs have product
+  order `6`, others order `2`.  `atlas-a4-packet-centralizer-product-compiler`
+  now fixes one exact packet alignment `R` and gives the correct constraints
+  `C_a R C_b` / `C_b R C_a`.  Any holonomy or moment proof of this ellipse must
+  be written in that shifted geometry.  The unshifted `C_a C_b` formulation is
+  false.
+- **Exploit the exact first-rank finite screen.**
+  `atlas-a4-gl5-packet-collision-screen` exhausts all `9,999,360` relative
+  positions in `GL5(F2)` for the standard embedded chart `A8`.  Exactly `202`
+  satisfy all thirty A4 pair-cubes, distributed among chart-intersection sizes
+  `20160`, `1344`, and `168`; collision `19243` is nonidentity on every one.
+  Thus the first ambient-rank enlargement has no exact packet-plus-collision
+  escape.  The three intersection sizes coincide with the chart/parabolic/core
+  ladder and are a concrete guide for a finite-stratum or building-rigidity
+  proof.
 - **Search the ellipse directly.**  Do not introduce artificial Cauchy or S3
   weights in an SDP/SOS implementation.  Lift the four nonnegative root-energy
   variables and optimize this one positive quadratic form.
@@ -50,6 +67,12 @@ root-energy coordinates `(S_n,x_12)`.
   audit already identifies two A4 contexts hitting every collision-perfect
   classical alignment.  Ask whether their matrix-valued residuals dominate the
   ellipse rather than reconstructing all thirty context gauges.
+- **Treat the four rectangle holonomies as the only nonclassical variables.**
+  After exact A4 qutrit normalization and the biclique tree gauges,
+  `atlas-a4-packet-four-rectangle-normal-form` leaves one `K_(2,2)` and three
+  `K_(2,4)` rectangle holonomies on multiplicity wires.  A proof may therefore
+  target a fixed four-unitary trace inequality for collision `19243`, rather
+  than the full `20160 k` relative chart unitary.
 - **Return the escaping point.**  Failure of a finite SOS relaxation should
   output an approximate point `(S,x12)` outside the ellipse together with the
   multiplicity mode realizing it; that is a targeted new packet-search input.
