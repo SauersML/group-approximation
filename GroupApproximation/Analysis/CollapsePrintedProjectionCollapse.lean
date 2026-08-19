@@ -1,4 +1,5 @@
 import GroupApproximation.Analysis.CollapsePrintedContradiction
+import GroupApproximation.Analysis.CollapseKqAlmostRep
 import GroupApproximation.Analysis.CollapseUnitaryLift
 import GroupApproximation.Analysis.CollapseJoinNonvanishing
 import GroupApproximation.Analysis.CollapseDisplacementIdeal
@@ -29,7 +30,9 @@ argument from its first sentence to the contradiction, in the printed order:
   (`CollapseJoinNonvanishing.exists_lambda_ne_zero_of_join`, with the
   telescoping identity `sum_prefixProd_mul` proved here); and
 * the Delorme–Guichardet contradiction
-  (`CollapsePrintedContradiction.collapse_contradiction_localized`), whose
+  (`CollapseKqAlmostRep.collapse_contradiction_localized_Kq`, which runs it on
+  the printed closed invariant subspace `K_q` rather than on the ambient
+  `K_ω`), whose
   unitary coordinate lifts are `lem:unitarycorona` via
   `CollapseUnitaryLift.coronaAlmostRep`.
 
@@ -358,10 +361,10 @@ theorem printed_projection_collapse {H : Type} [Group H]
     (fun i ↦ rfl)
     ⟨qq, hqmem⟩ hQmk.symm hqsum
   -- the printed contradiction
-  exact CollapsePrintedContradiction.collapse_contradiction_localized
-    (coronaAlmostRep X Θ) ω hω hT L.subtype s
+  exact CollapseKqAlmostRep.collapse_contradiction_localized_Kq
+    (coronaAlmostRep X Θ) (coord X Q) ω hω hT L.subtype s
     (fun γ ↦ ⟨⟨s * ↑γ * s⁻¹, hcomp ↑γ γ.2⟩, rfl⟩)
-    (coord X Q) (fun g ↦ conj Θ p g - p) hd hmem hcompressed
+    (fun g ↦ conj Θ p g - p) hd hmem hcompressed
     ⟨l.getD i0 1, hi0⟩
 
 end Assembly

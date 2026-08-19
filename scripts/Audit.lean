@@ -813,11 +813,16 @@ def routeGuards : List (Name × Name) :=
     -- ... whose contradiction is the printed one, with ideal membership held
     -- only where the print proves it ...
     (`GroupApproximation.ProjectionCompressionCollapse.corona_projection_collapse,
-     `GroupApproximation.CollapsePrintedContradiction.collapse_contradiction_localized),
+     `GroupApproximation.CollapseKqAlmostRep.collapse_contradiction_localized_Kq),
+    -- CO.21/CO.21b: and it runs there, on the printed closed invariant
+    -- subspace, not on the ambient `K_ω`.  Pinning `Kq` itself is what makes
+    -- "the printed space" a checked claim rather than a described one.
+    (`GroupApproximation.ProjectionCompressionCollapse.corona_projection_collapse,
+     `GroupApproximation.CollapseInvariantSubspace.Kq),
     -- ... and whose last paragraph is the Delorme form with the coboundary
     -- proved from property (T), `htransport` proved, and `π` built.
     (`GroupApproximation.ProjectionCompressionCollapse.corona_projection_collapse,
-     `GroupApproximation.CollapseDelormeCorona.collapse_contradiction_corona_delorme),
+     `GroupApproximation.CollapseTransportEndpoint.transport_corona),
     -- CO.04: the badged `thm:collapse` travels the printed derivation --
     -- `p = ½(1 − Θ(k))`, then `thm:projection-collapse` -- rather than the
     -- finite-stage involutive endpoint, so the printed logical order is the
