@@ -24,7 +24,9 @@ jobs:
           persist-credentials: true
 
       - name: Apply deterministic repairs
-        run: python3 scripts/apply_non_mf_referee_repairs.py
+        run: |
+          python3 scripts/apply_non_mf_referee_repairs.py
+          python3 scripts/fix_non_mf_referee_ledger.py
 
       - name: Regenerate manuscript metadata
         shell: bash
@@ -71,7 +73,8 @@ jobs:
           rm -f \
             .github/workflows/apply-non-mf-referee-repairs.yml \
             .github/workflows/apply-non-mf-referee-repairs-pr.yml \
-            scripts/apply_non_mf_referee_repairs.py
+            scripts/apply_non_mf_referee_repairs.py \
+            scripts/fix_non_mf_referee_ledger.py
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add -A
