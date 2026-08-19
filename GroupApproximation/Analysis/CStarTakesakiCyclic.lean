@@ -369,6 +369,7 @@ variable {B : Type v} [Ring B] [StarRing B] [Algebra ℂ B] [StarModule ℂ B]
 variable {H : Type w} [NormedAddCommGroup H] [InnerProductSpace ℂ H]
 variable {K : Type x} [NormedAddCommGroup K] [InnerProductSpace ℂ K]
 
+omit [StarModule ℂ A] in
 /-- An invariant subspace has invariant orthogonal complement, through the
 adjoint relation. -/
 theorem mem_orthogonal_hom {π : StarRep A H} {C : Submodule ℂ H}
@@ -383,6 +384,7 @@ theorem mem_orthogonal_hom {π : StarRep A H} {C : Submodule ℂ H}
     Submodule.inner_left_of_mem_orthogonal (hInv (star a) u hu) hv
   rw [h2, h3, map_zero]
 
+omit [StarModule ℂ A] [StarModule ℂ B] in
 /-- Vectors from an invariant subspace and its complement are orthogonal
 under every value of the product representation, with the invariant leg on
 the left. -/
@@ -411,6 +413,7 @@ theorem inner_sum_spatialHom_orthogonal_right (π : StarRep A H)
       rw [map_add, add_apply, inner_add_right, hy, hz,
         add_zero]
 
+omit [StarModule ℂ A] [StarModule ℂ B] in
 /-- The mirrored orthogonality, with the complement leg on the left. -/
 theorem inner_sum_spatialHom_orthogonal_left (π : StarRep A H)
     (ρ : StarRep B K) {C : Submodule ℂ H}

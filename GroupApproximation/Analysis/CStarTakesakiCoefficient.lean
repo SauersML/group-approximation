@@ -368,6 +368,7 @@ noncomputable def coeffVector (π : StarRep A H) (ζ : H) (a : Fin n → A)
     (η : Fin n → K) : H ⊗[ℂ] K :=
   ∑ j : Fin n, (π.hom (a j) ζ) ⊗ₜ[ℂ] (η j)
 
+omit [StarModule ℂ A] [StarModule ℂ B] in
 /-- **The coefficient identity**: for every ⋆-representation `π` of `A`, the
 quadratic form of the product representation at the coefficient vector
 computes on the left slice, as a vector functional of `π` at the single
@@ -406,6 +407,7 @@ theorem inner_coeffVector_spatialHom (π : StarRep A H) (ρ : StarRep B K)
       simp only [map_add, add_apply, inner_add_right,
         hy, hz]
 
+omit [StarModule ℂ A] [StarModule ℂ B] in
 /-- The coefficient identity at `y = 1`: the norm of the coefficient vector
 computes on the left slice of the identity. -/
 theorem inner_coeffVector_self (π : StarRep A H) (ρ : StarRep B K)
@@ -529,6 +531,7 @@ theorem inner_rightCoeffVector_spatialHom (π : StarRep A H)
       simp only [map_add, add_apply, inner_add_right,
         hy, hz]
 
+omit [StarModule ℂ A] [StarModule ℂ B] in
 /-- The mirrored identity at `y = 1`. -/
 theorem inner_rightCoeffVector_self (π : StarRep A H) (ρ : StarRep B K)
     (b : Fin n → B) (ξ : Fin n → H) (ζ : K) :

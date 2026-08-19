@@ -53,9 +53,11 @@ variable (G : Type u) [Group G] [DecidableEq G]
 /-- The point mass at a group element. -/
 def delta (g : G) : GroupHilbert G := lp.single 2 g (1 : ℂ)
 
+omit [Group G] in
 theorem delta_apply_self (g : G) : delta G g g = 1 :=
   lp.single_apply_self 2 g 1
 
+omit [Group G] in
 theorem delta_apply_ne {x g : G} (h : x ≠ g) : delta G g x = 0 :=
   lp.single_apply_ne 2 g 1 h
 
@@ -64,9 +66,11 @@ coordinatewise: `(T δ_t)(s)`. -/
 def matrixCoeff (T : GroupHilbert G →L[ℂ] GroupHilbert G) (s t : G) : ℂ :=
   T (delta G t) s
 
+omit [Group G] in
 @[simp] theorem matrixCoeff_def (T : GroupHilbert G →L[ℂ] GroupHilbert G)
     (s t : G) : matrixCoeff G T s t = T (delta G t) s := rfl
 
+omit [Group G] in
 /-- Coordinates are inner products against point masses. -/
 theorem coord_eq_inner (v : GroupHilbert G) (s : G) :
     v s = ⟪delta G s, v⟫_ℂ := by
@@ -88,6 +92,7 @@ variable {G}
 
 /-! ## Coefficient calculus -/
 
+omit [Group G] in
 theorem matrixCoeff_add (T T' : GroupHilbert G →L[ℂ] GroupHilbert G)
     (s t : G) : matrixCoeff G (T + T') s t
       = matrixCoeff G T s t + matrixCoeff G T' s t := by
@@ -96,12 +101,14 @@ theorem matrixCoeff_add (T T' : GroupHilbert G →L[ℂ] GroupHilbert G)
       + lp.evalCLM ℂ (fun _ : G ↦ ℂ) 2 s (T' (delta G t))
   rw [add_apply, map_add]
 
+omit [Group G] in
 theorem matrixCoeff_smul (z : ℂ) (T : GroupHilbert G →L[ℂ] GroupHilbert G)
     (s t : G) : matrixCoeff G (z • T) s t = z * matrixCoeff G T s t := by
   show lp.evalCLM ℂ (fun _ : G ↦ ℂ) 2 s ((z • T) (delta G t))
     = z * lp.evalCLM ℂ (fun _ : G ↦ ℂ) 2 s (T (delta G t))
   rw [smul_apply, map_smul, smul_eq_mul]
 
+omit [Group G] in
 /-- The adjoint coefficient is the conjugate transposed coefficient. -/
 theorem matrixCoeff_star (T : GroupHilbert G →L[ℂ] GroupHilbert G)
     (s t : G) : matrixCoeff G (star T) s t
@@ -178,6 +185,7 @@ theorem hasPropagationIn_star {T : GroupHilbert G →L[ℂ] GroupHilbert G}
 
 /-! ## Multiplication: the finite convolution -/
 
+omit [Group G] in
 /-- A vector supported in a finite set is the finite sum of its point
 masses. -/
 theorem eq_sum_single_of_support_subset (v : GroupHilbert G) (F : Finset G)
