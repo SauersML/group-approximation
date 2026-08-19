@@ -1,43 +1,170 @@
 # Autonomous Leanstral proof-engineering pass.
 #
-# Security model:
-#   * The model runs in `generate` with read-only GitHub permissions and with
-#     checkout credentials deliberately not persisted.
-#   * Leanstral may edit the working tree, but it is told not to use git and it
-#     has no repository write token in its process.
-#   * Only Lean source changes are accepted, they are compiled, and only the
-#     resulting patch is passed to the separate `publish` job.
-#   * `publish` is the only job with write permission. It can push only a fresh
+# Security boundary:
+#   * `generate` has read-only GitHub permissions and no persisted checkout token.
+#   * Leanstral may edit the checkout, but only Lean-source diffs are accepted.
+#   * Every accepted changed Lean module must compile before a patch is exported.
+#   * `publish` is the only write-enabled job; it pushes only a fresh
 #     automation/leanstral-* branch and opens a draft PR against main.
 #
-# Required repository secret:
-#   MISTRAL_API_KEY — a Mistral La Plateforme key with Labs models enabled.
+# Required for model runs:
+#   repository Actions secret MISTRAL_API_KEY with Labs-model access enabled.
+# Until that secret exists, scheduled/manual model runs are successful no-ops.
+#
+# Leanstral 1.5 is a Labs model. Review the model id before its announced
+# 2026-09-30 retirement date.
 name: Leanstral research agent
 
 on:
   schedule:
-    # Every 30 minutes, deliberately off the top of the hour.
+    # Every 30 minutes, off the top of the hour.
     - cron: '17,47 * * * *'
   workflow_dispatch:
     inputs:
       focus:
-        description: Optional theorem, module, paper claim, or Cairn research node to prioritize
+        description: Optional theorem, module, paper claim, or Cairn node to prioritize
         required: false
         type: string
+  push:
+    branches: [main]
+    paths:
+      # Infrastructure smoke test only; push events never call the model.
+      - '.github/workflows/leanstral-research.yml'
 
 concurrency:
-  # One model run at a time. GitHub may keep one newer scheduled run pending;
-  # this prevents a long Lean proof attempt from spawning a runner pile-up.
-  group: leanstral-research-agent
+  # Keep workflow-smoke pushes independent from the long-running scheduled agent.
+  group: ${{ github.event_name == 'push' && 'leanstral-research-smoke' || 'leanstral-research-agent' }}
   cancel-in-progress: false
 
+permissions:
+  contents: read
+
 env:
-  VIBE_VERSION: '2.24.0'
-  LEAN_LSP_MCP_VERSION: '0.29.0'
+  PYTHON_VERSION: '3.12'
+  # Pin versions that are actually published, not unreleased repository versions.
+  VIBE_VERSION: '2.23.1'
+  LEAN_LSP_MCP_VERSION: '0.28.1'
 
 jobs:
+  smoke:
+    name: Smoke-test Leanstral toolchain wiring
+    if: ${{ github.event_name == 'push' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    permissions:
+      contents: read
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
+        with:
+          fetch-depth: 1
+          persist-credentials: false
+
+      - name: Set up Python 3.12
+        uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6.3.0
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+          check-latest: false
+
+      - name: Restore Lean toolchain
+        id: elan-cache
+        uses: actions/cache/restore@0057852bfaa89a56745cba8c7296529d2fc39830 # v4
+        with:
+          path: ~/.elan
+          key: ${{ runner.os }}-elan-${{ hashFiles('lean-toolchain') }}
+          restore-keys: |
+            ${{ runner.os }}-elan-
+
+      - name: Install elan if needed
+        if: steps.elan-cache.outputs.cache-hit != 'true'
+        shell: bash
+        run: curl https://raw.githubusercontent.com/leanprover/elan/464c9d28395000a2a0128e07081e4956d50eced2/elan-init.sh -sSf | sh -s -- -y
+
+      - name: Put Lean on PATH
+        shell: bash
+        run: echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+
+      - name: Install pinned Vibe and Lean LSP MCP
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m venv "$RUNNER_TEMP/leanstral-smoke-venv"
+          "$RUNNER_TEMP/leanstral-smoke-venv/bin/python" -m pip install \
+            --disable-pip-version-check \
+            "mistral-vibe==${VIBE_VERSION}" \
+            "lean-lsp-mcp==${LEAN_LSP_MCP_VERSION}"
+          echo "$RUNNER_TEMP/leanstral-smoke-venv/bin" >> "$GITHUB_PATH"
+
+      - name: Verify installed executables and versions
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import importlib.metadata as md
+          import sys
+          assert sys.version_info >= (3, 12), sys.version
+          assert md.version('mistral-vibe') == '${{ env.VIBE_VERSION }}'
+          assert md.version('lean-lsp-mcp') == '${{ env.LEAN_LSP_MCP_VERSION }}'
+          print('mistral-vibe', md.version('mistral-vibe'))
+          print('lean-lsp-mcp', md.version('lean-lsp-mcp'))
+          PY
+          vibe --version
+          lake --version
+          command -v lean-lsp-mcp
+
+      - name: Parse the exact non-interactive Leanstral config
+        shell: bash
+        run: |
+          set -euo pipefail
+          VIBE_HOME="$RUNNER_TEMP/vibe-smoke-home"
+          mkdir -p "$VIBE_HOME"
+          cat > "$VIBE_HOME/config.toml" <<'TOML'
+          installed_agents = ["lean"]
+          bypass_tool_permissions = true
+          active_model = "leanstral"
+
+          [[providers]]
+          name = "mistral-testing"
+          api_base = "https://api.mistral.ai/v1"
+          api_key_env_var = "MISTRAL_API_KEY"
+          backend = "mistral"
+
+          [[models]]
+          name = "labs-leanstral-1-5"
+          provider = "mistral-testing"
+          alias = "leanstral"
+          input_price = 0.0
+          output_price = 0.0
+          thinking = "high"
+          temperature = 1.0
+          auto_compact_threshold = 200000
+
+          [session_logging]
+          enabled = true
+
+          [[mcp_servers]]
+          name = "lean-lsp"
+          transport = "stdio"
+          command = "lean-lsp-mcp"
+          tool_timeout_sec = 600
+          TOML
+          VIBE_HOME="$VIBE_HOME" python - <<'PY'
+          import os
+          from pathlib import Path
+          import tomllib
+          path = Path(os.environ['VIBE_HOME']) / 'config.toml'
+          cfg = tomllib.loads(path.read_text())
+          assert cfg['installed_agents'] == ['lean']
+          assert cfg['active_model'] == 'leanstral'
+          assert cfg['models'][0]['name'] == 'labs-leanstral-1-5'
+          assert cfg['mcp_servers'][0]['command'] == 'lean-lsp-mcp'
+          print('Leanstral config parsed successfully')
+          PY
+
   generate:
     name: Generate and compile a Lean improvement
+    if: ${{ github.event_name != 'push' }}
     runs-on: ubuntu-latest
     timeout-minutes: 300
     permissions:
@@ -54,6 +181,12 @@ jobs:
           ref: main
           fetch-depth: 1
           persist-credentials: false
+
+      - name: Set up Python 3.12
+        uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6.3.0
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+          check-latest: false
 
       - name: Skip while an earlier Leanstral PR is open
         id: gate
@@ -77,31 +210,32 @@ jobs:
             echo "skip=false" >> "$GITHUB_OUTPUT"
           fi
 
-      - name: Require the Mistral API secret
+      - name: Check whether Mistral is configured
         if: steps.gate.outputs.skip != 'true'
+        id: auth
         shell: bash
         env:
           MISTRAL_API_KEY: ${{ secrets.MISTRAL_API_KEY }}
         run: |
           set -euo pipefail
           if [[ -z "${MISTRAL_API_KEY:-}" ]]; then
-            echo "::error::Missing repository Actions secret MISTRAL_API_KEY."
-            echo "::error::Use a Mistral La Plateforme key whose organization has Labs models enabled."
-            exit 1
+            echo "::notice::MISTRAL_API_KEY is not configured yet; this run is a no-op."
+            echo "configured=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "configured=true" >> "$GITHUB_OUTPUT"
           fi
 
-      - name: Record immutable base
-        if: steps.gate.outputs.skip != 'true'
+      - name: Record immutable base and disable git push
+        if: steps.auth.outputs.configured == 'true'
         id: base
         shell: bash
         run: |
           set -euo pipefail
           echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
-          # Even a mistaken `git push` from the model has nowhere useful to go.
           git remote set-url --push origin https://example.invalid/leanstral-no-push
 
       - name: Restore Lean toolchain
-        if: steps.gate.outputs.skip != 'true'
+        if: steps.auth.outputs.configured == 'true'
         id: elan-cache
         uses: actions/cache/restore@0057852bfaa89a56745cba8c7296529d2fc39830 # v4
         with:
@@ -111,17 +245,17 @@ jobs:
             ${{ runner.os }}-elan-
 
       - name: Install elan if the cache is cold
-        if: steps.gate.outputs.skip != 'true' && steps.elan-cache.outputs.cache-hit != 'true'
+        if: steps.auth.outputs.configured == 'true' && steps.elan-cache.outputs.cache-hit != 'true'
         shell: bash
         run: curl https://raw.githubusercontent.com/leanprover/elan/464c9d28395000a2a0128e07081e4956d50eced2/elan-init.sh -sSf | sh -s -- -y
 
       - name: Put Lean on PATH
-        if: steps.gate.outputs.skip != 'true'
+        if: steps.auth.outputs.configured == 'true'
         shell: bash
         run: echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
 
       - name: Restore Lake packages
-        if: steps.gate.outputs.skip != 'true'
+        if: steps.auth.outputs.configured == 'true'
         id: lake-packages
         uses: actions/cache/restore@0057852bfaa89a56745cba8c7296529d2fc39830 # v4
         with:
@@ -131,7 +265,7 @@ jobs:
             ${{ runner.os }}-lake-deps-
 
       - name: Restore Mathlib archives
-        if: steps.gate.outputs.skip != 'true' && steps.lake-packages.outputs.cache-hit != 'true'
+        if: steps.auth.outputs.configured == 'true' && steps.lake-packages.outputs.cache-hit != 'true'
         uses: actions/cache/restore@0057852bfaa89a56745cba8c7296529d2fc39830 # v4
         with:
           path: ~/.cache/mathlib
@@ -140,12 +274,12 @@ jobs:
             ${{ runner.os }}-mathlib-archives-
 
       - name: Fetch precompiled Mathlib if needed
-        if: steps.gate.outputs.skip != 'true' && steps.lake-packages.outputs.cache-hit != 'true'
+        if: steps.auth.outputs.configured == 'true' && steps.lake-packages.outputs.cache-hit != 'true'
         shell: bash
         run: lake exe cache get
 
       - name: Restore a compiled project checkpoint
-        if: steps.gate.outputs.skip != 'true'
+        if: steps.auth.outputs.configured == 'true'
         uses: actions/cache/restore@0057852bfaa89a56745cba8c7296529d2fc39830 # v4
         with:
           path: .lake/build
@@ -155,25 +289,20 @@ jobs:
             ${{ runner.os }}-nonsofic-build-${{ hashFiles('lean-toolchain', 'lake-manifest.json', 'lakefile.toml', 'GroupApproximation.lean', 'GroupApproximation/**/*.lean') }}-
             ${{ runner.os }}-nonsofic-build-
 
-      - name: Install Mistral Vibe and Lean LSP MCP
-        if: steps.gate.outputs.skip != 'true'
+      - name: Install pinned Mistral Vibe and Lean LSP MCP
+        if: steps.auth.outputs.configured == 'true'
         shell: bash
         run: |
           set -euo pipefail
-          python3 - <<'PY'
-          import sys
-          if sys.version_info < (3, 12):
-              raise SystemExit(f"Mistral Vibe requires Python >= 3.12; found {sys.version}")
-          PY
-          python3 -m venv "$RUNNER_TEMP/leanstral-venv"
+          python -m venv "$RUNNER_TEMP/leanstral-venv"
           "$RUNNER_TEMP/leanstral-venv/bin/python" -m pip install \
             --disable-pip-version-check \
             "mistral-vibe==${VIBE_VERSION}" \
             "lean-lsp-mcp==${LEAN_LSP_MCP_VERSION}"
           echo "$RUNNER_TEMP/leanstral-venv/bin" >> "$GITHUB_PATH"
 
-      - name: Configure Leanstral 1.5 for non-interactive proof engineering
-        if: steps.gate.outputs.skip != 'true'
+      - name: Configure Leanstral 1.5
+        if: steps.auth.outputs.configured == 'true'
         shell: bash
         run: |
           set -euo pipefail
@@ -212,8 +341,8 @@ jobs:
           echo "VIBE_HOME=$VIBE_HOME" >> "$GITHUB_ENV"
           vibe --version
 
-      - name: Run Leanstral
-        if: steps.gate.outputs.skip != 'true'
+      - name: Run Leanstral 1.5
+        if: steps.auth.outputs.configured == 'true'
         shell: bash
         env:
           MISTRAL_API_KEY: ${{ secrets.MISTRAL_API_KEY }}
@@ -234,8 +363,8 @@ jobs:
           2. Close a genuine formal gap or strengthen a theorem/API that materially
              advances one of those research directions.
           3. If no tractable new result is available, improve an existing Lean proof
-             or supporting Lean API in a way that makes the research formalization
-             more complete, reusable, or robust.
+             or supporting Lean API in a way that makes the formalization more
+             complete, reusable, or robust.
 
           A human may optionally provide a focus below; otherwise choose the best
           bounded target yourself.
@@ -243,26 +372,24 @@ jobs:
           Hard rules:
           - Inspect the repository and relevant paper/Cairn sources before choosing
             the task. Prefer one bounded target over a broad refactor.
-          - You may EDIT ONLY GroupApproximation.lean and files under
-            GroupApproximation/**/*.lean. The paper and research/ files are
+          - EDIT ONLY GroupApproximation.lean and GroupApproximation/**/*.lean.
+            Paper, research, metadata, workflow, generator, PDF, and lake files are
             read-only evidence.
-          - Do not edit .github, scripts, metadata, lake files, generated artifacts,
-            PDFs, or non-Lean sources.
           - Do not use `sorry`, `admit`, new `axiom` declarations, `unsafe`, or
             `native_decide` as a shortcut.
           - Do not weaken theorem statements, delete claims, or replace a meaningful
-            result with a tautology merely to make Lean accept it.
-          - Do not run git commit, git push, create/switch branches, or open a pull
-            request. Leave successful edits in the working tree; the outer workflow
-            validates and publishes them.
-          - Use lean-lsp-mcp plus `lake build` / `lake env lean` aggressively. Check
-            your work with Lean, not by inspection alone.
-          - Preserve the repository's warning-as-error discipline and existing style.
+            theorem with a tautology merely to make Lean accept it.
+          - Do not run git commit, git push, create/switch branches, or open a PR.
+            Leave successful edits in the working tree for the outer workflow.
+          - Use lean-lsp-mcp and `lake build` / `lake env lean` aggressively. Trust
+            compiler feedback over inspection.
+          - Preserve warning-as-error discipline and existing repository style.
+          - Prefer adding a precise helper lemma over making a large speculative
+            refactor when a proof needs decomposition.
           - If you cannot finish a meaningful compiling improvement, revert your
-            edits and leave the working tree unchanged rather than submitting a
-            speculative or broken patch.
+            edits and leave the working tree unchanged.
 
-          Before finishing, compile the modules you changed and summarize what was
+          Before finishing, compile every module you changed and summarize what was
           proved, why it matters, which files changed, and the Lean commands used.
           EOF
           )"
@@ -275,7 +402,7 @@ jobs:
             --max-turns 120
 
       - name: Normalize and validate the model patch
-        if: steps.gate.outputs.skip != 'true'
+        if: steps.auth.outputs.configured == 'true'
         id: validate
         shell: bash
         env:
@@ -283,14 +410,11 @@ jobs:
         run: |
           set -euo pipefail
 
-          # If the agent ignored the no-commit instruction, turn any local commits
-          # back into an ordinary working-tree diff. No remote credentials existed.
           if [[ "$(git rev-parse HEAD)" != "$BASE_SHA" ]]; then
-            echo "::warning::Leanstral created local commit(s); converting them back to an uncommitted patch."
+            echo "::warning::Leanstral created local commit(s); converting them back to a working-tree diff."
             git reset --mixed "$BASE_SHA"
           fi
 
-          # Make new Lean files visible to git diff without staging their contents.
           mapfile -t untracked < <(git ls-files --others --exclude-standard)
           if (( ${#untracked[@]} > 0 )); then
             git add -N -- "${untracked[@]}"
@@ -305,14 +429,10 @@ jobs:
 
           printf 'Changed paths:\n'
           printf '  %s\n' "${changed[@]}"
-
           for path in "${changed[@]}"; do
             case "$path" in
               GroupApproximation.lean|GroupApproximation/*.lean) ;;
-              *)
-                echo "::error::Leanstral changed forbidden path: $path"
-                exit 1
-                ;;
+              *) echo "::error::Leanstral changed forbidden path: $path"; exit 1 ;;
             esac
           done
 
@@ -327,38 +447,27 @@ jobs:
             exit 1
           fi
 
-          python3 - <<'PY'
+          python - <<'PY'
           import re
           import subprocess
-
-          base = subprocess.check_output(["git", "rev-parse", "HEAD"], text=True).strip()
-          # HEAD has been normalized back to BASE_SHA above.
-          diff = subprocess.check_output(
-              ["git", "diff", "--unified=0", base],
-              text=True,
-          )
+          base = subprocess.check_output(['git', 'rev-parse', 'HEAD'], text=True).strip()
+          diff = subprocess.check_output(['git', 'diff', '--unified=0', base], text=True)
           bad = []
           for line in diff.splitlines():
-              if not line.startswith("+") or line.startswith("+++"):
+              if not line.startswith('+') or line.startswith('+++'):
                   continue
               text = line[1:]
-              if re.search(r"\b(?:sorry|admit)\b", text):
-                  bad.append(text)
-              if re.match(r"\s*axiom\b", text):
-                  bad.append(text)
-              if re.search(r"\bunsafe\b", text):
-                  bad.append(text)
-              if re.search(r"\bnative_decide\b", text):
-                  bad.append(text)
+              if re.search(r'\b(?:sorry|admit)\b', text): bad.append(text)
+              if re.match(r'\s*axiom\b', text): bad.append(text)
+              if re.search(r'\bunsafe\b', text): bad.append(text)
+              if re.search(r'\bnative_decide\b', text): bad.append(text)
           if bad:
-              print("Forbidden proof shortcuts were added:")
-              for line in bad[:20]:
-                  print(f"  {line}")
+              print('Forbidden proof shortcuts were added:')
+              for line in bad[:20]: print('  ' + line)
               raise SystemExit(1)
           PY
 
           git diff --check "$BASE_SHA"
-
           added=0
           deleted=0
           while read -r a d _; do
@@ -369,11 +478,10 @@ jobs:
             echo "::error::Patch changes $((added + deleted)) lines; refusing an over-broad autonomous change."
             exit 1
           fi
-
           echo "has_changes=true" >> "$GITHUB_OUTPUT"
 
       - name: Compile every changed Lean module
-        if: steps.gate.outputs.skip != 'true' && steps.validate.outputs.has_changes == 'true'
+        if: steps.auth.outputs.configured == 'true' && steps.validate.outputs.has_changes == 'true'
         shell: bash
         env:
           BASE_SHA: ${{ steps.base.outputs.sha }}
@@ -389,12 +497,10 @@ jobs:
               targets+=("${module//\//.}")
             fi
           done
-
           if (( ${#targets[@]} == 0 )); then
             echo "::error::Patch claimed changes but no Lean target was found."
             exit 1
           fi
-
           mapfile -t targets < <(printf '%s\n' "${targets[@]}" | sort -u)
           printf 'Validating with: lake build'
           printf ' %q' "${targets[@]}"
@@ -402,7 +508,7 @@ jobs:
           time lake build "${targets[@]}"
 
       - name: Package the validated patch
-        if: steps.gate.outputs.skip != 'true'
+        if: steps.auth.outputs.configured == 'true'
         id: patch
         shell: bash
         env:
@@ -453,7 +559,7 @@ jobs:
           name: leanstral-patch-${{ github.run_id }}
           path: ${{ runner.temp }}/leanstral-patch
 
-      - name: Apply patch and re-check its scope
+      - name: Apply patch and re-check scope
         shell: bash
         run: |
           set -euo pipefail
@@ -462,16 +568,12 @@ jobs:
           git apply --check "$patch"
           git apply "$patch"
           git diff --check
-
           mapfile -t changed < <(git diff --name-only | sort -u)
           test "${#changed[@]}" -gt 0
           for path in "${changed[@]}"; do
             case "$path" in
               GroupApproximation.lean|GroupApproximation/*.lean) ;;
-              *)
-                echo "::error::Artifact contains forbidden path: $path"
-                exit 1
-                ;;
+              *) echo "::error::Artifact contains forbidden path: $path"; exit 1 ;;
             esac
           done
 
@@ -481,10 +583,7 @@ jobs:
         run: |
           set -euo pipefail
           branch="automation/leanstral-${GITHUB_RUN_ID}"
-          if [[ "$branch" == "main" || "$branch" == "master" ]]; then
-            echo "::error::Refusing protected branch name."
-            exit 1
-          fi
+          [[ "$branch" == automation/leanstral-* ]]
           git switch -c "$branch"
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
@@ -515,32 +614,24 @@ jobs:
           cat > "$RUNNER_TEMP/pr-body.md" <<EOF
           ## Automated Leanstral proof-engineering pass
 
-          This draft was generated by Mistral **Leanstral 1.5**
-          (\`labs-leanstral-1-5\`) from base \`${BASE_SHA}\`.
+          Generated by Mistral **Leanstral 1.5** (\`labs-leanstral-1-5\`) from
+          base \`${BASE_SHA}\`.
 
-          The agent was instructed to prioritize meaningful Lean progress from the
-          papers and the Cairn research graph (\`research/FRONTIER.md\`), and to keep
-          the change bounded and reviewable.
+          The agent was directed toward mathematically meaningful Lean progress from
+          the papers and the Cairn research graph, with a bounded, reviewable patch.
 
           ### Safety / verification
 
-          - Leanstral ran in a separate job with **read-only GitHub permissions**.
-          - Checkout credentials were not persisted and the model job's push URL was
-            deliberately disabled.
-          - Only \`GroupApproximation.lean\` and
-            \`GroupApproximation/**/*.lean\` changes were accepted.
-          - New \`sorry\`, \`admit\`, \`axiom\`, \`unsafe\`, and \`native_decide\`
-            shortcuts were rejected.
-          - Every changed Lean module was compiled with \`lake build\` before this
-            branch was created.
-          - The repository's normal pull-request verification workflows still decide
-            whether this change is acceptable.
+          - The model job had read-only GitHub permissions and no persisted checkout token.
+          - Only \`GroupApproximation.lean\` and \`GroupApproximation/**/*.lean\` were accepted.
+          - New \`sorry\`, \`admit\`, \`axiom\`, \`unsafe\`, and \`native_decide\` shortcuts were rejected.
+          - Every changed Lean module compiled with \`lake build\` before publication.
+          - Normal repository PR verification still decides whether this change is mergeable.
 
           Workflow run: ${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}
 
           **Human review is required before merge.**
           EOF
-
           gh pr create \
             --repo "$GITHUB_REPOSITORY" \
             --base main \
