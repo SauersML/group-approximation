@@ -3,7 +3,7 @@ rg: 2
 id: atlas-three-word-permutation-countermodel-proof
 kind: route
 title: Replay the exact twelve-point three-word countermodel
-target: atlas-three-word-permutation-countermodel
+target: atlas-three-word-gap-permutation-countermodel
 ---
 
 The artifact `experiments/atlas_three_word_permutation_countermodel.py` uses
