@@ -117,6 +117,7 @@ FABRICATED = [
 # missing from it fails just the same.
 SCAN_TAGS: tuple[str, ...] = (
     "orphan module",
+    "import after a command",
     "sorry / sorryAx",
     "admit",
     "hand-declared axiom",
@@ -527,8 +528,66 @@ def check_claim_map(root: Path, f: Findings) -> None:
                   f"the library; regenerate it with `python3 scripts/claim_map.py --write`")
 
 
+
+def check_import_placement(root: Path, f: Findings) -> None:
+    """No `import` after the first real command in a file.
+
+    Lean refuses it -- "invalid 'import' command, it must be used in the
+    beginning of the file" -- and the refusal is fatal at the FIRST module that
+    carries it, so nothing downstream compiles: not the library, not the audit
+    library, not any driver.  Every gate below the build then reports "skipped"
+    rather than "failed", which reads like nothing was wrong.
+
+    It arrives the same way every time: a lane appends its new module's import
+    to the END of the root module, which is after the module docstring rather
+    than after the last import.  That landed on main on 2026-08-19 and made the
+    whole repository unbuildable.  The scan needs no build, which is exactly
+    why it belongs here.
+
+    A module docstring counts as a command, because to Lean it is one -- that
+    is the whole reason an import cannot follow it.  Ordinary `--` and `/- -/`
+    comments do not.
+    """
+    for path in lean_source_files(root):
+        text = path.read_text(encoding="utf-8", errors="replace")
+        seen_command: int | None = None
+        in_block = False
+        for number, raw in enumerate(text.splitlines(), 1):
+            line = raw.strip()
+            if in_block:
+                if "-/" in line:
+                    in_block = False
+                continue
+            if not line or line.startswith("--"):
+                continue
+            if line.startswith("/-!") or line.startswith("/--"):
+                # a docstring: a command, and the usual thing an import gets
+                # appended after
+                if seen_command is None:
+                    seen_command = number
+                if "-/" not in line[3:]:
+                    in_block = True
+                continue
+            if line.startswith("/-"):
+                if "-/" not in line[2:]:
+                    in_block = True
+                continue
+            if line.startswith("import "):
+                if seen_command is not None:
+                    rel = path.relative_to(root)
+                    f.add("import after a command",
+                          f"{rel}:{number}: {line} -- Lean accepts imports only "
+                          f"before the first command, and line {seen_command} "
+                          "already carries one, so this file does not compile "
+                          "and neither does anything importing it")
+                continue
+            if seen_command is None:
+                seen_command = number
+
+
 CHECKS = [
     ("import closure", check_import_closure),
+    ("import placement", check_import_placement),
     ("claim map", check_claim_map),
     ("forbidden constructs", check_forbidden),
     ("fabricated citations", check_fabricated_citations),
@@ -572,6 +631,12 @@ CLEAN_TREE = {
 
 PLANTS = [
     ("orphan module", {f"{LIB}/Orphan.lean": "theorem orphan : False := by sorry\n"}),
+    # The root module with a new import appended after its docstring, which is
+    # how this defect has actually arrived.
+    ("import after a command",
+     {f"{LIB}.lean": f"import {LIB}.Alpha\nimport {LIB}.Beta\n"
+                     f"import {LIB}.Endpoint.Audit\n/-! a docstring -/\n"
+                     f"import {LIB}.Alpha\n"}),
     ("sorry / sorryAx", {f"{LIB}/Alpha.lean": "theorem alpha : True := by sorry\n"}),
     ("admit", {f"{LIB}/Alpha.lean": "theorem alpha : True := by admit\n"}),
     ("admit", {f"{LIB}/Alpha.lean": "theorem alpha : True := by\n  admit\n"}),
