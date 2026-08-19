@@ -3,6 +3,9 @@ rg: 2
 id: atlas-wedderburn-hall-deficient-support-certificate
 kind: claim
 title: Compiled atlas relators force a weighted Hall-deficient Fourier support graph
+artifacts:
+  - experiments/weighted_hall_mincut.py
+  - experiments/weighted-hall-smoke.json
 distinct_from:
   atlas-rectangular-wedderburn-isometry-certificate: that is the singleton-source/single-target special case; this target may use several Fourier corners whose combined target capacity is too small.
   atlas-two-s3-covariance-collapse: that asks for two fixed S3 covariance norms to vanish; this asks for a finite block-support pattern in the full regular-A8 Fourier IR.
