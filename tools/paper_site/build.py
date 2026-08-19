@@ -119,14 +119,39 @@ def parse_ledger():
             continue
         decls = [d.strip().strip('`') for d in cells[3].split(';')]
         decls = [d for d in decls if d and d != '-']
-        by_anchor.setdefault(cells[1], []).append({
+        claim, tombstone = scrub_claim(cells[2])
+        row = {
             'step': cells[0],
-            'claim': cells[2][:240],
+            'claim': claim[:240],
             'decls': decls,
             'stmt': cells[4],
             'proof': cells[5],
-        })
+        }
+        if tombstone:
+            # not an inferential step: a historical attribution, a piece of
+            # terminology, or an open-status remark.  The reader needs to see
+            # it graded as what it is, not as an unformalized proof step.
+            row['kind'] = 'open' if len(cells) > 7 and cells[7] == 'open' else 'attribution'
+        by_anchor.setdefault(cells[1], []).append(row)
     return by_anchor
+
+
+# The ledger is repo bookkeeping as well as audit data: tombstoned rows carry
+# a "MOVED to <path>" prefix pointing at a file in this repository.  The
+# published page is the paper, not the repository, so no in-repo path is ever
+# shipped to it.
+MOVED_RE = re.compile(r'^MOVED to\s+\S+\.md\s*[—-]\s*')
+PATH_RE = re.compile(r'\b(?:notes|metadata|scripts|research|tools|bin)/\S+')
+
+
+def scrub_claim(cell):
+    tombstone = bool(MOVED_RE.match(cell))
+    text = MOVED_RE.sub('', cell)
+    if PATH_RE.search(text):
+        print('warn: ledger claim names a repo path, dropped: ' + text[:80],
+              file=sys.stderr)
+        text = PATH_RE.sub('', text).strip(' —-')
+    return text.strip(), tombstone
 
 
 def main():

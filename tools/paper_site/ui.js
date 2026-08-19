@@ -50,6 +50,11 @@ function escHtml(s) {
   return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 }
 
+// for a double-quoted attribute value, where escHtml's three are not enough
+function escAttr(s) {
+  return escHtml(String(s)).replace(/"/g, '&quot;');
+}
+
 function typographize(s) {
   // applied to plain-text runs only (already HTML-escaped)
   return s
@@ -194,12 +199,24 @@ function renderInline(src, ctx) {
       case 'qedhere': { if (ctx.env) ctx.env.qedhere = true; break; }
       case 'leanverified': {
         // a marker in running text is positional: this exact step is
-        // machine-checked, so the chip sits right here
+        // machine-checked, so the chip sits right here.  Several markers in
+        // a row annotate one and the same step, so they collapse into one
+        // chip carrying a count — a row of identical check marks names
+        // nothing, and the drawer lists the declarations by name.
         flush();
-        const mod = (takeGroup() || '').trim();
-        const dec = (takeGroup() || '').trim();
-        out += '<button class="lean-chip" data-module="' + escHtml(mod) + '" data-decl="' + escHtml(dec) +
-          '" title="This step is machine-checked in Lean 4 — click for the formal proof">Lean&thinsp;✓</button>';
+        const run = [{ module: (takeGroup() || '').trim(), decl: (takeGroup() || '').trim() }];
+        for (;;) {
+          let j = i;
+          while (j < src.length && /\s/.test(src[j])) j++;
+          if (!src.startsWith('\\leanverified', j)) break;
+          const g1 = grabGroup(src, j + '\\leanverified'.length);
+          if (!g1) break;
+          const g2 = grabGroup(src, g1.next);
+          if (!g2) break;
+          run.push({ module: g1.content.trim(), decl: g2.content.trim() });
+          i = g2.next;
+        }
+        out += leanChipHtml(run);
         break;
       }
       case 'leanstep': {
@@ -306,6 +323,8 @@ function renderNode(n, ctx, siblings, idx) {
         return '<li><span class="li-label">' + lab + '</span><div class="li-body">' + renderNodes(it.body, ctx) + '</div></li>';
       }).join('') + '</ol>';
     }
+    case 'quote':
+      return '<blockquote class="tex-quote">' + renderNodes(n.body, ctx) + '</blockquote>';
     case 'paragraph':
       return '<h4 class="para-head">' + renderInline(n.title, ctx) + '</h4>';
     case 'thm': return renderThm(n, ctx);
@@ -356,6 +375,21 @@ function leanCodeHtml(code, module, ownName) {
     i = m.index + m[0].length;
   }
   return out + escHtml(code.slice(i));
+}
+
+/* One chip for one step, however many declarations back it.  The face
+   carries the count and the tooltip carries the names, so the reader can
+   tell two neighbouring chips apart without opening either. */
+function leanChipHtml(run) {
+  const names = run.map(r => (r.decl || '').replace(/^GroupApproximation\./, ''));
+  const face = run.length > 1
+    ? 'Lean&thinsp;✓&#8202;<span class="lean-chip-n">' + run.length + '</span>'
+    : 'Lean&thinsp;✓';
+  const title = (run.length > 1
+    ? run.length + ' Lean declarations machine-check this step — ' + names.join(', ') + '. Click for the formal proofs.'
+    : 'This step is machine-checked in Lean 4 by ' + names[0] + ' — click for the formal proof');
+  return '<button class="lean-chip" data-lean="' + escAttr(JSON.stringify(run)) +
+    '" title="' + escAttr(title) + '">' + face + '</button>';
 }
 
 function leanDeclHtml(l) {
@@ -450,8 +484,13 @@ function renderProof(n, ctx) {
   // the same drawer, so nothing sits in the manuscript text itself.
   let leanBadge = '', leanTpl = '';
   if (n.lean && n.lean.length) {
-    leanBadge = '<button class="badge badge-lean" aria-expanded="false" title="Machine-checked in Lean 4 — click for the formal statement and proof">Lean&thinsp;✓</button>';
     leanTpl = '<template class="lean-panel-tpl">' + n.lean.map(leanDeclHtml).join('') + '</template>';
+    // markers written inside the proof claim this argument; markers merely
+    // adopted from after \end{proof} do not outrank the audited ledger, so
+    // there the graded badge (addProofBadges) wins and this one stands down
+    if (n.inlineLean) {
+      leanBadge = '<button class="badge badge-lean" aria-expanded="false" title="Machine-checked in Lean 4 — click for the formal statement and proof">Lean&thinsp;✓</button>';
+    }
   }
   // tombstone
   body += '<span class="qed" title="end of proof">∎</span>';
@@ -821,9 +860,21 @@ function addProofBadges() {
   document.querySelectorAll('#paper-body details.proof').forEach(p => {
     if (p.querySelector(':scope > summary .badge-lean')) return;   // marker-backed proofs keep their own
     const owner = proofOwnerEl(p);
-    if (!owner || !owner.querySelector('.lean-panel-tpl')) return;
-    const rows = ledgerRowsFor(owner);
-    if (!rows.length) return;
+    const tpl = p.querySelector(':scope > .lean-panel-tpl') || (owner && owner.querySelector('.lean-panel-tpl'));
+    if (!tpl) return;
+    const rows = owner ? ledgerRowsFor(owner) : [];
+    if (!rows.length) {
+      // no audited grading, but the proof carries adopted markers of its own:
+      // a plain check, from the marker rather than from the ledger
+      if (!p.querySelector(':scope > .lean-panel-tpl')) return;
+      const plain = document.createElement('button');
+      plain.className = 'badge badge-lean';
+      plain.setAttribute('aria-expanded', 'false');
+      plain.innerHTML = 'Lean&thinsp;✓';
+      plain.title = 'Machine-checked in Lean 4 — click for the formal statement and proof';
+      p.querySelector(':scope > summary').appendChild(plain);
+      return;
+    }
     const exact = rows.filter(r => r.proof === 'EXACT').length;
     const b = document.createElement('button');
     b.className = 'badge badge-lean';
@@ -851,18 +902,26 @@ function ledgerStep(id) {
 }
 
 const GRADE_TXT = { 'EXACT': '✓ exact', 'MISMATCH': 'different route', 'MISSING': 'not formalized', 'UNDER-SPECIFIED': 'under-specified' };
+// a tombstoned row is not an inferential step, so it is not graded as one
+const KIND_TXT = { 'attribution': 'attribution, not a step', 'open': 'open question, not a step' };
+const KIND_TITLE = {
+  'attribution': 'A citation or a piece of terminology, not an inferential step — nothing here is left to formalize',
+  'open': 'A remark about what remains open, not an inferential step',
+};
 function ledgerHtml(rows) {
   let html = '<div class="ledger-head">Printed steps, graded against Lean' +
     ' <span class="ledger-src">from the audited proof-step ledger</span></div>';
   for (const r of rows) {
-    const cls = 'lg-' + r.proof.toLowerCase().replace(/[^a-z]/g, '');
+    const cls = r.kind ? 'lg-note' : 'lg-' + r.proof.toLowerCase().replace(/[^a-z]/g, '');
     const decls = r.decls.map(d => {
       const short = d.replace(/^GroupApproximation\./, '').replace(/^Mathlib:/, '');
       const key = resolveLeanRef(short, '', '');
       const code = '<code class="ls-decl">' + escHtml(short) + '</code>';
       return key ? '<a class="lean-ref" data-key="' + escHtml(key) + '" title="Show this declaration">' + code + '</a>' : code;
     }).join(' ');
-    html += '<div class="ledger-step"><span class="ls-grade ' + cls + '">' + (GRADE_TXT[r.proof] || escHtml(r.proof)) + '</span>' +
+    const grade = r.kind ? KIND_TXT[r.kind] : (GRADE_TXT[r.proof] || escHtml(r.proof));
+    const gTitle = r.kind ? ' title="' + escAttr(KIND_TITLE[r.kind]) + '"' : '';
+    html += '<div class="ledger-step"><span class="ls-grade ' + cls + '"' + gTitle + '>' + grade + '</span>' +
       '<span class="ls-claim">' + escHtml(r.claim) + '</span>' +
       (decls ? '<span class="ls-decls">' + decls + '</span>' : '') + '</div>';
   }
@@ -929,10 +988,13 @@ function setupLeanPanels(root) {
       if (openFor === chip) { close(); return; }
       close();
       const row = chip.dataset.step ? ledgerStep(chip.dataset.step) : null;
-      const content = row
-        ? ledgerHtml([row])
-        : leanDeclHtml({ module: chip.dataset.module, decl: chip.dataset.decl });
-      drawer.innerHTML = '<div class="lean-drawer-head"><span class="lean-drawer-title">This step in Lean</span>' +
+      let run = [];
+      if (!row && chip.dataset.lean) {
+        try { run = JSON.parse(chip.dataset.lean); } catch (e) { warn('unreadable chip payload'); }
+      }
+      const content = row ? ledgerHtml([row]) : run.map(leanDeclHtml).join('');
+      const title = run.length > 1 ? 'This step in Lean — ' + run.length + ' declarations' : 'This step in Lean';
+      drawer.innerHTML = '<div class="lean-drawer-head"><span class="lean-drawer-title">' + escHtml(title) + '</span>' +
         '<button class="lean-drawer-close" aria-label="Close">×</button></div>' + content;
       drawer.querySelectorAll('details.lean-decl').forEach(d => { d.open = true; });
       drawer.hidden = false;

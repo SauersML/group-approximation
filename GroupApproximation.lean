@@ -1217,6 +1217,21 @@ import GroupApproximation.Sofic.CliffordAsideInert
 import GroupApproximation.Sofic.ContainsSquareWitness
 import GroupApproximation.Analysis.CStarMinTensorInjective
 import GroupApproximation.Analysis.CStarExactComplex
+import GroupApproximation.Algebra.WordMetricBall
+import GroupApproximation.Analysis.CoarseCompression
+import GroupApproximation.Analysis.GuentnerKaminker
+import GroupApproximation.Analysis.PropertyASquareWitness
+import GroupApproximation.Manuscript.NonMF.QuestionOneOpenness
+import GroupApproximation.Manuscript.NonMF.QuestionTwoRemainder
+import GroupApproximation.Sofic.FournierFacioUniversalGroup
+import GroupApproximation.Sofic.GreendlingerInduction
+import GroupApproximation.Sofic.GreendlingerMinimal
+import GroupApproximation.Sofic.GreendlingerMirror
+import GroupApproximation.Sofic.GreendlingerOverlap
+import GroupApproximation.Sofic.GreendlingerRegime
+import GroupApproximation.Sofic.GreendlingerSlide
+import GroupApproximation.Sofic.GreendlingerWeight
+import GroupApproximation.Sofic.SmallCancellationKazhdanEnvelope
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group

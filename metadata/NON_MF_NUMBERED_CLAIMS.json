@@ -856,7 +856,7 @@
       "id": "thm:cyclic",
       "environment": "theorem",
       "title": "the cyclic comparison",
-      "statement_sha256": "08ab17486524f52ac286feef04c20db2b7f62b2fa7c910ce1f52f273b1830f3e",
+      "statement_sha256": "2bfd53c90eb9489c99f1b1be43c42e3dcd180c3ba43d7bf718774a3ae89fae83",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [

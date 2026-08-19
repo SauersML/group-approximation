@@ -48,3 +48,43 @@ on paper and long in lists.  Deferred, not blocked: the interface
 (`GreendlingerGate`) is frozen in `SmallCancellationRouter.lean` and
 every consumer is already checked from the conclusion alone, so this
 card can be attacked in isolation with zero downstream rework.
+
+The certificate attack is running.  The chain
+`GreendlingerCombinatorics` -> `Conjugation` -> `NormalForm` ->
+`OneRelator` -> `Expression` -> `Cancellation` -> `Descent` -> `Piece`
+puts every factor of an expression in palindromic normal form, decomposes
+the product of two reduced words into a single matched block, and reduces
+the descent's second case to the identification of the eaten overlap as a
+piece.  `GreendlingerOverlap` pays that identification: the overhang of one
+conjugator past the other positions the overlap inside the next rotation,
+and if the relator it lands in is the very one it was eaten out of, the two
+palindromes spell mutually inverse elements
+(`mk_palindrome_mul_eq_one_of_coincidence`).  `GreendlingerMinimal` supplies
+the missing negation from minimality of the expression — a shortest
+expression has no two factors whose product is trivial — so the overlap is a
+piece unconditionally, and the two-factor case of the gate closes
+(`greendlinger_of_isMinimalConjProduct_two`).  `GreendlingerMirror` records
+the duality under the formal inverse and covers the opposite conjugator
+ordering plus the free case at the far end.
+
+The length regime is now discharged too.  `GreendlingerSlide` proves the
+re-expression identities a conjugate admits --- a relator may be rotated at
+the price of moving the conjugator --- and `GreendlingerWeight` makes an
+expression *data*, with the total conjugator length as a second minimand,
+so that minimality in (count, weight) is a well-founded object.  Each way
+the destroyed block could swallow a rotation is then either a re-expression
+that strictly shortens the total conjugator length (absorb, slide, meet), a
+relator that would be a piece of itself, or a coincidence making the two
+factors mutually inverse; `GreendlingerRegime` walks the six cases and
+closes the two-factor case of the gate outright
+(`greendlinger_of_le_two_factors`, no hypotheses).
+
+What remains is one thing: the induction from `n >= 3` down to two factors.
+`GreendlingerInduction` states it sharply --- the gate follows from the
+three-or-more-factor case alone (`greendlingerConclusion_of_three_factor`)
+--- proves the structural facts it runs on (the tail and the leading pair of
+a minimal expression are minimal), and names the strengthening the induction
+needs: the *two disjoint pieces* of Greendlinger's lemma proper, which the
+one-piece conclusion cannot supply because the next factor can eat exactly
+the relator the previous step produced.  That strengthening is what classical
+treatments obtain from a reduced van Kampen diagram.

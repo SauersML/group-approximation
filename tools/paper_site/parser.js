@@ -107,6 +107,29 @@ function extractLean(src) {
   return { clean, lean };
 }
 
+/* A \leanverified run written just after \end{theorem} or \end{proof},
+   with nothing but whitespace in between, annotates the environment it
+   follows — there is no other step between it and that \end.  Adopt it
+   onto that node, so the formalization reaches the badge on the statement
+   or the Proof line instead of clumping into a paragraph of loose,
+   identical check marks that name nothing.  Returns the new cursor. */
+function adoptTrailingLean(src, from, node) {
+  let i = from;
+  for (;;) {
+    let j = i;
+    while (j < src.length && /\s/.test(src[j])) j++;
+    if (!src.startsWith('\\leanverified', j)) break;
+    const g1 = grabGroup(src, j + '\\leanverified'.length);
+    if (!g1) break;
+    const g2 = grabGroup(src, g1.next);
+    if (!g2) break;
+    node.lean.push({ module: g1.content.trim(), decl: g2.content.trim() });
+    node.leanTrailing = (node.leanTrailing || 0) + 1;
+    i = g2.next;
+  }
+  return i;
+}
+
 /* ---------- numbering state ---------- */
 
 const THM_ENVS = {
@@ -243,7 +266,9 @@ function parseBlocks(src, C) {
         const anchor = mkAnchor('thm', labels[0] || (THM_ENVS[env] + '-' + num));
         registerLabels(labels, num, THM_ENVS[env], anchor);
         const body = parseBlocks(inner, C);
-        nodes.push({ t: 'thm', env, name: THM_ENVS[env], title, labels, num, anchor, lean: le.lean, body });
+        const node = { t: 'thm', env, name: THM_ENVS[env], title, labels, num, anchor, lean: le.lean, body };
+        i = adoptTrailingLean(src, i, node);
+        nodes.push(node);
         continue;
       }
       if (env === 'proof') {
@@ -261,7 +286,9 @@ function parseBlocks(src, C) {
         // each marker annotates
         const le = extractLean(inner);
         const body = parseBlocks(inner, C);
-        nodes.push({ t: 'proof', title, lean: le.lean, body });
+        const node = { t: 'proof', title, lean: le.lean, inlineLean: le.lean.length, body };
+        i = adoptTrailingLean(src, i, node);
+        nodes.push(node);
         continue;
       }
       if (env === 'enumerate' || env === 'itemize') {
@@ -275,6 +302,16 @@ function parseBlocks(src, C) {
         const inner = src.slice(j, endAt);
         i = endAt + endTok.length;
         nodes.push(parseList(inner, env, C));
+        continue;
+      }
+      if (env === 'quote' || env === 'quotation') {
+        flushPara();
+        const j = i + m[0].length;
+        const endAt = src.indexOf(endTok, j);
+        if (endAt < 0) throw new Error('unclosed ' + env);
+        const inner = src.slice(j, endAt);
+        i = endAt + endTok.length;
+        nodes.push({ t: 'quote', body: parseBlocks(inner, C) });
         continue;
       }
       if (MATH_ENVS.includes(env)) {
