@@ -133,7 +133,7 @@ theorem swallow_bound_of_minimal [DecidableEq α] {R : Set (List (α × Bool))}
     (heq' : palindrome c' t' = FreeGroup.invRev M ++ B') :
     M.length ≤ c.length + t.length := by
   by_contra hcon
-  push_neg at hcon
+  push Not at hcon
   -- the two rotations are nonempty
   have htne : t ≠ [] := ne_nil_of_mem_symmetrization hRne ht
   have ht'ne : t' ≠ [] := ne_nil_of_mem_symmetrization hRne ht'
