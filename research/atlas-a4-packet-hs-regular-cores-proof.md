@@ -14,10 +14,12 @@ In the canonical atlas criterion both `A8` chart restrictions are exact regular
 representations.  Hence for every selected pair-cube its order-three and
 order-two letters have their exact finite orders and zero normalized traces.
 The pair-cube itself belongs to the fixed atlas kernel packet, so its
-normalized-HS defect tends to zero.  Regular-character separation also makes
-the fixed nonidentity mixed word `BA` asymptotically traceless.
+normalized-HS defect tends to zero.
 
-Apply `a4-triangle-hs-regular-core` to each of the thirty pair-cubes.  Each
-produces an exact regular A4 core with codimension `o(d_n)`.  The number of
-triangles is fixed, so the sum of the thirty exceptional codimensions is still
-`o(d_n)`.  This proves the claim.
+The strengthened `a4-triangle-hs-regular-core` needs exactly these hypotheses:
+no mixed-word trace such as `tr(BA)` is required.  Apply it to each of the
+thirty pair-cubes.  Each produces an exact regular A4 core with codimension
+`o(d_n)`.  The number of triangles is fixed, so the sum of the thirty
+exceptional codimensions is still `o(d_n)`.  This proves the claim directly
+from the bare regular-atlas feasibility criterion, with no hidden separating-
+word assumption.
