@@ -361,6 +361,13 @@ def parse_census():
                       '', norm).strip()
         if bare and bare != norm:
             out.setdefault(js_hash(bare), plain)
+        # a list is one sentence to the census and one sentence per item to
+        # the renderer; both cuts are reasonable, so both are keyed
+        if '\\item' in norm:
+            for piece in re.split(r'\\item\s*', norm):
+                piece = piece.strip()
+                if piece and re.search(r'[A-Za-z]', piece):
+                    out.setdefault(js_hash(piece), plain)
     return out
 
 
