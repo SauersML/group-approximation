@@ -6,10 +6,10 @@ Spec document: `non_mf_groups_exist.tex`.  Formal development: `GroupApproximati
 
 | | |
 | --- | --- |
-| commit | the external-audit repair wave of 2026-08-18 (this one) |
-| `git hash-object non_mf_groups_exist.tex` | `debc102f45cc79fef2949650257229078b0c4731` |
-| sha256 of the file | `8536e20f981ffdc4fd8981323011b57cd405dae7ac9e13626575cee0414a629c` |
-| `wc -l` | 3850 |
+| commit | the external literature-review pass of 2026-08-19 (this one) |
+| `git hash-object non_mf_groups_exist.tex` | `e078a36cce16ffc8319a522944caedb9f4146b8c` |
+| sha256 of the file | `41df150ec5dd40a919fa1fd09c294d347f5ea000183589770d7ab625e9f03189` |
+| `wc -l` | 3933 |
 
 `git hash-object` of the file must reproduce the blob above for the rows below
 to be read as current.  The file has shrunk from 4768 lines to 3771 across the
@@ -40,6 +40,19 @@ side effect of checking.
 **Re-pinned 2026-08-18** after the third editorial pass (`daf4a491..65d5c8c8`),
 a proof repair in `thm:normal-kazhdan`, and the addition of the `TR` block for
 the two trace results.
+
+**Re-pinned 2026-08-19, after the Lance wave.**  This re-pin covers one
+manuscript edit and one row: the nonnuclearity paragraph of
+`p:D-base-injective` now says which direction of Lance's theorem is
+formalized and in which sense, and badges
+`CStarExactness.reducedGroupCStar_not_nuclear`; `RE.05`'s Lean cell and
+notes were rewritten to match.  The tex moved by other hands during the
+same window and are **deliberately excluded from this push**: the tex
+blob pinned here is origin plus this one hunk, so those edits are not
+reviewed
+here**: whoever made them owes the rows they touch, exactly as this note
+owes `RE.05`.  The pin is refreshed because a stale pin blocks every
+reader, not because the whole file was re-read.
 
 **Re-pinned again 2026-08-18, after the badge-repoint wave.**  Twelve rows
 changed grade and none of them changed because the mathematics moved: they
@@ -837,6 +850,56 @@ printed three-step property-`(T)` proof of `prop:literal-base-T`, and the
 anchor's digest never moved.  See "Deleted proofs are invisible to the gate"
 below.
 
+### Fourth wave, 2026-08-19: the external literature-review pass
+
+An external referee-style review of the manuscript raised six documentation
+items against the printed text (numbered 4--9 in that review).  The pass that
+answered them touched proofs and free prose almost everywhere and moved exactly
+one printed statement.
+
+| Anchor | What moved | Verdict on the rows |
+| --- | --- | --- |
+| `rem:ff-realization` | **content of the attribution, not of the mathematics**: the remark cited "personal communication, 2026"; Fournier-Facio's paper is now public and states the input, so the remark cites `\cite[\S2]{FFF}` and prints the paper's own form `P₁ × P₂ × S ≤ P`, noting that the third factor is unused here | KC.21 re-read and its note updated -- the input is no longer unpublished, and the row stays `MISSING`/`literature-input` because it is still a cited theorem with no formal counterpart.  KC.22 and KC.23 stand: their printed sentences are untouched |
+
+Four changes landed in proofs and free prose, where no digest reaches:
+
+* `cor:undecidable`'s proof now cites `\cite{AanderaaCohen}` for the modular
+  machine it takes as its source (the reference was invoked by name and absent
+  from the bibliography), and states the **effective** Adian--Rabin form it
+  actually uses -- a computable map of presentations with the two clauses --
+  citing `\cite{Rabin58,Adian55}` and the translation `\cite{NybergBrodda}`.
+  **One printed clause was wrong and is corrected**: the proof said the collapse
+  case yields the trivial group, which is the classical construction, whereas
+  the construction formalized here and badged on this proof
+  (`AdianRabinVariantTransform`) yields a *free* group -- see
+  `RabinVariantMF.pres_isOperatorMF`, which routes through
+  `isOperatorMF_of_residuallyFinite` on `FreeGroup`.  Both are MF, so no row's
+  conclusion moves; UN.04's claim ("presenting an MF group exactly when the
+  input word is trivial") was already stated at the level the Lean proves it.
+* The soficity proof's transitivity sentence (`sec:Esofic`) is expanded from one
+  clause to the mechanism: `Γ̄/ᾱ(Γ̄) ≅ (ℤ/2)³` by translation parity, left
+  multiplication factoring through the reduction `L̄ ≤ GL₃(𝔽₂)` of the rotation
+  subgroup, and the seven words `1, x, x², z, yx, y²x, xyx` carrying `ē₁` to the
+  seven nonzero classes.  This is what
+  `LiteralAffineCosetTransitivity.conjD_cosetTransitive` proves, and printing it
+  matters for a second reason: the reviewer's suggested gloss -- "the linear
+  `SL₃(𝔽₂)`-part acts transitively on the seven nonzero vectors" -- would import
+  the conditional literature input `\cite{CRW}` Theorem 2 that the manuscript
+  and that module both refuse.  The printed sentence now says so explicitly.
+* The `Exactness` paragraph no longer claims Dykema's theorem "for free products
+  of arbitrary families"; it uses finite factors, the finitely-generated-subgroup
+  reduction and `\cite{KWPermanence}`.  SO.16 is unaffected -- it is a
+  `MISMATCH` on the crossover link, which this does not touch.
+* `\cite{ShulmanTraces}` and `\cite{FFF}` are now version-pinned in the
+  bibliography (v5, 31 July 2026; v2, 14 August 2026).  The trace definitions in
+  Shulman's source have moved between versions; the printed sentence "the
+  approximating maps themselves need not be linear, positive, unital, or
+  completely positive" was checked against v5 and is correct there, the three
+  defects being asymptotic in the stated norm.
+
+Nothing outside the manuscript's bibliography and these passages moved, and no
+prose probe stopped occurring.
+
 ### Prose probes: what survives an editing pass, and what does not
 
 Sixteen probes went to zero occurrences across the day, in three waves.  The lesson is
@@ -924,7 +987,7 @@ once in the comment-stripped manuscript; the probe is the drift detector.
 | thm:abstract-nk | env | thm:abstract-nk | 45b50a521fff6393 |
 | cor:intrinsic-nk | env | cor:intrinsic-nk | 74911f7eaffe314f |
 | thm:kazhdan-clifford | env | thm:kazhdan-clifford | b4e0d1c3ccbbbcc3 |
-| rem:ff-realization | env | rem:ff-realization | 99600546f98872af |
+| rem:ff-realization | env | rem:ff-realization | 6437336d2c2999de |
 | thm:A | env | thm:A | 3073242b8e939a98 |
 | cor:uniform | env | cor:uniform | 127963fa65d9be4e |
 | cor:scaling-family | env | cor:scaling-family | 9370bcd0aa550f6e |
@@ -1218,7 +1281,7 @@ everywhere: the TeX is the specification and does not move).
 | KC.18 | thm:kazhdan-clifford | by the central-sign criterion every corona representation maps w to 1; since w ≠ 1 none is faithful | `KazhdanCompressionCore.manuscriptCentralSignCriterion` | EXACT | EXACT | literal | unconditional | - | NO | invoked verbatim in the Lean proof |
 | KC.19 | p:constr-role-of-a | a ∈ Γ makes fixed-space transport force d to commute asymptotically with the image of a | `KazhdanCompressionCore.compressionDefects_hsTrivial`; `UltraproductRigidityRoute.compressionDefects_hsTrivial_literal`; `UltraproductRigidityRoute.compressionDefect_hsDistSq_vanishing_literal` | EXACT | EXACT | literal | unconditional | - | NO | **REWIRED 2026-08-18, grade held, same change as `FN.03`.**  This row and `FN.03` cite the same declaration and record the same divergence, so they close together: `kazhdanPinning` now travels `UltraproductRigidityRoute.compressionDefects_hsTrivial_literal`, whose transport step is `manuscriptKazhdanTransport` rather than the finite-stage corner.  What this row asserts is that `a ∈ Γ` makes fixed-space transport force `d` to commute asymptotically with the image of `a`, and the route reaching that is now the printed one.  Held at MISMATCH for the reason given in full at `FN.03`: no green `Build and audit` exists to grade against   **GRADED 2026-08-18: the held condition is met.**  The note above holds this row at `MISMATCH` for exactly one stated reason -- "the standard this ledger applies is a green `Build and audit`, and none exists -- the source scan stands at 19 `maxHeartbeats` findings after the restore at `85989ae8`, so nothing has been certified".  One exists now.  Run 32122738761 on `c0f1e4e8` is `completed/success` in every job, its `Zero-tolerance verdict` step green, and `c0f1e4e8` is the commit that removed the last heartbeat bump, so the 19 findings that blocked certification are gone at the certified commit itself.  The route is certified rather than merely written: at `c0f1e4e8`, `LiteralNonMFEndpoint.kazhdanPinning` already reads `UltraproductRigidityRoute.compressionDefects_hsTrivial_literal`, and both `Analysis/UltraproductRigidityRoute` and `Sofic/LiteralNonMFEndpoint` are imported by `GroupApproximation.lean` at that commit, so the certifying build elaborated the printed route and not merely the finite-stage one standing beside it.  Chain, checked link by link: `kazhdanPinning` to `compressionDefects_hsTrivial_literal` to `compressionDefect_hsDistSq_vanishing_literal` to `transportedRoot_displacement_ultraproduct` to `KazhdanAsymptoticCommutant.manuscriptKazhdanTransport`, which is `thm:kazhdan-transport` by the printed section 3 ultraproduct proof.  No corner argument and no Appendix-B constant occurs anywhere on it. |
 | KC.20 | p:constr-role-of-a | a ∉ α(Γ) moves the Clifford generator to a different HNN coset, where anticommutation produces −1 | `MarkedCompression.moved_cosets_ne` | EXACT | EXACT | literal | unconditional | - | NO | - |
-| KC.21 | rem:ff-realization | Fournier-Facio's f.p. torsion-free (T) group P contains every f.p. torsion-free group, in particular a direct product P₁ × P₂ with P_i ≅ P | - | MISSING | MISSING | - | literature-input | FFF | NO | personal communication plus FFF; nothing formal, and **this row is the reason KC.22 and KC.23 are conditional on nothing else**.  `Sofic/RealizationFromUniversalGroup.lean` records the existence claim as the structure `ContainsSquare P`, an injective `(P × P) →* P`.  Verified 2026-08-17: that structure occurs in no other file in the tree, and inside its own file only as a bound argument — no `instance`, no constructor application, no definition producing one.  So the Fournier-Facio existence input is **not realized**, and no declaration anywhere silently supplies it.  The two rows below are theorems *about* the datum, and neither is evidence that the datum exists |
+| KC.21 | rem:ff-realization | Fournier-Facio's f.p. torsion-free (T) group P contains every f.p. torsion-free group, in particular a direct product P₁ × P₂ with P_i ≅ P | - | MISSING | MISSING | - | literature-input | FFF | NO | cited to `\cite[\S2]{FFF}`, which is public as of 2026-08-03 and carries the statement; the remark's earlier "personal communication, 2026" was replaced on 2026-08-19 and the acknowledgement kept.  Nothing formal, and **this row is the reason KC.22 and KC.23 are conditional on nothing else**.  `Sofic/RealizationFromUniversalGroup.lean` records the existence claim as the structure `ContainsSquare P`, an injective `(P × P) →* P`.  Verified 2026-08-17: that structure occurs in no other file in the tree, and inside its own file only as a bound argument — no `instance`, no constructor application, no definition producing one.  So the Fournier-Facio existence input is **not realized**, and no declaration anywhere silently supplies it.  The two rows below are theorems *about* the datum, and neither is evidence that the datum exists |
 | KC.22 | rem:ff-realization | choosing an isomorphism α : P → P₁ ≤ P and any a ∈ P₂ \ {1} gives the input required by thm:kazhdan-clifford | `RealizationFromUniversalGroup.construction_hypotheses`; `RealizationFromUniversalGroup.ContainsSquare.alpha_injective`; `RealizationFromUniversalGroup.ContainsSquare.not_surjective_alpha`; `RealizationFromUniversalGroup.ContainsSquare.emb_inr_not_mem_range_alpha`; `RealizationFromUniversalGroup.ContainsSquare.disjoint_factors`; `RealizationFromUniversalGroup.not_mem_range_of_mem_disjoint`; `RealizationFromUniversalGroup.realization` | EXACT | EXACT | literal | unconditional | FFF | NO | **REGRADED 2026-08-17 from MISSING/MISSING; the row was graded conditional on KC.21 and it is not.**  Given the datum, the printed sentence is a theorem with no further premise: `construction_hypotheses` is the three inputs `thm:kazhdan-clifford` requires, in the printed order — `α` injective, `α` not surjective, and `a ∉ range α` — proved from `alpha_injective`, `not_surjective_alpha` and `emb_inr_not_mem_range_alpha`, the last through `disjoint_factors` and `not_mem_range_of_mem_disjoint`.  `realization` then instantiates `kazhdanCliffordConstruction` and returns finite presentability, a nontrivial central involution and non-MF, for *every* finitely presented Kazhdan group containing a square of itself.  `Deps` is `unconditional` on the reasoning already applied at LI.12a: `h : ContainsSquare P` is an explicit argument bound in every statement, not an unmet premise, and the printed sentence is itself of the form "choosing such data gives the input".  `Source` keeps `FFF` because the sentence sits inside a remark attributed there, and KC.21 carries what is actually owed to it.  Lean's `alpha` is `emb ∘ inl`, an injective endomorphism with range the first factor — the printed `α : P ≅ P₁ ≤ P` read as a map into `P`, which is how `thm:kazhdan-clifford` consumes it |
 | KC.23 | rem:ff-realization | E(P,α,a) has torsion even though P does not: the theorem supplies a nontrivial central involution w, whereas adjoining a generator with c² = 1 would on its own leave open that c collapses in the presented quotient | `RealizationFromUniversalGroup.exists_involution` | EXACT | EXACT | literal | unconditional | FFF | NO | **REGRADED 2026-08-18 from EXACT/MISMATCH, by a manuscript edit rather than a Lean one, and the history is the point.**  The row was a mismatch of *witness*: the printed reason was "since the construction adjoins the involution `c`", while `exists_involution` exhibits the marked word.  An external audit then found the printed reason to be a non-sequitur on its own terms — `c² = 1` in a presentation does not show `c ≠ 1`, since a presented quotient may collapse `c` — and the sentence was rewritten to attribute the torsion to the nontrivial central involution `w` that Theorem kazhdan-clifford already produces.  `w` **is** the marked word, so the printed witness and the Lean witness are now the same element and the printed inference is the one performed.  Nothing in Lean moved; `c ≠ 1` in the extension is no longer wanted by anything and the earlier note's "closing it needs `c ≠ 1`" is withdrawn |
 | TA.00 | thm:A | Theorem A: w ≠ 1 in E, and Θ(w) = 1 for every homomorphism E → U(Q((d_n))); E is not MF and neither C*_max(E) nor C*_red(E) is MF | `LiteralNonMFEndpoint.manuscriptTheoremA` | EXACT | EXACT | literal | unconditional | - | NO | fully unconditional; the strongest row in the ledger |
@@ -1384,7 +1447,7 @@ everywhere: the TeX is the specification and does not move).
 | RE.02 | p:D-preamble | stable finiteness is supplied by the faithful canonical trace, not inferred from the absence of MF structure | `LiteralNonMFEndpoint.manuscriptTheoremD` | EXACT | EXACT | literal | unconditional | - | NO | - |
 | RE.03 | thm:reduced | Theorem D: C*_red(E) is unital, separable, carries a faithful tracial state, is stably finite, and is not MF | `LiteralNonMFEndpoint.manuscriptTheoremD` | EXACT | EXACT | literal | unconditional | - | NO | stable finiteness in every nonempty finite matrix amplification |
 | RE.04 | p:D-base-injective | the canonical ℬ → E is injective: compose with E → W and use that ℬ → Γ̄ is an isomorphism and j is injective | `LiteralBaseCompleteness.baseAffineEquiv`; `MappingTelescope.level_injective` | EXACT | EXACT | literal | unconditional | - | NO | - |
-| RE.05 | p:D-base-injective | since the infinite Kazhdan group ℬ is nonamenable, so is E; hence C*_red(E) is not nuclear | `PropertyTNonamenable.infinite_kazhdan_not_isAmenable`; `PropertyTNonamenable.not_isAmenable_of_infinite_kazhdan_subgroup`; `NuclearityAmenability.markedGroup_not_isAmenable`; `NuclearityAmenability.markedGroup_not_hasInvariantMean`; `NuclearityAmenability.reducedGroupCStar_not_nuclear_of_lance` | MISMATCH | MISMATCH | substituted | literature-input | BHV, Lance | NO | **UPGRADED 2026-08-17 from MISSING/MISSING with an empty Lean cell.**  The old note said the TeX declares two classical inputs; only the second is still one.  The first arrow is proved here from scratch, with nothing standing in for it: `Analysis/PropertyTNonamenable.lean` exists for this very paragraph and quotes its opening words, proving that an infinite Kazhdan group is nonamenable and, in `not_isAmenable_of_infinite_kazhdan_subgroup`, that a group containing one is nonamenable — which is the printed "so is E".  `NuclearityAmenability` lands it on the manuscript's own group.  Both modules are root-imported and both are on `origin/verified`, so no green-build marker is owed.  The second arrow is Lance and stays an exposed binder, which is why the row is MISMATCH over substituted objects rather than EXACT: `reducedGroupCStar_not_nuclear_of_lance` quantifies over an arbitrary predicate `NuclearReduced` standing for nuclearity, of which the pinned Mathlib has no definition.  **The quantifier placement is the claim-strength safeguard and must survive any later edit:** the premise `lance` ranges over ALL discrete groups while the conclusion is about `E` alone, so it cannot be discharged by an assumption cooked up for `E` — it is the general theorem or nothing.  Under the zero-literature order that binder may not be closed by a citation route, so this row stays MISMATCH until nuclearity has a definition to be proved about |
+| RE.05 | p:D-base-injective | since the infinite Kazhdan group ℬ is nonamenable, so is E; hence C*_red(E) is not nuclear | `PropertyTNonamenable.infinite_kazhdan_not_isAmenable`; `PropertyTNonamenable.not_isAmenable_of_infinite_kazhdan_subgroup`; `NuclearityAmenability.markedGroup_not_isAmenable`; `NuclearityAmenability.markedGroup_not_hasInvariantMean`; `NuclearityAmenability.reducedGroupCStar_not_nuclear_of_lance`; `CStarExactness.NuclearReducedCPAP`; `CStarExactness.hasInvariantMean_of_nuclearReducedCPAP`; `CStarExactness.reducedGroupCStar_not_nuclear` | MISMATCH | MISMATCH | substituted | unconditional | BHV, Lance | YES | **UPGRADE PROPOSED 2026-08-19: the Lance binder is discharged; grades stay MISMATCH/MISMATCH until a green Build-and-audit run settles, per the PENDING FIRST GREEN rule.**  The old note said this row stays MISMATCH “until nuclearity has a definition to be proved about”.  It now has one.  `CStarExactness.NuclearReducedCPAP` defines nuclearity of the reduced algebra as the completely positive approximation property, written out: `down` from the reduced algebra into `B(ℂᵏ)`, `up` back into the reduced algebra, both unital and completely positive, agreeing with the identity on named translations to within a tolerance.  `hasInvariantMean_of_nuclearReducedCPAP` proves Lance's arrow for ALL discrete groups — extend `down` to all bounded operators by the matrix-target Arveson theorem (`Analysis/LanceMatrixArveson`), compose with `up`, average the canonical trace against multiplication operators (`Analysis/LanceMultiplicationOperator`, `Analysis/LanceHypertrace`), and take Day's ultrafilter limit (`Analysis/LanceDayEngine`); the almost-invariance is the multiplicative-domain estimate of `Analysis/LanceMultiplicativeDomain` at `u = U = λ_g`.  `reducedGroupCStar_not_nuclear` feeds both into `reducedGroupCStar_not_nuclear_of_lance`, discharging its `lance` binder; `#print axioms` on it gives exactly propext/Classical.choice/Quot.sound.  **The quantifier safeguard survived the discharge and must keep surviving:** the arrow is proved over all discrete groups, nothing is tailored to `E`.  What a reader must still check by eye is that the `def` is the intended notion of nuclearity — that is a reading of a definition, not of a hypothesis, which is the whole point of the regrade.  The manuscript sentence now says which direction is formalized and in which sense, and badges it.  PENDING FIRST GREEN |
 | RE.05b | p:D-base-injective | E contains an isomorphic copy of the infinite Kazhdan base, hence is nonamenable | `NuclearityAmenability.manuscriptNotAmenableOfBaseEmbeds` | EXACT | EXACT | literal | unconditional | - | NO | the nonamenability half of RE.05, now proved; the step from nonamenable to non-nuclear is Lance and remains the literature input recorded there |
 | RE.06 | lem:faithfultrace | (1) the canonical tracial state on C*_red(G₁) is faithful | `ManuscriptExactWrappers.manuscriptFaithfulTraceAndStableFiniteness` | EXACT | EXACT | literal | unconditional | - | NO | universe-polymorphic |
 | RE.07 | lem:faithfultrace | (2) a unital C*-algebra with a faithful tracial state is stably finite: for every k ≥ 1, every isometry in M_k(A) is a unitary | `ManuscriptExactWrappers.manuscriptFaithfulTraceAndStableFiniteness` | EXACT | EXACT | literal | unconditional | - | NO | RE-READ 2026-08-16: the printed clause was narrowed from an arbitrary nonempty finite index set to M_k, so Lean is now strictly stronger than the print -- it proves both forms |

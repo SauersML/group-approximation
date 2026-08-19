@@ -1278,7 +1278,13 @@ and is nonamenable.
 \leanverified{Analysis/NuclearityAmenability}{GroupApproximation.NuclearityAmenability.manuscriptNotAmenableOfBaseEmbeds}
 By Lance's theorem, nonamenability of a discrete group is equivalent
 to nonnuclearity of its reduced group $C^*$-algebra, so
-$\Cred(E)$ is not nuclear \cite{Lance}.  Thus the nuclear form of the
+$\Cred(E)$ is not nuclear \cite{Lance}.  The direction used here is
+formalized, with nuclearity read as the completely positive
+approximation property of $\Cred$: every discrete group whose reduced
+algebra has that property carries an invariant mean, so $\Cred(E)$ does
+not have it.
+\leanverified{Analysis/LanceNuclearity}{GroupApproximation.CStarExactness.reducedGroupCStar_not_nuclear}
+Thus the nuclear form of the
 Blackadar--Kirchberg problem --- whether every stably finite separable
 nuclear $C^*$-algebra is quasidiagonal --- is not addressed here.
 
