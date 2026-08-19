@@ -27,15 +27,35 @@ on:
       - '.github/workflows/cairn-site.yml'
   workflow_dispatch:
 
-# Never cancel a site run.  `cancel-in-progress: false` only protects a run
-# that is already executing -- GitHub still cancels a *pending* run when a
-# newer one joins the group, so on a busy repo with a backed-up runner queue
-# the site can starve indefinitely: on 2026-08-16 five consecutive runs were
-# cancelled without ever publishing, leaving Pages several commits stale.
-# A per-run group means nothing supersedes anything; the job takes seconds,
-# and the last deploy to finish wins, which is the state we want anyway.
+# One site build at a time, plus at most one waiting.
+#
+# This was `cairn-site-${{ github.run_id }}` -- a per-run group, so nothing
+# superseded anything -- against the 2026-08-16 observation that five
+# consecutive runs were cancelled while pending and Pages went stale.  The
+# diagnosis was right and the remedy inverted it: undeduplicated runs are
+# created here on every push touching `research/**` or `GroupApproximation/**`,
+# which is nearly every push this fleet makes, and they do not wait politely.
+# Measured 2026-08-19: 39 of the 65 queued runs in the repository were site
+# builds, 60% of the backlog, against a twenty-job account pool shared with
+# another repository.  What they were crowding out is the point -- four
+# `Promote successful Lean gate to verified` runs had been queued since 04:09
+# and could not get a runner, so the branch this whole pipeline exists to
+# advance sat 710 commits behind main.  The starvation the old group was meant
+# to prevent was being *caused* by the flood the old group created.
+#
+# "The last deploy to finish wins" was also not the state we wanted: 39 runs
+# racing means completion order is not creation order, so an older tree can
+# publish after a newer one and stay there until the next push.
+#
+# Keying the group to the branch bounds it at one running plus one pending.
+# `cancel-in-progress: false` is what makes that safe, and it is doing real
+# work here: a run that has STARTED always finishes and publishes, so no
+# deploy is ever abandoned half-way.  Only a *pending* duplicate is collected,
+# and a pending duplicate is by construction superseded content -- the newer
+# one that replaces it builds from a newer tip and publishes strictly fresher
+# state.  The job takes seconds, so the pending slot turns over quickly.
 concurrency:
-  group: cairn-site-${{ github.run_id }}
+  group: cairn-site-${{ github.ref }}
   cancel-in-progress: false
 
 permissions:
