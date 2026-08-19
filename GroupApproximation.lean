@@ -26,6 +26,7 @@ import GroupApproximation.Analysis.CStarChoiMap
 import GroupApproximation.Analysis.LanceFolnerMaps
 import GroupApproximation.Analysis.CStarFormCompletelyPositive
 import GroupApproximation.Analysis.NuclearApproximationEstimate
+import GroupApproximation.Analysis.CStarCorestrictCP
 import GroupApproximation.Analysis.UCPContractiveMatrix
 import GroupApproximation.Analysis.GroupVonNeumannTrace
 import GroupApproximation.Analysis.LimitsTraceStandardForm
@@ -64,6 +65,7 @@ import GroupApproximation.Computability.RabinVariantCode
 import GroupApproximation.Computability.CoprodCode
 import GroupApproximation.Computability.AdianRabinVariantTransform
 import GroupApproximation.Computability.AdianRabinGeneral
+import GroupApproximation.Computability.TorsionFreeMarkov
 import GroupApproximation.Computability.RawWord
 import GroupApproximation.Computability.RawTransform
 import GroupApproximation.Computability.RawTransformPrimrec
@@ -724,6 +726,7 @@ import GroupApproximation.Sofic.SymmetricDoubleFlip
 import GroupApproximation.Sofic.LineDouble
 import GroupApproximation.Sofic.DoubleSoficTransfer
 import GroupApproximation.Sofic.MFNonsoficDoubleEndpoint
+import GroupApproximation.Sofic.KunThomDoubleWitness
 import GroupApproximation.Sofic.FreeLampRigidity
 import GroupApproximation.Sofic.ProfiniteClosure
 import GroupApproximation.Sofic.CentralFreeLampCover
@@ -962,6 +965,7 @@ import GroupApproximation.Analysis.CStarSliceCompletion
 import GroupApproximation.Analysis.CStarSliceLeft
 import GroupApproximation.Analysis.CStarExactnessSliceReduction
 import GroupApproximation.Analysis.OmegaUnitaryRepExists
+import GroupApproximation.Sofic.HSDistVanishingWitness
 import GroupApproximation.Analysis.CStarSliceIdeal
 import GroupApproximation.Analysis.CStarMaxTensorNorm
 import GroupApproximation.Analysis.CStarTensorComparison
