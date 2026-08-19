@@ -70,9 +70,9 @@ private theorem re_inner_self' {V : Type*} [NormedAddCommGroup V]
   have h := inner_self_eq_norm_sq (𝕜 := ℂ) v
   simpa [RCLike.re_to_complex] using h
 
+omit [CompleteSpace H] in
 /-- Two continuous linear maps agreeing on a set whose span is dense
 agree: the agreement set is a closed submodule. -/
-omit [CompleteSpace H] in
 theorem clm_ext_of_dense_span {f g : H →L[ℂ] H} {s : Set H}
     (hs : Dense ((Submodule.span ℂ s : Submodule ℂ H) : Set H))
     (h : ∀ u ∈ s, f u = g u) : f = g := by
@@ -104,14 +104,14 @@ theorem clm_ext_of_dense_span {f g : H →L[ℂ] H} {s : Set H}
   rw [sub_apply, sub_eq_zero] at h0
   exact h0
 
-/-- Two continuous linear maps agreeing on a dense set agree. -/
 omit [CompleteSpace H] in
+/-- Two continuous linear maps agreeing on a dense set agree. -/
 theorem clm_ext_of_dense {f g : H →L[ℂ] H} {s : Set H} (hs : Dense s)
     (h : ∀ u ∈ s, f u = g u) : f = g :=
   clm_ext_of_dense_span (hs.mono Submodule.subset_span) h
 
-/-- A vector orthogonal to a dense set vanishes. -/
 omit [CompleteSpace H] in
+/-- A vector orthogonal to a dense set vanishes. -/
 theorem eq_zero_of_inner_dense {w : H} {s : Set H} (hs : Dense s)
     (h : ∀ u ∈ s, ⟪u, w⟫_ℂ = 0) : w = 0 := by
   have hclosed : IsClosed {u : H | ⟪u, w⟫_ℂ = 0} :=

@@ -57,11 +57,11 @@ variable {A : Type u} {B : Type v} [Ring A] [StarRing A] [Algebra ℂ A]
 variable {H : Type w} {K : Type x} [NormedAddCommGroup H]
   [InnerProductSpace ℂ H] [NormedAddCommGroup K] [InnerProductSpace ℂ K]
 
+omit [StarModule ℂ A] [StarModule ℂ B] in
 /-- The Hilbert flip intertwines the product representations of a tensor
 and its flip.  (`spatialHom` needs no `StarModule`, exactly as at
 `spatialHom_tmul`; the ⋆-structure enters only through `spatialRep` in the
 norm statement below.) -/
-omit [StarModule ℂ A] [StarModule ℂ B] in
 theorem spatialHom_comm_apply (π : StarRep A H) (ρ : StarRep B K)
     (y : A ⊗[ℂ] B) (w : H ⊗[ℂ] K) :
     (TensorProduct.commIsometry ℂ H K) (spatialHom π ρ y w)
