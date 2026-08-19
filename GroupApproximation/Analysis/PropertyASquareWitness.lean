@@ -171,7 +171,7 @@ theorem sum_sq_window (W : SquareWitness G R ε) (g : G) {T : Finset G}
 `g` is the normalised square of the vector attached to `g`; supports and total
 mass are immediate, and the `ℓ¹` estimate is Cauchy--Schwarz together with the
 two-sided bound on the normalisation. -/
-def toPropertyAWitness (hε : 0 ≤ ε) (W : SquareWitness G R ε) :
+noncomputable def toPropertyAWitness (hε : 0 ≤ ε) (W : SquareWitness G R ε) :
     PropertyAWitness G R (12 * ε) where
   template := W.template
   weight := fun g x ↦ W.vec g x ^ 2 / W.mass g
@@ -263,7 +263,7 @@ def toPropertyAWitness (hε : 0 ≤ ε) (W : SquareWitness G R ε) :
         field_simp
         ring
       rw [hsplit]
-      refine le_trans (abs_add _ _) ?_
+      refine le_trans (abs_add_le _ _) ?_
       rw [abs_div, abs_div, abs_of_pos hA0, abs_of_pos hAB0, abs_mul,
         abs_of_nonneg (sq_nonneg (W.vec h x))]
     -- sum the pointwise estimate
@@ -281,7 +281,6 @@ def toPropertyAWitness (hε : 0 ≤ ε) (W : SquareWitness G R ε) :
       have hfix : W.mass h * |W.mass h - W.mass g| / (W.mass g * W.mass h)
           = |W.mass h - W.mass g| / W.mass g := by
         field_simp
-        ring
       rw [hfix]
     -- and finish numerically
     have hfinal : S / W.mass g + |W.mass h - W.mass g| / W.mass g ≤ 12 * ε := by
@@ -294,7 +293,6 @@ def toPropertyAWitness (hε : 0 ≤ ε) (W : SquareWitness G R ε) :
         mul_nonneg hd0 (by linarith)
       have hexp : (S / W.mass g) * (2 * W.mass g - 1) = 2 * S - S / W.mass g := by
         field_simp
-        ring
       rw [hexp] at hprod
       have h3 : 0 ≤ ε := hε
       linarith
