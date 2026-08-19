@@ -78,7 +78,7 @@ noncomputable def stinespringV : H →L[ℂ] StinespringSpace φ hφ :=
     (LinearMap.mkContinuous (stinespringSingleOne φ hφ)
       (Real.sqrt ‖φ 1‖) (norm_stinespringSingleOne_le φ hφ))
 
-theorem stinespringV_apply (x : H) :
+@[simp] theorem stinespringV_apply (x : H) :
     stinespringV φ hφ x
       = ((stinespringSingleOne φ hφ x : StinespringPre φ hφ) :
           StinespringSpace φ hφ) := rfl

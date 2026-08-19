@@ -82,7 +82,7 @@ states, of the spatial seminorm of the pair of GNS representations. -/
 noncomputable def minTensorNorm : (A ⊗[ℂ] B) → ℝ :=
   iSupSeminorm fun p : State A × State B => (gnsPairRep p).seminorm
 
-theorem minTensorNorm_apply (x : A ⊗[ℂ] B) :
+@[simp] theorem minTensorNorm_apply (x : A ⊗[ℂ] B) :
     minTensorNorm x
       = ⨆ p : State A × State B, spatialNorm p.1.gnsRep p.2.gnsRep x := rfl
 

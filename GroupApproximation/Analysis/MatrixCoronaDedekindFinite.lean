@@ -215,7 +215,7 @@ end Blocks
 section Assemble
 
 /-- The numerator's multiplication is coordinatewise. -/
-theorem coord_mul (X : ℕ → FiniteModel)
+@[simp] theorem coord_mul (X : ℕ → FiniteModel)
     (x y : BoundedMatrixSequence (fun n ↦ X n)) (n : ℕ) :
     (x * y) n = x n * y n := rfl
 
@@ -350,7 +350,7 @@ The coordinates of a matrix over `Q_X` are the amplified finite matrices
 the two block comparisons carry the hypothesis down to the coordinates and the
 conclusion back up. -/
 theorem mul_eq_one_symm_matrixCorona {I : Type} [Fintype I] [DecidableEq I]
-    [Nonempty I] (X : ℕ → FiniteModel) [∀ n, Nonempty (X n)]
+    (X : ℕ → FiniteModel) [∀ n, Nonempty (X n)]
     {x y : Matrix I I (NormMatrixCStarCorona (fun n ↦ X n))} (hxy : x * y = 1) :
     y * x = 1 := by
   classical
@@ -451,7 +451,7 @@ is `mul_eq_one_symm_matrixCorona` above.
 Nothing is assumed about `I` beyond finiteness: the empty index gives a
 subsingleton, where the conclusion holds for want of an entry to check. -/
 theorem cstarMatrix_mul_star_eq_one_of_hasMFEmbedding
-    {A : Type u} [CStarAlgebra A] [PartialOrder A] [StarOrderedRing A]
+    {A : Type u} [CStarAlgebra A]
     (hA : HasMFEmbedding A) (I : Type) [Fintype I] [DecidableEq I]
     {v : CStarMatrix I I A} (hv : star v * v = 1) : v * star v = 1 := by
   classical

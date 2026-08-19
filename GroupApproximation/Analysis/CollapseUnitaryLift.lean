@@ -90,7 +90,7 @@ theorem liftFam_mul_class (g h : E) :
         (map_mul (unitarySequenceToCorona X) _ _).symm
 
 /-- The coordinates of the multiplicative defect of the chosen lift. -/
-theorem coord_defect (g h : E) (n : ℕ) :
+@[simp] theorem coord_defect (g h : E) (n : ℕ) :
     ((unitarySequenceBounded X (liftFam X Θ (g * h))
         - unitarySequenceBounded X (liftFam X Θ g * liftFam X Θ h)) n
       : Matrix (X n) (X n) ℂ)

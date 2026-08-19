@@ -2,7 +2,7 @@
 
 # Elaborated types of the mapped declarations
 
-One entry per declaration named by a manuscript margin note, in the order of `docs/NON_MF_CLAIM_DECLS.txt`.  The types are printed by Lean from the elaborated environment, so this file records what each mapped declaration actually states -- the layer of the correspondence that name resolution alone cannot check.
+One entry per declaration named by a manuscript margin note, in the order of `metadata/NON_MF_CLAIM_DECLS.txt`.  The types are printed by Lean from the elaborated environment, so this file records what each mapped declaration actually states -- the layer of the correspondence that name resolution alone cannot check.
 
 ## `GroupApproximation.AdianRabinVariantTransform.correct`
 
@@ -116,53 +116,6 @@ LiteralCyclicCalibration.quotientMap LiteralCyclicCalibration.mark ≠ 1 ∧
       U ∈ Matrix.unitaryGroup Y.carrier ℂ ∧
         V ∈ Matrix.unitaryGroup Y.carrier ℂ ∧
           √(hsNormSq Y (U - V)) ≤ ε ∧ 2 ≤ ‖conjDouble U - conjDouble V‖
-```
-
-## `GroupApproximation.IntertwinerKazhdanTransport.manuscriptIntertwinerTransport`
-
-```lean
-∀ {Γ : Type} {H : Type u} [inst : Group Γ] [inst_1 : Group H],
-  HasKazhdanPropertyTComplex Γ →
-    ∀ (iota : Γ →* H) (s : H),
-      (∀ (γ : Γ), ∃ δ, s * iota γ * s⁻¹ = iota δ) →
-        ∀ (d₁ d₂ : ℕ → ℕ),
-          (∀ (n : ℕ), 0 < d₁ n) →
-            (∀ (n : ℕ), 0 < d₂ n) →
-              ∀
-                (U₁ :
-                  (n : ℕ) → H → ↥(Matrix.unitaryGroup (naturalFiniteModel (d₁ n)).carrier ℂ))
-                (U₂ :
-                  (n : ℕ) → H → ↥(Matrix.unitaryGroup (naturalFiniteModel (d₂ n)).carrier ℂ)),
-                (∀ (g h : H) (ε : ℝ),
-                    0 < ε → ∃ N, ∀ n ≥ N, ‖↑(U₁ n (g * h)) - ↑(U₁ n g) * ↑(U₁ n h)‖ ≤ ε) →
-                  (∀ (g h : H) (ε : ℝ),
-                      0 < ε → ∃ N, ∀ n ≥ N, ‖↑(U₂ n (g * h)) - ↑(U₂ n g) * ↑(U₂ n h)‖ ≤ ε) →
-                    ∀
-                      (x :
-                        (n : ℕ) →
-                          Matrix (naturalFiniteModel (d₁ n)).carrier
-                            (naturalFiniteModel (d₂ n)).carrier ℂ),
-                      (∃ M, 0 ≤ M ∧ ∀ (n : ℕ), ‖x n‖ ≤ M) →
-                        (∀ (γ : Γ),
-                            IntertwinerKazhdanTransport.NaturalHSIntertwinerVanishing d₁ d₂ U₁
-                              U₂ x (iota γ)) →
-                          ∀ (γ : Γ),
-                            IntertwinerKazhdanTransport.NaturalHSIntertwinerVanishing d₁ d₂ U₁
-                              U₂ (fun n => ↑(U₁ n s) * x n * (↑(U₂ n s)).conjTranspose) (iota γ)
-```
-
-## `GroupApproximation.IntertwinerKazhdanTransport.scaled_intertwiner_transport`
-
-```lean
-∀ {Γ : Type} {E : Type u} [inst : Group Γ] [inst_1 : Group E] (B₁ B₂ : OpAlmostRepresentation E)
-  (w : ℕ → ℝ),
-  (∀ (n : ℕ), 0 ≤ w n) →
-    ∀ (C : KazhdanCompressionCore Γ E)
-      (x : (n : ℕ) → Matrix (B₁.model n).carrier (B₂.model n).carrier ℂ),
-      IntertwinerKazhdanTransport.IsScaledAsymptoticIntertwinerOf B₁ B₂ w C.iota x →
-        IntertwinerKazhdanTransport.IsScaledRectMassBounded B₁ B₂ w x →
-          IntertwinerKazhdanTransport.IsScaledAsymptoticIntertwinerOf B₁ B₂ w C.iota fun n =>
-            ↑(B₁.map n C.t) * x n * (↑(B₂.map n C.t)).conjTranspose
 ```
 
 ## `GroupApproximation.IsOperatorMF.subgroup`
@@ -749,6 +702,36 @@ IsSofic LiteralNonMFPresentation.MarkedGroup ∧
     ¬Group.ResiduallyFinite LiteralNonMFPresentation.MarkedGroup
 ```
 
+## `GroupApproximation.LiteralTheoremAPackage.manuscriptTheoremA_package`
+
+```lean
+(Fintype.card LiteralNonMFPresentation.Generator = 8 ∧
+    LiteralNonMFPresentation.relators.card = 41 ∧
+      LiteralNonMFPresentation.MarkedGroup = PresentedGroup ↑LiteralNonMFPresentation.relators ∧
+        Group.IsFinitelyPresented LiteralNonMFPresentation.MarkedGroup) ∧
+  (IsSofic LiteralNonMFPresentation.MarkedGroup ∧
+      IsHyperlinear LiteralNonMFPresentation.MarkedGroup) ∧
+    (LiteralNonMFPresentation.mark =
+          LiteralNonMFPresentation.wordInMarkedGroup LiteralNonMFPresentation.markedWord ∧
+        LiteralNonMFPresentation.mark ≠ 1 ∧
+          LiteralNonMFPresentation.mark ^ 2 = 1 ∧
+            ∀ (g : LiteralNonMFPresentation.MarkedGroup),
+              Commute LiteralNonMFPresentation.mark g) ∧
+      (∀ (d : ℕ → ℕ),
+          (∀ (n : ℕ), 0 < d n) →
+            ∀
+              (Theta :
+                LiteralNonMFPresentation.MarkedGroup →*
+                  NormMatrixCoronaUnitary fun n => naturalFiniteModel (d n)),
+              Theta LiteralNonMFPresentation.mark = 1) ∧
+        ¬IsCDEOperatorMF LiteralNonMFPresentation.MarkedGroup ∧
+          ¬IsOperatorMF LiteralNonMFPresentation.MarkedGroup ∧
+            ¬IsMFAlgebra (MaximalGroupCStar LiteralNonMFPresentation.MarkedGroup) ∧
+              ¬IsMFAlgebra
+                  ↥(ReducedGroupCStarTrace.ReducedGroupCStar
+                      LiteralNonMFPresentation.MarkedGroup)
+```
+
 ## `GroupApproximation.LiteralTietzePresentation.exists_sixGenerator_thirtyTwo_presentation`
 
 ```lean
@@ -1320,29 +1303,25 @@ Function.Injective ⇑LiteralNonMFPresentation.baseMap ∧
                       (ScalingFamilyPresentation.MarkedGroup m))
 ```
 
+## `GroupApproximation.SimpleSoficEnvelopeUnconditional.manuscript_simpleSoficEnvelope`
+
+```lean
+∃ 𝒰 X E,
+  Countable ↥E ∧
+    IsSimpleGroup ↥E ∧
+      IsSofic ↥E ∧
+        coronaMFResidual ↥E = ⊤ ∧
+          normMFResidual ↥E = ⊤ ∧
+            (∀ (H : Type) [inst : Group H],
+                IsOperatorMF H → ∀ (φ : ↥E →* H) (s : ↥E), φ s = 1) ∧
+              ¬IsOperatorMF ↥E
+```
+
 ## `GroupApproximation.SoficByAmenablePermanence.manuscriptSoficOfSoficKerOfAmenableQuotient`
 
 ```lean
 ∀ {G Q : Type} [inst : Group G] [inst_1 : Group Q] (f : G →* Q),
   Function.Surjective ⇑f → IsSofic ↥f.ker → Amenability.IsAmenable Q → IsSofic G
-```
-
-## `GroupApproximation.TensorPowerTransport.manuscriptFixedTensorTransport_anyUniverse`
-
-```lean
-∀ {Γ : Type v} {E : Type u} [inst : Group Γ] [inst_1 : Group E] (A : OpAlmostRepresentation E)
-  (p q : ℕ) (w : ℕ → ℝ),
-  (∀ (n : ℕ), 0 ≤ w n) →
-    ∀ (C : KazhdanCompressionCore Γ E)
-      (x :
-        (n : ℕ) → Matrix ((A.tensorPow p).model n).carrier ((A.tensorPow q).model n).carrier ℂ),
-      IntertwinerKazhdanTransport.IsScaledAsymptoticIntertwinerOf (A.tensorPow p)
-          (A.tensorPow q) w C.iota x →
-        IntertwinerKazhdanTransport.IsScaledRectMassBounded (A.tensorPow p) (A.tensorPow q) w
-            x →
-          IntertwinerKazhdanTransport.IsScaledAsymptoticIntertwinerOf (A.tensorPow p)
-            (A.tensorPow q) w C.iota fun n =>
-            ↑((A.tensorPow p).map n C.t) * x n * (↑((A.tensorPow q).map n C.t)).conjTranspose
 ```
 
 ## `GroupApproximation.TorsionSpectralCollapse.actualCoronaMFInvisible_of_torsionWitness`
@@ -1376,53 +1355,6 @@ Function.Injective ⇑LiteralNonMFPresentation.baseMap ∧
     ∀ {s : E},
       (∀ γ ∈ L, s * γ * s⁻¹ ∈ L) →
         TorsionCompressionCollapse.torsionCollapseDefect L s ≤ actualCoronaMFResidual E
-```
-
-## `GroupApproximation.TransportVariantsAnyUniverse.manuscriptIntertwinerTransport_anyUniverse`
-
-```lean
-∀ {Γ : Type v} {H : Type u} [inst : Group Γ] [inst_1 : Group H],
-  HasKazhdanPropertyTComplex Γ →
-    ∀ (iota : Γ →* H) (s : H),
-      (∀ (γ : Γ), ∃ δ, s * iota γ * s⁻¹ = iota δ) →
-        ∀ (d₁ d₂ : ℕ → ℕ),
-          (∀ (n : ℕ), 0 < d₁ n) →
-            (∀ (n : ℕ), 0 < d₂ n) →
-              ∀
-                (U₁ :
-                  (n : ℕ) → H → ↥(Matrix.unitaryGroup (naturalFiniteModel (d₁ n)).carrier ℂ))
-                (U₂ :
-                  (n : ℕ) → H → ↥(Matrix.unitaryGroup (naturalFiniteModel (d₂ n)).carrier ℂ)),
-                (∀ (g h : H) (ε : ℝ),
-                    0 < ε → ∃ N, ∀ n ≥ N, ‖↑(U₁ n (g * h)) - ↑(U₁ n g) * ↑(U₁ n h)‖ ≤ ε) →
-                  (∀ (g h : H) (ε : ℝ),
-                      0 < ε → ∃ N, ∀ n ≥ N, ‖↑(U₂ n (g * h)) - ↑(U₂ n g) * ↑(U₂ n h)‖ ≤ ε) →
-                    ∀
-                      (x :
-                        (n : ℕ) →
-                          Matrix (naturalFiniteModel (d₁ n)).carrier
-                            (naturalFiniteModel (d₂ n)).carrier ℂ),
-                      (∃ M, 0 ≤ M ∧ ∀ (n : ℕ), ‖x n‖ ≤ M) →
-                        (∀ (γ : Γ),
-                            IntertwinerKazhdanTransport.NaturalHSIntertwinerVanishing d₁ d₂ U₁
-                              U₂ x (iota γ)) →
-                          ∀ (γ : Γ),
-                            IntertwinerKazhdanTransport.NaturalHSIntertwinerVanishing d₁ d₂ U₁
-                              U₂ (fun n => ↑(U₁ n s) * x n * (↑(U₂ n s)).conjTranspose) (iota γ)
-```
-
-## `GroupApproximation.TransportVariantsAnyUniverse.scaled_intertwiner_transport_anyUniverse`
-
-```lean
-∀ {Γ : Type v} {E : Type u} [inst : Group Γ] [inst_1 : Group E]
-  (B₁ B₂ : OpAlmostRepresentation E) (w : ℕ → ℝ),
-  (∀ (n : ℕ), 0 ≤ w n) →
-    ∀ (C : KazhdanCompressionCore Γ E)
-      (x : (n : ℕ) → Matrix (B₁.model n).carrier (B₂.model n).carrier ℂ),
-      IntertwinerKazhdanTransport.IsScaledAsymptoticIntertwinerOf B₁ B₂ w C.iota x →
-        IntertwinerKazhdanTransport.IsScaledRectMassBounded B₁ B₂ w x →
-          IntertwinerKazhdanTransport.IsScaledAsymptoticIntertwinerOf B₁ B₂ w C.iota fun n =>
-            ↑(B₁.map n C.t) * x n * (↑(B₂.map n C.t)).conjTranspose
 ```
 
 ## `GroupApproximation.TransportVariantsAnyUniverse.scaled_transport_both_anyUniverse`
@@ -1512,6 +1444,15 @@ REPred AdianRabinWordProblem.wordProblemPred
 MFTraceGroupBridge
 ```
 
+## `GroupApproximation.manuscriptMaximalGroupCStarUniversalProperty`
+
+```lean
+∀ (G : Type u) [inst : Group G],
+  Function.Injective ⇑(maximalGroupCStarUnitaryHom G) ∧
+    ∀ (B : Type v) [inst_1 : CStarAlgebra B] (rho : G →* ↥(unitary B)),
+      ∃! f, ∀ (g : G), f (maximalGroupCStarGenerator G g) = ↑(rho g)
+```
+
 ## `GroupApproximation.manuscriptProperIsometryStrictOrder`
 
 ```lean
@@ -1532,13 +1473,4 @@ MFTraceGroupBridge
       ¬ShulmanTrace.IsMFTrace fun a =>
           (canonicalMaximalTrace LiteralNonMFPresentation.MarkedGroup) a) ∧
   SeparableHyperlinearNonMFTrace
-```
-
-## `GroupApproximation.manuscriptMaximalGroupCStarUniversalProperty`
-
-```lean
-∀ (G : Type u) [inst : Group G],
-  Function.Injective ⇑(maximalGroupCStarUnitaryHom G) ∧
-    ∀ (B : Type v) [inst_1 : CStarAlgebra B] (rho : G →* ↥(unitary B)),
-      ∃! f, ∀ (g : G), f (maximalGroupCStarGenerator G g) = ↑(rho g)
 ```

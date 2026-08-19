@@ -176,7 +176,7 @@ noncomputable instance : SeminormedAddCommGroup (StinespringPre φ hφ) :=
 noncomputable instance : InnerProductSpace ℂ (StinespringPre φ hφ) :=
   InnerProductSpace.ofCore (stinespringCore φ hφ)
 
-theorem stinespringPre_inner_def (f g : StinespringPre φ hφ) :
+@[simp] theorem stinespringPre_inner_def (f g : StinespringPre φ hφ) :
     ⟪f, g⟫_ℂ = stinespringSesq φ (ofStinespringPre φ hφ f)
       (ofStinespringPre φ hφ g) := rfl
 

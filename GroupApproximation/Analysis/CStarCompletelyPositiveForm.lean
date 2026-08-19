@@ -56,7 +56,7 @@ theorem cstarMatrix_mul_apply {n : ℕ} {X : Type*} [NonUnitalCStarAlgebra X]
     (P * Q) i j = ∑ k, P i k * Q k j :=
   Matrix.mul_apply
 
-theorem cstarMatrix_star_apply {n : ℕ} {X : Type*} [NonUnitalCStarAlgebra X]
+@[simp] theorem cstarMatrix_star_apply {n : ℕ} {X : Type*} [NonUnitalCStarAlgebra X]
     (P : CStarMatrix (Fin n) (Fin n) X) (i j : Fin n) :
     (star P) i j = star (P j i) :=
   rfl

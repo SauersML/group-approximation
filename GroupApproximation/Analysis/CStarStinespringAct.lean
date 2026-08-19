@@ -144,12 +144,12 @@ noncomputable def stinespringActPre (c : A) :
 
 variable (φ) (hφ : IsCompletelyPositive φ)
 
-theorem stinespringActPre_apply (c : A) (f : StinespringPre φ hφ) :
+@[simp] theorem stinespringActPre_apply (c : A) (f : StinespringPre φ hφ) :
     stinespringActPre φ hφ c f
       = toStinespringPre φ hφ
           (stinespringActFree c (ofStinespringPre φ hφ f)) := rfl
 
-theorem stinespringPre_norm_def (f : StinespringPre φ hφ) :
+@[simp] theorem stinespringPre_norm_def (f : StinespringPre φ hφ) :
     ‖f‖ = Real.sqrt (stinespringSesq φ (ofStinespringPre φ hφ f)
       (ofStinespringPre φ hφ f)).re := rfl
 

@@ -461,7 +461,7 @@ Countably many sequences null along `ω`, together with one set of `ω`, are mad
 ordinary along a single strictly increasing relabelling: every norm tends to
 zero at `atTop`, and the set's condition holds from some point on. -/
 theorem exists_strictMono_of_null_of_mem (X : ℕ → Type u)
-    [∀ n, Fintype (X n)] [∀ n, DecidableEq (X n)] [∀ n, Nonempty (X n)]
+    [∀ n, Fintype (X n)] [∀ n, DecidableEq (X n)]
     {ω : Ultrafilter ℕ} (hω : (ω : Filter ℕ) ≤ Filter.cofinite)
     {ι : Type*} [Countable ι] (a : ι → BoundedMatrixSequence X)
     (ha : ∀ i, IsNullMatrixSequence X (ω : Filter ℕ) (a i))

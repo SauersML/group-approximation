@@ -73,7 +73,7 @@ omit [I.IsTwoSided] in
     x ∈ idealStarSub I ↔ x ∈ I := Iff.rfl
 
 omit [I.IsTwoSided] in
-theorem coe_idealStarSub : ((idealStarSub I : Set R)) = (I : Set R) := rfl
+@[simp] theorem coe_idealStarSub : ((idealStarSub I : Set R)) = (I : Set R) := rfl
 
 instance [IsClosed (I : Set R)] : IsClosed ((idealStarSub I : Set R)) :=
   inferInstanceAs (IsClosed (I : Set R))

@@ -2,7 +2,7 @@
 
 # Elaborated types of the mapped declarations
 
-One entry per declaration named by a manuscript margin note, in the order of `docs/CLAIM_DECLS.txt`.  The types are printed by Lean from the elaborated environment, so this file records what each mapped declaration actually states -- the layer of the correspondence that name resolution alone cannot check.
+One entry per declaration named by a manuscript margin note, in the order of `metadata/CLAIM_DECLS.txt`.  The types are printed by Lean from the elaborated environment, so this file records what each mapped declaration actually states -- the layer of the correspondence that name resolution alone cannot check.
 
 ## `GroupApproximation.AdmitsEssentiallyFreeNearAction`
 
