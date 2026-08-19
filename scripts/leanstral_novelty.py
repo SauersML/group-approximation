@@ -1,9 +1,13 @@
 #!/usr/bin/env python3
-"""Select a Leanstral target that no previous autonomous run has reserved.
+"""Select a Leanstral target no previous autonomous run has worked near.
 
 A target is a (Lean source path, declaration anchor) pair. Reservations live
 outside main, on the automation/leanstral-state branch, so they survive failed
 runs and unmerged/closed PRs without polluting the research history.
+
+The selector also retires a 500-line radius around every still-locatable
+reserved declaration. The workflow accepts changes only within 250 lines of
+the new anchor, so separately selected runs have disjoint editable regions.
 """
 
 from __future__ import annotations
@@ -18,6 +22,7 @@ DECL_RE = re.compile(
     r"^\s*(?:theorem|lemma|def|abbrev|instance|structure|class)\s+"
     r"([A-Za-z_][A-Za-z0-9_'.]*)\b"
 )
+RESERVATION_RADIUS = 500
 
 PRIORITY_DIRS = {
     "Sofic": 100,
@@ -109,6 +114,15 @@ def score_candidate(path: Path, anchor: str, content: str, focus: str) -> int:
     return score
 
 
+def declarations(content: str) -> list[tuple[str, int]]:
+    found: list[tuple[str, int]] = []
+    for line_number, line in enumerate(content.splitlines(), 1):
+        match = DECL_RE.match(line)
+        if match:
+            found.append((match.group(1), line_number))
+    return found
+
+
 def enumerate_candidates(
     root: Path,
     reserved: set[tuple[str, str]],
@@ -122,12 +136,20 @@ def enumerate_candidates(
         if relative in bootstrap_blocked_paths:
             continue
         content = path.read_text(encoding="utf-8")
-        for line_number, line in enumerate(content.splitlines(), 1):
-            match = DECL_RE.match(line)
-            if not match:
-                continue
-            anchor = match.group(1)
+        decls = declarations(content)
+        line_for = {anchor: line for anchor, line in decls}
+        reserved_lines = [
+            line_for[anchor]
+            for reserved_path, anchor in reserved
+            if reserved_path == relative and anchor in line_for
+        ]
+        for anchor, line_number in decls:
             if (relative, anchor) in reserved:
+                continue
+            if any(
+                abs(line_number - prior_line) <= RESERVATION_RADIUS
+                for prior_line in reserved_lines
+            ):
                 continue
             candidates.append(
                 Candidate(
@@ -170,6 +192,7 @@ def self_test() -> None:
         candidate = select(root, ledger, bootstrap, "gamma")
         assert candidate and candidate.anchor == "gamma"
 
+        # Reserving gamma removes gamma even if no PR ever appears.
         ledger.write_text(
             "100\t2026-01-01T00:00:00Z\t"
             "GroupApproximation/PropertyTT/B.lean\tgamma\n",
@@ -178,11 +201,24 @@ def self_test() -> None:
         candidate = select(root, ledger, bootstrap, "gamma")
         assert candidate and candidate.anchor != "gamma"
 
+        # Reserving alpha also retires nearby beta: future editable regions do not
+        # overlap the territory around an earlier attempt.
+        with ledger.open("a", encoding="utf-8") as out:
+            out.write(
+                "101\t2026-01-01T00:30:00Z\t"
+                "GroupApproximation/Sofic/A.lean\talpha\n"
+            )
+        candidate = select(root, ledger, bootstrap, "")
+        assert candidate is None
+
+        # Legacy automated PRs without a reservation ledger conservatively retire
+        # every Lean file they touched.
+        ledger.write_text("", encoding="utf-8")
         bootstrap.write_text(
             "GroupApproximation/Sofic/A.lean\n", encoding="utf-8"
         )
-        candidate = select(root, ledger, bootstrap, "")
-        assert candidate is None
+        candidate = select(root, ledger, bootstrap, "alpha")
+        assert candidate and candidate.path.endswith("PropertyTT/B.lean")
 
 
 def main() -> None:
@@ -205,7 +241,7 @@ def main() -> None:
 
     candidate = select(args.root, args.ledger, args.bootstrap_blocked, args.focus)
     if candidate is None:
-        print("No unreserved Lean declaration anchors remain.")
+        print("No unreserved Lean declaration regions remain.")
         if args.github_output:
             with args.github_output.open("a", encoding="utf-8") as output:
                 output.write("found=false\n")
