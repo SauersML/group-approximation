@@ -1239,6 +1239,9 @@ import GroupApproximation.Sofic.GreendlingerWeight
 import GroupApproximation.Sofic.SmallCancellationKazhdanEnvelope
 import GroupApproximation.Analysis.OmegaUnitaryRepExists
 import GroupApproximation.Sofic.HSDistVanishingWitness
+import GroupApproximation.Analysis.L2KernelOperator
+import GroupApproximation.Computability.AdianRabinGeneral
+import GroupApproximation.Analysis.CStarChoiMap
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group

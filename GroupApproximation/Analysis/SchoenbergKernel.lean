@@ -55,6 +55,52 @@ def IsPositiveDefiniteKernel {X : Type*} (u : X → X → ℝ) : Prop :=
   ∀ (n : ℕ) (x : Fin n → X) (c : Fin n → ℝ),
     0 ≤ ∑ i : Fin n, ∑ j : Fin n, c i * c j * u (x i) (x j)
 
+/-- **The complex form of positive type.**  A real kernel of positive type has
+nonnegative complex quadratic forms.  No symmetry is needed: the real and the
+imaginary parts of the coefficient vector contribute separately, because
+`re (conj c_i · c_j · r) = (Re c_i · Re c_j + Im c_i · Im c_j) · r` for real
+`r`, and each of the two resulting sums is a real quadratic form of the same
+kernel. -/
+theorem IsPositiveDefiniteKernel.complex_re {X : Type*} {u : X → X → ℝ}
+    (hu : IsPositiveDefiniteKernel u) (n : ℕ) (x : Fin n → X) (c : Fin n → ℂ) :
+    0 ≤ (∑ i : Fin n, ∑ j : Fin n,
+      (starRingEnd ℂ) (c i) * c j * ((u (x i) (x j) : ℝ) : ℂ)).re := by
+  have hre : (∑ i : Fin n, ∑ j : Fin n,
+        (starRingEnd ℂ) (c i) * c j * ((u (x i) (x j) : ℝ) : ℂ)).re
+      = (∑ i : Fin n, ∑ j : Fin n,
+          (c i).re * (c j).re * u (x i) (x j))
+        + ∑ i : Fin n, ∑ j : Fin n, (c i).im * (c j).im * u (x i) (x j) := by
+    rw [Complex.re_sum, ← Finset.sum_add_distrib]
+    refine Finset.sum_congr rfl fun i _ ↦ ?_
+    rw [Complex.re_sum, ← Finset.sum_add_distrib]
+    refine Finset.sum_congr rfl fun j _ ↦ ?_
+    simp [Complex.mul_re, Complex.mul_im]
+    ring
+  rw [hre]
+  exact add_nonneg (hu n x fun i ↦ (c i).re) (hu n x fun i ↦ (c i).im)
+
+/-- Positive type with the sum indexed by a `Finset` rather than by `Fin n`.
+The two are related by `Finset.equivFin`. -/
+theorem IsPositiveDefiniteKernel.finset_complex_re {X : Type*} {u : X → X → ℝ}
+    (hu : IsPositiveDefiniteKernel u) (F : Finset X) (c : X → ℂ) :
+    0 ≤ (∑ i ∈ F, ∑ j ∈ F,
+      (starRingEnd ℂ) (c i) * c j * ((u i j : ℝ) : ℂ)).re := by
+  classical
+  have hone : ∀ ψ : X → ℂ,
+      ∑ i ∈ F, ψ i = ∑ i : Fin F.card, ψ ((F.equivFin.symm i : F) : X) := by
+    intro ψ
+    rw [← Finset.sum_attach F ψ, Finset.attach_eq_univ]
+    exact Fintype.sum_equiv F.equivFin _ _ fun x ↦ by rw [Equiv.symm_apply_apply]
+  have hre : ∀ kern : X → X → ℂ,
+      ∑ i ∈ F, ∑ j ∈ F, kern i j
+        = ∑ i : Fin F.card, ∑ j : Fin F.card,
+            kern ((F.equivFin.symm i : F) : X) ((F.equivFin.symm j : F) : X) := by
+    intro kern
+    rw [hone fun i ↦ ∑ j ∈ F, kern i j]
+    exact Finset.sum_congr rfl fun i _ ↦ hone _
+  rw [hre]
+  exact hu.complex_re F.card (fun i ↦ ((F.equivFin.symm i : F) : X)) _
+
 /-- The real quadratic form of a positive semidefinite matrix, written as a
 double sum.  This mirrors the private lemma of the same content in
 `Kazhdan/GaussianPositiveDefinite.lean`; it is repeated rather than exported
