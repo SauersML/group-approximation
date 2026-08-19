@@ -73,6 +73,12 @@ scaling search.
   block, compute only the span of all output columns.  This loses information
   compared with full noncommutative rank but is much cheaper and already
   strictly finer than zero/nonzero block support.
+- **Only eigenvalue cutoffs matter.** By
+  `spectral-range-hall-deficit-is-cutoff-monotone`, enlarging the low-energy
+  spectral window can only decrease every block-range Hall deficit.  For one
+  candidate Laplacian, search the discrete eigenvalue cutoffs starting at the
+  smallest threshold compatible with `(ARH1)`; once the objective is
+  nonpositive it can never revive at a larger cutoff.
 - **Exact finite falsification.** Replay the range-rank objective on archived
   finite boundary and natural-overgroup countermodels.  A candidate packet or
   cutoff which has no positive normalized deficit there should not be promoted.
