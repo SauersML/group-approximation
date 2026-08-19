@@ -65,8 +65,28 @@ on:
 # deduplicated by the control plane -- but the running one is never collected,
 # so the reaping actually happens.  A slightly stale reaper costs nothing
 # because it recomputes the newest queued run itself when it starts.
+#
+# THE GROUP IS SPLIT BY EVENT, and one shared group was not enough.  Adding the
+# `workflow_run` trigger above was not sufficient on its own: measured
+# 2026-08-19, the reaper fired on a genuinely green certificate and was
+# `cancelled` before reaching a runner, because a shared group retains only one
+# PENDING run and the push reapers arriving every ~45s kept displacing it.  The
+# rare high-value reaper lost its slot to the frequent low-value ones, and
+# promotion sat `queued` behind the backlog it was meant to clear.
+#
+# So the two classes get different treatment, which is the whole point:
+#
+#   `workflow_run` / `workflow_dispatch` -- rare and deliberate.  A green
+#   certificate happens a few times an hour at most, and a dispatch is someone
+#   asking for this specific thing.  Keying on `github.run_id` makes each one a
+#   singleton nothing can collect, so it always gets its runner.  Bounded by how
+#   rarely certificates go green, not by how often anyone pushes.
+#
+#   `push` / `schedule` -- frequent and interchangeable.  These keep sharing one
+#   group and stay deduplicated exactly as before; a burst must not translate
+#   into a burst of reapers, and a stale one costs nothing.
 concurrency:
-  group: prover-reaper
+  group: prover-reaper-${{ (github.event_name == 'workflow_run' || github.event_name == 'workflow_dispatch') && github.run_id || 'burst' }}
   cancel-in-progress: false
 
 permissions:
