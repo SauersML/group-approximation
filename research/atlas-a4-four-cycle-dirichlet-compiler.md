@@ -3,7 +3,7 @@ rg: 2
 id: atlas-a4-four-cycle-dirichlet-compiler
 kind: claim
 title: One scalar four-transvection Dirichlet energy is enough to compile the A4 atlas
- distinct_from:
+distinct_from:
   atlas-a4-four-cycle-trace-compiler: that stronger target transfers the collision trace separately to three leaf traces; this target asks only for the final sum of four trace deficits.
   atlas-a4-relative-packet-commutator-collapse: that stronger target controls ten packet-letter commutators; this target controls only the minimal four-transvection generating cycle.
 ---
