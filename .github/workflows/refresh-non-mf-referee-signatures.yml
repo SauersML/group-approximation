@@ -16,7 +16,7 @@ jobs:
   refresh:
     if: github.head_ref == 'agent/non-mf-referee-repair'
     runs-on: ubuntu-latest
-    timeout-minutes: 360
+    timeout-minutes: 180
     steps:
       - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
         with:
@@ -24,8 +24,21 @@ jobs:
           fetch-depth: 0
           persist-credentials: true
 
-      - name: Remove generated scratch artifact
-        run: rm -rf build/referee-repair
+      - name: Normalize final referee metadata
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -rf build/referee-repair
+          python3 - <<'PY'
+          from pathlib import Path
+          p = Path('metadata/NON_MF_PROOF_LEDGER.md')
+          s = p.read_text()
+          old = 'Kirchberg--Wassermann, for a discrete group `W` exact iff `Cred(W)` exact'
+          new = 'Kirchberg--Wassermann, for a discrete group `E` exact iff `Cred(E)` exact'
+          if s.count(old) != 1:
+              raise SystemExit(f'expected one stale SO.16 object, found {s.count(old)}')
+          p.write_text(s.replace(old, new, 1))
+          PY
 
       - name: Cache Lean toolchain
         id: elan-cache
@@ -60,12 +73,89 @@ jobs:
       - name: Fetch precompiled Mathlib
         run: lake exe cache get
 
-      - name: Build and regenerate signature snapshots
+      - name: Build the exact retargeted badge modules
         shell: bash
         run: |
           set -euo pipefail
-          lake build
-          lake env lean scripts/Signatures.lean
+          lake build \
+            GroupApproximation.Analysis.MaximalCStarAllUniverses \
+            GroupApproximation.Analysis.StrictCompressionFromPrinted \
+            GroupApproximation.Analysis.MaximalCStarPrintedCompletion
+
+      - name: Generate exact types for the two retargeted declarations
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p build/referee-signatures
+          cat > build/referee-signatures/RefereeSignatures.lean <<'LEAN'
+          import GroupApproximation.Analysis.MaximalCStarAllUniverses
+          import GroupApproximation.Analysis.StrictCompressionFromPrinted
+          import Lean.Elab.Command
+
+          open Lean Elab Command
+
+          namespace GroupApproximation.RefereeSignatures
+
+          def writeOne (env : Environment) (decl : Name) (outPath : System.FilePath) : CommandElabM Unit := do
+            let some info := env.find? decl
+              | throwError "missing declaration {decl}"
+            let fmt ← liftTermElabM <| Lean.Meta.ppExpr info.type
+            IO.FS.writeFile outPath (fmt.pretty 96)
+
+          run_cmd do
+            let env ← getEnv
+            writeOne env ``GroupApproximation.manuscriptMaximalGroupCStarUniversalProperty
+              ("build" / "referee-signatures" / "maximal-universal.txt")
+            writeOne env
+              ``GroupApproximation.MaximalCStarPrintedHypotheses.manuscriptMaximalCStarRemarkFromPrintedHypotheses
+              ("build" / "referee-signatures" / "strict-compression.txt")
+
+          end GroupApproximation.RefereeSignatures
+          LEAN
+          lake env lean build/referee-signatures/RefereeSignatures.lean
+
+      - name: Refresh only the affected signature entries
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import re
+          from pathlib import Path
+
+          path = Path('metadata/NON_MF_CLAIM_SIGNATURES.md')
+          text = path.read_text()
+          first = text.find('\n## `')
+          if first < 0:
+              raise SystemExit('signature snapshot has no declaration sections')
+          header = text[:first].rstrip()
+          sections = dict(re.findall(r'\n## `([^`]+)`\n\n```lean\n(.*?)\n```\n', text, flags=re.S))
+
+          old_names = [
+              'GroupApproximation.manuscriptUniverseRelativeMaximalGroupCStar',
+              'GroupApproximation.MaximalCStarParagraphEndpoint.manuscriptMaximalCStarStrictCompressionRemark',
+          ]
+          for n in old_names:
+              if n not in sections:
+                  raise SystemExit(f'missing old signature section {n}')
+              sections.pop(n)
+
+          sections['GroupApproximation.manuscriptMaximalGroupCStarUniversalProperty'] = Path(
+              'build/referee-signatures/maximal-universal.txt').read_text().rstrip()
+          sections['GroupApproximation.MaximalCStarPrintedHypotheses.manuscriptMaximalCStarRemarkFromPrintedHypotheses'] = Path(
+              'build/referee-signatures/strict-compression.txt').read_text().rstrip()
+
+          roster = [x.strip() for x in Path('metadata/NON_MF_CLAIM_DECLS.txt').read_text().splitlines() if x.strip()]
+          missing = [n for n in roster if n not in sections]
+          extra = sorted(set(sections) - set(roster))
+          if missing or extra:
+              raise SystemExit(f'signature/roster mismatch: missing={missing}, extra={extra}')
+
+          out = [header]
+          for n in roster:
+              out.append(f'\n## `{n}`\n\n```lean\n{sections[n]}\n```')
+          path.write_text('\n'.join(out) + '\n')
+          PY
+          rm -rf build/referee-signatures
 
       - name: Recheck manuscript synchronization
         shell: bash
@@ -81,6 +171,8 @@ jobs:
           python3 scripts/check_non_mf_proof_ledger.py \
             --tex non_mf_groups_exist.tex \
             --ledger metadata/NON_MF_PROOF_LEDGER.md
+          python3 scripts/check_manuscript_claims.py --tex non_mf_groups_exist.tex --strict
+          python3 scripts/check_prose_decl_names.py --repo . --quiet
 
       - name: Commit generated signatures and remove this workflow
         shell: bash
