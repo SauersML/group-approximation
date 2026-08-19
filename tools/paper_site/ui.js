@@ -637,24 +637,9 @@ function buildClaimsView() {
   return html;
 }
 
-/* The sentences the Lean development does not prove, written out.  They come
-   from a table whose cells are internal shorthand -- ASCII mathematics, label
-   names, capitals for emphasis -- so each is restated here as TeX and typeset
-   like the rest of the manuscript.  A step that falls short and has no entry
-   here is printed from the table as it stands: unreadable is better than
-   absent. */
-const NOT_IN_LEAN = {
-  'INT.11': 'Amenable groups are MF.',
-  'CY.12c': 'The realized Clifford quotient is amenable, and therefore MF.',
-  'KC.21': 'The finitely presented torsion-free property-\\textup{(T)} group $P$ of \\cite{FFF} contains every finitely presented torsion-free group, in particular a direct product $P_1\\times P_2$ with $P_i\\cong P$.',
-  'LI.12b': 'Remark~\\ref{rem:ff-realization} gives a small-cancellation route over the torsion-free finitely presented Kazhdan group of \\cite{FFF}.',
-  'LI.12c': 'The quotient may contain a finite normal subgroup, a normal Kazhdan subgroup, or an orbit configuration to which the preceding criteria apply, so $\\operatorname{Res}_{\\mathrm{MF}}(E)$ is not determined here.',
-  'LI.13': 'Question 2: is there a torsion-free finitely presented non-MF group?',
-  'LI.18': 'Question 4: for which groups do the criteria of Theorems~\\ref{thm:criterion}, \\ref{thm:normal-kazhdan} and \\ref{thm:projection-collapse} compute the residual exactly?',
-  'SO.16': '$\\Cred(E)$ is exact.',
-  'LI.14': 'A torsion-free finitely presented group whose subgroup $N_{\\mathrm{conj}}$ contains a nontrivial normal property-\\textup{(T)} subgroup would answer Question 2.',
-};
-
+/* A step's claim is TeX, typeset here like the manuscript, so `\ref` and
+   `\cite` resolve to the paper's own numbering and bibliography.  A checker
+   in the repository is what keeps it TeX. */
 /* Where Lean proves something else, what it proves. */
 const LEAN_PROVES = {
   'SO.16': 'Lean proves property A of $E$. The step from there to exactness of $\\Cred(E)$ is \\cite{KWExact} and has no Lean proof.',
@@ -662,8 +647,7 @@ const LEAN_PROVES = {
 };
 
 function formalItemHtml(r) {
-  const tex = NOT_IN_LEAN[r.step];
-  const body = tex ? renderInline(tex, {}) : escHtml(r.claim);
+  const body = renderInline(r.claim || '', {});
   const cites = (r.source || [])
     .filter(k => !body.includes('data-key="' + k + '"'))
     .map(k => BIB.byKey[k]
@@ -1096,8 +1080,7 @@ function stepsHtml(rows) {
   if (!open.length) return '';
   let html = '<div class="steps-open"><div class="steps-open-head">Steps with no Lean proof</div>';
   for (const r of open) {
-    const tex = NOT_IN_LEAN[r.step];
-    const body = tex ? renderInline(tex, {}) : escHtml(r.claim);
+    const body = renderInline(r.claim || '', {});
     const decls = stepDeclsHtml(r);
     html += '<div class="step-row"><span class="ls-claim">' + body + '</span>' +
       (decls ? '<span class="ls-decls">' + decls + '</span>' : '') + '</div>';
@@ -1109,8 +1092,7 @@ function stepsHtml(rows) {
 function stepRowHtml(r) {
   const decls = stepDeclsHtml(r);
   if (r.proof === 'EXACT') return decls ? '<div class="step-row"><span class="ls-decls">' + decls + '</span></div>' : '';
-  const tex = NOT_IN_LEAN[r.step];
-  const body = tex ? renderInline(tex, {}) : escHtml(r.claim);
+  const body = renderInline(r.claim || '', {});
   return '<div class="step-row"><span class="ls-claim">' + body + '</span>' +
     (decls ? '<span class="ls-decls">' + decls + '</span>' : '') + '</div>';
 }

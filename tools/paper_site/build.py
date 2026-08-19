@@ -238,9 +238,9 @@ def parse_steps():
             'proof': cells[5],
         }
         if cells[5] != 'EXACT':
-            # The claim column is written for a table: ASCII mathematics, a
-            # `proof step:` prefix, capitals for emphasis.  The page never
-            # prints it for a step that is proved, so it is not carried there.
+            # Only steps that fall short are printed, so only their claims
+            # are carried.  Those cells are TeX, kept that way by
+            # scripts/check_ledger_claims_typeset.py.
             row['claim'] = claim[:240]
             # the rare case, and the only one a reader needs explained: say
             # whether the step is quoted from the literature or posed as open,
@@ -379,15 +379,6 @@ def main():
             sys.exit(f'{name} contains a literal </script sequence')
         report_leaks(name, payload)
 
-    # A step that falls short is printed at a reader, so it needs a sentence
-    # written for one.  Without it the page falls back to the table cell,
-    # which is ASCII mathematics and a `proof step:` prefix.
-    for anchor, rows_ in parse_steps().items():
-        for row in rows_:
-            if 'claim' in row and ("'" + row['step'] + "':") not in ui_js:
-                print(f"warn: step {row['step']} ({anchor}) is not proved in Lean and has no "
-                      f"restatement in NOT_IN_LEAN; the page will print the table cell",
-                      file=sys.stderr)
 
     out = template
     for name, payload in [
