@@ -104,5 +104,67 @@ theorem greendlinger_of_short_cancellation {R : Set (List (α × Bool))}
   greendlinger_of_infix ht (ne_nil_of_mem_symmetrization hRne ht)
     (infix_of_two_factor_short heq hlen)
 
+/-! ## The quantitative version, where the piece bound will enter -/
+
+/-- **A cancellation reaching `k` letters past the conjugator leaves all but `k`
+of the rotation.**  This is the previous lemma with a budget: the surviving
+prefix of `t` is `t.take (|t| - k)`.
+
+The `C'(1/6)` hypothesis will be spent by taking `k` to be the length of the
+overlap the cancellation eats out of the rotation, which is a *piece* and so is
+bounded by `|t|/6`. -/
+theorem infix_take_of_bounded_cancellation {c t P' M : List (α × Bool)} {k : ℕ}
+    (heq : palindrome c t = P' ++ M) (hk : k ≤ t.length)
+    (hlen : M.length ≤ (FreeGroup.invRev c).length + k) :
+    t.take (t.length - k) <:+: P' := by
+  set t₁ := t.take (t.length - k) with ht₁
+  set t₂ := t.drop (t.length - k) with ht₂
+  have hsplit : t₁ ++ t₂ = t := List.take_append_drop _ t
+  have hlen₂ : t₂.length = k := by
+    rw [ht₂, List.length_drop]
+    omega
+  have hsuf : M <:+ (c ++ t₁) ++ (t₂ ++ FreeGroup.invRev c) := by
+    refine ⟨P', ?_⟩
+    rw [← heq]
+    unfold palindrome
+    rw [← hsplit]
+    simp only [List.append_assoc]
+  have hlenY : M.length ≤ (t₂ ++ FreeGroup.invRev c).length := by
+    rw [List.length_append, hlen₂]
+    omega
+  obtain ⟨d, hd⟩ := suffix_of_suffix_append hsuf hlenY
+  have hP' : P' = (c ++ t₁) ++ d := by
+    refine List.append_cancel_right (l := M) ?_
+    rw [← heq]
+    unfold palindrome
+    rw [← hsplit]
+    simp only [List.append_assoc]
+    rw [← hd]
+  rw [hP']
+  exact ⟨c, d, rfl⟩
+
+/-- **The descent's arithmetic, isolated.**  A cancellation that reaches fewer
+than half the rotation past the conjugator already gives the Greendlinger
+conclusion.
+
+Under `C'(1/6)` the overlap eaten out of the rotation is a piece, so `6k < |t|`,
+which is far more than the `2k < |t|` needed here.  Everything in the descent
+except the identification of that overlap as a piece is now in place. -/
+theorem greendlinger_of_bounded_cancellation {R : Set (List (α × Bool))}
+    (hRne : ∀ r ∈ R, r ≠ []) {c t P' M B' : List (α × Bool)} {k : ℕ}
+    (ht : t ∈ symmetrization R)
+    (heq : palindrome c t = P' ++ M)
+    (hlen : M.length ≤ (FreeGroup.invRev c).length + k)
+    (hk : 2 * k < t.length) :
+    ∃ s ∈ symmetrization R, ∃ u : List (α × Bool),
+      u <:+: P' ++ B' ∧ u <+: s ∧ s.length < 2 * u.length := by
+  have hkle : k ≤ t.length := by omega
+  refine ⟨t, ht, t.take (t.length - k), ?_, List.take_prefix _ _, ?_⟩
+  · exact (infix_take_of_bounded_cancellation heq hkle hlen).trans ⟨[], B', by simp⟩
+  · have hlenu : (t.take (t.length - k)).length = t.length - k := by
+      rw [List.length_take]
+      omega
+    omega
+
 end SmallCancellationRouter
 end GroupApproximation
