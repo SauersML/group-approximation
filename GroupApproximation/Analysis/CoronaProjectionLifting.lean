@@ -341,53 +341,64 @@ section Transfer
 variable (X : ℕ → Type u) [∀ n, Fintype (X n)] [∀ n, DecidableEq (X n)]
   [∀ n, Nonempty (X n)] (l : Filter ℕ)
 
-/-- **The corner inequality, coordinatewise.**
+/-- **The Gram witness.**
 
 If a self-adjoint bounded sequence has a class of the form `star b * b` -- which
 by `CStarAlgebra.nonneg_iff_eq_star_mul_self` is exactly what nonnegativity in
-the corona means -- then its coordinates are bounded below by `−ε` eventually
-along the filter, for every `ε > 0`.
+the corona means -- then a representative of `b` makes the coordinate difference
+null along the filter.
 
-This is the printed passage from `q h q ≤ θ q` in `B_ω` to the coordinate
-statement, with the positive part written as the order bound it abbreviates. -/
-theorem eventually_posSemidef_smul_one_add
-    (z : BoundedMatrixSequence X) (hzsa : star z = z)
+Exposed rather than kept inside the proof of the coordinate bound below,
+because the printed diagonal-subsequence step needs it: `‖z_n − w_nᴴ w_n‖` is a
+REAL SEQUENCE tending to zero along `ω`, which is what can be handed to
+`Analysis/UltrafilterDiagonalExtraction.lean` alongside the commutator norms.
+The order bound itself is not a sequence and cannot be diagonalised. -/
+theorem exists_gram_witness (z : BoundedMatrixSequence X)
     {b : FilterMatrixCStarCorona X l}
-    (hz : filterMatrixCStarCoronaMk X l z = star b * b) {ε : ℝ} (hε : 0 < ε) :
-    ∀ᶠ n in l, (((ε : ℂ) • (1 : Matrix (X n) (X n) ℂ))
+    (hz : filterMatrixCStarCoronaMk X l z = star b * b) :
+    ∃ w : BoundedMatrixSequence X, IsNullMatrixSequence X l (z - star w * w) := by
+  obtain ⟨bs, hbs⟩ := filterMatrixCStarCoronaMk_surjective X l b
+  refine ⟨bs, ?_⟩
+  rw [← filterMatrixCStarCoronaMk_eq_zero_iff, map_sub, map_mul,
+    ← filterMatrixCStarCorona_star_mk, hbs, hz, sub_self]
+
+omit l [∀ n, Nonempty (X n)] in
+/-- **The pointwise half, at one coordinate.**
+
+A self-adjoint matrix within `ε` of a Gram matrix is bounded below by `−ε`:
+the Gram part is positive semidefinite outright, and the remainder is Hermitian
+of norm at most `ε`.  Stated per coordinate rather than eventually, because the
+diagonal-subsequence step of the printed proof needs the pointwise form -- there
+it is a real sequence tending to zero that gets diagonalised, and the
+positivity is read off at each chosen stage. -/
+theorem posSemidef_smul_one_add_of_norm_sub_gram_le
+    (z w : BoundedMatrixSequence X) (hzsa : star z = z) {ε : ℝ} (n : ℕ)
+    (hn : ‖((z - star w * w : BoundedMatrixSequence X) :
+      ∀ n, Matrix (X n) (X n) ℂ) n‖ ≤ ε) :
+    (((ε : ℂ) • (1 : Matrix (X n) (X n) ℂ))
       + (z : ∀ n, Matrix (X n) (X n) ℂ) n).PosSemidef := by
   classical
-  obtain ⟨bs, hbs⟩ := filterMatrixCStarCoronaMk_surjective X l b
-  have hnull : IsNullMatrixSequence X l (z - star bs * bs) := by
-    rw [← filterMatrixCStarCoronaMk_eq_zero_iff, map_sub, map_mul,
-      ← filterMatrixCStarCorona_star_mk, hbs, hz, sub_self]
-  have hev : ∀ᶠ n in l,
-      ‖((z - star bs * bs : BoundedMatrixSequence X) :
-        ∀ n, Matrix (X n) (X n) ℂ) n‖ ≤ ε :=
-    (Metric.tendsto_nhds.mp hnull ε hε).mono fun n hn ↦ by
-      simpa only [Real.dist_eq, sub_zero, abs_norm] using hn.le
-  filter_upwards [hev] with n hn
   have hzn : ((z : ∀ n, Matrix (X n) (X n) ℂ) n).IsHermitian :=
-    congrArg (fun w : BoundedMatrixSequence X ↦
-      (w : ∀ n, Matrix (X n) (X n) ℂ) n) hzsa
-  have hdiff : ((z - star bs * bs : BoundedMatrixSequence X) :
+    congrArg (fun v : BoundedMatrixSequence X ↦
+      (v : ∀ n, Matrix (X n) (X n) ℂ) n) hzsa
+  have hdiff : ((z - star w * w : BoundedMatrixSequence X) :
         ∀ n, Matrix (X n) (X n) ℂ) n
       = (z : ∀ n, Matrix (X n) (X n) ℂ) n
-        - ((bs : ∀ n, Matrix (X n) (X n) ℂ) n)ᴴ
-          * ((bs : ∀ n, Matrix (X n) (X n) ℂ) n) := rfl
+        - ((w : ∀ n, Matrix (X n) (X n) ℂ) n)ᴴ
+          * ((w : ∀ n, Matrix (X n) (X n) ℂ) n) := rfl
   have hDherm : ((z : ∀ n, Matrix (X n) (X n) ℂ) n
-      - ((bs : ∀ n, Matrix (X n) (X n) ℂ) n)ᴴ
-        * ((bs : ∀ n, Matrix (X n) (X n) ℂ) n)).IsHermitian := by
+      - ((w : ∀ n, Matrix (X n) (X n) ℂ) n)ᴴ
+        * ((w : ∀ n, Matrix (X n) (X n) ℂ) n)).IsHermitian := by
     rw [Matrix.IsHermitian, Matrix.conjTranspose_sub, hzn,
       Matrix.conjTranspose_mul, Matrix.conjTranspose_conjTranspose]
   have hsplit : ((ε : ℂ) • (1 : Matrix (X n) (X n) ℂ))
         + (z : ∀ n, Matrix (X n) (X n) ℂ) n
-      = (((bs : ∀ n, Matrix (X n) (X n) ℂ) n)ᴴ
-          * ((bs : ∀ n, Matrix (X n) (X n) ℂ) n))
+      = (((w : ∀ n, Matrix (X n) (X n) ℂ) n)ᴴ
+          * ((w : ∀ n, Matrix (X n) (X n) ℂ) n))
         + (((ε : ℂ) • (1 : Matrix (X n) (X n) ℂ))
           + ((z : ∀ n, Matrix (X n) (X n) ℂ) n
-            - ((bs : ∀ n, Matrix (X n) (X n) ℂ) n)ᴴ
-              * ((bs : ∀ n, Matrix (X n) (X n) ℂ) n))) := by
+            - ((w : ∀ n, Matrix (X n) (X n) ℂ) n)ᴴ
+              * ((w : ∀ n, Matrix (X n) (X n) ℂ) n))) := by
     abel
   rw [hsplit]
   refine Matrix.PosSemidef.add
@@ -395,6 +406,27 @@ theorem eventually_posSemidef_smul_one_add
     (posSemidef_smul_one_add hDherm ?_)
   rw [← hdiff]
   exact hn
+
+/-- **The corner inequality, coordinatewise.**
+
+The coordinates of a self-adjoint sequence whose class is nonnegative are
+bounded below by `−ε` eventually along the filter, for every `ε > 0`.  This is
+the printed passage from `q h q ≤ θ q` in `B_ω` to the coordinate statement,
+with the positive part written as the order bound it abbreviates. -/
+theorem eventually_posSemidef_smul_one_add
+    (z : BoundedMatrixSequence X) (hzsa : star z = z)
+    {b : FilterMatrixCStarCorona X l}
+    (hz : filterMatrixCStarCoronaMk X l z = star b * b) {ε : ℝ} (hε : 0 < ε) :
+    ∀ᶠ n in l, (((ε : ℂ) • (1 : Matrix (X n) (X n) ℂ))
+      + (z : ∀ n, Matrix (X n) (X n) ℂ) n).PosSemidef := by
+  obtain ⟨w, hnull⟩ := exists_gram_witness X l z hz
+  have hev : ∀ᶠ n in l,
+      ‖((z - star w * w : BoundedMatrixSequence X) :
+        ∀ n, Matrix (X n) (X n) ℂ) n‖ ≤ ε :=
+    (Metric.tendsto_nhds.mp hnull ε hε).mono fun n hn ↦ by
+      simpa only [Real.dist_eq, sub_zero, abs_norm] using hn.le
+  filter_upwards [hev] with n hn
+  exact posSemidef_smul_one_add_of_norm_sub_gram_le X z w hzsa n hn
 
 end Transfer
 
