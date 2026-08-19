@@ -138,7 +138,19 @@ whose second gives `β.im = −α.im` and whose third `β.re = α.re`.  That is
 rather than on `1` keeps `a₁⋆ a₁ = b⋆ b`, so one `γ` serves all three readings.
 
 The structure that carried both facts has lost the proved one and been renamed
-`UCPContractive`.  What remains is one inequality.
+`UCPContractive`.  What remains is one inequality — **and that inequality is
+proved too, at a different target**:
+`CStarExactness.IsCompletelyPositive.norm_apply_le_of_unital`
+(`Analysis/CStarUnitalCPContractive`) gets it for a unital completely positive
+`φ : A →ₗ[ℂ] (H →L[ℂ] H)` off this repository's own Stinespring dilation.  What
+separates the two is the bridge the original note called steps (i) and (ii),
+and only that: the form-sense predicate into `IsCompletelyPositive` at the
+target `EuclideanSpace ℂ Y →L[ℂ] EuclideanSpace ℂ Y`, and the isometric
+`⋆`-algebra identification of `Matrix Y Y ℂ` with that operator algebra — which
+is what the scoped `Matrix.Norms.L2Operator` instance *is*, so the norms agree
+by definition.  Neither is a citation, and step (i) is now possible where
+before it was not.  **This entry is one bridge from leaving the roster
+entirely.**
 
 ## The one citation that is not a research programme
 

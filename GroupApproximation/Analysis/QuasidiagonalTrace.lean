@@ -340,11 +340,27 @@ make the transcription harder to check against the paper.  Kept separate, the
 fact appears in the type of every theorem that uses it and is visible to
 `scripts/check_non_mf_unconditional.py --audit-corpus` under its own name.
 
-**This is dischargeable in principle and TWW is not.**  Half of it has been
-discharged; see the module docstring for why the other half could not have
-been until the complete-positivity predicate gained its reality clause, and
-for the two-by-two map that shows the weakened predicate implies neither
-property.  No inhabitant is constructed here.
+**This is dischargeable and TWW is not.**  Half of it has been discharged; see
+the module docstring for why neither half could have been until the
+complete-positivity predicate gained its reality clause, and for the two-by-two
+map that shows the weakened predicate implies neither property.
+
+**The other half exists too, at a different target.**
+`CStarExactness.IsCompletelyPositive.norm_apply_le_of_unital`
+(`Analysis/CStarUnitalCPContractive`) proves exactly this bound for a unital
+completely positive `φ : A →ₗ[ℂ] (H →L[ℂ] H)`, off the repository's own
+Stinespring dilation.  What separates it from an inhabitant of this structure
+is the bridge the original note called steps (i) and (ii), and *only* that:
+
+* (i) form-sense complete positivity here, now that it constrains the whole
+  form rather than its real part, into `CStarExactness.IsCompletelyPositive`
+  for the target `EuclideanSpace ℂ Y →L[ℂ] EuclideanSpace ℂ Y`;
+* (ii) the `⋆`-algebra identification of `Matrix Y Y ℂ` with that operator
+  algebra, isometrically -- which is what the scoped
+  `Matrix.Norms.L2Operator` instance is, so the norms already agree by
+  definition rather than by a theorem.
+
+Neither is a citation.  No inhabitant is constructed here yet.
 
 It is a structure rather than a bare implication for the same reason
 `QuasidiagonalMF.AmenableMFInput` is: consuming it then leaves a visible
