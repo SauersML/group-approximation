@@ -43,6 +43,31 @@ baseline="${2:-refs/remotes/origin/main}"
 repo=$(git rev-parse --show-toplevel 2>/dev/null) || exit 0
 [ -f "$repo/scripts/check.py" ] || exit 0
 
+# The prover's "Source scan" step is `check.py` AND `bin/cairn check`, under
+# `bash -e`, so a nonzero cairn exit fails the certificate exactly as a Lean
+# finding does -- and that half was not guarded here.  It is what actually
+# starved `verified`: from c0f1e4e8 (2026-08-18) to dd1ca3546 (2026-08-19)
+# every single `Build and audit` died on `cairn check` exit 4 while the Lean
+# was green throughout, and `verified` fell 710 commits behind main.
+#
+# The recurring cause is structural, not a one-off.  Research nodes list
+# `artifacts:`, and `official/` is deliberately NOT in the tree (untracked, by
+# the attribution doctrine) -- so a node citing a bare `official/...` path
+# resolves on the author's disk, where the directory exists, and fails in CI,
+# where it does not.  Nothing between those two points looked, so the finding
+# was always discovered a full certificate later.
+#
+# Reproducing CI's verdict needs the git DIRECTORY even though it must not need
+# the git WORKTREE: a pin is validated by `git cat-file -e <rev>:<path>`, and a
+# `git archive` extract has no `.git`, so every pin would fail there and the
+# gate would invent findings CI does not have (the false exit-4 that made an
+# earlier attempt at this unusable).  `GIT_DIR` supplies the object database
+# while the extracted tree stays the worktree -- untracked `official/` absent
+# from it, which is precisely CI's condition.  Verified by replay against the
+# two runs above: 73591145 -> exit 4 with the same 23 errors CI printed,
+# dd1ca3546 -> exit 0, matching each run's real outcome.
+gitdir=$(git rev-parse --absolute-git-dir 2>/dev/null) || gitdir=""
+
 work=$(mktemp -d "${TMPDIR:-/tmp}/prepush-scan.XXXXXX") || exit 0
 trap 'rm -rf "$work"' EXIT
 
@@ -80,6 +105,22 @@ for f in sorted(root.rglob("*.lean")):
             print(f"::error::[missing import target] {f}:{n}: imports {m.group(1)}, "
                   f"which is not a module in this tree -- the build fails at this import")
 MISSING
+  # The research-graph half of the same CI step.  Its ERROR lines become
+  # `::error::` lines so they ride the existing baseline diff below and get the
+  # same regression treatment; its exit code is recorded separately because
+  # cairn can also fail for reasons that print no ERROR line at all.
+  if [ -n "$gitdir" ] && [ -x "$dir/bin/cairn" ]; then
+    ( cd "$dir" && GIT_DIR="$gitdir" ./bin/cairn check 2>&1 ) > "$work/$3.cairn.txt"
+    local crc=$?
+    # 0 clean, 2 policy, 4 invalid graph -- all real verdicts.  64 (usage) and
+    # 1 (runtime) mean the tool broke, which is a hook problem: stay silent.
+    case "$crc" in
+      0|2|4)
+        echo "$crc" > "$work/$3.cairnrc"
+        sed -n 's/^ERROR: /::error::[cairn] /p' "$work/$3.cairn.txt" >> "$out"
+        ;;
+    esac
+  fi
   return 0
 }
 
@@ -99,7 +140,20 @@ fi
 new=$(comm -23 "$work/head.err" "$work/base.err")
 carried=$(wc -l < "$work/base.err" | tr -d ' ')
 
-if [ -z "$new" ]; then
+# Same regression rule one level up, on cairn's exit code.  A graph can go
+# nonzero without printing a single ERROR line, so the diff above would miss
+# it; and comparing codes rather than demanding zero keeps a red already on the
+# remote from freezing every lane -- including the lane pushing the repair.
+cairn_note=""
+if [ -s "$work/head.cairnrc" ] && [ -s "$work/base.cairnrc" ]; then
+  head_crc=$(cat "$work/head.cairnrc")
+  base_crc=$(cat "$work/base.cairnrc")
+  if [ "$head_crc" != "0" ] && [ "$base_crc" = "0" ]; then
+    cairn_note="  + [cairn] \`bin/cairn check\` exits $head_crc at this commit and 0 on the remote"
+  fi
+fi
+
+if [ -z "$new" ] && [ -z "$cairn_note" ]; then
   summary=$(sed -n 's/^source scan: //p' "$work/head.txt")
   echo "prepush-scan: no new source-scan findings at ${sha:0:8} ($summary)"
   [ "$carried" -gt 0 ] && echo "prepush-scan: note -- $carried finding(s) already on the remote, not introduced by you"
@@ -109,7 +163,8 @@ fi
 echo "prepush-scan: BLOCKED -- this push introduces source-scan finding(s) that" >&2
 echo "  the remote does not have.  This is the scan the prover's 'Build and audit'" >&2
 echo "  job runs; landing it makes every certificate red and verified stops." >&2
-printf '%s\n' "$new" | sed 's/^::error:://; s/^/  + /' >&2
+[ -n "$new" ] && printf '%s\n' "$new" | sed 's/^::error:://; s/^/  + /' >&2
+[ -n "$cairn_note" ] && printf '%s\n' "$cairn_note" >&2
 [ "$carried" -gt 0 ] && echo "  ($carried pre-existing finding(s) ignored -- not yours)" >&2
 echo "  bypass (only if you are certain): git push --no-verify" >&2
 exit 1
