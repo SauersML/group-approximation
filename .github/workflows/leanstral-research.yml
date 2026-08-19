@@ -9,6 +9,13 @@ on:
         description: Optional theorem, module, paper claim, or Cairn node to prioritize
         required: false
         type: string
+      check_ledger_write:
+        description: >-
+          Prove the Actions token can create and move refs/leanstral/* against a
+          throwaway ref, without selecting or reserving a real target.
+        required: false
+        default: false
+        type: boolean
   push:
     branches: [main]
     paths:
@@ -84,6 +91,48 @@ jobs:
               done
           sort -u -o "$blocked" "$blocked"
           python scripts/leanstral_novelty.py --ledger "$ledger" --bootstrap-blocked "$blocked" --focus "${{ inputs.focus }}"
+
+  # The reservation write path is exercised on a throwaway ref, because the real
+  # one only gets written when a model run actually starts -- so a permission
+  # problem would otherwise surface for the first time mid-reservation.
+  ledger-write-check:
+    if: ${{ github.event_name == 'workflow_dispatch' && inputs.check_ledger_write }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6.3.0
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+      - env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import sys
+          sys.path.insert(0, 'scripts')
+          import leanstral_ledger as L
+
+          L.REF = 'refs/leanstral/write-check'
+          L._api(f'repos/{L._repo()}/git/refs/{L.REF[5:]}', 'DELETE')
+          assert L.tip() is None, 'stale write-check ref could not be removed'
+          L.append('1', 'check/a.lean', 'first')     # creates the ref
+          L.append('2', 'check/b.lean', 'second')    # moves the ref
+          rows = L.read_at(L.tip())
+          assert [r[0] for r in rows] == ['1', '2'], rows
+          try:
+              L.append('3', 'check/a.lean', 'first')
+              raise SystemExit('duplicate reservation was not refused')
+          except L.LedgerError:
+              pass
+          L._api(f'repos/{L._repo()}/git/refs/{L.REF[5:]}', 'DELETE')
+          assert L.tip() is None, 'write-check ref outlived the check'
+          print('ledger write path OK: create, append, refuse duplicate, delete')
+          PY
 
   auth:
     if: ${{ github.event_name == 'schedule' || github.event_name == 'workflow_dispatch' }}
