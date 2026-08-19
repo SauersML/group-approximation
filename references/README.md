@@ -1,4 +1,4 @@
-# official/
+# references/
 
 These documents are from **OpenAI's paper** on the nonsofic group
 construction. They are kept here for reference only:
