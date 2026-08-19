@@ -14,3 +14,4 @@
 32277955046	2026-08-19T16:48:20Z	GroupApproximation/Algebra/ZariskiEnvelopeEndpoint.lean	manuscriptZariskiChainCondition
 32283144135	2026-08-19T17:42:54Z	GroupApproximation/Sofic/CollapseUniverseScope.lean	manuscriptInvolutiveCollapse
 32284907547	2026-08-19T18:01:14Z	GroupApproximation/Sofic/LiteralWitnessConsequences.lean	literalWitness_reducedGroupCStar_stablyFinite_nonMF
+32290035540	2026-08-19T18:55:14Z	GroupApproximation/Analysis/CStarMinTensorInjective.lean	minTensorInclusion_injective
