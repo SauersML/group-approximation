@@ -3,7 +3,7 @@ rg: 2
 id: low-gap-transport-not-geometric-integralization-proof
 kind: route
 title: Mix two nearby scalar types by a forty-five-degree unitary
- target: low-gap-transport-not-geometric-integralization
+target: low-gap-transport-not-geometric-integralization
 requires: []
 ---
 
