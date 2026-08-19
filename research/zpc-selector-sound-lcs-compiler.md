@@ -28,13 +28,32 @@ gated copies and enough mutually-exclusive/exhaustive selector semantics that a
 perfect finite-dimensional LCS solution cannot satisfy incompatible branches,
 evade all branches, or assign unrelated operators to the gated copies.
 
-Two established barriers delimit the purely affine approach.
+Three established barriers now delimit the naive selector approaches.
 `one-hot-selector-parity-barrier` rules out direct parity enforcement of a
 three-or-more-way one-hot selector, while `affine-auxiliary-control-flow-barrier`
 shows that adding arbitrarily many existential **commuting affine auxiliaries**
 does not help: projections of affine solution sets stay affine, so neither
 multiway one-hot control nor a path-activation bit `t=a AND b` can be encoded
-that way.
+that way.  The stronger `finite-group-selector-induction-barrier` shows that
+putting those commuting selector involutions inside an arbitrary standalone
+**finite nonabelian group gadget** still does not help.  If `J` is the central
+phase and `A=<J,z_1,...,z_m>` is the abelian selector subgroup, every character
+of `A` with `J=-1` occurs in the finite-dimensional induced representation
+`Ind_A^F chi`.  Thus the selector sign patterns seen by `J=-1`
+representations form an affine set and cannot be exactly one-hot for `m>=3`.
+
+The last barrier is deliberately not a no-go for this claim.  It says that a
+successful compiler cannot obtain soundness from a self-contained finite
+selector gadget while the visible selectors remain commuting group elements.
+The remaining positive possibilities are more specific:
+
+- couple the selector sector to the payload relations so that every invalid
+  selector character is incompatible with `J=-1` in the **full** compiled
+  group, even though it occurs in the selector subgroup by itself;
+- encode branch sectors by spectral/central-idempotent data of a noncommuting
+  payload gadget rather than by a commuting family of selector group elements;
+- exploit verifier-specific identities so the relevant branch relation is
+  affine after eliminating redundant readable controls.
 
 ## Attempts
 
@@ -49,13 +68,20 @@ that way.
   `t=a AND b`, which has no existential affine encoding. A useful binary DAG
   must avoid materializing conjunctions affinely or get the needed
   nonlinearity from operator structure.
-- **Noncommutative selector code.** Allow a small noncommuting gadget whose
-  representation theory has exactly the required branch sectors; then attach
-  the predicated parity equations to those sectors. Soundness must prove that
-  any finite-dimensional perfect representation decomposes into valid tailored
-  branches.
+- **Standalone finite noncommutative selector — ruled out when visible
+  selectors commute.**  Arbitrary finite nonabelian auxiliary structure cannot
+  remove the invalid sign characters of the commuting selector subgroup;
+  induction realizes them all with `J=-1`.  Any revival must use payload
+  coupling so the bad induced sectors do not extend to representations of the
+  full compiler.
+- **Payload-coupled phase kill.**  This is the sharpest current positive
+  target.  Arrange the compiled relations so every invalid selector pattern
+  forces `J=1`, while a valid one-hot pattern reduces exactly to the selected
+  predicated linear system.  Because `J=-1` is the distinguished LCS sector,
+  this would give perfect-strategy soundness without needing one-hot to be an
+  affine relation in isolation.
 - **Verifier-specific specialization.** Extract the actual readable decision
   structure of the fixed TailoredMIP witness and minimize it before designing a
-  general gadget. The affine barriers rule out a whole compiler class but do
-  not rule out a source-specific identity that eliminates branch conjunctions
-  or a genuinely noncommutative gadget.
+  general gadget. The barriers rule out broad compiler classes but do not rule
+  out a source-specific identity that eliminates branch conjunctions or makes
+  invalid selector sectors phase-trivial through the payload.

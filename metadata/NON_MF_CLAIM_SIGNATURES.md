@@ -1180,49 +1180,34 @@ IsLocallyFiniteGroup LiteralWitnessConsequences.WitnessLampGroup ∧
 ∀ {G : Type u} [inst : Group G], IsOperatorMF G → ∀ (H : Subgroup G), IsOperatorMF ↥H
 ```
 
-## `GroupApproximation.MaximalCStarParagraphEndpoint.manuscriptMaximalCStarStrictCompressionRemark`
+## `GroupApproximation.MaximalCStarPrintedHypotheses.manuscriptMaximalCStarRemarkFromPrintedHypotheses`
 
 ```lean
-(∀ {Γ : Type w} {E : Type u} [inst : Group Γ] [inst_1 : Group E]
-    (D : MaximalCStarProperCompression.StrictKazhdanCompression Γ E),
-    IsSelfAdjoint D.proj ∧
-      D.proj * D.proj = D.proj ∧
-        D.shift * D.proj * star D.shift * D.proj = D.proj ∧
-          D.proj * (D.shift * D.proj * star D.shift) = D.proj ∧
-            D.shift * D.proj * star D.shift ≠ D.proj ∧
-              ¬IsDedekindFiniteMonoid (MaximalGroupCStar E) ∧
-                ¬IsStablyFiniteRing (MaximalGroupCStar E) ∧
-                  ¬Nonempty (FaithfulTracialState (MaximalGroupCStar E)) ∧
-                    ¬IsResiduallyFiniteDimensional (MaximalGroupCStar E) ∧
-                      ¬HasMFEmbedding (MaximalGroupCStar E) ∧
-                        ¬IsMFAlgebra (MaximalGroupCStar E) ∧
-                          (∀ μ ∈ spectrum ℝ D.avg, μ ≤ D.rate ∨ μ = 1) ∧
-                            D.avg * D.proj = D.proj ∧
-                              Nonempty
-                                  (FaithfulTracialState
-                                    ↥(ReducedGroupCStarTrace.ReducedGroupCStar E)) ∧
-                                IsEmpty
-                                  (ProperProjectionCompression
-                                    ↥(ReducedGroupCStarTrace.ReducedGroupCStar E))) ∧
-  Nonempty
-      (MaximalCStarProperCompression.StrictKazhdanCompression LiteralNonMFPresentation.Base
-        LiteralNonMFPresentation.MarkedGroup) ∧
-    ¬IsDedekindFiniteMonoid (MaximalGroupCStar LiteralNonMFPresentation.MarkedGroup) ∧
-      ¬IsStablyFiniteRing (MaximalGroupCStar LiteralNonMFPresentation.MarkedGroup) ∧
-        ¬Nonempty
-              (FaithfulTracialState (MaximalGroupCStar LiteralNonMFPresentation.MarkedGroup)) ∧
-          ¬IsResiduallyFiniteDimensional
-                (MaximalGroupCStar LiteralNonMFPresentation.MarkedGroup) ∧
-            ¬HasMFEmbedding (MaximalGroupCStar LiteralNonMFPresentation.MarkedGroup) ∧
-              ¬IsMFAlgebra (MaximalGroupCStar LiteralNonMFPresentation.MarkedGroup) ∧
-                Nonempty
-                    (FaithfulTracialState
-                      ↥(ReducedGroupCStarTrace.ReducedGroupCStar
-                          LiteralNonMFPresentation.MarkedGroup)) ∧
-                  IsEmpty
-                    (ProperProjectionCompression
-                      ↥(ReducedGroupCStarTrace.ReducedGroupCStar
-                          LiteralNonMFPresentation.MarkedGroup))
+∀ (G : Type u) [inst : Group G] (Γ : Subgroup G) (t : G),
+  HasKazhdanPropertyT ↥Γ →
+    Subgroup.map (MulEquiv.toMonoidHom (MulAut.conj t)) Γ < Γ →
+      (∃ P,
+          IsSelfAdjoint P ∧
+            P * P = P ∧
+              maximalGroupCStarGenerator G t * P * star (maximalGroupCStarGenerator G t) * P =
+                  P ∧
+                P *
+                      (maximalGroupCStarGenerator G t * P *
+                        star (maximalGroupCStarGenerator G t)) =
+                    P ∧
+                  maximalGroupCStarGenerator G t * P * star (maximalGroupCStarGenerator G t) ≠
+                    P) ∧
+        ¬IsDedekindFiniteMonoid (MaximalGroupCStar G) ∧
+          ¬IsStablyFiniteRing (MaximalGroupCStar G) ∧
+            ¬Nonempty (FaithfulTracialState (MaximalGroupCStar G)) ∧
+              ¬IsResiduallyFiniteDimensional (MaximalGroupCStar G) ∧
+                ¬HasMFEmbedding (MaximalGroupCStar G) ∧
+                  ¬IsMFAlgebra (MaximalGroupCStar G) ∧
+                    Nonempty
+                        (FaithfulTracialState ↥(ReducedGroupCStarTrace.ReducedGroupCStar G)) ∧
+                      IsEmpty
+                        (ProperProjectionCompression
+                          ↥(ReducedGroupCStarTrace.ReducedGroupCStar G))
 ```
 
 ## `GroupApproximation.NeumannContinuum.manuscriptContinuumMultiplicityUnconditional`
@@ -1549,11 +1534,11 @@ MFTraceGroupBridge
   SeparableHyperlinearNonMFTrace
 ```
 
-## `GroupApproximation.manuscriptUniverseRelativeMaximalGroupCStar`
+## `GroupApproximation.manuscriptMaximalGroupCStarUniversalProperty`
 
 ```lean
 ∀ (G : Type u) [inst : Group G],
   Function.Injective ⇑(maximalGroupCStarUnitaryHom G) ∧
-    ∀ (B : Type u) [inst_1 : CStarAlgebra B] (rho : G →* ↥(unitary B)),
+    ∀ (B : Type v) [inst_1 : CStarAlgebra B] (rho : G →* ↥(unitary B)),
       ∃! f, ∀ (g : G), f (maximalGroupCStarGenerator G g) = ↑(rho g)
 ```

@@ -1325,8 +1325,8 @@
       "lean": [
         {
           "role": "exact",
-          "module": "Analysis/MaximalGroupCStar",
-          "declaration": "GroupApproximation.manuscriptUniverseRelativeMaximalGroupCStar",
+          "module": "Analysis/MaximalCStarAllUniverses",
+          "declaration": "GroupApproximation.manuscriptMaximalGroupCStarUniversalProperty",
           "covers": "the complete printed proposition"
         }
       ]
