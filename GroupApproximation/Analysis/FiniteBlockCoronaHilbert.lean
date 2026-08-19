@@ -232,7 +232,7 @@ theorem manuscript_blockFamily_finite (K : ℕ → Type*)
     (h : Tendsto (fun n ↦ ‖star (σ n) * σ n - 1‖) cofinite (nhds 0)) :
     Tendsto (fun n ↦ ‖σ n * star (σ n) - 1‖) cofinite (nhds 0) :=
   tendsto_norm_mul_star_sub_one
-    (fun n a b hab ↦ continuousLinearMap_mul_eq_one_symm a b hab) cofinite σ h
+    (fun _ a b hab ↦ continuousLinearMap_mul_eq_one_symm a b hab) cofinite σ h
 
 /-- The same statement at an arbitrary filter, which is what the manuscript's
 `ω`-version of the paragraph -- "the same polar-correction argument shows that
@@ -246,7 +246,7 @@ theorem manuscript_blockFamily_finite_filter (K : ℕ → Type*)
     (h : Tendsto (fun n ↦ ‖star (σ n) * σ n - 1‖) l (nhds 0)) :
     Tendsto (fun n ↦ ‖σ n * star (σ n) - 1‖) l (nhds 0) :=
   tendsto_norm_mul_star_sub_one
-    (fun n a b hab ↦ continuousLinearMap_mul_eq_one_symm a b hab) l σ h
+    (fun _ a b hab ↦ continuousLinearMap_mul_eq_one_symm a b hab) l σ h
 
 end
 
