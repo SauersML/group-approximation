@@ -114,7 +114,7 @@ jobs:
           LEAN
           lake env lean build/referee-signatures/RefereeSignatures.lean
 
-      - name: Refresh only the affected signature entries
+      - name: Patch only the two retargeted signature sections
         shell: bash
         run: |
           set -euo pipefail
@@ -124,36 +124,28 @@ jobs:
 
           path = Path('metadata/NON_MF_CLAIM_SIGNATURES.md')
           text = path.read_text()
-          first = text.find('\n## `')
-          if first < 0:
-              raise SystemExit('signature snapshot has no declaration sections')
-          header = text[:first].rstrip()
-          sections = dict(re.findall(r'\n## `([^`]+)`\n\n```lean\n(.*?)\n```\n', text, flags=re.S))
 
-          old_names = [
-              'GroupApproximation.manuscriptUniverseRelativeMaximalGroupCStar',
-              'GroupApproximation.MaximalCStarParagraphEndpoint.manuscriptMaximalCStarStrictCompressionRemark',
+          changes = [
+              (
+                  'GroupApproximation.manuscriptUniverseRelativeMaximalGroupCStar',
+                  'GroupApproximation.manuscriptMaximalGroupCStarUniversalProperty',
+                  Path('build/referee-signatures/maximal-universal.txt').read_text().rstrip(),
+              ),
+              (
+                  'GroupApproximation.MaximalCStarParagraphEndpoint.manuscriptMaximalCStarStrictCompressionRemark',
+                  'GroupApproximation.MaximalCStarPrintedHypotheses.manuscriptMaximalCStarRemarkFromPrintedHypotheses',
+                  Path('build/referee-signatures/strict-compression.txt').read_text().rstrip(),
+              ),
           ]
-          for n in old_names:
-              if n not in sections:
-                  raise SystemExit(f'missing old signature section {n}')
-              sections.pop(n)
 
-          sections['GroupApproximation.manuscriptMaximalGroupCStarUniversalProperty'] = Path(
-              'build/referee-signatures/maximal-universal.txt').read_text().rstrip()
-          sections['GroupApproximation.MaximalCStarPrintedHypotheses.manuscriptMaximalCStarRemarkFromPrintedHypotheses'] = Path(
-              'build/referee-signatures/strict-compression.txt').read_text().rstrip()
+          for old, new, typ in changes:
+              pattern = rf'\n## `{re.escape(old)}`\n\n```lean\n.*?\n```\n'
+              repl = f'\n## `{new}`\n\n```lean\n{typ}\n```\n'
+              text, count = re.subn(pattern, lambda _: repl, text, count=1, flags=re.S)
+              if count != 1:
+                  raise SystemExit(f'expected one signature section for {old}, found {count}')
 
-          roster = [x.strip() for x in Path('metadata/NON_MF_CLAIM_DECLS.txt').read_text().splitlines() if x.strip()]
-          missing = [n for n in roster if n not in sections]
-          extra = sorted(set(sections) - set(roster))
-          if missing or extra:
-              raise SystemExit(f'signature/roster mismatch: missing={missing}, extra={extra}')
-
-          out = [header]
-          for n in roster:
-              out.append(f'\n## `{n}`\n\n```lean\n{sections[n]}\n```')
-          path.write_text('\n'.join(out) + '\n')
+          path.write_text(text)
           PY
           rm -rf build/referee-signatures
 
@@ -174,7 +166,7 @@ jobs:
           python3 scripts/check_manuscript_claims.py --tex non_mf_groups_exist.tex --strict
           python3 scripts/check_prose_decl_names.py --repo . --quiet
 
-      - name: Commit generated signatures and remove this workflow
+      - name: Commit final signature repairs and remove this workflow
         shell: bash
         run: |
           set -euo pipefail
@@ -183,5 +175,5 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add -A
           git diff --cached --check
-          git commit -m "Refresh non-MF claim signatures"
+          git commit -m "Refresh retargeted non-MF claim signatures"
           git push origin HEAD:agent/non-mf-referee-repair
