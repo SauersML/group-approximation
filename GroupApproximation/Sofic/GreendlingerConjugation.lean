@@ -55,7 +55,7 @@ theorem mk_singleton_inv (a : α × Bool) :
 
 theorem mk_cons (x : α × Bool) (t : List (α × Bool)) :
     FreeGroup.mk (x :: t) = FreeGroup.mk [x] * FreeGroup.mk t :=
-  FreeGroup.mul_mk.symm
+  (FreeGroup.mul_mk (L₁ := [x]) (L₂ := t)).symm
 
 theorem mk_append_singleton (t : List (α × Bool)) (y : α × Bool) :
     FreeGroup.mk (t ++ [y]) = FreeGroup.mk t * FreeGroup.mk [y] := by
@@ -81,8 +81,16 @@ theorem mk_conj_head (x : α × Bool) (t : List (α × Bool)) :
     FreeGroup.mk ([invLetter x] ++ (x :: t) ++ [invLetter (invLetter x)])
       = FreeGroup.mk ((x :: t).rotate 1) := by
   have hrot : (x :: t).rotate 1 = t ++ [x] := by simp
-  rw [hrot, mk_conj_letter, ← mk_singleton_inv, mk_cons, mk_append_singleton]
-  group
+  have hinv : (FreeGroup.mk [x])⁻¹ = FreeGroup.mk [invLetter x] :=
+    mk_singleton_inv x
+  calc FreeGroup.mk ([invLetter x] ++ (x :: t) ++ [invLetter (invLetter x)])
+      = FreeGroup.mk [invLetter x] * FreeGroup.mk (x :: t)
+          * (FreeGroup.mk [invLetter x])⁻¹ := mk_conj_letter _ _
+    _ = FreeGroup.mk t * FreeGroup.mk [x] := by
+        rw [mk_cons x t, ← hinv]
+        group
+    _ = FreeGroup.mk ((x :: t).rotate 1) := by
+        rw [hrot, mk_append_singleton]
 
 /-- **Cancelling at the tail rotates the other way.** -/
 theorem mk_conj_last (t : List (α × Bool)) (y : α × Bool) :
@@ -116,11 +124,11 @@ theorem isReduced_conj_letter {w : List (α × Bool)}
   refine List.isChain_append.mpr ⟨?_, FreeGroup.IsReduced.singleton, ?_⟩
   · refine List.isChain_append.mpr ⟨FreeGroup.IsReduced.singleton, hw, ?_⟩
     intro p hp q hq
-    have hpa : p = a := by simpa using hp
+    have hpa : p = a := (by simpa using hp : a = p).symm
     subst hpa
     exact isReduced_step_iff.mpr (hhead q hq)
   · intro p hp q hq
-    have hqa : q = invLetter a := by simpa using hq
+    have hqa : q = invLetter a := (by simpa using hq : invLetter a = q).symm
     subst hqa
     have hp' : p ∈ w.getLast? := by
       rwa [List.getLast?_append_of_ne_nil _ hne] at hp
