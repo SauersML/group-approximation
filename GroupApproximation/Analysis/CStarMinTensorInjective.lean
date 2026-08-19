@@ -39,7 +39,20 @@ proves.
 Injectivity of `⊗_min` is one of the two ingredients of "a subalgebra of an
 exact C⋆-algebra is exact".  The other is the slice-map (Fubini) identity
 `closure (I ⊙ C) ∩ (B ⊗_min A) = closure (I ⊙ A)`, which is **not** proved
-here and for which this development has no vocabulary.  So no algebra becomes
+here.
+
+The vocabulary for it is not missing, contrary to what this paragraph said
+until 2026-08-19: `Analysis/CStarTensorProductSpatial` defines `sliceRight`
+and `coordSlice` on the algebraic tensor product, proves that the two commute
+(`coord_sliceRight`), and `CStarMinTensorNorm` already runs them --- the
+faithfulness argument `eq_zero_of_forall_spatialHom_gnsRep_eq_zero` is exactly
+the degenerate case of Fubini, that an element all of whose slices vanish is
+zero.  What is missing is the *analytic* half: the bound
+`‖sliceRight φ z‖ ≤ ‖φ‖ * ‖z‖_min`, which is what carries those maps from the
+algebraic tensor product to the minimal completion, and after it the identity
+itself.  For a vector functional the bound should come from
+`inner_spatialHom_apply`, which already expresses a spatial matrix element of
+`z` as an inner product against a slice.  So no algebra becomes
 exact because of this module, and in particular the Kirchberg--Wassermann
 crossover -- for a discrete group `E`, exactness of `E` iff exactness of
 `C⋆_red(E)` -- acquires no formal counterpart.  What changes is that the
