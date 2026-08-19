@@ -191,6 +191,21 @@ of `Matrix Y Y ℂ` with those operators, which is the scoped
 than by a lemma.  The entrywise form and the inner-product form agree on the
 nose under that identification, since `⟪u, M *ᵥ v⟫ = ∑ₓ ∑_y conj (u x) M x y v y`.
 
+**Step 4 and the transport are written**, in
+`Analysis/UCPContractiveMatrix`: `euclideanize` is the composite of
+`matrixReindexStarAlgEquiv (Fintype.equivFin Y)` and `Matrix.toEuclideanCLM`,
+`norm_euclideanize` is that it changes no norms
+(`norm_matrixReindexStarAlgEquiv` and `Matrix.l2_opNorm_toEuclideanCLM`), and
+`ucp_norm_le` runs the four steps.  `ucpContractive` then inhabits the
+structure.
+
+**It is not verified yet.**  Its first compile failed at the *statement*, not
+the proof: the operator norm on `Matrix Y Y ℂ` is a scoped instance
+(`Matrix.Norms.L2Operator`), so `‖M‖` did not synthesize, and every declaration
+after that reported `sorry` with no `sorry` in the source.  The `open scoped`
+line is added; the body has been checked by reading only and wants one compile.
+Until it compiles, the entry stays on the roster.
+
 This is the highest-value open task in the quarantine: it retires an entry
 outright, and it is the only entry of which that is true.
 

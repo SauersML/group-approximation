@@ -23,7 +23,9 @@ import GroupApproximation.Analysis.GroupVonNeumannAlgebra
 import GroupApproximation.Analysis.ReducedGroupCStarSpan
 import GroupApproximation.Analysis.CStarUnitalCPContractive
 import GroupApproximation.Analysis.CStarChoiMap
+import GroupApproximation.Analysis.LanceFolnerMaps
 import GroupApproximation.Analysis.CStarFormCompletelyPositive
+import GroupApproximation.Analysis.UCPContractiveMatrix
 import GroupApproximation.Analysis.GroupVonNeumannTrace
 import GroupApproximation.Analysis.LimitsTraceStandardForm
 import GroupApproximation.Analysis.PrintedFiniteDimensionalUses
@@ -44,6 +46,9 @@ import GroupApproximation.Analysis.LanceMultiplicationOperator
 import GroupApproximation.Analysis.LanceHypertrace
 import GroupApproximation.Analysis.LanceCPApprox
 import GroupApproximation.Analysis.LanceNuclearity
+import GroupApproximation.Analysis.LanceFolnerCPAP
+import GroupApproximation.Analysis.LanceAmenableOverlap
+import GroupApproximation.Analysis.LanceNuclearAmenable
 import GroupApproximation.Kazhdan.KazhdanUniverseDescent
 import GroupApproximation.Sofic.ChosenMaximalCStarInfinite
 import GroupApproximation.Analysis.TorsionFreeFullMFCStarConsequences
