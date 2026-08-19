@@ -2,7 +2,7 @@
 rg: 2
 id: atlas-boundary-tangent-covariance-coercivity
 kind: claim
-title: The full first-boundary packet controls both raw S3 covariances at first order, with dimension-free constant one fourteenth
+title: The full first-boundary packet controls both raw S3 covariances globally, with dimension-free constant one fourteenth
 distinct_from:
   atlas-two-s3-covariance-collapse: that is the global dimension-free implication for arbitrary chart unitaries and arbitrary multiplicity; this is the exact FIRST-ORDER inequality at the certified classical fold, with a rational constant that is independent of the multiplicity. The global claim stays open, and the exact characteristic-two countermodel recorded there is untouched by any local statement.
   atlas-flip-first-order-rigidity: that says the first derivative of every relator defect VANISHES at the tensor flip of the rank-five criterion; this is a second-order coercivity comparison between two nonvanishing quadratic forms at the classical fold of the regular-A8 criterion, and neither is a special case of the other.
@@ -16,6 +16,22 @@ artifacts:
 
 ESTABLISHED by exact reduction to one integral group algebra, then one
 generalized eigenvalue problem.
+
+**The inequality is global, not first order.**  Removing the `eps` from the
+telescope gives an exact product formula: with `f(g) = [U, lambda(g)]` and
+`V_x = rho(x)U`, each telescope factor of a fold-trivial word is
+`V_(u_j) V_(v_j)^(-1)`, and fold-triviality makes them compose, so
+
+```text
+pi_U(s) = prod_j rho(u_j)( f(g_j) )        for every unitary U, exactly.
+```
+
+Hence `a = ||f(h_a)-1||_2 = ||U - rho(h_a)U||_2` and likewise for `b`, so both
+energies below are quadratic forms in `U` itself and the eigenvalue bound
+applies to every matrix at every multiplicity.  What remains first order is
+only the comparison of `l_s = ||rho(z_s)U||_2` with the true defect
+`||pi_U(s)-1||_2`; that comparison is isolated as
+[[atlas-linear-energy-controlled-by-full-packet-defect]].
 
 Work in the canonical regular-`A_8` criterion of
 `leavitt-regular-atlas-hyperlinearity-criterion` at multiplicity `k = 1`,
@@ -40,7 +56,7 @@ Then:
 2. **`Ncov` vanishes on that kernel** (measured `2.4e-17` in double
    precision), so no first-order escape exists for the boundary packet.
 
-3. **Sharp constants.**
+3. **Sharp constants**, valid for every matrix `U`.
 
 ```text
 Ncov(A) <= (1/14) * D(A)                                (all 234 words)

@@ -44,7 +44,7 @@ import time
 import numpy as np
 import torch
 
-from atlas_asc_covariance_gpu import (Packet, apply_u, chunk_defects,
+from atlas_asc_covariance_gpu import (Packet, chunk_defects, geodesic_step,
                                       polar_retract, probes_of)
 from atlas_asc_tangent_ratio import word_forms
 
@@ -152,10 +152,11 @@ def run(args):
                 if velocity is None:
                     velocity = torch.zeros_like(theta)
                 velocity.mul_(args.momentum).add_(theta.grad)
-                size = float(velocity.norm())
-                if size > 0.0:
-                    theta.detach().add_(velocity,
-                                        alpha=-args.lr * math.sqrt(n) / size)
+            # exactly unitary step: a projected one collapses U toward 0,
+            # where a = ||U lambda(h) U^* - lambda(h)||_2 stops equalling
+            # ||U - rho(h)U||_2 and every reported ratio is meaningless
+            geodesic_step(theta.detach(), velocity, args.rank, args.lr,
+                          generator)
             if step % args.retract_every == 0:
                 polar_retract(theta.detach(), 1)
             if step % args.report_every == 0:
@@ -186,6 +187,7 @@ def main():
     parser.add_argument("--iterations", type=int, default=400)
     parser.add_argument("--lr", type=float, default=0.05)
     parser.add_argument("--momentum", type=float, default=0.9)
+    parser.add_argument("--rank", type=int, default=64)
     parser.add_argument("--init-scale", type=float, default=0.0)
     parser.add_argument("--floor", type=float, default=1e-12)
     parser.add_argument("--retract-every", type=int, default=10)
