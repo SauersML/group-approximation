@@ -14,13 +14,18 @@ on:
     paths:
       - '.github/workflows/leanstral-research.yml'
       - 'scripts/leanstral_novelty.py'
+  pull_request:
+    branches: [main]
+    paths:
+      - '.github/workflows/leanstral-research.yml'
+      - 'scripts/leanstral_novelty.py'
 
 # Every actual model run reserves a unique (file, declaration) before inference.
 # The reservation lives on a separate state branch, so failed/no-change runs and
 # unmerged/closed PRs still consume their target. Only one agent attempt runs at
 # once, making reservation atomic.
 concurrency:
-  group: ${{ github.event_name == 'push' && 'leanstral-research-smoke' || 'leanstral-research-agent' }}
+  group: ${{ (github.event_name == 'push' || github.event_name == 'pull_request') && format('leanstral-research-smoke-{0}', github.event.pull_request.number || github.ref) || 'leanstral-research-agent' }}
   cancel-in-progress: false
 
 permissions:
@@ -35,7 +40,7 @@ env:
 
 jobs:
   smoke:
-    if: ${{ github.event_name == 'push' }}
+    if: ${{ github.event_name == 'push' || github.event_name == 'pull_request' }}
     runs-on: ubuntu-latest
     timeout-minutes: 15
     permissions:
@@ -73,7 +78,7 @@ jobs:
           python scripts/leanstral_novelty.py --ledger "$ledger" --bootstrap-blocked "$blocked" --focus "${{ inputs.focus }}"
 
   auth:
-    if: ${{ github.event_name != 'push' }}
+    if: ${{ github.event_name == 'schedule' || github.event_name == 'workflow_dispatch' }}
     runs-on: ubuntu-latest
     timeout-minutes: 5
     permissions:
