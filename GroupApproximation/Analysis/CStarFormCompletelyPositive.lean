@@ -1,5 +1,6 @@
 import GroupApproximation.Analysis.LanceBlockOperator
 import GroupApproximation.Analysis.CStarCompletelyPositiveForm
+import GroupApproximation.Analysis.CStarUnitalCPContractive
 
 /-!
 # Form positivity implies complete positivity
@@ -112,6 +113,26 @@ theorem isCompletelyPositive_of_form
     rw [hswap, Complex.re_sum]
     refine Finset.sum_nonneg fun l _ ↦ ?_
     exact hform n (fun i ↦ N l i) (fun i ↦ v i)
+
+/-- **A unital map that is completely positive in the form sense is a
+contraction.**  `isCompletelyPositive_of_form` composed with the Stinespring
+estimate of `Analysis/CStarUnitalCPContractive`.
+
+This is the shape the Lance approximation needs.  `NuclearReducedCPAP` hands out
+its `down` with exactly these three properties --- form positivity,
+`⋆`-preservation, unitality --- and `IsNuclearMap` asks its `α` for
+`‖α a‖ ≤ ‖a‖`, which no part of the CPAP supplies directly.  The `up` side needs
+no companion: it arrives already carrying `IsCompletelyPositive`, so
+`norm_apply_le_of_unital` applies to it unchanged. -/
+theorem norm_le_of_form_unital
+    (ψ : A →ₗ[ℂ] (EuclideanSpace ℂ (Fin k) →L[ℂ] EuclideanSpace ℂ (Fin k)))
+    (hstar : ∀ b : A, ψ (star b) = star (ψ b))
+    (hform : ∀ (m : ℕ) (a : Fin m → A) (v : Fin m → EuclideanSpace ℂ (Fin k)),
+      0 ≤ (∑ i : Fin m, ∑ j : Fin m,
+        ⟪v i, ψ (star (a i) * a j) (v j)⟫_ℂ).re)
+    (h1 : ψ 1 = 1) (b : A) :
+    ‖ψ b‖ ≤ ‖b‖ :=
+  (isCompletelyPositive_of_form ψ hstar hform).norm_apply_le_of_unital h1 b
 
 end
 
