@@ -1,0 +1,97 @@
+name: Refresh non-MF referee signatures
+
+on:
+  pull_request:
+    branches: [main]
+    types: [opened, synchronize, reopened]
+
+permissions:
+  contents: write
+
+concurrency:
+  group: non-mf-referee-signatures
+  cancel-in-progress: true
+
+jobs:
+  refresh:
+    if: github.head_ref == 'agent/non-mf-referee-repair'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
+        with:
+          ref: agent/non-mf-referee-repair
+          fetch-depth: 0
+          persist-credentials: true
+
+      - name: Tighten exactness citation chain
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          from pathlib import Path
+          p = Path('non_mf_groups_exist.tex')
+          s = p.read_text()
+          old = r'''The same decomposition also proves that $E$ is exact.  The quotient
+$C(\mathcal G)/\langle\zeta\rangle$ is the free product of the
+elementary abelian $2$-groups attached to the blocks, each of order at
+most $2^{8}$.  Every finite sub-free-product is exact by Dykema's
+free-product theorem \cite{DykemaExact}; the full free product is the
+increasing union of these finite sub-free-products, so it is exact by
+the increasing-union permanence theorem of Kirchberg--Wassermann
+\cite{KWExact}.  Since $\langle\zeta\rangle$ is finite, extension
+permanence \cite{KWPermanence} then gives exactness of
+$C(\mathcal G)$.'''
+          new = r'''The same decomposition also proves that $E$ is exact.  The quotient
+$C(\mathcal G)/\langle\zeta\rangle$ is the free product of the
+elementary abelian $2$-groups attached to the blocks, each of order at
+most $2^{8}$.  Dykema's theorem applies to free products of arbitrary
+families of exact discrete groups, so this quotient is exact
+\cite{DykemaExact}.  Since $\langle\zeta\rangle$ is finite, extension
+permanence \cite{KWPermanence} then gives exactness of
+$C(\mathcal G)$.'''
+          if s.count(old) != 1:
+              raise SystemExit(f'expected one exactness paragraph target, found {s.count(old)}')
+          p.write_text(s.replace(old, new, 1))
+          PY
+
+      - name: Repin and validate manuscript metadata
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 scripts/check_non_mf_proof_ledger.py \
+            --tex non_mf_groups_exist.tex \
+            --ledger metadata/NON_MF_PROOF_LEDGER.md \
+            --repin-header
+          python3 scripts/regenerate_non_mf_claim_manifest.py \
+            --output /tmp/NON_MF_NUMBERED_CLAIMS.generated.json
+          diff -u metadata/NON_MF_NUMBERED_CLAIMS.json /tmp/NON_MF_NUMBERED_CLAIMS.generated.json
+          python3 scripts/check_non_mf_refs.py \
+            --tex non_mf_groups_exist.tex --check-decls \
+            --extra-declarations-from metadata/NON_MF_NUMBERED_CLAIMS.json
+          python3 scripts/check_non_mf_claim_manifest.py \
+            --tex non_mf_groups_exist.tex \
+            --manifest metadata/NON_MF_NUMBERED_CLAIMS.json \
+            --signature-roster metadata/NON_MF_CLAIM_DECLS.txt
+          python3 scripts/check_non_mf_unconditional.py \
+            --tex non_mf_groups_exist.tex \
+            --baseline metadata/NON_MF_UNCONDITIONAL_BASELINE.txt
+          python3 scripts/check_non_mf_proof_ledger.py \
+            --tex non_mf_groups_exist.tex \
+            --ledger metadata/NON_MF_PROOF_LEDGER.md
+          python3 scripts/check_manuscript_claims.py --tex non_mf_groups_exist.tex --strict
+          python3 scripts/check_prose_decl_names.py --repo . --quiet
+
+      - name: Commit final text and remove temporary workflows
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -f \
+            .github/workflows/refresh-non-mf-referee-signatures.yml \
+            .github/workflows/apply-final-non-mf-exactness.yml \
+            .github/workflows/finalize-non-mf-referee-text.yml
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git diff --cached --check
+          git commit -m "Tighten non-MF exactness attribution"
+          git push origin HEAD:agent/non-mf-referee-repair
