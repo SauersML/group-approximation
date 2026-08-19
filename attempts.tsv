@@ -20,3 +20,4 @@
 32300390559	2026-08-19T20:47:22Z	GroupApproximation/Analysis/CStarSliceBound.lean	norm_gnsRep_sliceRight_le
 32302643141	2026-08-19T21:28:18Z	GroupApproximation/Analysis/CStarMinTensorQuotient.lean	IsExactCStar
 32305256865	2026-08-19T21:43:16Z	GroupApproximation/Analysis/CStarExactnessSliceReduction.lean	sliceLeftMin_mem_of_quotientMinTensorMap_eq_zero
+32306852170	2026-08-19T22:02:29Z	GroupApproximation/Analysis/CStarSliceCompletion.lean	sliceRightMin
