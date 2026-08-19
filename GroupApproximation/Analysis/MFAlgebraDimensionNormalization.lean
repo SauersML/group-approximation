@@ -107,9 +107,11 @@ def cornerCoord : ∀ n, Matrix (X n) (X n) ℂ →
   | n + 1 => fun a =>
       blockDiagMatrix (increasingBlockModel X n) (X (n + 1)) 0 a
 
+@[simp]
 theorem cornerCoord_zero_apply (a : Matrix (X 0) (X 0) ℂ) :
     cornerCoord X 0 a = a := rfl
 
+@[simp]
 theorem cornerCoord_succ_apply (n : ℕ) (a : Matrix (X (n + 1)) (X (n + 1)) ℂ) :
     cornerCoord X (n + 1) a =
       blockDiagMatrix (increasingBlockModel X n) (X (n + 1)) 0 a := rfl

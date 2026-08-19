@@ -98,8 +98,10 @@ def flipWord (i : Fin 3) (w : List (Fin 3)) : List (Fin 3) :=
   | [] => [i]
   | a :: t => if a = i then t else i :: a :: t
 
+@[simp]
 theorem flipWord_nil (i : Fin 3) : flipWord i [] = [i] := rfl
 
+@[simp]
 theorem flipWord_cons (i a : Fin 3) (t : List (Fin 3)) :
     flipWord i (a :: t) = if a = i then t else i :: a :: t := rfl
 
@@ -148,6 +150,7 @@ def letterFlip (i : Fin 3) : Equiv.Perm RedWord where
   left_inv w := Subtype.ext (flipWord_flipWord i w.2)
   right_inv w := Subtype.ext (flipWord_flipWord i w.2)
 
+@[simp]
 theorem letterFlip_val (i : Fin 3) (w : RedWord) :
     (letterFlip i w).1 = flipWord i w.1 := rfl
 

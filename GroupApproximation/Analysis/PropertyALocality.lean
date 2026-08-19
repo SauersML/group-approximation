@@ -83,6 +83,7 @@ theorem rep_inv_mul_mem (g : G) : (rep H g)⁻¹ * g ∈ H :=
 /-- The `H`-coordinate of `g` relative to its coset representative. -/
 noncomputable def part (g : G) : H := ⟨(rep H g)⁻¹ * g, rep_inv_mul_mem H g⟩
 
+@[simp]
 theorem part_coe (g : G) : ((part H g : H) : G) = (rep H g)⁻¹ * g := rfl
 
 theorem rep_mul_part (g : G) : rep H g * ((part H g : H) : G) = g := by
@@ -282,12 +283,13 @@ theorem nonempty_propertyAWitness_of_subgroup {H : Subgroup G}
 
 /-- A finite set is covered by one member of a directed family of subgroups
 whose union is everything. -/
-theorem exists_mem_of_directed {ι : Type*} [Nonempty ι] {K : ι → Subgroup G}
+theorem exists_mem_of_directed {ι : Type*} (hne : Nonempty ι)
+    {K : ι → Subgroup G}
     (hdir : Directed (· ≤ ·) K) (hcov : ∀ g : G, ∃ i, g ∈ K i) (R : Finset G) :
     ∃ i, ∀ g ∈ R, g ∈ K i := by
   classical
   refine Finset.induction_on R ?_ ?_
-  · obtain ⟨i⟩ := ‹Nonempty ι›
+  · obtain ⟨i⟩ := hne
     exact ⟨i, by simp⟩
   · rintro a s _ha ⟨i, hi⟩
     obtain ⟨j, hj⟩ := hcov a
@@ -303,11 +305,12 @@ property A itself.
 
 This is `\cite[Lemma 2.5]{KWExact}` as the manuscript uses it: no openness
 hypothesis appears, because in a discrete group every subgroup is open. -/
-theorem hasPropertyA_of_directed {ι : Type*} [Nonempty ι] {K : ι → Subgroup G}
+theorem hasPropertyA_of_directed {ι : Type*} (hne : Nonempty ι)
+    {K : ι → Subgroup G}
     (hdir : Directed (· ≤ ·) K) (hcov : ∀ g : G, ∃ i, g ∈ K i)
     (hA : ∀ i, HasPropertyA (K i)) : HasPropertyA G := by
   intro R ε hε
-  obtain ⟨i, hi⟩ := exists_mem_of_directed hdir hcov R
+  obtain ⟨i, hi⟩ := exists_mem_of_directed hne hdir hcov R
   exact nonempty_propertyAWitness_of_subgroup (hA i) R hi hε
 
 /-- The same for an increasing chain, which is the shape both the printed `Q_n`
@@ -315,7 +318,7 @@ and the repository's mapping telescopes have. -/
 theorem hasPropertyA_of_monotone {K : ℕ → Subgroup G} (hmono : Monotone K)
     (hcov : ∀ g : G, ∃ n, g ∈ K n) (hA : ∀ n, HasPropertyA (K n)) :
     HasPropertyA G :=
-  hasPropertyA_of_directed (K := K)
+  hasPropertyA_of_directed ⟨0⟩ (K := K)
     (fun m n ↦ ⟨max m n, hmono (le_max_left m n), hmono (le_max_right m n)⟩)
     hcov hA
 
