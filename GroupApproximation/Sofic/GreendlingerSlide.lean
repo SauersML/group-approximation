@@ -87,7 +87,7 @@ conjugator, at the cost of rotating the relator by it. -/
 theorem mk_palindrome_slide (c z m : List (α × Bool)) :
     FreeGroup.mk (palindrome c (z ++ m))
       = FreeGroup.mk (palindrome (c ++ z) (m ++ z)) := by
-  simp only [mk_palindrome, mk_append_mul, mk_invRev_eq_inv]
+  simp only [mk_palindrome, mk_append_mul]
   group
 
 /-- **Sliding backward.**  A suffix of the rotation may be moved into the
@@ -131,7 +131,7 @@ theorem mk_palindrome_mul_absorb (c' t' q'' t : List (α × Bool)) :
         * FreeGroup.mk (palindrome c' t')
       = FreeGroup.mk (palindrome c' t')
         * FreeGroup.mk (palindrome (c' ++ q'') t) := by
-  simp only [mk_palindrome, mk_append_mul, mk_invRev_eq_inv]
+  simp only [mk_palindrome, mk_append_mul]
   group
 
 /-- **The slide move.**  When the cancellation swallows the first rotation and

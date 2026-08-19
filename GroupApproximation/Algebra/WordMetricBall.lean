@@ -52,6 +52,8 @@ enters only when the count is transferred from words to `wordNorm`, because
 namespace GroupApproximation
 namespace WordMetric
 
+open scoped Pointwise
+
 universe u
 
 variable {G : Type u} [Group G]
@@ -95,7 +97,7 @@ theorem exists_finset_isWord (T : Finset G) (n : ℕ) :
         exact Finset.mem_union_left _ h1B
       | cons a l' =>
         have ha : a ∈ T := by
-          have h := hl.letters a (List.mem_cons_self ..)
+          have h := hl.letters a (by simp)
           simpa using h
         have hl' : IsWord (↑T : Set G) l' l'.prod :=
           ⟨fun x hx ↦ hl.letters x (List.mem_cons_of_mem a hx), rfl⟩
@@ -148,6 +150,7 @@ theorem card_le_pow_of_wordDist_le {T : Finset G}
     simpa using h
   exact le_trans (Finset.card_le_card_of_injOn _ hmaps hinj) hcard
 
+omit [Group G] in
 /-- The growth constant is at least one, so it can be used as the ratio of a
 geometric series without a positivity side condition. -/
 theorem one_le_growth (T : Finset G) : (1 : ℝ) ≤ (T.card : ℝ) + 1 := by
