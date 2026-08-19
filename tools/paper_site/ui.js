@@ -655,6 +655,12 @@ const NOT_IN_LEAN = {
   'LI.14': 'A torsion-free finitely presented group whose subgroup $N_{\\mathrm{conj}}$ contains a nontrivial normal property-\\textup{(T)} subgroup would answer Question 2.',
 };
 
+/* Where Lean proves something else, what it proves. */
+const LEAN_PROVES = {
+  'SO.16': 'Lean proves property A of $E$. The step from there to exactness of $\\Cred(E)$ is \\cite{KWExact} and has no Lean proof.',
+  'LI.14': 'Lean proves the reduction. Whether such a group exists is Question 2.',
+};
+
 function formalItemHtml(r) {
   const tex = NOT_IN_LEAN[r.step];
   const body = tex ? renderInline(tex, {}) : escHtml(r.claim);
@@ -668,7 +674,9 @@ function formalItemHtml(r) {
     ? '<a class="chip chip-ref" href="#' + where.anchor + '">' + escHtml((where.kind || '') + ' ' + (where.num || '')) + '</a>'
     : '';
   const meta = (cites ? '<span class="fcite">' + cites + '</span>' : '') + link;
-  return '<div class="formal-item"><div class="formal-claim">' + body + '</div>' +
+  const instead = LEAN_PROVES[r.step]
+    ? '<div class="formal-instead">' + renderInline(LEAN_PROVES[r.step], {}) + '</div>' : '';
+  return '<div class="formal-item"><div class="formal-claim">' + body + '</div>' + instead +
     (meta ? '<div class="formal-meta">' + meta + '</div>' : '') + '</div>';
 }
 
@@ -691,7 +699,7 @@ function buildFormalView() {
       missing.map(formalItemHtml).join('') + '</section>';
   }
   if (other.length) {
-    html += '<section class="formal-group"><h3>Proved in Lean along a different route</h3>' +
+    html += '<section class="formal-group"><h3>Lean proves a different statement</h3>' +
       other.map(formalItemHtml).join('') + '</section>';
   }
   return html;
