@@ -1,0 +1,60 @@
+---
+rg: 2
+id: atlas-a4-rank-three-core-commutant-collapse
+kind: claim
+title: The fourteen-word A4 core plus collision 19243 forces the relative chart frame into the GL3(2) commutant
+distinct_from:
+  atlas-a4-componentwise-commutant-collapse: that asks for simultaneous closeness to both full packet-component commutants, including the central C3 sector; this target throws away all sixteen central-C3 pair-cubes and asks only for the rank-three GL3(2) commutant already sufficient for the raw S3 contradiction.
+  atlas-a4-relative-packet-commutator-collapse: that asks for commutation with all ten packet letters and therefore the full A8 commutant; this target only asks for the standard rank-three subgroup H.
+---
+
+Let `sigma_n` satisfy the exact-regular normalized A4 context-network hypotheses
+of `atlas-a4-holonomy-coherence-gap`, and let
+
+```text
+U_n in U(20160 k_n)
+```
+
+be the relative chart frame.  Retain only the fourteen A4 contexts of
+`atlas-a4-rank-three-core` and the collision condition `q_19243 -> 1`.  Let
+
+```text
+H=<H_6,K>=diag(GL_3(F2),1) < A8.
+```
+
+Prove the dimension-free collapse
+
+```text
+dist_2(U_n, lambda_(k_n)(H)') -> 0.                    (A4-H-CORE-COLLAPSE)
+```
+
+No conclusion about the two central `C3` packet labels, the full `H_18`
+commutant, or the full `A8` commutant is required.
+
+## Attempts
+
+- **Two rectangles, not thirty contexts.**  The fourteen-word core is two
+  copies of `K_(2,2)`.  After extracting one qutrit/multiplicity edge message
+  per distinct pair, `unitary-k2m-rectangle-synchronization` leaves exactly one
+  noncommutative rectangle holonomy per component.  The local gauge problem
+  should therefore reduce to two `U(k_n)` variables.
+- **Use the exact subgroup ladder.**  The two core components are `H_6 ~= S3`
+  and `K ~= S3`, and they generate exactly the same standard
+  `H=GL_3(2)` that appears in the established five-word tangent certificate.
+  Finite-subspace gluing on the two `S3` commutants is automatically stable
+  under external multiplicity.
+- **Put collision 19243 only where it actually lives.**  Its four second-chart
+  syllables generate `K`; its repeated first-chart involution enlarges `H` only
+  to the affine hyperplane stabilizer `AGL_3(2)`.  Seek a finite
+  connection-Laplacian / representation-ring inequality showing that the
+  collision residual kills the two rectangle holonomies modulo `H'`.
+- **Exploit the classical audit as the zero-dimensional boundary condition.**
+  The fourteen-word core has exactly the same sixty classical automorphism
+  alignments as the full thirty-word packet, and `q_19243` kills every one.
+  Any remaining obstruction is therefore genuine multiplicity mixing, not a
+  missed classical chart position.
+- **Do not use the discarded C3 sector unless this target is refuted.**  Those
+  sixteen pair-cubes are irrelevant in the classical automorphism sector and
+  are not needed by the final two-generator S3 covariance contradiction.  A
+  proof here would bypass more than half of the A4 packet and all full-A8
+  packet-centrality machinery.
