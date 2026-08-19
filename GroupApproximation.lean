@@ -1152,6 +1152,7 @@ import GroupApproximation.Analysis.CollapseUltraproductRepresentation
 import GroupApproximation.Analysis.OmegaActionLinear
 import GroupApproximation.Analysis.OmegaIsometryRepresentation
 import GroupApproximation.Analysis.OmegaConjQCompatibility
+import GroupApproximation.Analysis.CollapseKqAlmostRep
 import GroupApproximation.Analysis.OmegaFiniteComparison
 import GroupApproximation.Analysis.OmegaFixRange
 import GroupApproximation.Analysis.PolarLiftingGeneralCStar
