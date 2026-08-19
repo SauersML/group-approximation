@@ -107,27 +107,33 @@ def CompressionExceeds (S : Set G) (β₀ : ℝ) (E : Type v) [NormedAddCommGrou
 
 /-! ## The Gaussian kernel -/
 
+omit [Group G] in
 /-- The Gaussian kernel `u_κ(s,t) = exp(-κ‖f s - f t‖²)` of Guentner--Kaminker
 (13).  Their `u_k` is the case `κ = 1/k`. -/
 noncomputable def gaussianKernel (f : G → E) (κ : ℝ) (s t : G) : ℝ :=
   Real.exp (-(κ * ‖f s - f t‖ ^ 2))
 
+omit [Group G] in
 theorem gaussianKernel_pos (f : G → E) (κ : ℝ) (s t : G) :
     0 < gaussianKernel f κ s t :=
   Real.exp_pos _
 
+omit [Group G] in
 theorem gaussianKernel_nonneg (f : G → E) (κ : ℝ) (s t : G) :
     0 ≤ gaussianKernel f κ s t :=
   (gaussianKernel_pos f κ s t).le
 
+omit [Group G] in
 theorem gaussianKernel_self (f : G → E) (κ : ℝ) (s : G) :
     gaussianKernel f κ s s = 1 := by
   simp [gaussianKernel]
 
+omit [Group G] in
 theorem gaussianKernel_comm (f : G → E) (κ : ℝ) (s t : G) :
     gaussianKernel f κ s t = gaussianKernel f κ t s := by
   rw [gaussianKernel, gaussianKernel, ← norm_neg (f s - f t), neg_sub]
 
+omit [Group G] in
 theorem gaussianKernel_le_one {κ : ℝ} (hκ : 0 ≤ κ) (f : G → E) (s t : G) :
     gaussianKernel f κ s t ≤ 1 := by
   rw [gaussianKernel, Real.exp_le_one_iff]

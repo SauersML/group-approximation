@@ -1220,6 +1220,7 @@ import GroupApproximation.Analysis.CStarMinTensorInjective
 import GroupApproximation.Analysis.CStarExactComplex
 import GroupApproximation.Algebra.WordMetricBall
 import GroupApproximation.Analysis.CoarseCompression
+import GroupApproximation.Analysis.SchoenbergKernel
 import GroupApproximation.Analysis.GuentnerKaminker
 import GroupApproximation.Analysis.PropertyASquareWitness
 import GroupApproximation.Manuscript.NonMF.QuestionOneOpenness
