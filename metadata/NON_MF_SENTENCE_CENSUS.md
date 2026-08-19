@@ -7,16 +7,15 @@ The proof ledger grades claims; this census grades **sentences**, which is the g
 | status | sentences |
 | --- | --- |
 | `ledger` | 548 |
-| `formalized` | 198 |
-| `definition` | 22 |
-| `structural` | 13 |
+| `formalized` | 203 |
+| `definition` | 30 |
 | `attribution` | 11 |
 | `provenance` | 6 |
 | `open` | 2 |
 | `partial` | 1 |
 | **total** | **801** |
 
-Carrying a declaration or a ledger row: **769/801** (96.0%).
+Carrying a declaration or a ledger row: **782/801** (97.6%).
 
 Of the `ledger` sentences, 239 name a single row and 309 name every row of their anchor.  Of the single-row ones, 131 were narrowed from a multi-row anchor by claim-text overlap rather than by hand, and their note says so; the rest sit under an anchor the ledger grades with one row, where the pairing is forced.  The census never pretends to know which row is which sentence: where the text does not decide, it names them all.
 
@@ -25,7 +24,7 @@ Of the `ledger` sentences, 239 name a single row and 309 name every row of their
 These are the sentences the development does not settle, verbatim.  `open` sentences say that something is unknown and no declaration could settle them; `partial` sentences have a clause that is proved and a clause that is not; `unassigned` sentences have not been triaged at all.
 
 * **`partial`**, line 167 --- Its reduced $C^*$-algebra $\Cred(E)$ is separable, exact and stably finite but not MF, and the canonical trace on $\Cmax(E)$ is hyperlinear but not MF, which answers a question of Shulman negatively.
-  * every clause but exactness is proved; exactness of Cred(E) is ledger row SO.16, graded MISMATCH, and no declaration establishes it
+  * every clause but exactness is proved; exactness of Cred(E) is ledger row SO.16, graded MISMATCH.  The reduction is formal -- exactness follows from the slice map property, and the kernel half of that is proved -- but the slice map property itself is proved for no algebra here
 * **`open`**, line 319 --- The converse of each arrow is open, as is \textup{MF}$\,\Rightarrow\,$\textup{hyperlinear} (Question~2 of Section~\ref{sec:limits}).
   * asserts that converses are open; an open-status claim, which no declaration settles
 * **`open`**, line 412 --- MF for a group $C^*$-algebra implies MF for the underlying group, but the converse implication does not follow formally, and we know of no theorem establishing it or refuting it.

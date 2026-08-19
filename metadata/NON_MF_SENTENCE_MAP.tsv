@@ -19,12 +19,12 @@ c4a439c10b33	definition	GroupApproximation.KazhdanCliffordConstruction.kazhdanCl
 4609a24e31d5	formalized	GroupApproximation.PrintedCornerCompression.manuscriptCornerAsymptoticRepresentation GroupApproximation.LiteralNonMFEndpoint.negativeCorner_kazhdanTransport_contradiction	the compression to the negative corner and the contradiction there
 00f89beb85bc	formalized	GroupApproximation.LiteralNonMFPresentation.manuscriptLiteralPresentation	the eight-generator presentation, literally
 71b4b6a84e09	formalized	GroupApproximation.LiteralSoficAssembly.markedGroup_finitelyPresented_sofic_nonMF GroupApproximation.LiteralSoficAssembly.markedGroup_finitelyPresented_hyperlinear_nonMF	soficity and hyperlinearity of E against its non-MF-ness
-6be5f4abf8e4	partial	GroupApproximation.LiteralNonMFEndpoint.manuscriptTheoremD GroupApproximation.manuscriptTraceSeparation	every clause but exactness is proved; exactness of Cred(E) is ledger row SO.16, graded MISMATCH, and no declaration establishes it
+6be5f4abf8e4	partial	GroupApproximation.LiteralNonMFEndpoint.manuscriptTheoremD GroupApproximation.manuscriptTraceSeparation GroupApproximation.CStarTensor.isExactCStar_of_hasSliceMapProperty	every clause but exactness is proved; exactness of Cred(E) is ledger row SO.16, graded MISMATCH.  The reduction is formal -- exactness follows from the slice map property, and the kernel half of that is proved -- but the slice map property itself is proved for no algebra here
 ec0ae8ad82fa	formalized	GroupApproximation.LiteralSignFreeQuotient.signFreeQuotient_not_isCDEOperatorMF	the sign-free quotient is non-MF
 ab4a96635322	definition	GroupApproximation.ManuscriptExactWrappers.manuscriptMFDefinitionEquivalences	the operator-norm convention, which is the norm the formal definition uses
 04f14a98e39a	definition	GroupApproximation.KazhdanAsymptoticCommutant.manuscriptKazhdanTransport GroupApproximation.KazhdanAsymptoticCommutant.manuscriptKazhdanTransport_anyUniverse	the hypotheses of the transport theorem, as its binders
 3fb1689fc332	formalized	GroupApproximation.KazhdanAsymptoticCommutant.manuscriptKazhdanTransport GroupApproximation.KazhdanAsymptoticCommutant.manuscriptKazhdanTransport_anyUniverse	the conjugation action on the Hilbert-Schmidt spaces, built inside the transport theorem
-d0e64e17d2de	structural		says why the two norms both appear; asserts nothing beyond the theorem it introduces
+d0e64e17d2de	formalized	GroupApproximation.AdjointMatrix.l2_opNorm_conjDouble_sub_le_two GroupApproximation.HilbertSchmidtAdjointGap.exists_hsClose_adjointFar	both halves are theorems: operator-norm closeness makes the conjugation action asymptotically multiplicative, and the no-go shows Hilbert-Schmidt closeness does not
 1adad9a8872b	formalized	GroupApproximation.UltraproductKazhdanProjection.manuscriptKazhdanSpectralGap GroupApproximation.kt_10_finiteness_reverses GroupApproximation.kt_06_ultraproduct_finite	the Kazhdan projection and the finiteness that reverses the inclusion
 bbcdc9a70295	formalized	GroupApproximation.KazhdanAsymptoticCommutant.manuscriptKazhdanTransport GroupApproximation.KazhdanAsymptoticCommutant.manuscriptKazhdanTransport_anyUniverse	the conclusion of the transport theorem
 e76a88d28c6d	definition	GroupApproximation.KazhdanCliffordConstruction.kazhdanCliffordConstruction	names the compressed commutator; the same word is the construction's
@@ -42,20 +42,20 @@ cc04e353c3cf	definition	GroupApproximation.KazhdanCliffordConstruction.kazhdanCl
 c376f8c055fd	formalized	GroupApproximation.ManuscriptExactWrappers.manuscriptCliffordConstruction	the Clifford group and the permutation action on it
 b41519445c83	definition	GroupApproximation.ManuscriptExactWrappers.manuscriptCliffordConstruction	the action used, named
 a72a5c156877	formalized	GroupApproximation.KazhdanCliffordConstruction.kazhdanCliffordConstruction	w maps to the nontrivial sign
-8d61f6130e36	structural		lead-in to the display that specializes the construction
+8d61f6130e36	definition	GroupApproximation.LiteralNonMFPresentation.manuscriptLiteralPresentation	lead-in to the display whose data the literal presentation fixes
 5e5c2234f838	formalized	GroupApproximation.LiteralNonMFPresentation.manuscriptLiteralPresentation	the specialization is the printed group E
 4b022ede12e3	formalized	GroupApproximation.MarkedCompression.not_hasKazhdanPropertyT_vertical GroupApproximation.not_hasKazhdanPropertyT_of_surjective_onto_int	E surjects onto the integers, hence has no property (T) of its own
 d133c390b18b	formalized	GroupApproximation.ManuscriptExactWrappers.manuscriptTheoremB	the exact finite-dimensional counterpart
-6673ca0cb721	structural		lead-in to the implication diagram
+6673ca0cb721	formalized	GroupApproximation.HyperlinearReduction.isSofic_of_residuallyFinite GroupApproximation.SoficHyperlinearBridge.canonicalMaximalTrace_isHyperlinearTrace_of_isSofic GroupApproximation.OperatorMFPositiveControls.isOperatorMF_of_residuallyFinite GroupApproximation.LocallyFiniteMF.isOperatorMF_of_locallyFinite	the arrows of the printed diagram, each a theorem in the development
 96497447b0b2	open		asserts that converses are open; an open-status claim, which no declaration settles
 c6add2c28d7b	formalized	GroupApproximation.LiteralSoficAssembly.markedGroup_finitelyPresented_sofic_nonMF GroupApproximation.LiteralSoficAssembly.markedGroup_finitelyPresented_hyperlinear_nonMF GroupApproximation.manuscriptTraceSeparation	soficity with non-MF-ness, and the trace separation
-fbc9459a1400	structural		section lead-in
+fbc9459a1400	attribution		dates the algebra problem against the group question; a historical statement, not a step
 c2bb32dbe2b2	attribution		Blackadar-Kirchberg's remark, credited
 02593a8616f2	attribution		Haagerup-Thorbjornsen, credited
 858f14cf409d	attribution		the negative solution of CEP, credited
 5525627668b9	attribution		a statement about what was known, credited to Shulman
 91dfb57462c2	formalized	GroupApproximation.MaximalCStarPrintedHypotheses.manuscriptMaximalCStarRemarkFromPrintedHypotheses GroupApproximation.manuscriptProperIsometryStrictOrder	the maximal-algebra obstruction at its printed generality
-18316a7a12b5	structural		paragraph lead-in
+18316a7a12b5	definition	GroupApproximation.manuscriptMFTraceGroupBridge GroupApproximation.manuscriptTraceSeparation	the tracial hierarchy the sentence announces, and the theorem that separates two of its classes
 690c161e7175	attribution		Brown, Rainone-Schafhauser, credited
 0d2dbb9e7a1f	definition	GroupApproximation.manuscriptMFTraceGroupBridge	Shulman's formulation of the two trace classes, which is the one the bridge lemma formalizes
 7c1f94019098	attribution		Shulman on cones, credited
@@ -74,30 +74,30 @@ f796fb80b1c6	definition	GroupApproximation.NormMatrixCStarCorona	names the quoti
 69903bb4ba28	definition	GroupApproximation.ManuscriptExactWrappers.manuscriptMFDefinitionEquivalences	the convention on the dimension sequence, which the formal definition quantifies over
 a04239b939a6	definition	GroupApproximation.ManuscriptExactWrappers.manuscriptMFDefinitionEquivalences	the same convention for varying sequences
 5305f8455bc5	formalized	GroupApproximation.ManuscriptExactWrappers.manuscriptMFDefinitionEquivalences	strictly increasing dimensions change nothing
-be090c6906c9	structural		lead-in to the list of three quotients
+be090c6906c9	definition	GroupApproximation.NormMatrixCStarCorona GroupApproximation.kt_06_ultraproduct_finite	lead-in to the three quotients, two of which are formal objects here
 743e038963bd	definition	GroupApproximation.NormMatrixCStarCorona GroupApproximation.kt_06_ultraproduct_finite	the three quotients; the corona is a type and the norm ultraproduct's finiteness is the badged lemma
-30cba4018957	structural		says which ideal defines which quotient and points forward
-03623ef9320d	attribution		Loring's perturbation theory, credited
-4a5f0414fb07	structural		says that the step recurs; asserts nothing
+30cba4018957	formalized	GroupApproximation.HilbertSchmidtAdjointGap.exists_hsClose_adjointFar	which ideal defines which quotient, and the no-go that identifies the step needing the operator norm
+03623ef9320d	attribution	GroupApproximation.ManuscriptExactWrappers.manuscriptUnitaryLifting GroupApproximation.ManuscriptExactWrappers.manuscriptUnitaryCoronaEquivalence	credit, not a dependency: the lifting lemmas are proved here and the citation could be deleted without moving the trust surface
+4a5f0414fb07	formalized	GroupApproximation.compressedImage_eq GroupApproximation.ManuscriptExactWrappers.manuscriptTheoremB GroupApproximation.kt_10_finiteness_reverses	the three levels the sentence promises: finite quotient, finite dimension, norm ultraproduct
 146ef8963e60	formalized	GroupApproximation.compressedImage_eq GroupApproximation.compressedImage_eq'	the finite-quotient collapse: conjugation is onto in a finite image
 1621d329e027	formalized	GroupApproximation.ManuscriptExactWrappers.manuscriptTheoremB	the finite-dimensional commutant equality, by dimension count
 42460dfb126e	formalized	GroupApproximation.kt_10_finiteness_reverses GroupApproximation.kt_06_ultraproduct_finite	the ultraproduct form: Murray-von Neumann equivalence plus finiteness
 f911c774df47	definition	GroupApproximation.KazhdanCompressionCore.manuscriptCentralSignCriterion_anyUniverse	the hypotheses of the section, as the criterion's binders
 2618f7ffe7e7	formalized	GroupApproximation.KazhdanCompressionCore.manuscriptCentralSignCriterion_anyUniverse	the spectral projection and the exact compression on its corner
-10aa903b3729	structural		says what the following arguments do
-6b25d62ba04f	structural		lead-in to the specializing display
+10aa903b3729	definition	GroupApproximation.PrintedCornerCompression.manuscriptCornerAsymptoticRepresentation	names the compression the following arguments perform
+6b25d62ba04f	definition	GroupApproximation.KazhdanCliffordConstruction.kazhdanCliffordConstruction	lead-in to the display specializing the construction
 edea397ce0fa	definition	GroupApproximation.LiteralNonMFPresentation.manuscriptLiteralPresentation	names the data of the display, which the literal presentation fixes
 f1785a147237	formalized	GroupApproximation.LiteralNonMFPresentation.manuscriptLiteralPresentation	the substitution yields the printed presentation
-6d04838a0e64	structural		lead-in to the linear presentation
-e7979d03ce61	structural		lead-in to the base presentation
+6d04838a0e64	definition	GroupApproximation.LiteralNonMFPresentation.manuscriptLiteralPresentation	lead-in to the linear presentation, which the literal presentation contains
+e7979d03ce61	definition	GroupApproximation.LiteralBaseCompleteness.baseAffineEquiv	lead-in to the base presentation, identified with the affine group
 df14b33d75ac	definition	GroupApproximation.LiteralNonMFPresentation.manuscriptLiteralPresentation GroupApproximation.LiteralBaseCompleteness.baseAffineEquiv	names the base inclusion, which the base identification formalizes
 7090181cfe8e	definition	GroupApproximation.ManuscriptExactWrappers.manuscriptCliffordConstruction	the Clifford convention, as the construction fixes it
 ede935950094	definition	GroupApproximation.ManuscriptExactWrappers.manuscriptCliffordConstruction	names the sign
-3c3badaa1a60	structural		lead-in to the displayed relations
+3c3badaa1a60	definition	GroupApproximation.ManuscriptExactWrappers.manuscriptCliffordConstruction	lead-in to the displayed Clifford relations
 1b6dc4230f88	formalized	GroupApproximation.ManuscriptExactWrappers.manuscriptCliffordConstruction GroupApproximation.LiteralNonMFLinearWitness.literal_mark_ne_one	nontriviality of the sign and the central-extension structure
 cc2e9c3bac4d	formalized	GroupApproximation.ManuscriptExactWrappers.manuscriptCliffordConstruction	the commutator of two distinct generators is the sign
 8b65cfd45c57	formalized	GroupApproximation.ManuscriptExactWrappers.manuscriptCliffordConstruction	the permutation action fixes the sign
-3c587464609e	attribution		Elek-Szabo's embedding theorem, credited
+3c587464609e	formalized	GroupApproximation.SimpleSoficEnvelopeUnconditional.exists_countable_simple_sofic_envelope	the cited envelope theorem is proved in-repo unconditionally; the citation is credit
 acea87e3135e	formalized	GroupApproximation.LiteralSoficAssembly.markedGroup_isSofic	E is sofic, so it embeds
 e86743cbafaf	formalized	GroupApproximation.ManuscriptExactWrappers.manuscriptRadicalPortability	functoriality of the MF residual carries w across
 3deb282e8280	formalized	GroupApproximation.SimpleSoficEnvelopeUnconditional.manuscript_simpleSoficEnvelope	a nontrivial normal subgroup of a simple group is everything
