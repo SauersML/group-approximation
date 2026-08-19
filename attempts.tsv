@@ -22,3 +22,4 @@
 32305256865	2026-08-19T21:43:16Z	GroupApproximation/Analysis/CStarExactnessSliceReduction.lean	sliceLeftMin_mem_of_quotientMinTensorMap_eq_zero
 32306852170	2026-08-19T22:02:29Z	GroupApproximation/Analysis/CStarSliceCompletion.lean	sliceRightMin
 32310137867	2026-08-19T23:13:49Z	GroupApproximation/Analysis/CStarSliceLeft.lean	sliceLeftMin
+32311584466	2026-08-19T23:18:31Z	GroupApproximation/Manuscript/NonMF/QuestionOneOpenness.lean	exists_reductionQuotient_with_all_three_configurations
