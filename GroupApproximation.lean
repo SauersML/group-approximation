@@ -1163,6 +1163,7 @@ import GroupApproximation.Sofic.ConsistencyDistance
 import GroupApproximation.Analysis.CStarTakesakiCoefficient
 import GroupApproximation.Analysis.LancePositiveDefinite
 import GroupApproximation.Analysis.LanceReduction
+import GroupApproximation.Analysis.LanceMultiplicativeDomain
 import GroupApproximation.Analysis.CStarTakesakiDense
 import GroupApproximation.Analysis.CStarTakesakiMinLe
 import GroupApproximation.Analysis.CStarTakesakiCyclic
