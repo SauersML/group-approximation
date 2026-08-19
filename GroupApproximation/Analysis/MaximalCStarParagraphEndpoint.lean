@@ -297,6 +297,7 @@ theorem manuscriptMaximalCStarStrictCompressionRemark :
       ¬ HasMFEmbedding (MaximalGroupCStar E) ∧
       ¬ IsMFAlgebra (MaximalGroupCStar E) ∧
       (∀ μ ∈ spectrum ℝ D.avg, μ ≤ D.rate ∨ μ = 1) ∧
+      D.rate < 1 ∧
       D.avg * D.proj = D.proj ∧
       Nonempty (FaithfulTracialState
         (ReducedGroupCStarTrace.ReducedGroupCStar E)) ∧
@@ -332,7 +333,7 @@ theorem manuscriptMaximalCStarStrictCompressionRemark :
       D.toProperProjectionCompression.not_isResiduallyFiniteDimensional,
       D.toProperProjectionCompression.not_hasMFEmbedding,
       D.toProperProjectionCompression.not_isMFAlgebra,
-      D.gap, D.avg_mul_proj,
+      D.gap, D.rate_lt_one, D.avg_mul_proj,
       ⟨ReducedGroupCStarTrace.canonicalFaithfulTracialState E⟩,
       ReducedGroupCStarTrace.reduced_no_properProjectionCompression E⟩
   · obtain ⟨D⟩ := MaximalCStarLiteralBase.nonempty_strictCompression
