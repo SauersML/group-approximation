@@ -25,12 +25,59 @@ defect on each spanning vector.
 Contractivity is exactly what the Lance approximation could not supply on its
 own, and `CStarExactness.norm_le_of_form_unital` now supplies it for `down`
 while `norm_apply_le_of_unital` covers `up`.
+
+## The finite-dimensional target
+
+`IsNuclearMap` quantifies over `FinDimCStarAlgebra`, and **nothing in this
+corpus had ever built one** --- the definition existed with no inhabitant, so no
+map had ever been shown nuclear for want of a target to factor through.
+`finDimMatrixBlock` is the first: square matrices at the L2 operator norm, whose
+C⋆-structure is six field assignments each of which is an instance already.  It
+is kept a `def` rather than an `instance` for the reason
+`Analysis/PolarLiftingMatrixBlocks` keeps its copy `local`: the norm is scoped,
+and registering the bundle globally would put it in competition with the
+Hilbert--Schmidt structure the corona lane uses on the same type.
+
+`NeZero k` is not bookkeeping.  The identity matrix must have norm one, which
+fails over an empty index set; the CPAP produces its `k` from a Følner set,
+which is nonempty for that reason.
 -/
 
 namespace GroupApproximation
 namespace CStarExactness
 
+open scoped Matrix.Norms.L2Operator
+
 noncomputable section
+
+/-! ## A finite-dimensional target to factor through -/
+
+/-- The bundled C⋆-algebra structure on a square matrix block at the L2
+operator norm.  Six field assignments, every one of them an instance already.
+
+A `def` and not an `instance`: the L2 operator norm is scoped, and the same type
+carries a Hilbert--Schmidt structure elsewhere in this development. -/
+def matrixBlockCStarAlgebra (k : ℕ) [NeZero k] :
+    CStarAlgebra (Matrix (Fin k) (Fin k) ℂ) where
+  toNormedRing := inferInstance
+  toStarRing := inferInstance
+  toCompleteSpace := inferInstance
+  toCStarRing := inferInstance
+  toNormedAlgebra := inferInstance
+  toStarModule := inferInstance
+
+/-- **The first inhabitant of `FinDimCStarAlgebra`.**  Until this, the class of
+finite-dimensional targets `IsNuclearMap` factors through was empty in this
+corpus, so no map could be shown nuclear whatever its approximations. -/
+def finDimMatrixBlock (k : ℕ) [NeZero k] : FinDimCStarAlgebra where
+  carrier := Matrix (Fin k) (Fin k) ℂ
+  algebra := matrixBlockCStarAlgebra k
+  findim := inferInstance
+
+@[simp] theorem finDimMatrixBlock_carrier (k : ℕ) [NeZero k] :
+    (finDimMatrixBlock k).carrier = Matrix (Fin k) (Fin k) ℂ := rfl
+
+/-! ## Three epsilons -/
 
 /-- **Three epsilons.**  A composite of contractions that nearly fixes each
 vector of a combination nearly fixes anything the combination approximates.
