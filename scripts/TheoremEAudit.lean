@@ -5,7 +5,7 @@ import GroupApproximation
 
 Run with:
 
-    lake env lean scratch/TheoremEAudit.lean
+    lake env lean scripts/TheoremEAudit.lean
 
 Two independent checks, both of which must pass for the manuscript's
 Theorem E to be "fully formalized, no-input proven".
