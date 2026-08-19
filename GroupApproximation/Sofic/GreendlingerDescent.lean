@@ -50,8 +50,9 @@ theorem suffix_of_suffix_append {M X Y : List α} (h : M <:+ X ++ Y)
     omega
   obtain ⟨s', hs'⟩ := List.prefix_of_prefix_length_le hXpre hspre hlenX
   refine ⟨s', ?_⟩
-  refine List.append_cancel_left (l := X) ?_
-  rw [← List.append_assoc, hs', hs]
+  have hcancel : X ++ (s' ++ M) = X ++ Y := by
+    rw [← List.append_assoc, hs', hs]
+  exact List.append_cancel_left hcancel
 
 /-! ## The relator the cancellation never reaches -/
 
@@ -63,10 +64,12 @@ theorem infix_of_short_cancellation {c t P' M : List (α × Bool)}
   have hsuf : M <:+ (c ++ t) ++ FreeGroup.invRev c := ⟨P', heq.symm⟩
   obtain ⟨d, hd⟩ := suffix_of_suffix_append hsuf hlen
   have hP' : P' = (c ++ t) ++ d := by
-    refine List.append_cancel_right (l := M) ?_
-    rw [← heq]
-    unfold palindrome
-    rw [← hd, List.append_assoc]
+    have hcancel : P' ++ M = ((c ++ t) ++ d) ++ M := by
+      rw [← heq]
+      unfold palindrome
+      rw [← hd]
+      simp only [List.append_assoc]
+    exact List.append_cancel_right hcancel
   rw [hP']
   exact ⟨c, d, rfl⟩
 
@@ -134,12 +137,13 @@ theorem infix_take_of_bounded_cancellation {c t P' M : List (α × Bool)} {k : �
     omega
   obtain ⟨d, hd⟩ := suffix_of_suffix_append hsuf hlenY
   have hP' : P' = (c ++ t₁) ++ d := by
-    refine List.append_cancel_right (l := M) ?_
-    rw [← heq]
-    unfold palindrome
-    rw [← hsplit]
-    simp only [List.append_assoc]
-    rw [← hd]
+    have hcancel : P' ++ M = ((c ++ t₁) ++ d) ++ M := by
+      rw [← heq]
+      unfold palindrome
+      rw [← hsplit]
+      simp only [List.append_assoc]
+      rw [← hd]
+    exact List.append_cancel_right hcancel
   rw [hP']
   exact ⟨c, d, rfl⟩
 
@@ -151,7 +155,7 @@ Under `C'(1/6)` the overlap eaten out of the rotation is a piece, so `6k < |t|`,
 which is far more than the `2k < |t|` needed here.  Everything in the descent
 except the identification of that overlap as a piece is now in place. -/
 theorem greendlinger_of_bounded_cancellation {R : Set (List (α × Bool))}
-    (hRne : ∀ r ∈ R, r ≠ []) {c t P' M B' : List (α × Bool)} {k : ℕ}
+    (_hRne : ∀ r ∈ R, r ≠ []) {c t P' M B' : List (α × Bool)} {k : ℕ}
     (ht : t ∈ symmetrization R)
     (heq : palindrome c t = P' ++ M)
     (hlen : M.length ≤ (FreeGroup.invRev c).length + k)
