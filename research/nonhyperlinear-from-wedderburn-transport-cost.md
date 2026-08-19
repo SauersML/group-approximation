@@ -29,6 +29,9 @@ marginals.  Weak transport duality therefore bounds the very same cost below
 by `gamma` for every `n`, contradicting `(NT1)`.
 
 Hence the regular-A8 feasibility criterion fails and `Q` is nonhyperlinear.
-The soft-cost certificate strictly relaxes the hard Hall-support route: it can
-use weighted quadratic packet energy without first proving individual Fourier
-blocks vanish.
+The soft-cost formulation is useful because it can search weighted quadratic
+packet energies before choosing a hard support cut.  By
+`soft-transport-thresholds-to-hall-subsequence`, however, a successful
+asymptotic soft certificate on this fixed Fourier alphabet automatically
+contains a hard Hall-deficient subsequence; it is an optimization relaxation,
+not a weaker endpoint theorem.
