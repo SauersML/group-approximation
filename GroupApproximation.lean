@@ -927,6 +927,7 @@ import GroupApproximation.Analysis.CStarStinespringMul
 import GroupApproximation.Analysis.CStarStinespringRep
 import GroupApproximation.Analysis.CStarStinespringLinear
 import GroupApproximation.Analysis.CStarStinespringDilation
+import GroupApproximation.Analysis.CStarStinespringHom
 import GroupApproximation.Analysis.LanceReiterMean
 import GroupApproximation.Analysis.CStarIdealQuotient
 import GroupApproximation.Analysis.CStarQuotientIdentity
@@ -1153,6 +1154,7 @@ import GroupApproximation.Analysis.CStarTakesakiCyclic
 import GroupApproximation.Analysis.CStarTakesakiIdentification
 import GroupApproximation.Analysis.TracialStandardFormCommutation
 import GroupApproximation.Analysis.QuasidiagonalCompression
+import GroupApproximation.Analysis.UniformRoeAlgebra
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
