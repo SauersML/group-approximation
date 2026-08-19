@@ -314,10 +314,21 @@ property~\textup{(T)}.  An exact finite-dimensional counterpart of
 the commutant argument, with equality of dimensions in place of
 finiteness of the ultraproduct, is Theorem~\ref{thm:exactfd}.
 
-The group $E$ is sofic (Theorem~\ref{thm:Esofic}), so neither
-soficity nor hyperlinearity implies the MF property, and the
-canonical trace on $\Cmax(E)$ is hyperlinear but not MF
-(Theorem~\ref{thm:trace}).
+The known implications among the finite approximation properties of
+countable groups are
+\[
+\begin{array}{ccccc}
+ \text{residually finite} & \Longrightarrow & \text{LEF}
+   & \Longrightarrow & \text{MF}\\[2pt]
+ & & \big\Downarrow & & \\[2pt]
+ & & \text{sofic} & \Longrightarrow & \text{hyperlinear.}
+\end{array}
+\]
+The converse of each arrow is open, as is
+\textup{MF}$\,\Rightarrow\,$\textup{hyperlinear} (Question~2 of
+Section~\ref{sec:limits}).  The group $E$ is sofic, hence hyperlinear,
+and not MF (Theorem~\ref{thm:Esofic}), and the canonical trace on
+$\Cmax(E)$ is hyperlinear but not MF (Theorem~\ref{thm:trace}).
 
 \subsection*{Relation to prior work}
 
@@ -470,6 +481,20 @@ vary; likewise, a quantification over all such maps also ranges over
 all dimension sequences.  Proposition~\ref{prop:mf-equivalences}
 shows that nothing changes if the dimensions are required to be
 strictly increasing.
+
+Three quotients of $\prod_nM_{d_n}(\C)$ appear below, differing in
+which sequences they annihilate:
+\begin{itemize}
+\item $\mathcal Q$, where $\opnorm{x_n}\to0$: the norm matrix corona
+ \eqref{eq:corona}, and the target of an MF embedding;
+\item $B_\omega$, where $\lim_\omega\opnorm{x_n}=0$: the norm
+ ultraproduct of Section~\ref{sec:transport}, a finite $C^*$-algebra,
+ in which the Kazhdan projection lives;
+\item the tracial ultraproduct, where $\lim_\omega\hsnorm{x_n}=0$: the
+ target for hyperlinearity.
+\end{itemize}
+The first two see the operator norm and the third does not, which is
+why the argument below fails in the third (Section~\ref{sec:limits}).
 
 The following lifting lemmas are standard perturbation theory; see
 Loring \cite{Loring} for a systematic treatment.
@@ -810,10 +835,9 @@ homomorphism to $\U(\mathcal Q)$ with $\Theta(w)\ne1$.  Then
 $\Theta(w)$ is a self-adjoint unitary commuting with $\Theta(H)$, and
 $q=\tfrac12(1-\Theta(w))$ is a nonzero projection on whose corner
 $q\mathcal Q q$ the compression of $\Theta(w)$ is $-q$ exactly.  The
-argument below, and the two generalizations of
-Section~\ref{sec:conj}, all pass from a matrix model of $H$ to the
-model cut out by coordinate lifts of such a projection.  That passage
-is the same each time, so we state it once.
+argument below, and the generalizations in Section~\ref{sec:conj},
+compress a matrix model of $H$ to the corners cut out by coordinate
+lifts of such a projection.
 
 \begin{lemma}[compression to an asymptotically central corner]
 \label{lem:corner}
@@ -1022,6 +1046,10 @@ $\U(\mathcal Q)$ maps $w$ to the identity.  Since $w\ne1$, every such
 homomorphism has nontrivial kernel.
 \end{proof}
 
+Finite presentability of $\Gamma$ is used only to make
+$E(\Gamma,\alpha,a)$ finitely presented; for the rest, $\Gamma$ may be
+any property-\textup{(T)} group with a proper injective endomorphism.
+
 \section{A finitely presented non-MF group}\label{sec:example}
 
 Specialize Theorem~\ref{thm:kazhdan-clifford} to
@@ -1109,6 +1137,11 @@ and~\textup{(C)} give, respectively,
 \]
 \end{definition}
 
+Family~\textup{(B)} presents the Kazhdan base, family~\textup{(T)}
+imposes $t\iota(\mathcal B)t^{-1}\subseteq\iota(\mathcal B)$,
+family~\textup{(C)} makes $c$ an involution centralizing the base, and
+family~\textup{(W)} makes $w$ central; these are the hypotheses of
+Theorem~\ref{thm:sign-criterion}.
 Families~\textup{(T)} and~\textup{(C)} imply that $d=tct^{-1}$
 commutes with $t\iota(\mathcal B)t^{-1}$.  The element $\iota(v_1)$ lies outside
 that conjugate subgroup, and the commutator $[\,d,\iota(v_1)]$ is
@@ -1258,6 +1291,35 @@ operator-norm asymptotic representation of $E$, so by
 Lemma~\ref{lem:unitarycorona} its class is a homomorphism
 $\Theta\colon E\to\U(\mathcal Q)$, and $\opnorm{\Theta(w)-1}\ge1$ gives
 $\Theta(w)\ne1$, contradicting Theorem~\ref{thm:A}.
+\end{proof}
+
+Since $E$ is finitely presented, the forty-one relators of
+\eqref{eq:E} serve as the test set, and the hypothesis becomes a
+condition on an eight-tuple of unitaries.
+
+\begin{corollary}[a uniform obstruction on the presentation]
+\label{cor:relator-uniform}
+There is a $\delta>0$ with the following property.  For every $d\ge1$
+and every eight-tuple $V_1,\dots,V_8\in\U(d)$, if
+\[
+ \opnorm{r(V_1,\dots,V_8)-1}\le\delta
+ \qquad\text{for each of the forty-one relators $r$ of \eqref{eq:E},}
+\]
+then $\opnorm{w(V_1,\dots,V_8)-1}<1$.
+\leanverified{Sofic/LiteralRelatorObstruction}{GroupApproximation.LiteralRelatorObstruction.literal_relator_uniform_obstruction}
+\end{corollary}
+
+\begin{proof}
+If no such $\delta$ exists, then for every $n$ there are a dimension
+$d_n$ and a tuple $V^{(n)}$ satisfying every relator to within $1/n$
+and with $\opnorm{w(V^{(n)})-1}\ge1$.  Each tuple defines a
+homomorphism $\varphi_n\colon F_8\to\U(d_n)$, since $F_8$ is free, and
+by Lemma~\ref{lem:unitarycorona} the classes define a homomorphism
+$\Phi\colon F_8\to\U(\mathcal Q((d_n)))$.  Each of the forty-one
+relators lies in $\ker\Phi$, its images converging to $1$ in operator
+norm, so $\Phi$ factors as $\Theta\circ\pi$ through the quotient map
+$\pi\colon F_8\to E$.  Theorem~\ref{thm:A} gives $\Theta(w)=1$, that
+is $\opnorm{w(V^{(n)})-1}\to0$, contradicting the lower bound $1$.
 \end{proof}
 
 The compactness argument gives no bound for $\delta$ or $|F_0|$; an
@@ -1643,8 +1705,7 @@ open questions.
 
 \section{The MF equivalences}\label{app:equivalences}
 
-For convenience, we restate the local notion used in
-Proposition~\ref{prop:mf-equivalences}.  An \emph{approximate unitary
+An \emph{approximate unitary
 representation} for a countable group $G$, a finite set $F\subseteq G$,
 a separation constant $\delta>0$, and a tolerance $\varepsilon>0$
 is a map $V\colon G\to\U(r)$, for some positive dimension $r$, such
@@ -2115,8 +2176,8 @@ and relabel along $(n_j)_j$.  On the relabelled sequence $q_n\ne0$ for
 every $n$, $\opnorm{[q_n,V_{g,n}]_{-}}\to0$ in the ordinary sense for
 every fixed $g\in\bar H$, since $g=g_i$ lies in the constraint of $A_j$
 for all $j\ge i$, and the left-hand side of \eqref{eq:corner-spectral}
-tends to $0$ in the ordinary sense as well, which is what the last
-constraint of $A_j$ supplies.  Lemma~\ref{lem:corner} now gives an
+tends to $0$ in the ordinary sense as well, by the last constraint of
+$A_j$.  Lemma~\ref{lem:corner} now gives an
 operator-norm asymptotic representation $(W_{g,n})$ of $\bar H$ on the
 corners $q_nM_{d_n}(\C)q_n$.
 
@@ -2362,9 +2423,9 @@ the semidirect product of the locally finite Clifford group on the
 coset space by the solvable affine group
 $\mathrm{BS}(1,2)\cong\mathbb Z[1/2]\rtimes\mathbb Z$ --- and
 therefore MF, by quasidiagonality of amenable groups \cite{TWW}.  The
-models above use neither fact, and give the weaker conclusion that
-$w_{\mathrm{BS}}$ survives in the MF group $\Theta(E_{\mathrm{BS}})$
-rather than separating the whole realized quotient.
+models above establish only that $w_{\mathrm{BS}}$ survives in the MF
+group $\Theta(E_{\mathrm{BS}})$, and use neither amenability nor
+quasidiagonality.
 
 The preceding homomorphism to $\U(\mathcal Q)$ does not arise from
 exact finite-dimensional representations.  In a finite image, the
@@ -2611,10 +2672,9 @@ Lemma~\ref{lem:permanence}(2), while \(E\) is not MF by Theorem~\ref{thm:A}.
 
 \section{Commuting orbits and the MF residual}\label{subsec:collapse}
 
-The proof of Theorem~\ref{thm:sign-criterion} compresses a
-representation to the negative spectral corner of a central involution.  The theorems of this section replace
-that corner by an arbitrary projection of $\mathcal Q$ whose
-conjugation orbit commutes.
+In Theorem~\ref{thm:sign-criterion} the corner is the negative
+spectral corner of a central involution.  Here it is an arbitrary
+projection of $\mathcal Q$ whose conjugation orbit commutes.
 
 \begin{theorem}[a commuting orbit forces commutation]\label{thm:projection-collapse}
 Let $H$ be countable, let $L\le H$ have property~\textup{(T)}, let
@@ -2754,8 +2814,8 @@ $\pi(s\gamma s^{-1})y=y$ for every $\gamma\in L$.
 
 Normalize the Hilbert--Schmidt norms by $k_n=\operatorname{rank}Q_n$
 rather than by $d_n$ and apply
-Theorem~\ref{thm:transport-variants} with that weight.  Its proof
-produces the projection $P$ onto
+Theorem~\ref{thm:transport-variants} with that weight.  In its proof,
+$P$ is the projection onto
 $\operatorname{Fix}\pi(L)$ and the conjugate
 $Q=\pi(s)P\pi(s)^{*}$ onto
 $\operatorname{Fix}\pi(sLs^{-1})$, with $P\le Q$ and $P\sim Q$ in
@@ -2858,9 +2918,9 @@ $\bar L=q(\iota(\mathcal B))$.  The element $\bar d$ is an involution
 because $c^2=1$, and $q(t)\bar Lq(t)^{-1}$ centralizes $\bar d$
 because conjugating the relation $[c,\iota(\mathcal B)]=1$
 of \eqref{eq:E} by $t$ gives
-$[\,t\iota(\mathcal B)t^{-1},\,d\,]=1$ in $E$, where $d=tct^{-1}$; it is
-the conjugate subgroup that has to centralize $d$, which is what
-conjugating by $t$ supplies.  Property~\textup{(T)} passes to $\bar L$,
+$[\,t\iota(\mathcal B)t^{-1},\,d\,]=1$ in $E$, where $d=tct^{-1}$.  The
+subgroup that centralizes $d$ is the conjugate one, which is why the
+relation is conjugated by $t$.  Property~\textup{(T)} passes to $\bar L$,
 and $q(t)$ conjugates it into itself.  Thus (W1) and (W2) of Definition~\ref{def:invwitness} hold, and only
 (W3) remains.
 
@@ -3520,24 +3580,14 @@ $(x_n)$ is any bounded lift, then
 $\opnorm{x_n^{*}x_n-1}\to0$ and $\opnorm{x_nx_n^{*}-1}\to0$.
 Thus $x_n$ is invertible for all large $n$, and the polar correction
 $u_n=x_n(x_n^{*}x_n)^{-1/2}$ is unitary with
-$\opnorm{u_n-x_n}\to0$.  No real-rank-zero or semiprojectivity
-hypothesis is needed for this lifting step in the sense of Loring
-\cite{Loring98}.  The matrix-specific inputs in
+$\opnorm{u_n-x_n}\to0$.  This lifting step needs only polar correction
+in the coordinate algebras, with no real-rank-zero or semiprojectivity
+hypothesis in the sense of Loring \cite{Loring98}.  The matrix-specific inputs in
 Theorem~\ref{thm:kazhdan-transport} are instead the Hilbert-space
 conjugation model and finiteness of the norm ultraproduct.
 
 \subsection*{Questions}
 \begin{enumerate}
-\item What is $\operatorname{Res}_{\mathrm{MF}}(E)$?  It properly
-contains $\{1,w\}$ by Theorem~\ref{thm:signfree}, and
-Corollary~\ref{cor:collapsequot}, applied to $E/\langle w\rangle$ and
-its defect $D=D_{\mathrm{coll}}$, computes it from
-$\operatorname{Res}_{\mathrm{MF}}\bigl((E/\langle w\rangle)/D\bigr)$.
-These reductions give no further information about that last group:
-$w=1$ in $E/\langle w\rangle$, and the generators of $D$ are trivial
-in the quotient by $D$.  That quotient may still contain
-a finite normal subgroup, a normal Kazhdan subgroup, or an orbit
-configuration to which the preceding criteria apply.
 \item Is there a torsion-free finitely presented non-MF group?  For
 torsion-free groups, Theorem~\ref{thm:criterion} gives no obstruction
 because every finite subgroup is trivial, while
@@ -3558,9 +3608,6 @@ separate nontrivial group elements, so it does not directly produce a
 hyperlinear model.  This
 question concerns the CDE convention fixed above; for stronger
 trace-controlled MF conventions the implication is built into the definition.
-\item For which groups do the criteria of
-Theorems~\ref{thm:criterion},~\ref{thm:normal-kazhdan}
-and~\ref{thm:projection-collapse} compute the residual exactly?
 \item Does the obstruction survive when the matrix blocks are replaced
 by other building blocks?  The proof of
 Theorem~\ref{thm:kazhdan-transport} uses finite dimensionality of
@@ -3570,13 +3617,26 @@ ultraproduct; faithful traces alone do not replace these inputs.  For
 which separable $C^*$-algebras $A_n$ does every homomorphism
 $H\to\U\bigl(\prod_nA_n/\bigoplus_nA_n\bigr)$ still map $w$ to the
 identity?
+\item For which groups do the criteria of
+Theorems~\ref{thm:criterion},~\ref{thm:normal-kazhdan}
+and~\ref{thm:projection-collapse} compute the residual exactly?
+\item What is $\operatorname{Res}_{\mathrm{MF}}(E)$?  It properly
+contains $\{1,w\}$ by Theorem~\ref{thm:signfree}, and
+Corollary~\ref{cor:collapsequot}, applied to $E/\langle w\rangle$ and
+its defect $D=D_{\mathrm{coll}}$, computes it from
+$\operatorname{Res}_{\mathrm{MF}}\bigl((E/\langle w\rangle)/D\bigr)$.
+These reductions give no further information about that last group:
+$w=1$ in $E/\langle w\rangle$, and the generators of $D$ are trivial
+in the quotient by $D$.  That quotient may still contain
+a finite normal subgroup, a normal Kazhdan subgroup, or an orbit
+configuration to which the preceding criteria apply.
 \end{enumerate}
 
 \begin{remark}[a small-cancellation realization]
 \label{rem:ff-realization}
 The affine base of Sections~\ref{sec:group}--\ref{sec:witness} can be
-replaced by a small-cancellation construction, as Fournier-Facio
-pointed out to us and as \cite[\S2]{FFF} now records publicly.  There a
+replaced by the small-cancellation construction of \cite[\S2]{FFF},
+which Fournier-Facio pointed out to us.  There a
 universal finitely presented torsion-free group --- one containing a
 copy of every finitely presented torsion-free group --- is embedded by
 small cancellation in a finitely presented torsion-free
@@ -3588,9 +3648,10 @@ and the third factor is not needed here.  Choosing an
 isomorphism $\alpha\colon P\to P_1\le P$ and any
 $a\in P_2\setminus\{1\}$ gives the input required by
 Theorem~\ref{thm:kazhdan-clifford}.  The group $E(P,\alpha,a)$ has
-torsion even though $P$ does not: the theorem supplies a \emph{nontrivial}
-central involution $w$, whereas adjoining a generator with $c^2=1$ would
-on its own leave open that $c$ collapses in the presented quotient.
+torsion even though $P$ does not, since the central involution $w$ of
+Theorem~\ref{thm:kazhdan-clifford} is nontrivial; adjoining a generator
+with $c^2=1$ would on its own leave open that $c$ collapses in the
+presented quotient.
 \end{remark}
 
 
@@ -3687,6 +3748,29 @@ distinct roles of the operator and Hilbert--Schmidt norms.  We thank
 Alon Dogon for pointing out that the interaction between those two
 norms also occurs in the earlier approach of Bachner--Dogon--Lubotzky
 \cite{BDL}.
+
+\section*{AI and computational resource usage}
+A supercomputer was used to rule out possible approaches but did not
+contribute to the mathematics used in this paper.  GPT-5.6 Sol and
+Claude Fable~5 were used in Claude Code, Codex, and on the ChatGPT and
+Claude websites over multiple days, across thousands of user prompts,
+and Claude Opus~5 also with formalization and operational coding
+tasks.  A custom informal proof tool was used to provide scaffolding
+to the AIs.  The non-MF result was first formulated by GPT-5.6 Sol
+(``high'' thinking effort, ChatGPT web) while working on a separate
+but related problem, after the user mentioned the possibility of the
+existing work applying to MF groups instead of the other problem.
+This instance was given thousands of pages of informal notes
+accumulated from multiple days of work on other related problems.
+Other parallel agents without the MF idea (including ``Pro'' mode) did
+not discover the key MF result.  The exact prompt given to the
+instance leading to the non-MF proof was:
+\begin{quote}
+``Achieve f\{MF of the Clifford Kun--Thom extension \}$\widetilde W$
+in such a way that it archives our goals and ends everything, or,
+possibly, a different breakthrough, leading to achieving the final
+result.  You got this!''
+\end{quote}
 
 \begin{thebibliography}{GKEMP}
 

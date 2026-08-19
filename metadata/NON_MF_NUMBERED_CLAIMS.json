@@ -322,6 +322,30 @@
       ]
     },
     {
+      "id": "cor:relator-uniform",
+      "environment": "corollary",
+      "title": "a uniform obstruction on the presentation",
+      "statement_sha256": "3353f0f5c22fd78010a9dd91d718ef61d6ac17e8ec86ce87b24e75d9399521fb",
+      "status": "exact",
+      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
+      "dependencies": [
+        "thm:A",
+        "def:E",
+        "lem:unitarycorona"
+      ],
+      "extra_assumptions": [],
+      "external_inputs": [],
+      "coverage_gap": "",
+      "lean": [
+        {
+          "role": "exact",
+          "module": "Sofic/LiteralRelatorObstruction",
+          "declaration": "GroupApproximation.LiteralRelatorObstruction.literal_relator_uniform_obstruction",
+          "covers": "the complete printed proposition"
+        }
+      ]
+    },
+    {
       "id": "prop:literal-base-T",
       "environment": "proposition",
       "title": "",

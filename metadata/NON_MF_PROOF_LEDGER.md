@@ -7,9 +7,9 @@ Spec document: `non_mf_groups_exist.tex`.  Formal development: `GroupApproximati
 | | |
 | --- | --- |
 | commit | the external literature-review pass of 2026-08-19 (this one) |
-| `git hash-object non_mf_groups_exist.tex` | `ba5b45162ab12088c02d9f1d247818df34278b87` |
-| sha256 of the file | `70f65df42f1a6e02aa1f6308891c00dd4691920e3397b5f8b2e276fe6724f986` |
-| `wc -l` | 4014 |
+| `git hash-object non_mf_groups_exist.tex` | `827fa28d24111b34c3d39eb83b0373d4124c523d` |
+| sha256 of the file | `626ecead7b19cf82e8ae006ac2e6b46264b12c4cd6474b57e7f819ffaff9eb0f` |
+| `wc -l` | 4098 |
 
 `git hash-object` of the file must reproduce the blob above for the rows below
 to be read as current.  The file has shrunk from 4768 lines to 3771 across the
@@ -609,8 +609,8 @@ and `7ab8bd96` is where its real description lives.
 <!-- LEDGER-COUNTS -->
 | Column | EXACT | MISMATCH | MISSING | UNDER-SPECIFIED | total |
 | --- | --- | --- | --- | --- | --- |
-| statement | 402 | 4 | 24 | 0 | 430 |
-| proof | 401 | 2 | 27 | 0 | 430 |
+| statement | 403 | 4 | 24 | 0 | 431 |
+| proof | 402 | 2 | 27 | 0 | 431 |
 <!-- END-LEDGER-COUNTS -->
 
 ## Rows waiting for a first green build
@@ -997,9 +997,10 @@ once in the comment-stripped manuscript; the probe is the drift detector.
 | thm:abstract-nk | env | thm:abstract-nk | 45b50a521fff6393 |
 | cor:intrinsic-nk | env | cor:intrinsic-nk | 74911f7eaffe314f |
 | thm:kazhdan-clifford | env | thm:kazhdan-clifford | b4e0d1c3ccbbbcc3 |
-| rem:ff-realization | env | rem:ff-realization | 6437336d2c2999de |
+| rem:ff-realization | env | rem:ff-realization | 3fe4159d96e0870d |
 | thm:A | env | thm:A | 3073242b8e939a98 |
 | cor:uniform | env | cor:uniform | 127963fa65d9be4e |
+| cor:relator-uniform | env | cor:relator-uniform | 3353f0f5c22fd780 |
 | cor:scaling-family | env | cor:scaling-family | 9370bcd0aa550f6e |
 | thm:exactfd | env | thm:exactfd | 1b89b962cc94424b |
 | thm:exactfd-intrinsic | env | thm:exactfd-intrinsic | 08b9b0b0dda2eb6a |
@@ -1107,7 +1108,7 @@ once in the comment-stripped manuscript; the probe is the drift detector.
 | p:q3 | prose | `Does MF imply hyperlinearity?` | - |
 | p:q4 | prose | `compute the residual exactly` | - |
 | p:q5 | prose | `by other building blocks` | - |
-| p:q5-lift | prose | `No real-rank-zero or semiprojectivity hypothesis is needed` | - |
+| p:q5-lift | prose | `This lifting step needs only polar correction` | - |
 | p:appA-localmodel | prose | `An \emph{approximate unitary representation} for a countable group` | - |
 | p:appC-construction | prose | `is the completion of the group ring` | - |
 | p:appC-universal | prose | `Injectivity follows from the left regular representation` | - |
@@ -1299,6 +1300,7 @@ everywhere: the TeX is the specification and does not move).
 | TA.00b | thm:A | the whole of Theorem A as one statement: the presentation (eight generators, forty-one relators, finitely presented), soficity and hyperlinearity, the central involution, corona annihilation, and the MF failures | `LiteralTheoremAPackage.manuscriptTheoremA_package` | EXACT | EXACT | literal | unconditional | - | NO | **ADDED 2026-08-18**, the row for the second badge on `thm:A`.  Pure assembly: every conjunct cites an existing graded endpoint -- TA.00's `manuscriptTheoremA`, `manuscriptLiteralPresentation`, and `LiteralSoficAssembly` -- nothing new is proved, and the module holds a single declaration so the badge cannot drift from the statement it certifies.  What the package adds is the identification: every clause is about the same term `MarkedGroup` and the same `mark`, which the scattered badges left to the reader.  Compiled in the root closure on the reconciliation build; an assembly of graded endpoints, so the grade follows its cited rows |
 | TA.01 | thm:A | the defining relations make w central; with c² = 1 centrality implies w² = 1 | `LiteralNonMFPresentation.mark_central`; `LiteralNonMFPresentation.mark_sq` | EXACT | EXACT | literal | unconditional | - | NO | - |
 | TA.02 | cor:uniform | Corollary 5.4: there are δ > 0 and finite F₀ ⊂ E with a uniform local obstruction ‖φ(w) − 1‖ < 1 in every dimension | `LiteralUniformObstruction.literal_uniform_operatorNorm_obstruction` | EXACT | EXACT | literal | unconditional | - | NO | - |
+| TA.02b | cor:relator-uniform | Corollary: one δ > 0 such that in every dimension, any eight-tuple of unitaries satisfying the forty-one printed relators to within δ in operator norm evaluates the marked word inside the open unit ball about the identity | `LiteralRelatorObstruction.literal_relator_uniform_obstruction` | EXACT | EXACT | literal | unconditional | - | NO | ADDED 2026-08-19 with the printed corollary.  The declaration was already in the tree and root-imported and had no printed statement to grade; it is `TA.02` with the unnamed finite test set replaced by the printed relator list, which is what makes the obstruction quotable from the presentation alone.  Its own docstring records that δ is still obtained from compactness and is not a number |
 | TA.03 | cor:uniform | proof: otherwise choose models violating the conclusion for δ = 1/n along an exhaustion | `uniform_invisibility` | EXACT | EXACT | literal | unconditional | - | NO | - |
 | TA.04 | cor:uniform | these form an asymptotic representation whose values at w stay ≥ 1 from the identity; its corona class detects w, contradicting Theorem A(2) | `uniform_invisibility` | EXACT | EXACT | literal | unconditional | - | NO | - |
 | TA.05 | cor:uniform | MOVED to notes/NON_MF_META_CLAIMS.md — the compactness argument is not quantitative; an effective modulus remains open | - | MISSING | MISSING | - | open | - | NO | TOMBSTONE 2026-08-17: an open-status claim about a quantitative strengthening of a theorem that is already EXACT, so no Lean work can move this row as it stands.  The manifest records the two named obstructions whose arrival would change its status.  See `notes/NON_MF_META_CLAIMS.md` |

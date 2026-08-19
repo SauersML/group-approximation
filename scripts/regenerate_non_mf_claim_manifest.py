@@ -72,6 +72,10 @@ CLAIM_TARGETS: dict[str, tuple[str, str]] = {
     "cor:uniform": (
         "Sofic/LiteralUniformObstruction",
         "GroupApproximation.LiteralUniformObstruction.literal_uniform_operatorNorm_obstruction"),
+    "cor:relator-uniform": (
+        "Sofic/LiteralRelatorObstruction",
+        "GroupApproximation.LiteralRelatorObstruction."
+        "literal_relator_uniform_obstruction"),
     "cor:scaling-family": (
         "Sofic/ScalingFamilyEndpoint",
         "GroupApproximation.ScalingFamilyEndpoint.manuscriptTheoremFamily"),
@@ -252,6 +256,7 @@ DEPENDENCIES: dict[str, list[str]] = {
               "lem:unitarycorona", "lem:square"],
     "cor:scaling-family": ["thm:A", "thm:kazhdan-clifford"],
     "cor:uniform": ["thm:A"],
+    "cor:relator-uniform": ["thm:A", "def:E", "lem:unitarycorona"],
     "thm:exactfd-intrinsic": ["thm:exactfd"],
     "thm:cyclic": ["thm:exactfd", "con:clifford"],
     "thm:reduced": ["thm:A", "lem:faithfultrace"],
