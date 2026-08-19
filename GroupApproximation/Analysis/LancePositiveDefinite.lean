@@ -65,6 +65,7 @@ conjugate-linear in the first argument, as Mathlib's inner products are. -/
 def starInner (ξ η : G →₀ ℂ) : ℂ :=
   ξ.sum fun x c ↦ (starRingEnd ℂ) c * η x
 
+omit [Group G] in
 /-- The inner product as a sum over any finite set containing the support
 of the first argument. -/
 theorem starInner_eq_sum {ξ η : G →₀ ℂ} {s : Finset G}
@@ -96,8 +97,9 @@ theorem lTrans_lTrans (a b : G) (ξ : G →₀ ℂ) :
 /-! ## The squared `ℓ²` norm -/
 
 /-- The squared `ℓ²` norm of a finitely supported complex function. -/
-def l2NormSq (ξ : G →₀ ℂ) : ℝ := ∑ x ∈ ξ.support, ‖ξ x‖ ^ 2
+noncomputable def l2NormSq (ξ : G →₀ ℂ) : ℝ := ∑ x ∈ ξ.support, ‖ξ x‖ ^ 2
 
+omit [Group G] in
 /-- The squared norm as a sum over any finite set containing the
 support. -/
 theorem l2NormSq_eq_sum {ξ : G →₀ ℂ} {s : Finset G} (hs : ξ.support ⊆ s) :
@@ -106,9 +108,11 @@ theorem l2NormSq_eq_sum {ξ : G →₀ ℂ} {s : Finset G} (hs : ξ.support ⊆ 
   rw [Finsupp.notMem_support_iff.mp hx, norm_zero]
   norm_num
 
+omit [Group G] in
 theorem l2NormSq_nonneg (ξ : G →₀ ℂ) : 0 ≤ l2NormSq ξ :=
   Finset.sum_nonneg fun x _ ↦ by positivity
 
+omit [Group G] in
 /-- The inner product of a vector with itself is its squared norm. -/
 theorem starInner_self (ξ : G →₀ ℂ) :
     starInner ξ ξ = (l2NormSq ξ : ℂ) := by
@@ -122,17 +126,16 @@ theorem starInner_self (ξ : G →₀ ℂ) :
 
 theorem starInner_comm (ξ η : G →₀ ℂ) :
     starInner η ξ = (starRingEnd ℂ) (starInner ξ η) := by
-  classical
-  rw [starInner_eq_sum (s := ξ.support ∪ η.support) Finset.subset_union_right,
-    starInner_eq_sum (s := ξ.support ∪ η.support) Finset.subset_union_left,
-    map_sum]
+  rw [Complex.ofReal_sum]
   refine Finset.sum_congr rfl fun x _ ↦ ?_
-  rw [map_mul, Complex.conj_conj, mul_comm]
+  rw [mul_comm, Complex.mul_conj, Complex.normSq_eq_norm_sq]
 
+omit [Group G] in
 theorem starInner_sub_left (ξ ξ' η : G →₀ ℂ) :
     starInner (ξ - ξ') η = starInner ξ η - starInner ξ' η :=
   Finsupp.sum_sub_index fun a b₁ b₂ ↦ by rw [map_sub, sub_mul]
 
+omit [Group G] in
 theorem starInner_sub_right (ξ η η' : G →₀ ℂ) :
     starInner ξ (η - η') = starInner ξ η - starInner ξ η' := by
   show (∑ x ∈ ξ.support, (starRingEnd ℂ) (ξ x) * (η - η') x)
@@ -142,6 +145,7 @@ theorem starInner_sub_right (ξ η η' : G →₀ ℂ) :
   refine Finset.sum_congr rfl fun x _ ↦ ?_
   rw [Finsupp.sub_apply, mul_sub]
 
+omit [Group G] in
 theorem starInner_smul_left (c : ℂ) (ξ η : G →₀ ℂ) :
     starInner (c • ξ) η = (starRingEnd ℂ) c * starInner ξ η := by
   show (c • ξ).sum (fun x v ↦ (starRingEnd ℂ) v * η x)
@@ -155,6 +159,7 @@ theorem starInner_smul_left (c : ℂ) (ξ η : G →₀ ℂ) :
     rw [smul_eq_mul, map_mul, mul_assoc]
   rw [h1, ← Finsupp.mul_sum]
 
+omit [Group G] in
 theorem starInner_smul_right (c : ℂ) (ξ η : G →₀ ℂ) :
     starInner ξ (c • η) = c * starInner ξ η := by
   show (∑ x ∈ ξ.support, (starRingEnd ℂ) (ξ x) * (c • η) x)
@@ -164,6 +169,7 @@ theorem starInner_smul_right (c : ℂ) (ξ η : G →₀ ℂ) :
   rw [Finsupp.smul_apply, smul_eq_mul]
   ring
 
+omit [Group G] in
 theorem starInner_finsetSum_left {n : ℕ} (Θ : Fin n → (G →₀ ℂ))
     (η : G →₀ ℂ) :
     starInner (∑ i, Θ i) η = ∑ i, starInner (Θ i) η := by
@@ -172,6 +178,7 @@ theorem starInner_finsetSum_left {n : ℕ} (Θ : Fin n → (G →₀ ℂ))
   rw [← Finsupp.sum_finsetSum_index (fun a ↦ by rw [map_zero, zero_mul])
     (fun a b₁ b₂ ↦ by rw [map_add, add_mul])]
 
+omit [Group G] in
 theorem starInner_finsetSum_right {n : ℕ} (ξ : G →₀ ℂ)
     (Θ : Fin n → (G →₀ ℂ)) :
     starInner ξ (∑ j, Θ j) = ∑ j, starInner ξ (Θ j) := by
@@ -296,9 +303,10 @@ theorem l2NormSq_sub_lTrans {ξ : G →₀ ℂ} (hξ : l2NormSq ξ = 1) (g : G) 
 density -/
 
 /-- The squared-modulus density of an `ℓ²`-vector. -/
-def sqDensity (ξ : G →₀ ℂ) : G →₀ ℝ :=
+noncomputable def sqDensity (ξ : G →₀ ℂ) : G →₀ ℝ :=
   ξ.mapRange (fun c ↦ ‖c‖ ^ 2) (by simp)
 
+omit [Group G] in
 @[simp] theorem sqDensity_apply (ξ : G →₀ ℂ) (x : G) :
     sqDensity ξ x = ‖ξ x‖ ^ 2 :=
   Finsupp.mapRange_apply
