@@ -215,11 +215,11 @@ theorem quadratic_coeffVector_le (π : StarRep A H) (ρ : StarRep B K)
   have g3 : (φ.toCLM z₂).re
       = ‖spatialHom φ.gnsRep ρ x (coeffVector φ.gnsRep φ.gnsVector a η)‖ ^ 2 := by
     rw [← g1, inner_spatialHom_star_mul_self]
-    apply re_inner_self
+    exact re_inner_self (spatialHom φ.gnsRep ρ x (coeffVector φ.gnsRep φ.gnsVector a η))
   have g4 : (φ.toCLM z₁).re
       = ‖coeffVector φ.gnsRep φ.gnsVector a η‖ ^ 2 := by
     rw [← g2]
-    apply re_inner_self
+    exact re_inner_self (coeffVector φ.gnsRep φ.gnsVector a η)
   have hM : spatialNorm φ.gnsRep ρ x ≤ leftGnsSup A ρ x :=
     spatialNorm_gnsRep_le_leftGnsSup ρ x φ
   have hb : ‖spatialHom φ.gnsRep ρ x
@@ -613,10 +613,11 @@ theorem spatialNorm_le_leftGnsSup (π : StarRep A H) (ρ : StarRep B K)
       spatialHom π ρ (star x * x) (∑ i : Fin m, ξ i ⊗ₜ[ℂ] η i)⟫_ℂ).re
       = ‖spatialHom π ρ x (∑ i : Fin m, ξ i ⊗ₜ[ℂ] η i)‖ ^ 2 := by
     rw [inner_spatialHom_star_mul_self]
-    apply re_inner_self
+    exact re_inner_self (spatialHom π ρ x (∑ i : Fin m, ξ i ⊗ₜ[ℂ] η i))
   have e2 : (⟪∑ i : Fin m, ξ i ⊗ₜ[ℂ] η i,
       ∑ i : Fin m, ξ i ⊗ₜ[ℂ] η i⟫_ℂ).re
-      = ‖∑ i : Fin m, ξ i ⊗ₜ[ℂ] η i‖ ^ 2 := by apply re_inner_self
+      = ‖∑ i : Fin m, ξ i ⊗ₜ[ℂ] η i‖ ^ 2 :=
+    re_inner_self (∑ i : Fin m, ξ i ⊗ₜ[ℂ] η i)
   rw [e1, e2] at h
   have hnn : 0 ≤ ‖spatialHom π ρ x (∑ i : Fin m, ξ i ⊗ₜ[ℂ] η i)‖ :=
     norm_nonneg _
