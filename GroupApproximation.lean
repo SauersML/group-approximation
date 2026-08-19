@@ -678,6 +678,8 @@ import GroupApproximation.Sofic.NormTraceGap
 import GroupApproximation.Sofic.FaithfullyTracedCoordinateNoGo
 import GroupApproximation.Sofic.HilbertSchmidtAdjointGap
 import GroupApproximation.Sofic.PermutationAdjointGap
+import GroupApproximation.Sofic.AdjointOperatorNormRequirement
+import GroupApproximation.Sofic.KazhdanTransportFiniteDimensionalInputs
 import GroupApproximation.Sofic.WeakMFUltraproduct
 import GroupApproximation.Sofic.OpAlmostRepresentation
 import GroupApproximation.Sofic.NormMFResidualDetector
@@ -1150,6 +1152,7 @@ import GroupApproximation.Analysis.OmegaConjQCompatibility
 import GroupApproximation.Analysis.OmegaFiniteComparison
 import GroupApproximation.Analysis.OmegaFixRange
 import GroupApproximation.Analysis.PolarLiftingGeneralCStar
+import GroupApproximation.Analysis.PolarLiftingHypothesisFree
 import GroupApproximation.Analysis.StablyFiniteAmplification
 import GroupApproximation.Analysis.MatrixCoronaDedekindFinite
 import GroupApproximation.Analysis.VectorHilbertUltraproduct
@@ -1161,6 +1164,9 @@ import GroupApproximation.Analysis.VectorOmegaCoronaAction
 import GroupApproximation.Analysis.CoronaProjectionLifting
 import GroupApproximation.Analysis.UnitaryAverageFixedVector
 import GroupApproximation.Analysis.OmegaCoronaKazhdanProjection
+import GroupApproximation.Analysis.PrintedDiagonalSubsequence
+import GroupApproximation.Analysis.PrintedCornerCompression
+import GroupApproximation.Analysis.PrintedCornerRelabelling
 import GroupApproximation.Analysis.PolarLiftingMatrixBlocks
 import GroupApproximation.Sofic.OmegaRouteManuscriptTransport
 import GroupApproximation.Sofic.LiteralProductMultiplicity
@@ -1185,6 +1191,11 @@ import GroupApproximation.Analysis.TracialStandardFormCommutation
 import GroupApproximation.Analysis.TracialConjugationExists
 import GroupApproximation.Analysis.QuasidiagonalCompression
 import GroupApproximation.Analysis.UniformRoeAlgebra
+import GroupApproximation.Analysis.AmenableMFInput
+import GroupApproximation.Sofic.CliffordAsideInert
+import GroupApproximation.Sofic.ContainsSquareWitness
+import GroupApproximation.Analysis.CStarMinTensorInjective
+import GroupApproximation.Analysis.CStarExactComplex
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group

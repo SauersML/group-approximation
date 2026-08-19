@@ -27,6 +27,17 @@ an explicit argument by every statement in the file*: no theorem here claims
 that any particular group admits one.  A reader looking for the existence
 claim will not find it, because it is not proved anywhere in this development.
 
+`Sofic.ContainsSquareWitness` takes the datum itself apart, and a reader of
+this file should know what it does and does not do there.  It proves the
+remark's *"in particular"* --- that universality gives `ContainsSquare P`,
+because `P × P` inherits finite presentation and torsion-freeness --- from
+`UniversalFPTorsionFree`, a typed input nothing inhabits, so `KC.21`'s debt to
+the literature is now exactly that one statement.  It also constructs a
+`ContainsSquare` for an *abelian* group, to settle that the structure is
+satisfiable and that the theorems below are not vacuous.  That construction is
+no `instance`, and its group carries neither `Group.IsFinitelyPresented` nor
+`HasKazhdanPropertyTComplex`, so nothing in this file can consume it.
+
 **`KC.22` is the reduction, and it is unconditional.**  The word "gives" in the
 printed sentence hides a small argument, and that argument needs no property of
 `P` at all: for an arbitrary group containing `P × P`, the composite
@@ -102,9 +113,14 @@ injective homomorphism from `P × P`.
 
 This structure is a *hypothesis*, never a claim.  Every declaration below takes
 one as an explicit argument; none constructs one.  What would construct one for
-a suitable `P` is Fournier-Facio's theorem, which is proof-ledger row `KC.21`,
-is cited to the literature and a personal communication, and is not formalized
-in this development. -/
+a *suitable* `P` --- finitely presented, torsion-free, Kazhdan --- is
+Fournier-Facio's theorem, which is proof-ledger row `KC.21`, is cited to
+`\cite[\S2]{FFF}`, and is not formalized in this development.
+
+Satisfiable it nonetheless is: `ContainsSquareWitness.witnessContainsSquare`
+exhibits one for an abelian group, which is why the theorems below are not
+vacuously true.  Being satisfiable and being satisfied by a Kazhdan group are
+different questions, and only the first is settled. -/
 structure ContainsSquare (P : Type*) [Group P] where
   /-- The embedding of `P × P`, whose image is the printed `P₁ × P₂ ≤ P`. -/
   emb : (P × P) →* P
