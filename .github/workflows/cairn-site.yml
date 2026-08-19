@@ -69,7 +69,36 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
+      # `fetch-depth: 0` is required by the validation step below, not by the
+      # site build.  A node may pin an artifact as `<rev>:<path>` for a file
+      # that deliberately left the working tree, and cairn resolves that with
+      # `git cat-file -e`, which a depth-1 clone cannot answer -- so every pin
+      # would read as a missing artifact and the check would invent findings.
+      # The prove job in prover.yml needed the same thing for the same reason.
       - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
+        with:
+          fetch-depth: 0
+
+      # Validate before publishing, and fail loudly.
+      #
+      # This is the same `bin/cairn check` the prover's Source scan runs, so it
+      # is an early warning for the exact condition that stops certification:
+      # under `bash -e` there any nonzero exit fails `Build and audit`, which
+      # stops `verified` for every session.  Nothing was giving that signal
+      # quickly.  `bin/cairn site` exits 0 on an invalid graph -- verified
+      # against 679b4536, whose 67-character route id put the graph over
+      # cairn's 64-char cap: `check` exits 4 there and `site` exits 0, so the
+      # site cheerfully published a graph with the node silently dropped while
+      # every certificate went red.  That defect reached main twice on
+      # 2026-08-19 and one instance sat there overnight.
+      #
+      # This workflow already triggers on `research/**`, `tools/cairn.py` and
+      # `bin/cairn`, which is exactly the set that can break the graph, and it
+      # needs no toolchain -- so it answers in seconds where the prover answers
+      # in minutes and only once it wins a runner.  Publishing a graph that has
+      # not been validated is also just wrong on its own terms.
+      - name: Validate the research graph
+        run: bin/cairn check
 
       - name: Build the site
         run: bin/cairn site
