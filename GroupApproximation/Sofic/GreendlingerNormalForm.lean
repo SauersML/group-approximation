@@ -158,8 +158,9 @@ theorem exists_conjugation_normalForm {r : List (α × Bool)}
           · refine ⟨[], k + j, ?_, ?_⟩
             · rw [palindrome_nil]
               exact (isCyclicallyReduced_rotate hr (k + j)).isReduced
-            · rw [hconj, palindrome_nil, ← List.rotate_rotate]
-              exact hcase
+            · rw [List.rotate_rotate] at hcase
+              rw [hconj]
+              simpa using hcase
       | cons d c' =>
           by_cases hcancel : a = invLetter d
           · -- cancelling shrinks the conjugator
@@ -172,13 +173,14 @@ theorem exists_conjugation_normalForm {r : List (α × Bool)}
               refine isReduced_conj_letter hred (palindrome_ne_nil hrotne) a ?_ ?_
               · intro y hy
                 rw [head?_palindrome_cons] at hy
-                have hyd : y = d := by simpa using hy
+                have hyd : y = d := (by simpa using hy : d = y).symm
                 subst hyd
                 intro hcon
                 exact hcancel (by rw [hcon, invLetter_invLetter])
               · intro x hx
                 rw [getLast?_palindrome_cons] at hx
-                have hxd : x = invLetter d := by simpa using hx
+                have hxd : x = invLetter d :=
+                  (by simpa using hx : invLetter d = x).symm
                 subst hxd
                 exact fun hcon => hcancel hcon.symm
             · rw [hconj]
