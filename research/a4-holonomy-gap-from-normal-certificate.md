@@ -2,52 +2,53 @@
 rg: 2
 id: a4-holonomy-gap-from-normal-certificate
 kind: route
-title: An opaque five-edge conjugacy star around 19243 forces complete chart-frame collapse
+title: The minimal three-edge conjugacy star around 19243 forces complete chart-frame collapse
 target: atlas-a4-holonomy-coherence-gap
 requires:
   - atlas-a4-normal-certificate-compiler
   - unitary-star-conjugacy-hs-collapse
-  - atlas-a8-six-transvection-commutant-gap
+  - atlas-a8-four-cycle-commutant-gap
 ---
 
-Use the six raw covariance opcodes defined by `(A4-STAR-0)` and abbreviate
+Use the four raw covariance opcodes for
+
+```text
+T={t01,t12,t23,t30}
+```
+
+defined by `(A4-STAR-0)`, and abbreviate
 
 ```text
 B_n=V_n(t23),
-T_(n,s)=V_n(s),       s in S\{t23}.
+T_(n,t)=V_n(t),       t in {t01,t12,t30}.
 ```
 
-The compiler supplies five opaque transport unitaries `A_n(s)` with
+The compiler supplies three opaque transport unitaries `A_n(t)` with
 
 ```text
-max_(s != t23)||T_(n,s)-A_n(s)B_nA_n(s)^*||_2
+max_(t in {t01,t12,t30})
+ ||T_(n,t)-A_n(t)B_nA_n(t)^*||_2
  <= C_star eta_n,                                       (1)
 
 ||B_n-1||_2
  <= C_col (||sigma_n(q_19243)-1||_2+eta_n).             (2)
 ```
 
-Apply `unitary-star-conjugacy-hs-collapse` directly.  Since neither theorem nor
-its proof asks what the `A_n(s)` mean,
+Apply `unitary-star-conjugacy-hs-collapse`:
 
 ```text
-max_(s in S)||V_n(s)-1||_2
+max_(t in T)||V_n(t)-1||_2
  <= C_star eta_n
     + C_col (||sigma_n(q_19243)-1||_2+eta_n)
  -> 0.                                                   (3)
 ```
 
-But by definition `(A4-STAR-0)`,
-
-```text
-||V_n(s)-1||_2=||[U_n,lambda_(k_n)(s)]||_2.
-```
-
-Use `atlas-a8-six-transvection-commutant-gap`.  Since `|S|=6`,
+By definition `(A4-STAR-0)`, these are exactly the four covariance
+commutators.  Apply `atlas-a8-four-cycle-commutant-gap`:
 
 ```text
 dist_2(U_n,lambda_(k_n)(A8)')
- <= 15 sqrt(6) max_(s in S)||V_n(s)-1||_2
+ <= 17 sqrt(4) max_(t in T)||V_n(t)-1||_2
  -> 0.                                                   (4)
 ```
 
@@ -61,9 +62,8 @@ generator `h_a,h_b`,
 Hence `a_n^2+b_n^2->0`, stronger than `limsup<1/128`, proving
 `atlas-a4-holonomy-coherence-gap`.
 
-The resulting route has a single open mathematical leaf.  The finite compiler
-must produce only five approximate **pairwise conjugacies** from the collision
-covariance opcode to the other standard transvection covariance opcodes, plus
-the collision readout itself.  There is no multiplication table, no frozen
-conjugator word, no approximate representation, no semantic register, and no
-global decoder left to prove.
+By `atlas-a8-minimal-four-transvection-cycle`, this transvection-star incidence
+pattern is minimal: three leaves are necessary if the hub and leaves are to
+form a transvection generating set for the full chart.  The live direct
+portfolio therefore asks for the smallest possible finite synchronization
+object of this type—three opaque transports plus one collision readout.
