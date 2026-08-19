@@ -1,23 +1,7 @@
-# Autonomous Leanstral proof-engineering pass.
-#
-# Security boundary:
-#   * `generate` has read-only GitHub permissions and no persisted checkout token.
-#   * Leanstral may edit the checkout, but only Lean-source diffs are accepted.
-#   * Every accepted changed Lean module must compile before a patch is exported.
-#   * `publish` is the only write-enabled job; it pushes only a fresh
-#     automation/leanstral-* branch and opens a draft PR against main.
-#
-# Required for model runs:
-#   repository Actions secret MISTRAL_API_KEY with Labs-model access enabled.
-# Until that secret exists, scheduled/manual model runs are successful no-ops.
-#
-# Leanstral 1.5 is a Labs model. Review the model id before its announced
-# 2026-09-30 retirement date.
 name: Leanstral research agent
 
 on:
   schedule:
-    # Every 30 minutes, off the top of the hour.
     - cron: '17,47 * * * *'
   workflow_dispatch:
     inputs:
@@ -28,11 +12,14 @@ on:
   push:
     branches: [main]
     paths:
-      # Infrastructure smoke test only; push events never call the model.
       - '.github/workflows/leanstral-research.yml'
+      - 'scripts/leanstral_novelty.py'
 
+# Every actual model run reserves a unique (file, declaration) before inference.
+# The reservation lives on a separate state branch, so failed/no-change runs and
+# unmerged/closed PRs still consume their target. Only one agent attempt runs at
+# once, making reservation atomic.
 concurrency:
-  # Keep workflow-smoke pushes independent from the long-running scheduled agent.
   group: ${{ github.event_name == 'push' && 'leanstral-research-smoke' || 'leanstral-research-agent' }}
   cancel-in-progress: false
 
@@ -41,130 +28,150 @@ permissions:
 
 env:
   PYTHON_VERSION: '3.12'
-  # Pin versions that are actually published, not unreleased repository versions.
   VIBE_VERSION: '2.23.1'
   LEAN_LSP_MCP_VERSION: '0.28.1'
+  STATE_BRANCH: 'automation/leanstral-state'
+  STATE_PATH: '.leanstral/attempts.tsv'
 
 jobs:
   smoke:
-    name: Smoke-test Leanstral toolchain wiring
     if: ${{ github.event_name == 'push' }}
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 15
     permissions:
       contents: read
-
+      pull-requests: read
     steps:
-      - name: Check out repository
-        uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
         with:
-          fetch-depth: 1
           persist-credentials: false
-
-      - name: Set up Python 3.12
-        uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6.3.0
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6.3.0
         with:
           python-version: ${{ env.PYTHON_VERSION }}
-          check-latest: false
+      - name: Test novelty selector
+        run: python scripts/leanstral_novelty.py --self-test
+      - name: Dry-run live target selection
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          ledger="$RUNNER_TEMP/ledger.tsv"; blocked="$RUNNER_TEMP/blocked.txt"; ids="$RUNNER_TEMP/ids.txt"
+          : > "$ledger"; : > "$blocked"
+          if p="$(gh api --method GET "repos/$GITHUB_REPOSITORY/contents/$STATE_PATH" -f ref="$STATE_BRANCH" 2>/dev/null)"; then
+            printf '%s' "$p" | jq -r .content | tr -d '\n' | base64 -d > "$ledger"
+          fi
+          awk -F '\t' 'NF>=4 {print $1}' "$ledger" | sort -u > "$ids"
+          gh pr list --repo "$GITHUB_REPOSITORY" --state all --limit 1000 --json number,headRefName \
+            | jq -r '.[]|select(.headRefName|test("^automation/leanstral-[0-9]+$"))|[.number,.headRefName]|@tsv' \
+            | while IFS=$'\t' read -r pr branch; do
+                rid="${branch##*-}"
+                if ! grep -Fxq "$rid" "$ids"; then
+                  gh api --paginate "repos/$GITHUB_REPOSITORY/pulls/$pr/files?per_page=100" --jq '.[].filename' >> "$blocked"
+                fi
+              done
+          sort -u -o "$blocked" "$blocked"
+          python scripts/leanstral_novelty.py --ledger "$ledger" --bootstrap-blocked "$blocked" --focus "${{ inputs.focus }}"
 
-      - name: Restore Lean toolchain
-        id: elan-cache
-        uses: actions/cache/restore@0057852bfaa89a56745cba8c7296529d2fc39830 # v4
+  auth:
+    if: ${{ github.event_name != 'push' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: read
+    outputs:
+      configured: ${{ steps.a.outputs.configured }}
+    steps:
+      - id: a
+        env:
+          MISTRAL_API_KEY: ${{ secrets.MISTRAL_API_KEY }}
+        run: |
+          if [[ -n "${MISTRAL_API_KEY:-}" ]]; then
+            echo 'configured=true' >> "$GITHUB_OUTPUT"
+          else
+            echo '::notice::MISTRAL_API_KEY is not configured; no target is consumed.'
+            echo 'configured=false' >> "$GITHUB_OUTPUT"
+          fi
+
+  select:
+    needs: auth
+    if: ${{ needs.auth.outputs.configured == 'true' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: write
+      pull-requests: read
+    outputs:
+      found: ${{ steps.pick.outputs.found }}
+      target: ${{ steps.pick.outputs.target }}
+      anchor: ${{ steps.pick.outputs.anchor }}
+      line: ${{ steps.pick.outputs.line }}
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
         with:
-          path: ~/.elan
-          key: ${{ runner.os }}-elan-${{ hashFiles('lean-toolchain') }}
-          restore-keys: |
-            ${{ runner.os }}-elan-
-
-      - name: Install elan if needed
-        if: steps.elan-cache.outputs.cache-hit != 'true'
-        shell: bash
-        run: curl https://raw.githubusercontent.com/leanprover/elan/464c9d28395000a2a0128e07081e4956d50eced2/elan-init.sh -sSf | sh -s -- -y
-
-      - name: Put Lean on PATH
-        shell: bash
-        run: echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
-
-      - name: Install pinned Vibe and Lean LSP MCP
-        shell: bash
+          ref: main
+          persist-credentials: false
+      - name: Build attempt history
+        env:
+          GH_TOKEN: ${{ github.token }}
         run: |
           set -euo pipefail
-          python -m venv "$RUNNER_TEMP/leanstral-smoke-venv"
-          "$RUNNER_TEMP/leanstral-smoke-venv/bin/python" -m pip install \
-            --disable-pip-version-check \
-            "mistral-vibe==${VIBE_VERSION}" \
-            "lean-lsp-mcp==${LEAN_LSP_MCP_VERSION}"
-          echo "$RUNNER_TEMP/leanstral-smoke-venv/bin" >> "$GITHUB_PATH"
-
-      - name: Verify installed executables and versions
-        shell: bash
+          ledger="$RUNNER_TEMP/ledger.tsv"; blocked="$RUNNER_TEMP/blocked.txt"; ids="$RUNNER_TEMP/ids.txt"
+          : > "$ledger"; : > "$blocked"
+          if p="$(gh api --method GET "repos/$GITHUB_REPOSITORY/contents/$STATE_PATH" -f ref="$STATE_BRANCH" 2>/dev/null)"; then
+            printf '%s' "$p" | jq -r .content | tr -d '\n' | base64 -d > "$ledger"
+          fi
+          awk -F '\t' 'NF>=4 {print $1}' "$ledger" | sort -u > "$ids"
+          gh pr list --repo "$GITHUB_REPOSITORY" --state all --limit 1000 --json number,headRefName \
+            | jq -r '.[]|select(.headRefName|test("^automation/leanstral-[0-9]+$"))|[.number,.headRefName]|@tsv' \
+            | while IFS=$'\t' read -r pr branch; do
+                rid="${branch##*-}"
+                if ! grep -Fxq "$rid" "$ids"; then
+                  gh api --paginate "repos/$GITHUB_REPOSITORY/pulls/$pr/files?per_page=100" --jq '.[].filename' >> "$blocked"
+                fi
+              done
+          sort -u -o "$blocked" "$blocked"
+          echo "LEDGER=$ledger" >> "$GITHUB_ENV"
+          echo "BLOCKED=$blocked" >> "$GITHUB_ENV"
+      - id: pick
+        name: Pick never-before-reserved declaration
+        env:
+          FOCUS: ${{ inputs.focus }}
+        run: >-
+          python scripts/leanstral_novelty.py
+          --ledger "$LEDGER"
+          --bootstrap-blocked "$BLOCKED"
+          --focus "${FOCUS:-}"
+          --github-output "$GITHUB_OUTPUT"
+      - name: Reserve before inference
+        if: steps.pick.outputs.found == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TARGET: ${{ steps.pick.outputs.target }}
+          ANCHOR: ${{ steps.pick.outputs.anchor }}
         run: |
           set -euo pipefail
-          python - <<'PY'
-          import importlib.metadata as md
-          import sys
-          assert sys.version_info >= (3, 12), sys.version
-          assert md.version('mistral-vibe') == '${{ env.VIBE_VERSION }}'
-          assert md.version('lean-lsp-mcp') == '${{ env.LEAN_LSP_MCP_VERSION }}'
-          print('mistral-vibe', md.version('mistral-vibe'))
-          print('lean-lsp-mcp', md.version('lean-lsp-mcp'))
-          PY
-          vibe --version
-          lake --version
-          command -v lean-lsp-mcp
-
-      - name: Parse the exact non-interactive Leanstral config
-        shell: bash
-        run: |
-          set -euo pipefail
-          VIBE_HOME="$RUNNER_TEMP/vibe-smoke-home"
-          mkdir -p "$VIBE_HOME"
-          cat > "$VIBE_HOME/config.toml" <<'TOML'
-          installed_agents = ["lean"]
-          bypass_tool_permissions = true
-          active_model = "leanstral"
-
-          [[providers]]
-          name = "mistral-testing"
-          api_base = "https://api.mistral.ai/v1"
-          api_key_env_var = "MISTRAL_API_KEY"
-          backend = "mistral"
-
-          [[models]]
-          name = "labs-leanstral-1-5"
-          provider = "mistral-testing"
-          alias = "leanstral"
-          input_price = 0.0
-          output_price = 0.0
-          thinking = "high"
-          temperature = 1.0
-          auto_compact_threshold = 200000
-
-          [session_logging]
-          enabled = true
-
-          [[mcp_servers]]
-          name = "lean-lsp"
-          transport = "stdio"
-          command = "lean-lsp-mcp"
-          tool_timeout_sec = 600
-          TOML
-          VIBE_HOME="$VIBE_HOME" python - <<'PY'
-          import os
-          from pathlib import Path
-          import tomllib
-          path = Path(os.environ['VIBE_HOME']) / 'config.toml'
-          cfg = tomllib.loads(path.read_text())
-          assert cfg['installed_agents'] == ['lean']
-          assert cfg['active_model'] == 'leanstral'
-          assert cfg['models'][0]['name'] == 'labs-leanstral-1-5'
-          assert cfg['mcp_servers'][0]['command'] == 'lean-lsp-mcp'
-          print('Leanstral config parsed successfully')
-          PY
+          main_sha="$(git rev-parse HEAD)"
+          if ! gh api --method GET "repos/$GITHUB_REPOSITORY/git/ref/heads/$STATE_BRANCH" >/dev/null 2>&1; then
+            gh api --method POST "repos/$GITHUB_REPOSITORY/git/refs" -f ref="refs/heads/$STATE_BRANCH" -f sha="$main_sha" >/dev/null
+          fi
+          ledger="$RUNNER_TEMP/state.tsv"; : > "$ledger"; file_sha=''
+          if p="$(gh api --method GET "repos/$GITHUB_REPOSITORY/contents/$STATE_PATH" -f ref="$STATE_BRANCH" 2>/dev/null)"; then
+            file_sha="$(printf '%s' "$p" | jq -r .sha)"
+            printf '%s' "$p" | jq -r .content | tr -d '\n' | base64 -d > "$ledger"
+          fi
+          if awk -F '\t' -v p="$TARGET" -v a="$ANCHOR" 'NF>=4&&$3==p&&$4==a{f=1}END{exit f?0:1}' "$ledger"; then
+            echo "::error::Concurrent duplicate reservation: $TARGET :: $ANCHOR"; exit 1
+          fi
+          printf '%s\t%s\t%s\t%s\n' "$GITHUB_RUN_ID" "$(date -u +%FT%TZ)" "$TARGET" "$ANCHOR" >> "$ledger"
+          encoded="$(base64 -w0 < "$ledger")"
+          args=(--method PUT "repos/$GITHUB_REPOSITORY/contents/$STATE_PATH" -f message="reserve Leanstral target $GITHUB_RUN_ID" -f content="$encoded" -f branch="$STATE_BRANCH")
+          [[ -z "$file_sha" ]] || args+=(-f sha="$file_sha")
+          gh api "${args[@]}" >/dev/null
+          echo "Reserved permanently: $TARGET :: $ANCHOR"
 
   generate:
-    name: Generate and compile a Lean improvement
-    if: ${{ github.event_name != 'push' }}
+    needs: [auth, select]
+    if: ${{ needs.auth.outputs.configured == 'true' && needs.select.outputs.found == 'true' }}
     runs-on: ubuntu-latest
     timeout-minutes: 300
     permissions:
@@ -173,152 +180,64 @@ jobs:
     outputs:
       has_changes: ${{ steps.patch.outputs.has_changes }}
       base_sha: ${{ steps.base.outputs.sha }}
-
     steps:
-      - name: Check out main without write credentials
-        uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
         with:
           ref: main
-          fetch-depth: 1
           persist-credentials: false
-
-      - name: Set up Python 3.12
-        uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6.3.0
-        with:
-          python-version: ${{ env.PYTHON_VERSION }}
-          check-latest: false
-
-      - name: Skip while an earlier Leanstral PR is open
-        id: gate
-        shell: bash
-        env:
-          GH_TOKEN: ${{ github.token }}
+      - id: base
         run: |
-          set -euo pipefail
-          count="$(
-            gh pr list \
-              --repo "$GITHUB_REPOSITORY" \
-              --state open \
-              --limit 100 \
-              --json headRefName \
-              --jq '[.[] | select(.headRefName | startswith("automation/leanstral-"))] | length'
-          )"
-          if [[ "$count" -gt 0 ]]; then
-            echo "An automation/leanstral-* PR is already open; leaving it for review."
-            echo "skip=true" >> "$GITHUB_OUTPUT"
-          else
-            echo "skip=false" >> "$GITHUB_OUTPUT"
-          fi
-
-      - name: Check whether Mistral is configured
-        if: steps.gate.outputs.skip != 'true'
-        id: auth
-        shell: bash
-        env:
-          MISTRAL_API_KEY: ${{ secrets.MISTRAL_API_KEY }}
-        run: |
-          set -euo pipefail
-          if [[ -z "${MISTRAL_API_KEY:-}" ]]; then
-            echo "::notice::MISTRAL_API_KEY is not configured yet; this run is a no-op."
-            echo "configured=false" >> "$GITHUB_OUTPUT"
-          else
-            echo "configured=true" >> "$GITHUB_OUTPUT"
-          fi
-
-      - name: Record immutable base and disable git push
-        if: steps.auth.outputs.configured == 'true'
-        id: base
-        shell: bash
-        run: |
-          set -euo pipefail
           echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
           git remote set-url --push origin https://example.invalid/leanstral-no-push
-
-      - name: Restore Lean toolchain
-        if: steps.auth.outputs.configured == 'true'
-        id: elan-cache
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6.3.0
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+      - id: elan
         uses: actions/cache/restore@0057852bfaa89a56745cba8c7296529d2fc39830 # v4
         with:
           path: ~/.elan
           key: ${{ runner.os }}-elan-${{ hashFiles('lean-toolchain') }}
-          restore-keys: |
-            ${{ runner.os }}-elan-
-
-      - name: Install elan if the cache is cold
-        if: steps.auth.outputs.configured == 'true' && steps.elan-cache.outputs.cache-hit != 'true'
-        shell: bash
+          restore-keys: ${{ runner.os }}-elan-
+      - if: steps.elan.outputs.cache-hit != 'true'
         run: curl https://raw.githubusercontent.com/leanprover/elan/464c9d28395000a2a0128e07081e4956d50eced2/elan-init.sh -sSf | sh -s -- -y
-
-      - name: Put Lean on PATH
-        if: steps.auth.outputs.configured == 'true'
-        shell: bash
-        run: echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
-
-      - name: Restore Lake packages
-        if: steps.auth.outputs.configured == 'true'
-        id: lake-packages
+      - run: echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+      - id: deps
         uses: actions/cache/restore@0057852bfaa89a56745cba8c7296529d2fc39830 # v4
         with:
           path: .lake/packages
           key: ${{ runner.os }}-lake-deps-${{ hashFiles('lean-toolchain', 'lake-manifest.json') }}
-          restore-keys: |
-            ${{ runner.os }}-lake-deps-
-
-      - name: Restore Mathlib archives
-        if: steps.auth.outputs.configured == 'true' && steps.lake-packages.outputs.cache-hit != 'true'
+          restore-keys: ${{ runner.os }}-lake-deps-
+      - if: steps.deps.outputs.cache-hit != 'true'
         uses: actions/cache/restore@0057852bfaa89a56745cba8c7296529d2fc39830 # v4
         with:
           path: ~/.cache/mathlib
           key: ${{ runner.os }}-mathlib-archives-${{ hashFiles('lean-toolchain', 'lake-manifest.json') }}
-          restore-keys: |
-            ${{ runner.os }}-mathlib-archives-
-
-      - name: Fetch precompiled Mathlib if needed
-        if: steps.auth.outputs.configured == 'true' && steps.lake-packages.outputs.cache-hit != 'true'
-        shell: bash
+      - if: steps.deps.outputs.cache-hit != 'true'
         run: lake exe cache get
-
-      - name: Restore a compiled project checkpoint
-        if: steps.auth.outputs.configured == 'true'
-        uses: actions/cache/restore@0057852bfaa89a56745cba8c7296529d2fc39830 # v4
+      - uses: actions/cache/restore@0057852bfaa89a56745cba8c7296529d2fc39830 # v4
         with:
           path: .lake/build
-          key: ${{ runner.os }}-${{ runner.arch }}-groupapprox-dev-build-v3-${{ hashFiles('lean-toolchain', 'lake-manifest.json') }}-${{ github.sha }}
+          key: ${{ runner.os }}-${{ runner.arch }}-leanstral-build-${{ hashFiles('lean-toolchain', 'lake-manifest.json') }}-${{ github.sha }}
           restore-keys: |
             ${{ runner.os }}-${{ runner.arch }}-groupapprox-dev-build-v3-${{ hashFiles('lean-toolchain', 'lake-manifest.json') }}-
-            ${{ runner.os }}-nonsofic-build-${{ hashFiles('lean-toolchain', 'lake-manifest.json', 'lakefile.toml', 'GroupApproximation.lean', 'GroupApproximation/**/*.lean') }}-
             ${{ runner.os }}-nonsofic-build-
-
-      - name: Install pinned Mistral Vibe and Lean LSP MCP
-        if: steps.auth.outputs.configured == 'true'
-        shell: bash
+      - name: Install Vibe and Lean LSP MCP
         run: |
-          set -euo pipefail
           python -m venv "$RUNNER_TEMP/leanstral-venv"
-          "$RUNNER_TEMP/leanstral-venv/bin/python" -m pip install \
-            --disable-pip-version-check \
-            "mistral-vibe==${VIBE_VERSION}" \
-            "lean-lsp-mcp==${LEAN_LSP_MCP_VERSION}"
+          "$RUNNER_TEMP/leanstral-venv/bin/python" -m pip install --disable-pip-version-check "mistral-vibe==$VIBE_VERSION" "lean-lsp-mcp==$LEAN_LSP_MCP_VERSION"
           echo "$RUNNER_TEMP/leanstral-venv/bin" >> "$GITHUB_PATH"
-
-      - name: Configure Leanstral 1.5
-        if: steps.auth.outputs.configured == 'true'
-        shell: bash
+      - name: Configure Leanstral
         run: |
-          set -euo pipefail
-          VIBE_HOME="$RUNNER_TEMP/vibe-home"
-          mkdir -p "$VIBE_HOME"
+          VIBE_HOME="$RUNNER_TEMP/vibe-home"; mkdir -p "$VIBE_HOME"
           cat > "$VIBE_HOME/config.toml" <<'TOML'
           installed_agents = ["lean"]
           bypass_tool_permissions = true
           active_model = "leanstral"
-
           [[providers]]
           name = "mistral-testing"
           api_base = "https://api.mistral.ai/v1"
           api_key_env_var = "MISTRAL_API_KEY"
           backend = "mistral"
-
           [[models]]
           name = "labs-leanstral-1-5"
           provider = "mistral-testing"
@@ -328,10 +247,6 @@ jobs:
           thinking = "high"
           temperature = 1.0
           auto_compact_threshold = 200000
-
-          [session_logging]
-          enabled = true
-
           [[mcp_servers]]
           name = "lean-lsp"
           transport = "stdio"
@@ -339,303 +254,130 @@ jobs:
           tool_timeout_sec = 600
           TOML
           echo "VIBE_HOME=$VIBE_HOME" >> "$GITHUB_ENV"
-          vibe --version
-
-      - name: Run Leanstral 1.5
-        if: steps.auth.outputs.configured == 'true'
-        shell: bash
+      - name: Load avoid-list
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          h="$RUNNER_TEMP/history.tsv"; : > "$h"
+          if p="$(gh api --method GET "repos/$GITHUB_REPOSITORY/contents/$STATE_PATH" -f ref="$STATE_BRANCH" 2>/dev/null)"; then
+            printf '%s' "$p" | jq -r .content | tr -d '\n' | base64 -d > "$h"
+          fi
+          echo "HISTORY=$h" >> "$GITHUB_ENV"
+      - name: Run Leanstral on reserved declaration
         env:
           MISTRAL_API_KEY: ${{ secrets.MISTRAL_API_KEY }}
+          TARGET: ${{ needs.select.outputs.target }}
+          ANCHOR: ${{ needs.select.outputs.anchor }}
+          LINE: ${{ needs.select.outputs.line }}
           FOCUS: ${{ inputs.focus }}
         run: |
           set -euo pipefail
-          PROMPT="$(cat <<'EOF'
-          You are Leanstral 1.5 working autonomously inside the Lean 4 repository
-          SauersML/group-approximation.
-
-          Mission: make exactly one coherent, reviewable, mathematically meaningful
-          improvement to the Lean development.
-
-          Research priorities, in order:
-          1. Formalize or prove an important missing result suggested by
-             non_mf_groups_exist.tex, property_tt_leavitt.tex, README.md, or the
-             Cairn research graph in research/ (especially research/FRONTIER.md).
-          2. Close a genuine formal gap or strengthen a theorem/API that materially
-             advances one of those research directions.
-          3. If no tractable new result is available, improve an existing Lean proof
-             or supporting Lean API in a way that makes the formalization more
-             complete, reusable, or robust.
-
-          A human may optionally provide a focus below; otherwise choose the best
-          bounded target yourself.
-
-          Hard rules:
-          - Inspect the repository and relevant paper/Cairn sources before choosing
-            the task. Prefer one bounded target over a broad refactor.
-          - EDIT ONLY GroupApproximation.lean and GroupApproximation/**/*.lean.
-            Paper, research, metadata, workflow, generator, PDF, and lake files are
-            read-only evidence.
-          - Do not use `sorry`, `admit`, new `axiom` declarations, `unsafe`, or
-            `native_decide` as a shortcut.
-          - Do not weaken theorem statements, delete claims, or replace a meaningful
-            theorem with a tautology merely to make Lean accept it.
-          - Do not run git commit, git push, create/switch branches, or open a PR.
-            Leave successful edits in the working tree for the outer workflow.
-          - Use lean-lsp-mcp and `lake build` / `lake env lean` aggressively. Trust
-            compiler feedback over inspection.
-          - Preserve warning-as-error discipline and existing repository style.
-          - Prefer adding a precise helper lemma over making a large speculative
-            refactor when a proof needs decomposition.
-          - If you cannot finish a meaningful compiling improvement, revert your
-            edits and leave the working tree unchanged.
-
-          Before finishing, compile every module you changed and summarize what was
-          proved, why it matters, which files changed, and the Lean commands used.
-          EOF
-          )"
-          PROMPT="${PROMPT}"$'\n\n'"Human focus for this run: ${FOCUS:-none}"
-          vibe -p "$PROMPT" \
-            --agent lean \
-            --output streaming \
-            --trust \
-            --workdir "$GITHUB_WORKSPACE" \
-            --max-turns 120
-
-      - name: Normalize and validate the model patch
-        if: steps.auth.outputs.configured == 'true'
-        id: validate
-        shell: bash
+          recent="$(tail -n 200 "$HISTORY" || true)"
+          prompt="You are Leanstral 1.5 in SauersML/group-approximation. Make one mathematically meaningful compiling Lean improvement near the permanently reserved declaration below. Prefer paper/Cairn research progress. NOVELTY IS HARD: every run reserves a different declaration before inference, even failed/no-change runs and unmerged PRs. Edit EXACTLY the assigned file; do not switch to another theorem. Do not semantically duplicate concepts in the reservation history. Never use sorry, admit, a new axiom, unsafe, or native_decide; do not weaken statements; do not use git commit/push/branch/PR. Use lean-lsp-mcp and Lean compilation aggressively. If this target has no worthwhile improvement, leave the tree unchanged; the next run will move elsewhere."
+          prompt="$prompt"$'\n\n'"Assigned file: $TARGET"$'\n'"Assigned declaration: $ANCHOR near line $LINE"$'\n'"Human focus: ${FOCUS:-none}"$'\n\n'"Recent reservation avoid-list:"$'\n'"$recent"
+          vibe -p "$prompt" --agent lean --output streaming --trust --workdir "$GITHUB_WORKSPACE" --max-turns 120
+      - id: validate
+        name: Enforce reserved target and proof hygiene
         env:
-          BASE_SHA: ${{ steps.base.outputs.sha }}
+          BASE: ${{ steps.base.outputs.sha }}
+          TARGET: ${{ needs.select.outputs.target }}
+          ANCHOR: ${{ needs.select.outputs.anchor }}
         run: |
           set -euo pipefail
-
-          if [[ "$(git rev-parse HEAD)" != "$BASE_SHA" ]]; then
-            echo "::warning::Leanstral created local commit(s); converting them back to a working-tree diff."
-            git reset --mixed "$BASE_SHA"
-          fi
-
-          mapfile -t untracked < <(git ls-files --others --exclude-standard)
-          if (( ${#untracked[@]} > 0 )); then
-            git add -N -- "${untracked[@]}"
-          fi
-
-          mapfile -t changed < <(git diff --name-only "$BASE_SHA" | sort -u)
-          if (( ${#changed[@]} == 0 )); then
-            echo "Leanstral left no changes."
-            echo "has_changes=false" >> "$GITHUB_OUTPUT"
-            exit 0
-          fi
-
-          printf 'Changed paths:\n'
-          printf '  %s\n' "${changed[@]}"
-          for path in "${changed[@]}"; do
-            case "$path" in
-              GroupApproximation.lean|GroupApproximation/*.lean) ;;
-              *) echo "::error::Leanstral changed forbidden path: $path"; exit 1 ;;
-            esac
-          done
-
-          if git diff --name-only --diff-filter=D "$BASE_SHA" | grep -q .; then
-            echo "::error::Automated proof runs may not delete tracked files."
-            git diff --name-only --diff-filter=D "$BASE_SHA"
-            exit 1
-          fi
-
-          if (( ${#changed[@]} > 12 )); then
-            echo "::error::Patch touches ${#changed[@]} files; refusing an over-broad autonomous change."
-            exit 1
-          fi
-
+          [[ "$(git rev-parse HEAD)" == "$BASE" ]] || git reset --mixed "$BASE"
+          mapfile -t u < <(git ls-files --others --exclude-standard); (( ${#u[@]} == 0 )) || git add -N -- "${u[@]}"
+          mapfile -t changed < <(git diff --name-only "$BASE" | sort -u)
+          if (( ${#changed[@]} == 0 )); then echo 'has_changes=false' >> "$GITHUB_OUTPUT"; exit 0; fi
+          if (( ${#changed[@]} != 1 )) || [[ "${changed[0]}" != "$TARGET" ]]; then echo "::error::Only reserved file $TARGET may change"; exit 1; fi
+          git diff --name-only --diff-filter=D "$BASE" | grep -q . && { echo '::error::File deletion rejected'; exit 1; } || true
+          git diff --unified=120 "$BASE" -- "$TARGET" | grep -F -- "$ANCHOR" >/dev/null || { echo "::error::Diff is not in reserved declaration neighborhood $ANCHOR"; exit 1; }
           python - <<'PY'
-          import re
-          import subprocess
-          base = subprocess.check_output(['git', 'rev-parse', 'HEAD'], text=True).strip()
-          diff = subprocess.check_output(['git', 'diff', '--unified=0', base], text=True)
-          bad = []
-          for line in diff.splitlines():
-              if not line.startswith('+') or line.startswith('+++'):
-                  continue
-              text = line[1:]
-              if re.search(r'\b(?:sorry|admit)\b', text): bad.append(text)
-              if re.match(r'\s*axiom\b', text): bad.append(text)
-              if re.search(r'\bunsafe\b', text): bad.append(text)
-              if re.search(r'\bnative_decide\b', text): bad.append(text)
-          if bad:
-              print('Forbidden proof shortcuts were added:')
-              for line in bad[:20]: print('  ' + line)
-              raise SystemExit(1)
+          import os,re,subprocess
+          d=subprocess.check_output(['git','diff','--unified=0',os.environ['BASE'],'--',os.environ['TARGET']],text=True)
+          bad=[]
+          for line in d.splitlines():
+              if not line.startswith('+') or line.startswith('+++'): continue
+              t=line[1:]
+              if re.search(r'\b(?:sorry|admit|unsafe|native_decide)\b',t) or re.match(r'\s*axiom\b',t): bad.append(t)
+          if bad: print('Forbidden additions:\n'+'\n'.join(bad[:20])); raise SystemExit(1)
           PY
-
-          git diff --check "$BASE_SHA"
-          added=0
-          deleted=0
-          while read -r a d _; do
-            [[ "$a" == "-" ]] || added=$((added + a))
-            [[ "$d" == "-" ]] || deleted=$((deleted + d))
-          done < <(git diff --numstat "$BASE_SHA")
-          if (( added + deleted > 2500 )); then
-            echo "::error::Patch changes $((added + deleted)) lines; refusing an over-broad autonomous change."
-            exit 1
-          fi
-          echo "has_changes=true" >> "$GITHUB_OUTPUT"
-
-      - name: Compile every changed Lean module
-        if: steps.auth.outputs.configured == 'true' && steps.validate.outputs.has_changes == 'true'
-        shell: bash
+          git diff --check "$BASE"
+          n="$(git diff --numstat "$BASE" -- "$TARGET" | awk '{print $1+$2}')"; [[ "${n:-0}" -le 1500 ]] || { echo '::error::Patch too broad'; exit 1; }
+          echo 'has_changes=true' >> "$GITHUB_OUTPUT"
+      - if: steps.validate.outputs.has_changes == 'true'
+        name: Compile reserved module
         env:
-          BASE_SHA: ${{ steps.base.outputs.sha }}
+          TARGET: ${{ needs.select.outputs.target }}
         run: |
-          set -euo pipefail
-          mapfile -t files < <(git diff --name-only --diff-filter=ACMRT "$BASE_SHA" -- '*.lean' | sort -u)
-          targets=()
-          for path in "${files[@]}"; do
-            if [[ "$path" == "GroupApproximation.lean" ]]; then
-              targets+=("GroupApproximation")
-            elif [[ "$path" == GroupApproximation/*.lean ]]; then
-              module="${path%.lean}"
-              targets+=("${module//\//.}")
-            fi
-          done
-          if (( ${#targets[@]} == 0 )); then
-            echo "::error::Patch claimed changes but no Lean target was found."
-            exit 1
-          fi
-          mapfile -t targets < <(printf '%s\n' "${targets[@]}" | sort -u)
-          printf 'Validating with: lake build'
-          printf ' %q' "${targets[@]}"
-          printf '\n'
-          time lake build "${targets[@]}"
-
-      - name: Package the validated patch
-        if: steps.auth.outputs.configured == 'true'
-        id: patch
-        shell: bash
+          m="${TARGET%.lean}"; m="${m//\//.}"; time lake build "$m"
+      - id: patch
         env:
-          BASE_SHA: ${{ steps.base.outputs.sha }}
-          HAS_CHANGES: ${{ steps.validate.outputs.has_changes }}
+          BASE: ${{ steps.base.outputs.sha }}
+          TARGET: ${{ needs.select.outputs.target }}
+          HAS: ${{ steps.validate.outputs.has_changes }}
         run: |
-          set -euo pipefail
-          if [[ "$HAS_CHANGES" != "true" ]]; then
-            echo "has_changes=false" >> "$GITHUB_OUTPUT"
-            exit 0
-          fi
-          git diff --binary "$BASE_SHA" -- GroupApproximation.lean GroupApproximation \
-            > "$RUNNER_TEMP/leanstral.patch"
-          test -s "$RUNNER_TEMP/leanstral.patch"
-          sha256sum "$RUNNER_TEMP/leanstral.patch"
-          echo "has_changes=true" >> "$GITHUB_OUTPUT"
-
-      - name: Upload validated patch
-        if: steps.patch.outputs.has_changes == 'true'
+          if [[ "$HAS" != true ]]; then echo 'has_changes=false' >> "$GITHUB_OUTPUT"; exit 0; fi
+          git diff --binary "$BASE" -- "$TARGET" > "$RUNNER_TEMP/leanstral.patch"; test -s "$RUNNER_TEMP/leanstral.patch"; echo 'has_changes=true' >> "$GITHUB_OUTPUT"
+      - if: steps.patch.outputs.has_changes == 'true'
         uses: actions/upload-artifact@65c4c4a1ddee5b72f698fdd19549f0f0fb45cf08 # v4
         with:
           name: leanstral-patch-${{ github.run_id }}
           path: ${{ runner.temp }}/leanstral.patch
-          if-no-files-found: error
           retention-days: 1
 
   publish:
-    name: Publish Leanstral patch as a draft PR
-    needs: generate
+    needs: [select, generate]
     if: ${{ needs.generate.outputs.has_changes == 'true' }}
     runs-on: ubuntu-latest
     timeout-minutes: 15
     permissions:
       contents: write
       pull-requests: write
-
     steps:
-      - name: Check out the exact model base
-        uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
         with:
           ref: ${{ needs.generate.outputs.base_sha }}
-          fetch-depth: 1
           persist-credentials: false
-
-      - name: Download validated patch
-        uses: actions/download-artifact@634f93cb2916e3fdff6788551b99b062d0335ce0 # v5
+      - uses: actions/download-artifact@634f93cb2916e3fdff6788551b99b062d0335ce0 # v5
         with:
           name: leanstral-patch-${{ github.run_id }}
-          path: ${{ runner.temp }}/leanstral-patch
-
-      - name: Apply patch and re-check scope
-        shell: bash
+          path: ${{ runner.temp }}/p
+      - env:
+          TARGET: ${{ needs.select.outputs.target }}
+          ANCHOR: ${{ needs.select.outputs.anchor }}
         run: |
           set -euo pipefail
-          patch="$RUNNER_TEMP/leanstral-patch/leanstral.patch"
-          test -s "$patch"
-          git apply --check "$patch"
-          git apply "$patch"
-          git diff --check
-          mapfile -t changed < <(git diff --name-only | sort -u)
-          test "${#changed[@]}" -gt 0
-          for path in "${changed[@]}"; do
-            case "$path" in
-              GroupApproximation.lean|GroupApproximation/*.lean) ;;
-              *) echo "::error::Artifact contains forbidden path: $path"; exit 1 ;;
-            esac
-          done
-
-      - name: Commit only to a fresh automation branch
-        id: branch
-        shell: bash
-        run: |
-          set -euo pipefail
-          branch="automation/leanstral-${GITHUB_RUN_ID}"
-          [[ "$branch" == automation/leanstral-* ]]
-          git switch -c "$branch"
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add -- GroupApproximation.lean GroupApproximation
-          git commit -m "lean: automated Leanstral research improvement"
-          echo "name=$branch" >> "$GITHUB_OUTPUT"
-
-      - name: Push automation branch
-        shell: bash
+          git apply --check "$RUNNER_TEMP/p/leanstral.patch"; git apply "$RUNNER_TEMP/p/leanstral.patch"; git diff --check
+          mapfile -t c < <(git diff --name-only); (( ${#c[@]} == 1 )) && [[ "${c[0]}" == "$TARGET" ]] || exit 1
+          git diff --unified=120 -- "$TARGET" | grep -F -- "$ANCHOR" >/dev/null
+      - id: b
         env:
-          GH_TOKEN: ${{ github.token }}
-          BRANCH: ${{ steps.branch.outputs.name }}
+          TARGET: ${{ needs.select.outputs.target }}
+          ANCHOR: ${{ needs.select.outputs.anchor }}
         run: |
-          set -euo pipefail
-          [[ "$BRANCH" == automation/leanstral-* ]]
-          gh auth setup-git
-          git remote set-url --push origin "https://github.com/${GITHUB_REPOSITORY}.git"
-          git push --set-upstream origin "HEAD:refs/heads/$BRANCH"
-
-      - name: Open draft pull request
-        shell: bash
-        env:
+          branch="automation/leanstral-${GITHUB_RUN_ID}"; git switch -c "$branch"
+          git config user.name 'github-actions[bot]'; git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -- "$TARGET"; git commit -m "lean: Leanstral improvement near $ANCHOR"; echo "branch=$branch" >> "$GITHUB_OUTPUT"
+      - env:
           GH_TOKEN: ${{ github.token }}
-          BRANCH: ${{ steps.branch.outputs.name }}
-          BASE_SHA: ${{ needs.generate.outputs.base_sha }}
+          BRANCH: ${{ steps.b.outputs.branch }}
         run: |
-          set -euo pipefail
-          cat > "$RUNNER_TEMP/pr-body.md" <<EOF
-          ## Automated Leanstral proof-engineering pass
+          gh auth setup-git; git remote set-url --push origin "https://github.com/$GITHUB_REPOSITORY.git"; git push origin "HEAD:refs/heads/$BRANCH"
+      - env:
+          GH_TOKEN: ${{ github.token }}
+          BRANCH: ${{ steps.b.outputs.branch }}
+          TARGET: ${{ needs.select.outputs.target }}
+          ANCHOR: ${{ needs.select.outputs.anchor }}
+          BASE: ${{ needs.generate.outputs.base_sha }}
+        run: |
+          cat > "$RUNNER_TEMP/body" <<EOF
+          Reserved target: \`$TARGET\` near \`$ANCHOR\`.
 
-          Generated by Mistral **Leanstral 1.5** (\`labs-leanstral-1-5\`) from
-          base \`${BASE_SHA}\`.
+          This target was persisted on \`$STATE_BRANCH\` before inference. It remains consumed even if this PR never merges, closes, or the run produced no subsequent merge. Later runs therefore move to another declaration.
 
-          The agent was directed toward mathematically meaningful Lean progress from
-          the papers and the Cairn research graph, with a bounded, reviewable patch.
+          The model had read-only GitHub access; only the reserved file was accepted, proof shortcuts were rejected, and the module compiled before publication.
 
-          ### Safety / verification
-
-          - The model job had read-only GitHub permissions and no persisted checkout token.
-          - Only \`GroupApproximation.lean\` and \`GroupApproximation/**/*.lean\` were accepted.
-          - New \`sorry\`, \`admit\`, \`axiom\`, \`unsafe\`, and \`native_decide\` shortcuts were rejected.
-          - Every changed Lean module compiled with \`lake build\` before publication.
-          - Normal repository PR verification still decides whether this change is mergeable.
-
-          Workflow run: ${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}
-
-          **Human review is required before merge.**
+          Base: \`$BASE\`  
+          Run: ${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}
           EOF
-          gh pr create \
-            --repo "$GITHUB_REPOSITORY" \
-            --base main \
-            --head "$BRANCH" \
-            --draft \
-            --title "Leanstral: automated Lean research improvement" \
-            --body-file "$RUNNER_TEMP/pr-body.md"
+          gh pr create --repo "$GITHUB_REPOSITORY" --base main --head "$BRANCH" --draft --title "Leanstral: $ANCHOR" --body-file "$RUNNER_TEMP/body"
