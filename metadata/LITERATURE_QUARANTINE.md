@@ -48,9 +48,8 @@ than being skipped, so the roster cannot outlive the problem it records.
 | package | the theorem it transcribes | what discharging it needs |
 |---|---|---|
 | `QuasidiagonalMF.TikuisisWhiteWinterInput` | Tikuisis–White–Winter, *Quasidiagonality of nuclear C\*-algebras*, Ann. of Math. (2) **185** (2017) 229–284 | the theorem itself |
-| `QuasidiagonalMF.AmenableNuclearInput` | Lance: `C*_r(G)` is nuclear for amenable `G` | the theorem itself |
+| `QuasidiagonalMF.AmenableNuclearInput` | Lance: `C*_r(G)` is nuclear for amenable `G` | **not the theorem** — `nuclearReducedCPAP_iff_isAmenable` proves amenable ⟺ CPAP already. What is left is CPAP ⟹ `IsNuclearMap`: a positivity check (`k > 0`) and one theorem (complete positivity corestricts to a C\*-subalgebra, by `cfc_mem`) |
 | `QuasidiagonalMF.AmenableUCTInput` | Tu: the UCT for `C*_r(G)`, `G` amenable | the theorem itself |
-| `Quasidiagonal.UCPContractive` | **not a citation** — contractivity of a ucp map into a matrix algebra | Stinespring, or Kadison–Schwarz for two-positive maps. Its `*`-preservation companion **is now proved** (`ucp_map_star`); see below |
 | `QuasidiagonalMF.AmenableMFInput` | the group-level corollary `amenable ⟹ operator-MF` | the three rows above; `Analysis/TikuisisWhiteWinter` proves every step between them and this |
 | `CyclicBaseCalibration.AmenableImpliesMF` | the same corollary, at the calibration site | as above |
 | `ContainsSquareWitness.UniversalFPTorsionFree` | Fournier-Facio, arXiv:2608.02025 §2: a finitely presented torsion-free property-(T) group universal for finitely presented torsion-free groups | the two rows below; `Sofic/FournierFacioUniversalGroup` proves the step that joins them |
@@ -79,21 +78,20 @@ statement that names one is conditional all the same:
   `OrderPreservingRoutingData.toFiveConditionRoutingData` are proved, so the
   five names are one obligation.
 
-What is left is **ten** independent inputs, and only eight of them are other
-people's theorems: TWW, Lance, Tu, Chiodo/Belegradek, Osin, a torsion-free
-hyperbolic Kazhdan group, Hull, Kun–Thom/Shulman, Adian–Rabin.  **Two are
-proofs this repository could finish** — `UCPContractive` and
-`GreendlingerGate`.  Those two are where work belongs; the rest is not a task
-list.
+What is left is **nine** independent inputs.  Eight are other people's
+theorems: TWW, Lance, Tu, Chiodo/Belegradek, Osin, a torsion-free hyperbolic
+Kazhdan group, Hull, Kun–Thom/Shulman, Adian–Rabin.  The ninth is
+`GreendlingerGate`.
 
-Both turned out to be aimed at a statement that is wrong as written, which is
-the substance of the two sections below.  For the ucp facts that has now been
-repaired and half the input **discharged**: `ucp_map_star` is a theorem, the
-structure has lost its `map_star` field, and one inequality remains.  For
-Greendlinger the target is refuted rather than repaired, and a successor has to
-restate it cyclically before spending an induction on it.
+There were ten.  **`Quasidiagonal.UCPContractive` was retired on 2026-08-19 by
+proof**: `Quasidiagonal.ucpContractive` inhabits it, both clauses are theorems,
+and the roster line is gone.  Its story and Greendlinger's share a shape —
+each was aimed at a statement that is wrong as written, and neither was an
+unproved case waiting on effort.  The difference is that the ucp statement
+could be repaired and was; the Greendlinger one is refuted, and a successor has
+to restate it cyclically before spending an induction on it.
 
-## Half of `UCPContractive` is discharged; here is what the other half cost
+## `UCPContractive`, discharged — and what it cost to see why it was stuck
 
 `Analysis/QuasidiagonalTrace` recorded this input as dischargeable, missing only
 (i) transport of its form-sense complete positivity into
@@ -191,23 +189,24 @@ of `Matrix Y Y ℂ` with those operators, which is the scoped
 than by a lemma.  The entrywise form and the inner-product form agree on the
 nose under that identification, since `⟪u, M *ᵥ v⟫ = ∑ₓ ∑_y conj (u x) M x y v y`.
 
-**Step 4 and the transport are written**, in
-`Analysis/UCPContractiveMatrix`: `euclideanize` is the composite of
-`matrixReindexStarAlgEquiv (Fintype.equivFin Y)` and `Matrix.toEuclideanCLM`,
-`norm_euclideanize` is that it changes no norms
-(`norm_matrixReindexStarAlgEquiv` and `Matrix.l2_opNorm_toEuclideanCLM`), and
-`ucp_norm_le` runs the four steps.  `ucpContractive` then inhabits the
-structure.
+**Step 4 and the transport are done**, in `Analysis/UCPContractiveMatrix`:
+`euclideanize` is the composite of `matrixReindexStarAlgEquiv (enum Y)` and
+`Matrix.toEuclideanCLM`, `norm_euclideanize` is that it changes no norms
+(`norm_matrixReindexStarAlgEquiv` and `Matrix.l2_opNorm_toEuclideanCLM`),
+`ucp_norm_le` runs the four steps, and `ucpContractive` inhabits the structure.
+**Compiled 2026-08-19; the roster line is gone.**
 
-**It is not verified yet.**  Its first compile failed at the *statement*, not
-the proof: the operator norm on `Matrix Y Y ℂ` is a scoped instance
-(`Matrix.Norms.L2Operator`), so `‖M‖` did not synthesize, and every declaration
-after that reported `sorry` with no `sorry` in the source.  The `open scoped`
-line is added; the body has been checked by reading only and wants one compile.
-Until it compiles, the entry stays on the roster.
-
-This is the highest-value open task in the quarantine: it retires an entry
-outright, and it is the only entry of which that is true.
+Two things nearly cost several rounds each, both found by reading rather than
+by the compiler, and both worth remembering.  The module's first compile failed
+at the *statement*: the operator norm on `Matrix Y Y ℂ` is a **scoped** instance
+(`Matrix.Norms.L2Operator`), so `‖M‖` did not synthesize in a module that had
+not opened it, and every declaration after the failure reported `sorry` with no
+`sorry` in the source — the poisoning pattern in a new disguise.  And a
+`set e := Fintype.equivFin Y` abstracts only the occurrences present when it
+runs, while every occurrence in that proof arrives later from the rewrites
+themselves; the lemma instances would have said `e` and the goal
+`Fintype.equivFin Y`, equal definitionally and not syntactically, which is the
+only kind `rw` cares about.
 
 ## The one citation that is not a research programme
 

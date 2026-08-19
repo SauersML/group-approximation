@@ -43,6 +43,30 @@ Hilbert--Schmidt structure the corona lane uses on the same type.
 `NeZero k` is not bookkeeping.  The identity matrix must have norm one, which
 fails over an empty index set; the CPAP produces its `k` from a Følner set,
 which is nonempty for that reason.
+
+## What still stands between the CPAP and `IsNuclearCStarAlgebra`
+
+Two things, and only one of them is bookkeeping.  Recorded here because the
+first reading of this gap called both of them bookkeeping, and one is a theorem.
+
+1. **`k` is not known positive.**  `NuclearReducedCPAP` quantifies over a `k`
+   with no positivity clause, so `finDimOperatorBlock` cannot be applied to it
+   directly.  The Følner producer always gives `k = |A| > 0`, but the interface
+   forgets that.  It is recoverable rather than assumable: run the CPAP at
+   tolerance `min δ (1/2)` and with `1 ∈ S`; if `k = 0` the block algebra is
+   trivial, so `up (down λ₁) = 0` while `λ₁ = 1` has norm one, and `1 ≤ 1/2`
+   is false.  Bookkeeping, but not free.
+
+2. **Complete positivity does not obviously corestrict.**  `IsNuclearMap` wants
+   `β : D →ₗ[ℂ] A` landing in the reduced algebra, and the CPAP's `up` lands in
+   the ambient `B(ℓ²)` with a membership proof.  Corestricting the *map* is
+   `LinearMap.codRestrict`; corestricting `IsCompletelyPositive` is not, because
+   that predicate asks for a factorization `star P * P` and `P` is produced over
+   the ambient algebra, not over the subalgebra.  What makes it true is that
+   positivity is intrinsic to a C⋆-subalgebra — the square root of a positive
+   element of a subalgebra stays in it, by continuous functional calculus, which
+   is the `cfc_mem` argument `Analysis/RoeSquareRoot` already runs for the Roe
+   algebra.  **That is a theorem, and it is the last one on this row.**
 -/
 
 namespace GroupApproximation
