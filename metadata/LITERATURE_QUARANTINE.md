@@ -50,6 +50,7 @@ than being skipped, so the roster cannot outlive the problem it records.
 | `QuasidiagonalMF.TikuisisWhiteWinterInput` | Tikuisis–White–Winter, *Quasidiagonality of nuclear C\*-algebras*, Ann. of Math. (2) **185** (2017) 229–284 | the theorem itself |
 | `QuasidiagonalMF.AmenableNuclearInput` | Lance: `C*_r(G)` is nuclear for amenable `G` | the theorem itself |
 | `QuasidiagonalMF.AmenableUCTInput` | Tu: the UCT for `C*_r(G)`, `G` amenable | the theorem itself |
+| `Quasidiagonal.UCPSelfAdjointContractive` | **not a citation** — the two automatic properties of a ucp map into a matrix algebra (`*`-preservation, contractivity) | two bookkeeping steps from this repository's own Stinespring chain; see `Analysis/QuasidiagonalTrace` |
 | `QuasidiagonalMF.AmenableMFInput` | the group-level corollary `amenable ⟹ operator-MF` | the three rows above; `Analysis/TikuisisWhiteWinter` proves every step between them and this |
 | `CyclicBaseCalibration.AmenableImpliesMF` | the same corollary, at the calibration site | as above |
 | `ContainsSquareWitness.UniversalFPTorsionFree` | Fournier-Facio, arXiv:2608.02025 §2: a finitely presented torsion-free property-(T) group universal for finitely presented torsion-free groups | the two rows below; `Sofic/FournierFacioUniversalGroup` proves the step that joins them |
@@ -63,7 +64,29 @@ than being skipped, so the roster cannot outlive the problem it records.
 | `KunThomShulmanDoubleData` | the Kun–Thom/Shulman double construction | the construction |
 | `CStarRecognitionConsequences.GroupCStarAdianRabinReductions` | Adian–Rabin | the theorem itself |
 
-## The one entry that is not a research programme
+## Twenty entries, ten citations, two proofs
+
+The roster is longer than the debt.  Six entries are **derived** — the corpus
+already proves them from other entries — and stay listed only because a
+statement that names one is conditional all the same:
+
+* `AmenableMFInput` is the universal quantification of
+  `isOperatorMF_of_isAmenable_of_tww` over TWW, Lance, Tu and the ucp facts;
+  `CliffordAsideInert` proves `AmenableImpliesMF` equivalent to it;
+* `UniversalKazhdanGroup` is `ofInputs` of the host and the envelope, and
+  `UniversalFPTorsionFree` is read off it;
+* in the routing family, `RelativeCommonQuotientData.toDefectRoutingData` and
+  `OrderPreservingRoutingData.toFiveConditionRoutingData` are proved, so the
+  five names are one obligation.
+
+What is left is **ten** independent inputs, and only eight of them are other
+people's theorems: TWW, Lance, Tu, Chiodo/Belegradek, Osin, a torsion-free
+hyperbolic Kazhdan group, Hull, Kun–Thom/Shulman, Adian–Rabin.  **Two are
+proofs this repository could finish** — `UCPSelfAdjointContractive`, two steps
+from its own Stinespring chain, and `GreendlingerGate`.  Those two are where
+work belongs; the rest is not a task list.
+
+## The one citation that is not a research programme
 
 `GreendlingerGate` is Greendlinger's lemma: a nonempty reduced word in the
 normal closure of a `C'(1/6)` symmetrized set contains more than half of one of
@@ -86,32 +109,48 @@ reduced van Kampen diagrams, which the corpus has no vocabulary for.  The
   `IsMinimalConjExpr.tail` / `.leadingPair` prove that minimality is hereditary
   in the two ways the induction needs.
 
-### The band that is open, exactly
+### `GreendlingerTwoPiece` is false as stated — do not try to prove it
 
-Even the **base case** of that induction — two disjoint pieces for a two-factor
-minimal expression — is not yet closed, and it is worth recording how narrow the
-gap is, because the shape of the remaining obligation is not the one the
-`GreendlingerInduction` docstring guesses at.
+`GreendlingerInduction` proposes `TwoPieceConclusion` as the strengthening the
+three-factor induction runs on, on the grounds that it is "what Greendlinger's
+lemma actually proves for a reduced diagram with at least two regions".  It is
+not, and the difference is not cosmetic.  The classical conclusion is that each
+of two regions meets `∂D` in a part that is **consecutive along `∂Dᵢ`**.
+`TwoPieceConclusion` asks for two subwords consecutive along **`w`**.  When the
+second region's arc wraps past the basepoint those are different statements,
+and the second one fails.
 
-Take the regime `|c'| ≤ |c|` of `regime_cases`, where `c = c' ++ q` with
-`q <+: t'` and the destroyed block eats `q ++ invRev E` out of the second
-rotation (`exists_overlap_of_cancellation`).  `E` is a piece, so `6|E| < |t'|`;
-`q` is only a suffix of the first conjugator, and `C'(1/6)` says nothing about
-it.  Two disjoint pieces are available at either end of the range:
+The witness, in the shape `GreendlingerRegime` already produces.  Take
+`|t| = |t'| = 100`, an overlap `|E| = 10`, and the regime `|c'| ≤ |c|` with
+`c' = []` and `c = q` where `q = t'.take 45`; let `E` be the suffix of `t` with
+`invRev E = t'.drop 45 |>.take 10`.  Then
 
-* if `|t'| < 2|q|`, then `q` itself is more than half of `t'`, and `q` and
-  `t.take (|t| − |E|)` are **two disjoint consecutive subwords of `P'`** — the
-  second piece lives in the *conjugator* part of the first palindrome, not in
-  `B'`, which is why looking only at `B'` misses it;
-* if `2(|q| + |E|) < |t'|`, then `t' .drop (|q| + |E|)` survives whole in `B'`,
-  is a suffix of `t'` and so a prefix of a rotation of it
-  (`prefix_rotate_of_suffix`), and is more than half.
+```text
+    w  =  q(45)  ++  t.take 90  ++  t'.drop 55 (45)
+```
 
-What is left is the band `|t'| − 2|E| ≤ 2|q| ≤ |t'|`, of width `2|E| < |t'|/3`,
-in which `q` is a prefix of `t'` longer than `|t'|/3` that is simultaneously a
-suffix of the first conjugator.  Neither minimality reaches it: the factor count
-is spent on `hcoin`, and the weight is stable there — sliding `q` into the second
-conjugator (`mk_palindrome_slide`) *lengthens* the total by `|q|`, and sliding it
-out of the first would need `invRev q` to be a suffix of `t`, which nothing
-supplies.  Closing that band, or finding the move that empties it, is the
-genuine research step; it is what planarity does for the classical proof.
+is reduced, spells `q t q⁻¹ · t'`, and its minimal expression has two factors.
+Every subword of `w` that is more than half of a relator lies inside
+`t.take 90` — `q` and `t'.drop 55` are 45 letters each, both short of the 51
+needed, and they are **not adjacent in `w`**.  Two *disjoint* such subwords
+would need at least 102 letters inside a block of 90.  So `TwoPieceConclusion`
+fails, while the Greendlinger conclusion itself holds through `t.take 90`.
+
+What the second region does satisfy is the cyclic form: on `∂D₂ = t'`, the part
+off `∂D` is exactly `invRev E`, so the part on `∂D` is `t'.drop 55 ++ q`,
+consecutive as a rotation of `t'` and `90 > 50` letters long.  Any strengthening
+that survives the induction has to be stated that way — pieces located as
+*cyclic* subwords, or as a pair (suffix-part, prefix-part) — not as
+`w = A ++ u₁ ++ B ++ u₂ ++ C`.  Note also that the stem `c'` sits between the
+two parts in general, so even the cyclic reading needs the basepoint handled.
+
+### What is proved, and what the two-factor case still owes
+
+`Sofic/GreendlingerTwoPieceRegime.twoPiece_of_long_overhang` closes the branch
+where the linear form *is* available: if `|t'| < 2|q|` then `q` is itself more
+than half of `t'`, and `q` and `t.take (|t| − |E|)` are two disjoint consecutive
+subwords **of `P'`** — both pieces in the first palindrome, which is why looking
+for the second one in `B'` makes the case look harder than it is.  The mirror
+branch `2(|q| + |E|) < |t'|` puts the second piece in `B'`.  Between them lies
+the band `|t'| − 2|E| ≤ 2|q| ≤ |t'|`, and the witness above lives in it — so the
+band is not an unproved case, it is where the statement is wrong.

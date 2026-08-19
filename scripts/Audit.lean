@@ -923,17 +923,33 @@ def literaturePackages : List Name :=
    ``QuasidiagonalMF.TikuisisWhiteWinterInput,
    ``QuasidiagonalMF.AmenableNuclearInput,
    ``QuasidiagonalMF.AmenableUCTInput,
+   -- The two automatic properties of a unital completely positive map into a
+   -- matrix algebra, `*`-preservation and contractivity.  Listed with the
+   -- citations because nothing inhabits it, but it is **not** a citation: the
+   -- module docstring says it is two bookkeeping steps from the repository's
+   -- own Stinespring chain.  It and `GreendlingerGate` are the two entries
+   -- that a proof, rather than a programme, would retire.
+   ``Quasidiagonal.UCPSelfAdjointContractive,
+   -- Derived, and on the roster because a statement that names one is
+   -- conditional all the same: `AmenableMFInput` is the universal
+   -- quantification of `isOperatorMF_of_isAmenable_of_tww` over the four
+   -- above, and `CliffordAsideInert` proves `AmenableImpliesMF` equivalent
+   -- to it.
    ``QuasidiagonalMF.AmenableMFInput,
    ``CyclicBaseCalibration.AmenableImpliesMF,
    -- Fournier-Facio's universal finitely presented torsion-free property-(T)
    -- group, arXiv:2608.02025 sec. 2, and the two theorems it is built from:
    -- Chiodo/Belegradek (the universal torsion-free host) and Osin (small
    -- cancellation over a relatively hyperbolic pair).
-   ``ContainsSquareWitness.UniversalFPTorsionFree,
-   ``FournierFacioUniversal.UniversalKazhdanGroup,
    ``FournierFacioUniversal.UniversalTorsionFreeHost,
    ``FournierFacioUniversal.KazhdanEnvelope,
    ``SmallCancellationEnvelope.HyperbolicKazhdanPartner,
+   -- Derived: `ofInputs` builds `UniversalKazhdanGroup` from the host and the
+   -- envelope, and `universalFPTorsionFree_of_universalKazhdanGroup` reads
+   -- `UniversalFPTorsionFree` off it.  Both stay on the roster for the reason
+   -- above.
+   ``FournierFacioUniversal.UniversalKazhdanGroup,
+   ``ContainsSquareWitness.UniversalFPTorsionFree,
    -- Greendlinger's lemma for C'(1/6).  The one entry here that is a
    -- self-contained combinatorial theorem rather than a research programme:
    -- `Sofic/Greendlinger*` proves it for expressions with at most two

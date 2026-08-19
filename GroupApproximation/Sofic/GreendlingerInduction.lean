@@ -36,6 +36,15 @@ proves, and classically it is proved from a reduced diagram: a simply-connected
 reduced diagram with at least two regions has at least two regions meeting the
 boundary in more than half their own boundary.
 
+**Warning, established after this file was written: `GreendlingerTwoPiece` is
+false.**  Greendlinger's lemma gives two regions each meeting the boundary in a
+part consecutive along *its own* boundary; `TwoPieceConclusion` asks for two
+subwords consecutive along `w`, and when the second region's arc wraps past the
+basepoint those differ.  `Sofic/GreendlingerTwoPieceRegime` carries the witness
+and the cyclic statement that replaces it.  What is below is still correct --
+the strengthened statement does imply the gate -- it is simply not reachable, so
+do not spend the induction on it.
+
 `TwoPieceConclusion` states it, `greendlinger_of_twoPieceConclusion` shows it is
 stronger than what the gate asks, and
 `greendlingerConclusion_of_greendlingerTwoPiece` runs the base cases: the gate

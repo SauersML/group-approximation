@@ -38,25 +38,36 @@ That is `twoPiece_of_long_overhang`.  The second subword is more than half of
 `t` for the reason the one-piece case already gives: the eaten suffix is a
 piece, so `6|E| < |t|`, far more than the `2|E| < |t|` needed.
 
-## What this leaves
+## What this leaves, and a warning
 
 The complementary branch -- `2(|q| + |E|) < |t'|`, where the surviving suffix
 of `t'` really is a piece inside `B'` -- is the mirror of the argument above.
-Between the two lies the band
+Between the two lies the band `|t'| - 2|E| <= 2|q| <= |t'|`, of width
+`2|E| < |t'|/3`.
+
+**That band is not an unproved case; it is where `GreendlingerTwoPiece` is
+false.**  Take `|t| = |t'| = 100`, `|E| = 10`, `c' = []`, `c = q = t'.take 45`,
+and `E` the suffix of `t` with `invRev E = (t'.drop 45).take 10`.  Then
 
 ```text
-    |t'| − 2|E|  ≤  2|q|  ≤  |t'|,
+    w  =  q(45)  ++  t.take 90  ++  t'.drop 55 (45)
 ```
 
-of width `2|E| < |t'|/3`, in which `q` is a prefix of `t'` longer than `|t'|/3`
-that is simultaneously a suffix of the first conjugator.  Neither minimality
-reaches it: the factor count is spent on `hcoin`, and the weight is stable
-there, since sliding `q` into the second conjugator (`mk_palindrome_slide`)
-*lengthens* the total by `|q|`, and sliding it out of the first would need
-`invRev q` to be a suffix of `t`, which nothing supplies.  That band is the
-open obligation; `metadata/LITERATURE_QUARANTINE.md` records it as such.
+is reduced, spells `q t q⁻¹ · t'`, and every subword of it that is more than
+half of a relator lies inside `t.take 90`: the two chunks of `t'` are 45 letters
+each, short of the 51 needed, and they are not adjacent in `w`.  Two *disjoint*
+such subwords would need 102 letters inside a block of 90.
+
+What the second region satisfies is the *cyclic* statement: off `∂D` its
+boundary loses exactly `invRev E`, so `t'.drop 55 ++ q` is 90 letters of a
+rotation of `t'` -- consecutive along `∂D₂`, not along `w`.  That is what
+Greendlinger's lemma proves, and `TwoPieceConclusion` asks for the other one.
+Any strengthening meant to survive the three-factor induction has to locate its
+pieces cyclically, and has to say what happens at the basepoint, where the stem
+`c'` separates the two parts.
 
 Depends on `C'(1/6)` exactly where `GreendlingerPiece` does.
+
 -/
 
 namespace GroupApproximation
