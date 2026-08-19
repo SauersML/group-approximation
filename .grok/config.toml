@@ -1,0 +1,15 @@
+# Grok Build project permissions.
+# Grok is allowed to work on feature branches and open PRs, but it must not
+# directly update or merge the protected integration branches.
+
+[permission]
+deny = [
+  "Bash(git push * main*)",
+  "Bash(git push * master*)",
+  "Bash(git push *:main*)",
+  "Bash(git push *:master*)",
+  "Bash(git push --all*)",
+  "Bash(git push --mirror*)",
+  "Bash(gh pr merge*)",
+  "Bash(gh api *pulls/*/merge*)",
+]
