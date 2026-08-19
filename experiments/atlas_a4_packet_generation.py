@@ -3,13 +3,15 @@
 
 The packet is already certified by atlas_triangle_19243_packet.py.  This script
 asks a different finite question: do the chart letters which actually occur in
-those thirty contexts generate the whole A8 chart on each side?
+those thirty contexts generate the whole A8 chart on each side, and how long a
+packet-letter word is needed in the worst case?
 
-All group arithmetic is exact over F2.  The expected answer is 20160 on both
-factors.
+All group arithmetic is exact over F2.  The expected answer is 20160 elements
+and directed word diameter 9 on both factors.
 """
 
 import json
+from collections import Counter
 
 from atlas_kernel_collision_enumerator import enumerate_ball, spanning_tree_kernel_words
 from atlas_two_chart_search import I4, factor_generators, gf2_mul, matrix_key
@@ -73,20 +75,25 @@ def select_packet(words, lengths):
     return packet
 
 
-def subgroup_size(generators):
-    seen = {matrix_key(I4)}
+def subgroup_stats(generators):
+    distances = {matrix_key(I4): 0}
     frontier = [I4.copy()]
     while frontier:
         nxt = []
         for element in frontier:
+            depth = distances[matrix_key(element)]
             for generator in generators:
                 target = gf2_mul(element, generator)
                 key = matrix_key(target)
-                if key not in seen:
-                    seen.add(key)
+                if key not in distances:
+                    distances[key] = depth + 1
                     nxt.append(target)
         frontier = nxt
-    return len(seen)
+    return {
+        "generated_subgroup_size": len(distances),
+        "directed_word_diameter": max(distances.values()),
+        "distance_layers": dict(sorted(Counter(distances.values()).items())),
+    }
 
 
 def main():
@@ -95,6 +102,7 @@ def main():
     packet = select_packet(words, x_lengths())
 
     output = {"packet_size": len(packet), "factors": {}}
+    factor_keys = {}
     for factor in (1, 2):
         generators = {}
         for _, word in packet:
@@ -103,14 +111,27 @@ def main():
             for f, matrix in word:
                 if f == factor:
                     generators[matrix_key(matrix)] = matrix
-        size = subgroup_size(list(generators.values()))
-        if size != 20160:
-            raise AssertionError(f"factor {factor} generated subgroup of size {size}")
+        stats = subgroup_stats(list(generators.values()))
+        if stats["generated_subgroup_size"] != 20160:
+            raise AssertionError(
+                f"factor {factor} generated subgroup of size "
+                f"{stats['generated_subgroup_size']}"
+            )
+        if stats["directed_word_diameter"] != 9:
+            raise AssertionError(
+                f"factor {factor} packet diameter changed to "
+                f"{stats['directed_word_diameter']}"
+            )
+        factor_keys[factor] = set(generators)
         output["factors"][str(factor)] = {
             "distinct_packet_letters": len(generators),
-            "orders": sorted({matrix_order(m) for m in generators.values()}),
-            "generated_subgroup_size": size,
+            "orders": dict(sorted(Counter(matrix_order(m) for m in generators.values()).items())),
+            **stats,
         }
+
+    output["same_letter_set_on_both_factors"] = factor_keys[1] == factor_keys[2]
+    if not output["same_letter_set_on_both_factors"]:
+        raise AssertionError("the two packet letter sets no longer agree")
 
     print(json.dumps(output, sort_keys=True, indent=2))
 
