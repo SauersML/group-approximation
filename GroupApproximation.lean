@@ -1008,6 +1008,7 @@ import GroupApproximation.Sofic.CollapsePrintedDiagonalization
 import GroupApproximation.Sofic.CollapsePrintedCorollary
 import GroupApproximation.Computability.MachineRestrict
 import GroupApproximation.Sofic.CliffordLampGraphLocalFiniteness
+import GroupApproximation.Sofic.CliffordLampGraphFreeSubgroup
 import GroupApproximation.Sofic.CliffordBSAmenableMF
 import GroupApproximation.Sofic.CliffordQuotientMFUnconditional
 import GroupApproximation.Sofic.DefectActionAnyUniverse
