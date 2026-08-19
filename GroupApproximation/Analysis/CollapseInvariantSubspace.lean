@@ -1,6 +1,7 @@
 import GroupApproximation.Analysis.CollapseLambdaCocycle
 import GroupApproximation.Analysis.OmegaHilbertComplete
 import GroupApproximation.Analysis.ProjectionOrbitCollapse
+import GroupApproximation.Analysis.NormMatrixCoronaUnitary
 
 /-!
 # `K_q = closure Λ(𝓘_q)`, and the printed paragraph inside it
@@ -226,6 +227,32 @@ theorem conjIsometryEquiv_mem_Kq (P : MatFam Y) (ω : Ultrafilter ℕ)
         (rankWeight_nonneg Y P) U).continuous
       (Set.mem_image_of_mem _ hxc)
   exact closure_mono hmaps himg
+
+/-- **`K_q` is invariant under conjugation by a corona unitary.**  This is
+the printed form of the invariance: the print's `π(g)` is conjugation by
+`Θ(g)` *in `B_ω`*, a unitary of the corona, not a coordinatewise
+homomorphism.  Every corona unitary is represented by a coordinatewise
+unitary family
+(`unitaryCoronaToCStarCoronaUnitary_surjective`),
+and conjugation by such a family already preserves `K_q`, because the printed
+ideal is two-sided in the corona.  Stating it here rather than duplicating
+`K_q` elsewhere keeps one theorem wearing one proof. -/
+theorem exists_conj_mem_Kq_of_coronaUnitary (P : MatFam Y) (ω : Ultrafilter ℕ)
+    (hω : (ω : Filter ℕ) ≤ cofinite)
+    (u : unitary (NormMatrixCStarCorona (fun n ↦ Y n))) :
+    ∃ U : ∀ n, Matrix.unitaryGroup (Y n) ℂ,
+      coronaLinear Y (unitarySequenceBounded Y U) = (u : NormMatrixCStarCorona (fun n ↦ Y n)) ∧
+        ∀ x ∈ Kq Y P ω hω,
+          conjIsometryEquiv Y (rankWeight Y P) ω (rankWeight_nonneg Y P) U x
+            ∈ Kq Y P ω hω := by
+  obtain ⟨c, hc⟩ :=
+    unitaryCoronaToCStarCoronaUnitary_surjective Y u
+  induction c using QuotientGroup.induction_on with
+  | H U =>
+    refine ⟨U, ?_, fun x hx ↦ conjIsometryEquiv_mem_Kq Y P ω hω U x hx⟩
+    rw [unitaryCoronaToCStarCoronaUnitary_mk] at hc
+    exact congrArg (fun v : unitary (NormMatrixCStarCorona (fun n ↦ Y n)) ↦
+      (v : NormMatrixCStarCorona (fun n ↦ Y n))) hc
 
 section Rep
 
