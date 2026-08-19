@@ -5,12 +5,12 @@ kind: claim
 title: Squared Fourier-block energies of a unitary form an exact transportation plan
 ---
 
-Let `P_i` and `Q_j` be finite orthogonal decompositions of the identity in
-`M_D(C)` and let `U` be unitary.  Put
+Let `(M,tau)` be a finite tracial von Neumann algebra, let `P_i` and `Q_j` be
+finite orthogonal decompositions of the identity, and let `U` be unitary.  Put
 
 ```text
-alpha_i = tr_D(P_i),
-beta_j  = tr_D(Q_j),
+alpha_i = tau(P_i),
+beta_j  = tau(Q_j),
 m_(j,i) = ||Q_j U P_i||_2^2.                          (UBE1)
 ```
 
@@ -40,7 +40,9 @@ that every unitary must pay positive weighted block energy.  The weighted Hall
 leakage bound is the zero-one cost special case: cost one on forbidden edges
 and zero on allowed edges.
 
-For regular finite-group charts, choosing minimal Wedderburn projections makes
-`alpha_i,beta_j` fixed rational Plancherel weights independent of external
-multiplicity.  This converts a finite Fourier obstruction into a transportation
-LP rather than requiring a hard support graph.
+In particular this applies both to finite matrices and to an exact finite
+factor model.  For regular finite-group charts, choosing minimal Wedderburn
+projections makes `alpha_i,beta_j` the fixed rational Plancherel weights,
+independent of external multiplicity.  This converts a finite Fourier
+obstruction into a transportation LP rather than requiring a hard support
+graph.
