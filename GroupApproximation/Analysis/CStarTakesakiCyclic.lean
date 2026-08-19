@@ -147,6 +147,7 @@ theorem bddAbove_spatialNorm_gnsRep_left (ρ : StarRep B K) (x : A ⊗[ℂ] B) :
   | tmul a b =>
       refine ⟨‖a‖ * ‖ρ.hom b‖, ?_⟩
       rintro r ⟨φ, rfl⟩
+      show spatialNorm φ.gnsRep ρ (a ⊗ₜ[ℂ] b) ≤ ‖a‖ * ‖ρ.hom b‖
       rw [spatialNorm_tmul]
       exact mul_le_mul_of_nonneg_right (φ.norm_gnsRep_apply_le a)
         (norm_nonneg _)
@@ -257,6 +258,7 @@ noncomputable def cyclicMap (π : StarRep A H) (ζ : H) : A →ₗ[ℂ] H where
   map_smul' c a := by
     rw [map_smul, smul_apply, RingHom.id_apply]
 
+omit [Nontrivial A] [CompleteSpace H] in
 @[simp] theorem cyclicMap_apply (π : StarRep A H) (ζ : H) (a : A) :
     cyclicMap π ζ a = π.hom a ζ := rfl
 
@@ -267,6 +269,7 @@ noncomputable def tmulLeftL (η : K) : H →L[ℂ] (H ⊗[ℂ] K) :=
     rw [LinearMap.flip_apply, TensorProduct.mk_apply,
       TensorProduct.norm_tmul, mul_comm]
 
+omit [CompleteSpace H] in
 @[simp] theorem tmulLeftL_apply (η : K) (v : H) :
     tmulLeftL η v = v ⊗ₜ[ℂ] η := rfl
 
@@ -295,7 +298,7 @@ theorem quadratic_cyclic_le (π : StarRep A H) (ρ : StarRep B K)
     have he : (fun u : Fin m → H => ∑ i : Fin m, u i ⊗ₜ[ℂ] η i)
         = fun u => ∑ i : Fin m, tmulLeftL (η i) (u i) := rfl
     rw [he]
-    exact continuous_finset_sum _ fun i _ =>
+    exact continuous_finsetSum _ fun i _ =>
       (tmulLeftL (η i)).continuous.comp (continuous_apply i)
   -- the bound set is closed
   have hclosed : IsClosed {u : Fin m → H |
@@ -328,9 +331,11 @@ theorem quadratic_cyclic_le (π : StarRep A H) (ρ : StarRep B K)
     -- rescale the witnesses to the unit cyclic vector
     have hcomp : ∀ i, π.hom (((‖ζ‖ : ℝ) : ℂ) • b i) ζh = u i := by
       intro i
-      rw [map_smul, smul_apply, hζh,
-        (π.hom (b i)).map_smul]
-      rw [smul_smul, ← Complex.ofReal_mul,
+      have h1 : π.hom (((‖ζ‖ : ℝ) : ℂ) • b i) ζh
+          = ((‖ζ‖ : ℝ) : ℂ) • (π.hom (b i)) ζh := by
+        rw [map_smul]
+        rfl
+      rw [h1, hζh, (π.hom (b i)).map_smul, smul_smul, ← Complex.ofReal_mul,
         mul_inv_cancel₀ (norm_ne_zero_iff.mpr hζ0), Complex.ofReal_one,
         one_smul]
       exact hb i

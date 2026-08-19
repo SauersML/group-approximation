@@ -128,6 +128,7 @@ theorem starInner_self (ξ : G →₀ ℂ) :
 
 /-! ## Sesquilinearity -/
 
+omit [Group G] in
 theorem starInner_comm (ξ η : G →₀ ℂ) :
     starInner η ξ = (starRingEnd ℂ) (starInner ξ η) := by
   classical
