@@ -294,6 +294,7 @@ def UniversalKazhdanGroup.ofInputs (H : UniversalTorsionFreeHost)
 the envelope, and the host survives only as the source of its universality.
 Recorded so that a reader can see the composite carries no hidden
 construction. -/
+@[simp]
 theorem ofInputs_carrier (H : UniversalTorsionFreeHost)
     (E : KazhdanEnvelope H.Carrier) :
     (UniversalKazhdanGroup.ofInputs H E).Carrier = E.Carrier := rfl
@@ -332,6 +333,7 @@ def UniversalKazhdanGroup.toEnvelope (P : UniversalKazhdanGroup) :
 
 /-- **The split loses nothing.**  Sending `KC.21` through its own two inputs
 returns the group it started from. -/
+@[simp]
 theorem ofInputs_toHost_toEnvelope (P : UniversalKazhdanGroup) :
     (UniversalKazhdanGroup.ofInputs P.toHost P.toEnvelope).Carrier =
       P.Carrier := rfl

@@ -257,6 +257,7 @@ def universalKazhdanGroup (Host : UniversalTorsionFreeHost)
 /-- The group produced by the route is the small-cancellation quotient
 itself; the host contributes universality and the partner contributes
 property `(T)`, and neither contributes a new carrier. -/
+@[simp]
 theorem universalKazhdanGroup_carrier (Host : UniversalTorsionFreeHost)
     (H : HyperbolicKazhdanPartner)
     (C : SmallCancellationQuotient Host.Carrier H.Carrier) :
