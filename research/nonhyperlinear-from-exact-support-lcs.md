@@ -2,7 +2,7 @@
 rg: 2
 id: nonhyperlinear-from-exact-support-lcs
 kind: route
-title: Exact-support LCS sparsification yields an explicit nonhyperlinear solution group
+title: An exact robust LCS sub-menu yields an explicit nonhyperlinear solution group
 target: non-hyperlinear-group
 requires:
   - mipstar-bcs-tracial-nonru-exists
@@ -14,22 +14,24 @@ artifacts:
 ---
 
 `mipstar-bcs-tracial-nonru-exists` supplies the unconditional noncommutative
-source gap from `MIP*=RE`.  The open compiler theorem
-`bcs-to-lcs-exact-support-gap` asks for less than a perfectly complete
-BCS-to-LCS reduction: only that the mass of linear checks satisfied **exactly**
-by one tracial assignment exceed the maximum enlarged-threshold mass
-satisfiable by a finite-dimensional assignment keeping the central mark
-separated.
+source gap from `MIP*=RE`. The open compiler theorem
+`bcs-to-lcs-exact-support-gap` asks for an LCS sub-menu which one tracial
+assignment satisfies exactly and on which every finite-dimensional assignment
+keeping the central mark separated has a positive defect somewhere.
 
-The established theorem `exact-support-relator-sparsification` then samples a
-finite submenu whose solution-group mark `J` is nontrivial in an exact tracial
-representation but trivial in approximate representations.  By the
-Paddock--Slofstra solution-group criterion this presentation is
-nonhyperlinear.  `explicit-exact-support-lcs-witness` freezes one actual linear
-system and its constants, upgrading the probabilistic existence conclusion to
-the primary goal's explicit witness.
+The established `exact-support-gap-nonexact-checks-no-advantage` shows that this
+is not genuinely weaker than perfect completeness of the **selected** LCS
+sub-menu: if an ambient distribution has `g>q`, its exact support already has a
+uniform constant gap. Ambient inexact checks are irrelevant to existence.
 
-This route does not require perfect completeness of the whole LCS compiler,
-property-(T) stability, commutant reconstruction, a Leavitt decoder, or a
-nonlocal game as the final object.  The sole new mathematics is the
-exact-support/soundness strict inequality for a source-specific linearization.
+Once that exact robust sub-menu is available,
+`exact-support-relator-sparsification` supplies the finite-moment extraction,
+and `explicit-exact-support-lcs-witness` freezes one actual linear system and
+its constants. The resulting solution-group mark `J` is nontrivial in an exact
+tracial representation but trivial in approximate representations, giving the
+nonhyperlinear endpoint.
+
+The useful narrowing is therefore precise: the new mathematics is an
+**exact-support sound compiler** from the tracial/non-`R^U` source to LCS, or an
+equivalent direct exact robust LCS construction. Reweighting deliberately
+inexact checks cannot replace that step.
