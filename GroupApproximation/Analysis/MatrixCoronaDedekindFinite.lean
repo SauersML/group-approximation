@@ -350,10 +350,11 @@ The coordinates of a matrix over `Q_X` are the amplified finite matrices
 the two block comparisons carry the hypothesis down to the coordinates and the
 conclusion back up. -/
 theorem mul_eq_one_symm_matrixCorona {I : Type} [Fintype I] [DecidableEq I]
-    (X : ℕ → FiniteModel) [∀ n, Nonempty (X n)]
+    (hI : Nonempty I) (X : ℕ → FiniteModel) [∀ n, Nonempty (X n)]
     {x y : Matrix I I (NormMatrixCStarCorona (fun n ↦ X n))} (hxy : x * y = 1) :
     y * x = 1 := by
   classical
+  haveI := hI
   have hsurj := normMatrixCStarCoronaMk_surjective (fun n ↦ X n)
   set a : I → I → BoundedMatrixSequence (fun n ↦ X n) :=
     fun i j ↦ Function.surjInv hsurj (x i j) with hadef
@@ -473,7 +474,7 @@ theorem cstarMatrix_mul_star_eq_one_of_hasMFEmbedding
       exact he hij
     have hfinite : ∀ z : CStarMatrix I I (NormMatrixCStarCorona (fun n ↦ X n)),
         star z * z = 1 → z * star z = 1 := fun z hz ↦
-      mul_eq_one_symm_matrixCorona X hz
+      mul_eq_one_symm_matrixCorona hI X hz
     have hPidem : E 1 * E 1 = E 1 := by
       rw [← map_mul, one_mul]
     have hPsa : star (E 1) = E 1 := by
