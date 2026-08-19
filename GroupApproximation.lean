@@ -20,6 +20,8 @@ import GroupApproximation.Analysis.CollapseNormalizedSetup
 import GroupApproximation.Analysis.CollapseUnitaryLift
 import GroupApproximation.Analysis.GroupStandardFormInstance
 import GroupApproximation.Analysis.GroupVonNeumannAlgebra
+import GroupApproximation.Analysis.ReducedGroupCStarSpan
+import GroupApproximation.Analysis.CStarUnitalCPContractive
 import GroupApproximation.Analysis.GroupVonNeumannTrace
 import GroupApproximation.Analysis.LimitsTraceStandardForm
 import GroupApproximation.Analysis.PrintedFiniteDimensionalUses
@@ -946,6 +948,7 @@ import GroupApproximation.Analysis.CStarStateGNS
 import GroupApproximation.Analysis.CStarStatePullback
 import GroupApproximation.Analysis.CStarMinTensorNorm
 import GroupApproximation.Analysis.CStarSliceBound
+import GroupApproximation.Analysis.CStarSliceCompletion
 import GroupApproximation.Analysis.CStarSliceIdeal
 import GroupApproximation.Analysis.CStarMaxTensorNorm
 import GroupApproximation.Analysis.CStarTensorComparison
@@ -1221,6 +1224,7 @@ import GroupApproximation.Analysis.CStarExactComplex
 import GroupApproximation.Algebra.WordMetricBall
 import GroupApproximation.Analysis.CoarseCompression
 import GroupApproximation.Analysis.SchoenbergKernel
+import GroupApproximation.Analysis.L2KernelOperator
 import GroupApproximation.Analysis.GuentnerKaminker
 import GroupApproximation.Analysis.PropertyASquareWitness
 import GroupApproximation.Manuscript.NonMF.QuestionOneOpenness

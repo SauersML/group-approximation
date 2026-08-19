@@ -79,7 +79,7 @@ one group, and it is the precise analogue of
 instance of a general clause, and the instance is far smaller than the
 clause. -/
 theorem isOperatorMF_realizedQuotient_of_quasidiagonalTrace
-    (hucp : Quasidiagonal.UCPSelfAdjointContractive.{0})
+    (hucp : Quasidiagonal.UCPContractive.{0})
     (h : Quasidiagonal.IsQuasidiagonalTrace
       (fun T : ReducedGroupCStar LiteralCyclicCalibration.RealizedQuotient ↦
         ReducedGroupCStarTrace.canonicalFaithfulTracialState
@@ -97,7 +97,7 @@ The amenability half of the printed sentence is discharged
 inputs are the entire external content of the aside --- previously recorded as
 the single opaque binder `CyclicBaseCalibration.AmenableImpliesMF`. -/
 theorem isOperatorMF_realizedQuotient_of_tww {UCT : Type → Prop}
-    (hucp : Quasidiagonal.UCPSelfAdjointContractive.{0})
+    (hucp : Quasidiagonal.UCPContractive.{0})
     (tww : QuasidiagonalMF.TikuisisWhiteWinterInput UCT)
     (lance : QuasidiagonalMF.AmenableNuclearInput.{0})
     (tu : QuasidiagonalMF.AmenableUCTInput.{0} UCT) :
@@ -121,7 +121,7 @@ algebras.
 The only external content is the ucp facts, which are dischargeable in-repo;
 in particular this does **not** depend on Tikuisis--White--Winter. -/
 theorem markedGroup_canonicalReducedTrace_not_isQuasidiagonalTrace
-    (hucp : Quasidiagonal.UCPSelfAdjointContractive.{0}) :
+    (hucp : Quasidiagonal.UCPContractive.{0}) :
     ¬ Quasidiagonal.IsQuasidiagonalTrace
       (fun T : ReducedGroupCStar MarkedGroup ↦
         ReducedGroupCStarTrace.canonicalFaithfulTracialState MarkedGroup T) := by
@@ -147,7 +147,7 @@ through Lance's theorem at the `min = max` predicate
 two are independent: different predicate, different citation.  Neither is
 discharged. -/
 theorem markedGroup_reducedGroupCStar_not_isNuclear_of_tww {UCT : Type → Prop}
-    (hucp : Quasidiagonal.UCPSelfAdjointContractive.{0})
+    (hucp : Quasidiagonal.UCPContractive.{0})
     (tww : QuasidiagonalMF.TikuisisWhiteWinterInput UCT)
     (huct : UCT (ReducedGroupCStar MarkedGroup)) :
     ¬ CStarExactness.IsNuclearCStarAlgebra (ReducedGroupCStar MarkedGroup) := by

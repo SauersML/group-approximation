@@ -40,7 +40,7 @@ and `q : C⋆(G) → C⋆_r(G)` for the canonical map.
 | 3 | `C⋆_r(G)` is nuclear for amenable `G` | `AmenableNuclearInput` --- Lance, **input** |
 | 4 | `C⋆_r(G)` satisfies the UCT for amenable `G` | `AmenableUCTInput` --- Tu, **input** |
 | 5 | hence `τ_r` is a quasidiagonal trace | `TikuisisWhiteWinterInput` --- TWW, **input** |
-| 6 | a quasidiagonal trace is an MF trace | `Quasidiagonal.isMFTrace_of_isQuasidiagonalTrace` --- **proved**, modulo the ucp facts of `Quasidiagonal.UCPSelfAdjointContractive` |
+| 6 | a quasidiagonal trace is an MF trace | `Quasidiagonal.isMFTrace_of_isQuasidiagonalTrace` --- **proved**, modulo the ucp facts of `Quasidiagonal.UCPContractive` |
 | 7 | `τ_r ∘ q` is then an MF trace of `C⋆(G)` | `ShulmanTrace.isMFTrace_canonicalMaximal_of_reducedTrace` --- **proved** |
 | 8 | a group whose canonical maximal trace is MF is operator-MF | `ShulmanTrace.isOperatorMF_of_isMFTrace_canonicalMaximal` --- **proved** |
 
@@ -202,7 +202,7 @@ Three steps, none of them an input beyond the ucp facts:
 No countability, amenability or nuclearity hypothesis appears: those belong to
 the *other* half. -/
 theorem isOperatorMF_of_isQuasidiagonalCanonicalTrace
-    (hucp : Quasidiagonal.UCPSelfAdjointContractive.{u})
+    (hucp : Quasidiagonal.UCPContractive.{u})
     (G : Type u) [Group G]
     (h : Quasidiagonal.IsQuasidiagonalTrace
       (fun T : ReducedGroupCStar G ↦
@@ -252,7 +252,7 @@ approximation argument beyond the corona quotient.
 A reader who wants the input recovers it by universally quantifying this
 statement, which asserts nothing further. -/
 theorem isOperatorMF_of_isAmenable_of_tww {UCT : Type u → Prop}
-    (hucp : Quasidiagonal.UCPSelfAdjointContractive.{u})
+    (hucp : Quasidiagonal.UCPContractive.{u})
     (tww : TikuisisWhiteWinterInput UCT)
     (lance : AmenableNuclearInput.{u}) (tu : AmenableUCTInput.{u} UCT)
     (G : Type u) [Group G] [Countable G]
@@ -264,7 +264,7 @@ theorem isOperatorMF_of_isAmenable_of_tww {UCT : Type u → Prop}
 /-- **The contrapositive**, which is the shape `sec:consequences` uses: a
 countable group that is not operator-MF is not amenable. -/
 theorem not_isAmenable_of_not_isOperatorMF_of_tww {UCT : Type u → Prop}
-    (hucp : Quasidiagonal.UCPSelfAdjointContractive.{u})
+    (hucp : Quasidiagonal.UCPContractive.{u})
     (tww : TikuisisWhiteWinterInput UCT)
     (lance : AmenableNuclearInput.{u}) (tu : AmenableUCTInput.{u} UCT)
     (G : Type u) [Group G] [Countable G]

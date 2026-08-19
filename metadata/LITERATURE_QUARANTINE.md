@@ -50,7 +50,7 @@ than being skipped, so the roster cannot outlive the problem it records.
 | `QuasidiagonalMF.TikuisisWhiteWinterInput` | Tikuisis–White–Winter, *Quasidiagonality of nuclear C\*-algebras*, Ann. of Math. (2) **185** (2017) 229–284 | the theorem itself |
 | `QuasidiagonalMF.AmenableNuclearInput` | Lance: `C*_r(G)` is nuclear for amenable `G` | the theorem itself |
 | `QuasidiagonalMF.AmenableUCTInput` | Tu: the UCT for `C*_r(G)`, `G` amenable | the theorem itself |
-| `Quasidiagonal.UCPSelfAdjointContractive` | **not a citation** — the two automatic properties of a ucp map into a matrix algebra (`*`-preservation, contractivity) | two bookkeeping steps from this repository's own Stinespring chain; see `Analysis/QuasidiagonalTrace` |
+| `Quasidiagonal.UCPContractive` | **not a citation** — contractivity of a ucp map into a matrix algebra | Stinespring, or Kadison–Schwarz for two-positive maps. Its `*`-preservation companion **is now proved** (`ucp_map_star`); see below |
 | `QuasidiagonalMF.AmenableMFInput` | the group-level corollary `amenable ⟹ operator-MF` | the three rows above; `Analysis/TikuisisWhiteWinter` proves every step between them and this |
 | `CyclicBaseCalibration.AmenableImpliesMF` | the same corollary, at the calibration site | as above |
 | `ContainsSquareWitness.UniversalFPTorsionFree` | Fournier-Facio, arXiv:2608.02025 §2: a finitely presented torsion-free property-(T) group universal for finitely presented torsion-free groups | the two rows below; `Sofic/FournierFacioUniversalGroup` proves the step that joins them |
@@ -82,52 +82,63 @@ statement that names one is conditional all the same:
 What is left is **ten** independent inputs, and only eight of them are other
 people's theorems: TWW, Lance, Tu, Chiodo/Belegradek, Osin, a torsion-free
 hyperbolic Kazhdan group, Hull, Kun–Thom/Shulman, Adian–Rabin.  **Two are
-proofs this repository could finish** — `UCPSelfAdjointContractive` and
+proofs this repository could finish** — `UCPContractive` and
 `GreendlingerGate`.  Those two are where work belongs; the rest is not a task
-list.  Both turned out to rest on a statement that is wrong as written, which
-is the substance of the two sections below: neither is an unproved case, each
-is a target that has to be restated before it can be hit.
+list.
 
-## `UCPSelfAdjointContractive` is not two bookkeeping steps away
+Both turned out to be aimed at a statement that is wrong as written, which is
+the substance of the two sections below.  For the ucp facts that has now been
+repaired and half the input **discharged**: `ucp_map_star` is a theorem, the
+structure has lost its `map_star` field, and one inequality remains.  For
+Greendlinger the target is refuted rather than repaired, and a successor has to
+restate it cyclically before spending an induction on it.
+
+## Half of `UCPContractive` is discharged; here is what the other half cost
 
 `Analysis/QuasidiagonalTrace` recorded this input as dischargeable, missing only
 (i) transport of its form-sense complete positivity into
 `CStarExactness.IsCompletelyPositive` and (ii) the identification of
-`Matrix Y Y ℂ` with `B(ℂᵏ)`.  Step (ii) is bookkeeping.  **Step (i) is false.**
+`Matrix Y Y ℂ` with `B(ℂᵏ)`.  Step (ii) is bookkeeping.  **Step (i) was
+impossible**, which is why the input sat there labelled closable and was not.
 
-`IsCompletelyPositiveOnMatrices` asks only that the *real part* of the form be
+`IsCompletelyPositiveOnMatrices` asked only that the *real part* of the form be
 nonnegative.  Writing a matrix as `H + iK` with `H, K` Hermitian,
-`Re ⟪W, T W⟫ = ⟪W, H W⟫`, so the predicate constrains `H` and says nothing at
-all about `K`.  It is therefore strictly weaker than complete positivity, and
-both clauses of `UCPSelfAdjointContractive` fail over it.
-
-Counterexample, two-by-two.  With `N = !![0, 1; -1, 0]` (so `Nᴴ = −N`, and
-`⟪W, N W⟫` purely imaginary), take `A = ℂ × ℂ`, `Y = Fin 2`, and
+`Re ⟪W, T W⟫ = ⟪W, H W⟫`, so the predicate constrained `H` and said nothing at
+all about `K`.  It was strictly weaker than complete positivity, and both
+clauses of the input failed over it.  With `N = !![0, 1; -1, 0]` (so `Nᴴ = −N`
+and `⟪W, N W⟫` purely imaginary), take `A = ℂ × ℂ`, `Y = Fin 2`, and
 
 ```text
     φ (z, w)  =  z • (½ • 1 + N)  +  w • (½ • 1 − N).
 ```
 
-Linear, unital, and completely positive *in the repository's sense* — the
-double sum collapses to `Re ⟪U, (½ + N) U⟫ + Re ⟪V, (½ − N) V⟫`, each term
-`½‖·‖²`.  But `φ (star (z, w)) ≠ (φ (z, w))ᴴ` whenever `z ≠ w`, and
-`‖φ (1, 0)‖ = √5 / 2 > 1`.
+Linear, unital, and completely positive *in the old sense* — the double sum
+collapses to `Re ⟪U, (½ + N) U⟫ + Re ⟪V, (½ − N) V⟫`, each term `½‖·‖²`.  But
+`φ (star (z, w)) ≠ (φ (z, w))ᴴ` whenever `z ≠ w`, and `‖φ (1, 0)‖ = √5 / 2 > 1`.
 
-**The fix, applied.**  `IsCompletelyPositiveOnMatrices` now also asks that the
-form's imaginary part vanish, and `IsCompletelyPositiveOnMatrices.form_im`
-reads that clause off at a single element.  That is what complete positivity means and what
-Tikuisis–White–Winter supplies, so the input does not become stronger than the
-theorem — the current definition is an accidental weakening, not a deliberate
-one.  With the clause, the `⋆`-preservation half falls out with no dilation at
-all: the two-element tuple `a = (μ • 1, b)` has form
+**The fix, applied.**  The predicate now also asks that the form's imaginary
+part vanish — which is what complete positivity means and what
+Tikuisis–White–Winter supplies, so the input did not outgrow the theorem it
+transcribes; the old definition was an accidental weakening.
+`IsCompletelyPositiveOnMatrices.form_im` reads the clause off at one element.
+
+**The `⋆` half is now a theorem** (`Quasidiagonal.ucp_map_star`), and it needs
+no dilation and no C⋆-theory — not even that `A` is a C⋆-algebra rather than a
+`⋆`-algebra over `ℂ`.  Fix entries `r, s` and feed the tuple at the two
+`δ`-vectors; the form collapses to four matrix entries, and reality of that
+scalar is the whole hypothesis.  Run it at `(0, b)`, `(1, b)` and `(1, i • b)`,
+writing `α = φ b r s`, `β = φ (star b) s r`, `γ = φ (b⋆ b) s s`:
 
 ```text
-    |μ|²‖u‖² + conj μ ⟪u, φ b v⟫ + μ ⟪v, φ (star b) u⟫ + ⟪v, φ (star b ⋆ b) v⟫,
+    γ.im = 0,     (1 + α + β + γ).im = 0,     (1 + iα − iβ + γ).im = 0,
 ```
 
-and reality at `μ = 0, 1, i` forces `⟪v, φ (star b) u⟫ = conj ⟪u, φ b v⟫`, which
-is `φ (star b) = (φ b)ᴴ`.  Contractivity still wants Stinespring, or
-Kadison–Schwarz for two-positive maps.
+whose second gives `β.im = −α.im` and whose third `β.re = α.re`.  That is
+`β = conj α`, entry by entry `φ (star b) = (φ b)ᴴ`.  Putting the `i` on `b`
+rather than on `1` keeps `a₁⋆ a₁ = b⋆ b`, so one `γ` serves all three readings.
+
+The structure that carried both facts has lost the proved one and been renamed
+`UCPContractive`.  What remains is one inequality.
 
 ## The one citation that is not a research programme
 

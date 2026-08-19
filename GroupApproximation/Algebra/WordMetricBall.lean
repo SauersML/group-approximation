@@ -151,6 +151,45 @@ theorem card_le_pow_of_wordDist_le {T : Finset G}
   exact le_trans (Finset.card_le_card_of_injOn _ hmaps hinj) hcard
 
 omit [Group G] in
+/-! ## The ball as a `Finset` -/
+
+/-- Balls are finite sets. -/
+theorem finite_ball {T : Finset G} (hT : IsSymmetricGeneratingSet (↑T : Set G))
+    (n : ℕ) : {g : G | wordNorm (↑T : Set G) g ≤ n}.Finite := by
+  obtain ⟨B, _, hmem⟩ := exists_ball_finset hT n
+  exact Set.Finite.subset B.finite_toSet fun g hg ↦ hmem g hg
+
+/-- The ball of radius `n`, as a `Finset`. -/
+noncomputable def ballFinset {T : Finset G}
+    (hT : IsSymmetricGeneratingSet (↑T : Set G)) (n : ℕ) : Finset G :=
+  (finite_ball hT n).toFinset
+
+@[simp] theorem mem_ballFinset {T : Finset G}
+    (hT : IsSymmetricGeneratingSet (↑T : Set G)) (n : ℕ) (g : G) :
+    g ∈ ballFinset hT n ↔ wordNorm (↑T : Set G) g ≤ n :=
+  Set.Finite.mem_toFinset (finite_ball hT n)
+
+theorem ballFinset_mono {T : Finset G}
+    (hT : IsSymmetricGeneratingSet (↑T : Set G)) {m n : ℕ} (h : m ≤ n) :
+    ballFinset hT m ⊆ ballFinset hT n := by
+  intro g hg
+  rw [mem_ballFinset] at hg ⊢
+  exact le_trans hg h
+
+/-- Balls are symmetric, because the word length is. -/
+theorem inv_mem_ballFinset {T : Finset G}
+    (hT : IsSymmetricGeneratingSet (↑T : Set G)) {n : ℕ} {g : G}
+    (hg : g ∈ ballFinset hT n) : g⁻¹ ∈ ballFinset hT n := by
+  rw [mem_ballFinset] at hg ⊢
+  rwa [wordNorm_inv hT]
+
+theorem one_mem_ballFinset {T : Finset G}
+    (hT : IsSymmetricGeneratingSet (↑T : Set G)) (n : ℕ) :
+    (1 : G) ∈ ballFinset hT n := by
+  rw [mem_ballFinset, wordNorm_one]
+  exact Nat.zero_le n
+
+omit [Group G] in
 /-- The growth constant is at least one, so it can be used as the ratio of a
 geometric series without a positivity side condition. -/
 theorem one_le_growth (T : Finset G) : (1 : ℝ) ≤ (T.card : ℝ) + 1 := by

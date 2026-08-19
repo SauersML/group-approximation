@@ -923,13 +923,14 @@ def literaturePackages : List Name :=
    ``QuasidiagonalMF.TikuisisWhiteWinterInput,
    ``QuasidiagonalMF.AmenableNuclearInput,
    ``QuasidiagonalMF.AmenableUCTInput,
-   -- The two automatic properties of a unital completely positive map into a
-   -- matrix algebra, `*`-preservation and contractivity.  Listed with the
-   -- citations because nothing inhabits it, but it is **not** a citation: the
-   -- module docstring says it is two bookkeeping steps from the repository's
-   -- own Stinespring chain.  It and `GreendlingerGate` are the two entries
-   -- that a proof, rather than a programme, would retire.
-   ``Quasidiagonal.UCPSelfAdjointContractive,
+   -- Contractivity of a unital completely positive map into a matrix algebra.
+   -- Listed with the citations because nothing inhabits it, but it is **not** a
+   -- citation: it and `GreendlingerGate` are the two entries that a proof,
+   -- rather than a programme, would retire.  Its `*`-preservation companion
+   -- was retired that way on 2026-08-19 -- `Quasidiagonal.ucp_map_star` --
+   -- after the complete-positivity predicate was corrected to constrain the
+   -- whole form rather than its real part; see `Analysis/QuasidiagonalTrace`.
+   ``Quasidiagonal.UCPContractive,
    -- Derived, and on the roster because a statement that names one is
    -- conditional all the same: `AmenableMFInput` is the universal
    -- quantification of `isOperatorMF_of_isAmenable_of_tww` over the four

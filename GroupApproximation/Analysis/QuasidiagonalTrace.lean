@@ -49,24 +49,24 @@ ucp map has *automatically*:
   (Stinespring's dilation theorem: `φ = V⋆ π(·) V` with `V` an isometry).
 
 Neither is proved in this repository, so neither is silently assumed.  They
-are carried by `UCPSelfAdjointContractive`, a **separate** typed input, and
+are carried by `UCPContractive`, a **separate** typed input, and
 every theorem that consumes them says so in its type.  Keeping them out of
 `QuasidiagonalTraceModel` is deliberate: it means the structure is a literal
 transcription of TWW's conclusion and nothing more, so a reader checking the
 transcription against the paper has nothing extra to check.
 
-**`UCPSelfAdjointContractive` is dischargeable in principle and TWW is not --
-but NOT against the predicate below, and the earlier claim that it was is
-withdrawn (2026-08-19).**  The repository carries the Stinespring dilation for
-completely positive maps into `B(H)`
-(`Analysis.CStarStinespringDilation.stinespring_dilation`, with its ten-module
-chain), and the missing steps were recorded here as (i) transporting the
+**`UCPContractive` is dischargeable and TWW is not, but the route
+recorded here was aimed at the wrong obstacle (corrected 2026-08-19).**  The
+repository carries the Stinespring dilation for completely positive maps into
+`B(H)` (`Analysis.CStarStinespringDilation.stinespring_dilation`, with its
+ten-module chain), and the missing steps were recorded as (i) transporting the
 form-sense complete positivity below into `CStarExactness.IsCompletelyPositive`
 and (ii) identifying `Matrix Y Y ℂ` with `B(ℂᵏ)`.  Step (ii) is bookkeeping.
-**Step (i) is false**, because `IsCompletelyPositiveOnMatrices` constrains only
-the *real part* of the form, and a matrix whose Hermitian part is positive
-semidefinite need not be positive semidefinite -- its anti-Hermitian part is
-invisible to the predicate.
+Step (i) was **impossible**, because `IsCompletelyPositiveOnMatrices` then
+constrained only the *real part* of the form, and a matrix whose Hermitian part
+is positive semidefinite need not be positive semidefinite -- its
+anti-Hermitian part was invisible.  The predicate now carries the reality
+clause, so the obstacle is gone; the counterexample below is why it is there.
 
 The counterexample is two-by-two.  Let `N = !![0, 1; -1, 0]`, so `Nᴴ = -N` and
 `⟪W, N W⟫` is purely imaginary for every `W`.  Take `A = ℂ × ℂ`, `Y = Fin 2`,
@@ -77,10 +77,11 @@ and
 ```
 
 `φ` is `ℂ`-linear, `φ 1 = 1`, and it satisfies
-`IsCompletelyPositiveOnMatrices`: for a tuple `aᵢ = (zᵢ, wᵢ)` the double sum
-collapses to `Re ⟪U, (½ + N) U⟫ + Re ⟪V, (½ − N) V⟫` with `U = ∑ zᵢ Wᵢ` and
-`V = ∑ wᵢ Wᵢ`, and each term is `½‖·‖²` because `N` contributes nothing to a
-real part.  Yet **both** clauses of `UCPSelfAdjointContractive` fail for it:
+the *old* `IsCompletelyPositiveOnMatrices`: for a tuple `aᵢ = (zᵢ, wᵢ)` the
+double sum collapses to `Re ⟪U, (½ + N) U⟫ + Re ⟪V, (½ − N) V⟫` with
+`U = ∑ zᵢ Wᵢ` and `V = ∑ wᵢ Wᵢ`, and each term is `½‖·‖²` because `N`
+contributes nothing to a real part.  It fails the reality clause, which is the
+point.  Yet **both** clauses of `UCPContractive` fail for it:
 `φ (star (z, w)) = conj z • (½ + N) + conj w • (½ − N)` while
 `(φ (z, w))ᴴ = conj z • (½ − N) + conj w • (½ + N)`, unequal for `z ≠ w`; and
 `‖φ (1, 0)‖ = ‖½ + N‖ = √5 / 2 > 1 = ‖(1, 0)‖`.
@@ -97,7 +98,7 @@ reality at `μ = 0, 1, i` gives `Re ⟪v, φ (star b) u⟫ = Re ⟪u, φ b v⟫`
 contractivity half still wants Stinespring, or the Kadison--Schwarz inequality
 for two-positive maps.  Nothing of the kind is available for TWW.
 
-**No inhabitant of `UCPSelfAdjointContractive` is constructed here, and none of
+**No inhabitant of `UCPContractive` is constructed here, and none of
 `QuasidiagonalTraceModel` at any nontrivial algebra.**
 -/
 
@@ -173,7 +174,7 @@ Without it the predicate constrains only the Hermitian part of each
 `Re ⟪w, T w⟫ = ⟪w, H w⟫`, so an anti-Hermitian summand is invisible.  The
 module docstring carries the two-by-two unital map that satisfies the weakened
 form and is neither `⋆`-preserving nor contractive; it is the reason
-`UCPSelfAdjointContractive` could not be discharged, and the reason the clause
+`UCPContractive` could not be discharged, and the reason the clause
 is here. -/
 theorem IsCompletelyPositiveOnMatrices.form_im {Y : FiniteModel}
     {φ : A → Matrix Y Y ℂ} (h : IsCompletelyPositiveOnMatrices Y φ) (a : A)
@@ -229,45 +230,128 @@ theorem isQuasidiagonalTrace_iff (τ : A → ℂ) :
     IsQuasidiagonalTrace τ ↔ Nonempty (QuasidiagonalTraceModel τ) :=
   Iff.rfl
 
-/-! ## The two automatic properties of a ucp map, as one typed input -/
+/-! ## The form at a pair of `δ`-vectors -/
 
-/-- **The standard facts about unital completely positive maps into matrices**
-that the reduction below consumes: such a map is `⋆`-preserving and
-contractive.
+/-- The vector that is `1` at `q` and `0` elsewhere. -/
+private def diracVec (Y : FiniteModel) (q : Y) : Y → ℂ :=
+  fun x ↦ if x = q then 1 else 0
 
-Both are theorems, not hypotheses, in the operator-algebra literature: a
-positive map preserves adjoints, and a unital completely positive map is the
-compression `V⋆ π(·) V` of a `⋆`-representation along an isometry
-(Stinespring, *Positive functions on C⋆-algebras*, Proc. Amer. Math. Soc. 6
-(1955), 211--216; see also Brown--Ozawa, *C⋆-algebras and Finite-Dimensional
-Approximations*, Chapter 1), hence a contraction.  This development proves
-neither, so they are named, typed, and passed explicitly wherever used.
+/-- The form of a single matrix at a pair of `δ`-vectors is the matrix entry. -/
+private theorem form_diracVec (Y : FiniteModel) (M : Matrix Y Y ℂ) (r s : Y) :
+    ∑ x : Y, ∑ y : Y,
+      (starRingEnd ℂ) (diracVec Y r x) * M x y * diracVec Y s y = M r s := by
+  have hy : ∀ x : Y, ∑ y : Y,
+      (starRingEnd ℂ) (diracVec Y r x) * M x y * diracVec Y s y
+        = (starRingEnd ℂ) (diracVec Y r x) * M x s := by
+    intro x
+    have hterm : ∀ y : Y,
+        (starRingEnd ℂ) (diracVec Y r x) * M x y * diracVec Y s y
+          = if y = s then (starRingEnd ℂ) (diracVec Y r x) * M x y else 0 := by
+      intro y
+      by_cases hys : y = s <;> simp [diracVec, hys]
+    rw [Finset.sum_congr rfl fun y _ ↦ hterm y]
+    simp
+  rw [Finset.sum_congr rfl fun x _ ↦ hy x]
+  have hterm : ∀ x : Y,
+      (starRingEnd ℂ) (diracVec Y r x) * M x s
+        = if x = r then M x s else 0 := by
+    intro x
+    by_cases hxr : x = r <;> simp [diracVec, hxr]
+  rw [Finset.sum_congr rfl fun x _ ↦ hterm x]
+  simp
 
-**Why they are not fields of `QuasidiagonalTraceModel`.**  That structure is
-the literal conclusion of Tikuisis--White--Winter.  Adding clauses to it would
+/-- **Complete positivity at a two-element tuple, read at one pair of entries.**
+The four-term scalar is real. -/
+private theorem cpForm_two_im {Y : FiniteModel} {φ : A → Matrix Y Y ℂ}
+    (hcp : IsCompletelyPositiveOnMatrices Y φ) (a₀ a₁ : A) (r s : Y) :
+    (φ (star a₀ * a₀) r r + φ (star a₀ * a₁) r s
+      + φ (star a₁ * a₀) s r + φ (star a₁ * a₁) s s).im = 0 := by
+  have h := (hcp 2 ![a₀, a₁] ![diracVec Y r, diracVec Y s]).1
+  simpa [Fin.sum_univ_two, form_diracVec, add_assoc] using h
+
+/-! ## The three readings -/
+
+/-- **A unital completely positive map into a matrix algebra preserves
+adjoints.**  This is the `map_star` clause of
+`Quasidiagonal.UCPContractive`, proved. -/
+theorem ucp_map_star {Y : FiniteModel} (φ : A →ₗ[ℂ] Matrix Y Y ℂ)
+    (h1 : φ 1 = 1) (hcp : IsCompletelyPositiveOnMatrices Y ⇑φ) (b : A) :
+    φ (star b) = (φ b)ᴴ := by
+  ext s r
+  set α : ℂ := φ b r s with hα
+  set β : ℂ := φ (star b) s r with hβ
+  set γ : ℂ := φ (star b * b) s s with hγ
+  -- the tuple `(0, b)`: only the last entry survives
+  have hzero : γ.im = 0 := by
+    have h := cpForm_two_im hcp 0 b r s
+    simpa [hγ] using h
+  -- the tuple `(1, b)`
+  have hone : (1 + α + β + γ).im = 0 := by
+    have h := cpForm_two_im hcp 1 b r s
+    simpa [h1, hα, hβ, hγ, Matrix.one_apply_eq] using h
+  -- the tuple `(1, i • b)`
+  have hI : (1 + Complex.I * α - Complex.I * β + γ).im = 0 := by
+    have h := cpForm_two_im hcp 1 (Complex.I • b) r s
+    have e₁ : star (1 : A) * (Complex.I • b) = Complex.I • b := by
+      simp
+    have e₂ : star (Complex.I • b) * (1 : A) = (-Complex.I) • star b := by
+      simp [star_smul]
+    have e₃ : star (Complex.I • b) * (Complex.I • b) = star b * b := by
+      simp [star_smul, smul_smul, Complex.I_mul_I]
+    rw [e₁, e₂, e₃] at h
+    simpa [h1, hα, hβ, hγ, Matrix.one_apply_eq, map_smul, sub_eq_add_neg,
+      neg_mul] using h
+  -- the two readings, as real equations
+  have him : β.im = -α.im := by
+    simp only [Complex.add_im, Complex.one_im] at hone
+    linarith [hzero, hone]
+  have hre : β.re = α.re := by
+    simp only [Complex.add_im, Complex.sub_im, Complex.mul_im, Complex.I_re,
+      Complex.I_im, Complex.one_im] at hI
+    linarith [hzero, hI]
+  -- and the conclusion, entry by entry
+  have : β = (starRingEnd ℂ) α := by
+    apply Complex.ext
+    · simpa using hre
+    · simpa using him
+  simpa [hβ, hα, Matrix.conjTranspose_apply] using this
+
+/-! ## The one remaining property of a ucp map, as a typed input -/
+
+/-- **The one standard fact about unital completely positive maps into
+matrices that this development still assumes**: such a map is a contraction.
+
+It had a companion until 2026-08-19 -- that such a map is `⋆`-preserving --
+and that companion is now `ucp_map_star`, proved above from the reality clause
+of `IsCompletelyPositiveOnMatrices` at two-element tuples, with no dilation and
+no C⋆-theory.  What is left is the norm bound, and the classical route to it is
+Stinespring's theorem: a ucp map is the compression `V⋆ π(·) V` of a
+`⋆`-representation along an isometry (Stinespring, *Positive functions on
+C⋆-algebras*, Proc. Amer. Math. Soc. **6** (1955), 211--216; see also
+Brown--Ozawa, *C⋆-algebras and Finite-Dimensional Approximations*, Chapter 1),
+hence contractive.  The Kadison--Schwarz inequality for two-positive maps is
+the other route.
+
+**Why it is not a field of `QuasidiagonalTraceModel`.**  That structure is the
+literal conclusion of Tikuisis--White--Winter.  Adding a clause to it would
 make the theorem this repository *assumes* stronger than the theorem the
 literature *proves*, which is the wrong direction for an input; and it would
 make the transcription harder to check against the paper.  Kept separate, the
-two facts appear in the type of every theorem that uses them and are visible
-to `scripts/check_non_mf_unconditional.py --audit-corpus` under their own
-name.
+fact appears in the type of every theorem that uses it and is visible to
+`scripts/check_non_mf_unconditional.py --audit-corpus` under its own name.
 
-**This input is NOT dischargeable against `IsCompletelyPositiveOnMatrices` as
-that predicate currently stands**; the module docstring carries the two-by-two
-counterexample and the clause that has to be added first.  No inhabitant is
-constructed here, and none can be until the predicate is corrected.
+**This is dischargeable in principle and TWW is not.**  Half of it has been
+discharged; see the module docstring for why the other half could not have
+been until the complete-positivity predicate gained its reality clause, and
+for the two-by-two map that shows the weakened predicate implies neither
+property.  No inhabitant is constructed here.
 
 It is a structure rather than a bare implication for the same reason
 `QuasidiagonalMF.AmenableMFInput` is: consuming it then leaves a visible
 binder in the type of every theorem that does, and the name is picked up by
 `scripts/check_non_mf_unconditional.py --audit-corpus` as an assumed and
 uninhabited one. -/
-structure UCPSelfAdjointContractive : Prop where
-  /-- A unital completely positive map into a matrix algebra preserves
-  adjoints. -/
-  map_star : ∀ (B : Type u) (_ : CStarAlgebra B) (Y : FiniteModel)
-    (φ : B →ₗ[ℂ] Matrix Y Y ℂ), φ 1 = 1 →
-      IsCompletelyPositiveOnMatrices Y ⇑φ → ∀ b : B, φ (star b) = (φ b)ᴴ
+structure UCPContractive : Prop where
   /-- A unital completely positive map into a matrix algebra is a
   contraction. -/
   norm_le : ∀ (B : Type u) (_ : CStarAlgebra B) (Y : FiniteModel)
@@ -283,13 +367,13 @@ exact linearity gives asymptotic linearity with defect identically `0`, exact
 gives the pointwise bound with the constant `‖a‖`.  The multiplicative and
 trace clauses are transcribed unchanged.
 
-The `⋆` and boundedness clauses are the two automatic properties of a ucp map,
-and they enter through the explicit input `hucp` rather than being assumed:
-this theorem's type records that the passage from TWW's conclusion to
-Shulman's hypothesis is not free in a development that has not formalized
-Stinespring's dilation for matrix targets. -/
+The `⋆` clause is now discharged outright by `ucp_map_star`; the boundedness
+clause still enters through the explicit input `hucp`, so this theorem's type
+records exactly what the passage from TWW's conclusion to Shulman's hypothesis
+still costs in a development that has not formalized Stinespring's dilation
+for matrix targets -- one inequality, no longer two facts. -/
 def QuasidiagonalTraceModel.toMFTraceModel {τ : A → ℂ}
-    (hucp : UCPSelfAdjointContractive.{u}) (M : QuasidiagonalTraceModel τ) :
+    (hucp : UCPContractive.{u}) (M : QuasidiagonalTraceModel τ) :
     ShulmanTrace.MFTraceModel τ where
   space := M.space
   map n := ⇑(M.map n)
@@ -297,15 +381,15 @@ def QuasidiagonalTraceModel.toMFTraceModel {τ : A → ℂ}
   tendsto_linear l m a b := ShulmanTrace.tendsto_zero_of_eq_zero fun n ↦ by
     simp only [map_add, map_smul, add_sub_cancel_left, sub_self, norm_zero]
   tendsto_star a := ShulmanTrace.tendsto_zero_of_eq_zero fun n ↦ by
-    simp only [hucp.map_star A inferInstance (M.space n) (M.map n)
-      (M.map_one n) (M.completelyPositive n) a, sub_self, norm_zero]
+    simp only [ucp_map_star (M.map n) (M.map_one n) (M.completelyPositive n) a,
+      sub_self, norm_zero]
   bounded a := ⟨‖a‖, fun n ↦ hucp.norm_le A inferInstance (M.space n)
     (M.map n) (M.map_one n) (M.completelyPositive n) a⟩
   tendsto_trace := M.tendsto_trace
 
 /-- The proposition-level form: a quasidiagonal trace is an MF trace. -/
 theorem isMFTrace_of_isQuasidiagonalTrace {τ : A → ℂ}
-    (hucp : UCPSelfAdjointContractive.{u}) (h : IsQuasidiagonalTrace τ) :
+    (hucp : UCPContractive.{u}) (h : IsQuasidiagonalTrace τ) :
     ShulmanTrace.IsMFTrace τ := by
   obtain ⟨M⟩ := h
   exact ⟨M.toMFTraceModel hucp⟩
