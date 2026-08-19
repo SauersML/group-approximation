@@ -36,6 +36,7 @@ noncomputable def finsetToSubgroup (F : Finset G) (K : Subgroup G)
     (hFK : ∀ g ∈ F, g ∈ K) (g : G) (hg : g ∈ F) :
     (⟨g, hFK g hg⟩ : K) ∈ finsetToSubgroup F K hFK := by
   rw [finsetToSubgroup]
+  letI := Classical.decEq K
   exact Finset.mem_image_of_mem _ (Finset.mem_attach _ ⟨g, hg⟩)
 
 /-- **Window-local subgroup lifting.**  To prove an ambient action sofic it is
