@@ -911,6 +911,7 @@ import GroupApproximation.Analysis.CStarStatePullback
 import GroupApproximation.Analysis.CStarMinTensorNorm
 import GroupApproximation.Analysis.CStarMaxTensorNorm
 import GroupApproximation.Analysis.CStarTensorComparison
+import GroupApproximation.Analysis.CStarNuclearity
 import GroupApproximation.Analysis.CStarMinTensorFunctorial
 import GroupApproximation.Analysis.CStarMinTensorQuotient
 import GroupApproximation.Analysis.CStarNonUnitalState
