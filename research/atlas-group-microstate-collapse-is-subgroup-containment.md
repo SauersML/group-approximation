@@ -8,6 +8,7 @@ distinct_from:
   atlas-boundary-tangent-covariance-coercivity: that is the inequality between the two energies; this identifies both energies as delta functions of one stabilizer subgroup, which is what makes the sub-class decidable.
 artifacts:
   - experiments/atlas_asc_countermodel_energy.py
+  - experiments/asc-countermodel-energy.json
   - research/artifacts/atlas-asc-tangent-exact-2026-08-19.md
 ---
 

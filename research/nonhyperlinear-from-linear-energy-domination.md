@@ -46,6 +46,14 @@ That is (ASC).  Against `raw-swap-forces-two-s3-covariance-energy`, which
 gives `a_n^2+b_n^2 >= 1/40-o(1)` on the same sequence, it is a
 contradiction.  So `Q` is not hyperlinear, and it is explicit.
 
+**Against the other route to the same target.**
+`two-s3-collapse-via-local-coercivity` starts from the same established
+coercivity claim but asks for a metric localization of low-defect microstates
+near the classical fold.  This route replaces that by one inequality between
+two finite energies, with no neighbourhood, no gauge and no remainder in the
+statement, so it is the sharper of the two; the localization route is kept as
+the geometric reading of the same gap.
+
 **Where the difficulty sits.**  In the first prerequisite alone; the other
 five are established.  The route is deliberately narrower than
 `two-s3-collapse-via-local-coercivity`: it asks for one inequality between

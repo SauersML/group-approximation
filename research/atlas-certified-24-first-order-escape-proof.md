@@ -7,6 +7,8 @@ target: atlas-certified-24-first-order-escape
 requires: []
 artifacts:
   - experiments/atlas_asc_tangent_exact.py
+  - experiments/asc-exact-certified24.json
+  - experiments/asc-exact-tangent5.json
   - research/artifacts/atlas-asc-tangent-exact-2026-08-19.md
 ---
 

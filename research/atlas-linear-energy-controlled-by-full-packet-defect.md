@@ -8,6 +8,9 @@ distinct_from:
   atlas-boundary-tangent-covariance-coercivity: that is the ESTABLISHED half -- the covariance energy is at most 1/14 of the linearized energy, for every matrix at every multiplicity; this is the missing half, comparing the linearized energy to the true defect.
 artifacts:
   - research/artifacts/atlas-asc-tangent-exact-2026-08-19.md
+  - experiments/atlas_asc_countermodel_energy.py
+  - experiments/asc-countermodel-energy.json
+  - experiments/asc-inner-link.json
   - experiments/atlas_asc_link_probe.py
   - experiments/atlas_asc_inner_link_scan.py
 ---

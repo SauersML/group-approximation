@@ -42,6 +42,12 @@ Against `raw-swap-forces-two-s3-covariance-energy` this contradicts
 hyperlinearity of `Q` along the route
 `nonhyperlinear-from-two-s3-covariance-collapse`.
 
+**Against the other route to the same target.**
+`nonhyperlinear-from-linear-energy-domination` reaches the goal from the same
+coercivity claim through a single energy inequality rather than a metric
+localization.  That one is sharper and is the one to attack; this route is
+retained because localization is the geometric reading of the same gap.
+
 **Where the difficulty now sits.**  Entirely in the localization hole.  The
 coercivity half is finished and dimension-free; the exact characteristic-two
 countermodel of the boundary packet shows the localization cannot be proved

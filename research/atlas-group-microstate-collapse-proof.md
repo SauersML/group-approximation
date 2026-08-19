@@ -7,6 +7,7 @@ target: atlas-group-microstate-collapse-is-subgroup-containment
 requires: []
 artifacts:
   - experiments/atlas_asc_countermodel_energy.py
+  - experiments/asc-countermodel-energy.json
 ---
 
 Let `U = lambda_E(mu)`.  Then `rho(x)U = lambda_E(alpha(x) mu alpha(x)^(-1))`

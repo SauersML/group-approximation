@@ -7,6 +7,9 @@ target: atlas-boundary-tangent-covariance-coercivity
 requires: []
 artifacts:
   - experiments/atlas_asc_tangent_exact.py
+  - experiments/atlas_asc_kernel_exact.py
+  - experiments/asc-kernel-exact.json
+  - experiments/asc-exact.json
   - research/artifacts/atlas-asc-tangent-exact-2026-08-19.md
 ---
 

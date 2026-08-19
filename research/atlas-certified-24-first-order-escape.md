@@ -8,6 +8,7 @@ distinct_from:
   atlas-charts-overlap-trivially: that is about the intersection of the two chart images; this is about the derivative kernel of a fixed 24-word subset of the boundary packet.
 artifacts:
   - research/artifacts/atlas-asc-tangent-exact-2026-08-19.md
+  - experiments/asc-exact-certified24.json
   - experiments/atlas_asc_tangent_exact.py
 ---
 

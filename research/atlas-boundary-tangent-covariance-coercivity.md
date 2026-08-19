@@ -9,6 +9,9 @@ distinct_from:
   point15-boundary-tangent-equals-s3-covariance-kernel: that identifies the derivative kernel of the five-word tangent screen with the S3 covariance kernel qualitatively; this computes the kernel for the entire 234-word boundary packet and the sharp constant relating the two energies.
 artifacts:
   - research/artifacts/atlas-asc-tangent-exact-2026-08-19.md
+  - experiments/atlas_asc_kernel_exact.py
+  - experiments/asc-kernel-exact.json
+  - experiments/asc-exact.json
   - experiments/atlas_asc_tangent_exact.py
   - experiments/atlas_asc_packet_build.py
   - experiments/atlas_asc_covariance_gpu.py
