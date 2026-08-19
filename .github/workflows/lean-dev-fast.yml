@@ -1,14 +1,15 @@
 # Fast feedback for ordinary Lean development.
 #
-# This is deliberately not the exhaustive verifier.  It compiles only Lean
+# This is deliberately not the exhaustive verifier. It compiles only Lean
 # modules changed by the push/PR (or an explicitly requested module), while the
 # heavier workflows remain responsible for whole-corpus / downstream checks.
 # The speed comes from keeping three caches at different invalidation scales:
-#   * ~/.elan            — invalidated only by lean-toolchain
-#   * .lake/packages     — invalidated only by toolchain/manifest
-#   * .lake/build        — rolling per-commit project oleans, restored from the
-#                          newest commit with the same dependency lock
-# Mathlib's own precompiled cache is used only when the package cache is cold.
+#   * ~/.elan        — invalidated only by lean-toolchain
+#   * .lake/packages — invalidated only by toolchain/manifest
+#   * .lake/build    — rolling per-commit project oleans, restored from the
+#                      newest commit with the same dependency lock
+# The first two intentionally use the same keys as p13-sharded-build.yml so a
+# development compile can reuse caches the repository already warmed.
 name: Lean dev compile (fast)
 
 on:
@@ -41,7 +42,7 @@ permissions:
   contents: read
   pull-requests: read
 
-# Development feedback is about the newest tree.  Never make a fresh edit wait
+# Development feedback is about the newest tree. Never make a fresh edit wait
 # behind an obsolete compile of the same branch/PR.
 concurrency:
   group: lean-dev-fast-${{ github.event.pull_request.number || github.ref }}
@@ -114,7 +115,6 @@ jobs:
         env:
           CHANGED_FILE: ${{ steps.changed.outputs.file }}
           MANUAL_TARGET: ${{ inputs.target }}
-          EVENT_NAME: ${{ github.event_name }}
         run: |
           set -euo pipefail
           mkdir -p .ci
@@ -147,27 +147,29 @@ jobs:
               reason = 'manual dispatch target'
           else:
               changed = Path(os.environ['CHANGED_FILE']).read_text(encoding='utf-8').splitlines()
-              full_inputs = {'lean-toolchain', 'lakefile.toml', 'lake-manifest.json',
-                             '.github/workflows/lean-dev-fast.yml', '__FULL__'}
+              full_inputs = {
+                  'lean-toolchain', 'lakefile.toml', 'lake-manifest.json',
+                  '.github/workflows/lean-dev-fast.yml', '__FULL__',
+              }
               full = any(p in full_inputs for p in changed) or 'GroupApproximation.lean' in changed
 
               existing_files = [Path('GroupApproximation.lean')]
               existing_files.extend(sorted(Path('GroupApproximation').rglob('*.lean')))
 
-              # Reverse imports are needed only for deleted files.  If a module
+              # Reverse imports are needed only for deleted files. If a module
               # was deleted but is still imported, compiling the nearest current
-              # importer gives the fastest useful failure instead of building the
-              # whole root just to discover the same missing import.
+              # importer gives the fastest useful failure.
               reverse: dict[str, set[str]] = collections.defaultdict(set)
-              import_re = re.compile(r'^\s*import\s+(GroupApproximation(?:\.[A-Za-z0-9_\u0027]+)*)\s*$', re.M)
+              import_re = re.compile(
+                  r'^\s*import\s+(GroupApproximation(?:\.[A-Za-z0-9_\u0027]+)*)\s*$', re.M
+              )
               for src in existing_files:
                   if not src.is_file():
                       continue
                   owner = module_for(src)
                   if owner is None:
                       continue
-                  text = src.read_text(encoding='utf-8')
-                  for dep in import_re.findall(text):
+                  for dep in import_re.findall(src.read_text(encoding='utf-8')):
                       reverse[dep].add(owner)
 
               targets_set: set[str] = set()
@@ -194,8 +196,8 @@ jobs:
 
           target_file.write_text(''.join(t + '\n' for t in targets), encoding='utf-8')
           print(f'{reason}: {len(targets)} target(s)')
-          for t in targets:
-              print(f'  {t}')
+          for target in targets:
+              print(f'  {target}')
 
           with Path(os.environ['GITHUB_OUTPUT']).open('a', encoding='utf-8') as out:
               out.write(f"skip={'true' if not targets else 'false'}\n")
@@ -208,7 +210,8 @@ jobs:
         uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4
         with:
           path: ~/.elan
-          key: ${{ runner.os }}-${{ runner.arch }}-elan-${{ hashFiles('lean-toolchain') }}
+          # Match p13-sharded-build.yml so this should already be warm.
+          key: ${{ runner.os }}-elan-${{ hashFiles('lean-toolchain') }}
 
       - name: Install elan on a cold toolchain cache
         if: steps.targets.outputs.skip != 'true' && steps.elan-cache.outputs.cache-hit != 'true'
@@ -219,22 +222,26 @@ jobs:
         if: steps.targets.outputs.skip != 'true'
         run: echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
 
-      # Cache the dependency checkout + extracted upstream oleans once per lock
-      # file, rather than re-saving gigabytes of Mathlib on every source commit.
+      # Cache dependency checkout + extracted upstream oleans once per lock file
+      # instead of re-saving gigabytes of Mathlib on every source commit.
       - name: Cache Lake packages and precompiled dependencies
         if: steps.targets.outputs.skip != 'true'
         id: lake-packages-cache
         uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4
         with:
           path: .lake/packages
-          key: ${{ runner.os }}-${{ runner.arch }}-lake-packages-v1-${{ hashFiles('lean-toolchain', 'lake-manifest.json') }}
+          # Exact key shared with p13-sharded-build.yml.
+          key: ${{ runner.os }}-lake-deps-${{ hashFiles('lean-toolchain', 'lake-manifest.json') }}
+          restore-keys: |
+            ${{ runner.os }}-lake-deps-
 
       - name: Cache Mathlib download archives
         if: steps.targets.outputs.skip != 'true' && steps.lake-packages-cache.outputs.cache-hit != 'true'
         uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4
         with:
           path: ~/.cache/mathlib
-          key: ${{ runner.os }}-${{ runner.arch }}-mathlib-archives-v1-${{ hashFiles('lean-toolchain', 'lake-manifest.json') }}
+          # Exact key shared with p13-sharded-build.yml.
+          key: ${{ runner.os }}-mathlib-archives-${{ hashFiles('lean-toolchain', 'lake-manifest.json') }}
 
       - name: Fetch precompiled Mathlib only when dependencies are cold
         if: steps.targets.outputs.skip != 'true' && steps.lake-packages-cache.outputs.cache-hit != 'true'
@@ -242,8 +249,7 @@ jobs:
 
       # Project oleans change on almost every Lean edit, so use a commit-specific
       # primary key but restore the newest cache with the same dependency lock.
-      # Lake's content/trace checks decide which restored modules are actually
-      # reusable; changed targets are then rebuilt incrementally.
+      # Lake's content/trace checks decide which restored modules are reusable.
       - name: Restore rolling project build cache
         if: steps.targets.outputs.skip != 'true'
         uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4
