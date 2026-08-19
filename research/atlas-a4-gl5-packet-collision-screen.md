@@ -2,7 +2,9 @@
 rg: 2
 id: atlas-a4-gl5-packet-collision-screen
 kind: claim
-title: The standard GL5(F2) extension has no exact A4-packet plus 19243 atlas model
+title: The standard GL5(F2) extension has 202 exact A4-packet models, all killed by 19243
+invalidates:
+  - nonhyperlinear-from-centralizer-product-classicalization
 artifacts:
   - experiments/atlas_a4_gl5_packet_screen.py
 distinct_from:
@@ -49,6 +51,30 @@ intersection 20160:  q-order 2: 25,  q-order 4:  5.
 Consequently there is no relative position of the two standard conjugate
 `A8` copies inside `GL5(F2)` which realizes the thirty A4 packet relations and
 collision 19243 simultaneously.
+
+### Packet-only classicalization is false
+
+The same 202 solutions are exact countermodels to
+`atlas-thirty-centralizer-products-classicalize` as it was originally stated.
+Take the left-regular representation of `GL5(F2)`.  Its restriction to either
+standard/conjugate `A8` is
+
+```text
+496 Reg(A8),
+```
+
+so every solution gives an exact regular-margin relative chart model satisfying
+all thirty A4 constraints, hence all thirty corrected shifted centralizer-
+product memberships.  For the 172 solutions with intersection size `1344` or
+`168`, the second `A8` is not the same chart subgroup and the relative position
+is not one of the finite inner/outer `A8` packet alignments (even modulo the
+global regular-chart commutant).
+
+Therefore the thirty packet constraints **alone cannot force one classical
+alignment branch**.  Collision 19243, or an equivalent interior condition,
+must be part of the joint classicalization hypothesis.  This invalidates the
+route `nonhyperlinear-from-centralizer-product-classicalization`, whose open
+premise omitted collision from the classicalization step.
 
 The three intersection sizes are notable because they are exactly the orders
 of the chart `A8`, the affine parabolic `AGL3(F2)`, and the rank-three core
