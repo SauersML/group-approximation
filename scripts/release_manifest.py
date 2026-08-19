@@ -70,7 +70,6 @@ def build_manifest(*, commit: str | None = None,
                           "experiments/sl3_p13_replay_lean_generator.py",
                           "docbuild/lakefile.toml", "docbuild/lean-toolchain",
                           "docbuild/lake-manifest.json",
-                          "property_tt_leavitt.tex", "property_tt_leavitt.pdf",
                           "non_mf_groups_exist.tex", "non_mf_groups_exist.pdf",
                           "README.md", "CITATION.cff", "lakefile.toml",
                           "lean-toolchain", "lake-manifest.json")

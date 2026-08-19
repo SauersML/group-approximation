@@ -16,7 +16,6 @@ references should use `metadata/` directly.
 | `CLAIM_DECLS.txt`, `NON_MF_CLAIM_DECLS.txt` | hand-maintained rosters | `scripts/Signatures.lean`, `check.py`, claim map |
 | `CLAIM_SIGNATURES.md`, `NON_MF_CLAIM_SIGNATURES.md` | `scripts/Signatures.lean` (generated) | signature gates in prover CI |
 | `AUDIT_SURFACE.md` | `scripts/StatementClosure.lean` (generated) | audit-surface gate in prover CI |
-| `CLAIM_MAP.md`, `PROPERTY_TT_CLAIM_MAP.md` | `scripts/claim_map.py` / hand | claim-map gates |
-| `PROPERTY_TT_PROVENANCE.md` | hand | property-TT gates |
+| `CLAIM_MAP.md` | `scripts/claim_map.py` / hand | claim-map gates |
 | `NON_MF_UNCONDITIONAL_BASELINE.txt`, `NON_MF_CONDITIONAL_INVENTORY.md` | hand | unconditionality gate |
 | `RELEASE_MANIFEST.json` (generated on demand) | `scripts/release_manifest.py --write` | release tooling |

@@ -30,13 +30,10 @@ on:
       - '!docbuild/lean-toolchain'
       - '!non_mf_groups_exist.pdf'
       - '!references/README.md'
-      - '!property_tt_leavitt.pdf'
       - '!notes/**/*.md'
       - 'metadata/CLAIM_MAP.md'
       - 'metadata/CLAIM_SIGNATURES.md'
       - 'metadata/NON_MF_CLAIM_SIGNATURES.md'
-      - 'metadata/PROPERTY_TT_CLAIM_MAP.md'
-      - 'metadata/PROPERTY_TT_PROVENANCE.md'
   pull_request:
     branches: [ "main" ]
     paths:
@@ -51,13 +48,10 @@ on:
       - '!docbuild/lean-toolchain'
       - '!non_mf_groups_exist.pdf'
       - '!references/README.md'
-      - '!property_tt_leavitt.pdf'
       - '!notes/**/*.md'
       - 'metadata/CLAIM_MAP.md'
       - 'metadata/CLAIM_SIGNATURES.md'
       - 'metadata/NON_MF_CLAIM_SIGNATURES.md'
-      - 'metadata/PROPERTY_TT_CLAIM_MAP.md'
-      - 'metadata/PROPERTY_TT_PROVENANCE.md'
   workflow_dispatch:
 
 concurrency:
@@ -333,9 +327,7 @@ jobs:
               scripts .github bin \
               metadata/CLAIM_DECLS.txt metadata/CLAIM_MAP.md \
               metadata/CLAIM_SIGNATURES.md metadata/NON_MF_CLAIM_DECLS.txt \
-              metadata/NON_MF_CLAIM_SIGNATURES.md \
-              metadata/PROPERTY_TT_CLAIM_MAP.md \
-              metadata/PROPERTY_TT_PROVENANCE.md 2>/dev/null; then
+              metadata/NON_MF_CLAIM_SIGNATURES.md 2>/dev/null; then
             echo "lean=false" >> "$GITHUB_OUTPUT"
             echo "Lean-relevant tree identical to verified; publication lane."
           else

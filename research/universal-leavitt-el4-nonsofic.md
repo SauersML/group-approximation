@@ -22,8 +22,8 @@ ESTABLISHED, unconditionally and kernel-checked.  `Endpoint/MainResults`:
 * `ambient_full_profile` -- that same group is countable, finitely generated,
   infinite, has Kazhdan's property `(T)`, and is not sofic;
 * `universalLeavitt_profile m` -- the same four properties for
-  `EL_{m+1}` at every `m >= 1`, which is Theorem A of `property_tt_leavitt.tex`
-  strengthened to every positive elementary rank;
+  `EL_{m+1}` at every `m >= 1`, the rank-four theorem of the `PropertyTT/`
+  development strengthened to every positive elementary rank;
 * `universalLeavittEL3_not_isSofic`, `universalLeavittUnits_not_isSofic` and
   `universalLeavittGL_not_isSofic m` -- the rank-three core, the full unit
   group, and every positive-rank general linear group over the same algebra,

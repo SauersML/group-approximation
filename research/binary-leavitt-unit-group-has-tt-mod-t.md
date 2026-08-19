@@ -12,8 +12,6 @@ artifacts:
   - GroupApproximation/PropertyTT/PaperStatements.lean
   - GroupApproximation/PropertyTT/NonsoficCorollary.lean
   - GroupApproximation/PropertyTT/FiniteTypeLeavittTT.lean
-  - notes/PROPERTY_TT_CLAIM_MAP.md
-  - property_tt_leavitt.tex
 ---
 
 ESTABLISHED, machine-checked, with no hypothesis left standing.  Write

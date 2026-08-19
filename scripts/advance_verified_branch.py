@@ -42,8 +42,7 @@ PUBLICATION_ONLY_FILES = frozenset(
         "docbuild/lakefile.toml",
         "docbuild/lean-toolchain",
         "non_mf_groups_exist.pdf",
-        "official/README.md",
-        "property_tt_leavitt.pdf",
+        "references/README.md",
     }
 )
 
@@ -58,8 +57,6 @@ VERIFICATION_DOC_FILES = frozenset(
         "metadata/NON_MF_CLAIM_DECLS.txt",
         "metadata/NON_MF_CLAIM_SIGNATURES.md",
         "metadata/NON_MF_NUMBERED_CLAIMS.json",
-        "metadata/PROPERTY_TT_CLAIM_MAP.md",
-        "metadata/PROPERTY_TT_PROVENANCE.md",
     }
 )
 
@@ -288,8 +285,7 @@ def self_test() -> int:
     assert is_publication_only("README.md")
     assert is_publication_only("notes/NOTEPAD.md")
     assert not is_publication_only("metadata/CLAIM_SIGNATURES.md")
-    assert not is_publication_only("metadata/PROPERTY_TT_CLAIM_MAP.md")
-    assert not is_publication_only("official/counterexample.tex")
+    assert not is_publication_only("references/counterexample.tex")
     assert not is_publication_only("notes/new_proof.lean")
     assert not is_publication_only("scripts/advance_verified_branch.py")
     assert not is_publication_only(".github/workflows/verified-promote.yml")

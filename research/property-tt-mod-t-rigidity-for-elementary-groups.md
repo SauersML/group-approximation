@@ -9,7 +9,6 @@ distinct_from:
 artifacts:
   - GroupApproximation/PropertyTT/PaperStatements.lean
   - GroupApproximation/PropertyTT/FiniteTypeLeavittTT.lean
-  - property_tt_leavitt.tex
 ---
 
 ESTABLISHED.  `PropertyTT/PaperStatements` is the rigidity paper's public

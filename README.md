@@ -219,27 +219,24 @@ of the mathematics, and no claim here should be read as one.
 
 ## Property (TT)/T and the binary Leavitt algebra
 
-[`property_tt_leavitt.tex`](property_tt_leavitt.tex) develops a second part
-of the library: fixed-coordinate matrix factorization and property (TT)/T
-over finite-type noncommutative rings. Its principal application is property
-(TT)/T for the unit group of the binary Leavitt algebra.
-
-Every numbered result in that paper links visibly to a public Lean
-declaration. Its main formal surfaces are:
+`PropertyTT/` develops fixed-coordinate matrix factorization and property
+(TT)/T over finite-type noncommutative rings. Its principal application is
+property (TT)/T for the unit group of the binary Leavitt algebra. Its main
+formal surfaces are:
 
 | Module | Role |
 | --- | --- |
-| `PropertyTT/PaperStatements.lean` | Statement-level interface for the paper |
+| `PropertyTT/PaperStatements.lean` | Statement-level interface |
 | `PropertyTT/LocalizedComplexPlane.lean` | Homogeneous finite-control plane estimate |
 | `PropertyT/FreeRootCharacterValuation.lean` | Finite Fourier transport and boundary limits |
 | `PropertyTT/FiniteTypeLeavittTT.lean` | Rank-four assembly and all-ranks transport |
 | `KOne/PaperStatements.lean` | Rank-two elementary diagonal endpoint |
 | `KOne/AllRanksElementaryCore.lean` | All-ranks `GL = E` over the binary Leavitt algebra |
 
-The paper uses the published K-theoretic proof of `K₁ = 0` and `GLₙ = Eₙ`
-for the binary Leavitt algebra. Lean reaches the same endpoint independently
-through the constructive prefix-code pencil reduction in `KOne/`; external
-results are not imported as axioms.
+`K₁ = 0` and `GLₙ = Eₙ` for the binary Leavitt algebra are published
+K-theoretic results. Lean reaches the same endpoint independently through the
+constructive prefix-code pencil reduction in `KOne/`; external results are not
+imported as axioms.
 
 ## Nonsofic groups exist
 
@@ -307,10 +304,10 @@ GitHub Actions performs the computational checks:
 - Lean Prover CI builds with warnings as errors, runs source and compiled
   environment scans, checks transitive axiom closures, pins mapped theorem
   signatures, and replays compiled objects through a fresh Lean kernel.
-- The non-MF and property-(TT)/T PDF workflows validate visible TeX-to-formal
-  references, compile and lint each manuscript, reject unresolved references
-  and layout overflow, render every page, validate the PDFs, and publish
-  immutable, attested artifacts for audited revisions.
+- The non-MF PDF workflow validates visible TeX-to-formal references, compiles
+  and lints the manuscript, rejects unresolved references and layout overflow,
+  renders every page, validates the PDF, and publishes immutable, attested
+  artifacts for audited revisions.
 - Independent kernel re-check is an additional manually triggered audit.
 - API documentation publishes the generated Lean documentation.
 
@@ -327,16 +324,13 @@ Key audit files:
   eight-generator presentation that is unconditional;
 - `scripts/Signatures.lean` and `notes/CLAIM_SIGNATURES.md`: elaborated public
   signatures;
-- `scripts/check_non_mf_refs.py` and `scripts/check_property_tt_refs.py`:
-  visible manuscript-to-Lean reference checks;
+- `scripts/check_non_mf_refs.py`: visible manuscript-to-Lean reference checks;
 - `scripts/check_non_mf_zero_input.py`: enforces that every Lean declaration
   cited by the non-MF manuscript has no declaration inputs (all quantifiers
   occur inside the proposition);
 - `notes/NON_MF_IMPACT_FORMAL_STATUS.md`: records which stronger consequences
   have closed Lean endpoints and which still use literature or require new
-  mathematics;
-- `notes/PROPERTY_TT_CLAIM_MAP.md`: statement mapping for the property-(TT)/T
-  paper.
+  mathematics.
 
 Cold local builds are expensive. The maintained verification path is the
 GitHub Actions workflows in `.github/workflows/`.

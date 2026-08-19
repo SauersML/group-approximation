@@ -13,7 +13,6 @@ artifacts:
   - GroupApproximation/PropertyTT/MatrixElimination.lean
   - GroupApproximation/PropertyTT/CoordinateBlocks.lean
   - GroupApproximation/PropertyTT/BoundedGeneration.lean
-  - property_tt_leavitt.tex
 ---
 
 ESTABLISHED, machine-checked, and stated for an arbitrary coefficient ring.

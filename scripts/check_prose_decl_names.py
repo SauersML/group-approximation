@@ -1,10 +1,9 @@
 #!/usr/bin/env python3
 """Resolve declaration names quoted in prose against the declarations that exist.
 
-Three gates already resolve *references* against reality.  `check_non_mf_refs.py`
-and `check_property_tt_refs.py` resolve every `\\leanverified` badge in a
-manuscript; `check_manuscript_claims.py` resolves every `\\label` a Lean
-docstring cites.  Nothing resolves the other direction: a **declaration name**
+Two gates already resolve *references* against reality.  `check_non_mf_refs.py`
+resolves every `\\leanverified` badge in the manuscript;
+`check_manuscript_claims.py` resolves every `\\label` a Lean docstring cites.  Nothing resolves the other direction: a **declaration name**
 written in prose -- inside a Lean docstring, or inside a note in
 `metadata/NON_MF_PROOF_LEDGER.md` -- is unchecked, in both of the ways it can be
 wrong.
