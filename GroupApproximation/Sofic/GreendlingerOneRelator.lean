@@ -60,7 +60,7 @@ contiguous subword.
 
 This is stronger than the conclusion the gate asks for: the word contains a
 *whole* symmetrized relator, where the gate needs only more than half of one. -/
-theorem greendlinger_of_isConj {R : Set (List (α × Bool))}
+theorem greendlinger_of_isConj [DecidableEq α] {R : Set (List (α × Bool))}
     (hR : ∀ r ∈ R, FreeGroup.IsCyclicallyReduced r) (hRne : ∀ r ∈ R, r ≠ [])
     {s : List (α × Bool)} (hs : s ∈ symmetrization R)
     {w : List (α × Bool)} (hw : FreeGroup.IsReduced w)
@@ -89,7 +89,7 @@ theorem greendlinger_of_isConj {R : Set (List (α × Bool))}
     omega
 
 /-- The same, keyed to a relator of the family. -/
-theorem greendlinger_of_isConj_relator {R : Set (List (α × Bool))}
+theorem greendlinger_of_isConj_relator [DecidableEq α] {R : Set (List (α × Bool))}
     (hR : ∀ r ∈ R, FreeGroup.IsCyclicallyReduced r) (hRne : ∀ r ∈ R, r ≠ [])
     {r : List (α × Bool)} (hr : r ∈ R)
     {w : List (α × Bool)} (hw : FreeGroup.IsReduced w)
@@ -100,7 +100,7 @@ theorem greendlinger_of_isConj_relator {R : Set (List (α × Bool))}
 
 /-- And keyed to an *inverted* relator, which is the other half of what
 `exists_isConj_of_mem_symmetrization` produces. -/
-theorem greendlinger_of_isConj_inv {R : Set (List (α × Bool))}
+theorem greendlinger_of_isConj_inv [DecidableEq α] {R : Set (List (α × Bool))}
     (hR : ∀ r ∈ R, FreeGroup.IsCyclicallyReduced r) (hRne : ∀ r ∈ R, r ≠ [])
     {r : List (α × Bool)} (hr : r ∈ R)
     {w : List (α × Bool)} (hw : FreeGroup.IsReduced w)
@@ -119,7 +119,7 @@ This is exactly the conclusion of `norm_bound_of_greendlinger`, obtained without
 the gate whenever the element is a single conjugate -- which is what a minimal
 expression with one factor gives.  The remaining work in the gate is precisely
 to descend from a minimal expression with several factors to this case. -/
-theorem norm_bound_of_isConj {R : Set (List (α × Bool))}
+theorem norm_bound_of_isConj [DecidableEq α] {R : Set (List (α × Bool))}
     (hR : ∀ r ∈ R, FreeGroup.IsCyclicallyReduced r) (hRne : ∀ r ∈ R, r ≠ [])
     {s : List (α × Bool)} (hs : s ∈ symmetrization R)
     {g : FreeGroup α} (hconj : IsConj (FreeGroup.mk s) g) :
