@@ -461,7 +461,13 @@ jobs:
           GH_TOKEN: ${{ github.token }}
           BRANCH: ${{ steps.b.outputs.branch }}
         run: |
-          gh auth setup-git; git remote set-url --push origin "https://github.com/$GITHUB_REPOSITORY.git"; git push origin "HEAD:refs/heads/$BRANCH"
+          gh auth setup-git
+          git remote set-url --push origin "https://github.com/$GITHUB_REPOSITORY.git"
+          # The branch name embeds this run id, so this run is its only writer and
+          # forcing cannot lose anyone's work. Without it, re-running publish after a
+          # failure dies on a non-fast-forward: the re-run rebuilds the commit, so its
+          # sha differs from the head the first attempt already pushed.
+          git push --force origin "HEAD:refs/heads/$BRANCH"
       - env:
           GH_TOKEN: ${{ github.token }}
           BRANCH: ${{ steps.b.outputs.branch }}
@@ -479,4 +485,11 @@ jobs:
           Base: \`$BASE\`  
           Run: ${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}
           EOF
-          gh pr create --repo "$GITHUB_REPOSITORY" --base main --head "$BRANCH" --draft --title "Leanstral: $ANCHOR" --body-file "$RUNNER_TEMP/body"
+          if url="$(gh pr list --repo "$GITHUB_REPOSITORY" --head "$BRANCH" --state open \
+              --json url --jq '.[0].url // empty')" && [[ -n "$url" ]]; then
+            gh pr edit "$url" --title "Leanstral: $ANCHOR" --body-file "$RUNNER_TEMP/body"
+            echo "updated existing $url"
+          else
+            gh pr create --repo "$GITHUB_REPOSITORY" --base main --head "$BRANCH" --draft \
+              --title "Leanstral: $ANCHOR" --body-file "$RUNNER_TEMP/body"
+          fi
