@@ -12,17 +12,19 @@ the thirty shortest A4 contexts.  On any amplification
 lambda_k = Reg(A8) tensor I_k
 ```
 
-there is a constant `C_packet<infinity`, independent of `k`, such that every
-operator `X` with `||X||_op<=1` satisfies
+every operator `X` with `||X||_op<=1` satisfies the explicit dimension-free
+estimate
 
 ```text
 dist_2(X, lambda_k(A8)')
- <= C_packet (
+ <= 9 (
       sum_(s in S) ||X lambda_k(s)-lambda_k(s) X||_2^2
     )^(1/2).                                           (PACKET-COMM)
 ```
 
-The same constant works on both chart factors.
+The constant `9` works on both chart factors.  It is the exact directed word
+diameter of `A8` in the common ten-letter packet alphabet certified by
+`experiments/atlas_a4_packet_generation.py`.
 
 Thus the thirty A4 contexts are a finite **commutant test** for the whole
 regular A8 chart.  Any proposed high-dimensional holonomy degree of freedom
