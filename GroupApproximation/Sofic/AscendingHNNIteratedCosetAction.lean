@@ -384,10 +384,7 @@ theorem levelZero_stabilizer_at_iterate_site (m : ℕ) :
       have hδγ : δ = γ := e0.injective hEq
       simpa [hδγ] using hδ
   rw [show (1 : Γ) * γ * (1 : Γ)⁻¹ = γ by simp] at hfix
-  rw [show inl (MappingTelescope.mk α hα 0 (1 : Γ))
-        = (1 : Vertical α hα) by
-      rw [← MappingTelescope.one_eq_mk]; exact map_one _,
-    one_mul] at hfix
+  rw [map_one, map_one, one_mul] at hfix
   exact hfix.trans hmap
 
 include hα in
