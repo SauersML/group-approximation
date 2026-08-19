@@ -341,6 +341,7 @@ import GroupApproximation.Sofic.GreendlingerConjugation
 import GroupApproximation.Sofic.GreendlingerNormalForm
 import GroupApproximation.Sofic.GreendlingerOneRelator
 import GroupApproximation.Sofic.GreendlingerExpression
+import GroupApproximation.Sofic.GreendlingerCancellation
 import GroupApproximation.Sofic.IntegerLampSurvival
 import GroupApproximation.Monsters.LiteralBaseCompleteness
 import GroupApproximation.Sofic.LEFMarkedCompression
