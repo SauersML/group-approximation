@@ -118,9 +118,12 @@ theorem starInner_self (ξ : G →₀ ℂ) :
     starInner ξ ξ = (l2NormSq ξ : ℂ) := by
   show (∑ x ∈ ξ.support, (starRingEnd ℂ) (ξ x) * ξ x)
       = ((∑ x ∈ ξ.support, ‖ξ x‖ ^ 2 : ℝ) : ℂ)
-  rw [Complex.ofReal_sum]
-  refine Finset.sum_congr rfl fun x _ ↦ ?_
-  rw [mul_comm, Complex.mul_conj, Complex.normSq_eq_norm_sq]
+  have h : ∀ x ∈ ξ.support,
+      (starRingEnd ℂ) (ξ x) * ξ x = ((‖ξ x‖ ^ 2 : ℝ) : ℂ) := by
+    intro x _
+    rw [mul_comm, Complex.mul_conj, Complex.normSq_eq_norm_sq]
+  rw [Finset.sum_congr rfl h]
+  norm_cast
 
 /-! ## Sesquilinearity -/
 
@@ -245,7 +248,8 @@ nonnegative. -/
 theorem IsPositiveDefinite.one_nonneg {φ : G → ℂ}
     (h : IsPositiveDefinite φ) : 0 ≤ (φ 1).re ∧ (φ 1).im = 0 := by
   have h1 := h 1 (fun _ ↦ 1) (fun _ ↦ 1)
-  simp only [Fin.sum_univ_one, map_one, one_mul, inv_one, mul_one] at h1
+  simp only [Fin.sum_univ_succ, Fin.sum_univ_zero, add_zero, map_one, one_mul,
+    inv_one, mul_one] at h1
   exact h1
 
 /-- **Matrix coefficients of the translation action are positive
@@ -311,11 +315,13 @@ omit [Group G] in
     sqDensity ξ x = ‖ξ x‖ ^ 2 :=
   Finsupp.mapRange_apply
 
+omit [Group G] in
 theorem sqDensity_nonneg (ξ : G →₀ ℂ) : ∀ x, 0 ≤ sqDensity ξ x := by
   intro x
   rw [sqDensity_apply]
   positivity
 
+omit [Group G] in
 theorem totalMass_sqDensity (ξ : G →₀ ℂ) :
     totalMass (sqDensity ξ) = l2NormSq ξ := by
   have hsub : (sqDensity ξ).support ⊆ ξ.support := Finsupp.support_mapRange
@@ -347,6 +353,7 @@ theorem add_sq_le_two_mul (p q : ℝ) : (p + q) ^ 2 ≤ 2 * p ^ 2 + 2 * q ^ 2 :=
   rw [add_sq]
   linarith
 
+omit [Group G] in
 /-- **The Cauchy–Schwarz `ℓ¹`-estimate**: for unit vectors `a` and `b`,
 `‖ |a|² − |b|² ‖₁ ≤ 2 ‖a − b‖₂`. -/
 theorem l1Norm_sqDensity_sub_le {a b : G →₀ ℂ}

@@ -113,8 +113,8 @@ omit [Group G] in
 theorem matrixCoeff_star (T : GroupHilbert G →L[ℂ] GroupHilbert G)
     (s t : G) : matrixCoeff G (star T) s t
       = (starRingEnd ℂ) (matrixCoeff G T t s) := by
-  rw [matrixCoeff_def, matrixCoeff_def, coord_eq_inner ((star T) _) s,
-    coord_eq_inner (T _) t, ContinuousLinearMap.star_eq_adjoint,
+  rw [matrixCoeff_def, matrixCoeff_def, coord_eq_inner G ((star T) _) s,
+    coord_eq_inner G (T _) t, ContinuousLinearMap.star_eq_adjoint,
     ContinuousLinearMap.adjoint_inner_right]
   exact (inner_conj_symm _ _).symm
 
@@ -127,7 +127,7 @@ theorem hasPropagationIn_one :
   rw [matrixCoeff_def, one_apply_eq_self] at h0
   have hst : s = t := by
     by_contra hne
-    exact h0 (delta_apply_ne hne)
+    exact h0 (delta_apply_ne G hne)
   rw [hst, mul_inv_cancel]
   rfl
 
@@ -137,7 +137,7 @@ theorem hasPropagationIn_leftRegular (g : G) :
   rw [matrixCoeff_def, leftRegularOperator_apply] at h0
   have hst : g⁻¹ * s = t := by
     by_contra hne
-    exact h0 (delta_apply_ne hne)
+    exact h0 (delta_apply_ne G hne)
   have hs : s = g * t := by
     rw [← hst, mul_inv_cancel_left]
   have : s * t⁻¹ = g := by
@@ -206,12 +206,13 @@ theorem eq_sum_single_of_support_subset (v : GroupHilbert G) (F : Finset G)
         = v u • lp.evalCLM ℂ (fun _ : G ↦ ℂ) 2 x (delta G u) :=
       map_smul _ _ _
     rw [h3, smul_eq_mul]
+    rfl
   by_cases hx : x ∈ F
   · show v x = _
     rw [hR, Finset.sum_eq_single x]
-    · rw [delta_apply_self, mul_one]
+    · rw [delta_apply_self G x, mul_one]
     · intro u _ hu
-      rw [delta_apply_ne (Ne.symm hu), mul_zero]
+      rw [delta_apply_ne G (Ne.symm hu), mul_zero]
     · intro h
       exact absurd hx h
   · show v x = _
@@ -221,7 +222,7 @@ theorem eq_sum_single_of_support_subset (v : GroupHilbert G) (F : Finset G)
       intro h
       rw [h] at hx
       exact hx hu
-    rw [delta_apply_ne hne, mul_zero]
+    rw [delta_apply_ne G hne, mul_zero]
 
 /-- **The product coefficient is a finite convolution** over the window
 translate of a finite-propagation right factor. -/
@@ -281,14 +282,17 @@ def finitePropagationSubalgebra :
   carrier := {T | FinitePropagation G T}
   mul_mem' := by
     rintro ⟨S, hS⟩ ⟨S', hS'⟩
+    show FinitePropagation G _
     exact ⟨S * S', hasPropagationIn_mul hS hS'⟩
   add_mem' := by
     rintro ⟨S, hS⟩ ⟨S', hS'⟩
+    show FinitePropagation G _
     refine ⟨S ∪ S', ?_⟩
     have h1 := hasPropagationIn_add hS hS'
     rwa [← Finset.coe_union] at h1
   algebraMap_mem' := by
     intro z
+    show FinitePropagation G _
     refine ⟨{(1 : G)}, ?_⟩
     have he : algebraMap ℂ (GroupHilbert G →L[ℂ] GroupHilbert G) z
         = z • (1 : GroupHilbert G →L[ℂ] GroupHilbert G) :=
@@ -302,6 +306,7 @@ def finitePropagationSubalgebra :
     exact h3
   star_mem' := by
     rintro ⟨S, hS⟩
+    show FinitePropagation G _
     refine ⟨S⁻¹, ?_⟩
     have h1 := hasPropagationIn_star hS
     rwa [← Finset.coe_inv] at h1

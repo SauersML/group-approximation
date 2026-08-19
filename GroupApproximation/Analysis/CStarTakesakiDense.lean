@@ -266,15 +266,16 @@ the GNS space: it is the canonical image of the algebra, the completion's
 core. -/
 theorem dense_range_gnsRep_gnsVector (φ : State A) :
     Dense (Set.range fun u : A => (φ.gnsRep).hom u φ.gnsVector) := by
-  have h : (fun u : A => (φ.gnsRep).hom u φ.gnsVector)
-      = (fun p : φ.toPositive.PreGNS => ((p : φ.toPositive.GNS)))
-        ∘ ⇑φ.toPositive.toPreGNS := by
-    funext u
-    exact gnsRep_apply_gnsVector φ u
-  rw [h, Set.range_comp,
-    (φ.toPositive.toPreGNS : A ≃ₗ[ℂ] φ.toPositive.PreGNS).surjective.range_eq,
-    Set.image_univ]
-  exact UniformSpace.Completion.denseRange_coe
+  intro v
+  have hv : v ∈ closure (Set.range
+      ((↑) : φ.toPositive.PreGNS → φ.toPositive.GNS)) :=
+    UniformSpace.Completion.denseRange_coe v
+  have hr : Set.range ((↑) : φ.toPositive.PreGNS → φ.toPositive.GNS)
+      ⊆ Set.range (fun u : A => (φ.gnsRep).hom u φ.gnsVector) := by
+    rintro _ ⟨p, rfl⟩
+    refine ⟨φ.toPositive.ofPreGNS p, ?_⟩
+    rw [gnsRep_apply_gnsVector, PositiveLinearMap.toPreGNS_ofPreGNS]
+  exact closure_mono hr hv
 
 end GNSVector
 
