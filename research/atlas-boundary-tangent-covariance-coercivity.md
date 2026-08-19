@@ -53,8 +53,21 @@ Then:
    boundary word adds first-order information: the boundary packet is
    first-order saturated at five words.
 
-2. **`Ncov` vanishes on that kernel** (measured `2.4e-17` in double
-   precision), so no first-order escape exists for the boundary packet.
+2. **`Ncov` vanishes on that kernel -- exactly, in integer arithmetic.**
+   The `H`-fixed space is spanned by the indicators of the 120 right cosets
+   `Hx`, and `experiments/atlas_asc_kernel_exact.py` verifies in `Z` that
+   `W_pkt` annihilates every one of them.  `W_cov = 4 - 2h_a - 2h_b`
+   annihilates them for a one-line reason:
+
+   ```text
+   (L_(W_cov) 1_(Hx))(g) = 4[g in Hx] - 2[g in h_a Hx] - 2[g in h_b Hx] = 0
+   ```
+
+   because `h_a, h_b` lie in `H`.  So the kernel inclusion -- the crux, since
+   its failure would make the constant infinite -- is proved rather than
+   measured; only the VALUE 1/14 is still double precision.  The same script
+   runs the opposite coset family as a control, where `W_cov` fails on 114 of
+   the 120, so the test is not vacuous.
 
 3. **Sharp constants**, valid for every matrix `U`.
 

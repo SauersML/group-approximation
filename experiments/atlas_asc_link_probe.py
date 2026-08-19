@@ -50,21 +50,31 @@ from atlas_asc_tangent_ratio import word_forms
 
 
 def measure(packet, theta, probe, body_chunks, cov_chunks):
-    """(sum true defect^2, sum linearized l^2, cov^2) over the whole packet."""
+    """(sum true defect^2 over S_0, sum l^2 over fold-trivial words, cov^2).
+
+    The interior separator is NOT fold-trivial, so it has no quadratic form
+    and cannot enter the linear energy -- but it is exactly the word that has
+    to sit in the denominator, since it is what kills the countermodel.
+    """
     true_sq = 0.0
     linear_sq = 0.0
     worst = ("", 0.0, 0.0)
     for index in body_chunks:
         chunk = packet.chunks[index]
         true_values = chunk_defects(packet, chunk, theta, probe)
-        linear_values = word_forms(packet, chunk, theta, probe)
         true_sq += float(true_values.sum())
-        linear_sq += float(linear_values.sum())
-        position = int(linear_values.argmax())
-        if float(linear_values[position]) > worst[1]:
-            worst = (packet.names[chunk[0][position]],
-                     float(linear_values[position]),
-                     float(true_values[position]))
+        names = [packet.names[position] for position in chunk[0]]
+        if all(name.startswith("interior") for name in names):
+            continue
+        linear_values = word_forms(packet, chunk, theta, probe)
+        keep = [slot for slot, name in enumerate(names)
+                if not name.startswith("interior")]
+        linear_sq += float(linear_values[keep].sum())
+        position = int(linear_values[keep].argmax())
+        if float(linear_values[keep][position]) > worst[1]:
+            worst = (names[keep[position]],
+                     float(linear_values[keep][position]),
+                     float(true_values[keep][position]))
     cov = sum(float(chunk_defects(packet, packet.chunks[which], theta,
                                   probe).sum()) for which in cov_chunks)
     return true_sq, linear_sq, cov, worst
@@ -78,13 +88,15 @@ def run(args):
     torch.backends.cuda.matmul.allow_tf32 = bool(args.tf32)
 
     packet = Packet(args.npz, args.k, device,
-                    {"certified", "boundary", "phase"}, args.word_batch)
+                    {"certified", "boundary", "phase", "interior"},
+                    args.word_batch)
     n = packet.n
     cov_chunks = sorted({packet.by_position[packet.names.index("cov:a")],
                          packet.by_position[packet.names.index("cov:b")]})
     body_chunks = [index for index, chunk in enumerate(packet.chunks)
                    if all(position < packet.packet_words
                           for position in chunk[0])]
+    interior_chunk = packet.by_position[packet.names.index("interior:19243")]
 
     started = time.time()
     log = open(args.out, "a", buffering=1) if args.out else None
@@ -143,9 +155,14 @@ def run(args):
             index = body_chunks[np.random.RandomState(
                 args.seed + step).randint(len(body_chunks))]
             chunk = packet.chunks[index]
+            names = [packet.names[position] for position in chunk[0]]
             true_values = chunk_defects(packet, chunk, theta, probe)
+            interior = packet.chunks[interior_chunk]
+            interior_true = chunk_defects(packet, interior, theta, probe).sum()
+            if all(name.startswith("interior") for name in names):
+                continue
             linear_values = word_forms(packet, chunk, theta, probe)
-            loss = (torch.log(true_values.sum() + args.floor)
+            loss = (torch.log(true_values.sum() + interior_true + args.floor)
                     - torch.log(linear_values.sum() + args.floor))
             loss.backward()
             with torch.no_grad():
