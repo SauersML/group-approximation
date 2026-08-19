@@ -161,7 +161,8 @@ theorem mem_normalClosure_iff (R : Set (List (α × Bool))) (g : FreeGroup α) :
   · intro hg
     have hsub : FreeGroup.mk '' R ⊆ (conjProductSubgroup R : Set (FreeGroup α)) := by
       rintro _ ⟨r, hr, rfl⟩
-      exact ⟨1, isConjProduct_one_of_mem (subset_symmetrization R hr) 1⟩
+      refine ⟨1, ?_⟩
+      simpa using isConjProduct_one_of_mem (subset_symmetrization R hr) 1
     exact Subgroup.normalClosure_le_normal hsub hg
   · rintro ⟨n, hn⟩
     exact mem_normalClosure_of_isConjProduct hn
@@ -169,7 +170,7 @@ theorem mem_normalClosure_iff (R : Set (List (α × Bool))) (g : FreeGroup α) :
 /-! ## The base of the descent -/
 
 /-- A nonempty reduced word never spells the empty product. -/
-theorem not_isConjProduct_zero {R : Set (List (α × Bool))}
+theorem not_isConjProduct_zero [DecidableEq α] {R : Set (List (α × Bool))}
     {w : List (α × Bool)} (hw : FreeGroup.IsReduced w) (hwne : w ≠ []) :
     ¬ IsConjProduct R 0 (FreeGroup.mk w) := by
   intro h
@@ -182,7 +183,8 @@ theorem not_isConjProduct_zero {R : Set (List (α × Bool))}
 
 /-- **The base of the descent.**  An expression with a single conjugate factor
 already gives the Greendlinger conclusion, by the one-relator case. -/
-theorem greendlinger_of_isConjProduct_one {R : Set (List (α × Bool))}
+theorem greendlinger_of_isConjProduct_one [DecidableEq α]
+    {R : Set (List (α × Bool))}
     (hR : ∀ r ∈ R, FreeGroup.IsCyclicallyReduced r) (hRne : ∀ r ∈ R, r ≠ [])
     {w : List (α × Bool)} (hw : FreeGroup.IsReduced w)
     (h : IsConjProduct R 1 (FreeGroup.mk w)) :
