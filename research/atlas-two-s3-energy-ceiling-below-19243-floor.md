@@ -41,6 +41,22 @@ The numerical target is deliberately much weaker than covariance collapse.
 Any strict ceiling below `1/128` is enough; no rate and no convergence to zero
 is required.
 
+By `involution-covariance-is-four-times-binary-consistency`, this is exactly a
+finite agreement-test target.  If `D_a,D_b` are the tracial consistency defects
+between the two binary spectral PVMs of the two chart copies of `h_a,h_b`, then
+
+```text
+a^2+b^2=4(D_a+D_b).
+```
+
+Hence it is enough to prove the fixed numerical inequality
+
+```text
+D_a+D_b < 1/512                                        (A4-CONS-CEIL)
+```
+
+at sufficiently small atlas defect.
+
 ## Attempts
 
 - **Exploit the thirty robust A4 cores, not a global chart perturbation.**
@@ -51,13 +67,14 @@ is required.
 - **Agreement-test formulation.**  Regard the thirty A4 contexts as a finite
   synchronization/unique-games instance on multiplicity spaces.  Local
   exactifications supply the labels; overlap disagreement is the consistency
-  defect.  The established tracial consistency-distance identity converts
-  that defect directly into normalized-HS distance.
-- **Do not try to prove a single classical alignment.**  External multiplicity
-  can mix locally valid sectors.  A successful argument should bound the
-  average two-generator energy through an expansion/Poincare inequality on the
-  finite context-overlap graph, which is exactly the quantity needed here.
+  defect.  The exact binary identity above means the required global agreement
+  budget is now the concrete constant `1/512`.
+- **Use finite expansion, not a classical alignment.**  External multiplicity
+  can mix locally valid sectors.  A successful argument should bound the two
+  binary consistency defects through an expansion/Poincare inequality on the
+  finite context-overlap graph.  This is compatible with operator-valued local
+  labels and does not require selecting one automorphism sector.
 - **Only beat the threshold.**  The old target `a^2+b^2->0` spends far more
   rigidity than the contradiction needs.  Even a coarse certificate such as
-  `eta=1/256` would close the hyperlinearity problem through the packet-only
-  19243 lower wall.
+  `D_a+D_b<=1/1024` would close the hyperlinearity problem through the
+  packet-only 19243 lower wall.
