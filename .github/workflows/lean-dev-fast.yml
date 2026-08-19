@@ -1,0 +1,269 @@
+# Fast feedback for ordinary Lean development.
+#
+# This is deliberately not the exhaustive verifier.  It compiles only Lean
+# modules changed by the push/PR (or an explicitly requested module), while the
+# heavier workflows remain responsible for whole-corpus / downstream checks.
+# The speed comes from keeping three caches at different invalidation scales:
+#   * ~/.elan            — invalidated only by lean-toolchain
+#   * .lake/packages     — invalidated only by toolchain/manifest
+#   * .lake/build        — rolling per-commit project oleans, restored from the
+#                          newest commit with the same dependency lock
+# Mathlib's own precompiled cache is used only when the package cache is cold.
+name: Lean dev compile (fast)
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - GroupApproximation.lean
+      - 'GroupApproximation/**/*.lean'
+      - lean-toolchain
+      - lakefile.toml
+      - lake-manifest.json
+      - .github/workflows/lean-dev-fast.yml
+  pull_request:
+    branches: [main]
+    paths:
+      - GroupApproximation.lean
+      - 'GroupApproximation/**/*.lean'
+      - lean-toolchain
+      - lakefile.toml
+      - lake-manifest.json
+      - .github/workflows/lean-dev-fast.yml
+  workflow_dispatch:
+    inputs:
+      target:
+        description: Optional Lake module target (for example GroupApproximation.Foo.Bar)
+        required: false
+        type: string
+
+permissions:
+  contents: read
+  pull-requests: read
+
+# Development feedback is about the newest tree.  Never make a fresh edit wait
+# behind an obsolete compile of the same branch/PR.
+concurrency:
+  group: lean-dev-fast-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  compile:
+    name: Targeted Lean compile
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      # Depth 1 is intentional: target discovery uses the GitHub API instead of
+      # fetching repository history, which is much cheaper for this large repo.
+      - name: Check out repository
+        uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
+        with:
+          fetch-depth: 1
+
+      - name: Find changed files
+        id: changed
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+          EVENT_NAME: ${{ github.event_name }}
+          REPOSITORY: ${{ github.repository }}
+          BEFORE: ${{ github.event.before }}
+          SHA: ${{ github.sha }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+          MANUAL_TARGET: ${{ inputs.target }}
+        run: |
+          set -euo pipefail
+          out="$RUNNER_TEMP/lean-dev-changed.txt"
+          : > "$out"
+
+          # An explicit dispatch target does not need a diff at all.
+          if [[ "$EVENT_NAME" == workflow_dispatch && -n "${MANUAL_TARGET//[[:space:]]/}" ]]; then
+            echo "manual target requested; skipping diff discovery"
+            echo "file=$out" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          if [[ "$EVENT_NAME" == pull_request ]]; then
+            if ! gh api --paginate \
+              "repos/$REPOSITORY/pulls/$PR_NUMBER/files?per_page=100" \
+              --jq '.[].filename' > "$out"; then
+              echo "::warning::could not enumerate PR files; falling back to a full incremental build"
+              echo '__FULL__' > "$out"
+            fi
+          elif [[ "$EVENT_NAME" == push ]]; then
+            if [[ -z "$BEFORE" || "$BEFORE" =~ ^0+$ ]]; then
+              echo '__FULL__' > "$out"
+            elif ! gh api "repos/$REPOSITORY/compare/$BEFORE...$SHA" \
+              --jq '.files[].filename' > "$out"; then
+              echo "::warning::could not compare push endpoints; falling back to a full incremental build"
+              echo '__FULL__' > "$out"
+            fi
+          else
+            echo '__FULL__' > "$out"
+          fi
+
+          sort -u -o "$out" "$out"
+          echo "Changed paths:"
+          cat "$out"
+          echo "file=$out" >> "$GITHUB_OUTPUT"
+
+      - name: Select the smallest useful Lake targets
+        id: targets
+        shell: bash
+        env:
+          CHANGED_FILE: ${{ steps.changed.outputs.file }}
+          MANUAL_TARGET: ${{ inputs.target }}
+          EVENT_NAME: ${{ github.event_name }}
+        run: |
+          set -euo pipefail
+          mkdir -p .ci
+          python3 - <<'PY'
+          import collections
+          import os
+          from pathlib import Path
+          import re
+
+          target_file = Path('.ci/fast-lean-targets')
+          manual = os.environ.get('MANUAL_TARGET', '').strip()
+
+          def module_for(path: Path) -> str | None:
+              s = path.as_posix()
+              if s == 'GroupApproximation.lean':
+                  return 'GroupApproximation'
+              if s.startswith('GroupApproximation/') and s.endswith('.lean'):
+                  return s[:-5].replace('/', '.')
+              return None
+
+          if manual:
+              if manual.endswith('.lean'):
+                  mod = module_for(Path(manual))
+                  if mod is None:
+                      raise SystemExit('manual .lean target must be GroupApproximation.lean or live under GroupApproximation/')
+                  manual = mod
+              if not re.fullmatch(r"[A-Za-z0-9_.:-]+", manual):
+                  raise SystemExit(f'invalid Lake target: {manual!r}')
+              targets = [manual]
+              reason = 'manual dispatch target'
+          else:
+              changed = Path(os.environ['CHANGED_FILE']).read_text(encoding='utf-8').splitlines()
+              full_inputs = {'lean-toolchain', 'lakefile.toml', 'lake-manifest.json',
+                             '.github/workflows/lean-dev-fast.yml', '__FULL__'}
+              full = any(p in full_inputs for p in changed) or 'GroupApproximation.lean' in changed
+
+              existing_files = [Path('GroupApproximation.lean')]
+              existing_files.extend(sorted(Path('GroupApproximation').rglob('*.lean')))
+
+              # Reverse imports are needed only for deleted files.  If a module
+              # was deleted but is still imported, compiling the nearest current
+              # importer gives the fastest useful failure instead of building the
+              # whole root just to discover the same missing import.
+              reverse: dict[str, set[str]] = collections.defaultdict(set)
+              import_re = re.compile(r'^\s*import\s+(GroupApproximation(?:\.[A-Za-z0-9_\u0027]+)*)\s*$', re.M)
+              for src in existing_files:
+                  if not src.is_file():
+                      continue
+                  owner = module_for(src)
+                  if owner is None:
+                      continue
+                  text = src.read_text(encoding='utf-8')
+                  for dep in import_re.findall(text):
+                      reverse[dep].add(owner)
+
+              targets_set: set[str] = set()
+              deleted: set[str] = set()
+              for raw in changed:
+                  p = Path(raw)
+                  mod = module_for(p)
+                  if mod is None or mod == 'GroupApproximation':
+                      continue
+                  if p.is_file():
+                      targets_set.add(mod)
+                  else:
+                      deleted.add(mod)
+
+              for mod in deleted:
+                  targets_set.update(reverse.get(mod, ()))
+
+              if full:
+                  targets = ['GroupApproximation']
+                  reason = 'build configuration/root/workflow changed'
+              else:
+                  targets = sorted(targets_set)
+                  reason = 'changed Lean modules only'
+
+          target_file.write_text(''.join(t + '\n' for t in targets), encoding='utf-8')
+          print(f'{reason}: {len(targets)} target(s)')
+          for t in targets:
+              print(f'  {t}')
+
+          with Path(os.environ['GITHUB_OUTPUT']).open('a', encoding='utf-8') as out:
+              out.write(f"skip={'true' if not targets else 'false'}\n")
+              out.write(f"count={len(targets)}\n")
+          PY
+
+      - name: Cache Lean toolchain
+        if: steps.targets.outputs.skip != 'true'
+        id: elan-cache
+        uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4
+        with:
+          path: ~/.elan
+          key: ${{ runner.os }}-${{ runner.arch }}-elan-${{ hashFiles('lean-toolchain') }}
+
+      - name: Install elan on a cold toolchain cache
+        if: steps.targets.outputs.skip != 'true' && steps.elan-cache.outputs.cache-hit != 'true'
+        shell: bash
+        run: curl https://raw.githubusercontent.com/leanprover/elan/464c9d28395000a2a0128e07081e4956d50eced2/elan-init.sh -sSf | sh -s -- -y
+
+      - name: Put Lean on PATH
+        if: steps.targets.outputs.skip != 'true'
+        run: echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+
+      # Cache the dependency checkout + extracted upstream oleans once per lock
+      # file, rather than re-saving gigabytes of Mathlib on every source commit.
+      - name: Cache Lake packages and precompiled dependencies
+        if: steps.targets.outputs.skip != 'true'
+        id: lake-packages-cache
+        uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4
+        with:
+          path: .lake/packages
+          key: ${{ runner.os }}-${{ runner.arch }}-lake-packages-v1-${{ hashFiles('lean-toolchain', 'lake-manifest.json') }}
+
+      - name: Cache Mathlib download archives
+        if: steps.targets.outputs.skip != 'true' && steps.lake-packages-cache.outputs.cache-hit != 'true'
+        uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4
+        with:
+          path: ~/.cache/mathlib
+          key: ${{ runner.os }}-${{ runner.arch }}-mathlib-archives-v1-${{ hashFiles('lean-toolchain', 'lake-manifest.json') }}
+
+      - name: Fetch precompiled Mathlib only when dependencies are cold
+        if: steps.targets.outputs.skip != 'true' && steps.lake-packages-cache.outputs.cache-hit != 'true'
+        run: lake exe cache get
+
+      # Project oleans change on almost every Lean edit, so use a commit-specific
+      # primary key but restore the newest cache with the same dependency lock.
+      # Lake's content/trace checks decide which restored modules are actually
+      # reusable; changed targets are then rebuilt incrementally.
+      - name: Restore rolling project build cache
+        if: steps.targets.outputs.skip != 'true'
+        uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4
+        with:
+          path: .lake/build
+          key: ${{ runner.os }}-${{ runner.arch }}-groupapprox-build-v2-${{ hashFiles('lean-toolchain', 'lake-manifest.json') }}-${{ github.sha }}
+          restore-keys: |
+            ${{ runner.os }}-${{ runner.arch }}-groupapprox-build-v2-${{ hashFiles('lean-toolchain', 'lake-manifest.json') }}-
+
+      - name: Compile selected modules
+        if: steps.targets.outputs.skip != 'true'
+        shell: bash
+        run: |
+          set -euo pipefail
+          mapfile -t targets < .ci/fast-lean-targets
+          printf 'lake build'
+          printf ' %q' "${targets[@]}"
+          printf '\n'
+          time lake build "${targets[@]}"
+
+      - name: Nothing Lean-relevant changed
+        if: steps.targets.outputs.skip == 'true'
+        run: echo 'No current Lean module needs compiling for this change.'
