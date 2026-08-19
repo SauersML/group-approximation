@@ -1,6 +1,6 @@
 import GroupApproximation.Sofic.CliffordLampGraphLocalFiniteness
 import Mathlib.GroupTheory.CoprodI
-import Mathlib.GroupTheory.Commutator.Basic
+import Mathlib.Algebra.Group.Commutator
 
 /-!
 # Three blocks give a nonabelian free subgroup of `C(𝒢)`
@@ -64,6 +64,7 @@ namespace CliffordLampGraph
 
 open LiteralBlockNormalForm
 open scoped Pointwise
+open scoped commutatorElement
 
 /-! ## Reduced words on three letters -/
 
