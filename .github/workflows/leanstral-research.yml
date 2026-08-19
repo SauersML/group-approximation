@@ -14,16 +14,19 @@ on:
     paths:
       - '.github/workflows/leanstral-research.yml'
       - 'scripts/leanstral_novelty.py'
+      - 'scripts/leanstral_ledger.py'
   pull_request:
     branches: [main]
     paths:
       - '.github/workflows/leanstral-research.yml'
       - 'scripts/leanstral_novelty.py'
+      - 'scripts/leanstral_ledger.py'
 
-# Every actual model run reserves a unique (file, declaration) before inference.
-# The reservation is appended as a comment on the ledger issue, so failed/no-change
-# runs and unmerged/closed PRs still consume their target. Comments are append-only
-# and permanent; only one agent attempt runs at once, making reservation atomic.
+# Every actual model run reserves a unique (file, declaration) before inference, so
+# failed/no-change runs and unmerged/closed PRs still consume their target. The
+# ledger lives at the git ref refs/leanstral/ledger: real objects in this repo,
+# permanent, but outside refs/heads and refs/tags, so it is neither a branch nor a
+# tag. This concurrency group serialises appends; see scripts/leanstral_ledger.py.
 concurrency:
   group: ${{ (github.event_name == 'push' || github.event_name == 'pull_request') && format('leanstral-research-smoke-{0}', github.event.pull_request.number || github.ref) || 'leanstral-research-agent' }}
   cancel-in-progress: false
@@ -38,9 +41,6 @@ env:
   # Must match the [[models]] name written into the Vibe config below; the
   # Configure step asserts they have not drifted apart.
   LEANSTRAL_MODEL: 'labs-leanstral-1-5'
-  # Append-only reservation ledger. Deliberately an issue, not a branch:
-  # https://github.com/SauersML/group-approximation/issues/16
-  LEDGER_ISSUE: '16'
 
 jobs:
   smoke:
@@ -50,7 +50,6 @@ jobs:
     permissions:
       contents: read
       pull-requests: read
-      issues: read
     steps:
       - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
         with:
@@ -60,6 +59,12 @@ jobs:
           python-version: ${{ env.PYTHON_VERSION }}
       - name: Test novelty selector
         run: python scripts/leanstral_novelty.py --self-test
+      - name: Test ledger encoding
+        run: python scripts/leanstral_ledger.py self-test
+      - name: Ledger chain holds every row ever reserved
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: python scripts/leanstral_ledger.py verify
       - name: Dry-run live target selection
         env:
           GH_TOKEN: ${{ github.token }}
@@ -67,8 +72,7 @@ jobs:
           set -euo pipefail
           ledger="$RUNNER_TEMP/ledger.tsv"; blocked="$RUNNER_TEMP/blocked.txt"; ids="$RUNNER_TEMP/ids.txt"
           : > "$blocked"
-          gh api --paginate "repos/$GITHUB_REPOSITORY/issues/$LEDGER_ISSUE/comments" --jq '.[].body' \
-            | awk -F '\t' 'NF>=4 && $1 ~ /^[0-9][0-9]*$/' > "$ledger"
+          python scripts/leanstral_ledger.py read > "$ledger"
           awk -F '\t' 'NF>=4 {print $1}' "$ledger" | sort -u > "$ids"
           gh pr list --repo "$GITHUB_REPOSITORY" --state all --limit 1000 --json number,headRefName \
             | jq -r '.[]|select(.headRefName|test("^automation/leanstral-[0-9]+$"))|[.number,.headRefName]|@tsv' \
@@ -123,9 +127,8 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 15
     permissions:
-      contents: read
+      contents: write
       pull-requests: read
-      issues: write
     outputs:
       found: ${{ steps.pick.outputs.found }}
       target: ${{ steps.pick.outputs.target }}
@@ -144,8 +147,7 @@ jobs:
           set -euo pipefail
           ledger="$RUNNER_TEMP/ledger.tsv"; blocked="$RUNNER_TEMP/blocked.txt"; ids="$RUNNER_TEMP/ids.txt"
           : > "$blocked"
-          gh api --paginate "repos/$GITHUB_REPOSITORY/issues/$LEDGER_ISSUE/comments" --jq '.[].body' \
-            | awk -F '\t' 'NF>=4 && $1 ~ /^[0-9][0-9]*$/' > "$ledger"
+          python scripts/leanstral_ledger.py read > "$ledger"
           awk -F '\t' 'NF>=4 {print $1}' "$ledger" | sort -u > "$ids"
           gh pr list --repo "$GITHUB_REPOSITORY" --state all --limit 1000 --json number,headRefName \
             | jq -r '.[]|select(.headRefName|test("^automation/leanstral-[0-9]+$"))|[.number,.headRefName]|@tsv' \
@@ -171,32 +173,12 @@ jobs:
       - name: Reserve before inference
         if: steps.pick.outputs.found == 'true'
         env:
-          GH_TOKEN: ${{ github.token }}
+          GITHUB_TOKEN: ${{ github.token }}
           TARGET: ${{ steps.pick.outputs.target }}
           ANCHOR: ${{ steps.pick.outputs.anchor }}
-        run: |
-          set -euo pipefail
-          ledger="$RUNNER_TEMP/state.tsv"
-          gh api --paginate "repos/$GITHUB_REPOSITORY/issues/$LEDGER_ISSUE/comments" --jq '.[].body' \
-            | awk -F '\t' 'NF>=4 && $1 ~ /^[0-9][0-9]*$/' > "$ledger"
-          if awk -F '\t' -v p="$TARGET" -v a="$ANCHOR" 'NF>=4&&$3==p&&$4==a{f=1}END{exit f?0:1}' "$ledger"; then
-            echo "::error::Concurrent duplicate reservation: $TARGET :: $ANCHOR"; exit 1
-          fi
-          row="$(printf '%s\t%s\t%s\t%s' "$GITHUB_RUN_ID" "$(date -u +%FT%TZ)" "$TARGET" "$ANCHOR")"
-          { echo '<!-- leanstral-reservation -->'
-            echo "Reserved by run [$GITHUB_RUN_ID]($GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID) before inference."
-            echo
-            echo '```'
-            printf '%s\n' "$row"
-            echo '```'
-          } > "$RUNNER_TEMP/reservation.md"
-          jq -n --rawfile b "$RUNNER_TEMP/reservation.md" '{body: $b}' \
-            | gh api --method POST "repos/$GITHUB_REPOSITORY/issues/$LEDGER_ISSUE/comments" --input - >/dev/null
-          # A reservation that cannot be read back has not been made.
-          gh api --paginate "repos/$GITHUB_REPOSITORY/issues/$LEDGER_ISSUE/comments" --jq '.[].body' \
-            | awk -F '\t' 'NF>=4 && $1 ~ /^[0-9][0-9]*$/' \
-            | grep -Fxq "$row" || { echo '::error::Reservation did not persist on the ledger issue'; exit 1; }
-          echo "Reserved permanently on issue #$LEDGER_ISSUE: $TARGET :: $ANCHOR"
+        run: >-
+          python scripts/leanstral_ledger.py append
+          --run-id "$GITHUB_RUN_ID" --target "$TARGET" --anchor "$ANCHOR"
 
   generate:
     needs: [auth, select]
@@ -206,7 +188,6 @@ jobs:
     permissions:
       contents: read
       pull-requests: read
-      issues: read
     outputs:
       has_changes: ${{ steps.patch.outputs.has_changes }}
       base_sha: ${{ steps.base.outputs.sha }}
@@ -293,8 +274,7 @@ jobs:
         run: |
           set -euo pipefail
           h="$RUNNER_TEMP/history.tsv"
-          gh api --paginate "repos/$GITHUB_REPOSITORY/issues/$LEDGER_ISSUE/comments" --jq '.[].body' \
-            | awk -F '\t' 'NF>=4 && $1 ~ /^[0-9][0-9]*$/' > "$h"
+          python scripts/leanstral_ledger.py read > "$h"
           echo "HISTORY=$h" >> "$GITHUB_ENV"
       - name: Run Leanstral on reserved declaration
         env:
@@ -443,7 +423,7 @@ jobs:
           cat > "$RUNNER_TEMP/body" <<EOF
           Reserved target: \`$TARGET\` near \`$ANCHOR\`.
 
-          This target was persisted on the reservation ledger (issue #$LEDGER_ISSUE) before inference. It remains consumed even if this PR never merges, closes, or the run produced no subsequent merge. Later runs therefore move to another declaration.
+          This target was persisted on the reservation ledger (\`refs/leanstral/ledger\`) before inference. It remains consumed even if this PR never merges, closes, or the run produced no subsequent merge. Later runs therefore move to another declaration.
 
           The model had read-only GitHub access; only the reserved file was accepted, proof shortcuts were rejected, and the module compiled before publication.
 
