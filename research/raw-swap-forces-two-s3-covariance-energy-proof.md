@@ -2,7 +2,8 @@
 rg: 2
 id: raw-swap-forces-two-s3-covariance-energy-proof
 kind: route
-title: Telescope the twelve H replacements and use weighted Cauchy target: raw-swap-forces-two-s3-covariance-energy
+title: Telescope the twelve H replacements and use weighted Cauchy
+target: raw-swap-forces-two-s3-covariance-energy
 requires: []
 ---
 
