@@ -169,7 +169,7 @@ theorem startSet_disjoint {i j : Fin 3} (hij : i ≠ j) :
   intro w hwi hwj
   have hi : w.1.head? = some i := hwi
   have hj : w.1.head? = some j := hwj
-  exact hij (Option.some.inj (hi.symm.trans hj))
+  exact hij (Option.some_inj.mp (hi.symm.trans hj))
 
 theorem head?_flipWord_of_ne {i : Fin 3} {l : List (Fin 3)}
     (h : l.head? ≠ some i) : (flipWord i l).head? = some i := by

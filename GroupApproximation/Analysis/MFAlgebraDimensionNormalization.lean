@@ -310,6 +310,10 @@ def cornerCoronaHom :
   toFun := cornerCorona X
   map_smul' c x := by
     obtain ⟨a, rfl⟩ := normMatrixCStarCoronaMk_surjective (fun n ↦ X n) x
+    -- the field's statement carries `MonoidHom.id ℂ` on the right; normalize it
+    -- away first, so the closing `rfl` of the rewrite chain is syntactic.
+    show cornerCorona X (c • normMatrixCStarCoronaMk (fun n ↦ X n) a)
+      = c • cornerCorona X (normMatrixCStarCoronaMk (fun n ↦ X n) a)
     have hsmul : c • normMatrixCStarCoronaMk (fun n ↦ X n) a
         = normMatrixCStarCoronaMk (fun n ↦ X n) (c • a) :=
       (normMatrixCStarCoronaMk_smul (fun n ↦ X n) c a).symm
