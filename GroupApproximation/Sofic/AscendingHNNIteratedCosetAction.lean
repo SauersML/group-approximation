@@ -188,19 +188,20 @@ local instance telescopeCosetActionIterated :
   MulAction.compHom _ (inl : Telescope α hα →* Vertical α hα)
 
 /-- The canonical equivalence from the base group onto telescope level `R`. -/
-def levelRangeEquiv (R : ℕ) : Γ ≃* (level α hα R).range :=
+noncomputable def levelRangeEquiv (R : ℕ) : Γ ≃* (level α hα R).range :=
   MonoidHom.ofInjective (level_injective α hα R)
 
 /-- The same level equivalence, precomposed with inner conjugation by `a`.
 This parametrization makes the stabilizer of a common-level normal form equal
 to an un-conjugated iterate of `α`. -/
-def conjugatedLevelEquiv (R : ℕ) (a : Γ) : Γ ≃* (level α hα R).range :=
+noncomputable def conjugatedLevelEquiv (R : ℕ) (a : Γ) : Γ ≃* (level α hα R).range :=
   (MulAut.conj a).trans (levelRangeEquiv α hα R)
 
 @[simp] theorem conjugatedLevelEquiv_coe (R : ℕ) (a γ : Γ) :
     (((conjugatedLevelEquiv α hα R a) γ : (level α hα R).range) :
       Telescope α hα) = level α hα R (a * γ * a⁻¹) := by
-  simp [conjugatedLevelEquiv, levelRangeEquiv, MulAut.conj_apply]
+  simp [conjugatedLevelEquiv, levelRangeEquiv, MulAut.conj_apply,
+    MonoidHom.ofInjective_apply, map_mul, map_inv]
 
 /-- Every coset admits, above a sufficiently deep level, the normal form used
 by the stabilizer computation. -/
@@ -382,7 +383,7 @@ theorem levelZero_stabilizer_at_iterate_site (m : ℕ) :
     · rintro ⟨δ, hδ, hEq⟩
       have hδγ : δ = γ := e0.injective hEq
       simpa [hδγ] using hδ
-  exact hfix.trans hmap
+  simpa using hfix.trans hmap
 
 include hα in
 /-- **Necessity.**  Soficity of the ascending-HNN coset action forces every

@@ -502,7 +502,8 @@ theorem exists_strictMono_of_null_of_mem (X : ℕ → Type u)
       simpa only [Real.dist_eq, sub_zero] using hk
     exact (abs_lt.mp this).2
   by_contra hcon
-  simp [hcon] at hlt
+  rw [hind, if_pos (not_not.mp hcon)] at hlt
+  exact absurd hlt (lt_irrefl 1)
 
 end Diagonal
 
