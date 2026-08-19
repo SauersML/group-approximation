@@ -54,6 +54,11 @@ universe u v
 variable {H : Type v} [NormedAddCommGroup H] [InnerProductSpace ℂ H]
   [CompleteSpace H]
 
+private theorem re_inner_self' {V : Type*} [NormedAddCommGroup V]
+    [InnerProductSpace ℂ V] (v : V) : (⟪v, v⟫_ℂ).re = ‖v‖ ^ 2 := by
+  have h := inner_self_eq_norm_sq (𝕜 := ℂ) v
+  simpa [RCLike.re_to_complex] using h
+
 /-- A selfadjoint idempotent bounded operator is a contraction. -/
 theorem norm_apply_le_of_projection {P : H →L[ℂ] H}
     (hidem : IsIdempotentElem P) (hsa : IsSelfAdjoint P) (v : H) :
@@ -71,8 +76,8 @@ theorem norm_apply_le_of_projection {P : H →L[ℂ] H}
               rw [← ContinuousLinearMap.star_eq_adjoint, e2]
       have e3 : P (P v) = P v := by
         have e4 : P * P = P := hidem.eq
-        rw [← ContinuousLinearMap.mul_apply, e4]
-      rw [← inner_self_eq_norm_sq, e1, e3]
+        rw [← mul_apply_eq_comp, e4]
+      rw [← re_inner_self' (P v), e1, e3]
     have h2 : (⟪v, P v⟫_ℂ).re ≤ ‖v‖ * ‖P v‖ := by
       calc (⟪v, P v⟫_ℂ).re ≤ ‖⟪v, P v⟫_ℂ‖ := Complex.re_le_norm _
         _ ≤ ‖v‖ * ‖P v‖ := norm_inner_le_norm _ _
@@ -102,15 +107,15 @@ structure IsQuasidiagonalSequence (π : A →⋆ₙₐ[ℂ] (H →L[ℂ] H))
 namespace IsQuasidiagonalSequence
 
 variable {π : A →⋆ₙₐ[ℂ] (H →L[ℂ] H)} {P : ℕ → H →L[ℂ] H}
-variable (hqd : IsQuasidiagonalSequence π P)
 
 /-- The compressions are uniformly bounded by the norms. -/
-theorem norm_compression_le (a : A) (n : ℕ) :
+theorem norm_compression_le (hqd : IsQuasidiagonalSequence π P) (a : A)
+    (n : ℕ) :
     ‖P n * π a * P n‖ ≤ ‖π a‖ := by
   have hP : ∀ v : H, ‖P n v‖ ≤ ‖v‖ :=
     norm_apply_le_of_projection (hqd.idem n) (hqd.selfadjoint n)
   refine ContinuousLinearMap.opNorm_le_bound _ (norm_nonneg _) fun v => ?_
-  rw [ContinuousLinearMap.mul_apply, ContinuousLinearMap.mul_apply]
+  rw [mul_apply_eq_comp, mul_apply_eq_comp]
   calc ‖P n (π a (P n v))‖ ≤ ‖π a (P n v)‖ := hP _
     _ ≤ ‖π a‖ * ‖P n v‖ := (π a).le_opNorm _
     _ ≤ ‖π a‖ * ‖v‖ := by
@@ -119,7 +124,8 @@ theorem norm_compression_le (a : A) (n : ℕ) :
 /-- **Asymptotic multiplicativity of the compressions**: the single
 commutator identity `PaPbP - P(ab)P = Pa(Pb - bP)P` and the asymptotic
 commutation squeeze the defect to zero. -/
-theorem compression_asymptotically_multiplicative (a b : A) :
+theorem compression_asymptotically_multiplicative
+    (hqd : IsQuasidiagonalSequence π P) (a b : A) :
     Tendsto (fun n =>
       ‖(P n * π a * P n) * (P n * π b * P n) - P n * π (a * b) * P n‖)
       atTop (nhds 0) := by
@@ -151,7 +157,7 @@ theorem compression_asymptotically_multiplicative (a b : A) :
       norm_apply_le_of_projection (hqd.idem n) (hqd.selfadjoint n)
     refine ContinuousLinearMap.opNorm_le_bound _
       (mul_nonneg (norm_nonneg _) (norm_nonneg _)) fun v => ?_
-    rw [ContinuousLinearMap.mul_apply, ContinuousLinearMap.mul_apply]
+    rw [mul_apply_eq_comp, mul_apply_eq_comp]
     calc ‖P n (π a ((P n * π b - π b * P n) (P n v)))‖
         ≤ ‖π a ((P n * π b - π b * P n) (P n v))‖ := hP1 _
       _ ≤ ‖π a‖ * ‖(P n * π b - π b * P n) (P n v)‖ := (π a).le_opNorm _
@@ -169,7 +175,8 @@ theorem compression_asymptotically_multiplicative (a b : A) :
   exact squeeze_zero (fun n => norm_nonneg _) hb hlim
 
 /-- **Strong convergence of the compressions to the representation.** -/
-theorem tendsto_compression_apply (a : A) (v : H) :
+theorem tendsto_compression_apply (hqd : IsQuasidiagonalSequence π P)
+    (a : A) (v : H) :
     Tendsto (fun n => (P n * π a * P n) v) atTop (nhds (π a v)) := by
   rw [tendsto_iff_norm_sub_tendsto_zero]
   have hb : ∀ n, ‖(P n * π a * P n) v - π a v‖
@@ -179,7 +186,7 @@ theorem tendsto_compression_apply (a : A) (v : H) :
       norm_apply_le_of_projection (hqd.idem n) (hqd.selfadjoint n)
     have hsplit : (P n * π a * P n) v - π a v
         = P n (π a (P n v - v)) + (P n (π a v) - π a v) := by
-      rw [ContinuousLinearMap.mul_apply, ContinuousLinearMap.mul_apply,
+      rw [mul_apply_eq_comp, mul_apply_eq_comp,
         map_sub, map_sub]
       abel
     rw [hsplit]
@@ -208,7 +215,8 @@ theorem tendsto_compression_apply (a : A) (v : H) :
 is killed by the representation.  With a faithful representation, the
 compression sequence therefore separates points, which is exactly the
 faithfulness of the corona class of the compressions. -/
-theorem eq_zero_of_tendsto_compression_norm {a : A}
+theorem eq_zero_of_tendsto_compression_norm
+    (hqd : IsQuasidiagonalSequence π P) {a : A}
     (h : Tendsto (fun n => ‖P n * π a * P n‖) atTop (nhds 0)) :
     π a = 0 := by
   ext v
@@ -224,11 +232,12 @@ theorem eq_zero_of_tendsto_compression_norm {a : A}
       simpa using h3
     exact squeeze_zero (fun n => norm_nonneg _) hb hlim
   have h4 : π a v = 0 := tendsto_nhds_unique h1 h2
-  rw [h4, ContinuousLinearMap.zero_apply]
+  rw [h4, zero_apply]
 
 /-- The star-compatibility of the compressions: compressing the adjoint is
 the adjoint of the compression. -/
-theorem compression_star (a : A) (n : ℕ) :
+theorem compression_star (hqd : IsQuasidiagonalSequence π P) (a : A)
+    (n : ℕ) :
     P n * π (star a) * P n = star (P n * π a * P n) := by
   have hP : star (P n) = P n := (hqd.selfadjoint n).star_eq
   rw [star_mul, star_mul, hP, map_star, mul_assoc]

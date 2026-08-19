@@ -86,6 +86,23 @@ theorem opNorm_le_of_dense {E : Type u} {F : Type v}
     trivial
   exact hall hw
 
+/-! ## Real-part bridges
+
+`inner_self_eq_norm_sq` and `inner_self_im` are stated at `RCLike.re` and
+`RCLike.im`; this lane works with the `Complex.re`/`Complex.im` projections.
+The two bridges restate them once, so every rewrite below matches
+syntactically. -/
+
+theorem re_inner_self {V : Type*} [NormedAddCommGroup V]
+    [InnerProductSpace ℂ V] (v : V) : (⟪v, v⟫_ℂ).re = ‖v‖ ^ 2 := by
+  have h := inner_self_eq_norm_sq (𝕜 := ℂ) v
+  simpa [RCLike.re_to_complex] using h
+
+theorem im_inner_self {V : Type*} [NormedAddCommGroup V]
+    [InnerProductSpace ℂ V] (v : V) : (⟪v, v⟫_ℂ).im = 0 := by
+  have h := inner_self_im (𝕜 := ℂ) v
+  simpa [RCLike.im_to_complex] using h
+
 /-! ## The numerical-range bound -/
 
 section Numerical
@@ -101,10 +118,10 @@ theorem norm_apply_sq_le_of_isAdjoint {T : V →L[ℂ] V} (hT : IsAdjoint T T)
     (hpos : ∀ ζ : V, 0 ≤ (⟪ζ, T ζ⟫_ℂ).re) (ζ : V) :
     ‖T ζ‖ ^ 2 ≤ ‖T‖ * (⟪ζ, T ζ⟫_ℂ).re := by
   rcases eq_or_ne (T ζ) 0 with h0 | h0
-  · rw [h0, norm_zero]
-    have hz : (0 : ℝ) ^ 2 = 0 := by ring
-    rw [hz]
-    exact mul_nonneg (norm_nonneg T) (hpos ζ)
+  · have hβ : ‖T ζ‖ = 0 := by rw [h0, norm_zero]
+    rw [hβ]
+    have h1 := hpos ζ
+    nlinarith [norm_nonneg T]
   · set t := ‖T‖ with ht_def
     set α := (⟪ζ, T ζ⟫_ℂ).re with hα_def
     have hβpos : 0 < ‖T ζ‖ := norm_pos_iff.mpr h0
@@ -128,10 +145,10 @@ theorem norm_apply_sq_le_of_isAdjoint {T : V →L[ℂ] V} (hT : IsAdjoint T T)
     have hTT : ⟪ζ, T (T ζ)⟫_ℂ = ⟪T ζ, T ζ⟫_ℂ := (hT ζ (T ζ)).symm
     have hTTre : (⟪ζ, T (T ζ)⟫_ℂ).re = ‖T ζ‖ ^ 2 := by
       rw [hTT]
-      exact inner_self_eq_norm_sq (T ζ)
+      exact re_inner_self (T ζ)
     have hTTim : (⟪ζ, T (T ζ)⟫_ℂ).im = 0 := by
       rw [hTT]
-      exact inner_self_im (T ζ)
+      exact im_inner_self (T ζ)
     -- positivity at the shifted vector
     set c : ℂ := ((t⁻¹ : ℝ) : ℂ) with hc_def
     have hcre : c.re = t⁻¹ := by rw [hc_def, Complex.ofReal_re]
@@ -145,8 +162,8 @@ theorem norm_apply_sq_le_of_isAdjoint {T : V →L[ℂ] V} (hT : IsAdjoint T T)
             - (starRingEnd ℂ) c * (c * ⟪T ζ, T (T ζ)⟫_ℂ)) := by
       rw [e1, inner_sub_left, inner_sub_right, inner_sub_right,
         inner_smul_left, inner_smul_left, inner_smul_right, inner_smul_right]
-    have hβre : (⟪T ζ, T ζ⟫_ℂ).re = ‖T ζ‖ ^ 2 := inner_self_eq_norm_sq (T ζ)
-    have hβim : (⟪T ζ, T ζ⟫_ℂ).im = 0 := inner_self_im (T ζ)
+    have hβre : (⟪T ζ, T ζ⟫_ℂ).re = ‖T ζ‖ ^ 2 := re_inner_self (T ζ)
+    have hβim : (⟪T ζ, T ζ⟫_ℂ).im = 0 := im_inner_self (T ζ)
     have hquad : 0 ≤ α - 2 * t⁻¹ * ‖T ζ‖ ^ 2
         + t⁻¹ ^ 2 * (⟪T ζ, T (T ζ)⟫_ℂ).re := by
       have h8 := h7
@@ -191,13 +208,13 @@ theorem norm_smul_one_sub_le_of_isAdjoint {T : V →L[ℂ] V}
   have hα0 : 0 ≤ α := hpos ζ
   have hkey : ‖T ζ‖ ^ 2 ≤ t * α := norm_apply_sq_le_of_isAdjoint hT hpos ζ
   have e3 : (((t : ℂ) • (1 : V →L[ℂ] V)) - T) ζ = (t : ℂ) • ζ - T ζ := by
-    rw [ContinuousLinearMap.sub_apply, ContinuousLinearMap.smul_apply,
-      ContinuousLinearMap.one_apply]
+    rw [sub_apply, smul_apply,
+      one_apply_eq_self]
   have e4 : ‖(t : ℂ) • ζ - T ζ‖ ^ 2
       = t ^ 2 * ‖ζ‖ ^ 2 - 2 * t * α + ‖T ζ‖ ^ 2 := by
     have h1 : ‖(t : ℂ) • ζ - T ζ‖ ^ 2
         = (⟪(t : ℂ) • ζ - T ζ, (t : ℂ) • ζ - T ζ⟫_ℂ).re :=
-      (inner_self_eq_norm_sq _).symm
+      (re_inner_self _).symm
     have h2 : ⟪(t : ℂ) • ζ - T ζ, (t : ℂ) • ζ - T ζ⟫_ℂ
         = (starRingEnd ℂ) ((t : ℝ) : ℂ) * ((t : ℂ) * ⟪ζ, ζ⟫_ℂ)
           - (starRingEnd ℂ) ((t : ℝ) : ℂ) * ⟪ζ, T ζ⟫_ℂ
@@ -207,12 +224,12 @@ theorem norm_smul_one_sub_le_of_isAdjoint {T : V →L[ℂ] V}
         inner_smul_right]
     have hconj : (starRingEnd ℂ) ((t : ℝ) : ℂ) = ((t : ℝ) : ℂ) :=
       Complex.conj_ofReal _
-    have hζζre : (⟪ζ, ζ⟫_ℂ).re = ‖ζ‖ ^ 2 := inner_self_eq_norm_sq ζ
-    have hζζim : (⟪ζ, ζ⟫_ℂ).im = 0 := inner_self_im ζ
+    have hζζre : (⟪ζ, ζ⟫_ℂ).re = ‖ζ‖ ^ 2 := re_inner_self ζ
+    have hζζim : (⟪ζ, ζ⟫_ℂ).im = 0 := im_inner_self ζ
     have hTre : ⟪T ζ, ζ⟫_ℂ = (starRingEnd ℂ) ⟪ζ, T ζ⟫_ℂ :=
       (inner_conj_symm (T ζ) ζ).symm
     have hTTre2 : (⟪T ζ, T ζ⟫_ℂ).re = ‖T ζ‖ ^ 2 :=
-      inner_self_eq_norm_sq (T ζ)
+      re_inner_self (T ζ)
     rw [h1, h2, hconj, hTre]
     simp only [Complex.sub_re, Complex.mul_re, Complex.mul_im,
       Complex.ofReal_re, Complex.ofReal_im, Complex.conj_re,
@@ -267,9 +284,11 @@ functional: `c ⊗ d ↦ g d • c`.  The mirror of the spatial lane's
 noncomputable def sliceSecond (g : B →ₗ[ℂ] ℂ) : (A ⊗[ℂ] B) →ₗ[ℂ] A :=
   (TensorProduct.rid ℂ A).toLinearMap ∘ₗ TensorProduct.map LinearMap.id g
 
+omit [StarRing A] [StarModule ℂ A] [StarRing B] [StarModule ℂ B] in
 @[simp] theorem sliceSecond_tmul (g : B →ₗ[ℂ] ℂ) (c : A) (d : B) :
     sliceSecond g (c ⊗ₜ[ℂ] d) = g d • c := by
-  rw [sliceSecond, LinearMap.comp_apply, TensorProduct.map_tmul,
+  simp only [sliceSecond]
+  rw [LinearMap.comp_apply, TensorProduct.map_tmul,
     LinearMap.id_apply, LinearEquiv.coe_toLinearMap, TensorProduct.rid_tmul]
 
 variable {n : ℕ}
@@ -289,7 +308,8 @@ theorem leftSlice_tmul (ρ : StarRep B K) (a : Fin n → A) (η : Fin n → K)
     leftSlice ρ a η (c ⊗ₜ[ℂ] d)
       = ∑ i : Fin n, ∑ j : Fin n,
           ⟪η i, ρ.hom d (η j)⟫_ℂ • (star (a i) * c * a j) := by
-  rw [leftSlice, LinearMap.sum_apply]
+  simp only [leftSlice]
+  rw [LinearMap.sum_apply]
   refine Finset.sum_congr rfl fun i _ => ?_
   rw [LinearMap.sum_apply]
   refine Finset.sum_congr rfl fun j _ => ?_
@@ -358,15 +378,16 @@ theorem inner_coeffVector_spatialHom (π : StarRep A H) (ρ : StarRep B K)
       = ⟪ζ, π.hom (leftSlice ρ a η y) ζ⟫_ℂ := by
   induction y using TensorProduct.induction_on with
   | zero =>
-      simp only [map_zero, ContinuousLinearMap.zero_apply, inner_zero_right]
+      simp only [map_zero, zero_apply, inner_zero_right]
   | tmul c d =>
-      rw [spatialHom_tmul, leftSlice_tmul, coeffVector]
+      rw [spatialHom_tmul, leftSlice_tmul]
+      simp only [coeffVector]
       -- normalize the left side to a double sum of products
       rw [map_sum, sum_inner]
       simp only [TensorProduct.mapL_tmul, inner_sum, TensorProduct.inner_tmul]
       -- normalize the right side to a double sum
-      simp only [map_sum, map_smul, ContinuousLinearMap.sum_apply,
-        ContinuousLinearMap.smul_apply, inner_sum, inner_smul_right]
+      simp only [map_sum, map_smul, sum_apply,
+        smul_apply, inner_sum, inner_smul_right]
       refine Finset.sum_congr rfl fun i _ => ?_
       refine Finset.sum_congr rfl fun j _ => ?_
       have hb : ⟪π.hom (a i) ζ, π.hom c (π.hom (a j) ζ)⟫_ℂ
@@ -382,7 +403,7 @@ theorem inner_coeffVector_spatialHom (π : StarRep A H) (ρ : StarRep B K)
       rw [hb]
       ring
   | add y z hy hz =>
-      simp only [map_add, ContinuousLinearMap.add_apply, inner_add_right,
+      simp only [map_add, add_apply, inner_add_right,
         hy, hz]
 
 /-- The coefficient identity at `y = 1`: the norm of the coefficient vector
@@ -392,7 +413,7 @@ theorem inner_coeffVector_self (π : StarRep A H) (ρ : StarRep B K)
     ⟪coeffVector π ζ a η, coeffVector π ζ a η⟫_ℂ
       = ⟪ζ, π.hom (leftSlice ρ a η (1 : A ⊗[ℂ] B)) ζ⟫_ℂ := by
   have h := inner_coeffVector_spatialHom π ρ a η ζ (1 : A ⊗[ℂ] B)
-  rw [map_one, ContinuousLinearMap.one_apply] at h
+  rw [map_one, one_apply_eq_self] at h
   exact h
 
 /-! ## The mirrored slices, for the second factor -/
@@ -408,12 +429,14 @@ noncomputable def rightSlice (π : StarRep A H) (b : Fin n → B)
     (LinearMap.mulLeftRight ℂ (star (b i), b j)) ∘ₗ
       sliceRight (vecFunctional π (ξ j) (ξ i))
 
+omit [StarModule ℂ A] [StarModule ℂ B] in
 theorem rightSlice_tmul (π : StarRep A H) (b : Fin n → B) (ξ : Fin n → H)
     (c : A) (d : B) :
     rightSlice π b ξ (c ⊗ₜ[ℂ] d)
       = ∑ i : Fin n, ∑ j : Fin n,
           ⟪ξ i, π.hom c (ξ j)⟫_ℂ • (star (b i) * d * b j) := by
-  rw [rightSlice, LinearMap.sum_apply]
+  simp only [rightSlice]
+  rw [LinearMap.sum_apply]
   refine Finset.sum_congr rfl fun i _ => ?_
   rw [LinearMap.sum_apply]
   refine Finset.sum_congr rfl fun j _ => ?_
@@ -480,13 +503,14 @@ theorem inner_rightCoeffVector_spatialHom (π : StarRep A H)
       = ⟪ζ, ρ.hom (rightSlice π b ξ y) ζ⟫_ℂ := by
   induction y using TensorProduct.induction_on with
   | zero =>
-      simp only [map_zero, ContinuousLinearMap.zero_apply, inner_zero_right]
+      simp only [map_zero, zero_apply, inner_zero_right]
   | tmul c d =>
-      rw [spatialHom_tmul, rightSlice_tmul, rightCoeffVector]
+      rw [spatialHom_tmul, rightSlice_tmul]
+      simp only [rightCoeffVector]
       rw [map_sum, sum_inner]
       simp only [TensorProduct.mapL_tmul, inner_sum, TensorProduct.inner_tmul]
-      simp only [map_sum, map_smul, ContinuousLinearMap.sum_apply,
-        ContinuousLinearMap.smul_apply, inner_sum, inner_smul_right]
+      simp only [map_sum, map_smul, sum_apply,
+        smul_apply, inner_sum, inner_smul_right]
       refine Finset.sum_congr rfl fun i _ => ?_
       refine Finset.sum_congr rfl fun j _ => ?_
       have hb : ⟪ρ.hom (b i) ζ, ρ.hom d (ρ.hom (b j) ζ)⟫_ℂ
@@ -501,7 +525,7 @@ theorem inner_rightCoeffVector_spatialHom (π : StarRep A H)
         rw [h1, h2]
       rw [hb]
   | add y z hy hz =>
-      simp only [map_add, ContinuousLinearMap.add_apply, inner_add_right,
+      simp only [map_add, add_apply, inner_add_right,
         hy, hz]
 
 /-- The mirrored identity at `y = 1`. -/
@@ -510,7 +534,7 @@ theorem inner_rightCoeffVector_self (π : StarRep A H) (ρ : StarRep B K)
     ⟪rightCoeffVector ρ ζ b ξ, rightCoeffVector ρ ζ b ξ⟫_ℂ
       = ⟪ζ, ρ.hom (rightSlice π b ξ (1 : A ⊗[ℂ] B)) ζ⟫_ℂ := by
   have h := inner_rightCoeffVector_spatialHom π ρ b ξ ζ (1 : A ⊗[ℂ] B)
-  rw [map_one, ContinuousLinearMap.one_apply] at h
+  rw [map_one, one_apply_eq_self] at h
   exact h
 
 end Slice

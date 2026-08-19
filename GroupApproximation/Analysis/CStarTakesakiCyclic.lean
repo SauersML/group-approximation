@@ -112,8 +112,8 @@ noncomputable def stateOfVector (π : StarRep A H) (ζ : H) (hζ : ‖ζ‖ = 1)
       _ ≤ ‖a‖ := π.norm_hom_apply_le a
   map_one := by
     show vecFunctional π ζ ζ 1 = 1
-    rw [vecFunctional_apply, map_one, ContinuousLinearMap.one_apply,
-      inner_self_eq_norm_sq_to_K, hζ]
+    rw [vecFunctional_apply, map_one, one_apply_eq_self,
+      inner_self_eq_norm_sq_to_K (𝕜 := ℂ), hζ]
     norm_num
   norm_le := LinearMap.mkContinuous_norm_le _ zero_le_one _
 
@@ -215,11 +215,11 @@ theorem quadratic_coeffVector_le (π : StarRep A H) (ρ : StarRep B K)
   have g3 : (φ.toCLM z₂).re
       = ‖spatialHom φ.gnsRep ρ x (coeffVector φ.gnsRep φ.gnsVector a η)‖ ^ 2 := by
     rw [← g1, inner_spatialHom_star_mul_self]
-    exact inner_self_eq_norm_sq _
+    exact re_inner_self _
   have g4 : (φ.toCLM z₁).re
       = ‖coeffVector φ.gnsRep φ.gnsVector a η‖ ^ 2 := by
     rw [← g2]
-    exact inner_self_eq_norm_sq _
+    exact re_inner_self _
   have hM : spatialNorm φ.gnsRep ρ x ≤ leftGnsSup A ρ x :=
     spatialNorm_gnsRep_le_leftGnsSup ρ x φ
   have hb : ‖spatialHom φ.gnsRep ρ x
@@ -253,9 +253,9 @@ variable {K : Type x} [NormedAddCommGroup K] [InnerProductSpace ℂ K]
 its range is the algebraic cyclic subspace. -/
 noncomputable def cyclicMap (π : StarRep A H) (ζ : H) : A →ₗ[ℂ] H where
   toFun a := π.hom a ζ
-  map_add' a b := by rw [map_add, ContinuousLinearMap.add_apply]
+  map_add' a b := by rw [map_add, add_apply]
   map_smul' c a := by
-    rw [map_smul, ContinuousLinearMap.smul_apply, RingHom.id_apply]
+    rw [map_smul, smul_apply, RingHom.id_apply]
 
 @[simp] theorem cyclicMap_apply (π : StarRep A H) (ζ : H) (a : A) :
     cyclicMap π ζ a = π.hom a ζ := rfl
@@ -328,7 +328,7 @@ theorem quadratic_cyclic_le (π : StarRep A H) (ρ : StarRep B K)
     -- rescale the witnesses to the unit cyclic vector
     have hcomp : ∀ i, π.hom (((‖ζ‖ : ℝ) : ℂ) • b i) ζh = u i := by
       intro i
-      rw [map_smul, ContinuousLinearMap.smul_apply, hζh,
+      rw [map_smul, smul_apply, hζh,
         (π.hom (b i)).map_smul]
       rw [smul_smul, ← Complex.ofReal_mul,
         mul_inv_cancel₀ (norm_ne_zero_iff.mpr hζ0), Complex.ofReal_one,
@@ -336,7 +336,7 @@ theorem quadratic_cyclic_le (π : StarRep A H) (ρ : StarRep B K)
       exact hb i
     have hWeq : (∑ i : Fin m, u i ⊗ₜ[ℂ] η i)
         = coeffVector π ζh (fun i => ((‖ζ‖ : ℝ) : ℂ) • b i) η := by
-      rw [coeffVector]
+      simp only [coeffVector]
       refine Finset.sum_congr rfl fun i _ => ?_
       rw [hcomp i]
     show (⟪∑ i : Fin m, u i ⊗ₜ[ℂ] η i,
@@ -396,7 +396,7 @@ theorem inner_sum_spatialHom_orthogonal_right (π : StarRep A H)
       spatialHom π ρ y (∑ j : Fin m₂, q j ⊗ₜ[ℂ] ηq j)⟫_ℂ = 0 := by
   induction y using TensorProduct.induction_on with
   | zero =>
-      simp only [map_zero, ContinuousLinearMap.zero_apply, inner_zero_right]
+      simp only [map_zero, zero_apply, inner_zero_right]
   | tmul c d =>
       rw [spatialHom_tmul, map_sum, sum_inner]
       refine Finset.sum_eq_zero fun i _ => ?_
@@ -408,7 +408,7 @@ theorem inner_sum_spatialHom_orthogonal_right (π : StarRep A H)
           (mem_orthogonal_hom hInv c (q j) (hq j))
       rw [hz, zero_mul]
   | add y z hy hz =>
-      rw [map_add, ContinuousLinearMap.add_apply, inner_add_right, hy, hz,
+      rw [map_add, add_apply, inner_add_right, hy, hz,
         add_zero]
 
 /-- The mirrored orthogonality, with the complement leg on the left. -/
@@ -422,7 +422,7 @@ theorem inner_sum_spatialHom_orthogonal_left (π : StarRep A H)
       spatialHom π ρ y (∑ i : Fin m₁, p i ⊗ₜ[ℂ] ηp i)⟫_ℂ = 0 := by
   induction y using TensorProduct.induction_on with
   | zero =>
-      simp only [map_zero, ContinuousLinearMap.zero_apply, inner_zero_right]
+      simp only [map_zero, zero_apply, inner_zero_right]
   | tmul c d =>
       rw [spatialHom_tmul, map_sum, sum_inner]
       refine Finset.sum_eq_zero fun j _ => ?_
@@ -433,7 +433,7 @@ theorem inner_sum_spatialHom_orthogonal_left (π : StarRep A H)
         Submodule.inner_left_of_mem_orthogonal (hInv c (p i) (hp i)) (hq j)
       rw [hz, zero_mul]
   | add y z hy hz =>
-      rw [map_add, ContinuousLinearMap.add_apply, inner_add_right, hy, hz,
+      rw [map_add, add_apply, inner_add_right, hy, hz,
         add_zero]
 
 end Orthogonal
@@ -506,7 +506,7 @@ theorem quadratic_le_leftGnsSup (π : StarRep A H) (ρ : StarRep B K)
             apply Submodule.le_topologicalClosure
             exact LinearMap.mem_range.mpr ⟨1, by
               show π.hom 1 (ξ 0) = ξ 0
-              rw [map_one, ContinuousLinearMap.one_apply]⟩
+              rw [map_one, one_apply_eq_self]⟩
           rw [Submodule.starProjection_eq_self_iff.mpr hmem, sub_self]
         -- the split
         have hsplit : (∑ i : Fin (n + 1), ξ i ⊗ₜ[ℂ] η i)
@@ -586,12 +586,12 @@ theorem quadratic_le_leftGnsSup (π : StarRep A H) (ρ : StarRep B K)
               ∑ i : Fin (n + 1),
                 (ξ i - C.starProjection (ξ i)) ⊗ₜ[ℂ] η i⟫_ℂ = 0 := by
             have h := hcrossL (1 : A ⊗[ℂ] B)
-            rwa [map_one, ContinuousLinearMap.one_apply] at h
+            rwa [map_one, one_apply_eq_self] at h
           have hcR : ⟪∑ i : Fin (n + 1),
                 (ξ i - C.starProjection (ξ i)) ⊗ₜ[ℂ] η i,
               ∑ i : Fin (n + 1), C.starProjection (ξ i) ⊗ₜ[ℂ] η i⟫_ℂ = 0 := by
             have h := hcrossR (1 : A ⊗[ℂ] B)
-            rwa [map_one, ContinuousLinearMap.one_apply] at h
+            rwa [map_one, one_apply_eq_self] at h
           rw [inner_add_left, inner_add_right, inner_add_right, hcL, hcR]
           ring
         rw [hsplit, hS, hone, Complex.add_re, Complex.add_re, mul_add]
@@ -610,10 +610,10 @@ theorem spatialNorm_le_leftGnsSup (π : StarRep A H) (ρ : StarRep B K)
       spatialHom π ρ (star x * x) (∑ i : Fin m, ξ i ⊗ₜ[ℂ] η i)⟫_ℂ).re
       = ‖spatialHom π ρ x (∑ i : Fin m, ξ i ⊗ₜ[ℂ] η i)‖ ^ 2 := by
     rw [inner_spatialHom_star_mul_self]
-    exact inner_self_eq_norm_sq _
+    exact re_inner_self _
   have e2 : (⟪∑ i : Fin m, ξ i ⊗ₜ[ℂ] η i,
       ∑ i : Fin m, ξ i ⊗ₜ[ℂ] η i⟫_ℂ).re
-      = ‖∑ i : Fin m, ξ i ⊗ₜ[ℂ] η i‖ ^ 2 := inner_self_eq_norm_sq _
+      = ‖∑ i : Fin m, ξ i ⊗ₜ[ℂ] η i‖ ^ 2 := re_inner_self _
   rw [e1, e2] at h
   have hnn : 0 ≤ ‖spatialHom π ρ x (∑ i : Fin m, ξ i ⊗ₜ[ℂ] η i)‖ :=
     norm_nonneg _

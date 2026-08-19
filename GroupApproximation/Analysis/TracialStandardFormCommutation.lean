@@ -65,8 +65,14 @@ variable {H : Type u} [NormedAddCommGroup H] [InnerProductSpace ℂ H]
 
 /-! ## Density helpers -/
 
+private theorem re_inner_self' {V : Type*} [NormedAddCommGroup V]
+    [InnerProductSpace ℂ V] (v : V) : (⟪v, v⟫_ℂ).re = ‖v‖ ^ 2 := by
+  have h := inner_self_eq_norm_sq (𝕜 := ℂ) v
+  simpa [RCLike.re_to_complex] using h
+
 /-- Two continuous linear maps agreeing on a set whose span is dense
 agree: the agreement set is a closed submodule. -/
+omit [CompleteSpace H] in
 theorem clm_ext_of_dense_span {f g : H →L[ℂ] H} {s : Set H}
     (hs : Dense ((Submodule.span ℂ s : Submodule ℂ H) : Set H))
     (h : ∀ u ∈ s, f u = g u) : f = g := by
@@ -78,7 +84,7 @@ theorem clm_ext_of_dense_span {f g : H →L[ℂ] H} {s : Set H}
     induction hu using Submodule.span_induction with
     | mem v hv =>
         show (f - g) v = 0
-        rw [ContinuousLinearMap.sub_apply, h v hv, sub_self]
+        rw [sub_apply, h v hv, sub_self]
     | zero =>
         show (f - g) 0 = 0
         rw [map_zero]
@@ -95,15 +101,17 @@ theorem clm_ext_of_dense_span {f g : H →L[ℂ] H} {s : Set H}
     rw [hs.closure_eq]
     trivial
   have h0 : (f - g) u = 0 := hall hu
-  rw [ContinuousLinearMap.sub_apply, sub_eq_zero] at h0
+  rw [sub_apply, sub_eq_zero] at h0
   exact h0
 
 /-- Two continuous linear maps agreeing on a dense set agree. -/
+omit [CompleteSpace H] in
 theorem clm_ext_of_dense {f g : H →L[ℂ] H} {s : Set H} (hs : Dense s)
     (h : ∀ u ∈ s, f u = g u) : f = g :=
   clm_ext_of_dense_span (hs.mono Submodule.subset_span) h
 
 /-- A vector orthogonal to a dense set vanishes. -/
+omit [CompleteSpace H] in
 theorem eq_zero_of_inner_dense {w : H} {s : Set H} (hs : Dense s)
     (h : ∀ u ∈ s, ⟪u, w⟫_ℂ = 0) : w = 0 := by
   have hclosed : IsClosed {u : H | ⟪u, w⟫_ℂ = 0} :=
@@ -161,7 +169,7 @@ variable (c : TracialConjugation M Ω)
 theorem norm_map (v : H) : ‖c.J v‖ = ‖v‖ := by
   have h : (⟪c.J v, c.J v⟫_ℂ).re = (⟪v, v⟫_ℂ).re := by
     rw [c.inner_map v v]
-  rw [inner_self_eq_norm_sq, inner_self_eq_norm_sq] at h
+  rw [re_inner_self' (c.J v), re_inner_self' v] at h
   exact le_antisymm ((sq_le_sq₀ (norm_nonneg _) (norm_nonneg _)).mp h.le)
     ((sq_le_sq₀ (norm_nonneg _) (norm_nonneg _)).mp h.ge)
 
@@ -172,10 +180,10 @@ noncomputable def conjOp (x : H →L[ℂ] H) : H →L[ℂ] H :=
     { toFun := fun v => c.J (x (c.J v))
       map_add' := fun u v => by
         show c.J (x (c.J (u + v))) = c.J (x (c.J u)) + c.J (x (c.J v))
-        rw [c.map_add, map_add, c.map_add]
+        rw [c.map_add u v, x.map_add, c.map_add]
       map_smul' := fun z v => by
         show c.J (x (c.J (z • v))) = (RingHom.id ℂ) z • c.J (x (c.J v))
-        rw [RingHom.id_apply, c.map_smul, map_smul, c.map_smul,
+        rw [RingHom.id_apply, c.map_smul z v, x.map_smul, c.map_smul,
           Complex.conj_conj] }
     ‖x‖ fun v => by
       show ‖c.J (x (c.J v))‖ ≤ ‖x‖ * ‖v‖
@@ -205,9 +213,9 @@ theorem separating_commutant (hsf : IsTracialStandardForm M Ω)
   have hc : T * T' = T' * T :=
     VonNeumannAlgebra.mem_commutant_iff.mp hT' T hT
   have h1 : T' (T Ω) = T (T' Ω) := by
-    rw [← ContinuousLinearMap.mul_apply, ← hc,
-      ContinuousLinearMap.mul_apply]
-  rw [h1, h, map_zero, ContinuousLinearMap.zero_apply]
+    rw [← mul_apply_eq_comp, ← hc,
+      mul_apply_eq_comp]
+  rw [h1, h, map_zero, zero_apply]
 
 /-- The orthogonal projection onto a closed subspace invariant under an
 operator and its star commutes with that operator. -/
@@ -255,7 +263,7 @@ theorem dense_commutant_orbit (hsf : IsTracialStandardForm M Ω) :
       | mem w hw =>
           obtain ⟨T', hT', rfl⟩ := hw
           have he : S' (T' Ω) = (S' * T') Ω :=
-            (ContinuousLinearMap.mul_apply _ _ _).symm
+            (mul_apply_eq_comp _ _ _).symm
           rw [he]
           exact Submodule.subset_span ⟨S' * T', mul_mem hS' hT', rfl⟩
       | zero =>
@@ -292,12 +300,12 @@ theorem dense_commutant_orbit (hsf : IsTracialStandardForm M Ω) :
     apply Submodule.le_topologicalClosure
     rw [hC₀]
     exact Submodule.subset_span
-      ⟨1, one_mem _, by rw [ContinuousLinearMap.one_apply]⟩
+      ⟨1, one_mem _, by rw [one_apply_eq_self]⟩
   have hone : C.starProjection = 1 := by
     have hdiff : (1 - C.starProjection : H →L[ℂ] H) ∈ M :=
       sub_mem (one_mem _) hPmem
     have hz : (1 - C.starProjection : H →L[ℂ] H) Ω = 0 := by
-      rw [ContinuousLinearMap.sub_apply, ContinuousLinearMap.one_apply, hΩ,
+      rw [sub_apply, one_apply_eq_self, hΩ,
         sub_self]
     have h0 : (1 - C.starProjection : H →L[ℂ] H) = 0 :=
       hsf.separating _ hdiff hz
@@ -309,7 +317,7 @@ theorem dense_commutant_orbit (hsf : IsTracialStandardForm M Ω) :
   have hv : v ∈ C := by
     refine Submodule.starProjection_eq_self_iff.mp ?_
     rw [hone]
-    exact ContinuousLinearMap.one_apply v
+    exact one_apply_eq_self v
   rw [hCdef] at hv
   exact hv
 
@@ -338,8 +346,8 @@ theorem conj_commutant_omega (hsf : IsTracialStandardForm M Ω)
       have hc : T * T' = T' * T :=
         VonNeumannAlgebra.mem_commutant_iff.mp hT' T hT
       have e3 : T' (T Ω) = T (T' Ω) := by
-        rw [← ContinuousLinearMap.mul_apply, ← hc,
-          ContinuousLinearMap.mul_apply]
+        rw [← mul_apply_eq_comp, ← hc,
+          mul_apply_eq_comp]
       have e4 : ⟪T (T' Ω), Ω⟫_ℂ = ⟪T' Ω, (star T) Ω⟫_ℂ := by
         rw [ContinuousLinearMap.star_eq_adjoint,
           ContinuousLinearMap.adjoint_inner_right]
@@ -356,17 +364,17 @@ theorem conjOp_mem_commutant (hsf : IsTracialStandardForm M Ω)
     intro S hS
     rw [c.conjOp_apply, c.map_orbit S hS]
     have h1 : x ((star S) Ω) = (x * star S) Ω :=
-      (ContinuousLinearMap.mul_apply _ _ _).symm
+      (mul_apply_eq_comp _ _ _).symm
     rw [h1, c.map_orbit _ (mul_mem hx (star_mem hS)), star_mul, star_star,
-      ContinuousLinearMap.mul_apply]
+      mul_apply_eq_comp]
   rw [VonNeumannAlgebra.mem_commutant_iff]
   intro g hg
   refine clm_ext_of_dense hsf.cyclic fun u hu => ?_
   obtain ⟨T, hT, rfl⟩ := hu
   show g (c.conjOp x (T Ω)) = c.conjOp x (g (T Ω))
   rw [horb T hT]
-  have h2 : g (T Ω) = (g * T) Ω := (ContinuousLinearMap.mul_apply _ _ _).symm
-  rw [h2, horb (g * T) (mul_mem hg hT), ContinuousLinearMap.mul_apply]
+  have h2 : g (T Ω) = (g * T) Ω := (mul_apply_eq_comp _ _ _).symm
+  rw [h2, horb (g * T) (mul_mem hg hT), mul_apply_eq_comp]
 
 /-- **The hard half of the commutation theorem**: for `T′ ∈ M′`, the
 conjugated operator `J T′ J` lies in `M`, tested against the dense
@@ -378,9 +386,9 @@ theorem conjOp_commutant_mem (hsf : IsTracialStandardForm M Ω)
     intro S' hS'
     rw [c.conjOp_apply, conj_commutant_omega c hsf hS']
     have h1 : T' ((star S') Ω) = (T' * star S') Ω :=
-      (ContinuousLinearMap.mul_apply _ _ _).symm
+      (mul_apply_eq_comp _ _ _).symm
     rw [h1, conj_commutant_omega c hsf (mul_mem hT' (star_mem hS')),
-      star_mul, star_star, ContinuousLinearMap.mul_apply]
+      star_mul, star_star, mul_apply_eq_comp]
   have h1 : c.conjOp T' ∈ M.commutant.commutant := by
     rw [VonNeumannAlgebra.mem_commutant_iff]
     intro R' hR'
@@ -389,8 +397,8 @@ theorem conjOp_commutant_mem (hsf : IsTracialStandardForm M Ω)
     show R' (c.conjOp T' (S' Ω)) = c.conjOp T' (R' (S' Ω))
     rw [horb S' hS']
     have h2 : R' (S' Ω) = (R' * S') Ω :=
-      (ContinuousLinearMap.mul_apply _ _ _).symm
-    rw [h2, horb (R' * S') (mul_mem hR' hS'), ContinuousLinearMap.mul_apply]
+      (mul_apply_eq_comp _ _ _).symm
+    rw [h2, horb (R' * S') (mul_mem hR' hS'), mul_apply_eq_comp]
   rwa [VonNeumannAlgebra.commutant_commutant] at h1
 
 /-- **The commutation theorem for the tracial standard form**:

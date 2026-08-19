@@ -133,7 +133,7 @@ theorem spatialNorm_gnsRep_le_left (π₀ : A →⋆ₐ[ℂ] (H →L[ℂ] H))
         = ((c ^ 2 : ℝ) : ℂ) • (StarRep.ofStarAlgHom π₀).hom z₁
           - (StarRep.ofStarAlgHom π₀).hom z₂ := by
       rw [hr_def, map_sub, map_smul]
-    rw [e1, ContinuousLinearMap.sub_apply, ContinuousLinearMap.smul_apply,
+    rw [e1, sub_apply, smul_apply,
       inner_sub_right, inner_smul_right]
     have i₁ : ⟪ζ, (StarRep.ofStarAlgHom π₀).hom z₁ ζ⟫_ℂ
         = ⟪coeffVector (StarRep.ofStarAlgHom π₀) ζ a η,
@@ -152,17 +152,17 @@ theorem spatialNorm_gnsRep_le_left (π₀ : A →⋆ₐ[ℂ] (H →L[ℂ] H))
     have n1 : (⟪coeffVector (StarRep.ofStarAlgHom π₀) ζ a η,
         coeffVector (StarRep.ofStarAlgHom π₀) ζ a η⟫_ℂ).re
         = ‖coeffVector (StarRep.ofStarAlgHom π₀) ζ a η‖ ^ 2 :=
-      inner_self_eq_norm_sq _
+      re_inner_self _
     have n1im : (⟪coeffVector (StarRep.ofStarAlgHom π₀) ζ a η,
         coeffVector (StarRep.ofStarAlgHom π₀) ζ a η⟫_ℂ).im = 0 :=
-      inner_self_im _
+      im_inner_self _
     have n2 : (⟪spatialHom (StarRep.ofStarAlgHom π₀) ρ x
           (coeffVector (StarRep.ofStarAlgHom π₀) ζ a η),
         spatialHom (StarRep.ofStarAlgHom π₀) ρ x
           (coeffVector (StarRep.ofStarAlgHom π₀) ζ a η)⟫_ℂ).re
         = ‖spatialHom (StarRep.ofStarAlgHom π₀) ρ x
             (coeffVector (StarRep.ofStarAlgHom π₀) ζ a η)‖ ^ 2 :=
-      inner_self_eq_norm_sq _
+      re_inner_self _
     have hb : ‖spatialHom (StarRep.ofStarAlgHom π₀) ρ x
           (coeffVector (StarRep.ofStarAlgHom π₀) ζ a η)‖
         ≤ c * ‖coeffVector (StarRep.ofStarAlgHom π₀) ζ a η‖ := by
@@ -209,10 +209,10 @@ theorem spatialNorm_gnsRep_le_left (π₀ : A →⋆ₐ[ℂ] (H →L[ℂ] H))
     exact inner_gnsVector_gnsRep φ z₁
   have g3 : ‖spatialHom φ.gnsRep ρ x
       (coeffVector φ.gnsRep φ.gnsVector a η)‖ ^ 2 = (φ.toCLM z₂).re := by
-    rw [← inner_self_eq_norm_sq, ← inner_spatialHom_star_mul_self, g1]
+    rw [← re_inner_self, ← inner_spatialHom_star_mul_self, g1]
   have g4 : ‖coeffVector φ.gnsRep φ.gnsVector a η‖ ^ 2
       = (φ.toCLM z₁).re := by
-    rw [← inner_self_eq_norm_sq, g2]
+    rw [← re_inner_self, g2]
   have g5 : (φ.toCLM r).re
       = c ^ 2 * (φ.toCLM z₁).re - (φ.toCLM z₂).re := by
     rw [hr_def, map_sub, map_smul, smul_eq_mul, Complex.sub_re,
@@ -282,7 +282,7 @@ theorem spatialNorm_gnsRep_le_right (ρ₀ : B →⋆ₐ[ℂ] (K →L[ℂ] K))
         = ((c ^ 2 : ℝ) : ℂ) • (StarRep.ofStarAlgHom ρ₀).hom z₁
           - (StarRep.ofStarAlgHom ρ₀).hom z₂ := by
       rw [hr_def, map_sub, map_smul]
-    rw [e1, ContinuousLinearMap.sub_apply, ContinuousLinearMap.smul_apply,
+    rw [e1, sub_apply, smul_apply,
       inner_sub_right, inner_smul_right]
     have i₁ : ⟪ζ, (StarRep.ofStarAlgHom ρ₀).hom z₁ ζ⟫_ℂ
         = ⟪rightCoeffVector (StarRep.ofStarAlgHom ρ₀) ζ b ξ,
@@ -301,17 +301,17 @@ theorem spatialNorm_gnsRep_le_right (ρ₀ : B →⋆ₐ[ℂ] (K →L[ℂ] K))
     have n1 : (⟪rightCoeffVector (StarRep.ofStarAlgHom ρ₀) ζ b ξ,
         rightCoeffVector (StarRep.ofStarAlgHom ρ₀) ζ b ξ⟫_ℂ).re
         = ‖rightCoeffVector (StarRep.ofStarAlgHom ρ₀) ζ b ξ‖ ^ 2 :=
-      inner_self_eq_norm_sq _
+      re_inner_self _
     have n1im : (⟪rightCoeffVector (StarRep.ofStarAlgHom ρ₀) ζ b ξ,
         rightCoeffVector (StarRep.ofStarAlgHom ρ₀) ζ b ξ⟫_ℂ).im = 0 :=
-      inner_self_im _
+      im_inner_self _
     have n2 : (⟪spatialHom π (StarRep.ofStarAlgHom ρ₀) x
           (rightCoeffVector (StarRep.ofStarAlgHom ρ₀) ζ b ξ),
         spatialHom π (StarRep.ofStarAlgHom ρ₀) x
           (rightCoeffVector (StarRep.ofStarAlgHom ρ₀) ζ b ξ)⟫_ℂ).re
         = ‖spatialHom π (StarRep.ofStarAlgHom ρ₀) x
             (rightCoeffVector (StarRep.ofStarAlgHom ρ₀) ζ b ξ)‖ ^ 2 :=
-      inner_self_eq_norm_sq _
+      re_inner_self _
     have hb : ‖spatialHom π (StarRep.ofStarAlgHom ρ₀) x
           (rightCoeffVector (StarRep.ofStarAlgHom ρ₀) ζ b ξ)‖
         ≤ c * ‖rightCoeffVector (StarRep.ofStarAlgHom ρ₀) ζ b ξ‖ := by
@@ -356,10 +356,10 @@ theorem spatialNorm_gnsRep_le_right (ρ₀ : B →⋆ₐ[ℂ] (K →L[ℂ] K))
   have g3 : ‖spatialHom π ψ.gnsRep x
       (rightCoeffVector ψ.gnsRep ψ.gnsVector b ξ)‖ ^ 2
       = (ψ.toCLM z₂).re := by
-    rw [← inner_self_eq_norm_sq, ← inner_spatialHom_star_mul_self, g1]
+    rw [← re_inner_self, ← inner_spatialHom_star_mul_self, g1]
   have g4 : ‖rightCoeffVector ψ.gnsRep ψ.gnsVector b ξ‖ ^ 2
       = (ψ.toCLM z₁).re := by
-    rw [← inner_self_eq_norm_sq, g2]
+    rw [← re_inner_self, g2]
   have g5 : (ψ.toCLM r).re
       = c ^ 2 * (ψ.toCLM z₁).re - (ψ.toCLM z₂).re := by
     rw [hr_def, map_sub, map_smul, smul_eq_mul, Complex.sub_re,

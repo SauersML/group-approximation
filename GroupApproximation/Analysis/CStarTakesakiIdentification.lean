@@ -66,7 +66,7 @@ theorem spatialHom_comm_apply (π : StarRep A H) (ρ : StarRep B K)
           ((TensorProduct.commIsometry ℂ H K) w) := by
   induction y using TensorProduct.induction_on with
   | zero =>
-      simp only [map_zero, ContinuousLinearMap.zero_apply]
+      simp only [map_zero, zero_apply]
   | tmul c d =>
       rw [Algebra.TensorProduct.comm_tmul, spatialHom_tmul, spatialHom_tmul]
       induction w using TensorProduct.induction_on with
@@ -78,7 +78,7 @@ theorem spatialHom_comm_apply (π : StarRep A H) (ρ : StarRep B K)
       | add w₁ w₂ h₁ h₂ =>
           simp only [map_add, h₁, h₂]
   | add y z hy hz =>
-      simp only [map_add, ContinuousLinearMap.add_apply, hy, hz]
+      simp only [map_add, add_apply, hy, hz]
 
 /-- **The flip symmetry of the spatial norm**: the spatial norm of the
 flipped pair at the flipped tensor is the spatial norm of the pair. -/

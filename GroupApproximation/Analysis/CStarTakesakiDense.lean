@@ -315,7 +315,8 @@ theorem exists_coeffVector_of_mem_gnsCoeffSpan (φ : State A)
       obtain ⟨n₁, a₁, η₁, rfl⟩ := ihy
       obtain ⟨n₂, a₂, η₂, rfl⟩ := ihz
       refine ⟨n₁ + n₂, Fin.append a₁ a₂, Fin.append η₁ η₂, ?_⟩
-      rw [coeffVector, coeffVector, coeffVector, Fin.sum_univ_add]
+      simp only [coeffVector]
+      rw [Fin.sum_univ_add]
       congr 1
       · refine Finset.sum_congr rfl fun i _ => ?_
         rw [Fin.append_left, Fin.append_left]
@@ -324,9 +325,10 @@ theorem exists_coeffVector_of_mem_gnsCoeffSpan (φ : State A)
   | smul z y hy ihy =>
       obtain ⟨n, a, η, rfl⟩ := ihy
       refine ⟨n, fun j => z • a j, η, ?_⟩
-      rw [coeffVector, coeffVector, Finset.smul_sum]
+      simp only [coeffVector]
+      rw [Finset.smul_sum]
       refine Finset.sum_congr rfl fun j _ => ?_
-      simp only [map_smul, ContinuousLinearMap.smul_apply,
+      simp only [map_smul, smul_apply,
         TensorProduct.smul_tmul']
 
 end CoeffSpan
@@ -367,8 +369,8 @@ theorem exists_rightCoeffVector_of_mem (ψ : State B)
       obtain ⟨n₁, b₁, ξ₁, rfl⟩ := ihy
       obtain ⟨n₂, b₂, ξ₂, rfl⟩ := ihz
       refine ⟨n₁ + n₂, Fin.append b₁ b₂, Fin.append ξ₁ ξ₂, ?_⟩
-      rw [rightCoeffVector, rightCoeffVector, rightCoeffVector,
-        Fin.sum_univ_add]
+      simp only [rightCoeffVector]
+      rw [Fin.sum_univ_add]
       congr 1
       · refine Finset.sum_congr rfl fun i _ => ?_
         rw [Fin.append_left, Fin.append_left]
@@ -377,9 +379,10 @@ theorem exists_rightCoeffVector_of_mem (ψ : State B)
   | smul z y hy ihy =>
       obtain ⟨n, b, ξ, rfl⟩ := ihy
       refine ⟨n, fun j => z • b j, ξ, ?_⟩
-      rw [rightCoeffVector, rightCoeffVector, Finset.smul_sum]
+      simp only [rightCoeffVector]
+      rw [Finset.smul_sum]
       refine Finset.sum_congr rfl fun j _ => ?_
-      simp only [map_smul, ContinuousLinearMap.smul_apply,
+      simp only [map_smul, smul_apply,
         TensorProduct.tmul_smul]
 
 end RightCoeffSpan
