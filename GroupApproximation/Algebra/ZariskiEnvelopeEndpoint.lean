@@ -87,7 +87,7 @@ theorem manuscriptZariskiChainCondition :
       (∀ m, C (m + 1) ≤ C m) →
       ∃ m, C (m + 1) = C m := by
   intro n _ _ k _ C hC hanti
-  exact zariski_dcc_closedSubgroups C hC hanti
+  exact exists_succ_eq_of_antitone IsZClosedSubgroup C hC hanti
 
 /-- **No infinite strictly descending chain of Zariski closed subgroups.**  The
 negative form of the same statement, which is how a chain condition is usually
