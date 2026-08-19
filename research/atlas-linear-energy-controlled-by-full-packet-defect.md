@@ -62,6 +62,31 @@ C' >= 686.
 The same evaluation confirms the established global bound at a point far from
 the fold: `a^2+b^2 = 4 <= 1372/14 = 98`.
 
+**An a priori bound, and a sandwich on the inner class.**  For a unitary
+`U` the normalized Hilbert-Schmidt norm is `1`, and `rho(W_pkt)` is positive
+with top eigenvalue `4118.07`, so
+
+```text
+sum_s l_s^2 = <U, rho(W_pkt) U> <= 4118.07      for every U, every k.
+```
+
+The numerator of (LINK+) is therefore bounded outright; all of its content is
+in what happens as the denominator goes to zero.  On the inner microstates of
+[[atlas-group-microstate-collapse-is-subgroup-containment]] the denominator
+is quantized -- every word defect is `0` or `2` -- so any inner model that
+fails some word of `S_0` has denominator at least `2`, giving
+
+```text
+686 <= C'(inner) <= 2059,
+```
+
+the lower bound from the characteristic-two countermodel and the upper bound
+from `4118.07 / 2`.  (LINK+) restricted to that class is therefore true, with
+the constant pinned within a factor of three, PROVIDED no inner model
+satisfies all of `S_0` -- which is what nonsoficity of `Q` supplies.  The open
+content is the non-inner case, where the denominator is continuous and can
+approach zero without any word being satisfied exactly.
+
 **What it buys.**  With the established global bound it gives
 `a^2+b^2 <= (C'/14) sum_(s in S_0) ||pi_U(s)-1||_2^2` outright, hence (ASC),
 hence a non-hyperlinear group: see

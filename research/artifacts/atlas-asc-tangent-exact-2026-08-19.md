@@ -243,6 +243,25 @@ covariance vanishes.  For this whole class of models the collapse is
 therefore equivalent to a subgroup containment, with no analysis in it at
 all.
 
+## 4f. What is bounded, and what is not
+
+`rho(W_pkt)` is positive with top eigenvalue `4118.067`, and a unitary has
+normalized Hilbert-Schmidt norm `1`, so
+
+    sum_s l_s^2 <= 4118.07     for every unitary U at every multiplicity.
+
+So the linearized energy is bounded a priori and dimension-freely; the entire
+content of (LINK+) is the rate at which it goes to zero with the packet
+defect.  Measured at `k = 1` the ratio never exceeded the Haar value `3.23`
+over 600 geodesic search steps, while the characteristic-two countermodel
+sits at `686` -- the gap between those two numbers is exactly the gap between
+what one multiplicity can see and what `2^155` can.
+
+On inner microstates the denominator is quantized at `0` or `2` per word, so
+the ratio there is at most `4118.07 / 2 = 2059`, and at least `686`.  That
+class is therefore settled up to a factor of three, and it is settled
+positively.
+
 ## 5. The proof-shaped residue
 
 `C_loc <= C` is equivalent to positivity, in every representation of `A_8`,
