@@ -100,8 +100,8 @@ CLAIM_TARGETS: dict[str, tuple[str, str]] = {
         "Sofic/TraceSeparationEndpoint",
         "GroupApproximation.manuscriptTraceSeparation"),
     "prop:maximal-cstar": (
-        "Analysis/MaximalGroupCStar",
-        "GroupApproximation.manuscriptUniverseRelativeMaximalGroupCStar"),
+        "Analysis/MaximalCStarAllUniverses",
+        "GroupApproximation.manuscriptMaximalGroupCStarUniversalProperty"),
     "def:E": (
         "Sofic/LiteralNonMFPresentation",
         "GroupApproximation.LiteralNonMFPresentation.manuscriptLiteralPresentation"),
