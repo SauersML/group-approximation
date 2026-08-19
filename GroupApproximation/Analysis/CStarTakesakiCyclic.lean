@@ -333,7 +333,9 @@ theorem quadratic_cyclic_le (π : StarRep A H) (ρ : StarRep B K)
       intro i
       have h1 : π.hom (((‖ζ‖ : ℝ) : ℂ) • b i) ζh
           = ((‖ζ‖ : ℝ) : ℂ) • (π.hom (b i)) ζh := by
-        rw [map_smul]
+        have h0 : π.hom (((‖ζ‖ : ℝ) : ℂ) • b i)
+            = ((‖ζ‖ : ℝ) : ℂ) • π.hom (b i) := map_smul π.hom _ _
+        rw [h0]
         rfl
       rw [h1, hζh, (π.hom (b i)).map_smul, smul_smul, ← Complex.ofReal_mul,
         mul_inv_cancel₀ (norm_ne_zero_iff.mpr hζ0), Complex.ofReal_one,

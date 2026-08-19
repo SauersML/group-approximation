@@ -284,6 +284,7 @@ invariant vectors -/
 
 /-- The parallelogram-type expansion of the squared norm of a
 difference. -/
+omit [Group G] in
 theorem l2NormSq_sub (a b : G →₀ ℂ) :
     l2NormSq (a - b) = l2NormSq a + l2NormSq b - 2 * (starInner b a).re := by
   have h1 : starInner (a - b) (a - b)
