@@ -38,6 +38,7 @@ import GroupApproximation.Analysis.LanceDayEngine
 import GroupApproximation.Analysis.LanceMultiplicationOperator
 import GroupApproximation.Analysis.LanceHypertrace
 import GroupApproximation.Analysis.LanceCPApprox
+import GroupApproximation.Analysis.LanceNuclearity
 import GroupApproximation.Kazhdan.KazhdanUniverseDescent
 import GroupApproximation.Sofic.ChosenMaximalCStarInfinite
 import GroupApproximation.Analysis.TorsionFreeFullMFCStarConsequences
