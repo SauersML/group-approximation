@@ -1,12 +1,24 @@
 {
+  "description": "Grok Build PR-only repository policy: block edits and history mutation on main/master, and block merging PRs.",
   "hooks": {
-    "PreToolUse": [
+    "SessionStart": [
       {
-        "matcher": "Bash|Edit|Write",
         "hooks": [
           {
             "type": "command",
-            "command": "python3 ./pr-only-guard.py",
+            "command": "sh -c 'echo \"PR-only guard armed from $GROK_WORKSPACE_ROOT/.grok/hooks/pr-only-guard.py\"'",
+            "timeout": 5
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "Bash|Edit|MultiEdit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 \"$GROK_WORKSPACE_ROOT/.grok/hooks/pr-only-guard.py\"",
             "timeout": 5
           }
         ]

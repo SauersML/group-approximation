@@ -1,0 +1,71 @@
+name: Retire finished agent branches
+
+# This repository keeps exactly two branches: main and verified. Everything else
+# is a transient PR head pushed by an agent lane (Leanstral publishes
+# automation/leanstral-<run_id>; Grok Build's PR-only policy publishes grok/<task>).
+# GitHub deletes those on merge, but a closed-unmerged PR leaves its head behind
+# forever, so retire them here instead of by hand.
+
+on:
+  schedule:
+    - cron: '23 * * * *'
+  workflow_dispatch:
+
+concurrency:
+  group: branch-reaper
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  reap:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: write
+      pull-requests: read
+    steps:
+      - env:
+          GH_TOKEN: ${{ github.token }}
+          # A branch younger than this may be mid-publish: pushed, but its PR not
+          # opened yet. Never race a lane that is still working.
+          MIN_AGE_MINUTES: '60'
+        run: |
+          set -euo pipefail
+          open="$RUNNER_TEMP/open.txt"; heads="$RUNNER_TEMP/heads.txt"
+          gh pr list --repo "$GITHUB_REPOSITORY" --state open --limit 1000 \
+            --json headRefName --jq '.[].headRefName' | sort -u > "$open"
+          : > "$heads"
+          for prefix in heads/automation/leanstral- heads/grok/; do
+            gh api --paginate "repos/$GITHUB_REPOSITORY/git/matching-refs/$prefix" \
+              --jq '.[].ref' >> "$heads" || true
+          done
+          sed -i 's|^refs/heads/||' "$heads"
+          # Belt and braces: main and verified can never match these patterns, but
+          # an explicit filter costs nothing and a mistake here is unrecoverable.
+          grep -E '^(automation/leanstral-[0-9]+|grok/.+)$' "$heads" \
+            | grep -vxE 'main|verified' | sort -u > "$heads.f" || true
+          mv "$heads.f" "$heads"
+          cutoff="$(date -u -d "-$MIN_AGE_MINUTES minutes" +%s)"
+          kept=0; reaped=0
+          while read -r b; do
+            [[ -n "$b" ]] || continue
+            if grep -Fxq "$b" "$open"; then
+              echo "keep  (PR open)   $b"; kept=$((kept+1)); continue
+            fi
+            iso="$(gh api "repos/$GITHUB_REPOSITORY/commits/$b" \
+              --jq '.commit.committer.date' 2>/dev/null || echo '')"
+            if [[ -n "$iso" ]] && (( $(date -u -d "$iso" +%s) > cutoff )); then
+              echo "keep  (too new)   $b"; kept=$((kept+1)); continue
+            fi
+            if gh api --method DELETE "repos/$GITHUB_REPOSITORY/git/refs/heads/$b" >/dev/null 2>&1; then
+              echo "reap  (no PR)     $b"; reaped=$((reaped+1))
+            else
+              echo "::warning::could not delete $b"
+            fi
+          done < "$heads"
+          echo "kept=$kept reaped=$reaped"
+          echo "### Branch reaper: kept $kept, reaped $reaped" >> "$GITHUB_STEP_SUMMARY"
+          gh api "repos/$GITHUB_REPOSITORY/branches" --jq '.[].name' | sort | tr '\n' ' ' \
+            >> "$GITHUB_STEP_SUMMARY"

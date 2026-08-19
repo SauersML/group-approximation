@@ -10,7 +10,7 @@ import subprocess
 import sys
 
 PROTECTED = {"main", "master"}
-EDIT_TOOLS = {"search_replace", "Edit", "Write", "edit", "write_file"}
+EDIT_TOOLS = {"search_replace", "Edit", "MultiEdit", "Write", "edit", "write_file"}
 
 
 def deny(reason: str) -> None:

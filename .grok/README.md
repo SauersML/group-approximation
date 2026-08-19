@@ -15,6 +15,18 @@ Start Grok from the repository root with project hooks trusted:
 grok --trust
 ```
 
+**This is not optional, and skipping it fails silently.** Project hooks under
+`.grok/hooks/` only run once the folder is trusted; until then Grok skips them
+without any message, and the PR-only guard below is simply not enforced. Trust is
+recorded once in `~/.grok/trusted_folders.toml` (`--trust`, or `/hooks-trust` from
+inside a session) and covers repo-local MCP, LSP, and hooks together.
+
+Confirm enforcement is live rather than assuming it: a trusted session prints
+`PR-only guard armed ...` at startup from the `SessionStart` hook, and
+`grok inspect` lists the project hook under `Hooks`. If neither appears, only the
+weaker layers are active -- the deny rules in `config.toml` and the prose rule in
+`rules/01-pr-only.md` -- and Grok can still edit and commit on `main`.
+
 Inspect the loaded project configuration with:
 
 ```bash

@@ -451,34 +451,3 @@ jobs:
           Run: ${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}
           EOF
           gh pr create --repo "$GITHUB_REPOSITORY" --base main --head "$BRANCH" --draft --title "Leanstral: $ANCHOR" --body-file "$RUNNER_TEMP/body"
-
-  # The published PR head is the only branch this lane creates. Retire each one as
-  # soon as its PR is no longer open, so the repository stays at main + verified.
-  sweep:
-    needs: [auth, select, generate, publish]
-    if: ${{ always() && (github.event_name == 'schedule' || github.event_name == 'workflow_dispatch') }}
-    runs-on: ubuntu-latest
-    timeout-minutes: 10
-    permissions:
-      contents: write
-      pull-requests: read
-    steps:
-      - env:
-          GH_TOKEN: ${{ github.token }}
-        run: |
-          set -euo pipefail
-          open="$RUNNER_TEMP/open.txt"
-          gh pr list --repo "$GITHUB_REPOSITORY" --state open --limit 1000 --json headRefName \
-            --jq '.[].headRefName' > "$open"
-          gh api --paginate "repos/$GITHUB_REPOSITORY/git/matching-refs/heads/automation/leanstral-" \
-            --jq '.[].ref' | sed 's|^refs/heads/||' \
-            | grep -E '^automation/leanstral-[0-9]+$' > "$RUNNER_TEMP/heads.txt" || true
-          while read -r b; do
-            [[ -n "$b" ]] || continue
-            if grep -Fxq "$b" "$open"; then echo "keep (PR still open): $b"; continue; fi
-            if gh api --method DELETE "repos/$GITHUB_REPOSITORY/git/refs/heads/$b" >/dev/null 2>&1; then
-              echo "deleted: $b"
-            else
-              echo "::warning::could not delete $b"
-            fi
-          done < "$RUNNER_TEMP/heads.txt"
