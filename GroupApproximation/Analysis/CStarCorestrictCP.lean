@@ -1,4 +1,5 @@
 import GroupApproximation.Analysis.CStarMatrixFactorization
+import GroupApproximation.Analysis.LanceMatrixSubalgebra
 
 /-!
 # Complete positivity corestricts to a subalgebra
@@ -31,9 +32,14 @@ Roe algebra.
 
 So `isCompletelyPositive_codRestrict` takes the reflection as a hypothesis
 stated in ordinary order vocabulary at the inclusion, and everything else about
-corestriction is discharged here.  The hypothesis is a fact to be proved about
-the reduced algebra's inclusion, not a citation: nothing in the literature is
-being imported, and the statement mentions no theorem of anyone's.
+corestriction is discharged here.
+
+And for the case the Lance lane actually needs, the reflection is **not** a
+hypothesis: `exists_factor_entries_mem_of_isCompletelyPositive` discharges it
+outright from `LanceMatrixSubalgebra.exists_entries_mem_factor`, which was
+already proved.  Stated that way it needs no corestriction and no instance
+assembly on the subalgebra --- the entries are constrained by membership rather
+than by type, so everything stays in the ambient algebra.
 -/
 
 namespace GroupApproximation
@@ -69,6 +75,34 @@ theorem isCompletelyPositive_codRestrict
     exact hfactor (M i j)
   rw [hcomp]
   exact map_nonneg_of_isCompletelyPositive hφ n M hM
+
+/-- **The factorization can be taken inside the subalgebra.**  This is the
+concrete form of the reflection, and it discharges the difficulty outright for
+the case that matters: a completely positive map whose values lie in a *closed*
+`⋆`-subalgebra factors its amplifications through matrices over that subalgebra.
+
+No corestriction, no instance assembly on the subalgebra: everything is stated
+in the ambient algebra, and the entries are constrained by membership rather
+than by type.  `LanceMatrixSubalgebra.exists_entries_mem_factor` is what does
+the work --- the square root taken inside the C⋆-algebra the closed entrywise
+subalgebra carries, whose spectra agree with the ambient ones by spectral
+permanence --- and this is the sentence the Lance approximation needs it in. -/
+theorem exists_factor_entries_mem_of_isCompletelyPositive
+    {A : Type u} {B : Type v}
+    [NonUnitalCStarAlgebra A] [PartialOrder A] [StarOrderedRing A]
+    [CStarAlgebra B] [PartialOrder B] [StarOrderedRing B]
+    (C : StarSubalgebra ℂ B) (hC : IsClosed (C : Set B))
+    {φ : A →ₗ[ℂ] B} (hφ : IsCompletelyPositive φ) (hval : ∀ a : A, φ a ∈ C)
+    (n : ℕ) (M : CStarMatrix (Fin n) (Fin n) A)
+    (hM : ∃ N : CStarMatrix (Fin n) (Fin n) A, M = star N * N) :
+    ∃ P : CStarMatrix (Fin n) (Fin n) B,
+      (∀ p q, P p q ∈ C) ∧ M.map ⇑φ = star P * P := by
+  have hMpos : 0 ≤ M := by
+    obtain ⟨N, rfl⟩ := hM
+    exact star_mul_self_nonneg N
+  have hpos : 0 ≤ M.map ⇑φ :=
+    map_nonneg_of_isCompletelyPositive hφ n M hMpos
+  exact exists_entries_mem_factor C hC (fun p q ↦ hval (M p q)) hpos
 
 /-- The reflection hypothesis is not vacuous: the identity reflects. -/
 theorem reflect_id {C : Type v}
