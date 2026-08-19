@@ -83,8 +83,9 @@ theorem conjEval_replace_two {A B C D : FreeGroup α} {a b c d : List (α × Boo
     (h : A * FreeGroup.mk a * A⁻¹ * (B * FreeGroup.mk b * B⁻¹)
       = C * FreeGroup.mk c * C⁻¹ * (D * FreeGroup.mk d * D⁻¹)) :
     conjEval ((A, a) :: (B, b) :: e) = conjEval ((C, c) :: (D, d) :: e) := by
-  rw [conjEval_cons, conjEval_cons, conjEval_cons, conjEval_cons, ← mul_assoc,
-    ← mul_assoc, h]
+  simp only [← mul_assoc] at h
+  simp only [conjEval_cons, ← mul_assoc]
+  rw [h]
 
 /-- Every relator occurring in the expression is symmetrized. -/
 def ConjValid (R : Set (List (α × Bool)))
@@ -170,7 +171,8 @@ theorem conjEval_append (e₁ e₂ : List (FreeGroup α × List (α × Bool))) :
   | nil => rw [List.nil_append, conjEval_nil, one_mul]
   | cons x e₁ ih =>
       obtain ⟨c, s⟩ := x
-      rw [List.cons_append, conjEval_cons, conjEval_cons, ih, mul_assoc]
+      rw [List.cons_append, conjEval_cons, conjEval_cons, ih]
+      simp only [← mul_assoc]
 
 theorem conjWeight_append [DecidableEq α]
     (e₁ e₂ : List (FreeGroup α × List (α × Bool))) :
@@ -475,7 +477,7 @@ theorem norm_mk_palindrome [DecidableEq α] {c t : List (α × Bool)}
     (h : FreeGroup.IsReduced (palindrome c t)) :
     FreeGroup.norm (FreeGroup.mk (palindrome c t)) = 2 * c.length + t.length := by
   have hlen : (palindrome c t).length = c.length + t.length + c.length := by
-    simp [palindrome, FreeGroup.invRev_length]
+    simp [palindrome, FreeGroup.invRev_length, Nat.add_assoc]
   rw [norm_mk_of_isReduced h, hlen]
   omega
 
