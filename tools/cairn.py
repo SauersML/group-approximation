@@ -3455,6 +3455,10 @@ def recently_touched(graph, limit=8):
     section by mtime made the generated file disagree with itself on every
     machine that regenerated it — a diff nobody wrote, in every checkout.
     An uncommitted edit is the most recent thing there is, so it sorts first.
+    A node the log window does not reach is the opposite — older than every
+    stamp we have — so the two cases must not share a fallback: once the graph
+    outgrows the window most nodes miss it, and giving them the uncommitted
+    sentinel prints the alphabetically-last ids as the newest work.
     """
     hist, stamp = {}, None
     # bounded: the newest-touched nodes live in the newest commits by definition
@@ -3465,18 +3469,29 @@ def recently_touched(graph, limit=8):
         elif line and stamp:
             hist.setdefault(line, stamp)  # git log is newest-first
 
+    pending = set()
+    st = _git("status", "--porcelain", "--", "research")
+    for line in (st.stdout.splitlines() if st.returncode == 0 else []):
+        p = line[3:]
+        if " -> " in p:          # a rename: the new path is the live one
+            p = p.split(" -> ", 1)[1]
+        pending.add(p.strip('"'))
+
+    NEW, OLD = "9999", "0000"    # uncommitted · outside the log window
+
     def stamp_of(n):
-        if n.relpath in hist:
-            return hist[n.relpath]
-        if r.returncode == 0:
-            return "9999"  # sorts above any ISO timestamp
-        return time.strftime("%Y-%m-%dT%H:%M:%S",
-                             time.localtime(os.path.getmtime(n.path)))
+        if r.returncode != 0:
+            return time.strftime("%Y-%m-%dT%H:%M:%S",
+                                 time.localtime(os.path.getmtime(n.path)))
+        if n.relpath in pending:
+            return NEW           # sorts above any ISO timestamp
+        return hist.get(n.relpath, OLD)
 
     today = time.strftime("%Y-%m-%d")
-    ordered = sorted(graph.nodes.values(),
-                     key=lambda n: (stamp_of(n), n.id), reverse=True)[:limit]
-    return [(today if stamp_of(n) == "9999" else stamp_of(n)[:10], n)
+    dated = [n for n in graph.nodes.values() if stamp_of(n) != OLD]
+    ordered = sorted(dated, key=lambda n: (stamp_of(n), n.id),
+                     reverse=True)[:limit]
+    return [(today if stamp_of(n) == NEW else stamp_of(n)[:10], n)
             for n in ordered]
 
 
