@@ -926,6 +926,7 @@ import GroupApproximation.Analysis.MaximalCStarLiteralBase
 import GroupApproximation.Analysis.MaximalGroupCStarUniqueness
 import GroupApproximation.Analysis.PropertyAExtension
 import GroupApproximation.Analysis.ExactnessGroupSideEndpoint
+import GroupApproximation.Analysis.PropertyALocality
 import GroupApproximation.Analysis.CStarTensorProductSeminorm
 import GroupApproximation.Analysis.CStarTensorProductSpatial
 import GroupApproximation.Analysis.CStarTensorProductConcrete
