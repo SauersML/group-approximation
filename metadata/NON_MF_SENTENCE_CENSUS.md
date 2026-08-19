@@ -18,7 +18,7 @@ The proof ledger grades claims; this census grades **sentences**, which is the g
 
 Carrying a declaration or a ledger row: **769/801** (96.0%).
 
-Of the `ledger` sentences, 108 sit under an anchor the ledger grades with a single row, so the pairing is one-to-one; the other 440 sit under an anchor graded by several rows, and the census names all of that anchor's rows rather than pretending to know which row is which sentence.  Narrowing those is the work the census makes visible.
+Of the `ledger` sentences, 239 name a single row and 309 name every row of their anchor.  Of the single-row ones, 131 were narrowed from a multi-row anchor by claim-text overlap rather than by hand, and their note says so; the rest sit under an anchor the ledger grades with one row, where the pairing is forced.  The census never pretends to know which row is which sentence: where the text does not decide, it names them all.
 
 ## What no declaration establishes
 
