@@ -4,6 +4,7 @@ id: a4-regular-context-is-centralizer-product-proof
 kind: route
 title: Compare the two implementers of the named regular A4 pair
 target: a4-regular-context-is-centralizer-product
+requires: []
 ---
 
 Put `A=rho(a)` and `B=rho(b)`.

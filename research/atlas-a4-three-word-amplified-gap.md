@@ -11,6 +11,11 @@ artifacts:
   - experiments/atlas-word-19243.json
 ---
 
+REFUTED by [[atlas-three-word-gap-permutation-countermodel]]: an exact
+12-point permutation model at multiplicity 2 in the C6--S3 core meets
+every hypothesis and violates the gap.  The statement below is kept as
+the record of what was asked for, not as an open target.
+
 Let `rho_k=Reg(A8) tensor I_k` on `C^(20160 k)`.  Represent factor one by
 `rho_k` and factor two by
 

@@ -4,7 +4,6 @@ id: atlas-three-word-gap-permutation-countermodel
 kind: claim
 title: The proposed three-word amplified atlas gap has an exact 12-point permutation countermodel
 invalidates:
-  - atlas-a4-three-word-amplified-gap
   - nonhyperlinear-from-three-word-atlas-gap
 artifacts:
   - experiments/atlas_three_word_permutation_countermodel.py

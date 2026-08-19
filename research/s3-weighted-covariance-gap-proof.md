@@ -1,6 +1,6 @@
 ---
 rg: 2
-id: s3-weighted-two-generator-covariance-controls-commutant-distance-proof
+id: s3-weighted-covariance-gap-proof
 kind: route
 title: Diagonalize the weighted S3 Cayley Laplacian and polar-round the expectation
 target: s3-weighted-two-generator-covariance-controls-commutant-distance
