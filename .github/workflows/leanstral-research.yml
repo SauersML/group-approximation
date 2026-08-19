@@ -113,7 +113,8 @@ jobs:
     steps:
       - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
         with:
-          ref: main
+          # Selection and generation must see the exact same immutable proof tree.
+          ref: ${{ github.sha }}
           persist-credentials: false
       - name: Build attempt history
         env:
@@ -188,7 +189,8 @@ jobs:
     steps:
       - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
         with:
-          ref: main
+          # Never silently move the reserved target onto a later main revision.
+          ref: ${{ github.sha }}
           persist-credentials: false
       - id: base
         run: |
@@ -287,6 +289,7 @@ jobs:
           BASE: ${{ steps.base.outputs.sha }}
           TARGET: ${{ needs.select.outputs.target }}
           ANCHOR: ${{ needs.select.outputs.anchor }}
+          LINE: ${{ needs.select.outputs.line }}
         run: |
           set -euo pipefail
           [[ "$(git rev-parse HEAD)" == "$BASE" ]] || git reset --mixed "$BASE"
@@ -295,16 +298,52 @@ jobs:
           if (( ${#changed[@]} == 0 )); then echo 'has_changes=false' >> "$GITHUB_OUTPUT"; exit 0; fi
           if (( ${#changed[@]} != 1 )) || [[ "${changed[0]}" != "$TARGET" ]]; then echo "::error::Only reserved file $TARGET may change"; exit 1; fi
           git diff --name-only --diff-filter=D "$BASE" | grep -q . && { echo '::error::File deletion rejected'; exit 1; } || true
-          git diff --unified=120 "$BASE" -- "$TARGET" | grep -F -- "$ANCHOR" >/dev/null || { echo "::error::Diff is not in reserved declaration neighborhood $ANCHOR"; exit 1; }
           python - <<'PY'
-          import os,re,subprocess
-          d=subprocess.check_output(['git','diff','--unified=0',os.environ['BASE'],'--',os.environ['TARGET']],text=True)
-          bad=[]
-          for line in d.splitlines():
-              if not line.startswith('+') or line.startswith('+++'): continue
-              t=line[1:]
-              if re.search(r'\b(?:sorry|admit|unsafe|native_decide)\b',t) or re.match(r'\s*axiom\b',t): bad.append(t)
-          if bad: print('Forbidden additions:\n'+'\n'.join(bad[:20])); raise SystemExit(1)
+          import os, re, subprocess
+
+          base = os.environ['BASE']
+          target = os.environ['TARGET']
+          anchor = os.environ['ANCHOR']
+          anchor_line = int(os.environ['LINE'])
+          diff = subprocess.check_output(
+              ['git', 'diff', '--unified=0', base, '--', target], text=True
+          )
+
+          # Every hunk must stay local to the declaration selected before inference.
+          # This makes "different declaration" mechanically meaningful even when a
+          # large Lean module contains many unrelated theorems.
+          hunks = re.findall(
+              r'^@@ -(\d+)(?:,(\d+))? \+(\d+)(?:,(\d+))? @@', diff, re.M
+          )
+          if not hunks:
+              raise SystemExit('no diff hunks found')
+          lo, hi = max(1, anchor_line - 250), anchor_line + 250
+          for old_start, old_len, new_start, new_len in hunks:
+              old_start, new_start = int(old_start), int(new_start)
+              old_len, new_len = int(old_len or '1'), int(new_len or '1')
+              old_end = old_start + max(old_len, 1) - 1
+              new_end = new_start + max(new_len, 1) - 1
+              near_old = old_end >= lo and old_start <= hi
+              near_new = new_end >= lo and new_start <= hi
+              if not (near_old or near_new):
+                  raise SystemExit(
+                      f'diff hunk {old_start}:{old_end}/{new_start}:{new_end} '
+                      f'is outside reserved declaration window {lo}:{hi} ({anchor})'
+                  )
+
+          bad = []
+          for line in diff.splitlines():
+              if not line.startswith('+') or line.startswith('+++'):
+                  continue
+              text = line[1:]
+              if re.search(r'\b(?:sorry|admit|unsafe|native_decide)\b', text):
+                  bad.append(text)
+              if re.match(r'\s*axiom\b', text):
+                  bad.append(text)
+          if bad:
+              print('Forbidden additions:')
+              print('\n'.join(bad[:20]))
+              raise SystemExit(1)
           PY
           git diff --check "$BASE"
           n="$(git diff --numstat "$BASE" -- "$TARGET" | awk '{print $1+$2}')"; [[ "${n:-0}" -le 1500 ]] || { echo '::error::Patch too broad'; exit 1; }
