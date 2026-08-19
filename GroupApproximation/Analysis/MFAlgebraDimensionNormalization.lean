@@ -117,47 +117,57 @@ theorem cornerCoord_succ_apply (n : ℕ) (a : Matrix (X (n + 1)) (X (n + 1)) ℂ
 theorem cornerCoord_map_zero (n : ℕ) : cornerCoord X n 0 = 0 := by
   cases n with
   | zero => rfl
-  | succ n => rw [cornerCoord_succ_apply, blockDiagMatrix_zero]
+  | succ n => exact blockDiagMatrix_zero _ _
 
 theorem cornerCoord_map_add (n : ℕ) (a b : Matrix (X n) (X n) ℂ) :
     cornerCoord X n (a + b) = cornerCoord X n a + cornerCoord X n b := by
   cases n with
   | zero => rfl
   | succ n =>
-      simp only [cornerCoord_succ_apply]
-      rw [blockDiagMatrix_add, add_zero]
+      have h := blockDiagMatrix_add (increasingBlockModel X n) (X (n + 1))
+        0 0 a b
+      rw [add_zero] at h
+      exact h.symm
 
 theorem cornerCoord_map_sub (n : ℕ) (a b : Matrix (X n) (X n) ℂ) :
     cornerCoord X n (a - b) = cornerCoord X n a - cornerCoord X n b := by
   cases n with
   | zero => rfl
   | succ n =>
-      simp only [cornerCoord_succ_apply]
-      rw [blockDiagMatrix_sub, sub_zero]
+      have h := blockDiagMatrix_sub (increasingBlockModel X n) (X (n + 1))
+        0 0 a b
+      rw [sub_zero] at h
+      exact h.symm
 
 theorem cornerCoord_map_mul (n : ℕ) (a b : Matrix (X n) (X n) ℂ) :
     cornerCoord X n (a * b) = cornerCoord X n a * cornerCoord X n b := by
   cases n with
   | zero => rfl
   | succ n =>
-      simp only [cornerCoord_succ_apply]
-      rw [blockDiagMatrix_mul, mul_zero]
+      have h := blockDiagMatrix_mul (increasingBlockModel X n) (X (n + 1))
+        0 0 a b
+      rw [mul_zero] at h
+      exact h.symm
 
 theorem cornerCoord_map_smul (n : ℕ) (c : ℂ) (a : Matrix (X n) (X n) ℂ) :
     cornerCoord X n (c • a) = c • cornerCoord X n a := by
   cases n with
   | zero => rfl
   | succ n =>
-      simp only [cornerCoord_succ_apply]
-      rw [blockDiagMatrix_smul, smul_zero]
+      have h := blockDiagMatrix_smul (increasingBlockModel X n) (X (n + 1))
+        c 0 a
+      rw [smul_zero] at h
+      exact h.symm
 
 theorem cornerCoord_map_star (n : ℕ) (a : Matrix (X n) (X n) ℂ) :
     cornerCoord X n (star a) = star (cornerCoord X n a) := by
   cases n with
   | zero => rfl
   | succ n =>
-      simp only [cornerCoord_succ_apply, Matrix.star_eq_conjTranspose]
-      rw [blockDiagMatrix_conjTranspose, Matrix.conjTranspose_zero]
+      have h := blockDiagMatrix_conjTranspose (increasingBlockModel X n)
+        (X (n + 1)) 0 a
+      rw [Matrix.conjTranspose_zero] at h
+      exact h.symm
 
 /-- **The corner map is isometric.**  This is the whole reason the induced map
 on coronas is injective. -/
@@ -166,8 +176,10 @@ theorem norm_cornerCoord (n : ℕ) (a : Matrix (X n) (X n) ℂ) :
   cases n with
   | zero => rfl
   | succ n =>
-      rw [cornerCoord_succ_apply, l2_opNorm_blockDiag, norm_zero,
-        max_eq_right (norm_nonneg a)]
+      have h := l2_opNorm_blockDiag (increasingBlockModel X n) (X (n + 1))
+        (0 : Matrix (increasingBlockModel X n) (increasingBlockModel X n) ℂ) a
+      rw [norm_zero, max_eq_right (norm_nonneg a)] at h
+      exact h
 
 /-! ## Nonemptiness of the cumulative models -/
 
@@ -175,7 +187,7 @@ theorem nonempty_increasingBlockModel (hne : ∀ n, Nonempty (X n)) :
     ∀ n, Nonempty (increasingBlockModel X n)
   | 0 => hne 0
   | n + 1 =>
-      Nonempty.elim (nonempty_increasingBlockModel X hne n) fun y ↦ ⟨Sum.inl y⟩
+      Nonempty.elim (nonempty_increasingBlockModel hne n) fun y ↦ ⟨Sum.inl y⟩
 
 instance instNonemptyIncreasingBlockModel [h : ∀ n, Nonempty (X n)] (n : ℕ) :
     Nonempty (increasingBlockModel X n) :=
@@ -198,44 +210,51 @@ def cornerSeq (a : BoundedMatrixSequence (fun n ↦ X n)) :
     exact (norm_cornerCoord X n (a n)).le.trans
       (boundedMatrixSequence_coord_norm_le (fun n ↦ X n) a n)⟩⟩
 
+omit [∀ (n : ℕ), Nonempty (X n).carrier] in
 @[simp] theorem cornerSeq_apply (a : BoundedMatrixSequence (fun n ↦ X n))
     (n : ℕ) : cornerSeq X a n = cornerCoord X n (a n) := rfl
 
+omit [∀ (n : ℕ), Nonempty (X n).carrier] in
 theorem cornerSeq_zero : cornerSeq X 0 = 0 := by
   refine lp.ext (funext fun n ↦ ?_)
-  simp only [cornerSeq_apply, lp.coeFn_zero, Pi.zero_apply]
+  simp only [lp.coeFn_zero, Pi.zero_apply]
   exact cornerCoord_map_zero X n
 
+omit [∀ (n : ℕ), Nonempty (X n).carrier] in
 theorem cornerSeq_add (a b : BoundedMatrixSequence (fun n ↦ X n)) :
     cornerSeq X (a + b) = cornerSeq X a + cornerSeq X b := by
   refine lp.ext (funext fun n ↦ ?_)
-  simp only [cornerSeq_apply, lp.coeFn_add, Pi.add_apply]
+  simp only [lp.coeFn_add, Pi.add_apply]
   exact cornerCoord_map_add X n (a n) (b n)
 
+omit [∀ (n : ℕ), Nonempty (X n).carrier] in
 theorem cornerSeq_sub (a b : BoundedMatrixSequence (fun n ↦ X n)) :
     cornerSeq X (a - b) = cornerSeq X a - cornerSeq X b := by
   refine lp.ext (funext fun n ↦ ?_)
-  simp only [cornerSeq_apply, lp.coeFn_sub, Pi.sub_apply]
+  simp only [lp.coeFn_sub, Pi.sub_apply]
   exact cornerCoord_map_sub X n (a n) (b n)
 
+omit [∀ (n : ℕ), Nonempty (X n).carrier] in
 theorem cornerSeq_mul (a b : BoundedMatrixSequence (fun n ↦ X n)) :
     cornerSeq X (a * b) = cornerSeq X a * cornerSeq X b := by
   refine lp.ext (funext fun n ↦ ?_)
-  simp only [cornerSeq_apply, lp.infty_coeFn_mul, Pi.mul_apply]
+  simp only [lp.infty_coeFn_mul, Pi.mul_apply]
   exact cornerCoord_map_mul X n (a n) (b n)
 
 theorem cornerSeq_smul (c : ℂ) (a : BoundedMatrixSequence (fun n ↦ X n)) :
     cornerSeq X (c • a) = c • cornerSeq X a := by
   refine lp.ext (funext fun n ↦ ?_)
-  simp only [cornerSeq_apply, lp.coeFn_smul, Pi.smul_apply]
+  simp only [lp.coeFn_smul, Pi.smul_apply]
   exact cornerCoord_map_smul X n c (a n)
 
+omit [∀ (n : ℕ), Nonempty (X n).carrier] in
 theorem cornerSeq_star (a : BoundedMatrixSequence (fun n ↦ X n)) :
     cornerSeq X (star a) = star (cornerSeq X a) := by
   refine lp.ext (funext fun n ↦ ?_)
-  simp only [cornerSeq_apply, lp.coeFn_star, Pi.star_apply]
+  simp only [lp.coeFn_star, Pi.star_apply]
   exact cornerCoord_map_star X n (a n)
 
+omit [∀ (n : ℕ), Nonempty (X n).carrier] in
 /-- **Isometry, at the level of sequences.**  The corner map neither creates nor
 destroys null sequences, which is what makes the induced corona map injective
 rather than merely well defined. -/
