@@ -289,6 +289,26 @@ function renderNodes(nodes, ctx) {
   return out;
 }
 
+/* Each sentence carries the state the census gives it, so the manuscript can
+   show which of its assertions the development proves without a mark being
+   added anywhere. */
+function sentencedHtml(src, ctx) {
+  const S = window.SENTENCES;
+  if (!S) return renderInline(src, ctx);
+  const parts = splitSentences(src);
+  if (parts.length === 0) return renderInline(src, ctx);
+  let out = '', rest = src;
+  for (const sent of parts) {
+    const at = rest.indexOf(sent);
+    if (at < 0) { out += renderInline(rest, ctx); rest = ''; break; }
+    out += renderInline(rest.slice(0, at), ctx);
+    const state = S[sentenceKey(sent)] || 'ungraded';
+    out += '<span class="sent" data-state="' + state + '">' + renderInline(sent, ctx) + '</span>';
+    rest = rest.slice(at + sent.length);
+  }
+  return out + renderInline(rest, ctx);
+}
+
 function renderNode(n, ctx, siblings, idx) {
   switch (n.t) {
     case 'section': {
@@ -303,7 +323,7 @@ function renderNode(n, ctx, siblings, idx) {
       return '<div class="part-divider" id="supplement"><span>' + escHtml(n.title) + '</span></div>';
     case 'para': {
       const c = Object.assign({}, ctx);
-      const html = renderInline(n.src, c);
+      const html = sentencedHtml(n.src, c);
       if (!html.trim()) return '';
       return '<p>' + html + '</p>';
     }
@@ -672,9 +692,20 @@ function buildFormalView() {
   const withLean = thms.filter(t => t.querySelector('.lean-panel-tpl')).length;
   const exact = rows.filter(r => r.proof === 'EXACT').length;
 
+  const sent = [...document.querySelectorAll('#paper-body .sent')];
+  const tally = {};
+  for (const el of sent) tally[el.dataset.state] = (tally[el.dataset.state] || 0) + 1;
+  const graded = sent.length - (tally.ungraded || 0);
+
   let html = '<p class="formal-lede">' + withLean + ' of the ' + thms.length +
     ' numbered results, and ' + exact + ' of the ' + rows.length +
     ' printed proof steps, are proved in Lean&nbsp;4.</p>';
+  html += '<p class="formal-lede">Sentence by sentence: of the ' + sent.length +
+    ' sentences in the manuscript\u2019s paragraphs, ' + (tally.proved || 0) +
+    ' are proved, ' + ((tally.unproved || 0) + (tally.open || 0) + (tally.partial || 0)) +
+    ' are not, ' + (tally.cited || 0) + ' credit other people\u2019s work, and ' +
+    (tally.ungraded || 0) + ' have not been graded either way. ' +
+    '<button class="key-link" data-mark="ungraded">Show the ungraded ones</button></p>';
 
   const missing = rows.filter(r => r.proof === 'MISSING');
   const other = rows.filter(r => r.proof !== 'EXACT' && r.proof !== 'MISSING');
@@ -1317,6 +1348,12 @@ function setupTabs() {
   document.body.addEventListener('click', ev => {
     const g = ev.target.closest('[data-goto]');
     if (g) document.querySelector('.tab[data-view="' + g.dataset.goto + '"]').click();
+    const m = ev.target.closest('[data-mark]');
+    if (m) {
+      const on = document.body.classList.toggle('show-' + m.dataset.mark);
+      m.textContent = (on ? 'Stop showing' : 'Show') + ' the ungraded ones';
+      if (on) document.querySelector('.tab[data-view="paper"]').click();
+    }
   });
   // cross-view jumps: clicking an xref/chip while in claims/graph view switches to paper
   document.body.addEventListener('click', ev => {

@@ -130,6 +130,48 @@ function adoptTrailingLean(src, from, node) {
   return i;
 }
 
+/* ---------- sentences ---------- */
+
+/* The manuscript is graded sentence by sentence, and the grading keys on the
+   sentence's own text, so the renderer has to cut a paragraph into sentences
+   exactly where the census cut it.  Same guarded split: a period inside
+   mathematics, inside a macro argument, inside an abbreviation or inside a
+   decimal does not end a sentence. */
+const ABBREV = ['cf', 'e.g', 'i.e', 'etc', 'vs', 'resp', 'Prop', 'Thm', 'Def', 'Cor',
+  'Lem', 'Ch', 'Sec', 'Fig', 'Eq', 'no', 'No', 'al', 'Mr', 'Dr', 'St',
+  'Jr', 'approx', 'Ex', 'cca', 'Ph.D', 'pp', 'vol', 'ed', 'eds', 'Op'];
+
+function protectPeriods(text) {
+  text = text.replace(/\$[^$]*\$/g, m => m.replace(/\./g, '\u0000'));
+  text = text.replace(/\\[a-zA-Z]+\s*\{[^{}]*\}/g, m => m.replace(/\./g, '\u0000'));
+  for (const a of ABBREV) text = text.split(a + '.').join(a + '\u0000');
+  text = text.replace(/(?<=\d)\.(?=\d)/g, '\u0000');
+  return text;
+}
+
+function splitSentences(paragraph) {
+  const guarded = protectPeriods(paragraph);
+  return guarded.split(/(?<=[.!?])["'\)\}]?\s+/)
+    .map(p => p.split('\u0000').join('.').trim())
+    .filter(Boolean);
+}
+
+/* FNV-1a over UTF-8 of the whitespace-collapsed sentence: the same key the
+   build computes from the census. */
+function sentenceKey(sentence) {
+  // the badges are metadata sitting inside the sentence, not part of it
+  const bare = sentence
+    .replace(/\\leanverified\s*\{[^{}]*\}\s*\{[^{}]*\}/g, '')
+    .replace(/\\leanstep\s*\{[^{}]*\}/g, '');
+  const norm = bare.replace(/\s+/g, ' ').trim();
+  const bytes = new TextEncoder().encode(norm);
+  let h = 0x811c9dc5;
+  for (const b of bytes) {
+    h = Math.imul(h ^ b, 0x01000193) >>> 0;
+  }
+  return h.toString(16).padStart(8, '0');
+}
+
 /* ---------- numbering state ---------- */
 
 const THM_ENVS = {

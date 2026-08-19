@@ -294,6 +294,69 @@ def report_leaks(name, payload):
         print(f'warn: {name} carries "{word}" -> ...{ctx}...', file=sys.stderr)
 
 
+def js_hash(text):
+    """FNV-1a over UTF-8, so the page can recompute a sentence's key without
+    a cryptographic digest and without waiting on an async one."""
+    h = 0x811c9dc5
+    for b in text.encode("utf-8"):
+        h = ((h ^ b) * 0x01000193) & 0xffffffff
+    return format(h, "08x")
+
+
+def parse_census():
+    """metadata/NON_MF_SENTENCE_CENSUS.tsv, re-keyed for the page.
+
+    The census grades every sentence of the manuscript.  Its own key is a
+    sha256 prefix; the page recomputes a key from the sentence it is about to
+    typeset, so both sides key on the same normalized text under a hash the
+    page can afford."""
+    path = REPO / 'metadata' / 'NON_MF_SENTENCE_CENSUS.tsv'
+    if not path.exists():
+        return {}
+    # every row, tombstones included: a sentence pointing only at tombstoned
+    # rows is crediting work, not asserting something the development proves
+    grades = {}
+    led = REPO / 'metadata' / 'NON_MF_PROOF_LEDGER.md'
+    if led.exists():
+        block = re.search(r'<!-- LEDGER-STEPS -->(.*?)<!-- END-LEDGER-STEPS -->',
+                          led.read_text(encoding='utf-8'), re.S)
+        for line in (block.group(1).splitlines() if block else []):
+            cells = [c.strip() for c in line.strip().strip('|').split('|')]
+            if len(cells) < 6 or cells[0] in ('Step', '') or set(cells[0]) <= set('- '):
+                continue
+            grades[cells[0]] = 'TOMBSTONE' if cells[2].startswith('MOVED to') else cells[5]
+    # the census's own vocabulary is the vocabulary of the audit; what a
+    # reader needs is whether the sentence is proved, and if not, what it is
+    PLAIN = {
+        'formalized': 'proved', 'definition': 'proved',
+        'partial': 'partial', 'open': 'open',
+        'attribution': 'cited', 'provenance': 'cited',
+        'structural': 'proved', 'unassigned': 'untriaged',
+    }
+    out = {}
+    for line in path.read_text(encoding='utf-8').splitlines():
+        if line.startswith('#') or not line.strip():
+            continue
+        cells = line.split('\t')
+        if len(cells) < 8 or cells[0] == 'key':
+            continue
+        status, decls, sentence = cells[5], cells[6], cells[7]
+        if status == 'ledger':
+            # a sentence graded by rows is proved when every row it names is
+            steps = [d for d in decls.split() if d in grades]
+            real = [d for d in steps if grades[d] != 'TOMBSTONE']
+            if not steps:
+                plain = 'untriaged'
+            elif not real:
+                plain = 'cited'
+            else:
+                plain = 'proved' if all(grades[d] == 'EXACT' for d in real) else 'unproved'
+        else:
+            plain = PLAIN.get(status, 'untriaged')
+        out[js_hash(re.sub(r'\s+', ' ', sentence).strip())] = plain
+    return out
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('--out', default=str(HERE / 'index.html'))
@@ -368,6 +431,7 @@ def main():
         'window.LEAN_SRC = ' + json.dumps(lean_src).replace('</', '<\\/') + ';\n'
         'window.LEAN_SIGS = ' + json.dumps(lean_sigs).replace('</', '<\\/') + ';\n'
         'window.STEPS = ' + json.dumps(parse_steps()).replace('</', '<\\/') + ';\n'
+        'window.SENTENCES = ' + json.dumps(parse_census()).replace('</', '<\\/') + ';\n'
     )
 
     for name, payload in [

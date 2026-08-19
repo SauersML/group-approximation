@@ -536,3 +536,20 @@ a.chip:hover { text-decoration: none; color: var(--link); border-color: var(--li
   font: inherit; color: var(--link); background: none; border: 0;
   padding: 0; cursor: pointer; text-decoration: underline;
 }
+
+
+/* ============ sentence states ============ */
+/* A sentence the development proves needs no mark: that is the ordinary case
+   and marking it would say nothing.  A sentence it does not prove is marked,
+   and so is a sentence nobody has graded -- silence there would read as the
+   ordinary case, which is the one thing it is not. */
+.sent[data-state="unproved"],
+.sent[data-state="open"],
+.sent[data-state="partial"] {
+  background: linear-gradient(transparent 82%, #f2dfb8 82%);
+}
+.sent[data-state="cited"] { color: var(--ink-soft); }
+body.show-ungraded .sent[data-state="ungraded"] {
+  background: linear-gradient(transparent 82%, var(--bg-inset) 82%);
+  outline: 1px dotted var(--rule);
+}
