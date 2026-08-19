@@ -826,12 +826,12 @@ def routeGuards : List (Name × Name) :=
      `GroupApproximation.ProjectionCompressionCollapse.corona_projection_collapse),
     -- LI.19: the printed sentence "thm:kazhdan-transport uses finite
     -- dimensionality of M_d twice, for the conjugation action on
-    -- L²(M_d, tr_d) and for finiteness of the norm ultraproduct".  Which
-    -- facts a proof consumes is not a proposition, so it is pinned rather than
+    -- L²(M_d, tr_d) and for finiteness of the norm ultraproduct".  Which facts
+    -- a proof consumes is not a proposition, so it is pinned rather than
     -- stated: these two pairs are that sentence, machine-checked, and a
     -- re-route turns the audit red instead of leaving the sentence asserted.
-    -- The conjugation action, realized at the doubled index that is finite
-    -- exactly because the stage is ...
+    -- The conjugation action, realized at the doubled index `Y × Y` that is
+    -- finite exactly because `Y` is ...
     (`GroupApproximation.KazhdanAsymptoticCommutant.manuscriptKazhdanTransport,
      `GroupApproximation.UltraproductModelConstruction.rowMat_conjDouble_mulVec),
     -- ... and finiteness, consumed where the compression step needs a
@@ -914,15 +914,13 @@ def scanTags : List String :=
 sample of them. -/
 def examplesPerTag : Nat := 64
 
-run_cmd do
-  let env ← getEnv
-  let findings ← liftTermElabM <|
-    Audit.allScans env `GroupApproximation allowedAxioms
-  let findings := findings ++
-    Audit.literatureScan env `GroupApproximation literatureInputNames
-
+/-- The verdict, factored out of the scan commands.  Each scan command below
+reports its own findings through this; a finding anywhere is a failure, which
+is the same verdict the single command used to reach. -/
+def reportFindings (label : String) (findings : Array Audit.Finding) :
+    CommandElabM Unit := do
   for tag in scanTags do
-    logInfo m!"{tag}: {(findings.filter (fun f => f.tag == tag)).size}"
+    logInfo m!"{label} {tag}: {(findings.filter (fun f => f.tag == tag)).size}"
 
   -- Once per tag, not once per finding: a renamed tag produced one line of
   -- signal and 255 lines of repetition the first time this fired.
@@ -940,5 +938,80 @@ run_cmd do
 
   unless failures.isEmpty do
     throwError "audit failed:{Format.line}{Format.joinSep failures.toList Format.line}"
+
+/-- How many commands the declaration scan is split across.
+
+The scan is one pass over every theorem in the corpus, doing a
+`forallTelescope` and an `inferType` per binder, and its cost grows with the
+corpus.  At ~45k declarations it exceeded the 200000-heartbeat budget of a
+single elaboration command and the whole audit died at `whnf`, with the
+route guards and the allowed-constant check already green, so the failure
+was in the finding scan and not in the mathematics.  Heartbeats are charged per command,
+so splitting the pass across several commands gives each slice its own budget
+and changes nothing about what is checked.  Raising `maxHeartbeats` instead is
+both blocked by `scripts/check.py` and the wrong fix: the cost is real and
+grows, and a bigger budget only moves the cliff. -/
+def declScanChunks : Nat := 6
+
+run_cmd do
+  let env ← getEnv
+  let findings := Audit.axiomScan env
+      (Audit.corpusNames env `GroupApproximation) allowedAxioms
+    ++ Audit.literatureScan env `GroupApproximation literatureInputNames
+  reportFindings "axiom+literature" findings
+
+run_cmd do
+  let env ← getEnv
+  let names := Audit.corpusNames env `GroupApproximation
+  let width := names.size / declScanChunks + 1
+  let slice := names.extract (0 * width) (min ((0 + 1) * width) names.size)
+  unless slice.isEmpty do
+    let findings ← liftTermElabM <| Audit.declScan env slice
+    reportFindings "decl[0]" findings
+
+run_cmd do
+  let env ← getEnv
+  let names := Audit.corpusNames env `GroupApproximation
+  let width := names.size / declScanChunks + 1
+  let slice := names.extract (1 * width) (min ((1 + 1) * width) names.size)
+  unless slice.isEmpty do
+    let findings ← liftTermElabM <| Audit.declScan env slice
+    reportFindings "decl[1]" findings
+
+run_cmd do
+  let env ← getEnv
+  let names := Audit.corpusNames env `GroupApproximation
+  let width := names.size / declScanChunks + 1
+  let slice := names.extract (2 * width) (min ((2 + 1) * width) names.size)
+  unless slice.isEmpty do
+    let findings ← liftTermElabM <| Audit.declScan env slice
+    reportFindings "decl[2]" findings
+
+run_cmd do
+  let env ← getEnv
+  let names := Audit.corpusNames env `GroupApproximation
+  let width := names.size / declScanChunks + 1
+  let slice := names.extract (3 * width) (min ((3 + 1) * width) names.size)
+  unless slice.isEmpty do
+    let findings ← liftTermElabM <| Audit.declScan env slice
+    reportFindings "decl[3]" findings
+
+run_cmd do
+  let env ← getEnv
+  let names := Audit.corpusNames env `GroupApproximation
+  let width := names.size / declScanChunks + 1
+  let slice := names.extract (4 * width) (min ((4 + 1) * width) names.size)
+  unless slice.isEmpty do
+    let findings ← liftTermElabM <| Audit.declScan env slice
+    reportFindings "decl[4]" findings
+
+run_cmd do
+  let env ← getEnv
+  let names := Audit.corpusNames env `GroupApproximation
+  let width := names.size / declScanChunks + 1
+  let slice := names.extract (5 * width) (min ((5 + 1) * width) names.size)
+  unless slice.isEmpty do
+    let findings ← liftTermElabM <| Audit.declScan env slice
+    reportFindings "decl[5]" findings
 
 end GroupApproximation.Audit

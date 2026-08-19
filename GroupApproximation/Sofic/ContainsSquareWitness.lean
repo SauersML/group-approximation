@@ -187,8 +187,8 @@ theorem witness_construction_hypotheses :
 above cannot be misread as progress on `KC.21`: what the citation asserts is
 that a finitely presented torsion-free *property-`(T)`* group contains its
 square, and this group is an infinite abelian one, which no property-`(T)`
-group is.  That last implication is not proved here and nothing below needs
-it --- the separation this file relies on is mechanical, not mathematical:
+group is.  This file never invokes that last implication, and does not need
+to --- the separation it relies on is mechanical, not mathematical:
 `Witness` carries no `HasKazhdanPropertyTComplex` and no
 `Group.IsFinitelyPresented`, so `realization` cannot be applied to it. -/
 theorem witness_commute (x y : Witness) : Commute x y := Commute.all x y

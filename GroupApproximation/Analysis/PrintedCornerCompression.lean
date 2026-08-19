@@ -667,6 +667,7 @@ def cornerRepresentation : OpAlmostRepresentation G where
     rw [Real.dist_eq, sub_zero] at this
     exact (le_abs_self _).trans this.le
 
+@[simp]
 theorem cornerRepresentation_model (n : ℕ) :
     D.cornerRepresentation.model n = D.cornerModel n := rfl
 
