@@ -1166,6 +1166,7 @@ import GroupApproximation.Analysis.UnitaryAverageFixedVector
 import GroupApproximation.Analysis.OmegaCoronaKazhdanProjection
 import GroupApproximation.Analysis.PrintedDiagonalSubsequence
 import GroupApproximation.Analysis.PrintedCornerCompression
+import GroupApproximation.Analysis.PrintedCornerAssembly
 import GroupApproximation.Analysis.PrintedCornerRelabelling
 import GroupApproximation.Analysis.PolarLiftingMatrixBlocks
 import GroupApproximation.Sofic.OmegaRouteManuscriptTransport
@@ -1210,9 +1211,10 @@ declarations a referee needs, each named against the theorem it establishes.
 
 The statement-by-statement correspondence between this construction and its
 manuscript is `notes/CLAIM_MAP.md`, generated from the paper's own margin notes;
-the manuscript itself is no longer kept in the repository.  The one manuscript
-here is `non_mf_groups_exist.tex`, on operator-norm matrix approximation; it
-does not state the nonsofic theorems.
+the manuscript itself is no longer kept in the repository.  The two manuscripts
+here are `property_tt_leavitt.tex`, on coordinate-block
+factorization and `(TT)/T`, and `non_mf_groups_exist.tex`, on operator-norm
+matrix approximation; neither states the nonsofic theorems.
 
 ## What is proved here rather than assumed
 
