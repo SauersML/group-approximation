@@ -31,6 +31,7 @@ import GroupApproximation.Analysis.CStarExactness
 import GroupApproximation.Analysis.CStarMatrixFactorization
 import GroupApproximation.Analysis.LanceMatrixSubalgebra
 import GroupApproximation.Analysis.LanceBlockOperator
+import GroupApproximation.Analysis.LanceChoiFunctional
 import GroupApproximation.Kazhdan.KazhdanUniverseDescent
 import GroupApproximation.Sofic.ChosenMaximalCStarInfinite
 import GroupApproximation.Analysis.TorsionFreeFullMFCStarConsequences
