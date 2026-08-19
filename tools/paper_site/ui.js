@@ -655,9 +655,12 @@ function buildFormalView() {
   const withLean = thms.filter(t => t.querySelector('.lean-panel-tpl')).length;
 
   let html = '<div class="formal-lede">' +
-    '<p>Every numbered result carries a Lean&nbsp;4 statement, and a ✓ in the ' +
-    'manuscript opens it. The tint marks the sentence a ✓ stands for. ' +
-    'Everything below is what the Lean development does <em>not</em> prove.</p>' +
+    '<p>A ✓ in the manuscript opens the Lean statement behind it. Most of them ' +
+    'sit on a whole result or a whole proof, because that is the grain at which ' +
+    'the formalization is written; the few inside a proof pin one step to one ' +
+    'sentence, and hovering shows which. A sentence with no ✓ beside it is not ' +
+    'thereby unchecked — it is covered by the ✓ on the result it belongs to.</p>' +
+    '<p>Everything below is what the Lean development does <em>not</em> prove.</p>' +
     '</div>';
 
   html += '<div class="formal-nums">' +
@@ -892,17 +895,31 @@ function setupHoverPreviews(root) {
 }
 
 /* A mark after a sentence says "this one", but only if the reader can see
-   where the sentence began.  Tint the span the mark covers: from the end of
-   the previous sentence (or the previous mark) up to the mark itself.
+   where the sentence began, so each mark knows the span it covers: from the
+   end of the previous sentence (or the previous mark) up to the mark itself.
+
+   Shown on hover, never all at once.  Only 23 of the manuscript's steps are
+   pinned to a sentence -- the rest of the formalization attaches to a whole
+   statement or a whole proof -- so tinting all of them together would say
+   that those 23 sentences are the checked ones, which is the opposite of
+   true.  One at a time answers "what does this mark cover?" and claims
+   nothing about the sentences around it.
 
    Done with the Custom Highlight API rather than by wrapping nodes, because
    a printed sentence runs through KaTeX markup and cross-reference links,
    and wrapping would have to cut them.  Where the browser lacks it the marks
    still work; only the tint is missing. */
+const CHECKED_SPAN = new WeakMap();
+function showChecked(chip) {
+  const r = chip && CHECKED_SPAN.get(chip);
+  if (r && CSS.highlights) CSS.highlights.set('lean-checked', new Highlight(r));
+}
+function clearChecked() {
+  if (CSS.highlights) CSS.highlights.delete('lean-checked');
+}
 function highlightCheckedSentences(root) {
   if (typeof Highlight !== 'function' || !CSS.highlights) return;
   const BLOCK = 'p, li, .li-body, .thm-stmt, .proof-body, blockquote';
-  const ranges = [];
   root.querySelectorAll('.lean-chip').forEach(chip => {
     const block = chip.closest(BLOCK);
     if (!block) return;
@@ -947,9 +964,20 @@ function highlightCheckedSentences(root) {
     const [en, eo] = at(to);
     const r = document.createRange();
     try { r.setStart(sn, so); r.setEnd(en, eo); } catch (e) { return; }
-    if (!r.collapsed) ranges.push(r);
+    if (!r.collapsed) CHECKED_SPAN.set(chip, r);
   });
-  if (ranges.length) CSS.highlights.set('lean-checked', new Highlight(...ranges));
+  // the span answers a question, so it appears when one is being asked
+  root.addEventListener('mouseover', ev => {
+    const chip = ev.target.closest('.lean-chip');
+    if (chip) showChecked(chip);
+  });
+  root.addEventListener('mouseout', ev => {
+    if (ev.target.closest('.lean-chip') && !document.querySelector('.lean-chip[aria-expanded="true"]')) clearChecked();
+  });
+  root.addEventListener('focusin', ev => {
+    const chip = ev.target.closest('.lean-chip');
+    if (chip) showChecked(chip);
+  });
 }
 
 /* ---------- the lean drawer ---------- */
@@ -1057,7 +1085,9 @@ function setupLeanPanels(root) {
     if (openFor) {
       const b = openFor.querySelector('.badge-lean');
       if (b) b.setAttribute('aria-expanded', 'false');
+      if (openFor.classList && openFor.classList.contains('lean-chip')) openFor.setAttribute('aria-expanded', 'false');
     }
+    clearChecked();
     openFor = null;
   }
 
@@ -1113,6 +1143,8 @@ function setupLeanPanels(root) {
       drawer.querySelectorAll('details.lean-decl').forEach(d => { d.open = true; });
       drawer.hidden = false;
       drawer.scrollTop = 0;
+      chip.setAttribute('aria-expanded', 'true');
+      showChecked(chip);
       openFor = chip;
       return;
     }
@@ -1164,7 +1196,8 @@ function init() {
 
   // ----- header/meta -----
   document.getElementById('paper-key').innerHTML =
-    '<span class="key-mark">✓</span> a step checked in Lean 4 — click it for the proof; the tint is what it covers. ' +
+    '<span class="key-mark">✓</span> machine-checked in Lean 4 — click for the proof; where a ✓ sits inside a proof, ' +
+    'hover it to see the sentence it covers. ' +
     '<button class="key-link" data-goto="formal">What is not checked</button>';
   document.getElementById('abstract-body').innerHTML =
     parsed.abstract.split(/\n\s*\n/).map(p => p.trim() ? '<p>' + renderInline(p.trim(), {}) + '</p>' : '').join('');

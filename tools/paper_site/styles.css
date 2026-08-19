@@ -380,8 +380,8 @@ details.proof > summary .badge-lean { font-size: 12px; padding: 0 8px; }
 .ls-claim { flex: 1 1 260px; }
 .ls-decls { flex: 1 1 100%; padding-left: 2px; }
 .ls-decl { font-size: 0.85em; color: var(--ink-soft); overflow-wrap: anywhere; }
-/* the span a mark covers, so a reader sees the sentence and not just a
-   mark floating after one */
+/* the span one mark covers, raised while that mark is hovered or open --
+   never all of them at once, which would read as a coverage map */
 ::highlight(lean-checked) { background-color: var(--verified-bg); }
 
 .lean-chip {
