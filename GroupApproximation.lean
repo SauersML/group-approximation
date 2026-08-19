@@ -35,6 +35,7 @@ import GroupApproximation.Analysis.LanceChoiFunctional
 import GroupApproximation.Analysis.LanceHermitianFunctional
 import GroupApproximation.Analysis.LanceMatrixArveson
 import GroupApproximation.Analysis.LanceDayEngine
+import GroupApproximation.Analysis.LanceMultiplicationOperator
 import GroupApproximation.Kazhdan.KazhdanUniverseDescent
 import GroupApproximation.Sofic.ChosenMaximalCStarInfinite
 import GroupApproximation.Analysis.TorsionFreeFullMFCStarConsequences
