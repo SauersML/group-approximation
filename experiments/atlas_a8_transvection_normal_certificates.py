@@ -4,7 +4,8 @@
 The chart group is GL(4,2)=A8.  The collision 19243 first-chart syllable is
 b=I+E_(2,3).  This script proves that the six standard adjacent
 transvections generate the full group and that each is a single conjugate of b.
-It also freezes shortest conjugator words in those six generators.
+It freezes shortest conjugator words and the directed Cayley diameter in those
+six generators.
 
 Everything is exact over F2 and uses only the Python standard library.
 """
@@ -77,6 +78,8 @@ def main():
                 words[new] = words[old] + (name,)
                 todo.append(new)
     assert len(words) == 20160
+    diameter = max(len(word) for word in words.values())
+    assert diameter == 15
 
     # Search the entire group for shortest conjugators of b to each standard
     # transvection, then pin the resulting words so later compiler work has a
@@ -97,6 +100,7 @@ def main():
         assert mul(mul(conjugator, B), inv(conjugator)) == G[target_name]
 
     print("six adjacent transvections generate GL(4,2)=A8, order 20160")
+    print("directed Cayley diameter in the six-transvection alphabet: 15")
     for target, word in EXPECTED.items():
         print(
             f"{target} = a t23 a^-1, shortest |a|={len(word)}: "
