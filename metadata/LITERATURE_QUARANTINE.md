@@ -150,7 +150,36 @@ target `EuclideanSpace ℂ Y →L[ℂ] EuclideanSpace ℂ Y`, and the isometric
 is what the scoped `Matrix.Norms.L2Operator` instance *is*, so the norms agree
 by definition.  Neither is a citation, and step (i) is now possible where
 before it was not.  **This entry is one bridge from leaving the roster
-entirely.**
+entirely**, and the bridge is short enough to write out.
+
+### The bridge, step by step
+
+Everything it needs is already in the tree.
+
+1. **Self-adjointness of the transported block matrix.**  For
+   `M : CStarMatrix (Fin n) (Fin n) A` with `M = star N * N`, self-adjointness
+   of `M` gives `M i j = star (M j i)`, and then
+   `star ((M.map ψ) j i) = ψ (star (M j i)) = ψ (M i j)` — the middle step is
+   **`ucp_map_star`**, which is why that half had to be proved first.  So
+   `star (M.map ψ) = M.map ψ`.
+2. **Nonnegativity of its form.**  `M i j = ∑ k, star (N k i) * N k j`, so the
+   form of `M.map ψ` at `v` is `∑ k` of the form at the tuple `a = N k ·`, and
+   each summand is the hypothesis `IsCompletelyPositiveOnMatrices` supplies —
+   *including* the reality clause, which is what `blockOp` positivity wants and
+   what the old predicate could not give.
+3. **Factor it.**  `LanceBlockOperator.exists_factor_of_blockOp_form_nonneg`
+   takes exactly (1) and (2) and returns `P` with `M.map ψ = star P * P`.  That
+   is `CStarExactness.IsCompletelyPositive ψ`, by definition.
+4. **Read off the bound.**  `IsCompletelyPositive.norm_apply_le_of_unital`
+   then gives `‖ψ c‖ ≤ ‖c‖`, and `UCPContractive` follows.
+
+Two frictions, both mechanical.  `exists_factor_of_blockOp_form_nonneg` is
+stated at `EuclideanSpace ℂ (Fin k)`, so an arbitrary `Y : FiniteModel` has to
+be moved along `Fintype.equivFin`; and `ψ` is `φ` followed by the identification
+of `Matrix Y Y ℂ` with those operators, which is the scoped
+`Matrix.Norms.L2Operator` structure and so is isometric by definition.  Neither
+is a theorem about C⋆-algebras.  This is the highest-value open task in the
+quarantine: it retires an entry outright.
 
 ## The one citation that is not a research programme
 
