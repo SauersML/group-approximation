@@ -49,6 +49,19 @@ conjugators exactly one kills all 234 boundary words, the identity, and there
 every `l_s` vanishes -- so no inner counterexample exists and every
 counterexample must be non-inner, as the characteristic-two one is.
 
+**Calibration.**  The constant cannot be small.  Evaluating both energies
+inside the characteristic-two countermodel exactly -- its second chart is
+inner, so every trace is a delta function and both sides reduce to membership
+in the left ideal `I` -- gives `sum_s l_s^2 = 1372` with zero boundary defect
+and interior defect squared `2`, hence
+
+```text
+C' >= 686.
+```
+
+The same evaluation confirms the established global bound at a point far from
+the fold: `a^2+b^2 = 4 <= 1372/14 = 98`.
+
 **What it buys.**  With the established global bound it gives
 `a^2+b^2 <= (C'/14) sum_(s in S_0) ||pi_U(s)-1||_2^2` outright, hence (ASC),
 hence a non-hyperlinear group: see

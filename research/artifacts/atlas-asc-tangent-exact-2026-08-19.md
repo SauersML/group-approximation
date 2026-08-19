@@ -190,6 +190,59 @@ same 234 signed prefix sums, which is the practical reason to expect the
 interior separator -- which is what closes the mod-2 hole -- to be exactly
 what the complex inequality is missing.
 
+## 4e. The countermodel, evaluated exactly
+
+The characteristic-two countermodel is not just a qualitative obstruction --
+every energy in it is computable in closed form, because its second chart is
+INNER in `E`.  With `M = F_2[A_8]/I`, `m = 1+I` and
+`beta(g) = ((1+g)m, g)`, the second chart is conjugation of the first by
+`mu = (m, e)`, so the intertwiner is the group element `U = lambda_E(mu)` and
+
+    rho(x)U = lambda_E(x . m),
+    <U, rho(x)U> = delta( (1+x)m = 0 ),
+
+since normalized traces in a regular representation are `delta_(h,e)` and the
+trace is conjugation invariant.  Both energies collapse to one membership
+test in the left ideal `I`:
+
+    sum_s l_s^2 = sum_(x in Z) (W_pkt)_x,   Z = { x : 1+x in I },
+    a^2+b^2     = 4 - 2[h_a in Z] - 2[h_b in Z].
+
+Measured (`experiments/atlas_asc_countermodel_energy.py`, 73 s):
+
+| quantity | value |
+|---|---|
+| left ideal rank / queue remaining | 20005 / 0 (reproduces the audit) |
+| raw `S_3` letters fixing `m` | neither |
+| covariance energy `a^2+b^2` | **4**, the maximum |
+| `sum_s l_s^2` | **1372** = 2^2 * 7^3 |
+| support of `W_pkt` inside `Z` | 3 of 101 |
+| boundary defect | 0 |
+| interior defect squared | 2 |
+
+Two consequences.
+
+**The global 1/14 bound survives a test it could have failed.**  `4 <= 1372/14
+= 98`.  The bound came from a complex generalized eigenvalue problem on
+20160 x 20160 matrices; this value came from GF(2) ideal membership in a
+model at multiplicity `2^155`.  Nothing forced them to agree.
+
+**The constant of (LINK+) is at least 686.**  The countermodel has zero
+boundary defect and interior defect squared 2, so any valid `C'` satisfies
+`C' >= 1372/2 = 686`.  That does not threaten the route -- it needs only some
+finite dimension-free constant, and against the `1/40` floor even `C' = 686`
+leaves `sum_(S_0) defect^2 >= 1/(40 * 49)` -- but it is a hard calibration,
+and it says the interior separator has to do a lot of work.
+
+**A dichotomy for group microstates.**  For any microstate whose chart
+unitary is a group element `mu` in an overgroup, `<U, rho(x)U> = delta(x in
+Z)` with `Z = Stab(mu)`, so `sum_s l_s^2 = sum_(x in Z)(W_pkt)_x =: E(Z)` and
+`rho(x)U = U` exactly when `x in Z`.  Since `ker rho(W_pkt)` is the `H`-fixed
+space, `E(Z) = 0` iff `H <= Z` iff both raw letters fix `mu` iff the
+covariance vanishes.  For this whole class of models the collapse is
+therefore equivalent to a subgroup containment, with no analysis in it at
+all.
+
 ## 5. The proof-shaped residue
 
 `C_loc <= C` is equivalent to positivity, in every representation of `A_8`,
