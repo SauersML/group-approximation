@@ -129,7 +129,7 @@ theorem compressionGroup_transport_both_anyUniverse :
   -- "forward transport for a one-sided conjugator `s` is Theorem 3.1", so the
   -- corollary has to traverse the norm-ultraproduct proof of
   -- `\ref{thm:kazhdan-transport}`, which is what
-  -- `compressionGroup_transport_both_literal` does.  That is ledger row
+  -- `compressionGroup_transport_both_literal` does.  That is graded step
   -- `ID.05`; the universe generality below is `ID.04`, and the two are only
   -- closed together if one declaration carries both.
   obtain ⟨h1, h2⟩ := compressionGroup_transport_both_literal B

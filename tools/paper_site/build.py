@@ -25,7 +25,8 @@ def read(p):
 
 
 DECL_HEAD = re.compile(
-    r'^(?:@\[[^\]]*\]\s*)?(?:noncomputable\s+)?(?:private\s+)?'
+    r'^(?:@\[[^\]]*\]\s*)?'
+    r'(?:(?:noncomputable|private|protected|nonrec|partial|unsafe|scoped)\s+)*'
     r'(theorem|lemma|def|abbrev|instance|structure|inductive)\s+(\S+)', re.M)
 
 # A line that starts a new top-level item ends the previous declaration.
@@ -34,6 +35,66 @@ NEXT_TOP = re.compile(
     r'(?:theorem|lemma|def|abbrev|instance|structure|inductive|class|example|open|end|namespace|'
     r'section|variable|universe|set_option|attribute|omit|include|mutual|deriving|alias|export|'
     r'notation|macro|syntax|elab|initialize|run_cmd|#)\b)', re.M)
+
+
+def comment_spans(src):
+    """(start, end) of every Lean comment in `src`: nesting block comments
+    (`/- -/`, and so `/-- -/` and `/-! -/` too) and line comments.
+
+    A module docstring is prose, and prose contains sentences that begin with
+    the word `theorem`.  Scanning for declarations without this mask picks
+    those up as declarations named after whatever word follows -- one such
+    phantom carried a path from this repository onto the page."""
+    spans = []
+    i, n = 0, len(src)
+    while i < n:
+        c = src[i]
+        if c == '"':                                   # string literal
+            i += 1
+            while i < n and src[i] != '"':
+                i += 2 if src[i] == '\\' else 1
+            i += 1
+            continue
+        if src.startswith('/-', i):
+            start, depth, i = i, 0, i
+            while i < n:
+                if src.startswith('/-', i):
+                    depth += 1
+                    i += 2
+                elif src.startswith('-/', i):
+                    depth -= 1
+                    i += 2
+                    if depth == 0:
+                        break
+                else:
+                    i += 1
+            spans.append((start, i))
+            continue
+        if src.startswith('--', i):
+            j = src.find('\n', i)
+            j = n if j < 0 else j
+            spans.append((i, j))
+            i = j
+            continue
+        i += 1
+    return spans
+
+
+def in_any(spans, pos):
+    return any(a <= pos < b for a, b in spans)
+
+
+def name_matches(source_name, wanted):
+    """How well a name written at a declaration head matches a fully
+    qualified name, in dot-segments; 0 for no match.
+
+    `theorem NormModel.exists_hs_collapse` inside `namespace GroupApproximation`
+    is cited as `GroupApproximation.NormModel.exists_hs_collapse`, so neither
+    the whole name nor its last segment is what stands in the source.  What
+    always holds is that the source name is a suffix of the cited one."""
+    a = source_name.split('.')
+    b = wanted.split('.')
+    return len(a) if len(a) <= len(b) and b[-len(a):] == a else 0
 
 
 def split_signature(code):
@@ -78,30 +139,71 @@ def extract_decl(module, decl):
     if not path.exists():
         return None
     src = path.read_text(encoding='utf-8')
-    name = decl.split('.')[-1]
+    spans = comment_spans(src)
+    # the head that names the most segments of `decl` wins, so a `Foo.bar` in
+    # the file is preferred over a bare `bar` when both could answer
+    best = None
     for m in DECL_HEAD.finditer(src):
-        if m.group(2) != name:
+        if in_any(spans, m.start()):
             continue
-        line = src.count('\n', 0, m.start(1)) + 1
-        stop = NEXT_TOP.search(src, m.end())
-        code = src[m.start(1):stop.start() if stop else len(src)].rstrip()
-        at = split_signature(code)
-        if at < 0:
-            sig, proof = code, ''
-        else:
-            sig, proof = code[:at].rstrip(), code[at:].rstrip()
-        sig, t1 = cap(sig, 60, 6000)
-        proof, t2 = cap(proof, 400, 24000)
-        return {'sig': sig, 'proof': proof, 'line': line, 'trunc': t1 or t2}
-    return None
+        score = name_matches(m.group(2), decl)
+        if score and (best is None or score > best[0]):
+            best = (score, m)
+    if best is None:
+        return None
+    m = best[1]
+    line = src.count('\n', 0, m.start(1)) + 1
+    stop = NEXT_TOP.search(src, m.end())
+    code = src[m.start(1):stop.start() if stop else len(src)].rstrip()
+    at = split_signature(code)
+    if at < 0:
+        sig, proof = code, ''
+    else:
+        sig, proof = code[:at].rstrip(), code[at:].rstrip()
+    sig, t1 = cap(sig, 60, 6000)
+    proof, t2 = cap(proof, 400, 24000)
+    return {'sig': sig, 'proof': proof, 'line': line, 'trunc': t1 or t2}
 
 
-def parse_ledger():
+def strip_tex_comments(tex):
+    """Drop TeX comments, exactly as parser.js's stripComments does.
+
+    The page carries the manuscript source so the renderer can typeset it,
+    and a comment is a note between authors, not part of the manuscript --
+    these ones name files in this repository.  The renderer strips comments
+    anyway, so doing it here changes nothing it reads and keeps the words
+    out of what is served."""
+    out, carry = [], None
+    for raw in tex.split('\n'):
+        line = raw if carry is None else carry + raw.lstrip()
+        carry = None
+        cut = -1
+        k = 0
+        while k < len(line):
+            if line[k] == '\\':
+                k += 2
+                continue
+            if line[k] == '%':
+                cut = k
+                break
+            k += 1
+        if cut < 0:
+            out.append(line)
+            continue
+        before = line[:cut]
+        if before.strip() == '':
+            continue                     # whole-line comment: no paragraph break
+        carry = before                   # a comment eats the newline after it
+    if carry is not None:
+        out.append(carry)
+    return '\n'.join(out)
+
+
+def parse_steps():
     """Step rows of metadata/NON_MF_PROOF_LEDGER.md, grouped by anchor.
 
-    The ledger is hand-authored audit metadata (its pin is machine-enforced
-    in CI); each row grades one printed step's statement and proof route
-    against the Lean development."""
+    Hand-authored, pin-enforced in CI; each row grades one printed step's
+    statement and proof route against the Lean development."""
     path = REPO / 'metadata' / 'NON_MF_PROOF_LEDGER.md'
     if not path.exists():
         return {}
@@ -129,13 +231,22 @@ def parse_ledger():
             # would show repository bookkeeping, and counting it would report
             # a proof as unformalized because of a footnote.
             continue
-        by_anchor.setdefault(cells[1], []).append({
+        row = {
             'step': cells[0],
             'claim': claim[:240],
             'decls': decls,
             'stmt': cells[4],
             'proof': cells[5],
-        })
+        }
+        if cells[5] != 'EXACT':
+            # the rare case, and the only one a reader needs explained: say
+            # whether the step is quoted from the literature or posed as open,
+            # and name what it rests on
+            row['why'] = cells[7] if len(cells) > 7 else ''
+            src = cells[8] if len(cells) > 8 else '-'
+            if src and src != '-':
+                row['source'] = [x.strip() for x in src.split(',') if x.strip()]
+        by_anchor.setdefault(cells[1], []).append(row)
     return by_anchor
 
 
@@ -158,6 +269,28 @@ def scrub_claim(cell):
     return text.strip(), tombstone
 
 
+# What the page serves is the paper.  Anything that describes how the paper is
+# produced -- the name of a file in this repository, the vocabulary of the
+# grading process -- belongs to the workshop, not to a reader, and reaches the
+# page only by accident: a TeX comment, a note inside a Lean proof the drawer
+# displays, a table cell copied straight through.  These say where.
+LEAK_RE = re.compile(
+    r'\b(?:notes|metadata|scripts|research|tools|bin|docs|experiments)/[\w./-]+'
+    r'|[\w./-]+\.md\b'
+    r'|\bledgers?\b|\baudit(?:s|ed|ing|or)?\b', re.I)
+
+
+def report_leaks(name, payload):
+    seen = set()
+    for m in LEAK_RE.finditer(payload):
+        word = m.group(0)
+        if word in seen:
+            continue
+        seen.add(word)
+        ctx = re.sub(r'\s+', ' ', payload[max(0, m.start() - 60):m.end() + 40])
+        print(f'warn: {name} carries "{word}" -> ...{ctx}...', file=sys.stderr)
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('--out', default=str(HERE / 'index.html'))
@@ -174,7 +307,7 @@ def main():
     freshness_js = read(HERE / 'freshness.js').replace(
         '/*__BUILD_ID_JSON__*/', json.dumps(args.build_id))
     template = read(HERE / 'template.html')
-    tex = read(REPO / 'non_mf_groups_exist.tex')
+    tex = strip_tex_comments(read(REPO / 'non_mf_groups_exist.tex'))
     claims = read(REPO / 'metadata' / 'NON_MF_NUMBERED_CLAIMS.json')
 
     # inline the woff2 fonts into the KaTeX css; drop the woff/ttf fallbacks
@@ -213,7 +346,10 @@ def main():
         if not path.exists():
             continue
         srcm = path.read_text(encoding='utf-8')
+        spans_m = comment_spans(srcm)
         for m2 in DECL_HEAD.finditer(srcm):
+            if in_any(spans_m, m2.start()):
+                continue
             key = module + '|' + m2.group(2)
             if key in lean_sigs:
                 continue
@@ -228,7 +364,7 @@ def main():
         'window.CLAIMS = ' + json.dumps(json.loads(claims)).replace('</', '<\\/') + ';\n'
         'window.LEAN_SRC = ' + json.dumps(lean_src).replace('</', '<\\/') + ';\n'
         'window.LEAN_SIGS = ' + json.dumps(lean_sigs).replace('</', '<\\/') + ';\n'
-        'window.LEDGER = ' + json.dumps(parse_ledger()).replace('</', '<\\/') + ';\n'
+        'window.STEPS = ' + json.dumps(parse_steps()).replace('</', '<\\/') + ';\n'
     )
 
     for name, payload in [
@@ -238,6 +374,7 @@ def main():
     ]:
         if '</script' in payload.replace('<\\/script', ''):
             sys.exit(f'{name} contains a literal </script sequence')
+        report_leaks(name, payload)
 
     out = template
     for name, payload in [

@@ -366,10 +366,9 @@ details.proof > summary .badge-lean { font-size: 12px; padding: 0 8px; }
 .badge-lean-partial { color: var(--ink-soft); background: var(--bg-inset); border-color: var(--rule); }
 .badge-lean-partial:hover { border-color: var(--ink-soft); }
 
-/* per-step grading in the drawer, from the audited proof-step ledger */
-.ledger-head { margin: 16px 0 4px; font-weight: 700; }
-.ledger-src { font-weight: 400; font-style: italic; color: var(--ink-faint); font-size: 0.88em; }
-.ledger-step {
+/* per-step grading in the drawer */
+.step-row:first-of-type { margin-top: 16px; }
+.step-row {
   display: flex; gap: 8px; align-items: baseline; flex-wrap: wrap;
   padding: 6px 0; border-top: 1px solid var(--rule-soft);
   font-size: 13.5px;
@@ -381,21 +380,18 @@ details.proof > summary .badge-lean { font-size: 12px; padding: 0 8px; }
 .ls-claim { flex: 1 1 260px; }
 .ls-decls { flex: 1 1 100%; padding-left: 2px; }
 .ls-decl { font-size: 0.85em; color: var(--ink-soft); overflow-wrap: anywhere; }
+/* the span a mark covers, so a reader sees the sentence and not just a
+   mark floating after one */
+::highlight(lean-checked) { background-color: var(--verified-bg); }
+
 .lean-chip {
-  font-size: 11px; font-style: italic; font-family: inherit;
+  font-size: 11px; font-family: inherit;
   color: var(--verified); background: var(--verified-bg);
   border: 1px solid rgba(14, 122, 111, 0.35); border-radius: 999px;
-  padding: 0 6px; margin: 0 3px; cursor: pointer;
+  padding: 0 5px; margin: 0 2px; cursor: pointer;
   vertical-align: 0.12em; line-height: 1.4;
 }
 .lean-chip:hover { border-color: var(--verified); }
-/* how many declarations back this one step — several markers on one step
-   collapse into a single chip rather than a row of identical check marks */
-.lean-chip-n {
-  font-style: normal; font-variant-numeric: tabular-nums;
-  font-size: 0.92em; opacity: 0.8;
-}
-.lean-chip-n::before { content: '\00d7'; opacity: 0.7; }
 .lean-chip-mismatch { color: #8a6100; background: #f7efdc; border-color: rgba(138, 97, 0, 0.35); }
 .lean-chip-mismatch:hover { border-color: #8a6100; }
 .lean-chip-missing { color: var(--ink-faint); background: var(--bg-inset); border-color: var(--rule); }
@@ -411,7 +407,7 @@ details.proof > summary .badge-lean { font-size: 12px; padding: 0 8px; }
   border-left: 2px solid var(--rule);
 }
 .lean-ref-card .lean-code { margin: 0 0 4px; }
-.ledger-step .lean-ref-card {
+.step-row .lean-ref-card {
   flex: 1 1 100%;
   margin: 2px 0 4px 10px;
   background: var(--bg-inset); border-radius: 6px;
@@ -511,3 +507,36 @@ a.chip:hover { text-decoration: none; color: var(--link); border-color: var(--li
 .fnote { color: var(--ink-soft); font-size: 0.9em; }
 .inline-anchor { position: relative; top: -70px; }
 ::selection { background: rgba(37, 87, 199, 0.18); }
+
+
+/* ============ the Lean view ============ */
+.formal-lede { max-width: 42em; margin: 8px 0 22px; color: var(--ink-soft); }
+.formal-lede p { margin: 0; }
+.formal-nums { display: flex; flex-wrap: wrap; gap: 26px; margin: 0 0 30px; }
+.fnum { display: flex; align-items: baseline; gap: 8px; max-width: 20em; }
+.fnum b { font-size: 26px; font-weight: 700; color: var(--verified); line-height: 1; }
+.fnum span { font-size: 13.5px; color: var(--ink-soft); }
+.formal-group { margin: 0 0 30px; max-width: 46em; }
+.formal-group h3 { font-size: 1.02em; font-weight: 700; margin: 0 0 2px; }
+.formal-blurb { margin: 0 0 12px; font-size: 13.5px; color: var(--ink-faint); }
+.formal-item { padding: 9px 0; border-top: 1px solid var(--rule-soft); }
+.formal-claim { font-size: 14.5px; }
+.formal-meta { display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px; margin-top: 4px; }
+.fbadge { font-size: 11.5px; color: #8a6100; background: #f7efdc; border-radius: 999px; padding: 0 8px; }
+.fcite { font-size: 12.5px; color: var(--ink-faint); }
+
+.paper-key {
+  display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px;
+  margin: 0 0 26px; padding: 7px 0 0;
+  border-top: 1px solid var(--rule-soft);
+  font-size: 12.5px; color: var(--ink-faint);
+}
+.key-mark {
+  color: var(--verified); background: var(--verified-bg);
+  border: 1px solid rgba(14, 122, 111, 0.35); border-radius: 999px;
+  padding: 0 5px; font-size: 11px;
+}
+.key-link {
+  font: inherit; color: var(--link); background: none; border: 0;
+  padding: 0; cursor: pointer; text-decoration: underline;
+}

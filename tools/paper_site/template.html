@@ -31,6 +31,7 @@
     <button class="tab is-on" id="tab-paper" data-view="paper" role="tab" aria-selected="true" aria-controls="view-paper">Paper</button>
     <button class="tab" id="tab-claims" data-view="claims" role="tab" aria-selected="false" aria-controls="view-claims" tabindex="-1">Claims</button>
     <button class="tab" id="tab-graph" data-view="graph" role="tab" aria-selected="false" aria-controls="view-graph" tabindex="-1">Graph</button>
+    <button class="tab" id="tab-formal" data-view="formal" role="tab" aria-selected="false" aria-controls="view-formal" tabindex="-1">Lean</button>
   </nav>
   <button class="topbar-btn proof-toggle" id="proof-toggle" aria-pressed="false">Hide proofs</button>
 </div>
@@ -49,11 +50,13 @@
             <div id="abstract-body"></div>
           </div>
         </header>
+        <div class="paper-key" id="paper-key"></div>
         <div id="paper-body"><p id="typesetting-note">Typesetting…</p><noscript>This edition needs JavaScript to typeset the paper.</noscript></div>
       </div>
     </div>
     <div id="view-claims" role="tabpanel" aria-labelledby="tab-claims" hidden><div class="content" id="claims-content"></div></div>
     <div id="view-graph" role="tabpanel" aria-labelledby="tab-graph" hidden><div class="content" id="graph-content"></div></div>
+    <div id="view-formal" role="tabpanel" aria-labelledby="tab-formal" hidden><div class="content" id="formal-content"></div></div>
   </main>
 </div>
 
