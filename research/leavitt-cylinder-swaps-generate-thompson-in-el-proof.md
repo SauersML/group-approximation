@@ -6,7 +6,7 @@ title: The characteristic-two triple product, the same-leaf transposition identi
 target: leavitt-cylinder-swaps-generate-thompson-in-el
 requires: []
 artifacts:
-  - official/counterexample.tex
+  - c1168433:official/counterexample.tex
 ---
 
 ## Why sufficient

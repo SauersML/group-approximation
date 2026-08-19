@@ -9,7 +9,7 @@ distinct_from:
   leavitt-cylinder-swaps-generate-thompson-in-el: That is the general membership lemma for cylinder swaps in an elementary prefix group; this is the configuration that uses it twice, together with the two compression tables and the generation statement.
   leavitt-gl-equals-el-and-perfect-unit-group: That is the rank transport and perfectness, pure algebra about `GL` and `EL`; this is a specific subgroup triple with commutation, intersection and compression properties, assembled for a criterion.
 artifacts:
-  - official/counterexample.tex
+  - c1168433:official/counterexample.tex
 ---
 
 ESTABLISHED.  Section 3 of the OpenAI nonsofic chapter, over

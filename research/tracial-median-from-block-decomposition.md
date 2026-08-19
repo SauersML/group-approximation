@@ -6,7 +6,7 @@ title: Pin the size observable directly with the block Poincare gap
 target: tracial-median-concentration
 requires: [hs-expander-block-decomposition, median-poincare-concentration]
 artifacts:
-  - official/counterexample.tex
+  - c1168433:official/counterexample.tex
 ---
 
 Assume the nested pair of block algebras from

@@ -6,7 +6,7 @@ title: Decompose twice, match by bounded medians, select one component, complete
 target: openai-expander-matching-criterion
 requires: [kun-expander-decomposition-formalized, kun-thom-expander-centralizer-formalized, openai-bounded-median-component-matching]
 artifacts:
-  - official/counterexample.tex
+  - c1168433:official/counterexample.tex
 ---
 
 ## Why sufficient

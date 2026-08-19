@@ -8,7 +8,7 @@ distinct_from:
   boone-higman-thompson-simple-envelope: That is about embedding groups with solvable word problem into finitely presented simple groups of Thompson type; this is an elementary-matrix membership statement for cylinder swaps over a Leavitt algebra.
   openai-nine-leaf-leavitt-configuration: That is the specific nine-leaf configuration with its two compressions and its verified hypotheses; this is the general membership lemma the configuration uses twice, at two different codes.
 artifacts:
-  - official/counterexample.tex
+  - c1168433:official/counterexample.tex
   - GroupApproximation/Leavitt/ThompsonVWitness.lean
   - GroupApproximation/Leavitt/ThompsonVEmbedding.lean
 ---

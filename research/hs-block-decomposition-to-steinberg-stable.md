@@ -6,7 +6,7 @@ title: Transcribe the one-sided-compression nonsoficity argument to normalized H
 target: leavitt-steinberg-hs-stable
 requires: [hs-expander-block-decomposition, tracial-median-concentration, leavitt-steinberg-hs-stability-fork]
 artifacts:
-  - official/counterexample.tex
+  - c1168433:official/counterexample.tex
   - docs/NOTEPAD.md
 ---
 

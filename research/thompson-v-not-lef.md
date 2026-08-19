@@ -8,7 +8,7 @@ distinct_from:
   permutation-norm-models-certify-exactly-lef: That identifies the class of groups certified by permutation operator-norm models, a statement about a certification method; this is a single group's failure of that property.
   leavitt-cylinder-swaps-generate-thompson-in-el: That places `V` inside an elementary prefix group over a Leavitt algebra, a membership statement with no approximation property in it; this is the non-LEF property of `V` itself, independent of any ring.
 artifacts:
-  - official/counterexample.tex
+  - c1168433:official/counterexample.tex
 ---
 
 ESTABLISHED, and classical.  Thompson's group `V` is finitely presented,

@@ -8,7 +8,7 @@ distinct_from:
   leavitt-steinberg-hs-stable: That is the branch selection; this is one of the two inputs a transcription of the nonsoficity argument would need.
   invariant-size-collapse: That is the exact algebraic statement that a conjugation-invariant strictly monotone size makes a compression an equality; this is the quantitative approximate substitute, needed precisely because the trace is refinement-blind and supplies no such size.
 artifacts:
-  - official/counterexample.tex
+  - c1168433:official/counterexample.tex
 ---
 
 Given a nested pair of almost-invariant block algebras as in

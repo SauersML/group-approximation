@@ -9,8 +9,8 @@ distinct_from:
   spectral-component-motion-bound: That bounds how far a compression can move a commuting-orbit witness across connected spectral components of an operator; this compares the SIZES of the components of two expander decompositions of the same finite model.
   one-sided-compression-nonsofic-criterion: That is the full formalized bridge from many expanders to one; this is the size-comparison step alone, stated as the chapter states it.
 artifacts:
-  - official/counterexample.tex
-  - official/reasoning.tex
+  - c1168433:official/counterexample.tex
+  - c1168433:official/reasoning.tex
 ---
 
 ESTABLISHED.  The analytic heart of [[openai-expander-matching-criterion]],

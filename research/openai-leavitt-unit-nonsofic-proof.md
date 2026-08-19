@@ -6,7 +6,7 @@ title: Apply the expander-matching criterion to the nine-leaf configuration, wit
 target: openai-leavitt-unit-nonsofic
 requires: [openai-expander-matching-criterion, openai-nine-leaf-leavitt-configuration, thompson-v-not-lef]
 artifacts:
-  - official/counterexample.tex
+  - c1168433:official/counterexample.tex
 ---
 
 ## Why sufficient

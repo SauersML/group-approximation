@@ -6,7 +6,7 @@ title: Cover the first nonsofic group by its own failed finite table
 target: finitely-presented-nonsofic-group-exists
 requires: [openai-leavitt-unit-nonsofic]
 artifacts:
-  - official/reasoning.tex
+  - c1168433:official/reasoning.tex
   - GroupApproximation/Covers/TableCover.lean
 ---
 

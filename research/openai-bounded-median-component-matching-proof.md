@@ -6,8 +6,8 @@ title: Normalize by a bounded median, then convert zero drift into concentration
 target: openai-bounded-median-component-matching
 requires: [kun-expander-decomposition-formalized]
 artifacts:
-  - official/counterexample.tex
-  - official/reasoning.tex
+  - c1168433:official/counterexample.tex
+  - c1168433:official/reasoning.tex
 ---
 
 ## Why sufficient

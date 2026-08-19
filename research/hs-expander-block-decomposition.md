@@ -11,7 +11,7 @@ distinct_from:
 artifacts:
   - docs/TRUE_DIAGONAL_NORMALIZER_RIGIDITY.md
   - docs/TRUE_SPECTRAL_COAREA_INVARIANT_CUT.md
-  - official/counterexample.tex
+  - c1168433:official/counterexample.tex
 ---
 
 Use the explicit compression triple from

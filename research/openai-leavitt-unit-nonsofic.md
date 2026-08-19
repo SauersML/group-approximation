@@ -10,9 +10,9 @@ distinct_from:
   openai-nine-leaf-leavitt-configuration: That asserts only that one explicit subgroup triple satisfies the criterion's hypotheses, with no approximation property in it; this is the nonsoficity conclusion drawn from it.
 root: true
 artifacts:
-  - official/counterexample.tex
-  - official/reasoning.tex
-  - official/README.md
+  - c1168433:official/counterexample.tex
+  - c1168433:official/reasoning.tex
+  - 22863aed:official/README.md
 ---
 
 ESTABLISHED.

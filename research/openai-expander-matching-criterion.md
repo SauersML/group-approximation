@@ -9,8 +9,8 @@ distinct_from:
   kun-thom-expander-centralizer-formalized: That is the second input, which consumes a single expander on the whole approximation set; this is what manufactures such an approximation from data that property (T) alone supplies.
   openai-leavitt-unit-nonsofic: That is the theorem about one explicit group; this is the group-theoretic criterion behind it, quantified over every compressing triple and mentioning no ring.
 artifacts:
-  - official/counterexample.tex
-  - official/reasoning.tex
+  - c1168433:official/counterexample.tex
+  - c1168433:official/reasoning.tex
 ---
 
 ESTABLISHED.  This is Proposition 2.3 of the OpenAI nonsofic chapter, the

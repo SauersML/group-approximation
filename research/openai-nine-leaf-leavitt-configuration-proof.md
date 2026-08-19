@@ -6,7 +6,7 @@ title: Conjugate the elementary roots, block the six leaves into pairs, and read
 target: openai-nine-leaf-leavitt-configuration
 requires: [elementary-group-property-t-over-free-algebras, leavitt-cylinder-swaps-generate-thompson-in-el, leavitt-gl-equals-el-and-perfect-unit-group]
 artifacts:
-  - official/counterexample.tex
+  - c1168433:official/counterexample.tex
 ---
 
 ## Why sufficient

@@ -8,7 +8,7 @@ distinct_from:
   leavitt-group-algebra-not-stably-finite: that asks for an explicit one-sided inverse pair over `F_2` for one group; this fixes which coefficient fields any such search has to cover, for every group at once.
 artifacts:
   - research/artifacts/sofic-dividends-audit-2026-08-17.md
-  - official/counterexample.tex
+  - c1168433:official/counterexample.tex
 ---
 
 For every group `Gamma`:

@@ -6,7 +6,7 @@ title: Finitely presented plus LEF gives residually finite, which an infinite si
 target: thompson-v-not-lef
 requires: []
 artifacts:
-  - official/counterexample.tex
+  - c1168433:official/counterexample.tex
 ---
 
 ## Why sufficient
