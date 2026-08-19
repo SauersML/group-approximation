@@ -496,7 +496,7 @@ theorem cstarMatrix_mul_star_eq_one_of_hasMFEmbedding
 /-- The same statement in the manuscript's `k ≥ 1` indexing: for an MF algebra
 `A` and every `k`, every isometry of `M_k(A)` is a unitary. -/
 theorem fin_mul_star_eq_one_of_hasMFEmbedding
-    {A : Type u} [CStarAlgebra A] [PartialOrder A] [StarOrderedRing A]
+    {A : Type u} [CStarAlgebra A]
     (hA : HasMFEmbedding A) (k : ℕ)
     {v : CStarMatrix (Fin k) (Fin k) A} (hv : star v * v = 1) :
     v * star v = 1 :=
