@@ -140,6 +140,7 @@ theorem dense_span_tmul_left {D : Set E} (hD : Dense D) :
             mul_lt_mul_of_pos_left (lt_add_one _) hδ
           have h4 : (ε / (n * (‖k i‖ + 1))) * (‖k i‖ + 1) = ε / n := by
             field_simp
+            try ring
           linarith
         have hne : (Finset.univ : Finset (Fin n)).Nonempty := by
           rw [Finset.univ_nonempty_iff]
@@ -204,7 +205,7 @@ theorem dense_span_tmul_right {D : Set F} (hD : Dense D) :
             mul_lt_mul_of_pos_right (lt_add_one _) hδ
           have h4 : (‖v i‖ + 1) * (ε / (n * (‖v i‖ + 1))) = ε / n := by
             field_simp
-            ring
+            try ring
           linarith
         have hne : (Finset.univ : Finset (Fin n)).Nonempty := by
           rw [Finset.univ_nonempty_iff]

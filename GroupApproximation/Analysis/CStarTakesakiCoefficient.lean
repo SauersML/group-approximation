@@ -187,7 +187,6 @@ theorem norm_apply_sq_le_of_isAdjoint {T : V →L[ℂ] V} (hT : IsAdjoint T T)
       mul_le_mul_of_nonneg_left hγ (sq_nonneg _)
     have h11 : t⁻¹ ^ 2 * (t * ‖T ζ‖ ^ 2) = t⁻¹ * ‖T ζ‖ ^ 2 := by
       field_simp
-      ring
     have h12 : t⁻¹ * ‖T ζ‖ ^ 2 ≤ α := by nlinarith
     have h13 : t * (t⁻¹ * ‖T ζ‖ ^ 2) ≤ t * α :=
       mul_le_mul_of_nonneg_left h12 ht.le
@@ -303,6 +302,7 @@ noncomputable def leftSlice (ρ : StarRep B K) (a : Fin n → A)
     (LinearMap.mulLeftRight ℂ (star (a i), a j)) ∘ₗ
       sliceSecond (vecFunctional ρ (η j) (η i))
 
+omit [StarModule ℂ A] [StarModule ℂ B] in
 theorem leftSlice_tmul (ρ : StarRep B K) (a : Fin n → A) (η : Fin n → K)
     (c : A) (d : B) :
     leftSlice ρ a η (c ⊗ₜ[ℂ] d)
@@ -493,6 +493,7 @@ noncomputable def rightCoeffVector (ρ : StarRep B K) (ζ : K)
     (b : Fin n → B) (ξ : Fin n → H) : H ⊗[ℂ] K :=
   ∑ j : Fin n, (ξ j) ⊗ₜ[ℂ] (ρ.hom (b j) ζ)
 
+omit [StarModule ℂ A] [StarModule ℂ B] in
 /-- **The mirrored coefficient identity**: the quadratic form at the
 mirrored coefficient vector computes on the right slice, as a vector
 functional of `ρ` at the single element `rightSlice π b ξ y ∈ B`. -/
