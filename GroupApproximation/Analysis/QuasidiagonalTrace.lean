@@ -136,15 +136,17 @@ statement has it, not because a proof consumes it. -/
 def IsCompletelyPositiveOnMatrices (Y : FiniteModel) (φ : A → Matrix Y Y ℂ) :
     Prop :=
   ∀ (m : ℕ) (a : Fin m → A) (w : Fin m → Y → ℂ),
-    0 ≤ (∑ i : Fin m, ∑ j : Fin m, ∑ x : Y, ∑ y : Y,
-      (starRingEnd ℂ) (w i x) * φ (star (a i) * a j) x y * w j y).re
+    (∑ i : Fin m, ∑ j : Fin m, ∑ x : Y, ∑ y : Y,
+      (starRingEnd ℂ) (w i x) * φ (star (a i) * a j) x y * w j y).im = 0
+      ∧ 0 ≤ (∑ i : Fin m, ∑ j : Fin m, ∑ x : Y, ∑ y : Y,
+        (starRingEnd ℂ) (w i x) * φ (star (a i) * a j) x y * w j y).re
 
 /-- The zero map is completely positive: every form vanishes.  A smoke test on
-the orientation of the inequality, nothing more. -/
+the orientation of the inequality and on the reality clause, nothing more. -/
 theorem isCompletelyPositiveOnMatrices_zero (Y : FiniteModel) :
     IsCompletelyPositiveOnMatrices Y (fun _ : A ↦ (0 : Matrix Y Y ℂ)) := by
   intro m a w
-  simp
+  constructor <;> simp
 
 /-- **Complete positivity specializes to ordinary positivity.**  Taking a
 one-element tuple, the defining condition says that each single matrix
@@ -161,7 +163,24 @@ theorem IsCompletelyPositiveOnMatrices.form_nonneg {Y : FiniteModel}
     (w : Y → ℂ) :
     0 ≤ (∑ x : Y, ∑ y : Y,
       (starRingEnd ℂ) (w x) * φ (star a * a) x y * w y).re := by
-  simpa using h 1 (fun _ ↦ a) (fun _ ↦ w)
+  simpa using (h 1 (fun _ ↦ a) (fun _ ↦ w)).2
+
+/-- **The form is real**, which is the clause the predicate was missing until
+2026-08-19 and the one that makes it say complete positivity.
+
+Without it the predicate constrains only the Hermitian part of each
+`φ (a⋆ a)`: writing a matrix as `H + iK` with both Hermitian,
+`Re ⟪w, T w⟫ = ⟪w, H w⟫`, so an anti-Hermitian summand is invisible.  The
+module docstring carries the two-by-two unital map that satisfies the weakened
+form and is neither `⋆`-preserving nor contractive; it is the reason
+`UCPSelfAdjointContractive` could not be discharged, and the reason the clause
+is here. -/
+theorem IsCompletelyPositiveOnMatrices.form_im {Y : FiniteModel}
+    {φ : A → Matrix Y Y ℂ} (h : IsCompletelyPositiveOnMatrices Y φ) (a : A)
+    (w : Y → ℂ) :
+    (∑ x : Y, ∑ y : Y,
+      (starRingEnd ℂ) (w x) * φ (star a * a) x y * w y).im = 0 := by
+  simpa using (h 1 (fun _ ↦ a) (fun _ ↦ w)).1
 
 /-! ## The conclusion of Tikuisis--White--Winter -/
 

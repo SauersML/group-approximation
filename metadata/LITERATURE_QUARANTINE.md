@@ -113,8 +113,9 @@ double sum collapses to `Re ⟪U, (½ + N) U⟫ + Re ⟪V, (½ − N) V⟫`, eac
 `½‖·‖²`.  But `φ (star (z, w)) ≠ (φ (z, w))ᴴ` whenever `z ≠ w`, and
 `‖φ (1, 0)‖ = √5 / 2 > 1`.
 
-**The fix, and what it buys.**  Add to the predicate the clause that the form's
-imaginary part vanishes.  That is what complete positivity means and what
+**The fix, applied.**  `IsCompletelyPositiveOnMatrices` now also asks that the
+form's imaginary part vanish, and `IsCompletelyPositiveOnMatrices.form_im`
+reads that clause off at a single element.  That is what complete positivity means and what
 Tikuisis–White–Winter supplies, so the input does not become stronger than the
 theorem — the current definition is an accidental weakening, not a deliberate
 one.  With the clause, the `⋆`-preservation half falls out with no dilation at
