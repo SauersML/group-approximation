@@ -2,69 +2,68 @@
 rg: 2
 id: a4-holonomy-gap-from-normal-certificate
 kind: route
-title: Five conjugacy checks and six local covariance semantics force complete chart-frame collapse
+title: An opaque five-edge conjugacy star around 19243 forces complete chart-frame collapse
 target: atlas-a4-holonomy-coherence-gap
 requires:
   - atlas-a4-normal-certificate-compiler
-  - atlas-a8-five-conjugacy-hs-collapse
+  - unitary-star-conjugacy-hs-collapse
   - atlas-a8-six-transvection-commutant-gap
 ---
 
-Put
+Use the six raw covariance opcodes defined by `(A4-STAR-0)` and abbreviate
 
 ```text
-eta'_n = max_(s in S\{t23})||r_s(V_n)-1||_2,
-delta'_n = ||V_n(t23)-1||_2.
+B_n=V_n(t23),
+T_(n,s)=V_n(s),       s in S\{t23}.
 ```
 
-The compiler gives
+The compiler supplies five opaque transport unitaries `A_n(s)` with
 
 ```text
-eta'_n <= C_cert eta_n,
-delta'_n <= C_col (||sigma_n(q_19243)-1||_2+eta_n).
+max_(s != t23)||T_(n,s)-A_n(s)B_nA_n(s)^*||_2
+ <= C_star eta_n,                                       (1)
+
+||B_n-1||_2
+ <= C_col (||sigma_n(q_19243)-1||_2+eta_n).             (2)
 ```
 
-Apply `atlas-a8-five-conjugacy-hs-collapse`:
+Apply `unitary-star-conjugacy-hs-collapse` directly.  Since neither theorem nor
+its proof asks what the `A_n(s)` mean,
 
 ```text
 max_(s in S)||V_n(s)-1||_2
- <= eta'_n+delta'_n
- <= C_cert eta_n
+ <= C_star eta_n
     + C_col (||sigma_n(q_19243)-1||_2+eta_n)
- -> 0.                                                   (1)
-```
-
-By the local semantic readout `(A4-NCERT-3)`, for every `s in S`,
-
-```text
-||[U_n,lambda_(k_n)(s)]||_2
- = ||U_n lambda(s) U_n^* lambda(s)^*-1||_2
- <= ||V_n(s)-1||_2+C_sem eta_n
- -> 0.                                                   (2)
-```
-
-Now use `atlas-a8-six-transvection-commutant-gap`.  Since `|S|=6`, `(2)` gives
-explicitly
-
-```text
-dist_2(U_n,lambda_(k_n)(A8)')
- <= 15 sqrt(6)
-    (max_(s in S)||V_n(s)-1||_2+C_sem eta_n)
  -> 0.                                                   (3)
 ```
 
-Choose a nearest commutant element `Y_n`.  For each of the two fixed raw-S3
-covariance generators `h_a,h_b`,
+But by definition `(A4-STAR-0)`,
+
+```text
+||V_n(s)-1||_2=||[U_n,lambda_(k_n)(s)]||_2.
+```
+
+Use `atlas-a8-six-transvection-commutant-gap`.  Since `|S|=6`,
+
+```text
+dist_2(U_n,lambda_(k_n)(A8)')
+ <= 15 sqrt(6) max_(s in S)||V_n(s)-1||_2
+ -> 0.                                                   (4)
+```
+
+Choose a nearest commutant element `Y_n`.  For each fixed raw-S3 covariance
+generator `h_a,h_b`,
 
 ```text
 ||[U_n,lambda(h)]||_2 <= 2||U_n-Y_n||_2 -> 0.
 ```
 
-Hence `a_n^2+b_n^2->0`, stronger than the required `limsup<1/128`, and
-`atlas-a4-holonomy-coherence-gap` follows.
+Hence `a_n^2+b_n^2->0`, stronger than `limsup<1/128`, proving
+`atlas-a4-holonomy-coherence-gap`.
 
-The live one-leaf compiler portfolio is therefore completely local: five
-frozen conjugacy-loop defects, one collision-transvection defect, and six
-opcode-to-covariance semantic defects.  Full A8 table consistency,
-representation rounding, invariant-sector bookkeeping and a global decoder
-hypothesis have all disappeared.
+The resulting route has a single open mathematical leaf.  The finite compiler
+must produce only five approximate **pairwise conjugacies** from the collision
+covariance opcode to the other standard transvection covariance opcodes, plus
+the collision readout itself.  There is no multiplication table, no frozen
+conjugator word, no approximate representation, no semantic register, and no
+global decoder left to prove.
