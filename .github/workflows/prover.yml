@@ -753,6 +753,29 @@ jobs:
               || { echo "::error::a claim signature snapshot is stale; regenerate with 'lake env lean scripts/Signatures.lean' and commit the diff"; exit 1; }
           fi
 
+      # The signature gate above pins what each mapped declaration STATES.
+      # This one pins how much of our own vocabulary a reader must understand
+      # to read that statement: `scripts/StatementClosure.lean` walks the
+      # transitive closure of repository-local constants reachable from each
+      # mapped statement and writes the counts to metadata/AUDIT_SURFACE.md.
+      #
+      # A statement that quietly acquires a new definition keeps its type
+      # printed identically only if the definition is the same one -- but a
+      # refactor that routes an endpoint through a new wrapper, or a
+      # `variable` that drags a fresh structure into a header, moves this
+      # number while leaving other gates green.  The point is not a budget:
+      # the file is committed and the diff is reviewed, exactly like the
+      # signature snapshots.
+      - name: Audit surface (statement closures of mapped declarations)
+        run: |
+          if [ ! -s metadata/AUDIT_SURFACE.md ]; then
+            echo "::error::metadata/AUDIT_SURFACE.md is missing; generate it with 'lake env lean scripts/StatementClosure.lean' and commit it"
+            exit 1
+          fi
+          lake env lean scripts/StatementClosure.lean
+          git diff --exit-code metadata/AUDIT_SURFACE.md \
+            || { echo "::error::metadata/AUDIT_SURFACE.md is stale; regenerate with 'lake env lean scripts/StatementClosure.lean' and commit the diff"; exit 1; }
+
       # The fresh kernel re-check certifies the compiled proof tree.  Its
       # verdict is a function of the Lean-relevant tree only: the sources,
       # toolchain pin, lock file, and scripts.  When that tree is

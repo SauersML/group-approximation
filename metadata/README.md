@@ -15,6 +15,7 @@ references should use `metadata/` directly.
 | `NON_MF_PROOF_LEDGER.md` | hand-audited (re-pin via `check_non_mf_proof_ledger.py --repin-header`) | ledger checker, prose-decl checker, paper site |
 | `CLAIM_DECLS.txt`, `NON_MF_CLAIM_DECLS.txt` | hand-maintained rosters | `scripts/Signatures.lean`, `check.py`, claim map |
 | `CLAIM_SIGNATURES.md`, `NON_MF_CLAIM_SIGNATURES.md` | `scripts/Signatures.lean` (generated) | signature gates in prover CI |
+| `AUDIT_SURFACE.md` | `scripts/StatementClosure.lean` (generated) | audit-surface gate in prover CI |
 | `CLAIM_MAP.md`, `PROPERTY_TT_CLAIM_MAP.md` | `scripts/claim_map.py` / hand | claim-map gates |
 | `PROPERTY_TT_PROVENANCE.md` | hand | property-TT gates |
 | `NON_MF_UNCONDITIONAL_BASELINE.txt`, `NON_MF_CONDITIONAL_INVENTORY.md` | hand | unconditionality gate |
