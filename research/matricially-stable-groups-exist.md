@@ -29,7 +29,7 @@ radical of these groups exactly rather than bounding it:
 Rad_MF(F_alpha) = Rad_fd(F_alpha) = 1,      Rad_MF(Z) = Rad_fd(Z) = 1 .
 ```
 
-The conditionality register at `docs/NON_MF_UNCONDITIONAL_BASELINE.txt` loses
+The conditionality register at `notes/NON_MF_UNCONDITIONAL_BASELINE.txt` loses
 its two `open-predicate` rows as a direct result, and the register's
 stale-entry rule is what forces their removal: an exemption cannot outlive the
 problem it records.

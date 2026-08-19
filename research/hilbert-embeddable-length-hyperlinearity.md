@@ -9,7 +9,7 @@ distinct_from:
   hyperlinear-near-representation-criterion: that is Kahl--Schneider's abstract characterization by amenable near representations; this is a finite-group, character-theoretic criterion applied to weak-soficity witnesses.
   hilbert-embeddable-witness-for-kun-thom-wreath: that asks whether one explicit group's witnesses have the property; this is the general theorem that the property suffices, proved for all groups and calibrated by examples on both sides.
 artifacts:
-  - docs/NOTEPAD.md
+  - notes/NOTEPAD.md
   - GroupApproximation/Sofic/Hyperlinear.lean
 ---
 

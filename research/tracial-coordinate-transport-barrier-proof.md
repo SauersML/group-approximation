@@ -6,7 +6,7 @@ title: Established countermodel plus the localization of the corner step
 target: tracial-coordinate-transport-barrier
 requires: [mf-hyperlinear-radical-divergence, finite-traced-kazhdan-transport, corner-renormalization-cost]
 artifacts:
-  - docs/NON_MF_TO_HYPERLINEAR_DIFFERENTIAL_AUDIT.md
+  - notes/NON_MF_TO_HYPERLINEAR_DIFFERENTIAL_AUDIT.md
 ---
 
 ## Why sufficient

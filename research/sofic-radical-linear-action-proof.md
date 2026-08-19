@@ -6,7 +6,7 @@ title: Amplify qualitative sofic-radical control to a linear modulus
 target: sofic-radical-linear-action-criterion
 requires: []
 artifacts:
-  - docs/TRUE_LINEAR_SOFIC_RADICAL_INEQUALITY.md
+  - notes/TRUE_LINEAR_SOFIC_RADICAL_INEQUALITY.md
 ---
 
 ## Direct proof

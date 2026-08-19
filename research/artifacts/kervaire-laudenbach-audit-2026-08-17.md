@@ -327,7 +327,7 @@ invalidation).**
 The source audited `research/kervaire-laudenbach-holds-for-hyperlinear.md`,
 `research/kl-violating-equation-over-leavitt-unit-group.md`,
 `research/kl-violation-refutes-hyperlinearity-route.md`,
-`docs/EXPLICIT_LEAVITT_ATLAS.md`,
+`notes/EXPLICIT_LEAVITT_ATLAS.md`,
 `research/leavitt-gl-equals-el-and-perfect-unit-group.md`, and the atlas
 extraction notes, and reports no hidden proof of Kervaire--Laudenbach,
 Whitehead asphericity, or Eilenberg--Ganea.  Two of its incidental

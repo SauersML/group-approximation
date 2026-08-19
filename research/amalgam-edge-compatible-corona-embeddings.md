@@ -7,8 +7,8 @@ distinct_from:
   literal-mark-quotient-mf: That claim is group MF of the amalgam; this is the C*-level datum Shulman's criterion asks for, which is strictly stronger and which requires both vertex algebras to be MF.
   shulman-amalgam-mf-criterion: That is the imported general theorem; this is the instance it demands for this particular amalgam.
 artifacts:
-  - docs/COMMUTING_LAMP_QUOTIENT_STRUCTURE_AND_MF_FORK_2026-08-14.md
-  - docs/LITERAL_GROUP_BLOCK_AMALGAM_STRUCTURE_2026-08-14.md
+  - notes/COMMUTING_LAMP_QUOTIENT_STRUCTURE_AND_MF_FORK_2026-08-14.md
+  - notes/LITERAL_GROUP_BLOCK_AMALGAM_STRUCTURE_2026-08-14.md
   - research/artifacts/bekka-math-0609102-verified.md
   - research/artifacts/shulman-2603-13564-verified.md
 ---

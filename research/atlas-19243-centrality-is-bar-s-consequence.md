@@ -4,8 +4,8 @@ id: atlas-19243-centrality-is-bar-s-consequence
 kind: claim
 title: The word-19243 interior centrality test is forced by the canonical atlas packet
 artifacts:
-  - docs/EXPLICIT_LEAVITT_ATLAS.md
-  - docs/ATLAS_BOUNDARY_RANK_THREE_EXACT_AUDIT.md
+  - notes/EXPLICIT_LEAVITT_ATLAS.md
+  - notes/ATLAS_BOUNDARY_RANK_THREE_EXACT_AUDIT.md
   - experiments/atlas-word-19243.json
 ---
 

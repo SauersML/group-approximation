@@ -31,14 +31,14 @@ are residually finite Kazhdan groups with `Gamma` infranormal and not normal.
 Corollary D adds that the generalized Bernoulli action
 `G action (K,kappa)^(G/Gamma)` is not sofic.
 
-This is the same architecture as `docs/OBSTRUCTIONS.md` §4 (compressors from
-`SL_d(Z)` monomial substitutions), and `docs/FALSE_HALO_ACTION_AUDIT.md`
+This is the same architecture as `notes/OBSTRUCTIONS.md` §4 (compressors from
+`SL_d(Z)` monomial substitutions), and `notes/FALSE_HALO_ACTION_AUDIT.md`
 already writes the candidate as `W=(directSum_(G/Gamma) C_2) semidirect G`
 and calls it the Kun--Thom group.
 
 Three independent reads now agree word for word on Theorem A, Theorem E and
 Theorem 4.1: the scout's PDF read, a 2026-08-08 fetch recorded in
-`docs/NOTEPAD.md`, and a 2026-08-14 fetch of the abstract page together with
+`notes/NOTEPAD.md`, and a 2026-08-14 fetch of the abstract page together with
 `arxiv.org/html/2608.06222v1`. Full verbatim transcription, with provenance
 and trust surface, is in the artifact.
 
@@ -46,11 +46,11 @@ and trust surface, is in the artifact.
 
 The scout's two gaps were both gaps of *identification*, and identification
 was impossible because the graph had never given the candidate a formula: no
-`research/*.md` file and no section of `docs/OBSTRUCTIONS.md` defines it. It
+`research/*.md` file and no section of `notes/OBSTRUCTIONS.md` defines it. It
 is fixed here, in the form the rest of the corpus already uses
-(`docs/COMMUTING_WREATH_SOFIC_RADICAL.md`,
-`docs/PERFECT_CORE_KUN_THOM_WREATH.md`,
-`docs/UNIQUE_TRACE_KUN_THOM_DOUBLE.md`), which is Kun--Thom's Theorem E pair
+(`notes/COMMUTING_WREATH_SOFIC_RADICAL.md`,
+`notes/PERFECT_CORE_KUN_THOM_WREATH.md`,
+`notes/UNIQUE_TRACE_KUN_THOM_DOUBLE.md`), which is Kun--Thom's Theorem E pair
 verbatim. Let `q` be a prime power and `r, d ≥ 3`; put
 
     R₊ = 𝔽_q[x₁,…,x_d],   R = 𝔽_q[x₁^{±1},…,x_d^{±1}],
@@ -75,7 +75,7 @@ infranormality, non-normality and (T) on both sides. The scout's caution about
 to a *different* node, not to this one.
 
 **Notation discipline.** Throughout this graph `G` is the *acting* group above
-and `W` is the wreath product. `docs/OBSTRUCTIONS.md` §5 uses `G` in that
+and `W` is the wreath product. `notes/OBSTRUCTIONS.md` §5 uses `G` in that
 sense ("If `G` is flexibly HS-stable then the wreath candidate is not
 hyperlinear"). `research/wreath-flexible-hs-stability.md` currently reuses the
 letter `G` for the wreath itself; that node is owned elsewhere, but the two
@@ -88,7 +88,7 @@ Four neighbours in the corpus are close enough to be confused with `W` and are
 **not** covered by the citation:
 
 - the perfect index-two core `P₂ = I_X ⋊ G`, `I_X = ker(ε : ⊕_X 𝔽₂ → 𝔽₂)`,
-  which is `[W,W]` (`docs/PERFECT_CORE_KUN_THOM_WREATH.md`);
+  which is `[W,W]` (`notes/PERFECT_CORE_KUN_THOM_WREATH.md`);
 - the Clifford central cover `H_Cl = C(X) ⋊ G` with anticommuting lamps, whose
   central quotient is `W`;
 - the **split integral wreath candidate** `W_Y = ℤ^{(Y)} ⋊ Q` with

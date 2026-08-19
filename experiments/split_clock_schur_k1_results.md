@@ -9,7 +9,7 @@ Take `p=3`, `k=1`, so `M=3`, `n=9`, and form the finite group
 `G_1=J_1 semidirect (C_9 semidirect_4 C_3)`
 
 from Theorem 5 of
-`docs/FALSE_SPLIT_SQUARE_ZERO_H2_AMPLIFIER.md`.  In the augmentation basis
+`notes/FALSE_SPLIT_SQUARE_ZERO_H2_AMPLIFIER.md`.  In the augmentation basis
 
 `a=e_1-e_0`, `b=e_2-e_0`,
 

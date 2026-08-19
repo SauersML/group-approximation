@@ -6,7 +6,7 @@ title: Cut a root subgroup against the denominator ideal
 target: marked-double-coset-infinite-degree
 requires: [kun-thom-nonsofic-wreath]
 artifacts:
-  - docs/COMMUTING_WREATH_SOFIC_RADICAL.md
+  - notes/COMMUTING_WREATH_SOFIC_RADICAL.md
 ---
 
 ## Direct proof

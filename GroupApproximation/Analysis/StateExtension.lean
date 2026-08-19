@@ -18,7 +18,7 @@ functional is then reassembled from its real and imaginary parts.  The
 subalgebra is not required to be closed.
 
 This is the extension brick of the strict-Kazhdan-compression program of
-`docs/FORMALIZATION_DIRECTIVES_2026-08-15.md` §1: it turns a character at
+`notes/FORMALIZATION_DIRECTIVES_2026-08-15.md` §1: it turns a character at
 a spectral point of the averaging element (living on the commutative
 elemental subalgebra) into a state of the full algebra, ready for GNS.
 -/

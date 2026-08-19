@@ -35,11 +35,11 @@ extension loci.
 Useful files (the derivation chain is reproducible via
 `cairn why non-hyperlinear-group`):
 
-- `docs/TRUE_IWAHORI_CENTRAL_REGULAR_OUTLIER_LOCALIZATION.md`
-- `docs/TRUE_IWAHORI_INDEX_THREE_HAS_BOUNDED_BRANCHING.md`
-- `docs/TRUE_IWAHORI_MIXED_GAP_DICHOTOMY.md`
-- `docs/TRUE_IWAHORI_FACTOR_GATE_IS_COSYSTOLIC_ANGLE.md`
-- `docs/FALSE_ROBUST_T_IWAHORI_EDGE_REPAIR.md`
+- `notes/TRUE_IWAHORI_CENTRAL_REGULAR_OUTLIER_LOCALIZATION.md`
+- `notes/TRUE_IWAHORI_INDEX_THREE_HAS_BOUNDED_BRANCHING.md`
+- `notes/TRUE_IWAHORI_MIXED_GAP_DICHOTOMY.md`
+- `notes/TRUE_IWAHORI_FACTOR_GATE_IS_COSYSTOLIC_ANGLE.md`
+- `notes/FALSE_ROBUST_T_IWAHORI_EDGE_REPAIR.md`
 
 ## 2. Alex Lubotzky — flexible operator-norm stability of Z^3
 

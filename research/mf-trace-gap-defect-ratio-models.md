@@ -7,9 +7,9 @@ distinct_from:
   mf-implies-hyperlinear: This is one explicit analytic profile sufficient for the root claim, not the root claim; it asks for a rate relating the multiplicative defect, the dimension, and the visibility of one element.
   countable-group-mf-conventions: That established claim compares MF formulations at fixed accuracy; this one asks for a quantitative dimension-versus-defect rate that no formulation supplies for free.
 artifacts:
-  - docs/FALSE_WEAK_MF_EFFECTIVE_RANK_PROFILE.md
-  - docs/FALSE_ONE_NUMBER_RELATIVE_COMMUTANT_CRITERION.md
-  - docs/NOTEPAD.md
+  - notes/FALSE_WEAK_MF_EFFECTIVE_RANK_PROFILE.md
+  - notes/FALSE_ONE_NUMBER_RELATIVE_COMMUTANT_CRITERION.md
+  - notes/NOTEPAD.md
   - GroupApproximation/Sofic/ExteriorMFProfile.lean
   - GroupApproximation/Sofic/NormTraceGap.lean
 ---
@@ -60,7 +60,7 @@ family with `(T)`-rigid exact ambients cannot satisfy it.
 Nothing in the MF property relates `epsilon_n` to `d_n`; this claim is the
 exact analytic content missing from `mf-implies-hyperlinear` along the
 amplification route.  It is the repository's own stated subproblem: the
-square-root-profile entry of `docs/NOTEPAD.md` (2026-08-08) closes with
+square-root-profile entry of `notes/NOTEPAD.md` (2026-08-08) closes with
 "extracting or disproving this profile is now a concrete quantitative
 subproblem", after observing that Shulman's qualitative MF theorem states no
 such rate.  The special case `epsilon_n sqrt(d_n) -> 0` for a group already

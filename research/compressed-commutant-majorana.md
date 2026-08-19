@@ -7,7 +7,7 @@ distinct_from:
   kun-thom-clifford-relative-wall: That is the finite matrix endpoint stated with two normalized-Hilbert--Schmidt conditions on a family of almost representations; this is its exact algebraic content after the compressor automorphism has been divided out, a single involution in one relative commutant with a one-step Gamma-conjugation.
   kun-thom-clifford-crossed-product-ce: That asks for Connes embeddability of the whole Clifford crossed product; this asks only for one involution in one relative commutant of an arbitrary Connes-embeddable model.
 artifacts:
-  - docs/TRUE_RELATIVE_WALL_IS_COMMUTANT_GROWTH.md
+  - notes/TRUE_RELATIVE_WALL_IS_COMMUTANT_GROWTH.md
 ---
 
 Find a Connes-embeddable finite tracial von Neumann algebra `M`, a
@@ -34,7 +34,7 @@ for every invariant graph.
 I asked the wreath lane whether `block-monomial-coordinate-collapse` extends
 from abelian lamps in a coarse diagonal to Clifford lamps.  It was answered
 (`clifford-diagonal-lamp-subspace`, proof in
-`docs/TRUE_CLIFFORD_BLOCK_MONOMIAL_LAMP_SUBSPACE.md`): **half extends, and
+`notes/TRUE_CLIFFORD_BLOCK_MONOMIAL_LAMP_SUBSPACE.md`): **half extends, and
 the half that fails is the informative one.**  The result is a constraint on
 this target, not a refutation of it.
 

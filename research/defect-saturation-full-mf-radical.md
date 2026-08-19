@@ -4,7 +4,7 @@ id: defect-saturation-full-mf-radical
 kind: claim
 title: Defect saturation gives groups with full MF radical
 artifacts:
-  - docs/COMPRESSION_COLLAPSE_MF_RADICAL.md
+  - notes/COMPRESSION_COLLAPSE_MF_RADICAL.md
   - GroupApproximation/Sofic/DefectSaturation.lean
 ---
 

@@ -7,7 +7,7 @@ target: random-complex-linear-cocycle-stability
 requires: []
 artifacts:
   - research/artifacts/hyperbolic-residual-finiteness-audit-2026-08-17.md
-  - docs/TRUE_A3_METRIC_CONE_SYNCHRONIZATION.md
+  - notes/TRUE_A3_METRIC_CONE_SYNCHRONIZATION.md
 ---
 
 The one place where this repository owns a tool that looks like the missing

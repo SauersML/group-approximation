@@ -1,6 +1,6 @@
 """Exact objective of the TRUE criterion at the classical warm starts.
 
-The canonical regular-A8 criterion (`docs/EXPLICIT_LEAVITT_ATLAS.md` §9) asks
+The canonical regular-A8 criterion (`notes/EXPLICIT_LEAVITT_ATLAS.md` §9) asks
 for `U in U(20160k)` making
 
     pi(h) = lambda(h) tensor I_k        (h in K1)

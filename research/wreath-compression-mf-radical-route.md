@@ -8,7 +8,7 @@ requires:
   - compression-torsion-collapse
   - doubling-quotient-residually-finite
 artifacts:
-  - docs/COMPRESSION_COLLAPSE_MF_RADICAL.md
+  - notes/COMPRESSION_COLLAPSE_MF_RADICAL.md
   - GroupApproximation/Sofic/TorsionCompressionCollapse.lean
 ---
 

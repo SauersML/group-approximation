@@ -7,7 +7,7 @@ target: involutive-compression-collapse
 requires: []
 artifacts:
   - GroupApproximation/Sofic/InvolutionCollapseEndpoint.lean
-  - docs/COMPRESSION_COLLAPSE_MF_RADICAL.md
+  - notes/COMPRESSION_COLLAPSE_MF_RADICAL.md
 ---
 
 # The involutive collapse is machine-checked end to end

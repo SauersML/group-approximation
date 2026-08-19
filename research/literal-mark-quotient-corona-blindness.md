@@ -9,7 +9,7 @@ distinct_from:
   literal-mark-quotient-sofic: That claim gives permutation microstates in the Hamming metric; this one says every operator-norm corona model is trace-blind on a specific subgroup, which is a statement about a different mode of approximation.
   literal-mark-quotient-mf: That open claim asks for an operator-norm faithful corona model; this proved claim says every corona model is trace-blind on a specific subgroup, which constrains such a model without producing or excluding one.
 artifacts:
-  - docs/COMMUTING_LAMP_QUOTIENT_STRUCTURE_AND_MF_FORK_2026-08-14.md
+  - notes/COMMUTING_LAMP_QUOTIENT_STRUCTURE_AND_MF_FORK_2026-08-14.md
 ---
 
 For every corona representation `Theta` of `E/<w>`, the induced tracial

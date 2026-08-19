@@ -7,8 +7,8 @@ distinct_from:
   clifford-bernoulli-central-summands: That claim is the direct-sum structure of `L(Wtilde)` along the central sign projection, and its consequence 1 asserts the two summands are independent; this claim is the cross-summand implication the direct-sum picture misses, proved by diagonal doubling inside a tensor square rather than by cutting, and it corrects that assertion in one direction.
   kun-thom-clifford-crossed-product-ce: That is the open embeddability question for the Clifford corner; this is an unconditional implication between two embeddability questions and decides neither.
 artifacts:
-  - docs/TRUE_DOUBLE_CLIFFORD_KUN_THOM_REDUCTION.md
-  - docs/TRUE_CLIFFORD_LAMP_CENTRAL_SUMMANDS.md
+  - notes/TRUE_DOUBLE_CLIFFORD_KUN_THOM_REDUCTION.md
+  - notes/TRUE_CLIFFORD_LAMP_CENTRAL_SUMMANDS.md
 ---
 
 Write `N=Cl(X) crossed_product G` and `M_KT=L^infinity({-1,1}^X) crossed_product G`

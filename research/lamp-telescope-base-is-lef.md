@@ -8,7 +8,7 @@ distinct_from:
   literal-telescope-core-lef: That claim is the same property for the telescope core of the literal presented group `E`, whose lamp kernel is an infinite block amalgam containing free subgroups; this one is for the Clifford witness and its commuting-lamp quotient, whose lamp kernels are locally finite, so the proof needs no amalgam theory.
   literal-telescope-split-normal-form: That claim is the algebraic splitting of `E` over the telescope; this one is an approximation property of the corresponding subgroup of the witness.
 artifacts:
-  - docs/COMMUTING_LAMP_QUOTIENT_STRUCTURE_AND_MF_FORK_2026-08-14.md
+  - notes/COMMUTING_LAMP_QUOTIENT_STRUCTURE_AND_MF_FORK_2026-08-14.md
 ---
 
 `ClLamp(X) semidirect T` and `F_2[X] semidirect T` are locally embeddable

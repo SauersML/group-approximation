@@ -8,8 +8,8 @@ distinct_from:
   finite-quotient-blindness: that is about exact finite quotients of the group and normality of Γ's image; this is about which lamp words a block-monomial matrix model sends into the diagonal, with no finite quotient in sight
   compressed-commutant-majorana: that is a constructive target asking for one involution in a relative commutant; this is a constraint every block-monomial Clifford model must satisfy
 artifacts:
-  - docs/TRUE_CLIFFORD_BLOCK_MONOMIAL_LAMP_SUBSPACE.md
-  - docs/TRUE_BLOCK_MONOMIAL_COORDINATE_COLLAPSE.md
+  - notes/TRUE_CLIFFORD_BLOCK_MONOMIAL_LAMP_SUBSPACE.md
+  - notes/TRUE_BLOCK_MONOMIAL_COORDINATE_COLLAPSE.md
 ---
 
 Let `H_Cl = C(X) ⋊ G` be the Clifford cover of the Kun–Thom wreath,
@@ -54,7 +54,7 @@ feature of Majoranas.
 
 `G` acts transitively on `X`, so if `𝒮` contains a singleton it is everything
 and the permutation part retains no lamp information at all. At the other end
-`docs/PERFECT_CORE_KUN_THOM_WREATH.md` Theorem 1 gives `[A,G] = I_X`, so the
+`notes/PERFECT_CORE_KUN_THOM_WREATH.md` Theorem 1 gives `[A,G] = I_X`, so the
 augmentation kernel is the natural proper candidate; if `𝒮 ⊇ I_X` then the
 induced map factors through `(A/I_X) ⋊ G ≅ C₂ × G` and is again lamp-blind.
 Both structurally available options make the permutation part useless, which

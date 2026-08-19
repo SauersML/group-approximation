@@ -11,7 +11,7 @@ artifacts:
 ---
 
 Let `P̄ = A₈ * A₈ ↠ Q = L_{F₂}(1,2)^×` be the canonical atlas source of
-`docs/EXPLICIT_LEAVITT_ATLAS.md` §9, `R̄ = ker`, `N̄ = [P̄, R̄]`.
+`notes/EXPLICIT_LEAVITT_ATLAS.md` §9, `R̄ = ker`, `N̄ = [P̄, R̄]`.
 
 **Theorem.**  For a finite `T ⊆ P̄`, the canonical regular-`A₈` criterion
 (§9, (25)–(26)) holds verbatim with the normal generating set `S̄` of `N̄`
@@ -38,7 +38,7 @@ Three consequences that change the extraction problem:
    finite relator set `T_St` with `P̄/⟨⟨T_St⟩⟩ ≅ St₅(L)` compatibly over
    `Q` is usable because `R̄/⟨⟨T_St⟩⟩ ≅ K₂(5, L)` is **central** in
    `St₅(L)` (Kervaire–Steinberg centrality at `n ≥ 5`; recorded
-   literature premise, `docs/NOTEPAD.md:21650-21652`) — never needing
+   literature premise, `notes/NOTEPAD.md:21650-21652`) — never needing
    `K₂(5,L) = 0`, its finite generation, or `U_Q ≅ St₅(L)`.
 
 The asymmetry worth exploiting: the **nonhyperlinearity** attack (lower

@@ -6,7 +6,7 @@ import GroupApproximation.Sofic.LiteralNonMFEndpoint
 /-!
 # Manuscript-facing restatements for three regraded ledger rows
 
-`docs/NON_MF_PROOF_LEDGER.md` grades printed sentences against Lean
+`notes/NON_MF_PROOF_LEDGER.md` grades printed sentences against Lean
 declarations.  Three of its rows were regraded on 2026-08-17 from `MISSING` to
 `EXACT` because the tree turned out to prove what they recorded as absent, and
 in each case the internal declaration is stated in the shape its own module

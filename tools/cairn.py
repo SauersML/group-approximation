@@ -19,14 +19,15 @@ Everything else falls out:
   A reduction is a route with one prerequisite. An equivalence is two
   routes. A proof is a route with no prerequisites. No further ontology.
 
-CANONICAL vs NONCANONICAL:
+THE TWO TIERS:
   research/*.md          claims + routes (flat; `kind:` says which) — the
                          authoritative graph. Agents edit these DIRECTLY
                          with their normal tools; this CLI never writes them.
   research/artifacts/    substantial proof artifacts routes may cite.
-  notes/                 scratch, session logs, thinking out loud —
-                         searchable, but can NEVER change compiled state,
-                         and canonical files may not cite it as justification.
+  notes/                 the prose corpus: derivations, audits, dead ends,
+                         session logs. Searchable and citable via
+                         `artifacts:`, but never compiled — prose cannot
+                         change research state, only a route and its Lean can.
 
 THE CLI is read-only over canonical files and deliberately small —
 twelve commands: check (compile+lint+dups, refreshes FRONTIER.md; alias:
@@ -439,7 +440,6 @@ def lint_nodes(nodes, errors, repo=REPO):
             if not isinstance(p, str):
                 errors.append(("error", "artifact", f"{node.relpath}: malformed artifact entry: {p!r}"))
                 continue
-            path_part = p
             if not os.path.exists(os.path.join(repo, p)):
                 # a <rev>:<path> entry pins a file that left the working tree
                 pinned = (":" in p and subprocess.run(
@@ -448,10 +448,6 @@ def lint_nodes(nodes, errors, repo=REPO):
                 if not pinned:
                     errors.append(("error", "artifact", f"{node.relpath}: artifact not found: {p} "
                                    "(want a working-tree path or a <rev>:<path> pin)"))
-                    continue
-                path_part = p.split(":", 1)[1]
-            if path_part.startswith("notes/") or "/notes/" in path_part:
-                errors.append(("error", "noncanonical", f"{node.relpath}: canonical node cites noncanonical justification: {p}"))
         if node.kind == "claim":
             if node.meta.get("root") not in (None, True, False):
                 errors.append(("error", "flag", f"{node.relpath}: root must be true/false"))

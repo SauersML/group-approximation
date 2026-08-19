@@ -7,7 +7,7 @@ distinct_from:
   literal-group-structural-normal-form: That root asks jointly for a normal form, a kernel description and the word problem; this claim isolates only the split extension `E = N ⋊ V` and the identification of `V`.
   literal-lamp-kernel-clifford-block-amalgam: This claim identifies the quotient `V` and the splitting; the other identifies the isomorphism type of the lamp kernel `N`.
 artifacts:
-  - docs/LITERAL_GROUP_BLOCK_AMALGAM_STRUCTURE_2026-08-14.md
+  - notes/LITERAL_GROUP_BLOCK_AMALGAM_STRUCTURE_2026-08-14.md
   - non_mf_groups_exist.tex
 ---
 

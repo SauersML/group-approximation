@@ -6,7 +6,7 @@ title: Subgroup heredity plus abelianization rank, then Neumann's continuum fami
 target: continuum-nonisomorphic-fg-non-mf
 requires: [mf-positive-controls, literal-group-fails-mf-conventions, constructed-continuum-of-finitely-generated-groups]
 artifacts:
-  - docs/CREDIT_AND_PRIORITY_AUDIT.md
+  - notes/CREDIT_AND_PRIORITY_AUDIT.md
   - GroupApproximation/Sofic/ProductMultiplicity.lean
   - GroupApproximation/Sofic/ProductMultiplicityRank.lean
   - GroupApproximation/Algebra/TorsionFreeRank.lean
@@ -68,7 +68,7 @@ Equivalently: a group containing a non-MF subgroup is not MF. Combined with
 B. H. Neumann, *Some remarks on infinite groups*, J. London Math. Soc. **s1-12**
 (1937) 120-127 — continuum many pairwise non-isomorphic 2-generator groups.
 
-Verification status from `docs/CREDIT_AND_PRIORITY_AUDIT.md:440-441`, which is
+Verification status from `notes/CREDIT_AND_PRIORITY_AUDIT.md:440-441`, which is
 the repository's definitive citation audit:
 
 > * B. H. Neumann JLMS s1-12 (1937) 120–127: verified incl. continuum

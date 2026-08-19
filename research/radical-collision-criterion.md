@@ -10,7 +10,7 @@ distinct_from:
 artifacts:
   - GroupApproximation/Sofic/HyperlinearResidualDetector.lean
   - GroupApproximation/Sofic/RadicalSeparation.lean
-  - docs/TRUE_LITERAL_NONMF_MARK_IS_CE_VISIBLE.md
+  - notes/TRUE_LITERAL_NONMF_MARK_IS_CE_VISIBLE.md
 ---
 
 If a countable group `H` contains an element

@@ -38,7 +38,7 @@ ever be written for this claim — only the two answer routes above are
 admissible, and each becomes complete exactly when its answer is established.
 
 **Asymmetry caveat.** The two sides are not equally actionable. Per
-docs/OBSTRUCTIONS.md §5, candidate-by-candidate evidence that specific groups
+notes/OBSTRUCTIONS.md §5, candidate-by-candidate evidence that specific groups
 fail hyperlinearity can never accumulate to the "yes" side; that side needs a
 general conversion of hyperlinear approximations into sofic ones, for which no
 technique exists, and it is at least as strong as exhibiting a non-hyperlinear

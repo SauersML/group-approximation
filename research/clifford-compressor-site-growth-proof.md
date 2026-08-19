@@ -6,7 +6,7 @@ title: Monoid divisibility, infinite site orbits, and a Pimsner--Popa test proje
 target: clifford-compressor-site-growth
 requires: []
 artifacts:
-  - docs/TRUE_CLIFFORD_COMPRESSOR_SITE_GROWTH.md
+  - notes/TRUE_CLIFFORD_COMPRESSOR_SITE_GROWTH.md
 ---
 
 Complete written argument in the artifact.  Four steps.

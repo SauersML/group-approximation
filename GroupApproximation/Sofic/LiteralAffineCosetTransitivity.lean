@@ -7,7 +7,7 @@ import GroupApproximation.Sofic.LiteralBaseDoublingIndex
 therefore part of the repository's root build/audit closure.
 
 `Sofic/LiteralBlockGeometry.lean` reduces Proposition 4.2 of
-`docs/LITERAL_GROUP_BLOCK_AMALGAM_STRUCTURE_2026-08-14.md` — the blocks of the
+`notes/LITERAL_GROUP_BLOCK_AMALGAM_STRUCTURE_2026-08-14.md` — the blocks of the
 orbital graph are complete graphs — to one arithmetic hypothesis,
 
     AlphaCosetTransitive α a₀ :

@@ -9,7 +9,7 @@ import Mathlib.GroupTheory.PushoutI
 # The lamp kernel of the literal group is a central amalgam of order-512 Clifford blocks
 
 This module formalises §5 of
-`docs/LITERAL_GROUP_BLOCK_AMALGAM_STRUCTURE_2026-08-14.md` (Theorem 5.1): the
+`notes/LITERAL_GROUP_BLOCK_AMALGAM_STRUCTURE_2026-08-14.md` (Theorem 5.1): the
 kernel `N_E` of the retraction `E → V` of the literal forty-one-relator group
 is the free product, amalgamated over one common central involution
 `⟨ζ⟩ ≅ ℤ/2`, of countably many copies of the Clifford lamp group `ClLamp(8)`

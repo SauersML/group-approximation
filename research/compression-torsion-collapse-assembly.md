@@ -9,10 +9,10 @@ requires:
   - corona-commuting-torsion-lifts
   - kazhdan-coboundary-collapse
 artifacts:
-  - docs/COMPRESSION_COLLAPSE_MF_RADICAL.md
+  - notes/COMPRESSION_COLLAPSE_MF_RADICAL.md
 ---
 
-Full proof in docs/COMPRESSION_COLLAPSE_MF_RADICAL.md section 2: exact
+Full proof in notes/COMPRESSION_COLLAPSE_MF_RADICAL.md section 2: exact
 lifts give the rank metric; eventual invariance plus the full generating
 set normalizes; the cocycle is nonzero by construction and vanishes on the
 compressed copy; FH gives an H-fixed coboundary primitive; scaled forward

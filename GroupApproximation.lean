@@ -1209,7 +1209,7 @@ advertised as an existence result.
 declarations a referee needs, each named against the theorem it establishes.
 
 The statement-by-statement correspondence between this construction and its
-manuscript is `docs/CLAIM_MAP.md`, generated from the paper's own margin notes;
+manuscript is `notes/CLAIM_MAP.md`, generated from the paper's own margin notes;
 the manuscript itself is no longer kept in the repository.  The two manuscripts
 here are `property_tt_leavitt.tex`, on coordinate-block
 factorization and `(TT)/T`, and `non_mf_groups_exist.tex`, on operator-norm

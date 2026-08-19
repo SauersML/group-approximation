@@ -10,7 +10,7 @@ from an HTML render.  Quotations below are verbatim from that extraction,
 with mathematical notation transliterated where the extraction mangles it.
 
 **Numbering correction.**  The statements are **Lemma 3.3** and **Remark
-3.4**, as `docs/PERFECT_CORE_KUN_THOM_WREATH.md` already records.  A
+3.4**, as `notes/PERFECT_CORE_KUN_THOM_WREATH.md` already records.  A
 circulating reference to "Lemma 3.4 / Remark 3.5" is off by one.
 
 ## Abstract (verbatim)
@@ -64,7 +64,7 @@ beta=sgn: Cl(X) crossed_product G_0.
 
 So Lemma 3.3 reads: `Wtilde` is hyperlinear iff **both** crossed products are
 Connes embeddable — the same statement the repository proves directly in
-`docs/TRUE_CLIFFORD_LAMP_CENTRAL_SUMMANDS.md` by cutting with
+`notes/TRUE_CLIFFORD_LAMP_CENTRAL_SUMMANDS.md` by cutting with
 `p_(+-)=(1+-z)/2`.  Remark 3.4 supplies the descent step
 `Wtilde hyperlinear ==> W=Wtilde/<z> hyperlinear`, which with the Kun--Thom
 nonsoficity of `W` closes Question 3.4.

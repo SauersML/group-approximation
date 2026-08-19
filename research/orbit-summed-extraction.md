@@ -6,7 +6,7 @@ title: Orbit-summed whole-map extraction after same-orbit closure
 target: common-self-map-law
 requires: [same-orbit-closure, transition-equivariance]
 artifacts:
-  - docs/TRUE_EQUIVARIANT_TRANSITIONS_COARSEN_TO_WHOLE_MAPS.md
+  - notes/TRUE_EQUIVARIANT_TRANSITIONS_COARSEN_TO_WHOLE_MAPS.md
 ---
 
 Claimed reduction (AGENDA 2026-08-14): once the raw/comb transition PVM is

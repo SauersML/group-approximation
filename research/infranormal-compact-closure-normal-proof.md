@@ -6,7 +6,7 @@ title: Reverse compact semigroup inclusions by recurrence
 target: infranormal-compact-closure-normal
 requires: []
 artifacts:
-  - docs/FALSE_COMPACT_BOGOLIUBOV_APPROXIMATION_FOR_KUN_THOM.md
+  - notes/FALSE_COMPACT_BOGOLIUBOV_APPROXIMATION_FOR_KUN_THOM.md
 ---
 
 For a compressor `t`, let `H` be the compact closure of `rho(Gamma)`.

@@ -6,7 +6,7 @@ title: MF classification of the existing one-sided-compression nonsofic groups
 root: true
 artifacts:
   - non_mf_groups_exist.tex
-  - docs/NON_MF_FINAL_REVIEW_AND_RESOLUTION_2026-08-14.md
+  - notes/NON_MF_FINAL_REVIEW_AND_RESOLUTION_2026-08-14.md
 ---
 
 Determine which of the known one-sided-compression nonsofic groups are MF

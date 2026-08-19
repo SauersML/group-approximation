@@ -17,7 +17,7 @@ program:
   into `q * p = p` for a conjugated projection `q = u p u⁻¹` without any
   functional-calculus naturality.
 
-Bricks of `docs/FORMALIZATION_DIRECTIVES_2026-08-15.md` §1 (b2).
+Bricks of `notes/FORMALIZATION_DIRECTIVES_2026-08-15.md` §1 (b2).
 -/
 
 namespace GroupApproximation

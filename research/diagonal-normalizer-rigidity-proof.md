@@ -6,7 +6,7 @@ title: Doubly stochastic rigidity plus untwisting and free amplification
 target: diagonal-normalizer-rigidity
 requires: []
 artifacts:
-  - docs/TRUE_DIAGONAL_NORMALIZER_RIGIDITY.md
+  - notes/TRUE_DIAGONAL_NORMALIZER_RIGIDITY.md
 ---
 
 # Doubly stochastic rigidity plus untwisting and free amplification
@@ -47,5 +47,5 @@ Combining with `coordinate-action-not-sofic` (Kun–Thom Corollary D) gives the
 sharpened form of the boundary: for the Kun–Thom pair no embedding of `M_KT`
 can have the Bernoulli algebra in a diagonal ultraproduct **and** the group
 unitaries in its normalizer. Since the first half is always arrangeable
-(the diagonalization lemma of `docs/NOTEPAD.md`), the second half is the
+(the diagonalization lemma of `notes/NOTEPAD.md`), the second half is the
 whole of the remaining question.

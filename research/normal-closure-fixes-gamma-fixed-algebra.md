@@ -31,7 +31,7 @@ exactly the ones the fixed algebra can see
 
 The input is Kun--Thom Theorem 4.1 — `C_{S_𝒰}(σ(Γ))` is normalized by
 `σ(G)` — imported from the verbatim in-repo artifact and corroborated by
-two independent in-repo fetches (docs/NOTEPAD.md:1420, :21232).  Three
+two independent in-repo fetches (notes/NOTEPAD.md:1420, :21232).  Three
 trust-surface facts, recorded per the LITERATURE_INPUT gate: the
 unrefereed-preprint surface of 2608.06222 travels with this claim exactly
 as with `kun-thom-nonsofic-wreath`; Theorem 4.1 does **not** require `Γ`

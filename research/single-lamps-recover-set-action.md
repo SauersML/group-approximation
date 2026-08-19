@@ -9,7 +9,7 @@ distinct_from:
   halo-locally-sofic-target-collapse: That collapses witnesses whose targets happen to be locally sofic, via finite generation of a single witness; this is class-agnostic and argues through the lamp coordinates, so it covers target classes containing nonsofic groups.
   lamp-charts-recover-set-action: That is the strict generalization to an arbitrary lamp group permuted by G, including the Clifford lamp C(X) and the invariant-graph lamps that the Clifford lane uses; this is the commuting case V = directSum_X C_2, which is the one the wreath candidate itself needs.
 artifacts:
-  - docs/NOTEPAD.md
+  - notes/NOTEPAD.md
   - research/artifacts/kun-thom-2608-06222-verified.md
 ---
 

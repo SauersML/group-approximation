@@ -6,7 +6,7 @@ title: Select the stable Steinberg branch
 target: non-hyperlinear-group
 requires: [leavitt-steinberg-hs-stability-fork, leavitt-steinberg-hs-stable]
 artifacts:
-  - docs/NON_MF_TO_HYPERLINEAR_DIFFERENTIAL_AUDIT.md
+  - notes/NON_MF_TO_HYPERLINEAR_DIFFERENTIAL_AUDIT.md
 ---
 
 The established stability fork turns normalized-HS stability of the

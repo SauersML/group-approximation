@@ -66,7 +66,7 @@ establishes, and nothing else.  Follow the imports downward from here.
 Nothing is proved in this module.  It re-exports, so that `#check` on any name
 below lands on the real statement and its module.
 
-`docs/CLAIM_MAP.md` is a generated statement-by-statement correspondence, read
+`notes/CLAIM_MAP.md` is a generated statement-by-statement correspondence, read
 out of margin notes; `non_mf_groups_exist.tex` is the manuscript for the non-MF
 results below, and `scripts/check_non_mf_refs.py` is its counterpart gate.
 This module is the short list.

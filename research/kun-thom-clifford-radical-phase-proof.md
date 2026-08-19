@@ -6,7 +6,7 @@ title: Combine centralizer normalization with two-Majorana anticommutation
 target: kun-thom-clifford-radical-phase
 requires: []
 artifacts:
-  - docs/TRUE_KUN_THOM_CLIFFORD_PHASE.md
+  - notes/TRUE_KUN_THOM_CLIFFORD_PHASE.md
   - GroupApproximation/Sofic/CliffordLampGroup.lean
   - GroupApproximation/Sofic/CliffordPhaseExtraction.lean
   - GroupApproximation/Sofic/AntipodalRadicalCollision.lean

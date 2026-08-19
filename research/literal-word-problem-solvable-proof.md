@@ -6,7 +6,7 @@ title: Decide triviality by telescope matrices plus block-amalgam reduction
 target: literal-word-problem-solvable
 requires: [literal-telescope-split-normal-form, literal-lamp-kernel-clifford-block-amalgam]
 artifacts:
-  - docs/LITERAL_GROUP_BLOCK_AMALGAM_STRUCTURE_2026-08-14.md
+  - notes/LITERAL_GROUP_BLOCK_AMALGAM_STRUCTURE_2026-08-14.md
 ---
 
 ## Direct proof

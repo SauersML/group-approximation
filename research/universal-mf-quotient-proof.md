@@ -7,7 +7,7 @@ target: universal-mf-quotient
 requires: []
 artifacts:
   - non_mf_groups_exist.tex
-  - docs/NON_MF_FINAL_REVIEW_AND_RESOLUTION_2026-08-14.md
+  - notes/NON_MF_FINAL_REVIEW_AND_RESOLUTION_2026-08-14.md
   - GroupApproximation/Sofic/ActualCoronaMFRadical.lean
   - GroupApproximation/Sofic/ManuscriptExactWrappers.lean
 ---

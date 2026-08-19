@@ -8,7 +8,7 @@ requires:
   - pauli-two-child-transfer-packet
   - common-range-isometries-have-maximal-gram-overlap
 artifacts:
-  - docs/TRUE_PAULI_BRANCH_TRANSFER_PACKET.md
+  - notes/TRUE_PAULI_BRANCH_TRANSFER_PACKET.md
 ---
 
 The exact packet gives `E^2=E`, `R^2=1`, unitary `U`, and the child range

@@ -6,11 +6,11 @@ title: Read the labels off the single lamps
 target: lamp-charts-recover-set-action
 requires: []
 artifacts:
-  - docs/TRUE_LAMP_CHARTS_RECOVER_THE_SET_ACTION.md
+  - notes/TRUE_LAMP_CHARTS_RECOVER_THE_SET_ACTION.md
 ---
 
 Complete written argument in the artifact, which reproduces the commuting-lamp
-lemma of `docs/NOTEPAD.md` (near line 20344) and checks that its proof uses no
+lemma of `notes/NOTEPAD.md` (near line 20344) and checks that its proof uses no
 property of the lamp group beyond `g.a_z=a_(gz)`.  Given a Definition-4.23
 chart system on a window containing the single lamps `a_z`, `z in Z`, the
 finite label set `B=union_s pi_s({a_z})` and the injective maps

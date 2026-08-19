@@ -6,7 +6,7 @@ title: Level collapse in finite quotients plus folding of the free lamplighter
 target: literal-mark-quotient-finite-residual
 requires: [literal-lamp-kernel-clifford-block-amalgam, finite-quotient-blindness]
 artifacts:
-  - docs/COMMUTING_LAMP_QUOTIENT_STRUCTURE_AND_MF_FORK_2026-08-14.md
+  - notes/COMMUTING_LAMP_QUOTIENT_STRUCTURE_AND_MF_FORK_2026-08-14.md
 ---
 
 ## Direct proof

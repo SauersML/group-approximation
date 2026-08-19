@@ -8,7 +8,7 @@ requires:
   - paired-finite-group-intertwiner-laplacian
   - regular-paired-finite-group-relations-are-balanced
 artifacts:
-  - docs/TRUE_ATLAS_SINGLE_BRIDGE_SUBGROUP_REDUCTION.md
+  - notes/TRUE_ATLAS_SINGLE_BRIDGE_SUBGROUP_REDUCTION.md
 ---
 
 The bridge artifact proves `<H,b>=A_8`.  Hence the relation pairs in `(AHB1)`

@@ -4,7 +4,7 @@ Date: 2026-08-14 · Agent: cairn-archivist · Noncanonical (notes/), not linted.
 
 Scope: the 27 frontier holes listed in `research/FRONTIER.md` at the time of
 the sweep. Method: read each `research/<slug>.md` for the precise statement,
-then grep/read the proof corpus (`docs/*.md`, `non_mf_groups_exist.tex`,
+then grep/read the proof corpus (`notes/*.md`, `non_mf_groups_exist.tex`,
 `property_tt_leavitt.tex`, `GroupApproximation/**.lean`, git history) for the
 answer. No compute was run: no `lake build`, no experiments.
 
@@ -35,38 +35,38 @@ Three archaeological findings dominate:
    different groups (see that section).
 
 Two docs are **stale** and should not be trusted as formalization status:
-`docs/TORSION_FREE_FULL_CDE_MF_FORMALIZATION.md` and
-`docs/WEAK_MF_NONSOFIC_DOUBLE.md` both cite Lean files deleted in `241440fe`.
+`notes/TORSION_FREE_FULL_CDE_MF_FORMALIZATION.md` and
+`notes/WEAK_MF_NONSOFIC_DOUBLE.md` both cite Lean files deleted in `241440fe`.
 
 ## Verdict table
 
 | slug | verdict | key artifact |
 | --- | --- | --- |
-| commuting-lamp-quotient-mf | UNTOUCHED | `docs/NOTEPAD.md:39199` (transferable criterion, never applied) |
-| edge-pair-mixed-gap-collapse | PARTIAL | `docs/TRUE_IWAHORI_CENTRAL_REGULAR_OUTLIER_LOCALIZATION.md:228` |
-| finite-window-decoder | PARTIAL | `docs/TRUE_POSITIVE_DENSITY_LEAVITT_DECODER_ENDGAME.md:32` |
-| full-packet-bicommutant-synchronization | PARTIAL | `docs/TRUE_FULL_RAW_PACKET_COMMUTANT_WITNESS.md:22,166` |
-| hyperlinear-wreath-model | UNTOUCHED (constructive) / PARTIAL (negative) | `docs/FALSE_POSITIVE_CORE_IS_SOFIC.md:41` |
-| kun-thom-clifford-crossed-product-ce | PARTIAL | `docs/PERFECT_CORE_KUN_THOM_WREATH.md:358,498` |
-| kun-thom-clifford-relative-wall | PARTIAL | `docs/TRUE_KUN_THOM_CLIFFORD_PHASE.md:104-151` + `CliffordPhaseExtraction.lean:42` |
-| leavitt-steinberg-hs-stable | PARTIAL | `docs/NOTEPAD.md:22220` (hyperfinite HS stability, proved) |
-| leavitt-steinberg-hs-unstable | PARTIAL | `docs/ATLAS_HS_CRITERION.md:196-217` (reduction proved) |
+| commuting-lamp-quotient-mf | UNTOUCHED | `notes/NOTEPAD.md:39199` (transferable criterion, never applied) |
+| edge-pair-mixed-gap-collapse | PARTIAL | `notes/TRUE_IWAHORI_CENTRAL_REGULAR_OUTLIER_LOCALIZATION.md:228` |
+| finite-window-decoder | PARTIAL | `notes/TRUE_POSITIVE_DENSITY_LEAVITT_DECODER_ENDGAME.md:32` |
+| full-packet-bicommutant-synchronization | PARTIAL | `notes/TRUE_FULL_RAW_PACKET_COMMUTANT_WITNESS.md:22,166` |
+| hyperlinear-wreath-model | UNTOUCHED (constructive) / PARTIAL (negative) | `notes/FALSE_POSITIVE_CORE_IS_SOFIC.md:41` |
+| kun-thom-clifford-crossed-product-ce | PARTIAL | `notes/PERFECT_CORE_KUN_THOM_WREATH.md:358,498` |
+| kun-thom-clifford-relative-wall | PARTIAL | `notes/TRUE_KUN_THOM_CLIFFORD_PHASE.md:104-151` + `CliffordPhaseExtraction.lean:42` |
+| leavitt-steinberg-hs-stable | PARTIAL | `notes/NOTEPAD.md:22220` (hyperfinite HS stability, proved) |
+| leavitt-steinberg-hs-unstable | PARTIAL | `notes/ATLAS_HS_CRITERION.md:196-217` (reduction proved) |
 | literal-mark-quotient-mf | UNTOUCHED | `non_mf_groups_exist.tex:1279` |
-| literal-witness-kernel-amenable | UNTOUCHED | `docs/NON_MF_FINAL_REVIEW_AND_RESOLUTION_2026-08-14.md:206` |
-| pauli-carrier-membership-decoder | PARTIAL | `docs/TRUE_PAULI_CARRIER_BINARY_ALGEBRA_GAP.md:59-69` |
-| quantized-scale-index | PARTIAL | `docs/TRUE_LOCALLY_FINITE_COMMUTANTS_RECOVER_BUT_AT_SHIFTED_SCALES.md:16-45` |
-| relator-energy-variance-bound | PARTIAL (negative only) | `docs/FALSE_EXACT_JOINT_COMPRESSOR_HAS_MAXIMAL_FIBER_VARIANCE.md:11` |
-| same-orbit-closure | PARTIAL (negative only) | `docs/FALSE_EQUIVARIANT_WHOLE_MAPS_ALLOW_RECTANGULAR_ESCAPE.md:12` |
-| sofic-radical-hyperlinear-survivor | PARTIAL | `docs/COMMUTING_WREATH_SOFIC_RADICAL.md:165` + `HyperlinearResidualDetector.lean:83` |
-| transition-equivariance | PARTIAL (task written, not executed) | `docs/TRUE_EQUIVARIANT_TRANSITIONS_COARSEN_TO_WHOLE_MAPS.md:242-257` |
-| wreath-flexible-hs-stability | **CONTRADICTED (ill-posed)** | `docs/OBSTRUCTIONS.md:123` |
-| wreath-not-sofic | PARTIAL (cited, not imported) | `docs/COMMUTING_WREATH_SOFIC_RADICAL.md:30-37` |
+| literal-witness-kernel-amenable | UNTOUCHED | `notes/NON_MF_FINAL_REVIEW_AND_RESOLUTION_2026-08-14.md:206` |
+| pauli-carrier-membership-decoder | PARTIAL | `notes/TRUE_PAULI_CARRIER_BINARY_ALGEBRA_GAP.md:59-69` |
+| quantized-scale-index | PARTIAL | `notes/TRUE_LOCALLY_FINITE_COMMUTANTS_RECOVER_BUT_AT_SHIFTED_SCALES.md:16-45` |
+| relator-energy-variance-bound | PARTIAL (negative only) | `notes/FALSE_EXACT_JOINT_COMPRESSOR_HAS_MAXIMAL_FIBER_VARIANCE.md:11` |
+| same-orbit-closure | PARTIAL (negative only) | `notes/FALSE_EQUIVARIANT_WHOLE_MAPS_ALLOW_RECTANGULAR_ESCAPE.md:12` |
+| sofic-radical-hyperlinear-survivor | PARTIAL | `notes/COMMUTING_WREATH_SOFIC_RADICAL.md:165` + `HyperlinearResidualDetector.lean:83` |
+| transition-equivariance | PARTIAL (task written, not executed) | `notes/TRUE_EQUIVARIANT_TRANSITIONS_COARSEN_TO_WHOLE_MAPS.md:242-257` |
+| wreath-flexible-hs-stability | **CONTRADICTED (ill-posed)** | `notes/OBSTRUCTIONS.md:123` |
+| wreath-not-sofic | PARTIAL (cited, not imported) | `notes/COMMUTING_WREATH_SOFIC_RADICAL.md:30-37` |
 | continuum-nonisomorphic-non-mf-cylinder | PARTIAL (**deleted proof of weaker statement**) | `git show c3501887:non_mf_groups_exist.tex:2095` |
 | effective-transport-modulus | PARTIAL | `GroupApproximation/Sofic/LiteralUniformObstruction.lean:7-32` |
 | finite-tracial-cstar-transport | UNTOUCHED | `GroupApproximation/Sofic/ManuscriptKazhdanTransport.lean:39` |
 | literal-group-structural-normal-form | PARTIAL | `non_mf_groups_exist.tex:674,996,1197` |
 | mf-implies-hyperlinear | PARTIAL | `GroupApproximation/Sofic/NormTraceGap.lean:276-336` |
-| nonsofic-mechanism-mf-classification | PARTIAL | `docs/FALSE_CLIFFORD_NORM_MF_STERILITY.md:33` + `docs/WEAK_MF_NONSOFIC_DOUBLE.md:187` |
+| nonsofic-mechanism-mf-classification | PARTIAL | `notes/FALSE_CLIFFORD_NORM_MF_STERILITY.md:33` + `notes/WEAK_MF_NONSOFIC_DOUBLE.md:187` |
 | scaling-family-pairwise-nonisomorphic | UNTOUCHED (historically declined) | `git show c3501887:non_mf_groups_exist.tex:2072` |
 | torsion-free-finitely-presented-non-mf | PARTIAL (**deleted machine-checked conditional**) | `git show 4a210700:GroupApproximation/Sofic/TorsionFreeFullMFRadical.lean` |
 
@@ -89,7 +89,7 @@ obstructed. The manuscript states it as an open intermediate test,
 > $u\notin\operatorname{Rad}_{\mathrm{MF}}(E)$; any such detecting models
 > must be genuinely non-finite-quotient in flavor."
 
-**Under-exploited asset the graph does not record.** `docs/NOTEPAD.md:39199-39232`
+**Under-exploited asset the graph does not record.** `notes/NOTEPAD.md:39199-39232`
 (2026-08-10) contains a general central-extension MF criterion of exactly the
 right shape, proved for a *different* candidate and never applied here:
 
@@ -118,7 +118,7 @@ Claim: reduced form of the Iwahori endpoint after
 edge-irreducible pairs whose mixed gap collapses along a near-unitary
 intertwiner.
 
-The **reduction** is proved. `docs/TRUE_IWAHORI_CENTRAL_REGULAR_OUTLIER_LOCALIZATION.md:228-241`:
+The **reduction** is proved. `notes/TRUE_IWAHORI_CENTRAL_REGULAR_OUTLIER_LOCALIZATION.md:228-241`:
 
 > "Thus a counterexample cannot use an arbitrary sparse subspace. It must
 > concentrate physical identity mass on pairs of edge irreducibles which:
@@ -130,21 +130,21 @@ The **reduction** is proved. `docs/TRUE_IWAHORI_CENTRAL_REGULAR_OUTLIER_LOCALIZA
 
 The **repair** is open, same file `:247-254` (statement of "Full-rank outlier
 repair"). Supporting bimodule decomposition `(ICO22)` at `:219-221`; mirrored
-in `docs/HIGHEST_YIELD_NONHYPERLINEAR_ATTACK.md:29-37` and
-`docs/AGENDA.md:5860-5866`.
+in `notes/HIGHEST_YIELD_NONHYPERLINEAR_ATTACK.md:29-37` and
+`notes/AGENDA.md:5860-5866`.
 
 Caution against a naive reading — the *diffuse* form is impossible,
-`docs/HIGHEST_YIELD_NONHYPERLINEAR_ATTACK.md:21`:
+`notes/HIGHEST_YIELD_NONHYPERLINEAR_ATTACK.md:21`:
 
 > "Thus diffuse mixed-gap collapse is impossible. The Iwahori endpoint is now
 > a full-rank outlier-repair theorem"
 
 **Graph lag:** three documents written *after* `HIGHEST_YIELD` (11:05) and
 `AGENDA` (11:39) re-route this endpoint and are not reflected in either:
-`docs/TRUE_IWAHORI_MATCHING_REDUCES_TO_FACTORIZED_BS14_REPAIR.md` (13:14),
-`docs/TRUE_IWAHORI_FACTOR_GATE_IS_COSYSTOLIC_ANGLE.md` (13:26), and
-`docs/FALSE_ODD_SPECTRAL_EQUIVARIANT_COARSENING.md` (17:45, newest file in
-docs/), whose `:22-26` reads:
+`notes/TRUE_IWAHORI_MATCHING_REDUCES_TO_FACTORIZED_BS14_REPAIR.md` (13:14),
+`notes/TRUE_IWAHORI_FACTOR_GATE_IS_COSYSTOLIC_ANGLE.md` (13:26), and
+`notes/FALSE_ODD_SPECTRAL_EQUIVARIANT_COARSENING.md` (17:45, newest file in
+notes/), whose `:22-26` reads:
 
 > "Thus spectral shadowing and dimension-free one-conjugator flag repair do
 > not combine into simultaneous Iwahori repair by an abstract equivariant
@@ -154,25 +154,25 @@ docs/), whose `:22-26` reads:
 ## finite-window-decoder — PARTIAL
 
 The downstream consumer is proved:
-`docs/TRUE_POSITIVE_DENSITY_LEAVITT_DECODER_ENDGAME.md:32-42` gives the
+`notes/TRUE_POSITIVE_DENSITY_LEAVITT_DECODER_ENDGAME.md:32-42` gives the
 `sqrt(alpha)(2-sqrt(3))` ambient floor. The upstream input is proved:
-`docs/AGENDA.md:85-90`, one joint extension-character PVM with total rounding
+`notes/AGENDA.md:85-90`, one joint extension-character PVM with total rounding
 error below `9(e_L+e_R)^2`. The decoder itself is posed, not proved —
-`docs/AGENDA.md:96-99`:
+`notes/AGENDA.md:96-99`:
 
 > "The live theorem is now the finite-window endomorphism decoder: extract from
 > the joint outer characters common finite paired-radical label spaces on
 > which the four one-sided Leavitt maps act with vanishing boundary and pairing
 > error."
 
-Delimited by `docs/FALSE_EXACT_JOINT_COMPRESSOR_HAS_MAXIMAL_FIBER_VARIANCE.md:7-11`
+Delimited by `notes/FALSE_EXACT_JOINT_COMPRESSOR_HAS_MAXIMAL_FIBER_VARIANCE.md:7-11`
 ("That synchronization is exact and useful, but it cannot by itself produce
 the finite-window endomorphism decoder") and by the carrier/decoder
-distinction in `docs/TRUE_LONG_ROOT_CARRIER_IS_COMMON_BUT_NOT_A_DECODER.md`.
+distinction in `notes/TRUE_LONG_ROOT_CARRIER_IS_COMMON_BUT_NOT_A_DECODER.md`.
 
 ## full-packet-bicommutant-synchronization — PARTIAL
 
-The **converse witness** is complete: `docs/TRUE_FULL_RAW_PACKET_COMMUTANT_WITNESS.md:22-41`
+The **converse witness** is complete: `notes/TRUE_FULL_RAW_PACKET_COMMUTANT_WITNESS.md:22-41`
 proves `E_A(F)=(1/4)1`, `dist_2(F,A)^2=3/16`, hence a unitary `V` commuting
 with the full exactified copy of `K` with `||[V,F]||_2^2 >= 3/8-o(1)`.
 
@@ -189,7 +189,7 @@ Lean has the scalar endpoint only:
 (`actualPacketFullCommutantWitnessEnergy = 3/8`). No operator-level statement.
 
 Restated as live in the newest status doc,
-`docs/HYPERLINEAR_CAIRN_PROGRESS_2026-08-14.md:95-111`.
+`notes/HYPERLINEAR_CAIRN_PROGRESS_2026-08-14.md:95-111`.
 
 ## hyperlinear-wreath-model — UNTOUCHED constructively, PARTIAL negatively
 
@@ -197,7 +197,7 @@ Five architectures are formally invalidated in-graph (three via formalized
 Lean obstructions). The corpus states no exhaustiveness result exists.
 
 **Asset the graph does not record:** the only place anything of this shape is
-actually *constructed*, `docs/FALSE_POSITIVE_CORE_IS_SOFIC.md:41-67`:
+actually *constructed*, `notes/FALSE_POSITIVE_CORE_IS_SOFIC.md:41-67`:
 
 > "4. the generalized wreath product `W_0=(bigoplus_{X_0}C_2) rtimes Gamma`
 > is sofic. In particular `N_0=L(W_0)=L^infty({+-1}^{X_0}) rtimes Gamma` is
@@ -209,14 +209,14 @@ actually *constructed*, `docs/FALSE_POSITIVE_CORE_IS_SOFIC.md:41-67`:
 > compressors, with their non-Ore branching and group relations."
 
 The residual gate is stated exactly at
-`docs/FALSE_FULL_COMPRESSION_SEMIGROUP_DILATION.md:196-233` (four-step finite
+`notes/FALSE_FULL_COMPRESSION_SEMIGROUP_DILATION.md:196-233` (four-step finite
 target; steps 1-2 solved conditionally, step 3 solved only after forgetting
 the core; "The missing theorem is precisely their compatible splice"). The Ore
-shortcut for step 3 is separately closed at `docs/AGENDA.md:1991-2000`.
+shortcut for step 3 is separately closed at `notes/AGENDA.md:1991-2000`.
 
 ## kun-thom-clifford-crossed-product-ce — PARTIAL
 
-Target is canonical and pinned. `docs/TRUE_KUN_THOM_CLIFFORD_PHASE.md:89-102`
+Target is canonical and pinned. `notes/TRUE_KUN_THOM_CLIFFORD_PHASE.md:89-102`
 reduces hyperlinear-vs-sofic to `(KCP11)`. The hyperfinite-base objection is
 anticipated and answered negatively, same file `:175-187`:
 
@@ -227,25 +227,25 @@ anticipated and answered negatively, same file `:175-187`:
 > apply."
 
 Two nontrivial **equivalences** make the target canonical (not recorded in the
-graph): `docs/PERFECT_CORE_KUN_THOM_WREATH.md:358-372` (Prop 4,
+graph): `notes/PERFECT_CORE_KUN_THOM_WREATH.md:358-372` (Prop 4,
 `M_full` CE iff `A_CAR rtimes G` CE) and `:498-505` (Thm 6, no character
 shortcut — three-way equivalence). Consequence at `:394-398`: the full-Majorana
 and perfect-even-core formulations "must not be counted as independent
 construction routes."
 
 Every known CE permanence theorem is individually excluded,
-`docs/NOTEPAD.md:6576-6587`; profinite filtrations are closed by a proved
-theorem, `docs/NOTEPAD.md:26451-26523`. A strictly weaker **sufficient**
-target exists (sparse lamps), `docs/NOTEPAD.md:9969-9995`.
+`notes/NOTEPAD.md:6576-6587`; profinite filtrations are closed by a proved
+theorem, `notes/NOTEPAD.md:26451-26523`. A strictly weaker **sufficient**
+target exists (sparse lamps), `notes/NOTEPAD.md:9969-9995`.
 
 One certificate is proved *impossible* here:
-`docs/PERFECT_CORE_KUN_THOM_WREATH.md:614-616` (Prop 8, operator-norm
+`notes/PERFECT_CORE_KUN_THOM_WREATH.md:614-616` (Prop 8, operator-norm
 sterility of the even cover).
 
 ## kun-thom-clifford-relative-wall — PARTIAL
 
 **Sufficiency is proved with constant one and is kernel-checked.**
-`docs/TRUE_KUN_THOM_CLIFFORD_PHASE.md:104-151`:
+`notes/TRUE_KUN_THOM_CLIFFORD_PHASE.md:104-151`:
 
 > "There is no hidden quantitative loss in this last implication. If
 > `D_n=C_(h,n)`, the coordinate matrix for the second commutator is
@@ -260,13 +260,13 @@ Verified: `CliffordPhaseExtraction.lean:42-54`
 `AntipodalRadicalCollision.lean:112-120`
 (`exists_hyperlinear_not_isSofic_of_negOnePhase_soficInvisible`).
 
-**Consequence proved:** `docs/FALSE_RELATIVE_WALL_FORCES_FLEXIBLE_HS_INSTABILITY.md:33`
+**Consequence proved:** `notes/FALSE_RELATIVE_WALL_FORCES_FLEXIBLE_HS_INSTABILITY.md:33`
 — "**Theorem 1.** If `(WFI2)--(WFI4)` hold, then `G` is not flexibly
 Hilbert--Schmidt stable." (`(WFI17)`: relative wall => flexible HS-instability.)
 
-**Necessary condition proved:** `docs/FALSE_ONE_INVOLUTION_INSTABILITY.md:35-57`
+**Necessary condition proved:** `notes/FALSE_ONE_INVOLUTION_INSTABILITY.md:35-57`
 (antipodal radical gap, distance lower limit at least `sqrt(2)`), and
-`docs/TRUE_KUN_THOM_CLIFFORD_PHASE.md:166-173` — no exact pair can work, so
+`notes/TRUE_KUN_THOM_CLIFFORD_PHASE.md:166-173` — no exact pair can work, so
 "Any solution of `(KCP12)--(KCP13)` must therefore use genuine
 Hilbert--Schmidt instability, not a hidden exact representation."
 
@@ -275,7 +275,7 @@ The wall itself is not constructed anywhere.
 ## leavitt-steinberg-hs-stable — PARTIAL
 
 The claim text already concedes hyperfinite HS stability is known. **Where it
-is proved is not recorded in the graph:** `docs/NOTEPAD.md:22220-22232`, for
+is proved is not recorded in the graph:** `notes/NOTEPAD.md:22220-22232`, for
 this exact group (`U=St_5(L)`, fixed at `NOTEPAD.md:22149`):
 
 > "**Theorem (unconditional hyperfinite HS stability).** The group `U` is
@@ -289,34 +289,34 @@ finite-dimensional representations of `U`) and the consequence at `:22234-22238`
 > and character-approximation constructions are completely closed for this
 > group."
 
-Property `(TT)/T` of `St_n(L)` is established, `docs/LEAVITT_TT_T.md:226-241`.
+Property `(TT)/T` of `St_n(L)` is established, `notes/LEAVITT_TT_T.md:226-241`.
 But the natural route from it is **refuted**:
-`docs/FALSE_TT_T_IS_NOT_DIMENSION_FREE_HS_STABILITY.md:50-65`, including the
+`notes/FALSE_TT_T_IS_NOT_DIMENSION_FREE_HS_STABILITY.md:50-65`, including the
 consistency check that a generic `(T) => normalized-HS stability` implication
 would contradict Becker--Lubotzky. Same file `:96-100`: "Do not route the
 current proof through abstract `(TT)/T -> stability`."
 
-Boundary statement: `docs/ATLAS_HS_CRITERION.md:409-415`.
+Boundary statement: `notes/ATLAS_HS_CRITERION.md:409-415`.
 
 ## leavitt-steinberg-hs-unstable — PARTIAL
 
 **The claim's own reduction is a proved theorem** —
-`docs/ATLAS_HS_CRITERION.md:196-217` ("Theorem (one-witness exact-atlas
+`notes/ATLAS_HS_CRITERION.md:196-217` ("Theorem (one-witness exact-atlas
 certificate)"), with the converse at `:247-253` and the "every genuine
 finite-dimensional representation is trivial" premise used at `:319-322`.
 
 The construction is reduced to **finite matrix feasibility**,
-`docs/ATLAS_HS_CRITERION.md:286-298` (variables: finitely many integer
+`notes/ATLAS_HS_CRITERION.md:286-298` (variables: finitely many integer
 multiplicity vectors, finitely many relative unitaries `V_i`, common size
 `d`), upgraded to a ratio criterion at `:357-407`, with the atlas made fully
-explicit in `docs/EXPLICIT_LEAVITT_ATLAS.md` (30 generators; `:452-456`
+explicit in `notes/EXPLICIT_LEAVITT_ATLAS.md` (30 generators; `:452-456`
 states the endgame as a sequence of compact one-unitary optimizations).
 
-Equivalent one-trace form: `docs/NOTEPAD.md:22262-22290` — "construct one
+Equivalent one-trace form: `notes/NOTEPAD.md:22262-22290` — "construct one
 nontrivial Connes-embeddable trace of U". A flexible variant suffices,
-`docs/NOTEPAD.md:22593-22596`.
+`notes/NOTEPAD.md:22593-22596`.
 
-**Unconditional no-go on the obvious construction:** `docs/NOTEPAD.md:22096-22133`
+**Unconditional no-go on the obvious construction:** `notes/NOTEPAD.md:22096-22133`
 (normalized-HS Leavitt trace floor `e_0+e_1+e_c >= 1`; rules out all
 square-matrix Fock, Toeplitz, leaf-truncation, polar-correction and
 direct-sum ring-first constructions in normalized HS norm). Same passage
@@ -332,7 +332,7 @@ refuses to conclude stability from it (`:22135`).
 Only the conditional consumer is formalized
 (`ManuscriptExactWrappers.manuscriptExactRadicalFromCandidateQuotient`,
 cited at `non_mf_groups_exist.tex:1664`). Named failure mode for the obvious
-analytic route, `docs/NON_MF_FINAL_REVIEW_AND_RESOLUTION_2026-08-14.md:192-194`:
+analytic route, `notes/NON_MF_FINAL_REVIEW_AND_RESOLUTION_2026-08-14.md:192-194`:
 "Existing Hilbert--Schmidt convergence does not give the operator-norm
 separation required for that quotient; the compression defect can survive on
 small corners." The same `NOTEPAD.md:39199` criterion noted under
@@ -340,7 +340,7 @@ small corners." The same `NOTEPAD.md:39199` criterion noted under
 
 ## literal-witness-kernel-amenable — UNTOUCHED
 
-`docs/NON_MF_FINAL_REVIEW_AND_RESOLUTION_2026-08-14.md:206-208`:
+`notes/NON_MF_FINAL_REVIEW_AND_RESOLUTION_2026-08-14.md:206-208`:
 
 > "3. **Soficity and structure of `E`.** The kernel of `E -> W`, a normal
 > form, the word problem, and soficity of the finitely presented group `E`
@@ -349,7 +349,7 @@ small corners." The same `NOTEPAD.md:39199` criterion noted under
 Surjectivity of `E -> W` is proved (`non_mf_groups_exist.tex:1840-1844`) and
 `W` is sofic (Theorem E; Lean `NonMFImpact.witness_sofic_nonMF`). **Nothing in
 the corpus computes or bounds `ker(E -> W)`** — a targeted grep across
-`docs/`, `research/`, `GroupApproximation/` and the `.tex` found no
+`notes/`, `research/`, `GroupApproximation/` and the `.tex` found no
 description of that kernel beyond the "remain unresolved" sentence.
 
 Note: `bin/cairn frontier` currently warns this node is open but unreachable
@@ -358,7 +358,7 @@ from any root claim.
 ## pauli-carrier-membership-decoder — PARTIAL
 
 The matching **lower bound** is proved and Lean-transcribed:
-`docs/TRUE_PAULI_CARRIER_BINARY_ALGEBRA_GAP.md:59-69`, `dist_2(F,W*(E))^2 >= 3/28`,
+`notes/TRUE_PAULI_CARRIER_BINARY_ALGEBRA_GAP.md:59-69`, `dist_2(F,W*(E))^2 >= 3/28`,
 sharp at `x=1/8`; Lean
 `GroupApproximation/Leavitt/PauliCarrierBinaryGap.lean:37-43`
 (`three_div_twenty_eight_le_binaryResidual`) — pure real arithmetic, **not**
@@ -370,25 +370,25 @@ The vanishing statement is explicitly open, same doc `:91-104`:
 > gate and is not supplied by additive characters: the finite double-Pauli
 > model has a nonzero conditional variance."
 
-Trap recorded at `docs/HIGHEST_YIELD_NONHYPERLINEAR_ATTACK.md:952-963`: do not
+Trap recorded at `notes/HIGHEST_YIELD_NONHYPERLINEAR_ATTACK.md:952-963`: do not
 try to derive the containment pointwise on additive root characters — the
 implication is false.
 
 ## quantized-scale-index — PARTIAL
 
 The recovery half is a proved theorem,
-`docs/TRUE_LOCALLY_FINITE_COMMUTANTS_RECOVER_BUT_AT_SHIFTED_SCALES.md:16-27`
+`notes/TRUE_LOCALLY_FINITE_COMMUTANTS_RECOVER_BUT_AT_SHIFTED_SCALES.md:16-27`
 (locally finite analogue of the elementwise part of Alekseev--Thom Open
 Problem 6.2; Reynolds identity formalized in `PropertyT/FiniteGroupAverage.lean`).
 
 The obstruction is exact, same file `:29-45`: `alpha(K_m) <= K_(r(m))` with
 `r(m)>m`, and "For the unilateral binary shift, the missing scale has an exact
 factor-two commutant-dimension defect." Sourced from
-`docs/HIGHEST_YIELD_NONHYPERLINEAR_ATTACK.md:152-179`.
+`notes/HIGHEST_YIELD_NONHYPERLINEAR_ATTACK.md:152-179`.
 
 **Citation correction:** the node attributes its source to "AGENDA
 2026-08-14", but the header `locally finite commutants recover at the wrong
-scale` occurs only in `docs/HIGHEST_YIELD_NONHYPERLINEAR_ATTACK.md:152`; it
+scale` occurs only in `notes/HIGHEST_YIELD_NONHYPERLINEAR_ATTACK.md:152`; it
 appears nowhere in `AGENDA.md` or `NOTEPAD.md`. The same mis-attribution
 affects `finite-window-decoder`, `relator-energy-variance-bound`,
 `same-orbit-closure` and `transition-equivariance`: the cited strings are `##`
@@ -399,7 +399,7 @@ headers of `HIGHEST_YIELD_NONHYPERLINEAR_ATTACK.md`, with re-worded twins in
 
 No document or Lean declaration attempts the positive size-uniform bound. The
 exact countermodel that forces its shape is proved,
-`docs/FALSE_EXACT_JOINT_COMPRESSOR_HAS_MAXIMAL_FIBER_VARIANCE.md:11-28`:
+`notes/FALSE_EXACT_JOINT_COMPRESSOR_HAS_MAXIMAL_FIBER_VARIANCE.md:11-28`:
 
 > "joint covariance defect = 0, joint transition variance = 0, left/right
 > transition measurements share one fine PVM, binary extension-fiber
@@ -416,7 +416,7 @@ carry no energy or variance content.
 ## same-orbit-closure — PARTIAL (negative side only)
 
 The escape it must exclude is an exact finite model,
-`docs/FALSE_EQUIVARIANT_WHOLE_MAPS_ALLOW_RECTANGULAR_ESCAPE.md:12-32`:
+`notes/FALSE_EQUIVARIANT_WHOLE_MAPS_ALLOW_RECTANGULAR_ESCAPE.md:12-32`:
 
 > "There is an exact finite model in which all four Leavitt transports are
 > deterministic equivariant maps, the two diagonal pairing identities and both
@@ -425,7 +425,7 @@ The escape it must exclude is an exact finite model,
 > equivariance, is the genuinely matrix-specific finite-multiplicity theorem."
 
 Independently restated at
-`docs/TRUE_NESTED_COMMUTATORS_RECOVER_PAIRED_TRANSLATIONS.md:225-235`. The
+`notes/TRUE_NESTED_COMMUTATORS_RECOVER_PAIRED_TRANSLATIONS.md:225-235`. The
 closure itself is untouched.
 
 ## sofic-radical-hyperlinear-survivor — PARTIAL
@@ -437,33 +437,33 @@ The **criterion** is established and kernel-checked:
 The **sofic-radical half is supplied in four explicit groups**, and two of
 these are *complete radical computations*, which the graph does not record:
 
-- `docs/COMMUTING_WREATH_SOFIC_RADICAL.md:53-57` — `Rad_sof(W)=K`, with
+- `notes/COMMUTING_WREATH_SOFIC_RADICAL.md:53-57` — `Rad_sof(W)=K`, with
   `W/K` residually finite; and `:131-176` (Corollary 2) reduces it to **one
   explicit normal generator**: with `mu=(x_1...x_d)^{-1}`, `h=e_12(mu)`,
   `w=a_{hGamma}a_Gamma`, one has `Rad_sof(W)=<<w>>_W`. Payoff at `:191-200`:
   "The FALSE-side problem for the original Kun--Thom example is therefore
   exactly a one-projection Connes-embeddability problem."
-- `docs/AUGMENTATION_SOFIC_RADICAL.md:50-64` — `Rad_sof(P)=M`;
-  `docs/CYCLIC_AUGMENTATION_SOFIC_RADICAL.md:167-176` — cyclicity,
+- `notes/AUGMENTATION_SOFIC_RADICAL.md:50-64` — `Rad_sof(P)=M`;
+  `notes/CYCLIC_AUGMENTATION_SOFIC_RADICAL.md:167-176` — cyclicity,
   `Rad_sof(P)=M=ZGv=<<v>>_P`.
 
 No hyperlinear detector exists for any of them. The obvious reuse is
-**contradicted**: `docs/TRUE_LITERAL_NONMF_MARK_IS_CE_VISIBLE.md:49-62` proves
+**contradicted**: `notes/TRUE_LITERAL_NONMF_MARK_IS_CE_VISIBLE.md:49-62` proves
 `w notin Rad_sof(E)`, so the literal Clifford sign cannot be the
 sofic-radical half. The relative-Kazhdan shortcut is refuted too,
-`docs/CYCLIC_AUGMENTATION_SOFIC_RADICAL.md:249-250,285-288`:
+`notes/CYCLIC_AUGMENTATION_SOFIC_RADICAL.md:249-250,285-288`:
 
 > "**Proposition 5.** Neither \((P,M)\) nor \((P_m,M_m)\), for \(m\geq2\),
 > has relative property \((T)\). ... Any successful model must use genuinely
 > nonliftable trace geometry rather than a relative Kazhdan projection."
 
-General characterization: `docs/TRUE_LINEAR_SOFIC_RADICAL_INEQUALITY.md:77-88`
+General characterization: `notes/TRUE_LINEAR_SOFIC_RADICAL_INEQUALITY.md:77-88`
 (Theorem 2, three-way equivalence), with its honest limitation at `:184-189`.
 
 ## transition-equivariance — PARTIAL (written as a task, never executed)
 
 The abstract theorem it feeds is complete
-(`docs/TRUE_EQUIVARIANT_TRANSITIONS_COARSEN_TO_WHOLE_MAPS.md`), but the claim
+(`notes/TRUE_EQUIVARIANT_TRANSITIONS_COARSEN_TO_WHOLE_MAPS.md`), but the claim
 is stated in the corpus as an audit **still to be performed**, same file
 `:242-257` ("## 7. Remaining literal audit"):
 
@@ -485,14 +485,14 @@ in the normalized HS metric is close to a genuine finite-dimensional
 representation after padding."
 
 The source it paraphrases distinguishes two different groups.
-`docs/OBSTRUCTIONS.md:123-127`:
+`notes/OBSTRUCTIONS.md:123-127`:
 
 > "**Rigidity.** If `G` is flexibly HS-stable then the wreath candidate is not
 > hyperlinear: lift `rho|_G` to genuine `pi_m`, pad the lamp, apply the
 > Kazhdan pair to the *genuine* adjoint representation..."
 
 Here `G` is the ambient residually finite Kazhdan group of the pair
-`Gamma <= G` (fixed at `docs/OBSTRUCTIONS.md:10`), while "the wreath
+`Gamma <= G` (fixed at `notes/OBSTRUCTIONS.md:10`), while "the wreath
 candidate" is the wreath product built over `G/Gamma`. The node's subject
 ("the wreath candidate `G`") fuses them, and the hypothesis the rigidity route
 actually needs is flexible HS-stability of the **ambient** `G`, not of the
@@ -501,9 +501,9 @@ so the mis-statement is confined to this leaf node.
 
 This matters because the corpus proves two implications under which the
 *intended* hypothesis would be false:
-`docs/FALSE_RELATIVE_WALL_FORCES_FLEXIBLE_HS_INSTABILITY.md:33` (a relative
+`notes/FALSE_RELATIVE_WALL_FORCES_FLEXIBLE_HS_INSTABILITY.md:33` (a relative
 wall implies `G` is not flexibly HS-stable) and
-`docs/TRUE_CLIFFORD_HYPERLINEARITY_FORCES_AMBIENT_HS_INSTABILITY.md:15-26`
+`notes/TRUE_CLIFFORD_HYPERLINEARITY_FORCES_AMBIENT_HS_INSTABILITY.md:15-26`
 (`(CHI1)`/`(CHI2)` dichotomy). The 2-Kazhdan/Frobenius shortcut to it is
 invalid, same file `:125-156` (normalization firewall: Frobenius stability
 needs `sqrt(d_n) epsilon_n -> 0`, which nothing supplies).
@@ -512,30 +512,30 @@ needs `sqrt(d_n) epsilon_n -> 0`, which nothing supplies).
 ambient Kazhdan group `G`, or split it. I did not edit it — see the
 "Actions not taken" section.
 
-## wreath-not-sofic — PARTIAL (cited throughout docs/, deliberately not imported)
+## wreath-not-sofic — PARTIAL (cited throughout notes/, deliberately not imported)
 
 The node is explicitly conjectural by stated doctrine
-(`research/wreath-not-sofic.md:8-12`). The `docs/` corpus asserts it about six
-times as a **citation**, e.g. `docs/COMMUTING_WREATH_SOFIC_RADICAL.md:30-37`:
+(`research/wreath-not-sofic.md:8-12`). The `notes/` corpus asserts it about six
+times as a **citation**, e.g. `notes/COMMUTING_WREATH_SOFIC_RADICAL.md:30-37`:
 
 > "Consider the Kun--Thom group `W=A_X rtimes G`. Kun and Thom prove that
 > \(W\) is nonsofic."
 
-Source is audited against the paper: `docs/CREDIT_AND_PRIORITY_AUDIT.md:311-314`
+Source is audited against the paper: `notes/CREDIT_AND_PRIORITY_AUDIT.md:311-314`
 ("Kun–Thom 2608.06222 v1 ... Theorems: A = nonsofic wreath products") and
 `:190` ("checked against the full HTML"). Derived nonsoficity statements are
-proved conditionally on it (`docs/FALSE_FERMIONIC_KUN_THOM_ENDPOINT.md:54-55`,
-`docs/PERFECT_CORE_KUN_THOM_WREATH.md:302-305`). Lean has an interface but
+proved conditionally on it (`notes/FALSE_FERMIONIC_KUN_THOM_ENDPOINT.md:54-55`,
+`notes/PERFECT_CORE_KUN_THOM_WREATH.md:302-305`). Lean has an interface but
 **no inhabitant**.
 
 **Definitional gap — the real reason it is open.** The phrase "wreath
-candidate" is used in exactly two places in `docs/` and is **never defined**:
-`docs/OBSTRUCTIONS.md:123` (the substantive use) and `docs/NOTEPAD.md:31454`
+candidate" is used in exactly two places in `notes/` and is **never defined**:
+`notes/OBSTRUCTIONS.md:123` (the substantive use) and `notes/NOTEPAD.md:31454`
 (a *different* object — "the split integral wreath candidate"). All other
 occurrences are downstream restatements in `research/*.md`. Until the symbol is
 bound to a specific group, the citation cannot be applied to it. Binding it to
 the Kun--Thom `W = (bigoplus_{G/Gamma} F_2) rtimes G` for the pair in
-`docs/UNIQUE_TRACE_KUN_THOM_DOUBLE.md:7-22` is plausible from matching
+`notes/UNIQUE_TRACE_KUN_THOM_DOUBLE.md:7-22` is plausible from matching
 notation in `OBSTRUCTIONS.md` §3-§4, but the corpus nowhere states it.
 
 ## continuum-nonisomorphic-non-mf-cylinder — PARTIAL (deleted proof of the weaker statement)
@@ -559,7 +559,7 @@ The proof is self-contained: subgroup heredity of MF (still present at
 `non_mf_groups_exist.tex:1748-1751`), abelianization torsion-free rank for (1),
 and B. H. Neumann's continuum family of 2-generator groups plus a
 countable-fibres cardinality argument for (2). The Neumann citation is
-source-verified at `docs/CREDIT_AND_PRIORITY_AUDIT.md:440-441`.
+source-verified at `notes/CREDIT_AND_PRIORITY_AUDIT.md:440-441`.
 
 **Why this is not SOLVED.** The cylinder is a set of *eight-generator marked*
 groups — quotients of `F_8` satisfying all relators of `R` with `w != 1`
@@ -584,12 +584,12 @@ The **existential** version is solved and Lean-closed:
 The `1/500` input is machine-checked
 (`GroupApproximation/Sofic/LiteralP13HodgeCertificate.lean:230-244`) but is
 nowhere linked to a modulus. Three further independent statements confirm the
-computation is absent: `docs/NON_MF_FINAL_REVIEW_AND_RESOLUTION_2026-08-14.md:202-205`,
-`docs/NON_MF_IMPACT_FORMAL_STATUS.md:112-114`,
+computation is absent: `notes/NON_MF_FINAL_REVIEW_AND_RESOLUTION_2026-08-14.md:202-205`,
+`notes/NON_MF_IMPACT_FORMAL_STATUS.md:112-114`,
 `research/uniform-obstruction-from-corona-invisibility.md:20`.
 
 **Nearest quantitative asset, in a different setting** (genuine
-representations, not approximate models): `docs/NOTEPAD.md:944-978`, "Lemma
+representations, not approximate models): `notes/NOTEPAD.md:944-978`, "Lemma
 (Kazhdan square-root barrier for an exact ambient sector)", giving
 `||W-1||_(2,normalized) <= 2 epsilon / kappa` and hence
 `epsilon sqrt(d) >= alpha kappa / 2`. This is the only explicit
@@ -616,13 +616,13 @@ Companion pieces are equally matrix-bound: central-corner reduction `:322-338`,
 central-sign criterion `:342-360`, finite-normal cancellation `:1373-1470`.
 
 Corpus states the claim as open in nearly these words,
-`docs/NON_MF_FINAL_REVIEW_AND_RESOLUTION_2026-08-14.md:210-212`:
+`notes/NON_MF_FINAL_REVIEW_AND_RESOLUTION_2026-08-14.md:210-212`:
 
 > "5. **Broader targets.** Extending transport from matrix coronas to arbitrary
 > norm ultraproducts of finite traced C-star algebras is plausible but needs
 > a precisely chosen target category and a new proof."
 
-A grep of `docs/` and both `.tex` files for "finite tracial C*",
+A grep of `notes/` and both `.tex` files for "finite tracial C*",
 "tracial C*-algebra", "target-general", "general target", "finite von Neumann
 target", "beyond matrices" returns zero hits outside that paragraph.
 
@@ -635,7 +635,7 @@ structural lemmas that do:
   witness map composed with `B -> Gammabar`); consequently `E` is nonamenable.
 - **Rank at most six + 32-relator Tietze presentation**,
   `non_mf_groups_exist.tex:996-1013`, with the caveat at
-  `docs/NON_MF_IMPACT_FORMAL_STATUS.md:127-130` that the 32-relator
+  `notes/NON_MF_IMPACT_FORMAL_STATUS.md:127-130` that the 32-relator
   presentation "is currently a human syntactic calculation."
 - **One-sided compression structure**, `non_mf_groups_exist.tex:989-992`.
 - `w != 1`, central, `w^2=1`, `w = [d,iota(v_1)]^2`, `:510-513`, `:1206-1212`.
@@ -666,10 +666,10 @@ Not proved. Four assets, none recorded in the graph:
 2. **A formal no-go for the naive route**: identity-block padding,
    `NormTraceGap.lean:316-336`, preserves every operator-norm distance exactly
    while diluting every HS quantity. History at
-   `docs/NON_MF_ARCHAEOLOGY.md:146-156` — "This closed the naive implication
+   `notes/NON_MF_ARCHAEOLOGY.md:146-156` — "This closed the naive implication
    'weak MF implies hyperlinear.'" (Read precisely: it closed the *route*, not
    the statement.)
-3. **A concrete counterexample to metric-change**, `docs/NOTEPAD.md:24294-24317`:
+3. **A concrete counterexample to metric-change**, `notes/NOTEPAD.md:24294-24317`:
    represent `Z` in `U(n)` by `1 |-> diag(exp(i theta),1,...,1)`; this is
    operator-norm faithful in the corona while converging to the identity in
    normalized HS norm. "it proves that one cannot obtain a hyperlinear
@@ -677,7 +677,7 @@ Not proved. Four assets, none recorded in the graph:
    Same passage fixes the convention split (Shulman/CDE weak vs. Schafhauser
    trace-controlled).
 4. **A sufficient rate condition with a complete proof** —
-   `docs/NOTEPAD.md:487-544`, exterior/Fock amplification: if
+   `notes/NOTEPAD.md:487-544`, exterior/Fock amplification: if
    `epsilon_n * sqrt(d_n) -> 0` then `G` is hyperlinear, via
    `tr_norm(R_d(U)) = |det((I+U)/2)|^2`. Finite-dimensional algebra formalized
    in `GroupApproximation/Sofic/ExteriorMFProfile.lean:210,270,281`. Missing
@@ -696,12 +696,12 @@ records none of it.
 **Determined non-MF, unconditional:**
 
 - The Kun--Thom Clifford extension (complete or sparse),
-  `docs/FALSE_CLIFFORD_NORM_MF_STERILITY.md:5-37` — every homomorphism to a
+  `notes/FALSE_CLIFFORD_NORM_MF_STERILITY.md:5-37` — every homomorphism to a
   norm-matrix corona kills `z`, so "E is not weak/operator-norm MF". Proof uses
   only the Kazhdan projection and finiteness of the corona (`:82-92`). Closes a
   route: "the desired MF hypothesis is not merely missing; it is false"
   (`:139-142`).
-- The perfect even cover, `docs/PERFECT_CORE_KUN_THOM_WREATH.md:614-616`
+- The perfect even cover, `notes/PERFECT_CORE_KUN_THOM_WREATH.md:614-616`
   (Proposition 8).
 - The manuscript witness `W`: sofic **and** hyperlinear **and** non-MF,
   premise-free in Lean (`GroupApproximation/Endpoint/NonMFImpact.lean:81-92`).
@@ -710,20 +710,20 @@ records none of it.
 **Determined weak-MF at paper level (cited literature, not formalized):**
 
 - Every symmetric double of a countable residually finite group,
-  `docs/WEAK_MF_NONSOFIC_DOUBLE.md:187-188`; applied to the Kun--Thom pair at
+  `notes/WEAK_MF_NONSOFIC_DOUBLE.md:187-188`; applied to the Kun--Thom pair at
   `:316-320`: "`D=G*_Gamma G` is weak-MF and nonsofic."
 - The finite-lamp family, `:341-350`.
-- The `Z`-lamp free-lamp group, `docs/NOTEPAD.md:830-856`, with the scope limit
+- The `Z`-lamp free-lamp group, `notes/NOTEPAD.md:830-856`, with the scope limit
   at `:857-860` — this separates weak-MF from sofic but **not** Schafhauser-MF
   or hyperlinear from sofic.
 
 **Explicitly undetermined:** the Kun--Thom commuting wreath `W`
-(`docs/NOTEPAD.md:30421-30423` — "weak MF of W is not banked"), `EL_4(L)`
-(`docs/NOTEPAD.md:770-777`), `E/<w>`, `W/<zeta>`, `C_r^*(G*_Gamma G)`
-(`docs/UNIQUE_TRACE_KUN_THOM_DOUBLE.md:166-193`, with the
+(`notes/NOTEPAD.md:30421-30423` — "weak MF of W is not banked"), `EL_4(L)`
+(`notes/NOTEPAD.md:770-777`), `E/<w>`, `W/<zeta>`, `C_r^*(G*_Gamma G)`
+(`notes/UNIQUE_TRACE_KUN_THOM_DOUBLE.md:166-193`, with the
 `C^*(F_infty)`/QWEP warning), Elek--Szabo, Fournier-Facio.
 
-**Formalization caveat:** `docs/WEAK_MF_NONSOFIC_DOUBLE.md:35-46` describes
+**Formalization caveat:** `notes/WEAK_MF_NONSOFIC_DOUBLE.md:35-46` describes
 `GroupApproximation/Sofic/MFNonsoficDoubleEndpoint.lean` and
 `HasSoficCentralizerNormalization`. Both were **deleted** in commit `241440fe`
 and no longer exist. The surviving
@@ -756,7 +756,7 @@ formalized (`GroupApproximation/Sofic/TorsionFreeFiniteNormalLimit.lean:19`,
 **different mechanism** that reaches the conclusion conditionally, and it was
 machine-checked.
 
-`docs/TORSION_FREE_FULL_CDE_MF_FORMALIZATION.md` describes four Lean modules.
+`notes/TORSION_FREE_FULL_CDE_MF_FORMALIZATION.md` describes four Lean modules.
 **All four were deleted** in commit `241440fe` (2026-08-14 13:38, message
 "Prove integral linear groups residually finite", which does not mention the
 deletion): `Sofic/TorsionFreeFullMFRadical.lean` (539 lines),
@@ -793,7 +793,7 @@ whose fields are the external group theory, not axioms. Its own docstring:
 > the two generators, torsion preservation, finite presentation, and the fact
 > that the original defect maps onto the entire quotient."
 
-And `docs/TORSION_FREE_FULL_CDE_MF_FORMALIZATION.md:62-93` states the boundary
+And `notes/TORSION_FREE_FULL_CDE_MF_FORMALIZATION.md:62-93` states the boundary
 precisely — no unconditional `∃ Q` theorem, with six named missing inputs
 (Fournier-Facio's input groups, suitable-subgroup extraction, Hull's two-stage
 construction, acylindrical hyperbolicity, external SQ-universal/two-conjugacy
@@ -829,7 +829,7 @@ class (a) (sofic), by relabelling with richer targets. Two independent corpus
 proofs close it, neither previously in the graph.
 
 - `single-lamps-recover-set-action` [ESTABLISHED] + `-proof` — the
-  `docs/NOTEPAD.md` lemma: a sofic `C`-action on `⊕_X C_2` forces `G ↷ X`
+  `notes/NOTEPAD.md` lemma: a sofic `C`-action on `⊕_X C_2` forces `G ↷ X`
   sofic, **for any class `C` whatsoever**. Class-agnostic, so it kills every
   enrichment at once, including classes not on Alekseev--Bradford's menu.
 - `halo-locally-sofic-target-collapse` [ESTABLISHED] + `-proof` — the
@@ -885,31 +885,31 @@ no-laundering rule:
 **No existing claim file edited.** `wreath-flexible-hs-stability` is mis-stated
 (its subject fuses the ambient Kazhdan group `G` with the wreath candidate),
 and five atlas nodes mis-attribute their source to `AGENDA.md` when the cited
-headers live in `docs/HIGHEST_YIELD_NONHYPERLINEAR_ATTACK.md`. Both are
+headers live in `notes/HIGHEST_YIELD_NONHYPERLINEAR_ATTACK.md`. Both are
 statement-level corrections to nodes others are working in, so they remain
 reported rather than applied.
 
-**Two docs need a staleness marker** (not applied — I only read `docs/`):
-`docs/TORSION_FREE_FULL_CDE_MF_FORMALIZATION.md` and
-`docs/WEAK_MF_NONSOFIC_DOUBLE.md` both describe Lean files deleted in
+**Two docs need a staleness marker** (not applied — I only read `notes/`):
+`notes/TORSION_FREE_FULL_CDE_MF_FORMALIZATION.md` and
+`notes/WEAK_MF_NONSOFIC_DOUBLE.md` both describe Lean files deleted in
 `241440fe` as present. The second is now flagged inside
 `symmetric-double-weak-mf-proof`, so the graph does not inherit the error.
 
 # Corpus notes worth keeping
 
 - **Two different groups are called `W`.** In
-  `docs/COMMUTING_WREATH_SOFIC_RADICAL.md:30` `W = A_X rtimes G` is the
+  `notes/COMMUTING_WREATH_SOFIC_RADICAL.md:30` `W = A_X rtimes G` is the
   nonsofic Kun--Thom commuting wreath (MF status open). In
   `research/sofic-non-mf-witness.md` and
-  `docs/SIMULTANEOUS_P_AND_OPERATOR_STABILITY_2026-08-13.md:283-294`,
+  `notes/SIMULTANEOUS_P_AND_OPERATOR_STABILITY_2026-08-13.md:283-294`,
   `W = ClLamp(X) rtimes V` is the sofic, non-MF affine-Clifford witness.
-- **`docs/NOTEPAD.md` is stale as a progress log.** Its newest dated header is
+- **`notes/NOTEPAD.md` is stale as a progress log.** Its newest dated header is
   `# 2026-08-12` (line 24319). It still contains unique load-bearing material
   (the hyperfinite HS stability theorem, the exterior amplification lemma, the
   central-extension MF criterion, the Kazhdan square-root barrier) that exists
   nowhere else.
-- **Newest documents by mtime** are `docs/FALSE_ODD_SPECTRAL_EQUIVARIANT_COARSENING.md`
-  (17:45) and `docs/HYPERLINEAR_CAIRN_PROGRESS_2026-08-14.md` (16:44); both
+- **Newest documents by mtime** are `notes/FALSE_ODD_SPECTRAL_EQUIVARIANT_COARSENING.md`
+  (17:45) and `notes/HYPERLINEAR_CAIRN_PROGRESS_2026-08-14.md` (16:44); both
   postdate `AGENDA.md` (11:39) and `HIGHEST_YIELD_NONHYPERLINEAR_ATTACK.md`
   (11:05), and neither is reflected in those two.
 - **This sweep's scope is the 96-claim graph, which teammates have since

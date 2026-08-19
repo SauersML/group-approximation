@@ -6,7 +6,7 @@ title: Combine the involution relations with the grading certificate
 target: exceptional-mixed-pair-is-infinite-dihedral
 requires: []
 artifacts:
-  - docs/TRUE_MIXED_COMMUTATOR_HAS_INFINITE_ORDER.md
+  - notes/TRUE_MIXED_COMMUTATOR_HAS_INFINITE_ORDER.md
   - GroupApproximation/Sofic/MixedCommutatorDihedral.lean
 ---
 

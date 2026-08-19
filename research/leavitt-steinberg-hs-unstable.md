@@ -8,8 +8,8 @@ distinct_from:
   hyperlinear-wreath-model: This asks only for one nontrivial tracial-ultraproduct image of the Steinberg cover; the other asks for a faithful hyperlinear model of a wreath candidate.
   hs-expander-block-decomposition: That is the general Kazhdan-group decomposition whose proof would select the opposite branch; refuting it does not by itself select this one.
 artifacts:
-  - docs/ATLAS_HS_CRITERION.md
-  - docs/NOTEPAD.md
+  - notes/ATLAS_HS_CRITERION.md
+  - notes/NOTEPAD.md
 ---
 
 Construct a normalized-HS asymptotic representation of
@@ -26,7 +26,7 @@ usable relator list `T_St` exists concretely — 4,648 machine-verified
 words in the twelve atlas generators, complete presentation proved
 in-repo (`atlas-steinberg-spare-index-independence`), sole remaining
 literature premise Kervaire–Steinberg centrality.  So the canonical
-regular-`A₈` criterion of `docs/EXPLICIT_LEAVITT_ATLAS.md` §9 reads,
+regular-`A₈` criterion of `notes/EXPLICIT_LEAVITT_ATLAS.md` §9 reads,
 for the first time with every ingredient explicit: `Q` is hyperlinear —
 equivalently THIS claim's branch holds — iff single unitaries
 `U_n ∈ U(20160·k_n)` drive the 4,648 words of `T_St` to `1` in
@@ -64,7 +64,7 @@ finite-dimensional representation is trivial, so instability is *by
 definition* the existence of one almost-representation family bounded away
 from `1`.  Equivalently, one nontrivial homomorphism `U -> U(R^omega)`, one
 nontrivial Connes-embeddable trace on `U`, or one exact-atlas sequence
-satisfying `(A)`--`(B)` of `docs/ATLAS_HS_CRITERION.md`.  These are already
+satisfying `(A)`--`(B)` of `notes/ATLAS_HS_CRITERION.md`.  These are already
 recorded as the content of `leavitt-steinberg-hs-stability-fork`; restating
 them as a sub-claim buys nothing.  The genuine sub-problems are the
 constructions, and the ones that are closed are listed in the fork's
@@ -74,17 +74,17 @@ block-monomial relative unitaries, Haar and asymptotically free ensembles,
 bounded internal complexity, and the entire additive-root/Hellinger program.
 
 **The construction is reduced to finite matrix feasibility, and the fences
-are sharp.**  `docs/ATLAS_HS_CRITERION.md:196-217` proves the one-witness
+are sharp.**  `notes/ATLAS_HS_CRITERION.md:196-217` proves the one-witness
 exact-atlas certificate and `:247-253` its converse; `:286-298` makes the
 variables finite -- integer multiplicity vectors per chart, finitely many
 relative unitaries `V_i`, and the common size `d` -- and `:357-407` upgrades
 this to a ratio criterion under which sparse seeds suffice provided relator
-defects vanish faster than the survivor.  `docs/EXPLICIT_LEAVITT_ATLAS.md:452-456`
+defects vanish faster than the survivor.  `notes/EXPLICIT_LEAVITT_ATLAS.md:452-456`
 states the endgame as a sequence of compact one-unitary optimizations.  Two
 fences bound the search: `steinberg-hyperfinite-hs-stable` forbids any
 witness with hyperfinite, AF, amenable-factor or character-approximation
 limit, and `leavitt-multiplicative-trace-floor` together with
-`docs/NOTEPAD.md:22096-22133` forbids every ring-first construction --
+`notes/NOTEPAD.md:22096-22133` forbids every ring-first construction --
 square-matrix Fock, Toeplitz, leaf-truncation, polar-correction, direct-sum
 -- in normalized HS and not merely in operator norm.  The same passage
 (`:22135`) declines to conclude stability from the floor, correctly.
@@ -185,7 +185,7 @@ bound how much the flexible/strict distinction can be worth.
 Lubotzky--Salomon (arXiv:2607.17578) exhibit `Z^2` as flexibly stable but not
 stable in the operator norm, the first such group -- so the gap is genuinely
 crossable, and a flexible variant of this claim is a strictly weaker target,
-which `docs/NOTEPAD.md:22593-22596` already notes would suffice.
+which `notes/NOTEPAD.md:22593-22596` already notes would suffice.
 Becker--Chapman proved uniform flexible stability **in permutations** for all
 amenable groups (recorded in Kun--Thom arXiv:1901.03963v3 §5); that is the
 state of the art on the flexible side and it does not reach this fork,

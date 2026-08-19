@@ -10,7 +10,7 @@ distinct_from:
   doubling-quotient-residually-finite: That claim is about lamps indexed by the height line, which is the level-collapse quotient of this group; this claim identifies the group itself, whose lamps are indexed by the full coset space and which is not residually finite.
   literal-telescope-split-normal-form: That claim splits the literal presented group `E` over the same telescope quotient and identifies its lamp kernel as a block amalgam; this one identifies the Clifford witness modulo its sign, where the lamp kernel is elementary abelian and the block structure has collapsed.
 artifacts:
-  - docs/COMMUTING_LAMP_QUOTIENT_STRUCTURE_AND_MF_FORK_2026-08-14.md
+  - notes/COMMUTING_LAMP_QUOTIENT_STRUCTURE_AND_MF_FORK_2026-08-14.md
 ---
 
 `W/<zeta>` is the permutational wreath product `F_2 wr_{V/Gbar} V`, that is

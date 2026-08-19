@@ -8,7 +8,7 @@ distinct_from:
   invariant-graph-clifford-phase: that classifies invariant graphs on the infinite coset space; this shows a related structure is forced on the finite site sets of any witness.
   marked-double-coset-infinite-degree: that computes an index in the infinite Kun--Thom pair; this is about the finite approximating groups.
 artifacts:
-  - docs/FALSE_FERMIONIC_KUN_THOM_ENDPOINT.md
+  - notes/FALSE_FERMIONIC_KUN_THOM_ENDPOINT.md
 ---
 
 Let `W = (directSum_(G/Gamma) Z/2Z) semidirect G`, let `w=a_o a_(h Gamma)` be

@@ -6,7 +6,7 @@ title: Upgrade the Clifford cover's weak-soficity witness to a hyperlinear one
 target: hyperlinear-nonsofic-group
 requires: [kun-thom-clifford-cover-weakly-sofic, hilbert-embeddable-length-hyperlinearity, hilbert-embeddable-witness-for-kun-thom-wreath]
 artifacts:
-  - docs/TRUE_RELATIVE_WALL_IS_COMMUTANT_GROWTH.md
+  - notes/TRUE_RELATIVE_WALL_IS_COMMUTANT_GROWTH.md
 ---
 
 `kun-thom-clifford-cover-weakly-sofic` proves the Clifford cover

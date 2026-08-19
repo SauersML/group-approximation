@@ -9,8 +9,8 @@ distinct_from:
   tracial-median-concentration: That concentrates the fine block traces once this nested transported partition exists; this claim produces the partition and its gaps.
   leavitt-steinberg-hs-stable: That is the branch selection for the Steinberg cover; this is the missing structural input used to select it.
 artifacts:
-  - docs/TRUE_DIAGONAL_NORMALIZER_RIGIDITY.md
-  - docs/TRUE_SPECTRAL_COAREA_INVARIANT_CUT.md
+  - notes/TRUE_DIAGONAL_NORMALIZER_RIGIDITY.md
+  - notes/TRUE_SPECTRAL_COAREA_INVARIANT_CUT.md
   - c1168433:official/counterexample.tex
 ---
 
@@ -196,7 +196,7 @@ statement, not bare algebraic centralizer capture.
 - `kazhdan-projection-rounding` needs a genuine representation and therefore
   lives on the exact/ultraproduct side, after finite-level spike structure may
   already have disappeared.
-- normalizing a masa is too strong: `docs/TRUE_DIAGONAL_NORMALIZER_RIGIDITY.md`
+- normalizing a masa is too strong: `notes/TRUE_DIAGONAL_NORMALIZER_RIGIDITY.md`
   converts that hypothesis back into a permutation model of comparable
   defect.
 - operator-norm almost-invariance is a different problem; it rules out the

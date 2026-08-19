@@ -9,7 +9,7 @@ distinct_from:
   uas-base-gives-sofic-hnn-coset-action: That uses universal action soficity of the base; this proof needs only the concrete monomial congruence structure and applies even when that general hypothesis is unavailable.
 artifacts:
   - research/artifacts/ascending-hnn-iterated-coset-solution-2026-08-18.md
-  - docs/FALSE_POSITIVE_CORE_IS_SOFIC.md
+  - notes/FALSE_POSITIVE_CORE_IS_SOFIC.md
 ---
 
 Let `k=F_q`, `R=k[x_1,...,x_d]`, `r>=3`, and

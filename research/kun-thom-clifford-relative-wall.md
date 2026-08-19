@@ -6,11 +6,11 @@ title: Finite normalized-HS Clifford wall for the Kun--Thom pair
 distinct_from:
   kun-thom-clifford-extension-not-weak-mf: That settles the operator-norm question for the Clifford extension in the negative, so it is a completed no-go in the MF category; this asks for a normalized-Hilbert--Schmidt construction in the tracial category, which that result does not touch and in fact predicts must avoid the operator-norm sector entirely.
 artifacts:
-  - docs/TRUE_KUN_THOM_CLIFFORD_PHASE.md
-  - docs/TRUE_CLIFFORD_HYPERLINEARITY_FORCES_AMBIENT_HS_INSTABILITY.md
-  - docs/TRUE_RELATIVE_WALL_IS_COMMUTANT_GROWTH.md
-  - docs/FALSE_RELATIVE_WALL_FORCES_FLEXIBLE_HS_INSTABILITY.md
-  - docs/FALSE_ONE_INVOLUTION_INSTABILITY.md
+  - notes/TRUE_KUN_THOM_CLIFFORD_PHASE.md
+  - notes/TRUE_CLIFFORD_HYPERLINEARITY_FORCES_AMBIENT_HS_INSTABILITY.md
+  - notes/TRUE_RELATIVE_WALL_IS_COMMUTANT_GROWTH.md
+  - notes/FALSE_RELATIVE_WALL_FORCES_FLEXIBLE_HS_INSTABILITY.md
+  - notes/FALSE_ONE_INVOLUTION_INSTABILITY.md
   - GroupApproximation/Sofic/CliffordPhaseExtraction.lean
   - GroupApproximation/Sofic/AntipodalRadicalCollision.lean
 ---
@@ -29,7 +29,7 @@ send the established sofic-radical word to `-1` with constant-one error.
 
 ## Ideas and established structure (2026-08-14)
 
-`docs/TRUE_RELATIVE_WALL_IS_COMMUTANT_GROWTH.md` replaces the two displayed
+`notes/TRUE_RELATIVE_WALL_IS_COMMUTANT_GROWTH.md` replaces the two displayed
 matrix conditions by exact algebra.  Write `N=M cap pi(Gamma)'` and
 `N_t=M cap pi(t Gamma t^(-1))'` for a homomorphism into any finite tracial
 `M`.

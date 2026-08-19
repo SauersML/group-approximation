@@ -8,7 +8,7 @@ distinct_from:
   torsion-free-higman-embedding: that claim embeds recursively presented torsion-free groups into finitely presented ones; this one is a small-cancellation common-quotient theorem and embeds nothing.
   finite-infranormal-subgroup-is-normal: that is an established structural theorem about finite infranormal subgroups being normal; this is a small-cancellation construction of common quotients of acylindrically hyperbolic groups — the shared normal-subgroup vocabulary is coincidental.
 artifacts:
-  - docs/TORSION_FREE_NORMAL_GENERATION_HULL_QUOTIENT.md
+  - notes/TORSION_FREE_NORMAL_GENERATION_HULL_QUOTIENT.md
 ---
 
 Let `G_1, G_2` be finitely generated acylindrically hyperbolic groups with

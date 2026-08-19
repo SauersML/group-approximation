@@ -58,7 +58,7 @@ adjacency of `z_a` to `g_iΓ` forces, via
 `a` outside the finitely many bad cosets makes `z_a` adjacent to the base
 point and to no competitor.  (Artifact, Lemma 7.)
 
-**Step 6 — assemble.**  `⟨Γ,h⟩ = N` (`docs/NOTEPAD.md`, `(AB5)`), so the
+**Step 6 — assemble.**  `⟨Γ,h⟩ = N` (`notes/NOTEPAD.md`, `(AB5)`), so the
 component of `Γ` is `N/Γ` and no edge crosses components.  Left-translate a
 chosen `y ∈ F` to the base point, apply Steps 4--5 inside its component, and
 translate back.  Since a private neighbour in one component has no

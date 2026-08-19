@@ -6,7 +6,7 @@ import GroupApproximation.Analysis.QuasiRegularWitness
 # properly infinite
 
 The endpoint assembly of directive (c)
-(`docs/FORMALIZATION_DIRECTIVES_2026-08-15.md` §1): from strict Kazhdan
+(`notes/FORMALIZATION_DIRECTIVES_2026-08-15.md` §1): from strict Kazhdan
 compression data — a Kazhdan group mapped into `E`, conjugated strictly
 inside itself by `t` — the maximal group C-star algebra of `E` carries a
 `ProperProjectionCompression`: the Kazhdan projection `p` of the image

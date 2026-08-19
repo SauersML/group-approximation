@@ -18,7 +18,7 @@ hyperlinear, and the two halves combine into
 
 > an explicit finitely presented **sofic** group that is not MF.
 
-The mathematics is `docs/LITERAL_GROUP_IS_SOFIC_2026-08-14.md` §5 and §6a, and
+The mathematics is `notes/LITERAL_GROUP_IS_SOFIC_2026-08-14.md` §5 and §6a, and
 the route statement `research/literal-sofic-via-block-tower.md`.  The final
 step is one sentence: the stable-letter exponent gives
 
@@ -40,7 +40,7 @@ this file does **not** prove is soficity of the telescope core `E_T`; that is
 the deliverable of the block, amalgam and LEF lanes, and it is the sole premise
 of every conditional declaration below.
 
-`docs/LITERAL_GROUP_IS_SOFIC_2026-08-14.md` flags `B ≅ Γ̄` (completeness of the
+`notes/LITERAL_GROUP_IS_SOFIC_2026-08-14.md` flags `B ≅ Γ̄` (completeness of the
 eight-relator presentation of `SL₃(ℤ)`) as the one irreducible literature input,
 entering at its (S1) and at its Lemma 3.1.  That caveat is obsolete for the
 *splitting* half: `Monsters/LiteralBaseCompleteness.lean` proves
@@ -192,14 +192,14 @@ itself), and its kernel -- the telescope core `E_T = N_E ⋊ T` -- is sofic.
 
 Only the last clause is open: the retraction and its section are elementary
 consequences of the presentation, while soficity of `E_T` is the conclusion of
-the block-tower argument of `docs/LITERAL_GROUP_IS_SOFIC_2026-08-14.md` §§3--4,
+the block-tower argument of `notes/LITERAL_GROUP_IS_SOFIC_2026-08-14.md` §§3--4,
 which in turn carries the `B ≅ Γ̄` input recorded in that document's header. -/
 def HasSoficTelescopeCore : Prop :=
   ∃ (π : MarkedGroup →* Multiplicative ℤ) (s : Multiplicative ℤ →* MarkedGroup),
     (∀ n, π (s n) = n) ∧ IsSofic π.ker
 
 /-- **The literal group is sofic, given a sofic telescope core.**  This is
-Theorem 5.1 of `docs/LITERAL_GROUP_IS_SOFIC_2026-08-14.md`, with its one open
+Theorem 5.1 of `notes/LITERAL_GROUP_IS_SOFIC_2026-08-14.md`, with its one open
 input exposed as a hypothesis rather than assumed. -/
 theorem markedGroup_isSofic_of_soficCore (h : HasSoficTelescopeCore) :
     IsSofic MarkedGroup := by

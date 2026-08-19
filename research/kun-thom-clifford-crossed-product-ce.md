@@ -4,8 +4,8 @@ id: kun-thom-clifford-crossed-product-ce
 kind: claim
 title: Connes embeddability of the Kun--Thom Clifford crossed product
 artifacts:
-  - docs/TRUE_KUN_THOM_CLIFFORD_PHASE.md
-  - docs/FALSE_FERMIONIC_KUN_THOM_ENDPOINT.md
+  - notes/TRUE_KUN_THOM_CLIFFORD_PHASE.md
+  - notes/FALSE_FERMIONIC_KUN_THOM_ENDPOINT.md
 ---
 
 For the explicit residually finite nonnormal infranormal Kazhdan pair
@@ -123,7 +123,7 @@ central-quotient theorem at all.
 
 **Cheaper instances worth preferring.**  `invariant-graph-crossed-product-ce`
 asks only for *some* nondegenerate `G`-invariant graph, not the complete one;
-`docs/NOTEPAD.md` (near line 9969) gives the concrete sparse instance, the
+`notes/NOTEPAD.md` (near line 9969) gives the concrete sparse instance, the
 orbital graph of one symmetric double coset, whose `z=-1` lamp algebra is the
 AF twisted algebra `C_r^*(directSum_X F_2,(-1)^(B_*))` and whose Bogoliubov
 action is far more local than the complete one.  If a construction is going

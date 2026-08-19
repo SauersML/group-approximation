@@ -9,7 +9,7 @@ distinct_from:
   hyperlinear-nonsofic-group: that is Q3.4, about hyperlinear groups failing soficity; this is about whether nonhyperlinear groups exist at all, a different question with a different answer set
 artifacts:
   - GroupApproximation/Sofic/HyperlinearReduction.lean
-  - docs/FALSE_PROJECTIVE_UNITARY_GROUP_SHORTCUT.md
+  - notes/FALSE_PROJECTIVE_UNITARY_GROUP_SHORTCUT.md
 ---
 
 ESTABLISHED, formalized.  `GroupApproximation/Sofic/HyperlinearReduction.lean`
@@ -45,7 +45,7 @@ is the entire universal-hyperlinearity problem**.  Anything that would
 transport Connes embeddability along an arbitrary surjection has already
 answered the question.
 
-`docs/FALSE_PROJECTIVE_UNITARY_GROUP_SHORTCUT.md` works one instance out in
+`notes/FALSE_PROJECTIVE_UNITARY_GROUP_SHORTCUT.md` works one instance out in
 full (the abstract group `PU(M)`), and isolates the same boundary in trace
 language: hyperlinearity of a discrete group `G` asks for matrix
 approximation of its **regular character**

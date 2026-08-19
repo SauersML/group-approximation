@@ -17,7 +17,7 @@ and computes the exact optimal nonlinear repair constant
 
 The calculation is intentionally small and exact.  It is a regression test
 for the general theorem in
-``docs/TRUE_NONLINEAR_DISCRIMINANT_REPAIR_FORMULA.md``,
+``notes/TRUE_NONLINEAR_DISCRIMINANT_REPAIR_FORMULA.md``,
 not a numerical estimate for the large SL(3,Z) charts.
 """
 

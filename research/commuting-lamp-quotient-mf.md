@@ -7,7 +7,7 @@ distinct_from:
   literal-mark-quotient-mf: This concerns the Clifford witness modulo its sign, whose lamp kernel is elementary abelian; the other concerns the literal presented group modulo its mark, whose lamp kernel is a free product of copies of `(Z/2)^8`.
   corona-hs-radical-is-finite-residual: That established claim says every corona representation of this group is trace-blind on the finite residual; this open claim asks for one that is nevertheless injective in operator norm.
 artifacts:
-  - docs/COMMUTING_LAMP_QUOTIENT_STRUCTURE_AND_MF_FORK_2026-08-14.md
+  - notes/COMMUTING_LAMP_QUOTIENT_STRUCTURE_AND_MF_FORK_2026-08-14.md
 ---
 
 For the Clifford witness `W` and its central sign `zeta`, the quotient

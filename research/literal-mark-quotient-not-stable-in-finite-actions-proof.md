@@ -5,7 +5,7 @@ kind: route
 title: Combine soficity of the marked quotient with its nontrivial finite residual
 target: literal-mark-quotient-not-stable-in-finite-actions
 requires: [literal-mark-quotient-sofic, literal-mark-quotient-finite-residual, sofic-stable-implies-residually-finite]
-artifacts: [docs/SOFIC_STABLE_IMPLIES_RESIDUALLY_FINITE_2026-08-14.md]
+artifacts: [notes/SOFIC_STABLE_IMPLIES_RESIDUALLY_FINITE_2026-08-14.md]
 ---
 
 ## Why sufficient

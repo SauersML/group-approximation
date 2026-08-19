@@ -7,7 +7,7 @@ distinct_from:
   radical-collision-criterion: That established claim turns a detector into a hyperlinear nonsofic group; this one manufactures the detector itself from an unnormalized Schatten-one model, and is where the corner renormalization happens.
   corner-renormalization-cost: That claim is the general norm bookkeeping; this one is the group-level consequence in the unnormalized Schatten-one case.
 artifacts:
-  - docs/TRUE_SCHATTEN_ONE_RADICAL_CORNER.md
+  - notes/TRUE_SCHATTEN_ONE_RADICAL_CORNER.md
 ---
 
 Let `E` be countable with `z != 1`, `z^2=1`, `z` central and

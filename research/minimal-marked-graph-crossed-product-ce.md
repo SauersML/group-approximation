@@ -10,7 +10,7 @@ distinct_from:
   bare-relative-wall-exists: that is the cheapest sufficient statement in the whole lane — a single non-commuting element of a relative commutant — with no Clifford sign and no graph in it; this is a full embeddability statement for a named crossed product and implies it.
 artifacts:
   - research/artifacts/kun-thom-private-neighbour-2026-08-18.md
-  - docs/TRUE_KUN_THOM_CLIFFORD_PHASE.md
+  - notes/TRUE_KUN_THOM_CLIFFORD_PHASE.md
 ---
 
 Let `S_min` be the minimal marked orbital graph of the Kun--Thom Laurent pair
@@ -72,7 +72,7 @@ current statement of what is left on the cheapest Kun--Thom Clifford branch.
   surviving dilution mechanism is a **direct sum** over many blocks, where
   the fraction of blocks carrying an effective defect can go to zero.
 - **Finite-rank `G`-invariant completions — impossible**, by the finite-rank
-  invariant-form no-go of `docs/NOTEPAD.md` together with
+  invariant-form no-go of `notes/NOTEPAD.md` together with
   `marked-double-coset-infinite-degree`.  The completions of
   `vertex-supported-symplectic-completion` are deliberately noninvariant, and
   this is why they do not contradict those no-gos.

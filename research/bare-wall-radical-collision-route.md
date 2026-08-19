@@ -6,8 +6,8 @@ title: Collide a bare wall with the sofic radical of the free lamp
 target: hyperlinear-nonsofic-group
 requires: [kun-thom-clifford-radical-phase, bare-relative-wall-exists]
 artifacts:
-  - docs/FALSE_RELATIVE_BICOMMUTANT_ENDPOINT.md
-  - docs/TRUE_KUN_THOM_CLIFFORD_PHASE.md
+  - notes/FALSE_RELATIVE_BICOMMUTANT_ENDPOINT.md
+  - notes/TRUE_KUN_THOM_CLIFFORD_PHASE.md
 ---
 
 A unitary `v` in `M intersect pi(Gamma)'` and the homomorphism `pi` together

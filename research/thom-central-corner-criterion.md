@@ -8,7 +8,7 @@ distinct_from:
   central-sign-corona-obstruction: That concerns an obstruction to a central sign in corona representations; this is a positive criterion identifying hyperlinearity with embeddability of all twisted corners.
 artifacts:
   - research/artifacts/thom-0810-2180-verified.md
-  - docs/PERFECT_CORE_KUN_THOM_WREATH.md
+  - notes/PERFECT_CORE_KUN_THOM_WREATH.md
 ---
 
 Thom, arXiv:0810.2180, **Lemma 3.3** (verified verbatim from the PDF, record

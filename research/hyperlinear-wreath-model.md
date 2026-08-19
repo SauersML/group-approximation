@@ -12,7 +12,7 @@ artifacts:
 
 Construct microstates for the wreath candidate in which the `Γ`-pieces
 genuinely have no consistent size — a model witnessing the compression
-inside `R^𝒰` (docs/OBSTRUCTIONS.md §5, "Flexibility").
+inside `R^𝒰` (notes/OBSTRUCTIONS.md §5, "Flexibility").
 
 All *represented* constructive approaches are ruled out (see the approach
 list), but **no exhaustiveness finding exists**: the no-gos kill
@@ -91,7 +91,7 @@ a different group — it belongs to a different node, not this one.
 
 **Trace-blindness — this is the right diagnosis, and it is a non-obstruction,
 not a construction.** The defect that kills soficity is a size defect, and
-`docs/OBSTRUCTIONS.md` §1 shows the failure of the invariant-size argument in
+`notes/OBSTRUCTIONS.md` §1 shows the failure of the invariant-size argument in
 `II₁` factors is sharp: `R ⋊_θ ℤ` for the Bernoulli shift carries a unitary
 strictly compressing a subalgebra, so no invariant — index, entropy, or
 undiscovered — can settle the branch. The trace is additive under refinement,
@@ -127,7 +127,7 @@ a genuine constraint and not merely a restatement, as the next paragraph shows.
 
 **There is a positive foothold, and it was in the corpus rather than the graph.**
 `positive-core-bernoulli-ce` (now established, imported from
-`docs/FALSE_POSITIVE_CORE_IS_SOFIC.md`) exhibits honest matrix microstates for
+`notes/FALSE_POSITIVE_CORE_IS_SOFIC.md`) exhibits honest matrix microstates for
 a genuine piece of the target: for `L₊ = SL_d(ℤ) ∩ M_d(ℕ)`, `T = ΓL₊` and
 `X₀ = TΓ/Γ`, the action `Γ ↷ X₀` is sofic, so `W₀ = (⊕_{X₀} C₂) ⋊ Γ` is sofic
 and `N₀ = L^∞({±1}^{X₀}) ⋊ Γ` is Connes embeddable. The separating property is
@@ -147,7 +147,7 @@ Kahl–Schneider's equivalence (`hyperlinear-near-representation-criterion`):
 hyperlinear iff there is an essentially free amenable near representation, the
 Hilbert-space analogue of Elek–Szabó's set-level criterion for soficity. Since
 the witness is a finitely additive charge on an orthonormal basis rather than a
-finite carrier, the locally-sofic collapse of `docs/FALSE_HALO_ACTION_AUDIT.md`
+finite carrier, the locally-sofic collapse of `notes/FALSE_HALO_ACTION_AUDIT.md`
 has nothing to grip, and the basis — the coordinate system — is explicitly not
 required to be equivariant. Same non-Cartan requirement, different toolbox
 (Hahn–Banach rather than finite construction). Risk recorded there: if Bekka's
@@ -161,7 +161,7 @@ fiber the lamps cannot see. The route also carries the reason the naive version
 of that idea fails — block-monomial fibers have an invariant MASA and collapse
 back to a permutation model of the coordinate action that is still faithful on
 the lamps — which is what forces clause 3 and turns the architecture into
-`fiber-masa-free-cocycle`. The Fourier-block calculation in `docs/NOTEPAD.md`,
+`fiber-masa-free-cocycle`. The Fourier-block calculation in `notes/NOTEPAD.md`,
 written there as an obstruction to lifting an abstract embedding to a Cartan
 one, is the design principle for clause 3 read forwards.
 

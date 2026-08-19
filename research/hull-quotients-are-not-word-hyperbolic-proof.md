@@ -7,7 +7,7 @@ target: hull-quotients-are-not-word-hyperbolic
 requires: []
 artifacts:
   - research/artifacts/hyperbolic-residual-finiteness-audit-2026-08-17.md
-  - docs/HULL_ROUTING_AUDIT_2026-08-16.md
+  - notes/HULL_ROUTING_AUDIT_2026-08-16.md
 ---
 
 Two halves, neither of them deep; the node earns its place by being stated,
@@ -16,7 +16,7 @@ not by being hard.
 **What the theorem concludes.**  Hull's small-cancellation theorem is stated
 for a group acting acylindrically on a hyperbolic space, or equivalently for
 an acylindrically hyperbolic group with a hyperbolically embedded subgroup,
-and its quotients inherit that structure.  `docs/HULL_ROUTING_AUDIT_2026-08-16.md`
+and its quotients inherit that structure.  `notes/HULL_ROUTING_AUDIT_2026-08-16.md`
 audits the published Theorem 7.1 field by field against this program's routing
 package; word-hyperbolicity of the quotient appears in no field.  Where the
 input is already word-hyperbolic and the relators are long enough, ordinary

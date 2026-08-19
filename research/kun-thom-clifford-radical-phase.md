@@ -4,7 +4,7 @@ id: kun-thom-clifford-radical-phase
 kind: claim
 title: The Kun--Thom sofic-radical word has an exact Clifford phase detector
 artifacts:
-  - docs/TRUE_KUN_THOM_CLIFFORD_PHASE.md
+  - notes/TRUE_KUN_THOM_CLIFFORD_PHASE.md
   - GroupApproximation/Sofic/CliffordLampGroup.lean
   - GroupApproximation/Sofic/CliffordPhaseExtraction.lean
   - GroupApproximation/Sofic/AntipodalRadicalCollision.lean

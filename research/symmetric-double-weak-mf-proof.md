@@ -6,13 +6,13 @@ title: Fell-absorb the regular representation, then apply Shulman's amalgam theo
 target: symmetric-double-weak-mf
 requires: []
 artifacts:
-  - docs/WEAK_MF_NONSOFIC_DOUBLE.md
-  - docs/FALSE_SHULMAN_TRACE_AUDIT.md
+  - notes/WEAK_MF_NONSOFIC_DOUBLE.md
+  - notes/FALSE_SHULMAN_TRACE_AUDIT.md
 ---
 
 # Fell-absorb the regular representation, then apply Shulman's amalgam theorem
 
-Internal proof from `docs/WEAK_MF_NONSOFIC_DOUBLE.md` sections 1-2, resting on
+Internal proof from `notes/WEAK_MF_NONSOFIC_DOUBLE.md` sections 1-2, resting on
 one external theorem that this repository has read in the primary source.
 
 ## Trust surface, stated up front
@@ -23,10 +23,10 @@ The only non-internal input is:
 > separable MF and `C <= A`.
 
 Its role and its limits are audited separately in
-`docs/FALSE_SHULMAN_TRACE_AUDIT.md`, which records the important caveat that
+`notes/FALSE_SHULMAN_TRACE_AUDIT.md`, which records the important caveat that
 *"Theorem 10 only proves that the algebra `B` is MF"* — it supplies no trace,
 which is why this route reaches weak MF and nothing stronger. Shulman v2 is on
-the repository's deep-verification list in `docs/CREDIT_AND_PRIORITY_AUDIT.md`
+the repository's deep-verification list in `notes/CREDIT_AND_PRIORITY_AUDIT.md`
 ("Deep-web verification with PDFs in hand (CDE, Dadarlat, Shulman v2, TWW, …)").
 Everything else below is internal.
 
@@ -87,7 +87,7 @@ separates the two vertex copies.
 
 ## Formalization status, stated openly
 
-Not formalized, and one docs pointer is stale. `docs/WEAK_MF_NONSOFIC_DOUBLE.md`
+Not formalized, and one docs pointer is stale. `notes/WEAK_MF_NONSOFIC_DOUBLE.md`
 cites `GroupApproximation/Sofic/MFNonsoficDoubleEndpoint.lean` and a predicate
 `HasSoficCentralizerNormalization`; both were **deleted** in commit `241440fe`
 (2026-08-14) and neither exists in the tree. The surviving

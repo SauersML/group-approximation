@@ -8,7 +8,7 @@ distinct_from:
   hs-invisibility-inflation-no-go: That claim says Hilbert--Schmidt invisibility alone never contradicts an operator-norm statement; this one identifies the structural reason every (T) argument in this cluster produces a Hilbert--Schmidt statement in the first place.
   kazhdan-asymptotic-commutant-transport: That claim is the positive transport theorem obtained by moving to the adjoint corona; this one says why that move is forced.
 artifacts:
-  - docs/COMMUTING_LAMP_QUOTIENT_STRUCTURE_AND_MF_FORK_2026-08-14.md
+  - notes/COMMUTING_LAMP_QUOTIENT_STRUCTURE_AND_MF_FORK_2026-08-14.md
 ---
 
 Let `Gamma` be an infinite group with property (T) and `p` its Kazhdan

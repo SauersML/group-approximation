@@ -7,7 +7,7 @@ distinct_from:
   robust-locally-satisfiable-relator-code: that asks for sparse group-ball preservation with no ambient tracial witness; this target uses a tracial BCS witness to certify nontriviality of the central mark and asks for an exact LCS sub-menu that rejects every marked approximate profile.
 artifacts:
   - research/artifacts/lcs-exact-support-sparsification-2026-08-18.md
-  - docs/FALSE_PERFECT_COMPLETENESS_MASK_NO_GO.md
+  - notes/FALSE_PERFECT_COMPLETENESS_MASK_NO_GO.md
 ---
 
 Starting from a finite BCS `B` which is tracially satisfiable but not

@@ -70,7 +70,7 @@ not require it to be equivariant.
 
 Because the witness is soft. Every architecture invalidated on
 `hyperlinear-wreath-model` builds a finite carrier, and
-`docs/FALSE_HALO_ACTION_AUDIT.md` shows finite carriers with locally sofic
+`notes/FALSE_HALO_ACTION_AUDIT.md` shows finite carriers with locally sofic
 labels are circular here — a finitely generated subgroup of `U(n)` is linear,
 hence residually finite, hence sofic. A finitely additive charge is not a
 finite carrier and is not produced by exhibiting one: charges come from

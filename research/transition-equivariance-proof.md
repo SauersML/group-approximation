@@ -7,8 +7,8 @@ target: transition-equivariance
 requires: []
 artifacts:
   - GroupApproximation/Leavitt/RawSwapCompressors.lean
-  - docs/TRUE_RAW_SWAP_FULL_BRANCH_ROUTING.md
-  - docs/TRUE_EQUIVARIANT_TRANSITIONS_COARSEN_TO_WHOLE_MAPS.md
+  - notes/TRUE_RAW_SWAP_FULL_BRANCH_ROUTING.md
+  - notes/TRUE_EQUIVARIANT_TRANSITIONS_COARSEN_TO_WHOLE_MAPS.md
 ---
 
 The transition between the comb compressor `u` and the raw compressor

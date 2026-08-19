@@ -4,7 +4,7 @@ id: atlas-h-bridge-paired-system-is-scaling-inert
 kind: claim
 title: H-alignment plus the single transverse bridge has a unitary-rich zero-energy space
 artifacts:
-  - docs/TRUE_ATLAS_SINGLE_BRIDGE_SUBGROUP_REDUCTION.md
+  - notes/TRUE_ATLAS_SINGLE_BRIDGE_SUBGROUP_REDUCTION.md
 distinct_from:
   atlas-paired-operator-scaling-no-go: that is the general regular-trace paired-equation no-go; this claim identifies the concrete boundary-plus-bridge system already isolated in the atlas dossier.
 ---

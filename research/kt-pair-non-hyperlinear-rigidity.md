@@ -6,7 +6,7 @@ title: Refute hyperlinearity of the Kun–Thom wreath group by a rigidity theore
 target: non-hyperlinear-group
 requires: [invariant-cartan-completion]
 artifacts:
-  - docs/TRUE_DIAGONAL_NORMALIZER_RIGIDITY.md
+  - notes/TRUE_DIAGONAL_NORMALIZER_RIGIDITY.md
 ---
 
 # Refute hyperlinearity of the Kun–Thom wreath group

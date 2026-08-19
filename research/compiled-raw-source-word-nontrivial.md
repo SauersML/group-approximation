@@ -7,7 +7,7 @@ distinct_from:
   raw-swap-forces-two-s3-covariance-energy: That is a quantitative normalized-HS lower bound in regular atlas models; this is the exact algebraic fact that the fixed 25-syllable source word maps to a nonidentity element of Q.
 artifacts:
   - experiments/atlas-raw-compressor-source-words.json
-  - docs/TRUE_RAW_SWAP_FULL_BRANCH_ROUTING.md
+  - notes/TRUE_RAW_SWAP_FULL_BRANCH_ROUTING.md
   - GroupApproximation/Leavitt/RawSwapCompressors.lean
 ---
 

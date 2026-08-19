@@ -6,7 +6,7 @@ title: Direct proof of The one-variable Laurent model contains no strict compres
 target: one-variable-no-compressor
 requires: []
 artifacts:
-  - docs/OBSTRUCTIONS.md
+  - notes/OBSTRUCTIONS.md
 ---
 
 # Direct proof of The one-variable Laurent model contains no strict compressor

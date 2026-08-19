@@ -5,7 +5,7 @@ kind: route
 title: Turn stability of the marked quotient into non-soficity of E
 target: literal-group-not-sofic
 requires: [literal-mark-quotient-flexibly-stable, literal-central-mark-corona-invisible, gohla-thom-stable-base-nonsofic-extension]
-artifacts: [docs/LITERAL_GROUP_IS_SOFIC_2026-08-14.md, non_mf_groups_exist.tex]
+artifacts: [notes/LITERAL_GROUP_IS_SOFIC_2026-08-14.md, non_mf_groups_exist.tex]
 ---
 
 ## Why sufficient (dead — kept as the record of two corrections)

@@ -6,7 +6,7 @@ title: Direct proof of Equivariant transitions coarsen to whole-map PVMs
 target: whole-map-coarsening
 requires: []
 artifacts:
-  - docs/TRUE_EQUIVARIANT_TRANSITIONS_COARSEN_TO_WHOLE_MAPS.md
+  - notes/TRUE_EQUIVARIANT_TRANSITIONS_COARSEN_TO_WHOLE_MAPS.md
 ---
 
 # Direct proof of Equivariant transitions coarsen to whole-map PVMs

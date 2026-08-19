@@ -77,7 +77,7 @@ core(mu) = { g : Pr[g in H] = 1 }.
 
 So iid intersection is the Diracization map on the IRS side, and `K_{tau_mu}`
 is the normal core of `mu` (the values are real and in `[0,1]`, so the modulus
-is invisible here).  This is the same operation `docs/FALSE_RECENT_LITERATURE_AUDIT.md`
+is invisible here).  This is the same operation `notes/FALSE_RECENT_LITERATURE_AUDIT.md`
 §3 refers to when it records that **taking normal cores destroys the
 information in the currently available examples**; see
 `diracization-gap-equals-nonhyperlinear-group` for the general form of that

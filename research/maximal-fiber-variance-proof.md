@@ -6,7 +6,7 @@ title: Direct proof of Exact joint covariance can retain maximal fiber variance
 target: maximal-fiber-variance
 requires: []
 artifacts:
-  - docs/FALSE_EXACT_JOINT_COMPRESSOR_HAS_MAXIMAL_FIBER_VARIANCE.md
+  - notes/FALSE_EXACT_JOINT_COMPRESSOR_HAS_MAXIMAL_FIBER_VARIANCE.md
 ---
 
 # Direct proof of Exact joint covariance can retain maximal fiber variance

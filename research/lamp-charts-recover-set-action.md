@@ -9,8 +9,8 @@ distinct_from:
   single-lamps-recover-set-action: That claim states the transfer for the commuting lamp group `directSum_X C_2` and quantifies over the target class; this one keeps that quantifier and generalizes the lamp group, to the Clifford lamp `C(X)` and to every invariant-graph lamp — the groups the Clifford lane actually uses, which the commuting statement does not cover.
   commuting-lamp-quotient-structure: That claim identifies a specific quotient group of the commuting-lamp witness algebraically; this one is an approximation-theoretic transfer lemma about chart systems and says nothing about any quotient.
 artifacts:
-  - docs/TRUE_LAMP_CHARTS_RECOVER_THE_SET_ACTION.md
-  - docs/FALSE_HALO_ACTION_AUDIT.md
+  - notes/TRUE_LAMP_CHARTS_RECOVER_THE_SET_ACTION.md
+  - notes/FALSE_HALO_ACTION_AUDIT.md
 ---
 
 Distinct also from the route `sofic-action-permanence`, which records the
@@ -35,7 +35,7 @@ the order of `a_z`, and the presence of a central element play no role.
 With `coordinate-action-not-sofic` (Kun--Thom Corollary D) this closes the
 halo/chart permanence route on the Clifford side exactly as on the Bernoulli
 side, and with the locally-sofic collapse theorem of
-`docs/FALSE_HALO_ACTION_AUDIT.md` it closes every repair that relabels the
+`notes/FALSE_HALO_ACTION_AUDIT.md` it closes every repair that relabels the
 coset coordinates by finite, Clifford, Pauli, or finite-dimensional unitary
 data — all of those target classes are locally sofic.  A chart-based proof
 would need a target that is already a finitely generated hyperlinear nonsofic

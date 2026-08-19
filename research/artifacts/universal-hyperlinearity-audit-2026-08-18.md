@@ -20,11 +20,11 @@ lanes.  Specifically:
 | Dossier section | Already here |
 | --- | --- |
 | §1 quotient reformulation | `all_groups_isHyperlinear_iff_quotient_closed`, `exists_not_isHyperlinear_iff_exists_hyperlinear_quotient`, `exists_not_isHyperlinear_iff_exists_fg` in `GroupApproximation/Sofic/HyperlinearReduction.lean` -- **kernel-checked, and until today cited by no node** |
-| §2 idempotent traces | the same theorem in trace language; `docs/FALSE_PROJECTIVE_UNITARY_GROUP_SHORTCUT.md` §5 |
-| §3 power-to-Dirac | `docs/TRUE_RADICAL_DOMINATION_CONSTANTS.md` already uses conjugate-double tensor powers with `q_chi(g)=1-|chi(g)|^2`; formalized as `character-domination-collapse-equivalences` (`GroupApproximation/Domination/*.lean`); the finite-table half landed today as the peer node `balanced-replica-hs-amplification` |
-| §5 IRS intersection | `docs/FALSE_RECENT_LITERATURE_AUDIT.md` §3, on Manzoor: "taking normal cores destroys the information in the currently available examples" -- the intersection powers *are* the normal core |
-| §6 perfect-completeness game compilation | `docs/TRUE_NORMAL_TORIC_GAP_IMPLIES_NONHYPERLINEAR.md`: a **proved** conditional reduction, stronger than the dossier's ask (toric syntax suffices; full LCS is not logically necessary), plus the Taller--Vidick perfect-completeness note |
-| §10 "the problem is trace selection" | `docs/FALSE_PROJECTIVE_UNITARY_GROUP_SHORTCUT.md` §5, the decisive trace mismatch between `delta_e` and `tau_M` |
+| §2 idempotent traces | the same theorem in trace language; `notes/FALSE_PROJECTIVE_UNITARY_GROUP_SHORTCUT.md` §5 |
+| §3 power-to-Dirac | `notes/TRUE_RADICAL_DOMINATION_CONSTANTS.md` already uses conjugate-double tensor powers with `q_chi(g)=1-|chi(g)|^2`; formalized as `character-domination-collapse-equivalences` (`GroupApproximation/Domination/*.lean`); the finite-table half landed today as the peer node `balanced-replica-hs-amplification` |
+| §5 IRS intersection | `notes/FALSE_RECENT_LITERATURE_AUDIT.md` §3, on Manzoor: "taking normal cores destroys the information in the currently available examples" -- the intersection powers *are* the normal core |
+| §6 perfect-completeness game compilation | `notes/TRUE_NORMAL_TORIC_GAP_IMPLIES_NONHYPERLINEAR.md`: a **proved** conditional reduction, stronger than the dossier's ask (toric syntax suffices; full LCS is not logically necessary), plus the Taller--Vidick perfect-completeness note |
+| §10 "the problem is trace selection" | `notes/FALSE_PROJECTIVE_UNITARY_GROUP_SHORTCUT.md` §5, the decisive trace mismatch between `delta_e` and `tau_M` |
 
 The genuinely new items are §3's *identification of the limit* (see below) and
 the strategic reading of §8 -- that an explicit nonsofic group is now a fork
@@ -76,7 +76,7 @@ two-player quantum games" was **not** verified and no node depends on it.
    of `tau`.
 3. **The IRS instance is a known dead end here, not a fresh lane.**  Its
    intersection powers converge to the normal core, and
-   `docs/FALSE_RECENT_LITERATURE_AUDIT.md` §3 already records that taking
+   `notes/FALSE_RECENT_LITERATURE_AUDIT.md` §3 already records that taking
    normal cores destroys the information in the available examples.
 4. **Non-CE of `L(R_mu)` is not the same as `tau_mu` being non-CE.**  The
    dossier slides between Manzoor's non-co-hyperlinear IRS and the group

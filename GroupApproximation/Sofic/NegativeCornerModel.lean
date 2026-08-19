@@ -6,7 +6,7 @@ import GroupApproximation.Sofic.KazhdanCornerPolar
 # The negative corner of an approximate central involution
 
 Step 5 of the marked-compression blueprint
-(`docs/NON_MF_FORMALIZATION_BLUEPRINT.md`): given a weak-MF approximation of
+(`notes/NON_MF_FORMALIZATION_BLUEPRINT.md`): given a weak-MF approximation of
 a group carrying a central involution `z ≠ 1`, cut every microstate by the
 negative spectral sector of the rounded involution and repackage the corner
 as an honest operator-norm almost representation on which `z` converges to

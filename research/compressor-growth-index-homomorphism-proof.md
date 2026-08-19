@@ -6,7 +6,7 @@ title: Combine automorphism invariance of the index with tower multiplicativity
 target: compressor-growth-index-homomorphism
 requires: []
 artifacts:
-  - docs/TRUE_RELATIVE_WALL_IS_COMMUTANT_GROWTH.md
+  - notes/TRUE_RELATIVE_WALL_IS_COMMUTANT_GROWTH.md
 ---
 
 `Ad pi(s_1 s_2)=Ad pi(s_1) Ad pi(s_2)` turns the two one-sided inclusions

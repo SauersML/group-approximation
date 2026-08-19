@@ -8,7 +8,7 @@ distinct_from:
   hyperlinear-near-representation-criterion: that is Kahl-Schneider's equivalence for NEAR representations, imported by citation; this is a rigidity statement about GENUINE representations, proved here, and the contrast between them is the point
   haagerup-t-exclusion: that excludes Haagerup carriers as hosts for a diffuse (T) subalgebra; this constrains the representation theory of a (T) group directly
 artifacts:
-  - docs/TRUE_CHARGE_EXTENSION_NEEDS_COAMENABILITY.md
+  - notes/TRUE_CHARGE_EXTENSION_NEEDS_COAMENABILITY.md
 ---
 
 Let `G` have property (T) and let `π : G → U(H)` be a unitary representation

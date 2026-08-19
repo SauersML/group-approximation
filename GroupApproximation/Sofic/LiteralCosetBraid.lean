@@ -5,7 +5,7 @@ import GroupApproximation.Sofic.LiteralAffineCosetTransitivity
 /-!
 # The coset lamps braid through the mark
 
-`docs/LITERAL_ORBITAL_CLIQUE_ROUTE.md` reduces soficity of the literal group
+`notes/LITERAL_ORBITAL_CLIQUE_ROUTE.md` reduces soficity of the literal group
 to a single `IsBlockCliffordPresentation` over the coset carrier, and lists its
 six fields: three already available, three outstanding.  This module supplies
 one of the three, `braid`.

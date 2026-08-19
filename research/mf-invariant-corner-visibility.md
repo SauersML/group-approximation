@@ -55,7 +55,7 @@ regular character is an MF trace  =>  this claim  =>  mf-implies-hyperlinear
 models, the second by `mf-implies-hyperlinear-via-invariant-corner`.  Both
 implications are strict as far as anything known here: the weak
 Shulman/Carrion--Dadarlat--Eckhardt convention and Schafhauser's
-trace-controlled one are recorded as a priori different in `docs/NOTEPAD.md`,
+trace-controlled one are recorded as a priori different in `notes/NOTEPAD.md`,
 and no group is known to separate them.
 
 ## Position among the open holes

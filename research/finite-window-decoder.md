@@ -4,8 +4,8 @@ id: finite-window-decoder
 kind: claim
 title: Finite-window endomorphism decoder
 artifacts:
-  - docs/HIGHEST_YIELD_NONHYPERLINEAR_ATTACK.md
-  - docs/TRUE_POSITIVE_DENSITY_LEAVITT_DECODER_ENDGAME.md
+  - notes/HIGHEST_YIELD_NONHYPERLINEAR_ATTACK.md
+  - notes/TRUE_POSITIVE_DENSITY_LEAVITT_DECODER_ENDGAME.md
 ---
 
 Extract from the joint outer characters common finite paired-radical label

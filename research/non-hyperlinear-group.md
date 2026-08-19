@@ -46,4 +46,4 @@ affirmative side.
 
 Non-graph brainstorming for this goal goes here. Current periphery: free
 independence between branch algebras is NOT excluded by the cross-branch
-commutator identity (see docs/OBSTRUCTIONS.md §3, "No commuting branches").
+commutator identity (see notes/OBSTRUCTIONS.md §3, "No commuting branches").

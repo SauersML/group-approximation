@@ -7,7 +7,7 @@ distinct_from:
   commuting-lamp-quotient-mf: This concerns the literal presented group modulo its mark, whose lamp kernel is a free product of copies of `(Z/2)^8`; the other concerns the Clifford witness modulo its sign, where those blocks have been collapsed and the lamp kernel is elementary abelian.
   literal-mark-quotient-not-stable-in-finite-actions: That proved claim is about permutation almost-actions in the Hamming metric; this open claim is about operator-norm microstates, and neither implies the other for this group.
 artifacts:
-  - docs/COMMUTING_LAMP_QUOTIENT_STRUCTURE_AND_MF_FORK_2026-08-14.md
+  - notes/COMMUTING_LAMP_QUOTIENT_STRUCTURE_AND_MF_FORK_2026-08-14.md
 ---
 
 The quotient `E / <w>` of the literal finitely presented non-MF group by its
@@ -67,7 +67,7 @@ collapse in operator norm — with `R` non-locally-finite here and elementary
 abelian there.
 
 **Central-extension criterion.**  `central-extension-twisted-sector-criterion`
-imports the unused criterion of `docs/NOTEPAD.md:39199-39232`.  Applied to
+imports the unused criterion of `notes/NOTEPAD.md:39199-39232`.  Applied to
 `(E,<w>)` it restates Theorem A as emptiness of the twisted sector over this
 group, and imposes no constraint on the present claim.  It should not be
 mistaken for an obstruction.

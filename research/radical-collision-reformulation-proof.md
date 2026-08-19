@@ -41,7 +41,7 @@ in any class `C` with `C ⊆ {sofic}`.  Each item of the list is such a class:
 * sofic-by-amenable, i.e. `1->N->E->A->1` with `N` sofic and `A` amenable —
   the amenable-extension permanence theorem, proved in Elek--Szabó,
   arXiv:math/0305352 (J. Group Theory 9 (2006)); this pin is the one recorded
-  in docs/ADVERSARIAL_AUDIT_NON_MF_2026-08-13.md, which separates it from the
+  in notes/ADVERSARIAL_AUDIT_NON_MF_2026-08-13.md, which separates it from the
   survey list in the other Elek--Szabó paper.  Note the opposite order,
   amenable-by-sofic, is exactly what Kun--Thom refute, and is not excluded
   here;

@@ -15,7 +15,7 @@ the twelve adjacent-transvection generators of `P̄ = A₈ * A₈` such that
 `P̄/⟨⟨T_St⟩⟩ ≅ St₅(L_{F₂}(1,2))` compatibly over `Q` — hence, by
 `atlas-relator-central-sufficiency`, a usable relator list for the
 canonical regular-`A₈` criterion, making the one-unitary optimization of
-`docs/EXPLICIT_LEAVITT_ATLAS.md` §9 fully concrete for the first time.
+`notes/EXPLICIT_LEAVITT_ATLAS.md` §9 fully concrete for the first time.
 
 The program (from the notes file, steps 1–4): fix a five-leaf complete
 prefix code and its `Θ`-isomorphism `M₅(L) ≅ L`, giving `E₅(L) ≅ Q` and

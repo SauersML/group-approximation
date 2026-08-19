@@ -6,10 +6,10 @@ title: Central phase projection turns a hyperlinear embedding into a perfect fin
 target: phase-safe-toric-gap-implies-nonhyperlinear
 requires: []
 artifacts:
-  - docs/TRUE_NORMAL_TORIC_GAP_IMPLIES_NONHYPERLINEAR.md
+  - notes/TRUE_NORMAL_TORIC_GAP_IMPLIES_NONHYPERLINEAR.md
 ---
 
-Direct proof, written out in `docs/TRUE_NORMAL_TORIC_GAP_IMPLIES_NONHYPERLINEAR.md`
+Direct proof, written out in `notes/TRUE_NORMAL_TORIC_GAP_IMPLIES_NONHYPERLINEAR.md`
 §2 and summarized in the claim.  Steps: `N ∩ B = {1}` embeds `B` centrally in
 `Q = Gtilde/N`; form `p_chi = |B|^{-1} sum_b conj(chi(b)) lambda_Q(b)`, a
 central projection of trace `1/|B|`; a hypothetical hyperlinear model of `Q`

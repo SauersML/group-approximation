@@ -6,7 +6,7 @@ title: Dogon–Vigdorovich sector closure via the Iwahori endpoint
 target: non-hyperlinear-group
 requires: [iwahori-outlier-repair]
 artifacts:
-  - docs/HIGHEST_YIELD_NONHYPERLINEAR_ATTACK.md
+  - notes/HIGHEST_YIELD_NONHYPERLINEAR_ATTACK.md
 ---
 
 Claimed reduction per HIGHEST_YIELD (2026-08-14): the mixed edge

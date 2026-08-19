@@ -13,7 +13,7 @@ amalgamated over the common central sign, for the disjoint-clique
 orbital graph.
 
 Residual finiteness is the two-quotient argument of
-`docs/SOFICITY_TOWER_MJ_DESIGN_2026-08-15.md` §3(C), instantiated:
+`notes/SOFICITY_TOWER_MJ_DESIGN_2026-08-15.md` §3(C), instantiated:
 
 * the sign is central of order two, so the kernel of killing it is
   exactly its two-element cyclic subgroup;

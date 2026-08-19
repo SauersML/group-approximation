@@ -69,7 +69,7 @@ The introduction states, as of March 2026:
 
 This repository's Theorem A supplies exactly such an example (`E`, and the
 witness `W`, for which neither the full nor the reduced group C*-algebra is
-MF).  Flagged for `docs/CREDIT_AND_PRIORITY_AUDIT.md`; not acted on here.
+MF).  Flagged for `notes/CREDIT_AND_PRIORITY_AUDIT.md`; not acted on here.
 
 Quote discipline: the sentence must be taken from this file, not from any
 message quoting it — the trailing clause "at least in the case of full group

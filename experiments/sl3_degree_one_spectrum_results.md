@@ -158,12 +158,12 @@ verified inequality is
 
 for every unitary representation, not just the finite `X_p` actions.  The
 exact rational theorem, certificate hash, proof, and robust-repair corollary
-are in `docs/TRUE_SL3_HODGE_SOS.md`.
+are in `notes/TRUE_SL3_HODGE_SOS.md`.
 
 ## Analytic resolution of the immediate candidate
 
 The uniform real-linear gap is now proved without further computation in
-`docs/TRUE_PROPERTY_T_LINEAR_COCYCLE_GAP.md`.  For a fixed finite
+`notes/TRUE_PROPERTY_T_LINEAR_COCYCLE_GAP.md`.  For a fixed finite
 presentation of any property-`(T)` group, a Hilbert-ultraproduct argument and
 Delorme--Guichardet vanishing give a positive lower bound for the coexact
 singular value over **every exact unitary representation**.  It applies in

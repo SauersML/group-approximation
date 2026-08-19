@@ -9,7 +9,7 @@ distinct_from:
   finite-quotient-blindness: That claim says finite quotients normalize the image of the subgroup, destroying the compression data before any construction; this one is about the normalized dimension invariant of matrix microstates, which need not be quotients at all.
   kazhdan-asymptotic-commutant-transport: That claim transports asymptotic commutants in operator norm and kills the wall in the norm-microstate sector; this one is a negative statement about a proposed normalized-Hilbert--Schmidt counting method.
 artifacts:
-  - docs/TRUE_WALL_ENERGY_AND_COMMUTANT_DENSITY.md
+  - notes/TRUE_WALL_ENERGY_AND_COMMUTANT_DENSITY.md
 ---
 
 Let `Gamma` be finitely generated, infinite, with property `(T)`, and let

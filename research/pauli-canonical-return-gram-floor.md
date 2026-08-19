@@ -4,7 +4,7 @@ id: pauli-canonical-return-gram-floor
 kind: claim
 title: The canonical inverse/raw Pauli returns pay a fixed incoming Gram floor
 artifacts:
-  - docs/TRUE_PAULI_BRANCH_TRANSFER_PACKET.md
+  - notes/TRUE_PAULI_BRANCH_TRANSFER_PACKET.md
 ---
 
 In the exact Pauli two-child packet write

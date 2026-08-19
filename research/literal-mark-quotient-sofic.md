@@ -8,7 +8,7 @@ distinct_from:
   literal-group-sofic: That is soficity of `E`; soficity does not pass to quotients, so this needs its own proof — which happens to be the same block-tower argument with the central sign deleted.
   literal-telescope-core-lef: That is the LEF property of the shift-free part of `E`; this is soficity of the central quotient of the whole group.
 artifacts:
-  - docs/LITERAL_GROUP_IS_SOFIC_2026-08-14.md
+  - notes/LITERAL_GROUP_IS_SOFIC_2026-08-14.md
 ---
 
 `E/<w> = (*_{i in I} (Z/2)^8) semidirect V` is sofic.

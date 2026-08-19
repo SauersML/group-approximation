@@ -6,7 +6,7 @@ title: Direct proof of Covariance controls total single-edge transition variance
 target: covariance-variance-control
 requires: []
 artifacts:
-  - docs/TRUE_COVARIANCE_CONTROLS_TOTAL_TRANSITION_VARIANCE.md
+  - notes/TRUE_COVARIANCE_CONTROLS_TOTAL_TRANSITION_VARIANCE.md
 ---
 
 # Direct proof of Covariance controls total single-edge transition variance

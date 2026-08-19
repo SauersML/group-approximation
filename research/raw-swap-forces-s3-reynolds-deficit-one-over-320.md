@@ -6,7 +6,7 @@ title: Raw-word separation forces an S3 Reynolds norm deficit of at least one ov
 distinct_from:
   raw-swap-forces-two-s3-covariance-energy: that gives the two-generator energy floor; this converts that floor to distance from the entire S3 commutant
 artifacts:
-  - docs/TRUE_RAW_WORD_REYNOLDS_GAP.md
+  - notes/TRUE_RAW_WORD_REYNOLDS_GAP.md
 ---
 
 In the canonical regular-atlas setting of

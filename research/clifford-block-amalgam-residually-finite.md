@@ -9,7 +9,7 @@ distinct_from:
   finite-site-orbits-invariant-clifford-kernel: That established claim produces FINITE invariant Clifford subgroups from finite site orbits; the groups here are infinite (they contain free subgroups) and the content is that they are still residually finite.
   commuting-lamp-quotient-finite-residual: That computes the exact finite residual of a sign-free elementary abelian lamp group, where the lamps commute; here the lamps do not commute inside a block and the central sign is exactly what survives.
 artifacts:
-  - docs/E_SOFICITY_SELF_CONTAINED_2026-08-16.md
+  - notes/E_SOFICITY_SELF_CONTAINED_2026-08-16.md
   - GroupApproximation/Sofic/LiteralLampKernelAmalgam.lean
 ---
 
@@ -30,10 +30,10 @@ is already used inside `literal-telescope-core-lef-proof`, where it is
 obtained from Karrass--Pietrowski--Solitar: `M_J` acts on the Bass--Serre tree
 of a finite star of finite groups with finite vertex stabilizers, hence is
 virtually free, hence residually finite.  That is input (S5) of
-`docs/LITERAL_GROUP_IS_SOFIC_2026-08-14.md`, and it is the last piece of
+`notes/LITERAL_GROUP_IS_SOFIC_2026-08-14.md`, and it is the last piece of
 outside group theory in the whole soficity chain.
 
-Section 8 of `docs/E_SOFICITY_SELF_CONTAINED_2026-08-16.md` removes it.  Take
+Section 8 of `notes/E_SOFICITY_SELF_CONTAINED_2026-08-16.md` removes it.  Take
 the two natural quotients of `M_J`:
 
 ```text

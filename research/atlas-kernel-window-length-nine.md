@@ -30,7 +30,7 @@ the twelve adjacent-transvection generators.
    in the kernel of the retraction `(p₁,p₂) : A₈ * A₈ ↠ A₈ × A₈`: the
    radius-4 spanning-tree generators (2,734 words) all die under it, and
    by the recorded exhaustion lemma
-   (`docs/FALSE_RECURSIVE_ATLAS_EXHAUSTION.md`, Proposition 4) they
+   (`notes/FALSE_RECURSIVE_ATLAS_EXHAUSTION.md`, Proposition 4) they
    generate every kernel element of X-length `≤ 8` as a subgroup.  The
    bound is sharp: a kernel word of X-length `9` with nontrivial factor
    projections exists at the radius-5 boundary.

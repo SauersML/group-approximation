@@ -7,7 +7,7 @@ distinct_from:
   single-lamps-recover-set-action: That is class-agnostic and argues through the lamp coordinates; this argues through the finite generation of a single witness and applies to an arbitrary automorphism action, but only when the targets happen to be locally sofic.
   coordinate-action-not-sofic: That refutes the sofic-action hypothesis for one action; this says that for a large family of target classes the hypothesis is not even a weaker condition than the sofic one.
 artifacts:
-  - docs/FALSE_HALO_ACTION_AUDIT.md
+  - notes/FALSE_HALO_ACTION_AUDIT.md
   - research/artifacts/kun-thom-2608-06222-verified.md
 ---
 

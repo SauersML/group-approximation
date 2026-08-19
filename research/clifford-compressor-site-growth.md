@@ -9,7 +9,7 @@ distinct_from:
   commutator-compressor-carries-no-wall: That claim excludes a wall whenever two factors of a commutator compressor have finite growth index; this one determines the indices for the monomial-cone pair and thereby shows that exclusion is vacuous in the Clifford model.
   finite-site-orbits-invariant-clifford-kernel: That claim is about actions all of whose site orbits are finite; here every new site has an infinite orbit, which is what makes the Clifford monomials orthogonal to the commutant.
 artifacts:
-  - docs/TRUE_CLIFFORD_COMPRESSOR_SITE_GROWTH.md
+  - notes/TRUE_CLIFFORD_COMPRESSOR_SITE_GROWTH.md
 ---
 
 For the monomial-cone Kun--Thom pair `Gamma=E_r(A[Lambda_+])`,
@@ -30,7 +30,7 @@ is again nonnegative, i.e. unless `s` is a unit.  Each new site has infinite
 `Gamma`-orbit, so the Kazhdan average kills its Clifford monomials and a
 Pimsner--Popa test projection of trace `2^(-k)` gives index at least `2^k`.
 
-This settles Section 7 item 3 of `docs/TRUE_RELATIVE_WALL_IS_COMMUTANT_
+This settles Section 7 item 3 of `notes/TRUE_RELATIVE_WALL_IS_COMMUTANT_
 GROWTH.md` and strengthens its Corollary 7 from a disjunction to a
 determination.
 

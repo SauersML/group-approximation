@@ -10,9 +10,9 @@ distinct_from:
   leavitt-steinberg-hs-stable: This is the proved implication for either outcome; the other selects the stable outcome.
   leavitt-steinberg-hs-unstable: This is the proved implication for either outcome; the other selects the unstable outcome.
 artifacts:
-  - docs/ATLAS_HS_CRITERION.md
-  - docs/NON_MF_TO_HYPERLINEAR_DIFFERENTIAL_AUDIT.md
-  - docs/NOTEPAD.md
+  - notes/ATLAS_HS_CRITERION.md
+  - notes/NON_MF_TO_HYPERLINEAR_DIFFERENTIAL_AUDIT.md
+  - notes/NOTEPAD.md
 ---
 
 Put `L=L_(F_2)(1,2)`, `U=St_5(L)`, and `Q=EL_4(L)`.  Exactly one of the

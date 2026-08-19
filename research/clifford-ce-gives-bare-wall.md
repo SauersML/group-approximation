@@ -6,8 +6,8 @@ title: The Clifford crossed product already contains the bare wall
 target: bare-relative-wall-exists
 requires: [kun-thom-clifford-crossed-product-ce]
 artifacts:
-  - docs/TRUE_CLIFFORD_COMPRESSOR_SITE_GROWTH.md
-  - docs/TRUE_RELATIVE_WALL_IS_COMMUTANT_GROWTH.md
+  - notes/TRUE_CLIFFORD_COMPRESSOR_SITE_GROWTH.md
+  - notes/TRUE_RELATIVE_WALL_IS_COMMUTANT_GROWTH.md
 ---
 
 In `M_Cl=Cl(G/Gamma) crossed_product G` the root Majorana `c_(Gamma)`

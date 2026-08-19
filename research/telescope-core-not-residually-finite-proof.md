@@ -6,15 +6,15 @@ title: Two-divisibility of the telescope collapses levels without a stable lette
 target: telescope-core-not-residually-finite
 requires: [literal-telescope-core-lef, literal-lamp-kernel-clifford-block-amalgam]
 artifacts:
-  - docs/LITERAL_GROUP_IS_SOFIC_2026-08-14.md
-  - docs/COMMUTING_LAMP_QUOTIENT_STRUCTURE_AND_MF_FORK_2026-08-14.md
+  - notes/LITERAL_GROUP_IS_SOFIC_2026-08-14.md
+  - notes/COMMUTING_LAMP_QUOTIENT_STRUCTURE_AND_MF_FORK_2026-08-14.md
 ---
 
 ## Direct proof
 
 Found by `cairn-verify2` while stress-testing Lemma 3.1 of
-`docs/LITERAL_GROUP_IS_SOFIC_2026-08-14.md` against Theorem 9.1 of
-`docs/COMMUTING_LAMP_QUOTIENT_STRUCTURE_AND_MF_FORK_2026-08-14.md`.  The LEF
+`notes/LITERAL_GROUP_IS_SOFIC_2026-08-14.md` against Theorem 9.1 of
+`notes/COMMUTING_LAMP_QUOTIENT_STRUCTURE_AND_MF_FORK_2026-08-14.md`.  The LEF
 half is `literal-telescope-core-lef`; only the failure of residual finiteness
 is proved here.
 

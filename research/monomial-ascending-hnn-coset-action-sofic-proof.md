@@ -7,7 +7,7 @@ target: monomial-ascending-hnn-coset-action-sofic
 requires: [ascending-hnn-action-iff-iterated-cosets]
 artifacts:
   - research/artifacts/ascending-hnn-iterated-coset-solution-2026-08-18.md
-  - docs/FALSE_POSITIVE_CORE_IS_SOFIC.md
+  - notes/FALSE_POSITIVE_CORE_IS_SOFIC.md
 ---
 
 ## Why sufficient

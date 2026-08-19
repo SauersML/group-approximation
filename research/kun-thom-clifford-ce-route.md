@@ -6,8 +6,8 @@ title: Realize the sofic-radical Clifford phase in a matrix tracial ultraproduct
 target: hyperlinear-nonsofic-group
 requires: [kun-thom-clifford-radical-phase, kun-thom-clifford-crossed-product-ce]
 artifacts:
-  - docs/TRUE_KUN_THOM_CLIFFORD_PHASE.md
-  - docs/FALSE_FERMIONIC_KUN_THOM_ENDPOINT.md
+  - notes/TRUE_KUN_THOM_CLIFFORD_PHASE.md
+  - notes/FALSE_FERMIONIC_KUN_THOM_ENDPOINT.md
 ---
 
 Connes embeddability makes the Clifford image of `H` hyperlinear.  The

@@ -7,7 +7,7 @@ distinct_from:
   schatten-one-corner-detector: That established claim is the implication; this one is the missing analytic input to it, for a concrete group.
   mf-trace-gap-defect-ratio-models: That asks for a rate in operator-norm models of an MF group; this asks for models in a different norm entirely, with no rate.
 artifacts:
-  - docs/TRUE_SCHATTEN_ONE_RADICAL_CORNER.md
+  - notes/TRUE_SCHATTEN_ONE_RADICAL_CORNER.md
 ---
 
 Some explicit group `E` with a nontrivial central involution `z` in its sofic

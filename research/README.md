@@ -72,21 +72,20 @@ not here. A route discovered to be wrong is killed by an obstruction
 claim's `invalidates:` — source-owned, so nobody edits the victim and
 concurrent agents never contend.
 
-## Canonical vs noncanonical
+## The two tiers
 
 ```text
 research/*.md          claims + routes, one flat folder (`kind:` says which)
 research/artifacts/    substantial proof artifacts routes may cite
-notes/                 scratch, session logs, abandoned calculations
+notes/                 the prose corpus: derivations, audits, dead ends, logs
 ```
 
-**If it can affect the authoritative graph, its justification lives in
-authoritative space.** A route's body should justify its implication; large
-arguments go in `research/artifacts/` (or a Lean module, or the docs/
-proof corpus) and are cited via `artifacts:`. Citing `notes/` from a
-canonical file is a lint **error** — notes are searchable, but they can
-never change compiled research state. Ids are kebab-case slugs: the name
-is the language (`same-orbit-closure`, not `Q-0010`).
+**Prose justifies; only the graph and its Lean establish.** A route's body
+should justify its implication; large arguments go in `research/artifacts/`
+(or a Lean module, or the `notes/` proof corpus) and are cited via
+`artifacts:`. Any of those is citable — what a citation cannot do is stand in
+for the route itself, because nothing in prose is compiled. Ids are kebab-case
+slugs: the name is the language (`same-orbit-closure`, not `Q-0010`).
 
 **Ids are capped at 64 characters, and a claim's budget is 58.** The cap is
 `ID_RE` in the CLI; an id over it does not fail loudly at the node, it drops
@@ -247,6 +246,6 @@ survived the relevant checks.
 
 ## Legacy corpus
 
-`docs/TRUE_*` / `FALSE_*` stay where they are: they are the proof corpus,
-cited via `artifacts:`. Migration happens by *proposing* claims/routes for
-review, never by bulk conversion.
+`notes/TRUE_*` / `FALSE_*` are the proof corpus, cited via `artifacts:`.
+Migration happens by *proposing* claims/routes for review, never by bulk
+conversion.

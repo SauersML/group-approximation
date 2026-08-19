@@ -7,7 +7,7 @@ Provenance of this record: the statements below were read on **2026-08-14**
 directly from `https://arxiv.org/abs/2608.06222` (abstract) and
 `https://arxiv.org/html/2608.06222v1` (full text). They are transcribed
 verbatim. An independent earlier fetch of Theorem 4.1 (2026-08-08) is
-recorded in `docs/NOTEPAD.md` and agrees word for word; the abstract
+recorded in `notes/NOTEPAD.md` and agrees word for word; the abstract
 independently paraphrases Theorems A and E, which corroborates both.
 
 **Trust surface.** This is an external, unrefereed preprint eight days old at

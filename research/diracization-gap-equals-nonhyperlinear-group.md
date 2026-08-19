@@ -57,7 +57,7 @@ Both follow from `ce-characters-closed-multiplicative-semigroup`.
 
 Together these say the mechanism sees only the scalar locus of `tau` and
 throws the rest away.  That is the general form of the verdict already
-recorded for the IRS instance in `docs/FALSE_RECENT_LITERATURE_AUDIT.md` §3
+recorded for the IRS instance in `notes/FALSE_RECENT_LITERATURE_AUDIT.md` §3
 -- "taking normal cores destroys the information in the currently available
 examples" -- with Manzoor's non-co-hyperlinear IRS (arXiv:2502.06697) named
 there as supplying the cleanest language for the target and no shortcut to it.

@@ -6,7 +6,7 @@ title: Direct proof of Nested commutators recover the paired translations
 target: nested-commutator-translations
 requires: []
 artifacts:
-  - docs/TRUE_NESTED_COMMUTATORS_RECOVER_PAIRED_TRANSLATIONS.md
+  - notes/TRUE_NESTED_COMMUTATORS_RECOVER_PAIRED_TRANSLATIONS.md
 ---
 
 # Direct proof of Nested commutators recover the paired translations

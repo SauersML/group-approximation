@@ -17,7 +17,7 @@ representation realifies, and the projection argument of
 `KazhdanEigenvalueBound` forbids the eigenvalue.
 
 This is the β2 keystone of the strict-Kazhdan-compression program of
-`docs/FORMALIZATION_DIRECTIVES_2026-08-15.md` §1: applied componentwise
+`notes/FORMALIZATION_DIRECTIVES_2026-08-15.md` §1: applied componentwise
 over the universal representation family it gives the uniform spectral
 gap that builds the Kazhdan projection in the maximal group C-star
 algebra.

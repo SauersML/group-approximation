@@ -6,7 +6,7 @@ title: A bounded low-adjoint-energy witness yields a balanced almost-invariant s
 distinct_from:
   low-gap-witness-spike-or-balanced-cut: This assumes an operator-norm bound and produces one balanced cut; the other has no operator-norm hypothesis and instead proves a clipping dichotomy whose second outcome is a small-trace spectral spike.
 artifacts:
-  - docs/TRUE_SPECTRAL_COAREA_INVARIANT_CUT.md
+  - notes/TRUE_SPECTRAL_COAREA_INVARIANT_CUT.md
 ---
 
 Let `(M,tau)` be a finite matrix algebra with normalized trace, let

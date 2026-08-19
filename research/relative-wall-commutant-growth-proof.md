@@ -6,7 +6,7 @@ title: Transport the wall by the compressor automorphism
 target: relative-wall-commutant-growth
 requires: []
 artifacts:
-  - docs/TRUE_RELATIVE_WALL_IS_COMMUTANT_GROWTH.md
+  - notes/TRUE_RELATIVE_WALL_IS_COMMUTANT_GROWTH.md
 ---
 
 `Ad pi(t)` carries `pi(Gamma)'` onto `pi(t Gamma t^(-1))'` by a two-line

@@ -6,7 +6,7 @@ title: Compute the orbital graph of the marked pair and read off the amalgam
 target: literal-lamp-kernel-clifford-block-amalgam
 requires: [literal-telescope-split-normal-form]
 artifacts:
-  - docs/LITERAL_GROUP_BLOCK_AMALGAM_STRUCTURE_2026-08-14.md
+  - notes/LITERAL_GROUP_BLOCK_AMALGAM_STRUCTURE_2026-08-14.md
 ---
 
 ## Direct proof

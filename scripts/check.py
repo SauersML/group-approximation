@@ -95,10 +95,10 @@ FORBIDDEN_ALLOWLIST = {
 }
 
 # Strings known to have been fabricated in earlier edits and purged from the
-# publication surface (see docs/ADVERSARIAL_AUDIT_NON_MF_2026-08-13.md).  The
+# publication surface (see notes/ADVERSARIAL_AUDIT_NON_MF_2026-08-13.md).  The
 # "Leiden Declaration" and its Zenodo DOI do not exist; the reference was
 # purged once and reintroduced by a later merge, so it is gated here.  The
-# gate covers publication-facing files only: audit records under docs/
+# gate covers publication-facing files only: audit records under notes/
 # legitimately discuss these strings when recording the purges.
 FABRICATED = [
     ("fabricated citation (Leiden Declaration)",

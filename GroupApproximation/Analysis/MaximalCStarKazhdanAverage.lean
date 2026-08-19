@@ -10,7 +10,7 @@ at most one, and conjugated by a canonical unitary to the average of the
 conjugated set.
 
 These are the algebraic bricks of the strict-Kazhdan-compression program
-of `docs/FORMALIZATION_DIRECTIVES_2026-08-15.md` §1: the Kazhdan
+of `notes/FORMALIZATION_DIRECTIVES_2026-08-15.md` §1: the Kazhdan
 projection of a compressed subgroup will arise as the limit of the powers
 of this average, and the proper-isometry machinery of
 `ProperIsometryFromCompression` consumes the resulting projection data.

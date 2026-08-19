@@ -6,7 +6,7 @@ title: Direct proof of Half-space tensor models die in the tail
 target: half-space-tail-no-go
 requires: []
 artifacts:
-  - docs/OBSTRUCTIONS.md
+  - notes/OBSTRUCTIONS.md
 ---
 
 # Direct proof of Half-space tensor models die in the tail

@@ -8,11 +8,11 @@ distinct_from:
   finitely-presented-nonsofic-group-exists: that is about soficity of a finitely presented group; this produces nonhyperlinearity, a strictly stronger conclusion, and from game data rather than compression data
   dephasing-destroys-multiplicativity: that is a no-go about channel rounding destroying multiplicativity in the sofic direction; this is a positive reduction in the hyperlinear direction with a central phase, and the phase is what survives rather than what is destroyed
 artifacts:
-  - docs/TRUE_NORMAL_TORIC_GAP_IMPLIES_NONHYPERLINEAR.md
+  - notes/TRUE_NORMAL_TORIC_GAP_IMPLIES_NONHYPERLINEAR.md
 ---
 
 ESTABLISHED, conditional reduction proved in
-`docs/TRUE_NORMAL_TORIC_GAP_IMPLIES_NONHYPERLINEAR.md`.
+`notes/TRUE_NORMAL_TORIC_GAP_IMPLIES_NONHYPERLINEAR.md`.
 
 Let `Gcal` be a finite two-player game that is *torically determined* in the
 sense of Watts--Helton--Klep (arXiv:2111.14928): determined by finitely many

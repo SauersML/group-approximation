@@ -7,8 +7,8 @@ distinct_from:
   kun-thom-clifford-crossed-product-ce: That fixes the complete anticommutation graph and asks for Connes embeddability of `Cl(G/Gamma) crossed_product G`; this only asks for *some* nondegenerate invariant graph containing the marked edge, so it is implied by that claim and is strictly weaker.
   kun-thom-clifford-relative-wall: That asks for finite normalized-Hilbert--Schmidt walls in the complete-graph model; this asks for an exact embedding of one algebra from the invariant-graph family.
 artifacts:
-  - docs/TRUE_KUN_THOM_CLIFFORD_PHASE.md
-  - docs/NOTEPAD.md
+  - notes/TRUE_KUN_THOM_CLIFFORD_PHASE.md
+  - notes/NOTEPAD.md
 ---
 
 For the explicit residually finite nonnormal infranormal Kazhdan pair
@@ -39,7 +39,7 @@ argument acts on.
 **Few orbits yes, finite degree no — the two are not the same thing.**  The
 minimal member of the family is the single symmetrized marked double coset
 `Gamma h Gamma`, and it is available: the corpus already builds it, as the
-orbital target `E_orb = K_(X,E_*) semidirect G` at docs/NOTEPAD.md near line
+orbital target `E_orb = K_(X,E_*) semidirect G` at notes/NOTEPAD.md near line
 9969, where the `z=-1` lamp algebra is identified as the AF twisted group
 algebra `C*_r(directSum_X F_2, (-1)^(B_*))` rather than the full CAR algebra
 — "a strictly weaker analytic target than the complete Clifford system".
@@ -50,7 +50,7 @@ What is *not* available is finite degree.  It was natural to hope that the
 minimal member would also be locally finite, giving a Bogoliubov action
 touching finitely many Majorana modes per generator — the regime where the
 finite-mode permutation defects of
-docs/FALSE_FERMIONIC_KUN_THOM_ENDPOINT.md §5 could be localized.
+notes/FALSE_FERMIONIC_KUN_THOM_ENDPOINT.md §5 could be localized.
 `marked-double-coset-infinite-degree` refutes that: the marked double coset
 of the Laurent pair is an infinite union of left cosets, so **every**
 invariant graph containing the marked edge, the minimal one included, has

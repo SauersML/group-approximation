@@ -6,7 +6,7 @@ title: Residual finiteness of the abelianized-lamp doubling quotient
 distinct_from:
   commuting-lamp-quotient-finite-residual: That claim concerns the literal marked group's commuting-lamp quotient; this one is the affine doubling ambient with abelianized finite lamps over the height line.
 artifacts:
-  - docs/COMPRESSION_COLLAPSE_MF_RADICAL.md
+  - notes/COMPRESSION_COLLAPSE_MF_RADICAL.md
 ---
 
 For G = (Z[1/2]^3 x| SL3(Z)) x| Z with doubling stable letter and K finite,

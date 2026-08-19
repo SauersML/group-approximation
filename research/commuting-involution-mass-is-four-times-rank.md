@@ -8,7 +8,7 @@ distinct_from:
   corona-commuting-torsion-lifts: that asks for exact commuting lifts of approximately commuting torsion unitaries; this compares three metrics on a pair of exact involutions that are already given.
 artifacts:
   - research/artifacts/multi-mover-hnn-dossier-2026-08-15.md
-  - docs/COMPRESSION_COLLAPSE_MF_RADICAL.md
+  - notes/COMPRESSION_COLLAPSE_MF_RADICAL.md
   - GroupApproximation/Sofic/InvolutionRankMass.lean
 ---
 

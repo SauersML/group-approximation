@@ -54,7 +54,7 @@ only unmet demand in the finite-window form of
 ## Scope
 
 The completions are not `G`-invariant and cannot be made so: by the
-finite-rank invariant-form no-go (`docs/NOTEPAD.md`) no finite-rank
+finite-rank invariant-form no-go (`notes/NOTEPAD.md`) no finite-rank
 `G`-invariant alternating form retains the marked edge, and by
 `marked-double-coset-infinite-degree` no invariant graph containing the mark
 has finite degree.  Item 3 is a statement about lamps only; it supplies no

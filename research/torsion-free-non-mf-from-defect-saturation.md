@@ -7,7 +7,7 @@ target: torsion-free-finitely-presented-non-mf
 requires: [defect-saturation-full-mf-radical]
 artifacts:
   - GroupApproximation/Sofic/DefectSaturation.lean
-  - docs/COMPRESSION_COLLAPSE_MF_RADICAL.md
+  - notes/COMPRESSION_COLLAPSE_MF_RADICAL.md
 ---
 
 ## Why sufficient

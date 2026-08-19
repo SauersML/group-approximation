@@ -13,13 +13,13 @@ orbit collapse, cut what nothing uses") replaced the three-step property-`(T)`
 argument with a one-paragraph citation of `\ref{rem:classical-base}` and
 `\cite[Example~1.7.4(i)]{BHV}`; the proposition's statement is unchanged and
 still badged, but every clause quoted below has been deleted from the
-manuscript, and `docs/P13_STEP_AUDIT.md` is graded against the deleted text.
+manuscript, and `notes/P13_STEP_AUDIT.md` is graded against the deleted text.
 The quotations are kept verbatim so the audit rows stay readable, and the
 declarations are kept because they are correct and imported; none of them is
 badgeable any more.
 
 This module gives Lean counterparts to the Step-3 clauses that the
-step-for-step audit (`docs/P13_STEP_AUDIT.md`, §3) recorded as `MISMATCH` or
+step-for-step audit (`notes/P13_STEP_AUDIT.md`, §3) recorded as `MISMATCH` or
 `MISSING`, using the objects the manuscript named rather than the
 equally-valid substitutes the existing development uses.
 

@@ -6,7 +6,7 @@ title: Direct proof of Equivariant whole maps admit rectangular escape
 target: rectangular-escape
 requires: []
 artifacts:
-  - docs/FALSE_EQUIVARIANT_WHOLE_MAPS_ALLOW_RECTANGULAR_ESCAPE.md
+  - notes/FALSE_EQUIVARIANT_WHOLE_MAPS_ALLOW_RECTANGULAR_ESCAPE.md
 ---
 
 # Direct proof of Equivariant whole maps admit rectangular escape

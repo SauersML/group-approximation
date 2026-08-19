@@ -4,7 +4,7 @@ Date: 2026-08-10
 
 ## Question tested
 
-`docs/EXPLICIT_LEAVITT_ATLAS.md` reduces hyperlinearity of the explicit
+`notes/EXPLICIT_LEAVITT_ATLAS.md` reduces hyperlinearity of the explicit
 nonsofic binary-Leavitt group to a relative-unitary problem for two copies
 of `A8`.  Its full finite normal-generating list for the atlas kernel has
 not yet been extracted, so the exact endpoint optimization cannot yet be

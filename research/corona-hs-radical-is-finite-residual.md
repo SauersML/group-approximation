@@ -8,7 +8,7 @@ distinct_from:
   corona-corner-detection-criterion: That criterion makes the normal closure of the defect corner-invisible in any ambient group; this claim identifies the invisible set with the finite residual, which is strictly larger than that normal closure here.
   universal-mf-quotient: That claim is the general functorial statement that the MF radical produces a largest MF quotient; this one computes a different radical, the corona trace-invisible set, for one concrete group.
 artifacts:
-  - docs/COMMUTING_LAMP_QUOTIENT_STRUCTURE_AND_MF_FORK_2026-08-14.md
+  - notes/COMMUTING_LAMP_QUOTIENT_STRUCTURE_AND_MF_FORK_2026-08-14.md
 ---
 
 For every corona representation `Theta` of `W/<zeta>`, the induced tracial

@@ -6,7 +6,7 @@ title: Expand the length in characters and recognize the elementary cone generat
 target: hilbert-embeddable-is-representation-realized
 requires: []
 artifacts:
-  - docs/TRUE_HILBERT_EMBEDDABLE_IS_REPRESENTATION_REALIZED.md
+  - notes/TRUE_HILBERT_EMBEDDABLE_IS_REPRESENTATION_REALIZED.md
 ---
 
 # Expand in characters and recognize the cone generators

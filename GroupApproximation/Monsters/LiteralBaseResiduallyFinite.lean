@@ -6,7 +6,7 @@ import GroupApproximation.Sofic.LEFSofic
 # Residual finiteness and soficity of the literal base
 
 Input I1 of the E-soficity tower
-(`docs/SOFICITY_TOWER_MJ_DESIGN_2026-08-15.md`): the twenty-relator
+(`notes/SOFICITY_TOWER_MJ_DESIGN_2026-08-15.md`): the twenty-relator
 presented base is residually finite and sofic.
 
 The completeness engine identifies the presented base with the concrete

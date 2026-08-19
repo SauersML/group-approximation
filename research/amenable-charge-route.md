@@ -19,7 +19,7 @@ proves.
 
 Every architecture invalidated on this claim — nine of them now — constructs a
 finite carrier and dies because the coordinate action cannot be modelled by
-permutations. `docs/FALSE_HALO_ACTION_AUDIT.md` explains why that is not
+permutations. `notes/FALSE_HALO_ACTION_AUDIT.md` explains why that is not
 accidental: a finite carrier labelled by anything locally sofic collapses, since
 finitely generated subgroups of `U(n)` are linear, hence residually finite,
 hence sofic, so the witness class reduces to the sofic one and the argument

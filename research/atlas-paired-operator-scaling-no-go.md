@@ -4,7 +4,7 @@ id: atlas-paired-operator-scaling-no-go
 kind: claim
 title: Fixed two-term finite-chart equations cannot yield the atlas shrunk-space certificate
 artifacts:
-  - docs/TRUE_ATLAS_SINGLE_BRIDGE_SUBGROUP_REDUCTION.md
+  - notes/TRUE_ATLAS_SINGLE_BRIDGE_SUBGROUP_REDUCTION.md
 distinct_from:
   pure-finite-group-operator-scaling-collapses-to-multiplicity: that theorem handles ordinary same-group intertwining and vanishing cutoffs; this no-go allows arbitrary fixed pairs of elements from the two A8 charts and rules out shrinkage at every cutoff when the paired equations are exact in the canonical regular-trace atlas model.
   atlas-spectral-shrunk-intertwiner-certificate: that open target remains viable because its quadratic form may use genuinely mixed or multi-term atlas information; this theorem only removes the tempting fixed paired-equation implementation.

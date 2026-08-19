@@ -106,7 +106,7 @@ a homomorphism from its quotient by those four zero relators onto
 only the local `S4` laws and those four relators can force the phase to vanish.
 The durable certificate is
 `experiments/atlas_stubborn_s4_certificate.py`, with proof scope in
-`docs/FALSE_ATLAS_STUBBORN_S4_QUOTIENT.md`.
+`notes/FALSE_ATLAS_STUBBORN_S4_QUOTIENT.md`.
 
 Do not spend a large sweep on more weights, seeds, or an exact four-class
 obstruction.  The next high-yield work is one of:

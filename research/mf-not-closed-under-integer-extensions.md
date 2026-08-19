@@ -6,7 +6,7 @@ title: MF fails for extensions of LEF groups by the integers
 distinct_from:
   mf-extension-nonclosure: That claim uses the locally finite lamp kernel and the residually finite quotient `V`; this one shrinks the quotient to `Z` and strengthens the kernel from locally finite to LEF, which is what kills the operator-norm analogue of the Elek--Szabo permanence theorem.
 artifacts:
-  - docs/COMMUTING_LAMP_QUOTIENT_STRUCTURE_AND_MF_FORK_2026-08-14.md
+  - notes/COMMUTING_LAMP_QUOTIENT_STRUCTURE_AND_MF_FORK_2026-08-14.md
 ---
 
 There is a short exact sequence

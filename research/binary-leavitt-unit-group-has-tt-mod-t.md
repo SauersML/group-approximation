@@ -12,7 +12,7 @@ artifacts:
   - GroupApproximation/PropertyTT/PaperStatements.lean
   - GroupApproximation/PropertyTT/NonsoficCorollary.lean
   - GroupApproximation/PropertyTT/FiniteTypeLeavittTT.lean
-  - docs/PROPERTY_TT_CLAIM_MAP.md
+  - notes/PROPERTY_TT_CLAIM_MAP.md
   - property_tt_leavitt.tex
 ---
 

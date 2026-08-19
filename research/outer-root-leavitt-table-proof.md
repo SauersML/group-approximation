@@ -6,7 +6,7 @@ title: Direct proof of Commuting outer roots retain the Leavitt table
 target: outer-root-leavitt-table
 requires: []
 artifacts:
-  - docs/TRUE_COMMUTING_OUTER_ROOTS_RETAIN_LEAVITT_TABLE.md
+  - notes/TRUE_COMMUTING_OUTER_ROOTS_RETAIN_LEAVITT_TABLE.md
   - GroupApproximation/Leavitt/OuterRootLeavittRouting.lean
 ---
 

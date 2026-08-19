@@ -6,11 +6,11 @@ title: Import the hyperfinite HS stability theorem from the corpus
 target: steinberg-hyperfinite-hs-stable
 requires: []
 artifacts:
-  - docs/NOTEPAD.md
+  - notes/NOTEPAD.md
 ---
 
 Corpus import, not a reproof.  The theorem and its proof are at
-`docs/NOTEPAD.md:22220-22232`, for the group fixed at `docs/NOTEPAD.md:22149`
+`notes/NOTEPAD.md:22220-22232`, for the group fixed at `notes/NOTEPAD.md:22149`
 (`L=L_(F_2)(1,2)`, `Q=EL_4(L)`, `U=St_5(L)`), with the sources pinned at
 `:22249-22253`.
 

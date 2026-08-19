@@ -8,7 +8,7 @@ distinct_from:
   kazhdan-asymptotic-commutant-transport: The established theorem treats matrix coordinates; this claim asks for a precise extension to arbitrary finite traced C-star coordinates.
 artifacts:
   - non_mf_groups_exist.tex
-  - docs/NON_MF_FINAL_REVIEW_AND_RESOLUTION_2026-08-14.md
+  - notes/NON_MF_FINAL_REVIEW_AND_RESOLUTION_2026-08-14.md
 ---
 
 Formulate a natural class of finite tracial C-star algebras for which

@@ -23,7 +23,7 @@ charts.  The first exact computations establish three useful facts.
 These are genuine exact subresults.  They do **not** prove that every
 hyperlinear group is sofic.  In particular, rational two-acyclicity cannot
 hold uniformly over the projective prime family; see
-`docs/TRUE_PROJECTIVE_STABILIZER_HOMOLOGY_BOUNDARY.md`.
+`notes/TRUE_PROJECTIVE_STABILIZER_HOMOLOGY_BOUNDARY.md`.
 
 ## Projective `p=3` carry lattice
 
@@ -206,7 +206,7 @@ job.
 ## Pivot-guided `p=53` exact-recovery benchmark
 
 The nonlinear discriminant formula in
-`docs/TRUE_NONLINEAR_DISCRIMINANT_REPAIR_FORMULA.md` makes an exact rational
+`notes/TRUE_NONLINEAR_DISCRIMINANT_REPAIR_FORMULA.md` makes an exact rational
 basis of the harmonic two-plane the next input.  A second bounded MSI audit
 localized the computational obstruction more precisely.
 
@@ -301,7 +301,7 @@ and a rank-two integral kernel with coefficients bounded by `12`.  Its basis
 Gram matrix is `[[7872,-3264],[-3264,71424]]`.  This does not yet transport
 the HAP Euclidean metric, but it replaces blind CRT by a finite chain-map
 comparison between two certified rank-two models.  See
-`docs/TRUE_P53_CUSPIDAL_FUNCTION_LATTICE.md`.
+`notes/TRUE_P53_CUSPIDAL_FUNCTION_LATTICE.md`.
 
 ## Mathematical interpretation
 
@@ -356,7 +356,7 @@ This is a certificate for the compact free coinvariant lattice.  It omits
 two-primary orientation-torsion coordinates and uses a different Euclidean
 metric from the free HAP carry complex, so a bounded integral chain
 comparison is still required.  Full details and scope are in
-`docs/TRUE_P53_CELLULAR_HARMONIC_DISCRIMINANT.md`; the machine certificate is
+`notes/TRUE_P53_CELLULAR_HARMONIC_DISCRIMINANT.md`; the machine certificate is
 `projective-cellular-p53-summary.json`.
 
 ### Replication at the second cuspidal level `p=61`
@@ -384,7 +384,7 @@ optimization gives lift-energy lower bounds `5` and `6`; the first yields
 `kappa_Sigma>=6.330477286783821...`.  This is a second modest compact
 harmonic decoder, not a proof of uniformity.  The exact artifacts are the
 `projective-cellular-p61-*` files, and the mathematical statement is in
-`docs/TRUE_P61_CELLULAR_HARMONIC_SECTION.md`.
+`notes/TRUE_P61_CELLULAR_HARMONIC_SECTION.md`.
 
 The zero-th orientation-primary row has also been narrowed exactly.  For
 every finite coefficient action, the first degree-two `S_4` torsion block
@@ -393,7 +393,7 @@ At levels `53` and `61` this accounts for `29` and `33` norm-one matched
 pairs.  The residual zero-row primary issue lies between degree three and
 the second degree-two cell; positive stabilizer-homology rows in the derived
 HAP complex remain separate.  See
-`docs/TRUE_SL3_PRIMARY_TRANSFER_SPLITTING.md`.
+`notes/TRUE_SL3_PRIMARY_TRANSFER_SPLITTING.md`.
 
 That residual zero-row map is now uniform as well.  For every odd prime it
 is permutation-equivalent over `F_2` to `(p+1)/2` copies of `[1 1]`, together
@@ -404,10 +404,10 @@ families are `P^1(F_p)` modulo `t -> t/(2t-1)`, glued at the unique cancelled
 coordinate.  Hence neither zero-th-row primary interface can create a
 growing-distance code.  The positive stabilizer-resolution rows remain the
 derived arithmetic gate.  See
-`docs/TRUE_PROJECTIVE_PRIMARY_RESIDUAL_MATCHING.md`.
+`notes/TRUE_PROJECTIVE_PRIMARY_RESIDUAL_MATCHING.md`.
 
 For `p=3,5,7`, Proposition 12 of
-`docs/INTEGRAL_CARRY_DISCRIMINANT_DUALITY.md` rules out denominator collapse
+`notes/INTEGRAL_CARRY_DISCRIMINANT_DUALITY.md` rules out denominator collapse
 through real stabilizer homology: the relevant harmonic space is zero.
 Together with bounded spherical templates, every nonzero discriminant class
 on these three charts has a positive denominator-radius floor.
@@ -439,4 +439,4 @@ model.  The missing comparison must include derived finite-stabilizer
 homology.  Exact results for eleven primes are in
 `projective-cellular-two-primary.json`; interpretation and the next total
 complex construction are in
-`docs/TRUE_TWO_PRIMARY_CELLULAR_DERIVED_AUDIT.md`.
+`notes/TRUE_TWO_PRIMARY_CELLULAR_DERIVED_AUDIT.md`.

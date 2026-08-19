@@ -6,7 +6,7 @@ title: Use a finite Clifford wall instead of embedding the whole crossed product
 target: hyperlinear-nonsofic-group
 requires: [kun-thom-clifford-radical-phase, kun-thom-clifford-relative-wall]
 artifacts:
-  - docs/TRUE_KUN_THOM_CLIFFORD_PHASE.md
+  - notes/TRUE_KUN_THOM_CLIFFORD_PHASE.md
   - GroupApproximation/Sofic/CliffordPhaseExtraction.lean
   - GroupApproximation/Sofic/AntipodalRadicalCollision.lean
 ---

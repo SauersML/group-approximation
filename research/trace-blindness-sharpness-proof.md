@@ -6,7 +6,7 @@ title: Direct proof of The trace-blindness of II₁ factors is sharp
 target: trace-blindness-sharpness
 requires: []
 artifacts:
-  - docs/OBSTRUCTIONS.md
+  - notes/OBSTRUCTIONS.md
 ---
 
 # Direct proof of The trace-blindness of II₁ factors is sharp

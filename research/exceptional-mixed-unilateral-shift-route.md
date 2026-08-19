@@ -6,7 +6,7 @@ title: Turn the first infinite raw/comb commutator into a unilateral index defec
 target: non-hyperlinear-group
 requires: []
 artifacts:
-  - docs/TRUE_MIXED_COMMUTATOR_HAS_INFINITE_ORDER.md
+  - notes/TRUE_MIXED_COMMUTATOR_HAS_INFINITE_ORDER.md
 ---
 
 Use the infinite order of `h=[U*X_1U,raw]` as a one-sided shift and extract

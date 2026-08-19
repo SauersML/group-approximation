@@ -17,7 +17,7 @@ idempotents reducing to `\ref{thm:projection-collapse}`, and the microstate
 corrections, the rank pseudometric and the almost-cocycle estimate are all gone.
 The module is kept because the mathematics is correct and other modules consume
 it, but it transcribes a route the reader will not find; the divergence is what
-the proof ledger records at `CO.19`--`CO.22`, and `docs/COLLAPSE_STEP_AUDIT.md`
+the proof ledger records at `CO.19`--`CO.22`, and `notes/COLLAPSE_STEP_AUDIT.md`
 is graded against the deleted text.  No badge is owed here.
 
 The manuscript describes **one** compression, taken along the corner structure

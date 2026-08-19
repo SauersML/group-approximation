@@ -6,7 +6,7 @@ title: Free action on the block tree computes the witness kernel
 target: literal-witness-kernel-free
 requires: [literal-lamp-kernel-clifford-block-amalgam]
 artifacts:
-  - docs/LITERAL_GROUP_BLOCK_AMALGAM_STRUCTURE_2026-08-14.md
+  - notes/LITERAL_GROUP_BLOCK_AMALGAM_STRUCTURE_2026-08-14.md
 ---
 
 ## Direct proof

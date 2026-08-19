@@ -6,7 +6,7 @@ title: Direct proof of (T)-compatibility excludes Haagerup carriers
 target: haagerup-t-exclusion
 requires: []
 artifacts:
-  - docs/OBSTRUCTIONS.md
+  - notes/OBSTRUCTIONS.md
 ---
 
 # Direct proof of (T)-compatibility excludes Haagerup carriers

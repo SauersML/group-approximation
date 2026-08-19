@@ -6,14 +6,14 @@ title: Separable positive stabilizers give Schreier approximations, then GKP The
 target: positive-core-bernoulli-ce
 requires: []
 artifacts:
-  - docs/FALSE_POSITIVE_CORE_IS_SOFIC.md
+  - notes/FALSE_POSITIVE_CORE_IS_SOFIC.md
   - research/artifacts/kun-thom-2608-06222-verified.md
 ---
 
 # Separable positive stabilizers, then GKP Theorem A
 
 Import of a complete argument already in the corpus. The full proof —
-`(PCS1)`–`(PCS17)`, four sections — is `docs/FALSE_POSITIVE_CORE_IS_SOFIC.md`,
+`(PCS1)`–`(PCS17)`, four sections — is `notes/FALSE_POSITIVE_CORE_IS_SOFIC.md`,
 dated 2026-08-12. `requires: []` is a proof commitment, not a placeholder.
 
 The chain: Suslin stability gives `E_r(R_ℓ) = SL_r(R_ℓ)` and identifies each

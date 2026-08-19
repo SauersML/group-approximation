@@ -6,7 +6,7 @@ import GroupApproximation.Sofic.TransportVariantsAnyUniverse
 
 **The fixed-tensor paragraph was cut from the manuscript on 2026-08-18**,
 with the intertwiner clause of `thm:transport-variants` (see the change-history
-table of `docs/NON_MF_PROOF_LEDGER.md`); no badge is owed for this module.  The
+table of `notes/NON_MF_PROOF_LEDGER.md`); no badge is owed for this module.  The
 quotation below is kept as a record.  The paragraph read
 
 > Invariant tensors of type `(p,q)` may be identified with Hilbert--Schmidt

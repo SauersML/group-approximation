@@ -14,7 +14,7 @@ distinct_from:
   torsion-free-finitely-presented-non-mf: That asks for a torsion-free non-MF group; this group has a central involution, and the content added here is the positive approximation side.
   non-hyperlinear-group: That asks for a group failing hyperlinearity; this group is hyperlinear and fails only MF.
 artifacts:
-  - docs/LITERAL_GROUP_IS_SOFIC_2026-08-14.md
+  - notes/LITERAL_GROUP_IS_SOFIC_2026-08-14.md
   - non_mf_groups_exist.tex
 ---
 

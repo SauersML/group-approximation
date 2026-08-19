@@ -6,7 +6,7 @@ title: Detect the sofic-radical sign in any nondegenerate invariant-graph model
 target: hyperlinear-nonsofic-group
 requires: [invariant-graph-clifford-phase, invariant-graph-crossed-product-ce]
 artifacts:
-  - docs/TRUE_KUN_THOM_CLIFFORD_PHASE.md
+  - notes/TRUE_KUN_THOM_CLIFFORD_PHASE.md
 ---
 
 ## Why sufficient

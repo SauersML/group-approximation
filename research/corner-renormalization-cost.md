@@ -6,8 +6,8 @@ title: Corner compression is free in operator norm and costs the inverse root tr
 distinct_from:
   trace-blindness-sharpness: That claim says no conjugation-invariant monotone size exists in a II_1 factor; this one is a quantitative comparison of what compression does to operator-norm and to normalized Hilbert--Schmidt data.
 artifacts:
-  - docs/FALSE_FERMIONIC_AMPLIFICATION.md
-  - docs/FALSE_WEAK_MF_EFFECTIVE_RANK_PROFILE.md
+  - notes/FALSE_FERMIONIC_AMPLIFICATION.md
+  - notes/FALSE_WEAK_MF_EFFECTIVE_RANK_PROFILE.md
 ---
 
 Let `A` be unital with tracial state `tau`, let `p != 0` be a projection with

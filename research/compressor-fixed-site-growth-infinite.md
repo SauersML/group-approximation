@@ -7,7 +7,7 @@ distinct_from:
   compressor-growth-index-homomorphism: That is an operator-algebra invariant and its multiplicative law; this is a purely combinatorial fact about the Kun--Thom coset space and its translates, proved from nonnegativity of monomial substitutions, with no algebra in it.
   finite-site-orbits-invariant-clifford-kernel: That concerns finite site orbits and the kernel they generate in an invariant Clifford model; this counts the Gamma-fixed sites gained under one compressor and shows the gain is infinite.
 artifacts:
-  - docs/TRUE_RELATIVE_WALL_IS_COMMUTANT_GROWTH.md
+  - notes/TRUE_RELATIVE_WALL_IS_COMMUTANT_GROWTH.md
 ---
 
 For the Kun--Thom Theorem E pair

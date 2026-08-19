@@ -8,7 +8,7 @@ distinct_from:
   uniform-finite-mf-obstruction: The established compactness theorem gives an unspecified finite test and positive threshold; this claim asks for a computed modulus on the displayed relators from the rational Kazhdan gap.
 artifacts:
   - non_mf_groups_exist.tex
-  - docs/NON_MF_FINAL_REVIEW_AND_RESOLUTION_2026-08-14.md
+  - notes/NON_MF_FINAL_REVIEW_AND_RESOLUTION_2026-08-14.md
 ---
 
 Compute an explicit positive defect threshold and error function, directly

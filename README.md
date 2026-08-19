@@ -251,7 +251,7 @@ endpoints are in `Endpoint/MainResults.lean` — `nonsofic_groups_exist`,
 and `countable_group_without_essentiallyFreeNearAction_exists`, the negative
 answer to Pestov's Question 5.3 — and each printed statement has one endpoint
 of its own in `Endpoint/ManuscriptStatements.lean`. The statement-by-statement
-correspondence is [`docs/CLAIM_MAP.md`](docs/CLAIM_MAP.md), generated from the
+correspondence is [`notes/CLAIM_MAP.md`](notes/CLAIM_MAP.md), generated from the
 margin notes of the manuscript and checked by `scripts/check.py`.
 
 The manuscript itself is no longer kept in the repository; the Lean endpoints
@@ -294,7 +294,7 @@ The repository contains several interacting developments:
 | Monsters/ | Further constructions built from the common infrastructure |
 | Endpoint/ | Public theorem surfaces and audit reports |
 
-The docs/ directory is a working research archive as well as documentation.
+The notes/ directory is a working research archive as well as documentation.
 Files prefixed FALSE_ record investigated approaches that were ruled out;
 they are retained so failed routes and their precise obstructions remain
 searchable.
@@ -325,17 +325,17 @@ Key audit files:
 - `GroupApproximation/Endpoint/ChosenNonMFAudit.lean`: fast focused axiom audit
   of the chosen non-MF endpoint, together with the part of the literal
   eight-generator presentation that is unconditional;
-- `scripts/Signatures.lean` and `docs/CLAIM_SIGNATURES.md`: elaborated public
+- `scripts/Signatures.lean` and `notes/CLAIM_SIGNATURES.md`: elaborated public
   signatures;
 - `scripts/check_non_mf_refs.py` and `scripts/check_property_tt_refs.py`:
   visible manuscript-to-Lean reference checks;
 - `scripts/check_non_mf_zero_input.py`: enforces that every Lean declaration
   cited by the non-MF manuscript has no declaration inputs (all quantifiers
   occur inside the proposition);
-- `docs/NON_MF_IMPACT_FORMAL_STATUS.md`: records which stronger consequences
+- `notes/NON_MF_IMPACT_FORMAL_STATUS.md`: records which stronger consequences
   have closed Lean endpoints and which still use literature or require new
   mathematics;
-- `docs/PROPERTY_TT_CLAIM_MAP.md`: statement mapping for the property-(TT)/T
+- `notes/PROPERTY_TT_CLAIM_MAP.md`: statement mapping for the property-(TT)/T
   paper.
 
 Cold local builds are expensive. The maintained verification path is the

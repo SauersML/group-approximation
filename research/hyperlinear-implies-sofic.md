@@ -26,6 +26,6 @@ root target, not a consolation outcome.
 approximations (asymptotic homomorphisms into unitaries with the normalized
 Hilbert–Schmidt metric) into sofic approximations (into permutations with the
 Hamming metric), for arbitrary groups. No such technique exists. The caution
-of docs/OBSTRUCTIONS.md §5 applies with full force: proving particular
+of notes/OBSTRUCTIONS.md §5 applies with full force: proving particular
 candidates non-hyperlinear (e.g. kt-pair-non-hyperlinear-rigidity) removes
 candidates one at a time and can never establish this universal statement.

@@ -9,7 +9,7 @@ distinct_from:
   literal-group-structural-normal-form: That root asks for a normal form, a kernel description and the word problem for `E`; this claim settles only the base factor.
 artifacts:
   - GroupApproximation/Monsters/LiteralBaseCompleteness.lean
-  - docs/E_SOFICITY_SELF_CONTAINED_2026-08-16.md
+  - notes/E_SOFICITY_SELF_CONTAINED_2026-08-16.md
 ---
 
 The canonical affine evaluation of the twenty-relator base subpresentation of
@@ -29,7 +29,7 @@ PRESENTED base, while the easy proofs (linearity, Mal'cev, the formalized
 `gammaBar_residuallyFinite`) are statements about the MATRIX group.  Until the
 evaluation was known injective, the gap between them was the single conditional
 input `B ~= Gammabar` that the 2026-08-15 adversarial audit of
-`docs/LITERAL_GROUP_IS_SOFIC_2026-08-14.md` identified, and it made
+`notes/LITERAL_GROUP_IS_SOFIC_2026-08-14.md` identified, and it made
 `literal-group-sofic` conditional while `literal-group-fails-mf-conventions`
 was not — a trust-surface inversion recorded in that document's header.
 

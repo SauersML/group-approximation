@@ -6,7 +6,7 @@ title: Combine the LEF base with the non-MF witness
 target: mf-not-closed-under-integer-extensions
 requires: [lamp-telescope-base-is-lef, sofic-non-mf-witness, lef-implies-operator-mf, literal-telescope-core-lef, literal-central-mark-corona-invisible]
 artifacts:
-  - docs/COMMUTING_LAMP_QUOTIENT_STRUCTURE_AND_MF_FORK_2026-08-14.md
+  - notes/COMMUTING_LAMP_QUOTIENT_STRUCTURE_AND_MF_FORK_2026-08-14.md
 ---
 
 ## Why sufficient

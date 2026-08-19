@@ -6,12 +6,12 @@ title: Import the Schatten-one radical corner theorem
 target: schatten-one-corner-detector
 requires: []
 artifacts:
-  - docs/TRUE_SCHATTEN_ONE_RADICAL_CORNER.md
+  - notes/TRUE_SCHATTEN_ONE_RADICAL_CORNER.md
 ---
 
 ## Direct proof
 
-The complete argument is `docs/TRUE_SCHATTEN_ONE_RADICAL_CORNER.md`, dated
+The complete argument is `notes/TRUE_SCHATTEN_ONE_RADICAL_CORNER.md`, dated
 2026-08-13, in four steps: exactification of the involution by the
 involution-rounding lemma (`u_n^2=1`, `||u_n-phi_n(z)||_1 -> 0`); the negative
 spectral projection `q_n=(1-u_n)/2`, nonzero for large `n` by the retention

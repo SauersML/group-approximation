@@ -7,7 +7,7 @@ target: pauli-binary-algebra-gap
 requires: []
 artifacts:
   - GroupApproximation/Leavitt/PauliCarrierBinaryGap.lean
-  - docs/TRUE_PAULI_CARRIER_BINARY_ALGEBRA_GAP.md
+  - notes/TRUE_PAULI_CARRIER_BINARY_ALGEBRA_GAP.md
 ---
 
 Writing `x=tau(EF)`, the squared distance is

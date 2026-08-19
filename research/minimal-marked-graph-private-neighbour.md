@@ -10,7 +10,7 @@ distinct_from:
   invariant-graph-crossed-product-ce: that is an analytic claim about Connes embeddability of a crossed product; this is finite combinatorics in the base G-set, and its role is to remove the existential over graphs from that claim's algebraic half.
 artifacts:
   - research/artifacts/kun-thom-private-neighbour-2026-08-18.md
-  - docs/COMMUTING_WREATH_SOFIC_RADICAL.md
+  - notes/COMMUTING_WREATH_SOFIC_RADICAL.md
 ---
 
 Let `q` be a prime power, `r,d ≥ 3`, `R₊ = F_q[x₁,…,x_d]`,

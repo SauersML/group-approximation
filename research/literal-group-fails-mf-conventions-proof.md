@@ -7,7 +7,7 @@ target: literal-group-fails-mf-conventions
 requires: [countable-group-mf-conventions, literal-central-mark-corona-invisible]
 artifacts:
   - non_mf_groups_exist.tex
-  - docs/NON_MF_FINAL_REVIEW_AND_RESOLUTION_2026-08-14.md
+  - notes/NON_MF_FINAL_REVIEW_AND_RESOLUTION_2026-08-14.md
   - GroupApproximation/Sofic/LiteralNonMFPresentation.lean
   - GroupApproximation/Sofic/LiteralNonMFEndpoint.lean
   - GroupApproximation/Sofic/MFRepresentationVariants.lean

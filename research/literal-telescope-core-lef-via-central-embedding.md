@@ -6,7 +6,7 @@ title: The same window argument with the virtual-freeness step replaced by a cen
 target: literal-telescope-core-lef
 requires: [literal-telescope-split-normal-form, literal-lamp-kernel-clifford-block-amalgam, finite-telescope-level-coset-orbits, clifford-block-amalgam-residually-finite, literal-base-presentation-complete]
 artifacts:
-  - docs/E_SOFICITY_SELF_CONTAINED_2026-08-16.md
+  - notes/E_SOFICITY_SELF_CONTAINED_2026-08-16.md
   - GroupApproximation/Sofic/MappingTelescopeFiniteOrbits.lean
   - GroupApproximation/Sofic/SoficDirectedUnion.lean
   - GroupApproximation/Sofic/LEFSofic.lean
@@ -40,7 +40,7 @@ residually finite, hence `E_T` is LEF, hence sofic and MF
 
 * **`M_J` residually finite.**  The older route gets this from
   Karrass--Pietrowski--Solitar (input (S5) of
-  `docs/LITERAL_GROUP_IS_SOFIC_2026-08-14.md`): `M_J` acts on the tree of a
+  `notes/LITERAL_GROUP_IS_SOFIC_2026-08-14.md`): `M_J` acts on the tree of a
   finite star of finite groups with finite vertex stabilizers, hence is
   virtually free.  Here it is the prerequisite
   `clifford-block-amalgam-residually-finite`, proved by the two-quotient

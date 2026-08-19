@@ -2,7 +2,7 @@
 
 This script constructs the 64-dimensional A8 Specht representation of shape
 (5,2,1) from Young's orthogonal form.  It then realizes the exact Pauli block
-from docs/FALSE_LOCAL_CLIFFORD_ATLAS.md and evaluates every shortest
+from notes/FALSE_LOCAL_CLIFFORD_ATLAS.md and evaluates every shortest
 one-sided tensor-flip failure in that same pair of A8 charts.
 
 The calculation is a discovery/audit tool.  A zero scalarity defect is an

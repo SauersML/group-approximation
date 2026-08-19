@@ -6,7 +6,7 @@ title: Blindness on the module side plus level folding
 target: commuting-lamp-quotient-finite-residual
 requires: [commuting-lamp-quotient-structure, finite-quotient-blindness]
 artifacts:
-  - docs/COMMUTING_LAMP_QUOTIENT_STRUCTURE_AND_MF_FORK_2026-08-14.md
+  - notes/COMMUTING_LAMP_QUOTIENT_STRUCTURE_AND_MF_FORK_2026-08-14.md
 ---
 
 ## Direct proof

@@ -21,7 +21,7 @@ repository's own writing must not repeat them.
    `[Kun19] … preprint, 2019, arXiv:1606.04471v5`.  The paper is
    arXiv:1606.04471, **June 2016**; 2019 is a revision date.  Our own
    manuscript already dates it "preprint, 2016" and
-   `docs/CREDIT_AND_PRIORITY_AUDIT.md` credits "Kun 2016 / Kun–Thom 2019"
+   `notes/CREDIT_AND_PRIORITY_AUDIT.md` credits "Kun 2016 / Kun–Thom 2019"
    for the (T)-rigidity-of-approximations engine.  Keep it that way.
 
 2. **"The soficity conjecture."**  The chapter title and abstract say the

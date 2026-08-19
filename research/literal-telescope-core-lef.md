@@ -8,8 +8,8 @@ distinct_from:
   literal-lamp-kernel-clifford-block-amalgam: That identifies the lamp kernel algebraically; this says the level-truncated pieces are residually finite.
   finite-site-orbits-invariant-clifford-kernel: That produces FINITE invariant subgroups from finite site orbits and needs local finiteness of the lamp group; this produces finitely generated virtually free invariant subgroups and applies to the block amalgam, which is not locally finite.
 artifacts:
-  - docs/LITERAL_GROUP_IS_SOFIC_2026-08-14.md
-  - docs/LITERAL_GROUP_BLOCK_AMALGAM_STRUCTURE_2026-08-14.md
+  - notes/LITERAL_GROUP_IS_SOFIC_2026-08-14.md
+  - notes/LITERAL_GROUP_BLOCK_AMALGAM_STRUCTURE_2026-08-14.md
 ---
 
 Let `E_T = N_E semidirect T` be the kernel of the stable-letter exponent
@@ -19,7 +19,7 @@ finite.  Consequently `E_T` is LEF, sofic, and MF.
 
 **"Locally" is load-bearing: `E_T` is LEF but NOT residually finite** —
 `telescope-core-not-residually-finite`, with the argument written out as
-Theorem 4.1a of `docs/LITERAL_GROUP_IS_SOFIC_2026-08-14.md` (`cairn-verify2`):
+Theorem 4.1a of `notes/LITERAL_GROUP_IS_SOFIC_2026-08-14.md` (`cairn-verify2`):
 in any homomorphism from `E_T` to a finite group the image of `Z[1/2]^3` is
 2-divisible and finite, hence of odd order, so 2 is invertible there and
 `phi(Z[1/2]^3) = phi(Z^3)`, giving `phi(T) = phi(B)` with no use of the stable
@@ -64,4 +64,4 @@ argument but gets residual finiteness of `M_J` from
 Karrass--Pietrowski--Solitar, and residual finiteness of `Gamma_n` from
 congruence quotients instead of from Mal'cev plus the identification of the
 presented base.  That is the version with no literature input; see
-`docs/E_SOFICITY_SELF_CONTAINED_2026-08-16.md` §§7-10.
+`notes/E_SOFICITY_SELF_CONTAINED_2026-08-16.md` §§7-10.

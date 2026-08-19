@@ -6,7 +6,7 @@ title: Turn one matrix entry negative along a transvection family
 target: compressor-fixed-site-growth-infinite
 requires: []
 artifacts:
-  - docs/TRUE_RELATIVE_WALL_IS_COMMUTANT_GROWTH.md
+  - notes/TRUE_RELATIVE_WALL_IS_COMMUTANT_GROWTH.md
 ---
 
 Conjugating `Gamma` by `(1,nu)` gives `EL_r(nu(R_+))`, which lies in

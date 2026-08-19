@@ -7,7 +7,7 @@ distinct_from:
   kun-thom-clifford-crossed-product-ce: That is the open question of whether the Clifford crossed product is Connes embeddable; this says that three natural-looking reformulations of it are equivalent, so it is graph hygiene rather than progress on the question.
   kun-thom-clifford-radical-phase: That establishes the exact Clifford phase detector for the sofic-radical word; this compares the possible ambient algebras in which one might realize it.
 artifacts:
-  - docs/PERFECT_CORE_KUN_THOM_WREATH.md
+  - notes/PERFECT_CORE_KUN_THOM_WREATH.md
 ---
 
 Write `M_full = Cl(X) crossed_product G` for the negative full Clifford

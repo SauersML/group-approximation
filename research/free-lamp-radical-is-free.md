@@ -11,7 +11,7 @@ distinct_from:
   kun-thom-clifford-cover-weakly-sofic: That is a metric approximation statement about the Clifford central quotients of this group; this is a purely algebraic identification of its sofic radical and says nothing about metrics.
   simple-sofic-total-mf-radical: That concerns the MF radical of a simple sofic group, which is everything; this concerns the sofic radical of a nonsofic amalgam, which is a proper free normal subgroup.
 artifacts:
-  - docs/NOTEPAD.md
+  - notes/NOTEPAD.md
 ---
 
 Let `Gamma<G` be a Kun--Thom infranormal nonnormal Kazhdan pair, `K` a

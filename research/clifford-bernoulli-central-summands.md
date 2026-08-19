@@ -7,7 +7,7 @@ distinct_from:
   kun-thom-clifford-crossed-product-ce: that asks whether the Clifford summand is Connes embeddable; this is the structural identity that places it and the Bernoulli summand inside one group von Neumann algebra, and it decides neither
   kun-thom-clifford-radical-phase: that is the sofic-radical phase detector inside the Clifford crossed product; this is a decomposition of the ambient algebra with no radical or phase in it
 artifacts:
-  - docs/TRUE_CLIFFORD_LAMP_CENTRAL_SUMMANDS.md
+  - notes/TRUE_CLIFFORD_LAMP_CENTRAL_SUMMANDS.md
 ---
 
 Let `X` be a `G`-set and let the **Clifford lamp group** be

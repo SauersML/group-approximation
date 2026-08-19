@@ -7,7 +7,7 @@ distinct_from:
   relative-wall-commutant-growth: That claim is the equivalence between existence of a wall and properness of a relative-commutant inclusion; this one is about the numerical energy of a given wall and shows the maximal-energy hypotheses used on the FALSE side cost nothing.
   additive-index-instability: That claim says an additive finite-phase index is destroyed by block amplification; this one says diagonal tensor amplification preserves a wall and drives its trace energy up to the maximum.
 artifacts:
-  - docs/TRUE_WALL_ENERGY_AND_COMMUTANT_DENSITY.md
+  - notes/TRUE_WALL_ENERGY_AND_COMMUTANT_DENSITY.md
 ---
 
 Let `pi:G->U(M)` with `M` Connes-embeddable finite tracial, and let

@@ -6,7 +6,7 @@ title: Growing-fiber models with no surviving coarse index set
 target: hyperlinear-wreath-model
 requires: [fiber-masa-free-cocycle]
 artifacts:
-  - docs/TRUE_BLOCK_MONOMIAL_COORDINATE_COLLAPSE.md
+  - notes/TRUE_BLOCK_MONOMIAL_COORDINATE_COLLAPSE.md
   - research/artifacts/kun-thom-2608-06222-verified.md
 ---
 
@@ -72,7 +72,7 @@ The defect for the atom decomposition of a window `E ⊆ G/Γ` is controlled by
 the boundary of `E` under the `G`-action, and `G ↷ G/Γ` has no Følner sets:
 property (T) with infinite index. So the boundary carries a constant fraction,
 and one mismatched coordinate costs a configuration-space defect of order one.
-That is the amplification obstruction of `docs/OBSTRUCTIONS.md` §3, and on this
+That is the amplification obstruction of `notes/OBSTRUCTIONS.md` §3, and on this
 reading it changes sign: it has always been recorded as an argument against
 models, and it is the only known *source* of the non-vanishing defect a model
 now has to exhibit. The open question is whether amplification supplies the
@@ -93,7 +93,7 @@ nothing is graded and nothing shifts levels.
 
 Both standing diagnostics pass. `no_strict_compression_of_invariantSize` does
 not bite: the carrier is a `II₁` ultraproduct whose only conjugation-invariant
-size is the trace, and `docs/OBSTRUCTIONS.md` §1 shows the blindness of the
+size is the trace, and `notes/OBSTRUCTIONS.md` §1 shows the blindness of the
 trace to refinement is sharp, so no invariant argument can settle this branch.
 (T)-compatibility costs nothing: `G` is residually finite, hence sofic, hence
 hyperlinear, so `L(G)` is already Connes-embeddable. The entire difficulty is

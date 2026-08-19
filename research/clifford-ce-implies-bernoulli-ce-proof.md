@@ -6,7 +6,7 @@ title: Diagonal doubling cancels the two Clifford signs
 target: clifford-ce-implies-bernoulli-ce
 requires: []
 artifacts:
-  - docs/TRUE_DOUBLE_CLIFFORD_KUN_THOM_REDUCTION.md
+  - notes/TRUE_DOUBLE_CLIFFORD_KUN_THOM_REDUCTION.md
 ---
 
 Complete written argument in the artifact, `(DCK4)--(DCK14)`.  For `x!=y`,

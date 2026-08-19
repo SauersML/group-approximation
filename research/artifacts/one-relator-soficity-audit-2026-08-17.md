@@ -124,7 +124,7 @@ with this proof rather than the source's attribution.
   automatic criterion is explicitly unavailable because a nontrivial Linton
   radical is infinitely generated.
 * The source's §2 readings of this repository's own files are accurate and were
-  spot-checked: `docs/TORSION_FREE_NORMAL_GENERATION_HULL_QUOTIENT.md` does
+  spot-checked: `notes/TORSION_FREE_NORMAL_GENERATION_HULL_QUOTIENT.md` does
   carry both the "candidate, not a theorem" banner and the 2026-08-17
   PROHIBITION banner, and the source correctly declines to use it; and
   `research/boone-base-group-two-generator-one-relator.md` does describe a
@@ -232,7 +232,7 @@ search.
 
 ### 2.1 A repo candidate that must not be used as a theorem
 
-The file `docs/TORSION_FREE_NORMAL_GENERATION_HULL_QUOTIENT.md` starts with
+The file `notes/TORSION_FREE_NORMAL_GENERATION_HULL_QUOTIENT.md` starts with
 the explicit banner "**Status: candidate, not a theorem. Not printed in the
 manuscript.**" and then an even stronger 17 August 2026 banner
 "**PROHIBITION, not a caution (2026-08-17).**"  The file explains that the
@@ -1098,7 +1098,7 @@ rigorous and should be reusable in a subsequent attack.
 
 `README.md`, `non_mf_groups_exist.tex`,
 `research/fournier-facio-torsion-free-skeleton.md`,
-`docs/TORSION_FREE_NORMAL_GENERATION_HULL_QUOTIENT.md`,
+`notes/TORSION_FREE_NORMAL_GENERATION_HULL_QUOTIENT.md`,
 `research/ascending-hnn-coset-action-sofic.md`,
 `research/uas-base-gives-sofic-hnn-coset-action.md`,
 `research/boone-base-group-two-generator-one-relator.md`,

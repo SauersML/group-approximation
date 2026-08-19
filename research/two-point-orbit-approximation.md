@@ -10,7 +10,7 @@ distinct_from:
   finite-quotient-blindness: that says every exact finite quotient identifies the two marked cosets; this asks whether an APPROXIMATELY multiplicative model can keep them apart, which is exactly the gap that statement leaves open
   marked-double-coset-infinite-degree: that computes an exact index in the real group, `[Γ : Γ ∩ hΓh⁻¹] = ∞`, and rules out finite-degree invariant graphs; this asks nothing about the real group's indices and everything about approximate finite models, where an infinite index is no obstruction because the model need not be a quotient
 artifacts:
-  - docs/TRUE_LAMP_CHARACTER_ORBIT_SEPARATION.md
+  - notes/TRUE_LAMP_CHARACTER_ORBIT_SEPARATION.md
 ---
 
 Let `Γ < G` be the Kun–Thom Theorem E pair, `X = G/Γ`, and fix the marked pair

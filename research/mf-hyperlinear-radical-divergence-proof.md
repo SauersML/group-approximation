@@ -7,7 +7,7 @@ target: mf-hyperlinear-radical-divergence
 requires: [literal-central-mark-corona-invisible, literal-clifford-ce-model]
 artifacts:
   - GroupApproximation/Sofic/RadicalSeparation.lean
-  - docs/NON_MF_TO_HYPERLINEAR_DIFFERENTIAL_AUDIT.md
+  - notes/NON_MF_TO_HYPERLINEAR_DIFFERENTIAL_AUDIT.md
 ---
 
 The operator-norm theorem places `w` in the MF residual.  The explicit

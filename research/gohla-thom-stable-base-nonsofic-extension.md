@@ -7,7 +7,7 @@ distinct_from:
   kun-thom-nonsofic-wreath: that is the unconditional infranormal-compression theorem; this is a conditional stability-to-nonsoficity theorem with a cohomological engine and a cosystolic hypothesis
   literal-group-not-sofic: that asks whether this repository's literal group E is nonsofic; this is the external conditional theorem one route tried to invoke for it, and its hypotheses do not transfer
 artifacts:
-  - docs/LITERAL_GROUP_BLOCK_AMALGAM_STRUCTURE_2026-08-14.md
+  - notes/LITERAL_GROUP_BLOCK_AMALGAM_STRUCTURE_2026-08-14.md
 ---
 
 **Primary source, read from the PDF (2026-08-14):** Gohla--Thom,

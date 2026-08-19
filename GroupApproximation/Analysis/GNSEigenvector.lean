@@ -17,7 +17,7 @@ representation composed with the GNS representation yields an isometric
 group action ready for the Kazhdan machinery.
 
 Bricks of the strict-Kazhdan-compression program of
-`docs/FORMALIZATION_DIRECTIVES_2026-08-15.md` §1.
+`notes/FORMALIZATION_DIRECTIVES_2026-08-15.md` §1.
 -/
 
 namespace GroupApproximation

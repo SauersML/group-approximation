@@ -127,7 +127,7 @@ badge belongs on the unconditional `signFreeQuotient_not_isCDEOperatorMF`.
 
 The decomposition, in the form the manuscript's phrase abbreviates (see
 `research/literal-lamp-kernel-clifford-block-amalgam.md` and
-`docs/LITERAL_GROUP_BLOCK_AMALGAM_STRUCTURE_2026-08-14.md`), is
+`notes/LITERAL_GROUP_BLOCK_AMALGAM_STRUCTURE_2026-08-14.md`), is
 
 ```text
   N_E  =  ⋆_{i ∈ I}  ClLamp(8)   amalgamated over the common centre ⟨w⟩,

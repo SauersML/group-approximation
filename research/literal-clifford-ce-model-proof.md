@@ -6,7 +6,7 @@ title: Build the finite-coset Clifford tower and its automorphic dilation
 target: literal-clifford-ce-model
 requires: []
 artifacts:
-  - docs/TRUE_LITERAL_NONMF_MARK_IS_CE_VISIBLE.md
+  - notes/TRUE_LITERAL_NONMF_MARK_IS_CE_VISIBLE.md
   - GroupApproximation/Sofic/RadicalSeparation.lean
 ---
 

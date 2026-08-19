@@ -6,7 +6,7 @@ title: Transport across levels in the literal quotient
 target: literal-mark-quotient-corona-blindness
 requires: [kazhdan-asymptotic-commutant-transport, literal-mark-quotient-finite-residual]
 artifacts:
-  - docs/COMMUTING_LAMP_QUOTIENT_STRUCTURE_AND_MF_FORK_2026-08-14.md
+  - notes/COMMUTING_LAMP_QUOTIENT_STRUCTURE_AND_MF_FORK_2026-08-14.md
 ---
 
 ## Direct proof

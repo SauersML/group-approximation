@@ -9,7 +9,7 @@ distinct_from:
   scaling-family-pairwise-nonisomorphic: That claim distinguishes one countable explicit family; this claim asks for continuum many isomorphism types inside the whole cylinder.
 artifacts:
   - non_mf_groups_exist.tex
-  - docs/NON_MF_FINAL_REVIEW_AND_RESOLUTION_2026-08-14.md
+  - notes/NON_MF_FINAL_REVIEW_AND_RESOLUTION_2026-08-14.md
 ---
 
 The literal clopen cylinder contains continuum many pairwise non-isomorphic

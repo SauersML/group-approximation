@@ -64,7 +64,7 @@ exists at all.
    observing that `A^(X)` is not finitely generated.  The observation is true
    and one line.  The invocation does not exist: the string `surjunctiv`
    occurs in exactly three files of this repository
-   (`official/counterexample.tex`, `docs/CREDIT_AND_PRIORITY_AUDIT.md`,
+   (`official/counterexample.tex`, `notes/CREDIT_AND_PRIORITY_AUDIT.md`,
    `notes/scout-2026-08-14.md`), and none of them cites an extension theorem
    for surjunctivity of semidirect products.  What `counterexample.tex` line
    95 actually says is that surjunctivity of `R^x` is *unknown*.

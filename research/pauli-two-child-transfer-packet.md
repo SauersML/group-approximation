@@ -4,7 +4,7 @@ id: pauli-two-child-transfer-packet
 kind: claim
 title: The atlas Pauli sector contains one exact two-child branching cell
 artifacts:
-  - docs/TRUE_PAULI_BRANCH_TRANSFER_PACKET.md
+  - notes/TRUE_PAULI_BRANCH_TRANSFER_PACKET.md
 ---
 
 In the fixed raw/comb Pauli packet of the atlas presentation there are

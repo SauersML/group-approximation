@@ -9,7 +9,7 @@ requires:
   - finite-tracial-one-cut-balance
   - atlas-one-cut-finite-multiplicity-extraction
 artifacts:
-  - docs/ATLAS_RELATIVE_PERFECTNESS_AND_COEFFICIENT_ENDPOINT.md
+  - notes/ATLAS_RELATIVE_PERFECTNESS_AND_COEFFICIENT_ENDPOINT.md
 ---
 
 Assume the three prerequisites and suppose

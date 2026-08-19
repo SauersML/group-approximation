@@ -7,7 +7,7 @@ target: invariant-size-collapse
 requires: []
 artifacts:
   - GroupApproximation/Criterion/FiniteQuotientBlindness.lean
-  - docs/OBSTRUCTIONS.md
+  - notes/OBSTRUCTIONS.md
 ---
 
 # Direct proof of No strict compression under a conjugation-invariant monotone size

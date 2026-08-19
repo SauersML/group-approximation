@@ -10,7 +10,7 @@ distinct_from:
   sofic-stable-implies-residually-finite: That is the general literature principle, quantified over all groups; this applies it to one explicit finitely presented group whose soficity and non-residual-finiteness are proved in this repository.
   literal-stably-finite-non-mf-reduced-group-algebra: That concerns the reduced group C-star algebra of `E` and its trace; this concerns permutation approximations of the group itself.
 artifacts:
-  - docs/LITERAL_GROUP_IS_SOFIC_2026-08-14.md
+  - notes/LITERAL_GROUP_IS_SOFIC_2026-08-14.md
   - non_mf_groups_exist.tex
 ---
 
@@ -32,7 +32,7 @@ group stable in finite actions would be residually finite
 (`sofic-stable-implies-residually-finite`).
 
 **Two independent supports.**  (1) The general principle above, proved in
-`docs/SOFIC_STABLE_IMPLIES_RESIDUALLY_FINITE_2026-08-14.md`, gives failure of
+`notes/SOFIC_STABLE_IMPLIES_RESIDUALLY_FINITE_2026-08-14.md`, gives failure of
 the weakest notion, hence of all of them.  (2) Independently, Glebsky--Rivera's
 Theorem 2 (primary read by `cairn-scout`) says a sofic non-residually-finite
 group has a defining system that is unstable in permutations in their strict

@@ -6,8 +6,8 @@ title: Enrich the halo-witness target class so the coordinate action qualifies
 target: hyperlinear-wreath-model
 requires: []
 artifacts:
-  - docs/NOTEPAD.md
-  - docs/FALSE_HALO_ACTION_AUDIT.md
+  - notes/NOTEPAD.md
+  - notes/FALSE_HALO_ACTION_AUDIT.md
   - research/artifacts/kun-thom-2608-06222-verified.md
 ---
 
@@ -55,7 +55,7 @@ offer are not enrichments at all.
 
 ## What survives
 
-The audit's own conclusion, from `docs/FALSE_HALO_ACTION_AUDIT.md`:
+The audit's own conclusion, from `notes/FALSE_HALO_ACTION_AUDIT.md`:
 
 > If a hyperlinear-action proof exists, then for some finite test its target
 > `Lambda_0` in `(HAA3)` must itself be a finitely generated hyperlinear

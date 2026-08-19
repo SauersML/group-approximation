@@ -14,7 +14,7 @@ distinct_from:
   commutant-projection-extraction: That claim asks for projections inside a relative commutant of a central mark; this one asks whether the relative commutant of the compressed Kazhdan image is larger than that of the Kazhdan image.
   relative-wall-commutant-growth: That established claim is the algebraic equivalence between a relative wall and growth of the relative commutant, valid in any target; this one asks whether the growth actually occurs in one specific non-tracial target, the norm matrix corona.
 artifacts:
-  - docs/COMMUTING_LAMP_QUOTIENT_STRUCTURE_AND_MF_FORK_2026-08-14.md
+  - notes/COMMUTING_LAMP_QUOTIENT_STRUCTURE_AND_MF_FORK_2026-08-14.md
 ---
 
 Let `Gamma` have property (T), let `iota : Gamma -> H` with
@@ -73,7 +73,7 @@ So this claim is an exact hinge, not a one-way sufficiency.
 ## Ideas
 
 **Compressor-free form** (from `relative-wall-commutant-growth`, cairn-wall).
-Lemma 1 of `docs/TRUE_RELATIVE_WALL_IS_COMMUTANT_GROWTH.md` is purely
+Lemma 1 of `notes/TRUE_RELATIVE_WALL_IS_COMMUTANT_GROWTH.md` is purely
 group-theoretic, so it applies to `U = U(Q)`: `Ad Theta(s)` carries
 `C_{U(Q)}(Theta(Gamma))` *onto* `C_{U(Q)}(Theta(s Gamma s^{-1}))`.  Since
 the set of `g` with `Ad Theta(g)(C) = C` is a subgroup containing `Gbar`, and

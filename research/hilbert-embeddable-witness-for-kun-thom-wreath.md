@@ -9,7 +9,7 @@ distinct_from:
   kun-thom-clifford-extension-not-weak-mf: that settles an operator-norm question about the same cover in the negative; this asks a normalized-Hilbert--Schmidt question about finite-group approximations of it, and the two metrics are independent.
   kun-thom-wreath-weak-mf: that asks whether the same group is MF in the operator-norm matrix-corona sense; this asks whether its existing finite-group weak-soficity witnesses can be given conditionally negative definite lengths, which is a tracial question about finite groups and implies hyperlinearity rather than MF.
 artifacts:
-  - docs/NOTEPAD.md
+  - notes/NOTEPAD.md
 ---
 
 **REFUTED (2026-08-15).**  The question is decided, negatively:
@@ -137,7 +137,7 @@ filter; the first was expected to be one and is not.
   must give **every** lamp length at least `c/4`, up to the multiplicative
   defect.  A model in which individual lamps become asymptotically invisible
   cannot separate the mark.  This is the weak-soficity form of the fermionic
-  amplification remark in docs/FALSE_FERMIONIC_KUN_THOM_ENDPOINT.md §5.
+  amplification remark in notes/FALSE_FERMIONIC_KUN_THOM_ENDPOINT.md §5.
   (Constant corrected from `c/2` to `c/4` in the adversarial audit: the
   earlier statement assumed subadditivity of `ell` itself.)
 

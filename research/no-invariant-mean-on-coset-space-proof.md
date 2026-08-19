@@ -6,7 +6,7 @@ title: Day's trick plus property (T) on the quasi-regular representation
 target: no-invariant-mean-on-coset-space
 requires: []
 artifacts:
-  - docs/TRUE_CHARGE_EXTENSION_NEEDS_COAMENABILITY.md
+  - notes/TRUE_CHARGE_EXTENSION_NEEDS_COAMENABILITY.md
 ---
 
 # Day's trick plus property (T) on the quasi-regular representation
@@ -23,5 +23,5 @@ summable only when `G/Γ` is finite. `requires: []` is a proof commitment.
 Nothing external is used beyond property (T) of `G`, which comes from Kun–Thom
 Theorem E through `wreath-not-sofic`'s citation but is also standard for these
 elementary groups (universal lattice plus closure of (T) under extensions, as
-recorded in `docs/FALSE_POSITIVE_CORE_IS_SOFIC.md`). The claim is stated for a
+recorded in `notes/FALSE_POSITIVE_CORE_IS_SOFIC.md`). The claim is stated for a
 general Kazhdan pair of infinite index, so it is reusable outside this subtree.

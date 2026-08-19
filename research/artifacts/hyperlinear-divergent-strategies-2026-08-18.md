@@ -16,7 +16,7 @@ canonical content lives in the graph.
 ### Novelty sweep — confirmed
 
 The dossier's central methodological claim is that its machinery is absent
-from this repository.  Re-run here against `research/`, `notes/` and `docs/`:
+from this repository.  Re-run here against `research/`, `notes/` and `notes/`:
 zero hits for *de Finetti*, *traffic distribution*, *traffic moment*,
 *coherent configuration*, *association scheme*, *CPSD*, *completely positive
 semidefinite*, *multi-marginal*, *random hyperplane*, *Goemans*,
@@ -85,7 +85,7 @@ before any of them was recorded as established:
 - It states that Burton–Chaudkhari–Juschenko–Muliarchyk (2311.09202) is
   "already used extensively in Cairn".  It is not in the graph at all: the
   only occurrence in this repository is the legacy proof-corpus file
-  `docs/TRUE_RELATIVE_BURTON_KUN_THOM_REDUCTION.md`.  The exclusion the
+  `notes/TRUE_RELATIVE_BURTON_KUN_THOM_REDUCTION.md`.  The exclusion the
   dossier made on that basis was therefore correct in substance (the amenable
   control case is worked here) but wrong about where.  Nothing below depends
   on the distinction.

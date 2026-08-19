@@ -8,7 +8,7 @@ requires:
   - phase-safe-toric-gap-game-exists
   - phase-safe-toric-gap-implies-nonhyperlinear
 artifacts:
-  - docs/TRUE_NORMAL_TORIC_GAP_IMPLIES_NONHYPERLINEAR.md
+  - notes/TRUE_NORMAL_TORIC_GAP_IMPLIES_NONHYPERLINEAR.md
 ---
 
 The nonlocal-game lane into the primary target, in the form the repository

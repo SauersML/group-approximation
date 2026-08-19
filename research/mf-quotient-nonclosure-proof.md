@@ -7,7 +7,7 @@ target: mf-quotient-nonclosure
 requires: [literal-group-fails-mf-conventions]
 artifacts:
   - non_mf_groups_exist.tex
-  - docs/NON_MF_IMPACT_FORMAL_STATUS.md
+  - notes/NON_MF_IMPACT_FORMAL_STATUS.md
   - GroupApproximation/Sofic/LiteralMFQuotientControls.lean
   - GroupApproximation/Sofic/FreeGroupResiduallyFinite.lean
 ---

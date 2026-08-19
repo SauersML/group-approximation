@@ -6,7 +6,7 @@ title: Build the Clifford crossed product from an exact G-invariant finite-dimen
 target: kun-thom-clifford-crossed-product-ce
 requires: []
 artifacts:
-  - docs/NOTEPAD.md
+  - notes/NOTEPAD.md
 ---
 
 Exhaust `Cl(G/Gamma)` by finite-dimensional `G`-invariant Clifford

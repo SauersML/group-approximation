@@ -6,7 +6,7 @@ title: Block-monomial fiber models (lamps diagonal, group unitaries monomial in 
 target: hyperlinear-wreath-model
 requires: []
 artifacts:
-  - docs/TRUE_BLOCK_MONOMIAL_COORDINATE_COLLAPSE.md
+  - notes/TRUE_BLOCK_MONOMIAL_COORDINATE_COLLAPSE.md
 ---
 
 # Block-monomial fiber models

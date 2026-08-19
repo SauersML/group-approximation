@@ -8,7 +8,7 @@ distinct_from:
   mf-invariant-corner-visibility: That open claim asks for a corner for an arbitrary element; this established one supplies the corner and the visibility whenever the group has a central involution and one antipodal relation.
 artifacts:
   - GroupApproximation/Sofic/AntipodalTraceExtraction.lean
-  - docs/TRUE_ANTIPODAL_TRACE_EXTRACTION.md
+  - notes/TRUE_ANTIPODAL_TRACE_EXTRACTION.md
 ---
 
 Let `G` be a countable MF group with a central involution `z != 1`, and let
@@ -25,7 +25,7 @@ normalized trace at `g` tends to `0`, i.e. `||model(g)-1||_(2,norm)^2 -> 2`.
 The mechanism is that the sign corner of an MF model of `G` manufactures, for
 free, exactly the antipodal conjugacy `S U S^* = -U` whose local
 trace-extraction certificate `4|tr_d(U)|^2 <= ||S U S^* + U||_2^2` is already
-formalized.  `docs/TRUE_ANTIPODAL_TRACE_EXTRACTION.md` states the open half as
+formalized.  `notes/TRUE_ANTIPODAL_TRACE_EXTRACTION.md` states the open half as
 "construct or recover, in compatible matrix coordinates, a unitary `S` and a
 marked unitary `U` whose antipodal defect tends to zero"; for an MF group with
 a central involution, `(A1)` is a sufficient group-theoretic condition.

@@ -6,7 +6,7 @@ title: Pass the Pimsner--Popa inequality through the ultraproduct of coordinate 
 target: wall-coordinate-reduction-under-at-op62
 requires: [relative-wall-commutant-growth]
 artifacts:
-  - docs/TRUE_RELATIVE_WALL_IS_COMMUTANT_GROWTH.md
+  - notes/TRUE_RELATIVE_WALL_IS_COMMUTANT_GROWTH.md
 ---
 
 Under the hypothesis, the trace-preserving expectation of the ultraproduct

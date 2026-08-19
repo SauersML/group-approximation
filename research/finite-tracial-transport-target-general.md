@@ -9,7 +9,7 @@ artifacts:
   - GroupApproximation/Sofic/KazhdanSignCriterion.lean
   - GroupApproximation/Sofic/FiniteNormalCoronaObstruction.lean
   - GroupApproximation/Sofic/FiniteNormalCompressionObstruction.lean
-  - docs/NO_ONE_SIDED_GROWTH.md
+  - notes/NO_ONE_SIDED_GROWTH.md
   - non_mf_groups_exist.tex
 ---
 

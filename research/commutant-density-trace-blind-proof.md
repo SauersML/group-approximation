@@ -6,7 +6,7 @@ title: Character formula for the commutant dimension, and its two degeneracies
 target: commutant-density-trace-blind
 requires: []
 artifacts:
-  - docs/TRUE_WALL_ENERGY_AND_COMMUTANT_DENSITY.md
+  - notes/TRUE_WALL_ENERGY_AND_COMMUTANT_DENSITY.md
 ---
 
 Complete written argument in the artifact.  Three steps.

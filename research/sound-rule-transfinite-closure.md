@@ -36,7 +36,7 @@ inference rather than a terminal contradiction.  Sound rules already proved
 in this program: finite-normal collapse pieces, the normal property-(T)
 pieces of the intrinsic compression defect, pointwise torsion collapse
 (`compression-torsion-collapse`), and the routing-data closures of
-docs/COMPRESSION_COLLAPSE_MF_RADICAL.md; `defect-saturation-full-mf-radical`
+notes/COMPRESSION_COLLAPSE_MF_RADICAL.md; `defect-saturation-full-mf-radical`
 is the case where a single application already gives `Cl_Delta(G) = G`.
 
 ## Ideas

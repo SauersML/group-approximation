@@ -6,7 +6,7 @@ title: Close both converses of the fork using quasisimplicity
 target: steinberg-hs-stability-equals-nonhyperlinearity
 requires: [leavitt-steinberg-hs-stability-fork, pointwise-hs-stability-from-no-hyperlinear-quotient]
 artifacts:
-  - docs/NOTEPAD.md
+  - notes/NOTEPAD.md
 ---
 
 Write `U=St_5(L_(F_2)(1,2))`, `Q=EL_4(L)=U/Z(U)`.  Three inputs are carried

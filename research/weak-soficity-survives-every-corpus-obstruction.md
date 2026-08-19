@@ -10,7 +10,7 @@ distinct_from:
   non-weakly-sofic-group: that is the open target; this is the established negative result delimiting which arguments could ever reach it
 artifacts:
   - research/artifacts/non-weakly-sofic-audit-2026-08-17.md
-  - docs/TRUE_RELATIVE_WALL_IS_COMMUTANT_GROWTH.md
+  - notes/TRUE_RELATIVE_WALL_IS_COMMUTANT_GROWTH.md
 ---
 
 Each of the following mechanisms, all of which this corpus builds and uses,

@@ -6,7 +6,7 @@ title: Ascending HNN plus Bass-Serre computation of the literal splitting
 target: literal-telescope-split-normal-form
 requires: [literal-kazhdan-clifford-inputs, literal-base-presentation-complete]
 artifacts:
-  - docs/LITERAL_GROUP_BLOCK_AMALGAM_STRUCTURE_2026-08-14.md
+  - notes/LITERAL_GROUP_BLOCK_AMALGAM_STRUCTURE_2026-08-14.md
   - non_mf_groups_exist.tex
 ---
 

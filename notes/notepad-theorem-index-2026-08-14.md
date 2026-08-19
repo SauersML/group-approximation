@@ -1,12 +1,12 @@
 # NOTEPAD theorem index — 2026-08-14
 
-Noncanonical scratch (notes/). Navigation aid for `docs/NOTEPAD.md`, produced by
+Noncanonical scratch (notes/). Navigation aid for `notes/NOTEPAD.md`, produced by
 cairn-archivist after four independent agents each rediscovered a different
 unindexed result in that file on the same day.
 
 ## Why this exists
 
-`docs/NOTEPAD.md` is 46,464 lines. Its newest dated header is `# 2026-08-12`, so
+`notes/NOTEPAD.md` is 46,464 lines. Its newest dated header is `# 2026-08-12`, so
 it reads as a stale progress log — but it contains **358 theorem-shaped
 paragraphs**, many of them complete proofs that exist nowhere else in the
 corpus and are not represented in the Cairn graph. Today alone, five results

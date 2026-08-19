@@ -10,8 +10,8 @@ distinct_from:
   literal-mark-quotient-sofic: That is soficity of `E/<w>`; this combines it with non-residual-finiteness.
   sofic-stable-implies-residually-finite: That is the general principle, quantified over all countable groups; this applies it to one explicit group whose soficity and nontrivial finite residual are both computed in this repository.
 artifacts:
-  - docs/LITERAL_GROUP_IS_SOFIC_2026-08-14.md
-  - docs/SOFIC_STABLE_IMPLIES_RESIDUALLY_FINITE_2026-08-14.md
+  - notes/LITERAL_GROUP_IS_SOFIC_2026-08-14.md
+  - notes/SOFIC_STABLE_IMPLIES_RESIDUALLY_FINITE_2026-08-14.md
 ---
 
 `E/<w> = (*_{i in I} (Z/2)^8) semidirect V` is **not stable in finite actions**

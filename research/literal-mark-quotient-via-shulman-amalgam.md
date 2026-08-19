@@ -7,7 +7,7 @@ target: literal-mark-quotient-mf
 requires: [shulman-amalgam-mf-criterion, amalgam-edge-compatible-corona-embeddings, literal-lamp-kernel-clifford-block-amalgam]
 artifacts:
   - research/artifacts/shulman-2603-13564-verified.md
-  - docs/COMMUTING_LAMP_QUOTIENT_STRUCTURE_AND_MF_FORK_2026-08-14.md
+  - notes/COMMUTING_LAMP_QUOTIENT_STRUCTURE_AND_MF_FORK_2026-08-14.md
 ---
 
 ## Why sufficient

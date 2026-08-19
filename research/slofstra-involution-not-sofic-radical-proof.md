@@ -6,12 +6,12 @@ title: Make Slofstra's finite-coordinate constructions permutation-valued throug
 target: slofstra-involution-not-sofic-radical
 requires: []
 artifacts:
-  - docs/NOTEPAD.md
+  - notes/NOTEPAD.md
 ---
 
 # Make Slofstra's finite-coordinate constructions permutation-valued throughout
 
-Internal proof from `docs/NOTEPAD.md`, section "The Slofstra involution
+Internal proof from `notes/NOTEPAD.md`, section "The Slofstra involution
 survives a sofic image". `requires: []` is a proof commitment. The primary
 source is pinned in the corpus at statement level: *"Primary pins checked line
 by line: Slofstra, arXiv:1703.08618v2, Definition 2.5 and Proposition 5.1

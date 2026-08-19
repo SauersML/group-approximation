@@ -6,7 +6,7 @@ title: Use Slofstra's solution-group involution as the sofic-radical half
 target: sofic-radical-hyperlinear-survivor
 requires: []
 artifacts:
-  - docs/NOTEPAD.md
+  - notes/NOTEPAD.md
 ---
 
 # Use Slofstra's solution-group involution as the sofic-radical half

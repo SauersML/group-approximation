@@ -9,7 +9,7 @@ distinct_from:
   sofic-radical-hyperlinear-survivor: That asks for a word IN the sofic radical with a hyperlinear detector; this proves one specific candidate word is NOT in the sofic radical, so it is an elimination rather than an instance.
   sofic-radical-soficization: That is a general structure theorem about Rad_sof of an arbitrary countable group — functoriality, soficity of the quotient, and Rad_sof trivial iff sofic — naming no group and asserting nothing about any particular element. This is a single explicit non-membership in one named group, proved by constructing one permutation-ultraproduct model. Note it does NOT follow from that theorem's third clause: Theta is not claimed faithful, so J is shown outside Rad_sof(S) without deciding whether S itself is sofic.
 artifacts:
-  - docs/NOTEPAD.md
+  - notes/NOTEPAD.md
 ---
 
 Let `S` be the solution group produced in the proof of Slofstra,

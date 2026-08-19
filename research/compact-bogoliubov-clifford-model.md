@@ -6,7 +6,7 @@ title: Approximate the Kun--Thom coset mode by honest finite-dimensional represe
 target: kun-thom-clifford-crossed-product-ce
 requires: []
 artifacts:
-  - docs/FALSE_COMPACT_BOGOLIUBOV_APPROXIMATION_FOR_KUN_THOM.md
+  - notes/FALSE_COMPACT_BOGOLIUBOV_APPROXIMATION_FOR_KUN_THOM.md
 ---
 
 Approximate the pointed quasi-regular representation on `l2(G/Gamma)` by

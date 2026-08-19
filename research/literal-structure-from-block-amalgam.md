@@ -6,7 +6,7 @@ title: Assemble the literal structure question from the block amalgam
 target: literal-group-structural-normal-form
 requires: [literal-telescope-split-normal-form, literal-lamp-kernel-clifford-block-amalgam, literal-witness-kernel-free, literal-word-problem-solvable]
 artifacts:
-  - docs/LITERAL_GROUP_BLOCK_AMALGAM_STRUCTURE_2026-08-14.md
+  - notes/LITERAL_GROUP_BLOCK_AMALGAM_STRUCTURE_2026-08-14.md
 ---
 
 ## Why sufficient

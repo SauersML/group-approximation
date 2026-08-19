@@ -6,7 +6,7 @@ title: Transport the finite compression collapse into a local embedding
 target: marked-quotients-not-lef
 requires: [commuting-lamp-defect-survives]
 artifacts:
-  - docs/COMMUTING_LAMP_QUOTIENT_STRUCTURE_AND_MF_FORK_2026-08-14.md
+  - notes/COMMUTING_LAMP_QUOTIENT_STRUCTURE_AND_MF_FORK_2026-08-14.md
 ---
 
 ## Direct proof

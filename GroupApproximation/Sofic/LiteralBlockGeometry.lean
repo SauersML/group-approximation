@@ -8,7 +8,7 @@ import Mathlib.Tactic.Group
 /-!
 # The site set and its orbital block geometry
 
-This file formalises §4 of `docs/LITERAL_GROUP_BLOCK_AMALGAM_STRUCTURE_2026-08-14.md`
+This file formalises §4 of `notes/LITERAL_GROUP_BLOCK_AMALGAM_STRUCTURE_2026-08-14.md`
 ("The site set and the orbital graph") for the ascending-HNN model
 `V = Vertical α hα` of an arbitrary injective endomorphism `α : Γ →* Γ`.
 

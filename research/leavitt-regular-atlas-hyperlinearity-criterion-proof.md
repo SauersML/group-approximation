@@ -6,11 +6,11 @@ title: Regularize both finite atlas factors and descend the universal central ex
 target: leavitt-regular-atlas-hyperlinearity-criterion
 requires: []
 artifacts:
-  - docs/EXPLICIT_LEAVITT_ATLAS.md
+  - notes/EXPLICIT_LEAVITT_ATLAS.md
 ---
 
 This is the theorem proved in Section 9 of
-`docs/EXPLICIT_LEAVITT_ATLAS.md`; the argument is recorded here so it is
+`notes/EXPLICIT_LEAVITT_ATLAS.md`; the argument is recorded here so it is
 canonical Cairn state.
 
 For the forward implication, pull a trace-preserving hyperlinear model of

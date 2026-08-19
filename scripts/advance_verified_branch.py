@@ -47,9 +47,9 @@ PUBLICATION_ONLY_FILES = frozenset(
     }
 )
 
-# These are under the otherwise publication-only docs/ directory, but they are
+# These are under the otherwise publication-only notes/ directory, but they are
 # direct inputs to source/reference/signature gates.  Keeping the exception
-# list beside the allowlist makes a broad docs/ rule impossible to overlook.
+# list beside the allowlist makes a broad notes/ rule impossible to overlook.
 VERIFICATION_DOC_FILES = frozenset(
     {
         "metadata/CLAIM_DECLS.txt",
@@ -68,13 +68,13 @@ def is_publication_only(path: str) -> bool:
     """Return whether *path* is in the narrow non-verification surface."""
     if path in PUBLICATION_ONLY_FILES:
         return True
-    # A future Lean file under docs/ or metadata/ is proof-relevant even if
+    # A future Lean file under notes/ or metadata/ is proof-relevant even if
     # it has a .md sibling.  Unknown extensions also fail closed.
     # metadata/ holds the machine-consumed audit artifacts that used to live
-    # under docs/ (docs/ keeps prose notes plus compat symlinks); the same
+    # under notes/ (notes/ keeps prose notes plus compat symlinks); the same
     # md-only publication rule applies to both.
     return (
-        (path.startswith("docs/") or path.startswith("metadata/"))
+        (path.startswith("notes/") or path.startswith("metadata/"))
         and PurePosixPath(path).suffix == ".md"
         and path not in VERIFICATION_DOC_FILES
     )
@@ -286,11 +286,11 @@ def self_test() -> int:
     executable_a: TreeEntry = ("100755", "blob", "a" * 40)
 
     assert is_publication_only("README.md")
-    assert is_publication_only("docs/NOTEPAD.md")
+    assert is_publication_only("notes/NOTEPAD.md")
     assert not is_publication_only("metadata/CLAIM_SIGNATURES.md")
     assert not is_publication_only("metadata/PROPERTY_TT_CLAIM_MAP.md")
     assert not is_publication_only("official/counterexample.tex")
-    assert not is_publication_only("docs/new_proof.lean")
+    assert not is_publication_only("notes/new_proof.lean")
     assert not is_publication_only("scripts/advance_verified_branch.py")
     assert not is_publication_only(".github/workflows/verified-promote.yml")
     assert not is_publication_only(".github/workflows/verified-fast-forward.yml")

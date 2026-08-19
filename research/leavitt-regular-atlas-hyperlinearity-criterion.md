@@ -7,7 +7,7 @@ distinct_from:
   atlas-steinberg-rank-five-translation: That constructs the finite Steinberg relator packet and central-sufficiency bridge; this is the canonical regular-A8 criterion for the unit group Q itself, with both finite factors frozen to the left regular representation and one relative unitary as the only unknown.
   leavitt-steinberg-hs-stability-fork: That is a stability dichotomy for a Steinberg cover; this is an exact iff characterization of hyperlinearity of Q.
 artifacts:
-  - docs/EXPLICIT_LEAVITT_ATLAS.md
+  - notes/EXPLICIT_LEAVITT_ATLAS.md
 ---
 
 Put

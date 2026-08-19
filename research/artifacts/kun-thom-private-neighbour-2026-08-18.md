@@ -28,7 +28,7 @@ Put
 m = x₁x₂⋯x_d,     μ = m^{-1},     h = e₁₂(μ),     D = Γ h Γ.
 ```
 
-`h` is the marked element of `docs/COMMUTING_WREATH_SOFIC_RADICAL.md`,
+`h` is the marked element of `notes/COMMUTING_WREATH_SOFIC_RADICAL.md`,
 Corollary 2, and `{Γ, hΓ}` is the marked edge.  `S_min` is the orbital graph
 of `D`: `gΓ ∼ g'Γ` iff `g^{-1}g' ∈ D`.  It is the smallest `G`-invariant
 graph on `X` containing the marked edge, so every statement proved here about
@@ -228,7 +228,7 @@ cover `R₊`, and any `a` outside their union works.  ∎
 **Theorem 8 (private neighbour).**  For every nonempty finite `F ⊆ X` there
 is a vertex `z ∈ X` with `|N(z) ∩ F| = 1`.
 
-*Proof.*  `⟨Γ,h⟩ = N` (`docs/NOTEPAD.md`, `(AB5)`: constant Weyl matrices
+*Proof.*  `⟨Γ,h⟩ = N` (`notes/NOTEPAD.md`, `(AB5)`: constant Weyl matrices
 move `e₁₂(μ)` to every root position and
 `[e_{ij}(μ), e_{jk}(c·∏_{s≠l}x_s)] = e_{ik}(c x_l^{-1})`, so together with
 the polynomial roots every Laurent root is reached), and the components of
@@ -401,6 +401,6 @@ the rest of the corpus isolates — coherent, non-coordinate Clifford/action
 microstates — is untouched, and is *not* implied to be surmountable by any
 of the finite constructions above: `marked-double-coset-infinite-degree`
 still forbids finite degree, the finite-rank invariant-form no-go of
-`docs/NOTEPAD.md` still forbids a `G`-invariant finite symplectic quotient
+`notes/NOTEPAD.md` still forbids a `G`-invariant finite symplectic quotient
 retaining the mark, and the completions of Section 6 are noninvariant by
 construction.

@@ -13,7 +13,7 @@ distinct_from:
   torsion-free-finitely-presented-non-mf: That claim asks for a torsion-free non-MF example; this one asks whether the specific literal group, which has torsion, fails soficity.
   literal-mf-radical-exact: That claim asks for an exact computation of the MF radical of `E`; this one asks whether `E` admits permutation microstates at all.
 artifacts:
-  - docs/LITERAL_GROUP_BLOCK_AMALGAM_STRUCTURE_2026-08-14.md
+  - notes/LITERAL_GROUP_BLOCK_AMALGAM_STRUCTURE_2026-08-14.md
   - non_mf_groups_exist.tex
 ---
 
@@ -22,7 +22,7 @@ be a finitely presented non-sofic group.
 
 **REFUTED the same day it was posed (2026-08-14).**  `literal-group-sofic` is
 established: `E` IS sofic, by the block-tower argument of
-`docs/LITERAL_GROUP_IS_SOFIC_2026-08-14.md`.  The node is kept so that the
+`notes/LITERAL_GROUP_IS_SOFIC_2026-08-14.md`.  The node is kept so that the
 invalidation of `literal-nonsofic-via-stable-central-quotient` has a named
 victim, and because the reasoning that motivated it is still informative:
 

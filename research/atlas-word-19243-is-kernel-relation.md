@@ -6,7 +6,7 @@ title: Collision word 19243 lies in the kernel of the two-chart Leavitt map
 artifacts:
   - experiments/atlas-word-19243.json
   - experiments/atlas_word_19243_trace.py
-  - docs/ATLAS_BOUNDARY_RANK_THREE_EXACT_AUDIT.md
+  - notes/ATLAS_BOUNDARY_RANK_THREE_EXACT_AUDIT.md
 ---
 
 Let

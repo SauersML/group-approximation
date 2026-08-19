@@ -7,7 +7,7 @@ distinct_from:
   finite-tracial-cstar-transport: That root asks for the largest class where the machinery works; this claim fixes its outer boundary and localizes the failure at one step.
   trace-blindness-sharpness: That claim rules out invariant-size arguments in II_1 factors; this one rules out the corner step of the compressor architecture in tracial coordinates, and does so by an explicit established countermodel.
 artifacts:
-  - docs/NON_MF_TO_HYPERLINEAR_DIFFERENTIAL_AUDIT.md
+  - notes/NON_MF_TO_HYPERLINEAR_DIFFERENTIAL_AUDIT.md
 ---
 
 The coordinate class `C_ftr` of `finite-tracial-cstar-transport` cannot be

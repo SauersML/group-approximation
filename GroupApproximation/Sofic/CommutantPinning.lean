@@ -6,7 +6,7 @@ import Mathlib.LinearAlgebra.FiniteDimensional.Basic
 
 Two elementary quantitative lemmas, the load-bearing bricks of any
 "defect-localized commutant pinning" argument on the free-lamp families
-(item 2 of `docs/AGENDA.md`), stated for finite-dimensional inner product
+(item 2 of `notes/AGENDA.md`), stated for finite-dimensional inner product
 spaces over `ℝ` or `ℂ`.
 
 * **Almost-containment rigidity** (`exists_mem_close_of_almost_le`): a

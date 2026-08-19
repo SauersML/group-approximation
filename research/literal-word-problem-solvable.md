@@ -6,7 +6,7 @@ title: The literal forty-one-relator presentation has solvable word problem
 distinct_from:
   literal-telescope-split-normal-form: That claim records the split structure and the identification of the telescope quotient; this one records the resulting decision procedure.
 artifacts:
-  - docs/LITERAL_GROUP_BLOCK_AMALGAM_STRUCTURE_2026-08-14.md
+  - notes/LITERAL_GROUP_BLOCK_AMALGAM_STRUCTURE_2026-08-14.md
 ---
 
 There is an algorithm deciding whether a word in the eight literal generators

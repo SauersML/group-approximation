@@ -4,7 +4,7 @@
 # under the additional rules the Palomar registry applies to it.
 #
 # This file is the honest, machine-readable version of what
-# docs/CREDIT_AND_PRIORITY_AUDIT.md establishes at length: what is claimed,
+# notes/CREDIT_AND_PRIORITY_AUDIT.md establishes at length: what is claimed,
 # what is not, and where the trust surface ends.  Nothing here is a stronger
 # claim than that document supports; where the two disagree, that document is
 # the source of truth and this file is the bug.
@@ -69,7 +69,7 @@ sources:
     relationship: other
     note: >-
       First presentation of the result.  The defensible novelty is narrow and
-      is stated as such in docs/CREDIT_AND_PRIORITY_AUDIT.md: the stably
+      is stated as such in notes/CREDIT_AND_PRIORITY_AUDIT.md: the stably
       finite Kazhdan pinning of the conjugation representation inside a norm
       matrix corona, and the central-corner marked-word device that turns that
       pinning into a group element killed by every MF representation.  The
@@ -228,7 +228,7 @@ automation:
         `review`.
   notes: >-
     Per-declaration attribution is in the git history; the repository's own
-    audit trail (docs/, research/, metadata/) is more detailed than this field
+    audit trail (notes/, research/, metadata/) is more detailed than this field
     can be.
 
 review:

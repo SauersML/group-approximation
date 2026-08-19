@@ -6,7 +6,7 @@ title: Carry a finite separation window through finite-factor regularization
 target: leavitt-regular-atlas-separating-refinement
 requires: [leavitt-regular-atlas-hyperlinearity-criterion]
 artifacts:
-  - docs/EXPLICIT_LEAVITT_ATLAS.md
+  - notes/EXPLICIT_LEAVITT_ATLAS.md
 ---
 
 Start the forward proof of the canonical regular-atlas criterion with a

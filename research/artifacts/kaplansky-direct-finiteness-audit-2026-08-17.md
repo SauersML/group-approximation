@@ -220,17 +220,17 @@ of the ambient star ring holding the exact projection `p`.  In the intended
 construction `p` is a Kazhdan projection obtained by norm functional calculus
 and is not shown to lie in a finite-support modular group algebra.  The
 repository already records this boundary at
-`docs/SIMULTANEOUS_P_AND_OPERATOR_STABILITY_2026-08-13.md` and at
+`notes/SIMULTANEOUS_P_AND_OPERATOR_STABILITY_2026-08-13.md` and at
 `official/counterexample.tex`.
 
 *Coefficient-level proper infiniteness.*  A group-ring identity must hold in
 every representation, the regular one included, and
-`docs/FALSE_PROPERLY_INFINITE_CENTRAL_GROUP_CORNER.md` supplies the trace
+`notes/FALSE_PROPERLY_INFINITE_CENTRAL_GROUP_CORNER.md` supplies the trace
 obstruction for finite central-character corners.  Representation-level
 proper infiniteness does not become a universal relation.
 
-*Modular deformation searches.*  `docs/FALSE_ATLAS_UNIVERSAL_MODULAR_FIRST_ORDER_NO_GO.md`
-and `docs/FALSE_ATLAS_NATURAL_ALL_FIELD_HIGHER_ORDER_NO_GO.md` close two
+*Modular deformation searches.*  `notes/FALSE_ATLAS_UNIVERSAL_MODULAR_FIRST_ORDER_NO_GO.md`
+and `notes/FALSE_ATLAS_NATURAL_ALL_FIELD_HIGHER_ORDER_NO_GO.md` close two
 natural linearizations in their stated scope.  They do not exclude a lift;
 they exclude those mechanisms for producing one.
 

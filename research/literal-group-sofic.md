@@ -12,14 +12,14 @@ distinct_from:
   literal-group-not-sofic: That claim is the negation of this one, carried as a separate node because both directions now have live routes.
 artifacts:
   - non_mf_groups_exist.tex
-  - docs/NON_MF_FINAL_REVIEW_AND_RESOLUTION_2026-08-14.md
-  - docs/E_SOFICITY_SELF_CONTAINED_2026-08-16.md
+  - notes/NON_MF_FINAL_REVIEW_AND_RESOLUTION_2026-08-14.md
+  - notes/E_SOFICITY_SELF_CONTAINED_2026-08-16.md
 ---
 
 The literal finitely presented group `E` is sofic.
 
 PROVED 2026-08-14 via `literal-sofic-via-block-tower`
-(`docs/LITERAL_GROUP_IS_SOFIC_2026-08-14.md`).  The proof is the finite-stage
+(`notes/LITERAL_GROUP_IS_SOFIC_2026-08-14.md`).  The proof is the finite-stage
 tower that proves the witness `W` sofic, with the finite invariant Clifford
 subgroup replaced by a finitely generated virtually free invariant block
 sub-amalgam: a finite window of `E_T = N_E semidirect T` lies in one telescope
@@ -36,7 +36,7 @@ the Karrass--Pietrowski--Solitar virtual-freeness step is replaced by
 `clifford-block-amalgam-residually-finite`.  The route that consumes both is
 `literal-telescope-core-lef-via-central-embedding`, and the whole chain is
 re-derived from the presentation in
-`docs/E_SOFICITY_SELF_CONTAINED_2026-08-16.md`, which also proves the final
+`notes/E_SOFICITY_SELF_CONTAINED_2026-08-16.md`, which also proves the final
 split-`Z` step directly rather than citing Elek--Szabó (the same construction
 as Lean `SoficIntegerExtension.isSofic_int_semidirectProduct`).
 
@@ -57,7 +57,7 @@ Consequences and dead ends recorded here so they are not retried:
 * The amenable-kernel route died twice over: `ker(E -> W)` is free of infinite
   rank (`literal-witness-kernel-free`), and its permanence direction
   (amenable kernel, sofic quotient) is not a theorem — see the warning in
-  `docs/TRUE_LITERAL_NONMF_MARK_IS_CE_VISIBLE.md` §3.
+  `notes/TRUE_LITERAL_NONMF_MARK_IS_CE_VISIBLE.md` §3.
 * The opposite claim `literal-group-not-sofic` is refuted, and with it the
   stability route through `E/<w>`; by contraposition, modulo the Gohla--Thom
   citation, `E/<w>` is not flexibly permutation-stable.

@@ -6,7 +6,7 @@ title: Direct proof of Additive indices are not amplification-stable
 target: additive-index-instability
 requires: []
 artifacts:
-  - docs/FALSE_ADDITIVE_INDEX_TO_FINITE_PHASE_IS_NOT_AMPLIFICATION_STABLE.md
+  - notes/FALSE_ADDITIVE_INDEX_TO_FINITE_PHASE_IS_NOT_AMPLIFICATION_STABLE.md
 ---
 
 # Direct proof of Additive indices are not amplification-stable

@@ -13,7 +13,7 @@ distinct_from:
   sofic-non-mf-witness: that is the conjunction at the finitely generated CLIFFORD witness W, where the lamps anticommute up to the central sign; this is the conjunction at its sign-free quotient W/⟨ζ⟩ — a different group, and the only one of the family that is literally a permutational wreath product, which is the framing this node exists to state.
 artifacts:
   - GroupApproximation/Sofic/CommutingLampQuotientSofic.lean
-  - docs/COMMUTING_LAMP_QUOTIENT_STRUCTURE_AND_MF_FORK_2026-08-14.md
+  - notes/COMMUTING_LAMP_QUOTIENT_STRUCTURE_AND_MF_FORK_2026-08-14.md
 ---
 
 Let `X = V/Ḡ` be the affine coset space of

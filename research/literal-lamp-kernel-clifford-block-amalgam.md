@@ -7,7 +7,7 @@ distinct_from:
   literal-telescope-split-normal-form: That claim gives the splitting and identifies the quotient `V`; this one identifies the isomorphism type of the lamp kernel and the orbital block structure.
   finite-site-orbits-invariant-clifford-kernel: That established claim is a general finite-orbit criterion producing finite invariant subgroups; this one computes the concrete literal lamp group, which is infinite and contains free subgroups.
 artifacts:
-  - docs/LITERAL_GROUP_BLOCK_AMALGAM_STRUCTURE_2026-08-14.md
+  - notes/LITERAL_GROUP_BLOCK_AMALGAM_STRUCTURE_2026-08-14.md
   - non_mf_groups_exist.tex
 ---
 

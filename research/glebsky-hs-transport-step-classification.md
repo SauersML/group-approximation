@@ -9,7 +9,7 @@ distinct_from:
   glebsky-manufactured-invariant-length: that extracts the length Lemma 3 of the 2017 paper manufactures; this is about the 2019/2023 permanence proof that consumes it, and about what breaks when the class is not Fin
   hilbert-embeddable-witness-for-kun-thom-wreath: that asks whether a Hilbert embeddable witness exists; this says that even granting one, the equational architecture that produces Glebsky's witnesses cannot be rerun over unitary groups
 artifacts:
-  - docs/TRUE_GLEBSKY_HS_TRANSPORT_AUDIT.md
+  - notes/TRUE_GLEBSKY_HS_TRANSPORT_AUDIT.md
 ---
 
 Step classification of Glebsky, arXiv:1910.08631 (published as Rev. Mat.

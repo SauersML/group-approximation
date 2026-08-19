@@ -6,7 +6,7 @@ title: Torsion-free finitely presented non-MF group
 root: true
 artifacts:
   - non_mf_groups_exist.tex
-  - docs/NON_MF_FINAL_REVIEW_AND_RESOLUTION_2026-08-14.md
+  - notes/NON_MF_FINAL_REVIEW_AND_RESOLUTION_2026-08-14.md
 ---
 
 There exists a torsion-free finitely presented group that is not MF in the
@@ -56,7 +56,7 @@ single gap, `defect-normally-generates-torsion-free-quotient`, is
 ESTABLISHED in the strong form `<<pi(S)>>^G = G` (not the finite-index form
 this section originally proposed — that framing was superseded; see the
 Ideas verdicts in that claim's own file) and passed its adversarial audit
-on 2026-08-15 (`docs/TORSION_FREE_NORMAL_GENERATION_HULL_QUOTIENT.md` §9).
+on 2026-08-15 (`notes/TORSION_FREE_NORMAL_GENERATION_HULL_QUOTIENT.md` §9).
 The route's group theory is a written argument on source-verified Hull/Osin
 statements; nothing in it is formalized — the Lean boundary is
 `DefectRoutingData`.

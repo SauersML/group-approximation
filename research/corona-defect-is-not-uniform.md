@@ -9,7 +9,7 @@ distinct_from:
   countable-group-mf-conventions: That claim establishes the equivalence of the MF formulations; this one distinguishes two inequivalent notions of approximate representation and says which stability theorems can apply.
 artifacts:
   - research/artifacts/glmr-2301-00476-verified.md
-  - docs/COMMUTING_LAMP_QUOTIENT_STRUCTURE_AND_MF_FORK_2026-08-14.md
+  - notes/COMMUTING_LAMP_QUOTIENT_STRUCTURE_AND_MF_FORK_2026-08-14.md
 ---
 
 Let `Gamma` be an infinite group and `Theta : Gamma -> U(Q)` a homomorphism

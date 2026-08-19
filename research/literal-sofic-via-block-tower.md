@@ -6,8 +6,8 @@ title: Sofic core plus amenable stable letter proves the literal group sofic
 target: literal-group-sofic
 requires: [literal-telescope-core-lef]
 artifacts:
-  - docs/LITERAL_GROUP_IS_SOFIC_2026-08-14.md
-  - docs/TRUE_LITERAL_NONMF_MARK_IS_CE_VISIBLE.md
+  - notes/LITERAL_GROUP_IS_SOFIC_2026-08-14.md
+  - notes/TRUE_LITERAL_NONMF_MARK_IS_CE_VISIBLE.md
   - GroupApproximation/Sofic/SoficIntegerExtension.lean
 ---
 
@@ -20,7 +20,7 @@ amenable-quotient permanence of Elek--Szabo (arXiv:math/0305352), whose split
 integer case is the repository's `SoficIntegerExtension.lean`.
 
 This is the same final step as in the proof that the witness `W` is sofic
-(manuscript Theorem E; `docs/TRUE_LITERAL_NONMF_MARK_IS_CE_VISIBLE.md`
+(manuscript Theorem E; `notes/TRUE_LITERAL_NONMF_MARK_IS_CE_VISIBLE.md`
 (LCV12c)), and it is the VALID direction of extension permanence.  It is not
 the discredited "amenable kernel with sofic quotient" direction that the
 invalidated route `literal-sofic-via-amenable-kernel` used.

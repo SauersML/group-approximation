@@ -98,7 +98,7 @@ declaration of the same proposition, and delegation cannot clear the finding —
 only removing one of the two names can.  The base module is the one that keeps
 them: it is the badged module for the sharpness paragraph and it carries the
 monomial models that do the work.  Nothing outside this file ever referred to
-the wrappers, and no badge, `docs/NON_MF_CLAIM_DECLS.txt` entry, proof-ledger
+the wrappers, and no badge, `notes/NON_MF_CLAIM_DECLS.txt` entry, proof-ledger
 row or pinned signature named any of them. -/
 
 /-! ## The paragraph, minus its one citation -/

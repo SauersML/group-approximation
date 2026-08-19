@@ -6,8 +6,8 @@ title: Evaluate the stopping statistic on an involution and read the three famil
 target: sign-mark-rate-is-sector-density
 requires: []
 artifacts:
-  - docs/FALSE_WEAK_MF_EFFECTIVE_RANK_PROFILE.md
-  - docs/CENTRAL_RADICAL_SHEAR_GADGET.md
+  - notes/FALSE_WEAK_MF_EFFECTIVE_RANK_PROFILE.md
+  - notes/CENTRAL_RADICAL_SHEAR_GADGET.md
 ---
 
 ## Direct proof
@@ -28,11 +28,11 @@ continuous functional calculus first, which perturbs each displayed quantity
 by `o(1)`.  Item 1 is `1-Re tr = 2 delta` bounded below, item 2 is `(SD1)`
 tending to `0` iff `epsilon_n^2/delta_n -> 0`.
 
-**Clifford family.**  `docs/NON_MF_TO_HYPERLINEAR_DIFFERENTIAL_AUDIT.md`
+**Clifford family.**  `notes/NON_MF_TO_HYPERLINEAR_DIFFERENTIAL_AUDIT.md`
 records that the Clifford tower detector sends the mark to `-1`; a scalar
 `-1` on `C^d` has `r = d`, so `delta = 1`.
 
-**Cyclic-shear family.**  In `docs/CENTRAL_RADICAL_SHEAR_GADGET.md` the mark
+**Cyclic-shear family.**  In `notes/CENTRAL_RADICAL_SHEAR_GADGET.md` the mark
 is the central involution `z = [s,x]` of `J(H,x) = B *_A K` with
 `B = H x <z>`, `A = <x,z> = C_2 x C_2`, `K = A semidirect <s>`, and
 `alpha(x) = xz`, `alpha(z) = z`.  Characters of `A` are pairs

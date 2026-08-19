@@ -107,7 +107,7 @@ as a literature input in the manner of
   manuscript cites it.  A tagged input exists to keep an *owed* citation
   visible; there is no debt here to keep visible.  The corpus's literature
   roster is empty in both places it lives (`scripts/Audit.lean`'s
-  `literatureInputNames` and `docs/NON_MF_LITERATURE_INPUTS.txt`), and this
+  `literatureInputNames` and `notes/NON_MF_LITERATURE_INPUTS.txt`), and this
   would be the first entry ever;
 * a structure would be a corpus-defined premise that nothing in the corpus
   ever discharges, which is exactly the shape

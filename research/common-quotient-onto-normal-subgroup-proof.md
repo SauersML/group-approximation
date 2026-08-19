@@ -6,7 +6,7 @@ title: Hull's Corollary 7.4 with the suitable subgroup drawn from the normal sub
 target: common-quotient-onto-normal-subgroup
 requires: []
 artifacts:
-  - docs/TORSION_FREE_NORMAL_GENERATION_HULL_QUOTIENT.md
+  - notes/TORSION_FREE_NORMAL_GENERATION_HULL_QUOTIENT.md
 ---
 
 ## Why sufficient

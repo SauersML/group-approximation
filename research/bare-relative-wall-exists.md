@@ -9,8 +9,8 @@ distinct_from:
   hyperlinear-wreath-model: That claim asks for microstates of the whole wreath candidate; this one asks for a single unitary in one relative commutant and needs no faithful model of any group.
   kt-centralizer-normalization-hs: That claim asks whether the relative commutant is normalized, and a positive answer to it refutes this one; the two are exact opposites and exactly one of them holds, so they are the two sides of the same fork rather than two problems.
 artifacts:
-  - docs/FALSE_RELATIVE_BICOMMUTANT_ENDPOINT.md
-  - docs/TRUE_RELATIVE_WALL_IS_COMMUTANT_GROWTH.md
+  - notes/FALSE_RELATIVE_BICOMMUTANT_ENDPOINT.md
+  - notes/TRUE_RELATIVE_WALL_IS_COMMUTANT_GROWTH.md
 ---
 
 Find a Connes-embeddable finite tracial von Neumann algebra `M`, a

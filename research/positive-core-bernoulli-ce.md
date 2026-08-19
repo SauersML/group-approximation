@@ -8,7 +8,7 @@ distinct_from:
   hyperlinear-wreath-model: that asks for microstates for the whole candidate W; this supplies them for a proper subgroup W₀ and leaves the compressors undilated
   fiber-masa-free-cocycle: that is a structural demand on a putative model of the whole algebra; this is an existing model of a subalgebra
 artifacts:
-  - docs/FALSE_POSITIVE_CORE_IS_SOFIC.md
+  - notes/FALSE_POSITIVE_CORE_IS_SOFIC.md
   - research/artifacts/kun-thom-2608-06222-verified.md
 ---
 

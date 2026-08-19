@@ -4,7 +4,7 @@ import GroupApproximation.Sofic.NormTraceGap
 /-!
 # Two printed estimates of the preliminaries
 
-`docs/NON_MF_PROOF_LEDGER.md` records two small steps of
+`notes/NON_MF_PROOF_LEDGER.md` records two small steps of
 `non_mf_groups_exist.tex` that the development uses but never states.  Both are
 stated here, in closed form, with nothing to the left of the colon.
 

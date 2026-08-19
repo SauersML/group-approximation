@@ -6,7 +6,7 @@ title: Read the exact branch identities and trace accounting from the Pauli pack
 target: pauli-two-child-transfer-packet
 requires: []
 artifacts:
-  - docs/TRUE_PAULI_BRANCH_TRANSFER_PACKET.md
+  - notes/TRUE_PAULI_BRANCH_TRANSFER_PACKET.md
 ---
 
 The cited exact packet defines

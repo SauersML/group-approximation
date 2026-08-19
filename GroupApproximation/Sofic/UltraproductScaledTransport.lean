@@ -134,7 +134,7 @@ intertwiner reduction can be substituted directly with no reindexing bridge.
 `scaled_transport_both_of_ambient`, the exact statement consumed by
 `thm:transport-variants`(2).
 
-The trap of `docs/NOTEPAD.md:548` is avoided exactly as in the unweighted
+The trap of `notes/NOTEPAD.md:548` is avoided exactly as in the unweighted
 file: no step uses a Hilbert--Schmidt bound on the *unitaries*.  Almost
 multiplicativity of `U_n` is consumed only inside the ambient, in operator
 norm, and the only bound placed on `(x_n)` is the printed mass bound, which is
@@ -185,7 +185,7 @@ sentence: the renormalized inner product is only defined where the weight is
 positive, and the mass bound makes the coordinate vanish everywhere else, so
 nothing is lost by ignoring those indices.
 
-This is also exactly the tolerance that `docs/COLLAPSE_STEP_AUDIT.md` §4 asks
+This is also exactly the tolerance that `notes/COLLAPSE_STEP_AUDIT.md` §4 asks
 of the weighted transport: the collapse weight `k_n` is positive only
 eventually. -/
 theorem eq_zero_of_weight_zero {Z : Type*} [Fintype Z] {X : Matrix Z Z ℂ}
@@ -693,7 +693,7 @@ proof.  This is the same assertion as
 route rather than by the finite-stage equal-rank route.
 
 This is the shape specified for the collapse proof by
-`docs/COLLAPSE_STEP_AUDIT.md` §4, route (b): the qualitative `∀ ε` form at an
+`notes/COLLAPSE_STEP_AUDIT.md` §4, route (b): the qualitative `∀ ε` form at an
 arbitrary weight, tolerating `w n = 0` at finitely many stages (there the mass
 bound forces `x n = 0`, which is the manuscript's own convention --- see
 `eq_zero_of_weight_zero`).  It still needs the diagonalization lemma of that

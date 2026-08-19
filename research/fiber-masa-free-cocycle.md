@@ -9,7 +9,7 @@ distinct_from:
   wreath-flexible-hs-stability: that is a stability property of the acting group G; this is a structural property of a putative microstate sequence
   torsion-free-higman-embedding: that is a group-embedding statement about finitely presented torsion-free groups; this is an analytic statement about matrix microstates and has no embedding of groups in it
 artifacts:
-  - docs/TRUE_BLOCK_MONOMIAL_COORDINATE_COLLAPSE.md
+  - notes/TRUE_BLOCK_MONOMIAL_COORDINATE_COLLAPSE.md
 ---
 
 Construct a hyperlinear model of `W` — finite data `Θ_n` on `ℂ^{d_n}` that is
@@ -110,7 +110,7 @@ the atom decomposition of a window `E ⊆ G/Γ` is governed by the boundary of `
 under the group action, and `G ↷ G/Γ` has no Følner sets — property (T) with
 infinite index — so the boundary carries a constant fraction of `E`. One
 mismatched coordinate costs a configuration-space defect of order one
-(`docs/OBSTRUCTIONS.md` §3, amplification). The amplification obstruction,
+(`notes/OBSTRUCTIONS.md` §3, amplification). The amplification obstruction,
 which has always been read as an argument against models, is on this reading
 the only known *source* of the non-vanishing defect the claim requires. Whether
 that is enough, or whether amplification kills the model before it supplies the
@@ -136,7 +136,7 @@ cairn-bernoulli.)
 
 ## Design input available
 
-The Fourier-block calculation in `docs/NOTEPAD.md` is the finite-dimensional
+The Fourier-block calculation in `notes/NOTEPAD.md` is the finite-dimensional
 mechanism for breaking a masa at maximal angle, and Weyl (clock-and-shift)
 fibers are its natural group-theoretic packaging. It is not sufficient on its
 own — that is exactly what `block-monomial-coordinate-collapse` establishes —
@@ -146,5 +146,5 @@ that no coarse index set survives rather than so that no masa survives.
 **Check before building.** The corpus has extensive Weyl/Clifford/Pauli
 machinery developed for the operator-norm (non-MF) programme, much of it
 recorded as FALSE. That is a different property and those refutations do not
-transfer, but the constructions might, and the `docs/FALSE_DUAL_HEISENBERG_*`
+transfer, but the constructions might, and the `notes/FALSE_DUAL_HEISENBERG_*`
 family should be read before any fiber cocycle is written down.

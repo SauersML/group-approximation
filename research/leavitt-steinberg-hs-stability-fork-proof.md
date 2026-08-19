@@ -6,8 +6,8 @@ title: Convert stability or instability of the Steinberg cover into a frontier w
 target: leavitt-steinberg-hs-stability-fork
 requires: []
 artifacts:
-  - docs/ATLAS_HS_CRITERION.md
-  - docs/NOTEPAD.md
+  - notes/ATLAS_HS_CRITERION.md
+  - notes/NOTEPAD.md
 ---
 
 On the stable branch, a hyperlinear model of `U` would correct to genuine

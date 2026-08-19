@@ -11,7 +11,7 @@ no invariant component — and then applies the one-step contraction of
 `norm_averageOperator_pow_le` on the complement.  No limits are needed.
 
 This is the spectral-gap payoff brick of the strict-Kazhdan-compression
-program of `docs/FORMALIZATION_DIRECTIVES_2026-08-15.md` §1: combined
+program of `notes/FORMALIZATION_DIRECTIVES_2026-08-15.md` §1: combined
 with the GNS eigenvector of a spectrally concentrated state it forbids
 abstract C-star spectrum of the averaging element in the gap window.
 -/

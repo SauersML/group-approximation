@@ -38,7 +38,7 @@ cites `Rabin58` only as the classical antecedent of the statement, and carries
 `operatorMF_recognition_not_computable`, `rePred_wordProblemPred`,
 `operatorMF_negative_side_not_re` and the two
 `AdianRabinVariantTransform` hypothesis-taking forms.  The unconditionality
-register `docs/NON_MF_UNCONDITIONAL_BASELINE.txt` is correspondingly empty.
+register `notes/NON_MF_UNCONDITIONAL_BASELINE.txt` is correspondingly empty.
 What had not moved was this graph.
 
 ## The cost table, as it stood — every row now closed

@@ -7,7 +7,7 @@ root: true
 distinct_from:
   literal-mf-radical-exact: That claim computes the radical of the literal marked group E; this one computes complete radicals of the lamp wreath family over compression pairs.
 artifacts:
-  - docs/COMPRESSION_COLLAPSE_MF_RADICAL.md
+  - notes/COMPRESSION_COLLAPSE_MF_RADICAL.md
 ---
 
 For the doubling family (and any Kazhdan compression pair with MF

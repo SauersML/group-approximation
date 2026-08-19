@@ -6,7 +6,7 @@ title: Cut the Clifford lamp group algebra by the central sign projection
 target: clifford-bernoulli-central-summands
 requires: []
 artifacts:
-  - docs/TRUE_CLIFFORD_LAMP_CENTRAL_SUMMANDS.md
+  - notes/TRUE_CLIFFORD_LAMP_CENTRAL_SUMMANDS.md
 ---
 
 # Cut the Clifford lamp group algebra by the central sign projection

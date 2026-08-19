@@ -6,7 +6,7 @@ title: Under Alekseev--Thom Open Problem 6.2 the wall becomes a two-centralizer 
 distinct_from:
   relative-wall-commutant-growth: That is the unconditional equivalence inside one target; this is a conditional transfer of it into matrix coordinates, whose hypothesis is a published open problem about Kazhdan representations into tracial matrix ultraproducts.
 artifacts:
-  - docs/TRUE_RELATIVE_WALL_IS_COMMUTANT_GROWTH.md
+  - notes/TRUE_RELATIVE_WALL_IS_COMMUTANT_GROWTH.md
 ---
 
 Alekseev--Thom, arXiv:2608.05362, Open Problem 6.2 asks whether the commutant

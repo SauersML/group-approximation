@@ -6,7 +6,7 @@ title: Select the unstable Steinberg branch
 target: hyperlinear-nonsofic-group
 requires: [leavitt-steinberg-hs-stability-fork, leavitt-steinberg-hs-unstable]
 artifacts:
-  - docs/ATLAS_HS_CRITERION.md
+  - notes/ATLAS_HS_CRITERION.md
 ---
 
 The established stability fork converts one non-correctable atlas sequence

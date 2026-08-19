@@ -9,7 +9,7 @@ requires:
   - finite-site-orbits-invariant-clifford-kernel
   - lef-implies-operator-mf
 artifacts:
-  - docs/COMMUTING_LAMP_QUOTIENT_STRUCTURE_AND_MF_FORK_2026-08-14.md
+  - notes/COMMUTING_LAMP_QUOTIENT_STRUCTURE_AND_MF_FORK_2026-08-14.md
 ---
 
 ## Direct proof

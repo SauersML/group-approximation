@@ -7,7 +7,7 @@ target: compiled-raw-source-word-nontrivial
 requires: []
 artifacts:
   - experiments/atlas-raw-compressor-source-words.json
-  - docs/TRUE_RAW_SWAP_FULL_BRANCH_ROUTING.md
+  - notes/TRUE_RAW_SWAP_FULL_BRANCH_ROUTING.md
   - GroupApproximation/Leavitt/RawSwapCompressors.lean
 ---
 

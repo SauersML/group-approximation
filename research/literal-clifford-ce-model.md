@@ -7,8 +7,8 @@ distinct_from:
   literal-central-mark-corona-invisible: This is tracial visibility of the same mark; the other is its universal invisibility in operator-norm matrix coronas.
   sofic-non-mf-witness: This records the marked homomorphism and its negative Clifford phase; the other packages the resulting detector group as a sofic non-MF witness.
 artifacts:
-  - docs/TRUE_LITERAL_NONMF_MARK_IS_CE_VISIBLE.md
-  - docs/NON_MF_TO_HYPERLINEAR_DIFFERENTIAL_AUDIT.md
+  - notes/TRUE_LITERAL_NONMF_MARK_IS_CE_VISIBLE.md
+  - notes/NON_MF_TO_HYPERLINEAR_DIFFERENTIAL_AUDIT.md
 ---
 
 For the literal finitely presented group `E` and its central involution `w`,

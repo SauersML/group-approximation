@@ -6,10 +6,10 @@ title: Rigidity route via flexible HS-stability
 target: non-hyperlinear-group
 requires: [wreath-flexible-hs-stability]
 artifacts:
-  - docs/OBSTRUCTIONS.md
+  - notes/OBSTRUCTIONS.md
 ---
 
-Claimed reduction (docs/OBSTRUCTIONS.md §5, "Rigidity"): if `G` is flexibly
+Claimed reduction (notes/OBSTRUCTIONS.md §5, "Rigidity"): if `G` is flexibly
 HS-stable then the wreath candidate is not hyperlinear. Lift `ρ|_G` to
 genuine `π_m`, pad the lamp, apply the Kazhdan pair to the *genuine* adjoint
 representation to place it near `π_m(Γ)′`; then `commutant_no_growth`

@@ -6,7 +6,7 @@ title: Diagonal tensor powers multiply the wall overlap
 target: wall-energy-amplification
 requires: []
 artifacts:
-  - docs/TRUE_WALL_ENERGY_AND_COMMUTANT_DENSITY.md
+  - notes/TRUE_WALL_ENERGY_AND_COMMUTANT_DENSITY.md
 ---
 
 Complete written argument in the artifact.  With `w=pi(h)v pi(h)^*` and

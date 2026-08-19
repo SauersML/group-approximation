@@ -26,7 +26,7 @@ whereas `E` is perfect.  Thus `(ASV2)` represents a nonzero Schur-multiplier
 character.
 
 This is an end-to-end validation of the computational reduction in
-`docs/FALSE_SCHUR_MULTIPLIER_MARKED_REDUCTION.md`: the central atlas phase is
+`notes/FALSE_SCHUR_MULTIPLIER_MARKED_REDUCTION.md`: the central atlas phase is
 visible as genuine finite Schur data rather than a numerical matrix artifact.
 
 ## Scope

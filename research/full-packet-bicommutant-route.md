@@ -6,7 +6,7 @@ title: Contradict the full-packet commutant witness
 target: non-hyperlinear-group
 requires: [full-raw-packet-commutant-witness, full-packet-bicommutant-synchronization]
 artifacts:
-  - docs/TRUE_FULL_RAW_PACKET_COMMUTANT_WITNESS.md
+  - notes/TRUE_FULL_RAW_PACKET_COMMUTANT_WITNESS.md
 ---
 
 The synchronization theorem makes every raw-packet commutant unitary

@@ -7,7 +7,7 @@ distinct_from:
   leavitt-regular-atlas-hyperlinearity-criterion: That is the bare iff feasibility criterion; this records the strengthened forward direction needed for contradiction arguments, preserving the group-trace separation of finitely many chosen nontrivial words during finite-factor regularization.
   compiled-raw-source-word-nontrivial: That proves one particular word is nontrivial; this applies uniformly to any fixed finite list of nontrivial words.
 artifacts:
-  - docs/EXPLICIT_LEAVITT_ATLAS.md
+  - notes/EXPLICIT_LEAVITT_ATLAS.md
 ---
 
 Assume

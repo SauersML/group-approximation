@@ -37,7 +37,7 @@ the certificate's quadratic gap
   `spectrum ℝ Δ ⊆ {0} ∪ Set.Ici (1/500)`
 
 with the printed constant, as an actual statement about `spectrum`.  This is
-the step the P13 audit (`docs/P13_STEP_AUDIT.md`, item T1.04) marked MISSING:
+the step the P13 audit (`notes/P13_STEP_AUDIT.md`, item T1.04) marked MISSING:
 the existing chain substitutes the damped Richardson/Neumann iteration of
 `Kazhdan/PositiveOperatorGap.lean` and obtains a strictly weaker constant.
 That development is untouched and remains the route used by

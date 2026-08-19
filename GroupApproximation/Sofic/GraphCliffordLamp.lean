@@ -12,7 +12,7 @@ braiding relation
 
 with no relation at all between non-adjacent lamps.  This is the group
 `C(𝒢)` displayed at (3.3) of
-`docs/LITERAL_GROUP_BLOCK_AMALGAM_STRUCTURE_2026-08-14.md`, and it is the
+`notes/LITERAL_GROUP_BLOCK_AMALGAM_STRUCTURE_2026-08-14.md`, and it is the
 lamp kernel of the literal forty-one-relator group.
 
 Two design points are load-bearing and deliberate.

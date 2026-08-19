@@ -8,7 +8,7 @@ distinct_from:
   invariant-cartan-completion: that asks for an invariant diagonal masa and routes through Corollary D; this asks for normalization of a relative commutant and routes through Theorem A's endgame — no masa appears in it at all
   hs-expander-block-decomposition: that is the HS transcription of Kun's decomposition, which is the INPUT to Kun–Thom Theorem 4.1; this is the transcription of Theorem 4.1 itself, and it needs the cluster groupoid and the two median arguments on top of any decomposition
 artifacts:
-  - docs/TRUE_DIAGONAL_NORMALIZER_RIGIDITY.md
+  - notes/TRUE_DIAGONAL_NORMALIZER_RIGIDITY.md
 ---
 
 Let `Γ < G` be an infranormal, non-normal Kazhdan pair and let
@@ -58,7 +58,7 @@ and neither survives when the blocks are matrix corners rather than orbits.
 ## Position relative to Alekseev–Thom Open Problem 6.2
 
 Open Problem 6.2 of arXiv:2608.05362 — statement checked against the full text
-in `docs/CREDIT_AND_PRIORITY_AUDIT.md` — asks whether the commutant of a
+in `notes/CREDIT_AND_PRIORITY_AUDIT.md` — asks whether the commutant of a
 Kazhdan representation into a tracial matrix ultraproduct is an ultraproduct of
 finite-dimensional subalgebras, i.e. whether it admits a **coordinate
 description** by centralizers of lifts. This claim asks a different question

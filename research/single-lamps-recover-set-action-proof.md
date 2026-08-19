@@ -6,12 +6,12 @@ title: Read the set labels off the single-coordinate lamps
 target: single-lamps-recover-set-action
 requires: []
 artifacts:
-  - docs/NOTEPAD.md
+  - notes/NOTEPAD.md
 ---
 
 # Read the set labels off the single-coordinate lamps
 
-Internal proof, transcribed from `docs/NOTEPAD.md` (section "The 2026
+Internal proof, transcribed from `notes/NOTEPAD.md` (section "The 2026
 sofic-action permanence theorem cannot make the Kun--Thom lamp hyperlinear",
 Lemma "single lamps recover the set action").  `requires: []` is a proof
 commitment: the argument below is complete as it stands.
@@ -77,7 +77,7 @@ The statement is *about* Alekseev--Bradford's Definition 4.23, so it inherits
 that definition's exact content.  What this repository has read verbatim in the
 primary source is their Corollary 5.2 and Theorem 4.18, transcribed in
 `research/artifacts/kun-thom-2608-06222-verified.md`; the numbered definition
-itself is quoted here at second hand from `docs/NOTEPAD.md`, which describes it
+itself is quoted here at second hand from `notes/NOTEPAD.md`, which describes it
 as an automorphic-approximation condition supplying a finite state set, a good
 subset, a target group in `C`, and injective partial homomorphisms satisfying a
 covariance equation.  The proof above uses exactly those four data and nothing

@@ -18,7 +18,7 @@ orbit collapse, cut what nothing uses") replaced the whole three-step
 property-`(T)` proof with a one-paragraph citation of
 `\ref{rem:classical-base}` and `\cite[Example~1.7.4(i)]{BHV}`.  The proposition
 and its badge are unchanged; the quotations above are a record of the deleted
-text, kept so the rows of `docs/P13_STEP_AUDIT.md` stay readable, and nothing
+text, kept so the rows of `notes/P13_STEP_AUDIT.md` stay readable, and nothing
 below is badgeable on their account.
 
 ## What was missing

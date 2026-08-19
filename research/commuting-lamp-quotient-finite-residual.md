@@ -9,7 +9,7 @@ distinct_from:
   commuting-lamp-quotient-mf: That is the open operator-norm question; this is a proved statement about finite quotients, which by itself decides nothing about MF.
   corona-hs-radical-is-finite-residual: That claim computes the corona trace-invisible set and only then observes it coincides with this one; the two are proved by different arguments and the coincidence is the content.
 artifacts:
-  - docs/COMMUTING_LAMP_QUOTIENT_STRUCTURE_AND_MF_FORK_2026-08-14.md
+  - notes/COMMUTING_LAMP_QUOTIENT_STRUCTURE_AND_MF_FORK_2026-08-14.md
 ---
 
 The finite residual of `W/<zeta> = F_2[X] semidirect V` is exactly

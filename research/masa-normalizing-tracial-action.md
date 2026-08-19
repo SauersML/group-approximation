@@ -6,8 +6,8 @@ title: HS-ify the Alekseev–Bradford sofic 𝒞-action (masa-normalizing tracia
 target: hyperlinear-wreath-model
 requires: []
 artifacts:
-  - docs/FALSE_MASA_NORMALIZING_TRACIAL_ACTION.md
-  - docs/TRUE_DIAGONAL_NORMALIZER_RIGIDITY.md
+  - notes/FALSE_MASA_NORMALIZING_TRACIAL_ACTION.md
+  - notes/TRUE_DIAGONAL_NORMALIZER_RIGIDITY.md
 ---
 
 # HS-ify the Alekseev–Bradford action model
@@ -57,10 +57,10 @@ that the hypothesis has no Hilbert–Schmidt weakening either.
 
 ## Where label extraction fails, run explicitly
 
-The single-lamp lemma of `docs/NOTEPAD.md` extracts injective set labels
+The single-lamp lemma of `notes/NOTEPAD.md` extracts injective set labels
 `j_s(z) = π_s(δ_z)` from the partial homomorphisms of Definition 4.23 and
 observes that the covariance equation *is* the orbit-approximation equation;
-`docs/FALSE_HALO_ACTION_AUDIT.md` adds that enriching the target class cannot
+`notes/FALSE_HALO_ACTION_AUDIT.md` adds that enriching the target class cannot
 help. Both keep `φ : G → Sym(A)`. Running the same extraction against a
 tracial model, where the labels would be the minimal projections of the masa
 and the would-be permutation is the one `Ad(φ(g))` induces on them:

@@ -6,7 +6,7 @@ title: Cancel the growth index across a Steinberg factorization
 target: commutator-compressor-carries-no-wall
 requires: [compressor-growth-index-homomorphism, relative-wall-commutant-growth]
 artifacts:
-  - docs/TRUE_RELATIVE_WALL_IS_COMMUTANT_GROWTH.md
+  - notes/TRUE_RELATIVE_WALL_IS_COMMUTANT_GROWTH.md
 ---
 
 Submultiplicativity gives `lambda(ab)<=lambda(a)lambda(b)<infinity`, so the
@@ -21,5 +21,5 @@ the Steinberg identity is a relation inside `P_Gamma`; strictness follows
 because `I-e_(ij)` sends the exponent `e_j` to `e_j-e_i` and matrix entries
 of `EL_r(R_+)` lie in `R_+`.  The same description of the external
 projection of `P_Gamma` is proved for the repository's monomial-cone framing
-in `docs/FALSE_COMPRESSION_SEMIGROUP_ORE_NO_GO.md`.  Complete argument in
+in `notes/FALSE_COMPRESSION_SEMIGROUP_ORE_NO_GO.md`.  Complete argument in
 the cited note, Theorem 6 and Corollary 7.

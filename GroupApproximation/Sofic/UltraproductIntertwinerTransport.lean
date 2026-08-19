@@ -8,7 +8,7 @@ feeding the **ultraproduct** proof of `thm:kazhdan-transport`.  **The printed
 clause was cut from the manuscript on 2026-08-18**: `thm:transport-variants`
 now states the weighted variant alone, and neither the intertwiner statement
 nor its six-step proof is printed any more (see the change-history table of
-`docs/NON_MF_PROOF_LEDGER.md`); no badge is owed for this module.
+`notes/NON_MF_PROOF_LEDGER.md`); no badge is owed for this module.
 
 The six steps below record the formal argument as it stood when it mirrored
 the print, and the declarations keep their step names.

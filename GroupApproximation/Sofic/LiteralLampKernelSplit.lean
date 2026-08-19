@@ -8,7 +8,7 @@ import Mathlib.GroupTheory.SemidirectProduct
 /-!
 # The split normal form `E = N_E ⋊ V` of the literal group
 
-Source of the mathematics: `docs/LITERAL_GROUP_BLOCK_AMALGAM_STRUCTURE_2026-08-14.md`,
+Source of the mathematics: `notes/LITERAL_GROUP_BLOCK_AMALGAM_STRUCTURE_2026-08-14.md`,
 §1 (notation), §2 (the presentation without the centrality relators) and §3
 (imposing centrality).  This module formalizes the *split* half of that
 analysis and nothing else: the amalgam description of `N_E` (§5), the site
@@ -513,7 +513,7 @@ is exactly the kernel of the retraction onto the ascending HNN extension; it
 meets the image of the section trivially and together they generate `E`; and
 the section really is a section.
 
-This is (3.1) of `docs/LITERAL_GROUP_BLOCK_AMALGAM_STRUCTURE_2026-08-14.md`,
+This is (3.1) of `notes/LITERAL_GROUP_BLOCK_AMALGAM_STRUCTURE_2026-08-14.md`,
 with `V` the telescope model of the ascending HNN extension of the affine
 base along doubling. -/
 theorem markedGroup_split :

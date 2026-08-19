@@ -6,7 +6,7 @@ title: Detect the unsquared defect through the literal marked quotient
 target: unsquared-defect-mf-visible
 requires: [literal-mark-quotient-mf, commuting-lamp-defect-survives]
 artifacts:
-  - docs/COMMUTING_LAMP_QUOTIENT_STRUCTURE_AND_MF_FORK_2026-08-14.md
+  - notes/COMMUTING_LAMP_QUOTIENT_STRUCTURE_AND_MF_FORK_2026-08-14.md
 ---
 
 ## Why sufficient

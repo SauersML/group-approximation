@@ -7,7 +7,7 @@ distinct_from:
   corona-commutant-no-growth: That open claim asserts growth never happens; this proved claim says growth is necessary for either quotient to be MF, so the two together make the open claim an exact hinge rather than one implication.
   commutant-no-growth: That is the finite-dimensional collapse; this is a necessity statement about corona representations, with no finiteness hypothesis.
 artifacts:
-  - docs/COMMUTING_LAMP_QUOTIENT_STRUCTURE_AND_MF_FORK_2026-08-14.md
+  - notes/COMMUTING_LAMP_QUOTIENT_STRUCTURE_AND_MF_FORK_2026-08-14.md
 ---
 
 Let `Theta` be a corona representation of `W/<zeta>` or of `E/<w>` that is

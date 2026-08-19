@@ -4,7 +4,7 @@ id: joint-outer-recovery
 kind: route
 title: One comb compressor jointly recovers both outer transitions
 artifacts:
-  - docs/TRUE_ONE_COMPRESSOR_JOINTLY_RECOVERS_BOTH_OUTER_TRANSITIONS.md
+  - notes/TRUE_ONE_COMPRESSOR_JOINTLY_RECOVERS_BOTH_OUTER_TRANSITIONS.md
 target: outer-pvm-synchronization
 requires: [finite-window-decoder]
 ---

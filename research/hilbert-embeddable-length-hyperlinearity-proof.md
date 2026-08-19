@@ -6,7 +6,7 @@ title: Schoenberg transform of an invariant length, realized by a genuine charac
 target: hilbert-embeddable-length-hyperlinearity
 requires: []
 artifacts:
-  - docs/NOTEPAD.md
+  - notes/NOTEPAD.md
   - GroupApproximation/Sofic/Hyperlinear.lean
 ---
 
@@ -156,7 +156,7 @@ For the negative calibration, take `K=GL_2(F_2)=S_3` and
 `ell(g)=rank_(F_2)(g-I)`, so `ell=(0,1,1,1,2,2)` on the identity, the three
 transpositions and the two three-cycles.  Its coefficient on the sign
 character is `(-3+4)/6=1/6>0`, so `ell` is not Hilbert embeddable.  This is
-the computation recorded in `docs/NOTEPAD.md` under "Normalized rank has no
+the computation recorded in `notes/NOTEPAD.md` under "Normalized rank has no
 Schoenberg bridge to Hilbert--Schmidt geometry", where the same conclusion is
 reached by exhibiting `c=sgn` as a violating vector; criterion 1 explains it
 and makes the test mechanical for any proposed length.
@@ -197,7 +197,7 @@ So on such a family every Hilbert embeddable invariant length is uniformly
 bi-Lipschitz to the discrete length, and a Hilbert embeddable witness
 running through those groups is a LEF witness up to absolute constants.
 This is the asymptotic obstruction the rank example only gestures at, and it
-subsumes the `docs/NOTEPAD.md` no-go "Uniform character gaps forbid
+subsumes the `notes/NOTEPAD.md` no-go "Uniform character gaps forbid
 hyperlinearizing finite-field rank models by exact representations".
 
 **5. Normalized-character form.**  For unitaries,

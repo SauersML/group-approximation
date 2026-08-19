@@ -6,7 +6,7 @@ title: Recognize the Clifford sign as a displaced-lamp commutator square
 target: kun-thom-clifford-extension-not-weak-mf
 requires: [central-sign-corona-obstruction]
 artifacts:
-  - docs/FALSE_CLIFFORD_NORM_MF_STERILITY.md
+  - notes/FALSE_CLIFFORD_NORM_MF_STERILITY.md
   - GroupApproximation/Sofic/KazhdanSignCriterion.lean
 ---
 

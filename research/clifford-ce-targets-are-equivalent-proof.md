@@ -6,12 +6,12 @@ title: Crossed product by the parity flip, then compress to the negative central
 target: clifford-ce-targets-are-equivalent
 requires: []
 artifacts:
-  - docs/PERFECT_CORE_KUN_THOM_WREATH.md
+  - notes/PERFECT_CORE_KUN_THOM_WREATH.md
 ---
 
 # Crossed product by the parity flip, then compress to the negative central corner
 
-Internal proofs, transcribed from `docs/PERFECT_CORE_KUN_THOM_WREATH.md`,
+Internal proofs, transcribed from `notes/PERFECT_CORE_KUN_THOM_WREATH.md`,
 Proposition 4 and Theorem 6. `requires: []` is a proof commitment; both
 arguments are elementary given the Clifford relations, and neither uses any
 open input.

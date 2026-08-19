@@ -23,22 +23,22 @@ The scout left this node open on two identification gaps — the lamp group
 infranormal, non-normal and Kazhdan on both sides. Neither could be closed as
 posed, because "the wreath candidate" had never been bound to a group. A
 full-corpus grep finds the phrase outside `research/` in exactly two places:
-`docs/OBSTRUCTIONS.md:123`, which uses it substantively but never defines it,
-and `docs/NOTEPAD.md:31454`, which is a *different* object — the split
+`notes/OBSTRUCTIONS.md:123`, which uses it substantively but never defines it,
+and `notes/NOTEPAD.md:31454`, which is a *different* object — the split
 integral wreath candidate. Everything else is downstream restatement. The
 symbol was free.
 
 ## The binding
 
 It is bound in `wreath-not-sofic` to Kun–Thom's Theorem E pair, which is the
-reading the whole `docs/` corpus already uses: `docs/UNIQUE_TRACE_KUN_THOM_DOUBLE.md`
+reading the whole `notes/` corpus already uses: `notes/UNIQUE_TRACE_KUN_THOM_DOUBLE.md`
 fixes `q = 2`, `r,d ≥ 3`, `Γ = EL_r(R₊)`, `G = EL_r(R) ⋊ SL_d(ℤ)`;
-`docs/COMMUTING_WREATH_SOFIC_RADICAL.md` and `docs/PERFECT_CORE_KUN_THOM_WREATH.md`
+`notes/COMMUTING_WREATH_SOFIC_RADICAL.md` and `notes/PERFECT_CORE_KUN_THOM_WREATH.md`
 write the candidate as `W = (⊕_{G/Γ} C₂) ⋊ G` and call it the Kun–Thom group;
-`docs/OBSTRUCTIONS.md` §3–§4 uses the matching notation (`e_{ij}(x^v)`,
+`notes/OBSTRUCTIONS.md` §3–§4 uses the matching notation (`e_{ij}(x^v)`,
 "compressors come from `SL_d(ℤ)` monomial substitutions"). The archivist's
 sweep confirms the corpus asserts nonsoficity of that group about six times as
-a Kun–Thom citation, and that no `docs/` file states the identification — which
+a Kun–Thom citation, and that no `notes/` file states the identification — which
 is precisely why it had to be made here rather than found.
 
 With the binding in place both gaps close by inspection, not by argument:

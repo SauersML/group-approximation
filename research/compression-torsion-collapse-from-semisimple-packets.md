@@ -6,8 +6,8 @@ title: Specialize the semisimple packet collapse to the commuting case
 target: compression-torsion-collapse
 requires: [semisimple-packet-multiplicity-collapse]
 artifacts:
-  - docs/COMPRESSION_COLLAPSE_MF_RADICAL.md
-  - docs/FALSE_KAZHDAN_COMPRESSION_INDEX_TO_PHASE.md
+  - notes/COMPRESSION_COLLAPSE_MF_RADICAL.md
+  - notes/FALSE_KAZHDAN_COMPRESSION_INDEX_TO_PHASE.md
 ---
 
 ## Why sufficient

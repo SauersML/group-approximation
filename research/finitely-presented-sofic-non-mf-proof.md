@@ -6,7 +6,7 @@ title: Combine literal soficity with the literal MF failure
 target: finitely-presented-sofic-non-mf
 requires: [literal-group-sofic, literal-group-fails-mf-conventions, sofic-implies-hyperlinear]
 artifacts:
-  - docs/LITERAL_GROUP_IS_SOFIC_2026-08-14.md
+  - notes/LITERAL_GROUP_IS_SOFIC_2026-08-14.md
   - non_mf_groups_exist.tex
 ---
 
@@ -16,7 +16,7 @@ artifacts:
 generators after Tietze elimination).  `literal-group-sofic` gives soficity,
 `sofic-implies-hyperlinear` upgrades it to hyperlinearity, and
 `literal-group-fails-mf-conventions` gives failure of every formalized MF
-convention.  Corollary 5.2 of `docs/LITERAL_GROUP_IS_SOFIC_2026-08-14.md`.
+convention.  Corollary 5.2 of `notes/LITERAL_GROUP_IS_SOFIC_2026-08-14.md`.
 
 Radical form: `Rad_sof(E) = 1` because `E` is sofic
 (`sofic-radical-soficization`), while `w != 1` lies in `Rad_MF(E)` by

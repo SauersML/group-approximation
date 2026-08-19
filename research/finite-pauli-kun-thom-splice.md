@@ -6,7 +6,7 @@ title: Use the fixed Pauli packet as the Kun--Thom infranormal subgroup
 target: hyperlinear-nonsofic-group
 requires: []
 artifacts:
-  - docs/HYPERLINEAR_CAIRN_PROGRESS_2026-08-14.md
+  - notes/HYPERLINEAR_CAIRN_PROGRESS_2026-08-14.md
 ---
 
 Attempt to reinterpret the unitary supplied by

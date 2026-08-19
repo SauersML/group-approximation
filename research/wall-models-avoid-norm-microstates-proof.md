@@ -6,8 +6,8 @@ title: Pad the wall, transport in the norm sector, then compress back
 target: wall-models-avoid-norm-microstates
 requires: [kazhdan-asymptotic-commutant-transport]
 artifacts:
-  - docs/TRUE_RELATIVE_WALL_IS_COMMUTANT_GROWTH.md
-  - docs/FALSE_RELATIVE_WALL_FORCES_FLEXIBLE_HS_INSTABILITY.md
+  - notes/TRUE_RELATIVE_WALL_IS_COMMUTANT_GROWTH.md
+  - notes/FALSE_RELATIVE_WALL_FORCES_FLEXIBLE_HS_INSTABILITY.md
 ---
 
 Extend the wall by the identity on the padded coordinates.  Unitarity of

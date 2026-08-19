@@ -7,8 +7,8 @@ distinct_from:
   gohla-thom-stable-base-nonsofic-extension: That is the cohomological Theorem 3.13, needing a cosystolic inequality and a non-residually-finite central extension; this is the elementary principle their section 3.2 states, with no expansion hypothesis and no central extension.
   finite-quotient-blindness: That says finite quotients of the compression pattern cannot see the mark; this is a general permanence statement about stability and soficity.
 artifacts:
-  - docs/SOFIC_STABLE_IMPLIES_RESIDUALLY_FINITE_2026-08-14.md
-  - docs/LITERAL_GROUP_IS_SOFIC_2026-08-14.md
+  - notes/SOFIC_STABLE_IMPLIES_RESIDUALLY_FINITE_2026-08-14.md
+  - notes/LITERAL_GROUP_IS_SOFIC_2026-08-14.md
 ---
 
 A group that is sofic and stable in finite actions is residually finite.
@@ -18,7 +18,7 @@ the group.  Any group stable in a stronger sense — flexibly, weakly flexibly,
 or `rho`-stable in permutations — is stable in finite actions, so the
 implication applies to all of those notions.
 
-**PROVED IN REPO** — `docs/SOFIC_STABLE_IMPLIES_RESIDUALLY_FINITE_2026-08-14.md`.
+**PROVED IN REPO** — `notes/SOFIC_STABLE_IMPLIES_RESIDUALLY_FINITE_2026-08-14.md`.
 The derivation is elementary and needs no ergodic machinery: inside any sofic
 approximation, choosing alternate points along each nontrivial cycle of
 `sigma_n(g)` gives `A_n` with `sigma_n(g)A_n` disjoint from `A_n` and

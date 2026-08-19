@@ -6,7 +6,7 @@ title: Exact finite models of the commuting-lamp quotient
 target: commuting-lamp-quotient-mf
 requires: []
 artifacts:
-  - docs/COMMUTING_LAMP_QUOTIENT_STRUCTURE_AND_MF_FORK_2026-08-14.md
+  - notes/COMMUTING_LAMP_QUOTIENT_STRUCTURE_AND_MF_FORK_2026-08-14.md
 ---
 
 Separate `W/<zeta>` by finite quotients, or locally embed it into finite

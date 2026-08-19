@@ -6,7 +6,7 @@ title: Draw Hull's small-cancellation target words from the normal closure of th
 target: defect-normally-generates-torsion-free-quotient
 requires: []
 artifacts:
-  - docs/TORSION_FREE_NORMAL_GENERATION_HULL_QUOTIENT.md
+  - notes/TORSION_FREE_NORMAL_GENERATION_HULL_QUOTIENT.md
 ---
 
 ## Why sufficient

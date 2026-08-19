@@ -6,7 +6,7 @@ title: Direct proof of The long-root carrier is common but not a decoder
 target: carrier-not-decoder
 requires: []
 artifacts:
-  - docs/TRUE_LONG_ROOT_CARRIER_IS_COMMON_BUT_NOT_A_DECODER.md
+  - notes/TRUE_LONG_ROOT_CARRIER_IS_COMMON_BUT_NOT_A_DECODER.md
 ---
 
 # Direct proof of The long-root carrier is common but not a decoder

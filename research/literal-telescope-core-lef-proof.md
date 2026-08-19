@@ -6,7 +6,7 @@ title: Finite block windows give residually finite level models
 target: literal-telescope-core-lef
 requires: [literal-telescope-split-normal-form, literal-lamp-kernel-clifford-block-amalgam, finite-telescope-level-coset-orbits]
 artifacts:
-  - docs/LITERAL_GROUP_IS_SOFIC_2026-08-14.md
+  - notes/LITERAL_GROUP_IS_SOFIC_2026-08-14.md
   - GroupApproximation/Sofic/MappingTelescopeFiniteOrbits.lean
   - GroupApproximation/Sofic/SoficDirectedUnion.lean
   - GroupApproximation/Sofic/LEFSofic.lean
@@ -14,7 +14,7 @@ artifacts:
 
 ## Direct proof
 
-Sections 3-4 of `docs/LITERAL_GROUP_IS_SOFIC_2026-08-14.md`.  A finitely
+Sections 3-4 of `notes/LITERAL_GROUP_IS_SOFIC_2026-08-14.md`.  A finitely
 generated subgroup of `E_T` has all its telescope coordinates in one level
 `Gamma_n` (the levels increase to `T`) and all its lamp coordinates in
 finitely many blocks `J_0`.  Level orbits on the block set are finite, so

@@ -160,7 +160,7 @@ than as closed or as abandoned.
 |---|---|---|---|---|---|
 | 1 | ~~`MarkovMFConsequences.operatorMF_recognition_undecidable`~~ | ~~literature-input~~ → **CLOSED 2026-08-17** | § "Undecidability of MF recognition", prose after `\end{corollary}` of `cor:undecidable` | **None.** Unconditional Lean support exists: `Computability.operatorMF_recognition_not_computable` (`Computability/BooneWordProblemUndecidable.lean`) concludes `¬ ComputablePred (MarkovMFConsequences.operatorMFProperty PresentationCodes.semantics)` outright — no reduction datum, no Markov hypothesis, no literature input. It is `AdianRabinVariantTransform.operatorMF_recognition_undecidable_of_wordProblem` applied to `Computability.not_computablePred_wordProblemPred`, which is `D4'` closed: the word map is `BooneWords.rawComm`, computable by `Computability.computable_rawComm`, and agreement with halting is `Computability.wordProblem_rawComm_iff` composed with `Computability.commElt_eq_one_iff_halts`, packaged as `Computability.exists_boone_words`. The quantified `operatorMF_recognition_undecidable` remains badged in the TeX as the classical form of the conclusion, with the Markov data quantified rather than exhibited; it is no longer the corollary's only support, so the finding it recorded is discharged rather than accepted. | Closed — `Computability/BooneWords.lean`, `BooneWordMapPrimrec.lean`, `BooneWordAgreement.lean`, `BooneWordProblemUndecidable.lean` |
 | 2 | ~~`ContinuumMultiplicity.manuscriptContinuumMultiplicity`~~ → **CLOSED 2026-08-16** | § "Undecidability of MF recognition", multiplicity paragraph citing `\cite{Neumann37}` | **None.** The family is constructed: `Monsters/NeumannContinuum`, lamplighters over coset spaces of the free group. **Re-verified 2026-08-17**, declaration by declaration: `manuscriptContinuumMultiplicity` is a three-way conjunction whose second conjunct *exhibits* a continuum of pairwise nonisomorphic finitely generated groups and whose third is the printed headline with nothing assumed, both discharged from `NeumannContinuum.manuscriptContinuumMultiplicityUnconditional`. It is zero-input, badged at one site, inside the import closure, and `Sofic/ContinuumMultiplicity` and `Monsters/NeumannContinuum` are both on `origin/verified`. The `Neumann37` citation survives in the manuscript as attribution for the classical family, not as a step. | Closed — the badged declaration now exhibits the family as a conjunct; see §2 |
-| 3 | `FullMFRadicalEndpoint.exists_nontrivial_twoGenerated_finitelyPresented_torsionFree_kazhdan_fullMFRadical` | **NOT DISCHARGED**, off the badge surface (2026-08-17; was `conditional-data`) | nothing — the § "Questions" material it answered was deleted from the TeX | **None on the printed surface.** The datum is still unbuilt, but no printed sentence consumes the endpoint, so it exposes nothing. See §3–4 | `docs/HULL_ROUTING_AUDIT_2026-08-16.md` (the reduction to one certificate — **protect this**); `Sofic/FiveConditionInsufficiency.lean`; `Sofic/ConcreteCompressionSource.lean` (7 of 12 fields built) |
+| 3 | `FullMFRadicalEndpoint.exists_nontrivial_twoGenerated_finitelyPresented_torsionFree_kazhdan_fullMFRadical` | **NOT DISCHARGED**, off the badge surface (2026-08-17; was `conditional-data`) | nothing — the § "Questions" material it answered was deleted from the TeX | **None on the printed surface.** The datum is still unbuilt, but no printed sentence consumes the endpoint, so it exposes nothing. See §3–4 | `notes/HULL_ROUTING_AUDIT_2026-08-16.md` (the reduction to one certificate — **protect this**); `Sofic/FiveConditionInsufficiency.lean`; `Sofic/ConcreteCompressionSource.lean` (7 of 12 fields built) |
 | 4 | `FullMFRadicalEndpoint.exists_nontrivial_group_with_every_nontrivial_quotient_not_isCDEOperatorMF` | **NOT DISCHARGED**, off the badge surface (2026-08-17; was `conditional-data`) | same | as above | same |
 
 **Rows 3–4, the six-condition correction of 2026-08-16.** The manuscript now
@@ -185,7 +185,7 @@ The rows stay `conditional-data` because `DefectRoutingData` and
 field.
 
 Rows 3–4 were audited against the literature on 2026-08-16
-(`docs/HULL_ROUTING_AUDIT_2026-08-16.md`, read from Hull, *Small cancellation
+(`notes/HULL_ROUTING_AUDIT_2026-08-16.md`, read from Hull, *Small cancellation
 in acylindrically hyperbolic groups*, Groups Geom. Dyn. 10 (2016) 1077–1119,
 and Osin, *Acylindrically hyperbolic groups*, Trans. AMS 368 (2016) 851–888).
 Six of the seven fields of `DefectRoutingData` are supplied by Hull's Theorem
@@ -207,7 +207,7 @@ the whole Kazhdan base.  These rows therefore stay, with that sharper reason.
 | 9 | ~~`MarkedGroupSpace.isClosed_operatorMFLocus`~~ | ~~header-hygiene~~ → **CLOSED 2026-08-17** | `thm:markedclosed`(1) | **None.** Fixed in place rather than by retreat: the anchor still exists, the declaration is still badged at one site, and it is verified zero-input at the current sha. `Sofic/MarkedMFClosed` is on `origin/verified`. | — |
 | 10 | ~~`MarkedGroupSpace.isOpen_compl_operatorMFLocus`~~ | ~~header-hygiene~~ → **CLOSED 2026-08-17** | `thm:markedclosed`(2) | **None.** Same anchor, same module, same three checks, same result. | — |
 | 11 | ~~`QuasiRegularWitness.baseVector_apply_base`~~ | ~~header-hygiene~~ → **CLOSED 2026-08-17** | `rem:maxinfinite` | **None.** `rem:maxinfinite` survives, the badge is at one site, the declaration is verified zero-input, and `Analysis/QuasiRegularWitness` is on `origin/verified`. | `Analysis/ResiduallyFiniteDimensional.lean` works on the same remark (different clause) |
-| 12 | ~~`ManuscriptExactWrappers.ManuscriptHSInvisible`~~ | ~~category~~ → **CLOSED 2026-08-17** | `def:invisible` | **None, and the badge move that was pending has landed.** `ManuscriptHSInvisible` — the definition — has **zero** badge sites. `def:invisible` now badges `manuscriptHSInvisibleCharacterization`, `CLAIM_TARGETS["def:invisible"]` points at it, and `docs/NON_MF_NUMBERED_CLAIMS.json` records it as covering "the complete printed proposition". So the badge certifies a claim, which is the whole of what this row asked for. `Sofic/ManuscriptExactWrappers` is on `origin/verified`. | — |
+| 12 | ~~`ManuscriptExactWrappers.ManuscriptHSInvisible`~~ | ~~category~~ → **CLOSED 2026-08-17** | `def:invisible` | **None, and the badge move that was pending has landed.** `ManuscriptHSInvisible` — the definition — has **zero** badge sites. `def:invisible` now badges `manuscriptHSInvisibleCharacterization`, `CLAIM_TARGETS["def:invisible"]` points at it, and `notes/NON_MF_NUMBERED_CLAIMS.json` records it as covering "the complete printed proposition". So the badge certifies a claim, which is the whole of what this row asked for. `Sofic/ManuscriptExactWrappers` is on `origin/verified`. | — |
 | 13 | `CliffordBSAmenable.isOperatorMF_subgroup_CliffordBS` | **RESOLVED 2026-08-17** (was: literature-input, off-badge) | `\paragraph{Sharpness of the Kazhdan hypothesis.}` | **None.** The paragraph no longer deduces through amenability; it routes through exhibited monomial models and is badged `\leanverified` over `CliffordBSAmenableMF.manuscriptSharpnessOfKazhdanHypothesis`, which is on `origin/verified`. The Lean structure survives, cited by nothing. What stays conditional is one clause, `IsOperatorMF RealizedQuotient`, as a binder in `CliffordBSPrintedRoute` — the printed route, kept deliberately. See §13 | `Sofic/CliffordBSAmenableMF.lean` supplies it; `Algebra/AmenableMFProof.lean`, `Analysis/AmenableQuasidiagonal.lean` explain why no permutation route could |
 | 14 | ~~`HNNTorsionFree.isPowerTorsionFree_of_existsCyclicConjugate` (and `…_sourceGroup_…`, `…_integerSourceGroup_…`)~~ | ~~literature-input~~ → **CLOSED 2026-08-16** | none — no manuscript claim cites it yet | **None.** `ExistsCyclicConjugate` is now proved, not assumed: `HNNBritton.existsCyclicConjugate` (`GroupTheory/HNNBrittonCyclic.lean`, commit `ae4053f7`) discharges it for every `φ` from Mathlib's HNN normal-form theory. The three hypothesis-taking theorems remain only because that file imports `Algebra/HNNTorsionFree.lean` (invoking it there would be an import cycle); they are superseded one for one by `HNNBritton.isPowerTorsionFree_hnn`, `…_sourceGroup`, `…_integerSourceGroup`. | — |
 | 15 | ~~`NuclearityAmenability.not_isAmenable_of_base_embeds`~~ | ~~header-hygiene~~ → **CLOSED 2026-08-16** | `thm:D`, the non-nuclearity paragraph | **None.** The manuscript now badges the wrapper `manuscriptNotAmenableOfBaseEmbeds`, whose binders are all after the colon, so the finding is gone rather than accepted. | — |
@@ -239,7 +239,7 @@ audit in their fixed form.
 
 The gate is armed against regression rather than against the backlog:
 `scripts/check_non_mf_unconditional.py --baseline` reads
-`docs/NON_MF_UNCONDITIONAL_BASELINE.txt`, an itemized register of the findings
+`notes/NON_MF_UNCONDITIONAL_BASELINE.txt`, an itemized register of the findings
 this document records.  A finding not on it fails; an entry that matches
 nothing fails too, so a discharged row cannot leave its exemption behind.
 There is no count in the mechanism and `--strict` ignores the register
@@ -420,7 +420,7 @@ message records that the badge never supported the claim.
 reopens it.
 
 * *Inadmissible.* The only known route is the one
-  `docs/HULL_ROUTING_AUDIT_2026-08-16.md` reduces it to, and discharging the
+  `notes/HULL_ROUTING_AUDIT_2026-08-16.md` reduces it to, and discharging the
   package by quoting Hull's Theorem 7.1, Hull's Lemma 5.8 or Osin's Theorem 1.1
   is a literature-transcription premise. The standing zero-literature order keeps
   `Audit.literatureInputNames` empty — the roster's own docstring states the
@@ -434,7 +434,7 @@ reopens it.
   from-scratch geometric group theory development, comparable to or larger than
   the routing layer it would serve.
 
-**The asset to protect.** `docs/HULL_ROUTING_AUDIT_2026-08-16.md` reduces the
+**The asset to protect.** `notes/HULL_ROUTING_AUDIT_2026-08-16.md` reduces the
 whole problem to a single certificate — one infinite-order `h ∈ N_comp` with
 `⟨h⟩` hyperbolically embedded and properly contained in `N_comp` — after which
 six of the seven `DefectRoutingData` fields fall out of Hull's Theorem 7.1 as
@@ -464,8 +464,8 @@ findable at that path and should not be lost in any cleanup.
 data-parameter layer with no premise exposure, and it is the honest record of a
 real research route. Deleting certified work to tidy a count is not something
 this repository does. The guardrail is the off-print grade here plus the banners
-on `docs/TORSION_FREE_HULL_ROUTE.md` and
-`docs/TORSION_FREE_NORMAL_GENERATION_HULL_QUOTIENT.md`, which together make
+on `notes/TORSION_FREE_HULL_ROUTE.md` and
+`notes/TORSION_FREE_NORMAL_GENERATION_HULL_QUOTIENT.md`, which together make
 promotion to a numbered environment impossible without deliberately overriding a
 written prohibition.
 
@@ -839,7 +839,7 @@ planted negative in `--self-test`, in the style of
 data file, for the reason `Audit.literatureInputNames` does: the corpus must
 not be able to untag its own citations. A pinned name that is no longer cited
 is reported as stale, so the roster cannot outlive the problem it records. The
-file roster `--literature-roster docs/NON_MF_LITERATURE_INPUTS.txt` (absent,
+file roster `--literature-roster notes/NON_MF_LITERATURE_INPUTS.txt` (absent,
 hence empty, mirroring `Audit.literatureInputNames`) is the secondary
 mechanism, for transcriptions the structural rule cannot see.
 

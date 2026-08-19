@@ -8,8 +8,8 @@ distinct_from:
   fiber-masa-free-cocycle: that is a structural demand on a from-scratch model of the whole algebra; this starts from an existing honest model of a subalgebra and asks to extend it
   invariant-cartan-completion: that is a rigidity-side target about arbitrary abstract embeddings; this is a construction-side permanence question about one specific extension
 artifacts:
-  - docs/FALSE_FULL_COMPRESSION_SEMIGROUP_DILATION.md
-  - docs/FALSE_POSITIVE_CORE_IS_SOFIC.md
+  - notes/FALSE_FULL_COMPRESSION_SEMIGROUP_DILATION.md
+  - notes/FALSE_POSITIVE_CORE_IS_SOFIC.md
 ---
 
 Starting from the sofic microstates of `W₀ = (⊕_{X₀} C₂) ⋊ Γ`
@@ -28,7 +28,7 @@ states this consequence explicitly as `(FSD20)`.
 Flagged by the team-wide "restatement dressed as reduction" warning and
 confirmed by re-derivation. This is the worst of the three cases: the
 equivalence needs no established claim at all, because `M` **is** the target
-algebra. `docs/FALSE_FULL_COMPRESSION_SEMIGROUP_DILATION.md` `(FSD5)` reads
+algebra. `notes/FALSE_FULL_COMPRESSION_SEMIGROUP_DILATION.md` `(FSD5)` reads
 verbatim
 
     M = L^∞({±1}^{G/Γ}) ⋊ G = L((⊕_{G/Γ} C₂) ⋊ G),
@@ -98,9 +98,9 @@ algebra on which the general question can be tested, rather than sitting alone.
 
 The Ore shortcut is dead: the full compressor semigroup is neither left nor
 right Ore and admits no cofinal Ore subsemigroup
-(`docs/FALSE_COMPRESSION_SEMIGROUP_ORE_NO_GO.md`, `docs/AGENDA.md`). So the
+(`notes/FALSE_COMPRESSION_SEMIGROUP_ORE_NO_GO.md`, `notes/AGENDA.md`). So the
 several-compressor case cannot be reduced to the one-compressor case by
-directing the semigroup. `docs/FALSE_FULL_COMPRESSION_SEMIGROUP_DILATION.md`
+directing the semigroup. `notes/FALSE_FULL_COMPRESSION_SEMIGROUP_DILATION.md`
 also records that the principal-bundle constructions solve the relation-imposing
 step only after forgetting the common nonamenable core, and that the
 one-compressor construction solves the first two steps only conditionally on

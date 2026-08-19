@@ -6,8 +6,8 @@ title: Get the Clifford crossed product from halo-product / sofic-action permane
 target: kun-thom-clifford-crossed-product-ce
 requires: []
 artifacts:
-  - docs/TRUE_LAMP_CHARTS_RECOVER_THE_SET_ACTION.md
-  - docs/FALSE_HALO_ACTION_AUDIT.md
+  - notes/TRUE_LAMP_CHARTS_RECOVER_THE_SET_ACTION.md
+  - notes/FALSE_HALO_ACTION_AUDIT.md
 ---
 
 Apply Alekseev--Bradford (arXiv:2601.18742, Definition 4.23, Theorem 5.1,

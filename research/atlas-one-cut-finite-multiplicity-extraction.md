@@ -4,7 +4,7 @@ id: atlas-one-cut-finite-multiplicity-extraction
 kind: claim
 title: Atlas microstates expose an asymmetrically leaking cut in the finite multiplicity algebra
 artifacts:
-  - docs/ATLAS_RELATIVE_PERFECTNESS_AND_COEFFICIENT_ENDPOINT.md
+  - notes/ATLAS_RELATIVE_PERFECTNESS_AND_COEFFICIENT_ENDPOINT.md
 distinct_from:
   atlas-two-s3-covariance-collapse: that seeks direct covariance collapse of two fixed S3 directions; this target instead extracts a one-cut finite-multiplicity obstruction from the same canonical regular-A8 chart model.
 ---

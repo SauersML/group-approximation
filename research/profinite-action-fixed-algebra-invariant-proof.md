@@ -6,10 +6,10 @@ title: Compact Lie dimension and component count, then equivariant expectations
 target: profinite-action-fixed-algebra-invariant
 requires: []
 artifacts:
-  - docs/NOTEPAD.md
+  - notes/NOTEPAD.md
 ---
 
-Complete written argument in `docs/NOTEPAD.md`, section "Profinite actions
+Complete written argument in `notes/NOTEPAD.md`, section "Profinite actions
 cannot retain a strict-compressor witness (2026-08-09)", Theorem `(12)-(13)`
 with its two-part proof: the finite-dimensional case by equality of Lie
 dimension and of the number of connected components for the conjugate

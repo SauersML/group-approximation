@@ -8,7 +8,7 @@ import GroupApproximation.Sofic.InvolutionCollapseEndpointPrep
 Theorem `thm:collapse`, Steps 5 and 6 of the printed proof sketch, together
 with the discussion after `thm:transport-variants` ("the collapse proof of
 Theorem `thm:collapse` uses a rank weight, which normalizes a defect at its
-own scale").  In the step-for-step audit `docs/COLLAPSE_STEP_AUDIT.md` this
+own scale").  In the step-for-step audit `notes/COLLAPSE_STEP_AUDIT.md` this
 is finding **R1**, route **(b)**.
 
 **The defect this module closes.**  Step 5 of the sketch produces an

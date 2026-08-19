@@ -6,13 +6,13 @@ title: Cut by the central spectral projection, and direct-sum back
 target: central-extension-twisted-sector-criterion
 requires: []
 artifacts:
-  - docs/COMMUTING_LAMP_QUOTIENT_STRUCTURE_AND_MF_FORK_2026-08-14.md
-  - docs/NOTEPAD.md
+  - notes/COMMUTING_LAMP_QUOTIENT_STRUCTURE_AND_MF_FORK_2026-08-14.md
+  - notes/NOTEPAD.md
 ---
 
 ## Direct proof
 
-Provenance: `docs/NOTEPAD.md:39199-39232` (2026-08-10), recorded there for a
+Provenance: `notes/NOTEPAD.md:39199-39232` (2026-08-10), recorded there for a
 different candidate and never applied to the marked quotients.  Both
 directions were re-derived in Section 10 of the cited note.
 

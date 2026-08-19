@@ -6,7 +6,7 @@ title: Pauli children recur through a finite projection range-packing automaton
 distinct_from:
   atlas-pauli-branch-recurrence-automaton: that target is stated in branch-operator leakage and Gram norms; this target removes those analytic phases and asks only for the equivalent geometry of the word branches' final projections.
 artifacts:
-  - docs/TRUE_PAULI_BRANCH_TRANSFER_PACKET.md
+  - notes/TRUE_PAULI_BRANCH_TRANSFER_PACKET.md
 ---
 
 Use the exact source `E` and children `R_0,R_1` from

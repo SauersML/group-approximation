@@ -6,8 +6,8 @@ title: Extend the sofic positive core over the compressors
 target: hyperlinear-wreath-model
 requires: [positive-core-bernoulli-ce, simultaneous-dilation-splice]
 artifacts:
-  - docs/FALSE_FULL_COMPRESSION_SEMIGROUP_DILATION.md
-  - docs/FALSE_POSITIVE_CORE_IS_SOFIC.md
+  - notes/FALSE_FULL_COMPRESSION_SEMIGROUP_DILATION.md
+  - notes/FALSE_POSITIVE_CORE_IS_SOFIC.md
 ---
 
 # Extend the sofic positive core over the compressors

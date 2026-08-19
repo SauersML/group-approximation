@@ -6,7 +6,7 @@ title: Project onto the raw packet algebra and Haar-average its commutant
 target: full-raw-packet-commutant-witness
 requires: []
 artifacts:
-  - docs/TRUE_FULL_RAW_PACKET_COMMUTANT_WITNESS.md
+  - notes/TRUE_FULL_RAW_PACKET_COMMUTANT_WITNESS.md
   - experiments/atlas-pauli-transported-carrier.json
 ---
 

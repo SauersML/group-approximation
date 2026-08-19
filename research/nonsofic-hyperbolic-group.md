@@ -15,7 +15,7 @@ answers whether non-residually-finite hyperbolic groups exist.
 
 ## Why this sits in this program
 
-`docs/OBSTRUCTIONS.md` §5 records the caution that Pestov's Question 3.4
+`notes/OBSTRUCTIONS.md` §5 records the caution that Pestov's Question 3.4
 "may be inaccessible until a *second* nonsoficity mechanism exists", because
 every known nonsofic group came from the same (T)-compression pattern that
 the eight no-gos attack.  As of 2026-08 that caution is still literally

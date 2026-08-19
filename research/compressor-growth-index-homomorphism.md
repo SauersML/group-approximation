@@ -7,7 +7,7 @@ distinct_from:
   relative-wall-commutant-growth: That claim decides existence of a wall by a yes/no properness question at a single compressor; this one is a quantitative invariant defined on the whole compressor semigroup and asserts its algebraic law, which is what makes the tower and infinite-index consequences available.
   invariant-size-collapse: That is the general principle that a conjugation-invariant strictly monotone size forces a compression to be an equality, and it records the II_1 trace as failing the monotonicity hypothesis; this supplies the invariant that survives on that branch, namely the Pimsner--Popa index, which is invariant and strictly monotone but may be infinite, and states the multiplicative law that makes it usable.
 artifacts:
-  - docs/TRUE_RELATIVE_WALL_IS_COMMUTANT_GROWTH.md
+  - notes/TRUE_RELATIVE_WALL_IS_COMMUTANT_GROWTH.md
 ---
 
 For `pi:G->U(M)` into a finite tracial algebra, `N=M cap pi(Gamma)'`, and

@@ -17,7 +17,7 @@ continuous on the compact group `U(20160k)`, so the minimum is attained at some
 genuine `20160k`-dimensional unitary representation of
 `E = P̄/⟨⟨T_St⟩⟩ ≅ St₅(L_{F₂}(1,2))`, and it is nontrivial because the first
 chart is `λ ⊗ I_k`.  Minimal almost periodicity of `E` (the corpus fact carried
-by `leavitt-steinberg-hs-stability-fork`, `docs/ATLAS_HS_CRITERION.md`) forbids
+by `leavitt-steinberg-hs-stability-fork`, `notes/ATLAS_HS_CRITERION.md`) forbids
 this.
 
 An independent derivation, not needing minimal almost periodicity as an input:

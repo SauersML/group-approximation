@@ -6,7 +6,7 @@ title: Push a Clifford wall forward to the compressed commutant
 target: compressed-commutant-majorana
 requires: [relative-wall-commutant-growth, kun-thom-clifford-relative-wall]
 artifacts:
-  - docs/TRUE_RELATIVE_WALL_IS_COMMUTANT_GROWTH.md
+  - notes/TRUE_RELATIVE_WALL_IS_COMMUTANT_GROWTH.md
 ---
 
 The converse direction of `kun-thom-clifford-wall-normal-form-route`.  Given

@@ -8,8 +8,8 @@ distinct_from:
   literal-clifford-ce-model: That is the finite-index compressor group and its coset tower; this is the Kun--Thom infinite-index pair and the lattice of its central lamp quotients.
   sofic-radical-soficization: That is a general structure theorem for the sofic radical of an arbitrary countable group; this computes the image of one marked radical word in an explicit family of central quotients of one explicit group.
 artifacts:
-  - docs/TRUE_KUN_THOM_CLIFFORD_PHASE.md
-  - docs/FALSE_FERMIONIC_KUN_THOM_ENDPOINT.md
+  - notes/TRUE_KUN_THOM_CLIFFORD_PHASE.md
+  - notes/FALSE_FERMIONIC_KUN_THOM_ENDPOINT.md
 ---
 
 Let `Gamma<G` be a nonnormal infranormal Kazhdan pair as in

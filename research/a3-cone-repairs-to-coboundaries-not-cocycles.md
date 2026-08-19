@@ -9,12 +9,12 @@ distinct_from:
   random-complex-linear-cocycle-stability: that is the open probabilistic estimate about random Linial--Meshulam complexes; this is a structural statement about what the repository's building-theoretic gadget can measure, and it holds on the fixed complex A_3(F_q) with no randomness in it
 artifacts:
   - research/artifacts/hyperbolic-residual-finiteness-audit-2026-08-17.md
-  - docs/TRUE_A3_METRIC_CONE_SYNCHRONIZATION.md
-  - docs/TRUE_AUXILIARY_CONE_RADICAL_WITNESS_NO_GO.md
+  - notes/TRUE_A3_METRIC_CONE_SYNCHRONIZATION.md
+  - notes/TRUE_AUXILIARY_CONE_RADICAL_WITNESS_NO_GO.md
 ---
 
 This repository's dimension-free synchronization theorem
-(`docs/TRUE_A3_METRIC_CONE_SYNCHRONIZATION.md`) gauges any `Λ`-valued edge
+(`notes/TRUE_A3_METRIC_CONE_SYNCHRONIZATION.md`) gauges any `Λ`-valued edge
 connection `φ` on the spherical building `A_3(F_q)` so that
 
 ```text
@@ -45,7 +45,7 @@ those complexes the two targets differ by precisely the representation data
 the theorem is supposed to detect.
 
 This repository already recorded the same obstruction in another language.
-`docs/TRUE_AUXILIARY_CONE_RADICAL_WITNESS_NO_GO.md` shows that when radical
+`notes/TRUE_AUXILIARY_CONE_RADICAL_WITNESS_NO_GO.md` shows that when radical
 membership forces the encoded paths closed on `1-o(1)` of the finite base, a
 bounded metric cone controls their holonomy by curvature and the marked
 holonomy dies.  There the casualty was a sofic-radical witness; here it is the

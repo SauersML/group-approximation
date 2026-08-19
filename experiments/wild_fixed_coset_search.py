@@ -7,7 +7,7 @@ lifts both words canonically to Z/4, and tests the resulting first-order
 error modulo the image of Ad(gamma)-1 on sl_3(F_2[x,x^{-1}]/F_2[x]).
 
 This is a bounded falsification tool for Theorem 8 of
-docs/FALSE_CYCLOTOMIC_FIXED_ORBIT_FORMULA.md, not a proof that a surviving
+notes/FALSE_CYCLOTOMIC_FIXED_ORBIT_FORMULA.md, not a proof that a surviving
 bounded word remains nonzero in the untruncated deformation quotient.
 """
 

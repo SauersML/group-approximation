@@ -6,7 +6,7 @@ title: Turn finite compression into normalization
 target: finite-infranormal-subgroup-is-normal
 requires: []
 artifacts:
-  - docs/HYPERLINEAR_CAIRN_PROGRESS_2026-08-14.md
+  - notes/HYPERLINEAR_CAIRN_PROGRESS_2026-08-14.md
 ---
 
 For `gKg^(-1) <= K`, both finite groups have cardinality `|K|`, hence they

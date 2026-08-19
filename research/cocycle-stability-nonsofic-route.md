@@ -21,5 +21,5 @@ modelled on the non-local-testability of Sipser--Spielman expander codes.
 This is the reason the route is worth recording here rather than only in
 `notes/`: the obstruction is imported from coding theory, not from the
 expander decomposition of sofic approximations of property-(T) groups.  The
-no-gos catalogued in `docs/OBSTRUCTIONS.md` are all attacks on the latter,
+no-gos catalogued in `notes/OBSTRUCTIONS.md` are all attacks on the latter,
 so none of them evidently applies to whatever group this route produces.

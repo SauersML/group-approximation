@@ -68,7 +68,7 @@ ANCHOR_KINDS = {"env", "sec", "eq", "prose"}
 # waits for the build.  Drop the marker when the build goes green, then grade.
 PENDING_MARKER = "PENDING FIRST GREEN"
 # `UNDER-SPECIFIED` is the project-wide fourth mark, adopted from
-# `docs/P13_STEP_AUDIT.md`: the printed text is a prose route with no
+# `notes/P13_STEP_AUDIT.md`: the printed text is a prose route with no
 # determinate step content to bind, and Lean supplies a proof the sentence
 # merely gestures at.  `EXACT` would overstate what was checked; `MISMATCH`
 # would blame Lean for the manuscript's compression.

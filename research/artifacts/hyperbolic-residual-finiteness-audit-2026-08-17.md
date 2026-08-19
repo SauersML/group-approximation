@@ -278,7 +278,7 @@ quotients without assuming the answer" — and that claim is open.
 
 ### B.6 Chapman–Peled and the repository's `A_3` cone (source §7) — accepted
 
-The source traces why `docs/TRUE_A3_METRIC_CONE_SYNCHRONIZATION.md` does not
+The source traces why `notes/TRUE_A3_METRIC_CONE_SYNCHRONIZATION.md` does not
 supply the Chapman–Peled estimate.  The repository theorem gauges any edge
 connection on the spherical building `A_3(F_q)` so that
 `‖a·φ‖_(L^r(E)) ≤ 9‖K_φ‖_(L^r(T))`, with the constant independent of `q`, of
@@ -290,7 +290,7 @@ a flat connection with nontrivial global holonomy — exactly the data a repair
 to `B^1` destroys.
 
 This is the same obstruction the repository already recorded in another
-language in `docs/TRUE_AUXILIARY_CONE_RADICAL_WITNESS_NO_GO.md`, where
+language in `notes/TRUE_AUXILIARY_CONE_RADICAL_WITNESS_NO_GO.md`, where
 radical membership forces the encoded paths closed on `1-o(1)` of the finite
 base and the simply connected cone then kills the marked holonomy.
 

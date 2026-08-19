@@ -4,7 +4,7 @@ id: compression-torsion-collapse
 kind: claim
 title: Pointwise compression-torsion collapse in norm matrix coronas
 artifacts:
-  - docs/COMPRESSION_COLLAPSE_MF_RADICAL.md
+  - notes/COMPRESSION_COLLAPSE_MF_RADICAL.md
   - GroupApproximation/Sofic/TorsionSpectralCollapse.lean
 ---
 

@@ -6,8 +6,8 @@ title: Reduce the Iwahori outlier to operator transport integralization and Niel
 target: iwahori-outlier-repair
 requires: [mixed-intertwiner-energy-transport-localization, iwahori-commensurator-nielsen-involution, iwahori-fractional-transport-integralization, iwahori-nielsen-extension-transversality]
 artifacts:
-  - docs/TRUE_IWAHORI_CENTRAL_REGULAR_OUTLIER_LOCALIZATION.md
-  - docs/TRUE_IWAHORI_INDEX_THREE_HAS_BOUNDED_BRANCHING.md
+  - notes/TRUE_IWAHORI_CENTRAL_REGULAR_OUTLIER_LOCALIZATION.md
+  - notes/TRUE_IWAHORI_INDEX_THREE_HAS_BOUNDED_BRANCHING.md
 ---
 
 Start with a central-regular negative sequence at the Iwahori endpoint.  The

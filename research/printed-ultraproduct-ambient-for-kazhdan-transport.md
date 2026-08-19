@@ -102,7 +102,7 @@ rather than inlined.
 
 ## Why this is worth a node rather than a footnote
 
-`docs/NON_MF_PROOF_LEDGER.md` records as its first headline finding that the
+`notes/NON_MF_PROOF_LEDGER.md` records as its first headline finding that the
 printed proof of `thm:kazhdan-transport` was *not* the formalized proof.  The
 modules above close that finding entirely.  The distinction it drew still
 matters for reading the trust surface, and both halves are now on the same

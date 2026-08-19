@@ -4,7 +4,7 @@ import GroupApproximation.Sofic.InvolutionCollapseProfile
 /-!
 # The guarded displacement vector is the printed one, eventually
 
-This module reconciles the two objects named in `docs/COLLAPSE_STEP_AUDIT.md`
+This module reconciles the two objects named in `notes/COLLAPSE_STEP_AUDIT.md`
 at COL.17 and COL.19: the chosen-word length
 `InvolutionCollapseProfile.wordLen` against the genuine word length
 `WordMetric.wordNorm`, and the guarded vector

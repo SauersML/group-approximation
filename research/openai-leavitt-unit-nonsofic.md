@@ -49,7 +49,7 @@ results and techniques of this paper and the ones in [18]."  That is the
 attribution to keep in both directions -- the criterion is theirs to be
 applied, and applying it was the step nobody had taken.
 
-`docs/CREDIT_AND_PRIORITY_AUDIT.md` already carries this as a manuscript
+`notes/CREDIT_AND_PRIORITY_AUDIT.md` already carries this as a manuscript
 directive; the two things `official/README.md` says never to inherit from the
 copy (the "[Kun19] ... 2019" dating of arXiv:1606.04471, which is June 2016,
 and the "soficity conjecture" framing of an open question) still stand.

@@ -8,10 +8,10 @@ distinct_from:
   full-packet-bicommutant-synchronization: That quantifies over arbitrary coordinate-selected elements of a full matrix commutant; this asks only about two fixed named elements of one six-element S3 subgroup.
   pauli-carrier-membership-decoder: That asks for membership of a transported projection in a raw finite algebra; this is the narrower fixed-word covariance statement already sufficient to contradict the raw swap.
 artifacts:
-  - docs/EXPLICIT_LEAVITT_ATLAS.md
-  - docs/TRUE_RAW_WORD_REYNOLDS_GAP.md
-  - docs/TRUE_RAW_WORD_S3_TIMES_S3_LOCALIZATION.md
-  - docs/ATLAS_BOUNDARY_RANK_THREE_EXACT_AUDIT.md
+  - notes/EXPLICIT_LEAVITT_ATLAS.md
+  - notes/TRUE_RAW_WORD_REYNOLDS_GAP.md
+  - notes/TRUE_RAW_WORD_S3_TIMES_S3_LOCALIZATION.md
+  - notes/ATLAS_BOUNDARY_RANK_THREE_EXACT_AUDIT.md
   - experiments/atlas-raw-compressor-source-words.json
   - experiments/atlas_raw_reynolds_gap_audit.py
   - experiments/atlas-boundary-11-30.json

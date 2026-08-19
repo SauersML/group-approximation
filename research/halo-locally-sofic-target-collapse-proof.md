@@ -6,13 +6,13 @@ title: Shrink each finite witness to the subgroup its labels generate
 target: halo-locally-sofic-target-collapse
 requires: [wreath-not-sofic]
 artifacts:
-  - docs/FALSE_HALO_ACTION_AUDIT.md
+  - notes/FALSE_HALO_ACTION_AUDIT.md
   - research/artifacts/kun-thom-2608-06222-verified.md
 ---
 
 # Shrink each finite witness to the subgroup its labels generate
 
-Internal proof, transcribed from `docs/FALSE_HALO_ACTION_AUDIT.md` (2026-08-10),
+Internal proof, transcribed from `notes/FALSE_HALO_ACTION_AUDIT.md` (2026-08-10),
 lemma `(HAA3)` and theorem `(HAA4)`. Only the final consequence `(HAA5)` uses an
 input from elsewhere in the graph, namely `wreath-not-sofic`.
 

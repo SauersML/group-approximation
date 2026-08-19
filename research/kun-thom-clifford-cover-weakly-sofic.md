@@ -11,7 +11,7 @@ distinct_from:
   kun-thom-clifford-relative-wall: That is the open normalized-Hilbert--Schmidt construction target; this proves that its algebraic content is already realized in the bi-invariant-metric category, which is why it calibrates rather than solves that target.
   kun-thom-clifford-extension-not-weak-mf: That is a negative operator-norm result about the same group, saying it has no matrix microstates in the MF sense; this is a positive result in the disjoint category of finite groups with bi-invariant metrics, where no matrix norm is involved at all, so the two coexist and together separate the two approximation classes on one explicit group.
 artifacts:
-  - docs/TRUE_RELATIVE_WALL_IS_COMMUTANT_GROWTH.md
+  - notes/TRUE_RELATIVE_WALL_IS_COMMUTANT_GROWTH.md
 ---
 
 Let `Gamma<G` be the Kun--Thom Theorem E pair, `S` a `G`-invariant graph on

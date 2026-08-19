@@ -8,7 +8,7 @@ distinct_from:
   hilbert-embeddable-length-lp-feasibility: that says the witness question is a finite linear program; this identifies what the program's variables mean — the multiplicity vector of a unitary representation — and turns the whole design problem into a membership question about approximation by finite subgroups of unitary groups
   hilbert-embeddable-witness-for-kun-thom-wreath: that asks the design question for one group; this is the general structure theorem that removes the design step from it
 artifacts:
-  - docs/TRUE_HILBERT_EMBEDDABLE_IS_REPRESENTATION_REALIZED.md
+  - notes/TRUE_HILBERT_EMBEDDABLE_IS_REPRESENTATION_REALIZED.md
 ---
 
 Let `H` be finite and `ℓ` a real conjugation-invariant function with

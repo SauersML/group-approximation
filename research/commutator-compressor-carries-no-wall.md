@@ -7,7 +7,7 @@ distinct_from:
   relative-wall-commutant-growth: That claim is an equivalence with no hypothesis on the compressor; this one is an obstruction that applies only to compressors expressible as commutators inside the compressor semigroup, and its conclusion is a quantitative infinite-index demand on the factors.
   compressor-growth-index-homomorphism: That claim states the multiplicative law of the growth index; this one is the group-theoretic consequence obtained by cancelling that law across a Steinberg relation, together with its concrete form for the monomial-cone pair.
 artifacts:
-  - docs/TRUE_RELATIVE_WALL_IS_COMMUTANT_GROWTH.md
+  - notes/TRUE_RELATIVE_WALL_IS_COMMUTANT_GROWTH.md
 ---
 
 If `a,b` and `s=[a,b]` all lie in `P_Gamma` and `lambda(a),lambda(b)` are

@@ -7,7 +7,7 @@ target: weak-soficity-survives-every-corpus-obstruction
 requires: [literal-group-sofic, finitely-presented-sofic-non-mf, weakly-sofic-not-sofic, kun-thom-clifford-cover-weakly-sofic]
 artifacts:
   - research/artifacts/non-weakly-sofic-audit-2026-08-17.md
-  - docs/TRUE_RELATIVE_WALL_IS_COMMUTANT_GROWTH.md
+  - notes/TRUE_RELATIVE_WALL_IS_COMMUTANT_GROWTH.md
 ---
 
 **The bridge used four times.**  A sofic group is weakly sofic: a symmetric
@@ -42,7 +42,7 @@ extension — supplies the other two rows, and both are already established
 nodes: `weakly-sofic-not-sofic` for the Kun--Thom wreath `W` (nonsofic,
 weakly sofic) and `kun-thom-clifford-cover-weakly-sofic` for the Clifford
 cover `E_S`, whose Corollary 10 in
-`docs/TRUE_RELATIVE_WALL_IS_COMMUTANT_GROWTH.md` realizes the marked
+`notes/TRUE_RELATIVE_WALL_IS_COMMUTANT_GROWTH.md` realizes the marked
 anticommuting wall inside a metric ultraproduct of finite groups with
 bi-invariant metrics, radical word surviving.
 

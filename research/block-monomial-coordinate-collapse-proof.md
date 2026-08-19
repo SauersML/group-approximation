@@ -6,7 +6,7 @@ title: Permutation parts survive the fiber; faithfulness is bought back by tenso
 target: block-monomial-coordinate-collapse
 requires: []
 artifacts:
-  - docs/TRUE_BLOCK_MONOMIAL_COORDINATE_COLLAPSE.md
+  - notes/TRUE_BLOCK_MONOMIAL_COORDINATE_COLLAPSE.md
   - research/artifacts/kun-thom-2608-06222-verified.md
 ---
 
@@ -15,7 +15,7 @@ artifacts:
 Direct establishment. The complete argument — Lemma 1 (Hilbert–Schmidt
 rigidity of permutation parts, uniform in the fiber dimension) and Theorem 2
 (the collapse, in five steps) — is written out in
-`docs/TRUE_BLOCK_MONOMIAL_COORDINATE_COLLAPSE.md`. `requires: []` is a proof
+`notes/TRUE_BLOCK_MONOMIAL_COORDINATE_COLLAPSE.md`. `requires: []` is a proof
 commitment, not a placeholder.
 
 The one external input is Kun–Thom Corollary D, used at the last step and

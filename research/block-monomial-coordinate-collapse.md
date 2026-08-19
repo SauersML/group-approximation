@@ -8,7 +8,7 @@ distinct_from:
   coordinate-action-not-sofic: that says the coset action is not sofic, imported by citation; this is a proved reduction sending a strictly larger class of models — block-monomial, not permutation — into that citation's reach
   diagonal-normalizer-rigidity: that concerns approximate normalizers of the FULL diagonal masa and is sharp there; this concerns exact block-monomiality over a COARSE decomposition, which that result explicitly does not cover
 artifacts:
-  - docs/TRUE_BLOCK_MONOMIAL_COORDINATE_COLLAPSE.md
+  - notes/TRUE_BLOCK_MONOMIAL_COORDINATE_COLLAPSE.md
   - research/artifacts/kun-thom-2608-06222-verified.md
 ---
 
@@ -55,5 +55,5 @@ of equal trace, giving an approximate coarse decomposition whose defect is
 governed by the boundary of the window in `G/Γ`, which carries a constant
 fraction of the mass because property (T) and infinite index leave no Følner
 sets. Theorem 2 kills exact block structure; amplification
-(`docs/OBSTRUCTIONS.md` §3) kills the naive approximate one. Nothing here says
+(`notes/OBSTRUCTIONS.md` §3) kills the naive approximate one. Nothing here says
 `M_KT` is not Connes-embeddable.

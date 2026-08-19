@@ -6,7 +6,7 @@ title: Wall models stay flexibly far from the whole norm-microstate sector
 distinct_from:
   kazhdan-asymptotic-commutant-transport: That claim is the transport statement itself, for one operator-norm asymptotic representation; this one is its flexible consequence for the wall, namely that a wall family cannot be corner-approximated in normalized Hilbert--Schmidt norm by any operator-norm asymptotic representation even after o(d_n) padding.
 artifacts:
-  - docs/TRUE_RELATIVE_WALL_IS_COMMUTANT_GROWTH.md
+  - notes/TRUE_RELATIVE_WALL_IS_COMMUTANT_GROWTH.md
 ---
 
 If `(pi_n,v_n)` is a relative wall, there is no operator-norm asymptotic
@@ -27,6 +27,6 @@ cross-check rather than a restatement -- and it coexists with
 `kun-thom-clifford-cover-weakly-sofic`, since finite groups with bi-invariant
 metrics are not matrix microstates.  This strictly strengthens the
 conclusion of
-`docs/TRUE_CLIFFORD_HYPERLINEARITY_FORCES_AMBIENT_HS_INSTABILITY.md`, whose
+`notes/TRUE_CLIFFORD_HYPERLINEARITY_FORCES_AMBIENT_HS_INSTABILITY.md`, whose
 target class is only the exact finite-dimensional representations, i.e. the
 zero-defect members of the same sector.

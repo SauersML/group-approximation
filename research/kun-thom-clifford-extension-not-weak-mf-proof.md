@@ -6,12 +6,12 @@ title: Cut the negative central corner and anticommute two Clifford lamps
 target: kun-thom-clifford-extension-not-weak-mf
 requires: []
 artifacts:
-  - docs/FALSE_CLIFFORD_NORM_MF_STERILITY.md
+  - notes/FALSE_CLIFFORD_NORM_MF_STERILITY.md
 ---
 
 # Cut the negative central corner and anticommute two Clifford lamps
 
-Internal proof, transcribed from `docs/FALSE_CLIFFORD_NORM_MF_STERILITY.md`
+Internal proof, transcribed from `notes/FALSE_CLIFFORD_NORM_MF_STERILITY.md`
 (2026-08-12), sections 2 and 3. `requires: []` is a proof commitment: the
 argument uses only property `(T)` of `Gamma`, strictness of the compressor,
 stable finiteness of a norm matrix quotient, and the Clifford relations.

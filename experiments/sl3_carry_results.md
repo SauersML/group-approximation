@@ -30,7 +30,7 @@ or job remains.
 ## The universal generalized inverse is impossible
 
 Before computation, Proposition 4 of
-`docs/TRUE_INTEGRAL_CARRY_TRANSVERSALITY.md` closes the proposed search for
+`notes/TRUE_INTEGRAL_CARRY_TRANSVERSALITY.md` closes the proposed search for
 one `B` over `Z[G]` satisfying `DBD=D`.  For an infinite one-ended group,
 `H^1(G,Z[G])=0` identifies `ker D` with `im d0`.  An inner inverse would
 split that image, while augmentation forbids a left inverse to the column
@@ -140,7 +140,7 @@ bound and therefore not the circle-repair theorem.  A bad carry could be a
 long integer combination missed by LLL, and saturation alone gives no
 Euclidean control on a lattice inverse.
 
-`docs/INTEGRAL_CARRY_DISCRIMINANT_DUALITY.md` identifies the exact next
+`notes/INTEGRAL_CARRY_DISCRIMINANT_DUALITY.md` identifies the exact next
 object.  Compute the primitive cycle lattice
 
 `K_p=ker(d1^T) intersect Z^cells`
@@ -253,7 +253,7 @@ character blocks with the exact gluing code rather than optimize the full
 ## The constant-cycle transfer route is closed
 
 Sections 6--10 of
-`docs/INTEGRAL_CARRY_DISCRIMINANT_DUALITY.md` give a low-dimensional test
+`notes/INTEGRAL_CARRY_DISCRIMINANT_DUALITY.md` give a low-dimensional test
 for discriminant classes of the form
 
 `u=Jv/m`, `v in ker(d1_1^T)`.                         `(SCA4)`

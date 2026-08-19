@@ -8,7 +8,7 @@ distinct_from:
   commutant-projection-extraction: That asks for projections inside the relative commutant of a central mark; this produces one from an almost-invariant projection anywhere in the algebra, with a constant depending only on the Kazhdan constant.
   invariant-size-collapse: That is the collapse principle for a conjugation-invariant monotone size; this is an analytic approximation statement and says nothing about compressions.
 artifacts:
-  - docs/TRUE_RELATIVE_WALL_IS_COMMUTANT_GROWTH.md
+  - notes/TRUE_RELATIVE_WALL_IS_COMMUTANT_GROWTH.md
 ---
 
 Let `Gamma` have property `(T)` with Kazhdan set `S` and constant `kappa`,

@@ -6,8 +6,8 @@ title: Close nonhyperlinearity with one Pauli binary-membership estimate
 target: non-hyperlinear-group
 requires: [pauli-carrier-membership-decoder, pauli-binary-algebra-gap]
 artifacts:
-  - docs/HIGHEST_YIELD_NONHYPERLINEAR_ATTACK.md
-  - docs/TRUE_POSITIVE_DENSITY_LEAVITT_DECODER_ENDGAME.md
+  - notes/HIGHEST_YIELD_NONHYPERLINEAR_ATTACK.md
+  - notes/TRUE_POSITIVE_DENSITY_LEAVITT_DECODER_ENDGAME.md
 ---
 
 The decoder would make the transported trace-`1/4` carrier asymptotically

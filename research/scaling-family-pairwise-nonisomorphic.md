@@ -9,7 +9,7 @@ distinct_from:
   continuum-nonisomorphic-non-mf-cylinder: This claim distinguishes the explicit countable scaling family; the other asks for a continuum-sized family in the marked-group cylinder.
 artifacts:
   - non_mf_groups_exist.tex
-  - docs/NON_MF_FINAL_REVIEW_AND_RESOLUTION_2026-08-14.md
+  - notes/NON_MF_FINAL_REVIEW_AND_RESOLUTION_2026-08-14.md
 ---
 
 The finitely presented non-MF groups `E_m`, for integers `m >= 2`, are

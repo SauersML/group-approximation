@@ -6,7 +6,7 @@ title: Kazhdan gap, bimodule identity, spectral rounding at one half
 target: kazhdan-projection-rounding
 requires: []
 artifacts:
-  - docs/TRUE_RELATIVE_WALL_IS_COMMUTANT_GROWTH.md
+  - notes/TRUE_RELATIVE_WALL_IS_COMMUTANT_GROWTH.md
 ---
 
 The action `Ad pi|_Gamma` on `L^2(M)` is trace preserving with fixed space

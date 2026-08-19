@@ -4,7 +4,7 @@ id: mixed-approximation-black-hole
 kind: claim
 title: A finitely presented mixed sofic/MF approximation black hole
 artifacts:
-  - docs/COMPRESSION_COLLAPSE_MF_RADICAL.md
+  - notes/COMPRESSION_COLLAPSE_MF_RADICAL.md
 ---
 
 Credit: derived from Fournier-Facio's small-cancellation suggestion
@@ -31,7 +31,7 @@ Refinement (UNSUPPORTED in current artifacts — flagged 2026-08-15): "it
 can be arranged to contain every finitely generated recursively
 presented group."  The only universality available in the artifacts is
 the universal finitely presented **torsion-free** group `U` of
-`docs/TORSION_FREE_NORMAL_GENERATION_HULL_QUOTIENT.md` §1, which
+`notes/TORSION_FREE_NORMAL_GENERATION_HULL_QUOTIENT.md` §1, which
 contains every finitely presented torsion-free group — a strictly
 weaker statement.  The f.g.-recursively-presented version would have to
 come from the `C` parameter of arXiv:2512.09180 Proposition B, which no
@@ -40,7 +40,7 @@ artifact works out.  Do not build on the refinement until that is done.
 Mixed-quotient plumbing exists in Stability/MixedApproximation.lean;
 the existence input for the unrefined claim is the same Hull/Osin
 program as [[defect-saturation-full-mf-radical]] (audited 2026-08-15,
-see `docs/TORSION_FREE_NORMAL_GENERATION_HULL_QUOTIENT.md` §9) plus the
+see `notes/TORSION_FREE_NORMAL_GENERATION_HULL_QUOTIENT.md` §9) plus the
 nonsofic heredity of
 [[defect-normally-generates-torsion-free-quotient]] item 3.
 

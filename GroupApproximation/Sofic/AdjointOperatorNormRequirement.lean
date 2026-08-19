@@ -69,7 +69,7 @@ Two conventions for permutation matrices meet in this file --- Mathlib's
 ## What is not claimed
 
 Nothing here bears on Alekseev--Thom's Open Problem 6.2, which is open and is
-recorded as such in `docs/NON_MF_META_CLAIMS.md` (row `LI.05` is its
+recorded as such in `notes/NON_MF_META_CLAIMS.md` (row `LI.05` is its
 tombstone).  What is proved is the manuscript's stated *reason* for the two
 problems being different.
 

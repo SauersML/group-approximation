@@ -46,7 +46,7 @@ perfectness enters.  This is the kill behind
 [[nonsofic-one-relator-via-perfect-quotient-compression]], and it applies in
 particular to the two-generator perfect targets this corpus keeps producing —
 including, were it ever certified, the candidate in
-`docs/TORSION_FREE_NORMAL_GENERATION_HULL_QUOTIENT.md`, which carries a standing
+`notes/TORSION_FREE_NORMAL_GENERATION_HULL_QUOTIENT.md`, which carries a standing
 prohibition banner and is **not** used as an input anywhere here.
 
 It does not block: embedding `Q` in a one-relator group (that lane dies

@@ -7,7 +7,7 @@ target: literal-stably-finite-non-mf-reduced-group-algebra
 requires: [literal-central-mark-corona-invisible]
 artifacts:
   - non_mf_groups_exist.tex
-  - docs/NON_MF_IMPACT_FORMAL_STATUS.md
+  - notes/NON_MF_IMPACT_FORMAL_STATUS.md
   - GroupApproximation/Sofic/LiteralNonMFEndpoint.lean
   - GroupApproximation/Analysis/ReducedGroupCStarSeparable.lean
   - GroupApproximation/Analysis/ReducedGroupCStarTraceFaithful.lean

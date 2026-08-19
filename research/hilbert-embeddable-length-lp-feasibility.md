@@ -8,7 +8,7 @@ distinct_from:
   glebsky-manufactured-invariant-length: that extracts the one length Glebsky's Lemma 3 writes down; this shows that length is the pointwise-maximal admissible one, removes its truncation, and replaces the single test by a feasibility problem over the whole admissible interval
   hilbert-embeddable-witness-for-kun-thom-wreath: that asks the question for one group; this supplies the decision procedure and the shape of an obstruction certificate
 artifacts:
-  - docs/TRUE_GLEBSKY_HS_TRANSPORT_AUDIT.md
+  - notes/TRUE_GLEBSKY_HS_TRANSPORT_AUDIT.md
 ---
 
 Fix a finite group `H`, a defect set `X ⊆ H`, a target set `T ⊆ H` that is

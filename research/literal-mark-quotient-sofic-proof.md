@@ -5,12 +5,12 @@ kind: route
 title: Rerun the block tower without the central sign
 target: literal-mark-quotient-sofic
 requires: [literal-lamp-kernel-clifford-block-amalgam, finite-telescope-level-coset-orbits]
-artifacts: [docs/LITERAL_GROUP_IS_SOFIC_2026-08-14.md]
+artifacts: [notes/LITERAL_GROUP_IS_SOFIC_2026-08-14.md]
 ---
 
 ## Why sufficient
 
-Theorem 4.3 of `docs/LITERAL_GROUP_IS_SOFIC_2026-08-14.md`.  The block-amalgam
+Theorem 4.3 of `notes/LITERAL_GROUP_IS_SOFIC_2026-08-14.md`.  The block-amalgam
 claim gives `E/<w> = (*_{i in I} (Z/2)^8) semidirect V`, since killing the
 amalgamated centre of a free product amalgamated over a central subgroup gives
 the free product of the quotients.  Lemma 3.1 of that artifact used only that

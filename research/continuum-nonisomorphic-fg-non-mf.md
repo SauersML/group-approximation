@@ -9,8 +9,8 @@ distinct_from:
   scaling-family-non-mf: That establishes non-MF for every member of the scaling family without distinguishing any isomorphism types.
   clopen-non-mf-cylinder: That is a topological statement about a nonempty clopen set of marked groups; this is a cardinality statement about abstract isomorphism types.
 artifacts:
-  - docs/NON_MF_ARCHAEOLOGY.md
-  - docs/CREDIT_AND_PRIORITY_AUDIT.md
+  - notes/NON_MF_ARCHAEOLOGY.md
+  - notes/CREDIT_AND_PRIORITY_AUDIT.md
   - GroupApproximation/Sofic/ProductMultiplicity.lean
   - GroupApproximation/Sofic/ProductMultiplicityRank.lean
   - GroupApproximation/Algebra/TorsionFreeRank.lean
@@ -40,7 +40,7 @@ The deletion was expository, not a retraction: the same commits removed the
 whole multiplicity subsection while the lemma the proof depends on
 (`lem:subgroupMF`, subgroup heredity of MF) remains in the live manuscript at
 line 1907 and is Lean-verified as `GroupApproximation.IsOperatorMF.subgroup`.
-`docs/NON_MF_ARCHAEOLOGY.md:402` still lists "B. H. Neumann's continuum family
+`notes/NON_MF_ARCHAEOLOGY.md:402` still lists "B. H. Neumann's continuum family
 / Continuum many non-isomorphic finitely generated examples" as a consequence
 of the main theorem.
 

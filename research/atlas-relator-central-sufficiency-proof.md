@@ -13,7 +13,7 @@ requires: []
 hyperlinear model of `Q` kills `R̄` exactly; finite-group HS-stability
 corrects the two factor restrictions to exact representations of the
 canonical form (25), changing every fixed word by `o(1)`
-(`docs/EXPLICIT_LEAVITT_ATLAS.md:534-570`, which itself concludes "since
+(`notes/EXPLICIT_LEAVITT_ATLAS.md:534-570`, which itself concludes "since
 the original pulled-back models kill `R̄`, they kill (24)
 asymptotically").  Nothing distinguishes elements of `N̄` from other
 elements of `R̄` anywhere in the direction.
@@ -26,7 +26,7 @@ killing `⟨⟨T⟩⟩`, so it factors through `V := P̄/⟨⟨T⟩⟩` and give
 nontrivial hyperlinear image of a group that is perfect (a quotient of
 `A₈ * A₈`) and central over `Q` — exactly the hypotheses of the
 one-witness certificate; the identification `V ≅ U_Q` is decoration
-(`docs/FALSE_RECURSIVE_ATLAS_EXHAUSTION.md:566-568` records the same
+(`notes/FALSE_RECURSIVE_ATLAS_EXHAUSTION.md:566-568` records the same
 remark for its own Theorem 4).  Centrality of `R̄/⟨⟨T⟩⟩` in `V` is
 precisely the hypothesis `N̄ ≤ ⟨⟨T⟩⟩`; conversely if `N̄ ≤ ⟨⟨T⟩⟩ ≤ R̄`
 then `V` is a perfect central extension of `Q`.  The two directions
@@ -42,6 +42,6 @@ and `[P̄, R̄]` maps to `1`.  Hence `N̄ ≤ ⟨⟨[x,r_i]⟩⟩`.
 **The Steinberg specialization.**  If `P̄/⟨⟨T_St⟩⟩ ≅ St₅(L)` over `Q`,
 then `R̄/⟨⟨T_St⟩⟩` is the kernel of `St₅(L) ↠ E₅(L) ≅ Q`, which is
 `K₂(5, L)`, central for `n ≥ 5` by Kervaire–Steinberg (recorded
-literature premise, tagged: `docs/NOTEPAD.md:21650-21652`).  So
+literature premise, tagged: `notes/NOTEPAD.md:21650-21652`).  So
 `N̄ ≤ ⟨⟨T_St⟩⟩` holds automatically and `T_St` is usable.  Derivation and
 screens: `research/artifacts/atlas-relator-extraction-2026-08-15.md` §(a).

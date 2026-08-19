@@ -6,7 +6,7 @@ title: Separate the centre in a finite Clifford quotient and everything else aft
 target: clifford-block-amalgam-residually-finite
 requires: []
 artifacts:
-  - docs/E_SOFICITY_SELF_CONTAINED_2026-08-16.md
+  - notes/E_SOFICITY_SELF_CONTAINED_2026-08-16.md
 ---
 
 ## Direct proof

@@ -54,7 +54,7 @@ maximal displacement, and the consequent reduction of the construction to
 a non-co-Hopfian property-(T) group.  The norm-corona implementation is
 ours — his formulation passes to the argmax subsequence, which does not
 vanish in a c_0-corona, and finite-family block amplification replaces
-that step.  Full split in `docs/CREDIT_AND_PRIORITY_AUDIT.md`.  Verified
+that step.  Full split in `notes/CREDIT_AND_PRIORITY_AUDIT.md`.  Verified
 here independently.
 Formalization surface: differs from the compression-form core only in
 the estimate layer (max-displacement bookkeeping + pigeonhole), a

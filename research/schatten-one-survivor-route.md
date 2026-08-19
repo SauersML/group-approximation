@@ -6,7 +6,7 @@ title: A Schatten-one model of the mark is a hyperlinear survivor
 target: sofic-radical-hyperlinear-survivor
 requires: [schatten-one-corner-detector, schatten-one-models-retaining-mark]
 artifacts:
-  - docs/TRUE_SCHATTEN_ONE_RADICAL_CORNER.md
+  - notes/TRUE_SCHATTEN_ONE_RADICAL_CORNER.md
 ---
 
 ## Why sufficient

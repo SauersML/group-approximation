@@ -8,7 +8,7 @@ distinct_from:
   invariant-graph-clifford-phase: that classifies which invariant graphs keep the marked word alive; this measures the degree of the smallest such graph and finds it infinite.
   two-point-orbit-approximation: that is an approximation property of the G-set (a two-element-window weakening of a sofic action, with maps into finite symmetric groups); this is an exact index computation, [Gamma : Gamma cap h Gamma h^(-1)] infinite, with no approximation notion in it.
 artifacts:
-  - docs/COMMUTING_WREATH_SOFIC_RADICAL.md
+  - notes/COMMUTING_WREATH_SOFIC_RADICAL.md
 ---
 
 Let `r,d>=3`, `R_+=F_q[x_1,...,x_d]`, `R=F_q[x_1^(±1),...,x_d^(±1)]`,
@@ -24,7 +24,7 @@ Theorem E pair, and `X=G/Gamma`.
 
 2. **The marked element fails it.**  For `h=e_12(x^m)` with `m` not in
    `N^d` — in particular for the recorded marked element
-   `h=e_12((x_1...x_d)^(-1))` of docs/COMMUTING_WREATH_SOFIC_RADICAL.md,
+   `h=e_12((x_1...x_d)^(-1))` of notes/COMMUTING_WREATH_SOFIC_RADICAL.md,
    Corollary 2 — one has `(h^(-1))_(12) h_(11) = -x^m` outside `R_+`.
    Hence
 

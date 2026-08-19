@@ -16,7 +16,7 @@ supplies exactly those three statements for exactly that object.  The
 development the endpoint travels, however, still runs on
 `InvolutionCollapseProfile.bVec`, which is the printed vector *capped to zero*
 at the stages before the Step-3 threshold; that is audit rows `CO.07`, `CO.09`
-and `CO.09b` (`docs/COLLAPSE_STEP_AUDIT.md`, COL.17, COL.19, COL.20).
+and `CO.09b` (`notes/COLLAPSE_STEP_AUDIT.md`, COL.17, COL.19, COL.20).
 
 This module is the bridge that lets the endpoint state its conclusions about the
 printed vector without reproving anything analytic.  Everything rests on one

@@ -8,8 +8,8 @@ distinct_from:
   central-sign-corona-obstruction: That claim proves the central involution dies in every corona model for the Kazhdan compression pattern; this one is a general reformulation of MF for any central order-two extension, with no Kazhdan hypothesis.
   thom-central-corner-criterion: That is the published tracial analogue — hyperlinearity of a central extension as embeddability of every twisted corner into `R^omega`, and it comes with descent to central quotients; this is the operator-norm corona version for an order-two kernel, and MF has no descent, which is exactly why the quotient claims here are not free.
 artifacts:
-  - docs/COMMUTING_LAMP_QUOTIENT_STRUCTURE_AND_MF_FORK_2026-08-14.md
-  - docs/NOTEPAD.md
+  - notes/COMMUTING_LAMP_QUOTIENT_STRUCTURE_AND_MF_FORK_2026-08-14.md
+  - notes/NOTEPAD.md
 ---
 
 Let `1 -> C_2 -> G -> K -> 1` be central with `K` MF, let

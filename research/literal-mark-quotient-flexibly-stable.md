@@ -9,7 +9,7 @@ distinct_from:
   literal-mark-quotient-sofic: That established claim gives permutation microstates for `E/<w>`; this one asks whether its almost-actions are near genuine ones, which soficity does not decide — and which is refuted by combining that claim with the quotient's finite residual.
   literal-mark-quotient-not-stable-in-finite-actions: That established claim is the negation of this one at the weakest stability notion, hence refutes it.
 artifacts:
-  - docs/LITERAL_GROUP_BLOCK_AMALGAM_STRUCTURE_2026-08-14.md
+  - notes/LITERAL_GROUP_BLOCK_AMALGAM_STRUCTURE_2026-08-14.md
 ---
 
 The finitely presented group

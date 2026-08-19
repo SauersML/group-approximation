@@ -35,7 +35,7 @@ committed `experiments/atlas-kernel-radius5-summary.json` count
 (seconds) and `--radius 5` (minutes).
 
 **Closing the length gap.**  Proposition 4 of
-`docs/FALSE_RECURSIVE_ATLAS_EXHAUSTION.md` states that the half-radius-`r`
+`notes/FALSE_RECURSIVE_ATLAS_EXHAUSTION.md` states that the half-radius-`r`
 spanning-tree set generates, as a subgroup, every kernel element of
 X-length `≤ 2r`.  A homomorphism killing the generators kills the
 subgroup, so every kernel element of X-length `≤ 8` dies under

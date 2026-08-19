@@ -75,7 +75,7 @@ transported into `V`, and on the commensurated-subgroup criterion of
 
 What is deliberately *not* proved here is that a block is a clique with eight
 vertices, equivalently that `K = B ∪ BβB`; that is Proposition 4.2 of
-`docs/LITERAL_GROUP_BLOCK_AMALGAM_STRUCTURE_2026-08-14.md`, and it rests on the
+`notes/LITERAL_GROUP_BLOCK_AMALGAM_STRUCTURE_2026-08-14.md`, and it rests on the
 identification of the base.  Consequently the lamp factor is the Clifford group
 of the orbital graph, not visibly a free product of copies of `ClLamp(8)`
 amalgamated over `⟨ζ⟩`; the latter is the same group once the clique property

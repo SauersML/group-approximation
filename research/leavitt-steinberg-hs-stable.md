@@ -8,8 +8,8 @@ distinct_from:
   leavitt-steinberg-hs-unstable: These are mutually exclusive branch selections for the same explicit group.
   hs-expander-block-decomposition: That is a general decomposition property of almost-representations of every Kazhdan group; this is the branch selection for one explicit group, which that property would imply.
 artifacts:
-  - docs/ATLAS_HS_CRITERION.md
-  - docs/NOTEPAD.md
+  - notes/ATLAS_HS_CRITERION.md
+  - notes/NOTEPAD.md
 ---
 
 Prove normalized Hilbert--Schmidt stability of
@@ -63,7 +63,7 @@ a different theorem in a norm the DGLT machine does not accept.
 
 **Hyperfinite stability is automatic here, and says why.**  The concession
 in the statement above is now a node with its proof imported from the
-corpus: `steinberg-hyperfinite-hs-stable`, from `docs/NOTEPAD.md:22220-22238`,
+corpus: `steinberg-hyperfinite-hs-stable`, from `notes/NOTEPAD.md:22220-22238`,
 with the correct attribution (Dogon--Vigdorovich arXiv:2506.20843 Thm 6.2,
 not Hadwin--Shulman) and the two citation traps recorded on its route.  It
 constrains only the amenable part of the trace simplex, so it fences the
@@ -72,8 +72,8 @@ opposite branch without touching this one.
 **The `(TT)/T` route is refuted and explicitly forbidden.**  Property
 `(TT)/T` of `E_n(L_(F_2)(1,2))` for `n>=3`, and hence of `St_5(L)` by
 invariance under Kazhdan central extensions, is **established** in the
-corpus (`docs/LEAVITT_TT_T.md:203-241`).  It does not give this claim.
-`docs/FALSE_TT_T_IS_NOT_DIMENSION_FREE_HS_STABILITY.md` isolates two losses:
+corpus (`notes/LEAVITT_TT_T.md:203-241`).  It does not give this claim.
+`notes/FALSE_TT_T_IS_NOT_DIMENSION_FREE_HS_STABILITY.md` isolates two losses:
 normalized-HS control does not imply operator-norm control uniformly in the
 dimension (`‖A‖_op <= sqrt(d)‖A‖_(2,d)`), and the Burger--Ozawa--Thom
 statement fixes `d` before compactness, so it cannot be diagonalized into a

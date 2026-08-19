@@ -6,7 +6,7 @@ title: Direct proof of Locally finite commutants recover at shifted scales
 target: shifted-scale-recovery
 requires: []
 artifacts:
-  - docs/TRUE_LOCALLY_FINITE_COMMUTANTS_RECOVER_BUT_AT_SHIFTED_SCALES.md
+  - notes/TRUE_LOCALLY_FINITE_COMMUTANTS_RECOVER_BUT_AT_SHIFTED_SCALES.md
   - GroupApproximation/PropertyT/FiniteGroupAverage.lean
 ---
 

@@ -8,7 +8,7 @@ requires: []
 artifacts:
   - GroupApproximation/Monsters/LiteralBaseCompleteness.lean
   - GroupApproximation/Monsters/P13DescentMaster.lean
-  - docs/E_SOFICITY_SELF_CONTAINED_2026-08-16.md
+  - notes/E_SOFICITY_SELF_CONTAINED_2026-08-16.md
 ---
 
 ## Direct proof
@@ -36,7 +36,7 @@ An element with identity affine matrix therefore has trivial rotation part by
 (3) and `a = b = c = 0` by (4), hence is trivial.
 
 The mathematical statement is written out as Section 1 of
-`docs/E_SOFICITY_SELF_CONTAINED_2026-08-16.md`.
+`notes/E_SOFICITY_SELF_CONTAINED_2026-08-16.md`.
 
 ## What it costs
 

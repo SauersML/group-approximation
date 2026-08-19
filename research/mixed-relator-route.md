@@ -6,7 +6,7 @@ title: Mixed-relator route through the Leavitt atlas
 target: non-hyperlinear-group
 requires: [common-self-map-law, outer-pvm-synchronization, relator-energy-variance-bound, leavitt-multiplicative-trace-floor]
 artifacts:
-  - docs/HIGHEST_YIELD_NONHYPERLINEAR_ATTACK.md
+  - notes/HIGHEST_YIELD_NONHYPERLINEAR_ATTACK.md
 ---
 
 Claimed reduction assembled from the 2026-08-14 AGENDA state: given

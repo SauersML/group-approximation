@@ -8,7 +8,7 @@ distinct_from:
   finite-traced-kazhdan-transport: That claim is a theorem about representations of a group in such coordinates; this one is only the closure and finiteness bookkeeping of the coordinate class itself, with no group in the statement.
 artifacts:
   - non_mf_groups_exist.tex
-  - docs/NO_ONE_SIDED_GROWTH.md
+  - notes/NO_ONE_SIDED_GROWTH.md
 ---
 
 Let `C_ftr` be the class of pairs `(A,tau)` with `A` a unital C-star algebra
@@ -28,7 +28,7 @@ and `tau` a faithful tracial state.  Then
 These are exactly the four properties the matrix-coordinate compressor
 argument uses of `M_d` with its normalized trace.  Item 1 is the property the
 manuscript itself isolates as load bearing: in the ultraproduct formulation
-(`docs/NO_ONE_SIDED_GROWTH.md`) the chain is `P <= VPV^*`, `P ~ VPV^*`, and
+(`notes/NO_ONE_SIDED_GROWTH.md`) the chain is `P <= VPV^*`, `P ~ VPV^*`, and
 "the norm-matrix corona is finite, so `P = VPV^*`", the finiteness being
 proved by polar correction of a representing sequence --- an argument which
 never mentions matrices.  Nothing else about

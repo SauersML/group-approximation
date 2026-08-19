@@ -6,8 +6,8 @@ title: Two lines of trace bookkeeping and the recorded functorial bound
 target: corner-renormalization-cost
 requires: []
 artifacts:
-  - docs/FALSE_FERMIONIC_AMPLIFICATION.md
-  - docs/FALSE_WEAK_MF_EFFECTIVE_RANK_PROFILE.md
+  - notes/FALSE_FERMIONIC_AMPLIFICATION.md
+  - notes/FALSE_WEAK_MF_EFFECTIVE_RANK_PROFILE.md
 ---
 
 ## Direct proof
@@ -24,7 +24,7 @@ equalities, so the constant is attained.
 
 `(C3)` is the chain `Tr(A^*A) <= ||A||_op Tr(|A|) <= 2 Tr(|A|)` divided by
 `r >= 1`; it is stated in section 4 of
-`docs/TRUE_SCHATTEN_ONE_RADICAL_CORNER.md` as the scaling boundary of that
+`notes/TRUE_SCHATTEN_ONE_RADICAL_CORNER.md` as the scaling boundary of that
 theorem.
 
 The identification of the constant in the matrix case is arithmetic:

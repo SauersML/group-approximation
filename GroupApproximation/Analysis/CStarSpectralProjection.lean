@@ -9,7 +9,7 @@ continuous functional calculus produces a self-adjoint idempotent `p`
 absorbed by the element: `m * p = p * m = p`.
 
 This is the projection brick of the strict-Kazhdan-compression program
-of `docs/FORMALIZATION_DIRECTIVES_2026-08-15.md` §1: applied to the
+of `notes/FORMALIZATION_DIRECTIVES_2026-08-15.md` §1: applied to the
 unitary average of a Kazhdan set in the maximal group C-star algebra —
 whose spectral gap is `AbstractSpectralGap.unitaryAverage_spectrum_le`
 componentwise — it yields the Kazhdan projection.

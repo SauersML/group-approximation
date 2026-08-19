@@ -15,7 +15,7 @@ rows together, this script:
 4. verifies the resulting two vectors against both full boundaries.
 
 The result is a modular reconstruction primitive for the rational pullback
-in ``docs/TRUE_NONLINEAR_DISCRIMINANT_REPAIR_FORMULA.md``.  A successful
+in ``notes/TRUE_NONLINEAR_DISCRIMINANT_REPAIR_FORMULA.md``.  A successful
 run writes the two residue vectors to a compressed NumPy archive and emits
 a small hash-bearing JSON certificate.
 """

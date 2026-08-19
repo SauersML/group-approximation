@@ -6,9 +6,9 @@ title: Phase-cancelled amplification of a rate-controlled MF model
 target: mf-implies-hyperlinear
 requires: [hyperlinear-elementwise-visibility, mf-trace-gap-defect-ratio-models]
 artifacts:
-  - docs/FALSE_ONE_NUMBER_RELATIVE_COMMUTANT_CRITERION.md
-  - docs/FALSE_FERMIONIC_AMPLIFICATION.md
-  - docs/NOTEPAD.md
+  - notes/FALSE_ONE_NUMBER_RELATIVE_COMMUTANT_CRITERION.md
+  - notes/FALSE_FERMIONIC_AMPLIFICATION.md
+  - notes/NOTEPAD.md
   - GroupApproximation/Sofic/ExteriorMFProfile.lean
 ---
 

@@ -8,7 +8,7 @@ distinct_from:
   kun-thom-clifford-extension-not-weak-mf: That is a negative operator-norm result for the Clifford lamp extension; this is a positive one for the free-lamp amalgam, and the two together are what separate the lamp types.
   weakly-sofic-not-sofic: That separates weak soficity from soficity using the same family; this is the operator-norm MF statement about it.
 artifacts:
-  - docs/WEAK_MF_NONSOFIC_DOUBLE.md
+  - notes/WEAK_MF_NONSOFIC_DOUBLE.md
 ---
 
 Every symmetric double
@@ -38,7 +38,7 @@ gives explicit groups that are **weak MF and nonsofic**. That separation is
 exactly what `nonsofic-mechanism-mf-classification` asks for on the free-lamp
 side of the mechanism.
 
-Note the scope limit recorded in `docs/NOTEPAD.md:857-860`: this separates
+Note the scope limit recorded in `notes/NOTEPAD.md:857-860`: this separates
 weak MF from sofic. It does **not** separate Schafhauser-MF or hyperlinear
 from sofic, because operator-norm separation can be supported on a subspace of
 vanishing normalized rank. The point is the same one that
@@ -47,7 +47,7 @@ vanishing normalized rank. The point is the same one that
 ## What it does not cover
 
 The argument is about the **free-lamp amalgam**, not the commuting-lamp wreath.
-`docs/NOTEPAD.md:30421-30423` is explicit about the boundary:
+`notes/NOTEPAD.md:30421-30423` is explicit about the boundary:
 
 > Correction: weak MF of W is not banked. The symmetric-double proof applies
 > to the free-lamp amalgam, not to the commuting-lamp wreath product. Thus

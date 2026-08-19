@@ -6,8 +6,8 @@ title: A Hilbert embeddable witness yields a two-point approximation
 target: two-point-orbit-approximation
 requires: [hilbert-embeddable-witness-for-kun-thom-wreath]
 artifacts:
-  - docs/TRUE_LAMP_CHARACTER_ORBIT_SEPARATION.md
-  - docs/TRUE_HILBERT_EMBEDDABLE_IS_REPRESENTATION_REALIZED.md
+  - notes/TRUE_LAMP_CHARACTER_ORBIT_SEPARATION.md
+  - notes/TRUE_HILBERT_EMBEDDABLE_IS_REPRESENTATION_REALIZED.md
 ---
 
 # A Hilbert embeddable witness yields a two-point approximation

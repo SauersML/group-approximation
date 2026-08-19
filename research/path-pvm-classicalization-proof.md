@@ -6,7 +6,7 @@ title: Direct proof of Path-shaped PVM classicalization has no outcome loss
 target: path-pvm-classicalization
 requires: []
 artifacts:
-  - docs/TRUE_PATH_PVMS_CLASSICALIZE_WITHOUT_OUTCOME_LOSS.md
+  - notes/TRUE_PATH_PVMS_CLASSICALIZE_WITHOUT_OUTCOME_LOSS.md
 ---
 
 # Direct proof of Path-shaped PVM classicalization has no outcome loss

@@ -6,7 +6,7 @@ title: Scale-index route through commutant reconstruction
 target: non-hyperlinear-group
 requires: [quantized-scale-index]
 artifacts:
-  - docs/TRUE_LOCALLY_FINITE_COMMUTANTS_RECOVER_BUT_AT_SHIFTED_SCALES.md
+  - notes/TRUE_LOCALLY_FINITE_COMMUTANTS_RECOVER_BUT_AT_SHIFTED_SCALES.md
 ---
 
 Successor of the ruled-out separate-recovery route separate-commutant-recovery. Coordinate

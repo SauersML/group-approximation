@@ -7,7 +7,7 @@ import GroupApproximation.Sofic.InvolutionCollapseMetric
 This module reproves the generator-normalization bound of Step 3 and the
 displacement almost-cocycle of Step 4 of the proof sketch of
 `\ref{thm:collapse}` against the objects the manuscript printed at the time,
-repairing three recorded mismatches (`docs/COLLAPSE_STEP_AUDIT.md`, COL.17,
+repairing three recorded mismatches (`notes/COLLAPSE_STEP_AUDIT.md`, COL.17,
 COL.19, COL.20).
 
 **Read "the manuscript actually prints" historically.**  Commit `3a45fa60`

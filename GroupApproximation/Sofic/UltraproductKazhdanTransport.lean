@@ -87,7 +87,7 @@ proof no longer travels, and which ledger row `KT.28` cites for a step of its
 own.
 
 **What is still *not* the printed argument.**  This is the canonical record;
-`docs/NON_MF_PROOF_LEDGER.md` tracks the same three items as UF.01, UF.02 and
+`notes/NON_MF_PROOF_LEDGER.md` tracks the same three items as UF.01, UF.02 and
 UF.03.  Each is a deviation, not a closure, and none of them is repaired by
 anything in this file.
 
@@ -146,7 +146,7 @@ summand of `ProperProjectionCompression.isometry`,
 and `unitary_conjugate_eq_of_absorbs` the passage from Dedekind finiteness to
 `Q = P`.  This file only applies it.
 
-The trap recorded in `docs/NOTEPAD.md` under the heading
+The trap recorded in `notes/NOTEPAD.md` under the heading
 "The Hilbert-ultraproduct trap in defect-localized commutant pinning" is
 avoided exactly as the
 manuscript avoids it: the hypotheses kept live are the **operator-norm**
@@ -215,7 +215,7 @@ theorem unitaryGroup_conjTranspose_mem {Y : FiniteModel} {W : Matrix Y Y ℂ}
 This is the estimate behind the manuscript's remark that "the uniform
 operator-norm bound makes `ξ` well defined": it is the only place where the
 operator-norm hypothesis on `(x_n)` is consumed, and it is exactly what the
-invalid variant of the argument recorded in `docs/NOTEPAD.md` lacks. -/
+invalid variant of the argument recorded in `notes/NOTEPAD.md` lacks. -/
 theorem hsNormSq_le_mul_self_l2_opNorm (Y : FiniteModel)
     (hY : 0 < Fintype.card Y) (A : Matrix Y Y ℂ) :
     hsNormSq Y A ≤ ‖A‖ * ‖A‖ := by

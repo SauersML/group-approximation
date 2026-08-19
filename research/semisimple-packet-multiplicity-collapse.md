@@ -6,8 +6,8 @@ title: Compression collapse for semisimple packets via self-normalized multiplic
 distinct_from:
   compression-torsion-collapse: That established claim needs the orbit images to commute pairwise, so its discrete invariant is a joint spectral rank; this one allows any packet whose finite windows generate finite-dimensional C-star algebras, replacing joint eigenspace ranks by irreducible-module multiplicity vectors — Clifford and Weyl packets included, where joint spectral projections do not exist.
 artifacts:
-  - docs/COMPRESSION_COLLAPSE_MF_RADICAL.md
-  - docs/FALSE_KAZHDAN_COMPRESSION_INDEX_TO_PHASE.md
+  - notes/COMPRESSION_COLLAPSE_MF_RADICAL.md
+  - notes/FALSE_KAZHDAN_COMPRESSION_INDEX_TO_PHASE.md
 ---
 
 Let `W` be countable, `pi` a norm-corona representation, `Lambda <= W`
@@ -45,7 +45,7 @@ becomes one small example.
 **K_0 reading and a trap.**  The multiplicity vector is a positive
 K_0-type invariant: a rank-one projection has normalized trace `1/d_n` but
 rank `1`, which is what dimension-normalized trace forgets.  It is NOT the
-naive compression index — docs/FALSE_KAZHDAN_COMPRESSION_INDEX_TO_PHASE.md
+naive compression index — notes/FALSE_KAZHDAN_COMPRESSION_INDEX_TO_PHASE.md
 shows `ind(PUP)` vanishes identically because `P` and `UPU^*` are already
 internally Murray--von Neumann equivalent.  A viable invariant must compare
 genuinely distinct module sectors, which the multiplicity vector does.

@@ -9,8 +9,8 @@ distinct_from:
   torsion-free-higman-embedding: that claim is about embedding recursively presented torsion-free groups into finitely presented ones; this one is about the normal closure of a prescribed subgroup in a small-cancellation quotient.
   common-quotient-onto-normal-subgroup: that claim is the general small-cancellation tool, stated for any two acylindrically hyperbolic groups and any infinite normal subgroup of one of them; this one is its instance at the Fournier-Facio data, and is the statement the non-MF route consumes.
 artifacts:
-  - docs/TORSION_FREE_NORMAL_GENERATION_HULL_QUOTIENT.md
-  - docs/TORSION_FREE_SATURATION_DIRECT_ROUTE_2026-08-14.md
+  - notes/TORSION_FREE_NORMAL_GENERATION_HULL_QUOTIENT.md
+  - notes/TORSION_FREE_SATURATION_DIRECT_ROUTE_2026-08-14.md
 ---
 
 In the Fournier-Facio construction (`fournier-facio-torsion-free-skeleton`)
@@ -122,7 +122,7 @@ Dead ends, recorded so they are not re-attempted.
 Three developments after the body above was written.
 
 1. **Direct single-application route**
-   (`docs/TORSION_FREE_SATURATION_DIRECT_ROUTE_2026-08-14.md`).
+   (`notes/TORSION_FREE_SATURATION_DIRECT_ROUTE_2026-08-14.md`).
    Instead of re-running Hull's proof of Corollary 7.4 with the routing pair
    confined to `<<S>>^E` (the artifact's Theorem B), apply Hull's Theorem
    7.1 **once, as a published black box, to the already-constructed
@@ -150,7 +150,7 @@ Three developments after the body above was written.
    has no proper finite-index subgroup, and its marked presentation plus one
    inequation gives a nonempty clopen set of 2-marked groups all
    simultaneously nonsofic and non-MF.  Written out with proofs in
-   `docs/TORSION_FREE_SATURATION_DIRECT_ROUTE_2026-08-14.md` §§5-6.
+   `notes/TORSION_FREE_SATURATION_DIRECT_ROUTE_2026-08-14.md` §§5-6.
 
 ## Addendum 2026-08-15: adversarial audit CONFIRMED
 
@@ -165,7 +165,7 @@ and proofs (the f.g. case of Corollary 7.4 provably bypasses the
 Corollary 7.3 direct limit and uses exactly two applications of Theorem
 7.1, one relator's normal closure per prescribed element).  Verdict:
 **CONFIRMED**; full record in
-`docs/TORSION_FREE_NORMAL_GENERATION_HULL_QUOTIENT.md` §9.  One erratum
+`notes/TORSION_FREE_NORMAL_GENERATION_HULL_QUOTIENT.md` §9.  One erratum
 found and fixed in that artifact (its "convention correction" attributed
 to FF's paper a `J = t_1 pi(S) t_1^{-1}` convention the paper does not
 have; FF's v1 already writes `J = t_1^{-1} pi(S) t_1`).  The

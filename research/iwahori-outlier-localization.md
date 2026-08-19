@@ -4,7 +4,7 @@ id: iwahori-outlier-localization
 kind: route
 title: Iwahori central-regular outlier localization
 artifacts:
-  - docs/TRUE_IWAHORI_CENTRAL_REGULAR_OUTLIER_LOCALIZATION.md
+  - notes/TRUE_IWAHORI_CENTRAL_REGULAR_OUTLIER_LOCALIZATION.md
 target: iwahori-outlier-repair
 requires: [edge-pair-mixed-gap-collapse]
 ---

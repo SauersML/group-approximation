@@ -8,7 +8,7 @@ distinct_from:
   outer-pvm-synchronization: This is the completed finite-matrix endpoint after membership is obtained; the other asks to synchronize transition measurements from group microstates.
 artifacts:
   - GroupApproximation/Leavitt/PauliCarrierBinaryGap.lean
-  - docs/TRUE_PAULI_CARRIER_BINARY_ALGEBRA_GAP.md
+  - notes/TRUE_PAULI_CARRIER_BINARY_ALGEBRA_GAP.md
 ---
 
 If projections `E,F` satisfy `tau(E)=1/8` and `tau(F)=1/4`, then the squared

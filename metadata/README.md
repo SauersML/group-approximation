@@ -1,11 +1,11 @@
 # Machine-consumed metadata
 
 The audited artifacts that code depends on — claim manifests, signature
-pins, declaration rosters, and the proof-step ledger.  `docs/` holds prose
+pins, declaration rosters, and the proof-step ledger.  `notes/` holds prose
 notes; these files moved out of it on 2026-08-18 because checkers, CI
 gates, and the paper site read them by path.
 
-Compat symlinks remain at the old `docs/` paths so in-flight lanes and
+Compat symlinks remain at the old `notes/` paths so in-flight lanes and
 older instructions keep working; writes through a symlink land here.  New
 references should use `metadata/` directly.
 

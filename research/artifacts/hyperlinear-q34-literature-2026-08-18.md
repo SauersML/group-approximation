@@ -11,7 +11,7 @@ abstract was read the downstream use is confined to what the abstract states.
 Nothing in this file is a proof; routes cite it as a citation import, in the
 sense of `kun-thom-nonsofic-wreath-citation`.
 
-None of these identifiers appeared anywhere in `research/`, `docs/` or
+None of these identifiers appeared anywhere in `research/`, `notes/` or
 `notes/` before this file.
 
 ---

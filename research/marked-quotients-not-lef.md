@@ -10,7 +10,7 @@ distinct_from:
   finite-quotient-blindness: That claim says the compression data dies in a finite quotient; this one runs the same collapse on a local embedding and concludes non-LEF for the two marked quotients, where the defect is still nontrivial.
   cyclic-base-sharpness: That is the (T)-free calibration whose quotient is amenable and MF; this claim is the affine-base statement, where amenability is unavailable.
 artifacts:
-  - docs/COMMUTING_LAMP_QUOTIENT_STRUCTURE_AND_MF_FORK_2026-08-14.md
+  - notes/COMMUTING_LAMP_QUOTIENT_STRUCTURE_AND_MF_FORK_2026-08-14.md
   - GroupApproximation/Criterion/FiniteQuotientBlindness.lean
   - GroupApproximation/Monsters/CyclicBaseLEFObstruction.lean
 ---

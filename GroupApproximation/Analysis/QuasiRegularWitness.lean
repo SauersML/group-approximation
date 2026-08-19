@@ -9,7 +9,7 @@ witness vector for strict compression: the point mass at the base coset
 is fixed by the subgroup and moved by every element outside it.
 
 This is brick (b3) of the strict-Kazhdan-compression program of
-`docs/FORMALIZATION_DIRECTIVES_2026-08-15.md` §1: at this coordinate the
+`notes/FORMALIZATION_DIRECTIVES_2026-08-15.md` §1: at this coordinate the
 fixed subspace of a subgroup `K` strictly contains the fixed subspace of
 any subgroup with an element outside `K`, which is what separates the
 Kazhdan projection from its conjugate once the spectral-gap brick lands.

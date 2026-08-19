@@ -5,7 +5,7 @@ kind: claim
 title: The first exceptional raw/comb pair generates the infinite dihedral group
 invalidates: [exceptional-mixed-unilateral-shift-route]
 artifacts:
-  - docs/TRUE_MIXED_COMMUTATOR_HAS_INFINITE_ORDER.md
+  - notes/TRUE_MIXED_COMMUTATOR_HAS_INFINITE_ORDER.md
   - GroupApproximation/Sofic/MixedCommutatorDihedral.lean
 ---
 

@@ -8,9 +8,9 @@ distinct_from:
   iwahori-fractional-transport-integralization: That is the global operator-valued matching problem which extracts orthogonal near-unitary block pairs from a fractional transport; this claim starts after one such pair of irreducible edge types has already been isolated.
   iwahori-outlier-repair: That is the complete central-regular endpoint, including physical mass localization, integralization and assembly across all blocks; this claim is only the local correction of one matched irreducible type pair.
 artifacts:
-  - docs/FALSE_ROBUST_T_IWAHORI_EDGE_REPAIR.md
-  - docs/TRUE_IWAHORI_FACTOR_GATE_IS_COSYSTOLIC_ANGLE.md
-  - docs/TRUE_IWAHORI_INDEX_THREE_HAS_BOUNDED_BRANCHING.md
+  - notes/FALSE_ROBUST_T_IWAHORI_EDGE_REPAIR.md
+  - notes/TRUE_IWAHORI_FACTOR_GATE_IS_COSYSTOLIC_ANGLE.md
+  - notes/TRUE_IWAHORI_INDEX_THREE_HAS_BOUNDED_BRANCHING.md
 ---
 
 Let `Kbar=PSL_2(Z)` and `Bbar=<u,e | e^2=1> ~= Z*C_2` be the upper Iwahori
@@ -53,14 +53,14 @@ large reducible edge representations into such orthogonal pairs; that is
 ## Attempts
 
 1. **Use robust property `(T)` of the ambient amalgam.**  Closed by
-   `docs/FALSE_ROBUST_T_IWAHORI_EDGE_REPAIR.md`: the edge group is virtually
+   `notes/FALSE_ROBUST_T_IWAHORI_EDGE_REPAIR.md`: the edge group is virtually
    free and the mixed representation has no uniform internal gap, while the
    ambient adjoint scalar line is fixed for the wrong reason.
 2. **Use ordinary local rigidity of the representation variety.**  A local
    implicit-function theorem has constants depending on the positive
    singular values of the Bass--Serre restriction map.  The missing statement
    is precisely a dimension-uniform lower bound modulo its kernel, together
-   with basin capture; `docs/TRUE_IWAHORI_FACTOR_GATE_IS_COSYSTOLIC_ANGLE.md`
+   with basin capture; `notes/TRUE_IWAHORI_FACTOR_GATE_IS_COSYSTOLIC_ANGLE.md`
    isolates this as the cosystolic-angle problem.
 3. **Exploit only `alpha^2=id`.**  The involution makes the two loci symmetric
    and is useful structure, but symmetry alone does not prevent two

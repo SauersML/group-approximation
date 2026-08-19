@@ -6,7 +6,7 @@ title: Powers–Størmer into the Hilbert–Schmidt representation, then propert
 target: amenable-rep-of-kazhdan-has-fd-subrep
 requires: []
 artifacts:
-  - docs/TRUE_CHARGE_EXTENSION_NEEDS_COAMENABILITY.md
+  - notes/TRUE_CHARGE_EXTENSION_NEEDS_COAMENABILITY.md
 ---
 
 # Powers–Størmer into the Hilbert–Schmidt representation, then property (T)

@@ -29,8 +29,8 @@ factorization property and of Haagerup's property.
 tool, and its witness is soft in exactly the way the dead architectures were
 not: an invariant **finitely additive charge** on an orthonormal basis,
 rather than a finite equivariant partition.  Every one of the eight refuted
-architectures in `docs/OBSTRUCTIONS.md` §5 tried to build a finite carrier,
-and `docs/FALSE_HALO_ACTION_AUDIT.md` shows why finite carriers with locally
+architectures in `notes/OBSTRUCTIONS.md` §5 tried to build a finite carrier,
+and `notes/FALSE_HALO_ACTION_AUDIT.md` shows why finite carriers with locally
 sofic labels are circular here.  A charge can exist where no finite carrier
 does, so the criterion is not obviously subject to the same collapse.
 

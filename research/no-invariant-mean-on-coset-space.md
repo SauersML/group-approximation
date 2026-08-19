@@ -9,7 +9,7 @@ distinct_from:
   finite-quotient-blindness: that is about exact finite quotients normalizing the image of Γ; this is about means on the coset space, with no quotient in sight
   haagerup-t-exclusion: that excludes Haagerup carriers because they contain no diffuse (T) subalgebra; this excludes invariant means because (T) upgrades almost invariant vectors to invariant ones
 artifacts:
-  - docs/TRUE_CHARGE_EXTENSION_NEEDS_COAMENABILITY.md
+  - notes/TRUE_CHARGE_EXTENSION_NEEDS_COAMENABILITY.md
 ---
 
 Let `G` have property (T) and `Γ ≤ G` have infinite index. Then there is no
@@ -23,7 +23,7 @@ supported probability densities `f_i` with `‖g·f_i − f_i‖₁ → 0`; then
 by transitivity is a constant function, and a nonzero constant is square
 summable only if `G/Γ` is finite.
 
-This is `docs/OBSTRUCTIONS.md` §3's "`G ↷ G/Γ` has no Følner sets" in the form
+This is `notes/OBSTRUCTIONS.md` §3's "`G ↷ G/Γ` has no Følner sets" in the form
 the charge language needs, and it is what kills `induced-charge-extension`.
 
 ## Why it matters beyond that route

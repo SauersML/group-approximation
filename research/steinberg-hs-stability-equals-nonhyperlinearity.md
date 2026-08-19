@@ -8,8 +8,8 @@ distinct_from:
   leavitt-steinberg-hs-stable: That is the open branch selection; this says what selecting it would be worth.
   pointwise-hs-stability-from-no-hyperlinear-quotient: That is the general implication for arbitrary groups; this is its specialization to `U`, where quasisimplicity and minimal almost periodicity turn it into an equivalence.
 artifacts:
-  - docs/NOTEPAD.md
-  - docs/NON_MF_TO_HYPERLINEAR_DIFFERENTIAL_AUDIT.md
+  - notes/NOTEPAD.md
+  - notes/NON_MF_TO_HYPERLINEAR_DIFFERENTIAL_AUDIT.md
 ---
 
 For `L=L_(F_2)(1,2)`, `U=St_5(L)` and `Q=EL_4(L)`, the following are
@@ -40,6 +40,6 @@ Kazhdan group known to be HS-stable, since every Kazhdan group whose status
 is settled is residually finite, hence sofic, hence hyperlinear, hence
 unstable by Becker--Lubotzky.
 
-Recorded in prose at `docs/NON_MF_TO_HYPERLINEAR_DIFFERENTIAL_AUDIT.md:78-103`
+Recorded in prose at `notes/NON_MF_TO_HYPERLINEAR_DIFFERENTIAL_AUDIT.md:78-103`
 as `(DHA5)`/`(DHA6)`; this node supplies the converses that turn the two
 implications there into one equivalence.

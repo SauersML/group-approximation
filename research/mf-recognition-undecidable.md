@@ -41,7 +41,7 @@ The two closed forms are
 
 both with axiom closure `[propext, Classical.choice, Quot.sound]`, both cited
 by `cor:undecidable` in the manuscript with `\leanverified`, and neither taking
-a hypothesis.  `docs/NON_MF_UNCONDITIONAL_BASELINE.txt` is empty, so the
+a hypothesis.  `notes/NON_MF_UNCONDITIONAL_BASELINE.txt` is empty, so the
 unconditionality gate agrees.
 
 ## How it was conditional, and what removed each condition

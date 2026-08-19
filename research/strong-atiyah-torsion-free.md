@@ -97,7 +97,7 @@ point.  The audit artifact traces each.
    isometries without making kernel dimensions integers.  For infinite `P` the
    Kazhdan projection maps to zero in the left regular representation, so the
    repository's proper-projection compression never reaches `N(G)`.  The
-   circularity is already recorded in `docs/NOTEPAD.md`.
+   circularity is already recorded in `notes/NOTEPAD.md`.
 6. **Import an exotic `L^2`-Betti value.**  *Dies* at torsion and finiteness:
    the known irrational-value constructions have torsion subgroups of
    unbounded order, Fournier-Facio--Sauer's groups are torsion-free only for

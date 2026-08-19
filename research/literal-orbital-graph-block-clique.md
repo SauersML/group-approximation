@@ -7,7 +7,7 @@ distinct_from:
   literal-lamp-kernel-clifford-block-amalgam: That claim is the full amalgam decomposition of the lamp kernel, including the free-product structure over the blocks; this is the graph-theoretic input it rests on, isolated because it is what identifies the two presentations.
   literal-telescope-split-normal-form: That identifies the vertical quotient and the splitting; this says nothing about the vertical group and everything about the edge relation on sites.
 artifacts:
-  - docs/LITERAL_ORBITAL_CLIQUE_ROUTE.md
+  - notes/LITERAL_ORBITAL_CLIQUE_ROUTE.md
   - GroupApproximation/Sofic/LiteralBlockGeometry.lean
   - GroupApproximation/Sofic/LiteralAffineCosetTransitivity.lean
 ---

@@ -11,8 +11,8 @@ distinct_from:
   literal-mark-quotient-mf: That open claim is about operator-norm corona models; this proved claim computes finite quotients, which by themselves decide nothing about MF.
   literal-mark-quotient-flexibly-stable: That open claim is about permutation almost-actions and flexible enlargement; this proved claim is about honest homomorphisms to finite groups, and it settles the residual-finiteness disjunct appearing in that claim's status note.
 artifacts:
-  - docs/COMMUTING_LAMP_QUOTIENT_STRUCTURE_AND_MF_FORK_2026-08-14.md
-  - docs/LITERAL_GROUP_BLOCK_AMALGAM_STRUCTURE_2026-08-14.md
+  - notes/COMMUTING_LAMP_QUOTIENT_STRUCTURE_AND_MF_FORK_2026-08-14.md
+  - notes/LITERAL_GROUP_BLOCK_AMALGAM_STRUCTURE_2026-08-14.md
 ---
 
 Every homomorphism from `E/<w>` to a finite group gives all lamps of a

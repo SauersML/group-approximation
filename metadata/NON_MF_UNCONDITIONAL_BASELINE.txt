@@ -6,7 +6,7 @@
 # This register is not a budget.  A finding not listed here fails the
 # gate, and a line here that matches nothing fails it too -- so a
 # discharged item cannot be left behind to license its own return.
-# Every line must correspond to a row of docs/NON_MF_CONDITIONAL_INVENTORY.md.
+# Every line must correspond to a row of notes/NON_MF_CONDITIONAL_INVENTORY.md.
 # Regenerate with:
 #
 #     python3 scripts/check_non_mf_unconditional.py --write-baseline

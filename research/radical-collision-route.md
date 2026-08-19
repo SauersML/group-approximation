@@ -6,7 +6,7 @@ title: Solve hyperlinear versus sofic by a radical collision
 target: hyperlinear-nonsofic-group
 requires: [radical-collision-criterion, sofic-radical-hyperlinear-survivor]
 artifacts:
-  - docs/TRUE_LITERAL_NONMF_MARK_IS_CE_VISIBLE.md
+  - notes/TRUE_LITERAL_NONMF_MARK_IS_CE_VISIBLE.md
   - GroupApproximation/Sofic/HyperlinearResidualDetector.lean
 ---
 

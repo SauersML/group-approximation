@@ -9,7 +9,7 @@ distinct_from:
 artifacts:
   - experiments/atlas-raw-compressor-source-words.json
   - experiments/atlas_raw_reynolds_gap_audit.py
-  - docs/TRUE_RAW_WORD_REYNOLDS_GAP.md
+  - notes/TRUE_RAW_WORD_REYNOLDS_GAP.md
 ---
 
 Use the certified inner alignment of the two regular `A_8` charts in the

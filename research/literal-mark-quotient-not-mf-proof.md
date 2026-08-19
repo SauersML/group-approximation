@@ -6,7 +6,7 @@ title: The level-one block carries an eight-coordinate involutive witness
 target: literal-mark-quotient-not-mf
 requires: [literal-lamp-kernel-clifford-block-amalgam, compression-torsion-collapse]
 artifacts:
-  - docs/LITERAL_GROUP_BLOCK_AMALGAM_STRUCTURE_2026-08-14.md
+  - notes/LITERAL_GROUP_BLOCK_AMALGAM_STRUCTURE_2026-08-14.md
   - GroupApproximation/Sofic/InvolutionCollapseEndpoint.lean
 ---
 

@@ -373,4 +373,4 @@ enough:
   `U(N(G))` with `N(G)` finite, so any theorem reconstructing a properly
   infinite Leavitt ring from an arbitrary nontrivial homomorphism into a
   finite von Neumann algebra would contradict itself at the regular
-  representation.  This is the circularity `docs/NOTEPAD.md` already records.
+  representation.  This is the circularity `notes/NOTEPAD.md` already records.

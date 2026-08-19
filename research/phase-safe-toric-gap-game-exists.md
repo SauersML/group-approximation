@@ -58,4 +58,4 @@ and reverses word order there, so it does not identify the normal closure of
 the two-player clauses with the trace-kernel ideal of the synchronous algebra.
 
 Details and the finite counter-model for the subgroup-versus-normal-closure
-gap: `docs/TRUE_NORMAL_TORIC_GAP_IMPLIES_NONHYPERLINEAR.md` §§3-6.
+gap: `notes/TRUE_NORMAL_TORIC_GAP_IMPLIES_NONHYPERLINEAR.md` §§3-6.

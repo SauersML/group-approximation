@@ -9,7 +9,7 @@ distinct_from:
   kun-thom-clifford-crossed-product-ce: That asks for Connes embeddability of the tracial crossed product, a normalized-Hilbert--Schmidt question; this settles the operator-norm question in the negative, and the two are independent.
   kun-thom-clifford-radical-phase: Same central involution, opposite conclusions in opposite categories — that claim computes the image of the sofic-radical word in the tracial Clifford model and needs the sign to SURVIVE as -1; this proves the sign is KILLED in every operator-norm corona. Neither bears on the other, and reading the negative operator-norm result as evidence against the tracial phase would be a category error.
 artifacts:
-  - docs/FALSE_CLIFFORD_NORM_MF_STERILITY.md
+  - notes/FALSE_CLIFFORD_NORM_MF_STERILITY.md
 ---
 
 Let `Gamma<G` be a Kazhdan pair with a strict compressor `t`, so
@@ -35,7 +35,7 @@ Cutting an MF model to the canonical `z=-1` corner is a legitimate
 rank-renormalization — it removes relative-rank blindness, and after cutting,
 operator-norm defect dominates normalized Hilbert--Schmidt defect with the
 Clifford wall at squared norm `2`.  But this theorem says the corner never
-exists.  From `docs/FALSE_CLIFFORD_NORM_MF_STERILITY.md`:
+exists.  From `notes/FALSE_CLIFFORD_NORM_MF_STERILITY.md`:
 
 > 1. The theorem above says that a nonzero negative corner cannot occur in
 >    any norm-matrix representation of the Kun--Thom Clifford group.  Thus
@@ -50,7 +50,7 @@ surviving element known to lie in the full sofic radical.
 ## Sibling result
 
 The same conclusion holds for the perfect even cover: Proposition 8 of
-`docs/PERFECT_CORE_KUN_THOM_WREATH.md` proves that every homomorphism from
+`notes/PERFECT_CORE_KUN_THOM_WREATH.md` proves that every homomorphism from
 `E_(Cl,0)` to a norm matrix ultraproduct kills `z`, so `E_(Cl,0)` is not weak
 MF either. That retires the conditional certificate of its Theorem 7, which
 would have derived Connes embeddability of the canonical CAR trace from weak

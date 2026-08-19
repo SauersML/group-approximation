@@ -5,7 +5,7 @@ import GroupApproximation.Sofic.SoficInvariantFiniteKernel
 /-!
 # The telescope core is locally residually finite
 
-Theorem 4.1 of `docs/LITERAL_GROUP_IS_SOFIC_2026-08-14.md`: the kernel
+Theorem 4.1 of `notes/LITERAL_GROUP_IS_SOFIC_2026-08-14.md`: the kernel
 `E_T = N_E ⋊ T` of the stable-letter exponent `E → ℤ` has every finitely
 generated subgroup residually finite, hence is LEF, hence sofic.
 
@@ -60,7 +60,7 @@ Used: exhaustion of LEF by residually finite subgroups
 finiteness permanence along injections and finite-index overgroups.
 
 Not used anywhere: the false permanence direction "amenable kernel with sofic
-quotient", which `docs/TRUE_LITERAL_NONMF_MARK_IS_CE_VISIBLE.md` §3 warns
+quotient", which `notes/TRUE_LITERAL_NONMF_MARK_IS_CE_VISIBLE.md` §3 warns
 against; no wreath-product permanence theorem; and no hypothesis that the
 `V`-action on the infinite site set be modelled by permutations.  The only
 action ever approximated is that of a single level on a finite block set, and
@@ -641,7 +641,7 @@ abbrev telescopeCore (D : TelescopeCoreData Lamp Tel Block) :=
 is residually finite.
 
 "Locally" is load-bearing: `E_T` is *not* residually finite (Theorem 4.1a of
-`docs/LITERAL_GROUP_IS_SOFIC_2026-08-14.md` --- in any homomorphism to a
+`notes/LITERAL_GROUP_IS_SOFIC_2026-08-14.md` --- in any homomorphism to a
 finite group the image of `ℤ[1/2]³` is `2`-divisible and finite, hence of odd
 order, so `φ(T) = φ(B)`, all same-level lamps are identified, and `w` dies).
 No residual finiteness of the core is claimed anywhere in this file. -/

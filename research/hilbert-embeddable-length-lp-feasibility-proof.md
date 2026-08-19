@@ -6,7 +6,7 @@ title: Schoenberg detruncation, maximality of the word length, and the S3 charac
 target: hilbert-embeddable-length-lp-feasibility
 requires: []
 artifacts:
-  - docs/TRUE_GLEBSKY_HS_TRANSPORT_AUDIT.md
+  - notes/TRUE_GLEBSKY_HS_TRANSPORT_AUDIT.md
 ---
 
 # Detruncation, maximality, and the S3 expansion

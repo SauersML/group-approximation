@@ -45,7 +45,7 @@ The project already contains, and this note **does not re-claim**:
   kernel to the vertical/HNN group, formalized in
   `SoficActionCyclicExtension.lean`;
 - separability of the positive monomial stabilizers used in the positive-core
-  argument, proved in `docs/FALSE_POSITIVE_CORE_IS_SOFIC.md` and imported into
+  argument, proved in `notes/FALSE_POSITIVE_CORE_IS_SOFIC.md` and imported into
   Cairn by `positive-core-bernoulli-ce-proof`;
 - the unconditional non-MF HNN-wreath obstruction from a proper property-(T)
   self-embedding and an involutive lamp, formalized in

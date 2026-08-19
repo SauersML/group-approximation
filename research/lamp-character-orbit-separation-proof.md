@@ -6,7 +6,7 @@ title: Split the cone along the lamp kernel and apply Clifford's theorem
 target: lamp-character-orbit-separation
 requires: [hilbert-embeddable-is-representation-realized]
 artifacts:
-  - docs/TRUE_LAMP_CHARACTER_ORBIT_SEPARATION.md
+  - notes/TRUE_LAMP_CHARACTER_ORBIT_SEPARATION.md
 ---
 
 # Split the cone along the lamp kernel and apply Clifford

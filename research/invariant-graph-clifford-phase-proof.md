@@ -6,7 +6,7 @@ title: Bass--Serre normal form, adjacency forms, and invariance of the commutato
 target: invariant-graph-clifford-phase
 requires: [kun-thom-clifford-radical-phase, sofic-radical-soficization]
 artifacts:
-  - docs/TRUE_KUN_THOM_CLIFFORD_PHASE.md
+  - notes/TRUE_KUN_THOM_CLIFFORD_PHASE.md
   - GroupApproximation/Sofic/CliffordLampGroup.lean
 ---
 

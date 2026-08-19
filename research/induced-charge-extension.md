@@ -6,7 +6,7 @@ title: Induce the positive core's invariant charge up to the whole group
 target: wreath-amenable-near-representation
 requires: []
 artifacts:
-  - docs/TRUE_CHARGE_EXTENSION_NEEDS_COAMENABILITY.md
+  - notes/TRUE_CHARGE_EXTENSION_NEEDS_COAMENABILITY.md
 ---
 
 # Induce the positive core's invariant charge

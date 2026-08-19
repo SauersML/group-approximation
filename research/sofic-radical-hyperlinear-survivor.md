@@ -24,7 +24,7 @@ also supplies a sofic detector of that sign.
 sofic-radical-soficization, `Rad_sof(H)=1` if and only if `H` is sofic.  So
 "find a nonidentity element of a sofic radical" and "find a nonsofic group"
 are the *same* search, with the same two known instances and the same single
-`(T)`-compression mechanism behind both (docs/OBSTRUCTIONS.md §5).  There is
+`(T)`-compression mechanism behind both (notes/OBSTRUCTIONS.md §5).  There is
 no separate technology for producing radical elements to be swept for, and a
 genuinely different source would in particular be a second nonsoficity
 mechanism.  Note the degenerate end of the range: a simple nonsofic group has
@@ -82,7 +82,7 @@ actions).  The generalized Bernoulli action over `G/Gamma` is not covered,
 and Kun--Thom show the underlying action on the set `G/Gamma` is not sofic in
 the Gao--Kunnawalkam Elayavalli--Patchell sense, which is what a proof of the
 Bernoulli case would need.  The gap between an abstract trace-preserving
-embedding and a Cartan-preserving one is the whole problem (docs/NOTEPAD.md,
+embedding and a Cartan-preserving one is the whole problem (notes/NOTEPAD.md,
 "Abstract versus Cartan-preserving embeddings").
 
 **The lane that overtook this one (2026-08-14).**  With `weakly-sofic-not-sofic`
@@ -101,8 +101,8 @@ sofic (`literal-group-sofic`), so by `sofic-radical-soficization`
 `Rad_sof(E)=1` and no element of `E` — including the infinite-rank free
 kernel of `E -> W` — is a radical survivor.  The Kun--Thom groups remain the
 only supply, with four explicit words recorded in the corpus and two
-complete radical computations (docs/COMMUTING_WREATH_SOFIC_RADICAL.md,
-docs/CYCLIC_AUGMENTATION_SOFIC_RADICAL.md).  The cheapest concrete form of
+complete radical computations (notes/COMMUTING_WREATH_SOFIC_RADICAL.md,
+notes/CYCLIC_AUGMENTATION_SOFIC_RADICAL.md).  The cheapest concrete form of
 this hole is the first of those: `Rad_sof(W)=<<w>>_W` for the single
 involution `w=a_(h Gamma) a_Gamma`, so a detector is a single projection
 `(1-rho(w))/2` of positive trace.
@@ -113,5 +113,5 @@ involution `w=a_(h Gamma) a_Gamma`, so a detector is a single projection
 futile: `marked-double-coset-infinite-degree` proves that index is infinite
 for the recorded marked element, so every invariant graph keeping the word
 alive has infinite degree.  The localization hope for the finite-mode
-defects of docs/FALSE_FERMIONIC_KUN_THOM_ENDPOINT.md §5 is not available in
+defects of notes/FALSE_FERMIONIC_KUN_THOM_ENDPOINT.md §5 is not available in
 this family.

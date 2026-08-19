@@ -6,7 +6,7 @@ title: Refute hyperlinearity through the relative commutant instead of the masa
 target: non-hyperlinear-group
 requires: [kt-centralizer-normalization-hs]
 artifacts:
-  - docs/TRUE_DIAGONAL_NORMALIZER_RIGIDITY.md
+  - notes/TRUE_DIAGONAL_NORMALIZER_RIGIDITY.md
 ---
 
 # Refute hyperlinearity through the relative commutant

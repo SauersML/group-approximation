@@ -7,8 +7,8 @@ target: a3-cone-repairs-to-coboundaries-not-cocycles
 requires: []
 artifacts:
   - research/artifacts/hyperbolic-residual-finiteness-audit-2026-08-17.md
-  - docs/TRUE_A3_METRIC_CONE_SYNCHRONIZATION.md
-  - docs/TRUE_AUXILIARY_CONE_RADICAL_WITNESS_NO_GO.md
+  - notes/TRUE_A3_METRIC_CONE_SYNCHRONIZATION.md
+  - notes/TRUE_AUXILIARY_CONE_RADICAL_WITNESS_NO_GO.md
 ---
 
 The synchronization theorem produces a **vertex gauge** `a` with

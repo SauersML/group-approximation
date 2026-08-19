@@ -7,8 +7,8 @@ distinct_from:
   mixed-intertwiner-energy-transport-localization: That theorem gives an exact fractional transportation plan and proves that almost all of its mass lies on low mixed-gap pairs; this claim asks for the genuinely noncommutative step from that fractional plan to orthogonal physical summands and near-unitary block intertwiners.
   iwahori-outlier-repair: That is the complete endpoint, including correction to the common modular extension locus; this claim stops before extension-locus transversality and asks only for physical integralization of the low-gap transport.
 artifacts:
-  - docs/TRUE_IWAHORI_CENTRAL_REGULAR_OUTLIER_LOCALIZATION.md
-  - docs/TRUE_IWAHORI_INDEX_THREE_HAS_BOUNDED_BRANCHING.md
+  - notes/TRUE_IWAHORI_CENTRAL_REGULAR_OUTLIER_LOCALIZATION.md
+  - notes/TRUE_IWAHORI_INDEX_THREE_HAS_BOUNDED_BRANCHING.md
 ---
 
 Work in a fixed matched central sector of the Dogon--Vigdorovich Iwahori

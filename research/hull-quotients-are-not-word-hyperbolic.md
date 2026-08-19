@@ -9,7 +9,7 @@ distinct_from:
   common-quotient-onto-normal-subgroup: that is the small-cancellation construction this graph consumes, stated for acylindrically hyperbolic inputs; this is a scope statement about what its output is and is not, and its content is that word-hyperbolicity is not among the preserved properties
 artifacts:
   - research/artifacts/hyperbolic-residual-finiteness-audit-2026-08-17.md
-  - docs/HULL_ROUTING_AUDIT_2026-08-16.md
+  - notes/HULL_ROUTING_AUDIT_2026-08-16.md
 ---
 
 Hull's small-cancellation theorem (*Small cancellation in acylindrically
@@ -35,7 +35,7 @@ moment a route wants a *word*-hyperbolic conclusion, an acylindrically
 hyperbolic hypothesis supplies nothing, and the difference is not a technical
 gap that a sharper argument could close.
 
-`docs/HULL_ROUTING_AUDIT_2026-08-16.md` records what Hull's Theorem 7.1 does
+`notes/HULL_ROUTING_AUDIT_2026-08-16.md` records what Hull's Theorem 7.1 does
 supply for this program's routing — six of the seven fields of
 `DefectRoutingData`, finite presentation included.  Word-hyperbolicity is not
 one of them and was never claimed to be; this node exists so that no route can

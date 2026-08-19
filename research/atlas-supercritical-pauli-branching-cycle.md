@@ -4,8 +4,8 @@ id: atlas-supercritical-pauli-branching-cycle
 kind: claim
 title: The atlas Pauli carriers contain a supercritical finite branching cycle
 artifacts:
-  - docs/TRUE_PAULI_BRANCH_TRANSFER_PACKET.md
-  - docs/TRUE_RAW_PAULI_COEFFICIENT_CUT.md
+  - notes/TRUE_PAULI_BRANCH_TRANSFER_PACKET.md
+  - notes/TRUE_RAW_PAULI_COEFFICIENT_CUT.md
 distinct_from:
   atlas-one-cut-finite-multiplicity-extraction: that forces one transported large carrier back under one smaller cut; this target permits the return path to wander through finitely many coefficient sectors and only asks that the resulting branching graph be supercritical.
 ---

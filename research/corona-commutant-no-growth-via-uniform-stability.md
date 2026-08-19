@@ -7,7 +7,7 @@ target: corona-commutant-no-growth
 requires: []
 artifacts:
   - research/artifacts/glmr-2301-00476-verified.md
-  - docs/COMMUTING_LAMP_QUOTIENT_STRUCTURE_AND_MF_FORK_2026-08-14.md
+  - notes/COMMUTING_LAMP_QUOTIENT_STRUCTURE_AND_MF_FORK_2026-08-14.md
 ---
 
 Use uniform (Ulam) stability of `Gbar = Z^3 semidirect SL_3(Z)` in the

@@ -7,16 +7,16 @@ distinct_from:
   leavitt-steinberg-hs-stable: That is the open branch selection in the full normalized-HS metric; this is the unconditional restriction of it to hyperfinite targets, which is proved and does not select the branch.
   leavitt-steinberg-hs-unstable: This constrains what any witness for that claim must look like; it does not deny one.
 artifacts:
-  - docs/NOTEPAD.md
+  - notes/NOTEPAD.md
 ---
 
 For `U=St_5(L_(F_2)(1,2))`, hyperfinite Hilbert--Schmidt stability holds
-unconditionally, in the sense of Dogon--Vigdorovich.  `docs/NOTEPAD.md:22220`:
+unconditionally, in the sense of Dogon--Vigdorovich.  `notes/NOTEPAD.md:22220`:
 
 > **Theorem (unconditional hyperfinite HS stability).**  The group `U` is
 > hyperfinitely Hilbert--Schmidt stable in the sense of Dogon--Vigdorovich.
 
-The operative consequence, `docs/NOTEPAD.md:22234`:
+The operative consequence, `notes/NOTEPAD.md:22234`:
 
 > Consequently any witness to the unstable branch must generate a genuinely
 > nonamenable limiting von Neumann algebra.  Hyperfinite, AF,

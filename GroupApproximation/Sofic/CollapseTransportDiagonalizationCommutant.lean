@@ -16,7 +16,7 @@ ambient group.
 
 This module proves exactly that, and derives the generating-set criterion.
 It is the second of the two ingredients that
-`docs/COLLAPSE_STEP_AUDIT.md` finding R1, route (b), needs; the first is the
+`notes/COLLAPSE_STEP_AUDIT.md` finding R1, route (b), needs; the first is the
 tolerance diagonalization of
 `Sofic.CollapseTransportDiagonalization`.
 

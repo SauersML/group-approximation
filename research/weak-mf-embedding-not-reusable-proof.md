@@ -7,19 +7,19 @@ target: weak-mf-embedding-not-reusable
 requires: []
 artifacts:
   - GroupApproximation/Sofic/NormTraceGap.lean
-  - docs/NOTEPAD.md
-  - docs/NON_MF_ARCHAEOLOGY.md
+  - notes/NOTEPAD.md
+  - notes/NON_MF_ARCHAEOLOGY.md
 ---
 
 ## Direct proof
 
 Items 1 and 3 are kernel-checked in `GroupApproximation/Sofic/NormTraceGap.lean`
-under the declaration names given in the claim; `docs/NON_MF_ARCHAEOLOGY.md`
+under the declaration names given in the claim; `notes/NON_MF_ARCHAEOLOGY.md`
 records that this is what "closed the naive implication weak MF implies
 hyperlinear" on 2026-08-08, and that it made rank renormalization the central
 design problem.
 
-Item 2 is a two-line verification, recorded in `docs/NOTEPAD.md`: the
+Item 2 is a two-line verification, recorded in `notes/NOTEPAD.md`: the
 representations are exact, so there is no multiplicative defect at all; the
 operator-norm distance of `diag(exp(i k theta),1,...,1)` from `1` is
 `|exp(i k theta)-1|`, bounded below along the whole group by irrationality of

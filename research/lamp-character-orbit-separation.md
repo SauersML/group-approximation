@@ -8,7 +8,7 @@ distinct_from:
   hilbert-embeddable-length-lp-feasibility: that says the witness question is a linear program; this evaluates the program's objective on the lamp coordinates in closed form, which is what tells one whether dilution is a real constraint
   hilbert-embeddable-witness-for-kun-thom-wreath: that asks whether a witness exists for the wreath; this settles which of that node's two recorded constraints is real — dilution is not, the site-distinctness one is
 artifacts:
-  - docs/TRUE_LAMP_CHARACTER_ORBIT_SEPARATION.md
+  - notes/TRUE_LAMP_CHARACTER_ORBIT_SEPARATION.md
 ---
 
 Let `K` be finite with **abelian** normal subgroup `L` (lamps) and quotient

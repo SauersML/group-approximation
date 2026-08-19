@@ -15,7 +15,7 @@ algebra sitting over the spectral point (Gelfand theory,
 theorem of `StateExtension`.
 
 This is the spectral brick of the strict-Kazhdan-compression program of
-`docs/FORMALIZATION_DIRECTIVES_2026-08-15.md` §1: fed into GNS it
+`notes/FORMALIZATION_DIRECTIVES_2026-08-15.md` §1: fed into GNS it
 produces a representation in which `m` has the genuine eigenvalue `μ`,
 which is what transfers a spectral-gap violation into a concrete
 Hilbert-space contradiction.

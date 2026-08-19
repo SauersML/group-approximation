@@ -6,7 +6,7 @@ title: The regular representation is injective on the convolution algebra
 target: kazhdan-projection-not-in-l1
 requires: []
 artifacts:
-  - docs/COMMUTING_LAMP_QUOTIENT_STRUCTURE_AND_MF_FORK_2026-08-14.md
+  - notes/COMMUTING_LAMP_QUOTIENT_STRUCTURE_AND_MF_FORK_2026-08-14.md
 ---
 
 ## Direct proof

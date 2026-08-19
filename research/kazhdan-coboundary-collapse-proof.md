@@ -7,12 +7,12 @@ target: kazhdan-coboundary-collapse
 requires:
   - corona-commuting-torsion-lifts
 artifacts:
-  - docs/COMPRESSION_COLLAPSE_MF_RADICAL.md
+  - notes/COMPRESSION_COLLAPSE_MF_RADICAL.md
 ---
 
 # The rank-normalized coboundary step
 
-This route records Steps 3--5 of `docs/COMPRESSION_COLLAPSE_MF_RADICAL.md`
+This route records Steps 3--5 of `notes/COMPRESSION_COLLAPSE_MF_RADICAL.md`
 after the only missing input in those steps, exact commuting torsion lifting,
 has been supplied by [[corona-commuting-torsion-lifts]].
 

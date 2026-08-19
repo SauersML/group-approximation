@@ -7,9 +7,9 @@ distinct_from:
   corner-renormalization-cost: That claim is the general norm bookkeeping for compression; this one evaluates the effective-rank stopping statistic for a specific shape of mark and reads off which candidate families are rate-blocked.
   mf-trace-gap-defect-ratio-models: That open claim asks for models achieving the profile; this established one computes what the profile says for a central involution, and identifies where it is free and where it provably fails.
 artifacts:
-  - docs/FALSE_WEAK_MF_EFFECTIVE_RANK_PROFILE.md
-  - docs/CENTRAL_RADICAL_SHEAR_GADGET.md
-  - docs/NON_MF_TO_HYPERLINEAR_DIFFERENTIAL_AUDIT.md
+  - notes/FALSE_WEAK_MF_EFFECTIVE_RANK_PROFILE.md
+  - notes/CENTRAL_RADICAL_SHEAR_GADGET.md
+  - notes/NON_MF_TO_HYPERLINEAR_DIFFERENTIAL_AUDIT.md
 ---
 
 Let `z` be a central involution and `phi_n` operator-norm models with defect

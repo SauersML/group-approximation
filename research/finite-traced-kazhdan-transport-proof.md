@@ -7,7 +7,7 @@ target: finite-traced-kazhdan-transport
 requires: [faithfully-traced-unital-coordinates]
 artifacts:
   - non_mf_groups_exist.tex
-  - docs/NO_ONE_SIDED_GROWTH.md
+  - notes/NO_ONE_SIDED_GROWTH.md
   - GroupApproximation/Sofic/KazhdanAsymptoticCommutant.lean
 ---
 
@@ -79,7 +79,7 @@ above.  End proof.
 ## What this does and does not generalize
 
 Steps 3 and 4 are the corona formulation the corpus already uses
-(`docs/NO_ONE_SIDED_GROWTH.md`: `P <= VPV^*`, `P ~ VPV^*`, finiteness gives
+(`notes/NO_ONE_SIDED_GROWTH.md`: `P <= VPV^*`, `P ~ VPV^*`, finiteness gives
 equality, "a one-sided group-theoretic compression therefore becomes a
 two-sided symmetry of the entire bounded asymptotic commutant"); what is new
 here is that the ambient may be any traced coordinates and that the hypothesis

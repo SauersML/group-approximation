@@ -11,8 +11,8 @@ distinct_from:
   literal-group-sofic: That is soficity of `E`; this is a residual-finiteness failure one level down, and it is what forces the soficity proof to be local.
   lamp-telescope-base-is-lef: That claim is the positive LEF property for the WITNESS bases `ClLamp(X) semidirect T` and `F_2[X] semidirect T`, whose lamp kernels are locally finite; this claim is about the LITERAL core `N_E semidirect T`, whose lamp kernel is a block amalgam containing free subgroups, and its content is the negative half — that LEF cannot be upgraded to residual finiteness.
 artifacts:
-  - docs/LITERAL_GROUP_IS_SOFIC_2026-08-14.md
-  - docs/COMMUTING_LAMP_QUOTIENT_STRUCTURE_AND_MF_FORK_2026-08-14.md
+  - notes/LITERAL_GROUP_IS_SOFIC_2026-08-14.md
+  - notes/COMMUTING_LAMP_QUOTIENT_STRUCTURE_AND_MF_FORK_2026-08-14.md
   - non_mf_groups_exist.tex
 ---
 

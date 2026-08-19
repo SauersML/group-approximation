@@ -6,8 +6,8 @@ title: Build the wall from one compressed-commutant Majorana
 target: kun-thom-clifford-relative-wall
 requires: [relative-wall-commutant-growth, compressed-commutant-majorana]
 artifacts:
-  - docs/TRUE_RELATIVE_WALL_IS_COMMUTANT_GROWTH.md
-  - docs/TRUE_KUN_THOM_CLIFFORD_PHASE.md
+  - notes/TRUE_RELATIVE_WALL_IS_COMMUTANT_GROWTH.md
+  - notes/TRUE_KUN_THOM_CLIFFORD_PHASE.md
 ---
 
 **This route is one direction of an EQUIVALENCE, not a reduction.  It renames

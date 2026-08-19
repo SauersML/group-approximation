@@ -16,7 +16,7 @@ the identity and twelve chart generators.  It does not yet contain a complete
 normal-generating list for the atlas kernel, an exhaustion of the group, or
 the concrete radical word `s` from the Mackey/coinduced model.
 
-Corollary 10 of `docs/FALSE_MACKEY_SPLIT_COCYCLE.md` now records that a full
+Corollary 10 of `notes/FALSE_MACKEY_SPLIT_COCYCLE.md` now records that a full
 one-involution construction in normalized Hilbert--Schmidt norm would already
 be a final FALSE certificate.  Thus normalized-HS search is mathematically
 appropriate, but the finite constraint set here is still incomplete.

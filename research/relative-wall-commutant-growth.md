@@ -9,7 +9,7 @@ distinct_from:
   invariant-size-collapse: That is the general collapse principle for a conjugation-invariant strictly monotone size; this identifies what the collapsing inclusion actually decides, namely existence of the relative wall, and supplies the equivalence in both directions including the case where no such size exists.
   corona-commutant-no-growth: That asks whether the same inclusion is an equality in an operator-norm corona for the affine non-MF pair, where no trace exists at all; this is an equivalence rather than a question, holds in every target group, and its consequences are drawn in the tracial category for the Kun--Thom pair.
 artifacts:
-  - docs/TRUE_RELATIVE_WALL_IS_COMMUTANT_GROWTH.md
+  - notes/TRUE_RELATIVE_WALL_IS_COMMUTANT_GROWTH.md
 ---
 
 Let `Gamma<G`, `t Gamma t^(-1)<=Gamma`, and `pi:G->U` a homomorphism into an

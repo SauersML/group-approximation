@@ -11,8 +11,8 @@ artifacts:
   - GroupApproximation/Endpoint/NonMFImpact.lean
   - GroupApproximation/Endpoint/Audit.lean
   - GroupApproximation/Endpoint/Public.lean
-  - docs/NON_MF_IMPACT_FORMAL_STATUS.md
-  - docs/NON_MF_FINAL_REVIEW_AND_RESOLUTION_2026-08-14.md
+  - notes/NON_MF_IMPACT_FORMAL_STATUS.md
+  - notes/NON_MF_FINAL_REVIEW_AND_RESOLUTION_2026-08-14.md
 ---
 
 There exists a hyperlinear group that is not MF; the concrete witness may be

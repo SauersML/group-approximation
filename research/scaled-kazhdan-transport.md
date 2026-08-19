@@ -7,7 +7,7 @@ distinct_from:
   kazhdan-asymptotic-commutant-transport: That claim is the dimension-normalized transport for operator-norm-bounded commutants; this one quantifies over every nonnegative weight and needs only Frobenius-mass boundedness.
 artifacts:
   - GroupApproximation/Sofic/ScaledKazhdanTransport.lean
-  - docs/COMPRESSION_COLLAPSE_MF_RADICAL.md
+  - notes/COMPRESSION_COLLAPSE_MF_RADICAL.md
 ---
 
 For every nonnegative weight sequence `w`, every one-sided compressor of a

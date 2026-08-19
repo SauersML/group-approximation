@@ -356,7 +356,7 @@ following.**  The universe-scope sweep that widened the rest of this file
 considered this declaration and decided against it, on evidence:
 
 * it is **not badged** -- it occurs zero times in `non_mf_groups_exist.tex` and
-  is absent from `docs/NON_MF_CLAIM_DECLS.txt`, its only references in the
+  is absent from `notes/NON_MF_CLAIM_DECLS.txt`, its only references in the
   repository being the `#print axioms` lines in `GroupApproximation/Endpoint/Audit.lean`;
 * consequently **no ledger row cites it**, and it appears in no cluster of the
   1:1 audit.

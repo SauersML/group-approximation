@@ -31,7 +31,7 @@ cycles the product contains `ℤ^2`, which no hyperbolic group does.
 ## Why this graph carries it
 
 Because it is a genuinely new source of hyperbolic groups — the construction
-postdates every no-go in `docs/OBSTRUCTIONS.md` — and because Oyakawa points
+postdates every no-go in `notes/OBSTRUCTIONS.md` — and because Oyakawa points
 at exactly the question this region is about, recording that studying residual
 finiteness of these groups "might shed light on the long-standing open problem
 asking whether every hyperbolic group is residually finite".  That suggestion

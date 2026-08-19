@@ -59,7 +59,7 @@ character is close to one on a unit clock coordinate, while its value on the
 order-three Bockstein shadow is macroscopic.  The correct next invariant is
 therefore the size of the fixed relator coordinates in that character, as
 explained in
-`docs/FALSE_EXACT_ABSORPTION_BRANCH_CUT_DISTINCTION.md`.
+`notes/FALSE_EXACT_ABSORPTION_BRANCH_CUT_DISTINCTION.md`.
 
 The two HAP calls construct independent target models for the same abstract
 ambient homology group, so the script deliberately does not claim the order

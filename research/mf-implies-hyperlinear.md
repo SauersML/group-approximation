@@ -9,7 +9,7 @@ distinct_from:
   sofic-implies-hyperlinear: Soficity supplies canonical traces through permutation models; a weak MF corona embedding need not make its coordinate traces faithful.
 artifacts:
   - non_mf_groups_exist.tex
-  - docs/NON_MF_FINAL_REVIEW_AND_RESOLUTION_2026-08-14.md
+  - notes/NON_MF_FINAL_REVIEW_AND_RESOLUTION_2026-08-14.md
 ---
 
 Every MF group in the Carrión--Dadarlat--Eckhardt norm-matrix-corona sense is

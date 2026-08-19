@@ -8,8 +8,8 @@ distinct_from:
   mf-implies-hyperlinear: That root is about existence of some model; this claim rules out one whole family of proof strategies for it, and is established.
 artifacts:
   - GroupApproximation/Sofic/NormTraceGap.lean
-  - docs/NOTEPAD.md
-  - docs/NON_MF_ARCHAEOLOGY.md
+  - notes/NOTEPAD.md
+  - notes/NON_MF_ARCHAEOLOGY.md
 ---
 
 Three established facts, each formalized or witnessed explicitly, jointly
@@ -27,7 +27,7 @@ close the "reuse the given embedding" family of strategies for
    representations `1 |-> diag(exp(i theta),1,...,1)` of `Z` in `U(n)` give an
    operator-norm faithful embedding of `Z` in the norm quotient which
    converges to the identity in normalized Hilbert--Schmidt norm
-   (`docs/NOTEPAD.md`, entry of 2026-08-12).  `Z` is of course hyperlinear;
+   (`notes/NOTEPAD.md`, entry of 2026-08-12).  `Z` is of course hyperlinear;
    what the witness shows is that hyperlinearity cannot be obtained by
    changing the metric on a given weak-MF embedding.
 
@@ -43,4 +43,4 @@ Consequently any proof of `mf-implies-hyperlinear` must *select* models
 refutation must rule out all of them.  This is also where the two MF
 conventions part: Schafhauser's trace-controlled/reduced-norm MF implies
 hyperlinearity by definition, while the Shulman/Carrion--Dadarlat--Eckhardt
-weak convention used here does not (`docs/NOTEPAD.md`, same entry).
+weak convention used here does not (`notes/NOTEPAD.md`, same entry).

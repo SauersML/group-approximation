@@ -6,7 +6,7 @@ title: Read both Glebsky papers and exhibit the system that blocks the universal
 target: glebsky-hs-transport-step-classification
 requires: []
 artifacts:
-  - docs/TRUE_GLEBSKY_HS_TRANSPORT_AUDIT.md
+  - notes/TRUE_GLEBSKY_HS_TRANSPORT_AUDIT.md
 ---
 
 # Read both Glebsky papers and exhibit the blocking system

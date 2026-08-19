@@ -6,13 +6,13 @@ title: A trivial diagonal lamp subspace would embed W in a permutation ultraprod
 target: clifford-diagonal-lamp-subspace
 requires: [wreath-not-sofic]
 artifacts:
-  - docs/TRUE_CLIFFORD_BLOCK_MONOMIAL_LAMP_SUBSPACE.md
-  - docs/TRUE_BLOCK_MONOMIAL_COORDINATE_COLLAPSE.md
+  - notes/TRUE_CLIFFORD_BLOCK_MONOMIAL_LAMP_SUBSPACE.md
+  - notes/TRUE_BLOCK_MONOMIAL_COORDINATE_COLLAPSE.md
 ---
 
 # A trivial diagonal lamp subspace would embed W in a permutation ultraproduct
 
-The complete argument is in `docs/TRUE_CLIFFORD_BLOCK_MONOMIAL_LAMP_SUBSPACE.md`.
+The complete argument is in `notes/TRUE_CLIFFORD_BLOCK_MONOMIAL_LAMP_SUBSPACE.md`.
 In outline: Lemma 1 of the companion note gives
 `‖A − B‖₂² ≥ 2 d_H(π(A), π(B))` for block-monomials, uniformly in the fiber
 dimension and with no use of commutativity, so permutation parts form a

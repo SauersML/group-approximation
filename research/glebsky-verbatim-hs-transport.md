@@ -6,7 +6,7 @@ title: Rerun Glebsky's permanence proof with U(n) and normalized HS in place of 
 target: hyperlinear-wreath-model
 requires: []
 artifacts:
-  - docs/TRUE_GLEBSKY_HS_TRANSPORT_AUDIT.md
+  - notes/TRUE_GLEBSKY_HS_TRANSPORT_AUDIT.md
 ---
 
 # Rerun Glebsky's proof in normalized Hilbert–Schmidt

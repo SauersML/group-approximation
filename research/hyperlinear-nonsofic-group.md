@@ -13,7 +13,7 @@ hyperlinear-implies-sofic. Soficity implies hyperlinearity
 (sofic-implies-hyperlinear, formalized); the converse is Question 3.4
 and is open.
 
-Logical caution (docs/OBSTRUCTIONS.md §5): evidence that a candidate is
+Logical caution (notes/OBSTRUCTIONS.md §5): evidence that a candidate is
 *not* hyperlinear does not push Q3.4 toward "yes" — only the flexible side
 is informative about Q3.4 at all. Since every known nonsofic group comes
 from the same (T)-compression mechanism, Q3.4 may be inaccessible until a

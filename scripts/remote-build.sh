@@ -113,7 +113,7 @@ rsync -rlptz --delete \
   -e "ssh -S $SOCK -o HostKeyAlias=$ALIAS -o LogLevel=ERROR" \
   --include='*/' --include='*.md' --include='*.txt' --include='*.json' \
   --exclude='*' \
-  "$LOCAL/docs/" "$USER_MSI@$LOGIN_IP:$REMOTE/docs/" || exit $?
+  "$LOCAL/notes/" "$USER_MSI@$LOGIN_IP:$REMOTE/notes/" || exit $?
 
 # The Palomar submission surface is two Lean libraries in the default target
 # set (`PalomarChallenge`, `PalomarSolution`), so without this stanza the

@@ -5,12 +5,12 @@ kind: route
 title: Cycle-parity separating set plus weak containment in finite actions
 target: sofic-stable-implies-residually-finite
 requires: []
-artifacts: [docs/SOFIC_STABLE_IMPLIES_RESIDUALLY_FINITE_2026-08-14.md]
+artifacts: [notes/SOFIC_STABLE_IMPLIES_RESIDUALLY_FINITE_2026-08-14.md]
 ---
 
 ## Direct proof
 
-`docs/SOFIC_STABLE_IMPLIES_RESIDUALLY_FINITE_2026-08-14.md`, Theorem 3.1.
+`notes/SOFIC_STABLE_IMPLIES_RESIDUALLY_FINITE_2026-08-14.md`, Theorem 3.1.
 Let `G` be countable, sofic, and stable in finite actions, and let `g != 1`.
 
 Fix a sofic approximation `sigma_n : G -> Sym(Omega_n)`.  In each permutation

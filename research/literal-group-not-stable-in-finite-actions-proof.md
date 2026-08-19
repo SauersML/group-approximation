@@ -6,13 +6,13 @@ title: Contrapose the stability principle against literal soficity
 target: literal-group-not-stable-in-finite-actions
 requires: [literal-group-sofic, marked-quotients-not-lef, sofic-stable-implies-residually-finite]
 artifacts:
-  - docs/LITERAL_GROUP_IS_SOFIC_2026-08-14.md
+  - notes/LITERAL_GROUP_IS_SOFIC_2026-08-14.md
   - non_mf_groups_exist.tex
 ---
 
 ## Why sufficient
 
-Corollary 5.7 of `docs/LITERAL_GROUP_IS_SOFIC_2026-08-14.md` (that document has
+Corollary 5.7 of `notes/LITERAL_GROUP_IS_SOFIC_2026-08-14.md` (that document has
 no section 8).  Three inputs, one line of reasoning.
 
 1. `E` is sofic (`literal-group-sofic`, established by the block-tower proof).
@@ -45,9 +45,9 @@ Gohla--Thom Lemma 3.6 one paragraph above).
 
 * *"`E` is not stable in finite actions"* — internal end to end.  Input 3 was
   a literature import when this route was written and is now proved in-repo
-  (`docs/SOFIC_STABLE_IMPLIES_RESIDUALLY_FINITE_2026-08-14.md`, Theorem 3.1),
+  (`notes/SOFIC_STABLE_IMPLIES_RESIDUALLY_FINITE_2026-08-14.md`, Theorem 3.1),
   so the only external inputs are the standard permanence facts listed in
-  `docs/LITERAL_GROUP_IS_SOFIC_2026-08-14.md` section 6a, of which the sole
+  `notes/LITERAL_GROUP_IS_SOFIC_2026-08-14.md` section 6a, of which the sole
   non-elementary one is Elek--Szabo.
 * *"hence not `rho`-stable, not flexibly stable, not weakly flexibly stable"* —
   this strengthening, which is what the claim's "in any standard sense" asserts,

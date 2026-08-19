@@ -7,7 +7,7 @@ target: mf-antipodal-sign-corner-visibility
 requires: [countable-group-mf-conventions, hyperlinear-elementwise-visibility]
 artifacts:
   - GroupApproximation/Sofic/AntipodalTraceExtraction.lean
-  - docs/TRUE_ANTIPODAL_TRACE_EXTRACTION.md
+  - notes/TRUE_ANTIPODAL_TRACE_EXTRACTION.md
 ---
 
 ## Why sufficient

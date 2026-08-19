@@ -8,7 +8,7 @@ distinct_from:
   finite-window-decoder: This is the completed terminal inequality; the other is the open reverse-decoding theorem needed to produce its inputs from group microstates.
 artifacts:
   - GroupApproximation/Sofic/LeavittTraceFloor.lean
-  - docs/TRUE_POSITIVE_DENSITY_LEAVITT_DECODER_ENDGAME.md
+  - notes/TRUE_POSITIVE_DENSITY_LEAVITT_DECODER_ENDGAME.md
 ---
 
 For contractions `T_0,S_0,T_1,S_1` in any nonzero finite matrix algebra,

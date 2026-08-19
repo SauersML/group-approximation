@@ -8,7 +8,7 @@ distinct_from:
   hyperlinear-wreath-model: That asks for a normalized-Hilbert--Schmidt (tracial) model of the same group; this asks only for an operator-norm one, which is a strictly weaker requirement and is a different open question.
   kun-thom-clifford-extension-not-weak-mf: That is the Clifford central extension of this group, and it is settled negatively; whether the property descends to this central quotient is exactly what is unknown.
 artifacts:
-  - docs/NOTEPAD.md
+  - notes/NOTEPAD.md
   - research/artifacts/kun-thom-2608-06222-verified.md
 ---
 
@@ -22,7 +22,7 @@ weak MF, i.e. MF in the operator-norm norm-matrix-corona sense?
 
 **Open.** The corpus is explicit that this is not settled, and warns against
 the natural mis-inference from the free-lamp case
-(`docs/NOTEPAD.md:30421-30423`):
+(`notes/NOTEPAD.md:30421-30423`):
 
 > Correction: weak MF of W is not banked. The symmetric-double proof applies
 > to the free-lamp amalgam, not to the commuting-lamp wreath product. Thus

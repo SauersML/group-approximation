@@ -6,7 +6,7 @@ title: Pauli recurrence is witnessed by almost-projection aggregate incoming ran
 distinct_from:
   atlas-pauli-range-packing-recurrence: that target asks separately for every wrong-target range cost and every pairwise incoming overlap; this target packages all incoming branches at a state into one positive aggregate range operator.
 artifacts:
-  - docs/TRUE_PAULI_BRANCH_TRANSFER_PACKET.md
+  - notes/TRUE_PAULI_BRANCH_TRANSFER_PACKET.md
 ---
 
 Use the exact source `E` and children `R_0,R_1` from

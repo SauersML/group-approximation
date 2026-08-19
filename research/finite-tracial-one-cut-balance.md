@@ -4,7 +4,7 @@ id: finite-tracial-one-cut-balance
 kind: claim
 title: A unitary has equal Hilbert-Schmidt leakage across the two directions of a finite projection cut
 artifacts:
-  - docs/ATLAS_RELATIVE_PERFECTNESS_AND_COEFFICIENT_ENDPOINT.md
+  - notes/ATLAS_RELATIVE_PERFECTNESS_AND_COEFFICIENT_ENDPOINT.md
 ---
 
 Let `(M,tau)` be a finite tracial von Neumann algebra, let `P in M` be a

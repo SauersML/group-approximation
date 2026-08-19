@@ -6,7 +6,7 @@ title: Direct proof of Commuting target packets synchronize transition PVMs
 target: target-packet-synchronization
 requires: []
 artifacts:
-  - docs/TRUE_COMMUTING_TARGET_PACKETS_SYNCHRONIZE_TRANSITIONS.md
+  - notes/TRUE_COMMUTING_TARGET_PACKETS_SYNCHRONIZE_TRANSITIONS.md
 ---
 
 # Direct proof of Commuting target packets synchronize transition PVMs

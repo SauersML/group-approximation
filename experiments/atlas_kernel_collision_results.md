@@ -5,7 +5,7 @@ Date: 2026-08-11
 ## Purpose
 
 `atlas_kernel_collision_enumerator.py` implements Proposition 4 of
-`docs/FALSE_RECURSIVE_ATLAS_EXHAUSTION.md`.  It enumerates the ball `B_r` in
+`notes/FALSE_RECURSIVE_ATLAS_EXHAUSTION.md`.  It enumerates the ball `B_r` in
 the twelve adjacent-transvection generators of
 
 `P=A8*A8 -> L_(F2)(1,2)^times`,

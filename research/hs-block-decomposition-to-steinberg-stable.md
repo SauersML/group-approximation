@@ -7,7 +7,7 @@ target: leavitt-steinberg-hs-stable
 requires: [hs-expander-block-decomposition, tracial-median-concentration, leavitt-steinberg-hs-stability-fork]
 artifacts:
   - c1168433:official/counterexample.tex
-  - docs/NOTEPAD.md
+  - notes/NOTEPAD.md
 ---
 
 The one-sided-compression criterion (`official/counterexample.tex`,
@@ -65,7 +65,7 @@ No commutation and no integrality is used, and the permutation statement is
 the case of indicator functions, where `tau(f e_i f) = |Q(P_i) cap D|/|Y|`.
 
 **This does not collide with the index no-go.**
-`docs/FALSE_KAZHDAN_COMPRESSION_INDEX_TO_PHASE.md:101-117` shows that an
+`notes/FALSE_KAZHDAN_COMPRESSION_INDEX_TO_PHASE.md:101-117` shows that an
 *integer parity or Fredholm index* cannot be read from tracial microstates,
 because "adding or removing one boundary dimension changes its parity while
 changing a bounded operator by only `O(d^(-1/2))` in normalized
@@ -77,7 +77,7 @@ integer off the model; it is the inequality above, and its stability under
 The two statements are about different objects and should not be conflated.
 
 An alternative to assembling the matching by hand: in the **equal-trace**
-case, `docs/TRUE_DIAGONAL_NORMALIZER_RIGIDITY.md` Proposition 11 converts an
+case, `notes/TRUE_DIAGONAL_NORMALIZER_RIGIDITY.md` Proposition 11 converts an
 almost-normalized `k`-atom block algebra directly into a Hamming-almost
 multiplicative map on `k` points, which is a permutation model.  For a
 nonsofic group that is already the contradiction, with no median device
@@ -128,7 +128,7 @@ status are:
 **Where the unequal-trace difficulty actually lives.**  It is step 2 and
 nowhere else.  The median device is not a way of coping with unequal block
 traces; it is the proof that they are asymptotically equal, after which
-step 4 and `docs/TRUE_DIAGONAL_NORMALIZER_RIGIDITY.md` Proposition 11 both
+step 4 and `notes/TRUE_DIAGONAL_NORMALIZER_RIGIDITY.md` Proposition 11 both
 apply.  Anyone attacking the "unequal-trace case" should read that as
 "prove `tracial-median-concentration`".
 

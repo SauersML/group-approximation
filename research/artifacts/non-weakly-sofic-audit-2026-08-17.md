@@ -788,7 +788,7 @@ correctly combine:
 
 The resulting wreath product is weakly sofic and nonsofic. The longer note
 
-`docs/TRUE_RELATIVE_WALL_IS_COMMUTANT_GROWTH.md:1106-1147`
+`notes/TRUE_RELATIVE_WALL_IS_COMMUTANT_GROWTH.md:1106-1147`
 
 proves the same calibration for the Clifford extension `E_S`: Theorem 9 says it is weakly sofic and nonsofic, and Corollary 10 realizes the Clifford wall inside a metric ultraproduct of finite groups with bi-invariant metrics.
 
@@ -826,7 +826,7 @@ with `x notin <<g_1,...,g_k>>`. Without such a theorem there is no Glebsky--Rive
 | `LiteralFiniteDimensionalObstruction.lean:55-78` | Every finite quotient kills the nontrivial mark | Gives unbounded normal-closure membership, not a fixed product |
 | `non_mf_groups_exist.tex:3031-3059` | Finite MF quasi-identity violated by `E` | Horn formulas need not survive metric-ultraproduct quotients |
 | `research/weakly-sofic-not-sofic-proof.md` | Kun--Thom wreath is weakly sofic and nonsofic | Directly disproves `nonsofic => non-weakly-sofic` |
-| `docs/TRUE_RELATIVE_WALL_IS_COMMUTANT_GROWTH.md:1106-1147` | Clifford wall occurs in a weakly sofic nonsofic group | Pure wall arguments cannot obstruct weak soficity |
+| `notes/TRUE_RELATIVE_WALL_IS_COMMUTANT_GROWTH.md:1106-1147` | Clifford wall occurs in a weakly sofic nonsofic group | Pure wall arguments cannot obstruct weak soficity |
 | `SoficEnvelopeSimplicity.lean:326-345` | Fixed conjugacy length is structurally important | Correct insight, but no profinite witness is supplied |
 | `Endpoint/QuotientNonclosure.lean` | Soficity is not quotient-closed | No conclusion about weak soficity |
 | `Sofic/ProfiniteTwins.lean` | Same finite quotients can have opposite MF status | Finite quotients do not encode the needed metric approximation property |
@@ -1087,7 +1087,7 @@ The repository itself constructs the calibration group
 E_S=\widetilde V_S\rtimes G
 ```
 
-and proves in `docs/TRUE_RELATIVE_WALL_IS_COMMUTANT_GROWTH.md`, Theorem 9, that it is weakly sofic and nonsofic. Corollary 10 realizes the same marked Clifford wall in a metric ultraproduct of finite groups with arbitrary bi-invariant metrics.
+and proves in `notes/TRUE_RELATIVE_WALL_IS_COMMUTANT_GROWTH.md`, Theorem 9, that it is weakly sofic and nonsofic. Corollary 10 realizes the same marked Clifford wall in a metric ultraproduct of finite groups with arbitrary bi-invariant metrics.
 
 Therefore the abstract wall is realizable in the weak-sofic category. A valid non-weak-sofic argument must exploit a metric inequality that holds for **every** invariant metric on **every** finite group. The trace and Pimsner--Popa index arguments in the MF/hyperlinear setting do not supply such an inequality.
 
@@ -1709,4 +1709,4 @@ Section 7.3.
 * `research/glebsky-weak-soficity-is-metric-free.md`, lines 16-47.
 * `research/weakly-sofic-not-sofic-proof.md`, lines 12-34.
 * `research/kun-thom-clifford-cover-weakly-sofic-proof.md`, lines 12-30.
-* `docs/TRUE_RELATIVE_WALL_IS_COMMUTANT_GROWTH.md`, lines 1106-1168.
+* `notes/TRUE_RELATIVE_WALL_IS_COMMUTANT_GROWTH.md`, lines 1106-1168.

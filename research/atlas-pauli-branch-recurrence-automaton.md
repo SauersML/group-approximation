@@ -4,8 +4,8 @@ id: atlas-pauli-branch-recurrence-automaton
 kind: claim
 title: Both Pauli children recur through one finite low-energy coefficient automaton
 artifacts:
-  - docs/TRUE_PAULI_BRANCH_TRANSFER_PACKET.md
-  - docs/TRUE_RAW_PAULI_COEFFICIENT_CUT.md
+  - notes/TRUE_PAULI_BRANCH_TRANSFER_PACKET.md
+  - notes/TRUE_RAW_PAULI_COEFFICIENT_CUT.md
 distinct_from:
   atlas-one-cut-finite-multiplicity-extraction: that asks the whole transported trace-1/4 carrier to leak into one trace-1/8 cut; this target allows the two trace-1/8 children to follow different finite coefficient routes and only asks for recurrent branch pressure with vanishing Gram overlap.
 ---
