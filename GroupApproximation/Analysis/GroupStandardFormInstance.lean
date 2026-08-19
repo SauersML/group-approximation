@@ -61,7 +61,7 @@ theorem modularJ_apply (f : GroupHilbert G) (x : G) :
 /-- The inner product of `δ₁` against a vector is its identity coefficient. -/
 theorem inner_deltaOne_left (F : GroupHilbert G) :
     ⟪deltaOne G, F⟫_ℂ = F 1 := by
-  rw [deltaOne, lp.inner_single_left, RCLike.inner_apply, map_one, one_mul]
+  rw [deltaOne, lp.inner_single_left, RCLike.inner_apply, map_one, mul_one]
 
 /-- **The coefficient identity behind `J(TΩ) = T⋆Ω`**: for `T ∈ L(G)` the
 adjoint's coefficient column is the conjugated, inverted column of `T`. -/
@@ -73,7 +73,7 @@ theorem star_coefficient {T : GroupHilbert G →L[ℂ] GroupHilbert G}
     rw [apply_single_of_mem G hT, one_smul]
   calc (star T (deltaOne G)) x
       = ⟪(lp.single 2 x 1 : GroupHilbert G), star T (deltaOne G)⟫_ℂ := by
-        rw [lp.inner_single_left, RCLike.inner_apply, map_one, one_mul]
+        rw [lp.inner_single_left, RCLike.inner_apply, map_one, mul_one]
     _ = ⟪T (lp.single 2 x 1), deltaOne G⟫_ℂ := by
         rw [ContinuousLinearMap.star_eq_adjoint,
           ContinuousLinearMap.adjoint_inner_right]

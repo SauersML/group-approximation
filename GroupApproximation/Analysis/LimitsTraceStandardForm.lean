@@ -66,14 +66,12 @@ theorem linearIndependent_leftRegularOperator :
   intro s coef hsum g₀ hg₀
   have h1 : (∑ g ∈ s, coef g • leftRegularOperator G g) (deltaOne G)
       = ∑ g ∈ s, coef g • (lp.single 2 g 1 : GroupHilbert G) := by
-    rw [map_sum (ContinuousLinearMap.apply ℂ (GroupHilbert G) (deltaOne G))
-      _ s]
+    refine (map_sum (ContinuousLinearMap.apply ℂ (GroupHilbert G)
+      (deltaOne G)) _ s).trans ?_
     refine Finset.sum_congr rfl fun g _ ↦ ?_
-    rw [show (coef g • leftRegularOperator G g) (deltaOne G)
-          = coef g • leftRegularOperator G g (deltaOne G) from
-        map_smul (ContinuousLinearMap.apply ℂ (GroupHilbert G) (deltaOne G))
-          _ _,
-      leftRegularOperator_deltaOne]
+    exact (map_smul (ContinuousLinearMap.apply ℂ (GroupHilbert G)
+        (deltaOne G)) (coef g) (leftRegularOperator G g)).trans
+      (congrArg (fun z ↦ coef g • z) (leftRegularOperator_deltaOne G g))
   rw [hsum] at h1
   have h2 : (0 : GroupHilbert G)
       = ∑ g ∈ s, coef g • (lp.single 2 g 1 : GroupHilbert G) := h1
@@ -82,12 +80,12 @@ theorem linearIndependent_leftRegularOperator :
     rw [← h2]
   have h4 : (∑ g ∈ s, coef g • (lp.single 2 g 1 : GroupHilbert G)) g₀
       = ∑ g ∈ s, coef g * (if g₀ = g then 1 else 0) := by
-    rw [map_sum (lp.evalCLM ℂ (fun _ : G ↦ ℂ) 2 g₀) _ s]
+    refine (map_sum (lp.evalCLM ℂ (fun _ : G ↦ ℂ) 2 g₀) _ s).trans ?_
     refine Finset.sum_congr rfl fun g _ ↦ ?_
-    rw [show ((coef g • (lp.single 2 g 1 : GroupHilbert G)) :
-            GroupHilbert G) g₀
-          = coef g • ((lp.single 2 g 1 : GroupHilbert G) g₀) from
-        map_smul (lp.evalCLM ℂ (fun _ : G ↦ ℂ) 2 g₀) _ _]
+    refine (map_smul (lp.evalCLM ℂ (fun _ : G ↦ ℂ) 2 g₀) (coef g)
+      (lp.single 2 g 1 : GroupHilbert G)).trans ?_
+    show coef g • ((lp.single 2 g 1 : GroupHilbert G) g₀)
+        = coef g * (if g₀ = g then 1 else 0)
     rw [lp.single_apply, Pi.single_apply, smul_eq_mul]
   have h5 : ∑ g ∈ s, coef g * (if g₀ = g then 1 else 0) = coef g₀ := by
     rw [show (fun g ↦ coef g * (if g₀ = g then 1 else 0))
