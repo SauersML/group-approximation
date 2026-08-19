@@ -902,26 +902,18 @@ function ledgerStep(id) {
 }
 
 const GRADE_TXT = { 'EXACT': '✓ exact', 'MISMATCH': 'different route', 'MISSING': 'not formalized', 'UNDER-SPECIFIED': 'under-specified' };
-// a tombstoned row is not an inferential step, so it is not graded as one
-const KIND_TXT = { 'attribution': 'attribution, not a step', 'open': 'open question, not a step' };
-const KIND_TITLE = {
-  'attribution': 'A citation or a piece of terminology, not an inferential step — nothing here is left to formalize',
-  'open': 'A remark about what remains open, not an inferential step',
-};
 function ledgerHtml(rows) {
   let html = '<div class="ledger-head">Printed steps, graded against Lean' +
     ' <span class="ledger-src">from the audited proof-step ledger</span></div>';
   for (const r of rows) {
-    const cls = r.kind ? 'lg-note' : 'lg-' + r.proof.toLowerCase().replace(/[^a-z]/g, '');
+    const cls = 'lg-' + r.proof.toLowerCase().replace(/[^a-z]/g, '');
     const decls = r.decls.map(d => {
       const short = d.replace(/^GroupApproximation\./, '').replace(/^Mathlib:/, '');
       const key = resolveLeanRef(short, '', '');
       const code = '<code class="ls-decl">' + escHtml(short) + '</code>';
       return key ? '<a class="lean-ref" data-key="' + escHtml(key) + '" title="Show this declaration">' + code + '</a>' : code;
     }).join(' ');
-    const grade = r.kind ? KIND_TXT[r.kind] : (GRADE_TXT[r.proof] || escHtml(r.proof));
-    const gTitle = r.kind ? ' title="' + escAttr(KIND_TITLE[r.kind]) + '"' : '';
-    html += '<div class="ledger-step"><span class="ls-grade ' + cls + '"' + gTitle + '>' + grade + '</span>' +
+    html += '<div class="ledger-step"><span class="ls-grade ' + cls + '">' + (GRADE_TXT[r.proof] || escHtml(r.proof)) + '</span>' +
       '<span class="ls-claim">' + escHtml(r.claim) + '</span>' +
       (decls ? '<span class="ls-decls">' + decls + '</span>' : '') + '</div>';
   }

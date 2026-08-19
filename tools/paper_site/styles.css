@@ -378,8 +378,6 @@ details.proof > summary .badge-lean { font-size: 12px; padding: 0 8px; }
 .lg-exact { color: var(--verified); background: var(--verified-bg); }
 .lg-mismatch { color: #8a6100; background: #f7efdc; }
 .lg-missing, .lg-underspecified { color: var(--ink-faint); background: var(--bg-inset); }
-/* a tombstoned row: an attribution or an open-status remark, not a step */
-.lg-note { color: var(--ink-soft); background: var(--bg-inset); font-style: italic; }
 .ls-claim { flex: 1 1 260px; }
 .ls-decls { flex: 1 1 100%; padding-left: 2px; }
 .ls-decl { font-size: 0.85em; color: var(--ink-soft); overflow-wrap: anywhere; }
