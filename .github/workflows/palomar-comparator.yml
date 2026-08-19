@@ -112,9 +112,11 @@ jobs:
         run: lake build PalomarChallenge PalomarSolution
 
       # Comparator's sandbox.  Landrun is Go; the runner ships a toolchain.
+      # The module path is lowercase `zouuup` even though the GitHub owner
+      # renders as `Zouuup`, and `go install` is case-sensitive.
       - name: Build landrun
         run: |
-          go install github.com/Zouuup/landrun@main
+          go install github.com/zouuup/landrun@main
           echo "$HOME/go/bin" >> "$GITHUB_PATH"
           "$HOME/go/bin/landrun" --version || true
 

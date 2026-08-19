@@ -59,6 +59,7 @@ that has silently stopped firing look exactly the same from here.
 from __future__ import annotations
 
 import json
+import os
 import re
 import subprocess
 import sys
@@ -410,8 +411,17 @@ def check_metadata(root: Path, f: Findings) -> None:
     try:
         import yaml  # noqa: PLC0415
     except ModuleNotFoundError:
-        print("palomar: formalization.yaml NOT CHECKED -- PyYAML is not "
-              "importable in this interpreter")
+        # Skipping is tolerable on a developer machine whose interpreter
+        # happens to lack PyYAML, and is NOT tolerable in CI: a metadata check
+        # that quietly does not run reads exactly like a metadata check that
+        # passed.
+        if os.environ.get("CI"):
+            f.add("formalization.yaml could not be checked: PyYAML is not "
+                  "importable, and a check that does not run must not look "
+                  "like one that passed")
+        else:
+            print("palomar: formalization.yaml NOT CHECKED -- PyYAML is not "
+                  "importable in this interpreter")
         return
 
     path = root / "formalization.yaml"

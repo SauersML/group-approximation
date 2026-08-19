@@ -557,6 +557,12 @@ jobs:
       # silent.  This step also fails if the calibration is deleted.
       - name: Calibrate the source scan
         run: |
+          # The Palomar metadata check needs PyYAML and, in CI, refuses to
+          # skip: a check that quietly does not run reads exactly like one
+          # that passed.  Conditional and pinned, so a runner image that
+          # already ships it downloads nothing.
+          python3 -c 'import yaml' 2>/dev/null \
+            || python3 -m pip install --disable-pip-version-check --no-deps PyYAML==6.0.3
           python3 scripts/check.py --self-test
           python3 scripts/test_claim_map.py
           python3 scripts/check_non_mf_refs.py --self-test
@@ -1062,6 +1068,12 @@ jobs:
       # verbatim.  Any change to those inputs takes the full lane instead.
       - name: Calibrate the source scan
         run: |
+          # The Palomar metadata check needs PyYAML and, in CI, refuses to
+          # skip: a check that quietly does not run reads exactly like one
+          # that passed.  Conditional and pinned, so a runner image that
+          # already ships it downloads nothing.
+          python3 -c 'import yaml' 2>/dev/null \
+            || python3 -m pip install --disable-pip-version-check --no-deps PyYAML==6.0.3
           python3 scripts/check.py --self-test
           python3 scripts/test_claim_map.py
           python3 scripts/check_non_mf_refs.py --self-test
