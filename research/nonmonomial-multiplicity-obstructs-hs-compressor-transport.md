@@ -4,7 +4,7 @@ id: nonmonomial-multiplicity-obstructs-hs-compressor-transport
 kind: claim
 title: Nonmonomial multiplicity obstructs compressor transport even for exact representations
 distinct_from:
-  hs-expander-block-decomposition: That asks for a positive normalized-HS block decomposition; this gives an exact finite-dimensional counterexample to its compressor-transport clause under the general subgroup/compressor quantifiers currently written there.
+  hs-expander-block-decomposition: That node is now deliberately restricted to the explicit Leavitt compression pair; this is the exact counterexample which shows why its former universal Kazhdan-pair compressor formulation was invalid and why a Leavitt-specific compatibility argument is necessary.
   rank-one-lift-perturbation-gap-no-go: That is a finite-level spectral-gap obstruction caused by a vanishing-rank perturbation; this obstruction has zero approximation error, fixed dimension, and comes solely from nonmonomial compressor action on multiplicity space.
 ---
 
@@ -40,9 +40,12 @@ pi(g,a) = sigma(a),
 where `sigma:A_5 -> U(3)` is the irreducible icosahedral representation and
 the compressors are lifts of a finite generating set of `A_5`.
 
-Thus the compressor clause in `hs-expander-block-decomposition` is not a
-formal consequence of property `(T)`, almost multiplicativity, or even exact
-multiplicativity.  It is an additional **monomiality/coordinate-algebra**
-input.  This is precisely what the permutation model has for free: its
-component algebra comes from a set on which every ambient permutation already
-acts monomially.
+Thus a compressor clause of the form formerly attached to
+`hs-expander-block-decomposition` is not a formal consequence of property
+`(T)`, almost multiplicativity, or even exact multiplicativity.  It is an
+additional **monomiality/coordinate-algebra** input.  This is precisely what
+the permutation model has for free: its component algebra comes from a set on
+which every ambient permutation already acts monomially.  The repaired
+Leavitt-specific target must therefore obtain that compatibility from the
+prefix-compression structure itself rather than from abstract Kazhdan
+rigidity.
