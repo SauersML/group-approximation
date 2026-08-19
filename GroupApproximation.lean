@@ -1164,6 +1164,7 @@ import GroupApproximation.Analysis.CStarTakesakiMinLe
 import GroupApproximation.Analysis.CStarTakesakiCyclic
 import GroupApproximation.Analysis.CStarTakesakiIdentification
 import GroupApproximation.Analysis.TracialStandardFormCommutation
+import GroupApproximation.Analysis.TracialConjugationExists
 import GroupApproximation.Analysis.QuasidiagonalCompression
 import GroupApproximation.Analysis.UniformRoeAlgebra
 
