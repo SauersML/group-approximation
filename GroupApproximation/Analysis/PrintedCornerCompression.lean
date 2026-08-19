@@ -708,8 +708,9 @@ printed one: an `OpAlmostRepresentation` — this development's definition of
 `q_n M_{d_n}(ℂ) q_n`, every one of them nonzero, so `r_n ≥ 1`; whose unitaries
 are the `W_{g,n}`; and whose distance from the compressions `q_n V_{g,n} q_n`
 tends to `0`. -/
-theorem manuscriptCornerAsymptoticRepresentation {G : Type*} [Group G]
-    {model : ℕ → FiniteModel} (D : PrintedCornerData G model) :
+theorem manuscriptCornerAsymptoticRepresentation :
+    ∀ {G : Type*} [Group G] {model : ℕ → FiniteModel}
+      (D : PrintedCornerData G model),
     ∃ W : OpAlmostRepresentation G,
       W.model = D.cornerModel ∧
         (∀ n, 0 < Fintype.card (D.cornerModel n)) ∧
@@ -717,8 +718,9 @@ theorem manuscriptCornerAsymptoticRepresentation {G : Type*} [Group G]
         (∀ g : G, Tendsto (fun n ↦
           ‖(D.cornerMap n g : Matrix (D.cornerModel n) (D.cornerModel n) ℂ)
             - D.compress n g‖) atTop (𝓝 0)) :=
-  ⟨D.cornerRepresentation, rfl, D.cornerModel_card_pos,
-    fun _ _ ↦ HEq.rfl, D.cornerMap_sub_compress_tendsto⟩
+  fun D ↦
+    ⟨D.cornerRepresentation, rfl, D.cornerModel_card_pos,
+      fun _ _ ↦ HEq.rfl, D.cornerMap_sub_compress_tendsto⟩
 
 end Assembly
 

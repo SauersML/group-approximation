@@ -7,9 +7,9 @@ Spec document: `non_mf_groups_exist.tex`.  Formal development: `GroupApproximati
 | | |
 | --- | --- |
 | commit | the external literature-review pass of 2026-08-19 (this one) |
-| `git hash-object non_mf_groups_exist.tex` | `fbcd9d54f5607d9b4bf3888faeba1599e8a65cf5` |
-| sha256 of the file | `e29b8d2f6f99998ab6c93e3fc0811fee4f2b4c7400b31a28add5ed2e0af82fd9` |
-| `wc -l` | 3937 |
+| `git hash-object non_mf_groups_exist.tex` | `ba5b45162ab12088c02d9f1d247818df34278b87` |
+| sha256 of the file | `70f65df42f1a6e02aa1f6308891c00dd4691920e3397b5f8b2e276fe6724f986` |
+| `wc -l` | 4014 |
 
 `git hash-object` of the file must reproduce the blob above for the rows below
 to be read as current.  The file has shrunk from 4768 lines to 3771 across the
@@ -1037,7 +1037,7 @@ once in the comment-stripped manuscript; the probe is the drift detector.
 | cor:undecidable | env | cor:undecidable | 465508722f012ed4 |
 | prop:maximal-cstar | env | prop:maximal-cstar | 7108b280fbf939cb |
 | prop:proper-isometry | env | prop:proper-isometry | af0fbcd75508bcd3 |
-| rem:maxinfinite | env | rem:maxinfinite | 92b53660bf2ead3e |
+| rem:maxinfinite | env | rem:maxinfinite | 1ffdf62b6e21e761 |
 | p:abstract-refute | prose | `the conjecture that every countable group is MF` | - |
 | p:abstract-mechanism | prose | `compressing to the $(-1)$-spectral projection of $\Theta(w)$ yields a contradiction` | - |
 | p:intro-history | prose | `Residually finite groups are MF because their finite quotients separate points` | - |

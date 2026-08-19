@@ -155,6 +155,16 @@ CLAIM_TARGETS: dict[str, tuple[str, str]] = {
         "Analysis/ProperIsometryStrictOrder",
         "GroupApproximation.manuscriptProperIsometryStrictOrder",
     ),
+    "lem:corner": (
+        "Analysis/PrintedCornerCompression",
+        "GroupApproximation.PrintedCornerCompression."
+        "manuscriptCornerAsymptoticRepresentation",
+    ),
+    "rem:maxinfinite": (
+        "Analysis/StrictCompressionFromPrinted",
+        "GroupApproximation.MaximalCStarPrintedHypotheses."
+        "manuscriptMaximalCStarRemarkFromPrintedHypotheses",
+    ),
     "thm:signfree": (
         "Sofic/LiteralSignFreeQuotient",
         "GroupApproximation.LiteralSignFreeQuotient.signFreeQuotient_not_isCDEOperatorMF",
@@ -272,6 +282,8 @@ DEPENDENCIES: dict[str, list[str]] = {
     "prop:univquot": ["def:radical", "lem:lift", "lem:unitarycorona"],
     "cor:exactradical": ["def:radical"],
     "cor:nofaithful": ["thm:A"],
+    "lem:corner": ["lem:lift"],
+    "rem:maxinfinite": ["prop:proper-isometry", "prop:maximal-cstar"],
     "prop:horn": ["thm:A", "lem:portable"],
     "cor:quotclosure": ["thm:A", "lem:permanence"],
 }
