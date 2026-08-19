@@ -272,9 +272,11 @@ theorem dense_range_gnsRep_gnsVector (φ : State A) :
     UniformSpace.Completion.denseRange_coe v
   have hr : Set.range ((↑) : φ.toPositive.PreGNS → φ.toPositive.GNS)
       ⊆ Set.range (fun u : A => (φ.gnsRep).hom u φ.gnsVector) := by
-    rintro _ ⟨p, rfl⟩
+    rintro w ⟨p, hp⟩
     refine ⟨φ.toPositive.ofPreGNS p, ?_⟩
+    show (φ.gnsRep).hom (φ.toPositive.ofPreGNS p) φ.gnsVector = w
     rw [gnsRep_apply_gnsVector, PositiveLinearMap.toPreGNS_ofPreGNS]
+    exact hp
   exact closure_mono hr hv
 
 end GNSVector

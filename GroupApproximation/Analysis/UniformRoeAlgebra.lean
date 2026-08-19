@@ -281,11 +281,19 @@ def finitePropagationSubalgebra :
     StarSubalgebra ℂ (GroupHilbert G →L[ℂ] GroupHilbert G) where
   carrier := {T | FinitePropagation G T}
   mul_mem' := by
-    rintro ⟨S, hS⟩ ⟨S', hS'⟩
+    intro T T' hT hT'
+    have h1 : FinitePropagation G T := hT
+    have h2 : FinitePropagation G T' := hT'
+    obtain ⟨S, hS⟩ := h1
+    obtain ⟨S', hS'⟩ := h2
     show FinitePropagation G _
     exact ⟨S * S', hasPropagationIn_mul hS hS'⟩
   add_mem' := by
-    rintro ⟨S, hS⟩ ⟨S', hS'⟩
+    intro T T' hT hT'
+    have h1 : FinitePropagation G T := hT
+    have h2 : FinitePropagation G T' := hT'
+    obtain ⟨S, hS⟩ := h1
+    obtain ⟨S', hS'⟩ := h2
     show FinitePropagation G _
     refine ⟨S ∪ S', ?_⟩
     have h1 := hasPropagationIn_add hS hS'
@@ -305,7 +313,9 @@ def finitePropagationSubalgebra :
     rw [Finset.coe_singleton]
     exact h3
   star_mem' := by
-    rintro ⟨S, hS⟩
+    intro T hT
+    have h1 : FinitePropagation G T := hT
+    obtain ⟨S, hS⟩ := h1
     show FinitePropagation G _
     refine ⟨S⁻¹, ?_⟩
     have h1 := hasPropagationIn_star hS
