@@ -38,7 +38,7 @@ map).  Nonsoficity is inherited upward because soficity passes to quotients.
 
 ## Its place in the two programs
 
-This is the endpoint of `property_tt_leavitt.tex`, not of the non-MF
+This is the endpoint of the `PropertyTT/` development, not of the non-MF
 manuscript, and it is independent of the Q3.4 goal: a nonsofic group is not by
 itself a *hyperlinear* nonsofic group, which is what
 [[hyperlinear-nonsofic-group]] asks for.  It is recorded here because the

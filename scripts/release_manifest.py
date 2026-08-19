@@ -59,7 +59,7 @@ def build_manifest(*, commit: str | None = None,
 
     files = sorted(
         p for pattern in ("GroupApproximation/**/*.lean", "GroupApproximation.lean",
-                          "scripts/**/*", "docs/*", "metadata/*", ".github/workflows/*.yml",
+                          "scripts/**/*", "notes/*", "metadata/*", ".github/workflows/*.yml",
                           "experiments/sl3-p13-reductions-complete.json",
                           "experiments/sl3-sos-radius0-certificate.json",
                           "experiments/sl3-sos-radius0-certificate.npz",
@@ -70,7 +70,6 @@ def build_manifest(*, commit: str | None = None,
                           "experiments/sl3_p13_replay_lean_generator.py",
                           "docbuild/lakefile.toml", "docbuild/lean-toolchain",
                           "docbuild/lake-manifest.json",
-                          "property_tt_leavitt.tex", "property_tt_leavitt.pdf",
                           "non_mf_groups_exist.tex", "non_mf_groups_exist.pdf",
                           "README.md", "CITATION.cff", "lakefile.toml",
                           "lean-toolchain", "lake-manifest.json")

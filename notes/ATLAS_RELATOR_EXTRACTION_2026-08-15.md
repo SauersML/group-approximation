@@ -1,9 +1,9 @@
 # Extracting the finite relator list for the canonical regular-`A8` criterion
 
 Date: 2026-08-15.  Working notes, not canonical.  Nothing here is committed to
-`docs/` or `research/`.
+`notes/` or `research/`.
 
-Setting, throughout, is `docs/EXPLICIT_LEAVITT_ATLAS.md:458-607` (§9):
+Setting, throughout, is `notes/EXPLICIT_LEAVITT_ATLAS.md:458-607` (§9):
 
 ```
 Pbar = K1 * K2 = A8 * A8   --rhobar-->>  Q = L_(F2)(1,2)^times
@@ -12,7 +12,7 @@ Rbar = ker rhobar,   Nbar = [Pbar, Rbar],   Pbar/Nbar = U_Q   (22)
 
 `X` is the twelve-element generating set of six adjacent transvections
 `e_12,e_21,e_23,e_32,e_34,e_43` per factor
-(`docs/FALSE_RECURSIVE_ATLAS_EXHAUSTION.md:28-40`).  "X-length" always means
+(`notes/FALSE_RECURSIVE_ATLAS_EXHAUSTION.md:28-40`).  "X-length" always means
 word length in `X`; in a free product it is additive over free-product
 syllables, so it is the sum of the six-transvection lengths of the
 `GL_4(F2)` syllables.
@@ -90,7 +90,7 @@ consequences that change the extraction problem:
    finitely presented iff `H_2(Q,Z) = K_2(5,L)` is a finitely generated abelian
    group, which is not known.  `Nbar` is finitely normally generated
    unconditionally because `St_5(L)` is finitely presented (Krstic--McCool, as
-   quoted at `docs/NOTEPAD.md:21608-21611`; **literature-transcription premise,
+   quoted at `notes/NOTEPAD.md:21608-21611`; **literature-transcription premise,
    not verified in repo**).  The usability criterion above keeps the
    unconditional target available while allowing anything up to `Rbar`.
 
@@ -111,7 +111,7 @@ consequences that change the extraction problem:
 
 Applied with `V = Pbar/<<T>>` (perfect, since `A8 * A8` is perfect;
 `Z = Rbar/<<T>>` central exactly when (ii) holds; `V/Z = Q` infinite simple,
-`docs/NOTEPAD.md:21622-21628` via Preusser):
+`notes/NOTEPAD.md:21622-21628` via Preusser):
 
 > **Screen.**  If some homomorphism `phi : Pbar -> F` onto a nontrivial
 > **finite** group kills every word of `T ⊆ Rbar`, then `Nbar` is **not**
@@ -187,7 +187,7 @@ positive certificate exists.  No amount of further enumeration can produce
 one: enumeration only ever produces subgroups of `Rbar` and never an upper
 bound on `Nbar`.  A certificate must come from the algebra side.  Note also
 that of the 234 boundary words, 178 are certified **trivial in `U_Q`**
-(`docs/FALSE_ATLAS_PERFECT_OVERLAP_SCAN.md`), i.e. they lie in `Nbar` itself
+(`notes/FALSE_ATLAS_PERFECT_OVERLAP_SCAN.md`), i.e. they lie in `Nbar` itself
 and so contribute nothing to `<<T>> / Nbar`; the 56 survivors (4 cyclic
 classes 11, 30, 44, 55) are the only ones that could represent nonzero classes
 in `Rbar/Nbar = H_2(Q,Z)`.
@@ -225,7 +225,7 @@ So **the two atlas charts intersect trivially in `Q`**.  Consequences:
 
 ### The route I recommend
 
-The `docs/EXPLICIT_LEAVITT_ATLAS.md:227-238` two-step program is right, but
+The `notes/EXPLICIT_LEAVITT_ATLAS.md:227-238` two-step program is right, but
 (a) simplifies its justification and removes one of its two hard steps.
 
 **Step 0 (free, from (a)).**  Do not aim at `Nbar`.  Aim at any `T` with
@@ -234,7 +234,7 @@ Steinberg route naturally produces:
 
 > Let `T_St` be a finite relator set with `Pbar/<<T_St>> ≅ St_5(L)` compatibly
 > over `Q`.  Then `Rbar/<<T_St>> ≅ K_2(5,L)`, which is **central** in
-> `St_5(L)` for `n >= 5` (Kervaire--Steinberg; `docs/NOTEPAD.md:21650-21652`).
+> `St_5(L)` for `n >= 5` (Kervaire--Steinberg; `notes/NOTEPAD.md:21650-21652`).
 > Hence `Nbar <= <<T_St>>` automatically, and `T_St` is usable.
 
 This is worth stating explicitly because it means the extraction **never needs
@@ -246,7 +246,7 @@ finitely generated**.  Only centrality is used.
 `x_ij(a) = 1 + gamma_i a gamma_j^*`, `i != j` in `{1..5}`, `a in {1,e,f,e^*,f^*}`.
 Warning found here: the common refinement `E = {000,001,010,011,1}` of
 `D_1, D_2` is **not** usable as that code — refinement must be *uniform*
-(`docs/EXPLICIT_LEAVITT_ATLAS.md:104-118`, the `m(alpha) = m(beta)` rank
+(`notes/EXPLICIT_LEAVITT_ATLAS.md:104-118`, the `m(alpha) = m(beta)` rank
 condition), and `E` refines `D_1` with multiplicities `(1,1,2,1)`.  This is the
 same fact as `|K1 cap K2| = 1`.  The uniform refinements of `D_i` have
 `4 * 2^k` leaves, so the natural superperfect hosts are
@@ -255,7 +255,7 @@ both.
 
 **Step 2 (the real work).**  Express each `x_ij(a)` as an explicit word in
 `X`.  For the rank-3 code this is exactly (7) of
-`docs/EXPLICIT_LEAVITT_ATLAS.md:139-151`; the rank-5 analogue has to be
+`notes/EXPLICIT_LEAVITT_ATLAS.md:139-151`; the rank-5 analogue has to be
 written out.  This is a factorization problem in `Q` over the atlas, and it is
 the step to spend effort on.
 
@@ -290,7 +290,7 @@ Proposed, not written (research/ is read-only for this session).
 1. **`atlas-relator-list-central-sufficiency`** (claim, provable now).
    *Let `Pbar = A8 * A8 ->> Q`, `Rbar = ker`, `Nbar = [Pbar,Rbar]`.  For finite
    `T ⊆ Rbar` with `Nbar <= <<T>>_Pbar`, the canonical regular-`A8` criterion
-   of `docs/EXPLICIT_LEAVITT_ATLAS.md` §9 holds verbatim with `Sbar` replaced
+   of `notes/EXPLICIT_LEAVITT_ATLAS.md` §9 holds verbatim with `Sbar` replaced
    by `T`.  Equivalently, the admissible relator lists are exactly those with
    `Nbar <= <<T>> <= Rbar`, i.e. those for which `Pbar/<<T>>` is a central
    extension of `Q`.*

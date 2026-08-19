@@ -107,6 +107,33 @@ it is the input the Elek--Szabó step consumes. -/
 theorem telescopeKernel_isSofic : IsSofic TelescopeKernel :=
   isSofic_of_isLEF telescopeKernel_isLEF
 
+/-- **`E₀` is locally residually finite**, in those words: every finitely
+generated subgroup of the telescope kernel is residually finite.  A finite
+generating set lies inside one of the residually finite invariant windows of
+`exists_residuallyFinite_subgroup_telescope`, and residual finiteness passes
+to subgroups along the inclusion.  This is the clause of `thm:Esofic`'s
+summary paragraph — *"the kernel of the stable-letter exponent is locally
+residually finite"* — stated with the quantifier the phrase abbreviates,
+rather than only through the window exhaustion that proves LEF. -/
+theorem telescopeKernel_locallyResiduallyFinite :
+    ∀ Q : Subgroup TelescopeKernel, Q.FG → Group.ResiduallyFinite ↥Q := by
+  intro Q hQ
+  obtain ⟨S, hSQ, hSfin⟩ := (Subgroup.fg_iff Q).mp hQ
+  obtain ⟨T, hFT, hTrf⟩ :=
+    BlockCliffordTowerSofic.exists_residuallyFinite_subgroup_telescope Block
+      BlockSites ExplicitIntegralLinearModel.gammaBar_residuallyFinite alpha
+      halpha kernelAction teleSitePerm
+      (fun t ↦ towerAction_sign (SemidirectProduct.inl t))
+      towerAction_lamp finite_level_site_orbit hSfin.toFinset
+  have hQT : Q ≤ T := by
+    rw [← hSQ]
+    refine (Subgroup.closure_le T).mpr ?_
+    intro g hg
+    exact hFT g (hSfin.mem_toFinset.mpr hg)
+  haveI := hTrf
+  exact residuallyFinite_of_injective (Subgroup.inclusion hQT)
+    (Subgroup.inclusion_injective hQT)
+
 /-! ## Sentence 3: the split extension and the exponent sum -/
 
 /-- **`E ≅ E₀ ⋊ ℤ`.**  The block-Clifford tower of `Sofic/LiteralSoficAssembly`

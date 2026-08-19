@@ -189,6 +189,28 @@
       ]
     },
     {
+      "id": "lem:corner",
+      "environment": "lemma",
+      "title": "compression to an asymptotically central corner",
+      "statement_sha256": "5d32374145f307f1ec760709387ef933965f2f541a27ea3a1192a5f8004498bd",
+      "status": "exact",
+      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
+      "dependencies": [
+        "lem:lift"
+      ],
+      "extra_assumptions": [],
+      "external_inputs": [],
+      "coverage_gap": "",
+      "lean": [
+        {
+          "role": "exact",
+          "module": "Analysis/PrintedCornerCompression",
+          "declaration": "GroupApproximation.PrintedCornerCompression.manuscriptCornerAsymptoticRepresentation",
+          "covers": "the complete printed proposition"
+        }
+      ]
+    },
+    {
       "id": "thm:sign-criterion",
       "environment": "theorem",
       "title": "central involution obstruction",
@@ -295,6 +317,94 @@
           "role": "exact",
           "module": "Sofic/LiteralUniformObstruction",
           "declaration": "GroupApproximation.LiteralUniformObstruction.literal_uniform_operatorNorm_obstruction",
+          "covers": "the complete printed proposition"
+        }
+      ]
+    },
+    {
+      "id": "prop:literal-base-T",
+      "environment": "proposition",
+      "title": "",
+      "statement_sha256": "4955bce3c162ac27864633e4c35dd3484798530f2190589df83653678709ee1e",
+      "status": "exact",
+      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
+      "dependencies": [
+        "def:E"
+      ],
+      "extra_assumptions": [],
+      "external_inputs": [],
+      "coverage_gap": "",
+      "lean": [
+        {
+          "role": "exact",
+          "module": "Sofic/LiteralBaseP13PropertyTBridge",
+          "declaration": "GroupApproximation.LiteralBaseP13PropertyTBridge.manuscriptBaseHasKazhdanPropertyT",
+          "covers": "the complete printed proposition"
+        }
+      ]
+    },
+    {
+      "id": "con:clifford",
+      "environment": "construction",
+      "title": "Clifford groups",
+      "statement_sha256": "aeebd5be01240d4047bbb0e7d14a73617b832cbe153fbbe307cdc67f39cb54b3",
+      "status": "exact",
+      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
+      "dependencies": [],
+      "extra_assumptions": [],
+      "external_inputs": [],
+      "coverage_gap": "",
+      "lean": [
+        {
+          "role": "exact",
+          "module": "Sofic/ManuscriptExactWrappers",
+          "declaration": "GroupApproximation.ManuscriptExactWrappers.manuscriptCliffordConstruction",
+          "covers": "the complete printed proposition"
+        }
+      ]
+    },
+    {
+      "id": "lem:linear",
+      "environment": "lemma",
+      "title": "linear model",
+      "statement_sha256": "f475a90d8ab3f62179a6443d62dabf81057930a262c7200b329a4fd1c981ab68",
+      "status": "exact",
+      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
+      "dependencies": [
+        "def:E"
+      ],
+      "extra_assumptions": [],
+      "external_inputs": [],
+      "coverage_gap": "",
+      "lean": [
+        {
+          "role": "exact",
+          "module": "Sofic/ManuscriptExactWrappers",
+          "declaration": "GroupApproximation.ManuscriptExactWrappers.manuscriptLinearModel",
+          "covers": "the complete printed proposition"
+        }
+      ]
+    },
+    {
+      "id": "prop:witness",
+      "environment": "proposition",
+      "title": "",
+      "statement_sha256": "1a168e6eb3a8fb3233666b9fa5211468dedd08adba7dfcdacbb013dbffd59914",
+      "status": "exact",
+      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
+      "dependencies": [
+        "con:clifford",
+        "lem:linear",
+        "def:E"
+      ],
+      "extra_assumptions": [],
+      "external_inputs": [],
+      "coverage_gap": "",
+      "lean": [
+        {
+          "role": "exact",
+          "module": "Sofic/LiteralNonMFLinearWitness",
+          "declaration": "GroupApproximation.LiteralNonMFLinearWitness.literal_mark_ne_one",
           "covers": "the complete printed proposition"
         }
       ]
@@ -446,94 +556,6 @@
           "role": "exact",
           "module": "Sofic/TraceSeparationEndpoint",
           "declaration": "GroupApproximation.manuscriptTraceSeparation",
-          "covers": "the complete printed proposition"
-        }
-      ]
-    },
-    {
-      "id": "prop:literal-base-T",
-      "environment": "proposition",
-      "title": "",
-      "statement_sha256": "4955bce3c162ac27864633e4c35dd3484798530f2190589df83653678709ee1e",
-      "status": "exact",
-      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
-      "dependencies": [
-        "def:E"
-      ],
-      "extra_assumptions": [],
-      "external_inputs": [],
-      "coverage_gap": "",
-      "lean": [
-        {
-          "role": "exact",
-          "module": "Sofic/LiteralBaseP13PropertyTBridge",
-          "declaration": "GroupApproximation.LiteralBaseP13PropertyTBridge.manuscriptBaseHasKazhdanPropertyT",
-          "covers": "the complete printed proposition"
-        }
-      ]
-    },
-    {
-      "id": "con:clifford",
-      "environment": "construction",
-      "title": "Clifford groups",
-      "statement_sha256": "aeebd5be01240d4047bbb0e7d14a73617b832cbe153fbbe307cdc67f39cb54b3",
-      "status": "exact",
-      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
-      "dependencies": [],
-      "extra_assumptions": [],
-      "external_inputs": [],
-      "coverage_gap": "",
-      "lean": [
-        {
-          "role": "exact",
-          "module": "Sofic/ManuscriptExactWrappers",
-          "declaration": "GroupApproximation.ManuscriptExactWrappers.manuscriptCliffordConstruction",
-          "covers": "the complete printed proposition"
-        }
-      ]
-    },
-    {
-      "id": "lem:linear",
-      "environment": "lemma",
-      "title": "linear model",
-      "statement_sha256": "f475a90d8ab3f62179a6443d62dabf81057930a262c7200b329a4fd1c981ab68",
-      "status": "exact",
-      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
-      "dependencies": [
-        "def:E"
-      ],
-      "extra_assumptions": [],
-      "external_inputs": [],
-      "coverage_gap": "",
-      "lean": [
-        {
-          "role": "exact",
-          "module": "Sofic/ManuscriptExactWrappers",
-          "declaration": "GroupApproximation.ManuscriptExactWrappers.manuscriptLinearModel",
-          "covers": "the complete printed proposition"
-        }
-      ]
-    },
-    {
-      "id": "prop:witness",
-      "environment": "proposition",
-      "title": "",
-      "statement_sha256": "1a168e6eb3a8fb3233666b9fa5211468dedd08adba7dfcdacbb013dbffd59914",
-      "status": "exact",
-      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
-      "dependencies": [
-        "con:clifford",
-        "lem:linear",
-        "def:E"
-      ],
-      "extra_assumptions": [],
-      "external_inputs": [],
-      "coverage_gap": "",
-      "lean": [
-        {
-          "role": "exact",
-          "module": "Sofic/LiteralNonMFLinearWitness",
-          "declaration": "GroupApproximation.LiteralNonMFLinearWitness.literal_mark_ne_one",
           "covers": "the complete printed proposition"
         }
       ]
@@ -1347,6 +1369,35 @@
           "role": "exact",
           "module": "Analysis/ProperIsometryStrictOrder",
           "declaration": "GroupApproximation.manuscriptProperIsometryStrictOrder",
+          "covers": "the complete printed proposition"
+        }
+      ]
+    },
+    {
+      "id": "rem:maxinfinite",
+      "environment": "proposition",
+      "title": "the maximal algebra under proper one-sided conjugation",
+      "statement_sha256": "1ffdf62b6e21e761d49d5e4b7c6cb3a7f9caf2e80e0c77e398b6c44447b0df2a",
+      "status": "exact",
+      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
+      "dependencies": [
+        "prop:proper-isometry",
+        "prop:maximal-cstar"
+      ],
+      "extra_assumptions": [],
+      "external_inputs": [],
+      "coverage_gap": "",
+      "lean": [
+        {
+          "role": "exact",
+          "module": "Analysis/QuasiRegularWitness",
+          "declaration": "GroupApproximation.QuasiRegularWitness.baseVector_apply_base",
+          "covers": "a printed conclusion of the proposition"
+        },
+        {
+          "role": "exact",
+          "module": "Analysis/StrictCompressionFromPrinted",
+          "declaration": "GroupApproximation.MaximalCStarPrintedHypotheses.manuscriptMaximalCStarRemarkFromPrintedHypotheses",
           "covers": "the complete printed proposition"
         }
       ]

@@ -26,16 +26,14 @@ on:
       - '!README.md'
       - '!docbuild/lake-manifest.json'
       - '!docbuild/lakefile.toml'
+      - '!docbuild/README.md'
       - '!docbuild/lean-toolchain'
       - '!non_mf_groups_exist.pdf'
-      - '!official/README.md'
-      - '!property_tt_leavitt.pdf'
-      - '!docs/**/*.md'
+      - '!references/README.md'
+      - '!notes/**/*.md'
       - 'metadata/CLAIM_MAP.md'
       - 'metadata/CLAIM_SIGNATURES.md'
       - 'metadata/NON_MF_CLAIM_SIGNATURES.md'
-      - 'metadata/PROPERTY_TT_CLAIM_MAP.md'
-      - 'metadata/PROPERTY_TT_PROVENANCE.md'
   pull_request:
     branches: [ "main" ]
     paths:
@@ -46,16 +44,14 @@ on:
       - '!README.md'
       - '!docbuild/lake-manifest.json'
       - '!docbuild/lakefile.toml'
+      - '!docbuild/README.md'
       - '!docbuild/lean-toolchain'
       - '!non_mf_groups_exist.pdf'
-      - '!official/README.md'
-      - '!property_tt_leavitt.pdf'
-      - '!docs/**/*.md'
+      - '!references/README.md'
+      - '!notes/**/*.md'
       - 'metadata/CLAIM_MAP.md'
       - 'metadata/CLAIM_SIGNATURES.md'
       - 'metadata/NON_MF_CLAIM_SIGNATURES.md'
-      - 'metadata/PROPERTY_TT_CLAIM_MAP.md'
-      - 'metadata/PROPERTY_TT_PROVENANCE.md'
   workflow_dispatch:
 
 concurrency:
@@ -331,9 +327,7 @@ jobs:
               scripts .github bin \
               metadata/CLAIM_DECLS.txt metadata/CLAIM_MAP.md \
               metadata/CLAIM_SIGNATURES.md metadata/NON_MF_CLAIM_DECLS.txt \
-              metadata/NON_MF_CLAIM_SIGNATURES.md \
-              metadata/PROPERTY_TT_CLAIM_MAP.md \
-              metadata/PROPERTY_TT_PROVENANCE.md 2>/dev/null; then
+              metadata/NON_MF_CLAIM_SIGNATURES.md 2>/dev/null; then
             echo "lean=false" >> "$GITHUB_OUTPUT"
             echo "Lean-relevant tree identical to verified; publication lane."
           else
@@ -598,6 +592,11 @@ jobs:
         continue-on-error: true
         run: |
           python3 scripts/check.py
+          # The Palomar submission surface: the challenge/solution shared
+          # block, the challenge's Mathlib-only imports, and the comparator
+          # configuration.  All three are invisible in a green build and each
+          # of them breaks the registry submission after the commit is public.
+          python3 scripts/check_palomar_shared_block.py
           # cairn check validates the research graph; the regenerated
           # FRONTIER.md is not diffed because it embeds lock countdowns
           # and mtime-derived sections that are time-dependent by design.
@@ -1058,6 +1057,11 @@ jobs:
       - name: Source scan
         run: |
           python3 scripts/check.py
+          # The Palomar submission surface: the challenge/solution shared
+          # block, the challenge's Mathlib-only imports, and the comparator
+          # configuration.  All three are invisible in a green build and each
+          # of them breaks the registry submission after the commit is public.
+          python3 scripts/check_palomar_shared_block.py
           # cairn check validates the research graph; the regenerated
           # FRONTIER.md is not diffed because it embeds lock countdowns
           # and mtime-derived sections that are time-dependent by design.

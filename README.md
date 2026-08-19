@@ -41,7 +41,13 @@ corona
 ```
 
 Building this manuscript requires LaTeX2e dated 2025-06-01 or newer, and
-the release workflow uses a digest-pinned TeX Live 2026 image.
+the release and draft workflows both compile inside the same digest-pinned
+TeX Live **2025** image (`TEXLIVE_IMAGE` in
+`.github/workflows/build-non-mf-pdf.yml`, `draft-non-mf-pdf.yml` and
+`refresh-non-mf-pdf.yml`).  The 2026 image is deliberately not used: its
+`tagpdf` aborts at `\tableofcontents` on this source and garbles the
+contents page.  The header comment at the top of the manuscript records the
+same constraint.
 
 Tagging is **enabled**: the source sets
 `\DocumentMetadata{lang=en-US,pdfversion=2.0,tagging=on}`, and the TikZ
@@ -195,29 +201,42 @@ in the kernel audit roster with axiom closure restricted to `propext`,
 `Classical.choice`, and `Quot.sound`; no literature theorem is introduced as a
 Lean axiom.
 
+**What the verification does and does not claim.** Two different statements
+are checked by two different artefacts, and they are not interchangeable.
+Every numbered claim of the manuscript has a Lean declaration whose
+proposition is that claim: `scripts/check_non_mf_claim_manifest.py`,
+`check_non_mf_refs.py` and `check_non_mf_zero_input.py` gate that, and the tree
+contains no `sorry` and no project axiom. The *prose proofs* are a separate
+question, tracked step by step in
+[`metadata/NON_MF_PROOF_LEDGER.md`](metadata/NON_MF_PROOF_LEDGER.md); at the
+current revision that ledger grades 429 steps and not all of them are `EXACT`
+on both columns, so "every numbered result has a checked formal counterpart"
+is accurate while "the manuscript proof has been formalized line by line" is
+not. The ledger is also a *correspondence* audit, by its own stated policy: it
+asks whether Lean says what the manuscript says, and classifies every
+discrepancy as a Lean-side or matching issue. It is not an adversarial referee
+of the mathematics, and no claim here should be read as one.
+
 ## Property (TT)/T and the binary Leavitt algebra
 
-[`property_tt_leavitt.tex`](property_tt_leavitt.tex) develops a second part
-of the library: fixed-coordinate matrix factorization and property (TT)/T
-over finite-type noncommutative rings. Its principal application is property
-(TT)/T for the unit group of the binary Leavitt algebra.
-
-Every numbered result in that paper links visibly to a public Lean
-declaration. Its main formal surfaces are:
+`PropertyTT/` develops fixed-coordinate matrix factorization and property
+(TT)/T over finite-type noncommutative rings. Its principal application is
+property (TT)/T for the unit group of the binary Leavitt algebra. Its main
+formal surfaces are:
 
 | Module | Role |
 | --- | --- |
-| `PropertyTT/PaperStatements.lean` | Statement-level interface for the paper |
+| `PropertyTT/PaperStatements.lean` | Statement-level interface |
 | `PropertyTT/LocalizedComplexPlane.lean` | Homogeneous finite-control plane estimate |
 | `PropertyT/FreeRootCharacterValuation.lean` | Finite Fourier transport and boundary limits |
 | `PropertyTT/FiniteTypeLeavittTT.lean` | Rank-four assembly and all-ranks transport |
 | `KOne/PaperStatements.lean` | Rank-two elementary diagonal endpoint |
 | `KOne/AllRanksElementaryCore.lean` | All-ranks `GL = E` over the binary Leavitt algebra |
 
-The paper uses the published K-theoretic proof of `K₁ = 0` and `GLₙ = Eₙ`
-for the binary Leavitt algebra. Lean reaches the same endpoint independently
-through the constructive prefix-code pencil reduction in `KOne/`; external
-results are not imported as axioms.
+`K₁ = 0` and `GLₙ = Eₙ` for the binary Leavitt algebra are published
+K-theoretic results. Lean reaches the same endpoint independently through the
+constructive prefix-code pencil reduction in `KOne/`; external results are not
+imported as axioms.
 
 ## Nonsofic groups exist
 
@@ -229,7 +248,7 @@ endpoints are in `Endpoint/MainResults.lean` — `nonsofic_groups_exist`,
 and `countable_group_without_essentiallyFreeNearAction_exists`, the negative
 answer to Pestov's Question 5.3 — and each printed statement has one endpoint
 of its own in `Endpoint/ManuscriptStatements.lean`. The statement-by-statement
-correspondence is [`docs/CLAIM_MAP.md`](docs/CLAIM_MAP.md), generated from the
+correspondence is [`notes/CLAIM_MAP.md`](notes/CLAIM_MAP.md), generated from the
 margin notes of the manuscript and checked by `scripts/check.py`.
 
 The manuscript itself is no longer kept in the repository; the Lean endpoints
@@ -272,7 +291,7 @@ The repository contains several interacting developments:
 | Monsters/ | Further constructions built from the common infrastructure |
 | Endpoint/ | Public theorem surfaces and audit reports |
 
-The docs/ directory is a working research archive as well as documentation.
+The notes/ directory is a working research archive as well as documentation.
 Files prefixed FALSE_ record investigated approaches that were ruled out;
 they are retained so failed routes and their precise obstructions remain
 searchable.
@@ -285,10 +304,10 @@ GitHub Actions performs the computational checks:
 - Lean Prover CI builds with warnings as errors, runs source and compiled
   environment scans, checks transitive axiom closures, pins mapped theorem
   signatures, and replays compiled objects through a fresh Lean kernel.
-- The non-MF and property-(TT)/T PDF workflows validate visible TeX-to-formal
-  references, compile and lint each manuscript, reject unresolved references
-  and layout overflow, render every page, validate the PDFs, and publish
-  immutable, attested artifacts for audited revisions.
+- The non-MF PDF workflow validates visible TeX-to-formal references, compiles
+  and lints the manuscript, rejects unresolved references and layout overflow,
+  renders every page, validates the PDF, and publishes immutable, attested
+  artifacts for audited revisions.
 - Independent kernel re-check is an additional manually triggered audit.
 - API documentation publishes the generated Lean documentation.
 
@@ -303,18 +322,15 @@ Key audit files:
 - `GroupApproximation/Endpoint/ChosenNonMFAudit.lean`: fast focused axiom audit
   of the chosen non-MF endpoint, together with the part of the literal
   eight-generator presentation that is unconditional;
-- `scripts/Signatures.lean` and `docs/CLAIM_SIGNATURES.md`: elaborated public
+- `scripts/Signatures.lean` and `notes/CLAIM_SIGNATURES.md`: elaborated public
   signatures;
-- `scripts/check_non_mf_refs.py` and `scripts/check_property_tt_refs.py`:
-  visible manuscript-to-Lean reference checks;
+- `scripts/check_non_mf_refs.py`: visible manuscript-to-Lean reference checks;
 - `scripts/check_non_mf_zero_input.py`: enforces that every Lean declaration
   cited by the non-MF manuscript has no declaration inputs (all quantifiers
   occur inside the proposition);
-- `docs/NON_MF_IMPACT_FORMAL_STATUS.md`: records which stronger consequences
+- `notes/NON_MF_IMPACT_FORMAL_STATUS.md`: records which stronger consequences
   have closed Lean endpoints and which still use literature or require new
-  mathematics;
-- `docs/PROPERTY_TT_CLAIM_MAP.md`: statement mapping for the property-(TT)/T
-  paper.
+  mathematics.
 
 Cold local builds are expensive. The maintained verification path is the
 GitHub Actions workflows in `.github/workflows/`.

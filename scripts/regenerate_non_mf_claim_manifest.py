@@ -38,6 +38,10 @@ CLAIM_TARGETS: dict[str, tuple[str, str]] = {
     "thm:sign-criterion": (
         "Sofic/CentralSignAnyUniverse",
         "GroupApproximation.KazhdanCompressionCore.manuscriptCentralSignCriterion_anyUniverse"),
+    "lem:corner": (
+        "Analysis/PrintedCornerCompression",
+        "GroupApproximation.PrintedCornerCompression."
+        "manuscriptCornerAsymptoticRepresentation"),
     "thm:abstract-nk": (
         "Sofic/ManuscriptExactWrappers",
         "GroupApproximation.ManuscriptExactWrappers.manuscriptAbstractNormalKazhdanObstruction"),
@@ -150,6 +154,16 @@ CLAIM_TARGETS: dict[str, tuple[str, str]] = {
     "prop:proper-isometry": (
         "Analysis/ProperIsometryStrictOrder",
         "GroupApproximation.manuscriptProperIsometryStrictOrder",
+    ),
+    "lem:corner": (
+        "Analysis/PrintedCornerCompression",
+        "GroupApproximation.PrintedCornerCompression."
+        "manuscriptCornerAsymptoticRepresentation",
+    ),
+    "rem:maxinfinite": (
+        "Analysis/StrictCompressionFromPrinted",
+        "GroupApproximation.MaximalCStarPrintedHypotheses."
+        "manuscriptMaximalCStarRemarkFromPrintedHypotheses",
     ),
     "thm:signfree": (
         "Sofic/LiteralSignFreeQuotient",
@@ -268,6 +282,8 @@ DEPENDENCIES: dict[str, list[str]] = {
     "prop:univquot": ["def:radical", "lem:lift", "lem:unitarycorona"],
     "cor:exactradical": ["def:radical"],
     "cor:nofaithful": ["thm:A"],
+    "lem:corner": ["lem:lift"],
+    "rem:maxinfinite": ["prop:proper-isometry", "prop:maximal-cstar"],
     "prop:horn": ["thm:A", "lem:portable"],
     "cor:quotclosure": ["thm:A", "lem:permanence"],
 }

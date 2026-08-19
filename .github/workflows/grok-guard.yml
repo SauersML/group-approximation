@@ -1,0 +1,42 @@
+name: Grok PR-only guard
+
+# `.grok/` was once deleted on the grounds that nothing in the repository read
+# it. That was true and it is the reason the guard sat broken for a day without
+# anyone noticing. CI reads it now: the guard's decisions and its wiring are
+# tested, so a matcher that never matches or a path that does not resolve fails
+# here instead of failing open on somebody's laptop.
+
+on:
+  push:
+    branches: [main]
+    paths: ['.grok/**', '.github/workflows/grok-guard.yml']
+  pull_request:
+    paths: ['.grok/**', '.github/workflows/grok-guard.yml']
+  workflow_dispatch:
+
+concurrency:
+  group: grok-guard-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  guard:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6.3.0
+        with:
+          python-version: '3.12'
+      - name: Hook and loader JSON is well formed
+        run: |
+          for f in .grok/hooks/*.json; do
+            python3 -c "import json,sys;json.load(open(sys.argv[1]))" "$f"
+            echo "ok $f"
+          done
+      - name: Guard decisions and wiring
+        run: python3 .grok/hooks/test_pr_only_guard.py

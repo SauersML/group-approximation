@@ -28,6 +28,17 @@ import GroupApproximation.Analysis.TwoSidedRegularCommutant
 import GroupApproximation.Analysis.MaximalCStarProperCompression
 import GroupApproximation.Analysis.AmenableQuasidiagonal
 import GroupApproximation.Analysis.CStarExactness
+import GroupApproximation.Analysis.CStarMatrixFactorization
+import GroupApproximation.Analysis.LanceMatrixSubalgebra
+import GroupApproximation.Analysis.LanceBlockOperator
+import GroupApproximation.Analysis.LanceChoiFunctional
+import GroupApproximation.Analysis.LanceHermitianFunctional
+import GroupApproximation.Analysis.LanceMatrixArveson
+import GroupApproximation.Analysis.LanceDayEngine
+import GroupApproximation.Analysis.LanceMultiplicationOperator
+import GroupApproximation.Analysis.LanceHypertrace
+import GroupApproximation.Analysis.LanceCPApprox
+import GroupApproximation.Analysis.LanceNuclearity
 import GroupApproximation.Kazhdan.KazhdanUniverseDescent
 import GroupApproximation.Sofic.ChosenMaximalCStarInfinite
 import GroupApproximation.Analysis.TorsionFreeFullMFCStarConsequences
@@ -666,6 +677,9 @@ import GroupApproximation.Sofic.HyperlinearUltraproduct
 import GroupApproximation.Sofic.NormTraceGap
 import GroupApproximation.Sofic.FaithfullyTracedCoordinateNoGo
 import GroupApproximation.Sofic.HilbertSchmidtAdjointGap
+import GroupApproximation.Sofic.PermutationAdjointGap
+import GroupApproximation.Sofic.AdjointOperatorNormRequirement
+import GroupApproximation.Sofic.KazhdanTransportFiniteDimensionalInputs
 import GroupApproximation.Sofic.WeakMFUltraproduct
 import GroupApproximation.Sofic.OpAlmostRepresentation
 import GroupApproximation.Sofic.NormMFResidualDetector
@@ -1074,6 +1088,7 @@ import GroupApproximation.Analysis.CollapsePrintedProjectionCollapse
 import GroupApproximation.Analysis.PrintedFiniteException
 import GroupApproximation.Analysis.CollapseDiscardCoordinates
 import GroupApproximation.Analysis.CollapseLambdaCocycle
+import GroupApproximation.Analysis.CollapseInvariantSubspace
 import GroupApproximation.Analysis.CollapseProjectionLift
 import GroupApproximation.Monsters.NeumannTwoGenerator
 import GroupApproximation.Sofic.CollapseRankWeightTransport
@@ -1137,6 +1152,7 @@ import GroupApproximation.Analysis.OmegaConjQCompatibility
 import GroupApproximation.Analysis.OmegaFiniteComparison
 import GroupApproximation.Analysis.OmegaFixRange
 import GroupApproximation.Analysis.PolarLiftingGeneralCStar
+import GroupApproximation.Analysis.PolarLiftingHypothesisFree
 import GroupApproximation.Analysis.StablyFiniteAmplification
 import GroupApproximation.Analysis.MatrixCoronaDedekindFinite
 import GroupApproximation.Analysis.VectorHilbertUltraproduct
@@ -1148,6 +1164,10 @@ import GroupApproximation.Analysis.VectorOmegaCoronaAction
 import GroupApproximation.Analysis.CoronaProjectionLifting
 import GroupApproximation.Analysis.UnitaryAverageFixedVector
 import GroupApproximation.Analysis.OmegaCoronaKazhdanProjection
+import GroupApproximation.Analysis.PrintedDiagonalSubsequence
+import GroupApproximation.Analysis.PrintedCornerCompression
+import GroupApproximation.Analysis.PrintedCornerAssembly
+import GroupApproximation.Analysis.PrintedCornerRelabelling
 import GroupApproximation.Analysis.PolarLiftingMatrixBlocks
 import GroupApproximation.Sofic.OmegaRouteManuscriptTransport
 import GroupApproximation.Sofic.LiteralProductMultiplicity
@@ -1163,6 +1183,7 @@ import GroupApproximation.Sofic.ConsistencyDistance
 import GroupApproximation.Analysis.CStarTakesakiCoefficient
 import GroupApproximation.Analysis.LancePositiveDefinite
 import GroupApproximation.Analysis.LanceReduction
+import GroupApproximation.Analysis.LanceMultiplicativeDomain
 import GroupApproximation.Analysis.CStarTakesakiDense
 import GroupApproximation.Analysis.CStarTakesakiMinLe
 import GroupApproximation.Analysis.CStarTakesakiCyclic
@@ -1171,6 +1192,11 @@ import GroupApproximation.Analysis.TracialStandardFormCommutation
 import GroupApproximation.Analysis.TracialConjugationExists
 import GroupApproximation.Analysis.QuasidiagonalCompression
 import GroupApproximation.Analysis.UniformRoeAlgebra
+import GroupApproximation.Analysis.AmenableMFInput
+import GroupApproximation.Sofic.CliffordAsideInert
+import GroupApproximation.Sofic.ContainsSquareWitness
+import GroupApproximation.Analysis.CStarMinTensorInjective
+import GroupApproximation.Analysis.CStarExactComplex
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
@@ -1184,7 +1210,7 @@ advertised as an existence result.
 declarations a referee needs, each named against the theorem it establishes.
 
 The statement-by-statement correspondence between this construction and its
-manuscript is `docs/CLAIM_MAP.md`, generated from the paper's own margin notes;
+manuscript is `notes/CLAIM_MAP.md`, generated from the paper's own margin notes;
 the manuscript itself is no longer kept in the repository.  The two manuscripts
 here are `property_tt_leavitt.tex`, on coordinate-block
 factorization and `(TT)/T`, and `non_mf_groups_exist.tex`, on operator-norm

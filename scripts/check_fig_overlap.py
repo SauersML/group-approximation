@@ -10,7 +10,7 @@ file, and then checks every pair of boxes for rectangle intersection.
 Exit status is nonzero if any pair of nodes overlaps, so the script can run
 as a CI gate.  Requires pdflatex on PATH.
 
-Usage:  python3 scripts/check_fig_overlap.py [--tex property_tt_leavitt.tex]
+Usage:  python3 scripts/check_fig_overlap.py [--tex non_mf_groups_exist.tex]
 """
 
 import argparse
@@ -186,7 +186,7 @@ def check_figure(label: str, tikz: str, macros: str, workdir: pathlib.Path,
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--tex", default="property_tt_leavitt.tex")
+    parser.add_argument("--tex", default="non_mf_groups_exist.tex")
     parser.add_argument("--dump", action="store_true",
                         help="print every node's bounding box")
     parser.add_argument("--tex-image",

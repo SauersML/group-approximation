@@ -1,1 +1,0 @@
-../metadata/PROPERTY_TT_CLAIM_MAP.md

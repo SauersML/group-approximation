@@ -72,21 +72,41 @@ not here. A route discovered to be wrong is killed by an obstruction
 claim's `invalidates:` — source-owned, so nobody edits the victim and
 concurrent agents never contend.
 
-## Canonical vs noncanonical
+## The two tiers
 
 ```text
 research/*.md          claims + routes, one flat folder (`kind:` says which)
 research/artifacts/    substantial proof artifacts routes may cite
-notes/                 scratch, session logs, abandoned calculations
+notes/                 the prose corpus: derivations, audits, dead ends, logs
 ```
 
-**If it can affect the authoritative graph, its justification lives in
-authoritative space.** A route's body should justify its implication; large
-arguments go in `research/artifacts/` (or a Lean module, or the docs/
-proof corpus) and are cited via `artifacts:`. Citing `notes/` from a
-canonical file is a lint **error** — notes are searchable, but they can
-never change compiled research state. Ids are kebab-case slugs: the name
-is the language (`same-orbit-closure`, not `Q-0010`).
+**Prose justifies; only the graph and its Lean establish.** A route's body
+should justify its implication; large arguments go in `research/artifacts/`
+(or a Lean module, or the `notes/` proof corpus) and are cited via
+`artifacts:`. Any of those is citable — what a citation cannot do is stand in
+for the route itself, because nothing in prose is compiled. Ids are kebab-case
+slugs: the name is the language (`same-orbit-closure`, not `Q-0010`).
+
+**Ids are capped at 64 characters, and a claim's budget is 58.** The cap is
+`ID_RE` in the CLI; an id over it does not fail loudly at the node, it drops
+the node from the graph and makes `cairn check` exit `4`. That is a red
+**Source scan** in the prover job, which fails `Build and audit`, which stops
+`verified` for every session — so a name three characters too long stops
+certification repository-wide. It happened twice on 2026-08-19, and both times
+the over-long id was a `-proof` route, because `<claim>-proof` is six
+characters longer than the claim it proves. Hence the 58: if you name a claim
+longer than that, the route proving it cannot be called `<claim>-proof` and
+whoever writes it later inherits your problem. Six claims are already in that
+band and need a shortened route id rather than the default when their proof
+lands — `compression-defect-dies-in-weakly-locally-finite-division-rings` (63),
+`every-nontrivial-core-element-normally-generates-the-envelope` (61),
+`ck-envelope-has-a-finitely-normally-generated-maximal-kernel` (60),
+`normal-generation-makes-the-augmentation-ideal-one-generated` (60),
+`pure-finite-group-operator-scaling-collapses-to-multiplicity` (60) and
+`universal-sandwich-ring-is-finitely-presented-and-injective` (59). Shortening
+is cheap and the graph does not mind: `pure-finite-group-scaling-collapse-proof`
+is what the first of today's two became. The filename must equal the id, so a
+rename moves the file with it.
 
 The write path is your editor: **agents create and edit these files
 directly with their normal tools.** Before committing, run
@@ -226,6 +246,6 @@ survived the relevant checks.
 
 ## Legacy corpus
 
-`docs/TRUE_*` / `FALSE_*` stay where they are: they are the proof corpus,
-cited via `artifacts:`. Migration happens by *proposing* claims/routes for
-review, never by bulk conversion.
+`notes/TRUE_*` / `FALSE_*` are the proof corpus, cited via `artifacts:`.
+Migration happens by *proposing* claims/routes for review, never by bulk
+conversion.
