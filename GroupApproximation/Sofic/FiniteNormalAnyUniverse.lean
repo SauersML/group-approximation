@@ -15,8 +15,8 @@ freed the ambient group and left the source at `Type 0`; that is ledger row
 `FN.00`, and row `PA.14` cites the same declaration for the sentence of
 `p:A-consequences`,
 
-> The same conclusion holds for an arbitrary finite normal subgroup of
-> `N_conj` (Theorem~\ref{thm:criterion}) …
+> Here `{1,w}` can be replaced by any finite normal subgroup of the normal
+> closure of the commutators `[tct⁻¹, ι(γ)]` (Theorem~\ref{thm:criterion}) …
 
 so both rows are about this one statement and both are closed by the wrapper
 below.

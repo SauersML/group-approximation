@@ -476,7 +476,7 @@ theorem compressionDefect_hsDistSq_vanishing_literal
 
 /-- **`thm:criterion`'s transport step, on the printed route.**  The printed
 proof says "apply Theorem 3.1 with `x_n = U_{c,n}` to put the lifts of
-`d = t c t⁻¹` in the commutant", and this is that sentence: the same
+`ĉ = t c t⁻¹` in the commutant", and this is that sentence: the same
 `CompressionDefectsHSTrivial` that
 `KazhdanCompressionCore.compressionDefects_hsTrivial` proves, reached through
 `KazhdanAsymptoticCommutant.manuscriptKazhdanTransport`. -/

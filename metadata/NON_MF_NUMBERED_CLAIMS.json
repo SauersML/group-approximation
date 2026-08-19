@@ -163,6 +163,26 @@
       ]
     },
     {
+      "id": "lem:kazhdan-gap",
+      "environment": "lemma",
+      "title": "Kazhdan spectral gap",
+      "statement_sha256": "88edd2899a12ce01718448347b8325c62c025e7b24913be49df7763b8370ba33",
+      "status": "exact",
+      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
+      "dependencies": [],
+      "extra_assumptions": [],
+      "external_inputs": [],
+      "coverage_gap": "",
+      "lean": [
+        {
+          "role": "exact",
+          "module": "Sofic/UltraproductKazhdanProjection",
+          "declaration": "GroupApproximation.UltraproductKazhdanProjection.manuscriptKazhdanSpectralGap",
+          "covers": "the complete printed proposition"
+        }
+      ]
+    },
+    {
       "id": "thm:kazhdan-transport",
       "environment": "theorem",
       "title": "one-sided conjugation preserves asymptotic commutants",

@@ -727,6 +727,37 @@ in every finite-dimensional representation over every field, and some
 homomorphism $E_{\mathrm{BS}}\to\U(\mathcal Q)$ maps that word to a
 nontrivial element.
 
+\begin{lemma}[Kazhdan spectral gap]\label{lem:kazhdan-gap}
+Let $L$ be a group with property~\textup{(T)}, let $S\subseteq L$ be a
+finite symmetric Kazhdan set containing $1$ with Kazhdan constant
+$\kappa\in(0,1]$, and let $\pi$ be a unitary representation of $L$ in a
+unital $C^*$-algebra.  Then the average
+$h=\frac1{|S|}\sum_{a\in S}\pi(a)$ is self-adjoint and
+\[
+ \operatorname{sp}(h)\subseteq
+ \Bigl[-1,\;1-\frac{\kappa^{2}}{2|S|}\Bigr]\cup\{1\}.
+\]
+\leanverified{Sofic/UltraproductKazhdanProjection}{GroupApproximation.UltraproductKazhdanProjection.manuscriptKazhdanSpectralGap}
+\end{lemma}
+
+\begin{proof}
+Symmetry of $S$ makes $h$ self-adjoint, and $\opnorm h\le1$ puts its
+spectrum in $[-1,1]$.  Let $\mu\in\operatorname{sp}(h)$ with $\mu\ne1$
+and choose a state annihilating $h-\mu$; in its GNS representation the
+cyclic vector $\xi$ is a unit vector with $h\xi=\mu\xi$.  Split
+$\xi=\xi_0+\xi_1$ along the $\pi(L)$-invariant vectors and their
+orthocomplement, both invariant under $h$.  On the first summand
+$h=1$, so $\mu\ne1$ forces $\xi_0=0$.  Now
+\[
+ 1-\mu=\frac1{|S|}\sum_{a\in S}
+  \bigl(1-\operatorname{Re}\langle\pi(a)\xi,\xi\rangle\bigr)
+ =\frac1{2|S|}\sum_{a\in S}\lVert\pi(a)\xi-\xi\rVert^{2},
+\]
+and $\pi$ has no nonzero invariant vector on the orthocomplement, so
+$\lVert\pi(a)\xi-\xi\rVert\ge\kappa$ for some $a\in S$ and
+$1-\mu\ge\kappa^{2}/(2|S|)$.
+\end{proof}
+
 \begin{theorem}[one-sided conjugation preserves asymptotic commutants]
 \label{thm:kazhdan-transport}
 Let $\Gamma$ and $H$ be groups, let $\Gamma$ have
@@ -780,26 +811,13 @@ a homomorphism.
 
 \emph{The projection onto the fixed subspace.}  Choose a finite
 symmetric Kazhdan set $S\subseteq\Gamma$ containing $1$, with Kazhdan
-constant $\kappa\in(0,1]$.  Let $h$ be the
-Hermitian part of $\frac1{|S|}\sum_{s'\in S}\pi(\iota(s'))$ and let
-$\mathrm{Fix}\subseteq K_\omega$ be the subspace of vectors fixed by
-every $\pi(\iota(\gamma))$.  Both $\mathrm{Fix}$ and its
-orthocomplement are invariant under each unitary $\pi(\iota(s'))$,
-hence under $h$.  On $\mathrm{Fix}$, $h=1$.  The restriction of
-$\pi\circ\iota$ to $\mathrm{Fix}^\perp$ has no nonzero invariant
-vector, so a unit vector $\xi\in\mathrm{Fix}^\perp$ satisfies
-$\lVert\pi(\iota(s'))\xi-\xi\rVert\ge\kappa$ for some $s'\in S$.
-For this $s'$
-$\operatorname{Re}\langle\pi(\iota(s'))\xi,\xi\rangle\le1-\kappa^2/2$,
-while every other term is at most $1$.  Averaging gives
-$\langle h\xi,\xi\rangle\le1-\kappa^2/(2|S|)$.  Consequently
-\[
- \operatorname{sp}(h)\subseteq
- \Bigl[-1,\,1-\tfrac{\kappa^2}{2|S|}\Bigr]\cup\{1\},
-\]
-and the spectral projection $P$ of $h$ at the isolated point $1$
-belongs to $B_\omega$ by continuous functional calculus and projects
-onto $\mathrm{Fix}$.
+constant $\kappa\in(0,1]$, put $h=\frac1{|S|}\sum_{s'\in S}\pi(\iota(s'))$,
+and let $\mathrm{Fix}\subseteq K_\omega$ be the subspace of vectors
+fixed by every $\pi(\iota(\gamma))$.  By Lemma~\ref{lem:kazhdan-gap},
+$1$ is isolated in $\operatorname{sp}(h)$, so the spectral projection
+$P$ of $h$ at $1$ belongs to $B_\omega$ by continuous functional
+calculus; since $h=1$ exactly on $\mathrm{Fix}$, its range is
+$\mathrm{Fix}$.
 
 \emph{The two projections agree.}  Let $V=\pi(s)$ and $Q=VPV^*$.  Since
 $s\iota(\Gamma)s^{-1}\subseteq\iota(\Gamma)$, every vector of
@@ -2143,19 +2161,16 @@ $\C^{d_n}$, and let $B_\omega=\prod_\omega B(\C^{d_n})$ act on it as in
 Section~\ref{sec:transport}, so that the classes
 $\pi(g)=[V_{g,n}]_\omega$ define a unitary representation of $\bar H$
 on $H_\omega$.  Fix a finite symmetric generating Kazhdan set
-$S\subseteq\bar K$ with constant $\varepsilon_0$, put
+$S\subseteq\bar K$ containing $1$, with constant $\varepsilon_0$, put
 $\theta=1-\varepsilon_0^{2}/(4|S|)$, and let
 \[
- h=\frac1{|S|}\sum_{a\in S}\pi(a)\in B_\omega ,
+ h=\frac1{|S|}\sum_{a\in S}\pi(a)\in B_\omega .
 \]
-self-adjoint because $S$ is symmetric.  A unit vector $\xi$ has
-$\langle h\xi,\xi\rangle=1$ exactly when $\pi(a)\xi=\xi$ for every
-$a\in S$, while the Kazhdan pair bounds $\langle h\xi,\xi\rangle$ by
-$\theta$ on the orthogonal complement of
-$\operatorname{Fix}\pi(\bar K)$.  The spectrum of $h$ therefore lies in
-$[-1,\theta]\cup\{1\}$, the spectral projection $P=\chi_{\{1\}}(h)$
-belongs to $B_\omega$, and its range is
-$\operatorname{Fix}\pi(\bar K)$.  Put $q=1-P$.
+By Lemma~\ref{lem:kazhdan-gap} the spectrum of $h$ lies in
+$[-1,1-\varepsilon_0^{2}/(2|S|)]\cup\{1\}$ and hence in
+$[-1,\theta]\cup\{1\}$, so the spectral projection $P=\chi_{\{1\}}(h)$
+belongs to $B_\omega$; its range is $\operatorname{Fix}\pi(\bar K)$,
+where $h=1$.  Put $q=1-P$.
 
 If $q=0$ then $\pi(k)=1$ for every $k\in\bar K$, against the
 operator-norm separation of a fixed nontrivial element of $\bar K$.
@@ -3739,7 +3754,7 @@ residually finite-dimensional nor MF\@.
 \begin{proof}
 Let $P\in\Cmax(G)$ be the spectral projection at $1$ of
 the Hermitian Kazhdan average $\tfrac1{2|S|}\sum_{s\in S}(u_s+u_s^{*})$,
-which exists by the spectral gap of Section~\ref{sec:transport}.  Then
+which exists by Lemma~\ref{lem:kazhdan-gap}.  Then
 $P\le u_tPu_t^{*}$, and the inequality is strict: in the quasi-regular
 representation on $\ell^2(G/t\Gamma t^{-1})$ the point mass at the
 base coset is fixed by $t\Gamma t^{-1}$ but moved by every element of
