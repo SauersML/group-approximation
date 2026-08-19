@@ -10,9 +10,35 @@ on:
 # so workflow-level success is not by itself a certificate.  This workflow
 # first requires the triggering run's unique `Build and audit` job to have
 # succeeded, then checks out exactly that certified SHA.
+# ONE GROUP PER PROMOTION, so a wedged run cannot block the next one.
+#
+# This was a single global group, `verified-certified-promotion`, which
+# serialized every promotion the repository would ever run through one queue.
+# That is fine until a run gets stuck in it, and on 2026-08-19 four did: promote
+# runs created at 04:09, 04:26, 04:52 and 04:56 sat `queued` for over five hours
+# without ever starting, and both `POST .../cancel` and `POST
+# .../force-cancel` answered HTTP 500 -- they were wedged in GitHub's control
+# plane and could not be cleared from here at all.  Every later promotion
+# queued behind them, so a green certificate took twenty minutes or a hand on
+# the queue to reach `verified`, three times in one session.
+#
+# Serializing was never load-bearing.  `scripts/advance_verified_branch.py`
+# is race-safe by construction and says so: it checks ancestry, refuses a
+# non-fast-forward update, pushes WITHOUT `--force`, and treats a rejected push
+# as a benign race when the new remote tip already contains what it was going
+# to write.  Two promotions racing therefore cannot corrupt `verified`; the
+# loser no-ops.  So the group buys tidiness and costs availability, which is
+# the wrong trade for the branch this pipeline exists to advance.
+#
+# Keying on the triggering run makes each promotion independent: nothing can
+# collect it and nothing can head-block it.  `github.run_id` is the fallback
+# for a dispatch, where there is no triggering run.
+#
+# (`queue: max` went with the old group.  It is not a key GitHub Actions
+# defines -- the documented ones are `group` and `cancel-in-progress` -- so it
+# never did anything.)
 concurrency:
-  group: verified-certified-promotion
-  queue: max
+  group: verified-certified-promotion-${{ github.event.workflow_run.id || github.run_id }}
   cancel-in-progress: false
 
 permissions:
