@@ -47,7 +47,12 @@ presentation `Gamma_T=<generators | T>` has `j != 1` but `j` is trivial in
 approximate representations.  In particular `Gamma_T` is finitely presented
 and nonhyperlinear.
 
-The point is that the **whole** menu need not have perfect tracial
-completeness.  It is enough for the mass of checks satisfied exactly by one
-tracial representation to exceed the maximum enlarged-threshold satisfaction
-mass of any marked finite-dimensional approximate assignment.
+The whole ambient menu need not have perfect tracial completeness, but the
+strict inequality does **not** create a weaker qualitative route around perfect
+completeness.  By `exact-support-gap-nonexact-checks-no-advantage`, `g>q`
+forces every marked profile to reject at least one relator in the exact support
+`E`; uniform measure on `E` already has exact tracial completeness and a
+constant enlarged-threshold gap.  Nonexact checks can therefore be discarded
+for existence purposes.  The remaining value of this criterion is its clean
+finite-moment sparsification step and the possibility of optimizing margins
+inside an already exact sub-menu.
