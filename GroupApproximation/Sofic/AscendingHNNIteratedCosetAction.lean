@@ -383,7 +383,12 @@ theorem levelZero_stabilizer_at_iterate_site (m : ℕ) :
     · rintro ⟨δ, hδ, hEq⟩
       have hδγ : δ = γ := e0.injective hEq
       simpa [hδγ] using hδ
-  simpa [← MappingTelescope.one_eq_mk, one_mul] using hfix.trans hmap
+  rw [show (1 : Γ) * γ * (1 : Γ)⁻¹ = γ by simp] at hfix
+  rw [show inl (MappingTelescope.mk α hα 0 (1 : Γ))
+        = (1 : Vertical α hα) by
+      rw [← MappingTelescope.one_eq_mk]; exact map_one _,
+    one_mul] at hfix
+  exact hfix.trans hmap
 
 include hα in
 /-- **Necessity.**  Soficity of the ascending-HNN coset action forces every
