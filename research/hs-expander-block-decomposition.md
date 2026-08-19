@@ -48,17 +48,15 @@ caveat.  It is folded into the statement here because a route may not assert
 an implication it does not establish, and both consumers need exactly this
 and nothing weaker.
 
-**Debt attached to this claim.**  Whoever proves it must also discharge one
-piece of error bookkeeping that its consumer needs: the tracial Cheeger
-lemma in `tracial-median-from-block-decomposition` is stated for genuine
-unitaries in `p_i M_d p_i`, whereas the compressions `p_i phi(s) p_i` of an
-almost-representation are only almost unitary there, with defect controlled
-by `‖[phi(s),p_i]‖_2`.  That error term has not been tracked.  It is
-bookkeeping inside a proved lemma rather than a missing mathematical input,
-which is why it is not a separate prerequisite, but it travels with this
-claim rather than with the route.  It is also the clause that should be proved *with* the
-decomposition rather than after it: "almost invariant" and "almost carried
-to a single block by the compressor" are the same construction seen twice.
+**The former compressed-unitary bookkeeping debt is gone.**  An earlier
+version attached an extra obligation to pass from the compressed operators
+`p_i phi(s) p_i` to genuine unitaries before applying a Cheeger inequality.
+The current consumer `tracial-median-from-block-decomposition` bypasses that
+step: `median-poincare-concentration` is applied directly to the displayed
+Poincare inequality for the compressed operators.  No separate unitary
+rounding or spectral-coarea error term is required by that route.  What
+remains here is therefore the decomposition, the block gap, nesting, and
+compressor transport themselves.
 
 Neither `k` nor the traces `tau(p_i)` are constrained; blocks of vanishing
 normalized trace are allowed, as they are in the permutation case.
@@ -92,12 +90,17 @@ than read off.
 The statement is close to, but not the same as, Alekseev--Thom's Open
 Problem 6.2 (arXiv:2608.05362), which asks for finite-dimensional
 `*`-subalgebras whose tracial ultraproduct is exactly the commutant of a
-Kazhdan group's ultraproduct image, realized as exact centralizers of chosen
-generator lifts.  A positive answer to that problem in its exact-centralizer
-form supplies this claim, since the centres of those subalgebras are the
-required block algebras.  This claim is weaker in asking only for a
-one-sided almost-invariant partition with a gap, and does not ask that the
-ultraproduct commutant be captured.
+Kazhdan group's ultraproduct image, and in part (b) asks whether they can be
+realized as exact centralizers of chosen generator lifts.  **A positive
+answer to 6.2(b) does not by itself supply this claim.**
+`rank-one-lift-perturbation-gap-no-go` gives a Kazhdan example where the
+finite-level exact centralizers capture the ultraproduct commutant in the
+strongest possible scalar form while the adjoint Poincare constant of their
+only minimal block tends to zero.  The missing strengthening is therefore
+Hilbert-space `L2` control/uniform integrability of almost-central vectors,
+or an explicit finite-level gap statement, not merely algebraic centralizer
+capture.  Conversely, this claim does not ask to capture the whole
+ultraproduct commutant.
 
 Two cautions recorded so the statement is not weakened into triviality.
 
@@ -110,15 +113,21 @@ Two cautions recorded so the statement is not weakened into triviality.
   the decomposition can only be asked for at each finite level, with
   constants uniform in `d`, and any proof that passes to the ultraproduct
   first has already lost the block structure.
-- **Genuine representations satisfy it trivially** -- take the isotypic
-  components -- so all the content is at `delta>0`, where no isotypic
-  decomposition exists.
+- **Genuine representations satisfy the gap clause after splitting into
+  irreducible summands**, not merely isotypic components.  On an irreducible
+  summand the adjoint representation has only the scalar fixed vectors, so
+  property `(T)` supplies the uniform gap.  An isotypic component with
+  multiplicity greater than one still has a matrix-valued commutant and does
+  not satisfy the scalar Poincare inequality as stated.  Thus all the real
+  content remains at `delta>0`, where no irreducible decomposition is
+  available.
 - **At finite level atomicity is automatic**, since every subalgebra of
-  `M_d` is atomic.  What fails is *uniformity*: the atom count diverges and
-  the atom traces vanish, which is what the displayed example makes
-  quantitative and what the permutation argument repairs with its median
-  device.  So "atomicity" names the ultraproduct symptom; the finite-level
-  content is uniform control of atom traces.
+  `M_d` is atomic.  The issue is not a uniform lower bound on atom traces --
+  the statement explicitly permits vanishing-trace blocks.  The issue is a
+  dimension-uniform Poincare gap on the chosen atoms together with
+  vanishing total boundary and coherent transport/nesting even when their
+  traces go to zero.  Diffuse ultraproduct commutants are the symptom of why
+  bare finite-level atomicity does not provide that uniform structure.
 
 ## The exact case collapses, so the difficulty is entirely the error term
 
@@ -309,6 +318,30 @@ statement *after discarding an exceptional set of vanishing trace*, whereas
 the index is a bare maximum: one tiny unbalanced block leaves `(8)`
 untouched and sends the index up.  So the two are incomparable in both
 directions, and minimizing the index is not a proxy for the target.
+
+## Current finite-level frontier: the spike regime
+
+The nearby Cairn claims now isolate one local obstruction more sharply than
+the older prose above.
+
+- `bounded-low-gap-witness-gives-balanced-cut` proves that a self-adjoint
+  low-adjoint-energy witness with a fixed operator-norm bound produces a
+  quantitatively balanced almost-invariant spectral projection.
+- `low-gap-witness-spike-or-balanced-cut` removes that boundedness
+  assumption: after clipping at any fixed height `C`, either one gets such a
+  balanced cut, or a fixed fraction of the witness's `L2` mass is carried by
+  a projection of trace `O(C^-2)`.
+- `rank-one-lift-perturbation-gap-no-go` shows the second alternative is not
+  cosmetic.  Vanishing-rank directions can destroy every finite-level gap
+  while disappearing in the tracial algebra ultraproduct.
+
+So a finite-level proof cannot end with ordinary tracial-ultraproduct
+centralizer capture.  It must control the **uniform integrability of
+normalized almost-central vectors** (or replace it by an equally strong
+finite-level statement) and then organize the resulting cuts without losing
+nesting or compressor transport.  This is the live analytic subproblem left
+by the current Cairn neighborhood; bounded witnesses and bare algebraic
+centralizer capture are already accounted for.
 
 ## Prior statement in the corpus
 
