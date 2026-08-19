@@ -91,7 +91,8 @@ theorem spatialNorm_comm (π : StarRep A H) (ρ : StarRep B K)
       = spatialNorm π ρ x := by
   rw [spatialNorm_apply, spatialNorm_apply]
   refine le_antisymm ?_ ?_
-  · refine ContinuousLinearMap.opNorm_le_bound _ (norm_nonneg _) fun z => ?_
+  · refine ContinuousLinearMap.opNorm_le_bound _
+      (ContinuousLinearMap.opNorm_nonneg _) fun z => ?_
     have h0 := spatialHom_comm_apply π ρ x
       ((TensorProduct.commIsometry ℂ H K).symm z)
     rw [(TensorProduct.commIsometry ℂ H K).apply_symm_apply] at h0
@@ -102,7 +103,8 @@ theorem spatialNorm_comm (π : StarRep A H) (ρ : StarRep B K)
           (spatialHom π ρ x).le_opNorm _
       _ = ‖spatialHom π ρ x‖ * ‖z‖ := by
           rw [(TensorProduct.commIsometry ℂ H K).symm.norm_map]
-  · refine ContinuousLinearMap.opNorm_le_bound _ (norm_nonneg _) fun z => ?_
+  · refine ContinuousLinearMap.opNorm_le_bound _
+      (ContinuousLinearMap.opNorm_nonneg _) fun z => ?_
     have h0 := spatialHom_comm_apply π ρ x z
     have h1 : ‖spatialHom π ρ x z‖
         = ‖spatialHom ρ π (Algebra.TensorProduct.comm ℂ A B x)
