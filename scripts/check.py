@@ -429,7 +429,7 @@ def check_claim_map(root: Path, f: Findings) -> None:
         note is simply missing, so the reader cannot tell whether that is a gap
         in the formalization or a gap in the bookkeeping;
       * a note names a module or declaration the library does not contain;
-      * the set of cited modules outside the `#print axioms` report drifts from
+      * the set of cited modules outside the `#audit_axioms` report drifts from
         the set pinned in `claim_map`, so the paper's audit story quietly stops
         describing the audit that actually runs.
 
@@ -551,7 +551,7 @@ CLEAN_TREE = {
         "-- Groups admit models; audit prose may say unsafe, opaque, or implemented_by.\n"
         "def commentMarker : String := \"/-\"\n"
         "theorem beta : True := trivial\n",
-    f"{LIB}/Endpoint/Audit.lean": f"import {LIB}.Alpha\n#print axioms alpha\n",
+    f"{LIB}/Endpoint/Audit.lean": f"import {LIB}.Alpha\n#audit_axioms alpha\n",
     _TEX: (
         "\\begin{lemma}\\label{lem:demo}%\n"
         "\\leanverified{\\leanmod{Alpha}{alpha}}%\n"

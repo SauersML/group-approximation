@@ -61,8 +61,8 @@ STATUS = {"verified": "formalized", "partial": "formalized in part",
           "absent": "not formalized"}
 
 # Modules that are proved but sit outside the import closure of
-# `GroupApproximation/Endpoint/Audit.lean`, the module whose `#print axioms`
-# reports run on an ordinary build.  They are still covered by `scripts/Audit.lean`,
+# `GroupApproximation/Endpoint/Audit.lean`, the module whose `#audit_axioms`
+# reports run -- and gate -- on an ordinary build.  They are still covered by `scripts/Audit.lean`,
 # which imports the library root and walks the whole namespace -- so this is a
 # statement about *reporting*, not about the trust surface.
 #
@@ -306,7 +306,7 @@ def to_markdown(claims: list[Claim], repo: Path | None = None) -> str:
         "",
         "† Proved, and covered by the whole-namespace scan in `scripts/Audit.lean`, "
         "but outside the import closure of `GroupApproximation/Endpoint/Audit.lean`, whose "
-        "`#print axioms` reports run on an ordinary build.",
+        "`#audit_axioms` reports run -- and gate -- on an ordinary build.",
     ]
     return "\n".join(out)
 
