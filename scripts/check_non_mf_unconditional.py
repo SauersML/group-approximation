@@ -118,7 +118,7 @@ from lean_decls import MODIFIERS, _strip_block_comments
 REPO = Path(__file__).resolve().parent.parent
 DEFAULT_TEX = REPO / "non_mf_groups_exist.tex"
 DEFAULT_ROSTER = REPO / "metadata" / "NON_MF_LITERATURE_INPUTS.txt"
-DEFAULT_INVENTORY = REPO / "metadata" / "NON_MF_CONDITIONAL_INVENTORY.md"
+DEFAULT_INVENTORY = REPO / "notes" / "NON_MF_CONDITIONAL_INVENTORY.md"
 DEFAULT_BASELINE = REPO / "metadata" / "NON_MF_UNCONDITIONAL_BASELINE.txt"
 
 LEAN_REF = re.compile(r"\\leanverified\{([^}]+)\}\{([^}]+)\}")
@@ -813,7 +813,7 @@ def render_baseline(
         "# This register is not a budget.  A finding not listed here fails the\n"
         "# gate, and a line here that matches nothing fails it too -- so a\n"
         "# discharged item cannot be left behind to license its own return.\n"
-        "# Every line must correspond to a row of metadata/NON_MF_CONDITIONAL_INVENTORY.md.\n"
+        "# Every line must correspond to a row of notes/NON_MF_CONDITIONAL_INVENTORY.md.\n"
         "# Regenerate with:\n"
         "#\n"
         "#     python3 scripts/check_non_mf_unconditional.py --write-baseline\n"
@@ -1440,7 +1440,7 @@ def main() -> int:
             counts[finding.detector] = counts.get(finding.detector, 0) + 1
         if counts:
             summary = ", ".join(f"{counts[k]} {k}" for k in sorted(counts))
-            print(f"  ({summary}; see metadata/NON_MF_CONDITIONAL_INVENTORY.md. "
+            print(f"  ({summary}; see notes/NON_MF_CONDITIONAL_INVENTORY.md. "
                   "A finding that is genuinely known and written up belongs on "
                   f"{baseline_path.name}, with its justification.)",
                   file=sys.stderr)

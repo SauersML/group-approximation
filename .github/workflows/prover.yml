@@ -656,7 +656,7 @@ jobs:
       # license a regression.  There is no count in the mechanism.
       #
       # REPORT-ONLY, deliberately and temporarily.  The register was written by
-      # hand from metadata/NON_MF_CONDITIONAL_INVENTORY.md because it could not be
+      # hand from notes/NON_MF_CONDITIONAL_INVENTORY.md because it could not be
       # generated locally, so its first contact with the real corpus must not
       # be able to fail a certificate run.  TO ARM, after one run whose log
       # shows this step green:

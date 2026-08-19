@@ -249,6 +249,17 @@ jobs:
         run: |
           python3 scripts/sentence_census.py --check
           python3 scripts/sentence_census.py --verify-decls
+          python3 scripts/sentence_census.py --verify-unconditional
+
+      # A conditional formalization does not count, and neither does a
+      # literature input: a theorem available only to a caller who supplies a
+      # premise nothing in the corpus produces certifies nothing about the
+      # sentence it is meant to certify.  The badge gate says that of the
+      # declarations the manuscript cites; this says it of the declarations
+      # the ledger names to support each graded step, which is the larger set
+      # and was unchecked until now.
+      - name: Ledger objects are unconditional
+        run: python3 scripts/check_ledger_unconditional.py
 
       - name: Install the pinned P13 generator runtime
         run: python3 -m pip install --disable-pip-version-check --no-deps numpy==2.3.2
