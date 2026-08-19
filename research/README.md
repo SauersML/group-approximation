@@ -88,6 +88,27 @@ canonical file is a lint **error** — notes are searchable, but they can
 never change compiled research state. Ids are kebab-case slugs: the name
 is the language (`same-orbit-closure`, not `Q-0010`).
 
+**Ids are capped at 64 characters, and a claim's budget is 58.** The cap is
+`ID_RE` in the CLI; an id over it does not fail loudly at the node, it drops
+the node from the graph and makes `cairn check` exit `4`. That is a red
+**Source scan** in the prover job, which fails `Build and audit`, which stops
+`verified` for every session — so a name three characters too long stops
+certification repository-wide. It happened twice on 2026-08-19, and both times
+the over-long id was a `-proof` route, because `<claim>-proof` is six
+characters longer than the claim it proves. Hence the 58: if you name a claim
+longer than that, the route proving it cannot be called `<claim>-proof` and
+whoever writes it later inherits your problem. Six claims are already in that
+band and need a shortened route id rather than the default when their proof
+lands — `compression-defect-dies-in-weakly-locally-finite-division-rings` (63),
+`every-nontrivial-core-element-normally-generates-the-envelope` (61),
+`ck-envelope-has-a-finitely-normally-generated-maximal-kernel` (60),
+`normal-generation-makes-the-augmentation-ideal-one-generated` (60),
+`pure-finite-group-operator-scaling-collapses-to-multiplicity` (60) and
+`universal-sandwich-ring-is-finitely-presented-and-injective` (59). Shortening
+is cheap and the graph does not mind: `pure-finite-group-scaling-collapse-proof`
+is what the first of today's two became. The filename must equal the id, so a
+rename moves the file with it.
+
 The write path is your editor: **agents create and edit these files
 directly with their normal tools.** Before committing, run
 `bin/cairn check --changed` and `bin/cairn preview`.
