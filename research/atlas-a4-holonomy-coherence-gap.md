@@ -9,6 +9,7 @@ artifacts:
   - research/artifacts/a4-context-virtually-free-compiler-2026-08-19.md
   - experiments/atlas-word-19243.json
   - experiments/atlas_triangle_19243_packet.py
+  - experiments/atlas_a4_packet_generation.py
 ---
 
 Let `sigma_n` be exact unitary representations of the fixed thirty-context
@@ -48,8 +49,28 @@ is the common multiplicity `k_n`; every local group is exact and regular.
   `a4-regular-three-way-coherence-transducer` gives, on each context, three
   trace-`1/4` sectors linked by partial unitaries whose off-diagonal blocks are
   exactly `(3/2)R_chi b R_psi`.  These are lossless local phase transports.
-  Compose them along the finite context graph; near-identity stable-letter
-  holonomy should make competing paths agree up to `o(1)`.
+  `a4-coherence-fan-canonically-splits-multiplicity` strengthens this to an
+  exact compiler: every local three-dimensional block is one fixed A4 qutrit
+  tensored with one multiplicity wire.  The new
+  `a4-canonical-coherence-data-hs-lipschitz` shows that all carrier projections
+  and transports are uniformly HS-stable in the local generators.
+- **External multiplicity is not a linear gluing obstruction.**
+  `finite-subspace-gluing-is-amplification-stable` says that once the remaining
+  coherence conditions are written as approximate membership in finitely many
+  fixed base intertwiner subspaces, their Friedrichs-angle/spectral gluing
+  constant survives tensor amplification unchanged.  Therefore the hard step
+  is the nonlinear-to-linear extraction of those residuals, not the growing
+  dimension `k_n` itself.
+- **The packet sees the whole chart.**
+  `atlas-a4-packet-letters-generate-both-a8-charts` proves by exact F2 closure
+  that the ten distinct packet letters on either side generate all of A8; the
+  two factors use the same ten-element set, whose directed word diameter is
+  nine.  Consequently `atlas-a4-packet-commutant-synchronization` makes these
+  ten letters a dimension-free commutant test for every regular amplification.
+  A viable compiler now only has to extract from the A4 coherence network a
+  bounded residual whose commutators with those packet letters are controlled
+  by the holonomy/collision defect; finite averaging then rounds it into the
+  global right-regular commutant.
 - **Use bounded-depth carrier amplification.**
   The line carriers are explicit central idempotents and also satisfy
   `(PQP)^m=E+3^(-m)(P-E)`.  Thus any projection-valued synchronization
@@ -60,4 +81,6 @@ is the common multiplicity `k_n`; every local group is exact and regular.
   A4 packet and zero surviving after adding `q_19243`.  That finite audit is
   discovery evidence, not the theorem: the required proof must show that the
   matrix-valued coherence fan cannot evade the same frustration by mixing
-  multiplicity sectors.
+  multiplicity sectors.  The new generation/commutant facts rule out hiding in
+  a packet-invisible chart subgroup, but do not by themselves convert the
+  collision word into the needed commutator residual.
