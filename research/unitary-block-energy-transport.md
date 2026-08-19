@@ -3,6 +3,10 @@ rg: 2
 id: unitary-block-energy-transport
 kind: claim
 title: Squared Fourier-block energies of a unitary form an exact transportation plan
+artifacts:
+  - experiments/transport_cost_dual.py
+  - experiments/transport-cost-dual-smoke.json
+  - experiments/transport-cost-dual-smoke.out.json
 ---
 
 Let `(M,tau)` be a finite tracial von Neumann algebra, let `P_i` and `Q_j` be
