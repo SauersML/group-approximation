@@ -1,0 +1,182 @@
+name: Palomar Comparator
+
+# Run the real `leanprover/comparator` against the Palomar configuration.
+#
+# WHY THIS EXISTS.  A Palomar submission is decided by Comparator: it exports
+# the challenge and solution environments, requires the configured theorem to
+# have the same kind and type in both, walks every constant that type mentions
+# and requires each to be identical, checks the axiom closure, and replays the
+# exported proof through Lean's kernel and an independent one.  Nothing else in
+# this repository runs that program.  `scripts/check_palomar_submission.py`
+# compares the two files as text and `scripts/check_palomar_statement_match.sh`
+# compares the compared statement as elaborated; both are strong evidence and
+# neither is the thing itself.
+#
+# WHY IT IS NOT ON THE COMPUTE NODES.  Comparator needs `landrun`, which needs
+# Landlock (Linux 5.13+), and the build nodes run Rocky 8.10 with glibc 2.28 --
+# old enough that Lean's bundled clang cannot even link an executable there
+# ("GLIBC_2.29 not found"), so `lean4export` and `comparator` cannot be built.
+# A GitHub runner has both a current kernel and a current glibc.
+#
+# WHY MANUAL ONLY.  It builds two extra toolchains and a Rust kernel checker,
+# and the answer only changes when the Palomar surface changes.  Run it before
+# a submission, not on every push.  It restores the build cache the prover
+# workflow saves and never saves its own, so it cannot evict that cache or
+# race it.
+
+on:
+  workflow_dispatch:
+    inputs:
+      config:
+        description: Repository-relative Comparator configuration
+        default: Palomar/comparator.json
+        required: false
+      nanoda:
+        description: Also replay through the independent NanoDa kernel
+        type: boolean
+        default: true
+        required: false
+
+permissions:
+  contents: read
+
+concurrency:
+  group: palomar-comparator-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  comparator:
+    name: Comparator (${{ inputs.config }})
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
+
+      - name: Cache Lean toolchain
+        id: elan-cache
+        uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4
+        with:
+          path: ~/.elan
+          key: ${{ runner.os }}-elan-comparator-${{ hashFiles('lean-toolchain') }}
+
+      - name: Install elan
+        if: steps.elan-cache.outputs.cache-hit != 'true'
+        run: curl https://raw.githubusercontent.com/leanprover/elan/464c9d28395000a2a0128e07081e4956d50eced2/elan-init.sh -sSf | sh -s -- -y
+
+      - name: Add elan to PATH
+        run: echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+
+      # Read-only restores.  The prover workflow owns these caches; this job
+      # borrows them and saves nothing, so a manual run can never displace the
+      # entry the certificate path depends on.
+      - name: Restore Lake dependencies
+        uses: actions/cache/restore@0057852bfaa89a56745cba8c7296529d2fc39830 # v4
+        with:
+          path: .lake/packages
+          key: ${{ runner.os }}-lake-deps-${{ hashFiles('lean-toolchain', 'lake-manifest.json') }}
+          restore-keys: |
+            ${{ runner.os }}-lake-deps-
+
+      - name: Restore compiled project
+        id: build-restore
+        uses: actions/cache/restore@0057852bfaa89a56745cba8c7296529d2fc39830 # v4
+        with:
+          path: .lake/build
+          key: ${{ runner.os }}-nonsofic-build-${{ hashFiles('lean-toolchain', 'lake-manifest.json', 'lakefile.toml', 'GroupApproximation.lean', 'GroupApproximation/**/*.lean') }}
+          restore-keys: |
+            ${{ runner.os }}-nonsofic-build-
+
+      - name: Restore Mathlib olean archives
+        uses: actions/cache/restore@0057852bfaa89a56745cba8c7296529d2fc39830 # v4
+        with:
+          path: ~/.cache/mathlib
+          key: ${{ runner.os }}-mathlib-archives-${{ hashFiles('lean-toolchain', 'lake-manifest.json') }}
+
+      - name: Report the warm-start state
+        run: |
+          echo "compiled-project cache: ${{ steps.build-restore.outputs.cache-matched-key || 'MISS' }}"
+          if [ -z "${{ steps.build-restore.outputs.cache-matched-key }}" ]; then
+            echo "::warning::no compiled-project cache was found; the build below"
+            echo "::warning::starts from Mathlib and may exceed this job's timeout."
+            echo "::warning::Run the prover workflow first so a build cache exists."
+          fi
+
+      - name: Fetch precompiled Mathlib
+        run: lake exe cache get
+
+      # Only the two Palomar libraries and whatever of the development they
+      # pull in.  With a warm cache this is minutes.
+      - name: Build the Palomar modules
+        run: lake build PalomarChallenge PalomarSolution
+
+      # Comparator's sandbox.  Landrun is Go; the runner ships a toolchain.
+      - name: Build landrun
+        run: |
+          go install github.com/Zouuup/landrun@main
+          echo "$HOME/go/bin" >> "$GITHUB_PATH"
+          "$HOME/go/bin/landrun" --version || true
+
+      # `lean4export` must match the toolchain of the project being exported,
+      # which is this repository's, NOT comparator's.  Palomar derives the
+      # release tag from the submitted `lean-toolchain` in exactly this way.
+      - name: Build lean4export at the submitted toolchain
+        run: |
+          tag="$(sed 's|^leanprover/lean4:||' lean-toolchain)"
+          echo "lean4export tag: $tag"
+          git clone --depth 1 --branch "$tag" https://github.com/leanprover/lean4export.git "$RUNNER_TEMP/lean4export"
+          ( cd "$RUNNER_TEMP/lean4export" && lake build )
+          echo "COMPARATOR_LEAN4EXPORT=$RUNNER_TEMP/lean4export/.lake/build/bin/lean4export" >> "$GITHUB_ENV"
+
+      - name: Build comparator
+        run: |
+          git clone --depth 1 https://github.com/leanprover/comparator.git "$RUNNER_TEMP/comparator"
+          ( cd "$RUNNER_TEMP/comparator" && lake build comparator )
+          echo "COMPARATOR_BIN=$RUNNER_TEMP/comparator/.lake/build/bin/comparator" >> "$GITHUB_ENV"
+
+      - name: Build the NanoDa kernel
+        if: ${{ inputs.nanoda }}
+        run: |
+          git clone --depth 1 https://github.com/ammkrn/nanoda_lib.git "$RUNNER_TEMP/nanoda"
+          ( cd "$RUNNER_TEMP/nanoda" && cargo build --release )
+          echo "$RUNNER_TEMP/nanoda/target/release" >> "$GITHUB_PATH"
+
+      # Palomar always writes its own protected configuration with the
+      # independent replay enabled, whatever the repository says.  Do the same
+      # here rather than trusting the checked-in switch, and drop it when the
+      # replay was not requested so comparator does not look for a binary that
+      # was not built.
+      - name: Write the protected configuration
+        run: |
+          python3 - "${{ inputs.config }}" "$RUNNER_TEMP/protected.json" "${{ inputs.nanoda }}" <<'PY'
+          import json, sys
+          cfg = json.load(open(sys.argv[1]))
+          cfg["enable_nanoda"] = sys.argv[3] == "true"
+          json.dump(cfg, open(sys.argv[2], "w"), indent=2)
+          print(json.dumps(cfg, indent=2))
+          PY
+
+      - name: Run Comparator
+        run: |
+          set -o pipefail
+          lake env "$COMPARATOR_BIN" "$RUNNER_TEMP/protected.json" 2>&1 | tee "$RUNNER_TEMP/comparator.log"
+
+      # Comparator reports some failures on stdout while still exiting zero,
+      # which is the shape of a green run that proved nothing.  Palomar's own
+      # verifier scans for the same markers.
+      - name: Reject a green run that reported a failure
+        run: |
+          if grep -qiE 'uncaught exception|error:|error\]|failed' "$RUNNER_TEMP/comparator.log"; then
+            echo "::error::Comparator reported a failure; see the log above"
+            exit 1
+          fi
+          echo "Comparator accepted the solution against the challenge."
+
+      - name: Upload the Comparator log
+        if: always()
+        uses: actions/upload-artifact@65c4c4a1ddee5b72f698fdd19549f0f0fb45cf08 # v4
+        with:
+          name: comparator-log
+          path: ${{ runner.temp }}/comparator.log
+          if-no-files-found: warn
