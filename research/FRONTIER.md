@@ -1430,8 +1430,8 @@ wreath-compression-mf-radical [✓] Exact MF radicals of compression wreath prod
 
 ## Recently touched
 
-- 2026-08-19 · nonhyperlinear-from-linear-energy-domination [OPEN] One energy comparison closes the two-S3 collapse and the goal with it
 - 2026-08-19 · atlas-linear-energy-controlled-by-full-packet-defect [OPEN] The linearized atlas energy is bounded by the full packet defect including the interior separator
+- 2026-08-19 · nonhyperlinear-from-linear-energy-domination [OPEN] One energy comparison closes the two-S3 collapse and the goal with it
 - 2026-08-19 · atlas-boundary-tangent-covariance-coercivity [ESTABLISHED] The full first-boundary packet controls both raw S3 covariances globally, with dimension-free constant one fourteenth
 - 2026-08-19 · nonhyperlinear-from-a4-plus-19243-classicalization [OPEN] Collision-conditioned A4 classicalization rules out regular Leavitt microstates
 - 2026-08-19 · atlas-centralizer-products-19243-classicalize [OPEN] The thirty shifted A4 centralizer products plus collision 19243 force a classical chart branch

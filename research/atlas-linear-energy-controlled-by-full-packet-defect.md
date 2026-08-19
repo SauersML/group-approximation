@@ -54,6 +54,15 @@ counterexample must be non-inner, as the characteristic-two one is.
 hence a non-hyperlinear group: see
 `nonhyperlinear-from-linear-energy-domination`.
 
+**A bridge to the existing machinery.**  `z_s` is the integral lift of the
+audit's characteristic-two derivative `d_q = sum_j (p_(j-1) + p_j)`: same
+signed prefix sums, reduced mod 2.  So the object whose mod-2 cokernel
+carries the countermodel (`M = F_2[A_8]/I`, dimension 155) and the object
+whose complex kernel gives the constant 1/14 (dimension 120 = [A_8 : GL_3(2)])
+are the same 234 elements in two characteristics.  A proof of (LINK+) may
+well be the statement that the interior separator closes the mod-2 hole that
+the complex inequality is missing.
+
 **Why it is not a Taylor estimate.**  `pi_U(s)-1 = sum_j (W_j-1) + cross`,
 and in normalized Hilbert--Schmidt the cross terms are not second order:
 `||(A-1)(B-1)||_2` only yields `||A-1||_op ||B-1||_2`.  That is exactly the

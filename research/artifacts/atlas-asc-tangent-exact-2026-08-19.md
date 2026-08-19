@@ -168,6 +168,28 @@ characteristic-two countermodel exhibits are necessarily non-inner.  The
 repository previously had this uniqueness for the five-word tangent screen;
 this is the full packet.
 
+## 4d. The same element, in two characteristics
+
+`z_s = sum_j (u_j - v_j)` is the integral lift of the characteristic-two
+derivative of the rank-three audit: that audit's
+
+    d_q = sum_(j in chart 2) (p_(j-1) + p_j)   in F_2[A_8]
+
+is the same formula, with `p_(j-1) = u_j` and `p_j = v_j`, reduced mod 2.  So
+the two objects the lane has been computing with are one object in two
+characteristics:
+
+  * over `F_2`, the left ideal `I = sum_q F_2[A_8] d_q` has codimension 155,
+    and `M = F_2[A_8]/I` is what carries the affine countermodel;
+  * over `C`, the positive element `W_pkt = sum_s z_s^* z_s` has kernel of
+    dimension 120 = [A_8 : GL_3(2)] and gives the constant 1/14.
+
+The countermodel lives in the mod-2 cokernel; the coercivity lives in the
+complex kernel.  Anyone attacking (LINK+) inherits both descriptions of the
+same 234 signed prefix sums, which is the practical reason to expect the
+interior separator -- which is what closes the mod-2 hole -- to be exactly
+what the complex inequality is missing.
+
 ## 5. The proof-shaped residue
 
 `C_loc <= C` is equivalent to positivity, in every representation of `A_8`,
