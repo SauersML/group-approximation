@@ -339,6 +339,7 @@ import GroupApproximation.Algebra.HNNTorsionFree
 import GroupApproximation.Sofic.GreendlingerCombinatorics
 import GroupApproximation.Sofic.GreendlingerConjugation
 import GroupApproximation.Sofic.GreendlingerNormalForm
+import GroupApproximation.Sofic.GreendlingerOneRelator
 import GroupApproximation.Sofic.IntegerLampSurvival
 import GroupApproximation.Monsters.LiteralBaseCompleteness
 import GroupApproximation.Sofic.LEFMarkedCompression
