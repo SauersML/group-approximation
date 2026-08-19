@@ -6,8 +6,7 @@ title: Compressor-fixed Pauli equalizer sectors have zero regular density
 artifacts:
   - research/artifacts/pauli-compressor-equalizer-decay-2026-08-18.md
 distinct_from:
-  exact-joint-compressor-fiber-variance: that no-go keeps a full extension fiber and shows covariance does not classicalize it; this one kills the opposite shortcut, showing that forcing the fresh compressor fibers to be trivial makes the retained regular mass decay by a factor eight per level.
-  negative-character-sector-aggregation: that preserves trace one half by summing all negative extension characters; this shows why selecting only characters that identify source and compressed Pauli packets cannot preserve positive density under iteration.
+  maximal-fiber-variance: that no-go keeps a full extension fiber and shows exact covariance can retain maximal hidden variance; this one kills the opposite shortcut, showing that forcing every fresh compressor fringe fiber to be trivial makes the retained regular mass decay by a factor eight per level.
 ---
 
 Let `alpha(a)=s_0 a t_0` in the binary Leavitt ring and put
