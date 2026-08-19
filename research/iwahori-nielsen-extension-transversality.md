@@ -2,54 +2,53 @@
 rg: 2
 id: iwahori-nielsen-extension-transversality
 kind: claim
-title: Near-unitary Iwahori pairs have dimension-free transversality between E and alpha-star E
+title: Isolated near-unitary Iwahori types have dimension-free transversality between opposite extension loci
 distinct_from:
-  iwahori-commensurator-nielsen-involution: That established theorem merely identifies the two opposite extension loci as E and alpha-star E under an explicit involution; this claim asks for a quantitative metric-regularity theorem for their near intersections.
-  iwahori-fractional-transport-integralization: That is the global operator-valued matching problem which extracts orthogonal near-unitary block pairs; this claim starts after one such matched pair has already been isolated.
-  iwahori-outlier-repair: That is the global central-regular endpoint, including fractional mass localization and assembly across all blocks; this claim is only the local extension-locus correction for an already isolated near-unitary pair.
+  iwahori-commensurator-nielsen-involution: That established theorem merely identifies the two opposite extension loci under an explicit involution; this claim asks for a quantitative metric-regularity theorem near one isolated high-dimensional type pair.
+  iwahori-fractional-transport-integralization: That is the global operator-valued matching problem which extracts orthogonal near-unitary block pairs from a fractional transport; this claim starts after one such pair of irreducible edge types has already been isolated.
+  iwahori-outlier-repair: That is the complete central-regular endpoint, including physical mass localization, integralization and assembly across all blocks; this claim is only the local correction of one matched irreducible type pair.
 artifacts:
   - docs/FALSE_ROBUST_T_IWAHORI_EDGE_REPAIR.md
   - docs/TRUE_IWAHORI_FACTOR_GATE_IS_COSYSTOLIC_ANGLE.md
+  - docs/TRUE_IWAHORI_INDEX_THREE_HAS_BOUNDED_BRANCHING.md
 ---
 
 Let `Kbar=PSL_2(Z)` and `Bbar=<u,e | e^2=1> ~= Z*C_2` be the upper Iwahori
-subgroup.  Let `E_d` be the set of `d`-dimensional unitary representations of
-`Bbar` which extend to `Kbar`, modulo unitary conjugacy, and let `alpha` be the
-explicit involution from `iwahori-commensurator-nielsen-involution`.
+subgroup.  Let `alpha` be the explicit involution from
+`iwahori-commensurator-nielsen-involution`.
 
-Ask for a dimension-independent flexible transversality modulus with the
-following local form.  Suppose
-
-```text
-theta_n in E_(d_n),
-eta_n in alpha^* E_(d_n),
-U_n in U(d_n),
-```
-
-and for a fixed finite generating set `S_B` of `Bbar`,
+Consider irreducible `Bbar`-representations `theta_n,eta_n` of the same
+physical dimension `r_n->infinity`, together with irreducible modular vertex
+representations `pi_n^+,pi_n^-` such that
 
 ```text
-max_(s in S_B) ||theta_n(s) U_n-U_n eta_n(s)||_2 -> 0.
+theta_n occurs in pi_n^+|Bbar,
+alpha^*(eta_n) occurs in pi_n^-|Bbar.
 ```
 
-Then, after stabilization by `o(d_n)` dimensions, there should exist a
-representation
+(The index-three theorem makes these occurrences multiplicity one and bounds
+the parent dimensions between `r_n` and `3r_n`.)  Suppose there are unitaries
+`U_n` between the two edge spaces with
 
 ```text
-zeta_n in E_(D_n) intersect alpha^* E_(D_n),
-D_n=d_n+o(d_n),
+max_(s in S_B) ||theta_n(s)U_n-U_n eta_n(s)||_(2,r_n) -> 0
 ```
 
-and stabilized vertex extensions of `theta_n` and `eta_n` whose restrictions
-move by `o(1)` in normalized Hilbert--Schmidt distance to `zeta_n`.
+for one fixed finite generating set `S_B`.
 
-Equivalently: a near-unitary almost intersection of the two symmetric
-extension loci `E` and `alpha^*E` must lie, flexibly and with a
-dimension-free modulus, near their actual intersection.
+Ask for a dimension-independent flexible **local transversality** modulus:
+after adding/deleting `o(r_n)` dimensions to the two parent vertex blocks,
+perturb `pi_n^+,pi_n^-` by `o(1)` in normalized Hilbert--Schmidt distance to
+exact modular vertex representations whose selected Iwahori constituents are
+unitarily identical under the prescribed commensuration.  Equivalently, the
+near pair `(theta_n,eta_n)` should be `o(1)`-close, after negligible flexible
+stabilization, to one irreducible type lying in the actual intersection of
+the upper extension locus with the `alpha`-twisted extension locus.
 
-This is deliberately **local**.  It assumes the global Iwahori mismatch has
-already been integralized into orthogonal near-unitary pairs; it does not ask
-how to obtain those pairs from the fractional block transport.
+This is deliberately **local**: one matched irreducible edge pair is supplied
+as input.  It says nothing about turning the global fractional overlap of two
+large reducible edge representations into such orthogonal pairs; that is
+`iwahori-fractional-transport-integralization`.
 
 ## Attempts
 
