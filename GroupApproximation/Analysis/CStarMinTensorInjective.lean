@@ -180,7 +180,7 @@ theorem minTensorNorm_inclusion_of_faithful
       = minTensorNorm x :=
   minTensorNorm_tensorStarAlgHomMap_of_injective
     (StarSubalgebra.inclusion hST) (StarSubalgebra.inclusion_injective hST)
-    T.subtype (fun a b hab => Subtype.ext hab) ρ hρ x
+    T.subtype (fun _ _ hab => Subtype.ext hab) ρ hρ x
 
 /-! ## The isometric inclusion of the completions -/
 

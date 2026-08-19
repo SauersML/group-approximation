@@ -265,11 +265,13 @@ def betaKq (P : MatFam Y) (ω : Ultrafilter ℕ)
     Kq Y P ω hω :=
   ⟨lambda Y P ω hω (d g), lambda_mem_Kq Y P ω hω (d g)⟩
 
+omit [Group H] in
 @[simp] theorem coe_betaKq (P : MatFam Y) (ω : Ultrafilter ℕ)
     (hω : (ω : Filter ℕ) ≤ cofinite) (d : H → rankIdeal Y P) (g : H) :
     ((betaKq Y P ω hω d g : Kq Y P ω hω) : KRank Y P ω)
       = lambda Y P ω hω (d g) := rfl
 
+omit [Group H] in
 /-- `β` vanishes in `K_q` exactly when `Λ(d_g)` vanishes in `K_ω`: the
 inclusion is injective, so the nonvanishing of the previous printed step is
 the nonvanishing needed here. -/
