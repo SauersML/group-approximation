@@ -11,10 +11,13 @@ artifacts:
   - docs/EXPLICIT_LEAVITT_ATLAS.md
   - docs/TRUE_RAW_WORD_REYNOLDS_GAP.md
   - docs/TRUE_RAW_WORD_S3_TIMES_S3_LOCALIZATION.md
+  - docs/ATLAS_BOUNDARY_RANK_THREE_EXACT_AUDIT.md
   - experiments/atlas-raw-compressor-source-words.json
   - experiments/atlas_raw_reynolds_gap_audit.py
   - experiments/atlas-boundary-11-30.json
   - experiments/atlas_boundary_h_tangent_screen.py
+  - experiments/atlas-boundary-h-irrep-greedy.json
+  - experiments/atlas-boundary-h-finite-quotient-scan.json
 ---
 
 Let `lambda:A_8->U(20160)` be the left regular representation and let
@@ -87,8 +90,56 @@ while adjoining the complementary hard letter generates
 ```
 
 of order `168`.  The two order-24 `S_4` extensions intersect exactly in the
-raw `S_3`.  Hence the required estimate is a finite multiplicity-arrow
-problem, not an unbounded group search.
+raw `S_3`.
+
+There is now an exact rational tangent certificate, not merely an SVD screen.
+`atlas-boundary-h-irrep-greedy.json` shows that the five boundary indices
+
+```text
+0, 11, 30, 44, 55
+```
+
+have common derivative kernel equal to the `H=GL_3(2)`-fixed space in every
+irreducible `A_8` representation.  Thus the classical fold is infinitesimally
+rigid modulo the desired `H` symmetry in every representation type.  The
+finite quotient scan also checks all `20160` inner `A_8` chart conjugators and
+finds a unique exact solution for those five words, with the two `H` copies
+coincident.
+
+Neither fact is a global theorem: the quotient scan only ranges over inner
+`A_8` positions, and tangent rigidity controls a neighbourhood of the
+classical fold rather than arbitrary unitaries.
+
+## Exact boundary-only no-go
+
+A boundary-only proof of `(ASC)` is impossible.  The exact audit
+`ATLAS_BOUNDARY_RANK_THREE_EXACT_AUDIT.md` constructs
+
+```text
+E = M semidirect A_8,    dim_F2(M)=155,
+```
+
+with two injective `A_8` chart maps such that all `234` first-boundary words
+vanish exactly, both chart restrictions are regular in the left regular
+representation of `E`, yet the aligned copies disagree on the four standard
+transvections generating `H`.  In particular the two raw `S_3` covariance
+directions need not collapse under the complete boundary packet.
+
+This is compatible with the tangent certificate: the affine solution is a
+global characteristic-two escape, not an infinitesimal complex-unitary
+motion of the classical fold.  It also explains why proving that the abstract
+five-relator quotient is `H` would be insufficient for `(ASC)` even if the
+Todd--Coxeter calculation terminated: the full 234-word boundary itself has
+other exact regular-margin models.
+
+Therefore every valid proof of `(ASC)` must use at least one genuinely
+interior/full-atlas consequence of `bar_S` in addition to the boundary
+geometry.  The same exact audit identifies collision word `19243` as a useful
+test: one associated interior centrality condition kills the entire affine
+boundary-countermodel family already in its order-zero quotient.  Before using
+that particular word in a proof, its required centrality consequence must be
+certified to lie in the normal closure of `bar_S` (or replaced by an explicit
+member/consequence of `bar_S`).
 
 ## Attempts
 
@@ -99,19 +150,27 @@ problem, not an unbounded group search.
 2. **Full commutant synchronization.**  Unnecessarily strong and currently
    open.  The raw lower bound uses only `h_a,h_b`; proving `(ASC)` for these
    two fixed words bypasses coordinate-selected commutant unitaries.
-3. **Linearized hard-boundary screen.**  The exploratory script
-   `atlas_boundary_h_tangent_screen.py` tests tangent-kernel inclusion around
-   the classical fold.  It is evidence only: no committed exact certificate
-   upgrades its numerical SVD to a nonlinear, dimension-free estimate.
-4. **Class-11 nonlinear coercivity.**  The promising target is to control the
-   cross-chart prefix
-   `P=U lambda(X)U^* lambda(B)` against its folded value
-   `D=lambda(XB)`, then use finite `S_4`/`GL_3(2)` Reynolds averaging to force
-   the two `S_3` covariance defects down.  One eight-letter relator alone may
-   have nonclassical exact solutions, so a proof must use a fixed packet of
-   compatible boundary/comb relations or an explicit sum-of-squares
-   coercivity identity.
-5. **Finite SOS / spectral certificate.**  Because all coefficient matrices
-   live in the fixed algebra `M_20160(C)` and external multiplicity appears
-   only as `tensor I_k`, seek a fixed noncommutative sum-of-squares identity
-   proving `(ASCq)`.  No such certificate is currently present in the graph.
+3. **Boundary tangent rigidity.**  Closed locally: the rational all-irrep
+   certificate gives exactly the `H`-fixed tangent kernel, and five words
+   suffice.  It does not globalize by itself because of the exact affine
+   countermodel above.
+4. **Boundary-only nonlinear coercivity.**  Refuted.  No packet consisting
+   solely of the 234 first-boundary relations can force the required two
+   covariances in every regular-margin finite model.
+5. **Boundary plus one interior separator.**  This is now the sharp local-to-
+   global target.  Prove that a fixed interior/full-atlas consequence excludes
+   every component outside a controlled neighbourhood of the classical fold;
+   the exact all-irrep tangent gap can then supply local coercivity to `H`.
+   The word-19243 centrality obstruction is the first concrete candidate
+   because it kills the known affine escape family exactly.
+6. **Matrix-specific positivity certificate.**  An ordinary tracial SOS valid
+   in every finite tracial von Neumann algebra cannot work: the full atlas
+   presentation has its exact group von Neumann algebra model.  A finite-
+   dimensional/matricial certificate for the regular-`A_8` sector is still
+   legitimate and would prove `(ASCq)`; it must use a genuinely matrix-specific
+   ingredient rather than a universal group-algebra ideal identity.
+
+The immediate finite task is therefore not another boundary search.  It is to
+certify one interior consequence of `bar_S` and combine it with the exact
+five-word tangent gap into a global matricial coercivity statement for the two
+named `S_3` directions.
