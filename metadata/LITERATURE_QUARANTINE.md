@@ -170,16 +170,29 @@ Everything it needs is already in the tree.
 3. **Factor it.**  `LanceBlockOperator.exists_factor_of_blockOp_form_nonneg`
    takes exactly (1) and (2) and returns `P` with `M.map ψ = star P * P`.  That
    is `CStarExactness.IsCompletelyPositive ψ`, by definition.
+
+   **Steps 1–3 are now `CStarExactness.isCompletelyPositive_of_form`**
+   (`Analysis/CStarFormCompletelyPositive`), proved and compiling: a
+   `⋆`-preserving linear map into `B(ℂᵏ)` whose sesquilinear sums are
+   nonnegative and real is completely positive.  Note the order the corrected
+   predicate forced: reality gives `⋆`-preservation (`ucp_map_star`),
+   `⋆`-preservation gives self-adjointness of the block matrix, and
+   nonnegativity gives the rest.  Nothing is assumed twice.
 4. **Read off the bound.**  `IsCompletelyPositive.norm_apply_le_of_unital`
    then gives `‖ψ c‖ ≤ ‖c‖`, and `UCPContractive` follows.
 
-Two frictions, both mechanical.  `exists_factor_of_blockOp_form_nonneg` is
+**What is left is step 4 and the transport into it.**  Two frictions, both
+mechanical, and neither a theorem about C⋆-algebras:
+`isCompletelyPositive_of_form` and `exists_factor_of_blockOp_form_nonneg` are
 stated at `EuclideanSpace ℂ (Fin k)`, so an arbitrary `Y : FiniteModel` has to
 be moved along `Fintype.equivFin`; and `ψ` is `φ` followed by the identification
 of `Matrix Y Y ℂ` with those operators, which is the scoped
-`Matrix.Norms.L2Operator` structure and so is isometric by definition.  Neither
-is a theorem about C⋆-algebras.  This is the highest-value open task in the
-quarantine: it retires an entry outright.
+`Matrix.Norms.L2Operator` structure and so is isometric by definition rather
+than by a lemma.  The entrywise form and the inner-product form agree on the
+nose under that identification, since `⟪u, M *ᵥ v⟫ = ∑ₓ ∑_y conj (u x) M x y v y`.
+
+This is the highest-value open task in the quarantine: it retires an entry
+outright, and it is the only entry of which that is true.
 
 ## The one citation that is not a research programme
 
