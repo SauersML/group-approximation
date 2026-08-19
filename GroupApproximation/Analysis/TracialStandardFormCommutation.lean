@@ -23,9 +23,13 @@ commutant.  This module proves that mechanism in full:
   with its five defining identities (conjugate-linear isometric involution
   sending `TΩ` to `T⋆Ω`).  Its existence for a tracial standard form is the
   density extension of `TΩ ↦ T⋆Ω` (well defined by separation, isometric by
-  traciality); that construction is not performed here, so every theorem
-  below carries the conjugation as an explicit input and the residue is
-  visible in the types.
+  traciality); that construction is not performed in this file, and every
+  theorem below carries the conjugation as an explicit input --- but the
+  residue is **discharged** in `Analysis/TracialConjugationExists.lean`,
+  which builds the conjugation from exactly the density helpers above and
+  the tracial field, so a consumer needs nothing beyond
+  `IsTracialStandardForm`: the conjugation is recoverable via
+  `exists_tracialConjugation`.
 * `separating_commutant` and `dense_commutant_orbit` --- `Ω` is separating
   for the commutant (elementary) and cyclic for the commutant (the
   orthogonal projection onto the closed commutant orbit commutes with `M′`,
