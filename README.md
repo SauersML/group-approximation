@@ -296,6 +296,32 @@ Files prefixed FALSE_ record investigated approaches that were ruled out;
 they are retained so failed routes and their precise obstructions remain
 searchable.
 
+## The Palomar registry entry
+
+The repository carries a
+[Palomar](https://palomar-registry.org) submission surface: `Palomar/Challenge.lean`
+states one theorem against Mathlib alone, `Palomar/Solution.lean` proves the
+same statement from this development, and `Palomar/comparator.json` selects it.
+`notes/PALOMAR_SUBMISSION.md` is the record: what the entry claims, what it
+deliberately does not, and how to verify it.
+
+The compared declaration is
+`ExplicitNonMF.explicit_fp_sofic_hyperlinear_not_MF`.  For the explicit
+eight-generator, forty-one-relator group `E` and its distinguished word
+`w = [tct⁻¹, v₁(tct⁻¹)v₁⁻¹]` it states that `E` is finitely presented and
+six-generated, that `w` is a nontrivial central involution, that `E` is sofic
+and hyperlinear, that every operator-norm asymptotic unitary representation
+sends `w` to the identity -- uniformly, for one defect budget on one finite
+test set, in every dimension -- that `E` is therefore not MF, and that every
+finite-dimensional representation over every field and every homomorphism to a
+finite group kills `w` as well.
+
+Everything else the manuscript proves -- the reduced and maximal group
+C*-algebra statements, the hyperlinear non-MF trace, the non-MF quotient by
+`w`, the general obstruction criteria, the undecidability of MF recognition --
+is proved in this repository but is **not** part of that Comparator selection
+and is not verified by that entry.
+
 ## Trust and verification
 
 The project pins Lean and Mathlib in `lean-toolchain` and `lake-manifest.json`.
