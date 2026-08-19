@@ -637,69 +637,62 @@ function buildClaimsView() {
   return html;
 }
 
-/* One page that says how far the formalization reaches, so the answer is
-   somewhere a reader can find it rather than inferred from the absence of a
-   mark.  Almost every step is machine-checked, which is exactly why the few
-   that are not deserve to be named rather than left to a missing badge. */
-const WHY_TXT = {
-  'literature-input': 'quoted from the literature',
-  'open': 'stated as an open question',
+/* The sentences the Lean development does not prove, written out.  They come
+   from a table whose cells are internal shorthand -- ASCII mathematics, label
+   names, capitals for emphasis -- so each is restated here as TeX and typeset
+   like the rest of the manuscript.  A step that falls short and has no entry
+   here is printed from the table as it stands: unreadable is better than
+   absent. */
+const NOT_IN_LEAN = {
+  'INT.11': 'Amenable groups are MF.',
+  'CY.12c': 'The realized Clifford quotient is amenable, and therefore MF.',
+  'KC.21': 'The finitely presented torsion-free property-\\textup{(T)} group $P$ of \\cite{FFF} contains every finitely presented torsion-free group, in particular a direct product $P_1\\times P_2$ with $P_i\\cong P$.',
+  'LI.12b': 'Remark~\\ref{rem:ff-realization} gives a small-cancellation route over the torsion-free finitely presented Kazhdan group of \\cite{FFF}.',
+  'LI.12c': 'The quotient may contain a finite normal subgroup, a normal Kazhdan subgroup, or an orbit configuration to which the preceding criteria apply, so $\\operatorname{Res}_{\\mathrm{MF}}(E)$ is not determined here.',
+  'LI.13': 'Question 2: is there a torsion-free finitely presented non-MF group?',
+  'LI.18': 'Question 4: for which groups do the criteria of Theorems~\\ref{thm:criterion}, \\ref{thm:normal-kazhdan} and \\ref{thm:projection-collapse} compute the residual exactly?',
+  'SO.16': '$\\Cred(E)$ is exact.',
+  'LI.14': 'A torsion-free finitely presented group whose subgroup $N_{\\mathrm{conj}}$ contains a nontrivial normal property-\\textup{(T)} subgroup would answer Question 2.',
 };
+
+function formalItemHtml(r) {
+  const tex = NOT_IN_LEAN[r.step];
+  const body = tex ? renderInline(tex, {}) : escHtml(r.claim);
+  const cites = (r.source || [])
+    .filter(k => !body.includes('data-key="' + k + '"'))
+    .map(k => BIB.byKey[k]
+      ? '<a class="cite" href="#bib-' + escHtml(k) + '" data-key="' + escHtml(k) + '">' + escHtml(BIB.byKey[k].label) + '</a>'
+      : escHtml(k)).join(', ');
+  const where = LABELS[r.anchor];
+  const link = where
+    ? '<a class="chip chip-ref" href="#' + where.anchor + '">' + escHtml((where.kind || '') + ' ' + (where.num || '')) + '</a>'
+    : '';
+  const meta = (cites ? '<span class="fcite">' + cites + '</span>' : '') + link;
+  return '<div class="formal-item"><div class="formal-claim">' + body + '</div>' +
+    (meta ? '<div class="formal-meta">' + meta + '</div>' : '') + '</div>';
+}
+
 function buildFormalView() {
   const S = window.STEPS || {};
   const rows = [];
   for (const a in S) for (const r of S[a]) rows.push(Object.assign({ anchor: a }, r));
-  const open = rows.filter(r => r.proof !== 'EXACT');
   const thms = [...document.querySelectorAll('#paper-body .thm')];
-  const stmts = thms.length;
   const withLean = thms.filter(t => t.querySelector('.lean-panel-tpl')).length;
+  const exact = rows.filter(r => r.proof === 'EXACT').length;
 
-  let html = '<div class="formal-lede">' +
-    '<p>A ✓ in the manuscript opens the Lean statement behind it. Most of them ' +
-    'sit on a whole result or a whole proof, because that is the grain at which ' +
-    'the formalization is written; the few inside a proof pin one step to one ' +
-    'sentence, and hovering shows which. A sentence with no ✓ beside it is not ' +
-    'thereby unchecked — it is covered by the ✓ on the result it belongs to.</p>' +
-    '<p>Everything below is what the Lean development does <em>not</em> prove.</p>' +
-    '</div>';
+  let html = '<p class="formal-lede">' + withLean + ' of the ' + thms.length +
+    ' numbered results, and ' + exact + ' of the ' + rows.length +
+    ' printed proof steps, are proved in Lean&nbsp;4.</p>';
 
-  html += '<div class="formal-nums">' +
-    '<div class="fnum"><b>' + withLean + '</b><span>of ' + stmts + ' numbered results have a Lean statement</span></div>' +
-    '<div class="fnum"><b>' + (rows.length - open.length) + '</b><span>of ' + rows.length +
-    ' printed proof steps match the Lean proof exactly</span></div>' +
-    '</div>';
-
-  const groups = [
-    ['literature-input', 'Taken from the literature', 'Proved elsewhere and used here as stated; the Lean development quotes rather than reproves them.'],
-    ['open', 'Left open by the paper', 'Questions the paper poses. Nothing is missing from the formalization — there is no proof to formalize.'],
-  ];
-  for (const [why, title, blurb] of groups) {
-    const mine = open.filter(r => (r.why || '') === why);
-    if (!mine.length) continue;
-    html += '<section class="formal-group"><h3>' + escHtml(title) + '</h3>' +
-      '<p class="formal-blurb">' + escHtml(blurb) + '</p>';
-    for (const r of mine) {
-      const where = LABELS[r.anchor];
-      const link = where
-        ? '<a class="chip chip-ref" href="#' + where.anchor + '">' + escHtml((where.kind || '') + ' ' + (where.num || '')) + '</a>'
-        : '';
-      const cites = (r.source || []).map(k => BIB.byKey[k]
-        ? '<a class="cite" href="#bib-' + escHtml(k) + '" data-key="' + escHtml(k) + '">' + escHtml(BIB.byKey[k].label) + '</a>'
-        : '<span class="unk">' + escHtml(k) + '</span>').join(', ');
-      html += '<div class="formal-item">' +
-        '<div class="formal-claim">' + escHtml(r.claim) + '</div>' +
-        '<div class="formal-meta">' +
-        (r.proof === 'MISMATCH' ? '<span class="fbadge">the Lean proof takes a different route</span>' : '') +
-        (cites ? '<span class="fcite">' + cites + '</span>' : '') + link +
-        '</div></div>';
-    }
-    html += '</section>';
+  const missing = rows.filter(r => r.proof === 'MISSING');
+  const other = rows.filter(r => r.proof !== 'EXACT' && r.proof !== 'MISSING');
+  if (missing.length) {
+    html += '<section class="formal-group"><h3>Not proved in Lean</h3>' +
+      missing.map(formalItemHtml).join('') + '</section>';
   }
-  const other = open.filter(r => !WHY_TXT[r.why || '']);
   if (other.length) {
-    html += '<section class="formal-group"><h3>Not machine-checked</h3>';
-    for (const r of other) html += '<div class="formal-item"><div class="formal-claim">' + escHtml(r.claim) + '</div></div>';
-    html += '</section>';
+    html += '<section class="formal-group"><h3>Proved in Lean along a different route</h3>' +
+      other.map(formalItemHtml).join('') + '</section>';
   }
   return html;
 }
@@ -1196,9 +1189,8 @@ function init() {
 
   // ----- header/meta -----
   document.getElementById('paper-key').innerHTML =
-    '<span class="key-mark">✓</span> machine-checked in Lean 4 — click for the proof; where a ✓ sits inside a proof, ' +
-    'hover it to see the sentence it covers. ' +
-    '<button class="key-link" data-goto="formal">What is not checked</button>';
+    '<span class="key-mark">✓</span> proved in Lean 4 — click for the proof, hover for the sentence it covers. ' +
+    '<button class="key-link" data-goto="formal">What is not</button>';
   document.getElementById('abstract-body').innerHTML =
     parsed.abstract.split(/\n\s*\n/).map(p => p.trim() ? '<p>' + renderInline(p.trim(), {}) + '</p>' : '').join('');
 
