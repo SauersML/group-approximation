@@ -46,7 +46,7 @@ noncomputable def stinespringSingleOne : H →ₗ[ℂ] StinespringPre φ hφ whe
     rw [Finsupp.single_add, map_add]
   map_smul' r x := by
     show toStinespringPre φ hφ (Finsupp.single 1 (r • x)) = _
-    rw [Finsupp.smul_single, map_smul]
+    rw [← Finsupp.smul_single, map_smul]
     rfl
 
 theorem norm_stinespringSingleOne_le (x : H) :

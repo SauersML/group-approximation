@@ -57,7 +57,7 @@ theorem quotientMapMulEquiv_surjective (e : G ≃* H) (K : Subgroup G) :
 
 /-- Regard `G/K` as an `H`-set through the inverse group equivalence.
 Installed with `letI` at use sites: the equivalence cannot be inferred. -/
-def quotientSourceAction (e : G ≃* H) (K : Subgroup G) :
+abbrev quotientSourceAction (e : G ≃* H) (K : Subgroup G) :
     MulAction H (G ⧸ K) :=
   MulAction.compHom _ e.symm.toMonoidHom
 

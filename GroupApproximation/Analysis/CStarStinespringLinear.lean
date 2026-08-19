@@ -82,7 +82,7 @@ theorem stinespringSesq_act_smul_left {φ : A →ₗ[ℂ] (H →L[ℂ] H)}
       = (starRingEnd ℂ) r • (star (c * a) * b) := by
     rw [smul_mul_assoc, star_smul, smul_mul_assoc]
     rfl
-  rw [h, map_smul, ContinuousLinearMap.smul_apply, inner_smul_right]
+  rw [h, map_smul, _root_.smul_apply, inner_smul_right]
 
 section WithComplete
 
@@ -173,7 +173,7 @@ theorem stinespringRepOp_smul (r : ℂ) (c : A) :
       exact isClosed_eq (stinespringRepOp φ hφ (r • c)).continuous
         (r • stinespringRepOp φ hφ c).continuous
   | ih f =>
-      rw [ContinuousLinearMap.smul_apply, stinespringRepOp_coe,
+      rw [_root_.smul_apply, stinespringRepOp_coe,
         stinespringRepOp_coe, ← Completion.coe_smul]
       refine dist_eq_zero.mp ?_
       rw [Completion.dist_eq, dist_eq_norm]

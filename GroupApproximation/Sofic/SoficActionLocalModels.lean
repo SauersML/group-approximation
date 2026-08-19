@@ -35,7 +35,6 @@ noncomputable def finsetToSubgroup (F : Finset G) (K : Subgroup G)
 @[simp] theorem mem_finsetToSubgroup (F : Finset G) (K : Subgroup G)
     (hFK : ∀ g ∈ F, g ∈ K) (g : G) (hg : g ∈ F) :
     (⟨g, hFK g hg⟩ : K) ∈ finsetToSubgroup F K hFK := by
-  classical
   rw [finsetToSubgroup]
   exact Finset.mem_image_of_mem _ (Finset.mem_attach _ ⟨g, hg⟩)
 
