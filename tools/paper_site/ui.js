@@ -967,17 +967,38 @@ function highlightCheckedSentences(root) {
     try { r.setStart(sn, so); r.setEnd(en, eo); } catch (e) { return; }
     if (!r.collapsed) CHECKED_SPAN.set(chip, r);
   });
-  // the span answers a question, so it appears when one is being asked
-  root.addEventListener('mouseover', ev => {
-    const chip = ev.target.closest('.lean-chip');
-    if (chip) showChecked(chip);
-  });
+}
+
+/* Every mark answers the same question -- what does this cover -- so every
+   mark answers it the same way, when it is hovered or focused.  A mark on a
+   statement covers the statement, a mark on a Proof line covers the proof,
+   and a mark inside a proof covers one sentence. */
+function coveredBy(el) {
+  const badge = el.closest('.badge-lean');
+  if (!badge) return null;
+  const thm = badge.closest('.thm');
+  if (thm) return thm.querySelector('.thm-stmt');
+  const proof = badge.closest('details.proof');
+  return proof ? proof.querySelector('.proof-body') : null;
+}
+function raiseCover(el) {
+  const chip = el.closest('.lean-chip');
+  if (chip) { showChecked(chip); return; }
+  const region = coveredBy(el);
+  if (region) region.classList.add('is-covered');
+}
+function dropCover() {
+  if (!document.querySelector('.lean-chip[aria-expanded="true"]')) clearChecked();
+  document.querySelectorAll('.is-covered').forEach(e => e.classList.remove('is-covered'));
+}
+function setupCoverHints(root) {
+  root.addEventListener('mouseover', ev => raiseCover(ev.target));
   root.addEventListener('mouseout', ev => {
-    if (ev.target.closest('.lean-chip') && !document.querySelector('.lean-chip[aria-expanded="true"]')) clearChecked();
+    if (ev.target.closest('.lean-chip, .badge-lean')) dropCover();
   });
-  root.addEventListener('focusin', ev => {
-    const chip = ev.target.closest('.lean-chip');
-    if (chip) showChecked(chip);
+  root.addEventListener('focusin', ev => raiseCover(ev.target));
+  root.addEventListener('focusout', ev => {
+    if (ev.target.closest('.lean-chip, .badge-lean')) dropCover();
   });
 }
 
@@ -1197,8 +1218,8 @@ function init() {
 
   // ----- header/meta -----
   document.getElementById('paper-key').innerHTML =
-    '<span class="key-mark">✓</span> proved in Lean 4 — click for the proof, hover for the sentence it covers. ' +
-    '<button class="key-link" data-goto="formal">What is not</button>';
+    '<span class="key-mark">✓</span> marks a result or a step proved in Lean 4. Hover one to see what it covers, or click to read its proof. ' +
+    '<button class="key-link" data-goto="formal">Steps with no Lean proof</button>';
   document.getElementById('abstract-body').innerHTML =
     parsed.abstract.split(/\n\s*\n/).map(p => p.trim() ? '<p>' + renderInline(p.trim(), {}) + '</p>' : '').join('');
 
@@ -1228,6 +1249,7 @@ function init() {
   window.addEventListener('resize', fitFigures);
   addProofBadges();
   highlightCheckedSentences(document.getElementById('paper-body'));
+  setupCoverHints(document.getElementById('paper-body'));
   setupHoverPreviews(document.body);
   setupLeanPanels(document.body);
   setupTabs();

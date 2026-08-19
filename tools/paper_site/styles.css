@@ -383,6 +383,7 @@ details.proof > summary .badge-lean { font-size: 12px; padding: 0 8px; }
 /* the span one mark covers, raised while that mark is hovered or open --
    never all of them at once, which would read as a coverage map */
 ::highlight(lean-checked) { background-color: var(--verified-bg); }
+.is-covered { background-color: var(--verified-bg); border-radius: 3px; }
 
 .lean-chip {
   font-size: 11px; font-family: inherit;
@@ -510,7 +511,7 @@ a.chip:hover { text-decoration: none; color: var(--link); border-color: var(--li
 
 
 /* ============ the Lean view ============ */
-.formal-lede { max-width: 44em; margin: 8px 0 28px; }
+.content .formal-lede { max-width: 44em; margin: 30px 0 28px; text-align: left; }
 .formal-group { margin: 0 0 32px; max-width: 46em; }
 .formal-group h3 { font-size: 1.02em; font-weight: 700; margin: 0 0 6px; }
 .formal-item { padding: 10px 0; border-top: 1px solid var(--rule-soft); }
@@ -520,7 +521,7 @@ a.chip:hover { text-decoration: none; color: var(--link); border-color: var(--li
 .fcite { font-size: 12.5px; color: var(--ink-faint); }
 
 .paper-key {
-  display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px;
+  display: flex; flex-wrap: wrap; align-items: baseline; gap: 5px;
   margin: 0 0 26px; padding: 7px 0 0;
   border-top: 1px solid var(--rule-soft);
   font-size: 12.5px; color: var(--ink-faint);
