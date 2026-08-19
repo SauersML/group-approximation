@@ -145,16 +145,11 @@ theorem ucp_norm_le {Y : FiniteModel} (φ : A →ₗ[ℂ] Matrix Y Y ℂ)
       intro i j
       rw [hψ, LinearMap.comp_apply, euclideanize_apply,
         CStarExactness.inner_toEuclideanCLM_expand]
-      rw [← Equiv.sum_comp (enum Y)
-        (fun p ↦ ∑ q : Fin (Fintype.card Y), (starRingEnd ℂ) (v i p)
-          * (matrixReindexStarAlgEquiv (enum Y)
-              (φ (star (a i) * a j)) p q * v j q))]
-      refine Finset.sum_congr rfl fun x _ ↦ ?_
-      rw [← Equiv.sum_comp (enum Y)
-        (fun q ↦ (starRingEnd ℂ) (v i (enum Y x))
-          * (matrixReindexStarAlgEquiv (enum Y)
-              (φ (star (a i) * a j)) (enum Y x) q * v j q))]
-      refine Finset.sum_congr rfl fun y _ ↦ ?_
+      -- both index sets are the same set, enumerated; `Fintype.sum_equiv`
+      -- transports without asking the goal to match a written-out lambda
+      symm
+      refine Fintype.sum_equiv (enum Y) _ _ fun x ↦ ?_
+      refine Fintype.sum_equiv (enum Y) _ _ fun y ↦ ?_
       congr 2
       simp [matrixReindexStarAlgEquiv]
     rw [Finset.sum_congr rfl fun i _ ↦
