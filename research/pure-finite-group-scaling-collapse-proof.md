@@ -1,6 +1,6 @@
 ---
 rg: 2
-id: pure-finite-group-operator-scaling-collapses-to-multiplicity-proof
+id: pure-finite-group-scaling-collapse-proof
 kind: route
 title: Combine the uniform finite-group gap with the exact shrinkage formula
 target: pure-finite-group-operator-scaling-collapses-to-multiplicity
