@@ -18,18 +18,10 @@ import GroupApproximation.Sofic.OperatorMFLocalNormalization
 import GroupApproximation.Meta.AxiomGuard
 
 /-!
-# Proof of the advertised statement
+# TODO: title
 
-The declaration block below is byte-identical with the one in
-`Palomar/Challenge.lean`, so the statement compared by Comparator is the same
-term.  Everything after it is the proof, which may use the whole
-development.
-
-The bridge is definitional: the copied definitions elaborate to the same
-terms as `GroupApproximation.LiteralNonMFPresentation.relators`,
-`…MarkedGroup` and `…mark`, so the endpoints proved there apply directly.
-`E_eq`, `w_eq` below pin that down, and fail loudly at build time if the copy
-ever drifts.
+TODO: prose.  This module carries the proof; the statement it proves is a
+byte-identical copy of the block in `Palomar/Challenge.lean`.
 -/
 
 namespace ExplicitNonMF
@@ -40,21 +32,15 @@ noncomputable section
 
 -- BEGIN SHARED BLOCK (kept byte-identical with `Palomar/Solution.lean`)
 
-/-! ## Finite models
+/-! ## TODO: section heading -/
 
-Every model below lives on a finite set.  Bundling the finiteness and
-decidable-equality data keeps the statements free of instance binders; the
-bundle carries no information beyond "a finite set". -/
-
-/-- A finite type together with the two instances a finite permutation or
-matrix model needs. -/
+/-- TODO: docstring for `FiniteCarrier`. -/
 structure FiniteCarrier where
-  /-- The underlying set of the model. -/
+  /-- TODO: docstring for this declaration. -/
   carrier : Type
-  /-- Finiteness of that set. -/
+  /-- TODO: docstring for this declaration. -/
   fintype : Fintype carrier
-  /-- Decidable equality on it, used to index matrices and to count the
-  points at which two permutations disagree. -/
+  /-- TODO: docstring for this declaration. -/
   decidableEq : DecidableEq carrier
 
 instance finiteCarrierCoeSort : CoeSort FiniteCarrier Type :=
@@ -68,24 +54,17 @@ instance finiteCarrierCoeSort : CoeSort FiniteCarrier Type :=
     DecidableEq Y :=
   Y.decidableEq
 
-/-! ## The three approximation properties -/
+/-! ## TODO: section heading -/
 
-/-- The **normalized Hamming distance** between two permutations of a finite
-set: the proportion of points at which they disagree. -/
+/-- TODO: docstring for `hammingDist`. -/
 def hammingDist (Y : FiniteCarrier) (p q : Equiv.Perm Y) : ℝ :=
   ((Finset.univ.filter fun y : Y ↦ p y ≠ q y).card : ℝ) / Fintype.card Y
 
-/-- The square of the **normalized Hilbert–Schmidt distance** between two
-matrices: the sum of the squared moduli of the entries of the difference,
-divided by the size of the index set. -/
+/-- TODO: docstring for `hsDistSq`. -/
 def hsDistSq (Y : FiniteCarrier) (A B : Matrix Y Y ℂ) : ℝ :=
   (∑ i : Y, ∑ j : Y, Complex.normSq (A i j - B i j)) / Fintype.card Y
 
-/-- **Soficity**, in the standard local form: for every finite test set `F`
-and every tolerance `ε > 0` there is a nonempty finite set with a map from
-the group to its permutations which is multiplicative within `ε` on `F` and
-separates distinct elements of `F` by at least `1 - ε`, both measured in
-normalized Hamming distance. -/
+/-- TODO: docstring for `IsSoficGroup`. -/
 def IsSoficGroup (G : Type) [Group G] : Prop :=
   ∀ (F : Finset G) (ε : ℝ), 0 < ε →
     ∃ (Y : FiniteCarrier) (σ : G → Equiv.Perm Y),
@@ -93,11 +72,7 @@ def IsSoficGroup (G : Type) [Group G] : Prop :=
       (∀ g ∈ F, ∀ h ∈ F, hammingDist Y (σ (g * h)) (σ g * σ h) ≤ ε) ∧
       (∀ g ∈ F, ∀ h ∈ F, g ≠ h → 1 - ε ≤ hammingDist Y (σ g) (σ h))
 
-/-- **Hyperlinearity**: the same local scheme with unitary matrices in place
-of permutations and the normalized Hilbert–Schmidt metric in place of the
-Hamming metric.  The separation constant is `2 - ε` because the translation
-from Hamming doubles distances: two perfectly separated permutation unitaries
-sit at squared normalized Hilbert–Schmidt distance `2`. -/
+/-- TODO: docstring for `IsHyperlinearGroup`. -/
 def IsHyperlinearGroup (G : Type) [Group G] : Prop :=
   ∀ (F : Finset G) (ε : ℝ), 0 < ε →
     ∃ (Y : FiniteCarrier) (U : G → Matrix Y Y ℂ),
@@ -106,12 +81,7 @@ def IsHyperlinearGroup (G : Type) [Group G] : Prop :=
       (∀ g ∈ F, ∀ h ∈ F, hsDistSq Y (U (g * h)) (U g * U h) ≤ ε) ∧
       (∀ g ∈ F, ∀ h ∈ F, g ≠ h → 2 - ε ≤ hsDistSq Y (U g) (U h))
 
-/-- **The MF property**, in the local operator-norm form: the same scheme
-again, with the multiplicative defect and the separation both measured in the
-operator norm, and with separation constant `1`.  For a countable group this
-is equivalent to admitting an injective homomorphism into the unitary group
-of a matrix quotient `∏ₙ M_{dₙ}(ℂ)/⊕ₙ M_{dₙ}(ℂ)`, which is the definition of
-Carrión–Dadarlat–Eckhardt; see the module documentation. -/
+/-- TODO: docstring for `IsMFGroup`. -/
 def IsMFGroup (G : Type) [Group G] : Prop :=
   ∀ (F : Finset G) (ε : ℝ), 0 < ε →
     ∃ (Y : FiniteCarrier) (U : G → Matrix Y Y ℂ),
@@ -120,142 +90,131 @@ def IsMFGroup (G : Type) [Group G] : Prop :=
       (∀ g ∈ F, ∀ h ∈ F, ‖U (g * h) - U g * U h‖ ≤ ε) ∧
       (∀ g ∈ F, ∀ h ∈ F, g ≠ h → 1 ≤ ‖U g - U h‖)
 
-/-! ## The group `E`
+/-! ## TODO: section heading -/
 
-The alphabet is the six base letters `v₁,v₂,v₃,x,y,z` followed by the two
-adjoined letters `t` and `c`, so `E` has eight generators. -/
-
-/-- Catch-all decidable equality for the alphabets and free groups below.  It
-sits in the discrimination tree's catch-all bucket, so any specific instance
-takes precedence over it. -/
+/-- TODO: docstring for `literalDecidableEq`. -/
 local instance literalDecidableEq {α : Type*} : DecidableEq α :=
   Classical.decEq α
 
-/-- The six base letters, ordered as `v₁,v₂,v₃,x,y,z`. -/
+/-- TODO: docstring for `BaseGenerator`. -/
 abbrev BaseGenerator := Fin 6
 
-/-- The full alphabet: the six base letters followed by `t` and `c`.  It has
-eight elements. -/
+/-- TODO: docstring for `Generator`. -/
 abbrev Generator := BaseGenerator ⊕ Fin 2
 
-/-- The index of the base letter `v₁`. -/
+/-- TODO: docstring for `v1Index`. -/
 abbrev v1Index : BaseGenerator := 0
-/-- The index of the base letter `v₂`. -/
+/-- TODO: docstring for `v2Index`. -/
 abbrev v2Index : BaseGenerator := 1
-/-- The index of the base letter `v₃`. -/
+/-- TODO: docstring for `v3Index`. -/
 abbrev v3Index : BaseGenerator := 2
-/-- The index of the base letter `x`. -/
+/-- TODO: docstring for `xIndex`. -/
 abbrev xIndex : BaseGenerator := 3
-/-- The index of the base letter `y`. -/
+/-- TODO: docstring for `yIndex`. -/
 abbrev yIndex : BaseGenerator := 4
-/-- The index of the base letter `z`. -/
+/-- TODO: docstring for `zIndex`. -/
 abbrev zIndex : BaseGenerator := 5
 
-/-- A base letter, as a letter of the full alphabet. -/
+/-- TODO: docstring for `Generator.base`. -/
 abbrev Generator.base (i : BaseGenerator) : Generator := Sum.inl i
-/-- The stable letter `t`. -/
+/-- TODO: docstring for `Generator.stable`. -/
 abbrev Generator.stable : Generator := Sum.inr 0
-/-- The lamp letter `c`. -/
+/-- TODO: docstring for `Generator.lamp`. -/
 abbrev Generator.lamp : Generator := Sum.inr 1
 
-/-- The free-group letter `v₁` over the base alphabet. -/
+/-- TODO: docstring for `bv1`. -/
 abbrev bv1 : FreeGroup BaseGenerator := FreeGroup.of v1Index
-/-- The free-group letter `v₂` over the base alphabet. -/
+/-- TODO: docstring for `bv2`. -/
 abbrev bv2 : FreeGroup BaseGenerator := FreeGroup.of v2Index
-/-- The free-group letter `v₃` over the base alphabet. -/
+/-- TODO: docstring for `bv3`. -/
 abbrev bv3 : FreeGroup BaseGenerator := FreeGroup.of v3Index
-/-- The free-group letter `x` over the base alphabet. -/
+/-- TODO: docstring for `bx`. -/
 abbrev bx : FreeGroup BaseGenerator := FreeGroup.of xIndex
-/-- The free-group letter `y` over the base alphabet. -/
+/-- TODO: docstring for `bY`. -/
 abbrev bY : FreeGroup BaseGenerator := FreeGroup.of yIndex
-/-- The free-group letter `z` over the base alphabet. -/
+/-- TODO: docstring for `bz`. -/
 abbrev bz : FreeGroup BaseGenerator := FreeGroup.of zIndex
 
-/-- A base letter as a word in the full alphabet. -/
+/-- TODO: docstring for `vertexLetter`. -/
 abbrev vertexLetter (i : BaseGenerator) : FreeGroup Generator :=
   FreeGroup.of (Generator.base i)
 
-/-- The letter `v₁` as a word in the full alphabet. -/
+/-- TODO: docstring for `v1Word`. -/
 abbrev v1Word : FreeGroup Generator := vertexLetter v1Index
-/-- The letter `v₂` as a word in the full alphabet. -/
+/-- TODO: docstring for `v2Word`. -/
 abbrev v2Word : FreeGroup Generator := vertexLetter v2Index
-/-- The letter `v₃` as a word in the full alphabet. -/
+/-- TODO: docstring for `v3Word`. -/
 abbrev v3Word : FreeGroup Generator := vertexLetter v3Index
-/-- The letter `x` as a word in the full alphabet. -/
+/-- TODO: docstring for `xWord`. -/
 abbrev xWord : FreeGroup Generator := vertexLetter xIndex
-/-- The letter `y` as a word in the full alphabet. -/
+/-- TODO: docstring for `yWord`. -/
 abbrev yWord : FreeGroup Generator := vertexLetter yIndex
-/-- The letter `z` as a word in the full alphabet. -/
+/-- TODO: docstring for `zWord`. -/
 abbrev zWord : FreeGroup Generator := vertexLetter zIndex
-/-- The stable letter `t` as a word. -/
+/-- TODO: docstring for `stableWord`. -/
 abbrev stableWord : FreeGroup Generator := FreeGroup.of Generator.stable
-/-- The lamp letter `c` as a word. -/
+/-- TODO: docstring for `lampWord`. -/
 abbrev lampWord : FreeGroup Generator := FreeGroup.of Generator.lamp
 
-/-- The commutator word, with the convention `[g,h] = g h g⁻¹ h⁻¹`. -/
+/-- TODO: docstring for `commutatorWord`. -/
 def commutatorWord {G : Type*} [Group G] (g h : G) : G :=
   g * h * g⁻¹ * h⁻¹
 
-/-- Embed words in the six base letters into the full alphabet. -/
+/-- TODO: docstring for `embedBaseWord`. -/
 def embedBaseWord : FreeGroup BaseGenerator →* FreeGroup Generator :=
   FreeGroup.lift fun i ↦ vertexLetter i
 
-/-! ### The twenty base relators
+/-! ## TODO: section heading -/
 
-These present the affine group `ℤ³ ⋊ SL₃(ℤ)`: the first eight are the
-Conder–Robertson–Williams presentation of `SL₃(ℤ)` in the generators
-`x, y, z`, the next three make the translations commute, and the last nine
-give the action of the linear generators on them. -/
-
-/-- `x³ = 1`. -/
+/-- TODO: docstring for `baseRelXCube`. -/
 abbrev baseRelXCube : FreeGroup BaseGenerator := bx ^ 3
-/-- `y³ = 1`. -/
+/-- TODO: docstring for `baseRelYCube`. -/
 abbrev baseRelYCube : FreeGroup BaseGenerator := bY ^ 3
-/-- `z² = 1`. -/
+/-- TODO: docstring for `baseRelZSq`. -/
 abbrev baseRelZSq : FreeGroup BaseGenerator := bz ^ 2
-/-- `(xz)³ = 1`. -/
+/-- TODO: docstring for `baseRelXZCube`. -/
 abbrev baseRelXZCube : FreeGroup BaseGenerator := (bx * bz) ^ 3
-/-- `(yz)³ = 1`. -/
+/-- TODO: docstring for `baseRelYZCube`. -/
 abbrev baseRelYZCube : FreeGroup BaseGenerator := (bY * bz) ^ 3
-/-- `(x⁻¹zxy)² = 1`. -/
+/-- TODO: docstring for `baseRelXInvZXY`. -/
 abbrev baseRelXInvZXY : FreeGroup BaseGenerator := (bx⁻¹ * bz * bx * bY) ^ 2
-/-- `(y⁻¹zyx)² = 1`. -/
+/-- TODO: docstring for `baseRelYInvZYX`. -/
 abbrev baseRelYInvZYX : FreeGroup BaseGenerator := (bY⁻¹ * bz * bY * bx) ^ 2
-/-- `(xy)⁶ = 1`. -/
+/-- TODO: docstring for `baseRelXYSix`. -/
 abbrev baseRelXYSix : FreeGroup BaseGenerator := (bx * bY) ^ 6
 
-/-- `[v₁,v₂] = 1`. -/
+/-- TODO: docstring for `baseRelV12`. -/
 abbrev baseRelV12 : FreeGroup BaseGenerator := commutatorWord bv1 bv2
-/-- `[v₁,v₃] = 1`. -/
+/-- TODO: docstring for `baseRelV13`. -/
 abbrev baseRelV13 : FreeGroup BaseGenerator := commutatorWord bv1 bv3
-/-- `[v₂,v₃] = 1`. -/
+/-- TODO: docstring for `baseRelV23`. -/
 abbrev baseRelV23 : FreeGroup BaseGenerator := commutatorWord bv2 bv3
 
-/-- `x v₁ x⁻¹ = v₃`. -/
+/-- TODO: docstring for `baseRelXV1`. -/
 abbrev baseRelXV1 : FreeGroup BaseGenerator := bx * bv1 * bx⁻¹ * bv3⁻¹
-/-- `x v₂ x⁻¹ = v₁`. -/
+/-- TODO: docstring for `baseRelXV2`. -/
 abbrev baseRelXV2 : FreeGroup BaseGenerator := bx * bv2 * bx⁻¹ * bv1⁻¹
-/-- `x v₃ x⁻¹ = v₂`. -/
+/-- TODO: docstring for `baseRelXV3`. -/
 abbrev baseRelXV3 : FreeGroup BaseGenerator := bx * bv3 * bx⁻¹ * bv2⁻¹
-/-- `y v₁ y⁻¹ = v₁`. -/
+/-- TODO: docstring for `baseRelYV1`. -/
 abbrev baseRelYV1 : FreeGroup BaseGenerator := bY * bv1 * bY⁻¹ * bv1⁻¹
-/-- `y v₂ y⁻¹ = v₂⁻¹v₃`. -/
+/-- TODO: docstring for `baseRelYV2`. -/
 abbrev baseRelYV2 : FreeGroup BaseGenerator :=
   bY * bv2 * bY⁻¹ * (bv2⁻¹ * bv3)⁻¹
-/-- `y v₃ y⁻¹ = v₁v₂⁻¹`. -/
+/-- TODO: docstring for `baseRelYV3`. -/
 abbrev baseRelYV3 : FreeGroup BaseGenerator :=
   bY * bv3 * bY⁻¹ * (bv1 * bv2⁻¹)⁻¹
-/-- `z v₁ z⁻¹ = v₂v₃⁻¹`. -/
+/-- TODO: docstring for `baseRelZV1`. -/
 abbrev baseRelZV1 : FreeGroup BaseGenerator :=
   bz * bv1 * bz⁻¹ * (bv2 * bv3⁻¹)⁻¹
-/-- `z v₂ z⁻¹ = v₁v₃⁻¹`. -/
+/-- TODO: docstring for `baseRelZV2`. -/
 abbrev baseRelZV2 : FreeGroup BaseGenerator :=
   bz * bv2 * bz⁻¹ * (bv1 * bv3⁻¹)⁻¹
-/-- `z v₃ z⁻¹ = v₃⁻¹`. -/
+/-- TODO: docstring for `baseRelZV3`. -/
 abbrev baseRelZV3 : FreeGroup BaseGenerator :=
   bz * bv3 * bz⁻¹ * (bv3⁻¹)⁻¹
 
-/-- Exactly the twenty base relators. -/
+/-- TODO: docstring for `baseRelators`. -/
 def baseRelators : Finset (FreeGroup BaseGenerator) :=
   [baseRelXCube, baseRelYCube, baseRelZSq, baseRelXZCube,
    baseRelYZCube, baseRelXInvZXY, baseRelYInvZYX, baseRelXYSix,
@@ -264,10 +223,9 @@ def baseRelators : Finset (FreeGroup BaseGenerator) :=
    baseRelYV1, baseRelYV2, baseRelYV3,
    baseRelZV1, baseRelZV2, baseRelZV3].toFinset
 
-/-! ### The remaining twenty-one relators -/
+/-! ## TODO: section heading -/
 
-/-- The right-hand side of the stable-letter relation, as a base word: the
-three translations are squared and the three linear generators are fixed. -/
+/-- TODO: docstring for `compressedBaseWord`. -/
 def compressedBaseWord (i : BaseGenerator) : FreeGroup BaseGenerator :=
   if i = v1Index then bv1 ^ 2
   else if i = v2Index then bv2 ^ 2
@@ -276,70 +234,62 @@ def compressedBaseWord (i : BaseGenerator) : FreeGroup BaseGenerator :=
   else if i = yIndex then bY
   else bz
 
-/-- The right-hand side of the stable-letter relation, in the full
-alphabet. -/
+/-- TODO: docstring for `compressedGeneratorWord`. -/
 def compressedGeneratorWord (i : BaseGenerator) : FreeGroup Generator :=
   embedBaseWord (compressedBaseWord i)
 
-/-- The stable-letter relator `t s t⁻¹ = α(s)` for a base letter `s`. -/
+/-- TODO: docstring for `stableRelator`. -/
 def stableRelator (i : BaseGenerator) : FreeGroup Generator :=
   stableWord * vertexLetter i * stableWord⁻¹ * (compressedGeneratorWord i)⁻¹
 
-/-- The conjugated lamp `d = t c t⁻¹`. -/
+/-- TODO: docstring for `displacedLampWord`. -/
 abbrev displacedLampWord : FreeGroup Generator :=
   stableWord * lampWord * stableWord⁻¹
 
-/-- The distinguished word `w = [d, v₁ d v₁⁻¹]` with `d = t c t⁻¹`. -/
+/-- TODO: docstring for `markedWord`. -/
 abbrev markedWord : FreeGroup Generator :=
   commutatorWord displacedLampWord
     (v1Word * displacedLampWord * v1Word⁻¹)
 
-/-- The twenty base relators, transported into the full alphabet. -/
+/-- TODO: docstring for `transportedBaseRelators`. -/
 def transportedBaseRelators : Finset (FreeGroup Generator) :=
   baseRelators.image embedBaseWord
 
-/-- The six stable-letter relators. -/
+/-- TODO: docstring for `stableRelators`. -/
 def stableRelators : Finset (FreeGroup Generator) :=
   Finset.univ.image stableRelator
 
-/-- The seven lamp relators: `c² = 1` and `[c, s] = 1` for each of the six
-base letters `s`. -/
+/-- TODO: docstring for `lampRelators`. -/
 def lampRelators : Finset (FreeGroup Generator) :=
   {lampWord ^ 2} ∪
     Finset.univ.image (fun i : BaseGenerator ↦
       commutatorWord lampWord (vertexLetter i))
 
-/-- The eight centrality relators `[w, g] = 1`, one for each generator. -/
+/-- TODO: docstring for `markedRelators`. -/
 def markedRelators : Finset (FreeGroup Generator) :=
   Finset.univ.image (fun i : Generator ↦
     commutatorWord markedWord (FreeGroup.of i))
 
-/-- All forty-one relators of `E`: twenty base, six stable-letter, seven
-lamp, and eight centrality relators. -/
+/-- TODO: docstring for `relators`. -/
 def relators : Finset (FreeGroup Generator) :=
   transportedBaseRelators ∪ stableRelators ∪ lampRelators ∪ markedRelators
 
-/-- **The group `E`**: eight generators, forty-one relators. -/
+/-- TODO: docstring for `E`. -/
 abbrev E : Type :=
   PresentedGroup ((relators : Finset (FreeGroup Generator)) :
     Set (FreeGroup Generator))
 
-/-- The canonical map from words in the eight letters to `E`. -/
+/-- TODO: docstring for `wordInE`. -/
 abbrev wordInE : FreeGroup Generator →* E :=
   PresentedGroup.mk ((relators : Finset (FreeGroup Generator)) :
     Set (FreeGroup Generator))
 
-/-- **The distinguished element** `w = [tct⁻¹, v₁(tct⁻¹)v₁⁻¹]` of `E`. -/
+/-- TODO: docstring for `w`. -/
 abbrev w : E := wordInE markedWord
 
 -- END SHARED BLOCK
 
-/-! ## The bridge to the development
-
-The copied definitions above are the same terms as the ones the development
-proves its endpoints about.  These two `rfl`s are the gate: if the copy ever
-drifts from `GroupApproximation.LiteralNonMFPresentation`, this module stops
-compiling instead of silently proving something else. -/
+/-! ## TODO: section heading -/
 
 open GroupApproximation
 
@@ -347,27 +297,9 @@ theorem E_eq : E = LiteralNonMFPresentation.MarkedGroup := rfl
 
 theorem w_eq : w = (LiteralNonMFPresentation.mark : E) := rfl
 
-/-! ## The proof -/
+/-! ## TODO: section heading -/
 
-/-- **An explicit finitely presented sofic group that is not MF.**
-
-For the group `E` displayed above and its distinguished word `w`:
-
-1. `E` is finitely presented;
-2. `w` is a nontrivial central involution of `E`;
-3. `E` is sofic — it has permutation models in normalized Hamming distance;
-4. `E` is hyperlinear — it has unitary models in normalized
-   Hilbert–Schmidt distance;
-5. every operator-norm asymptotic unitary representation of `E` sends `w` to
-   the identity, which is exactly the statement that every homomorphism from
-   `E` into the unitary group of a matrix quotient kills `w`;
-6. consequently `E` is **not** MF: no operator-norm models separate its
-   elements;
-7. and every finite-dimensional linear representation of `E`, over every
-   field, also kills `w`; so no such representation is injective.
-
-Clauses 3, 4 and 6 together say that soficity and hyperlinearity do not imply
-the MF property.  Clause 2 is what makes 5 and 7 non-vacuous. -/
+/-- TODO: docstring for `explicit_fp_sofic_hyperlinear_not_MF`. -/
 theorem explicit_fp_sofic_hyperlinear_not_MF :
     Group.IsFinitelyPresented E ∧
     (w ≠ 1 ∧ w ^ 2 = 1 ∧ ∀ g : E, Commute w g) ∧
@@ -443,13 +375,7 @@ theorem explicit_fp_sofic_hyperlinear_not_MF :
       LiteralFiniteDimensionalObstruction.manuscriptFiniteDimensionalConsequences.{0,
         0, 0}.2.1 π
 
-/-! ## Axiom closure
-
-The registry permits exactly `propext`, `Quot.sound` and `Classical.choice`,
-and Comparator enforces that on the exported proof.  `#audit_axioms` enforces
-the same thing here, at build time: it prints the report and then throws
-unless the closure is classical, so a submission can never be prepared
-against a tree in which this theorem has silently acquired another axiom. -/
+/-! ## TODO: section heading -/
 
 #audit_axioms ExplicitNonMF.explicit_fp_sofic_hyperlinear_not_MF
 

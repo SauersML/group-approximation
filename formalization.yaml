@@ -3,49 +3,20 @@
 # Provenance metadata in the mathlib-initiative self-reporting format (v0.4),
 # under the additional rules the Palomar registry applies to it.
 #
-# This file is the honest, machine-readable version of what
-# notes/CREDIT_AND_PRIORITY_AUDIT.md establishes at length: what is claimed,
-# what is not, and where the trust surface ends.  Nothing here is a stronger
-# claim than that document supports; where the two disagree, that document is
-# the source of truth and this file is the bug.
+# Every free-text field below is a TODO placeholder awaiting the author's own
+# prose.  The structure, the classification codes, the bibliographic entries
+# and the source relationships are in place and are accepted by
+# PalomarSubmission/scripts/submission_contract.py; the English is not written.
 
 version: "v0.4"
 
 project:
-  name: "An explicit finitely presented sofic group that is not MF"
+  name: "TODO: name of the formalized result"
+  # The public registry abstract.  Palomar shows this verbatim on the entry
+  # page, and the editorial review checks it against the compared statement.
   description: >-
-    A countable discrete group is MF, in the sense of
-    Carrion-Dadarlat-Eckhardt, if it embeds in the unitary group of a matrix
-    quotient prod_n M_{d_n}(C) / oplus_n M_{d_n}(C); equivalently, if it has
-    finite-dimensional approximate unitary representations whose
-    multiplicative defects vanish in OPERATOR norm and which separate distinct
-    elements.  The MF conjecture asked whether every countable group is MF.
-
-    This development refutes it with an explicit witness.  Let E be the group
-    on the eight generators v1,v2,v3,x,y,z,t,c with the forty-one relators
-    displayed in the accompanying paper -- twenty presenting the affine group
-    Z^3 semidirect SL_3(Z), six making t conjugate that base into its doubling
-    image, seven making c an involution centralising it, and eight making the
-    word w = [tct^-1, v1(tct^-1)v1^-1] central.  Machine-checked here: w is a
-    nontrivial central involution of E; E is sofic, and therefore hyperlinear,
-    so it has finite-dimensional models in the normalized Hamming and
-    normalized Hilbert-Schmidt metrics; but every operator-norm asymptotic
-    unitary representation of E sends w to the identity, so E is not MF.  The
-    same argument kills w in every finite-dimensional linear representation
-    over every field, so E is also not residually finite-dimensional, not LEF
-    and not residually finite.  Soficity and hyperlinearity therefore do not
-    imply the MF property.
-
-    The obstruction comes from property (T) of the base: in an operator-norm
-    asymptotic representation, one-sided conjugation by t preserves the
-    asymptotic commutant of the base in normalized Hilbert-Schmidt norm, and
-    w is the square of a commutator that this invariance forces to converge to
-    1; compressing to the (-1)-spectral corner of a surviving w contradicts
-    that.  The repository also carries the C*-algebraic consequences -- the
-    reduced group C*-algebra of E is separable, stably finite and not MF, and
-    the canonical trace on its maximal group C*-algebra is hyperlinear but not
-    MF -- the finite-dimensional and undecidability corollaries, and the
-    general obstruction criteria the example is an instance of.
+    TODO: concise public account of the mathematical content and the principal
+    results of the formalization as a whole.
 
   authors:
     - SauersML
@@ -54,27 +25,19 @@ project:
   license: Apache-2.0
 
 classification:
-  # The mathematics is operator-algebraic approximation of discrete groups.
   arxiv: [math.OA, math.GR]
   msc2020: ["46L05", "20E26", "20F05", "20F10", "20F69"]
 
 sources:
-  # Result origin.  Theorem A and its consequences are first presented by this
-  # work, so exactly one entry carries `type: original-proof`, and every other
-  # source is context rather than the recorded result.
-  - title: >-
-      An explicit finitely presented sofic group that is not MF, and the
-      central-involution obstruction it comes from
+  # Result origin: exactly one entry carries `type: original-proof` with
+  # `relationship: other`, so every other source must be `background` or
+  # `other`.  That is what makes the derived origin `original`.
+  - title: "TODO: describe the result first presented here"
     type: original-proof
     relationship: other
     note: >-
-      First presentation of the result.  The defensible novelty is narrow and
-      is stated as such in notes/CREDIT_AND_PRIORITY_AUDIT.md: the stably
-      finite Kazhdan pinning of the conjugation representation inside a norm
-      matrix corona, and the central-corner marked-word device that turns that
-      pinning into a group element killed by every MF representation.  The
-      surrounding compression and lamp architecture is NOT claimed; see the
-      OpenAI and Kun-Thom entries below.
+      TODO: what is new, and what is not.  This is the field the editorial
+      review reads against the literature.
 
   - title: On groups with quasidiagonal C*-algebras
     authors: [José R. Carrión, Marius Dadarlat, Caleb Eckhardt]
@@ -82,10 +45,7 @@ sources:
     type: paper
     id: https://arxiv.org/abs/1210.4050
     relationship: background
-    note: >-
-      Supplies the group-MF definition formalized here, and the fact that LEF
-      groups are MF, which is what makes the example's failure of LEF a
-      consequence rather than an extra hypothesis.
+    note: "TODO: how this source is used."
 
   - title: Generalized inductive limits of finite-dimensional C*-algebras
     authors: [Bruce Blackadar, Eberhard Kirchberg]
@@ -93,9 +53,7 @@ sources:
     type: paper
     id: https://doi.org/10.1007/s002080050039
     relationship: background
-    note: >-
-      Introduces MF algebras and records that no stably finite separable
-      C*-algebra was then known not to be MF.
+    note: "TODO: how this source is used."
 
   - title: The MF property for amalgamated free products
     authors: [Tatiana Shulman]
@@ -103,10 +61,7 @@ sources:
     type: paper
     id: https://arxiv.org/abs/2603.13564
     relationship: background
-    note: >-
-      Uses exactly the MF definition formalized here, and records in March
-      2026 that no group C*-algebra was known not to be MF.  That is the
-      statement the C*-algebraic corollary answers.
+    note: "TODO: how this source is used."
 
   - title: Homotopy lifting, asymptotic homomorphisms, and traces
     authors: [Tatiana Shulman]
@@ -114,11 +69,7 @@ sources:
     type: paper
     id: https://arxiv.org/abs/2508.00125
     relationship: background
-    note: >-
-      Source of the hyperlinear-versus-MF trace terminology, and of the
-      question the trace corollary in this repository answers negatively.  The
-      definitions have moved between versions; version v5 (31 July 2026) is
-      the one cited.
+    note: "TODO: how this source is used, and which version is cited."
 
   - title: >-
       Nonsofic groups exist, in "Ten advances in mathematics and theoretical
@@ -128,13 +79,7 @@ sources:
     type: other
     id: https://cdn.openai.com/pdf/ten-proofs-oai.pdf
     relationship: background
-    note: >-
-      The first nonsofic group, 2026-08-01, and the origin of the
-      compression/lamp architecture that the present construction shares one
-      ingredient with -- a property-(T) subgroup conjugated into itself.  That
-      architecture is NOT claimed here.  The analytic mechanism differs: in
-      the operator-norm setting the invariance being exploited is preservation
-      of the asymptotic commutant in normalized Hilbert-Schmidt norm.
+    note: "TODO: how this source is used, and what is not claimed from it."
 
   - title: Nonsofic wreath products of residually finite groups
     authors: [Gábor Kun, Andreas Thom]
@@ -142,9 +87,7 @@ sources:
     type: paper
     id: https://arxiv.org/abs/2608.06222
     relationship: background
-    note: >-
-      Builds on the OpenAI chapter; the compression-semigroup formulation used
-      in the intrinsic form of the obstruction here follows its terminology.
+    note: "TODO: how this source is used, and what is not claimed from it."
 
   - title: On L^1-approximation of groups
     authors: [Ben Bachner, Alon Dogon, Alexander Lubotzky]
@@ -152,12 +95,7 @@ sources:
     type: paper
     id: https://doi.org/10.1016/j.jalgebra.2026.04.041
     relationship: background
-    note: >-
-      Supplies the operator-norm rounding, compression and polar-correction
-      procedure, and the finite-normal-subgroup character-isotypic corner,
-      that the obstruction criteria here reuse; also proposes groups of
-      Deligne type as the natural candidates for all three remaining
-      approximation problems, which the example is one of.
+    note: "TODO: how this source is used."
 
   - title: On sofic groups
     authors: [Gábor Elek, Endre Szabó]
@@ -165,9 +103,7 @@ sources:
     type: paper
     id: https://arxiv.org/abs/math/0305352
     relationship: background
-    note: >-
-      The amenable-extension permanence theorem behind soficity of the
-      example.  It is proved in this repository rather than assumed.
+    note: "TODO: how this source is used."
 
   - title: >-
       Presentations for 3-dimensional special linear groups over integer rings
@@ -176,43 +112,21 @@ sources:
     type: paper
     id: https://doi.org/10.2307/2159559
     relationship: background
-    note: >-
-      The eight-relator presentation of SL_3(Z) used by the twenty base
-      relators.  The identification of the base with Z^3 semidirect SL_3(Z) is
-      carried by this citation; the soficity argument is deliberately
-      independent of it, and the corresponding formal proof is likewise free
-      of that input.
+    note: "TODO: how this source is used."
 
   - title: Kazhdan's property (T)
     authors: [Bachir Bekka, Pierre de la Harpe, Alain Valette]
     year: 2008
     type: book
     relationship: background
-    note: >-
-      Property (T) of the affine group Z^3 semidirect SL_3(Z)
-      (Example 1.7.4(i)), and the Delorme-Guichardet theorem used by the
-      commuting-orbit collapse.
+    note: "TODO: how this source is used."
 
 related_formalizations: []
 
 status:
   scope: >-
-    Formalized, unconditionally and with no `sorry`: the explicit
-    forty-one-relator presentation; nontriviality, centrality and
-    involutivity of the marked word; soficity and hyperlinearity of the group;
-    triviality of the marked word in every operator-norm asymptotic unitary
-    representation and hence failure of the MF property; triviality of the
-    marked word in every finite-dimensional representation over every field;
-    the general one-sided-conjugation transport theorem and the finite-normal,
-    normal-Kazhdan and commuting-orbit obstruction criteria; the C*-algebraic
-    consequences for the reduced and maximal group C*-algebras and for the
-    canonical trace; and the Markov/Adian-Rabin undecidability corollary.
-
-    NOT formalized, and not claimed: exactness of the reduced group
-    C*-algebra, which the paper deduces from the block normal form using
-    permanence results (Dykema, Kirchberg-Wassermann,
-    Guentner-Higson-Weinberger) that are literature inputs rather than
-    machine-checked statements.  The paper marks that deduction as such.
+    TODO: exactly what is and is not formalized, including every weaker
+    statement, changed hypothesis, and omitted deduction.
   sorry_count: 0
   sorry_in_definitions: 0
   axioms: []
@@ -221,71 +135,19 @@ automation:
   methods:
     - method: agent
       framework: Claude Code (Anthropic)
-      tool_setup: >-
-        AI-assisted throughout.  Agent sessions author Lean against a remote
-        build; every statement, proof and piece of prose in the repository was
-        produced this way and then gated by the checks described under
-        `review`.
-  notes: >-
-    Per-declaration attribution is in the git history; the repository's own
-    audit trail (notes/, research/, metadata/) is more detailed than this field
-    can be.
+      tool_setup: "TODO: how the formalization was produced."
+  notes: "TODO: the overall human and automation workflow."
 
 review:
   status: self-assessed
   reviewers: []
   notes: >-
-    No independent human review of the mathematics.  What is mechanical is
-    stated precisely and is exactly this: `lake build` with warnings as
-    errors; a source scan forbidding sorry, admit, hand-declared axioms,
-    compiler-backed decision procedures, unsafe escape hatches and proof
-    budget overrides; `#audit_axioms` on 511 cited endpoints inside the build,
-    which fails compilation unless the axiom closure is classical; a
-    whole-corpus transitive axiom sweep over every declaration defined in a
-    GroupApproximation module; signature pinning of every manuscript-mapped
-    declaration; an audit-surface measurement (metadata/AUDIT_SURFACE.md); and
-    a fresh-kernel `leanchecker` replay, with a weekly independent re-check
-    through `lean4export` and the `nanoda` kernel.
-
-    None of that is a check on whether the informal argument is correct or
-    whether the formal statements are the right formalizations of the printed
-    ones.  That correspondence is carried by the claim map, the signature
-    snapshots and the proof ledger, all of which are gated but all of which
-    are ultimately human judgements.
+    TODO: what was checked and by what, and what that does not establish.
 
 fidelity:
   divergences: >-
-    The compared statement expresses the MF property in the equivalent local
-    operator-norm form (approximate unitary representations with separation
-    constant 1) rather than as an embedding into a matrix quotient, because
-    the challenge file may import Mathlib only and Mathlib has no C*-algebra
-    quotients.  The two equivalences that license this -- corona-to-sequences
-    and sequences-to-local -- are themselves proved in this repository and
-    packaged as
-    `GroupApproximation.ManuscriptExactWrappers.manuscriptMFDefinitionEquivalences`;
-    the corona form of the endpoint is proved as
-    `GroupApproximation.LiteralNonMFEndpoint.manuscriptTheoremA`.
+    TODO: every known divergence from the cited sources and from the
+    accompanying paper, including the form in which the MF property is stated
+    in the challenge and why.
 
-    The manuscript's proof of the commuting-orbit collapse theorem
-    deliberately diverges from the Lean route, and the proof ledger records
-    those steps as MISSING-by-design: the printed argument is a single-stage
-    quantitative route chosen for readability, while the formalization takes a
-    different decomposition.  Both are complete; neither is a transcription of
-    the other, and metadata/NON_MF_PROOF_LEDGER.md says which rows are which.
-
-    The repository contains no `sorry` and no hand-declared axiom outside two
-    pinned exceptions: the single planted defect in scripts/Audit/Plants.lean,
-    which exists to calibrate the scans, and the deliberate hole in
-    Palomar/Challenge.lean, which the comparator protocol requires the
-    challenge statement to carry.  Both are pinned by exact path, line and
-    source text in scripts/check.py.
-
-acknowledgements: >-
-  Caleb Eckhardt, for discussions clarifying the finite-quotient analogy that
-  organizes the transport section.  Francesco Fournier-Facio, for formulating
-  the group-theoretic input as a Kazhdan group that is not co-Hopfian together
-  with its ascending HNN extension, for the small-cancellation construction
-  recorded in the paper, and for discussions on the distinct roles of the
-  operator and Hilbert-Schmidt norms.  Alon Dogon, for pointing out that the
-  interaction between those two norms also occurs in the earlier approach of
-  Bachner-Dogon-Lubotzky.  Mathlib, on which the whole development rests.
+acknowledgements: "TODO: libraries, tools, and people to credit."
