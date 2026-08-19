@@ -65,6 +65,9 @@ namespace CliffordLampGraph
 open LiteralBlockNormalForm
 open scoped Pointwise
 open scoped commutatorElement
+-- `open scoped` alone does not put the commutator instance into resolution
+-- here; the bracket below needs it as an instance.
+attribute [local instance] commutatorElement
 
 /-! ## Reduced words on three letters -/
 
