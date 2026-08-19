@@ -3,8 +3,6 @@ rg: 2
 id: finite-selector-gadget-induction-barrier
 kind: claim
 title: Finite group gadgets cannot prune characters of a commuting marked selector subgroup
-artifacts:
-  - research/artifacts/finite-selector-induction-barrier-2026-08-18.md
 ---
 
 Let `H` be a finite group, let `J in Z(H)` be a central element, and let
