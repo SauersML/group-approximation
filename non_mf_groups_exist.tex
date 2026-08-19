@@ -256,10 +256,10 @@ $t$ preserves the asymptotic commutant of $\iota(\Gamma)$ in
 normalized Hilbert--Schmidt norm
 (Theorem~\ref{thm:kazhdan-transport}).
 
-Put $d=tct^{-1}$ and $u=[\,d,\iota(a)\,]$ for $a\in\Gamma$.  Since $c$
+Put $\hat c=tct^{-1}$ and $u=[\,\hat c,\iota(a)\,]$ for $a\in\Gamma$.  Since $c$
 commutes with $\iota(\Gamma)$, the sequence $(U_n(c))$ lies in that
 asymptotic commutant.  Theorem~\ref{thm:kazhdan-transport} therefore gives
-$\hsnorm{[U_n(d),U_n(\iota(\gamma))]_{-}}\to0$ for every
+$\hsnorm{[U_n(\hat c),U_n(\iota(\gamma))]_{-}}\to0$ for every
 $\gamma\in\Gamma$.  Consequently, in every operator-norm asymptotic
 representation $(U_n)$ of $H$,
 \[
@@ -295,7 +295,7 @@ to $[c_x,c_y]=\zeta$ for $x\ne y$; every permutation of $X$ acts on it
 by permuting the $c_x$ and fixing $\zeta$
 (Construction~\ref{con:clifford}).  Let the ambient group act in this
 way on $\Cl(X)$ for $X$ the coset space, and send $c$ to the generator
-$c_x$ at the base coset.  Then $d$ and $ada^{-1}$ go to the generators
+$c_x$ at the base coset.  Then $\hat c$ and $a\hat ca^{-1}$ go to the generators
 at the two distinct cosets, so $u$ goes to a product of two
 anticommuting involutions and $w=u^2$ to $\zeta\ne1$
 (Theorem~\ref{thm:kazhdan-clifford}).
@@ -900,7 +900,7 @@ $\iota\colon\Gamma\to H$ be a homomorphism, and suppose
  t\iota(\Gamma)t^{-1}\subseteq\iota(\Gamma),
  \qquad [c,\iota(\Gamma)]=1.
 \]
-Put $d=tct^{-1}$ and $u=[d,\iota(a)]$ for some $a\in\Gamma$.
+Put $\hat c=tct^{-1}$ and $u=[\hat c,\iota(a)]$ for some $a\in\Gamma$.
 If $w:=u^2$ is a nontrivial central involution of $H$, then every
 homomorphism $H\to\U(\mathcal Q)$ maps
 $w$ to the identity, and $H$ is not MF.
@@ -941,7 +941,7 @@ $\iota(\Gamma)$, the sequence $(W_{c,n})$ centralizes
 $(W_{\iota(\gamma),n})$ asymptotically in operator norm, hence in
 normalized Hilbert--Schmidt norm.  By
 Theorem~\ref{thm:kazhdan-transport} applied to $x_n=W_{c,n}$, the
-conjugated sequence $(W_{d,n})$ lies in the same asymptotic commutant.
+conjugated sequence $(W_{\hat c,n})$ lies in the same asymptotic commutant.
 Therefore $\hsnorm{W_{u,n}-1}\to0$, and squaring gives
 $\hsnorm{W_{u,n}^2-1}\to0$.
 
@@ -975,7 +975,7 @@ choose $a\in\Gamma\setminus\alpha(\Gamma)$.  Adjoin elements $t,c$ and impose
 \]
 Put
 \[
- d=tct^{-1},\qquad u=[d,a],\qquad w=u^2=[d,ada^{-1}],
+ \hat c=tct^{-1},\qquad u=[\hat c,a],\qquad w=u^2=[\hat c,a\hat ca^{-1}],
 \]
 and impose centrality of $w$.
 More explicitly, for a finite generating set $S_\Gamma$ it is enough to
@@ -997,8 +997,8 @@ with the free product of $\Gamma$ and the free group on $t,c$, and
 quotient by the finitely many displayed relations for a finite
 generating set of $\Gamma$.
 
-The relation $w^2=1$ is redundant.  Put $b=ada^{-1}$.  Both $d$ and
-$b$ are involutions, and $w=[d,b]=(db)^2$.  A direct computation gives
+The relation $w^2=1$ is redundant.  Put $b=a\hat ca^{-1}$.  Both $\hat c$ and
+$b$ are involutions, and $w=[\hat c,b]=(\hat cb)^2$.  A direct computation gives
 \begin{equation}\label{eq:involution-reversal}
  dwd^{-1}=w^{-1}.
 \end{equation}
@@ -1027,8 +1027,8 @@ by permuting the $c_x$ and fixing $\zeta$
 (Construction~\ref{con:clifford}).  Let $G$ act in this way and map
 $c$ to $c_\Gamma$.  Then
 \[
- d\longmapsto c_{t\Gamma},\qquad
- ada^{-1}\longmapsto c_{at\Gamma}.
+ \hat c\longmapsto c_{t\Gamma},\qquad
+ a\hat ca^{-1}\longmapsto c_{at\Gamma}.
 \]
 The two cosets are distinct: equality would give
 $t^{-1}at\in\Gamma$, equivalently $a\in\alpha(\Gamma)$.  Hence the two
@@ -1142,9 +1142,9 @@ imposes $t\iota(\mathcal B)t^{-1}\subseteq\iota(\mathcal B)$,
 family~\textup{(C)} makes $c$ an involution centralizing the base, and
 family~\textup{(W)} makes $w$ central; these are the hypotheses of
 Theorem~\ref{thm:sign-criterion}.
-Families~\textup{(T)} and~\textup{(C)} imply that $d=tct^{-1}$
+Families~\textup{(T)} and~\textup{(C)} imply that $\hat c=tct^{-1}$
 commutes with $t\iota(\mathcal B)t^{-1}$.  The element $\iota(v_1)$ lies outside
-that conjugate subgroup, and the commutator $[\,d,\iota(v_1)]$ is
+that conjugate subgroup, and the commutator $[\,\hat c,\iota(v_1)]$ is
 nontrivial (Proposition~\ref{prop:witness} and Lemma~\ref{lem:square});
 Figure~\ref{fig:compression-pattern} depicts this configuration.
 
@@ -1164,20 +1164,23 @@ A Tietze reduction removes two generators and nine relators
 \providecommand{\tagstructend}{}%
 \providecommand{\tagmcbegin}[1]{}%
 \providecommand{\tagmcend}{}%
-\tagstructbegin{tag=Figure,alt={Diagram of the one-sided conjugation
-  configuration.  A large rounded rectangle is the image of the base group;
-  a smaller rounded rectangle inside it is the conjugate copy
-  obtained by conjugating by t, and an arrow between them is labelled by that
-  conjugation.  The element v1 is drawn in the base outside the conjugate
-  copy.
-  Below, a circled c is joined by an arrow labelled ``conjugation by t'' to a
-  circled d; c is linked to the base by the relation that c commutes with the
-  base, and d is linked to the conjugate copy by the relation that d commutes
-  with it.  A line from d leads to a box displaying the distinguished word
-  w equals the commutator of d with v1 d v1 inverse, which equals the
-  square of the commutator of d with v1 because d squares to one, and
-  noting that this commutator is proved nontrivial later in the
-  paper.}}%
+\tagstructbegin{tag=Figure,alt={Diagram in two parts.  On the left, a large
+  rounded rectangle is the image of the base group; a smaller rounded
+  rectangle inside it is the conjugate copy obtained by conjugating by t,
+  and an arrow between them is labelled by that conjugation.  The element
+  v1 is drawn in the base outside the conjugate copy.  Below them, a
+  circled c is joined by an arrow labelled ``conjugation by t'' to a
+  circled c-hat; c is linked to the base by the relation that c commutes
+  with the base, and c-hat is linked to the conjugate copy by the relation
+  that c-hat commutes with it.  On the right, a box gives the distinguished
+  word w as the commutator of c-hat with v1 c-hat v1 inverse, equal to the
+  square of the commutator of c-hat with v1 because c-hat squares to one.
+  Two arrows leave that box.  The first leads to a box saying that in every
+  matrix model the normalized Hilbert-Schmidt distance from the image of
+  that commutator to the identity tends to zero, so w goes to the identity.
+  The second leads to a box saying that in the Clifford quotient c-hat and
+  its conjugate by v1 are the generators at two distinct sites, which
+  anticommute, so w goes to the sign zeta, which is not the identity.}}%
 \tagmcbegin{}%
 \begin{tikzpicture}[x=1cm,y=1cm,font=\small]
   \draw[rounded corners=2.5mm,line width=.4pt] (0,0) rectangle (6.5,3.1);
@@ -1188,46 +1191,59 @@ A Tietze reduction removes two generators and nine relators
   \draw[figarr] (1.75,2.62) -- (3.35,2.62);
   \node[fignote] (setconj) at (2.55,2.88) {$t(\,\cdot\,)t^{-1}$};
   \node[draw,circle,line width=.4pt,inner sep=1.5pt] (c) at (1.35,-1.5) {$c$};
-  \node[draw,circle,line width=.4pt,inner sep=1.5pt] (d) at (4.55,-1.5) {$d$};
-  \draw[figarr] (c) -- node[fignote,below=3pt] {conjugation by $t$} (d);
+  \node[draw,circle,line width=.4pt,inner sep=1.5pt] (chat) at (4.55,-1.5)
+    {$\hat c$};
+  \draw[figarr] (c) -- node[fignote,below=3pt] {conjugation by $t$} (chat);
   \draw[line width=.4pt] (c) -- (1.35,0);
   \node[fignote,anchor=east] (crel) at (1.17,-.68) {$[c,\iota(\mathcal B)]=1$};
-  \draw[line width=.4pt] (d) -- (4.55,.45);
+  \draw[line width=.4pt] (chat) -- (4.55,.45);
   \node[fignote,anchor=west] (drel) at (4.73,-.68)
-    {$[\,d,\,t\iota(\mathcal B)t^{-1}]=1$};
-  \node[figout,text width=3.7cm] (mark) at (9.35,1.0)
-    {distinguished word\\[3pt]
-     $w=[\,d,\ \iota(v_1)\,d\,\iota(v_1)^{-1}]$\\[3pt]
-     {\footnotesize $=[\,d,\iota(v_1)]^{\,2}$ since $d^2=1$;\\
-      nontrivial by\\ Proposition~\ref{prop:witness}}};
-  \draw[figarr] (d) -| (mark);
+    {$[\,\hat c,\,t\iota(\mathcal B)t^{-1}]=1$};
+  \node[figout,text width=3.7cm] (mark) at (9.5,2.15)
+    {$w=[\,\hat c,\ \iota(v_1)\,\hat c\,\iota(v_1)^{-1}]$\\[2pt]
+     {\footnotesize $=u^{2}$ for $u=[\,\hat c,\iota(v_1)]$, since
+      $\hat c^{2}=1$}};
+  \node[figbox,text width=3.7cm] (analytic) at (9.5,-.25)
+    {\footnotesize in every matrix model\\[2pt]
+     $\hsnorm{U_n(u)-1}\to0$\\[2pt]
+     so $w\mapsto1$
+     (Thm.~\ref{thm:sign-criterion})};
+  \node[figbox,text width=3.7cm] (algebraic) at (9.5,-2.55)
+    {\footnotesize in the Clifford quotient\\[2pt]
+     $\hat c\mapsto c_{\tau o},\quad
+      \iota(v_1)\hat c\iota(v_1)^{-1}\mapsto c_{j(\bar v_1)\tau o}$\\[2pt]
+     so $w\mapsto\zeta\ne1$
+     (Prop.~\ref{prop:witness})};
+  \draw[figarr] (chat) -| (mark);
+  \draw[figarr] (mark) -- (analytic);
+  \draw[figarr] (mark.east) -- ++(0.5,0) |- (algebraic.east);
 \end{tikzpicture}%
 \tagmcend\tagstructend
-\caption{The one-sided conjugation configuration.  The relations of
+\caption{The distinguished word has two values.  The relations of
 \eqref{eq:E} give $t\iota(\mathcal B)t^{-1}\subseteq\iota(\mathcal B)$
 and $[c,\iota(\mathcal B)]=1$, hence
-$[\,d,\,t\iota(\mathcal B)t^{-1}]=1$ for $d=tct^{-1}$, and
-$w=[\,d,\,\iota(v_1)d\iota(v_1)^{-1}]=[\,d,\iota(v_1)]^2$.
-Section~\ref{sec:witness} proves that the inclusion is strict, that
-$\iota(v_1)$ lies outside the conjugate subgroup, and that $w\ne1$.}
+$[\,\hat c,\,t\iota(\mathcal B)t^{-1}]=1$ for $\hat c=tct^{-1}$.  Every
+homomorphism to $\U(\mathcal Q)$ sends $w$ to the identity, while the
+Clifford quotient of Section~\ref{sec:witness} sends it to the
+nontrivial sign $\zeta$; the two together are Theorem~\ref{thm:A}.}
 \label{fig:compression-pattern}
 \end{figure}
 
 
 \begin{lemma}[the distinguished word is a square]\label{lem:square}
-Let $H_1$ be a group and $d,a_1\in H_1$ with $d^2=1$.  Then
+Let $H_1$ be a group and $x,y\in H_1$ with $x^2=1$.  Then
 \leanverified{Sofic/CompressionDefectSquare}{GroupApproximation.commutator_conjugate_eq_commutator_sq_of_sq_eq_one}
 \[
-  \bigl[\,d,\;a_1\,d\,a_1^{-1}\bigr]\;=\;[\,d,a_1\,]^{\,2} .
+  \bigl[\,x,\;y\,x\,y^{-1}\bigr]\;=\;[\,x,y\,]^{\,2} .
 \]
 \end{lemma}
 
 \begin{proof}
-Put $b=a_1da_1^{-1}$, so $b^2=a_1d^2a_1^{-1}=1$; thus $b^{-1}=b$ and
-$d^{-1}=d$.  Then $[d,a_1]=da_1d^{-1}a_1^{-1}=d\,(a_1da_1^{-1})=db$,
+Put $z=yxy^{-1}$, so $z^2=yx^2y^{-1}=1$; thus $z^{-1}=z$ and
+$x^{-1}=x$.  Then $[x,y]=xyx^{-1}y^{-1}=x\,(yxy^{-1})=xz$,
 and
 \[
-  [d,a_1]^2=(db)^2=db\,db=d\,b\,d^{-1}b^{-1}=[d,b] . \qedhere
+  [x,y]^2=(xz)^2=xz\,xz=x\,z\,x^{-1}z^{-1}=[x,z] . \qedhere
 \]
 \end{proof}
 
@@ -1248,12 +1264,12 @@ property~\textup{(T)} of $\mathcal B$, while families~\textup{(T)}
 and~\textup{(C)} give
 $t\iota(\mathcal B)t^{-1}\subseteq\iota(\mathcal B)$ and
 $[c,\iota(\mathcal B)]=1$, respectively.  In $E$ we
-have $d^2=(tct^{-1})^2=tc^2t^{-1}=1$, so Lemma~\ref{lem:square} with
+have $\hat c^2=(tct^{-1})^2=tc^2t^{-1}=1$, so Lemma~\ref{lem:square} with
 $a_1=\iota(v_1)$ gives
 \[
-  w=\bigl[\,d,\;\iota(v_1)\,d\,\iota(v_1)^{-1}\bigr]
-  =[\,d,\iota(v_1)\,]^{\,2}=u^2 ,
-  \qquad u=[\,d,\iota(v_1)\,].
+  w=\bigl[\,\hat c,\;\iota(v_1)\,\hat c\,\iota(v_1)^{-1}\bigr]
+  =[\,\hat c,\iota(v_1)\,]^{\,2}=u^2 ,
+  \qquad u=[\,\hat c,\iota(v_1)\,].
 \]
 The defining relations make $w$ central, and $c^2=1$ then implies
 $w^2=1$ by \eqref{eq:involution-reversal}.  Hence $\Theta(w)=1$.
@@ -1345,8 +1361,8 @@ follow from those for $v_1$ together with $[t,x]=1$ and $x^3=1$.
 Deleting these nine leaves thirty-two relators on $v_1,x,y,z,t,c$.
 
 After these Tietze transformations, the remaining relations still
-imply $[\,d,\,t\iota(\mathcal B)t^{-1}]=1$ for $d=tct^{-1}$, and the
-distinguished word $[\,d,\ \iota(v_1)\,d\,\iota(v_1)^{-1}]$, computed
+imply $[\,\hat c,\,t\iota(\mathcal B)t^{-1}]=1$ for $\hat c=tct^{-1}$, and the
+distinguished word $[\,\hat c,\ \iota(v_1)\,\hat c\,\iota(v_1)^{-1}]$, computed
 in the same group, is unchanged.
 
 \subsection{Property~\textup{(T)} of the base}
@@ -1481,7 +1497,7 @@ $\zeta\neq1$, and therefore $w\neq1$ in $E$.
 
 \section{Consequences of the example}\label{sec:position}
 
-Throughout, $d=tct^{-1}$ and $u=[d,\iota(v_1)]$, so that $w=u^2$.
+Throughout, $\hat c=tct^{-1}$ and $u=[\hat c,\iota(v_1)]$, so that $w=u^2$.
 For a countable group $G$, write $\operatorname{Res}_{\mathrm{MF}}(G)$
 for its \emph{MF residual}: the intersection of the kernels of all its
 homomorphisms to $\U(\mathcal Q)$ (Definition~\ref{def:radical}).
@@ -1493,7 +1509,7 @@ $1\ne w\in\operatorname{Res}_{\mathrm{MF}}(E)$.
 
 \begin{mainthm}[the quotient of $E$ by $\langle w\rangle$]\label{thm:signfree}
 The quotient $E/\langle w\rangle$ is not MF\@.  The image of
-$[\iota(v_1),d]=u^{-1}$ is nontrivial in $E/\langle w\rangle$ and lies
+$[\iota(v_1),\hat c]=u^{-1}$ is nontrivial in $E/\langle w\rangle$ and lies
 in $\operatorname{Res}_{\mathrm{MF}}(E/\langle w\rangle)$; consequently
 $\{1,w\}$ is a proper subgroup of
 $\operatorname{Res}_{\mathrm{MF}}(E)$.
@@ -1508,8 +1524,8 @@ conjugate copy of a Kazhdan subgroup and its conjugates under the
 original subgroup commute pairwise, then every homomorphism to
 $\U(\mathcal Q)$ maps all of those conjugates to the same element;
 Section~\ref{subsec:collapse} proves this and applies it here.
-In $E$ the pairwise commutators of those conjugates of $d$ lie in
-$\langle w\rangle$, so in $E/\langle w\rangle$ the element $d$
+In $E$ the pairwise commutators of those conjugates of $\hat c$ lie in
+$\langle w\rangle$, so in $E/\langle w\rangle$ the element $\hat c$
 satisfies these hypotheses, and every homomorphism
 $E/\langle w\rangle\to\U(\mathcal Q)$ maps $u$ to $1$.  Thus
 $E/\langle w\rangle$ is a second finitely presented non-MF group.
@@ -1896,19 +1912,19 @@ subject to
   \item[(M2)] $c\,\iota(\lambda)=\iota(\lambda)\,c$ for every
     $\lambda\in\Lambda$.
 \end{enumerate}
-Write $d:=tct^{-1}$.  The datum determines the normal closure
+Write $\hat c:=tct^{-1}$.  The datum determines the normal closure
 \leanverified{Sofic/ConjugationDatumAnyUniverse}{GroupApproximation.ManuscriptExactWrappers.manuscriptMarkedKazhdanPattern_anyUniverse}
 \[
   N_{\mathrm{conj}}
   \;=\;\bigl\langle\!\bigl\langle\,
-  [\,d,\iota(\lambda)\,]\;:\;\lambda\in\Lambda
+  [\,\hat c,\iota(\lambda)\,]\;:\;\lambda\in\Lambda
   \,\bigr\rangle\!\bigr\rangle_H\;\trianglelefteq\;H .
 \]
 \end{definition}
 
 For a finitely generated $\Lambda$, conditions (M1)--(M2) are imposed by
 finitely many relations once generating sets are fixed.  Conditions
-(M1)--(M2) imply that $c$ commutes with $\iota(\Lambda)$ and that $d$
+(M1)--(M2) imply that $c$ commutes with $\iota(\Lambda)$ and that $\hat c$
 commutes with the subgroup $t\iota(\Lambda)t^{-1}$.
 
 \begin{definition}[universal $2$-norm triviality]\label{def:invisible}
@@ -1950,9 +1966,9 @@ $K_2\trianglelefteq H$.  Since $c$ centralizes $\iota(\Lambda)$, the
 sequence $(U_{c,n})$ belongs to the asymptotic commutant of
 $\iota(\Lambda)$ in normalized Hilbert--Schmidt norm.
 Theorem~\ref{thm:kazhdan-transport}, applied to $x_n=U_{c,n}$, shows
-that $(U_{d,n})$ for $d=tct^{-1}$ lies in the same asymptotic
+that $(U_{\hat c,n})$ for $\hat c=tct^{-1}$ lies in the same asymptotic
 commutant.  Therefore
-$[d,\iota(\lambda)]\in K_2$ for every $\lambda\in\Lambda$; since
+$[\hat c,\iota(\lambda)]\in K_2$ for every $\lambda\in\Lambda$; since
 $K_2$ is normal, it contains the normal closure of these commutators:
 $N_{\mathrm{conj}}\subseteq K_2$, and so $F\subseteq K_2$.
 Convergence of the full sequence gives triviality along every
@@ -2690,20 +2706,20 @@ Then $p$ commutes with $\Theta(L)$.
 \begin{proof}
 Property~\textup{(T)} makes $L$ finitely generated; fix a finite
 symmetric generating set $S=\{a_1,\dots,a_m\}$.  Write
-$p_g=\Theta(g)\,p\,\Theta(g)^{*}$ and $d_g=p_g-p$ for $g\in L$, and
-suppose $d_{g_0}\ne0$ for some $g_0\in L$.
+$p_g=\Theta(g)\,p\,\Theta(g)^{*}$ and $\Delta_g=p_g-p$ for $g\in L$, and
+suppose $\Delta_{g_0}\ne0$ for some $g_0\in L$.
 
-Since $p_g$ and $p$ are commuting projections, $d_g$ is self-adjoint
-with $d_g^{3}=d_g$, so $d_g^{2}$ is a projection and $d_gd_g^{2}=d_g$;
-write $q_g=d_g^{2}$.  All the $p_g$ commute, hence so do all the $d_g$
+Since $p_g$ and $p$ are commuting projections, $\Delta_g$ is self-adjoint
+with $\Delta_g^{3}=\Delta_g$, so $\Delta_g^{2}$ is a projection and $\Delta_g\Delta_g^{2}=\Delta_g$;
+write $q_g=\Delta_g^{2}$.  All the $p_g$ commute, hence so do all the $\Delta_g$
 and all the $q_g$.  Put
 \[
  q=1-\prod_{a\in S}(1-q_a),
 \]
 the join of the projections $q_a$, $a\in S$.  The elements $g$ with
-$p_g=p$ form a subgroup of $L$, so if $q=0$, and hence $d_a=0$ for
-every $a\in S$, then $d_g=0$ for every $g\in L$, contradicting
-$d_{g_0}\ne0$.  Thus $q\ne0$.
+$p_g=p$ form a subgroup of $L$, so if $q=0$, and hence $\Delta_a=0$ for
+every $a\in S$, then $\Delta_g=0$ for every $g\in L$, contradicting
+$\Delta_{g_0}\ne0$.  Thus $q\ne0$.
 
 \emph{The $q$-normalized Hilbert space.}  Take a self-adjoint bounded
 lift $(x_n)$ of $q$.  Since $\opnorm{x_n^{2}-x_n}\to0$, for all
@@ -2775,12 +2791,12 @@ $\lVert Z_n\rVert_{\mathrm F}$ by a bounded factor.
 
 \emph{An exact cocycle.}  For $a\in S$ the projection $q_a$ annihilates
 $\prod_{b\in S}(1-q_b)$, so $q_aq=q_a$ and
-$d_a=d_aq_a=d_aq\in\mathcal I_q$.  From
+$\Delta_a=\Delta_aq_a=\Delta_aq\in\mathcal I_q$.  From
 $p_{gh}=\Theta(g)\,p_h\,\Theta(g)^{*}$,
 \begin{equation}\label{eq:collapse-cocycle}
- d_{gh}=d_g+\Theta(g)\,d_h\,\Theta(g)^{*}\qquad(g,h\in L),
+ \Delta_{gh}=\Delta_g+\Theta(g)\,\Delta_h\,\Theta(g)^{*}\qquad(g,h\in L),
 \end{equation}
-and $\mathcal I_q$ is inner-invariant, so $d_g\in\mathcal I_q$ for
+and $\mathcal I_q$ is inner-invariant, so $\Delta_g\in\mathcal I_q$ for
 every $g\in L$.
 
 Choose unitary coordinate lifts $U_n(h)$ of $\Theta(h)$
@@ -2792,7 +2808,7 @@ $K_\omega$, and
 $\pi(h)\Lambda(z)=\Lambda\bigl(\Theta(h)\,z\,\Theta(h)^{*}\bigr)$ on
 the closed invariant subspace
 $K_q=\overline{\Lambda(\mathcal I_q)}$.  By
-\eqref{eq:collapse-cocycle} the map $\beta(g)=\Lambda(d_g)$ satisfies
+\eqref{eq:collapse-cocycle} the map $\beta(g)=\Lambda(\Delta_g)$ satisfies
 \[
  \beta(gh)=\beta(g)+\pi(g)\beta(h)\qquad(g,h\in L),
 \]
@@ -2801,15 +2817,15 @@ a $1$-cocycle for $\pi|_L$ with values in $K_q$.
 \emph{The cocycle is nonzero.}  Suppose $\beta(a)=0$ for every $a\in S$.  Put $r_1=1$ and
 $r_i=\prod_{j<i}(1-q_{a_j})$ for $i\ge2$.  The products
 $e_i=r_iq_{a_i}$ are projections with $e_i=r_i-r_{i+1}$, so they are
-pairwise orthogonal and $\sum_ie_i=1-r_{m+1}=q$.  Each $d_{a_i}$
-commutes with $r_i$, so $e_i=(d_{a_i}r_i)\,d_{a_i}$ and
+pairwise orthogonal and $\sum_ie_i=1-r_{m+1}=q$.  Each $\Delta_{a_i}$
+commutes with $r_i$, so $e_i=(\Delta_{a_i}r_i)\,\Delta_{a_i}$ and
 $\Lambda(e_i)=0$, whence $\Lambda(q)=0$ against
 $\lVert\Lambda(q)\rVert=1$.  So $\beta$ is not identically zero.
 
 \emph{Property~\textup{(T)}.}  By the Delorme--Guichardet theorem
 \cite[Theorem~2.12.4]{BHV}, $\beta$ is a coboundary: there is $y\in K_q$
 with $\beta(g)=y-\pi(g)y$ for every $g\in L$.  The hypothesis on $p$
-gives $d_{s\gamma s^{-1}}=0$, hence
+gives $\Delta_{s\gamma s^{-1}}=0$, hence
 $\pi(s\gamma s^{-1})y=y$ for every $\gamma\in L$.
 
 Normalize the Hilbert--Schmidt norms by $k_n=\operatorname{rank}Q_n$
@@ -2822,7 +2838,7 @@ $\operatorname{Fix}\pi(sLs^{-1})$, with $P\le Q$ and $P\sim Q$ in
 the same finite norm ultraproduct.  Lemma~\ref{lem:finitecompare}
 therefore gives $P=Q$.  Hence $\pi(g)y=y$ and
 $\beta(g)=0$ for every $g\in L$, contradicting the previous paragraph.
-Therefore $d_g=0$ for every $g\in L$ in the original corona; equivalently,
+Therefore $\Delta_g=0$ for every $g\in L$ in the original corona; equivalently,
 $p$ commutes with $\Theta(g)$ for every $g\in L$.
 \end{proof}
 
@@ -2913,49 +2929,49 @@ corresponding quotient of $H$ is MF.
 \end{remark}
 
 \begin{proof}[Proof of Theorem~\ref{thm:signfree}]
-Write $q\colon E\to E/\langle w\rangle$, $\bar d=q(d)$, and
-$\bar L=q(\iota(\mathcal B))$.  The element $\bar d$ is an involution
-because $c^2=1$, and $q(t)\bar Lq(t)^{-1}$ centralizes $\bar d$
+Write $q\colon E\to E/\langle w\rangle$, $\bar c=q(\hat c)$, and
+$\bar L=q(\iota(\mathcal B))$.  The element $\bar c$ is an involution
+because $c^2=1$, and $q(t)\bar Lq(t)^{-1}$ centralizes $\bar c$
 because conjugating the relation $[c,\iota(\mathcal B)]=1$
 of \eqref{eq:E} by $t$ gives
-$[\,t\iota(\mathcal B)t^{-1},\,d\,]=1$ in $E$, where $d=tct^{-1}$.  The
-subgroup that centralizes $d$ is the conjugate one, which is why the
+$[\,t\iota(\mathcal B)t^{-1},\,\hat c\,]=1$ in $E$, where $\hat c=tct^{-1}$.  The
+subgroup that centralizes $\hat c$ is the conjugate one, which is why the
 relation is conjugated by $t$.  Property~\textup{(T)} passes to $\bar L$,
 and $q(t)$ conjugates it into itself.  Thus (W1) and (W2) of Definition~\ref{def:invwitness} hold, and only
 (W3) remains.
 
 \emph{Pairwise commutation of the orbit.}  The linear generators $x,y,z$
-commute with $d$, and conjugation by
-$t$ sends each $v_i$ to $v_i^2$, so $\iota(v_i^2)$ commutes with $d$
-as well.  The conjugate $\iota(g)\,d\,\iota(g)^{-1}$ therefore
+commute with $\hat c$, and conjugation by
+$t$ sends each $v_i$ to $v_i^2$, so $\iota(v_i^2)$ commutes with $\hat c$
+as well.  The conjugate $\iota(g)\,\hat c\,\iota(g)^{-1}$ therefore
 depends only on the exponent vector of the translation part of $g$
 modulo $2$, so there are at most eight such conjugates, indexed by
 $(\Z/2)^3$.  By Theorem~\ref{thm:kazhdan-clifford} the
 distinguished word is
-$w=[d,\iota(v_1)\,d\,\iota(v_1)^{-1}]$, the commutator attached to
+$w=[\hat c,\iota(v_1)\,\hat c\,\iota(v_1)^{-1}]$, the commutator attached to
 the class of $v_1$.  The linear part acts through
 $\SL_3(\mathbb Z/2)$, which is transitive on the nonzero parity
 classes; the six words
 $x,x^2,z,yz,yx,y^2x$ in the linear generators send the class of $v_1$
-to the six remaining nonzero classes, and each commutes with $d$.
+to the six remaining nonzero classes, and each commutes with $\hat c$.
 Conjugating the displayed identity by the corresponding $\iota(r)$
 shows that every nonzero parity commutator is a conjugate of $w$; the
-zero class gives $[d,d]=1$.  Since $w$ is central, all eight lie in
+zero class gives $[\hat c,\hat c]=1$.  Since $w$ is central, all eight lie in
 $\langle w\rangle$.  Conjugating the commutator of two arbitrary
 conjugates by the inverse of one of them reduces it to this case.  Hence all conjugates of
-$\bar d$ under $\bar L$ commute pairwise.  Thus $\bar d$ is an
+$\bar c$ under $\bar L$ commute pairwise.  Thus $\bar c$ is an
 involutive orbit witness for $(\bar L,q(t))$, and by
 Theorem~\ref{thm:collapse}
-$[q(\iota(v_1)),\bar d]\in
+$[q(\iota(v_1)),\bar c]\in
 \operatorname{Res}_{\mathrm{MF}}(E/\langle w\rangle)$.
 
 The homomorphism $E\to W$ of Proposition~\ref{prop:witness} sends
-$[\iota(v_1),d]$ to the
+$[\iota(v_1),\hat c]$ to the
 product of the Clifford generators at the two distinct points $\tau o$
 and $j(\bar v_1)\tau o$, and sends $\langle w\rangle$ into
 $\langle\zeta\rangle$.  The product of the Clifford generators at two
 distinct points does not lie in $\langle\zeta\rangle$, so
-$[\iota(v_1),d]\notin\langle w\rangle$ and its image in
+$[\iota(v_1),\hat c]\notin\langle w\rangle$ and its image in
 $E/\langle w\rangle$ is nontrivial.  By
 Proposition~\ref{prop:univquot}, this nontrivial element of the MF
 residual makes the quotient non-MF\@.
@@ -3599,8 +3615,8 @@ Remark~\ref{rem:ff-realization} gives a small-cancellation route over
 the torsion-free finitely presented Kazhdan group of \cite{FFF}, which
 removed the analogous torsion obstacle for nonsoficity.  The Clifford
 construction of Theorem~\ref{thm:kazhdan-clifford} cannot produce such
-a group: it imposes $c^2=1$, so $d^2=1$, and a torsion-free quotient
-$q$ then has $q(d)=1$ and $q(N_{\mathrm{conj}})=1$.
+a group: it imposes $c^2=1$, so $\hat c^2=1$, and a torsion-free quotient
+$q$ then has $q(\hat c)=1$ and $q(N_{\mathrm{conj}})=1$.
 \leanverified{Sofic/TorsionFreeFiniteNormalLimit}{GroupApproximation.finiteSubgroup_eq_bot_of_isMulTorsionFree}
 \item Does MF imply hyperlinearity?  An MF embedding controls
 operator norm but does not require the induced tracial model to
