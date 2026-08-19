@@ -223,7 +223,7 @@ end DenseSpan
 
 section GNSVector
 
-variable {A : Type u} [CStarAlgebra A]
+variable {A : Type u} [CStarAlgebra A] [Nontrivial A]
 
 attribute [local instance] CStarState.instSpectralOrder
   CStarState.instSpectralStarOrdered
@@ -282,7 +282,7 @@ end GNSVector
 
 section CoeffSpan
 
-variable {A : Type u} [CStarAlgebra A]
+variable {A : Type u} [CStarAlgebra A] [Nontrivial A]
 
 /-- The span of the elementary tensors whose left leg is in the orbit of
 the GNS cyclic vector. -/
@@ -336,7 +336,7 @@ end CoeffSpan
 
 section RightCoeffSpan
 
-variable {B : Type v} [CStarAlgebra B]
+variable {B : Type v} [CStarAlgebra B] [Nontrivial B]
 
 /-- The span of the elementary tensors whose right leg is in the orbit of
 the GNS cyclic vector. -/
