@@ -2,32 +2,32 @@
 rg: 2
 id: atlas-a4-packet-commutant-synchronization-proof
 kind: route
-title: Packet generation plus A8 averaging gives a multiplicity-independent commutant gap
+title: Diameter-nine packet generation plus A8 averaging gives the commutant gap
 target: atlas-a4-packet-commutant-synchronization
 requires:
   - atlas-a4-packet-letters-generate-both-a8-charts
+artifacts:
+  - experiments/atlas_a4_packet_generation.py
 ---
 
-Fix one chart and write `lambda=lambda_k`.  By
-`atlas-a4-packet-letters-generate-both-a8-charts`, the finite packet-letter set
-`S` generates `A8`.  Choose once and for all, for every `g in A8`, a word
-`w_g` in `S union S^{-1}`, and let `L` be the largest of these finitely many
-word lengths.
+Fix one chart and write `lambda=lambda_k`.  By the exact packet-generation
+audit, the ten-letter packet set `S` generates `A8` and every `g in A8` is a
+directed word
 
-For `||X||_op<=1`, commutator telescoping along `w_g` gives
+```text
+g=s_1 ... s_l,   s_i in S,   l<=9.                    (1)
+```
+
+For `||X||_op<=1`, commutator telescoping along `(1)` gives
 
 ```text
 ||[X,lambda(g)]||_2
- <= L sum_(s in S) ||[X,lambda(s)]||_2.
+ <= sum_(i=1)^l ||[X,lambda(s_i)]||_2
+ <= 9 (sum_(s in S)||[X,lambda(s)]||_2^2)^(1/2).       (2)
 ```
 
-Using Cauchy--Schwarz on the fixed set `S`, absorb its cardinality into a
-constant `C_0` and obtain
-
-```text
-max_(g in A8) ||[X,lambda(g)]||_2
- <= C_0 (sum_(s in S)||[X,lambda(s)]||_2^2)^(1/2).      (1)
-```
+The last inequality is deliberately coarse but explicit: each summand is at
+most the displayed Euclidean norm and there are at most nine summands.
 
 Now average over the regular chart action:
 
@@ -39,12 +39,12 @@ This is the Hilbert--Schmidt orthogonal conditional expectation onto
 `lambda(A8)'`.  Therefore
 
 ```text
-dist_2(X,lambda(A8)') <= ||X-E(X)||_2
+dist_2(X,lambda(A8)')
+ <= ||X-E(X)||_2
  <= (1/|A8|) sum_g ||X-lambda(g)Xlambda(g)^*||_2
- <= C_0 (sum_(s in S)||[X,lambda(s)]||_2^2)^(1/2)
+ <= 9 (sum_(s in S)||[X,lambda(s)]||_2^2)^(1/2)
 ```
 
-by `(1)`.  The words `w_g`, hence the constant, live entirely in the fixed
-finite group and do not depend on `k`.  The factor-two packet letters satisfy
-the same exact generation statement, so the same argument applies on the
-other chart.
+by `(2)`.  The exact audit also shows that the two chart factors use the same
+ten-letter packet alphabet, so the same constant `9` applies on both sides and
+is independent of the external regular multiplicity.
