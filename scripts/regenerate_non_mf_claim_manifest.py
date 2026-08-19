@@ -38,6 +38,10 @@ CLAIM_TARGETS: dict[str, tuple[str, str]] = {
     "thm:sign-criterion": (
         "Sofic/CentralSignAnyUniverse",
         "GroupApproximation.KazhdanCompressionCore.manuscriptCentralSignCriterion_anyUniverse"),
+    "lem:corner": (
+        "Analysis/PrintedCornerCompression",
+        "GroupApproximation.PrintedCornerCompression."
+        "manuscriptCornerAsymptoticRepresentation"),
     "thm:abstract-nk": (
         "Sofic/ManuscriptExactWrappers",
         "GroupApproximation.ManuscriptExactWrappers.manuscriptAbstractNormalKazhdanObstruction"),

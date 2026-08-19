@@ -692,6 +692,34 @@ theorem manuscriptCornerAsymptoticRepresentation :
 
 end PrintedCornerData
 
+/-- **`lem:corner`, the printed lemma, in one statement.**
+
+> Let `H` be a group, let `V_{g,n} ∈ U(d_n)` be an operator-norm asymptotic
+> representation of `H`, and let `q_n ∈ M_{d_n}(ℂ)` be nonzero projections with
+> `‖[q_n, V_{g,n}]‖ → 0` for every `g ∈ H`.  Write `r_n = rank q_n ≥ 1` and
+> identify `q_n M_{d_n}(ℂ) q_n ≅ M_{r_n}(ℂ)`.  Then there are unitaries
+> `W_{g,n} ∈ U(r_n)` with `‖W_{g,n} − q_n V_{g,n} q_n‖ → 0` for every `g ∈ H`,
+> and `(W_{g,n})` is an operator-norm asymptotic representation of `H` on the
+> corners.
+
+The hypotheses are `PrintedCornerData`, field for field.  The conclusion is the
+printed one: an `OpAlmostRepresentation` — this development's definition of
+"operator-norm asymptotic representation" — whose models are the corners
+`q_n M_{d_n}(ℂ) q_n`, every one of them nonzero, so `r_n ≥ 1`; whose unitaries
+are the `W_{g,n}`; and whose distance from the compressions `q_n V_{g,n} q_n`
+tends to `0`. -/
+theorem manuscriptCornerAsymptoticRepresentation {G : Type*} [Group G]
+    {model : ℕ → FiniteModel} (D : PrintedCornerData G model) :
+    ∃ W : OpAlmostRepresentation G,
+      W.model = D.cornerModel ∧
+        (∀ n, 0 < Fintype.card (D.cornerModel n)) ∧
+        (∀ n g, HEq (W.map n g) (D.cornerMap n g)) ∧
+        (∀ g : G, Tendsto (fun n ↦
+          ‖(D.cornerMap n g : Matrix (D.cornerModel n) (D.cornerModel n) ℂ)
+            - D.compress n g‖) atTop (𝓝 0)) :=
+  ⟨D.cornerRepresentation, rfl, D.cornerModel_card_pos,
+    fun _ _ ↦ HEq.rfl, D.cornerMap_sub_compress_tendsto⟩
+
 end Assembly
 
 end
