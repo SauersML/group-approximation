@@ -33,6 +33,7 @@ jobs:
         run: |
           set -euo pipefail
           python3 scripts/regenerate_non_mf_claim_manifest.py
+          python3 scripts/check_non_mf_refs.py --write-decls
           python3 scripts/check_non_mf_proof_ledger.py \
             --tex non_mf_groups_exist.tex \
             --ledger metadata/NON_MF_PROOF_LEDGER.md \
