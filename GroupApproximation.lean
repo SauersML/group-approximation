@@ -1089,6 +1089,7 @@ import GroupApproximation.Analysis.PrintedFiniteException
 import GroupApproximation.Analysis.CollapseDiscardCoordinates
 import GroupApproximation.Analysis.CollapseLambdaCocycle
 import GroupApproximation.Analysis.CollapseInvariantSubspace
+import GroupApproximation.Analysis.CollapseKqTransport
 import GroupApproximation.Analysis.CollapseProjectionLift
 import GroupApproximation.Monsters.NeumannTwoGenerator
 import GroupApproximation.Sofic.CollapseRankWeightTransport
