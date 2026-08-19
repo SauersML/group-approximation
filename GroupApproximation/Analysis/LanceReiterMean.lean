@@ -85,6 +85,7 @@ def leftTranslate (g : G) (μ : G →₀ ℝ) : G →₀ ℝ :=
   show μ ((Equiv.mulLeft g).symm x) = μ (g⁻¹ * x)
   rw [Equiv.mulLeft_symm_apply]
 
+omit [Group G] in
 /-- On nonnegative densities the `ℓ¹` norm is the total mass. -/
 theorem l1Norm_eq_totalMass {μ : G →₀ ℝ} (hμ : ∀ x, 0 ≤ μ x) :
     l1Norm μ = totalMass μ := by
@@ -114,6 +115,7 @@ def ReiterCondition (G : Type u) [Group G] : Prop :=
 /-- The average of a function against a finitely supported weight. -/
 def weightedAvg (μ : G →₀ ℝ) (f : G → ℝ) : ℝ := ∑ x ∈ μ.support, μ x * f x
 
+omit [Group G] in
 /-- The weighted average is additive in the weight, for weights differing by
 subtraction; this is `Finsupp.sum_sub_index` read through the definition. -/
 theorem weightedAvg_sub (ν ν' : G →₀ ℝ) (f : G → ℝ) :
@@ -122,6 +124,7 @@ theorem weightedAvg_sub (ν ν' : G →₀ ℝ) (f : G → ℝ) :
       = ν.sum (fun x v ↦ v * f x) - ν'.sum (fun x v ↦ v * f x)
   exact Finsupp.sum_sub_index fun a b₁ b₂ ↦ sub_mul b₁ b₂ (f a)
 
+omit [Group G] in
 /-- The weighted average is additive in the function. -/
 theorem weightedAvg_add_fun (μ : G →₀ ℝ) (f h : G → ℝ) :
     weightedAvg μ (f + h) = weightedAvg μ f + weightedAvg μ h := by
@@ -131,17 +134,20 @@ theorem weightedAvg_add_fun (μ : G →₀ ℝ) (f h : G → ℝ) :
   refine Finset.sum_congr rfl fun x _ ↦ ?_
   rw [mul_add]
 
+omit [Group G] in
 /-- The weighted average of a constant is the mass times the constant. -/
 theorem weightedAvg_const (μ : G →₀ ℝ) (c : ℝ) :
     weightedAvg μ (fun _ ↦ c) = totalMass μ * c := by
   show ∑ x ∈ μ.support, μ x * c = (∑ x ∈ μ.support, μ x) * c
   rw [Finset.sum_mul]
 
+omit [Group G] in
 /-- Nonnegative weight, nonnegative function: nonnegative average. -/
 theorem weightedAvg_nonneg {μ : G →₀ ℝ} (hμ : ∀ x, 0 ≤ μ x) {f : G → ℝ}
     (hf : ∀ x, 0 ≤ f x) : 0 ≤ weightedAvg μ f :=
   Finset.sum_nonneg fun x _ ↦ mul_nonneg (hμ x) (hf x)
 
+omit [Group G] in
 /-- The basic `ℓ¹`–`ℓ^∞` estimate for weighted averages. -/
 theorem abs_weightedAvg_le (ν : G →₀ ℝ) {f : G → ℝ} {C : ℝ}
     (hC : ∀ x, |f x| ≤ C) : |weightedAvg ν f| ≤ l1Norm ν * C := by
@@ -153,6 +159,7 @@ theorem abs_weightedAvg_le (ν : G →₀ ℝ) {f : G → ℝ} {C : ℝ}
         exact mul_le_mul_of_nonneg_left (hC x) (abs_nonneg _)
     _ = l1Norm ν * C := by rw [l1Norm, Finset.sum_mul]
 
+omit [Group G] in
 /-- Averages of a bounded function against probability densities are bounded
 by the bound of the function. -/
 theorem abs_weightedAvg_le_of_prob {μ : G →₀ ℝ} (hμ : ∀ x, 0 ≤ μ x)
@@ -196,7 +203,7 @@ theorem reiterUltra_le_atTop :
 variable (hR : ReiterCondition G)
 
 /-- The tolerance attached to an index. -/
-def tol (i : ReiterIndex G) : ℝ := 1 / ((i.2 : ℝ) + 1)
+noncomputable def tol (i : ReiterIndex G) : ℝ := 1 / ((i.2 : ℝ) + 1)
 
 theorem tol_pos (i : ReiterIndex G) : 0 < tol i := by
   have h1 : (0 : ℝ) < (i.2 : ℝ) + 1 := by positivity

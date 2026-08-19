@@ -65,7 +65,7 @@ theorem stinespringSesq_act_left (c : A) (f g : A →₀ H) :
   rw [stinespringActFree, Finsupp.lmapDomain_apply]
   unfold stinespringSesq
   exact Finsupp.sum_mapDomain_index (fun a' => by simp)
-    (fun a' x₁ x₂ => by simp [inner_add_left, Finsupp.sum_add])
+    (fun a' x₁ x₂ => by simp [Finsupp.sum_add])
 
 theorem stinespringSesq_act_act (c : A) (f : A →₀ H) :
     stinespringSesq φ (stinespringActFree c f) (stinespringActFree c f)
@@ -76,7 +76,7 @@ theorem stinespringSesq_act_act (c : A) (f : A →₀ H) :
   refine Finsupp.sum_congr fun a _ => ?_
   rw [stinespringActFree, Finsupp.lmapDomain_apply]
   exact Finsupp.sum_mapDomain_index (fun b' => by simp)
-    (fun b' y₁ y₂ => by simp [inner_add_right])
+    (fun b' y₁ y₂ => by simp)
 
 section WithComplete
 
@@ -110,13 +110,18 @@ theorem re_stinespringSesq_act_le (hφ : IsCompletelyPositive φ)
             (stinespringActFree c f) := by
     rw [stinespringSesq_act_act]
     unfold stinespringSesq
-    rw [Finsupp.mul_sum, ← Finsupp.sum_sub]
-    refine Finsupp.sum_congr fun a _ => ?_
-    rw [Finsupp.mul_sum, ← Finsupp.sum_sub]
-    refine Finsupp.sum_congr fun b _ => ?_
-    rw [halg a b, map_sub, map_smul, ContinuousLinearMap.sub_apply,
-      ContinuousLinearMap.smul_apply, inner_sub_right, inner_smul_right]
-    rw [smul_eq_mul]
+    show (∑ a ∈ f.support, ∑ b ∈ f.support,
+        ⟪f a, φ (star a * (star d * d) * b) (f b)⟫_ℂ)
+      = ((‖c‖ ^ 2 : ℝ) : ℂ) * (∑ a ∈ f.support, ∑ b ∈ f.support,
+          ⟪f a, φ (star a * b) (f b)⟫_ℂ)
+        - ∑ a ∈ f.support, ∑ b ∈ f.support,
+            ⟪f a, φ (star (c * a) * (c * b)) (f b)⟫_ℂ
+    rw [Finset.mul_sum, ← Finset.sum_sub_distrib]
+    refine Finset.sum_congr rfl fun a _ => ?_
+    rw [Finset.mul_sum, ← Finset.sum_sub_distrib]
+    refine Finset.sum_congr rfl fun b _ => ?_
+    rw [halg a b, map_sub, map_smul, _root_.sub_apply,
+      _root_.smul_apply, inner_sub_right, inner_smul_right]
   rw [hsplit] at hE
   have hre : (((‖c‖ ^ 2 : ℝ) : ℂ) * stinespringSesq φ f f
       - stinespringSesq φ (stinespringActFree c f)
@@ -124,7 +129,7 @@ theorem re_stinespringSesq_act_le (hφ : IsCompletelyPositive φ)
       = ‖c‖ ^ 2 * (stinespringSesq φ f f).re
         - (stinespringSesq φ (stinespringActFree c f)
             (stinespringActFree c f)).re := by
-    simp [Complex.sub_re, Complex.mul_re]
+    rw [Complex.sub_re, Complex.re_ofReal_mul]
   rw [hre] at hE
   linarith
 

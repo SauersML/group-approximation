@@ -64,7 +64,7 @@ theorem stinespringSesq_act_right (c : A) (f g : A →₀ H) :
   refine Finsupp.sum_congr fun a _ => ?_
   rw [stinespringActFree, Finsupp.lmapDomain_apply]
   exact Finsupp.sum_mapDomain_index (fun b' => by simp)
-    (fun b' y₁ y₂ => by simp [inner_add_right])
+    (fun b' y₁ y₂ => by simp)
 
 /-- **The formal adjoint law**: for the Stinespring form, `star c` acts
 as the adjoint of `c`.  Associativity of multiplication, read through

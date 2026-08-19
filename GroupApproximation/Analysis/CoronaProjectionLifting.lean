@@ -1,4 +1,5 @@
 import GroupApproximation.Analysis.FilterMatrixCStarCorona
+import GroupApproximation.Analysis.UltrafilterDiagonalExtraction
 import GroupApproximation.Sofic.FiniteNormalAverageCorner
 
 /-!
@@ -427,6 +428,83 @@ theorem eventually_posSemidef_smul_one_add
       simpa only [Real.dist_eq, sub_zero, abs_norm] using hn.le
   filter_upwards [hev] with n hn
   exact posSemidef_smul_one_add_of_norm_sub_gram_le X z w hzsa n hn
+
+/-! ## The printed diagonal subsequence
+
+`thm:abstract-nk` continues:
+
+> Enumerate `H̄ = {g_1, g_2, …}`.  For each `j` the set
+> `A_j = {n : q_n ≠ 0, max_{i≤j} ‖[q_n, V_{g_i,n}]‖ < 1/j, ‖(q_n h_n q_n − θ q_n)₊‖ < 1/j}`
+> is again a finite intersection of sets in `ω` … hence lies in `ω` and in
+> particular is infinite.  Choose `n_1 < n_2 < ⋯` with `n_j ∈ A_j` and relabel
+> along `(n_j)_j`.
+
+The shape of that sentence is: countably many quantities vanish along `ω`, one
+condition holds on a set of `ω`, and a single increasing subsequence makes all
+of them hold in the ordinary sense.  Stated that way it is independent of what
+the quantities are, which is what the lemma below says.
+
+The one thing the extraction cannot take is an order bound, since it
+diagonalises *sequences*; that is why `exists_gram_witness` exists, and why the
+corner inequality enters here as the norm of `z_n − w_nᴴ w_n` rather than as
+positivity.  The membership condition enters as its indicator, a sequence that
+is eventually `0` along `ω` precisely because the set is in `ω`. -/
+
+section Diagonal
+
+variable {X : ℕ → Type u} [∀ n, Fintype (X n)] [∀ n, DecidableEq (X n)]
+  [∀ n, Nonempty (X n)]
+
+/-- **The printed diagonal subsequence, in general form.**
+
+Countably many sequences null along `ω`, together with one set of `ω`, are made
+ordinary along a single strictly increasing relabelling: every norm tends to
+zero at `atTop`, and the set's condition holds from some point on. -/
+theorem exists_strictMono_of_null_of_mem (X : ℕ → Type u)
+    [∀ n, Fintype (X n)] [∀ n, DecidableEq (X n)] [∀ n, Nonempty (X n)]
+    {ω : Ultrafilter ℕ} (hω : (ω : Filter ℕ) ≤ Filter.cofinite)
+    {ι : Type*} [Countable ι] (a : ι → BoundedMatrixSequence X)
+    (ha : ∀ i, IsNullMatrixSequence X (ω : Filter ℕ) (a i))
+    (q : BoundedMatrixSequence X)
+    (hq : {n : ℕ | (q : ∀ n, Matrix (X n) (X n) ℂ) n ≠ 0} ∈ (ω : Filter ℕ)) :
+    ∃ φ : ℕ → ℕ, StrictMono φ ∧
+      (∀ᶠ k in Filter.atTop, (q : ∀ n, Matrix (X n) (X n) ℂ) (φ k) ≠ 0) ∧
+      ∀ i, Filter.Tendsto
+        (fun k ↦ ‖((a i : BoundedMatrixSequence X) :
+          ∀ n, Matrix (X n) (X n) ℂ) (φ k)‖) Filter.atTop (nhds 0) := by
+  classical
+  -- the membership condition, as a sequence that vanishes along `ω`
+  set ind : ℕ → ℝ := fun n ↦
+    if (q : ∀ n, Matrix (X n) (X n) ℂ) n = 0 then 1 else 0 with hind
+  have hindtend : Filter.Tendsto ind (ω : Filter ℕ) (nhds 0) := by
+    refine Filter.Tendsto.congr' ?_ tendsto_const_nhds
+    filter_upwards [hq] with n hn
+    rw [hind]
+    exact (if_neg hn).symm
+  -- the family the extraction consumes: the indicator, then the norms
+  set F : Option ι → ℕ → ℝ := fun i ↦
+    Option.rec ind
+      (fun i ↦ fun n ↦ ‖((a i : BoundedMatrixSequence X) :
+        ∀ n, Matrix (X n) (X n) ℂ) n‖) i with hF
+  have hall : ∀ i : Option ι,
+      Filter.Tendsto (F i) (ω : Filter ℕ) (nhds (0 : ℝ)) := by
+    rintro (_ | i)
+    · exact hindtend
+    · exact ha i
+  obtain ⟨φ, hmono, hφ⟩ :=
+    UltrafilterDiagonalExtraction.exists_strictMono_tendsto_atTop_countable
+      hω F (fun _ ↦ (0 : ℝ)) hall
+  refine ⟨φ, hmono, ?_, fun i ↦ hφ (some i)⟩
+  have hz := hφ none
+  filter_upwards [Metric.tendsto_nhds.mp hz 1 one_pos] with k hk
+  have hlt : ind (φ k) < 1 := by
+    have : |ind (φ k)| < 1 := by
+      simpa only [Real.dist_eq, sub_zero] using hk
+    exact (abs_lt.mp this).2
+  by_contra hcon
+  simp [hcon] at hlt
+
+end Diagonal
 
 end Transfer
 
