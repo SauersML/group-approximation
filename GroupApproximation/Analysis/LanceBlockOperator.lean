@@ -45,6 +45,7 @@ def blockProj (k n : ℕ) (i : Fin n) :
       EuclideanSpace ℂ (Fin k) :=
   PiLp.proj 2 (fun _ : Fin n ↦ EuclideanSpace ℂ (Fin k)) i
 
+@[simp]
 theorem blockProj_apply (i : Fin n)
     (w : PiLp 2 (fun _ : Fin n ↦ EuclideanSpace ℂ (Fin k))) :
     blockProj k n i w = w i := rfl

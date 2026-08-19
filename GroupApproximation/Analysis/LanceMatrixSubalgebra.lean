@@ -91,7 +91,6 @@ matrix `N` over the same subalgebra: take the square root inside the
 C⋆-algebra the closed entrywise subalgebra carries, whose spectra agree with
 the ambient ones by spectral permanence. -/
 theorem exists_entries_mem_factor [PartialOrder A] [StarOrderedRing A]
-    [NonnegSpectrumClass ℝ A]
     (C : StarSubalgebra ℂ A) (hC : IsClosed (C : Set A)) {k : ℕ}
     {M : CStarMatrix (Fin k) (Fin k) A}
     (hmem : ∀ p q, M p q ∈ C) (hM : 0 ≤ M) :

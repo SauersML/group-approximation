@@ -63,6 +63,7 @@ def mulOpAux (f : G → ℂ) (C : ℝ) (hC : ∀ g, ‖f g‖ ≤ C) :
     ring
 
 omit [Group G] in
+@[simp]
 theorem mulOpAux_apply (f : G → ℂ) (C : ℝ) (hC : ∀ g, ‖f g‖ ≤ C)
     (x : GroupHilbert G) (g : G) :
     mulOpAux f C hC x g = f g * x g := rfl

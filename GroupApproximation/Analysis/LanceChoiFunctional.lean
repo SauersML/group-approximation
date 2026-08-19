@@ -73,6 +73,7 @@ def choiFunctional : ↥(matrixStarSubalgebra C k) →ₗ[ℂ] ℂ where
     have h : matrixEntry C (z • b) p q = z • matrixEntry C b p q := rfl
     rw [h, map_smul, smul_apply, inner_smul_right, smul_eq_mul]
 
+@[simp]
 theorem choiFunctional_apply (b : ↥(matrixStarSubalgebra C k)) :
     choiFunctional C Φ b = ∑ p : Fin k, ∑ q : Fin k,
       ⟪EuclideanSpace.single p (1 : ℂ),
@@ -120,7 +121,7 @@ matrix inside the closed subalgebra, split the value into one completely
 positive form per row of the factor, and evaluate the form hypothesis at
 standard basis vectors. -/
 theorem choiFunctional_nonneg
-    [PartialOrder A] [StarOrderedRing A] [NonnegSpectrumClass ℝ A]
+    [PartialOrder A] [StarOrderedRing A]
     (hC : IsClosed (C : Set A))
     (hform : ∀ (m : ℕ) (a : Fin m → ↥C)
       (v : Fin m → EuclideanSpace ℂ (Fin k)),

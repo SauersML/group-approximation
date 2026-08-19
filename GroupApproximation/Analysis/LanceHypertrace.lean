@@ -59,9 +59,11 @@ theorem coefficientAtOne_one :
     coefficientAtOne (1 : GroupHilbert G →L[ℂ] GroupHilbert G) = 1 :=
   coefficient_one G
 
+@[simp]
 theorem coefficientAtOne_add (T S : GroupHilbert G →L[ℂ] GroupHilbert G) :
     coefficientAtOne (T + S) = coefficientAtOne T + coefficientAtOne S := rfl
 
+@[simp]
 theorem coefficientAtOne_smul (c : ℂ)
     (T : GroupHilbert G →L[ℂ] GroupHilbert G) :
     coefficientAtOne (c • T) = c * coefficientAtOne T := rfl

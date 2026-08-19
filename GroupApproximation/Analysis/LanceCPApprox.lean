@@ -94,6 +94,7 @@ def bddSymbol (f : G → ℝ) (hf : IsBddFun f) :
     rw [Complex.norm_real, Real.norm_eq_abs]
     exact hf.choose_spec g)
 
+@[simp]
 theorem bddSymbol_apply (f : G → ℝ) (hf : IsBddFun f)
     (x : GroupHilbert G) (g : G) :
     bddSymbol f hf x g = ((f g : ℝ) : ℂ) * x g := rfl

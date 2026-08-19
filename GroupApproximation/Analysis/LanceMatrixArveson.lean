@@ -103,7 +103,7 @@ def singleEntryLM (k : ℕ) (p q : Fin k) :
 
 /-! ## The extension theorem -/
 
-variable [PartialOrder A] [StarOrderedRing A] [NonnegSpectrumClass ℝ A]
+variable [PartialOrder A] [StarOrderedRing A]
 
 /-- **Arveson extension for matrix targets.**  A unital map from a closed
 star subalgebra into `B(ℂᵏ)` that is completely positive in the form sense
