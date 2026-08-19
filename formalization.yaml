@@ -1,0 +1,149 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/mathlib-initiative/formalization.yaml/main/schema/formalization.schema.json
+#
+# Provenance metadata in the mathlib-initiative self-reporting format (v0.4),
+# the format every Lean entry in the Palomar registry (palomar-registry.org)
+# carries.  Adopted here on 2026-08-19 after reading those entries; see
+# docs/PALOMAR_REGISTRY_CODE_AUDIT.md for what else was taken from them.
+#
+# This file is the honest, machine-readable version of what
+# docs/CREDIT_AND_PRIORITY_AUDIT.md establishes at length: what is claimed,
+# what is not, and where the trust surface ends.  Nothing here is a stronger
+# claim than that document supports; where the two disagree, that document is
+# the source of truth and this file is the bug.
+
+version: "v0.4"
+
+project:
+  name: group-approximation
+  authors:
+    - name: Anonymous
+  responsible_maintainers:
+    - name: Anonymous
+  license: Apache-2.0
+  short_description: >
+    A Lean 4 / Mathlib library for finite models of groups: soficity,
+    hyperlinearity, and MF-ness in the Carrion-Dadarlat-Eckhardt sense, with
+    two machine-checked headline results -- an explicit finitely presented
+    group that is not MF, and a finitely presented group that is not sofic --
+    together with the rigidity, operator-algebraic, combinatorial and
+    ring-theoretic machinery they are proved from.
+
+repository:
+  role: substantive-development
+
+classification:
+  arxiv: [math.OA, math.GR, math.LO]
+  msc2020: ["46L05", "20E26", "20F05", "20F10", "20F69"]
+
+result:
+  name: LiteralNonMFEndpoint.manuscriptTheoremA
+  statement: >
+    There is an explicit finitely presented group E with a central involution
+    w != 1 such that every homomorphism from E into the unitary group of an
+    operator-norm matrix corona prod_n M_{d_n}(C) / oplus_n M_{d_n}(C) kills w.
+    Consequently E is not MF in the Carrion-Dadarlat-Eckhardt sense, and
+    neither its full nor its reduced group C*-algebra is an MF algebra.
+  compared_declaration: GroupApproximation.LiteralNonMFEndpoint.manuscriptTheoremA
+  axioms: [propext, Classical.choice, Quot.sound]
+  sorries: 0
+  scope_limitations: >
+    Theorem A is *not* the first counterexample to "stably finite implies MF"
+    for separable C*-algebras: the negative answer to the Connes embedding
+    problem coming from MIP* = RE already refutes the general MF problem, and
+    Goldbring (Corollary 5.2) gives the direct deduction.  What is new is the
+    explicit group, and the explicit full and reduced group C*-algebra
+    realization -- Shulman (arXiv:2603.13564, March 2026) recorded that no
+    group C*-algebra was then known not to be MF.
+
+    The defensible novelty is narrow and stated as such in
+    docs/CREDIT_AND_PRIORITY_AUDIT.md: the stable-finite Kazhdan pinning of
+    the conjugation representation inside a norm matrix corona, plus the
+    central-corner marked-word device that turns that pinning into a group
+    element killed by every MF representation.  The surrounding compression
+    and lamp architecture is not claimed here; it is OpenAI's and
+    Kun-Thom's.
+
+    The second headline result,
+    `GroupApproximation.exists_finitelyPresented_nonsofic_group`, claims no
+    priority for the existence of a nonsofic group.  The first nonsofic group
+    is OpenAI's (2026-08-01); Kun-Thom (arXiv:2608.06222) builds on it and is
+    not an independent existence proof.  What is here is a formalization of
+    the Kun and Kun-Thom arguments plus one selection step, whose endpoint
+    kernel-checks their Theorem 1.1.
+
+related_formalizations: []
+
+sources:
+  - title: The MF property for amalgamated free products
+    authors: [Tatiana Shulman]
+    year: 2026
+    id: https://arxiv.org/abs/2603.13564
+    relationship: background
+    note: >
+      Uses exactly the MF definition formalized here, and records in March
+      2026 that no group C*-algebra was known not to be MF.  That is the
+      statement Theorem D answers.
+  - title: >
+      Nonsofic groups exist, in "Ten advances in mathematics and theoretical
+      computer science", Chapter 3, 78-95
+    authors: [OpenAI]
+    year: 2026
+    id: https://cdn.openai.com/pdf/ten-proofs-oai.pdf
+    relationship: background
+    note: >
+      The first nonsofic group, 2026-08-01.  Its compression/lamp
+      architecture is an input to the soficity side of this library and is
+      not claimed here.
+  - title: Nonsofic wreath products of residually finite groups
+    authors: [Gabor Kun, Andreas Thom]
+    year: 2026
+    id: https://arxiv.org/abs/2608.06222
+    relationship: formalizes
+    note: >
+      Builds on the OpenAI chapter; not an independent existence proof.  The
+      soficity endpoint here formalizes this argument plus one selection
+      step, and kernel-checks its Theorem 1.1.
+
+automation:
+  methods:
+    - method: agent
+      framework: Claude Code (Anthropic)
+  notes: >
+    The library is developed with agent sessions against a remote Lean build.
+    Per-declaration attribution is in the git history; the repository's own
+    audit trail (docs/, research/, metadata/) is more detailed than this
+    field can be.
+
+review:
+  status: self-assessed
+  notes: >
+    No independent human review of the mathematics.  What is mechanical is
+    stated precisely and is exactly this: `lake build` with warnings as
+    errors; a source scan forbidding sorry, admit, hand-declared axioms,
+    compiler-backed decision procedures, unsafe escape hatches and proof
+    budget overrides; `#audit_axioms` on 511 cited endpoints inside the
+    build; a whole-corpus transitive axiom sweep in scripts/Audit.lean over
+    every declaration defined in a GroupApproximation module; signature
+    pinning of every manuscript-mapped declaration; an audit-surface
+    measurement (metadata/AUDIT_SURFACE.md); and a fresh-kernel `leanchecker`
+    replay, with a weekly independent re-check through `lean4export` and the
+    `nanoda` kernel.
+
+    None of that is a check on whether the informal argument is correct or
+    whether the formal statements are the right formalizations of the printed
+    ones.  That correspondence is carried by the claim map, the signature
+    snapshots and the proof ledger, all of which are gated but all of which
+    are ultimately human judgements.
+
+fidelity:
+  divergences: >
+    The manuscript's collapse proof deliberately diverges from the Lean route
+    (recorded in docs/, and in the proof ledger as MISSING-by-design rows):
+    the printed argument is a single-stage quantitative route chosen for
+    readability, while the formalization takes a different decomposition.
+    Both are complete; neither is a transcription of the other, and the
+    ledger says which rows are which.
+
+    The repository contains no `sorry` and no hand-declared axiom outside the
+    single planted defect in scripts/Audit/Plants.lean, which exists to
+    calibrate the scans and is pinned by exact path, line and source text.

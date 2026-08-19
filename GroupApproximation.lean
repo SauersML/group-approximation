@@ -1159,6 +1159,7 @@ import GroupApproximation.Sofic.TransportShapeBridges
 import GroupApproximation.Sofic.GeneralModelKazhdanTransport
 import GroupApproximation.Sofic.LiteralRouteTransport
 import GroupApproximation.Sofic.SimpleSoficEnvelopeUnconditional
+import GroupApproximation.Sofic.ConsistencyDistance
 import GroupApproximation.Analysis.CStarTakesakiCoefficient
 import GroupApproximation.Analysis.LancePositiveDefinite
 import GroupApproximation.Analysis.LanceReduction
