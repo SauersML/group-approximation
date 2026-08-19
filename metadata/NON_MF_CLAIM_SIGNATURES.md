@@ -40,6 +40,12 @@ One entry per declaration named by a manuscript margin note, in the order of `me
 ∃ G x, Group.IsFinitelyPresented G ∧ ∃ g, ¬ComputablePred fun m => g m = 1
 ```
 
+## `GroupApproximation.CStarExactness.reducedGroupCStar_not_nuclear`
+
+```lean
+¬CStarExactness.NuclearReducedCPAP LiteralNonMFPresentation.MarkedGroup
+```
+
 ## `GroupApproximation.CliffordBSAmenableMF.manuscriptSharpnessOfKazhdanHypothesis`
 
 ```lean
@@ -629,6 +635,17 @@ Fintype.card LiteralNonMFPresentation.Generator = 8 ∧
                   (LiteralProductMultiplicity.LiteralFamily k ≃*
                     LiteralProductMultiplicity.LiteralFamily l) →
                 k = l
+```
+
+## `GroupApproximation.LiteralRelatorObstruction.literal_relator_uniform_obstruction`
+
+```lean
+∃ delta,
+  0 < delta ∧
+    ∀ (Y : FiniteModel)
+      (u : LiteralNonMFPresentation.Generator → ↥(Matrix.unitaryGroup Y.carrier ℂ)),
+      (∀ r ∈ LiteralNonMFPresentation.relators, ‖↑((FreeGroup.lift u) r) - 1‖ ≤ delta) →
+        ‖↑((FreeGroup.lift u) LiteralNonMFPresentation.markedWord) - 1‖ < 1
 ```
 
 ## `GroupApproximation.LiteralSignFreeQuotient.commutator_not_zpow_mark`
@@ -1226,6 +1243,20 @@ Function.Injective ⇑LiteralNonMFPresentation.baseMap ∧
     HasKazhdanPropertyT LiteralNonMFPresentation.Base ∧
       ¬Amenability.IsAmenable LiteralNonMFPresentation.MarkedGroup ∧
         ¬Amenability.HasInvariantMean LiteralNonMFPresentation.MarkedGroup
+```
+
+## `GroupApproximation.PrintedCornerCompression.manuscriptCornerAsymptoticRepresentation`
+
+```lean
+∀ {G : Type u_2} [inst : Group G] {model : ℕ → FiniteModel}
+  (D : PrintedCornerCompression.PrintedCornerData G model),
+  ∃ W,
+    W.model = D.cornerModel ∧
+      (∀ (n : ℕ), 0 < Fintype.card (D.cornerModel n).carrier) ∧
+        (∀ (n : ℕ) (g : G), W.map n g ≍ D.cornerMap n g) ∧
+          ∀ (g : G),
+            Filter.Tendsto (fun n => ‖↑(D.cornerMap n g) - D.compress n g‖) Filter.atTop
+              (nhds 0)
 ```
 
 ## `GroupApproximation.ProjectionCompressionCollapse.corona_projection_collapse`
