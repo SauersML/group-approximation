@@ -21,9 +21,9 @@ on:
       - 'scripts/leanstral_novelty.py'
 
 # Every actual model run reserves a unique (file, declaration) before inference.
-# The reservation lives on a separate state branch, so failed/no-change runs and
-# unmerged/closed PRs still consume their target. Only one agent attempt runs at
-# once, making reservation atomic.
+# The reservation is appended as a comment on the ledger issue, so failed/no-change
+# runs and unmerged/closed PRs still consume their target. Comments are append-only
+# and permanent; only one agent attempt runs at once, making reservation atomic.
 concurrency:
   group: ${{ (github.event_name == 'push' || github.event_name == 'pull_request') && format('leanstral-research-smoke-{0}', github.event.pull_request.number || github.ref) || 'leanstral-research-agent' }}
   cancel-in-progress: false
@@ -35,8 +35,9 @@ env:
   PYTHON_VERSION: '3.12'
   VIBE_VERSION: '2.23.1'
   LEAN_LSP_MCP_VERSION: '0.28.1'
-  STATE_BRANCH: 'automation/leanstral-state'
-  STATE_PATH: '.leanstral/attempts.tsv'
+  # Append-only reservation ledger. Deliberately an issue, not a branch:
+  # https://github.com/SauersML/group-approximation/issues/16
+  LEDGER_ISSUE: '16'
 
 jobs:
   smoke:
@@ -46,6 +47,7 @@ jobs:
     permissions:
       contents: read
       pull-requests: read
+      issues: read
     steps:
       - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
         with:
@@ -61,10 +63,9 @@ jobs:
         run: |
           set -euo pipefail
           ledger="$RUNNER_TEMP/ledger.tsv"; blocked="$RUNNER_TEMP/blocked.txt"; ids="$RUNNER_TEMP/ids.txt"
-          : > "$ledger"; : > "$blocked"
-          if p="$(gh api --method GET "repos/$GITHUB_REPOSITORY/contents/$STATE_PATH" -f ref="$STATE_BRANCH" 2>/dev/null)"; then
-            printf '%s' "$p" | jq -r .content | tr -d '\n' | base64 -d > "$ledger"
-          fi
+          : > "$blocked"
+          gh api --paginate "repos/$GITHUB_REPOSITORY/issues/$LEDGER_ISSUE/comments" --jq '.[].body' \
+            | awk -F '\t' 'NF>=4 && $1 ~ /^[0-9][0-9]*$/' > "$ledger"
           awk -F '\t' 'NF>=4 {print $1}' "$ledger" | sort -u > "$ids"
           gh pr list --repo "$GITHUB_REPOSITORY" --state all --limit 1000 --json number,headRefName \
             | jq -r '.[]|select(.headRefName|test("^automation/leanstral-[0-9]+$"))|[.number,.headRefName]|@tsv' \
@@ -103,8 +104,9 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 15
     permissions:
-      contents: write
+      contents: read
       pull-requests: read
+      issues: write
     outputs:
       found: ${{ steps.pick.outputs.found }}
       target: ${{ steps.pick.outputs.target }}
@@ -122,10 +124,9 @@ jobs:
         run: |
           set -euo pipefail
           ledger="$RUNNER_TEMP/ledger.tsv"; blocked="$RUNNER_TEMP/blocked.txt"; ids="$RUNNER_TEMP/ids.txt"
-          : > "$ledger"; : > "$blocked"
-          if p="$(gh api --method GET "repos/$GITHUB_REPOSITORY/contents/$STATE_PATH" -f ref="$STATE_BRANCH" 2>/dev/null)"; then
-            printf '%s' "$p" | jq -r .content | tr -d '\n' | base64 -d > "$ledger"
-          fi
+          : > "$blocked"
+          gh api --paginate "repos/$GITHUB_REPOSITORY/issues/$LEDGER_ISSUE/comments" --jq '.[].body' \
+            | awk -F '\t' 'NF>=4 && $1 ~ /^[0-9][0-9]*$/' > "$ledger"
           awk -F '\t' 'NF>=4 {print $1}' "$ledger" | sort -u > "$ids"
           gh pr list --repo "$GITHUB_REPOSITORY" --state all --limit 1000 --json number,headRefName \
             | jq -r '.[]|select(.headRefName|test("^automation/leanstral-[0-9]+$"))|[.number,.headRefName]|@tsv' \
@@ -156,24 +157,27 @@ jobs:
           ANCHOR: ${{ steps.pick.outputs.anchor }}
         run: |
           set -euo pipefail
-          main_sha="$(git rev-parse HEAD)"
-          if ! gh api --method GET "repos/$GITHUB_REPOSITORY/git/ref/heads/$STATE_BRANCH" >/dev/null 2>&1; then
-            gh api --method POST "repos/$GITHUB_REPOSITORY/git/refs" -f ref="refs/heads/$STATE_BRANCH" -f sha="$main_sha" >/dev/null
-          fi
-          ledger="$RUNNER_TEMP/state.tsv"; : > "$ledger"; file_sha=''
-          if p="$(gh api --method GET "repos/$GITHUB_REPOSITORY/contents/$STATE_PATH" -f ref="$STATE_BRANCH" 2>/dev/null)"; then
-            file_sha="$(printf '%s' "$p" | jq -r .sha)"
-            printf '%s' "$p" | jq -r .content | tr -d '\n' | base64 -d > "$ledger"
-          fi
+          ledger="$RUNNER_TEMP/state.tsv"
+          gh api --paginate "repos/$GITHUB_REPOSITORY/issues/$LEDGER_ISSUE/comments" --jq '.[].body' \
+            | awk -F '\t' 'NF>=4 && $1 ~ /^[0-9][0-9]*$/' > "$ledger"
           if awk -F '\t' -v p="$TARGET" -v a="$ANCHOR" 'NF>=4&&$3==p&&$4==a{f=1}END{exit f?0:1}' "$ledger"; then
             echo "::error::Concurrent duplicate reservation: $TARGET :: $ANCHOR"; exit 1
           fi
-          printf '%s\t%s\t%s\t%s\n' "$GITHUB_RUN_ID" "$(date -u +%FT%TZ)" "$TARGET" "$ANCHOR" >> "$ledger"
-          encoded="$(base64 -w0 < "$ledger")"
-          args=(--method PUT "repos/$GITHUB_REPOSITORY/contents/$STATE_PATH" -f message="reserve Leanstral target $GITHUB_RUN_ID" -f content="$encoded" -f branch="$STATE_BRANCH")
-          [[ -z "$file_sha" ]] || args+=(-f sha="$file_sha")
-          gh api "${args[@]}" >/dev/null
-          echo "Reserved permanently: $TARGET :: $ANCHOR"
+          row="$(printf '%s\t%s\t%s\t%s' "$GITHUB_RUN_ID" "$(date -u +%FT%TZ)" "$TARGET" "$ANCHOR")"
+          { echo '<!-- leanstral-reservation -->'
+            echo "Reserved by run [$GITHUB_RUN_ID]($GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID) before inference."
+            echo
+            echo '```'
+            printf '%s\n' "$row"
+            echo '```'
+          } > "$RUNNER_TEMP/reservation.md"
+          jq -n --rawfile b "$RUNNER_TEMP/reservation.md" '{body: $b}' \
+            | gh api --method POST "repos/$GITHUB_REPOSITORY/issues/$LEDGER_ISSUE/comments" --input - >/dev/null
+          # A reservation that cannot be read back has not been made.
+          gh api --paginate "repos/$GITHUB_REPOSITORY/issues/$LEDGER_ISSUE/comments" --jq '.[].body' \
+            | awk -F '\t' 'NF>=4 && $1 ~ /^[0-9][0-9]*$/' \
+            | grep -Fxq "$row" || { echo '::error::Reservation did not persist on the ledger issue'; exit 1; }
+          echo "Reserved permanently on issue #$LEDGER_ISSUE: $TARGET :: $ANCHOR"
 
   generate:
     needs: [auth, select]
@@ -183,6 +187,7 @@ jobs:
     permissions:
       contents: read
       pull-requests: read
+      issues: read
     outputs:
       has_changes: ${{ steps.patch.outputs.has_changes }}
       base_sha: ${{ steps.base.outputs.sha }}
@@ -265,10 +270,10 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          h="$RUNNER_TEMP/history.tsv"; : > "$h"
-          if p="$(gh api --method GET "repos/$GITHUB_REPOSITORY/contents/$STATE_PATH" -f ref="$STATE_BRANCH" 2>/dev/null)"; then
-            printf '%s' "$p" | jq -r .content | tr -d '\n' | base64 -d > "$h"
-          fi
+          set -euo pipefail
+          h="$RUNNER_TEMP/history.tsv"
+          gh api --paginate "repos/$GITHUB_REPOSITORY/issues/$LEDGER_ISSUE/comments" --jq '.[].body' \
+            | awk -F '\t' 'NF>=4 && $1 ~ /^[0-9][0-9]*$/' > "$h"
           echo "HISTORY=$h" >> "$GITHUB_ENV"
       - name: Run Leanstral on reserved declaration
         env:
@@ -417,7 +422,7 @@ jobs:
           cat > "$RUNNER_TEMP/body" <<EOF
           Reserved target: \`$TARGET\` near \`$ANCHOR\`.
 
-          This target was persisted on \`$STATE_BRANCH\` before inference. It remains consumed even if this PR never merges, closes, or the run produced no subsequent merge. Later runs therefore move to another declaration.
+          This target was persisted on the reservation ledger (issue #$LEDGER_ISSUE) before inference. It remains consumed even if this PR never merges, closes, or the run produced no subsequent merge. Later runs therefore move to another declaration.
 
           The model had read-only GitHub access; only the reserved file was accepted, proof shortcuts were rejected, and the module compiled before publication.
 
@@ -425,3 +430,34 @@ jobs:
           Run: ${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}
           EOF
           gh pr create --repo "$GITHUB_REPOSITORY" --base main --head "$BRANCH" --draft --title "Leanstral: $ANCHOR" --body-file "$RUNNER_TEMP/body"
+
+  # The published PR head is the only branch this lane creates. Retire each one as
+  # soon as its PR is no longer open, so the repository stays at main + verified.
+  sweep:
+    needs: [auth, select, generate, publish]
+    if: ${{ always() && (github.event_name == 'schedule' || github.event_name == 'workflow_dispatch') }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: write
+      pull-requests: read
+    steps:
+      - env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          open="$RUNNER_TEMP/open.txt"
+          gh pr list --repo "$GITHUB_REPOSITORY" --state open --limit 1000 --json headRefName \
+            --jq '.[].headRefName' > "$open"
+          gh api --paginate "repos/$GITHUB_REPOSITORY/git/matching-refs/heads/automation/leanstral-" \
+            --jq '.[].ref' | sed 's|^refs/heads/||' \
+            | grep -E '^automation/leanstral-[0-9]+$' > "$RUNNER_TEMP/heads.txt" || true
+          while read -r b; do
+            [[ -n "$b" ]] || continue
+            if grep -Fxq "$b" "$open"; then echo "keep (PR still open): $b"; continue; fi
+            if gh api --method DELETE "repos/$GITHUB_REPOSITORY/git/refs/heads/$b" >/dev/null 2>&1; then
+              echo "deleted: $b"
+            else
+              echo "::warning::could not delete $b"
+            fi
+          done < "$RUNNER_TEMP/heads.txt"
