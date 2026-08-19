@@ -72,10 +72,18 @@ def main() -> int:
         failures.append('hook command is not anchored to the workspace root; '
                         'a relative path resolves against the session cwd and a '
                         'missing script exits 2, which PreToolUse reads as deny')
-    matcher = hook['hooks']['PreToolUse'][0]['matcher']
-    for tool in ('Bash', 'Edit', 'Write', 'MultiEdit'):
-        if tool not in matcher:
-            failures.append(f'matcher does not cover {tool}: {matcher}')
+    # No matcher is deliberate: the guard decides from the tool name, so a rename
+    # in the CLI cannot silently disable it. A matcher that never matches is
+    # indistinguishable from a working guard in every listing Grok offers.
+    if 'matcher' in hook['hooks']['PreToolUse'][0]:
+        failures.append('PreToolUse declares a matcher; tool-name drift would '
+                        'silently disable the guard')
+
+    loader = json.loads((HOOKS_DIR / 'global-loader.json').read_text())
+    loader_cmd = loader['hooks']['PreToolUse'][0]['hooks'][0]['command']
+    if 'pr-only-guard.py' not in loader_cmd or '-f ' not in loader_cmd:
+        failures.append('global loader must test for the guard before running it, '
+                        'or it denies every tool call in repositories with no guard')
 
     with tempfile.TemporaryDirectory() as raw:
         tmp = pathlib.Path(raw)
@@ -83,10 +91,17 @@ def main() -> int:
         on_branch = str(_repo(tmp, 'onbranch', 'grok/task'))
 
         def bash(cwd: str, cmd: str) -> dict:
-            return {'toolName': 'Bash', 'cwd': cwd, 'toolInput': {'command': cmd}}
+            # Grok's real shell tool, not the Claude Code spelling.
+            return {'toolName': 'run_terminal_command', 'cwd': cwd,
+                    'toolInput': {'command': cmd}}
 
         print('\non main -- the protected branch:')
-        for tool in ('Edit', 'Write', 'MultiEdit'):
+        # workspaceRoot arrives with a trailing slash; the guard must cope.
+        check('trailing-slash workspaceRoot',
+              _decide({'toolName': 'search_replace', 'workspaceRoot': on_main + '/',
+                       'toolInput': {'file_path': 'x'}}), DENY)
+        for tool in ('search_replace', 'edit_file', 'write_file', 'delete_file',
+                     'Edit', 'Write', 'MultiEdit'):
             check(f'{tool} is refused', _decide({'toolName': tool, 'cwd': on_main,
                                                  'toolInput': {}}), DENY)
         check('git commit is refused', _decide(bash(on_main, 'git commit -m x')), DENY)
@@ -96,8 +111,13 @@ def main() -> int:
         check('snake_case event keys honoured',
               _decide({'tool_name': 'Write', 'cwd': on_main, 'tool_input': {}}), DENY)
 
+        print('\nread-only tools are never blocked:')
+        for tool in ('read_file', 'list_dir', 'grep'):
+            check(f'{tool} is allowed on main',
+                  _decide({'toolName': tool, 'cwd': on_main, 'toolInput': {}}), 0)
+
         print('\non a grok/ branch -- the working branch:')
-        for tool in ('Edit', 'Write', 'MultiEdit'):
+        for tool in ('search_replace', 'edit_file', 'write_file', 'Edit'):
             check(f'{tool} is allowed', _decide({'toolName': tool, 'cwd': on_branch,
                                                  'toolInput': {}}), 0)
         check('pushing the topic branch is allowed',

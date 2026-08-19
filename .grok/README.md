@@ -9,23 +9,28 @@ curl -fsSL https://x.ai/cli/install.sh | bash
 grok --version
 ```
 
-Start Grok from the repository root with project hooks trusted:
+## Arming the guard
+
+Grok 0.2.93 does **not** load hooks from `<project>/.grok/hooks/`. This is measured,
+not inferred: with only a project hook present, Grok edited a file on `main` without
+the guard ever running, and `grok inspect` listed no project hook. Folder trust is not
+the cause -- `projectTrusted` was already true. Global hooks under `~/.grok/hooks/` do
+load, so that is where the guard has to be reachable from:
 
 ```bash
-grok --trust
+./.grok/install-global-hook.sh
 ```
 
-**This is not optional, and skipping it fails silently.** Project hooks under
-`.grok/hooks/` only run once the folder is trusted; until then Grok skips them
-without any message, and the PR-only guard below is simply not enforced. Trust is
-recorded once in `~/.grok/trusted_folders.toml` (`--trust`, or `/hooks-trust` from
-inside a session) and covers repo-local MCP, LSP, and hooks together.
+That installs `hooks/global-loader.json` as `~/.grok/hooks/pr-only.json`. The loader is
+repository-agnostic: it runs `$GROK_WORKSPACE_ROOT/.grok/hooks/pr-only-guard.py` when the
+current workspace ships one and exits 0 otherwise, so it enforces this repository's policy
+here and imposes nothing on any other repository on the machine. Both halves are covered by
+`.grok/hooks/test_pr_only_guard.py`, which CI runs on every change under `.grok/`.
 
-Confirm enforcement is live rather than assuming it: a trusted session prints
-`PR-only guard armed ...` at startup from the `SessionStart` hook, and
-`grok inspect` lists the project hook under `Hooks`. If neither appears, only the
-weaker layers are active -- the deny rules in `config.toml` and the prose rule in
-`rules/01-pr-only.md` -- and Grok can still edit and commit on `main`.
+Confirm it is live rather than assuming: `grok inspect` should list a `command ... user`
+entry under `Hooks`, and a session started in this repository on `main` should be unable to
+edit a file. `.grok/hooks/pr-only.json` is kept as the project-level declaration for when
+xAI wires project hooks up; it is inert today and harmless.
 
 Inspect the loaded project configuration with:
 
