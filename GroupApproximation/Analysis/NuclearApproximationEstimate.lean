@@ -34,11 +34,15 @@ map had ever been shown nuclear for want of a target to factor through.
 `finDimMatrixBlock` and `finDimOperatorBlock` are the first two: square matrices
 at the L2 operator norm, and the operators on `ℂᵏ` that the CPAP actually
 factors through.  Each C⋆-structure is six field assignments, every one of them
-an instance already.  It
-is kept a `def` rather than an `instance` for the reason
+an instance already.  Each is kept a `def` rather than an `instance` for the reason
 `Analysis/PolarLiftingMatrixBlocks` keeps its copy `local`: the norm is scoped,
 and registering the bundle globally would put it in competition with the
-Hilbert--Schmidt structure the corona lane uses on the same type.
+Hilbert--Schmidt structure the corona lane uses on the same type.  They carry
+`@[reducible]`, which Lean requires of any `def` whose type is a class, and the
+bundles put them in scope with `letI` so the structure's instance fields are
+filled by search rather than by hand --- supplying them by hand looks equivalent
+and is not, because `findim`'s `Module ℂ` has to be the one the C⋆-structure
+carries.
 
 `NeZero k` is not bookkeeping.  The identity matrix must have norm one, which
 fails over an empty index set; the CPAP produces its `k` from a Følner set,
@@ -83,7 +87,7 @@ operator norm.  Six field assignments, every one of them an instance already.
 
 A `def` and not an `instance`: the L2 operator norm is scoped, and the same type
 carries a Hilbert--Schmidt structure elsewhere in this development. -/
-def matrixBlockCStarAlgebra (k : ℕ) [NeZero k] :
+@[reducible] def matrixBlockCStarAlgebra (k : ℕ) [NeZero k] :
     CStarAlgebra (Matrix (Fin k) (Fin k) ℂ) where
   toNormedRing := inferInstance
   toStarRing := inferInstance
@@ -95,10 +99,9 @@ def matrixBlockCStarAlgebra (k : ℕ) [NeZero k] :
 /-- **The first inhabitant of `FinDimCStarAlgebra`.**  Until this, the class of
 finite-dimensional targets `IsNuclearMap` factors through was empty in this
 corpus, so no map could be shown nuclear whatever its approximations. -/
-def finDimMatrixBlock (k : ℕ) [NeZero k] : FinDimCStarAlgebra where
-  carrier := Matrix (Fin k) (Fin k) ℂ
-  algebra := matrixBlockCStarAlgebra k
-  findim := inferInstance
+def finDimMatrixBlock (k : ℕ) [NeZero k] : FinDimCStarAlgebra :=
+  letI : CStarAlgebra (Matrix (Fin k) (Fin k) ℂ) := matrixBlockCStarAlgebra k
+  { carrier := Matrix (Fin k) (Fin k) ℂ }
 
 @[simp] theorem finDimMatrixBlock_carrier (k : ℕ) [NeZero k] :
     (finDimMatrixBlock k).carrier = Matrix (Fin k) (Fin k) ℂ := rfl
@@ -110,7 +113,7 @@ and the two are isometrically `⋆`-isomorphic but not the same type.
 
 `NeZero k` again buys `‖1‖ = 1`, which is what separates a C⋆-algebra from a
 C⋆-ring here. -/
-def operatorBlockCStarAlgebra (k : ℕ) [NeZero k] :
+@[reducible] def operatorBlockCStarAlgebra (k : ℕ) [NeZero k] :
     CStarAlgebra (EuclideanSpace ℂ (Fin k) →L[ℂ] EuclideanSpace ℂ (Fin k)) where
   toNormedRing := inferInstance
   toStarRing := inferInstance
@@ -121,10 +124,10 @@ def operatorBlockCStarAlgebra (k : ℕ) [NeZero k] :
 
 /-- **The finite-dimensional target the Lance approximation factors through.**
 -/
-def finDimOperatorBlock (k : ℕ) [NeZero k] : FinDimCStarAlgebra where
-  carrier := EuclideanSpace ℂ (Fin k) →L[ℂ] EuclideanSpace ℂ (Fin k)
-  algebra := operatorBlockCStarAlgebra k
-  findim := inferInstance
+def finDimOperatorBlock (k : ℕ) [NeZero k] : FinDimCStarAlgebra :=
+  letI : CStarAlgebra (EuclideanSpace ℂ (Fin k) →L[ℂ] EuclideanSpace ℂ (Fin k)) :=
+    operatorBlockCStarAlgebra k
+  { carrier := EuclideanSpace ℂ (Fin k) →L[ℂ] EuclideanSpace ℂ (Fin k) }
 
 @[simp] theorem finDimOperatorBlock_carrier (k : ℕ) [NeZero k] :
     (finDimOperatorBlock k).carrier
