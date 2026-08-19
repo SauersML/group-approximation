@@ -12,6 +12,7 @@ concurrency:
   group: finalize-non-mf-referee-text
   cancel-in-progress: true
 
+# One-shot publication text normalization; this workflow deletes itself.
 jobs:
   finalize:
     if: github.head_ref == 'agent/non-mf-referee-repair'
