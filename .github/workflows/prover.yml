@@ -458,6 +458,11 @@ jobs:
     steps:
       - name: Check out repository
         uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
+        with:
+          # The research graph pins artifacts as <rev>:<path> into history
+          # the worktree deliberately does not carry; a shallow clone cannot
+          # resolve those pins, so the source scan needs full history.
+          fetch-depth: 0
 
       - name: Cache Lean toolchain
         id: elan-cache
