@@ -91,7 +91,7 @@ FORBIDDEN = [
 FORBIDDEN_ALLOWLIST = {
     ("hand-declared axiom", "scripts/Audit/Plants.lean", 28,
      "axiom plantedAxiom : True"),
-    ("sorry / sorryAx", "Palomar/Challenge.lean", 310, "sorry"),
+    ("sorry / sorryAx", "Palomar/Challenge.lean", 528, "sorry"),
 }
 
 # Strings known to have been fabricated in earlier edits and purged from the
