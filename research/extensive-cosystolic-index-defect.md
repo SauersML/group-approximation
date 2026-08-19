@@ -2,47 +2,97 @@
 rg: 2
 id: extensive-cosystolic-index-defect
 kind: claim
-title: A finite presentation forcing positive-density index defects in every approximate representation
+title: A marked presentation forcing positive-density index syndromes to pay HS relator energy
 distinct_from:
-  index-density-is-amplification-stable: that is the scaling remark saying density is the only normalization the amplification no-go leaves alive; this is the missing construction that would put a positive density there
-  additive-index-instability: that is the no-go this construction is designed to evade, and it is established; this is an open construction target
-  hs-expander-block-decomposition: that decomposes an HS model into expander blocks for the Steinberg lane; this asks for a presentation whose relator syndrome cannot be concentrated on o(n) coordinates, which is a property of the presentation rather than of one model
+  relator-only-hs-obstruction-has-trivial-model: That proves the unmarked version is impossible as an existence obstruction because every presentation has the identity tuple; this target explicitly conditions on separation of a nontrivial marked word and asks for a quantitative energy payment.
+  index-density-is-amplification-stable: That is the scaling fact saying density is the only additive-index normalization left invariant by tensor amplification; this is the missing construction that must also turn the density into actual relator energy.
+  additive-index-instability: That kills raw parity/Fredholm indices under amplification; this asks for Theta(d) local syndromes together with a bounded-overlap energy inequality.
+  hs-expander-block-decomposition: That is a decomposition theorem for one specific normalized-HS stability route; this is a presentation-level certificate intended to rule out separated microstates directly.
 artifacts:
   - research/artifacts/universal-hyperlinearity-audit-2026-08-18.md
 ---
 
-OPEN.  Construct a finite group presentation `<S | R>` and a constant `c > 0`
-such that every unitary `S`-table with small normalized-HS relator defect
-carries at least `c · n` independent index defects, `n` the matrix dimension.
-By `index-density-is-amplification-stable` such an obstruction is not erased
-by tensor amplification, and by `additive-index-instability` no bounded-rank
-version of it can work.
+Construct a finite group presentation
 
-The design is: read a relator violation as a **syndrome**, and use an
-expansion property of the presentation complex to prevent the syndrome from
-being supported on `o(n)` coordinates.  The candidate sources of that
-expansion are cosystolic expanders, high-dimensional expanders, quantum LDPC
-codes and locally testable codes, all of which exist precisely to make local
-checks certify a global, extensive defect.
+```text
+P = < S | R >
+```
+
+a word `z` which is nontrivial in the presented group, and constants
+`alpha,c,C>0` with the following property, uniformly in the matrix dimension
+`d`.
+
+For every unitary `S`-tuple `U=(U_s)_(s in S)` satisfying the marked
+separation
+
+```text
+||z(U)-1||_2 >= alpha,
+```
+
+associate a family of local integer/rank **index syndromes**.  Whenever the
+relator defect is below a fixed small threshold, require at least `c d`
+independent syndrome carriers and, crucially, a bounded-overlap energy
+estimate of the form
+
+```text
+#(nonzero syndrome carriers) / d
+   <= C * sum_(r in R) ||r(U)-1||_2^2.                 (EID)
+```
+
+Equivalent variants are allowed: the carriers may have bounded rank rather
+than rank one, the right side may use a fixed finite packet of consequences of
+`R`, and bounded overlap may replace literal orthogonality.  What is
+load-bearing is that the constants are dimension-independent and that the
+positive syndrome density **pays normalized-HS relation energy**.
+
+Combining the two displayed requirements gives
+
+```text
+sum_(r in R) ||r(U)-1||_2^2 >= c/C
+```
+
+for every separated tuple in the small-defect regime, a contradiction.  Thus
+no sequence of presentation microstates can simultaneously drive all relators
+to zero and keep the nontrivial word `z` separated.
+
+## Why this is the corrected index target
+
+The previous version asked only for positive index density in every
+small-relator-defect tuple.  `relator-only-hs-obstruction-has-trivial-model`
+exposes the first missing hypothesis: the identity tuple satisfies every
+relator exactly, so an existence obstruction must consume separation.  There
+was a second logical gap as well: a topological index ordinarily obstructs
+**repair to an exact representation**, while hyperlinearity requires only the
+existence of approximate representations.  Positive index density by itself
+therefore does not contradict hyperlinearity.  Inequality `(EID)` is the
+missing conversion from topology to existence.
+
+The intended mechanism remains cosystolic/qLDPC expansion.  A marked word
+creates a nonzero global syndrome; expansion should force that syndrome to
+occupy `Theta(d)` local carriers, while local testability and bounded overlap
+should make those carriers charge disjoint or bounded-multiplicity pieces of
+the relator energy.  This is exactly the kind of local-to-global statement
+high-dimensional expanders and locally testable codes are built to provide.
+The unsolved translation is from code coordinates to invariant/rank data of a
+unitary presentation microstate.
 
 ## Attempts
 
-**Bott index in a single coordinate.**  Dead, and the reason is the whole
-point of this node: a Bott/Fredholm index attached to one pair of almost
-commuting matrices is a bounded-rank datum with density `O(1/n)`, invisible
-to the normalized metric.  This is `additive-index-instability` and it is what
-`additive-index-transducer` fell to.
+**One Bott/Fredholm defect.**  Dead.  Bounded rank has density `O(1/d)` and is
+invisible after normalized-HS amplification (`additive-index-instability`).
 
-**Take the obstruction from the coefficient code directly.**  Not attempted.
-The obstacle to be honest about: the known cosystolic/qLDPC statements bound
-the *distance of a classical or quantum code*, i.e. the weight of a violating
-vector, and what is needed here is a lower bound on the rank of a defect in an
-approximate *unitary representation*.  No translation between the two is in
-this repository, and none is claimed by the sources; the translation is the
-work.
+**Positive density without energy payment.**  Also insufficient.  Almost
+commuting matrices can carry nonzero topological index at arbitrarily small
+defect; an index can certify non-repairability without certifying
+nonexistence.  The route to nonhyperlinearity needs `(EID)` or an equivalent
+quantitative payment.
 
-**Deferred parts.**  No candidate presentation is proposed here.  Recording
-the target and its two proved constraints is deliberate: the constraints
-(`Theta(n)` density required, bounded rank excluded) are cheap to state and
-expensive to rediscover, and they disqualify most of the obvious attempts
-before any construction is attempted.
+**Relator-only forcing.**  Impossible as stated in the former version: all
+generators equal to `1_d` is an exact tuple in every dimension.  The marked
+word is now part of the target precisely to remove that degeneracy.
+
+**Coefficient code directly.**  Still open.  Known cosystolic/qLDPC theorems
+control the weight of a classical/quantum-code syndrome.  No theorem in this
+repository converts a separated unitary word into `Theta(d)` local index
+carriers satisfying `(EID)`.  That translation is now the entire construction
+problem, rather than an implicit step hidden inside the word "defect".
