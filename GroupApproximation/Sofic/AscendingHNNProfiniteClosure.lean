@@ -79,7 +79,7 @@ theorem finiteQuotient_level_mem_base {Q : Type} [Group Q] [Finite Q]
       change ψ (iotaVertical α hα x) ∈ (ascendingHNNBase α hα).map ψ
       exact Subgroup.mem_map_of_mem ψ ⟨x, rfl⟩
   | succ n ih =>
-      rw [show Nat.succ n = n + 1 by omega, inl_level_succ]
+      rw [inl_level_succ]
       simp only [map_mul, map_inv]
       exact compressorImage_normalizes_inv ψ (ascendingHNNBase α hα)
         (ascendingHNNBase_compressed α hα) _ ih
@@ -122,7 +122,11 @@ theorem profiniteClosure_le_ascendingHNNHeightKernel :
   obtain ⟨b, hb, hbv⟩ := hmem
   obtain ⟨γ, rfl⟩ := hb
   have hbase : ψ (iotaVertical α hα γ) = 1 := by
-    simp [ψ, height_iotaVertical]
+    show (AddMonoidHom.toMultiplicative
+        (Int.castAddHom (ZMod (nz.natAbs + 1)))).comp (height α hα)
+      (iotaVertical α hα γ) = 1
+    rw [MonoidHom.comp_apply, height_iotaVertical]
+    simp
   have hvone : ψ v = 1 := by
     rw [← hbv, hbase]
   have hcast : (nz : ZMod (nz.natAbs + 1)) = 0 := by
@@ -169,7 +173,7 @@ theorem profiniteClosure_le_finiteIndex_overgroup {G : Type*} [Group G]
     exact hfix
   have hinv : (h⁻¹ * g)⁻¹ ∈ K := by
     simpa using (QuotientGroup.eq (s := K)).mp hq
-  have hrest : h⁻¹ * g ∈ K := K.inv_mem hinv
+  have hrest : h⁻¹ * g ∈ K := by simpa using K.inv_mem hinv
   have hmul : h * (h⁻¹ * g) ∈ K := K.mul_mem hhK hrest
   simpa using hmul
 
@@ -338,7 +342,11 @@ theorem ascendingHNNBaseSeparable_of_surjective
   · intro b hb
     rw [MonoidHom.mem_ker]
     obtain ⟨γ, rfl⟩ := hb
-    simp [ψ, height_iotaVertical]
+    show (AddMonoidHom.toMultiplicative
+        (Int.castAddHom (ZMod (nz.natAbs + 1)))).comp (height α hα)
+      (iotaVertical α hα γ) = 1
+    rw [MonoidHom.comp_apply, height_iotaVertical]
+    simp
   · intro hmem
     have hone : ψ g = 1 := MonoidHom.mem_ker.mp hmem
     have hcast : (nz : ZMod (nz.natAbs + 1)) = 0 := by

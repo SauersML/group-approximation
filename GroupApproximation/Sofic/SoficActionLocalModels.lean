@@ -29,6 +29,7 @@ variable {G : Type u} [Group G] {X : Type u} [MulAction G X]
 which contains it. -/
 noncomputable def finsetToSubgroup (F : Finset G) (K : Subgroup G)
     (hFK : ∀ g ∈ F, g ∈ K) : Finset K :=
+  letI := Classical.decEq K
   F.attach.image (fun p => (⟨p.1, hFK p.1 p.2⟩ : K))
 
 @[simp] theorem mem_finsetToSubgroup (F : Finset G) (K : Subgroup G)

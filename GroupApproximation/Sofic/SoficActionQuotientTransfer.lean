@@ -42,7 +42,8 @@ theorem quotientMapMulEquiv_injective (e : G ≃* H) (K : Subgroup G) :
       obtain ⟨k, hk, hkEq⟩ := hmem
       have hpre : a⁻¹ * b = k := by
         apply e.injective
-        rw [map_mul, map_inv, hkEq]
+        rw [map_mul, map_inv]
+        exact hkEq.symm
       exact (QuotientGroup.eq (s := K)).mpr (by rw [hpre]; exact hk)
 
 /-- The induced map on cosets is surjective. -/
@@ -54,15 +55,17 @@ theorem quotientMapMulEquiv_surjective (e : G ≃* H) (K : Subgroup G) :
     refine ⟨QuotientGroup.mk (e.symm h), ?_⟩
     rw [quotientMapMulEquiv_mk, e.apply_symm_apply]
 
-/-- Regard `G/K` as an `H`-set through the inverse group equivalence. -/
-local instance quotientSourceAction (e : G ≃* H) (K : Subgroup G) :
+/-- Regard `G/K` as an `H`-set through the inverse group equivalence.
+Installed with `letI` at use sites: the equivalence cannot be inferred. -/
+def quotientSourceAction (e : G ≃* H) (K : Subgroup G) :
     MulAction H (G ⧸ K) :=
   MulAction.compHom _ e.symm.toMonoidHom
 
 /-- The induced coset map is equivariant for the transported action. -/
 theorem quotientMapMulEquiv_equivariant (e : G ≃* H) (K : Subgroup G)
     (h : H) (x : G ⧸ K) :
-    quotientMapMulEquiv e K (h • x) = h • quotientMapMulEquiv e K x := by
+    quotientMapMulEquiv e K (e.symm h • x)
+      = h • quotientMapMulEquiv e K x := by
   induction x using QuotientGroup.induction_on with
   | _ g =>
     show quotientMapMulEquiv e K

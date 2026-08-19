@@ -1,5 +1,6 @@
 import GroupApproximation.Analysis.CStarStinespringDefect
 import GroupApproximation.Analysis.CStarStinespringMul
+import Mathlib.Topology.Algebra.LinearMapCompletion
 
 /-!
 # The dilation operators on the Stinespring space
@@ -60,7 +61,7 @@ noncomputable def stinespringRepOp (c : A) :
     stinespringRepOp φ hφ c (f : StinespringSpace φ hφ)
       = ((stinespringActCLM φ hφ c f : StinespringPre φ hφ) :
           StinespringSpace φ hφ) :=
-  ContinuousLinearMap.completion_coe _ _
+  ContinuousLinearMap.completion_apply_coe _ _
 
 theorem stinespringRepOp_one :
     stinespringRepOp φ hφ (1 : A)
