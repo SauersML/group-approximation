@@ -72,11 +72,9 @@ theorem manuscriptNormalKazhdanObstruction_anyUniverse :
   haveI : Countable Gamma := C.countable_source
   obtain ⟨Gamma₀, _groupGamma₀, ⟨e⟩⟩ := Type0Transfer.exists_type0_model Gamma
   haveI : Countable Gamma₀ := Type0Transfer.countable_type0_model Gamma e
-  have hK₀ : K ≤ (CompressionUniverseTransfer.mapCoreSource C e).defectNormal := by
-    rw [CompressionUniverseTransfer.mapCoreSource_defectNormal]
-    exact hK
   exact manuscriptNormalKazhdanObstruction
-    (CompressionUniverseTransfer.mapCoreSource C e) K hT hK₀ d hd
+    (CompressionUniverseTransfer.mapCoreSource C e) K hT (by
+      simpa [CompressionUniverseTransfer.mapCoreSource_defectNormal] using hK) d hd
 
 /-- **`cor:intrinsic-nk` with the Kazhdan source at an arbitrary universe**
 (ledger row `NK.16`).
