@@ -25,6 +25,7 @@ import GroupApproximation.Analysis.CStarUnitalCPContractive
 import GroupApproximation.Analysis.CStarChoiMap
 import GroupApproximation.Analysis.LanceFolnerMaps
 import GroupApproximation.Analysis.CStarFormCompletelyPositive
+import GroupApproximation.Analysis.NuclearApproximationEstimate
 import GroupApproximation.Analysis.UCPContractiveMatrix
 import GroupApproximation.Analysis.GroupVonNeumannTrace
 import GroupApproximation.Analysis.LimitsTraceStandardForm
@@ -49,6 +50,7 @@ import GroupApproximation.Analysis.LanceNuclearity
 import GroupApproximation.Analysis.LanceFolnerCPAP
 import GroupApproximation.Analysis.LanceAmenableOverlap
 import GroupApproximation.Analysis.LanceNuclearAmenable
+import GroupApproximation.Analysis.TikuisisWhiteWinterAmenableClass
 import GroupApproximation.Kazhdan.KazhdanUniverseDescent
 import GroupApproximation.Sofic.ChosenMaximalCStarInfinite
 import GroupApproximation.Analysis.TorsionFreeFullMFCStarConsequences
@@ -61,6 +63,7 @@ import GroupApproximation.Computability.PresentationCodeList
 import GroupApproximation.Computability.RabinVariantCode
 import GroupApproximation.Computability.CoprodCode
 import GroupApproximation.Computability.AdianRabinVariantTransform
+import GroupApproximation.Computability.AdianRabinGeneral
 import GroupApproximation.Computability.RawWord
 import GroupApproximation.Computability.RawTransform
 import GroupApproximation.Computability.RawTransformPrimrec
@@ -958,6 +961,7 @@ import GroupApproximation.Analysis.CStarSliceBound
 import GroupApproximation.Analysis.CStarSliceCompletion
 import GroupApproximation.Analysis.CStarSliceLeft
 import GroupApproximation.Analysis.CStarExactnessSliceReduction
+import GroupApproximation.Analysis.OmegaUnitaryRepExists
 import GroupApproximation.Analysis.CStarSliceIdeal
 import GroupApproximation.Analysis.CStarMaxTensorNorm
 import GroupApproximation.Analysis.CStarTensorComparison
@@ -1234,6 +1238,9 @@ import GroupApproximation.Algebra.WordMetricBall
 import GroupApproximation.Analysis.CoarseCompression
 import GroupApproximation.Analysis.SchoenbergKernel
 import GroupApproximation.Analysis.L2KernelOperator
+import GroupApproximation.Analysis.GaussianRoeOperator
+import GroupApproximation.Analysis.RoeSquareRoot
+import GroupApproximation.Analysis.GuentnerKaminkerEndpoint
 import GroupApproximation.Analysis.GuentnerKaminker
 import GroupApproximation.Analysis.PropertyASquareWitness
 import GroupApproximation.Manuscript.NonMF.QuestionOneOpenness
