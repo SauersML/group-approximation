@@ -89,6 +89,20 @@ theorem norm_one_le_of_cstar : ‖(1 : A)‖ ≤ 1 := by
     rwa [star_one, one_mul] at h0
   nlinarith [norm_nonneg (1 : A)]
 
+/-- An approximate isometry has norm at most two: `‖x‖² = ‖x^*x‖ ≤ 3/2`.  The
+printed proof of `lem:ultrafinite` says "lift `σ` to a *bounded* family", but
+boundedness of the lift is a consequence of the Gram bound rather than a
+hypothesis, and this is where that is recorded. -/
+theorem norm_le_two_of_gram_le {x : A} (hx : ‖star x * x - 1‖ ≤ 1 / 2) :
+    ‖x‖ ≤ 2 := by
+  have hone : ‖(1 : A)‖ ≤ 1 := norm_one_le_of_cstar
+  have h : ‖star x * x‖ = ‖x‖ * ‖x‖ := CStarRing.norm_star_mul_self (x := x)
+  have hrw : (star x * x - 1) + 1 = star x * x := by abel
+  have hb : ‖star x * x‖ ≤ ‖star x * x - 1‖ + ‖(1 : A)‖ := by
+    calc ‖star x * x‖ = ‖(star x * x - 1) + 1‖ := by rw [hrw]
+      _ ≤ ‖star x * x - 1‖ + ‖(1 : A)‖ := norm_add_le _ _
+  nlinarith [norm_nonneg x]
+
 /-- **The polar correction of an approximate isometry is an isometry.**  This is
 `PolarLiftingGeneralCStar.polarUnitary_mem_unitary` with its second hypothesis
 removed: the identity `w^*w = 1` needs only the Gram bound on `x^*x`, and it is
@@ -124,13 +138,7 @@ theorem norm_mul_star_sub_one_le (hDF : ∀ a b : A, a * b = 1 → b * a = 1)
     have h : ‖star w * w‖ = ‖w‖ * ‖w‖ := CStarRing.norm_star_mul_self (x := w)
     rw [hw1] at h
     nlinarith [norm_nonneg w]
-  have hxn : ‖x‖ ≤ 2 := by
-    have h : ‖star x * x‖ = ‖x‖ * ‖x‖ := CStarRing.norm_star_mul_self (x := x)
-    have hrw : (star x * x - 1) + 1 = star x * x := by abel
-    have hb : ‖star x * x‖ ≤ ‖star x * x - 1‖ + ‖(1 : A)‖ := by
-      calc ‖star x * x‖ = ‖(star x * x - 1) + 1‖ := by rw [hrw]
-        _ ≤ ‖star x * x - 1‖ + ‖(1 : A)‖ := norm_add_le _ _
-    nlinarith [norm_nonneg x]
+  have hxn : ‖x‖ ≤ 2 := norm_le_two_of_gram_le hx
   have hd : ‖w - x‖ ≤ 2 * ‖x‖ * ‖star x * x - 1‖ := norm_polarUnitary_sub_le hx
   have hd4 : ‖w - x‖ ≤ 4 * ‖star x * x - 1‖ := by
     have hprod : 0 ≤ (2 - ‖x‖) * ‖star x * x - 1‖ :=

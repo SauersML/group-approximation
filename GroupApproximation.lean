@@ -1155,6 +1155,7 @@ import GroupApproximation.Analysis.OmegaFiniteComparison
 import GroupApproximation.Analysis.OmegaFixRange
 import GroupApproximation.Analysis.PolarLiftingGeneralCStar
 import GroupApproximation.Analysis.FiniteBlockCoronaHilbert
+import GroupApproximation.Analysis.PolarLiftingPrintedSequence
 import GroupApproximation.Analysis.PolarLiftingHypothesisFree
 import GroupApproximation.Analysis.StablyFiniteAmplification
 import GroupApproximation.Analysis.MatrixCoronaDedekindFinite
