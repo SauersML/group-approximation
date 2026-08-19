@@ -35,6 +35,9 @@ env:
   PYTHON_VERSION: '3.12'
   VIBE_VERSION: '2.23.1'
   LEAN_LSP_MCP_VERSION: '0.28.1'
+  # Must match the [[models]] name written into the Vibe config below; the
+  # Configure step asserts they have not drifted apart.
+  LEANSTRAL_MODEL: 'labs-leanstral-1-5'
   # Append-only reservation ledger. Deliberately an issue, not a branch:
   # https://github.com/SauersML/group-approximation/issues/16
   LEDGER_ISSUE: '16'
@@ -91,12 +94,28 @@ jobs:
         env:
           MISTRAL_API_KEY: ${{ secrets.MISTRAL_API_KEY }}
         run: |
-          if [[ -n "${MISTRAL_API_KEY:-}" ]]; then
-            echo 'configured=true' >> "$GITHUB_OUTPUT"
-          else
+          set -uo pipefail
+          if [[ -z "${MISTRAL_API_KEY:-}" ]]; then
             echo '::notice::MISTRAL_API_KEY is not configured; no target is consumed.'
-            echo 'configured=false' >> "$GITHUB_OUTPUT"
+            echo 'configured=false' >> "$GITHUB_OUTPUT"; exit 0
           fi
+          # Reservations are permanent, so a target must never be consumed by a run
+          # that cannot reach the model at all. Probe the real completions endpoint
+          # (a key can be valid while the Labs model stays disabled org-wide) for one
+          # token before anything is reserved.
+          body="$RUNNER_TEMP/probe.json"
+          code="$(curl -sS -o "$body" -w '%{http_code}' --max-time 60 \
+            https://api.mistral.ai/v1/chat/completions \
+            -H "Authorization: Bearer $MISTRAL_API_KEY" \
+            -H 'Content-Type: application/json' \
+            -d "{\"model\":\"$LEANSTRAL_MODEL\",\"messages\":[{\"role\":\"user\",\"content\":\"ping\"}],\"max_tokens\":1}" || echo 000)"
+          if [[ "$code" == 2* ]]; then
+            echo "::notice::$LEANSTRAL_MODEL reachable (HTTP $code)."
+            echo 'configured=true' >> "$GITHUB_OUTPUT"; exit 0
+          fi
+          msg="$(jq -r '.message // .error.message // empty' "$body" 2>/dev/null | head -c 400)"
+          echo "::warning::$LEANSTRAL_MODEL unreachable (HTTP $code): ${msg:-no message}. No target is consumed."
+          echo 'configured=false' >> "$GITHUB_OUTPUT"
 
   select:
     needs: auth
@@ -265,6 +284,8 @@ jobs:
           command = "lean-lsp-mcp"
           tool_timeout_sec = 600
           TOML
+          grep -qF "name = \"$LEANSTRAL_MODEL\"" "$VIBE_HOME/config.toml" \
+            || { echo "::error::LEANSTRAL_MODEL ($LEANSTRAL_MODEL) does not match the Vibe config"; exit 1; }
           echo "VIBE_HOME=$VIBE_HOME" >> "$GITHUB_ENV"
       - name: Load avoid-list
         env:
