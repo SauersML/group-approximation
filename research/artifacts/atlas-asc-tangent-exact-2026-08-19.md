@@ -118,6 +118,56 @@ which irreducibles occur.  So `C_loc = 1/14` at every multiplicity, which is
 exactly the dimension-freeness `(ASCq)` demands -- at first order.  What
 remains missing is global, not dimensional.
 
+## 4b. It was never a first-order statement
+
+Re-deriving the telescope without the `eps` gives an exact product formula.
+Put `f(g) = [U, lambda(g)] = U lambda(g) U^(-1) lambda(g)^(-1)` and
+`V_x = rho(x)U`.  For a fold-trivial word each telescope factor is
+`V_(u_j) V_(v_j)^(-1)`, and fold-triviality is exactly what makes the
+factors compose, so for EVERY unitary `U` and every one of the 234 words
+
+    pi_U(s) = prod_j rho(u_j)( f(g_j) ),        (exact, no remainder)
+
+with `a = ||f(h_a)-1||_2` and `b = ||f(h_b)-1||_2`.  The atlas criterion is
+therefore a holonomy system in conjugated commutators, on the group rather
+than on a tangent space.
+
+Consequently both energies are quadratic forms in `U` itself:
+
+    a^2+b^2 = <U, rho(W_cov) U>,     sum_s l_s^2 = <U, rho(W_pkt) U>,
+        l_s = ||rho(z_s) U||_2,
+
+so the generalized eigenvalue bound
+
+    a^2 + b^2 <= (1/14) sum_s l_s^2
+
+holds for EVERY matrix `U` at EVERY multiplicity -- it is global, not a
+Taylor statement.  What is first order is only the identification of `l_s`
+with the true defect `||pi_U(s)-1||_2`.  The whole remaining gap in the local
+half of (ASC) is therefore the single inequality
+
+    sum_s l_s^2 <= C' * sum_s ||pi_U(s)-1||_2^2.                    (LINK)
+
+`pi_U(s) - 1 = sum_j (W_j - 1) + cross terms`, and in normalized HS the cross
+terms are NOT second order: `||(A-1)(B-1)||_2` only gives
+`||A-1||_op ||B-1||_2`.  That is precisely the operator-norm-versus-HS gap
+that separates MF from hyperlinear, so (LINK) cannot come from a Taylor
+estimate, and it is where the difficulty of this route now sits.
+
+## 4c. No inner far branch exists
+
+`experiments/atlas_asc_inner_link_scan.py` decides the inner case exactly, in
+integer arithmetic: at `U = lambda(t)` the true defect of a word is `0` or
+`sqrt(2)`, and `l_s^2` is the sum of squared integer coefficients of
+`sum_j (lambda(u_j t u_j^(-1)) - lambda(v_j t v_j^(-1)))`.
+
+Scanning all 20160 inner chart conjugators: **exactly one** kills all 234
+first-boundary words, namely the identity, and there `l_s = 0` for every
+word.  So (LINK) has no inner counterexample, and the far components that the
+characteristic-two countermodel exhibits are necessarily non-inner.  The
+repository previously had this uniqueness for the five-word tangent screen;
+this is the full packet.
+
 ## 5. The proof-shaped residue
 
 `C_loc <= C` is equivalent to positivity, in every representation of `A_8`,
