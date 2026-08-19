@@ -457,6 +457,7 @@ import GroupApproximation.Sofic.KazhdanCompressionFunctorial
 import GroupApproximation.Sofic.NormalKazhdanMFRadical
 import GroupApproximation.Sofic.NormalKazhdanHyperlinearKilled
 import GroupApproximation.Sofic.CoronaImageNormalKazhdan
+import GroupApproximation.Sofic.QuestionTwoReduction
 import GroupApproximation.Sofic.TorsionFreeFullMFRadical
 import GroupApproximation.Sofic.TorsionFreeFullMFConsequences
 import GroupApproximation.Sofic.TensorPowerAmplification
