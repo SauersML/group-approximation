@@ -22,6 +22,8 @@ import GroupApproximation.Analysis.GroupStandardFormInstance
 import GroupApproximation.Analysis.GroupVonNeumannAlgebra
 import GroupApproximation.Analysis.ReducedGroupCStarSpan
 import GroupApproximation.Analysis.CStarUnitalCPContractive
+import GroupApproximation.Analysis.CStarChoiMap
+import GroupApproximation.Analysis.CStarFormCompletelyPositive
 import GroupApproximation.Analysis.GroupVonNeumannTrace
 import GroupApproximation.Analysis.LimitsTraceStandardForm
 import GroupApproximation.Analysis.PrintedFiniteDimensionalUses
@@ -949,6 +951,8 @@ import GroupApproximation.Analysis.CStarStatePullback
 import GroupApproximation.Analysis.CStarMinTensorNorm
 import GroupApproximation.Analysis.CStarSliceBound
 import GroupApproximation.Analysis.CStarSliceCompletion
+import GroupApproximation.Analysis.CStarSliceLeft
+import GroupApproximation.Analysis.CStarExactnessSliceReduction
 import GroupApproximation.Analysis.CStarSliceIdeal
 import GroupApproximation.Analysis.CStarMaxTensorNorm
 import GroupApproximation.Analysis.CStarTensorComparison
