@@ -1,6 +1,6 @@
 ---
 rg: 2
-id: finite-graph-of-groups-representation-types-are-integer-flows-proof
+id: finite-graph-of-groups-rep-types-integer-flows-proof
 kind: route
 title: Import Gerasimova-Shchepin Proposition 1 for graph-of-groups representation cones
 target: finite-graph-of-groups-representation-types-are-integer-flows
