@@ -290,6 +290,7 @@ abbrev w : E := wordInE markedWord
 theorem explicit_fp_sofic_hyperlinear_not_MF :
     Group.IsFinitelyPresented E ∧
     (w ≠ 1 ∧ w ^ 2 = 1 ∧ ∀ g : E, Commute w g) ∧
+    (∃ S : Finset E, S.card ≤ 6 ∧ Subgroup.closure (S : Set E) = ⊤) ∧
     IsSoficGroup E ∧
     IsHyperlinearGroup E ∧
     (∀ (Y : ℕ → FiniteCarrier) (U : ∀ n, E → Matrix (Y n) (Y n) ℂ),
@@ -297,9 +298,15 @@ theorem explicit_fp_sofic_hyperlinear_not_MF :
         (∀ g h : E, Filter.Tendsto
             (fun n ↦ ‖U n (g * h) - U n g * U n h‖) Filter.atTop (nhds 0)) →
         Filter.Tendsto (fun n ↦ ‖U n w - 1‖) Filter.atTop (nhds 0)) ∧
+    (∃ (δ : ℝ) (F₀ : Finset E), 0 < δ ∧
+        ∀ (Y : FiniteCarrier) (φ : E → Matrix Y Y ℂ),
+          (∀ g, φ g ∈ Matrix.unitaryGroup Y ℂ) →
+          (∀ g ∈ F₀, ∀ h ∈ F₀, ‖φ (g * h) - φ g * φ h‖ ≤ δ) →
+          ‖φ w - 1‖ < 1) ∧
     ¬ IsMFGroup E ∧
     (∀ (K : Type) (W : Type) [Field K] [AddCommGroup W] [Module K W]
-        [FiniteDimensional K W] (π : E →* (Module.End K W)ˣ), π w = 1) := by
+        [FiniteDimensional K W] (π : E →* (Module.End K W)ˣ), π w = 1) ∧
+    (∀ (Q : Type) [Group Q] [Finite Q] (φ : E →* Q), φ w = 1) := by
   sorry
 
 end

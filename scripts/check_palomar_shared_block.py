@@ -22,7 +22,14 @@ registry submission certify something other than what it appears to:
    modules, not paths; a rename that updates the lakefile and not the JSON
    leaves a config that resolves to nothing.
 
-4. **`formalization.yaml` drifts out of the registry's mechanical minimum.**
+4. **The compared theorem's signature drifts.**  The shared block holds the
+   definitions, but the statement itself is written out separately in each
+   file -- the challenge ends it with a hole and the solution with a proof --
+   so nothing in the block check covers it.  Two statements that differ by a
+   hypothesis compile perfectly well and are caught only by Comparator, which
+   is to say only after submission.
+
+5. **`formalization.yaml` drifts out of the registry's mechanical minimum.**
    The registry enforces a shape this repository has no other reason to
    respect -- at most two arXiv classes, a nonempty `project.description`
    which is the published abstract, and a source list that declares exactly
@@ -79,6 +86,27 @@ RELATIONSHIPS = {"formalizes", "adapts", "independently-proves", "background",
 SOURCE_TYPES = {"paper", "book", "web discussion", "folklore", "original-proof",
                 "other"}
 SUBSTANTIVE = {"formalizes", "adapts", "independently-proves"}
+
+
+def signature(path: Path, short: str) -> list[str] | None:
+    """The compared theorem's signature: its `theorem` line through `:= by`.
+
+    Everything after `:= by` is the proof, which is supposed to differ; up to
+    it, the two files must agree exactly, because that text is the statement
+    Comparator compares.
+    """
+    lines = path.read_text(encoding="utf-8").splitlines()
+    start = None
+    for i, line in enumerate(lines):
+        if re.match(rf"^theorem {re.escape(short)}\b", line):
+            start = i
+            break
+    if start is None:
+        return None
+    for j in range(start, len(lines)):
+        if lines[j].rstrip().endswith(":= by") or lines[j].rstrip().endswith(":="):
+            return lines[start : j + 1]
+    return None
 
 
 def check_metadata() -> int:
@@ -263,11 +291,33 @@ def main() -> int:
         findings += 1
     for name in names:
         short = name.split(".")[-1]
+        missing = False
         for path in (CHALLENGE, SOLUTION):
             text = path.read_text(encoding="utf-8")
             if not re.search(rf"^theorem {re.escape(short)}\b", text, re.MULTILINE):
                 fail(f"{path.relative_to(REPO)}: does not declare `{short}`, "
                      f"which comparator.json selects as {name}")
+                findings += 1
+                missing = True
+        if missing:
+            continue
+        # 4. the compared signature, which the shared-block check does not see
+        sc = signature(CHALLENGE, short)
+        ss = signature(SOLUTION, short)
+        if sc is None or ss is None:
+            fail(f"`{short}`: could not delimit the signature in both files "
+                 "(no line ending in `:= by`), so it cannot be compared")
+            findings += 1
+        elif sc != ss:
+            for i, (x, y) in enumerate(zip(sc, ss)):
+                if x != y:
+                    fail(f"`{short}`: the compared signature diverges at "
+                         f"line {i + 1}: challenge {x!r} vs solution {y!r}")
+                    findings += 1
+                    break
+            else:
+                fail(f"`{short}`: the compared signature is {len(sc)} lines in "
+                     f"the challenge and {len(ss)} in the solution")
                 findings += 1
 
     findings += check_metadata()

@@ -13,6 +13,8 @@ import Mathlib.Topology.Algebra.Order.Field
 import GroupApproximation.Sofic.LiteralNonMFEndpoint
 import GroupApproximation.Sofic.LiteralSoficAssembly
 import GroupApproximation.Sofic.LiteralFiniteDimensionalObstruction
+import GroupApproximation.Sofic.LiteralUniformObstruction
+import GroupApproximation.Sofic.LiteralSixGenerator
 import GroupApproximation.Sofic.NormMFConsequences
 import GroupApproximation.Sofic.OperatorMFLocalNormalization
 import GroupApproximation.Meta.AxiomGuard
@@ -303,6 +305,7 @@ theorem w_eq : w = (LiteralNonMFPresentation.mark : E) := rfl
 theorem explicit_fp_sofic_hyperlinear_not_MF :
     Group.IsFinitelyPresented E ∧
     (w ≠ 1 ∧ w ^ 2 = 1 ∧ ∀ g : E, Commute w g) ∧
+    (∃ S : Finset E, S.card ≤ 6 ∧ Subgroup.closure (S : Set E) = ⊤) ∧
     IsSoficGroup E ∧
     IsHyperlinearGroup E ∧
     (∀ (Y : ℕ → FiniteCarrier) (U : ∀ n, E → Matrix (Y n) (Y n) ℂ),
@@ -310,13 +313,23 @@ theorem explicit_fp_sofic_hyperlinear_not_MF :
         (∀ g h : E, Filter.Tendsto
             (fun n ↦ ‖U n (g * h) - U n g * U n h‖) Filter.atTop (nhds 0)) →
         Filter.Tendsto (fun n ↦ ‖U n w - 1‖) Filter.atTop (nhds 0)) ∧
+    (∃ (δ : ℝ) (F₀ : Finset E), 0 < δ ∧
+        ∀ (Y : FiniteCarrier) (φ : E → Matrix Y Y ℂ),
+          (∀ g, φ g ∈ Matrix.unitaryGroup Y ℂ) →
+          (∀ g ∈ F₀, ∀ h ∈ F₀, ‖φ (g * h) - φ g * φ h‖ ≤ δ) →
+          ‖φ w - 1‖ < 1) ∧
     ¬ IsMFGroup E ∧
     (∀ (K : Type) (W : Type) [Field K] [AddCommGroup W] [Module K W]
-        [FiniteDimensional K W] (π : E →* (Module.End K W)ˣ), π w = 1) := by
-  refine ⟨inferInstance, ⟨?_, ?_, ?_⟩, ?_, ?_, ?_, ?_, ?_⟩
+        [FiniteDimensional K W] (π : E →* (Module.End K W)ˣ), π w = 1) ∧
+    (∀ (Q : Type) [Group Q] [Finite Q] (φ : E →* Q), φ w = 1) := by
+  refine ⟨inferInstance, ⟨?_, ?_, ?_⟩, ?_, ?_, ?_, ?_, ?_, ?_, ?_, ?_⟩
   · exact LiteralNonMFLinearWitness.literal_mark_ne_one
   · exact LiteralNonMFPresentation.mark_sq
   · exact LiteralNonMFPresentation.mark_central
+  -- TODO: comment
+  · obtain ⟨S, hcard, hclosure⟩ :=
+      Group.rank_spec LiteralNonMFPresentation.MarkedGroup
+    exact ⟨S, hcard.trans_le LiteralSixGenerator.literal_rank_le_six, hclosure⟩
   -- soficity: repackage a `SoficModel` as the bare existential
   · intro F ε hε
     obtain ⟨m⟩ := LiteralSoficAssembly.markedGroup_isSofic F ε hε
@@ -352,6 +365,11 @@ theorem explicit_fp_sofic_hyperlinear_not_MF :
     refine ⟨N, fun n hn ↦ ?_⟩
     rw [Real.dist_eq, sub_zero, abs_of_nonneg (norm_nonneg _)]
     exact hN n hn
+  -- TODO: comment
+  · obtain ⟨δ, F₀, hδ, hbound⟩ :=
+      LiteralUniformObstruction.literal_uniform_operatorNorm_obstruction
+    exact ⟨δ, F₀, hδ, fun Y φ hφ hmul ↦
+      hbound ⟨Y.carrier, Y.fintype, Y.decidableEq⟩ (fun g ↦ ⟨φ g, hφ g⟩) hmul⟩
   -- not MF: a local operator-norm model would be a `NormModel` at
   -- separation `1`
   · intro hMF
@@ -374,6 +392,11 @@ theorem explicit_fp_sofic_hyperlinear_not_MF :
     exact
       LiteralFiniteDimensionalObstruction.manuscriptFiniteDimensionalConsequences.{0,
         0, 0}.2.1 π
+  -- TODO: comment
+  · intro Q _ _ φ
+    exact
+      LiteralFiniteDimensionalObstruction.manuscriptFiniteDimensionalConsequences.{0,
+        0, 0}.2.2 φ
 
 /-! ## TODO: section heading -/
 
