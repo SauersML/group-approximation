@@ -11,6 +11,7 @@ import GroupApproximation.Kazhdan.KazhdanUniverse
 import GroupApproximation.Monsters.CliffordAlgebraLamp
 import GroupApproximation.Sofic.CDEOperatorMF
 import GroupApproximation.Sofic.ActualCoronaMFRadical
+import GroupApproximation.Sofic.CollapsePrintedCorollary
 import GroupApproximation.Sofic.CollapseUniverseScope
 import GroupApproximation.Sofic.CompressionUniverseTransfer
 import GroupApproximation.Sofic.DefectSaturation
@@ -561,10 +562,12 @@ in the literal MF radical.
 
 `thm:collapse` reads "let `H` be countable", quantifying over every countable
 group, so the statement is taken at an arbitrary universe.  The proof is the
-descent of `Sofic/CollapseUniverseScope.lean`: a countable group in `Type u` is
-isomorphic to one in `Type 0`, property `(T)` follows through
-`HasKazhdanPropertyT.liftUniverse` and `HasKazhdanPropertyT.of_mulEquiv`, the
-collapse data transports, and the radical is functorial across universes. -/
+printed derivation of `Sofic/CollapsePrintedCorollary.lean`: `p = ½(1 − Θ(k))`
+is a projection whose orbit commutes, `thm:projection-collapse` — itself proved
+by the printed corona route of
+`Analysis/CollapsePrintedProjectionCollapse.lean` — makes it commute with the
+full image, so the sign commutes and the commutators die; the universe descent
+is the same as everywhere else in this file. -/
 theorem manuscriptInvolutiveCollapse :
     ∀ {H : Type u} [Group H] [Countable H]
       (L : Subgroup H), HasKazhdanPropertyT.{u, u} ↥L →
@@ -572,8 +575,8 @@ theorem manuscriptInvolutiveCollapse :
       CollapseUniverseScope.involutiveCollapseDefect L s ≤
         actualCoronaMFResidual H := by
   intro H _ _ L hT s hcomp
-  exact CollapseUniverseScope.involutiveCollapseDefect_le_actualCoronaMFResidual
-    hT hcomp
+  exact CollapsePrintedCorollary.manuscriptInvolutiveCollapse_printed
+    L hT s hcomp
 
 /-- Closed form of the unconditional radical reduction: the literal MF
 radical is the full preimage of the radical of the quotient by any

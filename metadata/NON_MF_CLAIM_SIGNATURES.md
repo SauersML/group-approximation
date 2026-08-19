@@ -1231,7 +1231,7 @@ Function.Injective ⇑LiteralNonMFPresentation.baseMap ∧
 ## `GroupApproximation.ProjectionCompressionCollapse.corona_projection_collapse`
 
 ```lean
-∀ {E : Type u} [inst : Group E] [Countable E] (L : Subgroup E),
+∀ {E : Type u} [inst : Group E] [_hcount : Countable E] (L : Subgroup E),
   HasKazhdanPropertyT ↥L →
     ∀ {s : E},
       (∀ γ ∈ L, s * γ * s⁻¹ ∈ L) →

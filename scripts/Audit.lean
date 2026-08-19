@@ -802,7 +802,28 @@ def routeGuards : List (Name × Name) :=
     -- pins are kept: the contradiction is the route, and the choice of `ω` is
     -- what makes it a contradiction rather than a second direct argument.
     (`GroupApproximation.KazhdanAsymptoticCommutant.manuscriptKazhdanTransport,
-     `GroupApproximation.UltrafilterLimit.exists_freeUltrafilter_mem) ]
+     `GroupApproximation.UltrafilterLimit.exists_freeUltrafilter_mem),
+    -- CO.04/CO.20/CO.21/CO.21b: the manuscript projection-collapse theorem is
+    -- proved by the printed corona route -- the join of the displacement
+    -- supports, the rank-normalized `Λ`, the displacement cocycle, and the
+    -- Delorme--Guichardet contradiction -- rather than by bootstrapping the
+    -- finite-stage involutive endpoint through the sign `w = 1 - 2p` ...
+    (`GroupApproximation.ProjectionCompressionCollapse.corona_projection_collapse,
+     `GroupApproximation.CollapsePrintedProjectionCollapse.printed_projection_collapse),
+    -- ... whose contradiction is the printed one, with ideal membership held
+    -- only where the print proves it ...
+    (`GroupApproximation.ProjectionCompressionCollapse.corona_projection_collapse,
+     `GroupApproximation.CollapsePrintedContradiction.collapse_contradiction_localized),
+    -- ... and whose last paragraph is the Delorme form with the coboundary
+    -- proved from property (T), `htransport` proved, and `π` built.
+    (`GroupApproximation.ProjectionCompressionCollapse.corona_projection_collapse,
+     `GroupApproximation.CollapseDelormeCorona.collapse_contradiction_corona_delorme),
+    -- CO.04: the badged `thm:collapse` travels the printed derivation --
+    -- `p = ½(1 − Θ(k))`, then `thm:projection-collapse` -- rather than the
+    -- finite-stage involutive endpoint, so the printed logical order is the
+    -- formal dependency order.
+    (`GroupApproximation.ManuscriptExactWrappers.manuscriptInvolutiveCollapse,
+     `GroupApproximation.ProjectionCompressionCollapse.corona_projection_collapse) ]
 
 /-- Does the dependency closure of `root` contain `target`?  A depth-first
 walk over `ConstantInfo.getUsedConstantsAsSet`, which visits types and proof
