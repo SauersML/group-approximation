@@ -11,6 +11,15 @@ artifacts:
   - experiments/atlas_a4_gl5_packet_screen.py
 ---
 
+REFUTED by [[atlas-a4-gl5-packet-collision-screen]]: letting the second chart
+move through all 9,999,360 elements of `GL_5(F_2)` produces 202 exact models
+of the thirty-relation packet, none of them a classical alignment branch, so
+near-membership in the thirty centralizer products does not force one.  The
+corrected target, which adds the interior collision that kills all 202, is
+[[atlas-centralizer-products-19243-classicalize]]; the route out of this
+claim is invalidated accordingly.  Kept as the record of what was asked for,
+not as an open target.
+
 **REFUTED by `atlas-a4-gl5-packet-collision-screen`.**  The statement below
 is kept as the record of the proposed packet-only endpoint, not as an open
 target.

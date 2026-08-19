@@ -1430,14 +1430,14 @@ wreath-compression-mf-radical [✓] Exact MF radicals of compression wreath prod
 
 ## Recently touched
 
+- 2026-08-19 · nonhyperlinear-from-centralizer-product-classicalization [INVALIDATED] Thirty centralizer products, classicalized, contradict the 19243 distance floor
+- 2026-08-19 · atlas-thirty-centralizer-products-classicalize [OPEN] Near-membership in all thirty centralizer products forces approach to the finite classical alignment branches
 - 2026-08-19 · two-s3-collapse-via-local-coercivity [OPEN] Localization at the fold plus the dimension-free tangent constant gives the covariance collapse
 - 2026-08-19 · nonhyperlinear-from-linear-energy-domination [OPEN] One energy comparison closes the two-S3 collapse and the goal with it
 - 2026-08-19 · atlas-linear-energy-controlled-by-full-packet-defect [OPEN] The linearized atlas energy is bounded by the full packet defect including the interior separator
 - 2026-08-19 · atlas-group-microstate-collapse-proof [COMPLETE] Traces of a regular representation are delta functions, so both energies read off one stabilizer
 - 2026-08-19 · atlas-group-microstate-collapse-is-subgroup-containment [ESTABLISHED] For microstates with a group chart unitary the two-S3 collapse is exactly a subgroup containment
 - 2026-08-19 · atlas-certified-24-first-order-escape-proof [COMPLETE] The certified-24 derivative kernel is computed and carries covariance energy six
-- 2026-08-19 · atlas-certified-24-first-order-escape [ESTABLISHED] The twenty-four certified alignment classes do not control the raw S3 covariances even at first order
-- 2026-08-19 · atlas-boundary-tangent-covariance-coercivity-proof [COMPLETE] Fold-triviality telescopes every boundary derivative into differences of conjugations
 
 ## Active claims
 

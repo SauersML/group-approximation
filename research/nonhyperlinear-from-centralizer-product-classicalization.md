@@ -38,6 +38,14 @@ on the branches, which is zero, contradicting the floor.
 Hence no such `U_k` exists and `Q` is not hyperlinear -- an explicit
 non-hyperlinear group.
 
+**Invalidated.**  `atlas-a4-gl5-packet-collision-screen` exhibits 202 exact
+models of the thirty-relation packet inside `GL_5(F_2)`, none of them a
+classical branch, so the first prerequisite is false as stated.  The repair
+is `nonhyperlinear-from-a4-plus-19243-classicalization`, which requires the
+corrected claim `atlas-centralizer-products-19243-classicalize` -- the same
+statement with the interior collision added, which kills all 202.  This route
+is kept as the record of the step that failed.
+
 **Where the difficulty sits.**  Entirely in the first prerequisite; the other
 four are established.  The route is recorded so that the frontier shows one
 hole rather than a program.
