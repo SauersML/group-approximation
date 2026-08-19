@@ -544,12 +544,18 @@ a.chip:hover { text-decoration: none; color: var(--link); border-color: var(--li
    silence; the sentences that are not proved are listed where they can be
    named.  The two controls that do tint say in their own label what they
    are about to show. */
+/* not the colour a raised mark uses: that one means "this is what the mark
+   covers", and these mean the opposite of proved */
 body.show-unproved .sent[data-state="unproved"],
 body.show-unproved .sent[data-state="open"],
-body.show-unproved .sent[data-state="partial"],
+body.show-unproved .sent[data-state="partial"] {
+  background: #f7efdc;
+  box-shadow: 0 0 0 2px #f7efdc;
+  border-radius: 2px;
+}
 body.show-ungraded .sent[data-state="ungraded"] {
-  background: var(--verified-bg);
-  box-shadow: 0 0 0 2px var(--verified-bg);
+  background: var(--bg-inset);
+  box-shadow: 0 0 0 2px var(--bg-inset);
   border-radius: 2px;
 }
 

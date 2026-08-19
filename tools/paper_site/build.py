@@ -361,13 +361,23 @@ def parse_census():
                       '', norm).strip()
         if bare and bare != norm:
             out.setdefault(js_hash(bare), plain)
-        # a list is one sentence to the census and one sentence per item to
-        # the renderer; both cuts are reasonable, so both are keyed
-        if '\\item' in norm:
-            for piece in re.split(r'\\item\s*', norm):
-                piece = piece.strip()
-                if piece and re.search(r'[A-Za-z]', piece):
-                    out.setdefault(js_hash(piece), plain)
+        # An enumerate is one sentence to the census, which drops the \item
+        # and joins the items with a semicolon, and one sentence per item to
+        # the renderer, which prints them as the manuscript does.  Both cuts
+        # are defensible, so both are keyed.
+        pieces = [p.strip() for p in re.split(r';\s+|(?<=\.)\s+(?=if |then |the |a |an |every |for )', norm)]
+        if len(pieces) > 1:
+            for piece in pieces:
+                # the census keeps an \item's optional label, `[(W1)]`, in the
+                # text; the renderer prints it as the item's own label
+                base = re.sub(r'^\[[^\]]*\]\s*', '', piece).rstrip('.').strip()
+                # the census joins items with `; ` and keeps the connective the
+                # manuscript prints at the end of an item ("; and")
+                base = re.sub(r'^(?:and|or)\s+', '', base).strip()
+                if not base:
+                    continue
+                for form in (base, base + ';', base + '.', base + '; and', base + '; or'):
+                    out.setdefault(js_hash(form), plain)
     return out
 
 
