@@ -78,10 +78,12 @@ theorem exists_cancellation_decomposition :
           · rw [h1, List.append_assoc]
           · rw [FreeGroup.invRev_append, invRev_singleton, List.append_assoc,
               ← h2, hcancel]
+            rfl
           · calc FreeGroup.mk (A₀ ++ [a]) * FreeGroup.mk (b :: B₁)
                 = (FreeGroup.mk A₀ * FreeGroup.mk [a])
                     * ((FreeGroup.mk [a])⁻¹ * FreeGroup.mk B₁) := by
-                  rw [mk_append_singleton, hcancel, mk_cons, ← mk_singleton_inv]
+                  rw [mk_append_singleton, hcancel,
+                    mk_cons (invLetter a) B₁, ← mk_singleton_inv]
               _ = FreeGroup.mk A₀ * FreeGroup.mk B₁ := by group
               _ = FreeGroup.mk (A'' ++ B'') := h4
         · -- nothing cancels, so the concatenation is already reduced
@@ -90,8 +92,8 @@ theorem exists_cancellation_decomposition :
             intro p hp q hq
             have hlast : (A₀ ++ [a]).getLast? = some a := List.getLast?_concat
             rw [hlast] at hp
-            have hpa : p = a := by simpa using hp
-            have hqb : q = b := by simpa using hq
+            have hpa : p = a := (by simpa using hp : a = p).symm
+            have hqb : q = b := (by simpa using hq : b = q).symm
             subst hpa
             subst hqb
             exact isReduced_step_iff.mpr hcancel
