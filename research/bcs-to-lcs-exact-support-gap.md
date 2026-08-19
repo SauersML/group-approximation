@@ -2,9 +2,9 @@
 rg: 2
 id: bcs-to-lcs-exact-support-gap
 kind: claim
-title: A tracial non-RU BCS admits an LCS check distribution with exact-support mass exceeding approximate soundness
+title: A tracial non-RU BCS admits an exact robust LCS sub-menu with approximate soundness
 distinct_from:
-  robust-locally-satisfiable-relator-code: that asks for sparse group-ball preservation with no ambient tracial witness; this target uses a tracial BCS witness to certify nontriviality of the central mark and only needs an exact-support mass gap.
+  robust-locally-satisfiable-relator-code: that asks for sparse group-ball preservation with no ambient tracial witness; this target uses a tracial BCS witness to certify nontriviality of the central mark and asks for an exact LCS sub-menu that rejects every marked approximate profile.
 artifacts:
   - research/artifacts/lcs-exact-support-sparsification-2026-08-18.md
   - docs/FALSE_PERFECT_COMPLETENESS_MASK_NO_GO.md
@@ -31,50 +31,44 @@ g = mu(E).
 
 Among all finite-dimensional unitary assignments with
 `d_2(J,1)>=delta`, let `q` be the supremum `mu`-mass of relators whose defect
-is at most `eps_plus`.  Then
+is at most `eps_plus`. Then
 
 ```text
 g > q.
 ```
 
-By `exact-support-relator-sparsification`, this one inequality already
-produces a finite LCS subpresentation whose solution-group mark is genuinely
-nontrivial but trivial in approximate representations.  Thus **perfect
-completeness of the whole LCS compiler is not required**.
+By `exact-support-gap-nonexact-checks-no-advantage`, this condition is
+qualitatively equivalent to the following simpler target: **every marked
+finite-dimensional profile rejects at least one relator in the exact support
+`E`**. Since `E` is finite, uniform measure on `E` then has exact tracial
+completeness and a rejection margin at least `1/|E|`. Nonexact checks in
+`S\E` cannot create the gap and may be discarded for existence purposes.
+
+Thus this node should be read as an exact-robust-sub-menu compiler target, not
+as a weaker route around perfect completeness. `exact-support-relator-sparsification`
+remains useful downstream for finite-moment extraction once such an exact
+sub-menu has been found.
 
 ## Attempts
 
-- **Published Taller--Vidick test, unmodified.**  Their Definition 4.1 samples
-  independent mask bits with `Pr[mu(phi)=1]=1-epsilon`; Lemma 4.2 shows that
-  this is exactly where the honest completeness loss comes from.  If the mask
-  is `+1` on every active long-code outcome of one equation, that equation is
-  exact for the constructed honest strategy.  The sufficient syntactic event
-  `mu identically +1` has positive but often tiny mass.  Proposition 4.1 gives
-  constant finite-dimensional synchronous soundness after enough repetition.
-  The unresolved numerical/structural question is whether a reweighting or
-  redesign can make exact mass beat approximate satisfaction mass.
-- **Perfect mask repair is not the target.**
-  `docs/FALSE_PERFECT_COMPLETENESS_MASK_NO_GO.md` proves that changing only the
-  mask distribution cannot make the published Fourier decoder perfectly
-  complete without losing the damping needed for soundness.  That does not
-  rule out the weaker strict inequality `g>q`: a positive fraction of checks
-  may remain deliberately inexact in the tracial model and be discarded by
-  the sparsification theorem.
-- **Condition on exact-support checks.**  Let `E` be the checks exact in the
-  tracial strategy and study the finite-dimensional value under the verifier
-  distribution conditioned on `E`.  It is enough to prove this conditional
-  value is bounded below one; the size of `E` is irrelevant after
-  conditioning.  The published soundness theorem controls the unconditioned
-  distribution, so a new robustness argument is required.
-- **Quantum-sound gadget compiler.**  Use the 2026 weighted-polymorphism
-  characterization of robust commutativity gadgets to seek a source-specific
-  reduction from the known tracial/non-`R^U` BCS to LCS checks which preserves
-  approximate-model soundness on the exact-support subfamily, without demanding
-  a generic BCS-to-LIN homomorphism (which Paddock--Slofstra identify as the
-  nonhyperlinear boundary itself).
-- **Modern parallel repetition.**  The 2026 general exponential quantum
-  parallel repetition theorem can make an arbitrary finite-dimensional base
-  game exponentially sound under repetition.  This removes the old
-  qualitative repetition uncertainty, but by itself does not compare the
-  decay exponent with the growth of the honest long-code support.  The useful
-  parameter is the exact-support/soundness ratio, not repeated value alone.
+- **Published Taller--Vidick test, unmodified.** Their completeness loss comes
+  from the noisy mask. The relevant question is now whether the subfamily of
+  checks that are operator-exact for the tracial strategy is itself sound
+  against every marked finite-dimensional approximate assignment. The
+  published unconditioned soundness theorem does not imply this conditioned
+  statement.
+- **Mask reweighting alone cannot help.** The no-advantage lemma shows that
+  putting weight on checks outside `E` cannot improve the qualitative target.
+  Any successful reweighting must ultimately expose a robust exact subset of
+  `E`; the finite zero-sum formulation in `exact-menu-gap-is-zero-sum-game`
+  can optimize its quantitative margin.
+- **Quantum-sound gadget compiler.** Seek a source-specific reduction from the
+  known tracial/non-`R^U` BCS to LCS checks whose exact-support subfamily
+  preserves approximate-model soundness. This is compatible with the
+  predicated-control route: `controlled-linear-predication-normal-form` removes
+  controlled equations exactly, leaving selector soundness as a finite
+  compiler invariant.
+- **Modern repetition/PCP amplification.** Amplification is useful only if it
+  also preserves or exposes an exact-support family whose conditioned value is
+  below one. Driving the unconditioned value down while the exact subfamily
+  remains perfectly satisfiable by a bad profile does not move this target.
