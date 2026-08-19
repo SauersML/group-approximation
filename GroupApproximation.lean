@@ -1047,6 +1047,7 @@ import GroupApproximation.Computability.BooneWordMapPrimrec
 import GroupApproximation.Computability.BooneWordAgreement
 import GroupApproximation.Computability.BooneWordProblemUndecidable
 import GroupApproximation.Analysis.PrintedLiftingSteps
+import GroupApproximation.Analysis.FiniteExceptionalPatch
 import GroupApproximation.Kazhdan.PrintedComplexificationBridge
 import GroupApproximation.Sofic.CentralSignAnyUniverse
 import GroupApproximation.Analysis.OmegaHilbertComplete
