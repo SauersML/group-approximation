@@ -3,7 +3,7 @@ rg: 2
 id: tracial-median-from-block-decomposition
 kind: route
 title: Pin the size observable directly with the block Poincare gap
- target: tracial-median-concentration
+target: tracial-median-concentration
 requires: [hs-expander-block-decomposition, median-poincare-concentration]
 artifacts:
   - official/counterexample.tex
