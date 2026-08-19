@@ -1,0 +1,20 @@
+{
+  "delete": [
+    [
+      "a",
+      "x"
+    ],
+    [
+      "a",
+      "y"
+    ]
+  ],
+  "found": true,
+  "hall_deficit": "1/2",
+  "minimum_deletion_cost": "1/2",
+  "source_subset": [
+    "a"
+  ],
+  "target_cap": [],
+  "weight_denominator": 2
+}
