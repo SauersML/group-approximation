@@ -22,6 +22,7 @@ import GroupApproximation.Analysis.GroupStandardFormInstance
 import GroupApproximation.Analysis.GroupVonNeumannAlgebra
 import GroupApproximation.Analysis.GroupVonNeumannTrace
 import GroupApproximation.Analysis.LimitsTraceStandardForm
+import GroupApproximation.Analysis.PrintedFiniteDimensionalUses
 import GroupApproximation.Analysis.PermutationICC
 import GroupApproximation.Analysis.ShiftIsometryNotFinite
 import GroupApproximation.Analysis.TwoSidedRegularCommutant
