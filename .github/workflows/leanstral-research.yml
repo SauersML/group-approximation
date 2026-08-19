@@ -335,8 +335,9 @@ jobs:
         run: |
           set -euo pipefail
           recent="$(tail -n 200 "$HISTORY" || true)"
-          prompt="You are Leanstral 1.5 in SauersML/group-approximation. Make one mathematically meaningful compiling Lean improvement near the permanently reserved declaration below. Prefer paper/Cairn research progress. NOVELTY IS HARD: every run reserves a different declaration before inference, even failed/no-change runs and unmerged PRs. Edit EXACTLY the assigned file; do not switch to another theorem. Do not semantically duplicate concepts in the reservation history. Never use sorry, admit, a new axiom, unsafe, or native_decide; do not weaken statements; do not use git commit/push/branch/PR. Use lean-lsp-mcp and Lean compilation aggressively. If this target has no worthwhile improvement, leave the tree unchanged; the next run will move elsewhere."
-          prompt="$prompt"$'\n\n'"Assigned file: $TARGET"$'\n'"Assigned declaration: $ANCHOR near line $LINE"$'\n'"Human focus: ${FOCUS:-none}"$'\n\n'"Recent reservation avoid-list:"$'\n'"$recent"
+          ledger_note="$(python scripts/leanstral_novelty.py --ledger-note "$ANCHOR" 2>/dev/null || true)"
+          prompt="You are Leanstral 1.5 in SauersML/group-approximation. Close as much of the assigned proof-ledger debt as you can in one compiling change. You MAY create ONE new module under GroupApproximation/ and wire it by adding its import line to GroupApproximation.lean -- that pair is how a real result lands here, and it is preferred over editing an existing proof in place. Several new lemmas in that module are welcome; a complete brick beats a cosmetic edit, and a pure refactor of a working proof is worth nothing. Never write sorry, admit, unsafe, native_decide, or an axiom. Conventions that cost real build cycles here: equalities crossing the Matrix/CStarMatrix synonym must be produced as TERMS and chained with calc, never rw; omit and set_option go BEFORE a docstring, not after; rw'"'"'s trailing rfl runs at reducible transparency and will not close a goal whose last step unfolds a plain def, so append an explicit rfl; every foo_apply proved by rfl needs @[simp] or the kernel audit rejects it; lambda is a reserved token so an identifier like hlambda-with-the-greek-letter does not parse. Prefer paper/Cairn research progress. NOVELTY IS HARD: every run reserves a different declaration before inference, even failed/no-change runs and unmerged PRs. Edit EXACTLY the assigned file; do not switch to another theorem. Do not semantically duplicate concepts in the reservation history. Never use sorry, admit, a new axiom, unsafe, or native_decide; do not weaken statements; do not use git commit/push/branch/PR. Use lean-lsp-mcp and Lean compilation aggressively. If this target has no worthwhile improvement, leave the tree unchanged; the next run will move elsewhere."
+          prompt="$prompt"$'\n\n'"Assigned file: $TARGET"$'\n'"Assigned declaration: $ANCHOR near line $LINE"$'\n'"Ledger debt for this declaration: ${ledger_note:-none recorded}"$'\n'"Human focus: ${FOCUS:-none}"$'\n\n'"Recent reservation avoid-list:"$'\n'"$recent"
           vibe -p "$prompt" --agent lean --output streaming --trust --workdir "$GITHUB_WORKSPACE" --max-turns 120
       - id: validate
         name: Enforce reserved target and proof hygiene
@@ -351,7 +352,31 @@ jobs:
           mapfile -t u < <(git ls-files --others --exclude-standard); (( ${#u[@]} == 0 )) || git add -N -- "${u[@]}"
           mapfile -t changed < <(git diff --name-only "$BASE" | sort -u)
           if (( ${#changed[@]} == 0 )); then echo 'has_changes=false' >> "$GITHUB_OUTPUT"; exit 0; fi
-          if (( ${#changed[@]} != 1 )) || [[ "${changed[0]}" != "$TARGET" ]]; then echo "::error::Only reserved file $TARGET may change"; exit 1; fi
+          # The reserved file may always change.  A run may additionally create ONE
+          # new module under GroupApproximation/ and wire it by adding its import
+          # line to the root GroupApproximation.lean.  That pair is the shape a
+          # real result lands in; forbidding it confined every run to rewriting a
+          # single existing proof in place.  Nothing else may change, and the new
+          # module must not already exist on the base revision.
+          root_lib='GroupApproximation.lean'
+          new_mod=''
+          for f in "${changed[@]}"; do
+            case "$f" in
+              "$TARGET"|"$root_lib") continue ;;
+              GroupApproximation/*.lean)
+                if git cat-file -e "$BASE:$f" 2>/dev/null; then
+                  echo "::error::$f already exists on base; a run may only ADD a new module"; exit 1
+                fi
+                if [[ -n "$new_mod" ]]; then echo "::error::at most one new module per run; got $new_mod and $f"; exit 1; fi
+                new_mod="$f" ;;
+              *) echo "::error::Only $TARGET, one new GroupApproximation module, and the root import may change; got: ${changed[*]}"; exit 1 ;;
+            esac
+          done
+          if printf '%s\n' "${changed[@]}" | grep -qx "$root_lib"; then
+            if git diff --unified=0 "$BASE" -- "$root_lib" | grep -E '^[-+]' | grep -v '^[-+][-+]' | grep -vqE '^[+]import GroupApproximation[.]'; then
+              echo "::error::$root_lib may only gain import lines"; exit 1
+            fi
+          fi
           git diff --name-only --diff-filter=D "$BASE" | grep -q . && { echo '::error::File deletion rejected'; exit 1; } || true
           python - <<'PY'
           import os, re, subprocess
@@ -363,6 +388,11 @@ jobs:
           diff = subprocess.check_output(
               ['git', 'diff', '--unified=0', base, '--', target], text=True
           )
+          # Hygiene is checked over EVERY added line of the run, including a new
+          # module, which the window check below deliberately does not police.
+          full_diff = subprocess.check_output(
+              ['git', 'diff', '--unified=0', base], text=True
+          )
 
           # Every hunk must stay local to the declaration selected before inference.
           # This makes "different declaration" mechanically meaningful even when a
@@ -370,8 +400,12 @@ jobs:
           hunks = re.findall(
               r'^@@ -(\d+)(?:,(\d+))? \+(\d+)(?:,(\d+))? @@', diff, re.M
           )
-          if not hunks:
-              raise SystemExit('no diff hunks found')
+          # A run may legitimately leave the reserved file untouched when its
+          # contribution is a new module plus the import that wires it; that is
+          # a better outcome than an in-place edit, not a missing one.  The
+          # hygiene scan below still covers everything the run added.
+          if not hunks and not full_diff.strip():
+              raise SystemExit('no changes at all')
           lo, hi = max(1, anchor_line - 250), anchor_line + 250
           for old_start, old_len, new_start, new_len in hunks:
               old_start, new_start = int(old_start), int(new_start)
@@ -387,7 +421,7 @@ jobs:
                   )
 
           bad = []
-          for line in diff.splitlines():
+          for line in full_diff.splitlines():
               if not line.startswith('+') or line.startswith('+++'):
                   continue
               text = line[1:]
