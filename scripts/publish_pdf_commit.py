@@ -420,6 +420,7 @@ def self_test() -> None:
             "manuscript-v1\n", encoding="utf-8"
         )
         (test_root / "non_mf_groups_exist.pdf").write_bytes(b"non-mf-v1\n")
+        (test_root / "README.md").write_text("readme-v1\n", encoding="utf-8")
         git(
             test_root,
             "add",
@@ -427,13 +428,14 @@ def self_test() -> None:
             "proof.txt",
             "non_mf_groups_exist.tex",
             "non_mf_groups_exist.pdf",
+            "README.md",
         )
         git(test_root, "commit", "-m", "certified base")
         certified = resolve(test_root, "HEAD")
         git(test_root, "push", REMOTE, "HEAD:refs/heads/main")
 
-        (test_root / "proof.txt").write_text("proof-v2\n", encoding="utf-8")
-        git(test_root, "add", "--", "proof.txt")
+        (test_root / "README.md").write_text("readme-v2\n", encoding="utf-8")
+        git(test_root, "add", "--", "README.md")
         git(test_root, "commit", "-m", "publish sibling file")
         sibling = resolve(test_root, "HEAD")
         git(test_root, "push", REMOTE, "HEAD:refs/heads/main")
@@ -449,8 +451,8 @@ def self_test() -> None:
         assert remote_main(test_root) == published
         assert resolve(test_root, f"{published}^") == sibling
         assert (
-            blob_contents(test_root, published, "proof.txt")
-            == b"proof-v2\n"
+            blob_contents(test_root, published, "README.md")
+            == b"readme-v2\n"
         )
         assert (
             blob_contents(test_root, published, "non_mf_groups_exist.pdf")
