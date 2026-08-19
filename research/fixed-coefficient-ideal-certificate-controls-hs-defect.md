@@ -3,6 +3,9 @@ rg: 2
 id: fixed-coefficient-ideal-certificate-controls-hs-defect
 kind: claim
 title: A bounded finite coefficient-ideal certificate gives a dimension-free Hilbert-Schmidt estimate
+artifacts:
+  - experiments/nc_path_ideal_certificate.py
+  - experiments/nc-path-ideal-smoke.json
 ---
 
 Fix a finite regular chart and its finite coefficient compiler from
