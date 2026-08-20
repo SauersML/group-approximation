@@ -155,7 +155,7 @@ over `(U * H, U)` needs of the partner.  That last step is the standard fact
 about virtually cyclic groups; this library does not state it, so what is
 recorded here is nonamenability alone. -/
 theorem HyperbolicKazhdanPartner.not_isAmenable (H : HyperbolicKazhdanPartner) :
-    ¬ IsAmenable H.Carrier :=
+    ¬ Amenability.IsAmenable H.Carrier :=
   PropertyTNonamenable.infinite_kazhdan_not_isAmenable H.kazhdan
 
 /-! ## 2.  The small-cancellation common quotient -/
