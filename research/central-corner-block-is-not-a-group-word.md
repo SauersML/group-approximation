@@ -45,3 +45,9 @@ by an ordinary stable letter. In an arbitrary marked representation the
 letter is `T tensor V` for an uncontrolled multiplicity involution `V`.
 Therefore the escape groupifies covariance, not the additive identity or the
 spectrum of `T` itself.
+
+Composing only these covariance escapes does not create contraction.
+`clifford-covariance-atlases-have-regular-flow` realizes every finite such
+atlas on compatible multiples of regular packet representations.  The next
+required operation is a two-cell constraining the multiplicity twists, not
+another covariance edge.

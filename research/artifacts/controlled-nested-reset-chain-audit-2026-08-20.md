@@ -67,8 +67,10 @@ stable letter has form `CZ tensor V`, with `V` an arbitrary multiplicity
 involution. Hence this promotes the CNRC cell exactly if its incidence table
 uses the block only through Pauli conjugation. It does not promote any step
 which reads the stable-letter sign, trace, or spectral projection. The finite
-replay obligation is recorded as
-`controlled-nested-reset-needs-only-clifford-covariance`.
+replay and holonomy obligation is recorded as
+`controlled-nested-reset-needs-clifford-holonomy`.  Covariance alone is not
+enough: `clifford-covariance-atlases-have-regular-flow` identifies the finite
+graph-of-groups Plancherel countermodel for every covariance-only chain.
 
 ## 3. Second promotion gate: fixed-depth rank mesh is not a density gap
 
