@@ -34,6 +34,12 @@ for a universal `c>0`.  On the harmless sector `(e,f)=(0,0)`, the same
 relative Pauli pair must admit zero-energy transport, so the estimate is truly
 child-carrier-localized.
 
+Once the three endpoint charts exist, their approximate marginal bookkeeping
+is no longer an open loss: `robust-rank-one-endpoint-marginal-floor` gives
+failure mass at least `q-sqrt(2 E_end)`.  The remaining content of this claim
+is therefore the group-word compression itself and an upper payment bound for
+the three resulting failure masses.
+
 ## Attempts
 
 - **Uncompressed return fails.**  The relative pair is also Pauli on `(0,0)`,
