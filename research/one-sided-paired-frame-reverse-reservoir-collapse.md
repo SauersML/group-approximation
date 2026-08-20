@@ -171,6 +171,10 @@ regular Bass--Serre reservoir.
   and the other named relative involution swaps them.  Hence one child can be
   designated active and the other exiting without choosing a multiplicity
   basis or losing carrier mass.
+- `predicate-activated-cnot-routes-relative-pauli-halves` realizes that split
+  by four honest conjugacy relations.  Duplicating the gate's affine central
+  commutator makes CNOT an automorphism on both allowed and violating sectors,
+  so the active/exit flag needs no nonlinear controlled word.
 - `hard-sign-transport-captures-exit-mass` proves the complementary lower
   exit estimate.  Projecting one hard-sign conjugacy onto the positive target
   sector gives the sharp leakage bound `(HST1)`.  The corner BCS gap and the

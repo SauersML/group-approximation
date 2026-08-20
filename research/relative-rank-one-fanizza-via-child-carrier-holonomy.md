@@ -15,6 +15,7 @@ requires:
   - fanizza-symmetric-kernel-has-two-root-e5-clock
   - branching-plus-first-hit-exits-forces-hs-floor
   - relative-pauli-child-split-gives-one-exit-copy
+  - predicate-activated-cnot-routes-relative-pauli-halves
   - hard-sign-transport-captures-exit-mass
   - product-clock-synchronizes-fanizza-and-e5
   - binary-cut-projection-recurrence-gives-bfe1
