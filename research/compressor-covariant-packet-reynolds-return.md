@@ -20,10 +20,12 @@ inclusions `A_(f_c)<=B_(f_c)` such that:
 1. the gadget has an exact finite-tracial representation realizing the fixed
    non-CE BCS trace and a separated marked word;
 2. in every finite-dimensional approximate representation, after local packet
-   exactification, the adjoint Reynolds projections obey
+   exactification, there are canonical forbidden-core projections
+   `K_c<=R_(A_c)-R_(B_c)` which have density bounded below by a fixed
+   constant times the square of the forbidden packet mass and obey
 
    ```text
-   sum_c tr_Adj(R_(A_c)-R_(B_c))
+   sum_c tr_Adj(K_c)
      <= C E_rel(U),                                      (CPR1)
    ```
 
@@ -33,9 +35,11 @@ inclusions `A_(f_c)<=B_(f_c)` such that:
    tensor-decoupled representation of
    `packet-kazhdan-commutant-placement-decouples`.
 
-The intended mechanism is to make the `R_A-R_B` range a genuine coefficient
-of a compressor conjugacy orbit, so `scaled-kazhdan-transport` returns it to a
-subspace of the same adjoint dimension.  Bare relations
+Controlling the whole Reynolds difference is sufficient but is not required.
+The intended mechanism is to make a positive-density canonical core of the
+`R_A-R_B` range a genuine coefficient of a compressor conjugacy orbit, so
+`scaled-kazhdan-transport` returns it to a subspace of the same adjoint
+dimension.  Bare relations
 `[A_f,Lambda]=[B_f,s Lambda s^(-1)]=1` are explicitly insufficient.
 
 ## Attempts
@@ -82,3 +86,10 @@ subspace of the same adjoint dimension.  Bare relations
   selector sector.  The infinite compressor must perform genuine
   state-dependent selection; it cannot merely enforce regular type for a
   larger finite overgroup.
+- **Genuine child-square route.**
+  `schur-packet-child-square-is-pauli-transverse` factors the rank gate through
+  the two actual finite children `B_f^P` and `B_f^Q`.  Their centered
+  commutant modules are the transverse `Z` and `X` Pauli directions exactly
+  on forbidden sectors.  The live route
+  `covariant-return-via-schur-child-masas` reduces this claim to returning
+  those two genuine child modules through one infinite compressor cell.

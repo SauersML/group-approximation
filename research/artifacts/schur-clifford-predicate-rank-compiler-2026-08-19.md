@@ -74,6 +74,18 @@ is wrong on exactly one half of the regular packet.  This removes finite
 regular normalization as a possible shortcut around the infinite return
 mechanism.
 
+There is nevertheless a group-native replacement for the additive
+controlled coefficients.  Between `A_f` and `B_f` sit the two actual finite
+subgroups obtained by adjoining only the final `p` generator or only the
+final `q` generator.  Each is a binary refinement of the baseline packet.  On
+allowed sectors the refinements commute; on forbidden sectors they are the
+`Z`- and `X`-MASAs of the relative Pauli qubit.  Their centered commutant
+modules are orthogonal copies of `M_m`, and simultaneous return to one
+carrier obeys the sharp conditional-expectation inequality `(SPS4)`.  This
+replaces nonlinear finite groupification by a concrete two-dimensional
+inclusion square; the remaining open cell is to make a one-sided compressor
+return the two child modules with uniform HS cost.
+
 A concrete exact holonomy primitive is now available.  If two commuting
 automorphisms of a finite packet have projective implementer commutator
 `zeta` of order `r` on an irreducible packet, adjoining commuting stable

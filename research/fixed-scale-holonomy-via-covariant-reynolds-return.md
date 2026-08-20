@@ -16,8 +16,10 @@ artifacts:
 ---
 
 The predicate lemma converts forbidden Hilbert mass `q` into an adjoint
-projection defect of density at least `c_f q^2`.  The covariant-return gadget
-places that very range in the scaled asymptotic commutant transported by the
+projection defect of density at least `c_f q^2`; the Schur child square
+supplies a canonical forbidden core with the same form of lower bound because
+each packet has only finitely many radical characters.  The covariant-return
+gadget places that core in the scaled asymptotic commutant transported by the
 one-sided compressor, and `(CPR1)` bounds its returned density by a
 dimension-free relator-energy sum.  Bounded overlap converts that sum to the
 global energy.  The tensor-decoupling theorem is included as a mandatory
