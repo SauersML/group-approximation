@@ -43,6 +43,15 @@ The narrowed open interface is
 `compressor-covariant-packet-reynolds-return`: a named relation must make the
 Reynolds-difference range an actual coefficient of the compressor orbit.
 
+A concrete exact holonomy primitive is now available.  If two commuting
+automorphisms of a finite packet have projective implementer commutator
+`zeta` of order `r` on an irreducible packet, adjoining commuting stable
+letters forces `r` to divide its external multiplicity.  This is
+`commuting-automorphism-cocycle-forces-multiplicity`.  It is the literal
+two-cell version of multiplicity pressure, but a fixed `r` still dilutes by
+repairing `O(r)` copies inside multiplicity `m`; self-similarity or a
+same-model dimension trigger must make the pressure extensive.
+
 ## 0. Executive statement
 
 There is a loophole in the repo's affine-selector no-go results.

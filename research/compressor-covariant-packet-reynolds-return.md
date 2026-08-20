@@ -49,3 +49,9 @@ subspace of the same adjoint dimension.  Bare relations
   than equality of packet generators.  The cell should expose the whole
   Reynolds range as a transported adjoint coefficient, while the non-CE
   tracial model absorbs the corresponding infinite-index relative commutant.
+- **Projective automorphism square.**
+  `commuting-automorphism-cocycle-forces-multiplicity` gives an exact finite
+  group-theoretic two-cell: a cocycle of order `r` forces `r` to divide the
+  external packet multiplicity.  One fixed square still dilutes as `O(r/m)`;
+  the covariance target would have to create positive-density independent
+  squares or make the activated cocycle order exceed the current model size.
