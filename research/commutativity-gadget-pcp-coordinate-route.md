@@ -10,6 +10,7 @@ requires:
   - pcp-template-with-robust-quantum-commutativity
   - mastel-slofstra-private-context-augmentation-preserves-defect
   - s3-radical-charts-give-linear-local-hs-payment
+  - k3-relational-atlas-to-scalar-group-words
 ---
 
 Reduce every constant-query PCP check to the fixed template from
@@ -21,5 +22,6 @@ and compile the remaining fixed predicates through the S3 local payment
 theorem.
 
 This removes the need to hand-round each context's commuting measurement
-algebra.  It does not by itself supply scalar group relators or the S3
-endpoint/return comparisons, which remain explicit obligations in the target.
+algebra.  The separate groupification claim is mandatory: without it, this is
+only a robust relational CSP reduction and cannot establish the target group
+atlas.

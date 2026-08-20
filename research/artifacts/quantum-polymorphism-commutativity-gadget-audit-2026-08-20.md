@@ -48,6 +48,25 @@ It does **not** supply the rest of the groupification:
   existence proof but not automatically an effective uniform machine-indexed
   Boone compiler.
 
-The complete-graph calculation is also a warning: the quantum polymorphisms
-of `K_n` contain `S_n^+`, so graph coloring itself is not automatically the
-commutative target template needed by this route.
+The complete-graph calculation also isolates a useful exceptional case.  The
+paper proves
+
+```text
+Mor^+(K_n^k,K_n) = (S_n^+)^{disjoint union k}.
+```
+
+For `n=3`, the standard identity `S_3^+=S_3` makes every one of these
+polymorphisms classical.  Equivalently, `K_3=C_3` lies in the paper's stated
+odd-cycle-colouring class admitting commutativity gadgets.  Since graph
+3-colouring is NP-complete, `K_3` is the fixed template required by
+`pcp-template-with-robust-quantum-commutativity`: each constant-query Boolean
+check has a bounded classical 3-colouring gadget, hence only constant weighted
+soundness loss, and the exact-to-robust theorem supplies a dimension-free
+commutator modulus.
+
+This is special to three colours.  For `n>=4`, `S_n^+` is nonclassical, and the
+paper explicitly lists non-oracular `k`-colouring for `k>=4` among the classes
+without commutativity gadgets.  Even for `K_3`, one obligation remains outside
+the paper: the relational PVM constraints must be turned into scalar group
+words and the three S3 endpoint laws.  That boundary is recorded as
+`k3-relational-atlas-to-scalar-group-words`.
