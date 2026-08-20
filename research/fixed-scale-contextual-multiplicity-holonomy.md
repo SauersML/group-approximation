@@ -61,6 +61,20 @@ floor.
   selection remains. The construction problem is now to expose that averaged
   channel transport by finitely many sparse relations without forgetting the
   shared non-CE selector tuple.
+- **The synchronized V4 endpoint is sharper.**  The full radical crossed
+  product replaces three unrelated endpoint laws by three explicit commuting
+  failure projections of total trace `5tau(P_f)/4`.
+  `five-fourths-projection-surplus-pays-linear-hs-energy` shows that exits of
+  total capacity `tau(P_f)` pay at least `tau(P_f)/4` directly, with no
+  copywise selection and no quadratic loss.  The remaining local theorem is
+  precisely `(SCA1)--(SCA2)` of `same-context-s3-endpoint-atlas`.
+- **Literal exit routing is impossible.**  By
+  `exact-five-fourths-projection-return-collapses-the-packet`, exact
+  stable-letter conjugacies into orthogonal subprojections of the parent
+  contradict the canonical trace and therefore destroy packet injectivity.
+  The surviving holonomy must derive capacity only in finite-dimensional
+  microstates from contextual coupling; an ordinary finite projection atlas
+  is not a candidate.
 - **Violation-oriented contraction.** The corrected alternative route
   `fixed-scale-holonomy-via-groupified-child-center` follows the full `Q` child:
   satisfying sectors reproduce once and violating sectors twice. The robust

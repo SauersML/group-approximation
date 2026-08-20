@@ -2,27 +2,42 @@
 rg: 2
 id: same-context-s3-endpoint-atlas
 kind: claim
-title: Realize all three S3 endpoint laws locally around one fixed BCS context
+title: Derive a finite-dimensional-only V4 exit-capacity law around one fixed BCS context
 distinct_from:
-  s3-radical-chart-returns-to-fresh-context: that transports the chart into the next tape context; this asks whether one closed finite local atlas can expose the three endpoint laws without any recursive level.
-  three-radical-twist-crossed-products-have-uniform-scale: that constructs the three finite charts and their perfect-match restriction tables; the present theorem must add comparison words which impose the diagonal/crossed endpoint marginals rather than merely permuting the four radical types.
-  finite-packet-graph-atlases-have-a-regular-stationary-flow: that proves every one-dimensional finite-packet refinement has a positive integral stationary vector; this must therefore impose genuine two-cell holonomy on the edge-intertwiner multiplicity spaces.
+  s3-radical-chart-returns-to-fresh-context: that transports a chart into the next tape context; this asks for one bounded local cell whose capacity inequality holds only after finite-dimensional packet exactification.
+  full-v4-latent-coordinate-has-an-operator-five-fourths-floor: that constructs the three named source projections and their exact trace surplus; this must construct their matrix-only exits and bound the exit capacity.
+  exact-five-fourths-projection-return-collapses-the-packet: that forbids literal stable-letter projection compression in the group algebra; this must make the same inequality emerge only in finite-dimensional approximate representations.
 ---
 
 For each predicate context of the fixed non-CE BCS, construct a bounded finite
-presentation extension containing its three S3 radical charts and comparison
-words such that:
+presentation extension containing its full V4 radical packet `T_f` such that:
 
-1. on every locally exactified forbidden carrier, the three comparisons have
-   the common endpoint marginals `(RNS1)` and the diagonal/crossed success
-   conventions of `rank-one-no-signaling-pairing-floor`;
-2. their failed mass is charged by
-   `s3-radical-charts-give-linear-local-hs-payment` with constants depending
-   only on the fixed context predicate;
-3. the extension of the exact tracial BCS model exists with central packet
+1. the extension of the exact tracial BCS model exists with central packet
    sign `J=-1`, so the proposed mark is genuinely nontrivial;
-4. shared BCS variables are identified across contexts, while private packet
+2. shared BCS variables are identified across contexts, while private packet
    variables do not impose cross-context commutation.
+3. after fixed-group exactification in every finite-dimensional normalized-HS
+   microstate, the three source projections `F_00,F_01,F_11` from `(VOF4)`
+   admit transported exit projections `E_00,E_01,E_11` with
+
+   ```text
+   sum_b ||U_bF_bU_b^*-E_b||_2^2 <= C E_local+o(1),       (SCA1)
+   sum_b tau(E_b) <= tau(P_f)+C E_local+o(1);             (SCA2)
+   ```
+
+4. `(SCA1)--(SCA2)` use a genuinely matrix-only invariant (finite
+   multiplicity, rank, or a non-CE shared-word rounding theorem) and are not
+   exact group-algebra projection identities.
+
+Then `five-fourths-projection-surplus-pays-linear-hs-energy` gives
+
+```text
+E_local >= c tau(P_f)-o(1),                              (SCA3)
+```
+
+with an explicit constant depending only on the bounded cell.  This is now
+the exact local S3/V4 obstruction: construct `(SCA1)--(SCA2)` while retaining
+exact tracial completeness.
 
 ## Attempts
 
@@ -75,6 +90,14 @@ words such that:
   projections.  Any proposed discharge that is an exact trace inequality is
   ruled out by the regular representation; a viable one must exploit finite
   multiplicity holonomy or send the blocks into a recurrent exit ledger.
+- The required payment after such a discharge is no longer open.
+  `five-fourths-projection-surplus-pays-linear-hs-energy` proves the sharp
+  lower bound `tau(P_f)/4` from an exact capacity-one exit, and tolerates an
+  additive capacity slack.  Conversely,
+  `exact-five-fourths-projection-return-collapses-the-packet` proves that
+  imposing those exits by literal stable-letter conjugacy destroys the
+  embedded packet.  Thus `(SCA1)--(SCA2)`, not another scalar endpoint law,
+  are the irreducible local target.
 - A seemingly stronger matrix-valued repair is circular: attach an infinite
   overgroup of the child packet which robustly excludes the child type carried
   by a failure block.  By

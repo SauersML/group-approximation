@@ -69,3 +69,11 @@ operation must route the three named blocks to orthogonal recurrent exits,
 or impose a finite-dimensional-only non-scalar multiplicity holonomy on
 them.
 
+The exact quantitative endpoint is now
+`five-fourths-projection-surplus-pays-linear-hs-energy`: exits of total trace
+at most `tau(P_f)+ell` force routing energy at least
+`tau(P_f)/4-ell`.  However,
+`exact-five-fourths-projection-return-collapses-the-packet` proves that these
+exits cannot be imposed as literal stable-letter conjugates below `P_f` while
+the packet remains embedded.  The capacity bound must therefore be derived
+only inside finite-dimensional microstates.
