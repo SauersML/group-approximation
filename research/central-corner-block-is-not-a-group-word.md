@@ -37,3 +37,11 @@ must separately groupify the block through payload-coupled infinite
 relations, a proper-corner incidence, or a quantitative matrix theorem which
 charges every unwanted sector.
 
+There is one exact escape which does not contradict this statement. After
+completing `z,u` to two Pauli pairs, `T` is the Clifford `CZ` implementer and
+its **conjugation action** is an automorphism of a finite extraspecial group.
+`controlled-pauli-corner-has-clifford-groupification` adjoins that automorphism
+by an ordinary stable letter. In an arbitrary marked representation the
+letter is `T tensor V` for an uncontrolled multiplicity involution `V`.
+Therefore the escape groupifies covariance, not the additive identity or the
+spectrum of `T` itself.

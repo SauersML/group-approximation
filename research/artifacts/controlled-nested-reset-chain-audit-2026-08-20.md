@@ -59,6 +59,17 @@ finite-selector induction and controlled-phase barriers predict extra sectors
 for a standalone finite gadget, so a successful construction must couple them
 to a proper corner, an infinite payload, or an energy-paying holonomy.
 
+There is now a narrower finite-group escape from this gate. If the control
+and payload are completed to Pauli pairs, the same operator is `CZ`, and
+`controlled-pauli-corner-has-clifford-groupification` realizes its conjugation
+action by a finite semidirect product. In every marked representation the new
+stable letter has form `CZ tensor V`, with `V` an arbitrary multiplicity
+involution. Hence this promotes the CNRC cell exactly if its incidence table
+uses the block only through Pauli conjugation. It does not promote any step
+which reads the stable-letter sign, trace, or spectral projection. The finite
+replay obligation is recorded as
+`controlled-nested-reset-needs-only-clifford-covariance`.
+
 ## 3. Second promotion gate: fixed-depth rank mesh is not a density gap
 
 Corner-normalized rank is just as continuous in matrices as in a finite
@@ -91,7 +102,8 @@ The proposal contributes a concrete candidate to
 `q-masa-to-fresh-packet-morita-bridge`, with four obligations:
 
 1. give the controlled two-level cell as an explicit ordinary group, not
-   only as block matrices;
+   only as block matrices; the current candidate is a Clifford semidirect
+   product whose stable letters are used only through covariance;
 2. enumerate every local marked type, while retaining a genuinely global
    two-cell or holonomy constraint not reducible to a finite restriction
    graph;

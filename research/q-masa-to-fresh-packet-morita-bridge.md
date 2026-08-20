@@ -69,3 +69,12 @@ which exchanges the two supports.
   search should accept the CNRC incidence only after it is supplied as a
   complete group cell with a nonlocal two-cell and yields a positive-density
   separating functional not contradicted by the regular stationary flow.
+- **Clifford covariance completion. Active.** Pauli-completing the control
+  and payload turns the same additive block into a `CZ` implementer.
+  `controlled-pauli-corner-has-clifford-groupification` proves that its
+  conjugation action is an honest finite-group covariance in every marked
+  representation. The remaining finite audit is
+  `controlled-nested-reset-needs-only-clifford-covariance`: the CNRC
+  incidence must use the stable letters only through conjugation, because
+  their arbitrary multiplicity involutions otherwise restore unwanted
+  types.
