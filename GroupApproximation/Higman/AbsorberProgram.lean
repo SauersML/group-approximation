@@ -106,5 +106,17 @@ theorem statement_of_higman (hA : TorsionFreeHigmanEmbedding) :
     pcAbsorber_torsionFree
   exact statement_of_pcAbsorber_hull H
 
+/-- The same construction, packaged as the universal host consumed by the
+Kazhdan-envelope route. -/
+theorem nonempty_host_of_higman (hA : TorsionFreeHigmanEmbedding) :
+    Nonempty FournierFacioUniversal.UniversalTorsionFreeHost := by
+  obtain ⟨H⟩ := hA.hull PCAbsorber recursivePresentationPCAbsorberFull
+    pcAbsorber_torsionFree
+  exact ⟨{ Carrier := H.Carrier
+           groupCarrier := H.groupCarrier
+           finitelyPresentedCarrier := H.finitelyPresentedCarrier
+           torsionFree := H.torsionFree
+           universal := universal_of_embedding_pcAbsorber H.emb H.emb_injective }⟩
+
 end Higman
 end GroupApproximation
