@@ -13,8 +13,8 @@ For a halting output `D`, use the word oracle's rounded question PVMs on the
 first copy of `C^D` and their entrywise conjugates on the second copy, with
 shared state `Phi_D`.  The identity `(MEH1)` converts every word consistency,
 linearity and braiding error charged by the oracle into the corresponding
-state-dependent test loss without a dimension factor.  The oracle's fixed
-average bound therefore gives success at least `1-eta_0`.  Perfect nonhalting
-marked completeness is inherited unchanged.  These are exactly the two
-clauses of `dimension-reported-pauli-test-halting-compiler`.
-
+  state-dependent test loss without a dimension factor. The oracle's
+  source-dependent but post-halt-uniform average bound therefore gives success
+  at least `1-eta_0` below its compiled defect threshold. Perfect nonhalting
+  marked completeness is inherited unchanged. These are exactly the two
+  clauses of `dimension-reported-pauli-test-halting-compiler`.

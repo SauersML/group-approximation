@@ -8,19 +8,21 @@ distinct_from:
   adaptive-all-pairs-schur-replica-table-compiler: that must emit a complete finite multiplication table after inspecting residual dimension internally; this emits only the BLR and Magic-Square question oracle after receiving dimension as a machine output.
 ---
 
-Construct effectively from a source machine `M` a finite presentation and
-marked word satisfying `(DMK1)`, with universal constants, such that if `M`
-halts and outputs `D`, the presentation exposes the question-indexed binary
+Construct effectively from a source machine `M` a finite presentation,
+marked word, and positive computable source-dependent defect modulus
+satisfying `(IMK1)`, such that if `M` halts and outputs `D`, the presentation
+exposes the question-indexed binary
 observables and constant-answer PVMs of the Pauli braiding test at an `N`
 satisfying `(PBD2)`.  Every `D`-dimensional marked tuple of sufficiently small
 presentation defect must make the verifier's **average** rejection probability
 at most `eta_0` after independent fixed-size PVM rounding at each sampled
 question.
 
-The conversion must use only finitely many group-word templates.  Its average
-defect bound and mark retention must be independent of `N`, `D`, and the
-runtime before the output.  A nonhalting computation must retain an exact
-marked model, so the oracle hardware is dormant rather than inconsistent.
+The conversion must use only finitely many group-word templates. Its average
+defect bound and mark retention may depend computably on the source code but
+must be independent of `N`, `D`, and the runtime before the output. A
+nonhalting computation must retain an exact marked model, so the oracle
+hardware is dormant rather than inconsistent.
 
 ## Attempts
 
@@ -34,4 +36,3 @@ marked model, so the oracle hardware is dormant rather than inconsistent.
   braiding test gives constant quantum rigidity.  The missing splice is a
   perfect-complete self-similar orbit presentation realizing their query
   sampler in arbitrary unitary normalized-HS microstates.
-
