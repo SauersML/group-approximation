@@ -11,6 +11,7 @@ requires:
   - uniform-relative-clifford-tape-cell
   - shared-overlap-controls-packet-multiplicity-vector
   - oriented-schur-restriction-mass-identity
+  - oriented-schur-child-branching-identity
   - fanizza-bcs-polynomial-doubling-tape
   - marked-hs-separation-forces-spectral-density
 ---
@@ -59,7 +60,10 @@ functional, so `0<=a_n<=1`. Applying `(OSR1)` and then `(2)` gives
 a_n <= (1/2)a_(n+1)+(1/2)b_n+C'(n+1)^k E^(1/2),                (3)
 ```
 
-where `b_n` is normalized inactive-sector mass.
+where `b_n` is normalized inactive-sector mass. Equivalently, and in the
+actual Toeplitz placement more canonically, use `(OCB3)` for the compressed
+`Q` child: its two active copies carry distinct `q_(N+1)` branch labels and
+already lie on the tail side of the compressor.
 
 The inactive sectors are precisely the forbidden truth assignments for the
 finite relation menu used to decompose `(FDB1)`. Clause 4 of the shift-amalgam

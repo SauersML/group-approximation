@@ -12,9 +12,10 @@ In the diagonal-covariant Toeplitz/Fanizza skeleton, choose the fixed packet
 embeddings so that for every level `n` the following holds after uniform
 relative exactification.
 
-1. On an active selector sector, the `Q`-child commutant of cell `n` is the
-   full input multiplicity carrier for cell `n+1`; equivalently, the relative
-   Pauli `C^2` exposed by restriction to `A_n` is not discarded into a
+1. Restriction to the `Q` child of cell `n` produces the two canonical branch
+   types of `oriented-schur-child-branching-identity`, and their total weighted
+   multiplicity is the input carrier for cell `n+1`. The relative Pauli
+   `C^2` is therefore retained as a branch label rather than discarded into a
    spectator factor.
 2. The complete weighted type vector of that child carrier and the input type
    vector of cell `n+1` differ by at most
@@ -31,7 +32,7 @@ relative exactification.
    child/tail incidences, so the resulting finite presentation retains a
    nonidentity marked word.
 
-Combined with the oriented restriction identity, `(TCM1)` gives
+Combined with the oriented child-branching identity, `(TCM1)` gives
 
 ```text
 a_n <= (1/2)a_(n+1)+C'(n+1)^k sqrt(E),                         (TCM2)
@@ -52,4 +53,3 @@ nonisomorphic finite packet groups.
   The remaining calculation is to choose the self-similar packet embeddings
   so the tail copy uses that particular relative `C^2` factor and to prove
   `(TCM1)` from the shared word defects.
-

@@ -9,6 +9,7 @@ requires:
   - diagonal-covariance-has-quadratic-hs-word-cost
   - context-local-schur-packet-marked-extension
   - schur-child-toeplitz-morita-wire
+  - oriented-schur-child-branching-identity
   - toeplitz-schur-child-masa-recurrence
   - uniform-relative-clifford-tape-cell
 ---
@@ -26,4 +27,3 @@ charges the inactive Fanizza terms, and preserves the exact marked extension.
 Uniform relative-cell rounding supplies a level-independent analytic modulus;
 only the permitted polynomial word cost remains. These statements give all
 five clauses of the target.
-
