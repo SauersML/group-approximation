@@ -156,6 +156,15 @@ common context across replicas is needed.  This establishes genuine
 exponential amplification of copied bad regions; fixed `N` is still finite
 profile pressure, so the adaptive same-model controller remains essential.
 
+The finite-window result is robust once the controller supplies an all-pairs
+approximate multiplication table.  Universal Gowers--Hatami stability
+exactifies the entire finite replica group with error `42 epsilon` and
+dimension enlargement at most `(1-4epsilon^2)^(-1)`, independent of the
+number of replicas.  Hence a sign-retaining table already forces
+`d >= (1-4epsilon^2)2^(ceil(beta_B N/C))`.  The analytic hole is no longer
+packet rounding: it is the finite recursive compilation of local relators into
+that all-pairs table with error independent of `N` and runtime.
+
 There is a genuinely different escape from dimension detection.  If a finite
 bi-index action can be rounded uniformly, one base lamp and finitely many
 pair-orbit relators produce a coherent *infinite* family of anticommuting

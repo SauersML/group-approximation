@@ -46,3 +46,9 @@ that model from arbitrarily large matrices.
   select different violated contexts.  Thus the compiler need not align one
   specific predicate across depth; it only must recover the commuting replica
   structure and choose `N` at the residual matrix scale.
+- If the controller emits the *complete multiplication table* of the selected
+  finite replica group with one fixed all-pairs error, Gowers--Hatami
+  exactifies the whole object with constants independent of `N`.  The robust
+  endpoint is `approximate-schur-replicas-force-exponential-dimension`; the
+  remaining table compiler is
+  `adaptive-all-pairs-schur-replica-table-compiler`.
