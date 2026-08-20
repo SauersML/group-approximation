@@ -1,15 +1,23 @@
 name: Apply audited non-MF manuscript fix
 
 on:
-  issues:
-    types: [opened]
+  workflow_run:
+    workflows:
+      - Lean Prover CI
+      - Draft non-MF PDF
+      - Reap superseded prover runs
+      - Keep verified current across publication-only commits
+    types: [completed]
 
 permissions:
   contents: write
 
+concurrency:
+  group: apply-audited-non-mf-manuscript-fix
+  cancel-in-progress: false
+
 jobs:
   apply:
-    if: github.event.issue.title == 'oai: apply audited non-MF manuscript fix'
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
@@ -27,8 +35,14 @@ jobs:
           git fetch origin main
           git reset --hard origin/main
 
-          test "$(git hash-object non_mf_groups_exist.tex)" = 1151de7b4e99f014afc1b44cb07026caff08c128
-          test "$(git hash-object metadata/NON_MF_PROOF_LEDGER.md)" = d11b1e12b785398765c52f2363cad5372800c32e
+          tex_hash="$(git hash-object non_mf_groups_exist.tex)"
+          ledger_hash="$(git hash-object metadata/NON_MF_PROOF_LEDGER.md)"
+          if [[ "$tex_hash" == 78a51e72f28c4fa6aba64ebbf81a95a54da4810b && \
+                "$ledger_hash" == ff1ae45817ecfa2dd0a58477f61c7b02bd860a85 ]]; then
+            exit 0
+          fi
+          test "$tex_hash" = 1151de7b4e99f014afc1b44cb07026caff08c128
+          test "$ledger_hash" = d11b1e12b785398765c52f2363cad5372800c32e
 
           cat .github/oai/nonmf-fix.* > /tmp/nonmf-main-fix.patch
           echo 'd5e0fb47f148028d2cd333439c634035d65f9f3b9daf4bc327c9f45a4ad4136c  /tmp/nonmf-main-fix.patch' | sha256sum -c -
