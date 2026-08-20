@@ -323,9 +323,8 @@ theorem mask_shift_mask (f : Lamp) :
   simp only [mask_apply, shift_apply, toAdd_ofAdd]
   by_cases h : (0:ℤ) ≤ n
   · simp [h]
-  · have h3 : ¬ ((0:ℤ) ≤ n - 1) := by omega
-    have h1 : ¬ ((1:ℤ) ≤ n) := fun hn ↦ h (le_trans zero_le_one hn)
-    simp [h, h3, h1]
+  · have h1 : ¬ ((1:ℤ) ≤ n) := fun hn ↦ h (le_trans zero_le_one hn)
+    simp [h, h1]
 
 /-- **The compression.**  The stable letter carries the image of `iota` into
 itself. -/
@@ -371,7 +370,7 @@ theorem commutator_transportedRoot (f : Lamp) :
 /-- The same computation with no mask in the way: a commutator against the
 transported root is a single lamp at site `0`. -/
 theorem commutator_transportedRoot_inl (m : Lamp) :
-    ⁅transportedRoot, SemidirectProduct.inl m⁆
+    ⁅transportedRoot, (SemidirectProduct.inl m : Skeleton)⁆
       = SemidirectProduct.inl (lamp 0 ⁅cx, m 0⁆) := by
   show ⁅SemidirectProduct.inl (lamp 0 cx), SemidirectProduct.inl m⁆ = _
   rw [← map_commutatorElement, commutator_lamp]
@@ -488,7 +487,7 @@ theorem infinite_source (d : CompressionSourceData P E) : Infinite P := by
   have hmaps : ∀ x : d.iota.range, d.u * (x : E) * d.u⁻¹ ∈ d.iota.range := by
     rintro ⟨x, p, rfl⟩
     obtain ⟨q, hq⟩ := d.compresses p
-    exact ⟨q, hq⟩
+    exact ⟨q, hq.symm⟩
   haveI hfin : Finite d.iota.range :=
     Finite.of_surjective (fun p : P => (⟨d.iota p, ⟨p, rfl⟩⟩ : d.iota.range))
       (by rintro ⟨x, p, rfl⟩; exact ⟨p, rfl⟩)
@@ -781,7 +780,7 @@ def baseToLamp : ConcreteCompressionSource.Base HalfLamp →* Lamp where
     by_cases h : (0:ℤ) ≤ n
     · simp [h]
     · by_cases h2 : n = -1
-      · simp [h, h2, ← zpow_add]
+      · simp [h2, ← zpow_add]
       · simp [h, h2]
 
 @[simp] theorem baseToLamp_apply (b : ConcreteCompressionSource.Base HalfLamp)
@@ -972,22 +971,18 @@ theorem support_mul (f g : Lamp) : support (f * g) ⊆ support f ∪ support g :
 theorem support_inv (f : Lamp) : support f⁻¹ = support f := by
   ext n
   constructor
-  · intro hn
-    intro hcon
+  · intro hn hcon
     exact hn (show (f n)⁻¹ = 1 by rw [show f n = 1 from hcon]; simp)
-  · intro hn
-    intro hcon
+  · intro hn hcon
     exact hn (by simpa using congrArg (fun z : Coeff => z⁻¹) hcon)
 
 theorem support_conj (a f : Lamp) : support (a * f * a⁻¹) = support f := by
   ext n
   constructor
-  · intro hn
-    intro hcon
+  · intro hn hcon
     exact hn (show a n * f n * (a n)⁻¹ = 1 by
       rw [show f n = 1 from hcon, mul_one, mul_inv_cancel])
-  · intro hn
-    intro hcon
+  · intro hn hcon
     refine hn ?_
     have h : a n * f n * (a n)⁻¹ = 1 := hcon
     have h2 : f n = (a n)⁻¹ * (a n * f n * (a n)⁻¹) * (a n) := by group
@@ -1004,7 +999,7 @@ theorem support_shift (k : Multiplicative ℤ) (f : Lamp) :
     exact hn
   · rintro ⟨m, hm, rfl⟩
     show f (m + Multiplicative.toAdd k - Multiplicative.toAdd k) ≠ 1
-    simpa using hm
+    simpa [support] using hm
 
 theorem finite_support_shift {k : Multiplicative ℤ} {f : Lamp}
     (hf : (support f).Finite) : (support (shift k f)).Finite := by
