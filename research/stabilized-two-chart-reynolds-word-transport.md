@@ -47,4 +47,8 @@ trace-functorial regular-representation contradiction.
   not merely a scalar forbidden-mass lower bound, or
   `multiplicity-surplus-is-blind-to-the-non-ce-input` supplies a false
   classically-unsatisfiable instance.
-
+- **Spectral replacement.** `property-t-hs-positive-density-commutant-no-growth`
+  shows that it is unnecessary to return the raw finite Reynolds averages.
+  It is enough to place their difference as low compressed spectrum
+  transverse to the original low spectrum. The sharper remaining target is
+  `schur-packet-as-positive-density-compressor-wall`.

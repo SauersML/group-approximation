@@ -1256,6 +1256,28 @@ relative Dehn function giving the exact HS error modulus. The open calculation
 is now the weighted cancellation of the stabilizing boundary, not raw packet
 conjugacy.
 
+A stronger spectral formulation removes even that raw return requirement.
+Let (A) be the adjoint Laplacian of a property-((T)) base and let
+(C_\alpha) be the Laplacian of its compressed word copy. Word telescoping
+gives (C_\alpha\le LA) as quadratic forms, while the HNN relators make
+(C_\alpha) Hilbert--Schmidt close to a unitary conjugate of (A). The
+property-((T)) SOS certificate puts only (O(\delta^2)) normalized spectral
+mass in any fixed interval inside the Kazhdan gap. Comparing spectral counts
+at separated thresholds therefore yields
+
+\[
+\operatorname{tr}_{\rm ad}
+\bigl(1_{[0,b]}(C_\alpha)(1-1_{[0,a]}(A))\bigr)=O(\delta).
+\]
+
+This is `property-t-hs-positive-density-commutant-no-growth`: a compressor may
+still create a slow, zero-density wall, but not a positive-density one. Since
+the Schur predicate packet creates adjoint wall density
+(3q^2/(4D^2K)), placing that packet difference in the compressed low space
+immediately forces (q^2=O(\delta)). The remaining construction is isolated
+as `schur-packet-as-positive-density-compressor-wall`; it no longer needs a
+termwise Reynolds-table conjugacy or a copywise multiplicity selector.
+
 ---
 
 ## 16. Computational verification
