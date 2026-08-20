@@ -63,39 +63,32 @@ def act : F₀ →* Equiv.Perm Slice :=
   FreeGroup.lift (fun i : Fin 2 => if i = 0 then bPerm else cPerm)
 
 @[simp] theorem act_b : act b = bPerm := by
-  unfold act b
-  rw [FreeGroup.lift.of]
-  simp
+  simp [act, b]
 
 @[simp] theorem act_c : act c = cPerm := by
-  unfold act c
-  rw [FreeGroup.lift.of]
-  simp
+  simp [act, c]
 
 theorem act_c_zpow (i : ℤ) (p : Slice) : act (c ^ i) p = (p.1, p.2 + i) := by
   rw [map_zpow, act_c]
-  induction i using Int.induction_on with
-  | hz =>
+  induction i using Int.induction_on generalizing p with
+  | zero =>
       show p = (p.1, p.2 + 0)
       rw [add_zero]
-      exact Prod.ext rfl rfl
-  | hp n ih =>
-      have hstep : (cPerm ^ ((n : ℤ) + 1)) p = cPerm ((cPerm ^ (n : ℤ)) p) := by
-        rw [zpow_add, zpow_one]
-        rfl
-      rw [hstep, ih]
-      show ((p.1, p.2 + (n : ℤ)).1, (p.1, p.2 + (n : ℤ)).2 + 1) = _
+  | succ n ih =>
+      rw [zpow_add, zpow_one]
+      change (cPerm ^ (n : ℤ)) (cPerm p) = _
+      rw [ih]
+      show ((cPerm p).1, (cPerm p).2 + (n : ℤ)) = _
       refine Prod.ext rfl ?_
-      show p.2 + (n : ℤ) + 1 = p.2 + ((n : ℤ) + 1)
+      show p.2 + 1 + (n : ℤ) = p.2 + ((n : ℤ) + 1)
       ring
-  | hn n ih =>
-      have hstep : (cPerm ^ (-(n : ℤ) - 1)) p = cPerm.symm ((cPerm ^ (-(n : ℤ))) p) := by
-        rw [zpow_sub, zpow_one]
-        rfl
-      rw [hstep, ih]
-      show ((p.1, p.2 + -(n : ℤ)).1, (p.1, p.2 + -(n : ℤ)).2 - 1) = _
+  | pred n ih =>
+      rw [zpow_sub, zpow_one]
+      change (cPerm ^ (-(n : ℤ))) (cPerm.symm p) = _
+      rw [ih]
+      show ((cPerm.symm p).1, (cPerm.symm p).2 + -(n : ℤ)) = _
       refine Prod.ext rfl ?_
-      show p.2 + -(n : ℤ) - 1 = p.2 + (-(n : ℤ) - 1)
+      show p.2 - 1 + -(n : ℤ) = p.2 + (-(n : ℤ) - 1)
       ring
 
 /-- **What a row element does on the zero slice.** -/
@@ -104,12 +97,13 @@ theorem act_row (i : ℤ) (w : FreeGroup ℤ) :
   unfold row
   rw [map_mul, map_mul]
   show act (c ^ (-i)) (act b (act (c ^ i) (w, (0 : ℤ)))) = _
-  rw [act_c_zpow]
+  rw [act_c_zpow i (w, (0 : ℤ))]
   show act (c ^ (-i)) (act b (w, (0 : ℤ) + i)) = _
   rw [act_b]
   show act (c ^ (-i))
     (FreeGroup.of (-((0 : ℤ) + i)) * w, (0 : ℤ) + i) = _
-  rw [act_c_zpow]
+  rw [act_c_zpow (-i)
+    (FreeGroup.of (-((0 : ℤ) + i)) * w, (0 : ℤ) + i)]
   refine Prod.ext ?_ ?_
   · show FreeGroup.of (-((0 : ℤ) + i)) * w = FreeGroup.of (-i) * w
     congr 2
@@ -124,16 +118,14 @@ the `i`-th row element. -/
 def basisHom : FreeGroup ℤ →* F₀ := FreeGroup.lift row
 
 @[simp] theorem basisHom_of (i : ℤ) : basisHom (FreeGroup.of i) = row i := by
-  unfold basisHom
-  rw [FreeGroup.lift.of]
+  simp [basisHom]
 
 /-- The sign-reversing automorphism of `FreeGroup ℤ`. -/
 def negHom : FreeGroup ℤ →* FreeGroup ℤ :=
   FreeGroup.lift (fun i : ℤ => FreeGroup.of (-i))
 
 @[simp] theorem negHom_of (i : ℤ) : negHom (FreeGroup.of i) = FreeGroup.of (-i) := by
-  unfold negHom
-  rw [FreeGroup.lift.of]
+  simp [negHom]
 
 theorem negHom_comp_negHom : negHom.comp negHom = MonoidHom.id (FreeGroup ℤ) := by
   refine FreeGroup.ext_hom _ _ fun i => ?_
@@ -162,12 +154,10 @@ def GoodSub : Subgroup (FreeGroup ℤ) where
     rfl
   mul_mem' := by
     intro x y hx hy w
-    rw [map_mul, map_mul]
+    simp only [map_mul]
     show act (basisHom x) (act (basisHom y) (w, (0 : ℤ))) = _
     rw [hy w, hx (negHom y * w)]
-    refine Prod.ext ?_ rfl
-    show negHom x * (negHom y * w) = negHom x * negHom y * w
-    group
+    exact Prod.ext (by group) rfl
   inv_mem' := by
     intro x hx w
     have hkey : act (basisHom x) ((negHom x)⁻¹ * w, (0 : ℤ)) = (w, 0) := by
@@ -175,20 +165,16 @@ def GoodSub : Subgroup (FreeGroup ℤ) where
       refine Prod.ext ?_ rfl
       show negHom x * ((negHom x)⁻¹ * w) = w
       group
-    rw [map_inv, map_inv]
     have : (act (basisHom x))⁻¹ (w, (0 : ℤ)) = ((negHom x)⁻¹ * w, 0) := by
-      refine (Equiv.eq_symm_apply _).mpr ?_
-      · exact hkey.symm
-    show (act (basisHom x))⁻¹ (w, (0 : ℤ)) = _
-    rw [this]
+      exact (act (basisHom x)).symm_apply_eq.mpr hkey.symm
+    simpa only [map_inv] using this
 
 theorem goodSub_eq_top : GoodSub = ⊤ := by
-  refine top_le_iff.mp ?_
-  intro W -
+  apply top_unique
+  intro W _
   refine FreeGroup.induction_on W ?_ ?_ ?_ ?_
   · exact Subgroup.one_mem _
-  · intro i
-    intro w
+  · intro i w
     rw [basisHom_of, negHom_of, act_row]
   · intro i hmem
     exact Subgroup.inv_mem _ hmem

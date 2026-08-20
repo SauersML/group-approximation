@@ -205,12 +205,7 @@ theorem isQuasiGeodesic_of_isGeodesicWord {G : Type u} [Group G] {S : Set G}
     omega
   intro i hi j hj hij
   have h := hstep i j hij hj
-  -- The goal reads the segment through `fun i => (l.take i).prod`, so both
-  -- distances appear under a beta-redex.  `omega` compares atoms syntactically
-  -- and would treat those as unrelated to `h`; beta-reduce them first.
-  show wordDist S (l.take i).prod (l.take j).prod ≤ 1 * (j - i) + 0 ∧
-      j - i ≤ 1 * (wordDist S (l.take i).prod (l.take j).prod + 0)
-  omega
+  simp [h]
 
 /-- **The Morse lemma** (stability of quasi-geodesics), as a statement: for each
 triple of constants there is a single `R`, uniform in the group, such that in

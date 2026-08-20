@@ -107,7 +107,12 @@ def BenignWitness.mapEmb [Group.IsFinitelyPresented N] [Group.FG G]
         exact hy
       have hly : w.emb y = l := by
         apply Amalgam.of_injective_push w.emb θ w.emb_injective hθ false
-        rw [Amalgam.of_false_eq_base w.emb θ y, hy, ← hl]
+        calc
+          PushoutI.of (φ := Amalgam.famHom w.emb θ) false (w.emb y)
+              = PushoutI.base (Amalgam.famHom w.emb θ) y :=
+                Amalgam.of_false_eq_base w.emb θ y
+          _ = PushoutI.of (φ := Amalgam.famHom w.emb θ) true x := hy
+          _ = PushoutI.of (φ := Amalgam.famHom w.emb θ) false l := hl.symm
       refine ⟨y, ?_, hxy⟩
       have hcomap : y ∈ w.L.comap w.emb := by
         rw [Subgroup.mem_comap, hly]
@@ -119,7 +124,8 @@ def BenignWitness.mapEmb [Group.IsFinitelyPresented N] [Group.FG G]
           rw [w.comap_eq]
           exact hyH
         exact Subgroup.mem_comap.1 hcomap
-      · rw [Amalgam.of_false_eq_base w.emb θ y, Amalgam.of_true_eq_base w.emb θ y]
+      · exact (Amalgam.of_false_eq_base w.emb θ y).trans
+          (Amalgam.of_true_eq_base w.emb θ y).symm
 
 /-- **Benignness is monotone in the ambient group**, in `Prop` form. -/
 theorem Benign.mapEmb [Group.IsFinitelyPresented N] [Group.FG G]

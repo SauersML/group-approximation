@@ -84,24 +84,18 @@ def act : F₃ →* Equiv.Perm Slice :=
     if i = 0 then aPerm else if i = 1 then lPerm b else lPerm c)
 
 @[simp] theorem act_a : act a = aPerm := by
-  unfold act a
-  rw [FreeGroup.lift.of]
-  simp
+  simp [act, a]
 
 @[simp] theorem act_b : act b = lPerm b := by
-  unfold act b
-  rw [FreeGroup.lift.of]
-  simp
+  simp [act, b]
 
 @[simp] theorem act_c : act c = lPerm c := by
-  unfold act c
-  rw [FreeGroup.lift.of]
-  simp
+  simp [act, c]
 
 /-- **The conjugating subgroup acts by left translation.** -/
 theorem act_of_mem_K {x : F₃} (hx : x ∈ K) (p : Slice) :
     act x p = (p.1, x * p.2) := by
-  induction hx using Subgroup.closure_induction with
+  induction hx using Subgroup.closure_induction generalizing p with
   | mem y hy =>
       rcases hy with rfl | hy
       · rw [act_b]
@@ -124,12 +118,10 @@ theorem act_of_mem_K {x : F₃} (hx : x ∈ K) (p : Slice) :
       group
   | inv y _ ihy =>
       rw [map_inv]
-      refine (Equiv.eq_symm_apply _).mpr ?_
-      · show p = act y (p.1, y⁻¹ * p.2)
-        rw [ihy]
-        refine Prod.ext rfl ?_
-        show p.2 = y * (y⁻¹ * p.2)
-        group
+      apply (act y).symm_apply_eq.mpr
+      show p = act y (p.1, y⁻¹ * p.2)
+      rw [ihy]
+      exact Prod.ext rfl (by group)
 
 /-- **What a conjugate does on the trivial slice.** -/
 theorem act_conj {h : F₃} (hh : h ∈ K) (w : FreeGroup F₃) :
@@ -156,8 +148,7 @@ def cbHom : FreeGroup ↥K →* F₃ :=
 
 @[simp] theorem cbHom_of (h : ↥K) :
     cbHom (FreeGroup.of h) = (h : F₃)⁻¹ * a * (h : F₃) := by
-  unfold cbHom
-  rw [FreeGroup.lift.of]
+  simp [cbHom]
 
 /-- The inclusion of index sets. -/
 def incl : FreeGroup ↥K →* FreeGroup F₃ := FreeGroup.map (fun h : ↥K => (h : F₃))
@@ -182,12 +173,10 @@ def GoodSub : Subgroup (FreeGroup ↥K) where
     rfl
   mul_mem' := by
     intro x y hx hy w
-    rw [map_mul, map_mul]
+    simp only [map_mul]
     show act (cbHom x) (act (cbHom y) (w, (1 : F₃))) = _
     rw [hy w, hx (incl y * w)]
-    refine Prod.ext ?_ rfl
-    show incl x * (incl y * w) = incl x * incl y * w
-    group
+    exact Prod.ext (by group) rfl
   inv_mem' := by
     intro x hx w
     have hkey : act (cbHom x) ((incl x)⁻¹ * w, (1 : F₃)) = (w, 1) := by
@@ -195,21 +184,19 @@ def GoodSub : Subgroup (FreeGroup ↥K) where
       refine Prod.ext ?_ rfl
       show incl x * ((incl x)⁻¹ * w) = w
       group
-    rw [map_inv, map_inv]
     have hinv : (act (cbHom x))⁻¹ (w, (1 : F₃)) = ((incl x)⁻¹ * w, 1) :=
-      (Equiv.eq_symm_apply _).mpr hkey.symm
-    show (act (cbHom x))⁻¹ (w, (1 : F₃)) = _
-    rw [hinv]
+      (act (cbHom x)).symm_apply_eq.mpr hkey.symm
+    simpa only [map_inv] using hinv
 
 theorem goodSub_eq_top : GoodSub = ⊤ := by
-  refine top_le_iff.mp ?_
-  intro W -
+  apply top_unique
+  intro W _
   refine FreeGroup.induction_on W ?_ ?_ ?_ ?_
   · exact Subgroup.one_mem _
   · intro h w
     rw [cbHom_of, incl_of]
     exact act_conj h.2 w
-  · intro h _ hmem
+  · intro h hmem
     exact Subgroup.inv_mem _ hmem
   · intro x y hx hy
     exact Subgroup.mul_mem _ hx hy

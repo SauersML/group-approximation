@@ -68,10 +68,11 @@ theorem evalRaw_mem_closure (x : ℕ → A) (w : RawWord) :
       refine Subgroup.mul_mem _ ?_ ih
       cases b with
       | false =>
-          simpa using Subgroup.inv_mem _
-            (Subgroup.subset_closure (k := Set.range x) ⟨i, rfl⟩)
+          have hi : x i ∈ Set.range x := ⟨i, rfl⟩
+          simpa using Subgroup.inv_mem _ (Subgroup.subset_closure hi)
       | true =>
-          simpa using Subgroup.subset_closure (k := Set.range x) ⟨i, rfl⟩
+          have hi : x i ∈ Set.range x := ⟨i, rfl⟩
+          simpa using Subgroup.subset_closure hi
 
 theorem exists_evalRaw_of_mem_closure (x : ℕ → A) {g : A}
     (hg : g ∈ Subgroup.closure (Set.range x)) :
@@ -145,12 +146,9 @@ theorem codedDirectSum_eq_one_iff (g : CodedDirectSum) :
     apply Multiplicative.toAdd.injective
     apply DFinsupp.ext
     intro c
-    -- `codedEval c` is `toMul ∘ (· c) ∘ toAdd` with `map_one' := rfl`, so both
-    -- sides of `h c` are already the images the injectivity wants; ascribing
-    -- them saves the simp set from having to see through `CodedDirectSum`.
-    have hc : Additive.toMul ((Multiplicative.toAdd g) c)
-        = Additive.toMul ((Multiplicative.toAdd (1 : CodedDirectSum)) c) := h c
-    exact Additive.toMul.injective hc
+    apply Additive.toMul.injective
+    change Additive.toMul (Multiplicative.toAdd g c) = 1
+    exact h c
 
 /-- **(B1), algebraic half.**  A raw word is trivial in the restricted direct
 product exactly when, in every coded group, the word of the coordinates is

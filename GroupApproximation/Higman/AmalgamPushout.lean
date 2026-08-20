@@ -67,9 +67,16 @@ def toPush : Amalg e₁ e₂ →* Push e₁ e₂ := by
       = Monoid.PushoutI.base (famHom e₁ e₂) g :=
     Monoid.PushoutI.of_apply_eq_base (famHom e₁ e₂) true g
   show Monoid.Coprod.lift _ _ (relator e₁ e₂ g) = 1
-  simp only [relator, map_mul, map_inv, Monoid.Coprod.lift_apply_inl,
+  unfold relator
+  rw [map_mul, map_inv, Monoid.Coprod.lift_apply_inl,
     Monoid.Coprod.lift_apply_inr]
-  exact mul_inv_eq_one.mpr (h₁.trans h₂.symm)
+  calc
+    Monoid.PushoutI.of (φ := famHom e₁ e₂) false (e₁ g) *
+          (Monoid.PushoutI.of (φ := famHom e₁ e₂) true (e₂ g))⁻¹
+        = Monoid.PushoutI.base (famHom e₁ e₂) g *
+            (Monoid.PushoutI.base (famHom e₁ e₂) g)⁻¹ :=
+          congrArg₂ (· * ·) h₁ (congrArg Inv.inv h₂)
+    _ = 1 := mul_inv_cancel _
 
 /-- From the pushout to the presented amalgam. -/
 def fromPush : Push e₁ e₂ →* Amalg e₁ e₂ := by

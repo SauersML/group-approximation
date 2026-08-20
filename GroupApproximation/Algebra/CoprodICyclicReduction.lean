@@ -39,10 +39,10 @@ theorem prod_equiv (x : CoprodI M) : Word.prod (Word.equiv x) = x :=
   Word.equiv.symm_apply_apply x
 
 theorem equiv_of_mul {i : ι} (m : M i) (x : CoprodI M) :
-    Word.equiv (CoprodI.of m * x) = m • Word.equiv x := by
-  show (CoprodI.of m * x) • Word.empty = _
-  rw [mul_smul, Word.of_smul_eq_smul]
-  rfl
+    Word.equiv (CoprodI.of m * x) = CoprodI.of m • Word.equiv x := by
+  show (CoprodI.of m * x) • (Word.empty : Word M)
+      = CoprodI.of m • (x • (Word.empty : Word M))
+  rw [mul_smul]
 
 theorem equiv_eq_empty_iff (x : CoprodI M) :
     Word.equiv x = Word.empty ↔ x = 1 := by
@@ -51,7 +51,7 @@ theorem equiv_eq_empty_iff (x : CoprodI M) :
     have h' := congrArg Word.prod h
     rwa [prod_equiv, Word.prod_empty] at h'
   · rintro rfl
-    show (1 : CoprodI M) • Word.empty = Word.empty
+    show (1 : CoprodI M) • (Word.empty : Word M) = Word.empty
     exact one_smul _ _
 
 theorem toList_ne_nil_of_ne_one {x : CoprodI M} (hx : x ≠ 1) :
@@ -94,10 +94,10 @@ theorem equivPair_tail_toList {i : ι} (w : Word M) (h : Word.fstIdx w = some i)
 
 /-- Multiplying on the left by the inverse of the first letter drops it. -/
 theorem equiv_head_inv_mul {i : ι} (x : CoprodI M)
-    (h : Word.fstIdx (Word.equiv x) = some i) :
+    (_ : Word.fstIdx (Word.equiv x) = some i) :
     Word.equiv (CoprodI.of ((Word.equivPair i (Word.equiv x)).head)⁻¹ * x)
       = (Word.equivPair i (Word.equiv x)).tail := by
-  rw [equiv_of_mul, Word.smul_def]
+  rw [equiv_of_mul, Word.of_smul_def]
   simp [Word.rcons]
 
 /-! ## 3.  The shortening move -/
@@ -125,7 +125,7 @@ theorem exists_conj_shorter {i : ι} (y : CoprodI M)
     · rw [hL] at hlen; simp at hlen
     · rcases hL' : L' with _ | ⟨b, L''⟩
       · rw [hL, hL'] at hlen; simp at hlen
-      · rw [hL, hL'] at hlast ⊢
+      · rw [hL, hL'] at hlast
         simpa using hlast
   have hinv : Word.fstIdx (Word.equiv t⁻¹) = some i := by
     rw [CoprodIWordInverse.fstIdx_inv]
@@ -206,7 +206,7 @@ theorem isPowerTorsionFree_coprodI (hfac : ∀ i, IsPowerTorsionFree (M i)) :
           refine hne ?_
           have := congrArg (fun z ↦ g⁻¹ * z * g) hgy
           simpa [mul_assoc] using this
-        · push_neg at hlen
+        · push Not at hlen
           have hnil := toList_ne_nil_of_ne_one hne
           rcases hL : (Word.equiv y).toList with _ | ⟨a, L⟩
           · exact hnil hL
