@@ -292,7 +292,7 @@ theorem isCompletelyPositiveOnMatrices_compressionMap {k : ℕ} (e : Fin k → G
     rw [inner_sum]
     refine Finset.sum_congr rfl fun j _ ↦ ?_
     exact hterm i j
-  have hself : ⟪u, u⟫_ℂ = ((‖u‖ : ℝ) : ℂ) ^ 2 := inner_self_eq_norm_sq_to_K
+  have hself : ⟪u, u⟫_ℂ = ((‖u‖ : ℝ) : ℂ) ^ 2 := inner_self_eq_norm_sq_to_K u
   constructor
   · show (∑ i : Fin m, ∑ j : Fin m, ∑ p : Fin k, ∑ q : Fin k,
         (starRingEnd ℂ) (w i p)

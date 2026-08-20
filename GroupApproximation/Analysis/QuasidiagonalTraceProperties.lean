@@ -123,7 +123,7 @@ theorem normTrace_nonneg_of_isCompletelyPositive {Y : FiniteModel}
     have hre := hcp.form_nonneg x (diracVec Y y)
     have him := hcp.form_im x (diracVec Y y)
     rw [form_diracVec Y (φ (star x * x)) y y] at hre him
-    exact Complex.nonneg_iff.mpr ⟨hre, him⟩
+    exact Complex.nonneg_iff.mpr ⟨hre, him.symm⟩
   have htrace : (0 : ℂ) ≤ Matrix.trace (φ (star x * x)) := by
     simp only [Matrix.trace, Matrix.diag]
     exact Finset.sum_nonneg fun y _ ↦ hentry y
@@ -165,7 +165,14 @@ theorem map_add_of_isQuasidiagonalTrace {τ : A → ℂ}
           - (τ y - normTrace (M.space n) (M.map n y)) := by
       rw [hlin]; ring
     rw [e]
-    exact (norm_sub_le _ _).trans (add_le_add_right (norm_sub_le _ _) _)
+    have h1 := norm_sub_le
+      ((τ (x + y) - normTrace (M.space n) (M.map n (x + y)))
+        - (τ x - normTrace (M.space n) (M.map n x)))
+      (τ y - normTrace (M.space n) (M.map n y))
+    have h2 := norm_sub_le
+      (τ (x + y) - normTrace (M.space n) (M.map n (x + y)))
+      (τ x - normTrace (M.space n) (M.map n x))
+    linarith
   have h0 : ‖τ (x + y) - τ x - τ y‖ = 0 :=
     eq_zero_of_le_tendsto_zero (norm_nonneg _) hlim hbound
   have := norm_eq_zero.mp h0
@@ -295,7 +302,7 @@ theorem map_star_mul_self_nonneg_of_isQuasidiagonalTrace {τ : A → ℂ}
         ≤ ‖τ (star x * x) - normTrace (M.space n) (M.map n (star x * x))‖ := by
       intro n
       have h0 : (normTrace (M.space n) (M.map n (star x * x))).im = 0 :=
-        (Complex.nonneg_iff.mp (hpos n)).2
+        ((Complex.nonneg_iff.mp (hpos n)).2).symm
       have e : (τ (star x * x)).im
           = (τ (star x * x)
               - normTrace (M.space n) (M.map n (star x * x))).im := by
@@ -322,7 +329,7 @@ theorem map_star_mul_self_nonneg_of_isQuasidiagonalTrace {τ : A → ℂ}
       linarith [hle, h0, e.ge, e.le]
     have := le_of_tendsto_of_tendsto' tendsto_const_nhds hdef hb
     linarith
-  exact Complex.nonneg_iff.mpr ⟨hre, him⟩
+  exact Complex.nonneg_iff.mpr ⟨hre, him.symm⟩
 
 /-! ## Unitality, and why it needs the models to be nonempty -/
 
@@ -426,7 +433,8 @@ def QuasidiagonalTraceModel.comp {τ : B → ℂ} (M : QuasidiagonalTraceModel �
 def QuasidiagonalTraceModel.compStarAlgHom {τ : B → ℂ}
     (M : QuasidiagonalTraceModel τ) (π : A →⋆ₐ[ℂ] B) :
     QuasidiagonalTraceModel (fun x : A ↦ τ (π x)) :=
-  M.comp π.toAlgHom.toLinearMap (by simp) (fun x y ↦ by simp) (fun x ↦ by simp)
+  M.comp π.toAlgHom.toLinearMap (by simp) (fun x y ↦ by simp)
+    (fun x ↦ map_star π x)
 
 /-- The proposition-level pullback. -/
 theorem IsQuasidiagonalTrace.comp {τ : B → ℂ} (h : IsQuasidiagonalTrace τ)
@@ -441,10 +449,10 @@ def scalarModelMap (Y : FiniteModel) : ℂ →ₗ[ℂ] Matrix Y Y ℂ where
   toFun z := Matrix.diagonal fun _ ↦ z
   map_add' z w := by
     ext p q
-    by_cases hpq : p = q <;> simp [Matrix.diagonal_apply, hpq]
+    by_cases hpq : p = q <;> simp [hpq]
   map_smul' c z := by
     ext p q
-    by_cases hpq : p = q <;> simp [Matrix.diagonal_apply, hpq]
+    by_cases hpq : p = q <;> simp [hpq]
 
 @[simp] theorem scalarModelMap_apply (Y : FiniteModel) (z : ℂ) :
     scalarModelMap Y z = Matrix.diagonal (fun _ : Y ↦ z) :=
