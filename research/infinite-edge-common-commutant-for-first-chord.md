@@ -10,6 +10,7 @@ distinct_from:
   finite-relative-commutant-chord-is-bounded-integer-feasibility: that decides the finite-matrix double orbit; this asks for an algebraic common-commutant element and algebraic projection equivalences in an infinite signed group corner.
   finite-edge-hnn-closures-cannot-finish-the-nonce-atlas: that excludes iterations over finite associated subgroups; this explicitly permits a finitely generated infinite associated subgroup or a non-Bass--Serre presentation.
   amenable-edge-hnn-preserves-hyperlinearity: that excludes every amenable associated subgroup by a general permanence theorem; this leaves a nonamenable proper infinite edge or a non-Bass--Serre mechanism.
+  finite-free-phase-product-embedding-has-an-injective-coordinate: that proves every injective map into finitely many commuting free-phase copies has a faithful coordinate; this leaves only nonextendable partial-graph coupling or a non-product support geometry.
 ---
 
 Use the first-chord data from `first-cycle-signed-hecke-chord`, with endpoint
@@ -79,6 +80,13 @@ for algebraic Murray--von Neumann equivalence witnessed by group translates.
   `graph-endomorphism-phase-hnn-embeds-formanek-procesi` embeds the resulting
   graph HNN in the same residually finite Formanek--Procesi group by an exact
   Britton argument.
+- **Several individually lossy phase coordinates:** impossible at finite
+  depth.  `finite-free-phase-product-embedding-has-an-injective-coordinate`
+  proves that an injective map of a free support group into a finite product
+  of free groups must be injective in one coordinate.  Thus every finite-layer
+  transport is a graph over one embedded free subgroup; the remaining live
+  case is precisely when the other coordinate maps on that subgroup do not
+  extend to endomorphisms of the ambient free factor.
 - **One unconstrained stable letter:** it can conjugate `X_0` to `X_1`, but
   does not put their common value in both separator commutants and therefore
   breaks a parent attachment.
@@ -87,6 +95,7 @@ for algebraic Murray--von Neumann equivalence witnessed by group translates.
   the path graph product above or a graph-endomorphism subgroup of a
   Formanek--Procesi HNN.  The transport must fix the separator atoms, must not
   extend to an injective endomorphism of the whole hyperlinear base, and must
-  couple multiple phase factors non-graphically so that it carries genuine
-  cycle holonomy rather than merely renaming or duplicating fresh free
-  factors.
+  use nonextendable partial-graph data on a proper embedded free subgroup (or
+  leave finite-product free-phase geometry entirely) so that it carries
+  genuine cycle holonomy rather than merely renaming or duplicating fresh
+  free factors.
