@@ -8,9 +8,8 @@ distinct_from:
   non-ce-bcs-has-robust-approximate-energy-gap: that converts marked contextuality into total forbidden-product mass; this routes that mass through the oriented tower restriction matrices.
 ---
 
-Assume uniform one-step relative exactification along the self-referential BCS
-tape. Choose the sequential correcting isometries and define normalized
-marked multiplicities `a_n` so that:
+Uniform one-step relative exactification along the self-referential BCS tape
+admits normalized marked multiplicities `a_n` such that:
 
 1. the base signal gives `(SDL1)`;
 2. every selector sector activating the Schur rank jump contributes the
@@ -34,7 +33,9 @@ Then `(SDL2)` holds uniformly in the tape level.
   the corrections are chosen monotonically.
 - **Type-vector formulation.** Avoid nested subspaces and track only the full
   weighted irreducible multiplicity vector at each level. Pairwise alignment
-  already bounds its discrepancy. What remains is to compute the signed
-  restriction matrix for the finite Fanizza predicate menu and prove that all
-  complementary types are exactly the BCS violation terms appearing in
-  `(FDB3)`, with no uncharged leakage coordinate.
+  bounds its discrepancy. This is now the successful proof: orient the Schur
+  predicate to be one on propagation-satisfying sectors and apply
+  `oriented-schur-restriction-mass-identity`. The complementary coordinate is
+  exactly inactive/forbidden mass and `(FDB2)` charges it. Since complete type
+  vectors, rather than retained corners, are compared at every incidence,
+  there is no uncharged re-entry channel.
