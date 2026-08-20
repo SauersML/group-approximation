@@ -118,13 +118,14 @@ theorem forall_mem_labelledFactor (k : ℕ) (c s : List (α × Bool)) :
     · exact Or.inr (Or.inl (forall_mem_tag _ _ p hp))
     · exact Or.inr (Or.inr (forall_mem_tag _ _ p hp))
 
-/-- Every letter of a labelled expression carries a label whose factor index is at
-least where the count started.  This is what keeps the blocks of distinct factors
-apart. -/
-theorem index_le_of_mem_labelledExpr [DecidableEq α] :
+/-- Every letter of a labelled expression carries a label whose factor index lies
+in the half-open interval occupied by that expression.  This is what keeps the
+blocks of distinct factors apart. -/
+theorem index_mem_range_of_mem_labelledExpr [DecidableEq α] :
     ∀ (k : ℕ) (e : List (FreeGroup α × List (α × Bool)))
       (p : (α × Bool) × Block), p ∈ labelledExpr k e →
-      (∃ j, k ≤ j ∧ (p.2 = Block.conj j ∨ p.2 = Block.relator j ∨
+      (∃ j, k ≤ j ∧ j < k + e.length ∧
+        (p.2 = Block.conj j ∨ p.2 = Block.relator j ∨
         p.2 = Block.stem j)) := by
   intro k e
   induction e generalizing k with
@@ -136,16 +137,16 @@ theorem index_le_of_mem_labelledExpr [DecidableEq α] :
       intro p hp
       rw [labelledExpr_cons, List.mem_append] at hp
       rcases hp with hp | hp
-      · exact ⟨k, le_rfl, forall_mem_labelledFactor k x.toWord s p hp⟩
-      · obtain ⟨j, hj, hlab⟩ := ih (k + 1) p hp
-        exact ⟨j, by omega, hlab⟩
+      · exact ⟨k, le_rfl, by simp, forall_mem_labelledFactor k x.toWord s p hp⟩
+      · obtain ⟨j, hj, hjlt, hlab⟩ := ih (k + 1) p hp
+        exact ⟨j, by omega, by simp only [List.length_cons]; omega, hlab⟩
 
 /-- No letter of a labelled expression is a boundary letter. -/
 theorem ne_boundary_of_mem_labelledExpr [DecidableEq α]
     (k : ℕ) (e : List (FreeGroup α × List (α × Bool)))
     (p : (α × Bool) × Block) (hp : p ∈ labelledExpr k e) :
     p.2 ≠ Block.boundary := by
-  obtain ⟨j, -, hlab⟩ := index_le_of_mem_labelledExpr k e p hp
+  obtain ⟨j, -, -, hlab⟩ := index_mem_range_of_mem_labelledExpr k e p hp
   rcases hlab with h | h | h <;> rw [h] <;> exact Block.noConfusion
 
 end SmallCancellationRouter
