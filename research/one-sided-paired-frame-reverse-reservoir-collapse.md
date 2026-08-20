@@ -108,6 +108,12 @@ regular Bass--Serre reservoir.
   resulting fixed group words evaluate to exactly `e_13^*` on that Fourier
   layer and have quadratic word cost.  Valuations zero and one form only a
   fixed finite exceptional packet.
+- `free-root-sign-atoms-transport-with-linear-hs-loss` supplies the missing
+  carrier accounting once the context words covary the same root stage.  A
+  valuation atom is a product of sign projections, so its transport defect is
+  at most half the sum of the root-generator defects.  Literal reuse of the
+  endpoint atom in the `(00),(01),(11)` contexts gives the two shared
+  marginals automatically; no common classical map is extracted.
 - `free-root-top-boundary-reservoir-is-summable` proves the required capacity
   theorem for those degree labels: the mass first detected at successive
   degrees telescopes and has total at most one on a unit carrier.  Literal
@@ -125,12 +131,12 @@ regular Bass--Serre reservoir.
   coefficient-character valuation `n`, its entire squared norm is exactly
   the `n`th boundary mass.
 - The word-level realization and exact valuation calculation are now closed.
-  The missing step is quantitative persistence and endpoint sharing of the
-  baseline relative-Pauli module under approximate conjugation: after
-  exactifying each finite root stage and decomposing by valuation, the three
-  contextual transports must act on the same valuation carrier and retain a
-  fixed fraction of its mass until the rank-one detector charges it.  The
-  detector word cost is already polynomial.  Once this common-carrier estimate
-  is proved, localization and boundary summability give `(PRC1)`.
+  The analytic persistence and endpoint-marginal accounting are now reduced
+  to a telescoping sign-atom estimate and have polynomial loss.  The remaining
+  step is presentation-level: install the three paired-frame HNN context words
+  so they covary the literal same source/target root atoms, and prove their
+  forbidden block masses are bounded above by the named relator energy.  Once
+  that finite relation audit is closed, the robust rank-one floor,
+  localization, and boundary summability give `(PRC1)`.
   A merely decreasing first-hit process is insufficient: it admits a
   geometric reservoir and does not force collapse.
