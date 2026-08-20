@@ -45,3 +45,9 @@ microstate; selecting any fixed canonical finite window is insufficient.
   multiplicity `2^nL` for arbitrary spectator `L`.  The cutoff must therefore
   detect or react to this residual spectator inside the same microstate and
   request more than `log_2 L` additional independent cells.
+- `schur-flip-cells-expose-residual-matrix-tape` identifies this spectator
+  intrinsically as the commutant `M_L(C)` of the already recovered Pauli
+  algebra.  The parallel route
+  `schur-flip-amplification-from-residual-trigger` isolates the narrower
+  possibility of running the self-detecting compiler directly in that
+  commutant instead of recovering all supercritical sites in one pass.

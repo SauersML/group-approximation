@@ -118,6 +118,13 @@ capacity threshold.  A final compiler must react to the residual spectator
 multiplicity and activate more cells inside that same model—the literal
 dimension-diagonal/self-detecting step.
 
+The residual spectator is not merely bookkeeping.  The old `n` Pauli
+cancellation pairs generate `M_(2^n)(C)` on the multiplicity space, so their
+commutant is exactly `M_L(C)`.  Additional independent cells must act in this
+residual factor and force `2^r|L`.  Hence the sharp diagonal task is to inspect
+that commutant and request `r>log_2L` new cells; the already paid rank cancels
+from both sides of the capacity inequality.
+
 A concrete exact holonomy primitive is now available.  If two commuting
 automorphisms of a finite packet have projective implementer commutator
 `zeta` of order `r` on an irreducible packet, adjoining commuting stable
