@@ -44,6 +44,10 @@ shift has height one. This is the obstruction in
 `ascending-hnn-shift-cannot-be-an-involution-product`. Diagonal covariance is
 the height-preserving replacement and also supplies a tensor-product exact
 marked model for the uncoupled synchronization skeleton.
+Its shifted input-word cost is already controlled by
+`diagonal-covariance-has-quadratic-hs-word-cost`, so the synchronization part
+of clause 4 is no longer open. The remaining content of clauses 3--4 is the
+module-return incidence and its payment, not propagation of the two clocks.
 
 The phrase "selector/packet relation" in clause 3 must not identify a
 derived nonlinear projection such as `P_tilde_n` with a scalar selector word.
