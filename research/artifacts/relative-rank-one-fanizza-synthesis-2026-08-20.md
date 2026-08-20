@@ -43,6 +43,27 @@ chosen: [[1,1+e],[f,0]]
 The same script exactly diagonalizes the baseline intertwiner Laplacian in the
 Pauli-word basis and returns `kappa=4`.
 
+A second MSI pass classified fixed Pauli pivots.  Of the 252 exact
+two-variable compilers, 216 have exactly one fixed pivot and 36 have none;
+none has two.  The direct proof is
+`two-by-two-support-compiler-has-unique-fixed-pivot`.  A 3-by-3 search with two
+prescribed pivots found 24 matrices, but affine dependence forces the two
+pivots to remain the same symplectic direction on the forbidden atom too.
+Adding spectator pivots therefore does not name the extra factor.
+
+A third, conditional search changed the target profile to `(2,2,1,1)`: split
+when the parent bit vanishes, then restrict later to a named active-child
+carrier.  It found 126 two-pivot compilers.  The sparsest canonical choice is
+
+```text
+C(e)=[[0,1],[1+e,0]].
+```
+
+It exposes a fixed core pair `(p_1,q_2)` and a fixed relative pair
+`(p_2,q_1)` which commutes for `e=1` and is Pauli for `e=0`.  This is the first
+version in the route where both relative generators are assignment-independent
+group words.  MSI runtime remained 0.12 seconds and about 12.7 MB RSS.
+
 ## 3. The concrete finite packet
 
 The class-two group `B_sub=K(M_sub)` has order 128.  Its fixed-pivot subgroup
@@ -109,3 +130,11 @@ If these seven clauses hold with a universal local constant, the existing
 The decisive falsification test remains the classical-CSP substitution: a
 compiler argument that still works after making every selector globally
 commuting is wrong, because finite graphs of finite groups are hyperlinear.
+
+The remaining theorem has now split into two independently auditable holes:
+
+- `child-carrier-relative-pauli-holonomy`: compress the canonical parent-
+  absence factor to `f=1` and return it with constant relator cost;
+- `fanizza-boone-mark-carrier-interface`: feed separation of a genuinely
+  surviving word into the initial Fanizza carrier with a runtime-independent
+  constant.
