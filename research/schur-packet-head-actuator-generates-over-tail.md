@@ -17,9 +17,8 @@ Fix a Schur--Clifford packet `A_f<=B_f` with extra generators
 T=F_2<x,y | yx=1>,       sigma(a)=xay+eps(a)f,
 ```
 
-let `s` be the head swap from `(TSG1)` and let
-`e_2=sigma^2(f)`.  Then, after increasing the elementary rank, there is a
-faithful embedding
+let `s` be the head swap from `(TSG1)`.  Then, after increasing the elementary
+rank, there is a faithful embedding
 
 ```text
 iota:B_f -> Gamma=EL_r(T)                                (SAT1)
