@@ -36,15 +36,11 @@ open GroupApproximation.Higman.Conj
 theorem sort_map_add (s : Finset ℤ) (k : ℤ) :
     (s.map (Equiv.addRight k).toEmbedding).sort (· ≤ ·)
       = (s.sort (· ≤ ·)).map (fun i => i + k) := by
-  refine List.eq_of_perm_of_sorted ?_ (Finset.sort_sorted _ _) ?_
-  · refine List.Perm.trans (Finset.sort_perm_toList _ _) ?_
-    refine List.Perm.symm (List.Perm.trans (List.Perm.map _
-      (Finset.sort_perm_toList _ _)) ?_)
-    rw [Finset.map_val, Multiset.map_map]
-    rfl
-  · refine List.Sorted.map (Finset.sort_sorted _ _) ?_
-    intro x y hxy
-    exact add_le_add_right hxy k
+  symm
+  exact Finset.map_sort (s := s) (r := ((· ≤ ·) : ℤ → ℤ → Prop))
+    (r' := ((· ≤ ·) : ℤ → ℤ → Prop))
+    (f := (Equiv.addRight k).toEmbedding)
+    fun _ _ _ _ => (add_le_add_iff_right k).symm
 
 /-! ## 2.  The shift on sequences -/
 
@@ -67,7 +63,7 @@ def shiftFree : FreeGroup ℤ →* FreeGroup ℤ :=
 @[simp] theorem shiftFree_of (i : ℤ) :
     shiftFree (FreeGroup.of i) = FreeGroup.of (i + 1) := by
   unfold shiftFree
-  rw [FreeGroup.lift.of]
+  rw [FreeGroup.lift_apply_of]
 
 /-- **The coding intertwines the two shifts.** -/
 theorem elt_shiftSeq (f : E) : elt (shiftSeq f) = shiftFree (elt f) := by
@@ -96,32 +92,32 @@ def shiftAutInv : F₃ →* F₃ :=
 
 @[simp] theorem shiftAut_a : shiftAut a = a := by
   unfold shiftAut a
-  rw [FreeGroup.lift.of]
+  rw [FreeGroup.lift_apply_of]
   simp
 
 @[simp] theorem shiftAut_b : shiftAut b = c⁻¹ * b * c := by
   unfold shiftAut b
-  rw [FreeGroup.lift.of]
+  rw [FreeGroup.lift_apply_of]
   simp
 
 @[simp] theorem shiftAut_c : shiftAut c = c := by
   unfold shiftAut c
-  rw [FreeGroup.lift.of]
+  rw [FreeGroup.lift_apply_of]
   simp
 
 @[simp] theorem shiftAutInv_a : shiftAutInv a = a := by
   unfold shiftAutInv a
-  rw [FreeGroup.lift.of]
+  rw [FreeGroup.lift_apply_of]
   simp
 
 @[simp] theorem shiftAutInv_b : shiftAutInv b = c * b * c⁻¹ := by
   unfold shiftAutInv b
-  rw [FreeGroup.lift.of]
+  rw [FreeGroup.lift_apply_of]
   simp
 
 @[simp] theorem shiftAutInv_c : shiftAutInv c = c := by
   unfold shiftAutInv c
-  rw [FreeGroup.lift.of]
+  rw [FreeGroup.lift_apply_of]
   simp
 
 theorem shiftAutInv_comp_shiftAut :
@@ -171,8 +167,20 @@ theorem shiftAut_injective : Function.Injective shiftAut := by
 theorem shiftAut_rowElt (i : ℤ) : shiftAut (rowElt i) = rowElt (i + 1) := by
   unfold rowElt
   rw [map_mul, map_mul, map_zpow, map_zpow, shiftAut_b, shiftAut_c]
-  rw [zpow_add, zpow_add, zpow_neg, zpow_neg, zpow_one, zpow_one]
-  group
+  have hneg : c ^ (-i) * c⁻¹ = c ^ (-(i + 1)) := by
+    calc
+      c ^ (-i) * c⁻¹ = c ^ (-i) * c ^ (-1 : ℤ) := by rw [zpow_neg_one]
+      _ = c ^ (-i + -1) := (zpow_add c (-i) (-1)).symm
+      _ = c ^ (-(i + 1)) := by congr 1; ring
+  have hpos : c * c ^ i = c ^ (i + 1) := by
+    calc
+      c * c ^ i = c ^ (1 : ℤ) * c ^ i := by rw [zpow_one]
+      _ = c ^ (1 + i) := (zpow_add c 1 i).symm
+      _ = c ^ (i + 1) := by congr 1; ring
+  calc
+    c ^ (-i) * (c⁻¹ * b * c) * c ^ i
+        = (c ^ (-i) * c⁻¹) * b * (c * c ^ i) := by group
+    _ = c ^ (-(i + 1)) * b * c ^ (i + 1) := by rw [hneg, hpos]
 
 theorem shiftAut_comp_rowHom : shiftAut.comp rowHom = rowHom.comp shiftFree := by
   refine FreeGroup.ext_hom _ _ fun i => ?_

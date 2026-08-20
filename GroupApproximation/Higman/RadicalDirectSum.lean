@@ -63,26 +63,37 @@ theorem mem_radical_of_coords :
           torsionFreeRadical PCDirectSum := by
   classical
   intro f
-  refine DFinsupp.induction f ?_ ?_
+  refine DFinsupp.induction
+    (p := fun f : Π₀ c : PresentationCode, Additive (Carrier c) ↦
+      (∀ c, Additive.toMul (f c) ∈ torsionFreeRadical (Carrier c)) →
+        (Multiplicative.ofAdd f : PCDirectSum) ∈
+          torsionFreeRadical PCDirectSum) f ?_ ?_
   · intro _
-    simpa using Subgroup.one_mem (torsionFreeRadical PCDirectSum)
+    change (1 : PCDirectSum) ∈ torsionFreeRadical PCDirectSum
+    exact Subgroup.one_mem _
   · intro c a f' hf' _ ih hcoord
-    have hsplit : (Multiplicative.ofAdd (DFinsupp.single c a + f') : PCDirectSum)
-        = pcOf c (Additive.toMul a) * Multiplicative.ofAdd f' := by
-      simp [pcOf]
     have hca : Additive.toMul a ∈ torsionFreeRadical (Carrier c) := by
       have h := hcoord c
-      simpa [DFinsupp.add_apply, DFinsupp.single_eq_same, hf'] using h
+      simpa [DFinsupp.add_apply, hf'] using h
     have hrest : ∀ d, Additive.toMul (f' d) ∈ torsionFreeRadical (Carrier d) := by
       intro d
       by_cases hd : d = c
-      · subst hd
-        simpa [hf'] using Subgroup.one_mem (torsionFreeRadical (Carrier d))
+      · subst d
+        rw [hf']
+        change (1 : Carrier c) ∈ torsionFreeRadical (Carrier c)
+        exact Subgroup.one_mem _
       · have h := hcoord d
-        simpa [DFinsupp.add_apply,
-          DFinsupp.single_eq_of_ne (Ne.symm hd)] using h
-    rw [hsplit]
-    exact Subgroup.mul_mem _ (pcOf_mem_radical c hca) (ih hrest)
+        simpa [DFinsupp.add_apply, hd, Ne.symm hd] using h
+    have ha : (Multiplicative.ofAdd (DFinsupp.single c a) : PCDirectSum) =
+        pcOf c (Additive.toMul a) := by
+      apply Multiplicative.ofAdd.injective
+      simp [pcOf]
+    let tail : PCDirectSum := Multiplicative.ofAdd f'
+    have hm : pcOf c (Additive.toMul a) * tail ∈ torsionFreeRadical PCDirectSum :=
+      Subgroup.mul_mem _ (pcOf_mem_radical c hca) (ih hrest)
+    simp only [tail] at hm
+    rw [← ha] at hm
+    exact hm
 
 /-- **The radical of a restricted direct product is coordinatewise.** -/
 theorem mem_radical_iff_coords (g : PCDirectSum) :
@@ -160,7 +171,7 @@ absorber is recursively presented.
 
 This is Chiodo's Proposition 3.8 uniformly in the code, and it is all that
 remains of (B2). -/
-def recursivePresentationPCAbsorber
+noncomputable def recursivePresentationPCAbsorber
     (hre : REPred fun w : RawWord ↦ ∀ c ∈ blockList w,
       evalRaw (fun k ↦ (PresentedGroup.of (letterOf c k) : Carrier c))
         (blockWord w c) ∈ torsionFreeRadical (Carrier c)) :
