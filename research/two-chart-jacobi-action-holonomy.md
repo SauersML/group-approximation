@@ -29,5 +29,6 @@ finite syntax required by `jacobi-congruence-clifford-tower`.
   finite compressor presentation for `(TWC3)`. The analytic payment is now
   discharged: `forbidden-packet-reynolds-holonomy-payment` proves that any
   returned Reynolds-channel rank gap costs ordinary normalized-HS word
-  energy. The remaining algebraic claim is
-  `two-chart-reynolds-word-transport`.
+  energy. Direct finite-table return is impossible by
+  `termwise-finite-reynolds-holonomy-has-zero-rank-gap`; the corrected
+  algebraic claim is `stabilized-two-chart-reynolds-word-transport`.

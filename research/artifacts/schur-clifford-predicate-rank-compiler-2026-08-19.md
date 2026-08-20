@@ -1238,6 +1238,24 @@ forbidden mass (q) forces holonomy energy at least
 is therefore purely the finite word transport of those averages, isolated as
 `two-chart-reynolds-word-transport`.
 
+There is an important consistency correction. A word which conjugates one
+complete finite group table termwise onto another induces an isomorphism of
+their represented image groups. Their Reynolds projections are then exactly
+unitarily conjugate and have equal rank. Thus the raw (A_f,B_f) tables
+cannot be the two endpoints of the holonomy—the very gap we want would
+vanish.
+
+The corrected endpoint is
+`stabilized-two-chart-reynolds-word-transport`: attach an infinite packet
+tail so the two **stabilized** subgroups are isomorphic, retain a faithful
+infinite marked model by an Eilenberg swindle, and use the two-chart/Fanizza
+orientation to cancel every finite-prefix boundary except one local
+(R_A-R_B) term. A polynomial-time recursive presentation can then be moved
+to a finitely presented host using the quantitative Higman theorem, with the
+relative Dehn function giving the exact HS error modulus. The open calculation
+is now the weighted cancellation of the stabilizing boundary, not raw packet
+conjugacy.
+
 ---
 
 ## 16. Computational verification

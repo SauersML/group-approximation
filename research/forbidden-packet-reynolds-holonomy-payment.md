@@ -26,3 +26,8 @@ payment step. A positive forbidden packet density creates a quadratic but
 dimension-free ordinary matrix-energy floor as soon as the presentation
 returns the two finite Reynolds averages through one word holonomy.
 
+**Consistency scope.** The raw finite groups cannot themselves be conjugate:
+`termwise-finite-reynolds-holonomy-has-zero-rank-gap` would then make their
+rank gap vanish. The intended use is after an infinite stabilization whose
+finite-dimensional local residue supplies the approximate channel transport
+in `(RHG1)`.
