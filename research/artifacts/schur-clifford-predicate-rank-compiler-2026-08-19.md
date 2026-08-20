@@ -98,6 +98,16 @@ self-similar compressor must replicate this explicit flip square into
 independent returned directions until their cocycle rank exceeds the current
 multiplicity, with loss independent of recursion depth.
 
+The exact recurrence can be made depth one.  Put the finite flip-square group
+at every site of the Kun--Thom coset action.  A strict positive compressor
+gains infinitely many `Gamma`-fixed sites in one step; in the Bernoulli tensor
+model each gained site contributes an independent forbidden packet cocycle,
+so any `n` selected sites have binary rank `2n`.  This gives exact tracial
+completeness with arbitrary rank and no long compressor words.  The remaining
+soundness theorem is now coordinate recovery: a matrix microstate must expose
+more than `log_2 m` of those new site factors, chosen at its own multiplicity
+scale, with total HS loss independent of the number selected.
+
 A concrete exact holonomy primitive is now available.  If two commuting
 automorphisms of a finite packet have projective implementer commutator
 `zeta` of order `r` on an irreducible packet, adjoining commuting stable

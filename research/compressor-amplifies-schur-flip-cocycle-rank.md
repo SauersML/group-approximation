@@ -42,4 +42,9 @@ give the desired dimension-free return charge.
 - The active route is a PCP/compressor recurrence: a local inconsistency must
   either pay immediately or copy the flip cell into enough independent
   returned directions that cocycle rank outruns the current multiplicity.
-
+- `schur-flip-wreath-compressor-has-infinite-cocycle-rank` removes recursion
+  depth on the completeness side: one strict Kun--Thom compressor already
+  gains infinitely many independent flip sites.  The live route
+  `schur-flip-amplification-from-wreath-site-recovery` leaves the concrete
+  matrix-coordinate statement
+  `matrix-recovery-of-schur-flip-wreath-sites`.
