@@ -7,6 +7,7 @@ target: uniform-hs-site-coherence-for-finite-bi-index-pair
 requires:
   - hs-stable-finite-bi-index-kazhdan-pair-exists
   - hs-stable-kazhdan-finite-bi-index-pair-gives-site-coherence
+  - finite-bi-index-kazhdan-subgroup-forces-nonamenability
 ---
 
 Take the explicit pair from `(HFK1)`.  The sufficient-criterion theorem
@@ -14,4 +15,3 @@ exactifies its acting tuple and Reynolds-rounds the lamp into the stabilizer
 commutant.  Finite double-coset type then propagates the finitely many base
 pair checks uniformly to every distinct coset pair, which is precisely the
 required site-coherence statement.
-

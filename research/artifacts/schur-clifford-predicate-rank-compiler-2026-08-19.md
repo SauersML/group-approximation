@@ -143,6 +143,14 @@ to the whole infinite orbit without any long-word loss.  Thus this alternate
 route has one sharply structural input: an explicit infinite finite-bi-index
 pair with Kazhdan stabilizer and HS-stable ambient group.
 
+That package cannot come from the easiest stability classes.  An amenable
+ambient would make its Kazhdan subgroup finite, and finite subgroup plus
+finitely many double cosets would make the whole ambient finite.  Conversely,
+an infinite hyperlinear property-(T) ambient cannot be strictly HS-stable by
+Becker--Lubotzky.  A noncircular candidate must therefore be nonamenable and
+non-property-(T), yet HS-stable and large enough to contain a Kazhdan
+finite-bi-index stabilizer.
+
 A concrete exact holonomy primitive is now available.  If two commuting
 automorphisms of a finite packet have projective implementer commutator
 `zeta` of order `r` on an irreducible packet, adjoining commuting stable
