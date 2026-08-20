@@ -73,10 +73,16 @@ regular Bass--Serre reservoir.
   accounting.  It suffices to preserve one baseline carrier copy, emit a
   fixed fraction of its trace into a new reverse carrier, and make those
   reverse carriers orthogonal.  The resulting trace budget is `(PRC1)`.
+- `free-root-first-detection-eigenvectors-localize-exactly` proves the
+  packet-to-reservoir analytic endpoint: once a hard intertwiner has
+  coefficient-character valuation `n`, its entire squared norm is exactly
+  the `n`th boundary mass.
 - The missing calculation is to realize these two shears on consecutive
-  free-root coefficient planes, prove that each degree-`2n` hard exit is
-  contained in the matching top-boundary Fourier mass, and prove persistence
-  of the baseline copy with polynomial word error.  Summability of those
-  boundary masses and the quantitative elementary-shear transport are already
-  formalized.  A merely decreasing first-hit process is insufficient: it
-  admits a geometric reservoir and does not force collapse.
+  free-root coefficient planes and prove that the exactified `011`
+  intertwiner is fixed by every lower-degree plane word but negated by the
+  new leading word of degree `2n`; this is precisely the assertion that its
+  valuation is `2n`.  One must also prove persistence of the baseline copy
+  with polynomial word error.  Localization, summability, and quantitative
+  elementary-shear transport are already formalized.  A merely decreasing
+  first-hit process is insufficient: it admits a geometric reservoir and does
+  not force collapse.

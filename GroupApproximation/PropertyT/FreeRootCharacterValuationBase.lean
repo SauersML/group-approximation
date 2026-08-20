@@ -1830,6 +1830,54 @@ noncomputable def planeSecondTopBoundaryMass
   ∑ sign ∈ planeSecondTopBoundarySignSet X i j k hij hik hjk n,
     ‖planeComponent X i j k hij hik hjk n rho sign z‖ ^ 2
 
+/-- A joint plane eigenvector whose first coefficient character is detected
+for the first time in the top degree lies wholly in the corresponding
+top-boundary Fourier mass. -/
+theorem planeFirstTopBoundaryMass_eq_norm_sq_of_eigenvector
+    (i j k : Fin 3) (hij : i ≠ j) (hik : i ≠ k) (hjk : j ≠ k)
+    (rho : elementaryGroup (Fin 3) (FreeRing X) →* (E ≃ₗᵢ[ℝ] E))
+    (z : E) (n : ℕ)
+    (tau : Fin (Nat.card (Plane X i j k hij hik hjk n)) → Bool)
+    (hact : ∀ q,
+      rho (planeFamily X i j k hij hik hjk n q) z =
+        if tau q then z else -z)
+    (hval : firstCoefficientValuation X i j k hij hik hjk n tau = n) :
+    planeFirstTopBoundaryMass X i j k hij hik hjk rho z n = ‖z‖ ^ 2 := by
+  classical
+  unfold planeFirstTopBoundaryMass
+  rw [Finset.sum_eq_single tau]
+  · unfold planeComponent
+    rw [iteratedPart_of_eigenvector rho _ _ tau z hact tau]
+    simp
+  · intro sign _ hne
+    unfold planeComponent
+    rw [iteratedPart_of_eigenvector rho _ _ tau z hact sign]
+    simp [hne]
+  · simp [planeFirstTopBoundarySignSet, hval]
+
+/-- The symmetric localization theorem for the second coefficient. -/
+theorem planeSecondTopBoundaryMass_eq_norm_sq_of_eigenvector
+    (i j k : Fin 3) (hij : i ≠ j) (hik : i ≠ k) (hjk : j ≠ k)
+    (rho : elementaryGroup (Fin 3) (FreeRing X) →* (E ≃ₗᵢ[ℝ] E))
+    (z : E) (n : ℕ)
+    (tau : Fin (Nat.card (Plane X i j k hij hik hjk n)) → Bool)
+    (hact : ∀ q,
+      rho (planeFamily X i j k hij hik hjk n q) z =
+        if tau q then z else -z)
+    (hval : secondCoefficientValuation X i j k hij hik hjk n tau = n) :
+    planeSecondTopBoundaryMass X i j k hij hik hjk rho z n = ‖z‖ ^ 2 := by
+  classical
+  unfold planeSecondTopBoundaryMass
+  rw [Finset.sum_eq_single tau]
+  · unfold planeComponent
+    rw [iteratedPart_of_eigenvector rho _ _ tau z hact tau]
+    simp
+  · intro sign _ hne
+    unfold planeComponent
+    rw [iteratedPart_of_eigenvector rho _ _ tau z hact sign]
+    simp [hne]
+  · simp [planeSecondTopBoundarySignSet, hval]
+
 /-- Squared Fourier mass in one Kassabov valuation region. -/
 noncomputable def planeRegionMass
     (i j k : Fin 3) (hij : i ≠ j) (hik : i ≠ k) (hjk : j ≠ k)
