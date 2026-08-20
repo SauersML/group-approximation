@@ -1,0 +1,142 @@
+emains valid for operator-norm
++asymptotic representations into $\U(A_n)$, with normalized
++Hilbert--Schmidt norm replaced by the trace $2$-norm.  Consequently
++the finite-normal and central-involution obstructions remain valid for
++homomorphisms into
++\[
++ \U\!\left(\prod_nA_n\big/\bigoplus_nA_n\right).
++\]
++This applies in particular when the $A_n$ are commutative or AF
++(and hence when they are UHF).
++
++Write $D_n=\mathcal D_{\tau_n}(A_n)$.  For a coordinate unitary $v$,
++$\operatorname{Ad}v=L_vR_{v^*}\in D_n$, and operator-norm
++multiplicative defects give operator-norm defects for these adjoint
++actions.  The norm ultraproduct $\prod_\omega D_n$ is finite.  Indeed,
++if an element is an isometry in the ultraproduct, a lift $(x_n)$
++satisfies $x_n^*x_n\to1$; polar correction produces coordinate
++isometries $v_n$ with $\|v_n-x_n\|\to0$, and finiteness of $D_n$
++makes each $v_n$ unitary.  Thus the lifted element is unitary in the
++ultraproduct.  Its natural representation on the Hilbert-space
++ultraproduct is faithful, since the norm of a represented class is the
++ultralimit of the coordinate operator norms.
++
++The proof of Theorem~\ref{thm:kazhdan-transport} can now be run inside
++$\prod_\omega D_n$: its Kazhdan spectral projection belongs to this
++finite algebra, so $P\le VPV^*$ and $P\sim VPV^*$ again imply
++$P=VPV^*$.  The corner argument used for the central-involution
++obstruction is stable under the same hypothesis.  If $0\ne q\in A$ is
++a projection and the trace on $qAq$ is renormalized, then under the
++natural identification of $L^2(qAq)$ with
++$(L_qR_q)L^2(A,\tau)$ its left--right algebra is a unital subalgebra of
++\[
++ (L_qR_q)\,\mathcal D_\tau(A)\,(L_qR_q),
++\]
++which is finite.
++
++For commutative $A$, left and right multiplication agree, so
++$\mathcal D_\tau(A)$ is commutative.  If $A$ is AF, the commuting left
++and right representations induce a surjection
++\[
++ A\otimes_{\max}A^{\mathrm{op}}\longrightarrow\mathcal D_\tau(A).
++\]
++Since AF algebras are nuclear,
++$A\otimes_{\max}A^{\mathrm{op}}=A\otimes_{\min}A^{\mathrm{op}}$ is AF;
++therefore its image is AF and in particular finite.
++
++
++\paragraph{A dimension--defect criterion for hyperlinearity.}
++Let $G$ be countable and let $F_1\subseteq F_2\subseteq\cdots$ be
++finite sets with $1\in F_n$ and $\bigcup_nF_n=G$.  Suppose there are
++maps $V_n\colon G\to\U(d_n)$ and numbers $\varepsilon_n>0$ such that
++$V_n(1)=1$,
++\[
++ \|V_n(gh)-V_n(g)V_n(h)\|\le\varepsilon_n
++ \quad(g,h,gh\in F_n),
++\]
++\[
++ \|V_n(g)-V_n(h)\|\ge1
++ \quad(g,h\in F_n,\ g\ne h),
++ \qquad
++ d_n\varepsilon_n\longrightarrow0.
++\]
++Then $G$ is hyperlinear.
++
++Put $\widetilde V_n(g)=V_n(g)\oplus I_{d_n}$.  This changes neither the
++operator-norm multiplicative defect nor the separation.  For distinct
++$g,h\in F_n$, let $z=V_n(g)^*V_n(h)$ and
++$m_0=\tr_{d_n}(z)$.  Since $\|1-z\|\ge1$, some eigenvalue of $z$ is at
++distance at least $1$ from $1$, and hence
++\[
++ 2-2\operatorname{Re}m_0
++ =\frac1{d_n}\sum_j|\lambda_j-1|^2
++ \ge\frac1{d_n}.
++\]
++The normalized trace of $z\oplus I_{d_n}$ is $m=(1+m_0)/2$, so
++\[
++ 1-|m|^2\ge\frac1{4d_n},
++ \qquad
++ |m|\le \exp\!\left(-\frac1{8d_n}\right).
++\]
++With $p_n=8d_n$, the tensor powers satisfy
++\[
++ \left\|\widetilde V_n(g)^{\otimes p_n}
++       -\widetilde V_n(h)^{\otimes p_n}\right\|_2^2
++ =2-2\operatorname{Re}(m^{p_n})
++ \ge2(1-e^{-1}).
++\]
++A telescoping estimate bounds each multiplicative defect of the tensor
++powers by $p_n\varepsilon_n=8d_n\varepsilon_n\to0$.  These maps are
++therefore hyperlinear local models on the exhaustion $(F_n)$.
++
++
++\subsection*{Remaining questions}
++\begin{enumerate}
++\item Does MF imply hyperlinearity?  The dimension--defect criterion above
++applies when exhausting MF local models have the displayed uniform
++operator-norm separation and satisfy $d_n\varepsilon_n\to0$, but the
++CDE definition supplies no such dimension--error rate.  Can one obtain
++such models, or bypass the rate by another amplification or corner
++argument?
++\item How far does one-sided Kazhdan transport extend beyond matrix
++blocks?  The left--right finiteness argument above gives a
++sufficient left--right finiteness condition, while the constant
++coordinates $A_n=\Cred(E)$ above show that stable finiteness and
++faithful traces alone are insufficient.  Is there an intrinsic
++characterization of the faithfully tracial $C^*$-algebras satisfying
++this condition, or a larger natural class for which the obstruction
++still survives?
++\item For which groups or Kazhdan conjugation data do
++Theorems~\ref{thm:criterion},~\ref{thm:normal-kazhdan} and
++\ref{thm:projection-collapse} compute the MF residual exactly?  The
++group $E$ and its sign-free quotient give positive examples by the
++exact computation above.  What structural hypotheses force exactness in
++general?
++\end{enumerate}
+ 
+ \section{The maximal group \texorpdfstring{$C^*$}{C*}-algebra}\label{app:maxcstar}
+ 
+@@ -3764,8 +3969,8 @@
+ analogy that organizes Section~\ref{sec:transport}.  We thank Francesco
+ Fournier-Facio for formulating the group-theoretic input as a Kazhdan
+ group that is not co-Hopfian together with its ascending HNN
+-extension, for the small-cancellation construction recorded in
+-Remark~\ref{rem:ff-realization}, and for helpful discussions on the
++extension, for the torsion-free small-cancellation construction used
++above, and for helpful discussions on the
+ distinct roles of the operator and Hilbert--Schmidt norms.  We thank
+ Alon Dogon for pointing out that the interaction between those two
+ norms also occurs in the earlier approach of Bachner--Dogon--Lubotzky
+@@ -3961,6 +4166,12 @@
+ Ann. of Math. (2) \textbf{162} (2005), no.~2, 711--775,
+ \doi{10.4007/annals.2005.162.711}, \arxiv{math/0212265}.
+ 
++\bibitem[Hu]{Hull}
++M.~Hull,
++\emph{Small cancellation in acylindrically hyperbolic groups},
++Groups Geom. Dyn. \textbf{10} (2016), no.~4, 1077--1119,
++\doi{10.4171/GGD/377}, \arxiv{1308.4345}.
++
+ 
+ \bibitem[JNVWY]{MIPRE}
+ Z.~Ji, A.~Natarajan, T.~Vidick, J.~W

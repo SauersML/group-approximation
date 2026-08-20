@@ -1,0 +1,53 @@
+name: Apply audited non-MF manuscript fix
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/oai/nonmf-fix.*'
+      - '.github/workflows/apply-nonmf-main-fix.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
+        with:
+          fetch-depth: 0
+          persist-credentials: true
+
+      - name: Apply, audit, and commit manuscript fix
+        shell: bash
+        run: |
+          set -euo pipefail
+          git fetch origin main
+          git rebase origin/main
+
+          test "$(git hash-object non_mf_groups_exist.tex)" = 1151de7b4e99f014afc1b44cb07026caff08c128
+          test "$(git hash-object metadata/NON_MF_PROOF_LEDGER.md)" = d11b1e12b785398765c52f2363cad5372800c32e
+
+          cat .github/oai/nonmf-fix.* > /tmp/nonmf-main-fix.patch
+          echo 'd5e0fb47f148028d2cd333439c634035d65f9f3b9daf4bc327c9f45a4ad4136c  /tmp/nonmf-main-fix.patch' | sha256sum -c -
+          git apply --check /tmp/nonmf-main-fix.patch
+          git apply /tmp/nonmf-main-fix.patch
+
+          test "$(git hash-object non_mf_groups_exist.tex)" = 78a51e72f28c4fa6aba64ebbf81a95a54da4810b
+          test "$(git hash-object metadata/NON_MF_PROOF_LEDGER.md)" = ff1ae45817ecfa2dd0a58477f61c7b02bd860a85
+
+          python3 scripts/check_non_mf_claim_manifest.py
+          python3 scripts/check_non_mf_refs.py
+          python3 scripts/check_manuscript_claims.py
+          python3 scripts/check_non_mf_proof_ledger.py
+
+          git rm .github/oai/nonmf-fix.* .github/workflows/apply-nonmf-main-fix.yml
+          git add non_mf_groups_exist.tex metadata/NON_MF_PROOF_LEDGER.md
+          git diff --cached --check
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'Fix MF residual and torsion-free arguments'
+          git push origin HEAD:main
