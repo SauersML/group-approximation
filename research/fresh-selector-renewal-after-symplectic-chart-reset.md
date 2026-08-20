@@ -42,3 +42,20 @@ packet, and act nontrivially on its multiplicity commutant.
   all old/fresh character pairs remain exact.  Stable symplectic congruence can
   prepare the shared carrier, but cannot by itself supply the missing semantic
   coupling.
+
+The invertible-direction compiler and Weyl derivative reset now provide a
+candidate coupling cell that escapes these three literal failures. Translating
+one selector across two commuting Schur copies leaves the full-rank derivative
+packet `K(A_i)`; its spin dimension is exactly the old baseline spin dimension.
+The translation implementer is a fresh commuting selector, while the old bit
+Weyl-anticommutes with it in the `J=-1` sector. Hence the old signs are paired,
+the fresh signs are balanced, and total multiplicity crosses the reset without
+changing scale. This is an honest finite semidirect-product group construction,
+not a projection-controlled operator formula.
+
+This does not yet establish the present claim. The remaining bounded audit is
+semantic: the reverse cells must compare each context-local corrected selector
+to the same original shared BCS word without making that original word both
+members of a transverse Weyl pair in different contexts. After that audit, a
+one-sided Fanizza/Toeplitz return is still required; a finite reset zig-zag alone
+has a stationary regular flow.
