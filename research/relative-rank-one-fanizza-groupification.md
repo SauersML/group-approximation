@@ -98,5 +98,9 @@ the Fanizza projection `D` itself as the nonhalting mark contradicts
   already supplies `(BFE2)` from two literal equal-rank spectral halves, and
   `hard-sign-transport-captures-exit-mass` supplies `(BFE3)` from one central
   intertwining relation plus the corner BCS gap.  The remaining local estimate
-  is `(BFE1)` on that common carrier; the remaining global obligation is a
-  presentation retaining the exact tracial model and the marked interface.
+  is `(BFE1)` on that common carrier.
+  `product-clock-synchronizes-fanizza-and-e5` supplies the finite global word
+  placement: `T=UD_L` advances the Fanizza source and E5 boundary together
+  while fixing the coefficient packet, and it retains the exact tracial model
+  by keeping `U` independent of a trivially represented E5 factor.  Beyond
+  `(BFE1)`, the marked initial-carrier interface remains separate.

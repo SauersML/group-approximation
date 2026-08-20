@@ -177,6 +177,11 @@ regular Bass--Serre reservoir.
   equal child split therefore yield `(BFE3)` with
   `eta=beta_B^corner/2`, provided the aligned hard word is placed on the same
   prefix carrier.
+- `product-clock-synchronizes-fanizza-and-e5` aligns the level labels with one
+  finite bridge.  In commuting factors, `T=UD_L` moves the source frame by
+  `U^n`, fixes the coefficient frame, and moves the hard root by `D_L^n`.
+  Unlike the tempting relation `U=D_L`, this preserves the exact Fanizza
+  tracial model by allowing the E5 factor to be trivial there.
 - `free-root-first-detection-eigenvectors-localize-exactly` proves the
   packet-to-reservoir analytic endpoint: once a hard intertwiner has
   coefficient-character valuation `n`, its entire squared norm is exactly
@@ -186,11 +191,11 @@ regular Bass--Serre reservoir.
   bad atoms.
   The analytic persistence and endpoint-marginal accounting are now reduced
   to a telescoping sign-atom estimate and have polynomial loss.  The remaining
-  step is the global presentation/carrier coupling: make the Fanizza
+  step is the global carrier balance: make the Fanizza
   two-child decomposition satisfy `(BFE1)` on the same localized spectral
-  halves and place the already aligned hard-sign relation on their successive
-  prefix carriers.  Once those words coexist without killing the exact
-  tracial model, `(BFE2)`, `(BFE3)`, persistence, and the final HS floor are
-  formal consequences.
+  halves.  The hard-sign bridge is now synchronized with their successive
+  prefix carriers and preserves the exact tracial model.  Once `(BFE1)` is
+  obtained, `(BFE2)`, `(BFE3)`, persistence, and the final HS floor are formal
+  consequences.
   A merely decreasing first-hit process is insufficient: it admits a
   geometric reservoir and does not force collapse.
