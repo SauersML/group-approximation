@@ -125,11 +125,13 @@ regular Bass--Serre reservoir.
   alternating form by one Pauli pair.  As with the support packet, this finite
   flip must still be coupled to the valuation label to prevent a stationary
   two-cycle.
-- `fanizza-bad-atoms-have-source-fixed-paired-frames` finishes the finite chart
-  audit for the actual predicate menu.  A core-plus-Schur four-word frame works
-  on all 26 bad atoms, its plus/minus edge isomorphism fixes the entire source
-  selector center, and its rank-two target keeps the identical source atom.
-  Only the coefficient character enters the reverse reservoir.
+- `fanizza-bad-atoms-have-source-fixed-paired-frames` finishes the coordinate-
+  core audit for the actual predicate menu.  A core-plus-Schur four-word frame
+  works on all 26 bad atoms, its plus/minus edge isomorphism fixes the entire
+  source selector center, and its rank-two target keeps the identical source
+  atom.  But its coefficient commutator image has rank four, not the rank-three
+  support/E5 image.  It therefore cannot yet enter the reverse reservoir
+  without triggering full-center multiplicity cancellation.
 - `free-root-top-boundary-reservoir-is-summable` proves the required capacity
   theorem for those degree labels: the mass first detected at successive
   degrees telescopes and has total at most one on a unit carrier.  Literal
@@ -146,15 +148,14 @@ regular Bass--Serre reservoir.
   packet-to-reservoir analytic endpoint: once a hard intertwiner has
   coefficient-character valuation `n`, its entire squared norm is exactly
   the `n`th boundary mass.
-- The finite packet frames, word-level E5 realization, and exact valuation
-  calculation are now closed.
+- The literal Schur pair, word-level E5 realization, and exact valuation
+  calculation are closed; the required rank-three finite packet frame is not.
   The analytic persistence and endpoint-marginal accounting are now reduced
-  to a telescoping sign-atom estimate and have polynomial loss.  The remaining
-  remaining step is the global one-sided HNN/E5 coupling: make the three
-  already source-fixed context frames feed their coefficient reverse
-  characters into successive valuation layers while preserving one baseline
-  packet copy with polynomial defect.  Once that persistence estimate is
-  closed, the robust rank-one floor, localization, and boundary summability
-  give `(PRC1)`.
+  to a telescoping sign-atom estimate and have polynomial loss.  Two steps
+  remain: construct source-fixed context frames with rank-three coefficient
+  image, then make those frames feed their reverse characters into successive
+  valuation layers while preserving one baseline packet copy with polynomial
+  defect.  Once both are closed, the robust rank-one floor, localization, and
+  boundary summability give `(PRC1)`.
   A merely decreasing first-hit process is insufficient: it admits a
   geometric reservoir and does not force collapse.

@@ -75,10 +75,13 @@ the Fanizza projection `D` itself as the nonhalting mark contradicts
   locally, and use a stable-letter triangle of *relative commutator pairs*
   rather than identifying selector centers.
   `every-forbidden-atom-has-fixed-schur-pauli-words` supplies literal words
-  for each atom's Schur-complement `M_2` factor.  The unproved step is now only
-  global: `fanizza-bad-atoms-have-source-fixed-paired-frames` supplies an
-  isomorphic plus/minus edge group which fixes the whole source selector center
-  for every atom, so the three corrected copies have literal shared endpoint
-  marginals.  What remains is to couple their coefficient-side reverse
-  characters to the one-sided E5 valuation return and control baseline-carrier
-  persistence by the original fixed-word energy.
+  for each atom's Schur-complement `M_2` factor.
+  `fanizza-bad-atoms-have-source-fixed-paired-frames` proves that a
+  coordinate-core plus/minus edge can fix the whole source selector center
+  and keep the source atom at its rank-two target.  But its coefficient image
+  has rank four, whereas the one-sided E5 chart has rank three.  The local gap
+  is therefore still to construct a source-fixed **rank-three** frame (perhaps
+  from arbitrary dual baseline words), or to find a different partial-center
+  quotient.  Only after that can its reverse character be coupled to the E5
+  valuation return and baseline-carrier persistence be controlled by the
+  original fixed-word energy.

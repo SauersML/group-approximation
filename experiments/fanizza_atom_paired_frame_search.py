@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Search a universal core-plus-Schur paired frame for every Fanizza bad atom.
+"""Audit coordinate-core plus Schur paired frames for Fanizza bad atoms.
 
 For a forbidden atom, constant row/column operations put its Schur gate in
 identity form while retaining the last coordinate as the named relative
@@ -8,7 +8,10 @@ submatrix, and test the same plus/minus word shears used by the support packet.
 
 The finite test asks whether the plus and minus four-generator frames have the
 same symbolic relation kernel and whether a coefficient character makes the
-plus frame carry one Pauli while the stationary minus frame cancels.
+plus frame carry one Pauli while the stationary minus frame cancels.  It also
+compares the resulting coefficient kernel with the rank-three support/E5
+kernel.  The source-fixed witnesses exist, but their coefficient image has
+rank four, so this ansatz does not provide the required partial-center chart.
 """
 from __future__ import annotations
 
@@ -167,6 +170,39 @@ def kernel_code(columns: tuple[BitVector, ...]) -> int:
     return code
 
 
+def kernel_vectors(code: int) -> set[tuple[int, ...]]:
+    return {
+        coefficients
+        for index, coefficients in enumerate(product((0, 1), repeat=6))
+        if (code >> index) & 1
+    }
+
+
+def wedge_image(matrix: Matrix4, pair: tuple[int, int]) -> tuple[int, ...]:
+    first, second = pair
+    return tuple(
+        (matrix[first][left] & matrix[second][right])
+        ^ (matrix[first][right] & matrix[second][left])
+        for left, right in PAIRS
+    )
+
+
+def transform_kernel(
+    matrix: Matrix4, kernel: set[tuple[int, ...]]
+) -> set[tuple[int, ...]]:
+    return {
+        add_vectors(
+            (0,) * 6,
+            *(
+                wedge_image(matrix, PAIRS[index])
+                for index, bit in enumerate(vector)
+                if bit
+            ),
+        )
+        for vector in kernel
+    }
+
+
 def rank_f2(rows: list[list[int]]) -> int:
     work = [row[:] for row in rows]
     rank = 0
@@ -235,6 +271,7 @@ def predicate_menu():
 def audit() -> None:
     total_atoms = 0
     solved_atoms = 0
+    witness_kernel_codes: set[int] = set()
     for name, arity, predicate in predicate_menu():
         _, _, matrix = best_compiler(arity, predicate)
         cube = tuple(product((0, 1), repeat=arity))
@@ -282,6 +319,7 @@ def audit() -> None:
                     for row in (core, last)
                 ]
                 symbolic = alternating_form(block)
+                witness_kernel_codes.add(kernel_code(frame_columns(symbolic, IDENTITY4)))
                 plus_matrix = evaluated_frame_matrix(
                     symbolic, (1,) + atom, coefficient_character, PLUS_WORDS
                 )
@@ -302,6 +340,33 @@ def audit() -> None:
             else:
                 print(f"{name} atom={atom}: NO WITNESS")
     print(f"forbidden atoms solved={solved_atoms}/{total_atoms}")
+    support_block: list[list[Affine]] = [
+        [(1, (0, 0)), (1, (1, 0))],
+        [(0, (0, 1)), (0, (0, 0))],
+    ]
+    support_symbolic = alternating_form(support_block)
+    support_kernel = kernel_code(frame_columns(support_symbolic, IDENTITY4))
+    print(
+        f"distinct coefficient kernel codes={len(witness_kernel_codes)}; "
+        f"equal canonical support kernel={witness_kernel_codes == {support_kernel}}"
+    )
+    assert len(witness_kernel_codes) == 1
+    witness_kernel = next(iter(witness_kernel_codes))
+    print(f"support kernel={sorted(kernel_vectors(support_kernel))}")
+    print(f"Fanizza kernel={sorted(kernel_vectors(witness_kernel))}")
+    changes = []
+    for flat in product((0, 1), repeat=16):
+        change: Matrix4 = tuple(
+            tuple(flat[4 * row : 4 * row + 4]) for row in range(4)
+        )  # type: ignore[assignment]
+        if rank_f2([list(row) for row in change]) != 4:
+            continue
+        if transform_kernel(change, kernel_vectors(support_kernel)) == kernel_vectors(
+            witness_kernel
+        ):
+            changes.append(change)
+    print(f"changes from canonical support kernel={len(changes)}; first={changes[:1]}")
+    assert not changes
 
 
 if __name__ == "__main__":

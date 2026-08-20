@@ -2,7 +2,7 @@
 rg: 2
 id: fanizza-bad-atoms-have-source-fixed-paired-frames-proof
 kind: route
-title: Atom-normalize the Schur gate and exhaust the baseline pivot
+title: Atom-normalize the Schur gate and audit the coordinate-pivot obstruction
 target: fanizza-bad-atoms-have-source-fixed-paired-frames
 requires:
   - fanizza-fixed-nonlinear-menu-has-small-rank-gates
@@ -32,6 +32,16 @@ source selectors.  It then evaluates every coefficient character, checks
 minus rank zero at `(a,a)`, plus rank two, and searches the minus characters
 for a rank-two target with source component `a`.
 
-Every one of the `2+4+20=26` atoms has a witness.  All matrix evaluations,
-kernel codes, inverses, and ranks are over `F_2`; there is no numerical
-tolerance or randomized step.
+Every one of the `2+4+20=26` atoms has a source-fixed witness.  However, all
+witnesses have the same coefficient kernel of size four, hence kernel
+dimension two and commutator-image rank four.  The canonical support/E5 frame
+has coefficient-kernel size eight, hence kernel dimension three and image
+rank three.  The script additionally exhausts all `20160` elements of
+`GL_4(F_2)` and finds no word change carrying the support kernel to the
+Fanizza kernel; the differing kernel dimensions already force this result.
+
+Consequently the search proves source-atom preservation but also proves that
+the coordinate-core construction is a full-center chart.  It cannot be used
+as the rank-three E5 interface.  All matrix evaluations, kernel codes,
+inverses, and ranks are over `F_2`; there is no numerical tolerance or
+randomized step.
