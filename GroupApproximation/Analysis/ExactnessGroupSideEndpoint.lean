@@ -16,9 +16,9 @@ grades each one.  Two of the four are closed at group level:
 
 `E.2` is Guentner--Higson--Weinberger for a linear group, and `E.4` is the
 Kirchberg--Wassermann crossover from group exactness to `C*`-algebra
-exactness.  Neither is available: `E.2` runs through affine buildings over
-completions of a finitely generated field, and `E.4` cannot even be *stated*
-until Mathlib has a `C*`-norm on a tensor product.
+exactness.  Neither is proved here: `E.2` runs through affine buildings over
+completions of a finitely generated field, while `E.4` requires the missing
+property-A-to-`CStarTensor.IsExactCStar` theorem for reduced group algebras.
 
 That grading is spread over a table, a status list and an engineering
 assessment, and a reader has to assemble it to see what is actually assumed.
@@ -39,15 +39,15 @@ Kirchberg--Wassermann crossover.
 It does not say that `W` is exact, that `Cred(W)` is exact, or that property A
 implies exactness.  Property A *is* group exactness for a countable discrete
 group by Higson--Roe and Ozawa, and that equivalence is not formalized here
-either; the conclusion is the combinatorial statement and nothing more.  The
-manuscript's own sentence — "All parts of this paragraph except exactness are
-also verified in Lean; the present formal library has no definition of exact
-`C*`-algebras" — remains accurate, and this file is a statement about which
-*parts* those are.
+either; the conclusion is the combinatorial statement and nothing more.
 
-No `\leanverified` badge is owed for a conditional theorem; the module exists
-so that the conditionality inventory can point at one hypothesis instead of at
-a prose grading table.
+The manuscript's historical sentence that the formal library had no definition
+of exact C-star algebras no longer describes this repository:
+`CStarTensor.IsExactCStar` is now the textbook minimal-tensor kernel predicate.
+What remains absent is a theorem giving that predicate for the literal reduced
+group algebra.  No `\leanverified` badge is owed for the conditional theorem
+below; the module exists so that the conditionality inventory can point at one
+hypothesis instead of at a prose grading table.
 -/
 
 namespace GroupApproximation
