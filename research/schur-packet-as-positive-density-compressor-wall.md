@@ -34,4 +34,12 @@ this gives `hs-groupify-self-referential-bcs-signal`.
   termwise finite Reynolds conjugacy is needed. It suffices to show its local
   `R_A-R_B` directions have low compressed energy and a fixed original
   spectral gap. This is the exact placement calculation still open.
-
+- **Toeplitz universal-lattice substrate.**
+  `schur-child-crosses-toeplitz-compressor` now embeds every fixed Schur child
+  across one explicit proper self-image of a property-`(T)` elementary group.
+  The purely local inference is false by
+  `residual-action-can-erase-local-reynolds-density`: the rest of the
+  compressed group may generate the full external multiplicity algebra.
+  The live Toeplitz route therefore asks for the stronger recursive dichotomy
+  `toeplitz-tail-retains-contextual-schur-density`, which sends precisely that
+  residual erasure into the next self-similar tail rather than ignoring it.
