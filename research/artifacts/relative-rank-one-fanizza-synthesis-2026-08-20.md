@@ -138,3 +138,39 @@ The remaining theorem has now split into two independently auditable holes:
 - `fanizza-boone-mark-carrier-interface`: feed separation of a genuinely
   surviving word into the initial Fanizza carrier with a runtime-independent
   constant.
+
+## 7. Full-center HNN atlas and its exact cancellation
+
+The follow-up MSI enumeration `experiments/schur_packet_hnn_flow_search.py`
+computed every `GL_3(F_2)` central-character chart for the order-128 support
+packet.  It checked 168 central automorphisms and all nonzero row/column Pauli
+pivots in 0.09 seconds using 11.3 MB on `acn112`.
+
+The forbidden central character `101` has packet dimension four.  It admits
+involutive full-center Pauli charts to all five rank-one characters
+
+```text
+001, 010, 100, 110, 111,
+```
+
+each of packet dimension two.  The smallest chart to the harmless `100`
+sector is
+
+```text
+T=[[1,0,1],[0,1,0],[0,0,1]],
+ell_source=001, ell_target=101.
+```
+
+This initially looks like five-way branching.  It is not the missing
+multiplicity curvature.  Carrying the full center maps the source central
+spectral subspace unitarily onto the target subspace.  On either side the
+Pauli edge simple has dimension two, so its restriction multiplicity is just
+`dim(H_k)/2`; the ambient packet dimensions four and two cancel.  All five
+charts yield only `tau(H_101)<=1/6`, while the regular packet flow has mass
+`1/8` in each central character and zero relator energy.
+
+This establishes `full-center-hnn-transport-cancels-schur-multiplicity` and
+removes a broad false shortcut.  The surviving local design must use
+partial-center endpoint marginals, where the three-law rank-one obstruction
+can operate, or a non-Bass--Serre compressor which compares packet
+multiplicity before it is converted back into Hilbert dimension.
