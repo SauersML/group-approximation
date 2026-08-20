@@ -93,5 +93,6 @@ the Fanizza projection `D` itself as the nonhalting mark contradicts
   `branching-plus-first-hit-exits-forces-hs-floor` shows that no further
   persistence mechanism is needed: the two-child Fanizza balance minus at
   most one exit copy leaves one active copy.  The precise remaining estimate
-  is therefore the localized operator version of `(BFE1)--(BFE3)` on the same
-  exactified packet carrier.
+  is therefore the localized operator version of `(BFE1)` and `(BFE3)` on the
+  same exactified packet carrier: `relative-pauli-child-split-gives-one-exit-copy`
+  already supplies `(BFE2)` from two literal equal-rank spectral halves.

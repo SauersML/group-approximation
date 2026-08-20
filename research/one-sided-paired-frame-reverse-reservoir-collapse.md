@@ -165,6 +165,12 @@ regular Bass--Serre reservoir.
   `q_n>=q_0` up to the accumulated polynomial defects.  Combining that with
   a fixed exit fraction and boundary summability gives an explicit positive
   HS floor after any fixed number of levels exceeding `1/(eta q_0)`.
+- `relative-pauli-child-split-gives-one-exit-copy` proves the upper exit
+  hypothesis `(BFE2)` inside every forbidden packet block.  The two spectral
+  halves of one named relative involution are equal-rank baseline modules,
+  and the other named relative involution swaps them.  Hence one child can be
+  designated active and the other exiting without choosing a multiplicity
+  basis or losing carrier mass.
 - `free-root-first-detection-eigenvectors-localize-exactly` proves the
   packet-to-reservoir analytic endpoint: once a hard intertwiner has
   coefficient-character valuation `n`, its entire squared norm is exactly
@@ -175,9 +181,9 @@ regular Bass--Serre reservoir.
   The analytic persistence and endpoint-marginal accounting are now reduced
   to a telescoping sign-atom estimate and have polynomial loss.  The remaining
   step is the global character/carrier coupling: prove that the Fanizza
-  two-child decomposition and the relative Schur split satisfy `(BFE1)` and
-  `(BFE2)` on the same localized carriers, while the common hard root feeds
-  `(BFE3)` into successive symmetric-kernel valuation layers.  Persistence
-  and the final HS floor then follow formally from `(BFE6)`.
+  two-child decomposition satisfies `(BFE1)` on the same localized spectral
+  halves, while the common hard root feeds the lower exit yield `(BFE3)` into
+  successive symmetric-kernel valuation layers.  The upper exit bound
+  `(BFE2)`, persistence, and the final HS floor are now formal consequences.
   A merely decreasing first-hit process is insufficient: it admits a
   geometric reservoir and does not force collapse.
