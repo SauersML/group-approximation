@@ -1286,6 +1286,14 @@ import GroupApproximation.Sofic.InfranormalCompressionPair
 import GroupApproximation.Sofic.KunThomDoubleWitness
 import GroupApproximation.Sofic.TikuisisWhiteWinterSharpness
 import GroupApproximation.Sofic.TikuisisWhiteWinterSites
+import GroupApproximation.Algebra.CoprodIFinitePresentation
+import GroupApproximation.Algebra.PushoutIFinitePresentation
+import GroupApproximation.Analysis.LanceAmenableOverlap
+import GroupApproximation.Analysis.LanceFolnerCPAP
+import GroupApproximation.Analysis.LanceFolnerMaps
+import GroupApproximation.Analysis.LanceNuclearAmenable
+import GroupApproximation.Analysis.TikuisisWhiteWinterAmenableClass
+import GroupApproximation.Kazhdan.SharpExistenceRoutes
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group

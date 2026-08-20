@@ -94,3 +94,12 @@ filtering by a torsion-free quotient, which is Chiodo's own Proposition 3.8
 device, and the index set is the full code type.  The claim is therefore now
 *applicable* where before it was not, which is a different thing from being
 proved.
+
+### Update, later the same day
+
+Higman's Lemma 3.2 --- benign subgroups are closed under intersections and
+joins --- is now **proved** in Lean, together with the preimage half of his
+Lemma 3.3, the finite presentation of amalgams over finitely generated
+subgroups, and the pinch lemma the join rests on.  See
+`notes/HIGMAN_BENIGN_LANE.md`.  The claim of this node is unaffected: what is
+formalized is the first section of the standard proof, not the theorem.

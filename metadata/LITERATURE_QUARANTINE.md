@@ -56,6 +56,8 @@ than being skipped, so the roster cannot outlive the problem it records.
 | `FournierFacioUniversal.UniversalKazhdanGroup` | the same theorem, as the conclusion structure the construction consumes | the two rows below |
 | `FournierFacioUniversal.UniversalTorsionFreeHost` | Chiodo, arXiv:1107.1489v4, Thm 3.10 (= Belegradek's Thm A.1) | **the row below, and nothing else.**  `Sofic/ChiodoUniversalHost.universalTorsionFreeHost` produces this structure from `ChiodoHost.TorsionFreeHigmanHull ChiodoAbsorber`; every other clause of Thm 3.10 — the absorbing group, its torsion-freeness, its countability, the universality of anything containing it — is proved in `Algebra/TorsionFreeRadical`, `Algebra/TorsionFreeRadicalTower`, `Algebra/TorsionFreeQuotient` and `Monsters/ChiodoTorsionFreeAbsorber` |
 | `ChiodoHost.TorsionFreeHigmanHull` | Chiodo, arXiv:1107.1489v4, Thm 2.2: a uniform algorithm taking a countably generated recursive presentation `P` to a finite presentation `T(P)` with `P⁻ ↪ T(P)` and `Tord(P⁻) = Tord(T(P))` — the Higman embedding theorem with the set of torsion orders preserved | the theorem itself, at one group: an embedding of `Monsters.ChiodoAbsorber` into a finitely presented torsion-free group.  Chiodo's Def 2.1 and the empty-`Tord`-means-torsion-free step are formalized (`ChiodoHost.TorsionOrders`, `torsionOrders_eq_empty_iff`); what is not is Higman embedding, which this repository's own note at `Computability/RabinConstruction` calls harder than Novikov–Boone |
+| `Higman.TorsionFreeHigmanEmbedding` | the same theorem, quantified over every countably generated recursive presentation of a torsion-free group --- i.e. Higman's embedding theorem with Chiodo's torsion-order clause | the theorem.  Higman's Lemma 3.2 is **proved** in this repository (`Higman/Benign.lean` for intersections, `Higman/Pinch.lean` and `Higman/BenignJoin.lean` for joins), as is half of his Lemma 3.3 (`Higman/BenignClosure.lean`); what is left is his Section 4 (the Higman operations preserve benignness), his Section 2 (recursively enumerable = built from `Z` and `S` by those operations) and the rope trick |
+| `Higman.AbsorberRecursivePresentation` | Chiodo, arXiv:1107.1489v4, Prop 3.8, at `Monsters.ChiodoAbsorber` | the effective torsion-free radical.  Splits into the syntactic half --- reachable from `Computability/WordProblemRE.lean` over the `Primcodable` coding, for which `Monsters/RecursiveCodeAbsorber.lean` rebuilds the absorber --- and Chiodo's Lemmas 3.5--3.7 |
 | `FournierFacioUniversal.KazhdanEnvelope` | Osin, small cancellation over relatively hyperbolic groups, Thm 2.4.5 | the theorem itself |
 | `SmallCancellationEnvelope.HyperbolicKazhdanPartner` | a torsion-free hyperbolic Kazhdan group to run that small cancellation over | an explicit construction |
 | `SmallCancellationRouter.GreendlingerGate` | Greendlinger's lemma for `C'(1/6)` | **a self-contained combinatorial theorem; see below** |
@@ -64,9 +66,9 @@ than being skipped, so the roster cannot outlive the problem it records.
 | `KunThomShulmanDoubleData` | **two** papers, not one: Shulman, *The MF property for amalgamated free products*, and Kun–Thom's permutation-ultraproduct centralizer rigidity | **not the construction** — that is formalized: `Sofic/IteratedDoubleAmalgam` and `Sofic/FreeLampKernelSplitting` prove the covering `ker(G *_Γ (Γ × K) → K) ≅ ⋆_Γ G` and that operator-MF rises from it, and `Sofic/InfranormalCompressionPair` proves the compressor/mark/escape fields from `¬ Γ.Normal` alone (`KunThomShulmanDouble.ofNotNormal`).  What is left is the two theorems — and at the order-two lamp only the *symmetric* one, since `Sofic/SymmetricDoubleCovering` proves the covering of `G *_Γ (Γ × C₂)` **is** `G *_Γ G` |
 | `CStarRecognitionConsequences.GroupCStarAdianRabinReductions` | Adian–Rabin | the theorem itself |
 
-## Twenty-one entries, ten citations, two proofs
+## Twenty-three entries, ten citations, two proofs
 
-The roster is longer than the debt.  Seven entries are **derived** — the corpus
+The roster is longer than the debt.  Eight entries are **derived** — the corpus
 already proves them from other entries — and stay listed only because a
 statement that names one is conditional all the same:
 
@@ -75,6 +77,9 @@ statement that names one is conditional all the same:
   `CliffordAsideInert` proves `AmenableImpliesMF` equivalent to it;
 * `UniversalKazhdanGroup` is `ofInputs` of the host and the envelope, and
   `UniversalFPTorsionFree` is read off it;
+* `TorsionFreeHigmanHull` is itself derived, from the two entries below it:
+  `Higman.nonempty_hull_of_inputs` builds it from Chiodo's Theorem 2.2 and
+  Chiodo's Proposition 3.8 at the absorber, and from nothing else;
 * `UniversalTorsionFreeHost` became derived on 2026-08-19: it is
   `universalTorsionFreeHost` of `TorsionFreeHigmanHull ChiodoAbsorber`.  The
   Chiodo/Belegradek debt did not move — it is the same citation — but what is

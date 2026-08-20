@@ -294,3 +294,47 @@ acylindrically hyperbolic, so Hull's theorem does not apply to it.  The
 Fournier--Facio instance keeps `IsPowerTorsionFree E` in its type, and that is
 the honest statement, because torsion-freeness of *that* group is a property of a
 construction this library does not build.
+
+### Addendum, third pass: the object in the ascending HNN skeleton, and what a datum forces
+
+Two further things landed, both unconditional.
+
+**1. The object now lives in the manuscript's own skeleton shape.** The lamp
+group of the previous addendum is a semidirect product; `E'` is an ascending
+HNN extension. `GroupApproximation/GroupTheory/HNNBrittonCyclic.lean` already
+proves `isPowerTorsionFree_sourceGroup` --- an HNN extension over a torsion-free
+base is torsion-free --- outright, from Britton's lemma, with no input. So
+instantiating `ConcreteCompressionSource`'s own generic affine source at
+`Γ = ℕ → FreeGroup (Fin 2)` with `α` the shift gives a compression datum over a
+torsion-free ascending HNN extension, with no hypotheses anywhere.
+
+The one thing the HNN group does not hand over cheaply is the non-commuting
+pair: reading it off directly means a reduced word of sixteen syllables with
+fifteen chain conditions. It is not needed. `psi`, built by
+`HNNExtension.lift` from the base map "source copy to the nonnegative sites,
+central direction to site `-1`" and the lamp group's stable letter, carries the
+two marked commutators of the HNN datum exactly onto the two lamp commutators
+already certified, so a pair whose image does not commute does not commute.
+`hnnSuitableDefectSubgroup` is the resulting closed term.
+
+**2. The interface is not satisfiable trivially.**
+`CompressionSourceData.not_conjugation_surjective`: conjugation by the stable
+letter is never onto the source copy, because if it were then
+`commutesAfterCompression` would make the transported root centralize the whole
+copy and the marked commutator would be trivial. Hence
+`CompressionSourceData.infinite_source`: on a finite source the conjugation
+self-map of the copy would be injective and therefore onto, which the first
+theorem forbids. Transported along `ofFournierFacio`, this gives
+`FournierFacioDefectData.infinite_source`: **the property-`(T)` source of a
+Fournier--Facio datum is necessarily infinite.** No finite Kazhdan group can
+inhabit the interface, so the datum is not vacuously satisfiable, and the
+compression is always strictly proper.
+
+**What is still not settled, and why it is not a formalization gap.** Rows 3--4
+remain exactly where the audit put them. Hull's theorem needs an ambient in
+`AH`, and §3.1 shows the ascending HNN skeleton's Bass--Serre action is
+quasi-parabolic and therefore not acylindrical, so its membership in `AH` is not
+settled by these sources in either direction. That is open mathematics about the
+group, not missing Lean. Everything on the algebraic side --- the object, its
+clauses, the ambient, the datum, the non-degeneracy --- is now proved with no
+assumptions and no inputs.

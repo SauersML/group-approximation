@@ -4,9 +4,8 @@ import GroupApproximation.Algebra.WordMetricComparison
 /-!
 # Quasi-isometry, and what generating-set independence reduces to
 
-**This module is not imported by `GroupApproximation.lean`.**  It is authored
-ahead of a build; the one open statement it names is a `Prop`-valued definition,
-not a theorem, and nothing in this repository is conditional on it.
+The one open statement named here is a `Prop`-valued definition, not a theorem,
+and nothing in this repository is conditional on it.
 
 `Algebra/HyperbolicGroup.lean` defines hyperbolicity against *some* finite
 symmetric generating set.  The theorem that makes that definition respectable is

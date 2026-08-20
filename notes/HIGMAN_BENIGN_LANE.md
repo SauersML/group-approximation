@@ -59,7 +59,8 @@ witnesses of the same statement and neither supersedes the other.
 | `Higman/HNNCentralizer.lean` | `CentHNN`; **`mem_of_conj_mem_range`** (Britton in the form the theory uses); **`map_inf_conj_map`**: `G ∩ Gᵗ = G ∩ L`; finite presentation of `K ∗_L t` |
 | `Higman/AmalgamPresentation.lean` | the amalgam as a presented quotient; **finite presentation over a finitely generated amalgamated subgroup** |
 | `Higman/AmalgamPushout.lean` | that quotient **is** Mathlib's `PushoutI`, so the normal form theorem is available on it |
-| `Higman/BenignJoin.lean` | the join construction, and the half of it that needs no word argument |
+| `Higman/Pinch.lean` | **the pinch lemma, proved**: `⟨Z, Qᵗ⟩ ∩ P = Z` when `Q ⊓ M ≤ Z` and `Z ⊓ M ≤ Q` |
+| `Higman/BenignJoin.lean` | **Higman's Lemma 3.2(2), proved**: `Benign.sup`, by the gluing above and two applications of the pinch lemma |
 | `Higman/Program.lean` | `PinchProperty`; `RecursivePresentation`; the two remaining inputs and their composite |
 
 ### Two shortenings of the classical route
@@ -72,15 +73,16 @@ over that base do the rest, and finite presentation is `instProd` followed
 twice by `isFinitelyPresented_hnnExtension`.  `Higman/BenignJoin.lean` is
 that construction.
 
-**(b) The join needs exactly one word lemma.**  With the gluing above, the
+**(b) The join needs exactly one word lemma, and it is now proved.**  With the gluing above, the
 remaining inclusion follows from `Higman.PinchProperty` applied twice --- once
 in `Γ₁` with `Z = ⟨A₁, A₂⟩`, `Q = G`, and once in `Γ₂` with
 `Z = ⟨A₁, A₂, Gᵗ¹⟩`, `Q = G`, whose second hypothesis is the conclusion of the
 first application.  `PinchProperty` says: in `P ∗_M t`, if `Q ⊓ M ≤ Z` and
-`Z ⊓ M ≤ Q`, then `⟨Z, Qᵗ⟩ ∩ P = Z`.  Its proof is an induction on the length
-of `z₀ · t⁻¹q₁t · z₁ ⋯`, in which the two hypotheses are exactly what absorbs
-the two ways a letter can pinch, and whose base case is Britton's lemma ---
-already available as `mem_of_conj_mem_range`.
+`Z ⊓ M ≤ Q`, then `⟨Z, Qᵗ⟩ ∩ P = Z`.  Its proof --- `Higman/Pinch.lean` --- is an induction on the
+length of `z₀ · t⁻¹q₁t · z₁ ⋯`, in which the two hypotheses are exactly what
+absorbs the two ways a letter can pinch, and whose base case is Britton's
+lemma, taken from Mathlib through the reduced word `redList`.  So Higman's
+Lemma 3.2 is complete: intersections by a direct product, joins by this.
 
 ## 4.  What is owed
 
