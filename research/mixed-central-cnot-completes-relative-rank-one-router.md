@@ -81,6 +81,20 @@ control and flag Pauli pairs already require `a,b,c,d`.  Exhaustion confirms
 that the uncoupled block-diagonal commutator form admits no automorphism with
 `b -> b,d -> bd`; the two cross commutators in `(MCR1)` are essential.
 
+The same exhaustion now classifies the *entire* simultaneous quadratic
+automorphism group of `(MCR1)`: it has order four.  On the commuting endpoint
+plane `span{b,d}` its stabilizer induces only
+
+```text
+(b,d) -> (b,d),          (b,d) -> (b,bd).             (MCR6)
+```
+
+The other two automorphisms exchange that endpoint plane with
+`span{a,c}`.  Thus there is no unobserved third endpoint shear inside this
+four-generator packet.  Any three-context marginal atlas must obtain its
+third chart from the E5/clock attachment or enlarge the finite packet; a
+search for another internal router automorphism is exhausted.
+
 The construction does not delete the allowed `K=+1` sectors.  It converts the
 remaining global problem to identifying the active target flag charts with
 the next clock-level source charts while sending the complementary violating

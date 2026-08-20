@@ -117,10 +117,33 @@ def audit() -> None:
             diagonal_solutions += 1
     assert diagonal_solutions == 0
 
+    automorphisms = []
+    endpoint_actions = set()
+    for columns in product(vectors, repeat=4):
+        if rank(list(columns)) != 4:
+            continue
+        if not preserves(columns, FORM_K) or not preserves(columns, FORM_J):
+            continue
+        automorphisms.append(columns)
+        if all(
+            not column[0] and not column[2]
+            for column in (columns[1], columns[3])
+        ):
+            endpoint_actions.add(
+                (
+                    (columns[1][1], columns[3][1]),
+                    (columns[1][3], columns[3][3]),
+                )
+            )
+    assert CNOT in automorphisms
+
     print("mixed-central CNOT columns=", CNOT)
     print("K form=", FORM_K, "J form=", FORM_J)
     print("central-character alternating ranks=", profiles)
     print("uncoupled block-diagonal completions=0")
+    print(f"mixed quadratic automorphisms={len(automorphisms)}")
+    print(f"automorphism columns={automorphisms}")
+    print(f"endpoint-plane actions={sorted(endpoint_actions)}")
 
 
 if __name__ == "__main__":
