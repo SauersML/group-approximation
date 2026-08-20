@@ -3,7 +3,7 @@ rg: 2
 id: relative-t-universal-linear-pairs-citation
 kind: route
 title: Import relative property (T) for elementary linear semidirect products over finitely generated rings
-target: relative-t-heisenberg-adjoint-quantum-expansion
+target: elementary-linear-semidir-pair-relative-t
 requires: []
 ---
 
@@ -25,4 +25,3 @@ imported. The source is not claimed to provide the Heisenberg central
 extension, compatible Schrodinger--Weil projective representations, or a
 finitely presented self-similar binary congruence tower needed by the present
 application.
-
