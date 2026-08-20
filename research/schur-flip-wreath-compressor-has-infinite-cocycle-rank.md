@@ -41,4 +41,6 @@ This proves that exact completeness does not require a long recursion.  It
 does not give a nonhyperlinear group: finite-microstate soundness still must
 recover a number of individual site factors depending on the current matrix
 multiplicity, with loss independent of that number.
-
+No Connes-embeddability claim is made for the full Bernoulli crossed-product
+trace.  What suffices for the local limitation is that every fixed finite
+site tensor window is finite dimensional and therefore dilutable.

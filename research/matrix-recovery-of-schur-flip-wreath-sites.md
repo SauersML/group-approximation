@@ -29,8 +29,9 @@ microstate; selecting any fixed canonical finite window is insufficient.
 
 ## Attempts
 
-- Exact site growth alone is not soundness: the Bernoulli wreath model is
-  hyperlinear and approximates every fixed finite site window.
+- Exact site growth alone is not soundness: every fixed finite site tensor
+  window is finite dimensional and admits arbitrarily large amplifications,
+  regardless of whether the full crossed-product trace is Connes embeddable.
 - Ordinary word-by-word recovery accumulates error with the number and word
   lengths of the selected sites.
 - The active possibility is property-(T) orbit averaging plus a
@@ -39,4 +40,3 @@ microstate; selecting any fixed canonical finite window is insufficient.
   Kazhdan transport is already valid at the cutoff's own rank scale.  What is
   missing is a finite-word coordinate theorem turning those directions into
   distinct local flip factors.
-
