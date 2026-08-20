@@ -43,6 +43,16 @@ The arithmetic of that argument, unconditionally, and the selection of `m`:
   two thirds).
 * `no_overrun_of_hug_and_piece` --- a hug and a piece cannot cover a rotation.
 * `exists_max_index` --- a maximiser exists, and it dominates both neighbours.
+* `not_overrun_into_conjugator` --- **an overrun never lands in a conjugator**,
+  so the hug between factors two apart --- the configuration no reroute identity
+  reaches --- cannot occur at a maximiser.
+* `not_second_overrun` --- **a block overruns at most one factor**, so each loss
+  is at most two pieces.
+* `conjEval_block_ne_one` --- **no contiguous block of factors spells `1`**, so
+  no run of whole factors cancels among itself.  This generalises
+  `conj_ne_inv_of_minimal` from two factors to any number, and it is what says
+  the nested matching cannot skip whole factors: the partner of the letter next
+  to a chunk is the letter next to it.
 * `MaximalJunction` --- the one word-combinatorial fact the argument consumes:
   at a factor whose conjugator is at least as long as its neighbour's, the part
   of its rotation that the neighbour destroys is a piece.
@@ -86,6 +96,53 @@ than half. -/
 theorem survivor_gt_half {x y T : ℕ} (hx : 6 * x < T) (hy : 6 * y < T)
     (hT : 0 < T) : T < 2 * (T - x - y) := by omega
 
+/-- **Three pieces still leave a half.**  When the block overruns one factor the
+left loss is two pieces rather than one; a sixth each on the left and a sixth on
+the right still lose less than a half in total.
+
+This is why an overrun that lands among *relator* letters costs nothing: the
+budget is three sixths against one half, and three sixths is exactly a half only
+in the limit, which the strict piece bound never reaches. -/
+theorem keeps_of_three_pieces {x₁ x₂ y T : ℕ}
+    (h1 : 6 * x₁ < T) (h2 : 6 * x₂ < T) (hy : 6 * y < T) :
+    2 * (x₁ + x₂ + y) < T := by omega
+
+/-- **An overrun never lands in a conjugator.**  Suppose the block from the
+maximising factor eats the neighbouring factor's rotation whole:
+`T ≤ g + h + p`, where `h` is the hug the maximiser's own conjugator contributes,
+`p` the piece it meets, and `g` what the factor on the far side contributes.
+
+If the overrun landed among conjugator letters, that far contribution would be a
+*strict* hug inside a conjugator no longer than the maximiser's, giving `g < h`.
+But the meet bound `2h + p ≤ T` (`overhang_le_of_minimal_reroute_meet`) then
+gives `T ≤ g + h + p < 2h + p ≤ T`.
+
+So the overrun always lands among **relator** letters, where it is another
+piece.  This is the configuration that blocked every earlier route --- a hug
+between factors two apart, which no reroute identity reaches --- and it simply
+cannot occur at a maximiser.  Nothing about the *choice* of maximiser is used,
+only that no conjugator is longer. -/
+theorem not_overrun_into_conjugator {g h p T : ℕ}
+    (hcover : T ≤ g + h + p) (hmeet : 2 * h + p ≤ T) (hshort : g < h) :
+    False := by omega
+
+/-- **An overrun never passes a second factor.**  To pass the factor it landed
+in, the block would have to eat everything that factor has left; what it eats is
+a piece, under a sixth, so the factor's rotation must already be more than five
+sixths gone --- `5T < 6(p + L)` with `p` the piece the block eats and `L` what
+the factor lost at its own far junction.
+
+But `L` is a hug and a piece, so `2·hug + piece ≤ T` and `6·piece < T` bound it
+by seven twelfths, and a sixth and seven twelfths make three quarters, not five
+sixths.
+
+So a block overruns **at most one factor**, and the loss it inflicts on the
+maximiser's rotation is at most two pieces. -/
+theorem not_second_overrun {p L hug pc T : ℕ}
+    (hpass : 5 * T < 6 * (p + L)) (hp : 6 * p < T)
+    (hL : L = hug + pc) (hmeet : 2 * hug + pc ≤ T) (hpc : 6 * pc < T) :
+    False := by omega
+
 /-! ## Choosing the factor -/
 
 /-- **A maximiser exists.**  Among `f 0, …, f n` some index dominates all of
@@ -118,6 +175,76 @@ theorem max_index_neighbours {f : ℕ → ℕ} {m n : ℕ} (hm : m ≤ n)
     (hmax : ∀ k ≤ n, f k ≤ f m) :
     (∀ k, k < m → f k ≤ f m) ∧ (m < n → f (m + 1) ≤ f m) := by
   refine ⟨fun k hk => hmax k (by omega), fun hlt => hmax (m + 1) (by omega)⟩
+
+/-- **The least maximiser is safe on the left.**  Nothing before it attains the
+maximum, so `eq_max_of_overrun_into_conjugator` cannot be satisfied there. -/
+theorem least_max_left_safe {f : ℕ → ℕ} {m n : ℕ}
+    (_hmax : ∀ k ≤ n, f k ≤ f m)
+    (hleast : ∀ k < m, f k < f m) :
+    ∀ j, j + 2 = m → f j < f m := by
+  intro j hj
+  exact hleast j (by omega)
+
+/-- The least maximiser exists: take the least index attaining the maximum. -/
+theorem exists_least_max (f : ℕ → ℕ) (n : ℕ) :
+    ∃ m ≤ n, (∀ k ≤ n, f k ≤ f m) ∧ ∀ k < m, f k < f m := by
+  classical
+  obtain ⟨M, hMn, hMmax⟩ := exists_max_index f n
+  have hex : ∃ m, m ≤ n ∧ f m = f M := ⟨M, hMn, rfl⟩
+  refine ⟨Nat.find hex, (Nat.find_spec hex).1, ?_, ?_⟩
+  · intro k hk
+    rw [(Nat.find_spec hex).2]
+    exact hMmax k hk
+  · intro k hk
+    have hne : ¬ (k ≤ n ∧ f k = f M) := Nat.find_min hex hk
+    have hkn : k ≤ n := by
+      have := (Nat.find_spec hex).1
+      omega
+    have : f k ≠ f M := fun h => hne ⟨hkn, h⟩
+    have hle := hMmax k hkn
+    rw [(Nat.find_spec hex).2]
+    omega
+
+/-! ## No block of factors cancels among itself -/
+
+/-- **No contiguous block of factors spells the identity.**  If a run of factors
+in the middle of a minimal expression multiplied to `1`, deleting the whole run
+would spell the same element with fewer factors.
+
+`GreendlingerThreeFactor.conj_ne_inv_of_minimal` is the two-factor case (one
+factor inverse to a later one).  This is the general one, and it is what the
+matching argument needs: a **self-matched block of whole factors** is exactly a
+run whose concatenation freely reduces to nothing, hence whose product is `1`.
+So the nested matching of a destroyed run cannot skip over whole factors, and
+the partner of the letter next to a surviving chunk is the letter next to it.
+
+Unconditional, and it uses only minimality of the factor count. -/
+theorem conjEval_block_ne_one [DecidableEq α] {R : Set (List (α × Bool))}
+    {e₁ e₂ e₃ : List (FreeGroup α × List (α × Bool))} {g : FreeGroup α}
+    (hmin : IsMinimalConjExpr R (e₁ ++ (e₂ ++ e₃)) g) (hne : e₂ ≠ []) :
+    conjEval e₂ ≠ 1 := by
+  intro hone
+  obtain ⟨hv, he, hlen, -⟩ := hmin
+  have hv₁ : ConjValid R e₁ := fun z hz => hv z (List.mem_append_left _ hz)
+  have hv₂ : ConjValid R e₃ := fun z hz =>
+    hv z (List.mem_append_right _ (List.mem_append_right _ hz))
+  have heval : conjEval (e₁ ++ e₃) = g := by
+    rw [conjEval_append, ← he, conjEval_append, conjEval_append, hone, one_mul]
+  have hb := hlen (e₁ ++ e₃) (conjValid_append hv₁ hv₂) heval
+  simp only [List.length_append] at hb
+  have h₂ : 0 < e₂.length := List.length_pos_iff.mpr hne
+  omega
+
+/-- **A factor is never destroyed against factors it is not next to.**  The
+form the matching argument uses: a run of whole factors between two surviving
+chunks cannot cancel away, so the destroyed letters adjacent to a chunk are
+matched against the factor immediately beside it. -/
+theorem conjEval_middle_ne_one [DecidableEq α] {R : Set (List (α × Bool))}
+    {x : FreeGroup α × List (α × Bool)}
+    {e₁ e₂ e₃ : List (FreeGroup α × List (α × Bool))} {g : FreeGroup α}
+    (hmin : IsMinimalConjExpr R (e₁ ++ ((x :: e₂) ++ e₃)) g) :
+    conjEval (x :: e₂) ≠ 1 :=
+  conjEval_block_ne_one hmin (List.cons_ne_nil x e₂)
 
 /-! ## The junction fact -/
 
