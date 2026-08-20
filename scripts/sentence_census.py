@@ -25,7 +25,10 @@ by hand.  Each row is `key<TAB>status<TAB>decls<TAB>note`, where `key` is the
 first twelve hex digits of the sha256 of the normalized sentence.  Keying on
 content and not on position means an edit elsewhere in the paragraph does not
 silently re-point an assignment at a different sentence: a reworded sentence
-loses its key and reappears as unassigned, which is the correct behaviour.
+loses its key and reappears as unassigned, which is the correct behaviour.  If
+the same normalized sentence occurs more than once, its key is instead the
+hash of its ledger anchor and content; this prevents one overlay judgement from
+silently applying at two different manuscript locations.
 
 `metadata/NON_MF_SENTENCE_CENSUS.tsv` is **generated** and must not be edited:
 it is the join of the extraction with the overlay, and regenerating it is how
@@ -342,12 +345,11 @@ def extract(path: str) -> list[dict]:
 
 
 LEDGER = os.path.join(ROOT, "metadata", "NON_MF_PROOF_LEDGER.md")
-CLAIM_TEXT: dict[str, str] = {}
 ROW_ID = re.compile(r"^[A-Z]{2,4}\.\d+[a-z]?$")
 
 
-def load_ledger() -> tuple[dict[str, list[str]], dict[str, str], list[tuple[str, str]]]:
-    """Rows by anchor, grades by row, and the prose probes.
+def load_ledger() -> tuple[dict[str, list[str]], list[tuple[str, str]]]:
+    """Rows by anchor and the prose probes.
 
     The ledger is the existing claim-level grading and the census does not
     duplicate it: where a sentence sits under an anchor the ledger already
@@ -355,10 +357,9 @@ def load_ledger() -> tuple[dict[str, list[str]], dict[str, str], list[tuple[str,
     would give two places to update and one of them would go stale.
     """
     rows: dict[str, list[str]] = {}
-    grades: dict[str, str] = {}
     probes: list[tuple[str, str]] = []
     if not os.path.exists(LEDGER):
-        return rows, grades, probes
+        return rows, probes
     with open(LEDGER, encoding="utf-8") as fh:
         for line in fh:
             if not line.startswith("|"):
@@ -366,13 +367,11 @@ def load_ledger() -> tuple[dict[str, list[str]], dict[str, str], list[tuple[str,
             c = [x.strip() for x in line.strip().strip("|").split("|")]
             if len(c) >= 6 and ROW_ID.match(c[0]):
                 rows.setdefault(c[1], []).append(c[0])
-                grades[c[0]] = c[4]
-                CLAIM_TEXT[c[0]] = c[2]
             elif len(c) >= 3 and c[1] == "prose":
                 probe = c[2].strip()
                 if probe.startswith("`") and probe.endswith("`"):
                     probes.append((c[0], probe[1:-1]))
-    return rows, grades, probes
+    return rows, probes
 
 
 def attach_anchors(records: list[dict], path: str,
@@ -400,6 +399,29 @@ def attach_anchors(records: list[dict], path: str,
             if r["line"] == para:
                 r["anchor"] = anchor
 
+    # Content hashes are stable under unrelated edits, but identical fragments
+    # such as “Then” occur in unrelated proofs.  Disambiguate only collisions,
+    # using the already-attached semantic anchor rather than a volatile line
+    # number, and reject the one case that would still be ambiguous.
+    by_key: dict[str, list[dict]] = {}
+    for r in records:
+        by_key.setdefault(r["key"], []).append(r)
+    for same in by_key.values():
+        if len(same) == 1:
+            continue
+        seen: set[str] = set()
+        for r in same:
+            scoped = key_of(r.get("anchor", "") + "\0" + r["sentence"])
+            if scoped in seen:
+                raise ValueError(
+                    "duplicate sentence text within one anchor cannot be "
+                    f"identified uniquely: {r.get('anchor', '')}: "
+                    f"{r['sentence']}")
+            seen.add(scoped)
+            r["key"] = scoped
+    if len({r["key"] for r in records}) != len(records):
+        raise ValueError("sentence keys are not unique after anchor disambiguation")
+
 
 def load_map(path: str) -> dict[str, dict]:
     out: dict[str, dict] = {}
@@ -413,6 +435,8 @@ def load_map(path: str) -> dict[str, dict]:
             cols = line.split("\t")
             while len(cols) < 4:
                 cols.append("")
+            if cols[0] in out:
+                raise ValueError(f"duplicate sentence-map key: {cols[0]}")
             out[cols[0]] = {
                 "status": cols[1].strip(),
                 "decls": cols[2].strip(),
@@ -443,17 +467,21 @@ def join(records: list[dict], assignments: dict[str, dict],
             r["status"] = "ledger"
             r["decls"] = " ".join(r["steps"])
             r["note"] = "from the printed \\leanstep badge"
-        elif r.get("badges") and r["env"] in CLAIM_ENVS:
+        elif r.get("badges"):
             r["status"] = "formalized"
             r["decls"] = " ".join(r["badges"])
             r["note"] = "from the printed \\leanverified badge"
-        elif rows.get(r.get("anchor", "")):
+        elif len(rows.get(r.get("anchor", ""), [])) == 1:
             ids = rows[r["anchor"]]
             r["status"] = "ledger"
             r["decls"] = " ".join(ids)
-            r["note"] = ("the single ledger row for this anchor"
-                         if len(ids) == 1 else
-                         f"one of {len(ids)} ledger rows for this anchor")
+            r["note"] = "the single ledger row for this anchor"
+        elif rows.get(r.get("anchor", "")):
+            r["status"] = "unassigned"
+            r["decls"] = ""
+            r["note"] = (
+                f"anchor has {len(rows[r['anchor']])} ledger rows; an explicit "
+                "sentence-level assignment is required")
         else:
             r["status"] = "unassigned"
             r["decls"] = ""
@@ -468,55 +496,6 @@ CONDITIONAL_DETECTORS = {
     "buried-conditional", "conditional-data", "known-conditional",
     "literature-input", "open-predicate",
 }
-
-STOPWORDS = set(
-    "the a an of to in for and or is are be that this which with by on as it "
-    "its at from we our not no all any each every some there here then than "
-    "so if when where what while both".split())
-
-
-def _tokens(text: str) -> set[str]:
-    text = re.sub(r"\\[a-zA-Z]+", " ", text)
-    text = re.sub(r"[^A-Za-z ]", " ", text)
-    return {w.lower() for w in text.split()
-            if len(w) > 3 and w.lower() not in STOPWORDS}
-
-
-def narrow_rows(records: list[dict], claims: dict[str, str],
-                assignments: dict[str, dict]) -> int:
-    """Point a multi-row anchor's sentences at their single best row.
-
-    A prose anchor can carry a dozen ledger rows, and naming all twelve for
-    every sentence under it is true but useless.  Where one row's claim text
-    overlaps a sentence clearly more than the others, the census names that
-    row and *says in the note that the pairing was computed*, not asserted:
-    a reader who needs certainty reads the ledger row, and a hand assignment
-    in the overlay always wins over this.
-    """
-    narrowed = 0
-    for r in records:
-        if r["status"] != "ledger" or len(r["decls"].split()) < 2:
-            continue
-        if assignments.get(r["key"], {}).get("status"):
-            continue
-        st = _tokens(r["sentence"])
-        scored = []
-        for rid in r["decls"].split():
-            ct = _tokens(claims.get(rid, ""))
-            if not ct:
-                continue
-            scored.append((len(st & ct) / max(1, len(st | ct)), rid))
-        scored.sort(reverse=True)
-        if not scored or scored[0][0] < 0.18:
-            continue
-        if len(scored) > 1 and scored[0][0] < scored[1][0] + 0.06:
-            continue
-        r["decls"] = scored[0][1]
-        r["note"] = ("narrowed to this row of the anchor by claim-text "
-                     "overlap, not by hand")
-        narrowed += 1
-    return narrowed
-
 
 def write_tsv(records: list[dict], path: str) -> None:
     with open(path, "w", encoding="utf-8") as fh:
@@ -559,18 +538,11 @@ def write_md(records: list[dict], path: str) -> None:
         fh.write(f"| **total** | **{total}** |\n\n")
         fh.write(f"Carrying a declaration or a ledger row: **{done}/{total}**"
                  f" ({100.0 * done / max(total, 1):.1f}%).\n\n")
-        one = sum(1 for r in records if r["status"] == "ledger"
-                  and len(r["decls"].split()) == 1)
-        many = c.get("ledger", 0) - one
-        computed = sum(1 for r in records if "overlap" in (r.get("note") or ""))
         fh.write(
-            f"Of the `ledger` sentences, {one} name a single row and {many} "
-            "name every row of their anchor.  Of the single-row ones, "
-            f"{computed} were narrowed from a multi-row anchor by claim-text "
-            "overlap rather than by hand, and their note says so; the rest sit "
-            "under an anchor the ledger grades with one row, where the pairing "
-            "is forced.  The census never pretends to know which row is which "
-            "sentence: where the text does not decide, it names them all.\n\n")
+            "A sentence under a single-row ledger anchor inherits that forced "
+            "row.  A sentence under a multi-row anchor must name its row or "
+            "rows explicitly in `metadata/NON_MF_SENTENCE_MAP.tsv`; no text-"
+            "similarity guess and no whole-anchor fallback is accepted.\n\n")
         gaps = [r for r in records
                 if r["status"] in {"partial", "open", "unassigned"}]
         fh.write("## What no declaration establishes\n\n")
@@ -701,12 +673,32 @@ def main() -> int:
                     help="check that no named declaration is conditional")
     args = ap.parse_args()
 
-    rows, grades, probes = load_ledger()
+    rows, probes = load_ledger()
     records = extract(TEX)
     attach_anchors(records, TEX, probes)
     overlay = load_map(MAP)
     records = join(records, overlay, rows)
-    narrowed = narrow_rows(records, CLAIM_TEXT, overlay)
+
+    record_keys = {r["key"] for r in records}
+    ledger_ids = {row for anchor_rows in rows.values() for row in anchor_rows}
+    overlay_errors: list[str] = []
+    for key in sorted(set(overlay) - record_keys):
+        overlay_errors.append(f"stale overlay key {key}")
+    valid_statuses = {
+        "formalized", "ledger", "partial", "definition", "structural",
+        "attribution", "provenance", "open",
+    }
+    for key, assignment in overlay.items():
+        if assignment["status"] not in valid_statuses:
+            overlay_errors.append(
+                f"{key}: invalid overlay status {assignment['status']!r}")
+        if assignment["status"] == "ledger":
+            named = assignment["decls"].split()
+            if not named:
+                overlay_errors.append(f"{key}: ledger assignment names no row")
+            for row in named:
+                if row not in ledger_ids:
+                    overlay_errors.append(f"{key}: unknown ledger row {row}")
 
     if args.json:
         print(json.dumps(records, indent=1))
@@ -742,10 +734,15 @@ def main() -> int:
     for k in sorted(c, key=lambda k: -c[k]):
         print(f"{k:14s} {c[k]:5d}")
     print(f"{'total':14s} {total:5d}")
-    print(f"(narrowed to a single ledger row by text overlap: {narrowed})")
 
-    if args.check and c.get("unassigned"):
-        print(f"\nFAIL: {c['unassigned']} sentences carry no assignment.")
+    for error in overlay_errors:
+        print(f"OVERLAY ERROR: {error}")
+
+    if args.check and (c.get("unassigned") or overlay_errors):
+        if c.get("unassigned"):
+            print(f"\nFAIL: {c['unassigned']} sentences carry no assignment.")
+        if overlay_errors:
+            print(f"FAIL: {len(overlay_errors)} overlay integrity error(s).")
         return 1
     return 0
 
