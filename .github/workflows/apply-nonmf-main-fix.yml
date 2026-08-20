@@ -1,3 +1,4 @@
+# Retrigger: the workflow already exists on main before this push.
 name: Apply audited non-MF manuscript fix
 
 on:
