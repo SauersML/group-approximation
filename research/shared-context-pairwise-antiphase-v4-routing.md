@@ -61,18 +61,17 @@ tag atlases.
   word in the commuting selector subgroup has affine character support and
   cannot distinguish an arbitrary forbidden BCS predicate while remaining
   harmless on every satisfying sector.
-- **Pair-specific nonabelian Schur words. Active.** Search the explicit V4
-  radical crossed-product packet for involution tuples whose restrictions on
-  each failure atom have the prescribed signs and whose joint representations
-  on the satisfying sectors are unitarily equivalent across branches.  This
-  is a bounded finite character-table problem because the BCS and repetition
-  count are fixed.  If no such tuple exists, the failure should be recorded as
-  a joint-character obstruction rather than as another packing argument.
-- **Independent Clifford axis per incident edge. Incomplete.** On satisfying
-  sectors a sufficiently large Clifford packet can make all signed edge-axis
-  tuples jointly equivalent.  On a forbidden sector those axes become a
-  commuting radical family, so `(PAC1)` applies only after splitting into its
-  character atoms.  That split dilutes each branch and enlarges the family
-  which must again be pairwise separated.  A successful construction must
-  avoid this recursive character refinement, for example by coupling the
-  edge axes to the existing V4 atom through a nonabelian multiplicity decoder.
+- **Independent Clifford axis per incident edge. Dead, sharply.**
+  `clifford-radical-antiphase-routing-has-character-capacity` allows a
+  different Pauli word on every edge and arbitrary local Clifford frames.  It
+  still assigns one effective radical character to each branch, so `N`
+  pairwise comparisons require `N<=2^r`.  The V4 law has five failure
+  occurrences over its four radical characters.  Dummy radical coordinates
+  multiply both numbers equally and preserve the fatal ratio `5/4`.
+- **Non-character packet decoder. Active.** The remaining pairwise route must
+  use data not reducible to one effective Weyl character per branch: a
+  multiplicity-dependent polar decoder, a contextual cross-copy operation,
+  or a genuinely non-Weyl coefficient system.  The existing covariant
+  Wedderburn detector is the closest proven example of such information, but
+  exposing its commutant range by ordinary sparse group relations remains the
+  return problem.

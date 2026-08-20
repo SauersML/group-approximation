@@ -100,3 +100,9 @@ floor.
   gate is `shared-context-pairwise-antiphase-v4-routing`: realize those
   pair-specific opposite phases by ordinary group words while preserving the
   exact non-CE BCS trace.
+  The full Clifford/radical word ansatz is now exhausted negatively:
+  `clifford-radical-antiphase-routing-has-character-capacity` shows that the
+  five V4 failure occurrences require five effective characters but the hot
+  radical plane supplies only four.  Enlarging by dummy radical coordinates
+  keeps the ratio `5/4`.  Only a non-character packet decoder can keep this
+  route alive.
