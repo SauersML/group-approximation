@@ -135,6 +135,33 @@ Three further modules, same status (uncompiled, unwired).
     is left of stabilization is the case of a general countably generated `E`,
     which is the Mingo--Phillips argument and is not re-indexing.
 
+## Third batch: the multiplier algebra, and `𝓚(B_B) = B`
+
+11. `Analysis/KasparovUnitaryEquivalence.lean` --- `UnitaryEquiv` of Kasparov
+    bimodules (reflexive, symmetric, transitive), the structural unitaries of a
+    direct sum, and `⊞` commutative and associative **up to unitary
+    equivalence**.  What is deliberately not claimed: that a degenerate cycle
+    is a unit.  It is one only up to *homotopy* --- `M ⊞ (degenerate)` has a
+    strictly bigger module --- and that is one of the two places the homotopy
+    relation does real work, the other being the inverse.
+12. `Analysis/CStarStabilization.lean` --- truncation in `H_B`: **the finitely
+    supported sequences are dense**, proved from the Cauchy criterion plus the
+    passage of a bound to the limit.  Then `IsCountablyGenerated`, and
+    Kasparov's stabilization theorem stated as an input, with the case
+    `E = H_B` recorded as already proved so that the input names exactly the
+    missing passage.
+13. `Analysis/CStarCompactSelfModule.lean` --- **`𝓚(B_B) = B`** and
+    **`B ⊆ M(B)` isometrically**.  Three ingredients: `‖bx‖ ≤ K‖x‖` for all `x`
+    forces `‖b‖ ≤ K` (test at `x = b⋆`; a C⋆-fact, false in a Banach algebra);
+    a finite-rank operator on `B` is `ofElem (∑ xᵢyᵢ⋆)`; and every `ofElem b`
+    is compact, which for non-unital `B` needs an approximate unit ---
+    `ofElem (be) = θ_{b,e⋆}` and `be → b`.  The converse is a completeness
+    argument, the isometry making the approximants Cauchy in `B`.
+
+    Together these say `M(B) = 𝓛(𝓚(B))` in the case `E = B`, which is the case
+    the Winter--Zacharias factorization of `Analysis.CStarOrderZeroSupport` is
+    stated over.
+
 ## What is next, and what it costs
 
 1. ~~`H_B = ℓ²(B)`~~ --- **done**, in the second batch above.
