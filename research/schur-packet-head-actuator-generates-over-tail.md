@@ -34,6 +34,12 @@ Gamma=<alpha(Gamma),iota(B_f)>.                           (SAT2)
 Thus the missing packet generator is not merely outside the compressed
 group: it actuates the entire finite head over the tail.
 
+All compressor iterates of the child are in fact pointwise identical, because
+their embedding uses constant-field coefficients.  This gives exact selector
+synchronization.  It is not cocycle amplification:
+`toeplitz-schur-heads-share-child-but-have-rank-two` computes rank two for the
+joint family of shifted heads.
+
 This still does not prove a positive-density Reynolds wall.  In a matrix
 representation the remaining action of `alpha(Gamma)` can act irreducibly on
 the packet multiplicity and erase the local Reynolds density.  The theorem
