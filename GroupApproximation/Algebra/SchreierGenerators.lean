@@ -114,7 +114,7 @@ theorem coe_list_prod (m : List ↥Λ) :
     ((m.prod : ↥Λ) : Γ) = (m.map (fun u : ↥Λ => (u : Γ))).prod := by
   induction m with
   | nil => simp
-  | cons u t ih => simp [ih]
+  | cons u t ih => simp
 
 /-- **The one-step telescoping identity.**  The Schreier generator attached to
 `(sec γ, x)` is exactly the amount by which one step to the right moves the
@@ -234,7 +234,6 @@ theorem exists_wordNorm_le_mul_schreier {S : Set Γ} (hS : IsSymmetricGenerating
     intro z hz
     simp only [List.mem_map] at hz
     obtain ⟨w, hw, rfl⟩ := hz
-    simp only [List.mem_map] at hw
     obtain ⟨u, hu, rfl⟩ := hw
     exact Finset.le_sup (f := fun u : ↥Λ => wordNorm S (u : Γ))
       (hfin.mem_toFinset.mpr (hm.letters u hu))

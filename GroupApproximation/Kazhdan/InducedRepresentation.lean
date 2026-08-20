@@ -137,14 +137,16 @@ def ind : Γ →* (IndSpace tr E ≃ₗᵢ[ℝ] IndSpace tr E) where
 /-- The vector of the direct sum all of whose coordinates equal `v`. -/
 def constVec (v : E) : IndSpace tr E := WithLp.toLp 2 fun _ => v
 
+omit [NormedAddCommGroup E] [InnerProductSpace ℝ E] in
 @[simp] theorem constVec_apply (v : E) (c : Index tr) : constVec tr E v c = v := rfl
 
+omit [InnerProductSpace ℝ E] in
 /-- The squared norm of the constant vector is the number of cosets times the
 squared norm of the entry. -/
 theorem norm_constVec_sq (v : E) :
     ‖constVec tr E v‖ ^ 2 = (tr.reps.card : ℝ) * ‖v‖ ^ 2 := by
   rw [PiLp.norm_sq_eq_of_L2]
-  simp [Finset.card_univ]
+  simp
 
 /-- **The displacement of the constant vector**, coordinate by coordinate: the
 sum of the squared displacements of `v` under the finitely many cocycle values.
