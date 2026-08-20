@@ -33,9 +33,8 @@ moduli is fine for the *witness* --- the property A weights are `|ζ(x)|²`, and
 destroys the Gram *identity*, since `Σ |a||b| ≠ Σ conj(a) b`.  So the condition
 is restated over `ℂ` here, and the assembly is redone with moduli.
 
-**Status: authored, not yet elaborated.**  Modules through
-`Analysis/GaussianRoeOperator.lean` have been built at the pinned toolchain;
-this one and `Analysis/RoeSquareRoot.lean` have not.
+This module and `Analysis/RoeSquareRoot.lean` have both been elaborated at the
+pinned toolchain.
 -/
 
 namespace GroupApproximation
@@ -72,22 +71,24 @@ theorem sq_norm_sub_norm_le (a b : ℂ) : (‖a‖ - ‖b‖) ^ 2 ≤ ‖a - b�
   calc (‖a‖ - ‖b‖) ^ 2 = |‖a‖ - ‖b‖| ^ 2 := (sq_abs _).symm
     _ ≤ ‖a - b‖ ^ 2 := by nlinarith [abs_nonneg (‖a‖ - ‖b‖)]
 
+omit [Group G] [DecidableEq G] in
 /-- The expansion of an `ℓ²` displacement of a finite family in terms of its
 Gram data. -/
 theorem sum_norm_sub_sq (T : Finset G) (a b : G → ℂ) :
     ∑ x ∈ T, ‖a x - b x‖ ^ 2
       = (∑ x ∈ T, ‖a x‖ ^ 2) + (∑ x ∈ T, ‖b x‖ ^ 2)
         - 2 * (∑ x ∈ T, ((starRingEnd ℂ) (a x) * b x)).re := by
-  rw [Complex.re_sum, Finset.mul_sum, ← Finset.sum_sub_distrib, ← Finset.sum_add_distrib,
+  rw [Complex.re_sum, Finset.mul_sum, ← Finset.sum_add_distrib,
     ← Finset.sum_sub_distrib]
   refine Finset.sum_congr rfl fun x _ ↦ ?_
   have h : ‖a x - b x‖ ^ 2
       = ‖a x‖ ^ 2 + ‖b x‖ ^ 2 - 2 * ((starRingEnd ℂ) (a x) * b x).re := by
-    simp only [Complex.sq_abs, Complex.normSq_apply, Complex.sub_re, Complex.sub_im,
+    simp only [← Complex.normSq_eq_norm_sq, Complex.normSq_apply, Complex.sub_re, Complex.sub_im,
       Complex.mul_re, Complex.conj_re, Complex.conj_im]
     ring
   simpa using h
 
+omit [InnerProductSpace ℝ E] in
 /-- **From the complex Gram condition to property A.**  This is the assembly of
 `GuentnerKaminker.hasPropertyA_of_gaussianRoeApproximation`, redone with moduli
 so that complex columns are allowed. -/
@@ -132,31 +133,29 @@ theorem hasPropertyA_of_gram {T : Finset G} {f : G → E} {C D : ℝ}
       by_contra hc
       exact hx (hsupp g x hc)
     exact Finset.mem_image.mpr ⟨g⁻¹ * x, hmemF, by simp⟩
+  have hdiag : ∀ (g : G) (S : Finset G),
+      ∑ x ∈ S, (starRingEnd ℂ) (w g x) * w g x =
+        ((∑ x ∈ S, ‖w g x‖ ^ 2 : ℝ) : ℂ) := by
+    intro g S
+    push_cast
+    refine Finset.sum_congr rfl fun x _ ↦ ?_
+    rw [← Complex.normSq_eq_conj_mul_self, Complex.normSq_eq_norm_sq]
+    norm_cast
   -- the columns are almost unit vectors
   have hmassabs : ∀ g : G, |1 - ∑ s ∈ F, ‖w g (g * s)‖ ^ 2| ≤ δ := by
     intro g
     have h := happ g g (F.image (fun s ↦ g * s)) (hwin g) (hwin g)
     rw [gaussianKernel_self] at h
+    have hreal : ∑ x ∈ F.image (fun s ↦ g * s), ‖w g x‖ ^ 2 =
+        ∑ s ∈ F, ‖w g (g * s)‖ ^ 2 :=
+      sum_sq_window_eq (v := fun x ↦ ‖w g x‖) g
+        (fun x hx ↦ by rw [hsupp g x hx, norm_zero])
+        (fun x hx ↦ hwin g x (by
+          intro hzero
+          exact hx (by rw [hzero, norm_zero])))
     have hsq : ∑ x ∈ F.image (fun s ↦ g * s), (starRingEnd ℂ) (w g x) * w g x
         = ((∑ s ∈ F, ‖w g (g * s)‖ ^ 2 : ℝ) : ℂ) := by
-      rw [← sum_sq_window_eq (v := fun x ↦ ‖w g x‖) g
-        (fun x hx ↦ by
-          by_contra hne
-          exact hx (by
-            have : w g x = 0 := hsupp g x (by
-              intro hmem
-              exact hne (by
-                have := hwin g x
-                exact absurd hmem (by simpa using fun _ ↦ trivial)))
-            simp [this]))
-        (fun x hx ↦ hwin g x (by
-          intro h0
-          exact hx (by simp [h0])))]
-      push_cast
-      refine Finset.sum_congr rfl fun x _ ↦ ?_
-      rw [Complex.mul_comm_conj_eq_normSq]
-      push_cast [Complex.sq_abs]
-      ring
+      rw [hdiag g, hreal]
     rw [hsq] at h
     have : ‖((1 : ℝ) : ℂ) - ((∑ s ∈ F, ‖w g (g * s)‖ ^ 2 : ℝ) : ℂ)‖
         = |1 - ∑ s ∈ F, ‖w g (g * s)‖ ^ 2| := by
@@ -184,6 +183,8 @@ theorem hasPropertyA_of_gram {T : Finset G} {f : G → E} {C D : ℝ}
     have hAB := happ g h S hSg' hSh'
     rw [gaussianKernel_self] at hA
     rw [gaussianKernel_self] at hB
+    rw [hdiag g S] at hA
+    rw [hdiag h S] at hB
     have hstrip : 1 - gaussianKernel f κ g h ≤ κ * (C * (Rad : ℝ) + D) ^ 2 :=
       one_sub_gaussianKernel_le hC hD hb hκ.le Rad g h (hRad g h hgh)
     -- pass to moduli, then expand
@@ -191,8 +192,16 @@ theorem hasPropertyA_of_gram {T : Finset G} {f : G → E} {C D : ℝ}
       Finset.sum_le_sum fun x _ ↦ sq_norm_sub_norm_le _ _
     rw [sum_norm_sub_sq] at hmod
     -- the three Gram quantities are within `δ` of the kernel
-    have h1 := abs_le.mp (by simpa [Complex.norm_real, Real.norm_eq_abs] using hA)
-    have h2 := abs_le.mp (by simpa [Complex.norm_real, Real.norm_eq_abs] using hB)
+    have hArewrite : (((1 : ℝ) : ℂ) - ((∑ x ∈ S, ‖w g x‖ ^ 2 : ℝ) : ℂ)) =
+        ((1 - ∑ x ∈ S, ‖w g x‖ ^ 2 : ℝ) : ℂ) := by
+      push_cast
+      rfl
+    have hBrewrite : (((1 : ℝ) : ℂ) - ((∑ x ∈ S, ‖w h x‖ ^ 2 : ℝ) : ℂ)) =
+        ((1 - ∑ x ∈ S, ‖w h x‖ ^ 2 : ℝ) : ℂ) := by
+      push_cast
+      rfl
+    rw [hArewrite, Complex.norm_real, Real.norm_eq_abs] at hA
+    rw [hBrewrite, Complex.norm_real, Real.norm_eq_abs] at hB
     have h3 : ‖((gaussianKernel f κ g h : ℝ) : ℂ)
         - ∑ x ∈ S, (starRingEnd ℂ) (w g x) * w h x‖ ≤ δ := hAB
     have h3re : |gaussianKernel f κ g h
@@ -203,10 +212,8 @@ theorem hasPropertyA_of_gram {T : Finset G} {f : G → E} {C D : ℝ}
       simpa using this
     have h3' := abs_le.mp h3re
     have hsq0 : (0 : ℝ) ≤ ε ^ 2 := sq_nonneg ε
-    have hAre : |1 - (∑ x ∈ S, ‖w g x‖ ^ 2)| ≤ δ := by
-      simpa using h1
-    have hBre : |1 - (∑ x ∈ S, ‖w h x‖ ^ 2)| ≤ δ := by
-      simpa using h2
+    have hAre : |1 - (∑ x ∈ S, ‖w g x‖ ^ 2)| ≤ δ := hA
+    have hBre : |1 - (∑ x ∈ S, ‖w h x‖ ^ 2)| ≤ δ := hB
     have hA' := abs_le.mp hAre
     have hB' := abs_le.mp hBre
     linarith [hmod, hA'.1, hA'.2, hB'.1, hB'.2, h3'.1, h3'.2, hstrip, hκP, hδeps, hsq0]
@@ -235,16 +242,14 @@ theorem isRoeGramApproximable {T : Finset G}
   obtain ⟨K, hmem, hpos, hcoeff⟩ := exists_positive_roeOperator hT hβ hr₀ hκ hr₁
   have hKnn : 0 ≤ K := (ContinuousLinearMap.nonneg_iff_isPositive K).mpr hpos
   obtain ⟨S, W, hS, hclose⟩ := exists_finiteWidth_gram hmem hKnn hδ
-  refine ⟨S⁻¹, fun s x ↦ matrixCoeff G W (x⁻¹) (s⁻¹), ?_, ?_⟩
+  refine ⟨S.image (fun a ↦ a⁻¹), fun s x ↦ matrixCoeff G W (x⁻¹) (s⁻¹), ?_, ?_⟩
   · -- propagation, read backwards
     intro s x hx
     by_contra hne
     refine hx ?_
     have hprop : x⁻¹ * (s⁻¹)⁻¹ ∈ (S : Set G) := hS _ _ hne
     have hmem' : x⁻¹ * s ∈ S := by simpa using hprop
-    have hinv : (s⁻¹ * x)⁻¹ = x⁻¹ * s := by group
-    rw [Finset.mem_inv, hinv]
-    exact hmem'
+    exact Finset.mem_image.mpr ⟨x⁻¹ * s, hmem', by group⟩
   · intro s t T' hT1 hT2
     -- the Gram sum is the matrix of `star W * W`, read backwards
     set φ : G → ℂ := fun y ↦
@@ -254,10 +259,10 @@ theorem isRoeGramApproximable {T : Finset G}
       have hz : matrixCoeff G W y (t⁻¹) = 0 := by
         by_contra hne
         refine hy (Finset.mem_image.mpr ⟨y * t, ?_, by group⟩)
-        have := hS y t⁻¹ hne
-        simpa using this
+        simpa using hS y t⁻¹ hne
       rw [hφ]
-      simp [hz]
+      change (starRingEnd ℂ) (matrixCoeff G W y (s⁻¹)) * matrixCoeff G W y (t⁻¹) = 0
+      rw [hz, mul_zero]
     have hvanish_T : ∀ y : G, y ∉ T'.image (fun x ↦ x⁻¹) → φ y = 0 := by
       intro y hy
       have hz : matrixCoeff G W y (t⁻¹) = 0 := by
@@ -265,7 +270,8 @@ theorem isRoeGramApproximable {T : Finset G}
         refine hy (Finset.mem_image.mpr ⟨y⁻¹, hT2 y⁻¹ ?_, by simp⟩)
         simpa using hne
       rw [hφ]
-      simp [hz]
+      change (starRingEnd ℂ) (matrixCoeff G W y (s⁻¹)) * matrixCoeff G W y (t⁻¹) = 0
+      rw [hz, mul_zero]
     have hsum_eq : ∑ x ∈ T', (starRingEnd ℂ) (matrixCoeff G W (x⁻¹) (s⁻¹))
           * matrixCoeff G W (x⁻¹) (t⁻¹)
         = matrixCoeff G (star W * W) (s⁻¹) (t⁻¹) := by

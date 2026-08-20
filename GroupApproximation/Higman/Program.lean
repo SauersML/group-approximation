@@ -50,6 +50,17 @@ of that theory is formalized in this repository:
   are closed under joins (`Higman.Benign.sup`), by the direct-product gluing
   and two applications of the pinch lemma.  With `BenignWitness.inf` this
   completes Lemma 3.2, and with `BenignWitness.comap` half of Lemma 3.3.
+* `Higman.PinchGraph`, `Higman.RopeTrick` --- **the rope trick, proved**:
+  `Higman.fpOvergroup_of_benign` says that if `N` is benign in a finitely
+  generated, finitely presented `F`, then `F ⧸ N` embeds in a finitely
+  presented group.  This is the direction of Higman's Lemma that turns the
+  benign theory into an embedding theorem; the easy direction is
+  `BenignWitness.ker`.  The proof is the classical one: a second stable letter
+  conjugating `S × 1` onto the graph of the map `τ : ⟨A, Aᵗ⟩ → F ⧸ N` which is
+  the quotient map on `A` and trivial on `Aᵗ`, so that the relations of
+  `F ⧸ N` become consequences of finitely many.  `τ` exists because `⟨A, Aᵗ⟩`
+  is the amalgam of `A` and `Aᵗ` over `N`, and that is what the value-carrying
+  descent of `Higman.PinchGraph` supplies.
 
 The *join* half of Higman's Lemma 3.2 --- benign subgroups are closed under
 joins --- comes down to one pinch lemma, `PinchProperty` below, and that
@@ -69,11 +80,34 @@ worth recording, because both are simplifications of the classical one:
   `(K ∗_{M₁} t₁) ∗_{M₂} t₂` with `Z = ⟨A₁, A₂, Gᵗ¹⟩` and `Q = G`, whose
   hypotheses are supplied by the first application.
 
-The rest of (A) --- Higman's Section 4 (the Higman operations preserve
-benignness), his Section 2 (a subset of the sequence space is recursively
-enumerable exactly when it is built from `Z` and `S` by those operations),
-and the rope trick that turns a benign normal subgroup into an embedding ---
-is not formalized here, and no declaration below pretends otherwise.
+What is left of (A) is stated as one structure, `Higman.REBenign` in
+`Higman/EmbeddingTheorem.lean`: *a recursively enumerable normal subgroup of a
+free group of finite rank is benign*.  That is Higman's Sections 2--4 --- the
+sequence space, the operations `(H)`, and the closure of the benign family
+under them --- and with it `Higman.fpOvergroup_of_fgRecursive` proves Higman's
+embedding theorem for finitely generated groups outright, because the other
+half is the rope trick, which is proved.  Of Section 3.2 the first example is
+also proved (`Higman.Row.benign_row`: the row subgroup `⟨bᵢ : i ∈ ℤ⟩` of
+`⟨b, c⟩` is benign).
+
+Two further steps stood between that and input (A) as stated here.  Both have
+since been reduced, and one of them removed:
+
+* **from finitely generated to countably generated.**  Higman's theorem is
+  about finitely generated groups; `ChiodoAbsorber` is countably generated.
+  The bridge is the Higman--Neumann--Neumann embedding, and its group theory is
+  now **proved** (`Higman.HNNEmb.nonempty_fgOvergroup`: every countable group
+  embeds in a three-generator group), as is its torsion clause
+  (`Higman.torsionFree_ext`, off this repository's own free-product and HNN
+  permanence theorems).  What is left of it is the effectivity clause
+  `Higman.BridgeRecursive`.
+* **the torsion clause.**  Chiodo's Theorem 2.2 preserves the set of torsion
+  orders.  This is now **proved to be no extra theorem about the rope trick**:
+  `Higman.torsionFree_ropeGroup` shows the rope group is torsion-free as soon
+  as the benign witness and the quotient are, so the clause is exactly the
+  demand that the witness be torsion-free.  `Higman.REBenignTF` is that
+  refinement of `REBenign`, and `Higman.torsionPreservation_of_reBenignTF`
+  derives `TorsionPreservation` from it.
 
 ## (B)
 

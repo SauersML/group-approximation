@@ -186,7 +186,8 @@ This is the module whose adjointable operators are the multiplier algebra
 `M(B)`, which is where the supporting `⋆`-homomorphism of a Winter--Zacharias
 factorization lives, and where the Kasparov modules of `KK(A,B)` are
 built. -/
-def selfModule (B : Type v) [NonUnitalCStarAlgebra B] : CStarModule.{v, v} B where
+@[reducible] def selfModule (B : Type v) [NonUnitalCStarAlgebra B] :
+    CStarModule.{v, v} B where
   carrier := B
   act x b := x * b
   inner x y := star x * y

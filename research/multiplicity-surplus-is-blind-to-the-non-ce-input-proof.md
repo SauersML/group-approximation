@@ -40,14 +40,22 @@ equations, so no genuine multiplicity surplus can accumulate.  Therefore a chain
 concluding non-hyperlinearity from `beta` alone would contradict hyperlinearity
 of that group.
 
-**`(BLD4)`.**  Combining `(BLD1)`, `(BLD2)` and `(BLD3)`: a correct derivation
-cannot be a function of `beta` alone, so it must use a hypothesis on `B` beyond
-the forbidden-mass bound, and the only such hypothesis available is
-non-embeddability.
+**`(BLD4)`.**  Combining `(BLD1)`, `(BLD2)` and `(BLD3)`: a uniform derivation
+whose only BCS-dependent input is `beta` cannot distinguish the non-CE system
+from the classical counterexample.  A correct derivation must use additional
+contextual operator structure of `B`, not merely the scalar lower bound.
 
-**The centrality remark.**  In `K(M)` the generators `z_l` are declared central.
-If `G = A *_C B` with `z in C` central in `A` and central in `B`, then `z`
-commutes with every generator of `A` and of `B`, which together generate `G`, so
-`z` is central in `G`.  Hence amalgamating context packets over their shared
-selectors makes every BCS variable globally commuting, which is the hypothesis
-of `(BLD2)`.
+**Why centrality is not the obstruction.**  In one amalgam `A *_<z> B`, an
+element `z` central in both vertex factors is central in that two-vertex
+amalgam.  But a selector which does not belong to a later vertex group need
+not commute with that group's generators.  Concretely,
+
+```text
+<x,y | x^2=y^2=[x,y]=1> *_(<y>)
+<y,z | y^2=z^2=[y,z]=1>
+```
+
+has no relation `[x,z]=1` and is `C_2 x (C_2*C_2)`.  Hence a context graph
+preserves the intended partial commutation.  Its failure as a return
+transducer is the virtually-free/integer-flow argument in `(BLD3)`, not a
+global-classicality collapse.

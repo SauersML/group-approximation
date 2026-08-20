@@ -1,5 +1,20 @@
 # 2026-08-18 — Pairwise selector overlap quantitatively rounds predicated control
 
+> **Correction, 2026-08-20.**  The overlap estimates below are true, but
+> overlap suppression is not needed for decoding.  On the odd-parity corner,
+> assign each joint selector atom to its least active selector:
+>
+> ```text
+> E=(1-product_a Z_a)/2,
+> Q_a=E P_a product_(b<a)(1-P_b).
+> ```
+>
+> Then `sum_a Q_a=E`, the `Q_a` are orthogonal, and `Q_a<=P_a`, regardless of
+> all pairwise overlaps.  The direct-sum decoder in Section 2 therefore applies
+> with loss only from even parity.  This stronger observation is promoted as
+> `odd-selector-priority-decoding`; the live compiler target is now
+> `zpc-context-mismatch-transducer` and asks only for cross-context gluing.
+
 **Status:** two elementary operator lemmas are proved below.  No nonhyperlinear
 group is claimed here.  They substantially narrow one part of the
 perfect-ZPC-to-LCS route: within any common selector context, pairwise selector
@@ -157,16 +172,15 @@ answers), not one global readable assignment.  Applying Sections 1–2
 independently on every edge can therefore produce different decoded copies of
 the same unreadable question variable on different incident edges.
 
-That is a genuine remaining soundness condition.  The two lemmas here do **not**
-prove `zpc-selector-robust-lcs-compiler` on their own.  They split its analytic
-burden into two explicit quantities:
+That is a genuine remaining soundness condition.  Priority decoding removes
+the first burden originally listed here: selector overlap need not be charged
+at all.  The analytic burden is now one explicit quantity, **context
+consistency energy**, measuring the mismatch between decoded copies of the same
+question observable across its incident edge contexts, together with the
+ordinary odd-parity and predicated-equation losses already expressible as LCS
+rows.
 
-1. **selector overlap energy** in each local context, measured by
-   `sum_(a<b) tau(P_a P_b)` plus the odd-parity defect; and
-2. **context consistency energy**, measuring the mismatch between decoded
-   copies of the same question observable across its incident edge contexts.
-
-Once both are bounded by a dimension-free constant times output LCS loss, a
+Once these are bounded by a dimension-free constant times output LCS loss, a
 finite spanning-tree gluing argument chooses one reference context per question,
 transports all edge equations to those references, and yields a legitimate
 source strategy with loss tending to zero.

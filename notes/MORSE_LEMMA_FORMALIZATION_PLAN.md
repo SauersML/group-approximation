@@ -5,15 +5,32 @@ session starts from a lemma list rather than from the literature.
 
 ## Why it is the only gap left
 
-`Algebra/HyperbolicSlimTriangles.lean` proves slim triangles and the four-point
-condition equivalent, with constants.  What neither gives is invariance under
-change of generating set, and that is not a bookkeeping gap: transporting the
-four-point condition through a `(K,C)`-quasi-isometry --- or through a plain
-bi-Lipschitz map, additive error zero --- yields
+**Correction (2026-08-19).**  This note used to open by saying that
+`Algebra/HyperbolicSlimTriangles.lean` "proves slim triangles and the four-point
+condition equivalent, with constants".  It does not, and never did: that module
+states *both* directions as open `Prop`-valued definitions,
+`SlimImpliesFourPoint` and `FourPointImpliesSlim`, and the name step 2 below
+cites (`isSlimTriangles_of_isFourPointHyperbolic`) has never existed in this
+repository --- `git log -S` finds no commit containing it.  What the module does
+prove is the vocabulary: `IsBetween`, `exists_isBetween`,
+`twiceGromovProduct_le_of_isBetween`, and slimness for bounded metrics.  Step 2
+below therefore has an extra prerequisite: `FourPointImpliesSlim`.
+
+What no reformulation gives is invariance under change of generating set, and
+that is not a bookkeeping gap: transporting the four-point condition through a
+`(K,C)`-quasi-isometry --- or through a plain bi-Lipschitz map, additive error
+zero --- yields
 
     d(y1,y2) + d(y3,y4)  <=  K^2 * max(...) + const
 
-and the `K^2` is fatal.  No reformulation in terms of points removes it: the
+and the `K^2` is fatal.  **This is now a theorem rather than a remark**:
+`Hyperbolic.fourPoint_transport_of_biLipschitz` in `Algebra/MorseLemma.lean`
+proves exactly that inequality, and
+`Hyperbolic.isFourPointHyperbolic_of_isometry` proves that at `K = 1` it *is*
+the four-point condition, so the boundary of what arithmetic reaches is
+machine-checked.  The same module proves the transport that needs no geometry
+at all --- `isFourPointHyperbolic_of_roughIsometry`, invariance under a
+quasi-isometry with multiplicative constant `1`, at `δ ↦ δ + 6C`.  No reformulation in terms of points removes it: the
 four-point condition is genuinely not a bi-Lipschitz invariant of a general
 metric space, and what rescues it for word metrics is that they are geodesic.
 Using that fact is exactly the Morse lemma.
@@ -21,7 +38,12 @@ Using that fact is exactly the Morse lemma.
 ## Statement to aim at
 
 Discrete form, stated against `WordMetric` and the `IsBetween` vocabulary of
-`Algebra/HyperbolicSlimTriangles.lean`.
+`Algebra/HyperbolicSlimTriangles.lean`.  **This is now in Lean**, as
+`Hyperbolic.IsQuasiGeodesic` and `Hyperbolic.MorseLemma` in
+`Algebra/MorseLemma.lean` (indexed by `ℕ` rather than by a `List`, which is the
+same content and avoids `List.get` arithmetic); `isQuasiGeodesic_of_isGeodesicWord`
+checks the definition is the intended one by exhibiting the prefixes of a
+geodesic word as a `(1,0)`-quasi-geodesic.  Nothing assumes `MorseLemma`.
 
     A list `p : List G` is a `(K,C)`-quasi-geodesic when for all `i j` below its
     length,  `|i - j| / K - C <= d (p.get i) (p.get j) <= K * |i - j| + C`.
@@ -64,7 +86,9 @@ Discrete form, stated against `WordMetric` and the `IsBetween` vocabulary of
    quasi-geodesics, apply Morse to replace them by geodesics, then apply
    slimness upstairs.  Gives `Hyperbolic.QuasiIsometryInvariant`, which by
    `independentOfGeneratingSet_of_quasiIsometryInvariant` gives independence of
-   the generating set, and by `SharpExistenceRoutes` supplies
+   the generating set, and --- now as a proof rather than as a remark, see
+   `FiniteIndex.hyperbolicFiniteIndexPermanence_of_quasiIsometryInvariant` and
+   the quasi-isometry of `Algebra/FiniteIndexQuasiIsometry.lean` --- supplies
    `HyperbolicFiniteIndexPermanence`.
 
 ## Estimate

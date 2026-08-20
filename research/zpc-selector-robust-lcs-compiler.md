@@ -30,14 +30,19 @@ not merely nonattainment of a perfect strategy.
 
 ## Attempts
 
+- The raw selector signs do **not** have to become one-hot.  The established
+  `odd-selector-priority-decoding` partitions every odd joint spectral atom by
+  its first active branch and loses only even-parity mass.  Together with
+  `onehot-predicated-direct-sum-decoder`, this removes pairwise selector
+  overlap from the soundness target.  The remaining local theorem is now
+  `zpc-context-mismatch-transducer`.
 - Upgrade the existing controlled predication and selector compiler in the
   weighted-algebra formalism of Mastel--Slofstra.  Their weighted homomorphisms
   were designed to transfer **near-perfect** BCS strategies with polynomial
   soundness loss, which is exactly the missing strength here.
-- A noncommutative selector gadget must come with a stability modulus: an
-  `epsilon`-representation of the selector relations must be close enough, in
-  aggregate weighted loss, to a valid branch-sector decomposition to recover a
-  source strategy above `1/2`.
+- The required stability modulus now concerns cross-context consistency, not
+  overlap suppression: equality/covariance checks must make the independently
+  priority-decoded copies of each source observable agree in aggregate.
 - Pure affine selector auxiliaries remain ruled out by
   `affine-auxiliary-control-flow-barrier`; the quantitative target does not
   reopen that dead space.

@@ -238,7 +238,9 @@ theorem statementCountable_of_statement (h : Statement) : StatementCountable := 
   obtain ⟨U, inst, hfp, htf, huniv⟩ := h
   haveI := inst
   haveI := hfp
-  exact ⟨U, inst, countable_of_isFinitelyPresented U, htf, huniv⟩
+  -- the instances are locals, so the countability lemma is applied at them
+  -- explicitly: a `haveI` copy is a different term and does not unify
+  exact ⟨U, inst, @countable_of_isFinitelyPresented U inst hfp, htf, huniv⟩
 
 /-! ## 5.  What a witness would give -/
 

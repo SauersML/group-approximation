@@ -50,6 +50,15 @@ specified group ball intact.
   random sparse sample preserves the forbidden consequence then loses on the
   same coupon-collector scale.  The finite net factor cannot be beaten.  The
   soundness must be redundant, PCP-style.
+- **Dinur gap amplification — the exact classical baseline, not the missing
+  compiler.**  [[dinur-constraint-gap-amplification]] turns arbitrary
+  finite-alphabet constraint graphs into constant-alphabet graphs with linear
+  size growth and `UNSAT` amplified by two up to a constant.  Its assignments
+  are classical alphabet labels, however, and it supplies neither
+  normalized-HS/tracial soundness nor sparse preservation of a nontrivial
+  group ball.  Importing the theorem therefore sharpens this target's missing
+  step to a noncommutative, presentation-preserving compiler; it does not fill
+  that step.
 - **Classical parity/LTC code — wrong endpoint.**  Classical locally testable
   linear constraints can have excellent soundness, but commuting/parity group
   presentations left after sparsification remain in an amenable/residually

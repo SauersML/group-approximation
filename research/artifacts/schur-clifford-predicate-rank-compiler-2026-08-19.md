@@ -3,15 +3,98 @@
 **Date:** 2026-08-19  
 **Status:** Two exact algebraic theorems proved below; one quantitative obstruction criterion proved; the global return/holonomy transducer remains open. **This is not yet a proof of the existence of a non-hyperlinear group.**
 
-**2026-08-20 Cairn integration update.**  The local approximate-representation
-step is no longer left monolithic: fixed finite packets flexibly exactify by
-normal-form telescoping plus Gowers--Hatami
-(`finite-schur-clifford-packet-flexible-hs-exactification`).  The global hole
-has been split into `shared-selector-context-packet-coherence` and
+**2026-08-20 Cairn integration update.**  Fixed finite packets flexibly
+exactify by normal-form telescoping plus Gowers--Hatami
+(`finite-schur-clifford-packet-flexible-hs-exactification`).  A direct
+ultraproduct argument strengthens the forbidden-mass lemma to the original
+shared approximate selector tuple
+(`non-ce-bcs-has-robust-approximate-energy-gap`), so no simultaneous choice of
+the context-dependent exactifications is needed.  The global hole is now only
 `fixed-scale-contextual-multiplicity-holonomy`, combined by
-`multiplicity-return-via-contextual-holonomy`.  The first must preserve
-contextual noncommutation; the second must return the extensive surplus at a
-fixed packet scale.
+`multiplicity-return-via-contextual-holonomy`.
+
+**Controlled-frame update.**  The Schur complement gives more than a rank
+count.  On every selector sector there are explicit products `P_x,Q_x` of
+the packet generators which commute with the leading packet and whose mutual
+commutator is `(-1)^{f(x)}`.  Central Fourier control produces three fixed
+coefficients `P_f,Q_f,P_fQ_f`; on every forbidden simple block their right
+module over the packet commutant is exactly
+`(M_2 minus C I_2) tensor M_m`, of dimension `3m^2`.  Thus the extensive
+Reynolds defect has a canonical three-coefficient frame and does not require
+selecting an adjoint basis vector.  A finite overgroup cannot make the
+nonlinear controlled commutator universally sound: induction from the
+enlarged center forces wrong-phase irreducibles unless `f` is affine.  The
+remaining covariance mechanism must therefore be genuinely infinite or
+tracial, not a larger finite selector packet.
+
+For a family of commuting return letters, all remaining gauge freedom can be
+computed exactly.  If the packet implementers have binary projective
+commutator matrix of rank `2r`, Schur's lemma moves the opposite cocycle to
+the external multiplicity space, which must then be a module over
+`M_(2^r)(C)`.  Hence `2^r` divides the multiplicity.  This identifies the
+precise supercritical target: the infinite compressor/self-simulation must
+activate cocycle rank `2r` with `r` larger than the logarithm of the
+multiplicity in the same candidate model.  Any fixed rank remains dilutable.
+
+Nor can the spurious finite-overgroup sectors be hidden at small Plancherel
+weight.  The regular representation of any finite overgroup restricts to the
+selector--phase subgroup as a uniform multiple of its regular
+representation.  Unless the phase is an affine selector word, each selector
+character has equal positive- and negative-phase mass, so the nonlinear law
+is wrong on exactly one half of the regular packet.  This removes finite
+regular normalization as a possible shortcut around the infinite return
+mechanism.
+
+There is nevertheless a group-native replacement for the additive
+controlled coefficients.  Between `A_f` and `B_f` sit the two actual finite
+subgroups obtained by adjoining only the final `p` generator or only the
+final `q` generator.  Each is a binary refinement of the baseline packet.  On
+allowed sectors the refinements commute; on forbidden sectors they are the
+`Z`- and `X`-MASAs of the relative Pauli qubit.  Their centered commutant
+modules are orthogonal copies of `M_m`, and simultaneous return to one
+carrier obeys the sharp conditional-expectation inequality `(SPS4)`.  This
+replaces nonlinear finite groupification by a concrete two-dimensional
+inclusion square; the remaining open cell is to make a one-sided compressor
+return the two child modules with uniform HS cost.
+
+The required local two-cell is explicit.  Multiplying the final `p` generator
+by `J` and, independently, the final `q` generator by `J` defines two
+commuting involutive automorphisms of the finite packet.  On a forbidden
+simple their implementers are the opposite corrected Pauli operators
+`Q_x,P_x`, hence anticommute; on an allowed sector they simply permute the
+four compatible child characters.  Adjoining commuting stable letters for
+these automorphisms forces even external multiplicity on every forbidden
+simple.  The global hole has consequently narrowed again: a finite
+self-similar compressor must replicate this explicit flip square into
+independent returned directions until their cocycle rank exceeds the current
+multiplicity, with loss independent of recursion depth.
+
+The exact recurrence can be made depth one.  Put the finite flip-square group
+at every site of the Kun--Thom coset action.  A strict positive compressor
+gains infinitely many `Gamma`-fixed sites in one step; in the Bernoulli tensor
+model each gained site contributes an independent forbidden packet cocycle,
+so any `n` selected sites have binary rank `2n`.  This gives exact tracial
+completeness with arbitrary rank and no long compressor words.  The remaining
+soundness theorem is now coordinate recovery: a matrix microstate must expose
+more than `log_2 m` of those new site factors, chosen at its own multiplicity
+scale, with total HS loss independent of the number selected.
+
+There is a sharp limitation to this plan.  The exact truncation containing
+`n` independent flip squares uses `n` Pauli cancellation qubits, so its
+external multiplicity is `m=2^nL` after arbitrary spectator amplification.
+It satisfies every relation in that finite window while `n<=log_2 m`.
+Therefore infinite compressor index, ultraproduct recovery of every fixed
+number of sites, and scaled Kazhdan transport cannot by themselves cross the
+capacity threshold.  A final compiler must react to the residual spectator
+multiplicity and activate more cells inside that same model—the literal
+dimension-diagonal/self-detecting step.
+
+The earlier centrality warning was also too strong.  Central selectors in
+overlapping context factors impose exactly the context commutations, not
+global commutation: the two-edge example is `C_2 x (C_2*C_2)`.  Ordinary
+Bass--Serre gluing still fails, but because it is virtually free and admits
+stationary representation-type flows, not because it classicalizes every
+selector.
 
 ## 0. Executive statement
 

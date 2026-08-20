@@ -2,22 +2,23 @@
 rg: 2
 id: zpc-robust-compiler-from-context-transducer
 kind: route
-title: One-hot rounding plus finite context gluing yields the quantitative ZPC compiler
+title: Priority decoding plus finite context gluing yields the quantitative ZPC compiler
 target: zpc-selector-robust-lcs-compiler
 requires:
   - controlled-linear-predication-normal-form
-  - odd-selector-overlap-rounding
+  - odd-selector-priority-decoding
   - onehot-predicated-direct-sum-decoder
-  - zpc-context-overlap-mismatch-transducer
+  - zpc-context-mismatch-transducer
 artifacts:
   - research/artifacts/selector-overlap-rounding-2026-08-18.md
 ---
 
-Let an output finite-dimensional strategy have loss `epsilon`.  By `(CTX)`, in
-every local context the odd-parity defect and pairwise selector overlap tend to
-zero with `epsilon`.  `odd-selector-overlap-rounding` therefore supplies
-orthogonal one-hot sectors whose total missing trace is `O(epsilon)` (with a
-fixed constant because the source game has finitely many contexts).
+Let an output finite-dimensional strategy have loss `epsilon`.  By `(CTX')`,
+the odd-parity defect tends to zero in every local context.
+`odd-selector-priority-decoding` partitions the entire odd-parity corner into
+orthogonal branch sectors, regardless of how much the raw selectors overlap.
+The total missing trace is `O(epsilon)` (with a fixed constant because the
+source game has finitely many contexts).
 
 On each good context corner, `onehot-predicated-direct-sum-decoder` converts
 the predicated branch copies into genuine controlled unreadable observables.

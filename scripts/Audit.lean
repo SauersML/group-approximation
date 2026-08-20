@@ -961,6 +961,47 @@ def literaturePackages : List Name :=
    -- names stay on the roster together: `nonempty_hull_of_inputs` produces the
    -- hull from these two and from nothing else, so proving both retires all
    -- three in the same commit.
+   -- Higman's Sections 2-4 --- the sequence space, the Higman operations, and
+   -- the closure of the benign family under them --- as one statement: a
+   -- recursively enumerable normal subgroup of a free group of finite rank is
+   -- benign.  With it, `Higman/EmbeddingTheorem.lean` proves Higman's
+   -- embedding theorem outright, because the other half (the rope trick) is
+   -- proved in `Higman/RopeTrick.lean`.
+   -- Higman's Sections 2-4 with Chiodo's torsion clause: a recursively
+   -- enumerable normal subgroup of a free group of finite rank has a benign
+   -- witness whose overgroup is torsion-free.  One statement replacing two:
+   -- `reBenign_of_reBenignTF` forgets the clause, and
+   -- `torsionPreservation_of_reBenignTF` runs the rope trick with it, so the
+   -- two entries below are derived from this one.
+   -- ... and `REBenignTF` is itself derived, from the three entries below:
+   -- `reBenignTF_of_inputs` composes Higman's Section 4 (the six operation
+   -- closures still owed, plus the base case S), his Section 2, and his
+   -- Section 5, and `benignTF_of_higmanGenerated` is the induction that binds
+   -- them.  Three of the nine operations are proved and are not on the list.
+   ``Higman.OperationClosures,
+   ``Higman.HigmanTheoremThree,
+   ``Higman.TransportSectionFive,
+   ``Higman.REBenignTF,
+   ``Higman.REBenign,
+   -- The two gaps between Higman's theorem for finitely generated groups and
+   -- Chiodo's Theorem 2.2: the Higman-Neumann-Neumann bridge from countably
+   -- generated to finitely generated, and the torsion-order clause.
+   -- `Higman/ChiodoReduction.lean` proves they compose to give the entry
+   -- below, so the four names retire together.
+   ``Higman.CountableToFG,
+   -- ... and the bridge itself is now derived: `Higman/HNNEmbedding.lean`
+   -- proves the group theory (every countable group embeds in a
+   -- three-generator group), so what is left of it are the two standard
+   -- torsion facts and the effectivity clause, and
+   -- `countableToFG_of_inputs` composes those three into the bridge.
+   -- `Higman.FreeProductTorsionFree` and `Higman.HNNTorsionFree` stood here
+   -- and were **retired by proof on 2026-08-19**: the free-product clause is
+   -- `Algebra/CoprodICyclicReduction.isPowerTorsionFree_coprodI`, carried to
+   -- the binary product by `Higman.isPowerTorsionFree_coprod`, and the HNN
+   -- clause is this repository's own `HNNBritton.isPowerTorsionFree_hnn`.
+   -- What is left of the bridge is the effectivity clause alone.
+   ``Higman.BridgeRecursive,
+   ``Higman.TorsionPreservation,
    ``Higman.TorsionFreeHigmanEmbedding,
    ``Higman.AbsorberRecursivePresentation,
    ``FournierFacioUniversal.KazhdanEnvelope,

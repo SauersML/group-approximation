@@ -8,7 +8,7 @@ artifacts:
   - research/artifacts/self-similar-dimension-pressure-map-2026-08-20.md
 distinct_from:
   predicate-rank-gate-doubles-restriction-multiplicity: that computes the exact restriction multiplicities after a packet representation is exact; this reaches an exact representation from one approximate local packet.
-  shared-selector-context-packet-coherence: that must choose the local exactifications consistently across overlapping contexts; this handles one fixed packet in isolation.
+  non-ce-bcs-has-robust-approximate-energy-gap: that controls all contexts simultaneously using the original shared selector words; this supplies the local exact packet sectors used to read their rank-jump mass.
   a4-triangle-hs-regular-core: that specializes flexible finite-group stability to an A4 triangle and then uses character values to extract a regular core; this applies the same finite-group mechanism to an arbitrary fixed Schur-Clifford packet and records its central sectors.
 ---
 
@@ -32,6 +32,8 @@ are exactly those of `clifford-commutator-rank-is-packet-dimension` and
 `predicate-rank-gate-doubles-restriction-multiplicity`.
 
 This is a **local** theorem.  Applying it independently in two contexts need
-not give the same exactified copy of a shared selector; simultaneous coherence
-is the separate open claim `shared-selector-context-packet-coherence`.
-
+not give the same corrected copy of a shared selector.  The downstream route
+does not identify those corrections: `non-ce-bcs-has-robust-approximate-energy-gap`
+is applied first to the original globally shared words, and fixed-length
+telescoping transfers their forbidden-product mass to the local exact packet
+sectors.

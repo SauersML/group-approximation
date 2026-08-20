@@ -68,7 +68,11 @@ sub-menu has been found.
   predicated-control route: `controlled-linear-predication-normal-form` removes
   controlled equations exactly, leaving selector soundness as a finite
   compiler invariant.
-- **Modern repetition/PCP amplification.** Amplification is useful only if it
-  also preserves or exposes an exact-support family whose conditioned value is
-  below one. Driving the unconditioned value down while the exact subfamily
-  remains perfectly satisfiable by a bad profile does not move this target.
+- **Modern repetition/PCP amplification.**
+  [[dinur-constraint-gap-amplification]] is now the named classical baseline:
+  it amplifies ordinary finite-alphabet `UNSAT` with perfect completeness and
+  linear size growth.  This target needs more.  Amplification is useful here
+  only if it also preserves or exposes an operator-exact support family whose
+  conditioned value is below one. Driving the unconditioned value down while
+  the exact subfamily remains perfectly satisfiable by a bad profile does not
+  move this target.

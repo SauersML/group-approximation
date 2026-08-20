@@ -7,8 +7,8 @@ distinct_from:
   mf-implies-hyperlinear: This is a property-(T) structural fragment of the general open implication; without simplicity the hyperlinear quotient need not be faithful.
 artifacts:
   - GroupApproximation/Sofic/KazhdanCorner.lean
-  - docs/FALSE_KAZHDAN_CORNER.md
-  - docs/FALSE_FERMIONIC_AMPLIFICATION.md
+  - notes/FALSE_KAZHDAN_CORNER.md
+  - notes/FALSE_FERMIONIC_AMPLIFICATION.md
 ---
 
 Two kernel-checked statements hold for the weak

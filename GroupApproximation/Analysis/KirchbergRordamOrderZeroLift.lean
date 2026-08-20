@@ -83,12 +83,18 @@ surjection would make the statement false.  No inhabitant is constructed
 here. -/
 structure CoronaOrderZeroLiftInput : Prop where
   /-- Order-zero maps into the corona lift. -/
-  lift : ∀ (A : Type u) (_ : CStarAlgebra A),
+  -- the domain is quantified at the *non-unital* structure, which is the one
+  -- `IsOrderZero` reads its module instance from; stating it at
+  -- `CStarAlgebra A` leaves the linear map carrying `Algebra.toModule` and the
+  -- two do not unify even though they are definitionally the same
+  lift : ∀ (A : Type u) (_ : NonUnitalCStarAlgebra A),
     TopologicalSpace.SeparableSpace A →
       ∀ (X : ℕ → Type u) (_ : ∀ n, Fintype (X n)) (_ : ∀ n, DecidableEq (X n))
         (_ : ∀ n, Nonempty (X n))
+        -- the corona's algebra structure is canonical, so quantifying over it
+        -- shadows the instance the statement's own coercions use; the bounded
+        -- sequences' is not, and stays
         (_ : NonUnitalCStarAlgebra (BoundedMatrixSequence X))
-        (_ : NonUnitalCStarAlgebra (NormMatrixCStarCorona X))
         (φ : A →ₗ[ℂ] NormMatrixCStarCorona X),
         IsOrderZero φ →
           ∃ ψ : A →ₗ[ℂ] BoundedMatrixSequence X,

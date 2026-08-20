@@ -7,7 +7,7 @@ artifacts:
   - research/artifacts/selector-overlap-rounding-2026-08-18.md
 distinct_from:
   controlled-linear-predication-normal-form: that constructs gated copies from a known controlled strategy; this is the converse decoding step once one-hot selector sectors have been recovered.
-  zpc-selector-robust-lcs-compiler: that still needs an LCS mechanism making selector overlap pay for output loss; this theorem says no additional relation linking branch copies to one common unreadable operator is needed.
+  zpc-selector-robust-lcs-compiler: priority decoding now removes selector overlap entirely; the compiler still needs an LCS mechanism making decoded copies from different local contexts agree.
 ---
 
 Let `Q_a` be pairwise orthogonal projections in a finite tracial algebra,

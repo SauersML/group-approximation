@@ -1,4 +1,10 @@
 import GroupApproximation.Analysis.GaussianRoeOperator
+import Mathlib.Analysis.CStarAlgebra.ContinuousLinearMap
+import Mathlib.Analysis.CStarAlgebra.ContinuousFunctionalCalculus.Range
+import Mathlib.Analysis.CStarAlgebra.ContinuousFunctionalCalculus.Order
+import Mathlib.Analysis.CStarAlgebra.ContinuousFunctionalCalculus.Basic
+import Mathlib.Analysis.CStarAlgebra.ContinuousFunctionalCalculus.Instances
+import Mathlib.Analysis.InnerProductSpace.StarOrder
 
 /-!
 # Square roots in the uniform Roe algebra
@@ -26,13 +32,13 @@ existence of the square root inside the subalgebra --- is isolated in
 `exists_sqrt_mem`, so that everything downstream depends only on its statement.
 It rests on Mathlib's `cfc_mem`: the continuous functional calculus of an
 element is contained in any closed star subalgebra containing the element.
-Note that `cfc Real.sqrt` is used rather than `CFC.sqrt`; the latter is
-`cfcₙ NNReal.sqrt`, and the non-unital membership lemma `cfcₙ_mem` is stated
-only for `RCLike` scalars, which `ℝ≥0` is not.
+The square root is written as `cfc Real.sqrt K` in the real functional
+calculus.  The normal and self-adjoint functional calculi are installed
+locally below, and `cfc_mem` puts the result directly in the closed star
+subalgebra.
 
-**Status: authored, not yet elaborated.**  Everything up to and including
-`Analysis/GaussianRoeOperator.lean` has been built at the pinned toolchain;
-this module and the assembly that follows it have not.
+This module and the assembly in `Analysis/GuentnerKaminkerEndpoint.lean` have
+both been elaborated at the pinned toolchain.
 -/
 
 namespace GroupApproximation
@@ -47,6 +53,25 @@ variable {G : Type u} [Group G] [DecidableEq G]
 
 /-! ## The square root -/
 
+/-! ### Functional calculus on `B(ℓ²(G))` -/
+
+noncomputable local instance :
+    ContinuousFunctionalCalculus ℂ (GroupHilbert G →L[ℂ] GroupHilbert G) IsStarNormal :=
+  IsStarNormal.instContinuousFunctionalCalculus
+
+noncomputable local instance :
+    ContinuousFunctionalCalculus ℝ (GroupHilbert G →L[ℂ] GroupHilbert G) IsSelfAdjoint :=
+  IsSelfAdjoint.instContinuousFunctionalCalculus
+
+/-- The real scalars act compatibly with the involution: a real scalar is its
+own conjugate, so the complex statement gives the real one. -/
+local instance : StarModule ℝ (GroupHilbert G →L[ℂ] GroupHilbert G) where
+  star_smul r a := by
+    have hr : ∀ b : GroupHilbert G →L[ℂ] GroupHilbert G,
+        r • b = ((r : ℂ)) • b := fun b ↦ (Complex.coe_smul r b).symm
+    rw [star_trivial r, hr a, hr (star a), star_smul, Complex.star_def,
+      Complex.conj_ofReal]
+
 /-- **The positive square root stays in the uniform Roe algebra.**
 
 `uniformRoeSubalgebra` is by construction a topological closure, hence closed,
@@ -60,16 +85,22 @@ theorem exists_sqrt_mem {K : GroupHilbert G →L[ℂ] GroupHilbert G}
       Set (GroupHilbert G →L[ℂ] GroupHilbert G)) :=
     (finitePropagationSubalgebra G).isClosed_topologicalClosure
   haveI := hclosed
-  refine ⟨cfc Real.sqrt K, cfc_mem Real.sqrt hmem, ?_, ?_⟩
-  · exact cfc_predicate Real.sqrt K
-  · have hmul : cfc Real.sqrt K * cfc Real.sqrt K
-        = cfc (fun x : ℝ ↦ Real.sqrt x * Real.sqrt x) K :=
-      (cfc_mul _ _ K Real.continuous_sqrt.continuousOn
-        Real.continuous_sqrt.continuousOn).symm
-    have hid : cfc (fun x : ℝ ↦ Real.sqrt x * Real.sqrt x) K = cfc (id : ℝ → ℝ) K := by
-      refine cfc_congr fun x hx ↦ ?_
-      exact Real.mul_self_sqrt (spectrum_nonneg_of_nonneg hK hx)
-    rw [hmul, hid, cfc_id ℝ K]
+  have hKsa : IsSelfAdjoint K := IsSelfAdjoint.of_nonneg hK
+  refine ⟨cfc (R := ℝ) (p := IsSelfAdjoint) Real.sqrt K,
+    cfc_mem (p := IsSelfAdjoint) Real.sqrt hmem,
+    cfc_predicate (p := IsSelfAdjoint) Real.sqrt K, ?_⟩
+  have hmul : cfc (R := ℝ) (p := IsSelfAdjoint) Real.sqrt K *
+        cfc (R := ℝ) (p := IsSelfAdjoint) Real.sqrt K
+      = cfc (R := ℝ) (p := IsSelfAdjoint)
+          (fun x : ℝ ↦ Real.sqrt x * Real.sqrt x) K :=
+    (cfc_mul (p := IsSelfAdjoint) _ _ K Real.continuous_sqrt.continuousOn
+      Real.continuous_sqrt.continuousOn).symm
+  have hid : cfc (R := ℝ) (p := IsSelfAdjoint)
+        (fun x : ℝ ↦ Real.sqrt x * Real.sqrt x) K =
+      cfc (R := ℝ) (p := IsSelfAdjoint) (id : ℝ → ℝ) K := by
+    refine cfc_congr (p := IsSelfAdjoint) fun x hx ↦ ?_
+    exact Real.mul_self_sqrt (spectrum_nonneg_of_nonneg hK hx)
+  rw [hmul, hid, cfc_id (p := IsSelfAdjoint) (ha := hKsa) ℝ K]
 
 /-! ## Finite-width Gram approximation -/
 
@@ -115,20 +146,23 @@ theorem exists_finiteWidth_gram {K : GroupHilbert G →L[ℂ] GroupHilbert G}
       linarith
     linarith
   have hsplit : K - star W * W = star V * (V - W) + star (V - W) * W := by
-    rw [hVsa.star_eq] at *
     rw [← hVsq]
     rw [star_sub, hVsa.star_eq]
-    ring
+    noncomm_ring
   have hnorm : ‖K - star W * W‖ ≤ δ := by
     rw [hsplit]
     have h1 : ‖star V * (V - W)‖ ≤ ‖V‖ * η := by
       refine le_trans (norm_mul_le _ _) ?_
-      rw [norm_star]
-      exact mul_le_mul_of_nonneg_left hVW (norm_nonneg _)
+      have hstarV : ‖star V‖ = ‖V‖ := by
+        rw [ContinuousLinearMap.star_eq_adjoint, LinearIsometryEquiv.norm_map]
+      rw [hstarV]
+      exact mul_le_mul_of_nonneg_left hVW (norm_nonneg V)
     have h2 : ‖star (V - W) * W‖ ≤ η * (‖V‖ + η) := by
       refine le_trans (norm_mul_le _ _) ?_
-      rw [norm_star]
-      exact mul_le_mul hVW hWnorm (norm_nonneg _) (le_of_lt hη)
+      have hVWstar : ‖star (V - W)‖ ≤ η := by
+        rw [ContinuousLinearMap.star_eq_adjoint, LinearIsometryEquiv.norm_map]
+        exact hVW
+      exact mul_le_mul hVWstar hWnorm (norm_nonneg _) (le_of_lt hη)
     have h3 : ‖star V * (V - W) + star (V - W) * W‖ ≤ ‖V‖ * η + η * (‖V‖ + η) :=
       le_trans (norm_add_le _ _) (add_le_add h1 h2)
     have h4 : ‖V‖ * η + η * (‖V‖ + η) ≤ η * (2 * ‖V‖ + 1) := by

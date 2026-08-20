@@ -11,6 +11,7 @@ requires:
   - four-child-three-context-exits-preserve-carrier
   - s3-three-context-failure-block-exit-compiler
   - product-clock-synchronizes-fanizza-and-e5
+  - e5-tail-character-suppression-for-projected-exits
   - free-root-top-boundary-reservoir-is-summable
 ---
 

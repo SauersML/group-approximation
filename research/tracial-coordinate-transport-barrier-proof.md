@@ -8,7 +8,7 @@ requires:
   - mf-hyperlinear-radical-divergence
   - corner-renormalization-cost
 artifacts:
-  - docs/NON_MF_TO_HYPERLINEAR_DIFFERENTIAL_AUDIT.md
+  - notes/NON_MF_TO_HYPERLINEAR_DIFFERENTIAL_AUDIT.md
   - research/artifacts/left-right-finite-coordinate-obstruction-2026-08-19.md
 ---
 

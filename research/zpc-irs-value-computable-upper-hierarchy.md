@@ -7,6 +7,7 @@ distinct_from:
   perfect-zpc-irs-quantum-gap-game: that uses this hierarchy in an undecidability diagonalization; this is the effective compactness statement for one arbitrary tailored game.
 artifacts:
   - research/artifacts/perfect-zpc-irs-gap-2026-08-18.md
+  - research/artifacts/three-paper-cairn-ingestion-2026-08-20.md
 ---
 
 For every finite tailored non-local game `G`, define `omega_ZIRS(G)` by

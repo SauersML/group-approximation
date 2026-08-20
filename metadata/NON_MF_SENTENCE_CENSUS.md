@@ -6,19 +6,19 @@ The proof ledger grades claims; this census grades **sentences**, which is the g
 
 | status | sentences |
 | --- | --- |
-| `ledger` | 676 |
-| `formalized` | 251 |
-| `definition` | 41 |
-| `attribution` | 20 |
+| `ledger` | 613 |
+| `formalized` | 281 |
+| `definition` | 44 |
+| `attribution` | 36 |
+| `structural` | 17 |
 | `provenance` | 14 |
-| `structural` | 5 |
-| `open` | 4 |
-| `partial` | 1 |
+| `partial` | 5 |
+| `open` | 2 |
 | **total** | **1012** |
 
-Carrying a declaration or a ledger row: **969/1012** (95.8%).
+Carrying a declaration or a ledger row: **943/1012** (93.2%).
 
-Of the `ledger` sentences, 296 name a single row and 380 name every row of their anchor.  Of the single-row ones, 168 were narrowed from a multi-row anchor by claim-text overlap rather than by hand, and their note says so; the rest sit under an anchor the ledger grades with one row, where the pairing is forced.  The census never pretends to know which row is which sentence: where the text does not decide, it names them all.
+A sentence under a single-row ledger anchor inherits that forced row.  A sentence under a multi-row anchor must name its row or rows explicitly in `metadata/NON_MF_SENTENCE_MAP.tsv`; no text-similarity guess and no whole-anchor fallback is accepted.
 
 ## What no declaration establishes
 
@@ -26,14 +26,18 @@ These are the sentences the development does not settle, verbatim.  `open` sente
 
 * **`partial`**, line 167 --- Its reduced $C^*$-algebra $\Cred(E)$ is separable, exact and stably finite but not MF, and the canonical trace on $\Cmax(E)$ is hyperlinear but not MF, which answers a question of Shulman negatively.
   * every clause but exactness is proved; exactness of Cred(E) is ledger row SO.16, graded MISMATCH.  The reduction `isExactCStar_of_hasSliceMapProperty` is deliberately NOT named here: it is conditional on the slice map property, which nothing in the corpus produces, and a conditional formalization does not count
-* **`open`**, line 322 --- The converse of each arrow is open, as is \textup{MF}$\,\Rightarrow\,$\textup{hyperlinear} (Question~2 of Section~\ref{sec:limits}).
-  * asserts that converses are open; an open-status claim, which no declaration settles
-* **`open`**, line 415 --- MF for a group $C^*$-algebra implies MF for the underlying group, but the converse implication does not follow formally, and we know of no theorem establishing it or refuting it.
-  * records that no theorem is known either way; an open-status claim
-* **`open`**, line 1618 --- Every MF trace is hyperlinear; Shulman asks whether the converse holds.
-  * the converse is the question Shulman asks; an open-status claim no declaration settles
-* **`open`**, line 3589 --- Their question concerns Hamming and tracial models, whereas the adjoint spectral estimates here require operator-norm multiplicative control, which permutation and Hilbert--Schmidt models do not supply.
-  * compares two questions and records what the estimates here require; an open-status claim
+* **`partial`**, line 322 --- The converse of each arrow is open, as is \textup{MF}$\,\Rightarrow\,$\textup{hyperlinear} (Question~2 of Section~\ref{sec:limits}).
+  * the displayed forward arrows are formalized; the sentence's converse arrows and MF-to-hyperlinear implication are explicitly open
+* **`partial`**, line 360 --- The present paper answers the third negatively; as of August 2026 the hyperlinear problem remains open.
+  * the present paper's negative MF answer is formalized; the sentence also records that the hyperlinear problem remained open at the stated date
+* **`partial`**, line 415 --- MF for a group $C^*$-algebra implies MF for the underlying group, but the converse implication does not follow formally, and we know of no theorem establishing it or refuting it.
+  * the forward implication is formalized for the reduced and maximal group algebras; the converse is explicitly open
+* **`open`**, line 1348 --- The compactness argument gives no bound for $\delta$ or $|F_0|$; an effective modulus would need an effective Kazhdan constant for the base together with effective versions of the compression estimates.
+  * the compactness proof is ineffective; the sentence explicitly leaves an effective modulus open
+* **`open`**, line 1541 --- For $\Cred(\SL_3(\mathbb Z))$ and $\Cred(\SL_4(\mathbb Z))$ the MF property is undecided; only the stronger PMF property is known to fail, for $\SL_4(\mathbb Z)$ \cite{MdlS}.
+  * records the current open MF status of the two reduced group algebras and attributes the PMF comparison
+* **`partial`**, line 1618 --- Every MF trace is hyperlinear; Shulman asks whether the converse holds.
+  * the MF-trace-to-hyperlinear implication is formalized; Shulman's converse question is explicitly open
 
 ## By section
 

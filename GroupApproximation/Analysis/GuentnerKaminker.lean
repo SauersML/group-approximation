@@ -89,12 +89,11 @@ status:
    a finite-width kernel as `Σ_g M_{a_g} λ_g` rather than by a Schur test.
 2. `Op(u)` positive and in `C*_u(Γ)` --- **proved**,
    `Analysis/GaussianRoeOperator.lean`.
-3. `√(Op u) ∈ C*_u(Γ)` and the finite-width Gram approximation ---
+3. `√(Op u) ∈ C*_u(Γ)` and the finite-width Gram approximation --- **proved**,
    `Analysis/RoeSquareRoot.lean`, via `cfc_mem`.
-4. the assembly --- `Analysis/GuentnerKaminkerEndpoint.lean`.
+4. the assembly --- **proved**, `Analysis/GuentnerKaminkerEndpoint.lean`.
 
-Steps 1--2 have been elaborated at the pinned toolchain; steps 3--4 are
-authored but not yet built.
+All four steps have been elaborated at the pinned toolchain.
 
 The original assessment of what it would take, retained because it names the
 Mathlib prerequisites and the convention trap:

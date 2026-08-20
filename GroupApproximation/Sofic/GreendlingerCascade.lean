@@ -131,12 +131,12 @@ theorem exists_cascade [DecidableEq α] :
   induction k with
   | zero =>
       intro e
-      exact ⟨[], 0, by rw [List.drop_zero, List.drop_zero, List.nil_append]⟩
+      exact ⟨[], 0, by simp⟩
   | succ k ih =>
       intro e
       cases e with
       | nil =>
-          exact ⟨[], 0, by rw [List.drop_nil, List.drop_zero, List.nil_append]⟩
+          exact ⟨[], 0, by simp⟩
       | cons x e' =>
           obtain ⟨A₀, N₀, h₀⟩ := exists_residual_step x e'
           obtain ⟨A₁, N₁, h₁⟩ := ih e'
@@ -161,7 +161,7 @@ theorem GreendlingerAt.transport {R : Set (List (α × Bool))}
     GreendlingerAt R (A.length + (n - N)) (A ++ V.drop N) := by
   obtain ⟨X, u, C, hV, hXlen, s, hs, hupre, hlt⟩ := h
   refine ⟨A ++ X.drop N, u, C, ?_, ?_, s, hs, hupre, hlt⟩
-  · rw [hV, drop_append_of_le N X (u ++ C) (by omega)]
+  · rw [hV, List.append_assoc, drop_append_of_le N X (u ++ C) (by omega)]
     simp only [List.append_assoc]
   · rw [List.length_append, List.length_drop]
     omega

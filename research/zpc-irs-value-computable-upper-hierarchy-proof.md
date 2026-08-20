@@ -7,6 +7,7 @@ target: zpc-irs-value-computable-upper-hierarchy
 requires: []
 artifacts:
   - research/artifacts/perfect-zpc-irs-gap-2026-08-18.md
+  - research/artifacts/three-paper-cairn-ingestion-2026-08-20.md
 ---
 
 Manzoor Theorem 3.6 (arXiv:2502.06697v2) maximizes the game-value functional
