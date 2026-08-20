@@ -38,11 +38,18 @@ here.
 
 ## Remaining construction
 
-The new frontier claim `fanizza-native-signal-groupification` asks only for:
+The frontier claim `fanizza-native-signal-groupification` has now been
+weakened further.  It asks only for:
 
-1. exact extension of BCS representations while retaining `x_D`; and
+1. on a halting instance, one exact representation in which `x_D` is
+   nonidentity; and
 2. a finite-dimensional group-to-near-perfect-strategy decoder with a
    computable modulus for each finite `B_m`.
+
+The first representation need not be tracial and need not extend any source
+state other than the one witness needed for algebraic nontriviality.
+`kleene-completeness-needs-only-a-nontrivial-exact-representation` proves this and shows
+that countable amplification absorbs every fixed finite copy multiplicity.
 
 The S3 radical packet lane supplies every local ingredient except renewal of
 the selector chart on a fresh context.  Thus

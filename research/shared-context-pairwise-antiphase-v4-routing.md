@@ -19,8 +19,9 @@ finite-dimensional marked microstate with the following data.
    opposite signs `epsilon_(i,ij)=-epsilon_(j,ij)`.
 3. The complete covariance cost satisfies `(PAV3)` with a constant depending
    only on the fixed presentation.
-4. The exact non-Connes-embeddable BCS trace extends to an exact tracial
-   representation in which the central packet sign remains nontrivial.
+4. Some exact unitary representation retains the central packet sign.  It
+   may use properly infinite multiplicity; the non-Connes-embeddable BCS
+   trace itself need not extend through the groupifier.
 
 A concrete ordinary-word template is to choose, for each incident pair,
 source involution words `w_(i,ij),w_(j,ij)` which act by the two opposite signs
@@ -75,3 +76,10 @@ tag atlases.
   Wedderburn detector is the closest proven example of such information, but
   exposing its commutant range by ordinary sparse group relations remains the
   return problem.
+- **Pointwise allowed-flat sparse Wedderburn families stop at two types.**
+  `support-packet-five-sparse-wedderburn-tag-capacity-is-two` exhausts the
+  order-128 packet through five irreducible summands and finds no
+  allowed-equivalence class with more than two forbidden commutant types.
+  Thus that direct enrichment cannot label the five occurrences.  The live
+  route must exploit allowed-source permutations, a larger packet, or an
+  operation coupling multiple contextual copies.

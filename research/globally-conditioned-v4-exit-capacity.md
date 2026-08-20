@@ -34,8 +34,11 @@ shared selector words.  It may be an intertwiner Gram matrix, a two-cell
 holonomy operator, or an equivalent global moment matrix.  It may not factor
 through the scalar list `(tau(P_c))_c`.
 
-The exact non-CE tracial BCS model must extend to a representation witnessing
-`w!=1`; this is the completeness half.  On finite-dimensional microstates,
+The completeness half only needs some exact unitary representation witnessing
+`w!=1`; it need not extend the non-CE trace through the groupifier.  By
+`kleene-completeness-needs-only-a-nontrivial-exact-representation`, this
+witness may use properly infinite multiplicity to absorb the return cell.
+On finite-dimensional microstates,
 `non-ce-bcs-has-robust-approximate-energy-gap` either already makes `E_rel`
 positive or leaves positive total forbidden carrier.  In the latter case,
 sum the three identities `(VOF5)` and apply
@@ -89,6 +92,17 @@ claimed reduction has merely hidden the whole open problem in a local lemma.
   isometries and leaves the cross-Gram matrix unconstrained.  The branch maps
   must be extracted from the original shared-word tuple first, or from one
   simultaneous correction on an overlap complex.
+- **Properly infinite completeness is allowed.**  The exit atlas may close in
+  one exact infinite-multiplicity representation even when its finite rank
+  ledger is overdetermined.  The capacity estimate must nevertheless remain
+  matrix-only; asserting it for every tracial representation would trigger
+  the regular-trace obstruction.
+- **Sparse support-packet coefficient enrichment stops at two tags.**
+  `support-packet-five-sparse-wedderburn-tag-capacity-is-two` exhausts all
+  coefficients through five irreducible summands.  Every pointwise
+  allowed-flat class has at most two forbidden commutant types, not the five
+  required exit labels.  This does not rule out automorphism-permuted allowed
+  profiles, larger coefficients, or contextual cross-copy decoders.
 - **Deferred finite computation.**  For a fixed candidate BCS, enumerate
   context atoms and incompatibility edges induced by shared variables, then
   solve the finite routing LP/SDP asking whether the three V4 failure sources

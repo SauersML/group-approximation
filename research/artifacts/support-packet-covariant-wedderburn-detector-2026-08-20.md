@@ -61,8 +61,12 @@ machine-readable output is
 `experiments/support_packet_wedderburn_tag_capacity_4.json`; rerunning the
 script reproduced it exactly after deleting only the timing field.
 `experiments/run_support_packet_capacity.sbatch` records the corresponding
-single-core five-summand cluster run; no five-summand result is asserted here
-until its output is checked in and replayed.
+single-core five-summand cluster run.  On MSI node `acn112` it exhausts all
+`850668` five-summand coefficients in 239.0 seconds with 12.9 MB maximum RSS.
+There are `3483` complete allowed-equivalence classes: `2578` have one
+forbidden signature and `905` have two.  The maximum is again two.  The exact
+machine-readable output is
+`experiments/support_packet_wedderburn_tag_capacity_5.json`.
 
 `experiments/schur_packet_wedderburn_holonomy_opt.py` independently builds the
 two 25-dimensional Reynolds ranges inside `End(C^28)`.  With one BLAS thread,

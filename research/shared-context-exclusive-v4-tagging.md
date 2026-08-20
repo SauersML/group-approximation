@@ -47,8 +47,10 @@ context copies are separated.
 The tag types and the maps in `(SCT1)--(SCT2)` must be extracted jointly from
 the original shared selector tuple or from one simultaneous correction on
 its overlap complex.  Independently tagging each context is not sufficient.
-The exact non-CE tracial BCS representation must extend and retain the marked
-word.
+Completeness requires only an exact unitary representation retaining the
+marked word.  It need not extend the non-CE trace, and may absorb the return
+atlas in properly infinite multiplicity.  The finite-dimensional decoder and
+its HS estimate remain unchanged.
 
 This is intentionally a finite-dimensional decoder, not a family of fixed
 group-algebra partial isometries valid in every representation.  The latter
@@ -75,3 +77,9 @@ Gram estimate, is the remaining content of the global V4 capacity theorem.
   regular representation would contain the excluded types.  The exclusivity
   in `(SCT1)` must be a consequence of finite-dimensional multiplicity
   selection, not a universal finite-group relation.
+- Exhaustive sparse fusion confirms that the present order-128 support packet
+  does not supply enough pointwise allowed-flat tag types by coefficient
+  enrichment alone: `support-packet-five-sparse-wedderburn-tag-capacity-is-two`
+  finds capacity two through five summands.  Any use of this packet must add
+  contextual cross-copy information or exploit a broader automorphism-
+  covariant equivalence than the pointwise classification.

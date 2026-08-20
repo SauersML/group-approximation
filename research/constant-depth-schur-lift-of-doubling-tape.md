@@ -45,6 +45,13 @@ The remaining construction problem is finite:
 4. retain an exact infinite-dimensional completeness representation in which
    `w` is nonidentity.
 
+The last clause is intentionally nontracial.  By
+`kleene-completeness-needs-only-a-nontrivial-exact-representation`, its
+multiplicity spaces may be properly infinite and absorb the one-sided
+branching law.  Only the finite-dimensional soundness half must turn that law
+into rank loss.  No exact trace inequality is sought, since the regular
+representation would refute it.
+
 No assertion here says that finite depth automatically removes the selector
 globalization obstruction.  It removes the **uniform-in-depth** and
 **finite-presentation shift** obligations, leaving a bounded compatibility
@@ -90,6 +97,13 @@ an ordinary group word enforcing the additive equality.
   exactify their union as a single finite packet.  The open point is an
   injective finitely presented group realization of those one-sided corners
   with the marked completeness representation intact.
+- **Properly infinite completeness is admissible.**  The exact witness for
+  the marked word may realize the restriction current with infinite
+  multiplicity, so there is no need to extend the source tracial BCS state
+  through the return cell.  The remaining construction must still express
+  the comparison using ordinary unitary words and prove a separate robust
+  finite-matrix loss; a representation-specific Cuntz decomposition is not
+  itself a group relator.
 - **Carrier-only center. Active and exact.**
   `fanizza-doubling-carriers-form-orthogonal-flag` proves that the derived
   carrier projections and first-hit projections in the source recurrence are

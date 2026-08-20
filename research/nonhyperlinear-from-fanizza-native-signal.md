@@ -13,8 +13,10 @@ artifacts:
   - research/artifacts/fanizza-native-signal-diagonal-2026-08-20.md
 ---
 
-Use `w_m=d_m=x_(D,m)`.  If machine `m` halts, `(NSM1)` and exact extension
-through the groupifier give `w_m!=1` in `Gamma_m`.
+Use `w_m=d_m=x_(D,m)`.  If machine `m` halts, clause 1 of the weakened
+groupifier supplies one exact representation with `w_m!=I`, hence
+`w_m!=1` algebraically in `Gamma_m`.  No trace on this representation is
+used.
 
 If `m` does not halt, combine `(NSG1)--(NSG2)` with `(NSM2)`:
 

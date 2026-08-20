@@ -8,6 +8,7 @@ artifacts:
   - experiments/schur_packet_wedderburn_holonomy_opt.py
   - experiments/support_packet_wedderburn_tag_capacity.py
   - experiments/support_packet_wedderburn_tag_capacity_4.json
+  - experiments/support_packet_wedderburn_tag_capacity_5.json
   - experiments/run_support_packet_capacity.sbatch
   - research/artifacts/support-packet-covariant-wedderburn-detector-2026-08-20.md
 distinct_from:
@@ -102,6 +103,13 @@ four-summand ansatz carries exactly one non-character forbidden tag at best.
 The pair `(CWD3)` realizes this sharp capacity, but no four-summand coefficient
 family can encode a three-way selector while remaining completely
 allowed-flat.
+
+The exact five-summand extension enumerates all `850668` coefficient
+multisets.  It finds `3483` allowed-equivalence classes, of which `2578` have
+one forbidden signature and `905` have two.  Again none has more than two.
+Thus the one-bit pointwise allowed-flat capacity remains sharp through five
+summands.  The precisely scoped theorem and its limitations are recorded in
+`support-packet-five-sparse-wedderburn-tag-capacity-is-two`.
 
 The changing sixteen-dimensional summand is not merely existential.
 `support-packet-paired-word-frame-exposes-forbidden-rank` gives four fixed
