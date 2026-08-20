@@ -38,7 +38,10 @@ The required output is an explicit finitely presented group and a rational
 or spectral positive-density certificate for clause 2.  A complete finite
 vertex/edge restriction table is not enough:
 `clifford-covariance-atlases-have-regular-flow` supplies its exact stationary
-counterrepresentation.
+counterrepresentation. Every Pauli-completed control must moreover be an
+already-balanced relative-Pauli sign. By
+`clifford-groupified-control-is-forced-balanced`, completing a raw selector
+corner of variable trace would change the intended incidence.
 
 ## Attempts
 
@@ -59,4 +62,6 @@ counterrepresentation.
   two-cell boundary is trivial in the exact allowed tracial model but has a
   property-`(T)` adjoint or cross-Gram density floor on the forbidden
   multiplicity correlation.
-
+- **Arbitrary selector control. Dead.** A Pauli partner exchanges the two
+  control signs and forces equal trace. Only the balanced child halves
+  produced by the relative rank jump can enter this completion unchanged.

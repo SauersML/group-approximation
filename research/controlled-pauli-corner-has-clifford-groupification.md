@@ -59,6 +59,12 @@ but only for covariance-only constructions. It neither asserts the literal
 group identity `t=(1-c)+c Z2` nor selects one of the two extensions
 `V=+I,-I`.
 
+It also forces the control to be balanced. The Pauli partner `X1` exchanges
+the two `Z1` signs, so each has half the marked trace. This is harmless for a
+relative-Pauli child sign, but it prevents applying the construction to an
+arbitrary-weight selector corner; see
+`clifford-groupified-control-is-forced-balanced`.
+
 Because `G_CZ` is fixed and finite, the same statement is robust after
 finite-group flexible normalized-HS exactification: on the exactified marked
 sector its Pauli covariance is exact, and the discarded/compression error is
