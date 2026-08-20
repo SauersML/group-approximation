@@ -1922,13 +1922,13 @@ wreath-compression-mf-radical [✓] Exact MF radicals of compression wreath prod
 ## Recently touched
 
 - 2026-08-20 · uniform-hs-site-coherence-for-finite-bi-index-pair [OPEN] A finite-bi-index subgroup pair has dimension-independent Hilbert--Schmidt site coherence
-- 2026-08-20 · uniform-affine-lcs-rank-return [OPEN] Return the uniform affine LCS loss bits at fixed packet scale
-- 2026-08-20 · taller-vidick-uniform-rank-pressure-return [OPEN] Replace noisy three-XOR rejection by one uniform Clifford rank bit
 - 2026-08-20 · property-t-hyperlinear-not-locally-hs-stable-citation [COMPLETE] Strengthen the Kazhdan HS-instability obstruction to local stability
-- 2026-08-20 · paddock-slofstra-bcs-forbidden-projection-dictionary [ESTABLISHED] BCS failure mass is exactly a sum of joint spectral projections
-- 2026-08-20 · paddock-slofstra-bcs-dictionary-citation [COMPLETE] Import the joint-spectral BCS presentation and perfect-strategy dictionary
-- 2026-08-20 · oracularizable-tracial-source-gives-affine-rank-pressure [OPEN] An oracularizable tracial gap source yields exact local packets with uniform affine game-loss pressure
-- 2026-08-20 · oracularizable-tracial-nonru-game-exists [OPEN] Find a finite oracularizable game with perfect commuting value and a finite-dimensional gap
+- 2026-08-20 · infinite-hyperlinear-kazhdan-group-is-not-hs-stable [ESTABLISHED] An infinite hyperlinear property-T group is not even locally normalized-Hilbert--Schmidt stable
+- 2026-08-20 · hyperlinear-near-representation-criterion-citation [COMPLETE] Import the Kahl--Schneider hyperlinearity characterization
+- 2026-08-20 · hyperlinear-near-representation-criterion [ESTABLISHED] Hyperlinearity is equivalent to an essentially free amenable near representation
+- 2026-08-20 · geometric-schreier-design [OPEN] Spherical almost actions quantize to a labelled Schreier graph
+- 2026-08-20 · generalized-free-wreath-hyperlinearity-permanence-citation [COMPLETE] Import Fima--Troupel generalized free-wreath hyperlinearity permanence
+- 2026-08-20 · generalized-free-wreath-hyperlinearity-permanence [ESTABLISHED] Kac generalized free wreath products preserve hyperlinearity over amenable amalgams
 
 ## Active claims
 
