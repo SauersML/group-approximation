@@ -6,6 +6,7 @@ title: Track full type vectors pairwise and apply the oriented half-return ident
 target: coherent-sequential-schur-tape-payment
 requires:
   - toeplitz-schur-bcs-shift-amalgam
+  - schur-rank-output-is-not-a-scalar-selector
   - uniform-relative-clifford-tape-cell
   - shared-overlap-controls-packet-multiplicity-vector
   - oriented-schur-restriction-mass-identity

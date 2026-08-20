@@ -14,10 +14,11 @@ simultaneous syntax and completeness properties.
    implementing the injective coefficient endomorphism `sigma`.
 2. The same word `t` is the shift `U` in the fixed Fanizza BCS tape.
 3. For the finite menu of base BCS propagation predicates, finitely many
-   Schur packet generators lie in one bounded Toeplitz head. Their central
-   selector words are identified with the corresponding base BCS involution
-   words. Conjugating these finitely many relations by `t^n` gives every
-   level-`n` selector/packet relation used in `(SDL2)`.
+   Schur packet generators lie in one bounded Toeplitz head. Their *input*
+   central selector words are identified with the corresponding base BCS
+   involution words. Conjugating the finite input relations and the repeating
+   module-return incidence by `t^n` gives every level-`n` packet relation used
+   in `(SDL2)`; no nonlinear output is named as a scalar word.
 4. All derived level-`n` packet, expander, and overlap relations have
    polynomial derivation cost. In particular, every term in the fixed
    decomposition of `(FDB1)` is wired to a packet return incidence so that an
@@ -32,6 +33,14 @@ therefore have the same enlarged spin dimension, so local packet extensions
 exist. Clause 5 must nevertheless be proved for the **joint** amalgam: local
 extensions cannot simply be declared compatible with the whole
 Toeplitz--Steinberg representation.
+
+The phrase "selector/packet relation" in clause 3 must not identify a
+derived nonlinear projection such as `P_tilde_n` with a scalar selector word.
+That is impossible by `schur-rank-output-is-not-a-scalar-selector`. The
+amalgam must instead connect the output `A`-module multiplicity of one rank
+gate directly to the input `B`-module multiplicity of the next gate—the
+Morita/restriction incidence used in
+`oriented-schur-restriction-mass-identity`.
 
 ## Attempts
 
@@ -48,3 +57,8 @@ Toeplitz--Steinberg representation.
   nonzero `D` carrier is not lost. The unresolved check is simultaneous
   compatibility of all base context packets with the single stable-letter
   action.
+- Scalarize each derived projection and conjugate the base relation: invalid.
+  The derived intersections are nonlinear Boolean functions of commuting
+  selectors, and the Schur gate exposes them only as module multiplicity.
+  The active construction must present a finite repeating **bimodule edge**,
+  not a new central reflection word.
