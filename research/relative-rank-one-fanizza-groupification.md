@@ -120,3 +120,15 @@ the Fanizza projection `D` itself as the nonhalting mark contradicts
   `fanizza-c18-residual-factors-through-three-tiny-rank-gates` further reduces
   the C18 packet sizes to `5,5,6` by compiling the even phase as one affine
   parity bit before the three child-guarded conjunctions.
+- **S3 raw-radical replacement.**  The Schur child's raw last generator is
+  not its center, so the older reset cannot literally read that coordinate.
+  `every-predicate-has-s3-equivariant-raw-radical-drop` replaces every fixed
+  predicate by a rank-drop packet whose hot radical is a natural `S3` plane
+  spanned by fixed group words.  Crossing by its three central twists gives
+  three conjugate sector algebras `M_D direct_sum M_D` at one fixed scale.
+  The rank-one no-signaling floor and finite-group multiplicity payment now
+  prove the complete local estimate `(FSR1)` in
+  `s3-radical-charts-give-linear-local-hs-payment`.  The route
+  `fanizza-via-s3-radical-fixed-scale-return` has one remaining input:
+  return those two fixed-scale types to the next context while resetting the
+  old selectors and preserving the marked carrier.

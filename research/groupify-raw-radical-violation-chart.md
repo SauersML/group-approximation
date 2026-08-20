@@ -36,3 +36,15 @@ central atom on which two already named words become radical.
   selector atom only as a Hilbert-space carrier, apply the existing rank-one
   endpoint transport separately to the four raw sign pairs, and charge mass
   leaving that atom to the robust BCS syndrome energy.
+- **Local chart solved.**
+  `three-radical-twist-crossed-products-have-uniform-scale` constructs three
+  conjugate ordinary finite groups whose sector algebras are uniformly
+  `M_D direct_sum M_D`; on a forbidden atom they implement the three pairings
+  of the four raw branches.  The remaining input in
+  `raw-radical-chart-via-s3-crossed-products` is only the one-sided return of
+  those two fixed-scale types to a fresh BCS context.
+- The transport half is now exact and quantitative in
+  `hnn-transports-forbidden-radical-atom-types`. The remaining operation is
+  isolated as `raw-radical-branch-morita-reset`: force the four transported
+  orthogonal branches to add as copies of one next fixed-scale packet rather
+  than overlap in a stationary Bass--Serre flow.
