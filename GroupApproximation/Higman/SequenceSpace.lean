@@ -52,7 +52,7 @@ noncomputable def ab : FreeGroup ℤ →* Multiplicative E :=
 @[simp] theorem ab_of (i : ℤ) :
     ab (FreeGroup.of i) = Multiplicative.ofAdd (Finsupp.single i (1 : ℤ)) := by
   unfold ab
-  rw [FreeGroup.lift.of]
+  rw [FreeGroup.lift_apply_of]
 
 /-- **The abelianization undoes the coding.** -/
 theorem ab_elt (f : E) : ab (elt f) = Multiplicative.ofAdd f := by
@@ -62,20 +62,26 @@ theorem ab_elt (f : E) : ab (elt f) = Multiplicative.ofAdd f := by
       = Multiplicative.ofAdd (Finsupp.single i (f i)) := by
     intro i
     show ab (FreeGroup.of i ^ f i) = _
-    rw [map_zpow, ab_of, ← Multiplicative.ofAdd_zsmul]
+    rw [map_zpow, ab_of, ← ofAdd_zsmul]
     congr 1
     rw [Finsupp.smul_single, smul_eq_mul, mul_one]
   rw [List.map_congr_left (fun i _ => hstep i)]
   have hperm : ((f.support.sort (· ≤ ·)).map
       (fun i => Multiplicative.ofAdd (Finsupp.single i (f i)))).prod
       = ∏ i ∈ f.support, Multiplicative.ofAdd (Finsupp.single i (f i)) := by
-    rw [Finset.prod_eq_multiset_prod]
-    refine List.Perm.prod_eq ?_
-    exact (Finset.sort_perm_toList _ _).map _
+    calc
+      ((f.support.sort (· ≤ ·)).map
+          (fun i => Multiplicative.ofAdd (Finsupp.single i (f i)))).prod =
+          (f.support.toList.map
+            (fun i => Multiplicative.ofAdd (Finsupp.single i (f i)))).prod :=
+        List.Perm.prod_eq ((Finset.sort_perm_toList _ _).map _)
+      _ = ∏ i ∈ f.support, Multiplicative.ofAdd (Finsupp.single i (f i)) := by
+        rw [Finset.prod_eq_multiset_prod, ← Multiset.prod_coe,
+          ← Multiset.map_coe, Finset.coe_toList]
   rw [hperm]
   have hsum : ∏ i ∈ f.support, Multiplicative.ofAdd (Finsupp.single i (f i))
       = Multiplicative.ofAdd (∑ i ∈ f.support, Finsupp.single i (f i)) := by
-    rw [Multiplicative.ofAdd_sum]
+    rw [ofAdd_sum]
   rw [hsum]
   congr 1
   exact Finsupp.sum_single f
@@ -104,12 +110,12 @@ def retract : F₃ →* Row.F₀ :=
 
 @[simp] theorem retract_b : retract b = Row.b := by
   unfold retract b
-  rw [FreeGroup.lift.of]
+  rw [FreeGroup.lift_apply_of]
   simp
 
 @[simp] theorem retract_c : retract c = Row.c := by
   unfold retract c
-  rw [FreeGroup.lift.of]
+  rw [FreeGroup.lift_apply_of]
   simp
 
 theorem retract_rowElt (i : ℤ) : retract (rowElt i) = Row.row i := by
@@ -121,7 +127,7 @@ def rowHom : FreeGroup ℤ →* F₃ := FreeGroup.lift rowElt
 
 @[simp] theorem rowHom_of (i : ℤ) : rowHom (FreeGroup.of i) = rowElt i := by
   unfold rowHom
-  rw [FreeGroup.lift.of]
+  rw [FreeGroup.lift_apply_of]
 
 theorem retract_comp_rowHom : retract.comp rowHom = Row.basisHom := by
   refine FreeGroup.ext_hom _ _ fun i => ?_
@@ -219,14 +225,14 @@ theorem killOutside_of_mem {S : Set ↥K} {h : ↥K} (hh : h ∈ S) :
     killOutside S (FreeGroup.of h) = FreeGroup.of h := by
   classical
   unfold killOutside
-  rw [FreeGroup.lift.of]
+  rw [FreeGroup.lift_apply_of]
   simp [hh]
 
 theorem killOutside_of_notMem {S : Set ↥K} {h : ↥K} (hh : h ∉ S) :
     killOutside S (FreeGroup.of h) = 1 := by
   classical
   unfold killOutside
-  rw [FreeGroup.lift.of]
+  rw [FreeGroup.lift_apply_of]
   simp [hh]
 
 theorem killOutside_fixes {S : Set ↥K} {w : FreeGroup ↥K}
@@ -294,7 +300,7 @@ theorem ASub_eq_map (B : Set E) :
   · rintro ⟨f, hf, rfl⟩
     exact ⟨FreeGroup.of (bK f), ⟨bK f, ⟨f, hf, rfl⟩, rfl⟩, (aElt_eq f).symm⟩
   · rintro ⟨_, ⟨_, ⟨f, hf, rfl⟩, rfl⟩, rfl⟩
-    exact ⟨f, hf, (aElt_eq f).symm⟩
+    exact ⟨f, hf, aElt_eq f⟩
 
 /-- **The subgroup of an intersection is the meet.** -/
 theorem ASub_inter (B B' : Set E) : ASub (B ∩ B') = ASub B ⊓ ASub B' := by
@@ -309,11 +315,8 @@ theorem ASub_inter (B B' : Set E) : ASub (B ∩ B') = ASub B ⊓ ASub B' := by
   · rw [ASub_eq_map, ASub_eq_map, ASub_eq_map,
       ← map_inf_of_injective Conj.cbHom_injective]
     refine Subgroup.map_mono ?_
-    have himg : FreeGroup.of '' (bK '' (B ∩ B'))
-        = (FreeGroup.of '' (bK '' B)) ∩ (FreeGroup.of '' (bK '' B')) := by
-      rw [Set.image_inter bK_injective, Set.image_inter FreeGroup.of_injective]
-    rw [himg]
-    exact closure_inter_le _ _
+    simpa only [Set.image_inter bK_injective] using
+      closure_inter_le (bK '' B) (bK '' B')
 
 /-- **Higman's operation `ι`.** -/
 theorem benign_ASub_inter {B B' : Set E} (h : Benign (ASub B))
