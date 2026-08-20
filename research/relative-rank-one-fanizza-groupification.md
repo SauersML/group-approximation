@@ -106,4 +106,11 @@ the Fanizza projection `D` itself as the nonhalting mark contradicts
   that placement, `binary-cut-projection-recurrence-gives-bfe1` shows the E5
   sign cut loses no target mass.  The remaining local theorem is precisely a
   polynomial normalized-HS bound for the localized groupified Fanizza
-  recurrence residual; the marked initial-carrier interface remains separate.
+  recurrence residual.
+  `oriented-c18-rank-gates-give-branch-balance` supplies a stronger exact
+  replacement: the positive-residual predicate plus one extra `110` predicate
+  satisfy `(BFE1)--(BFE2)` pointwise, and their source-local forbidden mass is
+  exactly the original C18 mass.  Both compact packets use the already matched
+  symmetric E5 frame.  Hence the local nonlinear recurrence gate is closed;
+  finite-presentation assembly with the linear constraints and the marked
+  initial-carrier interface remain.

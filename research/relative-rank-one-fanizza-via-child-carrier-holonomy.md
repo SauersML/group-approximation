@@ -18,6 +18,7 @@ requires:
   - hard-sign-transport-captures-exit-mass
   - product-clock-synchronizes-fanizza-and-e5
   - binary-cut-projection-recurrence-gives-bfe1
+  - oriented-c18-rank-gates-give-branch-balance
   - finite-schur-clifford-packet-flexible-hs-exactification
   - non-ce-bcs-has-robust-approximate-energy-gap
   - fanizza-turing-bcs-signal-collapse

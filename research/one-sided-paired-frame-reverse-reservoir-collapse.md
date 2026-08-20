@@ -187,6 +187,11 @@ regular Bass--Serre reservoir.
   negative block masses sum exactly to the target projection trace even when
   the target projection does not commute with the sign.  Hence `(BFE1)` costs
   only the localized groupified recurrence residual.
+- `oriented-c18-rank-gates-give-branch-balance` removes that residual as a
+  separate nonlinear certificate.  On the phase-even source carrier it
+  replaces C18 by the positive-residual exit and one additional `110` exit,
+  giving the exact pointwise inequalities `(OCB2)`.  All 20 oriented exit
+  occurrences have the common symmetric kernel and hard form `e_02^*`.
 - `free-root-first-detection-eigenvectors-localize-exactly` proves the
   packet-to-reservoir analytic endpoint: once a hard intertwiner has
   coefficient-character valuation `n`, its entire squared norm is exactly
@@ -196,12 +201,12 @@ regular Bass--Serre reservoir.
   bad atoms.
   The analytic persistence and endpoint-marginal accounting are now reduced
   to a telescoping sign-atom estimate and have polynomial loss.  The remaining
-  step is one quantitative certificate: bound the localized groupified
-  Fanizza residual
-  `||P_tilde_n+X_tilde_n P_tilde_n X_tilde_n-P_tilde_(n+1)||_2`
-  by polynomial fixed-presentation defect after the Schur packet replacement.
+  The local recurrence ledger is now closed: `(OCB2)` gives `(BFE1)` and
+  `(BFE2)`, while `(OCB3)`, the corner gap, and `(HST1)` give `(BFE3)`.
   The hard-sign bridge is synchronized with the same levels and preserves the
-  exact tracial model.  Once that certificate is obtained, `(BFE1)--(BFE3)`,
-  persistence, and the final HS floor are formal consequences.
+  exact tracial model.  What remains globally is to assemble these finitely
+  many bridges with the published linear Fanizza constraints and prove the
+  marked initial-carrier interface; no nonlinear recurrence-residual estimate
+  remains.
   A merely decreasing first-hit process is insufficient: it admits a
   geometric reservoir and does not force collapse.
