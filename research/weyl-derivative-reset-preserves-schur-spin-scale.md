@@ -91,3 +91,9 @@ with loss `C sqrt(E)`, independent of ambient matrix dimension.  The theorem
 is local: a finite chain of these cells still has a regular stationary flow,
 so it does not by itself supply the global contractive return.
 
+The same construction applies to any nonzero selector direction `v` for
+which `A(v)=sum_j v_jA_j` is invertible. Choose a linear selector basis sending
+`v` to one coordinate, or equivalently let `s_v` multiply every `z_j` with
+`v_j=1` by `J`. The two-copy orbit product then has commutator matrix `A(v)`.
+In particular the gauge-share flip `(A_x,B_x)->(JA_x,JB_x)` is admissible for
+the invertible-direction compiler.

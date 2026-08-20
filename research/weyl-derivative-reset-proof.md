@@ -41,3 +41,7 @@ claim: exactify `R_i`, align its corrected overlap with the adjacent packet,
 apply the exact multiplicity identity, and charge the discarded corner by
 `C sqrt(E)`.
 
+For a general direction `v`, replace `e_i` throughout by `v`. Translation by
+`v` is still an involution, and multiplying `z_j` by `J^(v_j)` preserves the
+shifted copy relations. The orbit-product commutator is
+`U(x)+U(x+v)=A(v)`, so the identical proof applies.

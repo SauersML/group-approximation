@@ -12,9 +12,10 @@ Use one common invertible-direction baseline `A_k` for every predicate in a
 fixed arity-`k` menu.  For each selector bit, the cell of
 `weyl-derivative-reset-preserves-schur-spin-scale` replaces that bit by a
 transverse commuting involution, makes the old bit private, and carries the
-total baseline multiplicity through a fixed `2^N` spin packet.  Reversing a
-second copy of the same cell installs the new bit as the central selector of
-the next baseline packet.  Repeating this at most `k` times produces a finite
+total baseline multiplicity through a fixed `2^N` spin packet. The implementer
+is a fresh commuting chart coordinate, but a reverse group cell is still
+required before it can be a coefficient in the next Schur baseline. Repeating
+a completed forward/reverse cell at most `k` times would produce a finite
 zig-zag
 
 ```text
@@ -35,15 +36,14 @@ This removes two former algebraic defects at once:
    spin packet.
 
 It is not yet credited as `fresh-selector-renewal-after-symplectic-chart-reset`.
-One compatibility check remains: in the actual Fanizza incidence, the
-context-local corrected selectors are compared to the original shared BCS
-words before and after `(IWR1)`.  The reverse cells must preserve those
-fixed-word comparison estimates without identifying a shared original
-variable with both members of a transverse Weyl pair.  This is a bounded
-finite incidence audit for the three factored predicate shapes, but it is
-semantically essential.  Passing that audit would establish the fresh-reset
-hole; failing it would locate the obstruction in the original-word overlap,
-not in affine rank or packet multiplicity.
+There are two remaining local obligations. First,
+`semidirect-reset-implementer-cannot-be-next-schur-phase` proves that the bare
+semidirect product cannot supply the reverse cell: its implementer survives in
+abelianization. Second, direct translation of an original BCS selector does
+not preserve arbitrary constraints. Gauge doubling repairs the semantic
+problem by translating two private shares while fixing their logical product;
+`derived-lifted-gauge-reset-spin-bridge` isolates the remaining equal-scale
+reverse incidence.
 
 The global scalar return is separate.  A finite zig-zag has a regular
 stationary flow, so the one remaining scalar current must still be placed in

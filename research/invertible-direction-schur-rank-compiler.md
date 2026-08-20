@@ -28,7 +28,7 @@ and a fixed column `v` such that
 
 ```text
 U_k(x) is invertible for every x in F_2^k,
-U_i is invertible for every i.                            (IDS2)
+U(v)=sum_i v_i U_i is invertible for every nonzero v.    (IDS2)
 ```
 
 For every Boolean predicate `f:F_2^k->F_2` one can effectively choose a row
@@ -44,8 +44,9 @@ sector it has one spin simple of dimension `D=2^N`.  The full packet
 `B_f=K(M_f)` restricts to that baseline with multiplicity one when `f(x)=0`
 and multiplicity two when `f(x)=1`, exactly as in the original Schur
 compiler.  The additional conclusion `(IDS2)` says that the discrete
-derivative in **each** selector direction is another nondegenerate spin form
-of the same dimension `D`.
+derivative in **every nonzero** selector direction is another nondegenerate
+spin form of the same dimension `D`. This includes the two-share gauge
+direction `(1,1)`.
 
 For a finite menu of predicates of arity at most `k`, use the same `U_k` and
 pad every predicate by ignored selector bits.  Thus all predicates have one
@@ -59,4 +60,3 @@ factored Fanizza menu.  In particular one affine pencil of size `16` works for
 all predicates of arity at most four; its sixteen reciprocal evaluation
 vectors form an `F_2` basis.  This yields the uniform fixed spin scale
 `D=65536`.  The general theorem does not depend on that search.
-

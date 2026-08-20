@@ -3,6 +3,8 @@ rg: 2
 id: adaptive-all-pairs-schur-replica-table-compiler
 kind: claim
 title: A finite controller emits a supercritical all-pairs Schur-replica multiplication table in the same microstate
+artifacts:
+  - research/artifacts/self-reference-challenger-hs-breaker-2026-08-20.md
 distinct_from:
   constant-hs-groupification-of-residual-dyadic-splitter: that phrases the target as a nested group-native split below residual atomic scale; this asks for the exact analytic output needed to invoke universal finite-group stability in one shot.
   approximate-schur-replicas-force-exponential-dimension: that proves the terminal dimension inequality once the table and its count exist; this must compile that table from finitely many presentation relators with uniform cost.

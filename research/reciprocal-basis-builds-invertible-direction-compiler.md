@@ -45,7 +45,8 @@ because `Q'(T)=1` in characteristic two.  Hence every coefficient vanishes.
 
 Regard `L` as an `N=kq` dimensional `F_2` vector space.  Let `U_k(x)` be the
 matrix of multiplication by `a_x`.  It is affine in `x`; its coefficient in
-direction `i` is multiplication by the nonzero field element `s(e_i)`.
+any nonzero direction `v` is multiplication by the nonzero field element
+`s(v)`.
 This proves `(IDS1)--(IDS2)`.
 
 Given `f`, linear independence permits an `F_2`-linear functional

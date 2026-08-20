@@ -3,6 +3,8 @@ rg: 2
 id: marked-clifford-table-exponential-dimension
 kind: claim
 title: A marked all-pairs Clifford table has exponential ambient dimension
+artifacts:
+  - research/artifacts/self-reference-challenger-hs-breaker-2026-08-20.md
 distinct_from:
   approximate-schur-replicas-force-exponential-dimension: that extracts independent Clifford blocks from forbidden mass in replicated nonlinear predicate packets; this starts with the elementary extraspecial group itself and needs no BCS, context selection, or rank compiler.
   uniform-infinite-pauli-packing-impossible: that uses metric packing for an infinite approximate family and gives a dimension-dependent cardinality bound; this flexibly exactifies one finite complete multiplication table and recovers the exact spin-dimension bound.

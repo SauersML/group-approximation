@@ -3,6 +3,8 @@ rg: 2
 id: dimension-matched-kleene-microstate-diagonal
 kind: claim
 title: Dimension-matched halting soundness is enough for a self-referential nonhyperlinear group
+artifacts:
+  - research/artifacts/self-reference-challenger-hs-breaker-2026-08-20.md
 distinct_from:
   residual-commutant-supercritical-schur-trigger: that asks one fixed group to detect the residual dimension inside every candidate microstate; this shows a machine-indexed compiler need only defeat the single dimension reported by its own fixed-point search.
 ---
