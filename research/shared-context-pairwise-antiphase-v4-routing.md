@@ -51,10 +51,12 @@ tag atlases.
 ## Attempts
 
 - **One common source involution per branch. Dead.** If the same pair of
-  branch labels is reused against every other branch, the conjugacy equations
-  propagate transitively and recreate one common finite tag atlas.  The
-  affine packing ceiling then returns.  The source word must genuinely depend
-  on the incident unordered pair.
+  branch labels is reused against every other branch, the obstruction is even
+  sharper than stationary tag flow.
+  `one-axis-pairwise-antiphase-routing-fails-on-triangles` absorbs the source
+  character into that axis and shows that every edge would negate it.  The
+  first triangle is inconsistent.  The source word must genuinely depend on
+  the incident unordered pair through a multi-axis joint representation.
 - **Affine selector characters. Dead for nonlinear failure atoms.** A scalar
   word in the commuting selector subgroup has affine character support and
   cannot distinguish an arbitrary forbidden BCS predicate while remaining
@@ -66,3 +68,11 @@ tag atlases.
   is a bounded finite character-table problem because the BCS and repetition
   count are fixed.  If no such tuple exists, the failure should be recorded as
   a joint-character obstruction rather than as another packing argument.
+- **Independent Clifford axis per incident edge. Incomplete.** On satisfying
+  sectors a sufficiently large Clifford packet can make all signed edge-axis
+  tuples jointly equivalent.  On a forbidden sector those axes become a
+  commuting radical family, so `(PAC1)` applies only after splitting into its
+  character atoms.  That split dilutes each branch and enlarges the family
+  which must again be pairwise separated.  A successful construction must
+  avoid this recursive character refinement, for example by coupling the
+  edge axes to the existing V4 atom through a nonabelian multiplicity decoder.
