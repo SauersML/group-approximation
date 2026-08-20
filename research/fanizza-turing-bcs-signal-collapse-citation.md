@@ -4,7 +4,9 @@ id: fanizza-turing-bcs-signal-collapse-citation
 kind: route
 title: Import the L-family theorem and its polynomial computation recurrence
 target: fanizza-turing-bcs-signal-collapse
-requires: []
+requires:
+  - fanizza-bcs-polynomial-doubling-tape
+  - near-perfect-bcs-strategy-gives-synchronous-relator-state
 artifacts:
   - research/artifacts/relative-rank-one-fanizza-synthesis-2026-08-20.md
 ---

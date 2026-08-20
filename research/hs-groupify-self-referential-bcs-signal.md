@@ -49,3 +49,14 @@ they convert the self-referential BCS collapse into a nonhyperlinear group.
   forbidden perfect strategy. Thus `(SGB2)` must be proved by an intrinsically
   finite-dimensional rank or integer-multiplicity argument, not by a
   star-algebra embedding that also survives in `L(Gamma)`.
+- **Nested-BCS flattening is solved upstream.**
+  `nested-conjugacy-bcs-embedding-has-quadratic-depth-loss` compiles every
+  conjugacy nest into an ordinary finite BCS, extends membership traces, and
+  preserves polynomial certificate cost. Together with
+  `near-perfect-bcs-strategy-gives-synchronous-relator-state`, it also supplies
+  the exact approximate-state hypotheses used by the MSZ weighted argument.
+  Neither result turns the additive gate
+  `(P+X_tilde P X_tilde-U P U^*)(1+J X_tilde Z_tilde X_tilde Z_tilde)=0`
+  into group-word relators. The remaining hole is therefore the
+  finite-dimensional Schur/rank lift of that gate and the marked carrier, not
+  algebra-to-BCS compilation.

@@ -6,6 +6,8 @@ title: Import the projection-doubling recurrence and its polynomial certificates
 target: fanizza-bcs-polynomial-doubling-tape
 requires:
   - msz-polynomial-doubling-star-algebra-compiler
+  - nested-conjugacy-bcs-embedding-has-quadratic-depth-loss
+  - near-perfect-bcs-strategy-gives-synchronous-relator-state
 ---
 
 Literature import, verified 2026-08-20 against arXiv:2510.04943v4.
