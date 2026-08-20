@@ -54,3 +54,13 @@ which exchanges the two supports.
   and radical are selector-independent; if it follows the corrected lines
   `Q_x`, its commutators regenerate nontrivial old selector words.  The live
   search must therefore leave the class-two subgroup category.
+- **Controlled-corner completion. Distinguished model only.**  A two-level
+  block model may set each fresh generator equal to `c u+(1-c)` on the chosen
+  child corner and can realize the desired `3/4` ray arithmetic.  But
+  `central-corner-block-is-not-a-group-word` shows that this expression is not
+  a word in its control and payload; an ordinary presentation must still
+  charge every unwanted representation of the named controlled generator.
+  Moreover `fixed-depth-rank-mesh-has-zero-hs-density` rules out a soundness
+  floor based only on finite-rank quantization.  The finite restriction-matrix
+  search should accept the CNRC incidence only after it is supplied as a
+  complete group table and yields a positive-density separating functional.

@@ -219,6 +219,25 @@ show that residual erasure recreates the **predicate-oriented** density in the
 compressed coefficient algebra, rather than only the structural child/full
 Reynolds wall.
 
+### 5.1.1 Constant-depth controlled-corner audit
+
+Finite-depth absorption removes the need for an infinite repeating shift, so
+a controlled nested reset chain is a legitimate finite incidence to test.  A
+reported two-level `C^64` model avoids selector containment, stationary HNN
+return, and branch-flip cancellation, and its balanced-ray arithmetic gives
+`lambda=3/4` for equal ray parameters.
+
+Two promotions are not automatic.  `central-corner-block-is-not-a-group-word`
+proves that the defining block `c u+(1-c)` is additive operator algebra, not
+ordinary word evaluation; the finite model therefore proves distinguished
+completeness but not universal group-presentation soundness.
+`fixed-depth-rank-mesh-has-zero-hs-density` proves that an integer rank quantum
+amplified through a fixed number of corner normalizations remains
+`O(1/d)` and vanishes under tensor amplification.  Thus any successful CNRC
+cell must expose a genuine positive-density functional across its complete
+marked type table.  The full audit and corrected stopping test are in
+`research/artifacts/controlled-nested-reset-chain-audit-2026-08-20.md`.
+
 For the finite-prefix version, the source carrier geometry is now exact.
 `fanizza-doubling-carriers-form-orthogonal-flag` proves that the carrier and
 first-hit projections form one orthogonal flag, so their reflection

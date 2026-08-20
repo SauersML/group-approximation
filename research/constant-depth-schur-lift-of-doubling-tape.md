@@ -82,3 +82,17 @@ problem.
   multiplicity.  The active finite search must therefore include a genuine
   proper-corner or two-dimensional holonomy relation; subgroup restriction
   matrices alone cannot close `(CDS1)`.
+- **Controlled nested reset chain. Local model retained, promotion open.**
+  Controlling the next packet on one selected child corner avoids the three
+  literal endpoint failures in a distinguished two-level representation.  On
+  the balanced ray its proposed current has `lambda=3/4` when `K_0=K_1=1`.
+  The audit
+  `research/artifacts/controlled-nested-reset-chain-audit-2026-08-20.md`
+  isolates two missing implications.  First, `c u+(1-c)` is a group-algebra
+  block rather than an ordinary word
+  (`central-corner-block-is-not-a-group-word`), so the reported matrix model
+  does not enumerate all representations of a group cell.  Second,
+  `fixed-depth-rank-mesh-has-zero-hs-density` rules out obtaining `(CDS1)`
+  merely by amplifying the integer rank quantum through a fixed number of
+  corner normalizations.  The live form of this attack must give an explicit
+  groupification and an amplification-stable positive-density functional.
