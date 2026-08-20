@@ -2,7 +2,7 @@
 rg: 2
 id: finite-dimensional-schur-lift-of-doubling-tape
 kind: claim
-title: Lift the existing BCS projection-doubling tape through fixed Schur packets in matrix microstates
+title: Lift the existing BCS projection-doubling tape through self-similar Schur cells in matrix microstates
 distinct_from:
   fixed-scale-contextual-multiplicity-holonomy: that asks for a new recurrent network for a generic non-CE BCS; this reuses the explicit shift and polynomial-cost doubling recurrence already present in the self-referential BCS.
   uniform-halting-pauli-word-oracle: that must activate an unbounded verifier size after a halt; every predicate packet here is fixed once and for all.
@@ -20,27 +20,36 @@ a_0(V) >= c ||w(V)-I||_2^2-K sqrt(E(V)),                          (SDL1)
 a_n(V) <= (1/2) a_(n+1)(V)+K(n+1)^k sqrt(E(V)).                  (SDL2)
 ```
 
-The construction must use only the finitely many Schur--Clifford packets for
-the fixed contexts of `B_*`. The tape shift `U` supplies all levels by
+The construction must use one finite set of Schur--Clifford **cell templates**
+for the fixed contexts of `B_*`. The tape shift `U` supplies all levels by
 conjugation; the polynomial factor in `(SDL2)` is allowed because it is
-summable against `2^(-n)`.
+summable against `2^(-n)`. The accumulated packet itself need not remain
+finite: one viable design has a nested Clifford tower `A_(n+1)=B_n` generated
+self-similarly by the fixed cell template.
 
 ## Required local interface
 
 1. `boolean-predicate-is-one-rank-jump` compiles each fixed BCS predicate.
-2. `finite-schur-clifford-packet-flexible-hs-exactification` turns a small
-   local word-table defect into nearby exact packet multiplicities.
-3. The exactified multiplicity belonging to the projection
-   `P_tilde_n` defines `a_n` at one fixed baseline packet scale.
-4. The context-dependent correcting isometries must be compared along the
-   actual conjugate tape words so that a violating rank jump pays the
-   difference between `a_n` and `a_(n+1)/2`.
+2. Either build a growing tower with `A_(n+1)=B_n`, or provide a fixed-scale
+   Morita transport turning the restricted `A_f` module back into the input
+   type of the next `B_f` gate. Independent copies of one inclusion do not
+   compose their multiplicities.
+3. In the tower design, prove relative flexible exactification with constants
+   uniform in the accumulated Clifford rank; the fixed-group theorem
+   `finite-schur-clifford-packet-flexible-hs-exactification` alone has constants
+   depending on the whole growing packet.
+4. The exactified multiplicity belonging to `P_tilde_n` defines `a_n`, and
+   overlap transport must make one active rank jump pay the difference between
+   `a_n` and `a_(n+1)/2`.
 
-`finite-group-shared-overlap-polar-alignment` now supplies the pairwise
-comparison on a submodule of dimension `d-O(eta^2d)`. The remaining part of
-clause 4 is to choose these large intertwiners compatibly around the tape
-cycle and show that their discarded corners have the polynomially weighted
-cost in `(SDL2)`. It must be proved by integral/rank information specific to
+`finite-group-shared-overlap-polar-alignment` supplies the pairwise comparison
+for every **fixed** common subgroup on a submodule of dimension
+`d-O(eta^2d)`. The remaining part of clause 4 is narrowed further by
+`shared-overlap-controls-packet-multiplicity-vector`, which charges the full
+weighted type-vector discrepancy to the two discarded corners. It remains to
+make this bound uniform along the growing tower, or to construct the
+fixed-scale Morita bridge, and orient the restriction matrices so the result
+is `(SDL2)`. The last step must use integral/rank information specific to
 matrices; a trace-functorial comparison would violate
 `trace-functorial-bcs-signal-groupification-impossible`.
 
@@ -59,7 +68,19 @@ matrices; a trace-functorial comparison would violate
   to use integer multiplicities of finite matrices after local rounding, not a
   universal conditional expectation in the group von Neumann algebra.
 - **Next calculation.** Compose the pairwise polar intertwiners around one
-  recurrence cell. Its failure to close lies in the commutant of the baseline
-  packet. Bound the rank of the nontrivial polar holonomy by the original
-  shared-word defect, or absorb it into the next tape level with factor
-  `1/2`. This is the remaining route to `(SDL2)`.
+  recurrence cell. The new multiplicity-vector lemma already bounds every
+  pairwise type discrepancy. Write the restriction matrices for the fixed
+  predicates in that cell and check whether their signed composition has the
+  required `1/2` coefficient on the marked type; any complementary type with
+  nonzero return coefficient is the remaining leakage channel.
+- **Fixed packet repeated without a bridge. Dead.** Restriction across
+  `A_f<=B_f` outputs an `A_f`-module; a second independent copy of `B_f`
+  expects another `B_f`-module. Identifying only the two `A_f` restrictions
+  makes the constraints parallel and does not multiply the factor-two
+  branching. Composition requires either `A_(n+1)=B_n` in a growing tower or
+  a genuine Morita/holonomy return from `A_f` to `B_f`.
+- **Growing tower. Active.** The Fanizza--Slofstra computation group already
+  produces a self-similar sequence of Clifford pairs. Use one fixed local
+  rank-gate template per cell and exactify only the new relative Pauli pair.
+  The missing estimate is a Gowers--Hatami-style relative stability theorem
+  whose constant is independent of the number of earlier Clifford pairs.

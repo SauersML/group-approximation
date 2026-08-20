@@ -1091,6 +1091,25 @@ choose these large polar intertwiners compatibly around a recurrence cell and
 control the residual commutant holonomy by the original shared-word defect.
 This lemma is recorded as `finite-group-shared-overlap-polar-alignment`.
 
+There is also a packet-type mismatch which pairwise alignment cannot remove.
+One rank gate is an inclusion \(A_f\le B_f\): restriction outputs an
+\(A_f\)-module.  A second independent copy of the same gate expects a
+\(B_f\)-module, so merely identifying their \(A_f\) restrictions creates
+parallel divisibility conditions rather than multiplying the rank jumps.  A
+composable design must either use a growing tower
+
+\[
+A_{n+1}=B_n,
+\]
+
+or construct a genuine fixed-scale Morita/holonomy return from the output
+packet type to the input type.  The first option matches the existing
+Fanizza--Slofstra self-similar Clifford sequence, but it replaces fixed-group
+exactification by a relative stability problem: exactify the one new Pauli
+cell with constants independent of the number of Clifford pairs already
+present.  This uniform relative exactification is now the sharp analytic
+subproblem inside `finite-dimensional-schur-lift-of-doubling-tape`.
+
 ---
 
 ## 16. Computational verification
