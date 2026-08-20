@@ -84,14 +84,14 @@ structure REBenignTF where
     Nonempty (TorsionFreeBenignWitness N)
 
 /-- The refinement implies the plain statement. -/
-def reBenign_of_reBenignTF (h : REBenignTF) : REBenign where
+theorem reBenign_of_reBenignTF (h : REBenignTF) : REBenign where
   benign := by
     intro n N hN hre
     obtain ⟨u⟩ := h.benign n N hN hre
     exact ⟨u.witness⟩
 
 /-- **The refinement implies Higman's theorem with the torsion clause.** -/
-def torsionPreservation_of_reBenignTF (h : REBenignTF) : TorsionPreservation where
+theorem torsionPreservation_of_reBenignTF (h : REBenignTF) : TorsionPreservation where
   hull := by
     intro B _ p htf
     classical
@@ -112,7 +112,7 @@ def torsionPreservation_of_reBenignTF (h : REBenignTF) : TorsionPreservation whe
     have hTq : IsPowerTorsionFree (F ⧸ M) :=
       IsPowerTorsionFree.comap htf hiso.toMonoidHom hiso.injective
     obtain ⟨H⟩ := nonempty_hull_of_benignTF u hTq
-    exact ⟨H.comp hiso.symm.toMonoidHom hiso.symm.injective⟩
+    exact ⟨torsionFreeHigmanHullComp H hiso.symm.toMonoidHom hiso.symm.injective⟩
 
 end Higman
 end GroupApproximation

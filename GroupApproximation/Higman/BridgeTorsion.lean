@@ -67,7 +67,7 @@ theorem countable_of_recursivePresentation {A : Type} [Group A]
 
 /-- **The effectivity clause gives the bridge.**  The torsion clause is
 supplied by `torsionFree_ext`, which is unconditional. -/
-noncomputable def countableToFG_of_input (h : BridgeRecursive) : CountableToFG where
+theorem countableToFG_of_input (h : BridgeRecursive) : CountableToFG where
   bridge := by
     intro A _ p htf
     classical
