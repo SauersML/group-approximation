@@ -159,6 +159,12 @@ regular Bass--Serre reservoir.
   accounting.  It suffices to preserve one baseline carrier copy, emit a
   fixed fraction of its trace into a new reverse carrier, and make those
   reverse carriers orthogonal.  The resulting trace budget is `(PRC1)`.
+- `branching-plus-first-hit-exits-forces-hs-floor` removes persistence as an
+  independent analytic mystery in the Fanizza setting.  Its two-child
+  recurrence and the upper bound of one exit copy per source imply
+  `q_n>=q_0` up to the accumulated polynomial defects.  Combining that with
+  a fixed exit fraction and boundary summability gives an explicit positive
+  HS floor after any fixed number of levels exceeding `1/(eta q_0)`.
 - `free-root-first-detection-eigenvectors-localize-exactly` proves the
   packet-to-reservoir analytic endpoint: once a hard intertwiner has
   coefficient-character valuation `n`, its entire squared norm is exactly
@@ -168,10 +174,10 @@ regular Bass--Serre reservoir.
   bad atoms.
   The analytic persistence and endpoint-marginal accounting are now reduced
   to a telescoping sign-atom estimate and have polynomial loss.  The remaining
-  step is the global character/carrier coupling: make the source-fixed context
-  frames feed their listed reverse characters into successive symmetric-kernel
-  valuation layers while preserving one baseline packet copy with polynomial
-  defect.  Once that is closed, the robust rank-one floor, localization, and
-  boundary summability give `(PRC1)`.
+  step is the global character/carrier coupling: prove that the Fanizza
+  two-child decomposition and the relative Schur split satisfy `(BFE1)` and
+  `(BFE2)` on the same localized carriers, while the common hard root feeds
+  `(BFE3)` into successive symmetric-kernel valuation layers.  Persistence
+  and the final HS floor then follow formally from `(BFE6)`.
   A merely decreasing first-hit process is insufficient: it admits a
   geometric reservoir and does not force collapse.

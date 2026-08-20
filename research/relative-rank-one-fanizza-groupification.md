@@ -89,4 +89,9 @@ the Fanizza projection `D` itself as the nonhalting mark contradicts
   `fanizza-symmetric-kernel-has-two-root-e5-clock` realizes its matching
   one-sided valuation clock by `diag(S,1,I_2)`.  What remains is to couple the
   listed reverse characters into successive valuation layers and control
-  baseline-carrier persistence by the original fixed-word energy.
+  the two child copies by the original fixed-word energy.
+  `branching-plus-first-hit-exits-forces-hs-floor` shows that no further
+  persistence mechanism is needed: the two-child Fanizza balance minus at
+  most one exit copy leaves one active copy.  The precise remaining estimate
+  is therefore the localized operator version of `(BFE1)--(BFE3)` on the same
+  exactified packet carrier.

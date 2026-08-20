@@ -13,6 +13,7 @@ requires:
   - fanizza-bad-atoms-have-source-fixed-paired-frames
   - fanizza-bad-atoms-have-symmetric-frames
   - fanizza-symmetric-kernel-has-two-root-e5-clock
+  - branching-plus-first-hit-exits-forces-hs-floor
   - finite-schur-clifford-packet-flexible-hs-exactification
   - non-ce-bcs-has-robust-approximate-energy-gap
   - fanizza-turing-bcs-signal-collapse
