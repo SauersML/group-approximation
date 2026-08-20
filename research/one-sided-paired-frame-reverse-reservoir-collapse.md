@@ -137,13 +137,16 @@ regular Bass--Serre reservoir.
   dual pair.  After spending one extra OBDD pivot on C17, all 26 bad atoms
   share the rank-three kernel
   `span{e_01,e_23,e_03+e_12}`, fix their source atom, and export one reverse
-  coefficient character.
+  coefficient character.  Every reverse character has `J=+1`, and every
+  rank-two escape form is `e_02^*` or `e_13^*`; a fixed kernel-preserving
+  coordinate swap aligns the latter with the former.
 - `fanizza-symmetric-kernel-has-two-root-e5-clock` supplies the matching clock.
   The symmetric kernel is not in the old support kernel's `GL_4(F_2)` orbit,
   but the two-root transporter `diag(S,1,I_2)` moves its nondecomposable cross
   line with a unique degree-`2n` leading term and Smith coordinate of degree
-  `2n-1`.  The orbit mismatch therefore costs a simpler one-sided E5 word,
-  not another commutator coordinate.
+  `2n-1`.  Its top form is exactly the common aligned `e_02^*` escape.  The
+  orbit mismatch therefore costs a simpler one-sided E5 word, not another
+  commutator coordinate or an atom-dependent decoder.
 - `free-root-top-boundary-reservoir-is-summable` proves the required capacity
   theorem for those degree labels: the mass first detected at successive
   degrees telescopes and has total at most one on a unit carrier.  Literal

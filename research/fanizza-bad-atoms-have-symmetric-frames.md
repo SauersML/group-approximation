@@ -54,11 +54,25 @@ coefficient character makes the sheared form rank two, and exactly the same
 rank-two matrix occurs on the unsheared side at a listed target coefficient
 character while the source character remains `a`.
 
+The escape is uniform in two further senses.  The listed sheared and target
+coefficient characters all lie in the `J=+1` sector, whereas the fixed source
+atom lies in `J=-1`.  Moreover, the 26 rank-two escape forms are only
+
+```text
+e_02^*  or  e_13^*.                                    (SKF5)
+```
+
+Simultaneously swapping generators `0<->1` and `2<->3` preserves `(SKF3)`
+and swaps the two forms in `(SKF5)`.  Thus every atom can be aligned to the
+same hard root `e_02^*` without changing the finite edge group or the source
+selector center.
+
 Thus all actual nonlinear atoms admit one common **three-coordinate** finite
 edge group, literal source-atom preservation, and one reverse Pauli bit.  The
 finite search is exact and exhaustive over all dual words of weight at most
 two and all coefficient characters.  It succeeds on `26/26` atoms in under
-16 MB on one low-priority MSI core.
+16 MB on one low-priority MSI core.  The search explicitly restricts both
+reverse characters to `J=+1` and asserts the two-form classification `(SKF5)`.
 
 The kernel `(SKF3)` is not in the `GL_4(F_2)` orbit of the older support-packet
 kernel: it contains the nondecomposable wedge `e_03+e_12`.  Consequently the

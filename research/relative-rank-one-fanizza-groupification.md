@@ -84,7 +84,8 @@ the Fanizza projection `D` itself as the nonhalting mark contradicts
   `fanizza-bad-atoms-have-symmetric-frames`: arbitrary
   weight-two dual baseline words give one common source-fixed rank-three
   kernel for all 26 atoms, after one extra C17 compiler pivot.  That kernel is
-  in a different `GL_4(F_2)` orbit, and
+  in a different `GL_4(F_2)` orbit, but every escape has `J=+1` and its
+  rank-two form is aligned to one common root by a kernel-preserving swap.
   `fanizza-symmetric-kernel-has-two-root-e5-clock` realizes its matching
   one-sided valuation clock by `diag(S,1,I_2)`.  What remains is to couple the
   listed reverse characters into successive valuation layers and control

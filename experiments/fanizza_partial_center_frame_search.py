@@ -40,6 +40,12 @@ from fanizza_atom_paired_frame_search import (
 from fanizza_fixed_predicate_rank_compiler import Affine, bdd_rank_compiler, best_compiler
 
 BitVector = tuple[int, ...]
+SWAP_BOTH: Matrix4 = (
+    (0, 1, 0, 0),
+    (1, 0, 0, 0),
+    (0, 0, 0, 1),
+    (0, 0, 1, 0),
+)
 
 
 def frame_compatible_compiler(name, arity, predicate):
@@ -142,6 +148,11 @@ def find_witness(
                     symbolic, source_character, source_character, IDENTITY4
                 ) == 0
                 for coefficient_character in characters:
+                    # The reverse reservoir must be uniform across atoms.  We
+                    # insist that both sides of the rank-two escape lie in the
+                    # J=+1 coefficient sector (character bit zero).
+                    if coefficient_character[0] != 0:
+                        continue
                     plus_matrix = evaluated_frame_matrix(
                         symbolic,
                         source_character,
@@ -151,6 +162,8 @@ def find_witness(
                     if rank_f2(plus_matrix) != 2:
                         continue
                     for target_character in characters:
+                        if target_character[0] != 0:
+                            continue
                         if evaluated_frame_matrix(
                             symbolic,
                             source_character,
@@ -165,6 +178,17 @@ def find_witness(
                                 "tested": tested,
                                 "rank_three": rank_three,
                                 "kernel": minus_kernel,
+                                "hard_form": tuple(
+                                    plus_matrix[left][right]
+                                    for left, right in (
+                                        (0, 1),
+                                        (0, 2),
+                                        (0, 3),
+                                        (1, 2),
+                                        (1, 3),
+                                        (2, 3),
+                                    )
+                                ),
                             }
     return {"tested": tested, "rank_three": rank_three}
 
@@ -178,6 +202,7 @@ def audit(
     solved = 0
     total = 0
     witness_kernels: set[int] = set()
+    hard_forms: set[tuple[int, ...]] = set()
     allowed_kernels = support_orbit_kernels() if require_support_orbit else None
     for name, arity, predicate in predicate_menu():
         if predicate_filter is not None and name != predicate_filter:
@@ -192,7 +217,9 @@ def audit(
             if "left" in result:
                 solved += 1
                 witness_kernels.add(result["kernel"])
+                hard_forms.add(result["hard_form"])
                 print(f"{name} atom={atom}: WITNESS {result}")
+                assert result["coefficient"][0] == result["target"][0] == 0
             else:
                 print(f"{name} atom={atom}: none {result}")
     print(
@@ -200,9 +227,16 @@ def audit(
         f"maximum baseline word weight={maximum_weight}"
     )
     print(f"distinct witness kernels={len(witness_kernels)} codes={witness_kernels}")
+    print(f"distinct rank-two escape forms={len(hard_forms)} forms={hard_forms}")
     if predicate_filter is None and not representatives_only:
         assert solved == total == 26
         assert witness_kernels == {symmetric_kernel_code()}
+        assert hard_forms == {
+            (0, 1, 0, 0, 0, 0),
+            (0, 0, 0, 0, 1, 0),
+        }
+        symmetric_vectors = kernel_vectors(symmetric_kernel_code())
+        assert transform_kernel(SWAP_BOTH, symmetric_vectors) == symmetric_vectors
     return witness_kernels
 
 

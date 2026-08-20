@@ -37,3 +37,11 @@ dimensions.  It also exhausts all `20160` matrices in `GL_4(F_2)` and verifies
 that no exterior-square word change carries the decomposable support kernel
 to `(SKF3)`.  This final negative check prevents silently reusing the wrong E5
 transporter.
+
+Finally, the character loops are restricted to coefficient and target
+characters whose first bit is zero.  They still solve all 26 atoms.  Reading
+the six upper-triangular entries of every resulting rank-two form gives only
+`e_02^*` and `e_13^*`.  The permutation matrix swapping both coordinates in
+the p-pair and both coordinates in the q-pair stabilizes `(SKF3)` and exchanges
+those two covectors.  This proves the universal `J=+1` escape and common hard-
+root alignment claimed in `(SKF5)`.

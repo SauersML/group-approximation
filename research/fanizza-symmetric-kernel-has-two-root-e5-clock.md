@@ -58,6 +58,12 @@ Delta_n=H o wedge^2(T_L^n)+H,
 `e_02^*`.  A relative character first nontrivial at that degree therefore
 sees exactly one Pauli qubit.
 
+By `(SKF5)`, every Fanizza escape is already `e_02^*` or becomes `e_02^*`
+after the fixed simultaneous coordinate swap which preserves `K_0`.  Hence
+the clock requires no atom-dependent additive-character decoder: all 26
+finite escapes enter the same top-root coordinate and the same `J=+1`
+reverse reservoir.
+
 Finally, hold the coefficient commutator map fixed and transport only the
 source map.  The combined map has rank three at level zero and rank four at
 every positive level.  Its Smith invariants are
