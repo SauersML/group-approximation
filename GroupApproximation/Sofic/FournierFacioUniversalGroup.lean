@@ -93,7 +93,11 @@ Proved, unconditionally:
 Not proved, and not provable from anything in this repository:
 
 * `UniversalTorsionFreeHost` --- Chiodo Theorem 3.10 / Belegradek Theorem
-  A.1.  **Nothing inhabits it.**
+  A.1.  **Nothing inhabits it.**  It is, since 2026-08-19, no longer an
+  irreducible input either: `Sofic.ChiodoUniversalHost` derives it from one
+  embedding of one explicit group into a finitely presented torsion-free
+  group, which is Chiodo's Theorem 2.2 applied once, and proves every other
+  clause of Theorem 3.10 unconditionally.
 * `KazhdanEnvelope` --- the small-cancellation step of `\cite[\S2]{FFF}`.
   **Nothing inhabits it.**
 
@@ -104,7 +108,14 @@ further undischarged names --- `UniversalTorsionFreeHost`, `KazhdanEnvelope`,
 `UniversalKazhdanGroup` --- where before it carried one,
 `UniversalFPTorsionFree`.  That is the intended reading: the literature
 dependency has been *split*, not increased, and each of the three names says
-which half of the citation it is.  `UniversalFPTorsionFree` remains on the
+which half of the citation it is.  A fourth name joined the list on
+2026-08-19, `ChiodoHost.TorsionFreeHigmanHull`, and it is a *replacement* for
+half of `UniversalTorsionFreeHost` rather than an addition: the host is now
+produced by `ChiodoHost.universalTorsionFreeHost` from that one structure, so
+the producer fixpoint keeps the host undischarged exactly as long as the hull
+is, and the hull is the smaller statement --- one embedding of one named
+group, instead of an existence claim quantified over every finitely presented
+torsion-free group.  `UniversalFPTorsionFree` remains on the
 list and is now also reachable from here, through
 `universalFPTorsionFree_of_universalKazhdanGroup`, so no consumer of the old
 input is orphaned.
@@ -179,10 +190,17 @@ stronger --- one finitely presented torsion-free group absorbing every
 countably generated *recursively presentable* torsion-free group --- and this
 is the weaker form, because it is all the construction consumes.
 
-**Nothing inhabits this structure.**  `universal_of_embedding_universalPayload`
-records exactly what would: an injection of this repository's own explicit
-countable universal torsion-free group into a finitely presented torsion-free
-group. -/
+**Nothing inhabits this structure**, but it is no longer an *input*:
+`Sofic.ChiodoUniversalHost.universalTorsionFreeHost` builds one from a single
+embedding of one explicit group, `Monsters.ChiodoAbsorber`, into a finitely
+presented torsion-free group --- Chiodo's Theorem 2.2 applied once.  What is
+owed to the literature at this node is therefore that one embedding and
+nothing else; every other clause of Theorem 3.10 is proved there.
+
+`universal_of_embedding_universalPayload` below is the older form of the same
+reduction and is superseded: its payload is indexed by an undecidable set, so
+Theorem 2.2 cannot be applied to it.  The note on that declaration says why,
+and `Sofic.ChiodoUniversalHost` says how the obstruction is removed. -/
 structure UniversalTorsionFreeHost where
   /-- The universal finitely presented torsion-free group `U`. -/
   Carrier : Type
@@ -428,7 +446,16 @@ refinement, `research/torsion-free-higman-embedding.md` --- does not apply to
 it as it stands.  The declaration says what shape of theorem suffices, and
 deliberately concludes the universality *formula* rather than
 `UniversalTorsionFreeHost`, so that the corpus audit keeps reporting the input
-as open. -/
+as open.
+
+**Superseded 2026-08-19, and kept because the obstruction it names is the
+point.**  `Monsters.ChiodoTorsionFreeAbsorber` runs the same construction over
+the *full* code type and takes the universal torsion-free quotient afterwards
+instead of filtering the index beforehand; the filtering was the only source
+of the undecidability, and the quotient is Chiodo's own device (Proposition
+3.8).  `Monsters.universal_of_embedding_chiodoAbsorber` is this declaration
+with the repaired payload, and `Sofic.ChiodoUniversalHost` turns it into
+`UniversalTorsionFreeHost`. -/
 theorem universal_of_embedding_universalPayload {P : Type} [Group P]
     (g : Monsters.UniversalFinitelyPresentedTorsionFreeGroup →* P)
     (hg : Function.Injective g) :

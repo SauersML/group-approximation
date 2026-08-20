@@ -391,6 +391,162 @@ theorem exists_tail_bound {T : Finset G}
     _ ≤ q ^ (N + 1) * (1 - q)⁻¹ := sum_pow_Ico_le hq0 hq1 _ _
     _ ≤ δ := htailδ
 
+/-- **The tail estimate at the identity.**  The sum of `exp(-κ n^{1+ε})` over
+group elements of word length beyond a radius is uniformly small.
+
+This is the same argument as `exists_tail_bound` --- at most `Λⁿ` elements of
+word length `n`, each carrying a superexponentially small weight --- with the
+Gaussian replaced by the geometric majorant it obeys.  It is stated separately
+because it is the form the operator-norm bound of
+`Analysis/L2KernelOperator.lean` consumes: there the sum runs over the
+*translation* index `g`, not over a row of the kernel. -/
+theorem exists_tail_bound_norm {T : Finset G}
+    (hT : WordMetric.IsSymmetricGeneratingSet (↑T : Set G))
+    {ε : ℝ} (hε : 0 < ε) {κ : ℝ} (hκ : 0 < κ) {δ : ℝ} (hδ : 0 < δ) :
+    ∃ N : ℕ, ∀ F : Finset G,
+      (∀ g ∈ F, N < WordMetric.wordNorm (↑T : Set G) g) →
+        ∑ g ∈ F,
+            Real.exp (-(κ * (WordMetric.wordNorm (↑T : Set G) g : ℝ) ^ (1 + ε)))
+          ≤ δ := by
+  classical
+  set Λ : ℝ := (T.card : ℝ) + 1 with hΛdef
+  have hΛ1 : (1 : ℝ) ≤ Λ := WordMetric.one_le_growth T
+  have hΛ0 : (0 : ℝ) < Λ := lt_of_lt_of_le one_pos hΛ1
+  set L : ℝ := max 0 (Real.log (2 * Λ) / κ) with hLdef
+  have hL0 : (0 : ℝ) ≤ L := by rw [hLdef]; exact le_max_left _ _
+  have hbase : (0 : ℝ) ≤ L + 1 := by linarith
+  obtain ⟨m₀, hm₀⟩ := exists_nat_ge ((L + 1) ^ (1 / ε))
+  set m : ℕ := max m₀ 1 with hmdef
+  have hm1 : 1 ≤ m := by rw [hmdef]; exact le_max_right _ _
+  have hmm₀ : (m₀ : ℝ) ≤ (m : ℝ) := by rw [hmdef]; exact_mod_cast le_max_left m₀ 1
+  have hm0R : (0 : ℝ) < (m : ℝ) := by
+    have h : (1 : ℝ) ≤ (m : ℝ) := by exact_mod_cast hm1
+    linarith
+  have hxm : ((L + 1) ^ (1 / ε) : ℝ) ≤ (m : ℝ) := le_trans hm₀ hmm₀
+  have hmε : L + 1 ≤ (m : ℝ) ^ ε := by
+    have h1 : (((L + 1) ^ (1 / ε) : ℝ)) ^ ε = L + 1 := by
+      rw [← Real.rpow_mul hbase, one_div, inv_mul_cancel₀ (ne_of_gt hε), Real.rpow_one]
+    have h2 : (((L + 1) ^ (1 / ε) : ℝ)) ^ ε ≤ ((m : ℝ)) ^ ε :=
+      Real.rpow_le_rpow (Real.rpow_nonneg hbase _) hxm hε.le
+    rw [h1] at h2
+    exact h2
+  set q : ℝ := Λ * Real.exp (-(κ * (m : ℝ) ^ ε)) with hqdef
+  have hq0 : (0 : ℝ) ≤ q := by
+    rw [hqdef]
+    exact mul_nonneg hΛ0.le (Real.exp_nonneg _)
+  have hκne : κ ≠ 0 := ne_of_gt hκ
+  have hΛne : Λ ≠ 0 := ne_of_gt hΛ0
+  have hlog : Real.log (2 * Λ) ≤ κ * (m : ℝ) ^ ε := by
+    have hle : Real.log (2 * Λ) / κ ≤ L := by rw [hLdef]; exact le_max_right _ _
+    have h' : Real.log (2 * Λ) / κ ≤ (m : ℝ) ^ ε := by linarith
+    have hrw : Real.log (2 * Λ) = κ * (Real.log (2 * Λ) / κ) := by field_simp
+    rw [hrw]
+    exact mul_le_mul_of_nonneg_left h' hκ.le
+  have hqhalf : q ≤ 1 / 2 := by
+    have hexp : Real.exp (-(κ * (m : ℝ) ^ ε)) ≤ Real.exp (-(Real.log (2 * Λ))) :=
+      Real.exp_le_exp.mpr (by linarith)
+    have hval : Real.exp (-(Real.log (2 * Λ))) = (2 * Λ)⁻¹ := by
+      rw [Real.exp_neg, Real.exp_log (by positivity)]
+    rw [hval] at hexp
+    have hle : q ≤ Λ * (2 * Λ)⁻¹ := by
+      rw [hqdef]
+      exact mul_le_mul_of_nonneg_left hexp hΛ0.le
+    have hcalc : Λ * (2 * Λ)⁻¹ = 1 / 2 := by field_simp
+    rw [hcalc] at hle
+    exact hle
+  have hq1 : q < 1 := by linarith
+  have h1q : (0 : ℝ) < 1 - q := by linarith
+  obtain ⟨k, hk⟩ := exists_pow_lt_of_lt_one (mul_pos hδ h1q) hq1
+  set N : ℕ := max m k with hNdef
+  have hNm : m ≤ N := by rw [hNdef]; exact le_max_left _ _
+  have hkN : k ≤ N + 1 := by
+    rw [hNdef]; exact le_trans (le_max_right m k) (Nat.le_succ _)
+  have htailδ : q ^ (N + 1) * (1 - q)⁻¹ ≤ δ := by
+    have hmono : q ^ (N + 1) ≤ q ^ k := pow_le_pow_of_le_one hq0 hq1.le hkN
+    have hlt : q ^ (N + 1) ≤ δ * (1 - q) := le_of_lt (lt_of_le_of_lt hmono hk)
+    have hinv : (0 : ℝ) < (1 - q)⁻¹ := inv_pos.mpr h1q
+    have hne : (1 : ℝ) - q ≠ 0 := ne_of_gt h1q
+    calc q ^ (N + 1) * (1 - q)⁻¹ ≤ (δ * (1 - q)) * (1 - q)⁻¹ :=
+          mul_le_mul_of_nonneg_right hlt hinv.le
+      _ = δ := by field_simp
+  refine ⟨N, ?_⟩
+  intro F hF
+  set M : ℕ := ∑ g ∈ F, WordMetric.wordNorm (↑T : Set G) g
+  have hub : ∀ g ∈ F, WordMetric.wordNorm (↑T : Set G) g ≤ M := by
+    intro g hg
+    exact Finset.single_le_sum (f := fun g ↦ WordMetric.wordNorm (↑T : Set G) g)
+      (fun i _ ↦ Nat.zero_le _) hg
+  have hmaps : ∀ g ∈ F,
+      WordMetric.wordNorm (↑T : Set G) g ∈ Finset.Ico (N + 1) (M + 1) := by
+    intro g hg
+    exact Finset.mem_Ico.mpr ⟨hF g hg, Nat.lt_succ_of_le (hub g hg)⟩
+  have hslice := Finset.sum_fiberwise_of_maps_to
+    (g := fun g ↦ WordMetric.wordNorm (↑T : Set G) g) hmaps
+    (fun g ↦ Real.exp (-(κ * (WordMetric.wordNorm (↑T : Set G) g : ℝ) ^ (1 + ε))))
+  have hfib : ∀ n ∈ Finset.Ico (N + 1) (M + 1),
+      ∑ g ∈ F.filter (fun g ↦ WordMetric.wordNorm (↑T : Set G) g = n),
+          Real.exp (-(κ * (WordMetric.wordNorm (↑T : Set G) g : ℝ) ^ (1 + ε)))
+        ≤ q ^ n := by
+    intro n hn
+    have hnN : N + 1 ≤ n := (Finset.mem_Ico.mp hn).1
+    have hnm : m ≤ n := le_trans hNm (le_trans (Nat.le_succ N) hnN)
+    have hn1 : 1 ≤ n := le_trans hm1 hnm
+    have hn0R : (0 : ℝ) < (n : ℝ) := by
+      have h : (1 : ℝ) ≤ (n : ℝ) := by exact_mod_cast hn1
+      linarith
+    have hcardN : (F.filter (fun g ↦ WordMetric.wordNorm (↑T : Set G) g = n)).card
+        ≤ (T.card + 1) ^ n :=
+      WordMetric.card_le_pow_of_wordDist_le hT n 1 _ (by
+        intro g hg
+        rw [WordMetric.wordDist_one_left]
+        exact le_of_eq (Finset.mem_filter.mp hg).2)
+    have hcard : ((F.filter (fun g ↦ WordMetric.wordNorm (↑T : Set G) g = n)).card : ℝ)
+        ≤ Λ ^ n := by
+      have hc := (Nat.cast_le (α := ℝ)).mpr hcardN
+      rw [hΛdef]
+      push_cast at hc ⊢
+      exact hc
+    have hterm : ∀ g ∈ F.filter (fun g ↦ WordMetric.wordNorm (↑T : Set G) g = n),
+        Real.exp (-(κ * (WordMetric.wordNorm (↑T : Set G) g : ℝ) ^ (1 + ε)))
+          ≤ Real.exp (-(κ * (n : ℝ) ^ (1 + ε))) := by
+      intro g hg
+      rw [(Finset.mem_filter.mp hg).2]
+    have hsum := Finset.sum_le_card_nsmul
+      (F.filter (fun g ↦ WordMetric.wordNorm (↑T : Set G) g = n))
+      (fun g ↦ Real.exp (-(κ * (WordMetric.wordNorm (↑T : Set G) g : ℝ) ^ (1 + ε))))
+      (Real.exp (-(κ * (n : ℝ) ^ (1 + ε)))) hterm
+    have hexpnonneg : (0 : ℝ) ≤ Real.exp (-(κ * (n : ℝ) ^ (1 + ε))) := Real.exp_nonneg _
+    have hstep1 : ∑ g ∈ F.filter (fun g ↦ WordMetric.wordNorm (↑T : Set G) g = n),
+          Real.exp (-(κ * (WordMetric.wordNorm (↑T : Set G) g : ℝ) ^ (1 + ε)))
+        ≤ Λ ^ n * Real.exp (-(κ * (n : ℝ) ^ (1 + ε))) := by
+      refine le_trans ?_ (mul_le_mul_of_nonneg_right hcard hexpnonneg)
+      simpa [nsmul_eq_mul] using hsum
+    have hrpow : (n : ℝ) * (m : ℝ) ^ ε ≤ (n : ℝ) ^ (1 + ε) := by
+      have hsplit : ((n : ℝ)) ^ (1 + ε) = (n : ℝ) * ((n : ℝ)) ^ ε := by
+        rw [Real.rpow_add hn0R, Real.rpow_one]
+      have hmn : ((m : ℝ)) ^ ε ≤ ((n : ℝ)) ^ ε := by
+        refine Real.rpow_le_rpow hm0R.le ?_ hε.le
+        exact_mod_cast hnm
+      rw [hsplit]
+      exact mul_le_mul_of_nonneg_left hmn hn0R.le
+    have hexpcmp : Real.exp (-(κ * (n : ℝ) ^ (1 + ε)))
+        ≤ Real.exp (-(κ * (m : ℝ) ^ ε)) ^ n := by
+      rw [exp_pow_eq]
+      exact Real.exp_le_exp.mpr (by nlinarith [mul_le_mul_of_nonneg_left hrpow hκ.le])
+    have hstep2 : Λ ^ n * Real.exp (-(κ * (n : ℝ) ^ (1 + ε))) ≤ q ^ n := by
+      rw [hqdef, mul_pow]
+      exact mul_le_mul_of_nonneg_left hexpcmp (pow_nonneg hΛ0.le n)
+    exact le_trans hstep1 hstep2
+  calc ∑ g ∈ F,
+        Real.exp (-(κ * (WordMetric.wordNorm (↑T : Set G) g : ℝ) ^ (1 + ε)))
+      = ∑ n ∈ Finset.Ico (N + 1) (M + 1),
+          ∑ g ∈ F.filter (fun g ↦ WordMetric.wordNorm (↑T : Set G) g = n),
+            Real.exp (-(κ * (WordMetric.wordNorm (↑T : Set G) g : ℝ) ^ (1 + ε))) :=
+        hslice.symm
+    _ ≤ ∑ n ∈ Finset.Ico (N + 1) (M + 1), q ^ n := Finset.sum_le_sum hfib
+    _ ≤ q ^ (N + 1) * (1 - q)⁻¹ := sum_pow_Ico_le hq0 hq1 _ _
+    _ ≤ δ := htailδ
+
 /-- **The Schur test input.**  Every row of the Gaussian kernel has total mass
 at most one constant, uniformly in the base point --- Guentner--Kaminker's
 "finite and independent of `s ∈ Γ`" after (14).  Together with symmetry of the

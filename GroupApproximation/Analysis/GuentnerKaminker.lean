@@ -1,5 +1,6 @@
 import GroupApproximation.Analysis.CoarseCompression
 import GroupApproximation.Analysis.PropertyASquareWitness
+import GroupApproximation.Analysis.SchoenbergKernel
 
 /-!
 # Guentner--Kaminker: compression above `1/2` gives property A
@@ -17,6 +18,7 @@ attribution "Ozawa--Guentner--Kaminker" is exactly that split:
 | step | content | reference |
 |---|---|---|
 | geometric | `R(Γ) > 1/2` ⟹ Gaussian rows are uniformly summable | GK Lemma 3.5, estimate (14) |
+| Schoenberg | `u_κ` is of positive type --- **proved**, `Analysis/SchoenbergKernel.lean` | GK Theorem 3.2, first sentence |
 | operator | `Op(u_κ)` is a positive element of `C*_u(Γ)`, so `Op(u_κ)^{1/2}` is a norm limit of finite propagation operators | GK Theorem 3.2, closing paragraph |
 | crossover | finite width positive definite kernels tending to `1` on strips ⟺ `Γ` exact | Ozawa, *Amenable actions and exactness for discrete groups*, C. R. Acad. Sci. Paris 330 (2000); GK Proposition 3.3 |
 
@@ -44,12 +46,14 @@ group-side content of GK Proposition 3.3.
 
 ## What is carried as a hypothesis, and why
 
-Two statements, both named in `hasPropertyA_of_compressionExceeds_half` rather
-than assumed silently.
+One statement, named in `hasPropertyA_of_compressionExceeds_half` rather than
+assumed silently.
 
-`IsPositiveDefiniteKernel (gaussianKernel f κ)` is **Schoenberg's theorem**:
-`‖f s - f t‖²` is a kernel of negative type, so its Gaussian is of positive
-type.  Mathlib has neither notion at the pinned revision.
+Schoenberg's theorem --- `‖f s - f t‖²` is of negative type, so its Gaussian is
+of positive type --- is **not** among the hypotheses: it is proved, in
+`Analysis/SchoenbergKernel.lean`, on top of the Schur product theorem
+development that `Kazhdan/GaussianPositiveDefinite.lean` already carries for the
+Delorme direction of Delorme--Guichardet.
 
 `IsRoeSquareApproximable u` says of a kernel `u` exactly what Guentner--Kaminker
 extract in the closing paragraph of their Theorem 3.2: for every `δ` there is a
@@ -69,9 +73,66 @@ These need the Schur test on `ℓ²(Γ)` and the continuous functional calculus
 algebra itself (finite propagation operators, the ⋆-subalgebra, its closure) and
 its own header records that "everything analytic" for Ozawa's route remains ---
 including "Schur multipliers of positive-type kernels".  The hypothesis `hroe`
-is stated with precisely the four clauses that
-`gaussianKernel_lemma35_inputs` *proves*, so no geometric content is smuggled
-into it: what is assumed is the passage through `C*_u(Γ)`, and nothing else.
+is stated with precisely the five clauses that
+`gaussianKernel_lemma35_inputs` *proves*, so no geometric content and no
+Schoenberg content is smuggled into it: what is assumed is the passage through
+`C*_u(Γ)`, and nothing else.
+
+### `hroe` is discharged in `Analysis/GuentnerKaminkerEndpoint.lean`
+
+That module proves the theorem with **no hypotheses at all** beyond compression
+above `1/2`, so the conditional form below is superseded and is kept only
+because it isolates the operator step.  The route actually taken, and its
+status:
+
+1. `Op(u)` bounded --- **proved**, `Analysis/L2KernelOperator.lean`, by writing
+   a finite-width kernel as `Σ_g M_{a_g} λ_g` rather than by a Schur test.
+2. `Op(u)` positive and in `C*_u(Γ)` --- **proved**,
+   `Analysis/GaussianRoeOperator.lean`.
+3. `√(Op u) ∈ C*_u(Γ)` and the finite-width Gram approximation ---
+   `Analysis/RoeSquareRoot.lean`, via `cfc_mem`.
+4. the assembly --- `Analysis/GuentnerKaminkerEndpoint.lean`.
+
+Steps 1--2 have been elaborated at the pinned toolchain; steps 3--4 are
+authored but not yet built.
+
+The original assessment of what it would take, retained because it names the
+Mathlib prerequisites and the convention trap:
+
+1. **`Op(u)` as a bounded operator on `ℓ²(Γ)`** --- the Schur test.  Mathlib has
+   no Schur test.  The cheapest construction avoids one: a kernel of finite
+   propagation is a *finite sum of multiplication operators composed with
+   translations*, `Op(k) = Σ_{g ∈ S} M_{a_g} ρ_g` with `a_g(s) = k(s, g⁻¹s)`,
+   for which `‖Op(k)‖ ≤ Σ_g ‖a_g‖_∞`; `Op(u)` is then the norm limit of its
+   truncations, which converges by `CoarseCompression.exists_tail_bound`.  This
+   needs multiplication operators on `lp 2`, which are not in Mathlib either.
+   *Note the convention*: propagation in `UniformRoeAlgebra` is `s * t⁻¹ ∈ S`,
+   the **right**-invariant metric, while `WordMetric.wordDist` and
+   `ExactnessPermanence.PropertyAWitness` are left-invariant; the transfer is
+   the reindexing `vec g x := w (g⁻¹) (x⁻¹)`, which turns a right translate
+   `S · g⁻¹` into the left translate `g · S⁻¹`.
+2. **`0 ≤ Op(u)`** --- immediate from positive type on finitely supported
+   vectors, then density.  The real-to-complex step is the observation that for
+   a real symmetric kernel the complex form splits over real and imaginary
+   parts.
+3. **`√(Op u)` lies in `C*_u(Γ)`** --- this is `cfc_mem` (Mathlib
+   `Analysis/CStarAlgebra/ContinuousFunctionalCalculus/Range.lean`): the
+   continuous functional calculus of an element lands in every closed star
+   subalgebra containing it.  Use `cfc Real.sqrt` rather than `CFC.sqrt`: the
+   latter is `cfcₙ NNReal.sqrt`, and `cfcₙ_mem` is stated only for `RCLike`
+   scalars, which `ℝ≥0` is not.
+4. **The estimate** --- with `V = √(Op u)` selfadjoint and `W` finite
+   propagation, `star V * V - star W * W = star V * (V - W) + star (V - W) * W`,
+   so `‖Op u - star W * W‖ ≤ ‖V - W‖ (2‖V‖ + ‖V - W‖)`, and
+   `‖matrixCoeff T s t‖ ≤ ‖T‖` by Cauchy--Schwarz against the unit vectors
+   `δ_s`, `δ_t`.
+
+Steps 3 and 4 are short given the repository's `UniformRoeAlgebra`; step 1 is
+the substantial one, and step 2 depends on it.  Note also that the `ℓ²` vectors
+coming out of step 4 are complex, so `PropertyASquareWitness.SquareWitness`
+would have to carry `ℂ`-valued vectors with `‖·‖²` in place of `·²`; the
+Cauchy--Schwarz argument there is unchanged, since
+`| ‖a‖² - ‖b‖² | ≤ ‖a - b‖ (‖a‖ + ‖b‖)`.
 
 Note that the *geometric* hypothesis does not appear in the assembly theorem
 `hasPropertyA_of_gaussianRoeApproximation` at all, and neither does generation
@@ -84,21 +145,11 @@ large-scale Lipschitz clause, for the convergence condition (8).
 namespace GroupApproximation
 namespace GuentnerKaminker
 
-open ExactnessPermanence CoarseCompression PropertyASquareWitness
+open ExactnessPermanence CoarseCompression PropertyASquareWitness SchoenbergKernel
 
 universe u v
 
 variable {G : Type u} [Group G] {E : Type v} [NormedAddCommGroup E]
-
-/-! ## Positive type -/
-
-/-- A kernel is **of positive type** if all its finite quadratic forms are
-nonnegative.  For `u_κ(s,t) = exp(-κ‖f s - f t‖²)` this is Schoenberg's theorem
-applied to the negative type kernel `‖f s - f t‖²`; Mathlib has neither, so it
-appears below as a named hypothesis rather than as a proved fact. -/
-def IsPositiveDefiniteKernel (u : G → G → ℝ) : Prop :=
-  ∀ (n : ℕ) (x : Fin n → G) (c : Fin n → ℝ),
-    0 ≤ ∑ i : Fin n, ∑ j : Fin n, c i * c j * u (x i) (x j)
 
 /-! ## The operator step, named -/
 
@@ -129,16 +180,22 @@ def GaussianRoeApproximation (f : G → E) : Prop :=
 /-! ## What the compression hypothesis proves -/
 
 /-- **The inputs of Guentner--Kaminker's Lemma 3.5, all proved.**  For a
-large-scale Lipschitz map with compression exponent above `1/2`, the Gaussian
-kernel at any positive `κ` is normalised on the diagonal, symmetric, has rows of
-uniformly bounded mass, and has uniformly vanishing tails.
+large-scale Lipschitz map into a real inner product space with compression
+exponent above `1/2`, the Gaussian kernel at any positive `κ` is of positive
+type, normalised on the diagonal, symmetric, has rows of uniformly bounded mass,
+and has uniformly vanishing tails.
 
-The third and fourth clauses are estimate (14); they are the only place in the
-whole argument where `> 1/2` is used, and they are unconditional. -/
-theorem gaussianKernel_lemma35_inputs {T : Finset G}
+This is the complete hypothesis package that Guentner--Kaminker's Lemma 3.5 and
+the closing paragraph of their Theorem 3.2 consume, and **every clause of it is
+proved here** --- the first by Schoenberg
+(`SchoenbergKernel.gaussianKernel_isPositiveDefinite`), the last two by estimate
+(14), which is the only place in the whole argument where `> 1/2` is used.
+Nothing in this statement is conditional. -/
+theorem gaussianKernel_lemma35_inputs {T : Finset G} [InnerProductSpace ℝ E]
     (hT : WordMetric.IsSymmetricGeneratingSet (↑T : Set G))
     {f : G → E} {β : ℝ} (hβ : 1 / 2 < β)
     (hcomp : HasCompressionExponent (↑T : Set G) f β) {κ : ℝ} (hκ : 0 < κ) :
+    IsPositiveDefiniteKernel (gaussianKernel f κ) ∧
     (∀ s : G, gaussianKernel f κ s s = 1) ∧
     (∀ s t : G, gaussianKernel f κ s t = gaussianKernel f κ t s) ∧
     (∃ C : ℝ, 0 ≤ C ∧ ∀ (s : G) (F : Finset G),
@@ -146,8 +203,8 @@ theorem gaussianKernel_lemma35_inputs {T : Finset G}
     (∀ δ : ℝ, 0 < δ → ∃ N : ℕ, ∀ (s : G) (F : Finset G),
       (∀ t ∈ F, N < WordMetric.wordDist (↑T : Set G) s t) →
         ∑ t ∈ F, gaussianKernel f κ s t ≤ δ) := by
-  refine ⟨gaussianKernel_self f κ, gaussianKernel_comm f κ,
-    exists_schur_bound hT hβ hcomp hκ, ?_⟩
+  refine ⟨gaussianKernel_isPositiveDefinite f hκ.le, gaussianKernel_self f κ,
+    gaussianKernel_comm f κ, exists_schur_bound hT hβ hcomp hκ, ?_⟩
   intro δ hδ
   exact exists_tail_bound hT hβ hcomp hκ hδ
 
@@ -266,25 +323,24 @@ theorem hasPropertyA_of_gaussianRoeApproximation {T : Finset G}
 
 /-- **Guentner--Kaminker Theorem 3.2, group side.**  A finitely generated group
 whose Hilbert space compression exceeds `1/2` has Yu's property A --- granted
-the two steps this repository cannot prove, both named in the statement:
+the one step this repository does not yet prove, named in the statement:
 
-* `hschoenberg` --- Schoenberg's theorem, that the Gaussian of a negative type
-  kernel is of positive type;
 * `hroe` --- the operator step, that a positive type kernel which is normalised,
   symmetric, and has uniformly bounded rows with uniformly vanishing tails is
-  approximable by finite width squares.  The four clauses of `hroe`'s hypothesis
-  are exactly what `gaussianKernel_lemma35_inputs` proves from the compression
-  hypothesis, so nothing about the geometry is being assumed here: what is
-  assumed is Guentner--Kaminker's passage through `C*_u(Γ)`.
+  approximable by finite width squares.  The five clauses of `hroe`'s hypothesis
+  are exactly what `gaussianKernel_lemma35_inputs` proves --- positive type
+  included, by Schoenberg --- so nothing about the geometry and nothing about
+  Schoenberg is being assumed here: what is assumed is Guentner--Kaminker's
+  passage through `C*_u(Γ)`, and nothing else.  The module header records what
+  discharging it would take.
 
 The crossover from property A to exactness of `C⋆_red(Γ)` is Ozawa's theorem
 (their Proposition 3.3) and is not formalised; see `Analysis/CStarExactness.lean`
 for the standing record of that gap. -/
 theorem hasPropertyA_of_compressionExceeds_half {T : Finset G}
+    [InnerProductSpace ℝ E]
     (hT : WordMetric.IsSymmetricGeneratingSet (↑T : Set G))
     (hcomp : CompressionExceeds (↑T : Set G) (1 / 2) E)
-    (hschoenberg : ∀ (f : G → E) (κ : ℝ), 0 < κ →
-      IsPositiveDefiniteKernel (gaussianKernel f κ))
     (hroe : ∀ u : G → G → ℝ, IsPositiveDefiniteKernel u →
       (∀ s : G, u s s = 1) → (∀ s t : G, u s t = u t s) →
       (∃ C : ℝ, 0 ≤ C ∧ ∀ (s : G) (F : Finset G), ∑ t ∈ F, u s t ≤ C) →
@@ -296,9 +352,9 @@ theorem hasPropertyA_of_compressionExceeds_half {T : Finset G}
   obtain ⟨C, D, hC, hD, hb⟩ := hlip
   refine hasPropertyA_of_gaussianRoeApproximation hC hD hb ?_
   intro κ hκ
-  obtain ⟨hdiag, hsymm, hschur, htails⟩ :=
+  obtain ⟨hpd, hdiag, hsymm, hschur, htails⟩ :=
     gaussianKernel_lemma35_inputs hT hβ hcompf hκ
-  exact hroe _ (hschoenberg f κ hκ) hdiag hsymm hschur htails
+  exact hroe _ hpd hdiag hsymm hschur htails
 
 end GuentnerKaminker
 end GroupApproximation

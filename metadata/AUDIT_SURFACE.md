@@ -4,7 +4,7 @@
 
 For every declaration a manuscript margin note names, the number of **repository-local** constants its statement transitively depends on, and the number of source lines those constants occupy.  Mathlib and core constants are not counted; definitions are unfolded and theorem proofs are not.  See `scripts/StatementClosure.lean` for what the number is for and why it is the first half of the `leanprover/comparator` protocol.
 
-Whole development: **1206 local constants, 7869 source lines** in the union of every mapped statement's closure.
+Whole development: **1186 local constants, 7737 source lines** in the union of every mapped statement's closure.
 
 ## Soficity manuscript
 
@@ -437,7 +437,7 @@ GroupApproximation.window_defect_eq                                             
 
 ## Non-MF manuscript
 
-Roster: `metadata/NON_MF_CLAIM_DECLS.txt` (113 declarations).  Union of all statement closures: **736 local constants, 4034 source lines**.
+Roster: `metadata/NON_MF_CLAIM_DECLS.txt` (110 declarations).  Union of all statement closures: **716 local constants, 3902 source lines**.
 
 ```
 declaration                                                                                            constants  lines
@@ -446,7 +446,6 @@ GroupApproximation.AdianRabinVariantTransform.operatorMF_negative_side_not_re_of
 GroupApproximation.AdianRabinVariantTransform.operatorMF_recognition_undecidable_of_wordProblem        22         136
 GroupApproximation.BlockCliffordTowerSofic.manuscriptResiduallyFiniteWindow                            12         41
 GroupApproximation.BooneGroup.exists_finitelyPresented_wordProblem_undecidable                         0          0
-GroupApproximation.CStarExactness.reducedGroupCStar_not_nuclear                                        65         190
 GroupApproximation.CliffordBSAmenableMF.manuscriptSharpnessOfKazhdanHypothesis                         71         360
 GroupApproximation.Computability.not_computablePred_wordProblemPred                                    8          40
 GroupApproximation.Computability.operatorMF_recognition_not_computable                                 19         116
@@ -481,7 +480,6 @@ GroupApproximation.LiteralNonMFEndpoint.negativeCorner_kazhdanTransport_contradi
 GroupApproximation.LiteralNonMFLinearWitness.literal_mark_ne_one                                       57         107
 GroupApproximation.LiteralNonMFPresentation.manuscriptLiteralPresentation                              61         126
 GroupApproximation.LiteralProductMultiplicity.manuscriptInfiniteMultiplicity_literal                   70         184
-GroupApproximation.LiteralRelatorObstruction.literal_relator_uniform_obstruction                       57         110
 GroupApproximation.LiteralSignFreeQuotient.commutator_not_zpow_mark                                    65         131
 GroupApproximation.LiteralSignFreeQuotient.signFreeQuotient_not_isCDEOperatorMF                        79         282
 GroupApproximation.LiteralSignFreeQuotient.signFree_collapse                                           88         303
@@ -529,7 +527,6 @@ GroupApproximation.MaximalCStarPrintedHypotheses.manuscriptMaximalCStarRemarkFro
 GroupApproximation.NeumannContinuum.manuscriptContinuumMultiplicityUnconditional                       89         418
 GroupApproximation.NormModel.exists_hs_collapse                                                        4          20
 GroupApproximation.NuclearityAmenability.manuscriptNotAmenableOfBaseEmbeds                             64         167
-GroupApproximation.PrintedCornerCompression.manuscriptCornerAsymptoticRepresentation                   21         114
 GroupApproximation.ProjectionCompressionCollapse.corona_projection_collapse                            20         164
 GroupApproximation.QuasiRegularWitness.baseVector_apply_base                                           6          44
 GroupApproximation.ScaledKazhdanTransport.scaled_transport_both                                        10         62

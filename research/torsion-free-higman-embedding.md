@@ -58,3 +58,39 @@ particular does not make `Wh(K) -> Wh(H)` injective; that gap is
 `whitehead-injective-torsion-free-embedding`.  Routes may now depend on this
 claim without inheriting an unverified premise, but must not silently upgrade
 "embeds" to "embeds with control on an invariant".
+
+## Formalization state, 2026-08-19
+
+This claim is now the *only* thing standing between this repository and
+Chiodo Theorem 3.10, and it is carried in Lean as
+`GroupApproximation.ChiodoHost.TorsionFreeHigmanHull`, evaluated at one
+explicit group.
+
+What is proved unconditionally, and needs nothing from this node:
+
+* Chiodo §3 entire --- `Algebra/TorsionFreeRadical.lean` (the torsion-free
+  radical as the infimum of the normal *isolated* subgroups, with Corollary
+  3.4), `Algebra/TorsionFreeRadicalTower.lean` (Definition 3.1's tower, Lemma
+  3.2, Proposition 3.3), `Algebra/TorsionFreeQuotient.lean` (the universal
+  torsion-free quotient, its lift, uniqueness of the lift, and the retraction
+  principle);
+* `Monsters/ChiodoTorsionFreeAbsorber.lean` --- the group Theorem 2.2 has to
+  be applied to: the restricted direct product of the groups of **all**
+  finite presentation codes, passed to its universal torsion-free quotient.
+  Countable, torsion-free, nontrivial, and containing a copy of every
+  finitely presented torsion-free group;
+* Chiodo Definition 2.1 and the empty-`Tord`-means-torsion-free step ---
+  `Sofic/ChiodoUniversalHost.lean`, which also derives
+  `FournierFacioUniversal.UniversalTorsionFreeHost` from a hull for that
+  group.
+
+What this node still owes: the embedding itself, which is Higman's theorem
+with the torsion orders controlled.  Note the index set.  The repository's
+earlier payload
+(`Monsters/UniversalFinitelyPresentedTorsionFreeGroup.lean`) was indexed by
+the codes whose group is torsion-free, which is undecidable by Adian--Rabin,
+so this claim could not be applied to it at all; the absorber replaces that
+filtering by a torsion-free quotient, which is Chiodo's own Proposition 3.8
+device, and the index set is the full code type.  The claim is therefore now
+*applicable* where before it was not, which is a different thing from being
+proved.

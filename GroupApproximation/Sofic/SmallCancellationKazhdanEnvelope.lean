@@ -1,4 +1,6 @@
 import GroupApproximation.Sofic.FournierFacioUniversalGroup
+import GroupApproximation.Algebra.HyperbolicGroup
+import GroupApproximation.Analysis.PropertyTNonamenable
 
 /-!
 # `LI.12b`: the small-cancellation route to Fournier-Facio's group
@@ -31,8 +33,8 @@ hyperbolic group with property `(T)`.  The route has therefore two inputs and
 one output:
 
 * `HyperbolicKazhdanPartner` --- the group `H`.  Random groups at density
-  below `1/2` supply it (Zuk; Ollivier--Wise), and it is finitely presented,
-  torsion-free and Kazhdan.
+  below `1/2` supply it (Zuk; Ollivier--Wise), and it is infinite, finitely
+  presented, torsion-free, hyperbolic and Kazhdan.
 * `SmallCancellationQuotient U H` --- the *output clause list* of the
   small-cancellation step: a quotient of the free product `U * H` in which
   the peripheral factor `U` still embeds (Osin, *Small cancellations over
@@ -97,24 +99,38 @@ open FournierFacioUniversal
 
 /-! ## 1.  The hyperbolic Kazhdan partner -/
 
-/-- **The second group of the small-cancellation pair.**  A finitely
-presented torsion-free group with property `(T)` --- in the intended
-application a torsion-free hyperbolic Kazhdan group, supplied by random
+/-- **The second group of the small-cancellation pair.**  An infinite finitely
+presented torsion-free hyperbolic group with property `(T)`, supplied by random
 groups at density below `1/2`.
 
-Hyperbolicity is not a field: this library cannot state it, the route uses
-the partner only through its property `(T)` and through the surjection onto
-the quotient, and recording a property that nothing consumes would overstate
-what the interface checks.  Torsion-freeness is recorded because it is what
-makes the free product `U * H` torsion-free, which is what Osin's
-torsion-preservation clause preserves. -/
+**Hyperbolicity is now a field.**  It was not one when this module was written,
+because the library could not state the notion; `Algebra/HyperbolicGroup.lean`
+supplies it --- Gromov's four-point condition on the word metric of a finite
+symmetric generating set --- so the interface can record what the literature
+actually delivers instead of the fragment the route happens to consume.
+
+**Infiniteness is a field, and it is what keeps the interface honest.**  Every
+other clause holds of the trivial group: a finite group is hyperbolic
+(`Hyperbolic.isHyperbolicGroup_of_finite`) and Kazhdan, and a finite group is
+torsion-free exactly when it is trivial.  Without this clause the structure
+would be inhabited by a group the small-cancellation step cannot use, and
+`KC.21` would read as discharged by a witness that discharges nothing.  With
+it, `HyperbolicKazhdanPartner.not_isAmenable` derives that the partner is
+nonelementary.
+
+Torsion-freeness is recorded because it is what makes the free product `U * H`
+torsion-free, which is what Osin's torsion-preservation clause preserves. -/
 structure HyperbolicKazhdanPartner where
   /-- The partner `H`. -/
   Carrier : Type
   [groupCarrier : Group Carrier]
   [finitelyPresentedCarrier : Group.IsFinitelyPresented Carrier]
+  [infiniteCarrier : Infinite Carrier]
   /-- `H` is torsion-free. -/
   torsionFree : IsPowerTorsionFree Carrier
+  /-- `H` is hyperbolic, in the four-point sense of
+  `Algebra/HyperbolicGroup.lean`. -/
+  hyperbolic : Hyperbolic.IsHyperbolicGroup Carrier
   /-- `H` has property `(T)`; this is the sole source of `(T)` downstream. -/
   kazhdan : HasKazhdanPropertyT.{0, 0} Carrier
 
@@ -124,6 +140,23 @@ instance partnerGroup (H : HyperbolicKazhdanPartner) : Group H.Carrier :=
 instance partnerFinitelyPresented (H : HyperbolicKazhdanPartner) :
     Group.IsFinitelyPresented H.Carrier :=
   H.finitelyPresentedCarrier
+
+instance partnerInfinite (H : HyperbolicKazhdanPartner) : Infinite H.Carrier :=
+  H.infiniteCarrier
+
+/-- **The partner is nonamenable**, derived from the two fields and not
+postulated: an infinite Kazhdan group is not amenable
+(`PropertyTNonamenable.infinite_kazhdan_not_isAmenable`).
+
+This is the checkable half of nonelementarity.  The elementary hyperbolic groups
+are the virtually cyclic ones, and those are amenable, so a nonamenable
+hyperbolic group is nonelementary --- which is what Osin's small cancellation
+over `(U * H, U)` needs of the partner.  That last step is the standard fact
+about virtually cyclic groups; this library does not state it, so what is
+recorded here is nonamenability alone. -/
+theorem HyperbolicKazhdanPartner.not_isAmenable (H : HyperbolicKazhdanPartner) :
+    ¬ IsAmenable H.Carrier :=
+  PropertyTNonamenable.infinite_kazhdan_not_isAmenable H.kazhdan
 
 /-! ## 2.  The small-cancellation common quotient -/
 
