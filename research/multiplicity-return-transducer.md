@@ -72,12 +72,13 @@ which is what normalized Hilbert--Schmidt norm can see.
   proved for arbitrary weights.
 - **Uniform three-XOR specialization.**
   `taller-vidick-uniform-rank-pressure-return` removes the arbitrary-predicate
-  layer.  Taller--Vidick already output only three-variable parity equations,
-  and each failure is `rank diag(1,b+x+y+z)=2` instead of one.  Every check
-  therefore uses the same two-pair packet and the LCS query words are globally
-  shared; no Fanizza tape-level selector renewal is needed.  The remaining
-  obstruction is still genuinely global: a tracially exact return must expose
-  the one-versus-two finite packet-type count without complementary leakage.
+  layer.  Taller--Vidick output three-variable parity equations, and each
+  verifier rejection splits into one parity bit and one Alice--Bob consistency
+  bit.  Both are affine and use the same two-pair packet.  No common classical
+  assignment is assumed and no Fanizza tape-level selector renewal is needed.
+  The remaining obstruction is still genuinely global: a tracially exact
+  return must align the contextual endpoints and expose the one-versus-two
+  finite packet-type count without complementary leakage.
 - **Local exactification is discharged; simultaneous correction is bypassed.**
   `finite-schur-clifford-packet-flexible-hs-exactification` applies fixed
   word-table telescoping and Gowers--Hatami stability to each individual

@@ -1,0 +1,44 @@
+---
+rg: 2
+id: uniform-affine-lcs-rank-return
+kind: claim
+title: Return the uniform affine LCS loss bits at fixed packet scale
+distinct_from:
+  fresh-selector-renewal-after-symplectic-chart-reset: that forgets a changing nonlinear Fanizza context after an S3 chart; here every detector is the same two-pair affine packet on one finite game incidence.
+  perfect-lcs-gap-implies-nonhyperlinear: that identifies Alice and Bob with one exact solution-group tuple and therefore needs perfect completeness; this retains their parity and consistency failures as rank-jump sectors.
+---
+
+Starting from the finite packet incidence in `(TAP1)--(TAP3)`, add finite group
+relations with the following properties.
+
+1. The exact tracial representation with `J=-1` extends across the added
+   incidence.
+2. In every finite-dimensional normalized-HS microstate, the combined parity
+   and consistency rank mass `q` produces an `Omega(qd)` mismatch between
+   exact representations of one fixed finite packet at the return, up to
+   `O(sqrt(E))` exactification loss.
+
+The finite-group multiplicity theorem would then give
+
+```text
+E_return >= c q-o(1).                                      (UAR1)
+```
+
+Both a three-bit parity failure and a two-bit equality failure are affine; the
+latter is the same gate with one dummy zero selector.  Hence all checks use one
+uniform two-by-two diagonal pencil and there is no arbitrary Boolean predicate
+compiler.  The open point is a group-word return which is exact in the tracial
+model but cannot discharge the extra finite-dimensional block through a
+complementary representation type.  A graph of finite groups still fails by
+the stationary integer-flow obstruction.
+
+## Attempts
+
+- A graph of the finite affine packets admits stationary regular type flow;
+  the rank-jump block can leak into complementary packet types without paying
+  a dimension-proportional defect.
+- Imposing the parity and consistency equations as scalar group relations
+  deletes the failure sectors and returns to the unavailable
+  perfect-completeness solution-group route.
+- Keeping every auxiliary packet private preserves the tracial lift but gives
+  no common fixed-scale type at which different checks can be compared.
