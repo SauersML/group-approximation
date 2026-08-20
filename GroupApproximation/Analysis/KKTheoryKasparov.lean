@@ -98,9 +98,7 @@ def complexAlgebra : SepCStarAlgebra.{0} where
   carrier := ℂ
 
 theorem complexAlgebra_isCommutative : complexAlgebra.IsCommutative :=
-  -- `carrier` is a projection, so the commutativity instance on `ℂ` is not
-  -- found through it; naming the type finds it
-  fun x y => mul_comm (G := ℂ) x y
+  fun x y => mul_comm x y
 
 /-! ## Homotopy of `⋆`-homomorphisms -/
 
@@ -124,11 +122,8 @@ theorem Homotopic.symm {A B : Type*} [CStarAlgebra A] [CStarAlgebra B]
   obtain ⟨p, hp, h0, h1⟩ := h
   refine ⟨fun t => p (1 - t),
     fun a => (hp a).comp (continuous_const.sub continuous_id), ?_, ?_⟩
-  -- the goal is still a beta-redex, so the rewrite cannot see `1 - 0`
-  · show p (1 - 0) = g
-    rw [sub_zero]; exact h1
-  · show p (1 - 1) = f
-    rw [sub_self]; exact h0
+  · rw [sub_zero]; exact h1
+  · rw [sub_self]; exact h0
 
 /-! ## The Kasparov bifunctor -/
 

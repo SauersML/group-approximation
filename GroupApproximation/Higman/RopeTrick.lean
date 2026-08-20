@@ -58,7 +58,6 @@ def Aemb : Subgroup w.K := (⊤ : Subgroup F).map w.emb
 /-- The first HNN extension: the stable letter centralizes `L`. -/
 abbrev Gamma : Type := CentHNN w.L
 
-omit [N.Normal] in
 theorem isFinitelyPresented_gamma : Group.IsFinitelyPresented (Gamma w) :=
   isFinitelyPresented_centHNN w.L w.L_fg
 
@@ -67,7 +66,6 @@ noncomputable def aembEquiv : F ≃* ↥(Aemb w) :=
   (Subgroup.topEquiv (G := F)).symm.trans
     (Subgroup.equivMapOfInjective (⊤ : Subgroup F) w.emb w.emb_injective)
 
-omit [N.Normal] in
 theorem coe_aembEquiv (x : F) : ((aembEquiv w x : ↥(Aemb w)) : w.K) = w.emb x := by
   show ((Subgroup.equivMapOfInjective (⊤ : Subgroup F) w.emb w.emb_injective)
     ((Subgroup.topEquiv (G := F)).symm x) : w.K) = _
@@ -144,10 +142,10 @@ noncomputable def quotientEmb : (F ⧸ N) →* RopeGroup w :=
   (HNNExtension.of).comp (MonoidHom.inr (Gamma w) (F ⧸ N))
 
 theorem quotientEmb_injective : Function.Injective (quotientEmb w) := by
-  intro x y hxy
-  have h : (MonoidHom.inr (Gamma w) (F ⧸ N)) x = (MonoidHom.inr (Gamma w) (F ⧸ N)) y :=
-    HNNExtension.of_injective (φ := psi w) hxy
-  exact congrArg Prod.snd h
+  refine Function.Injective.comp ?_ ?_
+  · exact HNNExtension.of_injective (φ := psi w)
+  · intro x y hxy
+    exact congrArg Prod.snd hxy
 
 end Rope
 end Higman
@@ -180,18 +178,16 @@ def preF : F →* Pre w :=
 /-- The last stable letter, inside the candidate. -/
 def preE : Pre w := Monoid.Coprod.inr (Multiplicative.ofAdd (1 : ℤ))
 
-omit [N.Normal] in
 theorem preGamma_commute_preF (g : Gamma w) (x : F) :
     Commute (preGamma w g) (preF w x) := by
-  have h : Commute ((g, (1 : F)) : Gamma w × F) (((1 : Gamma w), x) : Gamma w × F) := by
-    show ((g, (1 : F)) : Gamma w × F) * ((1 : Gamma w), x)
-      = ((1 : Gamma w), x) * (g, (1 : F))
-    refine Prod.ext ?_ ?_
-    · show g * 1 = 1 * g
-      rw [mul_one, one_mul]
-    · show (1 : F) * x = x * 1
-      rw [mul_one, one_mul]
-  exact h.map (Monoid.Coprod.inl : Gamma w × F →* Pre w)
+  unfold preGamma preF
+  refine Commute.map ?_ _
+  show ((g, (1 : F))) * ((1 : Gamma w), x) = ((1 : Gamma w), x) * (g, (1 : F))
+  refine Prod.ext ?_ ?_
+  · show g * 1 = 1 * g
+    rw [mul_one, one_mul]
+  · show (1 : F) * x = x * 1
+    rw [mul_one, one_mul]
 
 /-- The image of `x ∈ F` in the first extension. -/
 def gammaOf (x : F) : Gamma w := HNNExtension.of (w.emb x)
@@ -215,7 +211,6 @@ def relatorB (x : F) : Pre w :=
 def relators (SF : Set F) : Set (Pre w) :=
   relatorA w '' SF ∪ relatorB w '' SF
 
-omit [N.Normal] in
 theorem relators_finite {SF : Set F} (hSF : SF.Finite) :
     (relators w SF).Finite :=
   (hSF.image _).union (hSF.image _)
@@ -228,7 +223,6 @@ abbrev Pres (SF : Set F) : Type :=
 def presMk (SF : Set F) : Pre w →* Pres w SF :=
   QuotientGroup.mk' _
 
-omit [N.Normal] in
 theorem isFinitelyPresented_pres [Group.IsFinitelyPresented F] {SF : Set F}
     (hSF : SF.Finite) : Group.IsFinitelyPresented (Pres w SF) := by
   letI : Group.IsFinitelyPresented (Gamma w) := isFinitelyPresented_gamma w
@@ -237,17 +231,15 @@ theorem isFinitelyPresented_pres [Group.IsFinitelyPresented F] {SF : Set F}
 
 /-! ## 5.  The relations hold on all of `F`, not just on the generators -/
 
-omit [N.Normal] in
 theorem relatorA_mem (SF : Set F) {x : F} (hx : x ∈ SF) :
     relatorA w x ∈ Subgroup.normalClosure (relators w SF) :=
-  Subgroup.subset_normalClosure (Or.inl (Set.mem_image_of_mem _ hx))
+  Subgroup.subset_closure (Set.mem_of_mem_of_subset
+    (Set.mem_image_of_mem _ hx) (fun _ h => Subgroup.subset_normalClosure (Or.inl h)))
 
-omit [N.Normal] in
 theorem relatorB_mem (SF : Set F) {x : F} (hx : x ∈ SF) :
     relatorB w x ∈ Subgroup.normalClosure (relators w SF) :=
   Subgroup.subset_normalClosure (Or.inr (Set.mem_image_of_mem _ hx))
 
-omit [N.Normal] in
 /-- In the candidate, the first relation holds for every element of `F`, not
 only for the generators: both sides are homomorphisms in `x`, because the
 image of the first extension commutes with the image of `F`. -/
@@ -259,7 +251,8 @@ theorem presMk_relA {SF : Set F} (hSF : Subgroup.closure SF = ⊤) (x : F) :
   set f₁ : F →* Pres w SF :=
     { toFun := fun x => π (preE w) * π (preGamma w (gammaOf w x)) * (π (preE w))⁻¹
       map_one' := by
-        simp [gammaOf]
+        unfold gammaOf
+        rw [map_one, map_one, map_one, mul_one, mul_inv_cancel]
       map_mul' := by
         intro a b
         unfold gammaOf
@@ -268,7 +261,8 @@ theorem presMk_relA {SF : Set F} (hSF : Subgroup.closure SF = ⊤) (x : F) :
   set f₂ : F →* Pres w SF :=
     { toFun := fun x => π (preGamma w (gammaOf w x)) * π (preF w x)
       map_one' := by
-        simp [gammaOf]
+        unfold gammaOf
+        rw [map_one, map_one, map_one, map_one, mul_one]
       map_mul' := by
         intro a b
         unfold gammaOf
@@ -309,7 +303,6 @@ theorem presMk_relA {SF : Set F} (hSF : Subgroup.closure SF = ⊤) (x : F) :
     exact Subgroup.mem_top x
   exact this
 
-omit [N.Normal] in
 /-- The same for the second relation. -/
 theorem presMk_relB {SF : Set F} (hSF : Subgroup.closure SF = ⊤) (x : F) :
     presMk w SF (preE w) * presMk w SF (preGamma w (gammaConj w x)) *
@@ -325,13 +318,14 @@ theorem presMk_relB {SF : Set F} (hSF : Subgroup.closure SF = ⊤) (x : F) :
       map_mul' := by
         intro a b
         unfold gammaConj
+        rw [map_mul]
         have hsplit : (HNNExtension.t : Gamma w)⁻¹ *
-            HNNExtension.of (w.emb (a * b)) * HNNExtension.t
+            HNNExtension.of (w.emb a * w.emb b) * HNNExtension.t
             = ((HNNExtension.t : Gamma w)⁻¹ * HNNExtension.of (w.emb a) *
                 HNNExtension.t) *
               ((HNNExtension.t : Gamma w)⁻¹ * HNNExtension.of (w.emb b) *
                 HNNExtension.t) := by
-          rw [map_mul, map_mul]
+          rw [map_mul]
           group
         rw [hsplit, map_mul, map_mul]
         group } with hg₁
@@ -344,13 +338,14 @@ theorem presMk_relB {SF : Set F} (hSF : Subgroup.closure SF = ⊤) (x : F) :
       map_mul' := by
         intro a b
         unfold gammaConj
+        rw [map_mul]
         have hsplit : (HNNExtension.t : Gamma w)⁻¹ *
-            HNNExtension.of (w.emb (a * b)) * HNNExtension.t
+            HNNExtension.of (w.emb a * w.emb b) * HNNExtension.t
             = ((HNNExtension.t : Gamma w)⁻¹ * HNNExtension.of (w.emb a) *
                 HNNExtension.t) *
               ((HNNExtension.t : Gamma w)⁻¹ * HNNExtension.of (w.emb b) *
                 HNNExtension.t) := by
-          rw [map_mul, map_mul]
+          rw [map_mul]
           group
         rw [hsplit, map_mul, map_mul] } with hg₂
   have hgen : ∀ y ∈ SF, g₁ y = g₂ y := by
@@ -373,7 +368,6 @@ theorem presMk_relB {SF : Set F} (hSF : Subgroup.closure SF = ⊤) (x : F) :
     exact Subgroup.mem_top x
   exact this
 
-omit [N.Normal] in
 /-- **The relations of the quotient are consequences.**  For `n ∈ N` the two
 displayed relations have equal left-hand sides, because `ι n` lies in `L` and
 so is fixed by the first stable letter; comparing right-hand sides kills
@@ -410,16 +404,14 @@ variable {F : Type} [Group F] {N : Subgroup F} [N.Normal] (w : BenignWitness N)
 
 /-! ## 6.  What the last stable letter does -/
 
-omit [N.Normal] in
 theorem gammaOf_mem_sub (x : F) : gammaOf w x ∈ Sub w :=
   Subgroup.subset_closure (Or.inl ⟨w.emb x, ⟨x, Subgroup.mem_top x, rfl⟩, rfl⟩)
 
-omit [N.Normal] in
 theorem gammaConj_mem_sub (x : F) : gammaConj w x ∈ Sub w := by
   refine Subgroup.subset_closure (Or.inr ?_)
   refine ⟨HNNExtension.of (w.emb x), ⟨w.emb x, ⟨x, Subgroup.mem_top x, rfl⟩, rfl⟩, ?_⟩
-  show conjT w.L (HNNExtension.of (w.emb x)) = _
-  rw [conjT_apply, inv_inv]
+  show _ * _ * _ = _
+  rw [inv_inv]
   rfl
 
 theorem pair_mem_ae (s : Gamma w) (hs : s ∈ Sub w) :
@@ -528,37 +520,17 @@ theorem inl_inr_commute (g : Gamma w) (x : F ⧸ N) :
   · show (1 : F ⧸ N) * x = x * 1
     rw [mul_one, one_mul]
 
-/-- The map on the manifestly presented group, before the relators are
-imposed. -/
-noncomputable def preToRope : Pre w →* RopeGroup w :=
-  Monoid.Coprod.lift
-    (MonoidHom.noncommCoprod
-      ((HNNExtension.of : Amb w →* RopeGroup w).comp
-        (MonoidHom.inl (Gamma w) (F ⧸ N)))
-      ((HNNExtension.of : Amb w →* RopeGroup w).comp
-        ((MonoidHom.inr (Gamma w) (F ⧸ N)).comp (QuotientGroup.mk' N)))
-      (fun g x => inl_inr_commute w g (QuotientGroup.mk' N x)))
-    (zpowersHom (RopeGroup w) (HNNExtension.t))
-
-@[simp] theorem preToRope_gamma (g : Gamma w) :
-    preToRope w (preGamma w g)
-      = (HNNExtension.of : Amb w →* RopeGroup w) (g, 1) := by
-  simp [preToRope, preGamma]
-  exact map_one _
-
-@[simp] theorem preToRope_f (x : F) :
-    preToRope w (preF w x)
-      = (HNNExtension.of : Amb w →* RopeGroup w) (1, QuotientGroup.mk' N x) := by
-  simp [preToRope, preF]
-  exact map_one _
-
-@[simp] theorem preToRope_e :
-    preToRope w (preE w) = (HNNExtension.t : RopeGroup w) := by
-  simp [preToRope, preE]
-
 /-- The map from the finitely presented candidate to the rope group. -/
 noncomputable def toRope (SF : Set F) : Pres w SF →* RopeGroup w := by
-  refine QuotientGroup.lift _ (preToRope w) ?_
+  refine QuotientGroup.lift _
+    (Monoid.Coprod.lift
+      (MonoidHom.noncommCoprod
+        ((HNNExtension.of : Amb w →* RopeGroup w).comp
+          (MonoidHom.inl (Gamma w) (F ⧸ N)))
+        ((HNNExtension.of : Amb w →* RopeGroup w).comp
+          ((MonoidHom.inr (Gamma w) (F ⧸ N)).comp (QuotientGroup.mk' N)))
+        (fun g x => inl_inr_commute w g (QuotientGroup.mk' N x)))
+      (zpowersHom (RopeGroup w) (HNNExtension.t))) ?_
   refine Subgroup.normalClosure_le_normal ?_
   rintro _ (⟨x, -, rfl⟩ | ⟨x, -, rfl⟩)
   · -- the first relator
@@ -577,8 +549,13 @@ noncomputable def toRope (SF : Set F) : Pres w SF →* RopeGroup w := by
     show _ ∈ _
     refine MonoidHom.mem_ker.mpr ?_
     unfold relatorA
-    rw [map_mul, map_mul, map_mul, map_inv, map_inv, map_mul,
-      preToRope_e, preToRope_gamma, preToRope_f, ← hconj]
+    rw [map_mul, map_mul, map_mul, map_inv, map_inv, map_mul]
+    show (HNNExtension.t : RopeGroup w) *
+        (HNNExtension.of ((gammaOf w x, (1 : F ⧸ N)) : Amb w)) *
+        (HNNExtension.t : RopeGroup w)⁻¹ *
+        ((HNNExtension.of ((gammaOf w x, (1 : F ⧸ N)) : Amb w)) *
+          (HNNExtension.of (((1 : Gamma w), QuotientGroup.mk' N x) : Amb w)))⁻¹ = 1
+    rw [← hconj]
     exact mul_inv_cancel _
   · -- the second relator
     have hconj := HNNExtension.equiv_eq_conj (φ := psi w)
@@ -587,22 +564,24 @@ noncomputable def toRope (SF : Set F) : Pres w SF →* RopeGroup w := by
     rw [coe_psi_conj] at hconj
     refine MonoidHom.mem_ker.mpr ?_
     unfold relatorB
-    rw [map_mul, map_mul, map_mul, map_inv, map_inv,
-      preToRope_e, preToRope_gamma, ← hconj]
+    rw [map_mul, map_mul, map_mul, map_inv, map_inv]
+    show (HNNExtension.t : RopeGroup w) *
+        (HNNExtension.of ((gammaConj w x, (1 : F ⧸ N)) : Amb w)) *
+        (HNNExtension.t : RopeGroup w)⁻¹ *
+        (HNNExtension.of ((gammaConj w x, (1 : F ⧸ N)) : Amb w))⁻¹ = 1
+    rw [← hconj]
     exact mul_inv_cancel _
 
 @[simp] theorem toRope_gamma (SF : Set F) (g : Gamma w) :
     toRope w SF (presMk w SF (preGamma w g))
-      = (HNNExtension.of : Amb w →* RopeGroup w) (g, 1) := preToRope_gamma w g
+      = (HNNExtension.of : Amb w →* RopeGroup w) (g, 1) := rfl
 
 @[simp] theorem toRope_f (SF : Set F) (x : F) :
     toRope w SF (presMk w SF (preF w x))
-      = (HNNExtension.of : Amb w →* RopeGroup w) (1, QuotientGroup.mk' N x) :=
-  preToRope_f w x
+      = (HNNExtension.of : Amb w →* RopeGroup w) (1, QuotientGroup.mk' N x) := rfl
 
 @[simp] theorem toRope_e (SF : Set F) :
-    toRope w SF (presMk w SF (preE w)) = (HNNExtension.t : RopeGroup w) :=
-  preToRope_e w
+    toRope w SF (presMk w SF (preE w)) = (HNNExtension.t : RopeGroup w) := rfl
 
 /-! ## 8.  The value map, computed on the generators -/
 
@@ -651,7 +630,7 @@ theorem tau_gammaOf (x : F) :
   have h₁ := coe_psi w (gammaOf w x) (gammaOf_mem_sub w x)
   have h₂ := coe_psi_of w x
   rw [h₁] at h₂
-  exact congrArg Prod.snd h₂
+  exact (congrArg Prod.snd h₂).symm
 
 /-- `τ` is trivial on the conjugate. -/
 theorem tau_gammaConj (x : F) :
@@ -659,45 +638,45 @@ theorem tau_gammaConj (x : F) :
   have h₁ := coe_psi w (gammaConj w x) (gammaConj_mem_sub w x)
   have h₂ := coe_psi_conj w x
   rw [h₁] at h₂
-  exact congrArg Prod.snd h₂
+  exact (congrArg Prod.snd h₂).symm
 
 /-! ## 9.  The map to the candidate -/
 
 variable (SF : Set F)
 
-/-- `F ⧸ N` inside the candidate: `preF` kills `N` there. -/
-noncomputable def preFLift (hSF : Subgroup.closure SF = ⊤) : (F ⧸ N) →* Pres w SF :=
-  QuotientGroup.lift N ((presMk w SF).comp (preF w))
-    (fun _n hn => presMk_preF_eq_one w hSF hn)
-
-@[simp] theorem preFLift_mk (hSF : Subgroup.closure SF = ⊤) (y : F) :
-    preFLift w SF hSF (QuotientGroup.mk' N y) = presMk w SF (preF w y) := rfl
-
 /-- The base map of the last HNN extension, into the candidate. -/
 noncomputable def baseMap (hSF : Subgroup.closure SF = ⊤) :
     Amb w →* Pres w SF := by
   refine MonoidHom.noncommCoprod ((presMk w SF).comp (preGamma w))
-    (preFLift w SF hSF) ?_
-  intro g x
-  obtain ⟨y, rfl⟩ := QuotientGroup.mk_surjective x
-  show Commute (presMk w SF (preGamma w g))
-    (preFLift w SF hSF (QuotientGroup.mk' N y))
-  rw [preFLift_mk]
-  exact (preGamma_commute_preF w g y).map (presMk w SF)
+    (QuotientGroup.lift N ((presMk w SF).comp (preF w)) ?_) ?_
+  · intro n hn
+    exact MonoidHom.mem_ker.mpr (presMk_preF_eq_one w hSF hn)
+  · intro g x
+    obtain ⟨y, rfl⟩ := QuotientGroup.mk_surjective x
+    show Commute (presMk w SF (preGamma w g))
+      ((QuotientGroup.lift N ((presMk w SF).comp (preF w)) _)
+        (QuotientGroup.mk' N y))
+    have hval : (QuotientGroup.lift N ((presMk w SF).comp (preF w)) _)
+        (QuotientGroup.mk' N y) = presMk w SF (preF w y) := rfl
+    rw [hval]
+    exact (preGamma_commute_preF w g y).map (presMk w SF)
 
 @[simp] theorem baseMap_inl (hSF : Subgroup.closure SF = ⊤) (g : Gamma w) :
     baseMap w SF hSF (g, 1) = presMk w SF (preGamma w g) := by
   unfold baseMap
   rw [MonoidHom.noncommCoprod_apply]
-  show presMk w SF (preGamma w g) * preFLift w SF hSF 1 = _
-  rw [map_one, mul_one]
+  show presMk w SF (preGamma w g) * _ = _
+  have : (QuotientGroup.lift N ((presMk w SF).comp (preF w)) _)
+      (1 : F ⧸ N) = 1 := map_one _
+  rw [this, mul_one]
 
 @[simp] theorem baseMap_inr (hSF : Subgroup.closure SF = ⊤) (x : F) :
     baseMap w SF hSF (1, QuotientGroup.mk' N x) = presMk w SF (preF w x) := by
   unfold baseMap
   rw [MonoidHom.noncommCoprod_apply]
-  show presMk w SF (preGamma w 1) * preFLift w SF hSF (QuotientGroup.mk' N x) = _
-  rw [map_one, map_one, one_mul, preFLift_mk]
+  show presMk w SF (preGamma w 1) * _ = _
+  rw [map_one, map_one, one_mul]
+  rfl
 
 theorem baseMap_pair (hSF : Subgroup.closure SF = ⊤) (g : Gamma w) (x : F) :
     baseMap w SF hSF (g, QuotientGroup.mk' N x)
@@ -773,43 +752,36 @@ theorem conj_baseMap (hSF : Subgroup.closure SF = ⊤) (s : ↥(Sub w)) :
       exact presMk_relA w hSF z
     · obtain ⟨v, hv, rfl⟩ := hu
       obtain ⟨z, -, rfl⟩ := hv
-      have hsub : (⟨_, hy⟩ : ↥(Sub w)) = ⟨gammaConj w z, gammaConj_mem_sub w z⟩ := by
-        refine Subtype.ext ?_
-        show conjT w.L (HNNExtension.of (w.emb z)) = gammaConj w z
-        rw [conjT_apply, inv_inv]
-        rfl
-      rw [hsub]
-      have hy' : v₁ ⟨gammaConj w z, gammaConj_mem_sub w z⟩
+      have hy' : v₁ ⟨_, hy⟩
           = π (preE w) * π (preGamma w (gammaConj w z)) * (π (preE w))⁻¹ := by
-        show π (preE w) * baseMap w SF hSF (gammaConj w z, 1) * _ = _
+        show π (preE w) * baseMap w SF hSF (_, 1) * _ = _
         rw [baseMap_inl]
-      have hy'' : v₂ ⟨gammaConj w z, gammaConj_mem_sub w z⟩
-          = π (preGamma w (gammaConj w z)) := by
-        show baseMap w SF hSF (gammaConj w z, tau w _) = _
-        rw [tau_gammaConj, baseMap_inl]
+        rfl
+      have hy'' : v₂ ⟨_, hy⟩ = π (preGamma w (gammaConj w z)) := by
+        show baseMap w SF hSF (_, tau w _) = _
+        have hτ : tau w ⟨_, hy⟩ = (1 : F ⧸ N) := tau_gammaConj w z
+        rw [hτ]
+        rw [show (((gammaConj w z), (1 : F ⧸ N)) : Amb w) = ((gammaConj w z), 1) from rfl]
+        rw [baseMap_inl]
+        rfl
       rw [hy', hy'']
       exact presMk_relB w hSF z
-  -- Carrying the induction through `eqLocus` makes every step a MEMBERSHIP in a
-  -- subgroup built from `v₁` and `v₂`, and unification then unfolds both of
-  -- those -- each a structure literal over `baseMap` -- and runs out of
-  -- heartbeats.  The equation itself is the same induction with nothing to
-  -- unfold: each step is one `map_` lemma.
-  have hall : ∀ (y : Gamma w) (hy : y ∈ Sub w), v₁ ⟨y, hy⟩ = v₂ ⟨y, hy⟩ := by
-    intro y hy
-    refine Subgroup.closure_induction
-      (p := fun z hz => v₁ ⟨z, hz⟩ = v₂ ⟨z, hz⟩) ?_ ?_ ?_ ?_ hy
+  have htop : v₁.eqLocus v₂ = ⊤ := by
+    refine top_le_iff.mp ?_
+    rintro ⟨y, hy⟩ -
+    refine Subgroup.closure_induction (p := fun z hz => (⟨z, hz⟩ : ↥(Sub w)) ∈ v₁.eqLocus v₂)
+      ?_ ?_ ?_ ?_ hy
     · intro z hz
       exact hgen z hz _
-    · show v₁ 1 = v₂ 1
-      rw [map_one, map_one]
+    · exact (v₁.eqLocus v₂).one_mem
     · intro a b ha hb hA hB
-      show v₁ (⟨a, ha⟩ * ⟨b, hb⟩) = v₂ (⟨a, ha⟩ * ⟨b, hb⟩)
-      rw [map_mul, map_mul, hA, hB]
+      exact (v₁.eqLocus v₂).mul_mem hA hB
     · intro a ha hA
-      show v₁ (⟨a, ha⟩)⁻¹ = v₂ (⟨a, ha⟩)⁻¹
-      rw [map_inv, map_inv, hA]
-  have hs := hall (s : Gamma w) s.2
-  simpa [hv₁, hv₂] using hs
+      exact (v₁.eqLocus v₂).inv_mem hA
+  have : s ∈ v₁.eqLocus v₂ := by
+    rw [htop]
+    exact Subgroup.mem_top s
+  exact this
 
 /-! ## 10.  The two maps are inverse, and the conclusion -/
 

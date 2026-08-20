@@ -345,11 +345,12 @@ theorem inner_apply_span (A : GroupHilbert G →L[ℂ] GroupHilbert G) (F : Fins
   rw [hij]
   ring
 
-omit [Group G] in
+omit  in
 /-- **The Roe operator of a real symmetric kernel of positive type is
 positive.**  Self-adjointness is symmetry of the kernel, read through
 `matrixCoeff_star`; the quadratic form is nonnegative on the span of the point
 masses by positive type, and the span is dense while the form is continuous. -/
+omit [Group G] in
 theorem isPositive_of_kernel {A : GroupHilbert G →L[ℂ] GroupHilbert G}
     {u : G → G → ℝ} (hu : IsPositiveDefiniteKernel u) (hsymm : ∀ s t, u s t = u t s)
     (hcoeff : ∀ s t, matrixCoeff G A s t = ((u s t : ℝ) : ℂ)) :

@@ -40,11 +40,6 @@ next session does not spend the same day.
   one, and no substitute argument turned up.
 
 The obstruction is therefore physical rank, not Hilbert-space dimension, and
-it is still unaddressed.  The live reduction it blocks is unchanged in
-substance, with one intermediate now named explicitly (2026-08-19):
+it is still unaddressed.  The live reduction it blocks is unchanged:
 `edge-pair-mixed-gap-collapse` -> `iwahori-outlier-localization` -> this claim
--> `iwahori-defect-question-from-outlier-repair`
--> `iwahori-local-global-defect-question` -> `iwahori-sector-closure`
--> `non-hyperlinear-group`.  That intermediate is Dogon--Vigdorovich's printed
-Question 1.2; this claim is a sufficient condition for it in the one sector
-their variety decomposition leaves open.
+-> `iwahori-sector-closure` -> `non-hyperlinear-group`.

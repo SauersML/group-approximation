@@ -65,35 +65,14 @@ block be read against a rotation at all, and every case above except the free
 one uses it.  It is not a small cancellation hypothesis and it mentions no
 pieces; it is one prefix statement about the words the decomposition produces.
 
-Half of it is now a theorem.  `eaten_lt_of_long_next_conjugator` settles the
-regime where the *next* conjugator is the longer one: there, everything the
-block eats past `c'` is matched against letters of the leading rotation, so it
-is a piece of the next rotation, `C'(1/6)` bounds it by a sixth, and the next
-factor keeps more than five twelfths --- so the block stops well inside, and
-stops early enough for the tail's subword to survive.  That theorem needs only
-the survival bound, which every case of the descent delivers.
-
-What is left is the other regime: the leading conjugator the longer, running
-along the next rotation itself.  There the eaten part is a hug plus a piece, the
-two weight moves give five twelfths kept against seven twelfths eaten, and those
-cross --- with `|t'| = 60` the moves permit `|q| = 17, |p| = 9, |y₂| = 25,
-|v₂| = 9`, every inequality holding while the block eats the whole survivor.  A
-block that wins that race runs into the factors after the next one, which is
-what two non-adjacent factors sharing an arc looks like.
-
-Two things are known about such a block, and a continuation should start from
-them.  First, past the next factor it lands among *relator* letters of the
-factor after that --- that chunk begins with its own conjugator and the block
-enters past it --- so the segment is again a piece, and a block that overruns
-eats two pieces, under a third of its own rotation, which is better than the
-half the conclusion needs.  Second, an overrun forces the next factor's survivor
-**below** two thirds (a hug is at most a half, a piece under a sixth), while a
-factor whose own block overruns keeps **more** than two thirds: so overruns
-cannot occur at two consecutive levels.  What is not closed is a block that
-overruns and then exhausts the chunk it lands in, reaching the conjugator of a
-factor it is not adjacent to, where no reroute identity applies --- a reroute
-moves one factor past its neighbour and no further.
-`Sofic/GreendlingerChunks` makes that cascade a definable object.
+It is also, unlike `GreendlingerMinimal.TwoFactorRegime`, **not known to hold**.
+`confinement_of_tail_survival` reduces it to a race between what the next factor
+keeps and what the leading block eats, and the bounds the two weight moves give
+--- five twelfths kept against seven twelfths eaten --- cross.  A block that
+wins the race runs into the factors after the next one, which is what two
+non-adjacent factors sharing an arc looks like.  Whether minimality forbids
+that, or whether the descent must instead follow a block across several factors,
+is the open question this file leaves.
 
 Depends on `C'(1/6)` exactly where `GreendlingerRegime` does.
 -/
@@ -384,7 +363,7 @@ destroys, and the reduced word of everything after it loses the matching prefix
 `GreendlingerMinimal.exists_descent_decomposition` does this for the
 propositional count; this version keeps the tail as data, which is what the
 induction needs in order to hand the tail to itself. -/
-theorem exists_leading_cancellation [DecidableEq α]
+theorem exists_leading_cancellation [DecidableEq α] {R : Set (List (α × Bool))}
     {c t w : List (α × Bool)} {e : List (FreeGroup α × List (α × Bool))}
     (hw : FreeGroup.IsReduced w)
     (hredp : FreeGroup.IsReduced (palindrome c t))
@@ -561,170 +540,6 @@ theorem two_mul_overhang_add_meet_le [DecidableEq α]
   rw [FreeGroup.invRev_length, List.length_append, List.length_append]
   omega
 
-/-! ## The hug, bounded -/
-
-/-- **The reroute identity, mirrored.**  When the *leading* conjugator runs along
-the next rotation --- `c = c' ++ q` with `q` a prefix of `q ++ r = t'` --- the
-leading factor may be sent around that rotation the other way instead: the two
-factors swap and the leading one is re-conjugated by `c' ++ invRev r`.
-
-This is the move `eaten_le_of_minimal_reroute` performs with the roles of the
-two factors exchanged, and unlike that one it cannot be obtained from it by
-`conjInv`, because inverting the expression reverses the whole list. -/
-theorem mk_palindrome_mul_hug_reroute (c' q r t : List (α × Bool)) :
-    FreeGroup.mk (palindrome (c' ++ q) t)
-        * FreeGroup.mk (palindrome c' (q ++ r))
-      = FreeGroup.mk (palindrome c' (q ++ r))
-        * FreeGroup.mk (palindrome (c' ++ FreeGroup.invRev r) t) := by
-  simp only [mk_palindrome, mk_append_mul, mk_invRev_eq_inv]
-  group
-
-/-- **No conjugator hugs more than half of the rotation it runs along.**  The
-leading conjugator overhangs the next one by `q`, and `q` is a prefix of the next
-rotation `q ++ r`; sending the leading factor the other way around that rotation
-costs `|r|` and saves `|q|`, so a minimal expression forces `|q| ≤ |r|`, that is
-`2|q| ≤ |t'|`.
-
-This is the last unbounded quantity in the descent's analysis of what a leading
-block eats: past the next conjugator the block meets only relator letters, which
-`C'(1/6)` bounds by a sixth, and the stretch before that --- the hug --- is
-bounded here by a half.  A half against the five twelfths the next factor keeps
-is what still crosses, and that crossing is the whole of what
-`LeadingConfinement` still carries. -/
-theorem hug_le_of_minimal_reroute [DecidableEq α] {R : Set (List (α × Bool))}
-    {c' q r t : List (α × Bool)}
-    {e : List (FreeGroup α × List (α × Bool))} {g : FreeGroup α}
-    (hmin : IsMinimalConjExpr R
-      ((FreeGroup.mk (c' ++ q), t) :: (FreeGroup.mk c', q ++ r) :: e) g)
-    (hred : FreeGroup.IsReduced (c' ++ q)) (hredc' : FreeGroup.IsReduced c') :
-    q.length ≤ r.length := by
-  obtain ⟨hv, he, -, hweight⟩ := hmin
-  obtain ⟨h1, h2⟩ := conjValid_cons_iff.mp hv
-  obtain ⟨h3, h4⟩ := conjValid_cons_iff.mp h2
-  have hv2 : ConjValid R
-      ((FreeGroup.mk c', q ++ r)
-        :: (FreeGroup.mk (c' ++ FreeGroup.invRev r), t) :: e) :=
-    conjValid_cons_iff.mpr ⟨h3, conjValid_cons_iff.mpr ⟨h1, h4⟩⟩
-  have hmove := mk_palindrome_mul_hug_reroute c' q r t
-  simp only [mk_palindrome] at hmove
-  have he2 : conjEval
-      ((FreeGroup.mk c', q ++ r)
-        :: (FreeGroup.mk (c' ++ FreeGroup.invRev r), t) :: e) = g := by
-    rw [← conjEval_replace_two hmove]
-    exact he
-  have hlen2 : ((FreeGroup.mk c', q ++ r)
-      :: (FreeGroup.mk (c' ++ FreeGroup.invRev r), t) :: e).length
-      = ((FreeGroup.mk (c' ++ q), t)
-        :: (FreeGroup.mk c', q ++ r) :: e).length := by
-    simp
-  have hle := hweight _ hv2 he2 hlen2
-  simp only [conjWeight_cons] at hle
-  have hnorm : FreeGroup.norm (FreeGroup.mk (c' ++ q)) = c'.length + q.length := by
-    rw [norm_mk_of_isReduced hred, List.length_append]
-  have hnormc' : FreeGroup.norm (FreeGroup.mk c') = c'.length :=
-    norm_mk_of_isReduced hredc'
-  have hnorm2 : FreeGroup.norm (FreeGroup.mk (c' ++ FreeGroup.invRev r))
-      ≤ c'.length + r.length := by
-    have hb := norm_mk_le_length (c' ++ FreeGroup.invRev r)
-    rw [List.length_append, FreeGroup.invRev_length] at hb
-    exact hb
-  omega
-
-/-! ## The stem takes the short way round -/
-
-/-- **The leading factor may be sent to the end.**  Conjugating it by everything
-that follows moves it past the whole tail, at the same factor count, so a
-minimal expression cannot prefer the shorter of the two routes: the leading
-conjugator is no longer than the route around the rest of the product.
-
-This is a sixth weight move, and unlike the reroutes it is *global* --- it
-compares the stem against the whole tail rather than against one neighbour.  Its
-useful form is the corollary below: when the leading conjugator is a prefix of
-what the tail spells, as the descent's decomposition always makes it, the stem
-is at most half of that word. -/
-theorem norm_le_of_minimal_sendToEnd [DecidableEq α] {R : Set (List (α × Bool))}
-    {x : FreeGroup α} {s : List (α × Bool)}
-    {e : List (FreeGroup α × List (α × Bool))} {g : FreeGroup α}
-    (hmin : IsMinimalConjExpr R ((x, s) :: e) g) :
-    FreeGroup.norm x ≤ FreeGroup.norm ((conjEval e)⁻¹ * x) := by
-  obtain ⟨hv, he, -, hweight⟩ := hmin
-  obtain ⟨h1, h2⟩ := conjValid_cons_iff.mp hv
-  have hv2 : ConjValid R (e ++ [((conjEval e)⁻¹ * x, s)]) := by
-    refine conjValid_append h2 ?_
-    intro y hy
-    rcases List.mem_singleton.mp hy with rfl
-    exact h1
-  have he2 : conjEval (e ++ [((conjEval e)⁻¹ * x, s)]) = g := by
-    rw [conjEval_append, conjEval_cons, conjEval_nil, ← he, conjEval_cons]
-    group
-  have hlen2 : (e ++ [((conjEval e)⁻¹ * x, s)]).length = ((x, s) :: e).length := by
-    simp
-  have hle := hweight _ hv2 he2 hlen2
-  rw [conjWeight_append, conjWeight_cons, conjWeight_cons, conjWeight_nil] at hle
-  omega
-
-/-- **The leading factor may be sent past any initial stretch of the tail.**
-Conjugating it by the product of the factors it passes keeps the factor count
-and the element, so minimality compares the stem against every partial route,
-not only the whole one.
-
-`norm_le_of_minimal_sendToEnd` is the case `e₂ = []`, and the reroute moves are
-the case where `e₁` is a single factor and the conjugator collapses; this is the
-family they all live in. -/
-theorem norm_le_of_minimal_sendPast [DecidableEq α] {R : Set (List (α × Bool))}
-    {x : FreeGroup α} {s : List (α × Bool)}
-    {e₁ e₂ : List (FreeGroup α × List (α × Bool))} {g : FreeGroup α}
-    (hmin : IsMinimalConjExpr R ((x, s) :: (e₁ ++ e₂)) g) :
-    FreeGroup.norm x ≤ FreeGroup.norm ((conjEval e₁)⁻¹ * x) := by
-  obtain ⟨hv, he, -, hweight⟩ := hmin
-  obtain ⟨h1, h2⟩ := conjValid_cons_iff.mp hv
-  have hv₁ : ConjValid R e₁ := fun y hy => h2 y (List.mem_append_left _ hy)
-  have hv₂ : ConjValid R e₂ := fun y hy => h2 y (List.mem_append_right _ hy)
-  have hv2 : ConjValid R (e₁ ++ (((conjEval e₁)⁻¹ * x, s) :: e₂)) :=
-    conjValid_append hv₁ (conjValid_cons_iff.mpr ⟨h1, hv₂⟩)
-  have he2 : conjEval (e₁ ++ (((conjEval e₁)⁻¹ * x, s) :: e₂)) = g := by
-    rw [conjEval_append, conjEval_cons, ← he, conjEval_cons, conjEval_append]
-    group
-  have hlen2 : (e₁ ++ (((conjEval e₁)⁻¹ * x, s) :: e₂)).length
-      = ((x, s) :: (e₁ ++ e₂)).length := by
-    simp
-    omega
-  have hle := hweight _ hv2 he2 hlen2
-  rw [conjWeight_append, conjWeight_cons, conjWeight_cons, conjWeight_append]
-    at hle
-  omega
-
-/-- **The stem is at most half of what the tail spells.**  When the leading
-conjugator is a prefix of the tail's reduced word --- which is what the leading
-decomposition always produces --- sending the factor to the end costs the rest
-of that word, so minimality gives `2|c| ≤ |W|`. -/
-theorem two_mul_leading_conjugator_le [DecidableEq α]
-    {R : Set (List (α × Bool))} {c s X : List (α × Bool)}
-    {e : List (FreeGroup α × List (α × Bool))} {g : FreeGroup α}
-    (hmin : IsMinimalConjExpr R ((FreeGroup.mk c, s) :: e) g)
-    (hredc : FreeGroup.IsReduced c)
-    (hW : (conjEval e).toWord = c ++ X) :
-    2 * c.length ≤ (conjEval e).toWord.length := by
-  have hmove := norm_le_of_minimal_sendToEnd hmin
-  have hnormc : FreeGroup.norm (FreeGroup.mk c) = c.length :=
-    norm_mk_of_isReduced hredc
-  have hinv : (conjEval e)⁻¹ * FreeGroup.mk c
-      = FreeGroup.mk (FreeGroup.invRev X) := by
-    have h1 : conjEval e = FreeGroup.mk c * FreeGroup.mk X := by
-      have hb : FreeGroup.mk ((conjEval e).toWord) = FreeGroup.mk (c ++ X) := by
-        rw [hW]
-      rw [FreeGroup.mk_toWord, mk_append_mul] at hb
-      exact hb
-    rw [h1, mk_invRev_eq_inv]
-    group
-  have hbound : FreeGroup.norm (FreeGroup.mk (FreeGroup.invRev X)) ≤ X.length := by
-    have hb := norm_mk_le_length (FreeGroup.invRev X)
-    rwa [FreeGroup.invRev_length] at hb
-  have hlen : (conjEval e).toWord.length = c.length + X.length := by
-    rw [hW, List.length_append]
-  rw [hnormc, hinv] at hmove
-  omega
-
 /-! ## What the descent still asks -/
 
 /-- **The one statement the descent still asks for.**  At the head of a minimal
@@ -739,7 +554,7 @@ prefix statement about the words the decomposition produces, in exactly the way
 discharged it.  What it buys is the right to read the destroyed block against a
 rotation at all, and every case of the descent below except the free one uses
 it. -/
-def LeadingConfinement [DecidableEq α] (R : Set (List (α × Bool))) : Prop :=
+def LeadingConfinement (R : Set (List (α × Bool))) : Prop :=
   ∀ (c t c' t' P' M : List (α × Bool))
     (e : List (FreeGroup α × List (α × Bool))) (g : FreeGroup α),
     IsMinimalConjExpr R
@@ -771,33 +586,9 @@ And running past it is not absurd.  What the block runs into are letters of the
 factors *after* the next one, which is what happens when two non-adjacent
 factors contribute arcs that meet --- three mutually adjacent regions, say.  So
 `LeadingConfinement` is not a consequence of planarity and should not be read as
-one.
-
-The race is decided, however, in the regime where the *next* conjugator is the
-longer one: `eaten_lt_of_long_next_conjugator` proves confinement there outright
-from the survival bound, because past `c'` the block meets only relator letters
-and `C'(1/6)` bounds a piece by a sixth against five twelfths kept.  What is
-still open is the hug: the leading conjugator running along the next rotation,
-where the eaten part is not a piece and no local move bounds it below a half.
-
-**Warning: this hypothesis is very likely false, and the theorems that assume it
-should be read as a reduction, not as a usable gate.**  Here is a configuration
-that satisfies every constraint the six weight moves and `C'(1/6)` impose while
-violating confinement.  Take `|t₁| = |t₂| = 60`, `c₂ = []`, `c₁ = q` the first
-`21` letters of `t₂`, the tail eating `|E₂| = 30` letters of `t₂` into `c₃`
-(so `|M₂| = 30` and `c₃ = invRev E₂ ++ Z`), and the leading block eating
-`q`, then a piece `p` of `9` letters, then `21` letters of `Z`.  Every
-inequality holds --- `2|q| = 42 ≤ 60`, `6|p| = 54 < 60`, `2|E₂| = 60 ≤ 60`,
-`|P₂| ≤ |P₁|`, `2|c₁| ≤ |W₂|` --- and the block runs `21` letters past what the
-second factor keeps.
-
-And the Greendlinger conclusion still holds there, but for a reason the descent
-does not look at: the *third* factor's rotation is untouched, sitting in the
-word at position `51`, exactly where the block stops.  So the descent's real
-missing ingredient is not confinement at all --- it is a positional invariant
-strong enough to say that the subword the tail carries lies beyond the leading
-block, which the present invariant (position at least `|c| + j`, for `6j < |t|`)
-is too weak to give when the tail's own conjugator is short. -/
+one: it is the hypothesis that the descent's four cases are the only ones that
+occur, and closing the gate for a family means either proving it there or
+extending the descent to a block that spans several factors. -/
 theorem confinement_of_tail_survival {c' t' u M W : List (α × Bool)}
     (hW : FreeGroup.invRev M <+: W)
     (hsurv : c' ++ u <+: W)
@@ -814,193 +605,6 @@ theorem confinement_of_tail_survival {c' t' u M W : List (α × Bool)}
   refine ⟨r ++ FreeGroup.invRev c', ?_⟩
   unfold palindrome
   rw [List.append_assoc, List.append_assoc, ← List.append_assoc u, hr]
-
-/-- **The block cannot outrun the next rotation when the next conjugator is the
-longer one.**  Past `c'` the block is matched against letters of the leading
-rotation, so what it eats there is a common prefix of the next rotation and a
-rotation of the inverted leading one --- a piece.  `C'(1/6)` bounds it by a
-sixth, while the next factor keeps more than five twelfths of its rotation
-(`m` below); so the block stops inside what the next factor keeps, and stops
-early enough that a subword beginning a sixth of the way into the next rotation
-is untouched.
-
-Both conclusions are exactly what the descent's inheritance step consumes.  This
-is the half of confinement that is a theorem: it needs only that the next factor
-keeps five twelfths, which every case of the descent delivers.  The other half
---- the leading conjugator the longer, hugging the next rotation itself --- is
-what `LeadingConfinement` still carries. -/
-theorem eaten_lt_of_long_next_conjugator {R : Set (List (α × Bool))}
-    (hmetric : MetricSmallCancellation R (1 / 6))
-    {c t c' t' y E M W : List (α × Bool)} {m : ℕ}
-    (ht : t ∈ symmetrization R) (ht' : t' ∈ symmetrization R)
-    (hE : E <:+ t)
-    (hinvM : FreeGroup.invRev M = c ++ FreeGroup.invRev E)
-    (hMW : FreeGroup.invRev M <+: W)
-    (hsurv : c' ++ t'.take m <+: W)
-    (hm : m ≤ t'.length) (hmbig : 5 * t'.length < 12 * m)
-    (hcy : c ++ y = c')
-    (hne : t' ≠ (FreeGroup.invRev t).rotate y.length) :
-    6 * (M.length - c'.length) < t'.length ∧ M.length ≤ c'.length + m := by
-  have hMl : (FreeGroup.invRev M).length = M.length := FreeGroup.invRev_length
-  have hmpos : 0 < m := by omega
-  have ht'pos : 0 < t'.length := by omega
-  rcases le_or_gt M.length c'.length with hshort | hlong
-  · exact ⟨by omega, by omega⟩
-  · set d : ℕ := min (M.length - c'.length) m with hd
-    have hdm : d ≤ m := by omega
-    have hdlen : (t'.take d).length = d := by
-      rw [List.length_take]
-      omega
-    have htake : t'.take d <+: t'.take m := by
-      have hb := List.take_prefix d (t'.take m)
-      rwa [List.take_take, Nat.min_eq_left hdm] at hb
-    have hpre : c' ++ t'.take d <+: FreeGroup.invRev M := by
-      refine List.prefix_of_prefix_length_le
-        (((List.prefix_append_right_inj c').mpr htake).trans hsurv) hMW ?_
-      rw [List.length_append, hdlen, hMl]
-      omega
-    have hsplit : y ++ t'.take d <+: FreeGroup.invRev E := by
-      refine (List.prefix_append_right_inj c).mp ?_
-      rw [← List.append_assoc, hcy, ← hinvM]
-      exact hpre
-    have hrot : t'.take d <+: (FreeGroup.invRev t).rotate y.length :=
-      prefix_rotate_of_append_prefix (hsplit.trans (invRev_prefix_of_suffix hE))
-    have hpiece : IsPiece (symmetrization R) (t'.take d) :=
-      isPiece_of_prefix_two ht'
-        (rotate_mem_symmetrization (invRev_mem_symmetrization ht) y.length) hne
-        (List.take_prefix _ _) hrot
-    have h6 := six_mul_length_lt_of_isPiece hmetric hpiece ht' (List.take_prefix _ _)
-    rw [hdlen] at h6
-    exact ⟨by omega, by omega⟩
-
-/-! ## No two factors cancel, adjacent or not -/
-
-/-- **Minimality of the factor count forbids cancellation between *any* two
-factors**, not only neighbours: if the leading factor is inverse to a later one
-conjugated to it, the two can be deleted together --- conjugating the factors
-between them by the leading one keeps them conjugates of symmetrized relators
-and leaves an expression with two factors fewer.
-
-`GreendlingerMinimal.IsMinimalConjExpr.mul_ne_one` is the neighbouring case.
-This is the form a counting argument needs, since it is what says two factors
-never describe the same region twice. -/
-theorem conj_ne_inv_of_minimal [DecidableEq α] {R : Set (List (α × Bool))}
-    {x y : FreeGroup α} {s s' : List (α × Bool)}
-    {e₁ e₂ : List (FreeGroup α × List (α × Bool))} {g : FreeGroup α}
-    (hmin : IsMinimalConjExpr R ((x, s) :: (e₁ ++ ((y, s') :: e₂))) g) :
-    x * FreeGroup.mk s * x⁻¹
-        * (conjEval e₁ * (y * FreeGroup.mk s' * y⁻¹) * (conjEval e₁)⁻¹) ≠ 1 := by
-  intro hcon
-  obtain ⟨hv, he, hlen, -⟩ := hmin
-  obtain ⟨h1, h2⟩ := conjValid_cons_iff.mp hv
-  have hv₁ : ConjValid R e₁ := fun z hz => h2 z (List.mem_append_left _ hz)
-  have hv₂ : ConjValid R e₂ := fun z hz =>
-    h2 z (List.mem_append_right _ (List.mem_cons_of_mem _ hz))
-  have hval : ConjValid R (e₁ ++ e₂) := conjValid_append hv₁ hv₂
-  have hx : x * FreeGroup.mk s * x⁻¹
-      = conjEval e₁ * (y * FreeGroup.mk s' * y⁻¹)⁻¹ * (conjEval e₁)⁻¹ := by
-    have h := mul_eq_one_iff_eq_inv.mp hcon
-    rw [h]
-    group
-  have heval : conjEval (e₁ ++ e₂) = g := by
-    rw [← he, conjEval_cons, conjEval_append, hx]
-    rw [conjEval_append, conjEval_cons]
-    group
-  have hb := hlen (e₁ ++ e₂) hval heval
-  simp only [List.length_cons, List.length_append] at hb
-  omega
-
-/-! ## The obligation in its right form -/
-
-/-- **What the descent actually needs.**  Not that the leading block stops
-inside the next factor's palindrome --- that is `LeadingConfinement`, and the
-configuration in the header violates it --- but that the subword the rest of the
-product carries lies *beyond* the block, together with the bound that the block
-leaves the leading rotation partly standing.
-
-In the header's configuration this holds while confinement fails: the block runs
-21 letters past what the second factor keeps, and the third factor's rotation
-sits exactly where the block stops.  So this, and not confinement, is the
-statement a continuation should try to discharge. -/
-def TailSubwordBeyondBlock [DecidableEq α] (R : Set (List (α × Bool))) : Prop :=
-  ∀ (c t c' t' P' M : List (α × Bool))
-    (e : List (FreeGroup α × List (α × Bool))) (g : FreeGroup α),
-    IsMinimalConjExpr R
-      ((FreeGroup.mk c, t) :: (FreeGroup.mk c', t') :: e) g →
-    palindrome c t = P' ++ M →
-    FreeGroup.invRev M
-      <+: (conjEval ((FreeGroup.mk c', t') :: e)).toWord →
-    c.length < M.length →
-    M.length ≤ c.length + t.length ∧
-      GreendlingerAt R M.length
-        (conjEval ((FreeGroup.mk c', t') :: e)).toWord
-
-/-- **The gate, from the obligation in its right form.**  No induction is
-needed: either the block stays inside the trailing conjugator, and the whole
-leading rotation survives, or the hypothesis hands over a subword of the rest of
-the product lying beyond the block, which `greendlingerAt_inherit` carries into
-the word.
-
-This supersedes `greendlingerConclusion_of_leadingConfinement`, whose hypothesis
-is probably false and whose statement is therefore probably vacuous. -/
-theorem greendlinger_of_tailSubwordBeyondBlock [DecidableEq α]
-    {R : Set (List (α × Bool))}
-    (hR : ∀ r ∈ R, FreeGroup.IsCyclicallyReduced r) (hRne : ∀ r ∈ R, r ≠ [])
-    (hreg : TailSubwordBeyondBlock R)
-    {w : List (α × Bool)} (hw : FreeGroup.IsReduced w) (hwne : w ≠ [])
-    {e : List (FreeGroup α × List (α × Bool))}
-    (hmin : IsMinimalConjExpr R e (FreeGroup.mk w)) :
-    ∃ s ∈ symmetrization R, ∃ u : List (α × Bool),
-      u <:+: w ∧ u <+: s ∧ s.length < 2 * u.length := by
-  cases e with
-  | nil =>
-      exfalso
-      have hb := hmin.2.1
-      rw [conjEval_nil] at hb
-      have h1 : FreeGroup.mk w = FreeGroup.mk ([] : List (α × Bool)) := by
-        rw [← FreeGroup.one_eq_mk]
-        exact hb.symm
-      have h2 := FreeGroup.reduce.sound h1
-      rw [hw.reduce_eq, FreeGroup.IsReduced.nil.reduce_eq] at h2
-      exact hwne h2
-  | cons x e' =>
-      cases e' with
-      | nil =>
-          obtain ⟨x₁, s₁⟩ := x
-          obtain ⟨c, t, ht, hredp, hmin'⟩ := exists_palindromic_head hR hRne hmin
-          have htpos : 0 < t.length :=
-            List.length_pos_iff.mpr (ne_nil_of_mem_symmetrization hRne ht)
-          obtain ⟨P', M, B', heq, hgw, hwe⟩ :=
-            exists_leading_cancellation hw hredp hmin'.2.1
-          have hnil : FreeGroup.invRev M ++ B' = [] := by
-            rw [← hgw, conjEval_nil]
-            exact FreeGroup.toWord_eq_nil_iff.mpr rfl
-          have hlen := congrArg List.length hnil
-          rw [List.length_append, FreeGroup.invRev_length,
-            List.length_nil] at hlen
-          refine greendlinger_of_greendlingerAt (n := c.length + 0) ?_
-          rw [hwe]
-          exact greendlingerAt_of_short_cancellation ht heq (by omega) (by omega)
-      | cons y e'' =>
-          obtain ⟨x₁, s₁⟩ := x
-          obtain ⟨x₂, s₂⟩ := y
-          obtain ⟨c, t, c', t', ht, ht', hredp, hredp', hmin₂⟩ :=
-            exists_palindromic_isMinimalConjExpr hR hRne hmin
-          have htpos : 0 < t.length :=
-            List.length_pos_iff.mpr (ne_nil_of_mem_symmetrization hRne ht)
-          obtain ⟨P', M, B', heq, hgw, hwe⟩ :=
-            exists_leading_cancellation hw hredp hmin₂.2.1
-          have hcl : (FreeGroup.invRev c).length = c.length :=
-            FreeGroup.invRev_length
-          refine greendlinger_of_greendlingerAt (n := c.length + 0) ?_
-          rw [hwe]
-          rcases le_or_gt M.length (FreeGroup.invRev c).length with hshort | hlong
-          · exact greendlingerAt_of_short_cancellation ht heq hshort (by omega)
-          · obtain ⟨hhigh, hsub⟩ :=
-              hreg c t c' t' P' M e'' (FreeGroup.mk w) hmin₂ heq ⟨B', hgw.symm⟩
-                (by omega)
-            exact greendlingerAt_inherit (n := M.length) heq hgw (by omega)
-              le_rfl hsub
 
 /-! ## The descent, at every length -/
 

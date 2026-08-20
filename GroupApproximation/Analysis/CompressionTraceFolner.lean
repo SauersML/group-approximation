@@ -214,12 +214,12 @@ If it had none, the window would be invariant under `g`, hence under every
 power of `g`, and the stabilizer of a nonempty finite set is finite
 (`finite_leftStabilizer`) --- so the powers of `g` could not be distinct. -/
 theorem exists_not_mem_range_of_injective_pow {k : ℕ} (hk : 0 < k)
-    {e : Fin k → G} (_he : Function.Injective e) {g : G}
+    {e : Fin k → G} (he : Function.Injective e) {g : G}
     (hg : Function.Injective fun n : ℕ ↦ g ^ n) :
     ∃ q : Fin k, g * e q ∉ Set.range e := by
   classical
   by_contra hcon
-  push Not at hcon
+  push_neg at hcon
   have hmemW : ∀ x : G,
       x ∈ Finset.image e Finset.univ ↔ x ∈ Set.range e := by
     intro x

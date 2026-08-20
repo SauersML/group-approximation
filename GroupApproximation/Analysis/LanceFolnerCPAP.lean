@@ -41,7 +41,6 @@ namespace CStarExactness
 
 open scoped InnerProductSpace
 open Finset ReducedGroupCStarTrace GroupVonNeumann
-open scoped Classical
 
 noncomputable section
 
@@ -65,7 +64,6 @@ theorem leftRegularOperator_single (g t : G) :
   · have h' : g⁻¹ * x ≠ t := fun hc ↦ h (inv_mul_eq_iff_eq_mul.mp hc)
     rw [lp.single_apply_ne _ _ _ h', lp.single_apply_ne _ _ _ h]
 
-omit [Group G] in
 /-- The inclusion sends the standard basis to the prescribed point masses. -/
 theorem folnerIncl_single {k : ℕ} (e : Fin k → G) (q : Fin k) :
     folnerIncl e (EuclideanSpace.single q (1 : ℂ))
@@ -125,6 +123,9 @@ theorem euclideanEntry_one {k : ℕ} (p q : Fin k) :
   show ⟪(EuclideanSpace.single p (1 : ℂ) : EuclideanSpace ℂ (Fin k)),
     (EuclideanSpace.single q (1 : ℂ) : EuclideanSpace ℂ (Fin k))⟫_ℂ = _
   rw [EuclideanSpace.inner_single_left, map_one, one_mul, PiLp.single_apply]
+  by_cases h : p = q
+  · simp [h]
+  · simp [h, Ne.symm h]
 
 /-- **The Følner map is unital** exactly when the amplitudes are a unit
 vector. -/
@@ -149,7 +150,6 @@ theorem folnerUp_one {k : ℕ} (e : Fin k → G) (c : Fin k → ℂ)
       exact absurd (Finset.mem_univ p) h
   rw [Finset.sum_congr rfl fun p _ ↦ hterm p, ← Finset.sum_smul, hc, one_smul]
 
-
 /-! ## The completely positive approximation property -/
 
 /-- **The forward half of Lance's theorem, at the interface.**  A group
@@ -164,15 +164,17 @@ theorem nuclearReducedCPAP_of_overlap {Γ : Type} [Group Γ]
   classical
   intro F ε hε
   obtain ⟨k, e, c, he, hc, hoverlap⟩ := h F ε hε
+  set incl : ↥(reducedGroupCStarSubalgebra Γ) →⋆ₙₐ[ℂ]
+      (GroupHilbert Γ →L[ℂ] GroupHilbert Γ) :=
+    (reducedGroupCStarSubalgebra Γ).subtype.toNonUnitalStarAlgHom with hincl
   set down : ↥(reducedGroupCStarSubalgebra Γ) →ₗ[ℂ]
       (EuclideanSpace ℂ (Fin k) →L[ℂ] EuclideanSpace ℂ (Fin k)) :=
     (compressionLM (folnerIncl e)).comp
-      (reducedGroupCStarSubalgebra Γ).subtype.toAlgHom.toLinearMap with hdown
-  have hdowncp : IsCompletelyPositive down := by
-    have hcp := (isCompletelyPositive_compressionLM (folnerIncl e)).comp
-      (isCompletelyPositive_of_starAlgHom
-        ((reducedGroupCStarSubalgebra Γ).subtype.toNonUnitalStarAlgHom))
-    exact hcp
+      ((incl : ↥(reducedGroupCStarSubalgebra Γ) →ₗ[ℂ]
+        (GroupHilbert Γ →L[ℂ] GroupHilbert Γ))) with hdown
+  have hdowncp : IsCompletelyPositive down :=
+    (isCompletelyPositive_compressionLM (folnerIncl e)).comp
+      (isCompletelyPositive_of_starAlgHom incl)
   have hdownapp : ∀ b : ↥(reducedGroupCStarSubalgebra Γ),
       down b = compressionLM (folnerIncl e)
         (b : GroupHilbert Γ →L[ℂ] GroupHilbert Γ) := fun _ ↦ rfl
@@ -201,12 +203,8 @@ theorem nuclearReducedCPAP_of_overlap {Γ : Type} [Group Γ]
     show ‖folnerUp e c
         (compressionLM (folnerIncl e) (leftRegularOperator Γ g))
       - leftRegularOperator Γ g‖ ≤ ε
-    rw [folnerUp_compression_leftRegular]
-    have hsub : folnerOverlap e c g • leftRegularOperator Γ g
-        - leftRegularOperator Γ g
-        = (folnerOverlap e c g - 1) • leftRegularOperator Γ g := by
-      rw [sub_smul, one_smul]
-    rw [hsub, norm_smul]
+    rw [folnerUp_compression_leftRegular, ← sub_smul]
+    refine le_trans (norm_smul_le _ _) ?_
     calc ‖folnerOverlap e c g - 1‖ * ‖leftRegularOperator Γ g‖
         ≤ ε * 1 :=
           mul_le_mul (hoverlap g hg) (norm_leftRegularOperator_le_one Γ g)

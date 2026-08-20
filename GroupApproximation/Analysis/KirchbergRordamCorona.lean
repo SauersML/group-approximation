@@ -87,13 +87,11 @@ def ofContractionSeq (x : ∀ n, MatrixContraction X n) : BoundedMatrixSequence 
     rintro _ ⟨n, rfl⟩
     exact (x n).2⟩⟩
 
-omit [∀ (n : ℕ), Nonempty (X n)] in
 @[simp] theorem ofContractionSeq_apply (x : ∀ n, MatrixContraction X n) (n : ℕ) :
     ofContractionSeq X x n = (x n).1 := rfl
 
 /-! ## Saturation -/
 
-omit [∀ (n : ℕ), Nonempty (X n)] in
 /-- **Countable saturation of the matrix corona** (Kirchberg--Rørdam 2014,
 via Kirchberg's `ε`-test).
 

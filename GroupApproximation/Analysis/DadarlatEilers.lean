@@ -95,7 +95,6 @@ theorem orthogonal' : star E.snd * E.fst = 0 := by
 def oplus (φ ψ : A → B) : A → B :=
   fun a => E.fst * φ a * star E.fst + E.snd * ψ a * star E.snd
 
-omit [CStarAlgebra A] in
 @[simp] theorem oplus_apply (φ ψ : A → B) (a : A) :
     E.oplus φ ψ a = E.fst * φ a * star E.fst + E.snd * ψ a * star E.snd := rfl
 
@@ -194,7 +193,6 @@ theorem oplus_algebraMap (φ ψ : A → B)
     ← Algebra.commutes c E.snd, mul_assoc, mul_assoc, ← mul_add,
     E.range_sum, mul_one]
 
-omit [CStarAlgebra A] in
 /-- **The direct sum preserves orthogonality.**  This is the clause that makes
 a direct sum of order-zero maps order zero: the same computation as
 `oplus_mul`, with the diagonal terms vanishing instead of collapsing. -/
@@ -203,9 +201,8 @@ theorem oplus_orthogonal (φ ψ : A → B) {a b : A}
     E.oplus φ ψ a * E.oplus φ ψ b = 0 := by
   rw [oplus_apply, oplus_apply, add_mul, mul_add, mul_add, E.fst_mul_fst,
     E.fst_mul_snd, E.snd_mul_fst, E.snd_mul_snd, hφ, hψ, mul_zero, zero_mul,
-    mul_zero, zero_mul, add_zero, add_zero]
+    mul_zero, zero_mul, add_zero, add_zero, add_zero]
 
-omit [CStarAlgebra A] in
 /-- The direct sum is a contraction as soon as both summands are, since the
 two terms have orthogonal ranges.  Stated as the crude triangle-inequality
 bound, which is all any application here needs. -/

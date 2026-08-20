@@ -7,7 +7,7 @@ distinct_from:
   finite-tracial-cstar-transport: That root asks for the correct coordinate class; this claim records why arbitrary traced coordinates are too broad.
   left-right-finite-kazhdan-transport: That successor repairs the transport step by adding the missing finite left-right algebra.
 artifacts:
-  - notes/NON_MF_TO_HYPERLINEAR_DIFFERENTIAL_AUDIT.md
+  - docs/NON_MF_TO_HYPERLINEAR_DIFFERENTIAL_AUDIT.md
   - research/artifacts/left-right-finite-coordinate-obstruction-2026-08-19.md
 ---
 

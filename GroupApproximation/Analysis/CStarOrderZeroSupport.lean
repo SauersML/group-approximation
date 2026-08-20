@@ -226,24 +226,18 @@ end OrderZeroSupport
 /-- A `⋆`-homomorphism is the supported map of the support with `root = 1`;
 this is the sense in which order-zero maps interpolate between
 `⋆`-homomorphisms and `0`. -/
-def unitalSupport {A : Type u} {B : Type v} [NonUnitalCStarAlgebra A]
-    [CStarAlgebra B] (f : A →⋆ₙₐ[ℂ] B) : OrderZeroSupport A B where
+def unitalSupport {A₁ : Type u} {B₁ : Type v} [NonUnitalCStarAlgebra A₁]
+    [CStarAlgebra B₁] (f : A₁ →⋆ₙₐ[ℂ] B₁) : OrderZeroSupport A₁ B₁ where
   root := 1
   hom := f
-  root_isSelfAdjoint := by simp
-  -- `‖(1 : B)‖ = 1` needs `B` nontrivial: in a C*-algebra `‖1‖ = ‖1‖ ^ 2`, so
-  -- the unit has norm `1` unless the algebra is zero, where it has norm `0`.
-  -- Both cases satisfy the contraction bound this field asks for.
-  norm_root_le_one := by
-    rcases subsingleton_or_nontrivial B with _ | _
-    · simp [Subsingleton.elim (1 : B) 0]
-    · exact le_of_eq norm_one
+  root_isSelfAdjoint := IsSelfAdjoint.one
+  norm_root_le_one := le_of_eq norm_one
   root_comm a := by rw [one_mul, mul_one]
 
-@[simp] theorem unitalSupport_map_apply {A : Type u} {B : Type v}
-    [NonUnitalCStarAlgebra A] [CStarAlgebra B] (f : A →⋆ₙₐ[ℂ] B) (a : A) :
+@[simp] theorem unitalSupport_map_apply {A₁ : Type u} {B₁ : Type v}
+    [NonUnitalCStarAlgebra A₁] [CStarAlgebra B₁] (f : A₁ →⋆ₙₐ[ℂ] B₁) (a : A₁) :
     (unitalSupport f).map a = f a := by
-  show (1 : B) * 1 * f a = f a
+  show (1 : B₁) * 1 * f a = f a
   rw [one_mul, one_mul]
 
 end

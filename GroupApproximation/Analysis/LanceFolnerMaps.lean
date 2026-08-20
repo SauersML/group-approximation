@@ -54,8 +54,8 @@ variable {G : Type u} [Group G]
 
 /-! ## The inclusion of `ℂᵏ` as `k` point masses -/
 
-omit [Group G] in
 /-- `ℂᵏ → ℓ²(G)`, sending the `i`-th standard basis vector to `δ_{e i}`. -/
+omit [Group G] in
 theorem norm_single_one (g : G) :
     ‖(lp.single 2 g (1 : ℂ) : GroupHilbert G)‖ = 1 := by
   rw [lp.norm_single (by norm_num), norm_one]
@@ -65,7 +65,6 @@ def deltaLine (g : G) : ℂ →L[ℂ] GroupHilbert G :=
   (LinearIsometry.toSpanSingleton ℂ (GroupHilbert G)
     (norm_single_one g)).toContinuousLinearMap
 
-omit [Group G] in
 theorem deltaLine_apply (g : G) (z : ℂ) :
     deltaLine g z = z • (lp.single 2 g (1 : ℂ) : GroupHilbert G) := rfl
 
@@ -76,7 +75,6 @@ def folnerIncl {k : ℕ} (e : Fin k → G) :
       (innerSL ℂ (EuclideanSpace.single i (1 : ℂ) :
         EuclideanSpace ℂ (Fin k)))
 
-omit [Group G] in
 theorem folnerIncl_apply {k : ℕ} (e : Fin k → G)
     (v : EuclideanSpace ℂ (Fin k)) :
     folnerIncl e v
@@ -86,8 +84,8 @@ theorem folnerIncl_apply {k : ℕ} (e : Fin k → G)
   rw [ContinuousLinearMap.comp_apply, deltaLine_apply, innerSL_apply_apply,
     EuclideanSpace.inner_single_left, map_one, one_mul]
 
-omit [Group G] in
 /-- The point masses are orthonormal. -/
+omit [Group G] in
 theorem inner_single_single (s t : G) :
     ⟪(lp.single 2 s (1 : ℂ) : GroupHilbert G),
       (lp.single 2 t (1 : ℂ) : GroupHilbert G)⟫_ℂ = if s = t then 1 else 0 := by
@@ -100,8 +98,6 @@ theorem inner_single_single (s t : G) :
   · rw [lp.single_apply_ne _ _ _ h, if_neg h]
     simp
 
-omit [Group G] in
-omit [Group G] in
 /-- **The inclusion is an isometry** when `e` is injective. -/
 theorem inner_folnerIncl {k : ℕ} {e : Fin k → G} (he : Function.Injective e)
     (u v : EuclideanSpace ℂ (Fin k)) :
@@ -122,7 +118,7 @@ theorem inner_folnerIncl {k : ℕ} {e : Fin k → G} (he : Function.Injective e)
     · have hne : e i ≠ e j := fun hEq ↦ h (he hEq)
       simp [hne, h]
   rw [Finset.sum_congr rfl fun j _ ↦ hterm j]
-  simp [RCLike.inner_apply, mul_comm]
+  simp [RCLike.inner_apply]
 
 /-! ## The compression -/
 
@@ -146,9 +142,9 @@ theorem compressionLM_apply {k : ℕ}
     compressionLM J a v = ContinuousLinearMap.adjoint J (a (J v)) :=
   rfl
 
-omit [Group G] in
 /-- The matrix entries of a compression are the matrix coefficients of the
 operator against the image of the standard basis. -/
+omit [Group G] in
 theorem euclideanEntry_compressionLM {k : ℕ}
     (J : EuclideanSpace ℂ (Fin k) →L[ℂ] GroupHilbert G)
     (a : GroupHilbert G →L[ℂ] GroupHilbert G) (p q : Fin k) :
@@ -158,8 +154,8 @@ theorem euclideanEntry_compressionLM {k : ℕ}
   rw [euclideanEntryLM_apply, compressionLM_apply,
     ContinuousLinearMap.adjoint_inner_right]
 
-omit [Group G] in
 /-- The compression preserves the adjoint. -/
+omit [Group G] in
 theorem compressionLM_star {k : ℕ}
     (J : EuclideanSpace ℂ (Fin k) →L[ℂ] GroupHilbert G)
     (a : GroupHilbert G →L[ℂ] GroupHilbert G) :
@@ -178,7 +174,6 @@ theorem compressionLM_star {k : ℕ}
       ContinuousLinearMap.adjoint_inner_left]
   rw [hleft, hright]
 
-omit [Group G] in
 /-- **The compression is completely positive.** -/
 theorem isCompletelyPositive_compressionLM {k : ℕ}
     (J : EuclideanSpace ℂ (Fin k) →L[ℂ] GroupHilbert G) :
@@ -210,7 +205,6 @@ theorem isCompletelyPositive_compressionLM {k : ℕ}
     rw [hcast, Complex.ofReal_re]
     exact Finset.sum_nonneg fun r _ ↦ sq_nonneg _
 
-omit [Group G] in
 /-- The compression along an isometry is unital. -/
 theorem compressionLM_one {k : ℕ} {e : Fin k → G} (he : Function.Injective e) :
     compressionLM (folnerIncl e) 1 = 1 := by
