@@ -38,6 +38,12 @@ it reproduces the entire tail in one fixed formula rather than by a word whose
 length grows with depth. What remains is to couple the shared BCS selector
 projections to that formula using group words.
 
+The head algebra is also finitely actuated:
+`toeplitz-tail-plus-one-swap-generates` gives one involution `s` with
+`T=<sigma(T),s>`. Therefore no unbounded family of unrelated head generators
+is needed. The analytic problem is to make the Schur violation determine the
+action of this fixed actuator on the residual multiplicity space.
+
 ## Attempts
 
 - Merely place `B_f^Q` in `alpha(Gamma)` and `B_f` in `Gamma`: this dies by
@@ -51,4 +57,6 @@ projections to that formula using group words.
   current carrier*. The missing estimate is a dimension-free conditional
   expectation inequality showing that loss of head Reynolds mass produces,
   with a strict contraction, selector mass in that compressed residual
-  corner.
+  corner. The single head swap from
+  `toeplitz-tail-plus-one-swap-generates` is the candidate bounded word which
+  implements this transfer.

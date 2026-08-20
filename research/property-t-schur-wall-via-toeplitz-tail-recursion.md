@@ -6,6 +6,7 @@ title: Place the packet across the Toeplitz head and recurse on every residual e
 target: schur-packet-as-positive-density-compressor-wall
 requires:
   - schur-child-crosses-toeplitz-compressor
+  - toeplitz-tail-plus-one-swap-generates
   - residual-action-can-erase-local-reynolds-density
   - toeplitz-tail-retains-contextual-schur-density
   - non-ce-bcs-has-robust-approximate-energy-gap
@@ -22,4 +23,3 @@ with a fixed contraction and fixed HS cost. The contractive ladder sums all
 tail costs. The residual-erasure theorem is included as a prerequisite to
 make explicit that local subgroup placement alone is not being used as the
 missing inference.
-
