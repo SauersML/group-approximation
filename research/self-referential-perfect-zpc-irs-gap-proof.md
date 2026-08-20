@@ -3,7 +3,7 @@ rg: 2
 id: self-referential-perfect-zpc-irs-gap-proof
 kind: route
 title: Make the ZPC halting diagonalization self-referential
- target: self-referential-perfect-zpc-irs-gap
+target: self-referential-perfect-zpc-irs-gap
 requires:
   - zpc-irs-value-computable-upper-hierarchy
 ---
