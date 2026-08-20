@@ -114,7 +114,7 @@ theorem coe_list_prod (m : List ↥Λ) :
     ((m.prod : ↥Λ) : Γ) = (m.map (fun u : ↥Λ => (u : Γ))).prod := by
   induction m with
   | nil => simp
-  | cons u t ih => simp
+  | cons u t _ => simp
 
 /-- **The one-step telescoping identity.**  The Schreier generator attached to
 `(sec γ, x)` is exactly the amount by which one step to the right moves the

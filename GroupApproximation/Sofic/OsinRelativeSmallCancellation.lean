@@ -1,3 +1,5 @@
+import GroupApproximation.Algebra.FreeProductConjugacy
+import Mathlib.Tactic.Linarith
 import GroupApproximation.Algebra.FreeProductFactorQuotient
 
 /-!
@@ -35,22 +37,32 @@ anticipated it: "the relative refinement replaces letters by
 
 ## What is proved here, with nothing assumed
 
-* `factorMap_injective` — **the peripheral factor stays embedded.**  A
-  nontrivial element of a factor spells a word of syllable length one, and the
-  relative Greendlinger conclusion makes every nontrivial element of the
-  relator subgroup longer than half of some relator.  So the factor survives as
-  soon as the relators have at least two syllables.  This is the whole of the
-  embedding clause, for *every* factor, not only the peripheral one.
+* `factorMap_injective_of_cyclicallyReduced` — **the peripheral factor stays
+  embedded.**  A nontrivial element of a factor spells a word of syllable
+  length one, and the Greendlinger length bound makes every nontrivial element
+  of the relator subgroup longer than half of some relator.  Cyclically reduced
+  relators have two syllables or more (`two_le_wlen`), so no separate length
+  hypothesis is needed.  This is the whole of the embedding clause, for *every*
+  factor, not only the peripheral one.
 * `isPowerTorsionFree_of_torsionIntoFactors` — **the quotient stays
   torsion-free**, given the torsion classification, the embedding clause, and
   torsion-free factors.  Torsion-freeness of the factors is spent exactly
   once, on the element the classification produces.
 * `osin_conclusion` — the two clauses together, in the shape the ledger row
   asks for.
-* `factorMap_not_injective_of_singleton` — **the length hypothesis is
-  sharp.**  A relator of one syllable is a nontrivial element of a factor and
-  dies in the quotient, so "at least two syllables" is not a convenience: no
-  weaker hypothesis carries the embedding clause.
+* `wlen_le_sylLength_conj` — **the Greendlinger bound for a single conjugate,
+  proved outright and with a sharp constant.**  A conjugate of a cyclically
+  reduced relator is at least as long as the relator, never merely longer than
+  half of it.  This needs no small-cancellation hypothesis: it is
+  `FreeProductCyclic.length_le_sylLength_conj`, and behind that the fact that
+  `|uⁿ| = n·|u|` for a cyclically reduced `u` while conjugation moves length by
+  at most `2|c|`.  It is the one-conjugate case of the open implication below,
+  and it is closed.
+* `factorMap_not_injective_of_singleton`, `factorMap_not_injective_letterWord`
+  — **the length hypothesis is sharp, and the failure is exhibited.**  A
+  relator of one syllable is a nontrivial element of a factor and dies in the
+  quotient, so "cyclically reduced" is not a convenience: no weaker hypothesis
+  carries the embedding clause.
 * `factorMap_injective_of_retraction` — **an unconditional embedding
   criterion** covering an infinite family of quotients with no small
   cancellation anywhere in sight: if every relator dies under the retraction
@@ -59,23 +71,60 @@ anticipated it: "the relative refinement replaces letters by
 * `torsionIntoFactors_of_eq_bot` and `torsionIntoFactors_factorNormal` —
   the classification, proved.  The first is the empty relator family, where
   the quotient *is* `U * H` and the statement is the free-product torsion
-  theorem of `Algebra.FreeProductCyclicWord`.  The second is a nondegenerate
-  family: all relators drawn from inside the factors, where
+  theorem of `Algebra.FreeProductCyclicWord` — sharpened in
+  `Algebra.FreeProductConjugacy` to an equivalence
+  (`isOfFinOrder_iff_conj_factor`): the torsion of a free product is exactly
+  the torsion of its factors, spread over conjugates.  The second is a
+  nondegenerate family: all relators drawn from inside the factors, where
   `Algebra.FreeProductFactorQuotient` identifies the quotient with a free
   product of quotient factors and the same theorem applies again.  So neither
-  hypothesis of `osin_conclusion` is a name with nothing behind it.
+  hypothesis of `osin_conclusion` is a name with nothing behind it, and
+  `isCyclicallyReduced_pairWord` inhabits the third.
 
 ## What is not proved, stated exactly
 
-`MetricSmallCancellation R (1/6) → GreendlingerConclusion R`, and its
-conjugacy counterpart `MetricSmallCancellation R (1/6) → TorsionIntoFactors`.
-These are the two combinatorial cores, and they are the relative form of
-`SmallCancellationRouter.GreendlingerGate`, which the free-group development
-in `Sofic/Greendlinger*` has narrowed to a single step and not closed.  They
-are *not* recorded here as structures or hypothesis packages: `Greendlinger‐
-Conclusion` and `TorsionIntoFactors` are predicates on a relator family, each
-with proved instances, so nothing in this file is a typed literature input and
-no statement here is conditional on a citation.
+Exactly one implication, in two readings:
+
+    MetricSmallCancellation R (1/6) → GreendlingerLengthBound R
+    MetricSmallCancellation R (1/6) → TorsionIntoFactors (relatorSubgroup R)
+
+for expressions with **two or more** conjugate factors.  The one-factor case
+is `wlen_le_sylLength_conj` above, and it is proved; what the general case
+needs is the count that says the cancellations between different conjugates
+cannot all be large, and that count is not soft.  Two independent checks that
+it is not: the syllable-length methods that close the one-factor case are
+conjugacy-invariant, and a product of two conjugates can be arbitrarily short
+without the metric condition; and the free-group form of the same statement,
+`SmallCancellationRouter.GreendlingerGate`, is open there too, along two
+independent routes that share no machinery.
+
+* The **descent** route (`Sofic/Greendlinger*`) carries minimal expressions,
+  palindromic normal forms, pieces and a located conclusion with slack, and
+  bottoms out — see `Sofic/GreendlingerChunks` — at a bound on a *chain* of
+  segments along one rotation, "which is what the curvature count over a
+  reduced diagram supplies and what no single re-expression move can".
+* The **rewriting** route (`Sofic/GreendlingerDehn`) reads Dehn's algorithm as
+  a rewriting system and needs only that reducibility survives free reduction.
+  That route is now carried to a single configuration.  `Sofic/Greendlinger‐
+  DehnCritical` replaces the rule by the symmetric `DehnSwap` relation and
+  settles the critical pairs one at a time; `Sofic/GreendlingerDehnFree`
+  discharges the free half outright, and `Sofic/GreendlingerDehnSwap` the swap
+  half, the two together by one induction on word length.  What survives is one
+  statement, `PieceOverlapRight` (its mirror image follows from it by the
+  system's mirror symmetry): two *distinct* relators
+  overlapping in a piece, with the part of the step's occurrence beyond the
+  overlap at most half of its relator — the one regime in which neither word can
+  be made shorter, so the descent on length stalls.  Everything else, including
+  every configuration in which the two relators coincide, is a theorem
+  (`greendlingerConclusion_of_pieceOverlap`).
+
+Both routes end at the same crossing, and it is a van Kampen argument: that is
+the whole of what is open here.
+
+Nothing above is a structure or a hypothesis package.  `Greendlinger‐
+Conclusion`, `GreendlingerLengthBound` and `TorsionIntoFactors` are predicates
+on a relator family, each with proved instances, so nothing in this file is a
+typed literature input and no statement here is conditional on a citation.
 
 One honest caveat about the definitions.  Pieces are measured in whole
 syllables (`IsPiece`, `MetricSmallCancellation`).  Over a free product a piece
@@ -200,6 +249,73 @@ variable {ι : Type*} [DecidableEq ι] {G : ι → Type*} [∀ i, Group (G i)]
 /-- **Syllable length** of a relator. -/
 def wlen (w : Word G) : ℕ := w.toList.length
 
+/-- **A relator is cyclically reduced** when its first and last syllables lie
+in different factors — equivalently, when it is spelled by a `NeWord` whose
+two end indices differ.  This is the standard hypothesis on a symmetrized
+small-cancellation family, and over a free product it is exactly what makes
+the relator's conjugates long. -/
+def IsCyclicallyReduced (r : Word G) : Prop :=
+  ∃ (i j : ι) (u : NeWord G i j), i ≠ j ∧ u.toWord = r
+
+omit [DecidableEq ι] [(i : ι) → DecidableEq (G i)] in
+/-- **A cyclically reduced relator has at least two syllables**, so the length
+hypothesis of the embedding clause never has to be assumed separately. -/
+theorem two_le_wlen {r : Word G} (hr : IsCyclicallyReduced r) : 2 ≤ wlen r := by
+  obtain ⟨i, j, u, hij, hu⟩ := hr
+  have hlist : u.toList = r.toList := congrArg Word.toList hu
+  have h := FreeProductCyclic.two_le_length_of_ne hij u
+  rw [hlist] at h
+  exact h
+
+/-- **The Greendlinger bound for a single conjugate, unconditionally.**
+
+A conjugate of a cyclically reduced relator is at least as long as the
+relator — not merely longer than half of it.  This is the one-conjugate case
+of the Greendlinger conclusion, and it needs no small-cancellation hypothesis
+at all: it is `FreeProductCyclic.length_le_sylLength_conj`, the statement that
+a cyclically reduced word is shortest in its conjugacy class. -/
+theorem wlen_le_sylLength_conj {r : Word G} (hr : IsCyclicallyReduced r)
+    (c : CoprodI G) :
+    wlen r ≤ FreeProductCyclic.sylLength (c * r.prod * c⁻¹) := by
+  obtain ⟨i, j, u, hij, hu⟩ := hr
+  have hlist : u.toList = r.toList := congrArg Word.toList hu
+  have hprod : u.prod = r.prod := congrArg Word.prod hu
+  have h := FreeProductCyclic.length_le_sylLength_conj hij u c
+  rw [hlist, hprod] at h
+  exact h
+
+omit [DecidableEq ι] [(i : ι) → DecidableEq (G i)] in
+/-- The same for a conjugate of the *inverse* of a relator: symmetrized
+families contain both, and inversion preserves cyclic reducedness. -/
+theorem isCyclicallyReduced_inv {r : Word G} (hr : IsCyclicallyReduced r) :
+    ∃ s : Word G, IsCyclicallyReduced s ∧ s.prod = (r.prod)⁻¹ ∧ wlen s = wlen r := by
+  obtain ⟨i, j, u, hij, hu⟩ := hr
+  refine ⟨u.inv.toWord, ⟨j, i, u.inv, hij.symm, rfl⟩, ?_, ?_⟩
+  · have h1 : u.inv.prod = (u.prod)⁻¹ := NeWord.inv_prod u
+    have h2 : u.prod = r.prod := congrArg Word.prod hu
+    rw [← h2]
+    exact h1
+  · have hlist : u.toList = r.toList := congrArg Word.toList hu
+    have h := FreeProductCyclic.toList_length_inv u
+    rw [hlist] at h
+    exact h
+
+/-- **Cyclically reduced relators exist**: two nontrivial syllables from
+different factors spell one.  Nothing above is a hypothesis about an empty
+class. -/
+def pairWord {i j : ι} (hij : i ≠ j) {x : G i} {y : G j} (hx : x ≠ 1)
+    (hy : y ≠ 1) : Word G :=
+  ((NeWord.singleton x hx).append hij (NeWord.singleton y hy)).toWord
+
+omit [DecidableEq ι] [(i : ι) → DecidableEq (G i)] in
+theorem isCyclicallyReduced_pairWord {i j : ι} (hij : i ≠ j) {x : G i} {y : G j}
+    (hx : x ≠ 1) (hy : y ≠ 1) : IsCyclicallyReduced (pairWord hij hx hy) :=
+  ⟨i, j, (NeWord.singleton x hx).append hij (NeWord.singleton y hy), hij, rfl⟩
+
+omit [DecidableEq ι] [(i : ι) → DecidableEq (G i)] in
+@[simp] theorem wlen_pairWord {i j : ι} (hij : i ≠ j) {x : G i} {y : G j}
+    (hx : x ≠ 1) (hy : y ≠ 1) : wlen (pairWord hij hx hy) = 2 := rfl
+
 /-- The normal subgroup a relator family presents. -/
 def relatorSubgroup (R : Set (Word G)) : Subgroup (CoprodI G) :=
   Subgroup.normalClosure (Word.prod '' R)
@@ -222,6 +338,7 @@ def MetricSmallCancellation (R : Set (Word G)) (lam : ℚ) : Prop :=
   ∀ p, IsPiece R p → ∀ r ∈ R, p <+: r.toList →
     (p.length : ℚ) < lam * (wlen r : ℚ)
 
+omit [DecidableEq ι] [(i : ι) → DecidableEq (G i)] in
 /-- **`C'(1/6)` in `ℕ`.**  Clearing the denominator once, exactly as
 `Sofic.GreendlingerPiece.six_mul_length_lt_of_isPiece` does over a free
 group, so that a future proof of the Greendlinger conclusion never leaves
@@ -243,26 +360,45 @@ def GreendlingerConclusion (R : Set (Word G)) : Prop :=
       s <:+: (Word.equiv g).toList ∧ s <:+: r.toList ++ r.toList ∧
         s.length ≤ wlen r ∧ wlen r < 2 * s.length
 
-/-- Nontrivial elements of the relator subgroup are longer than half of some
-relator.  The Greendlinger block is a subword of the normal form, so it is no
-longer than the normal form. -/
-theorem sylLength_lt_of_mem_relatorSubgroup {R : Set (Word G)}
-    (hG : GreendlingerConclusion R) {g : CoprodI G} (hg : g ≠ 1)
-    (hmem : g ∈ relatorSubgroup R) :
-    ∃ r ∈ R, wlen r < 2 * FreeProductCyclic.sylLength g := by
+/-- **The length form of the Greendlinger conclusion**, which is all the
+embedding clause consumes: a nontrivial element of the relator subgroup is
+longer than half of some relator.
+
+Separating it from the subword form matters.  The subword form is what a
+diagram argument produces; the length form is what the theorem needs, it is
+strictly weaker, and — for a single conjugate — it is *provable outright*
+(`wlen_le_sylLength_conj`), with the sharp constant `1` rather than `1/2`. -/
+def GreendlingerLengthBound (R : Set (Word G)) : Prop :=
+  ∀ g : CoprodI G, g ≠ 1 → g ∈ relatorSubgroup R →
+    ∃ r ∈ R, wlen r < 2 * FreeProductCyclic.sylLength g
+
+/-- The subword form implies the length form.  The Greendlinger block is a
+subword of the normal form, so it is no longer than the normal form. -/
+theorem greendlingerLengthBound_of_conclusion {R : Set (Word G)}
+    (hG : GreendlingerConclusion R) : GreendlingerLengthBound R := by
+  intro g hg hmem
   obtain ⟨r, hr, s, hs1, -, -, hlt⟩ := hG g hg hmem
   refine ⟨r, hr, ?_⟩
   have h1 : s.length ≤ (Word.equiv g).toList.length := hs1.sublist.length_le
   simp only [FreeProductCyclic.sylLength]
   omega
 
+/-- Nontrivial elements of the relator subgroup are longer than half of some
+relator. -/
+theorem sylLength_lt_of_mem_relatorSubgroup {R : Set (Word G)}
+    (hG : GreendlingerConclusion R) {g : CoprodI G} (hg : g ≠ 1)
+    (hmem : g ∈ relatorSubgroup R) :
+    ∃ r ∈ R, wlen r < 2 * FreeProductCyclic.sylLength g :=
+  greendlingerLengthBound_of_conclusion hG g hg hmem
+
 /-- **The peripheral factor stays embedded.**
 
 A nontrivial element of a factor is a word of one syllable, so a relator of
 two syllables or more is already too long to be more than half-contained in
-it.  Nothing about the peripheral factor is special: this is every factor. -/
-theorem factorMap_injective {R : Set (Word G)} (hG : GreendlingerConclusion R)
-    (hlong : ∀ r ∈ R, 2 ≤ wlen r) (i : ι) :
+it.  Nothing about the peripheral factor is special: this is every factor,
+and the hypothesis is the length form, not the subword form. -/
+theorem factorMap_injective_of_lengthBound {R : Set (Word G)}
+    (hG : GreendlingerLengthBound R) (hlong : ∀ r ∈ R, 2 ≤ wlen r) (i : ι) :
     Function.Injective (factorMap (relatorSubgroup R) i) := by
   intro x y hxy
   by_contra hne
@@ -275,21 +411,40 @@ theorem factorMap_injective {R : Set (Word G)} (hG : GreendlingerConclusion R)
     have h1 : factorMap (relatorSubgroup R) i (x * y⁻¹) = 1 := by
       rw [map_mul, map_inv, hxy, mul_inv_cancel]
     exact h1
-  obtain ⟨r, hr, hlt⟩ := sylLength_lt_of_mem_relatorSubgroup hG hof hmem
+  obtain ⟨r, hr, hlt⟩ := hG _ hof hmem
   have h1 := FreeProductCyclic.sylLength_of_le_one (x * y⁻¹)
   have h2 := hlong r hr
   omega
+
+/-- The embedding clause with the standard small-cancellation hypothesis in
+place of a bare length bound: **cyclically reduced relators are automatically
+long enough**. -/
+theorem factorMap_injective_of_cyclicallyReduced {R : Set (Word G)}
+    (hG : GreendlingerLengthBound R)
+    (hcyc : ∀ r ∈ R, IsCyclicallyReduced r) (i : ι) :
+    Function.Injective (factorMap (relatorSubgroup R) i) :=
+  factorMap_injective_of_lengthBound hG (fun r hr => two_le_wlen (hcyc r hr)) i
+
+/-- The embedding clause from the subword form, for callers that have it. -/
+theorem factorMap_injective {R : Set (Word G)} (hG : GreendlingerConclusion R)
+    (hlong : ∀ r ∈ R, 2 ≤ wlen r) (i : ι) :
+    Function.Injective (factorMap (relatorSubgroup R) i) :=
+  factorMap_injective_of_lengthBound (greendlingerLengthBound_of_conclusion hG)
+    hlong i
 
 /-- The one-syllable relator spelling a nontrivial element of a factor. -/
 def letterWord {i : ι} (x : G i) (hx : x ≠ 1) : Word G :=
   Word.cons x Word.empty (by simp [Word.fstIdx]) hx
 
+omit [DecidableEq ι] [(i : ι) → DecidableEq (G i)] in
 @[simp] theorem letterWord_toList {i : ι} (x : G i) (hx : x ≠ 1) :
     (letterWord x hx).toList = [⟨i, x⟩] := rfl
 
+omit [DecidableEq ι] [(i : ι) → DecidableEq (G i)] in
 @[simp] theorem wlen_letterWord {i : ι} (x : G i) (hx : x ≠ 1) :
     wlen (letterWord x hx) = 1 := rfl
 
+omit [DecidableEq ι] [(i : ι) → DecidableEq (G i)] in
 /-- **The two-syllable hypothesis of `factorMap_injective` is exactly right.**
 A relator of a single syllable *is* a nontrivial element of a factor, and it
 dies in the quotient, so the embedding clause fails for it.  There is no
@@ -310,6 +465,7 @@ theorem factorMap_not_injective_of_singleton {R : Set (Word G)} {r : Word G}
     rw [h1, map_one]
   exact hx1 (hinj h2)
 
+omit [DecidableEq ι] [(i : ι) → DecidableEq (G i)] in
 /-- The failure is exhibited, not merely permitted: killing one nontrivial
 element of a factor is a relator family, and it collapses that factor. -/
 theorem factorMap_not_injective_letterWord {i : ι} (x : G i) (hx : x ≠ 1) :
@@ -321,18 +477,28 @@ theorem factorMap_not_injective_letterWord {i : ι} (x : G i) (hx : x ≠ 1) :
 /-- **Osin's conclusion pair over `U * H`.**  A small-cancellation quotient of
 a free product of torsion-free groups keeps every factor — in particular the
 peripheral one — embedded, and is torsion-free. -/
-theorem osin_conclusion {R : Set (Word G)} (hG : GreendlingerConclusion R)
-    (hlong : ∀ r ∈ R, 2 ≤ wlen r)
+theorem osin_conclusion {R : Set (Word G)}
+    (hcyc : ∀ r ∈ R, IsCyclicallyReduced r) (hG : GreendlingerLengthBound R)
     (htor : TorsionIntoFactors (relatorSubgroup R))
     (hfree : ∀ i, IsPowerTorsionFree (G i)) (i₀ : ι) :
     Function.Injective (factorMap (relatorSubgroup R) i₀) ∧
       IsPowerTorsionFree (CoprodI G ⧸ relatorSubgroup R) :=
-  ⟨factorMap_injective hG hlong i₀,
-    isPowerTorsionFree_of_torsionIntoFactors htor (factorMap_injective hG hlong)
-      hfree⟩
+  ⟨factorMap_injective_of_cyclicallyReduced hG hcyc i₀,
+    isPowerTorsionFree_of_torsionIntoFactors htor
+      (factorMap_injective_of_cyclicallyReduced hG hcyc) hfree⟩
+
+/-- The same from the subword form of the Greendlinger conclusion. -/
+theorem osin_conclusion_of_greendlinger {R : Set (Word G)}
+    (hcyc : ∀ r ∈ R, IsCyclicallyReduced r) (hG : GreendlingerConclusion R)
+    (htor : TorsionIntoFactors (relatorSubgroup R))
+    (hfree : ∀ i, IsPowerTorsionFree (G i)) (i₀ : ι) :
+    Function.Injective (factorMap (relatorSubgroup R) i₀) ∧
+      IsPowerTorsionFree (CoprodI G ⧸ relatorSubgroup R) :=
+  osin_conclusion hcyc (greendlingerLengthBound_of_conclusion hG) htor hfree i₀
 
 /-! ### The degenerate relator families, discharged -/
 
+omit [DecidableEq ι] [(i : ι) → DecidableEq (G i)] in
 theorem relatorSubgroup_empty : relatorSubgroup (∅ : Set (Word G)) = ⊥ := by
   refine le_antisymm ?_ bot_le
   apply Subgroup.normalClosure_le_normal
@@ -348,12 +514,22 @@ theorem greendlingerConclusion_empty :
     GreendlingerConclusion (∅ : Set (Word G)) :=
   greendlingerConclusion_of_eq_bot relatorSubgroup_empty
 
+theorem greendlingerLengthBound_of_eq_bot {R : Set (Word G)}
+    (hR : relatorSubgroup R = ⊥) : GreendlingerLengthBound R := by
+  intro g hg hmem
+  rw [hR, Subgroup.mem_bot] at hmem
+  exact absurd hmem hg
+
+theorem greendlingerLengthBound_empty :
+    GreendlingerLengthBound (∅ : Set (Word G)) :=
+  greendlingerLengthBound_of_eq_bot relatorSubgroup_empty
+
 /-- **Nothing above is vacuous.**  For the empty relator family both clauses
 hold, and their content is that `U * H` contains `U` and is torsion-free. -/
 theorem osin_conclusion_empty (hfree : ∀ i, IsPowerTorsionFree (G i)) (i₀ : ι) :
     Function.Injective (factorMap (relatorSubgroup (∅ : Set (Word G))) i₀) ∧
       IsPowerTorsionFree (CoprodI G ⧸ relatorSubgroup (∅ : Set (Word G))) :=
-  osin_conclusion greendlingerConclusion_empty (by simp)
+  osin_conclusion (by simp) greendlingerLengthBound_empty
     (torsionIntoFactors_of_eq_bot relatorSubgroup_empty) hfree i₀
 
 /-! ## 3.  An unconditional embedding criterion, with no small cancellation
@@ -368,11 +544,13 @@ combinatorics at all. -/
 def retraction (i₀ : ι) : CoprodI G →* G i₀ :=
   CoprodI.lift (Pi.mulSingle i₀ (MonoidHom.id (G i₀)))
 
+omit [(i : ι) → DecidableEq (G i)] in
 @[simp] theorem retraction_of_same (i₀ : ι) (x : G i₀) :
     retraction i₀ (CoprodI.of x) = x := by
   simp only [retraction, CoprodI.lift_of, Pi.mulSingle_eq_same,
     MonoidHom.id_apply]
 
+omit [(i : ι) → DecidableEq (G i)] in
 /-- **A retraction criterion for the embedding clause.** -/
 theorem factorMap_injective_of_retraction {R : Set (Word G)} (i₀ : ι)
     (hR : ∀ r ∈ R, retraction i₀ r.prod = 1) :
