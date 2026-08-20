@@ -321,9 +321,11 @@ theorem freeLampToSemidirectMaps_comp (G : Type) [Group G] (Γ : Subgroup G)
   intro b
   cases b
   · rfl
-  · ext γ
-    show SemidirectProduct.inl (inIterated G Γ K 1 (γ : G))
-      = SemidirectProduct.inl (PushoutI.base (iteratedMap G Γ K) γ)
+  · refine MonoidHom.ext fun γ ↦ ?_
+    show SemidirectProduct.inl (φ := lampIndexAction G Γ K)
+        (inIterated G Γ K 1 (γ : G))
+      = SemidirectProduct.inl (φ := lampIndexAction G Γ K)
+        (PushoutI.base (iteratedMap G Γ K) γ)
     rw [inIterated_coe_subgroup]
 
 /-- From the amalgam to the semidirect product. -/
@@ -373,7 +375,8 @@ theorem freeLampOfSemidirect_comp_toSemidirect (G : Type) [Group G]
         (freeLampToSemidirect G Γ K (inAmbient G Γ K g)) = inAmbient G Γ K g
     rw [freeLampToSemidirect_inAmbient, freeLampOfSemidirect_inl,
       iteratedToFreeLamp_inIterated]
-    simp
+    have h1 : inLamp G Γ K (1 : K) = 1 := map_one _
+    rw [h1, one_mul, inv_one, mul_one]
 
 theorem freeLampToSemidirect_comp_ofSemidirect (G : Type) [Group G]
     (Γ : Subgroup G) (K : Type) [Group K] :
@@ -395,7 +398,7 @@ theorem freeLampToSemidirect_comp_ofSemidirect (G : Type) [Group G]
         = SemidirectProduct.inl (PushoutI.base (iteratedMap G Γ K) γ)
       rw [freeLampOfSemidirect_inl, iteratedToFreeLamp_base,
         freeLampToSemidirect_inAmbient, inIterated_coe_subgroup]
-  · ext k
+  · refine MonoidHom.ext fun k ↦ ?_
     show freeLampToSemidirect G Γ K (freeLampOfSemidirect G Γ K
         (SemidirectProduct.inr k)) = SemidirectProduct.inr k
     rw [freeLampOfSemidirect_inr, freeLampToSemidirect_inLamp]
@@ -442,12 +445,12 @@ theorem lampRetraction_comp_iteratedToFreeLamp (G : Type) [Group G]
   refine iteratedDouble_hom_ext G Γ (fun j g ↦ ?_) (fun γ ↦ ?_)
   · show lampRetraction G Γ K
         (iteratedToFreeLamp G Γ K (inIterated G Γ K j g)) = 1
-    rw [iteratedToFreeLamp_inIterated]
-    simp
+    rw [iteratedToFreeLamp_inIterated, map_mul, map_mul, map_inv,
+      lampRetraction_inLamp, lampRetraction_inAmbient, mul_one, mul_inv_cancel]
   · show lampRetraction G Γ K (iteratedToFreeLamp G Γ K
         (PushoutI.base (iteratedMap G Γ K) γ)) = 1
     rw [iteratedToFreeLamp_base]
-    simp
+    exact lampRetraction_inAmbient G Γ K _
 
 theorem lampRetraction_iteratedToFreeLamp (G : Type) [Group G] (Γ : Subgroup G)
     (K : Type) [Group K] (x : IteratedDouble G Γ K) :
@@ -459,16 +462,18 @@ theorem lampRetraction_comp_ofSemidirect (G : Type) [Group G] (Γ : Subgroup G)
     (lampRetraction G Γ K).comp (freeLampOfSemidirect G Γ K)
       = SemidirectProduct.rightHom := by
   refine SemidirectProduct.hom_ext ?_ ?_
-  · ext x
+  · refine MonoidHom.ext fun x ↦ ?_
     show lampRetraction G Γ K (freeLampOfSemidirect G Γ K
-        (SemidirectProduct.inl x)) = SemidirectProduct.rightHom
-          (SemidirectProduct.inl x)
+        (SemidirectProduct.inl (φ := lampIndexAction G Γ K) x))
+      = SemidirectProduct.rightHom
+          (SemidirectProduct.inl (φ := lampIndexAction G Γ K) x)
     rw [freeLampOfSemidirect_inl, lampRetraction_iteratedToFreeLamp,
       SemidirectProduct.rightHom_inl]
-  · ext k
+  · refine MonoidHom.ext fun k ↦ ?_
     show lampRetraction G Γ K (freeLampOfSemidirect G Γ K
-        (SemidirectProduct.inr k)) = SemidirectProduct.rightHom
-          (SemidirectProduct.inr k)
+        (SemidirectProduct.inr (φ := lampIndexAction G Γ K) k))
+      = SemidirectProduct.rightHom
+          (SemidirectProduct.inr (φ := lampIndexAction G Γ K) k)
     rw [freeLampOfSemidirect_inr, lampRetraction_inLamp,
       SemidirectProduct.rightHom_inr]
 
@@ -538,7 +543,8 @@ theorem isOperatorMF_freeLamp_of_isOperatorMF_iterated (G : Type) [Group G]
     (Γ : Subgroup G) (K : Type) [Group K] [Finite K]
     (h : IsOperatorMF (IteratedDouble G Γ K)) : IsOperatorMF (FreeLamp G Γ K) :=
   InducedCorona.isOperatorMF_of_finiteIndex_subgroup (lampKernel G Γ K)
-    (isOperatorMF_of_mulEquiv (iteratedEquivLampKernel G Γ K) h)
+    (CommensurabilityInvariance.isOperatorMF_of_mulEquiv
+      (iteratedEquivLampKernel G Γ K) h)
 
 /-- Operator-MF descends from the amalgam to the covering, since the covering
 embeds. -/
