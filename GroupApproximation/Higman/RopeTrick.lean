@@ -782,3 +782,129 @@ theorem conj_baseMap (hSF : Subgroup.closure SF = ⊤) (s : ↥(Sub w)) :
     rw [htop]
     exact Subgroup.mem_top s
   exact this
+
+/-! ## 10.  The two maps are inverse, and the conclusion -/
+
+/-- The map from the rope group to the candidate. -/
+noncomputable def fromRope (hSF : Subgroup.closure SF = ⊤) :
+    RopeGroup w →* Pres w SF := by
+  refine HNNExtension.lift (baseMap w SF hSF) (presMk w SF (preE w)) ?_
+  intro a
+  obtain ⟨s, hs, hsa⟩ := a.2
+  have ha : a = ⟨((s, (1 : F ⧸ N)) : Amb w), pair_mem_ae w s hs⟩ :=
+    Subtype.ext hsa.symm
+  rw [ha]
+  show presMk w SF (preE w) * baseMap w SF hSF ((s, (1 : F ⧸ N)) : Amb w)
+    = baseMap w SF hSF
+        ((psi w ⟨((s, (1 : F ⧸ N)) : Amb w), pair_mem_ae w s hs⟩ :
+          ↥(BeSub w)) : Amb w) * presMk w SF (preE w)
+  rw [coe_psi w s hs, ← conj_baseMap w SF hSF ⟨s, hs⟩]
+  group
+
+theorem fromRope_toRope (hSF : Subgroup.closure SF = ⊤) :
+    (fromRope w SF hSF).comp (toRope w SF) = MonoidHom.id (Pres w SF) := by
+  have hsurj : Function.Surjective (presMk w SF) := QuotientGroup.mk'_surjective _
+  refine (MonoidHom.cancel_right hsurj).mp ?_
+  refine Monoid.Coprod.hom_ext ?_ ?_
+  · refine MonoidHom.ext fun z => ?_
+    obtain ⟨g, x⟩ := z
+    have hsplit : ((g, x) : Gamma w × F) = (g, (1 : F)) * ((1 : Gamma w), x) := by
+      refine Prod.ext ?_ ?_
+      · show g = g * 1
+        rw [mul_one]
+      · show x = 1 * x
+        rw [one_mul]
+    show (fromRope w SF hSF) (toRope w SF (presMk w SF (Monoid.Coprod.inl (g, x))))
+      = presMk w SF (Monoid.Coprod.inl (g, x))
+    rw [hsplit, map_mul, map_mul, map_mul, map_mul]
+    have h₁ : (fromRope w SF hSF) (toRope w SF
+        (presMk w SF (Monoid.Coprod.inl ((g, (1 : F)) : Gamma w × F))))
+        = presMk w SF (preGamma w g) := by
+      show (fromRope w SF hSF) (toRope w SF (presMk w SF (preGamma w g))) = _
+      rw [toRope_gamma]
+      show baseMap w SF hSF (g, 1) = _
+      rw [baseMap_inl]
+    have h₂ : (fromRope w SF hSF) (toRope w SF
+        (presMk w SF (Monoid.Coprod.inl (((1 : Gamma w), x) : Gamma w × F))))
+        = presMk w SF (preF w x) := by
+      show (fromRope w SF hSF) (toRope w SF (presMk w SF (preF w x))) = _
+      rw [toRope_f]
+      show baseMap w SF hSF (1, QuotientGroup.mk' N x) = _
+      rw [baseMap_inr]
+    rw [h₁, h₂]
+    rfl
+  · refine MonoidHom.ext_mint ?_
+    show (fromRope w SF hSF) (toRope w SF (presMk w SF (preE w)))
+      = presMk w SF (preE w)
+    rw [toRope_e]
+    show HNNExtension.lift (baseMap w SF hSF) (presMk w SF (preE w)) _
+      HNNExtension.t = _
+    rw [HNNExtension.lift_t]
+
+theorem toRope_injective (hSF : Subgroup.closure SF = ⊤) :
+    Function.Injective (toRope w SF) := by
+  intro x y hxy
+  have h := congrArg (fun f : Pres w SF →* Pres w SF => f x) (fromRope_toRope w SF hSF)
+  have h' := congrArg (fun f : Pres w SF →* Pres w SF => f y) (fromRope_toRope w SF hSF)
+  show x = y
+  calc x = (fromRope w SF hSF) (toRope w SF x) := h.symm
+    _ = (fromRope w SF hSF) (toRope w SF y) := by rw [hxy]
+    _ = y := h'
+
+theorem toRope_surjective (hSF : Subgroup.closure SF = ⊤) :
+    Function.Surjective (toRope w SF) := by
+  intro y
+  induction y using HNNExtension.induction_on with
+  | of g =>
+      obtain ⟨g₁, g₂⟩ := g
+      obtain ⟨x, rfl⟩ := QuotientGroup.mk_surjective g₂
+      refine ⟨presMk w SF (preGamma w g₁) * presMk w SF (preF w x), ?_⟩
+      rw [map_mul, toRope_gamma, toRope_f, ← map_mul]
+      congr 1
+      refine Prod.ext ?_ ?_
+      · show g₁ * 1 = g₁
+        rw [mul_one]
+      · show 1 * QuotientGroup.mk' N x = QuotientGroup.mk' N x
+        rw [one_mul]
+  | t => exact ⟨presMk w SF (preE w), toRope_e w SF⟩
+  | mul a b ha hb =>
+      obtain ⟨u, hu⟩ := ha
+      obtain ⟨v, hv⟩ := hb
+      exact ⟨u * v, by rw [map_mul, hu, hv]⟩
+  | inv a ha =>
+      obtain ⟨u, hu⟩ := ha
+      exact ⟨u⁻¹, by rw [map_inv, hu]⟩
+
+/-- **The candidate is the rope group.** -/
+noncomputable def ropeEquiv (hSF : Subgroup.closure SF = ⊤) :
+    Pres w SF ≃* RopeGroup w :=
+  MulEquiv.ofBijective (toRope w SF)
+    ⟨toRope_injective w SF hSF, toRope_surjective w SF hSF⟩
+
+/-- **The rope group is finitely presented.** -/
+theorem isFinitelyPresented_ropeGroup [Group.IsFinitelyPresented F]
+    (hSFfin : SF.Finite) (hSF : Subgroup.closure SF = ⊤) :
+    Group.IsFinitelyPresented (RopeGroup w) := by
+  letI : Group.IsFinitelyPresented (Pres w SF) := isFinitelyPresented_pres w hSFfin
+  exact Group.IsFinitelyPresented.equiv (ropeEquiv w SF hSF)
+
+end Rope
+
+/-! ## The rope trick -/
+
+/-- **Higman's Lemma, the hard direction: the rope trick.**  If `N` is benign
+in a finitely generated, finitely presented group `F`, then `F ⧸ N` embeds in
+a finitely presented group. -/
+theorem fpOvergroup_of_benign {F : Type} [Group F] [Group.IsFinitelyPresented F]
+    [Group.FG F] {N : Subgroup F} [N.Normal] (h : Benign N) :
+    Nonempty (FPOvergroup (F ⧸ N)) := by
+  obtain ⟨w⟩ := h
+  obtain ⟨SF, hSF, hSFfin⟩ := Group.fg_iff.mp (inferInstance : Group.FG F)
+  letI : Group.IsFinitelyPresented (Rope.RopeGroup w) :=
+    Rope.isFinitelyPresented_ropeGroup w SF hSFfin hSF
+  exact ⟨{ K := Rope.RopeGroup w
+           emb := Rope.quotientEmb w
+           emb_injective := Rope.quotientEmb_injective w }⟩
+
+end Higman
+end GroupApproximation
