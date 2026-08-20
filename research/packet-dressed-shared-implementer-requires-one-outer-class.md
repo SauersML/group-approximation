@@ -47,6 +47,23 @@ so the two gates do share the same external multiplicity unitary.  Their
 commutator has no external factor.  This is a valid cancellation mechanism,
 but `(DSI3)` is unavoidable when the copy of `B` remains embedded.
 
+In fact this cancellation cannot support a nontrivial commuting-automorphism
+cocycle.  Put `c=h alpha(k)`, so `v=c u`.  Then
+
+```text
+[u,v]=alpha(c)c^(-1).                                  (DSI5)
+```
+
+If `[u,v]=1` is imposed while `B` remains embedded, then `alpha(c)=c`.
+Consequently `C_alpha` commutes with `rho_T(c)`, and the packet factors in
+`(DSI4)` commute.  Thus their projective commutator is trivial on every
+`alpha`-invariant simple.  If `[u,v]` is instead retained as the signal, then
+`(DSI5)` says that signal is a single word of the finite packet.  Asking its
+scalar action to detect an arbitrary nonlinear selector predicate is exactly
+the finite central-phase/support problem already excluded by
+`controlled-central-phase-finite-group-barrier` and
+`finite-group-selector-induction-barrier`.
+
 For an extraspecial Pauli packet, every inner automorphism acts trivially on
 the elementary abelian quotient `B/Z(B)`.  Hence two Clifford covariances
 with different induced symplectic maps on that quotient represent different
@@ -56,6 +73,7 @@ AND construction have different quotient actions.  The direct attempt to
 cancel `(CPM4)` by expressing both as packet dressings of one implementer
 therefore fails for the basic Pauli cell.
 
-This does not exclude a larger packet in which two nonlinear gate lifts lie
-in one outer class, nor a holonomy relation which directly controls two
-independent multiplicity factors.
+Equations `(DSI3)--(DSI5)` also exclude merely enlarging the finite packet to
+find two same-outer-class nonlinear lifts within this shared-implementer
+template.  The surviving route must directly control two independent
+multiplicity factors, for example by positive-density holonomy.

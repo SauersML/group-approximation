@@ -48,8 +48,11 @@ and the reverse-Kleene route closes without a runtime-uniform modulus.
   packet-dressed copies of one stable letter can implement only automorphisms
   in one class of `Out(B)`.  The standard controlled-X and controlled-Z/CZ
   covariances have different actions on the Pauli quotient, hence different
-  outer classes.  A larger packet with same-outer-class nonlinear lifts
-  remains possible.
+  outer classes.  More strongly, if two dressed copies are required to
+  commute, their packet cocycle is forced trivial; if their commutator is
+  retained as the signal, it is just one finite-packet word and returns to the
+  nonlinear scalar-support barrier.  Merely enlarging the packet does not
+  rescue this template.
 
 - **Independent covariance implementers: fails exactly.**  Schur's lemma
   leaves factors `R,T` on the external multiplicity space, and `(CPM4)` shows
