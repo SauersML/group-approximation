@@ -4,9 +4,16 @@ on:
   workflow_run:
     workflows:
       - Lean Prover CI
+      - Root imports resolve
+      - Build and attest non-MF PDF
       - Draft non-MF PDF
       - Reap superseded prover runs
       - Keep verified current across publication-only commits
+      - Promote successful Lean gate to verified
+      - Leanstral research agent
+      - Retire finished agent branches
+      - Canonical P13 sharded build
+      - API documentation
     types: [completed]
 
 permissions:
