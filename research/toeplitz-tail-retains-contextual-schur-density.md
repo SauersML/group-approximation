@@ -60,3 +60,9 @@ action of this fixed actuator on the residual multiplicity space.
   corner. The single head swap from
   `toeplitz-tail-plus-one-swap-generates` is the candidate bounded word which
   implements this transfer.
+- Dinur's preprocess-power-compose architecture is now isolated as
+  `hs-schur-packet-gap-amplification`. Classical graph powering supplies the
+  needed anti-localization, while Schur packet composition is supposed to
+  reset the local matrix scale. The unresolved point is not classical PCP
+  soundness; it is synchronization of the contextwise HS exactifications on
+  the shared selector words.
