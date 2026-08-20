@@ -66,6 +66,12 @@ regular Bass--Serre reservoir.
   paired-edge kernel admits only four one-directional square-zero polynomial
   shears and no opposite pair.  A degree-growing transporter must carry the
   kernel through the orbit `K_n=wedge^2(T^n)K_0`, rather than stabilize `K_0`.
+- The moving-kernel calculation is exact and favorable.
+  `paired-frame-moving-kernel-is-a-rank-one-veronese-clock` proves
+  `K_n=K_fixed direct_sum L_n`, where the fixed core has rank two and the
+  pairwise-distinct `L_n` are lines with leading degree `4n-2`.  Thus the
+  required atlas moves precisely one relative relation coordinate and no
+  higher multiplicity space.
 - `free-root-top-boundary-reservoir-is-summable` proves the required capacity
   theorem for those degree labels: the mass first detected at successive
   degrees telescopes and has total at most one on a unit carrier.  Literal
