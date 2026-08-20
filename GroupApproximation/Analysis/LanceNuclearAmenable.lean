@@ -123,17 +123,43 @@ theorem norm_folner_sub_le {k n : ℕ} (e : Fin k → G) (c : Fin k → ℂ)
       - cc i • leftRegularOperator G (γ i)
       = (cc i * (folnerOverlap e c (γ i) - 1))
           • leftRegularOperator G (γ i) := by
-    rw [smul_smul, sub_smul, one_smul, smul_sub, smul_smul]
+    rw [smul_smul, mul_sub, mul_one, sub_smul]
   rw [hterm]
-  refine le_trans (norm_smul_le _ _) ?_
-  rw [norm_mul]
+  -- `norm_smul_le` is stated at the seminormed-group norm and the operator
+  -- norm reaches it by a different path, so the equation is used instead
+  have hsm : ‖(cc i * (folnerOverlap e c (γ i) - 1))
+        • leftRegularOperator G (γ i)‖
+      = ‖cc i * (folnerOverlap e c (γ i) - 1)‖
+        * ‖leftRegularOperator G (γ i)‖ := norm_smul _ _
+  rw [hsm, norm_mul]
   calc ‖cc i‖ * ‖folnerOverlap e c (γ i) - 1‖
         * ‖leftRegularOperator G (γ i)‖
       ≤ ‖cc i‖ * δ * 1 := by
+        -- `gcongr` opens a nonnegativity side goal first; the two bounds are
+        -- the overlap estimate and the unitarity of the left regular operator
         gcongr
+        · exact mul_nonneg (norm_nonneg _) ((norm_nonneg _).trans (hov i))
         · exact hov i
         · exact norm_leftRegularOperator_le_one G (γ i)
     _ = ‖cc i‖ * δ := mul_one _
+
+/-- A single left translation is fixed up to its scalar Følner-overlap defect. -/
+theorem norm_folner_compression_sub_leftRegular_le {k : ℕ}
+    (e : Fin k → G) (c : Fin k → ℂ) (g : G) {δ : ℝ}
+    (hov : ‖folnerOverlap e c g - 1‖ ≤ δ) :
+    ‖folnerUp e c (compressionLM (folnerIncl e) (leftRegularOperator G g))
+        - leftRegularOperator G g‖ ≤ δ := by
+  rw [folnerUp_compression_leftRegular]
+  calc
+    ‖folnerOverlap e c g • leftRegularOperator G g - leftRegularOperator G g‖ =
+        ‖(folnerOverlap e c g - 1) • leftRegularOperator G g‖ := by
+          rw [sub_smul, one_smul]
+    _ = ‖folnerOverlap e c g - 1‖ * ‖leftRegularOperator G g‖ := norm_smul _ _
+    _ ≤ δ * 1 := by
+      gcongr
+      · exact (norm_nonneg _).trans hov
+      · exact norm_leftRegularOperator_le_one G g
+    _ = δ := mul_one _
 
 /-! ## The corestricted Følner map -/
 
@@ -173,8 +199,9 @@ theorem isCompletelyPositive_folnerUpCore {k : ℕ} (e : Fin k → G)
     exists_entries_mem_factor (reducedGroupCStarSubalgebra G)
       (isClosed_reducedGroupCStar G)
       (fun p q ↦ folnerUp_mem_reduced e c (Y p q)) hpos
-  refine ⟨(fun p q ↦ (⟨N p q, hmemN p q⟩ : ReducedGroupCStar G) :
-    CStarMatrix (Fin n) (Fin n) (ReducedGroupCStar G)), ?_⟩
+  let F : CStarMatrix (Fin n) (Fin n) (ReducedGroupCStar G) :=
+    fun p q ↦ (⟨N p q, hmemN p q⟩ : ReducedGroupCStar G)
+  refine ⟨F, ?_⟩
   apply CStarMatrix.ext
   intro i j
   refine Subtype.ext ?_
@@ -186,19 +213,42 @@ theorem isCompletelyPositive_folnerUpCore {k : ℕ} (e : Fin k → G)
   -- to be compared with one over the ambient algebra: expand both by
   -- `Matrix.mul_apply`, pull the coercion through the sum, and the summands
   -- agree definitionally because subtype `*` and `star` are the ambient ones
-  have hR : (((star (fun p q ↦ (⟨N p q, hmemN p q⟩ : ReducedGroupCStar G))
-        * (fun p q ↦ (⟨N p q, hmemN p q⟩ : ReducedGroupCStar G)) :
-          CStarMatrix (Fin n) (Fin n) (ReducedGroupCStar G)) i j :
-        ReducedGroupCStar G) :
+  have hR : (((star F * F) i j : ReducedGroupCStar G) :
       GroupHilbert G →L[ℂ] GroupHilbert G)
       = (star N * N) i j := by
-    rw [cstarMatrix_mul_apply, cstarMatrix_mul_apply,
-      AddSubmonoidClass.coe_finset_sum]
-    exact Finset.sum_congr rfl fun r _ ↦ rfl
-  rw [hL, hR, hfac]
+    -- both entries are sums over the middle index, and the summands agree
+    -- because the subtype's `*` and `star` are the ambient ones
+    have hsub : ((star F * F) i j : ReducedGroupCStar G)
+        = ∑ r, star (F r i) * F r j := by
+      rw [cstarMatrix_mul_apply]
+      exact Finset.sum_congr rfl fun r _ ↦ by rw [cstarMatrix_star_apply]
+    have hamb : (star N * N) i j = ∑ r, star (N r i) * N r j := by
+      rw [cstarMatrix_mul_apply]
+      exact Finset.sum_congr rfl fun r _ ↦ by rw [cstarMatrix_star_apply]
+    calc
+      (((star F * F) i j : ReducedGroupCStar G) :
+          GroupHilbert G →L[ℂ] GroupHilbert G)
+          = ((∑ r, star (F r i) * F r j : ReducedGroupCStar G) :
+              GroupHilbert G →L[ℂ] GroupHilbert G) :=
+            congrArg (fun z : ReducedGroupCStar G ↦
+              (z : GroupHilbert G →L[ℂ] GroupHilbert G)) hsub
+      _ = ∑ r, star (N r i) * N r j := by
+            push_cast
+            exact Finset.sum_congr rfl fun r _ ↦ rfl
+      _ = (star N * N) i j := hamb.symm
+  calc
+    ((Y.map ⇑(folnerUpCore e c)) i j : ReducedGroupCStar G) =
+        (Y.map ⇑(folnerUp e c)) i j := hL
+    _ = (star N * N) i j := congrFun (congrFun hfac i) j
+    _ = (((star F * F) i j : ReducedGroupCStar G) :
+          GroupHilbert G →L[ℂ] GroupHilbert G) := hR.symm
 
 /-! ## Nuclearity -/
 
+-- Dependent choices `Nn`, `CC`, and `GG` keep the finite-set witness compact,
+-- but normalizing their indexed sums needs slightly more than Lean's default
+-- heartbeat budget.  Keep the allowance on this construction alone.
+set_option maxHeartbeats 400000 in
 /-- **Lance's theorem, forward direction, at the CPAP definition.**
 
 The `k` the overlap producer hands out carries no positivity clause and needs
@@ -234,27 +284,37 @@ theorem isNuclearCStarAlgebra_of_overlap
     ring
   obtain ⟨k, e, c, he, hc, hoverlap⟩ :=
     h Sset (ε / (3 * Mb)) (div_pos hε (by linarith))
-  refine ⟨k,
-    (compressionLM (folnerIncl e)).comp
-      (((reducedGroupCStarSubalgebra G).subtype.toNonUnitalStarAlgHom :
-        ReducedGroupCStar G →ₗ[ℂ] (GroupHilbert G →L[ℂ] GroupHilbert G))),
-    folnerUpCore e c, ?_, isCompletelyPositive_folnerUpCore e c, ?_, ?_, ?_⟩
-  · exact (isCompletelyPositive_compressionLM (folnerIncl e)).comp
-      (isCompletelyPositive_of_starAlgHom _)
-  · -- the compression is a unital completely positive map, hence contractive
+  let inclStar := (reducedGroupCStarSubalgebra G).subtype.toNonUnitalStarAlgHom
+  let incl : ↥(reducedGroupCStarSubalgebra G) →ₗ[ℂ]
+      (GroupHilbert G →L[ℂ] GroupHilbert G) := inclStar
+  let down : ↥(reducedGroupCStarSubalgebra G) →ₗ[ℂ]
+      (EuclideanSpace ℂ (Fin k) →L[ℂ] EuclideanSpace ℂ (Fin k)) :=
+    (compressionLM (folnerIncl e)).comp incl
+  let up : (EuclideanSpace ℂ (Fin k) →L[ℂ] EuclideanSpace ℂ (Fin k)) →ₗ[ℂ]
+      ↥(reducedGroupCStarSubalgebra G) := folnerUpCore e c
+  have hsubCP : IsCompletelyPositive incl := by
+    dsimp only [incl]
+    exact isCompletelyPositive_of_starAlgHom inclStar
+  have hdownCP : IsCompletelyPositive down :=
+    (isCompletelyPositive_compressionLM (folnerIncl e)).comp
+      hsubCP
+  have hupCP : IsCompletelyPositive up := isCompletelyPositive_folnerUpCore e c
+  have hdownContract : ∀ a, ‖down a‖ ≤ ‖a‖ := by
     intro a
     refine IsCompletelyPositive.norm_apply_le_of_unital
-      ((isCompletelyPositive_compressionLM (folnerIncl e)).comp
-        (isCompletelyPositive_of_starAlgHom _)) ?_ a
+      hdownCP ?_ a
+    dsimp only [down, incl, inclStar]
     show compressionLM (folnerIncl e)
       (1 : GroupHilbert G →L[ℂ] GroupHilbert G) = 1
     exact compressionLM_one he
-  · -- the Følner map is unital completely positive, hence contractive
+  have hupContract : ∀ d, ‖up d‖ ≤ ‖d‖ := by
     intro d
     show ‖folnerUp e c d‖ ≤ ‖d‖
     exact IsCompletelyPositive.norm_apply_le_of_unital
       (isCompletelyPositive_folnerUp e c) (folnerUp_one e c hc) d
-  · intro a ha
+  refine ⟨k, down, up, hdownCP, hupCP, hdownContract, hupContract, ?_⟩
+  intro a ha
+  ·
     have hγ : ∀ i : Fin (Nn a), GG a i ∈ Sset := by
       intro i
       rw [hSset]
@@ -267,92 +327,48 @@ theorem isNuclearCStarAlgebra_of_overlap
           (f := fun x ↦ ∑ i : Fin (Nn x), ‖CC x i‖)
           (fun x _ ↦ Finset.sum_nonneg fun i _ ↦ norm_nonneg _) ha
       rw [hMb]; linarith
-    have hmid : ‖folnerUp e c (compressionLM (folnerIncl e)
-          (∑ i : Fin (Nn a), CC a i • leftRegularOperator G (GG a i)))
-        - ∑ i : Fin (Nn a), CC a i • leftRegularOperator G (GG a i)‖
-        ≤ ε / 3 := by
-      refine le_trans (norm_folner_sub_le e c (CC a) (GG a)
-        (fun i ↦ hoverlap _ (hγ i))) ?_
-      calc (∑ i : Fin (Nn a), ‖CC a i‖) * (ε / (3 * Mb))
-          ≤ Mb * (ε / (3 * Mb)) :=
-            mul_le_mul_of_nonneg_right hmass
-              (div_nonneg hε.le (by linarith : (0 : ℝ) ≤ 3 * Mb))
+    let U : Fin (Nn a) → ReducedGroupCStar G := fun i ↦
+      ⟨leftRegularOperator G (GG a i), leftRegularOperator_mem_reduced G (GG a i)⟩
+    have hspan : ‖a - ∑ i : Fin (Nn a), CC a i • U i‖ ≤ ε / 3 := by
+      have hsum : ((∑ i : Fin (Nn a), CC a i • U i : ReducedGroupCStar G) :
+          GroupHilbert G →L[ℂ] GroupHilbert G) =
+            ∑ i : Fin (Nn a), CC a i • leftRegularOperator G (GG a i) := by
+        change (reducedGroupCStarSubalgebra G).subtype
+          (∑ i : Fin (Nn a), CC a i • U i) = _
+        rw [map_sum]
+        exact Finset.sum_congr rfl fun i _ ↦ by rw [map_smul]; rfl
+      calc
+        ‖a - ∑ i : Fin (Nn a), CC a i • U i‖ =
+            ‖(a : GroupHilbert G →L[ℂ] GroupHilbert G) -
+              ((∑ i : Fin (Nn a), CC a i • U i : ReducedGroupCStar G) :
+                GroupHilbert G →L[ℂ] GroupHilbert G)‖ := rfl
+        _ = ‖(a : GroupHilbert G →L[ℂ] GroupHilbert G) -
+              ∑ i : Fin (Nn a), CC a i • leftRegularOperator G (GG a i)‖ := by rw [hsum]
+        _ ≤ ε / 3 := (happrox a).le
+    have hfix : ∀ i : Fin (Nn a), ‖up (down (U i)) - U i‖ ≤ ε / (3 * Mb) := by
+      intro i
+      change ‖folnerUp e c (compressionLM (folnerIncl e)
+          (leftRegularOperator G (GG a i))) - leftRegularOperator G (GG a i)‖
+        ≤ ε / (3 * Mb)
+      exact norm_folner_compression_sub_leftRegular_le e c (GG a i)
+        (hoverlap _ (hγ i))
+    have hthree := norm_comp_sub_le_of_span_approx down up hdownContract hupContract
+      (CC a) U a hspan hfix
+    have hmassδ : (∑ i : Fin (Nn a), ‖CC a i‖) * (ε / (3 * Mb)) ≤ ε / 3 := by
+      calc
+        (∑ i : Fin (Nn a), ‖CC a i‖) * (ε / (3 * Mb))
+            ≤ Mb * (ε / (3 * Mb)) :=
+              mul_le_mul_of_nonneg_right hmass
+                (div_nonneg hε.le (by linarith : (0 : ℝ) ≤ 3 * Mb))
         _ = ε / 3 := harith
-    have htri : ∀ u v w : GroupHilbert G →L[ℂ] GroupHilbert G,
-        ‖u - w‖ ≤ ‖u - v‖ + ‖v - w‖ := by
-      intro u v w
-      rw [← dist_eq_norm, ← dist_eq_norm, ← dist_eq_norm]
-      exact dist_triangle u v w
-    have hmem : (∑ i : Fin (Nn a), CC a i • leftRegularOperator G (GG a i))
-        ∈ reducedGroupCStarSubalgebra G := by
-      refine sum_mem fun i _ ↦ ?_
-      exact (reducedGroupCStarSubalgebra G).toSubalgebra.smul_mem
-        (leftRegularOperator_mem_reduced G (GG a i)) _
-    have hcontract : ∀ b : GroupHilbert G →L[ℂ] GroupHilbert G,
-        b ∈ reducedGroupCStarSubalgebra G →
-          ‖folnerUp e c (compressionLM (folnerIncl e) b)‖ ≤ ‖b‖ := by
-      intro b hb
-      have hdown : ‖compressionLM (folnerIncl e) b‖ ≤ ‖b‖ :=
-        IsCompletelyPositive.norm_apply_le_of_unital
-          ((isCompletelyPositive_compressionLM (folnerIncl e)).comp
-            (isCompletelyPositive_of_starAlgHom
-              (reducedGroupCStarSubalgebra G).subtype.toNonUnitalStarAlgHom))
-          (by
-            show compressionLM (folnerIncl e)
-              (1 : GroupHilbert G →L[ℂ] GroupHilbert G) = 1
-            exact compressionLM_one he)
-          (⟨b, hb⟩ : ReducedGroupCStar G)
-      exact le_trans (IsCompletelyPositive.norm_apply_le_of_unital
-        (isCompletelyPositive_folnerUp e c) (folnerUp_one e c hc) _) hdown
-    have hxy : ‖(a : GroupHilbert G →L[ℂ] GroupHilbert G)
-        - ∑ i : Fin (Nn a), CC a i • leftRegularOperator G (GG a i)‖ < ε / 3 :=
-      happrox a
-    have hkey : ‖folnerUp e c (compressionLM (folnerIncl e)
-          (a : GroupHilbert G →L[ℂ] GroupHilbert G))
-        - (a : GroupHilbert G →L[ℂ] GroupHilbert G)‖ ≤ ε := by
-      have h1 : ‖folnerUp e c (compressionLM (folnerIncl e)
-            (a : GroupHilbert G →L[ℂ] GroupHilbert G))
-          - folnerUp e c (compressionLM (folnerIncl e)
-            (∑ i : Fin (Nn a), CC a i • leftRegularOperator G (GG a i)))‖
-          ≤ ‖(a : GroupHilbert G →L[ℂ] GroupHilbert G)
-            - ∑ i : Fin (Nn a), CC a i • leftRegularOperator G (GG a i)‖ := by
-        rw [← map_sub, ← map_sub]
-        exact hcontract _ (sub_mem a.2 hmem)
-      have h2 := htri
-        (folnerUp e c (compressionLM (folnerIncl e)
-          (a : GroupHilbert G →L[ℂ] GroupHilbert G)))
-        (folnerUp e c (compressionLM (folnerIncl e)
-          (∑ i : Fin (Nn a), CC a i • leftRegularOperator G (GG a i))))
-        (a : GroupHilbert G →L[ℂ] GroupHilbert G)
-      have h3 := htri
-        (folnerUp e c (compressionLM (folnerIncl e)
-          (∑ i : Fin (Nn a), CC a i • leftRegularOperator G (GG a i))))
-        (∑ i : Fin (Nn a), CC a i • leftRegularOperator G (GG a i))
-        (a : GroupHilbert G →L[ℂ] GroupHilbert G)
-      have h4 : ‖(∑ i : Fin (Nn a), CC a i • leftRegularOperator G (GG a i))
-          - (a : GroupHilbert G →L[ℂ] GroupHilbert G)‖
-          = ‖(a : GroupHilbert G →L[ℂ] GroupHilbert G)
-            - ∑ i : Fin (Nn a), CC a i • leftRegularOperator G (GG a i)‖ :=
-        norm_sub_rev _ _
-      rw [h4] at h3
-      linarith [hmid, hxy, h1, h2, h3]
-    have hcoe : ‖folnerUpCore e c
-        (compressionLM (folnerIncl e)
-          (a : GroupHilbert G →L[ℂ] GroupHilbert G)) - a‖
-        = ‖folnerUp e c (compressionLM (folnerIncl e)
-            (a : GroupHilbert G →L[ℂ] GroupHilbert G))
-          - (a : GroupHilbert G →L[ℂ] GroupHilbert G)‖ := rfl
-    show ‖folnerUpCore e c
-        (compressionLM (folnerIncl e)
-          (a : GroupHilbert G →L[ℂ] GroupHilbert G)) - a‖ ≤ ε
-    rw [hcoe]
-    exact hkey
+    change ‖up (down a) - a‖ ≤ ε
+    linarith
 
 /-- **Lance's theorem.**  The reduced C⋆-algebra of an amenable group has
 the completely positive approximation property. -/
 theorem isNuclearCStarAlgebra_reducedGroupCStar_of_isAmenable
     (hG : IsAmenable G) : IsNuclearCStarAlgebra (ReducedGroupCStar G) :=
-  isNuclearCStarAlgebra_of_overlap fun F δ hδ ↦
+  isNuclearCStarAlgebra_of_overlap fun F _δ hδ ↦
     exists_overlap_of_isAmenable hG F hδ
 
 /-- **The two nuclearity predicates meet.**  The group-flavoured completely
