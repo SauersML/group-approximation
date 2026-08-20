@@ -88,6 +88,17 @@ of bad blocks admitting a fixed `L^infinity/L2` bound.  The established
 claim: normalized low-energy vectors may concentrate on vanishing-rank
 supports and never define bounded ultraproduct elements.
 
+There is now a sharper finite-window fence.  The established
+`finite-window-hs-tests-ignore-low-rank-generator-surgery` proves that a
+vanishing-relative-rank perturbation of the generators is invisible to every
+fixed word window.  Combining it with the rank-one surgery construction gives
+`irrep-window-does-not-force-hs-gap`: even when the perturbed generator algebra
+is irreducible, so its exact block decomposition is the single block `1`, all
+fixed relation defects can tend to zero while the scalar adjoint gap of that
+full-trace block tends to zero.  Thus the missing selection principle cannot
+score exact irreducible generator blocks by finite relator defect.  It has to
+see and refine the low-energy support itself.
+
 ## Attempts
 
 1. **Recursive balanced cutting.**  If every gap failure produced a balanced
@@ -110,3 +121,9 @@ supports and never define bounded ultraproduct elements.
    `small-trace-rank-one-quarantine` gives total boundary `2 tau(e)` only on a
    small region.  Shattering all of `1` costs order one and cannot provide
    `eps(delta)->0`.
+5. **Exact irreducible generator blocks plus relator selection.**  Dead by
+   `irrep-window-does-not-force-hs-gap`.  The bad gap can occur on the unique
+   full-trace irreducible block even while every fixed relation word has
+   vanishing normalized-HS defect.  Any successful decomposition must be
+   scale-adaptive and cut inside an irreducible generator algebra when its
+   low-energy directions demand it.
