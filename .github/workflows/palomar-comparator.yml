@@ -32,23 +32,31 @@ on:
         default: Palomar/comparator.json
         required: false
       nanoda:
+        # Off by default: the replay through a second kernel roughly doubles
+        # the slowest step, and a hosted runner is several times slower than
+        # the compute nodes at it.  Turn it on for the run that precedes an
+        # actual submission, since Palomar always enables it on its side.
         description: Also replay through the independent NanoDa kernel
         type: boolean
-        default: true
+        default: false
         required: false
 
 permissions:
   contents: read
 
+# Deliberately NOT cancel-in-progress.  A run here is a two-hour export and
+# kernel replay; cancelling it because someone dispatched again throws away
+# the whole thing and gives no verdict, which is what happened on the first
+# real run.  Queue instead.
 concurrency:
   group: palomar-comparator-${{ github.ref }}
-  cancel-in-progress: true
+  cancel-in-progress: false
 
 jobs:
   comparator:
     name: Comparator (${{ inputs.config }})
     runs-on: ubuntu-latest
-    timeout-minutes: 180
+    timeout-minutes: 350
 
     steps:
       - name: Check out repository
