@@ -44,8 +44,11 @@ stopping rule.
 
 ## Attempts
 
-- Raw word representatives fail: comparing two representatives of one coset
-  accumulates relator error with an unbounded stabilizer word.
+- Raw word representatives fail.  The exact identity and sharp `2 by 2`
+  family in `stabilizer-generator-control-has-unbounded-address-loss` show
+  that comparing two representatives of one coset accumulates an unbounded
+  stabilizer-word factor even when the ambient tuple is an exact
+  representation.  This is not merely a loose van Kampen estimate.
 - Finite pair-orbit type controls the number of defining relations but does
   not itself round the acting tuple or the stabilizer commutant.
 - A plausible sufficient package is same-dimension HS stability of `L` plus

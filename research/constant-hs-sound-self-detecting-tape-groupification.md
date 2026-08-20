@@ -51,9 +51,15 @@ concentrated unresolved groupification step.
   level by level.  The source's contraction gate is an additive
   star-polynomial relation, however, so it does not yet implement that
   alternative with group words or attach it to the marked Boone word.
-- **Conjugate terminal flag is only the last step.**  It makes the norm of the
-  final conjugate equal to the norm of one base relator, but does not control
-  the semantic comparison between the marked word and that conjugate.
+- **Conjugate prototype checks solve address transport, not address
+  coherence.**  `conjugacy-compressed-dimension-trigger` now records the
+  exact finite-prototype statement: arbitrarily many literal conjugate checks
+  have no address-length loss at all.  But
+  `stabilizer-generator-control-has-unbounded-address-loss` proves that an
+  orbit tape can pay an unbounded stabilizer-word factor merely to show that
+  two names denote the same cell.  The missing PCP/expander theorem must
+  enforce that global coherence (and the marked-word semantic comparison),
+  rather than re-prove local conjugacy transport.
 - **Active route.**  Compile the constant-gap checks behind
   `kleene-mipco-self-destroying-game` through finite BCS/LCS control sectors,
   then return the terminal flag to the marked word.  The new

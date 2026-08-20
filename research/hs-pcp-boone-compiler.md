@@ -6,6 +6,7 @@ title: PCP-ize the Boone halting word with a runtime-independent normalized-HS g
 artifacts:
   - research/artifacts/kleene-self-destroying-hs-pcp-boone-2026-08-20.md
   - research/artifacts/self-similar-dimension-pressure-map-2026-08-20.md
+  - research/artifacts/conjugacy-addressed-machine-groupification-audit-2026-08-20.md
 distinct_from:
   boone-commutator-criterion-for-halting: ordinary Boone gives an exact equality after a derivation whose area depends on runtime; this asks for uniform approximate soundness independent of runtime.
   robust-locally-satisfiable-relator-code: that asks for one finite redundant relator menu suitable for sparsification; this asks for a uniform MACHINE-TO-MARKED-GROUP compiler with the nonhalting/halting orientation needed by Kleene self-reference.
@@ -51,6 +52,13 @@ not `(HPB2)`: naive relation telescoping costs the area of the computation.
 - Make the terminal failure a fixed holonomy or use
   `conjugacy-compressed-dimension-trigger` so the last flag itself has no
   runtime-dependent norm loss.
+- More generally, literal conjugate copies of a finite menu of prototype
+  checks have exactly zero address-length loss.  The remaining machine
+  theorem is therefore not local transport but global decoding: it must
+  combine conjugacy-addressed checks with constant-soundness consistency of
+  the cell names.  `stabilizer-generator-control-has-unbounded-address-loss`
+  shows why an orbit tape plus finitely many stabilizer-generator relations
+  does not provide that consistency by itself.
 - Prove the still-missing semantic transport estimate from the triggered
   finite control to the fixed mark with a universal constant.  Escaping the
   selected sector must pay through positive-density carrier overlap and fixed
