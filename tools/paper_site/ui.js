@@ -744,7 +744,7 @@ function buildFormalView() {
   html += section('Sentences Lean does not prove', '',
     listOf(['unproved', 'open', 'partial']));
   html += section('Unclassified sentences',
-    'These sentences are not linked to a Lean declaration or proof-ledger entry.',
+    'These sentences have not yet been classified.',
     listOf(['ungraded']));
   return html;
 }
@@ -760,6 +760,10 @@ function xrefClaimChip(id) {
 
 /* ---------- dependency graph ---------- */
 
+function isSectionHeading(el) {
+  return !!el && /^H[1-6]$/.test(el.tagName);
+}
+
 function computeGraphDeps() {
   const idset = new Set(CLAIMS.claims.map(c => c.id));
   const deps = {};
@@ -771,7 +775,7 @@ function computeGraphDeps() {
     if (t && idset.has(t.dataset.label)) owner = t.dataset.label;
     if (!owner) {
       let el = p.previousElementSibling;
-      while (el && !el.classList.contains('thm') && el.tagName !== 'H2') el = el.previousElementSibling;
+      while (el && !el.classList.contains('thm') && !isSectionHeading(el)) el = el.previousElementSibling;
       if (el && el.classList.contains('thm')) {
         const lab = (el.dataset.labels || '').split(' ').find(l => idset.has(l));
         if (lab) owner = lab;
@@ -1057,7 +1061,7 @@ function proofOwnerEl(p) {
     if (el && el.classList.contains('thm')) return el;
   }
   let el = p.previousElementSibling;
-  while (el && !el.classList.contains('thm') && el.tagName !== 'H2') el = el.previousElementSibling;
+  while (el && !el.classList.contains('thm') && !isSectionHeading(el)) el = el.previousElementSibling;
   return el && el.classList.contains('thm') ? el : null;
 }
 
