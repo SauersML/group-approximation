@@ -723,7 +723,10 @@ Four changes landed in proofs and free prose, where no digest reaches:
 
 * `cor:undecidable` now uses Boone's fixed finitely presented group with
   undecidable word problem.  This removes the former book-chapter citation and
-  keeps the printed literature surface within journals and preprint servers.
+  replaces it with the direct journal source.  The repository's citation
+  policy permits authoritative books and monographs when they carry an exact
+  theorem, section, or page reference, while preferring primary papers for
+  load-bearing claims.
   The effective presentation-code reduction remains formalized in Lean.
   **One printed clause was wrong and is corrected**: the proof said the collapse
   case yields the trivial group, which is the classical construction, whereas

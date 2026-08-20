@@ -371,3 +371,13 @@ Key audit files:
 
 Cold local builds are expensive. The maintained verification path is the
 GitHub Actions workflows in `.github/workflows/`.
+
+### Citation policy
+
+The manuscript prefers original journal articles, version-pinned preprints,
+and stable OAI-hosted papers. Authoritative scholarly books and monographs are
+also acceptable when they are the clearest or canonical source and the
+citation identifies an exact theorem, section, or page. Talks may be cited for
+claims whose relevant source is genuinely a talk or for historical
+attribution. A secondary source should not replace an available primary source
+for a load-bearing mathematical claim.
