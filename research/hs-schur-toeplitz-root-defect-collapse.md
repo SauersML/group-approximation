@@ -68,21 +68,26 @@ relator-certificate barriers.
   words does not put `P_f` in the defining relator ideal. Such a certificate
   would kill the nonzero mark algebraically and contradict the faithful
   model of `schur-idempotent-is-an-injective-toeplitz-defect`.
-- **Active first-hit attack.** In `R_f`, put
+- **Bare first-hit attack dies.** In `R_f`, put
 
   ```text
   e_n=x^n P_f y^n,                 n>=0.
   ```
 
-  The Toeplitz relations give `e_n^2=e_n` and `e_n e_m=0` for `n!=m`.
-  Steinberg commutators name `x_ij(e_n)` with word cost polynomial in `n`.
-  Decompose the rounded additive-root PVM by the first `n` on which its
-  character detects `e_n`. Orthogonality should make the first-hit masses
-  summable. The missing inequality is transport: a fixed positive fraction
-  of the mass detecting `P_f=e_0` must either pay a defining Steinberg
-  relator or move to the next previously unseen first-hit layer. Proving that
-  statement with polynomial word loss yields `(HST2)` after exponential
-  weighting.
+  The Toeplitz relations give `e_n^2=e_n` and `e_n e_m=0` for `n!=m`, but
+  `toeplitz-defect-idempotents-do-not-localize-root-characters` constructs
+  one additive character detecting every `e_n`. Coefficient orthogonality is
+  therefore not spectral first-hit orthogonality.
+- **Active Heisenberg/Schur attack.**
+  `toeplitz-defect-roots-form-independent-heisenberg-cells` attaches a
+  transverse root pair to every `e_n`. A fiber detecting `r` centers then
+  costs a factor `p^r` in representation dimension. This repairs the bare
+  character defect but still permits dimensions growing as `p^N` and the
+  hyperfinite infinite-tensor absorption model. The missing inequality is
+  specifically the contextual Schur branch balance: a fixed fraction of the
+  `e_n` carrier must enter a new active cell while at most one copy exits,
+  giving `lambda<1` in `(HST2)`. Toeplitz transport supplies fresh cells;
+  Fanizza/Schur orientation must supply the strict coefficient.
 - **Why ordinary Toeplitz truncation is not a counterexample by itself.** In
   truncated unilateral-shift matrices, the rank-one defect has vanishing
   normalized trace. Here the canonical root mark has fixed delta-trace

@@ -55,14 +55,20 @@ The canonical boundary candidates are
 e_n=x^nP_fy^n.
 ```
 
-They are pairwise orthogonal idempotents. The root element attached to each
-coefficient is a derived word of polynomial cost. Hence a viable proof need
-not intersect a dimension-dependent family of kernels: it can charge each
-root character at the first boundary coefficient it detects. What is not yet
-proved is that the Steinberg multiplication relations transport a fixed
-fraction of the `e_0` phase mass to a fresh first-hit layer rather than
-allowing the additive-root characters to decouple from coefficient
-multiplication.
+They are pairwise orthogonal idempotents, but that is not enough:
+`toeplitz-defect-idempotents-do-not-localize-root-characters` constructs one
+additive character detecting all of them. The correct upgrade uses the
+Steinberg triangles on each coefficient. The roots
+
+```text
+x_12(e_n), x_23(e_n), x_13(e_n)
+```
+
+form pairwise commuting Heisenberg cells, so simultaneous detection has an
+exponential representation-capacity cost. Even this does not defeat a
+hyperfinite tensor tape. The remaining theorem must import the strict
+contextual Schur branch balance, producing `lambda<1` in the backward
+recurrence rather than relying on capacity growth alone.
 
 ## Fast falsification checks
 
