@@ -105,7 +105,7 @@ theorem isFiniteRank_rankOne (x : F.carrier) (y : E.carrier) :
     IsFiniteRank (rankOne x y) := by
   refine ⟨Fin 1, inferInstance, fun _ => x, fun _ => y, ?_⟩
   intro z
-  simp [Fin.sum_univ_one]
+  simp
 
 /-- **Left ideal property**: composing a finite-rank operator with any
 adjointable operator on the left keeps the rank finite, because

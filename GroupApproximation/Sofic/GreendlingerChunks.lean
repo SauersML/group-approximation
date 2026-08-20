@@ -124,7 +124,7 @@ theorem blockWord_dropBlocks :
   induction C with
   | nil =>
       intro n
-      rw [dropBlocks, blockWord_nil, blockWord_nil, List.drop_nil]
+      simp [dropBlocks]
   | cons A L ih =>
       intro n
       rw [dropBlocks]
@@ -177,7 +177,7 @@ theorem dropBlocks_forall₂ :
       rw [dropBlocks]
       split_ifs with h
       · exact List.Forall₂.cons (List.drop_suffix n A).isInfix (forall₂_infix_refl L)
-      · exact List.Forall₂.cons (List.nil_infix A) (ih (n - A.length))
+      · exact List.Forall₂.cons List.nil_infix (ih (n - A.length))
 
 /-! ## The survivor decomposition -/
 
@@ -205,7 +205,7 @@ theorem exists_chunk_decomposition :
       intro hred
       obtain ⟨C, hCL, hCred, hCmk⟩ :=
         ih fun B hB => hred B (List.mem_cons_of_mem A hB)
-      have hA : FreeGroup.IsReduced A := hred A (List.mem_cons_self A L)
+      have hA : FreeGroup.IsReduced A := hred A List.mem_cons_self
       obtain ⟨A', M, B', h1, h2, h3, h4⟩ :=
         exists_cancellation_decomposition (blockWord C) hCred A hA
       have hdrop : (blockWord C).drop M.length = B' := by
@@ -220,7 +220,50 @@ theorem exists_chunk_decomposition :
         exact ⟨[], M, by rw [h1]; simp⟩
       · rw [hword]
         exact h3
-      · rw [hword, blockWord_cons, ← FreeGroup.mul_mk, ← hCmk, h4]
+      · calc
+          FreeGroup.mk (blockWord (A' :: dropBlocks M.length C))
+              = FreeGroup.mk (A' ++ B') := congrArg FreeGroup.mk hword
+          _ = FreeGroup.mk A * FreeGroup.mk (blockWord C) := h4.symm
+          _ = FreeGroup.mk A * FreeGroup.mk (blockWord L) :=
+            congrArg (FreeGroup.mk A * ·) hCmk
+          _ = FreeGroup.mk (A ++ blockWord L) := FreeGroup.mul_mk
+          _ = FreeGroup.mk (blockWord (A :: L)) := rfl
+
+/-! ## The arithmetic of an overrun -/
+
+/-- **A block that overruns leaves the next factor keeping at most two thirds.**
+To overrun, the block must cover the whole surviving stretch `m` of the next
+rotation, and it covers it with a hug --- at most half the rotation, by
+`hug_le_of_minimal_reroute` --- followed by a piece, under a sixth by `C'(1/6)`.
+-/
+theorem survivor_le_of_overrun {m q p T : ℕ}
+    (hcover : m = q + p) (hhug : 2 * q ≤ T) (hpiece : 6 * p < T) :
+    3 * m ≤ 2 * T := by
+  omega
+
+/-- **A block that overruns eats only two pieces**, so its own factor keeps more
+than two thirds of its rotation: past the next factor the block lands among
+relator letters, so both segments are pieces. -/
+theorem survivor_gt_of_two_pieces {m E p D T : ℕ}
+    (hkeep : m + E = T) (hsplit : E = p + D)
+    (hp : 6 * p < T) (hD : 6 * D < T) :
+    2 * T < 3 * m := by
+  omega
+
+/-- **Overruns cannot occur at two consecutive levels.**  One forces the next
+factor's survivor to at most two thirds of its rotation, the other forces it
+above two thirds.
+
+This is the sharpest structural fact the descent has about the configuration
+`GreendlingerThreeFactor.LeadingConfinement` still carries, and it is what a
+continuation should induct on: the remaining case is a block that overruns and
+then exhausts the chunk it lands in, reaching the conjugator of a factor it is
+not adjacent to. -/
+theorem not_consecutive_overrun {m q p E p' D T : ℕ}
+    (hcover : m = q + p) (hhug : 2 * q ≤ T) (hpiece : 6 * p < T)
+    (hkeep : m + E = T) (hsplit : E = p' + D)
+    (hp' : 6 * p' < T) (hD : 6 * D < T) (_ : 0 < T) : False := by
+  omega
 
 end SmallCancellationRouter
 end GroupApproximation

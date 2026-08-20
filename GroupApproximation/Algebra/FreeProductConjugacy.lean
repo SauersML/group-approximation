@@ -86,10 +86,11 @@ private theorem sylLength_mul_le_aux :
         simp [sylLength]
       · obtain ⟨i, x, a', hax, hlen⟩ := exists_head_factor h1
         have ha' : sylLength a' ≤ n := by omega
-        have hstep : sylLength (a * b) ≤ sylLength (a' * b) + 1 := by
-          rw [hax, mul_assoc]
-          exact sylLength_of_mul_le x (a' * b)
+        have hstep : sylLength (CoprodI.of x * (a' * b)) ≤ sylLength (a' * b) + 1 :=
+          sylLength_of_mul_le x (a' * b)
         have hih := ih a' b ha'
+        rw [hax] at hlen
+        rw [hax, mul_assoc]
         omega
 
 /-- **Syllable length is subadditive.** -/
@@ -247,6 +248,26 @@ theorem length_eq_of_conj {i j i' j' : ι} (hij : i ≠ j) (hij' : i' ≠ j')
       exact (equiv_prod _).symm
     omega
   omega
+
+/-- **The torsion classification of a free product, as an equivalence.**  The
+forward direction is `torsion_conj_into_factor`; the converse is immediate,
+and together they say that the torsion of a free product is exactly the
+torsion of its factors, spread over conjugates. -/
+theorem isOfFinOrder_iff_conj_factor [Nonempty ι] {g : CoprodI G} :
+    IsOfFinOrder g ↔ ∃ (i : ι) (x : G i) (c : CoprodI G),
+      IsOfFinOrder x ∧ g = c * CoprodI.of x * c⁻¹ := by
+  constructor
+  · intro hfin
+    obtain ⟨n, hn, hgn⟩ := isOfFinOrder_iff_pow_eq_one.mp hfin
+    rcases torsion_conj_into_factor hn hgn with h | ⟨i, x, c, hx, hgc⟩
+    · refine ⟨Classical.arbitrary ι, 1, 1,
+        isOfFinOrder_iff_pow_eq_one.mpr ⟨1, Nat.zero_lt_one, by simp⟩, ?_⟩
+      simp [h]
+    · exact ⟨i, x, c, isOfFinOrder_iff_pow_eq_one.mpr ⟨n, hn, hx⟩, hgc⟩
+  · rintro ⟨i, x, c, hx, rfl⟩
+    obtain ⟨n, hn, hxn⟩ := isOfFinOrder_iff_pow_eq_one.mp hx
+    refine isOfFinOrder_iff_pow_eq_one.mpr ⟨n, hn, ?_⟩
+    rw [conj_pow_eq, ← map_pow, hxn, map_one, mul_one, mul_inv_cancel]
 
 end Length
 

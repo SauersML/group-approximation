@@ -42,6 +42,7 @@ def neWordPow {i j : ι} (hij : j ≠ i) (w : NeWord M i j) : ℕ → NeWord M i
   | 0 => w
   | n + 1 => (neWordPow hij w n).append hij w
 
+omit [DecidableEq ι] [∀ i, DecidableEq (M i)] in
 theorem prod_neWordPow {i j : ι} (hij : j ≠ i) (w : NeWord M i j) (n : ℕ) :
     (neWordPow hij w n).prod = w.prod ^ (n + 1) := by
   induction n with
@@ -88,7 +89,7 @@ theorem isPowerTorsionFree_of_cyclicReduction
     exact hx (by
       have := congrArg (fun y ↦ g⁻¹ * y * g) this
       simpa [mul_assoc] using this)
-  · obtain ⟨k, rfl⟩ := Nat.exists_eq_succ_of_ne_zero (Nat.pos_iff.mp hn).ne'
+  · obtain ⟨k, rfl⟩ := Nat.exists_eq_succ_of_ne_zero (Nat.ne_of_gt hn)
     exact prod_pow_ne_one hij w k (by rw [← hg]; exact hconj g)
 
 end CoprodITorsionFree

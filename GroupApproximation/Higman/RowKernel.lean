@@ -58,22 +58,18 @@ def expHom : F₀ →* Multiplicative ℤ :=
     if i = 0 then (1 : Multiplicative ℤ) else Multiplicative.ofAdd (1 : ℤ))
 
 @[simp] theorem expHom_b : expHom b = 1 := by
-  unfold expHom b
-  rw [FreeGroup.lift.of]
-  simp
+  simp [expHom, b]
 
 @[simp] theorem expHom_c : expHom c = Multiplicative.ofAdd (1 : ℤ) := by
-  unfold expHom c
-  rw [FreeGroup.lift.of]
-  simp
+  simp [expHom, c]
 
 theorem expHom_zpow_c (n : ℤ) : expHom (c ^ n) = Multiplicative.ofAdd n := by
   induction n using Int.induction_on with
-  | hz => simp
-  | hp k ih =>
+  | zero => simp
+  | succ k ih =>
       rw [zpow_add, zpow_one, map_mul, ih, expHom_c]
       rfl
-  | hn k ih =>
+  | pred k ih =>
       rw [zpow_sub, zpow_one, map_mul, map_inv, ih, expHom_c]
       rfl
 
@@ -91,7 +87,7 @@ theorem ofAdd_eq_one_iff {n : ℤ} : Multiplicative.ofAdd n = 1 ↔ n = 0 := by
 theorem expHom_row (i : ℤ) : expHom (row i) = 1 := by
   unfold row
   rw [map_mul, map_mul, expHom_zpow_c, expHom_b, expHom_zpow_c, mul_one,
-    ← Multiplicative.ofAdd_add, neg_add_cancel]
+    ← ofAdd_add, neg_add_cancel]
   rfl
 
 /-! ## 2.  The row is normalized by `c` -/
@@ -104,7 +100,6 @@ theorem conj_row (n i : ℤ) : c ^ n * row i * c ^ (-n) = row (i - n) := by
   have h2 : c ^ i * c ^ (-n) = c ^ (i - n) := by
     rw [← zpow_add]
     congr 1
-    ring
   calc c ^ n * row i * c ^ (-n)
       = (c ^ n * c ^ (-i)) * b * (c ^ i * c ^ (-n)) := by
         unfold row
@@ -172,8 +167,8 @@ def SplitSub : Subgroup F₀ where
     group
 
 theorem splitSub_eq_top : SplitSub = ⊤ := by
-  refine top_le_iff.mp ?_
-  intro W -
+  apply top_unique
+  intro W _
   refine FreeGroup.induction_on W ?_ ?_ ?_ ?_
   · exact Subgroup.one_mem _
   · intro i
@@ -249,8 +244,7 @@ def killNeg : FreeGroup ℤ →* FreeGroup ℤ :=
 
 @[simp] theorem killNeg_of (i : ℤ) :
     killNeg (FreeGroup.of i) = if 0 ≤ i then FreeGroup.of i else 1 := by
-  unfold killNeg
-  rw [FreeGroup.lift.of]
+  simp [killNeg]
 
 theorem killNeg_mem_posSub (W : FreeGroup ℤ) : killNeg W ∈ posSub := by
   refine FreeGroup.induction_on W ?_ ?_ ?_ ?_
@@ -274,7 +268,8 @@ theorem killNeg_eq_self_of_mem {W : FreeGroup ℤ} (hW : W ∈ posSub) :
     killNeg W = W := by
   refine Subgroup.closure_induction (p := fun z _ => killNeg z = z) ?_ ?_ ?_ ?_ hW
   · rintro _ ⟨i, hi, rfl⟩
-    rw [killNeg_of, if_pos hi]
+    change 0 ≤ i at hi
+    simp [killNeg_of, hi]
   · exact map_one _
   · intro x y _ _ hx hy
     rw [map_mul, hx, hy]

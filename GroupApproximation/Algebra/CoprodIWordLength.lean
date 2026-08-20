@@ -25,6 +25,7 @@ variable {ι : Type*} [DecidableEq ι] {M : ι → Type*} [∀ i, Monoid (M i)]
 
 /-! ## 1.  `rcons` changes the length by at most one -/
 
+omit [DecidableEq ι] in
 theorem le_length_rcons {i : ι} (p : Word.Pair M i) :
     p.tail.toList.length ≤ (Word.rcons p).toList.length := by
   unfold Word.rcons
@@ -32,6 +33,7 @@ theorem le_length_rcons {i : ι} (p : Word.Pair M i) :
   · exact le_rfl
   · simp [Word.cons]
 
+omit [DecidableEq ι] in
 theorem length_rcons_le {i : ι} (p : Word.Pair M i) :
     (Word.rcons p).toList.length ≤ p.tail.toList.length + 1 := by
   unfold Word.rcons
@@ -61,8 +63,11 @@ theorem length_eq_of_fstIdx (i : ι) (w : Word M)
   · exfalso
     rw [Word.rcons, dif_pos hhead] at hw
     exact (Word.equivPair i w).fstIdx_ne (by rw [hw]; exact h)
-  · rw [← hw, Word.rcons, dif_neg hhead]
-    simp [Word.cons]
+  · calc
+      w.toList.length = (Word.rcons (Word.equivPair i w)).toList.length := by rw [hw]
+      _ = (Word.equivPair i w).tail.toList.length + 1 := by
+        rw [Word.rcons, dif_neg hhead]
+        simp [Word.cons]
 
 /-! ## 3.  Left multiplication by a letter of the leading summand -/
 
