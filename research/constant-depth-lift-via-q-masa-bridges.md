@@ -26,3 +26,10 @@ sum the finitely many shared-overlap errors into one constant.  The BCS
 certificate decomposition charges the complementary types exactly as in the
 sequential payment theorem.  This yields `(CDS1)` without a shift, an
 infinite selector-renewal mechanism, or constants uniform in tower depth.
+
+The bridge in this route cannot be implemented by merely adding a transverse
+class-two Pauli family to `K_f`: the corrected radical line varies with the
+selector assignment, and
+`selector-free-transverse-completion-has-fixed-radical` proves that following
+that variation regenerates the old selector center.  The required incidence
+is genuinely a proper-corner or higher-holonomy operation.

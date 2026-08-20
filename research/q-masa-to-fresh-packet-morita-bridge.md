@@ -47,3 +47,10 @@ which exchanges the two supports.
   every complementary type.  A feasible rational certificate is a complete
   local proof; an infeasibility dual is a theorem-grade stationary-flow
   obstruction.
+- **Transverse Pauli completion. Dead when the child line varies.**  Adding
+  partners to rebuild a fixed spin factor seems to repair the scale loss, but
+  `selector-free-transverse-completion-has-fixed-radical` gives a dichotomy.
+  If the endpoint still forgets the old selector center, its commutator form
+  and radical are selector-independent; if it follows the corrected lines
+  `Q_x`, its commutators regenerate nontrivial old selector words.  The live
+  search must therefore leave the class-two subgroup category.
