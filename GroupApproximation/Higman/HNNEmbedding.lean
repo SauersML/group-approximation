@@ -367,13 +367,15 @@ def GoodA : Subgroup (FreeGroup ℕ) where
       group
     rw [map_inv, map_inv]
     have hinv : (act' ((aHom : FreeGroup ℕ →* P A) u))⁻¹ (w, (0 : ℤ)) = (u⁻¹ * w, 0) :=
-      (Equiv.eq_symm_apply _).mpr hkey.symm
+      by
+        apply (act' ((aHom : FreeGroup ℕ →* P A) u)).injective
+        simpa using hkey.symm
     show (act' ((aHom : FreeGroup ℕ →* P A) u))⁻¹ (w, (0 : ℤ)) = _
     rw [hinv]
 
 theorem goodA_eq_top : (GoodA (A := A)) = ⊤ := by
   refine top_le_iff.mp ?_
-  intro W -
+  intro W _hW
   refine FreeGroup.induction_on W ?_ ?_ ?_ ?_
   · exact Subgroup.one_mem _
   · intro i w
@@ -423,13 +425,15 @@ def GoodB : Subgroup (FreeGroup ℕ) where
       group
     rw [map_inv, map_inv]
     have hinv : (act₂ g (bHom g u))⁻¹ (w, (0 : ℤ), α) = (u⁻¹ * w, 0, α) :=
-      (Equiv.eq_symm_apply _).mpr hkey.symm
+      by
+        apply (act₂ g (bHom g u)).injective
+        simpa using hkey.symm
     show (act₂ g (bHom g u))⁻¹ (w, (0 : ℤ), α) = _
     rw [hinv]
 
 theorem goodB_eq_top : GoodB g = ⊤ := by
   refine top_le_iff.mp ?_
-  intro W -
+  intro W _hW
   refine FreeGroup.induction_on W ?_ ?_ ?_ ?_
   · exact Subgroup.one_mem _
   · intro i w α
@@ -484,13 +488,13 @@ theorem bFam_mem_Bsub (i : ℕ) : bFam g i ∈ Bsub g :=
 /-- The untwisted family, as a basis of the subgroup it generates. -/
 noncomputable def aEquiv : FreeGroup ℕ ≃* ↥(Asub (A := A)) :=
   MulEquiv.ofBijective (aHom (A := A)).rangeRestrict
-    ⟨fun x y hxy => aHom_injective (congrArg Subtype.val hxy),
+    ⟨fun _ _ hxy => aHom_injective (congrArg Subtype.val hxy),
       (aHom (A := A)).rangeRestrict_surjective⟩
 
 /-- The twisted family, likewise. -/
 noncomputable def bEquiv : FreeGroup ℕ ≃* ↥(Bsub g) :=
   MulEquiv.ofBijective (bHom g).rangeRestrict
-    ⟨fun x y hxy => bHom_injective g (congrArg Subtype.val hxy),
+    ⟨fun _ _ hxy => bHom_injective g (congrArg Subtype.val hxy),
       (bHom g).rangeRestrict_surjective⟩
 
 /-- The identification the stable letter realizes: `aᵢ ↦ bᵢ`. -/
@@ -515,7 +519,7 @@ theorem psi_aFam (i : ℕ) :
 abbrev Ext : Type := HNNExtension (P A) (Asub (A := A)) (Bsub g) (psi g)
 
 /-- The countable group, inside the extension. -/
-def embA : A →* Ext g := (HNNExtension.of).comp (iA : A →* P A)
+noncomputable def embA : A →* Ext g := (HNNExtension.of).comp (iA : A →* P A)
 
 theorem embA_injective : Function.Injective (embA g) :=
   (HNNExtension.of_injective (φ := psi g)).comp iA_injective
@@ -560,8 +564,9 @@ theorem coprod_closure_top :
       rw [Monoid.Coprod.lift_apply_inr]
       rfl
   refine top_le_iff.mp ?_
-  intro p -
+  intro p _hp
   have hp := congrArg (fun f : P A →* P A => f p) hsplit
+  change ((φ p : ↥T) : P A) = p at hp
   show p ∈ T
   rw [← hp]
   exact (φ p).2
@@ -591,15 +596,15 @@ theorem of_iF_mem (v : FreeGroup (Fin 2)) :
 
 theorem of_aFam_mem (i : ℕ) :
     HNNExtension.of (aFam i : P A) ∈ Subgroup.closure (gens g) := by
-  have hform : (aFam i : P A) = iF (FreeGroup.of 1 ^ (0 : ℤ)) * aFam i := by
-    rw [zpow_zero, map_one, one_mul]
   unfold aFam
-  refine Subgroup.mul_mem _ (Subgroup.mul_mem _ ?_ ?_) ?_
-  · rw [map_zpow]
-    exact Subgroup.zpow_mem _ (Subgroup.subset_closure (Set.mem_insert _ _)) _
-  · exact Subgroup.subset_closure (Set.mem_insert_of_mem _ (Set.mem_insert _ _))
-  · rw [map_zpow]
-    exact Subgroup.zpow_mem _ (Subgroup.subset_closure (Set.mem_insert _ _)) _
+  rw [map_mul, map_mul, map_zpow, map_zpow]
+  have hx : HNNExtension.of (xg : P A) ∈ Subgroup.closure (gens g) :=
+    Subgroup.subset_closure (Set.mem_insert _ _)
+  have hy : HNNExtension.of (yg : P A) ∈ Subgroup.closure (gens g) :=
+    Subgroup.subset_closure (Set.mem_insert_of_mem _ (Set.mem_insert _ _))
+  exact Subgroup.mul_mem _
+    (Subgroup.mul_mem _ (Subgroup.zpow_mem _ hx _) hy)
+    (Subgroup.zpow_mem _ hx _)
 
 theorem of_iA_mem (hg : Function.Surjective g) (α : A) :
     HNNExtension.of (iA α : P A) ∈ Subgroup.closure (gens g) := by
@@ -617,7 +622,8 @@ theorem of_iA_mem (hg : Function.Surjective g) (α : A) :
 theorem closure_gens_eq_top (hg : Function.Surjective g) :
     Subgroup.closure (gens g) = ⊤ := by
   refine top_le_iff.mp ?_
-  intro z -
+  intro z _hz
+  clear _hz
   induction z using HNNExtension.induction_on with
   | of p =>
       have hmem : p ∈ Subgroup.closure ((Set.range (iA : A →* P A)) ∪
