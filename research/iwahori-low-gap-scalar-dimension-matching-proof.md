@@ -21,11 +21,15 @@ Apply `fractional-overlap-approximate-hall-rounding` with the low-gap pairs as
 the allowed graph.  It returns integer edge flows matching at least
 
 ```text
-d_n-ceil(beta_n d_n)
+d_n-floor(beta_n d_n)
 ```
 
-dimensions on each side.  Since `ceil(beta_n d_n)/d_n <= beta_n+1/d_n`, this
-is `d_n-o(d_n)` whenever `d_n->infinity`; bounded dimensions are harmless,
-because along a vanishing-defect sequence one may pass to the eventual exact
-subsequence or absorb the bounded discrepancy into the flexible stabilization.
-Hence the unmatched normalized dimension tends to zero, as claimed.
+dimensions on each side.  Since
+
+```text
+floor(beta_n d_n)/d_n <= beta_n -> 0,
+```
+
+the unmatched normalized dimension tends to zero with no assumption on the
+growth rate of `d_n`.  This is exactly the claimed `d_n-o(d_n)` scalar
+matching.
