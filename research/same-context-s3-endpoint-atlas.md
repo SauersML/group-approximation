@@ -6,6 +6,7 @@ title: Realize all three S3 endpoint laws locally around one fixed BCS context
 distinct_from:
   s3-radical-chart-returns-to-fresh-context: that transports the chart into the next tape context; this asks whether one closed finite local atlas can expose the three endpoint laws without any recursive level.
   three-radical-twist-crossed-products-have-uniform-scale: that constructs the three finite charts and their perfect-match restriction tables; the present theorem must add comparison words which impose the diagonal/crossed endpoint marginals rather than merely permuting the four radical types.
+  finite-packet-graph-atlases-have-a-regular-stationary-flow: that proves every one-dimensional finite-packet refinement has a positive integral stationary vector; this must therefore impose genuine two-cell holonomy on the edge-intertwiner multiplicity spaces.
 ---
 
 For each predicate context of the fixed non-CE BCS, construct a bounded finite
@@ -33,6 +34,14 @@ words such that:
   representations give stationary type flow and its fundamental group is
   virtually free.  The local atlas must contain genuine contextual holonomy,
   not just Bass--Serre edges.
+- The regular-flow obstruction is completely insensitive to how many finite
+  charts are added.  By
+  `finite-packet-graph-atlases-have-a-regular-stationary-flow`, common-total-
+  dimension multiples of the vertex regular representations solve every edge
+  restriction equation at once while retaining positive forbidden selector
+  mass.  Therefore the missing datum cannot be another branching table.  It
+  must be a two-cell relation on the chosen intertwiners (or an infinite
+  compressor) which detects holonomy inside their multiplicity spaces.
 - Any construction that also works after replacing the non-CE BCS by an
   arbitrary classically inconsistent CSP has forgotten exact completeness and
   must be rejected.
