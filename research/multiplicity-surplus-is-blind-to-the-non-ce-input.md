@@ -36,18 +36,20 @@ finite, sofic and hyperlinear.  So the chain
 `forbidden mass -> multiplicity surplus -> return -> energy floor`
 **must** break for that instance.
 
-**(BLD4)**  Therefore the non-CE hypothesis is consumed nowhere except inside
-the return transducer itself, and **any proof of Target 11.1 that does not
-visibly use it is wrong**.  This is a checkable test, not a slogan: run the
-candidate transducer argument on a classically unsatisfiable CSP and confirm
-that it fails.
+**(BLD4)**  Therefore any purported return theorem whose only BCS-dependent
+input is the number `beta` is blind to non-embeddability and cannot be correct.
+A valid construction must consume the contextual operator structure of the
+fixed BCS somewhere.  `non-ce-bcs-has-robust-approximate-energy-gap` does so by
+applying compactness to one globally shared approximate tuple, including its
+context commutator energy, rather than passing only the scalar `beta` into a
+generic Bass--Serre return network.
 
-**The sharper form, and where it bites first.**  The class-two packet declares
-its own selectors `z_l` **central**.  If context packets are glued over shared
-selectors by an amalgam, a selector central in each factor is central in the
-amalgam, so the BCS variables become globally commuting and the system
-degenerates to exactly the classical CSP of `(BLD2)`.  Breaking that degeneracy
-is not an implementation detail of the return transducer; it is the transducer.
-Compare `supercritical-network-needs-noncanonical-cuts`, which is the same
-phenomenon in the branching lane: the object that must fail in the exact model
-is precisely the object the construction is trying to build.
+**Correction to the naive centrality argument.**  Centrality does not
+propagate transitively through a context hypergraph.  Amalgamating
+`<x,y>` and `<y,z>` over the central involution `y` forces `[x,y]=[y,z]=1`
+but not `[x,z]=1`; the amalgam is `C_2 x (C_2*C_2)`.  Thus shared central
+selectors do not by themselves make all BCS variables globally commuting.
+What kills the naive construction is instead `(BLD3)`: a finite graph of
+finite packet groups remains virtually free and its representation-type flow
+absorbs the local multiplicity surplus.  The contextual gluing is legitimate;
+the fixed-scale return is the obstruction.

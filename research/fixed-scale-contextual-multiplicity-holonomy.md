@@ -6,14 +6,17 @@ title: Return contextual Schur-Clifford multiplicity surplus to the same fixed p
 artifacts:
   - research/artifacts/schur-clifford-predicate-rank-compiler-2026-08-19.md
 distinct_from:
-  shared-selector-context-packet-coherence: that constructs one coherent contextual packet field; this transports its multiplicity around a recurrent network and makes rank jumps pay on return.
+  non-ce-bcs-has-robust-approximate-energy-gap: that forces commutator energy or forbidden product mass on the original shared selector tuple; this transports the resulting exact local packet multiplicity and makes rank jumps pay on return.
   semisimple-packet-multiplicity-collapse: that is an operator-norm corona compression theorem for a generic semisimple packet; this asks for normalized-HS payment at fixed packet scale for the explicit predicate packets.
   contractive-computation-ladder: that proves a scalar recurrence forces energy once supplied; this must realize the recurrence by finite group relations and packet transport.
 ---
 
-Assume the coherent local packet representations supplied by
-`shared-selector-context-packet-coherence`, and let their forbidden context
-mass be bounded below by the fixed non-CE BCS constant `beta_B`.  Construct a
+Assume the robust shared-word gap of
+`non-ce-bcs-has-robust-approximate-energy-gap` and the locally exact packet
+representations of `finite-schur-clifford-packet-flexible-hs-exactification`.
+When the selector-involution and context-commutator energy is below half the
+robust gap, fixed-word telescoping leaves positive forbidden mass on those
+exact packet sectors.  Construct a
 finite recurrent group/holonomy network such that:
 
 1. restriction across a forbidden rank gate adds one baseline `A_f` spin
