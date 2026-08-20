@@ -19,8 +19,8 @@ alpha_Q(q_(N+1))=J q_(N+1),       alpha_Q fixes all other generators. (SPF1)
 ```
 
 They are commuting involutive automorphisms of the finite group `B_f` and
-fix `A_f` pointwise.  On a forbidden selector sector `x`, every `B_f`-simple
-`T_(x,lambda)` is invariant under both automorphisms.  With the corrected
+fix `A_f` pointwise.  On a forbidden selector sector `x`, the unique
+`B_f`-simple `T_x` is invariant under both automorphisms.  With the corrected
 relative Pauli pair `P_x,Q_x` of `(SCP4)`, implementers may be chosen as
 
 ```text
@@ -55,4 +55,3 @@ repaired on one copy inside a large multiplicity.  A recurrent compressor
 must generate independent copies whose binary cocycle rank grows beyond the
 current multiplicity capacity or occupies a positive density of bounded
 multiplicity fibers.
-

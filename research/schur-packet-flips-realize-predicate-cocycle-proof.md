@@ -24,8 +24,7 @@ therefore flips `P_x` and fixes `Q_x`, while conjugation by `P_x` flips
 `Q_x` and fixes `P_x`.  Both commute with the baseline packet, so they
 implement the two automorphisms on the full simple block, proving `(SPF2)`;
 their anticommutation gives `(SPF3)`.  The full forbidden sector algebra is a
-matrix algebra, hence its unique simple for each fixed radical label is
-invariant.
+matrix algebra, hence its unique simple is invariant.
 
 If `f(x)=0`, `P_x,Q_x` commute and the four characters of their relative
 `C_2 x C_2` algebra label the four simple extensions.  The two automorphisms
@@ -35,4 +34,3 @@ on the full orbit sum; their permutation implementers commute.
 Finally apply `commuting-automorphism-cocycle-forces-multiplicity` with
 `zeta=-1` to each invariant forbidden simple in `(SPF4)`.  Its external
 multiplicity is divisible by two.
-

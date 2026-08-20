@@ -61,16 +61,16 @@ are orthogonal and each has dimension `m^2`.  Hence a recurrent network that
 returns one positive-density centered child module as the other must pay a
 dimension-free HS defect.
 
-Globally, let `K` be the number of forbidden selector assignments, let `L`
-be the maximum number of radical characters over one such assignment, and
-let `q` be forbidden Hilbert mass in a `d`-dimensional packet representation.
-The orthogonal sum `K_PQ` of both centered child modules then satisfies
+Globally, let `K` be the number of forbidden selector assignments and let `q`
+be forbidden Hilbert mass in a `d`-dimensional packet representation.  A
+forbidden Schur matrix has full rank `N+1`, so there is one full-packet simple
+over each forbidden `x` and no radical-character multiplicity.  The
+orthogonal sum `K_PQ` of both centered child modules satisfies
 
 ```text
-rank(K_PQ)/d^2 >= q^2/(2 D^2 K L).                               (SPS7)
+rank(K_PQ)/d^2 >= q^2/(2 D^2 K).                                 (SPS7)
 ```
 
 All constants depend only on the fixed predicate packet.  The remaining task
 is to force the return by an infinite compressor while preserving the exact
 non-CE tracial model.
-

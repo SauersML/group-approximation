@@ -45,22 +45,21 @@ the `I` space.  Write `Y=Y_I+Y_X+Y_Y+Y_Z` according to `(SPS6)`.  Then
 The last two quantities sum to the first plus `||Y_Y||_2^2`, proving
 `(SPS4)`.  The descriptions and dimensions in `(SPS5)` are immediate.
 
-For `(SPS7)`, write `m_(x,lambda)` for the external multiplicities of the
-forbidden full-packet simples.  Their total forbidden Hilbert dimension is
+For `(SPS7)`, write `m_x` for the external multiplicity of the unique
+forbidden full-packet simple over `x`.  Uniqueness follows because
+`rank M_f(x)=N+1` when `f(x)=1`.  The total forbidden Hilbert dimension is
 
 ```text
-q d=2D sum_(x,lambda) m_(x,lambda).
+q d=2D sum_x m_x.
 ```
 
-The two centered child modules have total dimension
-`2 sum_(x,lambda) m_(x,lambda)^2`.  There are at most `K L` summands, so
-Cauchy--Schwarz gives
+The two centered child modules have total dimension `2 sum_x m_x^2`.  There
+are at most `K` summands, so Cauchy--Schwarz gives
 
 ```text
-2 sum m_(x,lambda)^2
- >= 2 (q d/(2D))^2/(K L)
- = q^2 d^2/(2D^2 K L).
+2 sum_x m_x^2
+ >= 2 (q d/(2D))^2/K
+ = q^2 d^2/(2D^2 K).
 ```
 
 Divide by `d^2`.
-
