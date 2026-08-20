@@ -35,9 +35,17 @@ uniform quantum expanders automatically. Items 1--4 then imply
 
 ## Attempts
 
-The natural trial ring is `F_2[t]` with quotients `(t^n)`: its additive
-quotients have binary size and a shift is built into multiplication by `t`.
-However, relative property `(T)` for an elementary-linear semidirect product
-does not by itself prove that the required central Heisenberg/Jacobi extension
-is finitely presented, nor that characteristic-two Weil lifts and the nested
-rank gates satisfy items 2--4. Those checks are part of this open claim.
+- **Truncated-polynomial tower: finite-level algebra solved.**
+  `truncated-polynomial-binary-weyl-expander-tower` uses `F_2[u]/(u^n)` and
+  the top-coefficient Frobenius functional. It gives exact `2^n`-dimensional
+  Weyl systems, a symplectic inclusion adding one qubit, and fixed
+  relative-Kazhdan expander words. The obstruction is now compatibility:
+  `(a,b)|->(ua,b)` is not a ring homomorphism, the linear action does not
+  preserve every embedded prefix, and the top-coefficient cocycle varies
+  with `n`. Thus it does not yet provide a common central word or a
+  self-similar action on the nested inclusions.
+- **Laurent/unitary repair.** A coefficient-of-identity pairing over
+  `F_2[t,t^(-1)]` has a level-independent formula and suggests replacing the
+  symplectic group by a unitary group for `t* = t^(-1)`. No nested finite
+  quotients and compatible one-cell embeddings carrying all of the required
+  action have yet been exhibited.

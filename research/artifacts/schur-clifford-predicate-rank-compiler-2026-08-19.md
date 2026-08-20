@@ -1162,6 +1162,28 @@ set to nested binary Schrodinger representations, a tape shift, and the same
 central sign used by the rank gate. Cairn isolates this algebraic obligation
 as `jacobi-congruence-clifford-tower`.
 
+The first half of that algebraic obligation can be done exactly. For
+(R_n=\mathbf F_2[u]/(u^n)), let \(\ell_n\) extract the top coefficient and
+put
+
+\[
+\omega_n((a,b),(c,d))=\ell_n(ad+bc).
+\]
+
+This is nondegenerate, its Weyl representation has dimension (2^n), and
+(mathrm{EL}_2(R_n)) acts projectively by Clifford unitaries. Moreover
+((a,b)\mapsto(ua,b)) is a symplectic embedding into level (n+1), with a
+single hyperbolic plane as orthogonal complement: abstractly it adds exactly
+one qubit. The fixed relative-Kazhdan words over
+(mathrm{EL}_2(\mathbf F_2[u])\ltimes R^2) give uniform adjoint expanders on
+all these levels. This is `truncated-polynomial-binary-weyl-expander-tower`.
+
+What fails is precisely the global syntax. The embedding is not a ring map,
+the linear actions do not preserve the embedded prefixes, and the cocycle
+uses the level-dependent functional \(\ell_n\). Thus one still has to turn
+these exact finite-level objects into a single presentation with compatible
+level transport and a common (or coherently conjugated) central sign.
+
 ---
 
 ## 16. Computational verification
