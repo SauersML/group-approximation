@@ -54,6 +54,7 @@ jobs:
   apply_non_mf_fix:
     name: Apply audited non-MF manuscript fix
     if: >-
+      github.event_name == 'schedule' ||
       (github.event_name == 'issues' && github.event.issue.title == 'oai: apply audited non-MF manuscript fix v2') ||
       (github.event_name == 'push' && github.event.head_commit.message == 'chore: trigger audited non-MF manuscript fix')
     runs-on: ubuntu-latest
@@ -118,6 +119,7 @@ jobs:
     name: Compile and publish the draft PDF
     if: >-
       github.event_name != 'issues' &&
+      github.event_name != 'schedule' &&
       !(github.event_name == 'push' && github.event.head_commit.message == 'chore: trigger audited non-MF manuscript fix')
     runs-on: ubuntu-latest
     timeout-minutes: 30
