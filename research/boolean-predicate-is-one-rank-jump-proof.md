@@ -56,11 +56,11 @@ rank M_f(x) = rank U_f(x) + rank(0 - e_s^T U_f(x)^(-1) e_t)
 the last step because a one-by-one matrix has rank equal to its entry when the
 entry lies in `{0,1}`.  This is `(BPR1)`.
 
-For `(BPR2)`, take `k=2` and the single satisfying assignment `(1,1)`: the
-branching program is `s -> v -> t` with labels `x` and `y`, and the displayed
-two-by-two matrix is the resulting `M_f` after deleting the vertex `v`, whose
-row and column are trivial.  Direct check: the matrix has rank one unless
-`x = y = 1`, where it has rank two.
+For `(BPR2)` use the smaller special-purpose representation
+`[[1,x],[y,0]]`.  Its first row is nonzero on every assignment, so its rank is
+at least one, and its determinant is `xy`; hence its rank is two exactly when
+`x=y=1`.  This minimal matrix is independent of the larger generic
+disjoint-path construction.
 
 Every step is finite `F_2` linear algebra and the construction is effective
 from the truth table.

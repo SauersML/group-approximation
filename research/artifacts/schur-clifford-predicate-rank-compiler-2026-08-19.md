@@ -3,6 +3,16 @@
 **Date:** 2026-08-19  
 **Status:** Two exact algebraic theorems proved below; one quantitative obstruction criterion proved; the global return/holonomy transducer remains open. **This is not yet a proof of the existence of a non-hyperlinear group.**
 
+**2026-08-20 Cairn integration update.**  The local approximate-representation
+step is no longer left monolithic: fixed finite packets flexibly exactify by
+normal-form telescoping plus Gowers--Hatami
+(`finite-schur-clifford-packet-flexible-hs-exactification`).  The global hole
+has been split into `shared-selector-context-packet-coherence` and
+`fixed-scale-contextual-multiplicity-holonomy`, combined by
+`multiplicity-return-via-contextual-holonomy`.  The first must preserve
+contextual noncommutation; the second must return the extensive surplus at a
+fixed packet scale.
+
 ## 0. Executive statement
 
 There is a loophole in the repo's affine-selector no-go results.

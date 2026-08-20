@@ -7,7 +7,7 @@ artifacts:
   - research/artifacts/schur-clifford-predicate-rank-compiler-2026-08-19.md
 distinct_from:
   mipstar-bcs-tracial-nonru-exists: that is the existence, from MIP*=RE, of a finite BCS with a tracial model but no R^U model; this is what such a system then forces on every finite-dimensional contextwise-commuting tuple, and it is a compactness statement with no complexity input of its own.
-  zpc-context-overlap-mismatch-transducer: that asks a compiler to charge selector overlap and cross-context mismatch to the loss of a specific game; this is an unconditional lower bound on forbidden spectral mass and asks for no compiler.
+  zpc-context-mismatch-transducer: that asks a compiler to charge cross-context mismatch to the loss of a specific game after priority decoding; this is an unconditional lower bound on forbidden spectral mass and asks for no compiler.
   perfect-zpc-irs-quantum-gap-game: that is a finite game separation forced by TailoredMIP*=RE; this is an elementary ultraproduct consequence once such a separation is fixed.
 ---
 

@@ -43,6 +43,8 @@ one gives a dimension that doubles.
 
 **Verification.**  `experiments/schur_clifford_rank_gate.py` builds the matrix
 from a truth table and computes `rank_F2` by Gaussian elimination.  It has been
-run and confirms `(BPR1)` for every Boolean predicate of arity at most four
-(all 4, 16, 256 and 65536 truth tables), for random predicates at arity five
-and six, and for parity, majority, one-hot and all-ones at arity up to seven.
+written to check `(BPR1)` exhaustively for every Boolean predicate of arity at
+most three (all 4, 16 and 256 truth tables), as well as the minimal AND gate
+and the one-hot predicate on three bits.  These are computational sanity checks;
+the proof is the exact Schur-complement argument in
+`boolean-predicate-is-one-rank-jump-proof`.

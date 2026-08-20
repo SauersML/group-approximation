@@ -74,7 +74,10 @@ which is what normalized Hilbert--Schmidt norm can see.
   `clifford-commutator-rank-is-packet-dimension`, and to feed the resulting
   multiplicity defect vector to `scaled-kazhdan-transport`, which is already
   proved for arbitrary weights.
-- **Not attempted: exactification.**  Clause 1 assumes the finite packet can be
-  exactified inside a microstate while retaining the shared selector words up to
-  controlled HS error.  Nothing in this repository supplies that for these
-  packets.
+- **Local exactification is now discharged; coherence is not.**
+  `finite-schur-clifford-packet-flexible-hs-exactification` applies fixed
+  word-table telescoping and Gowers--Hatami stability to each individual
+  packet.  Its correcting isometry depends on the context, so it does not make
+  shared selector copies agree.  That precise remaining interface is
+  `shared-selector-context-packet-coherence`; after it, the return/payment
+  interface is `fixed-scale-contextual-multiplicity-holonomy`.
