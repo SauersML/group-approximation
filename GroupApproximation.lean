@@ -1340,6 +1340,10 @@ import GroupApproximation.Sofic.DoubleInputsMinimal
 import GroupApproximation.Sofic.KunThomShulmanDoubleConstruction
 import GroupApproximation.Sofic.FreeLampKernelSplitting
 import GroupApproximation.Sofic.CentralizerNormalizationRefuted
+import GroupApproximation.Sofic.GreendlingerDehn
+import GroupApproximation.Sofic.GreendlingerDehnCritical
+import GroupApproximation.Sofic.GreendlingerDehnFree
+import GroupApproximation.Sofic.GreendlingerDehnSwap
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
