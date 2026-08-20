@@ -58,4 +58,6 @@ unitary representations, whereas normalized-HS microstates can place the
 missing direction in a non-coordinate excess commutant.  The live attack is
 therefore narrower: exclude the specific macroscopic two-point projection
 `(PCR1)`, using its finite spectrum and flip relation, without asserting full
-commutant normalization.
+commutant normalization.  `macroscopic-projection-is-one-adjoint-direction`
+explains the quantitative difficulty: half of the original Hilbert space can
+still be represented by one out of `d^2` adjoint directions.
