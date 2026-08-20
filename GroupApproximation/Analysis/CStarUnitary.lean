@@ -52,6 +52,7 @@ namespace IsUnitaryAdj
 
 variable {U : Adjointable E F}
 
+omit [PartialOrder B] [StarOrderedRing B] in
 /-- **A unitary preserves the inner product.**  A consequence of the adjoint
 relation, not a third clause. -/
 theorem inner_map (h : U.IsUnitaryAdj) (x y : E.carrier) :
@@ -70,12 +71,14 @@ theorem isBoundedBy_one (h : U.IsUnitaryAdj) : U.IsBoundedBy 1 := by
 theorem isBounded (h : U.IsUnitaryAdj) : U.IsBounded :=
   ⟨1, zero_le_one, h.isBoundedBy_one⟩
 
+omit [PartialOrder B] [StarOrderedRing B] in
 /-- The adjoint of a unitary is a unitary. -/
 theorem adjoint (h : U.IsUnitaryAdj) :
     (Adjointable.adjoint U).IsUnitaryAdj where
   adj_toFun := h.toFun_adj
   toFun_adj := h.adj_toFun
 
+omit [PartialOrder B] [StarOrderedRing B] in
 /-- A composite of unitaries is a unitary. -/
 theorem comp {V : Adjointable F G} (hV : V.IsUnitaryAdj)
     (hU : U.IsUnitaryAdj) : (V.comp U).IsUnitaryAdj where
@@ -88,6 +91,7 @@ theorem comp {V : Adjointable F G} (hV : V.IsUnitaryAdj)
 
 end IsUnitaryAdj
 
+omit [PartialOrder B] [StarOrderedRing B] in
 /-- The identity is a unitary. -/
 theorem isUnitaryAdj_id (E : CStarModule.{v, w} B) :
     (Adjointable.id E).IsUnitaryAdj where

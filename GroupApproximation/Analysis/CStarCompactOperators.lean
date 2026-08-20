@@ -67,12 +67,14 @@ namespace CStarModule
 
 variable (E : CStarModule.{v, w} B)
 
+omit [PartialOrder B] [StarOrderedRing B] in
 /-- The action of `B` kills `0`. -/
 theorem act_zero_left (b : B) : E.act (0 : E.carrier) b = 0 := by
   have h := E.act_add_left 0 0 b
   rw [add_zero] at h
   exact left_eq_add.mp h
 
+omit [PartialOrder B] [StarOrderedRing B] in
 /-- The action of `B` respects negation. -/
 theorem act_neg_left (x : E.carrier) (b : B) :
     E.act (-x) b = -(E.act x b) := by
@@ -101,9 +103,11 @@ def smul (c : ℂ) (T : Adjointable E F) : Adjointable E F where
   inner_adj x y := by
     rw [F.inner_smul_left, T.inner_adj, E.inner_smul_right]
 
+omit [PartialOrder B] [StarOrderedRing B] in
 @[simp] theorem smul_toFun (c : ℂ) (T : Adjointable E F) (x : E.carrier) :
     (smul c T).toFun x = c • T.toFun x := rfl
 
+omit [PartialOrder B] [StarOrderedRing B] in
 theorem IsBoundedBy.smul {T : Adjointable E F} {C : ℝ} (h : T.IsBoundedBy C)
     (c : ℂ) : (Adjointable.smul c T).IsBoundedBy (‖c‖ * C) := by
   intro x
@@ -113,6 +117,7 @@ theorem IsBoundedBy.smul {T : Adjointable E F} {C : ℝ} (h : T.IsBoundedBy C)
         mul_le_mul_of_nonneg_left (h x) (norm_nonneg c)
     _ = ‖c‖ * C * E.norm x := by ring
 
+omit [PartialOrder B] [StarOrderedRing B] in
 /-- A scalar multiple of a finite-rank operator has finite rank: scale the
 first vector of each rank-one summand. -/
 theorem IsFiniteRank.smul {T : Adjointable E F} (h : T.IsFiniteRank) (c : ℂ) :
@@ -125,6 +130,7 @@ theorem IsFiniteRank.smul {T : Adjointable E F} (h : T.IsFiniteRank) (c : ℂ) :
   refine Finset.sum_congr rfl fun i _ => ?_
   rw [F.act_smul]
 
+omit [PartialOrder B] [StarOrderedRing B] in
 /-- The difference of two finite-rank operators has finite rank: the sum over
 `ι ⊕ κ` with the second family's vectors negated. -/
 theorem IsFiniteRank.sub {T S : Adjointable E F} (hT : T.IsFiniteRank)
@@ -155,6 +161,7 @@ def IsCompactOp (T : Adjointable E F) : Prop :=
   T.IsBounded ∧ ∀ ε : ℝ, 0 < ε → ∃ S : Adjointable E F,
     S.IsFiniteRank ∧ (T.sub S).IsBoundedBy ε
 
+omit [PartialOrder B] [StarOrderedRing B] in
 theorem IsCompactOp.isBounded {T : Adjointable E F} (h : T.IsCompactOp) :
     T.IsBounded := h.1
 
@@ -193,6 +200,7 @@ theorem IsCompactOp.add {T S : Adjointable E F} (hT : T.IsCompactOp)
       _ ≤ ε / 2 * E.norm x + ε / 2 * E.norm x := add_le_add (hPb x) (hQb x)
       _ = ε * E.norm x := by ring
 
+omit [PartialOrder B] [StarOrderedRing B] in
 theorem IsCompactOp.smul {T : Adjointable E F} (h : T.IsCompactOp) (c : ℂ) :
     (Adjointable.smul c T).IsCompactOp := by
   have hcpos : (0 : ℝ) < ‖c‖ + 1 := by positivity
@@ -218,6 +226,7 @@ theorem IsCompactOp.smul {T : Adjointable E F} (h : T.IsCompactOp) (c : ℂ) :
       _ ≤ ε * E.norm x :=
           mul_le_mul_of_nonneg_right hcε (E.norm_nonneg x)
 
+omit [PartialOrder B] [StarOrderedRing B] in
 /-- **Left ideal property**: a bounded operator times a compact one is
 compact. -/
 theorem IsCompactOp.comp_left {T : Adjointable E F} (hT : T.IsCompactOp)
@@ -245,6 +254,7 @@ theorem IsCompactOp.comp_left {T : Adjointable E F} (hT : T.IsCompactOp)
       _ = C * (ε / (C + 1)) * E.norm x := by ring
       _ ≤ ε * E.norm x := mul_le_mul_of_nonneg_right hCε (E.norm_nonneg x)
 
+omit [PartialOrder B] [StarOrderedRing B] in
 /-- **Right ideal property**: a compact operator times a bounded one is
 compact. -/
 theorem IsCompactOp.comp_right {T : Adjointable E F} (hT : T.IsCompactOp)
@@ -323,6 +333,7 @@ map satisfy the same ones.  This is what replaces an extensionality principle
 for `Adjointable`: an operator identity that holds pointwise transports every
 property below without any argument about the adjoint field. -/
 
+omit [PartialOrder B] [StarOrderedRing B] in
 theorem IsBoundedBy.congr {T T' : Adjointable E F} {C : ℝ}
     (h : ∀ x, T.toFun x = T'.toFun x) (hT : T.IsBoundedBy C) :
     T'.IsBoundedBy C := by
@@ -330,11 +341,13 @@ theorem IsBoundedBy.congr {T T' : Adjointable E F} {C : ℝ}
   rw [← h x]
   exact hT x
 
+omit [PartialOrder B] [StarOrderedRing B] in
 theorem IsBounded.congr {T T' : Adjointable E F}
     (h : ∀ x, T.toFun x = T'.toFun x) (hT : T.IsBounded) : T'.IsBounded := by
   obtain ⟨C, hC, hb⟩ := hT
   exact ⟨C, hC, hb.congr h⟩
 
+omit [PartialOrder B] [StarOrderedRing B] in
 theorem IsFiniteRank.congr {T T' : Adjointable E F}
     (h : ∀ x, T.toFun x = T'.toFun x) (hT : T.IsFiniteRank) :
     T'.IsFiniteRank := by
@@ -343,6 +356,7 @@ theorem IsFiniteRank.congr {T T' : Adjointable E F}
   rw [← h z]
   exact hTeq z
 
+omit [PartialOrder B] [StarOrderedRing B] in
 theorem IsCompactOp.congr {T T' : Adjointable E F}
     (h : ∀ x, T.toFun x = T'.toFun x) (hT : T.IsCompactOp) :
     T'.IsCompactOp := by
