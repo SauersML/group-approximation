@@ -814,7 +814,7 @@ theorem conj_baseMap (hSF : Subgroup.closure SF = ⊤) (s : ↥(Sub w)) :
       rw [hsub]
       have hy' : v₁ ⟨gammaConj w z, hyc⟩
           = π (preE w) * π (preGamma w (gammaConj w z)) * (π (preE w))⁻¹ := by
-        show π (preE w) * baseMap w SF hSF (_, 1) * _ = _
+        show π (preE w) * baseMap w SF hSF (gammaConj w z, 1) * _ = _
         rw [baseMap_inl]
       have hy'' : v₂ ⟨gammaConj w z, hyc⟩ = π (preGamma w (gammaConj w z)) := by
         show baseMap w SF hSF (_, tau w _) = _

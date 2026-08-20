@@ -5,15 +5,13 @@ kind: claim
 title: A finite presentation returning the Schur-Clifford multiplicity wire at fixed packet scale
 artifacts:
   - research/artifacts/schur-clifford-predicate-rank-compiler-2026-08-19.md
-  - research/artifacts/relative-rank-one-fanizza-synthesis-2026-08-20.md
 distinct_from:
   semisimple-packet-multiplicity-collapse: that asks whether a Kazhdan compressor forces a packet's multiplicity vector to change, for a general finite-dimensional packet; this fixes the packets to be the explicit class-two two-groups of the rank compiler and asks for a transport network that returns them at a fixed irreducible size.
   atlas-fractional-pauli-return-network: that asks for a weighted return network whose reproduction number exceeds one, in the Pauli branching lane; this asks for a return that compares multiplicity at a fixed packet scale, and its surplus is manufactured by a Boolean predicate rather than by branching.
   extensive-cosystolic-index-defect: that asks a presentation to turn marked separation into positive-density local syndromes paying relator energy; this already has the extensive defect and asks only for the transport that makes it visible.
 ---
 
-Construct a finitely presented group `Gamma`, with marked word equal to the
-common central packet sign `w=J`, finitely many
+Construct a finitely presented group `Gamma`, a marked word `w`, finitely many
 Schur--Clifford context packets `A_(f_c) <= B_(f_c)` for the violation
 predicates of a fixed BCS `B` with a tracial but no Connes-embeddable tracial
 state, and a finite recurrent transport network, with the following property.
@@ -25,9 +23,10 @@ of `Gamma` in which `w` stays `alpha`-separated from the identity:
    baseline spin packet types;
 2. the packet multiplicity vectors transport around the finite network with
    total transport defect at most `C E(U)`;
-3. the forbidden-mass gap of `non-ce-bcs-has-finite-dimensional-forbidden-mass-gap`
-   forces a positive fraction of transported packet copies to traverse
-   rank-jump edges;
+3. the group-word energy gap of
+   `non-ce-bcs-has-robust-approximate-energy-gap` either already pays constant
+   relator energy or forces a positive fraction of locally exactified packet
+   copies to traverse rank-jump edges;
 4. after one return cycle those jumps create a multiplicity surplus of at least
    `eta d` **on a packet of fixed matrix size**;
 5. the return relation identifies source and target packet types, so at least
@@ -53,21 +52,16 @@ which is what normalized Hilbert--Schmidt norm can see.
   solution of the edge restriction equations, so an apparent supercritical
   component must leak into complementary types.
 - **Mandatory falsification test.**  By
-  `multiplicity-surplus-is-blind-to-the-non-ce-input`, every downstream step
-  after the forbidden-mass bound is a function of the constant `beta` alone, and
-  a classically unsatisfiable CSP supplies such a constant with no
-  non-embeddability input at all.  So any candidate argument must be run on a
-  classically unsatisfiable CSP and must be seen to fail there.  A candidate
-  that survives that test is using the non-CE hypothesis somewhere; one that
-  does not is wrong.
-- **The centrality obstruction, which bites immediately.**  The class-two packet
-  declares its selectors central, and a selector central in both factors of an
-  amalgam is central in the amalgam.  So the naive gluing over shared selectors
-  makes the BCS variables globally commuting and collapses the system to the
-  classical CSP above.  The transducer must glue the packets by something that
-  does not centralize the selectors -- a two-dimensional holonomy relation, a
-  compressor or self-similar action, or a nonamenable edge with quantitative HS
-  rigidity.
+  `multiplicity-surplus-is-blind-to-the-non-ce-input`, a downstream theorem
+  whose only BCS-dependent input is the scalar forbidden-mass constant also
+  fires on a classically unsatisfiable CSP and is wrong.  The robust
+  shared-word gap consumes the full noncommutative contextual tuple before
+  local exactification; the return still must not forget that input.
+- **Centrality is not the obstruction.**  Overlapping central context packets
+  impose contextwise, not global, commutation: gluing `<x,y>` and `<y,z>` over
+  `<y>` gives `C_2 x (C_2*C_2)`, with no relation `[x,z]=1`.  Ordinary
+  Bass--Serre gluing nevertheless fails by the virtually-free/integer-flow
+  argument above.
 - **Reuse of the existing multiplicity infrastructure.**  The natural next step
   is to replace the generic finite-dimensional packet in
   `semisimple-packet-multiplicity-collapse` by these class-two two-groups, whose
@@ -81,23 +75,7 @@ which is what normalized Hilbert--Schmidt norm can see.
   word-table telescoping and Gowers--Hatami stability to each individual
   packet.  Its correcting isometry depends on the context, but
   `non-ce-bcs-has-robust-approximate-energy-gap` works on the original shared
-  selector words and supplies commutator energy or forbidden-product mass
-  before correction.  Fixed-word telescoping transfers the latter locally.
-  The remaining return/payment interface is therefore only
+  selector words and supplies ordinary relator energy or forbidden-product
+  mass before correction.  Fixed-word telescoping transfers the latter
+  locally.  The remaining return/payment interface is therefore only
   `fixed-scale-contextual-multiplicity-holonomy`.
-- **The fixed-group mark is discharged conditionally on completeness.**
-  `central-packet-sign-supplies-marked-carrier` shows that separation of
-  `J` gives a positive-density approximately reducing `J=-1` carrier.  It is
-  enough for the final presentation to retain one exact infinite-dimensional
-  representation with `J=-I`; no Boone/self-referential mark is required for
-  this fixed non-CE BCS existence route.
-- **Rank-one specialization now has a concrete packet and payment constant.**
-  `support-failure-has-fixed-pivot-rank-one-compiler` replaces the generic
-  predicate packet by a 128-element class-two group whose allowed simples have
-  dimension two and whose forbidden simple has dimension four.
-  `support-failure-packet-has-explicit-hs-payment` computes `kappa=4`, hence
-  transport energy at least `2L/d`, while
-  `rank-one-no-signaling-pairing-floor` shows shared endpoint marginals alone
-  force a `1/4` three-context error floor.  The resulting open interface is
-  `relative-rank-one-fanizza-groupification`: expose that same relative bit by
-  group words without globally centralizing the selectors.

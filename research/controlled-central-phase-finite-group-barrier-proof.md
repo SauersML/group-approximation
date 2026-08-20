@@ -32,3 +32,4 @@ the corresponding character monomial
 
 where `a_0` records the chosen sign convention.  Comparing with `(NCG1)`
 shows that `f` is affine on the Boolean cube.
+

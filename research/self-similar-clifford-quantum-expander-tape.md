@@ -1,0 +1,51 @@
+---
+rg: 2
+id: self-similar-clifford-quantum-expander-tape
+kind: claim
+title: A finite presentation realizes uniform quantum-expander checks on every Clifford tape prefix
+distinct_from:
+  explicit-constant-degree-quantum-expanders: that supplies explicit channels in circuit form; this requires one finite group-word syntax compatible with a nested Clifford tower.
+  relative-t-heisenberg-adjoint-quantum-expansion: that proves a relative-Kazhdan Jacobi action supplies the uniform analytic gap once the quotient representations exist; this still has to construct their finite self-similar word syntax and controlled rank-gate compatibility.
+  uniform-halting-pauli-word-oracle: that exposes all questions of a post-halting Pauli test; this exposes only a constant-degree commutant test at every prefix of one self-similar Clifford tape.
+---
+
+Construct a finitely presented self-similar group containing a nested Clifford
+tower
+
+```text
+E_1 <= E_2 <= ...,
+```
+
+with a marked sign transported coherently between levels, together with a
+fixed number `D` of word templates
+whose level-`n` conjugates act on every `J=-1` spin block of `E_n` as a
+`D`-regular quantum expander with one uniform gap `1-lambda>0`.
+
+The defining relations must expose those conjugations with derivation cost
+polynomial in `n`, preserve an exact nontrivial marked model in the required
+self-referential branch, and be compatible with adjoining the next controlled
+Pauli cell. These conditions let
+`quantum-expander-rounds-relative-pauli-cell` exactify each new cell with a
+constant independent of the existing Clifford rank.
+
+## Attempts
+
+- Ben-Aroya--Schwartz--Ta-Shma give explicit constant-degree quantum expanders
+  by tensoring, squaring and quantum zig-zag. Their circuit descriptions are
+  not automatically conjugates of finitely many words in one presentation.
+- Gross--Eisert's quantum Margulis construction uses affine phase-space maps
+  implemented by Clifford/metaplectic unitaries and has the classical
+  Margulis spectrum, but the cited construction is for odd phase-space
+  dimension and does not directly provide the binary nested tower here.
+- `relative-t-heisenberg-adjoint-quantum-expansion` removes the need to
+  internalize a quantum zig-zag circuit. A fixed relative Kazhdan set in a
+  Jacobi-type group is automatically a constant-degree quantum expander in
+  every irreducible finite Heisenberg quotient. The remaining construction
+  problem is algebraic: find one finitely presented Jacobi/self-similar group
+  with a binary nested congruence tower, compatible Schrodinger--Weil
+  projective actions, polynomial word-derivation cost, and the same central
+  sign used by the controlled Schur rank gate. The sign may be the conjugate
+  level family `J_n=t^n J_0 t^(-n)`:
+  `conjugate-local-signs-preserve-marked-carrier` proves that this retains the
+  marked separation and carrier trace exactly, so global centrality is not
+  required.

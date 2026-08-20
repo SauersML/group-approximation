@@ -8,7 +8,6 @@ artifacts:
 distinct_from:
   compressor-returns-schur-child-masas: that asks for a returned positive-density child module; this is the equivalent projective-holonomy formulation using the explicit flip automorphisms of the packet.
   projective-holonomy-rank-forces-exponential-multiplicity: that computes the exact multiplicity cost once a rank-`2r` cocycle is active; this must create that rank self-similarly with uniform normalized-HS control.
-  same-model-supercritical-clifford-trigger: that allows an arbitrary computational Clifford challenge after detecting the model size; this restricts the challenge to iterated copies of the explicit two-flip Schur packet cell.
 ---
 
 Construct a finite one-sided-compressor presentation which recursively
@@ -49,7 +48,8 @@ give the desired dimension-free return charge.
   `schur-flip-amplification-from-wreath-site-recovery` leaves the concrete
   matrix-coordinate statement
   `matrix-recovery-of-schur-flip-wreath-sites`.
-- Infinite index and fixed-window recovery alone are explicitly refuted by
-  `infinite-index-does-not-force-supercritical-site-rank`.  The remaining
-  coordinate statement must contain a dimension-diagonal trigger reacting to
-  residual spectator multiplicity, not merely a better compactness estimate.
+- Infinite index and recovery of every fixed window still do not imply
+  `(SFA1)`: `infinite-index-does-not-force-supercritical-site-rank` constructs
+  exact `n`-cell models with multiplicity `m=2^nL` for arbitrary `L`.  The
+  required recurrence must be diagonal in the *residual* multiplicity `L`,
+  not merely unbounded in an external depth parameter.

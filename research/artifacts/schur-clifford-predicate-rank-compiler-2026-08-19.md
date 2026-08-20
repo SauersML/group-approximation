@@ -13,19 +13,48 @@ the context-dependent exactifications is needed.  The global hole is now only
 `fixed-scale-contextual-multiplicity-holonomy`, combined by
 `multiplicity-return-via-contextual-holonomy`.
 
-**Controlled-frame update.**  The Schur complement gives more than a rank
-count.  On every selector sector there are explicit products `P_x,Q_x` of
-the packet generators which commute with the leading packet and whose mutual
-commutator is `(-1)^{f(x)}`.  Central Fourier control produces three fixed
-coefficients `P_f,Q_f,P_fQ_f`; on every forbidden simple block their right
-module over the packet commutant is exactly
-`(M_2 minus C I_2) tensor M_m`, of dimension `3m^2`.  Thus the extensive
-Reynolds defect has a canonical three-coefficient frame and does not require
-selecting an adjoint basis vector.  A finite overgroup cannot make the
-nonlinear controlled commutator universally sound: induction from the
-enlarged center forces wrong-phase irreducibles unless `f` is affine.  The
-remaining covariance mechanism must therefore be genuinely infinite or
-tracial, not a larger finite selector packet.
+The earlier centrality warning was also too strong.  Central selectors in
+overlapping context factors impose exactly the context commutations, not
+global commutation: the two-edge example is `C_2 x (C_2*C_2)`.  Ordinary
+Bass--Serre gluing still fails, but because it is virtually free and admits
+stationary representation-type flows, not because it classicalizes every
+selector.
+
+There is also a fixed-scale reformulation of the surplus.  For an exact
+packet representation, let `R_A` and `R_B` average the adjoint action of the
+nested finite groups.  Forbidden Hilbert mass `q` forces
+
+```text
+rank(R_A-R_B)/d^2 >= 3 q^2/(4 D^2 K),
+```
+
+where `D=2^N` is the baseline spin dimension and `K` is the number of
+forbidden assignments.  This is
+`predicate-rank-jump-forces-adjoint-reynolds-gap`.  It replaces a fragile
+integer-copy selection by an explicit positive-density projection which is
+ready for scaled Kazhdan transport.
+
+There is a necessary covariance warning.  Merely placing `A_f` in the
+commutant of a Kazhdan group and `B_f` in the commutant of its compressed copy
+does nothing: the compressor representation and a forbidden packet can live
+on separate tensor factors, with perfect transport and the full Reynolds gap.
+This is `packet-kazhdan-commutant-placement-decouples`.
+The narrowed open interface is
+`compressor-covariant-packet-reynolds-return`: a named relation must make the
+Reynolds-difference range an actual coefficient of the compressor orbit.
+
+The Schur complement in fact supplies a canonical coefficient frame.  On
+every selector sector there are explicit products `P_x,Q_x` of packet
+generators which commute with the leading packet and whose mutual commutator
+is `(-1)^{f(x)}`.  Central Fourier control produces three fixed coefficients
+`P_f,Q_f,P_fQ_f`; on every forbidden simple block their right module over the
+packet commutant is exactly `(M_2 minus C I_2) tensor M_m`, of dimension
+`3m^2`.  Thus the extensive Reynolds defect does not require selecting an
+adjoint basis vector.  A finite overgroup cannot make the nonlinear
+controlled commutator universally sound: induction from the enlarged center
+forces wrong-phase irreducibles unless `f` is affine.  The remaining
+covariance mechanism must therefore be genuinely infinite or tracial, not a
+larger finite selector packet.
 
 For a family of commuting return letters, all remaining gauge freedom can be
 computed exactly.  If the packet implementers have binary projective
@@ -89,12 +118,105 @@ capacity threshold.  A final compiler must react to the residual spectator
 multiplicity and activate more cells inside that same model—the literal
 dimension-diagonal/self-detecting step.
 
-The earlier centrality warning was also too strong.  Central selectors in
-overlapping context factors impose exactly the context commutations, not
-global commutation: the two-edge example is `C_2 x (C_2*C_2)`.  Ordinary
-Bass--Serre gluing still fails, but because it is virtually free and admits
-stationary representation-type flows, not because it classicalizes every
-selector.
+The residual spectator is not merely bookkeeping.  The old `n` Pauli
+cancellation pairs generate `M_(2^n)(C)` on the multiplicity space, so their
+commutant is exactly `M_L(C)`.  Additional independent cells must act in this
+residual factor and force `2^r|L`.  Hence the sharp diagonal task is to inspect
+that commutant and request `r>log_2L` new cells; the already paid rank cancels
+from both sides of the capacity inequality.
+
+The residual algebra also carries an exact endogenous dimension stop.  Two
+free-algebra letters enumerate standard polynomials `p_n`; `p_n` is nonzero
+formally, but `p_L` vanishes under every substitution in `M_L(C)` by
+Amitsur--Levitzki.  Adjoining inverses to all `p_n` gives a nonzero countable
+algebra with no finite-dimensional representation.  This supplies a literal
+program which reacts to the spectator size without receiving it as input.
+What it does not supply is the decisive analytic compiler: the standard
+polynomials are additive and grow with `L`, and their free-skew-field inverses
+need not be bounded.  Recursive compression must still turn the failed
+instruction into new Schur cells using finitely many unitary group relations
+and a constant HS loss.
+
+There is a bounded reformulation which is likely cleaner than the polynomial
+tape.  The residual `M_L(C)` has atomic trace floor `1/L`; `r` independent
+flip cells generate `M_(2^r)(C)` and ask for minimal projections of trace
+`2^(-r)`.  Diffuse finite factors support the entire nested dyadic tower,
+whereas a matrix fails as soon as `r>log_2L`.  The local payload is therefore
+already group-native.  What remains is solely a finite recursive controller
+which chooses that depth from the current microstate and transports all split
+checks with constant HS loss.
+
+Replicating the non-CE BCS now has an exact quantitative payoff.  Among `C`
+contexts, each finite-dimensional replica has one context with forbidden mass
+at least `beta_B/C`.  Across `N` commuting replicas these chosen forbidden
+projections commute, so one joint sector violates at least
+`ceil(beta_B N/C)` sites.  Their flip cocycles are independent and force
+dimension at least `2^(ceil(beta_B N/C))`.  No common forbidden assignment or
+common context across replicas is needed.  This establishes genuine
+exponential amplification of copied bad regions; fixed `N` is still finite
+profile pressure, so the adaptive same-model controller remains essential.
+
+The finite-window result is robust once the controller supplies an all-pairs
+approximate multiplication table.  Universal Gowers--Hatami stability
+exactifies the entire finite replica group with error `42 epsilon` and
+dimension enlargement at most `(1-4epsilon^2)^(-1)`, independent of the
+number of replicas.  Hence a sign-retaining table already forces
+`d >= (1-4epsilon^2)2^(ceil(beta_B N/C))`.  The analytic hole is no longer
+packet rounding: it is the finite recursive compilation of local relators into
+that all-pairs table with error independent of `N` and runtime.
+
+Kleene self-reference removes even the in-model dimension sensor.  It is
+enough for a machine-indexed compiler to have soundness only in the dimension
+printed by a halting source machine.  The fixed-point machine searches for a
+bad marked microstate and, if it finds one, outputs that witness's dimension
+`D`; the compiled halting computation then requests the finite replica count
+which contradicts `D`.  Halting would therefore destroy the exact witness
+which caused it, so the machine cannot halt.  Hyperlinearity would make the
+search halt, while nonhalting preserves the marked group word.  The sole
+remaining theorem on this route is runtime-independent perfect-complete
+groupification of the finite selected replica table; matrix-dimension
+detection is no longer part of it.
+
+There is a genuinely different escape from dimension detection.  If a finite
+bi-index action can be rounded uniformly, one base lamp and finitely many
+pair-orbit relators produce a coherent *infinite* family of anticommuting
+matrices inside the same candidate model.  Such a family cannot exist in any
+finite `M_d`: compactness gives two members converging to the same unitary,
+whose anticommutator tends to norm two.  This route pays no logarithmic rank
+threshold at all.  Its entire missing input is uniform HS site coherence for
+an explicit infinite finite-bi-index subgroup pair; finite pair-orbit type by
+itself does not control approximate coset representatives.
+
+A sufficient coherence package is now explicit.  Same-dimension normalized-HS
+stability of the acting group replaces the approximate action by an exact one;
+property (T) of the point stabilizer Reynolds-projects the lamp into its exact
+commutant.  Double-coset finiteness then propagates finitely many pair checks
+to the whole infinite orbit without any long-word loss.  Thus this alternate
+route has one sharply structural input: an explicit infinite finite-bi-index
+pair with Kazhdan stabilizer and HS-stable ambient group.
+
+That package cannot come from the easiest stability classes.  An amenable
+ambient would make its Kazhdan subgroup finite, and finite subgroup plus
+finitely many double cosets would make the whole ambient finite.  Conversely,
+an infinite hyperlinear property-(T) ambient cannot be strictly HS-stable by
+Becker--Lubotzky.  A noncircular candidate must therefore be nonamenable and
+non-property-(T), yet HS-stable and large enough to contain a Kazhdan
+finite-bi-index stabilizer.
+
+The inclusion must also be genuinely nonsplit.  Strict normalized-HS
+stability descends to retracts, whereas Becker--Lubotzky rule it out for every
+infinite hyperlinear property-(T) group.  Hence a hyperlinear Kazhdan
+stabilizer cannot be a retract of the stable ambient group; semidirect and
+free-product constructions with the evident projection are dead on arrival.
+
+A concrete exact holonomy primitive is now available.  If two commuting
+automorphisms of a finite packet have projective implementer commutator
+`zeta` of order `r` on an irreducible packet, adjoining commuting stable
+letters forces `r` to divide its external multiplicity.  This is
+`commuting-automorphism-cocycle-forces-multiplicity`.  It is the literal
+two-cell version of multiplicity pressure, but a fixed `r` still dilutes by
+repairing `O(r)` copies inside multiplicity `m`; self-similarity or a
+same-model dimension trigger must make the pressure extensive.
 
 ## 0. Executive statement
 
@@ -775,6 +897,387 @@ If Step 5 is achieved with a finite presentation, the open hyperlinear problem i
 
 The significant reduction is that Step 5 no longer needs to invent nonlinear group logic.  Nonlinear logic has been compiled into the rank of an affine commutation matrix.  What remains is a geometric/representation-theoretic transport theorem.
 
+### Sign-carrier correction for the robust replica theorem
+
+The approximate exponential-dimension endpoint must use the signed forbidden
+Fourier element
+
+\[
+Q_i^-={1-J\over 2}\,Q_i,
+\]
+
+not the bare forbidden selector projection.  Otherwise a representation with
+\(J=+1\) can carry arbitrary forbidden selector mass without activating any
+Clifford cocycle, contradicting the claimed dimension bound.  In an exact
+representation \(Q_i^-\) is the joint projection onto the forbidden selector
+sectors and the marked \(J=-1\) sector.  Its Fourier evaluation transfers
+through Gowers--Hatami exactification with the same site-independent constant,
+so the repaired hypothesis is exactly the common marked-carrier condition the
+global compiler must supply.
+
+### A simpler payload for the dimension-reported diagonal
+
+After the fixed-point machine reports the dimension \(D\), the nonlinear BCS
+payload is unnecessary.  Let \(E_N\) be the extraspecial Pauli group with \(N\)
+independent pairs and common central sign \(J\).  An all-pairs
+\(\varepsilon\)-homomorphism of its complete table for which
+\(\|f(J)-I\|_2>42\varepsilon\) flexibly exactifies to a genuine
+representation with a nonzero \(J=-1\) spin sector.  Consequently
+
+\[
+d\ge (1-4\varepsilon^2)2^N.
+\]
+
+Choosing \(N>\log_2(D/(1-4\varepsilon^2))\) contradicts the reported
+dimension.  Thus the direct Kleene route no longer needs the non-CE BCS,
+predicate rank gates, context selection, or forbidden-mass synchronization.
+Its sole open step is the runtime-independent activation of the finite
+Clifford multiplication table.  The Schur compiler remains relevant to the
+original endogenous programme in which the group itself must discover and
+propagate bad regions without an externally reported dimension.
+
+There is a more economical verifier for the same payload.  The
+Natarajan--Vidick Pauli braiding test has perfect completeness (using the Magic
+Square anticommutation test) and robustness independent of the number of
+qubits; its questions have length \(O(N)\) and its answers have constant
+length.  Thus the complete \(E_N\) multiplication table is not analytically
+essential.  What remains essential is the groupification: the test's
+state-dependent multi-prover consistency relations must be lowered to
+normalized-Hilbert--Schmidt group words, and the growing question space must
+be activated after a halting computation with a runtime-independent gap.
+
+The dimension implication can be made explicit without importing any further
+rigidity machinery.  If the self-test places the physical state within
+\(\delta\) of \(\Phi_{2^N}\otimes\mathrm{aux}\), every squared Schmidt
+coefficient of the target is at most \(2^{-N}\).  A state of local dimension
+\(d\) therefore has squared overlap at most \(d/2^N\), whereas norm distance
+\(\delta\) gives overlap at least \((1-\delta^2/2)^2\).  Fixing a constant
+test error for which \(\delta<1\) yields \(d\ge c_0 2^N\), with universal
+\(c_0>0\).  This is recorded as
+`pauli-braiding-test-exponential-dimension`; the new direct route leaves only
+`dimension-reported-pauli-test-halting-compiler` open.
+
+### Instance-modulated diagonal and a self-referential BCS signal
+
+The Kleene microstate diagonal does not actually require one universal defect
+threshold for every source machine.  A total compiler may output computable
+rationals
+
+\[
+\delta_M>0,\qquad 0<\alpha_M<\sqrt2
+\]
+
+depending arbitrarily on the source code.  The fixed-point machine first
+computes its own compiled presentation and thresholds, then searches below
+\(\delta_M\) and above \(\alpha_M\).  Hyperlinearity eventually beats every
+fixed positive \(\delta_M\), so the contradiction is unchanged.  What remains
+forbidden is dependence on the unknown eventual halt time or on the reported
+dimension.  This is recorded as
+`instance-modulated-kleene-microstate-diagonal`.
+
+This relaxation admits the computable constants in Fanizza--Kroell--Mehta--
+Paddock--Rochette--Slofstra--Zhao's \(\mathcal L\)-families of BCS algebras.
+It also yields a new exact fixed-point source object.  Let \(\mathcal L\) be
+the halting set and let \((\mathscr B_m,C_m,D_m)\) be their computable family.
+Construct a machine with its own index \(m_*\) which enumerates formal
+algebraic proofs that
+
+\[
+D_{m_*}=0\quad\text{in }\mathcal A(\mathscr B_{m_*})
+\]
+
+and halts exactly when it finds one.  If it halted, membership in
+\(\mathcal L\) would give a tracial state with \(\tau(D_{m_*})>0\),
+contradicting the proved identity.  Hence it does not halt.  Completeness of
+the recursively enumerable ideal-membership search gives
+\(D_{m_*}\ne0\), while the nonmembership clause gives, with a computable
+constant \(C_{m_*}\),
+
+\[
+\varphi_{\mathcal S}(D_{m_*})\le C_{m_*}\varepsilon
+\]
+
+for every \(\varepsilon\)-perfect strategy.  Thus one computably specified
+finite BCS contains an algebraically nonzero projection erased by every
+asymptotically perfect finite-dimensional strategy.
+
+This is not yet a group obstruction.  The precise remaining bridge is
+`hs-groupify-self-referential-bcs-signal`: preserve nonvanishing of this marked
+projection while compiling the nonlinear BCS predicates to group words, and
+make its strategy mass dominate the normalized-HS distance of a marked group
+word.  The Schur--Clifford rank gates supply the local nonlinear compiler; a
+marked fixed-scale multiplicity return remains open.  This route has one
+advantage over the generic forbidden-mass construction: the distinguished
+signal prevents a false argument that would also fire on an ordinary
+classically unsatisfiable CSP.
+
+There is a sharp constraint on that bridge.  It cannot be a trace-functorial
+exact decoder.  Every discrete group has its regular trace, and for a
+nonidentity word \(w\),
+
+\[
+\tau_{\mathrm{reg}}((w-1)^*(w-1))=2.
+\]
+
+If an algebraic decoder turned every tracial representation of the group into
+a perfect strategy while lower-bounding \(\varphi(D)\) by the marked
+\(L^2\)-mass, applying it to the regular trace would contradict the
+\(\varepsilon=0\) signal-collapse inequality.  Therefore the groupification
+must be intrinsically finite-dimensional: it has to use rank, determinant,
+integral packet multiplicity, or a matrix-only rounding theorem which does not
+extend functorially to the regular finite von Neumann algebra.  This explains
+why the Schur--Clifford multiplicity machinery is not optional decoration but
+the only currently visible way around the regular-trace obstruction.
+
+The source construction also removes part of the apparent global-design
+burden.  Its nonmembership proof already contains projections
+
+\[
+\widetilde P_n=QU^nPU^{-n}Q
+\]
+
+and involutions \(\widetilde X_n=U^n\widetilde XU^{-n}\) satisfying
+
+\[
+\widetilde P_n+widetilde X_n\widetilde P_n\widetilde X_n
+=\widetilde P_{n+1}.
+\]
+
+The identity has a defining-relation decomposition of size polynomial in
+\(n\) (Fanizza et al., Proposition 5.14).  In trace it doubles mass from one
+tape cell to the next.  Their proof weights the recurrence by
+\(2^{-n/2}\), so the exponential contraction dominates the polynomial
+certificate loss and yields the signal-collapse estimate.  This is precisely
+the proposed “copy bad regions faster than approximation can hide them”
+architecture, already realized at the BCS level.
+
+Accordingly, a sharper open target replaces the generic return-transducer:
+attach the fixed Schur--Clifford predicate packets to this existing tape and
+use matrix-only integral multiplicity to obtain
+
+\[
+a_n\le {1\over2}a_{n+1}+K(n+1)^k\sqrt E.
+\]
+
+The shift \(U\) already supplies every level, and all local predicates are
+fixed.  The sole unresolved interface is coherence of the independently
+exactified packet multiplicities along the actual conjugate tape words.  This
+is recorded as `finite-dimensional-schur-lift-of-doubling-tape`; together with
+the abstract contractive ladder it is now a one-hole route to a
+nonhyperlinear group.
+
+One part of that hole has a direct solution.  Suppose two independent flexible
+exactifications \((\rho_i,V_i)\) of finite packets both approximate the same
+map \(f:A\to U(d)\) on their common finite subgroup.  Average the rank-
+\(d\) overlap \(T=V_2V_1^*\):
+
+\[
+\overline T={1\over |A|}\sum_{a\in A}\rho_2(a)T\rho_1(a)^*.
+\]
+
+Then \(\overline T\) is an exact intertwiner and
+\(\|\overline T-T\|_F\le(\eta_1+\eta_2)\sqrt d\).  Since the first \(d\)
+singular values of \(T\) equal one, singular-value perturbation shows that the
+polar part of \(\overline T\), restricted above threshold \(1/2\), identifies
+exact common submodules of dimension at least
+
+\[
+(1-4(\eta_1+\eta_2)^2)d.
+\]
+
+Thus separate Gowers--Hatami corrections can be aligned pairwise with only a
+quadratic-density loss.  The remaining obstruction is genuinely cyclic:
+choose these large polar intertwiners compatibly around a recurrence cell and
+control the residual commutant holonomy by the original shared-word defect.
+This lemma is recorded as `finite-group-shared-overlap-polar-alignment`.
+
+There is also a packet-type mismatch which pairwise alignment cannot remove.
+One rank gate is an inclusion \(A_f\le B_f\): restriction outputs an
+\(A_f\)-module.  A second independent copy of the same gate expects a
+\(B_f\)-module, so merely identifying their \(A_f\) restrictions creates
+parallel divisibility conditions rather than multiplying the rank jumps.  A
+composable design must either use a growing tower
+
+\[
+A_{n+1}=B_n,
+\]
+
+or construct a genuine fixed-scale Morita/holonomy return from the output
+packet type to the input type.  The first option matches the existing
+Fanizza--Slofstra self-similar Clifford sequence, but it replaces fixed-group
+exactification by a relative stability problem: exactify the one new Pauli
+cell with constants independent of the number of Clifford pairs already
+present.  This uniform relative exactification is now the sharp analytic
+subproblem inside `finite-dimensional-schur-lift-of-doubling-tape`.
+
+That relative stability problem has a clean quantum-expander solution.  If
+\(U_1,\ldots,U_D\) define a random-unitary channel with second
+Hilbert--Schmidt singular value \(\lambda<1\) on the old spin factor, then for
+the conditional expectation \(E\) to its commutant,
+
+\[
+\|X-E(X)\|_2\le {1\over1-\lambda}
+\left({1\over D}\sum_j\|[X,U_j]\|_2^2\right)^{1/2}.
+\]
+
+The bound is unchanged after tensoring by an arbitrary residual multiplicity
+factor.  Hence a proposed new Pauli pair which approximately commutes with the
+constant-degree expander moves uniformly close to that residual factor.
+Functional calculus followed by stability of the single fixed \(D_8\) table
+then exactifies the new cell with constants independent of the number of old
+qubits.  This is proved in
+`quantum-expander-relative-commutant-rounding` and
+`quantum-expander-rounds-relative-pauli-cell`.
+
+Explicit constant-degree quantum expanders are known: Ben-Aroya--Schwartz--
+Ta-Shma construct them by tensoring, squaring and quantum zig-zag.  Gross--
+Eisert's quantum Margulis expander is even implemented by affine
+Clifford/metaplectic transformations in odd phase-space dimension.  Neither
+source, as currently imported, supplies the exact binary syntax needed here:
+one finite presentation whose level conjugates give the expander unitaries on
+every nested qubit prefix and remain compatible with the common sign and rank
+gate.  Cairn records that precise algebraic task as
+`self-similar-clifford-quantum-expander-tape`.  After it, a separate coherent
+type-accounting step must still show that inactive selector sectors are
+exactly the Fanizza BCS violation mass, with no complementary leakage.
+
+There is now a more structural source of the expanders. If `(Gamma,N)` has a
+finite relative Kazhdan set `S` and a family of projective representations in
+which `N` acts irreducibly, then projective phases disappear in the adjoint
+action and Schur's lemma says that the only `N`-fixed operators are scalars.
+Applying the relative Kazhdan inequality to traceless matrices and lazifying
+the `S`-average gives a quantum-expander gap
+
+\[
+1-\lambda\ge {\kappa^2\over4|S|},
+\]
+
+uniformly in the representation dimension. This is proved in
+`relative-t-heisenberg-adjoint-quantum-expansion`. Relative property `(T)`
+for elementary-linear semidirect products over finitely generated rings is a
+known source of such a gap. Thus the remaining prefix-expander problem is no
+longer to synthesize a dimension-uniform spectral gap. It is to build the
+finitely presented **Jacobi congruence tower** which couples that fixed word
+set to nested binary Schrodinger representations, a tape shift, and the same
+central sign used by the rank gate. Cairn isolates this algebraic obligation
+as `jacobi-congruence-clifford-tower`.
+
+The first half of that algebraic obligation can be done exactly. For
+(R_n=\mathbf F_2[u]/(u^n)), let \(\ell_n\) extract the top coefficient and
+put
+
+\[
+\omega_n((a,b),(c,d))=\ell_n(ad+bc).
+\]
+
+This is nondegenerate, its Weyl representation has dimension (2^n), and
+(mathrm{EL}_2(R_n)) acts projectively by Clifford unitaries. Moreover
+((a,b)\mapsto(ua,b)) is a symplectic embedding into level (n+1), with a
+single hyperbolic plane as orthogonal complement: abstractly it adds exactly
+one qubit. The fixed relative-Kazhdan words over
+(mathrm{EL}_2(\mathbf F_2[u])\ltimes R^2) give uniform adjoint expanders on
+all these levels. This is `truncated-polynomial-binary-weyl-expander-tower`.
+
+What fails is precisely the global syntax. The embedding is not a ring map,
+the linear actions do not preserve the embedded prefixes, and the cocycle
+uses the level-dependent functional \(\ell_n\). Thus one still has to turn
+these exact finite-level objects into a single presentation with compatible
+level transport and a common (or coherently conjugated) central sign.
+
+The parenthetical relaxation is exact and useful. If the level signs are
+
+\[
+J_n=t^nJ_0t^{-n},
+\]
+
+then in every matrix tuple (J_n) is literally unitarily conjugate to the
+marked word (J_0). Its distance from the identity and the trace of every
+spectral carrier are therefore independent of (n), with no use of a
+relator estimate. A ring-valued Heisenberg center with
+(t z(c)t^{-1}=z(uc)) can consequently use (z(u^n)) as the local sign at
+level (n). This is `conjugate-local-signs-preserve-marked-carrier` and
+removes global centrality from the remaining Jacobi-tower obligations.
+
+There is also a sharp structural explanation for the failure of the obvious
+equivariant nesting. Any (R)-linear map
+(R_n^2\to R_{n+1}^2) lands in (uR_{n+1}^2); the image of the socle then
+lies in the radical of the restricted top-coefficient form. Hence no
+module-linear symplectic inclusion exists.
+
+The replacement is a two-chart atlas:
+
+\[
+P_n(a,b)=(ua,b),\qquad Q_n(a,b)=(a,ub).
+\]
+
+Both charts are symplectic. They share (n-1) qubits and have one distinct
+transverse boundary qubit each; Fourier swap exchanges them. Upper elementary
+maps preserve (Q_n), lower elementary maps preserve (P_n), and in either
+case the induced parameter changes by the explicit rule (r\mapsto ur).
+Thus the incompatibility is localized to one fixed-size holonomy cell rather
+than spread across the growing prefix. Cairn records the exact geometry as
+`truncated-weyl-two-chart-boundary` and the remaining compressor/payment
+problem as `two-chart-jacobi-action-holonomy`.
+
+The payment end of that holonomy can be closed abstractly. If two finite
+Reynolds averages (P,Q) on (L^2(M_d)) are transported termwise by a word
+(T), then
+
+\[
+{\lvert\operatorname{rank}P-\operatorname{rank}Q\rvert\over d^2}
+\le 2\,{1\over D}\sum_j\|TU_jT^*-V_j\|_2^2.
+\]
+
+The proof combines the rank lower bound for the distance between two
+orthogonal projections with
+(|\operatorname{Ad}U-\operatorname{Ad}V|_{2,\mathrm{sup}}^2
+\le2\|U-V\|_2^2). Together with the Schur-packet Reynolds gap `(ARG1)`, a
+forbidden mass (q) forces holonomy energy at least
+(3q^2/(8D^2K)). This is
+`forbidden-packet-reynolds-holonomy-payment`. The remaining two-chart problem
+is therefore purely the finite word transport of those averages, isolated as
+`two-chart-reynolds-word-transport`.
+
+There is an important consistency correction. A word which conjugates one
+complete finite group table termwise onto another induces an isomorphism of
+their represented image groups. Their Reynolds projections are then exactly
+unitarily conjugate and have equal rank. Thus the raw (A_f,B_f) tables
+cannot be the two endpoints of the holonomy—the very gap we want would
+vanish.
+
+The corrected endpoint is
+`stabilized-two-chart-reynolds-word-transport`: attach an infinite packet
+tail so the two **stabilized** subgroups are isomorphic, retain a faithful
+infinite marked model by an Eilenberg swindle, and use the two-chart/Fanizza
+orientation to cancel every finite-prefix boundary except one local
+(R_A-R_B) term. A polynomial-time recursive presentation can then be moved
+to a finitely presented host using the quantitative Higman theorem, with the
+relative Dehn function giving the exact HS error modulus. The open calculation
+is now the weighted cancellation of the stabilizing boundary, not raw packet
+conjugacy.
+
+A stronger spectral formulation removes even that raw return requirement.
+Let (A) be the adjoint Laplacian of a property-((T)) base and let
+(C_\alpha) be the Laplacian of its compressed word copy. Word telescoping
+gives (C_\alpha\le LA) as quadratic forms, while the HNN relators make
+(C_\alpha) Hilbert--Schmidt close to a unitary conjugate of (A). The
+property-((T)) SOS certificate puts only (O(\delta^2)) normalized spectral
+mass in any fixed interval inside the Kazhdan gap. Comparing spectral counts
+at separated thresholds therefore yields
+
+\[
+\operatorname{tr}_{\rm ad}
+\bigl(1_{[0,b]}(C_\alpha)(1-1_{[0,a]}(A))\bigr)=O(\delta).
+\]
+
+This is `property-t-hs-positive-density-commutant-no-growth`: a compressor may
+still create a slow, zero-density wall, but not a positive-density one. Since
+the Schur predicate packet creates adjoint wall density
+(3q^2/(4D^2K)), placing that packet difference in the compressed low space
+immediately forces (q^2=O(\delta)). The remaining construction is isolated
+as `schur-packet-as-positive-density-compressor-wall`; it no longer needs a
+termwise Reynolds-table conjugacy or a copywise multiplicity selector.
+
 ---
 
 ## 16. Computational verification
@@ -830,6 +1333,7 @@ Those are exactly the remaining proof obligations.  Claiming the open problem so
 
 - M. Fanizza, L. Kroell, A. Mehta, C. Paddock, D. Rochette, W. Slofstra, Y. Zhao, *The NPA hierarchy does not always attain the commuting operator value*, arXiv:2510.04943 (2025).  In particular their Definition 4.1 / Theorem 4.4 supply Turing-machine BCS families with a distinguished signal obeying a quantitative signal-versus-error inequality on one side of the reduction.
 - C. Paddock, W. Slofstra, *Satisfiability problems and algebras of boolean constraint system games*, arXiv:2310.07901.
+- A. Natarajan, T. Vidick, *Robust self-testing of many-qubit states*, arXiv:1610.03574.
 - Classical Valiant-style equivalence between algebraic branching programs and affine determinant representations; the proof in Section 2 above is self-contained for the only form needed here.
 - Standard representation theory of extraspecial 2-groups / finite Heisenberg groups: a nondegenerate commutator form of rank \(2r\) gives spin dimension \(2^r\).
 

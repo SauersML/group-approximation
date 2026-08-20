@@ -13,15 +13,28 @@ distinct_from:
 Let `Lambda` be a group with a one-sided compressor `s`, and let `sigma` be
 any finite-dimensional exact representation of `<Lambda,s>`.  Let `rho` be an
 exact representation of a predicate packet `B_f` carrying positive forbidden
-mass, and represent the direct product on `H=H_sigma tensor H_rho`.
+mass, and represent the direct product on
 
-Put the whole packet on the second tensor factor.  It commutes exactly with
-both `sigma(Lambda)` and `sigma(s Lambda s^(-1))`; scaled Kazhdan transport on
-the first factor holds with zero error.  Nevertheless the packet Reynolds gap
-is positive by `predicate-rank-jump-forces-adjoint-reynolds-gap`, and tensor
-amplification does not change its normalized rank.
+```text
+H=H_sigma tensor H_rho.
+```
 
-Consequently bare commutant placement cannot make the predicate defect pay.
-A successful return transducer needs a coefficient-covariance relation tying
-the Reynolds range to actual compressor conjugates.
+Put the whole packet, hence both `A_f` and `B_f`, on the second tensor factor.
+Then it commutes exactly with both `sigma(Lambda)` and
+`sigma(s Lambda s^(-1))`; every hypothesis and conclusion of scaled Kazhdan
+transport on the first factor holds with zero error.  Nevertheless the packet
+Reynolds projections satisfy
 
+```text
+rank(R_A-R_B)/dim(H_rho)^2 > 0
+```
+
+by `predicate-rank-jump-forces-adjoint-reynolds-gap`, and tensor amplification
+does not remove that normalized rank gap.
+
+Consequently, relations saying only that `A_f` centralizes `Lambda` and
+`B_f` centralizes the compressed subgroup cannot make the predicate defect
+pay.  A successful return transducer needs a **coefficient-covariance**
+relation tying named packet generators or their Reynolds range to actual
+compressor conjugates; that relation must visibly fail in this tensor-product
+model.

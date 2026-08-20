@@ -34,3 +34,4 @@ and gives a unital representation into a tracial matrix ultraproduct.
 Composing with its trace produces a Connes-embeddable tracial state on the BCS
 algebra, contradicting `mipstar-bcs-tracial-nonru-exists`.  Hence a positive
 `beta_B^rob` exists.
+

@@ -14,12 +14,7 @@ distinct_from:
 For a finite presentation containing the Schur flip wreath/compressor window,
 prove the following normalized-HS rounding statement.  On a forbidden packet
 carrier of external multiplicity `m`, every sufficiently accurate matrix
-microstate either pays a fixed relator-energy floor or admits
-
-```text
-n>log_2 m
-```
-
+microstate either pays a fixed relator-energy floor or admits `n>log_2 m`
 new compressor-site factors whose two local flip implementers:
 
 1. exactify to the prescribed finite packet automorphisms;
@@ -45,8 +40,20 @@ microstate; selecting any fixed canonical finite window is insufficient.
   Kazhdan transport is already valid at the cutoff's own rank scale.  What is
   missing is a finite-word coordinate theorem turning those directions into
   distinct local flip factors.
-- `infinite-index-does-not-force-supercritical-site-rank` shows that even such
-  coordinate recovery at every fixed rank is insufficient.  Exact `n`-site
-  windows already have multiplicity `2^nL`.  The theorem must be genuinely
-  diagonal: after the spectator multiplicity `L` is present, it must activate
-  more cells in the same model, with a constant-gap semantic return.
+- `infinite-index-does-not-force-supercritical-site-rank` rules out stopping
+  there: the first `n` recovered cells can be represented exactly on
+  multiplicity `2^nL` for arbitrary spectator `L`.  The cutoff must therefore
+  detect or react to this residual spectator inside the same microstate and
+  request more than `log_2 L` additional independent cells.
+- `schur-flip-cells-expose-residual-matrix-tape` identifies this spectator
+  intrinsically as the commutant `M_L(C)` of the already recovered Pauli
+  algebra.  The parallel route
+  `schur-flip-amplification-from-residual-trigger` isolates the narrower
+  possibility of running the self-detecting compiler directly in that
+  commutant instead of recovering all supercritical sites in one pass.
+- Exact alignment of one forbidden assignment across all recovered sites is
+  unnecessary.  By `commuting-schur-replicas-force-exponential-dimension`, a
+  per-site total forbidden-mass floor selects one context at each site and a
+  joint sector with linearly many independent cocycle blocks.  The remaining
+  recovery problem is therefore cross-site coherence plus same-model site
+  count, not cross-site predicate agreement.

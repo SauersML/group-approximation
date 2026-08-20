@@ -5,11 +5,8 @@ kind: claim
 title: Binary projective holonomy of rank two-r forces a two-to-r multiplicity divisor
 artifacts:
   - research/artifacts/schur-clifford-predicate-rank-compiler-2026-08-19.md
-  - research/artifacts/self-similar-dimension-pressure-map-2026-08-20.md
 distinct_from:
   commuting-automorphism-cocycle-forces-multiplicity: that treats one projective square and obtains one fixed-order divisor; this computes an arbitrary binary cocycle rank and its exponential multiplicity cost.
-  robust-clifford-capacity-bound: that bounds the ambient dimension of an all-pairs approximate Clifford-group homomorphism; this is an exact packet-isotypic theorem in which the Clifford representation is forced specifically onto the external multiplicity space.
-  same-model-supercritical-clifford-trigger: that must activate more Clifford rank than the candidate model can support with uniform HS soundness; this identifies the exact multiplicity inequality such a trigger must force.
 ---
 
 Let `B` be finite, let `T` be an irreducible `B`-module, and let
@@ -51,4 +48,3 @@ repair fewer than `2^r` residual copies.  Thus self-similarity must make the
 activated cocycle rank depend on the current model, or generate extensive
 independent holonomy cells.  The theorem identifies adaptive cocycle rank,
 not generic Reynolds transport, as the remaining quantitative resource.
-

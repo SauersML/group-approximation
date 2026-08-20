@@ -41,15 +41,9 @@ inclusions; it does not name the nonlinear controlled phase as a group
 element.
 
 Quantitatively, on a forbidden `B_f`-simple with external multiplicity `m`,
-write
-
-```text
-H=S_x tensor C^2 tensor C^m.
-```
-
-Let `E_P,E_Q,E_B` be the Hilbert--Schmidt conditional expectations onto the
-commutants of `B_f^P,B_f^Q,B_f`, respectively.  For every
-`Y in End_(A_f)(H)`,
+write `H=S_x tensor C^2 tensor C^m`.  Let `E_P,E_Q,E_B` be the
+Hilbert--Schmidt conditional expectations onto the commutants of
+`B_f^P,B_f^Q,B_f`, respectively.  For every `Y in End_(A_f)(H)`,
 
 ```text
 ||Y-E_B Y||_2^2
@@ -65,8 +59,7 @@ range(E_Q-E_B)=C X tensor M_m                                  (SPS5)
 
 are orthogonal and each has dimension `m^2`.  Hence a recurrent network that
 returns one positive-density centered child module as the other must pay a
-dimension-free HS defect.  The remaining task is to force that return by an
-infinite compressor while preserving the exact non-CE tracial model.
+dimension-free HS defect.
 
 Globally, let `K` be the number of forbidden selector assignments and let `q`
 be forbidden Hilbert mass in a `d`-dimensional packet representation.  A
@@ -78,4 +71,6 @@ orthogonal sum `K_PQ` of both centered child modules satisfies
 rank(K_PQ)/d^2 >= q^2/(2 D^2 K).                                 (SPS7)
 ```
 
-All constants depend only on the fixed predicate packet.
+All constants depend only on the fixed predicate packet.  The remaining task
+is to force the return by an infinite compressor while preserving the exact
+non-CE tracial model.

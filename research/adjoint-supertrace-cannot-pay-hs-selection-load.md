@@ -8,12 +8,21 @@ distinct_from:
   marked-hs-separation-forces-spectral-density: that extracts a positive matrix-corner carrier directly from the normalized HS norm of one unitary word; this refutes extracting such a carrier from the normalized supertrace dimension of an operator-space subspace.
 ---
 
-There is no universal constant `C` bounding the matrix trace of the support or
-a balanced spectral cut of `x in E<=M_d(C)` by
-`C rank(P_E)/d^2`.  A balanced sign matrix spans a one-dimensional `E` but has
-positive cut trace `1/2`; the identity has support trace one, while both spans
-have normalized adjoint rank `1/d^2`.
+There is no universal constant `C` such that, for every `d`, every subspace
+`E<=M_d(C)`, and every self-adjoint `x in E`, the matrix trace of the support
+or a balanced spectral cut of `x` is bounded by
 
-Thus one low-energy adjoint direction cannot pay a macroscopic HS carrier.
-The Schur--Clifford escape is density of the whole Reynolds-difference range.
+```text
+C rank(P_E)/d^2,
+```
 
+where `P_E` is the orthogonal projection onto `E` in the `d^2`-dimensional
+adjoint Hilbert space.  The failure already occurs for `dim E=1`: a balanced
+sign matrix has positive spectral projection of trace `1/2`, and the identity
+has support trace one, while the normalized adjoint rank of their spans is
+`1/d^2`.
+
+Consequently an adjoint spectral or supertrace argument cannot pay a
+positive-density HS carrier merely by selecting one low-energy direction.
+The escape used by the Schur--Clifford route is quantitative density of the
+**whole** Reynolds-difference range, not support of one chosen vector.

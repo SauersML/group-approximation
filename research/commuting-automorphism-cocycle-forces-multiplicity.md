@@ -10,18 +10,37 @@ distinct_from:
   fixed-holonomy-on-overlap-pays-relator-energy: that charges a fixed nontrivial finite-factor holonomy on a positive-density matrix corner; this first proves the exact representation-theoretic divisibility law and records why it has no ambient-normalized gap at fixed cocycle order.
 ---
 
-Let `B` be finite, let commuting `alpha,beta in Aut(B)` preserve an irreducible
-module `T`, and choose implementers satisfying
-`U_alpha U_beta=zeta U_beta U_alpha`, with `zeta` of order `r`.  In any
-representation of
+Let `B` be a finite group, let `alpha,beta in Aut(B)` commute, and let `T` be
+an irreducible `B`-module fixed up to equivalence by both automorphisms.  Choose
+unitary implementers `U_alpha,U_beta` on `T`.  Their commutator is scalar; write
 
 ```text
-<B,u,v | u b u^(-1)=alpha(b), v b v^(-1)=beta(b), [u,v]=1>
+U_alpha U_beta = zeta U_beta U_alpha,
 ```
 
-whose invariant `T`-isotypic space is `T tensor C^m`, one has `r|m`.
-For `zeta=-1`, external multiplicity is even.  At fixed `r` this is not an HS
-gap: fewer than `r` leftover copies can be repaired inside arbitrarily large
-`m`.  A successful construction needs positive-density independent squares or
-an order exceeding the current model capacity.
+and suppose `zeta` has order `r`.
+
+In any representation of
+
+```text
+< B,u,v |
+    u b u^(-1)=alpha(b),
+    v b v^(-1)=beta(b),
+    [u,v]=1 >                                           (CAC1)
+```
+
+whose `T`-isotypic subspace is invariant under `u,v` and is
+`T tensor C^m`, one has
+
+```text
+r divides m.                                             (CAC2)
+```
+
+In particular a cocycle `zeta=-1` forces even external multiplicity.  This is
+an exact finite-presentation holonomy transducer.  At fixed `r` it is **not**
+a normalized-HS obstruction: a nondivisible multiplicity can be repaired by
+changing fewer than `r` copies, a vanishing fraction as `m` grows.  A
+hyperlinearity obstruction must therefore force a positive density of
+independent cocycle squares or activate an order `r` exceeding the current
+model capacity.
 

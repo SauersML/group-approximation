@@ -29,4 +29,3 @@ For the fixed-pivot support packet, `D=2` and `K=1`, so the explicit constant
 is `3/16`.  Thus an extensive forbidden packet mass produces an extensive
 adjoint projection defect without selecting individual irreducible copies or
 using any ambient-dimension divisibility.
-

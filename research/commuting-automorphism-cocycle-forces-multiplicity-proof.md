@@ -5,13 +5,35 @@ kind: route
 title: Factor the stable letters by Schur's lemma and take determinants
 target: commuting-automorphism-cocycle-forces-multiplicity
 requires: []
+artifacts:
+  - research/artifacts/schur-clifford-predicate-rank-compiler-2026-08-19.md
 ---
 
-Schur's lemma gives `rho(u)=U_alpha tensor P` and
-`rho(v)=U_beta tensor Q` on `T tensor C^m`.  Commutation of `u,v` implies
-`PQ=zeta^(-1)QP`.  Determinants give `zeta^m=1`, hence `r|m`.
+On the invariant isotypic space `T tensor C^m`, Schur's lemma gives
 
-Writing `m=qr+s`, use `q` exact `r`-dimensional Weyl blocks and repair only
-the last `s<r` dimensions.  The normalized squared HS cost is `O(r/m)`, which
-proves the stated limitation.
+```text
+rho(u)=U_alpha tensor P,
+rho(v)=U_beta  tensor Q
+```
+
+for multiplicity-space unitaries `P,Q`.  The relation `[u,v]=1` and
+`U_alpha U_beta=zeta U_beta U_alpha` imply
+
+```text
+P Q = zeta^(-1) Q P.                                    (CAC3)
+```
+
+Taking determinants in dimension `m` gives
+
+```text
+det(P)det(Q)=zeta^(-m)det(Q)det(P),
+```
+
+so `zeta^m=1`.  Since `zeta` has order `r`, this is equivalent to `r|m`.
+
+For the limitation, write a large multiplicity as `m=qr+s` with `0<=s<r`.
+Use `q` exact `r`-dimensional Weyl blocks and alter or discard only the final
+`s`-dimensional block.  Its contribution to ambient normalized squared HS
+error is at most `O(r/m)`.  Thus exact divisibility at fixed `r` supplies no
+dimension-independent error floor.
 

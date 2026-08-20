@@ -5,7 +5,6 @@ kind: claim
 title: Return contextual Schur-Clifford multiplicity surplus to the same fixed packet scale
 artifacts:
   - research/artifacts/schur-clifford-predicate-rank-compiler-2026-08-19.md
-  - research/artifacts/self-similar-dimension-pressure-map-2026-08-20.md
 distinct_from:
   non-ce-bcs-has-robust-approximate-energy-gap: that forces commutator energy or forbidden product mass on the original shared selector tuple; this transports the resulting exact local packet multiplicity and makes rank jumps pay on return.
   semisimple-packet-multiplicity-collapse: that is an operator-norm corona compression theorem for a generic semisimple packet; this asks for normalized-HS payment at fixed packet scale for the explicit predicate packets.
@@ -17,8 +16,7 @@ Assume the robust shared-word gap of
 representations of `finite-schur-clifford-packet-flexible-hs-exactification`.
 When the selector-involution and context-commutator energy is below half the
 robust gap, fixed-word telescoping leaves positive forbidden mass on those
-exact packet sectors.
-Construct a
+exact packet sectors.  Construct a
 finite recurrent group/holonomy network such that:
 
 1. restriction across a forbidden rank gate adds one baseline `A_f` spin
@@ -43,7 +41,23 @@ floor.
 - **Raw restriction multiplicity: invisible.**  A forbidden `B_f` simple is
   twice as large, so Hilbert dimension is conserved.  The return must first
   normalize to the common `A_f` packet size.
+- **Bare Kazhdan commutant placement: refuted.**
+  `packet-kazhdan-commutant-placement-decouples` puts the
+  compressor and a forbidden packet on separate tensor factors.  Transport is
+  exact while the Reynolds gap survives.  The packet must be an actual
+  compressor covariant, not an independent coefficient algebra.
 - **Active attack.**  Feed the explicit restriction matrices into the existing
-  Kazhdan compressor/multiplicity framework.  The unresolved estimate is
-  exactification-covariance at the self-normalized defect scale: transport
-  error must be `o` of the extensive surplus, uniformly in ambient dimension.
+  Kazhdan compressor/multiplicity framework.  The integer multiplicities need
+  not be selected copy by copy:
+  `predicate-rank-jump-forces-adjoint-reynolds-gap` turns forbidden Hilbert
+  mass `q` into an explicit adjoint projection-rank gap `c_f q^2`.  The
+  unresolved construction must identify the two Reynolds projections through
+  a one-sided Kazhdan compressor (or a genuine two-cell holonomy) with
+  normalized-HS cost controlled by the presentation relators.
+- **Final analytic payment solved.** If a word holonomy returns uniform
+  enumerations of the two packet Reynolds averages, then
+  `forbidden-packet-reynolds-holonomy-payment` converts `(ARG1)` directly into
+  ordinary normalized-HS energy `>=3q^2/(8D^2K)`. No copywise multiplicity
+  selection remains. The construction problem is now to expose that averaged
+  channel transport by finitely many sparse relations without forgetting the
+  shared non-CE selector tuple.

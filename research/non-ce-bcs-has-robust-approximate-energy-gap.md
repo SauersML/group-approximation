@@ -31,3 +31,4 @@ exactification of a fixed Schur--Clifford packet changes each ordered forbidden
 product by only a fixed multiple of the packet defect.  Hence `(RFMG)` supplies
 positive total rank-jump mass unless the ordinary group relators already pay a
 constant HS energy.
+

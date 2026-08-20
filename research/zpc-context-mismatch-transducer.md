@@ -8,6 +8,7 @@ artifacts:
   - research/artifacts/compiler-lowering-hyperlinear-2026-08-18.md
 distinct_from:
   zpc-selector-robust-lcs-compiler: that is the full quantitative compiler theorem; this isolates the remaining context-consistency inequality after priority decoding has removed selector overlap from the problem.
+  zpc-context-overlap-mismatch-transducer: that asks one estimate to pay selector overlap and cross-context mismatch simultaneously; this factors through odd-selector priority decoding first and isolates only the post-decoding gluing debt.
 ---
 
 For the fixed finite tailored game `G` supplied by
