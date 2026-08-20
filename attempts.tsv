@@ -25,3 +25,4 @@
 32311584466	2026-08-19T23:18:31Z	GroupApproximation/Manuscript/NonMF/QuestionOneOpenness.lean	exists_reductionQuotient_with_all_three_configurations
 32314137264	2026-08-19T23:39:35Z	GroupApproximation/Endpoint/NonMFImpact.lean	cyclicBase_exactModel_obstruction
 32315579062	2026-08-20T00:00:53Z	GroupApproximation/PropertyTT/PaperStatements.lean	freeCharacteristicTwo_root_hasRelativeTT
+32322608025	2026-08-20T01:53:23Z	GroupApproximation/Sofic/ActualCoronaMFRadical.lean	manuscriptCoronaMFInvisible_iff_actualCoronaMFInvisible
