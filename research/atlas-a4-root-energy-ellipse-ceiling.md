@@ -70,6 +70,13 @@ root-energy coordinates `(S_n,x_12)`.
   is especially valuable because it enters `S_n` with coefficient `4`; `t01`
   and `t23` enter with coefficient `2`, while `t12` occupies the separate
   detector coordinate.
+- **Use the shorter q14 directional wall when possible.**  The exact kernel
+  word `q_14=(t23_(1)t23_(2))^2` becomes a two-syllable `t30` comparison after
+  the fixed packet alignment.  `atlas-q14-forces-t30-covariance-floor` proves
+  `liminf x_30^2>=1/8`, reducing the sufficient upper target to the separate
+  one-coordinate claim `atlas-a4-t30-energy-ceiling-below-q14-wall`.  The
+  ellipse remains a valid endpoint, but the one-coordinate route has much
+  more numerical slack.
 - **Use the two-context classical core as a dual guide.**  The exact packet
   audit already identifies two A4 contexts hitting every collision-perfect
   classical alignment.  Ask whether their matrix-valued residuals dominate the
