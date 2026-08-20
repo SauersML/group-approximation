@@ -12,6 +12,7 @@
 
 set -euo pipefail
 
+module load python3/3.12.4_anaconda2024.06-1_libmamba
 cd /projects/standard/hsiehph/sauer354/cairn-wedderburn
 python3 support_packet_wedderburn_tag_capacity.py 5 \
   --output support_packet_wedderburn_tag_capacity_5.json \
