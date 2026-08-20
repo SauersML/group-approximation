@@ -66,7 +66,7 @@ open GroupApproximation.PresentationCodes
 
 instance carrier_countable (c : PresentationCode) : Countable (Carrier c) := by
   unfold Carrier PresentedGroup
-  infer_instance
+  exact Function.Surjective.countable (QuotientGroup.mk'_surjective _)
 
 instance carrier_additive_countable (c : PresentationCode) :
     Countable (Additive (Carrier c)) :=
@@ -143,7 +143,7 @@ instance pcAbsorber_countable : Countable PCAbsorber :=
   Function.Surjective.countable toTorsionFreeQuotient_surjective
 
 /-- The map placing one coordinate into the absorber. -/
-def pcEmb (c : PresentationCode) : Carrier c →* PCAbsorber :=
+noncomputable def pcEmb (c : PresentationCode) : Carrier c →* PCAbsorber :=
   (toTorsionFreeQuotient PCDirectSum).comp (pcOf c)
 
 /-- A torsion-free coordinate survives the quotient, by the retraction
@@ -239,15 +239,25 @@ theorem spans_pcGen : Subgroup.closure (Set.range pcGen) = ⊤ := by
         Subgroup.closure (Set.range pcGen) by
     exact h (Multiplicative.toAdd g)
   intro f
-  refine DFinsupp.induction f ?_ ?_
-  · simpa using Subgroup.one_mem (Subgroup.closure (Set.range pcGen))
+  refine DFinsupp.induction
+    (p := fun f : Π₀ c : PresentationCode, Additive (Carrier c) ↦
+      (Multiplicative.ofAdd f : PCDirectSum) ∈
+        Subgroup.closure (Set.range pcGen)) f ?_ ?_
+  · change (1 : PCDirectSum) ∈ Subgroup.closure (Set.range pcGen)
+    exact Subgroup.one_mem _
   · intro c a f' _ _ ih
-    have hsplit : (Multiplicative.ofAdd (DFinsupp.single c a + f') :
-        PCDirectSum)
-        = pcOf c (Additive.toMul a) * Multiplicative.ofAdd f' := by
+    have ha : (Multiplicative.ofAdd (DFinsupp.single c a) : PCDirectSum) =
+        pcOf c (Additive.toMul a) := by
+      apply Multiplicative.ofAdd.injective
       simp [pcOf]
-    rw [hsplit]
-    exact Subgroup.mul_mem _ (pcOf_mem_closure_pcGen c _) ih
+    let tail : PCDirectSum := Multiplicative.ofAdd f'
+    have htail : tail ∈ Subgroup.closure (Set.range pcGen) := ih
+    have hm : pcOf c (Additive.toMul a) * tail ∈
+        Subgroup.closure (Set.range pcGen) :=
+      Subgroup.mul_mem _ (pcOf_mem_closure_pcGen c (Additive.toMul a)) htail
+    simp only [tail] at hm
+    rw [← ha] at hm
+    exact hm
 
 end Higman
 end GroupApproximation
