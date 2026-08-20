@@ -96,10 +96,7 @@ and a `List.filter`, and each conjunct is recursively enumerable
 here is that the conjunction is. -/
 theorem evalRaw_pcGen_eq_one_iff_wordProblem (w : RawWord) :
     evalRaw pcGen w = 1 ↔
-      ∀ c ∈ w.map (fun p ↦ blockOf p.1),
-        wordProblemPred
-          (c, (w.filter fun p ↦ decide (blockOf p.1 = c)).map
-                fun p ↦ (letterIndex p.1, p.2)) := by
+      ∀ c ∈ blockList w, wordProblemPred (c, blockWord w c) := by
   rw [evalRaw_pcGen_eq_one_iff_reindexed]
   refine forall_congr' fun c => imp_congr_right fun _ => ?_
   exact evalRaw_letterOf_eq_one_iff c _

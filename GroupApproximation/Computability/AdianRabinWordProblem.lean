@@ -214,7 +214,7 @@ end Closure
 /-- The relator set named by a code, as a `Set` in the free group on the
 code's alphabet.  This is definitionally the relator set that
 `PresentationCodes.Carrier` quotients by. -/
-def relatorSet (c : PresentationCode) : Set (FreeGroup (Fin (genCount c))) :=
+abbrev relatorSet (c : PresentationCode) : Set (FreeGroup (Fin (genCount c))) :=
   (relatorFinset c : Set (FreeGroup (Fin (genCount c))))
 
 /-- A free-group element is a coded relator exactly when it is the value of a

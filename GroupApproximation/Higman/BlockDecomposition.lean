@@ -62,6 +62,15 @@ def blockOf (n : ℕ) : PresentationCode := codeOfNat n.unpair.1
 /-- Which generator of that code it is. -/
 def letterIndex (n : ℕ) : ℕ := n.unpair.2
 
+/-- The finite list of presentation-code blocks visited by a raw word. -/
+def blockList (w : RawWord) : List PresentationCode :=
+  w.map fun p ↦ blockOf p.1
+
+/-- The subword in block `c`, re-indexed by that presentation's letters. -/
+def blockWord (w : RawWord) (c : PresentationCode) : RawWord :=
+  (w.filter fun p ↦ decide (blockOf p.1 = c)).map
+    fun p ↦ (letterIndex p.1, p.2)
+
 theorem pcGen_eq (n : ℕ) :
     pcGen n =
       pcOf (blockOf n)
@@ -153,9 +162,10 @@ off `w` by a map.  This is the finite, computable conjunction that (B1)'s
 remaining field is about. -/
 theorem evalRaw_pcGen_eq_one_iff_blocks (w : RawWord) :
     evalRaw pcGen w = 1 ↔
-      ∀ c ∈ w.map (fun p ↦ blockOf p.1),
+      ∀ c ∈ blockList w,
         evalRaw (fun n ↦ pcEval c (pcGen n))
           (w.filter fun p ↦ decide (blockOf p.1 = c)) = 1 := by
+  unfold blockList
   rw [evalRaw_pcGen_eq_one_iff]
   constructor
   · intro h c _
@@ -203,10 +213,10 @@ finite conjunction, indexed by a list computed from `w`, of triviality
 statements about the coded groups' own generators. -/
 theorem evalRaw_pcGen_eq_one_iff_reindexed (w : RawWord) :
     evalRaw pcGen w = 1 ↔
-      ∀ c ∈ w.map (fun p ↦ blockOf p.1),
+      ∀ c ∈ blockList w,
         evalRaw (fun k ↦ (PresentedGroup.of (letterOf c k) : Carrier c))
-          (((w.filter fun p ↦ decide (blockOf p.1 = c))).map
-            fun p ↦ (letterIndex p.1, p.2)) = 1 := by
+          (blockWord w c) = 1 := by
+  unfold blockList blockWord
   rw [evalRaw_pcGen_eq_one_iff_blocks]
   refine forall_congr' fun c => ?_
   refine imp_congr_right fun _ => ?_
