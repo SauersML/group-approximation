@@ -743,8 +743,8 @@ function buildFormalView() {
     : '';
   html += section('Sentences Lean does not prove', '',
     listOf(['unproved', 'open', 'partial']));
-  html += section('Sentences nobody has graded',
-    'The census has not assigned these a declaration or a proof step.',
+  html += section('Unclassified sentences',
+    'These sentences are not linked to a Lean declaration or proof-ledger entry.',
     listOf(['ungraded']));
   return html;
 }

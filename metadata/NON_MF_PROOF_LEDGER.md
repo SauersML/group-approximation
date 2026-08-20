@@ -7,9 +7,9 @@ Spec document: `non_mf_groups_exist.tex`.  Formal development: `GroupApproximati
 | | |
 | --- | --- |
 | commit | the external literature-review pass of 2026-08-19 (this one) |
-| `git hash-object non_mf_groups_exist.tex` | `a7c46009a01e02066e487e8ead15a1e8b8f7dc97` |
-| sha256 of the file | `a41a279989ae111256e13f1d4754a751cedf2fd26e8a8bc82a6cdb13f980c27d` |
-| `wc -l` | 4224 |
+| `git hash-object non_mf_groups_exist.tex` | `1ca332c57405c7a06e63d76df26c5f900d1228c6` |
+| sha256 of the file | `6a9103a0a1bd0c14e790dd0a2dba84879d0551ca07fd4e5c226cef98cd519e57` |
+| `wc -l` | 4143 |
 
 `git hash-object` of the file must reproduce the blob above for the rows below
 to be read as current.  The file has shrunk from 4768 lines to 3771 across the
@@ -858,7 +858,7 @@ once in the comment-stripped manuscript; the probe is the drift detector.
 | thm:abstract-nk | env | thm:abstract-nk | 45b50a521fff6393 |
 | cor:intrinsic-nk | env | cor:intrinsic-nk | 74911f7eaffe314f |
 | thm:kazhdan-clifford | env | thm:kazhdan-clifford | c2057ac40dd54608 |
-| rem:ff-realization | env | rem:ff-realization | 3fe4159d96e0870d |
+| rem:ff-realization | env | rem:ff-realization | 90170aeb322478cf |
 | thm:A | env | thm:A | 42d22224247189d9 |
 | cor:uniform | env | cor:uniform | 127963fa65d9be4e |
 | cor:relator-uniform | env | cor:relator-uniform | 3353f0f5c22fd780 |
@@ -895,14 +895,14 @@ once in the comment-stripped manuscript; the probe is the drift detector.
 | thm:Esofic | env | thm:Esofic | a31c79735c511ebc |
 | thm:markedclosed | env | thm:markedclosed | b1dc2e411d332f29 |
 | prop:horn | env | prop:horn | 3e2c6bb45f9627c7 |
-| p:cylinder | prose | `therefore form a nonempty clopen set` | - |
+| p:cylinder | prose | `form a nonempty clopen set` | - |
 | cor:undecidable | env | cor:undecidable | 465508722f012ed4 |
 | prop:maximal-cstar | env | prop:maximal-cstar | 7108b280fbf939cb |
 | prop:proper-isometry | env | prop:proper-isometry | af0fbcd75508bcd3 |
 | rem:maxinfinite | env | rem:maxinfinite | 1ffdf62b6e21e761 |
 | p:abstract-refute | prose | `the conjecture that every countable group is MF` | - |
-| p:abstract-mechanism | prose | `compressing to the $(-1)$-spectral projection of $\Theta(w)$ yields a contradiction` | - |
-| p:intro-history | prose | `Residually finite groups are MF because their finite quotients separate points` | - |
+| p:abstract-mechanism | prose | `One-sided conjugation preserves the Hilbert--Schmidt asymptotic commutant` | - |
+| p:intro-history | prose | `Residually finite and LEF groups are MF` | - |
 | p:intro-converses | prose | `The reverse arrows from LEF to residual finiteness` | - |
 | p:intro-thom | prose | `In his 2018 ICM address, Thom asked for which Schatten` | - |
 | p:intro-nonsofic | prose | `The first was answered negatively in 2026: a nonsofic group was constructed` | - |
@@ -914,17 +914,17 @@ once in the comment-stripped manuscript; the probe is the drift detector.
 | p:intro-slofstra-quotients | prose | `elements sent to the identity by every exact` | - |
 | p:intro-dglt | prose | `The case $p=2$ was settled by` | - |
 | p:intro-cde | prose | `Carri\'on--Dadarlat--Eckhardt, who also give` | - |
-| p:intro-final | prose | `therefore leaves open whether the group itself embeds` | - |
+| p:intro-final | prose | `An MF embedding of a group $C^*$-algebra restricts` | - |
 | p:prelim-complement | prose | `is an injective homomorphism $\U(A)\to\U(\mathcal Q)$` | - |
 | p:prelim-notation | prose | `We repeatedly use the inequalities` | - |
 | p:prelim-dim-convention | prose | `nothing changes if the dimensions are required to be strictly increasing` | - |
 | p:prelim-defs | prose | `An \emph{operator-norm asymptotic representation} of $H$` | - |
 | p:prelim-unit | prose | `Taking $g=h=1$ gives` | - |
 | p:prelim-cmax | prose | `the maximal group $C^*$-algebra $\Cmax(H)$ is` | - |
-| p:transport-display | prose | `equality follows because the two spaces have the same finite dimension` | - |
+| p:transport-display | prose | `equality follows because the two spaces have the same dimension` | - |
 | p:transport-weights | prose | `Taking $\nu_n=k_n$, the rank of` | - |
 | p:conj-datum-remark | prose | `conditions (M1)--(M2) are imposed by` | - |
-| p:conj-reynolds-only | prose | `by any normal subgroup all of whose elements lie in` | - |
+| p:conj-reynolds-only | prose | `for any normal subgroup whose elements lie in` | - |
 | p:conj-two-element | prose | `is the case $F=\{1,w\}$, where` | - |
 | p:conj-intrinsic-def | prose | `which depends only on the pair $(H,L)$, not on a choice of datum` | - |
 | p:nk-finite-recovers | prose | `is the finite case of Theorem~\ref{thm:normal-kazhdan}` | - |
@@ -932,13 +932,13 @@ once in the comment-stripped manuscript; the probe is the drift detector.
 | p:constr-tietze | prose | `The endomorphism $\alpha$ is injective because` | - |
 | p:constr-role-of-a | prose | `it is not surjective because $e_1\notin2\mathbb Z^3$` | - |
 | p:A-defect-square | prose | `Let $H_1$ be a group and $x,y\in H_1$ with $x^2=1$` | - |
-| p:A-consequences | prose | `The element $\iota(v_1)$ lies outside that conjugate subgroup` | - |
+| p:A-consequences | prose | `Families~\textup{(T)} and~\textup{(C)} give, respectively` | - |
 | p:B-applied | prose | `finite-dimensional linear representations do not separate the points` | - |
 | p:B-deligne | prose | `Such groups were proposed there as the natural candidate counterexamples` | - |
 | p:B-why-corona | prose | `In an MF model, multiplicativity is only asymptotic` | - |
 | p:group-sixgen | prose | `a Tietze-equivalent presentation on them with thirty-two relators` | - |
 | p:group-tietze32 | prose | `eliminate $v_3=xv_1x^{-1}$` | - |
-| p:group-figure | prose | `depicts this configuration` | - |
+| p:group-figure | prose | `every pair of distinct sites of a block is the image of` | - |
 | p:witness-telescope | prose | `Form the direct limit $T=\varinjlim(\bar\Gamma,\bar\alpha)$` | - |
 | p:witness-scope | prose | `involve only finitely many lamp generators` | - |
 | p:A-marked-radical | prose | `In $E$ the pairwise commutators of those conjugates of $\hat c$ lie in` | - |
@@ -951,7 +951,7 @@ once in the comment-stripped manuscript; the probe is the drift detector.
 | p:D-preamble | prose | `Every MF algebra is stably finite` | - |
 | p:D-base-injective | prose | `$\mathcal B\to E$ is injective` | - |
 | p:E-extension | prose | `MF groups are not closed under extensions.` | - |
-| p:E-zext | prose | `canonical projections gives a surjection $W\to\Z$` | - |
+| p:E-zext | prose | `canonical projections define a surjection $W\to\Z$` | - |
 | p:E-exact | prose | `equivalent to exactness of its reduced group $C^*$-algebra` | - |
 | p:E-simple | prose | `There is a countable simple sofic group` | - |
 | p:horn-intro | prose | `yields a finite quasi-identity` | - |
@@ -964,17 +964,17 @@ once in the comment-stripped manuscript; the probe is the drift detector.
 | p:limits-alekseev | prose | `Their question concerns Hamming and tracial models` | - |
 | p:limits-trace | prose | `Stable finiteness and faithful traces on the coordinate algebras` | - |
 | p:exact-residual | prose | `For the literal group $E$, put` | - |
-| p:torsion-free-consequence | prose | `There is also a torsion-free finitely presented non-MF group.` | - |
+| p:torsion-free-consequence | prose | `There exists a torsion-free finitely presented non-MF group.` | - |
 | p:limits-models | prose | `which permutation and Hilbert--Schmidt models do not supply` | - |
 | p:q3 | prose | `Does MF imply hyperlinearity?` | - |
 | p:q4 | prose | `compute the residual exactly` | - |
-| p:q5 | prose | `by other building blocks` | - |
-| p:q5-lift | prose | `This lifting step needs only polar correction` | - |
+| p:q5 | prose | `by other coordinate algebras` | - |
+| p:q5-lift | prose | `This argument uses only polar correction` | - |
 | p:appA-localmodel | prose | `An \emph{approximate unitary representation} for a countable group` | - |
 | p:appC-construction | prose | `is the completion of the group ring` | - |
 | p:appC-universal | prose | `Injectivity follows from the left regular representation` | - |
 | thm:signfree | env | thm:signfree | 988f9fd1ddb67eca |
-| p:limits-adjointgap | prose | `adjoints are at operator-norm distance` | - |
+| p:limits-adjointgap | prose | `adjoint operators remain at operator-norm distance` | - |
 | p:limits-nogo | prose | `matrix coordinates are replaced by stably finite unital` | - |
 | lem:mftrace-group | env | lem:mftrace-group | 2fc00b7172eebb3b |
 | thm:trace | env | thm:trace | 258d0b6db6660555 |
