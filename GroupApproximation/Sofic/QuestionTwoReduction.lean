@@ -3,26 +3,26 @@ import GroupApproximation.Sofic.NormMFCoronaRadical
 import GroupApproximation.Kazhdan.ShalomFinitePresentation
 
 /-!
-# Question 2, reduced to a group-theoretic existence problem
+# The normal-Kazhdan reduction used by the torsion-free construction
 
-Proof-ledger row `LI.14`.  The printed sentence of `p:q2` is
+This module proves the analytic reduction formerly recorded as proof-ledger
+row `LI.14`:
 
 > what remains is group-theoretic: a torsion-free finitely presented group
 > whose subgroup `N_conj` contains a nontrivial normal property-`(T)`
 > subgroup.
 
-The *existence* asserted there is open --- that is what makes Question 2 a
-question --- but the sentence is a **reduction**, and a reduction is a
-theorem.  It says that such a group would settle Question 2, and that is
-provable from what the development already has:
+The reduction is a theorem.  It is provable from what the development already
+has:
 `CoronaImageNormalKazhdan.nk_05_assembly` kills a normal property-`(T)`
 subgroup of the compression defect under every corona representation, and a
 nontrivial element killed by every corona representation is exactly the
 obstruction to being operator-MF.
 
 `not_isOperatorMF_of_nontrivial_normal_kazhdan_defect` is that reduction.
-Nothing here asserts that the hypothesis is satisfiable; the row stays open
-because the existence does.
+Nothing here constructs a group satisfying the hypothesis.  The manuscript now
+supplies that group-theoretic input at paper level from Fournier-Facio, Hull,
+and Osin; that small-cancellation construction is not formalized in Lean.
 
 ## Why `nontrivial` is load-bearing
 
@@ -38,8 +38,9 @@ nontriviality is satisfied by every compression datum and yields nothing.
 
 ## Manuscript status
 
-Closes the reduction half of `LI.14`.  The existence half is Question 2 and
-is not claimed here.
+This is the Lean-verified final implication used in the manuscript's
+torsion-free consequence.  It must not be described as a Lean proof of the
+paper-level small-cancellation construction.
 -/
 
 namespace GroupApproximation
@@ -84,13 +85,12 @@ theorem coronaMFInvisible_of_mem_normal_kazhdan_defect [Countable H]
     rw [h2, map_one]
   exact (normMatrixCoronaUnitaryEquiv X).injective h3
 
-/-- **Question 2, reduced.**  A countable group carrying a compression datum
+/-- **The normal-Kazhdan reduction.**  A countable group carrying a compression datum
 whose defect contains a *nontrivial* normal property-`(T)` subgroup is not
 operator-MF.
 
-This is the printed reduction and not an existence claim: whether a
-torsion-free finitely presented group meets the hypothesis is exactly
-Question 2, and nothing here asserts that one does. -/
+This is an obstruction theorem, not an existence theorem.  The manuscript's
+existence argument is paper-level, and nothing here formalizes it. -/
 theorem not_isOperatorMF_of_nontrivial_normal_kazhdan_defect [Countable H]
     (C : KazhdanCompressionCore Gamma H) (K : Subgroup H) [K.Normal]
     (hT : HasKazhdanPropertyT.{0, 0} K) (hK : K ≤ C.defectNormal)

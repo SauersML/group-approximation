@@ -4,9 +4,9 @@ import GroupApproximation.Computability.OperatorMFMarkovData
 /-!
 # "Torsion-free and operator-MF" is undecidable
 
-The manuscript's Question 2 asks for a **torsion-free finitely presented
-non-MF** group.  Whatever the answer, the *recognition* problem for the
-positive side of that question --- being torsion-free and operator-MF --- is
+The manuscript now constructs a **torsion-free finitely presented non-MF**
+group at paper level.  Independently, the *recognition* problem for the
+positive property --- being torsion-free and operator-MF --- is
 undecidable, and this file proves it from the two Markov data already
 available and the conjunction lemma `MarkovData.and`.
 
@@ -51,7 +51,7 @@ theorem torsionFreeMF_recognition_undecidable
       IsPowerTorsionFree H ∧ IsOperatorMF H)) :=
   recognition_undecidable_of_wordProblem torsionFreeMFMarkovData h
 
-/-- The complementary side --- the side on which Question 2 lives --- is not
+/-- The complementary side --- torsion-free failure of operator-MF --- is not
 even recursively enumerable. -/
 theorem torsionFreeMF_negative_side_not_re
     (h : ¬ REPred (fun x ↦ ¬ AdianRabinWordProblem.wordProblemPred x)) :

@@ -161,11 +161,12 @@ orders cannot collapse it.  So no analogue of `trivialQuotient` exists for
 `OrderPreservingRoutingData`: every inhabitant of that structure has a
 nontrivial quotient and hence, by
 `FullMFRadicalEndpoint.exists_nontrivial_fullMFRadical_of_orderPreservingRouting`,
-answers the manuscript's Question 2 outright rather than formally.
+produces a nontrivial full-radical quotient.
 
 That asymmetry is what the repair turns on, and it is why no toy inhabitant
-of the order-preserving layer can be exhibited short of solving the open
-problem.
+of the order-preserving layer is exhibited here.  This is a limitation of this
+particular formal route, not an assertion that the manuscript's torsion-free
+existence problem remains open.
 
 This is the working form, with the data in the header; the badged
 `orderPreserving_quotient_not_subsingleton` below is the closed restatement

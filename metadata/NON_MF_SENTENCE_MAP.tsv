@@ -22,7 +22,6 @@ c4a439c10b33	definition	GroupApproximation.KazhdanCliffordConstruction.kazhdanCl
 00f89beb85bc	formalized	GroupApproximation.LiteralNonMFPresentation.manuscriptLiteralPresentation	the eight-generator presentation, literally
 71b4b6a84e09	formalized	GroupApproximation.LiteralSoficAssembly.markedGroup_finitelyPresented_sofic_nonMF GroupApproximation.LiteralSoficAssembly.markedGroup_finitelyPresented_hyperlinear_nonMF	soficity and hyperlinearity of E against its non-MF-ness
 6be5f4abf8e4	partial	GroupApproximation.LiteralNonMFEndpoint.manuscriptTheoremD GroupApproximation.manuscriptTraceSeparation	every clause but exactness is proved; exactness of Cred(E) is ledger row SO.16, graded MISMATCH.  The reduction `isExactCStar_of_hasSliceMapProperty` is deliberately NOT named here: it is conditional on the slice map property, which nothing in the corpus produces, and a conditional formalization does not count
-ec0ae8ad82fa	formalized	GroupApproximation.LiteralSignFreeQuotient.signFreeQuotient_not_isCDEOperatorMF	the sign-free quotient is non-MF
 ab4a96635322	definition	GroupApproximation.ManuscriptExactWrappers.manuscriptMFDefinitionEquivalences	the operator-norm convention, which is the norm the formal definition uses
 04f14a98e39a	definition	GroupApproximation.KazhdanAsymptoticCommutant.manuscriptKazhdanTransport GroupApproximation.KazhdanAsymptoticCommutant.manuscriptKazhdanTransport_anyUniverse	the hypotheses of the transport theorem, as its binders
 3fb1689fc332	formalized	GroupApproximation.KazhdanAsymptoticCommutant.manuscriptKazhdanTransport GroupApproximation.KazhdanAsymptoticCommutant.manuscriptKazhdanTransport_anyUniverse	the conjugation action on the Hilbert-Schmidt spaces, built inside the transport theorem
@@ -49,8 +48,6 @@ a72a5c156877	formalized	GroupApproximation.KazhdanCliffordConstruction.kazhdanCl
 4b022ede12e3	formalized	GroupApproximation.MarkedCompression.not_hasKazhdanPropertyT_vertical GroupApproximation.not_hasKazhdanPropertyT_of_surjective_onto_int	E surjects onto the integers, hence has no property (T) of its own
 d133c390b18b	formalized	GroupApproximation.ManuscriptExactWrappers.manuscriptTheoremB	the exact finite-dimensional counterpart
 6673ca0cb721	formalized	GroupApproximation.HyperlinearReduction.isSofic_of_residuallyFinite GroupApproximation.SoficHyperlinearBridge.canonicalMaximalTrace_isHyperlinearTrace_of_isSofic GroupApproximation.OperatorMFPositiveControls.isOperatorMF_of_residuallyFinite GroupApproximation.LocallyFiniteMF.isOperatorMF_of_locallyFinite	the arrows of the printed diagram, each a theorem in the development
-96497447b0b2	partial	GroupApproximation.HyperlinearReduction.isSofic_of_residuallyFinite GroupApproximation.SoficHyperlinearBridge.canonicalMaximalTrace_isHyperlinearTrace_of_isSofic GroupApproximation.OperatorMFPositiveControls.isOperatorMF_of_residuallyFinite GroupApproximation.LocallyFiniteMF.isOperatorMF_of_locallyFinite	the displayed forward arrows are formalized; the sentence's converse arrows and MF-to-hyperlinear implication are explicitly open
-c6add2c28d7b	formalized	GroupApproximation.LiteralSoficAssembly.markedGroup_finitelyPresented_sofic_nonMF GroupApproximation.LiteralSoficAssembly.markedGroup_finitelyPresented_hyperlinear_nonMF GroupApproximation.manuscriptTraceSeparation	soficity with non-MF-ness, and the trace separation
 fbc9459a1400	attribution		dates the algebra problem against the group question; a historical statement, not a step
 c2bb32dbe2b2	attribution		Blackadar-Kirchberg's remark, credited
 02593a8616f2	attribution		Haagerup-Thorbjornsen, credited
@@ -81,7 +78,6 @@ be090c6906c9	definition	GroupApproximation.NormMatrixCStarCorona GroupApproximat
 5089d9ff3c27	ledger	KT.06 KT.10 KT.18	the norm ultraproduct, its finiteness, and the Kazhdan projection it contains
 fb41ca005357	ledger	TR.05	the tracial ultraproduct used as the target for the printed hyperlinear model
 30cba4018957	formalized	GroupApproximation.HilbertSchmidtAdjointGap.exists_hsClose_adjointFar	which ideal defines which quotient, and the no-go that identifies the step needing the operator norm
-03623ef9320d	attribution	GroupApproximation.ManuscriptExactWrappers.manuscriptUnitaryLifting GroupApproximation.ManuscriptExactWrappers.manuscriptUnitaryCoronaEquivalence	credit, not a dependency: the lifting lemmas are proved here and the citation could be deleted without moving the trust surface
 4a5f0414fb07	formalized	GroupApproximation.compressedImage_eq GroupApproximation.ManuscriptExactWrappers.manuscriptTheoremB GroupApproximation.kt_10_finiteness_reverses	the three levels the sentence promises: finite quotient, finite dimension, norm ultraproduct
 146ef8963e60	formalized	GroupApproximation.compressedImage_eq GroupApproximation.compressedImage_eq'	the finite-quotient collapse: conjugation is onto in a finite image
 1621d329e027	formalized	GroupApproximation.ManuscriptExactWrappers.manuscriptTheoremB	the finite-dimensional commutant equality, by dimension count
@@ -123,7 +119,6 @@ d36f7b8fc131	provenance	-	resource-usage disclosure
 63db252913ed	provenance	-	resource-usage disclosure
 b960d0c1c1d9	provenance	-	resource-usage disclosure; introduces a quotation
 6ec65176462a	provenance	-	resource-usage disclosure; introduces a quotation
-663dc0b2f169	formalized	GroupApproximation.LiteralBaseP13PropertyTBridge.manuscriptBaseHasKazhdanPropertyT GroupApproximation.LiteralBaseCompleteness.baseAffineEquiv	the base is the affine group and has property (T); both proved in-tree, the citation gives the classical statement
 77f789faa224	formalized	GroupApproximation.LiteralTietzePresentation.exists_sixGenerator_thirtyTwo_presentation GroupApproximation.LiteralSixGenerator.literal_sixGenerated_finitelyPresented_nonMF	the Tietze-equivalent presentation, and that the distinguished word survives it
 568cfd9974e7	definition	GroupApproximation.commutator_conjugate_eq_commutator_sq_of_sq_eq_one	fixes the notation and records w = u^2, which is the squaring identity
 5227eba26ca1	definition	GroupApproximation.ManuscriptExactWrappers.manuscriptMFRadical	defines the MF residual
@@ -212,11 +207,6 @@ df9d7d229ddc	attribution	-	describes and credits two stronger MF conventions in 
 5bf99c849152	ledger	MC.07 MC.08 MC.08b	the general strict-Kazhdan-compression source of the maximal-algebra contrast
 ac9b9e956846	open	-	the compactness proof is ineffective; the sentence explicitly leaves an effective modulus open
 e04fc3a89c47	formalized	GroupApproximation.LiteralSoficAssembly.markedGroup_isSofic	soficity of E is proved from the normal form
-e9c0d10acb12	ledger	LI.13	Question 2 itself
-c01d7e05b3a4	ledger	LI.07 LI.08	the two preceding criteria, paired clause by clause
-7ffb7c21e2ab	ledger	LI.14	the group-theoretic reduction that would answer Question 2
-dbfc9a425da5	ledger	LI.12b	the small-cancellation forward pointer
-53829177808b	ledger	LI.12a	the torsion obstruction in the Clifford construction
 61a9675413dc	ledger	LI.17	Question 3 itself
 870bffafb98a	ledger	LI.17	why operator-norm MF does not directly supply a hyperlinear model
 dac22c93b33f	ledger	LI.17	the convention under which Question 3 is asked
@@ -224,10 +214,6 @@ de737826f9e2	ledger	LI.19	Question 5 itself
 b241410ee0e7	ledger	LI.19	the two finite-dimensional inputs and the faithful-trace no-go
 ada061b9ddc1	ledger	LI.19	the open building-block question
 21a4183e6936	ledger	LI.18	Question 4 itself
-29ff04836c09	ledger	LI.09	Question 1 itself
-51c040d737d6	ledger	LI.09 LI.10	the strict containment and the exact radical reduction
-2eaf99158352	ledger	LI.11 LI.12	the two reasons the reductions give no further value
-7cb519fcabab	ledger	LI.12c	the three configurations the quotient may still contain
 fcd3b40cd949	definition	GroupApproximation.manuscriptMaximalGroupCStarUniversalProperty	the supremum defining the maximal norm, and why it is finite
 897ac1c43a2e	definition	GroupApproximation.manuscriptMaximalGroupCStarUniversalProperty	names the canonical unitaries
 
@@ -291,9 +277,6 @@ fa36c4e4f0f6	ledger	UN.02 UN.03	lead-in to the three computability conclusions
 9c60c4499c18	ledger	UN.02	undecidability of the word problem
 b163e377638d	ledger	UN.02	undecidability of MF recognition
 f03b9cf7409e	ledger	UN.03	recursive-enumerability conclusions
-3807340cf13e	ledger	UN.02	the modular-machine source of word-problem undecidability
-d2239c9aca42	ledger	UN.02	the computable halting-word reduction
-8888faa8e85f	ledger	UN.02	the contradiction from a word-problem decider
 60ae82864a5e	ledger	UN.02b	the effective Adian--Rabin map
 929914a0140c	ledger	UN.02b	the trivial-word branch of the reduction
 8f3749d6c8a0	ledger	UN.02b	the nontrivial-word embedding branch
@@ -376,7 +359,6 @@ d4fac91b7736	ledger	SO.17	existence statement for the simple sofic envelope with
 c56724680e31	ledger	SO.14 SO.14b SO.15	the non-MF extension and the amenable-quotient soficity theorem
 410385b75561	ledger	CD.03	the finitely presented conjugation datum and its immediate commutation consequences
 775c68ac3b9b	ledger	ID.03	intrinsic dependence only on the pair of groups
-3665d4ba19e3	formalized	GroupApproximation.LiteralBaseP13PropertyTBridge.manuscriptBaseHasKazhdanPropertyT GroupApproximation.LiteralBaseCompleteness.baseAffineEquiv	finite presentation/property T of the affine base and its identification with the printed presentation
 80f777821e90	formalized	GroupApproximation.AffineSL3Doubling.alpha_injective GroupApproximation.AffineSL3Doubling.a_not_mem_range	doubling is injective and the first basis vector witnesses nonsurjectivity
 845e1e5d3151	formalized	GroupApproximation.AffineSL3Doubling.a_not_mem_range	the designated element is outside the endomorphism range
 860498e941e7	formalized	GroupApproximation.KazhdanCliffordConstruction.kazhdanCliffordConstruction	the general construction instantiated by the preceding hypotheses
@@ -445,7 +427,6 @@ c1ad2a62657e	formalized	GroupApproximation.CliffordAlgebraLamp.isLocallyFiniteGr
 509a1fea46d7	ledger	HO.03	the relator tuple induces the marked homomorphism
 623601b6fdc8	ledger	HO.03	residual functoriality kills the marked word in every MF target
 5b93eb0390d6	ledger	HO.02 HO.03	the canonical tuple witnesses failure of the Horn implication outside MF groups
-2c4ce5d5a9c9	ledger	BT.16	the classical property-T input for the identified affine base; this ledger row remains explicitly MISSING
 e3e18ea2fbf6	ledger	BT.15	complexification transfers the unitary Kazhdan pair to orthogonal representations
 08fa8419b1dd	ledger	MC.04	the projection and partial-isometry setup
 7610b04e8816	ledger	MC.04	the first displayed partial-isometry identities
@@ -690,7 +671,6 @@ ac0c9698dbf8	ledger	CO.21	orthogonal decomposition of the join
 5a0ccb7e2ddf	ledger	CO.21	vanishing on generators would force Lambda of the join to vanish
 308b826aeb47	ledger	CO.21	nonzero cocycle conclusion
 da58a6475741	structural	-	heading for the property-T coboundary contradiction
-94b1c01fdce5	ledger	CO.21b	Delorme--Guichardet makes the cocycle a coboundary
 33f0674ce347	ledger	CO.21b	the primitive is fixed by the compressed subgroup
 cc205a14dd6e	ledger	CO.21b	transport at the intrinsic rank weight
 2262cdef2582	ledger	CO.21b	the two fixed-space projections in weighted transport
@@ -755,3 +735,33 @@ d09019098543	ledger	TV.04	unitarity of conjugation in every weighted inner produ
 9788b975fc02	ledger	TV.04 TV.05	bounded weighted vector and unchanged adjoint operator norm
 4b862465d1e1	ledger	TV.05	the ultraproduct transport proof applies verbatim at the weight
 4145a428584b	ledger	TV.01 TV.05	finiteness gives equality and both transport directions
+acda70003ef8	ledger	ER.04	exact residual conclusion; Lean proves only the generic reduction and the ledger records the paper-level quotient argument
+69a47fe6b886	ledger	TF.04	torsion-free finitely presented non-MF existence; the ledger separates the Lean obstruction from the paper-level construction
+cad5a22c197c	ledger	INT.30	summary of the three failed reverse arrows
+2827be948c84	ledger	INT.31	standard finitary alternating-group counterexample
+6244618a553e	ledger	INT.32	Abels-group counterexample via CDE and finite-presentation LEF rigidity
+252cf7f0aeb8	ledger	INT.33	literal group E is sofic and not LEF
+3300e2833a0a	ledger	INT.34	current open-status claim
+8e0e14c78c4b	ledger	TR.04 TR.06	hyperlinearity and failure of MF for the canonical trace
+6f97d798cba3	structural	-	proof-roadmap sentence; the estimates themselves are graded at their lemmas
+e055ac955e3e	ledger	BT.00 BT.24	identification and property (T) of the affine base
+9bea06374022	ledger	BT.00 BT.24	identification and property (T) of the affine base
+eb76e35d3451	ledger	BT.00 BT.24	literal presentation identifies the affine base and proves property (T)
+f1c9cf71f971	ledger	CO.21	Delorme--Guichardet coboundary step in the projection-collapse proof
+78e5b8206ae0	ledger	ER.01 ER.02 ER.03 ER.04	notation and scope of the exact-residual calculation
+69ac8865c940	structural	-	lead-in to the displayed exact identities
+6b2d7c47aa57	ledger	UN.04b	fixed finitely presented Boone group with undecidable word problem
+656b8d7a6e12	ledger	UN.02b	decision-procedure contradiction
+c103e14e0178	ledger	TF.04	torsion-free finitely presented non-MF existence
+701b7b24c2fd	ledger	TF.01	first common-quotient construction from Fournier-Facio and Hull
+fd9f513f1e5d	ledger	TF.01	surviving simple torsion-free subgroup in the compression defect
+0f11c36f8146	structural	-	lead-in to the second Hull quotient
+7a0521816a15	ledger	TF.02	normal subgroup used as Hull's suitable subgroup
+6af6d60827c0	ledger	TF.02	suitability from normality, Osin's lemma, and torsion-freeness
+f3a49cc9513b	ledger	TF.02	parameters for the second application of Hull's theorem
+945789698e9e	ledger	TF.03	torsion-free finite-presentation and property-(T) clauses
+b484c53c246e	ledger	TF.03	normal generation and survival of the simple subgroup
+f089e9dc51d4	ledger	LI.08 TF.04	normal-Kazhdan obstruction and non-MF conclusion
+ea24afe747f7	provenance	-	explicit Lean-scope disclosure
+c030d55e80cc	provenance	-	explicit paper-level/Lean boundary disclosure
+f7cd3c7323ed	structural	-	lead-in to the remaining-questions list

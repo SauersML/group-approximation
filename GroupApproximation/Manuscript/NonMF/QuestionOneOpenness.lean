@@ -6,78 +6,34 @@ import Mathlib.Algebra.Group.TypeTags.Finite
 import Mathlib.Data.ZMod.Basic
 
 /-!
-# Why Question 1 is a question: the two reductions exclude nothing
+# Why the two formal reductions alone do not compute the residual
 
-Ledger row `LI.12c`.  Question 1 of `\subsection*{Questions}` in
-`non_mf_groups_exist.tex` asks what `Res_MF(E)` is, records that
-`cor:collapsequot` computes it from `Res_MF((E/⟨w⟩)/D)`, records that the two
-reductions detect nothing further, and then closes:
+Earlier manuscript revisions asked for the exact value of `Res_MF(E)` and
+observed that killing the marked involution and then the collapse defect did not,
+by themselves, determine the residual of the final quotient.  This module
+formalizes that limited statement: abstract reduction data are compatible with
+targets carrying several different obstruction configurations and with both
+trivial and nontrivial corona MF residual.
 
-> That quotient may still contain a finite normal subgroup, a normal Kazhdan
-> subgroup, or an orbit configuration to which the preceding criteria apply.
+The manuscript now computes `Res_MF(E)` by adding paper-level information that
+is deliberately absent here: a presentation of the final quotient, its embedding
+in a symmetric amalgam, and Shulman's MF theorem.  Consequently the declarations
+below remain valid tests of what the reductions alone imply, but they do not state
+that the literal residual is open and must not be cited for that obsolete claim.
 
-Nothing is claimed by that sentence and nothing could be.  It asserts only that
-the two reductions leave the last group unconstrained — which is `LI.11` and
-`LI.12`, formalized in `Manuscript.NonMF.QuestionAtoms` as
-`signFreeQuotient_mark_eq_one` and `map_eq_one_of_mem_normalClosure` — and that
-a further datum is therefore not excluded.  This file formalizes the second
-half: *not excluded* is a non-implication, and a non-implication is refuted by
-a witness.
-
-## What is and is not proved here
-
-`IsReductionQuotient w S q` bundles exactly the two conclusions the printed
-sentence relies on: a surjection `q` that kills the distinguished word `w` and
-kills the normal closure of the defect generators `S`.  The printed target
-`(E/⟨w⟩)/D_coll` is one such quotient; **no theorem below is about it**, and
-none constructs a configuration inside it.  What the theorems say is that the
-reduction data cannot rule any configuration out, which is the exact strength
-of the printed "may still".
-
-* `reduction_does_not_exclude_finiteNormalSubgroup`,
-  `reduction_does_not_exclude_normalKazhdanSubgroup` and
-  `reduction_does_not_exclude_orbitConfiguration` refute, one apiece, the three
-  implications the sentence declines to assert.  All three fall to the single
-  witness of `exists_reductionQuotient_with_all_three_configurations`, and the
-  witness is not degenerate: its `w` is a nonidentity element and its defect
-  generating set contains one.
-* `reduction_does_not_determine_residual` is the closing clause "so what
-  `Res_MF(E)` is remains open" in its checkable form.  The reduction data are
-  consistent with a target whose literal genuine-corona radical is trivial and
-  with a target whose radical is not, so the two reductions compute an equation
-  and not a value.  The nontrivial side is the manuscript's own sign-free
-  quotient, at `LiteralSignFreeQuotient.actualCoronaMFResidual_ne_bot`.
-
-## The three configurations
-
-The sentence names `thm:criterion`, `thm:normal-kazhdan` and
-`thm:projection-collapse`.  Each is transcribed below by its *group-side* datum
-only — the data a quotient can be said to "contain":
-
-* `thm:criterion` wants a finite normal subgroup, so
-  `HasFiniteNormalSubgroup`;
-* `thm:normal-kazhdan` wants a normal property-`(T)` subgroup, so
-  `HasNormalKazhdanSubgroup`;
-* `thm:projection-collapse` wants a property-`(T)` subgroup `L` and an element
-  `s` with `sLs⁻¹ ⊆ L`, so `HasOrbitConfiguration`.  Its projection `p` lives in
-  the target algebra, not in the group, and is deliberately not part of the
-  predicate: a quotient does not contain a projection.
-
-Each carries a nontriviality clause, for the reason recorded at `LI.14`: the
-trivial subgroup satisfies all three vacuously and constrains no
-representation, so a configuration predicate without `≠ ⊥` would be satisfied
-by every group and would make the sentence contentless in the other direction.
+`IsReductionQuotient w S q` bundles a surjection killing `w` and the normal
+closure of `S`.  No theorem below identifies its target with the manuscript's
+literal final quotient or constructs one of the configurations inside that
+quotient.  The product witnesses show only that those conclusions do not follow
+from the abstract bundle in isolation.
 -/
 
-namespace GroupApproximation
-namespace ManuscriptNonMF
+/-! ## Abstract reduction data -/
 
-/-! ## The reduction datum of Question 1 -/
-
-/-- **The two conclusions Question 1 draws about its last quotient.**
+/-- **The two conclusions supplied by the abstract reductions.**
 
 `q` is onto, it kills the distinguished word `w`, and it kills the normal
-closure of the defect generators `S`.  These are `LI.11` and `LI.12` exactly:
+closure of the defect generators `S`:
 "`w = 1` in `E/⟨w⟩`, and the generators of `D` are trivial in the quotient
 by `D`". -/
 structure IsReductionQuotient {H : Type} [Group H] {Q : Type} [Group Q]
@@ -212,14 +168,14 @@ theorem reduction_does_not_exclude_orbitConfiguration :
     exists_reductionQuotient_with_all_three_configurations
   exact @h H instH Q instQ w S q hred horb
 
-/-! ## "So what `Res_MF(E)` is remains open" -/
+/-! ## The reductions do not determine a residual without extra input -/
 
 /-- **The reductions compute an equation, not a value.**
 
 The two reduction conclusions are consistent with a target whose literal
 genuine-corona MF radical is trivial and with a target whose radical is not, so
 they do not determine the radical of the group they reduce to.  This is the
-checkable content of the sentence that closes Question 1.
+checkable content of the former reductions-only observation.
 
 Both halves use the same product reduction, so neither is the degenerate `w = 1`
 instance; the nontrivial half's target is the manuscript's own sign-free

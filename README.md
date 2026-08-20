@@ -111,6 +111,12 @@ The paper also proves:
   group need not be MF;
 - non-MF of the quotient `E/⟨w⟩`, so that `{1, w}` is a proper subgroup of the
   MF radical of `E`;
+- the exact paper-level computation
+  `Res_MF(E) = ⟨⟨[tct⁻¹,v₁]⟩⟩`, with MF universal quotient identified as
+  `Σ *_B (B × C₂)`;
+- a torsion-free finitely presented non-MF group, obtained at paper level by
+  combining the normal-Kazhdan obstruction with the Fournier-Facio--Hull--Osin
+  small-cancellation construction;
 - failure of closure of MF groups under quotients;
 - the MF radical, its single-corona detector, and the universal MF quotient;
 - a finite universal Horn obstruction and a nonempty clopen cylinder of
@@ -209,10 +215,15 @@ proposition is that claim: `scripts/check_non_mf_claim_manifest.py`,
 contains no `sorry` and no project axiom. The *prose proofs* are a separate
 question, tracked step by step in
 [`metadata/NON_MF_PROOF_LEDGER.md`](metadata/NON_MF_PROOF_LEDGER.md); at the
-current revision that ledger grades 429 steps and not all of them are `EXACT`
-on both columns, so "every numbered result has a checked formal counterpart"
-is accurate while "the manuscript proof has been formalized line by line" is
-not. The ledger is also a *correspondence* audit, by its own stated policy: it
+current revision that ledger grades 437 steps.  In the statement column, 404
+are `EXACT`, three are `MISMATCH`, and 30 are `MISSING`; in the proof column,
+404 are `EXACT`, one is a `MISMATCH`, and 32 are `MISSING`.
+Thus "every numbered result has a checked formal counterpart" is accurate
+while "the manuscript proof has been formalized line by line" is not.  In
+particular, the quotient-presentation and Shulman-amalgam argument computing
+`Res_MF(E)`, and the Fournier-Facio--Hull--Osin small-cancellation input for
+the torsion-free example, are paper-level mathematics rather than Lean
+theorems. The ledger is also a *correspondence* audit, by its own stated policy: it
 asks whether Lean says what the manuscript says, and classifies every
 discrepancy as a Lean-side or matching issue. It is not an adversarial referee
 of the mathematics, and no claim here should be read as one.
@@ -348,7 +359,7 @@ Key audit files:
 - `GroupApproximation/Endpoint/ChosenNonMFAudit.lean`: fast focused axiom audit
   of the chosen non-MF endpoint, together with the part of the literal
   eight-generator presentation that is unconditional;
-- `scripts/Signatures.lean` and `notes/CLAIM_SIGNATURES.md`: elaborated public
+- `scripts/Signatures.lean` and `metadata/CLAIM_SIGNATURES.md`: elaborated public
   signatures;
 - `scripts/check_non_mf_refs.py`: visible manuscript-to-Lean reference checks;
 - `scripts/check_non_mf_zero_input.py`: enforces that every Lean declaration
