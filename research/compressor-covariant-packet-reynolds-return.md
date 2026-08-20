@@ -69,3 +69,10 @@ subspace of the same adjoint dimension.  Bare relations
   introduces wrong-phase selector irreducibles.  The covariance step must use
   the infinite compressor or a tracial corner; a larger finite packet cannot
   close it.
+- **Adaptive cocycle-rank endpoint.**
+  `projective-holonomy-rank-forces-exponential-multiplicity` computes the
+  whole cancellation freedom: binary packet holonomy of rank `2r` moves to a
+  Clifford action on the external multiplicity, forcing `2^r` to divide it.
+  Hence a compressor construction closes this claim if it activates, with
+  dimension-independent HS loss, cocycle rank strictly above the logarithm
+  of the current packet multiplicity.  Fixed-rank holonomy cannot suffice.

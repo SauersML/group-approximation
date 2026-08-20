@@ -56,6 +56,15 @@ forces wrong-phase irreducibles unless `f` is affine.  The remaining
 covariance mechanism must therefore be genuinely infinite or tracial, not a
 larger finite selector packet.
 
+For a family of commuting return letters, all remaining gauge freedom can be
+computed exactly.  If the packet implementers have binary projective
+commutator matrix of rank `2r`, Schur's lemma moves the opposite cocycle to
+the external multiplicity space, which must then be a module over
+`M_(2^r)(C)`.  Hence `2^r` divides the multiplicity.  This identifies the
+precise supercritical target: the infinite compressor/self-simulation must
+activate cocycle rank `2r` with `r` larger than the logarithm of the
+multiplicity in the same candidate model.  Any fixed rank remains dilutable.
+
 A concrete exact holonomy primitive is now available.  If two commuting
 automorphisms of a finite packet have projective implementer commutator
 `zeta` of order `r` on an irreducible packet, adjoining commuting stable
