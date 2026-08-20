@@ -28,12 +28,31 @@ p+q <= r+e_1+e_2,
 e_1+e_2 <= p+q.                                        (OCB2)
 ```
 
-The first gives the two-child balance `(BFE1)` after interpreting `e_1,e_2`
-as exit masses.  The second gives the one-exit-per-source bound `(BFE2)` in
-the correct total-source normalization.  At the double-source atom `110`,
-both exits fire; at `111` only one fires.  The only original C18 bad atom not
-seen by `e_1` is `001`, which has `p+q=0` and therefore zero intersection with
-the forward source carrier.  More precisely, if
+The factor of two in this ledger is essential.  Let `mu` be any joint
+spectral measure for which `int p dmu=int q dmu=q`, put
+
+```text
+s=int(e_1+e_2)dmu,
+a=s/2,                 x=s/2,
+q_next=int r dmu+a.                                       (OCB2a)
+```
+
+Here each oriented rank jump is split into its equal relative-Pauli active
+half and exit half.  Integrating `(OCB2)` gives
+
+```text
+2q <= q_next+x,        x<=q.                              (OCB2b)
+```
+
+Thus `(OCB2b)` is exactly `(BFE1)--(BFE2)` at the scalar multiplicity scale.
+Counting the whole rank-jump block as an exit would violate `(BFE2)`; counting
+only its exit half without adding the active half to `q_next` would violate
+`(BFE1)`.
+
+At the double-source atom `110`, both oriented occurrences fire; at `111`
+only one fires.  The only original C18 bad atom not seen by `e_1` is `001`,
+which has `p+q=0` and therefore zero intersection with the forward source
+carrier.  More precisely, if
 
 ```text
 f_C18=h[p+q!=r],       s=[p+q>0],
@@ -65,6 +84,21 @@ So the two exits enter the same E5 top root directly.  The total number of
 rank-one exit occurrences remains 20: removing the four source-free `001`
 atoms and counting the four `110` atoms twice preserves the finite budget.
 
+The exit halves can be packed into one source copy without overlap.  In the
+product of the two oriented packets let `F_i` be the central support of
+`e_i`, and let `Q_1` be one named relative Pauli involution for the first
+gate.  Since `F_2<=F_1`,
+
+```text
+X_1=F_1(I-Q_1)/2,       X_2=F_2(I+Q_1)/2               (OCB5)
+```
+
+are orthogonal.  Pauli trace balance gives
+`tau(X_i)=tau(F_i)/2`, so `tau(X_1+X_2)=s/2<=q`.
+
 This is an oriented recurrence compiler, not an equivalent replacement of
 C18 on arbitrary corners.  Its use is valid precisely after cutting to the
 forward source carrier, where `(OCB3)` retains the full C18 soundness mass.
+The scalar balance and source packing do not by themselves place the active
+halves at the next clock level; that finite group-word transport remains a
+separate presentation-level obligation.

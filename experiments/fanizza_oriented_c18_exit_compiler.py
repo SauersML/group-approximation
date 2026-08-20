@@ -52,6 +52,7 @@ def audit(maximum_weight: int = 2) -> None:
         p, q, target, *_ = assignment
         e1 = int(first_exit(assignment))
         e2 = int(second_exit(assignment))
+        assert e2 <= e1
         phase = even_phase(assignment[3:])
         if phase:
             assert p + q <= target + e1 + e2

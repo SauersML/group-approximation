@@ -190,8 +190,13 @@ regular Bass--Serre reservoir.
 - `oriented-c18-rank-gates-give-branch-balance` removes that residual as a
   separate nonlinear certificate.  On the phase-even source carrier it
   replaces C18 by the positive-residual exit and one additional `110` exit,
-  giving the exact pointwise inequalities `(OCB2)`.  All 20 oriented exit
-  occurrences have the common symmetric kernel and hard form `e_02^*`.
+  giving the exact pointwise inequalities `(OCB2)`.  Equal active/exit Pauli
+  halves give the scalar branch ledger, and the two exit halves pack
+  orthogonally into one source copy.  All 20 oriented occurrences have the
+  common symmetric kernel and hard form `e_02^*`.
+- `c18-source-cut-has-sparse-relator-certificate` transfers the identity
+  `F_C18 S=e_1` on the original shared words with an explicit dimension-free
+  HS constant, before any independent local packet corrections.
 - `free-root-first-detection-eigenvectors-localize-exactly` proves the
   packet-to-reservoir analytic endpoint: once a hard intertwiner has
   coefficient-character valuation `n`, its entire squared norm is exactly
@@ -201,12 +206,14 @@ regular Bass--Serre reservoir.
   bad atoms.
   The analytic persistence and endpoint-marginal accounting are now reduced
   to a telescoping sign-atom estimate and have polynomial loss.  The remaining
-  The local recurrence ledger is now closed: `(OCB2)` gives `(BFE1)` and
-  `(BFE2)`, while `(OCB3)`, the corner gap, and `(HST1)` give `(BFE3)`.
+  The local scalar recurrence ledger is now closed: `(OCB2)` gives `(BFE1)`
+  and `(BFE2)` after the mandatory half split, while `(OCB3)`, the corner gap,
+  and `(HST1)` give `(BFE3)`.
   The hard-sign bridge is synchronized with the same levels and preserves the
   exact tracial model.  What remains globally is to assemble these finitely
-  many bridges with the published linear Fanizza constraints and prove the
-  marked initial-carrier interface; no nonlinear recurrence-residual estimate
-  remains.
+  many bridges so the active halves really land on distinct next-level group-
+  word carriers, combine them with the published linear Fanizza constraints,
+  and prove the marked initial-carrier interface.  No separate nonlinear
+  recurrence-residual estimate remains.
   A merely decreasing first-hit process is insufficient: it admits a
   geometric reservoir and does not force collapse.

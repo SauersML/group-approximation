@@ -109,8 +109,11 @@ the Fanizza projection `D` itself as the nonhalting mark contradicts
   recurrence residual.
   `oriented-c18-rank-gates-give-branch-balance` supplies a stronger exact
   replacement: the positive-residual predicate plus one extra `110` predicate
-  satisfy `(BFE1)--(BFE2)` pointwise, and their source-local forbidden mass is
-  exactly the original C18 mass.  Both compact packets use the already matched
-  symmetric E5 frame.  Hence the local nonlinear recurrence gate is closed;
-  finite-presentation assembly with the linear constraints and the marked
-  initial-carrier interface remain.
+  satisfy `(BFE1)--(BFE2)` after splitting every occurrence into equal active
+  and exit Pauli halves, and their exit halves pack into one source copy.
+  `c18-source-cut-has-sparse-relator-certificate` transfers the source-local
+  forbidden mass on the original shared words with an explicit HS constant.
+  Both compact packets use the already matched symmetric E5 frame.  Hence the
+  scalar nonlinear recurrence gate is closed; finite-presentation placement
+  of the active halves, the linear constraints, and the marked initial-carrier
+  interface remain.
