@@ -3,6 +3,8 @@ rg: 2
 id: materialize-self-referential-zpc-game
 kind: claim
 title: Materialize the self-referential TailoredMIP fixed-point game as finite repository data
+distinct_from:
+  explicit-zpc-irs-gap-game-witness: That target asks for both a literal finite game and its value certificate; this node is only the finite-data extraction because self-referential-perfect-zpc-irs-gap already supplies the certificate.
 ---
 
 Take the effective fixed-point index `e_*` from
