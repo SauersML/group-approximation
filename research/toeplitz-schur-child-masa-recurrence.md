@@ -68,13 +68,14 @@ The local wall is now explicit as well:
 `symmetrized-full-reset-forces-fixed-reynolds-density` gives
 
 ```text
-rank(E_C-E_B)/d^2=K_1/(2^(2k+2)D^2).
+rank(E_C-E_B)/d^2=1/(2^(k+2)D^2).
 ```
 
 Thus the missing recurrence estimate does not have to create positive
 density. It only has to prove a survive-or-recurse law for this fixed wall,
 with the recurse branch acting on the sole `m`-dimensional multiplicity space
-capable of erasing it.
+capable of erasing it. This wall is structural rather than predicate-sensitive;
+the return must additionally couple its orientation to the surplus `2K_1n`.
 
 Combined with the oriented child-branching identity, `(TCM1)` gives
 

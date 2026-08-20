@@ -1932,14 +1932,14 @@ wreath-compression-mf-radical [✓] Exact MF radicals of compression wreath prod
 
 ## Recently touched
 
-- 2026-08-20 · translation-symmetrized-schur-child-reset [ESTABLISHED] A finite translation-symmetrized overgroup balances every Schur child type
 - 2026-08-20 · translation-symmetrized-full-schur-reset-proof [COMPLETE] Extend every shifted child pencil by the constant Schur border row
 - 2026-08-20 · translation-symmetrized-full-schur-reset [ESTABLISHED] One finite translated-pencil group contains and resets the full Schur gate
+- 2026-08-20 · toeplitz-tail-retains-contextual-schur-density [OPEN] A contextual Schur head survives or recurses inside the Toeplitz tail commutant
 - 2026-08-20 · toeplitz-schur-child-masa-recurrence [OPEN] Toeplitz tails return each active Schur child MASA as the next controlled packet input
 - 2026-08-20 · symmetrized-reset-collapses-schur-flow-to-one-ray-proof [COMPLETE] Solve the child restriction equations after complete type balance
-- 2026-08-20 · symmetrized-reset-collapses-schur-flow-to-one-ray [ESTABLISHED] The symmetrized child reset collapses all Schur branching flow to one scalar ray
+- 2026-08-20 · symmetrized-reset-collapses-schur-flow-to-one-ray [ESTABLISHED] The symmetrized full reset collapses all Schur branching flow to one scalar ray
 - 2026-08-20 · symmetrized-full-reset-forces-fixed-reynolds-density-proof [COMPLETE] Subtract the exact Wedderburn commutant dimensions on the reset ray
-- 2026-08-20 · symmetrized-full-reset-forces-fixed-reynolds-density [ESTABLISHED] The full Schur reset forces an explicit fixed-density Reynolds wall
+- 2026-08-20 · symmetrized-full-reset-forces-fixed-reynolds-density [ESTABLISHED] The full Schur reset forces a fixed-density child/full Reynolds wall
 
 ## Active claims
 

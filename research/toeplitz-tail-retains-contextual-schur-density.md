@@ -25,6 +25,22 @@ loss and squared transport error must be at most a fixed multiple of the
 named normalized-HS relator energy. Iteration must have a contraction factor
 strictly below one, independent of matrix dimension and tail depth.
 
+The local density in this dichotomy is now explicit rather than hypothetical.
+After replacing the head by the finite full reset,
+`symmetrized-full-reset-forces-fixed-reynolds-density` gives
+
+```text
+rank(E_C-E_B)/d^2=1/(2^(k+2)D^2).
+```
+
+The full reset simultaneously collapses the compatible packet-type cone to
+one ray. Consequently the residual action in the second branch can erase the
+wall only through its action on the common scalar multiplicity space; all
+selector and radical-character leakage has already been symmetrized away.
+The wall rank itself is structural, however, so the recurrence must also
+retain the orientation supplied by the predicate surplus `2K_1n`; otherwise
+the same wall is already present on inactive sectors and carries no soundness.
+
 The first branch is paid by
 `schur-wall-in-property-t-compressor-pays-hs-energy`; the second is summable
 by `contractive-computation-ladder`. This is deliberately stronger than

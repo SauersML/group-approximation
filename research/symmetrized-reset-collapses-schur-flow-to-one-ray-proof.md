@@ -11,38 +11,38 @@ requires:
   - shared-overlap-controls-packet-multiplicity-vector
 ---
 
-The reset theorem says that the multiplicity of every corrected child type
-`sigma_(x,+/-)` is the same integer `m`. For `f(x)=1`, `(OCB1)` says the
-unique full-packet simple `T_x` restricts as
+The full reset balances selector spaces and independently flips both corrected
+radical signs. For `f(x)=1`, `(OCB1)` says the unique full-packet simple `T_x`
+restricts as
 
 ```text
 T_x downarrow_C_f = sigma_(x,+) direct_sum sigma_(x,-).
 ```
 
-No other full-packet simple lies over `x`, so both child equations force and
-are forced by multiplicity `m` of `T_x`.
+No other full-packet simple lies over `x`.
 
-For `f(x)=0`, there are two full-packet simples `T_(x,+/-)`, and each restricts
-to the child simple with the same sign. The two child equations therefore
-force multiplicity `m` of each. This proves `(SRC6)`, its converse, and the
-one-dimensionality of the compatible cone.
+For `f(x)=0`, the sector algebra is
+`M_D(C) tensor C[(C_2)^2]`, so there are four full-packet simples. The
+independent corrected `P` and `Q` flips act transitively on them. If the common
+selector-space dimension is `h`, the active multiplicity is `h/(2D)` and
+each inactive multiplicity is `h/(4D)`. Nonconstancy supplies an inactive
+sector, so `n=h/(4D)` is integral and gives `(SRC6)`. This proves the
+one-dimensionality of the full-reset restriction cone.
 
-There are `2K_1` child copies above the active sectors and `2K_0` above the
-inactive sectors, giving `2(K_1+K_0)m=2^(k+1)m`. The number of full-packet
-simples counted with multiplicity is `K_1m+2K_0m`, and the difference is
-`K_1m`. Hilbert dimension is
+Every one of the `2^(k+1)` child types has multiplicity `2n`, giving
+`2^(k+2)n`. The number of full-packet simples counted with multiplicity is
+`2K_1n+4K_0n`, and the difference is `2K_1n`. Hilbert dimension is
 
 ```text
-K_1 m(2D)+2K_0 mD=2D(K_1+K_0)m=2^(k+1)Dm,
+K_1(2n)(2D)+K_0(4n)D=4D(K_1+K_0)n=2^(k+2)Dn,
 ```
 
 which proves `(SRC7)` and exhibits the scalar stationary compensation.
 
-For the approximate statement, exactify the two fixed finite tables. Their
-restrictions approximate the same original `C_f` words, so polar alignment
-discards only controlled normalized dimension. Equation `(OMV1)` bounds the
-full weighted child-type discrepancy on the common overlap. The exact reset
-vector lies on the constant child ray, and the preceding sectorwise inverse
-of the restriction equations has coefficients zero or one. Pulling the
-discrepancy back through those fixed equations changes the constant only by a
-packet-dependent factor, giving `C sqrt(E)`.
+For the approximate statement, exactify the one fixed finite table `Rhat_f`.
+The correction changes its named matrices on only controlled normalized
+dimension, and restriction of the exact table to `B_f` lies on the
+full-reset ray just computed. Equation `(OMV1)` converts the correction loss
+to weighted type-vector discrepancy. Pulling through the fixed finite
+restriction equations changes the constant only by a packet-dependent
+factor, giving `C sqrt(E)`.
