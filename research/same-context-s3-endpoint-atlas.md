@@ -68,3 +68,10 @@ words such that:
   The live target is now narrower: couple the affine functions `(VRC5)` to
   the three BCS success conventions by a non-scalar operator on the common
   multiplicity space (or by an unbounded recurrent cell).
+- At the operator level the three conventions can already be named without
+  new transport words: `full-v4-latent-coordinate-has-an-operator-five-fourths-floor`
+  gives explicit commuting failure projections with sum `P_f+E_0`.  What a
+  finite local atlas still lacks is a matrix-only **discharge** of those
+  projections.  Any proposed discharge that is an exact trace inequality is
+  ruled out by the regular representation; a viable one must exploit finite
+  multiplicity holonomy or send the blocks into a recurrent exit ledger.
