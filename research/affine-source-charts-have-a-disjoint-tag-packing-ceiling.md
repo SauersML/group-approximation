@@ -40,3 +40,18 @@ affine bits.  If the repetition count required by `(CRV4)` exceeds this
 number, the tagger must use nonabelian representation type, shared-context
 operator data, or an actual amplification mechanism; dummy affine clocks do
 not suffice.
+
+The same proof works verbatim over every prime alphabet.  For
+`D=C_p^r`, `E=C_p^t`, a full source fiber has `p^t` characters inside a
+target dual of size `p^(r+t)`, so pairwise disjoint affine images satisfy
+
+```text
+L p^t <= p^(r+t),                 L<=p^r.               (ASP3)
+```
+
+In particular, using the order-`p` phase protected by the
+Slofstra--Zhang high-girth theorem as a larger fixed character alphabet does
+not create Plancherel surplus.  The `p` possible cyclic characters each have
+regular trace `1/p`; injective power maps only permute them.  Odd-order phase
+survival may protect a mark, but it does not evade the fixed-atlas packing
+ceiling.

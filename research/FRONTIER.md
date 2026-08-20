@@ -2102,15 +2102,15 @@ wreath-compression-mf-radical [✓] Exact MF radicals of compression wreath prod
 
 ## Recently touched
 
+- 2026-08-20 · shared-context-disjoint-v4-tagging [OPEN] Give repeated V4 failure atoms pairwise disjoint tags from the shared BCS tuple
+- 2026-08-20 · affine-source-charts-have-a-disjoint-tag-packing-ceiling [ESTABLISHED] A rank-r affine source atom supports at most two-to-the-r disjoint full-mass tag copies
 - 2026-08-20 · uniform-halting-pauli-word-oracle [OPEN] A finite presentation exposes the post-halting Pauli question oracle with constant average defect
 - 2026-08-20 · finite-dimensional-schur-lift-of-doubling-tape [OPEN] Lift the existing BCS projection-doubling tape through self-similar Schur cells in matrix microstates
 - 2026-08-20 · constant-hs-sound-self-detecting-tape-groupification [OPEN] Finitely groupify the self-detecting multiplicity tape with constant HS semantic transport
 - 2026-08-20 · constant-depth-schur-lift-of-doubling-tape [OPEN] Lift only a constant initial segment of the BCS doubling tape through one fixed finite Schur packet
 - 2026-08-20 · synchrony-sobolev-transfer-citation [COMPLETE] Import the MSZ word-reversal and decomposition estimates
 - 2026-08-20 · synchrony-replaces-tracial-cyclicity-at-sobolev-cost [ESTABLISHED] Generator synchrony replaces tracial cyclicity at linear Sobolev cost
-- 2026-08-20 · msz-synchronous-doubling-proof [COMPLETE] Apply synchronous conjugation control to the polynomial doubling recurrence
-- 2026-08-20 · msz-polynomial-doubling-survives-synchronous-states [ESTABLISHED] The MSZ polynomial doubling contraction survives synchronous states
 
 ## Active claims
 
-- 🔒 toeplitz-tail-retains-contextual-schur-density — 104m18s remaining
+- 🔒 toeplitz-tail-retains-contextual-schur-density — 100m42s remaining

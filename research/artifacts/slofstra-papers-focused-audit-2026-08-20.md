@@ -40,6 +40,24 @@ S3 packet return.  The limitation is explicit: the paper does not prove an HS
 stability estimate, and it leaves finite-dimensional operator solutions for
 its odd-prime examples open.
 
+The supplied TeX source makes two additional exact consequences reusable.
+For finite `p`, full order of the central phase is equivalent to a possibly
+infinite-dimensional operator solution: cut the left regular representation
+by the central `omega_p` Fourier idempotent.  For an oriented connected graph,
+classical solvability of its incidence system is equivalent to
+`sum_v b_v=0`, whereas the high-girth theorem gives operator solvability for
+every `b`.  Cairn now records these as
+`solution-group-central-order-is-operator-solvability` and
+`high-girth-incidence-gives-uniform-quantum-classical-separation`.
+
+The odd-order phase does not by itself solve the disjoint-tag problem.  A
+fixed `C_p` character atom has regular trace `1/p`, and the `p` possible
+characters exhaust the target capacity.  The prime-alphabet extension of
+`affine-source-charts-have-a-disjoint-tag-packing-ceiling` records this exact
+Plancherel cancellation.  Any useful odd-order tagger must still be selected
+from finite multiplicity data rather than exist as a fixed HNN character
+atlas.
+
 The supplied TeX source also makes two reusable exact consequences explicit.
 For finite `p`, full order of the central phase is equivalent to a possibly
 infinite-dimensional operator solution: one direction evaluates `J` at

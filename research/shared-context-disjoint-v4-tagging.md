@@ -64,6 +64,12 @@ data; it cannot merely reveal universal branches that were present all along.
   are adjoined.  Those bits enlarge every source fiber and the target dual by
   the same factor.  This construction works only if the required repetition
   count already lies below that fixed ceiling; it is not a general tagger.
+- **Odd-order phase tags have the same ceiling.**  The prime-alphabet form of
+  the same packing argument gives `L<=p^r`.  In the basic cyclic attempt the
+  `p` distinct characters have regular trace `1/p`, so the larger alphabet
+  and the selected-character mass cancel exactly.  The full-order phase from
+  Slofstra--Zhang is an exact mark firewall, not a source of free disjoint
+  capacity.
 - **Property-T coefficient tagging. Active.** The explicit `G^2<G^3` wall of
   `polynomial-compressor-has-explicit-finite-quotient-wall` is a concrete
   target representation, but
