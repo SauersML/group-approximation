@@ -105,15 +105,26 @@ theorem spans_sumGen (e : ℕ → CodedGenerator) (he : Function.Surjective e) :
         Subgroup.closure (Set.range (sumGen e)) by
     exact h (Multiplicative.toAdd g)
   intro f
-  refine DFinsupp.induction f ?_ ?_
-  · simpa using Subgroup.one_mem (Subgroup.closure (Set.range (sumGen e)))
+  refine DFinsupp.induction
+    (p := fun f : Π₀ c : FinitePresentationCode, Additive (CodedPresentedGroup c) ↦
+      (Multiplicative.ofAdd f : CodedDirectSum) ∈
+        Subgroup.closure (Set.range (sumGen e))) f ?_ ?_
+  · change (1 : CodedDirectSum) ∈ Subgroup.closure (Set.range (sumGen e))
+    exact Subgroup.one_mem _
   · intro c a f' _ _ ih
-    have hsplit : (Multiplicative.ofAdd (DFinsupp.single c a + f') :
-        CodedDirectSum)
-        = codedOf c (Additive.toMul a) * Multiplicative.ofAdd f' := by
+    have ha : (Multiplicative.ofAdd (DFinsupp.single c a) : CodedDirectSum) =
+        codedOf c (Additive.toMul a) := by
+      apply Multiplicative.ofAdd.injective
       simp [codedOf]
-    rw [hsplit]
-    exact Subgroup.mul_mem _ (codedOf_mem_closure_sumGen e he c _) ih
+    let tail : CodedDirectSum := Multiplicative.ofAdd f'
+    have htail : tail ∈ Subgroup.closure (Set.range (sumGen e)) := ih
+    have hm : codedOf c (Additive.toMul a) * tail ∈
+          Subgroup.closure (Set.range (sumGen e)) :=
+      Subgroup.mul_mem _
+        (codedOf_mem_closure_sumGen e he c (Additive.toMul a)) htail
+    simp only [tail] at hm
+    rw [← ha] at hm
+    exact hm
 
 /-! ## 3.  What (B1) still owes
 
