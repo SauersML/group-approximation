@@ -32,6 +32,14 @@ relative exactification.
    child/tail incidences, so the resulting finite presentation retains a
    nonidentity marked word.
 
+Clause 1 must not put the entire next packet algebra in the literal commutant
+of the previous `A_n`. By
+`nested-schur-multiplicity-wire-globalizes-selectors`, that would commute all
+past and future selector centers and reduce the tape to a classical history.
+The required placement must carry the two `q_(N+1)` branch labels while
+resetting the old selector center—for example through a partial-center
+endpoint chart or projective child holonomy.
+
 Combined with the oriented child-branching identity, `(TCM1)` gives
 
 ```text
@@ -53,3 +61,6 @@ nonisomorphic finite packet groups.
   The remaining calculation is to choose the self-similar packet embeddings
   so the tail copy uses that particular relative `C^2` factor and to prove
   `(TCM1)` from the shared word defects.
+- Put the next full packet in the old external commutant: invalid unless a
+  center reset is included. It forces every future selector to commute with
+  every past selector and fails the mandatory contextuality test.
