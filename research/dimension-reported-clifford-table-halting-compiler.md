@@ -47,4 +47,11 @@ must retain the marked word as a nonidentity.
   a halting computation to the complete multiplication table of `E_N`.
   Recursive verifier compression is stronger than necessary but has the
   right runtime-independent quantitative shape.
-
+- Natarajan--Vidick's Pauli braiding test (arXiv:1610.03574) is a smaller
+  analytic substitute for the complete table: with Magic Square as its
+  anticommutation test it has perfect completeness and robustness independent
+  of `N`, uses `O(N)`-bit questions and constant-size answers, and self-tests
+  `N` EPR pairs.  The remaining conversion is exact: turn those
+  state-dependent multi-prover checks into normalized-HS group-word checks
+  while preserving the dormant nonhalting model.  The question alphabet still
+  grows with `N`, so this does not by itself perform the halting activation.

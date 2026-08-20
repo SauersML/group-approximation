@@ -1600,15 +1600,15 @@ wreath-compression-mf-radical [✓] Exact MF radicals of compression wreath prod
 
 ## Recently touched
 
+- 2026-08-20 · dimension-reported-clifford-table-halting-compiler [OPEN] A halting output dimension activates a uniformly sound supercritical Clifford table
 - 2026-08-20 · nonhyperlinear-from-dimension-reported-clifford-compiler [OPEN] Diagonalize the witness dimension against one supercritical Clifford table
 - 2026-08-20 · marked-clifford-table-exponential-dimension-proof [COMPLETE] Exactify the Pauli table and use its nonzero spin sector
 - 2026-08-20 · marked-clifford-table-exponential-dimension [ESTABLISHED] A marked all-pairs Clifford table has exponential ambient dimension
 - 2026-08-20 · dimension-reported-schur-replica-halting-compiler [OPEN] A halting output dimension activates a uniformly sound supercritical Schur-replica table
-- 2026-08-20 · dimension-reported-clifford-table-halting-compiler [OPEN] A halting output dimension activates a uniformly sound supercritical Clifford table
 - 2026-08-20 · approximate-schur-replicas-force-exponential-dimension-proof [COMPLETE] Flexibly exactify the whole replica table and apply the exact dimension bound
 - 2026-08-20 · approximate-schur-replicas-force-exponential-dimension [ESTABLISHED] An all-pairs approximate Schur-replica table retaining its sign has exponential dimension
 - 2026-08-20 · nonhyperlinear-from-dimension-reported-schur-compiler [OPEN] Diagonalize the witness dimension and activate its supercritical Schur table
 
 ## Active claims
 
-- 🔒 compressor-covariant-packet-reynolds-return — 71m32s remaining
+- 🔒 compressor-covariant-packet-reynolds-return — 63m35s remaining

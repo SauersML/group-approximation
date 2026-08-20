@@ -936,6 +936,16 @@ Clifford multiplication table.  The Schur compiler remains relevant to the
 original endogenous programme in which the group itself must discover and
 propagate bad regions without an externally reported dimension.
 
+There is a more economical verifier for the same payload.  The
+Natarajan--Vidick Pauli braiding test has perfect completeness (using the Magic
+Square anticommutation test) and robustness independent of the number of
+qubits; its questions have length \(O(N)\) and its answers have constant
+length.  Thus the complete \(E_N\) multiplication table is not analytically
+essential.  What remains essential is the groupification: the test's
+state-dependent multi-prover consistency relations must be lowered to
+normalized-Hilbert--Schmidt group words, and the growing question space must
+be activated after a halting computation with a runtime-independent gap.
+
 ---
 
 ## 16. Computational verification
@@ -991,6 +1001,7 @@ Those are exactly the remaining proof obligations.  Claiming the open problem so
 
 - M. Fanizza, L. Kroell, A. Mehta, C. Paddock, D. Rochette, W. Slofstra, Y. Zhao, *The NPA hierarchy does not always attain the commuting operator value*, arXiv:2510.04943 (2025).  In particular their Definition 4.1 / Theorem 4.4 supply Turing-machine BCS families with a distinguished signal obeying a quantitative signal-versus-error inequality on one side of the reduction.
 - C. Paddock, W. Slofstra, *Satisfiability problems and algebras of boolean constraint system games*, arXiv:2310.07901.
+- A. Natarajan, T. Vidick, *Robust self-testing of many-qubit states*, arXiv:1610.03574.
 - Classical Valiant-style equivalence between algebraic branching programs and affine determinant representations; the proof in Section 2 above is self-contained for the only form needed here.
 - Standard representation theory of extraspecial 2-groups / finite Heisenberg groups: a nondegenerate commutator form of rank \(2r\) gives spin dimension \(2^r\).
 
