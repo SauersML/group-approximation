@@ -2179,8 +2179,8 @@ wreath-compression-mf-radical [✓] Exact MF radicals of compression wreath prod
 
 ## Recently touched
 
-- 2026-08-20 · uniform-hs-site-coherence-for-finite-bi-index-pair [OPEN] A finite-bi-index subgroup pair has dimension-independent Hilbert--Schmidt site coherence
 - 2026-08-20 · twisted-clifford-substitution-has-tensor-stable-fd-anomaly [OPEN] The twisted Clifford HNN has a tensor-stable finite-dimensional HS anomaly
+- 2026-08-20 · uniform-hs-site-coherence-for-finite-bi-index-pair [OPEN] A finite-bi-index subgroup pair has dimension-independent Hilbert--Schmidt site coherence
 - 2026-08-20 · twisted-clifford-substitution-endomorphism-gate [OPEN] A twisted binary substitution descends to an injective finitely presented Clifford endomorphism
 - 2026-08-20 · transport-polynomial-witnesses-replay-proof [COMPLETE] Expand the transport polynomials and solve the Ledrappier recurrence
 - 2026-08-20 · transport-polynomial-witnesses-replay [ESTABLISHED] The ghost-doubling and Ledrappier transport identities hold exactly
@@ -2190,4 +2190,4 @@ wreath-compression-mf-radical [✓] Exact MF radicals of compression wreath prod
 
 ## Active claims
 
-- 🔒 toeplitz-tail-retains-contextual-schur-density — 59m32s remaining
+- 🔒 toeplitz-tail-retains-contextual-schur-density — 58m58s remaining

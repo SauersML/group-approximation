@@ -11,7 +11,7 @@ distinct_from:
 
 **Open.** For the explicit finitely presented ascending HNN group produced by
 `twisted-clifford-substitution-endomorphism-gate`, prove that there are
-constants `epsilon_0>0` and `alpha>0` such that every finite-dimensional
+constants `epsilon_0>0` and `0<alpha<sqrt(2)` such that every finite-dimensional
 unitary tuple satisfying all presentation relators with total normalized-HS
 energy below `epsilon_0` sends the central mark `J` within `alpha` of the
 identity.
@@ -29,4 +29,3 @@ remaining plausible form is a positive-density local-to-global anomaly: a
 fixed finite moment window whose substitution transport forces macroscopic
 cross-Gram or multiplicity energy in every matrix model, despite admitting
 an exact infinite-dimensional marked trace.  No such inequality is known.
-
