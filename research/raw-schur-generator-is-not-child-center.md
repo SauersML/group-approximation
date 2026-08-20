@@ -41,7 +41,11 @@ a violating sector its signs distinguish the two `B_f^Q` simples. In general
 `v(x)` is nonlinear, so `(RSC2)` is a selector-controlled additive
 group-algebra coefficient, not one uniform group word.
 
-Consequently a reset gadget controlled by raw `q_(N+1)` balances the wrong
-spectral decomposition. A valid recurrence must first expose `Q_f`, or its
-two central projections, through a signed-Hecke/projection chart or another
-genuine groupification theorem.
+Consequently a reset gadget controlled by the *raw spectral projections* of
+`q_(N+1)` balances the wrong decomposition.  This does not prevent an
+ordinary automorphism from acting correctly on the child types:
+`schur-child-center-sign-flip-is-group-automorphism` proves that
+`q_(N+1)->Jq_(N+1)` fixes `A_f` and sends the corrected coefficient
+`Q_f->JQ_f`.  A valid recurrence may therefore exchange the two corrected
+branches without exposing `Q_f` as a group word.  It must still reset or
+transport the old selector character, which that automorphism fixes.

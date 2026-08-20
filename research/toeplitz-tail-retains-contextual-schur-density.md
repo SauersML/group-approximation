@@ -58,6 +58,17 @@ open content of this claim is strictly the dimension-free conditional
 expectation alternative: the common tail commutant must retain packet mass or
 recreate it in its residual multiplicity algebra.
 
+There is now a second, sharper acceptable output of that alternative.
+`coherent-summable-gap-clifford-tower` does not require selecting a finite
+rank larger than the unknown matrix dimension.  It is enough that successive
+residual tails produce jointly reducing carriers whose discarded traces are
+summable and on which the returned relative Pauli cells accumulate.  Their
+common meet then has positive trace and carries every finite Clifford rank,
+contradicting finite dimensionality by
+`summable-reducing-carriers-force-infinite-clifford-capacity`.  This makes the
+needed conditional-expectation conclusion concrete: later tail carriers must
+reduce all earlier head cells, not merely have large trace.
+
 The compressor iterates also synchronize the selector carrier exactly, but
 they do not amplify it by themselves.  The theorem
 `toeplitz-schur-heads-share-child-but-have-rank-two` proves that every shifted

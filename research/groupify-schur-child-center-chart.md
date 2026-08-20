@@ -41,6 +41,12 @@ word is forbidden by `schur-rank-output-is-not-a-scalar-selector`.
   `p_t`, so its eigenspaces are not child modules.
 - **Use one selector word:** fails for nonlinear `v(x)` by the affine-selector
   barrier.
+- **Flip the corrected signs without naming the coefficient: solved.**
+  `schur-child-center-sign-flip-is-group-automorphism` shows that the ordinary
+  child automorphism `q_(N+1)->Jq_(N+1)` sends `Q_f` to `JQ_f`.  Its finite
+  semidirect product therefore pairs the two genuine child-simple types in
+  every selector sector with dimension-free HS control.  This removes the
+  branch-sign part of the chart but fixes all old selector characters.
 - **Signed-monomial realization: locally solved.**
   `schur-child-center-has-finite-monomial-sector` puts the whole packet and
   corrected center in one finite irreducible signed-permutation sector.
@@ -48,8 +54,9 @@ word is forbidden by `schur-rank-output-is-not-a-scalar-selector`.
   microstate, `near-regular-finite-character-fixes-plancherel-types` forces the
   natural sector to occur at Plancherel density `dim(pi_f)^2/|H_f|` after
   exactification.
-- **Return that sector:** open. The other irreducibles also have positive
-  Plancherel mass, as predicted by the induction barrier, and can absorb a
+- **Return the complete selector-labelled carrier:** open. The corrected
+  branch signs can now be paired without selecting one monomial sector, but
+  all old selector characters remain.  The other types can still absorb a
   finite graph-of-groups multiplicity flow. The missing object is an
-  ordinary-group projection atlas which transports the natural isotypic
-  carrier through the corrected child chart with dimension-free HS loss.
+  ordinary-group atlas which resets or transports the complete
+  `(selector,branch)` carrier with dimension-free HS loss.
