@@ -61,3 +61,9 @@ floor.
   selection remains. The construction problem is now to expose that averaged
   channel transport by finitely many sparse relations without forgetting the
   shared non-CE selector tuple.
+- **Violation-oriented contraction.** The alternative route
+  `fixed-scale-holonomy-via-reset-schur-atlas` follows the full `Q` child:
+  satisfying sectors reproduce once and violating sectors twice. The robust
+  BCS gap then gives contraction factor `(1+beta)^(-1)` and eliminates the
+  Fanizza inactive-sector term entirely. Its sole open input is the recurrent
+  reset/HNN atlas retaining that full child carrier with bounded-overlap loss.
