@@ -2185,4 +2185,4 @@ wreath-compression-mf-radical [✓] Exact MF radicals of compression wreath prod
 
 ## Active claims
 
-- 🔒 toeplitz-tail-retains-contextual-schur-density — 85m22s remaining
+- 🔒 toeplitz-tail-retains-contextual-schur-density — 85m18s remaining
