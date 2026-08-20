@@ -71,25 +71,29 @@ def sub (T S : Adjointable E F) : Adjointable E F where
   inner_adj x y := by
     rw [F.inner_sub_left, T.inner_adj, S.inner_adj, ← E.inner_sub_right]
 
+omit [PartialOrder B] [StarOrderedRing B] in
 @[simp] theorem sub_toFun (T S : Adjointable E F) (x : E.carrier) :
     (T.sub S).toFun x = T.toFun x - S.toFun x := rfl
 
 /-- The negative of an adjointable operator. -/
 def neg (T : Adjointable E F) : Adjointable E F := (zero E F).sub T
 
+omit [PartialOrder B] [StarOrderedRing B] in
 @[simp] theorem neg_toFun (T : Adjointable E F) (x : E.carrier) :
     T.neg.toFun x = -T.toFun x := by
   show (0 : F.carrier) - T.toFun x = -T.toFun x
   rw [zero_sub]
 
+omit [PartialOrder B] [StarOrderedRing B] in
 /-- An adjointable map respects differences.  Like `map_add`, this is a
 theorem and not an assumption. -/
 theorem map_sub (T : Adjointable E F) (x y : E.carrier) :
     T.toFun (x - y) = T.toFun x - T.toFun y := by
   refine F.eq_of_inner_eq fun z => ?_
-  rw [T.inner_adj' (x - y) z, E.inner_sub_left, ← T.inner_adj' x z,
-    ← T.inner_adj' y z, ← F.inner_sub_left]
+  rw [T.inner_adj' (x - y) z, E.inner_sub_right, ← T.inner_adj' x z,
+    ← T.inner_adj' y z, ← F.inner_sub_right]
 
+omit [PartialOrder B] [StarOrderedRing B] in
 /-- The adjoint of an adjointable operator is an involution, as an equality of
 operators and not merely of underlying maps: the adjoint field is determined,
 and the adjoint relation is a proposition. -/
@@ -106,9 +110,11 @@ def IsBoundedBy (T : Adjointable E F) (C : ℝ) : Prop :=
 def IsBounded (T : Adjointable E F) : Prop :=
   ∃ C : ℝ, 0 ≤ C ∧ T.IsBoundedBy C
 
+omit [PartialOrder B] [StarOrderedRing B] in
 theorem IsBoundedBy.isBounded {T : Adjointable E F} {C : ℝ} (hC : 0 ≤ C)
     (h : T.IsBoundedBy C) : T.IsBounded := ⟨C, hC, h⟩
 
+omit [PartialOrder B] [StarOrderedRing B] in
 theorem IsBoundedBy.mono {T : Adjointable E F} {C D : ℝ} (h : T.IsBoundedBy C)
     (hCD : C ≤ D) : T.IsBoundedBy D := by
   intro x
@@ -170,6 +176,7 @@ theorem IsBoundedBy.sub {T S : Adjointable E F} {C D : ℝ}
     _ ≤ C * E.norm x + D * E.norm x := add_le_add (hT x) (hS x)
     _ = (C + D) * E.norm x := by ring
 
+omit [PartialOrder B] [StarOrderedRing B] in
 theorem IsBoundedBy.comp {S : Adjointable F G} {T : Adjointable E F} {C D : ℝ}
     (hS : S.IsBoundedBy C) (hT : T.IsBoundedBy D) (hC : 0 ≤ C) :
     (S.comp T).IsBoundedBy (C * D) := by
@@ -213,9 +220,11 @@ theorem IsFiniteRank.isBounded {T : Adjointable E F} (h : T.IsFiniteRank) :
 /-- The set of Lipschitz bounds of `T`. -/
 def boundSet (T : Adjointable E F) : Set ℝ := {C : ℝ | 0 ≤ C ∧ T.IsBoundedBy C}
 
+omit [PartialOrder B] [StarOrderedRing B] in
 theorem bddBelow_boundSet (T : Adjointable E F) : BddBelow T.boundSet :=
   ⟨0, fun _ hC => hC.1⟩
 
+omit [PartialOrder B] [StarOrderedRing B] in
 theorem boundSet_nonempty {T : Adjointable E F} (h : T.IsBounded) :
     T.boundSet.Nonempty := by
   obtain ⟨C, hC, hb⟩ := h
@@ -226,16 +235,19 @@ unbounded operator this is `sInf ∅ = 0`, so every statement about it that says
 anything carries `IsBounded`. -/
 noncomputable def opNorm (T : Adjointable E F) : ℝ := sInf T.boundSet
 
+omit [PartialOrder B] [StarOrderedRing B] in
 theorem opNorm_nonneg (T : Adjointable E F) : 0 ≤ T.opNorm := by
   rcases Set.eq_empty_or_nonempty T.boundSet with he | hne
   · rw [opNorm, he]
     exact le_of_eq Real.sInf_empty.symm
   · exact le_csInf hne fun _ hC => hC.1
 
+omit [PartialOrder B] [StarOrderedRing B] in
 theorem opNorm_le_of_bound {T : Adjointable E F} {C : ℝ} (hC : 0 ≤ C)
     (h : T.IsBoundedBy C) : T.opNorm ≤ C :=
   csInf_le T.bddBelow_boundSet ⟨hC, h⟩
 
+omit [PartialOrder B] [StarOrderedRing B] in
 /-- **The infimum of the bounds is itself a bound.** -/
 theorem norm_apply_le_opNorm {T : Adjointable E F} (hT : T.IsBounded)
     (x : E.carrier) : F.norm (T.toFun x) ≤ T.opNorm * E.norm x := by
@@ -249,10 +261,12 @@ theorem norm_apply_le_opNorm {T : Adjointable E F} (hT : T.IsBounded)
     rintro C ⟨-, hCb⟩
     exact (div_le_iff₀ hx).mpr (hCb x)
 
+omit [PartialOrder B] [StarOrderedRing B] in
 theorem isBoundedBy_opNorm {T : Adjointable E F} (hT : T.IsBounded) :
     T.IsBoundedBy T.opNorm :=
   fun x => norm_apply_le_opNorm hT x
 
+omit [PartialOrder B] [StarOrderedRing B] in
 @[simp] theorem opNorm_zero : (zero E F).opNorm = 0 := by
   refine le_antisymm (opNorm_le_of_bound le_rfl ?_) (opNorm_nonneg _)
   intro x
@@ -269,6 +283,7 @@ theorem opNorm_sub_le {T S : Adjointable E F} (hT : T.IsBounded)
   opNorm_le_of_bound (add_nonneg (opNorm_nonneg T) (opNorm_nonneg S))
     ((isBoundedBy_opNorm hT).sub (isBoundedBy_opNorm hS))
 
+omit [PartialOrder B] [StarOrderedRing B] in
 theorem opNorm_comp_le {S : Adjointable F G} {T : Adjointable E F}
     (hS : S.IsBounded) (hT : T.IsBounded) :
     (S.comp T).opNorm ≤ S.opNorm * T.opNorm :=
