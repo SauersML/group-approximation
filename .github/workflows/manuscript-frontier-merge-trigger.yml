@@ -1,0 +1,35 @@
+name: Merged manuscript frontier refresh
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/manuscript-frontier-merge-trigger.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  rewrite:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
+        with:
+          fetch-depth: 0
+      - name: Apply manuscript refresh
+        run: python3 scripts/one_shot_manuscript_frontier.py
+      - name: Check manuscript contracts
+        run: |
+          set -euo pipefail
+          python3 scripts/check_non_mf_refs.py --tex non_mf_groups_exist.tex
+          python3 scripts/check_non_mf_claim_manifest.py
+          git diff --check
+      - name: Commit manuscript
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add non_mf_groups_exist.tex
+          git commit -m 'Manuscript: promote solved MF questions and narrow the frontier'
+          git push origin HEAD:main
