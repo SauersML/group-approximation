@@ -53,3 +53,10 @@ uniform quantum expanders automatically. Items 1--4 then imply
   symplectic group by a unitary group for `t* = t^(-1)`. No nested finite
   quotients and compatible one-cell embeddings carrying all of the required
   action have yet been exhibited.
+- **Two-chart repair. Active.** A module-linear symplectic inclusion is
+  impossible by `no-linear-symplectic-splitting-of-truncated-weyl-levels`.
+  However, `truncated-weyl-two-chart-boundary` gives two symplectic charts
+  which overlap on `n-1` qubits and differ by only one transverse qubit;
+  upper and lower elementary maps preserve opposite charts and incur the
+  explicit drift `r|->ur`. This reduces the compatibility problem to
+  `two-chart-jacobi-action-holonomy` rather than an unbounded prefix defect.

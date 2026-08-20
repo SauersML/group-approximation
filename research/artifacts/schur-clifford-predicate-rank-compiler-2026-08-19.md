@@ -1198,6 +1198,27 @@ relator estimate. A ring-valued Heisenberg center with
 level (n). This is `conjugate-local-signs-preserve-marked-carrier` and
 removes global centrality from the remaining Jacobi-tower obligations.
 
+There is also a sharp structural explanation for the failure of the obvious
+equivariant nesting. Any (R)-linear map
+(R_n^2\to R_{n+1}^2) lands in (uR_{n+1}^2); the image of the socle then
+lies in the radical of the restricted top-coefficient form. Hence no
+module-linear symplectic inclusion exists.
+
+The replacement is a two-chart atlas:
+
+\[
+P_n(a,b)=(ua,b),\qquad Q_n(a,b)=(a,ub).
+\]
+
+Both charts are symplectic. They share (n-1) qubits and have one distinct
+transverse boundary qubit each; Fourier swap exchanges them. Upper elementary
+maps preserve (Q_n), lower elementary maps preserve (P_n), and in either
+case the induced parameter changes by the explicit rule (r\mapsto ur).
+Thus the incompatibility is localized to one fixed-size holonomy cell rather
+than spread across the growing prefix. Cairn records the exact geometry as
+`truncated-weyl-two-chart-boundary` and the remaining compressor/payment
+problem as `two-chart-jacobi-action-holonomy`.
+
 ---
 
 ## 16. Computational verification
