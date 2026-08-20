@@ -171,6 +171,12 @@ regular Bass--Serre reservoir.
   and the other named relative involution swaps them.  Hence one child can be
   designated active and the other exiting without choosing a multiplicity
   basis or losing carrier mass.
+- `hard-sign-transport-captures-exit-mass` proves the complementary lower
+  exit estimate.  Projecting one hard-sign conjugacy onto the positive target
+  sector gives the sharp leakage bound `(HST1)`.  The corner BCS gap and the
+  equal child split therefore yield `(BFE3)` with
+  `eta=beta_B^corner/2`, provided the aligned hard word is placed on the same
+  prefix carrier.
 - `free-root-first-detection-eigenvectors-localize-exactly` proves the
   packet-to-reservoir analytic endpoint: once a hard intertwiner has
   coefficient-character valuation `n`, its entire squared norm is exactly
@@ -180,10 +186,11 @@ regular Bass--Serre reservoir.
   bad atoms.
   The analytic persistence and endpoint-marginal accounting are now reduced
   to a telescoping sign-atom estimate and have polynomial loss.  The remaining
-  step is the global character/carrier coupling: prove that the Fanizza
-  two-child decomposition satisfies `(BFE1)` on the same localized spectral
-  halves, while the common hard root feeds the lower exit yield `(BFE3)` into
-  successive symmetric-kernel valuation layers.  The upper exit bound
-  `(BFE2)`, persistence, and the final HS floor are now formal consequences.
+  step is the global presentation/carrier coupling: make the Fanizza
+  two-child decomposition satisfy `(BFE1)` on the same localized spectral
+  halves and place the already aligned hard-sign relation on their successive
+  prefix carriers.  Once those words coexist without killing the exact
+  tracial model, `(BFE2)`, `(BFE3)`, persistence, and the final HS floor are
+  formal consequences.
   A merely decreasing first-hit process is insufficient: it admits a
   geometric reservoir and does not force collapse.

@@ -15,6 +15,7 @@ requires:
   - fanizza-symmetric-kernel-has-two-root-e5-clock
   - branching-plus-first-hit-exits-forces-hs-floor
   - relative-pauli-child-split-gives-one-exit-copy
+  - hard-sign-transport-captures-exit-mass
   - finite-schur-clifford-packet-flexible-hs-exactification
   - non-ce-bcs-has-robust-approximate-energy-gap
   - fanizza-turing-bcs-signal-collapse

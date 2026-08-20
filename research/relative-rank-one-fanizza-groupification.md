@@ -95,4 +95,8 @@ the Fanizza projection `D` itself as the nonhalting mark contradicts
   most one exit copy leaves one active copy.  The precise remaining estimate
   is therefore the localized operator version of `(BFE1)` and `(BFE3)` on the
   same exactified packet carrier: `relative-pauli-child-split-gives-one-exit-copy`
-  already supplies `(BFE2)` from two literal equal-rank spectral halves.
+  already supplies `(BFE2)` from two literal equal-rank spectral halves, and
+  `hard-sign-transport-captures-exit-mass` supplies `(BFE3)` from one central
+  intertwining relation plus the corner BCS gap.  The remaining local estimate
+  is `(BFE1)` on that common carrier; the remaining global obligation is a
+  presentation retaining the exact tracial model and the marked interface.
