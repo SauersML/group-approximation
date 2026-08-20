@@ -41,6 +41,14 @@ The wall rank itself is structural, however, so the recurrence must also
 retain the orientation supplied by the predicate surplus `2K_1n`; otherwise
 the same wall is already present on inactive sectors and carries no soundness.
 
+That orientation now has a canonical fixed-word formula:
+`schur-predicate-is-character-density-difference` identifies it with
+`Z_C-Z_B=P_f/(2D)` and proves
+`tau(P_f)=4D^2||Z_C-Z_B||_2^2`. Hence the strongest useful form of the
+dichotomy returns this explicit character-density difference in the residual
+multiplicity algebra. It need not select individual packet copies or preserve
+the whole Reynolds projection.
+
 The first branch is paid by
 `schur-wall-in-property-t-compressor-pays-hs-energy`; the second is summable
 by `contractive-computation-ladder`. This is deliberately stronger than

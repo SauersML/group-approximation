@@ -1932,14 +1932,14 @@ wreath-compression-mf-radical [✓] Exact MF radicals of compression wreath prod
 
 ## Recently touched
 
-- 2026-08-20 · schur-rank-output-is-not-a-scalar-selector [ESTABLISHED] A Schur rank-jump output cannot be cascaded as a scalar word of the same Boolean selectors
+- 2026-08-20 · toeplitz-tail-retains-contextual-schur-density [OPEN] A contextual Schur head survives or recurses inside the Toeplitz tail commutant
+- 2026-08-20 · toeplitz-schur-child-masa-recurrence [OPEN] Toeplitz tails return each active Schur child MASA as the next controlled packet input
 - 2026-08-20 · schur-predicate-is-character-density-difference-proof [COMPLETE] Sum reciprocal-dimension central idempotents sector by sector
 - 2026-08-20 · schur-predicate-is-character-density-difference [ESTABLISHED] A Schur predicate projection is exactly a difference of two finite-group character densities
+- 2026-08-20 · schur-rank-output-is-not-a-scalar-selector [ESTABLISHED] A Schur rank-jump output cannot be cascaded as a scalar word of the same Boolean selectors
 - 2026-08-20 · relative-rank-one-fanizza-groupification [OPEN] Groupify the Fanizza computation through the fixed-pivot relative Pauli bit with constant HS loss
 - 2026-08-20 · translation-symmetrized-full-schur-reset-proof [COMPLETE] Extend every shifted child pencil by the constant Schur border row
 - 2026-08-20 · translation-symmetrized-full-schur-reset [ESTABLISHED] One finite translated-pencil group contains and resets the full Schur gate
-- 2026-08-20 · toeplitz-tail-retains-contextual-schur-density [OPEN] A contextual Schur head survives or recurses inside the Toeplitz tail commutant
-- 2026-08-20 · toeplitz-schur-child-masa-recurrence [OPEN] Toeplitz tails return each active Schur child MASA as the next controlled packet input
 
 ## Active claims
 

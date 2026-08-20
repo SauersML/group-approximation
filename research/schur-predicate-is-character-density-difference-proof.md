@@ -38,3 +38,13 @@ tau_d(rho(e_pi/dim(pi)))
 Summing proves the multiplicity interpretation. The standard character
 formula for `e_pi` proves effectivity and exhibits `(CDF2)` as a fixed finite
 linear combination of ordinary group words.
+
+Finally `(CDF2)` is a scalar multiple of the projection `P_f`, so
+
+```text
+||rho(Z_C-Z_B)||_2^2
+ =tau(rho(P_f^2))/(4D^2)
+ =tau(rho(P_f))/(4D^2),
+```
+
+which is `(CDF5)`.

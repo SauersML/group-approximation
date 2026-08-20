@@ -50,6 +50,18 @@ For every exact finite-dimensional representation `rho`, normalized trace of
 Consequently `(CDF2)` is exactly the linear character-theoretic form of the
 Schur multiplicity surplus.
 
+Because `P_f` is a projection, `(CDF2)` also gives the exact normalized-HS
+payment identity
+
+```text
+tau(rho(P_f))=4D^2 ||rho(Z_(C_f)-Z_(B_f))||_2^2.        (CDF5)
+```
+
+Thus forbidden joint spectral mass is literally the squared Hilbert--Schmidt
+norm of one explicit finite character-table sum. After fixed finite-packet
+exactification, `(CDF5)` persists with the usual dimension-independent
+correction loss.
+
 This bypasses the affine scalar-word barrier but does not by itself impose a
 BCS constraint. A group compiler must still make the appropriate returned
 copies of `Z_C` and `Z_B` agree, or charge their discrepancy, using finitely

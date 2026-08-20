@@ -77,6 +77,20 @@ with the recurse branch acting on the sole `m`-dimensional multiplicity space
 capable of erasing it. This wall is structural rather than predicate-sensitive;
 the return must additionally couple its orientation to the surplus `2K_1n`.
 
+There is a cleaner predicate-sensitive observable than the bare Reynolds
+rank. By `schur-predicate-is-character-density-difference`, every local
+forbidden projection satisfies
+
+```text
+P_f=2D(Z_C-Z_B),
+tau(P_f)=4D^2||Z_C-Z_B||_2^2.                         (TCM3)
+```
+
+Both `Z` terms are explicit fixed character-table averages of packet words.
+Therefore an acceptable proof of `(TCM1)` may return these density elements
+directly through the Toeplitz corner, rather than transporting anonymous
+irreducible copies or the entire adjoint Reynolds range.
+
 Combined with the oriented child-branching identity, `(TCM1)` gives
 
 ```text
