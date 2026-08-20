@@ -1141,6 +1141,27 @@ gate.  Cairn records that precise algebraic task as
 type-accounting step must still show that inactive selector sectors are
 exactly the Fanizza BCS violation mass, with no complementary leakage.
 
+There is now a more structural source of the expanders. If `(Gamma,N)` has a
+finite relative Kazhdan set `S` and a family of projective representations in
+which `N` acts irreducibly, then projective phases disappear in the adjoint
+action and Schur's lemma says that the only `N`-fixed operators are scalars.
+Applying the relative Kazhdan inequality to traceless matrices and lazifying
+the `S`-average gives a quantum-expander gap
+
+\[
+1-\lambda\ge {\kappa^2\over4|S|},
+\]
+
+uniformly in the representation dimension. This is proved in
+`relative-t-heisenberg-adjoint-quantum-expansion`. Relative property `(T)`
+for elementary-linear semidirect products over finitely generated rings is a
+known source of such a gap. Thus the remaining prefix-expander problem is no
+longer to synthesize a dimension-uniform spectral gap. It is to build the
+finitely presented **Jacobi congruence tower** which couples that fixed word
+set to nested binary Schrodinger representations, a tape shift, and the same
+central sign used by the rank gate. Cairn isolates this algebraic obligation
+as `jacobi-congruence-clifford-tower`.
+
 ---
 
 ## 16. Computational verification

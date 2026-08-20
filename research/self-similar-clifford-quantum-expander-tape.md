@@ -5,6 +5,7 @@ kind: claim
 title: A finite presentation realizes uniform quantum-expander checks on every Clifford tape prefix
 distinct_from:
   explicit-constant-degree-quantum-expanders: that supplies explicit channels in circuit form; this requires one finite group-word syntax compatible with a nested Clifford tower.
+  relative-t-heisenberg-adjoint-quantum-expansion: that proves a relative-Kazhdan Jacobi action supplies the uniform analytic gap once the quotient representations exist; this still has to construct their finite self-similar word syntax and controlled rank-gate compatibility.
   uniform-halting-pauli-word-oracle: that exposes all questions of a post-halting Pauli test; this exposes only a constant-degree commutant test at every prefix of one self-similar Clifford tape.
 ---
 
@@ -35,8 +36,11 @@ constant independent of the existing Clifford rank.
   implemented by Clifford/metaplectic unitaries and has the classical
   Margulis spectrum, but the cited construction is for odd phase-space
   dimension and does not directly provide the binary nested tower here.
-- The likely route is to internalize the quantum zig-zag recursion as a finite
-  substitution system, with the tape shift implementing tensor growth and a
-  constant seed expander acting on the rotation register. The unresolved
-  check is exact compatibility with the common central sign and the controlled
-  rank gate.
+- `relative-t-heisenberg-adjoint-quantum-expansion` removes the need to
+  internalize a quantum zig-zag circuit. A fixed relative Kazhdan set in a
+  Jacobi-type group is automatically a constant-degree quantum expander in
+  every irreducible finite Heisenberg quotient. The remaining construction
+  problem is algebraic: find one finitely presented Jacobi/self-similar group
+  with a binary nested congruence tower, compatible Schrodinger--Weil
+  projective actions, polynomial word-derivation cost, and the same central
+  sign used by the controlled Schur rank gate.
