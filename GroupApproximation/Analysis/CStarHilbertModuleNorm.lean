@@ -84,21 +84,26 @@ unification through a projection.  `toNormedAddCommGroup` packages it for the
 places that want the instance. -/
 noncomputable def norm (x : E.carrier) : ℝ := Real.sqrt ‖E.inner x x‖
 
+omit [PartialOrder B] [StarOrderedRing B] in
 theorem norm_def (x : E.carrier) : E.norm x = Real.sqrt ‖E.inner x x‖ := rfl
 
+omit [PartialOrder B] [StarOrderedRing B] in
 protected theorem norm_nonneg (x : E.carrier) : 0 ≤ E.norm x :=
   Real.sqrt_nonneg _
 
+omit [PartialOrder B] [StarOrderedRing B] in
 /-- The defining identity in its usable form: the *square* of the norm is the
 norm of the inner product. -/
 theorem norm_sq (x : E.carrier) : E.norm x ^ 2 = ‖E.inner x x‖ :=
   Real.sq_sqrt (_root_.norm_nonneg _)
 
+omit [PartialOrder B] [StarOrderedRing B] in
 theorem norm_eq_zero_iff (x : E.carrier) : E.norm x = 0 ↔ x = 0 := by
   rw [norm_def, Real.sqrt_eq_zero (_root_.norm_nonneg _), norm_eq_zero]
   exact ⟨fun h => E.inner_self_eq_zero x h, fun h => by
     rw [h, E.inner_zero_left]⟩
 
+omit [PartialOrder B] [StarOrderedRing B] in
 @[simp] theorem norm_zero_vector : E.norm (0 : E.carrier) = 0 :=
   (E.norm_eq_zero_iff 0).mpr rfl
 
@@ -143,7 +148,7 @@ theorem cauchySchwarzAux (x y : E.carrier) (b : B) :
     abel
   rw [hexp] at hz
   refine le_trans hz ?_
-  exact add_le_add_right (sub_le_sub_right (sub_le_sub_right
+  exact add_le_add_left (sub_le_sub_right (sub_le_sub_right
     (OrderZero.star_conjugate_le_norm_smul (E.inner_self_isSelfAdjoint x) b)
       _) _) _
 
@@ -200,6 +205,7 @@ theorem norm_inner_le (x y : E.carrier) :
 
 /-! ## The norm axioms -/
 
+omit [PartialOrder B] [StarOrderedRing B] in
 protected theorem norm_smul (c : ℂ) (x : E.carrier) :
     E.norm (c • x) = ‖c‖ * E.norm x := by
   have h : E.inner (c • x) (c • x)
@@ -210,6 +216,7 @@ protected theorem norm_smul (c : ℂ) (x : E.carrier) :
   rw [norm_def, norm_def, hnorm, Real.sqrt_mul (by positivity),
     Real.sqrt_sq (_root_.norm_nonneg c)]
 
+omit [PartialOrder B] [StarOrderedRing B] in
 theorem norm_neg (x : E.carrier) : E.norm (-x) = E.norm x := by
   have h : -x = (-1 : ℂ) • x := (neg_one_smul ℂ x).symm
   rw [h, E.norm_smul]
@@ -252,8 +259,15 @@ protected theorem norm_add_le (x y : E.carrier) :
       rw [E.norm_sq, hexp]
     have h2 : ‖E.inner x x + E.inner x y + E.inner y x + E.inner y y‖
         ≤ ‖E.inner x x‖ + ‖E.inner x y‖ + ‖E.inner y x‖ + ‖E.inner y y‖ := by
-      refine le_trans (norm_add_le _ _) ?_
-      exact add_le_add_right norm_add₃_le _
+      calc
+        ‖E.inner x x + E.inner x y + E.inner y x + E.inner y y‖
+            ≤ ‖E.inner x x + E.inner x y + E.inner y x‖ + ‖E.inner y y‖ :=
+              norm_add_le _ _
+        _ ≤ (‖E.inner x x + E.inner x y‖ + ‖E.inner y x‖) + ‖E.inner y y‖ :=
+              add_le_add_left (norm_add_le _ _) _
+        _ ≤ (‖E.inner x x‖ + ‖E.inner x y‖ + ‖E.inner y x‖) +
+              ‖E.inner y y‖ :=
+              add_le_add_left (add_le_add_left (norm_add_le _ _) _) _
     have h3 : ‖E.inner x x‖ + ‖E.inner x y‖ + ‖E.inner y x‖ + ‖E.inner y y‖
         ≤ E.norm x ^ 2 + E.norm x * E.norm y + E.norm y * E.norm x
           + E.norm y ^ 2 := by
@@ -280,7 +294,7 @@ theorem norm_sum_le {ι : Type*} (s : Finset ι) (f : ι → E.carrier) :
   · simp
   · intro i s hi ih
     rw [Finset.sum_insert hi, Finset.sum_insert hi]
-    exact le_trans (E.norm_add_le _ _) (add_le_add_left ih _)
+    exact le_trans (E.norm_add_le _ _) (add_le_add_right ih _)
 
 /-! ## Packaging
 
@@ -290,7 +304,7 @@ instance --- the module is data, so the norm cannot be found by instance
 search --- and it is used by naming it with `letI` at the point of use. -/
 
 /-- The carrier of a Hilbert C⋆-module, as a normed additive group. -/
-noncomputable def toNormedAddCommGroup : NormedAddCommGroup E.carrier :=
+@[reducible] noncomputable def toNormedAddCommGroup : NormedAddCommGroup E.carrier :=
   letI : Norm E.carrier := ⟨E.norm⟩
   have core : NormedSpace.Core ℂ E.carrier :=
     { norm_nonneg := E.norm_nonneg
@@ -307,6 +321,7 @@ Its norm is the C⋆-norm.  This is the compatibility statement that lets an
 estimate proved for a general module be read as an estimate in `B`, and it is
 the C⋆-identity again. -/
 
+omit [PartialOrder B] [StarOrderedRing B] in
 @[simp] theorem selfModule_norm (b : B) : (selfModule B).norm b = ‖b‖ := by
   rw [CStarModule.norm_def, selfModule_inner, CStarRing.norm_star_mul_self,
     Real.sqrt_mul_self (norm_nonneg b)]
