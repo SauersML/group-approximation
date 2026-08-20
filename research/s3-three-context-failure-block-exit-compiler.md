@@ -22,7 +22,7 @@ HS squared norm.  The construction must satisfy:
    mass at most `s`;
 4. fixed hard-word bridges send every failure atom, after analytic compression
    by the forbidden packet support, to a fresh E5 first-hit layer with
-   polynomial word loss; and
+polynomial word loss; and
 5. the fourth grandchild and all positive parts of the first three form the
    next prefix carrier, which still reduces the original BCS words.
 
@@ -34,6 +34,11 @@ The key change from the failed joint-selector formulation is that the failure
 operators need not be relator defects.  They are orthogonal HS vectors routed
 to the summable reservoir.  Analytic compression by the forbidden atom
 removes allowed sectors exactly as in `(PHS2)`.
+
+For the concrete endpoint choice, use
+`s3-radical-affine-contexts-have-five-fourths-floor`.  Its context masses are
+exactly `s/2,s/4,s/2`, so every context fits in one grandchild and the lower
+exit sum has `s/4` slack beyond the abstract marginal floor.
 
 ## Attempts
 
