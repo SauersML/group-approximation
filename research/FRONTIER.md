@@ -2051,15 +2051,15 @@ wreath-compression-mf-radical [✓] Exact MF radicals of compression wreath prod
 
 ## Recently touched
 
+- 2026-08-20 · schur-toeplitz-root-mark-is-fd-invisible [ESTABLISHED] The Schur Toeplitz root mark is nontrivial but invisible in every finite-dimensional unitary representation
+- 2026-08-20 · schur-toeplitz-envelope-has-proper-self-embedding [ESTABLISHED] The packet-headed Toeplitz envelope has an explicit proper unital self-embedding
+- 2026-08-20 · nonhyperlinear-via-schur-toeplitz-root-defect [OPEN] Promote the Schur predicate density by identifying it with a Toeplitz root defect
+- 2026-08-20 · hs-schur-toeplitz-root-defect-collapse [OPEN] Toeplitz direct finiteness kills the Schur root mark in normalized-HS microstates
 - 2026-08-20 · same-context-s3-endpoint-atlas [OPEN] Derive a finite-dimensional-only V4 exit-capacity law around one fixed BCS context
 - 2026-08-20 · full-v4-latent-coordinate-has-an-operator-five-fourths-floor [ESTABLISHED] The synchronized V4 radical coordinate has an exact operator five-fourths failure floor
 - 2026-08-20 · fixed-scale-contextual-multiplicity-holonomy [OPEN] Return contextual Schur-Clifford multiplicity surplus to the same fixed packet scale
 - 2026-08-20 · fixed-bcs-local-s3-atlas-route [OPEN] Collapse the return problem to one finite-dimensional V4 exit-capacity cell per context
-- 2026-08-20 · five-fourths-projection-surplus-routing-proof [COMPLETE] Compare traces of projection transports against the parent exit capacity
-- 2026-08-20 · five-fourths-projection-surplus-pays-linear-hs-energy [ESTABLISHED] The synchronized V4 five-fourths surplus pays linear Hilbert--Schmidt routing energy
-- 2026-08-20 · exact-five-fourths-return-canonical-trace-proof [COMPLETE] Apply canonical-trace conservation to an exact five-fourths return
-- 2026-08-20 · exact-five-fourths-projection-return-collapses-the-packet [ESTABLISHED] An exact stable-letter return of the five-fourths blocks cannot preserve the finite packet
 
 ## Active claims
 
-- 🔒 toeplitz-tail-retains-contextual-schur-density — 210m13s remaining
+- 🔒 toeplitz-tail-retains-contextual-schur-density — 207m49s remaining

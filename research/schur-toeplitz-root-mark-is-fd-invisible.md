@@ -21,7 +21,7 @@ H_f=<Gamma_f,t | t g t^-1=alpha(g), g in S_Gamma>,
 w_f=x_12(P_f).                                             (STR1)
 ```
 
-Then `H_f` is finitely presented, `w_f!=1`, and every finite-dimensional
+Then `H_f` is finitely generated and recursively presented, `w_f!=1`, and every finite-dimensional
 unitary representation `rho:H_f->U(d)` satisfies
 
 ```text
@@ -39,9 +39,10 @@ put every `x_ij(I)` in `ker(rho)`. By
 
 The root element is the nonidentity elementary matrix `1+E_12P_f` in the
 base. The base embeds in the ascending HNN extension because `alpha` is
-injective, so it remains nontrivial in `H_f`. Finite presentation follows
-from finite presentation of `R_f` and `EL_5(R_f)`, plus one stable letter and
-one conjugacy relation for each fixed base generator.
+injective, so it remains nontrivial in `H_f`. Finite generation and recursive
+presentation follow from the finite ring presentation, effective elementary
+matrix arithmetic, and one stable letter. The statement deliberately does
+not claim finite presentation of the elementary quotient.
 
 Thus `(H_f,w_f)` is an explicit relative minimally-almost-periodic pair whose
 distinguished word is exactly the nonlinear Schur orientation. The remaining

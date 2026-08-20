@@ -11,13 +11,15 @@ requires:
   - hs-schur-toeplitz-root-defect-collapse
 ---
 
-Take the explicit finitely presented ascending HNN group and nontrivial root
+Take the explicit finitely generated recursively presented ascending HNN group and nontrivial root
 word `(H_f,w_f)` from the algebraic claims. The normalized-HS collapse theorem
 forces every asymptotic representation to send `w_f` to the identity. If
 `H_f` were hyperlinear, its canonical delta trace would admit microstates;
 because `w_f!=1` has order `p`, those microstates keep it a fixed positive
 distance from the identity, contradicting the collapse. Hence `H_f` is an
-explicit nonhyperlinear group.
+explicit nonhyperlinear group. If a finite presentation is desired, embed
+`H_f` effectively in a finitely presented group by Higman's theorem; the
+overgroup is nonhyperlinear by subgroup closure.
 
 This route is the coefficient-root version of trace promotion: the scale-free
 Schur orientation is not imposed by a direct group relator. It is made equal

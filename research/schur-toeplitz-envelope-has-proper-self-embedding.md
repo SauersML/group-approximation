@@ -35,5 +35,9 @@ injective. Its image cannot contain `P_f`: if `sigma(a)=P_f`, applying the
 left inverse gives `a=yP_fx=0`, contradicting `P_f!=0`.
 
 Entrywise application gives a proper injective endomorphism of
-`EL_5(R_f)`. Hence its ascending HNN extension is finitely presented and
-contains the base group by Britton normal form.
+`EL_5(R_f)`. Hence its ascending HNN extension is finitely generated,
+recursively presented, and contains the base group by Britton normal form.
+No finite presentation of `EL_5(R_f)` is asserted here: the pinned
+Krstic--McCool theorem in Cairn concerns the Steinberg cover, while passing
+to the elementary quotient may introduce a kernel not known to be finitely
+normally generated.

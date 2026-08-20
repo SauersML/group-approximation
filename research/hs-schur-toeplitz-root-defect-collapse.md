@@ -11,15 +11,23 @@ distinct_from:
   toeplitz-tail-retains-contextual-schur-density: that asks for a conditional-expectation survive-or-recurse theorem for packet commutants; this asks for the equivalent coefficient-root defect to disappear directly.
 ---
 
-OPEN. For the explicit ascending-HNN presentation and word
+OPEN. For the explicit finitely generated recursive ascending-HNN
+presentation and word
 
 ```text
 (H_f,w_f)=(EL_5(R_f)*_alpha,x_12(P_f))
 ```
 
-from `schur-toeplitz-root-mark-is-fd-invisible`, prove a dimension-free
-modulus `omega(epsilon)->0` such that every normalized-HS
-`epsilon`-representation on the defining generators satisfies
+from `schur-toeplitz-root-mark-is-fd-invisible`, prove first the qualitative
+ultraproduct statement that every homomorphism
+
+```text
+Phi:H_f->U(product_omega M_(d_n))
+```
+
+satisfies `Phi(w_f)=1`. A sufficient stronger form is a finite-window modulus
+`omega(epsilon)->0` such that every normalized-HS
+`epsilon`-representation on that window satisfies
 
 ```text
 ||phi(w_f)-1||_2 <= omega(epsilon).                         (HST1)
@@ -52,10 +60,13 @@ through roots. The unresolved step is a dimension-free weighted substitute
 for intersecting all root kernels, or equivalently a first-hit decomposition
 whose discarded root-character masses are summable.
 
-Establishing `(HST1)` makes `H_f` nonhyperlinear: hyperlinearity would give
+The qualitative statement already makes `H_f` nonhyperlinear: hyperlinearity would give
 microstates converging to the canonical delta trace, while the nontrivial
 order-`p` word `w_f` has fixed positive delta-trace distance from the
-identity.
+identity. Higman's embedding theorem then puts this finitely generated
+recursively presented nonhyperlinear group inside a finitely presented
+overgroup, which is also nonhyperlinear because hyperlinearity passes to
+subgroups.
 
 Mandatory falsification test: the argument must use the one-sided relation
 and the strict defect `P_f`. Any proof based only on the finite packet and

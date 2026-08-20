@@ -34,10 +34,18 @@ sigma(a)=xay+epsilon(a)P_f
 
 is a proper injective unital endomorphism satisfying
 `sigma^n(P_f)=e_n`. Entrywise application to `EL_5(R_f)` therefore gives an
-explicit finitely presented ascending HNN group `H_f` in which all root
+explicit finitely generated recursively presented ascending HNN group `H_f` in which all root
 defect cells are conjugates of the base cell. The exact finite-dimensional
 invisibility theorem persists after adjoining the stable letter, while
 Britton normal form preserves the nontrivial marked root.
+
+This formulation is intentional. Cairn's pinned finite-presentation theorem
+applies to the Steinberg cover, while injectivity of the self-map is immediate
+for the elementary matrix group. We do not silently assume that the Steinberg
+`K_2` kernel behaves functorially enough to embed its ascending HNN base, or
+that the elementary quotient kernel is finitely normally generated. Once
+`H_f` is proved nonhyperlinear, an effective Higman embedding gives a
+finitely presented nonhyperlinear overgroup.
 
 The finite prefixes also retain the entire forbidden coefficient algebra.
 For `A_f^-=P_fk[B_f]P_f`, the first `N` sites are
