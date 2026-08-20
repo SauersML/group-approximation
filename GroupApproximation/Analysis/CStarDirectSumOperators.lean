@@ -36,11 +36,12 @@ namespace HilbertModule
 
 open OrderZero
 
-universe v w w'
+universe v w w' w₂ w₃
 
 variable {B : Type v} [NonUnitalCStarAlgebra B] [PartialOrder B]
   [StarOrderedRing B]
 variable {E : CStarModule.{v, w} B} {F : CStarModule.{v, w'} B}
+variable {E' : CStarModule.{v, w₂} B} {F' : CStarModule.{v, w₃} B}
 
 /-! ## The norm of a pair -/
 
@@ -150,34 +151,39 @@ theorem isBounded_sndProj : (sndProj E F).IsBounded :=
 
 /-! ## The diagonal operator -/
 
-/-- **`S ⊞ T`**, acting entrywise on a direct sum. -/
-def prodMap (S : Adjointable E E) (T : Adjointable F F) :
-    Adjointable (prod E F) (prod E F) where
+/-- **`S ⊞ T`**, acting entrywise on a direct sum.
+
+Stated between *different* pairs of modules, not only as an endomorphism: a
+unitary equivalence of Kasparov bimodules is a unitary `E ≅ E'`, and the
+direct sum of two of them is `U ⊞ V`. -/
+def prodMap (S : Adjointable E E') (T : Adjointable F F') :
+    Adjointable (prod E F) (prod E' F') where
   toFun p := (S.toFun p.1, T.toFun p.2)
   adj p := (S.adj p.1, T.adj p.2)
   inner_adj p q := by
-    show E.inner (S.toFun p.1) q.1 + F.inner (T.toFun p.2) q.2
+    show E'.inner (S.toFun p.1) q.1 + F'.inner (T.toFun p.2) q.2
         = E.inner p.1 (S.adj q.1) + F.inner p.2 (T.adj q.2)
     rw [S.inner_adj, T.inner_adj]
 
-@[simp] theorem prodMap_toFun (S : Adjointable E E) (T : Adjointable F F)
+@[simp] theorem prodMap_toFun (S : Adjointable E E') (T : Adjointable F F')
     (p : E.carrier × F.carrier) :
     (prodMap S T).toFun p = (S.toFun p.1, T.toFun p.2) := rfl
 
-theorem IsBoundedBy.prodMap {S : Adjointable E E} {T : Adjointable F F}
+theorem IsBoundedBy.prodMap {S : Adjointable E E'} {T : Adjointable F F'}
     {C D : ℝ} (hS : S.IsBoundedBy C) (hT : T.IsBoundedBy D) (hC : 0 ≤ C)
     (hD : 0 ≤ D) : (Adjointable.prodMap S T).IsBoundedBy (C + D) := by
   intro p
-  show (prod E F).norm (S.toFun p.1, T.toFun p.2) ≤ (C + D) * (prod E F).norm p
-  calc (prod E F).norm (S.toFun p.1, T.toFun p.2)
-      ≤ E.norm (S.toFun p.1) + F.norm (T.toFun p.2) := norm_prod_le _
+  show (prod E' F').norm (S.toFun p.1, T.toFun p.2)
+      ≤ (C + D) * (prod E F).norm p
+  calc (prod E' F').norm (S.toFun p.1, T.toFun p.2)
+      ≤ E'.norm (S.toFun p.1) + F'.norm (T.toFun p.2) := norm_prod_le _
     _ ≤ C * E.norm p.1 + D * F.norm p.2 := add_le_add (hS p.1) (hT p.2)
     _ ≤ C * (prod E F).norm p + D * (prod E F).norm p :=
         add_le_add (mul_le_mul_of_nonneg_left (norm_fst_le p) hC)
           (mul_le_mul_of_nonneg_left (norm_snd_le p) hD)
     _ = (C + D) * (prod E F).norm p := by ring
 
-theorem IsBounded.prodMap {S : Adjointable E E} {T : Adjointable F F}
+theorem IsBounded.prodMap {S : Adjointable E E'} {T : Adjointable F F'}
     (hS : S.IsBounded) (hT : T.IsBounded) :
     (Adjointable.prodMap S T).IsBounded := by
   obtain ⟨C, hC, hSb⟩ := hS
@@ -215,24 +221,24 @@ Kasparov module needs them by name, not because they need proof. -/
 
 /-- `S ⊞ T` is, pointwise, `ι₁ S p₁ + ι₂ T p₂`.  Stated pointwise, which is
 all that `IsCompactOp.congr` needs. -/
-theorem prodMap_apply (S : Adjointable E E) (T : Adjointable F F)
+theorem prodMap_apply (S : Adjointable E E') (T : Adjointable F F')
     (p : E.carrier × F.carrier) :
     (Adjointable.prodMap S T).toFun p
-      = (((inl E F).comp (S.comp (fstProj E F))).add
-          ((inr E F).comp (T.comp (sndProj E F)))).toFun p := by
+      = (((inl E' F').comp (S.comp (fstProj E F))).add
+          ((inr E' F').comp (T.comp (sndProj E F)))).toFun p := by
   show (S.toFun p.1, T.toFun p.2)
-      = (S.toFun p.1, (0 : F.carrier)) + ((0 : E.carrier), T.toFun p.2)
+      = (S.toFun p.1, (0 : F'.carrier)) + ((0 : E'.carrier), T.toFun p.2)
   rw [Prod.mk_add_mk, add_zero, zero_add]
 
 /-- **A direct sum of finite-rank operators has finite rank.**  Through the
 same decomposition: `ι₁Sp₁` and `ι₂Tp₂` are finite rank because the
 finite-rank operators are an ideal, and their sum is finite rank. -/
-theorem IsFiniteRank.prodMap {S : Adjointable E E} {T : Adjointable F F}
+theorem IsFiniteRank.prodMap {S : Adjointable E E'} {T : Adjointable F F'}
     (hS : S.IsFiniteRank) (hT : T.IsFiniteRank) :
     (Adjointable.prodMap S T).IsFiniteRank :=
   IsFiniteRank.congr (fun p => (prodMap_apply S T p).symm)
-    (((hS.comp_right (fstProj E F)).comp_left (inl E F)).add
-      ((hT.comp_right (sndProj E F)).comp_left (inr E F)))
+    (((hS.comp_right (fstProj E F)).comp_left (inl E' F')).add
+      ((hT.comp_right (sndProj E F)).comp_left (inr E' F')))
 
 /-- **A direct sum of compact operators is compact.**
 
@@ -240,7 +246,7 @@ This is the statement that makes the direct sum of two Kasparov modules a
 Kasparov module, hence the addition of `KK(A,B)`.  It is proved from the ideal
 property alone: `ι₁Sp₁` is compact because `S` is and `ι₁`, `p₁` are bounded,
 and `𝓚(E ⊞ F)` is closed under sums. -/
-theorem IsCompactOp.prodMap {S : Adjointable E E} {T : Adjointable F F}
+theorem IsCompactOp.prodMap {S : Adjointable E E'} {T : Adjointable F F'}
     (hS : S.IsCompactOp) (hT : T.IsCompactOp) :
     (Adjointable.prodMap S T).IsCompactOp :=
   IsCompactOp.congr (fun p => (prodMap_apply S T p).symm)
