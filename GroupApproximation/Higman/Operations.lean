@@ -116,44 +116,44 @@ structure OperationClosures where
   /-- Higman's base case `S`. -/
   base : BenignTF (Seq.ASub Seq.Sset)
   /-- Closure under `ρ`. -/
-  rho : ∀ B : Set E, BenignTF (Seq.ASub B) → BenignTF (Seq.ASub (Seq.rhoOp B))
+  rho : ∀ B : Set Seq.E, BenignTF (Seq.ASub B) → BenignTF (Seq.ASub (Seq.rhoOp B))
   /-- Closure under `τ`. -/
-  tau : ∀ B : Set E, BenignTF (Seq.ASub B) → BenignTF (Seq.ASub (Seq.tauOp B))
+  tau : ∀ B : Set Seq.E, BenignTF (Seq.ASub B) → BenignTF (Seq.ASub (Seq.tauOp B))
   /-- Closure under `θ`. -/
-  theta : ∀ B : Set E, BenignTF (Seq.ASub B) → BenignTF (Seq.ASub (Seq.thetaOp B))
+  theta : ∀ B : Set Seq.E, BenignTF (Seq.ASub B) → BenignTF (Seq.ASub (Seq.thetaOp B))
   /-- Closure under `ζ`. -/
-  zeta : ∀ B : Set E, BenignTF (Seq.ASub B) → BenignTF (Seq.ASub (Seq.zetaOp B))
+  zeta : ∀ B : Set Seq.E, BenignTF (Seq.ASub B) → BenignTF (Seq.ASub (Seq.zetaOp B))
   /-- Closure under `π`. -/
-  pi : ∀ B : Set E, BenignTF (Seq.ASub B) → BenignTF (Seq.ASub (Seq.piOp B))
+  pi : ∀ B : Set Seq.E, BenignTF (Seq.ASub B) → BenignTF (Seq.ASub (Seq.piOp B))
   /-- Closure under `ωₘ`. -/
-  omega : ∀ (m : ℕ) (B : Set E), BenignTF (Seq.ASub B) →
+  omega : ∀ (m : ℕ) (B : Set Seq.E), BenignTF (Seq.ASub B) →
     BenignTF (Seq.ASub (Seq.omegaOp m B))
 
 /-- The three closures this repository proves, in the torsion-free form. -/
-theorem benignTF_ASub_inter {B B' : Set E} (h : BenignTF (Seq.ASub B))
+theorem benignTF_ASub_inter {B B' : Set Seq.E} (h : BenignTF (Seq.ASub B))
     (h' : BenignTF (Seq.ASub B')) : BenignTF (Seq.ASub (B ∩ B')) := by
   rw [Seq.ASub_inter]
   exact BenignTF.inf h h'
 
-theorem benignTF_ASub_union {B B' : Set E} (h : BenignTF (Seq.ASub B))
+theorem benignTF_ASub_union {B B' : Set Seq.E} (h : BenignTF (Seq.ASub B))
     (h' : BenignTF (Seq.ASub B')) : BenignTF (Seq.ASub (B ∪ B')) := by
   letI : Group.FG Conj.F₃ :=
     ProductFinitePresentation.fg_of_isFinitelyPresented Conj.F₃
   rw [Seq.ASub_union]
   exact BenignTF.sup h h'
 
-theorem benignTF_ASub_sigmaOp {B : Set E} (h : BenignTF (Seq.ASub B)) :
+theorem benignTF_ASub_sigmaOp {B : Set Seq.E} (h : BenignTF (Seq.ASub B)) :
     BenignTF (Seq.ASub (Seq.sigmaOp B)) := by
   have hmap : Seq.ASub (Seq.sigmaOp B)
       = (Seq.ASub B).comap (Seq.shiftEquiv.symm).toMonoidHom := by
-    rw [Seq.ASub_sigmaOp, ← Seq.shiftEquiv_toMonoidHom,
-      Subgroup.map_equiv_eq_comap_symm]
+    rw [Seq.ASub_sigmaOp, ← Seq.shiftEquiv_toMonoidHom]
+    exact Subgroup.map_equiv_eq_comap_symm' Seq.shiftEquiv (Seq.ASub B)
   rw [hmap]
   exact BenignTF.congr Seq.shiftEquiv.symm h
 
 /-- **The induction.**  With the base cases and the closures, every set Higman
 builds has a benign subgroup, with a torsion-free witness. -/
-theorem benignTF_of_higmanGenerated (h : OperationClosures) {B : Set E}
+theorem benignTF_of_higmanGenerated (h : OperationClosures) {B : Set Seq.E}
     (hB : Seq.HigmanGenerated B) : BenignTF (Seq.ASub B) := by
   induction hB with
   | zero => exact Seq.benignTF_ASub_Zset

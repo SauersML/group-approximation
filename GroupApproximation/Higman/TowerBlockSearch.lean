@@ -62,6 +62,8 @@ theorem evalRaw_quotient_eq_one_iff_towerCheck (w : RawWord) :
         certCheck c (blockWord w c) L = true :=
     forall_congr' fun c => imp_congr_right fun _ =>
       towerDeriv_iff_exists_certCheck c (blockWord w c)
+  change (∀ c ∈ blockList w, ∃ i : ℕ,
+      TowerDeriv (codedGen c) i (blockWord w c)) ↔ _
   rw [h]
   refine (forall_mem_exists_iff_exists_lookup (blockList w)
     (fun c L ↦ certCheck c (blockWord w c) L)).trans ?_
@@ -81,12 +83,11 @@ theorem primrec_towerCheck : Primrec₂ towerCheck := by
     · exact Primrec.eq.comp (Primrec.fst.comp Primrec.fst)
         (Primrec.fst.comp Primrec.snd)
     · refine Primrec.eq.comp ?_ (Primrec.const true)
-      refine primrec_certCheck.comp ?_
-      exact Primrec.pair
+      exact primrec_certCheck.comp (Primrec.pair
         (Primrec.pair (Primrec.fst.comp Primrec.snd)
           (primrec_blockWord.comp (Primrec.snd.comp Primrec.snd)
             (Primrec.fst.comp Primrec.snd)))
-        (Primrec.snd.comp Primrec.fst)
+        (Primrec.snd.comp Primrec.fst))
   have hex : PrimrecRel fun (L : List (PresentationCode × List Entry))
       (y : PresentationCode × RawWord) ↦
         ∃ q ∈ L, q.1 = y.1 ∧ certCheck y.1 (blockWord y.2 y.1) q.2 = true :=
@@ -102,11 +103,14 @@ theorem primrec_towerCheck : Primrec₂ towerCheck := by
           certCheck c (blockWord x.1 c) q.2 = true :=
     PrimrecRel.forall_mem_list hT
   have hP : PrimrecPred fun x : RawWord × List (PresentationCode × List Entry) ↦
-      TowerSolves x.1 x.2 :=
-    PrimrecRel.comp hF (primrec_blockList.comp Primrec.fst) Primrec.id
+      TowerSolves x.1 x.2 := by
+    unfold TowerSolves
+    exact PrimrecRel.comp hF (primrec_blockList.comp Primrec.fst) Primrec.id
   haveI : DecidablePred fun x : RawWord × List (PresentationCode × List Entry) ↦
       TowerSolves x.1 x.2 := fun x ↦ towerSolves_decidable x.1 x.2
-  exact hP.decide.of_eq fun _ ↦ rfl
+  exact hP.decide.of_eq fun _ ↦ by
+    unfold towerCheck
+    exact decide_eq_decide.mpr Iff.rfl
 
 /-! ## 3.  (B2) -/
 
@@ -117,7 +121,7 @@ search whose matrix is `towerCheck`.
 This is Chiodo's Proposition 3.8 at the absorber, and with
 `Higman.recursivePresentationPCDirectSum` it discharges input (B) of
 `Higman.Program`. -/
-def recursivePresentationPCAbsorberFull : RecursivePresentation PCAbsorber where
+noncomputable def recursivePresentationPCAbsorberFull : RecursivePresentation PCAbsorber where
   gen := quotientGen pcGen
   spans := spans_quotientGen spans_pcGen
   re := (rePred_exists_eq_true primrec_towerCheck.to_comp).of_eq fun w ↦
