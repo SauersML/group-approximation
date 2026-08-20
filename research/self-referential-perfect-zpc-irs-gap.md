@@ -3,6 +3,9 @@ rg: 2
 id: self-referential-perfect-zpc-irs-gap
 kind: claim
 title: A computably specified TailoredMIP fixed point has perfect ZPC-IRS value and a quantum gap
+distinct_from:
+  perfect-zpc-irs-quantum-gap-game: That theorem extracts some soundness instance by contradiction; this one selects a particular instance effectively by self-reference.
+  explicit-zpc-irs-gap-game-witness: That target asks for the finite game table to be literally materialized and audited; this theorem gives an effective finite specification but deliberately leaves that extraction separate.
 ---
 
 Fix once and for all an acceptable numbering of Turing machines, the effective
