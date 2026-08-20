@@ -75,3 +75,11 @@ words such that:
   projections.  Any proposed discharge that is an exact trace inequality is
   ruled out by the regular representation; a viable one must exploit finite
   multiplicity holonomy or send the blocks into a recurrent exit ledger.
+- A seemingly stronger matrix-valued repair is circular: attach an infinite
+  overgroup of the child packet which robustly excludes the child type carried
+  by a failure block.  By
+  `finite-subgroup-type-exclusion-is-already-nonhyperlinearity`, exclusion of
+  one irreducible type of an embedded finite subgroup already makes that
+  overgroup nonhyperlinear, since its canonical restriction contains the
+  type at positive Plancherel weight.  The desired cell must allow every
+  local regular type and obstruct only their **joint contextual coupling**.
