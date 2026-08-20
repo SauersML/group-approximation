@@ -102,6 +102,12 @@ regular Bass--Serre reservoir.
   polynomial tail from a later selected iterate leaks into an earlier degree
   reservoir.  Spectral first-hit localization is still needed because one
   additive character can be nontrivial on several bands.
+- `every-high-free-root-valuation-has-a-rank-one-e5-detector` closes the gaps
+  inside those bands.  Given valuation `r>=2`, scale the `p` half by a monomial
+  so a dyadic pulse's unique top coefficient lands at degree `r`.  The
+  resulting fixed group words evaluate to exactly `e_13^*` on that Fourier
+  layer and have quadratic word cost.  Valuations zero and one form only a
+  fixed finite exceptional packet.
 - `free-root-top-boundary-reservoir-is-summable` proves the required capacity
   theorem for those degree labels: the mass first detected at successive
   degrees telescopes and has total at most one on a unit carrier.  Literal
@@ -119,10 +125,12 @@ regular Bass--Serre reservoir.
   coefficient-character valuation `n`, its entire squared norm is exactly
   the `n`th boundary mass.
 - The word-level realization and exact valuation calculation are now closed.
-  The missing step is quantitative persistence of the baseline relative-Pauli
-  module under approximate conjugation: after exactifying each finite root
-  stage, the hard intertwiner must retain a fixed fraction of its mass until
-  it emits into the `4n-2` boundary, with only polynomial word error.  Once
-  this estimate is proved, localization and boundary summability give `(PRC1)`.
+  The missing step is quantitative persistence and endpoint sharing of the
+  baseline relative-Pauli module under approximate conjugation: after
+  exactifying each finite root stage and decomposing by valuation, the three
+  contextual transports must act on the same valuation carrier and retain a
+  fixed fraction of its mass until the rank-one detector charges it.  The
+  detector word cost is already polynomial.  Once this common-carrier estimate
+  is proved, localization and boundary summability give `(PRC1)`.
   A merely decreasing first-hit process is insufficient: it admits a
   geometric reservoir and does not force collapse.
