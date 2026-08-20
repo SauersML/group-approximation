@@ -32,11 +32,13 @@ simultaneous syntax and completeness properties.
    word `w` corresponding to `x_D` is nonidentity.
 
 The packet predicates are oriented to equal one on propagation-satisfying
-assignments. In the exact BCS representation all supported selector sectors
-therefore have the same enlarged spin dimension, so local packet extensions
-exist. Clause 5 must nevertheless be proved for the **joint** amalgam: local
-extensions cannot simply be declared compatible with the whole
-Toeplitz--Steinberg representation.
+assignments. Exact context-local packet extensions preserving the marked BCS
+word are supplied by
+`context-local-schur-packet-marked-extension`; they do not
+require supported sectors to have equal finite dimension, because infinite
+multiplicity absorbs every fixed packet size. Clause 5 must nevertheless be
+proved for the **joint** amalgam: those local extensions cannot simply be
+declared compatible with the whole Toeplitz--Steinberg return representation.
 
 Literal identification `t=U` is impossible: `U` is a product of two
 involutions and is therefore conjugate to its inverse, whereas the strict HNN
