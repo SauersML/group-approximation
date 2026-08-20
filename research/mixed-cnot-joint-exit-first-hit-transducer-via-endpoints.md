@@ -27,3 +27,10 @@ group-relator certificate identifying the three contextual failures with the
 active/exit projections in `(MCF1)` while leaving the allowed `K=+1` sector
 zero-energy.  That certificate, not another finite rank search, is the sole
 content still open in this route.
+
+This route is now closed negatively:
+`embedded-packet-projection-has-no-relator-ideal-certificate` proves that a
+nonzero failure projection in the embedded router packet cannot be a sum of
+defining-relator defects. The surviving construction must retain the failure
+mass and pay only for routing it into a globally capacity-limited family, as
+in the synchronized full-V4 route.

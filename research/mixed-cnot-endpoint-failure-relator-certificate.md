@@ -28,11 +28,26 @@ No such certificate is proved yet.  A scalar word in `K,b` is forbidden by
 the two false-support tests recorded in that target; the certificate must use
 the full endpoint transports.
 
+This target is now refuted in its stated relator-ideal form.
+`mixed-central-router-adjoins-without-collapsing-packet` embeds the finite
+router packet, and each named failure block is a nonzero packet projection on
+one of its marked simples. By
+`embedded-packet-projection-has-no-relator-ideal-certificate`, an identity
+`(MEF1)` would make that projection zero in the group algebra. The left
+regular representation gives the same contradiction analytically: every
+relator defect vanishes while the packet projection has positive `L^2` norm.
+
+The repair is not a more elaborate elimination certificate. The failure
+blocks must remain positive source mass and be transported into a globally
+capacity-limited exit family. This is the role of
+`full-v4-latent-coordinate-has-an-operator-five-fourths-floor` and
+`global-v4-exit-capacity-is-cross-gram-curvature`.
+
 ## Attempts
 
 - Direct expansion in the commuting signs `K,b` recreates the nonlinear AND
   and cannot be a group word.
-- The next attack is to write the three block operators using the router
-  stable letters and eliminate their shared endpoint projections, exactly as
-  `c18-source-cut-has-sparse-relator-certificate` eliminated ordered C18
-  atoms.  The relevant free-algebra certificate has not yet been found.
+- **Sparse relator elimination. Impossible.** Unlike the C18 difference,
+  which is zero as a Boolean operator identity, a contextual failure block is
+  a nonzero projection of the injectively embedded router packet. It cannot
+  lie in the defining-relator ideal.

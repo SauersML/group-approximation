@@ -45,6 +45,12 @@ operators need not be relator defects.  They are orthogonal HS vectors routed
 to the summable reservoir.  Analytic compression by the forbidden atom
 removes allowed sectors exactly as in `(PHS2)`.
 
+This distinction is forced, not optional:
+`embedded-packet-projection-has-no-relator-ideal-certificate` proves that a
+nonzero failure projection of the embedded finite packet cannot itself be a
+sparse defining-relator defect. Only its leakage or overlap after transport
+can be charged.
+
 For the concrete endpoint choice, use
 `s3-radical-affine-contexts-have-five-fourths-floor`.  Its context masses are
 exactly `s/2,s/4,s/2`, so every context fits in one grandchild and the lower
