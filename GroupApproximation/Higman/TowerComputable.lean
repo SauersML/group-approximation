@@ -47,6 +47,7 @@ theorem primrec_rawPow : Primrec₂ fun (v : RawWord) (n : ℕ) ↦ rawPow v n :
       (Primrec.list_map (Primrec.list_range.comp Primrec.snd)
         (Primrec.fst.comp Primrec.fst).to₂)
   refine h.of_eq fun x ↦ ?_
+  change ((List.range x.2).map fun _ ↦ x.1).flatten = rawPow x.1 x.2
   rw [rawPow_eq, List.map_const', List.length_range]
 
 theorem invRaw_eq (u : RawWord) :
@@ -78,6 +79,9 @@ theorem primrec_conjWord :
 
 /-! ## 2.  The entry check -/
 
+local instance entryPrimcodable : Primcodable Entry := inferInstance
+
+set_option maxSynthPendingDepth 1000 in
 theorem primrecRel_entryOk :
     PrimrecRel fun (e : Entry) (y : PresentationCode × List Entry) ↦
       EntryOk y.1 y.2 e := by
@@ -129,8 +133,9 @@ theorem primrecRel_entryOk :
       (primrec_invRaw.comp (Primrec.fst.comp (Primrec.snd.comp Primrec.fst)))
 
 theorem primrecPred_certOk :
-    PrimrecPred fun y : PresentationCode × List Entry ↦ CertOk y.1 y.2 :=
-  PrimrecRel.comp (PrimrecRel.forall_mem_list primrecRel_entryOk)
+    PrimrecPred fun y : PresentationCode × List Entry ↦ CertOk y.1 y.2 := by
+  unfold CertOk
+  exact PrimrecRel.comp (PrimrecRel.forall_mem_list primrecRel_entryOk)
     Primrec.snd Primrec.id
 
 /-! ## 3.  The search matrix -/
@@ -153,7 +158,9 @@ theorem primrec_certCheck :
       (Primrec.pair (Primrec.fst.comp Primrec.fst) Primrec.snd)
   haveI : DecidablePred fun x : (PresentationCode × RawWord) × List Entry ↦
       (CertOk x.1.1 x.2 ∧ ∃ e ∈ x.2, e.2.1 = x.1.2) := fun _ ↦ inferInstance
-  exact (PrimrecPred.and hcert hclaim).decide.of_eq fun _ ↦ rfl
+  exact (PrimrecPred.and hcert hclaim).decide.of_eq fun x ↦ by
+    unfold certCheck
+    exact decide_eq_decide.mpr Iff.rfl
 
 /-! ## 4.  (B2), per code -/
 

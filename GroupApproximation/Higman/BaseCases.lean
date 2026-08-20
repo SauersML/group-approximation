@@ -37,14 +37,12 @@ open GroupApproximation.Higman.Conj
 
 theorem benignTF_ASub_empty : BenignTF (ASub (∅ : Set E)) := by
   rw [ASub_empty]
-  exact benignTF_of_fg isPowerTorsionFree_freeGroup fg_bot
+  exact benignTF_of_fg IsPowerTorsionFree.of_isMulTorsionFree fg_bot
 
 /-! ## 2.  The zero sequence -/
 
 @[simp] theorem elt_zero : elt (0 : E) = 1 := by
-  unfold elt
-  rw [Finsupp.support_zero]
-  rfl
+  simp [elt]
 
 @[simp] theorem bElt_zero : bElt (0 : E) = 1 := by
   unfold bElt
@@ -79,7 +77,7 @@ theorem fg_closure_a : (Subgroup.closure {a}).FG :=
 witness `F₃` is free, hence torsion-free. -/
 theorem benignTF_ASub_Zset : BenignTF (ASub Zset) := by
   rw [ASub_Zset]
-  exact benignTF_of_fg isPowerTorsionFree_freeGroup fg_closure_a
+  exact benignTF_of_fg IsPowerTorsionFree.of_isMulTorsionFree fg_closure_a
 
 theorem benign_ASub_Zset : Benign (ASub Zset) :=
   (benignTF_ASub_Zset).toBenign
