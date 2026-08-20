@@ -96,3 +96,8 @@ problem.
   merely by amplifying the integer rank quantum through a fixed number of
   corner normalizations.  The live form of this attack must give an explicit
   groupification and an amplification-stable positive-density functional.
+  It cannot be a finite character-table theorem through the full depth:
+  `finite-packet-cannot-realize-absorbing-contraction` evaluates that theorem
+  on the negative regular summand and obtains an exact contradiction.  The
+  needed strictness must come from joint ambient holonomy or contextual
+  operator data absent from the finite restriction graph.

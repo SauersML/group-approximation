@@ -40,13 +40,17 @@ which exchanges the two supports.
   Common-scale marked multiplicity is conserved.  Divisibility and arbitrary
   correlation with fresh selector types create further leakage, never the
   required fixed-scale contraction.
-- **Finite restriction-matrix search. Active.**  Because the depth and all
-  packets are fixed, enumerate the exact `K_f` restriction matrices, adjoin
-  candidate proper-corner incidences, and solve for a positive functional
-  which contracts the marked branch sum while assigning nonnegative cost to
-  every complementary type.  A feasible rational certificate is a complete
-  local proof; an infeasibility dual is a theorem-grade stationary-flow
-  obstruction.
+- **Finite restriction-matrix search. Closed for ordinary incidences.**
+  `finite-packet-graph-atlases-have-a-regular-stationary-flow` supplies a
+  strictly positive Plancherel solution to every finite system of subgroup
+  restriction equations, and
+  `finite-packet-cannot-realize-absorbing-contraction` applies the absorbing
+  chain directly to its negative regular summand.  A linear program using
+  only those matrices must therefore return a stationary-flow dual, never a
+  strict contraction certificate.  A candidate "proper-corner incidence" is
+  admissible only after it is realized by an explicit two-cell acting on edge
+  intertwiner multiplicities or by an infinite ambient relation; entering it
+  as an extra linear inequality would assume the missing theorem.
 - **Transverse Pauli completion. Dead when the child line varies.**  Adding
   partners to rebuild a fixed spin factor seems to repair the scale loss, but
   `selector-free-transverse-completion-has-fixed-radical` gives a dichotomy.
@@ -63,4 +67,5 @@ which exchanges the two supports.
   Moreover `fixed-depth-rank-mesh-has-zero-hs-density` rules out a soundness
   floor based only on finite-rank quantization.  The finite restriction-matrix
   search should accept the CNRC incidence only after it is supplied as a
-  complete group table and yields a positive-density separating functional.
+  complete group cell with a nonlocal two-cell and yields a positive-density
+  separating functional not contradicted by the regular stationary flow.

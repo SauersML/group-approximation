@@ -36,7 +36,10 @@ For `K_0=K_1=1`, this gives `n_next/n=4/3` and `lambda=3/4`.
 The computation should be retained as a candidate finite incidence, but it
 does not yet prove the universal type-vector assertion `(A1)`: the repository
 does not contain a finite ordinary-group presentation or a replay script from
-which all exact `J=-1` irreducibles can be enumerated.
+which all exact `J=-1` irreducibles can be enumerated.  More strongly,
+`finite-packet-cannot-realize-absorbing-contraction` proves that no finite
+packet table can satisfy `(A1)--(A3)` through the full absorption depth.  Its
+negative regular summand is an exact finite-dimensional counterrepresentation.
 
 ## 2. First promotion gate: the controlled block is additive
 
@@ -87,17 +90,21 @@ model, as required by `trace-functorial-bcs-signal-groupification-impossible`.
 The proposal contributes a concrete candidate to
 `q-masa-to-fresh-packet-morita-bridge`, with four obligations:
 
-1. give the controlled two-level cell as an explicit ordinary finite or
-   finitely presented group, not only as block matrices;
-2. enumerate **all** marked irreducibles and complementary types;
+1. give the controlled two-level cell as an explicit ordinary group, not
+   only as block matrices;
+2. enumerate every local marked type, while retaining a genuinely global
+   two-cell or holonomy constraint not reducible to a finite restriction
+   graph;
 3. prove an amplification-stable positive-density functional with
    `lambda<1`, rather than an integer mesh discrepancy; and
 4. robustify that fixed finite cell by the existing packet exactification and
    shared-overlap estimates while retaining the marked tracial completeness
    representation.
 
-The reported local model makes obligations 1--2 sharply falsifiable.  If its
-full groupification has an extra stationary type ray, the controlled finite
-route closes negatively.  If it has a rational positive-density separating
-functional, the fixed-depth analytic robustification is already available.
-
+The reported local model makes obligation 1 sharply falsifiable.  A full
+finite restriction graph necessarily has the regular stationary ray, so a
+rational separating functional on that graph alone cannot exist.  A positive
+certificate is meaningful only after an explicit two-cell acts on the edge
+intertwiner multiplicities or an infinite ambient relation supplies the
+nonlocal density inequality.  Once such a certificate exists, the
+fixed-depth analytic robustification is already available.

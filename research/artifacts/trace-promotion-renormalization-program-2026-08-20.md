@@ -238,6 +238,15 @@ cell must expose a genuine positive-density functional across its complete
 marked type table.  The full audit and corrected stopping test are in
 `research/artifacts/controlled-nested-reset-chain-audit-2026-08-20.md`.
 
+There is a further exact stopping test.  A finite packet with nontrivial
+central mark always has a finite-dimensional negative regular summand.
+`finite-packet-cannot-realize-absorbing-contraction` applies the proposed
+zero-error contraction chain to that summand and contradicts the absorbing
+depth.  Therefore the full CNRC theorem cannot come from finite character or
+restriction matrices alone.  Its missing positive-density inequality must be
+a joint ambient two-cell/holonomy statement; this is precisely where the
+trace-promotion content resides.
+
 For the finite-prefix version, the source carrier geometry is now exact.
 `fanizza-doubling-carriers-form-orthogonal-flag` proves that the carrier and
 first-hit projections form one orthogonal flag, so their reflection
