@@ -5,7 +5,6 @@ kind: claim
 title: Every two-player anchored game with entangled value below one has exponential parallel-repetition decay
 distinct_from:
   anchoring-preserves-nonlocal-game-value: that is the exact affine identity for one anchored copy; this is the quantitative all-coordinate repetition theorem.
-  dinur-constraint-gap-amplification: that amplifies classical finite-alphabet constraint graphs with linear size; this controls entangled strategies for repeated two-player games and has different parameters and proof machinery.
   robust-locally-satisfiable-relator-code: that asks for sparse normalized-Hilbert--Schmidt soundness of group relators; this theorem concerns game-winning probability and does not preserve a group ball or compile relators.
 artifacts:
   - research/artifacts/three-paper-cairn-ingestion-2026-08-20.md
