@@ -12,6 +12,7 @@ distinct_from:
   commuting-automorphism-cocycle-forces-multiplicity: that extracts a fixed divisibility condition from a projective square; this gives an amplification-stable distance between nonisomorphic commutant algebras.
   full-center-hnn-transport-cancels-schur-multiplicity: that proves ordinary full-center Pauli restriction loses the ambient rank jump; this retains it through the full packet fusion ring and detects it as Wedderburn block shape.
   support-packet-literal-tensor-covariance-is-blind: that proves no pair of finite tensor coefficients can make the tensor representations themselves allowed-equivalent and forbidden-distinct; this detector survives precisely because it compares their commutant algebras instead.
+  support-packet-paired-word-frame-exposes-forbidden-rank: that replaces the detector's changing abstract commutant summand by four explicit paired packet words and identifies its unique reverse-character escape.
 ---
 
 Let `B_sub` be the order-128 fixed support packet with central basis
@@ -89,3 +90,11 @@ Thus this cell is simultaneously:
 It is the first explicit finite covariance coefficient in the Schur--Clifford
 route that passes the equal-Hilbert-capacity and allowed-sector falsification
 tests.
+
+The changing sixteen-dimensional summand is not merely existential.
+`support-packet-paired-word-frame-exposes-forbidden-rank` gives four fixed
+paired Pauli words spanning `M_2^4` on the plus forbidden sector and `C^16` on
+the minus forbidden sector.  Its exhaustive symbolic audit shows that every
+finite edge-group identification exports `101` to the single reverse
+character `011`.  Thus the remaining compressor problem is orientation of a
+named four-word frame, not selection of an arbitrary Reynolds projection.
