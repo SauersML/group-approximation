@@ -139,6 +139,16 @@ def block_transporter() -> PolyMatrix4:
     )
 
 
+def block_inverse_transporter() -> PolyMatrix4:
+    """Inverse of the block transporter, with two identical S^-1 blocks."""
+    return (
+        (ONE, X, 0, 0),
+        (X, ONE ^ poly_mul(X, X), 0, 0),
+        (0, 0, ONE, X),
+        (0, 0, X, ONE ^ poly_mul(X, X)),
+    )
+
+
 def move_relation(matrix: PolyMatrix4, relation: tuple[int, ...]) -> tuple[int, ...]:
     return tuple(
         reduce(

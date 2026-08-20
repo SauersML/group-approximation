@@ -82,6 +82,13 @@ regular Bass--Serre reservoir.
   `e_03^*+e_12^*`; the hard covector is lost.  The moving coordinate must
   therefore be separated by spectral corners/sites, not merely conjugated as
   global relations.
+- One-sided transport supplies exactly that separation: keep the coefficient
+  packet fixed and transport only the source packet.  The combined relation
+  kernel at level `n` is then `K_0 intersect K_n=K_fixed`, not the normal
+  closure of all `K_n`.  Its commutator matrix has Smith invariants
+  `(1,1,1,c_n,0,0)`, where `c_n=(S^n)_(21)` is monic of degree `2n-1`.
+  Thus the entire rank jump is one additive-character phase at a fresh top
+  coefficient, with no arbitrary corner projection.
 - `free-root-top-boundary-reservoir-is-summable` proves the required capacity
   theorem for those degree labels: the mass first detected at successive
   degrees telescopes and has total at most one on a unit carrier.  Literal
@@ -102,8 +109,8 @@ regular Bass--Serre reservoir.
   free-root coefficient planes with the moving kernel atlas `(K_n)`, and
   prove that the exactified `011`
   intertwiner is fixed by every lower-degree plane word but negated by the
-  new leading word of degree `2n`; this is precisely the assertion that its
-  valuation is `2n`.  One must also prove persistence of the baseline copy
+  new leading word of degree `2n-1`; this is precisely the assertion that its
+  valuation is `2n-1`.  One must also prove persistence of the baseline copy
   with polynomial word error.  Localization, summability, and quantitative
   elementary-shear transport are already formalized.  A merely decreasing
   first-hit process is insufficient: it admits a geometric reservoir and does
