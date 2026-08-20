@@ -7,6 +7,7 @@ target: coherent-sequential-schur-tape-payment
 requires:
   - toeplitz-schur-bcs-shift-amalgam
   - schur-rank-output-is-not-a-scalar-selector
+  - hnn-conjugacy-cannot-return-schur-morita-multiplicity
   - uniform-relative-clifford-tape-cell
   - shared-overlap-controls-packet-multiplicity-vector
   - oriented-schur-restriction-mass-identity
@@ -41,6 +42,12 @@ intersection subspace. Consequently a corner discarded by one polar
 alignment cannot re-enter uncharged through another context: any such return
 changes the next full multiplicity vector and is counted again in `(2)`.
 There is no cyclic choice or holonomy to make.
+
+The incidence used here cannot be an ordinary HNN subgroup conjugacy:
+`hnn-conjugacy-cannot-return-schur-morita-multiplicity` proves that such a
+conjugacy preserves rather than doubles multiplicity. Clause 3 of the open
+shift-amalgam input must therefore supply a proper corner, projective
+cocycle, or other genuinely Morita return before `(2)` can be invoked.
 
 Orient each local rank compiler so its Boolean predicate is `1` exactly on
 the selector sectors satisfying the corresponding propagation relation in

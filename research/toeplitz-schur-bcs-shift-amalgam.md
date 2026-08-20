@@ -58,6 +58,12 @@ amalgam must instead connect the output `A`-module multiplicity of one rank
 gate directly to the input `B`-module multiplicity of the next gate—the
 Morita/restriction incidence used in
 `oriented-schur-restriction-mass-identity`.
+Nor can that incidence be a plain stable-letter conjugacy of finite packet
+subgroups: `hnn-conjugacy-cannot-return-schur-morita-multiplicity` shows that
+unitary conjugacy preserves the very multiplicity which the rank gate must
+double. The word "amalgam" here therefore requires a Toeplitz corner,
+projective-cocycle, or adjoint-channel mechanism beyond a graph of finite
+groups.
 
 ## Attempts
 
@@ -82,3 +88,6 @@ Morita/restriction incidence used in
   selectors, and the Schur gate exposes them only as module multiplicity.
   The active construction must present a finite repeating **bimodule edge**,
   not a new central reflection word.
+- Conjugate the output finite packet subgroup onto the next input packet:
+  invalid. A stable letter gives unitary equivalence of the two restrictions,
+  so their type multiplicities agree instead of acquiring the factor two.
