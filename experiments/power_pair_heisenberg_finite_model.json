@@ -1,0 +1,26 @@
+{
+  "all_checks_pass": true,
+  "generator_commutator": [
+    0,
+    0,
+    1
+  ],
+  "generator_commutator_is_nontrivial": true,
+  "heisenberg_order": 125,
+  "power_pair": [
+    2,
+    3
+  ],
+  "prime": 5,
+  "regular_carrier_size": 15625,
+  "scaling_maps_are_bijective": {
+    "2": true,
+    "3": true
+  },
+  "scaling_maps_are_homomorphisms": {
+    "2": true,
+    "3": true
+  },
+  "stable_permutation_intertwines_every_edge_element": true,
+  "stable_permutation_is_bijective": true
+}
