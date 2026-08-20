@@ -5,7 +5,7 @@ kind: claim
 title: A one-axis pairwise antiphase router is inconsistent on every triangle
 distinct_from:
   affine-source-charts-have-a-disjoint-tag-packing-ceiling: that counts disjoint character packets in one common finite tag group; this is an exact conjugacy-cycle obstruction even when every edge has its own comparison word.
-  fixed-hnn-tag-atlas-has-stationary-type-flow: that uses stationary representation-ring flow in a finite HNN atlas; this is the elementary three-edge sign obstruction for one local operator axis.
+  finite-packet-graph-atlases-have-a-regular-stationary-flow: that uses stationary representation-ring flow in a finite graph-of-groups atlas; this is the elementary three-edge sign obstruction for one local operator axis.
 ---
 
 Let the routing graph contain a triangle on branches `1,2,3`.  Suppose branch
