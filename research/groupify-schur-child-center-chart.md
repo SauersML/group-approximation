@@ -8,6 +8,7 @@ distinct_from:
   finite-predicate-signed-permutation-sector: that realizes arbitrary predicate support inside one finite representation block; this additionally must remain compatible with the shared Schur baseline and its child restriction multiplicities.
   raw-schur-generator-is-not-child-center: that rules out the raw last generator; this asks for a valid replacement.
   schur-child-center-has-finite-monomial-sector: that realizes the corrected center as a literal group element in one exact irreducible sector; this must force that sector, with quantitative soundness, in arbitrary approximate representations.
+  near-regular-finite-character-fixes-plancherel-types: that guarantees the desired finite irreducible occurs with positive Plancherel density in a regular-trace microstate; this must return its child carrier without complementary irreducibles absorbing the multiplicity flow.
 ---
 
 For each fixed Schur predicate packet, construct a finite group-theoretic or
@@ -43,8 +44,12 @@ word is forbidden by `schur-rank-output-is-not-a-scalar-selector`.
 - **Signed-monomial realization: locally solved.**
   `schur-child-center-has-finite-monomial-sector` puts the whole packet and
   corrected center in one finite irreducible signed-permutation sector.
-- **Select that sector:** open. A general representation of the finite
-  overgroup contains other irreducibles, as predicted by the induction
-  barrier. The missing step is an ordinary-group projection atlas whose
-  approximate representations retain the natural sector with dimension-free
-  HS loss and whose exact amalgam preserves the marked model.
+- **Positive sector density: solved locally.** In a hyperlinear regular-trace
+  microstate, `near-regular-finite-character-fixes-plancherel-types` forces the
+  natural sector to occur at Plancherel density `dim(pi_f)^2/|H_f|` after
+  exactification.
+- **Return that sector:** open. The other irreducibles also have positive
+  Plancherel mass, as predicted by the induction barrier, and can absorb a
+  finite graph-of-groups multiplicity flow. The missing object is an
+  ordinary-group projection atlas which transports the natural isotypic
+  carrier through the corrected child chart with dimension-free HS loss.
