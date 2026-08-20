@@ -182,6 +182,11 @@ regular Bass--Serre reservoir.
   `U^n`, fixes the coefficient frame, and moves the hard root by `D_L^n`.
   Unlike the tempting relation `U=D_L`, this preserves the exact Fanizza
   tracial model by allowing the E5 factor to be trivial there.
+- `binary-cut-projection-recurrence-gives-bfe1` proves that the target hard
+  sign itself introduces no loss in the two-child balance.  Positive and
+  negative block masses sum exactly to the target projection trace even when
+  the target projection does not commute with the sign.  Hence `(BFE1)` costs
+  only the localized groupified recurrence residual.
 - `free-root-first-detection-eigenvectors-localize-exactly` proves the
   packet-to-reservoir analytic endpoint: once a hard intertwiner has
   coefficient-character valuation `n`, its entire squared norm is exactly
@@ -191,11 +196,12 @@ regular Bass--Serre reservoir.
   bad atoms.
   The analytic persistence and endpoint-marginal accounting are now reduced
   to a telescoping sign-atom estimate and have polynomial loss.  The remaining
-  step is the global carrier balance: make the Fanizza
-  two-child decomposition satisfy `(BFE1)` on the same localized spectral
-  halves.  The hard-sign bridge is now synchronized with their successive
-  prefix carriers and preserves the exact tracial model.  Once `(BFE1)` is
-  obtained, `(BFE2)`, `(BFE3)`, persistence, and the final HS floor are formal
-  consequences.
+  step is one quantitative certificate: bound the localized groupified
+  Fanizza residual
+  `||P_tilde_n+X_tilde_n P_tilde_n X_tilde_n-P_tilde_(n+1)||_2`
+  by polynomial fixed-presentation defect after the Schur packet replacement.
+  The hard-sign bridge is synchronized with the same levels and preserves the
+  exact tracial model.  Once that certificate is obtained, `(BFE1)--(BFE3)`,
+  persistence, and the final HS floor are formal consequences.
   A merely decreasing first-hit process is insufficient: it admits a
   geometric reservoir and does not force collapse.

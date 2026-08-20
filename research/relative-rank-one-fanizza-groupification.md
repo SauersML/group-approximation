@@ -103,4 +103,7 @@ the Fanizza projection `D` itself as the nonhalting mark contradicts
   placement: `T=UD_L` advances the Fanizza source and E5 boundary together
   while fixing the coefficient packet, and it retains the exact tracial model
   by keeping `U` independent of a trivially represented E5 factor.  Beyond
-  `(BFE1)`, the marked initial-carrier interface remains separate.
+  that placement, `binary-cut-projection-recurrence-gives-bfe1` shows the E5
+  sign cut loses no target mass.  The remaining local theorem is precisely a
+  polynomial normalized-HS bound for the localized groupified Fanizza
+  recurrence residual; the marked initial-carrier interface remains separate.
