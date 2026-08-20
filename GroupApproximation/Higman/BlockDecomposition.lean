@@ -73,7 +73,8 @@ evaluation. -/
 theorem pcEval_pcOf_of_ne {c d : PresentationCode} (h : d ≠ c) (y : Carrier d) :
     pcEval c (pcOf d y) = 1 := by
   classical
-  simp [pcOf, pcEval, DFinsupp.single_eq_of_ne h]
+  simp [pcOf, pcEval]
+  exact fun hdc => absurd hdc h
 
 theorem pcEval_pcGen_self (n : ℕ) :
     pcEval (blockOf n) (pcGen n) =
@@ -97,8 +98,9 @@ theorem pcDirectSum_eq_one_iff (g : PCDirectSum) :
     apply Multiplicative.toAdd.injective
     apply DFinsupp.ext
     intro c
-    apply Additive.toMul.injective
-    simpa [pcEval] using h c
+    have hc : Additive.toMul ((Multiplicative.toAdd g) c)
+        = Additive.toMul ((Multiplicative.toAdd (1 : PCDirectSum)) c) := h c
+    exact Additive.toMul.injective hc
 
 /-! ## 3.  Deleting the letters that do not matter -/
 

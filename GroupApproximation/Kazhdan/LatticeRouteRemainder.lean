@@ -44,9 +44,7 @@ theorem hyperbolicFiniteIndexPermanence_of_quasiIsometryInvariant
     (h : Hyperbolic.QuasiIsometryInvariant) :
     Hyperbolic.HyperbolicFiniteIndexPermanence := by
   intro Γ inst Λ hfi hΓ
-  haveI := inst
-  haveI := hfi
-  exact isHyperbolicGroup_subgroup_of_quasiIsometryInvariant h Λ hΓ
+  exact @isHyperbolicGroup_subgroup_of_quasiIsometryInvariant h Γ inst Λ hfi hΓ
 
 /-- **Finite presentation passes to finite-index subgroups**, given the free
 case.  Reidemeister--Schreier, from `Algebra/ReidemeisterSchreier.lean`. -/
@@ -54,9 +52,7 @@ theorem finitePresentationFiniteIndexPermanence_of_freeInput
     (hfree : FreeFiniteIndexFinitelyPresented) :
     Hyperbolic.FinitePresentationFiniteIndexPermanence := by
   intro Γ inst Λ hfi hΓ
-  haveI := inst
-  haveI := hfi
-  exact isFinitelyPresented_subgroup_of_finiteIndex hfree Λ hΓ
+  exact @isFinitelyPresented_subgroup_of_finiteIndex.{0} hfree Γ inst Λ hfi hΓ
 
 /-- **The lattice route, with the property `(T)` input discharged and the other
 two reduced to named literature facts.**
