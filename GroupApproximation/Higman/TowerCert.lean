@@ -181,13 +181,16 @@ theorem exists_cert_of_towerDeriv (c : PresentationCode) :
         (wordProblemPred_iff_exists (c, conjWord l ++ invRaw v)).1
           ((evalRaw_codedGen_eq_one_iff c _).1 hword)
       refine ⟨(m.map Prod.snd).flatten ++ [(i + 1, v, l, sd)], ?_, ?_⟩
-      · refine CertOk.append (CertOk.flatten _ ?_) ?_
-        · intro L hL
-          obtain ⟨q, hq, rfl⟩ := List.mem_map.1 hL
-          exact (hm2 q hq).1
-        · intro e he
-          rw [List.mem_singleton] at he
-          subst he
+      · intro e he
+        rcases List.mem_append.1 he with he | he
+        · have hflat : CertOk c (m.map Prod.snd).flatten :=
+            CertOk.flatten _ fun L hL => by
+              obtain ⟨q, hq, rfl⟩ := List.mem_map.1 hL
+              exact (hm2 q hq).1
+          exact (hflat e he).mono fun e' he' =>
+            List.mem_append.2 (Or.inl he')
+        · rw [List.mem_singleton] at he
+          subst e
           refine ⟨?_, hsd⟩
           intro it hit
           have hit' : it ∈ m.map Prod.fst := by rw [hm1]; exact hit

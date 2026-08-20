@@ -101,11 +101,14 @@ theorem primrec_blockCheck : Primrec₂ blockCheck := by
         ∀ c ∈ L, ∃ q ∈ x.2, q.1 = c ∧
           searchCheck (c, blockWord x.1 c) q.2 = true :=
     PrimrecRel.forall_mem_list hT
-  have hP : PrimrecPred fun x : RawWord × BlockData ↦ BlockSolves x.1 x.2 :=
-    PrimrecRel.comp hF (primrec_blockList.comp Primrec.fst) Primrec.id
+  have hP : PrimrecPred fun x : RawWord × BlockData ↦ BlockSolves x.1 x.2 := by
+    unfold BlockSolves
+    exact PrimrecRel.comp hF (primrec_blockList.comp Primrec.fst) Primrec.id
   haveI : DecidablePred fun x : RawWord × BlockData ↦ BlockSolves x.1 x.2 :=
     fun x ↦ blockSolves_decidable x.1 x.2
-  exact hP.decide.of_eq fun _ ↦ rfl
+  exact hP.decide.of_eq fun _ ↦ by
+    unfold blockCheck
+    exact @Bool.decide_congr _ _ (this _) (blockSolves_decidable _ _) Iff.rfl
 
 theorem computable_blockCheck : Computable₂ blockCheck :=
   primrec_blockCheck.to_comp
@@ -116,7 +119,7 @@ theorem computable_blockCheck : Computable₂ blockCheck :=
 Primcodable presentation codes is recursively presented: the generating family
 is `pcGen`, it spans by `spans_pcGen`, and its word problem is one unbounded
 search whose matrix is `blockCheck`. -/
-def recursivePresentationPCDirectSum : RecursivePresentation PCDirectSum where
+noncomputable def recursivePresentationPCDirectSum : RecursivePresentation PCDirectSum where
   gen := pcGen
   spans := spans_pcGen
   re := (rePred_exists_eq_true computable_blockCheck).of_eq fun w ↦

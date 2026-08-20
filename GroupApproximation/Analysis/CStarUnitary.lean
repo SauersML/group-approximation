@@ -65,10 +65,12 @@ theorem norm_map (h : U.IsUnitaryAdj) (x : E.carrier) :
     F.norm (U.toFun x) = E.norm x := by
   rw [CStarModule.norm_def, CStarModule.norm_def, h.inner_map]
 
+omit [PartialOrder B] [StarOrderedRing B] in
 theorem isBoundedBy_one (h : U.IsUnitaryAdj) : U.IsBoundedBy 1 := by
   intro x
   rw [h.norm_map, one_mul]
 
+omit [PartialOrder B] [StarOrderedRing B] in
 theorem isBounded (h : U.IsUnitaryAdj) : U.IsBounded :=
   ⟨1, zero_le_one, h.isBoundedBy_one⟩
 

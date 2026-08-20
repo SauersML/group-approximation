@@ -66,7 +66,7 @@ theorem spans_codedGen (c : PresentationCode) :
       exact ⟨letterOf c k, rfl⟩
     · rintro ⟨j, rfl⟩
       obtain ⟨k, hk⟩ := letterOf_surjective c j
-      exact ⟨k, by rw [hk]⟩
+      exact ⟨k, congrArg PresentedGroup.of hk⟩
   rw [hrange, PresentedGroup.closure_range_of]
 
 /-! ## 2.  The absorber's word problem, in raw-data form -/
@@ -83,7 +83,7 @@ theorem evalRaw_quotient_eq_one_iff_towerDeriv (w : RawWord) :
 
 /-- **(B2), reduced to a single recursive-enumerability statement about raw
 words.**  Everything else in Chiodo's Proposition 3.8 is now proved. -/
-def recursivePresentationPCAbsorber'
+noncomputable def recursivePresentationPCAbsorber'
     (hre : REPred fun w : RawWord ↦ ∀ c ∈ blockList w, ∃ i : ℕ,
       TowerDeriv (fun k ↦ (PresentedGroup.of (letterOf c k) : Carrier c)) i
         (blockWord w c)) :
