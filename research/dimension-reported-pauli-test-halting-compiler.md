@@ -49,3 +49,10 @@ have an exact model in which the marked word remains nontrivial.
   constant such as the `C_m` in a computable BCS family. It does not permit a
   modulus discovered only after the source machine halts, so ordinary
   runtime-length telescoping remains insufficient.
+- Allowing the modulus to be an arbitrary positive function of the reported
+  dimension does not repair this. By
+  `dimension-kleene-threshold-needs-amplification-envelope`, the
+  canonical microstate defect may approach zero more slowly than that
+  function, even after tensor amplification. Thus the present independence
+  from `N,D`, and runtime may be weakened only to a quantitatively positive
+  amplification envelope, not to pointwise positivity.

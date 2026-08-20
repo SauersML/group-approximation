@@ -59,6 +59,26 @@ The upper bound on `alpha` is essential.  A conclusion merely saying that the
 mark is never farther than an arbitrary positive constant from the identity
 does not contradict hyperlinearity.
 
+### 1.1 Dimension reporting does not license an arbitrary defect rate
+
+The fixed-point machine may print the dimension `D` of the tuple it found,
+so halting soundness only has to defeat that same dimension.  This removes the
+need for an operator-internal dimension sensor.  It does **not** permit an
+arbitrary positive threshold `delta(D)`.  Tensoring a `d`-dimensional tuple by
+`I_k` preserves its normalized-HS defect and mark, so the best threshold the
+search can access from that tuple is
+
+```text
+Delta(d)=sup_(k>=1) delta(kd).
+```
+
+Hyperlinearity supplies defects tending to zero but supplies no rate against
+the dimensions in which they occur.  The numerical profiles
+`epsilon_d=1/d` and `delta(D)=exp(-D)` never cross, even after amplification.
+Thus the present compiler must retain a dimension-free positive modulus, or
+prove a positive amplification-envelope condition.  This exact fence is
+recorded in `dimension-kleene-threshold-needs-amplification-envelope`.
+
 ## 2. The game-level fixed point
 
 Lin's `MIP^co=coRE` theorem (arXiv:2510.07162) supplies the required logical

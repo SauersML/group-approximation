@@ -34,3 +34,11 @@ running `M`: dependence on the unknown eventual runtime or on data revealed
 only after halting is not covered.  This distinction admits computable
 instance moduli such as a BCS soundness constant `C_M`, while preserving the
 fixed-point contradiction.
+
+The distinction is quantitative, not cosmetic.
+`dimension-kleene-threshold-needs-amplification-envelope` proves
+that even a computable positive modulus `delta_M(D)` revealed with the output
+dimension does not suffice in general.  Hyperlinearity gives no rate relating
+defect to dimension, and tensor amplification only replaces `delta_M(D)` by
+its supremum over multiples.  A post-halting modulus is admissible only with
+an additional positive amplification-envelope hypothesis.
