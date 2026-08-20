@@ -11,6 +11,7 @@ distinct_from:
   predicate-rank-jump-forces-adjoint-reynolds-gap: that compares the commutants of the nested packet groups in one representation; this compares diagonal tensor coefficients related by one explicit packet automorphism and is exactly flat on all allowed selector sectors.
   commuting-automorphism-cocycle-forces-multiplicity: that extracts a fixed divisibility condition from a projective square; this gives an amplification-stable distance between nonisomorphic commutant algebras.
   full-center-hnn-transport-cancels-schur-multiplicity: that proves ordinary full-center Pauli restriction loses the ambient rank jump; this retains it through the full packet fusion ring and detects it as Wedderburn block shape.
+  support-packet-literal-tensor-covariance-is-blind: that proves no pair of finite tensor coefficients can make the tensor representations themselves allowed-equivalent and forbidden-distinct; this detector survives precisely because it compares their commutant algebras instead.
 ---
 
 Let `B_sub` be the order-128 fixed support packet with central basis
