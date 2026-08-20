@@ -46,7 +46,17 @@ selection mechanism.
   representation and do not constrain cross-Gram products.
 - **Fixed HNN character atlas. Dead.** The regular stationary type flow
   absorbs every finite list of subgroup character identifications.
+- **Dummy affine clocks do not remove the repetition bottleneck.**
+  `affine-source-charts-have-a-disjoint-tag-packing-ceiling` shows that a
+  rank-`r` selector/radical atom admits at most `2^r` pairwise disjoint
+  full-mass affine images, no matter how many unconstrained central tag bits
+  are adjoined.  Those bits enlarge every source fiber and the target dual by
+  the same factor.  This construction works only if the required repetition
+  count already lies below that fixed ceiling; it is not a general tagger.
 - **Property-T coefficient tagging. Active.** The explicit `G^2<G^3` wall of
   `polynomial-compressor-has-explicit-finite-quotient-wall` is a concrete
-  target representation; the remaining task is to make the repeated failure
-  atom coefficients occupy pairwise disjoint wall types.
+  target representation, but
+  `fixed-finite-quotient-adjoint-walls-are-canonical-trace-null` prevents a
+  fixed quotient copy from carrying positive canonical-profile density.  A
+  surviving use must retain the infinite quotient-kernel action while making
+  the repeated failure coefficients occupy pairwise disjoint residual types.
