@@ -29,11 +29,15 @@ on:
       - 'non_mf_groups_exist.tex'
       - '.github/oai/run-nonmf-fix'
   schedule:
-    # Catch-up pass: rebuild only if the PDF is older than the tex.
     - cron: '3,18,33,48 * * * *'
   workflow_dispatch:
   issues:
     types: [opened]
+  workflow_run:
+    workflows:
+      - Reap superseded prover runs
+      - Keep verified current across publication-only commits
+    types: [completed]
 
 concurrency:
   group: draft-non-mf-pdf
@@ -45,15 +49,13 @@ permissions:
 env:
   TEX_FILE: non_mf_groups_exist.tex
   PDF_FILE: non_mf_groups_exist.pdf
-  # TeX Live 2025, pinned by digest.  See the note in refresh-non-mf-pdf.yml:
-  # the 2026 image's tagpdf aborts at \tableofcontents on this source, and
-  # also garbles the contents page.  Keep the two workflows on the same pin.
   TEXLIVE_IMAGE: ghcr.io/xu-cheng/texlive-alpine@sha256:556e2e2caa7d489ce155de0eb3f43e324e6502ed4e9871aa400662b156cf00ad
 
 jobs:
   apply_non_mf_fix:
     name: Apply audited non-MF manuscript fix
     if: >-
+      github.event_name == 'workflow_run' ||
       github.event_name == 'schedule' ||
       (github.event_name == 'issues' && github.event.issue.title == 'oai: apply audited non-MF manuscript fix v2') ||
       (github.event_name == 'push' && github.event.head_commit.message == 'chore: trigger audited non-MF manuscript fix')
@@ -120,6 +122,7 @@ jobs:
     if: >-
       github.event_name != 'issues' &&
       github.event_name != 'schedule' &&
+      github.event_name != 'workflow_run' &&
       !(github.event_name == 'push' && github.event.head_commit.message == 'chore: trigger audited non-MF manuscript fix')
     runs-on: ubuntu-latest
     timeout-minutes: 30
@@ -139,8 +142,7 @@ jobs:
           if [ "${{ github.event_name }}" != "schedule" ]; then
             echo "build=true" >> "$GITHUB_OUTPUT"
             echo "push or dispatch: always build"
-          elif [ -n "$pdf_commit" ] && \
-               git merge-base --is-ancestor "$tex_commit" "$pdf_commit"; then
+          elif [ -n "$pdf_commit" ] && git merge-base --is-ancestor "$tex_commit" "$pdf_commit"; then
             echo "build=false" >> "$GITHUB_OUTPUT"
             echo "PDF ($pdf_commit) already includes tex ($tex_commit): fresh"
           else
@@ -176,9 +178,7 @@ jobs:
         run: |
           log_file="build/${TEX_FILE%.tex}.log"
           test -s "$log_file"
-          if grep -Eq \
-            'LaTeX Warning: (Citation .* undefined|Reference .* undefined|There were undefined references|Label\(s\) may have changed)|Rerun to get cross-references right' \
-            "$log_file"; then
+          if grep -Eq 'LaTeX Warning: (Citation .* undefined|Reference .* undefined|There were undefined references|Label\(s\) may have changed)|Rerun to get cross-references right' "$log_file"; then
             echo "Unresolved references or citations; keeping the previous PDF." >&2
             exit 1
           fi
@@ -186,8 +186,8 @@ jobs:
       - name: Normalize the PDF
         if: steps.gate.outputs.build == 'true'
         run: |
-          qpdf --linearize --object-streams=disable --force-version=2.0 \
-            --deterministic-id "build/${TEX_FILE%.tex}.pdf" "${PDF_FILE}.tmp"
+          qpdf --linearize --object-streams=disable --force-version=2.0 --deterministic-id \
+            "build/${TEX_FILE%.tex}.pdf" "${PDF_FILE}.tmp"
           mv -- "${PDF_FILE}.tmp" "$PDF_FILE"
           qpdf --check "$PDF_FILE"
 
