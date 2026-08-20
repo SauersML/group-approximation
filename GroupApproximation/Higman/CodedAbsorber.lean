@@ -240,15 +240,25 @@ theorem spans_pcGen : Subgroup.closure (Set.range pcGen) = ⊤ := by
         Subgroup.closure (Set.range pcGen) by
     exact h (Multiplicative.toAdd g)
   intro f
-  refine DFinsupp.induction f ?_ ?_
-  · exact Subgroup.one_mem _
+  refine DFinsupp.induction
+    (p := fun f : Π₀ c : PresentationCode, Additive (Carrier c) ↦
+      (Multiplicative.ofAdd f : PCDirectSum) ∈
+        Subgroup.closure (Set.range pcGen)) f ?_ ?_
+  · change (1 : PCDirectSum) ∈ Subgroup.closure (Set.range pcGen)
+    exact Subgroup.one_mem _
   · intro c a f' _ _ ih
-    -- `PCDirectSum`'s multiplication IS the addition underneath, and `pcOf c`
-    -- IS `single c`, so the split needs no rewriting: it is the same term.
-    -- Stating it as an equation instead forces the `*` through the `binop%`
-    -- elaborator, which will not identify `PCDirectSum` with the type it is
-    -- defined to be.
-    exact Subgroup.mul_mem _ (pcOf_mem_closure_pcGen c (Additive.toMul a)) ih
+    have ha : (Multiplicative.ofAdd (DFinsupp.single c a) : PCDirectSum) =
+        pcOf c (Additive.toMul a) := by
+      apply Multiplicative.ofAdd.injective
+      simp [pcOf]
+    let tail : PCDirectSum := Multiplicative.ofAdd f'
+    have htail : tail ∈ Subgroup.closure (Set.range pcGen) := ih
+    have hm : pcOf c (Additive.toMul a) * tail ∈
+        Subgroup.closure (Set.range pcGen) :=
+      Subgroup.mul_mem _ (pcOf_mem_closure_pcGen c (Additive.toMul a)) htail
+    simp only [tail] at hm
+    rw [← ha] at hm
+    exact hm
 
 end Higman
 end GroupApproximation

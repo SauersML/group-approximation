@@ -144,9 +144,9 @@ omit [InnerProductSpace ℝ E] in
 /-- The squared norm of the constant vector is the number of cosets times the
 squared norm of the entry. -/
 theorem norm_constVec_sq (v : E) :
-    ‖constVec tr E v‖ ^ 2 = (tr.reps.card : ℝ) * ‖v‖ ^ 2 := by
+    ‖constVec tr E v‖ ^ 2 = (Fintype.card (Index tr) : ℝ) * ‖v‖ ^ 2 := by
   rw [PiLp.norm_sq_eq_of_L2]
-  simp
+  simp [nsmul_eq_mul]
 
 /-- **The displacement of the constant vector**, coordinate by coordinate: the
 sum of the squared displacements of `v` under the finitely many cocycle values.
