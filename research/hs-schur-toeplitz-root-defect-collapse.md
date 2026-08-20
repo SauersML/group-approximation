@@ -102,6 +102,14 @@ relator-certificate barriers.
   infinite-presentation problem but not the analytic stationary-flow escape:
   conjugacy equalizes successive marginals, while the Schur child restriction
   must still supply the strict factor `lambda<1`.
+- **Predicate orientation in every head is closed.**
+  `schur-toeplitz-head-is-matrix-amplified-forbidden-algebra` identifies the
+  depth-`N` head with `M_N(P_fk[B_f])` and proves the deep tail is scalar on
+  it. Thus the recurrence does not have to recover a character-density sum
+  from an anonymous tail commutant. What remains is a normalized-HS decoder
+  showing that the finite packet multiplicity carried by this literal head
+  factor passes through the represented root triangles with the oriented
+  child coefficient `(OCB3)`.
 - **Why ordinary Toeplitz truncation is not a counterexample by itself.** In
   truncated unilateral-shift matrices, the rank-one defect has vanishing
   normalized trace. Here the canonical root mark has fixed delta-trace

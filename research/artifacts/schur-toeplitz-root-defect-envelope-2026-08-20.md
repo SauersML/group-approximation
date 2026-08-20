@@ -39,6 +39,18 @@ defect cells are conjugates of the base cell. The exact finite-dimensional
 invisibility theorem persists after adjoining the stable letter, while
 Britton normal form preserves the nontrivial marked root.
 
+The finite prefixes also retain the entire forbidden coefficient algebra.
+For `A_f^-=P_fk[B_f]P_f`, the first `N` sites are
+
+```text
+span{x^i a y^j:0<=i,j<N, a in A_f^-} isomorphic to M_N(A_f^-),
+```
+
+and `sigma^N(R_f)` acts on this head only through the scalar augmentation.
+This is the exact oriented packet/tail factorization sought in the earlier
+conditional-expectation formulation. The remaining gap is solely robust
+decoding of that factor from an arbitrary normalized-HS group microstate.
+
 ## Why this is the right coupling
 
 The character-density formula previously left a word-conversion gap:
