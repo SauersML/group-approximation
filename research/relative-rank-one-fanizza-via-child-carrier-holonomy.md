@@ -21,6 +21,7 @@ requires:
   - mixed-cnot-joint-exit-first-hit-transducer
   - hard-sign-transport-captures-exit-mass
   - product-clock-synchronizes-fanizza-and-e5
+  - e5-tail-character-suppression-for-projected-exits
   - binary-cut-projection-recurrence-gives-bfe1
   - oriented-c18-rank-gates-give-branch-balance
   - c18-source-cut-has-sparse-relator-certificate

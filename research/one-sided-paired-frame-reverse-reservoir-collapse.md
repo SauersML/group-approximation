@@ -219,9 +219,15 @@ regular Bass--Serre reservoir.
   packet-to-reservoir analytic endpoint: once a hard intertwiner has
   coefficient-character valuation `n`, its entire squared norm is exactly
   the `n`th boundary mass.
+- `triangular-e5-pulses-admit-persistent-tail-character` corrects the previous
+  inference from leading degree to valuation.  One additive character can be
+  negative on every triangular pulse while first appearing at degree two;
+  finite ring quotients realize this obstruction through every fixed depth.
+  The still-missing theorem is
+  `e5-tail-character-suppression-for-projected-exits`.
 - The literal Schur pair, rank-three finite packet frame, matching word-level
-  E5 realization, and exact valuation calculation are now closed for all 26
-  bad atoms.
+  E5 realization, and top-degree calculation are closed for all 26 bad atoms;
+  the required first-valuation assertion is not.
   The analytic persistence and endpoint-marginal accounting are now reduced
   to a telescoping sign-atom estimate and have polynomial loss.  The remaining
   The local scalar recurrence ledger is now closed: `(OCB2)` gives `(BFE1)`

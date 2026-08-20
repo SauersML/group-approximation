@@ -2,7 +2,7 @@
 rg: 2
 id: projected-hard-sign-bridge-selects-joint-exit
 kind: claim
-title: Right compression by the forbidden atom makes one hard-sign bridge select the joint exit
+title: Right compression by the forbidden atom makes one hard-sign bridge select the joint hard-sign exit
 distinct_from:
   hard-sign-transport-captures-exit-mass: that proves the uncompressed sign-transport inequality; this observes that its right-hand source projection may be the nonlinear joint packet atom without being a group word.
   mixed-cnot-joint-exit-first-hit-transducer: that must also return the allowed and active sectors; this solves only the exit-to-first-hit half and shows that no scalar joint selector is needed there.
@@ -40,20 +40,20 @@ For the mixed router take `H=QF`, `A=b`, so
 P=QF(I-b)/2=X.                                         (PHS3)
 ```
 
-The product-clock bridge makes `B` the degree-`2n` E5 hard root.  On the
-source frame selected by `H`, the remaining lower root characters are
-trivial and the character of `P` is first detected at that degree.  Therefore
-`free-root-first-detection-eigenvectors-localize-exactly` places the entire
-mass on the corresponding top-boundary layer.  Approximate packet
-exactification, covariance, and target-carrier inclusion add only their
-already polynomial fixed-word losses.
+The product-clock bridge can make `B` the degree-`2n` E5 hard pulse.  Equation
+`(PHS2)` then puts the compressed mass in its negative spectral space.
+Promoting this to a first-hit boundary requires the additional hypothesis
+that the compressed source character is trivial on all lower E5
+coefficients.  Leading degree alone does not supply it;
+`triangular-e5-pulses-admit-persistent-tail-character` gives an exact
+countercharacter.
 
-Consequently the joint violating exit is transported to a summable first-hit
-layer without ever compiling the joint event into a scalar group word.
+Consequently the joint violating exit is transported to the correct hard-sign
+space without ever compiling the joint event into a scalar group word.
 Possible transported mass from allowed `A=-1` sectors is harmless: the lower
 bound is compressed by `P`, and only the first-detection component of `UP`
 is entered in the reservoir ledger.
 
-This does **not** return `I-P`.  In particular it does not solve the remaining
-problem of retaining the allowed `K=+1,b=-1` sector in the next active
-carrier.
+This does **not** prove first-hit localization or return `I-P`.  In
+particular it does not solve the remaining problem of retaining the allowed
+`K=+1,b=-1` sector in the next active carrier.
