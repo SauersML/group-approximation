@@ -1,4 +1,5 @@
 import GroupApproximation.Analysis.CStarCompactOperators
+import Mathlib.Analysis.CStarAlgebra.ApproximateUnit
 
 /-!
 # `𝓚(B_B) = B`, and `B ⊆ M(B)` isometrically
@@ -45,6 +46,7 @@ variable {B : Type v} [NonUnitalCStarAlgebra B] [PartialOrder B]
 
 /-! ## The norm of a multiplier -/
 
+omit [PartialOrder B] [StarOrderedRing B] in
 /-- **A bound on left multiplication is a bound on the element.**  Test at
 `x = b⋆` and use the C⋆-identity. -/
 theorem norm_le_of_forall_mul_le {b : B} {K : ℝ} (hK : 0 ≤ K)
@@ -58,25 +60,29 @@ theorem norm_le_of_forall_mul_le {b : B} {K : ℝ} (hK : 0 ≤ K)
 
 namespace Adjointable
 
+omit [PartialOrder B] [StarOrderedRing B] in
 theorem isBoundedBy_ofElem (b : B) : (ofElem b).IsBoundedBy ‖b‖ := by
   intro x
   show (selfModule B).norm (b * x) ≤ ‖b‖ * (selfModule B).norm x
   simp only [selfModule_norm]
   exact norm_mul_le b x
 
+omit [PartialOrder B] [StarOrderedRing B] in
 theorem isBounded_ofElem (b : B) : (ofElem b).IsBounded :=
   ⟨‖b‖, norm_nonneg b, isBoundedBy_ofElem b⟩
 
+omit [PartialOrder B] [StarOrderedRing B] in
 /-- **`B` sits isometrically in `M(B)`.** -/
 theorem opNorm_ofElem (b : B) : (ofElem b).opNorm = ‖b‖ := by
   refine le_antisymm (opNorm_le_of_bound (norm_nonneg b) (isBoundedBy_ofElem b))
     ?_
   refine norm_le_of_forall_mul_le (opNorm_nonneg _) fun x => ?_
   have h := norm_apply_le_opNorm (isBounded_ofElem b) x
-  simpa only [selfModule_norm] using h
+  simpa only [selfModule_norm, ofElem_toFun] using h
 
 /-! ## Finite-rank operators on `B` -/
 
+omit [PartialOrder B] [StarOrderedRing B] in
 /-- A finite-rank operator on `B` is left multiplication by `∑ xᵢyᵢ⋆`. -/
 theorem IsFiniteRank.exists_ofElem {T : Multiplier B} (h : T.IsFiniteRank) :
     ∃ b : B, ∀ x : B, T.toFun x = b * x := by
@@ -118,6 +124,7 @@ theorem isCompactOp_ofElem (b : B) : (ofElem b).IsCompactOp := by
 
 /-! ## The identification -/
 
+omit [PartialOrder B] [StarOrderedRing B] in
 /-- A compact operator on `B` is left multiplication by an element of `B`.
 
 The approximants are `ofElem cₙ`; the isometry `opNorm_ofElem` makes `(cₙ)`
@@ -180,7 +187,8 @@ theorem IsCompactOp.exists_ofElem {T : Multiplier B} (hT : T.IsCompactOp) :
     have h1 : Tendsto (fun n : ℕ => (1 / (n + 1 : ℝ)) * ‖x‖) atTop (𝓝 0) := by
       simpa using tendsto_one_div_add_atTop_nhds_zero_nat.mul_const ‖x‖
     have hc0 : Tendsto (fun n : ℕ => ‖c n - b‖) atTop (𝓝 0) := by
-      simpa using (hb.sub tendsto_const_nhds).norm
+      simpa using
+        (hb.sub (tendsto_const_nhds : Tendsto (fun _ : ℕ => b) atTop (nhds b))).norm
     have h2 : Tendsto (fun n : ℕ => ‖c n - b‖ * ‖x‖) atTop (𝓝 0) := by
       simpa using hc0.mul_const ‖x‖
     simpa using h1.add h2
