@@ -172,7 +172,7 @@ def audit_predicate(
             for assignment in product((0, 1), repeat=k):
                 alternating = eval_matrix(alternating_affine, assignment)
                 extended = extended_form(alternating, functional)
-            assert rank_f2(restricted_form(extended, basis)) == size
+                assert rank_f2(restricted_form(extended, basis)) == size
     if report_witnesses:
         print(f"  symplectic-hyperplane witnesses={tuple(witness_supports)}")
     return True

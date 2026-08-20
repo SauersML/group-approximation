@@ -70,6 +70,14 @@ which is what normalized Hilbert--Schmidt norm can see.
   `clifford-commutator-rank-is-packet-dimension`, and to feed the resulting
   multiplicity defect vector to `scaled-kazhdan-transport`, which is already
   proved for arbitrary weights.
+- **Uniform three-XOR specialization.**
+  `taller-vidick-uniform-rank-pressure-return` removes the arbitrary-predicate
+  layer.  Taller--Vidick already output only three-variable parity equations,
+  and each failure is `rank diag(1,b+x+y+z)=2` instead of one.  Every check
+  therefore uses the same two-pair packet and the LCS query words are globally
+  shared; no Fanizza tape-level selector renewal is needed.  The remaining
+  obstruction is still genuinely global: a tracially exact return must expose
+  the one-versus-two finite packet-type count without complementary leakage.
 - **Local exactification is discharged; simultaneous correction is bypassed.**
   `finite-schur-clifford-packet-flexible-hs-exactification` applies fixed
   word-table telescoping and Gowers--Hatami stability to each individual
