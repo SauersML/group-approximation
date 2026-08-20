@@ -89,6 +89,13 @@ regular Bass--Serre reservoir.
   `(1,1,1,c_n,0,0)`, where `c_n=(S^n)_(21)` is monic of degree `2n-1`.
   Thus the entire rank jump is one additive-character phase at a fresh top
   coefficient, with no arbitrary corner projection.
+- `e5-heisenberg-word-realizes-rank-one-boundary-pulse` installs this
+  comparison in honest group words.  The four frame roots sit in the
+  `(2,1,2)` Heisenberg block of `E_5(F_2[x])`, and the four-letter elementary
+  word `D=diag(S,1,S^-1)` transports only the source copy.  On the relative
+  hard character its `n`th pulse has the unique top coefficient
+  `e_13^* x^(4n-2)`, so the corresponding Fourier boundary contains exactly
+  one Pauli bit.
 - `free-root-top-boundary-reservoir-is-summable` proves the required capacity
   theorem for those degree labels: the mass first detected at successive
   degrees telescopes and has total at most one on a unit carrier.  Literal
@@ -105,13 +112,11 @@ regular Bass--Serre reservoir.
   packet-to-reservoir analytic endpoint: once a hard intertwiner has
   coefficient-character valuation `n`, its entire squared norm is exactly
   the `n`th boundary mass.
-- The missing calculation is to realize these two shears on consecutive
-  free-root coefficient planes with the moving kernel atlas `(K_n)`, and
-  prove that the exactified `011`
-  intertwiner is fixed by every lower-degree plane word but negated by the
-  new leading word of degree `2n-1`; this is precisely the assertion that its
-  valuation is `2n-1`.  One must also prove persistence of the baseline copy
-  with polynomial word error.  Localization, summability, and quantitative
-  elementary-shear transport are already formalized.  A merely decreasing
-  first-hit process is insufficient: it admits a geometric reservoir and does
-  not force collapse.
+- The word-level realization and exact valuation calculation are now closed.
+  The missing step is quantitative persistence of the baseline relative-Pauli
+  module under approximate conjugation: after exactifying each finite root
+  stage, the hard intertwiner must retain a fixed fraction of its mass until
+  it emits into the `4n-2` boundary, with only polynomial word error.  Once
+  this estimate is proved, localization and boundary summability give `(PRC1)`.
+  A merely decreasing first-hit process is insufficient: it admits a
+  geometric reservoir and does not force collapse.
