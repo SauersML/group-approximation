@@ -324,8 +324,13 @@ def extract(path: str) -> list[dict]:
         if mlab and (not env_stack or env_stack[-1] in CLAIM_ENVS):
             label = mlab.group(1)
 
-        if re.match(r"\s*\\(item|leanverified|leanstep|leanclaim)\b", line):
-            # a badge or a list bullet: keep the prose after it
+        if re.match(r"\s*\\item\b", line):
+            # Each list item is its own prose unit.  Without this flush an
+            # entire enumerate becomes one paragraph, so every sentence in a
+            # multi-question list inherits whichever prose anchor happens to
+            # be visited last.  Keep the prose after the bullet, but never let
+            # it share an anchor with the preceding item.
+            flush()
             line = re.sub(r"^\s*\\item\s*", "", line)
 
         if not para:
