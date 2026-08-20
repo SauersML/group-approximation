@@ -1404,3 +1404,43 @@ dependency closure of the whole namespace and fails on anything beyond `propext`
 `Classical.choice`, and `Quot.sound`; `scripts/check.py` scans the source text
 for what the kernel cannot see, including files that are never compiled.
 -/
+import GroupApproximation.Algebra.CoprodITorsionFree
+import GroupApproximation.Algebra.CoprodIWordLength
+import GroupApproximation.Algebra.CoprodICyclicReduction
+import GroupApproximation.Algebra.FreeProductFactorQuotient
+import GroupApproximation.Higman.AmalgamPresentation
+import GroupApproximation.Higman.AmalgamPushout
+import GroupApproximation.Higman.CoprodTorsion
+import GroupApproximation.Higman.HNNCentralizer
+import GroupApproximation.Higman.BenignAmbient
+import GroupApproximation.Higman.BenignFamily
+import GroupApproximation.Higman.BenignJoin
+import GroupApproximation.Higman.Pinch
+import GroupApproximation.Higman.Program
+import GroupApproximation.Higman.EvalRaw
+import GroupApproximation.Higman.QuotientPresentation
+import GroupApproximation.Higman.AbsorberGenerators
+import GroupApproximation.Higman.CodedAbsorber
+import GroupApproximation.Higman.BlockDecomposition
+import GroupApproximation.Higman.BlockWordProblem
+import GroupApproximation.Higman.BlockSearch
+import GroupApproximation.Higman.BlockComputable
+import GroupApproximation.Higman.ConjugateBasis
+import GroupApproximation.Higman.SequenceSpace
+import GroupApproximation.Higman.BaseCases
+import GroupApproximation.Higman.Operations
+import GroupApproximation.Higman.TheoremFour
+import GroupApproximation.Higman.ShiftOperation
+import GroupApproximation.Higman.PinchGraph
+import GroupApproximation.Higman.RopeTorsion
+import GroupApproximation.Higman.BenignTorsionFree
+import GroupApproximation.Higman.RowSubgroup
+import GroupApproximation.Higman.RowBasis
+import GroupApproximation.Higman.HNNEmbedding
+import GroupApproximation.Higman.BridgeTorsion
+import GroupApproximation.Higman.EmbeddingTheorem
+import GroupApproximation.Higman.ChiodoReduction
+import GroupApproximation.Higman.RowKernel
+import GroupApproximation.Higman.HNNDescent
+import GroupApproximation.Sofic.GreendlingerChunks
+import GroupApproximation.Sofic.OsinRelativeSmallCancellation
