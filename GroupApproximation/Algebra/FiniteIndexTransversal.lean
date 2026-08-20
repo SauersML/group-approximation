@@ -122,7 +122,8 @@ theorem sec_sec_mul (γ g : Γ) : tr.sec (tr.sec γ * g) = tr.sec (γ * g) := by
   have hmem : tr.retract γ ∈ Λ := tr.retract_mem γ
   have h : tr.sec (tr.retract γ * (tr.sec γ * g)) = tr.sec (tr.sec γ * g) :=
     tr.sec_mul_left _ hmem _
-  rwa [← mul_assoc, tr.retract_mul_sec] at h
+  rw [← mul_assoc, tr.retract_mul_sec] at h
+  exact h.symm
 
 /-- The retraction is left `Λ`-equivariant. -/
 theorem retract_mul_left {a : Γ} (ha : a ∈ Λ) (γ : Γ) :
@@ -165,10 +166,14 @@ theorem exists_rightTransversal {Γ : Type u} [Group Γ] (Λ : Subgroup Γ)
     intro c
     exact Quotient.inductionOn c fun a => ⟨a, rfl⟩
   -- A representative for each coset, normalised at the trivial one.
-  set pick : (Γ ⧸ Λ) → Γ := fun c => if c = 1 then 1 else ((hrep c).choose)⁻¹ with hpickdef
+  -- `Γ ⧸ Λ` carries no group structure here -- `Λ` need not be normal -- so the
+  -- trivial coset is the class of `1`, not the numeral `1`.
+  set pick : (Γ ⧸ Λ) → Γ :=
+    fun c => if c = (QuotientGroup.mk (1 : Γ) : Γ ⧸ Λ) then 1 else ((hrep c).choose)⁻¹
+    with hpickdef
   have hpick : ∀ c : Γ ⧸ Λ, (QuotientGroup.mk (pick c)⁻¹ : Γ ⧸ Λ) = c := by
     intro c
-    by_cases hc : c = 1
+    by_cases hc : c = (QuotientGroup.mk (1 : Γ) : Γ ⧸ Λ)
     · simp [hpickdef, hc]
     · simp only [hpickdef, if_neg hc, inv_inv]
       exact (hrep c).choose_spec
@@ -252,8 +257,8 @@ theorem act_act (tr : RightTransversal Γ Λ) (c : Index tr) (g h : Γ) :
 def actEquiv (tr : RightTransversal Γ Λ) (g : Γ) : Index tr ≃ Index tr where
   toFun c := act tr c g
   invFun c := act tr c g⁻¹
-  left_inv c := by rw [act_act, mul_inv_cancel, act_one]
-  right_inv c := by rw [act_act, inv_mul_cancel, act_one]
+  left_inv c := by simp only [act_act, mul_inv_cancel, act_one]
+  right_inv c := by simp only [act_act, inv_mul_cancel, act_one]
 
 @[simp] theorem actEquiv_apply (tr : RightTransversal Γ Λ) (g : Γ) (c : Index tr) :
     actEquiv tr g c = act tr c g := rfl
@@ -287,7 +292,7 @@ theorem cocycle_baseIndex_of_mem (tr : RightTransversal Γ Λ) {a : Γ} (ha : a 
     cocycle tr (baseIndex tr).1 a = ⟨a, ha⟩ := by
   refine Subtype.ext ?_
   show (1 : Γ) * a * (tr.sec (1 * a))⁻¹ = a
-  rw [one_mul, one_mul, tr.sec_of_mem ha, inv_one, mul_one]
+  rw [one_mul, tr.sec_of_mem ha, inv_one, mul_one]
 
 /-- The base index is fixed by `Λ`. -/
 theorem act_baseIndex_of_mem (tr : RightTransversal Γ Λ) {a : Γ} (ha : a ∈ Λ) :
