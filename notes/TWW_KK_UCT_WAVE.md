@@ -1,7 +1,7 @@
 # KK-theory, the UCT, Dadarlat–Eilers, order-zero maps and the Kirchberg–Rørdam
 # corona — and Tikuisis–White–Winter over them
 
-**Authored 2026-08-19. UNCOMPILED and UNWIRED.** Eleven new modules under
+**Authored 2026-08-19. UNCOMPILED and UNWIRED.** Seventeen new modules under
 `GroupApproximation/Analysis/`, none imported from `GroupApproximation.lean`;
 see "Before anything is graded".
 
@@ -23,7 +23,7 @@ parameter of this development — it is a definition.**
 | KK-theory | **axiomatized** (`KasparovTheory`), with every downstream consequence proved from the axioms; no inhabitant, and none possible without Hilbert C⋆-modules |
 | the UCT | **defined** (`SatisfiesUCT` = KK-equivalence to a commutative algebra, Rosenberg–Schochet's characterization), with the closure theorems proved |
 | Dadarlat–Eilers | **statement** typed over `KasparovTheory`; the direct-sum machinery it is stated over is proved |
-| TWW | **statement** at the defined UCT, and the proof that it implies the old parameterized input |
+| TWW | **derived**, not assumed: `TikuisisWhiteWinterTheorem` is produced from finer inputs in two independent ways, and its last step (corona ⇒ quasidiagonal trace) is proved outright |
 
 ## The modules
 
@@ -81,6 +81,71 @@ Layered, each importing only the ones above it.
     `QuasidiagonalMF.TikuisisWhiteWinterInput (uctPredicate T)`, and the group
     route re-proved with Tu's theorem as an obligation about a *bundled
     algebra* rather than about an abstract predicate.
+12. `Analysis/QuasidiagonalCoronaCriterion.lean` — `CoronaModel`, and
+    **proved**: a unital c.p. family whose induced map into `ℓ∞/c₀` is
+    multiplicative *on the nose*, with converging normalized traces, is a
+    `QuasidiagonalTraceModel`. This is the last step of the Annals argument,
+    and it is where `tendsto_norm_sub_mul_of_corona_mul` is spent.
+13. `Analysis/TikuisisWhiteWinterDerivation.lean` — **`TikuisisWhiteWinterTheorem`
+    is no longer assumed.** It is derived twice: from `CoronaEmbeddingInput`
+    (the Annals argument in the corona form it is *proved* in, with the
+    translation back to asymptotic language supplied by 12), and from
+    `NuclearAmenableTraceInput` + `TikuisisWhiteWinterCoreInput` (Connes–
+    Haagerup plus the local amenable-trace form, through the diagonal argument
+    already proved in `QuasidiagonalTraceLocal`). Group endpoints re-derived
+    with no TWW binder and with the ucp binder discharged by
+    `Quasidiagonal.ucpContractive`.
+
+    The two UCT predicates are **not** interchangeable: `uctPredicate` is
+    universal over C⋆-structures because it must be *produced* to feed the old
+    input; `uctExists` is existential because it must be *consumed* from a core
+    input. Each is used in exactly one direction.
+
+14. `Analysis/CStarHilbertModule.lean` — **Hilbert C⋆-modules**, bundled: a
+    right `B`-module with a `B`-valued inner product. The first-variable laws
+    (`inner_add_left`, `inner_sub_left`, `inner_smul_left`, `inner_act_left`)
+    are *derived* from conjugate symmetry, not assumed; `eq_of_inner_eq` is
+    definiteness read as separation of points; `selfModule` makes `B` a module
+    over itself, its definiteness clause being the C⋆-identity `‖x⋆x‖ = ‖x‖²`.
+    Positivity of `⟨x,x⟩` is spelled `∃ z, ⟨x,x⟩ = z⋆z`, so no order instance
+    on `B` is required.
+15. `Analysis/CStarAdjointable.lean` — **adjointable operators**, defined with
+    a *bare function* and no linearity assumption. Additivity, `ℂ`-linearity
+    and `B`-linearity are then **theorems** (test against an arbitrary vector,
+    push through the adjoint, separate points), as is uniqueness of the
+    adjoint. Composition, sum, zero, identity and adjoint are constructed;
+    rank-one operators `θ_{x,y}` are adjointable with adjoint `θ_{y,x}`; and
+    `Multiplier B` is the adjointables on `selfModule B`, with `ofElem`
+    embedding `B` by left multiplication.
+
+    This removes the **first of the three obstructions**
+    `KKTheoryKasparov` lists as blocking a construction of `KK`. The other two
+    remain: the compact operators need a norm on the module, hence
+    Cauchy–Schwarz for `B`-valued inner products, hence the order theory of
+    `B`; and the Kasparov product needs the stabilization theorem.
+
+16. `Analysis/CStarFiniteRank.lean` — **the finite-rank ideal**. `IsFiniteRank`
+    (a finite sum of rank-ones, over an arbitrary finite index type — which is
+    what makes closure under sums a one-line argument over `ι ⊕ κ`), closed
+    under: sums; composition with any adjointable operator on *either* side
+    (`S ∘ θ_{x,y} = θ_{Sx,y}` and `θ_{x,y} ∘ S = θ_{x,S⋆y}` — the two halves of
+    the adjoint relation); and adjoints, by uniqueness of the adjoint. Plus
+    `Adjointable.map_sum` and the two `Finset`-additivity lemmas for the inner
+    product. This is the ⋆-closed two-sided ideal `𝓚(E)` is the *closure* of;
+    the closure itself needs a norm, hence Cauchy–Schwarz for `B`-valued inner
+    products, hence `B`'s order theory — not here.
+17. `Analysis/QuasidiagonalMatricialTrace.lean` — **an unconditional instance
+    of TWW's conclusion**, past the scalar case. If `τ = tr_Y ∘ φ` for a unital
+    ⋆-homomorphism `φ : A → M_Y`, then `τ` is a quasidiagonal trace: the models
+    are the *constant* sequence, defect identically zero. The work is complete
+    positivity of a ⋆-homomorphism in the form sense — the form of
+    `φ(aᵢ⋆aⱼ)` collapses to `∑ₜ |Sₜ|²` (`sum_form_star_mul`). No separability,
+    no nuclearity, no UCT, not even faithfulness.
+
+    What this isolates: for a matricially factoring trace quasidiagonality is
+    *free*. The entire content of TWW is producing models when no such
+    factorization exists — which is why its proof runs through KK-theory and
+    not through any construction of matrix models.
 
 ## The one real gain, stated precisely
 
@@ -100,13 +165,16 @@ a free variable.
 
 ## What is irreducible, and where it now sits
 
-Five inputs, each a structure with no inhabitant, each attributed:
-`TikuisisWhiteWinterTheorem` (TWW 2017), `KasparovTheory` (Kasparov),
+After the derivation wave, what is finally assumed is: the Annals argument in
+**one of two finer forms** — `CoronaEmbeddingInput`, or
+`NuclearAmenableTraceInput` + `TikuisisWhiteWinterCoreInput` — plus
+`KasparovTheory` (Kasparov), Lance and Tu. `TikuisisWhiteWinterTheorem` itself
+is derived, not postulated.
+
+Three further inputs are stated and **consumed by nothing**:
 `DadarlatEilersInput` (Dadarlat–Eilers 2002), `WinterZachariasInput`
 (Winter–Zacharias 2009), `CoronaOrderZeroLiftInput` (Kirchberg–Rørdam 2014).
-
-The last four are **not consumed** by the group route — it uses TWW, Lance and
-Tu only. They are stated because they are what a proof of TWW would consume,
+They are what a proof of the remaining Annals input would consume. They are stated because they are what a proof of TWW would consume,
 which is what makes "the irreducibility is here" a checkable claim rather than
 a rhetorical one.
 
@@ -162,7 +230,11 @@ First-build repair list, in suspicion order:
 5. `TikuisisWhiteWinterProof.tikuisisWhiteWinterInput_of_theorem` — the defeq
    between the instance found for the anonymous `CStarAlgebra A` binder and
    `SepCStarAlgebra.algebra ⟨A, instA, hsep⟩`.
-6. `KirchbergRordamOrderZeroLift.CoronaOrderZeroLiftInput` — the C⋆-instances
+6. `QuasidiagonalCoronaCriterion.CoronaModel` — whether the instance parameter
+   `[∀ n, Nonempty (space n)]` is enough for the corona's C⋆-structure to
+   elaborate in the `corona_mul` field type, and whether `Matrix ↥(space n) …`
+   and `(fun n => (space n).carrier)` stay defeq through `seq_apply`.
+7. `KirchbergRordamOrderZeroLift.CoronaOrderZeroLiftInput` — the C⋆-instances
    on `BoundedMatrixSequence`/`NormMatrixCStarCorona` are passed as explicit
    anonymous binders precisely so that a missing global instance is not a
    failure; if it fails it is the binder order.
