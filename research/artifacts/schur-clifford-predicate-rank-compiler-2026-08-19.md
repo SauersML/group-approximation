@@ -165,6 +165,18 @@ number of replicas.  Hence a sign-retaining table already forces
 packet rounding: it is the finite recursive compilation of local relators into
 that all-pairs table with error independent of `N` and runtime.
 
+Kleene self-reference removes even the in-model dimension sensor.  It is
+enough for a machine-indexed compiler to have soundness only in the dimension
+printed by a halting source machine.  The fixed-point machine searches for a
+bad marked microstate and, if it finds one, outputs that witness's dimension
+`D`; the compiled halting computation then requests the finite replica count
+which contradicts `D`.  Halting would therefore destroy the exact witness
+which caused it, so the machine cannot halt.  Hyperlinearity would make the
+search halt, while nonhalting preserves the marked group word.  The sole
+remaining theorem on this route is runtime-independent perfect-complete
+groupification of the finite selected replica table; matrix-dimension
+detection is no longer part of it.
+
 There is a genuinely different escape from dimension detection.  If a finite
 bi-index action can be rounded uniformly, one base lamp and finitely many
 pair-orbit relators produce a coherent *infinite* family of anticommuting

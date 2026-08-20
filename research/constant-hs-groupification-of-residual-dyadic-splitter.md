@@ -52,3 +52,9 @@ that model from arbitrarily large matrices.
   endpoint is `approximate-schur-replicas-force-exponential-dimension`; the
   remaining table compiler is
   `adaptive-all-pairs-schur-replica-table-compiler`.
+- For existence of one nonhyperlinear group, internal dimension detection is
+  stronger than necessary.  The independent Kleene route lets a bad-witness
+  search output its own dimension and asks the halting compiler to defeat only
+  that dimension.  This leaves the same runtime-independent table lowering but
+  removes residual polynomial identities and microstate-dependent stopping
+  from the group gadget itself.

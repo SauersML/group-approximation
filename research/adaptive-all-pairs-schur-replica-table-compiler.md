@@ -37,3 +37,8 @@ independent of `L`, `N`, and runtime.
   operation is a perfect-complete lowering from its local measurements to the
   explicit Schur packet table without reintroducing an `N`-dependent union
   bound.
+- A self-referential machine-indexed route can remove the internal dimension
+  sensor altogether.  `dimension-matched-kleene-microstate-diagonal` lets the
+  search print the dimension of the witness it found, so
+  `dimension-reported-schur-replica-halting-compiler` only has to groupify the
+  resulting finite challenge with constants independent of runtime.
