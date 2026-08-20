@@ -125,6 +125,16 @@ residual factor and force `2^r|L`.  Hence the sharp diagonal task is to inspect
 that commutant and request `r>log_2L` new cells; the already paid rank cancels
 from both sides of the capacity inequality.
 
+There is a genuinely different escape from dimension detection.  If a finite
+bi-index action can be rounded uniformly, one base lamp and finitely many
+pair-orbit relators produce a coherent *infinite* family of anticommuting
+matrices inside the same candidate model.  Such a family cannot exist in any
+finite `M_d`: compactness gives two members converging to the same unitary,
+whose anticommutator tends to norm two.  This route pays no logarithmic rank
+threshold at all.  Its entire missing input is uniform HS site coherence for
+an explicit infinite finite-bi-index subgroup pair; finite pair-orbit type by
+itself does not control approximate coset representatives.
+
 A concrete exact holonomy primitive is now available.  If two commuting
 automorphisms of a finite packet have projective implementer commutator
 `zeta` of order `r` on an irreducible packet, adjoining commuting stable
