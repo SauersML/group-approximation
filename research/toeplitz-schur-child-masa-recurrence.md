@@ -39,6 +39,13 @@ past and future selector centers and reduce the tape to a classical history.
 The required placement must carry the two `q_(N+1)` branch labels while
 resetting the old selector center—for example through a partial-center
 endpoint chart or projective child holonomy.
+`branch-controlled-pauli-selector-reset` now supplies an explicit finite
+candidate: controls `q_(N+1)` and `Jq_(N+1)` activate dual Pauli flips on the
+two branches, turning the old selector center into a fixed full matrix factor.
+The unresolved completeness check is to realize the forced balanced spectra
+in one induced Fanizza model without erasing the mark; the unresolved
+soundness check is to align the post-reset multiplicity type with the next
+packet at the cost `(TCM1)`.
 
 Combined with the oriented child-branching identity, `(TCM1)` gives
 
@@ -64,3 +71,6 @@ nonisomorphic finite packet groups.
 - Put the next full packet in the old external commutant: invalid unless a
   center reset is included. It forces every future selector to commute with
   every past selector and fails the mandatory contextuality test.
+- Branch-controlled Pauli reset: active. It removes the old center using only
+  affine commutator controls. What remains is a finite context atlas proving
+  marked completeness and the post-reset type-vector estimate.
