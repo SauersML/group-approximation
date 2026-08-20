@@ -114,7 +114,7 @@ theorem isUnitaryAdj_sumMerge (ι : Type u) (κ : Type u) (B : Type v)
 
 /-- **The standard module absorbs itself.**  This is the case `E = H_B` of
 Kasparov's stabilization theorem, and the only case that is formal. -/
-def natSumMerge (B : Type v) [NonUnitalCStarAlgebra B] [PartialOrder B]
+noncomputable def natSumMerge (B : Type v) [NonUnitalCStarAlgebra B] [PartialOrder B]
     [StarOrderedRing B] :
     Adjointable (prod (standardModule ℕ B) (standardModule ℕ B))
       (standardModule ℕ B) :=
