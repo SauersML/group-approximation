@@ -47,3 +47,8 @@ also invalid, because it deletes an allowed radical character.
   transitive on all three nonzero allowed radical endpoint signs.  The exact
   remaining estimate is
   `s3-radical-atlas-returns-allowed-active-carrier`.
+- The four-child context batch gives a different escape from this target:
+  send all three contextual failures to three grandchildren and reserve the
+  fourth as active.  This bypass is tracked by
+  `mixed-cnot-joint-exit-via-four-child-context-batch`; it does not assert the
+  stronger complement-return statement here.
