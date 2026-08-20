@@ -4,23 +4,32 @@ id: defect-saturation-full-mf-radical
 kind: claim
 title: Defect saturation gives groups with full MF radical
 artifacts:
-  - notes/COMPRESSION_COLLAPSE_MF_RADICAL.md
+  - research/artifacts/torsion-free-full-mf-radical-2026-08-19.md
   - GroupApproximation/Sofic/DefectSaturation.lean
+  - GroupApproximation/Sofic/TorsionFreeFullMFRadical.lean
+  - GroupApproximation/Sofic/ManuscriptClosedWrappers.lean
 ---
 
-Credit: the small-cancellation route is Fournier-Facio's suggestion
-(personal communication 2026-08-14, "analogously to what I do in
-arXiv:2608.02025"); the saturation/full-radical framing is a session
-development of that idea (GPT-5.6-assisted), unrefereed.
+There exists a two-generated finitely presented torsion-free property-(T)
+acylindrically hyperbolic group `G` whose compression defect is all of `G` and
+whose MF residual is all of `G`:
 
-Claim: there is a 2-generated finitely presented torsion-free
-property-(T) acylindrically hyperbolic group G whose compression defect
-is all of G, so that (by the in-repo normalKazhdan_le_normMFResidual)
-Rad_MF(G) = G: every homomorphism to an MF group is trivial and every
-nontrivial quotient is non-MF.  Route: FF's arXiv:2608.02025 compression
-configuration + a Hull Theorem 7.1 quotient making the surviving simple
-subgroup normally generate.  The Lean plumbing (saturation implies full
-radical, black-hole quotient triviality, non-MF-ness) is now
-machine-checked unconditionally in
-GroupApproximation/Sofic/DefectSaturation.lean; the existence input
-still needs a Hull/Osin small-cancellation formalization program.
+```text
+Res_MF(G) = G.
+```
+
+Thus every homomorphism from `G` to an MF group is trivial, `G` itself is not
+MF, and every nontrivial quotient of `G` again has full MF residual and is
+non-MF.
+
+The construction is the Fournier--Facio compression configuration followed by
+the audited Hull--Osin routing quotient of
+`defect-normally-generates-torsion-free-quotient`.  The Cairn route
+`defect-saturation-full-mf-radical-proof` records exactly how those published
+group-theoretic inputs feed the machine-checked normal-Kazhdan and residual
+plumbing.
+
+**Trust boundary.**  The Hull/Osin existence step is source-verified and
+paper-level, not formalized.  Once the routing data exist, defect saturation,
+full MF residual, quotient heredity, and the CDE operator-MF consequences are
+kernel-checked in `TorsionFreeFullMFRadical.lean` and its wrappers.
