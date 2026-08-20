@@ -47,6 +47,10 @@ this gives `hs-groupify-self-referential-bcs-signal`.
   `polynomial-compressor-has-explicit-finite-quotient-wall` shows that the
   existing property-`(T)` compressor `y->xy` has a fixed finite quotient
   `G^2<G^3` with a strictly positive normalized adjoint commutant jump. Thus
-  existence of a compressor wall is no longer abstract. The remaining issue
-  is coefficient covariance: identify the forbidden Schur Reynolds range
-  with this intrinsic wall without allowing the tensor-decoupled model.
+  existence of a compressor wall in an exact representation is no longer
+  abstract.  It cannot be the final canonical-profile wall:
+  `fixed-finite-quotient-adjoint-walls-are-canonical-trace-null` proves that
+  every amplified sector factoring through that quotient has zero adjoint
+  density in delta microstates.  The finite wall remains a local test module,
+  but a live construction must retain the quotient-kernel action and recurse
+  in its residual commutant.

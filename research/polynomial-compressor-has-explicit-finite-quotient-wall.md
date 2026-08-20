@@ -57,3 +57,10 @@ positive-density wall. It does not yet solve the Schur placement: one must
 make the forbidden packet Reynolds range land in this intrinsic wall by
 shared coefficient-covariance relations. Bare tensor-factor commutation
 still fails.
+
+There is a decisive canonical-profile limitation.  The quotient kernel is
+infinite, so `fixed-finite-quotient-adjoint-walls-are-canonical-trace-null`
+shows that every adjoint sector carrying this fixed quotient action has zero
+density in canonical delta microstates of `Gamma`.  Thus `(PFW4)` is a finite
+test module, not by itself the positive-density wall required by the
+nonhyperlinearity argument.

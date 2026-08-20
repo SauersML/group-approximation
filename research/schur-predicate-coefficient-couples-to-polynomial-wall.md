@@ -42,6 +42,15 @@ representation, not merely exhibit one distinguished module. A positive
 solution supplies the wall inclusion `(SPW1)`; a regular-module or induced-
 sector counterrepresentation refutes the proposed attachment.
 
+The fixed-quotient-copy formulation is now refuted for canonical microstates.
+By `fixed-finite-quotient-adjoint-walls-are-canonical-trace-null`, every
+positive-density adjoint subspace on which the infinite kernel of
+`Gamma->B` acts trivially has density tending to zero.  Therefore a literal
+amplified copy of `(SPC2)` cannot satisfy clause 1 at positive density.  A
+repair would have to retain nontrivial kernel action and use `(SPC2)` only as
+a local fiber of a recursive residual construction; that is no longer the
+finite coefficient-module target stated here.
+
 ## Attempts
 
 - **Bare commutation. Dead.** It admits the independent tensor-factor model.
@@ -53,3 +62,7 @@ sector counterrepresentation refutes the proposed attachment.
 - **Coefficient covariance. Active.** Search for a relation on packet
   implementers and the first/third `G` factors whose induced adjoint
   intertwiner is in `W_0` exactly on the Schur rank-jump sector.
+- **Canonical-profile audit. Failed for a fixed quotient copy.** Distinct
+  quotient-kernel words give the one-over-`L` adjoint density bound `(FQW3)`.
+  Tensor amplification of `W_0` cannot survive the delta trace at positive
+  density.
