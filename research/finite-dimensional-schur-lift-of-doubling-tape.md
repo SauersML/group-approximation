@@ -55,6 +55,13 @@ matrices; a trace-functorial comparison would violate
 
 ## Attempts
 
+- **Finite shift amalgam is the remaining syntax check.** The analytic
+  one-cell modulus is now uniform and the type-vector recurrence is closed,
+  but `toeplitz-schur-bcs-shift-amalgam` must still prove that the Fanizza
+  shift and Toeplitz cell shift coexist in one finite presentation with an
+  exact marked model. Without that theorem, the levelwise words are a family
+  of compatible calculations rather than one group.
+
 - **Independent packet exactification. Pairwise part repaired.** Exactifying
   each context separately gives different correcting isometries.
   `finite-group-shared-overlap-polar-alignment` averages their overlap and
