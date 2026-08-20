@@ -93,7 +93,7 @@ theorem conjProd_mem_normalClosure {S : Set A} :
   induction l with
   | nil =>
       intro _
-      simp
+      exact Subgroup.one_mem (Subgroup.normalClosure S)
   | cons p l ih =>
       intro hl
       rw [conjProd_cons]
@@ -193,13 +193,13 @@ theorem mem_torsionTower_succ_iff_raw {A : Type} [Group A] (gen : ℕ → A)
       obtain ⟨p, hp, rfl⟩ := List.mem_map.1 hq
       rw [Classical.choose_spec (hword p.2)]
       exact hl p hp
-    · congr 1
-      rw [List.map_map]
-      conv_rhs => rw [← List.map_id l]
-      refine List.map_congr_left fun p _ ↦ ?_
-      show (evalRaw gen (Classical.choose (hword p.1)),
-          evalRaw gen (Classical.choose (hword p.2))) = p
-      rw [Classical.choose_spec (hword p.1), Classical.choose_spec (hword p.2)]
+    · induction l with
+      | nil => rfl
+      | cons p l ih =>
+          simp only [List.map_cons, conjProd_cons]
+          rw [Classical.choose_spec (hword p.1),
+            Classical.choose_spec (hword p.2),
+            ih (fun q hq ↦ hl q (List.mem_cons_of_mem p hq))]
   · rintro ⟨l, hl, rfl⟩
     refine ⟨l.map fun p ↦ (evalRaw gen p.1, evalRaw gen p.2), ?_, rfl⟩
     intro q hq
