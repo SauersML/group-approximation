@@ -67,9 +67,9 @@ def toPush : Amalg e₁ e₂ →* Push e₁ e₂ := by
       = Monoid.PushoutI.base (famHom e₁ e₂) g :=
     Monoid.PushoutI.of_apply_eq_base (famHom e₁ e₂) true g
   show Monoid.Coprod.lift _ _ (relator e₁ e₂ g) = 1
-  unfold relator
-  rw [map_mul, map_inv, Monoid.Coprod.lift_apply_inl,
-    Monoid.Coprod.lift_apply_inr, h₁, h₂, mul_inv_cancel]
+  simp only [relator, map_mul, map_inv, Monoid.Coprod.lift_apply_inl,
+    Monoid.Coprod.lift_apply_inr]
+  exact mul_inv_eq_one.mpr (h₁.trans h₂.symm)
 
 /-- From the pushout to the presented amalgam. -/
 def fromPush : Push e₁ e₂ →* Amalg e₁ e₂ := by
@@ -96,12 +96,14 @@ def fromPush : Push e₁ e₂ →* Amalg e₁ e₂ := by
       = inl e₁ e₂ a := by
   unfold fromPush
   rw [Monoid.PushoutI.lift_of]
+  rfl
 
 @[simp] theorem fromPush_of_true (b : K₂) :
     fromPush e₁ e₂ (Monoid.PushoutI.of (φ := famHom e₁ e₂) true b)
       = inr e₁ e₂ b := by
   unfold fromPush
   rw [Monoid.PushoutI.lift_of]
+  rfl
 
 /-! ## 3.  They are inverse -/
 
@@ -128,11 +130,13 @@ theorem toPush_comp_fromPush :
         show toPush e₁ e₂ (fromPush e₁ e₂
           (Monoid.PushoutI.of (φ := famHom e₁ e₂) false a)) = _
         rw [fromPush_of_false, toPush_inl]
+        rfl
     | true =>
         refine MonoidHom.ext fun a => ?_
         show toPush e₁ e₂ (fromPush e₁ e₂
           (Monoid.PushoutI.of (φ := famHom e₁ e₂) true a)) = _
         rw [fromPush_of_true, toPush_inr]
+        rfl
   · refine MonoidHom.ext fun g => ?_
     have hbase : Monoid.PushoutI.base (famHom e₁ e₂) g
         = Monoid.PushoutI.of (φ := famHom e₁ e₂) false (e₁ g) :=
@@ -140,6 +144,7 @@ theorem toPush_comp_fromPush :
     show toPush e₁ e₂ (fromPush e₁ e₂
       (Monoid.PushoutI.base (famHom e₁ e₂) g)) = _
     rw [hbase, fromPush_of_false, toPush_inl]
+    exact hbase.symm
 
 /-- **The two amalgams agree.** -/
 def pushEquiv : Amalg e₁ e₂ ≃* Push e₁ e₂ where
