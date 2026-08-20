@@ -356,6 +356,32 @@ theorem planeSecondTrivialMass_nonneg
     0 ≤ planeSecondTrivialMass X i j k hij hik hjk rho z n :=
   Finset.sum_nonneg fun _ _ ↦ sq_nonneg _
 
+theorem planeFirstTrivialMass_le_norm_sq
+    (i j k : Fin 3) (hij : i ≠ j) (hik : i ≠ k) (hjk : j ≠ k)
+    (rho : elementaryGroup (Fin 3) (FreeRing X) →* (E ≃ₗᵢ[ℝ] E))
+    (z : E) (n : ℕ) :
+    planeFirstTrivialMass X i j k hij hik hjk rho z n ≤ ‖z‖ ^ 2 := by
+  unfold planeFirstTrivialMass
+  calc
+    _ ≤ ∑ sign, ‖planeComponent X i j k hij hik hjk n rho sign z‖ ^ 2 :=
+      Finset.sum_le_sum_of_subset_of_nonneg (Finset.subset_univ _)
+        (fun _ _ _ ↦ sq_nonneg _)
+    _ = ‖z‖ ^ 2 :=
+      sum_norm_planeComponent_sq X i j k hij hik hjk n rho z
+
+theorem planeSecondTrivialMass_le_norm_sq
+    (i j k : Fin 3) (hij : i ≠ j) (hik : i ≠ k) (hjk : j ≠ k)
+    (rho : elementaryGroup (Fin 3) (FreeRing X) →* (E ≃ₗᵢ[ℝ] E))
+    (z : E) (n : ℕ) :
+    planeSecondTrivialMass X i j k hij hik hjk rho z n ≤ ‖z‖ ^ 2 := by
+  unfold planeSecondTrivialMass
+  calc
+    _ ≤ ∑ sign, ‖planeComponent X i j k hij hik hjk n rho sign z‖ ^ 2 :=
+      Finset.sum_le_sum_of_subset_of_nonneg (Finset.subset_univ _)
+        (fun _ _ _ ↦ sq_nonneg _)
+    _ = ‖z‖ ^ 2 :=
+      sum_norm_planeComponent_sq X i j k hij hik hjk n rho z
+
 theorem antitone_planeFirstTrivialMass
     (i j k : Fin 3) (hij : i ≠ j) (hik : i ≠ k) (hjk : j ≠ k)
     (rho : elementaryGroup (Fin 3) (FreeRing X) →* (E ≃ₗᵢ[ℝ] E))
@@ -377,6 +403,90 @@ theorem antitone_planeSecondTrivialMass
   rw [planeSecondTrivialMass_step X i j k hij hik hjk rho z n]
   exact le_add_of_nonneg_left
     (planeSecondTopBoundaryMass_nonneg X i j k hij hik hjk rho z (n + 1))
+
+/-- The first-coordinate top-degree layers have an exact finite telescoping
+mass formula.  This is the quantitative reservoir-capacity statement behind
+their asymptotic vanishing. -/
+theorem sum_planeFirstTopBoundaryMass_range_eq
+    (i j k : Fin 3) (hij : i ≠ j) (hik : i ≠ k) (hjk : j ≠ k)
+    (rho : elementaryGroup (Fin 3) (FreeRing X) →* (E ≃ₗᵢ[ℝ] E))
+    (z : E) (N : ℕ) :
+    (∑ n ∈ Finset.range N,
+        planeFirstTopBoundaryMass X i j k hij hik hjk rho z (n + 1)) =
+      planeFirstTrivialMass X i j k hij hik hjk rho z 0 -
+        planeFirstTrivialMass X i j k hij hik hjk rho z N := by
+  induction N with
+  | zero => simp
+  | succ N ih =>
+      rw [Finset.sum_range_succ, ih,
+        planeFirstTrivialMass_step X i j k hij hik hjk rho z N]
+      ring
+
+/-- Hence every finite family of first-coordinate top-degree layers fits in
+the initial trivial-character mass. -/
+theorem sum_planeFirstTopBoundaryMass_range_le
+    (i j k : Fin 3) (hij : i ≠ j) (hik : i ≠ k) (hjk : j ≠ k)
+    (rho : elementaryGroup (Fin 3) (FreeRing X) →* (E ≃ₗᵢ[ℝ] E))
+    (z : E) (N : ℕ) :
+    (∑ n ∈ Finset.range N,
+        planeFirstTopBoundaryMass X i j k hij hik hjk rho z (n + 1)) ≤
+      planeFirstTrivialMass X i j k hij hik hjk rho z 0 := by
+  rw [sum_planeFirstTopBoundaryMass_range_eq X i j k hij hik hjk rho z N]
+  exact sub_le_self _
+    (planeFirstTrivialMass_nonneg X i j k hij hik hjk rho z N)
+
+theorem sum_planeFirstTopBoundaryMass_range_le_norm_sq
+    (i j k : Fin 3) (hij : i ≠ j) (hik : i ≠ k) (hjk : j ≠ k)
+    (rho : elementaryGroup (Fin 3) (FreeRing X) →* (E ≃ₗᵢ[ℝ] E))
+    (z : E) (N : ℕ) :
+    (∑ n ∈ Finset.range N,
+        planeFirstTopBoundaryMass X i j k hij hik hjk rho z (n + 1)) ≤
+      ‖z‖ ^ 2 :=
+  (sum_planeFirstTopBoundaryMass_range_le
+    X i j k hij hik hjk rho z N).trans
+      (planeFirstTrivialMass_le_norm_sq
+        X i j k hij hik hjk rho z 0)
+
+/-- The symmetric second-coordinate top-degree layers telescope exactly. -/
+theorem sum_planeSecondTopBoundaryMass_range_eq
+    (i j k : Fin 3) (hij : i ≠ j) (hik : i ≠ k) (hjk : j ≠ k)
+    (rho : elementaryGroup (Fin 3) (FreeRing X) →* (E ≃ₗᵢ[ℝ] E))
+    (z : E) (N : ℕ) :
+    (∑ n ∈ Finset.range N,
+        planeSecondTopBoundaryMass X i j k hij hik hjk rho z (n + 1)) =
+      planeSecondTrivialMass X i j k hij hik hjk rho z 0 -
+        planeSecondTrivialMass X i j k hij hik hjk rho z N := by
+  induction N with
+  | zero => simp
+  | succ N ih =>
+      rw [Finset.sum_range_succ, ih,
+        planeSecondTrivialMass_step X i j k hij hik hjk rho z N]
+      ring
+
+/-- Hence every finite family of second-coordinate top-degree layers fits in
+the initial trivial-character mass. -/
+theorem sum_planeSecondTopBoundaryMass_range_le
+    (i j k : Fin 3) (hij : i ≠ j) (hik : i ≠ k) (hjk : j ≠ k)
+    (rho : elementaryGroup (Fin 3) (FreeRing X) →* (E ≃ₗᵢ[ℝ] E))
+    (z : E) (N : ℕ) :
+    (∑ n ∈ Finset.range N,
+        planeSecondTopBoundaryMass X i j k hij hik hjk rho z (n + 1)) ≤
+      planeSecondTrivialMass X i j k hij hik hjk rho z 0 := by
+  rw [sum_planeSecondTopBoundaryMass_range_eq X i j k hij hik hjk rho z N]
+  exact sub_le_self _
+    (planeSecondTrivialMass_nonneg X i j k hij hik hjk rho z N)
+
+theorem sum_planeSecondTopBoundaryMass_range_le_norm_sq
+    (i j k : Fin 3) (hij : i ≠ j) (hik : i ≠ k) (hjk : j ≠ k)
+    (rho : elementaryGroup (Fin 3) (FreeRing X) →* (E ≃ₗᵢ[ℝ] E))
+    (z : E) (N : ℕ) :
+    (∑ n ∈ Finset.range N,
+        planeSecondTopBoundaryMass X i j k hij hik hjk rho z (n + 1)) ≤
+      ‖z‖ ^ 2 :=
+  (sum_planeSecondTopBoundaryMass_range_le
+    X i j k hij hik hjk rho z N).trans
+      (planeSecondTrivialMass_le_norm_sq
+        X i j k hij hik hjk rho z 0)
 
 /-- First-coordinate top-degree boundary mass vanishes along the exhaustive
 filtration.  This is a consequence of an actual nonnegative telescoping

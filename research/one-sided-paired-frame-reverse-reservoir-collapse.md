@@ -61,6 +61,11 @@ regular Bass--Serre reservoir.
   label.  The product of the two elementary `F_2[x]` shears has leading degree
   `2n` at its `n`th iterate.  Coupling the forced two-cycle to this action
   returns the finite character after two steps but moves it to a new degree.
+- `free-root-top-boundary-reservoir-is-summable` proves the required capacity
+  theorem for those degree labels: the mass first detected at successive
+  degrees telescopes and has total at most one on a unit carrier.  Literal
+  prefix projections are therefore optional; identifying each emitted hard
+  character with the corresponding top-degree Fourier layer is enough.
 - `corner-localized-non-ce-bcs-energy-gap` proves that BCS violation mass
   cannot dilute after cutting to an approximately reducing prefix carrier,
   even when that carrier has vanishing ambient trace.
@@ -69,8 +74,9 @@ regular Bass--Serre reservoir.
   fixed fraction of its trace into a new reverse carrier, and make those
   reverse carriers orthogonal.  The resulting trace budget is `(PRC1)`.
 - The missing calculation is to realize these two shears on consecutive
-  free-root coefficient planes, prove that degree `2n` hard exits lie in
-  pairwise orthogonal character-valuation layers, prove persistence of the
-  baseline copy, and import the already formalized polynomial shear-transport
-  boundary estimates.  A merely decreasing first-hit process is insufficient:
-  it admits a geometric reservoir and does not force collapse.
+  free-root coefficient planes, prove that each degree-`2n` hard exit is
+  contained in the matching top-boundary Fourier mass, and prove persistence
+  of the baseline copy with polynomial word error.  Summability of those
+  boundary masses and the quantitative elementary-shear transport are already
+  formalized.  A merely decreasing first-hit process is insufficient: it
+  admits a geometric reservoir and does not force collapse.
