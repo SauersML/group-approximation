@@ -44,6 +44,7 @@ All unconditional.
 namespace GroupApproximation
 
 open Monoid
+open CommensurabilityInvariance
 
 /-! ## The `Bool`-indexed amalgam is the symmetric double -/
 
@@ -65,7 +66,7 @@ def doubleToIteratedBool (G : Type) [Group G] (Γ : Subgroup G) :
     (Γ : Subgroup G) (γ : ↥Γ) :
     doubleToIteratedBool G Γ (PushoutI.base (doubleMap G Γ) γ)
       = PushoutI.base (iteratedMap G Γ Bool) γ :=
-  PushoutI.lift_base _ _ _ _
+  PushoutI.lift_base _ _ (doubleToIteratedMaps_comp G Γ false true) _
 
 /-- The vertex maps in the other direction. -/
 def iteratedBoolToDoubleMaps (G : Type) [Group G] (Γ : Subgroup G) :

@@ -1325,6 +1325,21 @@ import GroupApproximation.Higman.TowerDerivation
 import GroupApproximation.Kazhdan.InducedRepresentation
 import GroupApproximation.Kazhdan.KazhdanFiniteIndex
 import GroupApproximation.Kazhdan.LatticeRouteRemainder
+import GroupApproximation.Algebra.HyperbolicTransport
+import GroupApproximation.Analysis.CStarCPStarTarget
+import GroupApproximation.Analysis.QuasidiagonalTraceLocal
+import GroupApproximation.Analysis.QuasidiagonalTraceProperties
+import GroupApproximation.Analysis.TikuisisWhiteWinterCore
+import GroupApproximation.Computability.TorsionFreeMarkov
+import GroupApproximation.Computability.TorsionFreeMFMarkov
+import GroupApproximation.Sofic.IteratedDoubleAmalgam
+import GroupApproximation.Sofic.SymmetricDoubleCovering
+import GroupApproximation.Sofic.CoveringWitness
+import GroupApproximation.Sofic.DoubleFiniteDimensionalRigidity
+import GroupApproximation.Sofic.DoubleInputsMinimal
+import GroupApproximation.Sofic.KunThomShulmanDoubleConstruction
+import GroupApproximation.Sofic.FreeLampKernelSplitting
+import GroupApproximation.Sofic.CentralizerNormalizationRefuted
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
