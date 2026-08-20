@@ -1384,6 +1384,21 @@ import GroupApproximation.Higman.RowKernel
 import GroupApproximation.Higman.HNNDescent
 import GroupApproximation.Sofic.GreendlingerChunks
 import GroupApproximation.Sofic.OsinRelativeSmallCancellation
+import GroupApproximation.Analysis.CStarHilbertModule
+import GroupApproximation.Analysis.CStarHilbertModuleNorm
+import GroupApproximation.Analysis.CStarAdjointable
+import GroupApproximation.Analysis.CStarAdjointableNorm
+import GroupApproximation.Analysis.CStarPositiveOrder
+import GroupApproximation.Analysis.CStarUnitary
+import GroupApproximation.Analysis.CStarFiniteRank
+import GroupApproximation.Analysis.CStarCompactOperators
+import GroupApproximation.Analysis.CStarDirectSumOperators
+import GroupApproximation.Analysis.CStarModuleDirectSum
+import GroupApproximation.Analysis.CStarStandardModule
+import GroupApproximation.Analysis.CStarStandardModuleEquiv
+import GroupApproximation.Analysis.CStarStabilization
+import GroupApproximation.Analysis.KasparovBimodule
+import GroupApproximation.Analysis.KasparovUnitaryEquivalence
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
