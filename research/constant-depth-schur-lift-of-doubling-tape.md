@@ -66,6 +66,15 @@ problem.
   exactify their union as a single finite packet.  The open point is an
   injective finitely presented group realization of those one-sided corners
   with the marked completeness representation intact.
+- **Carrier-only center. Active and exact.**
+  `fanizza-doubling-carriers-form-orthogonal-flag` proves that the derived
+  carrier projections and first-hit projections in the source recurrence are
+  a genuine orthogonal flag. Their reflection involutions commute and satisfy
+  the group-word recursion `Z_(n+1)=Z_n X_nZ_nX_n^*`. Therefore a bounded
+  chain may retain these carrier signs without globalizing the original BCS
+  context selectors. The remaining nonlinear datum is exactly the positive
+  overlap in `(FOF5)`. A valid one-sided bridge must discharge that overlap;
+  imposing only the affine word recursion is insufficient.
 - **Flip-free q-MASA reset. Interface solved, scale return open.**  The full
   q-MASA forgets the old selector subgroup and retains all corrected child
   signs.  However `q-masa-selector-bridge-is-scale-conservation` proves that

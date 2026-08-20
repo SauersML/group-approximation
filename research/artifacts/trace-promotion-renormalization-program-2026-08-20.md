@@ -219,6 +219,17 @@ show that residual erasure recreates the **predicate-oriented** density in the
 compressed coefficient algebra, rather than only the structural child/full
 Reynolds wall.
 
+For the finite-prefix version, the source carrier geometry is now exact.
+`fanizza-doubling-carriers-form-orthogonal-flag` proves that the carrier and
+first-hit projections form one orthogonal flag, so their reflection
+involutions satisfy a literal commuting group-word recursion.  Passing to
+that word loses exactly one term: twice the overlap of the two source
+projections, whose squared HS norm is four times its trace.  Hence a
+partial-center return may safely retain the carrier sign; it must reset only
+the original context selector center.  The matrix-only target is
+correspondingly narrower: discharge the overlap through the global V4
+cross-Gram curvature without turning it into an exact trace inequality.
+
 ### 5.2 Fault tolerance
 
 `bgv-adversarial-fault-tolerance` accepts a positive fraction of adversarial

@@ -65,6 +65,14 @@ claimed reduction has merely hidden the whole open problem in a local lemma.
   ranges are context atoms they are cross-context trace words in the original
   shared selectors.  This is the active attack because it retains precisely
   the operator data absent from scalar type flow.
+- **Projection recurrence splice.**  On the Fanizza doubling source,
+  `fanizza-doubling-carriers-form-orthogonal-flag` converts the exact carrier
+  propagation to a commuting involution word and identifies its entire
+  nonlinear residual as `2AB`, with squared HS mass `4tau(AB)`.  Thus a
+  cross-Gram decoder need not transport an anonymous additive recurrence: it
+  may target these overlap projections directly.  The global-use condition
+  remains mandatory, since an unconditional one-overlap discharge would
+  already be a root-level nonhyperlinearity criterion.
 - **Independent local exactification is insufficient.**  Choosing a separate
   Gowers--Hatami correction for every packet gives unrelated conjugating
   isometries and leaves the cross-Gram matrix unconstrained.  The branch maps

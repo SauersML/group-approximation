@@ -39,6 +39,13 @@ past and future selector centers and reduce the tape to a classical history.
 The required placement must carry the two `q_(N+1)` branch labels while
 resetting the old selector center—for example through a partial-center
 endpoint chart or projective child holonomy.
+There is one safe part of the center which need not be reset.
+`fanizza-doubling-carriers-form-orthogonal-flag` proves that the derived
+carrier and first-hit signs already commute in the exact source algebra and
+obey a literal word recursion.  A partial-center endpoint may therefore keep
+that one carrier flag.  It must still discard the original context selector
+center, and `(FOF5)` shows that the overlap projection—not the affine word
+recursion—is the remaining nonlinear payment.
 The earlier raw branch-controlled reset does not supply this step:
 `raw-schur-generator-is-not-child-center` shows that the raw `q_(N+1)`
 eigenspaces are not the child-simple branches.  The corrected branch signs
