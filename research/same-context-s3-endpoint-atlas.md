@@ -52,3 +52,19 @@ words such that:
   Thus a successful triangular holonomy must use finite-dimensional packet
   rank/multiplicity (or another matrix-only rounding invariant); an exact
   trace identity or a properly-infinite central-corner shortcut is impossible.
+- Adjoining both independent radical translations at once **does** repair
+  the pairwise-coupling defect.  By
+  `full-v4-radical-crossed-product-has-one-common-latent-coordinate`, the
+  forbidden sector becomes one `M_(2D_0)` block and all three chart labels
+  are the three nonzero linear functionals of one common
+  `r in F_2^2`.  This is real progress: an independent no-signaling box can
+  no longer be inserted separately in each chart.
+- Common latent coherence is still not an endpoint law.  The full `V_4`
+  crossed product itself has exact forbidden-sector representations, so it
+  does not declare any atom in `(VRC6)` a failed diagonal or crossed
+  comparison.  Moreover
+  `finite-projective-v4-holonomy-is-forbidden-sector-blind` proves that the
+  obvious scalar two-cell repair is invisible on the forbidden free orbit.
+  The live target is now narrower: couple the affine functions `(VRC5)` to
+  the three BCS success conventions by a non-scalar operator on the common
+  multiplicity space (or by an unbounded recurrent cell).
