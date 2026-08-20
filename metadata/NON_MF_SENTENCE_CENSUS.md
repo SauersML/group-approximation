@@ -6,19 +6,19 @@ The proof ledger grades claims; this census grades **sentences**, which is the g
 
 | status | sentences |
 | --- | --- |
-| `ledger` | 666 |
+| `ledger` | 676 |
 | `formalized` | 251 |
-| `definition` | 42 |
+| `definition` | 41 |
 | `attribution` | 20 |
 | `provenance` | 14 |
 | `structural` | 5 |
 | `open` | 4 |
 | `partial` | 1 |
-| **total** | **1003** |
+| **total** | **1012** |
 
-Carrying a declaration or a ledger row: **960/1003** (95.7%).
+Carrying a declaration or a ledger row: **969/1012** (95.8%).
 
-Of the `ledger` sentences, 294 name a single row and 372 name every row of their anchor.  Of the single-row ones, 166 were narrowed from a multi-row anchor by claim-text overlap rather than by hand, and their note says so; the rest sit under an anchor the ledger grades with one row, where the pairing is forced.  The census never pretends to know which row is which sentence: where the text does not decide, it names them all.
+Of the `ledger` sentences, 296 name a single row and 380 name every row of their anchor.  Of the single-row ones, 168 were narrowed from a multi-row anchor by claim-text overlap rather than by hand, and their note says so; the rest sit under an anchor the ledger grades with one row, where the pairing is forced.  The census never pretends to know which row is which sentence: where the text does not decide, it names them all.
 
 ## What no declaration establishes
 
@@ -41,10 +41,10 @@ These are the sentences the development does not settle, verbatim.  `open` sente
 | --- | --- | --- |
 | (front matter) | 11 | 0 |
 | Introduction | 8 | 0 |
-| The result | 4 | 0 |
+| The result | 5 | 0 |
 | Outline of the proof | 28 | 0 |
 | Relation to prior work | 29 | 0 |
-| Matrix quotients | 37 | 0 |
+| Matrix quotients | 39 | 0 |
 | One-sided conjugation in matrix models | 22 | 0 |
 | The exact case | 51 | 0 |
 | The central involution obstruction | 40 | 0 |
@@ -60,20 +60,20 @@ These are the sentences the development does not settle, verbatim.  `open` sente
 | A hyperlinear non-MF trace | 32 | 0 |
 | The MF equivalences | 30 | 0 |
 | Weighted asymptotic-commutant invariance | 10 | 0 |
-| Obstructions from a one-sided conjugation datum | 39 | 0 |
+| Obstructions from a one-sided conjugation datum | 40 | 0 |
 | An intrinsic form | 19 | 0 |
 | The normal-Kazhdan form of the obstruction | 43 | 0 |
 | The finite-dimensional obstruction | 18 | 0 |
 | The cyclic comparison | 46 | 0 |
 | The MF residual | 43 | 0 |
 | Permanence and its failure | 15 | 0 |
-| Commuting orbits and the MF residual | 99 | 0 |
+| Commuting orbits and the MF residual | 101 | 0 |
 | The reduced group algebra of \texorpdfstring{$E$ | 11 | 0 |
 | The Clifford quotient and permanence | 25 | 0 |
 | Soficity of $E$ | 68 | 0 |
 | Marked-limit closure | 9 | 0 |
 | A finite universal Horn obstruction | 8 | 0 |
-| Undecidability of MF recognition | 25 | 0 |
+| Undecidability of MF recognition | 28 | 0 |
 | Limitations of the operator-norm method | 21 | 0 |
 | Questions | 21 | 0 |
 | The maximal group \texorpdfstring{$C^*$ | 22 | 0 |

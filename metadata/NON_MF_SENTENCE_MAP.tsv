@@ -75,6 +75,9 @@ f796fb80b1c6	definition	GroupApproximation.NormMatrixCStarCorona	names the quoti
 a04239b939a6	definition	GroupApproximation.ManuscriptExactWrappers.manuscriptMFDefinitionEquivalences	the same convention for varying sequences
 5305f8455bc5	formalized	GroupApproximation.ManuscriptExactWrappers.manuscriptMFDefinitionEquivalences	strictly increasing dimensions change nothing
 be090c6906c9	definition	GroupApproximation.NormMatrixCStarCorona GroupApproximation.kt_06_ultraproduct_finite	lead-in to the three quotients, two of which are formal objects here
+155c4de679fb	ledger	PRE.01 PRE.16	the norm corona itself and its role as the target of an MF embedding
+5089d9ff3c27	ledger	KT.06 KT.10 KT.18	the norm ultraproduct, its finiteness, and the Kazhdan projection it contains
+fb41ca005357	ledger	TR.05	the tracial ultraproduct used as the target for the printed hyperlinear model
 743e038963bd	definition	GroupApproximation.NormMatrixCStarCorona GroupApproximation.kt_06_ultraproduct_finite	the three quotients; the corona is a type and the norm ultraproduct's finiteness is the badged lemma
 30cba4018957	formalized	GroupApproximation.HilbertSchmidtAdjointGap.exists_hsClose_adjointFar	which ideal defines which quotient, and the no-go that identifies the step needing the operator norm
 03623ef9320d	attribution	GroupApproximation.ManuscriptExactWrappers.manuscriptUnitaryLifting GroupApproximation.ManuscriptExactWrappers.manuscriptUnitaryCoronaEquivalence	credit, not a dependency: the lifting lemmas are proved here and the citation could be deleted without moving the trust surface
@@ -188,5 +191,21 @@ d10623f430a3	formalized	GroupApproximation.CliffordBSAmenableMF.manuscriptSharpn
 625ccdefb004	attribution	-	states Alekseev--Thom's open problem; asserts nothing of its own
 2471490ba475	open	-	compares two questions and records what the estimates here require; an open-status claim
 e04fc3a89c47	formalized	GroupApproximation.LiteralSoficAssembly.markedGroup_isSofic	soficity of E is proved from the normal form
+e9c0d10acb12	ledger	LI.13	Question 2 itself
+c01d7e05b3a4	ledger	LI.07 LI.08	the two preceding criteria, paired clause by clause
+7ffb7c21e2ab	ledger	LI.14	the group-theoretic reduction that would answer Question 2
+dbfc9a425da5	ledger	LI.12b	the small-cancellation forward pointer
+53829177808b	ledger	LI.12a	the torsion obstruction in the Clifford construction
+61a9675413dc	ledger	LI.17	Question 3 itself
+870bffafb98a	ledger	LI.17	why operator-norm MF does not directly supply a hyperlinear model
+dac22c93b33f	ledger	LI.17	the convention under which Question 3 is asked
+de737826f9e2	ledger	LI.19	Question 5 itself
+b241410ee0e7	ledger	LI.19	the two finite-dimensional inputs and the faithful-trace no-go
+ada061b9ddc1	ledger	LI.19	the open building-block question
+21a4183e6936	ledger	LI.18	Question 4 itself
+29ff04836c09	ledger	LI.09	Question 1 itself
+51c040d737d6	ledger	LI.09 LI.10	the strict containment and the exact radical reduction
+2eaf99158352	ledger	LI.11 LI.12	the two reasons the reductions give no further value
+7cb519fcabab	ledger	LI.12c	the three configurations the quotient may still contain
 fcd3b40cd949	definition	GroupApproximation.manuscriptMaximalGroupCStarUniversalProperty	the supremum defining the maximal norm, and why it is finite
 897ac1c43a2e	definition	GroupApproximation.manuscriptMaximalGroupCStarUniversalProperty	names the canonical unitaries
