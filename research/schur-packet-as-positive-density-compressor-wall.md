@@ -43,3 +43,10 @@ this gives `hs-groupify-self-referential-bcs-signal`.
   The live Toeplitz route therefore asks for the stronger recursive dichotomy
   `toeplitz-tail-retains-contextual-schur-density`, which sends precisely that
   residual erasure into the next self-similar tail rather than ignoring it.
+- **Concrete polynomial-compressor wall.**
+  `polynomial-compressor-has-explicit-finite-quotient-wall` shows that the
+  existing property-`(T)` compressor `y->xy` has a fixed finite quotient
+  `G^2<G^3` with a strictly positive normalized adjoint commutant jump. Thus
+  existence of a compressor wall is no longer abstract. The remaining issue
+  is coefficient covariance: identify the forbidden Schur Reynolds range
+  with this intrinsic wall without allowing the tensor-decoupled model.

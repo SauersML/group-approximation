@@ -26,14 +26,15 @@ then forces at least one quarter of the forbidden parent mass to pay that
 energy.  This is an amplification-stable density statement: it controls range
 overlaps, not an integral multiplicity remainder.
 
-The overlap half of that global theorem now has an explicit implementation:
-give the exit maps pairwise disjoint types of one fixed finite tag group and
-impose their tag covariances as defining relators.
-`disjoint-tag-covariance-controls-cross-gram` then pays the complete ordered
-cross-Gram term with a multiplicity-independent constant.  The remaining
-global burden is exactly the off-parent leakage estimate together with the
-requirement that the tags arise from, and remain compatible with, the shared
-context tuple and its exact non-CE tracial model.
+The analytic part of that global theorem now has an explicit implementation:
+give the exit maps pairwise disjoint types of one fixed finite tag group,
+exclude those types from the complement of the parent, and impose their tag
+covariances as defining relators.
+`disjoint-tag-covariance-controls-cross-gram` then pays both off-parent leakage
+and the complete ordered cross-Gram term with a multiplicity-independent
+constant.  The remaining global burden is exactly
+`shared-context-exclusive-v4-tagging`: obtain that exclusivity from the shared
+context tuple while retaining its exact non-CE tracial model.
 
 Insert the resulting local payment into the fixed number of controlled
 branch comparisons.  Fixed-packet exactification and the finite-depth ledger
