@@ -9,6 +9,7 @@ distinct_from:
   scaled-kazhdan-transport: that transports matrices already known to asymptotically commute with a Kazhdan image; this must make the explicit packet Reynolds-difference range enter that transported sector by group relations.
   packet-kazhdan-commutant-placement-decouples: that gives the tensor-factor countermodel to bare commutant placement; this asks for a covariance relation which excludes exactly that model.
   semisimple-packet-multiplicity-collapse: that seeks pointwise corona collapse for arbitrary finite-window semisimple packets at their self-normalized defect scale; this needs only the explicit Schur-Clifford packets on an extensive forbidden carrier supplied by the robust BCS gap.
+  adjoint-supertrace-cannot-pay-hs-selection-load: that rules out paying a matrix carrier from one low-dimensional adjoint direction; this starts with a positive-density Reynolds range and must transport the whole projection rather than select one vector from it.
 ---
 
 Construct a finite group-relation gadget around a fixed Kazhdan group
