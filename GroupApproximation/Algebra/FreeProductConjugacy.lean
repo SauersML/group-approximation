@@ -86,10 +86,10 @@ private theorem sylLength_mul_le_aux :
         simp [sylLength]
       · obtain ⟨i, x, a', hax, hlen⟩ := exists_head_factor h1
         have ha' : sylLength a' ≤ n := by omega
-        have hstep : sylLength (CoprodI.of x * (a' * b)) ≤ sylLength (a' * b) + 1 :=
-          sylLength_of_mul_le x (a' * b)
+        have hstep : sylLength (a * b) ≤ sylLength (a' * b) + 1 := by
+          rw [hax, mul_assoc]
+          exact sylLength_of_mul_le x (a' * b)
         have hih := ih a' b ha'
-        rw [hax, mul_assoc]
         omega
 
 /-- **Syllable length is subadditive.** -/
@@ -119,6 +119,7 @@ theorem sylLength_conj_le (c g : CoprodI G) :
 
 /-! ### Powers of a cyclically reduced word -/
 
+omit [DecidableEq ι] [(i : ι) → DecidableEq (G i)] in
 theorem npow_toList_length {i j : ι} (hij : i ≠ j) (u : NeWord G i j) :
     ∀ n : ℕ, (npow hij u n).toList.length = (n + 1) * u.toList.length
   | 0 => by simp [npow]
@@ -137,6 +138,7 @@ theorem sylLength_npow {i j : ι} (hij : i ≠ j) (u : NeWord G i j) (n : ℕ) :
     exact (equiv_prod _).symm
   rw [sylLength_eq_of_neWord h1, npow_toList_length hij u n]
 
+omit [DecidableEq ι] [(i : ι) → DecidableEq (G i)] in
 /-- A cyclically reduced word has at least two syllables: a one-letter word
 begins and ends in the same factor. -/
 theorem two_le_length_of_ne {i j : ι} (hij : i ≠ j) (u : NeWord G i j) :
@@ -149,11 +151,11 @@ theorem two_le_length_of_ne {i j : ι} (hij : i ≠ j) (u : NeWord G i j) :
       have hp1 : 1 ≤ u₁.toList.length := by
         cases hc : u₁.toList with
         | nil => exact absurd hc h1
-        | cons a t => rw [hc, List.length_cons]; omega
+        | cons a t => simp
       have hp2 : 1 ≤ u₂.toList.length := by
         cases hc : u₂.toList with
         | nil => exact absurd hc h2
-        | cons a t => rw [hc, List.length_cons]; omega
+        | cons a t => simp
       simp only [NeWord.toList, List.length_append]
       omega
 
@@ -167,7 +169,7 @@ theorem length_le_sylLength_conj {i j : ι} (hij : i ≠ j) (u : NeWord G i j)
     (c : CoprodI G) :
     u.toList.length ≤ sylLength (c * u.prod * c⁻¹) := by
   by_contra hlt
-  push_neg at hlt
+  push Not at hlt
   have key : ∀ n : ℕ,
       (n + 1) * u.toList.length
         ≤ (n + 1) * sylLength (c * u.prod * c⁻¹) + 2 * sylLength c := by
