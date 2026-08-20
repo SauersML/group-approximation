@@ -1,0 +1,50 @@
+---
+rg: 2
+id: compressor-covariant-packet-reynolds-return
+kind: claim
+title: Couple packet Reynolds ranges to a one-sided compressor with dimension-free return cost
+artifacts:
+  - research/artifacts/schur-clifford-predicate-rank-compiler-2026-08-19.md
+distinct_from:
+  scaled-kazhdan-transport: that transports matrices already known to asymptotically commute with a Kazhdan image; this must make the explicit packet Reynolds-difference range enter that transported sector by group relations.
+  packet-kazhdan-commutant-placement-decouples: that gives the tensor-factor countermodel to bare commutant placement; this asks for a covariance relation which excludes exactly that model.
+  semisimple-packet-multiplicity-collapse: that seeks pointwise corona collapse for arbitrary finite-window semisimple packets at their self-normalized defect scale; this needs only the explicit Schur-Clifford packets on an extensive forbidden carrier supplied by the robust BCS gap.
+---
+
+Construct a finite group-relation gadget around a fixed Kazhdan group
+`Lambda`, a one-sided compressor `s`, and the finitely many contextual packet
+inclusions `A_(f_c)<=B_(f_c)` such that:
+
+1. the gadget has an exact finite-tracial representation realizing the fixed
+   non-CE BCS trace and a separated marked word;
+2. in every finite-dimensional approximate representation, after local packet
+   exactification, the adjoint Reynolds projections obey
+
+   ```text
+   sum_c tr_Adj(R_(A_c)-R_(B_c))
+     <= C E_rel(U),                                      (CPR1)
+   ```
+
+   where `E_rel` is a bounded-overlap sum of named group-relator energies and
+   `C` is dimension independent; and
+3. at least one named covariance relator fails by a fixed amount in the
+   tensor-decoupled representation of
+   `packet-kazhdan-commutant-placement-decouples`.
+
+The intended mechanism is to make the `R_A-R_B` range a genuine coefficient
+of a compressor conjugacy orbit, so `scaled-kazhdan-transport` returns it to a
+subspace of the same adjoint dimension.  Bare relations
+`[A_f,Lambda]=[B_f,s Lambda s^(-1)]=1` are explicitly insufficient.
+
+## Attempts
+
+- **Bare commutant placement: refuted.**  The separate tensor-factor model
+  retains the full Reynolds gap with zero transport defect.
+- **Identify packet generators with fixed conjugates: too rigid.**  A fixed
+  conjugate word cannot implement the selector-dependent Schur-complement
+  retraction on all allowed assignments; doing so would revive the finite
+  selector-induction barrier.
+- **Active interface.**  Use a two-cell of rectangular intertwiners rather
+  than equality of packet generators.  The cell should expose the whole
+  Reynolds range as a transported adjoint coefficient, while the non-CE
+  tracial model absorbs the corresponding infinite-index relative commutant.

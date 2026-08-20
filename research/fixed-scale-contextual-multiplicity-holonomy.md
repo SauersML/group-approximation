@@ -41,6 +41,11 @@ floor.
 - **Raw restriction multiplicity: invisible.**  A forbidden `B_f` simple is
   twice as large, so Hilbert dimension is conserved.  The return must first
   normalize to the common `A_f` packet size.
+- **Bare Kazhdan commutant placement: refuted.**
+  `packet-kazhdan-commutant-placement-decouples` puts the
+  compressor and a forbidden packet on separate tensor factors.  Transport is
+  exact while the Reynolds gap survives.  The packet must be an actual
+  compressor covariant, not an independent coefficient algebra.
 - **Active attack.**  Feed the explicit restriction matrices into the existing
   Kazhdan compressor/multiplicity framework.  The integer multiplicities need
   not be selected copy by copy:

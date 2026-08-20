@@ -34,6 +34,15 @@ forbidden assignments.  This is
 integer-copy selection by an explicit positive-density projection which is
 ready for scaled Kazhdan transport.
 
+There is a necessary covariance warning.  Merely placing `A_f` in the
+commutant of a Kazhdan group and `B_f` in the commutant of its compressed copy
+does nothing: the compressor representation and a forbidden packet can live
+on separate tensor factors, with perfect transport and the full Reynolds gap.
+This is `packet-kazhdan-commutant-placement-decouples`.
+The narrowed open interface is
+`compressor-covariant-packet-reynolds-return`: a named relation must make the
+Reynolds-difference range an actual coefficient of the compressor orbit.
+
 ## 0. Executive statement
 
 There is a loophole in the repo's affine-selector no-go results.
