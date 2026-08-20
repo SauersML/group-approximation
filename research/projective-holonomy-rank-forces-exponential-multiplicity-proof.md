@@ -29,19 +29,23 @@ H=[[0,1],[1,0]],
 ```
 
 with `r` copies of `H`.  Replacing the `V_i` by the corresponding products
-preserves unitarity and turns `(PHR4)` into `r` independent Pauli pairs,
-commuting across distinct pairs.  Their generated complex algebra is
+preserves unitarity and turns `(PHR4)` into `r` independent anticommuting
+pairs, commuting across distinct pairs.  The resulting generators need not
+square to one.  Their squares, and the monomials in the radical of `Omega`,
+are central in the generated finite-dimensional algebra.  Decompose
+`C^m` into their joint central-character spaces.  On each such space, rescale
+the nonradical generators by scalar square roots.  They now form `r` genuine
+Pauli pairs, and their generated simple algebra is
 
 ```text
 M_(2^r)(C).
 ```
 
-Therefore `C^m` is a module over `M_(2^r)(C)` and is a direct sum of copies
-of its unique simple module.  This proves `2^r|m`; `(PHR3)` follows from
-`dim(T)m<=d`.
+Each joint central-character space is therefore a module over
+`M_(2^r)(C)` and has dimension divisible by `2^r`.  Summing the fiber
+dimensions proves `2^r|m`; `(PHR3)` follows from `dim(T)m<=d`.
 
 For the limitation, write `m=q 2^r+s` with `0<=s<2^r`, use exact Clifford
 blocks on the first `q 2^r` dimensions, and alter only the last `s`
 dimensions.  The affected normalized squared HS mass is at most `2^r/m`, so
 no fixed cocycle rank gives an ambient-dimension-independent obstruction.
-
