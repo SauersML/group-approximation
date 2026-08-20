@@ -72,9 +72,9 @@ theorem hasKazhdanPropertyT_of_finiteIndex {Γ : Type u} [Group Γ] (Λ : Subgro
   intro E _ _ _ π v hv hnear
   -- The constant vector, and its norm.
   set ξ₀ : IndSpace tr E := constVec tr E v with hξ₀def
-  have hcard : (0 : ℝ) < (tr.reps.card : ℝ) := by
-    exact_mod_cast tr.card_reps_pos
-  have hξ₀sq : ‖ξ₀‖ ^ 2 = (tr.reps.card : ℝ) := by
+  have hcard : (0 : ℝ) < (Fintype.card (Index tr) : ℝ) := by
+    exact_mod_cast Fintype.card_pos (α := Index tr)
+  have hξ₀sq : ‖ξ₀‖ ^ 2 = (Fintype.card (Index tr) : ℝ) := by
     rw [hξ₀def, norm_constVec_sq, hv]
     ring
   have hξ₀pos : 0 < ‖ξ₀‖ := by
@@ -92,22 +92,19 @@ theorem hasKazhdanPropertyT_of_finiteIndex {Γ : Type u} [Group Γ] (Λ : Subgro
   have hclose : ∀ q ∈ Q,
       ‖ind tr E π q ((‖ξ₀‖⁻¹ : ℝ) • ξ₀) - (‖ξ₀‖⁻¹ : ℝ) • ξ₀‖ < ε := by
     intro q hq
-    have hsum : ‖indFun tr E π q ξ₀ - ξ₀‖ ^ 2 < (tr.reps.card : ℝ) * ε ^ 2 := by
-      rw [hξ₀def, norm_indFun_constVec_sub_sq]
+    have hsum : ‖indFun tr E π q ξ₀ - ξ₀‖ ^ 2 < ‖ξ₀‖ ^ 2 * ε ^ 2 := by
+      rw [hξ₀sq, hξ₀def, norm_indFun_constVec_sub_sq]
       calc ∑ c : Index tr, ‖π (cocycle tr c.1 q) v - v‖ ^ 2
           < ∑ _c : Index tr, ε ^ 2 := by
             refine Finset.sum_lt_sum_of_nonempty Finset.univ_nonempty fun c _ => ?_
             nlinarith [norm_nonneg (π (cocycle tr c.1 q) v - v), hcoord q hq c]
-        _ = (tr.reps.card : ℝ) * ε ^ 2 := by
-            simp
+        _ = (Fintype.card (Index tr) : ℝ) * ε ^ 2 := by
+            simp [nsmul_eq_mul]
     have hstep : ‖indFun tr E π q ξ₀ - ξ₀‖ < ‖ξ₀‖ * ε := by
-      nlinarith [norm_nonneg (indFun tr E π q ξ₀ - ξ₀), hsum, hξ₀sq,
-        mul_pos hξ₀pos hε]
+      nlinarith [norm_nonneg (indFun tr E π q ξ₀ - ξ₀), hsum, mul_pos hξ₀pos hε]
     have hlin : ind tr E π q ((‖ξ₀‖⁻¹ : ℝ) • ξ₀) - (‖ξ₀‖⁻¹ : ℝ) • ξ₀
         = (‖ξ₀‖⁻¹ : ℝ) • (indFun tr E π q ξ₀ - ξ₀) := by
-      rw [smul_sub]
-      congr 1
-      simp
+      rw [ind_apply, indFun_smul, smul_sub]
     rw [hlin, norm_smul, Real.norm_eq_abs, abs_of_pos (inv_pos.mpr hξ₀pos)]
     have hmul := mul_lt_mul_of_pos_left hstep (inv_pos.mpr hξ₀pos)
     rwa [← mul_assoc, inv_mul_cancel₀ hξ₀pos.ne', one_mul] at hmul
@@ -121,7 +118,7 @@ theorem hasKazhdanPropertyT_of_finiteIndex {Γ : Type u} [Group Γ] (Λ : Subgro
 `Kazhdan/SharpExistenceRoutes.lean` states and leaves open, is a theorem. -/
 theorem kazhdanFiniteIndexPermanence : Hyperbolic.KazhdanFiniteIndexPermanence := by
   intro Γ inst Λ hfi hΓ
-  exact @hasKazhdanPropertyT_of_finiteIndex.{0, 0} Γ inst Λ hfi hΓ
+  exact @hasKazhdanPropertyT_of_finiteIndex Γ inst Λ hfi hΓ
 
 /-- **The lattice route, with the Kazhdan input discharged.**  Compare
 `Hyperbolic.sharpExistence_of_latticeRoute`, which needs three permanence
