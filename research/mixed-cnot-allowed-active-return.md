@@ -42,3 +42,8 @@ also invalid, because it deletes an allowed radical character.
   allowed `K=+1,b=-1` mass has no first-detection character and may recur.
 - The live options are an E5-provided third chart or a direct commutator bound
   for the analytic complement `A` against the original shared Fanizza words.
+- `six-generator-one-jump-router-has-s3-radical-atlas` now supplies a third
+  finite-packet option: its marked rank jumps by one and its `S_3` symmetry is
+  transitive on all three nonzero allowed radical endpoint signs.  The exact
+  remaining estimate is
+  `s3-radical-atlas-returns-allowed-active-carrier`.
