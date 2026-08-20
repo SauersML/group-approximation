@@ -286,15 +286,15 @@ theorem exists_gword {Z : Subgroup P} {x : HNNExtension P A B φ}
       rw [List.prod_cons, hprod]
       rcases hy with ⟨a, ha, rfl⟩ | rfl | rfl
       · exact ⟨a * z₀, l, Subgroup.mul_mem Z ha hz₀, hlZ,
-          (of_mul_gword φ a z₀ l).symm⟩
+          of_mul_gword φ a z₀ l⟩
       · refine ⟨1, ((1 : ℤˣ), z₀) :: l, Subgroup.one_mem Z, ?_,
-          (t_mul_gword φ z₀ l).symm⟩
+          t_mul_gword φ z₀ l⟩
         intro p hp
         rcases List.mem_cons.mp hp with rfl | hp'
         · exact hz₀
         · exact hlZ p hp'
       · refine ⟨1, ((-1 : ℤˣ), z₀) :: l, Subgroup.one_mem Z, ?_,
-          (inv_t_mul_gword φ z₀ l).symm⟩
+          inv_t_mul_gword φ z₀ l⟩
         intro p hp
         rcases List.mem_cons.mp hp with rfl | hp'
         · exact hz₀

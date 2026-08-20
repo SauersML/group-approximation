@@ -1430,6 +1430,15 @@ import GroupApproximation.Sofic.ConjExprMatching
 import GroupApproximation.Sofic.MatchingSpine
 import GroupApproximation.Sofic.NonCrossingMatching
 import GroupApproximation.Sofic.RelatorBlock
+import GroupApproximation.Algebra.HNNBridgeAmbient
+import GroupApproximation.Algebra.HNNBridgeFamily
+import GroupApproximation.Higman.AddRelators
+import GroupApproximation.Higman.FinalReduction
+import GroupApproximation.Higman.REPredNormalForm
+import GroupApproximation.Higman.RecursivePresentationBridge
+import GroupApproximation.Higman.RelatorEnumeration
+import GroupApproximation.Higman.RelatorRE
+import GroupApproximation.Sofic.GreendlingerBeyond
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group

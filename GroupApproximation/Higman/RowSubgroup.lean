@@ -1,4 +1,5 @@
 import GroupApproximation.Higman.BenignClosure
+import GroupApproximation.Algebra.HNNFinitePresentation
 import GroupApproximation.Algebra.HNNTorsionFree
 import Mathlib.GroupTheory.FreeGroup.Basic
 
@@ -55,6 +56,7 @@ def row (i : ℤ) : F₀ := c ^ (-i) * b * c ^ i
   unfold row
   simp
 
+set_option linter.dupNamespace false in
 /-- The row subgroup. -/
 def Row : Subgroup F₀ := Subgroup.closure (Set.range row)
 
@@ -73,22 +75,22 @@ def shiftInv : F₀ →* F₀ :=
 
 @[simp] theorem shiftHom_b : shiftHom b = c⁻¹ * b * c := by
   unfold shiftHom b
-  rw [FreeGroup.lift.of]
+  rw [FreeGroup.lift_apply_of]
   simp
 
 @[simp] theorem shiftHom_c : shiftHom c = c := by
   unfold shiftHom c
-  rw [FreeGroup.lift.of]
+  rw [FreeGroup.lift_apply_of]
   simp
 
 @[simp] theorem shiftInv_b : shiftInv b = c * b * c⁻¹ := by
   unfold shiftInv b
-  rw [FreeGroup.lift.of]
+  rw [FreeGroup.lift_apply_of]
   simp
 
 @[simp] theorem shiftInv_c : shiftInv c = c := by
   unfold shiftInv c
-  rw [FreeGroup.lift.of]
+  rw [FreeGroup.lift_apply_of]
   simp
 
 theorem shiftInv_comp_shiftHom : shiftInv.comp shiftHom = MonoidHom.id F₀ := by
@@ -125,7 +127,7 @@ def shift : F₀ ≃* F₀ where
 theorem shift_row (i : ℤ) : shift (row i) = row (i + 1) := by
   unfold row
   rw [map_mul, map_mul, map_zpow, map_zpow, shift_b, shift_c]
-  rw [zpow_add, zpow_add, zpow_neg, zpow_neg, zpow_one, zpow_one]
+  simp only [zpow_neg, zpow_add, zpow_one]
   group
 
 /-! ## 2.  The extension -/
@@ -163,10 +165,10 @@ theorem Lsub_fg : Lsub.FG := by
 
 theorem of_row_mem_Lsub (i : ℤ) : (of (row i) : Gam) ∈ Lsub := by
   induction i using Int.induction_on with
-  | hz =>
+  | zero =>
       rw [row_zero]
       exact Subgroup.subset_closure (Set.mem_insert _ _)
-  | hp n ih =>
+  | succ n ih =>
       have hstep : (of (row ((n : ℤ) + 1)) : Gam)
           = (t : Gam) * of (row (n : ℤ)) * (t : Gam)⁻¹ := by
         rw [conj_of, shift_row]
@@ -174,7 +176,7 @@ theorem of_row_mem_Lsub (i : ℤ) : (of (row i) : Gam) ∈ Lsub := by
       have ht : (t : Gam) ∈ Lsub :=
         Subgroup.subset_closure (Set.mem_insert_of_mem _ rfl)
       exact Subgroup.mul_mem _ (Subgroup.mul_mem _ ht ih) (Subgroup.inv_mem _ ht)
-  | hn n ih =>
+  | pred n ih =>
       have hstep : (of (row (-(n : ℤ) - 1)) : Gam)
           = (t : Gam)⁻¹ * of (row (-(n : ℤ))) * (t : Gam) := by
         have h := conj_of (row (-(n : ℤ) - 1))
@@ -231,10 +233,10 @@ theorem conj_map_Row (x : F₀) (hx : x ∈ Row) :
 theorem conj_zpow_map_Row (k : ℤ) (x : F₀) (hx : x ∈ Row) :
     (t : Gam) ^ k * of x * ((t : Gam) ^ k)⁻¹ ∈ Row.map (of : F₀ →* Gam) := by
   induction k using Int.induction_on with
-  | hz =>
+  | zero =>
       rw [zpow_zero, one_mul, inv_one, mul_one]
       exact ⟨x, hx, rfl⟩
-  | hp n ih =>
+  | succ n ih =>
       obtain ⟨y, hy, hyeq⟩ := ih
       have hstep : (t : Gam) ^ ((n : ℤ) + 1) * of x * ((t : Gam) ^ ((n : ℤ) + 1))⁻¹
           = (t : Gam) * ((t : Gam) ^ (n : ℤ) * of x * ((t : Gam) ^ (n : ℤ))⁻¹) *
@@ -243,7 +245,7 @@ theorem conj_zpow_map_Row (k : ℤ) (x : F₀) (hx : x ∈ Row) :
         group
       rw [hstep, ← hyeq]
       exact conj_map_Row y hy
-  | hn n ih =>
+  | pred n ih =>
       obtain ⟨y, hy, hyeq⟩ := ih
       have hstep : (t : Gam) ^ (-(n : ℤ) - 1) * of x * ((t : Gam) ^ (-(n : ℤ) - 1))⁻¹
           = (t : Gam)⁻¹ * ((t : Gam) ^ (-(n : ℤ)) * of x * ((t : Gam) ^ (-(n : ℤ)))⁻¹) *
@@ -342,7 +344,7 @@ theorem comap_Lsub : Lsub.comap (of : F₀ →* Gam) = Row := by
     have hk0 : k = 0 := by
       have h1 : ((Multiplicative.ofAdd (1 : ℤ)) ^ k) = 1 := hlen.symm
       have h2 : ((Multiplicative.ofAdd (1 : ℤ)) ^ k) = Multiplicative.ofAdd k := by
-        rw [← Multiplicative.ofAdd_zsmul]
+        rw [← ofAdd_zsmul]
         congr 1
         simp
       rw [h2] at h1

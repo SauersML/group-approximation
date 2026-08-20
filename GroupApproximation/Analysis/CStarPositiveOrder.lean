@@ -137,7 +137,7 @@ theorem star_add_mul_self_le {a b : A} :
     rw [star_add, add_mul, mul_add, mul_add]
     abel
   rw [hexp]
-  exact add_le_add_left star_mul_add_star_mul_le _
+  exact add_le_add_right (star_mul_add_star_mul_le (a := a) (b := b)) _
 
 end Order
 
