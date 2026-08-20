@@ -1294,6 +1294,11 @@ import GroupApproximation.Analysis.LanceFolnerMaps
 import GroupApproximation.Analysis.LanceNuclearAmenable
 import GroupApproximation.Analysis.TikuisisWhiteWinterAmenableClass
 import GroupApproximation.Kazhdan.SharpExistenceRoutes
+import GroupApproximation.Algebra.FreeProductConjugacy
+import GroupApproximation.Analysis.CStarOrderZero
+import GroupApproximation.Higman.RopeTrick
+import GroupApproximation.Sofic.GreendlingerThreeFactor
+import GroupApproximation.Sofic.HullSuitabilityGeometry
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group

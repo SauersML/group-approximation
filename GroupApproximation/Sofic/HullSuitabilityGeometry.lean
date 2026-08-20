@@ -353,6 +353,23 @@ theorem IsSuitable.unbounded_of_commutes {δ : ℝ} {S : Subgroup G} {x : X}
   exact hc (eq_one_of_commutes_of_bounded hs.isometric hs.acylindrical htf
     hg hh hind hcg hch hbdd)
 
+/-- **A subgroup with a nontrivial centralizing element of bounded orbit is
+never suitable**, over a torsion-free ambient.  This is what rules out the
+obvious candidate: the *compressed copy* `u ι(Γ) u⁻¹` of a compression datum is
+centralized by the transported root, which is nontrivial by the datum's own
+`witness_commutator_ne_one`.  So the suitable subgroup of a compression pattern
+cannot be the compressed copy, and has to be sought in the defect --- which is
+where `Sofic.HullSuitableDefectSubgroup` puts it. -/
+theorem not_isSuitable_of_centralizing {δ : ℝ} {S : Subgroup G} {x : X}
+    (htf : IsPowerTorsionFree G) {c : G} (hc : c ≠ 1)
+    (hcomm : ∀ y ∈ S, Commute c y) {B : ℝ}
+    (hbdd : ∀ j : ℤ, dist x ((c ^ j) • x) ≤ B) :
+    ¬ IsSuitable δ S x := by
+  intro hs
+  obtain ⟨g, hgS, h, hhS, hg, hh, hind⟩ := hs.nonElementary
+  exact hc (eq_one_of_commutes_of_bounded hs.isometric hs.acylindrical htf
+    hg hh hind (hcomm g hgS) (hcomm h hhS) hbdd)
+
 /-! ## The remaining proposition, named
 
 Everything above is a theorem.  What is not a theorem is that the compression

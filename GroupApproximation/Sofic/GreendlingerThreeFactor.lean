@@ -606,6 +606,64 @@ theorem confinement_of_tail_survival {c' t' u M W : List (α × Bool)}
   unfold palindrome
   rw [List.append_assoc, List.append_assoc, ← List.append_assoc u, hr]
 
+/-- **The block cannot outrun the next rotation when the next conjugator is the
+longer one.**  Past `c'` the block is matched against letters of the leading
+rotation, so what it eats there is a common prefix of the next rotation and a
+rotation of the inverted leading one --- a piece.  `C'(1/6)` bounds it by a
+sixth, while the next factor keeps more than five twelfths of its rotation
+(`m` below); so the block stops inside what the next factor keeps, and stops
+early enough that a subword beginning a sixth of the way into the next rotation
+is untouched.
+
+Both conclusions are exactly what the descent's inheritance step consumes.  This
+is the half of confinement that is a theorem: it needs only that the next factor
+keeps five twelfths, which every case of the descent delivers.  The other half
+--- the leading conjugator the longer, hugging the next rotation itself --- is
+what `LeadingConfinement` still carries. -/
+theorem eaten_lt_of_long_next_conjugator {R : Set (List (α × Bool))}
+    (hmetric : MetricSmallCancellation R (1 / 6))
+    {c t c' t' y E M W : List (α × Bool)} {m : ℕ}
+    (ht : t ∈ symmetrization R) (ht' : t' ∈ symmetrization R)
+    (hE : E <:+ t)
+    (hinvM : FreeGroup.invRev M = c ++ FreeGroup.invRev E)
+    (hMW : FreeGroup.invRev M <+: W)
+    (hsurv : c' ++ t'.take m <+: W)
+    (hm : m ≤ t'.length) (hmbig : 5 * t'.length < 12 * m)
+    (hcy : c ++ y = c')
+    (hne : t' ≠ (FreeGroup.invRev t).rotate y.length) :
+    6 * (M.length - c'.length) < t'.length ∧ M.length ≤ c'.length + m := by
+  have hMl : (FreeGroup.invRev M).length = M.length := FreeGroup.invRev_length
+  have hmpos : 0 < m := by omega
+  have ht'pos : 0 < t'.length := by omega
+  rcases le_or_gt M.length c'.length with hshort | hlong
+  · exact ⟨by omega, by omega⟩
+  · set d : ℕ := min (M.length - c'.length) m with hd
+    have hdm : d ≤ m := by omega
+    have hdlen : (t'.take d).length = d := by
+      rw [List.length_take]
+      omega
+    have htake : t'.take d <+: t'.take m := by
+      have hb := List.take_prefix d (t'.take m)
+      rwa [List.take_take, Nat.min_eq_left hdm] at hb
+    have hpre : c' ++ t'.take d <+: FreeGroup.invRev M := by
+      refine List.prefix_of_prefix_length_le
+        (((List.prefix_append_right_inj c').mpr htake).trans hsurv) hMW ?_
+      rw [List.length_append, hdlen, hMl]
+      omega
+    have hsplit : y ++ t'.take d <+: FreeGroup.invRev E := by
+      refine (List.prefix_append_right_inj c).mp ?_
+      rw [← List.append_assoc, hcy, ← hinvM]
+      exact hpre
+    have hrot : t'.take d <+: (FreeGroup.invRev t).rotate y.length :=
+      prefix_rotate_of_append_prefix (hsplit.trans (invRev_prefix_of_suffix hE))
+    have hpiece : IsPiece (symmetrization R) (t'.take d) :=
+      isPiece_of_prefix_two ht'
+        (rotate_mem_symmetrization (invRev_mem_symmetrization ht) y.length) hne
+        (List.take_prefix _ _) hrot
+    have h6 := six_mul_length_lt_of_isPiece hmetric hpiece ht' (List.take_prefix _ _)
+    rw [hdlen] at h6
+    exact ⟨by omega, by omega⟩
+
 /-! ## The descent, at every length -/
 
 /-- **The descent.**  For a minimal expression of *any* length whose leading

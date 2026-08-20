@@ -168,29 +168,31 @@ theorem length_le_sylLength_conj {i j : ι} (hij : i ≠ j) (u : NeWord G i j)
     u.toList.length ≤ sylLength (c * u.prod * c⁻¹) := by
   by_contra hlt
   push_neg at hlt
-  set L := u.toList.length with hL
-  set g := c * u.prod * c⁻¹ with hg
-  set m := 2 * sylLength c with hm
-  have key : ∀ n : ℕ, (n + 1) * L ≤ (n + 1) * sylLength g + m := by
+  have key : ∀ n : ℕ,
+      (n + 1) * u.toList.length
+        ≤ (n + 1) * sylLength (c * u.prod * c⁻¹) + 2 * sylLength c := by
     intro n
-    have h1 : sylLength (u.prod ^ (n + 1)) = (n + 1) * L := sylLength_npow hij u n
-    have h2 : u.prod ^ (n + 1) = c⁻¹ * g ^ (n + 1) * c := by
-      rw [hg, conj_pow_eq]
+    have h1 : sylLength (u.prod ^ (n + 1)) = (n + 1) * u.toList.length :=
+      sylLength_npow hij u n
+    have h2 : u.prod ^ (n + 1) = c⁻¹ * (c * u.prod * c⁻¹) ^ (n + 1) * c := by
+      rw [conj_pow_eq]
       group
-    have h3 : sylLength (c⁻¹ * g ^ (n + 1) * c) ≤ 2 * sylLength c⁻¹ + sylLength (g ^ (n + 1)) := by
-      have := sylLength_conj_le c⁻¹ (g ^ (n + 1))
-      rw [inv_inv] at this
-      exact this
-    have h4 : sylLength (g ^ (n + 1)) ≤ (n + 1) * sylLength g := sylLength_pow_le g (n + 1)
+    have h3 : sylLength (c⁻¹ * (c * u.prod * c⁻¹) ^ (n + 1) * c)
+        ≤ 2 * sylLength c⁻¹ + sylLength ((c * u.prod * c⁻¹) ^ (n + 1)) := by
+      have h := sylLength_conj_le c⁻¹ ((c * u.prod * c⁻¹) ^ (n + 1))
+      rw [inv_inv] at h
+      exact h
+    have h4 : sylLength ((c * u.prod * c⁻¹) ^ (n + 1))
+        ≤ (n + 1) * sylLength (c * u.prod * c⁻¹) :=
+      sylLength_pow_le _ (n + 1)
     have h5 : sylLength c⁻¹ = sylLength c := sylLength_inv c
     rw [h2] at h1
     omega
-  have hkey := key m
-  have hmul : (m + 1) * (sylLength g + 1) ≤ (m + 1) * L :=
-    Nat.mul_le_mul (le_refl (m + 1)) hlt
+  have hkey := key (2 * sylLength c)
+  have hmul : (2 * sylLength c + 1) * (sylLength (c * u.prod * c⁻¹) + 1)
+      ≤ (2 * sylLength c + 1) * u.toList.length :=
+    Nat.mul_le_mul (le_refl _) hlt
   rw [Nat.mul_add, mul_one] at hmul
-  generalize (m + 1) * sylLength g = A at hkey hmul
-  generalize (m + 1) * L = B at hkey hmul
   omega
 
 /-- **A cyclically reduced word of two or more syllables is not conjugate into
@@ -200,12 +202,11 @@ theorem not_conj_of_le_one {i j : ι} (hij : i ≠ j) (u : NeWord G i j)
     {k : ι} (x : G k) (c : CoprodI G) :
     u.prod ≠ c * CoprodI.of x * c⁻¹ := by
   intro heq
-  set L := u.toList.length with hL
-  set B := 2 * sylLength c + 1 with hB
-  have hL2 : 2 ≤ L := two_le_length_of_ne hij u
-  have key : ∀ n : ℕ, (n + 1) * L ≤ B := by
+  have hL2 : 2 ≤ u.toList.length := two_le_length_of_ne hij u
+  have key : ∀ n : ℕ, (n + 1) * u.toList.length ≤ 2 * sylLength c + 1 := by
     intro n
-    have h1 : sylLength (u.prod ^ (n + 1)) = (n + 1) * L := sylLength_npow hij u n
+    have h1 : sylLength (u.prod ^ (n + 1)) = (n + 1) * u.toList.length :=
+      sylLength_npow hij u n
     have h2 : u.prod ^ (n + 1) = c * CoprodI.of (x ^ (n + 1)) * c⁻¹ := by
       rw [heq, conj_pow_eq, map_pow]
     have h3 : sylLength (c * CoprodI.of (x ^ (n + 1)) * c⁻¹)
@@ -214,8 +215,10 @@ theorem not_conj_of_le_one {i j : ι} (hij : i ≠ j) (u : NeWord G i j)
     have h4 : sylLength (CoprodI.of (x ^ (n + 1))) ≤ 1 := sylLength_of_le_one _
     rw [h2] at h1
     omega
-  have h := key B
-  have h' : (B + 1) * 2 ≤ (B + 1) * L := Nat.mul_le_mul (le_refl (B + 1)) hL2
+  have h := key (2 * sylLength c + 1)
+  have h' : (2 * sylLength c + 1 + 1) * 2
+      ≤ (2 * sylLength c + 1 + 1) * u.toList.length :=
+    Nat.mul_le_mul (le_refl _) hL2
   omega
 
 /-- **The syllable length of a cyclically reduced form is a conjugacy

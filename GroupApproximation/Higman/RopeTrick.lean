@@ -583,28 +583,202 @@ noncomputable def toRope (SF : Set F) : Pres w SF →* RopeGroup w := by
 @[simp] theorem toRope_e (SF : Set F) :
     toRope w SF (presMk w SF (preE w)) = (HNNExtension.t : RopeGroup w) := rfl
 
-/-- The map to the candidate. -/
-noncomputable def fromRope (SF : Set F) (hSF : Subgroup.closure SF = ⊤) :
-    RopeGroup w →* Pres w SF := by
-  refine HNNExtension.lift
-    (MonoidHom.noncommCoprod ((presMk w SF).comp (preGamma w))
-      (QuotientGroup.lift N ((presMk w SF).comp (preF w)) ?_)
-      ?_)
-    (presMk w SF (preE w)) ?_
+/-! ## 8.  The value map, computed on the generators -/
+
+/-- The second coordinate of the image of `(s, 1)` is `τ s`; the first is `s`.
+Both are immediate from the way `psi` was assembled. -/
+theorem coe_psi_snd (s : Gamma w) (hs : s ∈ Sub w) :
+    (((psi w ⟨((s, (1 : F ⧸ N)) : Amb w), pair_mem_ae w s hs⟩ :
+        ↥(BeSub w)) : Amb w)).2 = tau w ⟨s, hs⟩ := by
+  have hae : (aeSubEquiv w).symm ⟨((s, (1 : F ⧸ N)) : Amb w), pair_mem_ae w s hs⟩
+      = ⟨s, hs⟩ := by
+    rw [MulEquiv.symm_apply_eq]
+    refine Subtype.ext ?_
+    rw [coe_aeSubEquiv]
+  show ((Pinch.graphEquiv w.L (Aemb w) (phi w) (phi_kills w)).symm
+    ((aeSubEquiv w).symm _) : Amb w).2 = _
+  rw [hae]
+  rfl
+
+theorem coe_psi_fst (s : Gamma w) (hs : s ∈ Sub w) :
+    (((psi w ⟨((s, (1 : F ⧸ N)) : Amb w), pair_mem_ae w s hs⟩ :
+        ↥(BeSub w)) : Amb w)).1 = s := by
+  have hae : (aeSubEquiv w).symm ⟨((s, (1 : F ⧸ N)) : Amb w), pair_mem_ae w s hs⟩
+      = ⟨s, hs⟩ := by
+    rw [MulEquiv.symm_apply_eq]
+    refine Subtype.ext ?_
+    rw [coe_aeSubEquiv]
+  have hgen := coe_graphEquiv w
+    ((Pinch.graphEquiv w.L (Aemb w) (phi w) (phi_kills w)).symm ⟨s, hs⟩)
+  rw [MulEquiv.apply_symm_apply] at hgen
+  show ((Pinch.graphEquiv w.L (Aemb w) (phi w) (phi_kills w)).symm
+    ((aeSubEquiv w).symm _) : Amb w).1 = _
+  rw [hae]
+  exact hgen.symm
+
+/-- The image of `(s, 1)` under the last stable letter. -/
+theorem coe_psi (s : Gamma w) (hs : s ∈ Sub w) :
+    ((psi w ⟨((s, (1 : F ⧸ N)) : Amb w), pair_mem_ae w s hs⟩ :
+        ↥(BeSub w)) : Amb w) = (s, tau w ⟨s, hs⟩) := by
+  refine Prod.ext ?_ ?_
+  · exact coe_psi_fst w s hs
+  · exact coe_psi_snd w s hs
+
+/-- `τ` is the quotient map on the image of `F`. -/
+theorem tau_gammaOf (x : F) :
+    tau w ⟨gammaOf w x, gammaOf_mem_sub w x⟩ = QuotientGroup.mk' N x := by
+  have h₁ := coe_psi w (gammaOf w x) (gammaOf_mem_sub w x)
+  have h₂ := coe_psi_of w x
+  rw [h₁] at h₂
+  exact (congrArg Prod.snd h₂).symm
+
+/-- `τ` is trivial on the conjugate. -/
+theorem tau_gammaConj (x : F) :
+    tau w ⟨gammaConj w x, gammaConj_mem_sub w x⟩ = 1 := by
+  have h₁ := coe_psi w (gammaConj w x) (gammaConj_mem_sub w x)
+  have h₂ := coe_psi_conj w x
+  rw [h₁] at h₂
+  exact (congrArg Prod.snd h₂).symm
+
+/-! ## 9.  The map to the candidate -/
+
+variable (SF : Set F)
+
+/-- The base map of the last HNN extension, into the candidate. -/
+noncomputable def baseMap (hSF : Subgroup.closure SF = ⊤) :
+    Amb w →* Pres w SF := by
+  refine MonoidHom.noncommCoprod ((presMk w SF).comp (preGamma w))
+    (QuotientGroup.lift N ((presMk w SF).comp (preF w)) ?_) ?_
   · intro n hn
-    refine MonoidHom.mem_ker.mpr ?_
-    exact presMk_preF_eq_one w hSF hn
+    exact MonoidHom.mem_ker.mpr (presMk_preF_eq_one w hSF hn)
   · intro g x
     obtain ⟨y, rfl⟩ := QuotientGroup.mk_surjective x
-    show Commute (presMk w SF (preGamma w g)) _
-    have : (QuotientGroup.lift N ((presMk w SF).comp (preF w)) _)
+    show Commute (presMk w SF (preGamma w g))
+      ((QuotientGroup.lift N ((presMk w SF).comp (preF w)) _)
+        (QuotientGroup.mk' N y))
+    have hval : (QuotientGroup.lift N ((presMk w SF).comp (preF w)) _)
         (QuotientGroup.mk' N y) = presMk w SF (preF w y) := rfl
-    rw [this]
+    rw [hval]
     exact (preGamma_commute_preF w g y).map (presMk w SF)
-  · -- the conjugation condition, checked on the generators of `S × 1`
-    intro a
-    sorry
 
-end Rope
-end Higman
-end GroupApproximation
+@[simp] theorem baseMap_inl (hSF : Subgroup.closure SF = ⊤) (g : Gamma w) :
+    baseMap w SF hSF (g, 1) = presMk w SF (preGamma w g) := by
+  unfold baseMap
+  rw [MonoidHom.noncommCoprod_apply]
+  show presMk w SF (preGamma w g) * _ = _
+  have : (QuotientGroup.lift N ((presMk w SF).comp (preF w)) _)
+      (1 : F ⧸ N) = 1 := map_one _
+  rw [this, mul_one]
+
+@[simp] theorem baseMap_inr (hSF : Subgroup.closure SF = ⊤) (x : F) :
+    baseMap w SF hSF (1, QuotientGroup.mk' N x) = presMk w SF (preF w x) := by
+  unfold baseMap
+  rw [MonoidHom.noncommCoprod_apply]
+  show presMk w SF (preGamma w 1) * _ = _
+  rw [map_one, map_one, one_mul]
+  rfl
+
+theorem baseMap_pair (hSF : Subgroup.closure SF = ⊤) (g : Gamma w) (x : F) :
+    baseMap w SF hSF (g, QuotientGroup.mk' N x)
+      = presMk w SF (preGamma w g) * presMk w SF (preF w x) := by
+  have hsplit : ((g, QuotientGroup.mk' N x) : Amb w)
+      = ((g, (1 : F ⧸ N)) : Amb w) * (((1 : Gamma w), QuotientGroup.mk' N x) : Amb w) := by
+    refine Prod.ext ?_ ?_
+    · show _ = g * 1
+      rw [mul_one]
+    · show _ = 1 * QuotientGroup.mk' N x
+      rw [one_mul]
+  rw [hsplit, map_mul, baseMap_inl, baseMap_inr]
+
+/-- **The conjugation condition, on `S`.**  Both sides are homomorphisms of
+`s`, so it is enough to check the generators of `S`, and there it is exactly
+the two families of relators. -/
+theorem conj_baseMap (hSF : Subgroup.closure SF = ⊤) (s : ↥(Sub w)) :
+    presMk w SF (preE w) * baseMap w SF hSF ((s : Gamma w), 1) *
+        (presMk w SF (preE w))⁻¹
+      = baseMap w SF hSF ((s : Gamma w), tau w s) := by
+  set π := presMk w SF with hπ
+  set v₁ : ↥(Sub w) →* Pres w SF :=
+    { toFun := fun s => π (preE w) * baseMap w SF hSF ((s : Gamma w), 1) *
+        (π (preE w))⁻¹
+      map_one' := by
+        show π (preE w) * baseMap w SF hSF ((1 : Gamma w), 1) * (π (preE w))⁻¹ = 1
+        rw [show (((1 : Gamma w), (1 : F ⧸ N)) : Amb w) = 1 from rfl, map_one,
+          mul_one, mul_inv_cancel]
+      map_mul' := by
+        intro a b
+        show π (preE w) * baseMap w SF hSF (((a * b : ↥(Sub w)) : Gamma w), 1) *
+            (π (preE w))⁻¹ = _
+        have hmul : ((((a * b : ↥(Sub w)) : Gamma w), (1 : F ⧸ N)) : Amb w)
+            = (((a : Gamma w), (1 : F ⧸ N)) : Amb w) *
+              (((b : Gamma w), (1 : F ⧸ N)) : Amb w) := by
+          refine Prod.ext rfl ?_
+          show (1 : F ⧸ N) = 1 * 1
+          rw [one_mul]
+        rw [hmul, map_mul]
+        group } with hv₁
+  set v₂ : ↥(Sub w) →* Pres w SF :=
+    { toFun := fun s => baseMap w SF hSF ((s : Gamma w), tau w s)
+      map_one' := by
+        show baseMap w SF hSF ((1 : Gamma w), tau w 1) = 1
+        rw [map_one]
+        rw [show (((1 : Gamma w), (1 : F ⧸ N)) : Amb w) = 1 from rfl, map_one]
+      map_mul' := by
+        intro a b
+        show baseMap w SF hSF (((a * b : ↥(Sub w)) : Gamma w), tau w (a * b)) = _
+        rw [map_mul]
+        have hmul : ((((a * b : ↥(Sub w)) : Gamma w), tau w a * tau w b) : Amb w)
+            = (((a : Gamma w), tau w a) : Amb w) *
+              (((b : Gamma w), tau w b) : Amb w) := rfl
+        rw [hmul, map_mul] } with hv₂
+  have hgen : ∀ y ∈ Pinch.genSet w.L (Aemb w) (Aemb w),
+      ∀ hy : y ∈ Sub w, v₁ ⟨y, hy⟩ = v₂ ⟨y, hy⟩ := by
+    rintro y (⟨u, hu, rfl⟩ | ⟨u, hu, rfl⟩) hy
+    · obtain ⟨z, -, rfl⟩ := hu
+      have hy' : v₁ ⟨HNNExtension.of (w.emb z), hy⟩
+          = π (preE w) * π (preGamma w (gammaOf w z)) * (π (preE w))⁻¹ := by
+        show π (preE w) * baseMap w SF hSF (HNNExtension.of (w.emb z), 1) * _ = _
+        rw [baseMap_inl]
+        rfl
+      have hy'' : v₂ ⟨HNNExtension.of (w.emb z), hy⟩
+          = π (preGamma w (gammaOf w z)) * π (preF w z) := by
+        show baseMap w SF hSF (HNNExtension.of (w.emb z), tau w _) = _
+        have hτ : tau w ⟨HNNExtension.of (w.emb z), hy⟩ = QuotientGroup.mk' N z := by
+          have := tau_gammaOf w z
+          exact this
+        rw [hτ, baseMap_pair]
+        rfl
+      rw [hy', hy'']
+      exact presMk_relA w hSF z
+    · obtain ⟨v, hv, rfl⟩ := hu
+      obtain ⟨z, -, rfl⟩ := hv
+      have hy' : v₁ ⟨_, hy⟩
+          = π (preE w) * π (preGamma w (gammaConj w z)) * (π (preE w))⁻¹ := by
+        show π (preE w) * baseMap w SF hSF (_, 1) * _ = _
+        rw [baseMap_inl]
+        rfl
+      have hy'' : v₂ ⟨_, hy⟩ = π (preGamma w (gammaConj w z)) := by
+        show baseMap w SF hSF (_, tau w _) = _
+        have hτ : tau w ⟨_, hy⟩ = (1 : F ⧸ N) := tau_gammaConj w z
+        rw [hτ]
+        rw [show (((gammaConj w z), (1 : F ⧸ N)) : Amb w) = ((gammaConj w z), 1) from rfl]
+        rw [baseMap_inl]
+        rfl
+      rw [hy', hy'']
+      exact presMk_relB w hSF z
+  have htop : v₁.eqLocus v₂ = ⊤ := by
+    refine top_le_iff.mp ?_
+    rintro ⟨y, hy⟩ -
+    refine Subgroup.closure_induction (p := fun z hz => (⟨z, hz⟩ : ↥(Sub w)) ∈ v₁.eqLocus v₂)
+      ?_ ?_ ?_ ?_ hy
+    · intro z hz
+      exact hgen z hz _
+    · exact (v₁.eqLocus v₂).one_mem
+    · intro a b ha hb hA hB
+      exact (v₁.eqLocus v₂).mul_mem hA hB
+    · intro a ha hA
+      exact (v₁.eqLocus v₂).inv_mem hA
+  have : s ∈ v₁.eqLocus v₂ := by
+    rw [htop]
+    exact Subgroup.mem_top s
+  exact this
