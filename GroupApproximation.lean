@@ -1399,6 +1399,7 @@ import GroupApproximation.Analysis.CStarStandardModuleEquiv
 import GroupApproximation.Analysis.CStarStabilization
 import GroupApproximation.Analysis.KasparovBimodule
 import GroupApproximation.Analysis.KasparovUnitaryEquivalence
+import GroupApproximation.Sofic.FreeCancellationNesting
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
