@@ -961,6 +961,20 @@ def literaturePackages : List Name :=
    -- names stay on the roster together: `nonempty_hull_of_inputs` produces the
    -- hull from these two and from nothing else, so proving both retires all
    -- three in the same commit.
+   -- Higman's Sections 2-4 --- the sequence space, the Higman operations, and
+   -- the closure of the benign family under them --- as one statement: a
+   -- recursively enumerable normal subgroup of a free group of finite rank is
+   -- benign.  With it, `Higman/EmbeddingTheorem.lean` proves Higman's
+   -- embedding theorem outright, because the other half (the rope trick) is
+   -- proved in `Higman/RopeTrick.lean`.
+   ``Higman.REBenign,
+   -- The two gaps between Higman's theorem for finitely generated groups and
+   -- Chiodo's Theorem 2.2: the Higman-Neumann-Neumann bridge from countably
+   -- generated to finitely generated, and the torsion-order clause.
+   -- `Higman/ChiodoReduction.lean` proves they compose to give the entry
+   -- below, so the four names retire together.
+   ``Higman.CountableToFG,
+   ``Higman.TorsionPreservation,
    ``Higman.TorsionFreeHigmanEmbedding,
    ``Higman.AbsorberRecursivePresentation,
    ``FournierFacioUniversal.KazhdanEnvelope,

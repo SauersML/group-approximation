@@ -60,6 +60,14 @@ witnesses of the same statement and neither supersedes the other.
 | `Higman/AmalgamPresentation.lean` | the amalgam as a presented quotient; **finite presentation over a finitely generated amalgamated subgroup** |
 | `Higman/AmalgamPushout.lean` | that quotient **is** Mathlib's `PushoutI`, so the normal form theorem is available on it |
 | `Higman/Pinch.lean` | **the pinch lemma, proved**: `⟨Z, Qᵗ⟩ ∩ P = Z` when `Q ⊓ M ≤ Z` and `Z ⊓ M ≤ Q` |
+| `Higman/PinchGraph.lean` | the pinch descent with a value attached, and the homomorphism `τ : ⟨A, Aᵗ⟩ → T` it yields |
+| `Higman/RopeTrick.lean` | **the rope trick, proved**: `fpOvergroup_of_benign` --- if `N` is benign in a finitely generated, finitely presented `F`, then `F ⧸ N` embeds in a finitely presented group |
+| `Higman/RowSubgroup.lean` | **Higman's Example 3.5, proved**: `⟨bᵢ : i ∈ ℤ⟩` is benign in `⟨b, c⟩` |
+| `Higman/EmbeddingTheorem.lean` | **Higman's embedding theorem from one input**: `REBenign` (his Sections 2--4) plus the rope trick |
+| `Higman/RowBasis.lean` | **the row elements are a free basis**, by an explicit action on `FreeGroup ℤ × ℤ` |
+| `Higman/ConjugateBasis.lean` | **the conjugates `a^h`, `h ∈ ⟨b,c⟩`, are a free basis**, by the same device |
+| `Higman/SequenceSpace.lean` | Higman's sequence space, the coding `f ↦ a^{b_f}`, its faithfulness, and **the operations `ι` and `υ`** |
+| `Higman/ShiftOperation.lean` | **the operation `σ`**, realized by an automorphism of `F₃` |
 | `Higman/BenignJoin.lean` | **Higman's Lemma 3.2(2), proved**: `Benign.sup`, by the gluing above and two applications of the pinch lemma |
 | `Higman/Program.lean` | `PinchProperty`; `RecursivePresentation`; the two remaining inputs and their composite |
 
@@ -85,6 +93,14 @@ lemma, taken from Mathlib through the reduced word `redList`.  So Higman's
 Lemma 3.2 is complete: intersections by a direct product, joins by this.
 
 ## 4.  What is owed
+
+**Update, same day.**  The rope trick is proved, so what Higman's embedding
+theorem owes is exactly `Higman.REBenign`: *a recursively enumerable normal
+subgroup of a free group of finite rank is benign*, which is his Sections
+2--4.  Two further steps stand between that and Chiodo's Theorem 2.2 --- the
+Higman--Neumann--Neumann bridge from countably generated to finitely
+generated, and the torsion clause --- and both are named in
+`Higman/Program.lean`.
 
     Chiodo Thm 3.10  =  everything above (proved)
                      +  (A) Chiodo Thm 2.2 = Higman embedding + torsion orders

@@ -193,11 +193,78 @@ Machine content, in Boone's idiom, only after the above:
 9. Discharge `ChiodoHost.TorsionFreeHigmanHull ChiodoFreeAbsorber`, then
    `ChiodoBelegradek.statement_of_freeHull` closes the theorem.
 
-## 7.  Honest cost
+## 7.  Where it actually stands (end of 2026-08-19)
 
-Steps 1--4 are ordinary Mathlib-style work.  Steps 5--7 are the theorem, and
-they have never been formalized in any proof assistant --- not Lean, not Coq,
-not Isabelle.  The comparable landmark in this repository is Novikov--Boone,
-which Higman embedding strictly contains.  Plan in months and in compiler
-iterations, not in sessions, and do not accept a blind draft of steps 5--7:
-Britton arguments are exactly the kind that look right and are not.
+This section supersedes the cost estimate that used to be here, which was
+written before any of the machine half existed and was too pessimistic.
+
+**Proved, unconditionally, in this repository:**
+
+* the pinch lemma, `Higman.Pinch.pinch` --- so the join of benign subgroups is
+  not conditional;
+* the rope trick, `Higman.fpOvergroup_of_benign` --- if `N` is benign in a
+  finitely presented, finitely generated `F`, then `F ⧸ N` embeds in a finitely
+  presented group;
+* Higman's embedding theorem for finitely generated recursively presented
+  groups **from** `REBenign`, `Higman.fpOvergroup_of_fgRecursive`;
+* the benign calculus: intersections, kernels, preimages, finite
+  intersections, joins, and the image half of Lemma 3.3
+  (`Higman.BenignWitness.mapEmb`);
+* the amalgam and its finite presentation, identified with Mathlib's
+  `PushoutI` so the normal form is available;
+* **all of input (B)**: `Higman.recursivePresentationPCDirectSum` (B1) and
+  `Higman.recursivePresentationPCAbsorberFull` (B2), i.e. Chiodo's Proposition
+  3.8 at the absorber, hence
+  `Higman.AbsorberProgram.statement_of_higman :
+     TorsionFreeHigmanEmbedding → ChiodoBelegradek.Statement`.
+
+**Open, and this is the whole of it.**  `Higman.ChiodoReduction` splits
+`TorsionFreeHigmanEmbedding` into three inputs, none inhabited:
+
+1. `REBenign` --- Higman's §4: a recursively enumerable subgroup of a finitely
+   generated free group is benign.  This is the machine half.  In progress:
+   `Higman.ConjugateBasis`, `Higman.RowBasis`, `Higman.RowSubgroup`.
+2. `CountableToFG` --- the Higman--Neumann--Neumann bridge, with two extra
+   clauses: recursive presentability and torsion-freeness are preserved.  Its
+   torsion clause needs *a free product of torsion-free groups is
+   torsion-free*, whose **power half** is proved
+   (`Algebra.CoprodITorsionFree.prod_pow_ne_one`: a cyclically reduced
+   `NeWord` with distinct end indices has infinite order) and whose remaining
+   half is **cyclic reduction**: every non-identity element of a free product
+   is conjugate into a factor or to such a word.  The route is an induction on
+   the length of the reduced word, conjugating by the head letter so that it
+   merges with the last letter when their indices agree;
+   `Monoid.CoprodI.Word.equivPair` splits off the head, and
+   `Monoid.CoprodI.NeWord.of_word` converts back.
+3. `TorsionPreservation` --- Higman for finitely generated groups *with*
+   Chiodo's torsion clause.  Note this is **not** a corollary of
+   `fpOvergroup_of_fgRecursive` plus a torsion argument applied afterwards: the
+   rope group is built over the benign witness `K`, which the benign calculus
+   does not keep torsion-free, so the torsion clause has to be threaded through
+   the calculus rather than added at the end.  That is Chiodo's refinement of
+   Higman, and it is the reason his Theorem 2.2 is a separate theorem rather
+   than a remark.
+
+## 8.  Honest cost, revised
+
+Three named inputs remain, and none of them is the whole of Higman's theorem
+any more.  (2) is the smallest --- one classical construction plus one
+combinatorial lemma about free products.  (1) is the machine half and the
+largest.  (3) is the subtlest, because it cannot be bolted on afterwards.
+
+Two standing cautions, both learned the hard way in this lane:
+
+* **Everything here is authored and uncompiled.**  That is deliberate --- the
+  instruction was to write, not to build --- but it means the `Primrec`
+  composition chains in `Higman.BlockComputable` and
+  `Higman.TowerComputable`, and the Britton inductions in `Higman.Pinch`, are
+  the first things to break on elaboration.  Structural completeness (no
+  `sorry`, no stray hypotheses, every Mathlib name checked against the pin) is
+  what is claimed; compiling is not.
+* **`GroupApproximation.lean` gets clobbered.**  Twice in one day a peer
+  rewrite dropped whole blocks of `Higman.*` imports --- once twenty at a
+  time, including `Pinch`, `RopeTrick` and `Program` --- putting the entire
+  directory outside the import closure, where nothing is ever compiled and no
+  gate notices.  Re-check `grep -c "Higman\." GroupApproximation.lean`
+  against `ls GroupApproximation/Higman | wc -l` at the start of any session
+  on this lane.

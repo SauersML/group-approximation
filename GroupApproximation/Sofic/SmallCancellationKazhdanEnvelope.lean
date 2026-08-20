@@ -1,4 +1,5 @@
 import GroupApproximation.Sofic.FournierFacioUniversalGroup
+import GroupApproximation.Algebra.Amenable
 import GroupApproximation.Algebra.HyperbolicGroup
 import GroupApproximation.Analysis.PropertyTNonamenable
 

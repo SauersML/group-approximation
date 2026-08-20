@@ -22,6 +22,15 @@ bi-Lipschitz comparison of `Algebra/WordMetricComparison.lean`), and step 2 is
 `independentOfGeneratingSet_of_quasiIsometryInvariant` is the reduction: the
 open statement about generating sets follows from the open statement about
 quasi-isometries, so there is exactly one missing input rather than two.
+
+`Algebra/MorseLemma.lean` says how much of step 2 is elementary: hyperbolicity
+*is* transported, unconditionally, by a quasi-isometry with multiplicative
+constant `1` (`isFourPointHyperbolic_of_roughIsometry`), and the general case
+fails arithmetically with a defect of exactly `K²`
+(`fourPoint_transport_of_biLipschitz`).  It also states the Morse lemma itself.
+`Algebra/FiniteIndexQuasiIsometry.lean` supplies the other quasi-isometry this
+development needs: a finite-index subgroup, with its Schreier metric, is
+quasi-isometric to the ambient group.
 -/
 
 namespace GroupApproximation

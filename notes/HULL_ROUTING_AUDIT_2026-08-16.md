@@ -338,3 +338,222 @@ settled by these sources in either direction. That is open mathematics about the
 group, not missing Lean. Everything on the algebraic side --- the object, its
 clauses, the ambient, the datum, the non-degeneracy --- is now proved with no
 assumptions and no inputs.
+
+### Addendum, fourth pass: the geometric clause is stated, and what it forbids is proved
+
+The three addenda above all ended at the same sentence: the geometric clause of
+Hull's Definition 1.4 is "not stateable in this library". That was true of
+`Sofic.TorsionFreeFullMFRadical`'s vocabulary and it was not true of Lean.
+Acylindricity, hyperbolicity and non-elementarity are ordinary ∀∃-statements
+about a metric space and an action, and Mathlib has metric spaces.
+`GroupApproximation/Sofic/HullSuitabilityGeometry.lean` writes them down --- as
+definitions with bodies, not as opaque predicates:
+
+* `gromovProduct`, `IsHyperbolicSpace δ X` (the four-point condition);
+* `IsAcylindrical G X` (Osin's condition, verbatim);
+* `IsLoxodromic g x`, `Independent g h x` (Gromov products of the two
+  power-orbits bounded, powers over `ℤ` so that `g` and `g⁻¹` are correctly
+  dependent), `ActsNonElementarily S x`;
+* `IsSuitable δ S x` --- **Hull's Definition 1.4, all three clauses.**
+
+**What the clause is worth, proved.** `IsSuitable.toIsAlgebraicallySuitable`:
+a suitable subgroup is algebraically suitable. So `IsAlgebraicallySuitable` is
+not a convenient weakening chosen to make the object provable; it is exactly
+what Definition 1.4 says once the space is forgotten, and the unconditional
+object carries everything Hull's hypothesis carries except the geometry itself.
+The proof runs through `not_isOfFinOrder_of_isLoxodromic` and
+`notMem_zpowers_of_independent`.
+
+**What the clause forbids, proved.** `isOfFinOrder_of_commutes_of_bounded`: an
+element with bounded orbit commuting with two independent loxodromics has finite
+order --- the elementary half of "a loxodromic in an acylindrical action has a
+virtually cyclic centralizer", proved here from the definitions. Over a
+torsion-free ambient it is trivial (`eq_one_of_commutes_of_bounded`), and hence
+`not_isSuitable_of_centralizing`: **a subgroup with a nontrivial centralizing
+element of bounded orbit is never suitable.**
+
+That has a direct consequence for the compression pattern, and it explains the
+shape of this whole lane. The compressed copy `u ι(Γ) u⁻¹` is centralized by the
+transported root, which the datum's own `witness_commutator_ne_one` makes
+nontrivial. So `CompressionSourceData.not_isSuitable_compressedCopy`: **the
+compressed copy is never Hull's suitable subgroup.** The search has to go to the
+defect --- which is where the audit put it and where
+`Sofic.HullSuitableDefectSubgroup` builds it.
+
+**And the cheat is closed.** On a bounded space every action is acylindrical and
+every space is hyperbolic, so clauses (1) and (3) alone are satisfiable
+trivially; `not_actsNonElementarily_of_bounded` shows clause (2) fails outright
+when the orbit is bounded.
+
+**What is left.** `HasSuitableGeometry N` --- some hyperbolic space carries an
+acylindrical action of the ambient in which `N` is non-elementary --- with
+`isAlgebraicallySuitable_of_hasSuitableGeometry` recording that this is the only
+implication still needed. Its truth value for the manuscript's skeleton is not
+known to the sources this audit read: §3.1 proves the Bass--Serre action is
+quasi-parabolic and therefore not acylindrical, and whether the skeleton is
+acylindrically hyperbolic for some *other* action is claimed by nobody in either
+direction. The theorems of this pass say why that is hard rather than
+accidental: a compression pattern needs a nontrivial centralizing element, and
+suitability forbids one of bounded orbit. That is a fact about the group, not
+about the formalization.
+
+### Addendum, fifth pass: the compressed direction is settled
+
+The fourth pass left `HasSuitableGeometry N` as the one open statement and gave
+a reason it is hard: a compression pattern needs a nontrivial centralizing
+element, and suitability forbids one of bounded orbit. This pass settles half of
+that, unconditionally, and identifies what the other half would need.
+
+`HullSuitabilityGeometry` now carries the quantitative notion of loxodromy ---
+`IsStronglyLoxodromic`, the orbit map bounded below by a linear function, which
+is what the literature means and which implies the weak `IsLoxodromic` --- and
+proves:
+
+> **`not_isStronglyLoxodromic_of_compression`.** If `t p t⁻¹ = p ^ k` with
+> `2 ≤ k`, then `p` is not strongly loxodromic, for *any* isometric action on
+> *any* metric space.
+
+The proof is elementary and needs neither hyperbolicity nor acylindricity.
+`conj_pow_eq` iterates the relation to `t ^ j p t ^ (-j) = p ^ (k ^ j)`;
+`dist_conj_le` bounds the displacement of a `t ^ j`-conjugate by
+`2 j · d(x, t x) + d(x, p x)`, using only `dist_pow_le` and the triangle
+inequality. So the orbit of `p` grows at most **linearly in `j`** along the
+subsequence `k ^ j`, which is exponentially sparse, and no linear lower bound in
+`n` survives.
+
+**What this settles.** The compressed direction of a compression pattern is
+never genuinely loxodromic. When the source copy is cyclic the compression
+relation is exactly Baumslag--Solitar --- and it is always *proper*, by
+`CompressionSourceData.not_conjugation_surjective` from the third pass --- so the
+compressed copy contains no strong loxodromic at all. Together with
+`not_isSuitable_compressedCopy` this closes the compressed copy completely: it is
+not suitable, and it does not even contain the elements suitability would need.
+
+**What it does not settle.** The defect. Its elements are not powers of the
+compressed generator, so the Baumslag--Solitar obstruction does not reach them,
+and `HasSuitableGeometry N` for the defect remains open. Refuting it for the
+explicit ambients of `Sofic.ExplicitSuitableDefect` would need Osin's
+elementary-closure theorem --- that an element commuting with a loxodromic lies
+in its virtually cyclic elementary closure --- which is absent from the pinned
+Mathlib and is a substantial formalization in its own right. Proving it would
+need Hull's common quotient. Neither is available, and for the manuscript's own
+skeleton the statement's truth value is claimed by no source in either
+direction.
+
+### Addendum, sixth pass: the open predicate is retired
+
+`HasSuitableGeometry` --- the `def … : Prop` added in the fourth pass to name
+the geometric half of Question 2 --- has been deleted from
+`GroupApproximation/Sofic/HullSuitabilityGeometry.lean`.
+
+It was the wrong shape for this repository. No corpus theorem concludes it, and
+`scripts/check_non_mf_unconditional.py`'s `open-predicate` detector is exactly
+the test for a corpus `def … : Prop` that nothing concludes; §3a above names
+that shape and lists the literature stand-ins that wear it. Writing a
+placeholder for an open problem into the library under the name of a definition
+is what the audit exists to prevent, and the fourth pass did it. Nothing was
+lost by the deletion: the predicate had no mathematical role --- no result was
+conditional on it, and its one theorem
+(`isAlgebraicallySuitable_of_hasSuitableGeometry`) was subsumed by
+`IsSuitable.toIsAlgebraicallySuitable`, which is retained.
+
+The open question itself is unchanged and is recorded here, in these addenda,
+which is where open questions belong. It is: does some hyperbolic space carry an
+acylindrical action of the ambient in which the compression defect is
+non-elementary? Proving it needs Hull's common quotient. Refuting it, even only
+for the explicit ambients of `Sofic.ExplicitSuitableDefect`, needs Osin's
+elementary-closure theorem --- that an element commuting with a loxodromic lies
+in its virtually cyclic elementary closure --- which the pinned Mathlib does not
+have and which is a substantial formalization on its own. The naive elementary
+argument fails at a identifiable point: an element `h` commuting with a
+loxodromic `g` moves the `g`-orbit by a bounded amount, but the induction
+bounding the distance from `h^m x` to that orbit accumulates linearly in `m`
+rather than staying bounded, and it is exactly hyperbolicity that repairs it.
+
+**State of the three modules after this pass.** 1943 lines, no `sorry`, no
+declared axiom, all root-imported, every declaration either a definition with
+proved consequences or a theorem with a closed proof. The objects ---
+`explicitSuitableDefectSubgroup` and `hnnSuitableDefectSubgroup` --- are closed
+terms taking no arguments. Nothing in them is conditional on the missing
+geometry.
+
+### Addendum, seventh pass: the constraint reaches the object
+
+The fifth pass proved that a subgroup with a nontrivial centralizing element of
+*bounded orbit* is never suitable, and left it general. It now reaches the
+explicit compression defect, unconditionally.
+
+**The defect is finitely supported.** `support`, `support_mul`, `support_inv`,
+`support_conj`, `support_shift` and `finSupp` --- the subgroup of the skeleton
+consisting of lamp configurations of finite support, proved normal by computing
+conjugation in the semidirect product --- give
+`defectNormal_le_finSupp`. Each marked commutator is a single lamp at site `0`,
+so its support is a singleton, and the normal closure of finitely supported
+elements is finitely supported because conjugation only translates and relabels
+supports.
+
+**Hence every pair in the defect is centralized.** `exists_commuting_ne_one`:
+given any two elements of the defect, their supports are finite, so some site is
+free of both, and the lamp there is a nontrivial element commuting with each.
+
+**So the gap is now concrete.** `unbounded_of_isSuitable`: if the explicit
+compression defect were suitable for some action, the lamp that always commutes
+with the two witnessing loxodromics would have to have an **unbounded orbit**.
+A suitable geometry for this defect is therefore not merely unproved --- it must
+push every free-site lamp arbitrarily far from the basepoint.
+
+**And the reusable core is exposed.** `HullGeometry.finite_commuting_ball`: under
+an acylindrical action with two independent loxodromics, only finitely many
+elements commuting with both lie in any ball. An element commuting with `g`
+moves every point of the `g`-orbit by exactly its own displacement, so
+acylindricity applied to two far-apart orbit points confines the whole common
+centralizer's `ε`-ball. This is the properness statement Osin's
+elementary-closure theorem starts from, and it is now available.
+
+**What still separates this from a refutation.** The free-site lamps generate a
+free abelian group of infinite rank inside the common centralizer, and
+`finite_commuting_ball` says that group acts metrically properly. Refuting
+suitability means showing an acylindrical action on a hyperbolic space admits no
+such subgroup in the centralizer of a loxodromic --- which is Osin's theorem that
+the centralizer is virtually cyclic. Its proof needs quasi-geodesic stability
+(the Morse lemma) and the translation-length homomorphism, neither of which the
+pinned Mathlib has. That is the next piece of real work, and it is now the only
+one: everything on this side of it is proved.
+
+### Addendum, eighth pass: translation length
+
+The first component of the elementary-closure machinery is in.
+`HullGeometry.stableTranslation g x` is the infimum of `d(x, gⁿ x) / n` over
+positive `n` --- the Fekete limit of that sequence, taken as an infimum so that
+no subadditivity argument is needed for the two facts that matter:
+
+* `mul_le_dist_pow` --- the translation length bounds the orbit from below;
+* `isStronglyLoxodromic_iff_pos` --- **an element is genuinely loxodromic
+  exactly when its translation length is positive.**
+
+Together with the fifth pass this gives
+`stableTranslation_eq_zero_of_compression`: **a compressed element has
+translation length zero.** That is the sharp form of "the compressed direction
+is never loxodromic", and it is the form Osin's argument consumes.
+
+Also proved: `isLoxodromic_of_isLoxodromic`, that loxodromy does not depend on
+the basepoint, and `finite_commuting_ball` from the seventh pass, the properness
+of a common centralizer.
+
+**What is left of the elementary-closure theorem.** Two components, both
+substantial and neither present in the pinned Mathlib:
+
+1. *Quasi-geodesic stability* (the Morse lemma) --- needed to show that an
+   element commuting with a loxodromic translates *along* its axis rather than
+   transversally. Every attempt to get this from the definitions directly
+   stalls at the same point: the induction bounding the distance from `hᵐ x` to
+   the `g`-orbit accumulates linearly in `m` instead of staying bounded, and
+   hyperbolicity is exactly what repairs it.
+2. *The translation homomorphism* `C(g) → ℝ`, whose image is discrete and whose
+   kernel is finite --- both by acylindricity, the second being
+   `finite_commuting_ball` above.
+
+With those two, `C(g)` is virtually cyclic, an infinite-rank free abelian
+subgroup of it is impossible, and the seventh pass's free-site lamps refute
+suitability for the explicit defect. Neither component is a lemma; each is a
+project, and neither is attempted here.

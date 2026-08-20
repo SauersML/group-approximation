@@ -1,5 +1,7 @@
 import GroupApproximation.Higman.BlockComputable
 import GroupApproximation.Higman.QuotientPresentation
+import GroupApproximation.Higman.RadicalDirectSum
+import GroupApproximation.Higman.TowerBlockSearch
 import GroupApproximation.Sofic.ChiodoBelegradekTheorem
 
 /-!
@@ -47,6 +49,7 @@ namespace GroupApproximation
 namespace Higman
 
 open GroupApproximation.Chiodo
+open GroupApproximation.PresentationCodes
 
 /-- **The theorem, from three stated inputs.**
 
@@ -95,6 +98,39 @@ theorem statement_of_inputs''
     ChiodoBelegradek.Statement := by
   obtain ⟨H⟩ := hA.hull PCAbsorber
     (recursivePresentationQuotient recursivePresentationPCDirectSum hB2)
+    pcAbsorber_torsionFree
+  exact ChiodoBelegradek.statement_of_embedding_pcAbsorber H.torsionFree H.emb
+    H.emb_injective
+
+/-- **The theorem, from the two remaining inputs in their sharpest form.**
+
+(B1) is proved.  (B2) has been localized by `Higman.RadicalDirectSum` from a
+statement about the infinitely generated `PCDirectSum` to the block-by-block
+radical-membership predicate of *finitely presented* coded groups, which is
+Chiodo's Proposition 3.8 in the form he states effectively.  (A) is Higman's
+embedding theorem with the torsion clause; `Higman.Pinch` and
+`Higman.RopeTrick` are the parts of it that are proved. -/
+theorem statement_of_inputs'''
+    (hB2 : REPred fun w : RawWord ↦ ∀ c ∈ blockList w,
+      evalRaw (fun k ↦ (PresentedGroup.of (letterOf c k) : Carrier c))
+        (blockWord w c) ∈ torsionFreeRadical (Carrier c))
+    (hA : TorsionFreeHigmanEmbedding) :
+    ChiodoBelegradek.Statement := by
+  obtain ⟨H⟩ := hA.hull PCAbsorber (recursivePresentationPCAbsorber hB2)
+    pcAbsorber_torsionFree
+  exact ChiodoBelegradek.statement_of_embedding_pcAbsorber H.torsionFree H.emb
+    H.emb_injective
+
+/-- **The theorem, from Higman's embedding theorem alone.**
+
+Input (B) of `Higman.Program` --- Chiodo's Proposition 3.8 at the absorber ---
+is discharged: (B1) is `Higman.recursivePresentationPCDirectSum` and (B2) is
+`Higman.recursivePresentationPCAbsorberFull`.  So the only hypothesis left is
+(A), Chiodo's Theorem 2.2, i.e. Higman's embedding theorem with the
+torsion-order clause. -/
+theorem statement_of_higman (hA : TorsionFreeHigmanEmbedding) :
+    ChiodoBelegradek.Statement := by
+  obtain ⟨H⟩ := hA.hull PCAbsorber recursivePresentationPCAbsorberFull
     pcAbsorber_torsionFree
   exact ChiodoBelegradek.statement_of_embedding_pcAbsorber H.torsionFree H.emb
     H.emb_injective

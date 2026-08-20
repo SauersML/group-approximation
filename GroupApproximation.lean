@@ -1299,6 +1299,32 @@ import GroupApproximation.Analysis.CStarOrderZero
 import GroupApproximation.Higman.RopeTrick
 import GroupApproximation.Sofic.GreendlingerThreeFactor
 import GroupApproximation.Sofic.HullSuitabilityGeometry
+import GroupApproximation.Algebra.CoprodIWordInverse
+import GroupApproximation.Algebra.FiniteIndexQuasiIsometry
+import GroupApproximation.Algebra.FiniteIndexTransversal
+import GroupApproximation.Algebra.MorseLemma
+import GroupApproximation.Algebra.ReidemeisterSchreier
+import GroupApproximation.Algebra.SchreierGenerators
+import GroupApproximation.Analysis.CStarOrderZeroSupport
+import GroupApproximation.Analysis.DadarlatEilers
+import GroupApproximation.Analysis.KKTheoryKGroups
+import GroupApproximation.Analysis.KKTheoryKasparov
+import GroupApproximation.Analysis.KirchbergRordamCorona
+import GroupApproximation.Analysis.KirchbergRordamEpsilonTest
+import GroupApproximation.Analysis.KirchbergRordamOrderZeroLift
+import GroupApproximation.Analysis.TikuisisWhiteWinterProof
+import GroupApproximation.Analysis.UniversalCoefficientTheorem
+import GroupApproximation.Higman.AbsorberProgram
+import GroupApproximation.Higman.BlockTower
+import GroupApproximation.Higman.NormalClosureProduct
+import GroupApproximation.Higman.RadicalDirectSum
+import GroupApproximation.Higman.TowerBlockSearch
+import GroupApproximation.Higman.TowerCert
+import GroupApproximation.Higman.TowerComputable
+import GroupApproximation.Higman.TowerDerivation
+import GroupApproximation.Kazhdan.InducedRepresentation
+import GroupApproximation.Kazhdan.KazhdanFiniteIndex
+import GroupApproximation.Kazhdan.LatticeRouteRemainder
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group

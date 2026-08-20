@@ -44,9 +44,13 @@ passes through exactly the Morse lemma that
 `Algebra/HyperbolicQuasiIsometry.lean` records as missing.  The two open problems
 in this development are not independent.
 
-None of the three permanence statements is proved here, none is assumed
-anywhere, and no theorem below is unconditional: each takes its inputs
-explicitly.
+None of the three permanence statements is proved *in this module*, none is
+assumed anywhere, and no theorem below is unconditional: each takes its inputs
+explicitly.  Two of the three have since moved:
+`Kazhdan/KazhdanFiniteIndex.lean` **proves** the property `(T)` one, and
+`Kazhdan/LatticeRouteRemainder.lean` reduces the other two to the Morse lemma
+and to Schreier's index formula respectively, and reassembles the route
+(`FiniteIndex.sharpExistence_of_latticeRoute_of_inputs`).
 -/
 
 namespace GroupApproximation
@@ -95,19 +99,30 @@ theorem randomGroupInput_of_sharpExistence (h : SharpExistence) :
 
 /-- **Hyperbolicity survives passage to a finite-index subgroup.**  An instance
 of `QuasiIsometryInvariant`, since a finite-index subgroup is quasi-isometric to
-the ambient group.  Not proved here. -/
+the ambient group --- and that last clause is no longer a remark:
+`Algebra/FiniteIndexQuasiIsometry.lean` proves the quasi-isometry, so
+`FiniteIndex.hyperbolicFiniteIndexPermanence_of_quasiIsometryInvariant` derives
+this statement from `QuasiIsometryInvariant` alone.  Not proved here. -/
 def HyperbolicFiniteIndexPermanence : Prop :=
   ∀ (Γ : Type) (_ : Group Γ) (Λ : Subgroup Γ), Λ.FiniteIndex →
     IsHyperbolicGroup Γ → IsHyperbolicGroup ↥Λ
 
-/-- **Property `(T)` survives passage to a finite-index subgroup.**  Classical
-(Bekka--de la Harpe--Valette, Theorem 1.7.1), and not proved here. -/
+/-- **Property `(T)` survives passage to a finite-index subgroup.**
+Bekka--de la Harpe--Valette, Theorem 1.7.1 --- and **a theorem of this
+repository**: `Kazhdan/KazhdanFiniteIndex.lean` proves it, by induction of
+representations, as `FiniteIndex.kazhdanFiniteIndexPermanence`.  It is kept as a
+named `Prop` so that `sharpExistence_of_latticeRoute` below can be read as a
+reduction, with its inputs visible. -/
 def KazhdanFiniteIndexPermanence : Prop :=
   ∀ (Γ : Type) (_ : Group Γ) (Λ : Subgroup Γ), Λ.FiniteIndex →
     HasKazhdanPropertyT.{0, 0} Γ → HasKazhdanPropertyT.{0, 0} ↥Λ
 
 /-- **Finite presentation survives passage to a finite-index subgroup.**
-Reidemeister--Schreier, and not proved here. -/
+Reidemeister--Schreier.  `Algebra/ReidemeisterSchreier.lean` proves the
+rewriting theorem and reduces this statement to one input --- that a
+finite-index subgroup of a finitely generated free group is finitely presented
+--- and `FiniteIndex.finitePresentationFiniteIndexPermanence_of_freeInput`
+is that reduction. -/
 def FinitePresentationFiniteIndexPermanence : Prop :=
   ∀ (Γ : Type) (_ : Group Γ) (Λ : Subgroup Γ), Λ.FiniteIndex →
     Group.IsFinitelyPresented Γ → Group.IsFinitelyPresented ↥Λ

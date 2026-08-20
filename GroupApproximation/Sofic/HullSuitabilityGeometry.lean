@@ -1,4 +1,5 @@
 import GroupApproximation.Sofic.HullSuitableDefectSubgroup
+import Mathlib.Analysis.Subadditive
 
 /-!
 # Hull's Definition 1.4 in full, and what its geometric clause forces
@@ -57,7 +58,7 @@ proof runs through three facts that are worth having on their own:
 
 That some ambient group admits an action making the compression defect
 non-elementary.  With the definitions here that is a single Lean proposition ---
-`∃ X δ x, IsSuitable δ N x` for the defect `N` --- and it is the geometric half
+`IsSuitable δ N x` for the defect `N` and some action --- and it is the geometric half
 of the manuscript's Question 2.  It is open mathematics about the group, not a
 missing definition: `notes/HULL_ROUTING_AUDIT_2026-08-16.md` §3.1 shows the
 ascending HNN skeleton's Bass--Serre action is quasi-parabolic and therefore not
@@ -84,7 +85,8 @@ def IsIsometricAction (G : Type u) (X : Type v) [Group G] [PseudoMetricSpace X]
 /-! ## Hyperbolicity -/
 
 /-- The Gromov product of `x` and `y` based at `w`. -/
-def gromovProduct (x y w : X) : ℝ := (dist x w + dist y w - dist x y) / 2
+noncomputable def gromovProduct (x y w : X) : ℝ :=
+  (dist x w + dist y w - dist x y) / 2
 
 @[simp] theorem gromovProduct_self (y w : X) :
     gromovProduct y y w = dist y w := by
@@ -287,6 +289,34 @@ theorem exists_far_apart {g h : G} {x : X} (hg : IsLoxodromic g x)
   have h4 : dist ((g ^ N) • x) x = dist x ((g ^ N) • x) := dist_comm _ _
   linarith
 
+/-- **Properness of a common centralizer.**  Under an acylindrical action with
+two independent loxodromics, only finitely many elements commuting with both
+move the basepoint by at most `ε`.
+
+This is the reusable core of the constraint: an element commuting with `g` moves
+every point of the `g`-orbit by exactly its own displacement, so acylindricity
+applied to two far-apart orbit points confines the whole common centralizer's
+`ε`-ball to one finite set.  It is also the first thing Osin's
+elementary-closure theorem needs. -/
+theorem finite_commuting_ball (hiso : IsIsometricAction G X)
+    (hacy : IsAcylindrical G X) {g h : G} {x : X} (hg : IsLoxodromic g x)
+    (hind : Independent g h x) {ε : ℝ} (hε : 0 < ε) :
+    {k : G | Commute k g ∧ Commute k h ∧ dist x (k • x) ≤ ε}.Finite := by
+  obtain ⟨R, N₀, hRN⟩ := hacy ε hε
+  obtain ⟨n, hn⟩ := exists_far_apart hg hind R
+  obtain ⟨hfinite, -⟩ := hRN ((g ^ n) • x) ((h ^ n) • x) hn
+  refine Set.Finite.subset hfinite ?_
+  rintro k ⟨hkg, hkh, hkx⟩
+  have hmove : ∀ z : G, Commute k z →
+      dist ((z ^ n) • x) (k • ((z ^ n) • x)) ≤ ε := by
+    intro z hkz
+    have hcomm : k * (z ^ n) = (z ^ n) * k := (hkz.pow_right n).eq
+    have hstep : k • ((z ^ n) • x) = (z ^ n) • (k • x) := by
+      rw [← mul_smul, hcomm, mul_smul]
+    rw [hstep, hiso (z ^ n) x (k • x)]
+    exact hkx
+  exact ⟨hmove g hkg, hmove h hkh⟩
+
 /-- **An element with bounded orbit commuting with two independent loxodromics
 has finite order.**
 
@@ -297,7 +327,7 @@ points of those orbits that are far apart then confines all the powers of `c`
 to one finite set, and an infinite-order element has infinitely many powers. -/
 theorem isOfFinOrder_of_commutes_of_bounded
     (hiso : IsIsometricAction G X) (hacy : IsAcylindrical G X)
-    {g h c : G} {x : X} (hg : IsLoxodromic g x) (hh : IsLoxodromic h x)
+    {g h c : G} {x : X} (hg : IsLoxodromic g x) (_hh : IsLoxodromic h x)
     (hind : Independent g h x) (hcg : Commute c g) (hch : Commute c h)
     {B : ℝ} (hbdd : ∀ j : ℤ, dist x ((c ^ j) • x) ≤ B) :
     IsOfFinOrder c := by
@@ -370,34 +400,331 @@ theorem not_isSuitable_of_centralizing {δ : ℝ} {S : Subgroup G} {x : X}
   exact hc (eq_one_of_commutes_of_bounded hs.isometric hs.acylindrical htf
     hg hh hind (hcomm g hgS) (hcomm h hhS) hbdd)
 
-/-! ## The remaining proposition, named
+/-! ## The compression relation forbids genuine loxodromy
 
-Everything above is a theorem.  What is not a theorem is that the compression
-defect of some ambient group admits an action making it suitable, and that is a
-single proposition, written here so that it can be pointed at. -/
+`IsLoxodromic` above asks only that the power orbit escape every bounded set,
+which is the weakest reading.  The quantitative form --- the orbit map bounded
+below by a linear function --- is the one the literature means, and it is the
+one a compression relation destroys.
 
-/-- **The geometric half of Question 2**, as a proposition about one subgroup:
-some hyperbolic space carries an acylindrical action of the ambient group in
-which `N` is non-elementary.
+A compression `t p t⁻¹ = p ^ k` with `2 ≤ k` makes the orbit of `p` grow at most
+*linearly in `j`* along the exponentially sparse subsequence `k ^ j`, because
+`p ^ (k ^ j)` is a conjugate of `p` by `t ^ j` and conjugating by `t ^ j` costs
+at most `j` displacements of `t`, twice.  A logarithmic orbit is not bounded
+below by a linear one.
 
-This is the *only* thing `Sofic.ExplicitSuitableDefect` does not supply.  The
-algebraic half, `HullSuitable.IsAlgebraicallySuitable N`, is proved there with
-no hypotheses; `IsSuitable.toIsAlgebraicallySuitable` shows the two together are
-Hull's Definition 1.4 and nothing more. -/
-def HasSuitableGeometry (N : Subgroup G) : Prop :=
-  ∃ (Y : Type u) (dY : PseudoMetricSpace Y) (aY : MulAction G Y) (δ : ℝ) (y : Y),
-    @IsSuitable G _ Y dY aY δ N y
+This is the first step of the route that would refute suitability for a
+compression pattern outright: it settles the compressed direction, where the
+Baumslag--Solitar relation lives.  It does not settle the defect, whose elements
+are not powers of `p`. -/
 
-/-- **The exact division of labour.**  Supplying the geometry supplies the
-algebra, and the algebra is supplied already.  So for the compression defects of
-`Sofic.ExplicitSuitableDefect` the two halves of Hull's Definition 1.4 are in
-different states, and this theorem says which implication connects them: the
-geometric half implies the algebraic half, the algebraic half is proved with no
-hypotheses, and nothing else stands between them and Hull's hypothesis. -/
-theorem isAlgebraicallySuitable_of_hasSuitableGeometry {N : Subgroup G}
-    (h : HasSuitableGeometry N) : HullSuitable.IsAlgebraicallySuitable N := by
-  obtain ⟨Y, dY, aY, δ, y, hs⟩ := h
-  exact @IsSuitable.toIsAlgebraicallySuitable G _ Y dY aY δ N y hs
+/-- The quantitative form of loxodromy: the orbit map is bounded below by a
+linear function.  This is what "loxodromic" means in the literature, and it
+implies `IsLoxodromic`. -/
+def IsStronglyLoxodromic (g : G) (x : X) : Prop :=
+  ∃ l : ℝ, 0 < l ∧ ∀ n : ℕ, l * n ≤ dist x ((g ^ n) • x)
+
+theorem isLoxodromic_of_isStronglyLoxodromic {g : G} {x : X}
+    (h : IsStronglyLoxodromic g x) : IsLoxodromic g x := by
+  obtain ⟨l, hl, hle⟩ := h
+  exact Filter.tendsto_atTop_mono hle
+    (Filter.Tendsto.const_mul_atTop hl tendsto_natCast_atTop_atTop)
+
+/-- Displacement is subadditive along powers. -/
+theorem dist_pow_le (hiso : IsIsometricAction G X) (t : G) (x : X) :
+    ∀ j : ℕ, dist x ((t ^ j) • x) ≤ j * dist x (t • x) := by
+  intro j
+  induction j with
+  | zero => simp
+  | succ n ih =>
+      have hsplit : t ^ (n + 1) = t * t ^ n := by
+        rw [pow_succ, mul_comm]
+      have hstep : dist x ((t ^ (n + 1)) • x)
+          ≤ dist x (t • x) + dist x ((t ^ n) • x) := by
+        rw [hsplit, mul_smul]
+        refine le_trans (dist_triangle x (t • x) (t • ((t ^ n) • x))) ?_
+        rw [hiso t x ((t ^ n) • x)]
+      push_cast
+      linarith
+
+/-- Conjugating by a power of the stable letter costs at most that many
+displacements of the stable letter, twice. -/
+theorem dist_conj_le (hiso : IsIsometricAction G X) (t p : G) (x : X) (j : ℕ) :
+    dist x ((t ^ j * p * (t ^ j)⁻¹) • x)
+      ≤ 2 * (j : ℝ) * dist x (t • x) + dist x (p • x) := by
+  have hsm : (t ^ j * p * (t ^ j)⁻¹) • x
+      = (t ^ j) • (p • (((t ^ j)⁻¹) • x)) := by
+    rw [mul_smul, mul_smul]
+  have hinvdist : dist x (((t ^ j)⁻¹) • x) = dist x ((t ^ j) • x) := by
+    have h := hiso (t ^ j) x (((t ^ j)⁻¹) • x)
+    rw [← mul_smul, mul_inv_cancel, one_smul] at h
+    rw [← h, dist_comm]
+  have hA : dist x ((t ^ j) • (p • (((t ^ j)⁻¹) • x)))
+      ≤ dist x ((t ^ j) • x) + dist x (p • (((t ^ j)⁻¹) • x)) := by
+    refine le_trans
+      (dist_triangle x ((t ^ j) • x) ((t ^ j) • (p • (((t ^ j)⁻¹) • x)))) ?_
+    rw [hiso (t ^ j) x (p • (((t ^ j)⁻¹) • x))]
+  have hB : dist x (p • (((t ^ j)⁻¹) • x))
+      ≤ dist x (p • x) + dist x ((t ^ j) • x) := by
+    refine le_trans (dist_triangle x (p • x) (p • (((t ^ j)⁻¹) • x))) ?_
+    rw [hiso p x (((t ^ j)⁻¹) • x), hinvdist]
+  have hC := dist_pow_le hiso t x j
+  rw [hsm]
+  linarith
+
+/-- The compression relation, iterated: `t ^ j` conjugates `p` to `p ^ (k ^ j)`.
+-/
+theorem conj_pow_eq {t p : G} {k : ℕ} (h : t * p * t⁻¹ = p ^ k) :
+    ∀ j : ℕ, t ^ j * p * (t ^ j)⁻¹ = p ^ (k ^ j) := by
+  intro j
+  induction j with
+  | zero => simp
+  | succ n ih =>
+      have hsplit : t ^ (n + 1) = t * t ^ n := by
+        rw [pow_succ, mul_comm]
+      have hstep : t ^ (n + 1) * p * (t ^ (n + 1))⁻¹
+          = t * (t ^ n * p * (t ^ n)⁻¹) * t⁻¹ := by
+        rw [hsplit, mul_inv_rev]
+        simp only [mul_assoc]
+      have hconj : t * p ^ (k ^ n) * t⁻¹ = (t * p * t⁻¹) ^ (k ^ n) := by
+        simpa [MulAut.conj_apply] using map_pow (MulAut.conj t) p (k ^ n)
+      rw [hstep, ih, hconj, h, ← pow_mul, pow_succ, mul_comm k (k ^ n)]
+
+/-- **A compressed element is never genuinely loxodromic.**  If
+`t p t⁻¹ = p ^ k` with `2 ≤ k`, the orbit of `p` grows at most linearly in `j`
+along the exponentially sparse subsequence `k ^ j`, so no linear lower bound can
+survive.  Every compression datum whose source copy is cyclic carries exactly
+such a relation, by `CompressionSourceData.not_conjugation_surjective`. -/
+theorem not_isStronglyLoxodromic_of_compression (hiso : IsIsometricAction G X)
+    {t p : G} {k : ℕ} (hk : 2 ≤ k) (h : t * p * t⁻¹ = p ^ k) (x : X) :
+    ¬ IsStronglyLoxodromic p x := by
+  rintro ⟨l, hl, hle⟩
+  set D := dist x (t • x) with hD
+  set E := dist x (p • x) with hE
+  have hD0 : (0:ℝ) ≤ D := dist_nonneg
+  have hE0 : (0:ℝ) ≤ E := dist_nonneg
+  obtain ⟨j, hj⟩ := exists_nat_gt (max ((4 * D + E) / l) 1)
+  have hjr : (1:ℝ) < (j : ℝ) := lt_of_le_of_lt (le_max_right _ _) hj
+  have hjd : (4 * D + E) / l < (j : ℝ) := lt_of_le_of_lt (le_max_left _ _) hj
+  have hlj : 4 * D + E < (j : ℝ) * l := (div_lt_iff₀ hl).mp hjd
+  -- the orbit is small along the sparse subsequence
+  have hbig := hle (k ^ (2 * j))
+  rw [← conj_pow_eq h (2 * j)] at hbig
+  have hsmall := dist_conj_le hiso t p x (2 * j)
+  have hcastsmall : 2 * ((2 * j : ℕ) : ℝ) * D + E = 4 * (j : ℝ) * D + E := by
+    push_cast
+    ring
+  rw [hcastsmall] at hsmall
+  -- but the subsequence is exponentially sparse
+  have hpow : j ^ 2 < k ^ (2 * j) := by
+    have hself : ∀ m : ℕ, m < 2 ^ m := by
+      intro m
+      induction m with
+      | zero => norm_num
+      | succ n ih =>
+          have hone : 1 ≤ 2 ^ n := Nat.one_le_pow n 2 (by norm_num)
+          have htwo : 2 ^ (n + 1) = 2 ^ n + 2 ^ n := by ring
+          omega
+    have h1 : j < 2 ^ j := hself j
+    have h2 : j ^ 2 < (2 ^ j) ^ 2 := Nat.pow_lt_pow_left h1 (by norm_num)
+    have h3 : (2 ^ j) ^ 2 = 2 ^ (2 * j) := by
+      rw [← pow_mul, mul_comm]
+    have h4 : (2:ℕ) ^ (2 * j) ≤ k ^ (2 * j) := Nat.pow_le_pow_left hk _
+    calc j ^ 2 < (2 ^ j) ^ 2 := h2
+      _ = 2 ^ (2 * j) := h3
+      _ ≤ k ^ (2 * j) := h4
+  have hcast : ((j : ℝ)) ^ 2 < ((k ^ (2 * j) : ℕ) : ℝ) := by
+    exact_mod_cast hpow
+  have hgrow : l * ((j : ℝ)) ^ 2 < l * ((k ^ (2 * j) : ℕ) : ℝ) :=
+    mul_lt_mul_of_pos_left hcast hl
+  have hquad : 4 * (j : ℝ) * D + E < l * ((j : ℝ)) ^ 2 := by
+    have hstep : (4 * D + E) * (j : ℝ) < ((j : ℝ) * l) * (j : ℝ) :=
+      mul_lt_mul_of_pos_right hlj (by linarith)
+    nlinarith [hstep, hE0, hjr]
+  linarith
+
+/-! ## Translation length
+
+The first component of the machinery that would decide suitability outright.
+`stableTranslation` is the infimum of `d(x, gⁿ x) / n` over positive `n` --- the
+Fekete limit of the same sequence, but taken as an infimum so that no
+subadditivity argument is needed for the two facts that matter: it bounds the
+orbit from below, and it is positive exactly when the element is genuinely
+loxodromic.
+
+Together with `not_isStronglyLoxodromic_of_compression` this reads: a compressed
+element has translation length zero. -/
+
+/-- The stable translation length of `g` at `x`. -/
+noncomputable def stableTranslation (g : G) (x : X) : ℝ :=
+  sInf {r : ℝ | ∃ n : ℕ, 0 < n ∧ r = dist x ((g ^ n) • x) / n}
+
+theorem stableTranslation_set_nonempty (g : G) (x : X) :
+    {r : ℝ | ∃ n : ℕ, 0 < n ∧ r = dist x ((g ^ n) • x) / n}.Nonempty :=
+  ⟨dist x ((g ^ 1) • x) / 1, ⟨1, by norm_num, rfl⟩⟩
+
+theorem stableTranslation_set_bddBelow (g : G) (x : X) :
+    BddBelow {r : ℝ | ∃ n : ℕ, 0 < n ∧ r = dist x ((g ^ n) • x) / n} := by
+  refine ⟨0, ?_⟩
+  rintro r ⟨n, hn, rfl⟩
+  exact div_nonneg dist_nonneg (Nat.cast_nonneg n)
+
+theorem stableTranslation_nonneg (g : G) (x : X) :
+    0 ≤ stableTranslation g x := by
+  refine le_csInf (stableTranslation_set_nonempty g x) ?_
+  rintro r ⟨n, hn, rfl⟩
+  exact div_nonneg dist_nonneg (Nat.cast_nonneg n)
+
+theorem stableTranslation_le (g : G) (x : X) {n : ℕ} (hn : 0 < n) :
+    stableTranslation g x ≤ dist x ((g ^ n) • x) / n :=
+  csInf_le (stableTranslation_set_bddBelow g x) ⟨n, hn, rfl⟩
+
+/-- The translation length bounds the orbit from below. -/
+theorem mul_le_dist_pow (g : G) (x : X) (n : ℕ) :
+    stableTranslation g x * n ≤ dist x ((g ^ n) • x) := by
+  rcases Nat.eq_zero_or_pos n with rfl | hn
+  · simp
+  · have hn' : (0:ℝ) < (n : ℝ) := by exact_mod_cast hn
+    have h := stableTranslation_le g x hn
+    rw [le_div_iff₀ hn'] at h
+    exact h
+
+/-- **Genuine loxodromy is positive translation length.** -/
+theorem isStronglyLoxodromic_iff_pos (g : G) (x : X) :
+    IsStronglyLoxodromic g x ↔ 0 < stableTranslation g x := by
+  constructor
+  · rintro ⟨l, hl, hle⟩
+    refine lt_of_lt_of_le hl (le_csInf (stableTranslation_set_nonempty g x) ?_)
+    rintro r ⟨n, hn, rfl⟩
+    have hn' : (0:ℝ) < (n : ℝ) := by exact_mod_cast hn
+    rw [le_div_iff₀ hn']
+    exact hle n
+  · intro h
+    exact ⟨stableTranslation g x, h, mul_le_dist_pow g x⟩
+
+/-- **A compressed element has translation length zero.** -/
+theorem stableTranslation_eq_zero_of_compression (hiso : IsIsometricAction G X)
+    {t p : G} {k : ℕ} (hk : 2 ≤ k) (h : t * p * t⁻¹ = p ^ k) (x : X) :
+    stableTranslation p x = 0 := by
+  by_contra hne
+  refine not_isStronglyLoxodromic_of_compression hiso hk h x ?_
+  refine (isStronglyLoxodromic_iff_pos p x).mpr ?_
+  exact lt_of_le_of_ne (stableTranslation_nonneg p x) (Ne.symm hne)
+
+/-- Loxodromy does not depend on the basepoint. -/
+theorem isLoxodromic_of_isLoxodromic (hiso : IsIsometricAction G X) {g : G}
+    {x y : X} (h : IsLoxodromic g x) : IsLoxodromic g y := by
+  have hbound : ∀ n : ℕ,
+      dist x ((g ^ n) • x) - 2 * dist x y ≤ dist y ((g ^ n) • y) := by
+    intro n
+    have h1 : dist x ((g ^ n) • x)
+        ≤ dist x y + dist y ((g ^ n) • y) + dist ((g ^ n) • y) ((g ^ n) • x) :=
+      le_trans (dist_triangle x y ((g ^ n) • x))
+        (by linarith [dist_triangle y ((g ^ n) • y) ((g ^ n) • x)])
+    have h2 : dist ((g ^ n) • y) ((g ^ n) • x) = dist y x := hiso (g ^ n) y x
+    rw [h2, dist_comm y x] at h1
+    linarith
+  refine Filter.tendsto_atTop_mono hbound ?_
+  simpa using Filter.tendsto_atTop_add_const_right Filter.atTop
+    (-(2 * dist x y)) h
+
+/-! ### The translation length is a limit, and a seminorm on a centralizer
+
+`stableTranslation` was defined as an infimum, which is all the two facts above
+need.  It is also the Fekete limit of the same sequence, and that is what makes
+it behave like a length: Mathlib's `Subadditive.tendsto_lim` applies because the
+displacement sequence `n ↦ d(x, gⁿ x)` is subadditive, and `Subadditive.lim` is
+by definition the same infimum.
+
+The payoff is `stableTranslation_mul_le`: on a set of pairwise commuting
+elements the translation length is subadditive, and together with the
+homogeneity that the same limit argument gives it is a seminorm.  That is the
+object the translation homomorphism `C(g) → ℝ` is built from. -/
+
+/-- The displacement sequence of a group element is subadditive. -/
+theorem subadditive_dist_pow (hiso : IsIsometricAction G X) (g : G) (x : X) :
+    Subadditive (fun n : ℕ => dist x ((g ^ n) • x)) := by
+  intro m n
+  have h1 : (g ^ (m + n)) • x = (g ^ m) • ((g ^ n) • x) := by
+    rw [pow_add, mul_smul]
+  rw [h1]
+  refine le_trans (dist_triangle x ((g ^ m) • x) ((g ^ m) • ((g ^ n) • x))) ?_
+  rw [hiso (g ^ m) x ((g ^ n) • x)]
+
+theorem bddBelow_dist_pow_div (g : G) (x : X) :
+    BddBelow (Set.range fun n : ℕ => dist x ((g ^ n) • x) / n) := by
+  refine ⟨0, ?_⟩
+  rintro r ⟨n, rfl⟩
+  exact div_nonneg dist_nonneg (Nat.cast_nonneg n)
+
+/-- The infimum definition agrees with Mathlib's Fekete limit. -/
+theorem stableTranslation_eq_lim (hiso : IsIsometricAction G X) (g : G) (x : X) :
+    stableTranslation g x = (subadditive_dist_pow hiso g x).lim := by
+  unfold stableTranslation Subadditive.lim
+  congr 1
+  ext r
+  simp only [Set.mem_setOf_eq, Set.mem_image, Set.mem_Ici]
+  constructor
+  · rintro ⟨n, hn, rfl⟩
+    exact ⟨n, hn, rfl⟩
+  · rintro ⟨n, hn, rfl⟩
+    exact ⟨n, hn, rfl⟩
+
+/-- **The translation length is the limit of the normalised displacement.** -/
+theorem tendsto_stableTranslation (hiso : IsIsometricAction G X) (g : G) (x : X) :
+    Filter.Tendsto (fun n : ℕ => dist x ((g ^ n) • x) / n) Filter.atTop
+      (nhds (stableTranslation g x)) := by
+  rw [stableTranslation_eq_lim hiso]
+  exact (subadditive_dist_pow hiso g x).tendsto_lim (bddBelow_dist_pow_div g x)
+
+/-- **Translation length is subadditive on commuting elements.**  With
+`stableTranslation_nonneg` this makes it a seminorm on any abelian subgroup ---
+in particular on the common centralizer of two independent loxodromics, which is
+where the translation homomorphism lives. -/
+theorem stableTranslation_mul_le (hiso : IsIsometricAction G X) {a b : G}
+    (hab : Commute a b) (x : X) :
+    stableTranslation (a * b) x
+      ≤ stableTranslation a x + stableTranslation b x := by
+  refine le_of_tendsto_of_tendsto (tendsto_stableTranslation hiso (a * b) x)
+    ((tendsto_stableTranslation hiso a x).add
+      (tendsto_stableTranslation hiso b x)) ?_
+  filter_upwards with n
+  have hpow : (a * b) ^ n = a ^ n * b ^ n := hab.mul_pow n
+  have hsm : ((a * b) ^ n) • x = (a ^ n) • ((b ^ n) • x) := by
+    rw [hpow, mul_smul]
+  have hstep : dist x (((a * b) ^ n) • x)
+      ≤ dist x ((a ^ n) • x) + dist x ((b ^ n) • x) := by
+    rw [hsm]
+    refine le_trans (dist_triangle x ((a ^ n) • x) ((a ^ n) • ((b ^ n) • x))) ?_
+    rw [hiso (a ^ n) x ((b ^ n) • x)]
+  have hn : (0:ℝ) ≤ (n : ℝ) := Nat.cast_nonneg n
+  rw [div_add_div_same]
+  exact div_le_div_of_nonneg_right hstep hn
+
+/-! ## What is not here, and why it is not a declaration
+
+There is no predicate in this module asserting that some ambient group's
+compression defect admits an action making it suitable.  That statement is the
+geometric half of the manuscript's Question 2, no theorem of this corpus
+concludes it, and a `def … : Prop` that nothing concludes is exactly the shape
+`scripts/check_non_mf_unconditional.py` flags as a literature stand-in --- its
+`open-predicate` detector is that test.  Writing one here would put a
+placeholder for an open problem into the library under the name of a
+definition, which is the thing this repository's own audit exists to prevent.
+
+So the open question lives where open questions belong: in
+`notes/HULL_ROUTING_AUDIT_2026-08-16.md`, whose addenda record what is proved,
+what is not, and what each direction would need.  Everything in this module is a
+definition with proved consequences or a theorem with a closed proof, and
+nothing anywhere in `Sofic.HullSuitableDefectSubgroup`,
+`Sofic.ExplicitSuitableDefect` or this file is conditional on the missing
+geometry: the objects those modules build are closed terms.
+
+`IsSuitable.toIsAlgebraicallySuitable` is the whole of the relation between the
+two halves.  A suitable subgroup is algebraically suitable; the algebraic half
+is exhibited with no hypotheses; and the theorems above say what the geometric
+half forbids --- a nontrivial centralizing element of bounded orbit, and any
+genuine loxodromy in a compressed direction. -/
 
 end HullGeometry
 end GroupApproximation
