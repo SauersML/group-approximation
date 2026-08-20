@@ -41,7 +41,7 @@ namespace Higman
 /-! ## 1.  Coding the sequence space -/
 
 /-- The sequence coded by a list of index/value pairs. -/
-noncomputable def seqOfList (l : List (ℤ × ℤ)) : E :=
+noncomputable def seqOfList (l : List (ℤ × ℤ)) : Seq.E :=
   (l.map fun p => Finsupp.single p.1 p.2).sum
 
 /-- The coding is onto: every finitely supported sequence is a finite sum of
@@ -56,8 +56,18 @@ theorem seqOfList_surjective : Function.Surjective seqOfList := by
       (fun i => Finsupp.single i (f i))).sum
       = ∑ i ∈ f.support, Finsupp.single i (f i) := by
     rw [Finset.sum_eq_multiset_sum]
-    refine List.Perm.sum_eq ?_
-    exact (Finset.sort_perm_toList _ _).map _
+    calc
+      ((f.support.sort (· ≤ ·)).map
+          (fun i ↦ (Finsupp.single i (f i) : Seq.E))).sum =
+          (f.support.toList.map
+            (fun i ↦ (Finsupp.single i (f i) : Seq.E))).sum :=
+        List.Perm.sum_eq ((Finset.sort_perm_toList f.support
+          ((· ≤ ·) : ℤ → ℤ → Prop)).map
+          (fun i ↦ (Finsupp.single i (f i) : Seq.E)))
+      _ = (f.support.val.map
+          (fun i ↦ (Finsupp.single i (f i) : Seq.E))).sum := by
+        rw [← Multiset.sum_coe]
+        simp
   show ((f.support.sort (· ≤ ·)).map
     ((fun p : ℤ × ℤ => Finsupp.single p.1 p.2) ∘ (fun i => (i, f i)))).sum = f
   rw [show ((fun p : ℤ × ℤ => Finsupp.single p.1 p.2) ∘ (fun i => (i, f i)))
@@ -66,7 +76,7 @@ theorem seqOfList_surjective : Function.Surjective seqOfList := by
 
 /-- A subset of the sequence space is recursively enumerable when the set of
 codes of its members is. -/
-def REset (B : Set E) : Prop :=
+def REset (B : Set Seq.E) : Prop :=
   REPred (fun l : List (ℤ × ℤ) => seqOfList l ∈ B)
 
 /-! ## 2.  The two remaining halves of Theorem 4, and the transport -/
@@ -77,7 +87,7 @@ sequence space is built from `Z` and `S` by the nine operations.
 **Nothing inhabits this structure.** -/
 structure HigmanTheoremThree where
   /-- Recursively enumerable sets are Higman-generated. -/
-  generated : ∀ B : Set E, REset B → Seq.HigmanGenerated B
+  generated : ∀ B : Set Seq.E, REset B → Seq.HigmanGenerated B
 
 /-- **Input: Higman's Section 5.**  The passage from the coded subgroups `A_B`
 to arbitrary recursively enumerable normal subgroups of free groups of finite
@@ -87,13 +97,13 @@ rank.
 structure TransportSectionFive where
   /-- Benignness of every coded subgroup gives benignness of every recursively
   enumerable normal subgroup. -/
-  transport : (∀ B : Set E, REset B → BenignTF (Seq.ASub B)) → REBenignTF
+  transport : (∀ B : Set Seq.E, REset B → BenignTF (Seq.ASub B)) → REBenignTF
 
 /-! ## 3.  The composite -/
 
 /-- **Higman's Theorem 4, from its two halves.** -/
 theorem benignTF_ASub_of_re (h₁ : OperationClosures) (h₂ : HigmanTheoremThree)
-    (B : Set E) (hB : REset B) : BenignTF (Seq.ASub B) :=
+    (B : Set Seq.E) (hB : REset B) : BenignTF (Seq.ASub B) :=
   benignTF_of_higmanGenerated h₁ (h₂.generated B hB)
 
 /-- **What Higman's embedding theorem owes, assembled.**  The six remaining
@@ -101,7 +111,7 @@ operation closures, the base case `S`, Section 2 and Section 5 give
 `REBenignTF` --- and with it, through `Higman.torsionPreservation_of_reBenignTF`
 and `Higman.fpOvergroup_of_fgRecursive`, Higman's embedding theorem with
 Chiodo's torsion clause. -/
-def reBenignTF_of_inputs (h₁ : OperationClosures) (h₂ : HigmanTheoremThree)
+theorem reBenignTF_of_inputs (h₁ : OperationClosures) (h₂ : HigmanTheoremThree)
     (h₃ : TransportSectionFive) : REBenignTF :=
   h₃.transport (benignTF_ASub_of_re h₁ h₂)
 
