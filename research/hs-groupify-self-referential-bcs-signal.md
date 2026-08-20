@@ -44,3 +44,8 @@ they convert the self-referential BCS collapse into a nonhyperlinear group.
   signal itself prevents the construction from firing merely on a
   classically unsatisfiable CSP. This makes a marked version of
   `fixed-scale-contextual-multiplicity-holonomy` the narrowest current attack.
+- `trace-functorial-bcs-signal-groupification-impossible` rules out an exact
+  decoder valid on all traces: the regular trace would itself produce the
+  forbidden perfect strategy. Thus `(SGB2)` must be proved by an intrinsically
+  finite-dimensional rank or integer-multiplicity argument, not by a
+  star-algebra embedding that also survives in `L(Gamma)`.

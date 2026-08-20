@@ -1011,6 +1011,24 @@ advantage over the generic forbidden-mass construction: the distinguished
 signal prevents a false argument that would also fire on an ordinary
 classically unsatisfiable CSP.
 
+There is a sharp constraint on that bridge.  It cannot be a trace-functorial
+exact decoder.  Every discrete group has its regular trace, and for a
+nonidentity word \(w\),
+
+\[
+\tau_{\mathrm{reg}}((w-1)^*(w-1))=2.
+\]
+
+If an algebraic decoder turned every tracial representation of the group into
+a perfect strategy while lower-bounding \(\varphi(D)\) by the marked
+\(L^2\)-mass, applying it to the regular trace would contradict the
+\(\varepsilon=0\) signal-collapse inequality.  Therefore the groupification
+must be intrinsically finite-dimensional: it has to use rank, determinant,
+integral packet multiplicity, or a matrix-only rounding theorem which does not
+extend functorially to the regular finite von Neumann algebra.  This explains
+why the Schur--Clifford multiplicity machinery is not optional decoration but
+the only currently visible way around the regular-trace obstruction.
+
 ---
 
 ## 16. Computational verification
