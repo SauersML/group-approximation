@@ -47,3 +47,10 @@ tau(P_tilde_(n+1))=2 tau(P_tilde_n),
 
 so boundedness forces the initial mass to vanish. Quantitatively, the
 geometric weight `2^(-n/2)` beats the polynomial certificate cost `(FDB2)`.
+
+The original additive compiler and its synchronous-state strengthening are
+recorded separately as `msz-polynomial-doubling-star-algebra-compiler` and
+`msz-polynomial-doubling-survives-synchronous-states`.  The distinction is
+load-bearing: the MSZ theorem already handles nontracial synchronous states,
+while this node records the later finite-BCS packaging needed by Cairn's
+predicate lanes.
