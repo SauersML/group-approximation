@@ -38,4 +38,8 @@ free-skew-field model of `(ALO4)` is a bounded tracial representation.
   unresolved bridge is from additive verifier constraints to group words while
   preserving perfect marked completeness and runtime-independent HS
   soundness.
-
+- The additive oracle is not logically necessary.  The parallel target
+  `constant-hs-groupification-of-residual-dyadic-splitter` uses the same
+  residual dimension only through its atomic trace floor and has a fully
+  group-native Pauli payload.  Unless the polynomial tape gives a better
+  stopping controller, the dyadic route is the cleaner endpoint.

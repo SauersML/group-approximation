@@ -137,6 +137,15 @@ need not be bounded.  Recursive compression must still turn the failed
 instruction into new Schur cells using finitely many unitary group relations
 and a constant HS loss.
 
+There is a bounded reformulation which is likely cleaner than the polynomial
+tape.  The residual `M_L(C)` has atomic trace floor `1/L`; `r` independent
+flip cells generate `M_(2^r)(C)` and ask for minimal projections of trace
+`2^(-r)`.  Diffuse finite factors support the entire nested dyadic tower,
+whereas a matrix fails as soon as `r>log_2L`.  The local payload is therefore
+already group-native.  What remains is solely a finite recursive controller
+which chooses that depth from the current microstate and transports all split
+checks with constant HS loss.
+
 There is a genuinely different escape from dimension detection.  If a finite
 bi-index action can be rounded uniformly, one base lamp and finitely many
 pair-orbit relators produce a coherent *infinite* family of anticommuting

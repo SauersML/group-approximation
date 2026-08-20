@@ -58,3 +58,9 @@ be charged by word telescoping with a universal constant.
   length.  The exact stopping program and its remaining groupification are now
   isolated by `schur-residual-commutant-is-a-dimension-oracle-tape` and
   `constant-hs-groupification-of-residual-dimension-tape`.
+- A bounded group-native formulation avoids additive polynomial evaluation:
+  `schur-flip-rank-is-residual-atomic-granularity` identifies the target as
+  splitting below the smallest nonzero trace `1/L` in the residual matrix
+  factor.  Its direct compiler is
+  `constant-hs-groupification-of-residual-dyadic-splitter`; recursive
+  constant-gap control, not the local Pauli actuator, remains open.
