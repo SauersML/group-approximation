@@ -54,7 +54,20 @@ least one non-root assignment projection must survive.
   therefore target commuting escaped separators with adequate joint block
   capacity; otherwise it must solve the genuinely noncommuting relative-
   commutant problem.
-- **Finite target.**  Compute the double-orbit condition for the rational
-  context partitions and realize a successful pair of endpoint regauges by
-  free-phase corner unitaries.  Failure of every such double orbit would be a
-  precise obstruction requiring a genuinely two-dimensional holonomy cell.
+- **The general finite target is now algorithmic.**
+  `finite-relative-commutant-chord-is-bounded-integer-feasibility` eliminates
+  the unknown common involution and gives one bounded Wedderburn integer
+  system, without assuming that the separators commute.  Equal total ranks
+  alone fail already for the transverse Pauli separators in `M_2(C)`.
+- **The acyclic ambient group cannot contain the finished answer.**
+  `cycle-closure-cannot-remain-in-the-join-tree-group` proves that the direct
+  product of the finite packet and the fresh free-phase groups is residually
+  finite.  Completing every chord in that unchanged corner would create a CE
+  trace on the no-CE BCS.
+- **Finite-edge HNN transport is exact but globally dead.**
+  `finite-character-idempotents-have-exact-hnn-transport` shows that matched
+  finite-subgroup character pieces can be transported and assembled exactly.
+  However `finite-edge-hnn-closures-cannot-finish-the-nonce-atlas` proves that
+  finite iterations of these HNN extensions remain residually finite.  The
+  decisive chord must use an infinite associated subgroup or another
+  genuinely non-residual-finiteness-preserving extension.
