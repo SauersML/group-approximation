@@ -72,6 +72,16 @@ regular Bass--Serre reservoir.
   pairwise-distinct `L_n` are lines with leading degree `4n-2`.  Thus the
   required atlas moves precisely one relative relation coordinate and no
   higher multiplicity space.
+- `paired-hard-form-transverse-to-moving-clock` identifies
+  that coordinate with the Boolean detector itself: the hard form is
+  `e_02^*`, and its value on `L_n` is the nonzero polynomial `c_n^2` of
+  leading degree `4n-2`.
+- The kernels cannot be installed as one normal polynomial module.
+  `normal-closure-of-moving-kernels-kills-the-hard-form` proves that their
+  cumulative span has rank five and leaves only
+  `e_03^*+e_12^*`; the hard covector is lost.  The moving coordinate must
+  therefore be separated by spectral corners/sites, not merely conjugated as
+  global relations.
 - `free-root-top-boundary-reservoir-is-summable` proves the required capacity
   theorem for those degree labels: the mass first detected at successive
   degrees telescopes and has total at most one on a unit carrier.  Literal

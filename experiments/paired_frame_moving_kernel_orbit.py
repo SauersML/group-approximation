@@ -21,8 +21,13 @@ from paired_frame_kernel_polynomial_stabilizer import (
     wedge_image_poly,
 )
 from schur_packet_paired_commutant_frame import (
+    COEFFICIENT_MINUS,
+    COEFFICIENT_PLUS,
+    FORBIDDEN,
+    MINUS_WORDS,
     PAIRS,
     PLUS_WORDS,
+    evaluated_frame_form,
     rank_f2,
     relation_kernel,
     symbolic_commutator_columns,
@@ -153,6 +158,10 @@ def degree_profile(vector: tuple[int, ...]) -> tuple[int, ...]:
     return tuple(entry.bit_length() - 1 for entry in vector)
 
 
+def wedge_covector(form: tuple[tuple[int, ...], ...]) -> tuple[int, ...]:
+    return tuple(form[left][right] for left, right in PAIRS)
+
+
 def audit(depth: int = 48) -> None:
     basis = kernel_basis()
     assert basis == (
@@ -161,6 +170,17 @@ def audit(depth: int = 48) -> None:
         (1, 0, 0, 0, 0, 0),
     )
     transfer = block_transporter()
+    hard_covector = wedge_covector(
+        evaluated_frame_form(FORBIDDEN, COEFFICIENT_PLUS, PLUS_WORDS)
+    )
+    reverse_covector = wedge_covector(
+        evaluated_frame_form((0, 1, 1), COEFFICIENT_MINUS, MINUS_WORDS)
+    )
+    stationary_minus_covector = wedge_covector(
+        evaluated_frame_form(FORBIDDEN, COEFFICIENT_MINUS, MINUS_WORDS)
+    )
+    assert hard_covector == reverse_covector == (0, 1, 0, 0, 0, 0)
+    assert stationary_minus_covector == (0,) * 6
     power = identity_poly()
     orbit = []
     for n in range(depth):
@@ -172,6 +192,15 @@ def audit(depth: int = 48) -> None:
             else (-1, 4 * n - 2, 4 * n - 3, 4 * n - 3, 4 * n - 4, -1)
         )
         assert degree_profile(moved[1]) == expected_moving_degrees
+        curvature = reduce(
+            int.__xor__,
+            (poly_mul(left, right) for left, right in zip(hard_covector, moved[1])),
+            0,
+        )
+        if n == 0:
+            assert curvature == 0
+        else:
+            assert curvature.bit_length() - 1 == 4 * n - 2
         orbit.append(moved)
         if n < 8:
             print(f"n={n} relation degrees={tuple(degree_profile(row) for row in moved)}")
@@ -196,6 +225,18 @@ def audit(depth: int = 48) -> None:
     assert union_ranks[1] == 4
     assert all(rank == 5 for rank in union_ranks[2:])
     print("orbit structure: fixed rank 2 plus pairwise-distinct moving lines")
+    print("hard covector e_02* pairs with L_n in leading degree 4n-2")
+    common_annihilator = (0, 0, 1, 1, 0, 0)
+    for moved in orbit:
+        for relation in moved:
+            pairing = reduce(
+                int.__xor__,
+                (poly_mul(left, right) for left, right in zip(common_annihilator, relation)),
+                0,
+            )
+            assert pairing == 0
+    assert common_annihilator != hard_covector
+    print("normal closure leaves only e_03*+e_12* and kills the hard covector")
 
 
 if __name__ == "__main__":
