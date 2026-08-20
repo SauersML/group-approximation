@@ -24,7 +24,8 @@ variable {G H : Type} [Group G] [Group H]
 /-- From the binary free product to the indexed one. -/
 def toCoprodI : Monoid.Coprod G H →* Monoid.CoprodI (Amalgam.fam G H) :=
   Monoid.Coprod.lift
-    (Monoid.CoprodI.of (i := false)) (Monoid.CoprodI.of (i := true))
+    (Monoid.CoprodI.of (M := Amalgam.fam G H) (i := false))
+    (Monoid.CoprodI.of (M := Amalgam.fam G H) (i := true))
 
 /-- ... and back. -/
 def fromCoprodI : Monoid.CoprodI (Amalgam.fam G H) →* Monoid.Coprod G H :=
@@ -38,16 +39,10 @@ theorem fromCoprodI_comp_toCoprodI :
   refine Monoid.Coprod.hom_ext ?_ ?_
   · refine MonoidHom.ext fun x => ?_
     show fromCoprodI (toCoprodI (Monoid.Coprod.inl x)) = Monoid.Coprod.inl x
-    unfold toCoprodI
-    rw [Monoid.Coprod.lift_apply_inl]
-    unfold fromCoprodI
-    rw [Monoid.CoprodI.lift_of]
+    rfl
   · refine MonoidHom.ext fun x => ?_
     show fromCoprodI (toCoprodI (Monoid.Coprod.inr x)) = Monoid.Coprod.inr x
-    unfold toCoprodI
-    rw [Monoid.Coprod.lift_apply_inr]
-    unfold fromCoprodI
-    rw [Monoid.CoprodI.lift_of]
+    rfl
 
 theorem toCoprodI_comp_fromCoprodI :
     (toCoprodI (G := G) (H := H)).comp fromCoprodI
@@ -63,6 +58,7 @@ theorem toCoprodI_comp_fromCoprodI :
       show toCoprodI (Monoid.Coprod.inl x) = _
       unfold toCoprodI
       rw [Monoid.Coprod.lift_apply_inl]
+      rfl
   | true =>
       refine MonoidHom.ext fun x => ?_
       show toCoprodI (fromCoprodI (Monoid.CoprodI.of (i := true) x))
@@ -72,6 +68,7 @@ theorem toCoprodI_comp_fromCoprodI :
       show toCoprodI (Monoid.Coprod.inr x) = _
       unfold toCoprodI
       rw [Monoid.Coprod.lift_apply_inr]
+      rfl
 
 /-- The two free products agree. -/
 def coprodEquiv : Monoid.Coprod G H ≃* Monoid.CoprodI (Amalgam.fam G H) where
@@ -88,6 +85,7 @@ def coprodEquiv : Monoid.Coprod G H ≃* Monoid.CoprodI (Amalgam.fam G H) where
 /-- **The binary free product of torsion-free groups is torsion-free.** -/
 theorem isPowerTorsionFree_coprod (hG : IsPowerTorsionFree G)
     (hH : IsPowerTorsionFree H) : IsPowerTorsionFree (Monoid.Coprod G H) := by
+  classical
   have hfam : ∀ b, IsPowerTorsionFree (Amalgam.fam G H b) := by
     intro b
     cases b with
