@@ -40,6 +40,25 @@ S3 packet return.  The limitation is explicit: the paper does not prove an HS
 stability estimate, and it leaves finite-dimensional operator solutions for
 its odd-prime examples open.
 
+The supplied TeX source also makes two reusable exact consequences explicit.
+For finite `p`, full order of the central phase is equivalent to a possibly
+infinite-dimensional operator solution: one direction evaluates `J` at
+`omega_p`, while the other cuts the left regular representation by the
+central `omega_p` spectral idempotent.  For an oriented connected graph,
+classical solvability of its incidence system is equivalent to
+`sum_v b_v=0`; the high-girth theorem nevertheless gives operator solvability
+for every `b`.  These are now separated into
+`solution-group-central-order-is-operator-solvability` and
+`high-girth-incidence-gives-uniform-quantum-classical-separation`, with the
+finite-dimensional caveat retained as part of each statement.
+
+The proof is exact planar curvature, not probabilistic gap amplification.
+Minimal closed pictures have vertex degree at least four and face degree at
+least four, or vertex degree at least three and face degree at least six;
+Euler's formula excludes them.  The tempting `(6,3)` analogue is not proved.
+The v2 coefficient hypothesis is also load-bearing: every nonzero coefficient
+must be a non-zero-divisor in `Z_p`.
+
 ### Mastel--Slofstra, arXiv:2404.00926v2
 
 Lemma 6.6 and Corollary 6.7 show that contextwise classical transformations,
