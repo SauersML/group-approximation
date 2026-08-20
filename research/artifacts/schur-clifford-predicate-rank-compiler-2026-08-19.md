@@ -957,6 +957,60 @@ test error for which \(\delta<1\) yields \(d\ge c_0 2^N\), with universal
 `pauli-braiding-test-exponential-dimension`; the new direct route leaves only
 `dimension-reported-pauli-test-halting-compiler` open.
 
+### Instance-modulated diagonal and a self-referential BCS signal
+
+The Kleene microstate diagonal does not actually require one universal defect
+threshold for every source machine.  A total compiler may output computable
+rationals
+
+\[
+\delta_M>0,\qquad 0<\alpha_M<\sqrt2
+\]
+
+depending arbitrarily on the source code.  The fixed-point machine first
+computes its own compiled presentation and thresholds, then searches below
+\(\delta_M\) and above \(\alpha_M\).  Hyperlinearity eventually beats every
+fixed positive \(\delta_M\), so the contradiction is unchanged.  What remains
+forbidden is dependence on the unknown eventual halt time or on the reported
+dimension.  This is recorded as
+`instance-modulated-kleene-microstate-diagonal`.
+
+This relaxation admits the computable constants in Fanizza--Kroell--Mehta--
+Paddock--Rochette--Slofstra--Zhao's \(\mathcal L\)-families of BCS algebras.
+It also yields a new exact fixed-point source object.  Let \(\mathcal L\) be
+the halting set and let \((\mathscr B_m,C_m,D_m)\) be their computable family.
+Construct a machine with its own index \(m_*\) which enumerates formal
+algebraic proofs that
+
+\[
+D_{m_*}=0\quad\text{in }\mathcal A(\mathscr B_{m_*})
+\]
+
+and halts exactly when it finds one.  If it halted, membership in
+\(\mathcal L\) would give a tracial state with \(\tau(D_{m_*})>0\),
+contradicting the proved identity.  Hence it does not halt.  Completeness of
+the recursively enumerable ideal-membership search gives
+\(D_{m_*}\ne0\), while the nonmembership clause gives, with a computable
+constant \(C_{m_*}\),
+
+\[
+\varphi_{\mathcal S}(D_{m_*})\le C_{m_*}\varepsilon
+\]
+
+for every \(\varepsilon\)-perfect strategy.  Thus one computably specified
+finite BCS contains an algebraically nonzero projection erased by every
+asymptotically perfect finite-dimensional strategy.
+
+This is not yet a group obstruction.  The precise remaining bridge is
+`hs-groupify-self-referential-bcs-signal`: preserve nonvanishing of this marked
+projection while compiling the nonlinear BCS predicates to group words, and
+make its strategy mass dominate the normalized-HS distance of a marked group
+word.  The Schur--Clifford rank gates supply the local nonlinear compiler; a
+marked fixed-scale multiplicity return remains open.  This route has one
+advantage over the generic forbidden-mass construction: the distinguished
+signal prevents a false argument that would also fire on an ordinary
+classically unsatisfiable CSP.
+
 ---
 
 ## 16. Computational verification
