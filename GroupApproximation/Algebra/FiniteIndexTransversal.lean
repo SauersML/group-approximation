@@ -16,6 +16,19 @@ the representative of `Λγ`, subject to five conditions, and
 `exists_rightTransversal` produces one from `Λ.FiniteIndex`.  Downstream modules
 take a `RightTransversal` as data and never touch a quotient type again.
 
+## Relation to `Sofic/InducedCoronaMF.lean`
+
+That module already carries a transversal (`InducedCorona.Transversal`) and an
+induced *matrix* representation, and this one does not replace it.  The two
+differ in the two ways that matter: `InducedCorona.Transversal` is indexed by
+`Fin m` and works with **left** cosets, its cocycle being `a⁻¹b`, and it induces
+into finite-dimensional unitary matrices, which is what the MF corona argument
+needs.  The development here is right-handed and induces into an arbitrary real
+Hilbert space, which is what the Schreier estimate
+(`Algebra/SchreierGenerators.lean`) and the Kazhdan argument
+(`Kazhdan/InducedRepresentation.lean`) need.  Neither is a special case of the
+other, and no theorem here depends on that module.
+
 ## Why right cosets
 
 The word metric of `Algebra/WordMetric.lean` is *left* invariant, so generators
@@ -122,8 +135,9 @@ theorem sec_sec_mul (γ g : Γ) : tr.sec (tr.sec γ * g) = tr.sec (γ * g) := by
   have hmem : tr.retract γ ∈ Λ := tr.retract_mem γ
   have h : tr.sec (tr.retract γ * (tr.sec γ * g)) = tr.sec (tr.sec γ * g) :=
     tr.sec_mul_left _ hmem _
-  rw [← mul_assoc, tr.retract_mul_sec] at h
-  exact h.symm
+  calc
+    tr.sec (tr.sec γ * g) = tr.sec (tr.retract γ * (tr.sec γ * g)) := h.symm
+    _ = tr.sec (γ * g) := by rw [← mul_assoc, tr.retract_mul_sec]
 
 /-- The retraction is left `Λ`-equivariant. -/
 theorem retract_mul_left {a : Γ} (ha : a ∈ Λ) (γ : Γ) :
@@ -160,21 +174,19 @@ cosets into left ones --- and then normalised at the trivial coset so that
 theorem exists_rightTransversal {Γ : Type u} [Group Γ] (Λ : Subgroup Γ)
     [hΛ : Λ.FiniteIndex] : Nonempty (RightTransversal Γ Λ) := by
   classical
-  have hfin : Finite (Γ ⧸ Λ) :=
+  haveI : Finite (Γ ⧸ Λ) :=
     Subgroup.index_ne_zero_iff_finite.mp (Subgroup.finiteIndex_iff.mp hΛ)
   have hrep : ∀ c : Γ ⧸ Λ, ∃ a : Γ, (QuotientGroup.mk a : Γ ⧸ Λ) = c := by
     intro c
     exact Quotient.inductionOn c fun a => ⟨a, rfl⟩
   -- A representative for each coset, normalised at the trivial one.
-  -- `Γ ⧸ Λ` carries no group structure here -- `Λ` need not be normal -- so the
-  -- trivial coset is the class of `1`, not the numeral `1`.
-  set pick : (Γ ⧸ Λ) → Γ :=
-    fun c => if c = (QuotientGroup.mk (1 : Γ) : Γ ⧸ Λ) then 1 else ((hrep c).choose)⁻¹
-    with hpickdef
+  set pick : (Γ ⧸ Λ) → Γ := fun c =>
+    if c = QuotientGroup.mk (1 : Γ) then 1 else ((hrep c).choose)⁻¹ with hpickdef
   have hpick : ∀ c : Γ ⧸ Λ, (QuotientGroup.mk (pick c)⁻¹ : Γ ⧸ Λ) = c := by
     intro c
-    by_cases hc : c = (QuotientGroup.mk (1 : Γ) : Γ ⧸ Λ)
-    · simp [hpickdef, hc]
+    by_cases hc : c = QuotientGroup.mk (1 : Γ)
+    · simp only [hpickdef, if_pos hc, inv_one]
+      exact hc.symm
     · simp only [hpickdef, if_neg hc, inv_inv]
       exact (hrep c).choose_spec
   set sec : Γ → Γ := fun γ => pick (QuotientGroup.mk γ⁻¹) with hsecdef
@@ -197,7 +209,10 @@ theorem exists_rightTransversal {Γ : Type u} [Group Γ] (Λ : Subgroup Γ)
       rw [this]
       exact ha
     simp only [hsecdef, hco]
-  have hone : sec 1 = 1 := by simp [hsecdef, hpickdef]
+  have hone : sec 1 = 1 := by
+    rw [hsecdef]
+    simp only [inv_one]
+    simp only [hpickdef, if_pos]
   -- The chosen representatives form a finite set.
   have hrangefin : (Set.range pick).Finite := Set.finite_range pick
   refine ⟨{ sec := sec
@@ -257,8 +272,12 @@ theorem act_act (tr : RightTransversal Γ Λ) (c : Index tr) (g h : Γ) :
 def actEquiv (tr : RightTransversal Γ Λ) (g : Γ) : Index tr ≃ Index tr where
   toFun c := act tr c g
   invFun c := act tr c g⁻¹
-  left_inv c := by simp only [act_act, mul_inv_cancel, act_one]
-  right_inv c := by simp only [act_act, inv_mul_cancel, act_one]
+  left_inv c := by
+    change act tr (act tr c g) g⁻¹ = c
+    rw [act_act, mul_inv_cancel, act_one]
+  right_inv c := by
+    change act tr (act tr c g⁻¹) g = c
+    rw [act_act, inv_mul_cancel, act_one]
 
 @[simp] theorem actEquiv_apply (tr : RightTransversal Γ Λ) (g : Γ) (c : Index tr) :
     actEquiv tr g c = act tr c g := rfl

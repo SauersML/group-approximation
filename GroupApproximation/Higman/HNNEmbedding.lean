@@ -120,38 +120,31 @@ def act' : P A →* Equiv.Perm St :=
   rfl
 
 @[simp] theorem act'_x : act' (xg : P A) = xPerm' := by
-  unfold act' xg iF
-  rw [Monoid.Coprod.lift_apply_inr, FreeGroup.lift.of]
-  simp
+  simp [act', xg, iF]
 
 @[simp] theorem act'_y : act' (yg : P A) = yPerm' := by
-  unfold act' yg iF
-  rw [Monoid.Coprod.lift_apply_inr, FreeGroup.lift.of]
-  simp
+  simp [act', yg, iF]
 
 theorem act'_x_zpow (k : ℤ) (p : St) :
     act' (xg ^ k : P A) p = (p.1, p.2 + k) := by
   rw [map_zpow, act'_x]
-  induction k using Int.induction_on with
-  | hz =>
+  induction k using Int.induction_on generalizing p with
+  | zero =>
       show p = (p.1, p.2 + 0)
       rw [add_zero]
-      exact Prod.ext rfl rfl
-  | hp n ih =>
-      have hstep : (xPerm' ^ ((n : ℤ) + 1)) p = xPerm' ((xPerm' ^ (n : ℤ)) p) := by
-        rw [zpow_add, zpow_one]
-        rfl
-      rw [hstep, ih]
+  | succ n ih =>
+      rw [zpow_add, zpow_one]
+      change (xPerm' ^ (n : ℤ)) (xPerm' p) = _
+      rw [ih]
       refine Prod.ext rfl ?_
-      show p.2 + (n : ℤ) + 1 = p.2 + ((n : ℤ) + 1)
+      show p.2 + 1 + (n : ℤ) = p.2 + ((n : ℤ) + 1)
       ring
-  | hn n ih =>
-      have hstep : (xPerm' ^ (-(n : ℤ) - 1)) p = xPerm'.symm ((xPerm' ^ (-(n : ℤ))) p) := by
-        rw [zpow_sub, zpow_one]
-        rfl
-      rw [hstep, ih]
+  | pred n ih =>
+      rw [zpow_sub, zpow_one]
+      change (xPerm' ^ (-(n : ℤ))) (xPerm'.symm p) = _
+      rw [ih]
       refine Prod.ext rfl ?_
-      show p.2 + -(n : ℤ) - 1 = p.2 + (-(n : ℤ) - 1)
+      show p.2 - 1 + -(n : ℤ) = p.2 + (-(n : ℤ) - 1)
       ring
 
 /-- **What the untwisted family does on the zero slice.** -/
@@ -161,12 +154,13 @@ theorem act'_aFam (i : ℕ) (w : FreeGroup ℕ) :
   rw [map_mul, map_mul]
   show act' (xg ^ (-(i : ℤ)) : P A) (act' (yg : P A)
     (act' (xg ^ (i : ℤ) : P A) (w, (0 : ℤ)))) = _
-  rw [act'_x_zpow]
+  rw [act'_x_zpow (A := A) (i : ℤ) (w, (0 : ℤ))]
   show act' (xg ^ (-(i : ℤ)) : P A) (act' (yg : P A) (w, (0 : ℤ) + (i : ℤ))) = _
   rw [act'_y]
   show act' (xg ^ (-(i : ℤ)) : P A)
     (FreeGroup.of ((0 : ℤ) + (i : ℤ)).toNat * w, (0 : ℤ) + (i : ℤ)) = _
-  rw [act'_x_zpow]
+  rw [act'_x_zpow (A := A) (-(i : ℤ))
+    (FreeGroup.of ((0 : ℤ) + (i : ℤ)).toNat * w, (0 : ℤ) + (i : ℤ))]
   refine Prod.ext ?_ ?_
   · show FreeGroup.of ((0 : ℤ) + (i : ℤ)).toNat * w = FreeGroup.of i * w
     congr 2
@@ -257,40 +251,31 @@ def act₂ : P A →* Equiv.Perm (St₂ A) :=
   rw [Monoid.Coprod.lift_apply_inl]
 
 @[simp] theorem act₂_x : act₂ g (xg : P A) = xPerm₂ := by
-  unfold act₂ xg iF
-  rw [Monoid.Coprod.lift_apply_inr, FreeGroup.lift.of]
-  simp
+  simp [act₂, xg, iF]
 
 @[simp] theorem act₂_y : act₂ g (yg : P A) = yPerm₂ g := by
-  unfold act₂ yg iF
-  rw [Monoid.Coprod.lift_apply_inr, FreeGroup.lift.of]
-  simp
+  simp [act₂, yg, iF]
 
 theorem act₂_x_zpow (k : ℤ) (p : St₂ A) :
     act₂ g (xg ^ k : P A) p = (p.1, p.2.1 + k, p.2.2) := by
   rw [map_zpow, act₂_x]
-  induction k using Int.induction_on with
-  | hz =>
+  induction k using Int.induction_on generalizing p with
+  | zero =>
       show p = (p.1, p.2.1 + 0, p.2.2)
       rw [add_zero]
-      exact Prod.ext rfl (Prod.ext rfl rfl)
-  | hp n ih =>
-      have hstep : ((xPerm₂ : Equiv.Perm (St₂ A)) ^ ((n : ℤ) + 1)) p
-          = xPerm₂ ((xPerm₂ ^ (n : ℤ)) p) := by
-        rw [zpow_add, zpow_one]
-        rfl
-      rw [hstep, ih]
+  | succ n ih =>
+      rw [zpow_add, zpow_one]
+      change ((xPerm₂ : Equiv.Perm (St₂ A)) ^ (n : ℤ)) (xPerm₂ p) = _
+      rw [ih]
       refine Prod.ext rfl (Prod.ext ?_ rfl)
-      show p.2.1 + (n : ℤ) + 1 = p.2.1 + ((n : ℤ) + 1)
+      show p.2.1 + 1 + (n : ℤ) = p.2.1 + ((n : ℤ) + 1)
       ring
-  | hn n ih =>
-      have hstep : ((xPerm₂ : Equiv.Perm (St₂ A)) ^ (-(n : ℤ) - 1)) p
-          = xPerm₂.symm ((xPerm₂ ^ (-(n : ℤ))) p) := by
-        rw [zpow_sub, zpow_one]
-        rfl
-      rw [hstep, ih]
+  | pred n ih =>
+      rw [zpow_sub, zpow_one]
+      change ((xPerm₂ : Equiv.Perm (St₂ A)) ^ (-(n : ℤ))) (xPerm₂.symm p) = _
+      rw [ih]
       refine Prod.ext rfl (Prod.ext ?_ rfl)
-      show p.2.1 + -(n : ℤ) - 1 = p.2.1 + (-(n : ℤ) - 1)
+      show p.2.1 - 1 + -(n : ℤ) = p.2.1 + (-(n : ℤ) - 1)
       ring
 
 theorem act₂_aFam (i : ℕ) (w : FreeGroup ℕ) (α : A) :
@@ -300,14 +285,16 @@ theorem act₂_aFam (i : ℕ) (w : FreeGroup ℕ) (α : A) :
   rw [map_mul, map_mul]
   show act₂ g (xg ^ (-(i : ℤ)) : P A) (act₂ g (yg : P A)
     (act₂ g (xg ^ (i : ℤ) : P A) (w, (0 : ℤ), α))) = _
-  rw [act₂_x_zpow]
+  rw [act₂_x_zpow g (i : ℤ) (w, (0 : ℤ), α)]
   show act₂ g (xg ^ (-(i : ℤ)) : P A)
     (act₂ g (yg : P A) (w, (0 : ℤ) + (i : ℤ), α)) = _
   rw [act₂_y]
   show act₂ g (xg ^ (-(i : ℤ)) : P A)
     (FreeGroup.of ((0 : ℤ) + (i : ℤ)).toNat * w, (0 : ℤ) + (i : ℤ),
       (g ((0 : ℤ) + (i : ℤ)).toNat)⁻¹ * α) = _
-  rw [act₂_x_zpow]
+  rw [act₂_x_zpow g (-(i : ℤ))
+    (FreeGroup.of ((0 : ℤ) + (i : ℤ)).toNat * w, (0 : ℤ) + (i : ℤ),
+      (g ((0 : ℤ) + (i : ℤ)).toNat)⁻¹ * α)]
   have htn : ((0 : ℤ) + (i : ℤ)).toNat = i := by
     rw [zero_add, Int.toNat_natCast]
   refine Prod.ext ?_ (Prod.ext ?_ ?_)
@@ -346,15 +333,13 @@ variable {A : Type} [Group A] (g : ℕ → A)
 def aHom : FreeGroup ℕ →* P A := FreeGroup.lift (aFam (A := A))
 
 @[simp] theorem aHom_of (i : ℕ) : (aHom : FreeGroup ℕ →* P A) (FreeGroup.of i) = aFam i := by
-  unfold aHom
-  rw [FreeGroup.lift.of]
+  simp [aHom]
 
 /-- The homomorphism onto the twisted family. -/
 def bHom : FreeGroup ℕ →* P A := FreeGroup.lift (bFam g)
 
 @[simp] theorem bHom_of (i : ℕ) : bHom g (FreeGroup.of i) = bFam g i := by
-  unfold bHom
-  rw [FreeGroup.lift.of]
+  simp [bHom]
 
 /-- The words on which the untwisted action is left multiplication. -/
 def GoodA : Subgroup (FreeGroup ℕ) where
