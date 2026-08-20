@@ -110,14 +110,34 @@ Kasparov bimodule.
 `left_eq_mul`).  Both were fixed.  Every mathlib name used in this wave was
 checked against the pinned tree rather than against memory.
 
+## Second batch: `H_B`, unitaries, and half of stabilization
+
+Three further modules, same status (uncompiled, unwired).
+
+8. `Analysis/CStarStandardModule.lean` --- **`H_B = ℓ²(B)`**.  Two analytic
+   facts carry it, and both are proved: *domination* (a family of positive
+   elements dominated by a summable one is summable --- proved by the Cauchy
+   criterion on finite subsets, since a summable family of positives in a
+   C⋆-algebra need not be absolutely summable, `eᵢ/i` in `c₀` being the
+   counterexample), and *cross terms* (`∑fᵢ⋆gᵢ` converges when `∑fᵢ⋆fᵢ` and
+   `∑gᵢ⋆gᵢ` do --- Cauchy--Schwarz in `B^s`, one finite subset at a time,
+   which is why the `Fintype` direct sum is proved before the infinite one).
+   The square-summable sequences are built as a `ℂ`-submodule of `ι → B`, so
+   the linear structure is inherited; definiteness is `le_hasSum`.
+9. `Analysis/CStarUnitary.lean` --- `IsUnitaryAdj`, with the inner product
+   *proved* preserved rather than assumed (`⟨Ux,Uy⟩ = ⟨x,U⋆Uy⟩`), hence
+   isometry and boundedness for free, and the groupoid structure.
+10. `Analysis/CStarStandardModuleEquiv.lean` --- re-indexing along `ι ≃ κ`
+    (unconditional summability is exactly what makes this legitimate), the
+    merge `H_B(ι) ⊞ H_B(κ) ≅ H_B(ι ⊕ κ)`, and their composite with
+    `ℕ ⊕ ℕ ≃ ℕ`: **`H_B ⊞ H_B ≅ H_B`**.  That is the case `E = H_B` of
+    Kasparov's stabilization theorem --- the case that is bookkeeping.  What
+    is left of stabilization is the case of a general countably generated `E`,
+    which is the Mingo--Phillips argument and is not re-indexing.
+
 ## What is next, and what it costs
 
-1. **`H_B = ℓ²(B)`.**  Square-summable sequences over `B`.  The inner product
-   converges by Cauchy--Schwarz *in `Bⁿ`* --- which is exactly why
-   `CStarModuleDirectSum` proves the `Fintype` case --- and the module is
-   closed under addition by the parallelogram estimate already in
-   `CStarPositiveOrder`.  Needs the completeness of `B` and the Cauchy
-   criterion for `Finset`-indexed sums; no new mathematics.
+1. ~~`H_B = ℓ²(B)`~~ --- **done**, in the second batch above.
 2. **Kasparov stabilization** `H_B ⊕ E ≅ H_B` for countably generated `E`.
    Mingo--Phillips.  This is a real theorem and the first genuine obstruction
    in the chain.
