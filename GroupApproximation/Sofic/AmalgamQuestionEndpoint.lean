@@ -5,163 +5,28 @@ import GroupApproximation.Sofic.ProjectionCompressionCollapse
 import GroupApproximation.Sofic.LiteralSignFreeQuotient
 
 /-!
-# Question 1 of the manuscript: the conditional amalgam deduction
+# A conditional lamp-kernel amalgam route
 
-> **SUPERSEDED 2026-08-16.**  (An earlier version of this header added "NOT IN
-> THE BUILD, AND NOT TO BE WIRED IN" and called the module "retained on disk,
-> untracked".  Both are false as of the 2026-08-16 orphan sweep: the module is
-> tracked and is imported by `GroupApproximation.lean`.  Whether *that* is
-> right is a live question — see the trust-surface note at the end of this
-> paragraph — but the header must not describe a state the tree is not in.)
-> The manuscript question this module was written against was deleted the same
-> day it was formalized: `\subsection*{Questions}` no longer contains an
-> "Is `E/⟨w⟩` MF?" item (the word "amalgam" now survives in the `.tex` only
-> in the introduction's prior-work survey and the bibliography), and the
-> conclusion proved conditionally here is now an **unconditional numbered
-> main theorem**, `\begin{mainthm}[the sign-free quotient of $E$]`
-> `\label{thm:signfree}`, badged against
-> `LiteralSignFreeQuotient.signFreeQuotient_not_isCDEOperatorMF`,
-> `…signFree_collapse`, and `…commutator_not_zpow_mark`.  This module is
-> therefore a conditional theorem whose conclusion is already a theorem, the
-> shape `scripts/Audit.lean` forbids on the trust surface.  It is kept as a
-> worked starting point should the amalgam route ever be wanted for the
-> *residual* computation that the current Question 1 asks about ("What is
-> `Res_MF(E)`?" — the manuscript renamed `Rad` to `Res` on 2026-08-16), and
-> for that reason its presence in the import closure should be reviewed
-> rather than assumed.  Read the CRW caveat under check (2) below
-> before attempting to discharge `LampKernelBlockAmalgam`.  Everything from
-> here down describes the manuscript as it stood before that rewrite.
+This module predates the manuscript's unconditional sign-free quotient theorem
+and its later exact MF-residual computation.  It proves that a concrete
+`LampKernelBlockAmalgam` decomposition would imply that the sign-free quotient
+is not MF.  The conclusion is now known unconditionally by a different route,
+and the manuscript's paper-level exact-residual argument instead identifies the
+final quotient with a subgroup of a symmetric amalgam and invokes Shulman's
+theorem.
 
-Manuscript: `non_mf_groups_exist.tex`, `\subsection*{Questions}`, item 1 —
-navigate by the section string, never by line number, since the file is under
-concurrent edit.  The question printed there *at the time this module was
-written* was
+The declarations below therefore record a conditional auxiliary route.  They
+must not be described as the current manuscript's Question 1, as evidence that
+`Res_MF(E)` is open, or as a Lean proof of the exact residual.  The antecedent
+`LampKernelBlockAmalgam` remains an explicit hypothesis and is not inhabited in
+this module.
 
-> Is `E/⟨w⟩` MF?
-
-and the manuscript left it open, but stated one implication on top of it:
-
-> The same collapse, applied to the level-one block structure of
-> `E/⟨w⟩`, yields a negative answer conditional on an amalgam
-> decomposition of the lamp kernel; that decomposition is not part of
-> the formal development, and within it the question remains open.
-
-This module formalizes exactly that implication and nothing more.  The
-hypothesis is the *amalgam decomposition of the lamp kernel together with
-its level-one block structure*, packaged as `LampKernelBlockAmalgam`; the
-conclusion is the negative answer, `¬ IsCDEOperatorMF (E ⧸ ⟨w⟩)`.  The
-decomposition itself is **not** proved here and stays open, exactly as the
-manuscript says.  What is proved is that it suffices.
-
-## Why this conditional statement is of the permitted kind
-
-The house standard forbids conditional Lean declarations, and an auditor
-meeting a hypothesis-bearing theorem in this corpus should normally treat it
-as a defect.  This one is not, and the distinction is sharp:
-
-* the forbidden pattern is a hypothesis that *stands in for mathematics that
-  is already known and merely unformalized* — a literature theorem (TWW,
-  Adian--Rabin, a realization theorem) wrapped as an assumption so that a
-  closed Lean declaration can quote it.  The mathematics then lives outside
-  the kernel and the badge overstates what was checked;
-* the hypothesis here is `LampKernelBlockAmalgam`, a concrete
-  group-theoretic assertion about one specific finitely presented group,
-  which the manuscript itself **poses as an open question** in the very
-  sentence being formalized.  Nobody has proved it, in Lean or on paper, and
-  no citation is being laundered.  "If this open decomposition holds then the
-  quotient is not MF" is a theorem in the ordinary sense, and its content is
-  exactly the deduction the manuscript asserts.
-
-Concretely: no field of `LampKernelBlockAmalgam` is an analytic statement, a
-statement about MF-ness or corona representations, or a restatement of the
-conclusion.  Every field is a finite piece of group-theoretic structure.  The
-analytic half of the argument — manuscript `thm:collapse` — is consumed
-unconditionally from `Sofic/InvolutionCollapseEndpoint`.
-
-The four checks an auditor should run, and their outcome here:
-
-1. *Is the hypothesis concrete, or an opaque data bundle?*  Concrete.  Every
-   field is an assertion about the **fixed** group `MarkedGroup` and its
-   fixed elements `dee`, `mark`, `baseMap`, `Base`.  There is no abstract
-   group variable and no parameter whose content is unconstrained.  `Index`
-   and `Site` are indexing types only, and they are pinned: `site_card` fixes
-   eight sites per block, `level₁` names the level-one block, and
-   `orbitSite_spec` identifies the site lamps with actual conjugates of `dee`
-   in `E`.  This is the opposite of a `ReductionData`-style bundle over an
-   abstract group, which is the shape that hides content.
-2. *Does the manuscript pose it as open, in its own voice?*  Yes, with no
-   attribution: "that decomposition is not part of the formal development,
-   and within it the question remains open", inside item 1 of
-   `\subsection*{Questions}`.  Compare item 2 of the same list, which does
-   attribute its construction (Fournier-Facio, Hull--Osin); item 1's
-   decomposition is credited to nobody, because nobody has proved it.
-3. *Is the hypothesis the manuscript's, no stronger?*  It is not stronger; it
-   is slightly **weaker** — see the fidelity note on `LampKernelBlockAmalgam`.
-   Weaker means this theorem is stronger, which is the safe direction.
-4. *Is the implication proved unconditionally?*  Yes.  Every declaration
-   below takes exactly one argument, `(A : LampKernelBlockAmalgam)`; this
-   module declares no `variable`s, and every external result it consumes is a
-   closed theorem — in particular property `(T)` for the base is genuinely
-   proved in-corpus (`LiteralBaseP13PropertyTBridge.base_hasKazhdanPropertyT`,
-   discharged by `LiteralP13HodgeCertificate.p13_hasKazhdanPropertyT`), not
-   assumed.
-
-Two further facts that bound what this module may be used for.
-
-*It cannot mislead even if the hypothesis is unsatisfiable.*  The conclusion
-is independently an unconditional theorem of this corpus
-(`LiteralSignFreeQuotient.signFreeQuotient_not_isCDEOperatorMF`, proved by a
-parity argument and the Clifford witness model, using no amalgam).  So the
-characteristic damage of a vacuous conditional — a development that appears
-to establish something unproved — cannot occur here.
-
-*It must not be badged.*  `scripts/Audit.lean` states the doctrine: "a
-conditional result must not LIVE on the trust surface, however honest its
-type: delete it, or prove its antecedent in the corpus and remove that
-antecedent from the public statement."  The mechanical `LITERATURE_INPUT`
-gate is roster-driven and `literatureInputNames` is empty, so this module
-does not trip it; but the doctrine still means this declaration must stay a
-repo-internal module and must **never** be cited by a `\leanverified` badge
-as certifying manuscript Question 1.  If Question 1 is ever to be badged, the
-badge belongs on the unconditional `signFreeQuotient_not_isCDEOperatorMF`.
-
-The decomposition, in the form the manuscript's phrase abbreviates (see
-`research/literal-lamp-kernel-clifford-block-amalgam.md` and
-`notes/LITERAL_GROUP_BLOCK_AMALGAM_STRUCTURE_2026-08-14.md`), is
-
-```text
-  N_E  =  ⋆_{i ∈ I}  ClLamp(8)   amalgamated over the common centre ⟨w⟩,
-```
-
-with `I` the block set, each block an order-`2⁹` Clifford lamp group on
-eight sites, and `V` permuting the blocks; the *level-one block* is the one
-containing the two marked sites `τo` and `v₁ τo`, and the base preserves it.
-
-## The named steps of the implication
-
-| step | declaration | content |
-| ---- | ----------- | ------- |
-| 0 | `q1_00_v1_mem_Lbar` | `v̄₁` lies in the image of the base |
-| 1 | `q1_01_root_site` | the moved root lamp `d = tct⁻¹` is the site lamp of the level-one block at the marked site |
-| 2 | `q1_02_orbit_commutator_mem` | same-block braiding: any two base conjugates of `d` commute *up to `w`* |
-| 3 | `q1_03_involutive_witness` | `d̄` is an involutive compression witness in `E/⟨w⟩` for the base and the compressor `t` |
-| 4 | `q1_04_marked_commutator_eq_block` | the unsquared defect `u⁻¹ = ⁅v₁, d⁆` is the product of the two distinct marked site lamps |
-| 5 | `q1_05_marked_commutator_not_mem_markSubgroup` | the block embeds, so that product is not a power of `w` |
-| 6 | `q1_06_collapsed_commutator_ne_one` | hence `ū` survives in `E/⟨w⟩` |
-| 7 | `q1_07_signFree_collapse` | the involutive collapse puts `ū` in `Res_MF(E/⟨w⟩)`, where it is nontrivial |
-| 8 | `q1_08_actualCoronaMFResidual_ne_bot` | `Res_MF(E/⟨w⟩) ≠ 1` |
-| — | `manuscriptQuestionOne_negative_of_blockAmalgam` | the endpoint: `E/⟨w⟩` is not MF |
-
-Steps 3, 7 and the endpoint consume the unconditional involutive collapse
-of `Sofic/InvolutionCollapseEndpoint` (manuscript `thm:collapse`) and the
-unconditional literal relator facts of `Sofic/LiteralSignFreeQuotient`
-(`dee_sq`, `dee_commutes_compressed`, `Lbar_hasKazhdanPropertyT`,
-`Lbar_compressed`) — these are the manuscript's `(W1)`, `(W2)` and the
-property-`(T)` input, none of which needs the amalgam.  The amalgam is used
-in exactly two places, and they are exactly the two places the manuscript
-uses it: step 2 (the commuting-orbit hypothesis `(W3)`, which is *false* in
-`E` itself — the failure there **is** `w`) and step 5 (nontriviality of the
-collapsed defect in the quotient).
+No declaration here appears in a manuscript `leanverified` badge.  The public
+unconditional endpoint is
+`LiteralSignFreeQuotient.signFreeQuotient_not_isCDEOperatorMF`; the formal
+pullback reduction for the exact residual is in
+`LiteralSignFreeRadicalReduction`, while the quotient identification and
+Shulman input remain paper-level.
 -/
 
 namespace GroupApproximation
@@ -184,7 +49,7 @@ def lampKernel : Subgroup MarkedGroup :=
 Everything in this section is *hypothesis*, not theorem.  The manuscript
 poses it as open and this module keeps it open. -/
 
-/-- **The open decomposition of manuscript Question 1.**  A witness of this
+/-- **The conditional lamp-kernel decomposition.**  A witness of this
 structure is precisely the manuscript's "amalgam decomposition of the lamp
 kernel", together with the "level-one block structure of `E/⟨w⟩`" that the
 same sentence invokes:
@@ -413,7 +278,7 @@ theorem q1_08_actualCoronaMFResidual_ne_bot (A : LampKernelBlockAmalgam) :
   rw [hbot] at hmem
   exact q1_06_collapsed_commutator_ne_one A (Subgroup.mem_bot.mp hmem)
 
-/-- **The endpoint of manuscript Question 1, stated as an implication.**
+/-- **The conditional amalgam endpoint.**
 *If* the lamp
 kernel of the literal group admits the amalgam decomposition of
 `LampKernelBlockAmalgam` — the open group-theoretic input the manuscript

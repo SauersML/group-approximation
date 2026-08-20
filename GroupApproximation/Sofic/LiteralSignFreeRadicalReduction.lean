@@ -4,51 +4,20 @@ import GroupApproximation.Sofic.ManuscriptExactWrappers
 /-!
 # The two radical reductions, applied to the literal `E/⟨w⟩`
 
-The manuscript's first open question (`\subsection*{Questions}`, item 1) does
-not merely cite the two reduction corollaries; it *applies* them to a named
-group with a named witness:
+This module proves the formal part of the manuscript's exact-residual
+calculation.  It applies the generic pullback and collapse theorems to the
+literal quotient and shows that
 
-> Write `q₁ : E → E/⟨w⟩`, let `D = D_coll(L̄, q₁(t))` for the witness `c̄` of
-> that proof, and let `q₂ : E/⟨w⟩ → (E/⟨w⟩)/D`.  By
-> Corollary `\ref{cor:collapsequot}` applied to `E/⟨w⟩` and then
-> Corollary `\ref{cor:pullback}`,
-> `Res_MF(E) = q₁⁻¹ q₂⁻¹ (Res_MF((E/⟨w⟩)/D))`,
-> so by Corollary `\ref{cor:exactradical}` the residual equals `q₁⁻¹(D)`
-> **exactly when** `(E/⟨w⟩)/D` is MF.
+* `Res_MF(E/⟨w⟩)` is the pullback of the residual after quotienting by the
+  collapse defect `D`;
+* `Res_MF(E)` is the corresponding two-stage pullback; and
+* `Res_MF(E) = q₁⁻¹(D)` if and only if the final quotient is MF.
 
-`Sofic/ManuscriptExactWrappers` carries both corollaries in their general
-form, and `Sofic/LiteralSignFreeQuotient` carries the literal quotient
-`E/⟨w⟩` together with the witness of Theorem B's proof — the image `Lbar` of
-the base, its property `(T)`, its compression by the stable letter, and the
-involutive witness `witness_dee`.  What was missing is the application: the
-instantiation of the general theorems at that group and that witness, so that
-the printed sentence has a declaration that says it.
-
-Three things are stated here, matching the three the manuscript states.
-
-1. **The collapse reduction at `E/⟨w⟩`, unconditionally.**  `Res_MF(E/⟨w⟩)` is
-   the full preimage under `q₂` of `Res_MF((E/⟨w⟩)/D)`, where `D` is the
-   involutive collapse defect of the witness of Theorem B's proof.  This is
-   Corollary `cor:collapsequot` at that group.
-2. **The displayed identity.**  `Res_MF(E) = q₁⁻¹ q₂⁻¹ (Res_MF((E/⟨w⟩)/D))`,
-   obtained by composing 1 with Corollary `cor:pullback` at `N = ⟨w⟩`, which
-   applies because `⟨w⟩ ≤ Res_MF(E)` by Theorem A.
-3. **The exactness clause, as an iff.**  the residual `Res_MF(E)` equals
-   `q₁⁻¹(D)` *exactly when*
-   `(E/⟨w⟩)/D` is MF.  The manuscript prints "exactly when", so both
-   directions are proved: forwards from Corollary `cor:exactradical`, and
-   backwards because `q₁` and `q₂` are surjective — equal preimages force
-   equal subgroups, so `Res_MF((E/⟨w⟩)/D)` collapses to the trivial subgroup,
-   which is the MF property.
-
-Whether `(E/⟨w⟩)/D` is MF is the open question; nothing here decides it.  The
-defect `D` is recorded as nontrivial (`collapsedCommutator_mem_defect` with
-`LiteralSignFreeQuotient.collapsed_commutator_ne_one`), so the reduction is
-not the vacuous one through the trivial defect.
-
-The manuscript writes `Res_MF` and says "residual" where earlier drafts wrote
-`Res_MF` and "radical"; the Lean name `actualCoronaMFResidual` already matched
-the new wording and is unaffected.
+The manuscript now proves the remaining premise at paper level: it identifies
+the final quotient with a subgroup of a symmetric amalgam and applies
+Shulman's MF theorem.  That quotient identification and the literature theorem
+are not formalized here.  Thus this file proves the reduction and its exact
+logical boundary; it does not by itself prove the final quotient MF.
 -/
 
 namespace GroupApproximation
@@ -123,11 +92,10 @@ theorem actualCoronaMFResidual_markedGroup_eq_comap :
   TorsionCompressionCollapse.actualCoronaMFResidual_eq_comap_quotient
     markSubgroup markSubgroup_le_actualCoronaMFResidual
 
-/-! ## The printed application -/
+/-! ## The manuscript application -/
 
-/-- **The manuscript's first question, in the form it is printed.**  Both
-reductions, applied to the literal `E/⟨w⟩` with the witness of the proof of
-Theorem B:
+/-- **The manuscript's formal residual reduction.**  Both reductions, applied
+to the literal `E/⟨w⟩` with the witness of the proof of Theorem B:
 
 * the collapse reduction sends `Res_MF(E/⟨w⟩)` to the full preimage under `q₂`
   of `Res_MF((E/⟨w⟩)/D)`;
@@ -142,9 +110,9 @@ The forward direction is Corollary `cor:exactradical`; the reverse holds
 because `q₁` and `q₂` are surjective, so equal preimages force equal
 subgroups, and `Res_MF((E/⟨w⟩)/D) = ⊥` is the MF property.
 
-Whether `(E/⟨w⟩)/D` is MF is not decided here and is not decided anywhere: it
-is the open question the manuscript asks, and the `Iff` says precisely that
-computing `Res_MF(E)` is the same question. -/
+The paper-level argument in the manuscript now proves the right-hand MF
+premise, but that argument uses a quotient-presentation calculation and
+Shulman's theorem and is outside this Lean declaration. -/
 theorem manuscriptSignFreeRadicalReduction :
     actualCoronaMFResidual SignFreeQuotient =
         (actualCoronaMFResidual

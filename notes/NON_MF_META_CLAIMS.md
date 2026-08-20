@@ -1,6 +1,7 @@
 # Non-MF manuscript: provenance and open-status claims
 
-Companion to `notes/NON_MF_PROOF_LEDGER.md`.  Created 2026-08-17.
+Companion to `metadata/NON_MF_PROOF_LEDGER.md`.  Created 2026-08-17 and
+re-audited against the 2026-08-20 manuscript.
 
 ## What lives here, and why it does not live in the ledger
 
@@ -30,22 +31,20 @@ are the only user of their anchor, and the gate rejects an anchor no step uses.
 
 ## How to read a row
 
-`Sentence` is the manuscript's current text, quoted verbatim from the pinned
-blob (`git hash-object non_mf_groups_exist.tex` =
-`ad184a59acd6643ba25699f729a45a61c2ce19c4`, 3678 lines, commit `36490e17`) with
-LaTeX left as written.  A sentence that no longer matches is drift and must be
-re-read, exactly as a moved ledger anchor is.  Two of the sixteen were re-quoted
-on 2026-08-17 after the sentence-level pass reworded them; the versions below are
-the current ones.
+`Sentence` records the wording audited when the row was created.  The
+machine-enforced current source is `metadata/NON_MF_SENTENCE_CENSUS.tsv`, joined
+from the manuscript and `metadata/NON_MF_SENTENCE_MAP.tsv`; a wording change
+invalidates its sentence key and must be re-triaged there.  This historical
+manifest is therefore not a second manuscript pin.
 
 `Status` is one of `historical`, `terminology`, `open-status`.
 
 `Load-bearing` records whether any *proof* in the manuscript consumes the claim.
 Every row here is `no`; a literature input that feeds a deduction stays in the
 proof ledger, where the grading standard says it is `MISSING`.  The load-bearing
-ones are named in the ledger's findings, and the two that matter most are
-`INT.11` (Tikuisis–White–Winter, amenable ⇒ MF, consumed at `CY.10`) and
-`SO.17` (Elek–Szabó, the simple sofic envelope).
+ones are named in the ledger's findings.  In particular, the paper-level
+Shulman amalgam input and the Fournier-Facio--Hull--Osin construction now have
+their own explicit `ER.*` and `TF.*` rows.
 
 ---
 
@@ -183,7 +182,8 @@ What is recorded here is only the attribution and the Abels'-group example.
 $\SL_3(\mathbb Z)$ \cite[Theorem~2]{CRW}; the corresponding matrices are also
 recorded in \cite{CLV}."
 
-*Keys.* `CRW`, `CLV` (and `BHV` in the same remark).
+*Keys.* `CRW`, `CLV` (and Burger's journal article for property~(T) in the
+same remark).
 *Anchor.* `rem:classical-base`.  *Load-bearing.* no.  *Recorded.* 2026-08-17.
 
 The manuscript says in the same remark that the proofs given here are

@@ -5,6 +5,9 @@ Date: 2026-08-20
 Primary source: Aviv Taller and Thomas Vidick, *Approximating the quantum
 value of an LCS game is RE-hard*, arXiv:2507.22444v2.
 
+Companion source: Connor Paddock and William Slofstra, *Satisfiability problems
+and algebras of boolean constraint system games*, arXiv:2310.07901v2.
+
 ## Imported results
 
 The test samples an independent mask `mu`, sets `g'=f g mu`, and tests one
@@ -62,3 +65,37 @@ three-XOR checks.  Its price is that exact completeness must be recovered by
 the rank-pressure incidence rather than inherited from the LCS game.  The two
 routes now meet at the same sharply isolated theorem: a tracially exact,
 finite-dimension-obstructed fixed-scale multiplicity return.
+
+## Tracial source and exact failure projection
+
+Paddock--Slofstra Definition 3.1 and Lemma 3.4 give
+
+```text
+1+P_R(U)=2 sum_(phi notin R) Pi_(U,phi).
+```
+
+Their Theorem 3.11 identifies a tracial state with perfect commuting play and
+an `R^U` representation with perfect quantum-approximable play.  Example 4.2
+therefore supplies a fixed perfect tracial BCS whose finite game value is
+bounded below one.
+
+This does **not** yet feed Taller--Vidick's projection front end.  A perfect
+BCS tracial model only makes variables commute inside each context; the two
+answer PVMs for different contexts need not admit a joint PVM.  Taller--Vidick
+need precisely that oracularizability to let Alice answer both questions after
+projection.  Their cited source supplies it on the finite-dimensional YES
+side, while the Paddock--Slofstra source supplies the tracial/finite gap.  No
+read theorem supplies both properties for one game.  Cairn records this as
+`oracularizable-tracial-nonru-game-exists`.
+
+Conditioned on that source interface, one must still not replace a
+near-perfect LCS strategy by a shared exact variable
+tuple: Alice has commuting context observables, Bob has shared query
+observables, and their disagreement is part of the loss.  For a verifier round
+let `r_par` be Alice's three-XOR parity failure and `r_con` the selected
+Alice--Bob equality failure.  Both are affine and the round loses iff at least
+one is one.  Therefore a value bound `s<1` forces
+`E(r_par+r_con)>=1-s`.  A controlled packet has its extra rank exactly on each
+failure projection in the Paddock--Slofstra identity.  Hence source existence,
+exact local tracial lift, and positive finite-dimensional pressure are
+established before the global endpoint-alignment and return theorem.

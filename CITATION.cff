@@ -4,6 +4,17 @@ title: "Group Approximation and Rigidity"
 type: software
 authors:
   - name: "Anonymous"
-version: 0.2.0
-date-released: 2026-08-13
+abstract: >-
+  Lean formalization and manuscript companion for explicit nonsofic and non-MF
+  group constructions, with machine-checked claim manifests and explicit
+  documentation of the paper-level literature boundary.
+version: 0.3.0
+date-released: 2026-08-20
 license: Apache-2.0
+repository-code: "https://github.com/SauersML/group-approximation"
+keywords:
+  - Lean
+  - group approximation
+  - MF groups
+  - sofic groups
+  - property (T)

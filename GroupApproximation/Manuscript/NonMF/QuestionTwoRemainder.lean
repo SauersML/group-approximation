@@ -7,11 +7,10 @@ import Mathlib.Algebra.Group.Torsion
 import Mathlib.GroupTheory.FinitelyPresentedGroup
 
 /-!
-# Question 2's *torsion-free* half, and the sharp form of "nontrivial"
+# The torsion-free obstruction reduction, and the sharp form of "nontrivial"
 
-Ledger row `LI.14`.  Question 2 of `\subsection*{Questions}` in
-`non_mf_groups_exist.tex` asks for a torsion-free finitely presented non-MF
-group, and prints the reduction:
+Earlier manuscript revisions asked for a torsion-free finitely presented
+non-MF group and printed the following reduction:
 
 > For torsion-free groups, Theorem~\ref{thm:criterion} gives no obstruction
 > because every finite subgroup is trivial, while Theorem~\ref{thm:normal-kazhdan}
@@ -47,8 +46,8 @@ sharpening.
   not reproved — alongside the normal-Kazhdan clause, in the printed order, and
   in the manuscript's own radical language: `K` lies in the literal
   genuine-corona MF radical, that radical is therefore not trivial, and `H` is
-  not CDE-MF.  So the reduction is genuine at the printed hypotheses: a group
-  with this profile would answer Question 2.
+  not CDE-MF.  This is the formal analytic implication used by the manuscript's
+  present paper-level torsion-free construction.
 * `exists_isCDEOperatorMF_with_bot_normalKazhdan` sharpens
   `obstruction_vacuous_at_bot` from "the conclusion is empty" to "the
   hypotheses have no consequence".  There is a countable torsion-free finitely
@@ -61,14 +60,15 @@ sharpening.
   the companion module asserts but does not state — `⊥` is normal and `⊥` lies
   in the defect — next to the property-`(T)` clause it does state.
 
-**The existence remains open and nothing here supplies a group.**  No
-declaration below constructs a torsion-free finitely presented group with a
-nontrivial normal Kazhdan subgroup of its compression defect; that construction
-is Question 2 and is not claimed.
+**This module does not construct the group.**  The manuscript now supplies the
+group-theoretic input at paper level from Fournier-Facio, Hull, and Osin, but
+that small-cancellation argument is not formalized in Lean.  The declarations
+below retain the exact formal boundary: once such a compression datum and
+nontrivial normal Kazhdan subgroup are supplied, the group is not MF.
 
 Finite presentation is carried as a hypothesis and returned as a conclusion, and
 no other clause uses it.  That is deliberate and is what the printed sentence
-says: finite presentation belongs to the group-theoretic problem being posed,
+said: finite presentation belongs to the group-theoretic profile,
 not to the obstruction being invoked, so it is part of the profile the
 conclusion delivers rather than an input the proof consumes.  Returning it is
 also what keeps the binder from reading as an unused hypothesis, which is a
@@ -83,9 +83,9 @@ forms do; the zero-input gate rejects header binders.
 namespace GroupApproximation
 namespace ManuscriptNonMF
 
-/-! ## The printed sentence, torsion-freeness included -/
+/-! ## The torsion-free reduction, torsion-freeness included -/
 
-/-- **Question 2's second sentence, entire.**
+/-- **The manuscript's torsion-free obstruction reduction.**
 
 Let `H` be a countable torsion-free finitely presented group carrying a Kazhdan
 compression datum, and let `K ⊴ H` be a **nontrivial** property-`(T)` subgroup of
@@ -98,11 +98,12 @@ the compression defect `N_conj`.  Then, in the printed order:
   radical of `H`;
 * that radical is therefore not trivial;
 * `H` is finitely presented — the hypothesis returned, because it is part of the
-  profile Question 2 asks for and not an input to the obstruction; and
+  profile under discussion and not an input to the obstruction; and
 * `H` is not MF in the Carrión--Dadarlat--Eckhardt sense.
 
-So a group with this profile answers Question 2 affirmatively.  Whether one
-exists is the open part, and nothing in this file supplies one.
+So a group with this profile is torsion-free, finitely presented, and non-MF.
+The manuscript now constructs the required profile at paper level; nothing in
+this file formalizes that small-cancellation construction.
 
 `Sofic.QuestionTwoReduction.not_isOperatorMF_of_nontrivial_normal_kazhdan_defect`
 proves the last clause for `IsOperatorMF` without the torsion hypotheses; the

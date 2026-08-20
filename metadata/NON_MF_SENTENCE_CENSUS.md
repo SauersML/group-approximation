@@ -6,17 +6,17 @@ The proof ledger grades claims; this census grades **sentences**, which is the g
 
 | status | sentences |
 | --- | --- |
-| `ledger` | 613 |
-| `formalized` | 281 |
+| `ledger` | 646 |
+| `formalized` | 278 |
 | `definition` | 44 |
-| `attribution` | 36 |
-| `structural` | 17 |
-| `provenance` | 14 |
-| `partial` | 5 |
+| `attribution` | 35 |
+| `structural` | 21 |
+| `provenance` | 16 |
+| `partial` | 4 |
 | `open` | 2 |
-| **total** | **1012** |
+| **total** | **1046** |
 
-Carrying a declaration or a ledger row: **943/1012** (93.2%).
+Carrying a declaration or a ledger row: **972/1046** (92.9%).
 
 A sentence under a single-row ledger anchor inherits that forced row.  A sentence under a multi-row anchor must name its row or rows explicitly in `metadata/NON_MF_SENTENCE_MAP.tsv`; no text-similarity guess and no whole-anchor fallback is accepted.
 
@@ -26,27 +26,25 @@ These are the sentences the development does not settle, verbatim.  `open` sente
 
 * **`partial`**, line 167 --- Its reduced $C^*$-algebra $\Cred(E)$ is separable, exact and stably finite but not MF, and the canonical trace on $\Cmax(E)$ is hyperlinear but not MF, which answers a question of Shulman negatively.
   * every clause but exactness is proved; exactness of Cred(E) is ledger row SO.16, graded MISMATCH.  The reduction `isExactCStar_of_hasSliceMapProperty` is deliberately NOT named here: it is conditional on the slice map property, which nothing in the corpus produces, and a conditional formalization does not count
-* **`partial`**, line 322 --- The converse of each arrow is open, as is \textup{MF}$\,\Rightarrow\,$\textup{hyperlinear} (Question~2 of Section~\ref{sec:limits}).
-  * the displayed forward arrows are formalized; the sentence's converse arrows and MF-to-hyperlinear implication are explicitly open
-* **`partial`**, line 360 --- The present paper answers the third negatively; as of August 2026 the hyperlinear problem remains open.
+* **`partial`**, line 372 --- The present paper answers the third negatively; as of August 2026 the hyperlinear problem remains open.
   * the present paper's negative MF answer is formalized; the sentence also records that the hyperlinear problem remained open at the stated date
-* **`partial`**, line 415 --- MF for a group $C^*$-algebra implies MF for the underlying group, but the converse implication does not follow formally, and we know of no theorem establishing it or refuting it.
+* **`partial`**, line 427 --- MF for a group $C^*$-algebra implies MF for the underlying group, but the converse implication does not follow formally, and we know of no theorem establishing it or refuting it.
   * the forward implication is formalized for the reduced and maximal group algebras; the converse is explicitly open
-* **`open`**, line 1348 --- The compactness argument gives no bound for $\delta$ or $|F_0|$; an effective modulus would need an effective Kazhdan constant for the base together with effective versions of the compression estimates.
+* **`open`**, line 1361 --- The compactness argument gives no bound for $\delta$ or $|F_0|$; an effective modulus would need an effective Kazhdan constant for the base together with effective versions of the compression estimates.
   * the compactness proof is ineffective; the sentence explicitly leaves an effective modulus open
-* **`open`**, line 1541 --- For $\Cred(\SL_3(\mathbb Z))$ and $\Cred(\SL_4(\mathbb Z))$ the MF property is undecided; only the stronger PMF property is known to fail, for $\SL_4(\mathbb Z)$ \cite{MdlS}.
+* **`open`**, line 1554 --- For $\Cred(\SL_3(\mathbb Z))$ and $\Cred(\SL_4(\mathbb Z))$ the MF property is undecided; only the stronger PMF property is known to fail, for $\SL_4(\mathbb Z)$ \cite{MdlS}.
   * records the current open MF status of the two reduced group algebras and attributes the PMF comparison
-* **`partial`**, line 1618 --- Every MF trace is hyperlinear; Shulman asks whether the converse holds.
+* **`partial`**, line 1631 --- Every MF trace is hyperlinear; Shulman asks whether the converse holds.
   * the MF-trace-to-hyperlinear implication is formalized; Shulman's converse question is explicitly open
 
 ## By section
 
 | section | sentences | unassigned |
 | --- | --- | --- |
-| (front matter) | 11 | 0 |
+| (front matter) | 12 | 0 |
 | Introduction | 8 | 0 |
 | The result | 5 | 0 |
-| Outline of the proof | 28 | 0 |
+| Outline of the proof | 32 | 0 |
 | Relation to prior work | 29 | 0 |
 | Matrix quotients | 39 | 0 |
 | One-sided conjugation in matrix models | 22 | 0 |
@@ -71,15 +69,15 @@ These are the sentences the development does not settle, verbatim.  `open` sente
 | The cyclic comparison | 46 | 0 |
 | The MF residual | 43 | 0 |
 | Permanence and its failure | 15 | 0 |
-| Commuting orbits and the MF residual | 101 | 0 |
+| Commuting orbits and the MF residual | 126 | 0 |
 | The reduced group algebra of \texorpdfstring{$E$ | 11 | 0 |
 | The Clifford quotient and permanence | 25 | 0 |
 | Soficity of $E$ | 68 | 0 |
 | Marked-limit closure | 9 | 0 |
 | A finite universal Horn obstruction | 8 | 0 |
-| Undecidability of MF recognition | 28 | 0 |
+| Undecidability of MF recognition | 27 | 0 |
 | Limitations of the operator-norm method | 21 | 0 |
-| Questions | 21 | 0 |
+| A torsion-free consequence and remaining questions | 26 | 0 |
 | The maximal group \texorpdfstring{$C^*$ | 22 | 0 |
 | Acknowledgements | 3 | 0 |
 | AI and computational resource usage | 14 | 0 |

@@ -56,10 +56,12 @@ proof runs through three facts that are worth having on their own:
 
 ## What is not proved, and why
 
-That some ambient group admits an action making the compression defect
-non-elementary.  With the definitions here that is a single Lean proposition ---
-`IsSuitable δ N x` for the defect `N` and some action --- and it is the geometric half
-of the manuscript's Question 2.  It is open mathematics about the group, not a
+That the particular ascending-HNN skeleton studied in this module admits an
+action making its compression defect non-elementary.  With the definitions here
+that is a single Lean proposition --- `IsSuitable δ N x` for the defect `N` and
+some action --- and it remains unresolved for that skeleton.  It is not the
+current manuscript's torsion-free existence question and is not needed by the
+Fournier-Facio--Hull--Osin route now used there.  It is a
 missing definition: `notes/HULL_ROUTING_AUDIT_2026-08-16.md` §3.1 shows the
 ascending HNN skeleton's Bass--Serre action is quasi-parabolic and therefore not
 acylindrical, and whether the skeleton lies in `𝒜ℋ` for some other action is
@@ -1414,10 +1416,10 @@ theorem acylindrical_relaxed {δ : ℝ} (hδ : IsHyperbolicSpace δ X) (hδ0 : 0
 
 /-! ## What is not here, and why it is not a declaration
 
-There is no predicate in this module asserting that some ambient group's
-compression defect admits an action making it suitable.  That statement is the
-geometric half of the manuscript's Question 2, no theorem of this corpus
-concludes it, and a `def … : Prop` that nothing concludes is exactly the shape
+There is no predicate in this module asserting that the particular ambient
+group's compression defect admits an action making it suitable.  No theorem of
+this corpus concludes that skeleton-specific statement, and a `def … : Prop`
+that nothing concludes is exactly the shape
 `scripts/check_non_mf_unconditional.py` flags as a literature stand-in --- its
 `open-predicate` detector is that test.  Writing one here would put a
 placeholder for an open problem into the library under the name of a

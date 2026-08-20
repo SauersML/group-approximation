@@ -4,21 +4,20 @@ import Mathlib.GroupTheory.Commutator.Basic
 import Mathlib.GroupTheory.OrderOfElement
 
 /-!
-# The elementary atoms of the manuscript's Questions section
+# Elementary quotient and torsion-free atoms
 
-`\subsection*{Questions}` of `non_mf_groups_exist.tex` prints five questions.
-Three of the sentences that support them are elementary group theory that no
-declaration in the tree performs, and the ledger records them as `MISSING`
-because of that rather than because anything is hard.  This file supplies them.
+Earlier manuscript revisions used the following elementary facts in two open
+questions.  The questions have since been answered in the paper, but the facts
+remain useful to delimit the formal reductions.
 
-Question 1 argues that neither reduction constrains
+The first pair says that neither quotient operation alone constrains
 `Res_MF((E/⟨w⟩)/D)`, "because the elements they detect have already been
 killed: `w` is trivial in `E/⟨w⟩`, and the commutators generating `D` are
 trivial in the quotient by `D`".  The first clause is
 `signFreeQuotient_mark_eq_one`, at the manuscript's own quotient; the second is
 `map_eq_one_of_mem_normalClosure` in the generality the sentence uses it.
 
-Question 2 argues that the Clifford construction cannot produce a torsion-free
+The second pair says that the Clifford construction itself cannot produce a torsion-free
 finitely presented non-MF group: "it imposes `c² = 1`, so `d² = 1`, and a
 torsion-free quotient `q` then has `q(d) = 1` and `q(N_conj) = 1`".  The first
 conclusion is `map_eq_one_of_sq_eq_one_of_isMulTorsionFree`, and the second
@@ -37,11 +36,9 @@ passed `q` to `MonoidHom.mem_ker`, whose `f` is implicit in the pinned Mathlib
 Every other use of that lemma in this repository spells it bare, and it now does
 too.  Nothing else changed, and the four statements are as they were.
 
-Ledger rows LI.11, LI.12 and LI.12a cite these declarations.  Those rows also
-record that the declarations were written by the audit that grades them: they
-were authored to state printed sentences that had no counterpart, not located by
-searching, so the same reading produced them and graded them.  A reader weighing
-those grades should know that.
+These declarations no longer certify an open-status claim.  In particular,
+they do not contradict the manuscript's present torsion-free construction,
+which uses a different small-cancellation route at paper level.
 -/
 
 namespace GroupApproximation
@@ -51,19 +48,19 @@ open scoped commutatorElement
 
 universe u v
 
-/-! ## Question 1: the two reductions detect nothing further -/
+/-! ## The two quotient operations -/
 
 /-- **"`w` is trivial in `E/⟨w⟩`."**  The manuscript's sign-free quotient is by
 `Subgroup.zpowers mark`, so the distinguished word is killed by construction.
-This is the whole of the first clause of Question 1's second sentence. -/
+This is the elementary quotient fact used by the former reduction. -/
 theorem signFreeQuotient_mark_eq_one :
     LiteralSignFreeQuotient.proj LiteralNonMFPresentation.mark = 1 :=
   (QuotientGroup.eq_one_iff _).mpr (Subgroup.mem_zpowers _)
 
 /-- **"The commutators generating `D` are trivial in the quotient by `D`."**  A
 homomorphism killing a generating set of a normal closure kills the whole normal
-closure, because its kernel is a normal subgroup containing the set.  Question 1
-uses this at `D = D_coll(L,s)`; the statement is the general fact, since nothing
+closure, because its kernel is a normal subgroup containing the set.  The former
+reduction used this at `D = D_coll(L,s)`; the statement is general, since nothing
 in the sentence depends on which normal closure it is. -/
 theorem map_eq_one_of_mem_normalClosure {H : Type u} [Group H] {Q : Type v}
     [Group Q] (q : H →* Q) {S : Set H} (hS : ∀ s ∈ S, q s = 1) {x : H}
@@ -71,7 +68,7 @@ theorem map_eq_one_of_mem_normalClosure {H : Type u} [Group H] {Q : Type v}
   Subgroup.normalClosure_le_normal (N := q.ker)
     (fun s hs => MonoidHom.mem_ker.2 (hS s hs)) hx
 
-/-! ## Question 2: why the Clifford construction cannot be torsion-free -/
+/-! ## Why the Clifford construction itself cannot be torsion-free -/
 
 /-- **"`c² = 1`, so `d² = 1`, and a torsion-free quotient `q` then has
 `q(d) = 1`."**  An involution has an image of order dividing two, and a
@@ -83,7 +80,7 @@ theorem map_eq_one_of_sq_eq_one_of_isMulTorsionFree {H : Type u} [Group H]
   · exact Nat.succ_pos 1
   · rw [← map_pow, hd, map_one]
 
-/-- **The Question 2 sentence entire.**  Let `d` be an involution of `H`, let
+/-- **The torsion-free Clifford obstruction.**  Let `d` be an involution of `H`, let
 `N` be the normal closure of a set every element of which is a commutator
 `[d, a]`, and let `q` be a homomorphism to a torsion-free group.  Then `q` kills
 `d` and kills all of `N`.

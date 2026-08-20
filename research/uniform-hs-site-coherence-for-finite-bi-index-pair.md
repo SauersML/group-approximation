@@ -55,3 +55,9 @@ stopping rule.
 - Flexible stabilization must also preserve a positive fraction of the
   marked `J=-1` carrier; arbitrary dimension padding would reintroduce the
   dilution being attacked.
+- `amenable-hyperlinear-rounds-to-sofic` gives a
+  real partial alternative when `H` is amenable: on every fixed window its
+  restriction acquires literal permutation sites in the same dimension.
+  This does not yet prove `(FSC1)`: it neither rounds the ambient `L` action
+  nor produces one coherent infinite coset family, and its window cannot be
+  chosen microstate-dependently to exceed the current dimension.

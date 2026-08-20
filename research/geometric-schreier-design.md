@@ -36,7 +36,9 @@ multi-marginal *Monge* coupling, and the finite model wanted is a very special
 map a permutation of it.  The claim is therefore an integrality statement for
 multi-marginal transport with group-structured costs.
 
-**Why it is worth separating from the amenable paradigm.**  Burton-style
+**Why it is worth separating from the amenable paradigm.**
+`amenable-hyperlinear-rounds-to-sofic` proves the
+desired same-dimension permutation rounding for amenable groups.  Its
 extraction indexes an orthonormal block by a finite subset of the *group*, so
 nonamenability shows up as a macroscopic boundary term and the technique stops
 at amenable groups.  Here the finite model is indexed by a geometric codebook
