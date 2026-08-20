@@ -897,6 +897,24 @@ If Step 5 is achieved with a finite presentation, the open hyperlinear problem i
 
 The significant reduction is that Step 5 no longer needs to invent nonlinear group logic.  Nonlinear logic has been compiled into the rank of an affine commutation matrix.  What remains is a geometric/representation-theoretic transport theorem.
 
+### Sign-carrier correction for the robust replica theorem
+
+The approximate exponential-dimension endpoint must use the signed forbidden
+Fourier element
+
+\[
+Q_i^-={1-J\over 2}\,Q_i,
+\]
+
+not the bare forbidden selector projection.  Otherwise a representation with
+\(J=+1\) can carry arbitrary forbidden selector mass without activating any
+Clifford cocycle, contradicting the claimed dimension bound.  In an exact
+representation \(Q_i^-\) is the joint projection onto the forbidden selector
+sectors and the marked \(J=-1\) sector.  Its Fourier evaluation transfers
+through Gowers--Hatami exactification with the same site-independent constant,
+so the repaired hypothesis is exactly the common marked-carrier condition the
+global compiler must supply.
+
 ---
 
 ## 16. Computational verification

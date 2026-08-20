@@ -10,18 +10,20 @@ requires:
 ---
 
 Apply `(GHS2)` to obtain `rho:K_N->U(m)` with
-`m<=d/(1-4epsilon^2)`.  Each `Q_i` is a fixed linear combination of a bounded
-number of packet group elements.  Telescoping `(GHS2)` through that Fourier
+`m<=d/(1-4epsilon^2)`.  Each signed forbidden element `Q_i^-` is a fixed
+linear combination of a bounded number of packet group elements.  Applying
+`(GHS2)` term by term to that Fourier
 polynomial gives
 
 ```text
-Re tau_d(V^*Q_i(rho)V) >= b-K_B epsilon.
+Re tau_d(V^*Q_i^-(rho)V) >= b-K_B epsilon.
 ```
 
-Since `Q_i(rho)` is an actual projection,
+Since `Q_i^-(rho)` is the actual projection onto the forbidden selector
+sectors on which `rho(J)=-I`,
 
 ```text
-tau_m(Q_i(rho))
+tau_m(Q_i^-(rho))
  >= (d/m)(b-K_B epsilon)
  >= b_epsilon.                                                   (ASE4)
 ```

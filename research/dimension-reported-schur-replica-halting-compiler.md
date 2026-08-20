@@ -26,7 +26,8 @@ distance above `alpha` must then decode to:
 2. one selected context of forbidden mass at least `beta_B/C` per replica;
 3. an all-pairs `epsilon`-homomorphism of the finite central product of the
    selected Schur context packet/flip groups; and
-4. the forbidden Fourier masses `(ASE1)` on one common marked carrier.
+4. the **signed** forbidden Fourier masses `(ASE1)`, with the common
+   `J=-1` projector built into every `Q_i^-`.
 
 By `(ASE2)` and `(DRC1)`, such a `D`-dimensional tuple cannot exist, giving
 `(DMK2)` exactly in the reported dimension.
@@ -49,4 +50,3 @@ may not collapse the mark.
   Schur packet multiplication table and then to group words.
 - Unlike the residual dimension-tape routes, no operator-level dimension
   sensor is missing here: the recursion-theorem search itself supplies `D`.
-

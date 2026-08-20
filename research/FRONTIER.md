@@ -1591,15 +1591,15 @@ wreath-compression-mf-radical [✓] Exact MF radicals of compression wreath prod
 
 ## Recently touched
 
-- 2026-08-20 · nonhyperlinear-from-dimension-reported-schur-compiler [OPEN] Diagonalize the witness dimension and activate its supercritical Schur table
 - 2026-08-20 · dimension-reported-schur-replica-halting-compiler [OPEN] A halting output dimension activates a uniformly sound supercritical Schur-replica table
+- 2026-08-20 · approximate-schur-replicas-force-exponential-dimension-proof [COMPLETE] Flexibly exactify the whole replica table and apply the exact dimension bound
+- 2026-08-20 · approximate-schur-replicas-force-exponential-dimension [ESTABLISHED] An all-pairs approximate Schur-replica table retaining its sign has exponential dimension
+- 2026-08-20 · nonhyperlinear-from-dimension-reported-schur-compiler [OPEN] Diagonalize the witness dimension and activate its supercritical Schur table
 - 2026-08-20 · dimension-matched-kleene-microstate-diagonal-proof [COMPLETE] Make the fixed-point search print the dimension of its own bad witness
 - 2026-08-20 · dimension-matched-kleene-microstate-diagonal [ESTABLISHED] Dimension-matched halting soundness is enough for a self-referential nonhyperlinear group
 - 2026-08-20 · constant-hs-groupification-of-residual-dyadic-splitter [OPEN] Finitely groupify an adaptive dyadic splitter on the residual Schur commutant
 - 2026-08-20 · adaptive-all-pairs-schur-replica-table-compiler [OPEN] A finite controller emits a supercritical all-pairs Schur-replica multiplication table in the same microstate
-- 2026-08-20 · gowers-hatami-finite-group-hs-stability-citation [COMPLETE] Import the universal finite-group normalized-HS stability theorem
-- 2026-08-20 · gowers-hatami-finite-group-hs-stability [ESTABLISHED] All-pairs approximate representations of finite groups flexibly exactify with universal HS constants
 
 ## Active claims
 
-- 🔒 compressor-covariant-packet-reynolds-return — 84m45s remaining
+- 🔒 compressor-covariant-packet-reynolds-return — 75m07s remaining
