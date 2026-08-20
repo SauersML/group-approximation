@@ -946,6 +946,17 @@ state-dependent multi-prover consistency relations must be lowered to
 normalized-Hilbert--Schmidt group words, and the growing question space must
 be activated after a halting computation with a runtime-independent gap.
 
+The dimension implication can be made explicit without importing any further
+rigidity machinery.  If the self-test places the physical state within
+\(\delta\) of \(\Phi_{2^N}\otimes\mathrm{aux}\), every squared Schmidt
+coefficient of the target is at most \(2^{-N}\).  A state of local dimension
+\(d\) therefore has squared overlap at most \(d/2^N\), whereas norm distance
+\(\delta\) gives overlap at least \((1-\delta^2/2)^2\).  Fixing a constant
+test error for which \(\delta<1\) yields \(d\ge c_0 2^N\), with universal
+\(c_0>0\).  This is recorded as
+`pauli-braiding-test-exponential-dimension`; the new direct route leaves only
+`dimension-reported-pauli-test-halting-compiler` open.
+
 ---
 
 ## 16. Computational verification

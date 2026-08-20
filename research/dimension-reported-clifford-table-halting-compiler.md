@@ -55,3 +55,7 @@ must retain the marked word as a nonidentity.
   state-dependent multi-prover checks into normalized-HS group-word checks
   while preserving the dormant nonhalting model.  The question alphabet still
   grows with `N`, so this does not by itself perform the halting activation.
+  This replacement is now isolated as
+  `dimension-reported-pauli-test-halting-compiler`, and its exponential
+  dimension endpoint is proved by
+  `pauli-braiding-test-exponential-dimension`.

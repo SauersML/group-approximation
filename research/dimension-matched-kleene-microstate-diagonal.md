@@ -32,6 +32,6 @@ Then one can effectively construct a finitely presented nonhyperlinear group.
 The decisive weakening is that `(DMK2)` is required only in the dimension
 printed by the halting computation, not in all finite dimensions.  Therefore
 the compiled computation may use `D` as ordinary input to choose a finite
-Schur-replica count above the capacity of `M_D(C)`.  It need not infer matrix
-dimension from operators inside an arbitrary microstate.
-
+Clifford rank, Pauli-braiding test size, or Schur-replica count above the
+capacity of `M_D(C)`.  It need not infer matrix dimension from operators
+inside an arbitrary microstate.
