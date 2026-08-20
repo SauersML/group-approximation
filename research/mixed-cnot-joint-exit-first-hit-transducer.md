@@ -7,6 +7,7 @@ distinct_from:
   mixed-central-cnot-completes-relative-rank-one-router: that produces exact equal active/exit halves and flag transport inside one finite packet; this must select only the joint violating exit half globally.
   hard-sign-transport-captures-exit-mass: that transports a projection already known to lie in one negative hard-sign sector; this must manufacture the appropriate target hard sign without also charging allowed or active sectors.
   robust-rank-one-endpoint-marginal-floor: that gives the quantitative failure floor once three endpoint-sharing transports exist; this must realize those transports by group words and bound their failures by relator energy.
+  projected-hard-sign-bridge-selects-joint-exit: that already transports the joint exit after analytic right compression; this must additionally return the complementary active carrier.
 ---
 
 For the mixed-central router on the marked carrier `Q=(I-J)/2`, write
@@ -54,3 +55,6 @@ finite-dimensional theorem needed before the final HS floor.
 - The live attack is the three-context flag atlas in
   `mixed-cnot-joint-exit-first-hit-transducer-via-endpoints`; it is blocked
   only on `mixed-cnot-endpoint-failure-relator-certificate`.
+- A strictly smaller alternate route is now available.  The exit half itself
+  is closed by `projected-hard-sign-bridge-selects-joint-exit`; the only open
+  clause on that route is `mixed-cnot-allowed-active-return`.
