@@ -155,3 +155,68 @@ transverse Pauli separators and finds only the identity direction, hence no
 rank-one common chord sign.  It also exhausts two `2 by 2` capacitated
 transport instances, recording both the two feasible permutation flows and a
 cut-obstructed instance with no integral solution.
+
+## Exact free-phase support and the infinite-edge audit
+
+The free-phase cell uses less of its fresh free group than its original
+presentation suggests.  If `h_1,...,h_D` are the fresh generators, put
+
+```text
+a_1=1,                    a_i=h_i h_1^(-1),
+L_D=<a_2,...,a_D>.
+```
+
+Then `{h_1,a_2,...,a_D}` is a Nielsen basis, so `L_D` is a proper free factor
+of rank `D-1`.  Every transported coefficient has the form
+
+```text
+E_(ij) h_i h_j^(-1)=E_(ij) a_i a_j^(-1),
+```
+
+and hence the entire escaped context block is supported on
+`q C[K_D times L_D]q`.  This is
+`free-phase-context-support-is-a-proper-free-factor`.  It supplies a canonical
+proper infinite subgroup for the first-chord interface (nonamenable once
+`D>=3`) and removes the otherwise unused common phase generator from the
+problem.
+
+The most immediate ways to use that subgroup have now been audited exactly:
+
+1. Identifying two commuting copies of `L_D` symmetrically gives an HNN group
+   whose height kernel is the graph product of copies of `L_D` over the
+   bi-infinite path.  Finite intervals are right-angled Artin groups, so the
+   kernel is a directed union of hyperlinear groups and the full group is
+   hyperlinear-by-cyclic.  This is
+   `symmetric-free-support-hnn-remains-hyperlinear`.
+2. Sending one phase copy diagonally into two commuting copies does transport
+   every matrix coefficient exactly and appends one free-phase layer.  After
+   reversing the stable letter, however, this is the Formanek--Procesi group
+
+   ```text
+   H(L)=<L times L,s | s(g,g)s^(-1)=(g,1)>.
+   ```
+
+   It embeds in `Aut(L*Z)` and is residually finite for finitely generated
+   residually finite `L`.  Thus the exact depth-advance cell is residually
+   finite and hyperlinear.  These are
+   `diagonal-hnn-exactly-advances-free-phase-depth` and
+   `formanek-procesi-diagonal-hnn-is-residually-finite`.
+3. Distorting the new phase by an arbitrary injective endomorphism
+   `theta:L_D->L_D` does not escape this fence.  The graph HNN
+
+   ```text
+   <L_0 times L_1,t | t(g,1)t^(-1)=(g,theta(g))>
+   ```
+
+   embeds in the same Formanek--Procesi group by
+   `(g,h)|->(theta(g),h)`.  Britton membership reflection proves injectivity.
+   This is `graph-endomorphism-phase-hnn-embeds-formanek-procesi`.
+
+Together with `amenable-edge-hnn-preserves-hyperlinearity`, this leaves a
+much narrower live interface.  A decisive infinite-edge chord must use a
+nonamenable proper support and couple multiple phase factors non-graphically:
+it cannot be a symmetric factor identification, a graph of one injective
+endomorphism into a commuting copy, an amenable edge, or an endomorphism of
+the whole base.  It must also fix both separator algebras and carry genuine
+cycle holonomy.  This surviving requirement is recorded in
+`infinite-edge-common-commutant-for-first-chord`.

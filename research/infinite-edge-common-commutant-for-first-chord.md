@@ -9,6 +9,7 @@ distinct_from:
   first-cycle-signed-hecke-chord: that asks for the resulting context atlas and preservation of all previous identities; this isolates the new group-theoretic data from which piecewise transport assembles the endpoint regauges.
   finite-relative-commutant-chord-is-bounded-integer-feasibility: that decides the finite-matrix double orbit; this asks for an algebraic common-commutant element and algebraic projection equivalences in an infinite signed group corner.
   finite-edge-hnn-closures-cannot-finish-the-nonce-atlas: that excludes iterations over finite associated subgroups; this explicitly permits a finitely generated infinite associated subgroup or a non-Bass--Serre presentation.
+  amenable-edge-hnn-preserves-hyperlinearity: that excludes every amenable associated subgroup by a general permanence theorem; this leaves a nonamenable proper infinite edge or a non-Bass--Serre mechanism.
 ---
 
 Use the first-chord data from `first-cycle-signed-hecke-chord`, with endpoint
@@ -55,11 +56,37 @@ for algebraic Murray--von Neumann equivalence witnessed by group translates.
   extension of the hyperlinear join-tree group is hyperlinear by
   `ascending-hnn-cannot-create-nonhyperlinearity`, so moving the whole support
   subgroup cannot be the decisive step.
+- **Amenable proper infinite edge:**
+  `amenable-edge-hnn-preserves-hyperlinearity` proves that every HNN extension
+  of a hyperlinear base over an amenable associated subgroup is hyperlinear.
+  Thus replacing finite character pieces by cyclic, locally finite, or other
+  amenable infinite packets cannot close the chord either.
+- **Symmetric proper infinite edge:**
+  `free-phase-context-support-is-a-proper-free-factor` identifies the exact
+  rank-`D-1` free factor carrying one escaped block.  Identifying two such
+  factors while fixing the previous support gives the path-RAAG height kernel
+  of `symmetric-free-support-hnn-remains-hyperlinear`, so the first natural
+  proper infinite HNN is still hyperlinear.
+- **Diagonal depth-doubling edge:**
+  `diagonal-hnn-exactly-advances-free-phase-depth` maps every coefficient
+  `a_i a_j^(-1)` to the product of two commuting copies, so it transports the
+  escaped block exactly and asymmetrically.  Reversing its stable letter gives
+  the Formanek--Procesi group.  By
+  `formanek-procesi-diagonal-hnn-is-residually-finite`, this candidate is also
+  residually finite and hyperlinear.
+- **Distorted diagonal edge:** replacing the second copy by any injective
+  endomorphism of the free support still fails.
+  `graph-endomorphism-phase-hnn-embeds-formanek-procesi` embeds the resulting
+  graph HNN in the same residually finite Formanek--Procesi group by an exact
+  Britton argument.
 - **One unconstrained stable letter:** it can conjugate `X_0` to `X_1`, but
   does not put their common value in both separator commutants and therefore
   breaks a parent attachment.
-- **Live attack:** identify finitely generated proper infinite support
-  subgroups carrying the relative spectral pieces in `(IEC2)`, and an
-  isomorphism or finite presentation that transports those pieces while
-  fixing the separator atoms.  It must not extend to an injective endomorphism
-  of the whole hyperlinear base.
+- **Live attack:** couple finitely generated nonamenable proper infinite
+  support subgroups asymmetrically so that `(IEC2)--(IEC3)` hold while the height kernel is not
+  the path graph product above or a graph-endomorphism subgroup of a
+  Formanek--Procesi HNN.  The transport must fix the separator atoms, must not
+  extend to an injective endomorphism of the whole hyperlinear base, and must
+  couple multiple phase factors non-graphically so that it carries genuine
+  cycle holonomy rather than merely renaming or duplicating fresh free
+  factors.
