@@ -53,6 +53,14 @@ regular Bass--Serre reservoir.
 - The finite search is complete: there are 32 symbolic frame isomorphisms and
   every one sends `101` to `011`.  No additional finite character reservoir
   needs to be controlled.
+- `paired-frame-hard-characters-form-forced-two-cycle` sharpens this: every
+  one of the 32 maps also sends `011` back to `101`.  Thus changing or
+  alternating finite edge isomorphisms can never orient the hard pair; an
+  infinite label is mandatory.
+- `alternating-free-ring-shears-have-strict-degree-drift` supplies a concrete
+  label.  The product of the two elementary `F_2[x]` shears has leading degree
+  `2n` at its `n`th iterate.  Coupling the forced two-cycle to this action
+  returns the finite character after two steps but moves it to a new degree.
 - `corner-localized-non-ce-bcs-energy-gap` proves that BCS violation mass
   cannot dilute after cutting to an approximately reducing prefix carrier,
   even when that carrier has vanishing ambient trace.
@@ -61,7 +69,8 @@ regular Bass--Serre reservoir.
   fixed fraction of its trace into a new reverse carrier, and make those
   reverse carriers orthogonal.  The resulting trace budget is `(PRC1)`.
 - The missing calculation is to realize these two shears on consecutive
-  one-sided prefix corners, prove persistence of the baseline copy, and prove
-  that the raw-compressor boundary error is polynomial while the emitted
-  reverse carriers are orthogonal.  A merely decreasing first-hit process is
-  insufficient: it admits a geometric reservoir and does not force collapse.
+  free-root coefficient planes, prove that degree `2n` hard exits lie in
+  pairwise orthogonal character-valuation layers, prove persistence of the
+  baseline copy, and import the already formalized polynomial shear-transport
+  boundary estimates.  A merely decreasing first-hit process is insufficient:
+  it admits a geometric reservoir and does not force collapse.
