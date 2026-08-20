@@ -125,6 +125,18 @@ residual factor and force `2^r|L`.  Hence the sharp diagonal task is to inspect
 that commutant and request `r>log_2L` new cells; the already paid rank cancels
 from both sides of the capacity inequality.
 
+The residual algebra also carries an exact endogenous dimension stop.  Two
+free-algebra letters enumerate standard polynomials `p_n`; `p_n` is nonzero
+formally, but `p_L` vanishes under every substitution in `M_L(C)` by
+Amitsur--Levitzki.  Adjoining inverses to all `p_n` gives a nonzero countable
+algebra with no finite-dimensional representation.  This supplies a literal
+program which reacts to the spectator size without receiving it as input.
+What it does not supply is the decisive analytic compiler: the standard
+polynomials are additive and grow with `L`, and their free-skew-field inverses
+need not be bounded.  Recursive compression must still turn the failed
+instruction into new Schur cells using finitely many unitary group relations
+and a constant HS loss.
+
 There is a genuinely different escape from dimension detection.  If a finite
 bi-index action can be rounded uniformly, one base lamp and finitely many
 pair-orbit relators produce a coherent *infinite* family of anticommuting

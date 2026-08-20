@@ -55,4 +55,6 @@ be charged by word telescoping with a universal constant.
   compressed constant-gap verifier and make its output select new wreath
   sites in the residual commutant.  The missing point is finite group-word
   semantic transport with cost independent of verifier runtime and output
-  length.
+  length.  The exact stopping program and its remaining groupification are now
+  isolated by `schur-residual-commutant-is-a-dimension-oracle-tape` and
+  `constant-hs-groupification-of-residual-dimension-tape`.
