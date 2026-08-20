@@ -184,6 +184,11 @@ regular Bass--Serre reservoir.
   router control with the literal Schur pair by a relative-pair amalgam, not a
   selector-center amalgam.  Bass--Serre normal forms preserve the packet and
   induction preserves an exact `J=-1` representation.
+- The remaining local selector is now
+  `mixed-cnot-joint-exit-first-hit-transducer`: return the whole allowed
+  `K=+1` sector and the `K=-1,b=+1` active half, while sending only
+  `K=-1,b=-1` to the E5 boundary.  Neither `K` nor `b` alone has the correct
+  support; the three rank-one endpoint contexts must supply the joint test.
 - `hard-sign-transport-captures-exit-mass` proves the complementary lower
   exit estimate.  Projecting one hard-sign conjugacy onto the positive target
   sector gives the sharp leakage bound `(HST1)`.  The corner BCS gap and the
@@ -223,10 +228,11 @@ regular Bass--Serre reservoir.
   and `(BFE2)` after the mandatory half split, while `(OCB3)`, the corner gap,
   and `(HST1)` give `(BFE3)`.
   The hard-sign bridge is synchronized with the same levels and preserves the
-  exact tracial model.  What remains globally is to assemble these finitely
-  many bridges so the active halves really land on distinct next-level group-
-  word carriers, combine them with the published linear Fanizza constraints,
-  and prove the marked initial-carrier interface.  No separate nonlinear
-  recurrence-residual estimate remains.
+  exact tracial model.  The four-generator mixed-CNOT packet now realizes and
+  algebraically attaches each half split.  What remains is the joint-exit
+  endpoint certificate above, its assembly with the published linear Fanizza
+  constraints, and (for the effective machine route only) the marked initial-
+  carrier interface.  No separate nonlinear recurrence-residual estimate
+  remains.
   A merely decreasing first-hit process is insufficient: it admits a
   geometric reservoir and does not force collapse.

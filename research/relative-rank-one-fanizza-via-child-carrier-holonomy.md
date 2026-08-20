@@ -18,6 +18,7 @@ requires:
   - predicate-activated-cnot-routes-relative-pauli-halves
   - mixed-central-cnot-completes-relative-rank-one-router
   - mixed-central-router-adjoins-without-collapsing-packet
+  - mixed-cnot-joint-exit-first-hit-transducer
   - hard-sign-transport-captures-exit-mass
   - product-clock-synchronizes-fanizza-and-e5
   - binary-cut-projection-recurrence-gives-bfe1
