@@ -74,9 +74,10 @@ which exchanges the two supports.
   `controlled-pauli-corner-has-clifford-groupification` proves that its
   conjugation action is an honest finite-group covariance in every marked
   representation. The remaining finite audit is
-  `controlled-nested-reset-needs-clifford-holonomy`: the CNRC incidence must
+  `controlled-reset-needs-positive-density-holonomy`: the CNRC incidence must
   use the stable letters locally only through conjugation, because their
-  arbitrary multiplicity involutions otherwise restore unwanted types.  It
-  must then couple those involutions through a genuine two-cell;
+  arbitrary multiplicity involutions otherwise restore unwanted types.  The
+  genuine Schur flip two-cell already couples them and forces one forbidden
+  parity divisor, but that divisor must be promoted to positive density;
   `clifford-covariance-atlases-have-regular-flow` proves that a finite atlas
   of covariance edges alone remains stationary.

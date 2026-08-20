@@ -68,9 +68,12 @@ involution. Hence this promotes the CNRC cell exactly if its incidence table
 uses the block only through Pauli conjugation. It does not promote any step
 which reads the stable-letter sign, trace, or spectral projection. The finite
 replay and holonomy obligation is recorded as
-`controlled-nested-reset-needs-clifford-holonomy`.  Covariance alone is not
+`controlled-reset-needs-positive-density-holonomy`.  Covariance alone is not
 enough: `clifford-covariance-atlases-have-regular-flow` identifies the finite
-graph-of-groups Plancherel countermodel for every covariance-only chain.
+graph-of-groups Plancherel countermodel for every covariance-only chain.  The
+first non-Bass--Serre two-cell is already available in
+`schur-packet-flips-realize-predicate-cocycle`; what remains is to make its
+projective rank extensive rather than one repairable parity bit.
 
 ## 3. Second promotion gate: fixed-depth rank mesh is not a density gap
 

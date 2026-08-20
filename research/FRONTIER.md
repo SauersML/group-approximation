@@ -694,7 +694,9 @@ non-hyperlinear-group [OPEN] Exhibit an explicit non-hyperlinear group
               (…already shown)
             controlled-pauli-corner-has-clifford-groupification [✓] A central-corner block becomes an honest group covariance after Pauli completion
             clifford-groupified-control-is-forced-balanced [✓] Pauli completion forces every groupified control corner to have half the marked mass
-            controlled-nested-reset-needs-clifford-holonomy [OPEN] Complete the controlled reset by Clifford covariance and multiplicity holonomy
+            schur-packet-flips-realize-predicate-cocycle [✓] Two commuting packet flips have projective commutator equal to the predicate
+            commuting-automorphism-cocycle-forces-multiplicity [✓] A commuting automorphism square turns projective packet holonomy into exact multiplicity divisibility
+            controlled-reset-needs-positive-density-holonomy [OPEN] Promote the Schur flip square to positive-density controlled holonomy
             finite-schur-clifford-packet-flexible-hs-exactification [✓] Each fixed Schur-Clifford packet flexibly exactifies with dimension-independent normalized-HS control
         finite-schur-clifford-packet-flexible-hs-exactification [✓] Each fixed Schur-Clifford packet flexibly exactifies with dimension-independent normalized-HS control
           ├ finite-schur-clifford-packet-flexible-hs-exactification-proof [✓] Use fixed word tables and Gowers-Hatami stability on the finite packet
@@ -1885,7 +1887,7 @@ wreath-compression-mf-radical [✓] Exact MF radicals of compression wreath prod
 - **coherent-summable-gap-clifford-tower** [1 live route(s) need it; toward: non-hyperlinear-group] [Compile amplified quantum gap into a coherent summable-loss Clifford tower](coherent-summable-gap-clifford-tower.md) — ⚑ last missing for nonhyperlinear-via-coherent-summable-clifford-tower → non-hyperlinear-group — unclaimed
 - **constant-hs-groupification-of-residual-dimension-tape** [1 live route(s) need it; toward: non-hyperlinear-group] [Finitely groupify the residual dimension tape and activate more Schur cells than its capacity](constant-hs-groupification-of-residual-dimension-tape.md) — ⚑ last missing for residual-schur-trigger-from-groupified-dimension-tape → residual-commutant-supercritical-schur-trigger — unclaimed
 - **constant-hs-sound-self-detecting-tape-groupification** [1 live route(s) need it; toward: non-hyperlinear-group] [Finitely groupify the self-detecting multiplicity tape with constant HS semantic transport](constant-hs-sound-self-detecting-tape-groupification.md) — ⚑ last missing for hs-pcp-boone-via-self-detecting-tape → hs-pcp-boone-compiler — unclaimed
-- **controlled-nested-reset-needs-clifford-holonomy** [1 live route(s) need it; toward: non-hyperlinear-group] [Complete the controlled reset by Clifford covariance and multiplicity holonomy](controlled-nested-reset-needs-clifford-holonomy.md) — ⚑ last missing for q-masa-clifford-holonomy-bridge-route → q-masa-to-fresh-packet-morita-bridge — unclaimed
+- **controlled-reset-needs-positive-density-holonomy** [1 live route(s) need it; toward: non-hyperlinear-group] [Promote the Schur flip square to positive-density controlled holonomy](controlled-reset-needs-positive-density-holonomy.md) — ⚑ last missing for q-masa-clifford-holonomy-bridge-route → q-masa-to-fresh-packet-morita-bridge — unclaimed
 - **definetti-group-table-rounding** [1 live route(s) need it; toward: non-hyperlinear-group] [Dimension-free symmetric-extension rounding of a finite multiplication table](definetti-group-table-rounding.md) — ⚑ last missing for hyperlinear-implies-sofic-via-definetti-rounding → hyperlinear-implies-sofic — unclaimed
 - **dimension-reported-clifford-table-halting-compiler** [1 live route(s) need it; toward: non-hyperlinear-group] [A halting output dimension activates a uniformly sound supercritical Clifford table](dimension-reported-clifford-table-halting-compiler.md) — ⚑ last missing for nonhyperlinear-from-dimension-reported-clifford-compiler → non-hyperlinear-group — unclaimed
 - **dimension-reported-schur-replica-halting-compiler** [1 live route(s) need it; toward: non-hyperlinear-group] [A halting output dimension activates a uniformly sound supercritical Schur-replica table](dimension-reported-schur-replica-halting-compiler.md) — ⚑ last missing for nonhyperlinear-from-dimension-reported-schur-compiler → non-hyperlinear-group — unclaimed
@@ -2087,15 +2089,15 @@ wreath-compression-mf-radical [✓] Exact MF radicals of compression wreath prod
 
 ## Recently touched
 
+- 2026-08-20 · q-masa-to-fresh-packet-morita-bridge [OPEN] Turn the flip-free q-MASA character vector into one fresh packet multiplicity vector
 - 2026-08-20 · q-masa-clifford-holonomy-bridge-route [OPEN] Promote the q-MASA endpoint through Clifford covariance and multiplicity holonomy
+- 2026-08-20 · controlled-reset-needs-positive-density-holonomy [OPEN] Promote the Schur flip square to positive-density controlled holonomy
 - 2026-08-20 · controlled-pauli-corner-has-clifford-groupification [ESTABLISHED] A central-corner block becomes an honest group covariance after Pauli completion
-- 2026-08-20 · controlled-nested-reset-needs-clifford-holonomy [OPEN] Complete the controlled reset by Clifford covariance and multiplicity holonomy
 - 2026-08-20 · clifford-groupified-control-is-forced-balanced-proof [COMPLETE] Conjugate the two control spectral projections by its Pauli partner
 - 2026-08-20 · clifford-groupified-control-is-forced-balanced [ESTABLISHED] Pauli completion forces every groupified control corner to have half the marked mass
-- 2026-08-20 · q-masa-to-fresh-packet-morita-bridge [OPEN] Turn the flip-free q-MASA character vector into one fresh packet multiplicity vector
 - 2026-08-20 · clifford-covariance-regular-flow-proof [COMPLETE] Regard every covariance stable letter as a finite graph-of-groups edge
 - 2026-08-20 · clifford-covariance-atlases-have-regular-flow [ESTABLISHED] Finite Clifford covariance atlases retain the regular stationary type flow
 
 ## Active claims
 
-- 🔒 toeplitz-tail-retains-contextual-schur-density — 151m43s remaining
+- 🔒 toeplitz-tail-retains-contextual-schur-density — 149m04s remaining
