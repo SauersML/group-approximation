@@ -59,6 +59,7 @@ theorem inner_map (h : U.IsUnitaryAdj) (x y : E.carrier) :
     F.inner (U.toFun x) (U.toFun y) = E.inner x y := by
   rw [U.inner_adj, h.adj_toFun]
 
+omit [PartialOrder B] [StarOrderedRing B] in
 /-- A unitary is isometric. -/
 theorem norm_map (h : U.IsUnitaryAdj) (x : E.carrier) :
     F.norm (U.toFun x) = E.norm x := by

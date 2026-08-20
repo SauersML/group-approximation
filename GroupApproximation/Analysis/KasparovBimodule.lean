@@ -57,6 +57,7 @@ variable {B : Type v} [NonUnitalCStarAlgebra B] [PartialOrder B]
 
 namespace Adjointable
 
+omit [PartialOrder B] [StarOrderedRing B] in
 /-- The zero operator has finite rank: the empty sum. -/
 theorem isFiniteRank_zero {E : CStarModule.{v, w} B}
     {F : CStarModule.{v, w'} B} : (zero E F).IsFiniteRank := by
@@ -100,6 +101,7 @@ namespace IsRepresentation
 
 variable {E : CStarModule.{v, w} B} {pi : A → Adjointable E E}
 
+omit [PartialOrder B] [StarOrderedRing B] in
 theorem map_zero (h : IsRepresentation E pi) (x : E.carrier) :
     (pi (0 : A)).toFun x = 0 := by
   have h0 : (pi (0 : A)).toFun x = (pi (0 : A)).toFun x + (pi (0 : A)).toFun x := by
