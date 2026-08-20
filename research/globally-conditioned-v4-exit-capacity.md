@@ -65,6 +65,17 @@ claimed reduction has merely hidden the whole open problem in a local lemma.
   ranges are context atoms they are cross-context trace words in the original
   shared selectors.  This is the active attack because it retains precisely
   the operator data absent from scalar type flow.
+- **The overlap half now has a finite tag certificate.**
+  `disjoint-tag-covariance-controls-cross-gram` proves that if the exit maps
+  carry pairwise disjoint types of one fixed finite tag group, then their full
+  ordered cross-Gram overlap is bounded by the defining covariance-relator
+  energy, with a constant independent of all multiplicities and of matrix
+  dimension.  Thus the term `o` in `(VGC5)` is closed once such tags are part
+  of the shared construction.  What remains is to construct the tagged exit
+  maps from the original shared-context tuple while controlling the
+  off-parent leakage `l` and preserving the allowed exact tracial extension.
+  Adjoining unrelated tags separately to each local packet is not accepted:
+  that would bypass, rather than use, the contextual compatibility data.
 - **Projection recurrence splice.**  On the Fanizza doubling source,
   `fanizza-doubling-carriers-form-orthogonal-flag` converts the exact carrier
   propagation to a commuting involution word and identifies its entire

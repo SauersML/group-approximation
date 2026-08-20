@@ -10,6 +10,7 @@ requires:
   - schur-packet-flips-realize-predicate-cocycle
   - full-v4-latent-coordinate-has-an-operator-five-fourths-floor
   - global-v4-exit-capacity-is-cross-gram-curvature
+  - disjoint-tag-covariance-controls-cross-gram
   - globally-conditioned-v4-exit-capacity
   - finite-depth-contractive-computation-ladder
 ---
@@ -25,10 +26,18 @@ then forces at least one quarter of the forbidden parent mass to pay that
 energy.  This is an amplification-stable density statement: it controls range
 overlaps, not an integral multiplicity remainder.
 
+The overlap half of that global theorem now has an explicit implementation:
+give the exit maps pairwise disjoint types of one fixed finite tag group and
+impose their tag covariances as defining relators.
+`disjoint-tag-covariance-controls-cross-gram` then pays the complete ordered
+cross-Gram term with a multiplicity-independent constant.  The remaining
+global burden is exactly the off-parent leakage estimate together with the
+requirement that the tags arise from, and remain compatible with, the shared
+context tuple and its exact non-CE tracial model.
+
 Insert the resulting local payment into the fixed number of controlled
 branch comparisons.  Fixed-packet exactification and the finite-depth ledger
 absorb all square-root errors.  The global-use clause of
 `globally-conditioned-v4-exit-capacity` is essential; applying the same
 capacity independently to one packet would be the circular local
 nonhyperlinearity theorem.
-
