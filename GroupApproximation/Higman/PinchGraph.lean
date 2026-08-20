@@ -189,12 +189,13 @@ theorem descentTau (hφ : ∀ x : ↥A, (x : P) ∈ M → φ x = 1) :
           have hz : (pv.2 : P) = z := congrArg Prod.snd hpv
           have hpvM : (pv.1 : P) ∈ M := by rw [hq]; exact hqM
           have hφpv : φ pv.1 = 1 := hφ pv.1 hpvM
-          rcases eq_nil_or_append_singleton l₁ with rfl | ⟨l₁', p₀, rfl⟩
+          rcases List.eq_nil_or_concat' l₁ with rfl | ⟨l₁', p₀, rfl⟩
           · -- the block is the first one
             refine ?_
             have hrw : wordA M A a₀ ([] ++ pv :: l₂)
                 = wordA M A (a₀ * pv.1 * pv.2) l₂ := by
               unfold wordA
+              simp only [Subgroup.coe_mul]
               rw [List.nil_append, carrier_cons, word_cons,
                 blockOf_of_mem M (pv.1 : P) (pv.2 : P) hpvM, ← map_mul]
               show _ = word M ((a₀ : P) * (pv.1 : P) * (pv.2 : P)) (carrier A l₂)
@@ -219,13 +220,16 @@ theorem descentTau (hφ : ∀ x : ↥A, (x : P) ∈ M → φ x = 1) :
             have hrw : wordA M A a₀ (l₁' ++ [p₀] ++ pv :: l₂)
                 = wordA M A a₀ (l₁' ++ (p₀.1, p₀.2 * pv.1 * pv.2) :: l₂) := by
               unfold wordA
-              rw [carrier_append, carrier_append, carrier_cons, carrier_cons,
-                carrier_cons, carrier_nil, word_append, word_append]
-              rw [List.map_append, List.prod_append, List.map_cons, List.prod_cons,
-                List.map_cons, List.prod_cons, List.map_nil, List.prod_nil]
+              simp only [carrier_append, carrier_cons, carrier_nil]
+              rw [word_append, word_append]
+              simp only [List.map_append, List.prod_append, List.map_cons,
+                List.prod_cons, List.map_nil, List.prod_nil, Subgroup.coe_mul]
               rw [blockOf_of_mem M (pv.1 : P) (pv.2 : P) hpvM]
-              show _ = _
-              rw [blockOf_mul_of]
+              have hmerge : blockOf M ((p₀.1 : P), (p₀.2 : P))
+                    * of ((pv.1 : P) * (pv.2 : P))
+                  = blockOf M ((p₀.1 : P), (p₀.2 : P) * (pv.1 : P) * (pv.2 : P)) := by
+                rw [blockOf_mul_of, ← mul_assoc]
+              rw [← hmerge]
               group
             have hlen' : (l₁' ++ (p₀.1, p₀.2 * pv.1 * pv.2) :: l₂).length ≤ n := by
               simp only [List.length_append, List.length_cons, List.length_nil]
@@ -240,8 +244,8 @@ theorem descentTau (hφ : ∀ x : ↥A, (x : P) ∈ M → φ x = 1) :
             refine ⟨y, by rw [hrw]; exact hy, ?_⟩
             rw [hyval]
             rw [tau_append, tau_append]
-            rw [List.map_cons, List.prod_cons, List.map_cons, List.prod_cons,
-              List.map_cons, List.prod_cons, List.map_nil, List.prod_nil]
+            simp only [List.map_append, List.prod_append, List.map_cons,
+              List.prod_cons, List.map_nil, List.prod_nil]
             unfold blockValue
             simp only [map_mul, hφpv, mul_one]
             group
@@ -259,6 +263,7 @@ theorem descentTau (hφ : ∀ x : ↥A, (x : P) ∈ M → φ x = 1) :
               carrier_cons, word_append, word_append]
             rw [List.map_cons, List.prod_cons, List.map_cons, List.prod_cons,
               List.map_cons, List.prod_cons]
+            simp only [Subgroup.coe_mul]
             rw [← blockOf_mul_blockOf M (pv.1 : P) (pv.2 : P) (pv'.1 : P)
               (pv'.2 : P) hpvM]
             group
@@ -274,10 +279,9 @@ theorem descentTau (hφ : ∀ x : ↥A, (x : P) ∈ M → φ x = 1) :
           refine ⟨y, by rw [hrw]; exact hy, ?_⟩
           rw [hyval]
           rw [tau_append, tau_append]
-          rw [List.map_cons, List.prod_cons, List.map_cons, List.prod_cons,
-            List.map_cons, List.prod_cons]
+          simp only [List.map_cons, List.prod_cons]
           unfold blockValue
-          simp only [map_mul, hφpv, mul_one]
+          simp only [hφpv]
           group
 
 end Pinch
@@ -316,7 +320,7 @@ theorem conj_pair_mem_blockGraph (a : ↥A) :
 theorem exists_blockData {x : CentHNN M × T} (hx : x ∈ blockGraph M A φ) :
     ∃ (a₀ : ↥A) (l : List (↥A × ↥A)),
       x = (wordA M A a₀ l, tau A φ a₀ l) := by
-  obtain ⟨L, hL, rfl⟩ := Subgroup.exists_list_of_mem_closure hx
+  obtain ⟨L, hL, rfl⟩ := exists_list_of_mem_closure hx
   clear hx
   induction L with
   | nil =>
@@ -354,7 +358,8 @@ theorem exists_blockData {x : CentHNN M × T} (hx : x ∈ blockGraph M A φ) :
             rw [inv_inv] at this
             rw [this]
             refine Prod.ext ?_ ?_
-            · show _ = (t : CentHNN M)⁻¹ * of ((a⁻¹ : ↥A) : P) * t
+            · show ((t : CentHNN M)⁻¹ * of ((a : ↥A) : P) * t)⁻¹
+                = (t : CentHNN M)⁻¹ * of ((a⁻¹ : ↥A) : P) * t
               rw [Subgroup.coe_inv, map_inv]
               group
             · show (1 : T)⁻¹ = 1
@@ -438,8 +443,8 @@ theorem wordA_mem_closure (a₀ : ↥A) (l : List (↥A × ↥A)) :
           ∈ Subgroup.closure (genSet M A A) := by
         refine Subgroup.subset_closure (Or.inr ?_)
         refine ⟨of ((p.1 : P)), ⟨(p.1 : P), p.1.2, rfl⟩, ?_⟩
-        show _ * _ * _ = _
-        rw [inv_inv]
+        show conjT M (of ((p.1 : P))) = _
+        rw [conjT_apply, inv_inv]
       have h₃ : (of ((p.2 : P)) : CentHNN M) ∈ Subgroup.closure (genSet M A A) :=
         Subgroup.subset_closure (Or.inl ⟨(p.2 : P), p.2.2, rfl⟩)
       have hblock : blockOf M ((p.1 : P), (p.2 : P))
@@ -452,11 +457,7 @@ theorem wordA_mem_closure (a₀ : ↥A) (l : List (↥A × ↥A)) :
         exact Subgroup.mul_mem _ h₂ h₃
       have htail : (((carrier A l).map (blockOf M)).prod)
           ∈ Subgroup.closure (genSet M A A) := by
-        have := ih a₀
-        rw [wordA_nil] at this
-        have hrest : wordA M A 1 l ∈ Subgroup.closure (genSet M A A) := by
-          have h0 := ih 1
-          exact h0
+        have hrest : wordA M A 1 l ∈ Subgroup.closure (genSet M A A) := ih 1
         unfold wordA word at hrest
         rw [Subgroup.coe_one, map_one, one_mul] at hrest
         exact hrest
@@ -490,9 +491,8 @@ theorem graphProj_range :
     · obtain ⟨v, hv, rfl⟩ := hu
       refine ⟨⟨((t : CentHNN M)⁻¹ * of v * t, 1),
         conj_pair_mem_blockGraph M A φ ⟨v, hv⟩⟩, ?_⟩
-      show (t : CentHNN M)⁻¹ * of v * t = _
-      show _ = _ * _ * _
-      rw [inv_inv]
+      show (t : CentHNN M)⁻¹ * of v * t = conjT M (of v)
+      rw [conjT_apply, inv_inv]
 
 /-- The graph, as a copy of `⟨A, Aᵗ⟩`. -/
 noncomputable def graphEquiv (hφ : ∀ x : ↥A, (x : P) ∈ M → φ x = 1) :
