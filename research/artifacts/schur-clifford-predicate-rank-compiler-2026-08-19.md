@@ -1029,6 +1029,43 @@ extend functorially to the regular finite von Neumann algebra.  This explains
 why the Schur--Clifford multiplicity machinery is not optional decoration but
 the only currently visible way around the regular-trace obstruction.
 
+The source construction also removes part of the apparent global-design
+burden.  Its nonmembership proof already contains projections
+
+\[
+\widetilde P_n=QU^nPU^{-n}Q
+\]
+
+and involutions \(\widetilde X_n=U^n\widetilde XU^{-n}\) satisfying
+
+\[
+\widetilde P_n+widetilde X_n\widetilde P_n\widetilde X_n
+=\widetilde P_{n+1}.
+\]
+
+The identity has a defining-relation decomposition of size polynomial in
+\(n\) (Fanizza et al., Proposition 5.14).  In trace it doubles mass from one
+tape cell to the next.  Their proof weights the recurrence by
+\(2^{-n/2}\), so the exponential contraction dominates the polynomial
+certificate loss and yields the signal-collapse estimate.  This is precisely
+the proposed “copy bad regions faster than approximation can hide them”
+architecture, already realized at the BCS level.
+
+Accordingly, a sharper open target replaces the generic return-transducer:
+attach the fixed Schur--Clifford predicate packets to this existing tape and
+use matrix-only integral multiplicity to obtain
+
+\[
+a_n\le {1\over2}a_{n+1}+K(n+1)^k\sqrt E.
+\]
+
+The shift \(U\) already supplies every level, and all local predicates are
+fixed.  The sole unresolved interface is coherence of the independently
+exactified packet multiplicities along the actual conjugate tape words.  This
+is recorded as `finite-dimensional-schur-lift-of-doubling-tape`; together with
+the abstract contractive ladder it is now a one-hole route to a
+nonhyperlinear group.
+
 ---
 
 ## 16. Computational verification
