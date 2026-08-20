@@ -66,3 +66,10 @@ problem.
   exactify their union as a single finite packet.  The open point is an
   injective finitely presented group realization of those one-sided corners
   with the marked completeness representation intact.
+- **Flip-free q-MASA reset. Interface solved, scale return open.**  The full
+  q-MASA forgets the old selector subgroup and retains all corrected child
+  signs.  However `q-masa-selector-bridge-is-scale-conservation` proves that
+  an ordinary fresh-selector extension only trades spin dimension for scalar
+  multiplicity.  The active finite search must therefore include a genuine
+  proper-corner or two-dimensional holonomy relation; subgroup restriction
+  matrices alone cannot close `(CDS1)`.

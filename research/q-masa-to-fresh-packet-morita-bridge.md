@@ -33,11 +33,13 @@ which exchanges the two supports.
 
 - **Ordinary HNN identification. Dead.**  It preserves each `K_f` character
   multiplicity and cannot perform the required matrix-scale conversion.
-- **Direct product with a fresh baseline packet. Incomplete.**  Commuting the
-  fresh packet only with `K_f` does avoid selector globalization.  However it
-  imposes divisibility separately on every `K_f` character space and permits
-  arbitrary correlation with the fresh selector types; no contraction
-  functional has yet been proved for the full restriction matrix.
+- **Direct product or selector amalgam. Dead.**  Commuting the fresh packet
+  only with `K_f` does avoid selector globalization, but
+  `q-masa-selector-bridge-is-scale-conservation` shows that its apparent
+  multiplicity gain is exactly the inverse change in simple dimension.
+  Common-scale marked multiplicity is conserved.  Divisibility and arbitrary
+  correlation with fresh selector types create further leakage, never the
+  required fixed-scale contraction.
 - **Finite restriction-matrix search. Active.**  Because the depth and all
   packets are fixed, enumerate the exact `K_f` restriction matrices, adjoin
   candidate proper-corner incidences, and solve for a positive functional
