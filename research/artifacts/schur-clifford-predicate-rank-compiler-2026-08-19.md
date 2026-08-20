@@ -43,6 +43,19 @@ The narrowed open interface is
 `compressor-covariant-packet-reynolds-return`: a named relation must make the
 Reynolds-difference range an actual coefficient of the compressor orbit.
 
+The Schur complement in fact supplies a canonical coefficient frame.  On
+every selector sector there are explicit products `P_x,Q_x` of packet
+generators which commute with the leading packet and whose mutual commutator
+is `(-1)^{f(x)}`.  Central Fourier control produces three fixed coefficients
+`P_f,Q_f,P_fQ_f`; on every forbidden simple block their right module over the
+packet commutant is exactly `(M_2 minus C I_2) tensor M_m`, of dimension
+`3m^2`.  Thus the extensive Reynolds defect does not require selecting an
+adjoint basis vector.  A finite overgroup cannot make the nonlinear
+controlled commutator universally sound: induction from the enlarged center
+forces wrong-phase irreducibles unless `f` is affine.  The remaining
+covariance mechanism must therefore be genuinely infinite or tracial, not a
+larger finite selector packet.
+
 A concrete exact holonomy primitive is now available.  If two commuting
 automorphisms of a finite packet have projective implementer commutator
 `zeta` of order `r` on an irreducible packet, adjoining commuting stable

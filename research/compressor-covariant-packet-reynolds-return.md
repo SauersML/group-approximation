@@ -10,6 +10,7 @@ distinct_from:
   packet-kazhdan-commutant-placement-decouples: that gives the tensor-factor countermodel to bare commutant placement; this asks for a covariance relation which excludes exactly that model.
   semisimple-packet-multiplicity-collapse: that seeks pointwise corona collapse for arbitrary finite-window semisimple packets at their self-normalized defect scale; this needs only the explicit Schur-Clifford packets on an extensive forbidden carrier supplied by the robust BCS gap.
   adjoint-supertrace-cannot-pay-hs-selection-load: that rules out paying a matrix carrier from one low-dimensional adjoint direction; this starts with a positive-density Reynolds range and must transport the whole projection rather than select one vector from it.
+  schur-complement-controls-relative-pauli-module: that reduces the forbidden core of the Reynolds range to a three-generator module over the packet commutant; this must make those controlled coefficients covariant by genuine group relations without a finite-group selector soundness error.
 ---
 
 Construct a finite group-relation gadget around a fixed Kazhdan group
@@ -55,3 +56,16 @@ subspace of the same adjoint dimension.  Bare relations
   external packet multiplicity.  One fixed square still dilutes as `O(r/m)`;
   the covariance target would have to create positive-density independent
   squares or make the activated cocycle order exceed the current model size.
+- **Canonical three-coefficient frame.**
+  `schur-complement-controls-relative-pauli-module` removes arbitrary adjoint
+  selection from the problem: three explicit controlled coefficients generate
+  the entire `3 sum m^2` forbidden core as a module over the packet
+  commutant.  The next relation may therefore be designed for those three
+  coefficients rather than for an unknown Reynolds projection.
+- **Finite groupification barrier.**  Those coefficients are additive
+  central-Fourier combinations of packet words.
+  `controlled-central-phase-finite-group-barrier` proves that adjoining their
+  nonlinear commutator as a central element of a finite overgroup necessarily
+  introduces wrong-phase selector irreducibles.  The covariance step must use
+  the infinite compressor or a tracial corner; a larger finite packet cannot
+  close it.

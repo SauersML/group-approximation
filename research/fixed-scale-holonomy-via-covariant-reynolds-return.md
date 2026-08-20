@@ -6,6 +6,7 @@ title: Return the explicit adjoint Reynolds defect through a compressor-covarian
 target: fixed-scale-contextual-multiplicity-holonomy
 requires:
   - predicate-rank-jump-forces-adjoint-reynolds-gap
+  - schur-complement-controls-relative-pauli-module
   - packet-kazhdan-commutant-placement-decouples
   - compressor-covariant-packet-reynolds-return
   - scaled-kazhdan-transport
