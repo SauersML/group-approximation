@@ -8,6 +8,7 @@ requires:
   - conditional-parent-absence-packet-exposes-relative-pauli
   - child-carrier-relative-pauli-holonomy
   - fanizza-fixed-nonlinear-menu-has-small-rank-gates
+  - every-forbidden-atom-has-fixed-schur-pauli-words
   - finite-schur-clifford-packet-flexible-hs-exactification
   - non-ce-bcs-has-robust-approximate-energy-gap
   - fanizza-turing-bcs-signal-collapse

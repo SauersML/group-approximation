@@ -8,6 +8,10 @@ requires:
   - relative-rank-one-fanizza-groupification
   - fanizza-turing-bcs-signal-collapse
   - fanizza-nonmember-signal-is-not-a-separated-mark
+  - fanizza-final-bcs-has-fixed-nonlinear-menu
+  - fanizza-fixed-nonlinear-menu-has-small-rank-gates
+  - every-forbidden-atom-has-fixed-schur-pauli-words
+  - finite-group-multiplicity-mismatch-pays-hs-energy
   - support-failure-packet-has-explicit-hs-payment
   - rank-one-no-signaling-pairing-floor
 ---
@@ -19,6 +23,9 @@ uses only three nonlinear predicate shapes, while
 `fanizza-fixed-nonlinear-menu-has-small-rank-gates` compiles all three into
 fixed packets whose affine rank matrices have size at most twelve.  Every
 violating atom creates one extra relative `M_2` multiplicity coordinate.
+`every-forbidden-atom-has-fixed-schur-pauli-words` names that coordinate by
+two literal packet words on every one of the 26 distinct bad atoms in the
+three predicate shapes.
 For the binary support subpacket the Laplacian gap is explicitly four; every
 other fixed packet also has a positive dimension-independent finite-group gap.
 

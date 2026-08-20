@@ -34,7 +34,7 @@ internally disjoint satisfying-path construction has baselines `6,10,102`.
 The last reduction is therefore not cosmetic: it replaces a 103-dimensional
 rank matrix by a 12-dimensional one.
 
-This closes packet-size growth for the actual Fanizza system.  It does not
-yet name the extra relative Pauli pair by assignment-independent group words
-or install the three endpoint-sharing transports; those remain the local
-presentation theorem.
+This closes packet-size growth for the actual Fanizza system.
+`every-forbidden-atom-has-fixed-schur-pauli-words` also names the extra pair
+after cutting to each of the finitely many forbidden atoms.  Installing its
+three endpoint-sharing transports remains the local presentation theorem.

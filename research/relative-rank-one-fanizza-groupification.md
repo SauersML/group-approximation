@@ -73,7 +73,9 @@ the Fanizza projection `D` itself as the nonhalting mark contradicts
   `non-ce-bcs-has-robust-approximate-energy-gap` to the original shared words
   before packet correction, exactify one of the three fixed packet shapes
   locally, and use a stable-letter triangle of *relative commutator pairs*
-  rather than identifying selector centers.  The unproved step is to name the
-  Schur-complement `M_2` factor by assignment-independent group words and prove
-  that its three corrected copies have the shared endpoint marginals `(RNS1)`
-  with total correction cost controlled by the original fixed-word energy.
+  rather than identifying selector centers.
+  `every-forbidden-atom-has-fixed-schur-pauli-words` supplies literal words
+  for each atom's Schur-complement `M_2` factor.  The unproved step is now only
+  to install three corrected copies with the shared endpoint marginals
+  `(RNS1)` and control their correction cost by the original fixed-word
+  energy.

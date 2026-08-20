@@ -114,6 +114,11 @@ regular Bass--Serre reservoir.
   at most half the sum of the root-generator defects.  Literal reuse of the
   endpoint atom in the `(00),(01),(11)` contexts gives the two shared
   marginals automatically; no common classical map is extracted.
+- `every-forbidden-atom-has-fixed-schur-pauli-words` removes the analogous
+  finite-packet choice problem for the actual Fanizza predicates.  After
+  cutting to one forbidden selector atom, two literal products of commuting
+  packet generators centralize the baseline packet and anticommute with one
+  another.  No assignment-dependent measurable Gaussian elimination remains.
 - `free-root-top-boundary-reservoir-is-summable` proves the required capacity
   theorem for those degree labels: the mass first detected at successive
   degrees telescopes and has total at most one on a unit carrier.  Literal

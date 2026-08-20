@@ -66,6 +66,23 @@ def rank_f2(matrix: list[list[int]]) -> int:
     return rank
 
 
+def solve_f2(matrix: list[list[int]], vector: list[int]) -> list[int]:
+    """Solve an invertible square system over F_2."""
+    size = len(matrix)
+    work = [matrix[row][:] + [vector[row]] for row in range(size)]
+    for column in range(size):
+        pivot = next(row for row in range(column, size) if work[row][column])
+        work[column], work[pivot] = work[pivot], work[column]
+        for row in range(size):
+            if row != column and work[row][column]:
+                work[row] = [a ^ b for a, b in zip(work[row], work[column])]
+    return [work[row][-1] for row in range(size)]
+
+
+def dot(left: list[int], right: list[int]) -> int:
+    return sum(a & b for a, b in zip(left, right)) & 1
+
+
 @dataclass(frozen=True)
 class Node:
     variable: int
@@ -190,6 +207,37 @@ def best_compiler(
     return best
 
 
+def schur_pair_words(
+    matrix: list[list[Affine]], assignment: BitTuple
+) -> tuple[list[int], list[int]]:
+    """Return the fixed p- and q-word coefficients naming the extra pair."""
+    evaluated = evaluate_matrix(matrix, assignment)
+    baseline = len(evaluated) - 1
+    leading = [row[:baseline] for row in evaluated[:baseline]]
+    right = [evaluated[row][baseline] for row in range(baseline)]
+    bottom = evaluated[baseline][:baseline]
+    alpha = solve_f2(leading, right)
+    transpose = [
+        [leading[row][column] for row in range(baseline)]
+        for column in range(baseline)
+    ]
+    beta = solve_f2(transpose, bottom)
+
+    # P*=p_last product p_i^beta_i and Q*=q_last product q_j^alpha_j.
+    # They centralize the leading packet and anticommute precisely when the
+    # Schur complement is one.
+    assert all(
+        dot(beta, [leading[row][column] for row in range(baseline)])
+        == bottom[column]
+        for column in range(baseline)
+    )
+    assert all(
+        dot(leading[row], alpha) == right[row] for row in range(baseline)
+    )
+    assert dot(bottom, alpha) == 1
+    return beta + [1], alpha + [1]
+
+
 def indicator(points: Iterable[BitTuple]) -> Callable[[BitTuple], bool]:
     point_set = frozenset(points)
     return lambda assignment: assignment in point_set
@@ -222,6 +270,17 @@ def audit() -> None:
             f"{name}: forbidden={satisfying_count}, order={order}, "
             f"baseline={baseline}, matrix={len(matrix)}, "
             f"disjoint-path-baseline={disjoint_path_baseline}"
+        )
+        pair_weights = []
+        for assignment in product((0, 1), repeat=arity):
+            if predicate(assignment):
+                p_word, q_word = schur_pair_words(matrix, assignment)
+                pair_weights.append((sum(p_word), sum(q_word)))
+        print(
+            f"  named Schur pairs={len(pair_weights)}, "
+            f"maximum (p,q) word weights="
+            f"({max(weight[0] for weight in pair_weights)},"
+            f"{max(weight[1] for weight in pair_weights)})"
         )
 
     # A single forbidden atom is the only additional primitive needed if a
