@@ -7,13 +7,15 @@ target: hyperlinear-near-representation-criterion
 requires: []
 ---
 
-Citation import.  The equivalence is the main theorem of
-arXiv:2504.10988v2, read from the abstract on 2026-01-05 revision metadata;
-the surrounding characterizations of the factorization property and of the
-Haagerup property are stated there as comparisons.
+**Established by citation.**  Kahl--Schneider, *Hyperlinearity via amenable
+near representations*, arXiv:2504.10988v2, Theorem B (`theorem:b`).  The
+user-supplied TeX source was checked directly on 2026-08-20, including the
+paper's definitions of `mu`-near representation and essential freeness.
 
-Not reproved here, and no Lean counterpart exists.  Anyone using it to
-attack `hyperlinear-wreath-model` should first read the paper's definition
-of *near representation* and of *essential freeness* in that setting, since
-the strength of the criterion lives entirely in how much less than a genuine
-representation a near representation is allowed to be.
+Theorem A (`theorem:a`) gives the orthonormal-basis/probability-charge
+characterization of amenable unitary representations.  Theorem C gives
+equivalent sphere-charge, uniformly-continuous-state, and `B(H)`-state forms
+of the hyperlinearity criterion.
+
+Not reproved here, and no Lean counterpart exists.  This is a
+characterization, not a construction of microstates for the wreath candidate.

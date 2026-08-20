@@ -30,3 +30,7 @@ theorem alone starts with an external tensor-product architecture and therefore
 does not establish this Cairn target.  It must also pass the Alekseev--Bradford
 falsification test: a functorial coded halo moved by a sofic action is still
 hyperlinear.
+
+The same falsification survives quantumization: the construction cannot be a
+Kac generalized free wreath product of hyperlinear inputs over a coamenable
+amalgam, by `generalized-free-wreath-hyperlinearity-permanence`.

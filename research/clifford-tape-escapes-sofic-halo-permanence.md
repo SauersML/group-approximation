@@ -14,6 +14,11 @@ specific failure of the hypotheses of
 group must not be merely a semidirect product of a functorial hyperlinear halo
 by a sofic action on the sites.
 
+If the construction is moved to compact quantum groups, it must also avoid
+the hypotheses of `generalized-free-wreath-hyperlinearity-permanence`: a Kac
+generalized free wreath product of hyperlinear inputs over a coamenable
+amalgam is again hyperlinear.
+
 Acceptable escapes include a genuinely two-dimensional holonomy quotient, a
 coefficient action proved not to be a sofic hyperlinear action, or a
 nonfunctorial global code relation whose finite restrictions do not form the
@@ -27,3 +32,6 @@ same-model capacity contradiction, rather than an unrelated decoration.
 - Replacing each lamp by a larger finite fault-tolerant code block still
   yields a functorial hyperlinear halo unless the inter-block checks or return
   quotient break the sofic-action structure.
+- Replacing the site permutation by a Kac quantum automorphism action and
+  taking a generalized free wreath product also fails when the amalgam is
+  coamenable and the two input duals are hyperlinear.

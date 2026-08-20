@@ -3,6 +3,8 @@ rg: 2
 id: hyperlinear-near-representation-criterion
 kind: claim
 title: Hyperlinearity is equivalent to an essentially free amenable near representation
+artifacts:
+  - research/artifacts/rounding-stability-and-free-wreath-audit-2026-08-20.md
 distinct_from:
   hyperlinear-wreath-model: that asks to construct microstates for a specific candidate; this is a general external criterion that could be used to do so
   mf-implies-hyperlinear: that concerns the norm-corona-to-tracial implication under this repository's conventions; this is an intrinsic characterization of hyperlinearity
@@ -13,6 +15,12 @@ arXiv:2504.10988 (submitted 2025-04-15, revised 2026-01-05), prove:
 
 > a group is hyperlinear if and only if it admits an essentially free
 > amenable near representation.
+
+In the exact formulation (Theorem B), there are a set `X`, a probability
+charge `mu` on `P(X)`, and a `mu`-near representation
+`pi:G -> U(ell^2(X))`.  Every multiplication law holds on a `mu`-conull set
+of basis vectors at every positive tolerance, and each nonidentity `g` has
+`|<x,pi(g)x>|` arbitrarily small on a `mu`-conull set.
 
 Amenability of a unitary representation is in Bekka's sense, and the paper
 first characterizes it via the existence of an orthonormal basis supporting
