@@ -1572,15 +1572,15 @@ wreath-compression-mf-radical [✓] Exact MF radicals of compression wreath prod
 
 ## Recently touched
 
+- 2026-08-20 · uniform-infinite-pauli-packing-impossible-proof [COMPLETE] Take a convergent subsequence in the compact unitary group
+- 2026-08-20 · uniform-infinite-pauli-packing-impossible [ESTABLISHED] A finite matrix algebra cannot contain an infinite uniformly anticommuting family
+- 2026-08-20 · uniform-hs-site-coherence-for-finite-bi-index-pair [OPEN] A finite-bi-index subgroup pair has dimension-independent Hilbert--Schmidt site coherence
 - 2026-08-20 · two-generator-amitsur-levitzki-dimension-oracle-proof [COMPLETE] Separate the permutation monomials and invoke the standard polynomial identity
 - 2026-08-20 · two-generator-amitsur-levitzki-dimension-oracle [ESTABLISHED] Two free-algebra letters enumerate a nonzero polynomial killed by every finite matrix size
 - 2026-08-20 · schur-residual-commutant-is-a-dimension-oracle-tape-proof [COMPLETE] Evaluate the standard identity in the matrix commutant of the paid Pauli factor
 - 2026-08-20 · schur-residual-commutant-is-a-dimension-oracle-tape [ESTABLISHED] The residual Schur multiplicity commutant is exactly the matrix tape detected by Amitsur--Levitzki
 - 2026-08-20 · residual-schur-trigger-from-groupified-dimension-tape [OPEN] Run the endogenous polynomial-identity stop in the residual commutant
-- 2026-08-20 · residual-commutant-supercritical-schur-trigger [OPEN] A finite self-detecting compressor activates supercritical Schur cells in the residual commutant
-- 2026-08-20 · constant-hs-groupification-of-residual-dimension-tape [OPEN] Finitely groupify the residual dimension tape and activate more Schur cells than its capacity
-- 2026-08-20 · hs-stable-finite-bi-index-kazhdan-pair-exists [OPEN] There is an infinite finite-bi-index Kazhdan subgroup pair with a same-dimension HS-stable acting group
 
 ## Active claims
 
-- 🔒 compressor-covariant-packet-reynolds-return — 112m23s remaining
+- 🔒 compressor-covariant-packet-reynolds-return — 109m21s remaining

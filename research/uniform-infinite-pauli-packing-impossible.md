@@ -27,3 +27,19 @@ finite Pauli window in a different correction, corner, or representation does
 not put an infinite family in one `M_d(C)` and is compatible with
 `infinite-index-does-not-force-supercritical-site-rank`.
 
+There is also an explicit finite packing bound.  Put
+
+```text
+rho=1-epsilon/2>0.
+```
+
+Every finite family satisfying `(UIP1)` has
+
+```text
+|I| <= (1+2/rho)^(2d^2).                                        (UIP2)
+```
+
+Thus a finite-word coherence theorem could replace the infinite conclusion
+by recovery of more than the right side of `(UIP2)`.  This threshold is much
+larger than the logarithmic threshold supplied by exact projective cocycle
+rank, so `(UIP2)` is mainly useful when coherence is naturally orbit-wide.

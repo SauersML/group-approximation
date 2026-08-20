@@ -36,6 +36,12 @@ pair relators give
 
 with the same constant for the entire infinite coset space.
 
+It would already suffice to recover a coherent finite subset larger than the
+packing ceiling `(UIP2)` at the current carrier dimension.  The infinite form
+is stated because finite double-coset transitivity plus exact site coherence
+supplies the whole orbit at once and avoids another dimension-diagonal
+stopping rule.
+
 ## Attempts
 
 - Raw word representatives fail: comparing two representatives of one coset
