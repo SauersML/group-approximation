@@ -1055,7 +1055,7 @@ non-hyperlinear-group [OPEN] Exhibit an explicit non-hyperlinear group
               (…already shown)
             full-v4-radical-crossed-product-has-one-common-latent-coordinate [✓] The full V4 radical crossed product synchronizes all three S3 chart labels
             full-v4-latent-coordinate-has-an-operator-five-fourths-floor [✓] The synchronized V4 radical coordinate has an exact operator five-fourths failure floor
-            disjoint-tag-covariance-controls-cross-gram [✓] Exclusive disjoint finite tag types pay both exit leakage and cross-Gram overlap
+            disjoint-tag-covariance-controls-cross-gram [✓] Disjoint finite tags pay overlap, and parent exclusivity also pays leakage
             constant-repetition-v4-needs-only-disjoint-tags [✓] Constant repetition removes the parent-exclusivity requirement from the V4 tag ledger
             shared-context-disjoint-v4-tagging [OPEN] Give repeated V4 failure atoms pairwise disjoint tags from the shared BCS tuple
             central-packet-sign-supplies-marked-carrier [✓] A fixed packet's central sign supplies the marked carrier without Boone self-reference
@@ -2101,15 +2101,15 @@ wreath-compression-mf-radical [✓] Exact MF radicals of compression wreath prod
 
 ## Recently touched
 
+- 2026-08-20 · disjoint-tag-cross-gram-proof [COMPLETE] Apply the finite intertwiner Laplacian to leakage maps and branch cross products
+- 2026-08-20 · disjoint-tag-covariance-controls-cross-gram [ESTABLISHED] Disjoint finite tags pay overlap, and parent exclusivity also pays leakage
 - 2026-08-20 · shared-context-disjoint-v4-tagging [OPEN] Give repeated V4 failure atoms pairwise disjoint tags from the shared BCS tuple
 - 2026-08-20 · repeated-v4-disjoint-tags-close-fixed-scale-return [OPEN] Close contextual multiplicity return by repeating the V4 surplus into ambient disjoint tags
 - 2026-08-20 · constant-repetition-v4-needs-only-disjoint-tags [ESTABLISHED] Constant repetition removes the parent-exclusivity requirement from the V4 tag ledger
 - 2026-08-20 · constant-repetition-disjoint-tag-ledger-proof [COMPLETE] Repeat the five-fourths source until it exceeds ambient tag capacity
 - 2026-08-20 · schur-predicate-coefficient-couples-to-polynomial-wall [OPEN] Couple the forbidden Schur Reynolds coefficient to the explicit polynomial-compressor wall
 - 2026-08-20 · schur-packet-as-positive-density-compressor-wall [OPEN] Embed the predicate Reynolds difference as the positive-density wall of a property-T compressor
-- 2026-08-20 · polynomial-compressor-has-explicit-finite-quotient-wall [ESTABLISHED] The polynomial property-T compressor has an explicit positive-density finite-quotient wall
-- 2026-08-20 · fixed-finite-quotient-adjoint-walls-are-canonical-trace-null [ESTABLISHED] Every fixed finite-quotient adjoint sector has zero density in canonical microstates
 
 ## Active claims
 
-- 🔒 toeplitz-tail-retains-contextual-schur-density — 123m53s remaining
+- 🔒 toeplitz-tail-retains-contextual-schur-density — 117m35s remaining

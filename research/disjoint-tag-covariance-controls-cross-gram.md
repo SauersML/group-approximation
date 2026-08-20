@@ -2,7 +2,7 @@
 rg: 2
 id: disjoint-tag-covariance-controls-cross-gram
 kind: claim
-title: Exclusive disjoint finite tag types pay both exit leakage and cross-Gram overlap
+title: Disjoint finite tags pay overlap, and parent exclusivity also pays leakage
 distinct_from:
   finite-group-intertwiner-laplacian-gap: that gives the fixed spectral gap for one arbitrary operator; this applies it to branch cross-Gram operators and sums the covariance errors.
   partial-isometry-gram-is-range-overlap: that identifies cross-Gram norm with range overlap but supplies no upper bound; this bounds that overlap from finite tag covariance.
@@ -11,11 +11,10 @@ distinct_from:
 
 Let `H` be a fixed finite group with inverse-closed generating set `S`.  Let
 `rho:H->U(K)` and `pi_i:H->U(V_i)`, `1<=i<=N`, be exact finite-dimensional
-representations.  Let `P` be a projection commuting with `rho(H)`, and assume
+representations, and assume
 
 ```text
-Hom_H(V_j,V_i)=0                 whenever i!=j,
-Hom_H(V_i,(1-P)K)=0              for every i.            (DTC1)
+Hom_H(V_j,V_i)=0                 whenever i!=j.          (DTC1)
 ```
 
 For contractions `T_i:V_i->K`, put
@@ -28,11 +27,8 @@ E_i=sum_(s in S)||D_(i,s)||_2^2.                        (DTC2)
 Then, with `kappa=kappa(H,S)` from the finite-group intertwiner gap,
 
 ```text
-sum_i ||(1-P)T_i||_2^2
- <= (1/kappa) sum_i E_i,                               (DTC3)
-
 sum_(i!=j)||T_i^*T_j||_2^2
- <= (4(N-1)/kappa) sum_i E_i.                          (DTC4)
+ <= (4(N-1)/kappa) sum_i E_i.                          (DTC3)
 ```
 
 The Hilbert--Schmidt norms may all be divided by one common ambient
@@ -41,22 +37,39 @@ range projections `R_i=T_iT_i^*`, then
 
 ```text
 sum_(i!=j)tau(R_iR_j)
- <= (4(N-1)/kappa) sum_i E_i.                          (DTC5)
+ <= (4(N-1)/kappa) sum_i E_i.                          (DTC4)
+```
+
+If, in addition, `P` is a projection commuting with `rho(H)` and
+
+```text
+Hom_H(V_i,(1-P)K)=0              for every i,            (DTC5)
+```
+
+then
+
+```text
+sum_i ||(1-P)T_i||_2^2
+ <= (1/kappa) sum_i E_i.                               (DTC6)
 ```
 
 Thus both error terms in a finite branch-capacity ledger are automatically
 controlled once the branch ranges carry pairwise disjoint types of one fixed
 tag group, those types occur only inside the parent `P`, and the tag
 covariances are defining relators.  In the notation of
-`global-v4-exit-capacity-is-cross-gram-curvature`,
+`global-v4-exit-capacity-is-cross-gram-curvature`, when `(DTC5)` also holds,
 
 ```text
-l+o <= ((4N-3)/kappa) sum_i E_i.                       (DTC6)
+l+o <= ((4N-3)/kappa) sum_i E_i.                       (DTC7)
 ```
 
 No multiplicity classicalization or dimension-dependent constant appears.
 
-For the global V4 programme, `(DTC6)` closes the analytic inequality `(VGC5)`
+For the global V4 programme, `(DTC7)` closes the analytic inequality `(VGC5)`
 conditional on constructing exclusive tag types.  It does not construct the
 tags from the shared contextual tuple, and it does not prove that their
 allowed extensions preserve the exact non-CE tracial model.
+
+Without `(DTC5)`, `(DTC3)--(DTC4)` still close the overlap term.  This is the
+weaker interface used by `constant-repetition-v4-needs-only-disjoint-tags`,
+where the ambient identity replaces the nonlinear parent and leakage is zero.
