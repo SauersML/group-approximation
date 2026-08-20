@@ -658,6 +658,7 @@ import GroupApproximation.Sofic.SoficUltraproduct
 import GroupApproximation.Sofic.HyperlinearMetric
 import GroupApproximation.Sofic.Hyperlinear
 import GroupApproximation.Sofic.HyperlinearAmplification
+import GroupApproximation.Quantum.FiniteMeasurement
 import GroupApproximation.Sofic.HyperlinearNonScalar
 import GroupApproximation.Sofic.HyperlinearScalar
 import GroupApproximation.Sofic.AntipodalTraceExtraction
@@ -1400,6 +1401,35 @@ import GroupApproximation.Analysis.CStarStabilization
 import GroupApproximation.Analysis.KasparovBimodule
 import GroupApproximation.Analysis.KasparovUnitaryEquivalence
 import GroupApproximation.Sofic.FreeCancellationNesting
+import GroupApproximation.Kazhdan.OrbitAverageSpectralGap
+import GroupApproximation.Kazhdan.OrbitAverageFormGap
+import GroupApproximation.Kazhdan.OrbitAverageFiniteControl
+import GroupApproximation.Kazhdan.SharpExistenceSpectralRoute
+import GroupApproximation.Kazhdan.CharTwoTorsionObstruction
+import GroupApproximation.Kazhdan.SharpExistenceCertificateRoute
+import GroupApproximation.Algebra.TreeLikeHyperbolic
+import GroupApproximation.Algebra.ListCommonPrefix
+import GroupApproximation.Algebra.HyperbolicFreeGroup
+import GroupApproximation.Kazhdan.FreeGroupSharpProfile
+import GroupApproximation.Analysis.CStarOrderZero
+import GroupApproximation.Analysis.CStarOrderZeroSupport
+import GroupApproximation.Analysis.DadarlatEilers
+import GroupApproximation.Analysis.KKTheoryKGroups
+import GroupApproximation.Analysis.KKTheoryKasparov
+import GroupApproximation.Analysis.KirchbergRordamCorona
+import GroupApproximation.Analysis.KirchbergRordamEpsilonTest
+import GroupApproximation.Analysis.KirchbergRordamOrderZeroLift
+import GroupApproximation.Analysis.QuasidiagonalCoronaCriterion
+import GroupApproximation.Analysis.QuasidiagonalMatricialTrace
+import GroupApproximation.Analysis.TikuisisWhiteWinterDerivation
+import GroupApproximation.Analysis.TikuisisWhiteWinterProof
+import GroupApproximation.Analysis.UniversalCoefficientTheorem
+import GroupApproximation.Higman.HalfRowEndo
+import GroupApproximation.Sofic.BlockInfix
+import GroupApproximation.Sofic.ConjExprMatching
+import GroupApproximation.Sofic.MatchingSpine
+import GroupApproximation.Sofic.NonCrossingMatching
+import GroupApproximation.Sofic.RelatorBlock
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
