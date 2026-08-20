@@ -45,6 +45,15 @@ least one non-root assignment projection must survive.
   separators generate the full matrix algebra.  The open construction is to
   manufacture that involution with finite group-word support in the escaped
   corner.
+- **Commuting-separator subcase: reduced to max flow.**
+  `commuting-separator-chord-is-capacitated-transport` proves that if the two
+  transported separator algebras commute, the common involution exists
+  exactly when one finite integral transportation problem satisfies its cut
+  inequalities.  Joint block dimensions are capacities and the two
+  conditional rank tables are its demands.  A successful construction may
+  therefore target commuting escaped separators with adequate joint block
+  capacity; otherwise it must solve the genuinely noncommuting relative-
+  commutant problem.
 - **Finite target.**  Compute the double-orbit condition for the rational
   context partitions and realize a successful pair of endpoint regauges by
   free-phase corner unitaries.  Failure of every such double orbit would be a
