@@ -3,6 +3,8 @@ rg: 2
 id: constant-depth-schur-lift-of-doubling-tape
 kind: claim
 title: Lift only a constant initial segment of the BCS doubling tape through one fixed finite Schur packet
+artifacts:
+  - research/artifacts/mehta-slofstra-zhao-positivity-ingestion-2026-08-20.md
 distinct_from:
   finite-dimensional-schur-lift-of-doubling-tape: that asks for one cell at every level and exactification uniform in an unbounded accumulated Clifford rank; this fixes the depth before the group is presented and exactifies the resulting finite packet as one fixed finite group.
   dimension-reported-schur-replica-halting-compiler: that chooses a challenge size from the witness dimension; this depth is chosen only from fixed marked-interface and contraction constants.
@@ -48,7 +50,29 @@ globalization obstruction.  It removes the **uniform-in-depth** and
 **finite-presentation shift** obligations, leaving a bounded compatibility
 problem.
 
+For this bounded problem the source cell is completely explicit.  In the
+Mehta--Slofstra--Zhao presentation its only nonlinear gate is
+
+```text
+(P+X_tilde P X_tilde-U P U^*)
+  (1+J X_tilde Z_tilde X_tilde Z_tilde)=0.                       (CDS2)
+```
+
+Together with the fixed corner `Q`, conjugation by `U` derives the carrier
+identity at every preterminal level.  Thus a candidate constant-depth lift
+can be audited against one named finite star-polynomial packet; no unspecified
+PCP compiler remains hidden in the source.  What `(CDS2)` does not provide is
+an ordinary group word enforcing the additive equality.
+
 ## Attempts
+
+- **Exact source gate isolated.**
+  `msz-clifford-machine-skeleton-has-polynomial-fillings` supplies the
+  addressed commutator phase and polynomial group fillings, while
+  `msz-polynomial-doubling-star-algebra-compiler` supplies `(CDS2)` and the
+  weighted contraction.  Their splice is still additive.  At fixed depth the
+  remaining search is therefore a finite groupification of `(CDS2)`, not a
+  reconstruction of the machine or of the analytic ladder.
 
 - **Literal nested residual factors.**  Even for constant depth, assigning
   the next packet to the full residual multiplicity space forces its fresh

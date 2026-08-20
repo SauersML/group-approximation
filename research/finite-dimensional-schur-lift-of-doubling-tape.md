@@ -3,6 +3,8 @@ rg: 2
 id: finite-dimensional-schur-lift-of-doubling-tape
 kind: claim
 title: Lift the existing BCS projection-doubling tape through self-similar Schur cells in matrix microstates
+artifacts:
+  - research/artifacts/mehta-slofstra-zhao-positivity-ingestion-2026-08-20.md
 distinct_from:
   fixed-scale-contextual-multiplicity-holonomy: that asks for a new recurrent network for a generic non-CE BCS; this reuses the explicit shift and polynomial-cost doubling recurrence already present in the self-referential BCS.
   uniform-halting-pauli-word-oracle: that must activate an unbounded verifier size after a halt; every predicate packet here is fixed once and for all.
@@ -55,7 +57,22 @@ is `(SDL2)`. The last step must use integral/rank information specific to
 matrices; a trace-functorial comparison would violate
 `trace-functorial-bcs-signal-groupification-impossible`.
 
+The additive analytic ledger is no longer part of the uncertainty.
+`msz-polynomial-doubling-star-algebra-compiler` proves the concrete
+`lambda=1/sqrt(2)` recurrence with polynomial relator-decomposition cost, and
+`msz-polynomial-doubling-survives-synchronous-states` shows that the same
+weighted argument survives even when tracial cyclicity is replaced by
+generator synchrony.  The open burden here is exactly the matrix-only
+**group-word lift** of that additive carrier identity and its marked
+interface.
+
 ## Attempts
+
+- **MSZ analytic state transfer. Solved upstream.**  The original source
+  already controls conjugation, mixed cross terms, and polynomial
+  decomposition error in synchronous states.  Reproving traciality or
+  classically rounding the BCS state cannot address this hole; the remaining
+  obstruction is that a sum of projection words is not a group word.
 
 - **Constant-depth reduction.**  The infinite-depth formulation is stronger
   than the nonhyperlinearity endpoint needs.

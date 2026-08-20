@@ -42,6 +42,15 @@ concentrated unresolved groupification step.
   quantitatively.**  The degree and coefficient mass of `p_k` grow with the
   unknown multiplicity `k`, so telescoping its evaluation does not give the
   universal constant in clause 4.
+- **Polynomial machine transport plus contraction. Concrete but additive.**
+  `msz-clifford-machine-skeleton-has-polynomial-fillings` gives an explicit
+  finitely presented Clifford computation tape with polynomial fillings, and
+  `msz-polynomial-doubling-survives-synchronous-states` proves that an
+  exponential carrier contraction absorbs exactly such polynomial loss.
+  This shows that a weighted-ladder alternative need not satisfy clause 4
+  level by level.  The source's contraction gate is an additive
+  star-polynomial relation, however, so it does not yet implement that
+  alternative with group words or attach it to the marked Boone word.
 - **Conjugate terminal flag is only the last step.**  It makes the norm of the
   final conjugate equal to the norm of one base relator, but does not control
   the semantic comparison between the marked word and that conjugate.

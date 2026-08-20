@@ -29,6 +29,13 @@ hardware is dormant rather than inconsistent.
 - Naming all `2^N` linearity questions after the halt is not a finite
   presentation compiler; quantitative Higman embedding makes their derivation
   cost depend on runtime.
+- The exact machine-addressing subproblem has a concrete model:
+  `msz-clifford-machine-skeleton-has-polynomial-fillings` exposes one
+  computation-indexed Pauli pair in a finitely presented involution group and
+  gives polynomial fillings for its commutator phase.  This does not expose
+  the verifier's random linearity questions or turn polynomial pointwise cost
+  into the constant average bound required here, but future constructions can
+  reuse the skeleton instead of rebuilding a Turing HNN tape.
 - Encoding questions by a tape action is sufficient only if uniformly random
   BLR triples and Magic-Square contexts are conjugates of finitely many local
   templates.  Raw shift/wreath encodings lose representative coherence.
