@@ -10,6 +10,8 @@ requires:
   - context-local-schur-packet-marked-extension
   - schur-child-toeplitz-morita-wire
   - oriented-schur-child-branching-identity
+  - branch-reset-amalgam-preserves-mark-and-balances-types
+  - hnn-selector-chart-transport-preserves-mark-and-types
   - toeplitz-schur-child-masa-recurrence
   - uniform-relative-clifford-tape-cell
 ---

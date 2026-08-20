@@ -44,9 +44,12 @@ candidate: controls `q_(N+1)` and `Jq_(N+1)` activate dual Pauli flips on the
 two branches, turning the old selector center into a fixed full matrix factor.
 `branch-reset-amalgam-preserves-mark-and-balances-types` supplies marked
 completeness and a dimension-free payment for the forced balance. The sole
-remaining interface is to identify the post-reset selector chart with the
-next Fanizza context at the cost `(TCM1)` without asserting equality of
-noncommuting observables.
+remaining selector interface is supplied by
+`hnn-selector-chart-transport-preserves-mark-and-types`: an HNN edge makes
+the post-reset chart conjugate to the next Fanizza context and gives the
+type-vector part of `(TCM1)` without asserting equality or commutation. The
+remaining content of this claim is now the inactive-sector payment in clause
+3 and its compatibility with the Fanizza `(FDB1)` decomposition.
 
 Combined with the oriented child-branching identity, `(TCM1)` gives
 
@@ -75,3 +78,7 @@ nonisomorphic finite packet groups.
 - Branch-controlled Pauli reset: active. It removes the old center using only
   affine commutator controls, and its amalgam now preserves the mark. What
   remains is the post-reset-to-next-context type-vector estimate.
+- HNN selector-chart transport closes the post-reset type-vector estimate.
+  It deliberately preserves multiplicity; the factor two has already been
+  created by child restriction. The live calculation is only the leakage
+  bound for inactive Fanizza sectors.
