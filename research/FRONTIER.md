@@ -2218,11 +2218,11 @@ wreath-compression-mf-radical [✓] Exact MF radicals of compression wreath prod
 - 2026-08-20 · weyl-derivative-reset-proof [COMPLETE] Multiply the two shifted commutator forms and use the transverse old selector
 - 2026-08-20 · weyl-derivative-reset-preserves-schur-spin-scale [ESTABLISHED] An invertible selector derivative gives a transverse Weyl reset at the unchanged Schur spin scale
 - 2026-08-20 · reciprocal-basis-builds-invertible-direction-compiler [COMPLETE] Reciprocal vectors of an affine finite-field linearly independent cube give the compiler
-- 2026-08-20 · nonhyperlinear-from-a4-root-energy-ellipse [OPEN] The optimized root-energy ellipse contradicts the 19243 S3 distance wall
-- 2026-08-20 · nonhyperlinear-from-a4-holonomy-coherence-gap [OPEN] The exact-regular A4 holonomy gap contradicts the packet-forced S3 floor
 - 2026-08-20 · invertible-direction-weyl-renewal-program [OPEN] Sequential derivative resets are a candidate finite selector-renewal backend
 - 2026-08-20 · invertible-direction-schur-rank-compiler [ESTABLISHED] Every Boolean predicate has a Schur rank compiler with invertible selector derivatives
 - 2026-08-20 · fresh-selector-renewal-after-symplectic-chart-reset [OPEN] Renew the selector tuple after the common symplectic chart reset
+- 2026-08-20 · nonhyperlinear-from-a4-root-energy-ellipse [OPEN] The optimized root-energy ellipse contradicts the 19243 S3 distance wall
+- 2026-08-20 · nonhyperlinear-from-a4-holonomy-coherence-gap [OPEN] The exact-regular A4 holonomy gap contradicts the packet-forced S3 floor
 
 ## Active claims
 
