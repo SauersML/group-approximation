@@ -4,7 +4,6 @@ id: self-referential-bcs-nonzero-signal-collapse
 kind: claim
 title: A computable finite BCS has a nonzero projection erased by every asymptotically perfect finite-dimensional strategy
 distinct_from:
-  self-referential-perfect-zpc-irs-gap: that produces a perfect generalized IRS strategy separated from finite-dimensional quantum strategies; this produces one algebraically nonzero BCS projection with an explicit linear signal-collapse modulus.
   non-ce-bcs-has-robust-approximate-energy-gap: that starts from a tracial BCS with no Connes-embeddable trace and forces total contextual defect; this isolates one marked projection but does not assert that the resulting BCS algebra has any trace.
 ---
 

@@ -1439,6 +1439,10 @@ import GroupApproximation.Higman.RecursivePresentationBridge
 import GroupApproximation.Higman.RelatorEnumeration
 import GroupApproximation.Higman.RelatorRE
 import GroupApproximation.Sofic.GreendlingerBeyond
+import GroupApproximation.Algebra.HNNBridgeFreeness
+import GroupApproximation.Algebra.HNNBridgeTorsionFree
+import GroupApproximation.Analysis.CStarCompactSelfModule
+import GroupApproximation.Sofic.GreendlingerMaxConjugator
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group

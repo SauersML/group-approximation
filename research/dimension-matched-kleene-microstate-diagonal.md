@@ -4,7 +4,6 @@ id: dimension-matched-kleene-microstate-diagonal
 kind: claim
 title: Dimension-matched halting soundness is enough for a self-referential nonhyperlinear group
 distinct_from:
-  self-referential-perfect-zpc-irs-gap: that diagonalizes a computable game-value upper hierarchy to obtain one finite game separation; this diagonalizes directly against finite-dimensional marked group microstates and records the witness dimension as machine output.
   residual-commutant-supercritical-schur-trigger: that asks one fixed group to detect the residual dimension inside every candidate microstate; this shows a machine-indexed compiler need only defeat the single dimension reported by its own fixed-point search.
 ---
 

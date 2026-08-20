@@ -5,7 +5,6 @@ kind: claim
 title: Computable instance-dependent microstate thresholds suffice for the Kleene diagonal
 distinct_from:
   dimension-matched-kleene-microstate-diagonal: that assumes one universal defect and separation threshold for every source machine; this permits arbitrary positive computable thresholds attached to the source code.
-  self-referential-perfect-zpc-irs-gap: that diagonalizes a computable game-value upper hierarchy; this diagonalizes directly against marked finite-dimensional group microstates.
 ---
 
 Suppose a total computable compiler sends every Turing machine `M` to
