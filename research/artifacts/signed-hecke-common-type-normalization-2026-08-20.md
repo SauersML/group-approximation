@@ -211,12 +211,59 @@ The most immediate ways to use that subgroup have now been audited exactly:
    embeds in the same Formanek--Procesi group by
    `(g,h)|->(theta(g),h)`.  Britton membership reflection proves injectivity.
    This is `graph-endomorphism-phase-hnn-embeds-formanek-procesi`.
+4. The apparent residual case of nonextendable partial graph maps is also
+   residually finite.  Let `A` be any finitely generated subgroup of a
+   finite-rank free group `L`, let `P` be finitely generated and residually
+   finite, and take arbitrary homomorphisms `Theta_0,Theta_1:A->P`.  Then
+
+   ```text
+   <L times P,t |
+    t(a,Theta_0(a))t^(-1)=(a,Theta_1(a))>
+   ```
+
+   is residually finite.  A finite phase quotient preserves every pinch whose
+   free coordinate lies in `A`.  Marshall Hall covers simultaneously make
+   both partial maps descend and keep every other free-coordinate syllable
+   outside the image of `A`.  The chosen word therefore survives in an HNN of
+   a finite group and then in a finite quotient.  This is
+   `partial-phase-graph-hnn-is-residually-finite`.
+5. Moving the faithful support between two whole direct factors does not help.
+   For arbitrary finitely generated residually finite `A,P` and auxiliary
+   maps `Theta_0,Theta_1:A->P`, the HNN between
+
+   ```text
+   {(a,1,Theta_0(a))}  and  {(1,a,Theta_1(a))}
+   ```
+
+   inside `A times A times P` is residually finite.  One common finite quotient
+   of `A` makes both phase maps descend and preserves every faithful-coordinate
+   pinch test.  This is
+   `phase-coordinate-switch-hnn-is-residually-finite`.
+6. The same conclusion holds for the actual proper supports in `(FPS1)`.
+   More generally, if one abstract finite-rank free group is embedded as a
+   free factor in each of two ambient free groups, then the HNN between its two
+   graph embeddings is residually finite, with arbitrary auxiliary phase maps.
+   One common finite quotient of the support extends across each free
+   complement and preserves the finitely many forbidden memberships of a
+   chosen Britton word.  This is
+   `free-factor-phase-graph-hnn-is-residually-finite`.
+7. The first nonprimitive power-pair test has exact finite marked models.  For
+   primes not dividing `mn`, the HNN sending each `x_i` to `x_i^m y_i^n` acts
+   exactly on two copies of the finite Heisenberg group, and the free
+   commutator remains nontrivial.  Thus proper, nonextendable power images do
+   not alone create a finite-dimensional collapse.  This is
+   `power-pair-phase-hnn-has-finite-heisenberg-mark-models`.
 
 Together with `amenable-edge-hnn-preserves-hyperlinearity`, this leaves a
 much narrower live interface.  A decisive infinite-edge chord must use a
 nonamenable proper support and couple multiple phase factors non-graphically:
 it cannot be a symmetric factor identification, a graph of one injective
-endomorphism into a commuting copy, an amenable edge, or an endomorphism of
-the whole base.  It must also fix both separator algebras and carry genuine
-cycle holonomy.  This surviving requirement is recorded in
+endomorphism into a commuting copy, a partial graph over one unchanged
+faithful free coordinate, a switch between whole faithful direct factors, an
+amenable edge, a switch between the natural free-factor supports, or an
+endomorphism of the whole base.  It must instead use a nonprimitive faithful-
+coordinate embedding (or leave finite-product free-phase geometry), fix both
+separator algebras, and carry genuine cycle holonomy.  Its marked packet must
+also be profinitely incompatible with the edge transport; mere
+nonprimitivity is not enough.  This surviving requirement is recorded in
 `infinite-edge-common-commutant-for-first-chord`.

@@ -84,18 +84,44 @@ for algebraic Murray--von Neumann equivalence witnessed by group translates.
   depth.  `finite-free-phase-product-embedding-has-an-injective-coordinate`
   proves that an injective map of a free support group into a finite product
   of free groups must be injective in one coordinate.  Thus every finite-layer
-  transport is a graph over one embedded free subgroup; the remaining live
-  case is precisely when the other coordinate maps on that subgroup do not
-  extend to endomorphisms of the ambient free factor.
+  transport is a graph over one embedded free subgroup.  This initially
+  leaves partial auxiliary maps which need not extend to endomorphisms of the
+  ambient free factor.
+- **Nonextendable partial graph data with a fixed faithful coordinate:** also
+  residually finite.  `partial-phase-graph-hnn-is-residually-finite` permits
+  two arbitrary homomorphisms from a finitely generated subgroup of the free
+  coordinate into all remaining phase factors.  Hall covers make the partial
+  maps descend while preserving every Britton pinch.  Hence failure to extend
+  the auxiliary maps to ambient endomorphisms is not enough.
+- **Switching between two whole faithful coordinates:** still residually
+  finite.  `phase-coordinate-switch-hnn-is-residually-finite` uses the same
+  finite quotient of the abstract support group in both direct factors and
+  permits arbitrary auxiliary phase maps at both ends.  Thus moving an entire
+  fresh free-phase factor to another entire factor does not create the chord.
+- **Switching the natural proper free-factor supports:** also residually
+  finite.  `free-factor-phase-graph-hnn-is-residually-finite` synchronizes one
+  finite quotient of the abstract support across the two free complements,
+  while arbitrary auxiliary phase maps descend.  Since `(FPS1)` identifies
+  exactly such a free factor, the most literal infinite-edge transport of the
+  actual escaped blocks is now fenced.
+- **Coprime proper power embeddings:** nonprimitive is not sufficient by
+  itself.  `power-pair-phase-hnn-has-finite-heisenberg-mark-models` constructs
+  exact finite permutation models of the first explicit power-pair edge in
+  which the free commutator remains nontrivial.  It does not prove the HNN
+  hyperlinear, but it rules out finite-dimensional collapse arguments based
+  only on properness of both coordinate images.
 - **One unconstrained stable letter:** it can conjugate `X_0` to `X_1`, but
   does not put their common value in both separator commutants and therefore
   breaks a parent attachment.
 - **Live attack:** couple finitely generated nonamenable proper infinite
-  support subgroups asymmetrically so that `(IEC2)--(IEC3)` hold while the height kernel is not
-  the path graph product above or a graph-endomorphism subgroup of a
-  Formanek--Procesi HNN.  The transport must fix the separator atoms, must not
-  extend to an injective endomorphism of the whole hyperlinear base, and must
-  use nonextendable partial-graph data on a proper embedded free subgroup (or
-  leave finite-product free-phase geometry entirely) so that it carries
-  genuine cycle holonomy rather than merely renaming or duplicating fresh
-  free factors.
+  support subgroups asymmetrically so that `(IEC2)--(IEC3)` hold while the
+  height kernel is not the path graph product above.  The transport must fix
+  the separator atoms and must embed the faithful free coordinate as a proper
+  non-free-factor subgroup at least at one end, use embeddings with no
+  compatible faithful coordinate, or leave finite-product free-phase geometry
+  entirely.  Fixed-coordinate partial graphs, whole-coordinate switches, and
+  switches between the natural proper free-factor supports are all residually
+  finite.  The surviving edge must therefore carry genuine nonprimitive
+  subgroup distortion and cycle holonomy in the faithful coordinate itself,
+  and its marked packet must be incompatible with the relevant finite edge
+  models rather than merely absent from the infinite subgroup image.
