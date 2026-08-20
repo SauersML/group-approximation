@@ -67,6 +67,13 @@ longer incorrectly asked to reset selector density.
   `E`-module.  Thus adjoining selector-dressed elements cannot repair the
   minimal endpoint.  The remaining finite-depth attack must transport a
   proper child corner before the flip is adjoined.
+- **Flip-free endpoint: positive local survivor.**
+  `full-q-masa-forgets-selectors-retains-branches` takes the whole commuting
+  `q`-word subgroup instead.  It intersects the old selector center only in
+  `<J>`, and it contains every corrected sectorwise child word `Q_x`, so the
+  two branch supports remain disjoint.  This does not rescue the Thompson
+  Pauli endpoint—the flip is still forbidden—but it gives the active
+  constant-depth Morita-reset interface.
 - **Finite covariance syntax.**  Once the endpoint passes the intersection
   test, identify its Pauli pair with the base Thompson lamp and centralize the
   pointwise stabilizer of the addressed site.  Thompson high transitivity
