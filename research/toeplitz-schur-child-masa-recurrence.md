@@ -42,10 +42,11 @@ endpoint chart or projective child holonomy.
 `branch-controlled-pauli-selector-reset` now supplies an explicit finite
 candidate: controls `q_(N+1)` and `Jq_(N+1)` activate dual Pauli flips on the
 two branches, turning the old selector center into a fixed full matrix factor.
-The unresolved completeness check is to realize the forced balanced spectra
-in one induced Fanizza model without erasing the mark; the unresolved
-soundness check is to align the post-reset multiplicity type with the next
-packet at the cost `(TCM1)`.
+`branch-reset-amalgam-preserves-mark-and-balances-types` supplies marked
+completeness and a dimension-free payment for the forced balance. The sole
+remaining interface is to identify the post-reset selector chart with the
+next Fanizza context at the cost `(TCM1)` without asserting equality of
+noncommuting observables.
 
 Combined with the oriented child-branching identity, `(TCM1)` gives
 
@@ -72,5 +73,5 @@ nonisomorphic finite packet groups.
   center reset is included. It forces every future selector to commute with
   every past selector and fails the mandatory contextuality test.
 - Branch-controlled Pauli reset: active. It removes the old center using only
-  affine commutator controls. What remains is a finite context atlas proving
-  marked completeness and the post-reset type-vector estimate.
+  affine commutator controls, and its amalgam now preserves the mark. What
+  remains is the post-reset-to-next-context type-vector estimate.

@@ -29,9 +29,9 @@ the selector algebra. On `q=+1`, the pairs `(z_i,s_i^+)` are Pauli and the
 center and the appropriate reset family generate a full matrix factor
 `M_(2^k)`, whose commutant forgets the old selector characters.
 
-The reset is uniform and finite because the context arity `k` is fixed. It
-does not by itself prove marked completeness: adjoining the reset forces
-balanced old-selector spectra inside each relevant child branch. A global
-compiler must realize those balances by a context atlas or infinite induced
-model while preserving the Fanizza mark.
-
+The reset is uniform and finite because the context arity `k` is fixed. It is
+attached to a marked base by amalgamation, not by quotienting that base by
+extra conjugacy relations. `branch-reset-amalgam-preserves-mark-and-balances-types`
+proves that this preserves the mark and charges the forced spectral balance.
+The remaining global issue is identification of the reset chart with the next
+Fanizza context.
