@@ -105,6 +105,11 @@ algebraic commutation problem.
 - Repeat the shifted packet head without changing its child: this now has an
   exact rank-two ceiling.  It preserves forbidden mass perfectly but produces
   only one Pauli capacity bit, irrespective of depth.
+- Lift independent finite heads to a common Steinberg `K_2` sign: this also
+  fails for the ordinary algebraic Toeplitz ring.  The localization boundary
+  in `toeplitz-swindle-kills-head-k2-sign` makes the compact-head map
+  `K_2(M_infinity(R))->K_2(T_R)` zero.  A viable central extension would have
+  to use a genuinely global cocycle, not the finite-corner Steinberg symbol.
 - Dinur's preprocess-power-compose architecture is now isolated as
   `hs-schur-packet-gap-amplification`. Classical graph powering supplies the
   needed anti-localization, while Schur packet composition is supposed to
