@@ -27,6 +27,7 @@ on:
     branches: [main]
     paths:
       - 'non_mf_groups_exist.tex'
+      - '.github/oai/run-nonmf-fix'
   schedule:
     # Catch-up pass: rebuild only if the PDF is older than the tex.
     - cron: '3,18,33,48 * * * *'
@@ -52,7 +53,9 @@ env:
 jobs:
   apply_non_mf_fix:
     name: Apply audited non-MF manuscript fix
-    if: github.event_name == 'issues' && github.event.issue.title == 'oai: apply audited non-MF manuscript fix v2'
+    if: >-
+      (github.event_name == 'issues' && github.event.issue.title == 'oai: apply audited non-MF manuscript fix v2') ||
+      (github.event_name == 'push' && github.event.head_commit.message == 'chore: trigger audited non-MF manuscript fix')
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
@@ -87,7 +90,7 @@ jobs:
           python3 scripts/check_non_mf_proof_ledger.py
 
           git cat-file blob 1ba630eeb4e226b695b253cd11abd5bcd67b1736 > .github/workflows/draft-non-mf-pdf.yml
-          git rm .github/oai/nonmf-fix.* .github/workflows/apply-nonmf-main-fix.yml
+          git rm .github/oai/nonmf-fix.* .github/oai/run-nonmf-fix .github/workflows/apply-nonmf-main-fix.yml
           git add non_mf_groups_exist.tex metadata/NON_MF_PROOF_LEDGER.md .github/workflows/draft-non-mf-pdf.yml
           git diff --cached --check
           git config user.name 'github-actions[bot]'
@@ -113,7 +116,9 @@ jobs:
 
   draft:
     name: Compile and publish the draft PDF
-    if: github.event_name != 'issues'
+    if: >-
+      github.event_name != 'issues' &&
+      !(github.event_name == 'push' && github.event.head_commit.message == 'chore: trigger audited non-MF manuscript fix')
     runs-on: ubuntu-latest
     timeout-minutes: 30
     steps:
