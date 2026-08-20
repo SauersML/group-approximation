@@ -84,21 +84,21 @@ theorem norm_sum_star_mul_le {ι : Type u} (s : Finset ι) (f g : ι → B) :
   have h := (piSelf (↥s) B).norm_inner_le (fun i : ↥s => f (i : ι))
     (fun i : ↥s => g (i : ι))
   have hfg : (piSelf (↥s) B).inner (fun i : ↥s => f (i : ι))
-      (fun i : ↥s => g (i : ι)) = ∑ i ∈ s, star (f i) * g i := by
+    (fun i : ↥s => g (i : ι)) = ∑ i ∈ s, star (f i) * g i := by
     show (∑ i : ↥s, star (f (i : ι)) * g (i : ι)) = ∑ i ∈ s, star (f i) * g i
-    rw [Finset.sum_coe_sort]
+    rw [← Finset.sum_coe_sort s]
   have hff : (piSelf (↥s) B).norm (fun i : ↥s => f (i : ι))
       = Real.sqrt ‖∑ i ∈ s, star (f i) * f i‖ := by
     rw [CStarModule.norm_def]
     congr 1
     show ‖∑ i : ↥s, star (f (i : ι)) * f (i : ι)‖ = ‖∑ i ∈ s, star (f i) * f i‖
-    rw [Finset.sum_coe_sort]
+    rw [← Finset.sum_coe_sort s]
   have hgg : (piSelf (↥s) B).norm (fun i : ↥s => g (i : ι))
       = Real.sqrt ‖∑ i ∈ s, star (g i) * g i‖ := by
     rw [CStarModule.norm_def]
     congr 1
     show ‖∑ i : ↥s, star (g (i : ι)) * g (i : ι)‖ = ‖∑ i ∈ s, star (g i) * g i‖
-    rw [Finset.sum_coe_sort]
+    rw [← Finset.sum_coe_sort s]
   rw [hfg, hff, hgg] at h
   exact h
 
@@ -107,6 +107,7 @@ theorem summable_star_mul {ι : Type u} {f g : ι → B}
     (hf : Summable fun i => star (f i) * f i)
     (hg : Summable fun i => star (g i) * g i) :
     Summable fun i => star (f i) * g i := by
+  classical
   rw [summable_iff_vanishing_norm]
   intro ε hε
   obtain ⟨s₁, h₁⟩ := summable_iff_vanishing_norm.mp hf ε hε
@@ -144,7 +145,7 @@ def summableSubmodule (ι : Type u) (B : Type v) [NonUnitalCStarAlgebra B]
     exact OrderZero.star_add_mul_self_le
   zero_mem' := by
     show Summable fun i : ι => star ((0 : ι → B) i) * (0 : ι → B) i
-    simpa using summable_zero
+    simp
   smul_mem' c f hf := by
     have hf' : Summable fun i => star (f i) * f i := hf
     refine Summable.congr (hf'.const_smul (star c * c)) fun i => ?_
@@ -163,7 +164,7 @@ theorem summable_coe {ι : Type u} (f : ↥(summableSubmodule ι B)) :
 
 Every clause about the inner product is a `tsum` identity, and every one of
 them needs the cross terms to be summable, which is `summable_star_mul`. -/
-def standardModule (ι : Type u) (B : Type v) [NonUnitalCStarAlgebra B]
+noncomputable def standardModule (ι : Type u) (B : Type v) [NonUnitalCStarAlgebra B]
     [PartialOrder B] [StarOrderedRing B] : CStarModule.{v, max u v} B where
   carrier := ↥(summableSubmodule ι B)
   act f b := ⟨fun i => f.1 i * b, by
@@ -173,7 +174,7 @@ def standardModule (ι : Type u) (B : Type v) [NonUnitalCStarAlgebra B]
       have h := (summable_coe f).map
         (AddMonoidHom.mk' (fun x : B => star b * x * b)
           (fun x y => by rw [mul_add, add_mul])) hcont
-      simpa using h
+      exact h.congr fun i => rfl
     refine Summable.congr hmap fun i => ?_
     show star b * (star (f.1 i) * f.1 i) * b = star (f.1 i * b) * (f.1 i * b)
     rw [star_mul]
