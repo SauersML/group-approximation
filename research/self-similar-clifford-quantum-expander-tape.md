@@ -49,3 +49,11 @@ constant independent of the existing Clifford rank.
   `conjugate-local-signs-preserve-marked-carrier` proves that this retains the
   marked separation and carrier trace exactly, so global centrality is not
   required.
+- **Thompson--Nekrashevych frame.**
+  `nekrashevych-clifford-sign-tape` isolates a classical home for internal
+  subtree transport and polylogarithmic addressing. Its prior algebraic gate
+  is `self-similar-central-sign-cocycle`: the sign cannot satisfy the
+  untwisted recursion `J=(J,J)`, by
+  `untwisted-sign-replication-flips-minus`. If the cocycle is found, the
+  remaining soundness obligation is the fixed sibling covariance certificate
+  `subtree-trace-independence-certificate`.

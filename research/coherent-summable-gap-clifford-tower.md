@@ -86,3 +86,9 @@ actuator and Fanizza first-hit accounting should be combined.
   summable control of mass lost when passing from one tail carrier to the
   next; polynomial local word costs must be paired with geometric first-hit
   weights.
+- **Twisted Nekrashevych alternative:**
+  `nekrashevych-clifford-sign-tape` supplies internal subtree transport and
+  relative CAR cells if its self-similar central cocycle exists. The sign twist
+  is mandatory: `untwisted-sign-replication-flips-minus` rules out copying a
+  negative sign by the plain product of child signs. Quantitative coherence is
+  then `subtree-trace-independence-certificate`.

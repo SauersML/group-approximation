@@ -62,3 +62,9 @@ bounded-complexity theorem target and a finite coefficient search problem.
   matricial invariant-theory argument.  Reject immediately any derivation that
   is valid in every tracial von Neumann algebra, by
   `global-tracial-positivity-cannot-separate-group-trace`.
+- **Do not use standard tracial NPA as the proof cone.**
+  `tracial-npa-cannot-separate-canonical-trace` proves that canonical group
+  moments are feasible at every such level, so its dual cannot be the desired
+  negative separator. `matricial-radius-nine-dual-extraction` is the corrected
+  campaign: numerics may discover coefficients, but replay must contain a
+  genuinely matrix-specific invariant-theory or exterior-power step.

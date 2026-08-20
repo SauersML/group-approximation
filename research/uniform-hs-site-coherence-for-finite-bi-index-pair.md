@@ -52,6 +52,10 @@ stopping rule.
   an adjoint spectral gap for `H`.  This implication is now proved by
   `hs-stable-kazhdan-finite-bi-index-pair-gives-site-coherence`; the remaining
   structural search is `hs-stable-finite-bi-index-kazhdan-pair-exists`.
+- `hyperlinear-hs-stable-is-residually-finite` shows that this package is
+  noncircular only for residually finite ambient groups.  Proving strict
+  stability for any non-residually-finite proposed ambient would already
+  establish nonhyperlinearity before the Clifford tape is attached.
 - Flexible stabilization must also preserve a positive fraction of the
   marked `J=-1` carrier; arbitrary dimension padding would reintroduce the
   dilution being attacked.

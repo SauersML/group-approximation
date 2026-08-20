@@ -73,3 +73,10 @@ stable syndromes and charges those labels to bounded-overlap relator tests.
 - **What does not suffice.** A positive-density topological index without the
   displayed local-payment inequality still obstructs repair rather than the
   existence of approximate representations; that dead end remains excluded.
+- **Quantum-aware index route.** Random-hyperplane bits followed by classical
+  cosystolic soundness are invalid: exact quantum solutions can round to many
+  violated classical checks. `quantum-context-frame-index` instead asks for a
+  stable local `Z_2` index of paired context frames which vanishes on every
+  coherent quantum solution. `balanced-product-frame-index-expansion` turns a
+  marked global twist into positive index density, and
+  `quantum-frame-index-syndrome-route` supplies the bounded-overlap payment.

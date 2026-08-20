@@ -40,7 +40,9 @@ chart. Raw `q_(N+1)` eigenspaces are not admissible substitutes.
 This target is deliberately finite and quantitative. It asks only for the
 remaining compatibility of the already explicit reset and HNN cells around
 one recurrent atlas, not for a new nonlinear scalar group word and not for
-Fanizza inactive-sector payment.
+Fanizza inactive-sector payment.  The atlas must now contain a genuinely
+non-type-preserving return between its HNN charts: pure HNN transport is
+provably stationary by `reset-ray-hnn-return-is-stationary`.
 
 ## Attempts
 
@@ -58,3 +60,14 @@ Fanizza inactive-sector payment.
   type-preserving edge. The remaining atlas problem is to make these local
   corrections share one recurrent carrier while retaining `(RSA1)` with
   bounded overlap.
+- **Balanced reset plus HNN alone: fails exactly.**
+  `reset-ray-hnn-return-is-stationary` computes the sole reset ray.  The HNN
+  edge keeps its scalar `n` fixed, whereas the `Q` child has surplus
+  `2K_1n`; consequently `(RSA3)` fails at zero error.  A proper corner or
+  one-sided compressor must sit between the child chart and the next full
+  packet.  Selector renewal is solved, but multiplicity return is not.
+- **Proper-corner route.**  `reset-schur-atlas-via-toeplitz-proper-corner`
+  now records the corrected composition.  Its only genuinely new analytic
+  input is `toeplitz-tail-retains-contextual-schur-density`: the tail must
+  return the predicate-oriented density, not merely the structural Reynolds
+  wall.

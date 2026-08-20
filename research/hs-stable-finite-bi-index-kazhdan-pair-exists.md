@@ -32,6 +32,14 @@ Moreover `H` cannot be a retract of `L` in the noncircular hyperlinear case:
 same-dimension HS stability descends to retracts, while an infinite
 hyperlinear property-(T) group is HS-unstable.
 
+There is now a second compulsory screen.  By
+`hyperlinear-hs-stable-is-residually-finite`, a hyperlinear ambient `L` with
+the required strict stability must be residually finite.  Any proposed
+non-residually-finite ambient already solves the root by itself if its
+stability proof is correct; it is not a cheaper input to the tape.  This
+excludes the standard infinite simple/highly transitive envelopes from the
+noncircular search.
+
 ## Attempts
 
 - Finite stabilizers are unusable: in an infinite transitive finite-rank
@@ -51,3 +59,8 @@ hyperlinear property-(T) group is HS-unstable.
 - Split extensions and free products with a retraction onto `H` are ruled out
   by `hs-stability-descends-to-retracts`; any viable inclusion must be
   genuinely nonsplit.
+- Non-residually-finite highly transitive and Thompson-like ambient groups are
+  also not neutral candidates: strict HS stability would make them
+  nonhyperlinear immediately.  The genuinely auxiliary search is therefore
+  for a residually finite, nonamenable, non-Kazhdan stable `L` with a
+  nonretract Kazhdan stabilizer of finite bi-index.
