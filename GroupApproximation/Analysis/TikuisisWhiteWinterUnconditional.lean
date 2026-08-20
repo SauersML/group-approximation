@@ -159,7 +159,7 @@ theorem injective_pow_ofAdd_one :
   have h : ((Multiplicative.ofAdd (1 : ℤ)) ^ a).toAdd
       = ((Multiplicative.ofAdd (1 : ℤ)) ^ b).toAdd := by rw [hab']
   rw [toAdd_pow, toAdd_pow, toAdd_ofAdd] at h
-  simpa using h
+  exact_mod_cast h
 
 /-- `ℤ` is not locally finite. -/
 theorem not_isLocallyFiniteGroup_multiplicativeInt :
