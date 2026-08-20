@@ -5,6 +5,8 @@ kind: route
 title: Separate the permutation monomials and invoke the standard polynomial identity
 target: two-generator-amitsur-levitzki-dimension-oracle
 requires: []
+artifacts:
+  - research/artifacts/kleene-self-destroying-hs-pcp-boone-2026-08-20.md
 ---
 
 For a permutation `sigma`, the corresponding summand of `p_n` is the free
@@ -25,4 +27,3 @@ nonzero `p_n` is invertible there, so mapping `q_n,q'_n` to its right and left
 inverse gives a nonzero model of `(ALO4)`.  A unital representation into
 `M_d(C)` would send the `n=d` relation `p_dq_d=1` to `0=1`, which is
 impossible.
-

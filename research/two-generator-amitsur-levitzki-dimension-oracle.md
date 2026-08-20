@@ -3,9 +3,12 @@ rg: 2
 id: two-generator-amitsur-levitzki-dimension-oracle
 kind: claim
 title: Two free-algebra letters enumerate a nonzero polynomial killed by every finite matrix size
+artifacts:
+  - research/artifacts/kleene-self-destroying-hs-pcp-boone-2026-08-20.md
 distinct_from:
   finite-trace-profile-net-is-dimension-free: that replaces all matrix dimensions by a compact space of bounded moments; this detects each actual dimension by a dimension-indexed polynomial identity.
   residual-commutant-supercritical-schur-trigger: that must convert dimension detection into a uniformly sound finite group-word challenge; this is only the exact countable associative-algebra oracle.
+  finite-selector-gadget-induction-barrier: that concerns finite-group representation sectors; this is a countable free-algebra construction and asserts no finite presentability.
 ---
 
 In `C<x,y>`, put
@@ -38,4 +41,3 @@ This is deliberately not a group or C*-algebra theorem.  The operations in
 formal inverses in `(ALO4)` need not be bounded operators in any positive
 representation.  Turning `(ALO4)` into finite unitary group relations with a
 constant normalized-HS gap is a separate open compiler problem.
-
