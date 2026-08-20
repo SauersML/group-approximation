@@ -61,6 +61,11 @@ regular Bass--Serre reservoir.
   label.  The product of the two elementary `F_2[x]` shears has leading degree
   `2n` at its `n`th iterate.  Coupling the forced two-cycle to this action
   returns the finite character after two steps but moves it to a new degree.
+- The most literal implementation of that idea is false.
+  `paired-frame-fixed-kernel-polynomial-clock-no-go` proves that the stationary
+  paired-edge kernel admits only four one-directional square-zero polynomial
+  shears and no opposite pair.  A degree-growing transporter must carry the
+  kernel through the orbit `K_n=wedge^2(T^n)K_0`, rather than stabilize `K_0`.
 - `free-root-top-boundary-reservoir-is-summable` proves the required capacity
   theorem for those degree labels: the mass first detected at successive
   degrees telescopes and has total at most one on a unit carrier.  Literal
@@ -78,7 +83,8 @@ regular Bass--Serre reservoir.
   coefficient-character valuation `n`, its entire squared norm is exactly
   the `n`th boundary mass.
 - The missing calculation is to realize these two shears on consecutive
-  free-root coefficient planes and prove that the exactified `011`
+  free-root coefficient planes with the moving kernel atlas `(K_n)`, and
+  prove that the exactified `011`
   intertwiner is fixed by every lower-degree plane word but negated by the
   new leading word of degree `2n`; this is precisely the assertion that its
   valuation is `2n`.  One must also prove persistence of the baseline copy
