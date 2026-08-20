@@ -119,6 +119,17 @@ regular Bass--Serre reservoir.
   cutting to one forbidden selector atom, two literal products of commuting
   packet generators centralize the baseline packet and anticommute with one
   another.  No assignment-dependent measurable Gaussian elimination remains.
+- `fanizza-rank-gates-have-a-one-bit-character-escape` supplies a uniform
+  reverse label for all three actual predicate packets: toggling one fixed
+  selector changes the affine commutator matrix by rank one, hence the
+  alternating form by one Pauli pair.  As with the support packet, this finite
+  flip must still be coupled to the valuation label to prevent a stationary
+  two-cycle.
+- `fanizza-bad-atoms-have-source-fixed-paired-frames` finishes the finite chart
+  audit for the actual predicate menu.  A core-plus-Schur four-word frame works
+  on all 26 bad atoms, its plus/minus edge isomorphism fixes the entire source
+  selector center, and its rank-two target keeps the identical source atom.
+  Only the coefficient character enters the reverse reservoir.
 - `free-root-top-boundary-reservoir-is-summable` proves the required capacity
   theorem for those degree labels: the mass first detected at successive
   degrees telescopes and has total at most one on a unit carrier.  Literal
@@ -135,13 +146,15 @@ regular Bass--Serre reservoir.
   packet-to-reservoir analytic endpoint: once a hard intertwiner has
   coefficient-character valuation `n`, its entire squared norm is exactly
   the `n`th boundary mass.
-- The word-level realization and exact valuation calculation are now closed.
+- The finite packet frames, word-level E5 realization, and exact valuation
+  calculation are now closed.
   The analytic persistence and endpoint-marginal accounting are now reduced
   to a telescoping sign-atom estimate and have polynomial loss.  The remaining
-  step is presentation-level: install the three paired-frame HNN context words
-  so they covary the literal same source/target root atoms, and prove their
-  forbidden block masses are bounded above by the named relator energy.  Once
-  that finite relation audit is closed, the robust rank-one floor,
-  localization, and boundary summability give `(PRC1)`.
+  remaining step is the global one-sided HNN/E5 coupling: make the three
+  already source-fixed context frames feed their coefficient reverse
+  characters into successive valuation layers while preserving one baseline
+  packet copy with polynomial defect.  Once that persistence estimate is
+  closed, the robust rank-one floor, localization, and boundary summability
+  give `(PRC1)`.
   A merely decreasing first-hit process is insufficient: it admits a
   geometric reservoir and does not force collapse.

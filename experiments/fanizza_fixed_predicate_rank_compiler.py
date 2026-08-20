@@ -271,6 +271,13 @@ def audit() -> None:
             f"baseline={baseline}, matrix={len(matrix)}, "
             f"disjoint-path-baseline={disjoint_path_baseline}"
         )
+        derivative_ranks = []
+        for variable in range(arity):
+            coefficient_matrix = [
+                [entry[1][variable] for entry in row] for row in matrix
+            ]
+            derivative_ranks.append(rank_f2(coefficient_matrix))
+        print(f"  selector derivative ranks={tuple(derivative_ranks)}")
         pair_weights = []
         for assignment in product((0, 1), repeat=arity):
             if predicate(assignment):

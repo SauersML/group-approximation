@@ -9,6 +9,8 @@ requires:
   - child-carrier-relative-pauli-holonomy
   - fanizza-fixed-nonlinear-menu-has-small-rank-gates
   - every-forbidden-atom-has-fixed-schur-pauli-words
+  - fanizza-rank-gates-have-a-one-bit-character-escape
+  - fanizza-bad-atoms-have-source-fixed-paired-frames
   - finite-schur-clifford-packet-flexible-hs-exactification
   - non-ce-bcs-has-robust-approximate-energy-gap
   - fanizza-turing-bcs-signal-collapse

@@ -76,6 +76,9 @@ the Fanizza projection `D` itself as the nonhalting mark contradicts
   rather than identifying selector centers.
   `every-forbidden-atom-has-fixed-schur-pauli-words` supplies literal words
   for each atom's Schur-complement `M_2` factor.  The unproved step is now only
-  to install three corrected copies with the shared endpoint marginals
-  `(RNS1)` and control their correction cost by the original fixed-word
-  energy.
+  global: `fanizza-bad-atoms-have-source-fixed-paired-frames` supplies an
+  isomorphic plus/minus edge group which fixes the whole source selector center
+  for every atom, so the three corrected copies have literal shared endpoint
+  marginals.  What remains is to couple their coefficient-side reverse
+  characters to the one-sided E5 valuation return and control baseline-carrier
+  persistence by the original fixed-word energy.
