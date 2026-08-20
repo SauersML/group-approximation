@@ -74,8 +74,9 @@ theorem commute_conj_of_hasSoficCentralizerNormalization {G : Type} [Group G]
   rw [hrw] at hcomm
   have hkey : (g * γ₀ * g⁻¹) * γ = γ * (g * γ₀ * g⁻¹) := by
     apply hι
-    rw [map_mul, map_mul]
-    exact hcomm.eq
+    have hc := hcomm.eq
+    simp only [map_mul] at hc ⊢
+    exact hc
   exact hkey
 
 /-! ## The refutation -/

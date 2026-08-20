@@ -1,4 +1,5 @@
 import Mathlib.Algebra.Group.Subgroup.Basic
+import Mathlib.Data.Fintype.Card
 import Mathlib.Tactic.Group
 
 /-!
@@ -110,6 +111,49 @@ theorem isInfranormal_top : IsInfranormal (⊤ : Subgroup G) :=
 theorem isInfranormal_bot : IsInfranormal (⊥ : Subgroup G) :=
   isInfranormal_of_normal _
 
+/-- **A compressor of a finite subgroup is invertible as one.**  Conjugation by
+`g` maps `Γ` into `Γ` and is injective, so on a finite `Γ` it is onto, and the
+preimage of `γ` is exactly `g⁻¹ γ g`. -/
+theorem inv_mem_compressionSubmonoid_of_finite {Γ : Subgroup G} [Finite Γ]
+    {g : G} (hg : g ∈ compressionSubmonoid Γ) :
+    g⁻¹ ∈ compressionSubmonoid Γ := by
+  have hmap : ∀ γ : ↥Γ, g * (γ : G) * g⁻¹ ∈ Γ := fun γ ↦ hg _ γ.2
+  set f : ↥Γ → ↥Γ := fun γ ↦ ⟨g * (γ : G) * g⁻¹, hmap γ⟩ with hf
+  have hinj : Function.Injective f := by
+    intro a b hab
+    have h2 : g * (a : G) * g⁻¹ = g * (b : G) * g⁻¹ := congrArg Subtype.val hab
+    exact Subtype.ext (mul_left_cancel (mul_right_cancel h2))
+  have hsurj : Function.Surjective f := Finite.injective_iff_surjective.mp hinj
+  intro γ hγ
+  obtain ⟨δ, hδ⟩ := hsurj ⟨γ, hγ⟩
+  have hval : g * (δ : G) * g⁻¹ = γ := congrArg Subtype.val hδ
+  have hrw : g⁻¹ * γ * g⁻¹⁻¹ = (δ : G) := by
+    rw [← hval]
+    group
+  rw [hrw]
+  exact δ.2
+
+/-- **A finite infranormal subgroup is normal.**  Every compressor of a finite
+subgroup lies in the normalizer by
+`inv_mem_compressionSubmonoid_of_finite`, so the compressors generate nothing
+larger than the normalizer, and infranormality says they generate everything. -/
+theorem normal_of_isInfranormal_of_finite {Γ : Subgroup G} [Finite Γ]
+    (h : IsInfranormal Γ) : Γ.Normal := by
+  refine Subgroup.normalizer_eq_top_iff.mp (top_le_iff.mp ?_)
+  rw [← h]
+  refine (Subgroup.closure_le _).mpr ?_
+  intro g hg
+  exact mem_normalizer_of_mem_compressionSubmonoid_of_inv hg
+    (inv_mem_compressionSubmonoid_of_finite hg)
+
+/-- **For a finite subgroup, infranormal and normal are the same condition.**
+One direction is `isInfranormal_of_normal`; the other is
+`normal_of_isInfranormal_of_finite`.  In particular no finite subgroup is the
+peripheral subgroup of a compression pair. -/
+theorem isInfranormal_iff_normal_of_finite {Γ : Subgroup G} [Finite Γ] :
+    IsInfranormal Γ ↔ Γ.Normal :=
+  ⟨normal_of_isInfranormal_of_finite, fun h ↦ isInfranormal_of_normal (hΓ := h) Γ⟩
+
 /-- Infranormality says exactly that every element of the group is a product of
 compressors and inverses of compressors. -/
 theorem mem_closure_compressionSubmonoid_of_isInfranormal {Γ : Subgroup G}
@@ -182,6 +226,12 @@ structure IsCompressionPair (Γ : Subgroup G) : Prop where
 namespace IsCompressionPair
 
 variable {Γ : Subgroup G}
+
+/-- **The peripheral subgroup of a compression pair is infinite.**  A finite
+infranormal subgroup is normal, and a compression pair is not normal. -/
+theorem not_finite (h : IsCompressionPair Γ) : ¬ Finite Γ := fun hfin ↦ by
+  haveI := hfin
+  exact h.not_normal (normal_of_isInfranormal_of_finite h.infranormal)
 
 theorem nonempty_escapeWitness (h : IsCompressionPair Γ) :
     Nonempty (EscapeWitness Γ) :=

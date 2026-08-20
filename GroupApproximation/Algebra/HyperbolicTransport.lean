@@ -62,7 +62,7 @@ theorem isSymmetricGeneratingSet_image (f : G →* H) (hf : Function.Surjective 
   refine ⟨?_, ?_⟩
   · rintro x ⟨y, hy, rfl⟩
     exact ⟨y⁻¹, hS.inv_mem y hy, map_inv f y⟩
-  · rw [← Subgroup.map_closure, hS.closure_eq]
+  · rw [← MonoidHom.map_closure, hS.closure_eq]
     exact Subgroup.map_top_of_surjective f hf
 
 /-- Pushing a spelling forward can only shorten it. -/

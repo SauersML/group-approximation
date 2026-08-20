@@ -44,6 +44,7 @@ namespace CStarExactness
 
 open scoped InnerProductSpace
 open Finset ReducedGroupCStarTrace GroupVonNeumann
+open scoped Classical
 
 noncomputable section
 
@@ -54,6 +55,7 @@ variable {G : Type u} [Group G]
 /-! ## The inclusion of `ℂᵏ` as `k` point masses -/
 
 /-- `ℂᵏ → ℓ²(G)`, sending the `i`-th standard basis vector to `δ_{e i}`. -/
+omit [Group G] in
 theorem norm_single_one (g : G) :
     ‖(lp.single 2 g (1 : ℂ) : GroupHilbert G)‖ = 1 := by
   rw [lp.norm_single (by norm_num), norm_one]
@@ -64,8 +66,7 @@ def deltaLine (g : G) : ℂ →L[ℂ] GroupHilbert G :=
     (norm_single_one g)).toContinuousLinearMap
 
 theorem deltaLine_apply (g : G) (z : ℂ) :
-    deltaLine g z = z • (lp.single 2 g (1 : ℂ) : GroupHilbert G) :=
-  LinearIsometry.toSpanSingleton_apply _ _ (norm_single_one g) z
+    deltaLine g z = z • (lp.single 2 g (1 : ℂ) : GroupHilbert G) := rfl
 
 def folnerIncl {k : ℕ} (e : Fin k → G) :
     EuclideanSpace ℂ (Fin k) →L[ℂ] GroupHilbert G :=
@@ -84,6 +85,7 @@ theorem folnerIncl_apply {k : ℕ} (e : Fin k → G)
     EuclideanSpace.inner_single_left, map_one, one_mul]
 
 /-- The point masses are orthonormal. -/
+omit [Group G] in
 theorem inner_single_single (s t : G) :
     ⟪(lp.single 2 s (1 : ℂ) : GroupHilbert G),
       (lp.single 2 t (1 : ℂ) : GroupHilbert G)⟫_ℂ = if s = t then 1 else 0 := by
@@ -112,11 +114,11 @@ theorem inner_folnerIncl {k : ℕ} {e : Fin k → G} (he : Function.Injective e)
     rw [inner_smul_left, inner_smul_right, inner_single_single]
     by_cases h : i = j
     · subst h
-      simp [starRingEnd_apply]
+      simp
     · have hne : e i ≠ e j := fun hEq ↦ h (he hEq)
       simp [hne, h]
   rw [Finset.sum_congr rfl fun j _ ↦ hterm j]
-  simp [RCLike.inner_apply, starRingEnd_apply]
+  simp [RCLike.inner_apply]
 
 /-! ## The compression -/
 
@@ -133,6 +135,7 @@ def compressionLM {k : ℕ}
     refine ContinuousLinearMap.ext fun v ↦ ?_
     simp
 
+omit [Group G] in
 theorem compressionLM_apply {k : ℕ}
     (J : EuclideanSpace ℂ (Fin k) →L[ℂ] GroupHilbert G)
     (a : GroupHilbert G →L[ℂ] GroupHilbert G) (v : EuclideanSpace ℂ (Fin k)) :
@@ -141,6 +144,7 @@ theorem compressionLM_apply {k : ℕ}
 
 /-- The matrix entries of a compression are the matrix coefficients of the
 operator against the image of the standard basis. -/
+omit [Group G] in
 theorem euclideanEntry_compressionLM {k : ℕ}
     (J : EuclideanSpace ℂ (Fin k) →L[ℂ] GroupHilbert G)
     (a : GroupHilbert G →L[ℂ] GroupHilbert G) (p q : Fin k) :
@@ -151,6 +155,7 @@ theorem euclideanEntry_compressionLM {k : ℕ}
     ContinuousLinearMap.adjoint_inner_right]
 
 /-- The compression preserves the adjoint. -/
+omit [Group G] in
 theorem compressionLM_star {k : ℕ}
     (J : EuclideanSpace ℂ (Fin k) →L[ℂ] GroupHilbert G)
     (a : GroupHilbert G →L[ℂ] GroupHilbert G) :

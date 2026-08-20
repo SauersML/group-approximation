@@ -431,6 +431,7 @@ def iteratedBotEquiv (G : Type) [Group G] (ι : Type) :
             (inIterated G (⊥ : Subgroup G) ι i g))
           = inIterated G (⊥ : Subgroup G) ι i g
         rw [iteratedBotToCoprod_inIterated, PushoutI.ofCoprodI_of]
+        rfl
       · have hγ : γ = 1 := Subtype.ext (Subgroup.mem_bot.mp γ.2)
         show PushoutI.ofCoprodI (iteratedBotToCoprod G ι
             (PushoutI.base (iteratedMap G (⊥ : Subgroup G) ι) γ))

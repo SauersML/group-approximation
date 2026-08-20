@@ -47,6 +47,10 @@ open PresentationCodes AdianRabinGeneral
 /-- The single relator `x²`. -/
 def torsionRels : Set (FreeGroup (Fin 1)) := {FreeGroup.of (0 : Fin 1) ^ 2}
 
+/-- One relator is a finite set of relators. -/
+instance : Finite (torsionRels : Set (FreeGroup (Fin 1))) :=
+  Set.Finite.to_subtype (Set.finite_singleton _)
+
 /-- The two-element cyclic group, as a presented group. -/
 abbrev TorsionGroup : Type := PresentedGroup torsionRels
 
@@ -60,8 +64,8 @@ theorem c2gen_ne_one : c2gen ≠ 1 := by decide
 /-- The relator dies in the two-element group. -/
 theorem lift_torsionRels (r : FreeGroup (Fin 1)) (hr : r ∈ torsionRels) :
     FreeGroup.lift (fun _ : Fin 1 ↦ c2gen) r = 1 := by
-  rw [Set.mem_singleton_iff] at hr
-  subst hr
+  have hr' : r = FreeGroup.of (0 : Fin 1) ^ 2 := hr
+  subst hr'
   rw [map_pow, FreeGroup.lift_apply_of]
   exact c2gen_sq
 
@@ -115,7 +119,7 @@ theorem isPowerTorsionFree_trivialCode :
 noncomputable def torsionFreeMarkovData :
     MarkovData (fun (H : Type) (_ : Group H) ↦ IsPowerTorsionFree H) where
   hereditary f hf hK := IsPowerTorsionFree.comap hK f hf
-  free α _ := IsPowerTorsionFree.of_isMulTorsionFree
+  free _ _ := IsPowerTorsionFree.of_isMulTorsionFree
   positiveCode := trivialCode
   positive := isPowerTorsionFree_trivialCode
   forbidden := forbiddenCode
