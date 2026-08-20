@@ -56,6 +56,25 @@ def alpha_element(element: tuple[int, ...]) -> tuple[int, ...]:
     return p_1, p_2, q_1, q_1 ^ q_2, z_e, j, z_f
 
 
+def row_vector_matrix(bits: tuple[int, ...], matrix: tuple[tuple[int, ...], ...]) -> tuple[int, ...]:
+    return tuple(
+        sum(bits[row] & matrix[row][column] for row in range(len(bits))) & 1
+        for column in range(len(matrix[0]))
+    )
+
+
+def automorphism_element(
+    element: tuple[int, ...],
+    automorphism: tuple[packet.Matrix2F, packet.Matrix2F, packet.Matrix3F],
+) -> tuple[int, ...]:
+    p_change, q_change, center_change = automorphism
+    return (
+        row_vector_matrix(element[:2], p_change)
+        + row_vector_matrix(element[2:4], q_change)
+        + row_vector_matrix(element[4:], packet.transpose3(center_change))
+    )
+
+
 def audit(max_isotypic_summands: int) -> None:
     irreps = packet.irreps()
     irrep_count = len(irreps)
@@ -104,7 +123,60 @@ def audit(max_isotypic_summands: int) -> None:
         if allowed_rank != 26 or joined_rank != allowed_rank:
             raise AssertionError((prime, allowed_rank, joined_rank))
 
+    # A diagonal HNN edge can twist the source and coefficient factors by
+    # different packet automorphisms.  Check the stronger two-coefficient
+    # system for all 4 x 4 such pairs.  If x,y are the two virtual coefficient
+    # vectors, its rows express S*x=(S pulled by gamma)*(y pulled by delta).
+    automorphism_irreps: list[list[int]] = []
     position = {element: index for index, element in enumerate(packet.GROUP_ELEMENTS)}
+    for automorphism in packet.packet_linear_automorphisms():
+        permutation = []
+        for irrep in irreps:
+            pulled_values = tuple(
+                irrep.values[position[automorphism_element(element, automorphism)]]
+                for element in packet.GROUP_ELEMENTS
+            )
+            matches = [
+                index
+                for index, target in enumerate(irreps)
+                if packet.inner(pulled_values, target.values) == 1
+            ]
+            if len(matches) != 1:
+                raise AssertionError((irrep.label, matches))
+            permutation.append(matches[0])
+        automorphism_irreps.append(permutation)
+
+    twisted_rank_profiles: dict[tuple[int, int], tuple[int, int]] = {}
+    for source_automorphism, source_permutation in enumerate(automorphism_irreps):
+        for coefficient_automorphism, coefficient_permutation in enumerate(
+            automorphism_irreps
+        ):
+            def covariance_rows(source_indices: list[int]) -> list[list[int]]:
+                return [
+                    [fusion[source][coefficient][target] for coefficient in range(irrep_count)]
+                    + [
+                        -fusion[source_permutation[source]][
+                            coefficient_permutation[coefficient]
+                        ][target]
+                        for coefficient in range(irrep_count)
+                    ]
+                    for source in source_indices
+                    for target in range(irrep_count)
+                ]
+
+            twisted_allowed = covariance_rows(allowed_indices)
+            twisted_forbidden = covariance_rows(forbidden_indices)
+            allowed_rank = rank_mod(twisted_allowed, 101)
+            joined_rank = rank_mod(twisted_allowed + twisted_forbidden, 101)
+            if joined_rank != allowed_rank:
+                raise AssertionError(
+                    (source_automorphism, coefficient_automorphism, allowed_rank, joined_rank)
+                )
+            twisted_rank_profiles[(source_automorphism, coefficient_automorphism)] = (
+                allowed_rank,
+                joined_rank,
+            )
+
     alpha_irrep = []
     for irrep in irreps:
         pulled_values = tuple(
@@ -168,6 +240,15 @@ def audit(max_isotypic_summands: int) -> None:
         print(f"  {key}: {support_counts[key]}")
     print("literal tensor-annihilator rank: 26; nullity: 12 (four primes agree)")
     print("adding every forbidden multiplication equation leaves rank 26")
+    rank_histogram: dict[int, int] = {}
+    for allowed_rank, joined_rank in twisted_rank_profiles.values():
+        if allowed_rank != joined_rank:
+            raise AssertionError((allowed_rank, joined_rank))
+        rank_histogram[allowed_rank] = rank_histogram.get(allowed_rank, 0) + 1
+    print(
+        "all 16 independently twisted covariance systems remain forbidden-blind; "
+        f"allowed-rank histogram {dict(sorted(rank_histogram.items()))}"
+    )
     print(
         "centre-isotypic alpha screen: "
         f"{tested} coefficients through {max_isotypic_summands} summands; "
