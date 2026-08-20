@@ -219,6 +219,25 @@ partition in a higher-dimensional finite-type corner. This is
 Local predicate realization is therefore solved. It does not solve overlap
 compatibility between different contexts.
 
+### One common finite type suffices locally
+
+The local construction can be normalized further.  If `D` is twice the least
+common multiple of the cardinalities `|R_c|`, every context uses the same
+hyperoctahedral group `(C_2)^D semidirect S_D` and its same tautological
+irreducible type.  Repeating each allowed assignment `D/|R_c|` times gives the
+required joint spectrum.  The corner unit has `D` explicit rank-one algebraic
+atoms and the same positive canonical trace for every context copy.  This is
+`all-bcs-contexts-share-one-hyperoctahedral-signed-type`.
+
+There is also a sharp limitation.  If piecewise transports place every
+context partition back inside the one finite root algebra `M_D(C)`, the atlas
+itself is a finite-dimensional BCS representation and its normalized trace is
+Connes embeddable.  Hence that construction is impossible for the chosen BCS.
+The context copies must be differently embedded finite-dimensional
+subalgebras of the infinite signed corner, not merely different bases of the
+root block.  This is
+`root-block-piecewise-transport-cannot-host-nonce-bcs`.
+
 ## 5. BCS models are compatible projection atlases
 
 Let `B` be a Boolean constraint system. For each context `c` with allowed

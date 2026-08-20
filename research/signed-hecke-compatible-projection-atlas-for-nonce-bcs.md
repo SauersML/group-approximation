@@ -39,6 +39,18 @@ trace is required.
   an exact seed partition for every context separately. The missing equation
   is precisely the cross-context marginal identity `(BPA3)` in one common
   corner.
+- **Common local type is solved.**
+  `all-bcs-contexts-share-one-hyperoctahedral-signed-type` puts every context
+  in a copy of one hyperoctahedral group and one irreducible type, with equal
+  corner trace and an explicit common number of coordinate atoms.  No
+  dimension- or trace-balancing bridge remains at the local level.
+- **Shared-variable rank balancing is solved.**
+  `tracial-bcs-has-rational-balanced-hyperoctahedral-atlas` rationalizes the
+  local marginals of any source trace and clears denominators.  Every overlap
+  then admits an explicit sign-preserving coordinate permutation in the same
+  `K_D` type.  These edge matchings cannot be made globally coherent:
+  `coherent-balanced-context-permutations-would-give-a-ce-trace` would turn
+  such a gauge into a finite-dimensional BCS representation.
 - Single compressed group elements stay in the corner-unit stabilizer.
   `piecewise-group-transport-gives-corner-unitaries` proves that two or more
   group translates can repair domains and ranges exactly, but it does not
@@ -46,3 +58,15 @@ trace is required.
 - Ordinary free products or Bass--Serre amalgams preserve independent context
   choices and therefore do not force `(BPA3)`. A successful construction
   needs nontrivial finite holonomy among the context partitions.
+- **Returning to the finite root block is impossible.**
+  `root-block-piecewise-transport-cannot-host-nonce-bcs` shows that if all
+  transported context projections lie in `q_D C[K_D]q_D`, the atlas is a
+  finite-dimensional BCS model and creates a CE trace.  Thus the live target
+  is more specific: place isomorphic local `M_D` blocks as distinct algebraic
+  subalgebras of the infinite corner and identify only their shared signed
+  marginals.
+- **Narrow live cell.**  The route
+  `signed-hecke-balanced-holonomy-route` leaves only
+  `signed-hecke-block-escaping-cycle-holonomy`: realize the residual chord
+  transports by finite-support corner unitaries which preserve the one shared
+  sign but move the remaining matrix block outside the finite root algebra.
