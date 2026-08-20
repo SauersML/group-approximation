@@ -156,3 +156,24 @@ above.
 Until both gates are passed, `G_subst` is a valuable candidate architecture,
 not a non-hyperlinear group.
 
+## 6. Further closure audit: the HNN route is circular
+
+The two-gate program above is superseded as a route to the *first*
+nonhyperlinear group.  If `K` is hyperlinear and `phi:K->K` is injective, its
+ascending HNN extension has height kernel
+
+```text
+N=union_(n>=0) t^(-n) K t^n,
+```
+
+a directed union of copies of `K`.  Hence `N` is hyperlinear.  The quotient is
+`Z`, and hyperlinear-by-amenable extensions are hyperlinear
+(Arzhantseva--Berlai--Finn-Sell--Glebsky, arXiv:1802.04688, Corollary 1.1).
+
+Therefore `G_subst` can be nonhyperlinear only if its Thompson--Clifford base
+is already nonhyperlinear.  Proving the proposed matrix anomaly would already
+solve the problem at the base; the stable letter cannot create it.  The
+useful surviving content of this artifact is the finite-core fence, the exact
+transport calculations, the endomorphism compatibility ledger, and the
+invariant-trace fixed-point theorem.  The ascending-HNN construction itself
+is retired as a source of new nonhyperlinearity.

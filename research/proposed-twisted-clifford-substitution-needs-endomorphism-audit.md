@@ -9,6 +9,7 @@ artifacts:
 distinct_from:
   hnn-conjugacy-cannot-return-schur-morita-multiplicity: that rules out changing finite packet multiplicity by conjugacy; this audits whether the proposed map is an endomorphism at all.
   untwisted-sign-replication-flips-minus: that diagnoses one sign-replication formula; this gives the general three-factor square law and also records the independent tree-equivariance obligation.
+  ascending-hnn-cannot-create-nonhyperlinearity: that assumes a genuine injective endomorphism and proves the resulting HNN step preserves hyperlinearity; this records why the proposed formula has not yet reached that premise.
 ---
 
 The schematic formula
@@ -39,6 +40,7 @@ transitivity is not automatically compatible with binary parent-child
 incidence.  One must specify the acting subgroup, prove that its relators
 preserve the substitution, prove all transported definitions agree, and
 prove injectivity.  Proper image dimension on one finite window proves none
-of these global statements.  The proposed `G_subst` therefore remains a
-candidate, not an established finitely presented ascending HNN extension.
-
+of these global statements.  The proposed `G_subst` therefore is not an
+established finitely presented ascending HNN extension.  Moreover, even if
+this audit is passed, `ascending-hnn-cannot-create-nonhyperlinearity` shows
+that the stable-letter step cannot be the first source of nonhyperlinearity.
