@@ -59,7 +59,8 @@ def symmetricDoubleTopEquiv (G : Type) [Group G] :
 theorem not_isOperatorMF_symmetricDouble_top {G : Type} [Group G]
     (h : ¬ IsOperatorMF G) :
     ¬ IsOperatorMF (SymmetricDouble G (⊤ : Subgroup G)) :=
-  fun hd ↦ h (isOperatorMF_of_mulEquiv (symmetricDoubleTopEquiv G) hd)
+  fun hd ↦ h (CommensurabilityInvariance.isOperatorMF_of_mulEquiv
+    (symmetricDoubleTopEquiv G) hd)
 
 /-! ## The MF field is not dischargeable -/
 
