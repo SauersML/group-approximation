@@ -90,6 +90,19 @@ Both `Z` terms are explicit fixed character-table averages of packet words.
 Therefore an acceptable proof of `(TCM1)` may return these density elements
 directly through the Toeplitz corner, rather than transporting anonymous
 irreducible copies or the entire adjoint Reynolds range.
+The substitution theorem
+`fanizza-schur-density-substitution` shows
+that the original polynomial recurrence accounting survives this replacement.
+Accordingly the exact remaining Toeplitz estimate is the bounded-overlap law
+
+```text
+sum_c||Z_(C_c)-Z_(B_c)||_2^2 <= C_ret E_group,
+```
+
+or a contractive residual version of the same inequality.
+By `schur-density-gap-has-no-direct-relator-certificate`, this cannot be a
+direct telescoping identity for each gap. The Toeplitz/property-`(T)` stage
+must be used essentially as a finite-dimensional-only rigidity theorem.
 
 Combined with the oriented child-branching identity, `(TCM1)` gives
 

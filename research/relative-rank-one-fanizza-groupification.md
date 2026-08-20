@@ -35,6 +35,13 @@ copies. It may return these explicit density elements term by term. The live
 obligation is still genuinely group-theoretic: small ordinary relator error
 must force the two returned finite sums to have small normalized-HS
 discrepancy without globally centralizing selectors.
+
+`fanizza-schur-density-substitution` proves
+that this replacement preserves the cited polynomial certificate cost at
+every computation level. Consequently the remaining local analytic statement
+is precisely the bounded-overlap density-return estimate `(FDS5)`. There is
+no further loss hidden in converting the Fanizza projection recurrence to
+the Schur packet language.
 3. The three transport failures are evaluations of fixed group relators.  The
    rank-one floor and the explicit packet payment combine to give
 
