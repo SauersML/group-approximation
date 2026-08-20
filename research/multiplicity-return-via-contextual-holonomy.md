@@ -8,6 +8,7 @@ requires:
   - predicate-rank-gate-doubles-restriction-multiplicity
   - non-ce-bcs-has-robust-approximate-energy-gap
   - finite-schur-clifford-packet-flexible-hs-exactification
+  - predicate-rank-jump-forces-adjoint-reynolds-gap
   - fixed-scale-contextual-multiplicity-holonomy
   - scaled-kazhdan-transport
   - contractive-computation-ladder
@@ -24,10 +25,12 @@ fixed-length telescoping transfers that mass without requiring the
 context-dependent corrections to coincide.
 
 On each forbidden sector the predicate rank gate doubles restriction
-multiplicity.  Fixed-scale contextual holonomy transports these multiplicity
-vectors around a recurrent cycle and compares them after return in the common
-baseline packet.  `scaled-kazhdan-transport` supplies the scale-free transport
-input; alternatively the resulting positive-density contraction recursion is
-summed by `contractive-computation-ladder`.  Bounded-overlap accounting charges
-the extensive mismatch to total normalized-HS relator energy.  These are
-exactly clauses 1--5 of `multiplicity-return-transducer`.
+multiplicity.  Equivalently, the explicit Reynolds-gap lemma exposes a
+positive-density projection in the adjoint space between the `A_f` and `B_f`
+commutants.  Fixed-scale contextual holonomy transports this projection around
+a recurrent cycle and compares it after return at the common baseline scale.
+`scaled-kazhdan-transport` supplies the scale-free transport input;
+alternatively the resulting positive-density contraction recursion is summed
+by `contractive-computation-ladder`.  Bounded-overlap accounting charges the
+extensive mismatch to total normalized-HS relator energy.  These are exactly
+clauses 1--5 of `multiplicity-return-transducer`.

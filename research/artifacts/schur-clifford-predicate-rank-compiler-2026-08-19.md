@@ -20,6 +20,20 @@ Bass--Serre gluing still fails, but because it is virtually free and admits
 stationary representation-type flows, not because it classicalizes every
 selector.
 
+There is also a fixed-scale reformulation of the surplus.  For an exact
+packet representation, let `R_A` and `R_B` average the adjoint action of the
+nested finite groups.  Forbidden Hilbert mass `q` forces
+
+```text
+rank(R_A-R_B)/d^2 >= 3 q^2/(4 D^2 K),
+```
+
+where `D=2^N` is the baseline spin dimension and `K` is the number of
+forbidden assignments.  This is
+`predicate-rank-jump-forces-adjoint-reynolds-gap`.  It replaces a fragile
+integer-copy selection by an explicit positive-density projection which is
+ready for scaled Kazhdan transport.
+
 ## 0. Executive statement
 
 There is a loophole in the repo's affine-selector no-go results.

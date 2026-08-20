@@ -42,6 +42,10 @@ floor.
   twice as large, so Hilbert dimension is conserved.  The return must first
   normalize to the common `A_f` packet size.
 - **Active attack.**  Feed the explicit restriction matrices into the existing
-  Kazhdan compressor/multiplicity framework.  The unresolved estimate is
-  exactification-covariance at the self-normalized defect scale: transport
-  error must be `o` of the extensive surplus, uniformly in ambient dimension.
+  Kazhdan compressor/multiplicity framework.  The integer multiplicities need
+  not be selected copy by copy:
+  `predicate-rank-jump-forces-adjoint-reynolds-gap` turns forbidden Hilbert
+  mass `q` into an explicit adjoint projection-rank gap `c_f q^2`.  The
+  unresolved construction must identify the two Reynolds projections through
+  a one-sided Kazhdan compressor (or a genuine two-cell holonomy) with
+  normalized-HS cost controlled by the presentation relators.
