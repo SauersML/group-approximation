@@ -84,3 +84,8 @@ matrices; a trace-functorial comparison would violate
   rank-gate template per cell and exactify only the new relative Pauli pair.
   The missing estimate is a Gowers--Hatami-style relative stability theorem
   whose constant is independent of the number of earlier Clifford pairs.
+  `quantum-expander-rounds-relative-pauli-cell` proves the analytic estimate
+  once a constant-gap expander on the old spin factor is exposed;
+  `self-similar-clifford-quantum-expander-tape` is the remaining word-syntax
+  input. Even after that, sequential compatibility and inactive-sector
+  payment remain to be checked before `(SDL2)` is established.

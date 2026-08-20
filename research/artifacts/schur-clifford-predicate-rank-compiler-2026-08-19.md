@@ -1110,6 +1110,37 @@ cell with constants independent of the number of Clifford pairs already
 present.  This uniform relative exactification is now the sharp analytic
 subproblem inside `finite-dimensional-schur-lift-of-doubling-tape`.
 
+That relative stability problem has a clean quantum-expander solution.  If
+\(U_1,\ldots,U_D\) define a random-unitary channel with second
+Hilbert--Schmidt singular value \(\lambda<1\) on the old spin factor, then for
+the conditional expectation \(E\) to its commutant,
+
+\[
+\|X-E(X)\|_2\le {1\over1-\lambda}
+\left({1\over D}\sum_j\|[X,U_j]\|_2^2\right)^{1/2}.
+\]
+
+The bound is unchanged after tensoring by an arbitrary residual multiplicity
+factor.  Hence a proposed new Pauli pair which approximately commutes with the
+constant-degree expander moves uniformly close to that residual factor.
+Functional calculus followed by stability of the single fixed \(D_8\) table
+then exactifies the new cell with constants independent of the number of old
+qubits.  This is proved in
+`quantum-expander-relative-commutant-rounding` and
+`quantum-expander-rounds-relative-pauli-cell`.
+
+Explicit constant-degree quantum expanders are known: Ben-Aroya--Schwartz--
+Ta-Shma construct them by tensoring, squaring and quantum zig-zag.  Gross--
+Eisert's quantum Margulis expander is even implemented by affine
+Clifford/metaplectic transformations in odd phase-space dimension.  Neither
+source, as currently imported, supplies the exact binary syntax needed here:
+one finite presentation whose level conjugates give the expander unitaries on
+every nested qubit prefix and remain compatible with the common sign and rank
+gate.  Cairn records that precise algebraic task as
+`self-similar-clifford-quantum-expander-tape`.  After it, a separate coherent
+type-accounting step must still show that inactive selector sectors are
+exactly the Fanizza BCS violation mass, with no complementary leakage.
+
 ---
 
 ## 16. Computational verification
