@@ -6,6 +6,9 @@ title: A seven-dimensional packet coefficient is allowed-flat but has forbidden 
 artifacts:
   - experiments/schur_packet_tensor_fusion_search.py
   - experiments/schur_packet_wedderburn_holonomy_opt.py
+  - experiments/support_packet_wedderburn_tag_capacity.py
+  - experiments/support_packet_wedderburn_tag_capacity_4.json
+  - experiments/run_support_packet_capacity.sbatch
   - research/artifacts/support-packet-covariant-wedderburn-detector-2026-08-20.md
 distinct_from:
   predicate-rank-jump-forces-adjoint-reynolds-gap: that compares the commutants of the nested packet groups in one representation; this compares diagonal tensor coefficients related by one explicit packet automorphism and is exactly flat on all allowed selector sectors.
@@ -90,6 +93,15 @@ Thus this cell is simultaneously:
 It is the first explicit finite covariance coefficient in the Schur--Clifford
 route that passes the equal-Hilbert-capacity and allowed-sector falsification
 tests.
+
+An exhaustive exact audit of all `101270` four-summand coefficient multisets
+finds `905` equivalence classes after fixing coefficient dimension and all
+twelve allowed-source Wedderburn signatures. Of these, `697` have one
+forbidden signature and `208` have two; none has more than two. Thus the
+four-summand ansatz carries exactly one non-character forbidden tag at best.
+The pair `(CWD3)` realizes this sharp capacity, but no four-summand coefficient
+family can encode a three-way selector while remaining completely
+allowed-flat.
 
 The changing sixteen-dimensional summand is not merely existential.
 `support-packet-paired-word-frame-exposes-forbidden-rank` gives four fixed

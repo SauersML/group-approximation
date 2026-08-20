@@ -50,6 +50,20 @@ four summands there are 1,936 commutant-dimension detectors, and the stronger
 complete-Wedderburn search finds the seven-dimensional pair above.  The run on
 `acn112` used one process, 22.3 seconds and 79.9 MB maximum RSS.
 
+The follow-up exact enumeration
+`experiments/support_packet_wedderburn_tag_capacity.py` classifies all
+`101270` four-summand coefficient multisets by coefficient dimension and the
+complete Wedderburn signature on all twelve irreducible sources over the three
+allowed `J=-1` central characters. It finds `905` allowed-equivalence classes:
+`697` expose one forbidden signature and `208` expose two. The maximum is two,
+so this ansatz has a sharp one-bit non-character tag capacity. The complete
+machine-readable output is
+`experiments/support_packet_wedderburn_tag_capacity_4.json`; rerunning the
+script reproduced it exactly after deleting only the timing field.
+`experiments/run_support_packet_capacity.sbatch` records the corresponding
+single-core five-summand cluster run; no five-summand result is asserted here
+until its output is checked in and replayed.
+
 `experiments/schur_packet_wedderburn_holonomy_opt.py` independently builds the
 two 25-dimensional Reynolds ranges inside `End(C^28)`.  With one BLAS thread,
 the aligned overlap is exactly `17`; six Haar restarts and local hill climbing

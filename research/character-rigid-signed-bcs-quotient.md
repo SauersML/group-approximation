@@ -5,6 +5,7 @@ kind: claim
 title: Put a non-CE BCS quotient in a finite-dimension-free character-rigid signed sector
 distinct_from:
   same-context-s3-endpoint-atlas: that seeks matrix-only multiplicity curvature from three local packet comparisons; this may use an algebraic quotient because sector character rigidity supplies the missing canonical-trace promotion globally.
+  signed-hecke-compatible-projection-atlas-for-nonce-bcs: that embeds the BCS algebra into a positive canonical corner, so pulling the corner trace back is automatic; this uses a quotient in the reverse direction and therefore needs character rigidity to identify its source trace.
 ---
 
 Construct a finitely presented group `Gamma`, a finite normal subgroup

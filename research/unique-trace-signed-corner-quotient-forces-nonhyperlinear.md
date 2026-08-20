@@ -5,6 +5,7 @@ kind: claim
 title: A unique-trace signed group corner surjecting onto a non-CE tracial algebra forces nonhyperlinearity
 distinct_from:
   regular-trace-blocks-exact-local-predicate-return: that obstructs a trace-functorial forbidden-mass payment in the regular representation; this uses the regular signed-corner trace positively and identifies it with a non-CE quotient trace.
+  nonce-bcs-unital-algebraic-corner-map-forces-nonhyperlinear: that treats a unital map from the non-CE algebra into the corner and pulls back the canonical trace, requiring no uniqueness; this treats the opposite map direction, a corner quotient onto the non-CE algebra, where uniqueness is what identifies the quotient trace.
 ---
 
 Let `Gamma` be a countable group and let `q in C[Gamma]` be a nonzero central
