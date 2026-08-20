@@ -11,6 +11,8 @@ requires:
   - every-forbidden-atom-has-fixed-schur-pauli-words
   - fanizza-rank-gates-have-a-one-bit-character-escape
   - fanizza-bad-atoms-have-source-fixed-paired-frames
+  - fanizza-bad-atoms-have-symmetric-frames
+  - fanizza-symmetric-kernel-has-two-root-e5-clock
   - finite-schur-clifford-packet-flexible-hs-exactification
   - non-ce-bcs-has-robust-approximate-energy-gap
   - fanizza-turing-bcs-signal-collapse

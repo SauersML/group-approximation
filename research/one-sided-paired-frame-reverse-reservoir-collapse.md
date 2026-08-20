@@ -132,6 +132,18 @@ regular Bass--Serre reservoir.
   atom.  But its coefficient commutator image has rank four, not the rank-three
   support/E5 image.  It therefore cannot yet enter the reverse reservoir
   without triggering full-center multiplicity cancellation.
+- `fanizza-bad-atoms-have-symmetric-frames` escapes that
+  obstruction by replacing the coordinate core with a weight-two/weight-one
+  dual pair.  After spending one extra OBDD pivot on C17, all 26 bad atoms
+  share the rank-three kernel
+  `span{e_01,e_23,e_03+e_12}`, fix their source atom, and export one reverse
+  coefficient character.
+- `fanizza-symmetric-kernel-has-two-root-e5-clock` supplies the matching clock.
+  The symmetric kernel is not in the old support kernel's `GL_4(F_2)` orbit,
+  but the two-root transporter `diag(S,1,I_2)` moves its nondecomposable cross
+  line with a unique degree-`2n` leading term and Smith coordinate of degree
+  `2n-1`.  The orbit mismatch therefore costs a simpler one-sided E5 word,
+  not another commutator coordinate.
 - `free-root-top-boundary-reservoir-is-summable` proves the required capacity
   theorem for those degree labels: the mass first detected at successive
   degrees telescopes and has total at most one on a unit carrier.  Literal
@@ -148,14 +160,15 @@ regular Bass--Serre reservoir.
   packet-to-reservoir analytic endpoint: once a hard intertwiner has
   coefficient-character valuation `n`, its entire squared norm is exactly
   the `n`th boundary mass.
-- The literal Schur pair, word-level E5 realization, and exact valuation
-  calculation are closed; the required rank-three finite packet frame is not.
+- The literal Schur pair, rank-three finite packet frame, matching word-level
+  E5 realization, and exact valuation calculation are now closed for all 26
+  bad atoms.
   The analytic persistence and endpoint-marginal accounting are now reduced
-  to a telescoping sign-atom estimate and have polynomial loss.  Two steps
-  remain: construct source-fixed context frames with rank-three coefficient
-  image, then make those frames feed their reverse characters into successive
+  to a telescoping sign-atom estimate and have polynomial loss.  The remaining
+  step is the global character/carrier coupling: make the source-fixed context
+  frames feed their listed reverse characters into successive symmetric-kernel
   valuation layers while preserving one baseline packet copy with polynomial
-  defect.  Once both are closed, the robust rank-one floor, localization, and
+  defect.  Once that is closed, the robust rank-one floor, localization, and
   boundary summability give `(PRC1)`.
   A merely decreasing first-hit process is insufficient: it admits a
   geometric reservoir and does not force collapse.

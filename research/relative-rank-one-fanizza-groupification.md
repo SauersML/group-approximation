@@ -80,8 +80,12 @@ the Fanizza projection `D` itself as the nonhalting mark contradicts
   coordinate-core plus/minus edge can fix the whole source selector center
   and keep the source atom at its rank-two target.  But its coefficient image
   has rank four, whereas the one-sided E5 chart has rank three.  The local gap
-  is therefore still to construct a source-fixed **rank-three** frame (perhaps
-  from arbitrary dual baseline words), or to find a different partial-center
-  quotient.  Only after that can its reverse character be coupled to the E5
-  valuation return and baseline-carrier persistence be controlled by the
-  original fixed-word energy.
+  is resolved by
+  `fanizza-bad-atoms-have-symmetric-frames`: arbitrary
+  weight-two dual baseline words give one common source-fixed rank-three
+  kernel for all 26 atoms, after one extra C17 compiler pivot.  That kernel is
+  in a different `GL_4(F_2)` orbit, and
+  `fanizza-symmetric-kernel-has-two-root-e5-clock` realizes its matching
+  one-sided valuation clock by `diag(S,1,I_2)`.  What remains is to couple the
+  listed reverse characters into successive valuation layers and control
+  baseline-carrier persistence by the original fixed-word energy.
