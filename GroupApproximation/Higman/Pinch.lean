@@ -53,6 +53,22 @@ open HNNExtension
 
 variable {P : Type} [Group P] (M : Subgroup P)
 
+/-- **Every element of a generated subgroup is a product of generators and
+inverses of generators.**  Mathlib states this for submonoids only; the
+subgroup form is the submonoid statement applied to `s ∪ s⁻¹`, which is what
+`Subgroup.closure_toSubmonoid` identifies the closure with. -/
+theorem exists_list_of_mem_closure {G : Type*} [Group G] {s : Set G} {x : G}
+    (hx : x ∈ Subgroup.closure s) :
+    ∃ L : List G, (∀ y ∈ L, y ∈ s ∨ y⁻¹ ∈ s) ∧ L.prod = x := by
+  have hxm : x ∈ Submonoid.closure (s ∪ s⁻¹) := by
+    rw [← Subgroup.closure_toSubmonoid]
+    exact hx
+  obtain ⟨L, hL, hprod⟩ := Submonoid.exists_list_of_mem_closure hxm
+  refine ⟨L, fun y hy ↦ ?_, hprod⟩
+  rcases hL y hy with h | h
+  · exact Or.inl h
+  · exact Or.inr (Set.mem_inv.mp h)
+
 /-! ## 1.  Words in block form -/
 
 /-- One block: a conjugate of a base element by the stable letter, followed by
@@ -98,9 +114,11 @@ theorem blockOf_mul_of (q z a : P) :
 theorem blockOf_mul_blockOf (q z q' z' : P) (hz : z ∈ M) :
     blockOf M (q, z) * blockOf M (q', z') = blockOf M (q * z * q', z') := by
   have h : (t : CentHNN M)⁻¹ * of z * t = of z := conj_eq_self_of_mem M hz
-  have hz' : (t : CentHNN M) * of z * (t : CentHNN M)⁻¹ = of z := by
-    rw [← h]
-    group
+  have hz' : (t : CentHNN M) * of z * (t : CentHNN M)⁻¹ = of z :=
+    calc (t : CentHNN M) * of z * (t : CentHNN M)⁻¹
+        = (t : CentHNN M) * ((t : CentHNN M)⁻¹ * of z * (t : CentHNN M))
+            * (t : CentHNN M)⁻¹ := by rw [h]
+      _ = of z := by group
   unfold blockOf
   calc
     (t : CentHNN M)⁻¹ * of q * t * of z *
@@ -137,12 +155,15 @@ def redList : List (P × P) → List (ℤˣ × P)
   | [] => []
   | p :: l => ((-1 : ℤˣ), p.1) :: ((1 : ℤˣ), p.2) :: redList l
 
+omit [Group P] in
 @[simp] theorem redList_nil : redList (P := P) [] = [] := rfl
 
+omit [Group P] in
 @[simp] theorem redList_cons (p : P × P) (l : List (P × P)) :
     redList (p :: l)
       = ((-1 : ℤˣ), p.1) :: ((1 : ℤˣ), p.2) :: redList l := rfl
 
+omit [Group P] in
 theorem redList_eq_nil_iff (l : List (P × P)) : redList l = [] ↔ l = [] := by
   cases l with
   | nil => simp
@@ -208,7 +229,7 @@ theorem isChain_redList : ∀ (l : List (P × P)), Clean M l →
 it has no blocks at all. -/
 theorem eq_nil_of_clean (z₀ : P) (l : List (P × P)) (hc : Clean M l)
     (hmem : word M z₀ l ∈ (of : P →* CentHNN M).range) : l = [] := by
-  let w : ReducedWord P M M :=
+  let w : HNNExtension.NormalWord.ReducedWord P M M :=
     { head := z₀
       toList := redList l
       chain := isChain_redList M l hc }
@@ -334,7 +355,7 @@ theorem descent (hQZ : Q ⊓ M ≤ Z) (hZQ : Z ⊓ M ≤ Q) :
               rw [word_append, word_append]
               rw [List.map_append, List.prod_append, List.map_cons, List.prod_cons,
                 List.map_cons, List.prod_cons, List.map_nil, List.prod_nil]
-              rw [blockOf_of_mem M q z hqM, blockOf_mul_of]
+              rw [blockOf_of_mem M q z hqM, ← blockOf_mul_of M q₀ z₀' (q * z)]
               group
             have hlen' : (l₁' ++ (q₀, z₀' * (q * z)) :: l₂).length ≤ n := by
               simp only [List.length_append, List.length_cons, List.length_nil] at hlen ⊢
@@ -407,7 +428,7 @@ theorem mem_genSet_of_inv_mem {y : CentHNN M} (h : y⁻¹ ∈ genSet M Z Q) :
 theorem exists_blockForm {x : CentHNN M} (hx : x ∈ Subgroup.closure (genSet M Z Q)) :
     ∃ (z₀ : P) (l : List (P × P)), z₀ ∈ Z ∧ (∀ p ∈ l, p.1 ∈ Q ∧ p.2 ∈ Z) ∧
       x = word M z₀ l := by
-  obtain ⟨L, hL, rfl⟩ := Subgroup.exists_list_of_mem_closure hx
+  obtain ⟨L, hL, rfl⟩ := exists_list_of_mem_closure hx
   clear hx
   induction L with
   | nil =>
