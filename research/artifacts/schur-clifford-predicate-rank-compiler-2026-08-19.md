@@ -915,6 +915,27 @@ through Gowers--Hatami exactification with the same site-independent constant,
 so the repaired hypothesis is exactly the common marked-carrier condition the
 global compiler must supply.
 
+### A simpler payload for the dimension-reported diagonal
+
+After the fixed-point machine reports the dimension \(D\), the nonlinear BCS
+payload is unnecessary.  Let \(E_N\) be the extraspecial Pauli group with \(N\)
+independent pairs and common central sign \(J\).  An all-pairs
+\(\varepsilon\)-homomorphism of its complete table for which
+\(\|f(J)-I\|_2>42\varepsilon\) flexibly exactifies to a genuine
+representation with a nonzero \(J=-1\) spin sector.  Consequently
+
+\[
+d\ge (1-4\varepsilon^2)2^N.
+\]
+
+Choosing \(N>\log_2(D/(1-4\varepsilon^2))\) contradicts the reported
+dimension.  Thus the direct Kleene route no longer needs the non-CE BCS,
+predicate rank gates, context selection, or forbidden-mass synchronization.
+Its sole open step is the runtime-independent activation of the finite
+Clifford multiplication table.  The Schur compiler remains relevant to the
+original endogenous programme in which the group itself must discover and
+propagate bad regions without an externally reported dimension.
+
 ---
 
 ## 16. Computational verification

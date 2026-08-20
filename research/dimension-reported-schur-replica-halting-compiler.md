@@ -39,6 +39,13 @@ may not collapse the mark.
 
 ## Attempts
 
+- For the self-referential dimension diagonal alone, this payload is now
+  dominated by `dimension-reported-clifford-table-halting-compiler`: the
+  extraspecial group `E_N` already costs dimension `2^N` on its marked sector.
+  The Schur/BCS machinery remains relevant to the original endogenous
+  bad-region propagation programme, but it is not needed merely to defeat a
+  dimension printed by the source machine.
+
 - Ordinary Boone/S-machine simulation accumulates error with halting time and
   does not give universal `delta`.
 - Writing the finite `N`-replica table after halting is syntactically
