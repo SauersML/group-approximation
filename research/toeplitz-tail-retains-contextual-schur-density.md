@@ -44,6 +44,20 @@ The head algebra is also finitely actuated:
 is needed. The analytic problem is to make the Schur violation determine the
 action of this fixed actuator on the residual multiplicity space.
 
+The actuator can now be made part of the packet itself.
+`schur-packet-head-actuator-generates-over-tail` embeds the `Q` child inside
+`alpha(Gamma)`, scales the missing `p` generator by the head swap `s`, and
+proves
+
+```text
+Gamma=<alpha(Gamma),B_f>.
+```
+
+Thus no algebraic generator remains outside the packet/tail incidence.  The
+open content of this claim is strictly the dimension-free conditional
+expectation alternative: the common tail commutant must retain packet mass or
+recreate it in its residual multiplicity algebra.
+
 There is now an exact packet/residual factorization behind this request.
 `toeplitz-finite-head-centralizes-deep-tail` identifies the first `N` tape
 cells with `M_N(F_2)` and proves that `sigma^N(T)` acts as a scalar on that

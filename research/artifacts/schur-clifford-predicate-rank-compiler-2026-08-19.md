@@ -1029,6 +1029,31 @@ extend functorially to the regular finite von Neumann algebra.  This explains
 why the Schur--Clifford multiplicity machinery is not optional decoration but
 the only currently visible way around the regular-trace obstruction.
 
+The same obstruction rules out a more specific tempting shortcut.  One cannot
+close the packet cycle by an exact tracial identity
+
+\[
+m_{\rm in}=m_{\rm out}+m_{\rm forbidden},\qquad
+m_{\rm in}=m_{\rm out},
+\]
+
+and then conclude that every forbidden projection has trace zero.  If the
+central sign and the `k` context selectors generate the intended
+`(C_2)^(k+1)`, the regular group trace gives every signed selector atom
+
+\[
+e_a^-={1-J\over2}\prod_i {1+a_i z_i\over2}
+\]
+
+the fixed positive trace `2^(-(k+1))`, while every defining relator has zero
+energy.  Nor can this atom be made properly infinite in the full group
+algebra: its regular image is a nonzero projection in the finite algebra
+`L(Gamma)`.  Therefore the S3 return must remain a genuinely
+finite-dimensional obstruction--an incompatible integer multiplicity table,
+a rank comparison after packet exactification, or an equivalent matrix-only
+invariant which the infinite regular multiplicity can absorb.  Cairn records
+this audit as `regular-trace-blocks-exact-local-predicate-return`.
+
 The source construction also removes part of the apparent global-design
 burden.  Its nonmembership proof already contains projections
 
