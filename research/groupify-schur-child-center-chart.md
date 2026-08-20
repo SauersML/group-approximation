@@ -47,6 +47,12 @@ word is forbidden by `schur-rank-output-is-not-a-scalar-selector`.
   semidirect product therefore pairs the two genuine child-simple types in
   every selector sector with dimension-free HS control.  This removes the
   branch-sign part of the chart but fixes all old selector characters.
+- **Balance the complete child type vector: solved locally.**
+  `translation-symmetrized-schur-child-reset` adjoins one shifted-pencil copy
+  for each Boolean translation. Translation automorphisms move selector
+  characters while permuting those copies, and the corrected sign flips pair
+  both genuine branches. Every restriction to the original child therefore
+  has uniform `(selector,branch)` multiplicities, with fixed-table HS control.
 - **Signed-monomial realization: locally solved.**
   `schur-child-center-has-finite-monomial-sector` puts the whole packet and
   corrected center in one finite irreducible signed-permutation sector.
@@ -54,9 +60,9 @@ word is forbidden by `schur-rank-output-is-not-a-scalar-selector`.
   microstate, `near-regular-finite-character-fixes-plancherel-types` forces the
   natural sector to occur at Plancherel density `dim(pi_f)^2/|H_f|` after
   exactification.
-- **Return the complete selector-labelled carrier:** open. The corrected
-  branch signs can now be paired without selecting one monomial sector, but
-  all old selector characters remain.  The other types can still absorb a
-  finite graph-of-groups multiplicity flow. The missing object is an
-  ordinary-group atlas which resets or transports the complete
-  `(selector,branch)` carrier with dimension-free HS loss.
+- **Global return:** open. The complete local child vector can now be reset
+  and transported to an isomorphic fresh chart without naming `Q_f`.
+  Nevertheless a finite graph of these groups has stationary regular type
+  flow. The reset must be placed inside the Toeplitz/compressor recurrence so
+  the returned fixed-scale multiplicity cannot escape into complementary
+  types.

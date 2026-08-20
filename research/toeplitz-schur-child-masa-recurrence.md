@@ -48,9 +48,13 @@ can nevertheless be paired by the ordinary finite semidirect product of
 `hnn-selector-chart-transport-preserves-mark-and-types`: an HNN edge makes
 the post-reset chart conjugate to the next Fanizza context and gives the
 type-vector part of `(TCM1)` without asserting equality or commutation—is a
-genuine reset/transport of the **old selector character**.  The finite branch
-flip fixes every `z_i`, so the inactive-sector payment in clause 3 is not the
-only remaining content of this claim.
+genuine reset/transport of the **old selector character**.
+`translation-symmetrized-schur-child-reset` now supplies that reset by
+permuting shifted-pencil copies while translating all selector signs. Thus
+the local complete-type reset is solved. What remains here is its coherent
+placement in the Toeplitz tail together with the inactive-sector payment of
+clause 3; a finite graph of the reset groups alone would still have stationary
+regular type flow.
 
 Combined with the oriented child-branching identity, `(TCM1)` gives
 
@@ -78,7 +82,8 @@ nonisomorphic finite packet groups.
   every past selector and fails the mandatory contextuality test.
 - Raw branch-controlled Pauli reset: invalid for Schur child types, because it
   balances raw `q` spectra.  The corrected child sign flip is now solved by a
-  genuine child automorphism, but it does not reset the selector center.
+  genuine child automorphism, and the translation-symmetrized overgroup resets
+  the full selector-labelled vector.
 - HNN selector-chart transport closes the type-vector estimate only after a
   valid old-selector reset has supplied two isomorphic endpoint charts.
   It deliberately preserves multiplicity; the factor two has already been
