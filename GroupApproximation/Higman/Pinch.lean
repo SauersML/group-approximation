@@ -355,7 +355,8 @@ theorem descent (hQZ : Q ⊓ M ≤ Z) (hZQ : Z ⊓ M ≤ Q) :
               rw [word_append, word_append]
               rw [List.map_append, List.prod_append, List.map_cons, List.prod_cons,
                 List.map_cons, List.prod_cons, List.map_nil, List.prod_nil]
-              rw [blockOf_of_mem M q z hqM, ← blockOf_mul_of M q₀ z₀' (q * z)]
+              rw [blockOf_of_mem M q z hqM, List.map_cons, List.prod_cons,
+                ← blockOf_mul_of M q₀ z₀' (q * z)]
               group
             have hlen' : (l₁' ++ (q₀, z₀' * (q * z)) :: l₂).length ≤ n := by
               simp only [List.length_append, List.length_cons, List.length_nil] at hlen ⊢
@@ -447,7 +448,7 @@ theorem exists_blockForm {x : CentHNN M} (hx : x ∈ Subgroup.closure (genSet M 
       rcases hy with hy | hy
       · obtain ⟨a, ha, rfl⟩ := hy
         refine ⟨a * z₀, l, Subgroup.mul_mem Z ha hz₀, hinv, ?_⟩
-        exact (of_mul_word M a z₀ l).symm
+        exact of_mul_word M a z₀ l
       · obtain ⟨u, hu, rfl⟩ := hy
         obtain ⟨qq, hqq, rfl⟩ := hu
         refine ⟨1, (qq, z₀) :: l, Subgroup.one_mem Z, ?_, ?_⟩
@@ -456,8 +457,8 @@ theorem exists_blockForm {x : CentHNN M} (hx : x ∈ Subgroup.closure (genSet M 
           · exact ⟨hqq, hz₀⟩
           · exact hinv p hp'
         · rw [← conj_mul_word M qq z₀ l]
-          show ((conjT M).toMonoidHom (of qq)) * word M z₀ l = _
-          simp only [conjT_apply, inv_inv]
+          show conjT M (of qq) * word M z₀ l = _
+          rw [conjT_apply, inv_inv]
 
 /-! ## 9.  The pinch lemma -/
 

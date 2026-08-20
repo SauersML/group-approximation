@@ -35,6 +35,7 @@ namespace CStarExactness
 
 open scoped InnerProductSpace
 open Finset ReducedGroupCStarTrace Amenability AmenableActionSofic
+open scoped Classical
 
 noncomputable section
 
@@ -48,11 +49,13 @@ variable {Γ : Type u} [Group Γ]
 def finsetEnum (A : Finset Γ) : Fin A.card → Γ :=
   fun i ↦ ((A.equivFin.symm i : {x // x ∈ A}) : Γ)
 
+omit [Group Γ] in
 theorem finsetEnum_injective (A : Finset Γ) :
     Function.Injective (finsetEnum A) := by
   intro i j hij
   exact A.equivFin.symm.injective (Subtype.ext hij)
 
+omit [Group Γ] in
 /-- Summing a function of the enumeration is summing it over the set. -/
 theorem sum_finsetEnum (A : Finset Γ) {M : Type*} [AddCommMonoid M]
     (f : Γ → M) :
@@ -100,9 +103,9 @@ theorem card_filter_add_card_boundary (A : Finset Γ) (g : Γ) :
   classical
   have hb : boundary A g = A.filter fun b ↦ ¬ (g * b ∈ A) := by
     ext a
-    simp [boundary, mem_boundary]
+    simp [boundary]
   rw [hb]
-  exact Finset.filter_card_add_filter_neg_card_eq_card _
+  exact Finset.card_filter_add_card_filter_not _
 
 /-! ## Amenability supplies the tuples -/
 
@@ -119,8 +122,9 @@ theorem exists_overlap_of_isAmenable (hΓ : IsAmenable Γ) (F : Finset Γ)
   set r : ℝ := Real.sqrt ((A.card : ℝ)⁻¹) with hr
   set w : ℂ := (r : ℂ) with hw
   have hww : star w * w = (((A.card : ℝ)⁻¹ : ℝ) : ℂ) := by
+    have hnn : (0 : ℝ) ≤ ((A.card : ℝ))⁻¹ := le_of_lt (inv_pos.mpr hcard)
     rw [hw, Complex.star_def, Complex.conj_ofReal, ← Complex.ofReal_mul, hr,
-      ← Real.sqrt_mul_self (le_of_lt (inv_pos.mpr hcard))]
+      Real.mul_self_sqrt hnn]
   refine ⟨A.card, finsetEnum A, fun _ ↦ w, finsetEnum_injective A, ?_,
     fun g hg ↦ ?_⟩
   · rw [Finset.sum_const, nsmul_eq_mul, Finset.card_univ, Fintype.card_fin,
@@ -136,9 +140,20 @@ theorem exists_overlap_of_isAmenable (hΓ : IsAmenable Γ) (F : Finset Γ)
         have := congrArg (fun n : ℕ ↦ (n : ℝ)) hsplit
         push_cast at this
         linarith
-      push_cast
-      rw [hcast]
-      field_simp
+      have hreal : ((A.filter fun b ↦ g * b ∈ A).card : ℝ) * ((A.card : ℝ))⁻¹ - 1
+          = -(((boundary A g).card : ℝ) / (A.card : ℝ)) := by
+        rw [hcast]
+        field_simp
+        ring
+      calc (((A.filter fun b ↦ g * b ∈ A).card : ℂ)
+            * (((A.card : ℝ)⁻¹ : ℝ) : ℂ)) - 1
+          = ((((A.filter fun b ↦ g * b ∈ A).card : ℝ) * ((A.card : ℝ))⁻¹ - 1 : ℝ) : ℂ) := by
+            push_cast
+            ring
+        _ = ((-(((boundary A g).card : ℝ) / (A.card : ℝ)) : ℝ) : ℂ) := by rw [hreal]
+        _ = -((((boundary A g).card : ℝ) / (A.card : ℝ) : ℝ) : ℂ) := by
+            push_cast
+            ring
     rw [hval, norm_neg, Complex.norm_real, Real.norm_eq_abs,
       abs_of_nonneg (by positivity)]
     rw [div_le_iff₀ hcard]
@@ -148,7 +163,7 @@ theorem exists_overlap_of_isAmenable (hΓ : IsAmenable Γ) (F : Finset Γ)
 reduced C⋆-algebra with the completely positive approximation property. -/
 theorem nuclearReducedCPAP_of_isAmenable {Γ : Type} [Group Γ]
     (hΓ : IsAmenable Γ) : NuclearReducedCPAP Γ :=
-  nuclearReducedCPAP_of_overlap fun F δ hδ ↦
+  nuclearReducedCPAP_of_overlap fun F _δ hδ ↦
     exists_overlap_of_isAmenable hΓ F hδ
 
 /-- **Lance's theorem, both directions.**  The completely positive
