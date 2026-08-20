@@ -10,9 +10,13 @@ artifacts:
 OPEN. Construct a finitely presented group `Gamma_*` with the following
 simultaneous syntax and completeness properties.
 
-1. It contains the Toeplitz--Steinberg base and one stable letter `t`
+1. It contains the Toeplitz--Steinberg base and a stable letter `t`
    implementing the injective coefficient endomorphism `sigma`.
-2. The same word `t` is the shift `U` in the fixed Fanizza BCS tape.
+2. It keeps the Fanizza shift `U=U_1U_2` distinct from `t` and imposes the
+   finite diagonal-covariance relations of
+   `diagonal-covariance-synchronizes-hnn-and-bcs-shifts` on the finite base
+   word menu. Thus conjugation by `t^n` transports every input control exactly
+   as conjugation by `U^n`, without killing the HNN height character.
 3. For the finite menu of base BCS propagation predicates, finitely many
    Schur packet generators lie in one bounded Toeplitz head. Their *input*
    central selector words are identified with the corresponding base BCS
@@ -34,6 +38,13 @@ exist. Clause 5 must nevertheless be proved for the **joint** amalgam: local
 extensions cannot simply be declared compatible with the whole
 Toeplitz--Steinberg representation.
 
+Literal identification `t=U` is impossible: `U` is a product of two
+involutions and is therefore conjugate to its inverse, whereas the strict HNN
+shift has height one. This is the obstruction in
+`ascending-hnn-shift-cannot-be-an-involution-product`. Diagonal covariance is
+the height-preserving replacement and also supplies a tensor-product exact
+marked model for the uncoupled synchronization skeleton.
+
 The phrase "selector/packet relation" in clause 3 must not identify a
 derived nonlinear projection such as `P_tilde_n` with a scalar selector word.
 That is impossible by `schur-rank-output-is-not-a-scalar-selector`. The
@@ -45,8 +56,11 @@ Morita/restriction incidence used in
 ## Attempts
 
 - Add one unrelated packet at every tape level: syntactically infinite and
-  therefore unusable. Identifying `t=U` reduces all controls to finitely many
-  base relations.
+  therefore unusable. Diagonal covariance reduces all shifted input controls
+  to finitely many base relations.
+- Identify `t=U`: invalid, because it destroys the ascending-HNN height
+  character. Keep both shifts and centralize their difference on the finite
+  input menu.
 - Tensor independent BCS and Toeplitz representations: this does not satisfy
   the selector identifications.
 - Active exact-model construction: extend the nonzero BCS representation by
