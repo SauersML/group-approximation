@@ -1,5 +1,6 @@
 import GroupApproximation.Higman.RopeTrick
 import GroupApproximation.Higman.Program
+import GroupApproximation.Computability.PresentationCodes
 
 /-!
 # Higman's embedding theorem, assembled

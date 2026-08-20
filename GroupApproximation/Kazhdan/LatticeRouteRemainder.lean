@@ -52,7 +52,7 @@ theorem finitePresentationFiniteIndexPermanence_of_freeInput
     (hfree : FreeFiniteIndexFinitelyPresented) :
     Hyperbolic.FinitePresentationFiniteIndexPermanence := by
   intro Γ inst Λ hfi hΓ
-  exact @isFinitelyPresented_subgroup_of_finiteIndex.{0} hfree Γ inst Λ hfi hΓ
+  exact @isFinitelyPresented_subgroup_of_finiteIndex hfree Γ inst Λ hfi hΓ
 
 /-- **The lattice route, with the property `(T)` input discharged and the other
 two reduced to named literature facts.**
