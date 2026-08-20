@@ -5,6 +5,7 @@ kind: claim
 title: Two oriented C18 rank gates give exact active-plus-exit branch balance
 artifacts:
   - experiments/fanizza_oriented_c18_exit_compiler.py
+  - experiments/fanizza_child_oriented_c18_exit_compiler.py
 distinct_from:
   fanizza-final-bcs-has-fixed-nonlinear-menu: that records C18's 20 forbidden assignments as one Boolean constraint; this replaces them, only on the forward source carrier, by 20 oriented exit occurrences counted with multiplicity.
   binary-cut-projection-recurrence-gives-bfe1: that converts a supplied projection recurrence residual into a scalar balance; this proves the required balance pointwise on the C18 spectral atoms after packet replacement.
@@ -95,6 +96,22 @@ X_1=F_1(I-Q_1)/2,       X_2=F_2(I+Q_1)/2               (OCB5)
 
 are orthogonal.  Pauli trace balance gives
 `tau(X_i)=tau(F_i)/2`, so `tau(X_1+X_2)=s/2<=q`.
+
+There is a more presentation-friendly orientation of the identical 20
+occurrences.  Assign them to the two recurrence children by
+
+```text
+e_p=h p(1-r),
+e_q=h q((1-r) or p).                                  (OCB6)
+```
+
+Then `e_p+e_q=e_1+e_2` on all 64 atoms, while `e_p<=p` and `e_q<=q`.
+Thus each gate is carried by the literal source projection whose missing
+copy it records.  The optimized compilers improve to baseline ranks 8 and 9
+(matrix sizes 9 and 10).  All 20 child-oriented atoms still have the same
+kernel `K_sym`, hard form `e_02^*`, and reverse `J=+1` sign.  At the common
+`110` support their exit halves can be chosen as opposite spectral halves of
+the first relative Pauli word, so the upper source budget remains `s/2<=q`.
 
 This is an oriented recurrence compiler, not an equivalent replacement of
 C18 on arbitrary corners.  Its use is valid precisely after cutting to the

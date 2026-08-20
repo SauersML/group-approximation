@@ -11,6 +11,7 @@ requires:
   - corner-localized-non-ce-bcs-energy-gap
 artifacts:
   - experiments/fanizza_oriented_c18_exit_compiler.py
+  - experiments/fanizza_child_oriented_c18_exit_compiler.py
 ---
 
 For `h=1`, enumerate the eight first-triple atoms.  The values of
@@ -52,3 +53,13 @@ words with polynomial level cost.  Equation `(OCB3)` permits the localized
 BCS gap to be applied before the two local packet exactifications, so no
 independent-context classicalization is assumed.  Constructing distinct
 next-level images for the active halves is intentionally not asserted here.
+
+For `(OCB6)`, direct enumeration shows that the two child predicates have
+8 and 12 atoms and that their sum equals `e_1+e_2` pointwise.  The second
+verifier builds their best reduced-OBDD compilers and exhausts the same
+weight-at-most-two frame space.  It returns 20/20 frames, only kernel
+`52789443047427`, and only hard covector `(0,1,0,0,0,0)`.  On the four
+intersection atoms `110` choose the first gate's negative relative half for
+the `p` exit and its positive relative half for the `q` exit; off the
+intersection use either gate's own balanced half.  Central selector supports
+make these pieces orthogonal, and every piece has exactly half its atom mass.
