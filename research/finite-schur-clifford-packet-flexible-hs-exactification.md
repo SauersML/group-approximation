@@ -36,3 +36,9 @@ does not identify those corrections: `non-ce-bcs-has-robust-approximate-energy-g
 is applied first to the original globally shared words, and fixed-length
 telescoping transfers their forbidden-product mass to the local exact packet
 sectors.
+
+When an actual comparison is needed, the pairwise obstruction is now
+quantified by `finite-group-shared-overlap-polar-alignment`: two corrections
+which approximate the same shared finite subgroup have exactly equivalent
+restrictions on a submodule of dimension `d-O(eta^2 d)`. That lemma does not
+by itself make a whole cyclic atlas compatible.

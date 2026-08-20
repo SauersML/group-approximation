@@ -36,24 +36,30 @@ summable against `2^(-n)`.
    actual conjugate tape words so that a violating rank jump pays the
    difference between `a_n` and `a_(n+1)/2`.
 
-Clause 4 is the remaining obstruction. It must be proved by integral/rank
-information specific to matrices; a trace-functorial comparison would violate
+`finite-group-shared-overlap-polar-alignment` now supplies the pairwise
+comparison on a submodule of dimension `d-O(eta^2d)`. The remaining part of
+clause 4 is to choose these large intertwiners compatibly around the tape
+cycle and show that their discarded corners have the polynomially weighted
+cost in `(SDL2)`. It must be proved by integral/rank information specific to
+matrices; a trace-functorial comparison would violate
 `trace-functorial-bcs-signal-groupification-impossible`.
 
 ## Attempts
 
-- **Independent packet exactification.** Exactifying each context separately
-  proves the correct local rank jump, but the Gowers--Hatami correcting
-  isometry depends on the context. There is then no common multiplicity vector
-  on which the tape conjugation can compare consecutive levels. The attack
-  must exactify the overlap algebra or prove that the two corrections agree on
-  the marked baseline packet up to `O(sqrt(E))`.
+- **Independent packet exactification. Pairwise part repaired.** Exactifying
+  each context separately gives different correcting isometries.
+  `finite-group-shared-overlap-polar-alignment` averages their overlap and
+  produces an exact common-subgroup intertwiner after discarding only
+  `O(eta^2d)` dimensions. What is not yet proved is simultaneous choice of
+  these polar intertwiners along all tape incidences without accumulating an
+  unsummable holonomy loss.
 - **Exact trace-functorial overlap.** Forcing one common exact packet atlas in
   every tracial representation is impossible by
   `trace-functorial-bcs-signal-groupification-impossible`. The comparison has
   to use integer multiplicities of finite matrices after local rounding, not a
   universal conditional expectation in the group von Neumann algebra.
-- **Deferred calculation.** Write the two context corrections as partial
-  isometries over the common selector algebra and estimate their mismatch by
-  the polar defect of the overlap intertwiner. A dimension-free estimate here
-  would discharge clause 4 and `(SDL2)`.
+- **Next calculation.** Compose the pairwise polar intertwiners around one
+  recurrence cell. Its failure to close lies in the commutant of the baseline
+  packet. Bound the rank of the nontrivial polar holonomy by the original
+  shared-word defect, or absorb it into the next tape level with factor
+  `1/2`. This is the remaining route to `(SDL2)`.

@@ -1066,6 +1066,31 @@ is recorded as `finite-dimensional-schur-lift-of-doubling-tape`; together with
 the abstract contractive ladder it is now a one-hole route to a
 nonhyperlinear group.
 
+One part of that hole has a direct solution.  Suppose two independent flexible
+exactifications \((\rho_i,V_i)\) of finite packets both approximate the same
+map \(f:A\to U(d)\) on their common finite subgroup.  Average the rank-
+\(d\) overlap \(T=V_2V_1^*\):
+
+\[
+\overline T={1\over |A|}\sum_{a\in A}\rho_2(a)T\rho_1(a)^*.
+\]
+
+Then \(\overline T\) is an exact intertwiner and
+\(\|\overline T-T\|_F\le(\eta_1+\eta_2)\sqrt d\).  Since the first \(d\)
+singular values of \(T\) equal one, singular-value perturbation shows that the
+polar part of \(\overline T\), restricted above threshold \(1/2\), identifies
+exact common submodules of dimension at least
+
+\[
+(1-4(\eta_1+\eta_2)^2)d.
+\]
+
+Thus separate Gowers--Hatami corrections can be aligned pairwise with only a
+quadratic-density loss.  The remaining obstruction is genuinely cyclic:
+choose these large polar intertwiners compatibly around a recurrence cell and
+control the residual commutant holonomy by the original shared-word defect.
+This lemma is recorded as `finite-group-shared-overlap-polar-alignment`.
+
 ---
 
 ## 16. Computational verification
