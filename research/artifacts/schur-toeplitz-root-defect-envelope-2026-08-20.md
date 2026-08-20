@@ -25,6 +25,20 @@ produces a finite coefficient quotient. It kills `P_f`, so the explicit root
 word `x_12(P_f)` dies in every finite-dimensional unitary representation.
 The word itself remains nontrivial, as witnessed in `EL_5(R_f)`.
 
+The envelope retains the exact head--tail recursion. The trivial packet
+character extends with `x,y->1` to an augmentation `epsilon:R_f->k`, and
+
+```text
+sigma(a)=xay+epsilon(a)P_f
+```
+
+is a proper injective unital endomorphism satisfying
+`sigma^n(P_f)=e_n`. Entrywise application to `EL_5(R_f)` therefore gives an
+explicit finitely presented ascending HNN group `H_f` in which all root
+defect cells are conjugates of the base cell. The exact finite-dimensional
+invisibility theorem persists after adjoining the stable letter, while
+Britton normal form preserves the nontrivial marked root.
+
 ## Why this is the right coupling
 
 The character-density formula previously left a word-conversion gap:

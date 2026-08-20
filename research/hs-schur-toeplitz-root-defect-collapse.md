@@ -11,10 +11,10 @@ distinct_from:
   toeplitz-tail-retains-contextual-schur-density: that asks for a conditional-expectation survive-or-recurse theorem for packet commutants; this asks for the equivalent coefficient-root defect to disappear directly.
 ---
 
-OPEN. For the explicit finite presentation and word
+OPEN. For the explicit ascending-HNN presentation and word
 
 ```text
-(G_f,w_f)=(St_5(R_f),x_12(P_f))
+(H_f,w_f)=(EL_5(R_f)*_alpha,x_12(P_f))
 ```
 
 from `schur-toeplitz-root-mark-is-fd-invisible`, prove a dimension-free
@@ -38,14 +38,21 @@ a_n <= lambda a_(n+1)+C(n+1)^k sqrt(epsilon),
 0<lambda<1.                                                (HST2)
 ```
 
-The relation `P_f=1-xy` supplies the proper-corner orientation exactly; no
+The stable letter satisfies
+
+```text
+t x_ij(e_n)t^-1=x_ij(e_(n+1)),                         (HST3)
+```
+
+so all levels are consequences of one finite conjugacy menu. The relation
+`P_f=1-xy` supplies the proper-corner orientation exactly; no
 linear combination of represented packet words has to be converted into one
 group word. Steinberg additivity and multiplication transport the coefficient
 through roots. The unresolved step is a dimension-free weighted substitute
 for intersecting all root kernels, or equivalently a first-hit decomposition
 whose discarded root-character masses are summable.
 
-Establishing `(HST1)` makes `G_f` nonhyperlinear: hyperlinearity would give
+Establishing `(HST1)` makes `H_f` nonhyperlinear: hyperlinearity would give
 microstates converging to the canonical delta trace, while the nontrivial
 order-`p` word `w_f` has fixed positive delta-trace distance from the
 identity.
@@ -88,6 +95,13 @@ relator-certificate barriers.
   `e_n` carrier must enter a new active cell while at most one copy exits,
   giving `lambda<1` in `(HST2)`. Toeplitz transport supplies fresh cells;
   Fanizza/Schur orientation must supply the strict coefficient.
+- **Self-similar syntax is closed.** By
+  `schur-toeplitz-envelope-has-proper-self-embedding`, every cell and every
+  root triangle is a stable-letter conjugate of the base cell. Derived
+  covariance through depth `n` has polynomial word cost. This removes the
+  infinite-presentation problem but not the analytic stationary-flow escape:
+  conjugacy equalizes successive marginals, while the Schur child restriction
+  must still supply the strict factor `lambda<1`.
 - **Why ordinary Toeplitz truncation is not a counterexample by itself.** In
   truncated unilateral-shift matrices, the rank-one defect has vanishing
   normalized trace. Here the canonical root mark has fixed delta-trace

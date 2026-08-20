@@ -6,6 +6,7 @@ title: Intersect the torsion-root kernels and apply direct finiteness in the res
 target: schur-toeplitz-root-mark-is-fd-invisible
 requires:
   - schur-idempotent-is-an-injective-toeplitz-defect
+  - schur-toeplitz-envelope-has-proper-self-embedding
 ---
 
 For each ordered pair `i!=j`, the commuting exponent-`p` unitaries in
@@ -22,6 +23,9 @@ ring, so the relation `yx=1` forces `xy=1`; its image of
 `P_f=1-xy` is zero. Therefore `P_f in I` and all roots `x_ij(P_f)`, including
 the marked one, lie in the representation kernel.
 
-Finally the natural map to `EL_5(R_f)` sends `x_12(P_f)` to
-`1+E_12P_f`, which is nonidentity because the packet embedding keeps
-`P_f!=0`.
+Finally `x_12(P_f)=1+E_12P_f` is nonidentity in `EL_5(R_f)` because the
+packet embedding keeps `P_f!=0`. The injective coefficient endomorphism
+induces an injective endomorphism of this matrix group, so Britton normal form
+embeds the base in its ascending HNN extension. Restricting any
+finite-dimensional representation of the HNN group to the base applies the
+preceding root-kernel argument and kills the marked word.

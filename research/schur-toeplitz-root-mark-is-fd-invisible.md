@@ -12,14 +12,17 @@ distinct_from:
 ---
 
 Let `R_f` and `P_f` be as in
-`schur-idempotent-is-an-injective-toeplitz-defect`, let `p=char(k)`, and put
+`schur-idempotent-is-an-injective-toeplitz-defect`, let `p=char(k)`, put
+`Gamma_f=EL_5(R_f)`, and let `alpha` be the injective endomorphism induced by
+`schur-toeplitz-envelope-has-proper-self-embedding`. Define
 
 ```text
-G_f=St_5(R_f),                 w_f=x_12(P_f).             (STR1)
+H_f=<Gamma_f,t | t g t^-1=alpha(g), g in S_Gamma>,
+w_f=x_12(P_f).                                             (STR1)
 ```
 
-Then `G_f` is finitely presented, `w_f!=1`, and every finite-dimensional
-unitary representation `rho:G_f->U(d)` satisfies
+Then `H_f` is finitely presented, `w_f!=1`, and every finite-dimensional
+unitary representation `rho:H_f->U(d)` satisfies
 
 ```text
 rho(w_f)=1.                                                 (STR2)
@@ -34,11 +37,13 @@ put every `x_ij(I)` in `ker(rho)`. By
 `schur-idempotent-is-an-injective-toeplitz-defect`, the finite quotient
 `R_f/I` kills `P_f`; hence `P_f in I` and `(STR2)` follows.
 
-The root element is nontrivial because its image in `EL_5(R_f)` is the
-nonidentity elementary matrix `1+E_12 P_f`. Finite presentation follows from
-finite presentation of `R_f` and the rank-five Steinberg presentation.
+The root element is the nonidentity elementary matrix `1+E_12P_f` in the
+base. The base embeds in the ascending HNN extension because `alpha` is
+injective, so it remains nontrivial in `H_f`. Finite presentation follows
+from finite presentation of `R_f` and `EL_5(R_f)`, plus one stable letter and
+one conjugacy relation for each fixed base generator.
 
-Thus `(G_f,w_f)` is an explicit relative minimally-almost-periodic pair whose
+Thus `(H_f,w_f)` is an explicit relative minimally-almost-periodic pair whose
 distinguished word is exactly the nonlinear Schur orientation. The remaining
 question is not exact representation theory but whether `(STR2)` survives
 normalized-HS asymptotic representations.
