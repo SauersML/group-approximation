@@ -121,6 +121,15 @@ relator-certificate barriers.
   showing that the finite packet multiplicity carried by this literal head
   factor passes through the represented root triangles with the oriented
   child coefficient `(OCB3)`.
+- **The present shift does not supply that decoder.**
+  `packet-headed-toeplitz-shift-is-schur-type-preserving` proves that
+  `sigma^n` carries each full forbidden Wedderburn block isomorphically to the
+  next full block. The prefix matrix amplification adds identical copies but
+  never restricts through the `Q` child. Therefore `(HST2)` cannot be derived
+  from the current coefficient self-map alone. The missing syntax is exactly
+  the non-type-preserving child-MASA placement of
+  `toeplitz-schur-child-masa-recurrence`; after that placement, the V4
+  five-fourths exit law is the sharper local payment ledger.
 - **Why ordinary Toeplitz truncation is not a counterexample by itself.** In
   truncated unilateral-shift matrices, the rank-one defect has vanishing
   normalized trace. Here the canonical root mark has fixed delta-trace

@@ -59,6 +59,13 @@ This is the exact oriented packet/tail factorization sought in the earlier
 conditional-expectation formulation. The remaining gap is solely robust
 decoding of that factor from an arbitrary normalized-HS group microstate.
 
+There is an important limit: on the forbidden algebra the self-map is simply
+`a |->xay`, an algebra isomorphism onto the next site. It preserves the full
+Schur Wedderburn type and does not pass through either child algebra. Hence
+the construction does not yet earn the `1/2` in the backward ledger. That
+coefficient still requires the child-MASA Morita wire; the Toeplitz envelope
+supplies its oriented proper-corner substrate, not the wire itself.
+
 ## Why this is the right coupling
 
 The character-density formula previously left a word-conversion gap:
