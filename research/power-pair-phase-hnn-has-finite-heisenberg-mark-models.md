@@ -7,6 +7,7 @@ artifacts:
   - experiments/power_pair_heisenberg_finite_model.py
   - experiments/power_pair_heisenberg_finite_model.json
 distinct_from:
+  coprime-power-pair-phase-hnn-is-residually-finite: that proves the whole coprime power-pair HNN extension is residually finite; this retains the explicit class-two Heisenberg permutation model and its exact commutator margin.
   hnn-mark-collapse-requires-profinite-edge-incompatibility: that gives the general compatible-finite-quotient screening criterion; this explicitly supplies the compatible Heisenberg quotients for the power-pair edge.
   graph-endomorphism-phase-hnn-embeds-formanek-procesi: that proves residual finiteness when one faithful coordinate normalizes the edge map to an ambient graph endomorphism; this gives exact finite marked models even when both faithful power images are proper and the induced partial graph maps do not extend.
   finite-free-phase-product-embedding-has-an-injective-coordinate: that forces one faithful coordinate abstractly; this constructs finite quotients in which both power coordinates are automorphisms and the free commutator remains nontrivial.

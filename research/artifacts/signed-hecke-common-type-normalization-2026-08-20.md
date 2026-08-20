@@ -253,6 +253,13 @@ The most immediate ways to use that subgroup have now been audited exactly:
    commutator remains nontrivial.  Thus proper, nonextendable power images do
    not alone create a finite-dimensional collapse.  This is
    `power-pair-phase-hnn-has-finite-heisenberg-mark-models`.
+8. In fact every coprime power-pair HNN is residually finite.  For any prime
+   away from the two exponents, cyclic-syllable normal form in the free
+   pro-`p` product shows that the profinite graph intersects the discrete
+   `F times F` in exactly the intended power-pair subgroup.  Characteristic
+   finite `p`-group quotients then preserve every forbidden Britton pinch;
+   see `coprime-power-pair-phase-hnn-is-residually-finite`.  Hence the first
+   explicitly nonprimitive return is fully fenced.
 
 Together with `amenable-edge-hnn-preserves-hyperlinearity`, this leaves a
 much narrower live interface.  A decisive infinite-edge chord must use a
@@ -260,10 +267,11 @@ nonamenable proper support and couple multiple phase factors non-graphically:
 it cannot be a symmetric factor identification, a graph of one injective
 endomorphism into a commuting copy, a partial graph over one unchanged
 faithful free coordinate, a switch between whole faithful direct factors, an
-amenable edge, a switch between the natural free-factor supports, or an
-endomorphism of the whole base.  It must instead use a nonprimitive faithful-
-coordinate embedding (or leave finite-product free-phase geometry), fix both
-separator algebras, and carry genuine cycle holonomy.  Its marked packet must
+amenable edge, a switch between the natural free-factor supports, a coprime
+power-pair switch, or an endomorphism of the whole base.  It must instead use
+a nonprimitive faithful-coordinate embedding beyond coordinatewise coprime
+powers (or leave finite-product free-phase geometry), fix both separator
+algebras, and carry genuine cycle holonomy.  Its marked packet must
 also be profinitely incompatible with the edge transport; mere
 nonprimitivity is not enough.  This surviving requirement is recorded in
 `infinite-edge-common-commutant-for-first-chord`.

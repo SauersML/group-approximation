@@ -107,9 +107,11 @@ for algebraic Murray--von Neumann equivalence witnessed by group translates.
 - **Coprime proper power embeddings:** nonprimitive is not sufficient by
   itself.  `power-pair-phase-hnn-has-finite-heisenberg-mark-models` constructs
   exact finite permutation models of the first explicit power-pair edge in
-  which the free commutator remains nontrivial.  It does not prove the HNN
-  hyperlinear, but it rules out finite-dimensional collapse arguments based
-  only on properness of both coordinate images.
+  which the free commutator remains nontrivial.  More strongly,
+  `coprime-power-pair-phase-hnn-is-residually-finite` separates every
+  nonidentity word in the full HNN by characteristic finite `p`-group
+  quotients.  Thus this first nonprimitive candidate is completely fenced,
+  not merely shown to preserve the first commutator.
 - **One unconstrained stable letter:** it can conjugate `X_0` to `X_1`, but
   does not put their common value in both separator commutants and therefore
   breaks a parent attachment.
@@ -119,9 +121,10 @@ for algebraic Murray--von Neumann equivalence witnessed by group translates.
   the separator atoms and must embed the faithful free coordinate as a proper
   non-free-factor subgroup at least at one end, use embeddings with no
   compatible faithful coordinate, or leave finite-product free-phase geometry
-  entirely.  Fixed-coordinate partial graphs, whole-coordinate switches, and
-  switches between the natural proper free-factor supports are all residually
-  finite.  The surviving edge must therefore carry genuine nonprimitive
-  subgroup distortion and cycle holonomy in the faithful coordinate itself,
-  and its marked packet must be incompatible with the relevant finite edge
-  models rather than merely absent from the infinite subgroup image.
+  entirely.  Fixed-coordinate partial graphs, whole-coordinate switches,
+  switches between the natural proper free-factor supports, and coprime
+  power-pair switches are all residually finite.  The surviving edge must
+  therefore carry nonprimitive subgroup distortion beyond coordinatewise
+  coprime powers together with cycle holonomy in the faithful coordinate
+  itself, and its marked packet must be incompatible with the relevant finite
+  edge models rather than merely absent from the infinite subgroup image.
