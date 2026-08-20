@@ -92,7 +92,7 @@ structure TorsionPreservation where
     Nonempty (TorsionFreeHigmanHull B)
 
 /-- Composing an embedding with a hull. -/
-def TorsionFreeHigmanHull.comp {A B : Type} [Group A] [Group B]
+def torsionFreeHigmanHullComp {A B : Type} [Group A] [Group B]
     (H : TorsionFreeHigmanHull B) (f : A →* B) (hf : Function.Injective f) :
     TorsionFreeHigmanHull A where
   Carrier := H.Carrier
@@ -103,13 +103,13 @@ def TorsionFreeHigmanHull.comp {A B : Type} [Group A] [Group B]
 /-- **The two inputs give Chiodo's Theorem 2.2.**  Bridge to a finitely
 generated group, apply Higman with the torsion clause there, and compose the
 two embeddings. -/
-def torsionFreeHigmanEmbedding_of_inputs (hb : CountableToFG)
+theorem torsionFreeHigmanEmbedding_of_inputs (hb : CountableToFG)
     (ht : TorsionPreservation) : TorsionFreeHigmanEmbedding where
   hull := by
     intro A _ p htf
     obtain ⟨u⟩ := hb.bridge A p htf
     obtain ⟨H⟩ := ht.hull u.Carrier u.recursive u.torsionFree
-    exact ⟨H.comp u.emb u.emb_injective⟩
+    exact ⟨torsionFreeHigmanHullComp H u.emb u.emb_injective⟩
 
 /-- **The whole chain, in one statement.**  The bridge, the torsion clause and
 a recursive presentation of the absorber give Chiodo's Theorem 3.10, hence
