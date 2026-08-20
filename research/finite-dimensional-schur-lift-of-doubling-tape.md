@@ -57,6 +57,15 @@ matrices; a trace-functorial comparison would violate
 
 ## Attempts
 
+- **Constant-depth reduction.**  The infinite-depth formulation is stronger
+  than the nonhyperlinearity endpoint needs.
+  `finite-depth-contractive-computation-ladder` keeps the terminal term and
+  absorbs it below half the fixed marked floor after one constant number of
+  cells.  The live weaker target is
+  `constant-depth-schur-lift-of-doubling-tape`: it removes the tape-shift
+  syntax and all exactification uniformity in accumulated Clifford rank.  A
+  bounded nested chain and its finite selector compatibility remain open.
+
 - **Finite shift amalgam is the remaining syntax check.** The analytic
   one-cell modulus is now uniform and the type-vector recurrence is closed,
   but `toeplitz-schur-bcs-shift-amalgam` must still prove that the Fanizza

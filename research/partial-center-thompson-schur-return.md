@@ -58,6 +58,15 @@ longer incorrectly asked to reset selector density.
   action recombines the two child branches and destroys the factor-two
   current.  Hence the stated Thompson return cannot satisfy clauses 2 and 4
   simultaneously.
+- **All intermediate endpoints: negative.**  It is unnecessary to enumerate
+  the finite subgroup lattice between those extremes.
+  `flip-endpoints-cancel-schur-current` applies
+  Clifford orbit theory to `K=E intersect C_f`: if the two child branches are
+  indistinguishable on `K`, the current is already gone; if they are
+  distinguishable, `eta` pairs them with equal multiplicity in every
+  `E`-module.  Thus adjoining selector-dressed elements cannot repair the
+  minimal endpoint.  The remaining finite-depth attack must transport a
+  proper child corner before the flip is adjoined.
 - **Finite covariance syntax.**  Once the endpoint passes the intersection
   test, identify its Pauli pair with the base Thompson lamp and centralize the
   pointwise stabilizer of the addressed site.  Thompson high transitivity
