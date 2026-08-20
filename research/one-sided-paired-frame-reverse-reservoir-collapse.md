@@ -176,10 +176,14 @@ regular Bass--Serre reservoir.
   commutator makes CNOT an automorphism on both allowed and violating sectors,
   so the active/exit flag needs no nonlinear controlled word.
 - `mixed-central-cnot-completes-relative-rank-one-router` removes the CNOT
-  ancilla-initialization loss.  A six-generator cross-coupled packet uses the
+  ancilla-initialization loss.  A four-generator cross-coupled packet uses the
   global marked sign `J` for a fixed-density flag, has rank 2 on `K=+1` and
   rank 4 on `K=-1`, and admits an exact automorphism `d -> bd` preserving all
   commutators and generator squares.
+- `mixed-central-router-adjoins-without-collapsing-packet` identifies the
+  router control with the literal Schur pair by a relative-pair amalgam, not a
+  selector-center amalgam.  Bass--Serre normal forms preserve the packet and
+  induction preserves an exact `J=-1` representation.
 - `hard-sign-transport-captures-exit-mass` proves the complementary lower
   exit estimate.  Projecting one hard-sign conjugacy onto the positive target
   sector gives the sharp leakage bound `(HST1)`.  The corner BCS gap and the
