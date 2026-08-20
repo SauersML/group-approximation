@@ -7,6 +7,7 @@ distinct_from:
   schur-complement-controls-relative-pauli-module: that constructs the corrected child-center involution inside the finite group algebra; this must expose its two spectral charts by finitely many group relations with dimension-free HS control.
   finite-predicate-signed-permutation-sector: that realizes arbitrary predicate support inside one finite representation block; this additionally must remain compatible with the shared Schur baseline and its child restriction multiplicities.
   raw-schur-generator-is-not-child-center: that rules out the raw last generator; this asks for a valid replacement.
+  schur-child-center-has-finite-monomial-sector: that realizes the corrected center as a literal group element in one exact irreducible sector; this must force that sector, with quantitative soundness, in arbitrary approximate representations.
 ---
 
 For each fixed Schur predicate packet, construct a finite group-theoretic or
@@ -39,8 +40,11 @@ word is forbidden by `schur-rank-output-is-not-a-scalar-selector`.
   `p_t`, so its eigenspaces are not child modules.
 - **Use one selector word:** fails for nonlinear `v(x)` by the affine-selector
   barrier.
-- **Signed-Hecke chart:** active. The orthogonal selector idempotents make
-  `Q_f` an explicit finite group-algebra involution, so a finite regular block
-  can expose its spectral projections. The missing step is an ordinary-group
-  projection atlas whose approximate representations retain those blocks with
-  dimension-free HS loss and whose exact amalgam preserves the marked model.
+- **Signed-monomial realization: locally solved.**
+  `schur-child-center-has-finite-monomial-sector` puts the whole packet and
+  corrected center in one finite irreducible signed-permutation sector.
+- **Select that sector:** open. A general representation of the finite
+  overgroup contains other irreducibles, as predicted by the induction
+  barrier. The missing step is an ordinary-group projection atlas whose
+  approximate representations retain the natural sector with dimension-free
+  HS loss and whose exact amalgam preserves the marked model.
