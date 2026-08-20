@@ -62,6 +62,25 @@ it reproduces the entire tail in one fixed formula rather than by a word whose
 length grows with depth. What remains is to couple the shared BCS selector
 projections to that formula using group words.
 
+There is now an exact coefficient-root realization of that coupling.
+`schur-idempotent-is-an-injective-toeplitz-defect` works over a fixed odd
+finite splitting field and forms
+
+```text
+R_f=k[B_f]*_k k<x,y>/(yx=1,1-xy=P_f).
+```
+
+The packet algebra embeds, while every finite quotient kills the oriented
+forbidden idempotent `P_f`. In `St_5(R_f)` the density becomes the literal
+group word `x_12(P_f)`, and
+`schur-toeplitz-root-mark-is-fd-invisible` proves that every exact
+finite-dimensional unitary representation kills it. Thus the former
+word-conversion problem is closed algebraically. Its robust content is
+isolated as `hs-schur-toeplitz-root-defect-collapse`: replace the
+dimension-dependent intersection of the finite root kernels by a contractive
+weighted root-character recurrence. This is an alternative formulation of
+the present conditional-expectation gate, not yet its proof.
+
 The head algebra is also finitely actuated:
 `toeplitz-tail-plus-one-swap-generates` gives one involution `s` with
 `T=<sigma(T),s>`. Therefore no unbounded family of unrelated head generators
@@ -145,3 +164,8 @@ algebraic commutation problem.
   perfect tracial PVM assignment while having positive classical UNSAT. The
   appropriate input must be a quantum/Tailored-MIP answer-reduction theorem or
   a genuinely dimension-sensitive Schur multiplicity argument.
+- Encode `P_f` as a Steinberg coefficient but leave the coefficient ring
+  directly finite: this gives only a renamed root word and no orientation.
+  The packet-headed Toeplitz envelope above supplies the missing strict
+  defect. Exact finite-dimensional collapse is proved; its normalized-HS
+  root-character propagation remains open.

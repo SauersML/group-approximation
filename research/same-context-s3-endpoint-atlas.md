@@ -83,3 +83,10 @@ words such that:
   overgroup nonhyperlinear, since its canonical restriction contains the
   type at positive Plancherel weight.  The desired cell must allow every
   local regular type and obstruct only their **joint contextual coupling**.
+- Making every selector sector a unique full-matrix block does not permit a
+  nonlinear scalar-word decoder.  The group-basis support argument in
+  `sectorwise-scalar-finite-group-words-are-selector-affine` forces any word
+  which is selector-determined and scalar on all marked irreducibles back
+  into the selector subgroup itself.  Hence the surviving target is genuinely
+  non-scalar: character density, a matrix of intertwiners, or recursive
+  multiplicity curvature.

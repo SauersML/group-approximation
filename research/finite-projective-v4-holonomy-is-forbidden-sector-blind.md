@@ -61,3 +61,9 @@ multiplier.  It must act non-scalar on the edge-intertwiner multiplicity
 algebra, couple those matrix coordinates to the BCS endpoint convention, or
 be iterated by a genuinely unbounded self-similar/compressor relation.
 
+Nor can one exploit the fact that a cocycle choice may leave a single full
+matrix block over each selector assignment and search inside it for a literal
+word with nonlinear scalar phase.  By
+`sectorwise-scalar-finite-group-words-are-selector-affine`, any finite-group
+word whose scalar is determined by the marked selector character in every
+irreducible already belongs to the elementary-abelian selector subgroup.
