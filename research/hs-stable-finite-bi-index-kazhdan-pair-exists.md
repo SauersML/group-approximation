@@ -28,6 +28,9 @@ infinite hyperlinear property-(T) group is not same-dimension normalized-HS
 stable.  Thus one is looking for a nonamenable, non-property-(T), HS-stable
 ambient group containing the Kazhdan stabilizer, unless the ambient group is
 already nonhyperlinear and the main problem has been solved earlier.
+Moreover `H` cannot be a retract of `L` in the noncircular hyperlinear case:
+same-dimension HS stability descends to retracts, while an infinite
+hyperlinear property-(T) group is HS-unstable.
 
 ## Attempts
 
@@ -45,3 +48,6 @@ already nonhyperlinear and the main problem has been solved earlier.
   ambient is ruled out by Becker--Lubotzky.  Flexible stability would require
   a new carrier-preserving version of the coherence theorem and is already
   close to the known conditional nonhyperlinear-central-extension route.
+- Split extensions and free products with a retraction onto `H` are ruled out
+  by `hs-stability-descends-to-retracts`; any viable inclusion must be
+  genuinely nonsplit.

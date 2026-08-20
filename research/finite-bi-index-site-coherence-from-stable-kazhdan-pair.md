@@ -8,6 +8,7 @@ requires:
   - hs-stable-finite-bi-index-kazhdan-pair-exists
   - hs-stable-kazhdan-finite-bi-index-pair-gives-site-coherence
   - finite-bi-index-kazhdan-subgroup-forces-nonamenability
+  - hs-stability-descends-to-retracts
 ---
 
 Take the explicit pair from `(HFK1)`.  The sufficient-criterion theorem

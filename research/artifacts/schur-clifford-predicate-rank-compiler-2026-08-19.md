@@ -163,6 +163,12 @@ Becker--Lubotzky.  A noncircular candidate must therefore be nonamenable and
 non-property-(T), yet HS-stable and large enough to contain a Kazhdan
 finite-bi-index stabilizer.
 
+The inclusion must also be genuinely nonsplit.  Strict normalized-HS
+stability descends to retracts, whereas Becker--Lubotzky rule it out for every
+infinite hyperlinear property-(T) group.  Hence a hyperlinear Kazhdan
+stabilizer cannot be a retract of the stable ambient group; semidirect and
+free-product constructions with the evident projection are dead on arrival.
+
 A concrete exact holonomy primitive is now available.  If two commuting
 automorphisms of a finite packet have projective implementer commutator
 `zeta` of order `r` on an irreducible packet, adjoining commuting stable
