@@ -14,11 +14,13 @@ requires:
 
 The cited Fanizza theorem supplies the finite Turing BCS, its polynomially
 certified recurrence, and the final signal-versus-strategy-error collapse.
-`support-failure-packet-has-explicit-hs-payment` compiles every forbidden
-child-without-parent atom into one extra relative `M_2` multiplicity coordinate
-inside a fixed 128-element group packet.  Its Laplacian gap is four, so any
-extensive mismatch on that bit pays normalized-HS energy with no dimension
-loss.
+`fanizza-final-bcs-has-fixed-nonlinear-menu` shows that its final flattening
+uses only three nonlinear predicate shapes, while
+`fanizza-fixed-nonlinear-menu-has-small-rank-gates` compiles all three into
+fixed packets whose affine rank matrices have size at most twelve.  Every
+violating atom creates one extra relative `M_2` multiplicity coordinate.
+For the binary support subpacket the Laplacian gap is explicitly four; every
+other fixed packet also has a positive dimension-independent finite-group gap.
 
 The only quantum mixing needed at this local endpoint is compatibility of
 three pair laws on that single bit.  `rank-one-no-signaling-pairing-floor`

@@ -7,7 +7,7 @@ artifacts:
   - research/artifacts/relative-rank-one-fanizza-synthesis-2026-08-20.md
   - experiments/minimal_rank_one_support_compiler.py
 distinct_from:
-  multiplicity-return-transducer: that asks for an arbitrary fixed-BCS recurrent multiplicity return at fixed packet scale; this fixes the local packet to the 128-element support compiler and the quantitative computation to the Fanizza L-family.
+  multiplicity-return-transducer: that asks for an arbitrary fixed-BCS recurrent multiplicity return at fixed packet scale; this uses the three fixed packet shapes of the Fanizza L-family, whose largest affine rank matrix has size twelve.
   constant-hs-sound-self-detecting-tape-groupification: that asks for a dimension-sensing multiplicity tape and a runtime-independent terminal flag; this uses an existing Turing BCS recurrence and transports only one fixed two-dimensional relative packet.
   zpc-context-mismatch-transducer: that lowers readable predication contexts to an LCS while charging context disagreement; this asks directly for a finitely presented group and uses a relative Pauli multiplicity coordinate rather than selector support.
 ---
@@ -17,13 +17,15 @@ presentation `Gamma_M=<S_M|R_M>` and a word `w_M` satisfying the nonhalting
 word-survival clause of `hs-pcp-boone-compiler`, together with the following
 dimension-free soundness interface.
 
-1. Each nonlinear support-containment primitive in the Fanizza BCS is replaced
-   by the fixed packet `A_sub<=B_sub` of
-   `support-failure-packet-has-explicit-hs-payment`.  Selector phases are
+1. Each of the three machine-independent nonlinear predicate shapes in
+   `fanizza-final-bcs-has-fixed-nonlinear-menu` is replaced by its fixed
+   Schur--Clifford packet.  Their affine rank matrices have size at most twelve
+   by `fanizza-fixed-nonlinear-menu-has-small-rank-gates`.  Selector phases are
    context-local; they are not identified as globally central group elements.
 2. Every sufficiently accurate normalized-HS microstate exactifies these fixed
-   packets with `o(1)` loss and exposes, on violation mass `q`, three rank-one
-   endpoint-sharing transport laws satisfying `(RNS1)`.
+   packets with `o(1)` loss and exposes, on violation mass `q`, the one extra
+   relative Pauli coordinate as three rank-one endpoint-sharing transport laws
+   satisfying `(RNS1)`.
 3. The three transport failures are evaluations of fixed group relators.  The
    rank-one floor and the explicit packet payment combine to give
 
@@ -62,10 +64,16 @@ the Fanizza projection `D` itself as the nonhalting mark contradicts
   estimate gives `phi(D)=0` in every perfect strategy.  It cannot also witness
   marked separation; the Boone/self-reference word must enter through a
   distinct coupling relation.
+- **Support-only reduction is insufficient.**  The two-bit packet handles one
+  child-without-parent atom but does not encode the fixed six-bit conditional
+  partition relation `C18`.  The exact audit is
+  `fanizza-final-bcs-has-fixed-nonlinear-menu`; its compact rank gates now
+  replace the incorrect support-only premise.
 - **Current live attack.**  Apply
   `non-ce-bcs-has-robust-approximate-energy-gap` to the original shared words
-  before packet correction, exactify each fixed 128-element packet locally,
-  and use a stable-letter triangle of *relative commutator pairs* rather than
-  identifying selector centers.  The unproved step is that the three locally
-  corrected relative `M_2` factors have the shared endpoint marginals `(RNS1)`
+  before packet correction, exactify one of the three fixed packet shapes
+  locally, and use a stable-letter triangle of *relative commutator pairs*
+  rather than identifying selector centers.  The unproved step is to name the
+  Schur-complement `M_2` factor by assignment-independent group words and prove
+  that its three corrected copies have the shared endpoint marginals `(RNS1)`
   with total correction cost controlled by the original fixed-word energy.
