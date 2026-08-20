@@ -2,7 +2,7 @@
 rg: 2
 id: toeplitz-schur-bcs-shift-amalgam
 kind: claim
-title: One finite amalgam synchronizes the Fanizza shift with every Toeplitz Schur tape cell
+title: One finite Toeplitz return presentation synchronizes every Fanizza Schur tape cell
 artifacts:
   - research/artifacts/schur-clifford-predicate-rank-compiler-2026-08-19.md
 ---
@@ -73,6 +73,8 @@ actuator. Thus the abstract module-type mismatch in clause 3 is closed. What
 remains is to prove that this exact two-chart wire retains positive
 normalized-HS density under the residual tail action and that its inactive
 mass is bounded by the Fanizza decomposition energy.
+This final combined placement-and-estimate is isolated as
+`toeplitz-schur-child-masa-recurrence`.
 
 ## Attempts
 
