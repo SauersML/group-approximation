@@ -75,6 +75,15 @@ floor.
   The surviving holonomy must derive capacity only in finite-dimensional
   microstates from contextual coupling; an ordinary finite projection atlas
   is not a candidate.
+- **One unconditional context is circular.**  Even a matrix-only local
+  capacity theorem is not an intermediate lemma:
+  `single-context-v4-exit-capacity-is-already-nonhyperlinearity` tests it on
+  canonical microstates of its own embedded packet and obtains the final
+  contradiction immediately.  The former contextwise route is invalidated.
+  The live replacement `global-v4-capacity-closes-fixed-scale-return` requires
+  one exit ledger whose capacity proof consumes a cross-context Gram/holonomy
+  observable before the BCS information is collapsed to scalar forbidden
+  masses.
 - **Violation-oriented contraction.** The corrected alternative route
   `fixed-scale-holonomy-via-groupified-child-center` follows the full `Q` child:
   satisfying sectors reproduce once and violating sectors twice. The robust

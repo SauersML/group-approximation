@@ -9,7 +9,7 @@ distinct_from:
   exact-five-fourths-projection-return-collapses-the-packet: that forbids literal stable-letter projection compression in the group algebra; this must make the same inequality emerge only in finite-dimensional approximate representations.
 ---
 
-For each predicate context of the fixed non-CE BCS, construct a bounded finite
+OPEN ROOT-LEVEL INTERFACE.  For each predicate context of the fixed non-CE BCS, construct a bounded finite
 presentation extension containing its full V4 radical packet `T_f` such that:
 
 1. the extension of the exact tracial BCS model exists with central packet
@@ -38,6 +38,14 @@ E_local >= c tau(P_f)-o(1),                              (SCA3)
 with an explicit constant depending only on the bounded cell.  This is now
 the exact local S3/V4 obstruction: construct `(SCA1)--(SCA2)` while retaining
 exact tracial completeness.
+
+This statement is intentionally retained only as a proof-search interface,
+not as a modular route.  By
+`single-context-v4-exit-capacity-is-already-nonhyperlinearity`, any one
+embedded packet extension satisfying `(SCA1)--(SCA2)` unconditionally is
+already nonhyperlinear.  The non-circular descendant is
+`globally-conditioned-v4-exit-capacity`, where one capacity proof must consume
+the shared cross-context operator data of the non-CE BCS.
 
 ## Attempts
 
