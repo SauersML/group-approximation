@@ -75,7 +75,7 @@ theorem mem_of_conj_mem_range {g : K}
     intro hmem
     rw [toSubgroup_self L] at hmem
     exact absurd hmem hg
-  let w : ReducedWord K L L :=
+  let w : NormalWord.ReducedWord K L L :=
     { head := 1
       toList := [((-1 : ℤˣ), g), ((1 : ℤˣ), (1 : K))]
       chain := hchain }
@@ -123,23 +123,24 @@ theorem map_inf_conj_map (G' : Subgroup K) :
     obtain ⟨g, hg, rfl⟩ := hx₁
     obtain ⟨y, hy, hyx⟩ := hx₂
     obtain ⟨h, hh, rfl⟩ := hy
-    have hmem : (t : CentHNN L)⁻¹ * of h * t ∈ (of : K →* CentHNN L).range := by
-      refine ⟨g, ?_⟩
+    have hyx' : (t : CentHNN L)⁻¹ * of h * (t : CentHNN L) = of g := by
       rw [← hyx]
-      simp [conjT]
+      show _ = conjT L (of h)
+      rw [conjT_apply, inv_inv]
+    have hmem : (t : CentHNN L)⁻¹ * of h * t ∈ (of : K →* CentHNN L).range :=
+      ⟨g, hyx'.symm⟩
     have hhL : h ∈ L := mem_of_conj_mem_range L hmem
-    have hEq : of h = (of : K →* CentHNN L) g := by
-      rw [← hyx]
-      simp only [conjT_apply, inv_inv]
-      rw [conj_eq_self_of_mem L hhL]
+    have hEq : (of h : CentHNN L) = (of : K →* CentHNN L) g := by
+      rw [← hyx', conj_eq_self_of_mem L hhL]
     have hgh : g = h := (of_injective (φ := MulEquiv.refl L)) hEq.symm
-    refine ⟨h, ⟨?_, hhL⟩, rfl⟩
+    refine ⟨h, ⟨?_, hhL⟩, hEq⟩
     rw [← hgh]
     exact hg
   · rintro _ ⟨g, ⟨hgG, hgL⟩, rfl⟩
     refine ⟨⟨g, hgG, rfl⟩, ?_⟩
     refine ⟨of g, ⟨g, hgG, rfl⟩, ?_⟩
-    simp only [conjT_apply, inv_inv]
+    show conjT L (of g) = _
+    rw [conjT_apply, inv_inv]
     exact conj_eq_self_of_mem L hgL
 
 /-! ## Finite presentation -/

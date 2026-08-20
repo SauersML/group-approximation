@@ -322,6 +322,7 @@ Guentner--Kaminker need `Op(u)` to be a *positive* element of `C*_u(Γ)`; that i
 what makes its square root available.  Positivity is exactly positive type of
 the kernel, transported through the dense span of the point masses. -/
 
+omit [Group G] in
 /-- The quadratic form of an operator at a finite combination of point masses,
 read off its matrix. -/
 theorem inner_apply_span (A : GroupHilbert G →L[ℂ] GroupHilbert G) (F : Finset G)
@@ -344,10 +345,12 @@ theorem inner_apply_span (A : GroupHilbert G →L[ℂ] GroupHilbert G) (F : Fins
   rw [hij]
   ring
 
+omit  in
 /-- **The Roe operator of a real symmetric kernel of positive type is
 positive.**  Self-adjointness is symmetry of the kernel, read through
 `matrixCoeff_star`; the quadratic form is nonnegative on the span of the point
 masses by positive type, and the span is dense while the form is continuous. -/
+omit [Group G] in
 theorem isPositive_of_kernel {A : GroupHilbert G →L[ℂ] GroupHilbert G}
     {u : G → G → ℝ} (hu : IsPositiveDefiniteKernel u) (hsymm : ∀ s t, u s t = u t s)
     (hcoeff : ∀ s t, matrixCoeff G A s t = ((u s t : ℝ) : ℂ)) :
@@ -356,7 +359,7 @@ theorem isPositive_of_kernel {A : GroupHilbert G →L[ℂ] GroupHilbert G}
   have hsa : IsSelfAdjoint A := by
     refine ext_of_matrixCoeff fun s t ↦ ?_
     rw [matrixCoeff_star, hcoeff t s, hcoeff s t, hsymm t s, Complex.conj_ofReal]
-  refine ⟨hsa, ?_⟩
+  refine ⟨ContinuousLinearMap.isSelfAdjoint_iff_isSymmetric.mp hsa, ?_⟩
   have hcont : Continuous fun w : GroupHilbert G ↦ A.reApplyInnerSelf w :=
     RCLike.continuous_re.comp (A.continuous.inner continuous_id)
   have hclosed : IsClosed {w : GroupHilbert G | 0 ≤ A.reApplyInnerSelf w} :=

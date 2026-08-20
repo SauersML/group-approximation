@@ -340,8 +340,9 @@ theorem isQuasidiagonalTrace_of_isLocallyQuasidiagonalTrace {τ : A → ℂ}
   have hdiv : ∀ ε : ℝ, 0 < ε → ∀ᶠ n : ℕ in atTop, 1 / ((n : ℝ) + 1) < ε :=
     fun ε hε ↦ TracialUltraproduct.eventually_lt_of_tendsto_zero
       tendsto_one_div_add_atTop_nhds_zero_nat hε
-  refine ⟨{ space := Y, map := φ, map_one := hone, completelyPositive := hcp,
-    tendsto_mul := ?_, tendsto_trace := ?_ }⟩
+  refine ⟨{ space := Y, map := φ, map_one := hone, completelyPositive := hcp
+            tendsto_mul := ?_
+            tendsto_trace := ?_ }⟩
   · -- the multiplicative clause
     intro a b
     refine TracialUltraproduct.tendsto_zero_of_forall_eventually_lt

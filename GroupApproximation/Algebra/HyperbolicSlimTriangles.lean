@@ -49,6 +49,7 @@ variable {G : Type u} [Group G]
 
 /-! ## A missing list lemma, derived from the two that are available -/
 
+omit [Group G] in
 /-- The length of an initial segment, below the total length. -/
 theorem length_take_of_le {l : List G} {i : ℕ} (hi : i ≤ l.length) :
     (l.take i).length = i := by
