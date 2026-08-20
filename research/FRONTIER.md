@@ -2194,15 +2194,15 @@ wreath-compression-mf-radical [✓] Exact MF radicals of compression wreath prod
 
 ## Recently touched
 
+- 2026-08-20 · single-involution-carrier-regular-trace-proof [COMPLETE] Read the identity coefficient and then diagonalize the selector subgroup
+- 2026-08-20 · single-involution-cannot-be-a-nonlinear-selector-carrier [ESTABLISHED] One group involution either has regular mass on every selector atom or cuts only an affine half-space
 - 2026-08-20 · support-packet-sparse-tag-capacity-proof [COMPLETE] Exhaust the complete allowed and forbidden Wedderburn signatures through five summands
 - 2026-08-20 · support-packet-five-sparse-wedderburn-tag-capacity-is-two [ESTABLISHED] The order-128 support packet has only two pointwise allowed-flat forbidden tags through five summands
 - 2026-08-20 · support-packet-covariant-wedderburn-detector [ESTABLISHED] A seven-dimensional packet coefficient is allowed-flat but has forbidden Wedderburn holonomy
-- 2026-08-20 · single-involution-carrier-regular-trace-proof [COMPLETE] Read the identity coefficient and then diagonalize the selector subgroup
-- 2026-08-20 · single-involution-cannot-be-a-nonlinear-selector-carrier [ESTABLISHED] One group involution either has regular mass on every selector atom or cuts only an affine half-space
 - 2026-08-20 · shared-context-pairwise-antiphase-v4-routing [OPEN] Route repeated V4 failure branches through pair-specific opposite phases
 - 2026-08-20 · shared-context-exclusive-v4-tagging [OPEN] Shared BCS context data produce exclusive finite tags for every V4 exit
 - 2026-08-20 · nonhyperlinear-from-fanizza-native-signal [OPEN] Apply the reverse Kleene diagonal to the groupified native Fanizza signal
 
 ## Active claims
 
-- 🔒 toeplitz-tail-retains-contextual-schur-density — 32m44s remaining
+- 🔒 toeplitz-tail-retains-contextual-schur-density — 31m20s remaining

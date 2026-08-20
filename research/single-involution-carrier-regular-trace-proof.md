@@ -20,5 +20,6 @@ which proves the last equality without assuming that `d` normalizes `A`.
 
 If `d in A`, the minimal projections `(e_chi)` simultaneously diagonalize
 `C[A]`, and `d e_chi=chi(d)e_chi`.  Substitution in `p=(1-d)/2` proves
-`(SIC3)`.  Evaluation `chi |-> chi(d)` is a nonzero linear functional on the
-binary character space when `d!=1`, so either sign fiber is affine.
+`(SIC3)`.  When `d!=1`, evaluation `chi |-> chi(d)` is a nonzero linear
+functional on the binary character space, so either sign fiber is affine.
+When `d=1`, the carrier `p` is zero.

@@ -87,13 +87,14 @@ An exact left-regular representation has zero defining-relator energy, so no
 universal relator inequality can make this carrier vanish on a prescribed
 nonlinear set of selector atoms.
 
-If `d in A`, then
+If `d in A` and `d!=1`, then
 
 ```text
 p e_chi = ((1-chi(d))/2)e_chi.                         (3)
 ```
 
-Its support is one affine parity half-space.  Equations (2)--(3) prove the
+Its support is one affine parity half-space; for `d=1` the carrier is zero.
+Equations (2)--(3) prove the
 two-way obstruction in
 `single-involution-cannot-be-a-nonlinear-selector-carrier`.
 

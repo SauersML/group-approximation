@@ -29,14 +29,15 @@ Consequently no universal relator-energy estimate can force `p` to vanish on
 even one selected `A`-atom: an exact left-regular representation has zero
 relator energy and the positive mass `(SIC2)`.
 
-If `d in A`, then `p` is diagonal in the selector algebra and
+If `d in A` and `d!=1`, then `p` is diagonal in the selector algebra and
 
 ```text
 p e_chi = e_chi  iff chi(d)=-1,
 p e_chi = 0      iff chi(d)=+1.                        (SIC3)
 ```
 
-The selected characters form one affine half-space of `A^*`.  Thus one marked
+The selected characters form one affine half-space of `A^*`.  If `d=1`, then
+`p=0` and it carries no selector information at all.  Thus one marked
 group involution cannot itself be the carrier of an arbitrary nonlinear
 Fanizza predicate: outside the selector subgroup it sees every regular atom,
 and inside it sees only an affine parity cut.
