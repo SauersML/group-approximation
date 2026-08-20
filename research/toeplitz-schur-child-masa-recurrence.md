@@ -55,6 +55,26 @@ the local complete-type reset is solved. What remains here is its coherent
 placement in the Toeplitz tail together with the inactive-sector payment of
 clause 3; a finite graph of the reset groups alone would still have stationary
 regular type flow.
+The stationary space is no longer mysterious:
+`symmetrized-reset-collapses-schur-flow-to-one-ray` proves it is exactly one
+scalar ray and that all transverse type-vector leakage already costs
+`C sqrt(E)`. The live Toeplitz estimate therefore only has to make this one
+scalar current contract or enter a summable residual carrier.
+Moreover `translation-symmetrized-full-schur-reset` puts the full gate and
+reset in one finite group. It may therefore occupy one bounded Toeplitz head
+which centralizes the next deep tail; no local free-product amalgam has to
+cross the head/tail boundary.
+The local wall is now explicit as well:
+`symmetrized-full-reset-forces-fixed-reynolds-density` gives
+
+```text
+rank(E_C-E_B)/d^2=K_1/(2^(2k+2)D^2).
+```
+
+Thus the missing recurrence estimate does not have to create positive
+density. It only has to prove a survive-or-recurse law for this fixed wall,
+with the recurse branch acting on the sole `m`-dimensional multiplicity space
+capable of erasing it.
 
 Combined with the oriented child-branching identity, `(TCM1)` gives
 
