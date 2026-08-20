@@ -91,3 +91,12 @@ floor.
   Fanizza inactive-sector term entirely. The raw last Clifford generator does
   not label these children; the open inputs are groupification of the explicit
   corrected center and the recurrent atlas retaining that carrier.
+- **Pairwise antiphase Gram router.** The repeated V4 source no longer needs a
+  common finite tag representation.  For every unordered pair of branches,
+  `pairwise-antiphase-covariance-controls-cross-gram` compares their
+  cross-Gram operator with its negative and charges it to two covariance
+  defects.  Combined with constant repetition this gives the same
+  dimension-free ambient-capacity contradiction.  The sole new construction
+  gate is `shared-context-pairwise-antiphase-v4-routing`: realize those
+  pair-specific opposite phases by ordinary group words while preserving the
+  exact non-CE BCS trace.

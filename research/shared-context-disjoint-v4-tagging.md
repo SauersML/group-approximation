@@ -77,3 +77,11 @@ data; it cannot merely reveal universal branches that were present all along.
   fixed quotient copy from carrying positive canonical-profile density.  A
   surviving use must retain the infinite quotient-kernel action while making
   the repeated failure coefficients occupy pairwise disjoint residual types.
+- **Pairwise antiphase replacement. Stronger live alternative.**
+  `pairwise-antiphase-covariance-controls-cross-gram` shows that one common
+  tag group is unnecessary: a separate target involution acting with opposite
+  phases on each unordered pair pays the full ordered cross-Gram energy with
+  constant one.  The corresponding open construction is
+  `shared-context-pairwise-antiphase-v4-routing`.  It evades the affine packing
+  ceiling, but still must extend the exact BCS trace and realize its source
+  phases by ordinary nonabelian packet words or a matrix-only decoder.
