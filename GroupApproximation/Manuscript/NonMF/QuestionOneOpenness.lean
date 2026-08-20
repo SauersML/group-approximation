@@ -28,6 +28,9 @@ quotient.  The product witnesses show only that those conclusions do not follow
 from the abstract bundle in isolation.
 -/
 
+namespace GroupApproximation
+namespace ManuscriptNonMF
+
 /-! ## Abstract reduction data -/
 
 /-- **The two conclusions supplied by the abstract reductions.**

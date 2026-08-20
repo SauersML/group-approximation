@@ -39,17 +39,22 @@ past and future selector centers and reduce the tape to a classical history.
 The required placement must carry the two `q_(N+1)` branch labels while
 resetting the old selector center—for example through a partial-center
 endpoint chart or projective child holonomy.
-`branch-controlled-pauli-selector-reset` now supplies an explicit finite
-candidate: controls `q_(N+1)` and `Jq_(N+1)` activate dual Pauli flips on the
-two branches, turning the old selector center into a fixed full matrix factor.
-`branch-reset-amalgam-preserves-mark-and-balances-types` supplies marked
-completeness and a dimension-free payment for the forced balance. The sole
-remaining selector interface is supplied by
+The earlier raw branch-controlled reset does not supply this step:
+`raw-schur-generator-is-not-child-center` shows that the raw `q_(N+1)`
+eigenspaces are not the child-simple branches.  The corrected branch signs
+can nevertheless be paired by the ordinary finite semidirect product of
+`schur-child-center-sign-flip-is-group-automorphism`, which acts by
+`q_(N+1)->Jq_(N+1)` and hence sends `Q_f->JQ_f`.  What remains before applying
 `hnn-selector-chart-transport-preserves-mark-and-types`: an HNN edge makes
 the post-reset chart conjugate to the next Fanizza context and gives the
-type-vector part of `(TCM1)` without asserting equality or commutation. The
-remaining content of this claim is now the inactive-sector payment in clause
-3 and its compatibility with the Fanizza `(FDB1)` decomposition.
+type-vector part of `(TCM1)` without asserting equality or commutation—is a
+genuine reset/transport of the **old selector character**.
+`translation-symmetrized-schur-child-reset` now supplies that reset by
+permuting shifted-pencil copies while translating all selector signs. Thus
+the local complete-type reset is solved. What remains here is its coherent
+placement in the Toeplitz tail together with the inactive-sector payment of
+clause 3; a finite graph of the reset groups alone would still have stationary
+regular type flow.
 
 Combined with the oriented child-branching identity, `(TCM1)` gives
 
@@ -75,10 +80,12 @@ nonisomorphic finite packet groups.
 - Put the next full packet in the old external commutant: invalid unless a
   center reset is included. It forces every future selector to commute with
   every past selector and fails the mandatory contextuality test.
-- Branch-controlled Pauli reset: active. It removes the old center using only
-  affine commutator controls, and its amalgam now preserves the mark. What
-  remains is the post-reset-to-next-context type-vector estimate.
-- HNN selector-chart transport closes the post-reset type-vector estimate.
+- Raw branch-controlled Pauli reset: invalid for Schur child types, because it
+  balances raw `q` spectra.  The corrected child sign flip is now solved by a
+  genuine child automorphism, and the translation-symmetrized overgroup resets
+  the full selector-labelled vector.
+- HNN selector-chart transport closes the type-vector estimate only after a
+  valid old-selector reset has supplied two isomorphic endpoint charts.
   It deliberately preserves multiplicity; the factor two has already been
   created by child restriction. The live calculation is only the leakage
   bound for inactive Fanizza sectors.

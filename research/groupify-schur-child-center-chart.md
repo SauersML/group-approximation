@@ -41,6 +41,18 @@ word is forbidden by `schur-rank-output-is-not-a-scalar-selector`.
   `p_t`, so its eigenspaces are not child modules.
 - **Use one selector word:** fails for nonlinear `v(x)` by the affine-selector
   barrier.
+- **Flip the corrected signs without naming the coefficient: solved.**
+  `schur-child-center-sign-flip-is-group-automorphism` shows that the ordinary
+  child automorphism `q_(N+1)->Jq_(N+1)` sends `Q_f` to `JQ_f`.  Its finite
+  semidirect product therefore pairs the two genuine child-simple types in
+  every selector sector with dimension-free HS control.  This removes the
+  branch-sign part of the chart but fixes all old selector characters.
+- **Balance the complete child type vector: solved locally.**
+  `translation-symmetrized-schur-child-reset` adjoins one shifted-pencil copy
+  for each Boolean translation. Translation automorphisms move selector
+  characters while permuting those copies, and the corrected sign flips pair
+  both genuine branches. Every restriction to the original child therefore
+  has uniform `(selector,branch)` multiplicities, with fixed-table HS control.
 - **Signed-monomial realization: locally solved.**
   `schur-child-center-has-finite-monomial-sector` puts the whole packet and
   corrected center in one finite irreducible signed-permutation sector.
@@ -48,8 +60,9 @@ word is forbidden by `schur-rank-output-is-not-a-scalar-selector`.
   microstate, `near-regular-finite-character-fixes-plancherel-types` forces the
   natural sector to occur at Plancherel density `dim(pi_f)^2/|H_f|` after
   exactification.
-- **Return that sector:** open. The other irreducibles also have positive
-  Plancherel mass, as predicted by the induction barrier, and can absorb a
-  finite graph-of-groups multiplicity flow. The missing object is an
-  ordinary-group projection atlas which transports the natural isotypic
-  carrier through the corrected child chart with dimension-free HS loss.
+- **Global return:** open. The complete local child vector can now be reset
+  and transported to an isomorphic fresh chart without naming `Q_f`.
+  Nevertheless a finite graph of these groups has stationary regular type
+  flow. The reset must be placed inside the Toeplitz/compressor recurrence so
+  the returned fixed-scale multiplicity cannot escape into complementary
+  types.

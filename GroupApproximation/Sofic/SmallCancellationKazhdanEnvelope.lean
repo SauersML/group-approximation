@@ -4,7 +4,6 @@ import GroupApproximation.Algebra.HyperbolicGroup
 import GroupApproximation.Analysis.PropertyTNonamenable
 
 /-!
-/-!
 # Typed interfaces for the small-cancellation Kazhdan envelope
 
 The manuscript now uses a Fournier-Facio--Hull--Osin small-cancellation

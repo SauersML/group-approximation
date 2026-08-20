@@ -36,3 +36,10 @@ words such that:
 - Any construction that also works after replacing the non-CE BCS by an
   arbitrary classically inconsistent CSP has forgotten exact completeness and
   must be rejected.
+- The endpoint floor cannot be promoted to an exact inequality in arbitrary
+  tracial representations.  By
+  `regular-trace-blocks-exact-local-predicate-return`, the regular trace gives
+  every forbidden selector atom positive mass while all group relators vanish.
+  Thus a successful triangular holonomy must use finite-dimensional packet
+  rank/multiplicity (or another matrix-only rounding invariant); an exact
+  trace identity or a properly-infinite central-corner shortcut is impossible.

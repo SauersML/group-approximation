@@ -8,6 +8,9 @@ value of an LCS game is RE-hard*, arXiv:2507.22444v2.
 Companion source: Connor Paddock and William Slofstra, *Satisfiability problems
 and algebras of boolean constraint system games*, arXiv:2310.07901v2.
 
+Incidence source: Honghao Fu, Kieran Mastel, and Xingjian Zhang, *Succinct
+Perfect Zero-knowledge for MIP\**, arXiv:2503.04517v2, Theorem 3.1.
+
 ## Imported results
 
 The test samples an independent mask `mu`, sets `g'=f g mu`, and tests one
@@ -79,16 +82,31 @@ an `R^U` representation with perfect quantum-approximable play.  Example 4.2
 therefore supplies a fixed perfect tracial BCS whose finite game value is
 bounded below one.
 
-This does **not** yet feed Taller--Vidick's projection front end.  A perfect
-BCS tracial model only makes variables commute inside each context; the two
-answer PVMs for different contexts need not admit a joint PVM.  Taller--Vidick
-need precisely that oracularizability to let Alice answer both questions after
-projection.  Their cited source supplies it on the finite-dimensional YES
-side, while the Paddock--Slofstra source supplies the tracial/finite gap.  No
-read theorem supplies both properties for one game.  Cairn records this as
-`oracularizable-tracial-nonru-game-exists`.
+Fu--Mastel--Zhang now close this source-interface gap.  From a
+constraint--constraint BCS game `G`, their Theorem 3.1 constructs a synchronous
+constraint--variable game `G^cv`.  Its sampled pairs are only `(i,i)`, `(x,x)`,
+`(i,x)`, and `(x,i)` for `x` contained in context `i`.  Their quantitative
+soundness implies
 
-Conditioned on that source interface, one must still not replace a
+```text
+omega_qa(G)<1  =>  omega_qa(G^cv)<1.
+```
+
+The paper states finite-dimensional PCC completeness, so we do not cite it for
+the commuting-operator extension.  Instead the Paddock--Slofstra trace supplies
+that extension directly.  With context atoms `P_(i,a)` and variable
+projections `E_(x,b)`, incidence gives
+
+```text
+P_(i,a) E_(x,b)=1_(a_x=b)P_(i,a).
+```
+
+Thus all sampled PVM pairs commute and the correlation
+`tau(P^q_a P^r_b)` wins perfectly.  Unrelated contexts are never paired.  This
+establishes Cairn's `oracularizable-tracial-nonru-game-exists`; generic
+projection of two unrelated contexts remains invalid.
+
+With that source interface established, one must still not replace a
 near-perfect LCS strategy by a shared exact variable
 tuple: Alice has commuting context observables, Bob has shared query
 observables, and their disagreement is part of the loss.  For a verifier round

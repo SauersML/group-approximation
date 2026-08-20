@@ -44,6 +44,40 @@ The head algebra is also finitely actuated:
 is needed. The analytic problem is to make the Schur violation determine the
 action of this fixed actuator on the residual multiplicity space.
 
+The actuator can now be made part of the packet itself.
+`schur-packet-head-actuator-generates-over-tail` embeds the `Q` child inside
+`alpha(Gamma)`, scales the missing `p` generator by the head swap `s`, and
+proves
+
+```text
+Gamma=<alpha(Gamma),B_f>.
+```
+
+Thus no algebraic generator remains outside the packet/tail incidence.  The
+open content of this claim is strictly the dimension-free conditional
+expectation alternative: the common tail commutant must retain packet mass or
+recreate it in its residual multiplicity algebra.
+
+There is now a second, sharper acceptable output of that alternative.
+`coherent-summable-gap-clifford-tower` does not require selecting a finite
+rank larger than the unknown matrix dimension.  It is enough that successive
+residual tails produce jointly reducing carriers whose discarded traces are
+summable and on which the returned relative Pauli cells accumulate.  Their
+common meet then has positive trace and carries every finite Clifford rank,
+contradicting finite dimensionality by
+`summable-reducing-carriers-force-infinite-clifford-capacity`.  This makes the
+needed conditional-expectation conclusion concrete: later tail carriers must
+reduce all earlier head cells, not merely have large trace.
+
+The compressor iterates also synchronize the selector carrier exactly, but
+they do not amplify it by themselves.  The theorem
+`toeplitz-schur-heads-share-child-but-have-rank-two` proves that every shifted
+head shares the child and selector center pointwise, while all shifted missing
+generators together have binary cocycle rank only two.  Therefore the recurse
+branch must manufacture a new transverse child direction in the residual
+commutant; simply applying `alpha` repeatedly to the one actuator can never
+outrun residual dimension.
+
 There is now an exact packet/residual factorization behind this request.
 `toeplitz-finite-head-centralizes-deep-tail` identifies the first `N` tape
 cells with `M_N(F_2)` and proves that `sigma^N(T)` acts as a scalar on that
@@ -68,6 +102,14 @@ algebraic commutation problem.
   corner. The single head swap from
   `toeplitz-tail-plus-one-swap-generates` is the candidate bounded word which
   implements this transfer.
+- Repeat the shifted packet head without changing its child: this now has an
+  exact rank-two ceiling.  It preserves forbidden mass perfectly but produces
+  only one Pauli capacity bit, irrespective of depth.
+- Lift independent finite heads to a common Steinberg `K_2` sign: this also
+  fails for the ordinary algebraic Toeplitz ring.  The localization boundary
+  in `toeplitz-swindle-kills-head-k2-sign` makes the compact-head map
+  `K_2(M_infinity(R))->K_2(T_R)` zero.  A viable central extension would have
+  to use a genuinely global cocycle, not the finite-corner Steinberg symbol.
 - Dinur's preprocess-power-compose architecture is now isolated as
   `hs-schur-packet-gap-amplification`. Classical graph powering supplies the
   needed anti-localization, while Schur packet composition is supposed to
