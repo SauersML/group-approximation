@@ -32,3 +32,14 @@ purported finite shift amalgam which identifies a derived nonlinear BCS
 projection with a word in the original selector subgroup has silently
 reintroduced the affine-selector impossibility.
 
+There is nevertheless a canonical nonscalar output:
+`schur-predicate-is-character-density-difference` proves
+
+```text
+P_f=2D(Z_(C_f)-Z_(B_f)),
+```
+
+where both character-density elements are explicit finite linear combinations
+of group words. This does not contradict the claim: the right side is not one
+group element. It changes the cascading problem into returning one fixed
+finite character-table average with normalized-HS control.

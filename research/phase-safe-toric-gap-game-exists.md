@@ -59,3 +59,12 @@ the two-player clauses with the trace-kernel ideal of the synchronous algebra.
 
 Details and the finite counter-model for the subgroup-versus-normal-closure
 gap: `notes/TRUE_NORMAL_TORIC_GAP_IMPLIES_NONHYPERLINEAR.md` §§3-6.
+
+**Projective-kernel phase mining.**
+`boolean-predicate-central-phase-word` now supplies an exact finite `2`-group
+word for every fixed nonlinear predicate. The source-engineering claim
+`bcs-projective-kernel-phase-compilation` asks for that word to act as `-I` in
+the full tracial model while its readers preserve the violation family.
+`phase-safe-toric-via-projective-kernel` is the resulting live route. A local
+phase calculation without a full universal-algebra model is rejected because
+it does not prove normal-closure survival.

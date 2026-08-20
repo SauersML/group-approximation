@@ -34,3 +34,10 @@ hyperlinear.
 The same falsification survives quantumization: the construction cannot be a
 Kac generalized free wreath product of hyperlinear inputs over a coamenable
 amalgam, by `generalized-free-wreath-hyperlinearity-permanence`.
+
+The tree-specific implementation is factored through
+`tree-transitive-site-noise-localization`. Equal-depth leaves are internal
+conjugates, so bounded-overlap Markov counting is automatic after coherent
+local tensor factors are recovered. That recovery, not the counting, is the
+remaining circularity. `tree-localization-gives-site-noise-bridge` records the
+exact implication into the generic HS-to-site-noise claim.

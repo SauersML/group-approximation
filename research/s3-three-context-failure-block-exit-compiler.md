@@ -26,6 +26,16 @@ polynomial word loss; and
 5. the fourth grandchild and all positive parts of the first three form the
    next prefix carrier, which still reduces the original BCS words.
 
+The common-coordinate part of this request is now exact.  Replace the three
+separately exactified charts by the full translation packet `T_f` of
+`full-v4-radical-crossed-product-has-one-common-latent-coordinate`.
+Then `full-v4-latent-coordinate-has-an-operator-five-fourths-floor` supplies
+three explicit commuting failure projections satisfying `(VOF4)--(VOF5)`.
+No extraction of endpoint marginals or common classical coupling remains.
+The live content of this node is only the presentation-level placement of
+those three named projection blocks in the three recurrent exits while
+preserving the next prefix carrier.
+
 Then the total exit satisfies `(FCE2)--(FCE4)`, while the robust endpoint floor
 and corner BCS gap give `(FCE3)`.  Two iterations of the groupified Fanizza
 recurrence give `(FCE1)`, so the four-child ledger supplies a fixed HS floor.
@@ -50,3 +60,7 @@ exit sum has `s/4` slack beyond the abstract marginal floor.
   HS-orthogonal.  What is not yet written as a sparse presentation-level
   certificate is simultaneous preservation of the E5 prefix carrier under
   all seven fixed hard bridges.
+- Treating the three chart transports as independent pairwise couplings is no
+  longer necessary and would reintroduce the false no-signaling shortcut.
+  The full `V_4` packet supplies one common four-atom algebra before any exit
+  is chosen.

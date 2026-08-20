@@ -12,12 +12,12 @@ distinct_from:
 Construct a finitely presented group `Gamma`, a nonidentity marked word `w`,
 and, from every finite-dimensional tuple `V` with total squared normalized-HS
 relator energy `E(V)`, nonnegative numbers `a_n(V)<=1` such that for fixed
-computable constants `c,K>0`, integer `k`, and every `n>=0`,
+computable constants `c,K>0`, integer `k`, one `0<lambda<1`, and every `n>=0`,
 
 ```text
 a_0(V) >= c ||w(V)-I||_2^2-K sqrt(E(V)),                          (SDL1)
 
-a_n(V) <= (1/2) a_(n+1)(V)+K(n+1)^k sqrt(E(V)).                  (SDL2)
+a_n(V) <= lambda a_(n+1)(V)+K(n+1)^k sqrt(E(V)).                 (SDL2)
 ```
 
 The construction must use one finite set of Schur--Clifford **cell templates**
@@ -39,8 +39,10 @@ self-similarly by the fixed cell template.
    `finite-schur-clifford-packet-flexible-hs-exactification` alone has constants
    depending on the whole growing packet.
 4. The exactified multiplicity belonging to `P_tilde_n` defines `a_n`, and
-   overlap transport must make one active rank jump pay the difference between
-   `a_n` and `a_(n+1)/2`.
+   overlap transport must make a fixed positive violation fraction pay the
+   difference between `a_n` and `lambda a_(n+1)`.  The satisfying-oriented
+   specialization has `lambda=1/2`; the balanced violation-oriented route may
+   use any fixed `lambda<1`.
 
 `finite-group-shared-overlap-polar-alignment` supplies the pairwise comparison
 for every **fixed** common subgroup on a submodule of dimension

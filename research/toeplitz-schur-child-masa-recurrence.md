@@ -55,6 +55,54 @@ the local complete-type reset is solved. What remains here is its coherent
 placement in the Toeplitz tail together with the inactive-sector payment of
 clause 3; a finite graph of the reset groups alone would still have stationary
 regular type flow.
+The stationary space is no longer mysterious:
+`symmetrized-reset-collapses-schur-flow-to-one-ray` proves it is exactly one
+scalar ray and that all transverse type-vector leakage already costs
+`C sqrt(E)`. The live Toeplitz estimate therefore only has to make this one
+scalar current contract or enter a summable residual carrier.
+Moreover `translation-symmetrized-full-schur-reset` puts the full gate and
+reset in one finite group. It may therefore occupy one bounded Toeplitz head
+which centralizes the next deep tail; no local free-product amalgam has to
+cross the head/tail boundary.
+The local wall is now explicit as well:
+`symmetrized-full-reset-forces-fixed-reynolds-density` gives
+
+```text
+rank(E_C-E_B)/d^2=1/(2^(k+2)D^2).
+```
+
+Thus the missing recurrence estimate does not have to create positive
+density. It only has to prove a survive-or-recurse law for this fixed wall,
+with the recurse branch acting on the sole `m`-dimensional multiplicity space
+capable of erasing it. This wall is structural rather than predicate-sensitive;
+the return must additionally couple its orientation to the surplus `2K_1n`.
+
+There is a cleaner predicate-sensitive observable than the bare Reynolds
+rank. By `schur-predicate-is-character-density-difference`, every local
+forbidden projection satisfies
+
+```text
+P_f=2D(Z_C-Z_B),
+tau(P_f)=4D^2||Z_C-Z_B||_2^2.                         (TCM3)
+```
+
+Both `Z` terms are explicit fixed character-table averages of packet words.
+Therefore an acceptable proof of `(TCM1)` may return these density elements
+directly through the Toeplitz corner, rather than transporting anonymous
+irreducible copies or the entire adjoint Reynolds range.
+The substitution theorem
+`fanizza-schur-density-substitution` shows
+that the original polynomial recurrence accounting survives this replacement.
+Accordingly the exact remaining Toeplitz estimate is the bounded-overlap law
+
+```text
+sum_c||Z_(C_c)-Z_(B_c)||_2^2 <= C_ret E_group,
+```
+
+or a contractive residual version of the same inequality.
+By `schur-density-gap-has-no-direct-relator-certificate`, this cannot be a
+direct telescoping identity for each gap. The Toeplitz/property-`(T)` stage
+must be used essentially as a finite-dimensional-only rigidity theorem.
 
 Combined with the oriented child-branching identity, `(TCM1)` gives
 

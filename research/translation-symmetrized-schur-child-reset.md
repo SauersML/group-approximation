@@ -71,3 +71,9 @@ This is a local reset, not a global multiplicity amplifier. A finite graph of
 these reset groups still admits stationary regular type flow. The next step
 must use the reset only inside a Toeplitz/compressor recurrence or another
 non-one-dimensional holonomy mechanism.
+
+The remaining flow is now computed exactly by
+`symmetrized-reset-collapses-schur-flow-to-one-ray`: compatibility with the
+full packet leaves only one scalar ray and charges every transverse type
+direction. The compressor does not need to control an arbitrary finite
+representation-ring polytope.

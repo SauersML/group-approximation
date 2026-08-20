@@ -47,3 +47,12 @@ affirmative side.
 Non-graph brainstorming for this goal goes here. Current periphery: free
 independence between branch algebras is NOT excluded by the cross-branch
 commutator identity (see notes/OBSTRUCTIONS.md §3, "No commuting branches").
+
+The current programme is organized by
+`canonical-trace-promotes-non-ce-profile`. The source non-CE trace already
+lives on the explicit sofic right-angled Coxeter host
+`non-ce-trace-on-sofic-racg`; what remains is to force its finite normalized
+trace profile from canonical delta microstates. Free-amalgam multiplicity,
+twisted self-similar Clifford, projective phase, matricial separator, and
+quantum-index routes are compared in
+`research/artifacts/trace-promotion-renormalization-program-2026-08-20.md`.

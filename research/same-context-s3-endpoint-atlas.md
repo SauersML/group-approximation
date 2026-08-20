@@ -6,6 +6,7 @@ title: Realize all three S3 endpoint laws locally around one fixed BCS context
 distinct_from:
   s3-radical-chart-returns-to-fresh-context: that transports the chart into the next tape context; this asks whether one closed finite local atlas can expose the three endpoint laws without any recursive level.
   three-radical-twist-crossed-products-have-uniform-scale: that constructs the three finite charts and their perfect-match restriction tables; the present theorem must add comparison words which impose the diagonal/crossed endpoint marginals rather than merely permuting the four radical types.
+  finite-packet-graph-atlases-have-a-regular-stationary-flow: that proves every one-dimensional finite-packet refinement has a positive integral stationary vector; this must therefore impose genuine two-cell holonomy on the edge-intertwiner multiplicity spaces.
 ---
 
 For each predicate context of the fixed non-CE BCS, construct a bounded finite
@@ -33,6 +34,14 @@ words such that:
   representations give stationary type flow and its fundamental group is
   virtually free.  The local atlas must contain genuine contextual holonomy,
   not just Bass--Serre edges.
+- The regular-flow obstruction is completely insensitive to how many finite
+  charts are added.  By
+  `finite-packet-graph-atlases-have-a-regular-stationary-flow`, common-total-
+  dimension multiples of the vertex regular representations solve every edge
+  restriction equation at once while retaining positive forbidden selector
+  mass.  Therefore the missing datum cannot be another branching table.  It
+  must be a two-cell relation on the chosen intertwiners (or an infinite
+  compressor) which detects holonomy inside their multiplicity spaces.
 - Any construction that also works after replacing the non-CE BCS by an
   arbitrary classically inconsistent CSP has forgotten exact completeness and
   must be rejected.
@@ -43,3 +52,26 @@ words such that:
   Thus a successful triangular holonomy must use finite-dimensional packet
   rank/multiplicity (or another matrix-only rounding invariant); an exact
   trace identity or a properly-infinite central-corner shortcut is impossible.
+- Adjoining both independent radical translations at once **does** repair
+  the pairwise-coupling defect.  By
+  `full-v4-radical-crossed-product-has-one-common-latent-coordinate`, the
+  forbidden sector becomes one `M_(2D_0)` block and all three chart labels
+  are the three nonzero linear functionals of one common
+  `r in F_2^2`.  This is real progress: an independent no-signaling box can
+  no longer be inserted separately in each chart.
+- Common latent coherence is still not an endpoint law.  The full `V_4`
+  crossed product itself has exact forbidden-sector representations, so it
+  does not declare any atom in `(VRC6)` a failed diagonal or crossed
+  comparison.  Moreover
+  `finite-projective-v4-holonomy-is-forbidden-sector-blind` proves that the
+  obvious scalar two-cell repair is invisible on the forbidden free orbit.
+  The live target is now narrower: couple the affine functions `(VRC5)` to
+  the three BCS success conventions by a non-scalar operator on the common
+  multiplicity space (or by an unbounded recurrent cell).
+- At the operator level the three conventions can already be named without
+  new transport words: `full-v4-latent-coordinate-has-an-operator-five-fourths-floor`
+  gives explicit commuting failure projections with sum `P_f+E_0`.  What a
+  finite local atlas still lacks is a matrix-only **discharge** of those
+  projections.  Any proposed discharge that is an exact trace inequality is
+  ruled out by the regular representation; a viable one must exploit finite
+  multiplicity holonomy or send the blocks into a recurrent exit ledger.

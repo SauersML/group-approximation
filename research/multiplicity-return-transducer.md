@@ -70,6 +70,17 @@ which is what normalized Hilbert--Schmidt norm can see.
   `clifford-commutator-rank-is-packet-dimension`, and to feed the resulting
   multiplicity defect vector to `scaled-kazhdan-transport`, which is already
   proved for arbitrary weights.
+- **Infinite free-amalgam transfer.**
+  `countable-tracial-amalgam-extension` supplies exact completeness and fresh
+  selectors at every stage. The finite screen
+  `schur-marked-character-transfer-gap` gives transverse norm `1/5` on the
+  marked central-character sector. This does **not** kill the scalar current:
+  `stationary-type-mass-reused-on-infinite-amalgams` proves that the same
+  finite Hilbert space is reused at every Bass--Serre vertex, so no `ell^2`
+  escape condition exists. The former route
+  `multiplicity-return-via-free-amalgam` is therefore invalidated. Any revived
+  infinite-tree construction must add orthogonal ranges or a proper corner;
+  plain free amalgamation supplies completeness and renewal only.
 - **Uniform three-XOR specialization.**
   `taller-vidick-uniform-rank-pressure-return` removes the arbitrary-predicate
   layer.  Taller--Vidick output three-variable parity equations, and each
