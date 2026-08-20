@@ -8,7 +8,7 @@ requires:
   - leavitt-regular-atlas-hyperlinearity-criterion
   - atlas-word-19243-is-kernel-relation
   - atlas-a4-context-exact-regular-normalization
-  - atlas-19243-centrality-forces-s3-distance
+  - atlas-19243-relation-forces-s3-distance
   - s3-weighted-two-generator-covariance-controls-commutant-distance
   - s3-weighted-budget-optimization
   - atlas-a4-root-energy-ellipse-ceiling
@@ -45,35 +45,36 @@ p a_n^2+q b_n^2 <=2(pA_n+qB_n).                       (1)
 The collision-distance theorem gives
 
 ```text
-liminf_n dist_2(U_n,C_K)^2 >=1/128.                   (2)
+||q_19243(U_n)-1||_2 ->0,
+liminf_n dist_2(U_n,C_K)^2 >=1/32.                    (2)
 ```
 
 The ellipse ceiling makes the bounded sequence `(A_n,B_n)` stay, eventually,
 strictly inside
 
 ```text
-A+B+sqrt(AB)<3/512.                                    (3)
+A+B+sqrt(AB)<3/128.                                    (3)
 ```
 
 Choose a convergent subsequence `(A_n,B_n)->(A,B)`.  By `(3)` and
 `s3-weighted-budget-optimization`, there are fixed `p,q>0` such that
 
 ```text
-pA+qB < lambda(p,q)/256.
+pA+qB < lambda(p,q)/64.
 ```
 
 The same strict inequality holds eventually on the chosen subsequence.  Thus
 `(1)` gives
 
 ```text
-limsup (p a_n^2+q b_n^2) < lambda(p,q)/128.            (4)
+limsup (p a_n^2+q b_n^2) < lambda(p,q)/32.             (4)
 ```
 
 But the weighted S3 covariance theorem combined with `(2)` gives the opposite
 bound
 
 ```text
-liminf (p a_n^2+q b_n^2) >= lambda(p,q)/128,           (5)
+liminf (p a_n^2+q b_n^2) >= lambda(p,q)/32,            (5)
 ```
 
 a contradiction.  Therefore the hyperlinear necessity sequence cannot exist.

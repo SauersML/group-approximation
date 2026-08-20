@@ -2,7 +2,7 @@
 rg: 2
 id: a4-holonomy-gap-from-four-cycle-dirichlet-ceiling
 kind: route
-title: The one-over-6144 four-cycle ceiling beats the raw S3 energy floor
+title: The one-over-1536 four-cycle ceiling beats the direct 19243 S3 energy floor
 target: atlas-a4-holonomy-coherence-gap
 requires:
   - atlas-a4-four-cycle-dirichlet-ceiling
@@ -29,8 +29,8 @@ Therefore `(A4-DIR-CEIL)` implies
 
 ```text
 limsup_n (a_n^2+b_n^2)
- < 48/6144
- = 1/128.
+ < 48/1536
+ = 1/32.
 ```
 
 This is exactly `atlas-a4-holonomy-coherence-gap`.  Notice that no conclusion

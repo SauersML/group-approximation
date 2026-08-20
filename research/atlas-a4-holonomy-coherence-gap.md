@@ -26,13 +26,13 @@ Let `h_a,h_b` be the two fixed involutions generating the raw S3 slice used by
 chart-to-chart covariance defects in `sigma_n`.  Then
 
 ```text
-limsup_n (a_n^2+b_n^2) < 1/128.                        (A4-HOL-GAP)
+limsup_n (a_n^2+b_n^2) < 1/32.                         (A4-HOL-GAP)
 ```
 
 Equivalently, the two binary consistency defects satisfy
 
 ```text
-limsup_n (D_a+D_b) < 1/512.
+limsup_n (D_a+D_b) < 1/128.
 ```
 
 This is the finite-dimensional core left after all local analytic noise and all
@@ -75,7 +75,7 @@ is the common multiplicity `k_n`; every local group is exact and regular.
   The line carriers are explicit central idempotents and also satisfy
   `(PQP)^m=E+3^(-m)(P-E)`.  Thus any projection-valued synchronization
   argument can use a fixed polynomial depth chosen once to spend less than the
-  numerical `1/512` budget, independently of `k_n`.
+  numerical `1/128` budget, independently of `k_n`.
 - **Collision 19243 is the frustration cycle.**
   The exact classical audit finds thirty automorphism alignments satisfying the
   A4 packet and zero surviving after adding `q_19243`.  That finite audit is

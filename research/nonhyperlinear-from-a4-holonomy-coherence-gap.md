@@ -34,14 +34,15 @@ The same perturbation changes each of the two fixed S3 covariance defects by
 regular-chart sequence as well
 
 ```text
-limsup_n (a_n^2+b_n^2) < 1/128.                        (1)
+limsup_n (a_n^2+b_n^2) < 1/32.                         (1)
 ```
 
-But its canonical atlas packet defect tends to zero, so the established
-`atlas-packet-forces-two-s3-covariance-energy` gives on that same sequence
+Because the collision kernel relation itself tends to one, the strengthened
+quotient-necessity form of `atlas-packet-forces-two-s3-covariance-energy`
+gives on that same sequence
 
 ```text
-liminf_n (a_n^2+b_n^2) >= 1/128.                       (2)
+liminf_n (a_n^2+b_n^2) >= 1/32.                        (2)
 ```
 
 Equations `(1)` and `(2)` contradict each other.  Hence the binary Leavitt unit

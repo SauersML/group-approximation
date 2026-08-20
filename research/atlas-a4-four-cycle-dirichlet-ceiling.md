@@ -2,7 +2,7 @@
 rg: 2
 id: atlas-a4-four-cycle-dirichlet-ceiling
 kind: claim
-title: The exact A4 network keeps the minimal four-cycle Dirichlet energy below one over 6144
+title: The exact A4 network keeps the minimal four-cycle Dirichlet energy below one over 1536
 distinct_from:
   atlas-a4-four-cycle-dirichlet-compiler: that stronger target makes the four-cycle energy vanish at a rate controlled by packet and collision defect; this target asks only for one fixed numerical ceiling along the normalized necessity sequence.
   atlas-a4-holonomy-coherence-gap: that target bounds the two raw S3 covariance directions; this target bounds the four minimal A8 cycle directions before the exact finite transfer to the raw S3 detector.
@@ -18,7 +18,7 @@ E_n = sum_(t in {t01,t12,t23,t30})
 Prove the strictly weaker numerical statement
 
 ```text
-limsup_n E_n < 1/6144.                                  (A4-DIR-CEIL)
+limsup_n E_n < 1/1536.                                  (A4-DIR-CEIL)
 ```
 
 No modulus tending to zero is required.  The constant is chosen so that the
@@ -27,8 +27,8 @@ exact transfer `atlas-a8-four-cycle-controls-raw-s3-energy` gives
 ```text
 limsup_n (a_n^2+b_n^2)
  <= 48 limsup_n E_n
- < 48/6144
- = 1/128,
+ < 48/1536
+ = 1/32,
 ```
 
 which is already the complete holonomy-coherence gap needed by the direct
@@ -41,7 +41,7 @@ collapse.
 ## Attempts
 
 - **Search a finite constant-gap SOS, not a vanishing estimate.**  A cyclic
-  sum-of-squares certificate only has to leave slack `1/6144`; it need not
+  sum-of-squares certificate only has to leave slack `1/1536`; it need not
   dominate the four-cycle energy by the small residual norm with a uniform
   Lipschitz modulus.
 - **Optimize the constant before the proof.**  The current `24` transfer comes
@@ -49,7 +49,7 @@ collapse.
   certificate, or direct finite-group Dirichlet comparison from the four-cycle
   to `{t21,t12}`, enlarges the admissible ceiling automatically.
 - **Use tracial compactness qualitatively.**  It is enough to rule out limiting
-  exact A4/collision models carrying four-cycle energy at least `1/6144`.
+  exact A4/collision models carrying four-cycle energy at least `1/1536`.
   Quantitative stability of every intermediate gauge is unnecessary.
 - **Dual-search bad multiplicity modes.**  If the ceiling fails in a finite
   truncation, keep the maximizing tracial/multiplicity mode as a concrete dual

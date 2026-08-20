@@ -6,6 +6,7 @@ title: Compose the 19243 distance wall with sharp S3 Reynolds-Poincare rounding
 target: atlas-packet-forces-two-s3-covariance-energy
 requires:
   - atlas-19243-centrality-forces-s3-distance
+  - atlas-19243-relation-forces-s3-distance
   - s3-two-generator-covariance-controls-commutant-distance
 ---
 
@@ -38,3 +39,17 @@ Squaring `(2)` and combining with `(1)` proves `(19243-S3-E)`.  If
 ```
 
 which is `(19243-S3-FLOOR)`.
+
+If instead the collision word itself has defect `epsilon_q`, substitute the
+direct relation wall
+
+```text
+dist_2(U,C_K)
+ >= max(0,(sqrt(2)-epsilon_q)/8)
+```
+
+into `(1)`.  This proves `(19243-REL-S3-E)`, and `epsilon_q(n)->0` gives
+
+```text
+(sqrt(2)/8)^2=1/32.
+```

@@ -18,7 +18,7 @@ S_n=2x_01(n)+2x_23(n)+4x_30(n).
 Prove the single scalar ceiling
 
 ```text
-limsup_n [S_n^2 + S_n x_12(n) + x_12(n)^2] < 3/512.   (A4-ROOT-ELLIPSE)
+limsup_n [S_n^2 + S_n x_12(n) + x_12(n)^2] < 3/128.   (A4-ROOT-ELLIPSE)
 ```
 
 This is the completely optimized form of the four-cycle-to-S3 contradiction.
@@ -26,6 +26,13 @@ Indeed `S_n^2` is the exact positive-word triangle upper budget for the
 synthesized raw involution `t21`, while `x_12^2` is the budget for the directly
 observed raw involution `t12`.  The cross term is precisely what remains after
 optimizing the relative weights in the two-generator S3 Cayley gap.
+
+The threshold uses the collision relation directly.  In the Leavitt quotient
+necessity sequence `q_19243(U_n)->1`, so
+`atlas-19243-relation-forces-s3-distance` gives the squared S3-distance floor
+`1/32`; the optimized Cayley dual turns this into `3/128`.  The older
+centrality-only route paid an unnecessary second occurrence of the collision
+word and produced the weaker threshold `3/512`.
 
 Equivalently,
 

@@ -78,11 +78,13 @@ the high-impact standalone bar by itself.  The missing theorem is the fixed
 four-unitary trace estimate
 
 ```text
-S^2 + S x_12 + x_12^2 < 3/512,                          (PAPER-A8-1)
+S^2 + S x_12 + x_12^2 < 3/128,                          (PAPER-A8-1)
 ```
 
 recorded as `atlas-a4-root-energy-ellipse-ceiling`.  The opposite collision
-wall is already established.  A proof of `(PAPER-A8-1)` would therefore turn
+wall is already established.  The improved threshold uses the kernel relation
+itself and is four times weaker than the older centrality-only target after
+squaring.  A proof of `(PAPER-A8-1)` would therefore turn
 the finite rigidity package into the decisive operator-algebraic collapse and
 close the proposed non-hyperlinear-group route.
 

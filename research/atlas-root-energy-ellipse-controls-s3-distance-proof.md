@@ -7,6 +7,7 @@ target: atlas-root-energy-ellipse-controls-s3-distance
 requires:
   - s3-weighted-two-generator-covariance-controls-commutant-distance
   - s3-weighted-budget-optimization
+  - atlas-19243-relation-forces-s3-distance
 ---
 
 Put
@@ -67,3 +68,19 @@ to obtain `(ROOT-19243-WALL)`.  Sending `delta->0` gives
 
 Thus the open A4 ceiling is attempting to cross an exact dual wall, not a chain
 of loose symmetric relaxations.
+
+For the quotient-necessity sequence, use the collision relation itself instead:
+
+```text
+d >= max(0,(sqrt(2)-||q_19243(U)-1||_2)/8).
+```
+
+Substitution into `F>=3d^2/4` proves `(ROOT-19243-REL-WALL)`.  Since the
+pulled-back kernel relation has defect tending to zero, its limiting wall is
+
+```text
+(3/4)(sqrt(2)/8)^2=3/128.
+```
+
+No Cayley-gap or triangle constant changes; the factor-four improvement comes
+solely from avoiding the extra `q^*` occurrence in the centrality commutator.

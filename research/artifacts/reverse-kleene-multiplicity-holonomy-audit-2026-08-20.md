@@ -22,7 +22,7 @@ present in the graph and were not duplicated:
 | Dummy radical bits preserve the fatal ratio | the same claim, equation `(CRAC4)` |
 | A4 packet has four rectangle holonomies | `atlas-a4-packet-four-rectangle-normal-form` |
 | All `9,999,360` GL5 positions were screened; 202 packet models all fail collision | `atlas-a4-gl5-packet-collision-screen` |
-| The remaining A4 scalar target is the `3/512` ellipse | `atlas-a4-root-energy-ellipse-ceiling` |
+| The remaining A4 scalar target is the `3/128` ellipse (using the collision relation directly) | `atlas-a4-root-energy-ellipse-ceiling`, `atlas-19243-relation-forces-s3-distance` |
 
 The three new mathematical points are below.
 
