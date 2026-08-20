@@ -6,6 +6,7 @@ title: Two oriented C18 rank gates give exact active-plus-exit branch balance
 artifacts:
   - experiments/fanizza_oriented_c18_exit_compiler.py
   - experiments/fanizza_child_oriented_c18_exit_compiler.py
+  - experiments/fanizza_factored_c18_exit_compiler.py
 distinct_from:
   fanizza-final-bcs-has-fixed-nonlinear-menu: that records C18's 20 forbidden assignments as one Boolean constraint; this replaces them, only on the forward source carrier, by 20 oriented exit occurrences counted with multiplicity.
   binary-cut-projection-recurrence-gives-bfe1: that converts a supplied projection recurrence residual into a scalar balance; this proves the required balance pointwise on the C18 spectral atoms after packet replacement.
@@ -112,6 +113,12 @@ copy it records.  The optimized compilers improve to baseline ranks 8 and 9
 kernel `K_sym`, hard form `e_02^*`, and reverse `J=+1` sign.  At the common
 `110` support their exit halves can be chosen as opposite spectral halves of
 the first relative Pauli word, so the upper source budget remains `s/2<=q`.
+
+Factoring the even phase before rank compilation gives the sharper three-gate
+form `(FCR1)` of `fanizza-c18-residual-factors-through-three-tiny-rank-gates`.
+Its matrices have sizes only 5, 5, and 6 and retain the identical occurrence
+count, kernel, hard root, and child labels.  This is the preferred packet
+realization; `(OCB1)` remains the shortest scalar description.
 
 This is an oriented recurrence compiler, not an equivalent replacement of
 C18 on arbitrary corners.  Its use is valid precisely after cutting to the

@@ -117,3 +117,6 @@ the Fanizza projection `D` itself as the nonhalting mark contradicts
   scalar nonlinear recurrence gate is closed; finite-presentation placement
   of the active halves, the linear constraints, and the marked initial-carrier
   interface remain.
+  `fanizza-c18-residual-factors-through-three-tiny-rank-gates` further reduces
+  the C18 packet sizes to `5,5,6` by compiling the even phase as one affine
+  parity bit before the three child-guarded conjunctions.

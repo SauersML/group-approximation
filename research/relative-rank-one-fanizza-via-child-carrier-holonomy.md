@@ -23,6 +23,7 @@ requires:
   - oriented-c18-rank-gates-give-branch-balance
   - c18-source-cut-has-sparse-relator-certificate
   - c18-child-oriented-gates-follow-the-two-source-words
+  - fanizza-c18-residual-factors-through-three-tiny-rank-gates
   - finite-schur-clifford-packet-flexible-hs-exactification
   - non-ce-bcs-has-robust-approximate-energy-gap
   - fanizza-turing-bcs-signal-collapse
