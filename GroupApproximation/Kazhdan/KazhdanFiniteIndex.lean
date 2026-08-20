@@ -99,7 +99,7 @@ theorem hasKazhdanPropertyT_of_finiteIndex {Γ : Type u} [Group Γ] (Λ : Subgro
             refine Finset.sum_lt_sum_of_nonempty Finset.univ_nonempty fun c _ => ?_
             nlinarith [norm_nonneg (π (cocycle tr c.1 q) v - v), hcoord q hq c]
         _ = (tr.reps.card : ℝ) * ε ^ 2 := by
-            simp [Finset.card_univ]
+            simp
     have hstep : ‖indFun tr E π q ξ₀ - ξ₀‖ < ‖ξ₀‖ * ε := by
       nlinarith [norm_nonneg (indFun tr E π q ξ₀ - ξ₀), hsum, hξ₀sq,
         mul_pos hξ₀pos hε]
@@ -107,7 +107,7 @@ theorem hasKazhdanPropertyT_of_finiteIndex {Γ : Type u} [Group Γ] (Λ : Subgro
         = (‖ξ₀‖⁻¹ : ℝ) • (indFun tr E π q ξ₀ - ξ₀) := by
       rw [smul_sub]
       congr 1
-      simpa using indFun_smul tr E π q (‖ξ₀‖⁻¹ : ℝ) ξ₀
+      simp
     rw [hlin, norm_smul, Real.norm_eq_abs, abs_of_pos (inv_pos.mpr hξ₀pos)]
     have hmul := mul_lt_mul_of_pos_left hstep (inv_pos.mpr hξ₀pos)
     rwa [← mul_assoc, inv_mul_cancel₀ hξ₀pos.ne', one_mul] at hmul
@@ -121,9 +121,7 @@ theorem hasKazhdanPropertyT_of_finiteIndex {Γ : Type u} [Group Γ] (Λ : Subgro
 `Kazhdan/SharpExistenceRoutes.lean` states and leaves open, is a theorem. -/
 theorem kazhdanFiniteIndexPermanence : Hyperbolic.KazhdanFiniteIndexPermanence := by
   intro Γ inst Λ hfi hΓ
-  haveI := inst
-  haveI := hfi
-  exact hasKazhdanPropertyT_of_finiteIndex Λ hΓ
+  exact @hasKazhdanPropertyT_of_finiteIndex.{0, 0} Γ inst Λ hfi hΓ
 
 /-- **The lattice route, with the Kazhdan input discharged.**  Compare
 `Hyperbolic.sharpExistence_of_latticeRoute`, which needs three permanence

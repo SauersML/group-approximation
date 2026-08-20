@@ -93,7 +93,7 @@ theorem conjProd_mem_normalClosure {S : Set A} :
   induction l with
   | nil =>
       intro _
-      simpa using Subgroup.one_mem (Subgroup.normalClosure S)
+      simp
   | cons p l ih =>
       intro hl
       rw [conjProd_cons]
@@ -123,9 +123,9 @@ theorem mem_normalClosure_iff_conjProd {S : Set A}
         inv_mem' := by
           rintro x ⟨l, hl, rfl⟩
           exact ⟨conjInv l, conjInv_base hsymm hl, conjProd_conjInv l⟩ }
-    have hsub : Subgroup.conjugatesOfSet S ⊆ (P : Set A) := by
+    have hsub : Group.conjugatesOfSet S ⊆ (P : Set A) := by
       intro x hx
-      obtain ⟨a, ha, hconj⟩ := Subgroup.mem_conjugatesOfSet_iff.1 hx
+      obtain ⟨a, ha, hconj⟩ := Group.mem_conjugatesOfSet_iff.1 hx
       obtain ⟨c, hc⟩ := isConj_iff.1 hconj
       exact ⟨[(c, a)], by simpa using ha, by simpa using hc⟩
     exact (Subgroup.closure_le P).2 hsub hg
@@ -195,7 +195,10 @@ theorem mem_torsionTower_succ_iff_raw {A : Type} [Group A] (gen : ℕ → A)
       exact hl p hp
     · congr 1
       rw [List.map_map]
+      conv_rhs => rw [← List.map_id l]
       refine List.map_congr_left fun p _ ↦ ?_
+      show (evalRaw gen (Classical.choose (hword p.1)),
+          evalRaw gen (Classical.choose (hword p.2))) = p
       rw [Classical.choose_spec (hword p.1), Classical.choose_spec (hword p.2)]
   · rintro ⟨l, hl, rfl⟩
     refine ⟨l.map fun p ↦ (evalRaw gen p.1, evalRaw gen p.2), ?_, rfl⟩

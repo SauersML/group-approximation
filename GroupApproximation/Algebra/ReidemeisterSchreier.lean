@@ -88,10 +88,10 @@ theorem normalClosure_subgroupOf_eq {F : Type u} [Group F] {P : Subgroup F}
   · -- `N ∩ P ≤ ⟪transversal conjugates⟫^P`, by factoring each conjugating element
     have hmain : Subgroup.normalClosure R ≤
         (Subgroup.normalClosure (transversalConjugates tr R)).map P.subtype := by
-      have hclosure : Subgroup.normalClosure R = Subgroup.closure (conjugatesOfSet R) := rfl
+      have hclosure : Subgroup.normalClosure R = Subgroup.closure (Group.conjugatesOfSet R) := rfl
       rw [hclosure, Subgroup.closure_le]
       intro x hx
-      obtain ⟨r, hr, hconj⟩ := mem_conjugatesOfSet_iff.mp hx
+      obtain ⟨r, hr, hconj⟩ := Group.mem_conjugatesOfSet_iff.mp hx
       obtain ⟨f, rfl⟩ := isConj_iff.mp hconj
       obtain ⟨lam, hlam, t, ht, hft⟩ : ∃ lam ∈ P, ∃ t ∈ tr.reps, f = lam * t :=
         ⟨tr.retract f, tr.retract_mem f, tr.sec f, tr.sec_mem_reps f,
@@ -138,7 +138,7 @@ theorem isFinitelyPresented_subgroup_of_finiteIndex
   classical
   obtain ⟨n, φ, hsurj, R, hRfin, hR⟩ := hΓ.out
   haveI hPfi : (Λ.comap φ).FiniteIndex := by
-    rw [Subgroup.finiteIndex_iff, Subgroup.index_comap_of_surjective hsurj]
+    rw [Subgroup.finiteIndex_iff, Λ.index_comap_of_surjective hsurj]
     exact Subgroup.finiteIndex_iff.mp ‹Λ.FiniteIndex›
   obtain ⟨tr⟩ := exists_rightTransversal (Λ.comap φ)
   -- the surjection of the preimage onto the subgroup
@@ -151,7 +151,7 @@ theorem isFinitelyPresented_subgroup_of_finiteIndex
     exact ⟨⟨f, hfmem⟩, Subtype.ext hf⟩
   have hkerψ : ψ.ker = (φ.ker).subgroupOf (Λ.comap φ) := by
     ext x
-    simp [ψ, MonoidHom.mem_ker, Subgroup.mem_subgroupOf, Subtype.ext_iff]
+    simp [ψ, MonoidHom.mem_ker, Subgroup.mem_subgroupOf]
   -- the kernel is the normal closure of the transversal conjugates
   have hle : Subgroup.normalClosure R ≤ Λ.comap φ := by
     rw [hR]
