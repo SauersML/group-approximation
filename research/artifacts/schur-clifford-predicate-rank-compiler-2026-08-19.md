@@ -86,6 +86,18 @@ replaces nonlinear finite groupification by a concrete two-dimensional
 inclusion square; the remaining open cell is to make a one-sided compressor
 return the two child modules with uniform HS cost.
 
+The required local two-cell is explicit.  Multiplying the final `p` generator
+by `J` and, independently, the final `q` generator by `J` defines two
+commuting involutive automorphisms of the finite packet.  On a forbidden
+simple their implementers are the opposite corrected Pauli operators
+`Q_x,P_x`, hence anticommute; on an allowed sector they simply permute the
+four compatible child characters.  Adjoining commuting stable letters for
+these automorphisms forces even external multiplicity on every forbidden
+simple.  The global hole has consequently narrowed again: a finite
+self-similar compressor must replicate this explicit flip square into
+independent returned directions until their cocycle rank exceeds the current
+multiplicity, with loss independent of recursion depth.
+
 A concrete exact holonomy primitive is now available.  If two commuting
 automorphisms of a finite packet have projective implementer commutator
 `zeta` of order `r` on an irreducible packet, adjoining commuting stable

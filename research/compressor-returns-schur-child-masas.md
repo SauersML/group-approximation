@@ -41,4 +41,9 @@ charged.
   cell whose two edges are the actual child inclusions in `(SPS1)`.  The
   analytic endpoint is now `(SPS4)`; what remains is a finite word-level cell
   with runtime- and multiplicity-independent covariance loss.
-
+- The local two-cell is now explicit:
+  `schur-packet-flips-realize-predicate-cocycle` gives two commuting packet
+  automorphisms whose implementers anticommute exactly on forbidden simples.
+  The live route `schur-flip-amplification-returns-child-masas` leaves only
+  `compressor-amplifies-schur-flip-cocycle-rank`: recursively create enough
+  independent copies of this fixed cell with uniform HS loss.
