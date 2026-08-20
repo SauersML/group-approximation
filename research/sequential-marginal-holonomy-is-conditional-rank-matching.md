@@ -4,9 +4,8 @@ id: sequential-marginal-holonomy-is-conditional-rank-matching
 kind: claim
 title: Sequentially freezing marginals is exactly conditional rank matching
 distinct_from:
-  one-binary-marginal-block-escape: that moves one context algebra while fixing one balanced marginal; this characterizes precisely when another marginal can be installed without moving the ones already fixed.
-  coherent-balanced-context-permutations-would-give-a-ce-trace: that excludes a globally coherent root-block atlas for a no-CE BCS; this gives the local block-unitary criterion encountered before global coherence is reached.
-  simultaneous-block-escaping-context-holonomy: that asks for one context unitary satisfying every incident overlap; this proves why independently balanced one-edge cells do not automatically compose.
+  signed-hecke-compatible-projection-atlas-for-nonce-bcs: that asks for all cross-context marginal identities in one corner; this gives the local block-unitary criterion for installing one more marginal while preserving those already fixed.
+  piecewise-group-transport-gives-corner-unitaries: that constructs a corner unitary from already named source and range partitions; this characterizes when a block-diagonal choice can additionally conjugate one prescribed involution to another.
 ---
 
 Let `d_1,...,d_r,y,z` be self-adjoint involutions in `M_D(C)`.  Assume the
