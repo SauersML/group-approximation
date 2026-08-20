@@ -17,8 +17,9 @@ pi_n: Gamma -> PU((C^2)^(tensor r_n)),   r_n -> infinity,
 
 such that:
 
-1. the Heisenberg image has a common nontrivial central sign and acts by the
-   irreducible binary Schrodinger representation;
+1. the Heisenberg image acts by the irreducible binary Schrodinger
+   representation and has local central signs
+   `J_n=t^n J_0 t^(-n)` transported by one compressor word;
 2. the adjoint actions of the fixed words `S` normalize the Pauli group, so
    they are Clifford checks on every prefix;
 3. the level shift and the inclusion of one new Pauli cell are represented by
@@ -42,8 +43,11 @@ uniform quantum expanders automatically. Items 1--4 then imply
   relative-Kazhdan expander words. The obstruction is now compatibility:
   `(a,b)|->(ua,b)` is not a ring homomorphism, the linear action does not
   preserve every embedded prefix, and the top-coefficient cocycle varies
-  with `n`. Thus it does not yet provide a common central word or a
-  self-similar action on the nested inclusions.
+  with `n`. The sign variation alone is repairable by
+  `conjugate-local-signs-preserve-marked-carrier`: a ring-valued center and a
+  compressor taking `z(c)` to `z(uc)` turn the top-coefficient signs into
+  conjugates. The unresolved part is making that compressor and the fixed
+  linear expander action coexist on the nested inclusions.
 - **Laurent/unitary repair.** A coefficient-of-identity pairing over
   `F_2[t,t^(-1)]` has a level-independent formula and suggests replacing the
   symplectic group by a unitary group for `t* = t^(-1)`. No nested finite

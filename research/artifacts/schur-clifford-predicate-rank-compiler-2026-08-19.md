@@ -1184,6 +1184,20 @@ uses the level-dependent functional \(\ell_n\). Thus one still has to turn
 these exact finite-level objects into a single presentation with compatible
 level transport and a common (or coherently conjugated) central sign.
 
+The parenthetical relaxation is exact and useful. If the level signs are
+
+\[
+J_n=t^nJ_0t^{-n},
+\]
+
+then in every matrix tuple (J_n) is literally unitarily conjugate to the
+marked word (J_0). Its distance from the identity and the trace of every
+spectral carrier are therefore independent of (n), with no use of a
+relator estimate. A ring-valued Heisenberg center with
+(t z(c)t^{-1}=z(uc)) can consequently use (z(u^n)) as the local sign at
+level (n). This is `conjugate-local-signs-preserve-marked-carrier` and
+removes global centrality from the remaining Jacobi-tower obligations.
+
 ---
 
 ## 16. Computational verification

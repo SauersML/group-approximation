@@ -46,7 +46,8 @@ This is already the desired binary growth rate and uniform analytic gap.
 It is not yet the finitely presented Clifford tape: the symplectic embeddings
 `i_n` are not ring homomorphisms, the `EL_2(R_n)` actions need not preserve
 their images, and the cocycle uses the level-dependent functional `ell_n`.
-Thus the construction does not yet express all Pauli commutators by one
-common central word or make the fixed expander implementers compatible with
-the one-cell inclusions.
-
+The level-dependent sign can be transported by conjugacy in a ring-valued
+Heisenberg center, as explained by
+`conjugate-local-signs-preserve-marked-carrier`. The genuine remaining issue
+is to make that compressor coexist with the fixed expander implementers and
+the one-cell inclusions in one finite presentation.

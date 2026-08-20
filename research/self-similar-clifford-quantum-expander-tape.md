@@ -16,7 +16,8 @@ tower
 E_1 <= E_2 <= ...,
 ```
 
-with common marked sign, together with a fixed number `D` of word templates
+with a marked sign transported coherently between levels, together with a
+fixed number `D` of word templates
 whose level-`n` conjugates act on every `J=-1` spin block of `E_n` as a
 `D`-regular quantum expander with one uniform gap `1-lambda>0`.
 
@@ -43,4 +44,8 @@ constant independent of the existing Clifford rank.
   problem is algebraic: find one finitely presented Jacobi/self-similar group
   with a binary nested congruence tower, compatible Schrodinger--Weil
   projective actions, polynomial word-derivation cost, and the same central
-  sign used by the controlled Schur rank gate.
+  sign used by the controlled Schur rank gate. The sign may be the conjugate
+  level family `J_n=t^n J_0 t^(-n)`:
+  `conjugate-local-signs-preserve-marked-carrier` proves that this retains the
+  marked separation and carrier trace exactly, so global centrality is not
+  required.
