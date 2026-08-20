@@ -41,6 +41,16 @@ and the reverse-Kleene route closes without a runtime-uniform modulus.
 
 ## Attempts
 
+- **Dress one shared implementer by packet words. Fenced for the basic Pauli
+  cell.**  This would make the two external factors in `(CPM4)` literally
+  equal.  However
+  `packet-dressed-shared-implementer-requires-one-outer-class` proves that
+  packet-dressed copies of one stable letter can implement only automorphisms
+  in one class of `Out(B)`.  The standard controlled-X and controlled-Z/CZ
+  covariances have different actions on the Pauli quotient, hence different
+  outer classes.  A larger packet with same-outer-class nonlinear lifts
+  remains possible.
+
 - **Independent covariance implementers: fails exactly.**  Schur's lemma
   leaves factors `R,T` on the external multiplicity space, and `(CPM4)` shows
   that their uncontrolled commutator multiplies the intended predicate phase.
