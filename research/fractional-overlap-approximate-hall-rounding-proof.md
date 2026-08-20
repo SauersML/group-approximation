@@ -21,23 +21,20 @@ total is at most `beta`.  The remaining terms are bounded by the target
 marginals over `N(A)`.  Hence
 
 ```text
-rank(Q_A) <= rank(P_(N(A))) + beta d.                 (1)
+rank(Q_A)-rank(P_(N(A))) <= beta d.                   (1)
 ```
 
-Since the ranks are integers,
+The left side is an integer.  Therefore its positive part is at most
 
 ```text
-rank(Q_A) <= rank(P_(N(A))) + k,
-k=ceil(beta d),                                       (2)
+k=floor(beta d).                                      (2)
 ```
-
-for every `A`.
 
 Build the standard integral flow network: a source connects to vertex `j`
 with capacity `rank(Q_j)`; allowed edges `j->i` have infinite (or capacity
 `d`) edges; target vertex `i` connects to the sink with capacity `rank(P_i)`.
 Add one dummy target of capacity `k`, connected from every `j`.
-Condition `(2)` is exactly Hall's cut condition for saturating all `d` source
+Equation `(2)` is exactly Hall's cut condition for saturating all `d` source
 dimensions in this enlarged network.  Thus max-flow/min-cut gives a flow of
 value `d`.  All capacities are integral, so an integral max flow exists.
 
