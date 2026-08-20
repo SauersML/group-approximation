@@ -74,7 +74,7 @@ theorem strictMono_stepBound (N : ℕ → ℕ) : StrictMono (stepBound N) :=
 
 theorem le_stepBound (N : ℕ → ℕ) : ∀ m : ℕ, N m ≤ stepBound N m
   | 0 => le_rfl
-  | (m + 1) => le_max_right _ _
+  | (_m + 1) => le_max_right _ _
 
 theorem self_le_stepBound (N : ℕ → ℕ) : ∀ m : ℕ, m ≤ stepBound N m
   | 0 => Nat.zero_le _
