@@ -31,8 +31,10 @@ group must have an exact model in which the marked word remains nontrivial.
 - A normalized trace tuple canonically gives a maximally-entangled strategy:
   left action on one player and transpose/right action on the other turn
   state-dependent squared errors into normalized-HS squared errors.  This is
-  the natural local lowering, but the question-indexed observables still have
-  to be represented by finitely many group words.
+  now the exact theorem
+  `maximally-entangled-vectorization-is-hs-isometry`.  The question-indexed
+  observables still have to be represented by finitely many group words; that
+  remaining syntax is isolated as `uniform-halting-pauli-word-oracle`.
 - Directly naming all questions makes the finite presentation depend on the
   post-halting value `N`; ordinary machine simulation reintroduces runtime
   telescoping.  A finite oracle/tape action must make uniformly sampled BLR
@@ -41,4 +43,3 @@ group must have an exact model in which the marked word remains nontrivial.
   density, while recursive compression explains runtime independence.  The
   unresolved theorem is their perfect-complete group-word realization for
   this especially structured Pauli verifier.
-
