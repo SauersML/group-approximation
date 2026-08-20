@@ -35,3 +35,4 @@
 32351417722	2026-08-20T09:05:22Z	GroupApproximation/Analysis/GuentnerKaminker.lean	hasPropertyA_of_compressionExceeds_half
 32355976469	2026-08-20T09:51:31Z	GroupApproximation/Analysis/RoeSquareRoot.lean	exists_sqrt_mem
 32360761306	2026-08-20T10:49:32Z	GroupApproximation/Sofic/CliffordQuotientMFUnconditional.lean	manuscriptSharpnessConclusionUnconditional
+32365308576	2026-08-20T11:45:22Z	GroupApproximation/Sofic/CollapsePrintedCorollary.lean	manuscriptInvolutiveCollapse_printed
