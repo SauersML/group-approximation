@@ -26,9 +26,8 @@ finite syntax required by `jacobi-congruence-clifford-tower`.
 - The exact atlas geometry, including its fixed one-qubit transverse pieces,
   is `truncated-weyl-two-chart-boundary`; sign transport is
   `conjugate-local-signs-preserve-marked-carrier`. What remains is to spell a
-  finite compressor presentation for `(TWC3)` and prove that approximate
-  chart changes cannot dump the mismatch into the two transverse cells at
-  every level. The latter should use the existing polar overlap theorem and
-  bounded-overlap energy accounting, but the cyclic product has not been
-  estimated.
-
+  finite compressor presentation for `(TWC3)`. The analytic payment is now
+  discharged: `forbidden-packet-reynolds-holonomy-payment` proves that any
+  returned Reynolds-channel rank gap costs ordinary normalized-HS word
+  energy. The remaining algebraic claim is
+  `two-chart-reynolds-word-transport`.

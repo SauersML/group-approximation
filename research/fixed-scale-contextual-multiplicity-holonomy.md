@@ -54,3 +54,10 @@ floor.
   unresolved construction must identify the two Reynolds projections through
   a one-sided Kazhdan compressor (or a genuine two-cell holonomy) with
   normalized-HS cost controlled by the presentation relators.
+- **Final analytic payment solved.** If a word holonomy returns uniform
+  enumerations of the two packet Reynolds averages, then
+  `forbidden-packet-reynolds-holonomy-payment` converts `(ARG1)` directly into
+  ordinary normalized-HS energy `>=3q^2/(8D^2K)`. No copywise multiplicity
+  selection remains. The construction problem is now to expose that averaged
+  channel transport by finitely many sparse relations without forgetting the
+  shared non-CE selector tuple.

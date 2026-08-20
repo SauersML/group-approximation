@@ -1219,6 +1219,25 @@ than spread across the growing prefix. Cairn records the exact geometry as
 `truncated-weyl-two-chart-boundary` and the remaining compressor/payment
 problem as `two-chart-jacobi-action-holonomy`.
 
+The payment end of that holonomy can be closed abstractly. If two finite
+Reynolds averages (P,Q) on (L^2(M_d)) are transported termwise by a word
+(T), then
+
+\[
+{\lvert\operatorname{rank}P-\operatorname{rank}Q\rvert\over d^2}
+\le 2\,{1\over D}\sum_j\|TU_jT^*-V_j\|_2^2.
+\]
+
+The proof combines the rank lower bound for the distance between two
+orthogonal projections with
+(|\operatorname{Ad}U-\operatorname{Ad}V|_{2,\mathrm{sup}}^2
+\le2\|U-V\|_2^2). Together with the Schur-packet Reynolds gap `(ARG1)`, a
+forbidden mass (q) forces holonomy energy at least
+(3q^2/(8D^2K)). This is
+`forbidden-packet-reynolds-holonomy-payment`. The remaining two-chart problem
+is therefore purely the finite word transport of those averages, isolated as
+`two-chart-reynolds-word-transport`.
+
 ---
 
 ## 16. Computational verification
