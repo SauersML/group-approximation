@@ -39,7 +39,7 @@ is countably generated when `B` is separable.
 namespace GroupApproximation
 namespace HilbertModule
 
-open OrderZero Filter
+open OrderZero Filter Topology
 
 universe u v w
 
@@ -51,7 +51,7 @@ variable {B : Type v} [NonUnitalCStarAlgebra B] [PartialOrder B]
 open scoped Classical in
 /-- The truncation of a square-summable sequence to a finite set of
 coordinates. -/
-def truncate {ι : Type u} (s : Finset ι) (f : ↥(summableSubmodule ι B)) :
+noncomputable def truncate {ι : Type u} (s : Finset ι) (f : ↥(summableSubmodule ι B)) :
     ↥(summableSubmodule ι B) :=
   ⟨fun i => if i ∈ s then f.1 i else 0, by
     refine summable_of_nonneg_of_le (fun i => ?_) (fun i => ?_) (summable_coe f)

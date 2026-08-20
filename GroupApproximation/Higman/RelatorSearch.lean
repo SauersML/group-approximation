@@ -64,6 +64,25 @@ theorem freeEval_eq_one_iff (v : RawWord) :
   rw [hmap]
   exact Computability.mk_eq_one_iff_exists_steps
 
+/-- Raw-word inversion is reversal after flipping each sign bit. -/
+theorem invRaw_eq (u : RawWord) :
+    invRaw u = (u.map fun p ↦ (p.1, !p.2)).reverse := by
+  induction u with
+  | nil => rfl
+  | cons p u ih =>
+      obtain ⟨i, b⟩ := p
+      show invRaw u ++ [(i, !b)] = _
+      rw [ih, List.map_cons, List.reverse_cons]
+
+/-- Inversion of raw words is primitive recursive. -/
+theorem primrec_invRaw : Primrec invRaw := by
+  have h : Primrec fun u : RawWord ↦ (u.map fun p ↦ (p.1, !p.2)).reverse :=
+    Primrec.list_reverse.comp
+      (Primrec.list_map Primrec.id
+        (Primrec.pair (Primrec.fst.comp Primrec.snd)
+          ((Primrec.dom_bool fun b ↦ !b).comp (Primrec.snd.comp Primrec.snd))))
+  exact h.of_eq fun u ↦ (invRaw_eq u).symm
+
 /-! ## 3.  The search form -/
 
 /-- **The word problem of a presented group, as one search.**

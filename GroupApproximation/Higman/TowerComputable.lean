@@ -1,5 +1,6 @@
 import GroupApproximation.Higman.TowerCert
 import GroupApproximation.Higman.BlockComputable
+import GroupApproximation.Higman.RelatorSearch
 
 /-!
 # The tower certificate checker is computable
@@ -49,23 +50,6 @@ theorem primrec_rawPow : Primrec₂ fun (v : RawWord) (n : ℕ) ↦ rawPow v n :
   refine h.of_eq fun x ↦ ?_
   change ((List.range x.2).map fun _ ↦ x.1).flatten = rawPow x.1 x.2
   rw [rawPow_eq, List.map_const', List.length_range]
-
-theorem invRaw_eq (u : RawWord) :
-    invRaw u = (u.map fun p ↦ (p.1, !p.2)).reverse := by
-  induction u with
-  | nil => rfl
-  | cons p u ih =>
-      obtain ⟨i, b⟩ := p
-      show invRaw u ++ [(i, !b)] = _
-      rw [ih, List.map_cons, List.reverse_cons]
-
-theorem primrec_invRaw : Primrec invRaw := by
-  have h : Primrec fun u : RawWord ↦ (u.map fun p ↦ (p.1, !p.2)).reverse :=
-    Primrec.list_reverse.comp
-      (Primrec.list_map Primrec.id
-        (Primrec.pair (Primrec.fst.comp Primrec.snd)
-          ((Primrec.dom_bool fun b ↦ !b).comp (Primrec.snd.comp Primrec.snd))))
-  exact h.of_eq fun u ↦ (invRaw_eq u).symm
 
 theorem primrec_conjWord :
     Primrec fun l : List (RawWord × RawWord × ℕ) ↦ conjWord l := by
