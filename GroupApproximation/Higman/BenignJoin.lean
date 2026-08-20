@@ -224,8 +224,6 @@ theorem join_le_comap_joinL (w₁ : BenignWitness A₁) (w₂ : BenignWitness A�
       conj_eq_self_of_mem _ hmem
     refine Subgroup.mem_comap.mpr (Subgroup.mem_sup_left ?_)
     refine ⟨joinEmb₂ w₁ w₂ a, ⟨a, Subgroup.mem_top a, rfl⟩, ?_⟩
-    show _ * _ * _ = _
-    rw [inv_inv]
     have hpush : (HNNExtension.of : JoinLevel1 w₁ w₂ →* JoinLevel2 w₁ w₂)
         ((HNNExtension.t : JoinLevel1 w₁ w₂)⁻¹ *
           HNNExtension.of (joinEmb w₁ w₂ a) * HNNExtension.t)
@@ -233,7 +231,7 @@ theorem join_le_comap_joinL (w₁ : BenignWitness A₁) (w₂ : BenignWitness A�
           (HNNExtension.of (joinEmb w₁ w₂ a)) := by
       rw [hfix]
     rw [map_mul, map_mul, map_inv] at hpush
-    exact hpush
+    simpa [joinEmb₂] using hpush
   · intro a ha
     have hmem : (HNNExtension.of : JoinBase w₁ w₂ →* JoinLevel1 w₁ w₂)
         (joinEmb w₁ w₂ a) ∈ joinM₂' w₁ w₂ := by
@@ -244,9 +242,7 @@ theorem join_le_comap_joinL (w₁ : BenignWitness A₁) (w₂ : BenignWitness A�
     have hfix := conj_eq_self_of_mem (joinM₂' w₁ w₂) hmem
     refine Subgroup.mem_comap.mpr (Subgroup.mem_sup_right ?_)
     refine ⟨joinEmb₂ w₁ w₂ a, ⟨a, Subgroup.mem_top a, rfl⟩, ?_⟩
-    show _ * _ * _ = _
-    rw [inv_inv]
-    exact hfix
+    simpa [joinEmb₂] using hfix
 
 /-! ## 5.  The two applications of the pinch lemma -/
 
@@ -332,19 +328,19 @@ theorem joinL_le_joinS₂ : joinL w₁ w₂ ≤ joinS₂ w₁ w₂ := by
       HNNExtension.of (joinEmb w₁ w₂ g) * HNNExtension.t, ?_, ?_⟩
     · refine Subgroup.subset_closure (Or.inr ?_)
       refine ⟨HNNExtension.of (joinEmb w₁ w₂ g),
-        ⟨g, Subgroup.mem_top g, rfl⟩, ?_⟩
-      show _ * _ * _ = _
-      rw [inv_inv]
+        ⟨joinEmb w₁ w₂ g, ⟨g, Subgroup.mem_top g, rfl⟩, rfl⟩, ?_⟩
+      simp
     · show (HNNExtension.of : JoinLevel1 w₁ w₂ →* JoinLevel2 w₁ w₂)
         ((HNNExtension.t : JoinLevel1 w₁ w₂)⁻¹ *
           HNNExtension.of (joinEmb w₁ w₂ g) * HNNExtension.t) = _
       rw [map_mul, map_mul, map_inv]
-      show _ = _ * _ * _
-      rw [inv_inv]
+      simp [joinEmb₂]
   · rintro _ ⟨x, hx, rfl⟩
     obtain ⟨g, -, rfl⟩ := hx
     refine Subgroup.subset_closure (Or.inr ?_)
-    refine ⟨joinEmb₂ w₁ w₂ g, ⟨g, Subgroup.mem_top g, rfl⟩, rfl⟩
+    refine ⟨joinEmb₂ w₁ w₂ g, ?_, rfl⟩
+    exact ⟨HNNExtension.of (joinEmb w₁ w₂ g),
+      ⟨g, Subgroup.mem_top g, rfl⟩, rfl⟩
 
 /-- **Higman's Lemma 3.2(2): benign subgroups are closed under joins.**  The
 subgroup `joinL` cuts the join out of `G`. -/
