@@ -135,6 +135,14 @@ threshold at all.  Its entire missing input is uniform HS site coherence for
 an explicit infinite finite-bi-index subgroup pair; finite pair-orbit type by
 itself does not control approximate coset representatives.
 
+A sufficient coherence package is now explicit.  Same-dimension normalized-HS
+stability of the acting group replaces the approximate action by an exact one;
+property (T) of the point stabilizer Reynolds-projects the lamp into its exact
+commutant.  Double-coset finiteness then propagates finitely many pair checks
+to the whole infinite orbit without any long-word loss.  Thus this alternate
+route has one sharply structural input: an explicit infinite finite-bi-index
+pair with Kazhdan stabilizer and HS-stable ambient group.
+
 A concrete exact holonomy primitive is now available.  If two commuting
 automorphisms of a finite packet have projective implementer commutator
 `zeta` of order `r` on an irreducible packet, adjoining commuting stable

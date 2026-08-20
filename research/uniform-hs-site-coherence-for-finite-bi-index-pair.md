@@ -43,9 +43,9 @@ with the same constant for the entire infinite coset space.
 - Finite pair-orbit type controls the number of defining relations but does
   not itself round the acting tuple or the stabilizer commutant.
 - A plausible sufficient package is same-dimension HS stability of `L` plus
-  an adjoint spectral gap for `H`; no explicit infinite finite-bi-index pair
-  with the needed uniform package is currently available.
+  an adjoint spectral gap for `H`.  This implication is now proved by
+  `hs-stable-kazhdan-finite-bi-index-pair-gives-site-coherence`; the remaining
+  structural search is `hs-stable-finite-bi-index-kazhdan-pair-exists`.
 - Flexible stabilization must also preserve a positive fraction of the
   marked `J=-1` carrier; arbitrary dimension padding would reintroduce the
   dilution being attacked.
-
