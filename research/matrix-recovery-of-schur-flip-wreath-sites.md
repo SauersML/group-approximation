@@ -51,3 +51,9 @@ microstate; selecting any fixed canonical finite window is insufficient.
   `schur-flip-amplification-from-residual-trigger` isolates the narrower
   possibility of running the self-detecting compiler directly in that
   commutant instead of recovering all supercritical sites in one pass.
+- Exact alignment of one forbidden assignment across all recovered sites is
+  unnecessary.  By `commuting-schur-replicas-force-exponential-dimension`, a
+  per-site total forbidden-mass floor selects one context at each site and a
+  joint sector with linearly many independent cocycle blocks.  The remaining
+  recovery problem is therefore cross-site coherence plus same-model site
+  count, not cross-site predicate agreement.

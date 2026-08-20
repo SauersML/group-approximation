@@ -40,4 +40,9 @@ that model from arbitrarily large matrices.
   soundness.  The remaining bridge is to make its local checks act as the
   explicit Schur flip automorphisms while preserving perfect diffuse
   completeness.
-
+- `commuting-schur-replicas-force-exponential-dimension` proves that a
+  constant forbidden-mass gap across `N` commuting replicas already yields
+  dimension at least `2^(beta_B N/C)`, even though different replicas may
+  select different violated contexts.  Thus the compiler need not align one
+  specific predicate across depth; it only must recover the commuting replica
+  structure and choose `N` at the residual matrix scale.

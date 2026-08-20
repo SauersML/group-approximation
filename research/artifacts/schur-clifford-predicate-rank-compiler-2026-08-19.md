@@ -146,6 +146,16 @@ already group-native.  What remains is solely a finite recursive controller
 which chooses that depth from the current microstate and transports all split
 checks with constant HS loss.
 
+Replicating the non-CE BCS now has an exact quantitative payoff.  Among `C`
+contexts, each finite-dimensional replica has one context with forbidden mass
+at least `beta_B/C`.  Across `N` commuting replicas these chosen forbidden
+projections commute, so one joint sector violates at least
+`ceil(beta_B N/C)` sites.  Their flip cocycles are independent and force
+dimension at least `2^(ceil(beta_B N/C))`.  No common forbidden assignment or
+common context across replicas is needed.  This establishes genuine
+exponential amplification of copied bad regions; fixed `N` is still finite
+profile pressure, so the adaptive same-model controller remains essential.
+
 There is a genuinely different escape from dimension detection.  If a finite
 bi-index action can be rounded uniformly, one base lamp and finitely many
 pair-orbit relators produce a coherent *infinite* family of anticommuting
