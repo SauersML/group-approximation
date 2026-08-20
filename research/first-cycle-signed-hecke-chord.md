@@ -37,8 +37,14 @@ least one non-root assignment projection must survive.
   `sequential-marginal-holonomy-is-conditional-rank-matching` decides whether
   one endpoint can install the chord sign while fixing its separator, and
   `free-phase-context-escape-criterion` describes which separator blocks can
-  additionally move genuine assignment atoms.  No argument yet shows the two
-  chord signs meet in the corresponding pair of endpoint orbits.
+  additionally move genuine assignment atoms.
+  `chord-regauging-is-relative-commutant-feasibility` now proves that the two
+  endpoint orbits meet exactly when their transported separator algebras have
+  a common-commutant involution realizing both conditional rank tables.  In
+  particular they cannot meet inside any finite root block where the two
+  separators generate the full matrix algebra.  The open construction is to
+  manufacture that involution with finite group-word support in the escaped
+  corner.
 - **Finite target.**  Compute the double-orbit condition for the rational
   context partitions and realize a successful pair of endpoint regauges by
   free-phase corner unitaries.  Failure of every such double orbit would be a
