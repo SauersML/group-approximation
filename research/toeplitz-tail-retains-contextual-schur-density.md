@@ -44,6 +44,14 @@ The head algebra is also finitely actuated:
 is needed. The analytic problem is to make the Schur violation determine the
 action of this fixed actuator on the residual multiplicity space.
 
+There is now an exact packet/residual factorization behind this request.
+`toeplitz-finite-head-centralizes-deep-tail` identifies the first `N` tape
+cells with `M_N(F_2)` and proves that `sigma^N(T)` acts as a scalar on that
+whole head. Thus a fixed packet may be exactified in the head while the next
+recursive challenge acts on its external multiplicity. What remains is the
+weighted multiplicity inequality across successive head restrictions, not an
+algebraic commutation problem.
+
 ## Attempts
 
 - Merely place `B_f^Q` in `alpha(Gamma)` and `B_f` in `Gamma`: this dies by
@@ -66,3 +74,8 @@ action of this fixed actuator on the residual multiplicity space.
   reset the local matrix scale. The unresolved point is not classical PCP
   soundness; it is synchronization of the contextwise HS exactifications on
   the shared selector words.
+- The classical proof cannot itself supply that synchronization:
+  `classical-pcp-gap-is-not-tracial-pvm-gap` records that a BCS may have a
+  perfect tracial PVM assignment while having positive classical UNSAT. The
+  appropriate input must be a quantum/Tailored-MIP answer-reduction theorem or
+  a genuinely dimension-sensitive Schur multiplicity argument.

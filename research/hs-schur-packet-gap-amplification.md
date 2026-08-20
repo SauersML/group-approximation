@@ -35,6 +35,13 @@ different nearby corrections, and forbidden mass is a joint spectral trace.
 The compiler must charge every disagreement between those corrections to HS
 relator energy with bounded overlap.
 
+`classical-pcp-gap-is-not-tracial-pvm-gap` shows that this statement cannot be
+proved by simply applying Dinur's popular-assignment argument to the local
+PVMs. Dinur amplification remains the outer incidence architecture only. The
+soundness step must be quantum and dimension-sensitive; Tailored-MIP answer
+reduction or Schur multiplicity transport must supply the missing global
+consistency.
+
 ## Attempts
 
 - Apply classical powering directly to traces of context projections: this
@@ -48,4 +55,3 @@ relator energy with bounded overlap.
   Schur rank jump as the rejection observable. The missing estimate is a
   robust composition lemma proving that inconsistent local corrections pay a
   bounded-overlap sum of the original commutator and identification relators.
-

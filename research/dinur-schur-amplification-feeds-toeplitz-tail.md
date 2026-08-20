@@ -6,8 +6,10 @@ title: Amplify residual forbidden mass before returning it through the one-swap 
 target: toeplitz-tail-retains-contextual-schur-density
 requires:
   - dinur-linear-size-constraint-gap-amplification
+  - classical-pcp-gap-is-not-tracial-pvm-gap
   - hs-schur-packet-gap-amplification
   - toeplitz-tail-plus-one-swap-generates
+  - toeplitz-finite-head-centralizes-deep-tail
   - schur-child-crosses-toeplitz-compressor
   - contractive-computation-ladder
 ---
@@ -20,4 +22,3 @@ still fails, identify the residual tail by the explicit compression and
 repeat. The amplified mass gives the strict contraction required by the
 contractive ladder; bounded overlap keeps the total HS charge independent of
 depth.
-
