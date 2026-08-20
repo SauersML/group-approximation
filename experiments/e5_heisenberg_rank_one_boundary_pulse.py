@@ -115,12 +115,31 @@ def audit(depth: int = 64) -> None:
         top = 4 * n - 2
         assert max(degree_profile(pulse)) == top
         assert tuple((entry >> top) & 1 for entry in pulse) == (0, 0, 0, 0, 1, 0)
+        if n & (n - 1) == 0:
+            level = n.bit_length() - 1
+            c_n = power[1][0]
+            d_n = power[0][0]
+            assert c_n == 1 << (2 * n - 1)
+            expected_d = ONE
+            for j in range(1, level + 1):
+                expected_d ^= 1 << (2 * n - (1 << j))
+            assert d_n == expected_d
+            support = {
+                degree
+                for entry in pulse
+                for degree in range(entry.bit_length())
+                if (entry >> degree) & 1
+            }
+            assert min(support) == 2 * n - 1
+            assert max(support) == 4 * n - 2
+            assert all(2 * n - 1 <= degree <= 4 * n - 2 for degree in support)
         if n < depth:
             power = multiply(power, inverse_block)
 
     print("p-p and q-q commute; the four p-q commutators are independent E_5 roots")
     print("a four-root elementary word acts by diag(S,1,S^-1)")
     print("the nth relative hard pulse has unique top coefficient e_13^* x^(4n-2)")
+    print("at n=2^k its whole support is in the disjoint band [2n-1,4n-2]")
 
 
 if __name__ == "__main__":

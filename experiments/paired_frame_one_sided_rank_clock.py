@@ -124,13 +124,13 @@ def audit(depth: int = 32) -> None:
             assert determinantal_divisors == (ONE, ONE, ONE)
         else:
             c_n = power[1][0]
-            d_n = power[1][1]
+            a_n = power[1][1]
             assert degree(c_n) == 2 * n - 1
             assert determinantal_divisors == (ONE, ONE, ONE, c_n)
             assert minor_witness(matrix, 4, poly_mul(c_n, c_n)) == (
                 (0, 1, 3, 4), (1, 2, 3, 4)
             )
-            assert minor_witness(matrix, 4, poly_mul(c_n, d_n)) == (
+            assert minor_witness(matrix, 4, poly_mul(c_n, a_n)) == (
                 (0, 2, 3, 4), (1, 2, 3, 4)
             )
         if n < 12:

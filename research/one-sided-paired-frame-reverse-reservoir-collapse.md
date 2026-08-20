@@ -96,6 +96,12 @@ regular Bass--Serre reservoir.
   hard character its `n`th pulse has the unique top coefficient
   `e_13^* x^(4n-2)`, so the corresponding Fourier boundary contains exactly
   one Pauli bit.
+- On dyadic iterates `n=2^k`, the stronger
+  `dyadic-e5-hard-pulses-have-disjoint-degree-bands` puts the whole pulse in
+  `[2n-1,4n-2]`; these intervals are adjacent and pairwise disjoint.  Thus no
+  polynomial tail from a later selected iterate leaks into an earlier degree
+  reservoir.  Spectral first-hit localization is still needed because one
+  additive character can be nontrivial on several bands.
 - `free-root-top-boundary-reservoir-is-summable` proves the required capacity
   theorem for those degree labels: the mass first detected at successive
   degrees telescopes and has total at most one on a unit carrier.  Literal
