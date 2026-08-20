@@ -76,3 +76,9 @@ subspace of the same adjoint dimension.  Bare relations
   Hence a compressor construction closes this claim if it activates, with
   dimension-independent HS loss, cocycle rank strictly above the logarithm
   of the current packet multiplicity.  Fixed-rank holonomy cannot suffice.
+- **Regular finite packets do not suppress the wrong sectors.**
+  `regular-finite-controlled-phase-has-half-wrong-mass` shows that any
+  nonaffine proposed phase has exactly one-half wrong mass in every regular
+  selector sector.  The infinite compressor must perform genuine
+  state-dependent selection; it cannot merely enforce regular type for a
+  larger finite overgroup.

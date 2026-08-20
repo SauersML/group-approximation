@@ -65,6 +65,15 @@ precise supercritical target: the infinite compressor/self-simulation must
 activate cocycle rank `2r` with `r` larger than the logarithm of the
 multiplicity in the same candidate model.  Any fixed rank remains dilutable.
 
+Nor can the spurious finite-overgroup sectors be hidden at small Plancherel
+weight.  The regular representation of any finite overgroup restricts to the
+selector--phase subgroup as a uniform multiple of its regular
+representation.  Unless the phase is an affine selector word, each selector
+character has equal positive- and negative-phase mass, so the nonlinear law
+is wrong on exactly one half of the regular packet.  This removes finite
+regular normalization as a possible shortcut around the infinite return
+mechanism.
+
 A concrete exact holonomy primitive is now available.  If two commuting
 automorphisms of a finite packet have projective implementer commutator
 `zeta` of order `r` on an irreducible packet, adjoining commuting stable

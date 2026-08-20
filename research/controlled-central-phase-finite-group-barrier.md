@@ -30,3 +30,7 @@ coefficient compiler, while its sound return must use an infinite compressor,
 a trace/corner condition, or another mechanism outside finite selector
 groupification.
 
+The bad sectors cannot be made Plancherel-negligible.  By
+`regular-finite-controlled-phase-has-half-wrong-mass`, restriction of the
+finite regular representation to `<D,c>` is uniform: unless `c` is an affine
+selector word, exactly half of every selector sector has the wrong phase.
