@@ -1,7 +1,7 @@
 # KK-theory, the UCT, Dadarlat–Eilers, order-zero maps and the Kirchberg–Rørdam
 # corona — and Tikuisis–White–Winter over them
 
-**Authored 2026-08-19. UNCOMPILED and UNWIRED.** Eleven new modules under
+**Authored 2026-08-19. UNCOMPILED and UNWIRED.** Thirteen new modules under
 `GroupApproximation/Analysis/`, none imported from `GroupApproximation.lean`;
 see "Before anything is graded".
 
@@ -23,7 +23,7 @@ parameter of this development — it is a definition.**
 | KK-theory | **axiomatized** (`KasparovTheory`), with every downstream consequence proved from the axioms; no inhabitant, and none possible without Hilbert C⋆-modules |
 | the UCT | **defined** (`SatisfiesUCT` = KK-equivalence to a commutative algebra, Rosenberg–Schochet's characterization), with the closure theorems proved |
 | Dadarlat–Eilers | **statement** typed over `KasparovTheory`; the direct-sum machinery it is stated over is proved |
-| TWW | **statement** at the defined UCT, and the proof that it implies the old parameterized input |
+| TWW | **derived**, not assumed: `TikuisisWhiteWinterTheorem` is produced from finer inputs in two independent ways, and its last step (corona ⇒ quasidiagonal trace) is proved outright |
 
 ## The modules
 
@@ -81,6 +81,25 @@ Layered, each importing only the ones above it.
     `QuasidiagonalMF.TikuisisWhiteWinterInput (uctPredicate T)`, and the group
     route re-proved with Tu's theorem as an obligation about a *bundled
     algebra* rather than about an abstract predicate.
+12. `Analysis/QuasidiagonalCoronaCriterion.lean` — `CoronaModel`, and
+    **proved**: a unital c.p. family whose induced map into `ℓ∞/c₀` is
+    multiplicative *on the nose*, with converging normalized traces, is a
+    `QuasidiagonalTraceModel`. This is the last step of the Annals argument,
+    and it is where `tendsto_norm_sub_mul_of_corona_mul` is spent.
+13. `Analysis/TikuisisWhiteWinterDerivation.lean` — **`TikuisisWhiteWinterTheorem`
+    is no longer assumed.** It is derived twice: from `CoronaEmbeddingInput`
+    (the Annals argument in the corona form it is *proved* in, with the
+    translation back to asymptotic language supplied by 12), and from
+    `NuclearAmenableTraceInput` + `TikuisisWhiteWinterCoreInput` (Connes–
+    Haagerup plus the local amenable-trace form, through the diagonal argument
+    already proved in `QuasidiagonalTraceLocal`). Group endpoints re-derived
+    with no TWW binder and with the ucp binder discharged by
+    `Quasidiagonal.ucpContractive`.
+
+    The two UCT predicates are **not** interchangeable: `uctPredicate` is
+    universal over C⋆-structures because it must be *produced* to feed the old
+    input; `uctExists` is existential because it must be *consumed* from a core
+    input. Each is used in exactly one direction.
 
 ## The one real gain, stated precisely
 
@@ -100,13 +119,16 @@ a free variable.
 
 ## What is irreducible, and where it now sits
 
-Five inputs, each a structure with no inhabitant, each attributed:
-`TikuisisWhiteWinterTheorem` (TWW 2017), `KasparovTheory` (Kasparov),
+After the derivation wave, what is finally assumed is: the Annals argument in
+**one of two finer forms** — `CoronaEmbeddingInput`, or
+`NuclearAmenableTraceInput` + `TikuisisWhiteWinterCoreInput` — plus
+`KasparovTheory` (Kasparov), Lance and Tu. `TikuisisWhiteWinterTheorem` itself
+is derived, not postulated.
+
+Three further inputs are stated and **consumed by nothing**:
 `DadarlatEilersInput` (Dadarlat–Eilers 2002), `WinterZachariasInput`
 (Winter–Zacharias 2009), `CoronaOrderZeroLiftInput` (Kirchberg–Rørdam 2014).
-
-The last four are **not consumed** by the group route — it uses TWW, Lance and
-Tu only. They are stated because they are what a proof of TWW would consume,
+They are what a proof of the remaining Annals input would consume. They are stated because they are what a proof of TWW would consume,
 which is what makes "the irreducibility is here" a checkable claim rather than
 a rhetorical one.
 
@@ -162,7 +184,11 @@ First-build repair list, in suspicion order:
 5. `TikuisisWhiteWinterProof.tikuisisWhiteWinterInput_of_theorem` — the defeq
    between the instance found for the anonymous `CStarAlgebra A` binder and
    `SepCStarAlgebra.algebra ⟨A, instA, hsep⟩`.
-6. `KirchbergRordamOrderZeroLift.CoronaOrderZeroLiftInput` — the C⋆-instances
+6. `QuasidiagonalCoronaCriterion.CoronaModel` — whether the instance parameter
+   `[∀ n, Nonempty (space n)]` is enough for the corona's C⋆-structure to
+   elaborate in the `corona_mul` field type, and whether `Matrix ↥(space n) …`
+   and `(fun n => (space n).carrier)` stay defeq through `seq_apply`.
+7. `KirchbergRordamOrderZeroLift.CoronaOrderZeroLiftInput` — the C⋆-instances
    on `BoundedMatrixSequence`/`NormMatrixCStarCorona` are passed as explicit
    anonymous binders precisely so that a missing global instance is not a
    failure; if it fails it is the binder order.

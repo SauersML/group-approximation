@@ -38,9 +38,17 @@ it.  Three things follow, and they are what this file contains.
 
 ## What remains irreducible, stated once and plainly
 
-`TikuisisWhiteWinterTheorem` is a structure and **no inhabitant is
-constructed here or anywhere in this development**.  Its proof, in the Annals
-paper, runs through:
+`TikuisisWhiteWinterTheorem` is a structure and **no unconditional inhabitant
+is constructed here or anywhere in this development**.  It is, however, no
+longer *assumed*: `Analysis.TikuisisWhiteWinterDerivation` derives it, in two
+independent ways, from strictly finer named inputs --- from the corona form of
+the argument (`CoronaEmbeddingInput`, with the translation back to asymptotic
+language proved in `Analysis.QuasidiagonalCoronaCriterion`), and from
+Connes--Haagerup together with the local, amenable-trace form of the Annals
+theorem.  So no theorem in this development carries a
+`TikuisisWhiteWinterTheorem` binder that could not be replaced by a finer one.
+
+Its proof, in the Annals paper, runs through:
 
 * the Kirchberg--Rørdam structure theory of the corona `∏ Mₖ / ⊕ Mₖ` ---
   countable saturation is *proved* here, unconditionally, from Kirchberg's
@@ -59,11 +67,13 @@ paper, runs through:
 * the tracial machinery of Ozawa--Rørdam--Sato, which has no counterpart here
   at all.
 
-So the honest summary is: the *reduction* is formalized and the *statement* is
-now expressed in defined terms; the theorem itself is one of five named
-inputs, and the four that can be split off from it are split off.  This is the
-same discipline `Analysis.TikuisisWhiteWinterCore` applies to the amenability
-seam, carried one layer further down.
+So the honest summary is: the *reduction* is formalized, the *statement* is now
+expressed in defined terms, and the theorem is *derived* from the vocabulary of
+its own proof rather than postulated.  What is finally assumed is the Annals
+argument in one of its two finer forms, plus Kasparov; the rest of the list is
+either proved here or stated but unused.  This is the same discipline
+`Analysis.TikuisisWhiteWinterCore` applies to the amenability seam, carried
+two layers further down.
 
 **Nothing below concludes an input structure from premise-free hypotheses**;
 every conclusion is pointwise, with head `IsQuasidiagonalTrace` or
@@ -98,8 +108,11 @@ quasidiagonal.  Separability is carried by the object `S`, nuclearity is the
 completely positive approximation property, and the UCT is
 `KasparovTheory.SatisfiesUCT` --- a *definition*, not a parameter.
 
-**No inhabitant is constructed.**  See the module docstring for the list of
-what a proof would need and which parts of that list this development
+**Not assumed anywhere.**  `Analysis.TikuisisWhiteWinterDerivation` produces
+this structure from finer inputs, in two independent ways, so a theorem
+consuming it consumes something derivable rather than something postulated.
+No *unconditional* inhabitant is constructed --- see the module docstring for
+the list of what that would need and which parts of the list this development
 supplies. -/
 structure TikuisisWhiteWinterTheorem (T : KasparovTheory.{u}) : Prop where
   /-- A faithful trace on a nuclear bootstrap-class algebra is
@@ -212,14 +225,15 @@ without reading the file:
 
 | input | owner | where |
 |---|---|---|
-| `TikuisisWhiteWinterTheorem` | Tikuisis--White--Winter 2017 | here |
+| `CoronaEmbeddingInput`, **or** `NuclearAmenableTraceInput` + `TikuisisWhiteWinterCoreInput` | Tikuisis--White--Winter 2017 (and Connes--Haagerup) | `Analysis.TikuisisWhiteWinterDerivation`, `Analysis.TikuisisWhiteWinterCore` |
 | `KK.KasparovTheory` | Kasparov 1980--88 | `Analysis.KKTheoryKasparov` |
 | `KK.DadarlatEilersInput` | Dadarlat--Eilers 2002 | `Analysis.DadarlatEilers` |
 | `OrderZero.WinterZachariasInput` | Winter--Zacharias 2009 | `Analysis.KirchbergRordamOrderZeroLift` |
 | `OrderZero.CoronaOrderZeroLiftInput` | Kirchberg--Rørdam 2014 | `Analysis.KirchbergRordamOrderZeroLift` |
 
 The last four are *not* consumed by anything above: the group route uses only
-the first, plus Lance and Tu.  They are stated because they are the theorems
+the Annals input --- in whichever of its two finer forms --- plus Lance and
+Tu.  They are stated because they are the theorems
 `TikuisisWhiteWinterTheorem`'s own proof consumes, and stating them is what
 makes the claim "this is where the irreducibility sits" checkable rather than
 rhetorical.  A future formalization of TWW would produce an inhabitant of
