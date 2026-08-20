@@ -2,6 +2,7 @@ import GroupApproximation.Higman.EvalRaw
 import GroupApproximation.Computability.PresentationCodeCompleteness
 import GroupApproximation.Algebra.TorsionFreeQuotient
 import Mathlib.Data.DFinsupp.Encodable
+import Mathlib.SetTheory.Cardinal.Free
 
 /-!
 # An absorber indexed by the *Primcodable* presentation codes
@@ -66,7 +67,7 @@ open GroupApproximation.PresentationCodes
 
 instance carrier_countable (c : PresentationCode) : Countable (Carrier c) := by
   unfold Carrier PresentedGroup
-  infer_instance
+  exact Function.Surjective.countable (QuotientGroup.mk'_surjective _)
 
 instance carrier_additive_countable (c : PresentationCode) :
     Countable (Additive (Carrier c)) :=
@@ -143,7 +144,7 @@ instance pcAbsorber_countable : Countable PCAbsorber :=
   Function.Surjective.countable toTorsionFreeQuotient_surjective
 
 /-- The map placing one coordinate into the absorber. -/
-def pcEmb (c : PresentationCode) : Carrier c →* PCAbsorber :=
+noncomputable def pcEmb (c : PresentationCode) : Carrier c →* PCAbsorber :=
   (toTorsionFreeQuotient PCDirectSum).comp (pcOf c)
 
 /-- A torsion-free coordinate survives the quotient, by the retraction
@@ -240,14 +241,14 @@ theorem spans_pcGen : Subgroup.closure (Set.range pcGen) = ⊤ := by
     exact h (Multiplicative.toAdd g)
   intro f
   refine DFinsupp.induction f ?_ ?_
-  · simpa using Subgroup.one_mem (Subgroup.closure (Set.range pcGen))
+  · exact Subgroup.one_mem _
   · intro c a f' _ _ ih
-    have hsplit : (Multiplicative.ofAdd (DFinsupp.single c a + f') :
-        PCDirectSum)
-        = pcOf c (Additive.toMul a) * Multiplicative.ofAdd f' := by
-      simp [pcOf]
-    rw [hsplit]
-    exact Subgroup.mul_mem _ (pcOf_mem_closure_pcGen c _) ih
+    -- `PCDirectSum`'s multiplication IS the addition underneath, and `pcOf c`
+    -- IS `single c`, so the split needs no rewriting: it is the same term.
+    -- Stating it as an equation instead forces the `*` through the `binop%`
+    -- elaborator, which will not identify `PCDirectSum` with the type it is
+    -- defined to be.
+    exact Subgroup.mul_mem _ (pcOf_mem_closure_pcGen c (Additive.toMul a)) ih
 
 end Higman
 end GroupApproximation
