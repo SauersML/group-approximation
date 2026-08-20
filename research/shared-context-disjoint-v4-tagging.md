@@ -37,6 +37,14 @@ apparent branching. The required decoder must use shared-context operator
 data, a property-`(T)` coefficient wall, or another finite-dimensional-only
 selection mechanism.
 
+The matrix-only qualifier is forced by
+`repeated-v4-tags-cannot-be-universal-word-branches`.  After enlarging the
+already fixed repetition count, any fixed family of exact word branches
+would also exist in the canonical left regular representation, whose positive
+regular forbidden mass would violate ambient capacity.  Hence a successful
+decoder must select its tag types or polar branches from finite multiplicity
+data; it cannot merely reveal universal branches that were present all along.
+
 ## Attempts
 
 - **Parent exclusivity. Unnecessary.**
@@ -44,6 +52,9 @@ selection mechanism.
   number of duplicate batches and the ambient identity capacity.
 - **Independent context tags. Dead.** They do not arise from a common target
   representation and do not constrain cross-Gram products.
+- **Universal word branches. Impossible.** The canonical group trace has
+  positive regular V4 failure mass.  Exact disjoint word branches repeated
+  beyond its reciprocal violate capacity inside the group factor itself.
 - **Fixed HNN character atlas. Dead.** The regular stationary type flow
   absorbs every finite list of subgroup character identifications.
 - **Dummy affine clocks do not remove the repetition bottleneck.**
