@@ -189,11 +189,7 @@ theorem IsOrderZero.starAlgHom_comp {φ : A →ₗ[ℂ] B} (hφ : IsOrderZero φ
 theorem isOrderZero_zero : IsOrderZero (0 : A →ₗ[ℂ] B) where
   completelyPositive := by
     intro n M _
-    refine ⟨0, ?_⟩
-    ext i j
-    rw [star_zero, zero_mul]
-    show (0 : B) = (0 : CStarMatrix (Fin n) (Fin n) B) i j
-    rw [show ((0 : CStarMatrix (Fin n) (Fin n) B) i j) = 0 from rfl]
+    exact ⟨0, by ext i j; simp⟩
   norm_apply_le a := by
     rw [LinearMap.zero_apply, norm_zero]
     exact norm_nonneg a
