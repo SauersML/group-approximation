@@ -40,3 +40,8 @@ microstate; selecting any fixed canonical finite window is insufficient.
   Kazhdan transport is already valid at the cutoff's own rank scale.  What is
   missing is a finite-word coordinate theorem turning those directions into
   distinct local flip factors.
+- `infinite-index-does-not-force-supercritical-site-rank` rules out stopping
+  there: the first `n` recovered cells can be represented exactly on
+  multiplicity `2^nL` for arbitrary spectator `L`.  The cutoff must therefore
+  detect or react to this residual spectator inside the same microstate and
+  request more than `log_2 L` additional independent cells.

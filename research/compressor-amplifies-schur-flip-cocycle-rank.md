@@ -48,3 +48,8 @@ give the desired dimension-free return charge.
   `schur-flip-amplification-from-wreath-site-recovery` leaves the concrete
   matrix-coordinate statement
   `matrix-recovery-of-schur-flip-wreath-sites`.
+- Infinite index and recovery of every fixed window still do not imply
+  `(SFA1)`: `infinite-index-does-not-force-supercritical-site-rank` constructs
+  exact `n`-cell models with multiplicity `m=2^nL` for arbitrary `L`.  The
+  required recurrence must be diagonal in the *residual* multiplicity `L`,
+  not merely unbounded in an external depth parameter.

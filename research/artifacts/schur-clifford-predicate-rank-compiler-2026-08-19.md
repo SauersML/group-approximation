@@ -108,6 +108,16 @@ soundness theorem is now coordinate recovery: a matrix microstate must expose
 more than `log_2 m` of those new site factors, chosen at its own multiplicity
 scale, with total HS loss independent of the number selected.
 
+There is a sharp limitation to this plan.  The exact truncation containing
+`n` independent flip squares uses `n` Pauli cancellation qubits, so its
+external multiplicity is `m=2^nL` after arbitrary spectator amplification.
+It satisfies every relation in that finite window while `n<=log_2 m`.
+Therefore infinite compressor index, ultraproduct recovery of every fixed
+number of sites, and scaled Kazhdan transport cannot by themselves cross the
+capacity threshold.  A final compiler must react to the residual spectator
+multiplicity and activate more cells inside that same model—the literal
+dimension-diagonal/self-detecting step.
+
 A concrete exact holonomy primitive is now available.  If two commuting
 automorphisms of a finite packet have projective implementer commutator
 `zeta` of order `r` on an irreducible packet, adjoining commuting stable
