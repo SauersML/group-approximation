@@ -2,35 +2,31 @@
 rg: 2
 id: tracial-coordinate-transport-barrier-proof
 kind: route
-title: Established countermodel plus the localization of the corner step
+title: Standard-form failure, corner cost, and the explicit radical gap
 target: tracial-coordinate-transport-barrier
-requires: [mf-hyperlinear-radical-divergence, finite-traced-kazhdan-transport, corner-renormalization-cost]
+requires:
+  - mf-hyperlinear-radical-divergence
+  - corner-renormalization-cost
 artifacts:
-  - notes/NON_MF_TO_HYPERLINEAR_DIFFERENTIAL_AUDIT.md
+  - docs/NON_MF_TO_HYPERLINEAR_DIFFERENTIAL_AUDIT.md
+  - research/artifacts/left-right-finite-coordinate-obstruction-2026-08-19.md
 ---
 
 ## Why sufficient
 
-Item 1 is the statement of `finite-traced-kazhdan-transport`, whose
-hypothesis is allowed in `||.||_(2,tau_k)`; its proof passes through the
-tracial ultraproduct in any case, so nothing in it distinguishes the two
-norms.
+For an infinite finite factor `M` in standard form, `JMJ=M'` and
+`M or M'=B(L^2 M)`, so the Murray--von Neumann comparison step used by
+one-sided transport no longer occurs in a finite algebra.  The manuscript's
+constant coordinates `A_n=C*_r(E)` turn this structural observation into an
+explicit countermodel: the left regular representation is exact, `c`
+centralizes the Kazhdan base, yet the transported commutator is nontrivial.
 
-Item 2 is `(C1)`--`(C2)` of `corner-renormalization-cost`, together with the
-observation that the corner produced by the architecture is the negative
-spectral sector of the mark, whose trace is exactly the relative rank of that
-sector and is not bounded below by anything in the hypotheses.
+Independently, `corner-renormalization-cost` shows that a corner of relative
+trace `delta` multiplies normalized 2-norms by the scale `delta^(-1/2)`, and
+the architecture supplies no positive lower bound on that density in a
+tracial model.
 
-Item 3 is `mf-hyperlinear-radical-divergence`: the literal mark lies in the
-operator-norm MF residual and outside the hyperlinear residual, the latter
-because an explicit Connes-embeddable Clifford model sends it to `-1`.  A
-tracial analogue of the central-sign obstruction would place it in the
-hyperlinear residual, contradicting that detector.  The same conclusion
-follows independently from `hyperlinear-not-imply-mf`: its witness is sofic,
-hence hyperlinear, hence has faithful tracial models of every element, while
-being non-MF.
-
-Therefore the class of coordinates for which the full architecture is valid
-is bounded above by the requirement that nonzero corners carry states, which
-is item 2 of `faithfully-traced-unital-coordinates` and fails precisely for
-tracial ultraproducts.  End proof.
+Finally `mf-hyperlinear-radical-divergence` gives a direct impossibility
+certificate for the full tracial conclusion: the literal mark is killed by
+every operator-norm corona homomorphism but detected by a hyperlinear model.
+Thus no theorem saying every tracial model kills that mark can hold.
