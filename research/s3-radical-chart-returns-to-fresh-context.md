@@ -31,6 +31,12 @@ context, with the following properties.
   every fixed Fanizza predicate.  The residual obstruction is strictly the
   renewal of the selector center on that already-merged spin carrier, isolated
   as `fresh-selector-renewal-after-symplectic-chart-reset`.
+- `selector-free-spin-reset-leaves-contexts-independent` computes the exact
+  one-edge incidence after this merge.  Both restriction matrices are
+  `[1 1]`, so sharing the spin packet and adjoining fresh selectors allows
+  every old/fresh character pair.  The return therefore needs a two-cell that
+  acts on the multiplicity commutant; no further ordinary reset edge can carry
+  the contextual branch law.
 - A plain finite graph of these incidences has stationary representation-ring
   flows.  The return must be inserted into the existing one-sided
   Toeplitz/Fanizza recurrence, where the factor-two violation ledger is
