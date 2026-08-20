@@ -53,6 +53,15 @@ regular Bass--Serre reservoir.
 - The finite search is complete: there are 32 symbolic frame isomorphisms and
   every one sends `101` to `011`.  No additional finite character reservoir
   needs to be controlled.
+- `corner-localized-non-ce-bcs-energy-gap` proves that BCS violation mass
+  cannot dilute after cutting to an approximately reducing prefix carrier,
+  even when that carrier has vanishing ambient trace.
+- `first-hit-carrier-contraction-ladder` isolates the exact remaining
+  accounting.  It suffices to preserve one baseline carrier copy, emit a
+  fixed fraction of its trace into a new reverse carrier, and make those
+  reverse carriers orthogonal.  The resulting trace budget is `(PRC1)`.
 - The missing calculation is to realize these two shears on consecutive
-  one-sided prefix corners and prove that the raw-compressor boundary error is
-  polynomial while the prefix carriers are orthogonal.
+  one-sided prefix corners, prove persistence of the baseline copy, and prove
+  that the raw-compressor boundary error is polynomial while the emitted
+  reverse carriers are orthogonal.  A merely decreasing first-hit process is
+  insufficient: it admits a geometric reservoir and does not force collapse.

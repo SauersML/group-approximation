@@ -95,3 +95,10 @@ the tensor-decoupled model of
   compressor relation only has to prevent that one reverse reservoir from
   returning; it no longer has to select an unknown adjoint projection or an
   arbitrary multiplicity basis.
+- Conditional dilution is no longer an analytic loophole.
+  `corner-localized-non-ce-bcs-energy-gap` gives a soundness floor proportional
+  to the trace of every approximately reducing transported carrier, and
+  `first-hit-carrier-contraction-ladder` converts persistent baseline copies
+  plus orthogonal `011` exits into the required linear reservoir bound.  The
+  remaining issue is therefore literal word-level persistence and
+  orthogonality, not a new compactness or corner-normalization theorem.
