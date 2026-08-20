@@ -26,6 +26,11 @@ context, with the following properties.
 - Conjugating only the three finite `R_i` charts is now exact, but it returns
   their two block labels to one another rather than to a fresh BCS selector
   tuple.
+- `fanizza-radical-charts-admit-common-symplectic-reset-subgroups` now merges
+  the two chart blocks into two copies of one full-matrix subgroup type for
+  every fixed Fanizza predicate.  The residual obstruction is strictly the
+  renewal of the selector center on that already-merged spin carrier, isolated
+  as `fresh-selector-renewal-after-symplectic-chart-reset`.
 - A plain finite graph of these incidences has stationary representation-ring
   flows.  The return must be inserted into the existing one-sided
   Toeplitz/Fanizza recurrence, where the factor-two violation ledger is

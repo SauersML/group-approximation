@@ -42,6 +42,9 @@ Boone mark supplies positive initial carrier mass; the collapsing projection
 `D` is not misused as the separated mark.
 
 All finite algebra, rank-one contextual payment, packet exactification, and
-Fanizza summation inputs are established.  This route is missing only
-`s3-radical-chart-returns-to-fresh-context`, the finite-presentation placement
-of the two uniform chart types at the next tape level.
+Fanizza summation inputs are established.  Two genuinely global interfaces
+remain: `s3-radical-chart-returns-to-fresh-context`, the finite-presentation
+placement of the two uniform chart types at the next tape level, and
+`fanizza-boone-mark-carrier-interface`, the runtime-uniform coupling from a
+separated Boone word to positive level-zero carrier mass.  Neither is supplied
+by the local packet theorem.

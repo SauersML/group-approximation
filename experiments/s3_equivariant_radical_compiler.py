@@ -36,7 +36,7 @@ def symmetric_border(
     for row in range(size):
         for column in range(size):
             symmetric[row][size + column] = cycle[row][column]
-            symmetric[size + column][row] = cycle[column][row]
+            symmetric[size + column][row] = cycle[row][column]
     block_size = max(1, k)
     supports = {}
     for block_index, assignment in enumerate(forbidden):
@@ -69,6 +69,22 @@ def verify_predicate(k: int, forbidden: list[BitTuple]) -> None:
     for assignment in product((0, 1), repeat=k):
         evaluated_symmetric = eval_matrix(symmetric, assignment)
         evaluated_alternating = eval_matrix(alternating, assignment)
+        assert all(
+            evaluated_symmetric[row][column]
+            == evaluated_symmetric[column][row]
+            for row in range(len(evaluated_symmetric))
+            for column in range(len(evaluated_symmetric))
+        )
+        assert all(
+            evaluated_alternating[row][column]
+            == evaluated_alternating[column][row]
+            for row in range(len(evaluated_alternating))
+            for column in range(len(evaluated_alternating))
+        )
+        assert all(
+            evaluated_alternating[index][index] == 0
+            for index in range(len(evaluated_alternating))
+        )
         hot = assignment in forbidden_set
         assert rank_f2(evaluated_symmetric) == 2 * cycle_size - int(hot)
         assert rank_f2(evaluated_alternating) == 4 * cycle_size - 2 * int(hot)
