@@ -42,6 +42,16 @@ of trace conditioning must therefore either make the marked word trivial on
 all uncontrolled Plancherel types or prove that the router preserves the
 active type.
 
+`hnn-type-projection-leakage` makes the second alternative exact for an HNN
+router.  A base-packet projection `p` is preserved precisely when `p` belongs
+to the covariance edge algebra and the edge map fixes it.  Otherwise its
+canonical squared leakage is
+`2[tau(p)-tau(theta(E_H(p))p)]`; in a free return it is
+`2 tau(p)(1-tau(p))`.  Consequently the final packet cannot be repaired by
+trace tests around a small Pauli edge.  It must expose the active signed-Hecke
+idempotent on the edge itself, or make the marked word harmless on the leaked
+mass.
+
 It is not automatic.  Covariance fixes only the irreducible Pauli action;
 constants outside the Pauli normalizer can move or multiply its isotypic
 carrier.  This is the exact point at which the otherwise complete balanced
