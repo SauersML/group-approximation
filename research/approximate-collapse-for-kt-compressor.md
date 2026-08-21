@@ -403,3 +403,20 @@ Kun–Thom wreath group (first non-hyperlinear group; group-CEP
 refuted; Pestov 3.9 falls).  A refutation kills the rigidity route
 while leaving both answers to Q3.4 possible.  Either way one of
 Pestov's two remaining questions is directly advanced.
+
+**Cross-lane note (2026-08-21).**  The same wall appears in
+`hnn-over-codense-kazhdan-subgroup-not-hyperlinear`: there the identity
+that must survive approximate representations is `rho(C)' = rho(A)'` for
+`C = SL_2(Z) <= A = SL_2(Z[1/p])`, true for every genuine finite-dimensional
+representation (same image in every congruence quotient) and consumed
+through property `(tau)` of `C`.  The two lanes differ only in the base:
+`EL_r(F_q[x_1..x_d])` has (T), so Becker--Lubotzky forces far-from-genuine
+approximate representations to exist and (AC) must hold for them; the
+base `SL_2(Z[1/p])` has (T;FD) but not (T), so its flexible HS-stability
+(`iwahori-local-global-defect-question`) is open, and if it holds the
+HNN theorem closes the goal with no (AC)-type statement needed.  A
+proof of (AC) for non-liftable representations would conversely supply
+the missing step in the HNN route for ANY co-dense Kazhdan pair, stable
+base or not; a disproof of flexible stability of `SL_2(Z[1/p])` would
+show that the exotic representations whose existence (AC) must survive
+also exist for a non-(T) base.
