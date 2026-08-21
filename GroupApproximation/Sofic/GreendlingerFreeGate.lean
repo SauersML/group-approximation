@@ -15,22 +15,15 @@ construction consumes.
 
 ## One gate, no incomplete proofs
 
-`SharpGreendlingerGate` is the single open statement — a `Prop` on the alphabet
-rather than a theorem with a hole.  Every result below takes it as a hypothesis
-and is fully proved, so this module is free of incomplete proofs and lands: the
-open mathematics sits in a predicate nothing in the repository yet inhabits,
-which is the same discipline `GreendlingerGate` itself follows.  When the gate
-is proved, its consumers lose a hypothesis and gain nothing else — the
-unconditional forms are one-line corollaries, and no signature below moves.
-
-**`TorsionFreeGate` used to be the second open statement and is now closed.**
-`torsionFreeGate_of_sharpGate` proves it from the sharp gate alone, spending the
-descent of `Sofic/TorsionDescent`; the predicate survives only as a name for
-what the torsion half costs.  Its constant moved from `1/6` to `λ ≤ 1/8` in the
-process, and that is not a convenience: at `1/6` through the half-form the
-descent's residual branch is *satisfiable*, so nothing closes it there.  Both
-directions of that are machine-checked in `TorsionDescent`.  Consequently
-`router_conclusions_of_gates` now takes one gate rather than two.
+`SharpGreendlingerGate` is the one open statement, a `Prop` on the alphabet
+rather than a theorem with a hole.  Every result below
+takes the gate it needs as a hypothesis and is fully proved, so this module is
+free of incomplete proofs and lands: the open mathematics sits in predicates
+nothing in the repository yet inhabits, which is the same discipline
+`GreendlingerGate` itself follows and the only one under which a scaffold can
+be committed.  When either gate is proved, its consumers lose a hypothesis and
+gain nothing else — the unconditional forms are one-line corollaries, and no
+signature below moves.
 
 Both gates are stated at the sharp constant where that matters.  At `λ = 1/6`
 the sharp arc bound `(1 - 3λ)·|r|` is exactly `|r|/2`, so the half-form falls
@@ -122,45 +115,12 @@ have gone the other way.
 def NoProperPower (R : Set (List (α × Bool))) : Prop :=
   ∀ r ∈ R, ¬ PeriodicOverlap.IsProperPower r
 
-/-- **CLOSED — the torsion companion.**  The classical small-cancellation
-torsion theorem: a metric small-cancellation presentation by cyclically reduced
-relators, none of them a proper power, presents a torsion-free group.
-
-This is no longer an open statement.  `torsionFreeGate_of_sharpGate` below
-proves it from `SharpGreendlingerGate` alone, the mathematics living in
-`Sofic/TorsionDescent` (`isPowerTorsionFree_of_sharp`).  It is kept as a named
-predicate because consumers were written against the name and because it
-records exactly what the torsion half costs: the sharp gate and nothing else.
-
-**Two restatements against the version that was open here**, both forced.
-
-* **The constant is `λ ≤ 1/8`, not `1/6`.**  The descent's residual branch —
-  arc longer than one period, the two rotations distinct — is *satisfiable* at
-  `1/6` read through the half-form, so no argument closes it there; at
-  `λ ≤ 1/8` read through the sharp form it is arithmetically empty.  Both
-  halves of that are machine-checked in `TorsionDescent`
-  (`half_form_residual_satisfiable`, `residual_empty_of_lam_le_eighth`).  This
-  is why the avatar family is designed at `C'(1/8)`.
-* **`hcyc` is still here, but the descent does not use it.**  It is needed only
-  to invoke `SharpGreendlingerGate`, which asks for it.  Anything taking the
-  sharp *conclusion* directly needs no such hypothesis —
-  `TorsionDescent.isPowerTorsionFree_of_sharp` has none.
-
-The old sketch of the proof is now the module `Sofic/TorsionDescent`; two
-warnings from it are worth keeping in view here, because both were wrong in an
-earlier version of this docstring and both were refuted by machine check rather
-than by argument.  The piece bound in the distinct-rotations branch bounds *the
-overhang*, not the arc, so it does not on its own contradict the arc being
-long.  And the natural-looking sub-lemma "a word sharing more than half of
-itself with its own nontrivial rotation is a proper power" is FALSE
-(`PeriodicOverlap.not_isProperPower_of_two_mul_length_le`, witness
-`0 1 0 0 1 0 0 1`); Fine--Wilf is available and is the wrong tool. -/
-def TorsionFreeGate (α : Type*) : Prop :=
-  ∀ (R : Set (List (α × Bool))) (lam : ℚ),
-    (∀ r ∈ R, FreeGroup.IsCyclicallyReduced r) → lam ≤ 1 / 8 →
-    MetricSmallCancellation R lam → NoProperPower R →
-    IsPowerTorsionFree
-      (FreeGroup α ⧸ Subgroup.normalClosure (FreeGroup.mk '' R))
+/-! The torsion half is **no longer a gate.**  `Sofic.TorsionDescent`
+proves it: `isPowerTorsionFree_of_sharp` takes the sharp Greendlinger
+conclusion at a constant of at most `1/8` and returns torsion-freeness of the
+quotient, with no residual case and no cyclic-reducedness hypothesis.  So this
+file owes one open statement, not two, and `torsionFree_of_sharpGate` below is
+the one-line discharge. -/
 
 /-! ## 2.  The no-proper-power hypothesis, and where it travels -/
 
@@ -190,61 +150,30 @@ theorem NoProperPower.mem_symmetrization {R : Set (List (α × Bool))}
     (hw : w ∈ symmetrization R) : ¬ PeriodicOverlap.IsProperPower w :=
   PeriodicOverlap.not_isProperPower_of_mem_symmetrization hnpp hw
 
-/-! ## 3.  The torsion gate, discharged -/
+/-! ## 3.  Everything the router consumes, from the gates -/
 
-/-- The metric condition is monotone in its constant: a smaller `λ` is a
-stronger hypothesis.  Needed because the torsion half is stated at `λ ≤ 1/8`
-while the router's own gate is fixed at `1/6`. -/
-theorem metricSmallCancellation_mono {R : Set (List (α × Bool))} {lam lam' : ℚ}
-    (h : MetricSmallCancellation R lam) (hle : lam ≤ lam') :
-    MetricSmallCancellation R lam' := by
-  intro p hp w hw hpw
-  have hbound := h p hp w hw hpw
-  have hw0 : (0 : ℚ) ≤ (w.length : ℚ) := Nat.cast_nonneg _
-  have hmul : lam * (w.length : ℚ) ≤ lam' * (w.length : ℚ) :=
-    mul_le_mul_of_nonneg_right hle hw0
-  linarith
+/-- **The half-form, from a sharp conclusion.**  For `lam ≤ 1/6` the sharp
+coefficient `1 - 3·lam` is at least `1/2`, so the sharp arc bound implies the
+half-form.  At `lam = 1/6` the two coincide exactly. -/
+theorem greendlingerConclusion_of_sharp {R : Set (List (α × Bool))} {lam : ℚ}
+    (hlam : lam ≤ 1 / 6) (hsharp : GreendlingerConclusionSharp R lam) :
+    GreendlingerConclusion R := by
+  intro w hred hne hmem
+  obtain ⟨r, hr, u, huw, hur, hlt⟩ := hsharp w hred hne hmem
+  refine ⟨r, hr, u, huw, hur, ?_⟩
+  have hrpos : (0 : ℚ) ≤ (r.length : ℚ) := by positivity
+  have hcoef : (1 : ℚ) / 2 * (r.length : ℚ) ≤ (1 - 3 * lam) * (r.length : ℚ) :=
+    mul_le_mul_of_nonneg_right (by linarith) hrpos
+  have h2 : (r.length : ℚ) < 2 * (u.length : ℚ) := by linarith
+  exact_mod_cast h2
 
-/-- **The torsion gate follows from the sharp gate.**  The whole torsion half of
-the router's obligations costs one hypothesis, not two.
-
-The sharp conclusion at `λ` is exactly what `TorsionDescent`'s descent consumes,
-and `λ ≤ 1/8` is what empties its residual branch; `hcyc` is spent invoking the
-gate and nowhere else. -/
-theorem torsionFreeGate_of_sharpGate (hgate : SharpGreendlingerGate α) :
-    TorsionFreeGate α := fun R lam hcyc hlam hmetric hnpp =>
-  TorsionDescent.isPowerTorsionFree_of_sharp hlam
-    (hgate R lam hcyc (by linarith) hmetric) hmetric hnpp
-
-/-- **Torsion-freeness with no gate hypothesis on the torsion side at all**, in
-the shape a consumer holding only the sharp conclusion wants: no `hcyc`, no
-gate, just the conclusion the gate would have produced. -/
-theorem isPowerTorsionFree_of_sharpConclusion {R : Set (List (α × Bool))}
-    {lam : ℚ} (hlam : lam ≤ 1 / 8)
-    (hsharp : GreendlingerConclusionSharp R lam)
-    (hmetric : MetricSmallCancellation R lam) (hnpp : NoProperPower R) :
-    IsPowerTorsionFree
-      (FreeGroup α ⧸ Subgroup.normalClosure (FreeGroup.mk '' R)) :=
-  TorsionDescent.isPowerTorsionFree_of_sharp hlam hsharp hmetric hnpp
-
-/-! ## 4.  Everything the router consumes, from the one remaining gate -/
-
-/-- **The half-form, from the sharp gate.**  At `λ = 1/6` the sharp coefficient
-is exactly `1/2`, so this is the sharp gate read at one value and cast back to
-`ℕ` — not a third open statement. -/
+/-- The half-form from the gate itself, read at `lam = 1/6`. -/
 theorem greendlingerConclusion_of_sharpGate (hgate : SharpGreendlingerGate α)
     {R : Set (List (α × Bool))}
     (hcyc : ∀ r ∈ R, FreeGroup.IsCyclicallyReduced r)
     (hmetric : MetricSmallCancellation R (1 / 6)) :
-    GreendlingerConclusion R := by
-  intro w hred hne hmem
-  obtain ⟨r, hr, u, huw, hur, hlt⟩ :=
-    hgate R (1 / 6) hcyc le_rfl hmetric w hred hne hmem
-  refine ⟨r, hr, u, huw, hur, ?_⟩
-  have h2 : (r.length : ℚ) < 2 * (u.length : ℚ) := by
-    norm_num at hlt
-    linarith
-  exact_mod_cast h2
+    GreendlingerConclusion R :=
+  greendlingerConclusion_of_sharp le_rfl (hgate R (1 / 6) hcyc le_rfl hmetric)
 
 /-- The router's own gate, from the sharp one: the same statement with its
 quantifier restored and the constant fixed. -/
@@ -282,23 +211,32 @@ theorem protected_injOn_of_sharpGate [DecidableEq α]
   protected_injOn_of_gate (greendlingerGate_of_sharpGate hgate) hcyc hmetric
     P hshort
 
+/-- **Torsion-freeness, from the sharp gate alone.**  The torsion half is a
+theorem of `Sofic.TorsionDescent`, so it costs one line here: the gate supplies
+the sharp conclusion at the family's own constant, and the descent consumes it.
+No cyclic-reducedness hypothesis is needed for this half. -/
+theorem torsionFree_of_sharpGate (hgate : SharpGreendlingerGate α)
+    {R : Set (List (α × Bool))} {lam : ℚ} (hlam8 : lam ≤ 1 / 8)
+    (hcyc : ∀ r ∈ R, FreeGroup.IsCyclicallyReduced r)
+    (hmetric : MetricSmallCancellation R lam) (hnpp : NoProperPower R) :
+    IsPowerTorsionFree
+      (FreeGroup α ⧸ Subgroup.normalClosure (FreeGroup.mk '' R)) :=
+  TorsionDescent.isPowerTorsionFree_of_sharp hlam8
+    (hgate R lam hcyc (by linarith) hmetric) hmetric hnpp
+
 /-- **The free-group consumption point.**  Both word-combinatorial fields of
 `RoutingLemmaData` — injectivity on the protected set and torsion-freeness of
-the quotient — from the two gates and one hypothesis list on the relator
-family.
+the quotient — from ONE gate and one hypothesis list on the relator family.
 
-This is the theorem the router construction calls.  It now takes **one** gate:
-the torsion hypothesis is gone, discharged by `torsionFreeGate_of_sharpGate`.
-When the sharp gate itself is proved, the last hypothesis disappears from this
-signature and nothing else changes.
-
-The metric constant moved from `1/6` to `λ ≤ 1/8` because the torsion half
-needs it there and nothing weaker will do; the injectivity half is unaffected,
-taking the `1/6` form back through `metricSmallCancellation_mono`. -/
-theorem router_conclusions_of_gates [DecidableEq α]
+The family's constant is `lam ≤ 1/8`, which is what the torsion descent needs
+and what the router's word design supplies; the injectivity half only needs the
+half-form, which `greendlingerConclusion_of_sharp` reads off the same sharp
+conclusion.  When the gate is proved this signature loses its first hypothesis
+and nothing else changes. -/
+theorem router_conclusions_of_sharpGate [DecidableEq α]
     (hgate : SharpGreendlingerGate α)
-    {R : Set (List (α × Bool))} {lam : ℚ}
-    (hcyc : ∀ r ∈ R, FreeGroup.IsCyclicallyReduced r) (hlam : lam ≤ 1 / 8)
+    {R : Set (List (α × Bool))} {lam : ℚ} (hlam8 : lam ≤ 1 / 8)
+    (hcyc : ∀ r ∈ R, FreeGroup.IsCyclicallyReduced r)
     (hmetric : MetricSmallCancellation R lam) (hnpp : NoProperPower R)
     (P : Set (FreeGroup α))
     (hshort : ∀ r ∈ symmetrization R, ∀ x ∈ P, ∀ y ∈ P,
@@ -307,9 +245,10 @@ theorem router_conclusions_of_gates [DecidableEq α]
         (QuotientGroup.mk' (Subgroup.normalClosure (FreeGroup.mk '' R))) P ∧
       IsPowerTorsionFree
         (FreeGroup α ⧸ Subgroup.normalClosure (FreeGroup.mk '' R)) :=
-  ⟨protected_injOn_of_sharpGate hgate hcyc
-      (metricSmallCancellation_mono hmetric (by linarith)) P hshort,
-    torsionFreeGate_of_sharpGate hgate R lam hcyc hlam hmetric hnpp⟩
+  ⟨injOn_mk'_of_greendlinger
+      (greendlingerConclusion_of_sharp (by linarith)
+        (hgate R lam hcyc (by linarith) hmetric)) P hshort,
+    torsionFree_of_sharpGate hgate hlam8 hcyc hmetric hnpp⟩
 
 end Words
 

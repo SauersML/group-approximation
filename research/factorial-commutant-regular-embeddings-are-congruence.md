@@ -92,3 +92,27 @@ single unitary `u in M` and all `lambda`.
   into two named sub-walls (abelian coupling; non-scalar fibers),
   each with its own existing instruments, and the non-scalar case
   is the one the extreme-point classification must address.
+- **Only REDUCIBLE outliers can host an enemy; the type graph
+  (2026-08-21).**  An enemy of `(RC3)` is a non-scalar
+  `k in pi(Lambda)' cap M`, so the enemy's `Lambda`-microstates must
+  carry a non-scalar almost-central element (the lamp projection of
+  trace one half in the canonical case): irreducible outliers --
+  almost-representations of `SL_3(Z)` with asymptotically trivial
+  almost-commutant -- cannot support an enemy, whatever their
+  distance from genuine representations.  For reducible ones,
+  disintegrate `iota|_Lambda`, `iota|_(Lambda_-)` and
+  `iota|_(Lambda_+)` over the centers of their commutants; by
+  (T)-discreteness each has countably many fiber types, restriction
+  `Lambda -> Lambda_-` (finite index) refines types into finitely
+  many, and `Ad pi(h)` is a bijection from `Lambda_-`-types to
+  `Lambda_+`-types.  The enemy therefore realizes a countable
+  "type graph" with a Hecke-correspondence structure (types of
+  `Lambda`, their two restriction patterns, the `h`-bijection), and
+  the coupling `k` lives fiberwise.  The canonical coset-Bernoulli
+  enemy realizes the trivial graph (one `Lambda`-type whose two
+  restrictions are a single type exchanged by `h`), so the type
+  graph is not by itself an obstruction; its value is as a
+  bookkeeping frame in which the correctability of a single type
+  representative is all that is needed (abelian amplification being
+  free), and in which any exotic enemy would have to display a
+  nontrivial graph.

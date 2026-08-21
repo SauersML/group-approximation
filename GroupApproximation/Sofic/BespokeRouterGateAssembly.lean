@@ -1,7 +1,8 @@
 import GroupApproximation.Sofic.BespokeRouterConstruction
+import GroupApproximation.Sofic.GreendlingerFreeGate
 
 /-!
-# The router's gate layer, with the classical inputs as hypotheses
+# The router's gate layer: `RouterConclusions` from the sharp gate
 
 `Sofic.BespokeRouterConstruction` derives every structural field of
 `RoutingLemmaData` from a `RouterRelatorDesign` outright — `defect_top`,
@@ -9,52 +10,40 @@ import GroupApproximation.Sofic.BespokeRouterConstruction
 the well-definedness of both maps — and takes the two word-combinatorial fields
 as the single named hypothesis `RouterRelatorDesign.RouterConclusions`.
 
-This module reduces that hypothesis as far as it honestly goes without the
-classical small-cancellation theorems, and supplies the two bridges a word
-design needs to build the landed structure's fields from the shapes the avatar
-construction actually yields.  It imports nothing with open leaves, contains no
-incomplete proof, and is root-importable.
+This module discharges that hypothesis from
+`GreendlingerFreeGate.router_conclusions_of_sharpGate`, whose only assumption
+is the `Prop` `SharpGreendlingerGate (Fin 2)`.  Both files are free of open
+leaves, so this one is too: `SharpGreendlingerGate` is carried as an explicit
+hypothesis in the library's data-not-axiom style, never as an axiom, and every
+declaration here is axiom-clean.  When the gate is proved, each signature loses
+its first hypothesis and nothing else changes.
 
-## What the reduction does and does not do
+## The `λ` arithmetic, which does not go the way it looks
 
-`routerConclusions_of_greendlinger` reduces `RouterConclusions` to
+`router_conclusions_of_sharpGate` asks for `hlam8 : lam ≤ 1/8` together with
+`MetricSmallCancellation R lam`.  The landed `RouterRelatorDesign.metric` field
+is stated at `1/6`, and **a `C'(1/6)` field cannot supply that call**:
+monotonicity in the constant runs `C'(1/8) → C'(1/6)`, never the reverse, and
+`1/6 ≤ 1/8` is false.  So the sharper metric is taken here as an explicit
+hypothesis alongside the gate, rather than read off the design.
 
-* `GreendlingerConclusion relators` — the ½-form metric conclusion, and
-* `IsPowerTorsionFree Routed` — torsion-freeness of the routed quotient.
-
-The first reduction is **real work**: the protected-set half is *derived* from
-the Greendlinger conclusion by
-`SmallCancellationRouter.injOn_mk'_of_greendlinger`, which is proved, against
-the design's own `protectedBall` field.  That is the same data-not-axiom idiom
-`protected_injOn_of_gate` already uses upstream.
-
-The second is **a pass-through, and is labelled as one**: torsion-freeness of a
-`C'(λ)` presentation without proper powers is a second classical theorem, not a
-corollary of the Greendlinger conclusion, so nothing here can weaken it.  Its
-proof is the two-occurrence dichotomy — distinct rotations give a piece, equal
-rotations make the relator a proper power — and it lives with the gate.  Taking
-it as a hypothesis is therefore honest bookkeeping rather than a reduction, and
-a caller should read `routerConclusions_of_greendlinger` as "the protected-set
-half is discharged; the torsion half is still owed".
-
-When both classical theorems land, the unconditional form is one call and no
-signature here moves: `router_conclusions_of_metric` supplies
-`RouterConclusions` directly from the design's fields, and these theorems
-become corollaries of it rather than the other way round.
+That makes `metricSmallCancellation_mono` more useful, not less.  A word design
+proves `C'(1/8)` once; monotonicity turns that single proof into the landed
+`metric` field at `1/6`, and the same `C'(1/8)` proof is passed to the gate
+call here.  The alternative — parameterizing the landed structure's `metric`
+field by `λ` — removes the extra hypothesis, but it edits a root-imported
+structure and is a coordinated change rather than a unilateral one.
 
 ## The two bridges, from the avatar word design
 
 Both from `notes/W3_AVATAR_WORD_DESIGN_2026-08-21.md`, and both let a word
 design discharge a landed field from the *stronger* statement the explicit
-family gives, without changing the root-imported structure:
+family gives:
 
 * `metricSmallCancellation_mono` (§2).  The avatar family is designed at
-  `C'(1/8)`, not `C'(1/6)`: at `λ ≤ 1/8`, read in the sharp form
-  `|u| > (1 − 3λ)|r|`, the torsion descent's residual case is arithmetically
-  empty.  The landed `metric` field is stated at `1/6`, and monotonicity in the
-  constant is what turns the design's `C'(1/8)` proof into it.  Threading `λ`
-  through the structure itself is a coordinated edit with the `λ`-general
-  consumption point, not a unilateral one.
+  `C'(1/8)`, because at `λ ≤ 1/8` the sharp reading `|u| > (1 − 3λ)|r|` is what
+  the torsion descent consumes.  See above for why this is now load-bearing in
+  both directions.
 * `mem_relSubgroup_of_image` (§4).  Well-definedness is *literal membership* of
   the rewritten relator in the family, while the landed fields ask for
   membership in its normal closure.  This is the one-line bridge.
@@ -66,7 +55,8 @@ namespace BespokeRouter
 open SmallCancellationRouter
 
 /-- **The metric condition is monotone in its constant.**  A family designed at
-`C'(1/8)` satisfies the `C'(1/6)` that `RouterRelatorDesign.metric` asks for. -/
+`C'(1/8)` satisfies the `C'(1/6)` that `RouterRelatorDesign.metric` asks for,
+so one `C'(1/8)` proof serves both the landed field and the gate call. -/
 theorem metricSmallCancellation_mono {R : Set (List (Fin 2 × Bool))}
     {lam lam' : ℚ} (h : lam ≤ lam') (hm : MetricSmallCancellation R lam) :
     MetricSmallCancellation R lam' := by
@@ -88,33 +78,46 @@ namespace RouterRelatorDesign
 variable {E : Type} [Group E] {N : Subgroup E} {s : E} {B : Type} [Group B]
     (D : RouterRelatorDesign E N s B)
 
-/-- **The reduction.**  The protected-set half of `RouterConclusions` is
-derived from the ½-form Greendlinger conclusion for the design's own family,
-through the proved engine and the design's `protectedBall` field; the torsion
-half is passed through, because it is a second classical theorem and not a
-consequence of the first.  See the module docstring. -/
-theorem routerConclusions_of_greendlinger
-    (hG : GreendlingerConclusion D.relators)
-    (htf : IsPowerTorsionFree D.Routed) : D.RouterConclusions :=
-  ⟨injOn_mk'_of_greendlinger hG
-      ({1, FreeGroup.lift D.W D.protectedWord} : Set RouterFree)
-      D.protectedBall_short,
-    htf⟩
+/-- The router's word-level no-proper-power condition is the gate file's, on
+the nose: both unfold to `∀ r ∈ R, ¬ PeriodicOverlap.IsProperPower r`. -/
+theorem noProperPower_eq_gate :
+    NoProperPower D.relators ↔
+      GreendlingerFreeGate.NoProperPower D.relators :=
+  Iff.rfl
 
-/-- The router's output from the two classical inputs. -/
-noncomputable def routerData_of_greendlinger [N.Normal]
-    (hG : GreendlingerConclusion D.relators)
-    (htf : IsPowerTorsionFree D.Routed) : RoutingLemmaData E N s B :=
-  D.routerData (D.routerConclusions_of_greendlinger hG htf)
+/-- **The consumption point.**  Both word-combinatorial fields of the interface
+from one gate hypothesis, at the family's own constant.
 
-/-- Whoever exhibits a design, the Greendlinger conclusion for its family, and
-torsion-freeness of its quotient has discharged the frozen endpoint's single
-hypothesis at that source, defect, protected element and partner. -/
-theorem nonempty_routingLemmaData_of_greendlinger [N.Normal]
-    (hG : GreendlingerConclusion D.relators)
-    (htf : IsPowerTorsionFree D.Routed) :
+The design supplies cyclic reducedness, the no-proper-power condition and the
+protected ball; the caller supplies the gate and the `C'(λ)` proof at
+`λ ≤ 1/8`, for the reason in the module docstring. -/
+theorem routerConclusions_of_sharpGate
+    (hgate : GreendlingerFreeGate.SharpGreendlingerGate (Fin 2))
+    {lam : ℚ} (hlam8 : lam ≤ 1 / 8)
+    (hmetric : MetricSmallCancellation D.relators lam) :
+    D.RouterConclusions :=
+  GreendlingerFreeGate.router_conclusions_of_sharpGate hgate hlam8
+    D.relators_cyclicallyReduced hmetric D.relators_noProperPower
+    ({1, FreeGroup.lift D.W D.protectedWord} : Set RouterFree)
+    D.protectedBall_short
+
+/-- The router's output from the gate. -/
+noncomputable def routerData_of_sharpGate [N.Normal]
+    (hgate : GreendlingerFreeGate.SharpGreendlingerGate (Fin 2))
+    {lam : ℚ} (hlam8 : lam ≤ 1 / 8)
+    (hmetric : MetricSmallCancellation D.relators lam) :
+    RoutingLemmaData E N s B :=
+  D.routerData (D.routerConclusions_of_sharpGate hgate hlam8 hmetric)
+
+/-- Whoever exhibits a design whose family is `C'(1/8)` has discharged the
+frozen endpoint's single hypothesis at that source, defect, protected element
+and partner — modulo the gate, and nothing else. -/
+theorem nonempty_routingLemmaData_of_sharpGate [N.Normal]
+    (hgate : GreendlingerFreeGate.SharpGreendlingerGate (Fin 2))
+    {lam : ℚ} (hlam8 : lam ≤ 1 / 8)
+    (hmetric : MetricSmallCancellation D.relators lam) :
     Nonempty (RoutingLemmaData E N s B) :=
-  ⟨D.routerData_of_greendlinger hG htf⟩
+  ⟨D.routerData_of_sharpGate hgate hlam8 hmetric⟩
 
 end RouterRelatorDesign
 end BespokeRouter

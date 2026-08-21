@@ -257,6 +257,19 @@ W4: assembly.  Instantiate slimmed source data (W0d) + router output
   State the final theorem in the ∃-form with `IsPowerTorsionFree` and
   bridge `IsMulTorsionFree` once.
 
+W6 APPARATUS SCOPE, FINAL (same night, after the ω_m source pin):
+  Mikaelian's ω_m construction is an INDEPENDENT three-stage tower over
+  ⟨b,c⟩ (Σ = K ∗_P (g,h,k), Π = M ∗_R a, Ω = Π ∗_ρ r with ρ the
+  m-SHIFT a,b,c ↦ a,b^{c^m},c — read exponents off the PDF page images,
+  pdftotext flattens them) using no d/e; and ζ/π/θ are already done
+  F₃-natively.  So the d/e tower Δ is needed ONLY for τ (no other
+  construction exists) and the base case S (d-side in both sources),
+  plus an optional second ρ route.  Build Δ for exactly that.  ω_m's
+  Case 2 (g_f does not commute with b_l when l is nonzero on the
+  window) carries the content; the "slimmer" Ω' with the actual
+  subgroups comes first, since the nested normal form is unstatable
+  without it.
+
 W6 RE-PRICING (same night): the §4 closures are NOT six independent
   small items — either ONE fixed apparatus (Higman 4.1–4.3) plus six
   short consequences, or per-operation F₃-native witnesses (the route

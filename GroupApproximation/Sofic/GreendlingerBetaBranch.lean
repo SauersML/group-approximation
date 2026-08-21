@@ -98,6 +98,50 @@ theorem length_palindrome_reappearance {c' t' m rest : List (α × Bool)}
   rw [palindrome_eq_append_reappearance hc', List.length_append,
     length_reappearance_prefix]
 
+/-! ## L-half: weight-minimality pins a junction split to half a relator -/
+
+/-- **The eaten half-pin.**  At a junction where the next factor's conjugator
+runs back along the head relator, minimality already forbids the eaten stretch
+from exceeding the surviving one — so the eaten stretch is at most half the
+relator.
+
+The content is `GreendlingerThreeFactor.eaten_le_of_minimal_reroute`, which
+gives `|E| ≤ |t₀|` for a head relator `t₀ ++ E`; halving is `length_append` and
+arithmetic.  Recorded under its own name because the landing analysis quotes
+the bound in the halved form, and because the two directions below are what
+"the two adjacent swap moves improve strictly on either side" means. -/
+theorem two_mul_eaten_le_of_minimal_reroute [DecidableEq α]
+    {R : Set (List (α × Bool))} {c t₀ E Z m : List (α × Bool)}
+    {e : List (FreeGroup α × List (α × Bool))} {g : FreeGroup α}
+    (hmin : IsMinimalConjExpr R
+      ((FreeGroup.mk c, t₀ ++ E)
+        :: (FreeGroup.mk (c ++ (FreeGroup.invRev E ++ Z)), m) :: e) g)
+    (hred : FreeGroup.IsReduced (c ++ (FreeGroup.invRev E ++ Z)))
+    (hredc : FreeGroup.IsReduced c) :
+    2 * E.length ≤ (t₀ ++ E).length := by
+  have h := eaten_le_of_minimal_reroute hmin hred hredc
+  rw [List.length_append]
+  omega
+
+/-- **The hug half-pin, the mirror move.**  When the leading conjugator runs
+along the next factor's relator instead, minimality bounds the hug by what it
+leaves behind, so the hug is at most half of that relator.
+
+The content is `GreendlingerThreeFactor.hug_le_of_minimal_reroute`.  Together
+with the previous theorem this is the `m = |t|/2` pin from both sides: whichever
+of the two adjacent factors the junction eats into, the split cannot pass the
+midpoint without a swap rival beating the expression. -/
+theorem two_mul_hug_le_of_minimal_reroute [DecidableEq α]
+    {R : Set (List (α × Bool))} {c' q r t : List (α × Bool)}
+    {e : List (FreeGroup α × List (α × Bool))} {g : FreeGroup α}
+    (hmin : IsMinimalConjExpr R
+      ((FreeGroup.mk (c' ++ q), t) :: (FreeGroup.mk c', q ++ r) :: e) g)
+    (hred : FreeGroup.IsReduced (c' ++ q)) (hredc' : FreeGroup.IsReduced c') :
+    2 * q.length ≤ (q ++ r).length := by
+  have h := hug_le_of_minimal_reroute hmin hred hredc'
+  rw [List.length_append]
+  omega
+
 /-! ## L-red: reducedness voids the (β) coincidence -/
 
 /-- **OPEN — L-red, as a predicate on the alphabet.**  In the `i_c > 0` regime
@@ -145,6 +189,78 @@ theorem invRev_ne_rotate_of_reduced (hred : ReducednessVoidsCoincidence α)
     (halign : c.drop (c.length - i) <+: t'.rotate k) :
     FreeGroup.invRev t ≠ t'.rotate (k + i) :=
   hred c t t' i k hpal hi hic halign
+
+/-! ## The landing dichotomy, assembled
+
+`CascadeLanding`'s conclusion is a disjunction, and which disjunct is available
+is decided by one inequality: whether the block plus the surviving stretch still
+fits inside the head palindrome.  Casing on it splits the hypothesis into two
+independent obligations, and neither mentions the other.
+
+The adversary's sweep says which side carries the weight.  At three factors the
+landing disjunct never fired at all — the located conclusion carried every
+instance — and the deep regime is where the located conclusion has to come from
+a later factor, since the head's own survivor cannot supply it once the block
+has eaten most of the head relator. -/
+
+/-- **The deep obligation.**  When the block plus the surviving stretch overruns
+the head palindrome, the located conclusion must be produced from the tail: an
+untouched later rotation, or the reappearance copy of
+`palindrome_eq_append_reappearance`, which returns at the far end and survives
+minus at most one piece. -/
+def DeepArcSource [DecidableEq α] (R : Set (List (α × Bool))) : Prop :=
+  ∀ (c t : List (α × Bool)) (e : List (FreeGroup α × List (α × Bool)))
+    (g : FreeGroup α) (P' M B' : List (α × Bool)) (j : ℕ),
+    IsMinimalConjExpr R ((FreeGroup.mk c, t) :: e) g →
+    t ∈ symmetrization R →
+    FreeGroup.IsReduced (palindrome c t) →
+    palindrome c t = P' ++ M →
+    (conjEval e).toWord = FreeGroup.invRev M ++ B' →
+    c.length < M.length → 6 * j < t.length →
+    c.length + t.length < M.length + j →
+    GreendlingerAt R (c.length + j) (P' ++ B')
+
+/-- **The landing obligation.**  In the complementary regime the block stops
+early enough for the landing site itself to serve, which is what the
+conjugator-absorbed analysis of `Sofic/GreendlingerDeepestMatch` produces from
+the double piece bound. -/
+def LandingProduction [DecidableEq α] (R : Set (List (α × Bool))) : Prop :=
+  ∀ (c t : List (α × Bool)) (e : List (FreeGroup α × List (α × Bool)))
+    (g : FreeGroup α) (P' M B' : List (α × Bool)) (j : ℕ),
+    IsMinimalConjExpr R ((FreeGroup.mk c, t) :: e) g →
+    t ∈ symmetrization R →
+    FreeGroup.IsReduced (palindrome c t) →
+    palindrome c t = P' ++ M →
+    (conjEval e).toWord = FreeGroup.invRev M ++ B' →
+    c.length < M.length → 6 * j < t.length →
+    M.length + j ≤ c.length + t.length →
+    LandsIn R M.length (conjEval e).toWord e.length
+
+/-- **`CascadeLanding`, assembled from the two obligations.**  The whole of the
+hypothesis is now those two and nothing else: one inequality decides which is
+called, and each is stated over exactly the regime it owns. -/
+theorem cascadeLanding_of_deepArc_of_landing [DecidableEq α]
+    {R : Set (List (α × Bool))}
+    (hdeep : DeepArcSource R) (hland : LandingProduction R) :
+    CascadeLanding R := by
+  intro c t e g P' M B' j hmin ht hredp heq htail hlow hj
+  rcases le_or_gt (M.length + j) (c.length + t.length) with hle | hgt
+  · exact Or.inr ⟨hle,
+      hland c t e g P' M B' j hmin ht hredp heq htail hlow hj hle⟩
+  · exact Or.inl (hdeep c t e g P' M B' j hmin ht hredp heq htail hlow hj hgt)
+
+/-- The gate itself, from the two obligations: `CascadeLanding` was already
+known to close the Greendlinger conclusion
+(`GreendlingerCascade.greendlingerConclusion_of_cascadeLanding`), so this is the
+free-group half-form gate reduced to exactly the deep arc and the landing
+production. -/
+theorem greendlingerConclusion_of_deepArc_of_landing [DecidableEq α]
+    {R : Set (List (α × Bool))} (hRne : ∀ r ∈ R, r ≠ [])
+    (hmetric : MetricSmallCancellation R (1 / 6))
+    (hdeep : DeepArcSource R) (hland : LandingProduction R) :
+    GreendlingerConclusion R :=
+  greendlingerConclusion_of_cascadeLanding hRne hmetric
+    (cascadeLanding_of_deepArc_of_landing hdeep hland)
 
 end SmallCancellationRouter
 end GroupApproximation

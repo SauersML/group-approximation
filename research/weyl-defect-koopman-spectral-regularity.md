@@ -36,6 +36,155 @@ gluing, the far sector, and -- through
 `odd-congruence-vertex-sector-admits-no-exact-leak`, and the Iwahori
 route -- the goal.
 
+## Fixed-regular split: the obstruction is free, only regular-sector BV remains
+
+Linearize the coboundary as `(1 - psi) c = phi`, `phi = delta e'`,
+`psi = Ad(h)` on `Z = {V}'`, and split
+`Z = Z^psi (+) (Z^psi)^perp` where `Z^psi = {V,h}'` is the tower
+MULTIPLICITY algebra.
+
+- **The fixed-algebra obstruction is automatically `O(delta)`.**
+  Solvability in `L^2(Z)` requires `phi` orthogonal to `ker(1-psi) =
+  Z^psi`, i.e. `E_(Z^psi)(phi) = 0`.  But `E_(Z^psi)(phi)` is a
+  COMPONENT of `phi`, so `|| E_(Z^psi)(phi) ||_2 <= || phi ||_2 <=
+  delta` with no regularity input at all.  The un-removable part of
+  the defect is therefore `O(delta)` and lives entirely in the
+  multiplicity algebra, where it is an `O(delta)` residual, not an
+  obstruction to an `O(delta)` coboundary.
+- **On the regular sector `psi` is fixed-point-free, so RPF applies.**
+  `(1 - psi)` is injective on `(Z^psi)^perp` (no invariant vectors
+  there by definition).  The coboundary is built by the Ruelle
+  transfer operator `L` (adjoint of the Koopman `psi`), which by
+  Ruelle--Perron--Frobenius has a spectral gap on the mean-zero part:
+  `c = sum_(n>=0) L^n phi_0` with `phi_0 = phi - E_(Z^psi)(phi)`
+  converges geometrically, `|| c ||_2 <= C || phi_0 ||_2 <= C delta`,
+  PROVIDED `phi_0` lies in the RPF regularity space.
+- **So the entire residual is: BV-regularity of the mean-zero Weyl
+  defect `phi_0` on the regular sector.**  This is strictly cleaner
+  than the earlier "spectral density at Koopman-1" form: the singular
+  (`|1-lambda|^{-2}`) blow-up is confined to the fixed algebra `Z^psi`,
+  where it is already handled by the free `O(delta)` bound; on the
+  complement the RPF gap does the work.  The one remaining question is
+  whether the noncommutative RPF regularity space is the SPATIAL
+  variation (transverse, the hard direction) or admits a DYNAMICAL /
+  algebraic seminorm that the relator structure controls -- the next
+  technical point, below.
+
+## The precise crux: a Wasserstein-vs-HS norm mismatch
+
+Push the regular-sector solve to its exact functional-analytic core.
+Represent the abelian component of the mean-zero defect as a complex
+measure `nu = g(theta) d mu_V(theta)` on the `V`-spectrum, where
+`g(theta)` is the `theta`-diagonal of the Weyl defect.  Then:
+
+- `nu` is AUTOMATICALLY small in total variation:
+  `|| nu ||_TV = | nu |(circle) <= || e' ||_1 = O(delta)`.
+- The coboundary equation is `nu = mu - T_* mu` (`T = x4`), and the
+  Ruelle transfer operator for the expanding map `x4` DOES contract --
+  but in WASSERSTEIN / dual-Holder norm (the standard exponential-
+  mixing statement for expanding maps), NOT in total variation and NOT
+  in HS.  So RPF delivers a coboundary `mu` with `|| mu ||_Wass <=
+  C || nu ||_Wass <= C delta`.
+- But the coboundary `c` the cascade needs must be small in HS /
+  `L^2` operator norm, and Wasserstein-small does NOT give HS-small.
+
+So the genuine, isolated obstruction is a NORM MISMATCH: the transfer
+operator's spectral gap lives in Wasserstein (where the defect is free)
+while the required coboundary bound is in HS (where regularity is not
+free).  This is sharper and more attackable than "spectral density at
+`1`" or "BV regularity": it is the specific question of upgrading a
+Wasserstein coboundary bound to an HS one for the `x4` transfer
+operator, which is an interpolation / a-priori-estimate problem about
+one explicit expanding map, and it is exactly where the frontier now
+sits.  Candidate upgrades: (i) the defect has extra structure (it is a
+RELATOR defect, a bounded word) that may force HS `pprox` Wasserstein
+on it; (ii) an elliptic-type a-priori estimate for `1 - T_*` on the
+regular sector using the tower multiplicity as ellipticity.
+
+## Exact Fourier solution of the coboundary; the crux is one trace sum
+
+Solve the abelian coboundary `(1 - L) g = nu` (`L` = Ruelle operator of
+`x4`) explicitly in Fourier modes on the `V`-spectrum.  `L` acts as a
+weighted downward shift: `(Lg)^_m = g^_(4m)`, so
+`g^_m - g^_(4m) = nu^_(m)`, which solves EXACTLY
+
+```text
+g^_m = sum_(n>=0) nu^_(4^n m)      (forward x4-orbit of frequency m).
+```
+
+Each Fourier moment is a WORD TRACE: with `R = s h s^{-1} h` the Weyl
+relator and `u` the unipotent (`V = pi(u)`),
+
+```text
+nu^_(k) = tau(e' V^{-k}) = tau_micro(R u^{-k}).
+```
+
+Hence the HS norm of the coboundary `c` is EXACTLY
+
+```text
+|| c ||_2^2  =  sum_m | sum_(n>=0) tau_micro(R u^{-4^n m}) |^2,     (TS)
+```
+
+and the ENTIRE frontier is the single trace-summability statement
+`(TS) = O(delta^2)`.
+
+- **Why this is genuinely attackable.**  `(TS)` is not abstract
+  rigidity: it is an explicit sum over the explicit words
+  `R u^{-4^n m}`.  Each term `tau_micro(R u^{-k})` tends to
+  `tau_reg(R u^{-k}) = 0` (the word is nontrivial in the free/HNN
+  group), and the frequencies `4^n m` are geometrically sparse.  The
+  question is purely the RATE: does the microstate trace of these
+  growing words vanish fast enough for the double sum to be
+  `O(delta^2)`?  This is a quantitative-mixing / large-sieve estimate
+  for the microstate along one lacunary (`x4`) frequency family, and it
+  is the sharpest and most concrete form the whole non-hyperlinearity
+  program has reached.
+- **The lacunary structure is favorable.**  The inner sum runs over the
+  lacunary set `{4^n m}`; lacunary Fourier sums obey strong
+  (Sidon / large-sieve) bounds, so `|sum_n tau_micro(R u^{-4^n m})|` is
+  controlled by an `ell^2` norm of the individual moments rather than
+  their `ell^1`, and the outer `sum_m` then telescopes across
+  `x4`-orbits of frequencies with the geometric `4`-sparsity providing
+  convergence.  Making this rigorous -- a lacunary large-sieve bound on
+  the microstate word-traces -- is the exact next step, and it is a
+  concrete harmonic-analysis computation on one explicit word family.
+
+## Corrected exact formula: the coboundary norm is a cycle-discrepancy
+
+Careful redo (`x4` is a BIJECTION on `Z/N`, `N` odd, so `L` PERMUTES
+Fourier modes; the earlier "full-orbit sum" was wrong).  On a
+`x4`-cycle `C = (m_0, m_1 = 4 m_0, ..., m_(L-1))`, the equation is
+`g_(m_i) - g_(m_(i+1)) = nu^_(m_i)`.  Two exact consequences:
+
+- **Solvability = Livsic.**  Summing around the cycle telescopes to
+  `sum_(i) nu^_(m_i) = A_C = 0`: the coboundary exists iff every
+  `x4`-cycle moment-sum `A_C` vanishes.  (`A_C = tau(e' . sum_(k in C)
+  V^{-k})` is the `x4`-invariant / fixed-algebra component on `C`,
+  already `O(delta)` by the free bound; in the ultraproduct
+  `a_k -> 0` drives each fixed `A_C -> 0`.)
+- **Exact norm = cycle discrepancy.**  When solvable, the
+  `L^2`-minimal solution has
+
+  ```text
+  || c ||_2^2  =  sum_C Var_(m in C)( S_m ),
+  S_m = partial sum of nu^_ around C up to m,
+  ```
+
+  the total DISCREPANCY of the moment sequence `a_k = tau_micro(R u^{-k})`
+  walked around each `x4`-cycle.
+
+So the frontier is now exactly a DISCREPANCY BOUND: the partial sums of
+the Weyl-relator moments, traversed around each `x4`-cycle, have
+variance summing to `O(delta^2)`.  This is a concrete equidistribution
+statement about one explicit sequence (`k -> tau_micro(R u^{-k})`) under
+one explicit expanding permutation (`x4` on `Z/N`), squarely in the
+domain of discrepancy / Erdos--Turan theory -- the sharpest and most
+standard-shaped form the whole program has produced.  The moments obey
+`sum_k |a_k|^2 <= delta^2` (Parseval), so it is a variance-of-partial-
+sums bound for an `ell^2`-small sequence around expanding-map cycles;
+lacunarity of the `x4` orbit structure is the tool that should convert
+the `ell^2` moment bound into the discrepancy bound.
+
 ## Attempts
 
 - **Why the naive bounds miss it.**  `|| e' ||_2 = delta` alone does

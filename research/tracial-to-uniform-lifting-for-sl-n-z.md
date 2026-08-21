@@ -57,3 +57,98 @@ trace).
   Ioana--Spaas--Wiersma -- a result of independent interest.  The
   known obstructions to lifting (ISW) live in `H^2(Gamma; R)`, which
   vanishes here.
+- **The absorber lemma and the exact form of the problem
+  (2026-08-21).**  Let `A` be the operator-norm ultraproduct, `I`
+  the trace-null ideal, `sigma : F_S -> U(A)` the word-extension of
+  generator lifts of `pi`, and `c_w = sigma(w) - 1 in I` for `w` in
+  the normal closure `R` of the relators (countably many).  Arveson's
+  theorem gives an approximate unit of `I` quasi-central for the
+  countable set `sigma(F_S)`; countable saturation of `A` (with the
+  definable trace) turns the net into ONE element: a positive
+  contraction `e in I` with `[e, sigma(g)] = 0` for all `g in F_S`
+  and `e c_w = c_w = c_w e` for all `w in R`, EXACTLY in `A`.  Hence
+  every `sigma(w)`, `w in R`, is the identity on `ker e` (as a
+  subspace of the Hilbert-space ultraproduct `H_U`), and
+  `K = ker e` has co-trace zero.  The `R`-fixed subspace
+  `H_0 = intersection_w ker(sigma(w) - 1)` contains `K`, is
+  `sigma(F_S)`-invariant because `R` is normal, and therefore
+  carries a GENUINE unitary representation of `Gamma`.  So the
+  lifting claim is EXACTLY: `H_0` contains an INTERNAL
+  `sigma`-invariant subspace of co-trace zero (an ultraproduct of
+  subspaces `L_m subset H_m` with operator-norm almost-invariance
+  and exact relators in the limit); given one, the compressions are
+  a lift on a vanishing corner.  By saturation this is a finite-
+  satisfiability statement: for finitely many generators, relators
+  and `eps > 0`, an internal projection `L >= 1_K` with
+  `|| [L, sigma(s)] ||_op < eps` and `|| (sigma(w) - 1) L ||_op < eps`.
+- **Why the natural candidates fail (the ramp).**  The orbit spans
+  `L^(N) = join_(|g| <= N) sigma(g) K` are internal, lie in `H_0`,
+  have co-trace zero, and satisfy the relator condition, but
+  `sigma(s) L^(N) subset L^(N+1)` with increments that are
+  trace-null yet of operator norm one, so `[L^(N), sigma(s)]` is
+  never operator-small; filling the rank-tiny holes by arbitrary
+  unitaries restores unitarity but leaves relator defects of
+  operator norm one on the holes, and the exactly `R`-fixed subspace
+  of the modified representation can collapse.  The one-generator
+  "ramp" (`e_m = diag(0,...,0, 1/k, ..., 1)`, `sigma = ` cyclic
+  shift, `k -> infinity`, `k/d -> 0`) shows the phenomenon with NO
+  relators at all: `e` is trace-null and exactly commutes in the
+  limit, no level set of `e` is operator-almost-invariant, and yet
+  the exact representation exists trivially (all of `H`).  So the
+  invariant subspace must be sought away from level sets of the
+  absorber -- the content is genuinely global, and this is the
+  cleanest known statement of what separates normalized from
+  operator-norm stability.
+- **Multiplicative versus additive corrections (2026-08-21).**  For
+  unitaries, 2-norm errors propagate LINEARLY through words of
+  bounded length: `|| u v - u' v' ||_2 <= || u - u' ||_2 + || v -
+  v' ||_2`.  Consequently every step of Kazhdan's averaging argument
+  for amenable subgroups (`sigma-bar(g) = E_k sigma(g k) sigma(k)^(-1)`
+  over Folner sets, then polar correction) transplants verbatim from
+  operator norm to normalized HS -- amenable subgroups can be made
+  EXACT inside the ideal `I` at 2-cost `O(defect)`, consistent with
+  Hadwin--Shulman.  The quadratic-term obstruction of the normalized
+  Newton iteration arises ONLY from ADDITIVE corrections
+  `(1 + x) sigma`, and that is precisely the form of the gluing step
+  in every known Ulam-stability proof for high-rank lattices
+  (Burger--Ozawa--Thom: bounded generation by root subgroups plus a
+  bounded-cohomology primitive; Glebsky--Lubotzky--Monod--Rangarajan:
+  asymptotic-cohomology primitive, defect diminishing).  So the
+  residue of this claim is exactly a MULTIPLICATIVE gluing of local
+  amenable corrections across the bounded generation of `SL_N(Z)` by
+  root subgroups (Carter--Keller) -- a nonabelian replacement for the
+  vanishing of bounded `H^2` -- and the abelianized version of that
+  gluing is already available (`abelian-lifting-obstruction-
+  vanishes-for-sl-n-z`).  Any attack should be designed so that no
+  correction is ever added to a unitary; every correction should
+  replace a unitary by a nearby unitary.
+- **The Reiter obstruction: why (T)-lifting is inherently tracial
+  (2026-08-21).**  The Steinberg presentation of `St_n(Z)`, `n >= 3`,
+  has all relations inside rank-two root subsystems, so `St_n(Z)` is
+  the colimit of NILPOTENT pieces (`Z`, `Z^2`, `H_3(Z)`), each of
+  which can be made exact inside `I` multiplicatively (Kazhdan
+  averaging, amenable HS-stability); the quotient by `K_2(Z) = Z/2`
+  is a finite central adjustment.  Gluing column by column reduces
+  to: given an EXACT representation `rho` of `Gamma' = SL_(n-1)(Z)`
+  and an almost-equivariant almost-representation of the abelian
+  column `V = Z^(n-1)`, produce an exactly `rho`-equivariant exact
+  `V`-representation -- equivalently one unitary `u_1 = v(e_1)` that
+  commutes EXACTLY (operator norm, internally) with the genuine
+  Kazhdan action `Ad rho(Stab(e_1))` and satisfies finitely many
+  module relations.  Internal exact invariant elements cannot be
+  produced by averaging: an averaging kernel `mu_n` on a group makes
+  `Ad rho(mu_n)(u_1)` exactly invariant in operator norm only if
+  `|| delta_h mu_n - mu_n ||_(l^1) -> 0`, which is Reiter's
+  condition, i.e. AMENABILITY; the Kazhdan projection converges only
+  in the `C^*`-norm, which controls 2-norm (tracial) invariance.
+  Hence every "(T)-lifting" in this lane (Lambda-central elements
+  into the congruence commutant tower, etc.) is a statement in the
+  tracial quotient, never in the operator-norm ultraproduct, and the
+  column-extension step is blocked by non-amenability at exactly the
+  point where the Steinberg induction needs it.  Any proof of this
+  claim must therefore produce exact invariant elements WITHOUT
+  averaging -- by a global construction (a fixed point of a
+  non-averaging map, a spectral-gap-with-gap absorber, or an
+  entirely different lift) -- and a disproof would likely come from
+  exhibiting an almost-representation whose column data admits no
+  internal invariant completion.
