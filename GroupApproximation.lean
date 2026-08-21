@@ -1,3 +1,4 @@
+import GroupApproximation.Algebra.CoweightCoinvariants
 import GroupApproximation.Algebra.MappingTelescope
 import GroupApproximation.Algebra.SemidirectProductAssoc
 import GroupApproximation.Algebra.TwoGeneratedFreeQuotient

@@ -109,6 +109,29 @@ the goal through `non-hyperlinear-from-sl3-relative-commutant-collapse`.
   applies verbatim -- puts this hole in the only place where a
   cohomological attack has existing infrastructure; a normalized-HS
   DGLT criterion at N >= 4 would close the goal outright.
+- **Jung-property calibration and the extreme-point compression
+  (2026-08-21, source-verified).**  Atkinson--Kunnawalkam Elayavalli
+  [IMRN 2021] prove that a separable tracial von Neumann algebra
+  with CEP is amenable iff all of its embeddings into an
+  ultraproduct II_1 factor are conjugate (iff the embedding space is
+  separable).  So `L(SL_3(Z))` has a NON-separable embedding space
+  and no Jung-type uniqueness can hold: this claim survives only
+  because it is an EXHAUSTION statement -- the congruence-realized
+  class is itself non-separable modulo conjugacy (different prime
+  towers and multiplicity profiles are (T)-rigidly inequivalent).
+  Any attempted refutation via embedding-space cardinality alone
+  therefore fails; a refutation must exhibit an embedding outside
+  the congruence class.  The productive direction: by Brown's
+  convex-like structure on the embedding space and the discreteness
+  of its extreme points under (T), the claim compresses to its
+  extreme points -- see
+  `factorial-commutant-regular-embeddings-are-congruence` and the
+  route `correctability-from-extreme-point-exhaustion`, which
+  reassembles this claim from the factorial-commutant case by
+  disintegration.  The subgroup-exact stratum of the outlier sector
+  is separately CLOSED by `subgroup-exact-outliers-do-not-exist`:
+  enemy microstates must be uniformly inexact on every finite-index
+  subgroup.
 - **Quantitative interface.**  Any correction modulus here composes
   with the exact evaluation `W = 1` and needs no uniformity beyond
   the generating set: the Weyl relations are finitely many fixed
