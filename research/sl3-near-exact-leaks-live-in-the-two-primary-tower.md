@@ -134,6 +134,25 @@ refutation, and this claim makes the reduction precise.
   theorem should consume; the mechanism target is to convert the
   multiplicity mismatch plus unitarity of the witness into a lower
   bound on the leak correlation at bounded intertwining defect.
+- **Floor mechanism candidate: phase locking in multiplicity-one
+  blocks (2026-08-21).**  Structural restatement of the instance: with
+  `A = rho(Q_0)''` and `B = rho(phi Q_0)''` one has `A v B = rho(G)''`
+  (the two parahorics jointly contain all elementaries), so the
+  witness `K in rho(G)' = A' cap B'` and its transport `VKV*` BOTH lie
+  in `B'`, and the leak inner product lives inside `B' = ⊕ M_(mtilde)`.
+  `V`'s residual freedom is an independent unitary per `B'`-block, so
+  blocks with `mtilde >= 2` can usually be zeroed — but every
+  MULTIPLICITY-ONE block contributes a PURE PHASE of fixed weight
+  `d_sigma/d`, and these phases are not free: they are the phases of
+  `K`'s `rho(G)'`-components `k_pi`, so blocks fed by the same
+  `G`-irrep are LOCKED together on both the transported and the
+  untransported side.  A floor theorem follows whenever the
+  multiplicity-one pairing weight of some `pi*` exceeds the total
+  cancellation capacity of the free blocks — a purely combinatorial
+  condition on the two branchings `G -> Q_0` and `G -> phi(Q_0)`
+  (`Q_0` is a `2`-group of order `2^18`, so its representation theory
+  is monomial and the required tables are computable).  This is the
+  designated route to a proved per-level `delta`-floor.
 - Proved below by assembling established inputs; see the proof route.
   The one step that is a HYPOTHESIS here and a theorem at `SL_2` is
   vertex near-exactness: `SL_3(Z)` HS-stability is open (it is the
