@@ -48,3 +48,35 @@ fixed small quotient orbit.
   seeded modules still has to be compiled.
 - **Transport remote names by stabilizer words.**  This reintroduces
   path-length HS loss.  Covariance must be tested occurrence-by-occurrence.
+
+## Infinite-orbit reformulation
+
+The finite levels are not logically essential.  By
+`infinite-character-actor-kills-fd-mark`, it is enough to construct one
+finitely presented semidirect/module system with a fixed property-`(T)`
+actor `A`, an elementary abelian occurrence module `M`, and a seed `m_0`
+such that every character with `chi(m_0)=-1` has infinite `A`-orbit.  Exact
+finite-dimensional representations then kill `J` because their joint
+`M`-spectrum has finite support.  A dimension-independent same-basis
+rounding theorem would upgrade this to the required normalized-HS collapse.
+
+There is a canonical algebraic model.  For an infinite finitely generated
+simple property-`(T)` group, the augmentation module
+
+```text
+I_A=ker(F_2[A]->F_2)
+```
+
+has no nonzero finite character orbit by
+`simple-t-augmentation-module-is-aperiodic`.  It therefore removes the
+all-`n`-after-`d` quantifier completely.
+
+But the obvious group `I_A semidirect A` is not finitely presented:
+`augmentation-actor-semidir-is-not-fp` identifies it as the index-two even
+lamp subgroup of `C_2 wr A`.  This gives a new exact formulation of the
+groupification gate.  One must compress the regular lamp commutators by an
+oligomorphic/self-similar addresser while retaining the aperiodic
+property-`(T)` action on the character spectrum.  After that algebraic step,
+one still needs finite-stage same-basis rounding; a diffuse invariant
+spectral measure in the exact infinite witness shows why an ultraproduct
+argument alone cannot supply it.
