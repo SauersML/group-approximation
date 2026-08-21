@@ -137,6 +137,25 @@ perfectness argument), here appearing as finite Weyl-gauge twists.
   their absence needs either the twisted-hom classification over
   S3-stable abelian subalgebras or exact real-algebraic methods on
   the full variety — the two named continuations.
+- **The left-convolution subcase and its exact combinatorial form
+  (2026-08-21, late).**  For solutions whose family lies in the
+  left-convolution algebra `lambda(G)''`, the system splits over the
+  irreducible blocks of `G` (products stay blockwise there), and in
+  each block a solution is equivalent to an `S_3`-COVARIANT CRYSTAL:
+  one spectral decomposition of the block per root coweight, each
+  invariant under ITS OWN parahoric (`W_x in pi(U_x)'`), permuted by
+  the Weyl action, carrying multiplicative character data with the
+  three-term relations.  Caution recorded against a tempting
+  shortcut: the JOINT eigenspaces of the commuting family are not
+  invariant under any single parahoric (only each `W_x`'s own
+  spectral projections are `U_x`-invariant), so the family does NOT
+  trivially reduce to `G`-invariant subspaces; the crystal
+  combinatorics per block (`dim <= 8`, six blocks) is a finite exact
+  enumeration and is the right instrument.  Methods note, now
+  thrice-confirmed: gradient/stochastic descent on these varieties
+  is glassy and produces no signal in either direction; only
+  linearization, exact rank certificates, and finite enumeration
+  yield conclusions.
 - **Falsification honesty.**  A surviving twisted hom compatible
   with regularity at some finite gauge would NOT yet be an enemy (it
   must still satisfy the mixed-word regularity and assemble into a
