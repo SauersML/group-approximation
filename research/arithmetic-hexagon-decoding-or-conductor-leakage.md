@@ -154,10 +154,38 @@ the fixed-depth nonhyperlinearity criterion.
   needed after equal-trace conductor projections have been found.  The sole
   analytic gate is now constructing those projections and assigning their
   cross-band leakage to the depth recurrence.
+- **A finite rectangular leakage ledger cannot itself contract.**  Every
+  fixed family of coweight shifts admits exact finite-rank Schur atlases
+  built from triangular Folner multiplicity profiles.  All chamber carriers
+  have equal trace, all partial intertwiners are coherent, and their total
+  first-exit mass is `O_F(1/N)`, while tensoring an independent four-atom
+  lamp leaves positive interior overlap on asymptotically the whole common
+  carrier.  See
+  `folner-multiplicity-atlases-have-vanishing-first-exit`.
+  Therefore the fixed `kappa` in `(AHD2)` cannot come from rank balancing,
+  Schur matching, or conductor descent alone.  The actual mixed-root packet
+  must make the marked scale graph non-Folner (or furnish an equivalent
+  same-reservoir multiplicity payment).
+- **The non-Folner endpoint is already available once one global PVM is
+  decoded.**  The full coset/building orbit `A/C` has a fixed bottom gap
+  (equivalently, use the property-`(T)` Hecke contraction), and
+  `infinite-schreier-pvm-transport-kills-finite-mark` turns covariance of one
+  finite-support PVM over that orbit into
+  `markedMass <= C HeckeCovarianceEnergy`, uniformly in matrix dimension.
+  The native expanding double coset has exactly `42` branches by
+  `expanding-double-coset-degree-is-p-times-flags`.  Thus the target should
+  no longer be phrased as contraction of six arbitrary band projections:
+  it is to show that the six root packets are restrictions of one
+  same-basis PVM for the `42`-branch building shell, with its covariance
+  energy bounded by word defect plus the already-defined first exits.  Once
+  that dictionary is proved, the established Schreier PVM inequality
+  supplies the missing fixed `kappa`.
 - **Current unresolved step.**  Prove that separately rounded growing-period
   root packets either share enough multiplicity space for `(HEL11)` or that
   their mismatch is first-exit mass controlled by the two-level conductor
-  join.  The descent itself is not a contraction for arbitrary isotypic
+  join; in the sharp formulation above, assemble those shared pieces into
+  one finite-support PVM for the native `42`-branch building shell.  The
+  descent itself is not a contraction for arbitrary isotypic
   weights (`weyl-kernel-joins-descend-two-levels-without-mass-contraction`),
   so the fixed `kappa` in `(AHD2)` must come from a matrix-only same-reservoir
   return or multiplicity payment, not from property `(T)` alone.  No
