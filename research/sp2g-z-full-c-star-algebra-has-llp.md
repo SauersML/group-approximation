@@ -54,14 +54,17 @@ discussion after Question 1.10; source-verified 2026-08-21).
   `C^*(Sp_(2n)(Z))` fails the (global) LP.  Hence a positive answer here
   would exhibit a separable C*-algebra with LLP but not LP — an open
   problem of Ozawa they cite — on top of the non-hyperlinear group.  Both
-  prizes at once argues for pessimism.  The proposed constant-class
-  refutation is decisively closed by
-  `sp4-metaplectic-class-pointwise-coboundary-limit`: scalar
-  coboundaries are compact and therefore pointwise closed, so no
-  nontrivial fixed class can be gauged to converge to `1`.  ISW Theorem A
-  would require genuinely distinct finite-dimensionally realizable
-  classes accumulating at zero; Deligne invisibility leaves only the
-  trivial and metaplectic points in the relevant circle.
+  prizes at once argues for pessimism, but the refutation side is now
+  also fenced: `sp4-metaplectic-class-pointwise-coboundary-limit` (with
+  its compactness proof) shows a FIXED nontrivial scalar class is never a
+  pointwise limit of coboundaries, so the Ioana--Spaas--Wiersma Theorem A
+  attack needs infinitely many DISTINCT finite-dimensionally realized
+  classes tending to the trivial class, nontrivial on a relative-(T)
+  subgroup; on the Deligne circle only the trivial and metaplectic
+  classes are realizable (Deligne invisibility), and the odd-level Weil
+  representations are genuine representations, whose classes are
+  coboundaries.  No candidate family for the ISW mechanism at `Sp_4(Z)`
+  is recorded, so BOTH directions of this hole now require a new idea.
 - **Method note.**  Any attack should start from Ioana--Spaas--Wiersma's
   actual mechanism (their Theorem A/Corollary B derivation) rather than
   from tensor-norm generalities: the Kirchberg characterization

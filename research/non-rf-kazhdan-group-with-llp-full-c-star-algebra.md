@@ -76,13 +76,12 @@ a sweeping extension of Ioana--Spaas--Wiersma.
   whether a straight `SL_3(Z)` sits inside depends on whether the
   `K_2`-double-cover class dies on a congruence subgroup — unrecorded;
   at `g = 2` the same Klingen/Siegel audit as downstairs applies.  The
-  metaplectic cocycle question
-  `sp4-metaplectic-class-pointwise-coboundary-limit` presses on this
-  candidate too: its YES branch feeds Ioana--Spaas--Wiersma Theorem A
-  with the pulled-back classes, which are COBOUNDARIES upstairs
-  (the extension is the point of `Gamma~_4`), so the refutation
-  mechanism does NOT transport verbatim — one more sense in which the
-  extension is the softer target.
+  constant-class Ioana--Spaas--Wiersma attack is refuted outright
+  (`sp4-metaplectic-class-pointwise-coboundary-limit`, compactness of the
+  coboundaries), and upstairs the pulled-back metaplectic classes are
+  coboundaries anyway (the extension is the point of `Gamma~_4`), so no
+  recorded refutation mechanism reaches this candidate — one more sense
+  in which the extension is the softer target.
 - **Thom's groups are on the wrong side.**  Thom's hyperlinear Kazhdan
   groups without the factorization property (Groups Geom. Dyn. 4 (2010))
   are non-RF Kazhdan and hyperlinear, hence by the theorem their full
