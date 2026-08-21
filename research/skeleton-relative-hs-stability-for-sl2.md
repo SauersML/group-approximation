@@ -58,6 +58,31 @@ never activates.
   torsor of gluings — a fixed-point/averaging problem on a compact
   group, where dimension-free tools (Gowers--Hatami on the finite odd
   model's image, the (tau) squeeze) are available.
+- **Proof-plan and its precise load-bearing step (2026-08-21, same
+  day).**  The natural plan: (1) extend Levit--Vigdorovich from
+  `BS(1,4)` to the full solenoid group `Q = Z[1/2] rtimes_4 Z`
+  (their own mechanism should carry: characters of `Q` are
+  `x4`-invariant measures on the compact solenoid, where hyperbolic
+  specification makes periodic measures dense — Sigmund, as the far-
+  sector node already records); (2) align the exact structures; (3)
+  finite Steinberg rank-one bookkeeping: with both towers exact and
+  the Weyl word determined, the presentation of `SL_2(Z[1/2])` closes
+  and the tuple is an exact representation.  Steps (1) and (3) are
+  standard-shaped.  The load-bearing step is (2), and the naive
+  argument FAILS precisely here: Folner averaging aligns two close
+  exact representations only with loss (generator closeness) x
+  (Folner diameter), and `Q` has exponential growth, so
+  small-boundary Folner sets have huge diameter.  What (2) actually
+  needs is LOCAL HS-RIGIDITY of the exact representation spaces of
+  `BS(1,4)`/`Q`: two exact finite-dimensional representations that
+  are HS-close on generators are conjugate by a small unitary.  This
+  is a strengthening of stability (stability = approximate implies
+  near SOME exact; local rigidity = the exact variety has no
+  HS-nearby disconnected sheets), plausibly attackable by the same
+  periodic-measure technology since close representations have close
+  weights on periodic characters.  If local rigidity fails, the
+  gluing may genuinely branch, and the route dies here — a clean,
+  falsifiable crux.
 - **Where the obvious attack could die.**  If the torsor fixed-point
   problem has an obstruction class that grows with the odd order,
   the loss would not be dimension-free; the analogue at the level of
