@@ -167,6 +167,23 @@ commutator to wordize it, and use the source role for every global variable.
 All contexts now have the same primitive central idempotent `q_T`; their
 selected sources cannot rotate to orthogonal isotypic carriers.
 
+There is already a small D8 syntax defect in the literal version.  In the
+tautological signed-permutation representation, the only scalar sign used
+as the common central mark is `y=-I`.  If `z` is diagonal and `j` is a
+signed permutation involution, then
+
+```text
+[z,j]=y
+```
+
+holds exactly iff the diagonal signs of `z` are opposite at the two ends of
+every `j`-orbit.  In particular `j` has no fixed coordinate.  A permutation
+which swaps only `src` with `c` and fixes all other role coordinates is
+therefore not a D8 swap with central mark `-I`.  One may repair this by also
+pairing all unused roles, or by using separate supported central signs in a
+smaller role-preserving subgroup.  Neither repair affects the semantic
+obstruction below, so grant the candidate this repair.
+
 This candidate has an exact and fatal pointwise consequence.  For
 `lambda in Lambda`, write
 
