@@ -21,7 +21,7 @@ w = x y^2 x y x = [[1,-1],[2,-1]]     (order 2 in PSL_2, since w^2 = -I),
 ```
 
 so `B ~= Z * C_2` (the Dogon--Vigdorovich edge group).  With `V_1 = V_2 =
-PSL_2(Z)` glued over `B_+ ~= B_-` by `sigma = ` conjugation by
+PSL_2(Z)` glued over `B_+ ~= B_-` by conjugation `sigma` by
 `diag(sqrt 2, 1/sqrt 2)`, which acts as `sigma(T) = T^2` and
 `sigma(w) = t w t^(-1) = [[1,-2],[1,-1]] = x y x y^2 x` (the mirror word),
 Serre's tree decomposition gives
@@ -43,18 +43,32 @@ un-mirrored word; both are corrected here -- the test exposed the error, as
 `xy^2 = [[1,0],[1,1]]` has odd lower-left entry and so is not in
 `Gamma_0(2)`.)
 
-**Square-root form of the gluing.**  A representation of `PSL_2(Z[1/2])` is
-a representation `(x, y)` of `PSL_2(Z)` together with a second one
-`(x', y')` whose parabolic `T' = x' y'` is a **square root** of `T = xy`
-(`T'^2 = T`) and whose involution matches the mirror word `(SR1)`.  In a
-congruence representation `T` has odd order `m`, and `T' = ` the
-`PSL_2(Z)`-parabolic of odd order `2m` with `T'^2 = T` (equivalently
-`T' = T^((m+1)/2)` inside `<T>` only if that lies in a genuine second
-`PSL_2(Z)`-representation -- which is exactly the arithmetic content).  So
-Dogon--Vigdorovich's question is: for an exact representation `(x, y)` of
-`PSL_2(Z)` and an approximate compatible second copy, is the pair close to
-a congruence representation with its canonical square root?
+**Exact square-root coordinates.**  Put `s=x'y'`.  Since `y'=x's`, the
+second edge word reduces, using only `x'^2=1`, to
 
+```text
+x'y'x'y'^2x' = s^2 x' s x'.
+```
+
+Thus a representation of `(SR1)` is equivalently a first modular pair
+`(x,y)` together with a unitary `s` and an involution `e` satisfying
+
+```text
+s^2=xy,                 e^2=1,
+(e s)^3=1,              xy^2xyx=s^2 e s e.            (SR2)
+```
+
+The second vertex is recovered as `x'=e`, `y'=es`.  All four equations in
+`(SR2)` are essential.  In particular the earlier shorthand that attempted
+to eliminate `e` and retain one cubic equation was false; it confused the
+mirror Iwahori word with a conjugate of `e`.
+
+In a congruence representation `T=xy` has odd order `m`, so it has the
+canonical square root `T^((m+1)/2)` inside `<T>`, again of odd order `m`.
+But the root alone is not sufficient: it must admit an involution `e`
+satisfying the last two equations in `(SR2)`.  This simultaneous
+root--involution extension is the exact arithmetic content of the second
+modular vertex and the correct finite-coordinate target for the far sector.
 **Sanity/bug-catching.**  A gradient search minimizing the two gluing
 defects of the *incorrect* earlier presentation found spurious exact
 solutions with non-atomic parabolic spectrum; those disappeared once the

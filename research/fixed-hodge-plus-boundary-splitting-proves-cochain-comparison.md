@@ -15,9 +15,11 @@ Use one fixed compact core/cellular model for each modular vertex and edge.
 The rank-independent Whitney/de Rham theorem compares its cellular quotient
 norm with the analytic harmonic norm for every flat unitary coefficient
 bundle.  The uniform parabolic splitting then separates the interior and
-Eisenstein components without cancellation.  On the interior component this
-is the Petersson norm used by `iwahori-cuspidal-hecke-angle`; on the boundary
-component it is uniformly equivalent to the cusp-count residue norm used by
-`iwahori-eisenstein-angle`.  Finally Selberg property `(tau)` controls the
-coboundary potential modulo the commutant.  These are exactly parts (i)--(iii)
-of `iwahori-cochain-petersson-comparison`.
+Eisenstein components without cancellation.  On the boundary component the
+explicit three-projection formula gives the uniformly conditioned residue
+lift used by `iwahori-eisenstein-angle`.  On the interior component do **not**
+compare the compact-core norm with the full Petersson cusp norm; instead use
+`iwahori-cuspidal-cellular-hecke-angle`, which realizes the Hecke star algebra
+and the Deligne bound directly in the cellular Hodge norm.  Finally Selberg
+property `(tau)` controls the coboundary potential modulo the commutant.  These
+are exactly parts (i)--(iii) of `iwahori-cochain-petersson-comparison`.

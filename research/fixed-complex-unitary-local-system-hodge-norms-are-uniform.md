@@ -9,7 +9,7 @@ distinct_from:
   iwahori-cochain-petersson-comparison: that applies the comparison to the cuspidal, Eisenstein and coboundary pieces of three modular groups; this is the fixed-base local-system norm theorem used for its interior part.
 ---
 
-Let `X` be one fixed compact smooth triangulated manifold or orbifold, possibly
+**ESTABLISHED.** Let `X` be one fixed compact smooth triangulated manifold or orbifold, possibly
 with boundary and fixed absolute or relative boundary conditions.  For every
 finite-rank flat **unitary** bundle `E -> X`, equip cellular cochains with the
 sum-of-squares norm on the fixed cells and differential forms with the `L^2`

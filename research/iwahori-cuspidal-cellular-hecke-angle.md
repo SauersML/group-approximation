@@ -23,4 +23,3 @@ coefficient module, the two degeneracy maps on cuspidal cohomology satisfy
 The constant is independent of congruence level, coefficient dimension,
 and deck-group isotypic component.  In particular no comparison between a
 compact core and the full Petersson cusp is required.
-
