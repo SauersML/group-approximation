@@ -19,7 +19,7 @@ for translation by `a` in the regular action of `A` on itself, put
 `k=(tau_a)_(a in A) in B_N^A`, and let
 
 ```text
-H=<Delta(B_N), k Delta(B_N) k^(-1)> <= B_N^A.          (HBT1)
+H=<Delta(B_N'), k Delta(B_N') k^(-1)> <= (B_N')^A.     (HBT1)
 ```
 
 Then
@@ -28,9 +28,15 @@ Then
 (B_N')^A <= H.                                        (HBT2)
 ```
 
+In fact
+
+```text
+H=(B_N')^A.                                           (HBT2')
+```
+
 In particular, because `N` is even, the scalar signed permutation
 `z=-I_N` lies in `B_N'`.  For every subset `F subseteq A` there is a word
-`W_F(t)` with constants from `B_N`, built from constants and conjugates
+`W_F(t)` with constants from `B_N'`, built from constants and conjugates
 `t g t^(-1)`, such that
 
 ```text
@@ -72,19 +78,31 @@ Thus `tau_b^(-1)tau_a` centralizes `A_N` in `S_N`.  That centralizer is
 trivial, and the regular translations are distinct, so `a=b`.  Every block
 is a singleton and hence `L=A_N^A`.
 
-Let `d_j` flip the sign of the `j`-th natural basis vector.  The diagonal
-element `Delta(d_j)` lies in `H`.  Conjugate it by an element which is
-`pi in A_N` in one chosen `A`-coordinate and the identity elsewhere, then
-multiply by `Delta(d_j)^(-1)`.  The result is trivial off that coordinate
-and flips exactly the two signs `j,pi(j)` there.  Such pairs generate the
-even-sign subgroup `C_2^(N-1)` independently in every coordinate.  Together
-with `A_N^A`, this gives
+Let `d_j` flip the sign of the `j`-th natural basis vector.  Fix distinct
+`j,k,l`.  The two-sign flip `e_(j,l)=d_jd_l` belongs to `B_N'`, so its
+diagonal copy belongs to `H`.  Choose `pi in A_N` fixing `l` and sending `j`
+to `k` (possible because `N>=8`).  Conjugate `Delta(e_(j,l))` by the element
+which is `pi` in one chosen `A`-coordinate and the identity elsewhere, then
+multiply by `Delta(e_(j,l))^(-1)`.  The result is trivial off that coordinate
+and equals
+
+```text
+(d_k d_l)(d_j d_l)=d_j d_k
+```
+
+there.  Such pairs generate the even-sign subgroup `C_2^(N-1)` independently
+in every coordinate.  Together with `A_N^A`, this gives
 
 ```text
 (C_2^(N-1) semidirect A_N)^A=(B_N')^A <= H.
 ```
 
-Finally `z=-I_N` flips `N` signs and `N` is even, so `z in B_N'`.  The tuple
+The reverse inclusion follows from the definition of `H`, proving `(HBT2')`.
+
+Finally `z=-I_N` flips `N` signs and `N` is even, so `z in B_N'`.  Every
+nonzero translation of `A` is a product of `N/2` transpositions; since
+`N>=8`, this number is even, so every router `tau_a` also lies in `A_N` and
+hence in `B_N'`.  The tuple
 which is `z` precisely on `F` belongs to `H`.  Replacing generators of the
 first diagonal copy by constants and generators of the second by
 `t g t^(-1)` yields `(HBT3)` and makes the exponent sum of `t` zero.
