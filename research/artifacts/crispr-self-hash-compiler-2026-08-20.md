@@ -52,6 +52,16 @@ outside `range(R_B)`.  A proof of the scalar inequality therefore controls
 the entire average leakage, even though it need not establish termwise packet
 covariance.
 
+For the explicit paired support frame, this scalar detector is already
+sharp.  On every allowed sector the two Reynolds carriers are unitarily
+conjugate and hence admit full overlap.  On the forbidden `101` sector their
+normalized ranks are both `25/784`, but every unitary return has overlap at
+most `17/784`; at least `1/98` of the source carrier leaks.  This is
+independent of multiplicity amplification.  Consequently the local
+trace-cyclic checksum is finished for that chart.  The remaining problem is
+character ownership: a finite edge transports `101` into the reverse `011`
+reservoir, where it can return into the wrong conditioned carrier.
+
 ## What is gained
 
 - spectator tensor amplification leaves every normalized adjoint rank and

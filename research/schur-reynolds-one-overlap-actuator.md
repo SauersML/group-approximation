@@ -73,6 +73,13 @@ immune to spectator amplification.
   forced `101<->011` two-cycle.  The open one-sided reservoir claim can be
   tested against `(ORA1)` directly, avoiding any stronger demand once its
   hard frame is placed.
+- **The local scalar detector is already exact.**
+  `paired-frame-forbidden-scalar-overlap-gap` proves that the paired frame has
+  full scalar overlap on every allowed sector, whereas its forbidden overlap
+  is at most `17/784`, leaving the amplification-independent deficit `1/98`.
+  Thus no further local checksum invention is needed for this chart.  The
+  remaining load is precisely to force the actuator to return into the owned
+  carrier instead of the reverse `011` reservoir.
 - **Character ownership remains load-bearing.**
   `finite-edge-reynolds-overlap-follows-character-transport` proves that an
   HNN edge carries the conditioned scalar checksum to the induced central
