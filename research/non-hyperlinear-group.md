@@ -98,3 +98,18 @@ naturality traps every finite recursive test inside a reducing `o(d)` corner,
 no-tail failures, and `universal-finite-packet-library-can-be-amenable`
 exhibits a two-generated amenable group already containing every finite packet
 at its canonical Plancherel fraction.
+
+A new nonamenable error-spreading lane is now exact on the lower-bound side.
+`embedded-group-algebra-carriers-have-no-excess-fixed-component` proves that a
+canonical carrier cannot acquire extra fixed mass from an ambient
+matrix-ultraproduct commutant, and
+`infinite-conjugacy-orbits-give-canonical-carrier-no-capture` turns infinite
+subgroup-conjugacy orbits plus property `(T)` into a fixed commutator-energy
+floor immune to amplification. The remaining open upper-bound construction is
+`matrix-only-cyclic-carrier-invariance`: make that same Fourier carrier
+asymptotically invariant in every finite matrix model by a genuinely
+matrix-only capacity or holonomy recurrence. Canonical finite packets alone
+cannot supply the required coordinates;
+`canonical-finite-packet-data-stop-at-scalar-overlaps` proves that they fix
+Plancherel masses and scalar overlap checks but leave the multiplicity gauge
+arbitrary.

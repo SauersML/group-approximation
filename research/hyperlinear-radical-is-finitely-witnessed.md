@@ -48,3 +48,15 @@ non-hyperlinear group: nontriviality lifts through the quotient
 `Gamma_N -> Gamma`. The prefix is generally noncomputable. Effective Higman
 is still useful in a reverse-Kleene construction because it computes a named
 finite presentation rather than merely proving that some prefix works.
+
+## Non-inputs
+
+No established Cairn example currently supplies such a nontrivial radical
+word. `mf-hyperlinear-radical-divergence` shows that operator-norm corona or
+exact finite-dimensional invisibility does not suffice;
+`non-ce-trace-on-sofic-racg` shows that an unrelated non-CE character does not
+control the canonical group trace; and
+`canonical-profile-word-collapse-one-window` retains trace side conditions
+and therefore does not imply unconditional radical membership. This theorem
+reduces presentation complexity after radical membership is proved; it does
+not manufacture the missing analytic obstruction.

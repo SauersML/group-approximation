@@ -340,3 +340,47 @@ Use the mark to create density, recursion to spread consistency,
 the r.e. library to contain every intrinsic challenge,
 and reverse Kleene plus Higman to finish.
 ```
+
+## 11. Nonamenable ownership theorem
+
+The lower half of a nonamenable feedback mechanism can be proved exactly.
+By `embedded-group-algebra-carriers-have-no-excess-fixed-component`, if
+`L(G)` embeds trace-preservingly in any finite tracial algebra, the projection
+of an embedded `x in L(G)` onto the ambient `H`-fixed space is exactly the
+embedded canonical conditional expectation. Excess multiplicity commutants
+cannot capture more of this particular carrier.
+
+Consequently, if a cyclic Fourier carrier
+
+```text
+x=sum_k c_k lambda(w^k)
+```
+
+has every supported nonzero power on an infinite `H`-conjugacy orbit, its
+conditional expectation is `c_0 I` in every canonical embedding. A
+property-`(T)` Kazhdan set then gives the amplification-proof floor
+
+```text
+sum_s||[s,x]||_2^2 >= kappa sum_(k!=0)|c_k|^2.
+```
+
+This eliminates the generic multiplicity-capture objection for a carrier
+whose canonical orbit geometry is designed correctly. Property `(T)` alone
+is not enough: `property-t-does-not-force-marked-carrier-transversality`
+exhibits the hyperlinear group `D_infinity times K` with a positive-density
+spectral carrier fully fixed by an infinite property-`(T)` subgroup.
+
+The surviving construction target is
+`matrix-only-cyclic-carrier-invariance`: force the transverse Fourier carrier
+to become asymptotically invariant in finite matrices, while the regular
+representation retains the strict lower floor. Such an upper bound must be
+finite-dimensional/CE-specific; if it followed formally from group relations,
+it would contradict the regular representation itself.
+
+The canonical finite-packet audit reaches the same boundary from the finite
+side. `canonical-finite-packet-data-stop-at-scalar-overlaps` computes all
+forced Plancherel masses, two-subgroup intersection-character overlaps, and
+finite-conjugation Reynolds checks. Exact regular representations still allow
+independent rotations of every isotypic multiplicity reservoir. Canonical
+trace authenticates scalar leakage when group combinatorics already moves a
+sector, but it does not manufacture a common carrier or reservoir gauge.
