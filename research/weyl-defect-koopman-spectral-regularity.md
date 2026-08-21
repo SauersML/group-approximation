@@ -149,6 +149,42 @@ and the ENTIRE frontier is the single trace-summability statement
   the microstate word-traces -- is the exact next step, and it is a
   concrete harmonic-analysis computation on one explicit word family.
 
+## Corrected exact formula: the coboundary norm is a cycle-discrepancy
+
+Careful redo (`x4` is a BIJECTION on `Z/N`, `N` odd, so `L` PERMUTES
+Fourier modes; the earlier "full-orbit sum" was wrong).  On a
+`x4`-cycle `C = (m_0, m_1 = 4 m_0, ..., m_(L-1))`, the equation is
+`g_(m_i) - g_(m_(i+1)) = nu^_(m_i)`.  Two exact consequences:
+
+- **Solvability = Livsic.**  Summing around the cycle telescopes to
+  `sum_(i) nu^_(m_i) = A_C = 0`: the coboundary exists iff every
+  `x4`-cycle moment-sum `A_C` vanishes.  (`A_C = tau(e' . sum_(k in C)
+  V^{-k})` is the `x4`-invariant / fixed-algebra component on `C`,
+  already `O(delta)` by the free bound; in the ultraproduct
+  `a_k -> 0` drives each fixed `A_C -> 0`.)
+- **Exact norm = cycle discrepancy.**  When solvable, the
+  `L^2`-minimal solution has
+
+  ```text
+  || c ||_2^2  =  sum_C Var_(m in C)( S_m ),
+  S_m = partial sum of nu^_ around C up to m,
+  ```
+
+  the total DISCREPANCY of the moment sequence `a_k = tau_micro(R u^{-k})`
+  walked around each `x4`-cycle.
+
+So the frontier is now exactly a DISCREPANCY BOUND: the partial sums of
+the Weyl-relator moments, traversed around each `x4`-cycle, have
+variance summing to `O(delta^2)`.  This is a concrete equidistribution
+statement about one explicit sequence (`k -> tau_micro(R u^{-k})`) under
+one explicit expanding permutation (`x4` on `Z/N`), squarely in the
+domain of discrepancy / Erdos--Turan theory -- the sharpest and most
+standard-shaped form the whole program has produced.  The moments obey
+`sum_k |a_k|^2 <= delta^2` (Parseval), so it is a variance-of-partial-
+sums bound for an `ell^2`-small sequence around expanding-map cycles;
+lacunarity of the `x4` orbit structure is the tool that should convert
+the `ell^2` moment bound into the discrepancy bound.
+
 ## Attempts
 
 - **Why the naive bounds miss it.**  `|| e' ||_2 = delta` alone does
