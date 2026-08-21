@@ -34,6 +34,19 @@ second word-generated algebra and cannot exchange roles with the label factor.
 
 ## Attempts
 
+- **Nested Gowers--Hatami uniqueness does not expose the reservoir.**
+  `gowers-hatami-uniqueness-does-not-lock-nested-pauli-reservoirs` gives the
+  exact countermodel.  At fixed depth one may exactify the largest
+  extraspecial group once and restrict, obtaining perfect coherence; the
+  canonical representation still has label dimension doubling and
+  multiplicity halving at every inclusion.  Moreover the next `M_2` child
+  factor can be conjugated arbitrarily inside the old commutant without
+  changing the old packet table at all.  Approximate uniqueness therefore
+  aligns same-level label representations but leaves precisely the relative
+  commutant gauge which `(CCMB1)` must make word-visible.  The new mixed
+  relation must force that gauge into the smaller child commutant; a nested
+  Clifford tower plus one same-level transported copy is insufficient.
+
 - **A second fixed finite group cannot expose an unbounded reservoir.** Its
   irreducible degrees are bounded, and repetitions leave a common spectator
   algebra.  Thus finite-group exactification may anchor the label coordinates
