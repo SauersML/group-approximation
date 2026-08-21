@@ -4,7 +4,7 @@ id: haar-algebraic-actions-have-permutation-koopman-spectrum
 kind: claim
 title: Haar algebraic actions have permutation Koopman spectrum and reciprocal stabilizer moments
 distinct_from:
-  algebraic-compact-action-group-factor-compiler: that Fourier-transforms an algebraic crossed product after an embedding has been found; this gives necessary conditions on attempts to obtain that embedding from an equivariant base map or a direct Haar stabilizer process.
+  algebraic-envelope-principle: that Fourier-transforms an algebraic crossed product after an embedding has been found; this gives necessary conditions on attempts to obtain that embedding from an equivariant base map or a direct Haar stabilizer process.
   algebraic-compact-action-envelope-for-non-ce-relation: that asks for an arbitrary von Neumann embedding of the non-CE relation factor; this theorem rules out universal action-factor and unrestricted direct-IRS realizations but does not obstruct a genuinely non-Cartan embedding.
 ---
 

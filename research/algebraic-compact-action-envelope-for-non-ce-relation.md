@@ -3,8 +3,6 @@ rg: 2
 id: algebraic-compact-action-envelope-for-non-ce-relation
 kind: claim
 title: Embed the explicit non-CE relation factor in an effective compact-abelian algebraic crossed product
-artifacts:
-  - research/artifacts/nonhyperlinear-breakout-portfolio-2026-08-21.md
 distinct_from:
   non-ce-property-t-equivalence-relation-exists: that supplies the Manzoor relation factor inside another property-T relation factor; this requires the target relation to come from a compact-abelian algebraic action so its crossed product is a canonical semidirect-product group factor.
   perfect-zpc-irs-quantum-gap-game: that strengthens a game-value separation inside a restricted IRS strategy class; this asks for a trace-preserving von Neumann embedding into one Haar algebraic process and uses no finite-dimensional robust decoder.
