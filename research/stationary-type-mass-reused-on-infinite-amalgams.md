@@ -3,11 +3,8 @@ rg: 2
 id: stationary-type-mass-reused-on-infinite-amalgams
 kind: claim
 title: Infinite free amalgams reuse stationary representation-type mass instead of dispersing it on the Bass-Serre tree
-invalidates:
-  - multiplicity-return-via-free-amalgam
 distinct_from:
   finite-graph-of-groups-representation-types-are-integer-flows: that describes compatible type vectors for a finite graph; this proves that passing to an infinite tree does not add an ell2 summability condition or remove a compatible scalar ray.
-  bass-serre-schur-transfer-contraction: that may still ask for transverse contraction after explicitly removing the scalar ray; this proves such contraction cannot dispose of the scalar current or yield the proposed return theorem by plain amalgamation.
 artifacts:
   - research/artifacts/trace-promotion-renormalization-program-2026-08-20.md
 ---

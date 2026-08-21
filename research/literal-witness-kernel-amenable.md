@@ -3,6 +3,7 @@ rg: 2
 id: literal-witness-kernel-amenable
 kind: claim
 title: Amenability of the kernel from the literal group to its Clifford witness
+refuted_by: literal-witness-kernel-free
 artifacts:
   - non_mf_groups_exist.tex
   - notes/NON_MF_FINAL_REVIEW_AND_RESOLUTION_2026-08-14.md

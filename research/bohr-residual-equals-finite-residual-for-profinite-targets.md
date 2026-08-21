@@ -4,7 +4,6 @@ id: bohr-residual-equals-finite-residual-for-profinite-targets
 kind: claim
 title: For profinite targets the Bohr theory is the finite-quotient theory
 distinct_from:
-  peter-weyl-separation-core: That is the analytic core of Peter-Weyl for a GENERAL compact Hausdorff group and is open; this is the profinite case, which needs no analysis at all and is proved.
   commuting-lamp-quotient-finite-residual: That computes the finite residual of one specific witness group; this is a general statement identifying two residuals of an arbitrary discrete group when the targets are restricted to profinite ones, and names no witness.
 artifacts:
   - GroupApproximation/Analysis/PeterWeylProfinite.lean
@@ -38,7 +37,8 @@ verbatim by the radical chain of `Sofic/FiveRadicalsCoincide`.
 ## What it does not give
 
 The general compact case.  For that the analytic core is isolated as the named
-hypothesis [[peter-weyl-separation-core]], and
+hypothesis recorded in the
+[archived Peter--Weyl formalization note](artifacts/peter-weyl-separation-core.md), and
 `fdUnitaryResidual_le_bohrResidual_of_separates` derives the remaining
 inclusion from it -- so the dossier's Bohr clauses are conditional on one
 precisely stated classical input rather than on a remark.

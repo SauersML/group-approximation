@@ -3,8 +3,6 @@ rg: 2
 id: zpc-selector-robust-lcs-compiler
 kind: claim
 title: Tailored ZPC control compiles to an LCS with quantitative near-perfect sound decoding
-distinct_from:
-  zpc-selector-sound-lcs-compiler: that controls only attained perfect finite-dimensional strategies; Slofstra nonclosure shows that this is insufficient for a hyperlinearity obstruction.
 artifacts:
   - research/artifacts/zpc-perfect-decoding-gap-audit-2026-08-18.md
   - research/artifacts/compiler-lowering-hyperlinear-2026-08-18.md

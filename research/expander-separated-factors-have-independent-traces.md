@@ -4,7 +4,6 @@ id: expander-separated-factors-have-independent-traces
 kind: claim
 title: A quantum-expander-separated tensor factor has dimension-free trace independence
 distinct_from:
-  subtree-trace-independence-certificate: that asks for concrete sibling words and relators in one self-similar group; this is the analytic matrix inequality once the two siblings occupy the spin factor and its expander-certified relative commutant.
   quantum-expander-relative-commutant-rounding: that bounds distance to the relative commutant; this converts that bound into the scalar covariance estimate needed by the squaring ledger.
 ---
 

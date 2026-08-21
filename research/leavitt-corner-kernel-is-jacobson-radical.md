@@ -3,6 +3,7 @@ rg: 2
 id: leavitt-corner-kernel-is-jacobson-radical
 kind: claim
 title: The kernel of the corner evaluation is exactly the Jacobson radical of the corner
+refuted_by: leavitt-corner-kernel-not-jacobson-radical
 distinct_from:
   leavitt-corner-one-sided-lift-exists: that asks for an explicit pair of elements; this is a structural hypothesis about an ideal, and it reaches the same conclusion without exhibiting anything, which is why it is kept as a separate lane.
   leavitt-corner-idempotent-unital-surjection: that establishes the corner and its evaluation map; this is an open question about the kernel of that map.

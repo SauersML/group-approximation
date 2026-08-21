@@ -5,7 +5,6 @@ kind: claim
 title: Thompson-addressed Pauli prefixes round one new cell with polynomial depth cost
 distinct_from:
   uniform-relative-clifford-tape-cell: that asks for a depth-independent local modulus; this proves the weaker polynomial-depth modulus actually sufficient for the Fanizza contraction series.
-  subtree-expander-relative-factor-placement: that asks for a fixed Jacobi expander on sibling sections; this uses the coordinate Pauli family already present in the Thompson central-product tape.
 ---
 
 In `thompson-clifford-central-product-tape`, put
@@ -39,4 +38,3 @@ for fixed `C,c`.  Hence the complete one-cell cost is still
 `C'(n+1)^(c+1) sqrt(E)`.  Such a polynomial loss is summable in
 `contractive-computation-ladder`; a constant per-level expander gap is not
 needed for the backward ledger.
-

@@ -3,6 +3,7 @@ rg: 2
 id: literal-mark-quotient-flexibly-stable
 kind: claim
 title: Flexible permutation stability of the literal marked quotient
+refuted_by: literal-mark-quotient-not-stable-in-finite-actions
 distinct_from:
   literal-mark-quotient-mf: That claim asks whether `E/<w>` admits a faithful operator-norm corona model; this asks whether its almost-actions on finite sets are close to genuine actions after flexible enlargement.
   wreath-flexible-hs-stability: That claim is flexible Hilbert-Schmidt (Frobenius) stability of the wreath candidate of the hyperlinear program; this one is flexible *permutation* stability of the literal marked quotient.

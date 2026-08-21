@@ -3,6 +3,7 @@ rg: 2
 id: amalgam-edge-compatible-corona-embeddings
 kind: claim
 title: Edge-compatible corona embeddings for the literal marked amalgam
+refuted_by: literal-mark-quotient-not-mf
 distinct_from:
   literal-mark-quotient-mf: That claim is group MF of the amalgam; this is the C*-level datum Shulman's criterion asks for, which is strictly stronger and which requires both vertex algebras to be MF.
   shulman-amalgam-mf-criterion: That is the imported general theorem; this is the instance it demands for this particular amalgam.

@@ -3,6 +3,7 @@ rg: 2
 id: mixed-cnot-endpoint-failure-relator-certificate
 kind: claim
 title: Charge the three mixed-CNOT endpoint failures by fixed group relators
+refuted_by: embedded-packet-projection-has-no-relator-ideal-certificate
 distinct_from:
   robust-rank-one-endpoint-marginal-floor: that lower-bounds the sum of three abstract failure measures; this must upper-bound the concrete failures produced by the mixed router using a sparse relator certificate.
   c18-source-cut-has-sparse-relator-certificate: that certifies one ordered Boolean source-cut polynomial; this must certify three transported flag contexts while keeping the allowed K=+1 sector exact.

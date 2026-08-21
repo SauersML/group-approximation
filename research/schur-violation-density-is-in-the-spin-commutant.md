@@ -3,8 +3,6 @@ rg: 2
 id: schur-violation-density-is-in-the-spin-commutant
 kind: claim
 title: Schur violation density lives in the selector multiplicity algebra, not the Clifford spin factor
-invalidates:
-  - subtree-independence-from-expander-placement
 distinct_from:
   schur-predicate-is-character-density-difference: that identifies the density element exactly; this locates that element in the spin/multiplicity tensor decomposition and rules out a proposed mixing argument.
   normalizer-multiplicity-twist-breaks-prefix-expander-rounding: that concerns extra action of Clifford normalizers; this obstruction remains even for ideal spin-only expander unitaries.
@@ -34,9 +32,8 @@ spin-expander commutators vanish.
 
 Consequently the Schur violation observable cannot be substituted for the
 spin-factor variable `x` in `(ESF1)`.  The route
-`subtree-independence-from-expander-placement` incorrectly inferred the
+The archived subtree-independence route incorrectly inferred the
 predicate covariance estimate from spin-factor placement alone and is
 invalidated.  A valid tree return must first **consume or reset the old
 selector character** and transport the branch multiplicity into a new chart;
 this is exactly the separate renewal requirement, not an expander corollary.
-

@@ -3,6 +3,7 @@ rg: 2
 id: pauli-guard-collapses-c18-to-three-bit-recurrence
 kind: claim
 title: The prescribed Pauli guard collapses Fanizza C18 to the three-bit projection recurrence
+refuted_by: fanizza-pauli-guard-switches-off-at-the-terminal-cell
 distinct_from:
   fanizza-c18-residual-factors-through-three-tiny-rank-gates: that factors the full six-bit truth table through an even-parity guard; this proves that the native multiplicative Pauli relation makes that guard identically active.
   fanizza-native-additive-incidence-is-one-triangle: that treats the six context variables as independent Boolean coordinates and obtains one flat cycle; this uses the prescribed word relation and removes the cycle.

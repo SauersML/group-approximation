@@ -44,7 +44,8 @@ containing the symmetric difference in two intervals of length `|a-b|`.
 
 Nothing about soficity of the action.  Følner sets in the orbit space and the
 injective equivariant orbit charts the near-action definition wants are
-different data, which is why [[ascending-hnn-coset-action-sofic]] stays open and
+different data, which is why the
+[archived blanket action-soficity question](artifacts/ascending-hnn-coset-action-sofic.md) stays open and
 this claim is not a step toward it.  Nothing here needs `Gamma` residually
 finite, sofic, or finitely generated either — the estimate is uniform in
 `Gamma`.

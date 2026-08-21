@@ -7,7 +7,6 @@ invalidates: [witness-yields-two-point-approximation]
 distinct_from:
   two-point-orbit-approximation: that is the assertion this claim negates; per kernel doctrine refutation is the establishment of the negation claim, and exactly one of the two can ever be established.
   exact-models-cannot-separate-marked-pair: that closes the exact-model subclass only; this asserts failure over ALL admissible models at some window and precision, which is strictly stronger and remains open.
-  kun-block-transfer-lemma: that is the working lemma; this is its headline consequence, kept separate so the lemma can fail while a different mechanism still establishes this claim.
 ---
 
 **Claim.**  There exist a finite window `F ⊆ G` and `ε > 0` such that NO

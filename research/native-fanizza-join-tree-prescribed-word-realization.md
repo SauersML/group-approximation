@@ -3,6 +3,7 @@ rg: 2
 id: native-fanizza-join-tree-prescribed-word-realization
 kind: claim
 title: Realize the semantically reduced native Fanizza join tree on its prescribed machine words
+refuted_by: fanizza-pauli-guard-switches-off-at-the-terminal-cell
 distinct_from:
   join-tree-bcs-has-explicit-signed-hecke-atlas: that constructs compatible algebraic context partitions for abstract join-tree variables; this must identify their marginal involutions with the prescribed native machine words while preserving the marked exact representation.
   hs-groupify-self-referential-bcs-signal: that asks for a compiler for the fully flattened BCS menu; this uses the four native contexts after the Pauli guard removes their only additive cycle.
