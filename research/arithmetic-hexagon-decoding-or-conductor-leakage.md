@@ -166,6 +166,54 @@ the fixed-depth nonhyperlinearity criterion.
   Schur matching, or conductor descent alone.  The actual mixed-root packet
   must make the marked scale graph non-Folner (or furnish an equivalent
   same-reservoir multiplicity payment).
+- **Full-conductor adjoint regularity does not repair that failure.**  This
+  follows by an exact tensor test, not an asymptotic heuristic.  Let
+  `(K_N,(R_g),(V_(h,g)))` be any of the rectangular atlases from
+  `folner-multiplicity-atlases-have-vanishing-first-exit`, and fix
+
+  ```text
+  Q_a=SL_3(Z/2^a Z),   L_a=M_(|Q_a|)(C)
+  ```
+
+  with the normalized Hilbert--Schmidt structure.  Tensor the entire atlas
+  with `L_a`, letting `Ad(lambda_(Q_a))` act on the second factor and putting
+
+  ```text
+  Rtilde_g=R_g tensor 1,       Vtilde_(h,g)=V_(h,g) tensor 1. (AHD4)
+  ```
+
+  Normalized carrier traces, all intersection traces, and every first-exit
+  mass in `(FSM2)` are unchanged by `(AHD4)`.  The adjoint action commutes
+  exactly with every first-factor carrier and transition.  Nevertheless
+  `finite-regular-adjoint-retains-full-conductor` gives
+
+  ```text
+  Ad(lambda_(Q_a)) ~= |Q_a| lambda_(Q_a),                     (AHD5)
+  ```
+
+  so the second factor is faithful and retains every depth of the dyadic
+  conductor.  Tensoring also with the independent four-atom lamp leaves its
+  interior overlap fixed while the conductor first exits are `O_F(1/N)`.
+
+  Hence there is no dimension- and depth-independent inequality
+
+  ```text
+  kappa * markedMass
+    <= C (conductorFirstExit + adjointConductorDefect)         (AHD6)
+  ```
+
+  based only on exact full-conductor adjoint blocks, coherent rectangular
+  transitions, and depth shifts: in this tensor test the adjoint defect is
+  zero, the first-exit term tends to zero, and the marked mass does not.
+  This pushes the residual after `(PRT5)--(PRT7)` to one precise place.
+  Any proof of the required cross-overlap estimate `(FGP6)` must make the
+  **mixed-root words couple the conductor representation factor to the
+  multiplicity reservoir**.  Merely knowing that the adjoint lift retains
+  the full conductor supplies no such coupling.  Scope: the tensor test is
+  not a representation of the full arithmetic packet, so it does not refute
+  `(AHD2)`; it proves that the missing mixed-root/same-reservoir term is
+  logically indispensable and cannot be replaced by adjoint conductor
+  exactness.
 - **Bounded conductor width does pay uniformly.**  The converse estimate
   `bounded-conductor-width-pays-uniform-first-exit` shows that a multiplicity
   profile supported on at most `B` root-depth bands loses at least `1/B`
