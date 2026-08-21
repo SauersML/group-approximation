@@ -38,6 +38,15 @@ predicate word central.  By
 finite-dimensional target vector state.  Thus this claim would establish all
 three properties of `central-word-state-face-compiler`.
 
+For Property 2 alone, Condition 2 now has a universal ordinary-word
+realization whenever the decoder rows are operator-exact in the perfect
+model: centralize every row word by the finite decoded generating set.
+`centralized-gram-row-words-upgrade-trace-gap-to-vector-gap` proves that this
+singleton-orbit completion preserves exact completeness and promotes any
+trace-level row gap to all vector states.  What remains in this claim is
+therefore Conditions 1, 3, and 4--especially the nonlinear exact zero-face
+semantics and phase-safe global coupling--not construction of a finite orbit.
+
 ## Attempts
 
 - Making each predicate word central is stronger than Condition 2 and fails
@@ -54,4 +63,3 @@ three properties of `central-word-state-face-compiler`.
   no finite game.  The missing construction is a finite quotient action on
   the clause module which preserves the perfect nonclassical state without
   reintroducing all forbidden selector characters.
-

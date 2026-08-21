@@ -196,6 +196,18 @@ permitted form, so the row's absolute orientation is no longer an additional
 open datum.  It still may not ask one ordinary finite-packet word to equal
 the nonlinear hybrid reflection on the entire marked regular sector.
 
+Once the trace-level saturation inequality `(CPS9)` is proved, no further
+vector-state promotion is needed.  By
+`centralized-gram-row-words-upgrade-trace-gap-to-vector-gap`, add the finitely
+many ordinary relations `[q_j,s]=1`, where the `q_j` are the literal Gram-row
+words and `s` ranges over the finite generating set.  Their total defect then
+becomes central, `(CPS9)` upgrades to an operator inequality on the marked
+sector, and every finite-dimensional vector state pays the same gap.  These
+relations preserve exact completeness because all `q_j=1` in the
+standard-form perfect model.  Thus the remaining issue is genuinely the
+trace-level nonlinear predicate/source alignment, not a hidden conversion
+from normalized trace to arbitrary vector states.
+
 `perfect-tracial-bcs-has-one-common-module-swap` proves that this common
 swap exists exactly in the standard form of every perfect tracial source.
 Thus exact completeness is not asking for a new operator-algebraic
