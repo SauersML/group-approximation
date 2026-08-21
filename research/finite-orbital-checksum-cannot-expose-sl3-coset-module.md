@@ -63,3 +63,7 @@ tests, properties absent from `(FOC2)`.  It proves exactly where the needed
 new input must enter: a finite-matrix relative-commutant/correctability
 theorem, not another conjugacy or first-hit telescope of the prototype lamp
 relators.
+
+Adding the obvious self-similar parity return does not repair the algebraic
+failure: `dyadic-parity-checksum-has-finite-pauli-gauge` constructs an exact
+finite extraspecial countermodel to that return architecture.

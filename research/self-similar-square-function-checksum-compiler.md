@@ -87,6 +87,13 @@ precise finite-presentation target left by the user's heavy-tail idea.
   while all four occurrence gaps remain macroscopic.  A viable one-word
   compiler must therefore make the scale syndromes positive/orthogonal;
   ordinary unitary product cancellation is fatal.
+- Replacing the clock by the binary parity substitution
+  `q c q^-1=c(h c h^-1)`, `q h q^-1=h^2` still does not expose the
+  individual syndrome layers.  `dyadic-parity-checksum-has-finite-pauli-gauge`
+  gives an exact finite nine-cycle extraspecial model in which every iterated
+  block-parity check holds but distance-two lamps anticommute by the central
+  mark.  A successful square function must authenticate individual first-hit
+  blocks, not merely their recursively commuting parities.
 
 Therefore the genuinely new possibility left by `(SSC1)--(SSC5)` is a
 noncontracting or matrix-coordinate square-function decomposition which is

@@ -56,3 +56,9 @@ transport then feeds `one-seed-infinite-character-expansion-collapses-mark`.
   partial graph-product model retaining every checked orbital while an
   unchecked orbital remains noncommuting.  Thus any positive result must be
   matrix-only; no finite van Kampen checksum of valid lamp words suffices.
+- **Add a binary renormalizer which maps one lamp to two child parities.**
+  `dyadic-parity-checksum-has-finite-pauli-gauge` gives an exact finite
+  nine-cycle extraspecial model satisfying the shift, child substitution and
+  every iterated dyadic block-commutation check, while distance-two lamps
+  anticommute by the nontrivial central mark.  Block parity does not expose
+  the individual module table.
