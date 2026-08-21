@@ -143,6 +143,17 @@ the fixed-depth nonhyperlinearity criterion.
   analytic cancellation endpoint no longer requires globally unitary
   correctors.  The open step is solely to extract the supported factors and
   route their actual support loss into the conductor recurrence.
+- **Raw words canonically supply the partial transitions once bands exist.**
+  For equal-trace band projections `P,Q`, polar-decompose `QUP`, where `U`
+  is the raw actor word.  Its source loss, range loss, and squared polar
+  displacement are all bounded by the single leakage
+  `||(1-Q)UP||_2^2`.  Products of these polar transitions differ from the
+  raw gallery word by at most the sum of square roots of the edge leakages;
+  see `polar-compression-turns-band-mismatch-into-first-exit`.  Hence neither
+  property-(T) exactification nor a separate common-gauge rounding theorem is
+  needed after equal-trace conductor projections have been found.  The sole
+  analytic gate is now constructing those projections and assigning their
+  cross-band leakage to the depth recurrence.
 - **Current unresolved step.**  Prove that separately rounded growing-period
   root packets either share enough multiplicity space for `(HEL11)` or that
   their mismatch is first-exit mass controlled by the two-level conductor
