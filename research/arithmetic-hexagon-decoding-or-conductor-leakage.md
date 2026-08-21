@@ -123,6 +123,16 @@ the fixed-depth nonhyperlinearity criterion.
   `periodic-conductor-plateaux-pay-a-shared-root-seam`.  Thus the open enemy
   is non-block-diagonal rectangular multiplicity transport, not a long flat
   conductor band.
+- **There is no residual nonabelian common-carrier gauge.**  If one supported
+  corrector `Z` is invariant under the native parahoric and satisfies the
+  ordered Weyl triangle, translating that triangle by `x_32(1)` and
+  `x_21(1)` and cancelling its fixed factors shows that `Z` is also invariant
+  under `x_23(1)` and `x_12(1)`.  These roots generate the whole actor, and
+  the triangle then gives `Z=Z^2`.  The same calculation yields the
+  dimension-free estimate `||Z-I||_2<=9 epsilon_tri+10 epsilon_D`; see
+  `native-parahoric-triangle-kills-all-corrector-gauges`.  Thus the current
+  hole is solely the common-carrier/rectangular-leakage extraction, not
+  corrector holonomy after extraction.
 - **Current unresolved step.**  Prove that separately rounded growing-period
   root packets either share enough multiplicity space for `(HEL11)` or that
   their mismatch is first-exit mass controlled by the two-level conductor
