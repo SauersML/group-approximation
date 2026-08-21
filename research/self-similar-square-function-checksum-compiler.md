@@ -81,10 +81,16 @@ precise finite-presentation target left by the user's heavy-tail idea.
   `split-higman-cycle-has-haar-marginals-and-maximal-role-gap` gives exact
   split edge models whose repeated roles have identical limiting moments but
   asymptotically maximal Hilbert--Schmidt discrepancy.
+- Adding one unlocalized mixed holonomy word does not repair that defect.
+  `one-product-holonomy-does-not-sew-four-bs-clocks` alternates exact clock
+  mismatches `P_q` and `P_q^(-1)`, so the product holonomy is exactly trivial
+  while all four occurrence gaps remain macroscopic.  A viable one-word
+  compiler must therefore make the scale syndromes positive/orthogonal;
+  ordinary unitary product cancellation is fatal.
 
 Therefore the genuinely new possibility left by `(SSC1)--(SSC5)` is a
 noncontracting or matrix-coordinate square-function decomposition which is
 visible as one finite word without functorially decoding a Cuntz family in
 the regular representation.  In a Higman-type host it must be a genuinely
 joint eigenbasis-holonomy or common-occurrence estimate; a scalar spectral
-first-hit ledger is insufficient.
+first-hit ledger or bare product holonomy is insufficient.
