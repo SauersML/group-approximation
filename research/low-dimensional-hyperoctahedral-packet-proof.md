@@ -5,6 +5,9 @@ kind: route
 title: Classify the low-degree odd bipartitions of the hyperoctahedral group
 target: low-dimensional-hyperoctahedral-packet-groupifies-any-predicate
 requires: []
+artifacts:
+  - experiments/hyperoctahedral_low_degree_packet.py
+  - experiments/hyperoctahedral-low-degree-packet.json
 ---
 
 The irreducible representations of `W_m=C_2 wr S_m` are indexed by

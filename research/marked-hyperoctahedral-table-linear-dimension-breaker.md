@@ -5,6 +5,9 @@ kind: claim
 title: A marked hyperoctahedral multiplication table has a linear robust dimension floor
 distinct_from:
   marked-clifford-table-exponential-dimension: that uses `N` Pauli pairs and dimension `2^N`; this uses one signed-permutation packet with minimum marked degree `m` and can simultaneously enforce an arbitrary Boolean predicate.
+artifacts:
+  - experiments/hyperoctahedral_low_degree_packet.py
+  - experiments/hyperoctahedral-low-degree-packet.json
 ---
 
 Let `f:W_m->U(d)` be an all-pairs normalized-HS `epsilon`-homomorphism with

@@ -7,6 +7,9 @@ distinct_from:
   all-bcs-contexts-share-one-hyperoctahedral-signed-type: that selects one tautological signed block by a Hecke idempotent; this proves that every sufficiently low-dimensional marked irreducible already has the desired joint spectrum.
   finite-selector-gadget-induction-barrier: that forbids deleting arbitrary selector characters from all representations of a finite overgroup; this retains other characters in higher-dimensional irreducibles and uses a dimension cutoff.
   marked-clifford-table-exponential-dimension: that forces dimension from independent Pauli pairs but carries no arbitrary Boolean selector predicate; this simultaneously supplies a predicate spectrum and a linear marked-dimension floor.
+artifacts:
+  - experiments/hyperoctahedral_low_degree_packet.py
+  - experiments/hyperoctahedral-low-degree-packet.json
 ---
 
 Let `R` be any nonempty subset of `{+1,-1}^k`.  Choose an even integer `L`
@@ -43,3 +46,10 @@ The construction is effective and uses only the multiplication table of one
 finite hyperoctahedral group.  It does not contradict finite-selector
 induction: marked irreducibles of dimension at least `m(m-2)` may carry other
 diagonal spectra.
+
+The replayable finite audit enumerates every bipartition for even
+`8<=m<=18`.  In every case the minimum marked degree is `m`, and the only
+marked irreducibles below `m(m-2)` are exactly the four degree-`m` modules of
+weights `1` and `m-1`.  It also checks the complement-spectrum identification
+on an even-repetition sample.  The audit is corroboration of the uniform
+proof, not a replacement for it.
