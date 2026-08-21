@@ -103,6 +103,35 @@ one separately authenticated partial-isometry swap J_(S_c) per context.
                                                                     (CSI10)
 ```
 
+More explicitly, put
+
+```text
+C_(c,pred)
+ =[diag(I-2F_c,I),J_(S_c)]_mult,
+C_(c,x)
+ =[diag(A_(c,x),B_x),J_(S_c)]_mult.                  (CSI11)
+```
+
+The exact two-sided swap estimate gives
+
+```text
+||F_cS_c||_2^2 <=(1/4)||C_(c,pred)-I||_2^2,
+(1/4)||A_(c,x)S_c-S_cB_x||_2^2
+ <=(1/4)||C_(c,x)-I||_2^2.                           (CSI12)
+```
+
+Consequently
+
+```text
+(1-theta)tau(Q)
+ <=E_Q
+ <=(1/4)sum_(c,x)mu_(c,x)
+   [||C_(c,pred)-I||_2^2+||C_(c,x)-I||_2^2].         (CSI13)
+```
+
+This is the complete dimension-independent row-defect ledger once the
+pulled-back PVM hypotheses `(CSI2)--(CSI3)` have been decoded.
+
 The stronger requirement that every context use the same literal `S` or
 the same literal swap is unnecessary.  This does not manufacture the
 common `Q`; it strictly narrows the remaining finite packet/compiler task.
