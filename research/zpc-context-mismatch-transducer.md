@@ -69,6 +69,17 @@ additional odd selector characters.
   a multi-active odd sector.  The missing check must therefore be
   selector-payload coupled; ordinary equality rows on the unconditioned gates
   are insufficient.
+- **Odd-XOR aggregation has a scalar ternary-closure obstruction.**
+  `affine-nested-odd-xor-selectors-force-affine-behavior` shows that replacing
+  the priority decoder by the product of all active payloads does make the
+  aggregate independent of a refinement, but only at the price of closing
+  the source's accepted scalar behaviors under `x+y+z`.  Finite affine nested
+  selectors, vertex-star refinements, and duplicate master labels do not
+  alter this: their visible activation set is still affine and therefore
+  contains every three-label activation once it contains the singletons.
+  Thus the repair works only for source contexts whose accepted-behavior union
+  is already affine, or after introducing genuinely selector--payload-coupled
+  noncommutative relations.
 - **The remaining analytic estimate is elementary once labels align.**
   `priority-decoder-lipschitz-under-selector-gate-alignment` proves that the
   identity-completed decoded copies are dimension-free Lipschitz in the
