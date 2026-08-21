@@ -94,3 +94,20 @@ in the matrix ultraproduct carrying `G`'s regular trace.
   statement, the class of results Hayes--Jekel--Kunnawalkam Elayavalli have
   been proving for property (T) inclusions in ultraproducts, and is the most
   concrete available line of attack on the goal.
+- **What the tool gives, precisely, and where it stops (2026-08-21, worked
+  out).**  Since `SL_3(Z)` is commensurated by `SL_3(Z[1/2])`, both `B` and
+  the relative commutant `A' cap M` lie in the wq-normalizing algebra
+  `W^*(wqN_M(A))` (Hayes arXiv:1505.06682: `u in A' cap M` gives
+  `u^* A u = A` diffuse, so `u` wq-normalizes `A`; and every `g in
+  SL_3(Z[1/2])` wq-normalizes `SL_3(Z)` by commensuration).  By Hayes'
+  monotonicity `h(W^*(wqN_M(A)) : M) <= h(A : M) = 0`.  So `A' cap M` is
+  contained in a strongly 1-bounded (`h = 0`) algebra and, in particular,
+  contains no free-group-factor as a regular piece -- the rigidity the
+  Haagerup `SL_2(Z)` cannot give.  BUT `h = 0` alone does NOT force
+  `A' cap M subseteq B' cap M`: an amenable extension `B <= <B, k>` with
+  `k in A' cap M \ B' cap M` also has `h = 0`, so it is consistent with the
+  entropy bound.  Closing `(RC3)` therefore needs more than 1-bounded
+  entropy -- it needs the commensuration dynamics (the expanding `h`) to act
+  trivially on the `h = 0` space `A' cap M`, an absorption that the bare
+  entropy invariant does not deliver.  This is the precise, honest boundary
+  of the current tool.
