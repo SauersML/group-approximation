@@ -5,6 +5,7 @@ kind: claim
 title: Promote the coherent Fanizza verifier reflection to one wandering Hecke word
 distinct_from:
   balanced-router-pauli-holonomy-interface: that promotes two D8 packet reflections and asks a mixed return to trivialize their holonomy; this promotes one coherent-verifier reflection while retaining an infinite wandering normal form.
+  compressed-reflection-kills-even-cesaro-mark: that proves the complete analytic passage from the corner approximation here to a finite-matrix Cesaro ceiling; this remains the algebraic construction of the wandering ordinary word and its packet compression.
 ---
 
 OPEN.  Let `V_m` and the finite clock/flag carrier `Q` be the explicit
@@ -25,9 +26,10 @@ finitely presented group extension and an ordinary word `w` such that:
 4. a countably amplified perfect HALT representation extends, even though
    the selected compression of `w` is the finite-order reflection `V_m`.
 
-Then `(UCR4)` gives the matrix-only Dirichlet comparison required by
-the [archived wandering-return abstraction](artifacts/fanizza-wandering-dirichlet-return.md), while clause 3 supplies canonical
-Cesaro growth.  `wandering-mark-cesaro-amplifier` finishes.
+By `compressed-reflection-kills-even-cesaro-mark`, `(FCW1)` itself gives an
+`o(1)` upper bound for every fixed even marked Cesaro sum.  Thus no separate
+weighted-state Dirichlet comparison is needed.  Clause 3 supplies canonical
+linear Cesaro growth, and `wandering-mark-cesaro-amplifier` finishes.
 
 The exact tension is now explicit: `w` must be infinite and wandering in the
 group regular normal form but look like the fixed reflection `V_m` after one
