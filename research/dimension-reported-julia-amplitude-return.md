@@ -46,12 +46,12 @@ The zero-density alternative collapses it directly.
 
 HALT completeness is compatible with the *payload*: on the perfect quotient
 `A_t=D_R=P` for every `t`, so the scalar mismatch is zero.  Moreover
-`one-sided-amitsur-oracle-has-two-unitary-corner-model` gives all moving
-oracle instructions one simultaneous bounded infinite realization using only
-two unitary variables and a fixed half-corner.  It is nevertheless a separate
-requirement to compile the additive, countably presented corner relations
-into finitely many unitary group relations without losing the constant matrix
-gap.
+`quaternion-packet-internalizes-unitary-amitsur-corner` gives all moving
+oracle instructions one simultaneous bounded infinite realization using two
+unitary variables and a fixed group-algebra corner whose mass is exactly tied
+to the marked quaternion word.  It is nevertheless a separate requirement to
+compile the additive, countably presented corner relations into finitely many
+unitary group relations without losing the constant matrix gap.
 
 ## Why this is a smaller diagonal challenge
 
@@ -85,9 +85,22 @@ exactly to the smallest known Fanizza scalar endpoint.
   positive relation `A_n^*A_n=(2n)!P`.  The finite defect remains
   `1/sqrt(2)`.  The countable moving additive relations and their growing
   mass—not boundedness or unitarity of the variables—are now the oracle gate.
+- **A quaternion packet internalizes the corner and its density ledger.**
+  `quaternion-packet-internalizes-unitary-amitsur-corner` replaces the
+  external half-corner by a fixed projection in `C[Q_8]` and proves the exact
+  dimension-matched identity
+  `||R_(rank P)||_2=||z-I||_2/(2 sqrt(2))`.  Thus precisely the mass which
+  separates the marked word pays the moving instruction; only finite
+  additive groupification remains.
 - **Direct polynomial evaluation is not robust.**  The degree and coefficient
   mass of `p_k` grow with the endogenous stopping index, so ordinary
   telescoping loses a `k`-dependent factor.
+- **Raw random sampling loses the gap factorially.**
+  `raw-amitsur-permutation-sampling-has-factorial-gap-loss` compares the Fock
+  Gram table with a zero-sum regular simplex: every `q`-query Lipschitz tester
+  has gap at most `L(q-1)/((2k)!-1)`.  A viable localization must encode and
+  check a redundant proof of the global alternating sum; it cannot merely
+  sample its monomials or pairs.
 - **Ordinary machine transport is not robust.**  Simulating the instruction
   and heat polynomial step by step accumulates the runtime in the HS bound.
 - **First-failed dyadic halving is not a dimension report.**

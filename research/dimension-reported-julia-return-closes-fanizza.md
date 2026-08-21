@@ -5,7 +5,7 @@ kind: route
 title: Feed the self-indexed multiplicity depth into the cyclic heat-amplitude endpoint
 target: fanizza-heat-filter-one-sided-return
 requires:
-  - one-sided-amitsur-oracle-has-two-unitary-corner-model
+  - quaternion-packet-internalizes-unitary-amitsur-corner
   - multiplicity-pi-turing-tape
   - fanizza-heat-filter-has-uniform-cstar-decay
   - fanizza-heat-return-is-one-cyclic-amplitude-product
@@ -20,7 +20,7 @@ Thus every canonical finite-dimensional microstate collapses the fixed
 Fanizza mark.  HALT extension is part of the compiler claim; at the scalar
 endpoint it is consistent because every heat filter is the identity on its
 ground-space carrier.  The oracle side now has an explicit bounded
-two-unitary half-corner model by
-`one-sided-amitsur-oracle-has-two-unitary-corner-model`; only finite
-constant-HS localization and transport of the moving positive instruction
-remain.
+two-unitary quaternion-corner model by
+`quaternion-packet-internalizes-unitary-amitsur-corner`, with the instruction
+gap exactly proportional to marked-word separation; only finite constant-HS
+localization and transport of the moving positive instruction remain.
