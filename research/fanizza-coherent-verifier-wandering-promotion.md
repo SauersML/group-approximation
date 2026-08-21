@@ -37,3 +37,23 @@ finite-dimensional packet compression.  A finite-edge graph-of-groups cell
 cannot suffice, because its regular finite models reproduce the Hecke
 compression.  The promotion must use a genuinely infinite-edge,
 non-Bass--Serre, or finite-multiplicity return mechanism.
+
+## Conjugate-product audit
+
+The tempting word
+
+```text
+w=product_i t_i a_i t_i^(-1)
+```
+
+does not bypass this firewall.  The packet intertwiner's arbitrary
+multiplicity unitary does cancel inside one conjugate on a selected type.
+But `finite-graph-packet-compression-wandering-no-go`
+shows that a representation-independent carrier return has only two normal
+forms.  If every conjugate returns through an HNN edge relation, the stable
+letters reduce and `w` belongs to a finite vertex packet.  If a stable letter
+survives, then `q w q` lives on a nontrivial Hecke double coset, orthogonal to
+the finite verifier `V_m` in the regular trace; residual finite quotients give
+a fixed positive HS error.  Thus the multiplicity gauge is not the remaining
+problem -- the incompatible pair is full carrier return versus ambient
+wandering.
