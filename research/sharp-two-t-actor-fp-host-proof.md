@@ -16,11 +16,11 @@ presented, point stabilizers are finitely generated, and the diagonal action
 has finitely many orbits.  All hypotheses hold here.  Its augmentation
 kernel is index two.
 
-The character argument is elementary.  Since `M` has codimension one in the
-finite-support permutation module, its dual is `F_2^X` modulo constants.  A
-finite orbit is fixed by simplicity.  Fixedness modulo constants gives the
-binary homomorphism in `(S2A3)`; perfectness kills it, and transitivity kills
-the remaining invariant coloring.  Property `(T)` applied to each infinite
+The character argument is elementary.  The dual of the full lamp module is
+the coloring space `F_2^X`.  A finite orbit is fixed by simplicity, and
+transitivity makes a fixed coloring constant.  A constant coloring takes
+the same value at `x,y`, so it evaluates `+1` on
+`m_0=delta_x+delta_y`.  Property `(T)` applied to each remaining infinite
 quasi-regular orbit gives a uniform gap for one fixed generating set.
 
 The D8-seed extension is finite over the finite presentation.  Its nonzero

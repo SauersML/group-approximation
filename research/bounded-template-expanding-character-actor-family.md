@@ -84,12 +84,13 @@ argument alone cannot supply it.
 There is now a concrete conditional way around the regular-wreath failure.
 `sharp-two-t-actor-gives-fp-host` proves that a finitely presented simple
 property-`(T)` sharply two-transitive actor with finitely generated point
-stabilizer makes the augmentation lamp extension finitely presented: the
-diagonal action has only two pair orbits, so the generalized wreath-product
-criterion applies.  The seed `delta_x+delta_y` is cyclic, its visible
-characters all have infinite uniformly expanding orbits, and one D8
-amalgam keeps `J` nontrivial while every exact matrix representation kills
-it.
+stabilizer makes the full binary permutational lamp extension finitely
+presented: the diagonal action has only two pair orbits, so the generalized
+wreath-product criterion applies.  Use the **two-point** seed
+`delta_x+delta_y`; both constant character fixed points are trivial on that
+seed, while every visible character has an infinite uniformly expanding
+orbit.  One D8 amalgam then keeps `J` nontrivial while every exact matrix
+representation kills it.
 
 André--Guirardel provide a two-generated simple property-`(T)` sharply
 two-transitive actor.  `andre-guirardel-sharp-t-actor-audit` records the
