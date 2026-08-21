@@ -27,6 +27,15 @@ finite-dimensional representations.  So the Kac--Moody lattices are
 "forced witnesses": whichever way the goal falls for them, they are a
 counterexample to something.
 
+**Relation to Fournier-Facio--Willett Question 1.9** (arXiv:2603.18456v2:
+is there an infinite property (T) group with the (L)LP?).  A Kac--Moody
+lattice as above answers it positively exactly in case (a)'s complement
+being false: if `C^*(Lambda)` has the LLP then `Lambda` is a simple
+finitely presented Kazhdan group with the LLP AND non-hyperlinear; if it
+does not, the class of (L)LP failures acquires its first members with no
+finite-dimensional representations at all.  Either way the lattice
+settles a published question.
+
 **Why the dichotomy is not obviously decidable either way.**  Both sides
 are consistent with everything known: no hyperlinearity proof can proceed
 through finite quotients or finite-dimensional representations (there are

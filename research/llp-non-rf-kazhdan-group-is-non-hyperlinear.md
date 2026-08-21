@@ -32,7 +32,31 @@ Stinespring dilates the components to genuine representations whose
 corners agree with the approximation on `F`).  Then
 `non-rf-kazhdan-weak-ucp-iff-non-hyperlinear` gives non-hyperlinearity.
 
-**LLP passes to subgroups.**  For `H <= Gamma` the conditional expectation
+**Position in the literature (source-verified 2026-08-21).**
+Fournier-Facio--Willett, *The Local Lifting Property, Property FD, and
+stability of approximate representations*, arXiv:2603.18456v2 (April
+2026), Question 1.9: "Is there an example of an infinite property (T)
+group (or just a group with property (T) relative to an infinite
+subgroup) with the (L)LP?" -- open; their Remark 3.8 adds that every known
+(L)LP failure (Ozawa, Thom, Ioana--Spaas--Wiersma, and plausibly
+Buss--Echterhoff--Willett's Osajda-type groups) has at least relative
+property (T), and that Dogon's Theorem 1.6 produces a non-hyperlinear
+group from a property (T) group `Gamma` with the LLP and
+`H_1(Gamma) = 0 != H_2(Gamma)`.  The present theorem removes the
+cohomological condition: non-residual-finiteness alone suffices, and the
+witness is `Gamma` itself rather than a central extension.  So a positive
+answer to Question 1.9 by a NON-residually-finite group (e.g. any simple
+Kazhdan group) closes the goal outright, while a positive answer by a
+residually finite group would still need Dogon's `H_2` route.  Their
+Theorem 1.1 (LLP + RFD gives very flexible stability in operator, HS and
+Schatten norms) is the RFD-based cousin of
+`kazhdan-weak-ucp-stability-is-flexible-stability`, which uses (T) instead
+of RFD -- appropriate since Kazhdan groups typically fail RFD (their
+Question 1.10; Bekka for `SL_n(Z)`).
+
+**LLP passes to subgroups** (Fournier-Facio--Willett Cor. 3.17, with
+references to Ozawa and Ioana--Spaas--Wiersma Remark 1.2; proof recalled
+here).  For `H <= Gamma` the conditional expectation
 `E : C^*(Gamma) -> C^*(H)` is ucp, so `E (x) id` is defined on maximal
 tensor products and `C^*(H) (x)_max B -> C^*(Gamma) (x)_max B` is injective;
 with Kirchberg's characterization `LLP <=> (x)_max B(l^2) = (x)_min B(l^2)`

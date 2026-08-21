@@ -58,6 +58,15 @@ residually finite".
   `sln-z-thin-codense-tau-pair`), the direct route through this lemma
   supersedes the face-confinement it provides.
 
+**Literature cousin.**  Fournier-Facio--Willett arXiv:2603.18456v2,
+Theorem 1.1: if `C^*(Gamma)` has the LLP and is RFD then every asymptotic
+representation (operator, Hilbert--Schmidt or Schatten norm) is near
+corners of genuine FINITE-dimensional representations ("very flexibly
+stable"); there RFD supplies the finite-dimensional reduction.  Here
+property (T) supplies it instead, which is the relevant replacement for
+Kazhdan groups, where RFD typically fails (Bekka for `SL_n(Z)`, `n >= 3`;
+their Question 1.10 asks whether any infinite Kazhdan group is RFD).
+
 **Boundary.**  The lemma needs full property (T) of `Gamma` (the dilation
 space is infinite dimensional, so (T;FD) does not reach it) and says
 nothing about asymptotic homomorphisms that are not separating (limit

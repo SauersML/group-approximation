@@ -20,6 +20,23 @@ a sweeping extension of Ioana--Spaas--Wiersma.
 
 ## Attempts
 
+- **Status in the literature (April 2026).**  Fournier-Facio--Willett
+  arXiv:2603.18456v2 Question 1.9 asks for ANY infinite property (T) group
+  (even relative (T) with respect to an infinite subgroup) with the
+  (L)LP; none is known.  Their Remark 3.8: all known (L)LP failures have
+  (relative) (T).  Their new (L)LP classes -- 3-manifold groups, limit
+  groups, one-relator groups with torsion / negative immersions /
+  nontrivial centre / small cancellation, chordal right-angled Artin
+  groups, `BS(n,m)`, the Baumslag--Gersten group -- are all a-T-menable
+  (their discussion after Question 1.8), and their permanence theorems
+  (subgroups, increasing unions, free products, amalgams over finite
+  subgroups, graphs of groups with finite edge groups, central
+  extensions, amenable extensions) never create property (T) from
+  non-(T) inputs except possibly through central extensions of a group
+  that already has (T).  This claim therefore asks for a positive answer
+  to their Question 1.9 by a non-residually-finite group; the two open
+  questions differ only by residual finiteness, and for simple Kazhdan
+  groups they coincide.
 - **Fences (Ioana--Spaas--Wiersma arXiv:2006.01874, abstract level).**
   `C^*(SL_n(Z))`, `n >= 3`, and `C^*(Z^2 rtimes SL_2(Z))` fail LLP; the
   (stronger) lifting property LP fails for every Kazhdan `Gamma` with
