@@ -43,6 +43,21 @@ involution.
 
 ## Attempts
 
+- **Same-dimensional repair is false; flexible padding is essential.**
+  `even-weil-fixed-line-compression` removes the one `R,S`-invariant fixed
+  line from the even Weil representation for every prime `p=1 mod 4` and
+  polar-rounds the compressed involution.  The BS core remains exact, all
+  four remaining relators have defect `O(p^(-1/2))`, but no exact extension
+  exists in dimension `(p-1)/2`.  Adding back one dimension gives an exact
+  model.  Thus the allowed flexible padding is load-bearing, and the sharp
+  target must permit `padding/d=O(epsilon^2)`.
+- **Primitive prime packets are now classified exactly.**
+  `prime-bs14-packet-extension-classification` proves that a scalar packet
+  extends exactly iff it is the full odd Weil orbit (`p=3 mod 4`,
+  `ord_p(4)=(p-1)/2`, `v=1`).  This identifies the exact repair targets, but
+  the even-Weil compression shows why exact classification alone cannot
+  yield a dimension-free same-dimensional gap.
+
 - **Core exactification is available.**  The one-solenoid dense-periodic-
   measures theorem gives HS stability of `BS(1,4)`, so the approximate core
   can be repaired before this claim is applied.  This does not control `X`.
