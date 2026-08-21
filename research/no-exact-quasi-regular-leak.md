@@ -121,6 +121,22 @@ intervenes.
   must be carried by the non-word witness `k` (and its interaction
   with growing-length structure), never by spectral data of the
   vertex words alone.
+- **Hecke-walk functionals are exhausted too (2026-08-21).**  For the
+  exact profile, every word functional of shell conjugates is
+  computable: `<w k w*, w' k w'*> = 1` iff `w Lambda = w' Lambda`, so
+  `|| S^N(k) ||_2^2` equals the collision functional (the squared
+  `l^2`-norm of the `N`-step distribution) of the lazy Hecke walk on
+  `Gamma/Lambda` — exactly the quasi-regular walk norms, decaying at
+  the tempered radius `~ 1/2 + O(1/sqrt(L))` per step.  This is
+  FASTER than the `(1 - delta_0)` decay that
+  `hecke-averaging-realizes-commutant-expectation` requires, so the
+  contraction theorem and the enemy are consistent at every `N`: no
+  averaged word functional — one shell, iterated shells, any lazy
+  mixture — can distinguish the enemy from the quasi-regular model,
+  because the profile IS the quasi-regular matrix coefficient.  This
+  is the Hecke-level form of the word-level vacuity lesson: the
+  refutation must see where `K` SITS (its algebra position relative
+  to the level structure), not any trace of words applied to it.
 - **Where finite-dimensionality must enter.**  In `L(G_2)` itself the
   configuration exists, so no trace identity alone can refute it.
   The regular restricted trace forces the finite-level restrictions
