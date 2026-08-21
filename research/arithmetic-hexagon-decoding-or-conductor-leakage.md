@@ -133,6 +133,16 @@ the fixed-depth nonhyperlinearity criterion.
   `native-parahoric-triangle-kills-all-corrector-gauges`.  Thus the current
   hole is solely the common-carrier/rectangular-leakage extraction, not
   corrector holonomy after extraction.
+- **Partial cancellation itself loses only first-exit mass.**  Left or right
+  cancellation through a partial isometry is isometric on its actual source
+  or range.  On a larger carrier `R`, the squared uncontrolled error is at
+  most four times the trace of the missing source/range projection.  Applying
+  this to the two translated native triangles gives a supported estimate
+  `||R(Z-I)||_2^2 <= C edgeEnergy+C sum(firstExitMass)` with a fixed constant;
+  see `partial-isometry-translate-cancel-charges-first-exit`.  Therefore the
+  analytic cancellation endpoint no longer requires globally unitary
+  correctors.  The open step is solely to extract the supported factors and
+  route their actual support loss into the conductor recurrence.
 - **Current unresolved step.**  Prove that separately rounded growing-period
   root packets either share enough multiplicity space for `(HEL11)` or that
   their mismatch is first-exit mass controlled by the two-level conductor
