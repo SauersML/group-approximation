@@ -59,3 +59,9 @@ involution.
   whose `R`-spectra are inverse.  A dimension-free transport/matching theorem
   for those scalar packet coefficients, coupled across both cubic
   constraints, would prove the claim.
+- **Exact determinant pruning.**
+  `iwahori-cycle-packet-determinant-fence` eliminates every scalar packet
+  violating `(det R/det S)^3=1`; for prime full quadratic-residue orbits with
+  `v=+1`, this already excludes `p=1 mod 4`.  This is only an exact
+  classifier.  Determinant defects dilute under normalized-HS amplification,
+  so the surviving packet transport still needs a positive-density argument.
