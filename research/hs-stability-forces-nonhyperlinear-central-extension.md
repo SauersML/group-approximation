@@ -39,7 +39,7 @@ theorem is stated for it precisely so that it reaches lattices without (T).
 result into a non-hyperlinear group, and the graph did not have it: the
 `iwahori-*` lane attacks the stability side, while the conversion lived only as
 prose inside `iwahori-sector-closure`.  It also generalizes the property (T)
-version of Dogon (arXiv:2103.02730) that earlier lanes referred to informally.
+version of Dogon (arXiv:2211.10492) that earlier lanes referred to informally.
 
 **Shape of the argument, recorded because it constrains reuse.**  Assuming
 `Gamma~` hyperlinear yields *asymptotically projective representations* of
