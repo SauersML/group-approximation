@@ -85,6 +85,15 @@ character twist `c_j->-c_j` preserves the Pauli sign and every control
 relation.  A Hecke orientation selection is therefore required before an
 arbitrary marked packet model satisfies `(BAE5)`.
 
+Simply doubling each visible controller does not remove this requirement at
+the ordinary-word level.  By
+`doubled-controllers-do-not-preserve-game-gap`, the zero-control block of
+`(c_jH_j)^2` is `w_jQ_j`, where `w_j` is an arbitrary unitary preserving the
+accepted subspace.  Such interleaved rotations can make the dressed cyclic
+product have operator norm one even when the undressed game compressor has a
+fixed strict gap.  The orientation-free construction survives only as the
+nonunitary Hecke product of conjugated control projections.
+
 For a Gram vector `G`, write
 
 ```text

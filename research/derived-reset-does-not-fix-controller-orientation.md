@@ -191,3 +191,11 @@ second is a full mixed-conjugation-table problem, not the existing derived
 reset bridge.  Therefore the balanced four-point `D_8` construction does
 not canonically orient the controller at equal Pauli spin scale without an
 additional source or mixed-moment condition.
+
+`doubled-controllers-do-not-preserve-game-gap` tests the most economical
+attempt at avoiding selection.  The word `(cH)^2` cancels scalar signs, but
+its zero-control corner is `wQ` with `w=(uv)^2` an arbitrary unitary inside
+the accepted multiplicity space.  Three such rotations give an exact norm-
+one cyclic product despite a fixed game-energy gap.  Conjugating the control
+projection cancels `w` completely, but only at the nonunitary Hecke-product
+level.
