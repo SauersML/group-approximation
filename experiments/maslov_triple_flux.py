@@ -1,24 +1,27 @@
-"""Maslov-triple flux engine test at p = 3 versus p = 5 (v2).
+"""Metaplectic anomaly classes at p = 3 versus p = 5 (v3).
 
-Composite of three canonical metaplectic kernels around a product-one
-triple in SL_2(Z/p^k); the composite is scalar by Schur once each
-kernel genuinely intertwines, and the scalar's 8th-root class is the
-Weil-cocycle triple product.  Identical code at both primes makes the
-p = 3 vs p = 5 comparison convention-free.
+v1/v2 autopsy: general-entry Weil kernel formulas kept failing their
+intertwining witnesses.  v3 eliminates formula risk entirely: only
+VERIFIED PRIMITIVES are used, each a fixed concrete matrix with no
+normalization freedom, so every reported scalar is fully canonical.
 
-v2 fixes the v1 convention failure (witnesses rejected the kernels):
-  * Heisenberg: (Xf)(x) = f(x-1), Z = diag e(x/q); then F with kernel
-    e(-ux/q)/sqrt(q) satisfies Ad(F): X -> Z^{-1}, Z -> X, i.e. F
-    implements g_F = [[0,1],[-1,0]] on COLUMN vectors (m,n) with
-    rho(m,n) = X^m Z^n.
-  * Weyl-symmetrized operators rho_W(m,n) = e(2bar*m*n/q) X^m Z^n
-    make the intertwining phase-free at odd p, so the witness is
-    W rho_W(v) W* = rho_W(g v) with NO phase allowance.
-  * Kernel for g = [[a,b],[c,d]], c invertible:
-        K(u,x) = q^{-1/2} psi( -2bar * c^{-1} * (a x^2 - 2 u x + d u^2) )
-    A programmatic convention search over the exponent sign is run
-    first and REPORTED; the run is VOID unless exactly one sign
-    passes all witnesses at 1e-8.
+Primitives on l^2(Z/q), q = p^k, p odd:
+  F0      kernel e(-ux/q)/sqrt(q)      implements [[0,1],[-1,0]]
+  mult(t) diag e(2bar t x^2 / q)       implements [[1,0],[t,1]]
+  P       (Pf)(x) = f(-x)              implements -I
+Witnesses (phase-free against Weyl-symmetrized rho_W(m,n) =
+e(2bar mn/q) X^m Z^n): each primitive must intertwine at 1e-8, and
+each anomaly word must be scalar at 1e-8, else the line is VOID.
+
+Anomaly words (all products equal to the identity or -I in SL_2, so
+the operators are scalar (resp. scalar times the exactly-known P)):
+  F0^4                      = I in SL_2      -> control, expect exactly 1
+  A(t) = (F0 mult(t))^3 P   = I in SL_2      -> the metaplectic anomaly;
+        (W0 M(1))^3 = -I classically, P accounts for -I, so A(t) is a
+        canonical 8th-root-of-unity class (the Gauss-sum cocycle).
+Report A(t) for t in {1, -1, 2} across p in {3,5}, k in {2,3,4,5};
+the p = 3 vs p = 5 and k-parity pattern is the flux-arithmetic
+signature (epsilon_q alternates at p = 3, constant at p = 5).
 """
 import numpy as np
 
@@ -37,88 +40,55 @@ def heis(q):
 
 def rho_w(q, m, n, X, Z):
     inv2 = pow(2, -1, q)
-    ph = e(((inv2 * m * n) % q) / q)
+    ph = e(((inv2 * (m % q) * (n % q)) % q) / q)
     return ph * np.linalg.matrix_power(X, m % q) @ np.linalg.matrix_power(Z, n % q)
 
 
-def weil_kernel(g, q, sign):
-    a, b, c, d = g
-    cinv = pow(c % q, -1, q)
-    inv2 = pow(2, -1, q)
-    x = np.arange(q)
-    u = x.reshape(-1, 1)
-    quad = (a * x * x - 2 * u * x + d * u * u) % q
-    ph = (sign * inv2 * cinv % q) * quad % q
-    return e(ph / q) / np.sqrt(q)
-
-
 def witness(W, g, q, X, Z):
-    """max over the two generators of || W rho_W(v) W* - rho_W(g v) ||"""
     a, b, c, d = g
     errs = []
     for (m, n) in ((1, 0), (0, 1)):
         gm, gn = (a * m + b * n) % q, (c * m + d * n) % q
-        lhs = W @ rho_w(q, m, n, X, Z) @ W.conj().T
-        rhs = rho_w(q, gm, gn, X, Z)
-        errs.append(np.linalg.norm(lhs - rhs))
+        errs.append(np.linalg.norm(W @ rho_w(q, m, n, X, Z) @ W.conj().T
+                                   - rho_w(q, gm, gn, X, Z)))
     return max(errs)
 
 
-def matmul2(m, n, q):
-    return [[(m[0][0] * n[0][0] + m[0][1] * n[1][0]) % q,
-             (m[0][0] * n[0][1] + m[0][1] * n[1][1]) % q],
-            [(m[1][0] * n[0][0] + m[1][1] * n[1][0]) % q,
-             (m[1][0] * n[0][1] + m[1][1] * n[1][1]) % q]]
-
-
-def run_triple(p, k, gs, label, sign):
+def run(p, k):
     q = p ** k
-    prod = [[1, 0], [0, 1]]
-    for g in gs:
-        assert (g[0] * g[3] - g[1] * g[2]) % q == 1 % q, f"det!=1: {g}"
-        prod = matmul2(prod, [[g[0], g[1]], [g[2], g[3]]], q)
-    assert prod == [[1 % q, 0], [0, 1 % q]], f"product not identity: {prod}"
+    inv2 = pow(2, -1, q)
     X, Z = heis(q)
-    Ws, wits = [], []
-    for g in gs:
-        W = weil_kernel(g, q, sign)
-        Ws.append(W)
-        wits.append(witness(W, g, q, X, Z))
-    C = Ws[0] @ Ws[1] @ Ws[2]
-    sc = np.trace(C) / q
-    nonsc = np.linalg.norm(C - sc * np.eye(q)) / np.sqrt(q)
-    arg8 = np.angle(sc) / (2 * np.pi) * 8
-    ok = max(wits) < 1e-8 and nonsc < 1e-8
-    print(f"p={p} k={k} [{label}]: scalar {sc:.6f} |.|={abs(sc):.4f} "
-          f"arg={arg8:+.4f}/8  nonscalarity={nonsc:.2e} "
-          f"witness={max(wits):.2e} {'OK' if ok else 'VOID'}", flush=True)
-    return ok
+    x = np.arange(q)
+    F0 = e(-(np.outer(x, x) % q) / q) / np.sqrt(q)
+    P = np.zeros((q, q))
+    P[x, (-x) % q] = 1.0
+
+    wF = witness(F0, (0, 1, -1, 0), q, X, Z)
+    wP = witness(P, (-1, 0, 0, -1), q, X, Z)
+
+    ctrl = np.linalg.matrix_power(F0, 4)
+    c_sc = np.trace(ctrl) / q
+    c_ns = np.linalg.norm(ctrl - c_sc * np.eye(q)) / np.sqrt(q)
+    print(f"p={p} k={k} (q={q}): primitives wF={wF:.1e} wP={wP:.1e}; "
+          f"F0^4 scalar {c_sc:.6f} nonsc={c_ns:.1e}", flush=True)
+
+    for t in (1, -1, 2):
+        M = np.diag(e(((inv2 * t % q) * (x * x) % q) / q))
+        wM = witness(M, (1, 0, t, 1), q, X, Z)
+        B = F0 @ M
+        A = B @ B @ B @ P
+        sc = np.trace(A) / q
+        ns = np.linalg.norm(A - sc * np.eye(q)) / np.sqrt(q)
+        ok = max(wM, wF, wP) < 1e-8 and ns < 1e-8 and abs(abs(sc) - 1) < 1e-8
+        arg8 = np.angle(sc) / (2 * np.pi) * 8
+        print(f"    A({t:+d}): scalar {sc:+.6f} arg={arg8:+.4f}/8 "
+              f"nonsc={ns:.1e} wM={wM:.1e} {'OK' if ok else 'VOID'}",
+              flush=True)
 
 
-# convention search at small level: exactly one sign must pass
-print("== convention search (p=3, k=2) ==", flush=True)
-passing = []
-for sign in (1, -1):
-    q = 9
-    X, Z = heis(q)
-    g = (0, 1, -1 % q, 0)
-    W = weil_kernel(g, q, sign)
-    err = witness(W, g, q, X, Z)
-    print(f"  sign={sign:+d}: witness={err:.2e}", flush=True)
-    if err < 1e-8:
-        passing.append(sign)
-if len(passing) != 1:
-    print(f"CONVENTION SEARCH FAILED: passing={passing} -- RUN VOID", flush=True)
-    raise SystemExit(1)
-SIGN = passing[0]
-print(f"== canonical sign: {SIGN:+d} ==", flush=True)
-
-T1 = [(0, 1, -1, 0), (1, -1, 1, 0), (1, 0, 1, 1)]
-T2 = [(0, 1, -1, 0), (2, -1, 1, 0), (1, 0, 2, 1)]
-allok = True
 for p in (3, 5):
-    for k in (3, 4):
-        for gs, label in ((T1, "T1"), (T2, "T2")):
-            gs_mod = [tuple(v % (p ** k) for v in g) for g in gs]
-            allok &= run_triple(p, k, gs_mod, label, SIGN)
-print("MASLOV-TRIPLE-DONE" + ("" if allok else " (SOME VOID)"))
+    for k in (2, 3, 4, 5):
+        if p ** k > 700:
+            continue
+        run(p, k)
+print("ANOMALY-CLASSES-DONE")
