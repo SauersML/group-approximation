@@ -389,6 +389,25 @@ refutation, and this claim makes the reduction precise.
   freedom is NOT collapsing the floor.  The twisted census head shows
   multiplicity-one blocks exist (`[1,2]` and `[1,4]` entries); the
   decisive 16- and 32-dim block sizes are being read out.
+- **Model-scope clarification and the v6 design (2026-08-21).**  Two
+  points that a later reading could trip over.  (i) The probe's
+  single-space six-pair model UNDER-constrains the enemy (the true
+  microstate satisfies far more relations), so its measured floors
+  are meaningful lower-bound-style signals for this vertex choice,
+  and the block-trace analysis with `Q_1 = <phi-images>` applies to
+  it as stated; the two-level pairing discussion concerns the
+  FLEXIBLE (dimension-padded) formulation only.  (ii) Sharper: the
+  control defect `6.92` sits above the spectral floor `2.73 > 0`,
+  which proves the permutation-representation vertex model can NEVER
+  host the enemy at all — the six fixed relators cannot vanish there,
+  because its generator spectra are not doubling-compatible.  This is
+  the approximate-doubling-invariance wall certifying itself in one
+  number.  The enemy-compatible testbed (v6) must therefore build the
+  vertex representation ON solenoid-compatible spectra — layered
+  towers with descent-compatible weights, the enemy's own necessary
+  structure — and measure the carrier census and floor THERE.  The
+  present prototype remains the mechanism testbed where the
+  block-trace machinery and the carrier anatomy were established.
 - Proved below by assembling established inputs; see the proof route.
   The one step that is a HYPOTHESIS here and a theorem at `SL_2` is
   vertex near-exactness: `SL_3(Z)` HS-stability is open (it is the
