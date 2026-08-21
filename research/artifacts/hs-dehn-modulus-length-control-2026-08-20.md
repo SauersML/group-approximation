@@ -568,74 +568,40 @@ their mechanism: theirs passes through asymptotically projective
 representations and a central `Z`; this one through a single (tau)
 projection, co-density and Britton's lemma.
 
-## 13. A weaker local endpoint: transfer only unitary commutants
+## 13. The permutation twin
 
-The HNN proof does not need a nearby exact representation of the whole base.
-Write
+Dogon--Vigdorovich note that their central-extension method has no
+permutational analogue and ask for an amalgam like `SL_2(Z[1/p])` for which
+flexible permutation stability would imply nonsoficity.  The HNN argument
+transfers verbatim: in a sofic approximation of `G_p = <SL_2(Z[1/p]), t |
+[t, SL_2(Z)] = 1>`, flexible P-stability of the base gives a genuine
+congruence action `rho`; the graph of `sigma = image(t)` is an
+almost-invariant subset of the diagonal `SL_2(Z)`-action on pairs, hence by
+Selberg's `(tau)` close to an invariant partial permutation, which commutes
+with `rho(SL_2(Z)) = rho(SL_2(Z[1/p]))`; Britton forbids `[t, diag(p,1/p)] =
+1`.  So: **flexible permutation stability of `SL_2(Z[1/p])` implies `G_p` is
+not sofic**, and contrapositively soficity of `G_p` refutes that stability.
+The only property of the pair used, in both the unitary and the
+permutation version, is that `SL_2(Z)` and `SL_2(Z[1/p])` have the same
+image in every finite quotient, together with `(tau)` for `SL_2(Z)`.
 
-```text
-SL_2(Z[1/2])=C_+ *_(B_+=B_-) C_-,       C_+=C_-=SL_2(Z).
-```
+## 14. Numerical probe of the linearized Iwahori question
 
-Each vertex copy is same-dimension HS-stable by the elementary cyclic
-presentation `C_4 *_(C_2) C_6`: round the order-four generator, use its
-square as the common sign, block-centralize the order-six generator, and
-round its cube separately on the two sign blocks.  Hence a microstate of the
-HNN candidate can be reduced to two exact vertex representations with an
-almost-matched Iwahori edge.
-
-What remains is only this one-sided assertion: a unitary that almost
-centralizes the first exact vertex must almost centralize the second, with a
-modulus depending only on the Iwahori mismatch and the first commutators.
-This is `iwahori-unitary-commutant-transfer`.  At zero mismatch it follows
-from finite-dimensional co-density.  It is weaker than the printed Iwahori
-question because it neither perturbs the pair to a compatible representation
-nor constructs an invertible edge intertwiner.  If it holds, the word
-`[t,a]`, `a` in the second vertex, collapses in every canonical matrix
-microstate while Britton keeps it nontrivial.  Thus it alone produces the
-explicit nonhyperlinear group
-
-```text
-<SL_2(Z[1/2]),t | [t,SL_2(Z)]=1>.
-```
-
-The physical-rank outlier remains relevant but its burden is sharper: a
-counterexample now needs a **unitary** in the low-energy outlier whose
-commutator with the second vertex stays macroscopic.  Merely observing that a
-sparse operator subspace may contain an invertible matrix no longer blocks
-the argument.
-
-Equivalently, for every sequence of almost-compatible exact vertex
-representations, the homomorphism of the amalgam into the resulting tracial
-matrix ultraproduct must satisfy
-
-```text
-rho(C_+)' intersect M_omega = rho(SL_2(Z[1/2]))' intersect M_omega.
-```
-
-Failure of a quantitative modulus and failure of this relative-commutant
-identity are the same by the ultraproduct contrapositive.  This isolates the
-one place where finite-dimensional co-density must be upgraded to matricial
-co-density; no global representation repair is logically required.
-
-There is also no loss in restricting the missing equality to two-block
-projection witnesses.  Given a failed unitary witness `v`, double the vertex
-representations and replace it by the selfadjoint unitary
-`[[0,v],[v^*,0]]`; its positive spectral projection has exactly half the
-commutator norm.  Thus a negative answer must exhibit a projection that
-asymptotically reduces the first `SL_2(Z)` vertex and the common Iwahori edge
-while the second vertex retains a fixed amount of off-diagonal mass.  This is
-the minimal finite-stage obstruction now recorded as
-`iwahori-transfer-failure-reduces-to-two-block-projection`.
-
-Moreover, if the second-vertex commutator of that projection is at least
-`epsilon_0`, comparison of `P` with `UPU^*` gives
-
-```text
-epsilon_0^2
- <=2 min(tr(P),1-tr(P)).
-```
-
-So both blocks have positive linear rank.  The remaining obstruction cannot
-be a vanishing physical-rank tail.  It is a positive-density mixing of two
-asymptotic first-vertex/Iwahori reducing blocks by the second vertex.
+`experiments/iwahori_linearized_gap.py` computes, for the permutation
+representation `rho` of `SL_2(F_p)` on `P^1(F_p)` (`d = p+1`), the
+Mayer--Vietoris mismatch map on `Z^1(SL_2(Z), Ad rho) (+) Z^1(SL_2(Z)^t, Ad
+rho)`.  Its kernel is exactly the diagonal coboundaries for every `p`
+tested (so `H^1(SL_2(Z[1/2]), Ad rho) = 0`, as (T;FD) predicts), but the
+smallest nonzero singular value in the cochain Hilbert--Schmidt norm
+decays: `0.82, 0.74, 0.71, 0.57, 0.47, 0.41, 0.35` for `p = 3, 5, 7, 11,
+13, 17, 19`.  A Hecke heuristic (the two restrictions are the degeneracy
+maps whose trace-composition is `T_2`, so on cusp classes the angle is at
+least `3 - 2 sqrt 2` by Deligne) predicts a uniform first-order gap on the
+cuspidal part; the decay must therefore come from non-cuspidal (Eisenstein,
+Steinberg-isotypic, `a_2 = 3`) classes, for which the harmonic
+representatives are not square-integrable and the cochain norm is not the
+Petersson norm.  A decaying first-order gap does not by itself refute
+flexible stability (the second-order Kuranishi obstruction in
+`H^2(SL_2(Z[1/2]), Ad rho)`, of dimension about `d^2/12`, can block the
+integration of near-kernel directions), but it says that any proof of
+stability cannot be a uniform linearization argument.
