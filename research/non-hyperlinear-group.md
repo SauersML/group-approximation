@@ -183,3 +183,21 @@ gates; that child product is the exact same-gauge identity-outer anchor.
 Finite-depth Clifford regular models prove the recursion is stationary, so
 the remaining breakthrough must be a payload-dependent first-hit or
 proper-corner exposure inequality with contraction factor below one.
+
+Two analytic obligations have since closed. First,
+`forbidden-weighted-type-carrier-coverage-is-rank-rounding` proves global
+coverage with coefficient one and loss `3|Omega|/d`; hence the global
+marked-type criterion now has only its summed-row domination gate. Second,
+`tail-wordized-child-surplus-collision-supplies-rct7` converts forbidden BCS
+surplus into the strict recursion
+
+```text
+(1+beta)a_n<=a_(n+1)+errors,
+```
+
+and one reflection-conjugacy word controls the only leakage term. Thus the
+recursive lane's remaining obligation is finite-presentation wordization of
+the tail and aggregate corrected child. A single ordinary Hecke holonomy
+cannot provide the alternative global row domination:
+`one-hecke-holonomy-cell-cannot-pay-the-cyclic-selector-sum` closes it by a
+last-edge multiplicity-gauge countermodel.

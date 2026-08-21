@@ -259,3 +259,36 @@ same multiplicity gauge and cancels it. Finite Clifford truncations remain
 stationary, however. Self-reference solves gauge coherence but supplies no
 strict contraction; a payload-dependent first-hit/proper-corner exposure law
 is still required.
+
+The coverage half of the global decoder is now solved.
+`forbidden-weighted-type-carrier-coverage-is-rank-rounding` trims each marked
+forbidden type projection to the largest rank divisible by four. Over the
+fixed menu the total loss is at most `3|Omega|/d`, and every retained carrier
+has exact analytic half/quarter selectors. Thus global coverage holds with
+coefficient one; only summed-row domination remains. The carriers need not
+reduce the context packet, and an explicit isotypic counterexample shows that
+requiring reduction would reintroduce the old alignment problem.
+
+The recursive lane also has its strict analytic exposure.
+`tail-wordized-child-surplus-collision-supplies-rct7` uses the fact that every
+forbidden BCS copy contributes one surplus corrected child. Returning the
+full child to the next carrier gives
+
+```text
+(1+beta)a_n <= a_(n+1)+boundary+one support-row energy,
+```
+
+so the contraction factor is `lambda=(1+beta)^(-1)<1`. The recursive
+identity-outer anchor wordizes the child reflection, and one reflection
+conjugacy relator controls the leakage. Stationary Clifford truncations now
+pay exactly the forbidden surplus, while the perfect model has zero surplus
+and admits an exact HNN return. The remaining task on this lane is finite
+presentation syntax for the recursive tail and aggregate corrected-child
+reflection, not another analytic contraction lemma.
+
+Finally, `one-hecke-holonomy-cell-cannot-pay-the-cyclic-selector-sum` proves
+that one uncompressed closed transport word cannot supply the remaining
+summed-row domination: the last multiplicity gauge always closes the
+holonomy while the cyclic selector floor stays positive. A positive actuator
+must compress intermediate stages by the analytic forbidden cuts or impose a
+genuinely matrix-coordinate condition that removes that last-edge gauge.
