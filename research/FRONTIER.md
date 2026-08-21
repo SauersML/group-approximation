@@ -2945,6 +2945,7 @@ wreath-compression-mf-radical [✓] Exact MF radicals of compression wreath prod
 
 ## Recently touched
 
+- 2026-08-21 · arithmetic-hexagon-decoding-or-conductor-leakage [OPEN] Arithmetic root microstates decode one A2 hexagon carrier or pay conductor leakage
 - 2026-08-21 · positive-rate-tanner-tests-have-contextual-models [ESTABLISHED] Positive-rate bounded-local linear tests have exact class-two contextual models
 - 2026-08-21 · class-two-tanner-contextual-model-proof [COMPLETE] Count the untested commutators in the maximal class-two quotient
 - 2026-08-21 · bounded-template-average-blr-occurrence-decoder [OPEN] Recover average dense BLR energy from bounded-template occurrences
@@ -2952,8 +2953,7 @@ wreath-compression-mf-radical [✓] Exact MF radicals of compression wreath prod
 - 2026-08-21 · julia-dilation-packages-heat-as-one-cross-gram-moment [ESTABLISHED] The Julia dilation packages the Fanizza heat amplitude as one projection overlap
 - 2026-08-21 · fixed-packet-julia-functoriality-proof [COMPLETE] Replace the packet multiplicity matrices by a finite von Neumann algebra
 - 2026-08-21 · fixed-packet-julia-calculus-is-tracially-functorial [ESTABLISHED] Fixed-packet Julia calculus cannot manufacture the matrix-only heat return
-- 2026-08-21 · fanizza-heat-filter-one-sided-return [OPEN] Return the Fanizza heat-filter sequence to one fixed carrier only in finite matrices
 
 ## Active claims
 
-- 🔒 list — 34m41s remaining
+- 🔒 list — 33m31s remaining
