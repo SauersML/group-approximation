@@ -106,7 +106,45 @@ doubled finite hard packet at each independent Thompson site and uses its
 factor swap as a transporter.  Earlier pulse signs live at different sites,
 so prefix preservation is literal off-site commutation rather than a long
 stabilizer comparison.  This removes the persistent-character tail problem
-from that route.  The remaining incidence obligation is deliberately kept
-open as `fanizza-hard-exits-attach-to-thompson-site-pulses`: only private hard
-frame words may be site-local, while shared BCS variables must not acquire
-new cross-context commutations.
+from that route.  The private-hard-share incidence was subsequently closed by
+`fanizza-hard-exits-attach-to-thompson-site-pulses`.  The later audit below
+identifies the remaining issue: the complementary active mass must itself be
+placed under the next survivor prefix and attached to the next reducing
+occurrence.
+
+## Audit of the full construction notebook
+
+The later full notebook was integrated by reference to the established
+nodes above rather than copied into duplicate claims.  In particular:
+
+- its dimension-reported and trace-conditioned fixed-point theorems are
+  `dimension-matched-kleene-microstate-diagonal` and
+  `trace-conditioned-dimension-matched-kleene-diagonal`;
+- its exact Clifford breaker and bounded-area closure criterion are
+  `marked-clifford-table-exponential-dimension` and
+  `uniform-bounded-area-clifford-tables-force-mark-collapse`;
+- its fixed-predicate finite packets are already subsumed by the stronger
+  low-dimensional and balanced hyperoctahedral atlas nodes;
+- its multiplicity-return, source-specific static transducer, and perfect-LCS
+  endpoints remain open compiler interfaces, not existence proofs;
+- its occurrence-name replacement is exactly the established closure theorem
+  `occurrence-local-dimension-games-force-mark-collapse` with implementation
+  hole `finite-orbit-occurrence-pauli-compiler`;
+- its stability shortcut is
+  `hs-stability-plus-fd-residual-forces-nonhyperlinearity`.
+
+The notebook's strongest upstream Bell-separation phrasing was not used to
+upgrade the root.  Cairn needs only an already recorded static adversarial
+source; the unresolved mathematical work is the finite group-word decoder
+with a dimension-independent normalized-HS modulus.
+
+The same audit found and corrected one overclaim in the live S3 route.  A
+free-occurrence HNN edge carries all four endpoint atoms but does not put the
+returned three-atom union below the independent pulse survivor.  This is the
+zero-defect fence
+`free-occurrence-hnn-return-does-not-preserve-first-hit-prefix`, which
+invalidates the former return route.  The replacement
+`two-bit-tag-routing-splits-s3-exit-and-survivor` uses two commuting site tags:
+one tag atom is the first-hit exit and the other three atoms are its analytic
+survivor.  The only remaining local attachment is now
+`tagged-s3-survivor-installs-next-recurrent-carrier`.

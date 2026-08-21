@@ -28,3 +28,11 @@ next analytic active carrier; the separately constructed Thompson site bridge
 has already put one copy of that exit mass in the summable first-hit sector.
 The BFE scalar proof permits this: it uses only the active/exit trace balance
 and never assumes that an HNN image of the inactive atom is zero.
+
+## Invalidated
+
+This last inference is false.  The first-hit ledger also requires that the
+next active carrier lie below the survivor prefix.  The independent pulse
+has no relation with the returned endpoint chart, so the HNN image `A'` need
+not lie below that prefix.  The exact countermodel is recorded in
+`free-occurrence-hnn-return-does-not-preserve-first-hit-prefix`.

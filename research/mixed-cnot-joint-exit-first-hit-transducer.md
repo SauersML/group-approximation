@@ -61,7 +61,8 @@ finite-dimensional theorem needed before the final HS floor.
 - A strictly smaller alternate route is now available.  The exit half itself
   is closed by `projected-hard-sign-bridge-selects-joint-exit`; the only open
   clause on that route is `mixed-cnot-allowed-active-return`.
-- The alternate route is now complete through
-  `mixed-cnot-joint-exit-via-thompson-site-pulses`: the site-pulse reservoir
-  replaces the refuted sparse failure-projection certificate, and the free
-  occurrence HNN return retains all three active affine atoms.
+- The Thompson site-pulse route correctly localizes the analytically
+  compressed exit, but its former free-occurrence return was invalidated by
+  `free-occurrence-hnn-return-does-not-preserve-first-hit-prefix`.  The
+  two-bit tag theorem repairs the local three-versus-one prefix split; the
+  remaining incidence is `tagged-s3-survivor-installs-next-recurrent-carrier`.
