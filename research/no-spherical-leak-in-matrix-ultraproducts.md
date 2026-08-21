@@ -47,6 +47,29 @@ the finite-dimensionality of the microstates, not tracial abstraction.
   rigidity on the non-amenable part -- the genuine CEP-adjacent
   frontier at which all program routes meet.
 
+- **Refinement: the canonical enemy is the coset wreath group `W`;
+  the clean frontier is CE of a non-amenable-stabilizer Bernoulli
+  action (2026-08-21).**  The factorial-trace face is NOT a clean
+  equivalent of the other two: charmenability of the carrier is FALSE
+  (the coset-Bernoulli character is an explicit counterexample, per
+  `hnn-carrier-factorial-character-collapse`), so no BBHP dichotomy
+  closes it.  What that counterexample exposes is the genuinely
+  canonical object: the coset wreath group
+  `W = (direct_sum_(Gamma/Lambda) C_2) rtimes Gamma` recurs as THE
+  enemy on every face -- it produces the exact quasi-regular leak
+  (`coset-bernoulli-ce-refutes-relative-commutant-collapse`), it is
+  the charmenability counterexample, and its regular character is the
+  vanishing-branch enemy.  So the three faces unify not as an abstract
+  spherical-exclusion but concretely: each asks whether `W` is
+  hyperlinear, equivalently whether the generalized Bernoulli action
+  `L^infinity(K^(Gamma/Lambda)) rtimes Gamma` is Connes-embeddable
+  with the NON-AMENABLE stabilizer `Lambda`.  That is the Kun--Thom
+  wall in its sharpest arithmetic instance, and it is the single
+  concrete frontier object the whole program reduces to -- more useful
+  than the abstract `1`-bounded-entropy formulation because `W` is an
+  explicit group whose soficity/CE can be attacked directly (the
+  `nonhyperlinear-coset-wreath-from-p3-collapse` lane).
+
 - **The goal needs strictly less than this claim.**
   `no-exact-quasi-regular-leak` isolates the single extreme profile
   `s = 0`, `psi = 1_Lambda` — the only configuration a hyperlinear
