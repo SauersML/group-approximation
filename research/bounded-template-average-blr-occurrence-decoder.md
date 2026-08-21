@@ -145,6 +145,32 @@ signed-character gap `(SCE2)`.  Hence the remaining candidate is an
 operator-agreement theorem for the local tensor-code PVMs; classical
 agreement testability and CSS stabilizer distance are not that theorem.
 
+There is now a sharp obstruction to obtaining that theorem from the raw
+positive-rate Tanner code.  By
+`positive-rate-tanner-tests-have-contextual-models`, any
+binary linear code of dimension `k` presented by `O(N)` bounded-size local
+codeword views has an exact finite class-two strategy whose average global
+commutator energy is at least
+
+```text
+4 N^(-2)(binom(k,2)-O(N)).
+```
+
+For the positive-rate DEL code this is a constant, even if the augmented
+quantum tensor-code test is run perfectly inside every vertex and complete
+row/column overlap PVMs are checked.  Local tensor soundness has already
+produced the objects used by the countermodel; it cannot globalize them.
+The obstruction is the full exterior square of the abelianized solution
+space, not merely the decomposable one-qubit wedge.
+
+Thus a left-right auxiliary layer is viable only after extra constraints
+collapse its classical section dimension from `Theta(N)` to `O(sqrt(N))`
+(the simplex target has dimension `n+1` at length `2^n`), or after an
+algebraic transport layer kills quadratically many commutator directions
+without enumerating them.  The signed-character parallelogram theorem is an
+example of the latter only in its bounded-dimensional character-code regime;
+it does not turn the positive-rate Tanner ambient code into an operator LTC.
+
 There is also no general group-theoretic shortcut from the now-controlled
 exterior square to all operator layers.  Theorem 3.1 of Slofstra's
 [solution-group embedding theorem](https://arxiv.org/abs/1606.03140) (take
