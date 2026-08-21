@@ -73,3 +73,11 @@ established or refuted.
   exact forbidden marked sectors, and stability has no defect on which to act.
   Any further attempt must couple the infinite BCS payload so those sectors do
   not extend, while proving the quantitative decoder demanded above.
+- Cross-context scalar buses do not provide that coupling.
+  `scalar-bus-packet-couplings-retain-all-global-assignments` proves that
+  assignment-coordinate sectors with the marked predicate phase glue around
+  every finite amalgam/HNN graph whenever all edge restrictions are scalar.
+  Cross-amplification equalizes their dimensions and makes cyclic holonomy
+  vacuous.  Hence the first genuinely new relation must act nonscalarly on
+  the assignment sectors, or constrain edge intertwiners through a two-cell;
+  adding more central selector/phase identifications cannot close the claim.
