@@ -179,3 +179,25 @@ This distinction is load-bearing.  Static adversarial-source freezing,
 canonical-trace side tests, local tag placement, and trace cyclicity are all
 useful, but none alone supplies the finite-matrix-only asymmetry required to
 separate microstates from the left regular representation.
+
+## 2026-08-21 integration against the live Iwahori lane
+
+The expanded proof-construction notebook supplied on this pass was checked
+against the graph rather than re-entered as duplicate claims.  Its complete
+pieces remain the nodes listed above; its asserted endpoint remains
+conditional on a dimension-independent finite group-word compiler.  In
+particular, neither the static Bell source, the Clifford capacity breaker,
+nor occurrence-local naming by itself upgrades `non-hyperlinear-group`.
+
+The notebook's most useful methodological instruction is nevertheless active
+in the current Iwahori route: freeze all global/adversarial semantics and
+reduce the last step to one finite static matrix obstruction.  Combining the
+projection normal form, positive-density bound, and same-dimensional
+`SL_2(Z)` stability now gives
+`iwahori-counterexample-has-exact-first-vertex-blocks`.  Reading the two
+Iwahori edge equations on that cut gives the sharper established reduction
+`iwahori-transfer-reduces-to-square-root-block-mixing`: any counterexample is
+an exact positive-density modular square-root branch ambiguity, not a long
+addressing failure, a small-rank tail, or a general approximate-intertwiner
+problem.  This is the local finite static obstruction presently being
+attacked.

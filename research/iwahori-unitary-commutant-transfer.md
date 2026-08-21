@@ -77,3 +77,19 @@ commutator with the second vertex stays macroscopic.
   second-vertex commutator bounded below by `epsilon_0` forces both blocks to
   have normalized rank at least `epsilon_0^2/2`.  Thus a counterexample is a
   positive-density extension-mixing phenomenon, not a vanishing-rank tail.
+- **The first vertex can be made exact blockwise.**
+  `iwahori-counterexample-has-exact-first-vertex-blocks` combines this
+  density with same-dimension stability of `SL_2(Z)`.  After a vanishing
+  perturbation, the projection exactly splits the first vertex into two
+  honest modular representations.  The sole remaining pathology is that the
+  almost-matched second modular extension mixes those two positive-density
+  edge blocks.
+- **Only one square-root branch can still mix the blocks.**
+  `iwahori-transfer-reduces-to-square-root-block-mixing` writes the two
+  vertices as `(X^2,Y)` and `(X,Y^2)`.  The exact first block projection
+  commutes with `Y` and asymptotically with `X^2` and the second lower
+  unipotent.  Hence a counterexample must have `[P,X]` bounded below.  In the
+  matrix ultraproduct this is an exact positive-density ambiguity between two
+  modular square roots of the same block-diagonal unitary.  Excluding that
+  single branch-mixing configuration is equivalent to closing the present
+  local route.

@@ -625,3 +625,94 @@ obstruction in `H^2(SL_2(Z[1/2]), Ad rho)` (of dimension about `d^2/12`,
 hence nonzero) must be controlled uniformly, and the question also concerns
 pairs far from every compatible representation, which no linearization
 sees.
+
+## 15. A weaker local endpoint: transfer only unitary commutants
+
+The HNN proof does not need a nearby exact representation of the whole base.
+Write
+
+```text
+SL_2(Z[1/2])=C_+ *_(B_+=B_-) C_-,       C_+=C_-=SL_2(Z).
+```
+
+Each vertex copy is same-dimension HS-stable by the elementary cyclic
+presentation `C_4 *_(C_2) C_6`: round the order-four generator, use its
+square as the common sign, block-centralize the order-six generator, and
+round its cube separately on the two sign blocks.  Hence a microstate of the
+HNN candidate can be reduced to two exact vertex representations with an
+almost-matched Iwahori edge.
+
+What remains is only this one-sided assertion: a unitary that almost
+centralizes the first exact vertex must almost centralize the second, with a
+modulus depending only on the Iwahori mismatch and the first commutators.
+This is `iwahori-unitary-commutant-transfer`.  At zero mismatch it follows
+from finite-dimensional co-density.  It is weaker than the printed Iwahori
+question because it neither perturbs the pair to a compatible representation
+nor constructs an invertible edge intertwiner.  If it holds, the word
+`[t,a]`, `a` in the second vertex, collapses in every canonical matrix
+microstate while Britton keeps it nontrivial.  Thus it alone produces the
+explicit nonhyperlinear group
+
+```text
+<SL_2(Z[1/2]),t | [t,SL_2(Z)]=1>.
+```
+
+The physical-rank outlier remains relevant but its burden is sharper: a
+counterexample now needs a **unitary** in the low-energy outlier whose
+commutator with the second vertex stays macroscopic.  Merely observing that a
+sparse operator subspace may contain an invertible matrix no longer blocks
+the argument.
+
+Equivalently, for every sequence of almost-compatible exact vertex
+representations, the homomorphism of the amalgam into the resulting tracial
+matrix ultraproduct must satisfy
+
+```text
+rho(C_+)' intersect M_omega = rho(SL_2(Z[1/2]))' intersect M_omega.
+```
+
+Failure of a quantitative modulus and failure of this relative-commutant
+identity are the same by the ultraproduct contrapositive.  This isolates the
+one place where finite-dimensional co-density must be upgraded to matricial
+co-density; no global representation repair is logically required.
+
+There is also no loss in restricting the missing equality to two-block
+projection witnesses.  Given a failed unitary witness `v`, double the vertex
+representations and replace it by the selfadjoint unitary
+`[[0,v],[v^*,0]]`; its positive spectral projection has exactly half the
+commutator norm.  Thus a negative answer must exhibit a projection that
+asymptotically reduces the first `SL_2(Z)` vertex and the common Iwahori edge
+while the second vertex retains a fixed amount of off-diagonal mass.  This is
+the minimal finite-stage obstruction now recorded as
+`iwahori-transfer-failure-reduces-to-two-block-projection`.
+
+Moreover, if the second-vertex commutator of that projection is at least
+`epsilon_0`, comparison of `P` with `UPU^*` gives
+
+```text
+epsilon_0^2
+ <=2 min(tr(P),1-tr(P)).
+```
+
+So both blocks have positive linear rank.  The remaining obstruction cannot
+be a vanishing physical-rank tail.  It is a positive-density mixing of two
+asymptotic first-vertex/Iwahori reducing blocks by the second vertex.
+
+Because `SL_2(Z)` is same-dimension HS-stable, the first vertex can then be
+made exactly block diagonal without moving the projection: delete its
+vanishing off-diagonal blocks, polar-round on each positive-density corner,
+and exactify the two resulting approximate modular representations.  Hence a
+counterexample has a normal form in which the first vertex is an exact direct
+sum of two linearly large modular representations, while the second exact
+vertex almost matches their Iwahori restriction but mixes the two blocks.
+The remaining issue is extension mixing, not approximate first-vertex
+reducibility.
+
+In the standard opposite-Iwahori coordinates this is sharper still.  Write
+`X=pi_-(u)` and `Y=pi_+(l)`.  The edge equations are
+`pi_+(u)~=X^2` and `pi_-(l)~=Y^2`.  Hence the block projection commutes with
+`Y` and asymptotically with `X^2` and `pi_-(l)`; only `[P,X]` can stay
+macroscopic.  In the matrix ultraproduct the two exact modular vertices are
+`(X^2,Y)` and `(X,Y^2)`.  The frontier is therefore the finite-matricial
+exclusion `positive-density-modular-square-root-mixing-exclusion`, not a
+general Iwahori intertwiner repair.
