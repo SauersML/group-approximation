@@ -7,6 +7,7 @@ distinct_from:
   relative-commutant-collapse-for-sl2-pair: that demands the commutator converge to 1; this demands only that it become SCALAR, which already contradicts the regular trace, and its witness is the full-rank inner superoperator rather than a possibly sparse commutant vector.
   no-exact-quasi-regular-leak: that is the minimal single-configuration core (one exact profile refuted); this is the uniform local inequality that would refute it with room to spare, shaped for spectral-gap and sum-of-squares methods.
   hnn-over-codense-kazhdan-subgroup-not-hyperlinear: that consumes flexible HS-stability of the base group and corrects the representation; this transfers only a scalar-commutator property, so the scalar 2-cocycle obstructions that block ordinary stability are quotiented away before the problem starts.
+  finite-regular-adjoint-retains-full-conductor: that is the exact finite-group calculation showing projectivization preserves dyadic depth; this asks for the remaining approximate arithmetic transfer inequality.
 ---
 
 Let `(Lambda, Gamma) = (SL_n(Z), SL_n(Z[1/p]))` with finite generating
