@@ -26,8 +26,11 @@ matrix dimension bound, or runtime bound is part of this target. By
 collapse exists semantically, but the fixed-point program never needs to know
 its constants.
 
-This is the weakest currently identified sufficient groupification interface
-for the Fanizza native signal. It remains open: the exact ultraproduct decoder
+This is a strong sufficient groupification interface for the Fanizza native
+signal. The strictly weaker target
+`fanizza-canonical-profile-groupification` asks for collapse only along
+canonical-delta microstates and permits a rational group-algebra corner mark.
+The unconditional target here remains open: its exact ultraproduct decoder
 must still overcome nonlinear BCS addition and multiplicity return.
 
 ## Attempts

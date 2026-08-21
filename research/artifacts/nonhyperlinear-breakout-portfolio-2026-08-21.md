@@ -1657,6 +1657,18 @@ equivalence is `hyperlinear-radical-presentation-compactness`; the tensor-power
 limit on unconditioned collapse is
 `reverse-kleene-unconditioned-collapse-forces-fd-invisibility`.
 
+The machine lane has since weakened again. For the actual hyperlinearity
+contradiction it is enough that a rational group-algebra mark collapse along
+canonical-delta microstates, by `canonical-profile-kleene-higman`; arbitrary
+noncanonical ultraproduct homomorphisms need not kill it. This gives the
+minimal current Fanizza target `fanizza-canonical-profile-groupification`.
+For word marks, tensor powers also sharpen the unconditional compactness
+statement to `hyperlinear-radical-is-finitely-witnessed`: a radical word in an
+r.e. presentation already lies in the radical of one finite relator prefix.
+The profile-relative analogue is
+`canonical-profile-word-collapse-one-window`, where the finite trace side
+conditions cannot be dropped.
+
 Two later repository corrections also constrain the portfolio. Bass--Serre
 marginal matching alone cannot charge rank-one forbidden mass, and the native
 Fanizza C18 guard does not globally reduce to three bits: its Pauli phase turns

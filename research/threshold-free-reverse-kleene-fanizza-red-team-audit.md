@@ -195,7 +195,7 @@ contexts.
 
 ## 5. Exact remaining compiler interface
 
-The threshold-free route has therefore isolated the following minimal open
+The threshold-free route originally isolated the following strong open
 object.
 
 Totally computably from `m`, construct a finite generating set, a uniformly
@@ -224,3 +224,21 @@ realize `FTFK1--FTFK2`, and it does not prove a non-hyperlinear group.  The
 open node `fanizza-native-signal-ultraproduct-groupification` is exactly the
 remaining semantic bridge, now without any unnecessary demand for a
 computable Hilbert--Schmidt modulus.
+
+## Canonical-profile correction
+
+`FTFK2` is sufficient but not minimal. Hyperlinearity asks only for
+microstates converging to the canonical delta character, not for every
+homomorphism into every tracial matrix ultraproduct. The weaker theorem
+`canonical-profile-kleene-higman` permits a rational group-algebra mark and
+requires NONHALT collapse only on canonical-profile microstate sequences.
+Accordingly the minimal currently identified Fanizza target is
+`fanizza-canonical-profile-groupification`.
+
+For a **word** mark, tensor powers preserve the full canonical profile because
+its word values are in `{0,1}`. Hence
+`canonical-profile-word-collapse-one-window` upgrades qualitative profile
+death to one finite relator-and-trace window at any cutoff below `sqrt(2)`.
+This does not recover unconditional `FTFK2`, because the trace side conditions
+remain, and it does not extend automatically to an additive corner mark:
+`p(U tensor ... tensor U)` is not `p(U) tensor ... tensor p(U)`.

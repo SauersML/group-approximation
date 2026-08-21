@@ -67,27 +67,34 @@ fingerprint or physically occupy the rectangular multiplicity reservoir via
 Pontryagin compiler `algebraic-compact-action-group-factor-compiler` plus the
 open algebraic relation envelope.
 
-The machine interface has now been reduced to a qualitative statement:
-`threshold-free-reverse-kleene-higman-diagonal` needs only a compiler whose
-NONHALT mark lies in the hyperlinear radical. The fixed-point program enumerates
-a formal triviality proof and never reads a quantitative soundness modulus;
-effective Higman embedding then promotes the resulting recursively presented
-witness to a finitely presented one. The remaining mathematical work is wholly
-in constructing that qualitative compiler. Two portfolio shortcuts have also
-been closed cleanly: `sublinear-block-poisons-normalized-torsion` refutes the
-unregularized determinant transfer, and
+The machine interface has now been reduced further. The strong
+`threshold-free-reverse-kleene-higman-diagonal` needs a NONHALT word in the
+full hyperlinear radical, while the weaker `canonical-profile-kleene-higman`
+needs only qualitative collapse of a rational group-algebra mark along
+canonical-delta microstates. The latter is exactly the approximation profile
+whose existence hyperlinearity asserts, and noncanonical exact
+counterrepresentations are irrelevant. The minimal current machine target is
+therefore `fanizza-canonical-profile-groupification`; no quantitative modulus
+is read by the fixed-point program. For unconditional word libraries,
+`hyperlinear-radical-is-finitely-witnessed` shows that the entire r.e. tail has
+no more radical power than one finite prefix. Two portfolio shortcuts have
+also been closed cleanly: `sublinear-block-poisons-normalized-torsion` refutes
+the unregularized determinant transfer, and
 `twisted-group-basis-forces-affine-context-support` shows that native
 projective-basis BCS observables already factor through affine/LCS contexts.
 
 The adversarial-recursion ideas of the same date are integrated in
 `research/artifacts/adversarial-error-delocalization-program-2026-08-21.md`.
 Their surviving design is: use a separated mark to create positive-density
-spectral mass, use recursion/expansion only to distribute consistency on that
-carrier, allow an r.e. intrinsic challenge library, prove a standard-index
-no-tail theorem in every matrix ultraproduct, and then apply threshold-free
-Kleene plus Higman. Two exact firewalls prevent weaker versions:
+spectral mass, prove that carrier avoids the full joint relative commutant,
+use recursion/expansion only to distribute consistency on that carrier, and
+then apply the canonical-profile or radical Kleene compiler. The payment
+mechanism is isolated exactly by `relative-fixed-algebra-payment-lemma`.
+Three exact firewalls prevent weaker versions:
 `word-recursion-cannot-amplify-sublinear-summands` shows that direct-sum
 naturality traps every finite recursive test inside a reducing `o(d)` corner,
-and `universal-finite-packet-library-can-be-amenable` exhibits a two-generated
-amenable group already containing every finite packet at its canonical
-Plancherel fraction.
+`closed-local-rules-have-uniform-hitting-or-infinite-safe-tail` and
+`amenable-finite-propagation-feedback-has-folner-tail-models` expose local
+no-tail failures, and `universal-finite-packet-library-can-be-amenable`
+exhibits a two-generated amenable group already containing every finite packet
+at its canonical Plancherel fraction.

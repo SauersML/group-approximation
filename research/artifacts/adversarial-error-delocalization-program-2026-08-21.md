@@ -143,6 +143,26 @@ marked separation
  -> fixed global HS payment.
 ```
 
+The exact analytic condition is now isolated by
+`relative-fixed-algebra-payment-lemma`. If `N` is the full fixed algebra of
+the packet action, an adjoint Poincare gap charges only
+`||p-E_N(p)||_2^2`. Thus positive density must be supplemented by a
+no-capture estimate
+
+```text
+||E_N(p)||_2^2 <= (1-gamma)tau(p).
+```
+
+For a finite packet this is the explicit averaged-overlap inequality
+
+```text
+|H|^(-1)sum_h tau(p h p h^*) <= (1-gamma)tau(p).
+```
+
+A covariance bridge must then charge the resulting commutators to defining
+relators. This criterion is sharp: if `p` lies in an external multiplicity
+reservoir, it has positive density but belongs to `N` and pays zero energy.
+
 The graph already separates these roles:
 
 - `marked-hs-separation-forces-spectral-density` supplies macroscopic mass;
@@ -161,7 +181,7 @@ corner.”
 
 ## 5. Threshold-free self-reference
 
-The strongest surviving self-aware construction is semantic rather than
+One strong surviving self-aware construction is semantic rather than
 introspective. A total computable compiler outputs
 
 ```text
@@ -191,9 +211,20 @@ This is recorded by:
 - the concrete weak target
   `fanizza-native-signal-ultraproduct-groupification`.
 
-The useful “library” version is that the unbounded challenge family may remain
-r.e. until after the diagonal. Finite syntactic compilation is postponed to
-Higman.
+This radical-valued interface is stronger than necessary. The weaker
+`canonical-profile-kleene-higman` permits a rational group-algebra mark and
+requires NONHALT collapse only along canonical-delta microstates. Its concrete
+open target is `fanizza-canonical-profile-groupification`. The fixed-point
+program still reads no numerical modulus, and noncanonical exact
+representations are irrelevant.
+
+For an unconditional **word** library,
+`hyperlinear-radical-is-finitely-witnessed` proves more: if the whole r.e.
+presentation kills the mark, some finite relator prefix already has that word
+in its hyperlinear radical. Thus the infinite library is useful for effective
+syntax and self-reference, not for additional semantic radical power. The
+prefix need not be computable, so effective Higman remains the mechanism that
+actually names a finite presentation.
 
 ## 6. The standard-index/no-tail requirement
 
@@ -211,10 +242,21 @@ Any successful recursive library therefore needs one of:
 - a first-hit or expander theorem charging one standard test; or
 - an amplification-invariant intrinsic selector preventing drift to infinity.
 
-Compactness says that if the entire standard library really kills the mark in
-every matrix ultraproduct, some finite window and positive defect threshold
-exist. They need not be computable. What compactness cannot do is prove the
-semantic no-tail statement.
+Compactness plus tensor powers says that if the entire standard word library
+really kills the mark in every matrix ultraproduct, one finite prefix already
+kills it exactly in every matrix ultraproduct. The analogous canonical-profile
+word statement uses one finite relator-and-trace window at any cutoff below
+`sqrt(2)`. What compactness cannot do is prove the semantic no-tail statement
+for a proposed compiler.
+
+Two concrete firewalls explain common failures. By
+`closed-local-rules-have-uniform-hitting-or-infinite-safe-tail`, a closed
+finite-range recursion with arbitrarily long safe runs has an infinite safe
+tail. By `amenable-finite-propagation-feedback-has-folner-tail-models`, an
+exact amenable shift-local tail compresses to matrix models whose relator
+defect lives only on a vanishing Folner boundary while a positive-density mark
+survives. The latter refutes a canonical-profile compiler only when the tail
+models also have the regular character.
 
 ## 7. Why a raw dimension-overflow detector fails
 
@@ -275,19 +317,20 @@ algebra, not merely finite from properly infinite representations.
 
 ## 10. Clean surviving research target
 
-The audacious program reduces to one honest compiler:
+The weakest currently identified version of the audacious program reduces to
+one honest compiler:
 
 > Construct a finitely generated, uniformly r.e. recursive challenge library
-> with a HALT-detectable mark and NONHALT death of that mark in every tracial
-> matrix ultraproduct. The soundness proof must use amplification-invariant
-> intrinsic data, prevent escape to a nonstandard challenge index, and begin
-> from a mark with positive spectral density before invoking expansion or
-> recursion.
+> with a HALT-detectable rational group-algebra mark and NONHALT death of that
+> mark along every canonical-delta microstate sequence. The soundness proof
+> must use amplification-invariant intrinsic data, prevent escape to a
+> nonstandard challenge index, and begin from a mark with positive spectral
+> density before invoking expansion or recursion.
 
-This target is weaker than a finite quantitative compiler, because no modulus
-or finite relator window must be computed. It is stronger than an enumerated
-collection of finite challenges, because the standard-index/no-tail theorem is
-essential.
+This target is weaker than both a finite quantitative compiler and
+unconditional hyperlinear-radical death. No modulus or finite relator window
+must be computed. It is stronger than an enumerated collection of finite
+challenges, because the canonical-profile no-tail theorem is essential.
 
 The strategic slogan is:
 

@@ -35,3 +35,11 @@ any corruption below the BGV adversarial radius.
   tensor product this claim must prove.
 - Test recursive logical relations on repetition and balanced-product code
   generators first, rejecting words with cost linear in the number of leaves.
+- `relative-fixed-algebra-payment-lemma` identifies the exact analytic datum
+  missing after a marked carrier has positive density. If `p` is the carrier
+  and `N` is the full joint packet commutant, one must prove a uniform
+  no-capture estimate
+  `||E_N(p)||_2^2 <= (1-gamma)tau(p)` and charge the resulting covariance
+  commutators to boundedly many defining relators. Positive trace alone is
+  insufficient: a projection in the external multiplicity reservoir lies in
+  `N` and pays zero adjoint energy.
