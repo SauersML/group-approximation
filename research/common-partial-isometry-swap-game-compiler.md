@@ -117,11 +117,17 @@ One literal variable involution
 no commutation between unrelated contexts.  The load-bearing unsolved row
 is no longer its truth table or orientation.  It is promotion/alignment of
 the separately selected context types to the **same** D8 source.  In the
-notation of the selected-row construction, the exact remaining axiom is
+notation of the selected-row construction, put
+
+```text
+E_pred(S_D8)=sum_c mu_c ||F_c S_D8||_2^2.
+```
+
+The exact remaining axiom is
 
 ```text
 sum_(c,T) ||([e_(c,T),j]-1)Q_(c,T)||_2^2
- >= kappa E_BCS(S_D8)-o(1)                            (CPS9)
+ >= kappa E_pred(S_D8)-o(1)                           (CPS9)
 ```
 
 for one `kappa>0`, with all rows evaluated on the common partial isometry
@@ -129,7 +135,51 @@ for one `kappa>0`, with all rows evaluated on the common partial isometry
 the projections can occupy disjoint carriers.  Equivalently one may prove
 contextwise selected-type saturation of `S_D8` plus shared-variable
 compression alignment.  This is the sole promotion axiom left by the local
-D8 compiler.
+D8 compiler.  The right side must be the predicate energy, not the full BCS
+energy: the displayed left side contains no consistency-row commutator.  The
+already constructed literal rows `[d_x,j]` control
+`sum_(c,x)mu_(c,x)||A_(c,x)S_D8-S_D8B_x||_2^2` separately.  Adding those
+inequalities to `(CPS9)` gives the full `E_BCS(S_D8)` estimate used in
+`(CPS5)--(CPS6)`.
+
+### Exact audit of the proposed saturation mechanisms
+
+None of the existing common-source lemmas proves `(CPS9)`.
+
+1. `common-source-hnn-bridges-need-one-gram-saturation-identity` proves that
+   the scalar deficit
+
+   ```text
+   sum_c ||(1-p_c)U_cQ||_2^2
+   ```
+
+   is sufficient for common-source polar rounding, and its regular-packet
+   model proves that ordinary HNN edges do not force the deficit to vanish.
+   It identifies the missing datum; it does not supply it.
+2. `exhaustive-marked-type-energy-summation` sums already available
+   typewise inequalities over the mutually orthogonal central isotypic
+   projections of **one fixed packet**.  The projections `Q_(c,T)` here come
+   from separately amalgamated context packets and are not one common
+   orthogonal decomposition of the D8 source.  Moreover
+   `algebraic-exhaustive-marked-type-detectors-violate-induction` rules out
+   obtaining the needed exhaustive typewise bounds from the selected SMC
+   word identities alone.
+3. `dihedral-spin-packet-supplies-common-partial-swap` gives the same literal
+   `S_D8` and its mass floor for every row, but says nothing about how much of
+   that source lies in a selected context carrier.  The exact amalgam model
+   in `role-hyperoctahedral-type-has-an-orthogonal-amalgam-model` makes two
+   selected carriers orthogonal while retaining the common D8 restriction,
+   decisively refuting saturation from D8 compatibility alone.
+4. `orthogonal-hecke-row-packs-common-source-energy-into-one-root` preserves
+   the sum of a list of covariance norms once those coefficients already
+   occupy one reservoir.  It does not authenticate the root coefficient or
+   identify its source with `S_D8`; `hecke-dilation-gram-no-go-proof` exhibits
+   precisely the surviving source deficit.
+
+Thus `(CPS9)` is neither a consequence of exhaustive summation, the D8 mass
+floor, nor Hecke packing.  A proof must add a genuinely finite-matrix
+same-reservoir inequality which rules out the established orthogonal-amalgam
+model; repackaging the existing local rows cannot do so.
 
 The absolute orientation bit is no longer open.
 `centralizing-d8-word-anchors-relative-row-orientation` adjoins one
