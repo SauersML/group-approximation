@@ -166,6 +166,14 @@ the fixed-depth nonhyperlinearity criterion.
   Schur matching, or conductor descent alone.  The actual mixed-root packet
   must make the marked scale graph non-Folner (or furnish an equivalent
   same-reservoir multiplicity payment).
+- **Bounded conductor width does pay uniformly.**  The converse estimate
+  `bounded-conductor-width-pays-uniform-first-exit` shows that a multiplicity
+  profile supported on at most `B` root-depth bands loses at least `1/B`
+  under one unit conductor shift.  Hence the rectangular escape above is
+  possible only through genuinely unbounded scale spread, and its `O(1/N)`
+  triangular construction is sharp up to constants.  After a common atlas
+  has been decoded, every bounded-width portion already has the required
+  positive first-exit payment; only the scale-spread tail remains.
 - **The non-Folner endpoint is already available once one global PVM is
   decoded.**  The full coset/building orbit `A/C` has a fixed bottom gap
   (equivalently, use the property-`(T)` Hecke contraction), and

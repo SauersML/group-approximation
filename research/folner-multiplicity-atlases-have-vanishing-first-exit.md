@@ -52,3 +52,10 @@ multiplicity invariant must charge the surviving common carrier.
 This is a no-go for a proposed *derivation* of `(AHD2)` from leakage alone,
 not a countermodel to the full `SL_3(Z[1/2])` relation packet.  The latter
 may still supply exactly the missing non-Folner payment.
+
+The width growth is necessary and quantitatively sharp.
+`bounded-conductor-width-pays-uniform-first-exit` proves that a profile on at
+most `B` conductor depths loses at least `1/B` under a unit shift.  Thus the
+present triangular atlases, with width `N+1` and loss `O(1/N)`, realize the
+optimal order of rectangular escape rather than an artifact of the chosen
+weights.
