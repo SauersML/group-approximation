@@ -36,6 +36,15 @@ generation by group unitaries does not identify `chi` with the canonical
 delta trace.  The missing operation is canonical-trace promotion, not merely
 finding a group representation which generates the envelope.
 
+The standard promotion mechanisms are now audited in
+`cdi-character-cannot-be-promoted-by-regular-corners`.  Finite central cuts
+produce twisted **regular** traces, restriction of an overgroup's regular
+representation remains regular on `H`, and every natural finite-support
+group-ring corner has finitely supported character and therefore equals
+`delta_H` by ICC.  The ordinary regular wreath carrier is sofic.  Thus the
+CDI residue does not secretly close the central-extension, induction,
+marked-corner, or regular Clifford routes.
+
 Primary source: Chifan--Drimbe--Ioana,
 [*Embedding universality for II1 factors with property (T)*](https://arxiv.org/abs/2205.07442),
 Remark 1.1 and the proof of Theorem A(1), especially Proposition 3.8 as used in
