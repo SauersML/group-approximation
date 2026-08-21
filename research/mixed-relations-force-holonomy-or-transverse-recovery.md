@@ -57,7 +57,7 @@ while those descendants commute, then
 `separate-d8-carriers-cannot-recover-in-commuting-descendants` gives
 
 ```text
-dist_2(F,A_raw)+dist_2(G,A_comb) >= 1/(8 sqrt(2)).
+dist_2(F,A_raw)+dist_2(G,A_comb) >= 1/8.
 ```
 
 Thus this **separate native-carrier recovery** also pays a fixed floor.  It

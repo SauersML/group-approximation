@@ -19,7 +19,7 @@ Let `A,B` be commuting von Neumann subalgebras.  Then
 
 ```text
 h(F,G)
- <= 8 (dist_2(F,A)+dist_2(G,B)).                      (SDR2)
+ <= 4 sqrt(2) (dist_2(F,A)+dist_2(G,B)).              (SDR2)
 ```
 
 More generally, if `P in A` and `Q in B` are the rounded projections below
@@ -27,7 +27,7 @@ and their reflection holonomy is at most `eta`, then
 
 ```text
 h(F,G)
- <= eta+8 (dist_2(F,A)+dist_2(G,B)).                  (SDR3)
+ <= eta+4 sqrt(2) (dist_2(F,A)+dist_2(G,B)).          (SDR3)
 ```
 
 For the two exact atlas quarter carriers,
@@ -40,7 +40,7 @@ Consequently any recovery into commuting descendants satisfies the fixed
 dimension-free floor
 
 ```text
-dist_2(F,A)+dist_2(G,B) >= 1/(8 sqrt(2)).              (SDR4)
+dist_2(F,A)+dist_2(G,B) >= 1/8.                        (SDR4)
 ```
 
 ## Proof
@@ -63,13 +63,16 @@ so
 
 ```text
 ||a-P||_2 <= ||F-a||_2,
-||F-P||_2 <= 2 dist_2(F,A).                           (SDR6)
+||F-P||_2 <= sqrt(2) dist_2(F,A).                     (SDR6)
 ```
+
+The second estimate uses Pythagoras: `F-a` is orthogonal to `A`, while
+`a-P` belongs to `A`.
 
 Apply the same construction to `G` and `B`, obtaining a projection `Q` with
 
 ```text
-||G-Q||_2 <= 2 dist_2(G,B).                           (SDR7)
+||G-Q||_2 <= sqrt(2) dist_2(G,B).                     (SDR7)
 ```
 
 Because `A` and `B` commute, `P` and `Q` commute, and hence their projection
