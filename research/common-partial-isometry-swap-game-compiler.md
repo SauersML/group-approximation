@@ -33,16 +33,18 @@ involution `J`, and one fixed finite packet decoder with these properties.
    ```
 
    for one `gamma>0` independent of matrix dimension.
-3. **One literal swap.**  The same decoded involution is the
-   partial-isometry reflection
+3. **One literal swap.**  The same decoded involution has off-diagonal block
+   `S` in the common copy grading.  It may be the partial-isometry reflection
 
    ```text
    J_S=[[I-SS^*, S],
         [S^*, -(I-S^*S)]]                             (CPS3)
    ```
 
-   in every predicate and consistency test.  Separate context copies are
-   not allowed.
+   in the exact witness.  In finite models its diagonal complement may have
+   either dihedral character sign; `dihedral-spin-packet-supplies-common-partial-swap`
+   proves that this does not affect the required Gram-row lower bound.
+   Separate context copies are not allowed.
 4. **Test rows.**  Fixed packet words decode the context predicate
    reflections `I-2F_c`, the occurrence involutions `A_(c,x)`, and the
    global variable involutions `B_x`.  The presentation contains the
@@ -83,12 +85,29 @@ Together with `(CPS2)`, a canonical matrix model with separated mark has a
 fixed positive relator-energy floor.  The exact commuting model is not
 contradicted: its Gram rows vanish, so every commutator in `(CPS4)` is exact.
 
-## Narrow construction problem
+## Remaining narrow construction problem
 
-The analytic soundness after `(CPS3)` is complete.  The sole new object is a
-finite ordinary-group packet which authenticates **one common nonlinear
-partial-isometry swap** on the marked carrier while allowing the separate
-context representations required by the perfect infinite model.
+The analytic common-source problem is now complete.
+`dihedral-spin-packet-supplies-common-partial-swap` shows that the fixed
+packet `D_8=<z,j,y>` authenticates the common partial isometry: the odd
+`y=-1` spin sector is exactly the paired source, the off-diagonal block of
+the one literal generator `j` is the partial isometry, and its normalized
+mass is at least half the marked mass.
+
+The remaining object is a finite ordinary-group packet which names the
+**hybrid row involutions** `diag(A_(c,x),B_x)` and
+`diag(I-2F_c,I)` on that common `z`-grading.  It must allow the separate
+context representations required by the perfect infinite model while
+keeping the same global-variable action in every negative block.
+
+The first half can be weakened further.  One literal variable involution
+`d_x` commuting with `z` already has blocks `diag(A_x,B_x)` and introduces
+no commutation between unrelated contexts.  The load-bearing unsolved row
+is the oriented nonlinear predicate reflection `diag(I-2F_c,I)`: an
+ordinary Boolean word in the `d_x` has the predicate value on **both**
+blocks.  The controller rule which erases its negative-block value is the
+remaining selected-type/Hecke orientation problem.  The induction audit is
+spelled out in `dihedral-spin-packet-supplies-common-partial-swap`.
 
 `perfect-tracial-bcs-has-one-common-module-swap` proves that this common
 swap exists exactly in the standard form of every perfect tracial source.
@@ -105,7 +124,7 @@ multi-piece/Hecke or properly-infinite source which is common at the level of
 
 ## Attempts
 
-- **One finite common edge group.**  The commuting-selector induction
+- **One finite common edge group for the hybrid rows.**  The commuting-selector induction
   barrier forces the selected target type to contain the full compatible
   selector cube.
 - **One source per context.**  This loses the single Gram state required by
@@ -113,6 +132,8 @@ multi-piece/Hecke or properly-infinite source which is common at the level of
 - **PAZ rank-one graph promotion.**  Its normalized endomorphism trace is
   `Theta(d^(-2))`.
 - **Abelian control of `J_S`.**  The controlled-swap truth table is
-  nonlinear and cannot be cut out by parity relations.
+  nonlinear and cannot be cut out by parity relations.  The nonabelian
+  dihedral spin packet resolves exactly this issue; no larger nonlinear
+  truth-table packet is needed for the swap itself.
 - **Globally identify all context variables.**  This adds cross-context
   commutation and may destroy the exact perfect commuting representation.
