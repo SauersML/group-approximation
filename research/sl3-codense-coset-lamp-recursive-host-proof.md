@@ -7,6 +7,7 @@ target: sl3-codense-coset-lamp-recursive-host
 requires:
   - recursive-permutational-lamp-presentation
   - infinite-character-actor-kills-fd-mark
+  - exact-projective-codensity-has-a-uniform-trace-square-gap
 ---
 
 Let a finite character orbit have core `N normal A`.  The quotient map

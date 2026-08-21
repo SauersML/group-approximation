@@ -1,4 +1,5 @@
 import GroupApproximation.Higman.OperationClosureRho
+import GroupApproximation.Higman.OmegaClosure
 
 /-!
 # Higman's operation `θ`, and the single statement it reduces to
@@ -383,6 +384,53 @@ theorem benignTF_ASub_thetaOp_of_inputs (himg : TorsionFreeImageClosure)
   refine benignTF_ASub_thetaOp ?_
   rw [evenOp_eq_inter, ASub_inter]
   exact BenignTF.inf (hagree B h) (benignTF_ASub_oddZero himg hall)
+
+/-! ## 6.  `θ` needs nothing of its own
+
+Both halves of `κ` are supplied by the `ζ`/`π`/`ω` lane as it stands, so `θ`
+costs no input that is not already priced there --- in particular it does *not*
+need `TorsionFreeImageClosure`, which `benignTF_ASub_oddZero` above was paying
+for the fixed half.  `Higman.Omega.benignTF_ASub_evenSupport` gets that half
+from `OmegaInput` instead, by reading the sequences with even support as `ω₂`
+of `ζ Z`; and the agreement half is `Higman.Agree.benignTF_ASub_agreeOp_ker`
+at the even coordinates. -/
+
+/-- The even coordinates, in the decidable form `agreeOp` needs. -/
+def evenIdx (i : ℤ) : Prop := i % 2 = 0
+
+instance : DecidablePred evenIdx := fun i => inferInstanceAs (Decidable (i % 2 = 0))
+
+theorem evenIdx_iff (i : ℤ) : evenIdx i ↔ ∃ k : ℤ, i = 2 * k := by
+  unfold evenIdx
+  constructor
+  · intro h
+    exact ⟨i / 2, by omega⟩
+  · rintro ⟨k, rfl⟩
+    omega
+
+theorem evenOp_eq_agree_inter (B : Set E) :
+    evenOp B = Agree.agreeOp evenIdx B ∩ oddZero := by
+  rw [evenOp_eq_inter]
+  congr 1
+  refine Set.ext fun f => ?_
+  constructor
+  · rintro ⟨g, hg, hagree⟩
+    exact ⟨g, hg, fun i hi => hagree i ((evenIdx_iff i).mp hi)⟩
+  · rintro ⟨g, hg, hagree⟩
+    exact ⟨g, hg, fun i hi => hagree i ((evenIdx_iff i).mpr hi)⟩
+
+/-- **Higman's operation `θ`, from the `ζ`/`π`/`ω` lane's inputs and nothing
+else.**  `hV` is the agreement lane's row input at the even coordinates and `k`
+is its `ω` residue; `TorsionFreeImageClosure` does not appear. -/
+theorem benignTF_ASub_thetaOp_of_lanes
+    (hV : BenignTF (Agree.rowSub (MonoidHom.ker (Split.killOn evenIdx))))
+    (k : Omega.OmegaInput) (B : Set E) (h : BenignTF (ASub B)) :
+    BenignTF (ASub (thetaOp B)) := by
+  refine benignTF_ASub_thetaOp ?_
+  rw [evenOp_eq_agree_inter, ASub_inter]
+  refine BenignTF.inf ?_ ?_
+  · exact Agree.benignTF_ASub_agreeOp_ker evenIdx hV (Omega.benignTF_ASub_univ k) h
+  · exact Omega.benignTF_ASub_evenSupport k
 
 end Seq
 end Higman
