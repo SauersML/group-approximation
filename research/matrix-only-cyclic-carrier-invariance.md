@@ -47,3 +47,76 @@ relations and has the strict lower floor from
 - `cyclic-carrier-energy-stability` is a strict weakening: it permits nonzero
   exact finite-dimensional energy and asks only that one scalar energy
   supremum be upper semicontinuous at zero defect.
+
+## Bounded cyclic selector-word audit
+
+`cyclic-coarse-fine-selector-rows-spread-carrier-error` removes the local
+multiplicity-twist problem once the selector rows have been decoded.  Indeed,
+if a physical transport is amplified as
+
+```text
+U_i=S_i tensor V_i,
+```
+
+while the coarse and fine selectors act trivially on the multiplicity factor,
+then its reflection row is
+
+```text
+C_i=R_(f_(i+1)) U_i R_(e_i) U_i^*
+   =(R_(f_(i+1)) S_i R_(e_i) S_i^*) tensor 1.          (MCI-ROW)
+```
+
+Thus the arbitrary `V_i` cancels inside each row, before cycling.  The cyclic
+trace lemma then gives the positive square-function estimate
+
+```text
+sum_i ||C_i-1||_2^2 >=sum_i tau(P_i).                  (MCI-CYCLE-SQ)
+```
+
+The remaining issue is whether a bounded family of ordinary group words can
+authenticate those rows without making them universal tracial identities.
+There are three direct obstructions.
+
+1. **Multiplying the rows loses positivity.**  Replacing the family by one
+   product word `C_(k-1)...C_0` permits exact inverse cancellation: choose
+   consecutive row errors `D,D^-1` (or conjugate copies on the same carrier).
+   The product is one while both row energies are positive.  This is the same
+   mechanism certified for cyclic clock holonomy by
+   `one-product-holonomy-does-not-sew-four-bs-clocks`.  No estimate of the sum
+   in `(MCI-CYCLE-SQ)` follows from the defect of an unlocalized product.
+2. **Orthogonal packing is selector-dependent.**  If the row errors could be
+   placed on pairwise orthogonal projections `p_i`, then their block-diagonal
+   product would satisfy a Pythagorean identity and one word defect could
+   charge the sum.  But the operation
+
+   ```text
+   C_i -> (1-p_i)+p_i C_i p_i
+   ```
+
+   uses addition and a named projection; it is not a group word.  Taking the
+   `p_i` as spectral projections of a fixed finite clock makes the construction
+   functorial in every finite tracial algebra.  Adjoining literal reflection
+   words `1-2p_i` has the same problem: the resulting row identities are
+   universal and trigger the regular-trace firewall.
+3. **Pure transport words cannot locate the fine atoms.**  Even with the
+   involution, all its moments, determinant, and the exact coarse/fine packet
+   ranks fixed, `pure-prefix-swap-invariants-are-selector-blind` moves the fine
+   atom from inside the coarse atom to its complement while preserving every
+   pure word invariant.  The mixed row energy changes.  Repeating this choice
+   independently around a bounded cycle preserves all vertexwise pure data,
+   so cyclic closure does not authenticate the selectors.
+
+These points give a precise dichotomy for the requested bounded construction.
+If the selector reflections are literal group words, the mixed rows and any
+orthogonal packing derived from them are valid in the regular tracial
+representation and cannot be matrix-only.  If the selectors are
+matrix-coordinate decodings, then `(MCI-ROW)` and `(MCI-CYCLE-SQ)` finish the
+twist cancellation and error spreading, but an additional finite-matrix
+authentication theorem is still required to charge their defects to ordinary
+presentation words.  A cyclic product does not supply that theorem.
+
+Accordingly no bounded twist-blind cyclic **group word** construction closes
+this claim.  This is not a refutation of `(MCI1)`: a dimension-activated
+selector, unbounded conductor, or matrix-dependent orthogonal packing could
+still work.  It isolates the live compiler as matrix-only selector decoding,
+not multiplicity synchronization or cyclic holonomy.

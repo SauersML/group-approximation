@@ -114,6 +114,84 @@ solution, is the remaining exact-support content.  Exact finite-dimensional
 invisibility alone is insufficient by
 `exact-fd-invisibility-has-no-general-hs-robustification`.
 
+## Extreme traces are without loss, but do not remove odd subsets
+
+There is an exact reduction answering the ``choose an extreme trace'' part
+of `(ESF3)`.  For a satisfying trace `tau`, let
+
+```text
+F_tau={sigma in T(B):
+       sigma(P_(c,a))=0 whenever tau(P_(c,a))=0}.       (ESF4)
+```
+
+Each condition in `(ESF4)` is the zero set of a nonnegative affine
+functional on `T(B)`, hence defines a face.  Thus `F_tau` is a nonempty
+compact face.  Choose an extreme point `sigma` of `F_tau`; it is also extreme
+in `T(B)`, and
+
+```text
+S_c(sigma) subseteq S_c(tau),
+Aff(S_c(sigma)) subseteq Aff(S_c(tau)).                 (ESF5)
+```
+
+Therefore `L_sigma` is a strengthening of `L_tau`.  Any `R^U` solution of
+`L_sigma` is also an `R^U` solution of `L_tau`.  Consequently
+
+```text
+L_tau non-R^U  ==>  some extreme sigma has L_sigma non-R^U. (ESF6)
+```
+
+So extremality may be imposed without loss **after** an affine-support gap
+has been found.  It is not a mechanism for producing that gap.
+
+Indeed an extreme, even factorial, trace can have non-affine local support.
+In `M_3(C)` take the normalized trace and a commuting two-bit PVM with three
+rank-one atoms labelled
+
+```text
+00, 01, 10
+```
+
+and zero atom at `11`.  The normalized trace is the unique tracial state of
+the factor, but its context support has three points and affine hull all of
+`F_2^2`; the added point is
+
+```text
+11=00+01+10.
+```
+
+Thus factoriality or extremality of the global BCS trace does not force its
+context restrictions to have affine support.
+
+More generally, for every nonempty `S subseteq F_2^m`,
+
+```text
+Aff_F2(S)={s_1+...+s_(2k+1): s_i in S}.                (ESF7)
+```
+
+After cancelling repetitions, `(ESF7)` is exactly the odd-subset
+relaxation.  Hence the affine-support fork and the odd-subset fork are not
+two different losses: they are the same local relaxation.
+
+There is one immediate positive criterion.  If a satisfying trace `tau`
+has every `S_c(tau)` already affine, then `A_c=S_c` in every context.  An
+`R^U` solution of `L_tau` would then have each joint context PVM supported
+inside the original satisfying predicate and would give an `R^U` solution of
+the source BCS, impossible.  Therefore
+
+```text
+all S_c(tau) affine  ==>  L_tau non-R^U,                (ESF8)
+```
+
+which proves this claim through the affine-relaxation criterion.  By
+`(ESF6)`, one may then choose an extreme witness as well.
+
+The unresolved source-specific theorem is now sharp: find a satisfying trace
+whose support-minimal extreme face has affine context supports, or prove that
+the globally consistent odd-subset profiles introduced by `(ESF7)` still
+cannot live in `R^U`.  The mere availability of an extreme non-CE trace gives
+neither statement.
+
 ## Attempts
 
 - **Published Taller--Vidick test, unmodified.** Their completeness loss comes
