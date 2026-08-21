@@ -117,3 +117,53 @@ rigidity for the commensurated Hecke inclusion, proper proximality of
 **Status: open.** The goal is now a single named conjecture, `(RCC)`, for
 an explicit commensurated arithmetic inclusion, with the Dogon--Vigdorovich
 near sector fully closed.
+
+## 5. The 1-bounded-entropy analysis of `(RCC)` (`SL_3` instance)
+
+For `A = L(SL_3(Z)) subseteq B = L(SL_3(Z[1/2])) subseteq M` the following
+are all worked out and correct; together they locate the exact open point.
+
+1. **`A` is an irreducible subfactor of `B`.** `SL_3(Z)` is *relatively icc*
+   in `SL_3(Z[1/2])` (every non-central `g` has finite `SL_3(Z)`-centralizer,
+   hence infinite `SL_3(Z)`-conjugacy class), so `A' cap B = C`. Thus `(RCC)`
+   `A' cap M = B' cap M` is a **commutant-absorption**: the relative commutant
+   of `A` must not grow, on passing from `B` to `M`, beyond `B' cap M`.
+
+2. **Both algebras are strongly 1-bounded.** `SL_3(Z)` and `SL_3(Z[1/2])`
+   have property (T), so `h(A) = h(B) = 0` (Jung; Hayes, arXiv:1505.06682).
+
+3. **The relative commutant sits in an `h = 0` algebra.** `SL_3(Z)` is
+   commensurated by `SL_3(Z[1/2])`, so every `g in SL_3(Z[1/2])`
+   wq-normalizes `SL_3(Z)`; and any `u in A' cap M` satisfies `u^* A u = A`,
+   so it wq-normalizes `A`. Hence both `B` and `A' cap M` lie in
+   `W^*(wqN_M(A))`, and by Hayes' monotonicity
+   `h(W^*(wqN_M(A)) : M) <= h(A : M) = 0`. In particular `A' cap M` is
+   strongly 1-bounded and contains no free-group-factor as a regular piece --
+   the rigidity the Haagerup `SL_2(Z)` cannot supply, and the reason the
+   `SL_3` instance is the promising one.
+
+4. **`A = <SL_3(Z), h>` reduces `(RCC)` to one commutation.** With
+   `h = diag(2,1,1/2)`, every half-integer elementary matrix is an
+   `h`-conjugate of an integer one, so `SL_3(Z[1/2]) = <SL_3(Z), h>` and
+   `(RCC)` holds iff every `k in A' cap M` commutes with `pi(h)`.
+
+5. **Where it stops (the exact open point).** `h = 0` alone does NOT force
+   `A' cap M subseteq B' cap M`: an amenable extension `B <= <B, k>` with
+   `k in A' cap M setminus B' cap M` also has `h = 0`. So the entropy
+   invariant constrains the size of `A' cap M` without delivering the
+   absorption. `(RCC)` for the `SL_3` pair is therefore equivalent to:
+
+   > the expanding commensuration `Ad(h)` acts trivially on the
+   > strongly-1-bounded relative commutant `A' cap M`.
+
+   This is a 1-bounded-entropy **absorption** statement of the exact kind
+   proved (with heavy machinery, over years) for free group factors in the
+   Peterson--Thom programme, now for a commensurated property-(T)
+   arithmetic inclusion. It is open, and it is the whole remaining obstacle
+   between this reduction and a non-hyperlinear group.
+
+**Caveat proved along the way.** One cannot strengthen `(RCC)` to
+`A' cap M = C`: in the hyperlinear scenario the HNN letter forces
+`L(<t>) = L(Z) subseteq A' cap M`, since `C_G(SL_3(Z)) = <t>`. The content
+is only the inclusion `A' cap M subseteq B' cap M`, which the single element
+`k = u_t` violates precisely when `G` is hyperlinear.
