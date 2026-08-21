@@ -101,6 +101,31 @@ Hilbert--Schmidt mass in the common part is at most `1/4`, giving
   cross-band intertwiner space.  No construction of such an object
   is known; no closure of it is known; it is the sharpest remaining
   `Lambda`-exact question, alongside the uniform outliers.
+- **The spread sector identified: it is the discrete solenoid
+  (2026-08-21, convergence).**  The surviving profiles — weight
+  spread over unboundedly many scale bands, thinning top, at most
+  half-mass at any fixed level — are exactly the discrete shadow of
+  HAAR MEASURE ON THE 2-ADIC SCALE TOWER: uniform spread across
+  scales is what Haar on the solenoid looks like through isotypic
+  weights.  Every rigidity instrument of this lane fails on it for
+  the same structural reason (per-band thinness defeats corner
+  normalization; growing-k twists meet accumulated defect;
+  fixed-level tests see mass at most one half), and this is not an
+  artifact: the profile is precisely the `Lambda`-exact incarnation
+  of the coset-Bernoulli / Kun--Thom configuration that
+  `no-exact-quasi-regular-leak` records as standing or falling with
+  the leak.  CONSEQUENCE: after today's closures the `Lambda`-exact
+  face contains NO artificial sectors — what remains of it is
+  exactly co-extensive with the recorded hard core of the program,
+  and the two remaining habitats (scale-spread exact profiles;
+  uniform outliers) are two faces of the same solenoid wall.  The
+  race that would close it is named in the previous bullet: uniform
+  Kazhdan constants for the tube parahorics `cap_j h^(-j) Lambda_0
+  h^j` (a bounded-elementary-generation question with
+  Carter--Keller/Morgan--Rapinchuk--Sury-type literature) against
+  multi-band defect accumulation — with the honest record that at
+  forced `k ~ a/4` the accumulation wins unless a genuinely
+  multi-scale argument is found.
 - **What the theorem does NOT do.**  It does not touch the
   uniform-outlier sector: microstates far from all genuine
   representations remain possible a priori, and `(RC3)` remains open
