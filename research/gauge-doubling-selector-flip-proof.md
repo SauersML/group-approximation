@@ -7,15 +7,17 @@ target: gauge-doubling-gives-selector-flip-symmetries
 requires: []
 ---
 
-Given a solution of `B`, set `A_x=X_x` and `B_x=1`. Conversely, from a
-solution of `G(B)` set `X_x=A_xB_x`. The lifted context makes all factors
+Given a solution of `B`, set `A_(c,x)=X_x` and `B_(c,x)=1` for every
+incidence. Conversely, the defining product relations in a solution of
+`G(B)` recover the retained `X_x`. The lifted context makes all factors
 commute, so the products are involutions, commute in the original contexts,
 and their joint spectral assignments are exactly the parity images of the
 share assignments. This proves every satisfiability equivalence.
 
-The same two substitutions define unital star homomorphisms between the two
-universal BCS algebras. Their composite on the original algebra is the
-identity, proving injectivity and signal preservation.
+The inclusion of the retained logical variables and the substitution sending
+each occurrence pair to `(X_x,1)` define unital star homomorphisms whose
+composite on the original algebra is the identity, proving injectivity and
+signal preservation.
 
 Flipping both shares changes neither their product nor any lifted truth-table
 condition. The flips have disjoint supports on the generating set and hence
@@ -31,4 +33,3 @@ Finally, for approximate unitaries, repeated use of
 
 and the analogous commutator telescoping estimate gives a constant depending
 only on the finite incidence of `B`. No dimension or runtime enters.
-

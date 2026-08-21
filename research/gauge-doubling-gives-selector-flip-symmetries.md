@@ -8,34 +8,37 @@ distinct_from:
 ---
 
 Let `B` be a finite Boolean constraint system with involution variables `X_x`.
-Construct `G(B)` by replacing every variable with two share involutions
+Construct `G(B)` by retaining the logical variables and, for every context
+incidence `(c,x)`, adjoining two private share involutions
 
 ```text
-A_x, B_x,                  X_x^log=A_x B_x,             (GDB1)
+A_(c,x), B_(c,x),          X_x=A_(c,x) B_(c,x).         (GDB1)
 ```
 
-and, in every context, replacing each Boolean bit `x` by the parity of its two
+In context `c`, replace each Boolean bit `x` by the parity of its two local
 shares. All shares occurring in one lifted context commute. Then:
 
 1. `B` has a classical, finite-dimensional operator, tracial, or arbitrary
    operator solution if and only if `G(B)` has the corresponding solution.
-2. The map `X_x -> A_x B_x` embeds the BCS algebra of `B` into that of `G(B)`.
-   It has the left inverse `A_x -> X_x`, `B_x -> 1`; hence every nonzero
+2. The retained logical generators embed the BCS algebra of `B` into that of
+   `G(B)`. The map `A_(c,x) -> X_x`, `B_(c,x) -> 1` is a left inverse; hence every nonzero
    logical signal remains nonzero after gauge doubling.
-3. For every `x`, the simultaneous sign flip
+3. For every incidence `(c,x)`, the simultaneous sign flip
 
 ```text
-theta_x(A_x)=-A_x,       theta_x(B_x)=-B_x              (GDB2)
+theta_(c,x)(A_(c,x))=-A_(c,x),
+theta_(c,x)(B_(c,x))=-B_(c,x)                            (GDB2)
 ```
 
    fixes every logical word `A_y B_y`, preserves every lifted constraint, and
-   commutes with all other gauge flips. Thus `F_2^X` acts by BCS-algebra
+   commutes with all other gauge flips. Thus one finite elementary abelian
+   incidence-gauge group acts by BCS-algebra
    automorphisms and fixes the embedded original algebra pointwise.
 4. Every exact marked representation can be made covariant for this entire
    gauge group without losing the mark: replace `pi` by
 
 ```text
-direct_sum_(g in F_2^X) pi composed theta_g.             (GDB3)
+direct_sum_(g in Gauge(B)) pi composed theta_g.          (GDB3)
 ```
 
    The regular permutation unitaries implement the flips.
@@ -50,9 +53,9 @@ constant.
 In central-sign group notation, `(GDB2)` is
 
 ```text
-A_x -> J A_x,          B_x -> J B_x,                    (GDB4)
+A_(c,x) -> J A_(c,x),  B_(c,x) -> J B_(c,x),            (GDB4)
 ```
 
-and the invariant logical word is still `A_x B_x`. Hence a Weyl reset may
+and the invariant logical word is still `A_(c,x)B_(c,x)=X_x`. Hence a Weyl reset may
 translate the nonzero selector direction `(1,1)` while leaving every original
 BCS word and the native Fanizza signal unchanged.

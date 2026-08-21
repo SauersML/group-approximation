@@ -3,6 +3,9 @@ rg: 2
 id: two-sided-pauli-gauge-bridge-preserves-spin-scale
 kind: claim
 title: A two-sided Pauli bridge renews private gauges while preserving conditional spin multiplicity
+artifacts:
+  - experiments/two_sided_gauge_bridge_incidence.py
+  - experiments/two-sided-gauge-bridge.json
 distinct_from:
   branch-reset-amalgam-preserves-mark-and-balances-types: that balances one raw selector chart against a reset group and does not attach a second semantic context; this uses the two transverse maximal abelian charts of one Pauli group to connect old and new gauge-doubled contexts.
   selector-free-spin-reset-leaves-contexts-independent: that leaves all old/fresh sign pairs independent; this forces both private gauge distributions to the same uniform ray conditional on every shared logical character.
@@ -53,3 +56,12 @@ For approximate finite-dimensional models, exactify the three fixed finite
 tables and align their two abelian overlaps. The weighted distance from
 `(TPG4)` is at most `C sqrt(E)`, with `C` independent of ambient dimension.
 
+The executable certificate writes the two edge-incidence matrices explicitly
+for one through four logical/gauge bits. In every case their joint kernel is
+one-dimensional with primitive positive ray
+
+```text
+(1,...,1,D,1,...,1),                                    (TPG5)
+```
+
+so no additional nonuniform stationary ray is hidden in the local connector.
