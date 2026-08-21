@@ -550,6 +550,22 @@ refutation, and this claim makes the reduction precise.
   (v7): trace the `|c*|`-versus-defect frontier by joint
   minimization; next theorem target: a lower bound for `|c*|` in
   terms of the spectral-floor gap at fixed level.
+- **Exact vanishing of the transported core (2026-08-21, by hand).**
+  The dictionary transports parahoric projections
+  (`V P_sigma V* ~ P^A_(sigma o phi)` up to defect), so the
+  perfect-transport value of the phase-free core is the structure
+  constant `c*_0 = (1/512) sum_sigma Tr(P^A_(sigma o phi) P_pi(sigma))`
+  — and this VANISHES IDENTICALLY: `sigma o phi` has shifted-down
+  conductor (shallow), while the native `pi`'s source-parahoric
+  constituents are all deep, so the isotypics are disjoint.  Hence
+  `c*(V) = 0 + (defect-carried residue)`: retention is EXACTLY a
+  defect phenomenon, the inversion is now an exact statement, and the
+  fixed-level floor question is precisely how the un-removable
+  minimum defect (proven positive by the spectral floor) distributes
+  into `c*` across the low-defect manifold — the v7 frontier
+  `|c*|` versus defect is the whole story, and any lower bound must
+  couple the two through the conductor-mismatch geometry rather than
+  through transport identities.
 - Proved below by assembling established inputs; see the proof route.
   The one step that is a HYPOTHESIS here and a theorem at `SL_2` is
   vertex near-exactness: `SL_3(Z)` HS-stability is open (it is the
