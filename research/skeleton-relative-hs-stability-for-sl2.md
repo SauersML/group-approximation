@@ -100,6 +100,22 @@ never activates.
   far sector (local HS-rigidity of the solenoid variety plus a
   two-swap simultaneous alignment, both clean compact-space
   questions), but the difficulty is conserved, as it must be.
+- **Leg (1) closed; the tower exactifies top-down (2026-08-21).**
+  `bs14-exact-representation-variety-is-hs-locally-rigid` is
+  established, and with it the solenoid tower needs NO new stability
+  theorem: exactify the DEEPEST level required by the relator family
+  via Levit--Vigdorovich, then define the whole tower downward by
+  fourth powers of that single exact pair — an exact solenoid
+  representation sharing one `h`, with errors amplified by `4^depth`
+  but depth is fixed per relator, which is all an asymptotic
+  representation owes.  So per-relator solenoid exactification holds
+  with fixed-depth constants, full uniform `Q`-stability is not
+  needed, and BOTH parabolic towers exactify with shared internal
+  `h`-components.  The claim's entire remaining content is the
+  TWO-SWAP SIMULTANEOUS ALIGNMENT: correct the relative position of
+  the two exact odd towers so that the `w(1)`- and `w(2)`-Weyl words
+  act exactly at once — the Iwahori square-root core in exact-odd
+  coordinates, now provably the LAST piece of this route.
 - **Where the obvious attack could die.**  If the torsor fixed-point
   problem has an obstruction class that grows with the odd order,
   the loss would not be dimension-free; the analogue at the level of
