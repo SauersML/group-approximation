@@ -266,6 +266,26 @@ refutation, and this claim makes the reduction precise.
   whose structure (parahoric branching under one descent step) is
   level-periodic in the tower, exactly the sort of statement the
   Hecke/(T) technology is built to make uniform.
+- **Layer decomposition and the shift structure (2026-08-21, by
+  hand, verified against the computed anatomy).**  The permutation
+  module splits `G_a`-equivariantly by divisibility strata into
+  primitive-layer representations pulled back from levels
+  `j = 0..a`, and the computed dims confirm it exactly: layer 1 is
+  `7 = 1 + 6`, layer 2 is `56 = 1 + 6 + 21 + 28`, layer 3 accounts
+  for `448` with the second copies of `84, 112` — which also explains
+  the four trivial copies (one per layer: the orbit-level wire).  The
+  descent map `phi` shifts layers by TWO (the long root has
+  `h`-weight `4`), so the matched one-step form `M_a` is, away from
+  the top and bottom layers, a fixed local block tensored with the
+  shift by two on the layer chain.  Uniform-in-level positivity of
+  the block-trace floor therefore reduces to a transfer-operator
+  statement: one finite verification of the fixed local block plus
+  control of the two boundary layers — the level-periodicity is now a
+  theorem-shaped mechanism, not a hope.  On the orbit-level wire the
+  locked form is literally a truncated shift pairing
+  `sum conj(t_j) t_(j-2)` of the per-layer phases of `K`'s
+  trivial-isotypic block, the cleanest place to test the mechanism by
+  hand.
 - Proved below by assembling established inputs; see the proof route.
   The one step that is a HYPOTHESIS here and a theorem at `SL_2` is
   vertex near-exactness: `SL_3(Z)` HS-stability is open (it is the
