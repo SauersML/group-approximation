@@ -90,3 +90,13 @@ word energy without making their selector covariance a zero-defect identity
 in every tracial representation.  The cyclic lemma proves that no additional
 same-reservoir theorem, Perron--Frobenius recurrence, or control of the local
 twists is needed after that decoding step.
+
+Literal quasi-regular involutions remove the reflection syntax but not this
+decoding step.  By
+`hecke-coset-quarter-selector-is-either-untyped-or-rank-preserving`, a chosen
+coset action can make such an involution quarter-negative, but the regular
+stationary type makes every nontrivial involution half-negative.  Once finite
+type data authenticate the quarter rank, every ordinary HNN/Hecke transport
+of those data preserves spectral multiplicity and cannot be a coarse-to-fine
+edge.  Thus subgroup averages and finite-edge stable letters do not provide
+the missing matrix-only authentication.
