@@ -73,7 +73,7 @@ root-energy coordinates `(S_n,x_12)`.
 - **Use the shorter q14 directional wall when possible.**  The exact kernel
   word `q_14=(t23_(1)t23_(2))^2` becomes a two-syllable `t30` comparison after
   the fixed packet alignment.  `atlas-q14-forces-t30-covariance-floor` proves
-  `liminf x_30^2>=1/8`, reducing the sufficient upper target to the separate
+  `liminf x_30^2>=1/2`, reducing the sufficient upper target to the separate
   one-coordinate claim `atlas-a4-t30-energy-ceiling-below-q14-wall`.  The
   ellipse remains a valid endpoint, but the one-coordinate route has much
   more numerical slack.

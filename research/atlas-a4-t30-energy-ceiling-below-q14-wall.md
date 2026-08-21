@@ -2,7 +2,7 @@
 rg: 2
 id: atlas-a4-t30-energy-ceiling-below-q14-wall
 kind: claim
-title: The A4 packet and collision 19243 force aligned t30 root energy below one eighth
+title: The A4 packet and collision 19243 force aligned t30 root energy below one half
 distinct_from:
   atlas-a4-root-energy-ellipse-ceiling: that asks for a much smaller two-coordinate ellipsoidal bound sufficient against the S3 wall; this asks only for one t30 coordinate below the stronger q14 wall.
   atlas-q14-forces-t30-covariance-floor: that is the established opposite lower bound supplied by a second kernel relation; this is the missing packet-plus-19243 upper estimate.
@@ -24,17 +24,17 @@ With `h_n=rho_n(t30)`, prove
 
 ```text
 limsup_n x_30(U_n)^2
- =limsup_n [1-Re tau_n(U_n h_n U_n^* h_n)] <1/8.      (T30-CEIL)
+ =limsup_n [1-Re tau_n(U_n h_n U_n^* h_n)] <1/2.      (T30-CEIL)
 ```
 
 Equivalently,
 
 ```text
-limsup_n ||U_n h_n U_n^*-h_n||_2^2 <1/4.
+limsup_n ||U_n h_n U_n^*-h_n||_2^2 <1.
 ```
 
 This is now the shortest A4 analytic endpoint.  The independent kernel
-relation `q_14` forces the opposite lower bound `liminf x_30^2>=1/8`, so no
+relation `q_14` forces the opposite lower bound `liminf x_30^2>=1/2`, so no
 full S3 recovery or four-variable root ellipse is needed once `(T30-CEIL)` is
 proved.
 
@@ -58,6 +58,6 @@ proved.
   `K_(2,4)` rectangle holonomies.  A dimension-free inequality need only
   control the `t30` covariance through these four multiplicity unitaries and
   the 19243 residual.
-- **A non-strict estimate is insufficient.**  The q14 wall is exactly `1/8`;
+- **A non-strict estimate is insufficient.**  The q14 wall is exactly `1/2`;
   the upper estimate must retain a positive strict margin after passage to a
   microstate subsequence.

@@ -74,13 +74,107 @@ extending their polar partial isometries on the kernels.  Every singular value
  =c^2/2.                                               (5)
 ```
 
-Taking the infimum in `(5)` proves `(Q14-COV)`.  Finally, since `h` is a
-self-adjoint involution,
+Taking the infimum in `(5)` proves `(Q14-COV)`.  This distance estimate is
+useful but is not the sharp root-energy bound.
+
+For the sharp estimate put
 
 ```text
-||UhU^*-h||_2^2
- =2-2 Re tau_k(UhU^*h)=2x_30(U)^2.                   (6)
+a=rho_k(t23),
+b=U h U^*,
+p=(1-h)/2,
+r=(1-b)/2.
 ```
 
-Combining `(Q14-DIST)`, `(Q14-COV)`, and `(6)` proves `(Q14-ROOT)` and the
-three limiting bounds in `(Q14-WALL)`.
+Then `q_14(U)=abab`, and right multiplication by `b` gives
+
+```text
+||ara-r||_2=(1/2)||aba-b||_2
+           =(1/2)||q_14(U)-1||_2=epsilon_14(U)/2.     (6)
+```
+
+Write `r=[A B;B^* D]` in the `+1/-1` decomposition for `a`.  Spectrally round
+the positive contractions `A,D` at `1/2` to projections `A_0,D_0`, and put
+`s=diag(A_0,D_0)`.  The projection equations give
+
+```text
+A-A^2=BB^*,
+D-D^2=B^*B.
+```
+
+For `lambda in [0,1]`,
+`min(lambda^2,(1-lambda)^2)<=lambda(1-lambda)`.  Therefore
+
+```text
+||r-s||_2^2
+ <=(4/N)||B||_F^2
+ =(1/2)||ara-r||_2^2
+ <=epsilon_14(U)^2/8.                                (7)
+```
+
+The projection `s` commutes with `a`.  Now average `p` over this involution:
+
+```text
+E_a(p)=(p+apa)/2=1/2-(h+aha)/4.                       (8)
+```
+
+The exact matrix audit gives `|ah|=4` and `(ah)^2=t20!=1`.  Hence `h` and
+`aha` are distinct commuting involutions and generate a Klein four group.
+The regular character gives trace `1/4` to each of its four joint character
+spaces.  Thus the spectral distribution of `E_a(p)` is
+
+```text
+eigenvalue       0       1/2       1
+trace weight    1/4      1/2      1/4.                (9)
+```
+
+Since `s` commutes with `a`, traciality gives
+`tau(sp)=tau(sE_a(p))`.  The elementary decreasing rearrangement of `(9)`
+implies, for every such projection `s`,
+
+```text
+tau(sp)<=3/8+|tau(s)-1/2|.                            (10)
+```
+
+Put `eta=||r-s||_2`.  Since `tau(r)=tau(p)=1/2`, Cauchy--Schwarz and
+`||p||_2=1/sqrt(2)` give
+
+```text
+tau(rp)
+ <=tau(sp)+eta/sqrt(2)
+ <=3/8+(1+1/sqrt(2))eta.                              (11)
+```
+
+Finally,
+
+```text
+x_30(U)^2
+ =1-Re tau(bh)
+ =2-4tau(rp).                                         (12)
+```
+
+Substitute `(7)` into `(11)--(12)` to obtain
+
+```text
+x_30(U)^2>=1/2-(1+sqrt(2))epsilon_14(U).
+```
+
+Together with nonnegativity this proves `(Q14-ROOT)`.  Also
+`||UhU^*-h||_2^2=2x_30(U)^2`, proving the two sharp limiting statements in
+`(Q14-WALL)`.
+
+For completeness, sharpness can be realized canonically.  Let `e_(sigma,tau)`
+be the four joint character projections of `<h,aha>`, put
+
+```text
+e_mid=e_(+,-)+e_(-,+)=(1-(ah)^2)/2,
+f=e_mid(1+a)/2,
+s=e_(-,-)+f.
+```
+
+Conjugation by `a` exchanges the two middle joint-character spaces and fixes
+`e_(-,-)`, so `e_mid` and `e_(-,-)` commute with `a`.  The regular character
+also gives `tau(e_mid a)=0`; hence `f` is an `a`-commuting projection of trace
+`1/4`.  Thus `s` commutes with `a`, has trace `1/2`, and satisfies
+`tau(sp)=1/4+(1/2)(1/4)=3/8`.  It is unitarily conjugate to `p`, so the
+corresponding `U` has `q_14(U)=1` and `x_30(U)^2=1/2`.

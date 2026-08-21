@@ -141,8 +141,9 @@ def main() -> None:
         "normalized_hs_constants": {
             "relative_unitary_lipschitz_constant": 4,
             "distance_to_t30_commutant_squared_floor": "1/8",
-            "t30_covariance_defect_squared_floor": "1/4",
-            "root_energy_x30_squared_floor": "1/8",
+            "sharp_t30_covariance_defect_squared_floor": "1",
+            "sharp_root_energy_x30_squared_floor": "1/2",
+            "robust_root_energy_loss_coefficient": "1+sqrt(2)",
         },
         "classical_no_shortcut_audit": counts,
     }, sort_keys=True, indent=2))

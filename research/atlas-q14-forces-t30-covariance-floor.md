@@ -2,7 +2,7 @@
 rg: 2
 id: atlas-q14-forces-t30-covariance-floor
 kind: claim
-title: The short q14 kernel relation forces aligned t30 root energy at least one eighth
+title: The short q14 kernel relation forces aligned t30 root energy at least one half
 distinct_from:
   atlas-19243-relation-forces-s3-distance: collision 19243 gives a distance floor from the full aligned S3 commutant; q14 has only two moving syllables and gives the stronger one-generator t30 covariance floor.
 artifacts:
@@ -50,16 +50,20 @@ dist_2(U,C_30(k))
  >= 2 dist_2(U,C_30(k))^2,                            (Q14-COV)
 
 x_30(U)^2
- >= max(0,(sqrt(2)-epsilon_14(U))/4)^2.               (Q14-ROOT)
+ >= max(0,1/2-(1+sqrt(2))epsilon_14(U)).               (Q14-ROOT)
 ```
 
 Consequently every sequence with `epsilon_14(U_n)->0` satisfies
 
 ```text
 liminf_n dist_2(U_n,C_30(n))^2 >=1/8,
-liminf_n ||U_n h_n U_n^*-h_n||_2^2 >=1/4,
-liminf_n x_30(U_n)^2 >=1/8.                           (Q14-WALL)
+liminf_n ||U_n h_n U_n^*-h_n||_2^2 >=1,
+liminf_n x_30(U_n)^2 >=1/2.                           (Q14-WALL)
 ```
+
+The root-energy constant `1/2` is sharp under the q14 relation alone.  It
+comes from the exact four-sector spectrum of the two transvections, rather
+than from the weaker distance-to-commutant estimate.
 
 The exact artifact also establishes the limitation of this relation.  Of the
 thirty inner and thirty outer classical A4-packet alignments, packet plus q14

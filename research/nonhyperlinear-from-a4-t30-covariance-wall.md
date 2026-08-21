@@ -24,7 +24,7 @@ kernel of the two-chart Leavitt map, so after regularization
 The q14 covariance theorem applied to the first limit gives
 
 ```text
-liminf_n x_30(U_n)^2 >=1/8.                           (2)
+liminf_n x_30(U_n)^2 >=1/2.                           (2)
 ```
 
 The exact-regular A4 normalization, the thirty packet relations, and the
@@ -32,7 +32,7 @@ second limit put the same sequence under the hypotheses of the one-coordinate
 ceiling, which gives
 
 ```text
-limsup_n x_30(U_n)^2 <1/8.                            (3)
+limsup_n x_30(U_n)^2 <1/2.                            (3)
 ```
 
 Equations `(2)--(3)` contradict each other.  Hence the required hyperlinear
