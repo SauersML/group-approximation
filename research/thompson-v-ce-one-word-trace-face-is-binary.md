@@ -26,6 +26,13 @@ The second case occurs exactly when `V` is hyperlinear. Thus any strict
 upper bound below `2` automatically improves to the exact finite-dimensional
 ceiling `0` and proves `V` nonhyperlinear.
 
+The bare implication "strictly below `2` implies nonhyperlinear" already
+follows for any simple group: a nontrivial homomorphism into a tracial matrix
+ultraproduct is injective, and then the regular trace is matricial. The
+Dudko--Medynets input adds the exact zero-or-two support law and the complete
+interval description of CE trace values; it does not by itself make the
+strict ceiling easier.
+
 This is a new specialization/reduction of the published character
 classification, not a proof that the strict upper bound holds. The same
 character/corner maneuver already appears informally in the repository for a

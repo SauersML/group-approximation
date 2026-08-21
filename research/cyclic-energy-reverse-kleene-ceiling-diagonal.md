@@ -42,6 +42,20 @@ The fixed-point program reads no relator-defect threshold, canonical-moment
 tolerance, matrix-dimension bound, upper-semicontinuity modulus, convergence
 rate, or runtime bound.
 
+There is no hidden convergence theorem in the canonical clause of `(EKT2)`.
+For a finite trace-polynomial energy, canonical moment convergence always
+gives `E_e(U_n)->Ereg_e`. Hence that clause is logically equivalent to
+
+```text
+G_e is nonhyperlinear OR Ereg_e<=beta_e.                 (EKT2')
+```
+
+The compiler must prove the second disjunct from a hypothetical canonical
+microstate; it may become vacuous precisely when the fixed-point group is
+nonhyperlinear. An unconditional exact finite-dimensional excess witness
+cannot replace this conditional implication, by
+`cyclic-energy-excess-recognizer-is-essential`.
+
 The same theorem holds for uniformly recursively enumerable presentations if
 the compiler additionally supplies a uniform semidecision procedure for
 `beta_e>b_e`. Such a procedure is automatic for finite presentations by exact

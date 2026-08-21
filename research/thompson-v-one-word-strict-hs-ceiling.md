@@ -44,6 +44,22 @@ root problem, not an established gap.
   explicitly leaves Hilbert--Schmidt approximability of Thompson groups open.
   Their fragmentation and bounded-generation mechanism is motivation, not a
   theorem implying `(TV2)`.
+- More precisely, their final bounded-generation lemma is compatible with any
+  bi-invariant norm once the relevant point-stabilizer has already collapsed:
+  a fixed product costs only a fixed triangle-inequality factor. The missing
+  input is collapse on `V(x)`. Their proof obtains it from uniform stability
+  for submultiplicative norms, while `V(x)` itself is a directed union of
+  copies of `V`. Replacing that input by pointwise normalized-HS estimates
+  therefore recurses to the same problem and supplies no contraction.
+- The deeper obstruction is `normalized-hs-tangent-quotient-is-nonabelian`:
+  the asymptotic-cohomology proof first linearizes near-identity errors by
+  making their tangent quotient abelian, and sparse Pauli blocks refute that
+  step in normalized HS at exactly first order.
+- The proof in the cited paper controls the uniform defect
+  `sup_(g,h)||phi(gh)-phi(g)phi(h)||`, whereas a presentation microstate gives
+  only pointwise/local control. Finite presentability does not bound the areas
+  of all multiplication identities. Fixing `w` makes the final product
+  telescoping finite, but does not provide uniform stability on `V(x)`.
 - The Dudko--Medynets character theorem removes every intermediate limiting
   trace once a strict ceiling is proved, but it supplies no quantitative
   control on approximate representations by itself.
@@ -56,3 +72,19 @@ root problem, not an established gap.
   in all tracial representations can prove `(TV2)`, because the exact regular
   representation has energy `2`. The missing estimate must be genuinely
   finite-matrix/Connes-embeddability sensitive.
+- Pure prefix copying is also insufficient. The locally finite exact model in
+  `affine-clone-model-defeats-pure-thompson-prefix-error-spreading` supports
+  arbitrary finite refinement into commuting conjugate children and finite
+  leaf symmetry while the root retains energy `2`. A live attack must isolate
+  a specifically Thompson collision/overlap relation absent from that model.
+- The cohomology-free permutation argument in the cited paper uses an exact
+  finite-order return of a permutation shift. A unitary shift can have
+  arbitrary continuous spectrum; cyclic `d`-shift matrices show that every
+  return exponent may grow with `d`, reintroducing an uncontrolled word-area
+  factor.
+- Finite cutoffs and summable attempts to average over all possible return
+  exponents are ruled out by
+  `summable-power-return-detectors-miss-growing-cycles`: uniform `d`-cycle
+  spectra converge to Haar moments and push every summable return weight into
+  the tail. Only a constant-cost infinite family, coupled by a relation that
+  also defeats the affine clone model, could evade both firewalls.
