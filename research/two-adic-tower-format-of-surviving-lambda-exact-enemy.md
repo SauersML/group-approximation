@@ -63,6 +63,14 @@ candidate enemy and would need to be tested against the
   which is exactly what the Weyl evaluation cannot reach without the
   slot.  The residual constraint is the interlock of part 2 plus the
   trace; whether they pin `Ad(V)` on the tower is the open point.
+- **Probe protocol designed.**  The finite-level closure question is
+  a modulus question (single levels are vacuous: the corner
+  intertwining loses two levels), so the experiment measures the
+  defect floor `delta*(a)` across levels `a = 2, 3, 4` with Haar and
+  mixed-word regularity pressure; full design in
+  `research/artifacts/two-adic-tower-probe-protocol-2026-08-21.md`,
+  reusing the validated optimizer of
+  `experiments/hecke42_average_probe.py`.
 - **Relation to the Iwahori lane.**  Part 1 restricted to one level
   is the `SL_3`-at-`2` version of the `B_+/B_-` compatibility of
   Dogon--Vigdorovich Question 1.4; the interlock adds two more
