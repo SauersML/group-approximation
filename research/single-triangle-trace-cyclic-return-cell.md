@@ -11,9 +11,10 @@ distinct_from:
 OPEN.  Construct one finitely presented ordinary-group cell attached to the
 last chord of the native Fanizza context triangle such that:
 
-1. after fixed packet exactification, the chord mismatch is the rational D8
-   group-algebra projection `H=(1-[R_F,R_G])/2`, or a fixed nonzero scalar
-   multiple of it;
+1. after fixed packet exactification **and using the prescribed native
+   machine-word identities on the three separators**, the chord mismatch is
+   the rational D8 group-algebra projection
+   `H=(1-[R_F,R_G])/2`, or a fixed nonzero scalar multiple of it;
 2. every finite-dimensional microstate decodes two block maps `X,Y` with the
    scalar trace estimates
 
@@ -45,3 +46,9 @@ atlas, synchronize a long computation, or provide a uniform family of
 proper-corner gadgets.  What remains open is still genuine: ordinary group
 words are invertible, so the one-sided maps must arise only after
 finite-dimensional packet compression, not as literal group equations.
+
+The triangle alone supplies no charge.  It is classically flat, with all
+eight separator assignments extendible.  Hence clause 1 must fail if the
+separator signs are treated as free Boolean variables.  The prospective
+holonomy is a semantic machine-word/corner effect, not a contextuality proof
+on the abstract three-cycle.

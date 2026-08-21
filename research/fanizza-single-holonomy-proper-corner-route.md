@@ -19,6 +19,13 @@ the attached leaf and two edges of the unique triangle by the spanning-tree
 theorem.  All exact incidence freedom is then one commutant holonomy on the
 last binary separator.
 
+The bare Boolean triangle is classically flat: every assignment of its three
+separator signs extends to all four contexts.  Therefore the D8 charge cannot
+be inferred from cycle topology or marginal compatibility.  It must be tied
+to the fact that the three separator observables are the prescribed machine
+words in the native Fanizza algebra.  Replacing them by freely chosen signs
+would destroy the only possible obstruction.
+
 Use the two native quarter carriers as the finite holonomy packet.  Their
 reflections generate exact `D_8`; the derived negative central cut has trace
 `1/8` and is a rational group-algebra projection.  The final cell should make
