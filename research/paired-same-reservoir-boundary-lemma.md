@@ -241,6 +241,21 @@ one of the following equivalent matrix-coordinate inputs:
 Further typed Steinberg triangles or Clifford covariance relations cannot
 provide this input: both admit the exact arbitrary-`V` models above.
 
+There is one useful relaxation if several returned prefix cells can be linked
+cyclically.  `cyclic-coarse-fine-selector-rows-spread-carrier-error` permits a
+different selected carrier `P_i` at every cell and proves
+
+```text
+sum_i ||U_i e_i U_i^*-f_(i+1)||_2^2
+  >=(1/4)sum_i tau(P_i).                                (PSR14)
+```
+
+Thus a bounded cycle completely removes both common-reservoir mass alignment
+and arbitrary unitary multiplicity twists from the analytic endpoint.  It
+does not remove the remaining selector-authentication gate: the mixed rows
+must still be recovered by a finite-matrix/canonical-trace step rather than
+made universal identities in the group algebra.
+
 ## Attempts
 
 - **Whole-map extraction fails.**  Exact deterministic equivariant maps into

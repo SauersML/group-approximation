@@ -64,6 +64,21 @@ perfectly authenticated Pythagorean word by itself controls only
 amplification.  The missing actuator must identify the blocks with the same
 positive-mass reservoir strongly enough to prove `(SSC3)`.
 
+A bounded cyclic alternative now removes the literal same-reservoir part of
+that sentence.  `cyclic-coarse-fine-selector-rows-spread-carrier-error` shows
+that coarse-half to fine-quarter covariance rows on arbitrarily different
+carriers satisfy
+
+```text
+sum_i row_i^2 >=(1/4)sum_i carrier_i.
+```
+
+Local multiplicity twists cannot absorb this cyclic deficit.  The unresolved
+actuator is narrower: matrix-only authentication of the mixed selector rows.
+Promoting those rows to universal identities would violate the regular-trace
+firewall, so the cycle is an error-spreading endpoint rather than a functorial
+Leavitt decoder.
+
 ## Self-similar host audit
 
 - A pure faithful rooted-tree automorphism model cannot retain a mark only
