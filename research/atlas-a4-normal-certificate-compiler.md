@@ -102,6 +102,57 @@ only has to transport its covariance block.
   collision-to-cocycle readout; none of the established exact packet lemmas
   currently discharges it.
 
+- **Exact packet/collision normal closure cannot prove the hub readout
+  universally.**  Put
+
+  ```text
+  Gamma=(A8*A8)/<<thirty A4 packet words,q_19243>>.
+  ```
+
+  Every displayed relator is a true word in the kernel of the canonical map
+  to the binary-Leavitt target.  By `atlas-charts-overlap-trivially`, the two
+  chart maps `i_1,i_2:A8->Gamma` are injective and have trivial intersection.
+  In the group von Neumann algebra `L(Gamma)`, include the canonical trace in
+  a finite factor `M`.  The two regular trace-preserving copies of `C[A8]` in
+  `M` are unitarily conjugate (match their finite-dimensional matrix blocks),
+  so some `U in M` satisfies
+
+  ```text
+  U lambda(i_1(g)) U^*=lambda(i_2(g))       (g in A8).
+  ```
+
+  This is an exact regular-margin packet/collision model: all packet errors
+  and stable-letter errors vanish, and `q_19243=1`.  Nevertheless its hub
+  opcode is
+
+  ```text
+  V_U(b)=lambda(i_2(b)i_1(b)^-1).
+  ```
+
+  The element is nonidentity because the chart images have trivial
+  intersection.  Hence the canonical group trace gives
+
+  ```text
+  tau(V_U(b))=0,                 ||V_U(b)-1||_2^2=2.   (A4-STAR-ESCAPE)
+  ```
+
+  Thus no finite group-word normal certificate using only the exact packet
+  and collision relations can imply `(A4-STAR-2)` in all finite tracial von
+  Neumann algebras: its right side is zero on this model and its left side is
+  `sqrt(2)`.  In particular, the fact that `b` normally generates the
+  *individual* simple chart `A8` does not control the cross-chart relative
+  cocycle.  The cocycle is not a representation, and true kernel relators
+  cannot algebraically identify the two faithful chart factors.
+
+  This does not refute the stated matrix-only claim: the quotient trace need
+  not be Connes embeddable.  It proves that the least-attempted direct route
+  cannot close by an ordinary finite normal-closure/telescoping certificate.
+  Any proof of `(A4-STAR-2)` must be a genuinely finite-dimensional trace
+  obstruction excluding `(A4-STAR-ESCAPE)` from matrix ultraproducts (which
+  is precisely the packet-collision quotient fork), while `(A4-STAR-1)` still
+  separately requires relative-cocycle equivariance.  The exact certificates
+  can only propagate a hub estimate after those analytic inputs are supplied.
+
 - **Search three transports, not a group law.**  In the canonical
   qutrit/multiplicity splitting, seek packet paths carrying the `t23` covariance
   block to `t01`, `t12`, and the transverse `t30` covariance block.  Only the

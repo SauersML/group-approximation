@@ -4,8 +4,8 @@ id: abelian-lifting-obstruction-vanishes-for-sl-n-z
 kind: claim
 title: The bounded second cohomology of SL_N(Z) with coefficients in the trace-null ideal vanishes, so the abelianized lifting obstruction is zero
 distinct_from:
-  tracial-to-uniform-lifting-for-sl-n-z: that is the nonabelian lifting of representations through the trace-null ideal; this is its ABELIANIZED shadow -- vanishing of H^2_b(Gamma, I) -- which is proved here from Ulam-stability cohomology plus property (T), and which is necessary but, because the ideal is not nilpotent, not sufficient.
-  bounded-degree-two-primitives-for-higher-rank-lattices: that asked for operator-bounded primitives of 2-norm-small cocycles; this shows the operator-bounded primitive of an I-valued bounded cocycle can be taken I-valued, by a degree-one (T) correction -- the ideal version, which is what lifting actually needs.
+  tracial-to-uniform-lifting-for-sl-n-z: that is the nonabelian lifting of representations through the trace-null ideal; this is its ABELIANIZED shadow -- vanishing of H^2_b(Gamma, I) -- which would be necessary but, because the ideal is not nilpotent, not sufficient.
+  bounded-degree-two-primitives-for-higher-rank-lattices: that asks for operator-bounded primitives of 2-norm-small cocycles; this asks for the operator-bounded primitive of an I-valued bounded cocycle to be I-valued, the ideal version needed by lifting.
 ---
 
 Let `Gamma = SL_N(Z)`, `N >= 3`, `A = prod_U^(op) M_(d_m)` the
@@ -21,15 +21,12 @@ H^2_b(Gamma, I) = 0
 Consequently the defect 2-cocycle of any bounded set-theoretic lift
 of `pi` is the coboundary of a bounded 1-cochain WITH VALUES IN `I`.
 
-PROOF.  The short exact sequence `0 -> I -> A -> A/I -> 0` of Banach
-`Gamma`-modules gives the long exact sequence
+**Tempting argument (not a proof).**  The short exact sequence
+`0 -> I -> A -> A/I -> 0` of Banach
+`Gamma`-modules would suggest the long exact sequence
 `H^1_b(Gamma, A) -> H^1_b(Gamma, A/I) -> H^2_b(Gamma, I) ->
-H^2_b(Gamma, A)`.  The last group vanishes: this is the
-asymptotic-cohomology vanishing of Glebsky--Lubotzky--Monod--
-Rangarajan [arXiv:2301.00476] behind uniform stability of high-rank
-lattices in submultiplicative norms (Burger--Ozawa--Thom for
-`SL_n(Z)`, `n >= 3`).  The middle map is onto its image by
-exactness, so it suffices that `H^1_b(Gamma, A/I) = 0`: a bounded
+H^2_b(Gamma, A)`.  If the last group vanished, exactness would reduce
+the target to `H^1_b(Gamma, A/I) = 0`: a bounded
 1-cocycle `b : Gamma -> M = A/I` for `Ad pi` is, in the Hilbert
 space `L^2(M)`, a cocycle of a unitary representation of a
 Kazhdan group, hence `b = delta w` with `w in L^2(M)` the fixed
@@ -42,7 +39,51 @@ zero and `H^2_b(Gamma, I) = 0`.  Unwinding: if `y in C^1_b(Gamma, A)`
 has `delta y = c in Z^2_b(Gamma, I)`, then `y mod I` is a bounded
 1-cocycle into `M`, equal to `delta w`; lifting `w` to `tilde w in
 A` with the same operator norm, `y' = y - delta tilde w` is
-I-valued with `delta y' = c`.  QED.
+I-valued with `delta y' = c`.
+
+The final direct lifting paragraph avoids needing an admissible Banach-space
+splitting of `A -> A/I`, so the long-exact-sequence formalism is not the main
+problem.  The unsupported step is precisely
+
+```text
+H^2_b(Gamma,A)=0.                                      (ALO-GAP)
+```
+
+### Source audit of the claimed vanishing
+
+Glebsky--Lubotzky--Monod--Rangarajan, arXiv:2301.00476, do **not** prove
+`(ALO-GAP)`.  They define a new internal asymptotic cohomology
+`H^2_a(Gamma,W)` on the ultrapower `*Gamma`, restricted to internal cochains
+in a scaled ultraproduct coefficient module.  Their Theorem 0.0.3 says that
+vanishing of this new group implies uniform stability, and Theorem 0.0.5
+proves that vanishing for lattices whose ambient group has their
+`Property-G(Q1,Q2)`.  The paper explicitly lists injectivity of the
+forgetful map
+
+```text
+H^2_a(Gamma,W) -> H^2_b(Gamma,W_tilde)
+```
+
+as open.  It also stresses that the classical bounded-cohomology theorem
+available for higher-rank lattices assumes **dual separable** coefficient
+modules, whereas the relevant Banach ultraproduct is generally
+nonseparable.  The operator-norm ultraproduct `A` here is not shown to lie in
+that theorem's coefficient class.  Moreover their `Property-G(Q1,Q2)` method
+does not cover the ambient group `SL_3(R)`; Burger--Ozawa--Thom's Ulam
+stability of `SL_n(Z)` is a stability theorem, not the asserted classical
+bounded-cohomology vanishing for this `A`.
+
+Therefore the displayed argument proves only the conditional implication
+
+```text
+(ALO-GAP) => H^2_b(Gamma,I)=0,                          (ALO-COND)
+```
+
+with the degree-one step justified by property `(T)`.  The claim remains
+OPEN.  A valid completion must prove `(ALO-GAP)` for this specific
+nonseparable operator-ultraproduct module, or formulate and prove the needed
+primitive directly in the internal asymptotic complex.  Citing uniform Ulam
+stability does not supply it.
 
 ## Attempts
 
