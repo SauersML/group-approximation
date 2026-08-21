@@ -67,6 +67,35 @@ of over machines.
   word, so free transport of trivial words does not control it.  This is
   the `(CC2)` semantic-transport gap of `hs-pcp-boone-compiler` restated.
 
+- **Abelian distortion is dead.**
+  `centralized-cyclic-distortion-hs-dehn-tracks-area` shows that when the
+  distorted subgroup is cyclic the HS-Dehn modulus equals the Dehn function
+  along tuples of defect tending to zero; the same drift model transplants
+  to any halting subgroup distorted through a near-degenerate spectral
+  direction.
+- **Rips--(T) kernels transfer the problem to the quotient.**  For an
+  Ollivier--Wise triple `N -> G -> Q` with `N` Kazhdan and
+  `Gamma_Q = <G, k | [k, N]>`, property (T) pins `k` to the commutant of
+  `U(N)` and the generators of `G` act on the multiplicity bundle over
+  `Irr(N)` as an approximate representation of `Q`; the mark `[k, u]` is the
+  defect of the trivial `Q`-word `u` there.  So the target for `Gamma_Q` is
+  the target for `Q` (modulo robustness of the conjugation gap for
+  approximate representations of `N`, itself open); the kernel's
+  non-computable distortion is paid for by (T), the quotient's is not.
+- **Where length control beating area is already a theorem.**  Taller--
+  Vidick soundness (`taller-vidick-lcs-re-hardness`) says that on a
+  nonhalting input every finite-dimensional strategy violates at least a
+  `1/72` fraction of constraints; restricted to the `J = -1` spectral part
+  of an approximate representation of the solution group this gives
+  `||J(U) - I||_2 <= 17 Def(U)` with a constant independent of the
+  machine.  Whenever `J = 1` in that solution group (if ever it is not,
+  `perfect-lcs-gap-implies-nonhyperlinear` closes the goal), this is
+  linear length control for a word of length one whose area is unbounded
+  in the machine: PCP soundness is exactly the mechanism that beats area,
+  by averaging over an expanding family of constraints instead of
+  following one derivation.  The missing piece on that side is perfect
+  completeness, not soundness.
+
 **Falsification test.**  Any proposed modulus must be checked against the
 one-dimensional and block-diagonal tuples first: for `U` the identity
 tuple every word is at distance zero, so the test cases are tuples with

@@ -391,3 +391,26 @@ an unboundedly large structure at fixed precision, i.e. uniform stability.
    asking whether `F_G` can be linear while `Dehn_G` is exponential or
    worse.  Stable examples give linear `F_G`.  A machine group whose
    configuration transport is length-controlled would be the compiler.
+
+## 7. Calibration: the HS-Dehn modulus of a centralized cyclic distortion
+
+`Gamma = <a, t, k | t a t^(-1) = a^2, [k, a] = 1>`, `w_n = [k, t^n a t^(-n)]`.
+Model in dimension `L+1`: `a = diag(e^(2 pi i 2^(-x)))`, `t` the cyclic
+shift, `k` a `pi/4` rotation across `e_0, e_L`.  Then `Def(U_L) =
+|1 - e^(2 pi i/2^L)|/sqrt(L+1)` and `||w_n(U_L) - I||_2 / Def(U_L) ->
+2^(n-1)`, matching the area `~2^n` up to a factor four, at defect tending to
+zero (`experiments/hs_dehn_centralizer_family.py`; `ratio/2^n = 0.500` for
+`L = 8..24`, `n <= 12`).  Hence halting-style soundness with thresholds
+`(delta, alpha)` fails for `n >= log_2(alpha/delta) + O(1)` in this family:
+runtime-dependence of the constants is forced whenever the distortion runs
+through an abelian direction.
+
+Two consequences drawn in `centralized-cyclic-distortion-hs-dehn-tracks-area`
+and the Attempts of `unsolvable-word-problem-group-with-computable-hs-dehn-
+modulus`: a Kazhdan Rips kernel removes the kernel's distortion entirely but
+hands the mark to an approximate representation of the quotient on the
+multiplicity bundle over `Irr(N)`; and Taller--Vidick soundness is itself
+linear length control (`||J(U) - I||_2 <= 17 Def(U)`) for the solution
+groups of nonhalting inputs, so the phenomenon "defect beats area" is
+realized by PCP-derived presentations, through averaging over an expanding
+constraint family rather than along one derivation.
