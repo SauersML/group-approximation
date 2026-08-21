@@ -322,6 +322,21 @@ refutation, and this claim makes the reduction precise.
   feed them — is the block-structure output of the running joint
   probe; the uniform floor holds iff that census carries enough
   locked weight along the tower, per the transfer-operator mechanism.
+- **The census plausibly grows with the level (2026-08-21, by
+  hand).**  The boundary concern has a structural counter: the
+  parahoric is always a 2-group whose abelianization GROWS with the
+  level — the diagonal units `(Z/2^a)^* ~ Z/2 x Z/2^(a-2)` contribute
+  two growing character parameters (the root directions die mod
+  squares/commutators, but the torus does not) — while deep-layer
+  point stabilizers shrink as orbits grow, so ever more characters
+  are trivial on the normal closure of a stabilizer, and the
+  one-dimensional census should grow roughly with the layer count,
+  with generic characters appearing in FEW layers (level-localized ⇒
+  multiplicity one ⇒ carriers in the bulk).  The uniformity of the
+  one-step floor thus reduces to a concrete counting problem: torus
+  characters of the parahoric versus layer stabilizer closures, per
+  level.  Hand-tractable at `a = 4` and decisive; the running probe's
+  block census gives the `a = 3` ground truth to calibrate the count.
 - Proved below by assembling established inputs; see the proof route.
   The one step that is a HYPOTHESIS here and a theorem at `SL_2` is
   vertex near-exactness: `SL_3(Z)` HS-stability is open (it is the
