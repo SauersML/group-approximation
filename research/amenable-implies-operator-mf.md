@@ -13,14 +13,15 @@ artifacts:
   - GroupApproximation/Algebra/AmenableMFProof.lean
 ---
 
-OPEN in this repository.  Every countable amenable group is operator MF.
+ESTABLISHED by citation (`amenable-implies-operator-mf-citation`); not
+formalized.  Every countable amenable group is operator MF.
 
 This is a **published theorem, not a conjecture**: it is the standard
 consequence of quasidiagonality of the reduced group C-star algebra of an
 amenable group, which the manuscript attributes to Tikuisis--White--Winter and
 invokes as "and, by quasidiagonality, all amenable groups" (introduction) and
 "is therefore amenable, hence MF by [TWW]" (*Sharpness of the Kazhdan
-hypothesis*).  It is recorded here as an OPEN claim for one reason only: it is
+hypothesis*).  It is flagged as unformalized for one reason only: it is
 not formalized, nothing in `GroupApproximation/` proves it, and no hypothesis
 anywhere in the development stands in for it.
 
