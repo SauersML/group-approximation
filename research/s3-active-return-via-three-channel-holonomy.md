@@ -7,6 +7,7 @@ target: s3-active-packet-proper-corner-return
 requires:
   - s3-active-complement-is-three-equal-scale-affine-atoms
   - s3-affine-hnn-transports-the-active-vector
+  - s3-active-vector-carries-positive-density-multiplicity-algebra
   - packet-central-active-complement-reduces-shared-words
   - s3-three-channel-multiplicity-holonomy
   - finite-schur-clifford-packet-flexible-hs-exactification

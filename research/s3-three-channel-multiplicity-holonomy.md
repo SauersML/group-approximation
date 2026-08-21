@@ -25,6 +25,19 @@ source coordinates are the affine atoms `(SEA4)`, all at one spin scale, and
 ordinary HNN transport already supplies their local comparison.  The only
 open content is nonstationarity on their multiplicity spaces.
 
+Positive density is no longer an additional unknown.
+`s3-active-vector-carries-positive-density-multiplicity-algebra` gives
+
+```text
+tr_ad(W)>=tau(A)^2/3-C sqrt(E)                         (STH1)
+```
+
+for the direct sum `W` of the three endpoint character-block algebras.  The
+missing two-cell only has to make the compressor action factor through the
+endpoint algebra on this explicit `W`, placing it in the relevant
+low-commutator/excess space.  It must fail on the tensor-decoupled model by
+an ordinary-word coefficient-covariance relation.
+
 Acceptable implementations include a Toeplitz proper corner, a projective
 matrix-valued holonomy, or a property-`(T)` coefficient action.  A scalar
 Schur multiplier or another finite restriction edge is insufficient.
