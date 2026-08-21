@@ -40,6 +40,14 @@ finite-support PVM.  Then
   enlarges the recovered label quotient while shrinking multiplicity in the
   same ambient matrix dimension.  Such finite-depth data do not assemble to
   one global covariant PVM.
+- **Use the property-`(T)` character gap at fixed radius.**
+  `finite-radius-active-character-packets-do-not-collapse-the-mark` gives an
+  exact regular-PVM countermodel: every finite collection of additive tables
+  and partial actor transports is compatible with canonical trace and a
+  fully separated mark.  The failure moves into actor/mixed loops leaving
+  the window.  Thus finite-radius orbit expansion yields no shrinking scalar
+  remainder unless those loop words are charged by an additional boundary
+  theorem.
 
 Accordingly the character-orbit backend does not prove the old
 affine-Leavitt decoder.  It replaces the post-decoding Leavitt trace cell by
@@ -47,4 +55,3 @@ a cleaner property-`(T)` PVM endpoint.  The global exposure assertion is
 stronger than the fixed-depth boundary estimate and is not known to be
 equivalent to it; the rectangular model explains why every current local
 extraction attempt fails at the same boundary/multiplicity interface.
-

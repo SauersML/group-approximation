@@ -106,8 +106,8 @@ theorem reducednessVoidsCoincidence [DecidableEq α] :
     unfold palindrome
     conv_lhs => rw [← hcsplit]
     rw [hy]
-    simp only [List.append_assoc, List.cons_append, List.singleton_append,
-      List.nil_append]
+    simp only [List.append_assoc, List.cons_append, List.nil_append]
+    rw [hcsplit]
   rw [hsplit] at hpal
   exact not_isReduced_cancel hpal
 
