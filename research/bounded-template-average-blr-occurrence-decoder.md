@@ -99,6 +99,33 @@ Pauli-cycle countermodel does not prove an impossibility for simplex sections.
 The remaining gap is ordered correctly: decode arbitrary operator local views
 to global simplex sections while preserving the edge commutation energy.
 
+The edge overlay cannot itself perform that decoding.  The exact one-qubit
+construction in `bounded-cooccurrence-joint-pvms-do-not-round-globally`
+places `X` and `Z` on two halves of a distance-two independent set and the
+identity elsewhere.  Every bounded-degree local joint-PVM context is exact,
+yet the complete commutator energy and distance from every global PVM are
+bounded below by constants depending only on the degree.  This remains true
+when the co-occurrence graph is a spectral expander.
+
+Nor can unconstrained arity three repair the problem.  By
+`four-local-parallelograms-are-minimal-simplex-operator-views`, every pattern
+on at most three distinct simplex coordinates extends to an affine word.
+Perfect completeness makes every such classical predicate vacuous.  The
+minimal higher-arity candidate is therefore forced: four-point affine
+parallelogram PVMs supported on even parity, arranged in a bounded-degree
+complex with an operator cosystolic-expansion inequality.  Higher arity alone
+is insufficient; the parity relation is load-bearing.
+
+There is also no general group-theoretic shortcut from the now-controlled
+exterior square to all operator layers.  Theorem 3.1 of Slofstra's
+[solution-group embedding theorem](https://arxiv.org/abs/1606.03140) (take
+the distinguished central involution to be trivial) embeds arbitrary finitely
+presented groups into solution groups with locally compatible linear-system
+relations.  Thus special affine geometry and a quantitative operator decoder,
+not merely local compatibility or class-two rigidity, must kill the higher
+commutators.  The embedding statement alone is not claimed to furnish a
+finite-dimensional counterstrategy for this particular simplex complex.
+
 ## Attempts
 
 - A direct candidate is a bounded-degree subset of the projective-line BLR
