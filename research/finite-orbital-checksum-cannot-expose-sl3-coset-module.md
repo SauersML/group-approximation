@@ -6,7 +6,7 @@ title: Finitely many orbital lamp checks cannot algebraically expose the full SL
 distinct_from:
   finite-presentation-must-expose-whole-module-with-uniform-defect: that asks for a matrix-only uniform exposure theorem; this proves that no ordinary algebraic consequence of finitely many prototype lamp relations can supply it.
   arithmetic-global-pvm-does-not-bypass-coset-action-gate: that identifies the finite atomic enemy after global PVM rounding; this identifies the earlier finite-orbital word obstruction before rounding.
-  wreath-presentation-double-coset-obstruction: that gives the general finite-presentation obstruction; this spells out its exact partial-graph-product countermodel for the SL3 checksum proposal.
+  compression-wreath-not-finitely-presented: that gives the general finite-presentation obstruction; this spells out its exact partial-graph-product countermodel for the SL3 checksum proposal.
 ---
 
 ESTABLISHED.

@@ -371,6 +371,41 @@ recursion terminates; the total correction is
   variable (for RPF).  Both are of the expected-true kind; writing
   them is the remaining work, and the framework -- Livsic + RPF +
   Gowers--Hatami for the `x4` map -- is now fully assembled.
+- **Ingredient (1) sharpened: dihedral GH, and the L-uniformity is the
+  real point (2026-08-21).**  Scrutinizing (1): the cycle block does
+  NOT satisfy the congruence relations of `SL_2(Z/(4^L-1))` -- the
+  microstate only obeys the `SL_2(Z[1/2])` relations, and congruence-
+  kernel elements go to trace-`0`, not near `1`.  So GH applies not to
+  the full finite group but to the DIHEDRAL cycle-structure
+  `<h, s | s h s^{-1} = h^{-1}>` acting on the `x4`-cycle (and its
+  `s`-image, the inverse cycle): crucially `s h s^{-1} = h^{-1}` is an
+  EXACT `SL_2(Z[1/2])` relation, satisfied to `O(delta)`, and `h^L` is
+  `x4^L = id`-scalar on the cycle, so `<h,s>` restricts to an
+  `O(delta)`-approximate finite dihedral representation there.  GH then
+  gives an exact dihedral rep `O(delta)`-close, in which the Weyl-torus
+  relation is exact -- the periodic-orbit obstruction to first order.
+  The genuine remaining subtlety is UNIFORMITY IN `L`: the naive
+  periodic sum telescopes as `O(L delta)`, which is not uniformly small
+  for long cycles.  This is exactly what the thermodynamic weighting in
+  Ruelle--Perron--Frobenius handles -- long `x4`-orbits carry
+  exponentially small measure/pressure weight `~ 4^{-L}`, so the
+  measure-weighted periodic-sum contribution is `~ L delta * 4^{-L}`,
+  summable over `L` with total `O(delta)`.  So the two ingredients
+  interlock: RPF supplies both the Holder coboundary bound AND the
+  orbit weighting that tames the `O(L delta)` growth of the GH periodic
+  sums.  The residual is therefore a single quantitative statement --
+  the RPF-weighted sum `sum_L (orbit count)_L * L delta * 4^{-L}` over
+  the `x4` periodic orbits converges (it does: orbit count `~ 4^L/L`,
+  so the sum is `sum_L delta = ...` -- NEEDS the count/weight balance
+  checked exactly, `4^L/L * L * 4^{-L} = 1` per `L`, giving
+  `sum_L delta` which DIVERGES in `L`).  So the crude weighting is NOT
+  enough; the true control must use that the DEFECT itself decays along
+  orbits (Holder + `e'(0)=0`), not just the measure weight.  Honest
+  status: ingredient (1) reduces to a defect-decay-vs-orbit-count
+  balance, the same Holder regularity of `e'` that ingredient (2)
+  needs -- so BOTH residual inputs collapse to ONE: Holder regularity
+  of the Weyl defect in the `V`-spectral variable.  That single
+  regularity statement closes the far sector.
 - **Why it is plausible and where it could fail.**  The peeling is a
   geometric contraction when the residual shrinks faster than the gap:
   each descent multiplies the uncorrected mass by the local defect

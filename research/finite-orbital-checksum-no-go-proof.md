@@ -5,7 +5,7 @@ kind: route
 title: Keep unchecked double cosets noncommuting in an invariant graph product
 target: finite-orbital-checksum-cannot-expose-sl3-coset-module
 requires:
-  - wreath-presentation-double-coset-obstruction
+  - compression-wreath-not-finitely-presented
 ---
 
 A finite list of prototype commutators selects finitely many double cosets.
