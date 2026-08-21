@@ -62,6 +62,22 @@ independent maps in Furstenberg-type measure rigidity
   correcting the enemy's `Lambda`-microstates must survive the
   property (T) conjugation-lifting used here, i.e. it is a
   representation-variety outlier, not a commutant artifact.
+- **Mixed levels: what survives is a two-adic Iwahori intertwining
+  (2026-08-21 analysis).**  For `Lambda`-exact microstates at MIXED
+  levels `n = 2^a q` (`q` odd), `G_n = SL_3(Z/2^a) x SL_3(Z/q)` and
+  the exact slot can be chosen as `V' = sigma(1, h_q)`; the corrector
+  `W = V'^* V` then intertwines the images of the two parahorics
+  `Lambda_-` and `Lambda_+ = Lambda cap h Lambda h^(-1)` ON THE
+  2-PART while the Weyl evaluation no longer closes (it used
+  `[W, pi(w)] = 0`, which needed the full commutant).  So the general
+  `Lambda`-exact sector reduces to a pure 2-adic tower problem — an
+  `SL_3` Iwahori-type compatibility question at the prime `2`,
+  the exact higher-rank sibling of the `B_+/B_-` diagram in
+  Dogon--Vigdorovich Question 1.4 — matching yet again the doctrine
+  that the enemy is pinned to the prime two.  Formalizing this
+  reduction (and testing whether a residual Weyl constraint pins the
+  2-part corrector to the finitely many level-4 blocks) is the next
+  theorem slot in this lane.
 - **Interaction with the probes.**  The probe floor
   (`experiments/hecke42_average_probe.py`: everything collapses to
   the isometry) is now half-explained by theorem rather than

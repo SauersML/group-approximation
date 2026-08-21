@@ -28,12 +28,11 @@ independent directions.
 **Part 2.**  Let `tau` be a trace of `Gamma` (or a trace of a group
 containing `Gamma`, restricted).  The scalar spectral measure `mu` of
 `tau|_U` is defined by `hat(mu)(u) = tau(u)` under the isomorphism of
-`C^*(U)`-states with measures on the dual; conjugation invariance
-gives `hat(mu)(x u x^(-1)) = tau(x u x^(-1)) = tau(u) = hat(mu)(u)`
-for `x in D` — wait, invariance of the measure corresponds to
-`hat(mu)(x u x^(-1)) = hat(mu)(u)`, and indeed both sides are values
-of `tau` at conjugate group elements, equal by the trace property.
-So `mu` is invariant under the `Z^2`-action of Part 1.  For the
+states of `C^*(U)` with measures on the dual.  Invariance of `mu`
+under the dual automorphism of `x in D` is the identity
+`hat(mu)(x u x^(-1)) = hat(mu)(u)`, which holds because both sides
+are values of `tau` at conjugate group elements and `tau` is a
+trace.  So `mu` is invariant under the `Z^2`-action of Part 1.  For the
 regular trace, `hat(mu) = delta_e` on `U`, i.e. `mu` is joint Haar.
 For a carrier trace over `delta_e` the same computation applies to
 the restriction to `Gamma`, and by
