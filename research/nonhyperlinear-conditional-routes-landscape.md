@@ -55,13 +55,21 @@ operator/relative-commutant statement) remains, and it is the same `(RCC)`.
 
 ## Attempts
 
-- **Weak ucp-stability weakening.**  Dogon's Thm 1.6 shows weak
-  ucp-stability suffices for the central-extension route; whether the
-  relative-commutant route
-  (`hnn-over-codense-kazhdan-subgroup-not-hyperlinear`) also weakens from
-  flexible HS-stability to weak ucp-stability is worth checking -- the
-  proof only needs to correct the restricted microstates enough to place
-  `k` in the commutant, which a ucp correction might provide.
+- **Weak ucp-stability and LLP (Dogon 2211.10492, Section 1).**  `LLP =>
+  weakly ucp-stable` (Kirchberg LLP groups are weakly ucp-stable, via
+  Ioana--Spaas--Wiersma + Choi--Effros); amenable groups are weakly
+  ucp-stable.  Prop 1.11: a hyperlinear (T) group that is weakly ucp-stable
+  is residually finite (Becker--Lubotzky extended).  Consequences for this
+  program: (i) `SL_2(Z[1/2])` is RF with (T;FD), so Prop 1.11 poses NO
+  obstruction to its weak ucp-stability; (ii) BUT no infinite (T) group
+  (e.g. `Sp_(2g)(Z)`) is KNOWN to have LLP or to be weakly ucp-stable -- if
+  one were, the goal would already be solved -- so LLP is not a shortcut,
+  it is the same open difficulty in different words; (iii) whether the
+  relative-commutant / HNN route weakens from flexible HS-stability to weak
+  ucp-stability is worth checking, but Dogon's Thm 1.6 weak-ucp version is
+  proved only for the (T) central-extension route via ISW20 cohomological
+  ucp machinery, not by the elementary projection argument, so a weak-ucp
+  HNN theorem would need that machinery too.
 - **Where to spend effort.**  Since all routes share the stability/ucp
   core, effort concentrates on `(RCC)` for a commensurated arithmetic pair
   (Popa deformation/rigidity, proper proximality) or on a direct
