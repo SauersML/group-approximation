@@ -55,8 +55,88 @@ collapse.
   truncation, keep the maximizing tracial/multiplicity mode as a concrete dual
   obstruction and enlarge only the packet residuals that see it.
 - **Audit the abstract packet-collision quotient first.**
-  `atlas-a4-packet-collision-quotient-audit` shows that a finite quotient gives
-  a decisive fork: a collapsed chart factor closes the exact-regular lane by
-  finite-group HS stability, while two surviving factors return an exact
-  regular-margin multiplicity mode on which the proposed ceiling can be tested
-  directly.
+  `atlas-a4-packet-collision-quotient-audit` gives the formal finite fork, but
+  `atlas-charts-overlap-trivially` removes its favorable branch: true kernel
+  relators cannot collapse either chart factor.  Therefore finiteness would
+  return an exact regular-margin countermodel, not prove this ceiling.
+
+## Quotient trace fork
+
+Let
+
+```text
+Gamma_A4=(A8*A8)/<<thirty packet words,q_19243>>.
+```
+
+All thirty-one relators lie in the kernel of the canonical two-chart map to
+`Q=L_(F2)(1,2)^x`.  By `atlas-charts-overlap-trivially`, both chart factors
+are faithful and have trivial intersection in `Q`.  Since the map factors
+through `Gamma_A4`, the two `A8` factors are also injective and disjoint in
+`Gamma_A4`.  In particular the collapsed-factor branch of
+`atlas-a4-packet-collision-quotient-audit` cannot occur.
+
+This makes every standard positive permanence result point in the wrong
+direction for `(A4-DIR-CEIL)`:
+
+1. If `Gamma_A4` is finite, its regular representation is an exact
+   finite-dimensional packet-plus-collision model with both chart margins
+   regular.
+2. If `Gamma_A4` is residually finite or sofic, it is hyperlinear, so its
+   canonical trace supplies asymptotic matrix models with the same regular
+   margins.
+3. More generally, if the canonical trace of `Gamma_A4` is Connes-embeddable,
+   finite-dimensional matrix microstates supply the same sequence after
+   finite-group exactification of the two chart restrictions.
+
+In each case align the first chart and absorb the second alignment into one
+relative unitary `U_n`.  For `t in T`, disjointness of the chart factors gives
+
+```text
+i_2(t)i_1(t)^-1 !=1.
+```
+
+The canonical regular character therefore gives
+
+```text
+Re tau(V_n(t))->0,
+E_n->4.                                                (A4-QUOT-ESCAPE)
+```
+
+Thus any of the three properties above refutes the claimed ceiling by a wide
+margin.  In particular a successful finite quotient computation cannot close
+the A4 lane; it closes the countermodel branch.
+
+There is also a conditional countermodel directly from the intended Leavitt
+target.  If `Q` were hyperlinear, pull its canonical matrix microstates back
+along `Gamma_A4->Q`.  The chart restrictions are regular because both `A8`
+factors embed in `Q`, and their cross-elements remain nonidentity because the
+charts intersect trivially.  After the standard exact-regular normalization,
+this again gives `(A4-QUOT-ESCAPE)`.  Proving the ceiling is therefore already
+a proof that this pulled-back trace is not Connes-embeddable.
+
+## What existing obstructions do not decide
+
+- The 15-point classical audit and the 31-point `GL5(F2)` screen exclude only
+  two fixed finite representation families.  They do not separate the
+  canonical quotient trace from all matrix traces.
+- The `1/32` collision-to-commutant wall is consistent with, rather than an
+  obstruction to, the quotient trace: the quotient frame is noncentral and
+  its four-cycle energy is maximal.
+- Ordinary normal-closure and cyclic tracial SOS arguments cannot work.
+  `atlas-charts-overlap-trivially` prevents algebraic chart collapse, and the
+  finite-factor model recorded in `atlas-a4-four-cycle-dirichlet-compiler`
+  satisfies all exact relations with `E_T=4`.
+- `Gamma_A4` is a quotient of the sofic group `A8*A8`, but hyperlinearity does
+  not pass to arbitrary quotients by any available theorem.
+  `hyperlinear-quotient-permanence-equivalence` identifies such unrestricted
+  permanence with the whole existence problem for nonhyperlinear groups, so
+  it cannot be invoked here as a routine closure property.
+
+No existing finite-dimensional obstruction in the A4 lane proves the
+canonical quotient trace non-Connes-embeddable, and no established permanence
+property proves `Gamma_A4` hyperlinear.  The decisive fork is therefore
+unresolved.  The exact remaining theorem is matrix-specific trace exclusion
+for `Gamma_A4` (or for the pulled-back canonical trace of `Q`), not quotient
+finiteness and not a universal tracial inequality.
+
+Accordingly this claim remains open.

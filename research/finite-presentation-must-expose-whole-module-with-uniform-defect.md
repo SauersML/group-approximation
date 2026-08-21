@@ -337,6 +337,60 @@ actor microstate which also satisfies `(FME11)` and the remaining module
 relations without collapsing `B`.  No existing expanding-character or
 affine-Leavitt node provides this lamp-coupled microstate.
 
+## Nonlocal Kazhdan actor microstates do not tensor-couple to the seed
+
+The established failure of local HS stability for infinite hyperlinear
+property-`(T)` groups does produce actor tuples `v_s^(k)` with vanishing
+actor-relator defect which cannot be locally repaired to representations.
+It does not equip those tuples with lamp matrices.  The standard independent
+coupling, used successfully as a gauge obstruction in
+`simple-lamp-gauge-rigidity-reduces-to-actor-classicalization`, is powerless
+here.
+
+Indeed, let `(rho_k,pi_k)` be any exact finite-dimensional representation of
+`M rtimes A` and define
+
+```text
+rho'_k(m)=rho_k(m) tensor I,
+pi'_k(s)=pi_k(s) tensor v_s^(k).                         (FME14)
+```
+
+Every lamp relation and every lamp--actor covariance relation remains exact;
+the actor defect of `(rho'_k,pi'_k)` is exactly that of `v^(k)`.  Thus
+`(FME14)` is the most favorable possible tensor coupling of a known bad actor
+microstate.
+
+But simultaneous diagonalization of `rho_k(M)` gives a finite
+`A`-invariant character support.  Under the aperiodicity hypothesis used by
+the expanding-character backend, every character visible on the seed has
+infinite orbit.  Therefore every character in this finite support satisfies
+
+```text
+chi(m_0)=+1,
+```
+
+and hence `rho_k(m_0)=I`.  In the Pauli-seed extension the identical argument
+is `infinite-character-actor-kills-fd-mark`: the `J=-1` sector is zero.
+Tensoring with `v^(k)` changes neither conclusion.  In particular `(FME14)`
+has no separated order-two seed and every commutator involving that seed is
+trivial.
+
+This is an exact obstruction to importing the known Kazhdan instability
+witnesses.  Taking the lamp packet merely approximate instead of exact
+removes the finite-character argument, but then constructing its global
+almost-commuting spectrum and covariance is precisely `(FME1)`, so nothing
+has been gained.  Nor does the local-instability theorem specify a
+noncommutant coupling: it asserts failure of actor repair, not the existence
+of an involution satisfying the augmentation triangle with positive
+separation.
+
+Consequently the residual cannot be decomposed into “bad Kazhdan actor
+microstate plus an independent lamp.”  A counterexample must be a genuinely
+entangled actor--lamp microstate whose lamp spectrum is only approximately
+finite and whose covariance failure is distributed across moving names.
+No established nonlocal-HS-instability or actor-classicalization construction
+supplies such a coupling.
+
 ## Attempts
 
 - **Choose one word for every module element.**  A multiplication identity
