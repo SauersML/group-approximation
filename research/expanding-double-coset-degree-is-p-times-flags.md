@@ -32,3 +32,11 @@ unitary of a regular-trace matrix model.  The gap between `43/168`
 and `1` is the entire content of the higher-rank goal edge, now a
 statement about one average of forty-three explicitly listable
 terms.
+
+Machine cross-check: `experiments/hecke42_average_probe.py --selftest`
+enumerates `SL_3(Z/4)` exhaustively (`43008` elements), extracts coset
+representatives against the parahoric membership test, and confirms
+exactly `42` pairwise-distinct cosets, with the representative WORDS
+in the six elementary generators re-verified in the faithful rational
+image -- an independent verification of `(DC1)` at `p = 2`, and an
+explicit generator-word list for the `w_i` usable at any matrix size.

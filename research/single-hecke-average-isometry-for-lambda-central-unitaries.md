@@ -47,6 +47,19 @@ about ONE explicit operator.
   at shrinking `eta` would be evidence for a leak, and a proof must
   explain why decay forces multiplicativity failure at a definite
   scale.
+- **Probe equipment (authored 2026-08-21, not yet run).**
+  `experiments/hecke42_average_probe.py` implements the refutation-side
+  search over the APPROXIMATE representation variety (the sector the
+  exact-quotient PRT1 probe provably cannot see, since `h` has no
+  image mod `2^k`): variables are the six elementary `SL_3(Z)`
+  generators, `V ~ rho(h)` and `k`; penalties are Steinberg +
+  `h`-expansion relation defects, a rational-image-certified
+  regular-trace penalty, and `Lambda`-centrality; it descends
+  `|| S(k) ||_2^2` over the `42` machine-enumerated coset words and
+  reports Pareto points against the enemy value `43/168`.  Its
+  integer selftest passed: `42` cosets, pairwise-distinctness
+  verified.  MSI lane only; results, when run, land next to
+  `experiments/prt1-threshold-probe.json` conventions.
 - **What the established contraction adds.**  By
   `hecke-averaging-realizes-commutant-expectation`, failure of `(SH1)`
   self-amplifies: `|| S(k) ||_2 <= 1 - c` gives
