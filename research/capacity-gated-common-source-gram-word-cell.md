@@ -96,3 +96,30 @@ word-decoder load is the one finite mixed moment `(GFM8)--(GFM9)`.  This
 evades the finite-edge no-go and gives the narrowest current positive target,
 although ordinary word relators have not yet been shown to pay that Hecke
 moment.
+
+## Ordinary-word audit of the surviving Hecke cell
+
+`orthogonal-hecke-row-packs-common-source-energy-into-one-root` stacks all
+mixed covariance defects into one coefficient `R_Q`, with
+`m||R_Q||_2^2=M_Q`, and one Steinberg root word names that coefficient.  The
+remaining theorem is therefore one root-to-coefficient norm estimate
+`(OHR6)`, not a decoder for the whole coefficient algebra.
+
+Two stronger-looking replacements do not remove it.
+`global-word-covariance-cannot-replace-the-capacity-gated-hecke-moment` shows
+that a global conjugacy relator controls only the uncompressed row: after
+compression by `Q` its exact error decomposition contains the uncontrolled
+term `v[Z,Q]`.  Preserving a primitive packet type either stays inside the
+finite root or triggers the isotypic finite-edge support theorem.  The global
+relation also fails the HALT firewall because it does not switch off when
+`Q=0`.
+
+`elementary-and-wreath-dilations-do-not-authenticate-the-capacity-gram` proves
+that `V+(1-q)` has an exact fixed-rank Steinberg word, and that a finite wreath
+packet can realize the controlled sum by one monomial element.  These settle
+algebraic naming but not source authentication.  In the wreath model, full
+primitive-carrier preservation forces the base tuple to be
+coordinate-constant, destroying block escape; a nonconstant tuple has a
+source deficit.  In the Steinberg model, the gap remains `(OHR6)`.  Thus the
+open content is precisely finite-dimensional `L^2` authentication on the
+same capacity reservoir, not missing group syntax.
