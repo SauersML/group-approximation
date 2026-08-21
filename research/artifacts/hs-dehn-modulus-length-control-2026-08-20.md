@@ -735,3 +735,19 @@ are unchanged, while every fixed nonidentity amalgam word acquires trace
 zero.  Hence `canonical-iwahori-transfer-is-equivalent-to-full-transfer`:
 the regular-character endpoint is exactly the full transfer problem in
 camouflage, not a simpler character-rigid subcase.
+
+## 15. The Eisenstein angle is exactly one
+
+On boundary cohomology the Iwahori mismatch map is the weighted incidence
+`(x,y) -> e_1 x o pi_1 - (3 - e_1) y o pi_2` between cusp sets, with
+`pi_2` the Hecke-at-2 correspondence on cusps and complementary
+ramification weights.  Its Gram matrix is `5I - 2[[0,A],[A^T,0]]` with `A`
+a `0/1` incidence of row and column sums `2`, so its singular values lie
+in `[1, 3]` at every level: `iwahori-eisenstein-angle` is proved, and
+the committed bounded run of `experiments/iwahori_eisenstein_angle.py`
+returns `1.000` and `3.000` for all tested primes through `23`.  The exact
+incidence proof, rather than the numerical screen, is uniform in the level.
+The cuspidal part is Deligne's bound
+(`iwahori-cuspidal-hecke-angle`).  What remains of the uniform
+infinitesimal rigidity is the comparison of cochain and harmonic norms
+(`iwahori-cochain-petersson-comparison`).

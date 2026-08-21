@@ -20,6 +20,7 @@ subgroup of SL_2(Z[1/2]) with trivial coefficients vanishes).
 from __future__ import annotations
 
 import json
+import argparse
 import sys
 
 import numpy as np
@@ -83,13 +84,27 @@ def analyze(p):
 
 
 def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument(
+        "--primes",
+        nargs="+",
+        type=int,
+        default=(3, 5, 7, 11, 13, 17, 19, 23),
+        help="odd primes to test; defaults to a bounded quick screen",
+    )
+    parser.add_argument(
+        "--output",
+        default="experiments/iwahori-eisenstein-angle.json",
+        help="JSON artifact path",
+    )
+    args = parser.parse_args()
     out = []
-    for p in (3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97, 101):
+    for p in args.primes:
         r = analyze(p)
         out.append(r)
         print(json.dumps(r))
         sys.stdout.flush()
-    with open("experiments/iwahori-eisenstein-angle.json", "w") as fh:
+    with open(args.output, "w") as fh:
         json.dump(out, fh, indent=1)
     print("DONE-SENTINEL")
 

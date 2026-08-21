@@ -5,6 +5,8 @@ kind: claim
 title: The two Iwahori restriction maps are uniformly transverse on Eisenstein cohomology
 artifacts:
   - research/artifacts/hs-dehn-modulus-length-control-2026-08-20.md
+  - experiments/iwahori-eisenstein-angle.json
+  - experiments/iwahori_eisenstein_angle.py
 distinct_from:
   iwahori-cuspidal-hecke-angle: that handles square-integrable classes through Deligne; this handles the boundary (Eisenstein) classes, whose Hecke eigenvalue at 2 is the degenerate value 3 and whose harmonic representatives are not square-integrable, so a separate finite computation is needed.
 ---
