@@ -251,9 +251,9 @@ closure(K_0 intersect (F_p^m)^(SL_3(Z))_{finite support}) != K_0.
 
 Thus the surviving module is simultaneously finite over `SL_3(Z)`, already
 non-hyperlinear without the Manzoor direction, and non-homoclinically-dense.
-Permutation/coset modules and algebraic shifts with dense finite-support
-solutions are both excluded; the residual must carry a genuinely global
-profinite constraint.
+Regular permutation modules and algebraic shifts with dense finite-support
+solutions are excluded.  Infinite-stabilizer coset modules are not: their
+homoclinic behavior is computed below.
 
 The nonseparable-stabilizer box is nonempty and effective.
 `mihailova-nonseparable-coset-stabilizer` takes a finitely presented nonsofic
@@ -277,3 +277,12 @@ fails residual finiteness.  The live question is now analytic and concrete:
 decide soficity/Connes embeddability of this combined Mihailova
 coset-Bernoulli crossed product, or construct the fixed-source inclusion in
 it.
+
+This candidate is not removed by the dense-homoclinic theorem.
+`infinite-stabilizer-coset-bernoulli-has-trivial-homoclinic-group` computes
+the homoclinic group of `F^(Lambda/P)` as `{1}` whenever `P` is infinite:
+any nontrivial coordinate stays visible along an infinite sequence in its
+stabilizer.  The Mihailova `P` is infinite, so its compact action lies at the
+opposite extreme from homoclinic density.  The residual-finiteness failure
+and trivial homoclinic group are simultaneous, independent obstructions to
+both exact finite Schreier models and Hayes' dense-homoclinic model measures.

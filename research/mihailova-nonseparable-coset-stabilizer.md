@@ -62,6 +62,12 @@ is effective: `W` is finitely generated and recursively presented.  This is
 the first explicit mixed coset module in the replacement actor that survives
 all separability and spectator fences.
 
+It also survives the homoclinic-density screen for a structural reason.
+`infinite-stabilizer-coset-bernoulli-has-trivial-homoclinic-group` gives
+`Delta(K,Gamma_0 x SL_3(Z))={1}` because `P` is infinite.  Thus this is not a
+dense-finite-support algebraic shift in disguise; the Hayes model-measure
+criterion has no hypothesis to act on here.
+
 No stronger conclusion is asserted.  In particular, nonseparability does not
 by itself prove that the coset action is nonsofic, and nonsoficity of the
 quotient `Q` cannot simply be pushed through the free-group kernels in
