@@ -67,6 +67,15 @@ fingerprint or physically occupy the rectangular multiplicity reservoir via
 Pontryagin compiler `algebraic-compact-action-group-factor-compiler` plus the
 open algebraic relation envelope.
 
+The later dual-prefix/trace-promotion breakout report is deduplicated and
+source-audited in
+`research/artifacts/final-hyperlinearity-breakout-report-integration-2026-08-21.md`.
+Its exact Leavitt packet and four-Pauli separator were already in Cairn; the
+new matrix-chart packaging is wired to the same-reservoir frontier. The audit
+also corrects the report's Shulman attribution: arXiv:2603.13564 proves an
+operator-norm MF theorem for C-star amalgams, not an HS-stability theorem that
+promotes every hyperlinear trace.
+
 The machine interface has now been reduced further. The strong
 `threshold-free-reverse-kleene-higman-diagonal` needs a NONHALT word in the
 full hyperlinear radical, while the weaker `canonical-profile-kleene-higman`
