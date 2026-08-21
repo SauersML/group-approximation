@@ -214,6 +214,61 @@ the fixed-depth nonhyperlinearity criterion.
   `(AHD2)`; it proves that the missing mixed-root/same-reservoir term is
   logically indispensable and cannot be replaced by adjoint conductor
   exactness.
+- **Pure Steinberg mixed-root words still do not couple the reservoir
+  (exact Gram countertest).**  The first adjacent-root word one would try is
+
+  ```text
+  [x_12(a),x_23(b)] x_13(-ab)=1.                            (AHD7)
+  ```
+
+  It cannot control the cross-overlap scalar in `(FGP6)`.  Indeed, for
+  arbitrary finite-dimensional spaces `V_1,V_2,V_3` and rectangular maps
+  `a:V_2->V_1`, `b:V_3->V_2`, block multiplication gives
+
+  ```text
+  [1+aE_12,1+bE_23]=1+(ab)E_13,                            (AHD8)
+  ```
+
+  with no equality among `dim V_1,dim V_2,dim V_3`.  By associativity the
+  same is true for every finite pasting of Steinberg triangles, distant-root
+  commutations, and their Hall--Witt reassociations; this is the finite
+  Morita model of
+  `mixed-steinberg-loops-admit-morita-rectangular-model`.
+
+  Here is a literal countertest to deriving `(FGP6)` from that word language.
+  Take the left regular unitary representation of the finite block group in
+  the Morita model, tensor it with `K=C^4`, and let all root words act on the
+  first factor.  On `K`, let `p_1=p_2` be the rank-one projection onto the
+  first coordinate and let the other forty candidate branch projections be
+  zero.  Put `P_i=1 tensor p_i`.  Then
+
+  ```text
+  sum_i rank(P_i) <= dim(H),
+  Omega=sum_(i!=j) tr(P_iP_j)=1/2,                         (AHD9)
+  ```
+
+  whereas every word in the pure mixed-Steinberg language has zero defect.
+  Taking the carrier to be the whole space and its transitions to be the
+  identity also makes the abstract first-exit term zero.  Thus no inequality
+
+  ```text
+  Omega <= C (pureSteinbergEnergy + firstExitMass)
+  ```
+
+  is valid, even with dimension-dependent `C`, unless the branch projections
+  are tied to the root representation by an additional relation.
+
+  This proves the next sharp reduction after `(AHD6)`: a successful mixed
+  word must contain a **same-object return after a net refinement**.  In the
+  Morita test it must compare `1_E` with `1_(E direct_sum E)`, or,
+  equivalently in the native gallery, identify an externally transported
+  branch selector with the identical internal root reservoir.  More
+  multiplication triangles cannot do this because they preserve source and
+  target sorts.  Scope: the free commutant projections in this countertest
+  are precisely the datum the full arithmetic packet still has to forbid;
+  hence this is not a countermodel to `(AHD2)`, but it rules out the entire
+  pure-Steinberg route to the required conductor-to-multiplicity
+  synchronization inequality.
 - **Bounded conductor width does pay uniformly.**  The converse estimate
   `bounded-conductor-width-pays-uniform-first-exit` shows that a multiplicity
   profile supported on at most `B` root-depth bands loses at least `1/B`
