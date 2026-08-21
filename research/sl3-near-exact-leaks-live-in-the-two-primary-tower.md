@@ -176,6 +176,26 @@ refutation, and this claim makes the reduction precise.
   reading generic spectra again).  Multiplicity-one `Q_1`-blocks fed
   by multiplicity-one `G`-blocks are the phase-locked channels the
   mechanism predicts must carry an irreducible leak floor.
+- **Full branching tables and the corrected floor picture
+  (2026-08-21, `experiments/sl3-pairing-weights.json`).**  Compressing
+  a generic twisted-commutant element to every `G`-isotypic cluster
+  gives the complete `Q_1`-branching of each `G`-irrep in the
+  prototype, all rows arithmetic-checked: `21 = 5*1 + 2*4 + 8`,
+  `6 = 4*1 + 2`, `28 = 4*2 + 3*4 + 8`, `84 = 2*2 + 4*4 + 2*16 + 32`,
+  `112 = 4*8 + 3*16 + 32`, with identical profiles across isotypic
+  copies (cross-validation).  The naive per-channel floor FAILS by
+  weight counting (phase-locked dim-1 channels carry far less weight
+  than the rotatable blocks); the real mechanism, matching the
+  measured `+13.1`, is that the rotation freedom is per
+  `Q_1`-ISOTYPIC block and each such block is fed jointly by many
+  `G`-irreps — one `W_sigma` must serve all of them at once, so
+  zeroing every block simultaneously against the locked `K`-phases is
+  an overdetermined joint problem.  With all tables in hand the leak
+  minimum reduces to an EXACT small optimization in
+  `37 + 265`-dimensional coordinates (`K` in its Wedderburn blocks,
+  one `W_sigma` per twisted block), faithful to the true structure —
+  the designated next computation, and if its minimum is robustly
+  positive the prototype floor becomes finite linear algebra.
 - Proved below by assembling established inputs; see the proof route.
   The one step that is a HYPOTHESIS here and a theorem at `SL_2` is
   vertex near-exactness: `SL_3(Z)` HS-stability is open (it is the

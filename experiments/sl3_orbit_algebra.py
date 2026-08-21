@@ -166,3 +166,70 @@ def main2():
 
 
 main2()
+
+
+def pairing_weights():
+    """For each G-isotypic block, the Q1-profile of its compression:
+    the pairing table the phase-locking floor consumes."""
+    rng = np.random.default_rng(31)
+    permsG = [perm_of(g) for g in GENS_G]
+    norG, labG = orbits_on_pairs(permsG)
+    LG = labG.reshape(D, D)
+    A = np.zeros((D, D))
+    for i in range(norG):
+        A += rng.normal() * (LG == i)
+    A = (A + A.T) / 2.0
+    ev, U = np.linalg.eigh(A)
+    # group eigenvalues -> G-isotypic projectors (block = irrep copy
+    # cluster: eigenvalue multiplicity = dim of irrep; same-block
+    # eigenvalues from same irrep have SAME dim; collect clusters)
+    clusters = []
+    start = 0
+    for i in range(1, D + 1):
+        if i == D or abs(ev[i] - ev[i - 1]) > 1e-7:
+            clusters.append((start, i))
+            start = i
+    permsQ = [perm_of(g) for g in GENS_Q1]
+    norQ, labQ = orbits_on_pairs(permsQ)
+    LQ = labQ.reshape(D, D)
+    B = np.zeros((D, D))
+    for i in range(norQ):
+        B += rng.normal() * (LQ == i)
+    B = (B + B.T) / 2.0
+    # G-isotypic projector = sum of clusters with same dim belonging
+    # to one irrep: approximate: treat each ISOTYPIC component as the
+    # span of all eigenvectors whose cluster size = that dim, grouped
+    # by commuting-block structure.  Simplest robust move: compress B
+    # to each eigen-CLUSTER (one irrep copy each) and report its
+    # Q1-generic spectrum profile.
+    out = []
+    for (s0, s1) in clusters:
+        W = U[:, s0:s1]
+        Bc = W.T @ B @ W
+        Bc = (Bc + Bc.T) / 2.0
+        evc = np.sort(np.linalg.eigvalsh(Bc))
+        groups = []
+        cur = 1
+        for i in range(1, len(evc)):
+            if abs(evc[i] - evc[i - 1]) < 1e-6:
+                cur += 1
+            else:
+                groups.append(cur)
+                cur = 1
+        groups.append(cur)
+        from collections import Counter
+        out.append({"g_block_dim": s1 - s0,
+                    "q1_spectrum_profile": dict(Counter(groups))})
+    with open("sl3_pairing_weights.json", "w") as f:
+        json.dump(out, f, indent=1)
+    from collections import Counter as C2
+    agg = C2()
+    for rec in out:
+        agg[rec["g_block_dim"]] += 1
+    print(json.dumps({"clusters_by_dim": dict(agg)}), flush=True)
+    for rec in out[:12]:
+        print(json.dumps(rec), flush=True)
+    print("DONE3", file=sys.stderr)
+
+
+pairing_weights()
