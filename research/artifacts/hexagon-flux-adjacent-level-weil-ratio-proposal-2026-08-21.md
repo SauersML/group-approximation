@@ -1,12 +1,8 @@
----
-rg: 2
-id: hexagon-flux-is-adjacent-level-weil-ratio
-kind: claim
-title: The S3 hexagon flux on flat towers equals the adjacent-level ratio of Weil classes, hence the Legendre class of the prime
-distinct_from:
-  lambda-exact-face-closes-at-p-three: that consumes the flux value through the capstone assembly; this is the dictionary LEMMA itself -- the identification of the hexagon comparison scalar with computable Gauss-class arithmetic -- isolated so the capstone's cited-level dependency becomes one precisely-shaped statement.
-  two-adic-tower-format-of-surviving-lambda-exact-enemy: that pins the format of the tower data (interlocked depth-shifting transports, forced Haar marginals); this evaluates the obstruction cocycle OF that format on oscillator bands, turning the format's one free joint-realization parameter into an arithmetic constant.
----
+# Hexagon flux / adjacent-level Weil-ratio proposal
+
+**Archived 2026-08-21.** This derivation is preserved as a research artifact,
+not an active Cairn claim: its canonical-section identification is still open
+and no live route consumes it yet.
 
 Claim (the dictionary lemma).  Let p be odd and consider the flat
 multi-scale tower of a surviving Lambda-exact enemy of the collapse

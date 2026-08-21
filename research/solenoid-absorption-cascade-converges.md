@@ -65,6 +65,26 @@ recursion terminates; the total correction is
 - **Snag + fix (2026-08-21).** Naive peel does not converge: the diagonal residual descends at fixed size delta while 1/gamma_k grows. Fix: alternate off-diagonal conjugation with absorbing the diagonal into the exact base-torus reparametrization (free); only the reduced cycle-cocycle (dim = tower cycles - 1) descends, and lemma (b) is its contraction under alternating absorption.
 - **Reduction to (psi_*-1) invertibility; obstruction is 3-PRIMARY (2026-08-21).** The residual is a class in finite-dim H^1(tower cycle-graph); the equation projects to (psi_*-1)[c]=[e], so lemma (b) = invertibility of psi_*-1. psi carries x4 and 4-1=3, so the cokernel is 3-primary only - the two-adic far sector's final obstruction sits at the prime 3. Finite question: does the SL2(Z[1/2]) relation-defect class carry 3-primary cohomology?
 - **3-primary obstruction governed by K_2(Z[1/2]), 3-torsion-free (2026-08-21).** Defect class lives in the relation module ~ K_2(Z[1/2]); localization K_2(Z)=Z/2 -> K_2(Z[1/2]) -> K_1(F_2)=0 gives it in {0, Z/2}, 3-torsion-free, so [e]'s 3-primary part vanishes and (psi_*-1) inverts, closing lemma (b) - modulo the link that the analytic defect factors through the algebraic relation module.
+- **Elementary spectral form of the same prime-3 fact (2026-08-21).**
+  Concretely, `(psi_* - 1)` acts on the discrete cycle data as
+  multiplication by `4 - 1 = 3` on `Z/N` (`N` = odd order of the exact
+  base, the spectrum being a union of `x4`-orbits of `N`-th roots of
+  unity).  Mult-by-3 on `Z/N` is an isomorphism unless `3 | N`, and
+  its kernel/cokernel is exactly the `3`-primary subgroup of `Z/N`.
+  So `(psi_* - 1)` is invertible -- and lemma (b) closes with no
+  condition on `[e]` at all -- WHENEVER the Levit--Vigdorovich
+  exact base can be taken of order coprime to `3`, or more weakly
+  whenever the microstate defect places no spectral mass on the
+  `3`-primary `x4`-orbits.  This is the same prime-3 conclusion as the
+  `K_2(Z[1/2])` framing, in fully elementary terms, and it isolates
+  the exact deciding question: is there any obstruction to choosing
+  the exact odd base `3`-coprime (equivalently, can the unipotent's
+  approximate spectrum concentrate on cube-power roots of unity)?  The
+  `x4`-invariance is the only constraint on the spectrum and it does
+  NOT force `3 | N`, so the expected answer is that a `3`-coprime
+  exactification always exists and lemma (b) closes unconditionally --
+  the last thing to verify is that the LV modulus survives restricting
+  the target spectrum to `3`-coprime supports.
 - **Why it is plausible and where it could fail.**  The peeling is a
   geometric contraction when the residual shrinks faster than the gap:
   each descent multiplies the uncorrected mass by the local defect
