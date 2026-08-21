@@ -80,3 +80,11 @@ not create it.  Its scalar phase group is exactly the input scalar phase
 group.  The generator lemma used to choose `pi` controls only von Neumann
 generation, not these coefficients, so the published proof does not decide
 `(G1)` or `(G2)`.
+
+There is also no algebraic section-untwisting shortcut.
+`cdi-wreath-tail-cocycle-is-intrinsically-nonsplit` proves that the tail
+classes `[rho_b] in F_3^B/F_3^(B)` form a nonzero, section-independent
+corona cocycle.  Vanishing would turn the property-`(T)` wreath-like group
+into `F_3 wr B`, contradicting finite abelianization.  Hence the source's
+operator-valued tails cannot all be made finite tensor implementers by
+changing lifts.
