@@ -161,3 +161,9 @@ common gauge, `(MPL4)` closes the reservoir compatibility with only two word
 tests; the later PI or multiplicity-cycle endpoint supplies the actual
 finite-matrix obstruction.
 
+`one-cross-gram-moment-extracts-the-common-polar-gauge` now proves the first
+part under one explicit scalar hypothesis: for two exact packet intertwiners
+`T_1,T_2 in qMp`, near-full
+`tau(T_1^*T_2T_2^*T_1)` makes the polar part of `T_2^*T_1` the required
+common `V`, with alignment error `sqrt(2Delta)`.  Hence the unresolved
+matrix-only input is exactly that one common-corner cross-Gram lower bound.

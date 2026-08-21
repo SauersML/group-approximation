@@ -34,6 +34,19 @@ second word-generated algebra and cannot exchange roles with the label factor.
 
 ## Attempts
 
+- **One cross-Gram scalar extracts the common gauge.**
+  `one-cross-gram-moment-extracts-the-common-polar-gauge` gives the precise
+  post-exactification hypothesis.  If two contractions `T_1,T_2 in qMp`
+  intertwine the same exact source/target packet and
+  `Delta=tau(p)-tau(T_1^*T_2T_2^*T_1)`, then the polar part of `T_2^*T_1`
+  extends to a unitary `V` in the source commutant and
+  `||T_1-T_2V||_2<=sqrt(2Delta)`.  Two orthogonal coordinate embeddings into
+  `alpha direct_sum alpha` show that separate Gowers--Hatami intertwiners and
+  full self-Gram moments do not suffice.  The common-corner problem has
+  therefore narrowed to forcing this one cross-Gram overlap before the paths
+  are separated; after it, the two mixed Pauli commutators lock `V` into the
+  smaller reservoir.
+
 - **Only two mixed moments are needed after the relative gauge is exposed.**
   `two-mixed-pauli-commutators-lock-the-relative-reservoir-gauge` proves that
   if `V` is the common relative unitary between the two child extension
