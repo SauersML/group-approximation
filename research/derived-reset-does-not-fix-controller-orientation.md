@@ -5,7 +5,7 @@ kind: claim
 title: The equal-scale derived reset does not select a controller orientation
 distinct_from:
   controlled-reflection-cell-has-free-orientation: that finds the free multiplicity involution in one controller cell; this computes the complete edge restriction matrix and tests the existing balanced derived reset against it.
-  affine-selector-clifford-proves-derived-reset-bridge: that makes a genuine gauge translation derived while preserving the old and fresh Schur scales; this shows why the same incidence cannot select an extension character which is invisible on the Pauli edge.
+  derived-lifted-gauge-reset-spin-bridge: that makes a genuine gauge translation derived while preserving the old and fresh Schur scales; this shows why the same incidence cannot select an extension character which is invisible on the Pauli edge.
   regular-gauge-orbit-contains-equal-scale-derived-d8-reset: that realizes a balanced reset translation on a four-point regular gauge orbit; the intended controller is not a balanced translation and can even be the identity on a perfect test sector.
 ---
 
