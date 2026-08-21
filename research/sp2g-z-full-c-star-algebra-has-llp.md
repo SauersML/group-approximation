@@ -48,6 +48,19 @@ discussion after Question 1.10; source-verified 2026-08-21).
   obstruction class for the Siegel or Klingen pairs of `Sp_4(Z)`.  No
   computation in either direction is recorded; this node parks the
   question in its sharpest form (`g = 2`).
+- **LP already fails, so this hole would separate LLP from LP.**
+  Ioana--Spaas--Wiersma Example 1.3(i) (read at source 2026-08-21):
+  `H^2(Sp_(2n)(Z), R) != 0` for `n >= 2`, so by their Corollary E
+  `C^*(Sp_(2n)(Z))` fails the (global) LP.  Hence a positive answer here
+  would exhibit a separable C*-algebra with LLP but not LP — an open
+  problem of Ozawa they cite — on top of the non-hyperlinear group.  Both
+  prizes at once argues for pessimism, but the refutation path is also
+  pinned now: their Theorem A reduces, at `Sp_4(Z)`, to the single
+  cocycle question `sp4-metaplectic-class-pointwise-coboundary-limit`
+  (conditions (1)-(2) are automatic on the Deligne circle of scalar
+  classes; finite-dimensional realizability pins the usable class to the
+  metaplectic point by Deligne invisibility).  Decide that question and
+  this hole falls or hardens accordingly.
 - **Method note.**  Any attack should start from Ioana--Spaas--Wiersma's
   actual mechanism (their Theorem A/Corollary B derivation) rather than
   from tensor-norm generalities: the Kirchberg characterization
