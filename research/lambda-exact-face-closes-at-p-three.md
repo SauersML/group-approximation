@@ -72,6 +72,111 @@ evading the pinning) is explicitly what the route excludes.
 
 ## Attempts
 
+- **Weak-u.c.p. exactification reaches exactly this face, not an exact
+  ambient finite-representation theorem (2026-08-21 audit).**  Apply
+  `kazhdan-subgroup-weak-ucp-exactifies-microstates` to a hypothetical
+  hyperlinear approximation of
+
+  ```text
+  G_3=<Gamma,t | [t,Lambda]=1>,
+  Lambda=SL_3(Z),   Gamma=SL_3(Z[1/3]).                  (P3F1)
+  ```
+
+  Assuming `sl3-z-weakly-ucp-stable`, after an `o(1)` change and
+  `1+o(1)` dimensional adjustment one obtains finite matrices with
+
+  ```text
+  sigma_n:Lambda -> U(d_n)       an EXACT representation,
+  k_n in sigma_n(Lambda)'        EXACTLY,
+  V_n=phi_n(h)                   only an approximate parahoric
+                                  intertwiner,                  (P3F2)
+  ```
+
+  while all fixed `Gamma` relators have defect `o(1)` and
+  `tr(phi_n(g))->delta_e(g)` for every fixed group word.  Superrigidity and
+  CSP factor `sigma_n` through some `SL_3(Z/N_n)`, with completely arbitrary
+  isotypic multiplicities.  Thus the weak-u.c.p. theorem eliminates the
+  lattice-outlier sector for this HNN argument, but it neither exactifies
+  `V_n` nor turns `phi_n|_Gamma` into a genuine representation of `Gamma`.
+
+  This distinction is necessary.  A uniform theorem about one arbitrary
+  exact finite representation `sigma` is false: the trivial representation,
+  and more generally every constituent factoring through a common shallow
+  quotient of the two parahoric actions, has an exact twisted intertwiner.
+  The regular trace condition excludes the trivial representation only as a
+  whole limiting model; it does not forbid moving shallow constituents whose
+  mass is spread across growing levels.  This is precisely the
+  general-weight/Folner profile left alive by
+  `fixed-shift-invariance-does-not-force-flat-profile`.
+
+  Therefore the remaining assertion has the following sharp finite-matrix
+  SEQUENTIAL form, not a single exact-representation form: for every exact
+  congruence sequence `sigma_n` with pointwise regular limiting character,
+  every sequence `V_n` satisfying the fixed denominator/parahoric relations
+  with defect `o(1)`, and every `k_n in sigma_n(Lambda)'`, one must have
+
+  ```text
+  ||[k_n,V_n]||_2 ->0.                                  (P3F3)
+  ```
+
+  The coprime-to-`3` part of this statement is already
+  `odd-congruence-lambda-exact-sector-collapses`.  The regular-type
+  `3`-primary part has the direct floor proved in the next bullet.  The
+  unresolved input in `(P3F3)` is arbitrary scale-spread `3`-primary
+  isotypic weight (including the general-weight form of the bounded-gauge
+  reduction).
+  Consequently weak-u.c.p. exactification is a correct preprocessing theorem
+  and makes this claim sufficient for the root goal, but supplies no new
+  control on its invalidated flatness step or on the parahoric-to-Weil flux
+  dictionary.
+
+  There is also a route-level consequence of the newly established
+  `kazhdan-weak-ucp-stability-is-flexible-stability`: because `Lambda` has
+  property `(T)`, the hypothesis `sl3-z-weakly-ucp-stable` already gives the
+  flexible correction needed by the thin co-dense HNN route
+  `non-hyperlinear-from-sl3-z-weak-ucp-stability`.  Thus this p-three face is
+  no longer needed for the SHORTEST conditional route that assumes weak-u.c.p.
+  stability.  It remains a genuine independent theorem about `(RC3-p3)` and
+  would still be needed for any route that avoids stability of `SL_3(Z)`.
+
+- **The regular-type p-three Kazhdan floor is exact.**  The proof of
+  `lambda-exact-face-of-the-collapse-closes` was written at `p=2`, but its
+  finite kernel calculation extends directly to the present prime.  Put
+
+  ```text
+  h=diag(3,1,1/3),
+  A=(e_21(3),e_31(9),e_32(3),e_12(1),e_13(1),e_23(1)),
+  B=hAh^(-1)=(e_21(1),e_31(1),e_32(1),e_12(3),e_13(9),e_23(3)).   (P3F4)
+  ```
+
+  `Lambda_0=<A>` has finite index in `SL_3(Z)`, hence a Kazhdan pair
+  `(A,epsilon_3)`.  At level `3^a`, `a>=3`, the image in the `A`-side
+  quotient of the `B`-kernel is exactly the upper-unitriangular packet with
+
+  ```text
+  (12),(23) entries in 3^(a-1)Z/3^aZ,
+  (13) entry          in 3^(a-2)Z/3^aZ.                 (P3F5)
+  ```
+
+  It has order `3*3*9=81`; transpose-inverse identifies the sizes of the
+  `A`- and `B`-side quotients.  Therefore, on a regular-type module, the
+  common Schur-support fraction of the two twisted representations is
+  exactly `1/81`.  Projecting a unitary onto the intertwiner space has
+  operator norm at most one, so its normalized HS distance from that space
+  is at least `sqrt(80/81)=4 sqrt(5)/9`.  Property `(T)` gives the uniform
+  finite-level floor
+
+  ```text
+  max_i ||V sigma(A_i)V^*-sigma(B_i)||_2
+     >= epsilon_3 * 4 sqrt(5)/9.                         (P3F6)
+  ```
+
+  Hence regular-type pure `3`-power towers cannot support `(P3F2)`.  This
+  proof uses neither the invalid flatness assertion nor the Weil-flux
+  dictionary.  It does not extend to arbitrary isotypic weights: those may
+  concentrate in the common shallow quotient, exactly the scale-spread
+  escape described above.
+
 - **Audit correction (2026-08-21).** Fixed coweight-shift invariance on a
   growing scale lattice is only a Folner/delocalization statement.
   Triangular product profiles are invariant under every fixed shift and
