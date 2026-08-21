@@ -46,8 +46,7 @@ This is the same saturation argument the repository formalized as
 `FournierFacioDefectData.simpleSubgroup_le_defectNormal`, there for the
 pre-quotient skeleton; the point here is that it survives to the published
 torsion-free quotient because `pi|_S` is injective.  That module was deleted
-in commit `241440fe` without mention in the message, so the artifact above
-is pinned by revision path: read it with
-`git show 241440fe^:GroupApproximation/Sofic/TorsionFreeFullMFRadical.lean`.
-Nothing in this route depends on the module being restored — the argument
-above is self-contained.
+temporarily during an earlier refactor but is live again in
+`GroupApproximation/Sofic/TorsionFreeFullMFRadical.lean`; the declaration is
+part of the current kernel-checked trust surface.  The argument above is also
+self-contained.

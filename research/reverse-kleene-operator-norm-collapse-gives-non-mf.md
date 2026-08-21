@@ -64,3 +64,55 @@ MF-specific construction target: build a self-referential group computation
 whose strategically useful corruption costs a fixed amount in operator norm.
 Rank/spectral discreteness may be used here in ways unavailable to the
 normalized-HS compiler.
+
+## Finite disjunctive strengthening
+
+The same theorem remains true when the compiler outputs a finite list
+
+```text
+w_(e,1),...,w_(e,m_e)
+```
+
+and replaces `(ONK1)--(ONK2)` by
+
+```text
+e halts    => every w_(e,i) is nontrivial,                  (DONK1)
+e nonhalts => defect_op(U)<delta_e
+              implies min_i ||w_(e,i)(U)-1||_op<=alpha_e.  (DONK2)
+```
+
+Here `m_e` is finite and computable from `e`, and still `alpha_e<1`.
+Make the fixed-point machine enumerate van Kampen proofs and halt when it
+finds `w_(e,i)=1` for **any** `i`.  If it halted, `(DONK1)` would contradict
+the proof just found.  Thus it does not halt, and completeness of proof
+enumeration says every mark in its finite list is nontrivial.
+
+It remains to justify simultaneous MF separation; this is slightly stronger
+than merely saying each image is nonidentity.  In an injective norm-corona
+model, fix one mark `w_i` and a spectral value `lambda_i!=1` of its image.
+Some tensor power satisfies
+
+```text
+|lambda_i^(k_i)-1|>1,
+```
+
+because the closure of the powers of a nontrivial circle element is a
+nontrivial compact subgroup of the circle and contains a point at distance
+greater than `1` from `1`.  After passing to a subsequence for this mark, the
+coordinatewise `k_i`-fold tensor power of the lifted asymptotic
+representation separates `w_i` by more than `1`, while its operator-norm
+multiplicative defect still tends to zero.  For one requested defect
+tolerance, choose one sufficiently late coordinate from each of these
+finitely many (possibly different) subsequences and take their direct sum.
+The `i`-th block separates `w_i`, and the operator norm of a block sum is the
+maximum, so one finite-dimensional tuple simultaneously has
+
+```text
+defect_op(U)<delta_e,
+||w_(e,i)(U)-1||_op>1>alpha_e  for every i.
+```
+
+This contradicts `(DONK2)`.  Therefore a finite universal library together
+with disjunctive collapse is enough for non-MF.  Finiteness is essential to
+the direct-sum step; this statement does not promote an infinite moving
+library to a uniform obstruction.

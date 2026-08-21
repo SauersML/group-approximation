@@ -1,27 +1,16 @@
 # Normal generation in the Fournier-Facio quotient
 
-**Status: candidate, not a theorem. Not printed in the manuscript.** Theorem 1
-below rests on Hull's common-quotient corollary and on a lemma of Osin, neither
-verified here nor formalized anywhere in the corpus; the document's own summary
-calls its new content "a one-line strengthening of Hull's common quotient
-corollary". Do not promote any of it to a numbered environment until a geometric
-group theorist has confirmed the steps that quote Hull and Osin. This banner was
-missing until 2026-08-17 and is the same one
-`notes/TORSION_FREE_HULL_ROUTE.md` has carried from the start.
-
-**PROHIBITION, not a caution (2026-08-17).** Under the standing zero-literature
-order — `Audit.literatureInputNames` is empty and its docstring states that
-literature-transcription premises are not permitted in the corpus — this route
-**cannot** be used to close anything, at any quality. There are exactly two legal
-moves: retire the dependence, or prove the antecedent in-repo. The second is not
-a lemma but a library: the pinned Mathlib has no acylindrical hyperbolicity, no
-hyperbolically embedded subgroups, no small cancellation and no Greendlinger's
-lemma. Note in particular that "a one-line strengthening of a published
-corollary, licensed by a published lemma" is *exactly* the shape the order
-forbids — the brevity of the step is not what makes it admissible. So this
-document is a record of a research route, not a plan of work, and promoting any
-part of it to a numbered environment or to a `\leanverified` badge would require
-deliberately overriding a written prohibition.
+**Current status (superseding the 2026-08-17 quarantine).** The Hull--Osin
+routing argument below was subsequently checked against the source papers and
+independently audited; the final record is §9 and
+`notes/TORSION_FREE_SATURATION_DIRECT_ROUTE_2026-08-14.md`.  Cairn therefore
+uses it as a paper-level established input in
+`defect-normally-generates-torsion-free-quotient`.  It is still **not Lean
+formalized**: acylindrical hyperbolicity and small cancellation remain outside
+the kernel-checked boundary.  Everything downstream of the routing data is
+formalized.  The older prohibition was an audit-stage status, not the current
+mathematical verdict, and is retained only in repository history rather than as
+a contradictory live banner.
 
 **What is proved here.** The Fournier-Facio construction of a finitely
 presented torsion-free non-sofic group can be run so that the *whole group*

@@ -302,6 +302,16 @@ A useful library must therefore reuse one physical carrier and force a
 finite-dimensional-only inconsistency in its multiplicity or holonomy. Library
 cardinality alone has no capacity consequence.
 
+There is an MF-specific exception which does not contradict this firewall.
+The finite-disjunctive strengthening in
+`reverse-kleene-operator-norm-collapse-gives-non-mf` allows a compiler to
+output finitely many nontrivial marks and requires every sufficiently accurate
+operator-norm model to collapse at least one of them.  MF must separate every
+element of one fixed finite test set simultaneously; tensor powers followed by
+a finite direct sum give that simultaneous operator-norm separation.  This is
+not a positive-density or library-cardinality argument, and it does not extend
+to an infinite moving list or to normalized-HS soundness.
+
 ## 9. Proper infiniteness is only a completeness tool
 
 The HALT witness may live on `H isomorphic_to H direct_sum H` and absorb
