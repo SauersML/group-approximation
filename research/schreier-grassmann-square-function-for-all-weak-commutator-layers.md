@@ -8,9 +8,9 @@ distinct_from:
   dimension-expander-two-matching-square-function: that starts from subspace dimension growth; this uses a uniform Cayley/Schreier spectral gap on independent frames, which is strictly stronger than dimension expansion.
 ---
 
-OPEN.  Choose a bounded family `S_n` of involutions generating `SL_n(2)`
-with a uniform Cayley spectral gap.  Test the identity matching and the mixed
-matchings
+OPEN.  Use the bounded involutive expanding family `S_n` supplied by
+`bounded-involutive-cayley-expanders-for-sl-n-two`.  Test the identity
+matching and the mixed matchings
 
 ```text
 a=s b,                    s in S_n.                           (GS1)

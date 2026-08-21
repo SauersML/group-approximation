@@ -7,6 +7,7 @@ target: bounded-degree-entangled-agreement-pauli-metapixel
 requires:
   - schreier-grassmann-square-function-for-all-weak-commutator-layers
   - two-untwisted-field-matchings-force-complete-cross-commutation
+  - bounded-involutive-cayley-expanders-for-sl-n-two
 ---
 
 Use the identity matching and the bounded family `a=s b`, `s in S_n`, from
