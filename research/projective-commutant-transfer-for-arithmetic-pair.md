@@ -48,6 +48,82 @@ exact variety to `delta`-representations, i.e. the outlier sector.
 
 ## Attempts
 
+- **Adjoint-lift exactification is sufficient and strictly narrower than
+  full group stability.**  Put `beta_rho(x)=Ad(rho(x))` on the Hilbert space
+  `M_d`.  If `rho` has presentation defect `delta`, then every defining
+  relator satisfies
+
+  ```text
+  ||beta_rho(r)-1||_2^2
+    =2-2|tr(rho(r))|^2
+    <=2||rho(r)-1||_2^2,                              (PRT3)
+  ```
+
+  so `beta_rho` has defect at most `sqrt(2) delta`.
+
+  Suppose one could prove the following special exactification statement:
+  there is `theta(delta)->0` such that every such **adjoint lift** is within
+  `theta(delta)` on the fixed generator packet of an exact unitary
+  representation
+
+  ```text
+  pi:Gamma -> U(M_d).
+  ```
+
+  No assertion about exactifying `rho` itself is needed.  Apply the established
+  exact projective transfer theorem to `pi` and the unitary `T=Ad(U)` on
+  `M_d`.  For unitaries `V,W`, the group commutators with fixed `T` obey
+
+  ```text
+  ||[T,V]-[T,W]||_2 <=2||V-W||_2,
+  ```
+
+  and hence their trace-square energies differ by at most
+  `4||V-W||_2`.  Moreover, for `beta_rho(g)=Ad(rho(g))`,
+
+  ```text
+  tr_(d^2)([T,beta_rho(g)])=|tr_d([U,rho(g)])|^2.
+  ```
+
+  Therefore, writing `e_g=1-|tr_d([U,rho(g)])|^2`, the exact transfer for
+  `pi`, finite word telescoping from the generator packet to `S union {h}`,
+  and
+
+  ```text
+  e_g <= 1-(1-e_g)^2 <=2e_g
+  ```
+
+  give
+
+  ```text
+  e_h <= 2K sum_(c in S)e_c + C theta(sqrt(2)delta),    (PRT4)
+  ```
+
+  for a fixed `C`.  Thus exactification of the special adjoint lifts alone
+  proves `(PRT1)`; full Hilbert--Schmidt stability of `Gamma` is stronger
+  than necessary.
+
+- **PTS4 identifies why property (T) does not supply that exactification.**
+  For `n>=3`, `(PTS4)` in
+  `projective-trace-square-transfer-for-sl3-pair` turns small projective
+  subgroup energy into ordinary almost-invariance of `U` under
+  `rho(SL_n(Z))`, with error `O(sqrt(q)+delta)`.  But the operators
+  `beta_rho(c)` are only an almost representation.  The Kazhdan projection
+  estimate applies to a genuine unitary representation and therefore cannot
+  be invoked before the special exactification above.  Defect quarantine also
+  does not fix this: its large corner need not be invariant, so compressed
+  adjoint maps acquire uncontrolled leakage products.  Current exact
+  co-density then becomes usable only *after* the missing adjoint
+  exactification.
+
+  This is not a formal consequence of perfectness, subgroup property (T),
+  and equality of exact finite-dimensional images.  The established
+  `exact-codensity-does-not-imply-matricial-rcc` gives a non-arithmetic
+  hyperlinear product pair with all three properties and a maximal
+  ultraproduct leak.  It does not refute arithmetic adjoint exactification,
+  but proves that any such theorem must use the denominator-generator
+  relations of `SL_n(Z[1/p])`, rather than only the exact subgroup data.
+
 - **Exact co-density alone cannot cross the approximation wall.**
   `exact-codensity-does-not-imply-matricial-rcc` gives the unconditional
   pair `SL_3(Z) < SL_3(Z) x A_fin`: every exact finite-dimensional
