@@ -215,6 +215,25 @@ perfectness argument), here appearing as finite Weyl-gauge twists.
   — the finite-level shadow of the depth-shift, back exactly where
   the two-adic format node placed it, now with the surrounding
   `(BP1)`-solution landscape mapped.
+- **The interleaving handle (2026-08-21, closing pass).**  A
+  would-be closure via exact inconsistency was caught before
+  landing: at any FIXED finite level the intertwining is exactly
+  inconsistent (take `lambda = e_31(4) in Lambda_-`, trivial mod 2,
+  with `h lambda h^(-1) = e_31(1)` nontrivial mod 2; simplicity of
+  `SL_3(F_2)` makes every nontrivial gauge faithful), but in the
+  ultraproduct the obstruction decays: the mismatched spectral mass
+  (`>= 1/dim sigma_p`, at sign-twisted positions) must transport
+  only distance `~ pi/q` to the nearest coprime-side eigenvalue, so
+  single-element defects vanish like `1/q^2` — the recurring lesson
+  that fixed-word tests die asymptotically.  What survives as a TRUE
+  constraint: the enemy's coprime-side eigenvalue distributions must
+  INTERLEAVE at scale `1/q` against the fixed `p`-side twists,
+  simultaneously for every element of `Lambda_-` and covariantly
+  under the Weyl action — a joint interleaving-rigidity structure
+  with no analogue in the coprime sector, and the natural next
+  object to formalize: whether Weyl-covariant `1/q`-interleavings of
+  near-uniform spectra exist jointly is a finite-geometry question
+  per level pair, again certificate-shaped.
 - **Falsification honesty.**  A surviving twisted hom compatible
   with regularity at some finite gauge would NOT yet be an enemy (it
   must still satisfy the mixed-word regularity and assemble into a
