@@ -58,6 +58,34 @@ root-energy coordinates `(S_n,x_12)`.
 
 ## Attempts
 
+- **Recognize that the corrected target is a uniform joint-relator gap.**
+  Once `(A4-ROOT-COLLISION)` is included,
+  `atlas-root-energy-ellipse-controls-s3-distance` already gives the opposite
+  inequality `liminf F_n>=3/128` for every hypothesized sequence.  Hence the
+  requested strict `limsup F_n<3/128` can hold only because no such sequence
+  exists.  More precisely, for `rho_k=Reg(A8) tensor I_k` put
+
+  ```text
+  epsilon(k,U)=max( ||q_19243(U)-1||_2,
+                    max_(w in the thirty-word packet)||w(U)-1||_2 ).
+  ```
+
+  The corrected ellipse claim is equivalent to
+
+  ```text
+  inf_(k>=1,U in U(20160k)) epsilon(k,U)>0.             (A4-JOINT-GAP)
+  ```
+
+  Indeed, if the infimum were zero, choices with `epsilon<1/n`, followed by
+  `atlas-a4-context-network-simultaneous-hs-exactification` and
+  `atlas-a4-context-exact-regular-normalization`, would give a normalized
+  sequence.  Those `o(1)` perturbations preserve the fixed collision word and
+  all four root traces, so the established lower wall and the proposed upper
+  ceiling would apply simultaneously, a contradiction.  Conversely
+  `(A4-JOINT-GAP)` makes the quantified class of sequences empty.  Thus a
+  finite SOS search must certify a positive residual gap; merely optimizing
+  the ellipse functional on putative zero-residual points is circular.
+
 - **Use the corrected shifted-double-coset compiler.**  The local A4
   centralizer-product theorem cannot be applied to the two raw chart alphabets
   as if they were already aligned: some same-chart packet pairs have product
