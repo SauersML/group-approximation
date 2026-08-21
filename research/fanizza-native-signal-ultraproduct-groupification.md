@@ -46,3 +46,12 @@ must still overcome nonlinear BCS addition and multiplicity return.
   finite-dimensional representation detecting the mark, by
   `reverse-kleene-unconditioned-collapse-forces-fd-invisibility`. This is the
   first falsification test for every proposed completion cell.
+- The exact weakest decoder is recorded as
+  `mark-relative-fanizza-ultraproduct-decoder-suffices`: it may ignore every
+  mark-dead map, including the trivial homomorphism, and only has to turn a
+  surviving mark into positive native BCS signal.  However,
+  `mark-relative-finite-packet-decoder-is-impossible` proves that even this
+  weakening forces the NONHALT mark into the finite-dimensional radical.
+  Hence no finite Pauli/torsion packet, no selected primitive type inside one
+  finite group, and no residually finite packet assembly can be the complete
+  cell.  An infinite matrix-only actuator remains load-bearing.
