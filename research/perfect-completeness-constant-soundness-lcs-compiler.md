@@ -49,6 +49,27 @@ explicit nonhyperlinear solution group.  Taller--Vidick prove `(PC2)` with
   self-reducing family, whose relaxation is again an instance of the
   family, would inherit soundness.  This is where the programme's
   self-similarity idea has a precise job.
+- **Encodings cannot create hardness.**  Odd subsets of an affine set have
+  affine parity, so the odd-subset relaxation of a *linear* source is the
+  source itself, while for a nonlinear source with single-variable overlaps
+  it collapses every `S_C` to its affine hull.  Rich overlaps pin odd
+  subsets to points (three assignments cannot pairwise agree off every
+  coordinate) but push the contexts toward pairwise commutation, which is
+  classical.  Hence a noise-free linear encoding is sound only when the
+  source is already an LCS with the gap: the gap must be **native** to a
+  solution group.  Native gap amplification for an LCS with `J = 1` is the
+  statement `||J(U) - I||_2 <= C Def(U)` with `C` independent of the area
+  of `J`, i.e. HS length control for the word `J`
+  (`hs-dehn-modulus-bounded-by-dehn-function`).  So the three frontier
+  formulations -- this claim, `hs-pcp-boone-compiler`, and
+  `unsolvable-word-problem-group-with-computable-hs-dehn-modulus` -- are
+  one problem: a robust non-abelian Gaussian elimination, in which a
+  derivation of `J = 1` through non-commuting variables, of unbounded
+  area, is forced on every approximate finite-dimensional solution at
+  constant cost.  Classical 3-XOR has this (expansion plus linear algebra)
+  because abelian refutations have area at most the number of equations;
+  the non-abelian derivation is where area escapes, and
+  `centralized-cyclic-distortion-hs-dehn-tracks-area` is the model of how.
 - **Orientation check.**  Do not try to obtain `(PC1)` from Lin's
   `MIP^co = coRE` compiler: its exact side is the commuting side on
   nonhalting inputs, which is the other orientation

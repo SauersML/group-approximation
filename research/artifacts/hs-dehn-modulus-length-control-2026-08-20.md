@@ -441,3 +441,22 @@ odd-subset relaxation of its source is sound.  Classically that relaxation
 is a linear system over `F_2` (the reason 3-XOR needs noise); the
 Taller--Vidick mask is its quantum shadow.  The precise job for a
 self-similar source: make the relaxation an instance of the family.
+
+### 8.1 Unification
+
+Odd subsets of an affine set have affine parity, so the odd-subset
+relaxation of a linear source is the source itself, and of a nonlinear
+source with thin overlaps is its affine hull.  Linear encodings therefore
+cannot manufacture an LCS gap from a nonlinear source without noise: the
+gap must be native to a solution group.  A native gap for an LCS with
+`J = 1` is `||J(U) - I||_2 <= C Def(U)` with `C` independent of the area of
+the derivation of `J = 1`: HS length control for the word `J`.  Hence the
+coRE compiler (`hs-pcp-boone-compiler`), the RE compiler
+(`perfect-completeness-constant-soundness-lcs-compiler`), and the
+length-control target are one problem: robust non-abelian Gaussian
+elimination.  Abelian refutations have area at most the number of
+equations, which is why classical 3-XOR is robust; non-abelian derivations
+are where area escapes, and Section 7 is the model of how it escapes
+through a near-degenerate spectrum.  The Pauli basis test shows native
+linear tests can be robust (Gowers--Hatami); what is missing is a robust
+*unsatisfiable* native LCS whose refutation is non-abelian and long.
