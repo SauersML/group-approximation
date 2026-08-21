@@ -84,3 +84,11 @@ in the lamp commutant while all covariance laws remain exact.
   almost-invariant-vector rigidity does not touch it.  A relative cocycle or
   invariant-Cartan theorem strong enough to trivialize the copy action is the
   remaining possible attack.
+- **Pass to the regular packet center.**  This removes every commutant unitary
+  and remembers the coordinate-factor permutation, but
+  `a5-center-spectrum-has-constant-one-site-hamming-gap` shows that one wrong
+  site completion already costs `71/100` in Plancherel center measure.  The
+  individual center fibers also fail chart injectivity on a `Z`-window with
+  fixed probability `1-(59/60)^|Z|`.  Thus centers expose rather than solve
+  the finite-window boundary: they need an already coherent global packet or
+  a new equivariant bundling theorem.
