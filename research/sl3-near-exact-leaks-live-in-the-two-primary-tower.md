@@ -57,9 +57,18 @@ refutation, and this claim makes the reduction precise.
   two lifts of a mod-`2^a` point differ after conjugation by a
   mod-`2^(a-1)` element), making each instance a two-level tower
   coupling.  Refuting the tower sector is exactly
-  `liminf delta(a) > 0`.  Small instances (`a = 1, 2`:
-  `|SL_3(Z/2)| = 168`, `SL_3(Z/4)`) are machine-checkable and would
-  give the first data on the actual wall — the designated next probe.
+  `liminf delta(a) > 0`.  Two design subtleties, caught before
+  probing: the constraint list must be a FIXED set of elements of `P`
+  (e.g. `e_12(2), e_13(4), e_23(2)` and the three lower elementaries)
+  — the enemy only owes vanishing defect on fixed relators, and it
+  evades the seemingly fatal moving constraint
+  `phi(e_13(2^a)) = e_13(2^(a-2))` by level spreading; and the
+  instances at `a = 1, 2` are DEGENERATE (the fixed upper generators
+  reduce to the identity), so honest machine-checkable instances
+  start at `a = 3`, where the regular representation is too large
+  (`|SL_3(Z/8)| ~ 1.1e7`) and the natural permutation representation
+  on `(Z/8)^3` (`d = 512`) is the right probe carrier — the
+  designated next experiment.
 - Proved below by assembling established inputs; see the proof route.
   The one step that is a HYPOTHESIS here and a theorem at `SL_2` is
   vertex near-exactness: `SL_3(Z)` HS-stability is open (it is the
