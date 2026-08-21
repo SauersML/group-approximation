@@ -154,6 +154,56 @@ theorem killOn_blockWindow_elt (m : ℕ) (i : ℤ) (f : E) :
       = elt (Finsupp.filter (blockWindow m i) f) :=
   Split.killOn_elt _ f
 
+/-! ## 2c.  The third stage's map is the `m`-shift, and it is safe here
+
+The modern write-up's third stage is an HNN extension along the automorphism of
+`F₃ = ⟨a, b, c⟩` fixing `a` and `c` and sending `b` to `b^{c^m}` --- the
+`m`-shift of the row, `shiftAut^[m]` in this repository's names.  Its use is a
+computation `(a^{b_l})^r = a^{b_{l'}}` with `l'` the `m`-shift of `l`, and that
+is the one place in the `ωₘ` argument where an automorphism is asked to carry
+an **ordered** product `b_f` to another ordered product.
+
+That is worth proving rather than assuming, because the same move is what
+fails elsewhere in the same section: an automorphism can act correctly on the
+generators `bᵢ` and still act incorrectly on `b_f`, since `b_f` is the product
+over the support taken in INCREASING order.  Here it is sound, and for the one
+reason that matters --- `i ↦ i + m` is order-PRESERVING, so it commutes with
+the sort defining `elt` (`Seq.sort_map_add`), which is exactly why `σ` closes
+in `Higman.ShiftOperation` while an order-reversing relabelling does not.
+
+`shiftAut_iterate_aElt` below is the computation in the form the construction
+uses it. -/
+
+theorem shiftPow_zero (f : E) : shiftPow 0 f = f := by
+  refine Finsupp.ext fun i => ?_
+  rw [shiftPow_apply, Nat.cast_zero, sub_zero]
+
+theorem shiftSeq_shiftPow (m : ℕ) (f : E) :
+    shiftSeq (shiftPow m f) = shiftPow (m + 1) f := by
+  refine Finsupp.ext fun i => ?_
+  rw [shiftSeq_apply, shiftPow_apply, shiftPow_apply]
+  congr 1
+  push_cast
+  ring
+
+/-- **The `m`-fold shift automorphism carries the coded sequence to the coded
+`m`-shift.**  The order-preserving relabelling survives the sort. -/
+theorem shiftAut_iterate_bElt (m : ℕ) (f : E) :
+    (⇑shiftAut)^[m] (bElt f) = bElt (shiftPow m f) := by
+  induction m with
+  | zero => rw [Function.iterate_zero_apply, shiftPow_zero]
+  | succ n ih =>
+      rw [Function.iterate_succ_apply', ih, shiftAut_bElt, shiftSeq_shiftPow]
+
+/-- **The same on the conjugates**, which is the form the third stage uses:
+`a^{b_l}` goes to `a^{b_{l'}}` with `l'` the `m`-shift of `l`. -/
+theorem shiftAut_iterate_aElt (m : ℕ) (f : E) :
+    (⇑shiftAut)^[m] (aElt f) = aElt (shiftPow m f) := by
+  induction m with
+  | zero => rw [Function.iterate_zero_apply, shiftPow_zero]
+  | succ n ih =>
+      rw [Function.iterate_succ_apply', ih, shiftAut_aElt, shiftSeq_shiftPow]
+
 /-! ## 3.  A finitely supported sequence has a zero block -/
 
 theorem exists_blockAt_eq_zero (m : ℕ) (f : E) : ∃ i : ℤ, blockAt m i f = 0 := by
