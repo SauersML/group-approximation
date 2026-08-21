@@ -95,3 +95,11 @@ all-representations decoder `(ALD1)--(ALD2)`.
   mass leaving the old window is either placed in two orthogonal target
   families or paid by a word defect.  No such quantitative Gram/boundary
   lemma has yet been proved; it is the exact open content of this claim.
+- **Square return itself is no longer a gate.**  If the boundary argument
+  first closes source and target on the same finite paired reservoir, then
+  `bistochastic-diagonal-return-forces-aligned-permutation` converts each
+  near-identity diagonal forward/return composition to an aligned
+  permutation/inverse pair with constants `2` and `5`, independent of the
+  label count.  The robust paired `1/36` floor then consumes the crossed-zero
+  relation.  Hence the unresolved estimate is only the same-reservoir
+  boundary payment that excludes `rectangular-escape`.
