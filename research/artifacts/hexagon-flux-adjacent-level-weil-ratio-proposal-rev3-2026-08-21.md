@@ -1,3 +1,7 @@
+# Supplement: corrected hexagon-flux obstruction mechanism
+
+This fragment was preserved after the active claim was demoted.
+
 - **CORRECTION of the slogan, and the real obstruction mechanism
   (2026-08-21, same day).**  The "adjacent-level ratio" as literally
   stated TELESCOPES around the hexagon: two one-level drops and one
