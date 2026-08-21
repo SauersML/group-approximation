@@ -190,11 +190,31 @@ perfectness argument), here appearing as finite Weyl-gauge twists.
   enemy's regular trace forces.  The bounded-gauge battle is
   therefore now exactly: do SPREAD-SPECTRUM solutions (supports
   forced to overlap, commutators no longer free) exist?  The
-  overlap regime is where the quadratic obstruction genuinely bites,
-  and quantifying the trade-off between spectral spread and the
-  commuting-locus constraints is the named open frontier — a
-  spectral-capacity question about an explicit variety, exactly the
-  right shape for certificate methods.
+  overlap regime is where the quadratic obstruction genuinely bites.
+  COMPLETION OF THE SYSTEM (same pass; the `(BP1)` statement above is
+  incomplete as the full gauge system): beyond the Weyl-derived
+  relations, the corrector must also satisfy the PRIMARY conjugation
+  constraint that `(BP1)`'s extraction silently dropped — on the
+  `p`-block, `W_p` must intertwine `sigma_p` composed with the mod-`p`
+  upper image of `Lambda_-` and `sigma_p` composed with the
+  DEEPER-BIT lower-valued homomorphism `lambda mapsto h lambda
+  h^(-1) mod p` (conjugation by `h` scales the upper entries to zero
+  mod `p` and reads the lower entries' next bits): this level-coupled
+  intertwining is the solenoid heart that
+  `two-adic-tower-format-of-surviving-lambda-exact-enemy` always
+  carried, and it is the binding constraint.  Consequences
+  re-scoped: the spectral-capacity discussion above classifies
+  `(BP1)`-only solutions — including EXACT spread-spectrum ones
+  (block construction on right-cosets of a transposition stabilizer:
+  spectrum `{1, z, z^(-1)}` with multiplicity `56` each and `z`
+  arbitrary, so even `tr W = 0` is attainable) and the disjoint-orbit
+  families — but enemy-relevance additionally requires the
+  level-coupled intertwining, which none of these constructions
+  addresses.  The bounded-gauge frontier, correctly stated: solutions
+  of `(BP1)` AND the level-coupled intertwining with spread spectrum
+  — the finite-level shadow of the depth-shift, back exactly where
+  the two-adic format node placed it, now with the surrounding
+  `(BP1)`-solution landscape mapped.
 - **Falsification honesty.**  A surviving twisted hom compatible
   with regularity at some finite gauge would NOT yet be an enemy (it
   must still satisfy the mixed-word regularity and assemble into a
