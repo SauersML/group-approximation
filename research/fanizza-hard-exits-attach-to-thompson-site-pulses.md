@@ -8,10 +8,10 @@ distinct_from:
   packet-hard-transport-preserves-pulse-prefix: that asks an E5 hard word to preserve all earlier polynomial pulse signs; this uses off-site commutation to preserve the prefix by construction.
 ---
 
-OPEN.  Put a finite menu of source/target hard signs into the local finite
-group of `thompson-site-pulses-localize-hard-exits`.  It is **not** necessary
-to identify the level-`n` global Fanizza hard word `A_n` with the local source
-sign `a_n`.  By
+Put one independent Thompson pulse factor behind each member of the fixed
+finite menu of source/target hard signs.  It is **not** necessary to identify
+the level-`n` global Fanizza hard word `A_n` with the local source sign `a_n`.
+By
 `prefix-preserving-two-step-hard-bridge-localizes-exit`, it is enough to add a
 unitary `u_n` satisfying
 
@@ -19,25 +19,30 @@ unitary `u_n` satisfying
 a_nu_n=u_nA_n,               [u_n,B_k]=1  (k<n).       (FAT1)
 ```
 
-The site swap `s_n` then sends `u_nP_n` into the fresh first-hit sector.  Prove
-that the bridge covariances and off-diagonal commutators fall into finitely
-many bounded-arity addressing orbits, have polynomial derivation area, and
-admit an exact infinite-dimensional extension preserving the original logical
-BCS words and active recurrence carrier.
+The site swap `s_n` then sends `u_nP_n` into the fresh first-hit sector.
+`product-clock-global-hard-bridge-has-finite-orbit` supplies all the bridges
+from one prototype per menu role.  The product clock `Ug_r` advances the
+global Fanizza word by `U` and its independent pulse site by `g_r`; the two
+Thompson pair-orbits give every off-diagonal commutator.  All word lengths and
+derivation areas are polynomial in the level.
 
 The desired conclusion is that the analytically projected joint exit `P_n`
 obeys `(PPB3)--(PPB4)` at every recurrence level.  Then `(PPB5)--(PPB6)` place
 it in the summable first-hit sector `X_n`, removing
 `e5-tail-character-suppression-for-projected-exits` from this route.
 
-The exact marked-completeness clause is closed by
-`gauge-covariant-hard-shares-admit-site-bridges`: gauge-double the private
-hard share, covariantize its sign flip, and use the resulting balanced
-involution to construct `u_n` on the original factor and the fresh `n`th
-pulse site.  The remaining content of this claim is finite syntax and robust
-soundness: compile all `u_n` from finitely many bounded-orbit generators and
-derive `(FAT1)` with polynomial area without imposing relations among the
-different bridges.
+For a linear ordering of role/level pairs, compress each raw projected exit
+by all earlier positive pulse cuts.  Since the pulse factors commute with the
+source group, this gives a projection satisfying `(PPB3)`.  The removed mass
+is already in an earlier first-hit sector.  Equations `(PGB6)--(PGB7)` give
+`(PPB4)`, and therefore `(PPB5)--(PPB6)` put every remaining exit in a fresh
+summable sector.
+
+The exact marked-completeness clause follows from gauge doubling: each private
+hard sign is spectrally balanced, so one base bridge can be chosen after
+amplification and then transported by the product clock.  Shared logical BCS
+words stay in the original factor.  Thus the construction neither copies them
+into commuting lamp sites nor imposes relations among different bridges.
 
 ## Attempts
 
@@ -52,7 +57,6 @@ different bridges.
   approximate reduction and placement must use the established packet
   complement estimates, not a universal projection relation.
 - Infinite amplification and gauge covariance give the simultaneous exact
-  bridges by `gauge-covariant-hard-shares-admit-site-bridges`.  What remains
-  unproved is the finitely presented bounded-orbit realization and its
-  polynomial approximate estimate, not exact completeness or the two-step HS
-  estimate.
+  bridges by `gauge-covariant-hard-shares-admit-site-bridges`; the product-clock
+  compiler supplies the formerly missing finite presentation and polynomial
+  approximate estimate without making the hard share site-local.
