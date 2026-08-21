@@ -62,6 +62,20 @@ involution.
   the even-Weil compression shows why exact classification alone cannot
   yield a dimension-free same-dimensional gap.
 
+- **Scalar packets cannot be repaired independently.**  For
+  `p=1 mod 4`, the exact even Weil representation restricts on the BS core
+  as the direct sum of the trivial fixed line and the primitive nonzero
+  packet.  The latter packet has no exact Iwahori extension in its own
+  dimension.  Hence the exact Weil involution cannot preserve the two BS
+  summands: if it did, its restriction to the nonzero summand would be the
+  forbidden exact extension.  Exact repair therefore necessarily uses
+  off-diagonal coupling between distinct scalar packets.  After deleting
+  the fixed line this coupling has rank at most one, giving defect
+  `O(d^(-1/2))`; restoring the line costs relative dimension `1/d`.
+  Orthogonal packetwise rounding is thus rigorously ruled out, while a
+  global transport that permits boundary mass of order `defect^2` remains
+  viable.
+
 - **Core exactification is available.**  The one-solenoid dense-periodic-
   measures theorem gives HS stability of `BS(1,4)`, so the approximate core
   can be repaired before this claim is applied.  This does not control `X`.
