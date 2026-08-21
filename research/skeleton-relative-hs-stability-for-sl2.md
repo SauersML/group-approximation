@@ -163,6 +163,27 @@ never activates.
   bookkeeping risks are the accumulation of losses along the
   induction and the joint treatment of the two holonomies, both
   compact-space accounting questions with no dimension entering.
+- **Induction accounting (2026-08-21, terminal layer).**  The
+  absorbable part of a holonomy is its component orthogonal to the
+  cycle monodromy's centralizer, with modulus `delta / gap` — the
+  differential of the twisted commutator map is `Ad(M_0) - 1`, so
+  absorption is a quantitative submersion exactly off the resonant
+  (centralizer) directions.  The resonant residue lives in the
+  refined structure given by `M_0`'s spectral clusters, where the
+  monodromy is near scalar and the classification descends one level
+  in `(cycle, omega)`-data: the induction is a SECOND multiscale
+  clustering argument of the same species as the local-rigidity
+  proof, with geometrically chosen cluster gaps and a Holder total
+  modulus, dimension-free.  After `(R1)` is exact the residual
+  freedom is the `psi`-invariant torsor, and `(R2)`'s holonomy meets
+  the same dichotomy one level deeper — a two-step filtration of one
+  induction.  TERMINAL OPEN POINT, stated exactly: the two resonant
+  residues define a class in the cohomology of the solenoid shift on
+  the commutant tower; the class vanishes on every exact finite
+  model, and the claim needs its CONTINUITY under multiscale
+  refinement — a statement about a concrete compact dynamical
+  system, the true bottom of the SL_2 far sector after tonight's
+  reductions.
 - **Where the obvious attack could die.**  If the torsor fixed-point
   problem has an obstruction class that grows with the odd order,
   the loss would not be dimension-free; the analogue at the level of
