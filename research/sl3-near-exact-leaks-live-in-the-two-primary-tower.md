@@ -233,6 +233,23 @@ refutation, and this claim makes the reduction precise.
   parametrization of `K` (block isomorphism via generic-element
   eigenprojections) and a reported split of the `+13.1` cost between
   `K`-centrality and `V`-dictionary terms.
+- **v4 scope gap and the v5 design (2026-08-21).**  v4 measures the
+  leak floor over exact block-unitary `K` at the FIXED control
+  dictionary `V_0` (early sweep: floor `~0.149`, `unit_err = 0`).
+  But the low-defect dictionary manifold is the coset
+  `V_0 * U(rho(Q_1)')`-approximately (the residual freedom commutes
+  with the six target generators, and the per-instance conjugation
+  gap of the fixed 512-dim representation gives the squeeze even
+  though `Q_1` is a 2-group with no uniform Kazhdan constant), and
+  since `Z = rho(G)' subset rho(Q_1)'`, the honest floor is the JOINT
+  minimum over `K in U(Z)` and `W in U(rho(Q_1)')`:
+  `min |<E_Z(V_0 W K W* V_0*), K>|` — precisely the joint-rotation
+  problem of the phase-locking mechanism, now in fully reduced
+  coordinates (`37`-dim witness blocks and `265`-dim torsor blocks).
+  v5 = v4 plus the `W`-coordinates; if the joint minimum stays
+  positive the prototype floor is real against ALL low-defect
+  dictionaries, and the remaining escape is only the defect-budget
+  tradeoff already charted by v2 (`+13.1`).
 - Proved below by assembling established inputs; see the proof route.
   The one step that is a HYPOTHESIS here and a theorem at `SL_2` is
   vertex near-exactness: `SL_3(Z)` HS-stability is open (it is the
