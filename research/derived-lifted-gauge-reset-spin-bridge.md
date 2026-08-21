@@ -76,7 +76,14 @@ balanced Morita edge.
   linear-algebra audit for the universal arity-four compiler: fixed
   rank-fifteen source/target hyperplanes are nondegenerate in every baseline
   sector and in a reset direction, after a harmless selector basis change.
-  The remaining work is no longer a search for a residual.  It is to realize
-  the finitely many residual symplectic congruences in one finite incidence
-  whose relevant representation restrictions contain no extra multiplicity
-  modes.
+  The remaining work is no longer a search for a residual.
+- `symmetric-selector-schur-residual-packet` now realizes all sixteen residual
+  congruences and every gauge translation in one finite symmetric semidirect
+  product.  One primitive induced type contains each selector-sector spin
+  exactly once; every reset translation is an explicit commutator and
+  commutes with the standardized diagonal residual.  Thus the unbounded
+  router and unwanted residual multiplicity modes are gone.  The only
+  remaining local audit is the finite restriction matrix obtained when the
+  four-point balanced rank-swap packet is coupled to this primitive type:
+  old baseline and reverse reset edge types must occur with equal
+  multiplicity.
