@@ -214,6 +214,25 @@ refutation, and this claim makes the reduction precise.
   two-primary tower, exactly where the (T) technology lives.  Next
   computation: extract `Phi` (a `37 x 37` matrix) at the probe's
   optimal `V` and read its Hermitian spectrum on trace-zero.
+- **Negative results that sharpen the floor (2026-08-21,
+  `experiments/sl3-phi-spectrum.json`,
+  `experiments/sl3-delta3-probe-v3.json`).**  (i) At the
+  control-optimal dictionary the Hermitian part of the compressed
+  conjugation map `Phi` on trace-zero is INDEFINITE (21 positive, 15
+  negative eigenvalues, extremes `-0.249` and `+0.592`): the simple
+  positivity criterion fails, so the floor cannot come from the
+  quadratic form alone.  (ii) The reduced probe with `K` parametrized
+  in the 37-dim algebra but unitarity only penalized drove the leak
+  to `~1e-4` at control defect — with unitarity violation `0.58-0.74`:
+  off the unitary manifold the leak is cheap.  Together these
+  localize the mechanism exactly: the per-level floor, if real (and
+  the `+13.1` of the honest unitary probe v2 says it is), lives in
+  the interplay of the INDEFINITE form with the UNITARITY of `K` —
+  trace-zero HS-null directions of `Phi` exist but are not unitary
+  elements of `Z`.  Next: v4 with exact Wedderburn-block-unitary
+  parametrization of `K` (block isomorphism via generic-element
+  eigenprojections) and a reported split of the `+13.1` cost between
+  `K`-centrality and `V`-dictionary terms.
 - Proved below by assembling established inputs; see the proof route.
   The one step that is a HYPOTHESIS here and a theorem at `SL_2` is
   vertex near-exactness: `SL_3(Z)` HS-stability is open (it is the
