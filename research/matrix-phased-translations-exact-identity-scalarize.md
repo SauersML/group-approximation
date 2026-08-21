@@ -43,34 +43,22 @@ E_(a,b)||X(a)Z(b)-Z(b)X(a)||_2^2
 The normalized trace may give the joint eigenspaces arbitrary multiplicity;
 the constant is independent of `n`, `dim(E)`, and those multiplicities.
 
-## Proof
-
-The coefficient of `Z(b)` from the `x` block to the `x+b` block is
-
-```text
-A_(x,b)=R_(x+b)R_x^*.                                        (MP5)
-```
-
-The identity commutator compares `A_(x,b)` with `A_(x+b,b)=A_(x,b)^*`.
-Hence `(MP2)` says every quotient `R_yR_x^*` is self-adjoint.  Fix an anchor
-`x_0`, set `G=R_(x_0)`, and `S_x=R_xG^*`.  Taking `y=x_0` shows `S_x=S_x^*`.
-For arbitrary `x,y`, self-adjointness of `R_yR_x^*=S_yS_x` now gives
-`S_yS_x=S_xS_y`.  This proves `(MP3)`.
-
-Simultaneously diagonalize the commuting reflections.  On each joint
-eigenline, write `S_x=(-1)^P(x)` for a Boolean function `P`.  Both sides of
-`(MP4)` are the trace-weighted sums of their scalar counterparts, so `(PT6)`
-from `phased-translations-reduce-to-alpha-plane-test` proves `(MP4)`.
+The proof is `matrix-phased-exact-identity-scalarization-proof`.
 
 ## Sharp boundary
 
 This argument does **not** robustly round a merely approximate identity
 matching by itself.  A large family of Pauli reflections can realize any
-prescribed sparse anticommutation graph.  Taking sparse graphs with vanishing
-edge density but no large independent set makes the average pairwise
-commutator energy tend to zero while preventing approximation of most
-reflections by one commuting family.  Therefore a dimension-free proof with
-both matchings approximate must exploit the alpha-plane relation jointly; an
-"approximately commute, then diagonalize" step is not a valid standalone
-reduction.
+prescribed graph as its anticommutation graph.  Use, for example, a fixed-degree
+regular graph on `N` vertices.  Its average pairwise commutator energy is
+`O(1/N)`.  Yet if commuting unitaries `Q_i` approximate its Pauli reflections
+`P_i`, every anticommuting edge obeys
 
+```text
+2=||[P_i,P_j]||_2 <=2(||P_i-Q_i||_2+||P_j-Q_j||_2).
+```
+
+Summing over the regular graph forces a constant average approximation error.
+Therefore a dimension-free proof with both matchings approximate must exploit
+the alpha-plane relation jointly; an "approximately commute, then diagonalize"
+step is not a valid standalone reduction.

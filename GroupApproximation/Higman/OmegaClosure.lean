@@ -1,4 +1,5 @@
 import GroupApproximation.Higman.AgreeClosure
+import GroupApproximation.Higman.GeneratedBasic
 
 /-!
 # Higman's operation `ωₘ`
@@ -189,16 +190,11 @@ a join of two finitely generated subgroups of a finitely presented
 torsion-free group, met with a benign kernel.  And every `1`-block of every
 sequence is supported in `{0}`, so `ω₁` imposes no condition at all.
 
-So the three inputs of `Agree.AgreeInputs` reduce to two, plus `OmegaInput`. -/
+So the three inputs of `Agree.AgreeInputs` reduce to two, plus `OmegaInput`.
 
-theorem zetaOp_Zset_eq : zetaOp Zset = {f : E | ∀ i : ℤ, i ≠ 0 → f i = 0} := by
-  refine Set.ext fun f => ?_
-  constructor
-  · rintro ⟨g, hg, hagree⟩ i hi
-    rw [hagree i hi, Set.mem_singleton_iff.mp hg]
-    rfl
-  · intro hf
-    exact ⟨0, rfl, fun i hi => hf i hi⟩
+The two set-level identities this needs --- `Seq.zetaOp_Zset : ζ Z = atZero` and
+`Seq.omegaOp_one_atZero : ω₁ atZero = univ` --- are `Higman.GeneratedBasic`'s,
+not restated here. -/
 
 theorem zero_mem_zetaOp_Zset : (0 : E) ∈ zetaOp Zset := ⟨0, rfl, fun _ _ => rfl⟩
 

@@ -41,3 +41,17 @@ either
 ```
 
 Even after `(AGA2)`, normalized-HS same-basis rounding remains necessary.
+
+The finite-presentation deficit cannot be hidden inside the direct binary
+lamp extension.  `direct-sharp-actor-wreath-forces-actor-fp` shows that
+killing one root lamp in any finitely presented direct wreath presentation
+would give a finite presentation of the actor itself.
+
+There is a concrete envelope alternative.  Feed the André--Guirardel group
+into the BFFHZ relative-automorphism action.  That action is highly
+transitive with finitely generated stabilizers and retains a free embedded
+copy of the property-`(T)` simple group.  If its faithful action image is
+finitely presented, `bffhz-envelope-closes-exact-actor-host` constructs the
+exact finitely presented two-point-seed group.  This identifies the existing
+claim `bffhz-action-image-is-finitely-presented` as the sharpest current
+finite-groupification gate for this actor.
