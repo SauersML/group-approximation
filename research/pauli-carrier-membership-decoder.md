@@ -20,3 +20,9 @@ dist_2(F, W*(E)) -> 0.
 This is the shortest remaining fixed-packet synchronization statement.  It
 must use the mixed compressor/root relations: finite subgroup moments alone
 admit exact Pauli countermodels.
+
+Do not identify this transported branch-transfer projection with the common
+quarter corner in `transported-coefficient-corners-share-flat-quarter-carrier`.
+Exact prefix arithmetic proves that they are distinct and have overlap
+`1/16`, exactly the product of their traces.  Any bridge between them is part
+of the decoder, not a finite-packet identity.

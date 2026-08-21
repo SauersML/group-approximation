@@ -9,10 +9,31 @@
   "common_product_is_projection": true,
   "common_trace": "1/4",
   "common_lies_under_raw_corner": false,
+  "common_lies_under_comb_corner": false,
+  "common_equals_transported_pauli_carrier": false,
+  "common_transported_pauli_carrier_overlap": "1/16",
   "common_raw_cut_overlaps": {
     "(-1, -1)": "3/64",
     "(-1, 1)": "3/64",
     "(1, -1)": "3/64",
     "(1, 1)": "3/64"
+  },
+  "common_comb_cut_overlaps": {
+    "(-1, -1)": "1/32",
+    "(-1, 1)": "1/32",
+    "(1, -1)": "1/32",
+    "(1, 1)": "1/32"
+  },
+  "common_commutes_raw_cuts": {
+    "(-1, -1)": false,
+    "(-1, 1)": false,
+    "(1, -1)": false,
+    "(1, 1)": false
+  },
+  "common_commutes_comb_cuts": {
+    "(-1, -1)": false,
+    "(-1, 1)": false,
+    "(1, -1)": false,
+    "(1, 1)": false
   }
 }

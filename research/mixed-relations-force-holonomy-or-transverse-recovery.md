@@ -83,6 +83,14 @@ Either way a fixed positive energy is paid.
   corners.  It does not by itself put that projection into the raw and comb
   descendant algebras; that transverse recovery is the remaining use of the
   mixed rank-five relations.
+- **The character tables do not secretly supply transverse recovery.**  The
+  common quarter carrier is far from both the raw and comb four-cut algebras,
+  commutes with none of their atoms, and is not the transported quarter
+  carrier from the earlier branch-transfer packet: their overlap is `1/16`,
+  exactly the product of their traces.  Hence “common” at the transported
+  corner level does not identify the earlier membership decoder.  A proof
+  must use a genuinely mixed rank-five word to recover the same carrier or to
+  pay holonomy.
 - **Falsification gate, inherited.**  Any proof of this claim must be checked
   against the exact model: the compulsory overlap exists there too, so an
   argument that derives `(HOL)` or `(TRV)` from the overlap alone, without using

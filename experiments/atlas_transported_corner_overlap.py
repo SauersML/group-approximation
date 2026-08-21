@@ -9,6 +9,7 @@ sys.path.insert(0, "experiments")
 
 from atlas_double_pauli_comb_blocks import (  # noqa: E402
     conjugate,
+    cut,
     ga_add,
     ga_equal,
     ga_mul,
@@ -18,7 +19,14 @@ from atlas_double_pauli_comb_blocks import (  # noqa: E402
     ga_trace,
     rational_string,
 )
-from atlas_raw_compressor_proper_infinite import product  # noqa: E402
+from atlas_raw_branch_pauli_cell import root  # noqa: E402
+from atlas_raw_compressor_proper_infinite import (  # noqa: E402
+    product,
+    raw_and_comb,
+)
+from atlas_survivor_prefix_obstruction import (  # noqa: E402
+    cylinder_projection,
+)
 from atlas_transported_coefficient_raw_character_mixing import (  # noqa: E402
     build_packet,
 )
@@ -33,6 +41,25 @@ def main():
     )
     corners = tuple(ga_mul(value, q, value) for value in transported)
     common = ga_mul(corners[0], corners[1])
+    comb_cuts = {
+        character: conjugate(comb, value)
+        for character, value in cuts.items()
+    }
+    comb_corner = ga_add(*comb_cuts.values())
+
+    raw, _ = raw_and_comb()
+    z001 = ga_single(root(cylinder_projection("001")))
+    c11 = ga_single(product(
+        raw,
+        root(cylinder_projection("11")),
+        raw,
+        root(cylinder_projection("11")),
+    ))
+    pauli_carrier = ga_mul(
+        cut(identity, c11, negative=True),
+        cut(identity, z001, negative=True),
+    )
+    transported_pauli_carrier = conjugate(comb, pauli_carrier)
     reflections = tuple(
         ga_sub(ga_scale(2, corner), identity) for corner in corners
     )
@@ -67,9 +94,34 @@ def main():
         ),
         "common_trace": rational_string(ga_trace(common)),
         "common_lies_under_raw_corner": ga_equal(ga_mul(q, common), common),
+        "common_lies_under_comb_corner": ga_equal(
+            ga_mul(comb_corner, common), common
+        ),
+        "common_equals_transported_pauli_carrier": ga_equal(
+            common, transported_pauli_carrier
+        ),
+        "common_transported_pauli_carrier_overlap": rational_string(
+            ga_trace(ga_mul(common, transported_pauli_carrier))
+        ),
         "common_raw_cut_overlaps": {
             str(character): rational_string(ga_trace(ga_mul(common, cut)))
             for character, cut in cuts.items()
+        },
+        "common_comb_cut_overlaps": {
+            str(character): rational_string(ga_trace(ga_mul(common, value)))
+            for character, value in comb_cuts.items()
+        },
+        "common_commutes_raw_cuts": {
+            str(character): ga_equal(
+                ga_mul(common, value), ga_mul(value, common)
+            )
+            for character, value in cuts.items()
+        },
+        "common_commutes_comb_cuts": {
+            str(character): ga_equal(
+                ga_mul(common, value), ga_mul(value, common)
+            )
+            for character, value in comb_cuts.items()
         },
     }
     expected_path = Path(__file__).with_name(
