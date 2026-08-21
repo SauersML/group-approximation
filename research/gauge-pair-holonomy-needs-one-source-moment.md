@@ -165,3 +165,10 @@ linearize the finite Hecke sum by a root/Steinberg or another non-Bass--Serre
 two-cell and make its capacity-gated mixed moment pay defining word energy.
 No further source-Gram alignment theorem is required once `(GFM3)` is
 available.
+
+`orthogonal-hecke-row-packs-common-source-energy-into-one-root` performs the
+linearization at the exact algebraic level: fixed matrix units stack every
+defect in `(GFM8)` into one coefficient `R_Q`, with
+`m||R_Q||_2^2=M_Q`, and one Steinberg root word names that coefficient.  The
+remaining word theorem is consequently one root-to-coefficient norm estimate,
+not a decoder for the whole coefficient algebra.
