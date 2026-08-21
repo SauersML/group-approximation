@@ -59,3 +59,10 @@ multiplier.  CDI's generator lemma asserts only that three unitaries generate
 `M_tilde`; it gives no vanishing or scalar-phase condition.  Therefore the
 published construction decides neither gate for its chosen `pi`.
 
+There is a concrete negative evaluation for a standard allowed choice.
+`cdi-standard-generator-choice-fails-projective-gate` takes the Ge--Popa
+block generator with `w_1=1` and one non-scalar `w_2`.  Its conditional
+expectation onto the hyperfinite tensor coordinate is nonzero while the
+generator itself is not in that coordinate.  Fourier density produces one
+group word with `0<|chi_A(g)|<1`, so `(G1)` fails before and after the wreath
+extension.
