@@ -47,6 +47,41 @@ weakening consumed by the HNN marked word.
 
 ## Attempts
 
+- **Diagonal tensor powers are an exact projective error amplifier.**  Put
+  `E(W)=1-|tr(W)|^2`.  Normalized traces multiply, so for every unitary `W`
+  and integer `k>=1`,
+
+  ```text
+  E(W^(tensor k)) = 1-(1-E(W))^k <= k E(W).                 (AMP1)
+  ```
+
+  Apply the same diagonal tensor power simultaneously to `rho` and `U`.
+  Every commutator word tensors, hence its projective energy follows `(AMP1)`;
+  every ordinary presentation relator obeys the telescoping estimate
+  `||rho(r)^(tensor k)-I||_2 <= k ||rho(r)-I||_2`.  Consequently, if a
+  sequence had target energy `e_n -> 0` but ordinary relator defect
+  `delta_n=o(e_n)` and `C`-energy `q_n=o(e_n)`, choosing
+  `k_n=floor(1/e_n)` would produce a new sequence with vanishing relator
+  defect and `C`-energy but target energy tending to `1-exp(-1)`.  This is a
+  rigorous error-delocalization mechanism: tensoring copies a projective bad
+  region until it has constant trace mass.  It does **not** prove `(PTS1)`,
+  because an enemy can keep `e_n=O(delta_n+q_n)`; it shows that the remaining
+  obstruction is precisely that locked linear-scale regime, not arbitrarily
+  dilute target error.
+- **Creutz--Peterson character rigidity stops at the generated factor.**
+  Their operator-algebraic superrigidity theorem for commensurators
+  (arXiv:1311.4513, Theorem B / Theorem 6.3) assumes
+  `pi(A)''=M` and concludes that this generated finite factor is either
+  finite-dimensional or the regular factor.  In `(PTS1)`, however, `U` lies
+  in an ambient matrix ultraproduct outside `pi(A)''`.  Replacing `pi` by
+  `Ad(U) pi` gives two representations agreeing on `C`, but the theorem does
+  not assert uniqueness of extensions of a fixed `C`-representation inside a
+  larger finite algebra.  This scope gap is real, not cosmetic: in the exact
+  HNN algebra
+  `L(<A,t | [t,C]=1>)`, the embeddings `pi` and `Ad(t) pi` agree on `C` and
+  differ on `h`.  Thus exact character/factor rigidity cannot prove the
+  transfer; finite-dimensional approximability must enter essentially.
+
 - **Exact models now pass with a uniform quantitative gap.**
   `exact-projective-codensity-has-a-uniform-trace-square-gap` proves `(PTS1)`
   with `eta(0)=0` and one dimension-independent `K` for every exact
