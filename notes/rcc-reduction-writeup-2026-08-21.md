@@ -167,3 +167,73 @@ are all worked out and correct; together they locate the exact open point.
 `L(<t>) = L(Z) subseteq A' cap M`, since `C_G(SL_3(Z)) = <t>`. The content
 is only the inclusion `A' cap M subseteq B' cap M`, which the single element
 `k = u_t` violates precisely when `G` is hyperlinear.
+
+## 6. A new flagship conditional route: the plain lattice `SL_n(Z)`
+
+(Added 2026-08-21, from a literature survey; all citations verified.)
+
+The HNN reduction of Section 1 applies to `A = SL_n(Z)` itself (`n >= 3`),
+giving the cleanest conditional statement in the program.
+
+**Theorem (citation assembly + the HNN theorem).** Let `n >= 3` and let
+`C = <g_1, g_2> <= SL_n(Z)` be a saturated Zariski-dense free subgroup (thin;
+surjecting onto `SL_n(Z/m)` for every `m`). Then `(SL_n(Z), C)` satisfies
+every hypothesis of the HNN theorem:
+
+- Every finite-dimensional unitary representation of `SL_n(Z)` factors
+  through a congruence quotient `SL_n(Z/m)` (Margulis superrigidity: a
+  homomorphism to a compact group has finite image; Bass--Milnor--Serre
+  congruence subgroup property).
+- Co-density: `C` saturated surjects onto every `SL_n(Z/m)` (strong
+  approximation, Matthews--Vaserstein--Weisfeiler/Nori, + generator choice),
+  so `rho(C) = rho(A)` for every finite-dimensional `rho`.
+- Uniform gap `= (tau)`: **Bourgain--Varju**, *Expansion in `SL_d(Z/qZ)`,
+  `q` arbitrary* (Invent. Math. 188 (2012) 151--173): the Cayley graphs of
+  `pi_m(C) = SL_n(Z/m)` are uniform expanders over ARBITRARY modulus, which
+  is exactly property `(tau)` of `C` over the family of quotients through
+  which all finite-dimensional representations of `A` factor.
+
+Consequently, **if `SL_n(Z)` is flexibly Hilbert--Schmidt stable, then**
+`G = <SL_n(Z), t | [t, C] = 1>` **is a finitely presented non-hyperlinear
+group.** (Permutation twin: flexible permutation stability of `SL_n(Z)`
+implies `G` is non-sofic -- the HNN analogue of Bowen--Burton, from `n = 3`.)
+
+**Why it is new and central.** Neither published route reaches the plain
+lattice: Dogon (arXiv:2211.10492) needs a central extension by a torsion-free
+`Z`, but `K_2(Z) = Z/2` is finite and there is no Deligne extension;
+Dogon--Vigdorovich (arXiv:2506.20843) needs an archimedean factor with
+`pi_1 = Z`, but `pi_1(SL_n(R)) = Z/2`. The commutant/HNN route uses neither.
+So this converts the program's single open hypothesis into the flexible
+HS-stability of the most-studied lattice in the subject, on which any future
+progress by anyone -- either direction -- resolves the conditional.
+
+**The definitive obstruction census.** Two independent literature surveys
+confirm: no published group is flexibly HS-stable (or weakly ucp-stable),
+non-amenable, and equipped with an infinite co-dense Kazhdan subgroup. Two
+fences show no known permanence operation produces one -- (A) an infinite
+residually finite amenable quotient kills the uniform gap via Folner
+deformations; (B) LERF kills co-density via separability -- and every
+published non-amenable stable group (free / virtually free, one-relator with
+center, chordal graph products, amalgams over finite subgroups, products with
+amenable groups) hits A or B, with its (T) subgroups provably finite. Hence
+the goal genuinely requires a NEW flexible-stability theorem for a
+congruence-rigid group; the candidate list is `SL_2(Z[1/p])`,
+`SL_2(Z[1/pq])`, `SL_3(Z[1/p])`, `Sp_4(Z)`, and `SL_n(Z)` (`n >= 3`), all
+carrying the identical single open hypothesis.
+
+**The sharpest published tools toward that hypothesis.** de la Salle
+(arXiv:2204.07084): finite groups are flexibly stable with a linear
+dimension-free modulus in any tracial target (so inside the matrix
+ultraproduct), with a subgroup-relative correction (Lemma 1.7) and an
+almost-commuting-to-commuting corollary -- reducing the far sector, with
+explicit constants, to a length-control estimate for the congruence relator
+family against the exponential Dehn function of the S-arithmetic group
+(Taback, arXiv:math/0302191). Dogon--Vidick (arXiv:2607.20135, 2026):
+effective approximate-invariant-measure machinery, the natural route to a
+polynomial stability modulus for the `BS(1,4)` skeleton that controls the
+parabolic direction.
+
+**Status: open, and now optimally reduced.** A non-hyperlinear group exists
+if any one of the listed congruence-rigid lattices is flexibly HS-stable;
+`SL_n(Z)` is the cleanest and most central target. No shortcut exists in the
+literature through August 2026.
