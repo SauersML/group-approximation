@@ -282,24 +282,71 @@ gradient `R_t-M_t` vanishes.  Any contraction proof must bound that variance
 by a strict fraction of the original energy after the orientation term is
 included, or rule out non-code polar fixed points `P=R`.
 
-### Qualitative ultraproduct attempt
+### Qualitative compactness theorem
 
-A contradiction sequence with `I(R_n)+A(R_n)->0` gives, in the tracial/Loeb
-ultraproduct, a unitary field with the sampled heap identities almost
-everywhere.  Gauging at a Fubini-generic anchor makes `Q_x=R_xR_o^*` a
-reflection almost everywhere, and `(NC1)` makes `Q_x,Q_y` commute for an
-independent uniform pair.  Every bounded affine configuration of pairwise
-independent forms therefore has a classical joint spectral model, and the
-`4 x 4` ledger above is valid configurationwise.
+Although `(NC4)` remains open with a linear constant, the tensor-square
+consensus does prove the weaker uniform statement needed by a qualitative
+ultraproduct application:
 
-The remaining removal statement is genuinely **contextual**: pairwise
-commutation almost everywhere does not by itself put the whole Loeb field in
-one abelian algebra (sparse Pauli anticommutation graphs are the warning).
-One must show that the overlapping alpha-plane contexts plus `(NC14)` admit a
-single measurable Boolean spectral labeling, to which the scalar
-Kaufman--Sudan inequality can be applied.  Equivalently, prove nonabelian
-coboundary/agreement removal for this affine-plane complex.  Assuming that
-measurable noncontextualization lemma, scalar soundness forces the full
-parallelogram identity almost everywhere and yields a nonconstructive uniform
-modulus `F=o_(I+A)(1)`.  Without it, the Loeb argument is incomplete rather
-than an automatic consequence of Fubini.
+```text
+there is omega(delta)->0, independent of n,d, such that
+F(R) <=omega(I(R)+A(R)).                                    (NC25)
+```
+
+Here is the noncontextualization step.  Suppose otherwise that
+`I(R_n)+A(R_n)->0` while `F(R_n)` stays positive.  Choose `o_n` so that the
+mean `(NC1)` error of pairs `(x,o_n)` is at most `I(R_n)`, and gauge
+
+```text
+q_x=R_x R_o^*.
+```
+
+In the tracial/Loeb ultraproduct, `q_x=q_x^*` for almost every `x`.  Moreover,
+for an independent uniform pair `(x,y)`, `(NC1)` becomes
+`q_yq_x=q_xq_y` almost everywhere.
+
+Let `P_t` be the polar mean in `(NC15)` and put `h_t=P_tR_o^*`.  The crucial
+point is that `(NC14)` is uniform in `t`.  Equations `(NC17)--(NC19)` give,
+for **every internal** `t`,
+
+```text
+h_t=q_(t+alpha b) q_(t+B b)^* q_(t+b)                      (NC26)
+```
+
+for almost every correction direction `b`, where `B=1+alpha`.  Fix any two
+internal points `t,s` and represent `h_t,h_s` by `(NC26)` using independent
+directions `b,c`.  Each cross pair
+
+```text
+(t+lambda b, s+mu c),       lambda,mu in {alpha,B,1},
+```
+
+is uniform on `K^2`.  Its two `q`-values are therefore commuting reflections
+almost everywhere.  The three factors in the `b`-word can consequently be
+swapped past the three factors in the `c`-word, without ever reordering
+factors inside either word.  Hence
+
+```text
+[h_t,h_s]=0                                                       (NC27)
+```
+
+for every internal `t,s`.  This is stronger than merely having commuting
+random pairs: all polar-corrected values now lie in one abelian tracial von
+Neumann algebra.
+
+Finally `(NC21)` says `h_t=q_t` for almost every `t`.  Thus `h_t` is a
+reflection almost everywhere, its alpha-plane rejection is zero, and replacing
+the null exceptional set does not change either sampled or full energies.
+Represent the abelian algebra as an `L^infty` space and apply scalar
+Kaufman--Sudan soundness on each spectral fiber.  The scalar inequality also
+holds for Boolean tables on the hyperfinite Loeb field: approximate a Loeb
+measurable set by internal sets, apply the finite inequality with constant
+`27/2`, and use translation invariance plus the four-vertex union bound to
+pass to the limit.  Fubini then gives zero full parallelogram energy for `h`.
+Since `h=q` almost everywhere and gauge does not change the energies, this
+contradicts the positive limiting value of `F(R_n)`.
+
+Taking the supremum of `F(R)` over all finite `n,d` with `I(R)+A(R)<=delta`
+now defines a dimension-free modulus satisfying `(NC25)`.  This compactness
+argument supplies no effective rate and does not by itself prove the linear
+inequality `(NC4)`.
