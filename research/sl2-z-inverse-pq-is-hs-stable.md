@@ -16,9 +16,10 @@ is within `eps` (normalized HS, on generators) of an exact unitary
 representation.
 
 By `sl2-s-arithmetic-pair-is-codense-kazhdan` and
-`pauli-lamplighter-over-stable-codense-kazhdan-pair`, this makes the
-finitely presented Pauli lamplighter `Gamma_(p,q)` of `(SA1)` an explicit
-nonhyperlinear group.
+`hnn-over-codense-kazhdan-subgroup-not-hyperlinear`, this makes the
+finitely presented HNN extension `G_(p,q) = <SL_2(Z[1/pq]), t | [t,
+SL_2(Z[1/p])] = 1>` an explicit nonhyperlinear group (flexible stability
+suffices).  Conversely, hyperlinearity of `G_(p,q)` would refute this claim.
 
 This is the same kind of question as Dogon--Vigdorovich's stability of
 `SL_2(Z[1/p])`, one prime further along: the group is an irreducible

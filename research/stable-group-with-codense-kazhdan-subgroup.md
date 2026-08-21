@@ -15,8 +15,10 @@ sense, and a finitely generated subgroup `G_0` with Lubotzky--Zimmer
 property (T;FD), such that every finite-dimensional unitary representation
 `pi` of `G` satisfies `pi^(G_0) = pi^G`.
 
-By `pauli-lamplighter-over-stable-codense-kazhdan-pair` the Pauli
-lamplighter `E_(G/G_0) x| G` is then an explicit nonhyperlinear group.
+By `hnn-over-codense-kazhdan-subgroup-not-hyperlinear` the HNN extension
+`<G, t | [t, G_0] = 1>` is then an explicit nonhyperlinear group (and so is
+the Pauli lamplighter of `pauli-lamplighter-over-stable-codense-kazhdan-pair`).
+Flexible stability in the sense of Dogon--Vigdorovich suffices.
 Sufficient for co-density: a 2-transitive action of `G` on the infinite set
 `G/G_0` (`two-transitive-infinite-action-is-finite-dimensionally-codense`),
 or strong approximation (`G_0` surjects onto every finite quotient of `G`

@@ -516,3 +516,31 @@ The stability of `SL_2(Z[1/pq])` is the same kind of open problem as the
 stability of `SL_2(Z[1/p])` that Dogon--Vigdorovich reduce their central
 extension route to; the lamplighter route needs one more inverted prime
 and no central extension.
+
+## 11. The Pauli group was unnecessary: the HNN theorem
+
+Let `C <= A` be finitely generated, `C` with (T;FD), `(A, C)` co-dense,
+`a_1 in A \ C`, and `G = <A, t | [t, C] = 1>`.  Britton gives
+`w = [t, a_1] != 1`.  If a tuple of defect `tau` has `A`-part within `eta`
+of an exact `rho`, then `g = U(t)` is `(tau + O(eta))`-almost invariant
+under `Ad rho(C)`, hence within `(tau + O(eta))/kappa` of the commutant
+`rho(C)' = rho(A)'` (co-density), hence almost commutes with `U(a_1)`:
+`||U(w) - I||_2 = O((tau + eta)/kappa + |a_1| eta)`.  Microstates of a
+hyperlinear `G` would have `tr U(w) -> 0`; flexible HS-stability of `A`
+(padding by the identity on the extra corner) gives `eta -> 0` and hence
+`tr U(w) -> 1`.  So: **`A` flexibly HS-stable implies `<A, t | [t, C] = 1>`
+nonhyperlinear.**  Instance: `G_(p,q) = <SL_2(Z[1/pq]), t | [t, SL_2(Z[1/p])]
+= 1>`, nonhyperlinear if `SL_2(Z[1/pq])` is flexibly HS-stable; conversely
+its hyperlinearity would refute that stability.
+
+Character rigidity of `SL_2(Z[1/p])` (Peterson--Thom, arXiv:1303.4007,
+Theorem 2.6: extremal characters of `SL_2` of a localization with infinitely
+many units factor through finite quotients or are supported on the centre)
+together with Dogon--Vigdorovich's Proposition 8.3 gives `PSL_2(Z[1/p])`
+robust (T;FD) `=` (T;CE).  That is a trace-density spectral gap for
+asymptotic representations, not a per-vector statement, and the
+relative-commutant co-density it would have to supply in an ultraproduct
+is equivalent to the conclusion (the regular representation of `G` is a
+counterexample), so it does not remove the stability hypothesis; it does
+confirm that every ingredient except the stability of the big group is a
+theorem.
