@@ -27,6 +27,13 @@ the finite-dimensionality of the microstates, not tracial abstraction.
 
 ## Attempts
 
+- **The goal needs strictly less than this claim.**
+  `no-exact-quasi-regular-leak` isolates the single extreme profile
+  `s = 0`, `psi = 1_Lambda` — the only configuration a hyperlinear
+  `G_2` actually produces — and
+  `non-hyperlinear-from-exact-quasi-regular-leak` reaches the goal
+  from that alone.  This claim remains the full-collapse form
+  (equivalent to `(RCC)`); attack the exact form first.
 - **Falsification gate and equivalence.**  If the co-dense HNN group of
   `non-hyperlinear-from-relative-commutant-collapse` is hyperlinear,
   its stable letter provides `k = u_t` with `[k, pi(Lambda)] = 0` and
