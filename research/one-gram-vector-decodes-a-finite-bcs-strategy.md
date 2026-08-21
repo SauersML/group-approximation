@@ -163,3 +163,11 @@ edges and the attached leaf cost only their local covariance rows; the sole
 additional gluing datum is the action of the triangle holonomy on the same
 Gram operator.  The existing gauge/HNN bridges leave that multiplicity
 holonomy arbitrary, so this is a reduction rather than a completed decoder.
+
+`finite-game-gap-makes-the-cyclic-acceptance-compressor-strict` gives a
+second exact packaging of `(OGV5)`.  The cyclic product of the finitely many
+predicate and consistency **acceptance projections** is a strict contraction
+on every finite Gram space.  Hence the entire list `(OGV12)` may be replaced
+by one approximate return equation `T_game(G)≈G`; the open work becomes
+constructing and authenticating that one finite Hecke bimodule return on a
+positive-norm marked block.

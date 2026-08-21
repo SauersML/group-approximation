@@ -69,3 +69,10 @@ is instead the triangle holonomy `(FPG13)` in
 the same `G` is necessary for gluing the context gauges, but it still must be
 combined with the positive local predicate and anchor rows in `(FPG19)`.
 Holonomy fixedness alone cannot replace the game Hamiltonian.
+
+There is a positive sequential replacement.  In
+`finite-game-gap-makes-the-cyclic-acceptance-compressor-strict`, replace each
+reflection `I-2L_j` by the acceptance projection `I-L_j`.  The fixed game
+gap then makes their cyclic product a strict contraction with an explicit
+dimension-independent constant.  Positivity/compression, rather than
+unitary phase, is exactly what prevents `(PVR4)`.

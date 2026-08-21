@@ -299,3 +299,11 @@ By `(FPG11)`, `(FPG19)` pays the marked mass with the fixed finite game gap.
 The final term is the sole new triangle datum.  It is strictly weaker than a
 common reducing corner and strictly stronger than all currently established
 edgewise gauge/HNN relations.
+
+Alternatively, after the incidence gauges have been fixed, one may replace
+the separate predicate and anchor rows in `(FPG19)` by the single cyclic
+acceptance return of
+`finite-game-gap-makes-the-cyclic-acceptance-compressor-strict`.  That
+product is a strict contraction in finite matrices and has a fixed vector in
+the exact perfect commuting model.  The remaining construction problem is
+then one positive-norm Gram block and one finite Hecke return equation.
