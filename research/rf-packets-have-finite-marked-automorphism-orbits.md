@@ -57,3 +57,7 @@ mark already in its finite residual, a genuinely proper endomorphism not
 descending to one common finite characteristic quotient, or a
 finite-matrix-only proper-corner relation.  Automorphisms of an RF packet are
 insufficient regardless of how nonamenable their infinite type orbits are.
+The first proper-endomorphism candidate is also excluded:
+`abelian-matrix-hnns-have-marked-finite-quotients` shows that every finite
+family of injective endomorphisms of `Z^n` becomes invertible on one finite
+congruence quotient which still detects any prescribed nonzero mark.

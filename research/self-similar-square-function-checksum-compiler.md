@@ -115,6 +115,12 @@ positive-mass reservoir strongly enough to prove `(SSC3)`.
   every prescribed nontrivial mark.  Thus the remaining recurrence must use
   a finite-residual mark, a genuinely proper endomorphism, or a matrix-only
   proper corner.
+  Even the proper-endomorphism option cannot live on a finite-rank abelian
+  packet: `abelian-matrix-hnns-have-marked-finite-quotients` reduces any
+  finite family of injective integer matrices modulo one prime where all
+  become automorphisms and the mark survives.  A surviving endomorphism
+  actuator must be nonabelian or infinite-rank and defeat every common
+  mark-detecting finite quotient.
 - A noncontracting Baumslag--Solitar clock also does not supply the checksum
   from spectral recurrence alone.  By
   `periodic-bs-clock-defeats-spectral-first-hit-checksum`, exact finite
