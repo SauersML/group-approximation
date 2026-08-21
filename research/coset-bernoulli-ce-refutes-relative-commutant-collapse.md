@@ -6,7 +6,6 @@ title: Connes embeddability of the coset Bernoulli crossed product refutes relat
 distinct_from:
   relative-commutant-collapse-for-sl2-pair: that asserts commutant equality in every matrix ultraproduct; this gives an explicit crossed-product obstruction whose Connes embeddability would refute it.
   sl3-pair-relative-commutant-route: that proposes a higher-rank pair with a Kazhdan subgroup; this obstruction applies to every proper subgroup pair, including both arithmetic pairs.
-  coset-tower-automorphic-dilation: that builds an infinite tower for a proper endomorphism; this uses the single homogeneous space A/C and tests the relative commutant directly.
 ---
 
 Let `C<A` be a proper subgroup, let `(K,kappa)` be a nontrivial finite
