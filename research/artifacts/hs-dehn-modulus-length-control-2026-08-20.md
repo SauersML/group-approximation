@@ -595,11 +595,11 @@ diagonal coboundaries for every `p` tested (so `H^1(SL_2(Z[1/2]), Ad rho) =
 0`, as (T;FD) predicts).  Its smallest nonzero singular value is
 
 ```text
-p       3     5     7     11    13    17    19    23    29    31    37    41    43    47
-sigma 0.816 0.741 0.711 0.570 0.474 0.408 0.351 0.271 0.275 0.300 0.273 0.264 0.253 0.206
+p       3     5     7     11    13    17    19    23    29    31    37    41    43    47    53
+sigma 0.816 0.741 0.711 0.570 0.474 0.408 0.351 0.271 0.275 0.300 0.273 0.264 0.253 0.206 0.275
 ```
 
-slowly decreasing with fluctuations; the permutation representations on
+a small-level transient, then fluctuation in `[0.20, 0.30]` for `p >= 23`; the permutation representations on
 `F_p^2 \ 0` give the same values for `p = 3, 5, 7`.  The data do not
 distinguish slow convergence to a positive floor from decay to zero.  A
 positive floor is what the Hecke heuristic predicts: the two restrictions are
