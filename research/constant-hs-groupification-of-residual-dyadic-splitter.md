@@ -48,6 +48,20 @@ that model from arbitrarily large matrices.
 - A fixed self-similar split relation has finite cyclic truncations.  Boundary
   wraparound must either occur on positive density through a PCP/expander
   check or trigger the next split from finite-multiplicity data.
+- This cyclic escape is exact for every finite shift stencil.
+  `finite-stencil-pauli-tape-has-marked-periodizations` puts
+  one honest Pauli qubit at each residue of a cycle longer than every tested
+  offset.  All local and off-site relators then hold with zero defect while
+  the common sign is `-I`.  Thus merely enlarging a finite relative-offset
+  menu cannot pack the full-tree seam; the compiler needs nonperiodic scale
+  conversion, a section-free growing consistency component, or a single
+  matrix-coordinate square-function relation.
+- A bare nonlinear doubling address is still periodic.  By
+  `dyadic-affine-pauli-patterns-have-odd-periodizations`, every finite
+  Pauli site table over `Z[1/2]` injects into `Z/mZ` for a suitable odd `m`;
+  translation and doubling then act by finite affine permutations and the
+  common sign survives exactly.  Hence the needed scale conversion must
+  carry global soundness not determined by a finite dyadic-affine pattern.
 - Recursive verifier compression is the live mechanism for depth-independent
   soundness.  The remaining bridge is to make its local checks act as the
   explicit Schur flip automorphisms while preserving perfect diffuse
