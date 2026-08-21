@@ -1449,6 +1449,8 @@ import GroupApproximation.Sofic.BareDefectSource
 import GroupApproximation.Algebra.CongruenceTorsionFree
 import GroupApproximation.Kazhdan.SL3Certificate
 import GroupApproximation.Sofic.BespokeRouterConstruction
+import GroupApproximation.Algebra.FreeGroupFiniteRank
+import GroupApproximation.Kazhdan.TorsionFreeKazhdanPartner
 import GroupApproximation.Algebra.SteinbergSL3
 import GroupApproximation.Algebra.FinitePresentationFiniteIndex
 import GroupApproximation.Sofic.PeriodicOverlap
