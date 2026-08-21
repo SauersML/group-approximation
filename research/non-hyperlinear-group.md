@@ -221,3 +221,28 @@ the shared BCS tuple. A single ordinary Hecke holonomy
 cannot provide the alternative global row domination:
 `one-hecke-holonomy-cell-cannot-pay-the-cyclic-selector-sum` closes it by a
 last-edge multiplicity-gauge countermodel.
+
+The stability interface was consolidated on 2026-08-21.  For Kazhdan
+groups, Dogon's weak ucp-stability coincides with flexible HS-stability on
+hyperlinear approximations
+(`kazhdan-weak-ucp-stability-is-flexible-stability`: Kazhdan-average the
+Stinespring corner to an exactly invariant finite corner; reusable form
+`kazhdan-almost-invariant-corner-near-invariant-projection`), so the
+weakest usable stability hypothesis for the plain lattice is
+`sl3-z-weakly-ucp-stable`, consumed through the thin co-dense pair by
+`non-hyperlinear-from-sl3-z-weak-ucp-stability`.  Two new hypothesis TYPES
+entered the graph.  A C*-lifting route:
+`non-hyperlinear-from-llp-non-rf-kazhdan` — a non-residually-finite
+Kazhdan group whose full C*-algebra has Kirchberg's LLP is itself the
+witness, sharpening Fournier-Facio--Willett's Question 1.9 (no `H_2`
+condition, no central extension).  And a forced-witness family:
+`kac-moody-lattice-is-non-hyperlinear-or-llp-failure` — every simple
+Kazhdan Kac--Moody lattice of Caprace--Remy (explicit `(2,4,6)` Cartan
+matrix instance) is either the goal's finitely presented simple witness or
+a new kind of LLP failure, so the class settles a published question
+either way.  Recorded cautions: host-side weak ucp-stability cannot be
+consumed (the `l^2(A/C)` leak survives infinite-dimensional dilation), the
+subgroup-side version only confines enemies to the `Lambda`-exact face
+(`kazhdan-subgroup-weak-ucp-exactifies-microstates`), and Kac--Moody
+building completions lack Howe--Moore, so the arithmetic Hecke far-defect
+lane does not transfer to those pairs.
