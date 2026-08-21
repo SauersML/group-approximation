@@ -118,3 +118,14 @@ carriers is an additional, generally false condition unless the forbidden
 projection acts only on the external multiplicity factor.  Consequently the
 sole unresolved gate in this criterion is `(GTC4)` for the analytic
 forbidden-weighted carriers.
+
+One natural aggregate actuator is now excluded.
+`one-hecke-holonomy-cell-cannot-pay-the-cyclic-selector-sum` takes the positive
+regular stationary packet flow and closes an arbitrary single transport
+holonomy two-cell by choosing the last edge multiplicity gauge.  All edge,
+partial-swap Gram, and attaching-word energies are then zero, while the
+coarse-to-fine cyclic sum remains at least one quarter of the carrier mass,
+independently of those gauges.  Hence `(GTC4)` cannot come from one
+uncompressed Hecke/partial-swap holonomy word.  A successful actuator must
+see the analytic forbidden-weighted selector cuts at intermediate stages, or
+otherwise remove the last-edge gauge by a genuinely matrix-coordinate rule.
