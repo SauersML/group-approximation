@@ -54,3 +54,23 @@ sum_theta ||C P_theta C^*-P_theta||_2^2
 ```
 
 Combining `(5)` and `(6)` proves `(KTR2)`.
+
+For the two-representation statement, let `Gamma` act unitarily on the
+Hilbert--Schmidt space `Hom(H_0,H_1)` by
+
+```text
+g.X=pi_1(g)Xpi_0(g)^*.                                   (7)
+```
+
+Its fixed space `F_01` is the intertwiner space.  By Schur's lemma every
+intertwiner preserves irreducible type, so
+
+```text
+F_01 subset B_01
+ := direct_sum_theta P_theta^1 Hom(H_0,H_1)P_theta^0.    (8)
+```
+
+The squared distance from `X` to `B_01` is exactly the left side of
+`(KTR3)`.  It is at most the squared distance to `F_01`; applying `(KTR1)`
+to `(7)` gives the right side of `(KTR3)`.  Rescaling the Hilbert--Schmidt
+inner product by any positive scalar changes both sides equally.

@@ -32,11 +32,27 @@ types is present.  Thus one fixed finite noncommutative covariance packet
 does what no summable abelian or locally finite packet library can do: it
 uniformly controls the complete fine-type transport energy.
 
+There is a stronger two-representation form.  Let
+`pi_j:Gamma->U(H_j)`, `j=0,1`, and let `P_theta^j` be their isotypic
+projections (zero when type `theta` is absent).  For every
+`X:H_0->H_1`, with any common scalar normalization of Hilbert--Schmidt norm,
+
+```text
+sum_(sigma!=theta)||P_sigma^1 X P_theta^0||_HS^2
+ <= kappa^(-2) sum_(s in S)
+      ||pi_1(s)X-X pi_0(s)||_HS^2.                      (KTR3)
+```
+
+Thus a router which approximately intertwines one Kazhdan packet with
+another cannot hide transport inside an infinite family of unresolved
+noncommutative types.  This twisted form is the direct interface for a
+Toeplitz or HNN return wire.
+
 This identifies a concrete surviving backend for the recursive-checksum
-program.  If a Toeplitz/Schur scale decoder can make its growing packet
-types into exact restrictions of one Kazhdan actor, the finitely many
-commutator words with `S` already provide the infinite-resolution type
-checksum.  What `(KTR2)` does **not** provide is the orthogonal scale-domain
+program.  If a Toeplitz/Schur scale decoder can make its growing source and
+target packets into exact representations of one Kazhdan actor, the finitely
+many covariance words with `S` already provide the infinite-resolution type
+checksum.  What `(KTR2)--(KTR3)` do **not** provide is the orthogonal scale-domain
 decomposition or the strict backward carrier recurrence of
 `self-similar-square-function-checksum-compiler`.  Nor does it by itself
 round an approximate copy of `Gamma` to an exact finite-dimensional
