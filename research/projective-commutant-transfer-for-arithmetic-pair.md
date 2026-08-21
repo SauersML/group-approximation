@@ -100,6 +100,22 @@ collapse lane, but with phases already quotiented out.
   image mod `2^k` and exact representations of `Gamma` exist only at
   odd levels — so the probe confirms the theorem's regime and
   reconfirms that the enemy is a strictly non-exact phenomenon.
+- **Constrained modulus probe (2026-08-21,
+  `experiments/prt1_modulus_probe.py`,
+  `experiments/prt1-modulus-probe.json`).**  Maximizing `E_h` subject
+  to `E_C <= eps` from perturbed on-variety starts gives, at level
+  `m = 3`: `sup E_h = 0.073` at `E_C = 0.024` (`eps = 0.016`) and
+  `sup E_h = 0.213` at `E_C = 0.071` (`eps = 0.064`) — the SAME ratio
+  `E_h / E_C ~ 3.0` at both scales, i.e. a LINEAR modulus, and the
+  values for multiplicities `N = 1` and `N = 2` agree to four digits:
+  the measured escape mode is dimension-free.  Numerology worth a
+  conjecture: `K ~ 3 = [Lambda : Lambda cap h Lambda h^(-1)]`, the
+  Hecke shell size — the extremal escape appears to spread its energy
+  uniformly over the edge cosets, suggesting the sharp `(PRT1)`
+  constant is exactly the shell index.  (The `m = 5` run was
+  under-converged at its restart budget and is not evidence either
+  way.)  This gives the SOS search below a concrete target: certify
+  `E_h <= 3 E_C` plus defect terms.
 - **SOS certificate formulation.**  `e(U,V)` is a degree-four trace
   polynomial; `(PRT1)` is a trace-positivity statement over the
   presentation ideal.  A rational dimension-free sum-of-squares
