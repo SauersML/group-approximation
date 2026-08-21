@@ -147,6 +147,13 @@ work into a metric decoder, rather than mixing it with Toeplitz algebra.
   the non-type-preserving child-MASA placement of
   `toeplitz-schur-child-masa-recurrence`; after that placement, the V4
   five-fourths exit law is the sharper local payment ledger.
+- **The affine sign gives only a two-cycle.**
+  `affine-sign-twist-swaps-active-blocks-but-is-stationary` computes the one
+  nontrivial internal holonomy made available by the affine `S_3`: it
+  exchanges the two active `M_3` blocks.  Twisting the Toeplitz embedding by
+  this sign is genuinely non-type-preserving, but its transition matrix is a
+  permutation with spectral radius one.  It equalizes the two charts and
+  cannot provide the strict backward coefficient in `(HST2)`.
 - **Why ordinary Toeplitz truncation is not a counterexample by itself.** In
   truncated unilateral-shift matrices, the rank-one defect has vanishing
   normalized trace. Here the canonical root mark has fixed delta-trace
