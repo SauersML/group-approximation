@@ -2947,13 +2947,13 @@ wreath-compression-mf-radical [✓] Exact MF radicals of compression wreath prod
 
 ## Recently touched
 
-- 2026-08-21 · solenoid-absorption-cascade-converges [OPEN] The twisted-coboundary absorption cascade on an odd solenoid tower converges dimension-free
-- 2026-08-21 · sharp-two-t-actor-gives-fp-host [ESTABLISHED] A finitely presented sharp-two property-T actor gives the required aperiodic augmentation host
+- 2026-08-21 · sharp-two-t-actor-gives-fp-host [ESTABLISHED] A finitely presented sharp-two property-T actor gives the required aperiodic two-point lamp host
 - 2026-08-21 · sharp-two-t-actor-fp-host-proof [COMPLETE] Apply the two-orbit permutational-wreath presentation criterion
+- 2026-08-21 · bounded-template-expanding-character-actor-family [OPEN] Compile an unbounded expanding character actor with bounded occurrence templates
+- 2026-08-21 · solenoid-absorption-cascade-converges [OPEN] The twisted-coboundary absorption cascade on an odd solenoid tower converges dimension-free
 - 2026-08-21 · schreier-square-function-for-weak-commutator-layers [OPEN] Sum the Schreier gaps of all weak-commutator exterior layers in one HS square function
 - 2026-08-21 · sampled-weyl-defect-controls-common-pvm-dirichlet-energy [OPEN] Make sparse Weyl defects control transport energy of one common spectral PVM
 - 2026-08-21 · phased-translations-reduce-to-alpha-plane-test [ESTABLISHED] Phased translations reduce primitive two-matching stability to one affine-orbit test
-- 2026-08-21 · bounded-template-expanding-character-actor-family [OPEN] Compile an unbounded expanding character actor with bounded occurrence templates
 - 2026-08-21 · andre-guirardel-sharp-t-actor-citation [COMPLETE] Check the published sharp-two property-T construction against the host hypotheses
 
 ## Active claims
