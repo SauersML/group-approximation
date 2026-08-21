@@ -5,6 +5,7 @@ kind: claim
 title: SL2(Z) inside SL2(Z[1/p]) is co-dense with a uniform congruence conjugation gap
 artifacts:
   - research/artifacts/hs-dehn-modulus-length-control-2026-08-20.md
+  - research/artifacts/sl2-hnn-iwahori-dynamical-fork-2026-08-21.md
 distinct_from:
   sl2-s-arithmetic-pair-is-codense-kazhdan: that uses the three-place group and a (T;FD) stabilizer; this uses the two-place group of Dogon--Vigdorovich's question and replaces (T;FD) of the subgroup by Selberg's property (tau), which is all the HNN theorem consumes.
 ---

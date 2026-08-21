@@ -5,7 +5,7 @@ suggested forks without duplicating claims already present in Cairn.  The
 mathematical content is split below into established, conditional, open, and
 incorrectly inferred statements.
 
-## 1. Explicit witness already represented in Cairn
+## 1. Projective control presentation versus the wired SL2 witness
 
 In `PSL_2(Z[1/2])`, use the presentation from
 `iwahori-square-root-presentation-is-bs14-plus-one-involution`:
@@ -15,21 +15,37 @@ In `PSL_2(Z[1/2])`, use the presentation from
          r s r^(-1)=s^4, (xrs)^3=1>.
 ```
 
-Here `C=PSL_2(Z)=<x,s^2>`.  Adjoining one stable letter gives
+Here `Cbar=PSL_2(Z)=<x,s^2>`. Adjoining one stable letter gives the
+**projective control candidate**
 
 ```text
-G_2=<x,r,s,t | x^2=1, (xr)^2=1, (xs^2)^3=1,
+Gbar_2=<x,r,s,t | x^2=1, (xr)^2=1, (xs^2)^3=1,
                  r s r^(-1)=s^4, (xrs)^3=1,
                  [t,x]=1, [t,s^2]=1>,                 (SIH1)
 w=[t,r].
 ```
 
-This is the explicit `p=2` instance already consumed by
-`non-hyperlinear-from-hnn-over-sl2-z`.  Britton normal form gives `w!=1`.
-The congruence co-density and uniform conjugation gap are already established
-as `sl2-z-inverse-p-over-sl2-z-is-codense-tau-pair`.
+Britton normal form gives `w!=1`. Congruence co-density and the uniform
+conjugation gap descend from the corresponding SL2 pair, so every exact
+finite-dimensional representation of `Gbar_2` kills `w`; in particular this
+four-generator, seven-relator group is non-MAP and not residually finite.
 
-The quantitative estimate proposed for an almost representation whose base
+It is important not to identify `Gbar_2` silently with the witness currently
+consumed by `non-hyperlinear-from-hnn-over-sl2-z`. That route uses
+
+```text
+G_2=<SL_2(Z[1/2]),t | [t,SL_2(Z)]=1>.                  (SIH1a)
+```
+
+The Dogon--Vigdorovich local-global question is likewise stated for SL2.
+The repository has no theorem transferring flexible HS stability through
+this central quotient. Thus `(SIH1)` is valuable explicit candidate/control
+data, but the established conditional route to nonhyperlinearity is `(SIH1a)`,
+not the claim that the four-generator projective group already follows from
+the SL2 stability question.
+
+For either pair once the relevant base stability is assumed, the quantitative
+estimate for an almost representation whose base
 tuple is close to an exact representation is exactly the specialized theorem
 `hnn-over-codense-kazhdan-subgroup-not-hyperlinear`: property `(tau)` moves
 the stable-letter unitary to `rho(C)'`, co-density identifies
@@ -106,7 +122,38 @@ or nonhyperlinearity of `W`.  It only closes the proposed sofic-action
 countermodel to stability.  Therefore the negative action statement is not
 wired as a route to `non-hyperlinear-group`.
 
-## 4. Characteristic-two direct finiteness is a separate two-open-input fork
+## 4. Optimizer evidence is explicitly heuristic
+
+`experiments/psl2_far_sector_probe.py` keeps the four modular torsion
+relations exact by spectral conjugation, minimizes the two Iwahori gluing
+residuals, and rewards farness of the parabolic from tested short odd orders.
+The bounded MSI smoke run at `d=6`, one restart and `120` steps found defect
+`.520` without repulsion and `.574` with repulsion. These figures are only a
+development check. The odd-order cutoff is not distance from the congruence
+locus, the optimization is nonconvex, and neither flexible padding nor
+regular-character convergence is tested. The complete protocol and caveats
+are recorded in
+`research/artifacts/psl2-far-sector-optimizer-heuristic-2026-08-21.md`.
+
+## 5. The three exits are separate and remain conditional
+
+1. **Native gap / fault tolerance.** A perfect commuting LCS gap would give a
+   nonhyperlinear solution group by `perfect-lcs-gap-implies-nonhyperlinear`.
+   Separately, `bgv-adversarial-fault-tolerance` protects an already supplied
+   tensor-site architecture. The missing
+   `clifford-hs-defect-becomes-adversarial-site-noise` bridge is load-bearing:
+   fault tolerance alone does not turn normalized-HS group defects into
+   localized physical corruptions and does not prove a native LCS gap.
+2. **Arithmetic pair / tree action.** The SL2 HNN route is conditional on the
+   Iwahori local-global modulus. Soficity of the explicit Bruhat--Tits coset
+   action would instead produce the Bernoulli commutant leak and refute that
+   modulus. Nonsoficity of the action is only the failure of this
+   countermodel; it proves neither stability nor nonhyperlinearity.
+3. **Kaplansky over `F_2`.** This is the two-open-input fork below. It neither
+   follows from the Leavitt quotient nor currently follows from
+   hyperlinearity.
+
+## 6. Characteristic-two direct finiteness is a separate two-open-input fork
 
 The binary Leavitt algebra itself is not directly finite, but Cairn does
 **not** establish that the modular group algebra of its unit group is not
@@ -127,14 +174,16 @@ open.  Elek--Szabo prove the corresponding ring theorem for sofic groups,
 not for hyperlinear groups.  This fork therefore shares the explicit group
 with the goal but is not currently a live one-hole route to it.
 
-## 5. Net result
+## 7. Net result
 
 The packet contributes no unconditional nonhyperlinear group.  Its strongest
 correct integration is:
 
-1. `G_2` is an explicit four-generator, seven-relator, non-MAP and
-   non-residually-finite HNN group;
-2. flexible Iwahori HS stability would make `G_2` nonhyperlinear;
+1. `Gbar_2` is an explicit four-generator, seven-relator, non-MAP and
+   non-residually-finite projective HNN control group;
+2. flexible Iwahori HS stability would make the separately wired SL2 HNN
+   `G_2` nonhyperlinear; transferring that conclusion to `Gbar_2` needs an
+   additional central-quotient stability theorem;
 3. soficity of the explicit tree-coset action would refute that stability;
 4. nonsoficity of the action alone does not settle hyperlinearity; and
 5. the characteristic-two group-algebra shortcut needs two open theorems,

@@ -297,3 +297,25 @@ summed-row domination: the last multiplicity gauge always closes the
 holonomy while the cyclic selector floor stays positive. A positive actuator
 must compress intermediate stages by the analytic forbidden cuts or impose a
 genuinely matrix-coordinate condition that removes that last-edge gauge.
+
+## Optimizer, arithmetic HNN, and exit audit
+
+The bounded PSL2 optimizer is retained only as the heuristic artifact
+`psl2-far-sector-optimizer-heuristic-2026-08-21`: exact torsion is controlled,
+but the short odd-power diagnostic is not distance from all congruence
+representations and the smoke residual is not a lower-bound certificate.
+
+The arithmetic candidate is audited in
+`sl2-hnn-iwahori-dynamical-fork-2026-08-21`. The four-generator,
+seven-relator presentation is the projective `PSL_2` HNN and is an explicit
+non-MAP control group. The currently wired conditional nonhyperlinearity
+route uses the `SL_2` HNN; no central-quotient stability transfer is assumed.
+
+The three proposed exits remain logically distinct. A native perfect LCS gap
+would finish through `perfect-lcs-gap-implies-nonhyperlinear`, while imported
+fault tolerance still needs the HS-to-site-noise bridge. Soficity of the
+Bruhat--Tits coset action would refute Iwahori stability, but nonsoficity is
+only a one-sided failed-countermodel result. The characteristic-two
+Kaplansky fork requires both a direct-finiteness failure in the Leavitt unit
+group algebra and a presently unknown hyperlinear-to-directly-finite theorem;
+it is not a current route to the goal.
