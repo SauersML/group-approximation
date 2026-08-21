@@ -115,3 +115,12 @@ representation as well.  Thus the required mixed return is necessarily
 matrix-coordinate: it must read finite multiplicity/rank (or a non-CE
 coordinate moment), not merely impose another exact conjugacy or normalizer
 word.
+
+There is an even sharper canonical-trace fence:
+`canonical-trace-forbids-literal-pi-return` shows that an outside target
+group word is asymptotically at distance one from the literal finite source
+packet algebra, including after central-phase compression.  Hence the
+source factor in `(FWC6)` cannot simply be the algebra spanned by the
+depth-zero Heisenberg words.  It must be a newly recovered finite-matrix
+multiplicity reservoir which has no functorial counterpart in the regular
+representation.

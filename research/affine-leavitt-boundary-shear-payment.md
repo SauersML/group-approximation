@@ -125,3 +125,8 @@ all-representations decoder `(ALD1)--(ALD2)`.
   `kappa_p^2/(2p((2p)!)^2)`.  The only missing part is the matrix-coordinate
   mixed-word theorem producing that same-factor placement; literal universal
   confinement is impossible because it would also kill the regular model.
+  More concretely, `canonical-trace-forbids-literal-pi-return` proves that
+  every outside target word remains at distance one from the literal source
+  packet algebra in canonical microstates.  Thus the returned source factor
+  must be a matrix-coordinate multiplicity reservoir, not a fixed subgroup
+  algebra named by more words.
