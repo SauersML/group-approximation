@@ -80,3 +80,24 @@ property-`(T)` action on the character spectrum.  After that algebraic step,
 one still needs finite-stage same-basis rounding; a diffuse invariant
 spectral measure in the exact infinite witness shows why an ultraproduct
 argument alone cannot supply it.
+
+There is now a concrete conditional way around the regular-wreath failure.
+`sharp-two-t-actor-gives-fp-host` proves that a finitely presented simple
+property-`(T)` sharply two-transitive actor with finitely generated point
+stabilizer makes the augmentation lamp extension finitely presented: the
+diagonal action has only two pair orbits, so the generalized wreath-product
+criterion applies.  The seed `delta_x+delta_y` is cyclic, its visible
+characters all have infinite uniformly expanding orbits, and one D8
+amalgam keeps `J` nontrivial while every exact matrix representation kills
+it.
+
+André--Guirardel provide a two-generated simple property-`(T)` sharply
+two-transitive actor.  `andre-guirardel-sharp-t-actor-audit` records the
+precise near miss: their theorem does not give finite presentation or a
+finitely generated point stabilizer.  Consequently the terminal gate has
+split into two auditable statements:
+
+1. obtain the finite-presentation hypotheses in this sharp-two actor class
+   (or finitely present the augmentation extension by another mechanism);
+2. prove global finite-stage same-basis rounding for its elementary abelian
+   occurrence module.

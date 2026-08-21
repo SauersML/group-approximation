@@ -22,6 +22,12 @@ independent of `n` and the matrix dimension.
 
 The class-two term is now closed by
 `schreier-matchings-kill-alternating-forms`.
+The scalar diagonal-conjugacy sector of **the original primitive two-matchings**
+is independently closed by `phased-translations-reduce-to-alpha-plane-test`:
+its apparent long-cycle obstruction is an affine single-orbit tester and has a
+uniform squared-HS gap.  This does not provide the simultaneous operator-valued
+orthogonal decomposition needed here, but it rules out scalar phase/domain-wall
+counterexamples as a reason to enlarge the sampler.
 The proposed higher-layer ledger is as follows.  The successive multilinear
 initial terms of the diagonal weak-commutativity kernel are alternating
 commutator tensors.  At exterior degree `k`, evaluate such a tensor on the

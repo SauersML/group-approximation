@@ -85,6 +85,26 @@ recursion terminates; the total correction is
   exactification always exists and lemma (b) closes unconditionally --
   the last thing to verify is that the LV modulus survives restricting
   the target spectrum to `3`-coprime supports.
+- **Caveat: the exact arithmetic depends on the precise `psi_*`
+  (2026-08-21, must verify before trusting `prime 3`).**  The clean
+  `4 - 1 = 3` uses `psi_*` = the PURE shift `x4`.  The actual `psi`
+  is the shift composed with the swap transport, and depending on how
+  the swap acts on `H^1` the relevant operator could be `x4 - 1` (3),
+  or `x16 - 1 = x(4^2) - 1` (15 = 3.5) if the swap squares the shift,
+  or -- the dangerous case -- an involution-like map with a large
+  fixed space that would make `(psi_* - 1)` FAR from invertible.  A
+  naive model where `psi` swaps two `x4`/`x(1/4)` copies gives
+  `psi^2 = 1` with a big `+1`-eigenspace, which would BREAK the clean
+  story; the resolution is that `psi` acts on the single upper
+  commutant (the swap transport returns lower data to the upper
+  frame), not as a genuine two-copy swap, so the pure-shift model is
+  the likely correct one -- but this MUST be computed explicitly
+  before the `prime 3` conclusion is relied on.  Recording it as the
+  first thing to check: write `psi_*` on `H^1(Z_upper)` from the
+  Steinberg swap-and-torus words and read off its `1`-eigenspace.
+  Everything downstream (K_2 3-torsion-freeness, 3-coprime base)
+  is correct arithmetic ONLY once `psi_*` is confirmed to reduce to a
+  fixed-point-free-plus-`x4` form.
 - **Why it is plausible and where it could fail.**  The peeling is a
   geometric contraction when the residual shrinks faster than the gap:
   each descent multiplies the uncorrected mass by the local defect
