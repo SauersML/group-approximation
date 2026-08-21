@@ -91,6 +91,21 @@ additional Leavitt pairing relation remains.  What is open is solely the
 finite-matrix word theorem recovering that same corner/factor from the
 mixed Steinberg returns.
 
+There is now an even smaller sufficient attack on this finite-matrix word
+theorem.  Once the source `M_2` and target `M_4` matrix-unit packets have
+been exactified on one projection `P`, it is enough to recover one operator
+from a coarse minimal corner to a fine minimal corner with nearly full source
+Gram.  By `one-coarse-to-fine-prefix-isometry-closes-the-reservoir`,
+
+```text
+||e-X^*X||_2^2 >= tr(P)/4.                             (PSR4)
+```
+
+The exact infinite Leavitt model supplies this arrow as `s_(00)t_0`, and its
+partial swap is a three-elementary word.  Thus the surviving compiler target
+is one off-diagonal Gram authentication, not the entire mutual bicommutant or
+all four `s_4` placement estimates.
+
 ## Attempts
 
 - **Whole-map extraction fails.**  Exact deterministic equivariant maps into
