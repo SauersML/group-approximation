@@ -64,7 +64,10 @@ the affine active Leavitt construction.
   recover those products.
 - **The exact one-to-two word is now explicit.** After passing to the
   coefficient-central envelope, `affine-active-doubling-is-elementary-matrix-conjugacy`
-  writes the active branch as one Whitehead elementary word.  However,
+  writes every active coefficient branch as one Whitehead elementary word.
+  More strongly, the distinguished active idempotent itself already doubles
+  by that word in the original free relative envelope; centrality is not
+  needed for the mark.  However,
   `single-affine-leavitt-branch-chart-is-stationary` proves that this
   conjugacy and the finite head alone form a virtually-free chart with exact
   finite marked countermodels.  The decoder must therefore use the paired
@@ -75,6 +78,23 @@ the affine active Leavitt construction.
   conjugator is a diagnostic model, not by itself a decoder for the original
   free relative envelope.  A useful covariance law must be nontrivial on the
   affine head rather than centralizing it completely.
+- **Canonical fixed windows are decoded exactly as far as they can be.**
+  `steinberg-root-shear-plancherel-covariance` proves
+  that every fixed row-root window has asymptotically uniform Fourier blocks
+  and that multiplication is the explicit dual shear.  But
+  `plancherel-root-shears-have-no-compression-pressure` shows that closing one
+  window and retaining only those full permutations is stationary.  The
+  positive datum discarded by that closure is quantified by
+  `relative-leavitt-active-subspaces-expand-by-two`: every old active
+  coefficient window has a new binary boundary at least as large as itself.
+- **A strictly weaker sufficient target is available.**  The decoder above
+  asks for one modulus valid for arbitrary approximate representations.
+  Nonhyperlinearity only needs canonical delta microstates.  By
+  `fixed-depth-canonical-mark-estimates-rule-out-hyperlinearity`, constants
+  may grow arbitrarily with a fixed proof depth.  The remaining scalar target
+  `affine-leavitt-boundary-shear-payment` asks the paired root triangles to
+  charge the expanding boundary and leave residual marked mass `2^-N` at
+  depth `N`.
 - **No regular-trace contradiction is asserted.** The decoder is a
   finite-matrix stability statement. It need not extend to the left regular
   representation or any arbitrary tracial representation of `Gamma_A`.
