@@ -3,8 +3,6 @@ rg: 2
 id: single-context-v4-exit-capacity-is-already-nonhyperlinearity
 kind: claim
 title: An unconditional one-context V4 exit-capacity cell is already a nonhyperlinear group
-invalidates:
-  - fixed-bcs-local-s3-atlas-route
 distinct_from:
   finite-subgroup-type-exclusion-is-already-nonhyperlinearity: that excludes one finite-subgroup type in every microstate; this allows every packet type but assumes a matrix-only capacity return for its three failure projections.
   exact-five-fourths-projection-return-collapses-the-packet: that rules out imposing the return as exact group-algebra conjugacy; this shows that even a finite-dimensional-only unconditional return is the whole nonhyperlinearity theorem, not a local compiler lemma.
@@ -53,4 +51,3 @@ non-circular intermediate must make the capacity law conditional on a
 genuinely global shared-context observable and must use that observable in
 the derivation, rather than passing only local forbidden masses into copies
 of the same cell.
-

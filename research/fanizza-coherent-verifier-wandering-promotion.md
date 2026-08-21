@@ -4,7 +4,6 @@ id: fanizza-coherent-verifier-wandering-promotion
 kind: claim
 title: Promote the coherent Fanizza verifier reflection to one wandering Hecke word
 distinct_from:
-  fanizza-wandering-dirichlet-return: that states the final Dirichlet inequality abstractly; this fixes the algebraic reflection and the precise promotion interface.
   balanced-router-pauli-holonomy-interface: that promotes two D8 packet reflections and asks a mixed return to trivialize their holonomy; this promotes one coherent-verifier reflection while retaining an infinite wandering normal form.
 ---
 
@@ -27,7 +26,7 @@ finitely presented group extension and an ordinary word `w` such that:
    the selected compression of `w` is the finite-order reflection `V_m`.
 
 Then `(UCR4)` gives the matrix-only Dirichlet comparison required by
-`fanizza-wandering-dirichlet-return`, while clause 3 supplies canonical
+the [archived wandering-return abstraction](artifacts/fanizza-wandering-dirichlet-return.md), while clause 3 supplies canonical
 Cesaro growth.  `wandering-mark-cesaro-amplifier` finishes.
 
 The exact tension is now explicit: `w` must be infinite and wandering in the

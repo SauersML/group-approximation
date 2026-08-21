@@ -3,6 +3,7 @@ rg: 2
 id: atlas-thirty-centralizer-products-classicalize
 kind: claim
 title: Near-membership in all thirty centralizer products forces approach to the finite classical alignment branches
+refuted_by: atlas-a4-gl5-packet-collision-screen
 distinct_from:
   atlas-a4-componentwise-commutant-collapse: that asks the frame to approach the commutant of two named packet-component subgroups; this asks it to approach classical A8 alignment branches.
   a4-near-context-centralizer-product-rounding: that is the established per-context rounding; this was the proposed joint packet-only upgrade.

@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 """cairn — a build system whose build targets are unknown facts.
 
-THE KERNEL (schema rg: 2) is two persistent objects and one relation:
+THE KERNEL (schema rg: 2) is two persistent objects and two source-owned
+relations:
 
   Claim   a mathematical proposition. Unresolved -> a hole/`sorry`;
           established -> a reusable theorem. NOT different object types:
@@ -10,6 +11,9 @@ THE KERNEL (schema rg: 2) is two persistent objects and one relation:
           asserts the implication is valid; the body carries the argument.
           requires: [] asserts a COMPLETE DIRECT PROOF of the target.
   invalidates   an ESTABLISHED claim can invalidate routes (obstructions).
+  refuted_by    an ESTABLISHED claim makes another claim REFUTED. Every
+                route targeting or requiring that false claim is then
+                invalidated automatically.
   goal: true    marks a claim as a TOP-LEVEL HUMAN GOAL. Pure metadata —
                 no effect on compilation — but surfaced everywhere agents
                 look (graph.json, FRONTIER.md, context packets, the site).
@@ -65,8 +69,8 @@ that resisted prior locked attempts.
 
 MOMENTUM (the tool's job is to make continuing the default, not a
 decision): `check` ends by printing what the change UNLOCKED — new
-establishments, routes now one prerequisite from complete, fresh
-invalidations, plan-cost movement at goals — because the person who just
+establishments and refutations, routes now one prerequisite from complete,
+fresh invalidations, plan-cost movement at goals — because the person who just
 placed a stone is the best-positioned to place the next one, and the
 moment after a green check is when their context is fully loaded.
 Naming a hole is not finishing it: a NEW open claim with no nonempty
@@ -221,13 +225,13 @@ ID_RE = re.compile(r"^[a-z0-9][a-z0-9-]{1,63}$")
 NON_NODE_FILES = {"README.md", "FRONTIER.md"}
 KINDS = ("claim", "route")
 
-__version__ = "2.7.0"
+__version__ = "2.8.0"
 
 EXIT_OK, EXIT_DUP, EXIT_LEASE, EXIT_INVALID, EXIT_USAGE = 0, 2, 3, 4, 64
 
 ALLOWED_KEYS = {
     "claim": {"rg", "id", "kind", "title", "root", "goal",
-              "invalidates", "distinct_from", "artifacts"},
+              "invalidates", "refuted_by", "distinct_from", "artifacts"},
     "route": {"rg", "id", "kind", "title", "target", "requires", "artifacts"},
 }
 
@@ -455,6 +459,8 @@ def lint_nodes(nodes, errors, repo=REPO):
                 errors.append(("error", "flag", f"{node.relpath}: goal must be true/false"))
             for r in node.get_list("invalidates"):
                 ref(node, "invalidates", r, "route")
+            for c in node.get_list("refuted_by"):
+                ref(node, "refuted_by", c, "claim")
             df = node.meta.get("distinct_from")
             if df is not None:
                 if not isinstance(df, dict):
@@ -501,8 +507,9 @@ def lint_nodes(nodes, errors, repo=REPO):
 
 # ---------------------------------------------------------------------------
 # The compiler: Solved(Q) = OR_routes AND_requires, minus invalidated
-# routes; invalidation active only once the invalidating claim is
-# ESTABLISHED. Iterated to a mutually consistent fixpoint.
+# routes. Invalidation and refutation activate only from ESTABLISHED claims;
+# a refuted target or premise invalidates its routes automatically. Iterated
+# to a mutually consistent fixpoint.
 # ---------------------------------------------------------------------------
 
 class Graph:
@@ -514,18 +521,22 @@ class Graph:
         self.routes_into = {}     # claim -> [route ids]
         self.required_by = {}     # claim -> [route ids]
         self.invalidated_by = {}  # route -> [established claim ids]
+        self.refuted_by = {}      # claim -> [established refuter claim ids]
         self.compile()
 
     def _solve(self, forced=frozenset()):
-        """Return (established, invalidated, provenance, stable)."""
+        """Return (established, refuted, invalidated, provenance, stable)."""
         inv_map = {}
         for c in self.claims.values():
             for r in c.get_list("invalidates"):
                 if r in self.routes:
                     inv_map.setdefault(c.id, []).append(r)
-        prev_inv, seen = set(), []
+        prev_inv, prev_ref, seen = set(), set(), []
         for _ in range(64):
-            est, prov = set(forced), {}
+            # Refutation wins over an assumed/proved target.  A dependency
+            # cycle which alternately proves and refutes a claim is detected
+            # below as an unstratified graph rather than assigned both states.
+            est, prov = set(forced) - prev_ref, {}
             changed = True
             while changed:
                 changed = False
@@ -533,21 +544,32 @@ class Graph:
                     if rid in prev_inv:
                         continue
                     tgt = r.meta.get("target")
-                    if tgt not in self.claims or tgt in est:
+                    if tgt not in self.claims or tgt in est or tgt in prev_ref:
                         continue
                     reqs = [q for q in r.get_list("requires") if q in self.claims]
                     if all(q in est for q in reqs):
                         est.add(tgt)
                         prov[tgt] = rid
                         changed = True
+            refuted = {cid for cid, c in self.claims.items()
+                       if any(refuter in est
+                              for refuter in c.get_list("refuted_by"))}
             inv = {r for c, rs in inv_map.items() if c in est for r in rs}
-            if inv == prev_inv:
-                return est, inv, prov, True
-            if inv in seen:
-                return est, inv, prov, False
-            seen.append(prev_inv)
-            prev_inv = inv
-        return est, prev_inv, prov, False
+            # A route cannot prove a refuted target or consume a refuted
+            # premise.  This is derived state: authors name the mathematical
+            # refuter on the false claim, not every route which happens to use
+            # that claim.
+            inv.update(rid for rid, r in self.routes.items()
+                       if r.meta.get("target") in refuted
+                       or any(q in refuted for q in r.get_list("requires")))
+            state = (frozenset(inv), frozenset(refuted))
+            if inv == prev_inv and refuted == prev_ref:
+                return est, refuted, inv, prov, True
+            if state in seen:
+                return est, refuted, inv, prov, False
+            seen.append((frozenset(prev_inv), frozenset(prev_ref)))
+            prev_inv, prev_ref = inv, refuted
+        return est, prev_ref, prev_inv, prov, False
 
     def compile(self):
         for rid, r in self.routes.items():
@@ -558,12 +580,18 @@ class Graph:
                 if q in self.claims:
                     self.required_by.setdefault(q, []).append(rid)
 
-        est, inv, prov, stable = self._solve()
+        est, refuted, inv, prov, stable = self._solve()
         if not stable:
-            self.errors.append(("error", "stratification", "invalidation is not stratified: establishment and "
-                                "invalidation oscillate; break the cycle between an obstruction "
-                                "claim and a route it depends on"))
-        self.established, self.invalidated, self.provenance = est, inv, prov
+            self.errors.append(("error", "stratification", "invalidation/refutation is not stratified: "
+                                "derived states oscillate; break the cycle between an obstruction or "
+                                "refuter claim and a route it depends on"))
+        self.established, self.refuted = est, refuted
+        self.invalidated, self.provenance = inv, prov
+
+        for cid, c in self.claims.items():
+            refs = [q for q in c.get_list("refuted_by") if q in est]
+            if refs:
+                self.refuted_by[cid] = refs
 
         for cid, c in self.claims.items():
             for r in c.get_list("invalidates"):
@@ -571,7 +599,11 @@ class Graph:
                     self.invalidated_by.setdefault(r, []).append(cid)
 
         for cid, c in self.claims.items():
-            if cid in est:
+            if cid in refuted:
+                c.status = "REFUTED"
+                c.status_reasons = [f"refuted by established claim {q}"
+                                    for q in self.refuted_by.get(cid, [])]
+            elif cid in est:
                 c.status = "ESTABLISHED"
                 c.status_reasons = [f"via route {prov[cid]}"] if cid in prov else []
             else:
@@ -579,8 +611,14 @@ class Graph:
         for rid, r in self.routes.items():
             if rid in inv:
                 r.status = "INVALIDATED"
-                r.status_reasons = [f"invalidated by established claim {c}"
-                                    for c in self.invalidated_by.get(rid, [])]
+                reasons = [f"invalidated by established claim {c}"
+                           for c in self.invalidated_by.get(rid, [])]
+                tgt = r.meta.get("target")
+                if tgt in refuted:
+                    reasons.append(f"target claim {tgt} is refuted")
+                reasons.extend(f"required claim {q} is refuted"
+                               for q in r.get_list("requires") if q in refuted)
+                r.status_reasons = reasons
             else:
                 reqs = [q for q in r.get_list("requires") if q in self.claims]
                 r.blocked_on = [q for q in reqs if q not in est]
@@ -700,6 +738,7 @@ class Graph:
                                "blocked_on": n.blocked_on, "reachable": n.reachable,
                                "meta": n.meta}
         out["derived"] = {"roots": self.roots, "goals": self.goals,
+                          "refuted": sorted(self.refuted),
                           "frontier": self.frontier,
                           "internal_open": self.internal_open,
                           "claim_impact": self.claim_impact,
@@ -945,7 +984,7 @@ def fmt_remaining(lock):
 # ---------------------------------------------------------------------------
 
 MARK = {"OPEN": "OPEN", "ESTABLISHED": "✓", "COMPLETE": "✓",
-        "INVALIDATED": "✗"}
+        "REFUTED": "REFUTED", "INVALIDATED": "✗"}
 
 
 def render_tree(graph, cid, locks, depth=0, seen=None, lines=None, max_depth=6):
@@ -955,6 +994,9 @@ def render_tree(graph, cid, locks, depth=0, seen=None, lines=None, max_depth=6):
     ind = "  " * depth
     lockmark = " 🔒" if cid in locks else ""
     lines.append(f"{ind}{cid} [{MARK.get(c.status, c.status)}]{lockmark} {c.title}")
+    if c.status == "REFUTED":
+        for reason in c.status_reasons:
+            lines.append(f"{ind}  {reason}")
     if cid in seen or depth >= max_depth:
         if cid in seen:
             lines.append(f"{ind}  (…already shown)")
@@ -1028,7 +1070,7 @@ def derivation_lines(graph, cid, depth=0, seen=None):
     c = graph.claims[cid]
     out = []
     if c.status != "ESTABLISHED":
-        out.append(f"{ind}{cid} OPEN")
+        out.append(f"{ind}{cid} {c.status}")
         return out
     rid = graph.provenance.get(cid)
     if rid is None:
@@ -1125,11 +1167,11 @@ def frontier_view(graph, only_goal=None, with_necessity=True):
             cone_holes = [h for h in holes if h in cone and h != gid]
             covered.update(cone_holes)
             if cone_holes and with_necessity:
-                base, _, _, _ = graph._solve(forced=frozenset(holes))
+                base, _, _, _, _ = graph._solve(forced=frozenset(holes))
                 g["connected"] = gid in base
                 if g["connected"]:
                     for h in cone_holes:
-                        est, _, _, _ = graph._solve(forced=frozenset(hole_set - {h}))
+                        est, _, _, _, _ = graph._solve(forced=frozenset(hole_set - {h}))
                         if gid not in est:
                             g["necessary"].add(h)
             g["holes"] = sorted(
@@ -1216,6 +1258,8 @@ def context_packet(graph, nid, locks, budget_tokens=8000):
     if n.kind == "claim":
         if n.status == "ESTABLISHED":
             sec("DERIVATION", derivation_lines(graph, nid))
+        elif n.status == "REFUTED":
+            sec("REFUTED BY", n.status_reasons)
         chain = why_chain(graph, nid)
         if chain:
             sec("WHY THIS MATTERS", [" -> ".join([chain[0][0]] + [c for _, _, c in chain])])
@@ -1276,7 +1320,8 @@ def generate_frontier_md(graph, locks):
          "<!-- GENERATED by `bin/cairn check` — do not edit by hand. -->",
          "<!-- Source of truth: research/*.md -->", ""]
     est = sum(1 for c in graph.claims.values() if c.status == "ESTABLISHED")
-    L.append(f"{len(graph.claims)} claims ({est} established) · "
+    ref = sum(1 for c in graph.claims.values() if c.status == "REFUTED")
+    L.append(f"{len(graph.claims)} claims ({est} established, {ref} refuted) · "
              f"{len(graph.routes)} routes "
              f"({len(graph.invalidated)} invalidated) · "
              f"{len(graph.frontier)} frontier holes")
@@ -1339,7 +1384,8 @@ def generate_frontier_md(graph, locks):
 SITE_TITLE = os.environ.get("CAIRN_SITE_TITLE") or "Cairn"
 
 STATUS_COLOR = {"OPEN": "#c08a00", "ESTABLISHED": "#178a5e",
-                "COMPLETE": "#178a5e", "INVALIDATED": "#c43c2e"}
+                "COMPLETE": "#178a5e", "REFUTED": "#8f2738",
+                "INVALIDATED": "#c43c2e"}
 GOAL_COLOR = "#4f46e5"
 SANS = 'Arial,Helvetica,ui-sans-serif,system-ui,sans-serif'
 MONO = 'ui-monospace,SFMono-Regular,Menlo,Consolas,monospace'
@@ -1889,7 +1935,7 @@ def math_block(body, ids=()):
         return None
     for ln in live:
         # drawings, listings, tables and prose are not formulas
-        if re.search(r"[│├└┌┬┴┼─┐╭╰•]|\[(?:OPEN|✓|✗)\]|^\s*[-*+]\s|\]\(|^#|"
+        if re.search(r"[│├└┌┬┴┼─┐╭╰•]|\[(?:OPEN|REFUTED|✓|✗)\]|^\s*[-*+]\s|\]\(|^#|"
                      r"^\s{0,3}\w[\w .]{0,40}:\s*$", ln):
             return None
         if len(ln) > 200:
@@ -2118,6 +2164,7 @@ line-height:1.15;margin:.5em 1.2em .55em 0;max-width:24ch}
 .chip{display:inline-block;padding:.2em .7em;color:#fff;font-size:9.5px;
 font-weight:700;letter-spacing:.1em}
 .chip.ESTABLISHED{background:var(--est)}.chip.OPEN{background:var(--open)}
+.chip.REFUTED{background:#8f2738}
 .chip.INVALIDATED{background:var(--dead)}
 .chip.route{background:var(--paper);color:var(--mut);border:1px solid var(--rule)}
 .chip.goal{background:var(--goal)}
@@ -2248,6 +2295,7 @@ color:var(--mut2);font-size:10.5px;display:flex;gap:1.4em}
 <span><svg width="22" height="16"><circle cx="9" cy="8" r="7.6" fill="none" stroke="#4f46e5" stroke-width="1.8"/><circle cx="9" cy="8" r="4.6" fill="#fff" stroke="#c08a00" stroke-width="2"/></svg>goal</span>
 <span><svg width="22" height="16"><circle cx="9" cy="8" r="6" fill="#178a5e"/></svg>established</span>
 <span><svg width="22" height="16"><circle cx="9" cy="8" r="6" fill="#fff" stroke="#c08a00" stroke-width="2.2"/></svg>open</span>
+<span><svg width="22" height="16"><circle cx="9" cy="8" r="6" fill="#8f2738" stroke="#6f1728" stroke-width="2.2"/></svg>refuted</span>
 <span><svg width="24" height="16"><path d="M2.5,2.5 L8,2.5 L13.5,8 L8,13.5 L2.5,13.5 Z" fill="#fff" stroke="#171714" stroke-width="1.3" stroke-linejoin="round"/><path d="M4.4,10.4 L6.6,6.2 L8.8,10.4" fill="none" stroke="#171714" stroke-width="1.5" stroke-linejoin="miter"/></svg>&and; gate &mdash; nose points at what it proves</span>
 <span><svg width="30" height="16"><line x1="1" y1="8" x2="21" y2="8" stroke="#17171459" stroke-width="1.1"/><path d="M20.6,4.9L26,8L20.6,11.1z" fill="#fff" stroke="#171714a8" stroke-width="1.1"/></svg>premise &#8594; gate (input)</span>
 <span><svg width="30" height="16"><line x1="1" y1="8" x2="20" y2="8" stroke="#171714a8" stroke-width="2.1"/><path d="M19,3.9L27,8L19,12.1z" fill="#171714a8"/></svg>gate &#8594; claim (output)</span>
@@ -2537,8 +2585,8 @@ node.filter(d=>d.type==='claim'&&d.goal).append('circle')
  .attr('r',23).attr('fill','none').attr('stroke','var(--goal)').attr('stroke-width',2.2);
 node.filter(d=>d.type==='claim').append('circle')
  .attr('r',d=>d.goal?15:10+Math.min(d.impact*1.5,4))
- .attr('fill',d=>d.status==='ESTABLISHED'?'var(--est)':'#fff')
- .attr('stroke',d=>d.status==='ESTABLISHED'?'#0f6b47':'var(--open)')
+ .attr('fill',d=>d.status==='ESTABLISHED'?'var(--est)':d.status==='REFUTED'?'#8f2738':'#fff')
+ .attr('stroke',d=>d.status==='ESTABLISHED'?'#0f6b47':d.status==='REFUTED'?'#6f1728':'var(--open)')
  .attr('stroke-width',2.2);
 // no GOAL caption: it is a second label on the same node and always fought
 // the title for the space above the ring.  The double ring and the legend
@@ -2882,10 +2930,12 @@ function showRoute(rid){
  else for(const q of r.requires)
   h+=`<li>${blocked.has(q)?'<span class="mk open">open</span>':'<span class="mk ok">have it</span>'} ${clink(q)}</li>`;
  h+='</ul>';
- h+=`<h3 class="sec">Output &mdash; would establish</h3><ul class="fr ctx"><li>${clink(r.target)}</li></ul>`;
- if(r.dead&&(r.killers||[]).length){
+ h+=`<h3 class="sec">Output &mdash; ${r.dead?'invalid target':'would establish'}</h3><ul class="fr ctx"><li>${clink(r.target)}</li></ul>`;
+ if(r.dead&&((r.killers||[]).length||(r.reasons||[]).length)){
   h+='<h3 class="sec">Why it failed</h3><ul class="fr ctx">';
   for(const k of r.killers)h+=`<li><span class="mk dead">ruled out by</span> ${clink(k)}</li>`;
+  if(!(r.killers||[]).length)
+   for(const reason of r.reasons||[])h+=`<li><span class="mk dead">invalid</span> ${esc(reason)}</li>`;
   h+='</ul>';
  }
  if(r.html)h+='<h3 class="sec">Argument</h3><div class="stmt">'+r.html+'</div>';
@@ -2924,10 +2974,11 @@ function sec(label,n,rows){
   +'<ul class="fr ctx">'+rows.join('')+'</ul>';
 }
 function routeRow(rid,note){
- const r=RT(rid),k=r.killers||[],bl=r.blocked||[];
+ const r=RT(rid),k=r.killers||[],bl=r.blocked||[],why=r.reasons||[];
  let sub='';
  if(note)sub+=`<span class="sub">${note}</span>`;
  if(k.length)sub+=`<span class="sub">ruled out by ${k.map(clink).join(', ')}</span>`;
+ else if(r.dead&&why.length)sub+=`<span class="sub">${esc(why.join('; '))}</span>`;
  else if(bl.length)sub+=`<span class="sub">still needs ${bl.map(clink).join(', ')}</span>`;
  return `<li>${routeMark(rid)}${rlink(rid)}${sub}</li>`;
 }
@@ -2936,11 +2987,14 @@ function ctx(d){
  const into=d.into||[],needs=d.needs||[],kills=d.kills||[];
  if(d.status==='ESTABLISHED'&&d.via)
   h+=sec('Established by',1,[routeRow(d.via)]);
+ if(d.status==='REFUTED')
+  h+=sec('Refuted by',(d.refuted_by||[]).length,
+         (d.refuted_by||[]).map(c=>`<li><span class="mk dead">refuter</span>${clink(c)}</li>`));
  const live=into.filter(r=>r!==d.via&&!RT(r).dead);
  const dead=into.filter(r=>r!==d.via&&RT(r).dead);
- h+=sec(d.status==='ESTABLISHED'?'Other routes':'Routes open',live.length,
+ h+=sec(d.status==='ESTABLISHED'?'Other routes':d.status==='REFUTED'?'Invalid routes':'Routes open',live.length,
         live.map(r=>routeRow(r)));
- if(!into.length&&d.status!=='ESTABLISHED')
+ if(!into.length&&d.status==='OPEN')
   h+='<h3 class="sec">Routes</h3><p class="hint">None — nothing in the graph yet proposes how to get this.</p>';
  h+=sec('Needed by',needs.length,needs.map(r=>
    routeRow(r,'establishes '+clink(RT(r).target))));
@@ -3301,15 +3355,16 @@ def generate_site(graph, locks):
             "lock": fmt_remaining(locks[cid]) if cid in locks else None,
             "arts": artifact_links(c.get_list("artifacts"), web, ref),
             "via": graph.provenance.get(cid),
+            "refuted_by": graph.refuted_by.get(cid, []),
             "into": graph.routes_into.get(cid, []),
             "needs": graph.required_by.get(cid, []),
             "kills": [r for r in c.get_list("invalidates") if r in graph.routes],
             "html": autolink(md_to_html(c.body, idset), idset)})
     # what an open claim would buy, from the same solver the CLI uses
     for rec in data["claims"]:
-        if rec["status"] == "ESTABLISHED":
+        if rec["status"] != "OPEN":
             continue
-        est1, inv1, _, _ = graph._solve(forced=frozenset([rec["id"]]))
+        est1, _, inv1, _, _ = graph._solve(forced=frozenset([rec["id"]]))
         rec["gives"] = {"claims": sorted(est1 - graph.established - {rec["id"]}),
                         "routes": sorted(inv1 - graph.invalidated)}
     for rid, r in graph.routes.items():
@@ -3324,6 +3379,7 @@ def generate_site(graph, locks):
         data["routes"][rid] = {
             "title": r.title, "target": tgt, "requires": reqs, "dead": dead,
             "killers": killers, "status": r.status,
+            "reasons": list(r.status_reasons),
             "blocked": list(getattr(r, "blocked_on", []) or []),
             "arts": artifact_links(r.get_list("artifacts"), web, ref),
             "html": autolink(md_to_html(r.body, idset), idset)}
@@ -3356,7 +3412,8 @@ def generate_site(graph, locks):
             percap[x] = percap.get(x, 0) + 1
             percap[y] = percap.get(y, 0) + 1
     est = sum(1 for c in graph.claims.values() if c.status == "ESTABLISHED")
-    stats = (f"{len(graph.claims)} claims · {est} established · "
+    refuted = sum(1 for c in graph.claims.values() if c.status == "REFUTED")
+    stats = (f"{len(graph.claims)} claims · {est} established · {refuted} refuted · "
              f"{len(graph.routes)} routes · {len(graph.frontier)} frontier holes")
     idx = (INDEX_TMPL.replace("__KATEX__", KATEX)
                      .replace("__PALETTE__", PALETTE)
@@ -3406,6 +3463,7 @@ def generate_site(graph, locks):
             rel("Routes into this claim", graph.routes_into.get(nid, []))
             rel("Needed by routes", graph.required_by.get(nid, []))
             rel("Invalidates", n.get_list("invalidates"))
+            rel("Refuted by", n.get_list("refuted_by"))
             df = n.meta.get("distinct_from") or {}
             if df:
                 B.append("<h2>Distinct from</h2><ul class='rel'>")
@@ -3604,7 +3662,8 @@ def remaining_cost(graph, assume=frozenset()):
                 [q for q in r.get_list("requires") if q in graph.claims])
     cost = {}
     for c in graph.claims:
-        cost[c] = 0 if c in done else (INF if c in plans else 1)
+        cost[c] = (0 if c in done else INF if c in graph.refuted
+                   else (INF if c in plans else 1))
     for _ in range(len(graph.claims) + 1):
         changed = False
         for c, ps in plans.items():
@@ -3619,11 +3678,12 @@ def remaining_cost(graph, assume=frozenset()):
 
 def kinetic_delta(old, new):
     """What the working tree changed in derived state, phrased forward:
-    establishments, routes now one prerequisite from complete, fresh
-    invalidations, and plan-cost movement at the goals and roots. This
+    establishments/refutations, routes now one prerequisite from complete,
+    fresh invalidations, and plan-cost movement at the goals and roots. This
     is the build-system moment — 'three targets just became buildable' —
     printed while the author's context is still loaded."""
     d = {"established": sorted(new.established - old.established),
+         "refuted": sorted(new.refuted - old.refuted),
          "last_missing": [], "invalidated": [], "plan_cost": []}
     for rid, r in sorted(new.routes.items()):
         if r.status != "OPEN" or len(r.blocked_on) != 1:
@@ -3638,7 +3698,7 @@ def kinetic_delta(old, new):
     for rid in sorted(new.invalidated - old.invalidated):
         if rid in old.routes:
             d["invalidated"].append(
-                (rid, ", ".join(new.invalidated_by.get(rid, ()))))
+                (rid, "; ".join(new.routes[rid].status_reasons)))
     anchors = sorted(set(new.goals) | set(new.roots))
     if anchors:
         oc, nc = remaining_cost(old), remaining_cost(new)
@@ -3735,6 +3795,8 @@ def cmd_check(args):
         print("unlocked by this change:")
         if delta["established"]:
             print("  established: " + ", ".join(delta["established"]))
+        if delta["refuted"]:
+            print("  refuted: " + ", ".join(delta["refuted"]))
         for rid, tgt, miss, was in delta["last_missing"]:
             tail = "(new route)" if was is None else f"(was {was} open)"
             print(f"  route {rid} -> {tgt}: missing only {miss} {tail}")
@@ -3848,6 +3910,8 @@ def cmd_frontier(args):
               "holes": []}
         if c.status == "ESTABLISHED":
             L.append("  ✓ established — nothing further needed")
+        elif c.status == "REFUTED":
+            L.append("  REFUTED — " + "; ".join(c.status_reasons))
         elif not g["holes"]:
             L += [f"  no live route-tree under it — no known path exists yet.",
                   f"  The needed work is route-finding, not lemma-proving: "
@@ -3947,7 +4011,13 @@ def cmd_impact(args):
         unknown_node(graph, args.id)
     if n.kind != "claim":
         raise SystemExit(f"{args.id!r} is a route; impact takes a claim")
-    est1, inv1, _, _ = graph._solve(forced=frozenset([args.id]))
+    if n.status == "REFUTED":
+        human = (f"{args.id} [REFUTED] — " + "; ".join(n.status_reasons)
+                 + "\nA refuted claim cannot be assumed established for impact analysis.")
+        return emit(args, {"status": "ok", "id": args.id,
+                           "node_status": "REFUTED", "would_establish": [],
+                           "would_invalidate": [], "directly_needed_by": []}, human)
+    est1, _, inv1, _, _ = graph._solve(forced=frozenset([args.id]))
     newly = sorted(est1 - graph.established - {args.id})
     newly_dead = sorted(inv1 - graph.invalidated)
     direct = graph.required_by.get(args.id, [])
@@ -4011,7 +4081,8 @@ def cmd_status(args):
     report_errors(errors, brief=True)
     locks = all_locks()
     est = sum(1 for c in graph.claims.values() if c.status == "ESTABLISHED")
-    L = [f"{len(graph.claims)} claims ({est} established) · "
+    refuted = sum(1 for c in graph.claims.values() if c.status == "REFUTED")
+    L = [f"{len(graph.claims)} claims ({est} established, {refuted} refuted) · "
          f"{len(graph.routes)} routes ({len(graph.invalidated)} invalidated) · "
          f"{len(graph.frontier)} frontier holes · {len(locks)} active claims"]
     if graph.goals:
@@ -4041,6 +4112,7 @@ def cmd_status(args):
         L.append("active locks:")
         L += [f"  🔒 {nid} — {fmt_remaining(lk)}" for nid, lk in locks.items()]
     payload = {"status": "ok", "claims": len(graph.claims), "established": est,
+               "refuted": refuted,
                "routes": len(graph.routes), "invalidated": len(graph.invalidated),
                "frontier": len(graph.frontier), "toward_goals": len(toward),
                "goals": [{"id": g, "node_status": graph.claims[g].status}
@@ -4055,7 +4127,7 @@ def stakes_lines(graph, cid, waiting):
     cascades, and what a refutation (an established negation) would
     dead-end."""
     L = []
-    est2, _, _, _ = graph._solve(forced=frozenset(graph.established | {cid}))
+    est2, _, _, _, _ = graph._solve(forced=frozenset(graph.established | {cid}))
     completes = [rid for rid in waiting if graph.routes[rid].blocked_on == [cid]]
     comp_tgts = {graph.routes[rid].meta.get("target") for rid in completes}
     cascade = sorted(est2 - graph.established - {cid} - comp_tgts)
@@ -4110,6 +4182,12 @@ def cmd_why(args):
             L.append(f"{args.id} [ESTABLISHED"
                      + (f" via {rid}" if rid else "") + f"] — {n.title}")
             L += ["derivation:"] + ["  " + x for x in derivation_lines(graph, args.id)]
+        elif n.status == "REFUTED":
+            L.append(f"{args.id} [REFUTED] — {n.title}")
+            L += ["  " + reason for reason in n.status_reasons]
+            for rid in graph.routes_into.get(args.id, []):
+                r = graph.routes[rid]
+                L.append(f"  invalid route: {rid} — {'; '.join(r.status_reasons)}")
         else:
             L.append(f"{args.id} [OPEN] — {n.title}")
             locks = all_locks()

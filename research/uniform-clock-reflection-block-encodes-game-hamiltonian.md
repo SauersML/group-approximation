@@ -5,7 +5,6 @@ kind: claim
 title: One controlled flag reflection has the game Hamiltonian as its exact corner Dirichlet form
 distinct_from:
   two-copy-bcs-game-hamiltonian-dominates-fanizza-signal: that constructs the positive rational losing Hamiltonian; this packages its entire finite sum into one algebraic unitary reflection.
-  fanizza-wandering-dirichlet-return: that asks for an ordinary infinite-order group word with a matrix-only Dirichlet comparison; this supplies the exact finite matrix-algebra reflection before the wandering promotion.
 ---
 
 Let

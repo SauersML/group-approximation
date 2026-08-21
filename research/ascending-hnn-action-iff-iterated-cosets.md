@@ -4,7 +4,6 @@ id: ascending-hnn-action-iff-iterated-cosets
 kind: claim
 title: Ascending-HNN coset soficity is exactly soficity of all iterated base coset actions
 distinct_from:
-  ascending-hnn-coset-action-sofic: That is the still-open blanket question asking whether residual finiteness or soficity of the base forces the HNN coset action to be sofic; this is an unconditional structural equivalence reducing that question to the full tower of actions Gamma on Gamma/alpha^m(Gamma).
   uas-base-gives-sofic-hnn-coset-action: That is one sufficient hypothesis on the base; this is an iff criterion with no UAS, LERA, LERF, finite-index, or residual-finiteness assumption.
 artifacts:
   - research/artifacts/ascending-hnn-iterated-coset-solution-2026-08-18.md

@@ -5,7 +5,6 @@ kind: claim
 title: Intervals of the height ray are explicit Folner sets for the ascending-HNN coset action
 distinct_from:
   no-invariant-mean-on-coset-space: that says a *Kazhdan* group has no invariant mean on an infinite-index coset space; this exhibits an invariant mean, by explicit Folner sets, for an ascending HNN extension, which is never Kazhdan because it surjects onto Z.  The two are consistent and are about different groups.
-  ascending-hnn-coset-action-sofic: that asks whether the coset action is *sofic* in the near-action sense, and its narrowing note records that co-amenability supplies Folner sets in the orbit space rather than the injective orbit charts soficity wants; this claim is exactly that co-amenability datum, and is not a step toward the other.
 artifacts:
   - research/artifacts/multi-mover-hnn-dossier-2026-08-15.md
   - GroupApproximation/Sofic/AscendingHNNFolner.lean

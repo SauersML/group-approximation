@@ -3,6 +3,7 @@ rg: 2
 id: kazhdan-centralizer-capture-forces-most-block-gaps
 kind: claim
 title: Exact centralizer capture forces a uniform adjoint gap on almost all minimal commutant blocks
+refuted_by: rank-one-lift-perturbation-gap-no-go
 artifacts:
   - research/hs-expander-block-decomposition.md
 ---

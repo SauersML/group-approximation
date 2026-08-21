@@ -4,7 +4,6 @@ id: atlas-radius-nine-trace-separator
 kind: claim
 title: The first mixed atlas window already carries a matrix-only trace separator
 distinct_from:
-  atlas-matricial-trace-separator: that unrestricted certificate interface is too close to Hahn--Banach duality for nonhyperlinearity; this claim fixes the trace-word support to the first structurally nontrivial atlas window, X-length at most nine, and is therefore a strictly stronger finite search target.
   atlas-kernel-window-length-nine: that proves length nine is the first point where the atlas kernel escapes the retraction screen; it does not assert any matrix-trace separation.
 artifacts:
   - research/artifacts/nonhyperlinear-random-presentation-and-matricial-separator-2026-08-18.md

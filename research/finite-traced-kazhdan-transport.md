@@ -3,6 +3,7 @@ rg: 2
 id: finite-traced-kazhdan-transport
 kind: claim
 title: Kazhdan transport over arbitrary traced coordinates (refuted record)
+refuted_by: arbitrary-traced-coordinate-transport-fails
 distinct_from:
   left-right-finite-kazhdan-transport: That is the corrected theorem, adding finiteness of the left-right algebra.
   kazhdan-asymptotic-commutant-transport: That established theorem is the valid matrix-coordinate statement.

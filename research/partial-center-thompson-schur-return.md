@@ -3,6 +3,7 @@ rg: 2
 id: partial-center-thompson-schur-return
 kind: claim
 title: A partial-center reset returns Schur branch multiplicity through the Thompson Pauli prefix
+refuted_by: flip-endpoints-cancel-schur-current
 distinct_from:
   toeplitz-schur-child-masa-recurrence: that asks a Toeplitz tail to carry the complete child MASA; this uses the explicit Thompson Pauli prefix and deliberately does not retain the old selector center.
   nested-schur-multiplicity-wire-globalizes-selectors: that rules out putting the entire next packet in the old packet commutant; this retains only the noncentral branch coordinate and resets the selector chart.

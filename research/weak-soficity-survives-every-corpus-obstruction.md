@@ -7,7 +7,6 @@ distinct_from:
   weakly-sofic-not-sofic: that is one instance — the nonsofic mechanism realized weakly soficly — and it is the input here; this is the closure of that observation over the corpus's other five mechanisms, and its conclusion is a constraint on future arguments rather than a class separation
   kun-thom-clifford-cover-weakly-sofic: that proves the Clifford cover is weakly sofic and nonsofic; this collects that together with the non-MF, non-residually-finite, finite-quotient-kill and quasi-identity mechanisms into the single statement that none of them can obstruct weak soficity
   literal-mark-conjugacy-width-unbounded: that is the quantitative form for one mechanism on one group, counting conjugacy factors; this is the qualitative sweep across mechanisms and proves only that each is realizable, not how it fails
-  non-weakly-sofic-group: that is the open target; this is the established negative result delimiting which arguments could ever reach it
 artifacts:
   - research/artifacts/non-weakly-sofic-audit-2026-08-17.md
   - notes/TRUE_RELATIVE_WALL_IS_COMMUTANT_GROWTH.md

@@ -64,3 +64,47 @@ every proof which omits this quantitative gauge step.
 - **Direct complete-table tests.**  These fall back to
   `finitely-presented-uniform-area-clifford-tape`, which is stronger than the
   occurrence target and retains the table-area obstruction.
+
+## 2026-08-21 bounded-neighbor audit
+
+Moving from a two-transitive pair orbit to bounded-neighbor incidence avoids
+the specific global-section theorem, but it does not yet produce a compiler.
+Two new exact fences isolate what the bounded-neighbor architecture must do.
+
+- `bounded-neighbor-pauli-needs-growing-equality-components` gives
+  a constant-dimensional exact Pauli model for every bounded-degree graph of
+  pairwise commute/anticommute tests.  Therefore sparse Pauli edges alone
+  cannot certify dimensions tending to infinity.  A viable degree-reduced
+  Pauli game must retain growing equality/linearity components (normally
+  robustified by expanders), or use genuinely higher-arity structure.
+- `ascending-hnn-expander-levels-do-not-have-fixed-prototype-edges` audits the
+  natural finite-index Kazhdan tower.  Its levels `K/phi^n(K)` really are
+  finite expanders, and their stabilizer relations really are conjugates of
+  base relations.  But their fixed generating-set edges are not: translating
+  a prototype edge to depth `n` turns its step into `phi^n(s)`, which fixes
+  the level root, while translating the genuine edge back produces the
+  scale-dependent word `t^-n s t^n`.  Simultaneous conjugacy cannot change
+  the orbit index from `1` to `[K:phi^n(K)]`.
+- `regular-tree-consistency-has-vanishing-spectral-gap` shows that switching
+  to unique tree addresses removes holonomy at the price of an `O(1/N)`
+  agreement gap: one centroid edge separates two macroscopic operator
+  assignments.  And `regular-cayley-prototype-components-have-fixed-size`
+  shows that a fixed finite menu of translated equality offsets has cosets of
+  one fixed subgroup as its complete components, so those finite components
+  cannot grow.
+
+Thus the surviving bounded-neighbor target is narrower: construct a finite
+scale-conversion cell for the expander consistency edges, or a finitely
+presented incidence system whose growing equality components are already
+literal finite-template components.  Merely replacing the dense orbit by a
+Cayley/Schreier expander does not remove the quantitative word problem.
+
+There is, however, a real positive geometric source for the second option.
+`fp-cayley-expanders-give-bounded-occurrence-edges`, using the
+Sapir--Osajda constructions, gives a finitely presented group whose Cayley
+graph contains a finite expander family with every edge difference in one
+fixed finite word ball.  Actual group elements name the vertices, so all
+consistency checks are literal conjugates and no section is used.  What is
+still missing is not expander naming: it is a globally satisfiable placement
+of the complete degree-reduced Pauli pair/linearity incidence system on those
+words, with many logical equality classes rather than one subgroup orbit.

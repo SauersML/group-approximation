@@ -4,7 +4,6 @@ id: uas-base-gives-sofic-hnn-coset-action
 kind: claim
 title: A universally action-sofic base makes every ascending-HNN coset action sofic
 distinct_from:
-  ascending-hnn-coset-action-sofic: That open claim asks the question for a base that is merely sofic or residually finite, with an arbitrary infinite-index self-embedding; this answers it under the strictly stronger hypothesis that *every* action of the base is sofic, which residual finiteness is not known to imply.
   finite-telescope-level-coset-orbits: That is the finite-index mechanism — commensurable levels give finite orbits; this covers arbitrary self-embeddings, where the orbits are infinite and the input is a property of the base instead.
   coordinate-action-not-sofic: That is a negative statement about the coordinate action of the Kun--Thom wreath candidate, where the ambient group also has (T); this is a positive statement about an ascending-HNN coset action over a universally action-sofic base. The two are compatible and in fact complementary: the Kun--Thom pair is not an ascending HNN extension of a UAS group, and the ambient group here surjects onto Z so it cannot have (T).
 artifacts:

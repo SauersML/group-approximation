@@ -4,7 +4,7 @@ id: stabilized-two-chart-reynolds-word-transport
 kind: claim
 title: A stabilized recursive packet tail exposes one uncompensated local Reynolds gap in finite matrices
 distinct_from:
-  two-chart-reynolds-word-transport: that incorrectly asks raw nonisomorphic finite packet tables to return termwise; this stabilizes them before conjugacy and extracts only the local finite-dimensional residue.
+  forbidden-packet-reynolds-holonomy-payment: that is the analytic payment once a stabilized return has been built; this constructs the stabilized algebraic return and extracts the local residue.
   trace-functorial-bcs-signal-groupification-impossible: that rules out a decoder surviving in every trace; here the infinite tail absorbs the rank jump in the regular/infinite model and only finite matrix multiplicities expose the residue.
 ---
 

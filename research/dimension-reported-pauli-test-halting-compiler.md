@@ -5,7 +5,6 @@ kind: claim
 title: A halting output dimension activates a uniformly sound Pauli braiding test
 distinct_from:
   dimension-reported-clifford-table-halting-compiler: that asks for the complete multiplication table of an extraspecial group; this asks only for the succinct constant-robust Pauli braiding verifier.
-  zpc-selector-sound-lcs-compiler: that lowers arbitrary tailored readable control to linear constraints; this only has to lower the fixed BLR-linearity and Magic-Square templates of the Pauli test.
 ---
 
 Construct a total computable machine-to-group compiler which also outputs

@@ -3,6 +3,7 @@ rg: 2
 id: schur-predicate-coefficient-couples-to-polynomial-wall
 kind: claim
 title: Couple the forbidden Schur Reynolds coefficient to the explicit polynomial-compressor wall
+refuted_by: fixed-finite-quotient-adjoint-walls-are-canonical-trace-null
 distinct_from:
   polynomial-compressor-has-explicit-finite-quotient-wall: that constructs the fixed wall `rho(A)' minus rho(B)'`; this must place the predicate-dependent coefficient inside it in every marked microstate.
   packet-kazhdan-commutant-placement-decouples: that refutes independent tensor placement; this requires a named covariance relation which fails in exactly that countermodel.

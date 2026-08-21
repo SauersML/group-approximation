@@ -3,8 +3,6 @@ rg: 2
 id: perfect-decoding-does-not-imply-quantum-value-gap
 kind: claim
 title: Excluding perfect finite-dimensional LCS strategies does not bound quantum value below one
-invalidates:
-  - zpc-compiler-nonhyperlinear-route
 artifacts:
   - research/artifacts/zpc-perfect-decoding-gap-audit-2026-08-18.md
 ---

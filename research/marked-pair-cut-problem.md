@@ -3,6 +3,7 @@ rg: 2
 id: marked-pair-cut-problem
 kind: claim
 title: An ε-deletion cuts every kernel-transporter walk in deep congruence models
+refuted_by: exact-models-cannot-separate-marked-pair
 distinct_from:
   two-point-orbit-approximation: that quantifies over all approximately multiplicative models; this fixes the exact regular congruence model and asks for the deleted set there — a strictly stronger statement that can fail by expansion while that claim survives on other models.
   congruence-transporter-girth: that proves the absence of short kernel-transporter words in deep congruence quotients; this asks to cut the walks of the long ones, which exist at every level.

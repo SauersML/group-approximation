@@ -3,6 +3,7 @@ rg: 2
 id: hilbert-embeddable-witness-for-kun-thom-wreath
 kind: claim
 title: A Hilbert embeddable weak-soficity witness for the Kun--Thom wreath
+refuted_by: hilbert-embeddable-witness-impossible
 distinct_from:
   weakly-sofic-not-sofic: that only needs *some* bi-invariant metric and is settled; this asks for witnesses whose lengths are conditionally negative definite, which is what converts them into unitary microstates.
   kun-thom-clifford-crossed-product-ce: that asks for Connes embeddability of a specific fermionic crossed product; this asks a finite-group, character-theoretic question about an existing weak-soficity construction and never mentions an algebra.

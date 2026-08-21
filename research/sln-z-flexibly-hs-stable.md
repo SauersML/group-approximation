@@ -33,7 +33,7 @@ produces an explicit non-hyperlinear group
   hyperlinear groups are hyperlinear, so no ISW-type instability is known.
 - **Genuinely open, like every host.**  No infinite (T) group is known to be
   flexibly HS-stable or weakly ucp-stable; this is the shared open core
-  (`nonhyperlinear-conditional-routes-landscape`).  The sharpest published
+  (see the [archived conditional-route survey](artifacts/nonhyperlinear-conditional-routes-landscape.md)).  The sharpest published
   toolkit toward it is de la Salle arXiv:2204.07084 (finite-group
   exactification with linear dimension-free constants in an arbitrary tracial
   target) plus a length-control estimate for the congruence relator family.

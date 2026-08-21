@@ -6,7 +6,6 @@ title: In the odd-congruence exact sector the collapse is the triviality of one 
 distinct_from:
   single-hecke-average-isometry-for-lambda-central-unitaries: that is the full collapse in one-inequality form over ALL regular-trace models; this reduces its Lambda-exact odd-congruence sector to a statement about a single unitary acting on an explicit ultraproduct of multi-matrix inclusions, and identifies where the enemy's freedom sits.
   odd-congruence-vertex-sector-admits-no-exact-leak: that CLOSES the odd sector for the exact SL_2 profile via the amalgam's vertex structure and the normal-closure squeeze; this is the SL_3 analysis, where there is no amalgam, the reduction goes through innerness of h mod odd n, and the sector is reduced, not yet closed.
-  rc3-standard-tools-all-fail-audit: its row 4 says co-density fails because ultraproduct vectors need not come from genuine representations; this works INSIDE the sector where they do, and shows exactly what survives there -- one inner action -- so the sector is not vacuously closed by co-density.
 ---
 
 Let `Gamma = SL_3(Z[1/p])`, `Lambda = SL_3(Z)`, `h = diag(p, 1,

@@ -3,6 +3,7 @@ rg: 2
 id: leavitt-evaluation-splits-as-module-map
 kind: claim
 title: The Leavitt evaluation map splits as a module map
+refuted_by: leavitt-evaluation-does-not-split-as-module-map
 distinct_from:
   binary-leavitt-family-lifts-into-unit-corner: that asks for a unital *ring* section of the corner evaluation, which carries the multiplicative Leavitt relations; this asks only for a left-module section of the whole-algebra evaluation, which need not respect multiplication and is not touched by the augmentation no-go that forces that node into a corner
   leavitt-corner-kernel-is-jacobson-radical: that is the other structural sufficient condition in the graph, a hypothesis about the corner's radical that makes a quotient argument legal without exhibiting anything; this is a hypothesis about a complement, and produces elements outright

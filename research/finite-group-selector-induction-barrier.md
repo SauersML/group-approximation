@@ -8,7 +8,6 @@ artifacts:
 distinct_from:
   one-hot-selector-parity-barrier: That only rules out affine parity equations directly on commuting selector bits; this allows an arbitrary finite nonabelian auxiliary gadget and rules it out by induction from the selector subgroup.
   affine-auxiliary-control-flow-barrier: That allows arbitrarily many existential classical affine auxiliaries; this allows genuinely noncommuting finite-group auxiliaries but assumes the visible selectors remain commuting involutions.
-  zpc-selector-sound-lcs-compiler: That remains open because a successful compiler may couple selectors to the payload so that bad selector representations do not extend, or may abandon commuting group-element selectors altogether.
 ---
 
 Let `F` be a finite group, let `J in Z(F)` be an involution, and let

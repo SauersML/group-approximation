@@ -4,7 +4,6 @@ id: non-weakly-sofic-finitely-presented-reduction
 kind: claim
 title: Any non-weakly-sofic group forces a finitely presented one
 distinct_from:
-  non-weakly-sofic-group: that is the existence statement itself and is open; this is an established implication between two forms of it, which is what makes the search a finite-presentation search
   glebsky-rivera-w-sofic-criterion: that is the profinite characterization; this is the corollary of it that eliminates infinitely presented and uncountable candidates from the search
   finitely-presented-sofic-non-mf: that produces a finitely presented group in the MF hierarchy, which is sofic and therefore weakly sofic; this is a reduction principle about the weak-sofic class and produces no group at all
   literal-group-not-sofic: that is a refuted claim about one concrete group `E`, asserting `E` fails soficity, which turned out false; this is an established implication between two existence statements in the weak-sofic class and names no group

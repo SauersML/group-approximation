@@ -56,4 +56,4 @@ constant independent of the existing Clifford rank.
   untwisted recursion `J=(J,J)`, by
   `untwisted-sign-replication-flips-minus`. If the cocycle is found, the
   remaining soundness obligation is the fixed sibling covariance certificate
-  `subtree-trace-independence-certificate`.
+  a still-missing sibling trace-independence certificate.

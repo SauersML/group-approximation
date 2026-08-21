@@ -8,7 +8,6 @@ artifacts:
   - experiments/schur-marked-transfer-spectrum.json
 distinct_from:
   symmetrized-reset-collapses-schur-flow-to-one-ray: that identifies the stationary ray of the full reset type cone; this computes the exact spectral gap on the four marked central characters only.
-  bass-serre-schur-transfer-contraction: that asks for contraction of the complete induction/restriction type operator with leakage accounting; this finite computation does not control hidden irreducible multiplicities.
 ---
 
 For the support packet with central basis `(J,z_e,z_f)`, average the

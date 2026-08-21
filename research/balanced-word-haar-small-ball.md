@@ -3,8 +3,6 @@ rg: 2
 id: balanced-word-haar-small-ball
 kind: claim
 title: Balanced relators inherit dimension-uniform Haar small-ball bounds on U(n)
-distinct_from:
-  unitary-word-return-entropy-summability: that is the all-net summability theorem needed to annihilate microstates; this is only its Haar-average input for a finite balanced word ensemble.
 artifacts:
   - research/artifacts/random-relator-density-repair-2026-08-18.md
 ---

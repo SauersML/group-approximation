@@ -7,7 +7,6 @@ artifacts:
   - research/artifacts/hs-dehn-modulus-length-control-2026-08-20.md
 distinct_from:
   stable-group-with-codense-kazhdan-subgroup: that asks for such a host to build the goal; this is the survey result that none is currently published and that two fences prevent assembling one from known operations, so a genuinely new stability theorem is required.
-  nonhyperlinear-conditional-routes-landscape: that maps the conditional routes; this is the specific negative census of stable-group hosts.
 ---
 
 **Established by citation survey (2026-08-21).**  As of 2026-08 no group is

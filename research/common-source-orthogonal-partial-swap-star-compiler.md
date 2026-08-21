@@ -7,6 +7,7 @@ distinct_from:
   common-partial-isometry-swap-game-compiler: that authenticates a common swap and then compiles a fixed static game; this asks only for two orthogonal children of one source and uses the canonical trace of their swap product as the breaker.
   affine-leavitt-steinberg-hs-coefficient-decoder: that reconstructs an approximate relative Leavitt cell and ties its active projection to the affine mark; this asks only for the two involutive swap words and one common-source/orthogonal-range chart.
   cyclic-conjugacy-does-not-synchronize-swap-sources: that gives an exact stationary model for transported but separate sources; this explicitly requires a literal common source in the decoded matrix chart.
+  central-marked-swap-star-has-two-word-trace-floor: that weakens this compiler by allowing arbitrary action outside one central marked sector and isolates the sector with two ordinary word traces.
 ---
 
 **OPEN.**  Construct a finite presentation `Gamma=<X|R>` and two words
@@ -61,6 +62,26 @@ normalized-HS microstates decode those words into one common finite
 multiplicity reservoir.  Thus this node isolates a one-word boundary target;
 it does not claim that the old rectangular escape has disappeared.
 
+There is now a strictly weaker marked-sector target.  It is enough to add a
+central nontrivial involution `y`, recover `(OSC1)--(OSC2)` only on
+`p=(1-y)/2`, and prove both `h=j_1j_2` and `yh` nonidentity.  By
+`central-marked-swap-star-has-two-word-trace-floor`,
+
+```text
+Re(tr(h)-tr(yh))>=1/4(1-tr(y))-o(1).                 (OSC4)
+```
+
+Canonical microstates make the left side tend to zero and the right side to
+`1/4`.  Consequently the compiler no longer has to control the diagonal
+complement signs or any action on the unmarked finite-packet characters.
+
+This weakening does not make a fixed finite packet sufficient.
+`finite-normalizer-star-no-go` computes
+the marked Plancherel trace and shows that no finite packet, nor any
+self-similar actuator acting only by packet automorphisms, can saturate its
+whole marked sector with a nonzero binary star.  A proper-corner, mixed
+holonomy, or genuinely matrix-only selected-carrier return is still needed.
+
 ## Attempts
 
 - **Only the abstract swap/Coxeter group.**  Its regular representation is
@@ -72,3 +93,9 @@ it does not claim that the old rectangular escape has disappeared.
   rectangular escape.
 - **Trace ledger after decoding.**  This part is complete: `(OSC3)` has a
   fixed `1/4` margin and needs no recursive accumulation estimate.
+- **Use a central mark but leave the unmarked packet uncontrolled.**  This
+  is now safe by the two-word checksum `(OSC4)`; complement cancellation is
+  removed exactly.
+- **Normalize one finite packet by a Thompson/branch action.**  Its regular
+  representation extends through every packet automorphism, so it retains
+  an exact stationary Plancherel countermodel.

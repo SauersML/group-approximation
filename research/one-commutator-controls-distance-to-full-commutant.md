@@ -5,7 +5,6 @@ kind: claim
 title: For subgroup-central vectors the single expanding commutator controls the distance to the full commutant
 distinct_from:
   hecke-averaging-realizes-commutant-expectation: that iterates the lazy average to realize the expectation in the limit; this is its Poincare form at ONE application, sharpened by the observation that all coset words share the same h-displacement, so a single commutator appears on the right.
-  rc3-standard-tools-all-fail-audit: its row 2 records that discrete property (T) cannot compare the exact fixed spaces of nested subgroups; this inequality does exactly that comparison — for exactly Lambda-central vectors — because it comes from property (T) of the COMPLETION through the Hecke structure, not from the discrete group.
   projective-commutant-transfer-for-arithmetic-pair: that conjectures a transfer inequality for approximate representations with a dimension-free modulus; this proves the exactly-central, exact-representation-free case in every finite tracial algebra, with the explicit constant 1/(4 delta_0) — the tracial-limit shadow of the measured PRT1 modulus.
 ---
 

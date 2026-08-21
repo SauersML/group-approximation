@@ -71,7 +71,7 @@ above.  Everything else is proved in section 46 of the dossier.
 `Analysis/PeterWeylProfinite` defines the Bohr residual, proves
 `bohrResidual <= finiteResidual` outright, and isolates the analytic core as
 the single named hypothesis `SeparatesPoints`
-([[peter-weyl-separation-core]]), from which
+([archived Peter--Weyl formalization note](artifacts/peter-weyl-separation-core.md)), from which
 `fdUnitaryResidual_le_bohrResidual_of_separates` derives the remaining
 inclusion.  For **profinite** targets nothing is assumed at all:
 [[bohr-residual-equals-finite-residual-for-profinite-targets]] is unconditional

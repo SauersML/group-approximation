@@ -3,7 +3,6 @@ rg: 2
 id: termwise-finite-reynolds-holonomy-has-zero-rank-gap
 kind: claim
 title: Exact termwise conjugacy of finite Reynolds tables has zero rank curvature
-invalidates: [two-chart-holonomy-from-reynolds-word-transport]
 distinct_from:
   reynolds-rank-gap-forces-hs-holonomy-energy: that says approximate transport of projections with unequal ranks must pay; this says a consistent exact group conjugacy of the raw finite tables can never have unequal ranks in the first place.
   finite-graph-of-groups-representation-types-are-integer-flows: that treats arbitrary finite graphs of finite groups through multiplicity vectors; this is the one-edge adjoint-Reynolds obstruction.

@@ -4,7 +4,6 @@ id: ascending-hnn-base-profinite-closure-telescope
 kind: claim
 title: The profinite closure of the base in an ascending HNN extension is the entire telescope kernel
 distinct_from:
-  ascending-hnn-coset-action-sofic: That is a sofic-action question; this is an exact profinite-closure theorem which shows one previously recorded subgroup-separability route is vacuous for every proper self-embedding.
   profinite-twins-opposite-mf: That concerns two different groups with the same profinite completion; this computes the closure of one subgroup inside one HNN group.
 artifacts:
   - research/artifacts/ascending-hnn-iterated-coset-solution-2026-08-18.md

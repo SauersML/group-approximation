@@ -3,6 +3,7 @@ rg: 2
 id: atlas-a4-three-word-amplified-gap
 kind: claim
 title: Two A4 pair-cubes and collision 19243 have a uniform amplified Hilbert-Schmidt gap
+refuted_by: atlas-three-word-gap-permutation-countermodel
 distinct_from:
   atlas-a4-three-moment-classical-separator: that is the exact convex-hull inequality for classical automorphism alignments; this claim asks for its genuinely matrix-valued amplification to arbitrary relative chart unitaries.
   atlas-a4-holonomy-coherence-gap: that first exactifies the full thirty-context graph and asks for an S3 covariance ceiling; this claim attacks three fixed kernel words directly, before any context-network compiler.

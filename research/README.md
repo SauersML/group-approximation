@@ -5,14 +5,17 @@ waymark stacked in unmapped terrain for whoever comes next.
 
 > The framework itself is developed standalone at
 > <https://github.com/SauersML/Cairn> (pip-installable and documented).
-> This repo pins it as the `tools/cairn` submodule; `bin/cairn` runs it.
-> After a fresh clone: `git submodule update --init tools/cairn`.
-> To pick up upstream changes: `git submodule update --remote tools/cairn`
-> and commit the new pin.
+> This repo pins a dependency-free copy at `tools/cairn.py`; `bin/cairn` runs
+> that committed file, so fresh clones and source archives work without a
+> submodule or package install. Upgrades replace the pinned file and commit it.
 
-The kernel is deliberately tiny — **two objects, one extra relation**:
+The kernel is deliberately tiny — **two objects, two source-owned
+relations**:
 
-$$\boxed{\text{Claim}} \qquad \boxed{\text{Route: Claims}^* \Rightarrow \text{Claim}} \qquad \boxed{\text{established Claim invalidates Routes}}$$
+$$\boxed{\text{Claim}} \qquad \boxed{\text{Route: Claims}^* \Rightarrow \text{Claim}}$$
+
+$$\boxed{\text{established Claim invalidates Routes}} \qquad
+\boxed{\text{established Claim refutes Claims}}$$
 
 Everything else falls out:
 
@@ -43,7 +46,25 @@ inside one source-sized paired orbit up to vanishing boundary leakage.
 
 Optional keys: `root: true` (program-level target; frontier is computed
 from roots), `invalidates: [route-ids]` (fires only once this claim is
-ESTABLISHED), `distinct_from:` (see duplicates below), `artifacts: [...]`.
+ESTABLISHED), `refuted_by: [claim-ids]` (the claim becomes REFUTED once any
+listed refuter is ESTABLISHED), `distinct_from:` (see duplicates below),
+`artifacts: [...]`.
+
+A false claim owns its refutation link:
+
+```yaml
+refuted_by:
+  - exact-countermodel-to-this-claim
+```
+
+The compiler checks that each entry names a claim. When one listed refuter is
+ESTABLISHED, the false claim's derived status is `REFUTED`, and every route
+which targets or requires it becomes `INVALIDATED` automatically. This is not
+the same as invalidating one failed proof route: `refuted_by` records that the
+proposition itself is false; `invalidates` records that a particular
+implication or construction is unusable. Refutation wins over a route which
+would otherwise establish its target. A refutation/establishment cycle is a
+non-stratified graph and fails compilation.
 
 ## Route
 
@@ -237,10 +258,12 @@ survived the relevant checks.
 
 - The fixpoint is least: cycles never self-justify (cycle lint warns).
 - Invalidation activates only when the invalidating claim is ESTABLISHED;
-  a non-stratified establishment/invalidation loop is a build error.
+  refutation activates only when a claim listed in `refuted_by` is
+  ESTABLISHED. A non-stratified establishment/invalidation/refutation loop is
+  a build error.
 - Killing every route into a claim leaves it OPEN, not disproved — proving
-  impossibility means establishing the negation as its own claim and
-  saying so in prose; the kernel only understands implications.
+  impossibility means establishing the negation/counterexample as its own
+  claim and naming it in the false claim's `refuted_by` field.
 - Literature imports are direct-proof routes whose body/artifact cites the
   source — grep `requires: \[\]` for the full trust surface of the graph.
 

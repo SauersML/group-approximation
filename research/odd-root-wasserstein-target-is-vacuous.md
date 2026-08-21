@@ -3,7 +3,6 @@ rg: 2
 id: odd-root-wasserstein-target-is-vacuous
 kind: claim
 title: Wasserstein proximity to odd-root atomic measures imposes no parabolic rigidity
-invalidates: [far-sector-from-doubling-plus-coupling]
 ---
 
 For every probability measure `mu` on the unit circle and every

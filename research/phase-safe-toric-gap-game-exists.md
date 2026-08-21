@@ -68,3 +68,17 @@ the full tracial model while its readers preserve the violation family.
 `phase-safe-toric-via-projective-kernel` is the resulting live route. A local
 phase calculation without a full universal-algebra model is rejected because
 it does not prove normal-closure survival.
+
+**Property FD / reversible-ancilla audit.**
+`toric-gap-is-a-relative-fd-central-word-face` proves the exact state-space
+criterion.  A toric gap is failure of finite-dimensional approximation on the
+entire clause-character face, not merely nonapproximation of one induced
+vector state.  Separate one-player RFD does not rule this out because the
+two-player algebra is a maximal tensor product and can fail RFD (already for
+`F_2 x F_2` after the negative solution of Connes embedding).  Conversely,
+local finite reversible packets do not solve it: forbidden selector types
+survive by induction.  Under normal phase safety every clause
+`beta_i a_i b_i` centralizes `a_i` in the Alice image and `b_i` in the Bob
+image, and the quotient has the exact central-product presentation `(RTF6)`.
+Thus the surviving compiler target is a robust **central-word state-face**
+compiler, not an ordinary local reversible circuit.

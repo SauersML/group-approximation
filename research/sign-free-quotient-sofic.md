@@ -4,7 +4,6 @@ id: sign-free-quotient-sofic
 kind: claim
 title: The sign-free commuting-lamp quotient is sofic
 distinct_from:
-  ascending-hnn-coset-action-sofic: That is the open action-soficity question for the lean HNN skeleton in the Gao--Kunnawalkam Elayavalli--Patchell sense; this is the GROUP-level soficity of our literal sign-free quotient, proved by the telescope-window pipeline with no action-soficity input.
   commuting-lamp-quotient-not-mf: That claim is the non-MF half; this is the sofic half of the same group, and together they give the sofic non-MF headline.
 artifacts:
   - GroupApproximation/Sofic/CommutingLampQuotientSofic.lean

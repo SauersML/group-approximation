@@ -7,7 +7,6 @@ artifacts:
   - notes/TRUE_TRACE_FLAT_COMMON_BLOCK_CONTRACTION_GAP.md
 distinct_from:
   common-range-isometries-have-maximal-gram-overlap: that lower-bounds the Gram overlap of two partial isometries sharing a range; this lower-bounds the distance from a block contraction to the constant-block subspace and involves no partial isometries.
-  atlas-matricial-trace-separator: that is a separator statement about matricial traces of the atlas words; this is an elementary block-matrix inequality with no atlas content.
 ---
 
 Let `(N,tau_N)` be a finite tracial von Neumann algebra and give
