@@ -45,3 +45,8 @@ relative `Gr'(1/6)` route.  A surviving sparse-port construction needs a new
 **port-weighted** agreement theorem whose spectral gap and HS modulus remain
 uniform despite vanishing counting density.
 
+Pairwise equality weights alone do not supply that escape.
+`weighted-equality-gap-forbids-separated-port-mass` shows that separating two
+positive portions of the port measure by distance `R` forces weighted gap
+`O(R^-2)`.  The remaining possibility is a higher-arity code/linearity test
+whose soundness is not the Poincare inequality of one equality graph.
