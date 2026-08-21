@@ -85,3 +85,14 @@ table removes the load-bearing scalar.  A successful construction must make
 the capacity-gated source matrix-only, carry nontrivial selector action in
 the edge/holonomy, or prove a normalized-HS boundary payment excluding
 rectangular enlargement.
+
+There is nevertheless a concrete surviving Hecke cell.
+`gauge-pair-free-phase-holonomy-reduces-common-source-to-one-moment` uses a
+Hadamard/free-phase unitary on each two-share gauge orbit.  It fixes the
+logical product, acts nontrivially on the individual shares, and escapes the
+finite root block.  For every capacity-gated `Q<=q`, the four compressed
+arrows `V_c^*Q` then have source Gram **exactly** `Q`; the entire remaining
+word-decoder load is the one finite mixed moment `(GFM8)--(GFM9)`.  This
+evades the finite-edge no-go and gives the narrowest current positive target,
+although ordinary word relators have not yet been shown to pay that Hecke
+moment.
