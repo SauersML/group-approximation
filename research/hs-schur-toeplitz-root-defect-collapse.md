@@ -147,6 +147,16 @@ work into a metric decoder, rather than mixing it with Toeplitz algebra.
   the non-type-preserving child-MASA placement of
   `toeplitz-schur-child-masa-recurrence`; after that placement, the V4
   five-fourths exit law is the sharper local payment ledger.
+- **A non-type-preserving replacement shift is now exact.**
+  `binary-schur-child-toeplitz-self-embedding` uses `x |->x^2` and identifies
+  the two-site head with `M_2(I)`.  On every forbidden sector it embeds the
+  old full block diagonally in the two corrected-child blocks, so the desired
+  factor-two restriction is present in the coefficient endomorphism itself.
+  The remaining wall is no longer construction of a child-MASA placement;
+  it is the single matrix-only estimate
+  `binary-schur-toeplitz-one-branch-hs-payment`.  Merely iterating the binary
+  shift is insufficient, because exponentially growing matrices realize the
+  stationary regular branch flow.
 - **The affine sign gives only a two-cycle.**
   `affine-sign-twist-swaps-active-blocks-but-is-stationary` computes the one
   nontrivial internal holonomy made available by the affine `S_3`: it

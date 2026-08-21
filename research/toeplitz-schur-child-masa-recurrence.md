@@ -132,6 +132,15 @@ nonisomorphic finite packet groups.
   The remaining calculation is to choose the self-similar packet embeddings
   so the tail copy uses that particular relative `C^2` factor and to prove
   `(TCM1)` from the shared word defects.
+  `binary-schur-child-toeplitz-self-embedding` now gives an explicit choice:
+  it replaces the Toeplitz generator by its square and uses the resulting
+  two-site head as the old relative-Pauli matrix coordinate.  Sectorwise the
+  map is `M_(2D)->M_2(M_D direct_sum M_D), a |->(a,a)`, so it retains the
+  corrected child sign and adds the two child multiplicities exactly.  Thus
+  the exact placement is closed after collapsing the allowed ideal to the
+  augmentation.  The remaining analytic statement is
+  `binary-schur-toeplitz-one-branch-hs-payment`: one retained sign must pay
+  ordinary relator energy rather than participate in stationary regular flow.
 - Put the next full packet in the old external commutant: invalid unless a
   center reset is included. It forces every future selector to commute with
   every past selector and fails the mandatory contextuality test.
