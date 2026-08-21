@@ -50,6 +50,21 @@ K₁ ∩ K₂ = 1   in Q.
    which they are.  The `4·2^k`-leaf uniform refinements remain correct
    for their actual role — the superperfect hosts `G_i ⊇ K_i` of §9 —
    not as the Steinberg chart.
+4. **No true-kernel packet can kill a chart factor algebraically.**  For
+   every subset `T ⊆ R̄`, its normal closure in `P̄` satisfies
+
+   ```text
+   <<T>>_(P̄) ⊆ R̄,
+   <<T>>_(P̄) ∩ K_i = 1  (i=1,2).
+   ```
+
+   Thus adjoining the thirty A4 packet words, collision `19243`, or any
+   other finite collection of genuine Leavitt-kernel words can never make
+   either `A8` factor collapse in the exact quotient.  Searching for such a
+   quotient certificate is logically vacuous.  The atlas route must use a
+   normalized-HS statement about regular multiplicities or holonomy; its
+   desired obstruction cannot be purely algebraic normal generation inside
+   the faithful chart factors.
 
 Reproduction: `python3 experiments/atlas_relator_chart_overlap.py`
 (seconds; exact `F₂`/prefix arithmetic).  Derivation:

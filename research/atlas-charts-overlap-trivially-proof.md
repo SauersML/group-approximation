@@ -34,3 +34,8 @@ words, the twenty radius-2 cross-chart commutators of syllable length 4.
 along `K₁ ∩ K₂ = 1` is the free product itself, so no relator arises
 from overlap identifications, and the uniform-refinement warning is the
 rank-condition computation recorded in the notes file.
+
+Finally, if `T ⊆ R̄`, normality of `R̄` gives
+`<<T>>_(P̄) ⊆ R̄`.  Faithfulness of each chart gives
+`R̄ ∩ K_i=1`, hence `<<T>>_(P̄) ∩ K_i=1`.  This proves the finite-packet
+no-collapse consequence without a quotient computation.
