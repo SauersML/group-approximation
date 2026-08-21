@@ -73,10 +73,13 @@ Assume the recursive tail packet wordizes the two carrier reflections
 R_(C,n)=1-2C_n,             R_(Q,n+1)=1-2Q_(n+1).      (TSC7)
 ```
 
-For the child reflection, this is the point of the identity-outer anchor:
-the semantic Clifford implementer `T_n=CZ_n tensor V_n` multiplied by its
-child-tail anchor `A_n=I tensor V_n` is the literal corrected-center gate
-`CZ_n tensor I`.  No multiplicity twist remains.
+Once a selector-corrected child reflection has been wordized, the
+identity-outer anchor removes its remaining multiplicity gauge: the semantic
+Clifford implementer `T_n=CZ_n tensor V_n` multiplied by its child-tail
+anchor `A_n=I tensor V_n` is the fixed local gate `CZ_n tensor I`. No
+multiplicity twist remains. This cancellation does **not** itself compile
+the selector-controlled aggregate `R_(C,n)`; the boundary is recorded in
+`aggregate-child-wordization-three-route-no-go`.
 
 Add the single ordinary conjugacy relator
 

@@ -279,12 +279,17 @@ full child to the next carrier gives
 ```
 
 so the contraction factor is `lambda=(1+beta)^(-1)<1`. The recursive
-identity-outer anchor wordizes the child reflection, and one reflection
-conjugacy relator controls the leakage. Stationary Clifford truncations now
+identity-outer anchor cancels the multiplicity gauge after a corrected child
+has been selected, and one reflection conjugacy relator then controls the
+leakage. It does not itself wordize the selector-controlled aggregate child:
+`aggregate-child-wordization-three-route-no-go`
+also rules out treating the Toeplitz proper isometry as a group unit or
+multiplying the finite decoder menu. Stationary Clifford truncations now
 pay exactly the forbidden surplus, while the perfect model has zero surplus
-and admits an exact HNN return. The remaining task on this lane is finite
-presentation syntax for the recursive tail and aggregate corrected-child
-reflection, not another analytic contraction lemma.
+and admits an exact HNN return. The remaining task on this lane is a genuinely
+finite-matrix-only selected-sector/orthogonalization step that wordizes the
+aggregate corrected child from the shared BCS tuple, not another analytic
+contraction lemma.
 
 Finally, `one-hecke-holonomy-cell-cannot-pay-the-cyclic-selector-sum` proves
 that one uncompressed closed transport word cannot supply the remaining

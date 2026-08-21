@@ -196,8 +196,11 @@ surplus into the strict recursion
 ```
 
 and one reflection-conjugacy word controls the only leakage term. Thus the
-recursive lane's remaining obligation is finite-presentation wordization of
-the tail and aggregate corrected child. A single ordinary Hecke holonomy
+recursive lane's remaining obligation is not supplied by the tail cancellation:
+`aggregate-child-wordization-three-route-no-go`
+shows that a new finite-matrix-only selected-sector/orthogonalization step is
+needed to turn the aggregate corrected child into one word while retaining
+the shared BCS tuple. A single ordinary Hecke holonomy
 cannot provide the alternative global row domination:
 `one-hecke-holonomy-cell-cannot-pay-the-cyclic-selector-sum` closes it by a
 last-edge multiplicity-gauge countermodel.
