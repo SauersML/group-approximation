@@ -29,7 +29,7 @@ Re tau_d(Q_i^-(f)) >= b=beta_B/C                for every i.      (ASE1)
 ```
 
 There is a constant `K_B`, depending only on the fixed context packets, such
-that if `epsilon<b/K_B` and
+that if `epsilon<min(1/16,b/K_B)` and
 
 ```text
 b_epsilon=(1-4epsilon^2)(b-K_B epsilon)>0,
@@ -48,7 +48,7 @@ N > b_epsilon^(-1) log_2(d/(1-4epsilon^2))                       (ASE3)
 ```
 
 inside the current model and supplies one all-pairs map with fixed
-`epsilon<1/2` obtains an immediate same-model contradiction.
+`epsilon<1/16` obtains an immediate same-model contradiction.
 
 The context selection is load-bearing.  The group obtained by gluing all
 shared BCS contexts need not be finite, so Gowers--Hatami is applied only after

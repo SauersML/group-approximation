@@ -137,11 +137,25 @@ def audit(k: int) -> dict:
                 value, left_basis, right_basis, modulus, degree))
             for value in reset_values
         ]
-        record["compatible_reset_values_hex"] = [
-            hex(value)
+        compatible_resets = [
+            value
             for value, rank in zip(
                 reset_values, record["reset_restriction_ranks"])
             if rank == degree - 1
+        ]
+        compatible_set = set(compatible_resets)
+        record["compatible_reset_values_hex"] = [
+            hex(value) for value in compatible_resets
+        ]
+        compatible_planes = {
+            tuple(sorted((left, right, left ^ right)))
+            for index, left in enumerate(compatible_resets)
+            for right in compatible_resets[index + 1:]
+            if (left ^ right) in compatible_set
+        }
+        record["compatible_reset_planes_hex"] = [
+            [hex(value) for value in plane]
+            for plane in sorted(compatible_planes)
         ]
     return record
 

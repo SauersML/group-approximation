@@ -31,6 +31,10 @@ Then
 d >= (1-4epsilon^2) 2^N.                                     (MCT2)
 ```
 
+Although the generic exactification theorem assumes `epsilon<1/16`, no extra
+hypothesis is missing here: `(MCT1)` and the universal bound
+`||f(J)-I||_2<=2` imply `epsilon<1/21<1/16` automatically.
+
 The constants are independent of `N`.  Thus if a finite controller, after
 being told `d`, emits the complete table of `E_N` for
 

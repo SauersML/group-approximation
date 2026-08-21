@@ -30,6 +30,10 @@ then
 d >= 2^(floor(n/2)-1).                                  (RCB1)
 ```
 
+The generic Gowers--Hatami exactification threshold is `epsilon<1/16`.
+Here it follows automatically from the displayed mark separation, since
+`||psi(J)-1||_2<=2` gives `epsilon<1/21`.
+
 The all-pairs hypothesis matters.  Starting only from defect at the standard
 presentation relators and reducing products to normal form incurs an
 `(n+1)^2` loss.  Therefore `(RCB1)` is a ready-made same-model capacity

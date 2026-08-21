@@ -50,6 +50,20 @@ The exact replay also finds eight other compatible nonzero reset multipliers:
 0xb8aa, 0x24a7, 0x841.                                 (CRH3)
 ```
 
+More strongly, the first three compatible directions form the complete
+nonzero part of a two-dimensional linear subspace:
+
+```text
+0x2ce6 xor 0xb0eb = 0x9c0d.                            (CRH4)
+```
+
+Consequently one fixed pair of residual hyperplanes works simultaneously
+for an entire natural `GL_2(F_2)=S_3` orbit of reset directions.  The replay
+enumerates every compatible two-plane, rather than inferring `(CRH4)` from
+three separate rank checks.  This is the finite linear-algebra input needed
+by an `S_3`-equivariant reset incidence; it does not by itself constrain the
+incidence's multiplicity intertwiners.
+
 Not all fifteen nonzero directions work for this fixed hyperplane pair.  That
 does not restrict the compiler: a linear change of the four selector
 coordinates sends any prescribed nonzero gauge direction to `b_reset`, leaves
@@ -62,4 +76,3 @@ For each of the finitely many selector sectors there is a symplectic
 congruence to one standard rank-fifteen form.  Turning those congruences into
 one ordinary finite incidence with no unwanted representation types is the
 remaining group-theoretic step in `derived-lifted-gauge-reset-spin-bridge`.
-

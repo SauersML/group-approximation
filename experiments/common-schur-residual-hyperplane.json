@@ -7,6 +7,7 @@
       "arity": 1,
       "beta_all_hex": null,
       "beta_values_hex": "0x2",
+      "compatible_reset_planes_hex": [],
       "compatible_reset_values_hex": [],
       "matrix_size": 2,
       "nonzero_reset_forms": 1,
@@ -29,6 +30,7 @@
       "arity": 2,
       "beta_all_hex": null,
       "beta_values_hex": "0x9",
+      "compatible_reset_planes_hex": [],
       "compatible_reset_values_hex": [
         "0xa"
       ],
@@ -59,6 +61,7 @@
       "arity": 3,
       "beta_all_hex": null,
       "beta_values_hex": "0x31",
+      "compatible_reset_planes_hex": [],
       "compatible_reset_values_hex": [
         "0xf"
       ],
@@ -101,6 +104,43 @@
       "arity": 4,
       "beta_all_hex": null,
       "beta_values_hex": "0x4ddc",
+      "compatible_reset_planes_hex": [
+        [
+          "0x762",
+          "0x2b84",
+          "0x2ce6"
+        ],
+        [
+          "0x762",
+          "0xb0eb",
+          "0xb789"
+        ],
+        [
+          "0x841",
+          "0x24a7",
+          "0x2ce6"
+        ],
+        [
+          "0x841",
+          "0xb0eb",
+          "0xb8aa"
+        ],
+        [
+          "0x24a7",
+          "0x9c0d",
+          "0xb8aa"
+        ],
+        [
+          "0x2b84",
+          "0x9c0d",
+          "0xb789"
+        ],
+        [
+          "0x2ce6",
+          "0x9c0d",
+          "0xb0eb"
+        ]
+      ],
       "compatible_reset_values_hex": [
         "0x2ce6",
         "0xb0eb",

@@ -21,7 +21,7 @@ N > b_epsilon^(-1) log_2(L/(1-4epsilon^2))                       (ART1)
 and, after selecting one context of forbidden mass at least `beta_B/C` in
 each replica, a map from the complete finite multiplication table of the
 central product of those `N` finite Schur packet groups into `U(L)` satisfying
-`(GHS1)` at one universal `epsilon<1/2` small enough that
+`(GHS1)` at one universal `epsilon<1/16` small enough that
 `b_epsilon>0`.  Table synthesis and semantic return
 must cost at most a universal multiple of the original relator energy,
 independent of `L`, `N`, and runtime.
