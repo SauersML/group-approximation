@@ -75,6 +75,20 @@ group.
 No cited theorem simultaneously has all four properties of the minimal
 metapixel above.
 
+The most direct two-copy attempt is also false.  Testing a constant-size
+local codeword PVM at each vertex of an expander and checking endpoint
+agreement on the shared coordinate does not force one global commuting PVM.
+`two-copy-overlap-consistency-has-pauli-cycle-countermodel` puts Pauli `X`
+and `Z` on two macroscopic disjoint cycle sectors: every local even-parity
+view is commuting and every overlap agrees exactly, but many distant
+coordinates anticommute.  Therefore the higher-arity object needs, at a
+minimum, robust expansion of the exterior-square/local-rank-two obstruction
+in addition to classical agreement expansion.  Precisely,
+`local-exterior-square-kernel-yields-pauli-strategy` proves that the local
+restriction map must robustly detect every decomposable `u wedge v` of the
+classical global section space; otherwise a one-qubit Pauli labeling is an
+exact or asymptotically perfect counterstrategy.
+
 ## Attempts
 
 - A direct candidate is a bounded-degree subset of the projective-line BLR
