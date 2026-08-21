@@ -102,6 +102,25 @@ intervenes.
   fork: fight the refutation at `SL_3`; treat the `SL_2` case as a
   two-sided question where a successful square-root matching would
   instead prove `G_2` hyperlinear and redirect the program.
+- **Word-level spectral attacks are vacuous (negative lesson,
+  2026-08-21).**  Two tempting far-sector attacks die for the same
+  reason.  (i) PI fingerprints: conjugation by `U(h)` transports every
+  polynomial-identity evaluation isometrically
+  (`s_(2r)(hXh*) = h s_(2r)(X) h*`), so the dyadic level-shift never
+  changes a fixed-degree evaluation of transported tuples; the
+  fingerprint only bites where relations identify transported words
+  with FRESH packet words, as in the Fanizza compressor cycles — the
+  arithmetic presentation has no such identification.  (ii) Character
+  coincidences: the `h`-dictionary demands
+  `tr rho_0(w(e_12(1), e_21(4))) ~ tr rho_0(w(e_12(4), e_21(1)))` for
+  all words `w`, a genuine spectral-symmetry constraint between two
+  non-conjugate subgroups of `Lambda` — but asymptotic regularity
+  sends BOTH sides to `0` pointwise, and likewise every fixed
+  trace-polynomial in word images.  Regularity vacates every
+  word-level constraint on the vertex representation: the refutation
+  must be carried by the non-word witness `k` (and its interaction
+  with growing-length structure), never by spectral data of the
+  vertex words alone.
 - **Where finite-dimensionality must enter.**  In `L(G_2)` itself the
   configuration exists, so no trace identity alone can refute it.
   The regular restricted trace forces the finite-level restrictions
