@@ -74,3 +74,20 @@ projection discards exactly the amplitude that `(FHR2)` controls.  The live
 cell must return the amplitude square itself, or authenticate a
 matrix-dependent spectral cutoff; and this inference must fail in the
 regular tracial representation.
+
+The explicit dilation audit is now complete.
+`julia-dilation-packages-heat-as-one-cross-gram-moment` constructs a `2 by 2`
+unitary `U_t` and equal-rank projections `E,Q_t` with
+
+```text
+E Q_t E=diag(B_t^*B_t,0).
+```
+
+Thus one projection overlap contains precisely the desired amplitude.
+However `fixed-packet-julia-calculus-is-tracially-functorial` proves that
+finite-packet block matrices, Julia/Halmos functional calculus and any fixed
+`2 by 2` or `3 by 3` compression remain valid over arbitrary finite tracial
+multiplicity algebras.  They cannot create the return `(HAP3)` without also
+creating it in the regular representation.  The remaining minimum scalar is
+therefore one matrix-only comparison between the fixed marked carrier and
+the cross-Gram moment `tr(EQ_t)`.
