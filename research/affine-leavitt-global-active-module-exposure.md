@@ -48,6 +48,14 @@ finite-support PVM.  Then
   the window.  Thus finite-radius orbit expansion yields no shrinking scalar
   remainder unless those loop words are charged by an additional boundary
   theorem.
+- **Pass only to an exact qualitative ultraproduct representation.**
+  `diffuse-active-spectrum-blocks-qualitative-collapse`
+  shows why this loses the matrix-coordinate input.  The exact regular trace
+  of the whole semidirect product has a diffuse Haar spectral measure, zero
+  actor-covariance defect, and a fully separated active mark.  The discrete
+  character-orbit gap acts on counting measure, not on this invariant Haar
+  measure.  Thus the decoder must retain finite atomic coordinate PVMs and
+  their boundary energy before taking the limit.
 
 Accordingly the character-orbit backend does not prove the old
 affine-Leavitt decoder.  It replaces the post-decoding Leavitt trace cell by
