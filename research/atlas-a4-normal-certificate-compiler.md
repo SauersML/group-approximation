@@ -64,6 +64,44 @@ only has to transport its covariance block.
 
 ## Attempts
 
+- **Exact chart conjugacy does not transport relative opcodes.**  The
+  established A8 normal certificates alone cannot prove `(A4-STAR-1)`.  Let
+  `G=A8`, let `lambda` be its left regular representation, fix two distinct
+  transvections `b,t`, and let `U` be the diagonal sign which is `-1` on the
+  two-element subgroup `<b>` and `+1` off `<b>`.  Left multiplication by `b`
+  preserves `<b>`, so
+
+  ```text
+  V_U(b)=U lambda(b) U^* lambda(b)^*=1.
+  ```
+
+  Since `t` is not in `<b>`, the sets `<b>` and `t<b>` are disjoint.  Thus
+  `V_U(t)` is diagonal with value `-1` on their four-point symmetric
+  difference and `+1` elsewhere, giving
+
+  ```text
+  ||V_U(t)-1||_2^2=16/|A8|=1/1260.
+  ```
+
+  Although `t` and `b` are conjugate in `A8`, no unitary can conjugate
+  `V_U(b)=1` to this nonidentity `V_U(t)`.  Hence
+  `atlas-a8-minimal-four-transvection-cycle` and
+  `atlas-a8-six-transvection-normal-certificates` supply only the endpoint
+  group identities.  The minimal genuinely missing sublemma is an A4 packet
+  **relative-cocycle equivariance** estimate: the tree-gauged packet paths
+  must control the change from `U` to `lambda(a)^*U lambda(a)` strongly enough
+  to transport `V_U(b)` to each leaf opcode.  This is additional analytic
+  content and cannot be replaced by the frozen A8 conjugator words.
+
+- **Existing 19243 readouts do not give the amplified hub estimate.**
+  `atlas-a4-gl5-two-holonomy-readout` proves a sharp inequality only on the
+  202 exact positions in one fixed 31-point permutation model and explicitly
+  does not cover arbitrary matrix-valued Schur holonomy.  The exact identity
+  `atlas-word-19243-is-kernel-relation` likewise supplies no normalized-HS
+  estimate for `V_n(t23)`.  Thus `(A4-STAR-2)` remains a separate amplified
+  collision-to-cocycle readout; none of the established exact packet lemmas
+  currently discharges it.
+
 - **Search three transports, not a group law.**  In the canonical
   qutrit/multiplicity splitting, seek packet paths carrying the `t23` covariance
   block to `t01`, `t12`, and the transverse `t30` covariance block.  Only the

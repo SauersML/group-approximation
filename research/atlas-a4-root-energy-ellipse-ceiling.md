@@ -56,6 +56,63 @@ S_n^2+S_n x_12+x_12^2
 so the target is literally membership in one fixed ellipse in the two aggregate
 root-energy coordinates `(S_n,x_12)`.
 
+## Analytic audit: the exact identities give the opposite inequality
+
+Put
+
+```text
+F_n=S_n^2+S_n x_12(n)+x_12(n)^2.
+```
+
+The established identity
+`atlas-root-energy-ellipse-controls-s3-distance`, followed by
+`atlas-19243-relation-forces-s3-distance`, applies under exactly the collision
+hypothesis displayed above and gives
+
+```text
+F_n
+ >=(3/4) dist_2(U_n,C_(S3))^2
+ >=(3/4) max(0,(sqrt(2)-||q_19243(U_n)-1||_2)/8)^2.   (A4-ELLIPSE-LOWER)
+```
+
+Consequently every sequence quantified by this claim satisfies
+
+```text
+liminf_n F_n >=3/128.                                  (A4-ELLIPSE-WALL)
+```
+
+Thus no exact moment or ellipse manipulation from the presently recorded
+identities can prove the requested strict upper bound.  If even one sequence
+with the stated packet and collision defects exists, `(A4-ELLIPSE-WALL)`
+directly contradicts the conclusion.  The claim can only be true because the
+quantified class is empty; equivalently, one must prove a positive joint
+packet-plus-collision residual gap.  The ellipse is the final contradiction
+functional after that nonexistence input, not an independent upper inequality
+on a nonempty zero-residual moment set.
+
+There is an even stronger directional counter-bound in the actual Leavitt
+necessity sequence.  The additional kernel word `q_14` also has vanishing
+defect there, so `atlas-q14-forces-t30-covariance-floor` gives
+
+```text
+liminf_n x_30(n)^2 >=1/2.
+```
+
+Since `S_n>=4x_30(n)` and all variables are nonnegative,
+
+```text
+F_n>=S_n^2>=16x_30(n)^2,
+liminf_n F_n>=8.                                       (A4-Q14-ELLIPSE-WALL)
+```
+
+This does not refute the claim as formally stated, because it assumes only
+collision `19243`, not `q_14`.  It does show that on the intended necessity
+sequence the optimized S3 threshold `3/128` is not the active analytic wall:
+the one-coordinate `t30` wall is larger by more than two orders of magnitude.
+Any proof effort based only on existing exact scalar identities should
+therefore target `atlas-a4-t30-energy-ceiling-below-q14-wall`; proving the
+ellipse ceiling itself still requires the unresolved joint-gap theorem.
+
 ## Attempts
 
 - **Recognize that the corrected target is a uniform joint-relator gap.**
