@@ -1,6 +1,6 @@
 ---
 rg: 2
-id: hyperlinear-groups-force-area-divergence-in-high-chromatic-sections
+id: high-chromatic-sections-force-area-divergence
 kind: claim
 title: Hyperlinearity forces filling-area divergence in every high-chromatic conjugacy section
 distinct_from:

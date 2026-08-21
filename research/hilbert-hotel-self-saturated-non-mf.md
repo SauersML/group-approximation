@@ -8,6 +8,7 @@ distinct_from:
   kazhdan-clifford-non-mf-construction: that construction uses a central involution and Clifford anticommutation; this uses no Clifford group or central sign, and its defect is a noncentral Steinberg root over a full idempotent.
 artifacts:
   - research/artifacts/hilbert-hotel-st20-full-mf-radical-2026-08-21.md
+  - research/artifacts/hilbert-hotel-character-rigidity-seam-audit-2026-08-21.md
   - GroupApproximation/Sofic/NormalKazhdanMFRadical.lean
   - GroupApproximation/Steinberg/BinaryLeavitt.lean
 ---

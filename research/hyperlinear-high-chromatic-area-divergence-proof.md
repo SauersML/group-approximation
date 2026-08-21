@@ -3,7 +3,7 @@ rg: 2
 id: hyperlinear-high-chromatic-area-divergence-proof
 kind: route
 title: Apply the high-chromatic collapse theorem to a bounded-area subsequence
-target: hyperlinear-groups-force-area-divergence-in-high-chromatic-sections
+target: high-chromatic-sections-force-area-divergence
 requires:
   - bounded-area-high-chromatic-conjugacy-collapse
 ---

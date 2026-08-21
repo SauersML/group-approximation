@@ -6,7 +6,7 @@ title: A bounded-output energetic decoder gives the reverse-Kleene canonical cei
 distinct_from:
   cyclic-carrier-energy-stability: that asks for the energy ceiling on every small-defect tuple in arbitrary dimension; this asks only for bounded-dimensional decoded tuples along canonical-profile microstate sequences.
   trace-conditioned-reverse-kleene-collapse: that directly bounds a marked word on tuples satisfying finitely many canonical moment tests; this extracts an exact energetic representation by compactness in a bounded output dimension.
-  subhomogeneous-energetic-carriers-cannot-have-a-strict-regular-gap: that rules out making the whole source carrier subhomogeneous; this only bounds the nonfunctorially decoded output and places no type-I condition on the source corner.
+  subhomogeneous-energetic-carrier-no-strict-gap: that rules out making the whole source carrier subhomogeneous; this only bounds the nonfunctorially decoded output and places no type-I condition on the source corner.
   gowers-hatami-finite-group-hs-stability: that corrects an approximate multiplication table for one finite group in a dimension comparable to the input; this may shrink an arbitrarily large canonical microstate to an unrelated dimension bounded once and for all.
 ---
 
@@ -35,9 +35,8 @@ hypothesis that a canonical-profile microstate sequence exists.
 
 The word “bounded” must apply to the decoded output, not to a C-star carrier
 containing the energy.  By
-`subhomogeneous-energetic-carriers-cannot-have-a-strict-regular-gap`, making
+`subhomogeneous-energetic-carrier-no-strict-gap`, making
 the entire central finite-packet/normalizer carrier uniformly
 subhomogeneous forces `E_reg<=beta_fd` for every trace and therefore cannot
 also furnish the strict regular gap.  The live target is a nonfunctorial,
 canonical-profile-dependent extraction of one bounded tuple.
-

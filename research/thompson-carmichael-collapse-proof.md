@@ -1,9 +1,9 @@
 ---
 rg: 2
-id: coherent-carmichael-family-forces-thompson-three-cycle-collapse-proof
+id: thompson-carmichael-collapse-proof
 kind: route
 title: Apply the high-chromatic criterion to complete Carmichael graphs
-target: coherent-carmichael-family-forces-thompson-three-cycle-collapse
+target: thompson-carmichael-collapse
 requires: [bounded-area-high-chromatic-conjugacy-collapse]
 ---
 

@@ -5,7 +5,7 @@ kind: claim
 title: A fixed D8 projective holonomy cannot amplify determinant or index parity to HS density
 distinct_from:
   projective-holonomy-rank-forces-exponential-multiplicity: that computes the exact divisor forced by an arbitrary binary cocycle rank; this gives the explicit normalized-HS repair and records that tensoring with the native positive-density D8 carrier does not improve it.
-  determinant-obstructions-have-vanishing-normalized-hs-strength: that hides one global phase error in one eigenvalue; this treats a fixed projective packet on every D8 spin copy and shows that the external multiplicity remainder is still sublinear.
+  additive-index-instability: that kills determinant parity by tensor amplification; this treats a fixed projective packet on every D8 spin copy and shows directly that the external multiplicity remainder is still sublinear.
   single-triangle-trace-cyclic-return-cell: that asks for a proper-corner loss proportional to the whole selected carrier; this rules out replacing that loss by any fixed number of projective/determinant orientation checks.
 ---
 
@@ -56,4 +56,3 @@ if it does one of the following:
 The first two alternatives require a growing multiplicity-coordinate
 sampler.  The fixed D8 packet and any fixed pair of field/orientation
 matchings act only on a bounded packet factor and cannot supply that sampler.
-
