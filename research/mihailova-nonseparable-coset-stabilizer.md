@@ -65,5 +65,9 @@ all separability and spectator fences.
 No stronger conclusion is asserted.  In particular, nonseparability does not
 by itself prove that the coset action is nonsofic, and nonsoficity of the
 quotient `Q` cannot simply be pushed through the free-group kernels in
-`(MFP2)`.  Whether `L(W)` contains the fixed non-CE relation factor (or is
-itself non-CE) is the remaining analytic question.
+`(MFP2)`.  In fact Gao--Kunnawalkam Elayavalli--Patchell prove that **every**
+action of a free group on a countable set is sofic, so each coordinate action
+on `(Q x Q)/Delta Q` is sofic regardless of `Q`.  The combined `F_m x F_m`
+action is not residually finite; deciding whether it is sofic is precisely a
+commuting-actions problem.  Whether `L(W)` contains the fixed non-CE relation
+factor (or is itself non-CE) is the remaining analytic question.

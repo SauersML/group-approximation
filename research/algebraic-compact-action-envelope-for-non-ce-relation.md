@@ -270,7 +270,10 @@ presented survivor of every preceding actor, graph, and separability fence.
 What is proved is precisely that its coset action is not residually finite.
 It is not legitimate to infer nonsoficity of that action merely from the
 nonsofic quotient used in the fiber product: action soficity does not
-automatically descend through the free-cover kernel.  The live question is
-now analytic and concrete: decide Connes embeddability of this Mihailova
+automatically descend through the free-cover kernel.  Indeed both coordinate
+free-group actions are sofic by Gao--Kunnawalkam Elayavalli--Patchell's
+universal action-soficity theorem for free groups; only their combined action
+fails residual finiteness.  The live question is now analytic and concrete:
+decide soficity/Connes embeddability of this combined Mihailova
 coset-Bernoulli crossed product, or construct the fixed-source inclusion in
 it.

@@ -68,7 +68,12 @@ enumerable commuting relations `[a,a^g]=1`; hence the effectiveness claim.
 
 The tempting extra inference from nonsoficity of `Q` is invalid: soficity of
 an action by a free cover need not descend through its kernel to soficity of
-the quotient group.  Were that automatic, a free group acting through the
-regular action of any nonsofic quotient would already have supplied a
-nonsofic action long before the Kun--Thom counterexample.  The proof therefore
-stops at the exact residual-finiteness obstruction.
+the quotient group.  More concretely, Gao--Kunnawalkam Elayavalli--Patchell,
+Theorem 2.19 of
+[*Soficity for group actions on sets and applications*](https://arxiv.org/abs/2401.04945),
+prove that every action of a free group on a countable set is sofic.  Hence
+the two coordinate `F_m` actions on `(Q x Q)/Delta Q` are sofic even though
+`Q` is nonsofic.  Their combined action is the one detected by the
+nonseparable fiber product, and the argument proves only that this combined
+action is not residually finite.  The proof stops at exactly that
+commuting-actions obstruction.
