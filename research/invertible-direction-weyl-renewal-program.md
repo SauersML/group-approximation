@@ -35,15 +35,14 @@ This removes two former algebraic defects at once:
 2. the endpoint no longer fuses the Schur current by restricting to a smaller
    spin packet.
 
-It is not yet credited as `fresh-selector-renewal-after-symplectic-chart-reset`.
-There are two remaining local obligations. First,
-`semidirect-reset-implementer-cannot-be-next-schur-phase` proves that the bare
-semidirect product cannot supply the reverse cell: its implementer survives in
-abelianization. Second, direct translation of an original BCS selector does
-not preserve arbitrary constraints. Gauge doubling repairs the semantic
-problem by translating two private shares while fixing their logical product;
-`derived-lifted-gauge-reset-spin-bridge` isolates the remaining equal-scale
-reverse incidence.
+The two former local obligations are now closed.  Gauge doubling repairs the
+semantic problem by translating two private shares while fixing their logical
+product.  The affine selector Clifford construction puts all residual forms
+in one finite type, makes the translation an ordinary commutator, and its
+balanced four-point restriction restores the missing hyperbolic pair without
+changing scale.  The route
+`fresh-renewal-via-gauge-doubled-derived-reset` therefore establishes
+`fresh-selector-renewal-after-symplectic-chart-reset`.
 
 The global scalar return is separate.  A finite zig-zag has a regular
 stationary flow, so the one remaining scalar current must still be placed in

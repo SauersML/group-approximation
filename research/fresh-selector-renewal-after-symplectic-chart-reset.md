@@ -53,9 +53,16 @@ the fresh signs are balanced, and total multiplicity crosses the reset without
 changing scale. This is an honest finite semidirect-product group construction,
 not a projection-controlled operator formula.
 
-This does not yet establish the present claim. The remaining bounded audit is
-semantic: the reverse cells must compare each context-local corrected selector
-to the same original shared BCS word without making that original word both
-members of a transverse Weyl pair in different contexts. After that audit, a
-one-sided Fanizza/Toeplitz return is still required; a finite reset zig-zag alone
-has a stationary regular flow.
+The semantic audit is closed by
+`affine-selector-clifford-proves-derived-reset-bridge`.  Gauge doubling
+makes the translated coordinates private shares while their product remains
+the same original shared BCS word.  The affine selector Clifford packet
+packages the full rank-fifteen pencil in one finite type, and the balanced
+four-point restriction replaces the missing hyperbolic pair at equal scale.
+Thus no original shared word is placed in two transverse Weyl pairs: only its
+private gauges are renewed.
+
+This establishes the finite selector-renewal cell.  It does **not** supply a
+global contraction.  A finite reset zig-zag still has stationary regular
+flow, so the resulting scalar current must be inserted into a one-sided
+Fanizza/Toeplitz return or another finite-dimensional-only holonomy.

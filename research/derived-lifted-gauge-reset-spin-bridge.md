@@ -77,13 +77,17 @@ balanced Morita edge.
   rank-fifteen source/target hyperplanes are nondegenerate in every baseline
   sector and in a reset direction, after a harmless selector basis change.
   The remaining work is no longer a search for a residual.
-- `symmetric-selector-schur-residual-packet` now realizes all sixteen residual
-  congruences and every gauge translation in one finite symmetric semidirect
-  product.  One primitive induced type contains each selector-sector spin
-  exactly once; every reset translation is an explicit commutator and
-  commutes with the standardized diagonal residual.  Thus the unbounded
-  router and unwanted residual multiplicity modes are gone.  The only
-  remaining local audit is the finite restriction matrix obtained when the
-  four-point balanced rank-swap packet is coupled to this primitive type:
-  old baseline and reverse reset edge types must occur with equal
-  multiplicity.
+- `affine-selector-clifford-residual-packet` realizes the entire affine
+  rank-fifteen pencil by controlled residual Paulis on four semantic selector
+  qubits plus one inert dummy qubit.
+  `affine-selector-clifford-rank-swap-balanced` Fourier-rotates the actual
+  gauge translation into the controlled-pair chart and proves that every full
+  old or fresh semantic character has the same restriction `2 rho_15`.  The
+  dummy factor corrects the false nineteen-qubit count, which fixed only the
+  reset sign and lost the swap spin after the other three semantic signs were
+  fixed.  This also corrects
+  the tempting but false shortcut of treating a translation and a diagonal
+  sign as conjugate inside the signed-permutation group: the required
+  conjugacy is Clifford.  The finite restriction audit is complete, and
+  `affine-selector-clifford-proves-derived-reset-bridge` establishes the
+  present claim.

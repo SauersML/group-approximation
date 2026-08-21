@@ -28,16 +28,18 @@ context, with the following properties.
   tuple.
 - `fanizza-radical-charts-admit-common-symplectic-reset-subgroups` now merges
   the two chart blocks into two copies of one full-matrix subgroup type for
-  every fixed Fanizza predicate.  The residual obstruction is strictly the
-  renewal of the selector center on that already-merged spin carrier, isolated
-  as `fresh-selector-renewal-after-symplectic-chart-reset`.
+  every fixed Fanizza predicate.  The selector center on that already-merged
+  spin carrier is now renewed by
+  `fresh-selector-renewal-after-symplectic-chart-reset`; together with the
+  fixed overlap alignment this closes the finite return incidence.
 - `selector-free-spin-reset-leaves-contexts-independent` computes the exact
   one-edge incidence after this merge.  Both restriction matrices are
   `[1 1]`, so sharing the spin packet and adjoining fresh selectors allows
   every old/fresh character pair.  The return therefore needs a two-cell that
   acts on the multiplicity commutant; no further ordinary reset edge can carry
   the contextual branch law.
-- A plain finite graph of these incidences has stationary representation-ring
-  flows.  The return must be inserted into the existing one-sided
-  Toeplitz/Fanizza recurrence, where the factor-two violation ledger is
-  contractive and polynomial transport losses are summable.
+- A plain finite graph of these incidences still has stationary
+  representation-ring flows.  The established return must be inserted into
+  the existing one-sided Toeplitz/Fanizza recurrence, where the factor-two
+  violation ledger is contractive and polynomial transport losses are
+  summable.
