@@ -79,6 +79,19 @@ positive-mass reservoir strongly enough to prove `(SSC3)`.
   trace-cyclic corner or the external common-source swap star at level one,
   by `cuntz-first-hit-checksum-is-a-one-scale-corner`.  Its remaining gap is
   the existing matrix-only authentication of that first-level chart.
+- Replacing scalar lamps by an infinite library of noncommuting packet labels
+  does not by itself evade compactness.  By
+  `noncommutative-checksum-misses-bounded-types`, any summable library of
+  inequivalent packet representations of uniformly bounded dimension admits
+  an equal-density two-type swap with arbitrarily small total covariance
+  energy.  For a locally finite packet group,
+  `locally-finite-checksum-misses-all-fd-types` removes even the dimension
+  bound by aligning finite-subgroup multiplicity vectors after
+  cross-amplification.  Thus translating or enlarging finitary
+  Toeplitz/Schur heads through infinitely many addresses is still static
+  compact data.  That lane must mix in a genuinely non-locally-finite tail,
+  put the tests on orthogonal operator domains, and actually prove the
+  backward carrier recurrence.
 - A noncontracting Baumslag--Solitar clock also does not supply the checksum
   from spectral recurrence alone.  By
   `periodic-bs-clock-defeats-spectral-first-hit-checksum`, exact finite
