@@ -224,3 +224,22 @@ non-hyperlinear group `hat K rtimes Lambda`.
   imported witness's correlations against these identities first; a
   clean violation on every algebraic re-realization would kill route
   (a) and redirect all effort to (b).
+- **The published Manzoor witness has no exposed cylinder law
+  (source audit, 2026-08-21).**
+  `manzoor-separation-does-not-specify-haar-cylinders` expands the exact game
+  correlation: it is a finite linear combination of one-word probabilities
+  `Pr[w in H]`, not the joint cylinders `Pr[F subset H]` tested by Haar
+  fixed-subgroup indices.  The only explicit values forced by the strategy
+  axioms are `0` for `J` and `1` for squares and prescribed commutators, all
+  compatible with the reciprocal-index screen.  More fundamentally,
+  Theorem 3.13 obtains an unnamed separating game by contradiction, then
+  chooses an unspecified above-gap IRS strategy, and the final ergodic step
+  chooses an unspecified extreme IRS.  There is therefore no canonical
+  "Manzoor IRS" cylinder oracle to test.  Literal equality with Haar measure
+  on a linear subshift of subgroup indicators is trivially impossible
+  (the identity-membership coordinate is constantly one, while a linear
+  subshift contains zero), but the substantive stabilizer-pushforward/factor
+  question remains open.  Running the proposed falsification test now first
+  requires `explicit-zpc-irs-gap-game-witness` or another named strategy with
+  joint cylinder data; the published existential separation alone cannot
+  supply a violating cylinder.
