@@ -85,3 +85,11 @@ centralizes them and turns the BCS into a classical CSP.
   form a join tree.  Thus no holonomy or general cyclic-atlas theorem is
   required; the load-bearing finite-matrix theorem is now
   `native-fanizza-join-tree-prescribed-word-realization`.
+- **Two-copy heat-filter lane.**  A second reduction avoids choosing local
+  predicate corners altogether.  In the direct product of left and right
+  native variable groups, every vector state is a commuting BCS strategy.
+  Thus Fanizza soundness promotes to the operator inequality
+  `D_R<=C_m H_m`, and the explicit rational elements
+  `D_R(1-H_m)^t` have uniform norm `O(t^(-1/2))` on the nonmember side while
+  remaining nonzero on every HALT ground witness.  The sole new gate is the
+  finite-matrix-only return `fanizza-heat-filter-one-sided-return`.
