@@ -59,6 +59,14 @@ in the matrix ultraproduct carrying `G`'s regular trace.
   `a_1`-non-fixed `k`), which would make `G` hyperlinear and kill this pair
   while leaving the goal open.  The `SL_2` and `SL_3` pairs may behave
   oppositely here, which is itself informative.
+- **Coset Bernoulli firewall.**  By
+  `coset-bernoulli-ce-refutes-relative-commutant-collapse`, Connes
+  embeddability of `L^infinity(K^(A/C)) rtimes A` would refute `(RC3)`
+  immediately.  Property (T) of `C` does not remove this abstract
+  `C`-fixed coordinate; it can only help prove that the crossed product is
+  non-CE, or prove that such a coordinate cannot arise from matrix
+  microstates.  Thus the higher-rank route has gained a spectral gap, but
+  its exact falsification target is now explicit.
 - **Tool.**  Peterson--Thom / Bekka character rigidity holds for
   `SL_3(Z[1/2])` too (higher rank), giving hyperfinite HS-stability by the
   same DV Prop 8.3; the residual non-hyperfinite gap is again `(RC3)`.

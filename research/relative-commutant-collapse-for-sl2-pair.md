@@ -50,3 +50,15 @@ this produces an explicit non-hyperlinear group.
   with `[k, pi(SL_2(Z))] = 0` but `[k, pi(diag(2,1/2))] != 0`; such a `k`
   would make the HNN group hyperlinear and would refute both `(RCC)` and,
   through it, DV-style stability.
+- **Explicit falsification gate.**
+  `coset-bernoulli-ce-refutes-relative-commutant-collapse` shows that Connes
+  embeddability of
+
+  ```text
+  L^infinity(K^(A/C)) rtimes A,
+  A=SL_2(Z[1/2]), C=SL_2(Z),
+  ```
+
+  would refute `(RCC)`: the coordinate at `C` commutes with `C` but is moved
+  by every element of `A-C`.  This is conditional, because soficity/CE of
+  this generalized Bernoulli action with nonamenable stabilizer is not known.
