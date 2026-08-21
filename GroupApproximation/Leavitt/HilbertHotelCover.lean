@@ -63,10 +63,10 @@ needed, and `⟨⟨d⟩⟩ = ⊤` holds in `CoverGroup` by construction.
 
 ## Open leaves
 
-Per the save doctrine, this module carries no `sorry`: the residual facts are
-fields of `CoverInputs` and `CoverResiduals`, taken as arguments where they are
-used.  Discharging a field turns the corresponding theorem unconditional
-without touching its statement.
+Per the save doctrine, this module carries no unproved placeholder: the
+residual facts are fields of `CoverInputs` and `CoverResiduals`, taken as
+arguments where they are used.  Discharging a field turns the corresponding
+theorem unconditional without touching its statement.
 -/
 
 namespace GroupApproximation

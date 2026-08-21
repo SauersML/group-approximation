@@ -1464,6 +1464,8 @@ import GroupApproximation.Leavitt.HilbertHotelSaturation
 import GroupApproximation.Leavitt.HilbertHotelWhitehead
 import GroupApproximation.Leavitt.HilbertHotelBinary
 import GroupApproximation.Leavitt.HilbertHotelDefectNormal
+import GroupApproximation.Leavitt.HilbertHotelCover
+import GroupApproximation.Sofic.TorsionFreeNonMFEndpoint
 import GroupApproximation.Higman.CoordCalculus
 import GroupApproximation.Higman.SeqFilter
 import GroupApproximation.Higman.AgreeClosure

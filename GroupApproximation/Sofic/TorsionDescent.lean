@@ -469,6 +469,18 @@ theorem two_mul_lt_of_sharp {lam : ℚ} (hlam : lam ≤ 1 / 6)
   have hq : (r.length : ℚ) < 2 * (u.length : ℚ) := by linarith
   exact_mod_cast hq
 
+/-- Membership of the relator subgroup, read in the quotient. -/
+theorem mem_iff_mk'_eq_one {R : Set (List (α × Bool))} (x : FreeGroup α) :
+    x ∈ Subgroup.normalClosure (FreeGroup.mk '' R) ↔
+      QuotientGroup.mk' (Subgroup.normalClosure (FreeGroup.mk '' R)) x = 1 := by
+  constructor
+  · intro h
+    rw [← QuotientGroup.ker_mk' (Subgroup.normalClosure (FreeGroup.mk '' R))] at h
+    exact h
+  · intro h
+    rw [← MonoidHom.mem_ker, QuotientGroup.ker_mk'] at h
+    exact h
+
 /-- **Conjugate images transport both halves of the descent.**  Triviality and
 "the `k`-th power is trivial" are conjugacy-invariant in the quotient. -/
 theorem transport_of_quot_conj {R : Set (List (α × Bool))} {W W' : List (α × Bool)}
@@ -483,14 +495,12 @@ theorem transport_of_quot_conj {R : Set (List (α × Bool))} {W W' : List (α ×
   obtain ⟨c, hc⟩ := h
   constructor
   · intro k hk
-    rw [← MonoidHom.mem_ker, QuotientGroup.ker_mk'] at hk ⊢
+    rw [mem_iff_mk'_eq_one] at hk ⊢
     rw [map_pow, hc, ← conj_pow, ← map_pow, hk, map_one, mul_one, mul_inv_cancel]
   · intro hmem
-    rw [← MonoidHom.mem_ker, QuotientGroup.ker_mk'] at hmem ⊢
+    rw [mem_iff_mk'_eq_one] at hmem ⊢
     rw [hc] at hmem
-    have : c * QuotientGroup.mk' (Subgroup.normalClosure (FreeGroup.mk '' R))
-        (FreeGroup.mk W) * c⁻¹ = 1 := hmem
-    simpa using congrArg (fun x => c⁻¹ * x * c) this
+    simpa using congrArg (fun x => c⁻¹ * x * c) hmem
 
 /-- **One shortening step, from the sharp Greendlinger conclusion.**  The four
 branches of the module docstring, in order: the arc is short and a Dehn
@@ -531,7 +541,7 @@ theorem exists_shorter_step {R : Set (List (α × Bool))} {lam : ℚ}
   · obtain ⟨s, hs, hpre⟩ := exists_prefix_rotate_of_infix_pow hk hne huinf hcase
     exact exists_shorter_of_short_arc hs.le hr hupre
       (two_mul_lt_of_sharp (by linarith) hu) hpre
-  · push_neg at hcase
+  · replace hcase : W.length < u.length := by omega
     have hper : List.HasPeriod u W.length :=
       (hasPeriod_flatten_replicate W hk).infix huinf
     rcases isProperPower_or_isPiece_drop hn hr hupre hper hcase with hpp | hpiece
@@ -549,7 +559,7 @@ theorem exists_shorter_step {R : Set (List (α × Bool))} {lam : ℚ}
           (Nat.cast_nonneg _) hlam8 hmb ?_ (by exact_mod_cast hband)
         rw [hdlen, Nat.cast_sub hcase.le]
         linarith
-      · push_neg at hband
+      · replace hband : r.length < 2 * W.length := by omega
         have htk : u.take W.length <:+: (List.replicate k W).flatten :=
           ((List.take_prefix _ _).isInfix).trans huinf
         have htklen : (u.take W.length).length = W.length :=
