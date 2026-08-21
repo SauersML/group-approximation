@@ -156,3 +156,38 @@ if** its defining orthogonal representation is contained in a countable
 permutation representation.  Hence the Gaussian route is now fully reduced
 to a representation-containment test; it has no additional nonlinear
 compactification freedom.
+
+There is a least-circular explicit way to meet the non-Haagerup actor
+requirement: replace the native virtually-free source actor `Gamma_0` by
+`Gamma_0 x SL_3(Z)`.  This still does nothing by itself.
+`nonhaagerup-spectator-must-couple-nonamenably` proves that for every abelian
+dual module `A`, if the `SL_3(Z)` direction has amenable image in `Aut(A)`,
+then `A rtimes (Gamma_0 x SL_3(Z))` is sofic.  Since every amenable quotient
+of `SL_3(Z)` is finite, a viable module must carry an infinite, nonamenable
+`SL_3(Z)` image.  Trivial/finite actions and an independent algebraic
+Bernoulli spectator are therefore barren.  The first genuinely new
+constructive target is a **mixed** module on which the commuting
+`Gamma_0` and `SL_3(Z)` directions interact; merely appending a known
+non-Haagerup group cannot transport the Manzoor/CDI inclusion.
+
+Changing the actor by ordinary induction or coinduction also does not install
+the missing algebraic base.  `coinduction-preserves-but-cannot-create-algebraic-envelope`
+shows that compact algebraic coinduction from `H<Lambda` does give a
+trace-preserving inclusion
+
+```text
+L^infinity(K_0) rtimes H
+    -> L^infinity(K_0^(Lambda/H)) rtimes Lambda,
+```
+
+but only when the original `H`-action on `K_0` was already Haar algebraic.
+The usual induced base-coset corner is instead a corner of a **semifinite**
+crossed product with counting measure on `Lambda/H`; at infinite index there
+is no invariant probability version.  This is not a defect of the product
+model.  `infinite-index-canonical-subgroup-corner-is-impossible` proves in
+every finite crossed product that a positive `H`-invariant projection whose
+canonical Fourier compression kills every `g notin H` would have infinitely
+many orthogonal equal-trace translates.  Therefore no positive-trace
+canonical coset corner can import `N` at infinite index.  The remaining
+change-of-actor freedom is genuinely non-Cartan: its image cannot be obtained
+by cutting the global `Lambda` unitaries down to the old actor.
