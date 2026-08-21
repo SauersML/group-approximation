@@ -107,6 +107,15 @@ about ONE explicit operator.
   commutant tower against the level spreading forced by the regular
   trace, the attack recorded at the end of
   `no-exact-quasi-regular-leak`.
+- **Proof-side SOS is provably unsound here.**  The enemy
+  configuration `k = u_t` exists in the genuine tracial model
+  `L(H_3)` with every constraint exact and `|| S(k) ||_2^2 =
+  43/168`, so by the mechanism of
+  `tracial-npa-cannot-separate-canonical-trace` no dimension-blind
+  tracial positivity certificate can prove `(SH1)`: its content is
+  matrix-only.  Computer work on this node is sound only on the
+  refutation side (the probes) or through a genuinely matricial
+  proof system.
 - **Falsification gate.**  `(SH1)` fails iff the `n >= 3` collapse
   fails iff a spherical leak exists over the higher-rank pair.  In the
   enemy scenario manufactured from a hyperlinear carrier the profile
