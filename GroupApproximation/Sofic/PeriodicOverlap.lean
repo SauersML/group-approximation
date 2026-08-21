@@ -69,10 +69,15 @@ inside the cyclic word `r`, i.e. a `p` prefixing both `r.rotate a` and
   `r` is a proper power, contradicting the no-proper-power hypothesis.
 
 `isProperPower_of_rotate_eq_rotate` — with no length hypothesis on the overlap
-at all — is therefore the lemma the torsion theorem spends, and
-`isProperPower_rotate`, `isProperPower_invRev` carry the conclusion back from
-any member of the symmetrization to the relator it came from.  Fine–Wilf is
-kept because it is the honest general statement and costs one window.
+at all — is therefore the lemma the torsion theorem spends.  Fine–Wilf is kept
+because it is the honest general statement and costs one window.
+
+The arc lands in `symmetrization R` while the no-proper-power hypothesis is
+stated on the base family `R`, so §9 closes that gap: rotation and formal
+inversion are invertible on words, hence neither creates nor destroys a proper
+power (`isProperPower_symmetrization_iff`), and `noProperPower_symmetrization`
+delivers the transfer in the exact `∀ u m, 2 ≤ m → r ≠ …` shape the relator
+families state it in.
 -/
 
 namespace GroupApproximation
@@ -494,26 +499,84 @@ theorem isProperPower_map {γ : Type*} (f : β → γ) {w : List β} (h : IsProp
   refine ⟨u.map f, m, hm, ?_⟩
   rw [List.map_flatten, List.map_replicate]
 
-/-- Formal inversion preserves proper powers.  With `isProperPower_rotate` this
-covers every member of `SmallCancellationRouter.symmetrization {r}`: it is a
-proper power exactly when `r` is. -/
+/-- **Formal inversion of a block power, on the nose.**  `invRev` reverses the
+word and inverts every letter, so `invRev (a ++ b) = invRev b ++ invRev a`; the
+blocks of a block power are all equal, so reversing their order changes
+nothing and the exponent is untouched. -/
+theorem invRev_flatten_replicate {α : Type*} (m : ℕ) (u : List (α × Bool)) :
+    FreeGroup.invRev ((List.replicate m u).flatten)
+      = (List.replicate m (FreeGroup.invRev u)).flatten := by
+  rw [FreeGroup.invRev, List.map_flatten, List.map_replicate, List.reverse_flatten,
+    List.map_replicate, List.reverse_replicate]
+  rfl
+
+/-- Formal inversion preserves proper powers. -/
 theorem isProperPower_invRev {α : Type*} {w : List (α × Bool)} (h : IsProperPower w) :
     IsProperPower (FreeGroup.invRev w) := by
-  rw [FreeGroup.invRev]
-  exact isProperPower_reverse (isProperPower_map _ h)
+  obtain ⟨u, m, hm, rfl⟩ := h
+  exact ⟨FreeGroup.invRev u, m, hm, invRev_flatten_replicate m u⟩
+
+/-- **Formal inversion does not create or destroy proper powers.**  `invRev` is
+an involution, so the forward direction gives both. -/
+theorem isProperPower_invRev_iff {α : Type*} {w : List (α × Bool)} :
+    IsProperPower (FreeGroup.invRev w) ↔ IsProperPower w := by
+  refine ⟨fun h => ?_, isProperPower_invRev⟩
+  have h2 := isProperPower_invRev h
+  rwa [FreeGroup.invRev_invRev] at h2
+
+/-! ## 9.  Transfer from a base family to its symmetrization
+
+The Greendlinger arc lands in `SmallCancellationRouter.symmetrization R`, while
+the no-proper-power hypothesis is stated on the base family `R`.  These lemmas
+are the bridge.  They are phrased on the raw existential rather than on
+`symmetrization R` so that this module stays Mathlib-only: `symmetrization R` is
+*defined* as `{w | ∃ r ∈ R, ∃ n, w = r.rotate n ∨ w = (invRev r).rotate n}`, so a
+hypothesis `hw : w ∈ SmallCancellationRouter.symmetrization R` is definitionally
+the hypothesis these lemmas take, and passes to them with no conversion. -/
+
+/-- **The `NoProperPower` shape, negated.**  The relator families in this
+development state "no relator is a proper power" as a `≠` under two universal
+quantifiers; that is exactly `¬ IsProperPower`, and this is the bridge. -/
+theorem not_isProperPower_iff {w : List β} :
+    ¬ IsProperPower w ↔ ∀ (u : List β) (m : ℕ), 2 ≤ m → w ≠ (List.replicate m u).flatten := by
+  constructor
+  · intro h u m hm heq
+    exact h ⟨u, m, hm, heq⟩
+  · rintro h ⟨u, m, hm, heq⟩
+    exact h u m hm heq
+
+/-- **A member of the symmetrization is a proper power exactly when its base
+relator is.**  Rotation and formal inversion are both invertible on words, so
+neither can create or destroy a proper power. -/
+theorem isProperPower_symmetrization_iff {α : Type*} (r : List (α × Bool)) (n : ℕ) :
+    (IsProperPower (r.rotate n) ↔ IsProperPower r) ∧
+      (IsProperPower ((FreeGroup.invRev r).rotate n) ↔ IsProperPower r) :=
+  ⟨isProperPower_rotate n, (isProperPower_rotate n).trans isProperPower_invRev_iff⟩
+
+/-- **No-proper-power transfers from a base family to its symmetrization.**
+Take `hw` from `w ∈ SmallCancellationRouter.symmetrization R`, which is
+definitionally this existential. -/
+theorem not_isProperPower_of_mem_symmetrization {α : Type*} {R : Set (List (α × Bool))}
+    (hR : ∀ r ∈ R, ¬ IsProperPower r) {w : List (α × Bool)}
+    (hw : ∃ r ∈ R, ∃ n : ℕ, w = r.rotate n ∨ w = (FreeGroup.invRev r).rotate n) :
+    ¬ IsProperPower w := by
+  obtain ⟨r, hr, n, rfl | rfl⟩ := hw
+  · exact fun h => hR r hr ((isProperPower_symmetrization_iff r n).1.mp h)
+  · exact fun h => hR r hr ((isProperPower_symmetrization_iff r n).2.mp h)
+
+/-- **The same transfer, in the `NoProperPower` shape the relator families use.**
+This is the drop-in: given the base-family hypothesis in its stated form, it
+returns the same form for every member of the symmetrized family. -/
+theorem noProperPower_symmetrization {α : Type*} {R : Set (List (α × Bool))}
+    (hR : ∀ r ∈ R, ∀ (u : List (α × Bool)) (m : ℕ), 2 ≤ m →
+      r ≠ (List.replicate m u).flatten) :
+    ∀ w : List (α × Bool),
+      (∃ r ∈ R, ∃ n : ℕ, w = r.rotate n ∨ w = (FreeGroup.invRev r).rotate n) →
+      ∀ (u : List (α × Bool)) (m : ℕ), 2 ≤ m → w ≠ (List.replicate m u).flatten := by
+  intro w hw
+  refine not_isProperPower_iff.mp
+    (not_isProperPower_of_mem_symmetrization (fun r hr => ?_) hw)
+  exact not_isProperPower_iff.mpr (hR r hr)
 
 end PeriodicOverlap
 end GroupApproximation
-
-#print axioms GroupApproximation.PeriodicOverlap.isProperPower_of_rotate_eq_self
-#print axioms GroupApproximation.PeriodicOverlap.isProperPower_of_rotate_eq_rotate
-#print axioms GroupApproximation.PeriodicOverlap.rotate_gcd_eq_self_of_prefix_rotate
-#print axioms GroupApproximation.PeriodicOverlap.isProperPower_of_prefix_rotate
-#print axioms GroupApproximation.PeriodicOverlap.isProperPower_of_prefix_rotate_rotate
-#print axioms GroupApproximation.PeriodicOverlap.isProperPower_iff_exists_rotate
-#print axioms GroupApproximation.PeriodicOverlap.isProperPower_rotate
-#print axioms GroupApproximation.PeriodicOverlap.not_isProperPower_of_two_mul_length_le
-#print axioms GroupApproximation.PeriodicOverlap.not_isProperPower_overlapWitness
-#print axioms GroupApproximation.PeriodicOverlap.overlapWitness_length_eq
-#print axioms GroupApproximation.PeriodicOverlap.exists_pow_of_isProperPower
-#print axioms GroupApproximation.PeriodicOverlap.isProperPower_invRev
