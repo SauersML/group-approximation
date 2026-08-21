@@ -93,3 +93,12 @@ not its common-carrier control.  The exact remaining construction is either
    selection theorem without naming `(LTS5)` as a universal word.
 
 Adding more typed Morita/Steinberg relations cannot close this gap.
+
+Nor can repeated packet-dressed Clifford occurrences cancel the twist while
+retaining the fine reflection.  The exact parity theorem
+`shared-gauge-cz-cancellation-needs-an-identity-outer-anchor` shows that an
+even product cancels both `V` and the CZ outer class, while an odd product
+retains both.  A positive two-word repair would be `CZ tensor V` times
+`I tensor V`, but authenticating that the identity-outer occurrence carries
+the same `V` is precisely a new multiplicity-holonomy relation, not a
+consequence of the current covariance packet.
