@@ -103,6 +103,50 @@ exact variety to `delta`-representations, i.e. the outlier sector.
   proves `(PRT1)`; full Hilbert--Schmidt stability of `Gamma` is stronger
   than necessary.
 
+- **The adjoint functor removes scalar phase but does not remove the
+  two-primary conductor (exact special-adjoint leak).**  Let `Q` be any
+  finite group and let `lambda_Q` be its left regular representation on
+  `ell^2(Q)`.  On the Hilbert--Schmidt space, with matrix units indexed by
+  `Q x Q`,
+
+  ```text
+  Ad(lambda_Q(g)) E_(x,y) = E_(gx,gy).                       (PRT5)
+  ```
+
+  The diagonal left-action on `Q x Q` has `|Q|` free orbits, indexed by
+  `x^(-1)y`.  Consequently there is an exact representation isomorphism
+
+  ```text
+  Ad(lambda_Q)  ~=  |Q| lambda_Q.                            (PRT6)
+  ```
+
+  In particular `Ad(lambda_Q)` is faithful, and for every `g != 1`,
+
+  ```text
+  tr_(|Q|^2)(Ad(lambda_Q(g)))=0,
+  ||Ad(lambda_Q(g))-1||_2=sqrt(2).                           (PRT7)
+  ```
+
+  Apply this to `Q_a=SL_3(Z/2^a Z)`.  For every `a>b>=1`, the reduction
+  kernel `ker(Q_a -> Q_b)` contains a nonidentity elementary matrix (for
+  example `e_12(2^b)`), and `(PRT7)` shows that its image under
+  `Ad(lambda_(Q_a))` remains at the maximal regular distance from the
+  identity.  Thus the adjoint lift does not factor through `Q_b`; its exact
+  dyadic conductor is still `2^a`.  In particular the sharp depth-two
+  leakage isolated by
+  `two-adic-tower-format-of-surviving-lambda-exact-enemy` survives passage
+  to adjoints unchanged on regular congruence blocks.
+
+  This rules out the hoped-for shortcut "projectivize, then the even tower
+  disappears."  Adjoint lifting kills only scalar cocycles.  A proof of the
+  special exactification used in `(PRT4)` must still use the approximate
+  denominator-generator relations to synchronize or contract the dyadic
+  conductor; it cannot follow from an algebraic conductor drop under `Ad`.
+  Scope: `(PRT6)` is an exact no-go for conductor factorization.  By itself
+  it is not a fixed-generator quantitative obstruction to being close to a
+  shallower representation, because a word exhibiting a deep kernel element
+  may have length growing with `a`.
+
 - **PTS4 identifies why property (T) does not supply that exactification.**
   For `n>=3`, `(PTS4)` in
   `projective-trace-square-transfer-for-sl3-pair` turns small projective
