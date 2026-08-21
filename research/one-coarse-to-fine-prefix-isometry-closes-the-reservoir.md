@@ -108,3 +108,17 @@ coarse-to-fine Gram row on the common marked carrier.  Diagonal Whitehead
 transport does not provide `(CFI10)`, but no simultaneous family of all
 off-diagonal bimodules is necessary either.
 
+For a unitary word even the Gram row is more than must be authenticated.
+`unitary-offdiagonal-block-gram-is-support-leakage` proves that, for
+`X=fJ_xe`,
+
+```text
+||e-X^*X||_2^2<=||(1-f)J_xe||_2^2.                    (CFI11)
+```
+
+Thus one support-transport row suffices.  However
+`literal-prefix-three-root-swap-retains-typed-carriers` gives the exact
+finite typed countermodel to deriving that row from the three elementary
+factors alone: the word swaps equal-rank minimal corners belonging to
+different packet objects.  The remaining nonlinear datum is the common
+fine-atom carrier reflection, or a matrix-only replacement for it.
