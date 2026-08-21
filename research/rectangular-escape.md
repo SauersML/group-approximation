@@ -57,3 +57,14 @@ multiplicity carrier.
   averages.  Any relation set achieving that transport contradicts this
   escape and charges the label/multiplicity conversion, which is what a
   valid decoder must do.
+
+- **Explicit degree-two floor (2026-08-21).**
+  `four-pauli-standard-polynomial-gives-a-fixed-rectangular-gap` closes the
+  analytic endpoint for the first doubling.  The four canonical target words
+  `(I tensor X,I tensor Z,X tensor I,Z tensor I)` have `s4`-norm exactly `8`,
+  whereas every four-tuple in `M_2 tensor I_m` has `s4=0`.  Robustly, source
+  confinement error `delta` and target Pauli error `epsilon` satisfy
+  `144 epsilon+96 delta>=8`.  Spectator amplification cannot change this.
+  Hence the escape now survives only by preventing the **same** four returned
+  words from being both source-confined and target-Pauli on one carrier; it
+  cannot survive by dimension bookkeeping alone.
