@@ -58,3 +58,28 @@ their variety decomposition leaves open.
   `.520` without the reward), but this is only a development check.  The
   diagnostic scans odd orders only up to a chosen cutoff and is explicitly
   not a certificate of distance from the full congruence locus.
+
+
+- **Skeleton reframing bypasses the physical-rank obstruction
+  (2026-08-21).**  The obstruction recorded above is that a sparse
+  low-energy outlier must be repaired to an exact FULL-RANK edge
+  intertwiner, and no two-loci transversality theorem supplies it.
+  The route through `skeleton-relative-hs-stability-for-sl2` avoids
+  repairing an outlier at all: Levit--Vigdorovich stability of
+  `BS(1,4)` plus the proved
+  `bs14-exact-representation-variety-is-hs-locally-rigid` make BOTH
+  parabolic towers EXACT with finite odd order before the edge is
+  touched, and then the Weyl element is not an outlier to be
+  rank-repaired but is imposed EXACTLY by DEFINING the lower tower as
+  its swap image (`L(y) := s pi_+(-y) s^{-1}`).  So the full-rank
+  object is the exact swap `s`, needing no `o(d)` padding, and the
+  only approximate data left is the pair of scalar-type holonomies
+  `(R1), (R2)` living in the compact centralizer torsor -- not in the
+  rank.  This also dissolves the missing transversality-of-two-loci
+  theorem: there are not two independent extension loci to make
+  transverse, but ONE exact tower and a fixed involution (the swap)
+  acting on it, whose self-consistency is `(R1)` and whose second
+  Weyl relation is `(R2)`, and the two collapse to one by the
+  Steinberg cocycle syzygy `w(s)w(t)^{-1}=h(s/t)`.  The remaining
+  content is torsor absorption, not rank repair -- a different and
+  more tractable shape for the same edge.

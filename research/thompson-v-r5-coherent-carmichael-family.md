@@ -94,3 +94,10 @@ as their centralizer cosets escape.  In particular,
 fillings to use every R1--R5 relator.  A surviving proof of `(CCF)` must cancel
 several endpoint holonomies collectively, use an averaged synchronization
 inequality, or avoid uniformly bounded individual centralizer commutators.
+
+Simple cycle cancellation is not such a proof.
+`collective-centralizer-cycles-are-free-gauge-identities` conjugates every
+pair correction into a difference `Q_jQ_i^(-1)` of vertex gauges; their
+product around a directed cycle freely reduces to the empty word.  This has
+zero area but also no matrix content.  Collective cancellation can help only
+if it retains a positive quantity such as a sum of squared edge defects.

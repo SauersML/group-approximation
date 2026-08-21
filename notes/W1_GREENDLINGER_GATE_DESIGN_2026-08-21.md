@@ -48,13 +48,21 @@ overruns all intermediate chunks into `K_j`'s relator territory).
 
 (α) `i_c = 0` (intermediate chunks absorb the whole conjugator).  The
 intrusion into `t_j` is a common subword of rotations of `t₁` and
-`t_j`.  Either it is a piece — `IsPiece` via `isPiece_of_overlap`
-(Overlap:180) — giving `6·i < |t_j|`, the sixth-disjunct of
-`CascadeLanding`; or the words coincide (`invRev t₁ = t_j.rotate k`
-with the conjugator relation), and the coincidence-collapse lemmas
-(Overlap:232/:255, 3F:887) delete two factors, contradicting
-minimality.  Case (α) is CLOSED by existing machinery plus the
-orientation lemma; only assembly is new.
+`t_j`.  Either it is a piece — and (SIXTH CORRECTION, 2026-08-21 late:
+the single-bound version first written here was under-specified) the
+SAME `IsPiece` must be cashed against BOTH rotations: `6·i < |t_j|`
+via the landing rotation gives the sixth-disjunct's `LandsIn` field,
+and `6·|E| < |t₁|` via `invRev t₁ ∈ symmetrization R` is what closes
+the landing disjunct's OTHER conjunct `|M| + j ≤ |c₁| + |t₁|` (a
+priori the eaten suffix `E` could be as long as `t₁`); or the words
+coincide and the coincidence-collapse lemmas delete two factors
+against minimality.  Case (α) is now CLOSED AND ON MAIN
+(`Sofic/GreendlingerDeepestMatch.lean`, commit 054da4ac): the
+orientation lemma turned out to be assembly of three already-landed
+overlap lemmas (Overlap:92/:101/:112 — honest attribution in the
+docstring), `six_mul_intrusion_lt` carries the double bound, and
+`cascadeLanding_of_conjugatorAbsorbed` is the named partial, taking
+distinctness and the cascade glue as hypotheses by design.
 
 (β) `i_c > 0`: head-conjugator letters eat into `t_j`'s relator
 letters.  Pieces do not bound `i_c`; the proved reroute bounds
@@ -63,6 +71,70 @@ bound, while `CascadeLanding`'s landing disjunct demands a SIXTH.
 **This gap is the concentrated refutation risk of the whole lane** —
 three prior "one remaining lemma" statements died in adjacent
 territory.
+
+## 2.5 THE (β) DESIGN, fixed by the adversary's survival profile
+## (2026-08-21 night; ~160,000 instances incl. designed tight-piece
+## families, ZERO refutations — CascadeLanding stands as stated)
+
+The profile pins the proof shape.  Facts, each mechanically validated:
+(F1) c₁ is LITERALLY a prefix of V (invRev M prefixes V and invRev c₁
+     suffixes M), so the regime enumerates as (tail, cut p, t₁).
+(F2) β-coincidence is void by REDUCEDNESS, not by collapse: if the
+     match past c₁ exceeds every piece, invRev t₁ = t_j.rotate i_c
+     exactly, and then c₁'s last letter forces palindrome c₁t₁
+     unreduced.  Elementary; the (β) analogue of (α)'s collapse.
+(F3) REAPPEARANCE PRINCIPLE: whatever factor j+1's conjugator eats off
+     factor j's palindrome at their junction returns VERBATIM inside
+     invRev c_{j+1} at the far end of V — conservation of eaten
+     letters.  This and untouched later rotations are the only two
+     mechanisms that deliver the arc in deep (β).
+(F4) Weight-minimality pins junction splits to m = |t|/2 (the two
+     adjacent swap moves improve strictly on either side); the proved
+     two_mul_leading_conjugator_le blocks the deep escape; the
+     factor-count clause kills every μ = |t₁| instance.
+(F5) In weight-minimal deep-(β) instances (e.g. i_c = 30, μ = 57 of
+     60), the landing disjunct's inequality μ + j ≤ |t₁| FAILS and the
+     conclusion holds ONLY through GreendlingerAt supplied by a LATER
+     factor.  So the (β) branch must case on μ + j ≤ |t₁|:
+       ≤ : the landing disjunct via the piece bound (formalized shape
+           exists in DeepestMatch);
+       > : produce GreendlingerAt from the tail — untouched later
+           rotation, or the reappearance copy (> (1−λ)-fraction
+           survives at the far end minus one piece).
+     The head's own survivor can never supply the arc once μ ≳ |t₁|/3.
+
+New lemmas this determines, in dependency order: (L-red) the
+reducedness-voids-coincidence lemma (F2); (L-reapp) the junction
+reappearance lemma (F3 — same species as the orientation lemma, proved
+by the same suffix-mirror decomposition at internal junctions);
+(L-half) the m = |t|/2 pin from the two swap rivals (F4, reroute
+arithmetic already half-proved in 3F); (L-deep, its OWN lemma per the
+adversary's closing note, not a sub-case: when μ + j > |t₁| the
+landing disjunct is unavailable and the located conclusion MUST be
+produced from a later factor — untouched rotation or reappearance
+copy); then the (β) assembly casing on μ + j vs |t₁|.
+
+Final engagement facts (≈218,000 instances, all axes, zero
+refutations): 5- and 6-factor cascades STRENGTHEN the conclusion —
+each extra junction adds an arc source (one more untouched rotation)
+faster than it adds ways to eat one, so the induction should not fear
+depth; and for unequal relator lengths the head-survivor mechanism is
+protected by the lemma-shape "the match past c₁ is a common prefix of
+rotations of invRev t₁ and t_j, so its piece bound is against
+min(|t₁|,|t_j|) ≤ |t₁|" — long-only pieces can run to a third but
+never bound a match involving the short head relator.  Deepest
+instance found anywhere: the block eating 98% of a 96-letter head
+relator, saved by an untouched later rotation, μ + j = 109 > 96.
+
+SHARP-FORM CAVEAT (caught in design review): the cascade machinery is
+½-form throughout (GreendlingerAt stores |r| < 2|u|), and ½-form at
+C'(1/8) gives only n > (3/8)|r| — NOT enough to empty the torsion
+residual A2b, which needs the (1−3λ)-form.  So proving CascadeLanding
+closes the ½-gate but not the sharp leaf.  The honest cost: the
+ARITHMETIC lemma layer (keeps_of_two_pieces and kin — pure rational
+inequalities) gets λ-parameterized twins, while the structural layer
+(chunks, nesting, transport, reappearance) is λ-free and shared.
+Mechanical, additive, assignable after the ½-form closes.
 
 ## 3. Mandatory first step: adversarial test of case (β)
 
@@ -128,16 +200,40 @@ no relator a proper power, metric C'(1/6) ⟹ the quotient is
 `IsPowerTorsionFree`.  Classical proof to formalize (after the gate):
 if `g^k = 1`, `g ≠ 1`, take `w` cyclically-reduced conjugate
 representative of `g`; then `w^k ∈ N` and Greendlinger applies to
-`w^k`; the >½ arc in a power of `w` overlapping two periods forces a
-relator to share more than half with a PERIODIC word, and C'(1/6) plus
-no-proper-powers turns the induced overlap of the relator with its own
-rotate into a piece contradiction; the residual case (arc inside one
-period) descends to `|w| < |arc|`-type shrinking.  Statement is being
-scaffolded by w1b as `isPowerTorsionFree_of_metricSmallCancellation`;
-the periodic-overlap lemma ("a word sharing more than half of itself
-with its own nontrivial rotation is a proper power" — Fine–Wilf shape)
-is the one genuinely new sub-lemma; Mathlib's `List.rotate` API plus
-Fine–Wilf-style period arithmetic should carry it.
+`w^k`.  **CORRECTED 2026-08-21 (the first version of this paragraph
+pointed at a REFUTED sub-lemma — the fourth documentation error in this
+lane's history, machine-checked this time):** "a word sharing more than
+half of itself with its own nontrivial rotation is a proper power" is
+FALSE — `PeriodicOverlap.not_isProperPower_of_two_mul_length_le` has
+the witness `0 1 0 0 1 0 0 1`, which overlaps a rotation of itself in
+three quarters of its length and is not a proper power; the sharp true
+hypothesis is `|w| ≤ |p| + gcd(k, |w|)`, which a Greendlinger arc never
+supplies.  Fine–Wilf is the wrong tool here, not merely unproved.  The
+correct route is the TWO-OCCURRENCE DICHOTOMY: the arc exhibits a
+common prefix of two rotations of one relator; either the rotations are
+distinct — then the prefix is a piece and C'(1/6) bounds it — or they
+are equal, and `isProperPower_of_rotate_eq_rotate` fires with no
+overlap-length hypothesis at all, which is exactly where the
+`NoProperPower` hypothesis is spent.  The consuming statement
+(`isPowerTorsionFree_of_metricSmallCancellation`, w1b) carries this
+warning in its docstring; `Sofic/PeriodicOverlap.lean` (landed on main)
+supplies the dichotomy lemmas, the rotate/invRev closure of
+non-proper-powers, and the refutation itself.
+
+SECOND CORRECTION (same evening, fifth error in the lane): even the
+dichotomy sketch above was incomplete — in the arc-spans-two-periods
+branch with DISTINCT rotations, bounding the overhang piece bounds m,
+not |u|, and the resulting length system is satisfiable (machine-
+verified, 7592 solutions; window 2n ≤ |r| < 3n).  The full descent is
+finewilf's L0–L3 decomposition: |u| ≤ n closes by Dehn descent; equal
+rotations close by the proper-power lemma; |r| < 2n closes by the
+cyclic-conjugate descent; and the residual window is ARITHMETICALLY
+EMPTY when the gate is consumed in sharp form |u| > (1−3λ)|r| at
+λ ≤ 1/8 (then n > (1−4λ)|r| ≥ |r|/2).  Consequence for the program:
+the avatar family is designed at C'(1/8), the gate file carries a
+sharp-form leaf from which the ½-form is derived, and the torsion
+theorem is unconditional given the sharp gate — no second van-Kampen
+atom exists on this path.
 
 ## 6. Division of labor
 

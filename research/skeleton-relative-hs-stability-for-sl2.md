@@ -241,6 +241,22 @@ never activates.
   over a proved base rather than diffused across the whole stability
   question.  Not landed; sharply reduced.  A rigorous write-up of
   (a) and (b) is the work; nothing here claims those are automatic.
+- **The two named lemmas reduce to one (2026-08-21).**  Lemma (a),
+  the solenoid-group extension, is not a separate obligation: the
+  solenoid group `Z[1/2] rtimes_4 Z` is literally `BS(1,4)` (the roots
+  `t^{-k} a t^k` are words in the two generators), and the skeleton
+  `<u, h> <= SL_2(Z[1/2])` is exactly this group, so the proved
+  `bs14-exact-representation-variety-is-hs-locally-rigid` already
+  covers the whole tower.  What remains is (b), which in structural
+  terms is the shared-`h` matching of two exact `BS(1,4)`
+  representations into one exact `SL_2(Z[1/2])` representation.  In
+  the Serre picture `SL_2(Z[1/2]) = SL_2(Z) *_(Gamma_0(2)) SL_2(Z)`
+  the matching is an edge condition, and it coincides with the
+  already-isolated half-parabolic square-root edge of
+  `far-sector-vertex-handled-edge-is-square-root`: this route and the
+  Iwahori route meet at the same edge, now carrying two inputs the
+  edge lacked before -- odd-tower local rigidity and the syzygy
+  collapse of the two swap holonomies to one.
 - **Where the obvious attack could die.**  If the torsor fixed-point
   problem has an obstruction class that grows with the odd order,
   the loss would not be dimension-free; the analogue at the level of

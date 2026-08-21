@@ -160,6 +160,25 @@ def GreendlingerConclusion (R : Set (List (α × Bool))) : Prop :=
     ∃ r ∈ symmetrization R, ∃ u : List (α × Bool),
       u <:+: w ∧ u <+: r ∧ r.length < 2 * u.length
 
+/-- **The Greendlinger conclusion at the sharp constant.**  The same statement
+as `GreendlingerConclusion`, with the arc bounded by `(1 - 3·lam)·|r|` instead
+of by `|r|/2`.
+
+At `lam = 1/6` the two agree exactly — `1 - 3/6 = 1/2` — so the half-form is
+that reading of this one; below `1/6` this is strictly stronger.  The strength
+is spent by the torsion descent, whose residual case is arithmetically empty at
+`lam ≤ 1/8` given this form and open given the half-form.
+
+It lives here, beside the conclusion it generalizes, because it is a property of
+a relator family and not of either lane that consumes it: the gate lane proves
+it and the torsion lane spends it, and a definition owned by one of them would
+be a definition the other could only match by hand. -/
+def GreendlingerConclusionSharp (R : Set (List (α × Bool))) (lam : ℚ) : Prop :=
+  ∀ w : List (α × Bool), FreeGroup.IsReduced w → w ≠ [] →
+    FreeGroup.mk w ∈ Subgroup.normalClosure (FreeGroup.mk '' R) →
+    ∃ r ∈ symmetrization R, ∃ u : List (α × Bool),
+      u <:+: w ∧ u <+: r ∧ (1 - 3 * lam) * (r.length : ℚ) < (u.length : ℚ)
+
 /-- Nontrivial elements of the relator subgroup are longer than half of
 some symmetrized relator. -/
 theorem norm_bound_of_greendlinger [DecidableEq α]
