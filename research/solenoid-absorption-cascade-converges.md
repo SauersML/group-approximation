@@ -181,6 +181,30 @@ recursion terminates; the total correction is
   spectrum and the `3`-adic valuation of the rounded order -- the
   first fully arithmetic form the residual has taken, and the exact
   statement to settle next.
+- **The sharp fixed part (order-3 roots) is KILLED; residual is the
+  graded 3-power tower (2026-08-21).**  Refine the fixed locus.  `x4`
+  fixes a root of unity `zeta` iff `zeta^4 = zeta` iff `zeta^3 = 1` --
+  ONLY the order-`3` roots `{1, omega, omega^2}`.  On order-`9` roots
+  `x4` already has order `3` (`4, 7, 1 mod 9`), so it is NOT the
+  identity there, and `(x4 - 1)` is invertible on the primitive
+  order-`9` part; likewise every higher `3`-power level.  So the
+  strictly UNABSORBABLE locus (`psi_* - 1 = 0` exactly) is the sparse
+  three-point set `{1, omega, omega^2}`, a FIXED finite set.  Under
+  the regular trace the spectral measure of `pi(u)` tends to Lebesgue,
+  which gives each of these three points mass `0`; the exact base
+  `R_0`, being HS-close, has order-`3` eigenspace dimension fraction
+  `-> 0`, so `e'`'s component there is normalized-HS negligible.  The
+  sharpest piece of the crux -- `e'` on the primitive cube roots --
+  therefore DIES by the atomless trace.  What remains is only the
+  graded `3`-power tower (orders `9, 27, ...`): there `(psi_* - 1)` is
+  invertible but with gap `~ j/3^(k-1)` shrinking up the tower, so the
+  residual is exactly the cascade-convergence competition
+  (peeled residual size vs shrinking gap) restricted to the
+  `3`-power sub-tower -- a measure-`0`-limiting, dense-but-thin set
+  whose mass the trace also suppresses.  Net: the crux is no longer a
+  hard fixed-point obstruction but a graded convergence on a
+  trace-thin sub-tower, strictly weaker than where it stood an hour
+  ago.
 - **Why it is plausible and where it could fail.**  The peeling is a
   geometric contraction when the residual shrinks faster than the gap:
   each descent multiplies the uncorrected mass by the local defect
