@@ -165,3 +165,12 @@ self-Gram moments without the cross-Gram moment is insufficient by
 one common-corner cross-Gram lower bound, not a family of compatible polar
 choices.
 
+`localized-non-ce-leakage-forces-cross-gram-overlap` now gives the precise
+matrix-ultraproduct mechanism for a positive overlap.  Gram capacity says
+that orthogonal exits must leak outside the fixed target capacity; the finite
+localized Fanizza moment matrix on each leakage projection then invokes the
+corner non-CE gap and forbids BCS-quiet leakage.  Source-only moments cannot
+do this, because orthogonal bookkeeping-coordinate embeddings preserve them
+exactly.  The remaining compiler estimate is the mixed localization bound
+making the actual leakage ranges approximately reducing and residual-free
+for the same shared Fanizza tuple.

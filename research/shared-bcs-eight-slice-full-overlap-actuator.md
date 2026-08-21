@@ -45,3 +45,14 @@ forbidden masses is invalid.
 `eight-slice-overlap-requires-a-connes-embedding-separator` records the
 positive form of this firewall: the desired inequality is already the final
 matrix-versus-regular trace separation, not a purely finite-packet lemma.
+
+There is now a concrete finite source-specific candidate moment object:
+`localized-non-ce-leakage-forces-cross-gram-overlap` forms the Gram matrix of
+`L`, `Z_xL`, `LZ_x`, and `R(Z)L` on every off-capacity leakage projection.
+The corner-localized non-CE gap forces its positive functional `Lambda` to be
+at least `beta tau(L)` in matrices.  Combined with Gram capacity, small
+`Lambda` forces positive cross-Gram overlap, while source-only moments admit
+an exact orthogonal-coordinate countermodel.  To reach the full-overlap form
+`(SBO1)`, the actuator must still turn that positive spectral overlap into the
+single returned `S`-to-`C` compression; the universal packet relations do not
+do so.
