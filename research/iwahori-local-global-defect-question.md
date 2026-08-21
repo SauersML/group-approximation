@@ -77,3 +77,45 @@ non-hyperlinear group, their Corollary 1.3) is consumed.
 - **Not attempted here: the negative side.**  No construction in this
   repository produces a sequence with `def(pi_n) -> 0` and `D(pi_n)` bounded
   below.  A negative answer would kill this route without touching the goal.
+
+## Attempts (added 2026-08-21, from the HNN route)
+
+- **This node now carries two routes to the goal.**  Besides
+  `iwahori-sector-closure` (Dogon--Vigdorovich's finite central extension),
+  `non-hyperlinear-from-hnn-over-sl2-z` shows a positive answer makes
+  `<SL_2(Z[1/2]), t | [t, SL_2(Z)] = 1>` nonhyperlinear
+  (`hnn-over-codense-kazhdan-subgroup-not-hyperlinear`,
+  `sl2-z-inverse-p-over-sl2-z-is-codense-tau-pair`).  A negative answer
+  would be witnessed by hyperlinearity of that HNN extension
+  (`sl2-half-stability-excludes-hnn-hyperlinearity`).
+- **Microstate form.**  By the congruence subgroup property every
+  finite-dimensional representation of `SL_2(Z[1/2])` is a congruence
+  representation, and by Peterson--Thom (arXiv:1303.4007, Theorem 2.6)
+  every character is a finite-quotient character or the regular one; the
+  finite-quotient part is handled by Dogon--Vigdorovich's hyperfinite
+  stability (their Theorem 1.6, Proposition 8.3).  What remains is exactly:
+  *every sequence of microstates of the regular trace of `SL_2(Z[1/2])`
+  (defect tending to zero, traces tending to `delta_e`) is asymptotically
+  close to direct sums of congruence representations.*  For a residually
+  finite group this is equivalent to flexible stability (tensor a
+  far-from-exact asymptotic representation with congruence representations
+  of vanishing character), so nothing is lost in this form.
+- **Linearization.**  Near a compatible representation `rho` (a congruence
+  representation), first-order deformations of the pair `(pi_+, pi_-)` are
+  cocycles `(c_+, c_-)` in `H^1(SL_2(Z), Ad rho) (+) H^1(SL_2(Z), Ad rho)`,
+  the local defect is the image under restriction-minus-`sigma^*`-restriction
+  in `H^1(B, Ad rho)`, and Mayer--Vietoris for the amalgam together with
+  `H^1(SL_2(Z[1/2]), Ad rho) = 0` (vanishing for finite-dimensional unitary
+  coefficients, from property (T;FD)) says that map is injective.  The
+  question at first order is whether its inverse on the image is bounded
+  *uniformly in `rho` and in the dimension* with respect to the normalized
+  Hilbert--Schmidt norms on cochains; the full question adds the nonlinear
+  terms.  No such uniform bound is in the graph.
+- **What a counterexample must look like.**  Exotic microstates of
+  `SL_2(Z[1/2])`: defect and traces tending to zero, bounded distance from
+  all congruence representations.  They cannot be built by perturbing
+  congruence representations in the compatible directions (rigidity above)
+  nor by tensoring them with anything exact; by
+  `sl2-half-stability-excludes-hnn-hyperlinearity` they would also have to
+  admit, to refute through the HNN group, an almost-centralizer of
+  `SL_2(Z)` that is not an almost-centralizer of `SL_2(Z[1/2])`.
