@@ -15,6 +15,14 @@ from atlas_kernel_collision_enumerator import enumerate_ball, spanning_tree_kern
 from atlas_two_chart_search import I4, gf2_mul, matrix_key
 
 
+BRIDGE_ENDPOINTS = {
+    "h": "01000000000101000001000000000001",
+    "k": "01010000010000000000010000000001",
+    "z": "01000000000100000000010100000100",
+    "b": "01000000000100000000010100000001",
+}
+
+
 def subgroup(generators):
     seen = {matrix_key(I4): I4.copy()}
     todo = [I4.copy()]
@@ -83,8 +91,12 @@ def main():
     records = []
     generated = []
     for component in components:
-        involutions = [key for key in component if matrix_order(matrices[key]) == 2]
-        order_threes = [key for key in component if matrix_order(matrices[key]) == 3]
+        involutions = sorted(
+            key for key in component if matrix_order(matrices[key]) == 2
+        )
+        order_threes = sorted(
+            key for key in component if matrix_order(matrices[key]) == 3
+        )
         group = subgroup([matrices[key] for key in component])
         generated.append(group)
         involution_group = subgroup([matrices[key] for key in involutions])
@@ -102,6 +114,32 @@ def main():
             "center_size": len(center(group)),
             "involution_generated_subgroup_size": len(involution_group),
             "tree_indices": [index for index, _, _, _ in component_edges],
+            "involution_labels_hex": [key.hex() for key in involutions],
+            "order_three_labels_hex": [key.hex() for key in order_threes],
+            "ordered_pair_occurrences": [
+                {
+                    "tree_index": index,
+                    "order_two_chart_factor": factor,
+                    "involution_hex": b.hex(),
+                    "order_three_hex": a.hex(),
+                }
+                for index, factor, b, a in component_edges
+            ],
+            # With b_0--a_0, b_0--a_j and b_1--a_0 as the spanning tree,
+            # the remaining edge b_1--a_j carries this canonical rectangle.
+            # These records freeze the exact labels needed by a subsequent
+            # qutrit/multiplicity-wire compiler; no matrix variable is chosen
+            # at this finite-group audit stage.
+            "canonical_fundamental_rectangles": [
+                {
+                    "b0_hex": involutions[0].hex(),
+                    "b1_hex": involutions[1].hex(),
+                    "a0_hex": order_threes[0].hex(),
+                    "aj_hex": order_threes[j].hex(),
+                    "holonomy_word": "M(b1,aj) M(b0,aj)^* M(b0,a0) M(b1,a0)^*",
+                }
+                for j in range(1, len(order_threes))
+            ],
         }
         records.append(record)
 
@@ -131,6 +169,32 @@ def main():
     if len(joined) != 20160:
         raise AssertionError(f"component subgroups no longer generate A8: {len(joined)}")
 
+    component_hex = [
+        {key.hex() for key in component}
+        for component in components
+    ]
+    endpoint_localization = {}
+    for name, hex_value in BRIDGE_ENDPOINTS.items():
+        memberships = [
+            index for index, labels in enumerate(component_hex)
+            if hex_value in labels
+        ]
+        endpoint_localization[name] = {
+            "matrix_f2_hex": hex_value,
+            "packet_component": memberships[0] if memberships else None,
+        }
+    expected_localization = {
+        "h": 0,
+        "k": 1,
+        "z": 1,
+        "b": None,
+    }
+    if {
+        name: record["packet_component"]
+        for name, record in endpoint_localization.items()
+    } != expected_localization:
+        raise AssertionError(f"bridge endpoint localization changed: {endpoint_localization}")
+
     output = {
         "packet_size": len(packet),
         "distinct_letters": len(matrices),
@@ -140,6 +204,11 @@ def main():
         ),
         "component_subgroup_intersection_size": intersection_size,
         "joined_component_subgroup_size": len(joined),
+        "two_holonomy_bridge_endpoint_localization": endpoint_localization,
+        "two_holonomy_bridge_structure": {
+            "c": "h*k joins the order-three vertices of components 0 and 1",
+            "a": "z*b joins the central-C3 packet vertex z to the collision-only involution b",
+        },
         "components": records,
     }
     print(json.dumps(output, sort_keys=True, indent=2))

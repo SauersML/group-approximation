@@ -21,8 +21,6 @@ Expected result:
 All arithmetic is exact over F2.
 """
 
-from __future__ import annotations
-
 import collections
 import json
 import os
@@ -34,6 +32,16 @@ from atlas_boundary_inner_alignment import enumerate_gl4
 from atlas_kernel_collision_enumerator import enumerate_ball, spanning_tree_kernel_words
 from atlas_triangle_19243_packet import decode_word
 from atlas_two_chart_search import I4, gf2_inv, gf2_mul, matrix_key
+from atlas_t30_parabolic_c3_bridge import (
+    H6_LABELS,
+    H18_LABELS,
+    I4 as I4_TUPLE,
+    Q_FIRST_INVOLUTION,
+    Q_SECOND,
+    center,
+    matrix_hex,
+    subgroup,
+)
 
 
 I5 = np.eye(5, dtype=np.uint8)
@@ -99,6 +107,30 @@ def order5(matrix, bound=64):
         if np.array_equal(value, I5):
             return exponent
     raise AssertionError("unexpected order above bound")
+
+
+def nonzero_fixed_points(matrix):
+    """Fixed points in the 31-point permutation action on F2^5 \ {0}."""
+    return sum(
+        np.array_equal((matrix @ bits5(value)) & 1, bits5(value))
+        for value in range(1, 32)
+    )
+
+
+def covariance_defect_numerator(relative, label):
+    """Return 31*delta^2 in the 31-point permutation representation.
+
+    For the permutation representation, normalized trace is the fixed-point
+    fraction.  Hence delta_U(g)^2=2(1-fix([U,g])/31), and the integer returned
+    here is exactly 31 times that squared defect.
+    """
+    relative_inverse = inv5(relative)
+    image = embed4(label)
+    cocycle = mul5(
+        mul5(mul5(relative, image), relative_inverse),
+        inv5(image),
+    )
+    return 2 * (31 - nonzero_fixed_points(cocycle))
 
 
 def rank_columns(vectors):
@@ -287,15 +319,46 @@ def main():
     intersection_histogram = collections.Counter()
     collision_order_histogram = collections.Counter()
     joint_histogram = collections.Counter()
+    two_holonomy_histogram = collections.Counter()
+    collision_defect_histogram = collections.Counter()
+    joint_two_holonomy_collision_histogram = collections.Counter()
+    joint_stratum_two_holonomy_collision_histogram = collections.Counter()
     collision_survivors = 0
+
+    # The exact bridge uses c=h k and a=z b.  The frozen labels below are the
+    # same canonical choices as experiments/atlas_t30_parabolic_c3_bridge.py.
+    h = np.array(H6_LABELS[2], dtype=np.uint8)
+    k = np.array(Q_SECOND[0], dtype=np.uint8)
+    c = gf2_mul(h, k)
+    h18 = subgroup(H18_LABELS)
+    z_values = sorted(
+        (value for value in center(h18) if value != I4_TUPLE),
+        key=matrix_hex,
+    )
+    z = np.array(z_values[0], dtype=np.uint8)
+    b = np.array(Q_FIRST_INVOLUTION, dtype=np.uint8)
+    a = gf2_mul(z, b)
     for _coset, _position, relative in solutions:
         relative_inverse = inv5(relative)
         overlap = intersection_size(relative, relative_inverse, H, H_keys)
         q_value = collision_value(collision, relative)
         q_order = order5(q_value)
+        c_defect_numerator = covariance_defect_numerator(relative, c)
+        a_defect_numerator = covariance_defect_numerator(relative, a)
+        # 31*E_2HOL = 2*(31*delta(c)^2) + 31*delta(a)^2.
+        two_holonomy_numerator = 2 * c_defect_numerator + a_defect_numerator
+        collision_defect_numerator = 2 * (31 - nonzero_fixed_points(q_value))
         intersection_histogram[overlap] += 1
         collision_order_histogram[q_order] += 1
         joint_histogram[(overlap, q_order)] += 1
+        two_holonomy_histogram[two_holonomy_numerator] += 1
+        collision_defect_histogram[collision_defect_numerator] += 1
+        joint_two_holonomy_collision_histogram[
+            (two_holonomy_numerator, collision_defect_numerator)
+        ] += 1
+        joint_stratum_two_holonomy_collision_histogram[
+            (overlap, two_holonomy_numerator, collision_defect_numerator)
+        ] += 1
         collision_survivors += int(np.array_equal(q_value, I5))
 
     expected_intersections = {168: 118, 1344: 54, 20160: 30}
@@ -320,6 +383,18 @@ def main():
         raise AssertionError("collision 19243 survived the GL5 screen")
     if dict(coset_solution_counts) != expected_cosets:
         raise AssertionError(coset_solution_counts)
+    if any(
+        energy > 5 * defect
+        for energy, defect in joint_two_holonomy_collision_histogram
+    ):
+        raise AssertionError("the sharp rank-five E_2HOL <= 5 ||q-1||_2^2 wall failed")
+    sharp_readout_count = sum(
+        count
+        for (energy, defect), count in joint_two_holonomy_collision_histogram.items()
+        if energy == 5 * defect
+    )
+    if sharp_readout_count != 96:
+        raise AssertionError(f"sharp readout count changed: {sharp_readout_count}")
 
     output = {
         "ambient_group": "GL5(F2)",
@@ -330,11 +405,34 @@ def main():
         "packet_relations": 30,
         "distinct_ordered_pair_constraints": 16,
         "packet_exact_relative_positions": 202,
+        "packet_exact_relative_positions_hex": [
+            key5(relative).hex() for _, _, relative in solutions
+        ],
         "packet_solution_cosets": sum(coset_solution_counts.values()),
         "solutions_per_nonempty_coset_histogram": dict(sorted(coset_solution_counts.items())),
         "chart_intersection_size_histogram": dict(sorted(intersection_histogram.items())),
         "collision_19243_identity_survivors": collision_survivors,
         "collision_19243_order_histogram": dict(sorted(collision_order_histogram.items())),
+        "permutation31_two_holonomy_energy_numerator_over_31_histogram": dict(
+            sorted(two_holonomy_histogram.items())
+        ),
+        "permutation31_collision_defect_squared_numerator_over_31_histogram": dict(
+            sorted(collision_defect_histogram.items())
+        ),
+        "permutation31_joint_two_holonomy_collision_histogram": {
+            f"E2_num={energy},q_defect2_num={defect}": count
+            for (energy, defect), count
+            in sorted(joint_two_holonomy_collision_histogram.items())
+        },
+        "permutation31_joint_stratum_two_holonomy_collision_histogram": {
+            f"intersection={overlap},E2_num={energy},q_defect2_num={defect}": count
+            for (overlap, energy, defect), count
+            in sorted(joint_stratum_two_holonomy_collision_histogram.items())
+        },
+        "permutation31_sharp_readout": {
+            "inequality": "E_2HOL <= 5 ||q_19243-1||_2^2",
+            "equality_positions": sharp_readout_count,
+        },
         "joint_intersection_collision_order_histogram": {
             f"intersection={overlap},q_order={order}": count
             for (overlap, order), count in sorted(joint_histogram.items())

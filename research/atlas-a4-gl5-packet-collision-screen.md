@@ -7,6 +7,7 @@ invalidates:
   - nonhyperlinear-from-centralizer-product-classicalization
 artifacts:
   - experiments/atlas_a4_gl5_packet_screen.py
+  - experiments/atlas-a4-gl5-two-holonomy-profile.json
 distinct_from:
   atlas-a4-classical-mixture-trace-separator: that exhausts the 40,320 automorphism alignments inside A8 itself; this screen lets the second standard A8 copy move through every one of the 9,999,360 elements of GL5(F2), so it tests genuinely larger finite relative positions.
   atlas-a4-19243-parabolic-subgroup-ladder: that identifies subgroup geometry internal to the chart A8; this computes all exact packet solutions in one ambient rank-five finite linear group and shows collision 19243 kills every one.
@@ -51,6 +52,17 @@ intersection 20160:  q-order 2: 25,  q-order 4:  5.
 Consequently there is no relative position of the two standard conjugate
 `A8` copies inside `GL5(F2)` which realizes the thirty A4 packet relations and
 collision 19243 simultaneously.
+
+The same exhaustive list also admits a quantitative two-holonomy calibration
+in the 31-point permutation representation.  See
+`atlas-a4-gl5-two-holonomy-readout`: on all 202 packet positions,
+
+```text
+E_2HOL <= 5 ||q_19243-1||_2^2,
+```
+
+with equality at 96 positions.  This is fixed-rank evidence for the desired
+collision readout, not an amplified-regular theorem.
 
 ### Packet-only classicalization is false
 

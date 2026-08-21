@@ -41,9 +41,14 @@ it separately decode `z` from the collision involution `b`.
   the 19243 residual in the commuting `S3` partner.  Seek a two-variable
   connection-Laplacian or trace inequality rather than reconstructing four
   individual letter defects.
+- `atlas-two-holonomy-endpoint-localization` makes the required compiler map
+  precise: `h` lies on the `K_(2,2)` component, `k,z` lie on `K_(2,4)`, and
+  `b` is collision-only.  Thus `c,a` are cross-component endpoint products,
+  not individual rectangle variables.  The four rectangles first remove
+  internal cycle gauge; two component-root transports and the collision
+  endpoint still have to be decoded.
 - The natural threshold is non-strict.  Curvature of the unitary sphere gives
   a fixed gap of `1/2-338/729=53/1458` after the bridge.
 - The full spherical threshold is actually
   `12 sin^2(pi/18)>1/3`; the rational `1/3` is retained as the clean packet
   budget.
-
