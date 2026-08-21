@@ -42,11 +42,14 @@ pair `x!=y` for which
 h_0(x,y) notin B_0       or       h_1(x,y) notin B_1. (TOH4)
 ```
 
-In particular, for finite generating sets of the point stabilizers,
+In particular, for the ambient word metric of the finitely generated group,
 
 ```text
-sup_(x!=y) max(|h_0(x,y)|,|h_1(x,y)|)=infinity.        (TOH5)
+sup_(x!=y) max(|h_0(x,y)|_G,|h_1(x,y)|_G)=infinity.    (TOH5)
 ```
+
+If the point stabilizers are finitely generated, the same conclusion holds
+for either intrinsic stabilizer word metric.
 
 ## Proof
 
@@ -66,7 +69,9 @@ sigma_1(y)=sigma_0(x)h_0(x,y)h_1(x,y)^(-1)
 
 The set on the right is finite.  Applying its elements to `x_1` shows that
 only finitely many values of `y` are possible, contradicting infinitude of
-`X`.  This proves `(TOH4)` and `(TOH5)`.
+`X`.  This proves `(TOH4)`.  For `(TOH5)`, intersect each `H_i` with an
+ambient word ball; these are finite.  Intrinsic stabilizer balls are finite
+as well whenever the stabilizers are finitely generated.
 
 ## Consequence for occurrence consistency
 
