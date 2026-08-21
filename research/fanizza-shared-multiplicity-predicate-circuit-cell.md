@@ -77,3 +77,11 @@ and the reverse-Kleene route closes without a runtime-uniform modulus.
   obstruction is narrower: Pauli covariance does not force the larger
   hyperoctahedral constants to have trivial external multiplicity action.
   `hyperoctahedral-router-interface-for-fanizza` records exactly that return.
+- **Gauge-double the logical selector into two balanced controls. Fenced.**
+  The identity `X=AB` preserves an arbitrary logical involution while both
+  shares admit Pauli partners.  However
+  `gauge-doubled-controls-remain-outer-separated` computes the two resulting
+  CZ automorphisms explicitly: they differ by the central transvection
+  `P_t -> X P_t`, which is outer unless the logical radical has already
+  collapsed to `1` or `J`.  Hence the two balanced gates still cannot be
+  packet dressings of one implementer.
