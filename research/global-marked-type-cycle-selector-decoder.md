@@ -129,3 +129,14 @@ independently of those gauges.  Hence `(GTC4)` cannot come from one
 uncompressed Hecke/partial-swap holonomy word.  A successful actuator must
 see the analytic forbidden-weighted selector cuts at intermediate stages, or
 otherwise remove the last-edge gauge by a genuinely matrix-coordinate rule.
+
+The smallest multi-square repair has now been computed.
+`compressed-k2m-locks-gauge-but-needs-matrix-separator` shows that the
+`m-1` rectangles of `K_(2,m)` do remove the last column gauge and, after
+compression by orthogonal source cuts, bound the source-capacity deficit by
+twice rectangle energy plus compressed leakage. However exact row-column
+factorizations make every rectangle word vanish while leaving the selector
+capacity deficit positive. Universal word relators for the leakage would
+contradict the regular trace. Therefore `K_(2,m)` closes the gauge part of
+GTC4 but not its matrix-only authentication part: a shared-BCS separator for
+the compressed leakage remains the irreducible input.

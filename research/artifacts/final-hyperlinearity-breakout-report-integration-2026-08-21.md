@@ -298,6 +298,22 @@ holonomy while the cyclic selector floor stays positive. A positive actuator
 must compress intermediate stages by the analytic forbidden cuts or impose a
 genuinely matrix-coordinate condition that removes that last-edge gauge.
 
+The two-cell follow-up is now exact.
+`compressed-k2m-locks-gauge-but-needs-matrix-separator` replaces the single
+cycle by `K_(2,m)`: its `m-1` rectangle words synchronize every column gauge,
+and orthogonal source compression gives
+
+```text
+source trace-capacity trace <=2(rectangle energy+compressed leakage).
+```
+
+For the three eight-slice failures this left side is exactly
+`tau(P_f)/16`. Thus rectangles solve the last-gauge problem, but not GTC4:
+uncompressed row-column factorizations keep all squares exact, while making
+the leakage a universal reflection relator contradicts the regular trace.
+The remaining actuator is sharply one matrix-only shared-BCS bound on the
+compressed leakage; no further multiplicity synchronization is missing.
+
 ## Computer-science and quantitative-no-go audit
 
 The proof-system framing is retained in corrected form in

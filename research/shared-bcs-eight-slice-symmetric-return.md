@@ -68,3 +68,20 @@ orthogonal, their sum is one projection `S`; the entire capacity deficit is
 the single scalar `tau(S)-tau(SW^*CWS)`.  The one-overlap route goes directly
 to fixed-scale holonomy and does not need to construct the partial
 isometries demanded in `(SBR2)`.
+
+There is also a precise multi-square version.
+`compressed-k2m-locks-gauge-but-needs-matrix-separator` puts the three sources
+in the columns of `K_(2,3)`. Its two rectangle holonomies remove the last
+multiplicity gauge and prove
+
+```text
+tau(P_f)/16<=2(ell+h),
+```
+
+where `h` is ordinary rectangle-word energy and `ell` is the compressed
+row-one leakage into the parent capacity. Thus multi-square synchronization
+is sufficient once the shared non-CE tuple supplies `ell<=K E_rel+o(1)`.
+Rectangles alone are insufficient, and making the leakage a universal
+reflection relator contradicts the regular trace. The remaining input is
+still genuinely matrix-only, but no additional gauge-locking theorem is
+needed.
