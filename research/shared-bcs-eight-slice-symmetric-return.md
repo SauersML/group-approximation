@@ -61,3 +61,10 @@ orthogonal and therefore forces target dimension at least the summed source
 dimension.  The matrix-only return must exploit the shared non-CE tuple or a
 one-sided actuator; it cannot be obtained by merely promoting the book bits
 to finite tag types.
+
+A strictly weaker sufficient replacement is now isolated as
+`shared-bcs-eight-slice-full-overlap-actuator`.  Because the three sources are
+orthogonal, their sum is one projection `S`; the entire capacity deficit is
+the single scalar `tau(S)-tau(SW^*CWS)`.  The one-overlap route goes directly
+to fixed-scale holonomy and does not need to construct the partial
+isometries demanded in `(SBR2)`.
