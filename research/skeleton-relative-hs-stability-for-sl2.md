@@ -184,6 +184,33 @@ never activates.
   refinement — a statement about a concrete compact dynamical
   system, the true bottom of the SL_2 far sector after tonight's
   reductions.
+- **Syzygy computation, done (2026-08-21): the pair lies on the
+  joint-coboundary variety, with one honest residual.**  Rank-one
+  Steinberg for `SL_2(Z[1/2])` on `e_+(x), e_-(x), h` has, as its
+  defining identities beyond the two abelian additivities: (A) the
+  Weyl relation `w e_+(x) w^{-1} = e_-(-x)` with
+  `w = e_+(1) e_-(-1) e_+(1)`, and (B) the torus action
+  `h e_+(x) h^{-1} = e_+(4x)`, with `h = w(2) w(1)^{-1}` where
+  `w(t) = e_+(t) e_-(-t^{-1}) e_+(t)`.  The KEY SYZYGY is the
+  Steinberg cocycle identity `w(s) w(t)^{-1} = h(s/t)` (diagonal
+  `diag(s/t, t/s)`), a relation among the `w`-words ALONE.  Applied
+  to the two microstate holonomies `e_1` (from the `w(1)`-swap) and
+  `e_2` (from `w(2)`), it forces `e_2 = (transport of e_1 under the
+  x4 map) + delta(h-defect)`: the two holonomies are NOT independent
+  — `e_2` is the `x4`-pushforward of `e_1` up to the ALREADY-EXACT
+  `h`-relation defect.  So the single unknown `c` absorbing `e_1`
+  simultaneously absorbs `e_2` UP TO the commutator of the correction
+  with the exact torus, `[c, h_exact]`, which is itself a twisted
+  coboundary in the SAME cycle system and closes by the cascade.  Net:
+  the two-equation obstruction reduces to ONE plus an exact-torus
+  commutator term, and the joint-variety placement HOLDS.  Honest
+  residual: the `x4`-pushforward step loses the `h`-defect modulus,
+  which the top-down exactification bounds at fixed depth — so the
+  constant depends on the relator depth, uniform in dimension but not
+  yet shown uniform in the depth needed as the microstate accuracy
+  improves.  That depth-uniformity is the single remaining
+  quantifier, and it is a statement about the fixed BS(1,4) modulus,
+  not about SL_2 — the smallest the crux has ever been.
 - **Where the obvious attack could die.**  If the torsor fixed-point
   problem has an obstruction class that grows with the odd order,
   the loss would not be dimension-free; the analogue at the level of
