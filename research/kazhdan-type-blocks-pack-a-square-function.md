@@ -78,3 +78,7 @@ first exit, while `folner-multiplicity-atlases-have-vanishing-first-exit`
 gives large finite-stencil versions of the same escape.  A positive group
 construction must therefore combine exact Kazhdan packet decoding with a
 branching/type transformation having a uniform isoperimetric inequality.
+That transformation cannot be ordinary tensoring by finitely many fixed
+packets: `fixed-tensor-fusion-types-have-no-spectral-gap` constructs remote
+finite Peter--Weyl vectors which are almost invariant under every such fusion
+operator.  The actuator must be genuinely non-fusion or matrix-coordinate.

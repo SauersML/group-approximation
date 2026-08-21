@@ -105,7 +105,10 @@ positive-mass reservoir strongly enough to prove `(SSC3)`.
   orthogonal packing clause `(SSC4)` with no depth union bound.  It still does
   not prove `(SSC3)`: the surviving construction problem is a genuinely
   non-Folner type-transition recurrence, rather than an infinite checksum
-  library.
+  library.  Ordinary tensor branching cannot supply it:
+  `fixed-tensor-fusion-types-have-no-spectral-gap` proves that every finite
+  family of normalized fusion operators on an infinite compact type space
+  has remote finitely supported almost-invariant Peter--Weyl vectors.
 - A noncontracting Baumslag--Solitar clock also does not supply the checksum
   from spectral recurrence alone.  By
   `periodic-bs-clock-defeats-spectral-first-hit-checksum`, exact finite
