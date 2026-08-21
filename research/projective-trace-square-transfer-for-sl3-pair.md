@@ -6,7 +6,7 @@ title: Projective trace-square transfer for the co-dense SL3 arithmetic pair
 distinct_from:
   relative-commutant-collapse-for-sl2-pair: that forces an actual subgroup-central unitary into the ambient commutant; this asks only that its commutator with the one ambient generator become scalar in normalized Hilbert--Schmidt norm.
   no-spherical-leak-in-matrix-ultraproducts: that excludes every nontrivial spherical component and is equivalent to full relative-commutant collapse; this permits a leak whenever its ambient commutator is scalar, because scalarity already suffices for the HNN trace contradiction.
-  no-exact-quasi-regular-leak: that excludes only the exact HNN coefficient profile and contains no quantitative transfer inequality; this proposes a dimension-free projective energy inequality for all regular approximate representations of the fixed arithmetic presentation.
+  no-exact-quasi-regular-leak: that excludes only the exact HNN coefficient profile and contains no quantitative transfer inequality; this proposes a dimension-free projective energy inequality for all approximate representations of the fixed arithmetic presentation, with no trace-profile restriction.
 ---
 
 Let
@@ -69,8 +69,53 @@ weakening consumed by the HNN marked word.
   with **universal** relative-commutant collapse.  It also exposes an
   overstrength in the current route: `(PTS1)` ranges over arbitrary
   approximate assignments, while the HNN contradiction consumes only the
-  regular-trace microstate class.  A regular-trace-restricted transfer theorem
-  would suffice for the goal and need not settle arbitrary trace profiles.
+  full regular-trace microstate class of the joint HNN tuple.  The precise
+  trace-profile audit is recorded below.
+
+- **Canonical restriction on `A` is equivalent to the universal claim; full
+  HNN regularity is genuinely narrower.**  Enumerate the nonidentity elements
+  `g_1,g_2,...` of the residually finite group `A`.  Given any failed sequence
+  `(rho_n,U_n)`, choose a finite quotient `q_n:A->Q_n` separating
+  `g_1,...,g_n`, let `lambda_n` be the regular representation of `Q_n`, and
+  put
+
+  ```text
+  rho_tilde_n(x)=rho_n(x) tensor lambda_n(q_n(x)),
+  U_tilde_n=U_n tensor I.                                (CAN1)
+  ```
+
+  Every presentation relator has exactly its old normalized-HS defect, and
+  for every word `w in A`,
+
+  ```text
+  [U_tilde_n,rho_tilde_n(w)]
+    =[U_n,rho_n(w)] tensor I.                            (CAN2)
+  ```
+
+  Hence every projective energy in `(PTS1)` is unchanged.  On the other hand,
+  `tr(rho_tilde_n(g_j))=0` for `j<=n`.  Thus `(PTS1)` is equivalent to its
+  restriction to assignments whose **`A`-character** tends to the regular
+  character.  This is the modulus-square analogue of
+  `canonical-trace-does-not-weaken-thin-commutant-transfer`; the proof is
+  literally the same tensor camouflage.
+
+  This does not eliminate the route's quantifier overstrength.  The HNN proof
+  needs `(rho_n,U_n)` to have the regular character on every nontrivial word
+  of
+
+  ```text
+  <A,t | [t,C]=1>,
+  ```
+
+  not merely on words in `A`.  In `(CAN1)` the second tensor factor sends the
+  stable letter to `I`; it therefore does not force trace zero for balanced
+  stable-letter words whose `A`-projection is trivial.  In particular it does
+  nothing to the trace of `[U_n,rho_n(h)]` itself.  Producing full HNN-regular
+  camouflage would require finite-dimensional models separating those HNN
+  words, which is not supplied by residual finiteness of `A`.  Consequently
+  the genuinely minimal terminal is transfer on full regular-character HNN
+  microstates; merely saying "regular on `A`" does not weaken the universal
+  analytic wall.
 
 - **Diagonal tensor powers are an exact projective error amplifier.**  Put
   `E(W)=1-|tr(W)|^2`.  Normalized traces multiply, so for every unitary `W`
