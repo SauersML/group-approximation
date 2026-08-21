@@ -1,11 +1,11 @@
 ---
 rg: 2
-id: elementary-and-wreath-dilations-do-not-authenticate-the-capacity-gram
+id: hecke-dilations-do-not-lock-capacity-gram
 kind: claim
 title: Elementary Steinberg and finite monomial dilations name the Hecke unitary but do not authenticate its capacity Gram
 distinct_from:
   orthogonal-hecke-row-packs-common-source-energy-into-one-root: that packs the desired covariance energy into one coefficient row; this audits two explicit ways of turning its finite Hecke unitary into an ordinary group word.
-  global-word-covariance-cannot-replace-the-capacity-gated-hecke-moment: that treats a freely adjoined global conjugator; this treats the stronger exact elementary and monomial realizations of the finite Hecke sum.
+  global-covariance-misses-capacity-compression: that treats a freely adjoined global conjugator; this treats the stronger exact elementary and monomial realizations of the finite Hecke sum.
   common-source-leavitt-cell-inherits-rectangular-root-escape: that exhibits rectangular escape for a four-child Leavitt row; this locates the surviving escape after the Hecke unitary itself has been transported at equal scale.
 ---
 
@@ -147,7 +147,7 @@ coefficient model.  The monomial dilation is likewise harmless **after** an
 intended imprimitivity representation has been supplied.  Neither fact
 proves that an arbitrary exact HALT context extends to global conjugacy on
 the whole selected finite packet: that stronger claim fails for the reasons
-in `global-word-covariance-cannot-replace-the-capacity-gated-hecke-moment`.
+in `global-covariance-misses-capacity-compression`.
 
 The capacity-gated row has the correct firewall.  If `Q=0`, its row
 coefficient is zero and no packet weights have to be added.  If `Q` survives,

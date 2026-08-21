@@ -1,6 +1,6 @@
 ---
 rg: 2
-id: global-word-covariance-cannot-replace-the-capacity-gated-hecke-moment
+id: global-covariance-misses-capacity-compression
 kind: claim
 title: Global packet covariance neither switches off at HALT nor controls a compressed leakage source
 distinct_from:

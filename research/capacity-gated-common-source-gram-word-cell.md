@@ -106,7 +106,7 @@ remaining theorem is therefore one root-to-coefficient norm estimate
 `(OHR6)`, not a decoder for the whole coefficient algebra.
 
 Two stronger-looking replacements do not remove it.
-`global-word-covariance-cannot-replace-the-capacity-gated-hecke-moment` shows
+`global-covariance-misses-capacity-compression` shows
 that a global conjugacy relator controls only the uncompressed row: after
 compression by `Q` its exact error decomposition contains the uncontrolled
 term `v[Z,Q]`.  Preserving a primitive packet type either stays inside the
@@ -114,7 +114,7 @@ finite root or triggers the isotypic finite-edge support theorem.  The global
 relation also fails the HALT firewall because it does not switch off when
 `Q=0`.
 
-`elementary-and-wreath-dilations-do-not-authenticate-the-capacity-gram` proves
+`hecke-dilations-do-not-lock-capacity-gram` proves
 that `V+(1-q)` has an exact fixed-rank Steinberg word, and that a finite wreath
 packet can realize the controlled sum by one monomial element.  These settle
 algebraic naming but not source authentication.  In the wreath model, full
