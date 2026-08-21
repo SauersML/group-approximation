@@ -47,6 +47,16 @@ weakening consumed by the HNN marked word.
 
 ## Attempts
 
+- **The native joint relation has a strictly smaller finite certificate.**
+  `native-transfer-has-finite-trace-certificate` proves that after restricting
+  to the balanced involution `c`, imposing
+  `[c,h c h^-1]=1`, and retaining only regular-trace actor microstates, the
+  qualitative transfer is equivalent to one linear inequality with one
+  finite actor trace window.  Tensor amplification preserves all of these
+  native conditions.  This does not prove the present universal claim, but
+  it rigorously separates the downstream matrix target from arbitrary-unitary
+  PRCC: neither an unknown modulus nor infinitely many trace tests remain in
+  the weaker lamp problem.
 - **The quantitative wall collapses to the universal qualitative wall.**
   `projective-transfer-linear-bound-equals-no-ultraproduct-leak` proves a
   stronger compactness statement than the previously recorded tensor
