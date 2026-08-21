@@ -127,6 +127,16 @@ perfectness argument), here appearing as finite Weyl-gauge twists.
   earlier guess that `C = 2` was the smallest) the twisted system is
   infinitesimally rigid at the trivial corrector for EVERY
   representation.
+- **Why the global C=1 decision is genuinely harder than the
+  linearized one.**  The tangent system at `W = 1` splits over the
+  `G`-isotypic blocks of `End(l^2 G)` because its operators are
+  block-preserving and LINEAR; the full system does not split: the
+  multiplicative constraints (`W = W^((w_12)) W^((w_23))` etc.) are
+  matrix products across the block grading, which mix blocks.  So
+  distant solution components, if any, are global objects; deciding
+  their absence needs either the twisted-hom classification over
+  S3-stable abelian subalgebras or exact real-algebraic methods on
+  the full variety — the two named continuations.
 - **Falsification honesty.**  A surviving twisted hom compatible
   with regularity at some finite gauge would NOT yet be an enemy (it
   must still satisfy the mixed-word regularity and assemble into a
