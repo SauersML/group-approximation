@@ -52,3 +52,9 @@ it separately decode `z` from the collision involution `b`.
 - The full spherical threshold is actually
   `12 sin^2(pi/18)>1/3`; the rational `1/3` is retained as the clean packet
   budget.
+- `atlas-a4-classical-two-holonomy-profile` exhausts the natural 15-point
+  classical sector.  The sharp readout coefficient is `5` on the inner
+  automorphism branch but `21/4` on the outer branch; ten outer positions
+  violate coefficient `5`.  Thus the sharp `5` observed in the 31-point GL5
+  screen is not a universal identity and cannot be promoted without retaining
+  additional branch or multiplicity information.
