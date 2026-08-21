@@ -74,6 +74,34 @@ intervenes.
   particular prove that this coset Bernoulli action is not CE with
   the regular marginal trace — the two questions stand or fall
   together at this profile.
+- **The enemy is localized at the prime two.**
+  `odd-congruence-vertex-sector-admits-no-exact-leak` proves
+  unconditionally that no exact leak lives over vertex data of odd
+  congruence level: after Gerasimova--Shchepin vertex exactification,
+  edge fullness at odd levels plus the normal-closure squeeze
+  (`<<Gamma^0(2)>> = SL_2(Z)`, an `S_3` computation) pins both vertex
+  images and forces profile `1`.  The surviving enemy sector is
+  even-level or non-congruence vertex data — exactly the
+  solenoid/square-root direction of the Iwahori lane.
+- **Where the obvious abelian attack dies.**  The unipotent tower
+  `u^(1/2^k)` spans a copy of `Z[1/2]`, and the regular restricted
+  trace forces its spectral measure to be Haar on the dyadic solenoid
+  — an exact constraint.  But the leak's abelian shadow, the function
+  `1_Z` on `Z[1/2]`, is positive definite with amenable GNS
+  (`l^2(Z(2^infty))`), hence realizable in matrix models: the abelian
+  part alone can never refute the leak.  Any refutation must couple
+  the solenoid tower to the noncommutative `Lambda`-side (the second
+  unipotent and the elliptic torsion), which is what the square-root
+  gluing question is.
+- **The `SL_3` pair has no such construction surface.**
+  `SL_3(Z[1/2])` has property (T), hence Serre's (FA): it admits no
+  amalgam splitting at all, so the two-vertex matching surface that
+  makes the `SL_2` enemy look constructible is absent for `n >= 3`,
+  where additionally the Hecke contraction of
+  `no-spherical-leak-in-matrix-ultraproducts` applies.  Strategic
+  fork: fight the refutation at `SL_3`; treat the `SL_2` case as a
+  two-sided question where a successful square-root matching would
+  instead prove `G_2` hyperlinear and redirect the program.
 - **Where finite-dimensionality must enter.**  In `L(G_2)` itself the
   configuration exists, so no trace identity alone can refute it.
   The regular restricted trace forces the finite-level restrictions
