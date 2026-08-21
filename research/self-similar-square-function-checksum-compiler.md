@@ -57,6 +57,13 @@ rare, but it cannot be the only failure while the root remains macroscopic:
 `(SSC3)` transports its geometric attenuation back to the root.  This is the
 precise finite-presentation target left by the user's heavy-tail idea.
 
+The recurrence `(SSC3)` is indispensable, not bookkeeping.
+`orthogonal-checksum-controls-only-mass-weighted-syndromes` proves that one
+perfectly authenticated Pythagorean word by itself controls only
+`sum_n mu_n e_n`; a maximal late syndrome on a tiny block survives spectator
+amplification.  The missing actuator must identify the blocks with the same
+positive-mass reservoir strongly enough to prove `(SSC3)`.
+
 ## Self-similar host audit
 
 - A pure faithful rooted-tree automorphism model cannot retain a mark only
