@@ -86,6 +86,42 @@ show that the product automorphism on the private multiplicity/Weyl
 coordinates equals the direct-edge automorphism.  That is precisely the
 cycle cocycle in `(FTC4)`.
 
+There is, however, no inherent obstruction when the gauge registers are
+literally incidence-private tensor factors.  Suppose
+
+```text
+H=H_logical tensor K_DZ tensor K_ZR tensor K_DR tensor K_aux, (FTC6a)
+```
+
+the edge group for `e` acts trivially on `K_f` for `f!=e`, and its required
+private reset is a unitary `W_e` on `K_e`.  Suppose also that the logical
+separator implementers have been chosen flat:
+
+```text
+L_DR=L_ZR L_DZ.                                       (FTC6b)
+```
+
+Choose `U_ZR` to implement `L_ZR` and `W_ZR`.  Choose `U_DZ` to implement
+`L_DZ` and `W_DZ`, and additionally let it act by `W_DR` on the unconstrained
+factor `K_DR`.  Then put
+
+```text
+U_DR=U_ZR U_DZ.                                       (FTC6c)
+```
+
+The product has logical action `L_DR`, has the required private action
+`W_DR` on `K_DR`, and its extra actions on `K_DZ,K_ZR` are invisible to the
+direct edge group.  Thus all three edge covariance laws and the two-cell hold
+exactly.
+
+This factorized construction shows that `(FTC3)` need not identify the full
+context packet algebras or destroy the marked representation.  To turn it
+into a completed HALT-extension proof, one must still exhibit the simultaneous
+Schur/Pauli packet extension in which the gauge-doubled incidence registers
+really have the factorization `(FTC6a)`.  Gauge doubling makes that design
+plausible, but the current finite packet incidence note has not proved the
+simultaneous factorization.
+
 Accordingly the literal relation `(FTC3)` is a valid candidate, but exact
 HALT completeness is conditional on an explicit full-packet solution of
 `(FTC4)`.  The shortcut
