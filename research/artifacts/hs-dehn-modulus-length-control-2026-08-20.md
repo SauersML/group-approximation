@@ -460,3 +460,40 @@ are where area escapes, and Section 7 is the model of how it escapes
 through a near-degenerate spectrum.  The Pauli basis test shows native
 linear tests can be robust (Gowers--Hatami); what is missing is a robust
 *unsatisfiable* native LCS whose refutation is non-abelian and long.
+
+## 9. The Pauli lamplighter: exact transport from stability, (T;FD) and co-density
+
+Let `G_0 <= G` be finitely generated, `G_0` with property (T;FD) (Kazhdan
+constant `kappa` over finite-dimensional representations), and suppose the
+pair is finite-dimensionally co-dense: `pi^(G_0) = pi^G` for every
+finite-dimensional unitary `pi`.  (A 2-transitive action of `G` on the
+infinite set `G/G_0` implies this: transporting a `G_0`-fixed unit vector
+gives infinitely many unit vectors with one common pairwise inner product
+`c`, whose Gram matrix `(1-c)I + cJ` has unbounded rank unless `c = 1`.)
+Let `Gamma = <G, X, Z, J | [X,Z] = J, [s,X] = [s,Z] = 1 (s in S_0),
+[X, g_1 Z g_1^(-1)] = 1>`, which maps onto the Pauli group on `G/G_0`
+qubits with `G` permuting them, so `J != 1`.
+
+**Theorem 9.1.**  If a tuple has defect `<= t` and its `G`-part is within
+`eta` of an exact representation `rho`, then
+`||U(J) - I||_2 <= 2t + 8(t+2eta)/kappa + 4|g_1| eta`.
+
+Proof: project `U(X), U(Z)` onto the commutant of `rho(G_0)` (a bounded
+move by (T;FD)); co-density makes the projections commute with all of
+`rho(G)`; the prototype relator `[X, g_1 Z g_1^(-1)] = 1` becomes, after
+replacing `U(g_1)` by `rho(g_1)`, a relation between the two projections
+themselves, forcing them to commute, and their commutator is `U(J)` up to
+the same errors.
+
+**Corollary 9.2.**  If `G` is HS-stable, `Gamma` is not hyperlinear.
+
+No dimension bound, no all-pairs exactification, no PCP: finite
+dimensionality enters only through co-density, which `l^2(G/G_0)` violates.
+The cost has moved entirely into the stability of the host, where it
+collides with the known facts: stable hyperlinear groups are residually
+finite, infinite hyperlinear Kazhdan groups are unstable, free-group
+subgroups are profinitely closed.  So the host must be a residually finite
+stable group that is not Kazhdan but contains a profinitely dense,
+finite-dimensionally co-dense, infinite-index finitely generated (T;FD)
+subgroup; `SL_3(Z) <= SL_3(Z[1/p])` has every property except the
+stability of the big group.
