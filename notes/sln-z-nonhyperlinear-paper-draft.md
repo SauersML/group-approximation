@@ -21,8 +21,8 @@ every asymptotic representation `phi_n : G -> U(d_n)` (`Def -> 0`) is, after
 padding by a corner of vanishing density, uniformly `||.||_2`-close to a
 genuine finite-dimensional representation.
 
-> **Theorem.** Let `n >= 3` and let `C <= SL_n(Z)` be a saturated
-> Zariski-dense free subgroup (Section 4). Set
+> **Theorem.** Let `n >= 3` and let `C <= SL_n(Z)` be the four-generated
+> profinitely dense free subgroup of Aka--Gelander--Soifer (Section 4). Set
 > `G = < SL_n(Z), t | [t, c] = 1 (c in C) >`, the HNN extension of `SL_n(Z)`
 > centralizing `C`. If `SL_n(Z)` is flexibly HS-stable, then `G` is a
 > finitely presented non-hyperlinear group.
@@ -92,21 +92,21 @@ superrigidity for `SL_n(Z)`, `n >= 3`*, Invent. Math. 169 (2007).) `QED`
 
 ## 4. The thin co-dense subgroup and its gap
 
-**Lemma 2.** For `n >= 3` there is a finitely generated free Zariski-dense
-subgroup `C = <g_1, g_2> <= SL_n(Z)` of infinite index that surjects onto
-`SL_n(Z/m)` for every `m` (a *saturated* thin subgroup), and `C` has property
-(tau) with respect to the family `{SL_n(Z/m)}`.
+**Lemma 2.** For `n >= 3` there is a four-generated free Zariski-dense
+subgroup `C = <g_1,g_2,g_3,g_4> <= SL_n(Z)` of infinite index that surjects
+onto `SL_n(Z/m)` for every `m`, and `C` has property (tau) with respect to
+the family `{SL_n(Z/m)}`.
 
-*Proof.* A generic pair `(g_1, g_2)` generates a free Zariski-dense subgroup
-(Tits alternative + Baire genericity). By strong approximation
-(Matthews–Vaserstein–Weisfeiler; Nori; Weisfeiler) the closure of a
-Zariski-dense subgroup in `prod_p SL_n(Z_p)` is open, so `C` surjects onto
-`SL_n(Z/m)` for all `m` outside a finite set `S_0` of bad primes; choosing the
-generators to also surject modulo each `p in S_0` (Chinese remainder theorem +
-ping-pong; generic choices work) makes `C` saturated. Property (tau) — uniform
-spectral gap of the Cayley graphs of `pi_m(C) = SL_n(Z/m)` over ARBITRARY
-modulus `m` — is Bourgain–Varjú, *Expansion in `SL_d(Z/qZ)`, `q` arbitrary*,
-Invent. Math. 188 (2012) 151–173. `QED`
+*Proof.* Aka--Gelander--Soifer, *Homogeneous number of free generators*
+(arXiv:1205.1140), construct for every `n > 2` a four-generated free subgroup
+of `SL_n(Z)` which is dense in its profinite completion.  Profinite density
+is exactly the asserted surjectivity onto every finite congruence quotient,
+and it implies Zariski density.  The subgroup has infinite index: a
+finite-index subgroup of the Kazhdan group `SL_n(Z)` has property (T), while
+a nonabelian free group does not.  Property (tau)—uniform spectral gap of the
+Cayley graphs of `pi_m(C)=SL_n(Z/m)` over arbitrary modulus `m`—is
+Bourgain--Varju, *Expansion in `SL_d(Z/qZ)`, `q` arbitrary*, Invent. Math.
+188 (2012), 151--173. `QED`
 
 **Corollary.** The pair `(SL_n(Z), C)` of Lemma 2 is co-dense (Lemmas 1, 2)
 with a uniform conjugation gap (property (tau), Lemma 2: an `X` almost fixed
@@ -133,9 +133,10 @@ not STRICTLY (same-dimension) HS-stable, but flexible stability is a strictly
 weaker property whose determination for infinite (T) groups is the entire
 subject of Dogon's paper; the Ioana–Spaas–Wiersma cohomological obstructions
 do not reach it (the relevant central extensions are finite, and finite
-extensions of hyperlinear groups are hyperlinear). No infinite (T) group is
-currently known to be flexibly HS-stable or refuted; a definitive literature
-census (Section 6) shows no shortcut exists.
+extensions of hyperlinear groups are hyperlinear). No published infinite
+property-(T) host currently supplies the flexible HS-stability needed by this
+construction; the literature census in Section 6 shows that the known
+positive stability theorems provide no shortcut.
 
 **Permutation twin.** The same construction with permutation (sofic)
 approximations gives: if `SL_n(Z)` is flexibly permutation-stable, then `G` is
