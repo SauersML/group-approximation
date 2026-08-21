@@ -4,6 +4,7 @@ id: positive-overlap-antiphase-closes-fanizza-return
 kind: claim
 title: Leakage localization plus the book-tag antiphase cell closes the Fanizza return without near-full overlap
 distinct_from:
+  positive-overlap-curvature-collapses-carrier: that closes the abstract two-exit ledger assuming disjoint finite tag types; this supplies the explicit three-exit book-tag HNN cell and the exact constants for the eight-slice Fanizza sources.
   shared-bcs-eight-slice-full-overlap-actuator: that asks one actuator to return almost all three source blocks into the smaller capacity; this permits only the positive overlap forced by leakage localization and charges it by antiphase.
   one-cross-gram-moment-extracts-the-common-polar-gauge: that needs overlap close to full source mass to align two transports; this never aligns them and bounds their cross-Gram mass directly.
 ---
