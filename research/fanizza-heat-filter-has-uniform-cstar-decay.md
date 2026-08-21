@@ -57,6 +57,43 @@ a_(m,t)xi=D_R xi !=0,                                 (FHF5)
 
 so every filtered element is nonzero.
 
+## Chebyshev acceleration
+
+The power filter is not optimal.  Let `U_(t-1)` be the Chebyshev polynomial
+of the second kind and define, for `t>=1`,
+
+```text
+p_t(lambda)
+ = ((1-lambda)/t) U_(t-1)(1-2lambda),
+b_(m,t)=D_R p_t(H_m).                                 (FHF6)
+```
+
+This is a rational polynomial of degree `t` and `p_t(0)=1`.  The identity
+
+```text
+(1-x^2) U_(t-1)(x)^2 <= 1,       -1<=x<=1,            (FHF7)
+```
+
+with `x=1-2lambda` gives
+
+```text
+lambda |p_t(lambda)|^2
+ = ((1-lambda)/(4t^2))
+   (1-x^2) U_(t-1)(x)^2
+ <= 1/(4t^2).                                         (FHF8)
+```
+
+Consequently the same operator-order argument improves `(FHF2)` to
+
+```text
+||pi(b_(m,t))|| <= sqrt(C_m)/(2t)                     (FHF9)
+```
+
+in every nonmember representation.  On a perfect HALT vector,
+`p_t(H_m)xi=xi`, so `b_(m,t)xi=D_Rxi!=0`.  The accelerated sequence is the
+preferred compressor payload: it is finite, rational, effective, and has a
+dimension-free inverse-linear norm modulus.
+
 ## Exact claim boundary
 
 This is not yet a nonhyperlinear group.  The element changes with `t`.
@@ -67,6 +104,7 @@ compressor: an exact properly infinite HALT model may absorb the filtration,
 whereas finite matrices must expose `(FHF2)` on one fixed returned carrier.
 
 The reduction is nevertheless stronger than a generic semantic decoder.
-The payload is now the explicit rational Markov operator `K_m`; the desired
-Toeplitz/Leavitt cell has only to return this one computable heat-filter
-sequence rather than compile an arbitrary BCS predicate directly.
+The payload is now the explicit rational Markov operator `K_m`, or
+equivalently the accelerated polynomials `p_t(H_m)`; the desired
+Toeplitz/Leavitt cell has only to return this one computable filter sequence
+rather than compile an arbitrary BCS predicate directly.

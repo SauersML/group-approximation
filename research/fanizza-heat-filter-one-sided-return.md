@@ -28,10 +28,16 @@ construct a finite ordinary-group extension with a fixed group-algebra mark
 4. the return is not a universal tracial equality and therefore does not
    contradict the regular representation.
 
-By `fanizza-heat-filter-has-uniform-cstar-decay`, the nonmember bound is
+By `fanizza-heat-filter-has-uniform-cstar-decay`, one may use the power bound
 
 ```text
 ||D_R K_m^t|| <= sqrt(C_m/(2t+1)).                    (FHR1)
+```
+
+or the preferred accelerated rational filter
+
+```text
+||D_R p_t(H_m)|| <= sqrt(C_m)/(2t).                   (FHR2)
 ```
 
 Taking the microstate limit first and `t->infinity` second collapses the

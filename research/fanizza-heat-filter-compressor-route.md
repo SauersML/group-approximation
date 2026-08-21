@@ -19,10 +19,17 @@ K_m=1-H_m.
 ```
 
 Fanizza soundness already gives uniform decay of `D_R K_m^t` in every
-nonmember representation, while a perfect HALT vector makes every filtered
-element act as the same nonzero signal.  Construct one finite ordinary-group
-return cell which, after finite-matrix packet compression, identifies a fixed
-marked carrier with arbitrarily deep `K_m`-filtered carriers.  Countable
+nonmember representation.  The accelerated rational Chebyshev filter gives
+the stronger bound
+
+```text
+||D_R p_t(H_m)|| <= sqrt(C_m)/(2t),
+```
+
+while a perfect HALT vector makes every filtered element act as the same
+nonzero signal.  Construct one finite ordinary-group return cell which,
+after finite-matrix packet compression, identifies a fixed marked carrier
+with arbitrarily deep filtered carriers.  Countable
 infinite amplification may realize the return exactly on the HALT witness;
 finite matrices must pay the decay estimate.
 
