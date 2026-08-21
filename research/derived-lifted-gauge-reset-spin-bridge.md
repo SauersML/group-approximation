@@ -66,3 +66,9 @@ balanced Morita edge.
   no Hecke reflection must be exposed as a word.  The remaining audit is now
   only the common codimension-one residual spin incidence between the old
   derivative packet and all next selector-sector baselines.
+- `four-point-gauge-orbit-has-balanced-derived-rank-swap` strengthens the
+  square reset to two complementary controlled-Pauli pairs with commutators
+  `s` and `Js`.  Exactly one pair is active in either `s` sector, so replacing
+  one baseline hyperbolic pair is now an explicit constant-rank ordinary-word
+  operation.  What remains is precisely the common rank-`N-1` residual for the
+  finite selector menu.

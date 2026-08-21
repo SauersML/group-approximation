@@ -77,3 +77,6 @@ derivative cell and every next selector-sector baseline, then attach the above
 `D_8` as the replaced hyperbolic pair.  The local derived lift itself no
 longer requires a Hecke reflection or an equal-scale search.
 
+`four-point-gauge-orbit-has-balanced-derived-rank-swap` also installs the
+complementary `Js` pair on the same four points, keeping exactly one active
+Pauli pair in both signs of the fresh selector.
