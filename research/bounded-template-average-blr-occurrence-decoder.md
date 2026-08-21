@@ -116,6 +116,35 @@ parallelogram PVMs supported on even parity, arranged in a bounded-degree
 complex with an operator cosystolic-expansion inequality.  Higher arity alone
 is insufficient; the parity relation is load-bearing.
 
+There is now a precise positive square-complex theorem.
+`signed-character-expansion-decodes-operator-parallelograms` proves the
+desired same-Hilbert qualitative inequality for a left-right Cayley vertex
+test under ordinary expansion in one direction and a uniform signed-character
+gap in the other.  The proof makes operator derivatives constant, splits the
+resulting fixed commuting tuple into sign sectors, and uses the signed gap to
+identify each surviving sector with an actual character.
+
+The direct construction cannot be the final simplex metapixel:
+`bounded-degree-left-right-character-code-has-bounded-dimension` computes its
+classical kernel as the affine characters of the underlying group, of
+dimension at most `1+min{|A|,|B|}`.  Bounded degree therefore forces bounded
+message dimension.  A left-right solution must put auxiliary symbols on
+squares and use a base tensor/PCPP code, rather than put the simplex bits
+directly on vertices.
+
+The published audit stops exactly there.  Dinur--Evra--Livne--Lubotzky--Mozes
+construct explicit TNC left-right Cayley complexes with both Cayley graphs
+expanding and prove classical LTC soundness for tensor-code views
+([paper](https://arxiv.org/abs/2111.04808), Definitions 3.6 and Sections
+4--6).  Leverrier--Zemor use the same geometry to prove quantum-code distance
+and recover the classical LTC theorem
+([Quantum Tanner codes](https://arxiv.org/abs/2202.13641)).  Neither theorem
+decodes arbitrary tracial local PVMs, on the same Hilbert space, to one global
+classical codeword PVM.  Nor do the cited expansion statements include the
+signed-character gap `(SCE2)`.  Hence the remaining candidate is an
+operator-agreement theorem for the local tensor-code PVMs; classical
+agreement testability and CSS stabilizer distance are not that theorem.
+
 There is also no general group-theoretic shortcut from the now-controlled
 exterior square to all operator layers.  Theorem 3.1 of Slofstra's
 [solution-group embedding theorem](https://arxiv.org/abs/1606.03140) (take
