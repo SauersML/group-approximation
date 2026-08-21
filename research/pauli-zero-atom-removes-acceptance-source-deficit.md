@@ -155,31 +155,24 @@ Equivalently, direct polarization gives
 Thus no expanded verifier row remains.  The final matrix-only interface is
 one capacity-gated block-unitary corner norm.
 
-`zero-atom-exit-is-the-missing-return-cell` now falsifies every attempt to
-derive that corner norm from the surrounding finite cells.  Its exact bad
-model uses the intended controller orientation `u_j=I`, the selected Pauli
-spin type, the support-menu packets, all half-edge product ties, the triangle
-two-cell, and zero-defect capacity/reservoir commutator locks.  A forbidden
-`C_D` atom supports `Q`; putting that rejection first gives
-`P_0W_gameP_0Q=0` and `eta_0(Q)=2^(-m)tau(Q)`.
+`graph-involution-forces-paz-return` performs the complete falsification
+audit.  Before the graph cell, a forbidden `C_D` atom supports an exact model
+with the intended controller orientations, selected packet types,
+half-edge/triangle relations, and all independent commutator locks, while
+`eta_0(Q)=2^(-m)tau(Q)`.  The graph cell is the first genuinely mixed return
+relation.
 
-The same audit weakens the remaining positive target.  It is unnecessary to
-fix `P_0Q` pointwise.  Unitarity and the strict game contraction show that it
-suffices to prevent `W_gameP_0Q` from leaving the zero-control atom.  Existing
-Pauli controls detect that exit through
-
-```text
-sum_j||(Z_jW_game-W_gameZ_j)P_0Q||_2^2,               (PAZ13)
-```
-
-or one finite control clock `D_ctl` with a unique zero-atom eigenvalue
-compresses the row to
+Once the current relation `Y=ABAB` from
+`graph-commutator-authenticates-paz-return` is imposed with `Y` an
+involution, the strict game compression already forces `P_0Q=0`.  More
+quantitatively,
 
 ```text
-||(D_ctlW_game-W_gameD_ctl)P_0Q||_2^2.                (PAZ14)
+eta_0(Q)<=K_rho||ABAB-Y||_2^2                         (PAZ13)
 ```
 
-Either has a fixed lower bound proportional to `2^(-m)tau(Q)`.  The open
-ordinary-word problem is now to authenticate one of these **capacity-gated**
-rows; the invalid global commutator `[D_ctl,W_game]=1` would not pass the
-perfect-witness firewall.
+after fixed involution rounding.  The proof uses the fact that involutivity
+makes two graph projections commute, while their overlap compression has
+operator norm at most `(1+rho)/2<1`.  Therefore the downstream two-child
+source-saturation recurrence is not required for PAZ12, although it remains
+relevant in other recurrent lanes.

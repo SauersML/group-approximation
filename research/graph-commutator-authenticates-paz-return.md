@@ -80,6 +80,47 @@ Equivalently,
 1/4||C-I||_2^2<=eta<=1/2||C-I||_2^2.                  (PAG10)
 ```
 
+## Strict PAZ compression plus involutivity already kills the source
+
+There is a stronger consequence once this graph cell is composed with the
+actual PAZ game compressor.  If the mixed relation identifies `C` with a
+self-adjoint involution `Y`, then `C=C^*`.  In the first diagonal block this
+says that the two graph reflections commute.  Hence the corresponding graph
+overlap `RR'R` is a projection.
+
+On the other hand, on the graph source that overlap is unitarily equivalent
+to
+
+```text
+H^*H,
+H=G(I+W)G/2.                                           (PAG10a)
+```
+
+For the PAZ block encoder,
+
+```text
+||GWG||_op<=rho<1,
+```
+
+so
+
+```text
+(1-rho)/2<=singular values of H<=(1+rho)/2<1.          (PAG10b)
+```
+
+A projection cannot have all its nonzero singular values strictly below one.
+Therefore its source `G` is zero.  The quantitative two-projection estimate
+in `graph-involution-forces-paz-return` gives, after fixed involution
+rounding,
+
+```text
+eta_0(Q)<=K_rho||C-Y||_2^2.                            (PAG10c)
+```
+
+Thus the two-child recurrence below is not needed for PAZ12 itself.  It
+remains a valid conditional recurrence and remains relevant to other
+authenticated branching lanes.
+
 ### Proof
 
 Let
@@ -244,7 +285,8 @@ the graph of the actual state-local source `G`.
 ## Exact stationary countermodel to the unsaturated return
 
 The authenticated mark and two inherited child tags still do not prove
-`(PAG18)` without source saturation.
+`(PAG18)` without source saturation.  This is a countermodel to that generic
+branching recurrence, not to PAZ12 after the strict compressor is imposed.
 
 Take the smallest exact model
 
@@ -279,6 +321,9 @@ tau(P_Y)<=[tau(B_+)+tau(B_-)]/2
 fails as `1<=1/2`.  This exact finite rectangular/stationary model satisfies
 the graph authentication and every child invariance/orthogonality relation.
 It violates precisely the two full-source moments in `(PAG17)`.
+
+It also has `||GWG||_op=1`, so it violates the strict PAZ hypothesis
+`rho<1` used in `(PAG10b)`.  It cannot be used to refute `(PAG10c)`.
 
 ## Regular-trace firewall
 
@@ -317,8 +362,9 @@ eta_0(Q)
  -> one involution root Y.                              (PAG24)
 ```
 
-Together with the proved two-child recurrence this gives the explicit upper
-bound `(PAG19)`.  The only unproved group interface is now the same pair of
-finite-dimensional source-saturation moments isolated previously.  Without
-them, `(PAG21)--(PAG23)` is an exact stationary countermodel to every current
-analytic relation.
+For PAZ, the mixed involution relation plus the strict game compressor gives
+the direct upper bound `(PAG10c)`; no child source moments remain.  If the
+authenticated mark is instead fed into a generic recurrent branching lane
+without a strict compression, the proved two-child recurrence gives
+`(PAG19)` and its source-saturation moments remain load-bearing.  Model
+`(PAG21)--(PAG23)` applies only to that latter use.
