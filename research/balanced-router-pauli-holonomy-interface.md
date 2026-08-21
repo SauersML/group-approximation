@@ -3,11 +3,6 @@ rg: 2
 id: balanced-router-pauli-holonomy-interface
 kind: claim
 title: Expose the two Pauli quarter reflections through balanced derived-packet routers
-requires:
-  - hyperoctahedral-balanced-word-truth-table
-  - full-conjugation-table-cancels-router-multiplicity
-  - gauge-doubling-gives-selector-flip-symmetries
-  - canonical-trace-tests-robustify-pauli-quarter-holonomy
 distinct_from:
   derived-lifted-gauge-reset-spin-bridge: that renews a gauge selector at equal Schur spin scale; this asks only for two fixed Boolean Hecke phases and their common return comparison.
   mixed-relations-force-holonomy-or-transverse-recovery: that states the complete atlas dichotomy; this is the narrowed algebraic implementation of its holonomy branch.

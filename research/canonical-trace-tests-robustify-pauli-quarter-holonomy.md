@@ -3,9 +3,6 @@ rg: 2
 id: canonical-trace-tests-robustify-pauli-quarter-holonomy
 kind: claim
 title: A fixed finite trace window robustifies the Pauli quarter-carrier holonomy
-requires:
-  - two-pauli-quarter-carriers-have-fixed-reflection-holonomy
-  - trace-conditioned-kleene-microstate-diagonal
 distinct_from:
   fixed-holonomy-on-overlap-pays-relator-energy: that starts from legal word-level reflections on an aligned finite packet; this proves the scalar projection-polynomial floor before the Hecke reflections are groupified.
   trace-functorial-bcs-signal-groupification-impossible: that rules out an exact decoder on every tracial representation; this uses only finitely many canonical group-trace targets in the diagonal search.
