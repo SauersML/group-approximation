@@ -6,6 +6,7 @@ title: A fixed affine S3 head cannot retain positive old-commutant density again
 distinct_from:
   residual-action-can-erase-local-reynolds-density: that is an abstract tensor calculation with a full residual matrix algebra; this gives exact representations of the actual Toeplitz universal lattice and the actual affine S3 endpoint.
   packet-kazhdan-commutant-placement-decouples: that refutes bare commutation for a generic packet and Kazhdan factor; this computes the sharp vanishing density for the live three-channel affine endpoint.
+  finite-edge-attachments-residual-decouple: that proves the general finite-edge tensor-decoupling theorem; this records the exact affine representation, active mass, and sharp constant needed by the live S3 lane.
 ---
 
 Let `Gamma=EL_r(T)`, where `T=F_2<x,y|yx=1>`, and let the external `S_3`

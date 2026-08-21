@@ -36,6 +36,13 @@ no-growth then charges `a^2` to normalized-HS relator energy.
 - Bare direct-product placement fails: the universal-lattice factor may act
   irreducibly on every endpoint block and reduce the old commutant to zero
   density.
+- `finite-edge-attachments-residual-decouple` proves
+  that this failure persists for every attachment made only through the fixed
+  affine `S_3` edge: tensoring the endpoint with growing regular finite
+  quotients makes the old-commutant density tend to zero while preserving
+  active mass exactly.  Therefore the missing covariance relation must
+  contain a nontrivial Toeplitz coefficient word outside the edge, or recurse
+  in the residual quotient algebra itself.
 - `finite-affine-head-cannot-retain-old-commutant-density` gives the exact
   live countermodel: tensor one three-dimensional active affine orbit with
   the regular representations of `EL_r(F_(2^n))`.  Active mass remains one
