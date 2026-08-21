@@ -30,6 +30,11 @@ relations and has the strict lower floor from
 
 ## Attempts
 
+- `mci-exact-endpoint-is-fd-radical` identifies the zero-defect requirement,
+  but `shifted-infinite-heisenberg-wreath-exact-mci-is-hyperlinear` realizes
+  that entire endpoint with an infinite-order transverse carrier inside a
+  hyperlinear group. The missing statement is uniformity as dimension grows,
+  not exact finite-dimensional representation theory.
 - Amenable shift-local recursion cannot prove `(MCI1)` by
   `amenable-finite-propagation-feedback-has-folner-tail-models`.
 - Property `(T)` supplies the lower floor, not the upper bound;
@@ -39,3 +44,6 @@ relations and has the strict lower floor from
   summand by `word-recursion-cannot-amplify-sublinear-summands`. A viable
   construction must act on the canonical macroscopic carrier and use a
   matrix-only capacity or holonomy recurrence.
+- `cyclic-carrier-energy-stability` is a strict weakening: it permits nonzero
+  exact finite-dimensional energy and asks only that one scalar energy
+  supremum be upper semicontinuous at zero defect.

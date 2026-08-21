@@ -33,3 +33,14 @@ plumbing.
 paper-level, not formalized.  Once the routing data exist, defect saturation,
 full MF residual, quotient heredity, and the CDE operator-MF consequences are
 kernel-checked in `TorsionFreeFullMFRadical.lean` and its wrappers.
+
+**Hyperlinear firewall.** Full MF residual is an operator-norm statement and
+does not itself produce a hyperlinear-radical word. The established
+`simple-sofic-total-mf-radical` gives the sharp abstract counterexample:
+`Rad_MF(S)=S` can coexist with `Rad_hyp(S)=1`. For this finitely presented
+group, total MF residual supplies an operator-norm collapse modulus, but the
+HS conversion costs `sqrt(d)` and hyperlinearity supplies no defect-versus-
+dimension rate. The concrete consequence that remains useful is
+`full-mf-radical-hyperlinear-models-force-relator-outliers`: any hypothetical
+regular hyperlinear models of this `G` must concentrate a fixed
+operator-norm relator failure on a spectral corner of vanishing trace.

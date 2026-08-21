@@ -27,6 +27,24 @@ architecture.  There are two independent failures.
    lies in the operator-norm MF residual but outside the hyperlinear residual,
    so no universal tracial analogue can kill it in every tracial model.
 
+The literal group makes the failure quantitative already in regular matrix
+microstates. Its central order-two subgroup `K=<w>` is nontrivial, normal,
+Kazhdan, and contained in the compression defect. Nevertheless the group is
+sofic. In any canonical microstate sequence, the input element `c`
+asymptotically centralizes the Kazhdan base while the transported commutator
+`u=[tct^(-1),a]` satisfies
+
+```text
+||U_n(u)-1||_2 -> sqrt(2),
+||U_n(w)-1||_2 -> sqrt(2).
+```
+
+Thus the Kazhdan fixed projections in `B(L^2 M)` are not merely potentially
+unequal: in this exact hyperlinear countermodel their one-sided inclusion is
+strict. The theorem named `defectNormal_hyperlinear_killed` applies only to
+tracial shadows of **operator-norm** asymptotic representations, not to
+arbitrary normalized-HS microstates.
+
 The corrected positive boundary is `left-right-finite-coordinate-obstruction`:
 operator-norm models over faithfully traced coordinates whose left-right
 algebras are finite.
