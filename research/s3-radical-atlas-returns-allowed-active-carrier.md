@@ -24,6 +24,13 @@ The finite algebraic prerequisite is now established.  What remains is the
 sparse endpoint/commutator payment after amalgamating the relative pair;
 the six-element symmetry alone does not supply that analytic estimate.
 
+The shared-word part of clause 3 is now closed by
+`packet-central-active-complement-reduces-shared-words`: endpoint
+commutators make the analytic complement approximately reducing without
+turning it into a scalar word.  The remaining singular point is strictly its
+one-sided next-carrier placement, isolated as
+`s3-active-packet-proper-corner-return`.
+
 ## Attempts
 
 - Two independent CNOT shears on a common relative endpoint fail before the
