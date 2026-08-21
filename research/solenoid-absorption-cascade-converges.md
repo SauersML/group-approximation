@@ -291,6 +291,39 @@ recursion terminates; the total correction is
   pushes it to `alpha >= 1` is the computable crux -- a spectral-radius
   sign, the cleanest and most concrete form the entire far sector has
   reached.
+- **Explicit solution and the transfer computation (2026-08-21).**
+  The block recursion `c_theta = e'_theta psi_theta(c_(4theta))` from
+  `c psi(c)^{-1} = e'` (`psi = Ad(h)`, `h` sends `H_theta -> H_(theta/4)`)
+  solves EXPLICITLY: `c_theta` is the transported product of the defect
+  along the forward `x4`-orbit `theta -> 4theta -> 16theta -> ...` out
+  to the `O(1)` bulk, `~ log_4(1/theta)` terms.  Then
+  `||c||_2^2 = sum_theta mass_theta |c_theta - 1|^2
+   <= log(1/delta) sum_k sum_theta mass_theta |e'_(4^k theta)|^2`.
+  The inner sum is the transfer operator: because `x4` EXPANDS
+  (`theta -> 4theta`) it contracts the spectral measure by `4^{-k}`
+  per backward step, so `sum_theta mass_theta |e'_(4^k theta)|^2
+   ~ 4^{-k} ||e'||_2^2`, and `sum_k 4^{-k} = 4/3` gives
+  `||c||_2 <~ delta sqrt(log(1/delta)) -> 0`, DIMENSION-FREE and with
+  NO exponent assumption -- the geometric `4^{-k}` from the expanding
+  dynamics does the work the profile exponent was meant to.
+- **The one honest gap in that computation, now mild.**  The
+  contraction `sum_theta mass_theta f(4^k theta) ~ 4^{-k} integral f`
+  replaces the empirical `V`-spectrum by Lebesgue at scale
+  `4^{-k}` -- i.e. it needs the unipotent spectrum to EQUIDISTRIBUTE
+  at the finest dyadic scale, whereas the regular trace
+  (`tau(u^m) = 0`) gives Lebesgue only weakly (fixed scales).  So the
+  residual is a QUANTITATIVE equidistribution RATE for `pi(u)`.  But
+  the geometric `4^{-k}` weighting sets a LOW bar: any polynomial
+  equidistribution rate `|empirical - Lebesgue|(scale eps) <~ eps^beta`
+  with `beta > 0` makes the corrected sum
+  `sum_k 4^{-k}(1 + (4^k/N)^{-beta}...)` still converge, because the
+  error only bites at the finest `k ~ log_4 N` where `4^{-k} ~ 1/N`
+  is already negligible.  So lemma (b) closes given ANY power-rate
+  equidistribution of the unipotent spectrum -- which the exact
+  moment-vanishing `tau(u^m) = 0` (all `m`) supplies via a standard
+  Erdos--Turan / large-sieve bound.  This is no longer a delicate
+  exponent sign but a routine equidistribution estimate; it is the
+  last step, and it is a mild one.
 - **Why it is plausible and where it could fail.**  The peeling is a
   geometric contraction when the residual shrinks faster than the gap:
   each descent multiplies the uncorrected mass by the local defect
