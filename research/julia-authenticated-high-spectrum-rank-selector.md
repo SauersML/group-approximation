@@ -79,3 +79,15 @@ block dilation.
   the local gauge explicitly.  A surviving construction must use an
   unbounded/dimension-activated atlas or a nonlinear group-global coupling
   between the Fanizza heat occurrence and the marked reservoir.
+- Raw multiplicity activation is not yet such an atlas.
+  `amplification-natural-words-cannot-read-packet-multiplicity` proves that
+  authenticated word algebras retain their PI degree under spectator
+  amplification even though packet multiplicity grows.  Arbitrary matrices
+  in the full commutant detect its dimension but do not carry a group-word
+  return flag.
+- A cyclic unbounded conductor also fails at the bounded-local level by
+  `cyclic-conductor-prefix-return-has-a-folner-firewall`: a prefix is
+  diluted, its orbit average has a hyperfinite tracial limit, and the global
+  wrap costs conductor-length telescoping.  The remaining nonstatic route
+  must make the triggered failure extensive through non-Følner/PCP
+  authentication on the same marked carrier.
