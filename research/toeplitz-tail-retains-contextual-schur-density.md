@@ -81,11 +81,18 @@ dimension-dependent intersection of the finite root kernels by a contractive
 weighted root-character recurrence. This is an alternative formulation of
 the present conditional-expectation gate, not yet its proof.
 
-The head algebra is also finitely actuated:
-`toeplitz-tail-plus-one-swap-generates` gives one involution `s` with
-`T=<sigma(T),s>`. Therefore no unbounded family of unrelated head generators
-is needed. The analytic problem is to make the Schur violation determine the
-action of this fixed actuator on the residual multiplicity space.
+The head algebra is also finitely actuated.  The characteristic-two formula
+in `toeplitz-tail-plus-one-swap-generates` cannot be used verbatim over the
+odd Schur splitting field, but
+`schur-toeplitz-head-swap-exposes-the-steinberg-injectivity-fork` gives the
+corrected involution `s_f=1-P_f-xP_fy+xP_f+P_fy` and proves
+`R_f=<sigma(R_f),k[B_f],s_f>`.  Therefore no unbounded family of unrelated
+head generators is needed.  The same audit records that finite recursive
+presentation syntax is not yet closed: elementary shift injectivity and
+Steinberg finite presentation currently live on opposite sides of an
+unproved `St_5(sigma)` injectivity statement.  Analytically, the Schur
+violation must still determine the action of the fixed actuator on the
+residual multiplicity space.
 
 The actuator can now be made part of the packet itself.
 `schur-packet-head-actuator-generates-over-tail` embeds the `Q` child inside

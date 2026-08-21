@@ -159,3 +159,14 @@ the recursive tail gates and the aggregate corrected Schur child reflection
 as the promised finite word template while keeping the shared BCS contexts
 noncommuting.  No additional analytic contraction, determinant, first-hit
 budget, or multiplicity-index theorem is required after that wordization.
+
+The existing Schur--Toeplitz envelope does not yet discharge this obligation.
+`schur-toeplitz-head-swap-exposes-the-steinberg-injectivity-fork` repairs the
+head swap over the required odd splitting field and proves finite generation
+over the recursive tail.  It also isolates the exact remaining fork:
+`EL_5(R_f)` has the faithful coefficient shift but no proved finite
+presentation, while `St_5(R_f)` is finitely presented but injectivity of
+`St_5(sigma)` is open.  Moreover its torus word reflects the raw defect
+`sigma^n(P_f)`, not yet the aggregate corrected child `C_n` in `(TSC3)`.
+Thus the smallest algebraic target is Steinberg shift injectivity, followed
+by one coefficient identity realizing the corrected-child reflection.
