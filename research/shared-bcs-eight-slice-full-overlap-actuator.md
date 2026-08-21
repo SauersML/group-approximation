@@ -31,8 +31,17 @@ relations themselves must remain consistent with the canonical regular
 representation, where `(SBO1)` is allowed to fail.
 
 By `(EOM7)`, the decoder target is one finite rational combination of fixed
-ordinary word traces.  This makes a direct Hecke/positive-definite, NPA-dual,
-or packet-compressed Toeplitz certificate possible without first constructing
-block maps.  A certificate depending only on the scalar forbidden masses is
-invalid; it must consume cross-context moments of the same shared selector
-words whose non-CE profile supplies the robust BCS gap.
+ordinary word traces.  This permits a matrix-ultraproduct separation or a
+packet-compressed Toeplitz decoder without first constructing block maps.
+However `universal-tracial-certificates-cannot-force-eight-slice-overlap`
+rules out an ordinary cyclic SOS, a finite positive-definite Hecke inequality,
+or a finite-level NPA dual: each would also hold in the canonical regular
+trace, where the overlap deficit is `tau(P_f)/16`.  The certificate must be a
+genuine Connes-embedding separator.  In particular it must consume
+cross-context moments of the same shared selector words whose non-CE profile
+supplies the finite-dimensional gap; a certificate depending only on scalar
+forbidden masses is invalid.
+
+`eight-slice-overlap-requires-a-connes-embedding-separator` records the
+positive form of this firewall: the desired inequality is already the final
+matrix-versus-regular trace separation, not a purely finite-packet lemma.
