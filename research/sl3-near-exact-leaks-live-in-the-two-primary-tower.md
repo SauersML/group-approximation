@@ -361,6 +361,22 @@ refutation, and this claim makes the reduction precise.
   locked weight plausibly stays a constant fraction of the space at
   every level — the bulk-carrier existence the transfer mechanism
   needs, now with a named source.
+- **Native-block anatomy (2026-08-21, by hand).**  The native
+  layer-3 part decomposes by fiber characters: pairs
+  `(vbar in prims_4, xi in (F_2^3)^* \ 0)` with the single invariant
+  `<xi, vbar mod 2> in F_2`, giving orbits of sizes
+  `56*3 = 168 = 2*84` and `56*4 = 224 = 2*112` — the natives are
+  monomial sheaves over the two pairing-orbits, each splitting into
+  two equal irreps via a stabilizer sign character.  `SL_3(Z/8)` is
+  perfect, so `84a, 84b` (and `112a, 112b`) are NOT global character
+  twists of each other; a diagonal element of `GL_3 \ SL_3`
+  normalizes the parahoric and plausibly swaps each pair, so
+  separation of their deep parahoric constituents (`mtilde = 1`, the
+  floor carriers) is equivalent to non-invariance of those
+  constituents under the swap — one finite character check, with the
+  probe's block census as ground truth.  The whole prototype floor
+  is now derived structure: monomial natives, swap symmetry, and the
+  block-trace theorem.
 - Proved below by assembling established inputs; see the proof route.
   The one step that is a HYPOTHESIS here and a theorem at `SL_2` is
   vertex near-exactness: `SL_3(Z)` HS-stability is open (it is the
