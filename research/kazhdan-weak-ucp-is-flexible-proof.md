@@ -32,7 +32,7 @@ representation of `Gamma` on the Hilbert space `HS(H^_n)`, and by `(F1)`
 the unit vector `xi_n = P_n / sqrt d_n` is `(S, delta_n)`-invariant with
 `delta_n := (1/kappa) max_(s in S) || Ad pi_n(s) xi_n - xi_n || -> 0`.  Let
 `M = (1/2)(1 + |S|^(-1) sum_(s in S) Ad pi_n(s))` (lazy Markov operator).
-Property (T) gives `spec(M) subseteq [0, 1 - kappa^2/4]` on the orthogonal
+Property (T) gives `spec(M) subseteq [0, 1 - kappa^2/(4|S|)]` on the orthogonal
 complement of the `Ad pi_n(Gamma)`-invariant vectors, so `M^k xi_n`
 converges in `HS` to the orthogonal projection `P_inv xi_n` of `xi_n` onto
 the invariant vectors, and `|| xi_n - P_inv xi_n || <= delta_n`

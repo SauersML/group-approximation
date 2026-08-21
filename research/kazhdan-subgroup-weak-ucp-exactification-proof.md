@@ -53,7 +53,7 @@ orthogonal projection onto the `Ad pi(C)`-invariant vectors
 
 Realize `P_inv xi` as a limit of averages: with `M = (1/2)(1 + (1/|S|)
 sum_(s in S) Ad pi(s))`, the lazy Markov operator, (T) gives
-`spec(M|_(inv^perp)) subseteq [0, 1 - kappa^2/4]`, so `M^k xi -> P_inv xi`
+`spec(M|_(inv^perp)) subseteq [0, 1 - kappa^2/(4|S|)]`, so `M^k xi -> P_inv xi`
 in `HS`.  Each `M^k` is a convex combination of conjugations, hence
 maps positive contractions to positive contractions; `HS`-limits of
 positive contractions are positive contractions (HS convergence implies
