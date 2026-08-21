@@ -54,15 +54,36 @@ discussion after Question 1.10; source-verified 2026-08-21).
   `C^*(Sp_(2n)(Z))` fails the (global) LP.  Hence a positive answer here
   would exhibit a separable C*-algebra with LLP but not LP — an open
   problem of Ozawa they cite — on top of the non-hyperlinear group.  Both
-  prizes at once argues for pessimism, but the refutation path is also
-  pinned now: their Theorem A reduces, at `Sp_4(Z)`, to the single
-  cocycle question `sp4-metaplectic-class-pointwise-coboundary-limit`
-  (conditions (1)-(2) are automatic on the Deligne circle of scalar
-  classes; finite-dimensional realizability pins the usable class to the
-  metaplectic point by Deligne invisibility).  Decide that question and
-  this hole falls or hardens accordingly.
+  prizes at once argues for pessimism.  The proposed constant-class
+  refutation is decisively closed by
+  `sp4-metaplectic-class-pointwise-coboundary-limit`: scalar
+  coboundaries are compact and therefore pointwise closed, so no
+  nontrivial fixed class can be gauged to converge to `1`.  ISW Theorem A
+  would require genuinely distinct finite-dimensionally realizable
+  classes accumulating at zero; Deligne invisibility leaves only the
+  trivial and metaplectic points in the relevant circle.
 - **Method note.**  Any attack should start from Ioana--Spaas--Wiersma's
   actual mechanism (their Theorem A/Corollary B derivation) rather than
   from tensor-norm generalities: the Kirchberg characterization
   `LLP <=> (x)_max B(l^2) = (x)_min B(l^2)` has never been verified or
   refuted directly for any lattice.
+
+## Parabolic audit
+
+The two immediate ways of importing the known obstruction are now closed.
+`sp4-maximal-parabolics-contain-no-isw-affine-subgroup` proves that neither
+the Siegel nor Klingen parabolic contains the standard
+`Z^2 rtimes F_2` obstruction group.  More strongly,
+`isw-scalar-cocycle-obstruction-dies-on-sp4-parabolic-radicals` computes
+that the Levi-invariant scalar `H^2` of either radical is finite.  Hence no
+pointwise-trivial sequence can remain nontrivial on the relative-`(T)`
+radical, so ISW Theorem A itself cannot be rerun there.  The remaining
+possibilities are a genuinely global affine subgroup of `Sp_4(Z)`, or the
+operator-valued mechanism of ISW Theorem C with new coefficient and
+embeddability input.
+
+The other proposed scalar shortcut is closed universally:
+`sp4-metaplectic-class-pointwise-coboundary-limit` proves that
+`B^2(Gamma,T)` is pointwise closed for every discrete group.  Hence a fixed
+metaplectic class cannot supply the pointwise-trivial sequence in ISW
+Theorem A merely by changing representatives.
