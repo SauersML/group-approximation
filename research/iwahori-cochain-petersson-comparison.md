@@ -23,8 +23,23 @@ cochain norm and the Petersson/cusp-count norm are comparable.
 
 - (ii) is immediate from property `(tau)` for congruence quotients of the
   three groups, all finite-index in `SL_2(Z)`.
-- (i) and (iii) are the content: for virtually free `V` the space
-  `Z^1(V, Ad rho)` is finite-dimensional of dimension about `(1 + 1/12) d^2`
-  (resp. `(1 + 1/4) d^2`), the harmonic representatives are given by
-  Eichler--Shimura with coefficients, and the comparison constants must
-  not depend on `d`.  No argument is recorded yet.
+- (i) and (iii): proposed uniform argument (2026-08-21), not yet written
+  out.  Work on the fixed orbifold `X(1)` with the flat unitary bundle
+  `E_rho` of rank `d^2`.  *Upper bound* `||omega||_(L^2) <= C ||c||`: the
+  harmonic representative minimizes the `L^2` norm in its class (Hodge),
+  and a closed form with the prescribed periods is built from the cocycle
+  values by a fixed scalar cutoff interpolation on the fundamental domain,
+  so its energy is at most a fixed constant times the cochain norm,
+  independently of `d`.  *Lower bound* `||[c]||_(quot) <= C ||omega||_(L^2)`:
+  the cocycle on the generators is given by integrals of `omega` along
+  fixed paths inside the compact core (`2i -> 2i+1` for `u`, `2i -> i/2` for
+  `S`), and interior elliptic estimates for harmonic sections of a flat
+  unitary bundle are componentwise scalar, hence uniform in the rank.
+  *Eisenstein part*: in the `Ad rho`-on-`SL_2(Z)` formulation the boundary
+  of a class is its image in the `u`-coinvariants `M_d / (1 - Ad rho(u))
+  M_d`, a generator-level quantity; by Shapiro this is the cusp residue
+  vector of `Gamma(p)` with orbit-size weights, all equal to `p` except at
+  finitely many cusps, so the Gram identity of `iwahori-eisenstein-angle`
+  transfers with the same interval up to a bounded correction.
+  *Coboundaries*: Selberg's `(tau)`.  The orthogonality of the three parts
+  in the cochain inner product is the remaining bookkeeping.
