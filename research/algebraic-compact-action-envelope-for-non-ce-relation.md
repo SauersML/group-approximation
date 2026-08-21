@@ -237,6 +237,24 @@ finitely generated nonseparable stabilizer must have a nontrivial vertical
 intersection with `SL_3(Z)`; otherwise the only remaining coset option is an
 infinitely generated stabilizer.
 
+There is now also a direct screen on the genuinely non-permutation residual.
+By `dense-homoclinic-algebraic-actions-are-ce`, a profinite algebraic action
+of any sofic actor has CE crossed product whenever its homoclinic group is
+dense.  For a finite-field linear subshift the homoclinic points are exactly
+the finite-support solutions.  Combined with the Haagerup-factor stripping
+and finite extraction above, any successful mixed construction yields a
+finitely generated r.e. `F_p[SL_3(Z)]`-module whose dual `K_0` satisfies
+
+```text
+closure(K_0 intersect (F_p^m)^(SL_3(Z))_{finite support}) != K_0.
+```
+
+Thus the surviving module is simultaneously finite over `SL_3(Z)`, already
+non-hyperlinear without the Manzoor direction, and non-homoclinically-dense.
+Permutation/coset modules and algebraic shifts with dense finite-support
+solutions are both excluded; the residual must carry a genuinely global
+profinite constraint.
+
 The nonseparable-stabilizer box is nonempty and effective.
 `mihailova-nonseparable-coset-stabilizer` takes a finitely presented nonsofic
 group `Q`, forms its finitely generated Mihailova fiber product inside free
