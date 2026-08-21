@@ -2026,7 +2026,7 @@ non-hyperlinear-group [OPEN] Exhibit an explicit non-hyperlinear group
             one-pauli-seed-character-expansion [✓] One Pauli seed plus expanding character covariance forces dimension or mark collapse
         exact-projective-codensity-has-a-uniform-trace-square-gap [✓] Perfect Kazhdan co-density has a uniform projective trace-square transfer gap on exact representations
           (…already shown)
-    infinite-character-actor-word-energy-interface [OPEN] Make finite word defects control an infinite character-orbit transport energy
+    infinite-character-actor-word-energy-interface [OPEN] 🔒 Make finite word defects control an infinite character-orbit transport energy
     property-t-must-upgrade-global-augmentation-rounding [OPEN] Property T must supply the missing global augmentation-module rounding
       ├ uniform-module-exposure-feeds-property-t-global-pvm [OPEN] Round the exposed whole module by uniform abelian HS stability
         finite-presentation-must-expose-whole-module-with-uniform-defect [OPEN] Expose the entire augmentation module as one uniformly multiplicative map from finite relators
@@ -2558,7 +2558,7 @@ wreath-compression-mf-radical [✓] Exact MF radicals of compression wreath prod
 
 ## Frontier holes (open, reachable, undecomposed)
 
-- **infinite-character-actor-word-energy-interface** [4 live route(s) need it; toward: non-hyperlinear-group] [Make finite word defects control an infinite character-orbit transport energy](infinite-character-actor-word-energy-interface.md) — unclaimed
+- **infinite-character-actor-word-energy-interface** [4 live route(s) need it; toward: non-hyperlinear-group] [Make finite word defects control an infinite character-orbit transport energy](infinite-character-actor-word-energy-interface.md) — 🔒 claimed (82m54s remaining)
 - **projective-trace-square-transfer-for-sl3-pair** [3 live route(s) need it; toward: non-hyperlinear-group] [Projective trace-square transfer for the co-dense SL3 arithmetic pair](projective-trace-square-transfer-for-sl3-pair.md) — ⚑ last missing for nonhyperlinear-from-projective-trace-square-transfer → non-hyperlinear-group — ⚑ last missing for projective-transfer-gives-universal-filtered-actuator → type-filtered-proper-corner-return-actuator — unclaimed
 - **atlas-a4-normal-certificate-compiler** [2 live route(s) need it; toward: non-hyperlinear-group] [Three opaque conjugacy transports and the 19243 readout suffice for the A8 chart frame](atlas-a4-normal-certificate-compiler.md) — ⚑ last missing for a4-holonomy-gap-from-normal-certificate → atlas-a4-holonomy-coherence-gap — ⚑ last missing for four-cycle-trace-compiler-from-opaque-star → atlas-a4-four-cycle-trace-compiler — unclaimed
 - **atlas-a4-root-energy-ellipse-ceiling** [2 live route(s) need it; toward: non-hyperlinear-group] [One ellipsoidal scalar in square-root four-cycle energies beats the 19243 wall](atlas-a4-root-energy-ellipse-ceiling.md) — ⚑ last missing for binary-schur-branch-payment-via-19243-holonomy → binary-schur-toeplitz-one-branch-hs-payment — ⚑ last missing for nonhyperlinear-from-a4-root-energy-ellipse → non-hyperlinear-group — unclaimed
@@ -2944,4 +2944,4 @@ wreath-compression-mf-radical [✓] Exact MF radicals of compression wreath prod
 
 ## Active claims
 
-*(none)*
+- 🔒 infinite-character-actor-word-energy-interface — 82m53s remaining
