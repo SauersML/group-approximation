@@ -30,6 +30,18 @@ that model from arbitrarily large matrices.
 
 - Sequential word telescoping spends error proportional to depth and yields
   only a large hyperlinear profile.
+- Following only one child is also insufficient:
+  `consecutive-dyadic-splitting-does-not-report-dimension` shows that this
+  reads only `v_2(L)` and leaves a dilutable rank-one remainder.  The correct
+  analytic geometry is the full tree.
+- **Full-tree seam is extensive.**
+  `full-dyadic-split-tree-has-an-extensive-terminal-seam` proves that if every
+  surviving child is split on an orthogonal domain, then beyond depth
+  `log_2 L` the remainder projections exhaust the carrier and their squared
+  normalized-HS coverage errors sum to one.  Hence atom-scale dilution is no
+  longer an analytic obstruction.  The compiler must preserve those
+  orthogonal node domains and pack their errors without a depth-dependent
+  union bound.
 - Testing the terminal minimal projection directly loses its signal as
   `2^(-r)`; the actuator must retain the common central sign on the entire
   residual carrier, not merely mark one leaf.
