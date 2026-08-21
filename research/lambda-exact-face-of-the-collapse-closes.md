@@ -181,6 +181,35 @@ Hilbert--Schmidt mass in the common part is at most `1/4`, giving
   `SL_3(Z/2^a)`-duals and the three `Ad`-pullback maps on generating
   band triples: a finite, scriptable computation per level (MSI
   lane), and the natural first target is `a = 3, 4`.
+- **THE PRIME SPLITS THE FORK: metaplectic flux and the choice
+  p = 3 (2026-08-21, terminal expansion).**  Natural identification
+  (CONJECTURE, flagged as such): the canonical-transport cocycle on
+  the flat band groupoid is the Matsumoto/Steinberg-symbol class —
+  the transports are metaplectic-style lifts of the torus action on
+  congruence duals, and Matsumoto's theorem says the universal
+  obstruction for lifting commuting torus elements of `SL_3(Q_p)` is
+  the product of `p`-adic Hilbert symbols of their coordinates.
+  EXACT symbol computations: at `p = 2`, every symbol among powers
+  of `2` is trivial (`(2,2)_2 = +1`: `x^2 - 2 y^2 = 2` has the
+  solution `x = 2, y = 1`; standard formula agrees), so the
+  `Z^2`-flux of the flat tower VANISHES at `p = 2` and the enemy
+  construction faces no metaplectic obstruction there — genuine
+  hyperlinear-side pressure for the `p = 2` pair, consistent with
+  every closure failing exactly at `2`.  But for `p = 3 (mod 4)`
+  the symbol `(p, p)_p = (-1 | p) = -1` is NONTRIVIAL: under the
+  same identification the flux of the `(SL_3(Z), SL_3(Z[1/p]))`
+  flat tower is an ineliminable `-1`, the cocycle is obstructed,
+  and the ENTIRE `Lambda`-exact face of the collapse closes for the
+  `p = 3` pair — every theorem of this lane (far-defect, averaging,
+  compression, moment splitting, coprime closure at levels coprime
+  to `3`, dichotomy, consolidation, shift-invariance, flatness) is
+  prime-generic and transports verbatim.  ACTION: the lane's wired
+  pair should be instantiated at `p = 3`, where the remaining wall
+  is the uniform-outlier sector alone (pending the flagged
+  flux-identification, which is the single lemma to verify: that
+  the composition defect of the canonical pullback transports
+  realizes the Matsumoto class — a finite computation at one level
+  triple, decisive either way).
 - **What the theorem does NOT do.**  It does not touch the
   uniform-outlier sector: microstates far from all genuine
   representations remain possible a priori, and `(RC3)` remains open
