@@ -176,17 +176,17 @@ The HNN reduction of Section 1 applies to `A = SL_n(Z)` itself (`n >= 3`),
 giving the cleanest conditional statement in the program.
 
 **Theorem (citation assembly + the HNN theorem).** Let `n >= 3` and let
-`C = <g_1, g_2> <= SL_n(Z)` be a saturated Zariski-dense free subgroup (thin;
-surjecting onto `SL_n(Z/m)` for every `m`). Then `(SL_n(Z), C)` satisfies
-every hypothesis of the HNN theorem:
+`C = <g_1,g_2,g_3,g_4> <= SL_n(Z)` be the four-generated profinitely dense
+free subgroup constructed by Aka--Gelander--Soifer (hence thin, Zariski
+dense, and surjecting onto `SL_n(Z/m)` for every `m`). Then
+`(SL_n(Z), C)` satisfies every hypothesis of the HNN theorem:
 
 - Every finite-dimensional unitary representation of `SL_n(Z)` factors
   through a congruence quotient `SL_n(Z/m)` (Margulis superrigidity: a
   homomorphism to a compact group has finite image; Bass--Milnor--Serre
   congruence subgroup property).
-- Co-density: `C` saturated surjects onto every `SL_n(Z/m)` (strong
-  approximation, Matthews--Vaserstein--Weisfeiler/Nori, + generator choice),
-  so `rho(C) = rho(A)` for every finite-dimensional `rho`.
+- Co-density: profinite density gives surjectivity onto every
+  `SL_n(Z/m)`, so `rho(C) = rho(A)` for every finite-dimensional `rho`.
 - Uniform gap `= (tau)`: **Bourgain--Varju**, *Expansion in `SL_d(Z/qZ)`,
   `q` arbitrary* (Invent. Math. 188 (2012) 151--173): the Cayley graphs of
   `pi_m(C) = SL_n(Z/m)` are uniform expanders over ARBITRARY modulus, which
