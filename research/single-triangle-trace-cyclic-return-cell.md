@@ -143,3 +143,27 @@ The global-Pauli shortcut does not remove this target:
 parity guard fails exactly on the terminal HALT block.  Thus the chord is a
 genuine part of the native source and its one proper-corner return is again
 the load-bearing local theorem.
+
+The ordinary-word shadow of the native doubling relation also does not
+remove it.  `fanizza-reflection-recurrence-has-s4-stationary-overlap`
+constructs an exact `S_4` model in which
+
+```text
+Z_(n+1)=Z_n X_n Z_n X_n^(-1)
+```
+
+holds at every conjugate level, all carrier cuts have the same trace, and
+the hidden overlap has trace exactly half of the carrier.  Thus the word
+identity remembers symmetric difference, not orthogonal union.  The two
+proper returns must charge the nonlinear C18 overlap itself.
+
+Finally, `functorial-packet-return-firewall`
+extends the regular firewall beyond literal block words.  Fixed finite-group
+averaging, spectral exactification, polar decomposition, support cuts, and
+conditional expectations are all available in the left regular finite von
+Neumann algebra.  If they functorially produced either proper return, trace
+cyclicity would kill the positive regular D8 cut.  The live actuator must
+therefore contain an explicitly finite-matrix **integer multiplicity**
+choice, forced by the prescribed C18 words, whose loss is proportional to
+the active dimension.  This is now the minimal scalar not supplied by any
+fixed packet or reflection recurrence.
