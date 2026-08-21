@@ -11,6 +11,7 @@ requires:
 artifacts:
   - research/artifacts/hs-dehn-modulus-length-control-2026-08-20.md
   - research/artifacts/sl2-hnn-iwahori-dynamical-fork-2026-08-21.md
+  - research/artifacts/user-reported-augmented-lagrangian-hnn-probe-2026-08-21.md
 ---
 
 `iwahori-local-global-defect-question` is the flexible HS-stability of

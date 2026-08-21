@@ -135,6 +135,18 @@ regular-character convergence is tested. The complete protocol and caveats
 are recorded in
 `research/artifacts/psl2-far-sector-optimizer-heuristic-2026-08-21.md`.
 
+A second, user-reported experiment uses a different objective: an
+augmented-Lagrangian constraint keeps the HNN mark separated while minimizing
+the full squared relator sum. Congruence-seeded projective-HNN rows for
+`p=7,11,13,17,23,31` report floors between `.048` and `.076`, with separate
+base, stable-letter and cyclic-HNN components. This dataset was not rerun and
+does not show monotone decay on the tested range. Its BS(2,3) calibration,
+controls, complete table, normalization ambiguity and reported late-onset
+`O(p^(-1/2))` prediction are quarantined in
+`research/artifacts/user-reported-augmented-lagrangian-hnn-probe-2026-08-21.md`.
+The two optimizer datasets must not be combined: one rewards short-odd-order
+farness in the base amalgam, while the other constrains the HNN mark directly.
+
 ## 5. The three exits are separate and remain conditional
 
 1. **Native gap / fault tolerance.** A perfect commuting LCS gap would give a

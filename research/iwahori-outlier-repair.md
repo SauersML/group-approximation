@@ -6,6 +6,7 @@ title: "Iwahori endpoint: full-rank outlier repair"
 artifacts:
   - research/artifacts/open-problem-attacks-2026-08-17.md
   - research/artifacts/psl2-far-sector-optimizer-heuristic-2026-08-21.md
+  - research/artifacts/user-reported-augmented-lagrangian-hnn-probe-2026-08-21.md
   - experiments/psl2_far_sector_probe.py
   - experiments/psl2-far-sector-probe-smoke.json
   - notes/TRUE_IWAHORI_CENTRAL_REGULAR_OUTLIER_LOCALIZATION.md

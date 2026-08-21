@@ -304,6 +304,13 @@ The bounded PSL2 optimizer is retained only as the heuristic artifact
 `psl2-far-sector-optimizer-heuristic-2026-08-21`: exact torsion is controlled,
 but the short odd-power diagnostic is not distance from all congruence
 representations and the smoke residual is not a lower-bound certificate.
+The separately supplied augmented-Lagrangian data are quarantined as
+`user-reported-augmented-lagrangian-hnn-probe-2026-08-21`. They report
+BS(2,3) calibration/control rows and congruence-seeded projective-HNN floors
+`.048`--`.076` for primes `7` through `31`, but were not rerun, are
+nonmonotone in this range, and use a different mark-separation objective.
+The ambiguous “trivial `(relator)^2`” calibration label is preserved with a
+normalization warning rather than treated as a verified certificate.
 
 The arithmetic candidate is audited in
 `sl2-hnn-iwahori-dynamical-fork-2026-08-21`. The four-generator,
