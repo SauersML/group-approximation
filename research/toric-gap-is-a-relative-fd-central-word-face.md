@@ -176,6 +176,33 @@ The two quotient presentations have the same universal property, proving
 `(RTF6)`.  Intersecting the kernel with the original central copy of `B`
 gives `(RTF7)`.  End proof.
 
+There is a useful scalar-only reformulation of `(RTF7)`.  Let `E` be the
+free abelian group on the clause indices and define
+
+```text
+alpha:E -> Z(A_0) x Z(B_0),
+alpha(n)=prod_i (abar_i,bbar_i)^(n_i),
+
+beta:E -> B,
+beta(n)=prod_i beta_i^(n_i).                            (RTF9)
+```
+
+> **Corollary 4 (phase-label factorization).**  The normal closure is
+> phase-safe if and only if
+>
+> ```text
+> ker(alpha) <= ker(beta),                              (RTF10)
+> ```
+>
+> equivalently, the prescribed scalar label `beta` factors to a character
+> on the central subgroup `im(alpha)`.
+
+Indeed, an element of `Z intersect B` is exactly
+`(beta(n),1,1)` for some `n in ker(alpha)`.  This criterion separates the two
+remaining tasks cleanly: finite-dimensional soundness concerns the state
+face `(RTF1)`, while normal phase survival is the consistency of one scalar
+character on the central word-pair subgroup.
+
 This does not prove that the quotient is hyperlinear: RFD and hyperlinearity
 do not pass to arbitrary quotients, and proving otherwise here would solve
 the target problem.  It does show that normal phase safety converts every
@@ -225,4 +252,3 @@ not supply it.
   isometries of the Urysohn space*, arXiv:math/0601700, Theorem 10.
 - Ji--Natarajan--Vidick--Wright--Yuen, *MIP*=RE*, arXiv:2001.04383, for the
   negative solution of Connes embedding used in the RFD audit.
-
