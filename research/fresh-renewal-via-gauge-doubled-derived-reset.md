@@ -8,6 +8,7 @@ requires:
   - gauge-doubling-gives-selector-flip-symmetries
   - weyl-derivative-reset-preserves-schur-spin-scale
   - derived-lifted-gauge-reset-spin-bridge
+  - regular-gauge-orbit-contains-equal-scale-derived-d8-reset
 ---
 
 Gauge-double the finitely many selector variables in each Fanizza context.
@@ -23,4 +24,3 @@ the same spin scale. Shared logical variables are carried literally, while
 old and fresh gauge choices are transverse; hence no extra commutator between
 distinct logical BCS variables is imposed. Fixed arity and a fixed predicate
 menu bound the incidence and exactification constants.
-

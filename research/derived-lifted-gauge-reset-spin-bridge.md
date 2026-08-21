@@ -58,3 +58,11 @@ balanced Morita edge.
   is added.  The remaining work is the finite semantic incidence and
   ordinary-word exposure of the two Hecke reflections, not the local spin
   arithmetic.
+- `regular-gauge-orbit-contains-equal-scale-derived-d8-reset` removes the two
+  remaining local drawbacks of that candidate.  On four-point cosets already
+  present in the gauge-covariant completeness orbit, the reset translation is
+  the central commutator of a literal square `D_8` action.  Its negative sector
+  is one balanced two-dimensional spin simple, so no tensor qubit is added and
+  no Hecke reflection must be exposed as a word.  The remaining audit is now
+  only the common codimension-one residual spin incidence between the old
+  derivative packet and all next selector-sector baselines.
