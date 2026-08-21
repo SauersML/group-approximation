@@ -34,6 +34,18 @@ second word-generated algebra and cannot exchange roles with the label factor.
 
 ## Attempts
 
+- **Only two mixed moments are needed after the relative gauge is exposed.**
+  `two-mixed-pauli-commutators-lock-the-relative-reservoir-gauge` proves that
+  if `V` is the common relative unitary between the two child extension
+  routes, then its commutators with the child Pauli `X,Z` force
+  `dist_2(V,I_2 tensor U(m))` to be at most the sum of the two commutator
+  errors.  The constant is dimension-free, and one commuting test is
+  insufficient.  Thus `(CCMB1)` does not require a large new finite packet at
+  the analytic endpoint.  The remaining load-bearing task is to decode the
+  **same** `V` on the **same** positive-density corner from the mixed words;
+  Gowers--Hatami uniqueness alone supplies only separate same-level
+  intertwiners.
+
 - **Nested Gowers--Hatami uniqueness does not expose the reservoir.**
   `gowers-hatami-uniqueness-does-not-lock-nested-pauli-reservoirs` gives the
   exact countermodel.  At fixed depth one may exactify the largest

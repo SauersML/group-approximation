@@ -152,3 +152,10 @@ program.  The positive deliverable is the division of labor:
 
 The latter is exactly the finite-matrix common-carrier compatibility absent
 from the ordinary nested Clifford tower.
+
+The analytic part of that compatibility is now closed by
+`two-mixed-pauli-commutators-lock-the-relative-reservoir-gauge`: once one
+common relative gauge is decoded, its two commutators with the child Pauli
+pair force it into the smaller reservoir with error at most the sum of the
+two word errors.  The open content is therefore exposure of that common
+gauge/corner, not a stronger uniqueness theorem or a larger test packet.
