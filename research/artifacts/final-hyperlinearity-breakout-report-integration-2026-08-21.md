@@ -66,12 +66,23 @@ multiplicity gauge and cross-chart overlap free. The warning about applying
 Dye reconstruction to a bare abstract unitary-group embedding is retained in
 `notes/FALSE_PROJECTIVE_UNITARY_GROUP_SHORTCUT.md`.
 
+Finite scalar-bus/HNN couplings do not repair the forbidden-sector problem:
+`scalar-bus-packet-couplings-retain-all-global-assignments` constructs exact
+finite-dimensional models for every globally compatible Boolean assignment,
+including forbidden assignments carrying the selected phase. Cross-
+amplification makes the cycle constraints vacuous, so a genuinely
+non-scalar common-carrier coupling is still required.
+
 ## Character polarization and free labels
 
 Power polarization is already computed by `character-diracization-limit`,
 and `diracization-gap-equals-nonhyperlinear-group` proves that uniform
 survival of a separating non-CE gap is equivalent to the original target.
-The additional diagonal-tensor warning is essential: the algebra generated
+The report's raw assertion that `tau(g)^n` converges to the indicator of
+`{tau=1}` is false for nontrivial unit phases (already for the sign
+character). The phase-safe polarization is `|tau(g)|^(2n)`. The additional
+diagonal-tensor warning is proved in
+`diagonal-tensor-trace-powers-forget-full-gns-tensor`: the algebra generated
 by `pi(g)^(tensor n)` can be strictly smaller than the full tensor product, so
 non-CE of the latter does not imply non-CE of the former.
 
@@ -79,8 +90,10 @@ Free labels exhibit the complementary erasure mechanism. The tuple
 `u_i tensor lambda(s_i)` has the free regular character, but the generated
 tracial algebra retains only the free labels. Adjoining label erasers
 recovers the coefficient algebra and simultaneously reintroduces its
-noncanonical word traces. This is a no-go for that promotion gadget, not a
-no-go for analytic recovery from a positive multiplicity corner.
+noncanonical word traces. The direct proof is
+`free-label-orthogonalization-erases-payload-trace`. This is a no-go for that
+promotion gadget, not a no-go for analytic recovery from a positive
+multiplicity corner.
 
 ## Bounded transporter fillings
 
@@ -128,7 +141,8 @@ explicit in `symmetric-double-weak-mf-proof` and
 
 Consequently the proposed stable-double contradiction is not a valid theorem
 from that citation. It remains only a conditional template if an independent
-trace-preserving MF-promotion result is supplied.
+trace-preserving MF-promotion result is supplied. The correction is a Cairn
+claim with proof at `shulman-symmetric-double-has-no-stable-trace-upgrade`.
 
 ## Net frontier after integration
 
