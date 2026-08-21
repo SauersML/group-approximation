@@ -41,8 +41,8 @@ def defects(x, y, xp, yp):
     T = x @ y
     Tp = xp @ yp
     r1 = T - Tp @ Tp
-    eps = x @ y @ y @ x @ y @ x
-    epsp = xp @ yp @ xp @ yp @ yp @ xp
+    eps = x @ y @ y @ x @ y @ x       # w = x y^2 x y x
+    epsp = xp @ yp @ xp @ yp @ yp @ xp  # sigma(w) = x' y' x' y'^2 x' (mirror)
     return hs(r1), hs(eps - epsp)
 
 
