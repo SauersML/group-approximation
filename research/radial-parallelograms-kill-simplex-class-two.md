@@ -85,3 +85,19 @@ global affine-codeword PVM.  This closes the exact and robust central
 class-two obstruction.  It does not yet round arbitrary non-class-two local
 PVMs: the remaining gate is exclusion or stability of the nonnilpotent
 contextual core in `(RPC6)`.
+
+## Exact-group boundary
+
+For the canonical radial-only presentation, the assertion that the
+abelianization is `(RPC3)` requires the cyclic gcd condition isolated in
+`radial-only-group-needs-a-cyclic-gcd-audit`.  If the radial checks are only
+being adjoined to an already specified simplex presentation, the identity of
+that base presentation must be named: abelianization alone does not define
+its nonnilpotent solution group.
+
+Under the exact-simplex hypothesis there is now a stronger finite-quotient
+result.  `radial-simplex-has-no-nonabelian-finite-solvable-quotient` proves
+that every finite solvable quotient is abelian.  Hence a surviving finite
+contextual quotient must contain a nonabelian finite simple composition
+factor; the remaining problem is genuinely semisimple, not an unexamined
+odd-primary affine extension.
