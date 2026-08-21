@@ -62,6 +62,13 @@ the affine active Leavitt construction.
   finite root-character orbit for the active central idempotent, coupled to
   three paired root triangles, with a conditional expectation used only to
   recover those products.
+- **The exact one-to-two word is now explicit.** After passing to the
+  coefficient-central envelope, `affine-active-doubling-is-elementary-matrix-conjugacy`
+  writes the active branch as one Whitehead elementary word.  However,
+  `single-affine-leavitt-branch-chart-is-stationary` proves that this
+  conjugacy and the finite head alone form a virtually-free chart with exact
+  finite marked countermodels.  The decoder must therefore use the paired
+  Steinberg multiplication triangles in addition to the conjugator.
 - **No regular-trace contradiction is asserted.** The decoder is a
   finite-matrix stability statement. It need not extend to the left regular
   representation or any arbitrary tracial representation of `Gamma_A`.
