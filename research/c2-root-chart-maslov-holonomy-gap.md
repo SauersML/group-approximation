@@ -1,0 +1,39 @@
+---
+rg: 2
+id: c2-root-chart-maslov-holonomy-gap
+kind: claim
+title: Chordal C2 root charts leave a single Maslov holonomy cycle with positive HS energy
+artifacts:
+  - research/artifacts/deligne-maslov-hyperlinear-strategies-2026-08-21.md
+distinct_from:
+  atlas-a4-four-cycle-dirichlet-compiler: that compiles an A4 context atlas to a scalar four-transvection Dirichlet energy; this uses the C2 symplectic root system and requires the surviving cycle to carry the mod-three Meyer--Maslov cocycle.
+  iwahori-uniform-infinitesimal-rigidity: that seeks a Jacobian gap for two SL2(Z) vertices glued along an Iwahori subgroup; this exactifies abelian root charts by chordality and isolates one rank-two projective holonomy cycle.
+---
+
+Construct a finite root-subgroup presentation of `Sp_4(Z)` adapted to the
+mod-three Deligne/Meyer--Maslov multiplier such that:
+
+1. all commuting-root relations can be covered by finitely many chordal
+   induced graph-product charts;
+2. after same-dimension HS exactification on those charts and synchronization
+   on overlaps, all projective curvature is gauge-equivalent to one bounded
+   family of induced non-chordal `C2` cycles;
+3. a nontrivial mod-three Maslov holonomy on one of those cycles has a
+   dimension-free positive normalized-HS relator-energy cost.
+
+## Attempts
+
+- **Compute before proving.** Enumerate a concrete Steinberg/Chevalley
+  presentation of type `C2`, its root-commutation graph, and minimal chordal
+  covers.  Push the cocycle by explicit coboundaries and verify that its
+  support cannot be removed from the non-chordal residue.
+- **Use Spaas only locally.** `chordal-abelian-graph-products-hs-stable` is
+  meant to erase commuting charts, not to claim the whole symplectic group is
+  a chordal graph product.
+- **Holonomy payment.** Once all chart relations are exact, the remaining
+  variables should live in overlap commutants.  Seek a finite-dimensional
+  Poincare/Dirichlet inequality on the overlap graph converting the order-three
+  holonomy into HS energy.
+- **Falsification.** If a coboundary gauge moves the entire mod-three cocycle
+  into chordal charts, or if the overlap commutants admit stationary phase
+  flow with vanishing energy, this compiler does not prove the desired gap.
