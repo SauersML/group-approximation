@@ -62,3 +62,21 @@ immune to spectator amplification.
 - **Live search target.**  Use `(SOM7)` to seek a finite Hecke, PSD, or
   root-character certificate for the single moment lower bound `(ORA1)`.
   This is strictly weaker than termwise covariance of all packet words.
+- **Scalar syntax does not remove the geometric load.**  Identity `(SOM3)`
+  says the deficit in `(ORA1)` is exactly the total squared leakage
+  `||(I-R_B)TR_A||^2`.  Thus the scalar is a compact certificate for the
+  whole Reynolds range, not a loophole allowing one favorable adjoint
+  vector to stand in for it.
+- **Most concrete existing chart.**
+  `support-packet-paired-word-frame-exposes-forbidden-rank` names the changing
+  Reynolds module by four packet words.  Its only finite-edge escape is the
+  forced `101<->011` two-cycle.  The open one-sided reservoir claim can be
+  tested against `(ORA1)` directly, avoiding any stronger demand once its
+  hard frame is placed.
+- **Character ownership remains load-bearing.**
+  `finite-edge-reynolds-overlap-follows-character-transport` proves that an
+  HNN edge carries the conditioned scalar checksum to the induced central
+  character and nowhere else.  For the paired frame this is the compulsory
+  `101<->011` reservoir.  The actuator must add an infinite label, a
+  gauge-doubled logical invariant, or an equivalent nonstationary ownership
+  mechanism; merely rewriting the return as one scalar does not remove it.

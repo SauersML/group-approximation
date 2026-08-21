@@ -46,6 +46,12 @@ ordinary words `a_1 t^-1 b t a_2`.  This is the literal self-hash: one finite
 word-moment list authenticates whether the whole active Reynolds carrier
 returned.
 
+The reduction is syntactic, not a weakening of the geometric burden:
+`tr_ad(R_A)-Theta` is exactly the squared HS mass of the part of `T range(R_A)`
+outside `range(R_B)`.  A proof of the scalar inequality therefore controls
+the entire average leakage, even though it need not establish termwise packet
+covariance.
+
 ## What is gained
 
 - spectator tensor amplification leaves every normalized adjoint rank and
@@ -68,6 +74,9 @@ returned.
    commutations among original variables from different BCS contexts.
 5. The current theorem is only the reduction to the scalar overlap.  No
    valid group relation forcing the overlap lower bound is yet known.
+6. On a finite HNN edge the conditioned overlap follows the induced central
+   character permutation exactly.  In the paired frame the hard carrier
+   still escapes through `101<->011`; scalarization does not erase ownership.
 
 ## Primary next search
 
