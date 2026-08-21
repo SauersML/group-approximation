@@ -95,7 +95,7 @@ exact and regular, yet the four atoms remain perfectly independent.
 This is the smallest multiplicity-rotation countermodel to synchronization
 from one raw root word.
 
-## The scalar actually needed
+## The scalar for the stronger pairwise-alignment problem
 
 Let `E_1` be the trace-preserving conditional expectation onto `A_1` (after
 the fixed finite packet has been exactified), and take the second packet's
@@ -127,8 +127,8 @@ closeness of `Y_2` to its occurrence in the first packet controls
 shared root cannot control `(OSR8)`, because the countermodel makes all such
 statistics exact while `A_1!=A_2`.
 
-Therefore the minimal normalized-HS gluing target is not one-root PVM
-agreement.  It is a mixed full-overlap estimate of the form
+Thus, **if** one seeks equality of the two local Heisenberg packet algebras,
+the exact missing scalar is a mixed full-overlap estimate of the form
 
 ```text
 dist_2(Y_2,A_1)^2
@@ -137,9 +137,17 @@ dist_2(Y_2,A_1)^2
 
 on a positive four-atom carrier, for one root `Y_2` not commuting with the
 literal shared root.  Once `(OSR10)` tends to zero, fixed-finite-group
-stability and `(OSR9)` give a common reservoir, after which the rank-two Weyl
-triangle kills the diagonal gauge.
+stability and `(OSR9)` give equality of the two local packet algebras.
 
-The exact countermodel proves that any proposed estimate omitting this mixed
-noncommuting generator is false, regardless of how accurately it matches the
-shared root's spectral data.
+This equality is stronger than the actual `A_2` geometry requires.
+`adjacent-a2-chambers-share-only-commuting-wall` shows that adjacent chambers
+share no such second noncommuting root, and
+`six-chamber-a2-holonomy-closes-fixed-clock-sector` identifies the correct
+global target: the six local packet algebras remain different subalgebras of
+one Chevalley reservoir, while their closed-gallery holonomy is trivial.
+Accordingly `(OSR10)` is a diagnostic for impossible pairwise over-alignment,
+not the final arithmetic compiler lemma.
+
+The exact countermodel proves that one shared-root spectral data cannot imply
+pairwise algebra equality.  The weaker and geometrically correct alternative
+is control of the full closed-gallery holonomy.

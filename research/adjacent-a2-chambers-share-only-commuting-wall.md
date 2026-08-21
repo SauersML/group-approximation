@@ -142,18 +142,27 @@ joint PVM/Gram table of both literal shared roots, can bound `(ACW12)`.
 
 Pairwise adjacent-chamber gluing cannot supply the desired common reservoir:
 the actual overlap is abelian and admits the exact role-rotation above.  A
-positive estimate must use a closed collection of at least three chamber
-transitions so that an off-wall root in one edge returns as a constrained
-root on another edge.  Quantitatively, the remaining target is a holonomy
-bound which forces
+positive estimate must use a closed chamber gallery so that an off-wall root
+eventually returns as a constrained root.
+
+It would be incorrect to force `Delta_mix` itself to zero.  Even in an honest
+regular representation of the common Chevalley group `SL_3(F_p)`, an
+off-wall root is not in the first unipotent packet algebra, so `(ACW12)` is
+positive (indeed the corresponding group basis elements are orthogonal).
+The local packet algebras are supposed to remain distinct subalgebras of one
+ambient coefficient reservoir.  The correct scalar is instead the defect of
+the closed-gallery transition holonomy:
 
 ```text
-Delta_mix <= C (relator defect + canonical trace defect) (ACW13)
+||Omega_transition-I||_2^2
+ <= C (relator defect + canonical trace defect).         (ACW13)
 ```
 
-from mixed Steinberg relations around that closed chamber circuit.  Once
-`Delta_mix` tends to zero, the two exactified packet algebras align and the
-rank-two diagonal triangle kills the remaining gauge.
+For the fixed period-five packet,
+`six-chamber-a2-holonomy-closes-fixed-clock-sector` proves this on the minimal
+six-edge Coxeter gallery, whose raw holonomy is `(n_12 n_23)^3=1`.  Vanishing
+holonomy puts the distinct local packets in one coherent Chevalley reservoir;
+the rank-two diagonal triangle then kills the remaining gauge.
 
 The countermodel proves that replacing the closed circuit by any amount of
 pairwise wall data is insufficient.
@@ -163,9 +172,8 @@ Each coweight direction has its own kernel-join descent, and its Weyl orbit
 can generate the full shallower principal layer only after those directional
 descents act on one carrier.  Pairwise wall equality supplies merely the
 common abelian algebra `D` and does not identify their off-wall multiplicity
-spaces.  A circuit estimate proving `(ACW13)` for the Weyl-adjacent packets
-would make their finite packet algebras common by equal dimension; the
-directionwise kernel joins could then be summed on that one carrier and the
-fixed `Lambda_0` property-T gap could be applied.  Thus `Delta_mix`, rather
-than another conductor index calculation, is exactly the scalar interface
-between the existing level-descent packet and a uniform recurrence.
+spaces.  A circuit estimate proving `(ACW13)` would place the distinct packet
+algebras coherently in one ambient reservoir; the directionwise kernel joins
+could then be summed there and the fixed `Lambda_0` property-T gap applied.
+Thus closed-gallery holonomy, rather than pairwise `Delta_mix` or another
+conductor index calculation, is the scalar interface to a uniform recurrence.
