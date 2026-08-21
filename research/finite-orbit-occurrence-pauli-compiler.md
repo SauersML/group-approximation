@@ -34,9 +34,15 @@ linear-code incidence part is now closed by
 finitary linear group, bounded vector/covector configurations have finitely
 many orbits classified by relation kernels and pairing matrices.  The open
 problem is narrower: prove dimension-independent HS consistency between the
-different orbit representatives of one occurrence.  The amenable Houghton
-version of that addresser is an exact hyperlinear countermodel to every proof
-which omits this quantitative gauge step.
+different orbit representatives of one occurrence.  This is not supplied by
+high transitivity itself.  The theorem
+`two-transitive-occurrence-sections-have-unbounded-pair-holonomy` proves that
+for any two global role sections, simultaneous transport of all ordered pairs
+has unbounded endpoint stabilizer correction.  A controlled swap placed in
+the pair test retains the same two corrections when its endpoints are
+identified with the strategy's fixed question operators.  The amenable
+Houghton version of the addresser is an exact hyperlinear countermodel to
+every proof which omits this quantitative gauge step.
 
 ## Attempts
 
@@ -50,6 +56,11 @@ which omits this quantitative gauge step.
   coherence between different representatives.  Choosing an amenable
   addresser makes the whole exact construction hyperlinear and proves that
   this remaining distinction is load-bearing.
+- **Pairwise controlled swaps.**  Every pair test may be a literal conjugate
+  of one prototype, but a game strategy still needs one fixed operator for
+  each question.  Comparing the simultaneously transported endpoints with
+  those fixed question words inserts two unbounded stabilizer holonomies by
+  `two-transitive-occurrence-sections-have-unbounded-pair-holonomy`.
 - **Direct complete-table tests.**  These fall back to
   `finitely-presented-uniform-area-clifford-tape`, which is stronger than the
   occurrence target and retains the table-area obstruction.
