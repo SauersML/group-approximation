@@ -42,4 +42,6 @@ the target theorem.
 Local finite controlled-reflection gadgets remain possible, but finite-group
 induction recreates forbidden selector types.  The missing actuator must
 therefore be global/state-dependent or genuinely finite-dimensional-only.
-
+The categorical finite-Morita obstruction, including matrix amplification
+and full corners, is proved in
+`finite-morita-toricization-cannot-encode-nonaffine-support`.
