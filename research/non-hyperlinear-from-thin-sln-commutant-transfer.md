@@ -2,7 +2,7 @@
 rg: 2
 id: non-hyperlinear-from-thin-sln-commutant-transfer
 kind: route
-title: The thin-subgroup commutant modulus makes an explicit SL_n(Z) HNN extension non-hyperlinear
+title: The thin-subgroup commutant modulus makes a finitely presented SL_n(Z) HNN extension non-hyperlinear
 target: non-hyperlinear-group
 requires:
   - sln-z-thin-codense-tau-pair

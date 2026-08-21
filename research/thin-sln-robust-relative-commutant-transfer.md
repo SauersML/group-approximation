@@ -54,6 +54,11 @@ non-hyperlinear, with marked word `[t,a]`.  Thus full flexible HS-stability
 of `SL_n(Z)` is sufficient but unnecessarily strong: only the fate of the
 single HNN implementer must be controlled.
 
+The Aka--Gelander--Soifer theorem used here supplies existence and a rank
+bound, not a literal displayed four-tuple.  The resulting HNN group is
+finitely presented; an explicit matrix presentation would require a separate
+effective construction of the profinitely dense free generators.
+
 ## Exact endpoint already available
 
 For every exact finite-dimensional representation `rho` of `A`, co-density

@@ -2,7 +2,7 @@
 
 **Draft, 2026-08-21.** A self-contained conditional theorem: if the plain
 higher-rank lattice `SL_n(Z)` (`n >= 3`) is flexibly Hilbert–Schmidt stable,
-then an explicit finitely presented non-hyperlinear group exists. Every
+then a finitely presented non-hyperlinear group exists. Every
 hypothesis except that stability is a published theorem. This is the exact
 Hilbert–Schmidt analogue of Bowen–Burton's permutation result and, unlike the
 prior conditional routes of Dogon and Dogon–Vigdorovich, reaches the plain
@@ -125,7 +125,10 @@ theorem of Section 2 applies, proving the Theorem.
   `pi_1(G(R))` infinite; but `pi_1(SL_n(R)) = Z/2`.
 
 The commutant/HNN mechanism uses neither a central extension nor an
-archimedean fundamental group, so `SL_n(Z)` is admissible.
+archimedean fundamental group, so `SL_n(Z)` is admissible.  The theorem is
+an existence statement from the Aka--Gelander--Soifer subgroup.  Calling the
+output group literal or explicit would additionally require exhibiting a
+specific profinitely dense free four-tuple of integer matrices.
 
 **The single open hypothesis.** Flexible HS-stability of `SL_n(Z)` is open. It
 is not ruled out: `SL_n(Z)` is an infinite hyperlinear Kazhdan group, so it is
