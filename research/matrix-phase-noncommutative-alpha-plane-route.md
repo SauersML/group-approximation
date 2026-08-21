@@ -170,19 +170,33 @@ H(H(a,b,c),H(d,e,f),H(g,h,i))
 ```
 
 For an exact Boolean torsor `(NC13)` holds.  Quantitatively, choose any one of
-the nine `x_ij` as gauge anchor.  The eight anchor orientation relations make
-the other quotients approximately self-adjoint; pair orientation relations
-then make those quotients approximately commute.  Telescoping `(NC11)` to
-`(NC12)` uses only a constant number of these replacements.  Pairwise
-independence from `(NC10)` and Cauchy--Schwarz therefore give the intermediate
-estimate
+the nine `x_ij`, say `G=x_22`, as gauge anchor and put `s_ij=x_ijG^*`.
+For every interior index `p` and pair `p,q`, respectively,
 
 ```text
-E_(t,y,z)||C_t(t+y)-C_t(t+z)||_2^2 <= C_0(A(R)+I(R))         (NC14)
+||s_p-s_p^*||_2
+ =||x_pG^*-Gx_p^*||_2,                                      (NC14a)
+
+||s_p s_q-s_q s_p||_2
+ <=||x_p x_q^*-x_q x_p^*||_2
+   +||s_p-s_p^*||_2+||s_q-s_q^*||_2.                        (NC14b)
 ```
 
-for an absolute, explicitly enumerable `C_0`.  The row/column replacements
-cost six alpha-query defects; the remaining cost is the medial telescope.
+After substituting `x_p=s_pG`, both `(NC11)` and `(NC12)` end in the same
+right factor `G`.  Replace their eight starred `s` factors by unstarred ones,
+then reorder one nine-letter word into the other by at most `36` adjacent
+swaps.  By `(NC14a)--(NC14b)` this uses at most `8+3*36=116` primitive
+orientation errors.  Pairwise independence from `(NC10)` makes the mean
+square of every primitive error exactly a summand of `I(R)`.  The six
+row/column replacements used to pass between `(NC9)` and `(NC11)--(NC12)` are
+alpha-query errors.  Triangle inequality followed once by Cauchy--Schwarz
+therefore gives the fully explicit intermediate estimate
+
+```text
+sup_t E_(y,z)||C_t(t+y)-C_t(t+z)||_2^2
+ <=15000(A(R)+I(R)).                                         (NC14)
+```
+
 The unresolved step is to turn the continuous correction concentration
 `(NC14)` into the complete energy `(NC3)` without the scalar proof's discrete
 plurality/positive-probability argument.  Polarizing the mean correction gives
