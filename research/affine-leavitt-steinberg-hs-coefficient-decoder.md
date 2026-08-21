@@ -78,3 +78,10 @@ the affine active Leavitt construction.
 - **No regular-trace contradiction is asserted.** The decoder is a
   finite-matrix stability statement. It need not extend to the left regular
   representation or any arbitrary tracial representation of `Gamma_A`.
+- **Exact depth pressure is now quantified.**
+  `leavitt-prefixes-form-exponential-heisenberg-packet` gives `2^n` Pauli
+  pairs over the active root, and
+  `leavitt-steinberg-quadratic-radius-pressure`
+  realizes them by words of length `O(n^2)`.  Thus the decoder need not invent
+  dimension pressure; it must make this existing packet robust with a
+  dimension-independent relator ledger.
