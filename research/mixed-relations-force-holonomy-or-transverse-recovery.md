@@ -126,6 +126,10 @@ words.
   enough that fixed-packet decoding locate `F` and `G` in their respective
   commuting descendants.  This is now the weakest known holonomy closure
   target for the atlas, isolated as `separate-native-quarter-carrier-recovery`.
+  The two Hecke expressions have only 41 support words in total, with
+  coefficient masses `11/4` and `1`; hence
+  `forty-one-word-native-carrier-transport-certificate` turns this into a
+  bounded word-placement audit with explicit threshold `1/30`.
 - **Falsification gate, inherited.**  Any proof of this claim must be checked
   against the exact model: the compulsory overlap exists there too, so an
   argument that derives `(HOL)` or `(TRV)` from the overlap alone, without using

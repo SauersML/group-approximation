@@ -69,6 +69,14 @@ triangles.  It is enough to show that their conditional expectations onto
 the two returned finite-coordinate algebras retain all but `O(sqrt(def))`
 of their `L^2` mass.  Spectral rounding and the D8 floor are already proved.
 
+This audit is now finite and explicit.  Exact prefix reduction gives 37
+support words of coefficient mass `11/4` for `F` and four support words of
+coefficient mass `1` for `G`.  By
+`forty-one-word-native-carrier-transport-certificate`, transporting every
+one of these words with error `eta` would force `eta>=1/30`.  The open task is
+therefore to derive the 41 target-algebra placements from the mixed
+rank-five multiplication triangles with bounded word areas.
+
 ## Falsification gate
 
 An argument using only their traces, the compulsory `5/32` overlap, or the

@@ -125,6 +125,10 @@ def main():
             ga_mul(common, common), common
         ),
         "common_trace": rational_string(ga_trace(common)),
+        "common_support_size": len(common),
+        "common_coefficient_l1": rational_string(sum(
+            abs(coefficient) for coefficient, _ in common
+        )),
         "common_lies_under_raw_corner": ga_equal(ga_mul(q, common), common),
         "common_lies_under_comb_corner": ga_equal(
             ga_mul(comb_corner, common), common
@@ -132,6 +136,13 @@ def main():
         "common_equals_transported_pauli_carrier": ga_equal(
             common, transported_pauli_carrier
         ),
+        "transported_pauli_carrier_support_size": len(
+            transported_pauli_carrier
+        ),
+        "transported_pauli_carrier_coefficient_l1": rational_string(sum(
+            abs(coefficient)
+            for coefficient, _ in transported_pauli_carrier
+        )),
         "common_transported_pauli_carrier_overlap": rational_string(
             carrier_overlap
         ),
