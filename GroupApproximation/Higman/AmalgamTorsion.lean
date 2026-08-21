@@ -35,7 +35,7 @@ namespace AmalgamTorsion
 
 open Monoid Monoid.CoprodI Monoid.PushoutI
 
-variable {ι : Type*} [DecidableEq ι] {G : ι → Type*} {H : Type*}
+variable {ι : Type*} {G : ι → Type*} {H : Type*}
   [∀ i, Group (G i)] [Group H] {φ : ∀ i, H →* G i}
 
 /-! ## 1.  Normal words are reduced -/
@@ -56,7 +56,6 @@ theorem reduced_toWord {d : NormalWord.Transversal φ} (w : NormalWord d) :
 
 /-! ## 2.  A factor is torsion-free -/
 
-omit [DecidableEq ι] in
 /-- **An element of a factor with a trivial power is trivial**, when the factor
 is torsion-free. -/
 theorem eq_one_of_pow_eq_one_of (hφ : ∀ i, Function.Injective (φ i))

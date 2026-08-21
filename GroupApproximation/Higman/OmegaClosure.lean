@@ -124,7 +124,9 @@ window is what the deletion retraction `Split.killOn` reads off the code of
 def blockWindow (m : ℕ) (i : ℤ) : ℤ → Prop :=
   fun j => (m : ℤ) * i ≤ j ∧ j < (m : ℤ) * i + (m : ℤ)
 
-instance (m : ℕ) (i : ℤ) : DecidablePred (blockWindow m i) := fun _ => And.decidable
+instance (m : ℕ) (i : ℤ) : DecidablePred (blockWindow m i) := fun _ => by
+  unfold blockWindow
+  infer_instance
 
 /-- **A block is a translated window.** -/
 theorem blockAt_eq_filter_translate (m : ℕ) (i : ℤ) (f : E) :

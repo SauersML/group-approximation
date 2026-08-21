@@ -115,45 +115,43 @@ have gone the other way.
 def NoProperPower (R : Set (List (α × Bool))) : Prop :=
   ∀ r ∈ R, ¬ PeriodicOverlap.IsProperPower r
 
-/-- **OPEN — the torsion companion.**  The classical `C'(1/6)` torsion theorem:
-a metric small-cancellation presentation by cyclically reduced relators, none
-of them a proper power, presents a torsion-free group.
+/-- **CLOSED — the torsion companion.**  The classical small-cancellation
+torsion theorem: a metric small-cancellation presentation by cyclically reduced
+relators, none of them a proper power, presents a torsion-free group.
 
-The proof to write, after the gate.  A nontrivial `g` of finite order has a
-cyclically reduced conjugate representative `w`, and torsion-freeness is a
-conjugacy-invariant statement, so `w ^ k` lies in the relator subgroup for some
-`k ≥ 1` with `w ∉` it.  The Greendlinger conclusion applied to the reduced word
-spelling `w ^ k` returns an arc that is more than half of some symmetrized
-relator sitting inside a word of period `|w|`, and the periodicity gives a
-second occurrence of that arc, shifted.  So one word `p` prefixes two rotations
-`r.rotate a` and `r.rotate b` of one relator, and the argument is a
-**two-occurrence dichotomy**, not a length count:
+This is no longer an open statement.  `torsionFreeGate_of_sharpGate` below
+proves it from `SharpGreendlingerGate` alone, the mathematics living in
+`Sofic/TorsionDescent` (`isPowerTorsionFree_of_sharp`).  It is kept as a named
+predicate because consumers were written against the name and because it
+records exactly what the torsion half costs: the sharp gate and nothing else.
 
-* the two rotations are **equal**, and then
-  `PeriodicOverlap.isProperPower_of_rotate_eq_rotate` makes `r` a proper power
-  with **no hypothesis on the overlap length whatever**, contradicting the
-  no-proper-power hypothesis.  This branch is settled and is what that
-  hypothesis is for.
-* the two rotations are **distinct**, and then the overlap is a piece, so the
-  metric condition bounds *the overlap*.  **That bound does not by itself
-  contradict the arc being long** — the overlap and the arc are different
-  words, and the resulting length system is satisfiable, so there is no
-  contradiction to extract in place.  (An earlier version of this sketch
-  claimed otherwise; it was checked and refuted.)  The distinct branch is
-  closed by the descent on `|w|` in `Sofic/TorsionDescent`.
+**Two restatements against the version that was open here**, both forced.
 
-Do not route this through Fine--Wilf.  The natural-looking sub-lemma "a word
-sharing more than half of itself with its own nontrivial rotation is a proper
-power" is FALSE — `PeriodicOverlap.not_isProperPower_of_two_mul_length_le`
-refutes it with `0 1 0 0 1 0 0 1` overlapping itself in three quarters of its
-length — and the sharp true hypothesis, `w.length ≤ p.length + gcd k w.length`,
-is one a Greendlinger arc never supplies.  Fine--Wilf is available
-(`PeriodicOverlap.rotate_gcd_eq_self_of_prefix_rotate`) and is the wrong tool
-here. -/
+* **The constant is `λ ≤ 1/8`, not `1/6`.**  The descent's residual branch —
+  arc longer than one period, the two rotations distinct — is *satisfiable* at
+  `1/6` read through the half-form, so no argument closes it there; at
+  `λ ≤ 1/8` read through the sharp form it is arithmetically empty.  Both
+  halves of that are machine-checked in `TorsionDescent`
+  (`half_form_residual_satisfiable`, `residual_empty_of_lam_le_eighth`).  This
+  is why the avatar family is designed at `C'(1/8)`.
+* **`hcyc` is still here, but the descent does not use it.**  It is needed only
+  to invoke `SharpGreendlingerGate`, which asks for it.  Anything taking the
+  sharp *conclusion* directly needs no such hypothesis —
+  `TorsionDescent.isPowerTorsionFree_of_sharp` has none.
+
+The old sketch of the proof is now the module `Sofic/TorsionDescent`; two
+warnings from it are worth keeping in view here, because both were wrong in an
+earlier version of this docstring and both were refuted by machine check rather
+than by argument.  The piece bound in the distinct-rotations branch bounds *the
+overhang*, not the arc, so it does not on its own contradict the arc being
+long.  And the natural-looking sub-lemma "a word sharing more than half of
+itself with its own nontrivial rotation is a proper power" is FALSE
+(`PeriodicOverlap.not_isProperPower_of_two_mul_length_le`, witness
+`0 1 0 0 1 0 0 1`); Fine--Wilf is available and is the wrong tool. -/
 def TorsionFreeGate (α : Type*) : Prop :=
-  ∀ R : Set (List (α × Bool)),
-    (∀ r ∈ R, FreeGroup.IsCyclicallyReduced r) →
-    MetricSmallCancellation R (1 / 6) → NoProperPower R →
+  ∀ (R : Set (List (α × Bool))) (lam : ℚ),
+    (∀ r ∈ R, FreeGroup.IsCyclicallyReduced r) → lam ≤ 1 / 8 →
+    MetricSmallCancellation R lam → NoProperPower R →
     IsPowerTorsionFree
       (FreeGroup α ⧸ Subgroup.normalClosure (FreeGroup.mk '' R))
 
@@ -185,7 +183,44 @@ theorem NoProperPower.mem_symmetrization {R : Set (List (α × Bool))}
     (hw : w ∈ symmetrization R) : ¬ PeriodicOverlap.IsProperPower w :=
   PeriodicOverlap.not_isProperPower_of_mem_symmetrization hnpp hw
 
-/-! ## 3.  Everything the router consumes, from the gates -/
+/-! ## 3.  The torsion gate, discharged -/
+
+/-- The metric condition is monotone in its constant: a smaller `λ` is a
+stronger hypothesis.  Needed because the torsion half is stated at `λ ≤ 1/8`
+while the router's own gate is fixed at `1/6`. -/
+theorem metricSmallCancellation_mono {R : Set (List (α × Bool))} {lam lam' : ℚ}
+    (h : MetricSmallCancellation R lam) (hle : lam ≤ lam') :
+    MetricSmallCancellation R lam' := by
+  intro p hp w hw hpw
+  have hbound := h p hp w hw hpw
+  have hw0 : (0 : ℚ) ≤ (w.length : ℚ) := Nat.cast_nonneg _
+  have hmul : lam * (w.length : ℚ) ≤ lam' * (w.length : ℚ) :=
+    mul_le_mul_of_nonneg_right hle hw0
+  linarith
+
+/-- **The torsion gate follows from the sharp gate.**  The whole torsion half of
+the router's obligations costs one hypothesis, not two.
+
+The sharp conclusion at `λ` is exactly what `TorsionDescent`'s descent consumes,
+and `λ ≤ 1/8` is what empties its residual branch; `hcyc` is spent invoking the
+gate and nowhere else. -/
+theorem torsionFreeGate_of_sharpGate (hgate : SharpGreendlingerGate α) :
+    TorsionFreeGate α := fun R lam hcyc hlam hmetric hnpp =>
+  TorsionDescent.isPowerTorsionFree_of_sharp hlam
+    (hgate R lam hcyc (by linarith) hmetric) hmetric hnpp
+
+/-- **Torsion-freeness with no gate hypothesis on the torsion side at all**, in
+the shape a consumer holding only the sharp conclusion wants: no `hcyc`, no
+gate, just the conclusion the gate would have produced. -/
+theorem isPowerTorsionFree_of_sharpConclusion {R : Set (List (α × Bool))}
+    {lam : ℚ} (hlam : lam ≤ 1 / 8)
+    (hsharp : GreendlingerConclusionSharp R lam)
+    (hmetric : MetricSmallCancellation R lam) (hnpp : NoProperPower R) :
+    IsPowerTorsionFree
+      (FreeGroup α ⧸ Subgroup.normalClosure (FreeGroup.mk '' R)) :=
+  TorsionDescent.isPowerTorsionFree_of_sharp hlam hsharp hmetric hnpp
+
+/-! ## 4.  Everything the router consumes, from the one remaining gate -/
 
 /-- **The half-form, from the sharp gate.**  At `λ = 1/6` the sharp coefficient
 is exactly `1/2`, so this is the sharp gate read at one value and cast back to
