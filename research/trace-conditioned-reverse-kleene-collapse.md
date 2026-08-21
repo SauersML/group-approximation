@@ -48,3 +48,8 @@ tuples having a prescribed finite canonical-trace profile.  In particular,
 one may require a fixed finite subgroup packet to be near its regular
 character.  This does not by itself force a router to preserve a chosen
 isotypic block; that remains a separate representation-theoretic decoder.
+
+The stronger `group-algebra-mark-reverse-kleene-collapse` permits the mark
+itself to be a finite rational group-algebra element and replaces the fixed
+word threshold by asymptotic `2`-norm collapse.  This is useful when the
+native mark lives in a selected finite-type Hecke corner.

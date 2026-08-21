@@ -38,9 +38,15 @@ multiplicities.  This is a genuine weakening of `(HRI1)`, but it does not by
 itself select the tautological block: the regular character contains every
 irreducible type, and a router not known to normalize the full constant
 packet can leak between its central isotypic projections.  Any proposed use
-of trace conditioning must therefore either make the marked word trivial on
-all uncontrolled Plancherel types or prove that the router preserves the
+of trace conditioning must therefore prove that the router preserves the
 active type.
+
+`group-algebra-mark-reverse-kleene-collapse` removes the other alternative
+entirely.  The diagonal mark may be the selected-corner polynomial
+`q_rho D`, so no group word must be made harmless on the uncontrolled
+Plancherel types and no word must return the selected mark to the ambient
+group.  Type preservation is still necessary for decoding the predicate on
+`q_rho`, but **mark return is no longer part of `(HRI1)`**.
 
 `hnn-type-projection-leakage` makes the second alternative exact for an HNN
 router.  A base-packet projection `p` is preserved precisely when `p` belongs
@@ -83,6 +89,14 @@ in the free product `B_N*Z` would be trivial, and the same word could not
 evaluate to `z` in the finite truth packet.  The remaining move must therefore
 be genuine **type selection or multiplicity coupling**, not word-level
 cancellation.
+
+There is one exact escape from that no-go:
+`full-conjugation-table-cancels-router-multiplicity` proves that if the router
+implements the complete conjugation table of its selector-labelled packet
+element, then a balanced truth word has the intended value in every
+representation, with no type selection.  Thus the frontier has two clean
+forms: preserve `q_rho`, or groupify the selector-dependent full conjugation
+table.  Merely adding more scalar Pauli covariances does neither.
 
 On the HALT side no trace preservation is needed: tensor the Fanizza GNS
 model with the natural packet, take `c` to be the selector-controlled
