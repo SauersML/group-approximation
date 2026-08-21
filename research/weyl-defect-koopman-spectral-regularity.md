@@ -185,6 +185,44 @@ sums bound for an `ell^2`-small sequence around expanding-map cycles;
 lacunarity of the `x4` orbit structure is the tool that should convert
 the `ell^2` moment bound into the discrepancy bound.
 
+## Exact low-orbit-frequency obstruction to a generic discrepancy bound
+
+Lacunarity of the labels `m,4m,4^2m,...` does **not** by itself convert
+the Parseval bound into dimension-free discrepancy.  On one `x4`-cycle
+of length `L`, identify the normalized Hilbert space with
+`ell^2(Z/LZ)` and let `psi` be cyclic shift.  With
+
+```text
+zeta=exp(2 pi i/L),             phi_j=delta zeta^j,
+```
+
+one has `E_(ker(1-psi))(phi)=0` and `||phi||_2=delta`.  Nevertheless the
+mean-zero solution of `(1-psi)c=phi` is, up to the orientation of the
+shift,
+
+```text
+c_j=delta zeta^j/(1-zeta),
+||c||_2=delta/|1-zeta| >= delta L/(2 pi).              (KSR-LOW)
+```
+
+Equivalently, the partial sums around the cycle have variance of order
+`delta^2 L^2`.  This is exactly a Koopman eigenmode whose eigenvalue is
+the first nontrivial `L`-th root of unity, hence approaches `1` as the
+cycle length grows.  It is already a diagonal element of the exact base
+commutant on that cycle, so neither exactification of the `BS(1,4)`
+skeleton, removal of the fixed algebra, Parseval, nor the apparent
+lacunarity of the integer labels excludes it.
+
+This calculation does not refute `(KSR)`, because it does not show that
+`phi` can occur as the projected defect of the Weyl relator in a full
+approximate `SL_2(Z[1/2])` tuple.  It does rule out the proposed generic
+large-sieve step.  The genuinely missing arithmetic assertion is now:
+the coupled Weyl and opposite-parabolic relations must suppress the
+low **orbit-frequency** Fourier modes of the projected defect, uniformly
+over arbitrarily long `x4`-cycles.  A proof must estimate those modes
+from the remaining group relators; harmonic analysis of the exact
+solenoid skeleton alone cannot give the required constant.
+
 ## Attempts
 
 - **Why the naive bounds miss it.**  `|| e' ||_2 = delta` alone does

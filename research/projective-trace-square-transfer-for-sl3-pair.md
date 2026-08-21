@@ -47,6 +47,62 @@ weakening consumed by the HNN marked word.
 
 ## Attempts
 
+- **Approximate perfectness removes the projective phases quantitatively.**
+  This part of the exact proof survives presentation defect and is not the
+  remaining obstruction.  Put
+
+  ```text
+  q=sum_(c in S_C) (1-|tr([U,rho(c)])|^2).
+  ```
+
+  Fix, once and for all, for each `s in S_C` an equality in `C`
+
+  ```text
+  s=product_j [a_(s,j),b_(s,j)],
+  ```
+
+  with every `a_(s,j),b_(s,j)` written in the alphabet `S_C`.  Let `L` be
+  the maximum total `S_C`-letter length of these products, and let `B` be the
+  maximum area, over the fixed ambient presentation, of the finitely many
+  resulting equality words.
+
+  For each `c in S_C`, choose `z_c in T` minimizing the distance from
+  `w_c=[U,rho(c)]` to the scalars, with the inverse choice conjugated.  Then
+
+  ```text
+  ||w_c-z_c I||_2^2
+    =2-2|tr(w_c)|
+    <=2(1-|tr(w_c)|^2).
+  ```
+
+  The relative-commutator cocycle identity telescopes along every word in
+  `S_C`.  Scalar phases cancel on each commutator, so the fixed product of
+  commutators representing `s` has relative commutator within
+
+  ```text
+  L sqrt(2q)
+  ```
+
+  of `1`.  Its evaluated matrix is within `B delta` of `rho(s)`, because a
+  van Kampen expression with `B` conjugates of defining relators telescopes
+  in normalized Hilbert--Schmidt norm.  The map
+  `R |-> U R U^* R^*` is `2`-Lipschitz on unitaries.  Therefore every
+  approximate assignment satisfies the dimension-free bound
+
+  ```text
+  max_(s in S_C) ||[U,rho(s)]-1||_2
+    <= L sqrt(2q)+2B delta.                             (PTS4)
+  ```
+
+  Thus scalar drift is fully paid by the projective subgroup energy and the
+  presentation defect.  After `(PTS4)`, the unresolved step is sharply
+  isolated: turn ordinary almost-commutation with the matrices `rho(S_C)`
+  into almost-commutation with `rho(h)` when `rho` is only an approximate
+  representation.  The exact Kazhdan projection cannot simply be applied,
+  because `Ad rho|_C` need not be a representation; proving the needed robust
+  projection/co-density statement is already the universal matrix-
+  ultraproduct relative-commutant wall.
+
 - **The native joint relation has a strictly smaller defect-only certificate.**
   `native-transfer-has-defect-only-certificate` proves that after restricting
   to the balanced involution `c` and imposing `[c,h c h^-1]=1`, qualitative

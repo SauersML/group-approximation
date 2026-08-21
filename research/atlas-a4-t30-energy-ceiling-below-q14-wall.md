@@ -71,3 +71,85 @@ proved.
   insufficient.  `unitary-products-obey-the-spherical-chord-bound` removes
   that artifact: `E_PC3<=1/6+o(1)` already gives the strict bound
   `x30^2<=2 sin^2(6 asin(1/12))+o(1)<1/2`.
+
+## Exact analytic reduction and remaining identity
+
+There is an equally short two-holonomy formulation.  Put
+
+```text
+c=hk,                 a=zb,
+E_2HOL(U)=2 delta_U(c)^2+delta_U(a)^2,
+delta_U(g)=||U rho(g)U^*rho(g)^*-1||_2.
+```
+
+The established word identity in `atlas-t30-is-one-parabolic-c3-bridge` is
+
+```text
+t30=c^-1 a c.
+```
+
+Together with `unitary-products-obey-the-spherical-chord-bound`, this gives
+
+```text
+2 f(delta_U(c)^2)+f(delta_U(a)^2)
+ <=3 f(E_2HOL(U)/3),
+f(s)=asin(sqrt(s)/2),
+
+x30(U)^2 <=2 sin^2(3 f(E_2HOL(U)/3))
+```
+
+Consequently the non-strict endpoint requested by
+`atlas-a4-two-holonomy-reflection-energy-ceiling`,
+
+```text
+limsup E_2HOL(U_n)<=1/3,
+```
+
+already implies the strict numerical conclusion
+
+```text
+limsup x30(U_n)^2
+ <=2 sin^2(3 asin(1/6))
+ =338/729 <1/2.
+```
+
+Thus neither word telescoping nor the strictness at the endpoint is missing.
+The unresolved step is a multiplicity-uniform estimate on the two endpoint
+holonomies.  A sufficient (stronger) form would be: for some absolute finite
+constant `C`,
+
+```text
+E_2HOL(U) <= C (D_packet(U)+||q_19243(U)-1||_2^2).            (ENDPOINT)
+```
+
+Here `D_packet` is any fixed sum of the thirty squared packet defects.
+`(ENDPOINT)` would force `E_2HOL(U_n)->0`, hence is more than the needed
+ceiling.
+
+The existing rectangle identities do not prove `(ENDPOINT)`.  After tree
+gauge, `h` lies in the `K_(2,2)` packet component, while `k` and `z` lie in
+the `K_(2,4)` component; `b` is supplied only by the collision word.
+Therefore `c=hk` and `a=zb` are cross-component endpoint products, rather
+than any of the four rectangle holonomies.  The missing identity must
+transport the two independent component-root gauges to these endpoints and
+then read the collision residual there, uniformly over arbitrary
+multiplicity.
+
+The finite exact profiles calibrate but do not supply that identity.
+`atlas-a4-gl5-two-holonomy-readout` proves coefficient `5` on all `202`
+packet positions in the fixed 31-point `GL5(F2)` chart.  However
+`atlas-a4-classical-two-holonomy-profile` proves the sharp constants `5` on
+the inner branch and `21/4` on the outer branch of the natural 15-point
+model, with ten outer equality positions.  Hence a branch-independent
+version of `(ENDPOINT)` must already permit coefficient at least `21/4` on
+classical sectors; the `GL5(F2)` coefficient `5` cannot be promoted to
+arbitrary multiplicity.  Finally,
+`atlas-a4-outer-extremizer-normal-profile` finds collision-normal lengths
+`4` and `2` for the two endpoint cocycles at those equality positions.  This
+shows why collision-only word telescoping loses constants, but it is not a
+dimension-free operator estimate.
+
+Accordingly this claim remains open.  Its precise missing lemma is a
+multiplicity-uniform cross-component endpoint transport/readout inequality
+(at minimum enough for `limsup E_2HOL<=1/3`), not another identity for
+`t30` and not an improvement of the spherical-chord constant.
