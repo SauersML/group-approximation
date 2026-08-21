@@ -31,3 +31,16 @@ return is allowed on the exact side, while finite matrices must pay the
 endpoint mismatch.  The six-copy synchronization has already removed the
 independent multiplicity rotations; this claim is now solely the semantic
 success/failure attachment.
+
+## Equal-rank bypass
+
+Direct realization of the rank-one marginal laws is no longer the only live
+route.  `eight-slice-bookkeeping-symmetrizes-s3-failures` replicates only the
+rank-one crossed failure in two private bookkeeping slices.  The three
+resulting projections are all genuine failures, are pairwise orthogonal,
+have equal rank, and form one finite `S_3` orbit.  Their combined mass is
+three-halves of one disjoint parent-capacity slice.  Thus
+`shared-bcs-eight-slice-symmetric-return` can bypass the marginal statement
+entirely: it need only realize one global finite-matrix capacity return for
+the synchronized equal-rank orbit.  The regular-representation firewall is
+unchanged and remains the sole non-finite gate.

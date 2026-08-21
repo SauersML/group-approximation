@@ -106,3 +106,13 @@ floor.
   radical plane supplies only four.  Enlarging by dummy radical coordinates
   keeps the ratio `5/4`.  Only a non-character packet decoder can keep this
   route alive.
+- **Equal-rank semantic symmetrization.**
+  `eight-slice-bookkeeping-symmetrizes-s3-failures` uses three fixed book
+  bits to replicate only the rank-one crossed failure.  The three resulting
+  sources are pairwise orthogonal, are all genuine failures, have one common
+  finite packet type, and carry three-halves the mass of a disjoint parent
+  slice.  This removes the unequal `(1/2,1/4,1/2)` endpoint ranks from the
+  construction problem.  The remaining gate is the explicitly global,
+  finite-matrix-only return
+  `shared-bcs-eight-slice-symmetric-return`; if it holds, the fixed floor is
+  `sum_c tau(P_c)/16`.
