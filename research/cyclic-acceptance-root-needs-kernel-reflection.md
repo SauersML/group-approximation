@@ -1,6 +1,6 @@
 ---
 rg: 2
-id: cyclic-acceptance-return-is-one-root-but-still-needs-kernel-reflection
+id: cyclic-acceptance-root-needs-kernel-reflection
 kind: claim
 title: The cyclic acceptance return is one root coefficient, but positivity does not reflect its kernel
 distinct_from:

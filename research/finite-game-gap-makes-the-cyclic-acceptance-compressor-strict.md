@@ -196,7 +196,7 @@ cyclic acceptance return.  Unlike a product of reflections, the return has
 an a priori dimension-free spectral gap and cannot disappear by phase
 cancellation.
 
-`cyclic-acceptance-return-is-one-root-but-still-needs-kernel-reflection`
+`cyclic-acceptance-root-needs-kernel-reflection`
 performs the exact ordinary coefficient/Steinberg packaging.  After one
 fixed denominator clearing, `D(T_game(G)-G)` is already a single coefficient
 and one root names it.  The product positivity supplies the lower bound

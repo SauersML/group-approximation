@@ -217,7 +217,7 @@ root-kernel reflection implication for one coefficient, and it rules out
 the fixed-finite-root/Gowers--Hatami shortcut to that implication.
 
 The positive cyclic acceptance compressor does not evade this audit.
-`cyclic-acceptance-return-is-one-root-but-still-needs-kernel-reflection`
+`cyclic-acceptance-root-needs-kernel-reflection`
 shows that its return defect is syntactically smaller than `R_Q` and has a
 dimension-free lower bound, but an exact D8-tensored model still decouples it
 from an identity root coordinate.  Its one-root endpoint is `(CRB8)` with
