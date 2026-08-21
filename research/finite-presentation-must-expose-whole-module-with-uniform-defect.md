@@ -264,6 +264,79 @@ shift assignment to the full property-`(T)`, finitely many-orbital actor
 presentation is exactly the missing matricial dual certificate, not a
 consequence of either cyclic calculation.
 
+## Infinitesimal actor twists collapse the augmentation seed
+
+There is a further rigorous no-go for the most direct extension attempt.
+Write the seed as
+
+```text
+b=e_x+e_y in M
+```
+
+and choose `z` distinct from `x,y`.  By 2-transitivity there are fixed actor
+words `p,q` carrying the ordered pair `(x,y)` to `(y,z)` and `(x,z)`, with
+orientations chosen arbitrarily since the lamps have order two.  The
+augmentation identity
+
+```text
+(e_x+e_y)+(e_y+e_z)+(e_x+e_z)=0
+```
+
+is therefore the fixed trivial group word
+
+```text
+r=b (p b p^(-1)) (q b q^(-1)) =_Gamma 1.              (FME11)
+```
+
+Consider any matrix tuples `U_k` with presentation defect tending to zero,
+put `B_k=b(U_k)`, and suppose the actor generators themselves form an
+infinitesimal perturbation of the trivial representation:
+
+```text
+max_(s in S_A)||U_(k,s)-I||_2 ->0.                     (FME12)
+```
+
+Since `p,q` are fixed words, `(FME12)` implies `p(U_k),q(U_k)->I`.  The fixed
+word telescope gives `r(U_k)->I`, and the order-two seed relation gives
+`B_k^2->I`.  But
+
+```text
+r(U_k)-B_k^3 ->0,       B_k^3-B_k=B_k(B_k^2-I)->0.
+```
+
+Consequently
+
+```text
+||B_k-I||_2->0.                                         (FME13)
+```
+
+In particular `||[B_k,W_k]-I||_2<=2||B_k-I||_2->0` for
+every unitary `W_k`, including moving remote module words.  Thus assigning
+small rotations to the generators of a fixed property-`(T)` actor cannot
+extend `(FME10)` while retaining a separated order-two seed.  This argument
+uses only the fixed augmentation triangle, not property `(T)`.
+
+The surviving negative construction must therefore use actor tuples which
+stay a positive normalized-HS distance from the trivial branch (and, after
+any available correction, from every exact branch killing the seed).  This
+is exactly a **lamp-coupled actor-instability** problem.  Ordinary property
+`(T)` cannot repair such tuples because its Kazhdan inequality applies to an
+exact unitary representation.  The established
+`hs-stable-kazhdan-finite-bi-index-pair-gives-site-coherence` first assumes
+same-dimensional HS stability to create that exact actor representation;
+only then does its Kazhdan projection remove site-naming loss.  Conversely,
+`infinite-hyperlinear-kazhdan-group-is-not-hs-stable` shows that property
+`(T)` alone cannot supply this exactification for the intended infinite
+hyperlinear actors.  That instability theorem does not couple an
+order-two lamp to the bad actor tuples, so it also does not construct
+`(FME8)`.
+
+Hence neither side is automatic: a positive proof needs relative actor
+repair using the lamp relations, while a negative proof needs a nonlocal
+actor microstate which also satisfies `(FME11)` and the remaining module
+relations without collapsing `B`.  No existing expanding-character or
+affine-Leavitt node provides this lamp-coupled microstate.
+
 ## Attempts
 
 - **Choose one word for every module element.**  A multiplication identity
