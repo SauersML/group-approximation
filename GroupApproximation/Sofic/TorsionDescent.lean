@@ -56,18 +56,12 @@ open SmallCancellationRouter
 
 variable {α : Type*}
 
-/-! ## 1.  The sharp Greendlinger conclusion -/
+/-! ## 1.  The sharp Greendlinger conclusion
 
-/-- **The Greendlinger conclusion in its sharp form.**  Identical to
-`SmallCancellationRouter.GreendlingerConclusion` except that the arc is measured
-by the constant the curvature count actually produces, `1 - 3·lam`, rather than
-by one half.  For `lam ≤ 1/6` the sharp form implies the half-form and not
-conversely, so a lane that proves only the half-form does not supply this. -/
-def GreendlingerConclusionSharp (R : Set (List (α × Bool))) (lam : ℚ) : Prop :=
-  ∀ w : List (α × Bool), FreeGroup.IsReduced w → w ≠ [] →
-    FreeGroup.mk w ∈ Subgroup.normalClosure (FreeGroup.mk '' R) →
-    ∃ r ∈ symmetrization R, ∃ u : List (α × Bool),
-      u <:+: w ∧ u <+: r ∧ (1 - 3 * lam) * (r.length : ℚ) < (u.length : ℚ)
+`SmallCancellationRouter.GreendlingerConclusionSharp` is the statement, owned
+upstream beside the half-form it generalizes, so that the lane that proves it
+and the lane that spends it name the same constant rather than two matching
+copies. -/
 
 /-- The sharp form implies the half-form, for any constant at most `1/6`. -/
 theorem greendlingerConclusion_of_sharp {R : Set (List (α × Bool))} {lam : ℚ}
@@ -188,6 +182,48 @@ theorem isPowerTorsionFree_of_wordTorsion {R : Set (List (α × Bool))}
   rw [← MonoidHom.mem_ker, QuotientGroup.ker_mk']
   exact this
 
+/-- **The cyclic reduction does not lengthen.**  The strengthening of
+`exists_cyclicallyReduced_conj` that the descent needs: reduction and cyclic
+reduction both cut letters, never add them, so the conjugate representative is
+no longer than the word one started from. -/
+theorem exists_cyclicallyReduced_conj_le (L : List (α × Bool)) :
+    ∃ (W : List (α × Bool)) (c : FreeGroup α),
+      FreeGroup.IsCyclicallyReduced W ∧ FreeGroup.mk L = c * FreeGroup.mk W * c⁻¹ ∧
+      W.length ≤ L.length := by
+  classical
+  refine ⟨FreeGroup.reduceCyclically (FreeGroup.mk L).toWord,
+    FreeGroup.mk (FreeGroup.reduceCyclically.conjugator (FreeGroup.mk L).toWord),
+    FreeGroup.reduceCyclically.isCyclicallyReduced FreeGroup.isReduced_toWord, ?_, ?_⟩
+  · have h := FreeGroup.reduceCyclically.conj_conjugator_reduceCyclically
+      (FreeGroup.mk L).toWord
+    conv_lhs => rw [← FreeGroup.mk_toWord (x := FreeGroup.mk L), ← h]
+    rw [← FreeGroup.mul_mk, ← FreeGroup.mul_mk, FreeGroup.inv_mk]
+  · have h := congrArg List.length
+      (FreeGroup.reduceCyclically.conj_conjugator_reduceCyclically (FreeGroup.mk L).toWord)
+    simp only [List.length_append] at h
+    have hML : (FreeGroup.mk L).toWord.length ≤ L.length := by
+      rw [FreeGroup.toWord_mk]
+      exact FreeGroup.reduce.red.length_le
+    omega
+
+/-- A symmetrized relator lies in the relator subgroup: symmetrizing does not
+change the normal closure. -/
+theorem mk_mem_of_mem_symmetrization {R : Set (List (α × Bool))}
+    {r : List (α × Bool)} (hr : r ∈ symmetrization R) :
+    FreeGroup.mk r ∈ Subgroup.normalClosure (FreeGroup.mk '' R) := by
+  rw [← normalClosure_symmetrization R]
+  exact Subgroup.subset_normalClosure ⟨r, hr, rfl⟩
+
+/-- **A rotation spells a conjugate**, by the prefix rotated past. -/
+theorem mk_rotate_eq_conj (W : List (α × Bool)) {s : ℕ} (hs : s ≤ W.length) :
+    FreeGroup.mk (W.rotate s)
+      = (FreeGroup.mk (W.take s))⁻¹ * FreeGroup.mk W * FreeGroup.mk (W.take s) := by
+  have hsplit : FreeGroup.mk W
+      = FreeGroup.mk (W.take s) * FreeGroup.mk (W.drop s) := by
+    rw [FreeGroup.mul_mk, List.take_append_drop]
+  rw [List.rotate_eq_drop_append_take hs, ← FreeGroup.mul_mk, hsplit]
+  group
+
 /-! ## 4.  The descent principle -/
 
 /-- **One shortening step discharges the whole word-level statement.**  If every
@@ -249,6 +285,66 @@ theorem hasPeriod_flatten_replicate {β : Type*} (W : List β) {k : ℕ} (hk : 0
       List.flatten_nil, List.append_nil]
   rw [h1, List.drop_left, ← h1, h2]
   exact List.prefix_append _ _
+
+/-! ## 5b.  An arc no longer than one period is a cyclic subword -/
+
+/-- **A short factor of a periodic word is a factor of one period, read
+cyclically.**  If `u` sits inside `z` at offset `a` and is no longer than the
+period, then `u` prefixes the rotation of `z`'s first period by `a % n`: every
+index computation on both sides collapses to `z` at the same residue.
+
+This is what turns "the Greendlinger arc is short" into "the arc is a cyclic
+subword of `W`", which is what the Dehn replacement needs. -/
+theorem exists_prefix_rotate_of_infix {β : Type*} {z u : List β} {n : ℕ}
+    (hn : 0 < n) (hper : List.HasPeriod z n) (hnz : n ≤ z.length)
+    (hu : u <:+: z) (hlen : u.length ≤ n) :
+    ∃ s, s < n ∧ u <+: (z.take n).rotate s := by
+  obtain ⟨A, B, hAB⟩ := hu
+  have htake : (z.take n).length = n := List.length_take_of_le hnz
+  have hAu : A.length + u.length ≤ z.length := by
+    have h := congrArg List.length hAB
+    simp only [List.length_append] at h
+    omega
+  refine ⟨A.length % n, Nat.mod_lt _ hn, ?_⟩
+  rw [List.prefix_iff_getElem?]
+  intro i hi
+  have hin : i < n := lt_of_lt_of_le hi hlen
+  have hiz : A.length + i < z.length := by omega
+  -- the left-hand side is `z` at index `A.length + i`
+  have hleft : u[i]? = z[A.length + i]? := by
+    rw [← hAB, List.getElem?_append_left (by simp; omega),
+      List.getElem?_append_right (by omega)]
+    simp
+  -- the right-hand side is `z` at the residue of that index
+  have hmod : (i + A.length % n) % n = (A.length + i) % n := by
+    rw [Nat.add_comm A.length i]
+    conv_rhs => rw [Nat.add_mod]
+    conv_lhs => rw [Nat.add_mod]
+    simp
+  have hright : ((z.take n).rotate (A.length % n))[i]? = z[(A.length + i) % n]? := by
+    rw [List.getElem?_rotate (by omega), htake, hmod]
+    exact List.getElem?_take_of_lt (Nat.mod_lt _ hn)
+  rw [hright, ← List.hasPeriod_iff_forall_getElem?_mod.mp hper _ hiz, ← hleft]
+  exact List.getElem?_eq_getElem hi
+
+/-- The form the descent consumes: a Greendlinger arc no longer than the base
+is a prefix of some rotation of the base. -/
+theorem exists_prefix_rotate_of_infix_pow {β : Type*} {W u : List β} {k : ℕ}
+    (hk : 0 < k) (hW : W ≠ []) (hu : u <:+: (List.replicate k W).flatten)
+    (hlen : u.length ≤ W.length) :
+    ∃ s, s < W.length ∧ u <+: W.rotate s := by
+  have hn : 0 < W.length := List.length_pos_of_ne_nil hW
+  have hflat : (List.replicate k W).flatten.length = k * W.length :=
+    PeriodicOverlap.length_flatten_replicate k W
+  have hnz : W.length ≤ (List.replicate k W).flatten.length := by
+    rw [hflat]
+    exact Nat.le_mul_of_pos_left _ hk
+  obtain ⟨j, rfl⟩ : ∃ j, k = j + 1 := ⟨k - 1, by omega⟩
+  have htake : (List.replicate (j + 1) W).flatten.take W.length = W := by
+    rw [List.replicate_succ, List.flatten_cons, List.take_left]
+  obtain ⟨s, hs, hpre⟩ :=
+    exists_prefix_rotate_of_infix hn (hasPeriod_flatten_replicate W hk) hnz hu hlen
+  exact ⟨s, hs, by rwa [htake] at hpre⟩
 
 /-! ## 6.  The overhang dichotomy
 
