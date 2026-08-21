@@ -58,6 +58,20 @@ wandering.
 
 ### Finite-matrix return
 
+At defect zero the return is unconditional.  In every exact
+finite-dimensional unitary representation of `Gamma`, co-density gives
+
+```text
+rho(C)'=rho(A)'.                                       (PFA4a)
+```
+
+The HNN relations put `rho(t)` in the left side, so `rho(t)` commutes with
+`rho(a)`.  Hence `rho(v)=rho(r)=I`, independently of the matrix assigned to
+`s`.  Thus `r` is a nontrivial word killed by every finite-dimensional
+unitary representation, and every packet filter has the exact return
+`tr(P rho(r))=tr(P)`.  Only robustness under normalized-HS approximate
+representations remains open.
+
 Let `T,S` be the matrices assigned to `t,s`.  The HNN relators make `T`
 almost centralize the fixed generators of `C`.  The projective transfer
 claim gives a scalar `zeta in T` such that
