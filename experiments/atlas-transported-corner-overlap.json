@@ -20,6 +20,11 @@
   "common_transported_pauli_carrier_reflection_product_cube_trace": "1/4",
   "common_transported_pauli_carrier_reflection_product_fourth_is_identity": true,
   "common_transported_pauli_carrier_reflection_product_fourth_trace": "1",
+  "derived_holonomy_carrier_is_projection": true,
+  "derived_holonomy_carrier_trace": "1/8",
+  "derived_holonomy_carrier_commutes_with_both_reflections": [true, true],
+  "derived_holonomy_carrier_quarter_cut_overlaps": ["1/16", "1/16"],
+  "derived_holonomy_carrier_reflections_anticommute": true,
   "common_raw_cut_overlaps": {
     "(-1, -1)": "3/64",
     "(-1, 1)": "3/64",

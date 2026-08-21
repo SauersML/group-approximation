@@ -102,6 +102,9 @@ def main():
     carrier_reflection_product_fourth = ga_mul(
         carrier_group_commutator, carrier_group_commutator
     )
+    derived_holonomy_carrier = cut(
+        identity, carrier_group_commutator, negative=True
+    )
 
     result = {
         "corner_trace": rational_string(ga_trace(q)),
@@ -156,6 +159,38 @@ def main():
         ),
         "common_transported_pauli_carrier_reflection_product_fourth_trace": (
             rational_string(ga_trace(carrier_reflection_product_fourth))
+        ),
+        "derived_holonomy_carrier_is_projection": ga_equal(
+            ga_mul(derived_holonomy_carrier, derived_holonomy_carrier),
+            derived_holonomy_carrier,
+        ),
+        "derived_holonomy_carrier_trace": rational_string(
+            ga_trace(derived_holonomy_carrier)
+        ),
+        "derived_holonomy_carrier_commutes_with_both_reflections": [
+            ga_equal(
+                ga_mul(derived_holonomy_carrier, reflection),
+                ga_mul(reflection, derived_holonomy_carrier),
+            )
+            for reflection in carrier_reflections
+        ],
+        "derived_holonomy_carrier_quarter_cut_overlaps": [
+            rational_string(ga_trace(ga_mul(
+                derived_holonomy_carrier, quarter_carrier
+            )))
+            for quarter_carrier in (common, transported_pauli_carrier)
+        ],
+        "derived_holonomy_carrier_reflections_anticommute": ga_equal(
+            ga_mul(
+                derived_holonomy_carrier,
+                carrier_reflections[0],
+                carrier_reflections[1],
+            ),
+            ga_scale(-1, ga_mul(
+                derived_holonomy_carrier,
+                carrier_reflections[1],
+                carrier_reflections[0],
+            )),
         ),
         "common_raw_cut_overlaps": {
             str(character): rational_string(ga_trace(ga_mul(common, cut)))

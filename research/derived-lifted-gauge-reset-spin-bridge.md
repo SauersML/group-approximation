@@ -50,3 +50,11 @@ balanced Morita edge.
   and returning only their invariant logical product cancels the paired-frame
   scalar gap exactly.  The derived lift must therefore transport an oriented
   gauge share at equal spin scale, not merely the gauge-invariant sum.
+- `pauli-quarter-holonomy-is-balanced-derived-reset` now supplies an intrinsic
+  exact candidate for that oriented lift.  Two canonical quarter-carrier
+  reflections generate `D_8`; their commutator has a trace-`1/8` negative
+  sector on which the reflections are a balanced anticommuting Pauli pair.
+  The new central sign is therefore derived and no independent tensor qubit
+  is added.  The remaining work is the finite semantic incidence and
+  ordinary-word exposure of the two Hecke reflections, not the local spin
+  arithmetic.

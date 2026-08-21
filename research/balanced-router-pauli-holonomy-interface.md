@@ -51,7 +51,8 @@ generate `D_8`, and their central negative cut has trace `1/8`.  Instead of
 forcing their commutator to vanish immediately, the incidence may use that
 cut as the next derived Pauli carrier.  This aligns the holonomy branch with
 the gauge-renewal program and avoids throwing away the positive-density
-obstruction after one cell.
+obstruction after one cell.  The exact balance and derivedness statements are
+proved in `pauli-quarter-holonomy-is-balanced-derived-reset`.
 
 The truth-table and analytic-floor parts are proved.  The remaining work is
 the finite equal-type incidence plus its exact properly infinite extension.
