@@ -37,3 +37,17 @@ extension through the bridge is required.
   word is omitted from the source-cut payment when its private gauge is
   renewed.
 
+`fanizza-product-gram-reduces-to-one-state-holonomy` now separates this audit
+into a tree part and one cycle part.  After rooting at `C_D`, the `O_Q` leaf
+and tree transports have no holonomy loss.  The only extra state-dependent
+moment is
+
+```text
+||(V_R^*U_(Z->R)V_Z-I)G||_2^2.
+```
+
+An exact common multiplicity amplification can make this term maximal while
+all present finite gauge and HNN edge relations remain exact.  Therefore the
+four edgewise checks above cannot by themselves complete the incidence
+rounding; one mixed triangle relation or positive verifier compression must
+charge this moment on the same `G`.

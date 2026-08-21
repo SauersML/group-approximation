@@ -155,3 +155,11 @@ perfect commuting strategy in its standard form, so the corresponding
 infinite Gram vector may have zero game energy.  The finite lower bound
 `(OGV5)` uses `omega^*<1` and does not extend to arbitrary finite von Neumann
 algebras.  Hence this decoder passes the regular-representation firewall.
+
+For the four native Fanizza contexts,
+`fanizza-product-gram-reduces-to-one-state-holonomy` gives an explicit way to
+manufacture the rows of `(OGV3)` from rooted context transports.  Three tree
+edges and the attached leaf cost only their local covariance rows; the sole
+additional gluing datum is the action of the triangle holonomy on the same
+Gram operator.  The existing gauge/HNN bridges leave that multiplicity
+holonomy arbitrary, so this is a reduction rather than a completed decoder.
