@@ -150,7 +150,16 @@ even require two separately authenticated output coefficients.
 Equations `(ACJ9)--(ACJ10)` are a coefficient-level reduction, not a missing
 normalized-HS coefficient decoder for an abstract unitary representation of
 a Steinberg group.  That decoder remains the load-bearing groupification
-step.  Nor may `(ACJ3)` be imposed as a fixed identity valid in every finite
+step.  More sharply,
+`char-p-weyl-blocks-local-commutator-decoder` constructs an exact
+canonical-trace finite root packet in which the two triangles in `(ACJ9)`
+encode the algebraic identity `[D,M]=1` over `M_p(F_p)`, whereas every
+complex matrix residual `[Y,X]-I` has normalized-HS norm at least one.
+Thus paired root tables and packet conditional expectation alone cannot be
+the decoder; the full presentation must supply a characteristic-zero,
+trace-reflecting coefficient chart or otherwise exclude that Weyl sector.
+
+Nor may `(ACJ3)` be imposed as a fixed identity valid in every finite
 tracial representation: applying it at zero defect in the regular finite
 von Neumann algebra for arbitrarily large `t` would force the nonzero regular
 carrier `P` to have trace zero.  The stopping depth and root coefficient
