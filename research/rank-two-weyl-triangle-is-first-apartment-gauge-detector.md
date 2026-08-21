@@ -130,3 +130,20 @@ root-group gluing + canonical matrix coordinates
 Once `(RWT8)` is proved, the finite three-term calculation above collapses
 the interior overlap.  Without `(RWT8)`, the exact tensor-swap model proves
 that one-direction root packets have no scalar leverage.
+
+## Red-team: the triangle does not manufacture the common gauge
+
+The exact finite model
+`three-parahoric-weyl-triangle-has-affine-gauge-countermodel` strengthens the
+falsification boundary.  Replace one common flip by the three translations
+of the natural `GL_3(F_2)`-module.  They are Weyl conjugates, satisfy the
+three-term diagonal relation, and centralize their three respective
+parahoric stabilizers.  In the associated finite lamp regular representation
+the distinguished lamp and every translated lamp still have overlap `1/4`.
+
+This does not contradict `(RWT7)`: the three translations are not one element
+of the full coefficient commutant.  A root outside the relevant stabilizer
+detects a nonzero affine translation tail.  Thus the positive calculation is
+sharp, but its title must be read conditionally: the triangle detects the
+tensor swap **after** full-coefficient/common-slot extraction; it cannot be
+used to prove that extraction from separate parahoric data.
