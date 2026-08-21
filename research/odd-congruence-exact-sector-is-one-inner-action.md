@@ -51,16 +51,14 @@ coprime to `p`.  Then:
 
 ## Attempts
 
-- **What is proved and what is not.**  Points 1-2 are unconditional
-  (proof route); they do NOT close the sector: unlike the `SL_2`
-  amalgam case, no normal-closure squeeze forces the profile, and
-  `pi(Lambda)' cap M` is genuinely large (regular trace forces
-  unbounded multiplicities), so `Ad(W)`-nontriviality is not
-  algebraically obstructed.  The constraint that must kill the enemy
-  is the REGULAR TRACE on mixed words, exactly the recorded
-  level-spreading-versus-uncorrelation attack of
-  `no-exact-quasi-regular-leak`, now with all representation
-  freedom eliminated: only `(W, the branching tower)` remain.
+- **SUPERSEDED IN THE STRONGEST WAY (same day):**
+  `odd-congruence-lambda-exact-sector-collapses` closes the sector
+  outright — property (T) lifting puts `W` in the congruence
+  commutant tower, where the three-term Weyl-orbit relation
+  `h' = h h''^(-1)` evaluates `W = 1` exactly, no trace hypothesis
+  needed.  The reduction recorded here remains the scaffolding of
+  that proof; the level-spreading attack anticipated below turned
+  out to be unnecessary for this sector.
 - **Relation to the one-commutator modulus.**  By
   `one-commutator-controls-distance-to-full-commutant`, in this
   sector `|| [k, W] ||_2 = || [k, pi(h)] ||_2 >= 2 sqrt(delta_0)

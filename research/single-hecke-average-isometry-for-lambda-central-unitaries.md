@@ -77,6 +77,16 @@ about ONE explicit operator.
   spherical leak, and conversely.  Any quantitative finite-level
   argument may thus assume the decay is geometric with the explicit
   rate `delta_0(n, p)`.
+- **The Lambda-exact odd-congruence sector is CLOSED (2026-08-21).**
+  `odd-congruence-lambda-exact-sector-collapses`: if the
+  `Lambda`-restriction of the microstates can be taken as genuine
+  (necessarily congruence) representations at odd levels, the full
+  collapse holds — property (T) lifting plus the three-term Weyl
+  relation force the `h`-slot to its congruence value exactly.  So
+  any failure of `(SH1)` must have `Lambda`-microstates at UNIFORM
+  distance from every exact representation of `SL_3(Z)`: the enemy
+  is confined to the representation-variety outlier sector, the
+  same residue as the Iwahori and HS-Dehn far sectors.
 - **Exact models sit at exactly one, so the enemy is a uniform
   outlier.**  If the microstates can be chosen as genuine
   finite-dimensional representations, property (T) of `Lambda`
