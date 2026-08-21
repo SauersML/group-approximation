@@ -47,10 +47,19 @@ energy.  For every `n`, take `n` equal orthogonal blocks with projections
 sum_j ||z_j-1||_2^2=4.                                 (CTL4)
 ```
 
-Every block is a Dirac witness for one maximal local failure even though each
+Every block is a point-mass witness for one maximal local failure even though each
 global row is only `2/sqrt(n)`.  Therefore no rowwise argument can improve
 the order in `(CTL3)` without coupling the blocks or imposing a separate
 anti-localization hypothesis.
+
+There is a stronger, non-block-diagonal sharpness test.
+`dirac-average-is-a-sharp-near-extra-clifford-generator` starts with `2m`
+exact anticommuting generators on the irreducible `d=2^m` module and forms
+their normalized sum.  The sum is itself an involution, has
+anticommutator `sqrt(2/m)1` with every old generator, and exactly
+anticommutes with chirality.  Thus the same `Theta(1/sqrt(log d))` boundary
+already occurs coherently inside one Clifford factor; it is not merely an
+artifact of orthogonal row localization.
 
 Clause `(CTL2)` is not currently proved for growing local Clifford
 presentations.  The existing local-relator-to-complete-table conversion has

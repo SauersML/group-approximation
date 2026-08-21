@@ -80,10 +80,38 @@ The rate is sharp for rowwise normalized-HS bookkeeping.  On `n` equal
 orthogonal blocks let the `j`th involution be `-1` on block `j` and `+1`
 elsewhere.  Each residual from the identity has norm `2/sqrt(n)`, while every
 block has one maximal local failure and the total squared row energy is `4`.
-This is the Dirac/block converse: no inference using only the maximum row norm
+This is the orthogonal-block converse: no inference using only the maximum row norm
 can replace `1/sqrt(n)` by a smaller order without an anti-localization
 hypothesis.  The precise statement is
 `clifford-total-energy-ledger-has-inverse-sqrt-log-critical-rate`.
+
+### The exact same-model Dirac converse
+
+The report's more germane converse is also correct.  Given `2m` exact
+pairwise anticommuting self-adjoint Clifford generators, put
+
+```text
+A=(2m)^(-1/2)sum_i X_i,
+Gamma=i^m X_1...X_(2m).
+```
+
+Direct Clifford cancellation gives
+
+```text
+A^2=1,       {A,X_i}=sqrt(2/m)1,       {A,Gamma}=0.   (S3A7)
+```
+
+On the irreducible module `d=2^m`, `A` is therefore a same-model near-extra
+generator at error `Theta(1/sqrt(log d))`, with no reducing-block escape.
+This is registered separately as
+`dirac-average-is-a-sharp-near-extra-clifford-generator`.
+
+The coefficient claim needs a normalization qualification.  The degree-one
+Clifford expansion has coefficient `l2` norm exactly `1`, but coefficient
+`l1` norm exactly `sqrt(2m)`.  Thus the `sqrt(2m)` upper bound is verified
+with equality; any dimension-independent coefficient-mass or word-telescoping
+bound must be weakened.  The exact involution identity comes from
+anticommutator cancellation, not bounded coefficient mass.
 
 ## 3. The block-diagonal spectral-gap wall
 
@@ -91,7 +119,7 @@ For a block-diagonal tuple `U_s=direct_sum_b U_(s,b)`, every block projection
 `p_b` commutes with every `U_s`.  Hence the adjoint Laplacian has
 
 ```text
-span{p_b}_b subset ker Delta_Ad.                       (S3A7)
+span{p_b}_b subset ker Delta_Ad.                       (S3A8)
 ```
 
 Even if each block has a uniform scalar adjoint gap, the global kernel is the
