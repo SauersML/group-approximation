@@ -71,3 +71,11 @@ block dilation.
   that cutoff would make the same trace comparison in the regular
   representation.  The attack is therefore deferred precisely at a
   matrix-coordinate, positive-density matching rule.
+- A fixed finite packet/conductor Hall atlas also fails.  By
+  `fixed-packet-hall-atlas-has-no-julia-cutoff-gap`, its
+  normalized multiplicities fill a rational polytope and every matrix Hall
+  inequality extends to real tracial weights.  The stationary angle model
+  `stationary-julia-angle-block-defeats-type-only-cutoff-selection` exhibits
+  the local gauge explicitly.  A surviving construction must use an
+  unbounded/dimension-activated atlas or a nonlinear group-global coupling
+  between the Fanizza heat occurrence and the marked reservoir.
