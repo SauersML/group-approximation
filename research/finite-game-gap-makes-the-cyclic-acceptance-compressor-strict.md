@@ -203,3 +203,10 @@ and one root names it.  The product positivity supplies the lower bound
 `(CAP19)`, but the D8 decoupling model shows that it does not supply the
 root-to-coefficient upper bound: the remaining interface is still the
 one-coordinate kernel-reflection property `(CRB8)`.
+
+`block-encoded-acceptance-still-needs-corner-return` gives a complementary
+unitary packaging.  With one fresh control qubit per test, the all-zero
+corner of one fixed ordinary unitary is exactly `T_game`.  This avoids the
+additive Steinberg sum, but leaves one source-saturation scalar and one mixed
+corner-return scalar; finite wreath naming does not authenticate either
+against the analytic marked source.

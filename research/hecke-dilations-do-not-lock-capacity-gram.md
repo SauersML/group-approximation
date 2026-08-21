@@ -174,3 +174,11 @@ one root word
 Neither elementary dilation nor finite wreath control weakens `(OHR6)`.
 They prove that `(OHR6)` is the exact final interface rather than a symptom
 of missing group syntax.
+
+The cyclic game acceptance compressor admits an especially clean finite
+wreath realization: `block-encoded-acceptance-still-needs-corner-return`
+uses one fresh control qubit per rejection projection so that one unitary's
+all-zero corner is the exact ordered product of acceptances.  The same no-go
+persists.  The wreath packet names the unitary, but the desired return lives
+on `PUQ`; its source deficit and its mixed corner overlap are not consequences
+of the finite wreath relations.
