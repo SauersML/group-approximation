@@ -100,7 +100,17 @@ exactly to the smallest known Fanizza scalar endpoint.
   exactly the trace-matching endpoint, has a constant-size Steinberg
   coefficient word, and admits dimension-independent factor norms.  Thus no
   multiplication-table or coefficient-norm cost remains in the payload.
+- **The coefficient matrices can be removed altogether.**
+  `scalar-trace-reflection-is-julia-root-target` proves that `(DJA1)` is
+  semantically equivalent to the single scalar estimate
+  `|tr(P)-tr(A_(t(k)))|<=omega(Def)`.  Hence the smallest live compiler need
+  only reflect the activated root defect into this trace mismatch; it need
+  not output `X_k,Y_k`.  The reflection must still be genuinely
+  finite-coordinate: `char-p-weyl-blocks-local-commutator-decoder` gives an
+  exact canonical-trace paired-root packet which defeats every purely local
+  unital coefficient interpretation.
 - **Live reduced target.**  PCP-localize only the stopping flag and the one
-  root-coefficient comparison `(DJA1)`.  The remaining question is whether
+  scalar root-to-trace reflection above.  The remaining question is whether
   this reduction removes runtime dependence while retaining a bounded
-  infinite non-triggered model.
+  infinite non-triggered model and excluding the characteristic-`p` Weyl
+  sector.
