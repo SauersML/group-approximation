@@ -113,5 +113,13 @@ intervenes.
   gap INSIDE each congruence level of the commutant tower
   `U_m(Lambda cap gamma Lambda gamma^(-1))'` and show level spreading
   is incompatible with exact uncorrelation at every shell — the
-  finite-level shadow of the Hecke contraction recorded in
-  `no-spherical-leak-in-matrix-ultraproducts`.
+  finite-level shadow of the Hecke contraction, which is now the
+  established theorem `hecke-averaging-realizes-commutant-expectation`
+  with its finite-level form
+  `single-hecke-average-isometry-for-lambda-central-unitaries` (for
+  the exact profile the average computes to `1/4 + 1/(4L)` exactly,
+  the number any finite-level argument must beat).  On the character
+  side, `rcc-carrier-character-face-compression` exhibits this exact
+  configuration as a barycenter of factorial hyperlinear characters
+  of the carrier, so refuting the factorial enemies
+  (`hnn-carrier-factorial-character-collapse`) also refutes it.

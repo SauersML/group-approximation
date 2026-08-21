@@ -51,21 +51,21 @@ the finite-dimensionality of the microstates, not tracial abstraction.
   this against the HS-Dehn far-sector length control
   (`research/artifacts/hs-dehn-modulus-length-control-2026-08-20.md`)
   is the quantitative attack.
-- **Hecke operators contract the leak for `n >= 3`.**  For a double
-  coset `Lambda gamma Lambda = sqcup gamma_i Lambda`, the average
-  `T_gamma(k) = (1/[Lambda gamma Lambda : Lambda]) sum_i pi(gamma_i) k
-  pi(gamma_i)*` is again `Lambda`-central (left multiplication by
-  `Lambda` permutes the cosets), lies in `M`, and satisfies
-  `E(T_gamma(k)) = E(k)`.  Its action on the `c_0` part of the GNS
-  space has norm the spherical eigenvalue at `gamma`.  For `n >= 3`,
-  `G` has property (T), the trivial representation is isolated, and the
-  class-one `c_0` spectrum is uniformly bounded away from `1` at a
-  fixed `gamma`: Hecke iteration converges geometrically,
-  `T_gamma^N(k) -> E(k)` in `|| ||_2`.  So for the higher-rank pair the
-  Gamma-commutant part of any witness is an explicit geometric limit of
-  Hecke averages — a concrete handle the bare collapse statement never
-  offered.  What iteration alone cannot do is force `s = 1`; the
-  finite-dimensional origin of `M` must enter.
+- **Hecke operators contract the leak for `n >= 3` — now a theorem.**
+  The contraction sketched here is established as
+  `hecke-averaging-realizes-commutant-expectation`: the lazy average
+  `S` over one symmetric double coset satisfies `|| S^N(k) - E(k) ||_2
+  <= (1 - delta_0)^N || k - E(k) ||_2` with `delta_0 = delta_0(n,p) >
+  0` uniform over ALL finite tracial algebras, via a Kazhdan pair of
+  the completion bounding the spherical numerical range.  So for the
+  higher-rank pair the Gamma-commutant part of any witness is an
+  explicit geometric limit of Hecke averages, and this claim itself is
+  equivalent (by strict convexity plus expanding generation) to the
+  single norm equality
+  `single-hecke-average-isometry-for-lambda-central-unitaries`, whose
+  finitary translation is the finite-level attack surface.  What the
+  contraction alone cannot do is force `s = 1`; the finite-dimensional
+  origin of `M` must enter.
 - **The amenable sector is already closed.**  Dogon--Vigdorovich
   hyperfinite HS-stability (via character rigidity) settles `(RCC)`
   when the relevant commutant piece is amenable.  Combined with the
