@@ -36,3 +36,9 @@ finite matrices must pay the decay estimate.
 This route does not require a generic Boolean predicate packet, a cyclic
 context atlas, or a raw Turing tape.  Its sole missing theorem is
 `fanizza-heat-filter-one-sided-return`.
+
+There is now a potentially smaller endpoint:
+`fanizza-wandering-dirichlet-return-route`.  One ordinary return word with a
+finite-matrix Dirichlet comparison makes the unnormalized Cesaro translates
+of the mark uniformly bounded in matrices but square-root growing in the
+regular trace.  That route avoids returning the whole polynomial sequence.
