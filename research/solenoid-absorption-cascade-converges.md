@@ -63,6 +63,7 @@ recursion terminates; the total correction is
   theory left -- the cleanest possible form of the residual analytic
   content.
 - **Snag + fix (2026-08-21).** Naive peel does not converge: the diagonal residual descends at fixed size delta while 1/gamma_k grows. Fix: alternate off-diagonal conjugation with absorbing the diagonal into the exact base-torus reparametrization (free); only the reduced cycle-cocycle (dim = tower cycles - 1) descends, and lemma (b) is its contraction under alternating absorption.
+- **Reduction to (psi_*-1) invertibility; obstruction is 3-PRIMARY (2026-08-21).** The residual is a class in finite-dim H^1(tower cycle-graph); the equation projects to (psi_*-1)[c]=[e], so lemma (b) = invertibility of psi_*-1. psi carries x4 and 4-1=3, so the cokernel is 3-primary only - the two-adic far sector's final obstruction sits at the prime 3. Finite question: does the SL2(Z[1/2]) relation-defect class carry 3-primary cohomology?
 - **Why it is plausible and where it could fail.**  The peeling is a
   geometric contraction when the residual shrinks faster than the gap:
   each descent multiplies the uncorrected mass by the local defect
