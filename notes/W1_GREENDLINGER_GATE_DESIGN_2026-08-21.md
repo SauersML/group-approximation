@@ -136,6 +136,22 @@ inequalities) gets λ-parameterized twins, while the structural layer
 (chunks, nesting, transport, reappearance) is λ-free and shared.
 Mechanical, additive, assignable after the ½-form closes.
 
+## 2.6 Second adversary (exhaustive at three factors, |t| = 13..24):
+757,949 configurations, 184,767 genuinely minimal expressions, 3.7M
+triples, ZERO refutations.  Structural additions to §2.5: (i) at three
+factors the landing disjunct NEVER fires — the located conclusion
+carries everything, so the sixth-vs-half worry is moot there; (ii)
+every near-miss is killed by area = 1, i.e. the coincidence-collapse
+appears INSIDE (β) — a block deep enough to break the located
+conclusion forces t₁ = invRev of the rotation it eats; (iii) the
+PROVED moves `norm_le_of_minimal_sendPast` (3F:674) and
+`two_mul_leading_conjugator_le` (3F:701) are far stronger than they
+look: enforced as filters they discard 90% of (β) configurations and
+cap |c₁| outright for |t| ≤ 20 — L-deep should lean on them; (iv) an
+earlier "tight at L = 13" reading was an artifact of not enforcing
+those moves.  STATUS: L-reapp PROVED, L-red PROVED (both on main);
+remaining: L-half, L-deep, assembly.
+
 ## 3. Mandatory first step: adversarial test of case (β)
 
 Before anyone formalizes toward `CascadeLanding`, run a concrete

@@ -3,6 +3,7 @@ rg: 2
 id: matrix-phase-linear-alpha-plane-inequality
 kind: claim
 title: Upgrade the matrix-phase alpha-plane modulus to a linear energy bound
+root: true
 distinct_from:
   matrix-phase-noncommutative-alpha-plane-route: that proves a nonconstructive uniform modulus by polar consensus and tracial compactness; this asks for an effective linear estimate.
 ---

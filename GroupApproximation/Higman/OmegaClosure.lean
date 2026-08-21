@@ -110,6 +110,48 @@ theorem mem_omegaOp_shiftPow (m : ℕ) (B : Set E) (f : E) :
     rw [blockAt_shiftPow]
     exact h (i - 1)
 
+/-! ## 2b.  Blocks are windows of the coding
+
+Whatever construction discharges the residue, it has to say what the code of a
+block is in terms of the code of the sequence, because `omegaOp` is defined
+through `blockAt` while `ASub` is defined through `elt`.  These two lemmas are
+that bridge, and they are route-independent: the `m`-block at `i` is the
+window of `f` on `[mi, mi+m)` carried back to `[0, m)`, and the *code* of that
+window is what the deletion retraction `Split.killOn` reads off the code of
+`f`. -/
+
+/-- The window predicate cutting out the `m`-block at `i`. -/
+def blockWindow (m : ℕ) (i : ℤ) : ℤ → Prop :=
+  fun j => (m : ℤ) * i ≤ j ∧ j < (m : ℤ) * i + (m : ℤ)
+
+instance (m : ℕ) (i : ℤ) : DecidablePred (blockWindow m i) := fun _ => And.decidable
+
+/-- **A block is a translated window.** -/
+theorem blockAt_eq_filter_translate (m : ℕ) (i : ℤ) (f : E) :
+    blockAt m i f
+      = Finsupp.equivMapDomain (Equiv.addRight (-((m : ℤ) * i)))
+          (Finsupp.filter (blockWindow m i) f) := by
+  refine Finsupp.ext fun j => ?_
+  rw [Finsupp.equivMapDomain_apply, blockAt_apply, Finsupp.filter_apply]
+  have hsymm : (Equiv.addRight (-((m : ℤ) * i))).symm j = j + (m : ℤ) * i := by
+    show j - -((m : ℤ) * i) = j + (m : ℤ) * i
+    ring
+  rw [hsymm]
+  by_cases hj : (0 : ℤ) ≤ j ∧ j < ((m : ℕ) : ℤ)
+  · rw [if_pos (Finset.mem_Ico.mpr hj), if_pos (show blockWindow m i (j + (m : ℤ) * i) by
+      unfold blockWindow; omega)]
+    congr 1
+    ring
+  · rw [if_neg (fun h => hj (Finset.mem_Ico.mp h)),
+      if_neg (show ¬ blockWindow m i (j + (m : ℤ) * i) by unfold blockWindow; omega)]
+
+/-- **The code of a block's window is read off the code of `f` by deleting the
+coordinates outside it.** -/
+theorem killOn_blockWindow_elt (m : ℕ) (i : ℤ) (f : E) :
+    Split.killOn (blockWindow m i) (elt f)
+      = elt (Finsupp.filter (blockWindow m i) f) :=
+  Split.killOn_elt _ f
+
 /-! ## 3.  A finitely supported sequence has a zero block -/
 
 theorem exists_blockAt_eq_zero (m : ℕ) (f : E) : ∃ i : ℤ, blockAt m i f = 0 := by
