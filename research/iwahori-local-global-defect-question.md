@@ -85,6 +85,16 @@ non-hyperlinear group, their Corollary 1.3) is consumed.
   present stability claim is false.  The converse is not valid: nonsoficity
   of this action does not prove stability or nonhyperlinearity.  The precise
   implication audit is in the 2026-08-21 artifact.
+- **The finite-index-double theorem does not settle the tree action.**
+  Gao--Kunnawalkam Elayavalli--Mj prove soficity for doubles whose two
+  finite-index edge embeddings are identical (and more generally for their
+  consistently embedded graph-of-groups family).  The present Iwahori edge
+  twist is not of that form.  As
+  `finite-index-double-theorem-misses-iwahori-twist` records, it sends the
+  primitive parabolic `u` to `u^2` and therefore cannot extend to an
+  automorphism of `PSL_2(Z)`, already by abelianization `C_6`.  Thus the
+  closest published graph-of-groups theorem cannot be used to declare the
+  Bruhat--Tits vertex action sofic.
 
 ## Attempts (added 2026-08-21, from the HNN route)
 
