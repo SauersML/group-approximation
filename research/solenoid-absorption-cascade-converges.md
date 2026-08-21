@@ -406,6 +406,29 @@ recursion terminates; the total correction is
   needs -- so BOTH residual inputs collapse to ONE: Holder regularity
   of the Weyl defect in the `V`-spectral variable.  That single
   regularity statement closes the far sector.
+- **The regularity needed is a TRACE seminorm, not pointwise Holder
+  (2026-08-21).**  Pointwise Holder regularity of `e'` is not free: a
+  general microstate has no spectral regularity, and after
+  exactification only the Weyl `s` is rough, which alone gives no
+  `theta`-continuity across `V`-eigenspaces.  But the coboundary does
+  not need pointwise Holder.  The Ruelle transfer operator has the
+  Lasota--Yorke form: its spectral gap holds already on functions of
+  BOUNDED VARIATION / fractional Sobolev regularity, measured by the
+  dynamical seminorm `|| e' - psi(e') ||_2`.  Crucially this seminorm
+  is a TRACE quantity: `psi = Ad(h)`, so
+  `|| e' - psi(e') ||_2^2 = tau(| e' - h e' h^{-1} |^2)` -- the trace
+  of an explicit word in the microstate, NOT a pointwise spectral
+  condition.  So the last lemma becomes: the Weyl defect `e'` has
+  small dynamical Sobolev seminorm `|| e' - h e' h^{-1} ||_2 <~ delta`.
+  This is genuinely trace-accessible, and plausibly `O(delta)` because
+  `e'` is itself the `O(delta)` defect of a relation and `h e' h^{-1}`
+  is its transport under an EXACT tower automorphism -- their
+  difference is a second-order defect (the failure of `e'` to be
+  `h`-covariant, which the exactness of the `h`-tower controls).  So
+  the far sector closes via Lasota--Yorke RPF given
+  `|| e' - h e' h^{-1} ||_2 <~ delta`, a computable trace bound
+  replacing the pointwise-Holder lemma.  This is the sharpest exit:
+  the last input is one trace inequality on the microstate.
 - **Why it is plausible and where it could fail.**  The peeling is a
   geometric contraction when the residual shrinks faster than the gap:
   each descent multiplies the uncorrected mass by the local defect
