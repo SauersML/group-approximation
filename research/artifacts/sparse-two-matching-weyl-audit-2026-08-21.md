@@ -85,3 +85,34 @@ remaining same-basis problem is incidence-theoretic (bounded-template
 all-pairs decoding), not finite-abelian HS stability.
 
 No non-hyperlinear group proof is claimed by this audit.
+
+## Subsequent simplification: the mixed table can be deleted
+
+The strongest result of the lane is now
+`one-pauli-seed-character-expansion`.  After one additive X action is
+available, a single D8 anticommutation seed puts half of a surviving marked
+carrier into nonzero X characters.  Bounded actor covariance whose dual
+Schreier graph has gap `gamma` then gives
+
+```text
+d >= (2^n-1)/2
+```
+
+or
+
+```text
+marked mass <= 4 eta_act^2/gamma + eta_seed^2/4.
+```
+
+This removes the second additive table and every mixed X/Z rectangle.  The
+remaining finite-family compiler needs only one same-basis additive table,
+bounded actor covariance, and one D8 edge.
+
+There is also a one-scale version:
+`one-seed-infinite-character-expansion-collapses-mark`.  If a fixed actor has
+a positive bottom spectral gap on one infinite nontrivial character orbit,
+the finite-dimensional spectral rank vector has finite support and the
+counting-measure Poincare inequality collapses it outright.  The unresolved
+word-level interface is global same-basis decoding plus control of the full
+character-orbit Dirichlet energy.  Cairn metadata was corrected so this
+groupification gate remains explicitly OPEN.

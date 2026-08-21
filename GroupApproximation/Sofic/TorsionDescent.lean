@@ -377,5 +377,85 @@ theorem isProperPower_or_isPiece_drop {R : Set (List (α × Bool))}
       refine ⟨t ++ r.take n, ?_⟩
       rw [List.rotate_eq_drop_append_take hnr.le, hdrop, List.append_assoc]
 
+/-! ## 7.  The Dehn replacement
+
+The arc-inside-one-period branch, and — with a different supply of the arc — the
+short-relator half of the arc-spans-two-periods branch.  Both reduce to this
+one move. -/
+
+/-- **The Dehn replacement.**  A cyclic subword of `W` that is more than half of
+a symmetrized relator can be traded for the relator's shorter complement.  The
+trade shortens `W` strictly, and it moves the class only by a relator, so the
+image in the quotient is *conjugate* to the one we started with — which is all
+the descent needs, both "is trivial" and "has order dividing `k`" being
+conjugacy invariant.
+
+Two conjugations are absorbed on the way: rotating `W` so the arc is a prefix,
+and cyclically reducing the result. Neither is visible in the conclusion. -/
+theorem exists_shorter_of_short_arc {R : Set (List (α × Bool))}
+    {W u r : List (α × Bool)} {s : ℕ} (hs : s ≤ W.length)
+    (hr : r ∈ symmetrization R) (hru : u <+: r)
+    (hlt : r.length < 2 * u.length) (hWu : u <+: W.rotate s) :
+    ∃ W' : List (α × Bool), FreeGroup.IsCyclicallyReduced W' ∧ W'.length < W.length ∧
+      ∃ c : FreeGroup α ⧸ Subgroup.normalClosure (FreeGroup.mk '' R),
+        QuotientGroup.mk' (Subgroup.normalClosure (FreeGroup.mk '' R))
+            (FreeGroup.mk W')
+          = c * QuotientGroup.mk' (Subgroup.normalClosure (FreeGroup.mk '' R))
+              (FreeGroup.mk W) * c⁻¹ := by
+  set Nrel := Subgroup.normalClosure (FreeGroup.mk '' R) with hNrel
+  obtain ⟨v, hv⟩ := hru
+  obtain ⟨t, ht⟩ := hWu
+  have hrlen : r.length = u.length + v.length := by rw [← hv]; simp
+  have hWlen : W.length = u.length + t.length := by
+    have h := congrArg List.length ht
+    simp only [List.length_append, List.length_rotate] at h
+    omega
+  have hW0len : (FreeGroup.invRev v ++ t).length < W.length := by
+    simp only [List.length_append, FreeGroup.invRev_length]
+    omega
+  have h1 : FreeGroup.mk (FreeGroup.invRev v ++ t)
+      = (FreeGroup.mk v)⁻¹ * FreeGroup.mk t := by
+    rw [← FreeGroup.mul_mk, ← FreeGroup.inv_mk]
+  have h2 : FreeGroup.mk (W.rotate s) = FreeGroup.mk u * FreeGroup.mk t := by
+    rw [← ht, ← FreeGroup.mul_mk]
+  have h3 : FreeGroup.mk r = FreeGroup.mk u * FreeGroup.mk v := by
+    rw [← hv, ← FreeGroup.mul_mk]
+  have hker : QuotientGroup.mk' Nrel (FreeGroup.mk u) *
+      QuotientGroup.mk' Nrel (FreeGroup.mk v) = 1 := by
+    rw [← map_mul, ← h3, ← MonoidHom.mem_ker, QuotientGroup.ker_mk', hNrel]
+    exact mk_mem_of_mem_symmetrization hr
+  have huv : QuotientGroup.mk' Nrel (FreeGroup.mk u)
+      = (QuotientGroup.mk' Nrel (FreeGroup.mk v))⁻¹ :=
+    eq_inv_of_mul_eq_one_left hker
+  have hqeq : QuotientGroup.mk' Nrel (FreeGroup.mk (FreeGroup.invRev v ++ t))
+      = QuotientGroup.mk' Nrel (FreeGroup.mk (W.rotate s)) := by
+    rw [h1, h2, map_mul, map_mul, map_inv, huv]
+  have hrot : QuotientGroup.mk' Nrel (FreeGroup.mk (W.rotate s))
+      = (QuotientGroup.mk' Nrel (FreeGroup.mk (W.take s)))⁻¹ *
+        QuotientGroup.mk' Nrel (FreeGroup.mk W) *
+        QuotientGroup.mk' Nrel (FreeGroup.mk (W.take s)) := by
+    rw [mk_rotate_eq_conj W hs, map_mul, map_mul, map_inv]
+  obtain ⟨W', c₁, hcyc', hconj', hlen'⟩ :=
+    exists_cyclicallyReduced_conj_le (FreeGroup.invRev v ++ t)
+  refine ⟨W', hcyc', by omega,
+    (QuotientGroup.mk' Nrel (FreeGroup.mk (W.take s)) *
+      QuotientGroup.mk' Nrel c₁)⁻¹, ?_⟩
+  have hq' : QuotientGroup.mk' Nrel c₁ * QuotientGroup.mk' Nrel (FreeGroup.mk W') *
+      (QuotientGroup.mk' Nrel c₁)⁻¹
+      = (QuotientGroup.mk' Nrel (FreeGroup.mk (W.take s)))⁻¹ *
+        QuotientGroup.mk' Nrel (FreeGroup.mk W) *
+        QuotientGroup.mk' Nrel (FreeGroup.mk (W.take s)) := by
+    rw [← hrot, ← hqeq, hconj', map_mul, map_mul, map_inv]
+  have hfinal : QuotientGroup.mk' Nrel (FreeGroup.mk W')
+      = (QuotientGroup.mk' Nrel c₁)⁻¹ *
+        ((QuotientGroup.mk' Nrel (FreeGroup.mk (W.take s)))⁻¹ *
+          QuotientGroup.mk' Nrel (FreeGroup.mk W) *
+          QuotientGroup.mk' Nrel (FreeGroup.mk (W.take s))) *
+        QuotientGroup.mk' Nrel c₁ := by
+    rw [← hq']
+    group
+  rw [hfinal]
+  group
+
 end TorsionDescent
 end GroupApproximation
