@@ -213,3 +213,93 @@ The unresolved step is to turn the continuous correction concentration
 plurality/positive-probability argument.  Polarizing the mean correction gives
 a nearby unitary table, but a contraction estimate for its test energy has not
 yet been proved.
+
+### Polar-mean identities and the exact contraction gap
+
+Put
+
+```text
+M_t=E_b C_t(b),                 P_t=polar(M_t),               (NC15)
+V_t=E_b||C_t(b)-M_t||_2^2.
+```
+
+Choose an arbitrary unitary extension on the kernel in the polar factor.
+Hilbert-space variance and the fact that every `C_t(b)` is unitary give the
+exact identities
+
+```text
+E_b||C_t(b)-R_t||_2^2
+ =V_t+||M_t-R_t||_2^2,                                      (NC16)
+
+V_t=1-||M_t||_2^2
+    =(1/2)E_(b,c)||C_t(b)-C_t(c)||_2^2.                      (NC17)
+```
+
+Since `M_t` is an operator-norm contraction, its singular values lie in
+`[0,1]`, and therefore
+
+```text
+||P_t-M_t||_2^2
+ =E_j(1-s_j(M_t))^2
+ <=E_j(1-s_j(M_t)^2)=V_t,                                  (NC18)
+
+E_b||C_t(b)-P_t||_2^2
+ =V_t+||M_t-P_t||_2^2 <=2V_t.                               (NC19)
+```
+
+Combining `(NC14)` and `(NC17)--(NC19)` yields pointwise polar control
+
+```text
+sup_t ||P_t-M_t||_2^2 <=7500(A(R)+I(R)),                    (NC20)
+
+E_t||P_t-R_t||_2^2
+ <=2A(R)+15000(A(R)+I(R)).                                  (NC21)
+```
+
+The four-term Lipschitz inequality then gives explicit, but noncontractive,
+sampled-energy comparisons
+
+```text
+sqrt(I(P)) <=sqrt(I(R))+4 sqrt(E_t||P_t-R_t||_2^2),          (NC22)
+
+sqrt(A(P)) <=sqrt(A(R))+6 sqrt(E_t||P_t-R_t||_2^2).          (NC23)
+```
+
+(The coefficient `6` in `(NC23)` is a safe bound: two edge products contain
+four vertices, while the decoded-heap form contains three.)  Thus polar
+correction is dimension-free and remains in an `O(sqrt(A+I))` neighborhood,
+but these estimates alone increase the constant.  A damped polar/geodesic
+step can decrease the alpha energy only if one proves a uniform gradient
+inequality
+
+```text
+A(R)+I(R) <=C_PL E_t||R_t-M_t||_2^2 + controlled orientation term. (NC24)
+```
+
+Identity `(NC16)` shows exactly why consensus is insufficient: all sampled
+energy may sit in the conditional variance `E_t V_t`, while the correction
+gradient `R_t-M_t` vanishes.  Any contraction proof must bound that variance
+by a strict fraction of the original energy after the orientation term is
+included, or rule out non-code polar fixed points `P=R`.
+
+### Qualitative ultraproduct attempt
+
+A contradiction sequence with `I(R_n)+A(R_n)->0` gives, in the tracial/Loeb
+ultraproduct, a unitary field with the sampled heap identities almost
+everywhere.  Gauging at a Fubini-generic anchor makes `Q_x=R_xR_o^*` a
+reflection almost everywhere, and `(NC1)` makes `Q_x,Q_y` commute for an
+independent uniform pair.  Every bounded affine configuration of pairwise
+independent forms therefore has a classical joint spectral model, and the
+`4 x 4` ledger above is valid configurationwise.
+
+The remaining removal statement is genuinely **contextual**: pairwise
+commutation almost everywhere does not by itself put the whole Loeb field in
+one abelian algebra (sparse Pauli anticommutation graphs are the warning).
+One must show that the overlapping alpha-plane contexts plus `(NC14)` admit a
+single measurable Boolean spectral labeling, to which the scalar
+Kaufman--Sudan inequality can be applied.  Equivalently, prove nonabelian
+coboundary/agreement removal for this affine-plane complex.  Assuming that
+measurable noncontextualization lemma, scalar soundness forces the full
+parallelogram identity almost everywhere and yields a nonconstructive uniform
+modulus `F=o_(I+A)(1)`.  Without it, the Loeb argument is incomplete rather
+than an automatic consequence of Fubini.

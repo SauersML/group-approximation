@@ -77,7 +77,7 @@ theorem reducednessVoidsCoincidence [DecidableEq α] :
   have hcsplit : c.dropLast ++ [x] = c := List.dropLast_append_getLast hcne
   -- the aligned block ends with `x`
   have hkle : k ≤ c.dropLast.length := by
-    have := List.length_dropLast (l := c)
+    have := List.length_dropLast (xs := c)
     omega
   have hdrop : c.drop k = c.dropLast.drop k ++ [x] := by
     conv_lhs => rw [← hcsplit]
