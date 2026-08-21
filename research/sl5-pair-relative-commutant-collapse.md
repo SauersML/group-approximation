@@ -30,7 +30,10 @@ the lane holds here with unchanged proofs:
 `one-commutator-controls-distance-to-full-commutant` (`n >= 3`; the
 coset count becomes `L = p . #{incident line-hyperplane pairs}` by
 the same mod-`p^2` parahoric computation, the parabolic now of type
-`(1, n-2, 1)`), `rcc-carrier-character-face-compression` and
+`(1, n-2, 1)`: for `n = 5, p = 2` this is
+`L = 2 . 31 . 15 = 930`, so the lazy average runs over `930` words
+and the exact quasi-regular enemy fingerprint is
+`1/4 + 1/(4 L) = 931/3720`), `rcc-carrier-character-face-compression` and
 `hnn-carrier-enemy-moment-splitting` (odd `n`, trivial center),
 `projective-far-defect-formula`, and the sector closure
 `odd-congruence-lambda-exact-sector-collapses` -- the diagonal of
