@@ -175,6 +175,16 @@ None of the existing common-source lemmas proves `(CPS9)`.
    occupy one reservoir.  It does not authenticate the root coefficient or
    identify its source with `S_D8`; `hecke-dilation-gram-no-go-proof` exhibits
    precisely the surviving source deficit.
+5. Replacing the scalar bus by finitely many nonscalar conjugates of the
+   selected context block still fails if the conjugating swaps preserve the
+   context selector algebra and its allowed support.
+   `predicate-preserving-nonscalar-frames-miss-forbidden-source` proves that
+   every pulled-back carrier then lies below the same allowed spectral
+   projection, so the forbidden source atom is a literal common kernel and
+   each bridge has full leakage on it.  Free/generic relative position on the
+   allowed part cannot produce `(CPS9)`.  A surviving transporter must mix
+   selector and payload non-equivariantly and nevertheless return to the one
+   shared-variable row.
 
 Thus `(CPS9)` is neither a consequence of exhaustive summation, the D8 mass
 floor, nor Hecke packing.  A proof must add a genuinely finite-matrix
@@ -242,3 +252,10 @@ context observables.
   absolute bit, and the shared-factor row is compatible with its arbitrary
   whole-row multiplicity.  What remains is the joint carrier inequality
   `(CPS9)`, not another scalar orientation choice.
+- **Take a free frame of nonscalar selected-type conjugates.**  If the stable
+  letters preserve the predicate support so that all copies are semantically
+  the same row, their pulled-back type projections have the forbidden source
+  atom as a common kernel.  If they do not preserve that support, the rows are
+  no longer conjugate copies of the same predicate and their consistency with
+  the literal shared variables becomes a new payload-mixing relation.  Thus
+  free position alone does not solve the alignment seam.
