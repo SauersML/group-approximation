@@ -414,3 +414,30 @@ linear length control (`||J(U) - I||_2 <= 17 Def(U)`) for the solution
 groups of nonhalting inputs, so the phenomenon "defect beats area" is
 realized by PCP-derived presentations, through averaging over an expanding
 constraint family rather than along one derivation.
+
+## 8. The RE orientation and the odd-subset fence
+
+**Proposition 8.1.**  If a computable family of LCS games has `(RE1)`
+halting `=>` a finite-dimensional representation with `J = -I`, and
+`(RE2)` nonhalting `=>` `omega_q <= 1 - delta`, then some nonhalting
+machine has `J != 1` (else halting would be co-r.e.), and that solution
+group is nonhyperlinear by the perfect-LCS-gap lemma.  No recursion
+theorem, no matrix search.  Taller--Vidick have `(RE2)` with `1/72` and
+only `1 - epsilon` on the `(RE1)` side.
+
+**Proposition 8.2 (odd-subset cheats).**  Let an LCS have variables
+`a_(C,phi)` indexed by `+-1`-functions of the assignments of contexts of a
+constraint system, honest value `phi(x)`.  Any linear constraint satisfied
+by all honest encodings of all consistent assignment tuples is satisfied by
+every assignment `a_(C,phi) = prod_(s in T_C) phi(s)` with `|T_C|` odd and
+mod-2-consistent marginals.  Proof: group the constraint by context; honest
+satisfaction on all consistent tuples makes each context factor constant on
+shared-variable fibres; odd products of constants are the constant.
+Within one context, the exact solutions of the long-code linear relations
+with `a_(-1) = J` are precisely the odd characters.
+
+So a noise-free perfect-completeness LCS compiler is sound iff the
+odd-subset relaxation of its source is sound.  Classically that relaxation
+is a linear system over `F_2` (the reason 3-XOR needs noise); the
+Taller--Vidick mask is its quantum shadow.  The precise job for a
+self-similar source: make the relaxation an instance of the family.

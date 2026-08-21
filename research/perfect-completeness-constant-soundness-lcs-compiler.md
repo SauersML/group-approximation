@@ -1,0 +1,55 @@
+---
+rg: 2
+id: perfect-completeness-constant-soundness-lcs-compiler
+kind: claim
+title: A computable LCS family with exact finite-dimensional completeness on halting inputs and constant soundness on nonhalting inputs
+artifacts:
+  - research/artifacts/hs-dehn-modulus-length-control-2026-08-20.md
+distinct_from:
+  taller-vidick-lcs-re-hardness: that theorem has completeness `1 - epsilon` and its decoder needs the noise; this asks for `epsilon = 0`, which the paper explicitly does not prove.
+  hs-pcp-boone-compiler: that asks for matrix soundness on halting inputs with an infinite exact side on nonhalting inputs (coRE orientation); this asks for an exact finite-dimensional side on halting inputs and matrix soundness on nonhalting inputs (RE orientation), which is the orientation in which MIP* soundness is already available.
+  bcs-to-lcs-exact-support-gap: that asks for an exact LCS sub-menu of one fixed tracial BCS with approximate soundness; this asks for the machine-indexed family with exact finite-dimensional completeness.
+---
+
+Construct a computable map `M -> L_M` from Turing machines to finite
+binary linear constraint systems, with solution groups `Gamma_M` and
+central involutions `J_M`, and a constant `delta > 0`, such that
+
+```text
+M halts          =>  Gamma_M has a finite-dimensional representation
+                     with J_M = -I  (a perfect finite-dimensional LCS
+                     strategy),                                        (PC1)
+M does not halt  =>  omega_q(L_M) <= 1 - delta.                        (PC2)
+```
+
+By `re-oriented-lcs-compiler-gives-nonhyperlinear-group` this yields an
+explicit nonhyperlinear solution group.  Taller--Vidick prove `(PC2)` with
+`delta = 1/72` and a version of `(PC1)` with value `1 - epsilon` only.
+
+## Attempts
+
+- **Remove the mask from the Taller--Vidick decoder.**  Dies by
+  `linear-encoding-lcs-admits-odd-subset-cheats`: without noise every
+  linear test on a linear encoding is passed by odd-subset characters with
+  consistent marginals, so the decoder has nothing to decode unless the
+  odd-subset relaxation of the source is itself unsatisfiable.  The
+  Fourier damping `(1-2epsilon)^|beta|` is what suppresses `|T| >= 3`.
+- **Nonlinear gadgets inside the LCS.**  Dies at the algebra level:
+  distinct cosets of `<J>` are linearly independent in `C[Gamma]/(J+1)`, so
+  commuting group-element involutions satisfy only affine joint-spectrum
+  constraints (`regular-trace-blocks-exact-local-predicate-return`,
+  `central-pinning-forbids-nonlinear-predicates`).  Encoded variables must
+  be non-group-element functions, and then cross-context consistency is
+  an algebra relation that only tests, not relators, can impose.
+- **Live direction: make the odd-subset relaxation hard.**  The target
+  is a source family `B_M` whose odd-subset relaxation (consistent
+  families of odd subsets of satisfying assignments, with mod-2 marginal
+  agreement) is still robustly unsatisfiable in finite dimensions on
+  nonhalting inputs, while honest tracial solutions survive.  A
+  self-reducing family, whose relaxation is again an instance of the
+  family, would inherit soundness.  This is where the programme's
+  self-similarity idea has a precise job.
+- **Orientation check.**  Do not try to obtain `(PC1)` from Lin's
+  `MIP^co = coRE` compiler: its exact side is the commuting side on
+  nonhalting inputs, which is the other orientation
+  (`kleene-mipco-self-destroying-game`).
