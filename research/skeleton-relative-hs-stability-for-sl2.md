@@ -116,6 +116,29 @@ never activates.
   the two exact odd towers so that the `w(1)`- and `w(2)`-Weyl words
   act exactly at once — the Iwahori square-root core in exact-odd
   coordinates, now provably the LAST piece of this route.
+- **Leg (2) attack: the swap-transport reduction (2026-08-21).**
+  Two failed shapes first: Gowers--Hatami on the finite model
+  `SL_2(Z/N)` via bounded Bruhat width (stable rank one gives width
+  `<= 5` over the two full abelian subgroups) FAILS because the swap
+  defect at residues `x ~ N` amplifies linearly (`||A^x - B^x|| <= x
+  delta_1` with `N_m delta_1(m)` uncontrolled); and exact-conjugacy
+  of the transported tower fails generically because the discrete
+  invariant multisets differ by small transports.  The living move:
+  DEFINE the lower tower BY the swap, `L(y) := s pi-upper(-y) s^{-1}`
+  — then the lower tower is exact and the `w(1)`-swap relation holds
+  EXACTLY by construction, at the price of moving all defect into
+  two UNAMPLIFIED fixed-word residuals: the transported tower's
+  `h`-relation (`s^{-1} W s` versus `W^{-1}` times the exact torus,
+  Weyl inversion) and the `w(2)`-relation.  The obstruction to
+  correcting both at once over the compact centralizer torsors is a
+  cohomological cycle over the relation triangle {upper-`h`, swap,
+  torus inversion}: its class vanishes on every exact finite model,
+  and the claim is exactly that the microstate's approximate class
+  converges to the vanishing one — an `H^2`-comparison over exact
+  structures, uniform in odd `N`, with Selberg/(tau) the expected
+  control.  Compared to every previous form of the far sector: all
+  towers exact, one swap exact, NO amplified defects anywhere, and
+  the whole problem is two fixed words on compact torsors.
 - **Where the obvious attack could die.**  If the torsor fixed-point
   problem has an obstruction class that grows with the odd order,
   the loss would not be dimension-free; the analogue at the level of
