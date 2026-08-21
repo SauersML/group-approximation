@@ -450,6 +450,25 @@ refutation, and this claim makes the reduction precise.
   becomes the frustration index of the carrier-coupling network — a
   computable spectral quantity, and the correct uniformity target
   for large `a`.
+- **Second-order mechanism identified: phase-averaging positivity
+  (2026-08-21).**  The leak is QUADRATIC in `K` (it enters both sides
+  of `<W K W*, V_0* K V_0>`), so averaging over the free native
+  phases kills the oscillating off-diagonal terms and leaves the
+  phase-invariant diagonal `P = ` a nonnegative SUM OF SQUARED
+  channel masses.  The floor obeys `min |leak| >= P - (oscillation
+  range)`, so the measured `~0.142` is P-dominance, and the earlier
+  first-order vacuity is explained: block-trace bounds see only the
+  oscillating part.  The provability route is now sharp: `P` is
+  controlled by the SINGULAR spectrum of the compressed conjugation
+  `Phi` on trace-zero (not its Hermitian part, whose indefiniteness
+  was a red herring), paired with the unitarity sum rule
+  `sum_sigma ||K_sigma-component||^2 = 1`: a lower bound on `P` needs
+  `Phi` to retain a definite fraction of orbit mass on the structured
+  subspace where unitarity forces `K` to live.  Next computations:
+  the singular value distribution of the `37 x 37` `Phi`-matrix, and
+  the oscillation-vs-P comparison; next theorem target: the
+  phase-averaging floor lemma
+  `min |leak| >= P - osc` with `P` bounded below via the sum rule.
 - Proved below by assembling established inputs; see the proof route.
   The one step that is a HYPOTHESIS here and a theorem at `SL_2` is
   vertex near-exactness: `SL_3(Z)` HS-stability is open (it is the
