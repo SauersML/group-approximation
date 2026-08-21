@@ -48,6 +48,18 @@ exact variety to `delta`-representations, i.e. the outlier sector.
 
 ## Attempts
 
+- **The involution-only qualitative form is NOT a smaller wall.**
+  `trace-zero-involution-projective-transfer-equals-rcc` proves by the
+  explicit dilation `v=[[0,U],[U*,0]]` that every positive-energy
+  relative-commutant leak yields a trace-zero self-adjoint involution leak,
+  retaining the dimension-free gap
+  `Phi(epsilon)=1-((1+sqrt(1-epsilon))/2)^2`.  Combined with perfectness,
+  qualitative PRCC restricted to trace-zero involutions is already full
+  relative-commutant collapse.  Therefore the fact that the arithmetic lamp
+  generator `c` is an involution does not itself simplify this claim.  The
+  only honest narrower target must also consume a JOINT native lamp relation,
+  such as `[c,h c h^-1]=1`, or the full commuting-orbit moment packet.
+
 - **How much of the projective slack is real (2026-08-21 analysis).**
   If `[U, rho(c)]` is asymptotically scalar for every `c`, the scalars
   form a character `lambda : Lambda -> T` in the ultraproduct limit.

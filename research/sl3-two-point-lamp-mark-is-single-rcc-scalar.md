@@ -66,6 +66,14 @@ to the identity.  This is exactly the involutory specialization of
 `projective-commutant-transfer-for-arithmetic-pair`.  No global lamp PVM,
 all-pairs additive table, or character-orbit Poincare argument is needed.
 
+However, `trace-zero-involution-projective-transfer-equals-rcc` shows that
+the involution (even trace-zero involution) restriction by itself does **not**
+make the qualitative transfer easier: a `2 x 2` self-adjoint dilation turns
+every ordinary relative-commutant leak into such an involutory projective
+leak while retaining a fixed positive energy gap.  A weaker successful
+theorem must therefore use additional native lamp data, most economically
+the joint relation `[c,h c h^-1]=1` or equivalent mixed moments.
+
 This is an **alternative** to the all-pairs checksum, not a formal consequence
 of additive-module rounding.  In the exact infinite lamp module the product
 `c(h c h^-1)=m_0` is a genuine nonzero lamp, so an exact all-pairs additive
