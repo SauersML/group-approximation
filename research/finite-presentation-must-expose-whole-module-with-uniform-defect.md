@@ -191,6 +191,79 @@ immediately give a multiplication leak through `(FME5)`.  No existing
 centralizer-distortion node constructs `(FME8)` for the augmentation host,
 so the whole-module claim remains open.
 
+## The cyclic phase ladder does not transplant to the module host
+
+The established `cyclic-centralizer-slow-twist-has-linear-filling-area`
+model uses
+
+```text
+B=direct_sum_k B_(2 pi k/N),      C=cyclic block shift.
+```
+
+The checked commutator compares adjacent angles, while `C^j B C^(-j)` is a
+macroscopic angle away.  This gives vanishing local defect and a remote
+commutator bounded below.  There are two ways to read that construction,
+and neither gives `(FME8)` for the intended augmentation presentation.
+
+The exponent-two lamp is not itself an obstruction to the toy ladder.  Put
+`D=diag(1,-1)`, `B_theta=R_theta D R_theta^*`, take `N=8j` blocks at angles
+`2 pi k/N`, and let `C` shift the blocks.  Then `B^2=I` exactly and
+
+```text
+||[B,C]-I||_2=2 sin(pi/(4j))->0,
+||[B,C^(-j)BC^j]-I||_2=2.                              (FME10)
+```
+
+So the failure to transplant is entirely in the actor/orbital relations,
+not in changing the cyclic example's order-three mark to an involution.
+
+1. In the presentation `<b,c | b^r=1,[b,c]=1>`, the words
+   `c^(-j)bc^j` are alternate names for the **same** group element `b`.
+   The ladder detects unbounded stabilizer naming loss, not the
+   multiplicativity of a fixed word section `m |-> w_m`.
+2. In an orbital lamp reading with actor `Z`, the checked pair is at distance
+   one and the remote pair is at distance `j`.  These are different diagonal
+   orbitals.  The intended actor action is 2-transitive, so this distance
+   parameter is absent.
+
+The second point has an exact matrix formulation for the direct point-lamp
+orbital reading.  Let `A` act 2-transitively on `X`, let
+`pi:A->U(d)` be an exact representation, and suppose an involution `B` is
+exactly invariant under the stabilizer of a base site, so
+
+```text
+B_(a x_0)=pi(a) B pi(a)^*
+```
+
+is well-defined.  Fix distinct `x_0,y_0`.  For every distinct `x,y`, choose
+`a in A` with `a(x_0,y_0)=(x,y)`.  Then
+
+```text
+[B_x,B_y]=pi(a)[B_(x_0),B_(y_0)]pi(a)^*,
+||[B_x,B_y]-I||_2
+ =||[B_(x_0),B_(y_0)]-I||_2.                            (FME9)
+```
+
+Thus an exact actor cannot carry a slow **point-orbital** phase ladder: every
+remote off-diagonal commutator has precisely the prototype defect.  The same
+proof works for each of the finitely many diagonal orbitals in the more
+general finite-orbital hypothesis, with one prototype bound per orbital.
+The augmentation subgroup contains only even lamps, so using this observation
+there would first require a coherent point-lamp lift of its pair generators;
+that lift is not supplied by the finite presentation and is part of the
+global-PVM problem rather than a cyclic counterexample.
+
+Accordingly, any direct phase-ladder refutation must either construct the
+missing point-lamp lift or make an **approximate actor or site-naming
+holonomy** accumulate along moving actor/stabilizer words while
+all finite actor, stabilizer, and prototype-lamp relators tend to zero.  The
+two existing ladders do not do this: their actor (`Z`, or the cyclic block
+shift) is exact and their accumulation is paid for by infinitely many
+unchecked orbitals or by alternate names of one site.  Extending the block
+shift assignment to the full property-`(T)`, finitely many-orbital actor
+presentation is exactly the missing matricial dual certificate, not a
+consequence of either cyclic calculation.
+
 ## Attempts
 
 - **Choose one word for every module element.**  A multiplication identity
