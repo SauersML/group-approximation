@@ -566,6 +566,24 @@ refutation, and this claim makes the reduction precise.
   `|c*|` versus defect is the whole story, and any lower bound must
   couple the two through the conductor-mismatch geometry rather than
   through transport identities.
+- **The phase-free core measured AND its positivity proved
+  (2026-08-21, `experiments/sl3-cstar-compute.json`).**  At the
+  control dictionary, `c* = 0.380864`, exactly real — and the reality
+  is structural: each diagonal term is
+  `Tr(P_sigma V* P_pi V) = ||P_pi V P_sigma||_F^2`, a Frobenius
+  square, so the core is a SUM OF SQUARES — `c*(V) >= 0` always,
+  positive unless the dictionary moves every native entirely off its
+  own constituents.  (The earlier positivity retraction applied to
+  the W-rotated diagonal; on multiplicity-one blocks W is inert and
+  the squares survive rigorously.)  The measured floor `0.142` now
+  reads as core minus achievable cancellation
+  (`0.381 - 0.24`), and the fixed-level floor program is: lower-bound
+  the native self-overlap mass `c*(V) = sum ||P_pi V P_sigma||_F^2 / D`
+  over the low-defect manifold (the conductor-mismatch theorem says
+  perfect transport would kill it, the spectral floor says perfect
+  transport is impossible), and upper-bound the cancellation range.
+  Both are concrete; the frontier trace (v7) quantifies them
+  together.
 - Proved below by assembling established inputs; see the proof route.
   The one step that is a HYPOTHESIS here and a theorem at `SL_2` is
   vertex near-exactness: `SL_3(Z)` HS-stability is open (it is the
