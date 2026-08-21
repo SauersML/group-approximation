@@ -73,6 +73,29 @@ algebras.  Then:
   conjugates (`g` would have to agree with `h` up to centralizers,
   and `h` is not integral), so a YES needs a genuinely
   non-group-like unitary against two (T)-rigid subalgebras.
+- **The conjugacy branch is a model question for an arithmetic
+  mapping torus — and finite quotients can never witness it
+  (2026-08-21, follow-up).**  An exact conjugator `V` together with
+  `pi|_Lambda` is precisely a unitary representation of the partial
+  HNN extension `G_0 = HNN(SL_3(Z), Lambda_-, Lambda_+, Ad h)` (not
+  ascending: both associated subgroups are proper, so the
+  established `ascending-hnn-cannot-create-nonhyperlinearity`
+  permanence does not apply) whose `Lambda`-restriction is 2-power
+  congruence exact.  KERNEL-INVARIANCE NO-GO: a finite quotient
+  `q : G_0 -> F` needs `q(v)`-conjugation to implement `Ad(h)` on
+  the image, which forces `h (ker q cap Lambda_-) h^(-1) subseteq
+  ker q`; a 2-power principal congruence kernel violates this (the
+  sharp depth-two corner shift of
+  `two-adic-tower-format-of-surviving-lambda-exact-enemy` maps
+  `Lambda(2^a) cap Lambda_-` outside `Lambda(2^a)`), while ODD
+  congruence kernels satisfy it exactly (`Ad(h)` is an isomorphism
+  mod odd `n`) — and the odd-exact world is already closed by
+  `odd-congruence-lambda-exact-sector-collapses`.  Consequently no
+  conjugator lifts from finite quotients of `G_0`: if the conjugacy
+  branch holds at all, its witness is a genuinely quantum unitary
+  invisible to every finite quotient — the same
+  non-residually-witnessable character as the uniform-outlier
+  residue, now appearing at the embedding level.
 - **The probe connection.**  `(CD1)` predicts the tower probes on
   regular-type modules see either defect `-> 0` (conjugacy branch)
   or a floor `>= delta_0` -- never a slow drift to zero; the
