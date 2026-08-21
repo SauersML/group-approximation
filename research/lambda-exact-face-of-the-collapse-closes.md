@@ -126,6 +126,27 @@ Hilbert--Schmidt mass in the common part is at most `1/4`, giving
   multi-band defect accumulation — with the honest record that at
   forced `k ~ a/4` the accumulation wins unless a genuinely
   multi-scale argument is found.
+- **THEOREM (same-day addendum): the enemy's weight profile is
+  shift-invariant, hence flat.**  The intertwiner space obeys the
+  min-overlap bound `|| xi ||_2^2 <= sum_pi min(w_A(pi), w_B(pi))`
+  (block-wise Cauchy--Schwarz on the Schur decomposition of
+  `Hom(lambda compose B, lambda compose A)`), and the `B`-side
+  isotypic weights are the SCALE-SHIFTED `A`-side weights (the
+  `Ad(h)`-twist moves essential depths by the weight vector).  So
+  the Kazhdan floor argument yields: any `Lambda`-exact enemy's
+  weight profile satisfies `TV(w, w-shifted) -> 0` — asymptotic
+  invariance under the 2-adic scale shift — and, running the same
+  argument with the Weyl conjugates `h', h''`, invariance under the
+  shifts in ALL the coweight directions.  An asymptotically
+  `Z^2`-shift-invariant profile on the growing multi-scale lattice
+  must FLATTEN (no invariant probability concentrates: every band's
+  weight tends to zero uniformly, mass equidistributes across
+  scales).  Hence the surviving `Lambda`-exact enemy is pinned to
+  the UNIQUE flat multi-scale profile — the canonical discrete
+  shadow of solenoid Haar — now by theorem, not analogy.  Every
+  degree of freedom in the `Lambda`-exact face is gone except the
+  one flat tower, whose realizability is verbatim the recorded
+  coset-Bernoulli / Kun--Thom stand-or-fall configuration.
 - **What the theorem does NOT do.**  It does not touch the
   uniform-outlier sector: microstates far from all genuine
   representations remain possible a priori, and `(RC3)` remains open
