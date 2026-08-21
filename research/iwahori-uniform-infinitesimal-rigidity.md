@@ -36,10 +36,12 @@ is bounded below uniformly.
 
 - **Numerics** (`experiments/iwahori_linearized_gap.py`, MSI, 2026-08-21):
   for the permutation representation on `P^1(F_p)`, the kernel is exactly
-  the diagonal coboundaries for all `p <= 47`, and the smallest nonzero
+  the diagonal coboundaries for all `p <= 53`, and the smallest nonzero
   singular value is `0.816, 0.741, 0.711, 0.570, 0.474, 0.408, 0.351,
-  0.271, 0.275, 0.300, 0.273, 0.264, 0.253, 0.206` for `p = 3, 5, 7, 11,
-  13, 17, 19, 23, 29, 31, 37, 41, 43, 47`.  Slowly decreasing; undecided.
+  0.271, 0.275, 0.300, 0.273, 0.264, 0.253, 0.206, 0.275` for `p = 3, 5, 7,
+  11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53`.  After the small-level
+  transient the value fluctuates in `[0.20, 0.30]` with no trend through
+  `p = 53`: consistent with a positive floor, not a proof of one.
 - **Hecke mechanism.**  The two restrictions `H^1(V_i, Ad rho) -> H^1(B, Ad
   rho)` are the degeneracy maps whose trace-composition is the Hecke
   operator `T_2` on `H^1(Gamma(p), C)` (isotypic for `Ad rho`).  With
