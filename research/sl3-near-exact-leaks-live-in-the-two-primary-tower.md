@@ -196,6 +196,24 @@ refutation, and this claim makes the reduction precise.
   one `W_sigma` per twisted block), faithful to the true structure —
   the designated next computation, and if its minimum is robustly
   positive the prototype floor becomes finite linear algebra.
+- **The floor is a 37-dimensional spectral question (2026-08-21,
+  compressed-conjugation frame).**  Since `K` and the trace pairing
+  both live in `Z = rho(G)'`, the leak factors through the compressed
+  conjugation map: `<VKV*, K> = <Phi(K), K>` with
+  `Phi = E_Z o Ad(V) restricted to Z`, a unital trace-preserving
+  completely positive map on the 37-dimensional orbit algebra.  The
+  per-level floor therefore reduces to the joint numerical range of
+  the compact family `{Phi_V : V near-dictionary}` on trace-zero
+  unitaries of `Z`, with the clean sufficient criterion: if the
+  Hermitian part of `Phi_V` is positive definite on the trace-zero
+  subspace with gap `gamma`, then `|leak| >= gamma` for every witness.
+  `Phi` is Hecke-species — the same animal as the established
+  `hecke-averaging-realizes-commutant-expectation` — so the
+  uniformity-in-level question becomes a spectral-gap statement about
+  compressed conjugation operators on commutant algebras along the
+  two-primary tower, exactly where the (T) technology lives.  Next
+  computation: extract `Phi` (a `37 x 37` matrix) at the probe's
+  optimal `V` and read its Hermitian spectrum on trace-zero.
 - Proved below by assembling established inputs; see the proof route.
   The one step that is a HYPOTHESIS here and a theorem at `SL_2` is
   vertex near-exactness: `SL_3(Z)` HS-stability is open (it is the
