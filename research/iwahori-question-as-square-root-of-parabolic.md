@@ -8,6 +8,8 @@ artifacts:
   - experiments/psl2_half_exotic_search.py
   - experiments/psl2_half_exotic_torch.py
   - experiments/psl2-half-square-root-sanity.json
+  - experiments/psl2_presentation_check.py
+  - experiments/psl2-presentation-check.json
 distinct_from:
   iwahori-local-global-defect-question: that is Dogon--Vigdorovich's question in representation-variety language; this is an explicit finite presentation and an equivalent square-root formulation of the same question.
 ---
@@ -63,6 +65,7 @@ approximate square root of its parabolic satisfying one cubic compatibility
 word.  Congruence representations provide canonical roots because their
 parabolic images have finite odd order.
 
-**Sanity.**  The bounded Torch sanity run gives zero for both gluing defects
-and all four torsion defects on `P^1(F_p)` for `p=5,7,11`; the checked
-parabolic orders are respectively `5,7,11`.
+**Sanity.**  Two independent bounded MSI checks give zero for both gluing
+defects and all four torsion defects on `P^1(F_p)`.  The dedicated exact
+presentation check covers `p=3,5,7,11,13,17,23` and recovers parabolic order
+`p` in every case.

@@ -2,38 +2,32 @@
 rg: 2
 id: approximate-doubling-invariant-joint-measure-is-atomic
 kind: claim
-title: An approximate representation whose two parabolics are doubling-invariant and involution-matched is near an atomic-spectrum one
+title: Coupled parabolic data is near one common finite odd-order operator model
 artifacts:
   - research/artifacts/hs-dehn-modulus-length-control-2026-08-20.md
 distinct_from:
   parabolic-spectrum-is-doubling-invariant: that is the single-parabolic spectral constraint; this is the joint rigidity that would actually close the far sector, using the coupling the ambient group imposes.
 ---
 
-Make precise and prove (or refute) the following.  There is a modulus
-`f`, `f(0^+) = 0`, such that any finite-dimensional unitary tuple modelling
-`SL_2(Z[1/2])` with relator defect `<= delta` (on a fixed finite set of
-relators including `h U h^(-1) U^(-4)`, `h L h = L^(-4)` wait sign, the
-`S`-conjugation `S U S^(-1) L`, and the half-parabolic relations) has its
-parabolic spectral measure within `f(delta)` (Wasserstein) of a measure
-supported on odd roots of unity.
+OPEN.  Replace the vacuous scalar-measure target by an operator target.
+Prove (or refute) that a sufficiently accurate finite-dimensional tuple for
+`SL_2(Z[1/2])`, including the two fourth-power conjugacies, the
+`S`-conjugation between opposite parabolics, and the half-parabolic edge
+relations, is close in normalized HS to one common finite-dimensional model
+in which the parabolics have a common finite odd order and all the coupling
+words hold exactly.  The modulus must be independent of matrix dimension.
 
 ## Attempts
 
-- This is the analytic core of the far sector and is not yet proved.  The
-  single-parabolic version is false (Gibbs measures), so the coupling is
-  essential.
-- **Transfer-operator route.**  For the doubling map `T_4(z) = z^4`, the
-  Ruelle operator on the coupled data (parabolic + opposite via the
-  involution) may have a spectral gap on the codimension-one subspace of
-  signed measures orthogonal to the atomic invariant measures, once the
-  half-parabolic constraint restricts to the arithmetic (odd-root)
-  invariant measures.  The half-parabolic `U^(1/2)` exists in the rep, so
-  the spectrum is also `z -> z^2`-invariant (from `diag(sqrt2,1/sqrt2)`,
-  which is NOT in the group, but `U^(1/2)` conjugated by `h` gives a
-  half-step): this doubles the constraint to `z -> z^2`-invariance, whose
-  only finite invariant sets are again odd roots of unity but whose
-  continuous invariant measures are still Lebesgue + Gibbs.
-- **Numerical status.**  `experiments/psl2_far_sector_probe.py` searches for
-  low-defect tuples with parabolic far from odd roots of unity; a clean
-  tradeoff `defect >= g(farness)` supports this claim, a defect collapse at
-  fixed farness refutes it and the stability of `SL_2(Z[1/2])`.
+- The scalar Wasserstein version is invalidated by
+  `odd-root-wasserstein-target-is-vacuous`: odd roots are dense, so every
+  measure has such approximants.  The claim must control eigenvectors,
+  multiplicities and joint moments strongly enough to reconstruct operators.
+- **Noncommutative transfer route.**  Work with finite collections of mixed
+  moments in `U,L,S` and the square-root word rather than marginal measures.
+  The desired gap would have to exclude continuous invariant states while
+  remaining compatible with congruence models converging to the regular
+  trace.  No such joint-moment gap is presently proved.
+- **Numerical status.**  `experiments/psl2_far_sector_probe.py` only measures
+  distance from *short* tested odd orders.  It is a bounded falsifier for
+  candidate optimization landscapes, not evidence for the operator theorem.

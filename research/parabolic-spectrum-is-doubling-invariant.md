@@ -39,18 +39,17 @@ the pushforward under the fourth-power map is asymptotically fixed
 (`W_1` = Wasserstein; equivalently every Fourier coefficient satisfies
 `hat mu_n(k) - hat mu_n(4k) -> 0`).
 
-**Consequence: the far sector is a transfer-operator problem.**  A
+**Consequence: the far sector contains a transfer-operator constraint.**  A
 congruence representation has `mu_n` supported on odd roots of unity (the
-`z -> z^4`-periodic points).  A far-sector counterexample to
-`iwahori-local-global-defect-question` would need `mu_n` bounded away from
-every such atomic measure while `(DI2)` holds.  The `z -> z^4`-invariant
+`z -> z^4`-periodic points).  However, scalar Wasserstein distance from such
+measures cannot define the far sector: odd roots are dense, as formalized by
+`odd-root-wasserstein-target-is-vacuous`.  The `z -> z^4`-invariant
 measures are exactly the fixed points of the Ruelle transfer operator; they
 include Lebesgue (whose parabolic is the bilateral shift, i.e. the tempered
 principal-series / regular direction) and a large family of Gibbs measures on
-Cantor sets.  So the spectral constraint alone does NOT force atomic
-spectrum, and the far sector cannot be closed by the parabolic alone: the
-remaining rigidity must couple `U` to its opposite `L = S U S^(-1)` and to
-their half-powers.
+Cantor sets.  So the spectral constraint alone does NOT repair the operator;
+the remaining rigidity must control the noncommutative coupling of `U` to
+its opposite `L=SUS^(-1)` and to the half-power words.
 
 ## Attempts
 
@@ -72,7 +71,5 @@ their half-powers.
   representation of `SL_2(Z[1/2])` has parabolic spectrum Lebesgue and IS
   approximable (the group is sofic/hyperlinear), but its finite models are
   the quasi-regular/congruence ones whose `mu_n` are atomic and converge
-  weakly to Lebesgue; so `mu_n -> Lebesgue` is compatible with each `mu_n`
-  atomic (congruence).  The far sector needs `mu_n` FAR from atomic at
-  finite `n`, which weak convergence does not provide.  This is the exact
-  gap the numerical probe `experiments/psl2_far_sector_probe.py` targets.
+weakly to Lebesgue.  The far sector must therefore be a failure of coherent
+operator/multiplicity repair, not a failure of scalar atomic approximation.

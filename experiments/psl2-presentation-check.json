@@ -1,0 +1,100 @@
+[
+ {
+  "p": 3,
+  "d": 4,
+  "w_std_is_order2_psl(||w^2+I||)": 0.0,
+  "rel_T=T'^2": 0.0,
+  "rel_w=w'": 0.0,
+  "orders": [
+   0.0,
+   0.0,
+   0.0,
+   0.0
+  ],
+  "parabolic_order": 3
+ },
+ {
+  "p": 5,
+  "d": 6,
+  "w_std_is_order2_psl(||w^2+I||)": 0.0,
+  "rel_T=T'^2": 0.0,
+  "rel_w=w'": 0.0,
+  "orders": [
+   0.0,
+   0.0,
+   0.0,
+   0.0
+  ],
+  "parabolic_order": 5
+ },
+ {
+  "p": 7,
+  "d": 8,
+  "w_std_is_order2_psl(||w^2+I||)": 0.0,
+  "rel_T=T'^2": 0.0,
+  "rel_w=w'": 0.0,
+  "orders": [
+   0.0,
+   0.0,
+   0.0,
+   0.0
+  ],
+  "parabolic_order": 7
+ },
+ {
+  "p": 11,
+  "d": 12,
+  "w_std_is_order2_psl(||w^2+I||)": 0.0,
+  "rel_T=T'^2": 0.0,
+  "rel_w=w'": 0.0,
+  "orders": [
+   0.0,
+   0.0,
+   0.0,
+   0.0
+  ],
+  "parabolic_order": 11
+ },
+ {
+  "p": 13,
+  "d": 14,
+  "w_std_is_order2_psl(||w^2+I||)": 0.0,
+  "rel_T=T'^2": 0.0,
+  "rel_w=w'": 0.0,
+  "orders": [
+   0.0,
+   0.0,
+   0.0,
+   0.0
+  ],
+  "parabolic_order": 13
+ },
+ {
+  "p": 17,
+  "d": 18,
+  "w_std_is_order2_psl(||w^2+I||)": 0.0,
+  "rel_T=T'^2": 0.0,
+  "rel_w=w'": 0.0,
+  "orders": [
+   0.0,
+   0.0,
+   0.0,
+   0.0
+  ],
+  "parabolic_order": 17
+ },
+ {
+  "p": 23,
+  "d": 24,
+  "w_std_is_order2_psl(||w^2+I||)": 0.0,
+  "rel_T=T'^2": 0.0,
+  "rel_w=w'": 0.0,
+  "orders": [
+   0.0,
+   0.0,
+   0.0,
+   0.0
+  ],
+  "parabolic_order": 23
+ }
+]
