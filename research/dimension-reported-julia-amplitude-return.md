@@ -101,6 +101,16 @@ exactly to the smallest known Fanizza scalar endpoint.
   has gap at most `L(q-1)/((2k)!-1)`.  A viable localization must encode and
   check a redundant proof of the global alternating sum; it cannot merely
   sample its monomials or pairs.
+- **A rooted linear PCPP would retain the whole marked gap.**
+  `uniform-linear-pcpp-tensorizes-to-amitsur-hs` proves that a scalar
+  probability-weighted local check map with rooted quotient singular value
+  `kappa` tensorizes to matrix-valued monomials with the identical constant.
+  At the dimension-matched instruction its encoded check energy is at least
+  `kappa^2||z-I||_2^2/8`, while the Fock branch is exactly satisfiable.  The
+  remaining combinatorial object must have bounded locality/weighted
+  occurrence, bounded-amplitude exact extensions, and additive-row
+  group-wordization; the existing binary PCP theorem does not supply these
+  linear properties automatically.
 - **Ordinary machine transport is not robust.**  Simulating the instruction
   and heat polynomial step by step accumulates the runtime in the HS bound.
 - **First-failed dyadic halving is not a dimension report.**
