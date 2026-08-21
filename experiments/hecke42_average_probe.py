@@ -231,30 +231,29 @@ class Objective:
         self.lam = lam_gens       # names of Lambda generators
         self.beta, self.gamma, self.zeta = beta, gamma, zeta
 
-    @staticmethod
-    def conj_word(w, inner):
-        # w * inner * w^{-1}
-        winv = [(n, -e) for n, e in reversed(w)]
-        return list(w) + list(inner) + winv
+    def _coset_mats(self, env):
+        """W_i = rho(u_i) V as matrices, plus the per-word prefix data
+        needed for gradient chaining."""
+        mats, factors = [], []
+        for w in self.cw:
+            syms = list(w) + [("V", 1)]
+            ms = [env[n] if e == 1 else env[n].conj().T for n, e in syms]
+            W = ms[0]
+            for m in ms[1:]:
+                W = W @ m
+            mats.append(W)
+            factors.append((syms, ms))
+        return mats, factors
 
     def s_norm_sq(self, env):
-        # ||S(k)||^2 = (1/4)+(1/(4L^2)) sum_ij Re tr(k_i k_j^*)/d cross
-        # terms with k; expand: S(k) = a0 k + a1 sum conj_i(k),
-        # ||S(k)||^2 = sum_{terms} a_x a_y <term_x, term_y>.
         d = env["k"].shape[0]
         L = len(self.cw)
-        terms = [[("k", 1)]]
-        for w in self.cw:
-            wV = list(w) + [("V", 1)]
-            terms.append(self.conj_word(wV, [("k", 1)]))
-        coefs = [0.5] + [1.0 / (2 * L)] * L
-        val = 0.0
-        for x in range(len(terms)):
-            for y in range(len(terms)):
-                inner = terms[x] + [(n, -e) for n, e in reversed(terms[y])]
-                val += coefs[x] * coefs[y] * \
-                    np.trace(word_product(inner, env)).real / d
-        return val
+        k = env["k"]
+        W, _ = self._coset_mats(env)
+        T = 0.5 * k
+        for Wi in W:
+            T = T + (1.0 / (2 * L)) * (Wi @ k @ Wi.conj().T)
+        return float(np.trace(T @ T.conj().T).real / d)
 
     def value_and_grad(self, env):
         d = env["k"].shape[0]
@@ -266,18 +265,33 @@ class Objective:
             for n, g in gd.items():
                 grads[n] += g
 
-        # ||S(k)||^2 (quadratic in many words; assemble pairwise)
-        terms = [[("k", 1)]]
-        for w in self.cw:
-            wV = list(w) + [("V", 1)]
-            terms.append(self.conj_word(wV, [("k", 1)]))
-        coefs = [0.5] + [1.0 / (2 * L)] * L
-        for x in range(len(terms)):
-            for y in range(len(terms)):
-                inner = terms[x] + [(n, -e) for n, e in reversed(terms[y])]
-                c = coefs[x] * coefs[y] / d
-                val += c * np.trace(word_product(inner, env)).real * 1.0
-                add(grad_re_tr(inner, env, c))
+        # ||S(k)||^2 in matrix form, O(L) cost.
+        k = env["k"]
+        W, factors = self._coset_mats(env)
+        T = 0.5 * k
+        for Wi in W:
+            T = T + (1.0 / (2 * L)) * (Wi @ k @ Wi.conj().T)
+        val += float(np.trace(T @ T.conj().T).real / d)
+        # grad wrt k: (2/d) S^dagger(T)
+        Sd = 0.5 * T
+        for Wi in W:
+            Sd = Sd + (1.0 / (2 * L)) * (Wi.conj().T @ T @ Wi)
+        grads["k"] += (2.0 / d) * Sd
+        # grad wrt each W_i, chained into its factors
+        for Wi, (syms, ms) in zip(W, factors):
+            GW = (1.0 / (L * d)) * (T @ Wi @ k.conj().T
+                                    + T.conj().T @ Wi @ k)
+            q = len(ms)
+            pre = [np.eye(d, dtype=complex)]
+            for m in ms[:-1]:
+                pre.append(pre[-1] @ m)
+            suf = [np.eye(d, dtype=complex)]
+            for m in reversed(ms[1:]):
+                suf.append(m @ suf[-1])
+            suf = suf[::-1]
+            for t, (name, e) in enumerate(syms):
+                G = pre[t].conj().T @ GW @ suf[t].conj().T
+                grads[name] += G if e == 1 else G.conj().T
 
         # E_C: sum over Lambda generators of 2 - 2 Re tr(k c k* c*)/d
         for n in self.lam:
@@ -381,6 +395,39 @@ def probe(d, restarts, iters, beta, gamma, zeta, reg_len):
     return results
 
 
+def gradcheck(d=4, eps=1e-6):
+    """Central-difference validation of value_and_grad at small size."""
+    cw = coset_words_mod4()
+    obj = Objective(cw, relation_words(), short_nontrivial_words(1),
+                    ["A", "B", "C", "Ap", "Bp", "Cp"], 1.3, 0.7, 0.9)
+    names = ["A", "B", "C", "Ap", "Bp", "Cp", "V", "k"]
+    env = {}
+    for n in names:
+        Z = rng.normal(size=(d, d)) + 1j * rng.normal(size=(d, d))
+        env[n] = np.linalg.qr(Z)[0]
+    _, grads = obj.value_and_grad(env)
+    worst = 0.0
+    for n in names:
+        H = rng.normal(size=(d, d)) + 1j * rng.normal(size=(d, d))
+        H = (H + H.conj().T) / 2
+        Om = 1j * H / np.linalg.norm(H)
+        w_, v_ = np.linalg.eigh(H / np.linalg.norm(H))
+
+        def moved(s):
+            e2 = dict(env)
+            e2[n] = (v_ * np.exp(1j * s * w_)) @ v_.conj().T @ env[n]
+            return obj.value_and_grad(e2)[0]
+
+        num = (moved(eps) - moved(-eps)) / (2 * eps)
+        ana = np.trace(grads[n].conj().T @ (Om @ env[n])).real
+        rel = abs(num - ana) / max(1e-12, abs(num) + abs(ana))
+        worst = max(worst, rel)
+        print(f"gradcheck {n}: num={num:+.8f} ana={ana:+.8f} rel={rel:.2e}")
+    ok = worst < 1e-4
+    print("GRADCHECK-" + ("PASS" if ok else "FAIL"), file=sys.stderr)
+    return ok
+
+
 def selftest():
     cw = coset_words_mod4()
     print(f"coset count: {len(cw)} (expected 42)")
@@ -400,6 +447,7 @@ def selftest():
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--selftest", action="store_true")
+    ap.add_argument("--gradcheck", action="store_true")
     ap.add_argument("--d", type=int, default=16)
     ap.add_argument("--restarts", type=int, default=8)
     ap.add_argument("--iters", type=int, default=300)
@@ -411,6 +459,8 @@ def main():
     if args.selftest:
         selftest()
         return
+    if args.gradcheck:
+        sys.exit(0 if gradcheck() else 1)
     res = probe(args.d, args.restarts, args.iters,
                 args.beta, args.gamma, args.zeta, args.reg_len)
     with open("hecke42-average-probe.json", "w") as f:
