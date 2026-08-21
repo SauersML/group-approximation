@@ -112,6 +112,51 @@ approximate ceiling to tend to zero.  Direct sums do not disturb the exact
 ceiling because energy is a dimension-weighted convex combination of block
 energies.
 
+There is an exact trace-cone formulation. Set
+
+```text
+a=sum_(s in S)[s,f(w)]^*[s,f(w)] in C[G]_+.
+```
+
+If `T_CE` denotes traces `tr_omega circ rho` of unital star-homomorphisms into
+tracial matrix ultraproducts and `T_fd` is the weak-star closed convex hull of
+normalized finite-dimensional representation traces, then
+
+```text
+lim_(delta->0) beta_app(delta)=sup_(tau in T_CE)tau(a),
+beta_fd                         =sup_(tau in T_fd)tau(a).
+```
+
+Near-maximizers at defect `1/n` prove the first inequality by taking an
+ultraproduct. Coordinate lifts of an arbitrary ultraproduct representation
+prove the converse. Hence `(CE2)` is one-positive-element support-function
+equality. Approximation of the finite joint conjugacy-orbit moment vector
+appearing in `a` is a stronger sufficient condition, but is not equivalent:
+`(CE2)` controls only the one scalar `tau(a)`. It is strictly weaker than full
+HS stability and stronger than exact representation classification.
+
+In a completely scalar formulation, `(CE2)` says that for every `epsilon>0`
+some `delta>0` has the following property: every `delta`-representation `U`
+admits an exact finite-dimensional representation `pi`, in a dimension that
+need not be related to that of `U`, for which
+
+```text
+E(U)<=E(pi)+epsilon.
+```
+
+No operator correction is asserted. Conversely, this one inequality implies
+the support-function equality by taking the supremum over `U` and then
+letting `delta` tend to zero. This also proves strict separation from full HS
+stability: taking a direct product with any non-HS-stable group preserves the
+one-energy condition pulled back from the first factor, while preserving the
+second factor's failure of HS stability.
+
+Character rigidity of the acting subgroup and semiprojectivity of the cyclic
+carrier algebra do not imply this equality. The shifted-Heisenberg wreath
+firewall may use a character-rigid higher-rank lattice, while `C*(w)` is still
+a quotient of `C(T)`; nevertheless its regular CE trace violates the exact
+finite-dimensional ceiling.
+
 Condition `(CE1)` alone still rules out residual finiteness: a finite quotient
 injective on the supports of all `p_s^*p_s` has quotient-regular energy
 exactly `E_reg`.  The wreath product above has `beta_fd=0<E_reg` but is
