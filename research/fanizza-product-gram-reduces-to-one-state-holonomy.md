@@ -194,6 +194,61 @@ The missing relation must couple the **product around the triangle** to the
 same Gram state.  Separate edge saturation, equal restriction
 multiplicities, and exact logical covariance do not do so.
 
+## The minimal literal repair is one triangular two-cell
+
+With the orientations in `(FPG12)`, write the three edge words as
+
+```text
+U_DZ:C_D->C_Z,
+U_DR:C_D->C_R,
+U_ZR:C_Z->C_R.
+```
+
+Then `(FPG13)` is the evaluation of the literal group word
+
+```text
+h_triangle=U_DR^(-1) U_ZR U_DZ.                       (FPG17a)
+```
+
+Consequently the single two-cell relator
+
+```text
+U_ZR U_DZ=U_DR                                        (FPG17b)
+```
+
+kills the entire state-holonomy row, in every matrix model and for every
+`G`.  This is the minimal group-word repair of the exact countermodel above:
+it constrains the multiplicity product around the cycle rather than any one
+finite edge restriction.
+
+The relation passes the exact-witness audit.  In one common countably
+amplified perfect BCS representation, choose for every context a unitary
+packet identification `V_c` from the same global source.  Set
+
+```text
+U_cd=V_d V_c^*.                                       (FPG17c)
+```
+
+Each `U_cd` has the required shared-logical covariance, and
+
+```text
+U_ZR U_DZ
+ =V_R V_Z^* V_Z V_D^*
+ =V_R V_D^*
+ =U_DR.                                               (FPG17d)
+```
+
+Gauge-orbit covariantization supplies all private gauge types while fixing
+the logical BCS words, so it does not disturb `(FPG17d)`.  Hence the
+triangular two-cell does not require a tracial extension of the groupifier
+and does not kill the exact marked witness.
+
+This repair is not the completed backend.  It pays `e_hol`, but it does not
+produce a nonzero `G`, make the selected packet predicates accept `V_cG`, or
+prove the anchor covariance rows in `(FPG19)`.  Its value is that it removes
+the global incidence coherence problem with one ordinary relator, leaving
+only the state-dependent Gram-production/acceptance problem.
+
 ## Product-of-Hecke-compressions warning
 
 Replacing `(FPG13)` by a bare product of selected Hecke compressions does

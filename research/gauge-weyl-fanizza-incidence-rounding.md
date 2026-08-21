@@ -51,3 +51,15 @@ all present finite gauge and HNN edge relations remain exact.  Therefore the
 four edgewise checks above cannot by themselves complete the incidence
 rounding; one mixed triangle relation or positive verifier compression must
 charge this moment on the same `G`.
+
+There is a literal minimal triangle repair.  With transports oriented
+`D->Z`, `D->R`, and `Z->R`, add the two-cell
+
+```text
+U_ZR U_DZ=U_DR.
+```
+
+It is compatible with the exact marked model after common countable
+amplification: choosing `U_cd=V_dV_c^*` makes the equality tautological.
+This removes cycle holonomy but still leaves the load-bearing task of
+producing one positive-norm Gram block accepted by all rooted context rows.
