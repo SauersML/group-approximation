@@ -98,6 +98,50 @@ theorem length_palindrome_reappearance {c' t' m rest : List (α × Bool)}
   rw [palindrome_eq_append_reappearance hc', List.length_append,
     length_reappearance_prefix]
 
+/-! ## L-half: weight-minimality pins a junction split to half a relator -/
+
+/-- **The eaten half-pin.**  At a junction where the next factor's conjugator
+runs back along the head relator, minimality already forbids the eaten stretch
+from exceeding the surviving one — so the eaten stretch is at most half the
+relator.
+
+The content is `GreendlingerThreeFactor.eaten_le_of_minimal_reroute`, which
+gives `|E| ≤ |t₀|` for a head relator `t₀ ++ E`; halving is `length_append` and
+arithmetic.  Recorded under its own name because the landing analysis quotes
+the bound in the halved form, and because the two directions below are what
+"the two adjacent swap moves improve strictly on either side" means. -/
+theorem two_mul_eaten_le_of_minimal_reroute [DecidableEq α]
+    {R : Set (List (α × Bool))} {c t₀ E Z m : List (α × Bool)}
+    {e : List (FreeGroup α × List (α × Bool))} {g : FreeGroup α}
+    (hmin : IsMinimalConjExpr R
+      ((FreeGroup.mk c, t₀ ++ E)
+        :: (FreeGroup.mk (c ++ (FreeGroup.invRev E ++ Z)), m) :: e) g)
+    (hred : FreeGroup.IsReduced (c ++ (FreeGroup.invRev E ++ Z)))
+    (hredc : FreeGroup.IsReduced c) :
+    2 * E.length ≤ (t₀ ++ E).length := by
+  have h := eaten_le_of_minimal_reroute hmin hred hredc
+  rw [List.length_append]
+  omega
+
+/-- **The hug half-pin, the mirror move.**  When the leading conjugator runs
+along the next factor's relator instead, minimality bounds the hug by what it
+leaves behind, so the hug is at most half of that relator.
+
+The content is `GreendlingerThreeFactor.hug_le_of_minimal_reroute`.  Together
+with the previous theorem this is the `m = |t|/2` pin from both sides: whichever
+of the two adjacent factors the junction eats into, the split cannot pass the
+midpoint without a swap rival beating the expression. -/
+theorem two_mul_hug_le_of_minimal_reroute [DecidableEq α]
+    {R : Set (List (α × Bool))} {c' q r t : List (α × Bool)}
+    {e : List (FreeGroup α × List (α × Bool))} {g : FreeGroup α}
+    (hmin : IsMinimalConjExpr R
+      ((FreeGroup.mk (c' ++ q), t) :: (FreeGroup.mk c', q ++ r) :: e) g)
+    (hred : FreeGroup.IsReduced (c' ++ q)) (hredc' : FreeGroup.IsReduced c') :
+    2 * q.length ≤ (q ++ r).length := by
+  have h := hug_le_of_minimal_reroute hmin hred hredc'
+  rw [List.length_append]
+  omega
+
 /-! ## L-red: reducedness voids the (β) coincidence -/
 
 /-- **OPEN — L-red, as a predicate on the alphabet.**  In the `i_c > 0` regime
