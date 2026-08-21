@@ -57,3 +57,23 @@ rare, but it cannot be the only failure while the root remains macroscopic:
 `(SSC3)` transports its geometric attenuation back to the root.  This is the
 precise finite-presentation target left by the user's heavy-tail idea.
 
+## Self-similar host audit
+
+- A pure faithful rooted-tree automorphism model cannot retain a mark only
+  on the never-hit ray: `rooted-tree-first-hit-recursion-has-no-infinite-only-tail`
+  proves that the recursion `g=(g,1,...,1)` gives `g=1`.  Such a
+  level-preserving group is residually finite in any case.
+- A contracting Nekrashevych host gives only finitely many deep section
+  states for each fixed checksum word, by
+  `contracting-self-similar-checksum-has-finite-deep-state`.  It can copy a
+  fixed breaker but cannot manufacture unbounded capacity merely by going
+  deeper.
+- A literal Cuntz/Leavitt realization already contains the internal
+  trace-cyclic corner or the external common-source swap star at level one,
+  by `cuntz-first-hit-checksum-is-a-one-scale-corner`.  Its remaining gap is
+  the existing matrix-only authentication of that first-level chart.
+
+Therefore the genuinely new possibility left by `(SSC1)--(SSC5)` is a
+noncontracting or matrix-coordinate square-function decomposition which is
+visible as one finite word without functorially decoding a Cuntz family in
+the regular representation.
