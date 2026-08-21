@@ -1,14 +1,9 @@
----
-rg: 2
-id: andre-guirardel-recursive-presentation-audit
-kind: claim
-title: The published Andre-Guirardel actor is not yet verified recursively presented
-distinct_from:
-  andre-guirardel-sharp-t-actor-audit: that audits finite presentation and point-stabilizer finite generation; this audits the strictly weaker recursive-presentation property needed after the Higman bypass.
-  recursive-permutational-lamp-presentation: that proves the lamp extension is recursively presented conditional on a recursively presented actor; this audits the condition for the published actor.
----
+# André--Guirardel recursive-presentation audit
 
-OPEN as an effectivity audit; no non-recursiveness claim is made.
+**Archived 2026-08-21.** This is a source audit identifying an unresolved
+effectivity seam, not an active mathematical claim.
+
+No non-recursiveness claim is made.
 
 The André--Guirardel construction gives a two-generated simple property-`(T)`
 sharply 2-transitive group, but the published proof does not state that the
