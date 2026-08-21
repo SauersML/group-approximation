@@ -26,6 +26,12 @@ or post hoc choice of `n` remains.
   can support a bounded exact model unless it is quotiented out.
 - **Use group expansion without the energy interface.**  Word covariance on
   a few module generators does not automatically bound the sum over all
-  spectral characters.  This is the remaining normalized-HS compiler step.
+  spectral characters.  More sharply,
+  `finite-covariance-energy-sees-only-character-restrictions` computes the
+  exact block quadratic forms: a finite set `T` sees only restriction to
+  `sT`, and every infinite character set has invisible same-label fibers.
+  Thus finite-depth conjugacy recursion plus Schreier expansion cannot close
+  the interface.  One fixed defect must encode infinite spectral resolution,
+  or matrix-only rigidity must forbid motion inside those fibers.
 - **Finite quotient modules.**  These return to the finite-orbit capacity
   theorem and require an unbounded family.
