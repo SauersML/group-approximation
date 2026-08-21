@@ -6,6 +6,8 @@ title: Build a finitely presented common-sign Clifford tape with uniformly bound
 distinct_from:
   thompson-clifford-central-product-tape: that supplies a finitely presented exact tape with a common nontrivial sign; this asks for the missing uniform area bound for every finite packet multiplication table.
   adaptive-all-pairs-schur-replica-table-compiler: that activates one rank chosen by a halting computation; this asks one fixed group to contain all ranks simultaneously and uses no self-reference.
+artifacts:
+  - research/artifacts/static-challenger-occurrence-hs-breaker-2026-08-20.md
 ---
 
 OPEN.  Construct a finite presentation `Gamma=<S|R>`, a nontrivial word `j`,

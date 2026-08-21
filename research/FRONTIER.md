@@ -2396,14 +2396,14 @@ wreath-compression-mf-radical [✓] Exact MF radicals of compression wreath prod
 
 ## Recently touched
 
+- 2026-08-20 · uniform-bounded-area-clifford-tables-force-mark-collapse [ESTABLISHED] Uniform bounded-area Clifford tables force linear collapse of a common mark
+- 2026-08-20 · trace-conditioned-dimension-matched-kleene-diagonal [ESTABLISHED] Dimension-matched Kleene soundness may use finitely many canonical-trace tests
+- 2026-08-20 · occurrence-local-dimension-games-force-mark-collapse [ESTABLISHED] Uniform local occurrence games force collapse of a marked matrix sector
+- 2026-08-20 · hs-stability-plus-fd-residual-forces-nonhyperlinearity [ESTABLISHED] Uniform normalized-HS stability plus a nontrivial finite-dimensional residual forces nonhyperlinearity
+- 2026-08-20 · finitely-presented-uniform-area-clifford-tape [OPEN] Build a finitely presented common-sign Clifford tape with uniformly bounded table area
+- 2026-08-20 · finite-orbit-occurrence-pauli-compiler [OPEN] Compile unbounded robust Pauli games through finitely many occurrence-test orbits
 - 2026-08-20 · whole-successor-tag-corner-loses-context-carrier [ESTABLISHED] Returning the whole marked tag survivor does not retain the Fanizza context carrier
 - 2026-08-20 · whole-successor-tag-corner-countermodel [COMPLETE] Substitute a satisfying context while keeping the auxiliary packet mark live
-- 2026-08-20 · tagged-s3-survivor-via-context-atom-bridges [INVALIDATED] Run one context-atom tag ladder for every fixed Fanizza predicate occurrence
-- 2026-08-20 · tagged-s3-survivor-via-central-successor-corner [INVALIDATED] Use the tag survivor itself as the next reducing corner
-- 2026-08-20 · tagged-s3-survivor-installs-next-recurrent-carrier [OPEN] Install the tagged S3 survivor as the next reducing recurrent carrier
-- 2026-08-20 · tag-centralized-successor-corner-proof [COMPLETE] Map the endpoint square into the prefix tag and centralize that tag on the successor
-- 2026-08-20 · tag-centralized-successor-corner [ESTABLISHED] Centralizing each two-bit tag on the next occurrence makes its survivor the recurrent corner
-- 2026-08-20 · schur-atom-central-product-s3-proof [COMPLETE] Identify the relative commutator with the S3 jump sign and use its balanced endpoint half
 
 ## Active claims
 

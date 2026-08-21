@@ -7,6 +7,8 @@ distinct_from:
   uniform-bounded-area-clifford-tables-force-mark-collapse: that reconstructs every multiplication identity of a whole extraspecial group; this asks only for the sampled local checks of robust dimension-witness games.
   stabilizer-generator-control-has-unbounded-address-loss: that tries to identify all word names of one virtual observable through stabilizer paths; this assigns a separate word to every test occurrence and delegates global consistency to game soundness.
   marked-clifford-table-exponential-dimension: that is the terminal finite-group dimension breaker; this permits any robust finite game family whose certified dimension tends to infinity.
+artifacts:
+  - research/artifacts/static-challenger-occurrence-hs-breaker-2026-08-20.md
 ---
 
 Let `Gamma=<S|R>` contain a nontrivial central involution `J`.  Suppose there

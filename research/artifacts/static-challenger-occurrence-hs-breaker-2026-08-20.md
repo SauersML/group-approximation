@@ -148,3 +148,34 @@ invalidates the former return route.  The replacement
 one tag atom is the first-hit exit and the other three atoms are its analytic
 survivor.  The only remaining local attachment is now
 `tagged-s3-survivor-installs-next-recurrent-carrier`.
+
+## Post-integration regular-trace audit
+
+The later context-atom construction does close that local attachment:
+`context-atom-tag-bridge-installs-child-carrier` transports a complete bounded
+commuting context atom into the successor survivor, while routing the selected
+tag atom into the first-hit exit.  This is a useful exact placement lemma.
+
+It does **not** complete the Fanizza decoder.  The exact zero-defect first-hit
+ledger is trace-functorial.  In the canonical finite von Neumann algebra it
+would give nondecreasing recurrent trace together with a fixed positive exit
+fraction at every level and a summable first-hit budget.  Hence the initial
+carrier has trace zero.  This is the established fence
+`exact-first-hit-ladder-kills-regular-carrier`, which invalidates both tagged
+S3 return routes and the former pulse-decoder proof.
+
+Accordingly the notebook's valid closure criteria split into two honest
+matrix-only frontiers:
+
+- the occurrence-game lane derives its contradiction from finite matrix
+  dimension through `finite-orbit-occurrence-pauli-compiler`; it never asserts
+  an exact positive-density ladder in every tracial representation;
+- the explicit coefficient lane asks for
+  `affine-leavitt-steinberg-hs-coefficient-decoder`, or equivalently a
+  genuinely finite-matrix Schur/Reynolds overlap actuator, before applying
+  cyclic trace or multiplicity pressure.
+
+This distinction is load-bearing.  Static adversarial-source freezing,
+canonical-trace side tests, local tag placement, and trace cyclicity are all
+useful, but none alone supplies the finite-matrix-only asymmetry required to
+separate microstates from the left regular representation.

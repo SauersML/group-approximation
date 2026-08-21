@@ -7,6 +7,8 @@ distinct_from:
   marked-clifford-table-exponential-dimension: that starts from one all-pairs approximate extraspecial table and gives its dimension floor; this derives such a table for every rank from one presentation with one uniform van Kampen-area bound.
   thompson-clifford-central-product-tape: that constructs exact common-sign Clifford packets at arbitrarily many sites; this identifies the additional quantitative area property which would turn that exact tape into a nonhyperlinearity proof.
   hyperlinear-computable-hs-dehn-modulus-solvable-word-problem: that asks for a computable length-dependent modulus for all trivial words; this needs one constant area bound only for the multiplication identities of a selected Clifford family.
+artifacts:
+  - research/artifacts/static-challenger-occurrence-hs-breaker-2026-08-20.md
 ---
 
 Let `Gamma=<S|R>` be finitely presented and let `j` be a word representing a

@@ -7,6 +7,8 @@ distinct_from:
   thompson-clifford-central-product-tape: that globally names exact Pauli cells and then must compare their alternative addresses; this names local test occurrences and makes consistency itself a bounded-arity test orbit.
   finitely-presented-uniform-area-clifford-tape: that asks for the complete multiplication table of every Pauli group with bounded area; this asks only for a robust game's sampled local test relations.
   hs-pcp-boone-compiler: that compiles a machine-indexed verifier with a uniform semantic decoder; this may use one bespoke robust Pauli game family and needs only a dimension witness.
+artifacts:
+  - research/artifacts/static-challenger-occurrence-hs-breaker-2026-08-20.md
 ---
 
 OPEN.  Construct one finitely presented group with a nontrivial central

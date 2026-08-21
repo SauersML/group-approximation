@@ -7,6 +7,8 @@ distinct_from:
   dimension-matched-kleene-microstate-diagonal: that searches only relator defect and marked distance; this also requires a finite character/moment profile known to hold in the canonical trace.
   instance-modulated-kleene-microstate-diagonal: that lets collapse constants depend computably on the source program; this adds finite canonical-trace side conditions rather than changing those constants.
   finite-schur-clifford-packet-flexible-hs-exactification: that corrects one approximate finite packet; this explains why the fixed-point search may additionally insist that its exactified packet have near-regular character multiplicities.
+artifacts:
+  - research/artifacts/static-challenger-occurrence-hs-breaker-2026-08-20.md
 ---
 
 Suppose a computable compiler assigns to every program `M` a finite

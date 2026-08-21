@@ -7,6 +7,8 @@ distinct_from:
   map-matricial-stability-non-mf: that assumes every finite-dimensional representation is trivial and concludes non-MF; this needs only one nontrivial word killed by every finite-dimensional unitary representation and targets canonical-trace hyperlinearity.
   schur-toeplitz-root-mark-is-fd-invisible: that proves finite-dimensional invisibility for one proposed Schur--Toeplitz mark but supplies no stability theorem for the ambient group.
   leavitt-steinberg-hs-stable: that asks for normalized-HS stability of one explicit group; this is the general implication that would turn such stability and one finite-dimensional-residual word into a nonhyperlinear witness.
+artifacts:
+  - research/artifacts/static-challenger-occurrence-hs-breaker-2026-08-20.md
 ---
 
 Let `Gamma=<S|R>` be finitely presented and uniformly flexibly stable in
