@@ -8,7 +8,19 @@ distinct_from:
   atlas-a4-anisotropic-four-cycle-ceiling: that target uses a fixed diagonal Cauchy budget; this target uses the exact triangle envelope and the optimized weighted S3 exchange rate.
 ---
 
-For the normalized exact-regular A4 context-network sequence put
+Let `U_n` be a normalized exact-regular A4 context-network sequence in the
+fixed reference-aligned coordinates.  In addition to the thirty vanishing A4
+packet defects, assume the collision relation itself vanishes:
+
+```text
+||q_19243(U_n)-1||_2 -> 0.                             (A4-ROOT-COLLISION)
+```
+
+This extra hypothesis is essential: packet normalization alone has an exact
+constant reference-alignment counterexample, recorded in
+`atlas-reference-packet-root-ellipse-countermodel`.
+
+Put
 
 ```text
 x_ij(n)=sqrt(1-Re tau_n(V_n(tij))) >=0,
