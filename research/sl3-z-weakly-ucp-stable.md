@@ -2,10 +2,10 @@
 rg: 2
 id: sl3-z-weakly-ucp-stable
 kind: claim
-title: SL_3(Z) is weakly ucp-stable
+title: SL_3(Z) is weakly ucp-stable, equivalently flexibly HS-stable on hyperlinear approximations
 distinct_from:
-  sln-z-flexibly-hs-stable: that asks for FLEXIBLE HS-stability of SL_n(Z) for some n at least three (finite-dimensional genuine corrections) and consumes it through the HNN theorem with SL_n(Z) as the HOST; this asks for the strictly weaker weak ucp-stability (Dogon Def 1.5, infinite-dimensional dilations allowed) of the single lattice SL_3(Z) and consumes it as the SUBGROUP of the p = 3 pair through kazhdan-subgroup-weak-ucp-exactifies-microstates.
-  sl3z-regular-microstates-are-congruence-correctable: that asks to correct the lattice restriction of regular microstates to genuine odd-congruence representations in the flexible (finite-dimensional) sense; this asks only that hyperlinear approximations of SL_3(Z) be corners of genuine representations on possibly infinite-dimensional spaces, and obtains the finite-dimensional exact correction afterwards from property (T).
+  sln-z-flexibly-hs-stable: that asks for flexible HS-stability of SL_n(Z) for SOME n at least three and for ALL asymptotic homomorphisms; this is the n = 3 instance restricted to hyperlinear approximations (separating sequences), stated in Dogon's weak-ucp language — by kazhdan-weak-ucp-stability-is-flexible-stability the infinite-dimensional dilations add nothing for a Kazhdan group, so the only difference is the quantifier restriction, which is all the HNN mechanism uses.
+  sl3z-regular-microstates-are-congruence-correctable: that asks to correct the lattice restriction of regular microstates to genuine ODD-congruence representations, for consumption by the Weyl-slot sector theorem; this asks for correction of every hyperlinear approximation to genuine representations of unrestricted level, for consumption by the HNN theorem over a thin co-dense subgroup, and is stated in Dogon's dilation language.
 ---
 
 OPEN CLAIM.  `SL_3(Z)` is weakly ucp-stable in the sense of Dogon
@@ -22,16 +22,32 @@ is pointwise HS-asymptotic to the restriction to the group of a sequence
 of ucp maps `C^*(SL_3(Z)) -> M_(d_n)`, i.e. to matrix-valued positive
 definite functions on the group.
 
-**Stakes.**  Through `kazhdan-subgroup-weak-ucp-exactifies-microstates`
-this claim confines every would-be hyperlinear approximation of the p = 3
-HNN group `< SL_3(Z[1/3]), t | [t, SL_3(Z)] = 1 >` (and of the coset
-Bernoulli wreath `C_2 wr_(Gamma/Lambda) SL_3(Z[1/3])`) to the
-`Lambda`-exact face of the collapse `(RC3-p3)`, so that
-`lambda-exact-face-closes-at-p-three` finishes the goal
-(`non-hyperlinear-from-p3-lambda-exact-face-and-weak-ucp`).
+**Stakes.**  By `kazhdan-weak-ucp-stability-is-flexible-stability` this
+claim is the same as flexible HS-stability of `SL_3(Z)` on hyperlinear
+approximations, which is exactly what the HNN theorem consumes.  So
+through `sln-z-thin-codense-tau-pair` and
+`hnn-over-codense-kazhdan-subgroup-not-hyperlinear` it makes the literal
+finitely presented group `< SL_3(Z), t | [t, a] = 1, [t, b] = 1 >`
+non-hyperlinear (`non-hyperlinear-from-sl3-z-weak-ucp-stability`), with no
+collapse or face input.  A second, now superseded, consumption confines
+the p = 3 HNN microstates to the `Lambda`-exact face
+(`kazhdan-subgroup-weak-ucp-exactifies-microstates`).
 
 ## Attempts
 
+- **Not weaker than flexible stability for this group (2026-08-21).**
+  The first framing of this node called weak ucp-stability "strictly
+  weaker" than flexible HS-stability, quoting Dogon p. 4.  That is true in
+  general (amenable non-RF groups separate them) but FALSE for Kazhdan
+  groups on hyperlinear approximations:
+  `kazhdan-weak-ucp-stability-is-flexible-stability` averages the
+  Stinespring corner over a Kazhdan set into an exactly invariant
+  finite-rank projection of the same normalized rank, so the dilation can
+  be taken finite dimensional.  The claim is therefore an honest
+  restatement of the `n = 3` flexible-stability hole on separating
+  sequences, not a relaxation of it; its one genuine weakening relative to
+  `sln-z-flexibly-hs-stable` is the quantifier (hyperlinear approximations
+  only).
 - **Implied by flexible HS-stability, not by residual finiteness.**
   Flexible HS-stability of `SL_3(Z)` (the `n = 3` case of
   `sln-z-flexibly-hs-stable`) implies this claim outright (Dogon p. 4).

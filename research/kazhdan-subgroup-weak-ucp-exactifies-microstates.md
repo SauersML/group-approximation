@@ -4,6 +4,7 @@ id: kazhdan-subgroup-weak-ucp-exactifies-microstates
 kind: claim
 title: A weakly ucp-stable Kazhdan subgroup lets HNN and coset-wreath microstates be taken exact on it
 distinct_from:
+  kazhdan-weak-ucp-stability-is-flexible-stability: that applies the Kazhdan averaging to the whole group and concludes weak ucp-stability equals flexible stability on hyperlinear approximations; this applies it only to a Kazhdan subgroup C of an unstable host and obtains exactness on C alone, the relative form.
   hnn-over-codense-kazhdan-subgroup-not-hyperlinear: that consumes flexible HS-stability of the HOST A and finishes the non-hyperlinearity proof; this consumes weak ucp-stability of the SUBGROUP C only and does not finish anything — it exactifies the microstates on C and leaves the Lambda-exact face of the collapse as the whole remaining problem.
   subgroup-exact-outliers-do-not-exist: that corrects almost-representations of SL_3(Z) that are ALREADY exact on a finite-index subgroup; this produces exactness on the Kazhdan subgroup from a named stability hypothesis (weak ucp-stability) and applies to any pair C <= A, as a preprocessing step for HNN or wreath microstates.
   no-published-unconditional-codense-stable-host: that records that weak ucp-stability of the HOST cannot be consumed by the HNN mechanism because infinite-dimensional dilations resurrect l^2(A/C); this agrees (the leak survives) and shows that weak ucp-stability of the SUBGROUP is consumable exactly as far as the C-exact face.
@@ -71,9 +72,21 @@ ucp-stability.  What is gained is that the enemy is confined to the
 `C`-exact face, where the arithmetic lanes already have partial closures
 (`odd-congruence-lambda-exact-sector-collapses`,
 `lambda-exact-face-of-the-collapse-closes`) and one open full-face claim
-(`lambda-exact-face-closes-at-p-three`).  The route
-`non-hyperlinear-from-p3-lambda-exact-face-and-weak-ucp` wires this to the
-goal through `sl3-z-weakly-ucp-stable`.
+(`lambda-exact-face-closes-at-p-three`).
+
+**Superseded for `C = SL_n(Z)` (2026-08-21).**  The same averaging applied
+to `C` alone proves `kazhdan-weak-ucp-stability-is-flexible-stability`:
+for a Kazhdan group, weak ucp-stability IS flexible HS-stability on
+hyperlinear approximations.  When `C` itself carries a thin co-dense
+`(tau)` pair (`sln-z-thin-codense-tau-pair`, `n >= 3`), the HNN theorem
+over that pair consumes the very same hypothesis `sl3-z-weakly-ucp-stable`
+and reaches the goal with no face closure
+(`non-hyperlinear-from-sl3-z-weak-ucp-stability`); the face-confinement
+route this theorem offered for the p = 3 pair was therefore retired as
+dominated.  The theorem keeps its value for Kazhdan subgroups `C` that
+are stable on hyperlinear approximations but have NO known thin co-dense
+`(tau)` pair inside them, and for the coset-wreath endpoint, where the
+lamp rather than a new letter is exactified.
 
 **Why full (T) and not (T;FD).**  The first correction step applies a
 Kazhdan pair to the conjugation representation `Ad pi_n` of `C` on the
