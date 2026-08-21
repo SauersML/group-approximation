@@ -95,6 +95,20 @@ sums of the two, survive with zero defect.  This is the controller twist
 from `controlled-reflection-cell-has-free-orientation` distributed
 stationarily around the cycle.
 
+Concretely, take an even cycle of tautological accepted tests `r_v=I` in
+the controller normal form
+
+```text
+c_v=(P_0+P_1r_v)u_v=u_v.                              (ORC8)
+```
+
+Set every `u_v=-I`.  Every local controller relation and every edge ratio
+`u_vu_(v+1)=I` is exact.  After any visible Hadamard lifts, every controller
+is still `-I`, so their even cyclic product is `I`.  The return test is
+perfect although every vertex has the opposite orientation.  Common
+amplification leaves this model unchanged.  Thus the stationary gauge is
+not merely a parity abstraction.
+
 Therefore a finite cyclic self-verifier can synchronize **relative
 differences**, but it cannot orient the resulting connected component.
 One anchored vertex is necessary and sufficient at the bit level.  A tree
@@ -123,7 +137,9 @@ is needed.
   from the exact multiplicative relator.
 - **Use an odd or expanding cycle of pairwise row comparisons.**  The
   simultaneous relative twist preserves every edge equation and has an
-  exact multiplicity-space realization.
+  exact multiplicity-space realization.  An odd number of vertices does not
+  help when the edge labels come from a consistent intended orientation:
+  their product is still `+1`, so both global solutions remain.
 - **Anchor a reference row with `A=B=I`.**  Analytically complete by
   `(ORC6)`; the open issue is naming its relative `Z`-block orientation by
   ordinary words on the same source.
