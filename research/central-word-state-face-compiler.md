@@ -61,6 +61,116 @@ allowed Boolean rectangles automatically fix the fourth.  The only surviving
 finite-ancilla interpretation is genuinely state-dependent and must prove the
 whole-face soundness in Property 2.
 
+## Properties 1 and 3: the exact algebraic boundary
+
+The established predicate-phase word does give Property 1 on a selected
+tracial BCS state, and it does so without endangering the scalar phase.  The
+failure is precisely Property 3.
+
+Fix one context `c`, with variables `U_c`, allowed support
+`R_c subset {+1,-1}^(U_c)`, and let
+
+```text
+f_c(a)=1_(R_c)(a) in F_2.                              (CWA1)
+```
+
+Apply `boolean-predicate-central-phase-word` to `f_c` and to every coordinate
+function `a |-> a_x`.  Taking the finite direct product of those gadgets gives
+a finite group `K_c`, central involutions
+
+```text
+w_c, z_(c,x) in Z(K_c),                                (CWA2)
+```
+
+and, for every assignment `a`, a finite-dimensional representation
+`pi_(c,a)` such that
+
+```text
+pi_(c,a)(w_c)=(-1)^(f_c(a)) I,
+pi_(c,a)(z_(c,x))=a_x I.                               (CWA3)
+```
+
+There are only finitely many assignments, so amplify the `pi_(c,a)` to one
+common dimension.  Let `(M,tau)` be a perfect tracial BCS model, let `Z_x`
+be its context involutions, and put
+
+```text
+P_(c,a)=product_(x in U_c) (1+a_x Z_x)/2.              (CWA4)
+```
+
+The `P_(c,a)` form a PVM, and perfection gives `P_(c,a)=0` for
+`a notin R_c`.  Hence
+
+```text
+rho_c(k)=sum_a P_(c,a) tensor pi_(c,a)(k)              (CWA5)
+```
+
+is a representation of `K_c` in a finite amplification of `M`, with
+
+```text
+rho_c(z_(c,x))=Z_x tensor I,
+rho_c(w_c)=-I.                                         (CWA6)
+```
+
+Use separate finite ancilla factors for the finitely many contexts.  Their
+representations combine to a representation of the free product of the
+`K_c`; repeated variables agree by the first identity in `(CWA6)`.  Adjoin a
+central involution `J`, represent it by `-I`, and impose the central predicate
+clauses
+
+```text
+J w_c=1.                                               (CWA7)
+```
+
+The amplified trace fixes every clause and is faithful on `<J>`.  It
+therefore certifies that the normal closure of these clauses does not kill
+`J`.  This is a completely phase-safe, state-conditioned realization of the
+local nonlinear predicates.  In particular, phase survival itself is not the
+missing algebraic step.
+
+It does **not** encode the predicate on the whole central-word face.  Put
+
+```text
+D_c=<z_(c,x):x in U_c> <= Z(K_c).                      (CWA8)
+```
+
+The representations in `(CWA3)` realize every character of `D_c`.  If
+`f_c` is nonlinear, then `w_c notin D_c`: otherwise evaluation of the group
+element `w_c` on those characters would be an affine character of the
+selector bits, contrary to `(CWA3)`.  Therefore, for
+`C_c=<D_c,w_c>`, every selector character has two extensions to `C_c`, one
+with each value of `w_c`.  Inducing either extension from `C_c` to `K_c`
+and taking an irreducible constituent preserves all these central scalar
+values.  In particular, for every forbidden assignment `a notin R_c` there
+is an exact finite-dimensional sector with
+
+```text
+z_(c,x)=a_x I for every x,          w_c=-I.             (CWA9)
+```
+
+Setting `J=-I` makes `(CWA7)` exact on this forbidden sector.  Thus forced
+centralization retains, rather than removes, a phase-compatible forbidden
+type.  This is the selector-induction mechanism of
+`controlled-central-phase-finite-group-barrier`, now applied directly to the
+state-conditioned construction `(CWA5)`.
+
+Solution groups mark the sharp boundary.  For affine predicates the phase
+word belongs to the selector subgroup, so ordinary solution-group relations
+can impose it; `solution-group-central-order-is-operator-solvability` then
+turns full order of `J` into a phase-faithful operator model, and
+`slofstra-zhang-high-girth-phase-survival` can certify that order.  For a
+nonlinear predicate, `(CWA9)` shows that replacing the predicate by a finite
+central word has not produced a solution-group relation at all.  High girth
+can protect an already compiled linear phase, but it cannot remove these
+local forbidden central characters.
+
+Consequently the finite predicate-phase word settles the selected-trace half
+of Property 1 but cannot settle Property 3.  Any positive compiler must add a
+genuinely global coupling which excludes the sectors `(CWA9)` only after
+contexts are assembled, while preserving the trace `(CWA5)`.  Merely adding
+finite table relations, centralizing the predicate word, or importing a
+solution-group phase-survival certificate cannot do so.
+
 ## Property 2: the minimal quantitative decoder
 
 Property 2 has a precise sufficient interface which does not depend on the
