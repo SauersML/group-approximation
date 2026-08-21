@@ -57,3 +57,23 @@ This also explains why the Eisenstein Hecke eigenvalue `3` is not a zero
 mode here: the Petersson degeneracy-map identity used on cuspidal forms has
 discarded the two different boundary ramification weights.  Retaining those
 weights produces `(EIA3)` and the gap one.
+
+## Exact spectrum (complement, 2026-08-21)
+
+In the explicit cusp model -- cusps of `B(p)` are pairs (cusp `+-(a,c)` of
+`Gamma(p)`, parity of the numerator), `e_1 = 2` iff the numerator is odd,
+`e_2 = 3 - e_1`, and `pi_2(a/c) = (a/2, c)` for `a` even, `(a, 2c)` for `a`
+odd -- the Gram matrix of the mismatch operator is
+
+```text
+Phi_E^* Phi_E = 5 I - 2 [[0, A], [A^T, 0]],
+```
+
+with `A` the `0/1` incidence of the Hecke-at-2 correspondence on cusps,
+all of whose row and column sums are `2`.  Schur's test gives `||A|| <= 2`,
+so every singular value of `Phi_E` lies in `[1, 3]`, sharpening `(EIA1)`
+to an exact spectral interval; `sigma_min = 1` is attained because the
+correspondence graph is disconnected (it preserves the `<2>`-orbit
+structure of `(a, c)`), and `sigma_max = 3` on the constant vector.
+`experiments/iwahori_eisenstein_angle.py` returns exactly `1.000` and
+`3.000` with kernel `0` for every prime `3 <= p <= 101`.
