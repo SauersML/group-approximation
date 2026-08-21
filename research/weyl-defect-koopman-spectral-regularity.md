@@ -7,6 +7,7 @@ distinct_from:
   solenoid-absorption-cascade-converges: that assembles the Livsic/RPF/Gowers-Hatami machine and consumes this as its single remaining analytic input; this is that input, isolated as a first-class hole.
   bs14-exact-representation-variety-is-hs-locally-rigid: that is the proved local rigidity aligning exact skeletons; this is the transverse spectral regularity of the residual Weyl defect, a different quantity.
   skeleton-relative-hs-stability-for-sl2: that is the gluing endpoint; this is the one analytic lemma the gluing's cascade reduces to.
+  long-cycles-have-unbounded-l2-coboundary-inverse: that proves the unrestricted cyclic-shift estimate is false; this asks the arithmetic Weyl-relator defect to avoid precisely those bad modes.
 ---
 
 Let `pi` be an accurate finite-dimensional approximate representation
