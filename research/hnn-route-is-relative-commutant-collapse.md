@@ -76,3 +76,16 @@ representations, i.e. those whose limit algebra is the non-amenable
   of `SL_2(Z[1/2])` controls its characters (they are vN-amenable off the
   center); a quantitative/ultraproduct form of charmenability, if it
   controlled relative commutants of co-dense subgroups, would give `(RC1)`.
+- **Commensuration handle (the concrete structure).**  `C = SL_2(Z)` is
+  COMMENSURATED by `A = SL_2(Z[1/2])`: `diag(2,1/2)` conjugates `C` to a
+  commensurable subgroup, and the commensurator of `SL_2(Z)` in
+  `SL_2(Z[1/2])` is all of `SL_2(Z[1/2])`.  So `L(C) subseteq L(A)` is the
+  inclusion associated to a commensurated subgroup, with a Hecke-algebra /
+  Schlichting-completion structure (the completion is `SL_2(Q_2)` with
+  `C` dense in the compact `SL_2(Z_2)`).  Popa-type deformation/rigidity and
+  mixing/spectral-gap criteria for commensurated subgroups are the natural
+  tools for `(RC1)`, and they are available for this arithmetic inclusion in
+  a way they are not for the `EL_r(F_q[x])` compressor.  The precise target
+  is: `L(SL_2(Z))` has SPECTRAL GAP in every matrix ultraproduct containing
+  `L(SL_2(Z[1/2]))` faithfully, i.e. the inclusion is "solid"/"mixing"
+  enough that its relative commutant cannot exceed `L(SL_2(Z[1/2]))'`.
