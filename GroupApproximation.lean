@@ -990,7 +990,6 @@ import GroupApproximation.Sofic.ContinuumMultiplicityCore
 import GroupApproximation.Sofic.PrintedPreliminaryEstimates
 import GroupApproximation.Sofic.PrintedCentralSignCriterion
 import GroupApproximation.Sofic.PrintedNegativeCornerKill
-import GroupApproximation.Sofic.PrintedCentralSignCriterion
 import GroupApproximation.Sofic.PrintedReverseTransportRoute
 import GroupApproximation.Sofic.LiteralSignFreeRadicalReduction
 import GroupApproximation.Sofic.SoficEnvelopeSimplicity
@@ -1412,19 +1411,9 @@ import GroupApproximation.Algebra.TreeLikeHyperbolic
 import GroupApproximation.Algebra.ListCommonPrefix
 import GroupApproximation.Algebra.HyperbolicFreeGroup
 import GroupApproximation.Kazhdan.FreeGroupSharpProfile
-import GroupApproximation.Analysis.CStarOrderZero
-import GroupApproximation.Analysis.CStarOrderZeroSupport
-import GroupApproximation.Analysis.DadarlatEilers
-import GroupApproximation.Analysis.KKTheoryKGroups
-import GroupApproximation.Analysis.KKTheoryKasparov
-import GroupApproximation.Analysis.KirchbergRordamCorona
-import GroupApproximation.Analysis.KirchbergRordamEpsilonTest
-import GroupApproximation.Analysis.KirchbergRordamOrderZeroLift
 import GroupApproximation.Analysis.QuasidiagonalCoronaCriterion
 import GroupApproximation.Analysis.QuasidiagonalMatricialTrace
 import GroupApproximation.Analysis.TikuisisWhiteWinterDerivation
-import GroupApproximation.Analysis.TikuisisWhiteWinterProof
-import GroupApproximation.Analysis.UniversalCoefficientTheorem
 import GroupApproximation.Higman.HalfRowEndo
 import GroupApproximation.Sofic.BlockInfix
 import GroupApproximation.Sofic.ConjExprMatching
@@ -1477,13 +1466,12 @@ import GroupApproximation.Higman.FlipGroup
 import GroupApproximation.Higman.GeneratedBasic
 import GroupApproximation.Higman.GeneratedCoords
 import GroupApproximation.Higman.GeneratedPin
+import GroupApproximation.Higman.GeneratedValue
 import GroupApproximation.Higman.GeneratedTransition
 import GroupApproximation.Higman.GeneratedEnumeration
-import GroupApproximation.Higman.GeneratedPin
 import GroupApproximation.Sofic.TorsionFreeNonMFEndpoint
 import GroupApproximation.Sofic.BespokeRouterGateAssembly
 import GroupApproximation.Sofic.GreendlingerFreeGate
-import GroupApproximation.Sofic.GreendlingerBetaBranch
 import GroupApproximation.Sofic.GreendlingerReducedness
 
 /-!
