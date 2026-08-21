@@ -1456,6 +1456,11 @@ import GroupApproximation.Algebra.FinitePresentationFiniteIndex
 import GroupApproximation.Sofic.PeriodicOverlap
 import GroupApproximation.Sofic.FreeProductRouterObstruction
 import GroupApproximation.Sofic.GreendlingerDeepestMatch
+import GroupApproximation.Sofic.TorsionDescent
+import GroupApproximation.Leavitt.HilbertHotelBlocks
+import GroupApproximation.Leavitt.HilbertHotelSaturation
+import GroupApproximation.Leavitt.HilbertHotelWhitehead
+import GroupApproximation.Leavitt.HilbertHotelBinary
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
