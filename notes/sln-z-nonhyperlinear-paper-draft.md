@@ -135,6 +135,22 @@ the uniform conjugation gap.  The HNN theorem applies with outsider `r`,
 proving the Theorem and the nontriviality of the displayed mark `[t,r]` by
 Britton's lemma.
 
+There is also an unconditional exact conclusion worth isolating.
+
+**Proposition.** The word `[t,r]` is killed by every finite-dimensional
+unitary representation of `G_exp`.  Consequently `G_exp` is neither
+maximally almost periodic nor residually finite.
+
+*Proof.* Restrict such a representation to `SL_3(Z)`.  Lemma 1 makes its
+image a congruence image, and Lemma 2 says that the image of `<a,b>` is the
+entire image of `SL_3(Z)`.  Since `t` centralizes `a,b`, its image centralizes
+the entire lattice image and in particular the image of `r`.  Thus `[t,r]`
+maps to one.  Britton's lemma says the word is nevertheless nontrivial.
+`QED`
+
+The open HS theorem is exactly the robust upgrade of this proposition from
+representations to normalized-HS almost representations.
+
 ## 5. Discussion: why the plain lattice, and what is open
 
 **Genuinely new.** Neither prior conditional route reaches `SL_n(Z)`:

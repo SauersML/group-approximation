@@ -237,3 +237,31 @@ parabolic direction.
 if any one of the listed congruence-rigid lattices is flexibly HS-stable;
 `SL_n(Z)` is the cleanest and most central target. No shortcut exists in the
 literature through August 2026.
+
+### Explicit rank-three upgrade
+
+Detinko--Flannery--Hulpke (arXiv:2303.06236, Section 3.3) display two
+matrices `a,b in SL_3(Z)` generating a profinitely dense subgroup inside
+Humphries's free subgroup.  Thus `C=<a,b>` is free of rank two and has the
+same arbitrary-modulus Bourgain--Varju gap.  Taking the displayed order-three
+matrix
+
+```text
+r = [0 -1 0; 1 -1 0; 0 0 1]
+```
+
+certifies `r notin C` without a subgroup-membership calculation.  Hence the
+conditional group can now be written literally as
+
+```text
+G_exp = <SL_3(Z),t | [t,a]=1,[t,b]=1>,
+w_exp = [t,r].
+```
+
+Unconditionally, Britton gives `w_exp != 1`, while every finite-dimensional
+unitary representation kills `w_exp`: its lattice restriction factors
+through a congruence quotient, where the images of `<a,b>` and `SL_3(Z)`
+coincide.  Thus `G_exp` is a displayed finitely presented non-MAP,
+non-residually-finite group.  Flexible HS stability of `SL_3(Z)`, or just the
+one-unitary robust relative-commutant transfer, upgrades this exact
+finite-dimensional invisibility to non-hyperlinearity.
