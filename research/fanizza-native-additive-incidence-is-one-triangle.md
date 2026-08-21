@@ -5,23 +5,15 @@ kind: claim
 title: Before the prescribed Pauli reduction, the native Fanizza incidence has one flat triangle
 distinct_from:
   signed-hecke-compatible-projection-atlas-for-nonce-bcs: that treats every context of the final BCS embedding and leaves an arbitrary collection of incidence cycles; this keeps the ordinary group and conjugacy equations as group equations and computes the incidence of only the genuinely additive native relations.
-  join-tree-bcs-has-explicit-signed-hecke-atlas: that closes a running-intersection hypergraph; after using the prescribed Pauli relation, the native Fanizza hypergraph is a join tree.
+  join-tree-bcs-has-explicit-signed-hecke-atlas: that closes a running-intersection hypergraph; the native Fanizza hypergraph is not one because its terminal Pauli guard leaves the single chord computed here.
 ---
 
-SUPERSEDED AS A LIVE OBSTRUCTION.  The calculation below is correct only if
-the six C18 signs are retained as formally independent Boolean coordinates.
-In the native algebra they are not independent.  By
-`pauli-guard-collapses-c18-to-three-bit-recurrence`,
-
-```text
-X_tilde Z_tilde X_tilde Z_tilde=J,   J^2=1
-```
-
-makes the last C18 triple identically even.  C18 therefore reduces to the
-three-bit recurrence on its first triple, and its `Z_tilde` occurrence
-disappears.  The chord `C_Z--C_R` is deleted and the remaining nonlinear
-contexts form a join tree.  The triangle below remains useful only as a
-falsification model for compilers that forget the prescribed Pauli words.
+LIVE.  The six C18 signs must be retained.  The proposed global relation
+`X_tilde Z_tilde X_tilde Z_tilde=J` is false at the terminal machine cell;
+`fanizza-pauli-guard-switches-off-at-the-terminal-cell` shows that this failure
+is exactly the halting switch in the completeness model.  Hence the
+`Z_tilde` chord cannot be deleted and the incidence calculation below is the
+native one.
 
 Keep the involution, group, commutation, and conjugacy equations in the
 presentation of `A_L(m)` as multiplicative equations.  The remaining native

@@ -68,3 +68,13 @@ multiplicity carrier.
   Hence the escape now survives only by preventing the **same** four returned
   words from being both source-confined and target-Pauli on one carrier; it
   cannot survive by dimension bookkeeping alone.
+
+- **Normalizer firewall (2026-08-21).**
+  `fixed-packet-normalizers-cannot-supply-the-matrix-only-pi-lock` proves that
+  confinement obtained only by conjugating/normalizing one fixed finite
+  packet algebra is valid in every finite tracial von Neumann algebra.  If
+  such confinement were coupled to the explicit target Pauli floor, it would
+  also erase the positive packet corner in the regular trace.  Hence the
+  remaining common-carrier theorem must see the finite multiplicity reservoir
+  itself (or consume the non-CE source moments); additional fixed packet
+  normalizers cannot close the route.

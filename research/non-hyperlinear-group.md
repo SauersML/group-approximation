@@ -56,3 +56,13 @@ trace profile from canonical delta microstates. Free-amalgam multiplicity,
 twisted self-similar Clifford, projective phase, matricial separator, and
 quantum-index routes are compared in
 `research/artifacts/trace-promotion-renormalization-program-2026-08-20.md`.
+
+The breakout portfolio of 2026-08-21 is recorded in
+`research/artifacts/nonhyperlinear-breakout-portfolio-2026-08-21.md`. Its
+three main orthogonal moves are: weaken arithmetic RCC to the projective
+trace-square transfer `projective-trace-square-transfer-for-sl3-pair`;
+fingerprint or physically occupy the rectangular multiplicity reservoir via
+`fixed-pi-degree-fingerprints-packet-label-factor` and
+`common-corner-mutual-bicommutant-extraction`; and bypass HS stability by the
+Pontryagin compiler `algebraic-compact-action-group-factor-compiler` plus the
+open algebraic relation envelope.

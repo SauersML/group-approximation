@@ -2,18 +2,11 @@
 rg: 2
 id: single-triangle-trace-cyclic-return-cell
 kind: claim
-title: Dead target - Fanizza has no native triangle after the Pauli guard is used
+title: Build one trace-cyclic proper-corner cell for the native Fanizza triangle
 distinct_from:
   s3-active-packet-proper-corner-return: that places a three-atom allowed S3 sum into the recurrent carrier; this acts only on the one native Fanizza triangle chord after all tree incidences are normalized.
   schur-reynolds-one-overlap-actuator: that asks for one adjoint Reynolds overlap for every forbidden Schur packet; this asks for the fixed D8 holonomy projection of a single source-specific cycle.
 ---
-
-DEAD FOR THE NATIVE FANIZZA SOURCE.  The relation
-`X_tilde Z_tilde X_tilde Z_tilde=J` with `J^2=1` forces the last C18 triple
-into its even-parity half, so the `Z_tilde` chord disappears.  There is no
-native triangle holonomy to charge.  Trace-cyclic return cells remain a
-valid general design pattern, but the shortest Fanizza route is now the
-join-tree prescribed-word realization.
 
 OPEN.  Construct one finitely presented ordinary-group cell attached to the
 last chord of the native Fanizza context triangle such that:
@@ -59,3 +52,9 @@ eight separator assignments extendible.  Hence clause 1 must fail if the
 separator signs are treated as free Boolean variables.  The prospective
 holonomy is a semantic machine-word/corner effect, not a contextuality proof
 on the abstract three-cycle.
+
+The global-Pauli shortcut does not remove this target:
+`fanizza-pauli-guard-switches-off-at-the-terminal-cell` proves that the C18
+parity guard fails exactly on the terminal HALT block.  Thus the chord is a
+genuine part of the native source and its one proper-corner return is again
+the load-bearing local theorem.

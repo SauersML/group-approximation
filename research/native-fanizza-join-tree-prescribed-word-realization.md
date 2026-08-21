@@ -8,7 +8,13 @@ distinct_from:
   hs-groupify-self-referential-bcs-signal: that asks for a compiler for the fully flattened BCS menu; this uses the four native contexts after the Pauli guard removes their only additive cycle.
 ---
 
-OPEN.  Keep the native multiplicative relations as ordinary group relations.
+DEAD AS A FANIZZA REDUCTION.  Its premise
+`pauli-guard-collapses-c18-to-three-bit-recurrence` is false in the exact HALT
+model.  The abstract word/corner realization problem below is meaningful for
+a source whose contexts genuinely form this join tree, but it is not the
+native Fanizza incidence.
+
+Keep the native multiplicative relations as ordinary group relations.
 After `pauli-guard-collapses-c18-to-three-bit-recurrence`, the nonlinear
 contexts form the join tree
 

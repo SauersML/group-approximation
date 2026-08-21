@@ -5,6 +5,7 @@ kind: claim
 title: Every known route to a non-hyperlinear group hinges on flexible HS-stability or weak ucp-stability of some property (T) or (T;FD) group, and where the relative-commutant route sits
 artifacts:
   - research/artifacts/hs-dehn-modulus-length-control-2026-08-20.md
+  - research/artifacts/nonhyperlinear-breakout-portfolio-2026-08-21.md
 distinct_from:
   relative-commutant-collapse-for-sl2-pair: that is one specific operator-algebra target; this is the map of all published conditional routes and the shared open hypothesis, recorded so the program does not mistake any single route for a solved problem.
   non-hyperlinear-group: that is the goal; this is a survey claim about the reduction landscape, established by citation.
@@ -52,6 +53,17 @@ Dogon--Vigdorovich question is now a theorem
 representations within a fixed tube of the compatible locus obey
 `D(pi) <= C def(pi)`.  Only the far sector (`iwahori-outlier-repair`, an
 operator/relative-commutant statement) remains, and it is the same `(RCC)`.
+
+**Breakout additions (2026-08-21).**  The projective trace-square route
+`projective-trace-square-transfer-for-sl3-pair` weakens RCC at its conclusion:
+the HNN proof only needs `[t,h]` asymptotically scalar, because modulus-one
+trace already contradicts the regular character.  Independently,
+`algebraic-compact-action-envelope-for-non-ce-relation` avoids the shared
+stability core altogether: a compact-abelian algebraic crossed-product
+envelope of the known non-CE relation factor is automatically a canonical
+semidirect-product group factor by Pontryagin duality.  These are therefore
+not additional instances of the published flexible-stability condition
+surveyed above.
 
 ## Attempts
 

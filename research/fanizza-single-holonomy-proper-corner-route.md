@@ -2,7 +2,7 @@
 rg: 2
 id: fanizza-single-holonomy-proper-corner-route
 kind: route
-title: Dead route - the prescribed Pauli guard removes the apparent native holonomy
+title: Concentrate the native Fanizza triangle in one proper-corner holonomy
 target: non-hyperlinear-group
 requires:
   - fanizza-native-additive-incidence-is-one-triangle
@@ -13,15 +13,11 @@ requires:
   - single-triangle-trace-cyclic-return-cell
 ---
 
-DEAD.  This route treated the last C18 triple as an independent selector
-packet.  In the native presentation its product is identically one, so C18
-reduces to the first-triple projection recurrence and the triangle chord is
-absent.  See `pauli-guard-collapses-c18-to-three-bit-recurrence` and the live
-replacement `fanizza-native-join-tree-groupification-route`.
-
-The discussion below is retained as a warning: it would be relevant to a
-different source with a genuine unicyclic prescribed-word atlas, but it is
-not a load-bearing Fanizza route.
+LIVE.  The last C18 triple is a genuine guarded selector packet.  Its product
+equals one on preterminal cells but not on the terminal cell; imposing it
+globally destroys exact HALT completeness.  Thus the native triangle is real,
+and `fanizza-pauli-guard-switches-off-at-the-terminal-cell` restores this as
+the shortest prescribed-word lane.
 
 Keep every native involution, group, conjugacy, and commutation equation
 multiplicative.  Gauge-double the four remaining Boolean contexts.  Normalize

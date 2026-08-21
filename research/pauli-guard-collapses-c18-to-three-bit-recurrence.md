@@ -8,6 +8,14 @@ distinct_from:
   fanizza-native-additive-incidence-is-one-triangle: that treats the six context variables as independent Boolean coordinates and obtains one flat cycle; this uses the prescribed word relation and removes the cycle.
 ---
 
+**REFUTED.**  The displayed identity `(PGC3)` is not a defining relation of
+the native Fanizza algebra and fails on the terminal block of its exact HALT
+representation.  See
+`fanizza-pauli-guard-switches-off-at-the-terminal-cell`.  The calculation
+below is valid only after adding `(PGC3)` as an extra relation; that addition
+destroys the marked completeness model and therefore cannot be used on the
+native groupification lane.
+
 Write the six C18 sign bits as two triples.  With `-1` represented by bit
 one, Fanizza's forbidden set is
 

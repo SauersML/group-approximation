@@ -78,13 +78,14 @@ centralizes them and turns the BCS into a classical CSP.
   rank gap turns the moment bound into `q_c=O(sqrt(eta))`; that non-linear
   modulus is sufficient because this diagonal permits arbitrary computable
   instance-dependent thresholds.
-- **Current shortest native lane: join-tree prescribed-word realization.**
-  The prescribed Pauli relation makes C18's last parity guard identically
-  active, reducing C18 to its three-bit recurrence and deleting the only
-  apparent additive cycle.  The remaining four native nonlinear contexts
-  form a join tree.  Thus no holonomy or general cyclic-atlas theorem is
-  required; the load-bearing finite-matrix theorem is now
-  `native-fanizza-join-tree-prescribed-word-realization`.
+- **Native incidence correction: one triangle remains.**
+  `fanizza-pauli-guard-switches-off-at-the-terminal-cell` refutes the proposed
+  global Pauli reduction: the parity guard is the terminal halting switch.
+  The native nonlinear contexts therefore retain the single triangle of
+  `fanizza-native-additive-incidence-is-one-triangle`.  The shortest surviving
+  native lane is the one proper-corner cell
+  `single-triangle-trace-cyclic-return-cell`, assembled by
+  `fanizza-single-holonomy-proper-corner-route`.
 - **Two-copy heat-filter lane.**  A second reduction avoids choosing local
   predicate corners altogether.  In the direct product of left and right
   native variable groups, every vector state is a commuting BCS strategy.
