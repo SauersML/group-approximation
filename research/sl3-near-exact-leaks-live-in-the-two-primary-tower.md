@@ -428,6 +428,28 @@ refutation, and this claim makes the reduction precise.
   monomial-sheaf structure (Mackey theory over the parahoric), so
   the uniform one-step floor is a symbolic computation, not an
   optimization.
+- **Locked-form status: canonical matching, shift pairing, and an
+  honest vacuity at the prototype (2026-08-21).**  Since
+  `phi = Ad(h^{-1})` is an abstract isomorphism `Q_0 ~ Q_1`, the
+  dictionary matching of isotypic centers is CANONICAL
+  (`tau <-> tau o phi^{-1}`), and conductor bookkeeping makes the
+  locked diagonal a twisted SHIFT pairing on the native-phase chain:
+  layer-`j` carrier phases couple to layer-`(j-1, j-2)` content.
+  Consequence at `a = 3`: there is only ONE native layer, its shift
+  partners are shallow multiplicity-`>= 2` content whose block
+  traces the enemy zeroes, and free phases close the polygon — the
+  first-order bound `(BTR3)` is VACUOUS at the prototype.  The
+  measured floor `~0.142-0.17` is therefore a SECOND-ORDER
+  phenomenon: the outer disk estimate on each C-numerical range is
+  not jointly attainable, i.e. the joint range of the coupled blocks
+  is strictly smaller than the product of disks.  Two consequences:
+  (i) the prototype floor proof needs the joint-range rigidity, not
+  block traces — a sharper finite question; (ii) for the TOWER the
+  first-order mechanism revives: with many native layers the shared
+  phases enter many carriers with different partners, and the floor
+  becomes the frustration index of the carrier-coupling network — a
+  computable spectral quantity, and the correct uniformity target
+  for large `a`.
 - Proved below by assembling established inputs; see the proof route.
   The one step that is a HYPOTHESIS here and a theorem at `SL_2` is
   vertex near-exactness: `SL_3(Z)` HS-stability is open (it is the
