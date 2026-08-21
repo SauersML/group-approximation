@@ -88,6 +88,15 @@ the fixed-depth nonhyperlinearity criterion.
   `2 eta/kappa`, uniformly in dimension and multiplicity.  Thus property
   `(T)` solves the analytic edge-rounding step, but cannot be invoked before
   compatible genuine band representations have been extracted.
+- **One selected corner is not easier to correct.**  Canonical mixed trace
+  tests make every positive native four-atom/parahoric corner carry the
+  regular lattice trace.  Moreover a correction theorem using only one
+  approximately reducing selector would imply full regular-microstate
+  correction for `SL_3(Z)` by tensoring an arbitrary microstate with one
+  external bit; see
+  `selected-corner-correction-contains-regular-correction`.
+  The needed theorem must therefore correct the six corners and their
+  transitions jointly, rather than exactifying them independently.
 - **Current unresolved step.**  Prove that separately rounded growing-period
   root packets either share enough multiplicity space for `(HEL11)` or that
   their mismatch is first-exit mass controlled by the two-level conductor
