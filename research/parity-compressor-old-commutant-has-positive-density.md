@@ -1,0 +1,40 @@
+---
+rg: 2
+id: parity-compressor-old-commutant-has-positive-density
+kind: claim
+title: Couple a Schur Reynolds carrier to positive density in the parity compressor's old commutant
+distinct_from:
+  predicate-rank-jump-forces-adjoint-reynolds-gap: that gives positive density in a local finite-packet commutant difference; this must place that range inside the old compressor commutant rather than on an independent tensor factor.
+  packet-kazhdan-commutant-placement-decouples: that is the exact tensor-product countermodel to bare commutation relations; this requires coefficient covariance which excludes it.
+---
+
+Modify the Toeplitz parity compressor by one fixed Schur--Clifford packet and
+coefficient-covariance cell so that, on every marked microstate with
+positive forbidden carrier mass, a spectral subspace `W` satisfies
+
+```text
+W <= low-commutator space of Lambda,
+tr_ad(W) >= c q^2-C sqrt(E),                            (PCD1)
+```
+
+where `q` is the forbidden Hilbert mass.  The placement must visibly fail in
+the tensor-decoupled representation of
+`packet-kazhdan-commutant-placement-decouples`.
+
+Then `parity-twist-copies-the-old-commutant-into-the-excess` sends `W` to an
+almost orthogonal copy in the compressed low-commutator space, and
+`property-t-hs-positive-density-commutant-no-growth` charges its density to
+normalized-HS relator energy.  This would prove the parity compressor return
+on every positive marked carrier.
+
+## Attempts
+
+- Declaring both packet subgroups to commute with the two Kazhdan copies is
+  false: the packet may live on an independent tensor factor and retain its
+  full Reynolds gap at zero covariance cost.
+- The local Schur theorem already supplies the density `c q^2`; the missing
+  statement is an ordinary-word coefficient covariance that embeds its
+  canonical three-generator Reynolds core into the compressor commutant.
+- A finite controlled-phase overgroup cannot impose that covariance on every
+  selector sector.  The live implementation must use the one-sided Toeplitz
+  coefficient action or a projective two-cell.

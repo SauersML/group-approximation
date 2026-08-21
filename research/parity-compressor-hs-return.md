@@ -48,6 +48,16 @@ statement for arbitrary finite tracial von Neumann algebras is false: the
 negative central corner of the left regular representation of `H_T` itself
 realizes `(PCR1)`.
 
+There is now a precise density amplifier for an **augmented** candidate.  By
+`parity-twist-copies-the-old-commutant-into-the-excess`, right multiplication
+by `q` copies the whole old commutant orthogonally into the excess compressed
+commutant.  Therefore property-`(T)` no-growth closes the augmented endpoint
+as soon as a positive-density Schur Reynolds range is covariantly placed in
+that old commutant.  The residual coefficient-covariance theorem is isolated
+as `parity-compressor-old-commutant-has-positive-density`, and its target is
+`schur-amplified-parity-compressor-hs-return`.  This does not establish the
+present bare-compressor claim.
+
 ## Attempts
 
 The direct finite-dimensional proof compares the dimensions of two conjugate
