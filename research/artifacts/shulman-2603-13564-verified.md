@@ -94,3 +94,26 @@ Carrion--Dadarlat--Eckhardt sense used by this repository is weaker than
 MF of `C*(G)`; the implication runs `C*(G)` MF `=>` `G` MF and not back.
 Any route built on Theorem 20 therefore proves more than the group claim
 needs, and inherits the requirement that both vertex algebras be MF.
+
+## Explicit stable-trace attribution correction
+
+The current arXiv API identifies `2603.13564v2` as the latest version.  A
+fresh check of its abstract, introduction, theorem list, and searchable full
+PDF on 2026-08-21 confirms that it contains **no** statement
+
+```text
+A Hilbert--Schmidt stable
+  ==> every hyperlinear trace on A *_C A is MF.
+```
+
+Theorem 10 is only the operator-norm algebra-MF statement transcribed above.
+The related genuine result is Corollary 35 of Shulman's separate
+arXiv:2508.00125, and it requires the target algebra to be homotopy dominated
+by a Hilbert--Schmidt-stable algebra.  The fold maps of a symmetric double
+give domination in the opposite direction.  See
+`notes/FALSE_SHULMAN_TRACE_AUDIT.md` and the compiled claim
+`shulman-symmetric-double-has-no-stable-trace-upgrade`.
+
+Some secondary/search metadata currently appends the stronger sentence to
+the abstract of 2603.13564.  It is absent from the authoritative current
+arXiv API record and v2 PDF and must not be cited as a theorem of that paper.

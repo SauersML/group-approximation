@@ -81,3 +81,17 @@ established or refuted.
   vacuous.  Hence the first genuinely new relation must act nonscalarly on
   the assignment sectors, or constrain edge intertwiners through a two-cell;
   adding more central selector/phase identifications cannot close the claim.
+- Diagonal trace powers do not preserve the full GNS tensor algebra, by
+  `diagonal-tensor-trace-powers-forget-full-gns-tensor`; even their proposed
+  raw indicator limit fails on nontrivial unit phases.  They therefore do not
+  automatically preserve the non-CE payload needed here.
+- Free labels erase every payload moment only while the labels remain
+  uncancelled.  `free-label-orthogonalization-erases-payload-trace` shows that
+  adjoining enough label data to recover the original observables restores
+  the entire payload trace and destroys the claimed canonical-free joint
+  distribution.  This is not the required selective payload coupling.
+- The claimed Shulman stable-double trace shortcut is a citation error, as
+  recorded in `shulman-symmetric-double-has-no-stable-trace-upgrade`.
+  arXiv:2603.13564v2 proves operator-norm MF of a symmetric amalgam of an MF
+  algebra, not MF-ness of every hyperlinear trace on a double of an
+  Hilbert--Schmidt-stable algebra.
