@@ -10,7 +10,7 @@ requires:
 
 Fix the sector data: `sigma_m : Lambda -> U(d_m)` genuine
 representations factoring through `G_m = SL_3(Z/n_m)`, `n_m` coprime
-to `2p`, with `pi|_Lambda = [sigma_m]` in `M = prod_U M_(d_m)`, and
+to `p`, with `pi|_Lambda = [sigma_m]` in `M = prod_U M_(d_m)`, and
 `V = pi(h)`.
 
 **Step 0 (the congruence commutant tower).**  Write
@@ -96,7 +96,9 @@ hence with `pi(Gamma)` (`Gamma = <Lambda, h>`):
 inclusion is automatic.  This is `(OS1)`.
 
 **Scope.**  Everything used: exactness of the `Lambda`-restriction
-(Step 1), oddness/coprimality (existence of the `h`-image, Step 2),
+(Step 1), coprimality of the level to `p` alone (existence of the
+`h`-image, Step 2 — oddness is never used except as the `p = 2`
+instance of coprimality),
 and rank two (the three-term relation, Step 3).  No trace condition
 entered, so the theorem covers every trace profile over this sector,
 in particular the regular one consumed by the goal routes.

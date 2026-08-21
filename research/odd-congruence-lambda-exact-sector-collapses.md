@@ -15,8 +15,11 @@ trace-preserving) **Lambda-exact of odd congruence type** if it has
 microstates whose `Lambda`-restrictions are genuine
 finite-dimensional unitary representations `sigma_m`, necessarily
 factoring through `SL_3(Z/n_m)` (superrigidity + CSP), with `n_m`
-coprime to `2p`.  THEOREM: in this sector the collapse holds
-unconditionally —
+coprime to `p`.  (Strengthened 2026-08-21, second pass: the proof
+uses only invertibility of `p` mod `n_m` — nothing needs `n_m` odd
+beyond the `p = 2` instance, where the two conditions coincide; for
+odd `p` the closed sector includes all 2-power levels.)  THEOREM: in
+this sector the collapse holds unconditionally —
 
 ```text
 pi(Lambda)' cap M = pi(Gamma)' cap M,                            (OS1)
