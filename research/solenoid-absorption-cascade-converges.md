@@ -239,6 +239,37 @@ recursion terminates; the total correction is
   route -- closes.  This is the complete reduction: everything is
   proved or arithmetic except this one near-identity regularity
   exponent.
+- **The exponent-saving mechanism, and its precise gap (2026-08-21).**
+  There is a structural reason to expect the defect density to VANISH
+  near the identity eigenvalue, which is exactly the `mass` (not
+  `sqrt(mass)`) scaling that closes the cascade.  At the exact
+  eigenvalue `1` of `V = pi(u)`, the sub-representation has
+  `pi(u) = 1`, so it factors through `SL_2(Z[1/2]) / <<u>>`; but a
+  unipotent NORMALLY GENERATES `SL_2(Z[1/2])` (which is perfect and
+  boundedly elementary-generated), so that quotient is TRIVIAL and
+  every relation -- including Weyl-torus -- holds exactly there:
+  `e' = 0` at `rho = 0`.  By the bounded-width normal generation, the
+  almost-version would give `||e'|| <~ rho` on the near-`1` band,
+  hence density `~ rho`, hence
+  `||e'|_ann||_2^2 = mass * density^2 ~ rho * rho^2 = rho^3` and
+  `sum_ann rho^3 / rho^2 = sum rho < infinity` -- the cascade
+  converges and lemma (b) closes.
+- **The gap in that mechanism, stated exactly.**  The forcing
+  `near-1 => near-trivial` is pointwise in the GROUP (each `g` is a
+  bounded product of conjugates of `u^{+-1}`), but the near-`1`
+  spectral BAND of `V` is NOT invariant under those conjugating
+  elements `w_i` -- `pi(w_i)` mixes the band with the rest of the
+  space -- so the pointwise forcing does not transfer directly to the
+  `V`-eigenband, and within the skeleton `<u,h>` the band only sees
+  `BS(1,4)/<<u>> = Z`, which constrains nothing.  The precise open
+  statement is therefore: does the Weyl-relation defect `e'`, an
+  element of `{V}'` block-diagonal in the `V`-spectrum, inherit
+  `||e'|_(rho-band)|| <~ rho` from the group-level near-triviality
+  DESPITE the band not being conjugation-invariant?  This is a
+  commutator-mixing estimate -- how much `pi(w_i)` moves the near-`1`
+  band -- and it is the single remaining analytic exponent of the
+  entire `SL_2` far sector: prove it and the goal closes along the
+  Iwahori route; the whole rest of the chain is proved or arithmetic.
 - **Why it is plausible and where it could fail.**  The peeling is a
   geometric contraction when the residual shrinks faster than the gap:
   each descent multiplies the uncorrected mass by the local defect
