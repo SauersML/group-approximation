@@ -4,7 +4,7 @@ id: covariant-model-satisfies-cross-context-radical-relators
 kind: claim
 title: The covariant completeness model satisfies both cross-context radical relators
 distinct_from:
-  s3-equivariant-affine-clifford-return-edge: that eliminates independent rotations structurally, by closing all three transports into one S3-semidirect edge before any quotient; this imposes two explicit conjugation relators and must instead verify them in the amplified covariant representation.
+  s3-radical-chart-returns-to-fresh-context: that demands the full return incidence with reset discipline and transport properties; this is one computation in one named representation after the return is quotiented by two explicit relators. It is also distinct from any equivariant-edge closure, which eliminates independent rotations structurally before any quotient.
   three-chart-affine-clifford-return-incidence: that is the target common-marginal statement for finite tuples; this is the single completeness-side obligation of the relator route into it.
   fresh-selector-renewal-after-symplectic-chart-reset: that installs the fresh selector tuple and privatizes the old center; this adds no new edge and only asks whether two comparison loops fix the two raw radical words in the covariant model.
 ---
