@@ -2,23 +2,33 @@
 rg: 2
 id: graph-commutator-authenticates-paz-return
 kind: claim
-title: A graph commutator authenticates the sole Pauli zero-atom return moment
+title: A graph commutator authenticates one projection return moment
 distinct_from:
-  pauli-zero-atom-removes-acceptance-source-deficit: that isolates the PAZ12 return scalar after removing source loss; this converts that scalar into one authenticated commutator mark on a fixed amplification.
+  pauli-zero-atom-removes-acceptance-source-deficit: that isolates a one-vector PAZ12 return scalar after removing source loss; this authenticates the different projection-trace version conditional on a projection source.
   mixed-pauli-commutator-authenticates-one-capacity-cut: that treats leakage of an involution spectral cut under one covariance involution; this treats the internal return phase and range leakage of an arbitrary verifier unitary.
   authenticated-pauli-branch-needs-source-saturation: that proves the sharp two-child trace recurrence and its stationary Pauli countermodel; this composes that recurrence with the newly authenticated PAZ return mark.
 ---
 
-Work after the fixed Pauli-control exactification of
-`pauli-zero-atom-removes-acceptance-source-deficit`.  Put
+**Type firewall.**  All identities below use an orthogonal projection `G`
+and normalized trace on the endomorphism algebra of the Hilbert space on
+which `W` acts.  The PAZ source currently called `G=P_0Q` is instead one
+vector in `C^(2^m) tensor L^2(M_d)`.  The promotion is not automatic:
+`paz-gram-vector-is-not-a-graph-projection` proves that the compatible
+rank-one projection dilutes by `d^(-2)`, whereas the positive-density left
+support can make `ABAB` non-involutive even in an exact perfect-vector
+model.  Thus the analytic comparison `(PAG7)--(PAG10)` is valid, but its PAZ
+application is conditional on a positive-density graph-projection decoder.
+
+Let `M` be a finite tracial matrix algebra, let `G in M` be an orthogonal
+projection, and let `W in M` be unitary.  Put
 
 ```text
-G=P_0Q,                                                 (PAG1)
-eta=eta_0(Q)
+G^2=G=G^*,                                              (PAG1)
+eta=eta_proj(G)
    =tau(G)-Re tau(GW G),                                (PAG2)
 ```
 
-where `G` is a projection and `W=W_game` is unitary.  Since `G^2=G`,
+Since `G^2=G`,
 
 ```text
 eta=1/2||(W-I)G||_2^2.                                 (PAG3)
@@ -80,11 +90,11 @@ Equivalently,
 1/4||C-I||_2^2<=eta<=1/2||C-I||_2^2.                  (PAG10)
 ```
 
-## Strict PAZ compression plus involutivity already kills the source
+## Strict compression plus involutivity kills a projection source
 
-There is a stronger consequence once this graph cell is composed with the
-actual PAZ game compressor.  If the mixed relation identifies `C` with a
-self-adjoint involution `Y`, then `C=C^*`.  In the first diagonal block this
+There is a stronger conditional consequence if a projection decoder also
+supplies the strict compression `||GWG||_op<=rho<1`.  If the mixed relation
+identifies `C` with a self-adjoint involution `Y`, then `C=C^*`.  In the first diagonal block this
 says that the two graph reflections commute.  Hence the corresponding graph
 overlap `RR'R` is a projection.
 
@@ -96,7 +106,7 @@ H^*H,
 H=G(I+W)G/2.                                           (PAG10a)
 ```
 
-For the PAZ block encoder,
+The required strict estimate is
 
 ```text
 ||GWG||_op<=rho<1,
@@ -114,12 +124,12 @@ in `graph-involution-forces-paz-return` gives, after fixed involution
 rounding,
 
 ```text
-eta_0(Q)<=K_rho||C-Y||_2^2.                            (PAG10c)
+eta_proj(G)<=K_rho||C-Y||_2^2.                         (PAG10c)
 ```
 
-Thus the two-child recurrence below is not needed for PAZ12 itself.  It
-remains a valid conditional recurrence and remains relevant to other
-authenticated branching lanes.
+Thus no two-child recurrence is needed for this projection-level return.
+The missing PAZ step is instead the positive-density projection promotion
+in `paz-gram-vector-is-not-a-graph-projection`.
 
 ### Proof
 
@@ -175,7 +185,7 @@ b=||(I-G)(W-I)G||_2^2
 
 which proves `(PAG8)--(PAG10)`.  ∎
 
-Thus PAZ12 is not an arbitrary positive coefficient.  On a fixed
+Thus a projection return is not an arbitrary positive coefficient.  On a fixed
 four-fold ancillary amplification it is, up to universal factors `1/4` and
 `1/2`, the distance of one commutator of two involutions.
 
@@ -210,15 +220,15 @@ Indeed `(PAG10)` gives `eta<=||C-I||_2^2/2`, and
            =||r_mix-I||_2+||Y-I||_2.
 ```
 
-This is the PAZ analogue of mixed Pauli authentication: an independent root
-factor can no longer declare zero defect while the state-local return lives
-on another reservoir.
+This is the projection analogue of mixed Pauli authentication: an independent
+root factor can no longer declare zero defect while the projection return
+lives on another reservoir.
 
-The reflection `X_R` is a fixed finite Hecke expression in the graph ancilla
-and the commuting projection `G=P_0Q`; `B` is the standard involutive
-dilation of the controlled word `U`.  Turning those two fixed expressions
-into ordinary words is a finite packet/naming problem and is deliberately
-separate from the analytic statement proved here.
+The reflection `X_R` is a fixed finite Hecke expression once a decoded graph
+projection `G` is available; `B` is the standard involutive dilation of the
+controlled word `U`.  Turning those expressions into ordinary words, and
+constructing `G` from the PAZ vector without dilution, are separate from the
+analytic statement proved here.
 
 ## Composition with the sharp two-child recurrence
 
@@ -250,7 +260,7 @@ Combining `(PAG16)` and `(PAG18)` yields the dimension-independent upper
 bound
 
 ```text
-eta_0(Q)
+eta_proj(G)
  <=4(alpha_0+alpha_1+lambda_0^2+lambda_1^2)
    +||r_mix-I||_2^2.                                   (PAG19)
 ```
@@ -258,35 +268,37 @@ eta_0(Q)
 Under the exact mixed relation, the sharper `(PAG15)` gives
 
 ```text
-eta_0(Q)
+eta_proj(G)
  <=2(alpha_0+alpha_1+lambda_0^2+lambda_1^2).           (PAG20)
 ```
 
-Thus PAZ12 is analytically discharged once the two child source moments and
-range leakages are paid by defining word energy.  No further acceptance
-moment remains.
+Thus the projection-level return is analytically discharged once the two
+child source moments and range leakages are paid by defining word energy.
+This does not identify it with the one-vector PAZ12 quantity.
 
-## Exact completeness firewall
+## Conditional exact-completeness firewall
 
-In the perfect witness,
+If a decoded exact projection source satisfies
 
 ```text
-WG=G.
+WG=G,
 ```
 
-Therefore `eta=b=0`, `C=I`, and the mixed cell extends with `Y=I`.  Then
+then `eta=b=0`, `C=I`, and the mixed cell extends with `Y=I`.  Then
 `P_Y=0`, so the two-child return cell is vacuous.  The original native mark
 on the multiplicity factor is unchanged.  No global relation `W=I` is
 imposed.
 
-This is strictly better than a global commutation relation: it tests only
-the graph of the actual state-local source `G`.
+This is strictly better than a global commutation relation, but PAZ currently
+has this equation only for one Gram vector.  The positive-density
+left-support projection need not satisfy it.
 
 ## Exact stationary countermodel to the unsaturated return
 
 The authenticated mark and two inherited child tags still do not prove
 `(PAG18)` without source saturation.  This is a countermodel to that generic
-branching recurrence, not to PAZ12 after the strict compressor is imposed.
+branching recurrence, not to the conditional projection theorem under
+strict compression.
 
 Take the smallest exact model
 
@@ -335,8 +347,9 @@ representation.  Hence they cannot be universal tracial Leavitt relations.
 The source moments must arise only after finite-dimensional packet
 multiplicity decoding.  A properly infinite exact representation may use
 the Cuntz/Hilbert-hotel completion from
-`authenticated-pauli-branch-needs-source-saturation`; the perfect PAZ
-witness itself uses the vacuous `P_Y=0` branch.
+`authenticated-pauli-branch-needs-source-saturation`.  The current perfect
+PAZ witness supplies only a fixed vector, so it does not yet instantiate
+this projection firewall.
 
 ## Attempts
 
@@ -353,17 +366,18 @@ witness itself uses the vacuous `P_Y=0` branch.
 
 ## Verdict
 
-The sole analytic PAZ12 moment admits a complete one-coordinate
+One projection return moment admits a complete one-coordinate
 authentication:
 
 ```text
-eta_0(Q)
+eta_proj(G)
  comparable_to ||[A,B]-I||_2^2
  -> one involution root Y.                              (PAG24)
 ```
 
-For PAZ, the mixed involution relation plus the strict game compressor gives
-the direct upper bound `(PAG10c)`; no child source moments remain.  If the
+For PAZ, this would give the direct upper bound `(PAG10c)` after a
+positive-density graph-projection decoder; the present Gram vector does not
+provide one.  If the
 authenticated mark is instead fed into a generic recurrent branching lane
 without a strict compression, the proved two-child recurrence gives
 `(PAG19)` and its source-saturation moments remain load-bearing.  Model

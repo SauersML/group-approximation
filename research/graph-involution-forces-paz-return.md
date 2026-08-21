@@ -2,19 +2,29 @@
 rg: 2
 id: graph-involution-forces-paz-return
 kind: claim
-title: The authenticated graph involution and the strict game compressor already force the PAZ return
+title: A graph involution kills a strictly compressed projection source
 distinct_from:
-  graph-commutator-authenticates-paz-return: that compares PAZ12 with one graph commutator and then routes its involution mark into a branching recurrence; this proves that involutivity of that graph commutator plus the existing strict game compression already kills the source.
-  pauli-zero-atom-removes-acceptance-source-deficit: that gives the positive zero-control source and isolates PAZ12; this supplies PAZ12 from the current graph mixed relation with no extra return tower.
+  graph-commutator-authenticates-paz-return: that compares a projection return with one graph commutator and then routes its involution mark into a branching recurrence; this proves that involutivity plus strict compression kills the projection source.
+  pauli-zero-atom-removes-acceptance-source-deficit: that gives a positive-norm zero-control Gram vector and isolates PAZ12; this theorem needs a positive-density projection source and therefore does not by itself supply PAZ12.
   controlled-reflection-cell-has-free-orientation: that finds a finite controller orientation obstruction before the intended block compression is obtained; this works after those orientation moments have supplied the intended strict compressor.
 ---
 
+**Type correction.**  The theorem below is correct for an orthogonal
+projection `G` on the same Hilbert space on which `W` acts.  PAZ currently
+supplies only one vector `g=P_0Q` in the Gram Hilbert space.  As proved in
+`paz-gram-vector-is-not-a-graph-projection`, its rank-one projection has
+normalized trace `Theta_m(d^(-2))`, while the positive-density left-support
+projection need not make the graph commutator involutive in the exact
+perfect witness.  Consequently the application `(GIF24)` to PAZ is
+conditional on a new positive-density graph-projection decoder; it does not
+currently close PAZ12.
+
 There is an exact bad-atom model for every finite cell surrounding PAZ12
-**before** the graph-commutator relation is imposed.  However the current
-mixed graph relation is already strong enough: when its authenticated
-coordinate is an involution, the strict finite-game compression forces the
-capacity-gated zero-control source to vanish.  No subsequent two-child
-source-saturation theorem is needed for PAZ12.
+**before** the graph-commutator relation is imposed.  At the projection
+level, the mixed graph relation is strong enough: when its authenticated
+coordinate is an involution, strict compression forces that projection
+source to vanish.  Applying this statement to PAZ still requires the
+positive-density projection promotion isolated above.
 
 ## The pre-graph bad-atom model
 
@@ -50,8 +60,9 @@ eta_0(Q)=||G||_2^2=2^(-m)tau(Q)>0.                    (GIF3)
 All capacity and reservoir commutator locks can have zero defect: the bad
 atom reduces every finite truth reflection, all relative multiplicity gauges
 may be the identity, and the incidence-private factors are independent.
-Thus none of those cells implies PAZ12.  The graph cell is the first relation
-which couples the **return of this actual `G`** to one involutive mark.
+Thus none of those cells implies PAZ12.  The graph cell would be the first
+relation coupling the return to one involutive mark if this vector source
+could be promoted to the required positive-density graph projection.
 
 ## Graph notation
 
@@ -62,8 +73,10 @@ Work in a finite tracial matrix algebra `(M,tau)`.  Let `G` be a projection,
 ||GWG||_(op,GH)<=rho<1.                                (GIF4)
 ```
 
-For PAZ, `G=P_0Q` and `(GIF4)` is exactly the finite-game estimate because
-`P_0W_gameP_0=P_0 tensor T_game`.
+If a PAZ projection decoder supplied `G` as a positive-density projection,
+then `(GIF4)` would follow from the finite-game estimate and
+`P_0W_gameP_0=P_0 tensor T_game`.  The current Gram vector does not itself
+supply this `G`.
 
 In `M_2(M)` put
 
@@ -98,7 +111,7 @@ then
 
 ```text
 G=0,
-eta_0(Q)=0.                                            (GIF8)
+eta_proj(G)=0.                                         (GIF8)
 ```
 
 ### Proof
@@ -220,7 +233,7 @@ tau(G)
 Finally
 
 ```text
-eta_0(Q)
+eta_proj(G)
  <=(1+rho)tau(G)
  <=K_rho epsilon^2,                                   (GIF24)
 
@@ -230,7 +243,8 @@ K_rho=4(1+rho)/[(1-rho)^2(1-(1+rho)^2/4)].
 If `Y` is only approximately involutive, fixed spectral rounding adds the
 corresponding fixed multiple of its involution defect.  Thus the ordinary
 mixed relator energy `||C-Y||_2^2`, plus the finite `Y^2=1` defect, already
-has the form required by PAZ12.
+has the form required by PAZ12 once the missing positive-density projection
+decoder is supplied.
 
 ## Correction to the stationary child countermodel
 
@@ -243,18 +257,20 @@ W=-I                                                     (GIF25)
 
 from `graph-commutator-authenticates-paz-return` correctly shows that graph
 authentication alone does not imply a generic two-child source recurrence.
-It does **not** survive the PAZ composition: its compression has norm one,
-whereas `(GIF4)` has `rho<1`.  Therefore it is not a countermodel to PAZ12
-after the finite game gap is included.
+It does **not** survive the conditional strict-compression hypothesis: its
+compression has norm one, whereas `(GIF4)` has `rho<1`.  Therefore it is not
+a countermodel to the projection-level theorem.
 
 The branching/source-saturation problem remains relevant to other recurrent
-lanes, but it is not needed to kill the PAZ authenticated return mark.
+lanes.  For PAZ, a positive-density coherent-frame or common-module source
+is again needed before the projection-level theorem can be used.
 
 ## Firewalls
 
-In the exact perfect HALT witness, `WG=G`, hence the graph commutator is
-`C=I`; choose `Y=I`.  The native mark remains on the multiplicity factor.  If
-`Q=0`, the construction is vacuous.
+If an exact projection decoder has `WG=G`, then the graph commutator is
+`C=I` and one may choose `Y=I`.  The PAZ perfect witness currently proves
+this only for one vector, not for a positive-density projection.  Thus this
+firewall is a required decoder clause rather than an established PAZ fact.
 
 The proof does not force `Y=I` in the regular representation.  Its decisive
 input is the strict finite-game compression `(GIF4)`, which is false for the
@@ -262,7 +278,7 @@ stationary regular model `(GIF25)` and need not hold in an exact non-CE
 representation.  Thus the argument is finite-dimensional/game-specific and
 does not create a universal tracial mark collapse.
 
-## Verdict
+## Conditional verdict
 
 Before the graph relation, `(GIF1)--(GIF3)` is an exact finite countermodel to
 all packet, half-edge, triangle, block-syntax, orientation, and independent
@@ -274,6 +290,8 @@ Y^2=1,
 Y=Y^*,                                                  (GIF26)
 ```
 
-the current inputs force `eta_0(Q)=0`, quantitatively by `(GIF24)`.  No
-additional acceptance corner relation or two-child return is required for
-PAZ12.
+the displayed projection-level inputs force the graph source to vanish,
+quantitatively by `(GIF24)`.  Promoting the PAZ Gram vector to such a
+positive-density projection with an exact HALT extension is still open by
+`paz-gram-vector-is-not-a-graph-projection`.  Therefore the current graph
+cell does not yet prove PAZ12.

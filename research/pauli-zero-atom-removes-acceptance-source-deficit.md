@@ -162,17 +162,21 @@ half-edge/triangle relations, and all independent commutator locks, while
 `eta_0(Q)=2^(-m)tau(Q)`.  The graph cell is the first genuinely mixed return
 relation.
 
-Once the current relation `Y=ABAB` from
-`graph-commutator-authenticates-paz-return` is imposed with `Y` an
-involution, the strict game compression already forces `P_0Q=0`.  More
-quantitatively,
+The graph relation `Y=ABAB` from
+`graph-commutator-authenticates-paz-return` would force its **projection**
+source to vanish when `Y` is an involution.  However
+`paz-gram-vector-is-not-a-graph-projection` identifies a type mismatch: the
+present `P_0Q` is one vector in the Gram Hilbert space.  Its rank-one
+projection has `d^(-2)` normalized mass, while its positive-density left
+support need not admit the exact graph involution.  Consequently the
+estimate
 
 ```text
 eta_0(Q)<=K_rho||ABAB-Y||_2^2                         (PAZ13)
 ```
 
-after fixed involution rounding.  The proof uses the fact that involutivity
-makes two graph projections commute, while their overlap compression has
-operator norm at most `(1+rho)/2<1`.  Therefore the downstream two-child
-source-saturation recurrence is not required for PAZ12, although it remains
-relevant in other recurrent lanes.
+is currently only conditional on a new positive-density graph-projection
+decoder.  The analytic proof uses the fact that involutivity makes two graph
+projections commute, while their overlap compression has operator norm at
+most `(1+rho)/2<1`; PAZ has not yet supplied the required graph projection
+without losing exact completeness or normalized density.
