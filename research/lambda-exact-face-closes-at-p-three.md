@@ -177,6 +177,64 @@ evading the pinning) is explicitly what the route excludes.
   concentrate in the common shallow quotient, exactly the scale-spread
   escape described above.
 
+- **The optimal weighted Kazhdan bound is only total variation; no Hardy
+  gap survives deep scale spread.**  Let the `A`- and `B`-side restrictions
+  of an exact `Lambda`-representation have normalized dimension weights
+  `alpha_theta,beta_theta` on their common irreducible `Lambda_0`-types.
+  Schur orthogonality gives, for every unitary router `V`,
+
+  ```text
+  ||P_Inv(V)||_2^2 <= sum_theta min(alpha_theta,beta_theta)
+                    =1-TV(alpha,beta).                  (P3F7)
+  ```
+
+  Hence the Kazhdan argument gives exactly
+
+  ```text
+  max_(s in A)||sigma_A(s)V-V sigma_B(s)||_2
+     >= epsilon_3 sqrt(TV(alpha,beta)).                 (P3F8)
+  ```
+
+  This dependence is order-sharp at the abstract isotypic-router level.
+  Match subspaces of dimension `min(alpha_theta,beta_theta)` inside every
+  common type, map them by exact intertwiners, and complete the resulting
+  partial isometry arbitrarily to a unitary on the unmatched mass.  The
+  matched part has zero generator defect and the complement has mass
+  `TV(alpha,beta)`, so every generator defect is at most
+  `2 sqrt(TV(alpha,beta))` (up to rational rank rounding).  Thus property
+  `(T)` cannot improve `(P3F8)` to a positive floor without additional
+  information on the type-transition graph.
+
+  In the scale-shift situation take the deep triangular profile
+
+  ```text
+  mu_N(N+j)=2(j+1)/((N+1)(N+2)),   0<=j<=N,             (P3F9)
+  ```
+
+  and zero elsewhere.  It has total mass one,
+
+  ```text
+  TV(mu_N,S mu_N)=max_j mu_N(N+j)=2/(N+2)->0,           (P3F10)
+  ```
+
+  while for every fixed shallow cutoff `L`,
+  `sum_(j<=L)mu_N(j)=0` once `N>L`.  Consequently all constraints obtainable
+  from finitely many fixed kernel/regular-trace tests are compatible with
+  vanishing shift energy.  Product triangular profiles give the same escape
+  simultaneously for every fixed finite set of the two coweight shifts.
+
+  This is an exact NO-GO for a weighted Hardy/Kazhdan proof based only on
+  isotypic weights and fixed shifts; it strengthens the earlier failure of
+  flatness by showing that the best possible Kazhdan modulus itself vanishes
+  on profiles which have already escaped every fixed shallow level.  Scope:
+  the matched-router construction is an exact finite Schur-module model, not
+  yet a model of all `Gamma` denominator relations.  Promoting it to an
+  actual enemy requires the branching dictionary to realize those common
+  type blocks coherently.  Conversely, closing the face now requires a
+  relation which the Schur-module model cannot satisfy: the normalized
+  Weil--Maslov loop/flux, or another genuinely non-Folner matrix-coordinate
+  transition.  No scalar Hardy inequality remains available.
+
 - **Audit correction (2026-08-21).** Fixed coweight-shift invariance on a
   growing scale lattice is only a Folner/delocalization statement.
   Triangular product profiles are invariant under every fixed shift and

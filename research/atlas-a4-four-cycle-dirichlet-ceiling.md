@@ -198,6 +198,59 @@ the kind separately asked for by
 `affine-leavitt-steinberg-hs-coefficient-decoder`; none is present in the
 thirty-one group words.
 
+## The finite-coefficient pullback already fails on one order-three unit
+
+There is an exact norm witness for the preceding coefficient obstruction.
+Let `R=L_(F2)(1,2)` and let `g in R^x` be the order-three unit of
+`leavitt-corner-idempotent-unital-surjection`.  In characteristic two it
+satisfies
+
+```text
+1+g+g^2=0                 in R.                       (A4-COEFF-F2)
+```
+
+Choose any lift `h in Gamma_A4` under the canonical surjection
+`Gamma_A4->R^x`.  The three group elements `1,h,h^2` are distinct: any
+equality between them would make the image `g` have order at most two.  Hence
+in the complex group von Neumann algebra of `Gamma_A4`, with canonical trace,
+
+```text
+Z=1+lambda(h)+lambda(h^2),
+||Z||_2^2=3.                                             (A4-COEFF-C)
+```
+
+Indeed distinct group elements form an orthonormal basis of
+`L^2(L(Gamma_A4),tau)`.  All thirty packet relators and `q_19243` are exactly
+one in this representation.  Consequently no estimate of the form
+
+```text
+||1+H+H^2||_2 <= C max_j ||r_j(H)-1||_2
+```
+
+can be deduced from those relators, and no bounded coefficient-ideal
+certificate can obtain `(A4-COEFF-F2)` by interpreting its `F_2` sum as a
+complex matrix sum.  The failure is quantitative (`sqrt(3)`), occurs on a
+three-term coefficient window, and survives every amplification.
+
+This also explains why `leavitt-unit-group-algebra-surjects-onto-leavitt` and
+the finite rank-three unit lifts do not provide the missing trace exclusion.
+Their evaluation map is an `F_2`-algebra map, whereas Hilbert--Schmidt
+microstates linearly generate a complex group algebra; there is no unital
+coefficient map `F_2->C`, and the evaluation kernel is not trace-null after
+changing coefficients.  The explicit atlas rank-five dictionary does not
+repair this: it writes Steinberg generators as chart words, but the present
+thirty-one-relator quotient does not impose the full additive/multiplicative
+Steinberg coefficient table.
+
+Thus a successful finite coefficient decoder cannot be a pullback of Leavitt
+addition along the unit-group homomorphism.  It would have to construct new
+matrix-only carrier projections and product operators from extra group-word
+relations, as in the still-open
+`affine-leavitt-steinberg-hs-coefficient-decoder`.  No such extra relations or
+carrier authentication occur in `Gamma_A4`.  This is a sharp obstruction to
+the proposed shortcut, not a proof that the quotient trace is Connes
+embeddable or non-Connes-embeddable.
+
 This rules out every fixed local rank, divisibility, and determinant checksum
 available from the current quotient presentation.  It does not exclude a
 genuinely matrix-specific obstruction with unbounded or microstate-dependent

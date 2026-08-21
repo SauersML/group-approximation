@@ -283,6 +283,70 @@ possibly paid by `E_cons`, rather than contextwise saturation of all of
 `S_D8`.  No established common-source, exhaustive-type, D8, Hecke, or exact
 finite-frame node supplies `(CPS12)`.
 
+### The global marked-type cycle is a bypass, not a leakage proof
+
+The established `global-marked-type-cycle-selector-decoder` does not imply
+`(CPS12)`.  Its coverage hypothesis is the scalar estimate
+
+```text
+sum_omega tr(P_omega)>=alpha E_forbid-o(1),            (CPS13)
+```
+
+which contains no relative-position information between `P_omega` and the
+one Gram operator `S_D8`.  This distinction is decisive.  On an orthogonal
+sum `H=H_cov direct-sum H_leak`, put all cycle carriers `P_omega` on
+`H_cov`, and put `F_cS_D8` on `H_leak`.  Their ranks may be chosen so that
+`(CPS13)` holds, while
+
+```text
+C_forb=0,       L_forb=E_pred(S_D8)>0,       E_cons=0. (CPS14)
+```
+
+Thus global scalar coverage, even simultaneously over every context and
+marked type, does not prove the forbidden-weighted return.
+
+The cycle decoder can nevertheless bypass `(CPS12)` if its other, genuinely
+matrix-only hypothesis is constructed.  Since `S_D8` is a partial isometry,
+`S_D8 S_D8^*<=I`, and for every forbidden projection
+
+```text
+||F_cS_D8||_2^2
+ =tr(F_c S_D8S_D8^* F_c)<=tr(F_c).                    (CPS15)
+```
+
+After the fixed context weights are absorbed into constants, `(CPS15)` gives
+
+```text
+E_pred(S_D8)<=E_forbid.
+```
+
+Hence `(GTC6)` would make the global actuator word energy control
+`E_pred(S_D8)` directly, without aligning any `P_omega` with `S_D8`.  Adding
+the existing consistency rows would then feed the one-Gram game gap and
+finish the same analytic endpoint.
+
+This is only a conditional alternative, not a construction already present
+in the compiler.  `global-marked-type-cycle-selector-decoder` assumes both
+`(GTC4)`, which charges all compressed coarse-to-fine cycle rows to one
+ordinary word menu, and `(GTC5)=(CPS13)`.  The current D8 and selected
+hyperoctahedral packets provide neither global actuator estimate.  In
+particular the cycle trace inequality itself forces positive payment on the
+`H_cov` block in `(CPS14)`; it does not move that carrier onto `H_leak`.
+Making its selector rows universal exact identities is forbidden by the
+regular-representation firewall recorded in the cycle decoder.
+
+The fork is therefore exact:
+
+1. prove the same-source weighted return `(CPS12)` for the current local D8
+   architecture; or
+2. adjoin a global marked-type actuator and prove its two matrix-only gates
+   `(GTC4)--(GTC5)`, which pays the larger scalar `E_forbid` and bypasses
+   source alignment altogether.
+
+The newly established cycle-selector machinery proves that option 2 is
+sufficient and insensitive to carrier mismatch.  It does not discharge
+either gate and supplies no counterexample to option 1 beyond `(CPS14)`.
+
 The absolute orientation bit is no longer open.
 `centralizing-d8-word-anchors-relative-row-orientation` adjoins one
 centralizing involution `e` for which
