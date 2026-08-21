@@ -496,11 +496,16 @@ theorem transport_of_quot_conj {R : Set (List (α × Bool))} {W W' : List (α ×
   constructor
   · intro k hk
     rw [mem_iff_mk'_eq_one] at hk ⊢
-    rw [map_pow, hc, ← conj_pow, ← map_pow, hk, map_one, mul_one, mul_inv_cancel]
+    rw [map_pow, hc, conj_pow, ← map_pow, hk, map_one, mul_one, mul_inv_cancel]
   · intro hmem
     rw [mem_iff_mk'_eq_one] at hmem ⊢
     rw [hc] at hmem
-    simpa using congrArg (fun x => c⁻¹ * x * c) hmem
+    calc QuotientGroup.mk' (Subgroup.normalClosure (FreeGroup.mk '' R))
+            (FreeGroup.mk W)
+        = c⁻¹ * (c * QuotientGroup.mk' (Subgroup.normalClosure (FreeGroup.mk '' R))
+            (FreeGroup.mk W) * c⁻¹) * c := by group
+      _ = c⁻¹ * 1 * c := by rw [hmem]
+      _ = 1 := by group
 
 /-- **One shortening step, from the sharp Greendlinger conclusion.**  The four
 branches of the module docstring, in order: the arc is short and a Dehn

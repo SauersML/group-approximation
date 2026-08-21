@@ -205,6 +205,71 @@ recursion terminates; the total correction is
   hard fixed-point obstruction but a graded convergence on a
   trace-thin sub-tower, strictly weaker than where it stood an hour
   ago.
+- **The convergence mechanism: near the identity, mass thins as fast
+  as the gap (2026-08-21).**  The shrinking gap is not special to `3`;
+  it is the general near-identity phenomenon.  For an eigenvalue
+  `zeta` at distance `rho` from `1`, the `x4` displacement is
+  `|zeta^4 - zeta| = |zeta||zeta^3 - 1| ~ 3 rho`, so the peeling gap
+  scales LINEARLY in `rho`.  Crucially, under the regular trace the
+  limiting spectral measure is EXACTLY Lebesgue (all moments
+  `tau(u^k) = 0`), so the spectral mass in the annulus at distance
+  `~ rho` from `1` is `~ rho` (arc length) -- it also thins linearly.
+  Group the eigenvalues into dyadic annuli `rho in [2^{-(j+1)},
+  2^{-j}]`: the gap is `~ 2^{-j}` and the mass fraction is `~ 2^{-j}`.
+  If the defect `e'` restricted to an annulus has normalized-HS norm
+  proportional to that annulus's MASS times the global defect `delta`,
+  the per-annulus absorption cost is
+  `(mass * delta)/gap ~ (2^{-j} delta)/2^{-j} = delta`, and summing
+  over the `~ log(1/delta)` resolvable scales gives total
+  `~ delta log(1/delta) -> 0`, dimension-free.  So the cascade
+  converges PROVIDED the near-identity defect scales as annulus mass,
+  not as its square root.
+- **The last exponent, stated exactly.**  `||e'|_annulus||_2` is
+  `sqrt(mass) * (local defect density)`; convergence needs the local
+  defect density in the near-identity annuli to itself carry a
+  `sqrt(mass)` factor (equivalently, the defect is not uniform but
+  concentrates away from the identity in proportion to mass).  This is
+  a regularity statement about WHERE the Weyl-relation defect sits
+  spectrally: does it avoid the near-identity (near-`1`) band in
+  proportion to the vanishing mass there?  The regular trace makes the
+  mass vanish there; whether the defect vanishes at the matching rate
+  is the single remaining analytic exponent.  If yes,
+  `||c||_2 ~ delta log(1/delta)` and lemma (b) -- and with it the
+  skeleton gluing, the far sector, and the goal along the Iwahori
+  route -- closes.  This is the complete reduction: everything is
+  proved or arithmetic except this one near-identity regularity
+  exponent.
+- **The exponent-saving mechanism, and its precise gap (2026-08-21).**
+  There is a structural reason to expect the defect density to VANISH
+  near the identity eigenvalue, which is exactly the `mass` (not
+  `sqrt(mass)`) scaling that closes the cascade.  At the exact
+  eigenvalue `1` of `V = pi(u)`, the sub-representation has
+  `pi(u) = 1`, so it factors through `SL_2(Z[1/2]) / <<u>>`; but a
+  unipotent NORMALLY GENERATES `SL_2(Z[1/2])` (which is perfect and
+  boundedly elementary-generated), so that quotient is TRIVIAL and
+  every relation -- including Weyl-torus -- holds exactly there:
+  `e' = 0` at `rho = 0`.  By the bounded-width normal generation, the
+  almost-version would give `||e'|| <~ rho` on the near-`1` band,
+  hence density `~ rho`, hence
+  `||e'|_ann||_2^2 = mass * density^2 ~ rho * rho^2 = rho^3` and
+  `sum_ann rho^3 / rho^2 = sum rho < infinity` -- the cascade
+  converges and lemma (b) closes.
+- **The gap in that mechanism, stated exactly.**  The forcing
+  `near-1 => near-trivial` is pointwise in the GROUP (each `g` is a
+  bounded product of conjugates of `u^{+-1}`), but the near-`1`
+  spectral BAND of `V` is NOT invariant under those conjugating
+  elements `w_i` -- `pi(w_i)` mixes the band with the rest of the
+  space -- so the pointwise forcing does not transfer directly to the
+  `V`-eigenband, and within the skeleton `<u,h>` the band only sees
+  `BS(1,4)/<<u>> = Z`, which constrains nothing.  The precise open
+  statement is therefore: does the Weyl-relation defect `e'`, an
+  element of `{V}'` block-diagonal in the `V`-spectrum, inherit
+  `||e'|_(rho-band)|| <~ rho` from the group-level near-triviality
+  DESPITE the band not being conjugation-invariant?  This is a
+  commutator-mixing estimate -- how much `pi(w_i)` moves the near-`1`
+  band -- and it is the single remaining analytic exponent of the
+  entire `SL_2` far sector: prove it and the goal closes along the
+  Iwahori route; the whole rest of the chain is proved or arithmetic.
 - **Why it is plausible and where it could fail.**  The peeling is a
   geometric contraction when the residual shrinks faster than the gap:
   each descent multiplies the uncorrected mass by the local defect

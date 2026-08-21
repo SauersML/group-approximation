@@ -1459,6 +1459,7 @@ import GroupApproximation.Sofic.FreeProductRouterObstruction
 import GroupApproximation.Sofic.GreendlingerDeepestMatch
 import GroupApproximation.Sofic.GreendlingerCoincidence
 import GroupApproximation.Sofic.GreendlingerFreeGate
+import GroupApproximation.Sofic.BespokeRouterGateAssembly
 import GroupApproximation.Sofic.TorsionDescent
 import GroupApproximation.Leavitt.HilbertHotelBlocks
 import GroupApproximation.Leavitt.HilbertHotelSaturation
