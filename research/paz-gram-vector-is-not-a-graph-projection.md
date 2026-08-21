@@ -204,3 +204,107 @@ Neither the Gram vector nor its left support proves `(PGP18)`.  It is a
 positive-density coherent-frame/common-module theorem, essentially the
 source-saturation problem in projection form.  Without it, the graph trick
 does not close PAZ12.
+
+## Exact type ledger
+
+Put
+
+```text
+K=C^(2^m) tensor L^2(M_d),       N=dim K=2^m d^2,
+g=|0^m> tensor Q.                                      (PGP19)
+```
+
+The three superficially similar carriers have different properties:
+
+| carrier | type | normalized size | finite NO compression | exact HALT return |
+|---|---|---:|---|---|
+| `g` | vector in `K` | `||g||^2=2^(-m)tau(Q)` | vector coefficient | `Wg=g` |
+| `e_g` | rank-one projection in `End(K)` | `1/N` | yes | yes |
+| `G_L=P_0 tensor L_Q` | projection in `End(K)` | `2^(-m)tau(Q)` | yes | not in general |
+
+For the last row, `G_L<=P_0 tensor I`, so the finite NO estimate
+`P_0W_gameP_0=P_0 tensor T_game` gives
+
+```text
+||G_L W_game G_L||_op<=||T_game||_op<=rho.             (PGP20)
+```
+
+Thus the positive-density lift has the strict compression needed by the
+conditional graph theorem.  Its failure is on the exact side: perfect
+acceptance fixes `g` but need not reduce `ran(G_L)`.  Conversely `e_g` has
+perfect exact return but loses the full factor `N`.  A valid lift must
+combine one property from each of these incompatible rows.
+
+If `g_hat=g/||g||`, the vector energy is
+
+```text
+eta_vec=||g||^2(1-Re <g_hat,Wg_hat>),                  (PGP21)
+```
+
+whereas the graph commutator built from `e_g` has normalized defect
+
+```text
+||C-I||_2^2
+ =(2 eta_vec/||g||^2+b_vec)/N,                        (PGP22)
+```
+
+where `b_vec=||(I-e_g)Wg_hat||^2`.  Hence the vector and operator-trace
+energies do not coincide.  The exact scaling theorem and a sharp strict-
+compression counterexample are in
+`paz-vector-graph-dilutes-by-adjoint-dimension`.
+
+## Ordinary group-word audit
+
+The PAZ operator `W_game` is a product of left--right actions on `L^2(M_d)`.
+Those actions may be named by unitary letters on the doubled Gram space.
+Once involutions `A,B` have actually been supplied, the equations
+
+```text
+A^2=B^2=Y^2=1,
+Y=ABAB                                                   (PGP23)
+```
+
+are honest group-word relators.  The missing step is the assignment
+
+```text
+A=2R(mathsf G)-I,                                     (PGP24)
+```
+
+where `R(mathsf G)` is the graph projection of a representation-dependent
+carrier.  Neither `g`, `e_g`, nor `G_L` is automatically a fixed ordinary
+group word.  Calling `(PGP24)` a finite Hecke expression does not solve the
+problem: the Hecke type must be selected with positive matrix density and
+must admit an exact HALT realization reduced by `W_game`.
+
+Accordingly `(PGP23)` is only the last relation.  The missing compiler must
+decode an involution word `X`, with `mathsf G=(I+X)/2`, such that
+
+```text
+Tr_norm(mathsf G)>=gamma tau(Q)-o(1),                 (PGP25)
+mathsf G<=P_0 tensor I+o(1),                          (PGP26)
+||mathsf G W_game mathsf G||_op<=rho+o(1)             (PGP27)
+```
+
+in finite NO models, while the exact HALT representation can choose the
+same new letters so that
+
+```text
+W_game mathsf G=mathsf G                              (PGP28)
+```
+
+and `(PGP23)--(PGP24)` hold without killing the native mark.  All finite
+estimates need a dimension-independent normalized-HS modulus.
+
+This interface passes the regular/HALT firewall only if `(PGP25)` and
+`(PGP27)` are finite-matrix decoding conclusions, not universal tracial
+identities.  The exact HALT model may use the invariant line `C g` (or an
+infinite amplification) for `(PGP28)` without giving it positive normalized
+trace.  A universal positive-trace support identity would also hit the
+regular representation; imposing only `(PGP23)` lets matrices choose the
+tiny invariant line and recreates `(PGP6)`.
+
+The missing relation is therefore not another commutator after `Y=ABAB`.
+It is a **capacity-gated coherent-frame/corner relation before that
+commutator**, forcing one decoded graph projection to be positive-density in
+matrices while remaining `W_game`-invariant in the exact HALT witness.  This
+is the common-source Gram-word cell in its correctly typed form.
