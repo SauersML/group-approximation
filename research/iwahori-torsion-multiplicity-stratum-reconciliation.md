@@ -39,6 +39,12 @@ spectral rank contributes at least `C^(-1)sqrt(r/d)` to the Iwahori defect.
   flexible padding.  Thus no same-dimensional stratum theorem is possible;
   the correct quantitative target is precisely
   `padding/d=O(defect^2)` (or its multi-block analogue).
+- **The multi-block normalization is proved on the canonical boundary.**
+  `direct-sum-weil-compressions-have-quadratic-padding` shows that `K`
+  compressed even-Weil blocks in total dimension `D` have defect
+  `O(sqrt(K/D))` and are repaired by exactly `K` restored lines.  Any general
+  matching proof must treat this as low-density boundary mass, not as a
+  packetwise positive gap.
 
 - Continuous Newton cannot change the discrete multiplicities.
 - Discarding the changed block works only for flexible stability; the native
