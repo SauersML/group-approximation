@@ -115,13 +115,90 @@ word compiler.  The surviving theorem must exclude the moving leaks `(FME3)`
 by matrix stability, a global square function, or another non-van-Kampen
 argument.
 
+## Why unbounded area does not yet produce a moving HS leak
+
+For `h in M`, abbreviate the two multiplication words by
+
+```text
+q_h^L=w_b w_h w_(b+h)^(-1),
+q_h^R=w_h w_b w_(b+h)^(-1).
+```
+
+Up to inversion and conjugation, `[w_b,w_h]` is the product of `q_h^L`
+and `(q_h^R)^(-1)`.  Hence, for every unitary tuple,
+
+```text
+||[w_b,w_h](U)-I||_2
+ <= ||q_h^L(U)-I||_2+||q_h^R(U)-I||_2.                 (FME5)
+```
+
+Thus an actual centralizer moving leak would indeed force one of the two
+module-multiplication leaks.  The area theorem, however, supplies only
+
+```text
+||[w_b,w_h](U)-I||_2
+ <= Area_R([w_b,w_h]) Def_R(U),                         (FME6)
+```
+
+which is an upper bound.  Let
+
+```text
+C(t)=sup { ||[w_b,w_h](U)-I||_2 :
+           h in M, Def_R(U)<=t }.
+```
+
+The commutator route refutes `(FME1)` exactly if
+`limsup_(t->0) C(t)>0`.  Statement `(FME4)` says only that the coefficients
+on the right side of `(FME6)` are unbounded; it gives no lower bound on
+`C(t)`.  In particular there is no formal converse to the van Kampen
+telescope.  The established `bs14-strict-hs-dehn-separation` is a concrete
+warning that filling area and normalized-HS response can have radically
+different growth, while
+`centralized-cyclic-distortion-hs-dehn-tracks-area` succeeds only because it
+constructs an additional coherent phase ladder.
+
+The proof of `finite-mark-centralizer-commutator-area-is-proper` does not
+hide such a ladder.  Its certificate is an `ell^1` twisted edge chain on the
+infinite Schreier graph `<b>\Gamma`.  The standard attempt to turn that chain
+into matrices is to truncate the monomial Schreier representation to finite
+vertex sets `F`.  Generator relations then fail on boundary vertices, so in
+normalized Hilbert--Schmidt norm their error is of order
+
+```text
+sqrt(|partial F|/|F|).                                  (FME7)
+```
+
+Consequently this construction has defect tending to zero only along a
+Folner sequence for `<b>\Gamma`, equivalently only when the finite subgroup
+`<b>` is coamenable.  For the intended nonamenable/property-`(T)` actor host,
+a finite subgroup is not coamenable: coamenability of a finite subgroup
+would make the whole finitely generated group amenable.  Hence the very
+Schreier certificate proving `(FME4)` cannot be integrated by finite
+compression into the required normalized-HS leak.
+
+This isolates the residual precisely.  A negative solution now requires a
+**matricial dual certificate** for the commutator family: tuples `U_k`,
+elements `h_k`, and `epsilon>0` with
+
+```text
+Def_R(U_k)->0,
+||[w_b,w_(h_k)](U_k)-I||_2>=epsilon.                    (FME8)
+```
+
+Unbounded van Kampen area or the existing twisted-Schreier `ell^1`
+certificate alone does not imply `(FME8)`.  Conversely, `(FME8)` would
+immediately give a multiplication leak through `(FME5)`.  No existing
+centralizer-distortion node constructs `(FME8)` for the augmentation host,
+so the whole-module claim remains open.
+
 ## Attempts
 
 - **Choose one word for every module element.**  A multiplication identity
   between remote words has van Kampen area depending on their addresses, so
   the direct estimate is `A_(m,n) delta`, not one uniform modulus.  Equation
   `(FME4)` shows that no alternative word section can make all those areas
-  uniformly bounded.
+  uniformly bounded, but `(FME6)` shows why this does not itself construct a
+  normalized-HS counterexample.
 - **Round every finite module window separately.**  Uniform abelian
   stability rounds each completed all-pairs table, but a finite presentation
   has not supplied those tables with a window-independent defect, and the
