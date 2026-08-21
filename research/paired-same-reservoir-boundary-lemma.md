@@ -163,6 +163,13 @@ dimension-free same-reservoir payment
 tr(P) <=4 epsilon_J^2.                                  (PSR9)
 ```
 
+In fact `coarse-fine-selector-covariance-has-quarter-trace-floor` proves
+`(PSR9)` immediately from the trace mismatch
+`tau(ehat)=tau(P)/2` and `tau(fhat)=tau(P)/4`; the intermediate block `X`
+in `(PSR8)` is not needed for the endpoint.  It remains useful only when a
+candidate compiler naturally exposes an off-diagonal coefficient rather
+than the conjugated selector.
+
 Consequently the remaining theorem is narrower than word discovery: prove
 that the named presentation relators and canonical packet recovery control
 the **selector covariance** `epsilon_J` for this one existing word, or charge
@@ -171,6 +178,68 @@ not imply `(PSR7)`—an arbitrary involution may preserve unrelated subspaces—
 so the compiler must retain the conjugation action of `(PSR6)` on the two
 recovered prefix packet corners.  This is the exact point at which ordinary
 word defect must be connected to the matrix-coordinate selectors.
+
+### The bounded support row and the exact typed-corner obstruction
+
+If both carrier reflections are ordinary packet words, selector covariance
+is already one bounded relation.  Put
+
+```text
+R_e=1-2 ehat,       R_f=1-2 fhat,
+C_x=R_f J R_e J^*.                                      (PSR10)
+```
+
+The established identity
+`unitary-offdiagonal-block-gram-is-support-leakage` gives
+
+```text
+tr(P) <= ||C_x-1||_2^2.                                 (PSR11)
+```
+
+Thus a presentation estimate for the single row `C_x` would prove the
+first-step same-reservoir payment with constant one.
+
+The current packet authenticates only the typed version of this row.  The
+coarse atom is a one-bit Pauli atom, so `R_e` is, up to the fixed central
+sign, an existing Pauli word.  The fine atom is
+
+```text
+fhat=((1+Z_1)/2)((1+Z_2)/2),
+R_f=1-2 fhat,                                             (PSR12)
+```
+
+so `R_f` is the two-qubit controlled-phase for the Boolean conjunction of
+the two signs.  It is not a word forced by the abelian Pauli table.
+`controlled-pauli-corner-has-clifford-groupification` adjoins a stable
+letter `t` with the correct conjugation action, but on every marked spin
+sector it has the exact form
+
+```text
+t=R_f tensor V,                                          (PSR13)
+```
+
+where `V` is an arbitrary self-adjoint involution on the multiplicity
+reservoir.  All packet and Clifford covariance relators are independent of
+`V`, because it cancels under conjugation.  The support row is not: replacing
+`R_f` by `t` inserts `V` into `(PSR10)`.  Taking `V=1` and `V=-1` gives two
+exact representations with identical Pauli conjugation tables but with the
+candidate literal reflection words at normalized distance `2`.  Therefore
+no estimate derived only from the current covariance relators can control
+`||C_x-1||_2`.
+
+This agrees with the exact typed countermodel in
+`literal-prefix-three-root-swap-retains-typed-carriers`: `(PSR6)` swaps its
+source and target minimal corners, but their completed packet identities are
+still different typed objects.  The precise missing authentication is now
+one of the following equivalent matrix-coordinate inputs:
+
+1. wordize `(PSR12)` on the marked packet with no multiplicity twist;
+2. select the `V=1` extension sector with dimension-free HS control; or
+3. prove directly that the wrong-target row `(1-fhat)J ehat` is small,
+   charging its complement to boundary mass.
+
+Further typed Steinberg triangles or Clifford covariance relations cannot
+provide this input: both admit the exact arbitrary-`V` models above.
 
 ## Attempts
 

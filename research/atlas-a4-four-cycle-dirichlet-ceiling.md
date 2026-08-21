@@ -139,4 +139,68 @@ unresolved.  The exact remaining theorem is matrix-specific trace exclusion
 for `Gamma_A4` (or for the pulled-back canonical trace of `Q`), not quotient
 finiteness and not a universal tracial inequality.
 
+## Fixed rank and dimension checks do not separate the trace
+
+The exact-regular normalization already absorbs every divisibility condition
+coming from the finite chart and context groups.  The matrix dimension is
+
+```text
+d=|A8| k=20160 k.
+```
+
+For every subgroup `H<=A8`, restriction of the chart representation is
+
+```text
+k [A8:H] Reg(H).
+```
+
+Hence, for any spectral/idempotent block `p` in the finite group algebra of
+`H`,
+
+```text
+rank(p)=k [A8:H] rank_(Reg(H))(p),
+tr_d(p)=rank_(Reg(H))(p)/|H|.                          (A4-RANK-LOCAL)
+```
+
+All denominators from the `A8`, `A4`, `C3`, and `C2` cells therefore divide
+`20160` and are integral in every allowed dimension.  The two chart copies
+have identical rank vectors, conjugation by the common `U` preserves them,
+and the collision equation is a multiplicative unitary equation which adds no
+projection-rank balance.  Thus the local finite-group type ledger contains no
+rank mismatch to exploit.
+
+There are only two ways a fixed matrix-rank checksum could differ from its
+finite-factor analogue, and both fail here.
+
+1. A normalized rank equality or inequality derived from the exact relations
+   passes to Murray--von Neumann dimension in finite tracial algebras.  The
+   exact finite-factor common-`U` model with `E_T=4` from
+   `atlas-a4-four-cycle-dirichlet-compiler` would satisfy it, so it cannot
+   force the desired ceiling.
+2. A purely integral congruence on finitely many ranks is destroyed by allowed
+   amplification: replacing a matrix model by the direct sum of `m` copies
+   multiplies every rank by `m` while preserving all normalized traces,
+   relation defects, and `E_T`.  Choosing `m` divisible by the fixed moduli
+   clears every such congruence.
+
+Determinants give no extra checksum.  The determinant of the regular `A8`
+representation is a one-dimensional character of the perfect group `A8`,
+hence is identically one.  The same holds on every amplification and on the
+conjugate second chart, so every packet and collision determinant identity is
+automatic.
+
+Finally, the map `Gamma_A4->L_(F2)(1,2)^x` is only a homomorphism into the
+**unit group**.  A matrix representation of `Gamma_A4` need not extend to a
+ring representation of the Leavitt algebra.  Therefore the additive Leavitt
+relation and its impossible finite-dimensional rank equation cannot be pulled
+back through this map.  Doing so would require a coefficient/ring decoder of
+the kind separately asked for by
+`affine-leavitt-steinberg-hs-coefficient-decoder`; none is present in the
+thirty-one group words.
+
+This rules out every fixed local rank, divisibility, and determinant checksum
+available from the current quotient presentation.  It does not exclude a
+genuinely matrix-specific obstruction with unbounded or microstate-dependent
+index data.  No such invariant is currently compiled by the A4 packet.
+
 Accordingly this claim remains open.
