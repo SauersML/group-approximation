@@ -39,6 +39,21 @@ this produces an explicit non-hyperlinear group.
   `SL_2(Z[1/2])` implies `(RCC)` (correct microstates, then co-density);
   `(RCC)` may be strictly weaker since it only asks about the commutant of a
   fixed subalgebra, not correction of the whole representation.
+- **Relatively-icc form (2026-08-21).**  For group von Neumann algebras,
+  `L(H)' cap L(G) = C` when the subgroup `H` is relatively icc in `G` (every
+  `g != e` has infinite `H`-conjugacy class); `SL_n(Z)` is relatively icc in
+  `SL_n(Z[1/p])` (a non-central `g` has finite `SL_n(Z)`-centralizer, so
+  infinite conjugacy class).  Hence `A' cap B = C`, i.e. `L(SL_n(Z))` is an
+  IRREDUCIBLE subfactor of `L(SL_n(Z[1/p]))`.  So `(RCC)`
+  `A' cap M = B' cap M` is exactly a **commutant-absorption**: the relative
+  commutant of the (T) subalgebra `A`, on passing from `B` to the ambient
+  matrix ultraproduct `M`, must not acquire anything outside `B' cap M`.
+  Caution (a wrong turn ruled out): one cannot argue `A' cap M = C` -- in the
+  hyperlinear scenario `A' cap M` necessarily contains `L(<t>) = L(Z)` (the
+  HNN letter centralizes `SL_n(Z)`, so `C_G(SL_n(Z)) = <t>`), so `A' cap M`
+  is genuinely nontrivial; the content is only the INCLUSION
+  `A' cap M subseteq B' cap M`, which the extra element `k = u_t` violates
+  iff `G` is hyperlinear.
 - **1-bounded entropy.**  For the higher-rank pair
   (`sl3-pair-relative-commutant-route`) both group factors have property (T)
   hence 1-bounded entropy zero (Jung; Hayes arXiv:1505.06682), which
