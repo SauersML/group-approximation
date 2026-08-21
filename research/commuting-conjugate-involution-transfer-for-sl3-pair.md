@@ -108,6 +108,12 @@ matrix-coordinate exclusion of the independent two-coordinate overlap.
   problem is a finite matrix inequality, not an unknown modulus or an
   infinite trace-exhaustion theorem.  The Bernoulli firewall shows that this
   finite inequality still cannot be tracial/SOS-universal.
+- `residual-finite-camouflage-removes-native-trace-window` sharpens that
+  reduction: tensoring by a finite quotient separating the chosen actor
+  window leaves the balanced lamp packet and overlap energy unchanged and
+  makes every window trace zero.  Thus regular native transfer is equivalent
+  to one universal defect-only inequality `8a(1-2a)<=L d_cc`; canonical
+  actor trace is no extra source of rigidity.
 - `commuting-conjugate-involution-is-balanced-overlap` gives the complete
   projection reduction `(CCI4)--(CCI7)` and proves that the old universal RCC
   dilation no longer supplies a counterexample: it does not preserve

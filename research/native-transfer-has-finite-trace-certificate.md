@@ -65,3 +65,10 @@ crossed product the actor trace is regular, `d_cc=sep_F=0` for every finite
 `F`, and `a=1/4`, so `(NTC5)` fails maximally.  Consequently a proof of
 `(NTC4)` would simultaneously give a finite trace-window obstruction to
 Connes embedding for that particular commuting-conjugate lamp model.
+
+For the present residually finite actor, the finite window is in fact
+removable.  `residual-finite-camouflage-removes-native-trace-window` tensors
+an arbitrary assignment with a finite-quotient regular representation that
+kills `sep_F` while preserving `d_cc`, `e_h`, balance, and the joint lamp
+relation exactly.  Hence the qualitative native claim is equivalent to the
+universal defect-only inequality `e_h<=L d_cc`.
