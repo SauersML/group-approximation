@@ -8,6 +8,7 @@ requires:
   - projected-hard-sign-bridge-selects-joint-exit
   - thompson-site-pulses-localize-hard-exits
   - prefix-preserving-two-step-hard-bridge-localizes-exit
+  - gauge-covariant-hard-shares-admit-site-bridges
   - fanizza-hard-exits-attach-to-thompson-site-pulses
   - mixed-cnot-allowed-active-return
   - branching-plus-first-hit-exits-forces-hs-floor

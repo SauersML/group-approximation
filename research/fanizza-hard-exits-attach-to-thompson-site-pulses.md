@@ -30,6 +30,15 @@ obeys `(PPB3)--(PPB4)` at every recurrence level.  Then `(PPB5)--(PPB6)` place
 it in the summable first-hit sector `X_n`, removing
 `e5-tail-character-suppression-for-projected-exits` from this route.
 
+The exact marked-completeness clause is closed by
+`gauge-covariant-hard-shares-admit-site-bridges`: gauge-double the private
+hard share, covariantize its sign flip, and use the resulting balanced
+involution to construct `u_n` on the original factor and the fresh `n`th
+pulse site.  The remaining content of this claim is finite syntax and robust
+soundness: compile all `u_n` from finitely many bounded-orbit generators and
+derive `(FAT1)` with polynomial area without imposing relations among the
+different bridges.
+
 ## Attempts
 
 - A separate independent lamp pulse has the correct trace budget but needs a
@@ -42,7 +51,8 @@ it in the summable first-hit sector `X_n`, removing
   active-return projection is analytic rather than a group word.  Its
   approximate reduction and placement must use the established packet
   complement estimates, not a universal projection relation.
-- Infinite amplification makes two balanced hard involutions unitarily
-  conjugate, so exact completeness of one bridge is plausible.  What remains
-  unproved is simultaneous choice of the whole bridge orbit with `(FAT1)` and
-  the finite presentation, not the two-step HS estimate.
+- Infinite amplification and gauge covariance give the simultaneous exact
+  bridges by `gauge-covariant-hard-shares-admit-site-bridges`.  What remains
+  unproved is the finitely presented bounded-orbit realization and its
+  polynomial approximate estimate, not exact completeness or the two-step HS
+  estimate.
