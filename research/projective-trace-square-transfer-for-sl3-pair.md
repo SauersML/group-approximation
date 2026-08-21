@@ -3,8 +3,6 @@ rg: 2
 id: projective-trace-square-transfer-for-sl3-pair
 kind: claim
 title: Projective trace-square transfer for the co-dense SL3 arithmetic pair
-artifacts:
-  - research/artifacts/nonhyperlinear-breakout-portfolio-2026-08-21.md
 distinct_from:
   relative-commutant-collapse-for-sl2-pair: that forces an actual subgroup-central unitary into the ambient commutant; this asks only that its commutator with the one ambient generator become scalar in normalized Hilbert--Schmidt norm.
   no-spherical-leak-in-matrix-ultraproducts: that excludes every nontrivial spherical component and is equivalent to full relative-commutant collapse; this permits a leak whenever its ambient commutator is scalar, because scalarity already suffices for the HNN trace contradiction.
