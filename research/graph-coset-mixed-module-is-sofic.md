@@ -28,10 +28,21 @@ wreath product
 
 is sofic.
 
+More generally, assume `Gamma` is LERF and let `L<Gamma x H` be finitely
+generated with injective projection to `Gamma`.  Then `L` is the graph of a
+homomorphism `phi:P->H` over the finitely generated subgroup
+`P=pr_Gamma(L)`, and `L` is separable in `Gamma x H`.  Its coset action and
+every finite-lamp generalized wreath product over it are therefore sofic.
+
 Applied to `Gamma=Gamma_Manzoor` and `H=SL_3(Z)`, this rules out the most
 obvious mixed module for the explicit actor of
 `nonhaagerup-spectator-must-couple-nonamenably`.  Even when the `SL_3(Z)`
 direction has infinite nonamenable image on the coset module, graph coupling
 cannot carry the fixed non-CE envelope.  A surviving mixed construction must
 use a nonseparable stabilizer (as the Kun--Thom mechanism does) or a genuinely
-non-permutation module.
+non-permutation module.  Since `Gamma_Manzoor` is virtually free and hence
+LERF, any finitely generated nonseparable stabilizer in the direct-product
+actor must in addition have nontrivial intersection with the vertical
+`SL_3(Z)` factor; otherwise its projection is injective and the preceding
+theorem separates it.  The only alternative is an infinitely generated
+stabilizer.

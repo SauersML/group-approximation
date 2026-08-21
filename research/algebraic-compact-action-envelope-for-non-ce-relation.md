@@ -200,4 +200,9 @@ graph is automatically separable: residual finiteness of `SL_3(Z)` separates
 sofic, and so is its generalized wreath group.  This remains true when the
 `SL_3(Z)` image is infinite and nonamenable, so the preceding necessary
 coupling test is not sufficient.  The mixed-module target must now use a
-nonseparable stabilizer or leave the permutation/coset-module class.
+nonseparable stabilizer or leave the permutation/coset-module class.  Since
+`Gamma_0` is virtually free/LERF, the same proof handles every finitely
+generated stabilizer whose projection to `Gamma_0` is injective.  Thus a
+finitely generated nonseparable stabilizer must have a nontrivial vertical
+intersection with `SL_3(Z)`; otherwise the only remaining coset option is an
+infinitely generated stabilizer.

@@ -20,6 +20,19 @@ sends `L_phi` into the diagonal of `Q x Q`, while `Psi(g,h)` lies outside
 that diagonal.  Thus every point outside `L_phi` is separated from it by a
 finite quotient, proving subgroup separability.
 
+For the general form, injectivity of `pr_Gamma|L` writes
+
+```text
+L={(p,phi(p)):p in P},  P=pr_Gamma(L).
+```
+
+Because `L` is finitely generated, so is `P`.  Given `(g,h) notin L`, if
+`g notin P`, LERF for `Gamma` gives a finite quotient whose image of `g` is
+outside the image of `P`; composing with the first projection separates the
+point from `L`.  If `g in P`, then `h != phi(g)` and the preceding residual-
+finiteness argument in `H` separates them.  Hence this more general `L` is
+also separable.
+
 For completeness, separability directly gives the finite Schreier models.
 Given a finite window of cosets, choose representatives and intersect the
 finitely many finite quotients needed to preserve every inequality
