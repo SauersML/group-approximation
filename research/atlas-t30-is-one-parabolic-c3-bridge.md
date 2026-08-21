@@ -66,6 +66,35 @@ x30(U)^2
  <=3 E_PC3(U).                                         (T30-PC3-3)
 ```
 
+There is also a more compressed two-holonomy form.  Put
+
+```text
+a=zb.
+```
+
+Exact arithmetic gives `|c|=4`, `|a|=2`, and
+
+```text
+t30=c^-1 a c.                                          (T30-2HOL-1)
+```
+
+Consequently, for
+
+```text
+E_2HOL(U)=2 delta_U(c)^2+delta_U(a)^2,
+```
+
+one has
+
+```text
+delta_U(t30)<=2delta_U(c)+delta_U(a),
+x30(U)^2<=(3/2)E_2HOL(U).                              (T30-2HOL-2)
+```
+
+The two coordinates are geometrically intrinsic: `c=hk` crosses between the
+two packet `S3` components inside the rank-three core, while `a=zb` is the
+reflection in the collision--central-`C3` cell `<z,b> ~= S3`.
+
 The exact audit additionally computes
 
 ```text

@@ -66,6 +66,8 @@ proved.
   `atlas-a4-parabolic-c3-bridge-energy-ceiling`, with the non-strict threshold
   `1/6`; `unitary-products-obey-the-spherical-chord-bound` supplies the strict
   gap at that boundary.
-- **A non-strict estimate is insufficient.**  The q14 wall is exactly `1/2`;
-  the upper estimate must retain a positive strict margin after passage to a
-  microstate subsequence.
+- **Spherical curvature preserves the margin.**  The Euclidean telescoping
+  estimate suggested that a non-strict energy ceiling at `1/6` would be
+  insufficient.  `unitary-products-obey-the-spherical-chord-bound` removes
+  that artifact: `E_PC3<=1/6+o(1)` already gives the strict bound
+  `x30^2<=2 sin^2(6 asin(1/12))+o(1)<1/2`.

@@ -66,3 +66,30 @@ delta_U(t30)^2
 
 which proves `(T30-PC3-3)`.
 
+For the compressed form, the same exact script sets
+
+```text
+c=h6_2 k_0,
+a=z b
+```
+
+and verifies
+
+```text
+|c|=4,       |a|=2,       t30=c^-1 a c.
+```
+
+The cocycle telescoping inequality gives
+
+```text
+delta_U(t30)<=2delta_U(c)+delta_U(a).
+```
+
+Cauchy--Schwarz with weights `(2,1)` gives
+
+```text
+(2d_c+d_a)^2<=3(2d_c^2+d_a^2),
+```
+
+and the preceding identity
+`delta_U(t30)^2=2x30(U)^2` proves `(T30-2HOL-2)`.

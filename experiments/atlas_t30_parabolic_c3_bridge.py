@@ -132,9 +132,13 @@ def main():
     h = H6_LABELS[2]
     k = Q_SECOND[0]
     c = mul(h, k)
+    a = mul(z, Q_FIRST_INVOLUTION)
+    assert order(c) == 4
+    assert order(a) == 2
     assert p_left == inverse(c)
     assert p_right == mul(Q_FIRST_INVOLUTION, c)
     assert mul(mul(inverse(c), z), mul(Q_FIRST_INVOLUTION, c)) == target
+    assert mul(mul(inverse(c), a), c) == target
 
     # Double-coset cardinality is |P|^2/|P intersect zPz^-1|.  This avoids an
     # unnecessary quadratic enumeration of PzP.
@@ -161,8 +165,15 @@ def main():
         "parabolic_word_length_sum": left_length + right_length,
         "factorization": "t30 = p_left z p_right",
         "compressed_factorization": "t30 = (h6_2 k_0)^-1 z b (h6_2 k_0)",
+        "two_holonomy_factorization": "t30 = c^-1 a c, c=h6_2 k_0, a=z b",
+        "c_hex": matrix_hex(c),
+        "c_order": order(c),
+        "a_hex": matrix_hex(a),
+        "a_order": order(a),
         "weighted_coordinate_energy": "2 delta(h6_2)^2 + 2 delta(k_0)^2 + delta(z)^2 + delta(b)^2",
         "root_energy_bound": "x30^2 <= 3 weighted_coordinate_energy",
+        "two_holonomy_energy": "2 delta(c)^2 + delta(a)^2",
+        "two_holonomy_euclidean_bound": "x30^2 <= (3/2) two_holonomy_energy",
         "covariance_bridge": (
             "||[U,rho(t30)]||_2 <= ||[U,rho(p_left)]||_2 "
             "+ ||[U,rho(z)]||_2 + ||[U,rho(p_right)]||_2"

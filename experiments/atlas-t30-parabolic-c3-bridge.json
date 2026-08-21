@@ -1,5 +1,9 @@
 {
+  "a_hex": "01000000000100000000010000000101",
+  "a_order": 2,
   "ambient_group_order": 20160,
+  "c_hex": "01010000010001000100000000000001",
+  "c_order": 4,
   "compressed_factorization": "t30 = (h6_2 k_0)^-1 z b (h6_2 k_0)",
   "covariance_bridge": "||[U,rho(t30)]||_2 <= ||[U,rho(p_left)]||_2 + ||[U,rho(z)]||_2 + ||[U,rho(p_right)]||_2",
   "factorization": "t30 = p_left z p_right",
@@ -20,6 +24,9 @@
   "parabolic_word_length_sum": 5,
   "root_energy_bound": "x30^2 <= 3 weighted_coordinate_energy",
   "t30_hex": "01000000000100000000010001000001",
+  "two_holonomy_energy": "2 delta(c)^2 + delta(a)^2",
+  "two_holonomy_euclidean_bound": "x30^2 <= (3/2) two_holonomy_energy",
+  "two_holonomy_factorization": "t30 = c^-1 a c, c=h6_2 k_0, a=z b",
   "weighted_coordinate_energy": "2 delta(h6_2)^2 + 2 delta(k_0)^2 + delta(z)^2 + delta(b)^2",
   "z_hex": "01000000000100000000010100000100",
   "z_order": 3

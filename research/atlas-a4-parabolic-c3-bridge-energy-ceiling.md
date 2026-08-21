@@ -33,6 +33,17 @@ limsup_n x30(U_n)^2
 ```
 
 Thus no separate compactness argument or extremizer exclusion is needed.
+More generally, the same proof closes the q14 contradiction from the weaker
+strict ceiling
+
+```text
+limsup_n E_PC3(U_n)<24 sin^2(pi/36),
+```
+
+whose right-hand side is strictly larger than `1/6`.  The displayed
+`1/6` target is retained because it is the natural weighted quadratic budget
+suggested by the packet decomposition, not because the bridge needs that
+much strength.
 
 The four coordinates have a direct structural meaning.  The first two lie in
 the two packet `S3` factors which generate the rank-three core, `b` is the
