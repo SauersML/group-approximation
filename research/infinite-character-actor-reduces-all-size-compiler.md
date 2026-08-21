@@ -6,6 +6,8 @@ title: Replace all finite actor challenges by one nonamenable character orbit
 target: bounded-template-expanding-character-actor-family
 requires:
   - infinite-schreier-pvm-transport-kills-finite-mark
+  - infinite-character-actor-word-energy-interface
+  - same-basis-rounding-interface-for-sparse-weyl-sampler
 ---
 
 Construct a finitely presented semidirect/module packet with one countable
