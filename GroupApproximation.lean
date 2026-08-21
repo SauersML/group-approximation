@@ -1474,6 +1474,9 @@ import GroupApproximation.Higman.OperationClosureTau
 import GroupApproximation.Higman.FlipGroup
 import GroupApproximation.Higman.GeneratedBasic
 import GroupApproximation.Higman.GeneratedCoords
+import GroupApproximation.Higman.GeneratedTransition
+import GroupApproximation.Higman.GeneratedEnumeration
+import GroupApproximation.Sofic.TorsionFreeNonMFEndpoint
 import GroupApproximation.Sofic.GreendlingerFreeGate
 
 /-!
