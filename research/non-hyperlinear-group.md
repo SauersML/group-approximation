@@ -87,7 +87,11 @@ differences explicit.  The quantitative fences are collected in
 `section-three-quantitative-no-go-audit-2026-08-21`: twisted-regular predicate
 atoms retain positive trace, the `1/sqrt(log d)` Clifford scale is conditional
 on a complete-table decoder and positive carrier, and block-diagonal adjoint
-gap leaves an uncontrolled block-scalar kernel.
+gap leaves an uncontrolled block-scalar kernel.  The critical Clifford scale
+is genuinely sharp: `dirac-average-is-a-sharp-near-extra-clifford-generator`
+constructs an exact same-factor involution with row anticommutator
+`sqrt(2/m)` in dimension `2^m`, and its coefficient `l1` loss is exactly
+`sqrt(2m)`.
 
 The machine interface has now been reduced further. The strong
 `threshold-free-reverse-kleene-higman-diagonal` needs a NONHALT word in the

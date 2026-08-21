@@ -327,7 +327,14 @@ tracial group relators cannot delete nonlinear selector atoms.  A
 supercritical Clifford challenge has the conditional critical row scale
 `Theta(1/sqrt(log d))` only after a dimension-uniform complete-table decoder
 and positive-density corner have been supplied; those hypotheses are not
-currently consequences of the local Clifford presentation.  Finally,
+currently consequences of the local Clifford presentation.  The scale itself
+is sharp even inside one Clifford factor:
+`dirac-average-is-a-sharp-near-extra-clifford-generator` proves that the
+normalized sum of `2m` exact anticommuting generators is an exact involution
+whose anticommutators with the generators have size `sqrt(2/m)` and whose
+anticommutator with chirality is zero.  Its coefficient `l1` mass is exactly
+`sqrt(2m)`, so a constant-loss word-telescoping decoder cannot be hidden in
+that expansion.  Finally,
 block-diagonal exact models leave the whole block-scalar algebra in the
 adjoint Laplacian kernel, so a scalar spectral gap inside every block does not
 localize coherent normalized-HS error.  These are fences around the native
