@@ -133,6 +133,20 @@ including every infinite-type/r.e. module and every proposed non-Cartan
 placement inside that ambient algebra.  The route can survive only by
 changing the acting group, not merely the module presentation.
 
+Finite partition data itself admits an exact but barren compiler.
+`finite-pmp-actions-have-barren-haar-linear-compilers` proves that every
+finite p.m.p. `SL_3(Z)`-space is an equivariant factor of a Haar
+finite-field algebraic action: attach iid linear labels to the finite points
+and select the lexicographically least label in each orbit.  Arbitrary orbit
+weights come from a trivial atomless Haar coordinate.  The resulting
+`SL_3(Z)` action has finite image, so its dual semidirect product is sofic and
+the crossed product is CE.  Equivalently, whenever a finite measurable
+partition has a **finite full translate Boolean algebra**, it can be encoded
+exactly but cannot carry the non-CE moment obstruction.  The missing compiler
+must therefore retain the infinite translate closure and the relation
+normalizers' multiplication; matching the finite base probabilities alone is
+never enough.
+
 The actor restriction is substantially stronger than “not virtually free.”
 `haagerup-actors-cannot-host-property-t-algebraic-envelope` applies Popa's
 relative property-H rigidity theorem: if `Lambda` is Haagerup, then
