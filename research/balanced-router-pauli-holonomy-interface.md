@@ -57,6 +57,15 @@ proved in `pauli-quarter-holonomy-is-balanced-derived-reset`.
 The truth-table and analytic-floor parts are proved.  The remaining work is
 the finite equal-type incidence plus its exact properly infinite extension.
 
+The reflections need not themselves become ordinary group words if this
+interface is used with `group-algebra-mark-reverse-kleene-collapse`.  Since
+both carrier projections are finite rational group-algebra expressions, so
+are their reflections, their commutator, and its negative spectral cut.  Any
+one of these may be the Kleene mark.  This removes the former **word exposure
+of the mark** requirement.  It does not remove semantic incidence: the
+nonhalting estimates must still force the chosen polynomial mark to zero,
+and the halting completion must keep it nonzero.
+
 The derived trace-`1/8` carrier is transverse rather than already localized:
 its overlap with either old trace-half coefficient corner is `1/16`, and it
 is contained in neither.  Consequently the D8 carrier cannot simply be

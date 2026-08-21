@@ -52,11 +52,15 @@ This is the local shape required of a reset:
 - the carrier has fixed normalized density `1/8`.
 
 Consequently the local representation-theoretic part of an equal-scale
-derived lift is no longer hypothetical.  What remains before this closes
-`derived-lifted-gauge-reset-spin-bridge` is to expose `R_0,R_1` as ordinary
-derived-packet words, attach their two balanced signs to the old and fresh
-gauge shares, and prove that the exact marked representation extends across
-that incidence.  The exact Pauli/reset arithmetic itself is complete.
+derived lift is no longer hypothetical.  For a literal word-mark route one
+would still have to expose `R_0,R_1` as ordinary derived-packet words.  The
+newer `group-algebra-mark-reverse-kleene-collapse` removes that requirement:
+`R_0,R_1,K,H` are already finite rational group-algebra expressions and may
+be used directly as algebra marks.  What remains in either formulation is to
+attach their balanced signs to the old and fresh gauge shares, prove
+nonhalting collapse of the selected mark, and prove that the exact halting
+representation extends across that incidence.  The exact Pauli/reset
+arithmetic itself is complete.
 
 The reset is balanced but not already semantically localized.  If
 `q_raw` and `q_comb` denote the two pre-existing trace-half coefficient
