@@ -73,6 +73,14 @@ and the strict defect `P_f`. Any proof based only on the finite packet and
 Steinberg covariance would contradict the finite-overgroup and direct
 relator-certificate barriers.
 
+There is now a second exact formulation of the analytic wall.
+`hs-steinberg-root-kernel-is-linear-sofic` asks whether a tracial-HS model of
+the Steinberg group makes the coefficient quotient by its common root kernel
+linear sofic.  If it does, stable finiteness of rank-metric matrix
+ultraproducts kills `P_f` immediately; this implication is the route
+`hs-schur-root-collapse-via-linear-sofic-kernel`.  This separates the open
+work into a metric decoder, rather than mixing it with Toeplitz algebra.
+
 ## Attempts
 
 - **Intersect rounded root kernels.** For a fixed finite root window, the
@@ -82,6 +90,15 @@ relator-certificate barriers.
   show that its generated ideal contains `P_f` has no uniform bound. A
   forward union bound therefore loses exactly the amplification-invariant
   information the construction needs.
+- **Linear-sofic root-kernel reduction.**  For an exact finite-dimensional
+  root representation, conjugation formula `(SRK4)` makes the finite spectral
+  character set carry left and right coefficient multiplication, and the
+  common kernel quotient is finite.  In a tracial ultraproduct these spectra
+  can become diffuse.  The precise proposed replacement is
+  `hs-steinberg-root-kernel-is-linear-sofic`; it is sufficient because its
+  rank ultraproduct is stably finite, but it is not automatic from HS-small
+  error since an arbitrarily small full-rank perturbation has normalized rank
+  one.
 - **Direct relator telescoping.** Writing `x_12(P_f)` as a product of root
   words does not put `P_f` in the defining relator ideal. Such a certificate
   would kill the nonzero mark algebraically and contradict the faithful

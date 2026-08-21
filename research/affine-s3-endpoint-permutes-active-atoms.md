@@ -59,3 +59,9 @@ After fixed-table Hilbert--Schmidt exactification, `(ASE4)` persists with an
 `O(sqrt(E))` loss in `a`.  This is a local finite-group theorem.  It still
 does not put the resulting algebra in the commutant of an independent
 Toeplitz/property-`(T)` coefficient factor.
+
+The tensor-independent retention attempt is now refuted by
+`finite-affine-head-cannot-retain-old-commutant-density`.  The surviving use
+of this theorem is intrinsic: `affine-s3-active-idempotent-toeplitz-envelope`
+uses the invariant active sum itself as the Toeplitz defect, rather than
+asking a fixed finite head to control an unrelated residual multiplicity.
