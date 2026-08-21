@@ -91,3 +91,18 @@ local rules over that group always gives a sofic/hyperlinear crossed product
 and can never contain `N`.  Within the native acting group, the linear-subshift
 branch must use infinitely many r.e. relations producing a genuinely
 non-residually-finite module; no finite constraint gadget can close the route.
+
+Non-residuality is not sufficient.  The construction in
+`nonresidual-linear-module-can-give-a-sofic-envelope` takes an effective
+finitely generated infinite simple amenable quotient `F -> Q` and the cyclic
+module `A=F_p[Q]`.  The module is recursively presented and an augmentation
+difference `delta_q-delta_1` dies in every finite module quotient, so neither
+`A` nor `A rtimes F` is residually finite.  Nevertheless
+
+```text
+1 -> A x ker(F->Q) -> A rtimes F -> Q -> 1
+```
+
+has sofic kernel and amenable quotient, hence `A rtimes F` is sofic.  The live
+infinite-type module must therefore carry a genuinely nonsofic action/CE
+obstruction, not merely lack separating finite invariant quotients.
