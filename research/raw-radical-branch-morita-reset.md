@@ -33,3 +33,11 @@ makes the four orthogonal branch carriers add rather than overlap.
   desired tensor-factor formula locally, but literal iteration places future
   packets in all past commutants. A valid compressor must reset that history
   without reverting to stationary finite-group flow.
+- **Literal common symplectic restriction:** precisely merges the four raw
+  branches at their half-spin scale, but it is not a return to the next
+  full-spin baseline. `raw-radical-full-scale-merge-needs-an-equal-reservoir`
+  proves the sharp dimension ceiling: the same carrier yields at most half
+  the desired full-scale multiplicity, and equality requires an external
+  reservoir at least as large as the entire forbidden carrier. Tracking that
+  reservoir restores the regular stationary flow. Thus no finite chart/HNN
+  atlas alone closes this node.
