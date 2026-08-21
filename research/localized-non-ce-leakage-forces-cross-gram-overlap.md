@@ -8,6 +8,7 @@ distinct_from:
   global-v4-exit-capacity-is-cross-gram-curvature: that proves leakage-or-overlap from dimension accounting alone; this proves that BCS-quiet leakage is impossible in matrices and hence forces the overlap alternative.
   one-cross-gram-moment-extracts-the-common-polar-gauge: that turns a supplied cross-Gram moment into a common gauge; this supplies a positive cross-Gram lower bound from the actual shared non-CE tuple under an explicit localized covariance hypothesis.
   context-local-fanizza-exits-do-not-control-global-leakage: that proves the established occurrence bridges do not imply the localized covariance hypothesis and reduces it to one explicit capacity-gated mixed energy.
+  one-gram-vector-decodes-a-finite-bcs-strategy: that gives a projection-free bypass when one selected Gram operator has low total state-dependent game energy across every context.
 ---
 
 Fix the finite non-Connes-embeddable BCS `B`, its shared involution words
@@ -200,3 +201,12 @@ arbitrarily close to the whole source mass.  It is sufficient for a fixed
 holonomy floor after a controlled spectral cut, but a route which
 specifically needs near-full polar alignment must add one further
 amplification/return estimate.
+
+There is a projection-free alternative to that amplification.  By
+`one-gram-vector-decodes-a-finite-bcs-strategy`, a selected cross-Gram block
+`G` of positive mass already yields a finite strategy if the complete
+state-dependent game energy `E_G` is small.  The required mixed moments are
+the fixed list `tr(G^*F_cG)` and `tr(G^*A_(c,x)GB_x)` over **all** contexts.
+`pairwise-cross-grams-do-not-supply-one-game-state` proves that separate
+positive pairwise overlaps do not imply this condition; the same `G` must
+carry the whole game energy.
