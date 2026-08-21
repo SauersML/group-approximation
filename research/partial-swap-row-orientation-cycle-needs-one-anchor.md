@@ -7,6 +7,7 @@ distinct_from:
   controlled-reflection-cell-has-free-orientation: that computes the hidden multiplicity involution in a fresh-control acceptance compressor and shows that it changes the acceptance corner; this separates the harmless whole-row sign in the partial-swap compiler from the harmful relative block sign.
   derived-reset-does-not-fix-controller-orientation: that proves a balanced derived lift preserves both controller extension characters; this gives the exact parity reason that a finite cycle of row comparisons also preserves the simultaneous relative twist.
   dihedral-spin-packet-supplies-common-partial-swap: that supplies the common off-diagonal Gram source and reduces the remaining problem to hybrid row involutions; this audits precisely which orientation ambiguity of those row involutions matters.
+  centralizing-d8-word-anchors-relative-row-orientation: that supplies the ordinary-word absolute anchor which this note isolates; this proves why pairwise row comparisons still have to transport their relative bits to that anchor.
 ---
 
 Fix a grading involution `Z=diag(I,-I)` and a self-adjoint involution
@@ -115,6 +116,20 @@ One anchored vertex is necessary and sufficient at the bit level.  A tree
 from that anchor already suffices; cyclic redundancy or expansion only
 improves robustness after the anchor has been wordized.
 
+The anchor has now been wordized in
+`centralizing-d8-word-anchors-relative-row-orientation`.  Adjoin a common
+involution `e` commuting with `z` and `j`.  The intended anchor word is `e`,
+whereas its relative twist is `ze`; exactly
+
+```text
+[e,j]=1,                 [ze,j]=y.                    (ORC9)
+```
+
+Thus the wrong absolute orientation pays the entire central-mark distance.
+The word `e` may retain an arbitrary common transported multiplicity
+involution: after also commuting it with the row data, multiplication by
+`e` preserves every row energy.  No scalar type selection is required.
+
 ## Consequence for the hybrid-row compiler
 
 The remaining orientation target is narrower than selecting a unique finite
@@ -122,14 +137,15 @@ representation type:
 
 1. ignore every whole-row sign by `(ORC3)`;
 2. couple all relative block-orientation bits to one common bit; and
-3. pay that one bit with a tautological row or one fixed Hecke-corner anchor.
+3. pay that one bit with the centralizing D8 anchor `(ORC9)`.
 
-Step 3 is still a genuine group-word problem.  The anchor must compare the
-two `Z` blocks on the common dihedral spin source; a cycle of unanchored
-extension-character comparisons cannot manufacture it.  Once such an
-anchor is available, `(ORC6)` gives a dimension-independent source-mass
-floor for the wrong orientation, and no per-predicate orientation selection
-is needed.
+Step 3 is complete.  The live problem is step 2 at the selected-row level:
+construct relative comparison words which transport each hybrid row's
+extension bit to the common anchor without demanding a universally scalar
+nonlinear word on the full finite regular packet.  Once those comparisons
+are available, `(ORC6)` and `(ORC9)` give a dimension-independent
+source-mass floor for the wrong orientation, and no per-predicate absolute
+orientation selection is needed.
 
 ## Attempts
 
@@ -141,5 +157,5 @@ is needed.
   help when the edge labels come from a consistent intended orientation:
   their product is still `+1`, so both global solutions remain.
 - **Anchor a reference row with `A=B=I`.**  Analytically complete by
-  `(ORC6)`; the open issue is naming its relative `Z`-block orientation by
-  ordinary words on the same source.
+  `(ORC6)` and now wordized by `(ORC9)`.  This does not by itself construct
+  the relative comparison from a selected nonlinear row to the anchor.

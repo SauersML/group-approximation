@@ -109,6 +109,21 @@ blocks.  The controller rule which erases its negative-block value is the
 remaining selected-type/Hecke orientation problem.  The induction audit is
 spelled out in `dihedral-spin-packet-supplies-common-partial-swap`.
 
+The absolute orientation bit is no longer open.
+`centralizing-d8-word-anchors-relative-row-orientation` adjoins one
+centralizing involution `e` for which
+
+```text
+[e,j]=1,                    [ze,j]=y.                 (CPS7)
+```
+
+Thus a simultaneous wrong relative twist pays the full marked distance,
+while arbitrary transported whole-row multiplicity carried by `e` preserves
+all row energies.  The remaining issue is narrower: a selected nonlinear
+row packet must expose a **relative comparison** tying its extension bit to
+this anchor.  It still may not ask one ordinary finite-packet word to equal
+the nonlinear hybrid reflection on the entire marked regular sector.
+
 `perfect-tracial-bcs-has-one-common-module-swap` proves that this common
 swap exists exactly in the standard form of every perfect tracial source.
 Thus exact completeness is not asking for a new operator-algebraic
@@ -137,3 +152,7 @@ multi-piece/Hecke or properly-infinite source which is common at the level of
   truth-table packet is needed for the swap itself.
 - **Globally identify all context variables.**  This adds cross-context
   commutation and may destroy the exact perfect commuting representation.
+- **Leave the selected rows in an unanchored comparison cycle.**  A common
+  relative `z`-twist survives exactly.  The D8 anchor `(CPS7)` removes the
+  absolute bit, but the row-to-anchor comparison word remains part of the
+  nonlinear selected-type compiler.
