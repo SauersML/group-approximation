@@ -95,6 +95,13 @@ Either way a fixed positive energy is paid.
   expose those two Hecke reflections as legal derived-packet words and make a
   mixed rank-five return require trivial holonomy.  Alternatively the mixed
   words must prove `(TRV)` for the same carrier.
+- **The scalar robustness is closed.**
+  `canonical-trace-tests-robustify-pauli-quarter-holonomy` proves the exact
+  identity `||R_F R_G R_F R_G-1||_2^2=32(tau(FG)-tau(FGFG))` and turns the two
+  fixed trace moments into a `1/2-o(1)` canonical-microstate floor.  Thus no
+  new analytic estimate is needed after the reflections become words.  The
+  remaining holonomy interface is precisely
+  `balanced-router-pauli-holonomy-interface`.
 - **Falsification gate, inherited.**  Any proof of this claim must be checked
   against the exact model: the compulsory overlap exists there too, so an
   argument that derives `(HOL)` or `(TRV)` from the overlap alone, without using
