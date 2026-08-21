@@ -1,6 +1,6 @@
 ---
 rg: 2
-id: hecke-coset-quarter-selector-is-either-untyped-or-rank-preserving
+id: hecke-quarter-selector-is-untyped-or-rank-preserving
 kind: claim
 title: A Hecke coset quarter-selector is either unauthenticated or preserved by every finite-edge transport
 distinct_from:

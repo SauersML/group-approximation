@@ -93,7 +93,7 @@ twists is needed after that decoding step.
 
 Literal quasi-regular involutions remove the reflection syntax but not this
 decoding step.  By
-`hecke-coset-quarter-selector-is-either-untyped-or-rank-preserving`, a chosen
+`hecke-quarter-selector-is-untyped-or-rank-preserving`, a chosen
 coset action can make such an involution quarter-negative, but the regular
 stationary type makes every nontrivial involution half-negative.  Once finite
 type data authenticate the quarter rank, every ordinary HNN/Hecke transport
