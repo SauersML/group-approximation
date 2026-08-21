@@ -504,6 +504,29 @@ refutation, and this claim makes the reduction precise.
   vacuous and the measured floor, if real, is second-order.  The
   cancellation solver now decides reality; the census stands as the
   complete structural input for whatever mechanism survives.
+- **Corrected second-order mechanism: the phase-free core is the
+  native retention of the dictionary (2026-08-21).**  Two exact
+  structural facts sharpen everything.  (i) On every
+  multiplicity-one twisted block the torsor element is a SCALAR, so
+  `W` is inert on the entire native mass (77% of the space): the
+  joint `(K, W)` floor and the `K`-only floor coincide on the locked
+  sector.  (ii) Expanding the leak in the four native phases, the
+  diagonal terms `t conj(a t) = conj(a)` are PHASE-FREE: the leak
+  contains an additive constant
+
+  `c*(V) = sum_(mtilde=1) w_sigma conj(a_(sigma, pi(sigma)))`,
+
+  the native-sector retention of `Ad(V)` — the amount of native mass
+  the dictionary keeps self-aligned — which NO enemy freedom (native
+  phases, shallow unitaries, torsor) can touch.  Every tunable term
+  has a FIXED total range `R(V)` because unitarity of `K` fixes every
+  block mass (nothing is tradeable), so the fixed-`V` floor holds iff
+  `|c*(V)| > R(V)` — one computable inequality; and the `V`-escape
+  seen at defect cost `+13` is the enemy driving `c*(V)` toward zero
+  along the dictionary manifold, making the true wall the tradeoff
+  curve `|c*|` versus defect.  This supersedes both the vacuous
+  first-order form and the erroneous positivity claim, and it is
+  exactly computable from the control dictionary and the census.
 - Proved below by assembling established inputs; see the proof route.
   The one step that is a HYPOTHESIS here and a theorem at `SL_2` is
   vertex near-exactness: `SL_3(Z)` HS-stability is open (it is the
