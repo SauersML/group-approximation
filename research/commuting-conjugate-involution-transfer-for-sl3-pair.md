@@ -98,22 +98,20 @@ matrix-coordinate exclusion of the independent two-coordinate overlap.
 
 ## Attempts
 
-- `native-transfer-has-finite-trace-certificate` removes both apparent
-  compactness losses specific to this native packet.  Qualitative exclusion
-  of a regular-trace leak is equivalent to one dimension-independent linear
-  inequality using only the presentation defect, the `C`-central and
-  commuting-conjugate defects, and one finite actor trace window.  Diagonal
-  tensor powers preserve the balanced involution and the joint relation while
-  amplifying any target violation to at least `1-exp(-1)`.  Thus the open
-  problem is a finite matrix inequality, not an unknown modulus or an
-  infinite trace-exhaustion theorem.  The Bernoulli firewall shows that this
-  finite inequality still cannot be tracial/SOS-universal.
-- `residual-finite-camouflage-removes-native-trace-window` sharpens that
-  reduction: tensoring by a finite quotient separating the chosen actor
-  window leaves the balanced lamp packet and overlap energy unchanged and
-  makes every window trace zero.  Thus regular native transfer is equivalent
-  to one universal defect-only inequality `8a(1-2a)<=L d_cc`; canonical
-  actor trace is no extra source of rigidity.
+- `native-transfer-has-defect-only-certificate` removes every compactness and
+  trace-profile loss specific to this packet.  Diagonal tensor powers amplify
+  a failed linear inequality to macroscopic target energy; tensoring with
+  separating finite-quotient regular representations then makes the actor
+  trace canonical while preserving the balanced lamp, joint relation, defect,
+  and overlap exactly.  Thus regular native transfer is equivalent to the
+  universal defect-only inequality `8a(1-2a)<=L d_cc`.
+- `odd-congruence-native-sector-has-defect-only-gap` proves the resulting
+  defect-only inequality uniformly when the lattice restriction is an exact
+  odd-congruence representation, with arbitrary multiplicities and no trace
+  hypothesis.  Tensor amplification turns failure of a linear bound into the
+  leak excluded by rank-two Weyl collapse.  It also shows determinant and
+  parity are tautological on the commuting four atoms: the target lamp word
+  always has determinant one for every overlap `a`.
 - `commuting-conjugate-involution-is-balanced-overlap` gives the complete
   projection reduction `(CCI4)--(CCI7)` and proves that the old universal RCC
   dilation no longer supplies a counterexample: it does not preserve
