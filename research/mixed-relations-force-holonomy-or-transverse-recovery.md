@@ -10,6 +10,7 @@ distinct_from:
   same-orbit-closure: that asks for closure of a rectangular escape under a common orbit, in the whole-map formalism; this asks the mixed relations to force one of two positive-energy alternatives on a specific compulsory overlap.
   multiplicity-return-transducer: that asks for a returning multiplicity wire at fixed packet scale in the Schur-Clifford lane; this asks for a dichotomy on the raw/comb overlap and consumes no predicate compiler.
   separate-d8-carriers-cannot-recover-in-commuting-descendants: that proves the analytic floor once the two distinct native quarter carriers are separately recovered in commuting descendants; this must still obtain one of the required recovery patterns from the mixed rank-five words.
+  separate-native-quarter-carrier-recovery: that isolates the weakest finite-matrix placement statement now sufficient for the D8 branch; this claim retains the broader holonomy/transverse-recovery dichotomy.
 ---
 
 Let `Q` be the transported coefficient corner of the fixed raw/comb Pauli
@@ -124,7 +125,7 @@ words.
   moment floor can be consumed before groupifying the reflections.  It is
   enough that fixed-packet decoding locate `F` and `G` in their respective
   commuting descendants.  This is now the weakest known holonomy closure
-  target for the atlas.
+  target for the atlas, isolated as `separate-native-quarter-carrier-recovery`.
 - **Falsification gate, inherited.**  Any proof of this claim must be checked
   against the exact model: the compulsory overlap exists there too, so an
   argument that derives `(HOL)` or `(TRV)` from the overlap alone, without using

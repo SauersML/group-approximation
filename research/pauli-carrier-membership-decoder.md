@@ -28,3 +28,10 @@ Exact prefix arithmetic proves that they are distinct and have overlap
 so their projection reflections have commutator energy `1/2`.  Any bridge
 between them is part of the decoder, not a finite-packet identity; the
 noncommutative angle is the alternative holonomy certificate.
+
+The full containment requested here is no longer the weakest sufficient
+endpoint.  `separate-native-quarter-carrier-recovery` only asks that this
+transported carrier and the distinct common quarter corner enter two
+commuting returned algebras.  Their fixed D8 holonomy then supplies a
+dimension-free `1/8` recovery floor without proving containment under the
+trace-`1/8` parent.
