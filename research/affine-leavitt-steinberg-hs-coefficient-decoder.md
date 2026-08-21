@@ -69,6 +69,12 @@ the affine active Leavitt construction.
   conjugacy and the finite head alone form a virtually-free chart with exact
   finite marked countermodels.  The decoder must therefore use the paired
   Steinberg multiplication triangles in addition to the conjugator.
+- **Full coefficient centrality loses the affine advantage.**
+  `coefficient-central-affine-leavitt-envelope-is-morita-trivial` computes the
+  active quotient as two copies of `M_3(L_2(k))`.  Therefore the explicit
+  conjugator is a diagnostic model, not by itself a decoder for the original
+  free relative envelope.  A useful covariance law must be nontrivial on the
+  affine head rather than centralizing it completely.
 - **No regular-trace contradiction is asserted.** The decoder is a
   finite-matrix stability statement. It need not extend to the left regular
   representation or any arbitrary tracial representation of `Gamma_A`.
