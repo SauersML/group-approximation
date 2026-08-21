@@ -58,6 +58,15 @@ residually finite".
   `sln-z-thin-codense-tau-pair`), the direct route through this lemma
   supersedes the face-confinement it provides.
 
+**Remark on Dogon's Theorem 1.6.**  Every group to which Dogon's
+Theorems 1.3/1.6 and Corollaries 1.8--1.9 apply has property (T)
+(`Sp_(2g)(Z)`, Gromov random groups at density in `(1/3, 1/2)`, infinitely
+presented Kazhdan groups), so by this lemma the "more generally, weak
+ucp-stability" strengthening of Theorem 1.3 to Theorem 1.6 is, on
+hyperlinear approximations, the same hypothesis; the genuine extra
+generality of weak ucp-stability is confined to non-Kazhdan groups, where
+Theorem 1.6 does not apply.
+
 **Literature cousin.**  Fournier-Facio--Willett arXiv:2603.18456v2,
 Theorem 1.1: if `C^*(Gamma)` has the LLP and is RFD then every asymptotic
 representation (operator, Hilbert--Schmidt or Schatten norm) is near
