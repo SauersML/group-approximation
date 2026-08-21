@@ -46,11 +46,12 @@ The zero-density alternative collapses it directly.
 
 HALT completeness is compatible with the *payload*: on the perfect quotient
 `A_t=D_R=P` for every `t`, so the scalar mismatch is zero.  Moreover
-`one-sided-amitsur-oracle-has-bounded-fock-model` gives all moving oracle
-instructions one simultaneous bounded infinite realization.  It is
-nevertheless a separate requirement to compile the proper-isometry,
-additive, countably presented oracle into finitely many unitary group
-relations without losing the constant matrix gap.
+`one-sided-amitsur-oracle-has-two-unitary-corner-model` gives all moving
+oracle instructions one simultaneous bounded infinite realization using only
+two unitary variables and a fixed half-corner.  It is nevertheless a separate
+requirement to compile the additive, countably presented corner relations
+into finitely many unitary group relations without losing the constant matrix
+gap.
 
 ## Why this is a smaller diagonal challenge
 
@@ -77,9 +78,13 @@ exactly to the smallest known Fanizza scalar endpoint.
 - **One-sided inverses repair only bounded completeness.**
   `one-sided-amitsur-oracle-has-bounded-fock-model` replaces the formal
   two-sided inverses by bounded Fock left inverses while retaining a unit
-  dimension-matched matrix defect.  Its creators are proper isometries and
-  its additive instructions still move with `n`; finite unitary groupification
-  remains open.
+  dimension-matched matrix defect.
+- **Two unitary variables remove the proper-isometry and moving-inverse
+  syntax.**  `one-sided-amitsur-oracle-has-two-unitary-corner-model`
+  Halmos-dilates both Fock letters and replaces every named inverse by the
+  positive relation `A_n^*A_n=(2n)!P`.  The finite defect remains
+  `1/sqrt(2)`.  The countable moving additive relations and their growing
+  mass—not boundedness or unitarity of the variables—are now the oracle gate.
 - **Direct polynomial evaluation is not robust.**  The degree and coefficient
   mass of `p_k` grow with the endogenous stopping index, so ordinary
   telescoping loses a `k`-dependent factor.
@@ -106,6 +111,12 @@ exactly to the smallest known Fanizza scalar endpoint.
   finite-coordinate: `char-p-weyl-blocks-local-commutator-decoder` gives an
   exact canonical-trace paired-root packet which defeats every purely local
   unital coefficient interpretation.
+- **Rational scaling does not remove the bad coefficient sector.**
+  `finitely-generated-rational-dilations-preserve-char-p-weyl-cells` builds
+  an exact finite Weyl countercell for every fixed rational dilation torus by
+  reducing at a prime outside its denominator support.  Dyadic iteration and
+  any other finitely generated rational scale library therefore cannot force
+  `(DJA1)`.
 - **Live reduced target.**  PCP-localize only the stopping flag and the one
   scalar root-to-trace reflection above.  The remaining question is whether
   this reduction removes runtime dependence while retaining a bounded
