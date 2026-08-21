@@ -66,6 +66,21 @@ perfectness argument), here appearing as finite Weyl-gauge twists.
   the twisted-hom solutions can be enumerated from the `S_3`-action
   on the character data of `B`, and each surviving hom tested
   against `tr(V^j) -> 0` along the `h`-tower.
+- **The coprime leg drops out of the classification (same-day
+  addendum).**  Every constraint of `(BP1)` — products, inverses,
+  commutation, and the twist `1 otimes Ad sigma_p(w)` — acts
+  pointwise in the central decomposition over the `R_q`-leg, so the
+  solution set is the set of measurable families, over the coprime
+  spectrum, of solutions inside the FIXED finite-dimensional
+  `p`-block alone: the gauge classification is a purely
+  finite-dimensional problem (commuting unitary families in the
+  block, membership in the parahoric-commutant conjugates, twisted
+  lattice relations), with the caveat that the Weyl elements do not
+  normalize the parahoric, so the family ranges across the finitely
+  many conjugate commutants inside the block.  At the smallest gauge
+  (`p = 2, C = 2`) the relevant data is the character theory of the
+  1024-element parahoric image in `SL_3(Z/4)` — an enumerable
+  object.
 - **Falsification honesty.**  A surviving twisted hom compatible
   with regularity at some finite gauge would NOT yet be an enemy (it
   must still satisfy the mixed-word regularity and assemble into a
