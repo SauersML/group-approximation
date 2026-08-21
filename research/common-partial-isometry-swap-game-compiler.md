@@ -186,6 +186,15 @@ None of the existing common-source lemmas proves `(CPS9)`.
    selector and payload non-equivariantly and nevertheless return to the one
    shared-variable row.
 
+The non-equivariant alternative now has a dimension-free payment theorem.
+`nonscalar-frame-or-selector-mixing-pays-forbidden-source` proves that if
+such transports supply an actual operator frame on the common D8 source,
+then every part of that frame crossing the forbidden selector wall is
+charged by the selector-intertwining residuals.  Hence the next construction
+may break predicate equivariance, but it must wordize those mixing residuals
+as consistency rows.  The remaining finite target is one literal common-
+source frame, not another predicate-preserving carrier family.
+
 Thus `(CPS9)` is neither a consequence of exhaustive summation, the D8 mass
 floor, nor Hecke packing.  A proof must add a genuinely finite-matrix
 same-reservoir inequality which rules out the established orthogonal-amalgam
