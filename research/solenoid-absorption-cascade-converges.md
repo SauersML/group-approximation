@@ -270,6 +270,27 @@ recursion terminates; the total correction is
   band -- and it is the single remaining analytic exponent of the
   entire `SL_2` far sector: prove it and the goal closes along the
   Iwahori route; the whole rest of the chain is proved or arithmetic.
+- **The band bound is a self-similar renewal exponent under `x4`
+  (2026-08-21).**  The defect satisfies `e' = c psi(c)^{-1}` with
+  `psi = Ad(h)` the `x4` spectral scaling, so `Ad(h)` maps the
+  `rho`-band of `V` to the `4rho`-band and relates `e'` there to `e'`
+  on the `rho`-band by construction.  Hence the profile
+  `m(rho) = ||e'|_(rho-band)||_2` obeys a RENEWAL/self-similarity
+  relation across the geometric scales `rho, 4rho, 16rho, ...`:
+  `m` at one scale is a fixed linear image of `m` at the next plus the
+  local relator-defect input.  Its near-`0` behavior is therefore a
+  POWER LAW `m(rho) ~ rho^alpha`, with `alpha` the leading exponent
+  of the associated transfer operator on the near-identity band (the
+  same `x4` self-similarity the dyadic winder draws).  Convergence of
+  the cascade is exactly `alpha >= 1` (mass scaling); `alpha = 1/2`
+  would be the failure.  So the last analytic question is not an
+  opaque estimate but the SIGN of `alpha - 1` for one explicit
+  transfer operator built from `Ad(h)`, the swap, and the boundary
+  condition `e'(0) = 0` (from unipotent normal generation).  The
+  boundary condition forces `alpha > 0`; whether the `x4`-expansion
+  pushes it to `alpha >= 1` is the computable crux -- a spectral-radius
+  sign, the cleanest and most concrete form the entire far sector has
+  reached.
 - **Why it is plausible and where it could fail.**  The peeling is a
   geometric contraction when the residual shrinks faster than the gap:
   each descent multiplies the uncorrected mass by the local defect

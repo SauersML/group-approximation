@@ -76,3 +76,29 @@ the complete positive Fourier fourth moment.
   mixing of pairs of Fourier matrices.  Plain Cauchy--Schwarz bounds it by one
   and does not recover the diagonal positive fourth moment in `(NC5)`.  The
   missing input is precisely the orientation energy `(NC1)`.
+
+## Promising joint attack
+
+The Kaufman--Sudan self-corrector has a literal unitary-heap analogue.  Solving
+one alpha constraint for the value at `t` gives
+
+```text
+C_t(b)=R_(t+alpha b) R_(t+(1+alpha)b)^* R_(t+b),              (NC6)
+```
+
+and bi-invariance shows exactly
+
+```text
+E_(t,b)||C_t(b)-R_t||_2^2=A(R).                              (NC7)
+```
+
+Their scalar proof compares two corrections by placing test words on the rows
+and columns of one `4 x 4` tensor square.  For unitaries the same row/column
+calculation fails only when the order of two heap factors is reversed.  Every
+such reversal is a quotient-orientation error of the form `(NC1)`; because the
+four affine forms are pairwise independent, its two indices are uniform, so it
+can be charged to `I(R)` without a rank or field-size loss.  A successful proof
+should write this tensor square directly in `L^2(M_d)`, use Pythagoras/Jensen
+instead of plurality, and bound the constant number of factor reversals by
+`I(R)`.  This is more specific than first diagonalizing: the row and column
+constraints and orientation errors must be summed in the same square function.

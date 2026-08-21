@@ -20,4 +20,3 @@ sum of characters valued in `{+1,-1}`.  Group equal character summands to
 obtain the finite-support PVM `(AUR3)`.  The actor-covariance estimate is the
 triangle inequality applied before and after conjugation, using the uniform
 closeness in `(AUR2)`.
-

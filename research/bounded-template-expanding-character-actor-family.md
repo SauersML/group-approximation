@@ -126,6 +126,22 @@ small-cancellation quotients and does not verify a recursive enumeration of
 the final kernel.  If that effective refinement is supplied, only the global
 finite-stage same-basis rounding/word-energy gate remains before Higman.
 
+There is now an explicit arithmetic bypass which removes even that
+effectivity issue.  `sl3-codense-coset-lamp-recursive-host` takes
+
+```text
+C=SL_3(Z) < A=SL_3(Z[1/2]),       X=A/C.
+```
+
+Finite-quotient codensity `q(C)=q(A)` makes the core of every finite
+character orbit transitive on `X`; hence all finite-orbit colorings are
+constant and are invisible to a two-point lamp seed.  The coset lamp group
+is finitely generated recursively presented by an explicit enumerable
+presentation.  Thus the **exact algebraic host and the post-proof Higman
+step are complete** for this route.  The remaining frontier is purely the
+finite-stage global PVM/actor-word-energy conversion recorded in
+`sl3-codense-lamp-higman-route`.
+
 The best current fp-envelope formulation is
 `bffhz-envelope-closes-exact-actor-host`.  The BFFHZ automorphism-action
 image is highly transitive, has finitely generated point stabilizers, and

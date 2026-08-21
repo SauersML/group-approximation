@@ -15,4 +15,3 @@ matrix dimension and hence one finite-support global spectral PVM.  Uniform
 closeness preserves the fixed lamp and transfers the actor covariance with
 only twice the rounding error.  Property `(T)` is then used on the actor
 orbit energy, not to perform simultaneous diagonalization.
-

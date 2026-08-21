@@ -17,7 +17,7 @@ construction consumes.
 `SharpGreendlingerGate` and `TorsionFreeGate` are the two open statements, each
 a `Prop` on the alphabet rather than a theorem with a hole.  Every result below
 takes the gate it needs as a hypothesis and is fully proved, so this module is
-sorry-free and lands: the open mathematics sits in named predicates that
+free of incomplete proofs and lands: the open mathematics sits in predicates
 nothing in the repository yet inhabits, which is the same discipline
 `GreendlingerGate` itself follows and the only one under which a scaffold can
 be committed.  When either gate is proved, its consumers lose a hypothesis and

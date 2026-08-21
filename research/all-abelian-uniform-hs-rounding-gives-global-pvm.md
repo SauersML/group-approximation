@@ -53,4 +53,3 @@ by the van Kampen areas of the corresponding identities, which may be
 unbounded.  The remaining same-basis gate is therefore a finite-template
 all-pairs exposure/compiler problem, not a cardinality-dependent matrix
 diagonalization problem.
-

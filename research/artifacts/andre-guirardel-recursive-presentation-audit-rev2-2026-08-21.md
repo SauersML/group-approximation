@@ -1,14 +1,9 @@
----
-rg: 2
-id: andre-guirardel-recursive-presentation-audit
-kind: claim
-title: The published Andre-Guirardel actor is not yet verified recursively presented
-distinct_from:
-  andre-guirardel-sharp-t-actor-audit: that audits finite presentation and point-stabilizer finite generation; this audits the strictly weaker recursive-presentation property needed after the Higman bypass.
-  recursive-permutational-lamp-presentation: that proves the lamp extension is recursively presented conditional on a recursively presented actor; this audits the condition for the published actor.
----
+# André--Guirardel recursive-presentation audit, revised
 
-OPEN as an effectivity audit; no non-recursiveness claim is made.
+**Archived 2026-08-21.** This remains a source-effectivity audit rather than
+an active Cairn claim.
+
+No non-recursiveness claim is made.
 
 The André--Guirardel construction gives a two-generated simple property-`(T)`
 sharply 2-transitive group, but the published proof does not state that the
@@ -56,3 +51,16 @@ Primary source checked: Simon André and Vincent Guirardel, *Finitely generated
 simple sharply 2-transitive groups*, Compositio Mathematica 160 (2024),
 1941--1957, arXiv:2212.06020, especially the proof of Theorem 4.1 and
 Theorem 5.3 / Proposition 5.6.
+
+## Attempts
+
+- **Enumerate cyclic subgroups instead of recognizing virtually cyclic
+  subgroups.**  This repairs the superficial enumeration in Theorem 5.3 but
+  not the non-effective choice of the quotient supplied by Proposition 5.6.
+- **Read the direct limit as a union of relator sets.**  A countable sequence
+  of finite relator sets need not be recursively enumerable unless the
+  sequence of quotient choices is effective; the published existence proof
+  does not supply that algorithm.
+- **Defer via an arithmetic actor.**  For the hyperlinearity program this
+  actor-effectivity attack is no longer terminal: `sl3-codense-coset-lamp-recursive-host`
+  supplies a fully explicit recursively presented alternative actor host.

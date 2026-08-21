@@ -50,4 +50,3 @@ transport then feeds `one-seed-infinite-character-expansion-collapses-mark`.
 - **Use only pairwise lamp commutators.**  Pairwise almost commutation is not
   itself the all-pairs approximate multiplication law `(FME1)` for chosen
   products of arbitrarily many lamps; naïve telescoping grows with support.
-
