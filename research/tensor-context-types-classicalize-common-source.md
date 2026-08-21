@@ -71,6 +71,17 @@ without making their local assignment algebras mutually commuting.  This is
 exactly the non-functorial, matrix-only coupling sought by the common-swap
 route.
 
+The obstruction leaves one geometrically meaningful escape.  A context
+algebra may act **only on its orthogonal range** `P_c=S_cS_c^*`, rather than
+as a tensor-factor label algebra already present on `Q`.  Different range
+algebras can then commute because their supports are orthogonal, while their
+pullbacks `S_c^*A_(c,x)S_c` act on the same `Q` and need not commute across
+contexts.  That is precisely the correct nonclassical standard-form
+geometry.  What the finite direct product fails to provide is an ordinary
+group-word authentication of this range-local action and its return to `Q`;
+adding such an actuator is substantive new work, not a consequence of
+tensor-product exactification.
+
 This cannot be repaired by claiming that the direct-product packet embeds
 for soundness while a different exact representation simply avoids `Q` for
 completeness.  If the exact group relators imply `(TCC1)--(TCC3)` on the
