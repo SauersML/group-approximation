@@ -210,6 +210,31 @@ Hilbert--Schmidt mass in the common part is at most `1/4`, giving
   the composition defect of the canonical pullback transports
   realizes the Matsumoto class — a finite computation at one level
   triple, decisive either way).
+- **The flux lemma verified analytically, modulo root-data
+  bookkeeping (2026-08-21, the day's last computation).**  On the
+  deep oscillator bands (constituents attached to characters of the
+  congruence kernel through the Heisenberg radical of the
+  (1,2)-parabolic), the canonical band transport is PINNED by
+  Stone--von Neumann uniqueness: any unitary implementing the
+  character shift on the Heisenberg band equals the finite Weil
+  intertwiner up to the very scalar in question, and the
+  canonical-matching normalization forces that scalar to the
+  Gauss-sum quotient.  Classical evaluations then decide the flux:
+  the level-`p^2` quadratic sum collapses to `p . (a|p) . g_p(1)`
+  with `g_p(1) = sqrt(p)` for `p = 1 (mod 4)` and `i sqrt(p)` for
+  `p = 3 (mod 4)`, so the composition defect of the `p`-scaling
+  transports is `-1` exactly when `p = 3 (mod 4)` and `+1` when
+  `p = 1 (mod 4)`; over `Q_2` the Weil index is an eighth root with
+  `(2,2)_2 = +1`.  This is precisely the Weil--Rao identity
+  `gamma(a) gamma(b) / gamma(ab) = (a,b)_p`: the canonical cocycle
+  IS the Matsumoto class on oscillator bands.  Remaining mechanical
+  check (scripted next, not assumed): the `SL_3` root-data
+  bookkeeping — that the pair `(h, h')` pairs through the
+  `(p,p)`-symbol pattern and not a cancelling variant — one finite
+  verification on the explicit parabolic.  Upon it, the `p = 3`
+  closure of the entire `Lambda`-exact face is a theorem, and the
+  pair `(SL_3(Z), SL_3(Z[1/3]))` becomes the lane's primary
+  instance with only the uniform-outlier sector remaining.
 - **What the theorem does NOT do.**  It does not touch the
   uniform-outlier sector: microstates far from all genuine
   representations remain possible a priori, and `(RC3)` remains open
