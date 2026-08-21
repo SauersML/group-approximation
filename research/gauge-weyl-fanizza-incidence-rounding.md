@@ -60,6 +60,11 @@ U_ZR U_DZ=U_DR.
 ```
 
 It is compatible with the exact marked model after common countable
-amplification: choosing `U_cd=V_dV_c^*` makes the equality tautological.
-This removes cycle holonomy but still leaves the load-bearing task of
-producing one positive-norm Gram block accepted by all rooted context rows.
+amplification **if** the full private gauge/Weyl edge-intertwiner torsors
+close: choosing `U_cd=V_dV_c^*` then makes the equality tautological.  The
+separator signs themselves are classically flat, but amplification alone
+does not prove this full-packet cocycle condition; see
+`fanizza-triangle-two-cell-has-an-intertwiner-torsor-obstruction`.  Once
+developable, the relation removes cycle holonomy but still leaves the
+load-bearing task of producing one positive-norm Gram block accepted by all
+rooted context rows.

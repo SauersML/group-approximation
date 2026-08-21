@@ -221,9 +221,10 @@ kills the entire state-holonomy row, in every matrix model and for every
 it constrains the multiplicity product around the cycle rather than any one
 finite edge restriction.
 
-The relation passes the exact-witness audit.  In one common countably
-amplified perfect BCS representation, choose for every context a unitary
-packet identification `V_c` from the same global source.  Set
+The relation passes the exact-witness audit **provided the full packet edge
+intertwiner torsors close**.  In one common countably amplified perfect BCS
+representation, if one can choose for every context a unitary packet
+identification `V_c` from the same global source, set
 
 ```text
 U_cd=V_d V_c^*.                                       (FPG17c)
@@ -239,15 +240,25 @@ U_ZR U_DZ
 ```
 
 Gauge-orbit covariantization supplies all private gauge types while fixing
-the logical BCS words, so it does not disturb `(FPG17d)`.  Hence the
-triangular two-cell does not require a tracial extension of the groupifier
-and does not kill the exact marked witness.
+the logical BCS words.  At the separator-sign level the native triangle is
+classically flat, so this construction is compatible with the exact marked
+model and does not force a forbidden Boolean assignment.
+
+There is nevertheless a genuine developability audit for the **full**
+private Weyl/gauge packet.  Countable amplification makes each edge
+intertwiner space nonempty, but does not prove that the product of the
+`D->Z` and `Z->R` intertwiner torsors meets the `D->R` torsor.  This exact
+double-coset condition is isolated in
+`fanizza-triangle-two-cell-has-an-intertwiner-torsor-obstruction`.  Until it
+is checked, `(FPG17b)` is a candidate relation, not a proved exact HALT
+extension.
 
 This repair is not the completed backend.  It pays `e_hol`, but it does not
 produce a nonzero `G`, make the selected packet predicates accept `V_cG`, or
 prove the anchor covariance rows in `(FPG19)`.  Its value is that it removes
-the global incidence coherence problem with one ordinary relator, leaving
-only the state-dependent Gram-production/acceptance problem.
+the global incidence coherence problem with one ordinary relator **once the
+full-packet torsor condition is verified**, leaving the state-dependent
+Gram-production/acceptance problem.
 
 ## Product-of-Hecke-compressions warning
 
