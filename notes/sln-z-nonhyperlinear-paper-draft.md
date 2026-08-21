@@ -1,8 +1,8 @@
-# A non-hyperlinear group from flexible Hilbert–Schmidt stability of SL_n(Z)
+# An explicit non-hyperlinear group from flexible Hilbert–Schmidt stability of SL_3(Z)
 
 **Draft, 2026-08-21.** A self-contained conditional theorem: if the plain
-higher-rank lattice `SL_n(Z)` (`n >= 3`) is flexibly Hilbert–Schmidt stable,
-then a finitely presented non-hyperlinear group exists. Every
+higher-rank lattice `SL_3(Z)` is flexibly Hilbert–Schmidt stable, then a
+displayed finitely presented non-hyperlinear group exists. Every
 hypothesis except that stability is a published theorem. This is the exact
 Hilbert–Schmidt analogue of Bowen–Burton's permutation result and, unlike the
 prior conditional routes of Dogon and Dogon–Vigdorovich, reaches the plain
@@ -21,11 +21,14 @@ every asymptotic representation `phi_n : G -> U(d_n)` (`Def -> 0`) is, after
 padding by a corner of vanishing density, uniformly `||.||_2`-close to a
 genuine finite-dimensional representation.
 
-> **Theorem.** Let `n >= 3` and let `C <= SL_n(Z)` be the four-generated
-> profinitely dense free subgroup of Aka--Gelander--Soifer (Section 4). Set
-> `G = < SL_n(Z), t | [t, c] = 1 (c in C) >`, the HNN extension of `SL_n(Z)`
-> centralizing `C`. If `SL_n(Z)` is flexibly HS-stable, then `G` is a
-> finitely presented non-hyperlinear group.
+> **Theorem.** Let `a,b in SL_3(Z)` be the two displayed matrices in Section
+> 4 and set
+>
+>     G_exp = < SL_3(Z), t | [t,a]=1, [t,b]=1 >.
+>
+> If `SL_3(Z)` is flexibly HS-stable, then `G_exp` is a finitely presented
+> non-hyperlinear group.  An explicit nonidentity marked word is `[t,r]`,
+> where the order-three matrix `r` is displayed in Section 4.
 
 ## 2. The HNN reduction
 
@@ -90,29 +93,47 @@ subgroup property every finite-index subgroup contains a congruence subgroup;
 hence `rho` factors through some `SL_n(Z/m)`. (See Bekka, *Operator-algebraic
 superrigidity for `SL_n(Z)`, `n >= 3`*, Invent. Math. 169 (2007).) `QED`
 
-## 4. The thin co-dense subgroup and its gap
+## 4. The explicit thin co-dense subgroup and its gap
 
-**Lemma 2.** For `n >= 3` there is a four-generated free Zariski-dense
-subgroup `C = <g_1,g_2,g_3,g_4> <= SL_n(Z)` of infinite index that surjects
-onto `SL_n(Z/m)` for every `m`, and `C` has property (tau) with respect to
-the family `{SL_n(Z/m)}`.
+Put `C=<a,b> <= SL_3(Z)`, where
 
-*Proof.* Aka--Gelander--Soifer, *Homogeneous number of free generators*
-(arXiv:1205.1140), construct for every `n > 2` a four-generated free subgroup
-of `SL_n(Z)` which is dense in its profinite completion.  Profinite density
-is exactly the asserted surjectivity onto every finite congruence quotient,
-and it implies Zariski density.  The subgroup has infinite index: a
-finite-index subgroup of the Kazhdan group `SL_n(Z)` has property (T), while
-a nonabelian free group does not.  Property (tau)—uniform spectral gap of the
-Cayley graphs of `pi_m(C)=SL_n(Z/m)` over arbitrary modulus `m`—is
-Bourgain--Varju, *Expansion in `SL_d(Z/qZ)`, `q` arbitrary*, Invent. Math.
-188 (2012), 151--173. `QED`
+    a = [ -176379047    1936571625   -17817867 ]
+        [ -1941616205  21318171799  -196142682 ]
+        [         10          -121           1 ]
 
-**Corollary.** The pair `(SL_n(Z), C)` of Lemma 2 is co-dense (Lemmas 1, 2)
-with a uniform conjugation gap (property (tau), Lemma 2: an `X` almost fixed
-by the conjugation action of `C` is close to `rho(C)'` at the (tau) rate). An
-element `a_1 in SL_n(Z) \ C` exists since `[SL_n(Z) : C] = infinity`. The HNN
-theorem of Section 2 applies, proving the Theorem.
+    b = [ -40193888    -3684209   -44180039 ]
+        [ 396162230    36312596   435450841 ]
+        [   3829559      351021     4209349 ].
+
+**Lemma 2.** `C` is a free group of rank two, has infinite index in
+`SL_3(Z)`, surjects onto `SL_3(Z/m)` for every `m>1`, and has property (tau)
+with respect to this congruence family.
+
+*Proof.* Detinko--Flannery--Hulpke, *Experimenting with Zariski dense
+subgroups* (arXiv:2303.06236, Section 3.3), construct `a,b` inside Humphries's
+free subgroup `G_4 < SL_3(Z)`.  They verify surjectivity modulo `4` and every
+prime and apply their profinite-generation criterion to conclude surjectivity
+for every modulus.  As a subgroup of `G_4`, `C` is free; its noncyclic finite
+images show that its rank is two.  It has infinite index because a
+finite-index subgroup of the Kazhdan group `SL_3(Z)` has property (T), while
+a nonabelian free group does not.  Profinite density implies Zariski density,
+and Bourgain--Varju, *Expansion in `SL_d(Z/qZ)`, `q` arbitrary*, Invent.
+Math. 188 (2012), 151--173, gives the asserted uniform gap. `QED`
+
+For the outsider take
+
+    r = [ 0 -1 0 ]
+        [ 1 -1 0 ]
+        [ 0  0 1 ].
+
+Then `r^3=1` and `r!=1`.  Since `C` is free and hence torsion-free,
+`r notin C`.
+
+**Corollary.** Lemmas 1 and 2 give `rho(C)=rho(SL_3(Z))` for every
+finite-dimensional unitary `rho`, hence co-density.  Property (tau) gives
+the uniform conjugation gap.  The HNN theorem applies with outsider `r`,
+proving the Theorem and the nontriviality of the displayed mark `[t,r]` by
+Britton's lemma.
 
 ## 5. Discussion: why the plain lattice, and what is open
 
@@ -125,13 +146,13 @@ theorem of Section 2 applies, proving the Theorem.
   `pi_1(G(R))` infinite; but `pi_1(SL_n(R)) = Z/2`.
 
 The commutant/HNN mechanism uses neither a central extension nor an
-archimedean fundamental group, so `SL_n(Z)` is admissible.  The theorem is
-an existence statement from the Aka--Gelander--Soifer subgroup.  Calling the
-output group literal or explicit would additionally require exhibiting a
-specific profinitely dense free four-tuple of integer matrices.
+archimedean fundamental group, so `SL_3(Z)` is admissible.  The
+Detinko--Flannery--Hulpke pair removes the former explicitness caveat: the
+conditional output group, its two HNN relators, and its marked outsider are
+all displayed literally.
 
-**The single open hypothesis.** Flexible HS-stability of `SL_n(Z)` is open. It
-is not ruled out: `SL_n(Z)` is an infinite hyperlinear Kazhdan group, so it is
+**The single open hypothesis.** Flexible HS-stability of `SL_3(Z)` is open. It
+is not ruled out: `SL_3(Z)` is an infinite hyperlinear Kazhdan group, so it is
 not STRICTLY (same-dimension) HS-stable, but flexible stability is a strictly
 weaker property whose determination for infinite (T) groups is the entire
 subject of Dogon's paper; the Ioana–Spaas–Wiersma cohomological obstructions

@@ -2,22 +2,23 @@
 rg: 2
 id: non-hyperlinear-from-thin-sln-commutant-transfer
 kind: route
-title: The thin-subgroup commutant modulus makes a finitely presented SL_n(Z) HNN extension non-hyperlinear
+title: The thin-subgroup commutant modulus makes an explicit finitely presented SL_3(Z) HNN extension non-hyperlinear
 target: non-hyperlinear-group
 requires:
-  - sln-z-thin-codense-tau-pair
+  - explicit-sl3-thin-codense-tau-pair
   - thin-sln-robust-relative-commutant-transfer
 ---
 
-Let `A = SL_n(Z)`, let `C = <c_1,c_2,c_3,c_4>` be the thin profinitely
-dense subgroup of `sln-z-thin-codense-tau-pair`, choose `a in A \ C`, and
-form
+Let `A = SL_3(Z)` and let `a,b,r` be the displayed matrices of
+`explicit-sl3-thin-codense-tau-pair`.  Thus `C=<a,b>` is free and
+profinitely dense, while `r` has order three and hence `r notin C`.  Form
 
 ```text
-G = <A,t | [t,c_i]=1, 1 <= i <= 4>.                    (NHT1)
+G = <A,t | [t,a]=1, [t,b]=1>.                          (NHT1)
 ```
 
-This is finitely presented.  Britton's lemma gives `[t,a] != 1` in `G`.
+This is a literal finite presentation.  Britton's lemma gives
+`[t,r] != 1` in `G`.
 
 Assume `G` were hyperlinear and take canonical-trace matrix microstates.
 Restricting them to `A` gives approximate representations of the fixed
@@ -25,16 +26,16 @@ presentation of `A`; let `v` be the matrix assigned to `t`.  The HNN
 relators give
 
 ```text
-max_i ||[v,c_i(U)]-1||_2 -> 0.                         (NHT2)
+max(||[v,a(U)]-1||_2, ||[v,b(U)]-1||_2) -> 0.          (NHT2)
 ```
 
 By `thin-sln-robust-relative-commutant-transfer`,
 
 ```text
-||[v,a(U)]-1||_2 -> 0.                                 (NHT3)
+||[v,r(U)]-1||_2 -> 0.                                 (NHT3)
 ```
 
-But `[t,a]` is a nonidentity group element, so canonical-trace microstates
+But `[t,r]` is a nonidentity group element, so canonical-trace microstates
 must have `tr([v,a(U)]) -> 0`, equivalently
 `||[v,a(U)]-1||_2 -> sqrt(2)`.  This contradicts `(NHT3)`.
 

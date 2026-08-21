@@ -46,6 +46,20 @@ So `(A, C)` satisfies every hypothesis of the HNN theorem, and `a_1 in A \ C`
 exists since `C` has infinite index; Britton gives `[t, a_1] != 1` in
 `G = <SL_n(Z), t | [t, C] = 1>`.
 
+**Explicit rank-two specialization.**  For `n=3`,
+`explicit-sl3-thin-codense-tau-pair` supplies two displayed integer matrices
+`a,b` generating a free profinitely dense subgroup, and the displayed
+order-three matrix `r notin <a,b>`.  Thus the same endpoint can be written
+literally as
+
+```text
+< SL_3(Z), t | [t,a]=1, [t,b]=1 >,
+```
+
+with marked word `[t,r]`.  The four-generator Aka--Gelander--Soifer theorem
+remains the uniform existence result for every `n >= 3`; it is no longer
+needed for explicitness in rank three.
+
 **Why this host is new.**  Neither published route covers the plain lattice
 `SL_n(Z)`: Dogon arXiv:2211.10492 needs a central extension by a torsion-free
 `Z`, but `SL_n(Z)` has the congruence subgroup property so its universal

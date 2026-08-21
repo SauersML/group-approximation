@@ -2,19 +2,24 @@
 rg: 2
 id: thin-sln-robust-relative-commutant-transfer
 kind: claim
-title: Almost centralizing the thin profinitely dense subgroup in an approximate SL_n(Z) representation forces almost centralizing the lattice
+title: Almost centralizing a thin profinitely dense subgroup in an approximate SL_n(Z) representation forces almost centralizing the lattice
 artifacts:
   - research/artifacts/hs-dehn-modulus-length-control-2026-08-20.md
 distinct_from:
   sln-z-flexibly-hs-stable: that corrects the entire approximate lattice representation to an exact representation after flexible padding; this asks only for one auxiliary unitary and one commutator, with no tuple correction.
-  hnn-route-is-relative-commutant-collapse: that states the general ultraproduct wall; this is its explicit finite-stage form for the four-generated thin subgroup of the plain lattice SL_n(Z).
+  hnn-route-is-relative-commutant-collapse: that states the general ultraproduct wall; this is its explicit finite-stage form for a thin profinitely dense subgroup of the plain lattice SL_n(Z).
   canonical-trace-does-not-weaken-thin-commutant-transfer: that proves canonical trace tests do not make this claim easier; this is the open transfer assertion itself.
 ---
 
-Let `n >= 3`, let `A = SL_n(Z)`, and let
-`C = <c_1,c_2,c_3,c_4> < A` be the profinitely dense free subgroup of
-`sln-z-thin-codense-tau-pair`.  Fix `a in A \ C`, a finite presentation
-`A = <S | R>`, and words for the `c_i` and `a` in `S`.
+Use either the four-generated pair of `sln-z-thin-codense-tau-pair`, or the
+preferred literal specialization
+
+```text
+A = SL_3(Z),  C = <c_1,c_2> = <a,b>,  c = r notin C,
+```
+
+from `explicit-sl3-thin-codense-tau-pair`.  Fix a finite presentation
+`A = <S | R>` and words for the subgroup generators and outsider in `S`.
 
 **Open transfer modulus.**  For every `epsilon > 0` there is `delta > 0`
 such that, for every dimension `d`, every unitary tuple `U in U(d)^S`, and
@@ -22,13 +27,13 @@ every `v in U(d)`,
 
 ```text
 max_(r in R) ||r(U)-1||_2 < delta,
-max_(1 <= i <= 4) ||[v,c_i(U)]-1||_2 < delta
+max_i ||[v,c_i(U)]-1||_2 < delta
 ```
 
 imply
 
 ```text
-||[v,a(U)]-1||_2 < epsilon.                              (TRC1)
+||[v,c(U)]-1||_2 < epsilon.                              (TRC1)
 ```
 
 Equivalently, if `U_k` is any asymptotic matrix representation of `A`,
@@ -47,17 +52,16 @@ proves the converse by residual-finite tensor camouflage.
 `non-hyperlinear-from-thin-sln-commutant-transfer` shows that `(TRC1)` makes
 
 ```text
-<SL_n(Z), t | [t,c_i]=1, 1 <= i <= 4>
+<SL_3(Z), t | [t,a]=1, [t,b]=1>
 ```
 
-non-hyperlinear, with marked word `[t,a]`.  Thus full flexible HS-stability
+non-hyperlinear, with marked word `[t,r]`.  Thus full flexible HS-stability
 of `SL_n(Z)` is sufficient but unnecessarily strong: only the fate of the
 single HNN implementer must be controlled.
 
-The Aka--Gelander--Soifer theorem used here supplies existence and a rank
-bound, not a literal displayed four-tuple.  The resulting HNN group is
-finitely presented; an explicit matrix presentation would require a separate
-effective construction of the profinitely dense free generators.
+Detinko--Flannery--Hulpke supply the literal matrices in rank three, so the
+conditional HNN group is now fully explicit.  Aka--Gelander--Soifer remains
+useful for the uniform all-ranks version.
 
 ## Exact endpoint already available
 

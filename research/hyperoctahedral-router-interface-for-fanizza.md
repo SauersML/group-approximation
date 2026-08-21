@@ -36,6 +36,24 @@ constants outside the Pauli normalizer can move or multiply its isotypic
 carrier.  This is the exact point at which the otherwise complete balanced
 lookup construction still needs a Schur/Hecke return mechanism.
 
+`right-regular-covariance-forces-one-common-router` now removes the router's
+coordinate-dependent gauge completely.  Enlarge the fixed packet by a right
+regular copy of a finite group `L`, make the router commute with it, and use a
+finite family of `A`-equivariant sign colorings.  On every selector sector the
+router is then, robustly and with a dimension-free computable constant,
+
+```text
+lambda(a) tensor V_a
+```
+
+with one common `V_a`, rather than one unrelated gauge per coordinate.  What
+remains of `(HRI1)` is strictly smaller: the non-Pauli constants used by the
+balanced truth-table word may themselves carry a finite-group representation
+on this multiplicity space, and `V_a` need not commute with that second-layer
+action.  A final packet must either isolate its trivial type or cancel those
+multiplicity commutators.  The coordinate-gauge problem is no longer part of
+the frontier.
+
 On the HALT side no trace preservation is needed: tensor the Fanizza GNS
 model with the natural packet, take `c` to be the selector-controlled
 translation, and `(HBT3)` makes every predicate relator exact.  For a
