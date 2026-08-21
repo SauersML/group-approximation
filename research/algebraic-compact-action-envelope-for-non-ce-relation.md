@@ -170,6 +170,25 @@ constructive target is a **mixed** module on which the commuting
 `Gamma_0` and `SL_3(Z)` directions interact; merely appending a known
 non-Haagerup group cannot transport the Manzoor/CDI inclusion.
 
+In fact property `(T)` removes even the proposed genuinely mixed escape.
+`haagerup-factor-direction-strips-from-property-t-envelope` views the total
+crossed product as
+
+```text
+(L^infinity(K) rtimes SL_3(Z)) rtimes Gamma_0.
+```
+
+Haagerup Fourier multipliers for the virtually-free `Gamma_0` direction,
+combined with rigidity of the embedded property-`(T)` factor, force that
+factor to intertwine into `L^infinity(K) rtimes SL_3(Z)`.  Therefore if the
+total mixed crossed product contains the fixed non-CE `N`, the `SL_3(Z)`-only
+crossed product is already non-CE and `K-hat rtimes SL_3(Z)` is already
+non-hyperlinear.  This applies to every commuting module action, including
+infinite nonamenable `SL_3(Z)` image, and makes no Cartan assumption on the
+embedding.  Hence the Manzoor direct factor cannot carry the obstruction at
+all: a successful module over `Gamma_0 x SL_3(Z)` is automatically a solution
+after restriction to `SL_3(Z)`.
+
 Changing the actor by ordinary induction or coinduction also does not install
 the missing algebraic base.  `coinduction-preserves-but-cannot-create-algebraic-envelope`
 shows that compact algebraic coinduction from `H<Lambda` does give a
