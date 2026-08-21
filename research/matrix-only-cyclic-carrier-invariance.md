@@ -120,3 +120,11 @@ this claim.  This is not a refutation of `(MCI1)`: a dimension-activated
 selector, unbounded conductor, or matrix-dependent orthogonal packing could
 still work.  It isolates the live compiler as matrix-only selector decoding,
 not multiplicity synchronization or cyclic holonomy.
+
+`global-marked-type-cycle-selector-decoder` records the non-circular global
+form of that live compiler.  A finite type permutation is allowed to split
+into many cycles, but the rows are compressed only after matrix packet
+exactification.  Their squared energies pack through orthogonal isotypic
+domains, rather than through a product holonomy word.  This bypasses the
+inverse-cancellation objection above without turning any individual mixed row
+into a universal identity.

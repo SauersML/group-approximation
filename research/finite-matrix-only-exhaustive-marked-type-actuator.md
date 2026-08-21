@@ -39,6 +39,16 @@ a Fourier-filtered wandering moment.  This avoids the induction firewall:
 the finite projection `q_lambda F_c` is only an analytic linear combination,
 while the canonical tests remain ordinary nonidentity words.
 
+There is now a second, explicitly global sufficient interface.
+`global-marked-type-cycle-selector-decoder` lets one actuator permute the
+finite set of marked context types.  Analytic coarse-half and fine-quarter
+selectors are linked along the permutation cycles; cyclic trace pressure
+charges their total carrier mass despite arbitrary type multiplicities, and
+orthogonality of the isotypic projections packs every compressed row back
+into one ordinary word menu.  Its two remaining obligations are precisely a
+matrix-only domination of the summed compressed rows and global coverage of
+the shared BCS forbidden mass.  No per-type preferred carrier is selected.
+
 ## Attempts
 
 - **Repeat the balanced SMC row on every marked type.**  The multiplicity
