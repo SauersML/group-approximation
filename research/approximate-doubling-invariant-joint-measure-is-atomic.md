@@ -19,6 +19,18 @@ words hold exactly.  The modulus must be independent of matrix dimension.
 
 ## Attempts
 
+- **Skeleton route now carries a full proof-plan (2026-08-21).**
+  `common-odd-model-from-skeleton-relative-stability` reaches this
+  target from `skeleton-relative-hs-stability-for-sl2`, whose state
+  is: leg (1) PROVED (`bs14-exact-representation-variety-is-hs-
+  locally-rigid` plus the top-down tower exactification); leg (2)
+  reduced by the swap-transport move (define the lower tower BY the
+  swap: `w(1)` exact, no amplified defects) to two unamplified
+  fixed-word holonomies on compact centralizer torsors, with a
+  spread/degenerate dichotomy and induction as the proposed closing
+  argument.  What remains is accounting, not structure: loss
+  accumulation along the induction and the joint two-holonomy step.
+
 - The scalar Wasserstein version is invalidated by
   `odd-root-wasserstein-target-is-vacuous`: odd roots are dense, so every
   measure has such approximants.  The claim must control eigenvectors,
