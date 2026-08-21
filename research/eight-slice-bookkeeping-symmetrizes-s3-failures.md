@@ -55,6 +55,19 @@ finite-group normalized-HS exactification, the three actual failure channels
 have one common scale and one symmetry orbit, independently of ambient
 matrix dimension.
 
+Three book bits are optimal among binary equal-atom implementations with a
+capacity slice disjoint from all sources.  If each diagonal failure uses `r`
+book atoms, equal rank forces the crossed failure to use `2r` atoms.  The two
+diagonal sources, the crossed source, and one disjoint capacity slice
+therefore require at least
+
+```text
+r+r+2r+1 >= 5                                             (ESB4a)
+```
+
+book atoms.  Two bits supply only four; three bits supply eight and `(ESB3)`
+uses five of them.
+
 Finally, for arbitrary unitaries `U_b` and pairwise orthogonal exits
 `E_b<=C`, the projection trace inequality gives
 

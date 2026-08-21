@@ -23,6 +23,12 @@ contains two joint atoms.  Arbitrary permutations of the six source atoms,
 extended by the identity off their union and on the capacity atoms, form the
 required finite monomial `S_3` action.
 
+For optimality, a diagonal block has two radical atoms while the crossed
+block has one.  Equal source ranks over an equal-atom book force replication
+counts in ratio `1:2:1`.  Disjointness uses four book atoms for the sources
+and at least one more for the capacity.  Hence no two-bit book can realize
+all stated clauses.
+
 For `(ESB5)`, apply
 
 ```text

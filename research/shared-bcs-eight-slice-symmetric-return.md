@@ -53,3 +53,11 @@ would be valid in the regular representation and collapse the embedded
 packet.  Candidate implementations are a packet-compressed Toeplitz cell, a
 shared cross-Gram tag extracted from the original BCS tuple, or an adjoint
 scalar-overlap actuator.  This is now the only non-finite step in this lane.
+
+The bookkeeping characters do not secretly solve this step.
+`finite-tag-covariance-cannot-compress-eight-slice-orbit` proves that exact
+covariance for pairwise disjoint finite tags forces their target ranges to be
+orthogonal and therefore forces target dimension at least the summed source
+dimension.  The matrix-only return must exploit the shared non-CE tuple or a
+one-sided actuator; it cannot be obtained by merely promoting the book bits
+to finite tag types.
