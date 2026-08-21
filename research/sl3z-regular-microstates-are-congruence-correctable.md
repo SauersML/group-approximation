@@ -55,6 +55,35 @@ the goal through `non-hyperlinear-from-sl3-relative-commutant-collapse`.
   explicit non-correctable microstate family of a higher-rank
   lattice, itself a major structure result pointing at where the
   hyperlinear enemy lives.
+- **State of the cohomological stability art (2026-08-21 scout,
+  source-verified).**  (i) De Chiffre--Glebsky--Lubotzky--Thom
+  (Forum Math. Sigma 8, 2020; arXiv:1711.10238) prove stability from
+  degree-2 cohomology vanishing -- but in the UNNORMALIZED Frobenius
+  metric; the normalized-HS analogue of the criterion, which is what
+  this claim needs, has no published counterpart, and this norm gap
+  is exactly why the chain "vanishing implies stability implies
+  collapse" does not already close the field.  (ii) Bader--Sauer
+  (arXiv:2308.06517) prove SL_N(Z) has higher Kazhdan property
+  (T_(N-2)): REDUCED unitary cohomology vanishes in degrees up to
+  N - 2 for representations without invariant vectors -- the
+  real-place Garland analogue; so degree-2 vanishing holds for
+  N >= 4, and it is sharp (non-vanishing in degree N - 1 for
+  N in {3,4}: arXiv:2410.22310).  Two upgrades are missing for the
+  DGLT-style route even unnormalized: reduced-to-unreduced (a
+  quantitative modulus, i.e. a degree-2 cohomological-Laplacian
+  spectral gap -- the certified-SOS program of Kaluba--Mizerka--Nowak,
+  arXiv:2207.02783, arXiv:2404.10287, currently degree 1 at SL_3 and
+  inducing results) and invariant-vector coefficients.  (iii)
+  arXiv:2512.09180 shows property (T_2) is NOT necessary for
+  Frobenius stability (stable f.p. examples far from (T_2)), so the
+  normalized-HS question is not cohomologically determined either
+  way.  CONSEQUENCE for the lane: at N >= 4 the degree-2 vanishing
+  machinery exists in reduced unnormalized form, so instantiating
+  the whole Weyl-sector lane at the pair (SL_4(Z), SL_4(Z[1/p])) or
+  (SL_5, ...) -- the sector theorem's mechanism is rank >= 2 and
+  applies verbatim -- puts this hole in the only place where a
+  cohomological attack has existing infrastructure; a normalized-HS
+  DGLT criterion at N >= 4 would close the goal outright.
 - **Quantitative interface.**  Any correction modulus here composes
   with the exact evaluation `W = 1` and needs no uniformity beyond
   the generating set: the Weyl relations are finitely many fixed
