@@ -429,6 +429,30 @@ recursion terminates; the total correction is
   `|| e' - h e' h^{-1} ||_2 <~ delta`, a computable trace bound
   replacing the pointwise-Holder lemma.  This is the sharpest exit:
   the last input is one trace inequality on the microstate.
+- **Correction: the dynamical seminorm is trivially small but is the
+  WRONG one (2026-08-21).**  Testing the trace bound immediately:
+  `|| e' - psi(e') ||_2 = || [e', h] ||_2 <= 2 || e' - 1 ||_2 <= 2 delta`
+  trivially, because a near-identity `e'` approximately commutes with
+  every unitary.  But this dynamical (`x4`-orbit-direction) seminorm is
+  NOT what the Ruelle/Lasota--Yorke gap needs: the transfer operator
+  acts in the SPATIAL (`theta`) variable and its gap requires variation
+  in `theta` (transverse to orbits), which the orbit-direction bound
+  does not supply.  Equivalently, in the Koopman picture the L^2
+  cohomological equation `c - c circ (x4) = e'` is solvable with
+  control iff `sum |hat e'(lambda)|^2 / |1 - lambda|^2 < infinity`
+  against the (Lebesgue, a.c.) spectral measure of the mixing Koopman
+  operator -- a genuine condition on the spectral DENSITY of `e'` at
+  eigenvalue `1`, not implied by `|| e' ||_2 = delta`.  So the trace-
+  seminorm-for-free hope is closed off honestly: the last input is a
+  real spectral-density regularity of the Weyl defect at Koopman-`1`
+  (equivalently `theta`-variation), the same regularity flagged before,
+  now confirmed genuine.  This route is a complete architecture --
+  skeleton, rigidity, syzygy, prime-3, order-3 kill, Livsic, RPF,
+  dihedral GH -- modulo exactly this one frontier regularity theorem
+  for the Weyl defect.  The next real attack is to control that
+  spectral density from the microstate structure (bounded elementary
+  generation giving `theta`-Lipschitz variation of the defect), which
+  is the genuine hard core the whole chain isolates.
 - **Why it is plausible and where it could fail.**  The peeling is a
   geometric contraction when the residual shrinks faster than the gap:
   each descent multiplies the uncorrected mass by the local defect
