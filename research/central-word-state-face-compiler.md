@@ -55,3 +55,8 @@ noncentral Pauli predicate word, even behind a private conjugator, has a
 commutator equal to the common phase and is therefore killed when the toric
 clause centralizes that word.  Thus Properties 1 and 3 cannot be obtained by
 simply anchoring one finite selected type or one conjugated spin word.
+Moreover `product-word-stabilizers-cannot-linearize-one-losing-corner` rules
+out an all-allowed-states local dilation: product words fixing the three
+allowed Boolean rectangles automatically fix the fourth.  The only surviving
+finite-ancilla interpretation is genuinely state-dependent and must prove the
+whole-face soundness in Property 2.

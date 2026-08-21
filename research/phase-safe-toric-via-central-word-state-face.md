@@ -10,6 +10,9 @@ requires:
   - finite-morita-toricization-cannot-encode-nonaffine-support
   - spherical-root-type-selection-is-phase-unsafe
   - extraspecial-spin-predicate-centralization-kills-phase
+  - product-word-stabilizers-cannot-linearize-one-losing-corner
+  - two-player-product-has-no-proper-nontrivial-malnormal-subgroup
+  - non-ce-trace-does-not-promote-to-subgroup-character-gap
   - central-word-state-face-compiler
 ---
 

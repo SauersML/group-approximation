@@ -43,6 +43,23 @@ exactly `N` and meets `B` trivially.
 In particular, if `D normal H`, `D <= K`, and `chi|D` is not `H`-invariant,
 then `N intersect B` is nontrivial.
 
+There is also a sharp converse obstruction to using a phase-safe spherical
+root as a dimension/type selector.  If `K` normally generates `H`, then
+Theorem 1 says phase safety is equivalent to extension of `chi` to an
+`H`-character.  That one-dimensional representation of `H`, with its unit
+vector, satisfies every root clause.  Hence:
+
+> **Corollary 2.**  A finite spherical root `(H,K,chi)` with
+> `normalClosure_H(K)=H` has exactly two possibilities: either its scalar
+> graph clauses kill the phase, or they admit a one-dimensional perfect
+> packet.  They cannot phase-safely force a higher-dimensional induced type.
+
+If `K` does not normally generate `H`, the root clauses still have a finite
+monomial perfect representation `Ind_K^H(conjugate(chi))`.  Thus no finite
+spherical root by itself creates finite-dimensional soundness; its only
+possible use is as a local component of a genuinely global incompatible
+state-face system.
+
 ## The strongest finite answer packet really does select one type
 
 Let `R` be a nonempty finite answer set, fix `r_0 in R`, and put
@@ -101,7 +118,9 @@ trivial phase.
 The obstruction is not weakness of finite induction; it is that type
 isolation uses a moving nonnormal character.  Avoiding `(SRT5)` requires the
 inducing character to extend invariantly over the normal closure, removing
-the transitive character-orbit mechanism which selected one coordinate.
+the transitive character-orbit mechanism which selected one coordinate and,
+when the root normally generates the packet, producing the one-dimensional
+escape of Corollary 2.
 
 ## Attempts
 
@@ -111,4 +130,3 @@ irreducible type.  It fails at `(SRT5)`, before Hilbert--Schmidt soundness is
 relevant.  Matrix amplification and Hecke projections do not alter the graph-
 character normal closure.  Conjugating the whole root by a private router
 only conjugates the same contradiction.
-

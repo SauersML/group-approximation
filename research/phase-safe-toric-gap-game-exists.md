@@ -110,3 +110,19 @@ Wrapping `p` as `t^(-1)pt` only conjugates the commutator witness.  See
 private-letter cycle remains admissible only if every clause word avoids
 normally generating `J` through its commutators, a condition which must be
 checked before state-vector completeness.
+
+**Infinite malnormal character face.**  This does not survive the two-player
+product geometry.  `two-player-product-has-no-proper-nontrivial-malnormal-subgroup`
+proves that every nontrivial malnormal subgroup of `G_A x G_B` is the whole
+product.  Hence a Cohen--Lyndon/free-normal-closure root cannot provide the
+needed infinite-index clause face.  Any surviving infinite subgroup must be
+highly non-malnormal and meet the full relative-FD face criterion above.
+
+**Raw GNS projective kernel / Hahn--Banach.**  The projective kernel of a
+tracial non-CE state is automatically normal and its scalar character is
+phase-safe, but it does not inherit the finite-dimensional gap.  Its character
+face is the whole state space of a twisted quotient and may contain unrelated
+finite-dimensional representations.  Locally, group-word eigenvalue equations
+see only the affine hull of a Boolean answer support, whereas the losing
+projection sees the nonlinear support itself.  This exact obstruction is
+proved in `non-ce-trace-does-not-promote-to-subgroup-character-gap`.
