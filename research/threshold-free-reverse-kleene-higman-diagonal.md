@@ -26,3 +26,10 @@ machine e does not halt
 Then one can effectively construct a finitely presented non-hyperlinear
 group.  The fixed-point program needs no defect threshold, marked cutoff,
 decoder modulus, matrix dimension, convergence rate, or runtime bound.
+
+This proof-enumeration orientation is not reproduced by computing a finite
+capacity certificate just before halting on a matrix witness.
+`halt-now-certificate-area-still-needs-a-crossing-envelope` proves that the
+latter remains a forward threshold search: self-reference makes a successful
+halt contradictory but does not force hyperlinear microstates to cross the
+candidate-dependent reciprocal-area window.

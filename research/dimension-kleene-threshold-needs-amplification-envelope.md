@@ -60,3 +60,10 @@ dimension-reported Clifford and Pauli compilers is load-bearing.  It may be
 replaced by `(DKE2)` for every possible canonical microstate profile, or by a
 checkable sufficient condition such as `(DKE3)`, but not by an arbitrary
 positive post-halting modulus.
+
+The same obstruction survives the more adaptive proposal in which the
+fixed-point program computes the van-Kampen/Higman/Clifford area of the
+certificate that would result from halting on the candidate currently under
+inspection.  See `halt-now-certificate-area-still-needs-a-crossing-envelope`:
+the reciprocal area is merely a candidate- and time-dependent search window,
+and hyperlinearity supplies no diagonal rate forcing a candidate into it.
