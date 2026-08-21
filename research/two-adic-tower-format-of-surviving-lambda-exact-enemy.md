@@ -78,13 +78,21 @@ candidate enemy and would need to be tested against the
   the system cannot close even approximately, consistent with the
   cycle-type mismatch of `e_21(1)` (order 4) versus `e_21(2)`
   (order 2), whose optimal spectral matching quantizes the floor.
-  Interpretation per protocol: bounded-multiplicity coset towers
-  provably cannot host the enemy; the modulus question lives in
-  modules whose per-element spectral distributions converge (regular
-  type), where the matching cost between uniform measures on
-  `2^a`-th versus `2^(a-1)`-th roots of unity tends to `0`.  The
-  `s >= 2` runs need the block parametrization and an sbatch lane
-  (dense descent at `d ~ 600` exceeds interactive budgets).
+  Interpretation upgraded to a theorem by exact computation: the
+  optimal Hoffman--Wielandt spectral-matching cost of the six
+  intertwining pairs in the 42-module is EXACTLY `16/21` for each
+  depth-one pair (`e_alpha(1)` vs `e_alpha(2)`) and `32/21` for each
+  corner depth-two pair (`e_31(1)` vs `e_31(4)`) -- the obstruction
+  is linear in shift depth at `16/21` per unit, the probe attained
+  the true optimum, and hence NO unitary `V` on the 42-module can
+  bring the interlock defect below `32/21`: bounded-multiplicity
+  coset towers provably cannot host the enemy.  The modulus question
+  therefore lives in modules whose per-element spectral
+  distributions converge (regular type), where the matching cost
+  between uniform measures on `2^a`-th versus `2^(a-1)`-th roots of
+  unity tends to `0`.  The `s >= 2` runs need the block
+  parametrization; an sbatch job is queued (dense descent at
+  `d ~ 600` exceeds interactive budgets).
 - **Relation to the Iwahori lane.**  Part 1 restricted to one level
   is the `SL_3`-at-`2` version of the `B_+/B_-` compatibility of
   Dogon--Vigdorovich Question 1.4; the interlock adds two more
