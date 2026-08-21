@@ -42,6 +42,15 @@ WAVE-2 FLEET (assignments of record):
   w2b-minkowski  → Hilbert-hotel cover presentation (parallel track)
   w3-router      → finish the path restore + gate assembly file
 
+SAVE DOCTRINE (user standing order, 2026-08-21 night, after a peer
+tree-reset destroyed every unlanded scaffold locally and on the MSI
+mirror): save = commit AND push to main, every green increment, within
+its work cycle. Scaffolds land SORRY-FREE with open leaves as explicit
+hypotheses at use sites (or hypothesis structures in the
+OperationClosures residual style); the unconditional form is a
+one-line corollary when the hypothesis discharges. Nothing stays
+unlanded. Supersedes "scaffolds stay off main".
+
 Protocol addenda now binding: transitive-closure-clean root imports;
 Audit.lean is the gate of record (sorryAx spreads silently); pristine-
 origin snapshot verification for every landing; private olean root
