@@ -1442,6 +1442,7 @@ import GroupApproximation.Sofic.GreendlingerBeyond
 import GroupApproximation.Algebra.HNNBridgeFreeness
 import GroupApproximation.Algebra.HNNBridgeTorsionFree
 import GroupApproximation.Analysis.CStarCompactSelfModule
+import GroupApproximation.Analysis.ConvexUnitVectorRigidity
 import GroupApproximation.Sofic.GreendlingerMaxConjugator
 import GroupApproximation.Sofic.OrderPreservingDegeneracy
 import GroupApproximation.Sofic.BareDefectSource

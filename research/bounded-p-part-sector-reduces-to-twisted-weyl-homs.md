@@ -81,6 +81,34 @@ perfectness argument), here appearing as finite Weyl-gauge twists.
   (`p = 2, C = 2`) the relevant data is the character theory of the
   1024-element parahoric image in `SL_3(Z/4)` — an enumerable
   object.
+- **The smallest gauge is infinitesimally rigid at the trivial point
+  (2026-08-21, computed on sioux).**  Linearizing the twisted system
+  at `W = 1` on the 168-dimensional regular module of `SL_3(F_2)`
+  gives a rational self-adjoint PSD constraint operator `Q`
+  (self-adjointness verified to `3e-17`); shifted power iteration
+  converges at machine precision (eigenresidual `7e-16`) to
+
+  ```text
+  lambda_min(Q) ~= 0.2398 > 0 :                                  (BP2)
+  ```
+
+  the linearized system has NO nonzero solutions — no tangent
+  directions to the solution variety at `W = 1`.  Two provable
+  reductions make this one computation decide the whole gauge's
+  infinitesimal question: `G`-equivariant corners commute with every
+  constraint operator, so the kernel on any subrepresentation embeds
+  in the regular kernel; and multiplicity legs are untouched by the
+  constraints, so kernels tensor.  Hence `W = 1` is infinitesimally
+  rigid in the `C = 1` gauge for EVERY representation.  Scope
+  honesty: this rules out a solution continuum through the trivial
+  point, not distant components (which is what an enemy — needing
+  Haar `h`-tower spectrum — would use); descent searches for distant
+  solutions found none but the landscape is glassy (baseline runs
+  cannot even find `W = 1` from random starts), so that evidence is
+  weak.  `Q` is rational in the permutation basis (entries in
+  `(1/8) Z` after clearing the Borel average), so `ker Q = 0` is
+  certifiable EXACTLY by a sparse full-rank computation modulo a
+  prime — queued as the certification step.
 - **Falsification honesty.**  A surviving twisted hom compatible
   with regularity at some finite gauge would NOT yet be an enemy (it
   must still satisfy the mixed-word regularity and assemble into a

@@ -610,6 +610,137 @@ def tower_report(V, consts, lam_ball, d):
     return float(delta), float(haar), float(reg)
 
 
+# ---------------------------------------------------------------------------
+# Gauge mode: enumerate the smallest twisted-Weyl-hom gauge (C = 1).
+# See research/bounded-p-part-sector-reduces-to-twisted-weyl-homs.md:
+# W in the Borel-commutant of the regular rep of SL_3(F_2), constraints
+#   (a) Ad(s(w13)) W = W^-1
+#   (b) W (Ad(s(w23)) W)^-1 = Ad(s(w12)) W
+#   (c) the Weyl conjugates commute pairwise
+# Scalars force W = 1; the question is nontrivial solutions.
+# ---------------------------------------------------------------------------
+
+def sl3f2_regular():
+    els = []
+    idx = {}
+    def mod2(t):
+        return tuple(tuple(v % 2 for v in row) for row in t)
+    def mm(x, y):
+        return tuple(tuple(sum(x[r][k]*y[k][c] for k in range(3)) % 2
+                           for c in range(3)) for r in range(3))
+    gens = [mod2(elem_mat(i, j, 1)) for (i, j) in ELEM.values()]
+    ident = mod2(elem_mat(0, 1, 0))
+    seen = {ident}
+    frontier = [ident]
+    els.append(ident); idx[ident] = 0
+    while frontier:
+        nxt = []
+        for t in frontier:
+            for g in gens:
+                u = mm(t, g)
+                if u not in seen:
+                    seen.add(u); idx[u] = len(els); els.append(u)
+                    nxt.append(u)
+        frontier = nxt
+    n = len(els)
+    def lam(gmat):
+        g = mod2(gmat)
+        P = np.zeros((n, n))
+        for j, x in enumerate(els):
+            P[idx[mm(g, x)], j] = 1.0
+        return P.astype(complex)
+    return n, lam
+
+
+def gauge_probe(restarts: int, iters: int, beta: float):
+    """All constraints as trace words in W and the constant Weyl/Borel
+    permutations; gradients via the validated grad_re_tr engine.
+    Objective: constraint defect minus a capped push away from W = 1,
+    so descent seeks NONTRIVIAL solutions of the twisted system."""
+    n, lam = sl3f2_regular()
+    W12 = [[0, -1, 0], [1, 0, 0], [0, 0, 1]]
+    W23 = [[1, 0, 0], [0, 0, -1], [0, 1, 0]]
+    W13 = [[0, 0, -1], [0, -1, 0], [-1, 0, 0]]
+    consts = {"s12": lam(W12), "s23": lam(W23), "s13": lam(W13),
+              "b1": lam(elem_mat(0, 1, 1)), "b2": lam(elem_mat(0, 2, 1)),
+              "b3": lam(elem_mat(1, 2, 1))}
+    d = n
+    # constraint words: each contributes 2 - 2 Re tr(word)/d
+    con_words = [
+        # (a) Ad(s13)W = W^-1  <=>  tr(W s13 W s13^-1) = d
+        [("W", 1), ("s13", 1), ("W", 1), ("s13", -1)],
+        # (b) W (Ad(s23)W)^-1 = Ad(s12)W  <=>
+        #     tr( s12 W^-1 s12^-1  W  s23 W^-1 s23^-1 ) = d
+        [("s12", 1), ("W", -1), ("s12", -1), ("W", 1),
+         ("s23", 1), ("W", -1), ("s23", -1)],
+        # (c) commutation with the two conjugates
+        [("W", 1), ("s23", 1), ("W", 1), ("s23", -1),
+         ("W", -1), ("s23", 1), ("W", -1), ("s23", -1)],
+        [("W", 1), ("s12", 1), ("W", 1), ("s12", -1),
+         ("W", -1), ("s12", 1), ("W", -1), ("s12", -1)],
+    ]
+    borel_words = [
+        [("W", 1), (bk, 1), ("W", -1), (bk, -1)] for bk in ("b1", "b2", "b3")
+    ]
+
+    def value_and_grad(W, push):
+        env = dict(consts)
+        env["W"] = W
+        val = 0.0
+        G = np.zeros((d, d), dtype=complex)
+        for w in con_words:
+            t = np.trace(word_product(w, env)) / d
+            val += 2 - 2 * t.real
+            g = grad_re_tr(w, env, -2.0 / d)
+            G += g["W"]
+        for w in borel_words:
+            t = np.trace(word_product(w, env)) / d
+            val += beta * (2 - 2 * t.real)
+            g = grad_re_tr(w, env, -2.0 * beta / d)
+            G += g["W"]
+        far = 2 - 2 * np.trace(W).real / d
+        if far < 0.5:
+            val -= push * far
+            g = grad_re_tr([("W", 1)], env, 2.0 * push / d)
+            G += g["W"]
+        else:
+            val -= push * 0.5
+        return val, G, far
+
+    results = []
+    for rr in range(restarts):
+        Z = rng.normal(size=(d, d)) + 1j * rng.normal(size=(d, d))
+        W = np.linalg.qr(Z)[0]
+        step = 1e-2
+        push = 2.0
+        for _ in range(iters):
+            val, G, _ = value_and_grad(W, push)
+            Om = (G @ W.conj().T - W @ G.conj().T) / 2
+            W2 = polar_unitary((np.eye(d) - step * Om) @ W)
+            v2, _, _ = value_and_grad(W2, push)
+            if v2 < val:
+                W = W2
+                step = min(step * 1.2, 0.2)
+            else:
+                step *= 0.5
+                if step < 1e-11:
+                    break
+        env = dict(consts)
+        env["W"] = W
+        cdef = sum(2 - 2 * (np.trace(word_product(w, env)) / d).real
+                   for w in con_words)
+        bdef = sum(2 - 2 * (np.trace(word_product(w, env)) / d).real
+                   for w in borel_words)
+        far = 2 - 2 * np.trace(W).real / d
+        rec = {"gauge": "C1-SL3F2-regular", "d": d, "restart": rr,
+               "twisted_system_defect": round(float(cdef), 6),
+               "borel_commutant_defect": round(float(bdef), 6),
+               "dist_from_identity": round(float(far), 5)}
+        print(json.dumps(rec), flush=True)
+        results.append(rec)
+    return results
+
+
 def gradcheck(d=4, eps=1e-6):
     """Central-difference validation of value_and_grad at small size."""
     cw = coset_words_mod4()
@@ -675,6 +806,8 @@ def main():
     ap.add_argument("--tower", type=int, default=0,
                     help="two-adic tower probe at level 2^a (pass a)")
     ap.add_argument("--towercheck", action="store_true")
+    ap.add_argument("--gauge", action="store_true",
+                    help="smallest twisted-Weyl-hom gauge (C=1, SL3(F2))")
     args = ap.parse_args()
     if args.towercheck:
         d, sigma = perm_rep_tower(2)
@@ -711,6 +844,12 @@ def main():
               f"rel={rel:.2e}")
         print("TOWERCHECK-" + ("PASS" if rel < 1e-4 else "FAIL"),
               file=sys.stderr)
+        return
+    if args.gauge:
+        res = gauge_probe(args.restarts, args.iters, args.beta)
+        with open("gauge-probe-c1.json", "w") as f:
+            json.dump(res, f, indent=1)
+        print("GAUGE-DONE", file=sys.stderr)
         return
     if args.tower:
         res = tower_probe(args.tower, args.restarts, args.iters,
