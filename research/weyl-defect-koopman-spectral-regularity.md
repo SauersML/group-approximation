@@ -36,6 +36,40 @@ gluing, the far sector, and -- through
 `odd-congruence-vertex-sector-admits-no-exact-leak`, and the Iwahori
 route -- the goal.
 
+## Fixed-regular split: the obstruction is free, only regular-sector BV remains
+
+Linearize the coboundary as `(1 - psi) c = phi`, `phi = delta e'`,
+`psi = Ad(h)` on `Z = {V}'`, and split
+`Z = Z^psi (+) (Z^psi)^perp` where `Z^psi = {V,h}'` is the tower
+MULTIPLICITY algebra.
+
+- **The fixed-algebra obstruction is automatically `O(delta)`.**
+  Solvability in `L^2(Z)` requires `phi` orthogonal to `ker(1-psi) =
+  Z^psi`, i.e. `E_(Z^psi)(phi) = 0`.  But `E_(Z^psi)(phi)` is a
+  COMPONENT of `phi`, so `|| E_(Z^psi)(phi) ||_2 <= || phi ||_2 <=
+  delta` with no regularity input at all.  The un-removable part of
+  the defect is therefore `O(delta)` and lives entirely in the
+  multiplicity algebra, where it is an `O(delta)` residual, not an
+  obstruction to an `O(delta)` coboundary.
+- **On the regular sector `psi` is fixed-point-free, so RPF applies.**
+  `(1 - psi)` is injective on `(Z^psi)^perp` (no invariant vectors
+  there by definition).  The coboundary is built by the Ruelle
+  transfer operator `L` (adjoint of the Koopman `psi`), which by
+  Ruelle--Perron--Frobenius has a spectral gap on the mean-zero part:
+  `c = sum_(n>=0) L^n phi_0` with `phi_0 = phi - E_(Z^psi)(phi)`
+  converges geometrically, `|| c ||_2 <= C || phi_0 ||_2 <= C delta`,
+  PROVIDED `phi_0` lies in the RPF regularity space.
+- **So the entire residual is: BV-regularity of the mean-zero Weyl
+  defect `phi_0` on the regular sector.**  This is strictly cleaner
+  than the earlier "spectral density at Koopman-1" form: the singular
+  (`|1-lambda|^{-2}`) blow-up is confined to the fixed algebra `Z^psi`,
+  where it is already handled by the free `O(delta)` bound; on the
+  complement the RPF gap does the work.  The one remaining question is
+  whether the noncommutative RPF regularity space is the SPATIAL
+  variation (transverse, the hard direction) or admits a DYNAMICAL /
+  algebraic seminorm that the relator structure controls -- the next
+  technical point, below.
+
 ## Attempts
 
 - **Why the naive bounds miss it.**  `|| e' ||_2 = delta` alone does
