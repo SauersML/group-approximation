@@ -51,6 +51,44 @@ cyclic BCS atlas problem.  After ordinary equations remain multiplicative,
 the additive compatibility problem has exactly one cyclic cell, with binary
 separators, and one attached leaf.
 
+In fact this sole cycle is **classically flat**.  The three separator signs
+
+```text
+(O_Q,O_P,Z_tilde) in {+1,-1}^3                         (FNI4)
+```
+
+commute pairwise: the pairs occur respectively in `C_D`, `C_R`, and `C_Z`.
+Moreover every one of the eight assignments in `(FNI4)` extends to all four
+contexts simultaneously.
+
+For `C_X` and `C_Z`, when `O_Q=-1` choose the two compared signs equal, and
+when `O_Q=+1` choose them arbitrarily.  For `C_D`, choose `O_D` to be the
+Boolean conjunction of `O_P,O_Q`.  Finally write the first triple in `C_R`
+as
+
+```text
+(O_P, X_tilde O_P X_tilde, U O_P U^*) .                (FNI5)
+```
+
+The bad set in those coordinates is
+
+```text
+A_123={(-,+,+),(+,-,+),(+,+,-),(-,-,+),(-,-,-)}.
+```
+
+If `O_P=+1`, choose the last two signs in `(FNI5)` as `(+,+)`; if
+`O_P=-1`, choose them as `(+,-)`.  In either case `(FNI5)` lies outside
+`A_123`, so the six-variable bad condition `A_123 x A_456` fails regardless
+of the prescribed value of `Z_tilde` or of the remaining last-triple signs.
+This proves the asserted extension.
+
+Consequently no parity, contextuality, or marginal-compatibility
+contradiction is carried by the native additive incidence cycle by itself.
+Any successful groupification must use the fact that the private signs in
+`(FNI1)` are **prescribed machine words**, rather than freely selectable
+Boolean variables.  The unresolved obstruction is therefore semantic
+word/corner realization, not combinatorial satisfiability of the triangle.
+
 This combinatorial reduction does **not** yet give a group compiler.  A
 signed-Hecke atlas for the four Boolean contexts must still identify its
 corner involutions with the prescribed machine-group words in `(FNI1)`.
