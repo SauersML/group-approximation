@@ -58,3 +58,11 @@ additional mechanism making the root observable uniformly `H`-invariant.
 Same-dimension stability plus an adjoint Kazhdan gap is one sufficient package
 (`hs-stable-kazhdan-finite-bi-index-pair-gives-site-coherence`); raw orbit
 addressing is not.
+
+Nor can one replace the analytic package by asserting uniformly bounded
+ambient fillings of all stabilizer commutators.  When the root mark has
+finite order,
+`bounded-centralizer-fillings-force-finite-stabilizer`
+proves that such a filling bound forces the entire stabilizer to be finite.
+This remains false for infinite stabilizers which have property `(T)` and
+bounded generation: those properties do not bound ambient van Kampen area.
