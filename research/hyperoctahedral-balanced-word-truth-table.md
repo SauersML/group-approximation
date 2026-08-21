@@ -43,6 +43,13 @@ The word is balanced in the variable `t`.  Consequently, on operators
 identically and `(HBT3)` remains exact.  Since all groups are finite, a word
 `W_F` is computable by breadth-first search in `H`.
 
+More generally, `full-conjugation-table-cancels-router-multiplicity` shows
+that no chosen tensor-product model is needed: if the router implements the
+full conjugation table of `tau_a` on the constant packet, then every balanced
+truth word has the intended value, with a dimension-free robust estimate, in
+an arbitrary representation.  The remaining issue is encoding that
+selector-dependent conjugation table by group relations.
+
 ## Proof
 
 Inside the pure permutation subgroup `S_N^A`, consider
