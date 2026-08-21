@@ -125,6 +125,20 @@ exact variety to `delta`-representations, i.e. the outlier sector.
   certificate would prove it for every `d` at once and is falsifiable
   cheaply on congruence quotients — a concrete search target that does
   not ask any solver to discover the whole proof.
+- **WARNING: the standard tracial hierarchy is provably unsound for
+  this target (2026-08-21, transferring
+  `tracial-npa-cannot-separate-canonical-trace`).**  The enemy
+  configuration exists in the genuine tracial von Neumann model
+  `L(H)` with ZERO presentation defect and `e(U, rho(c)) = 0`,
+  `e(U, rho(h)) = 1` (recorded in `no-exact-quasi-regular-leak`), so
+  its truncated tracial moments are feasible at every level of a
+  standard tracial NPA/Lasserre hierarchy; every sound dual from
+  that hierarchy is therefore nonnegative on it and cannot certify
+  `(PRT1)`, whose content is matrix-only.  Any SOS campaign here
+  must use a genuinely matricial (dimension-sensitive) proof system
+  from the start — same lesson as the radius-nine lane; a standard
+  tracial solver run would produce either infeasibility noise or an
+  unsound dual, and its cost is wasted.
 - **Falsification gates.**  Connes embeddability of the coset
   Bernoulli action
   (`coset-bernoulli-ce-refutes-relative-commutant-collapse`) refutes
