@@ -83,6 +83,13 @@ smallest known Fanizza scalar endpoint.
   telescoping loses a `k`-dependent factor.
 - **Ordinary machine transport is not robust.**  Simulating the instruction
   and heat polynomial step by step accumulates the runtime in the HS bound.
+- **First-failed dyadic halving is not a dimension report.**
+  `consecutive-dyadic-splitting-does-not-report-dimension` proves that its
+  stopping depth sees only `v_2(k)`, which stays zero along arbitrarily large
+  odd multiplicities.  Worse, an odd block admits an exact equal split off a
+  rank-one remainder, so the failed coverage relation costs only
+  `1/sqrt(k)` in normalized HS.  A viable splitter must make that remainder
+  extensive rather than merely detect its integrality.
 - **Live reduced target.**  PCP-localize only the stopping flag and the two
   product identities `(DJA1)`.  Unlike the Clifford route, the payload needs
   no growing multiplication table; the remaining question is whether this
