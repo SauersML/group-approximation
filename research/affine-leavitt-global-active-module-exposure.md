@@ -56,6 +56,16 @@ finite-support PVM.  Then
   character-orbit gap acts on counting measure, not on this invariant Haar
   measure.  Thus the decoder must retain finite atomic coordinate PVMs and
   their boundary energy before taking the limit.
+- **Close only one source/two-child Weyl cell.**
+  `first-leavitt-weyl-cell-has-exact-rectangular-model` realizes the source
+  pair as `M_p tensor 1`, the two children as the full `M_(p^2)`, and the
+  second branch by tensor swap, all on one Hilbert space with exact returns
+  and canonical Pauli traces.  It also gives the sharp next certificate: a
+  fixed `s_(2p)` evaluation detects the factor growth independently of
+  spectator multiplicity.  What is missing is a matrix-only mixed return
+  placing that same target tuple back in the source factor.  Literal
+  word-level confinement would also kill the regular representation and is
+  therefore impossible.
 
 Accordingly the character-orbit backend does not prove the old
 affine-Leavitt decoder.  It replaces the post-decoding Leavitt trace cell by
