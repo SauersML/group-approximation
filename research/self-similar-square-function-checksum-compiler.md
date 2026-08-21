@@ -121,6 +121,13 @@ positive-mass reservoir strongly enough to prove `(SSC3)`.
   become automorphisms and the mark survives.  A surviving endomorphism
   actuator must be nonabelian or infinite-rank and defeat every common
   mark-detecting finite quotient.
+  Finite-rank free packets do not provide an easy nonabelian escape either:
+  every single injective endomorphism has compatible marked finite quotients
+  by `single-free-endomorphism-has-marked-finite-quotients`, and every finite
+  family with full-rank rational abelianization shares a characteristic
+  finite pro-`p` quotient by
+  `full-h1-rank-free-endomorphism-families-periodize`.  The remaining free
+  case requires at least two branches and a singular-`H_1` endomorphism.
 - A noncontracting Baumslag--Solitar clock also does not supply the checksum
   from spectral recurrence alone.  By
   `periodic-bs-clock-defeats-spectral-first-hit-checksum`, exact finite

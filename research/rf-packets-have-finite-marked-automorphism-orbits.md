@@ -61,3 +61,10 @@ The first proper-endomorphism candidate is also excluded:
 `abelian-matrix-hnns-have-marked-finite-quotients` shows that every finite
 family of injective endomorphisms of `Z^n` becomes invertible on one finite
 congruence quotient which still detects any prescribed nonzero mark.
+The nonabelian free boundary is also mostly closed.
+`single-free-endomorphism-has-marked-finite-quotients` uses
+Borisov--Sapir residual finiteness to handle every one-branch free mapping
+torus, including singular abelianization, while
+`full-h1-rank-free-endomorphism-families-periodize` gives one common
+characteristic pro-`p` quotient for arbitrary finite families with
+nonsingular rational `H_1` maps.
