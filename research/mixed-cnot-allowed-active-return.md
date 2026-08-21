@@ -8,31 +8,52 @@ distinct_from:
   mixed-central-cnot-completes-relative-rank-one-router: that routes the two flag halves on `K=-1`; this must also retain the allowed `K=+1,b=-1` sector without a scalar controlled word.
 ---
 
-For the mixed router on the marked carrier, let
+For the six-generator `S_3` replacement of the mixed router on the marked
+carrier, let
 
 ```text
 X=QF(I-b)/2,             A=Q-X.                        (MAR1)
 ```
 
-Construct a finite group-word return, compatible with the next Fanizza clock
-level, whose active carrier differs from `A` by at most polynomial
-normalized-HS loss, approximately reduces the original shared BCS words, and
-preserves the two-child trace balance.  The construction must admit an exact
-extension of every allowed `K=+1` packet character, including `b=-1`.
+Put a complete gauge-doubled Fanizza occurrence at every site of the free
+Thompson occurrence amalgam.  In each occurrence use the endpoint packet of
+`s3-active-complement-is-three-equal-scale-affine-atoms`, so
+
+```text
+A=P_(+,+)+P_(+,-)+P_(-,+),       X=P_(-,-).            (MAR2)
+```
+
+Adjoin an HNN edge carrying the three endpoint generators `(J,K,b)` of one
+occurrence to those of the next.  By
+`s3-affine-hnn-transports-the-active-vector`, it carries `A` to the next
+analytic active carrier `A'` with fixed normalized-HS loss.  The atom
+`P_(+,-)` is included, so every allowed `K=+1,b=-1` character returns exactly.
+
+By `packet-central-active-complement-reduces-shared-words`, `A'`
+approximately reduces the next occurrence's original shared BCS words.  The
+free occurrence amalgam imposes no commutation between the old and fresh
+logical tuples, and Britton embedding preserves the marked base.
 
 The exit component `X` no longer belongs to this target:
 `projected-hard-sign-bridge-selects-joint-exit` transports it directly to the
 correct E5 first-hit layer using `b` as the hard word and `X` only as an
 analytic right compression.
 
-The remaining difficulty is therefore one-sided.  It is not necessary to
-make a group word recognize `X`; it is necessary to show that deleting the
-already-accounted-for projection `X` leaves a coherent next-level carrier.
-A direct spectral complement is insufficient unless its commutators with all
-shared BCS words are controlled.  A relation forcing `b=+1` on `K=+1` is
-also invalid, because it deletes an allowed radical character.
+The HNN edge also carries `X` to the fresh inactive atom `X'`.  This does not
+invalidate the branching/first-hit ledger: the next active mass is defined by
+`A'`, while the independently transported copy of `X` has already entered the
+orthogonal Thompson first-hit reservoir.  The ledger requires
 
-## Attempts
+```text
+2q_n<=q_(n+1)+r_n+error,
+```
+
+not that every other image of the exit vanish algebraically.  Ordinary HNN
+transport supplies no contraction and is not credited with one; persistence
+comes from the one-active-plus-one-exit balance in
+`branching-plus-first-hit-exits-forces-hs-floor`.
+
+## Fences retained
 
 - The internal mixed-packet automorphism group has order four and supplies
   only identity and shear on `span{b,d}`.  There is no third internal endpoint
@@ -40,13 +61,12 @@ also invalid, because it deletes an allowed radical character.
 - Sending every `b=-1` sector to the E5 boundary proves the exit lower bound
   after compression by `X`, but it cannot define the next active carrier:
   allowed `K=+1,b=-1` mass has no first-detection character and may recur.
-- The live options are an E5-provided third chart or a direct commutator bound
-  for the analytic complement `A` against the original shared Fanizza words.
-- `six-generator-one-jump-router-has-s3-radical-atlas` now supplies a third
-  finite-packet option: its marked rank jumps by one and its `S_3` symmetry is
-  transitive on all three nonzero allowed radical endpoint signs.  The exact
-  remaining estimate is
-  `s3-radical-atlas-returns-allowed-active-carrier`.
+- The direct commutator bound for the analytic complement is supplied by
+  `packet-central-active-complement-reduces-shared-words`.
+- A finite graph of HNN charts still has a stationary regular flow and cannot
+  prove the separate Schur contraction theorem.  The present route instead
+  uses the already established branching-plus-first-hit ledger; it must not be
+  cited for `schur-violation-density-gives-contraction`.
 - The four-child context batch gives a different escape from this target:
   send all three contextual failures to three grandchildren and reserve the
   fourth as active.  This bypass is tracked by

@@ -25,9 +25,11 @@ every sufficiently accurate normalized-HS microstate:
    drift;
 2. `X` is transported into the next previously-undetected E5 hard layer;
 3. the allowed sector `(I-F)(I-b)/2` is returned, not charged as an exit;
-4. the three router contexts share their two endpoint flag marginals, and the
-   sum of their contextual failure masses is bounded above by a fixed sparse
-   sum of group-relator energies.
+4. either the three router contexts share their two endpoint flag marginals
+   with a fixed failure-energy bound, **or** the joint exit is retained as an
+   analytic right compression and a hard-sign bridge sends it to an
+   independent Thompson first-hit site with leakage bounded by fixed relator
+   defects.
 
 Then `robust-rank-one-endpoint-marginal-floor` and `(MCR5)` give a local exit
 lower bound `tau(QF)/2-O(sqrt(E))`, while the active/exit partition gives the
@@ -44,7 +46,8 @@ finite-dimensional theorem needed before the final HS floor.
 - Replacing `(MCF1)` by a scalar group word is the affine controlled-phase
   barrier in another guise.  The atlas must use the three endpoint contexts
   and rank-one marginal obstruction, or an explicitly equivalent
-  non-Bass--Serre mechanism.
+  non-Bass--Serre mechanism such as analytic right compression followed by the
+  independent site-pulse capacity bound.
 - The allowed exact model must extend with zero energy.  A candidate that
   deletes its `K=+1,b=-1` character fails finite-group induction and is not a
   solution.
@@ -58,3 +61,7 @@ finite-dimensional theorem needed before the final HS floor.
 - A strictly smaller alternate route is now available.  The exit half itself
   is closed by `projected-hard-sign-bridge-selects-joint-exit`; the only open
   clause on that route is `mixed-cnot-allowed-active-return`.
+- The alternate route is now complete through
+  `mixed-cnot-joint-exit-via-thompson-site-pulses`: the site-pulse reservoir
+  replaces the refuted sparse failure-projection certificate, and the free
+  occurrence HNN return retains all three active affine atoms.
