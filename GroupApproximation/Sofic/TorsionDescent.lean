@@ -454,6 +454,7 @@ theorem exists_shorter_of_short_arc {R : Set (List (α × Bool))}
         QuotientGroup.mk' Nrel c₁ := by
     rw [← hq']
     group
+  rw [hNrel] at hfinal ⊢
   rw [hfinal]
   group
 
