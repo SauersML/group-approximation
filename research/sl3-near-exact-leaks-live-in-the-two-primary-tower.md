@@ -637,6 +637,29 @@ refutation, and this claim makes the reduction precise.
   vanishing), which now describe the enemy's necessary shape with
   unprecedented precision: a truncated solenoid-Haar plateau carrying
   an exactly quasi-regular witness — one object, one wall.
+- **Unification with the carrier-character front (2026-08-21, pure
+  analysis, final).**  Since `h` is a word in elementaries, the
+  enemy's dictionary unitary is determined by the three unipotent
+  solenoid towers, and the Steinberg relation
+  `[e_12(x), e_23(y)] = e_13(xy)` couples them through DYADIC
+  MULTIPLICATION: the local structure is Heisenberg over `Z[1/2]` —
+  amenable, hence locally constructible with exactly the
+  solenoid-Haar spectra the plateau design prescribes.  Every local
+  piece of the enemy is therefore realizable; the obstruction lives
+  only in the non-amenable Weyl-glued assembly, and the trace of the
+  assembled object IS a factorial hyperlinear character of the
+  carrier group over the regular trace.  Conclusion: this lane and
+  the carrier-character lane
+  (`hnn-carrier-factorial-character-collapse`) have converged on the
+  SAME open kernel from opposite sides — one is the spatial/spectral
+  description (solenoid-Haar plateau with an exactly quasi-regular
+  witness), the other the character-theoretic one (a factorial
+  hyperlinear carrier character centralizing nothing beyond the
+  forced center).  Any rigidity input that classifies or obstructs
+  finite approximation of such characters closes both; and the
+  plateau description supplies the character's full restriction data
+  on every amenable subgroup as a testing surface for such a
+  classification.
 - Proved below by assembling established inputs; see the proof route.
   The one step that is a HYPOTHESIS here and a theorem at `SL_2` is
   vertex near-exactness: `SL_3(Z)` HS-stability is open (it is the
