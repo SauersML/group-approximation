@@ -49,6 +49,14 @@ into one ordinary word menu.  Its two remaining obligations are precisely a
 matrix-only domination of the summed compressed rows and global coverage of
 the shared BCS forbidden mass.  No per-type preferred carrier is selected.
 
+`forbidden-weighted-type-carrier-coverage-is-rank-rounding` now proves the
+second obligation automatically: trim each forbidden type piece to rank
+divisible by four, losing only `O(1/d)` over the fixed menu.  The first
+obligation is therefore the entire remaining cyclic interface.  Its actuator
+must control rows on analytic forbidden-weighted subspaces; demanding that
+those subspaces reduce the context packet is not harmless and fails in an
+explicit positive-density isotypic countermodel.
+
 ## Attempts
 
 - **Repeat the balanced SMC row on every marked type.**  The multiplicity

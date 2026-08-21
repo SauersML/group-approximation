@@ -107,3 +107,14 @@ finite-coordinate estimate saying that the ordinary global actuator energy
 dominates the **sum of type-compressed mixed rows**.  `(GTC5)` is the global
 coverage gate.  Together they are sufficient, and neither can be replaced by
 finite packet restriction tables or a local context calculation.
+
+The coverage gate is now discharged at the analytic level.
+`forbidden-weighted-type-carrier-coverage-is-rank-rounding` takes
+`P_omega` to be the largest four-divisible subprojection of the marked
+forbidden piece `F_cQ_omega`.  It loses at most three matrix dimensions per
+type, so `(GTC5)` holds with `alpha=1` and `zeta=o(1)` over the fixed menu.
+These carriers need not reduce the full context packet.  Requiring reducing
+carriers is an additional, generally false condition unless the forbidden
+projection acts only on the external multiplicity factor.  Consequently the
+sole unresolved gate in this criterion is `(GTC4)` for the analytic
+forbidden-weighted carriers.
