@@ -132,3 +132,21 @@ product with Manzoor's native virtually-free actor is Connes embeddable,
 including every infinite-type/r.e. module and every proposed non-Cartan
 placement inside that ambient algebra.  The route can survive only by
 changing the acting group, not merely the module presentation.
+
+The actor restriction is substantially stronger than “not virtually free.”
+`haagerup-actors-cannot-host-property-t-algebraic-envelope` applies Popa's
+relative property-H rigidity theorem: if `Lambda` is Haagerup, then
+`L^infinity(K) rtimes Lambda` has property H relative to its abelian (hence
+type-I) base, and it contains no relatively rigid `II_1` subalgebra.  Since
+the target `N` is itself property `(T)`, **every Haagerup actor is ruled out**,
+even for a genuinely non-Cartan embedding.  Any surviving replacement actor
+must therefore be non-Haagerup; merely leaving the virtually-free class is not
+enough.
+
+The one-transformation spectral fence also sharpens.  By
+`z-haar-algebraic-factors-have-lebesgue-plus-torsion-spectrum`, every factor
+of a Haar algebraic `Z`-action has maximal spectral type dominated by circle
+Haar measure plus atoms at roots of unity.  Thus singular-continuous Gaussian
+actions cannot be algebraized this way: the Gaussian first chaos already
+violates the required spectral type.  Gaussian compactification supplies no
+universal route around the permutation-spectrum obstruction.
