@@ -1624,12 +1624,38 @@ the following deduplication applies:
   `algebraic-compact-action-envelope-for-non-ce-relation` and the established
   Pontryagin compiler implication.
 - Route IX's compiler implication is already subsumed by
-  `thom-central-corner-criterion`; only the reverse projective-basis search is
-  new, so no second compiler claim is added.
-- Routes VII, VIII, X--XII remain portfolio attack notes. They are not promoted
+  `thom-central-corner-criterion`. The reverse search now has an exact
+  firewall: `projective-basis-character-criterion` characterizes when a GNS
+  factor natively has such a basis, and
+  `twisted-group-basis-forces-affine-context-support` proves that native basis
+  involutions occupy one uniform affine slice in every Boolean context. Thus a
+  nonlinear BCS model of this form has already factored through an LCS/affine
+  refinement; Fourier-sum observables return to the existing additive-corner
+  groupification interface. No duplicate finite-cocycle compiler is added.
+- Route VIII is **refuted as stated**. A gap for the regular operator does not
+  transfer unregularized log determinants through microstates. The exact
+  free-group counterexample is
+  `free-group-laplacian-refutes-regular-gap-fk-transfer`, the corrected limit
+  theorem is `fk-transfer-needs-uniform-log-integrability`, and
+  `sublinear-block-poisons-normalized-torsion` records the general `o(d)`-corner
+  contamination firewall. Only a separator with a common spectral floor on
+  every approximate finite evaluation survives, and at that strength it is a
+  generic robust finite-matrix separator rather than a determinant shortcut.
+- Routes VII, X--XII remain portfolio attack notes. They are not promoted
   to separate graph claims until they produce a concrete host/certificate;
-  this avoids duplicating the existing entropy, determinant, channel, and
-  arithmetic-RCC frontiers.
+  this avoids duplicating the existing entropy, channel, and arithmetic-RCC
+  frontiers.
+
+The machine lane also admits a useful strengthening independent of all four
+portfolio routes. `threshold-free-reverse-kleene-higman-diagonal` shows that a
+reverse-Kleene program may enumerate only a formal triviality proof: it never
+needs to read a decoder threshold or modulus. Qualitative NONHALT membership
+of the mark in the hyperlinear radical suffices, even for a uniformly
+recursively enumerable presentation, after which effective Higman embedding
+gives a finitely presented non-hyperlinear overgroup. The compactness
+equivalence is `hyperlinear-radical-presentation-compactness`; the tensor-power
+limit on unconditioned collapse is
+`reverse-kleene-unconditioned-collapse-forces-fd-invisibility`.
 
 Two later repository corrections also constrain the portfolio. Bass--Serre
 marginal matching alone cannot charge rank-one forbidden mass, and the native
