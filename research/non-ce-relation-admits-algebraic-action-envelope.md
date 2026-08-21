@@ -160,6 +160,25 @@ non-hyperlinear group `hat K rtimes Lambda`.
   Manzoor actor is CE, even for infinitely related/non-residually-finite
   modules, and even if the desired inclusion is non-Cartan.  Any surviving
   algebraic envelope must change the acting group.
+- **Branch (b) collapses onto the Kun--Thom coset module (2026-08-21,
+  third pass).**  Following the design box constructively: non-r.f.
+  duals with positive-trace elements exist cheaply in the ABELIAN
+  world (`Z[1/6] rtimes_(3/2) Z = BS(2,3)` is non-r.f. with algebraic
+  dual action), but every such solvable example is amenable, hence
+  sofic, hence CE — barren.  To escape soficity the module must sit
+  over a coset space with NON-amenable stabilizers, and the minimal
+  such design is `plus_(Gamma/Lambda) F_2` with the coset action —
+  literally the coset Bernoulli / Kun--Thom wreath module already held
+  by the graph (`coset-bernoulli-ce-refutes-relative-commutant-collapse`,
+  `kun-thom-clifford-crossed-product-ce`, and the wreath route
+  `nonhyperlinear-coset-wreath-from-commutant-collapse`).  So branch
+  (b)'s design pressure reproduces the existing fork rather than
+  opening new space: the envelope lane's genuinely new content beyond
+  the recorded coset/KT questions is exactly branch (a) — the
+  `omega_alg` completeness question — plus the freedom to choose
+  OTHER non-amenable-stabilizer coset modules than the arithmetic
+  ones (e.g. over the graph's own nonsofic group), which is the one
+  degree of freedom the KT fork does not already exhaust.
 - **Falsification test.**  Fourier positivity is a real constraint:
   coefficients of Haar algebraic processes satisfy character-positivity
   identities that a general p.m.p. correlation need not.  Check the
