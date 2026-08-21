@@ -36,6 +36,21 @@ exclude every nontrivial linear relabeling while using only two incidences
 per `b`.  The complete `V x V` twisted-commutation table is unnecessary on
 this sector.
 
+The statement has a uniform quantitative gap.  If `L!=I`, then at least one
+of
+
+```text
+q_0(b)=<b,(L-I)b>,       q_1(b)=<alpha b,(L-I)b>
+```
+
+is a nonzero Boolean polynomial of degree at most two.  Every nonzero
+degree-at-most-two polynomial on `F_2^n` has relative Hamming weight at least
+`1/4`.  Consequently, if the verifier chooses the two matchings with equal
+probability, every nonidentity linear relabeling fails with probability at
+least `1/8`.  In squared normalized Hilbert--Schmidt energy, a wrong Weyl
+sign contributes `4`, so the average two-matching energy is at least `1/2`.
+These constants are independent of `n`.
+
 ## Proof
 
 Put `M=L-I` and define the binary bilinear form
@@ -87,6 +102,13 @@ for every `x`.  Squaring is a bijection of the finite field, so
 nondegeneracy of the trace pairing forces `c=0`.  Thus `B=0`, whence `M=0`
 and `L=I`.
 
+For the quantitative assertion, exact rigidity shows that for `L!=I` one of
+`q_0,q_1` is nonzero.  The elementary Reed--Muller distance bound says that a
+nonzero multilinear polynomial of degree at most `r` on `F_2^n` has weight
+at least `2^(-r)`: restrict to a variable occurring in a top-degree monomial
+and induct on the number of variables.  Taking `r=2` gives the claimed
+quarter-density, and averaging the two matchings gives `1/8`.
+
 ## Scope
 
 This is not yet the entangled sampler theorem.  A general exact
@@ -104,4 +126,3 @@ matching which does so.
 - The second matching cannot be an arbitrary repeated coordinate shear.  Its
   multiplier must generate the full field so that `(TFM3)` balances the form
   over every scalar.
-
