@@ -177,8 +177,7 @@ level-three congruence kernel that
 `FiniteIndex.isFinitelyPresented_congruenceSubgroup` speaks about. -/
 theorem gamma3_finitelyPresented :
     Group.IsFinitelyPresented ↥gamma3 :=
-  FiniteIndex.isFinitelyPresented_congruenceSubgroup
-    FiniteIndex.freeFiniteIndexFinitelyPresented 3
+  FiniteIndex.isFinitelyPresented_congruenceSubgroup 3
 
 /-- **The canonical partner, fully certified.**  Every field is proved:
 the group structure is the subgroup structure, countability is
