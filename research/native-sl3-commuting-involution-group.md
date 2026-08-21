@@ -45,3 +45,9 @@ by finite-dimensional codensity of the arithmetic pair.  Hence
 
 This exact package does not prove nonhyperlinearity: the missing normalized-
 HS step is exactly `commuting-conjugate-involution-transfer-for-sl3-pair`.
+Structurally, `native-sl3-group-is-hecke-graph-wreath-product` identifies this
+presentation as a graph wreath product over the Hecke orbital graph on
+`A/C`.  By `native-hecke-graph-action-is-the-permanence-firewall`, a sofic
+model of that graph action would make this whole candidate sofic and refute
+the desired transfer.  The nonamenable stabilizer means the current automatic
+sofic-action theorems do not decide it.

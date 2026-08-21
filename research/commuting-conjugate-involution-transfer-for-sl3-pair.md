@@ -110,3 +110,9 @@ matrix-coordinate exclusion of the independent two-coordinate overlap.
   projections of `P` and `hPh*`.  Separate relative-commutant estimates for
   `C` and `hCh^-1` do not identify those atoms and therefore do not exclude
   the stationary Bernoulli profile.
+- The finite presentation is the graph wreath product over the Hecke orbital
+  graph `Theta_h`.  If the action `A curvearrowright Theta_h` is sofic, the
+  graph-wreath permanence theorem makes the candidate sofic and refutes this
+  transfer.  Existing automatic soficity covers amenable stabilizers, not the
+  present stabilizer `SL_3(Z)`.  Thus a proof here necessarily proves the
+  nonsoficity of this explicit nonamenable-stabilizer graph action.
