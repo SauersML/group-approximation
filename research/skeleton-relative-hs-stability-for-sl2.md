@@ -211,6 +211,36 @@ never activates.
   improves.  That depth-uniformity is the single remaining
   quantifier, and it is a statement about the fixed BS(1,4) modulus,
   not about SL_2 — the smallest the crux has ever been.
+- **The depth concern dissolves on the odd model (2026-08-21).**
+  On the EXACT odd skeleton the base has odd order and `z -> z^4`
+  permutes its spectrum bijectively (4 is a unit mod odd order), so
+  every `x4`-pushforward in the syzygy is a LOSSLESS automorphism:
+  the depth-`4^k` amplification only ever afflicted APPROXIMATE
+  towers, and leg (1) has already moved us onto the exact odd model
+  before the syzygy is applied.  The `h`-defect term is not an extra
+  loss either — the single torus `h` acts as `x4` on `e_+` and `x/4`
+  on `e_-`, so the lower `h`-relation IS the swap-torus residual
+  `(R1)` we already track, not a new quantity.  Net: after leg (1),
+  all `x4` maps are exact, the two holonomies collapse to one by the
+  syzygy, and the ONLY analytic content left is the convergence of
+  the single-holonomy absorption cascade — the exact same species as
+  the PROVED local-rigidity theorem `bs14-exact-representation-
+  variety-is-hs-locally-rigid`.
+- **Honest terminal assessment (2026-08-21).**  With the depth
+  concern gone, this claim reduces to exactly two technical lemmas
+  ATOP the proved local-rigidity core: (a) the solenoid-group
+  extension of local rigidity (recorded follow-on; same multiscale
+  proof with the joint solenoid spectrum), and (b) rigorous
+  Holder-modulus convergence of the absorption cascade (argued of the
+  proved theorem's species, not yet written line by line).  If both
+  hold, the skeleton claim holds, and the whole chain to the goal
+  closes.  This is a plausible proof ARCHITECTURE for
+  `SL_2(Z[1/2])` HS-stability, which is the Dogon--Vigdorovich open
+  problem: difficulty is CONSERVED, as it must be for a genuine open
+  problem, but it is now localized in two named same-species lemmas
+  over a proved base rather than diffused across the whole stability
+  question.  Not landed; sharply reduced.  A rigorous write-up of
+  (a) and (b) is the work; nothing here claims those are automatic.
 - **Where the obvious attack could die.**  If the torsor fixed-point
   problem has an obstruction class that grows with the odd order,
   the loss would not be dimension-free; the analogue at the level of
