@@ -8,7 +8,7 @@ requires:
   - boone-commutator-criterion-for-halting
   - kleene-mipco-self-destroying-game
   - finite-predicate-signed-permutation-sector
-  - two-generator-amitsur-levitzki-dimension-oracle
+  - one-sided-amitsur-oracle-has-bounded-fock-model
   - multiplicity-pi-turing-tape
   - conjugacy-compressed-dimension-trigger
   - constant-hs-sound-self-detecting-tape-groupification
@@ -21,7 +21,9 @@ nonhalting.  Compile the constant-gap local verification supplied at game
 level by the coRE fixed point into the finite CPU of
 `constant-hs-sound-self-detecting-tape-groupification`.  On its selected
 `pi`-sector, the commutant is the multiplicity tape and the two-generator
-Amitsur--Levitzki sequence forces a zero at the finite multiplicity index.
+one-sided Amitsur--Levitzki sequence forces a unit defect at the finite
+multiplicity index, while its prefix-code Fock model supplies one bounded
+infinite realization of every nontriggered instruction.
 
 The groupification claim makes that trigger a robust finite control event and
 propagates it to the marked Boone word with a universal normalized-HS

@@ -5,7 +5,7 @@ kind: route
 title: Feed the self-indexed multiplicity depth into the cyclic heat-amplitude endpoint
 target: fanizza-heat-filter-one-sided-return
 requires:
-  - two-generator-amitsur-levitzki-dimension-oracle
+  - one-sided-amitsur-oracle-has-bounded-fock-model
   - multiplicity-pi-turing-tape
   - fanizza-heat-filter-has-uniform-cstar-decay
   - fanizza-heat-return-is-one-cyclic-amplitude-product
@@ -19,5 +19,6 @@ vanishes instead, the marked carrier vanishes without using the filter.
 Thus every canonical finite-dimensional microstate collapses the fixed
 Fanizza mark.  HALT extension is part of the compiler claim; at the scalar
 endpoint it is consistent because every heat filter is the identity on its
-ground-space carrier.  No bounded representation of the bare formal-inverse
-Amitsur--Levitzki algebra is asserted.
+ground-space carrier.  The oracle side now has an explicit bounded Fock
+model by `one-sided-amitsur-oracle-has-bounded-fock-model`; only finite
+constant-HS localization and transport of the moving instruction remain.
