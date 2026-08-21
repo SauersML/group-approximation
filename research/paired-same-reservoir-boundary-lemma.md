@@ -106,6 +106,72 @@ partial swap is a three-elementary word.  Thus the surviving compiler target
 is one off-diagonal Gram authentication, not the entire mutual bicommutant or
 all four `s_4` placement estimates.
 
+### The required same-object return word already exists
+
+Put
+
+```text
+x=s_(00)t_0,       y=s_0t_(00),
+J_x=[[1-f,x],[y,1-e]],                                  (PSR5)
+```
+
+where `e=s_0t_0` is the coarse minimal prefix corner and
+`f=s_(00)t_(00)` is its fine descendant.  By `(CFI9)`, `J_x` is the fixed
+ordinary three-elementary group word
+
+```text
+[[1,x],[0,1]] [[1,0],[y,1]] [[1,x],[0,1]],              (PSR6)
+```
+
+and `J_x^2=1`.  More importantly, it is already the desired algebraic
+same-object return.  If
+
+```text
+ehat=diag(0,e),       fhat=diag(f,0),
+```
+
+then direct block multiplication using `yx=e` and `xy=f` gives
+
+```text
+J_x ehat J_x^*=fhat,       J_x fhat J_x^*=ehat.          (PSR7)
+```
+
+Thus no new group word is needed to cross the net `2 -> 4` refinement: the
+external stabilized selector and the identical internal prefix reservoir
+are tied by `(PSR6)`.
+
+There is also an exact quantitative reduction for microstates.  Suppose the
+coarse and fine packet matrix units have been exactified on the same selected
+corner, let `J` be the unitary assigned to `(PSR6)`, and put
+
+```text
+X=fhat J ehat,       epsilon_J=||J ehat J^*-fhat||_2.
+```
+
+Then
+
+```text
+ehat-X^*X
+ =ehat J^*(J ehat J^*-fhat)J ehat,
+||ehat-X^*X||_2 <=epsilon_J.                            (PSR8)
+```
+
+Combining `(PSR8)` with the coarse/fine rank gap `(PSR4)` yields the
+dimension-free same-reservoir payment
+
+```text
+tr(P) <=4 epsilon_J^2.                                  (PSR9)
+```
+
+Consequently the remaining theorem is narrower than word discovery: prove
+that the named presentation relators and canonical packet recovery control
+the **selector covariance** `epsilon_J` for this one existing word, or charge
+the failure to boundary mass.  The involution relation `J^2 ~=1` alone does
+not imply `(PSR7)`—an arbitrary involution may preserve unrelated subspaces—
+so the compiler must retain the conjugation action of `(PSR6)` on the two
+recovered prefix packet corners.  This is the exact point at which ordinary
+word defect must be connected to the matrix-coordinate selectors.
+
 ## Attempts
 
 - **Whole-map extraction fails.**  Exact deterministic equivariant maps into
