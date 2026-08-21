@@ -70,6 +70,37 @@ MULTIPLICITY algebra.
   algebraic seminorm that the relator structure controls -- the next
   technical point, below.
 
+## The precise crux: a Wasserstein-vs-HS norm mismatch
+
+Push the regular-sector solve to its exact functional-analytic core.
+Represent the abelian component of the mean-zero defect as a complex
+measure `nu = g(theta) d mu_V(theta)` on the `V`-spectrum, where
+`g(theta)` is the `theta`-diagonal of the Weyl defect.  Then:
+
+- `nu` is AUTOMATICALLY small in total variation:
+  `|| nu ||_TV = | nu |(circle) <= || e' ||_1 = O(delta)`.
+- The coboundary equation is `nu = mu - T_* mu` (`T = x4`), and the
+  Ruelle transfer operator for the expanding map `x4` DOES contract --
+  but in WASSERSTEIN / dual-Holder norm (the standard exponential-
+  mixing statement for expanding maps), NOT in total variation and NOT
+  in HS.  So RPF delivers a coboundary `mu` with `|| mu ||_Wass <=
+  C || nu ||_Wass <= C delta`.
+- But the coboundary `c` the cascade needs must be small in HS /
+  `L^2` operator norm, and Wasserstein-small does NOT give HS-small.
+
+So the genuine, isolated obstruction is a NORM MISMATCH: the transfer
+operator's spectral gap lives in Wasserstein (where the defect is free)
+while the required coboundary bound is in HS (where regularity is not
+free).  This is sharper and more attackable than "spectral density at
+`1`" or "BV regularity": it is the specific question of upgrading a
+Wasserstein coboundary bound to an HS one for the `x4` transfer
+operator, which is an interpolation / a-priori-estimate problem about
+one explicit expanding map, and it is exactly where the frontier now
+sits.  Candidate upgrades: (i) the defect has extra structure (it is a
+RELATOR defect, a bounded word) that may force HS `pprox` Wasserstein
+on it; (ii) an elliptic-type a-priori estimate for `1 - T_*` on the
+regular sector using the tower multiplicity as ellipticity.
+
 ## Attempts
 
 - **Why the naive bounds miss it.**  `|| e' ||_2 = delta` alone does
