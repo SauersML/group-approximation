@@ -84,17 +84,33 @@ Then
 
 ```text
 F != Q_P^comb,
-tau(F Q_P^comb)=1/16=tau(F)tau(Q_P^comb).             (TCQ8)
+tau(F Q_P^comb)=1/16=tau(F)tau(Q_P^comb),
+tau(F Q_P^comb F Q_P^comb)=3/64.                     (TCQ8)
 ```
 
-So the capacity-generated common corner is statistically transverse to the
-previous branch-transfer carrier rather than being its missing decoder.
-This falsifies the tempting direct identification of the two atlas lanes.
+Thus their first overlap has the statistically independent value, but the
+projections do not commute.  With the two projection reflections
+
+```text
+R_F=2F-1,       R_P=2Q_P^comb-1,
+```
+
+the exact angle/holonomy calculation is
+
+```text
+tau(F Q_P^comb)-tau(F Q_P^comb F Q_P^comb)=1/64,
+||R_F R_P R_F R_P-1||_2^2=1/2.                       (TCQ9)
+```
+
+So the capacity-generated common corner and the previous branch-transfer
+carrier already carry a fixed noncommutative holonomy rather than furnishing
+one another's missing decoder.  This falsifies the tempting direct
+identification of the two atlas lanes, but supplies a concrete energy source.
 The remaining problem is now sharply phrased: the mixed rank-five words must
 recover this *already canonical and already common* `F` in both transverse
 descendant algebras, transport one of the two quarter carriers into the
-other, or force nontrivial holonomy while trying.  Finite packet trace tables
-alone do none of these.
+other, or expose the reflection commutator `(TCQ9)` as a legal relator-scale
+holonomy.  Finite packet trace tables alone do not impose that final return.
 
 All equalities were replayed on MSI with exact rational coefficients and
 exact Leavitt-prefix normal forms; no floating-point computation is involved.

@@ -31,6 +31,11 @@ while equality of the trace-quarter projections would require overlap
 maximum never exceeds the untransported statistically independent value
 `tau(F_cap)tau(F_branch)=1/16`.
 
+This first-moment statement does not mean the carriers commute.  The exact
+second moment gives angle variance `1/64` and reflection-commutator energy
+`1/2`, as recorded in
+`two-pauli-quarter-carriers-have-fixed-reflection-holonomy`.
+
 This is a bounded falsification result, not a no-conjugacy theorem for the
 whole atlas group.  It rules out the cheapest possible repair: the missing
 same-carrier bridge is not one raw/comb/Pauli generator or a product of two

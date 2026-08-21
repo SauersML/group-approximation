@@ -86,11 +86,15 @@ Either way a fixed positive energy is paid.
 - **The character tables do not secretly supply transverse recovery.**  The
   common quarter carrier is far from both the raw and comb four-cut algebras,
   commutes with none of their atoms, and is not the transported quarter
-  carrier from the earlier branch-transfer packet: their overlap is `1/16`,
-  exactly the product of their traces.  Hence “common” at the transported
-  corner level does not identify the earlier membership decoder.  A proof
-  must use a genuinely mixed rank-five word to recover the same carrier or to
-  pay holonomy.
+  carrier from the earlier branch-transfer packet.  Their first overlap is
+  `1/16`, exactly the product of their traces, but their second overlap is
+  `3/64`; consequently their projection reflections have commutator energy
+  exactly `1/2`.  Hence “common” at the transported-corner level does not
+  identify the earlier membership decoder, but the exact packet already
+  supplies the desired holonomy object.  The remaining `(HOL)` work is now to
+  expose those two Hecke reflections as legal derived-packet words and make a
+  mixed rank-five return require trivial holonomy.  Alternatively the mixed
+  words must prove `(TRV)` for the same carrier.
 - **Falsification gate, inherited.**  Any proof of this claim must be checked
   against the exact model: the compulsory overlap exists there too, so an
   argument that derives `(HOL)` or `(TRV)` from the overlap alone, without using

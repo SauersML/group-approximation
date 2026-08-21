@@ -73,6 +73,26 @@ def main():
         reflections[0], reflections[1], reflections[0], reflections[1]
     )
     commutator_hs_sq = 2 - 2 * ga_trace(group_commutator)
+    carrier_overlap = ga_trace(ga_mul(
+        common, transported_pauli_carrier
+    ))
+    carrier_overlap_square = ga_trace(ga_mul(
+        common,
+        transported_pauli_carrier,
+        common,
+        transported_pauli_carrier,
+    ))
+    carrier_angle_variance = carrier_overlap - carrier_overlap_square
+    carrier_reflections = (
+        ga_sub(ga_scale(2, common), identity),
+        ga_sub(ga_scale(2, transported_pauli_carrier), identity),
+    )
+    carrier_group_commutator = ga_mul(
+        carrier_reflections[0],
+        carrier_reflections[1],
+        carrier_reflections[0],
+        carrier_reflections[1],
+    )
 
     result = {
         "corner_trace": rational_string(ga_trace(q)),
@@ -82,8 +102,8 @@ def main():
         "reflection_group_commutator_hs_sq": rational_string(
             commutator_hs_sq
         ),
-        "commutator_equals_16_angle_variance": (
-            commutator_hs_sq == 16 * angle_variance
+        "commutator_equals_32_angle_variance": (
+            commutator_hs_sq == 32 * angle_variance
         ),
         "transported_corners_commute": ga_equal(
             ga_mul(corners[0], corners[1]),
@@ -101,7 +121,20 @@ def main():
             common, transported_pauli_carrier
         ),
         "common_transported_pauli_carrier_overlap": rational_string(
-            ga_trace(ga_mul(common, transported_pauli_carrier))
+            carrier_overlap
+        ),
+        "common_transported_pauli_carrier_overlap_square": rational_string(
+            carrier_overlap_square
+        ),
+        "common_transported_pauli_carrier_angle_variance": rational_string(
+            carrier_angle_variance
+        ),
+        "common_commutes_transported_pauli_carrier": ga_equal(
+            ga_mul(common, transported_pauli_carrier),
+            ga_mul(transported_pauli_carrier, common),
+        ),
+        "common_transported_pauli_carrier_reflection_commutator_hs_sq": (
+            rational_string(2 - 2 * ga_trace(carrier_group_commutator))
         ),
         "common_raw_cut_overlaps": {
             str(character): rational_string(ga_trace(ga_mul(common, cut)))

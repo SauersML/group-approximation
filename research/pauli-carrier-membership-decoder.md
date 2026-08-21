@@ -24,5 +24,7 @@ admit exact Pauli countermodels.
 Do not identify this transported branch-transfer projection with the common
 quarter corner in `transported-coefficient-corners-share-flat-quarter-carrier`.
 Exact prefix arithmetic proves that they are distinct and have overlap
-`1/16`, exactly the product of their traces.  Any bridge between them is part
-of the decoder, not a finite-packet identity.
+`1/16`, exactly the product of their traces.  Their second overlap is `3/64`,
+so their projection reflections have commutator energy `1/2`.  Any bridge
+between them is part of the decoder, not a finite-packet identity; the
+noncommutative angle is the alternative holonomy certificate.
