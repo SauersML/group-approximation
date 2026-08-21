@@ -2,17 +2,25 @@
 rg: 2
 id: lambda-exact-face-closes-at-p-three
 kind: claim
-title: The metaplectic flux is minus one at p congruent three mod four, and the Lambda-exact face closes for the p three pair
+title: Open p-three Lambda-exact closure from metaplectic flux
 distinct_from:
   lambda-exact-face-of-the-collapse-closes: that closed the regular-type sectors at p = 2 and drove the enemy to the unique flat profile with the flux as the terminal decision; this decides the flux for p = 3 (mod 4) and closes the WHOLE Lambda-exact face for the (SL_3(Z), SL_3(Z[1/3])) pair, flat profile included.
   odd-congruence-lambda-exact-sector-collapses: that closes levels coprime to p by the Weyl slot evaluation; this closes the complementary p-power and mixed levels at p = 3 by the Weil-Rao flux obstruction — the two mechanisms partition all levels for the p = 3 pair.
   sl3-pair-relative-commutant-route: that is the p = 2 instance of the collapse; this moves the lane's decided face to the p = 3 instance, where the metaplectic arithmetic is favorable, and leaves p = 2 as the constructive-side probe (trivial flux there, exact Gauss-sum computation).
 ---
 
-THEOREM (dependency list below).  For `p = 3 (mod 4)` and the pair
+OPEN CLAIM. For `p = 3 (mod 4)` and the pair
 `Lambda = SL_3(Z) <= Gamma = SL_3(Z[1/p])`, there is NO enemy of the
 collapse `(RC3)` with `Lambda`-exact microstates at ANY levels: the
 `Lambda`-exact face of `(RC3)` is closed for the `p = 3` pair.
+
+The current assembly does not prove this claim. Its fixed-shift-to-flat
+step is invalidated by
+`fixed-shift-invariance-does-not-force-flat-profile`, and the independent
+identification of the actual parahoric transport loop with the normalized
+Weil--Maslov loop remains open. The flux computation below is therefore a
+candidate terminal obstruction after those two seams are closed, not a
+completed closure theorem.
 
 Assembly of the proof, every piece prime-generic or computed here:
 
@@ -63,6 +71,16 @@ route's charge and whose failure mode (a non-canonical normalization
 evading the pinning) is explicitly what the route excludes.
 
 ## Attempts
+
+- **Audit correction (2026-08-21).** Fixed coweight-shift invariance on a
+  growing scale lattice is only a Folner/delocalization statement.
+  Triangular product profiles are invariant under every fixed shift and
+  have vanishing atoms but stay total-variation distance `1/4` from Haar;
+  see `fixed-shift-invariance-no-flat-profile-proof`. In addition,
+  Stone--von Neumann uniqueness leaves edge scalars whose closed product is
+  the flux being claimed, so the parahoric-to-Weil normalization dictionary
+  recorded in `artifacts/flux-identification-lemma-protocol-2026-08-21.md`
+  is still required. Neither correction refutes the target RCC statement.
 
 - **Two-sided closure of the fork.**  At `p = 2` the same arithmetic
   gives flux `+1` (all 2-power symbols trivial), which is exactly

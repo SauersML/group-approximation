@@ -29,10 +29,11 @@ non-hyperlinear, which is the goal.
 This edge needs no HNN carrier and no Britton reduction: the
 commutant unitary is the base lamp itself.  It is the SL_3, p = 3
 instance of `nonhyperlinear-coset-wreath-from-commutant-collapse`,
-chosen because the Lambda-exact face of the p = 3 collapse is closed
-(`lambda-exact-face-closes-at-p-three`) and the subgroup-exact
-outlier stratum is empty (`subgroup-exact-outliers-do-not-exist`),
-so the collapse there is EXACTLY the uniform-outlier exclusion.
+chosen because the candidate metaplectic flux is nontrivial at p = 3.
+The subgroup-exact outlier stratum is empty
+(`subgroup-exact-outliers-do-not-exist`), but the Lambda-exact spread
+sector is not closed: fixed-shift invariance alone does not force a
+flat profile.
 
 **The summit in one sentence.**  Either `W_3` is non-hyperlinear --
 the goal -- or `SL_3(Z)` admits regular-trace microstates that are

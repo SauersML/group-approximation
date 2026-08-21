@@ -48,6 +48,16 @@ exact variety to `delta`-representations, i.e. the outlier sector.
 
 ## Attempts
 
+- **Exact co-density alone cannot cross the approximation wall.**
+  `exact-codensity-does-not-imply-matricial-rcc` gives the unconditional
+  pair `SL_3(Z) < SL_3(Z) x A_fin`: every exact finite-dimensional
+  representation has equal subgroup and ambient images, yet the canonical
+  hyperlinear regular model has a maximal relative-commutant/projective
+  energy leak from the `A_fin` factor. Thus the exact theorem above cannot
+  be promoted by compactness, perfectness, or subgroup property (T) alone;
+  any proof here must use the arithmetic coupling to the denominator
+  generator.
+
 - **The involution-only qualitative form is NOT a smaller wall.**
   `trace-zero-involution-projective-transfer-equals-rcc` proves by the
   explicit dilation `v=[[0,U],[U*,0]]` that every positive-energy

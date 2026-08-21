@@ -2,11 +2,11 @@
 rg: 2
 id: sl3-p3-pair-relative-commutant-collapse
 kind: claim
-title: The p three pair carries the collapse with its Lambda-exact face already closed
+title: Relative-commutant collapse for the p three SL3 pair
 distinct_from:
-  sl3-pair-relative-commutant-route: that is the p = 2 instance, where the metaplectic flux is trivial and the Lambda-exact tower resists closure; this is the p = 3 instance, where the flux is -1 and the entire Lambda-exact face is closed by theorem — the collapse here is exactly the uniform-outlier question.
+  sl3-pair-relative-commutant-route: that is the p = 2 instance; this is the p = 3 instance where the candidate metaplectic flux is nontrivial, although the flatness and transport-identification seams remain open.
   sl5-pair-relative-commutant-collapse: that instance exists for the degree-2 cohomology infrastructure at rank four; this one exists because the Hilbert-symbol arithmetic decides the Lambda-exact face at p = 3 (mod 4), making it the lane's sharpest instance.
-  lambda-exact-face-closes-at-p-three: that is the closure theorem for the Lambda-exact face of this pair; this is the collapse statement itself, now equivalent to excluding uniform outliers alone.
+  lambda-exact-face-closes-at-p-three: that is the still-open proposed closure of the Lambda-exact face; this is the full collapse statement.
 ---
 
 Let `Lambda = SL_3(Z)`, `Gamma = SL_3(Z[1/3])`,
@@ -28,24 +28,23 @@ compression, moment splitting, and the established reduction
 `hnn-route-is-relative-commutant-collapse` for the goal group
 `G_3' = < SL_3(Z[1/3]), t | [t, SL_3(Z)] = 1 >`.
 
-What distinguishes this instance:
-`lambda-exact-face-closes-at-p-three` closes its ENTIRE
-`Lambda`-exact face, so `(RC3-p3)` is exactly the exclusion of
-uniform outliers — microstates at uniform positive distance from
-every genuine representation of `SL_3(Z)` — and the correctability
-hole `sl3z-regular-microstates-are-congruence-correctable`,
-instantiated with `p = 3` targets (ALL congruence levels now
-usable, coprimality unrestricted), is equivalent to it.
+What distinguishes this instance is a candidate nontrivial
+metaplectic flux on oscillator bands. The prior claim that this
+already closed the entire `Lambda`-exact face is invalidated by
+`fixed-shift-invariance-does-not-force-flat-profile`: fixed-shift
+invariance does not force a flat profile, and the parahoric-to-Weil
+transport dictionary is also open. Thus `(RC3-p3)` still includes
+both the spread `Lambda`-exact sector and the uniform-outlier sector.
 
 ## Attempts
 
-- **The outlier sector is the whole question here.**  Hyperfinite
+- **The outlier sector is one of two remaining questions here.** Hyperfinite
   HS-stability of `SL_3(Z)` (in-graph, via character rigidity)
   corrects amenable-limit sequences; the regular-trace sequences
   are the non-amenable complement; the Dogon--Vigdorovich Question
   1.4 analogue at the lattice, with no central extension needed, is
-  the single remaining input.  Every closure instrument of the lane
-  now serves one target for one pair.
+  the outlier input. The other is the nonuniform Folner/spread sector
+  left open by the failed fixed-shift-to-flat inference.
 - **Falsification honesty.**  A uniform-outlier enemy for `p = 3`
   would be the first explicit non-correctable microstate family of
   a higher-rank lattice, itself a major structure theorem; the

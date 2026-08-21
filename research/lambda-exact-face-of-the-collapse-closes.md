@@ -126,8 +126,8 @@ Hilbert--Schmidt mass in the common part is at most `1/4`, giving
   multi-band defect accumulation — with the honest record that at
   forced `k ~ a/4` the accumulation wins unless a genuinely
   multi-scale argument is found.
-- **THEOREM (same-day addendum): the enemy's weight profile is
-  shift-invariant, hence flat.**  The intertwiner space obeys the
+- **INVALIDATED ATTEMPT: fixed-shift invariance does not imply flatness.**
+  The intertwiner space may still obey the
   min-overlap bound `|| xi ||_2^2 <= sum_pi min(w_A(pi), w_B(pi))`
   (block-wise Cauchy--Schwarz on the Schur decomposition of
   `Hom(lambda compose B, lambda compose A)`), and the `B`-side
@@ -137,16 +137,15 @@ Hilbert--Schmidt mass in the common part is at most `1/4`, giving
   weight profile satisfies `TV(w, w-shifted) -> 0` — asymptotic
   invariance under the 2-adic scale shift — and, running the same
   argument with the Weyl conjugates `h', h''`, invariance under the
-  shifts in ALL the coweight directions.  An asymptotically
-  `Z^2`-shift-invariant profile on the growing multi-scale lattice
-  must FLATTEN (no invariant probability concentrates: every band's
-  weight tends to zero uniformly, mass equidistributes across
-  scales).  Hence the surviving `Lambda`-exact enemy is pinned to
-  the UNIQUE flat multi-scale profile — the canonical discrete
-  shadow of solenoid Haar — now by theorem, not analogy.  Every
-  degree of freedom in the `Lambda`-exact face is gone except the
-  one flat tower, whose realizability is verbatim the recorded
-  coset-Bernoulli / Kun--Thom stand-or-fall configuration.
+  shifts in ALL the coweight directions.  The conclusion after that
+  point was false: `fixed-shift-invariance-no-flat-profile-proof`
+  constructs triangular product measures on growing two-dimensional
+  tori which are asymptotically invariant under every fixed shift and
+  have vanishing atoms, yet remain total-variation distance `1/4`
+  from Haar.  Thus this argument yields only a Folner/delocalized
+  profile, not a unique flat tower.  A genuine multiscale mixing,
+  entropy, or expansion estimate is still needed before the flux
+  endgame can be applied to every surviving profile.
 - **ENDGAME: the flat tower's cocycle (2026-08-21, terminal
   frontier of the day).**  On the flat profile the enemy candidate
   MATERIALIZES up to one obstruction: pullback along `Ad(h)` is a

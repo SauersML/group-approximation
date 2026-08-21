@@ -6,7 +6,7 @@ title: Almost-representations exact on a finite-index Kazhdan subgroup are corre
 distinct_from:
   sl3z-regular-microstates-are-congruence-correctable: that is the full correctability hole (all regular microstates); this proves the special case where the microstates are EXACT on some finite-index subgroup, shrinking the outlier habitat to sequences non-exact on every finite-index subgroup uniformly.
   two-power-sector-conjugator-dichotomy: that dichotomy concerns the h-twisted pair, where the depth shift makes kernels differ and finite-level equivalence fails; this exploits the opposite phenomenon — integral conjugation preserves congruence levels, so the coset-twisted pairs are exactly equivalent at every level and the conjugacy branch is realized.
-  lambda-exact-face-closes-at-p-three: that closes the Lambda-exact face of the p = 3 collapse; this begins the closure of the complementary outlier face by eliminating its subgroup-exact stratum with the same rigidity machinery.
+  lambda-exact-face-closes-at-p-three: that is a still-open proposed closure of the Lambda-exact face; this independently eliminates the subgroup-exact stratum of the outlier face.
 ---
 
 THEOREM.  Let `Lambda_1 <= Lambda = SL_3(Z)` be any finite-index
@@ -49,9 +49,9 @@ the stated finite adjustments.
   uniformly far from genuine representations of EVERY finite-index
   subgroup simultaneously — "everywhere-inexact" sequences.  All
   congruence structure, at all levels and all finite-index
-  localizations, is unusable by the enemy.  Combined with the closed
-  Lambda-exact face this is the sharpest habitat description the
-  outlier sector has had.
+  localizations, is unusable by the enemy. This is a sharp habitat
+  description of the outlier sector, independent of the still-open
+  Lambda-exact spread sector.
 - **Two-sided note.**  Everywhere-inexact almost-representations of
   higher-rank lattices are not known to exist; their construction
   would itself be a major theorem (a strong negation of stability),

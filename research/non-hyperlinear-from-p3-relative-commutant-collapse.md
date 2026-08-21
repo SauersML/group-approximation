@@ -2,7 +2,7 @@
 rg: 2
 id: non-hyperlinear-from-p3-relative-commutant-collapse
 kind: route
-title: The p three pair reaches the goal through the established reduction with its exact face pre-closed
+title: The p three pair reaches the goal through relative-commutant collapse
 target: non-hyperlinear-group
 requires:
   - hnn-route-is-relative-commutant-collapse
@@ -18,10 +18,8 @@ G_3' = < SL_3(Z[1/3]), t | [t, SL_3(Z)] = 1 >
 ```
 
 is not hyperlinear as soon as `(RC3-p3)` holds — the statement of
-`sl3-p3-pair-relative-commutant-collapse`.  This is the lane's
-sharpest goal edge: by `lambda-exact-face-closes-at-p-three` the
-collapse for THIS pair has no `Lambda`-exact enemies at any level
-structure, so the edge's single open input is the uniform-outlier
-exclusion — the lattice-only correctability statement — with the
-metaplectic arithmetic of `p = 3 (mod 4)` having eliminated
-everything else.
+`sl3-p3-pair-relative-commutant-collapse`. This is a sharp goal edge,
+but its open input is the full RCC statement. The proposed closure of
+the `Lambda`-exact face is not established: nonuniform Folner profiles
+and the parahoric-to-Weil transport dictionary remain open in addition
+to the uniform-outlier sector.
