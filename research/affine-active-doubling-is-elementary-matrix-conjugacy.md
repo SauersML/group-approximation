@@ -2,13 +2,14 @@
 rg: 2
 id: affine-active-doubling-is-elementary-matrix-conjugacy
 kind: claim
-title: One affine active coefficient copy is elementary-conjugate to two diagonal copies
+title: The affine active idempotent is elementary-conjugate to two diagonal copies before centralization
 distinct_from:
   hnn-conjugacy-cannot-return-schur-morita-multiplicity: that rules out turning a restriction-multiplicity change into the same next packet by plain type-preserving conjugacy; this gives an explicit conjugacy from one coefficient corner to a different two-slot diagonal corner inside a properly infinite matrix algebra.
   affine-leavitt-steinberg-mark-is-fd-invisible: that proves exact finite-dimensional collapse after using all Steinberg root relations; this isolates the explicit ordinary matrix word implementing the one-to-two coefficient placement.
+  affine-active-head-central-leavitt-envelope: that centralizes the branch operators with the whole finite coefficient head; the active-idempotent conjugacy below already holds in the original free relative envelope, while centrality is needed only for the coefficientwise extension `(AEC6)`.
 ---
 
-Put `R=L_A^c(S)`. In `M_3(R)` define
+Put `R=L_A(S)`, the original free relative envelope. In `M_3(R)` define
 
 ```text
 E=diag(A,0,0),                  F=diag(0,A,A),
@@ -33,17 +34,28 @@ Then `W` is invertible and is explicitly elementary:
 W=[[1,X],[0,1]] [[1,0],[-Y,1]] [[1,X],[0,1]].             (AEC4)
 ```
 
-Its inverse is `[[1-E,-X],[Y,1-F]]`. For every `a in AS`, let
-`a_hat=aE_(1,1) in M_3(R)`. Coefficient centrality gives
+Its inverse is `[[1-E,-X],[Y,1-F]]`, and already in the free envelope
 
 ```text
-Y a_hat X=diag(0,a,a),                                   (AEC5)
+W diag(E,0) W^-1=diag(0,F).                              (AEC5)
+```
+
+Thus the distinguished active idempotent itself is carried from one slot to
+two diagonal slots by one explicit elementary word, without imposing any
+commutation relation between the branch generators and the affine head.
+
+There is a coefficientwise refinement after passing to the central quotient
+`L_A^c(S)`. For every `a in AS`, let `a_hat=aE_(1,1) in M_3(L_A^c(S))`.
+Coefficient centrality gives
+
+```text
+Y a_hat X=diag(0,a,a),                                   (AEC6)
 ```
 
 and direct multiplication gives
 
 ```text
-W diag(a_hat,0) W^-1=diag(0,diag(0,a,a)).                 (AEC6)
+W diag(a_hat,0) W^-1=diag(0,diag(0,a,a)).                 (AEC7)
 ```
 
 Thus one active coefficient copy is carried by one explicit ordinary

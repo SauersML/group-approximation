@@ -85,3 +85,8 @@ the affine active Leavitt construction.
   realizes them by words of length `O(n^2)`.  Thus the decoder need not invent
   dimension pressure; it must make this existing packet robust with a
   dimension-independent relator ledger.
+- **Finite-depth robustness is effective but not uniform.**
+  `affine-leavitt-profile-computable-checkpoints` computes a threshold for
+  each complete depth-`n` packet and forces dimension `.99p^(2^n)`.  The
+  unresolved content of `(ALD1)--(ALD2)` is exactly replacing those unrelated
+  thresholds by one amplification-stable modulus.
