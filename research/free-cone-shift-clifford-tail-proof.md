@@ -15,10 +15,11 @@ t=c u_0u_1.                                               (1)
 ```
 
 Consequently `(u_0u_1)^2=1`, and right multiplication of `(1)` by
-`u_0u_1` gives `t u_0u_1=c`.  Conjugation by `g_x` proves all three
-identities in `(FCS3)`.  A conjugate of a defining relator is one cell in
-relative area, while `|g_x|=|x|`; this proves the claimed address and
-derivation bounds.
+`u_0u_1` gives `t u_0u_1=c`; hence the last relator in `(FCS1)` is
+redundant.  Keeping that relator in the finite presentation makes each of
+the three identities in `(FCS3)` a conjugate of a defining relator.  Such a
+conjugate is one cell in relative area, while `|g_x|=|x|`; this proves the
+claimed address and derivation bounds.
 
 For noncollapse, let `K=C^4`, `q=|00>`, and
 
@@ -60,4 +61,3 @@ reference state elsewhere is negated by both `rho(c)` and `rho(t)`, proving
 that the two designated gates survive.  More generally `(2)` sends their
 addressed conjugates to the site `g_x` and cone `g_xP`, respectively, and
 conjugating `(3)` gives the exact binary recursion at every address.
-

@@ -16,7 +16,8 @@ distinct_from:
 G_cone=<t,c,s_0,s_1 |
           t^2=c^2=1,
           [s_0 t s_0^(-1),s_1 t s_1^(-1)]=1,
-          t=c(s_0 t s_0^(-1))(s_1 t s_1^(-1))>.       (FCS1)
+          t=c(s_0 t s_0^(-1))(s_1 t s_1^(-1)),
+          t(s_0 t s_0^(-1))(s_1 t s_1^(-1))=c>.       (FCS1)
 ```
 
 For a binary address `x=x_1...x_n`, put
@@ -26,7 +27,7 @@ g_x=s_(x_1)...s_(x_n),
 T_x=g_x t g_x^(-1),       C_x=g_x c g_x^(-1).         (FCS2)
 ```
 
-Conjugating the two non-power relators in `(FCS1)` by `g_x` gives
+Conjugating the three non-power relators in `(FCS1)` by `g_x` gives
 
 ```text
 [T_(x0),T_(x1)]=1,
@@ -34,9 +35,11 @@ T_x=C_x T_(x0)T_(x1),
 T_x T_(x0)T_(x1)=C_x.                                  (FCS3)
 ```
 
-Thus every addressed recursion and identity-outer anchor is a conjugate of
-one fixed relator.  Its boundary word has length `O(|x|)` and its relative
-derivation area is one.  In particular the formerly semantic tail `T_x`
+The last relator is redundant, since the commuting child involutions make it
+follow from the preceding two, but retaining it makes every addressed
+recursion and identity-outer anchor a conjugate of one fixed relator.  Its
+boundary word has length `O(|x|)` and its relative derivation area is one.
+In particular the formerly semantic tail `T_x`
 is now an ordinary word of length `2|x|+1`; no infinite relator list or
 presentation depending on the depth is used.
 
@@ -69,4 +72,3 @@ not claim that arbitrary incomparable descendant words commute in every
 representation.  Nor does it wordize the aggregate Schur child reflection
 or prove the payload-dependent exposure estimate.  Those remain the two
 interfaces needed by `tail-wordized-child-surplus-collision-supplies-rct7`.
-
