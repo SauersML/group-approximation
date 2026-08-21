@@ -5,7 +5,6 @@ kind: claim
 title: Injective monomial polynomial self-embeddings have sofic ascending-HNN coset actions
 distinct_from:
   positive-core-bernoulli-ce: That established claim concerns the positive-core Gamma-action/crossed product and already contains the local monomial stabilizer-separability trick; this claim uses all iterates of one self-embedding to prove soficity of the full ascending-HNN action, including infinite-index compressors.
-  ascending-hnn-coset-action-sofic: That is the unrestricted RF/sofic-base question; this is a solved explicit family with a congruence-separability proof for every iterate.
   uas-base-gives-sofic-hnn-coset-action: That uses universal action soficity of the base; this proof needs only the concrete monomial congruence structure and applies even when that general hypothesis is unavailable.
 artifacts:
   - research/artifacts/ascending-hnn-iterated-coset-solution-2026-08-18.md

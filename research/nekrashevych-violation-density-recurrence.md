@@ -4,7 +4,6 @@ id: nekrashevych-violation-density-recurrence
 kind: claim
 title: The twisted tree return converts Schur violation density into a strict Fanizza contraction
 distinct_from:
-  subtree-trace-independence-certificate: that controls covariance of two sibling observables; this must also orient every fixed BCS predicate packet, pay inactive sectors, and identify the returned child carrier with the next Fanizza level.
   schur-violation-density-gives-contraction: that proves the scalar inequality once the active, violating, and returned masses satisfy its three hypotheses; this constructs those masses from the tree packet words.
 ---
 

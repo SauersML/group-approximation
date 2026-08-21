@@ -8,7 +8,6 @@ distinct_from:
   literal-central-mark-corona-invisible: that is the operator-norm corona obstruction that makes `E` non-MF; this is a profinite-topology statement about the same word, proved from soficity of `E`, and it says the finite-quotient side of the story cannot be strengthened
   literal-group-sofic: that is the input, soficity of `E`; this is the consequence drawn from it via the weak-soficity criterion, and it is a statement about the presentation rather than about the group's approximability
   literal-mark-quotient-finite-residual: that computes the finite residual of the marked quotient `E/<w>`; this is about the mark itself in `E` and counts conjugacy factors rather than identifying a subgroup
-  non-weakly-sofic-word-certificate: that is the open certificate a genuine example must supply; this proves that `E` provably cannot supply it, so it is the refutation of the nearest-looking candidate in this repository
   literal-mark-quotient-not-mf: that is an operator-norm result about the quotient `E/<w>`, placing the unsquared defect in its MF radical; this is a profinite-topology result about `E` itself, counting how many relator conjugates a finite quotient needs, and no matrix or radical appears in it
 artifacts:
   - research/artifacts/non-weakly-sofic-audit-2026-08-17.md

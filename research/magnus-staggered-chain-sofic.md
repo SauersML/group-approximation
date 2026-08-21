@@ -6,7 +6,6 @@ title: The staggered Magnus chain of a one-relator kernel is sofic
 distinct_from:
   linton-shell-sofic: that is the rational-derived picture of the same difficulty — a semidirect product of the radical by a free group; this is the Magnus picture — a bi-infinite amalgam over free edge groups. They are two descriptions of the same complexity, and no translation between them is known, so a proof of either is not a proof of the other.
   one-relator-groups-sofic: that is the question in full; this is the specific amalgamation theorem that would close it through the Magnus hierarchy, and is strictly weaker than closure under amalgamation over arbitrary free subgroups.
-  ascending-hnn-coset-action-sofic: that concerns an ascending HNN extension, where the associated subgroups are nested and the group is unconditionally sofic; a Magnus HNN is generally not ascending and its two associated free subgroups differ, which is exactly why this claim is open and that one's group-level statement is not.
   sofic-radical-soficization: that identifies the sofic radical as the kernel of soficization, a construction applied to an arbitrary group; this is an amalgamation statement about a specific bi-infinite chain of one-relator pieces, and no radical or soficization appears in it.
 artifacts:
   - research/artifacts/one-relator-soficity-audit-2026-08-17.md

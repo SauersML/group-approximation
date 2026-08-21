@@ -5,7 +5,6 @@ kind: claim
 title: Haar small-ball control bounds packings of balanced high-return unitary tuples
 distinct_from:
   balanced-word-haar-small-ball: that controls Haar measure of a high-return locus; this converts that measure bound into an explicit metric packing bound using word Lipschitzness.
-  unitary-word-return-entropy-summability: that asks for a summable weighted net over every dimension; this supplies the quantitative high-return layer estimate but does not yet prove the required exponent wins.
 artifacts:
   - research/artifacts/random-relator-density-repair-2026-08-18.md
 ---

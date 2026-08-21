@@ -6,7 +6,6 @@ title: Soficity of a one-relator group is equivalent to soficity of a finite rat
 distinct_from:
   residually-rationally-solvable-one-relator-sofic: that is the positive corollary in the case where the finite term is free, and it closes a whole class outright; this is the underlying equivalence, which decides nothing on its own and holds for every one-relator group including the unresolved ones.
   linton-radical-abelianization-is-truncated-group-ring: that computes the first homology of the radical as a module; this locates *where in the group* the soficity question lives and says nothing about homology.
-  ascending-hnn-coset-action-sofic: that is about the coset action of an ascending HNN skeleton, whose group soficity is unconditional; this is a reduction inside an arbitrary one-relator group, whose Magnus HNN decompositions are generally not ascending and whose two associated free subgroups differ.
 artifacts:
   - research/artifacts/one-relator-soficity-audit-2026-08-17.md
 ---
