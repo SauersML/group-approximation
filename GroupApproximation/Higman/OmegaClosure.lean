@@ -289,6 +289,57 @@ theorem benignTF_ASub_univ (k : OmegaInput) :
   rw [← omegaOp_one_atZero, ← zetaOp_Zset]
   exact k.omega 1 one_pos (zetaOp Zset) zero_mem_zetaOp_Zset benignTF_ASub_zetaOp_Zset
 
+/-! ## 5b.  The even-support sequences, also from `OmegaInput` alone
+
+`Higman.OperationClosureTheta` needs `A_{oddZero}` benign, where `oddZero` is
+the set of sequences vanishing at every coordinate that is not even, and gets
+it from `Set.univ` through the torsion-free image half of Lemma 3.3.  It does
+not have to: `oddZero` is `ω₂` of `ζ Z`, exactly as `Set.univ` is `ω₁` of
+`ζ Z`, so the SAME residue discharges both, at `m = 2` instead of `m = 1`.
+
+The reason is that a `2`-block is indexed by `{0, 1}`, so it lies in
+`ζ Z = atZero` exactly when its entry at `1` vanishes --- and as `i` runs over
+`ℤ`, `2i + 1` runs over the coordinates that are not even.  No image closure,
+no doubling map, no automorphism of `F₃` is involved. -/
+
+theorem omegaOp_two_zetaOp_Zset :
+    omegaOp 2 (zetaOp Zset) = {f : E | ∀ i : ℤ, (∀ k : ℤ, i ≠ 2 * k) → f i = 0} := by
+  refine Set.ext fun f => ?_
+  constructor
+  · intro hf n hn
+    have hodd : Odd n := by
+      rcases Int.even_or_odd n with he | ho
+      · obtain ⟨k, hk⟩ := he
+        exact (hn k (by omega)).elim
+      · exact ho
+    obtain ⟨i, rfl⟩ := hodd
+    have h1 : blockAt 2 i f ∈ zetaOp Zset := hf i
+    rw [zetaOp_Zset] at h1
+    have h2 : blockAt 2 i f 1 = 0 := h1 1 one_ne_zero
+    rw [blockAt_apply, if_pos (by rw [Finset.mem_Ico]; omega)] at h2
+    have hcast : ((2 : ℕ) : ℤ) * i + 1 = 2 * i + 1 := by push_cast; ring
+    rwa [hcast] at h2
+  · intro hf i
+    rw [zetaOp_Zset]
+    intro j hj
+    rw [blockAt_apply]
+    by_cases hjm : j ∈ Finset.Ico (0 : ℤ) ((2 : ℕ) : ℤ)
+    · rw [if_pos hjm]
+      rw [Finset.mem_Ico] at hjm
+      have hj1 : j = 1 := by omega
+      subst hj1
+      exact hf _ (fun k => by push_cast; omega)
+    · rw [if_neg hjm]
+
+/-- **`A_{oddZero}` is benign from `OmegaInput` alone.**  This is the input
+`Higman.OperationClosureTheta.benignTF_ASub_oddZero` obtains from
+`TorsionFreeImageClosure`; that lemma is not needed for it. -/
+theorem benignTF_ASub_evenSupport (k : OmegaInput) :
+    BenignTF (ASub {f : E | ∀ i : ℤ, (∀ k : ℤ, i ≠ 2 * k) → f i = 0}) := by
+  rw [← omegaOp_two_zetaOp_Zset]
+  exact k.omega 2 (by norm_num) (zetaOp Zset) zero_mem_zetaOp_Zset
+    benignTF_ASub_zetaOp_Zset
+
 /-- The `Agree` inputs, assembled from two of them and the `ω` input. -/
 theorem agreeInputs_of (hhalf : BenignTF (Agree.rowSub Agree.piV))
     (hzeta : BenignTF (Agree.rowSub Agree.zetaV)) (k : OmegaInput) :

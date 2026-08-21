@@ -1458,16 +1458,12 @@ import GroupApproximation.Sofic.PeriodicOverlap
 import GroupApproximation.Sofic.FreeProductRouterObstruction
 import GroupApproximation.Sofic.GreendlingerDeepestMatch
 import GroupApproximation.Sofic.GreendlingerCoincidence
-import GroupApproximation.Sofic.GreendlingerFreeGate
-import GroupApproximation.Sofic.BespokeRouterGateAssembly
 import GroupApproximation.Sofic.TorsionDescent
 import GroupApproximation.Leavitt.HilbertHotelBlocks
 import GroupApproximation.Leavitt.HilbertHotelSaturation
 import GroupApproximation.Leavitt.HilbertHotelWhitehead
 import GroupApproximation.Leavitt.HilbertHotelBinary
 import GroupApproximation.Leavitt.HilbertHotelDefectNormal
-import GroupApproximation.Leavitt.HilbertHotelCover
-import GroupApproximation.Sofic.TorsionFreeNonMFEndpoint
 import GroupApproximation.Higman.CoordCalculus
 import GroupApproximation.Higman.SeqFilter
 import GroupApproximation.Higman.AgreeClosure
@@ -1478,6 +1474,10 @@ import GroupApproximation.Higman.OperationClosureTau
 import GroupApproximation.Higman.FlipGroup
 import GroupApproximation.Higman.GeneratedBasic
 import GroupApproximation.Higman.GeneratedCoords
+import GroupApproximation.Higman.GeneratedTransition
+import GroupApproximation.Higman.GeneratedEnumeration
+import GroupApproximation.Sofic.TorsionFreeNonMFEndpoint
+import GroupApproximation.Sofic.GreendlingerFreeGate
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group

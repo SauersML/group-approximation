@@ -1,12 +1,7 @@
----
-rg: 2
-id: sl2-far-sector-reduction-chain
-kind: claim
-title: The SL2 far sector, reduced to one near-identity commutator-mixing bound
-distinct_from:
-  skeleton-relative-hs-stability-for-sl2: that is the gluing claim; this is the single-page map of the whole reduction from the far sector down to the one residual estimate, so the architecture is checkable as one object.
-  solenoid-absorption-cascade-converges: that is the cascade node holding the analysis; this indexes the full chain that feeds it and consumes it.
----
+# SL2 far-sector reduction chain
+
+**Archived 2026-08-21.** This is a program map indexing proved and open links,
+not a standalone Cairn claim.
 
 The `SL_2(Z[1/2])` far sector is now a single chain, each link proved,
 cited, or reduced to the next:
