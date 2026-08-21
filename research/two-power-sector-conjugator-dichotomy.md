@@ -96,6 +96,27 @@ algebras.  Then:
   invisible to every finite quotient — the same
   non-residually-witnessable character as the uniform-outlier
   residue, now appearing at the embedding level.
+- **CONSOLIDATION: the bounded gauges reduce to this same dichotomy
+  (2026-08-21, closing computation).**  At a bounded gauge the
+  enemy's binding constraint is the level-coupled intertwining of
+  the pair of tuples `(sigma_q(lambda) (x) sigma_p(lambda-bar))` and
+  `(sigma_q(h lambda h^(-1)) (x) sigma_p(eta(lambda)))` over
+  `lambda in Lambda_-`.  Their asymptotic mixed `*`-moments AGREE:
+  in the regular-type limit a word contributes only when
+  `w(lambda) = e` in `Lambda_-`, and then both `p`-legs evaluate to
+  the identity because BOTH `lambda mapsto lambda-bar` and
+  `eta : lambda mapsto h lambda h^(-1) mod p^C` are homomorphisms —
+  so every relation of `Lambda_-` evaluates identically on the two
+  sides.  Hence the bounded-gauge question is ALSO a moment-equal
+  `h`-twisted pair conjugacy question, the (T) all-or-nothing
+  dichotomy applies verbatim (`Lambda_-` has property (T)), and the
+  kernel-invariance no-go transfers (the same depth shift violates
+  quotient kernels): bounded or unbounded, the ENTIRE Lambda-exact
+  face of the collapse beyond the closed coprime sector rests on ONE
+  question-type — is the `h`-twisted congruence embedding pair
+  unitarily conjugate in matrix ultraproducts? — with the
+  `1/q`-interleaving picture as its spectral shadow and quantum-only
+  witnesses on the YES branch.
 - **The probe connection.**  `(CD1)` predicts the tower probes on
   regular-type modules see either defect `-> 0` (conjugacy branch)
   or a floor `>= delta_0` -- never a slow drift to zero; the
