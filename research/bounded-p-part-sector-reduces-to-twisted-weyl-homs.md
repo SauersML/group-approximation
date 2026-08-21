@@ -113,9 +113,20 @@ perfectness argument), here appearing as finite Weyl-gauge twists.
   Hom(V-bar_pi, V-bar_pi')`, so the right legs are spectators and
   the kernel decomposes over irreducible pairs of `GL_3(F_2)`
   (dimensions `1, 3, 3, 6, 7, 8`): the certification is an exact
-  rational computation (in `Q(sqrt(-7))` for the two cubic
-  representations) on blocks of size at most `8 x 8` — queued as the
-  certification step.
+  rational computation on small blocks.  CERTIFIED (same day,
+  `experiments/gauge_cert_c1.py` on sioux): over the exact
+  3528-dimensional B-orbit basis of the Borel commutant (mod 2 all
+  Weyl signs vanish, so every operator is pure permutation
+  combinatorics on matrix units), the stacked tangent-constraint
+  matrix has FULL COLUMN RANK 3528 modulo the prime 2147483629;
+  since rank can only drop under reduction mod p, the rank over `Q`
+  is full and the kernel over `C` is exactly zero.  Together with
+  the corner and multiplicity reductions this is an exact,
+  machine-verified theorem: in the `C = 1` gauge (the smallest
+  gauge — its Weyl twist is already nontrivial, correcting the
+  earlier guess that `C = 2` was the smallest) the twisted system is
+  infinitesimally rigid at the trivial corrector for EVERY
+  representation.
 - **Falsification honesty.**  A surviving twisted hom compatible
   with regularity at some finite gauge would NOT yet be an enemy (it
   must still satisfy the mixed-word regularity and assemble into a
